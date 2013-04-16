@@ -232,3 +232,8 @@ orderable
 [mootlywcm:houseincomedetail] > hippo:compound, hippostd:relaxed orderable
 
 [mootlywcm:houseproperty] > hippostd:relaxed, mootlywcm:basedocument orderable
+
+
+[mootlywcm:capitalassetdetail] > hippo:compound, hippostd:relaxed orderable
+
+[mootlywcm:capitalassetdocument] > hippostd:relaxed, mootlywcm:basedocument orderable
