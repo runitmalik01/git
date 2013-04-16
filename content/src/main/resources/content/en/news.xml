@@ -1,0 +1,2553 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<sv:node sv:name="news" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hippostd:folder</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+    <sv:value>hippo:harddocument</sv:value>
+    <sv:value>hippotranslation:translated</sv:value>
+    <sv:value>hippo:translated</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>a7f129aa-4ef8-49ca-863b-d827deaf7cc1</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
+    <sv:value>live</sv:value>
+    <sv:value>preview</sv:value>
+  </sv:property>
+  <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
+  <sv:property sv:multiple="true" sv:name="hippostd:foldertype" sv:type="String">
+    <sv:value>new-news-folder</sv:value>
+    <sv:value>new-news</sv:value>
+  </sv:property>
+  <sv:property sv:name="hippotranslation:id" sv:type="String">
+    <sv:value>08864dfd-8e37-44eb-ba58-63c4e42ff078</sv:value>
+  </sv:property>
+  <sv:property sv:name="hippotranslation:locale" sv:type="String">
+    <sv:value>en</sv:value>
+  </sv:property>
+  <sv:node sv:name="2010">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hippostd:folder</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+      <sv:value>hippo:harddocument</sv:value>
+      <sv:value>hippotranslation:translated</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>8437a55f-6207-4499-b861-fd4b9b6ae35d</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
+      <sv:value>live</sv:value>
+      <sv:value>preview</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
+    <sv:property sv:multiple="true" sv:name="hippostd:foldertype" sv:type="String">
+      <sv:value>new-news-folder</sv:value>
+      <sv:value>new-news</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippotranslation:id" sv:type="String">
+      <sv:value>4dbebf8b-4208-4421-b168-79ccf7158d44</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippotranslation:locale" sv:type="String">
+      <sv:value>en</sv:value>
+    </sv:property>
+    <sv:node sv:name="07">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>hippostd:folder</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+        <sv:value>hippo:harddocument</sv:value>
+        <sv:value>hippotranslation:translated</sv:value>
+      </sv:property>
+      <sv:property sv:name="jcr:uuid" sv:type="String">
+        <sv:value>bb2b2899-dbe0-4964-9377-88f813bb8fe1</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
+        <sv:value>live</sv:value>
+        <sv:value>preview</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
+      <sv:property sv:multiple="true" sv:name="hippostd:foldertype" sv:type="String">
+        <sv:value>new-news-folder</sv:value>
+        <sv:value>new-news</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippotranslation:id" sv:type="String">
+        <sv:value>0a885364-4a6a-4492-83f6-8092981d42da</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippotranslation:locale" sv:type="String">
+        <sv:value>en</sv:value>
+      </sv:property>
+      <sv:node sv:name="http---en.wikinews.org-wiki-toyota_tesla_to_develop_electric_suv">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hippo:handle</sv:value>
+        </sv:property>
+        <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+          <sv:value>hippo:hardhandle</sv:value>
+          <sv:value>hippo:translated</sv:value>
+        </sv:property>
+        <sv:property sv:name="jcr:uuid" sv:type="String">
+          <sv:value>4e8ee2d0-c03d-4172-ae01-b6d0aac89877</sv:value>
+        </sv:property>
+        <sv:node sv:name="hippo:translation">
+          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+            <sv:value>hippo:translation</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippo:language" sv:type="String">
+            <sv:value/>
+          </sv:property>
+          <sv:property sv:name="hippo:message" sv:type="String">
+            <sv:value>Toyota, Tesla to develop electric SUV</sv:value>
+          </sv:property>
+        </sv:node>
+        <sv:node sv:name="http---en.wikinews.org-wiki-toyota_tesla_to_develop_electric_suv">
+          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+            <sv:value>mootlywcm:newsitem</sv:value>
+          </sv:property>
+          <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+            <sv:value>hippo:harddocument</sv:value>
+            <sv:value>hippotranslation:translated</sv:value>
+          </sv:property>
+          <sv:property sv:name="jcr:uuid" sv:type="String">
+            <sv:value>e07931de-c223-4548-96b5-c6f133ec24fd</sv:value>
+          </sv:property>
+          <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
+            <sv:value>preview</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippo:related___pathreference" sv:type="String">
+            <sv:value>news/2010/07/http---en.wikinews.org-wiki-toyota_tesla_to_develop_electric_suv</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostd:holder" sv:type="String">
+            <sv:value>admin</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostd:state" sv:type="String">
+            <sv:value>unpublished</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostd:stateSummary" sv:type="String">
+            <sv:value>new</sv:value>
+          </sv:property>
+          <sv:property sv:multiple="true" sv:name="hippostd:tags" sv:type="String">
+            <sv:value>transport</sv:value>
+            <sv:value>technology</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
+            <sv:value>katja</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
+            <sv:value>2010-07-28T14:35:41.181+02:00</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
+            <sv:value>2011-10-06T12:05:05.757+02:00</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
+            <sv:value>admin</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
+            <sv:value>2011-10-06T13:32:49.101+02:00</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippotranslation:id" sv:type="String">
+            <sv:value>bd547d36-520d-452e-a41b-ce8d92c39d34</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippotranslation:locale" sv:type="String">
+            <sv:value>en</sv:value>
+          </sv:property>
+          <sv:property sv:name="mootlywcm:categories" sv:type="String">
+            <sv:value>Electrical car</sv:value>
+          </sv:property>
+          <sv:property sv:name="mootlywcm:date" sv:type="Date">
+            <sv:value>2010-07-17T10:22:00.000+02:00</sv:value>
+          </sv:property>
+          <sv:property sv:name="mootlywcm:summary" sv:type="String">
+            <sv:value>Toyota Motor Company announced they have formalized an agreement to develop an electric version of the RAV4 SUV with Tesla Motors.</sv:value>
+          </sv:property>
+          <sv:property sv:name="mootlywcm:title" sv:type="String">
+            <sv:value>Toyota, Tesla to develop electric SUV</sv:value>
+          </sv:property>
+          <sv:node sv:name="hippotranslation:translations">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>hippotranslation:translations</sv:value>
+            </sv:property>
+          </sv:node>
+          <sv:node sv:name="mootlywcm:description">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>hippostd:html</sv:value>
+            </sv:property>
+            <sv:property sv:name="hippostd:content" sv:type="String">
+              <sv:value>&lt;html&gt;
+                &lt;body&gt;
+
+                &lt;p&gt;In May 2010, Akio Toyoda and Elon Musk, leaders of Toyota and Tesla,
+                respectively, announced they would work together on electric vehicles. The
+                agreement formalizes this announcement and would allow Tesla to work with Toyota
+                at an automobile production plant in California.&lt;/p&gt;
+
+                &lt;p&gt;The plant will open 2011, when Tesla reopens it after it bought the Fremont,
+                California plant. The plant was previously used by Toyota and General Motors,
+                but was shut down when Toyota said it would not produce cars in California.&lt;/p&gt;
+
+                &lt;p&gt;Tesla currently produces only a single model, the US$109,000 Roadster,
+                although it is currently designing a second model, the Model S, which will be
+                produced at the Fremont factory.&lt;/p&gt;
+
+                &lt;p&gt;Analysts supported the move; John Boesel, CEO of a green-transportation trade
+                group, said that "Toyota's willingness to partner with Tesla to provide an
+                electric version of one of the Japanese automaker's existing vehicles suggests
+                the partnership between the two companies is going to be a meaningful one."&lt;/p&gt;
+
+                &lt;p&gt;Following this announcement, Tesla's shares rose $0.75, while Toyota's fell
+                $1.65.&lt;/p&gt;
+
+                &lt;/body&gt;
+                &lt;/html&gt;</sv:value>
+            </sv:property>
+          </sv:node>
+          <sv:node sv:name="mootlywcm:copyright">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>mootlywcm:copyright</sv:value>
+            </sv:property>
+            <sv:property sv:name="mootlywcm:description" sv:type="String">
+              <sv:value>Toyota, Tesla to develop electric SUV</sv:value>
+            </sv:property>
+            <sv:property sv:name="mootlywcm:url" sv:type="String">
+              <sv:value>http://en.wikinews.org/wiki/Toyota,_Tesla_to_develop_electric_SUV</sv:value>
+            </sv:property>
+          </sv:node>
+          <sv:node sv:name="relateddocs:docs">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>relateddocs:docs</sv:value>
+            </sv:property>
+          </sv:node>
+          <sv:node sv:name="mootlywcm:image">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>hippogallerypicker:imagelink</sv:value>
+            </sv:property>
+            <sv:property sv:name="hippo:docbase" sv:type="String">
+              <sv:value>6d81d6de-8956-48a0-8e3c-ebd3923fbd32</sv:value>
+            </sv:property>
+            <sv:property sv:multiple="true" sv:name="hippo:facets" sv:type="String"/>
+            <sv:property sv:multiple="true" sv:name="hippo:modes" sv:type="String"/>
+            <sv:property sv:multiple="true" sv:name="hippo:values" sv:type="String"/>
+          </sv:node>
+        </sv:node>
+      </sv:node>
+      <sv:node sv:name="monster-wave">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hippo:handle</sv:value>
+        </sv:property>
+        <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+          <sv:value>hippo:hardhandle</sv:value>
+          <sv:value>hippo:translated</sv:value>
+        </sv:property>
+        <sv:property sv:name="jcr:uuid" sv:type="String">
+          <sv:value>fc234d21-a769-49e5-ba1c-6a0f176fd6c0</sv:value>
+        </sv:property>
+        <sv:node sv:name="hippo:translation">
+          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+            <sv:value>hippo:translation</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippo:language" sv:type="String">
+            <sv:value/>
+          </sv:property>
+          <sv:property sv:name="hippo:message" sv:type="String">
+            <sv:value>Monster Wave</sv:value>
+          </sv:property>
+        </sv:node>
+        <sv:node sv:name="monster-wave">
+          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+            <sv:value>mootlywcm:newsitem</sv:value>
+          </sv:property>
+          <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+            <sv:value>hippo:harddocument</sv:value>
+            <sv:value>hippotranslation:translated</sv:value>
+          </sv:property>
+          <sv:property sv:name="jcr:uuid" sv:type="String">
+            <sv:value>4affdac9-c767-4abb-b9a1-0dcbeb981b93</sv:value>
+          </sv:property>
+          <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
+            <sv:value>preview</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippo:related___pathreference" sv:type="String">
+            <sv:value>news/2010/07/monster-wave</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostd:holder" sv:type="String">
+            <sv:value>admin08</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostd:state" sv:type="String">
+            <sv:value>unpublished</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostd:stateSummary" sv:type="String">
+            <sv:value>new</sv:value>
+          </sv:property>
+          <sv:property sv:multiple="true" sv:name="hippostd:tags" sv:type="String">
+            <sv:value>Surfing</sv:value>
+            <sv:value>Wave</sv:value>
+            <sv:value>Ocean</sv:value>
+            <sv:value/>
+          </sv:property>
+          <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
+            <sv:value>admin08</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
+            <sv:value>2010-07-28T22:53:48.573+02:00</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
+            <sv:value>2010-07-28T22:59:36.401+02:00</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
+            <sv:value>admin08</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
+            <sv:value>2010-07-28T22:59:57.057+02:00</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippotranslation:id" sv:type="String">
+            <sv:value>2ca609e9-234d-4ee4-bdc7-0b75c23ba45e</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippotranslation:locale" sv:type="String">
+            <sv:value>en</sv:value>
+          </sv:property>
+          <sv:property sv:multiple="true" sv:name="mootlywcm:categories" sv:type="String"/>
+          <sv:property sv:name="mootlywcm:date" sv:type="Date">
+            <sv:value>2010-03-22T10:22:31.694+01:00</sv:value>
+          </sv:property>
+          <sv:property sv:name="mootlywcm:summary" sv:type="String">
+            <sv:value>Massive waves pounded the North Shore of Oahu, Hawaii Tuesday, allowing for a rare surfing competition to take place.</sv:value>
+          </sv:property>
+          <sv:property sv:name="mootlywcm:title" sv:type="String">
+            <sv:value>Monster waves make way for rare surfing competition</sv:value>
+          </sv:property>
+          <sv:node sv:name="hippotranslation:translations">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>hippotranslation:translations</sv:value>
+            </sv:property>
+          </sv:node>
+          <sv:node sv:name="mootlywcm:description">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>hippostd:html</sv:value>
+            </sv:property>
+            <sv:property sv:name="hippostd:content" sv:type="String">
+              <sv:value>&lt;html&gt;
+                &lt;body&gt;
+
+                &lt;p&gt;The contest is known as the Eddie Aikau competition, named after a noted
+                Hawaiian surfer who was lost at sea during the 1970s. It has only taken place
+                eight times in the past 25 years. Tens of thousands of spectators from across
+                the state gathered to watch 28 expert surfers tackle the 40-foot waves.
+                Competitor Jamie O'Brien said, "We were all stoked out there, smiling, laughing
+                and having a good time." He added, "This is like a natural arena out here for
+                this and it's amazing to be a part of it." The monstrous waves were caused by
+                two cyclones to the northwest of the islands. Conditions have to be nearly
+                perfect for the competition to commence. The winner was 24 year-old Greg Long, a
+                first-time entrant who took home a $55,000 prize. The dangerous conditions
+                inflicted one injury, but safety teams were on standby to deal with any
+                accidents.&lt;/p&gt;
+
+                &lt;/body&gt;
+                &lt;/html&gt;</sv:value>
+            </sv:property>
+          </sv:node>
+          <sv:node sv:name="mootlywcm:copyright">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>mootlywcm:copyright</sv:value>
+            </sv:property>
+            <sv:property sv:name="mootlywcm:description" sv:type="String">
+              <sv:value>Eddie Aikau Competition</sv:value>
+            </sv:property>
+            <sv:property sv:name="mootlywcm:url" sv:type="String">
+              <sv:value/>
+            </sv:property>
+          </sv:node>
+          <sv:node sv:name="relateddocs:docs">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>relateddocs:docs</sv:value>
+            </sv:property>
+          </sv:node>
+          <sv:node sv:name="mootlywcm:image">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>hippogallerypicker:imagelink</sv:value>
+            </sv:property>
+            <sv:property sv:name="hippo:docbase" sv:type="String">
+              <sv:value>663cf2d0-3bc2-4d71-b086-d24c157d07a7</sv:value>
+            </sv:property>
+            <sv:property sv:multiple="true" sv:name="hippo:facets" sv:type="String"/>
+            <sv:property sv:multiple="true" sv:name="hippo:modes" sv:type="String"/>
+            <sv:property sv:multiple="true" sv:name="hippo:values" sv:type="String"/>
+          </sv:node>
+        </sv:node>
+      </sv:node>
+      <sv:node sv:name="fixies-are-totally-green">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hippo:handle</sv:value>
+        </sv:property>
+        <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+          <sv:value>hippo:hardhandle</sv:value>
+          <sv:value>hippo:translated</sv:value>
+        </sv:property>
+        <sv:property sv:name="jcr:uuid" sv:type="String">
+          <sv:value>8f1894fb-5f97-4935-b62c-773a80b8f030</sv:value>
+        </sv:property>
+        <sv:node sv:name="hippo:translation">
+          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+            <sv:value>hippo:translation</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippo:language" sv:type="String">
+            <sv:value/>
+          </sv:property>
+          <sv:property sv:name="hippo:message" sv:type="String">
+            <sv:value>Fixies Are Totally Green</sv:value>
+          </sv:property>
+        </sv:node>
+        <sv:node sv:name="fixies-are-totally-green">
+          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+            <sv:value>mootlywcm:newsitem</sv:value>
+          </sv:property>
+          <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+            <sv:value>hippo:harddocument</sv:value>
+            <sv:value>hippotranslation:translated</sv:value>
+          </sv:property>
+          <sv:property sv:name="jcr:uuid" sv:type="String">
+            <sv:value>4962e200-12e9-4441-abba-bb5c292bab68</sv:value>
+          </sv:property>
+          <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
+            <sv:value>preview</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippo:related___pathreference" sv:type="String">
+            <sv:value>news/2010/07/fixies-are-totally-green</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostd:holder" sv:type="String">
+            <sv:value>admin</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostd:state" sv:type="String">
+            <sv:value>unpublished</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostd:stateSummary" sv:type="String">
+            <sv:value>new</sv:value>
+          </sv:property>
+          <sv:property sv:multiple="true" sv:name="hippostd:tags" sv:type="String">
+            <sv:value>transport</sv:value>
+            <sv:value>bicycle</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
+            <sv:value>admin08</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
+            <sv:value>2010-07-29T08:51:26.133+02:00</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
+            <sv:value>2011-10-06T12:01:17.565+02:00</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
+            <sv:value>admin</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
+            <sv:value>2011-10-06T13:32:38.390+02:00</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippotranslation:id" sv:type="String">
+            <sv:value>a7f00383-a114-42ea-8d43-691d558eac35</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippotranslation:locale" sv:type="String">
+            <sv:value>en</sv:value>
+          </sv:property>
+          <sv:property sv:name="mootlywcm:date" sv:type="Date">
+            <sv:value>2010-03-22T10:22:31.694+01:00</sv:value>
+          </sv:property>
+          <sv:property sv:name="mootlywcm:summary" sv:type="String">
+            <sv:value>Fixed-gear bicycles are not new and dating from the 1950s, but currently after some revamps they're heading the new urban bike trend</sv:value>
+          </sv:property>
+          <sv:property sv:name="mootlywcm:title" sv:type="String">
+            <sv:value>Fixies Are Totally Green</sv:value>
+          </sv:property>
+          <sv:node sv:name="hippotranslation:translations">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>hippotranslation:translations</sv:value>
+            </sv:property>
+          </sv:node>
+          <sv:node sv:name="mootlywcm:description">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>hippostd:html</sv:value>
+            </sv:property>
+            <sv:property sv:name="hippostd:content" sv:type="String">
+              <sv:value>&lt;html&gt;
+                &lt;body&gt;
+
+                &lt;p&gt;The &lt;a title="Track bicycle" href="/wiki/Track_bicycle"&gt;track bicycle&lt;/a&gt; is
+                a form of fixed-gear bicycle used for
+                &lt;a title="Track cycling" href="/wiki/Track_cycling"&gt;track cycling&lt;/a&gt; in a
+                &lt;a title="Velodrome" href="/wiki/Velodrome"&gt;velodrome&lt;/a&gt;. But since a
+                "fixed-gear bicycle" is just a bicycle without a freewheel, a fixed-gear bicycle
+                can be any type of bicycle.Traditionally, some
+                &lt;a title="Road racing" href="/wiki/Road_racing"&gt;road racing&lt;/a&gt;, club cyclists
+                used a fixed wheel bicycle for training during the winter months, generally
+                using a relatively low gear ratio, believed to help develop a good pedaling
+                style.&lt;sup&gt;[&lt;/sup&gt;n the UK until the 1950s it was common for riders to use a
+                fixed wheel for time trials. The fixed wheel was also commonly used, and
+                continues to be used in the end of season hill climb races in the autumn. A
+                typical clubmen's fixed wheel machine would have been a "road-path" or
+                "road/track" cycle. In the era when most riders only had one cycle, the same
+                bike when stripped down and fitted with racing wheels was used for road time
+                trials and track racing, and when fitted with mudguards (fenders) and a bag it
+                was used for club runs, touring and winter training. By the 1960s,
+                &lt;a title="Derailleur gears" href="/wiki/Derailleur_gears"&gt;multi-gear
+                derailleurs&lt;/a&gt; had become the norm and riding fixed wheel on the road declined
+                over the next few decades. Recent years have seen renewed interest and increased
+                popularity of fixed wheel cycling.&lt;/p&gt;
+
+                &lt;p&gt;In &lt;a title="Urban area" href="/wiki/Urban_area"&gt;urban&lt;/a&gt;
+                &lt;a title="North America" href="/wiki/North_America"&gt;North America&lt;/a&gt; fixed gear
+                bicycles have achieved tremendous popularity, with the rise of discernible
+                regional aesthetic preferences for finish and design details. The rise in
+                popularity of fixed-gear bicycles in the mid-2000s, complete with adaptations
+                such as &lt;a title="Spoke cards" href="/wiki/Spoke_cards"&gt;spoke cards&lt;/a&gt;, is
+                attributed to bicycle messengers. Dedicated fixed-gear road bicycles are being
+                produced in greater numbers by established bicycle manufacturers. They are
+                generally low in price, and characterized by a very forgiving, slack
+                &lt;a title="Road geometry (page does not exist)" href="/w/index.php?title=Road_geometry&amp;amp;action=edit&amp;amp;redlink=1"&gt;road
+                geometry&lt;/a&gt;, as opposed to the steep, aggressive geometry of track bicycles.
+                Fixed-gear bicycles are also used in
+                &lt;a title="Cycle ball" href="/wiki/Cycle_ball"&gt;cycle ball&lt;/a&gt;,
+                &lt;a title="Bike polo" href="/wiki/Bike_polo"&gt;bike polo&lt;/a&gt; and
+                &lt;a title="Artistic cycling" href="/wiki/Artistic_cycling"&gt;artistic cycling&lt;/a&gt;.
+                &lt;/p&gt;
+
+                &lt;/body&gt;
+                &lt;/html&gt;</sv:value>
+            </sv:property>
+          </sv:node>
+          <sv:node sv:name="mootlywcm:copyright">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>mootlywcm:copyright</sv:value>
+            </sv:property>
+            <sv:property sv:name="mootlywcm:description" sv:type="String">
+              <sv:value>Fixies</sv:value>
+            </sv:property>
+            <sv:property sv:name="mootlywcm:url" sv:type="String">
+              <sv:value/>
+            </sv:property>
+          </sv:node>
+          <sv:node sv:name="relateddocs:docs">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>relateddocs:docs</sv:value>
+            </sv:property>
+          </sv:node>
+          <sv:node sv:name="mootlywcm:image">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>hippogallerypicker:imagelink</sv:value>
+            </sv:property>
+            <sv:property sv:name="hippo:docbase" sv:type="String">
+              <sv:value>b59a047e-30d2-43e2-aa58-941b4b610e5f</sv:value>
+            </sv:property>
+            <sv:property sv:multiple="true" sv:name="hippo:facets" sv:type="String"/>
+            <sv:property sv:multiple="true" sv:name="hippo:modes" sv:type="String"/>
+            <sv:property sv:multiple="true" sv:name="hippo:values" sv:type="String"/>
+          </sv:node>
+        </sv:node>
+      </sv:node>
+      <sv:node sv:name="hippotranslation:translations">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hippotranslation:translations</sv:value>
+        </sv:property>
+      </sv:node>
+    </sv:node>
+    <sv:node sv:name="hippotranslation:translations">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>hippotranslation:translations</sv:value>
+      </sv:property>
+    </sv:node>
+  </sv:node>
+  <sv:node sv:name="facetednews">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hippofacnav:facetnavigation</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippo:count" sv:type="Long">
+      <sv:value>64</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippo:docbase" sv:type="String">
+      <sv:value>a7f129aa-4ef8-49ca-863b-d827deaf7cc1</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hippofacnav:facetnodenames" sv:type="String">
+      <sv:value>Period</sv:value>
+      <sv:value>News Category</sv:value>
+      <sv:value>Year${sortby:'facetvalue', sortorder:'descending'}</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hippofacnav:facets" sv:type="String">
+      <sv:value>mootlywcm:date$[{name:'This month', resolution:'month', begin:0, end:1},
+        {name:'Last month', resolution:'month', begin:-1, end:0}, {name:'This year',
+        resolution:'year', begin:0, end:1}]
+      </sv:value>
+      <sv:value>mootlywcm:categories</sv:value>
+      <sv:value>mootlywcm:date$year</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippofacnav:limit" sv:type="Long">
+      <sv:value>1000</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippofacnav:skipresultsetfacetsavailable" sv:type="Boolean">
+      <sv:value>true</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="hippo:translation">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hippo:translation</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippo:language" sv:type="String">
+      <sv:value/>
+    </sv:property>
+    <sv:property sv:name="hippo:message" sv:type="String">
+      <sv:value>News</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="hippotranslation:translations">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hippotranslation:translations</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="w4i-news">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hippostd:folder</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+      <sv:value>hippo:harddocument</sv:value>
+      <sv:value>hippotranslation:translated</sv:value>
+      <sv:value>hippo:translated</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>c5658f09-8974-408e-bbf0-94e7f1ff417f</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
+    <sv:property sv:multiple="true" sv:name="hippostd:foldertype" sv:type="String">
+      <sv:value>new-news-folder</sv:value>
+      <sv:value>new-news</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippotranslation:id" sv:type="String">
+      <sv:value>09af11b2-7e44-4ab1-b133-c16c81d75792</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippotranslation:locale" sv:type="String">
+      <sv:value>en</sv:value>
+    </sv:property>
+    <sv:node sv:name="hippotranslation:translations">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>hippotranslation:translations</sv:value>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="hippo:translation">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>hippo:translation</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippo:language" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="hippo:message" sv:type="String">
+        <sv:value>W4I News</sv:value>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="2013">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>hippostd:folder</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+        <sv:value>hippo:harddocument</sv:value>
+        <sv:value>hippotranslation:translated</sv:value>
+      </sv:property>
+      <sv:property sv:name="jcr:uuid" sv:type="String">
+        <sv:value>1b4f17cc-757d-44f0-92fe-401e3327719b</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
+      <sv:property sv:multiple="true" sv:name="hippostd:foldertype" sv:type="String">
+        <sv:value>new-news-folder</sv:value>
+        <sv:value>new-news</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippotranslation:id" sv:type="String">
+        <sv:value>1eb6cb5b-ac92-47c2-b70e-0f41453d8a3c</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippotranslation:locale" sv:type="String">
+        <sv:value>en</sv:value>
+      </sv:property>
+      <sv:node sv:name="hippotranslation:translations">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hippotranslation:translations</sv:value>
+        </sv:property>
+      </sv:node>
+      <sv:node sv:name="do-you-read-your-tax-credit-statements">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hippo:handle</sv:value>
+        </sv:property>
+        <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+          <sv:value>hippo:hardhandle</sv:value>
+          <sv:value>hippo:translated</sv:value>
+        </sv:property>
+        <sv:property sv:name="jcr:uuid" sv:type="String">
+          <sv:value>3dbe0e57-92d4-4771-87f0-c00d289a772a</sv:value>
+        </sv:property>
+        <sv:node sv:name="hippo:translation">
+          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+            <sv:value>hippo:translation</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippo:language" sv:type="String">
+            <sv:value/>
+          </sv:property>
+          <sv:property sv:name="hippo:message" sv:type="String">
+            <sv:value>Do you read your tax credit statements?</sv:value>
+          </sv:property>
+        </sv:node>
+        <sv:node sv:name="do-you-read-your-tax-credit-statements">
+          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+            <sv:value>mootlywcm:newsitem</sv:value>
+          </sv:property>
+          <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+            <sv:value>hippo:harddocument</sv:value>
+            <sv:value>hippotranslation:translated</sv:value>
+          </sv:property>
+          <sv:property sv:name="jcr:uuid" sv:type="String">
+            <sv:value>112e3c62-6676-4250-810e-f47429b879f7</sv:value>
+          </sv:property>
+          <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
+            <sv:value>live</sv:value>
+            <sv:value>preview</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippo:related___pathreference" sv:type="String">
+            <sv:value>news/w4i-news/2013/do-you-read-your-tax-credit-statements</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostd:holder" sv:type="String">
+            <sv:value>admin</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostd:state" sv:type="String">
+            <sv:value>published</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostd:stateSummary" sv:type="String">
+            <sv:value>live</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
+            <sv:value>admin</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
+            <sv:value>2013-03-16T13:26:00.251+05:30</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
+            <sv:value>2013-03-16T14:46:04.582+05:30</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
+            <sv:value>admin</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
+            <sv:value>2013-03-16T14:46:09.792+05:30</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippotranslation:id" sv:type="String">
+            <sv:value>4d65466d-e268-4249-87ef-d64b1d019dd6</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippotranslation:locale" sv:type="String">
+            <sv:value>en</sv:value>
+          </sv:property>
+          <sv:property sv:name="mootlywcm:date" sv:type="Date">
+            <sv:value>2013-03-16T13:26:00.251+05:30</sv:value>
+          </sv:property>
+          <sv:property sv:name="mootlywcm:summary" sv:type="String">
+            <sv:value>Being a responsible citizen, it is your moral duty to pay your taxes to the government, both direct as well as indirect.</sv:value>
+          </sv:property>
+          <sv:property sv:name="mootlywcm:title" sv:type="String">
+            <sv:value>Do you read your tax credit statements?</sv:value>
+          </sv:property>
+          <sv:node sv:name="hippotranslation:translations">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>hippotranslation:translations</sv:value>
+            </sv:property>
+          </sv:node>
+          <sv:node sv:name="mootlywcm:description">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>hippostd:html</sv:value>
+            </sv:property>
+            <sv:property sv:name="hippostd:content" sv:type="String">
+              <sv:value>&lt;html&gt;
+&lt;body&gt;
+&lt;strong&gt;B&lt;/strong&gt;
+&lt;p&gt;eing a responsible citizen, it is your moral duty to pay your taxes to the
+government, both direct as well as indirect. If you are a salaried person, or an
+entrepreneur running your business, or have any other source of income, it might
+be usual that your Tax is deducted at Source (TDS) by your employer or the party
+you are dealing with; or being a business man you may have even paid an advance
+tax to the government. Once you have fulfilled your tax commitment, you feel
+relaxed, but how do you make sure that the tax paid by you has been actually
+received by the government and has been credited against your account.&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+&lt;br/&gt;
+
+&lt;p&gt;Well, there is a way - Get your Form 26AS.&lt;/p&gt;
+&lt;br/&gt;
+
+&lt;p&gt;'Form 26AS' or in simple terms you can call it your 'tax credit statement' is
+provided by the income tax department to all the tax payers. It acts a proof
+that the tax received from you has reached the government and has been credited
+against your Permanent Account Number (PAN). Ideally all the payments made by
+you as tax should get reflected in the Form 26AS. If any
+of &lt;strong&gt;&lt;a target="_blank" href="http://www.personalfn.com/knowledge-center/money-simplified.aspx?campaign=378575#.UPY9Oh2OSu1"&gt;your
+tax payments&lt;/a&gt;&lt;/strong&gt;in the assessment year is not reflecting in this
+statement, then it means the tax money deducted from you has not been submitted
+to the tax department till the date of record.&lt;/p&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</sv:value>
+            </sv:property>
+          </sv:node>
+          <sv:node sv:name="mootlywcm:copyright">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>mootlywcm:copyright</sv:value>
+            </sv:property>
+            <sv:property sv:name="mootlywcm:description" sv:type="String">
+              <sv:value/>
+            </sv:property>
+            <sv:property sv:name="mootlywcm:url" sv:type="String">
+              <sv:value/>
+            </sv:property>
+          </sv:node>
+          <sv:node sv:name="relateddocs:docs">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>relateddocs:docs</sv:value>
+            </sv:property>
+          </sv:node>
+          <sv:node sv:name="mootlywcm:image">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>hippogallerypicker:imagelink</sv:value>
+            </sv:property>
+            <sv:property sv:name="hippo:docbase" sv:type="String">
+              <sv:value>d4a8c815-ebcb-408b-b08a-e1dc5a97ebb2</sv:value>
+            </sv:property>
+            <sv:property sv:multiple="true" sv:name="hippo:facets" sv:type="String"/>
+            <sv:property sv:multiple="true" sv:name="hippo:modes" sv:type="String"/>
+            <sv:property sv:multiple="true" sv:name="hippo:values" sv:type="String"/>
+          </sv:node>
+        </sv:node>
+      </sv:node>
+      <sv:node sv:name="budget-2013-14-tax-payers-pray-for-higher-limits-tax-friendly-schemes">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hippo:handle</sv:value>
+        </sv:property>
+        <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+          <sv:value>hippo:hardhandle</sv:value>
+          <sv:value>hippo:translated</sv:value>
+        </sv:property>
+        <sv:property sv:name="jcr:uuid" sv:type="String">
+          <sv:value>fda0fb82-5fe8-4dff-8c9b-662ccbee9a73</sv:value>
+        </sv:property>
+        <sv:node sv:name="hippo:translation">
+          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+            <sv:value>hippo:translation</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippo:language" sv:type="String">
+            <sv:value/>
+          </sv:property>
+          <sv:property sv:name="hippo:message" sv:type="String">
+            <sv:value>Budget 2013-14: Tax-payers pray for higher limits, tax-friendly schemes</sv:value>
+          </sv:property>
+        </sv:node>
+        <sv:node sv:name="budget-2013-14-tax-payers-pray-for-higher-limits-tax-friendly-schemes">
+          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+            <sv:value>mootlywcm:newsitem</sv:value>
+          </sv:property>
+          <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+            <sv:value>hippo:harddocument</sv:value>
+            <sv:value>hippotranslation:translated</sv:value>
+          </sv:property>
+          <sv:property sv:name="jcr:uuid" sv:type="String">
+            <sv:value>91aeb3e7-42a9-491c-b11c-a18fa203cfb0</sv:value>
+          </sv:property>
+          <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
+            <sv:value>live</sv:value>
+            <sv:value>preview</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippo:related___pathreference" sv:type="String">
+            <sv:value>news/w4i-news/2013/budget-2013-14-tax-payers-pray-for-higher-limits-tax-friendly-schemes</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostd:holder" sv:type="String">
+            <sv:value>admin</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostd:state" sv:type="String">
+            <sv:value>published</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostd:stateSummary" sv:type="String">
+            <sv:value>live</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
+            <sv:value>admin</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
+            <sv:value>2013-03-16T13:29:12.326+05:30</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
+            <sv:value>2013-03-16T14:46:46.840+05:30</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
+            <sv:value>admin</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
+            <sv:value>2013-03-16T14:46:55.501+05:30</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippotranslation:id" sv:type="String">
+            <sv:value>a2208455-a92c-40ae-a424-89f608adfdab</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippotranslation:locale" sv:type="String">
+            <sv:value>en</sv:value>
+          </sv:property>
+          <sv:property sv:name="mootlywcm:date" sv:type="Date">
+            <sv:value>2013-03-16T13:29:12.326+05:30</sv:value>
+          </sv:property>
+          <sv:property sv:name="mootlywcm:summary" sv:type="String">
+            <sv:value>While India’s Annual Budget is important to understand the Government’s planned revenue and expenditure, it is equally important to the common man to understand how his finances shape up as a result of this event.</sv:value>
+          </sv:property>
+          <sv:property sv:name="mootlywcm:title" sv:type="String">
+            <sv:value>Budget 2013-14: Tax-payers pray for higher limits, tax-friendly schemes</sv:value>
+          </sv:property>
+          <sv:node sv:name="hippotranslation:translations">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>hippotranslation:translations</sv:value>
+            </sv:property>
+          </sv:node>
+          <sv:node sv:name="mootlywcm:description">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>hippostd:html</sv:value>
+            </sv:property>
+            <sv:property sv:name="hippostd:content" sv:type="String">
+              <sv:value>&lt;html&gt;
+&lt;body&gt;
+
+&lt;p&gt;While India’s Annual Budget is important to understand the Government’s
+planned revenue and expenditure, it is equally important to the common man to
+understand how his finances shape up as a result of this event. Small Tax Payers
+are typically the salaried class and small entrepreneurs, who are the first to
+be hit in case of any negative provision in the Budget.&lt;/p&gt;
+&lt;br/&gt;
+
+&lt;p&gt;The salaried class ends up paying all taxes religiously on the back of
+compulsory deductions by their employer. Therefore, it is but natural that a
+majority of expectations relate to the tax front. Apart from tax provisions,
+there are a few other areas where expectations are high from this section of the
+society. The following are some important expectations of small tax payers from
+this year’s budget:&lt;/p&gt;
+&lt;br/&gt;
+
+&lt;p&gt;&lt;strong&gt;Increase in Income Tax initial exemption limit and
+allowances:&lt;/strong&gt; The current initial exemption limit of Rs. 2 lakhs is
+viewed to be low, considering that inflation has continued to remain stubbornly
+high. It is desired that the Government increases this limit to Rs. 3 lakhs for
+men assesses and Rs. 3.5 lakhs for women assesses, in order to increase
+disposable income in the hands of taxpayers. Additionally, allowances like
+transportation allowances (Rs. 800 per month), education allowance (Rs. 100 per
+month per child upto 2 children), hostel allowance (Rs. 300 per child upto 2
+children) are limits defined in the Income Tax Act years earlier. It is felt
+that these allowances should also be revised upwards to reflect current price
+levels.&lt;/p&gt;
+&lt;br/&gt;
+
+&lt;p&gt;&lt;strong&gt;Reimbursement limit on medical expenses:&lt;/strong&gt; Currently pegged at
+Rs. 15000 per annum, it is expected that this limit should also be increased,
+taking into consideration escalating healthcare costs.&lt;/p&gt;
+&lt;br/&gt;
+
+&lt;p&gt;&lt;strong&gt;Home Loan Repayment of Principal and Interest:&lt;/strong&gt; Currently
+principal repayment of home loan is included under Sec 80C deductions. This
+section is one of the most used sections by taxpayers, and is mostly fully
+utilized, without even including the principal amount. Hence the amount deducted
+towards principal often doesn’t qualify for tax deduction. There is a wide
+demand that principal repayment should be included under a separate provision of
+the Income Tax Act to get additional benefits. Another aspect of home loan is
+interest repayment. Interest repayment eligible for tax deduction is restricted
+to Rs. 1.5 lakhs per year, which is deductible under Sec 24(b) of the Income Tax
+Act. Since real estate prices have sky rocketed over the past few years,
+interest paid per year far exceeds this limit every year for most home buyers.
+It is hoped that an increase in this limit will be announced in this year’s
+Budget.&lt;/p&gt;
+&lt;br/&gt;
+
+&lt;p&gt;&lt;strong&gt;Increase in investment limit under Sec 80C:&lt;/strong&gt; Income Tax Act’s
+most popular section Sec 80C’s limit has been fixed at Rs. 1 lakh for many years
+now. With the number of investment avenues included under this section being
+plenty, it is very easy for a person to exhaust this limit in a year, by
+investing in various eligible instruments. The common man expects that this
+limit should be increased at least in this year’s budget to a more realistic
+amount.&lt;/p&gt;
+&lt;br/&gt;
+
+&lt;p&gt;&lt;strong&gt;Infrastructure bonds inclusion:&lt;/strong&gt; These bonds, which had tax
+exemption upto investments worth Rs. 20,000 were removed from the Income Tax
+purview. It is hoped that this provision is restored in this year’s budget, as
+the infrastructure sector is also is need of substantial funds for expansion.
+&lt;/p&gt;
+&lt;br/&gt;
+
+&lt;p&gt;&lt;strong&gt;Taxation on National Pension Scheme investments:&lt;/strong&gt; Income from
+the National Pension Scheme is currently taxed on an EET (Exempt-Exempt-Taxable)
+system, which means withdrawals are taxed even though contributions and returns
+to the NPS are not taxed. Changing the status to EEE (Exempt-Exempt-Exempt)
+system means tax exemption will be available at all three stages - investment,
+appreciation and withdrawal. This will go a long way in enhancing returns of the
+retired who have invested in this scheme.&lt;/p&gt;
+&lt;br/&gt;
+
+&lt;p&gt;&lt;strong&gt;Increasing the exemption limit on interest of savings bank
+accounts:&lt;/strong&gt; The interest you earn on savings bank accounts is exempt from
+tax upto Rs. 10000 per year. If this limit is increased to a higher amount, it
+will help in reducing tax outflow for those who maintain high balances in
+Savings accounts.&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Launching tax-friendly equity schemes:&lt;/strong&gt; The Rajiv Gandhi
+Equity Savings Scheme which was introduced last year provides tax benefits to
+first time investors in the equity markets. However, this investment is
+restricted to investors with an annual income of less than Rs. 10 lakhs.
+Increasing this limit beyond Rs. 10 lakhs and introducing more such schemes will
+help in benefiting more small tax payers.&lt;/p&gt;
+&lt;br/&gt;
+
+&lt;p&gt;The above are a few expectations from the Budget by the small tax payers.
+With the current high inflation in the economy combined with poor growth, there
+is a need for the Budget to include provisions which can increase disposable
+income in the small tax payers’ hands.&lt;/p&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</sv:value>
+            </sv:property>
+          </sv:node>
+          <sv:node sv:name="mootlywcm:copyright">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>mootlywcm:copyright</sv:value>
+            </sv:property>
+            <sv:property sv:name="mootlywcm:description" sv:type="String">
+              <sv:value/>
+            </sv:property>
+            <sv:property sv:name="mootlywcm:url" sv:type="String">
+              <sv:value/>
+            </sv:property>
+          </sv:node>
+          <sv:node sv:name="relateddocs:docs">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>relateddocs:docs</sv:value>
+            </sv:property>
+          </sv:node>
+          <sv:node sv:name="mootlywcm:image">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>hippogallerypicker:imagelink</sv:value>
+            </sv:property>
+            <sv:property sv:name="hippo:docbase" sv:type="String">
+              <sv:value>d4a8c815-ebcb-408b-b08a-e1dc5a97ebb2</sv:value>
+            </sv:property>
+            <sv:property sv:multiple="true" sv:name="hippo:facets" sv:type="String"/>
+            <sv:property sv:multiple="true" sv:name="hippo:modes" sv:type="String"/>
+            <sv:property sv:multiple="true" sv:name="hippo:values" sv:type="String"/>
+          </sv:node>
+        </sv:node>
+      </sv:node>
+      <sv:node sv:name="tax-planning-is-not-financial-planning-want-to-know-why">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hippo:handle</sv:value>
+        </sv:property>
+        <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+          <sv:value>hippo:hardhandle</sv:value>
+          <sv:value>hippo:translated</sv:value>
+        </sv:property>
+        <sv:property sv:name="jcr:uuid" sv:type="String">
+          <sv:value>1f567b55-7750-4932-b51d-b1e79a0c7774</sv:value>
+        </sv:property>
+        <sv:node sv:name="hippo:translation">
+          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+            <sv:value>hippo:translation</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippo:language" sv:type="String">
+            <sv:value/>
+          </sv:property>
+          <sv:property sv:name="hippo:message" sv:type="String">
+            <sv:value>Tax planning is not financial planning: Want to know why?</sv:value>
+          </sv:property>
+        </sv:node>
+        <sv:node sv:name="tax-planning-is-not-financial-planning-want-to-know-why">
+          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+            <sv:value>mootlywcm:newsitem</sv:value>
+          </sv:property>
+          <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+            <sv:value>hippo:harddocument</sv:value>
+            <sv:value>hippotranslation:translated</sv:value>
+          </sv:property>
+          <sv:property sv:name="jcr:uuid" sv:type="String">
+            <sv:value>fba61813-a7b0-47ff-8a46-01c4c7d4b2e8</sv:value>
+          </sv:property>
+          <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
+            <sv:value>live</sv:value>
+            <sv:value>preview</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippo:related___pathreference" sv:type="String">
+            <sv:value>news/w4i-news/2013/tax-planning-is-not-financial-planning-want-to-know-why</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostd:holder" sv:type="String">
+            <sv:value>admin</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostd:state" sv:type="String">
+            <sv:value>published</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostd:stateSummary" sv:type="String">
+            <sv:value>live</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
+            <sv:value>admin</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
+            <sv:value>2013-03-16T13:31:07.317+05:30</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
+            <sv:value>2013-03-16T14:48:40.258+05:30</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
+            <sv:value>admin</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
+            <sv:value>2013-03-16T14:50:05.596+05:30</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippotranslation:id" sv:type="String">
+            <sv:value>f1972a17-8354-4747-876f-50d2ac8c1989</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippotranslation:locale" sv:type="String">
+            <sv:value>en</sv:value>
+          </sv:property>
+          <sv:property sv:name="mootlywcm:date" sv:type="Date">
+            <sv:value>2013-03-16T13:31:07.317+05:30</sv:value>
+          </sv:property>
+          <sv:property sv:name="mootlywcm:summary" sv:type="String">
+            <sv:value>Usually, it is noticed that last quarter of the financial year is when people/investors start looking at tax planning. Then there is a rush to buy tax-saving schemes.</sv:value>
+          </sv:property>
+          <sv:property sv:name="mootlywcm:title" sv:type="String">
+            <sv:value>Tax planning is not financial planning: Want to know why?</sv:value>
+          </sv:property>
+          <sv:node sv:name="hippotranslation:translations">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>hippotranslation:translations</sv:value>
+            </sv:property>
+          </sv:node>
+          <sv:node sv:name="mootlywcm:description">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>hippostd:html</sv:value>
+            </sv:property>
+            <sv:property sv:name="hippostd:content" sv:type="String">
+              <sv:value>&lt;html&gt;
+&lt;body&gt;
+&lt;strong&gt;U&lt;/strong&gt;
+&lt;p&gt;sually, it is noticed that last quarter of the financial year is when
+investors start looking at tax planning and then there is a rush to buy
+tax-saving schemes.&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+&lt;br/&gt;
+
+&lt;p&gt;Answering a query on whether financial planning should come before tax
+planning, Sumeet Vaid, Freedom Financial Planners, said in an interview to
+CNBC-TV18 that financial planning should be the starting point and it should
+start early in the year rather than in the last quarter. So, financial planning
+should include tax planning and not vice-versa.&lt;/p&gt;
+&lt;br/&gt;
+
+&lt;p&gt;&lt;strong&gt;Read
+more&lt;/strong&gt;: &lt;a href="http://www.moneycontrol.com/news/economy/budget-2013-14-lure-investmentcompetitive-not-higher-taxes-experts_828133.html"&gt;Experts
+say lure investment with competitive not higher taxes&lt;/a&gt;&lt;/p&gt;
+&lt;br/&gt;
+
+&lt;p&gt;However, in India, it is other way round. Indians, usually first figure out
+the tax saving products and then see whether it fits into their financial life.
+Thus, we get into this trap of investing purely because of tax planning.&lt;/p&gt;
+&lt;br/&gt;
+
+&lt;p&gt;Basically, "Financial planning should articulate your income, articulate your
+expenses, and articulate your savings," he added.&lt;/p&gt;
+&lt;br/&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;Below is the verbatim transcript of his interview on
+CNBC-TV18&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;br/&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;strong&gt;Q:&lt;/strong&gt; Understandably, last quarter is tax planning
+time, what should be priority for an investor, tax planning or overall financial
+planning? Can we sometimes miss the picture on financial planning by getting
+absorbed in tax planning?&lt;/strong&gt;&lt;/p&gt;
+&lt;br/&gt;
+
+&lt;p&gt;&lt;strong&gt;A:&lt;/strong&gt; India is a very unique country where 90 percent of our
+investment decisions happen because of tax planning. If you look at any new
+scheme, anything that has a tag of tax planning scheme, tends to get much more
+retail response than the normal thing.&lt;/p&gt;
+&lt;br/&gt;
+
+&lt;p&gt;It is unique to an extent that many a times when investors do tax planning;
+they try and not understand what the liquidity impact is. Indians very easily in
+order to save tax, will go and lock in money for five years, six years or even
+lesser or more, without understanding the opportunity cost.&lt;/p&gt;
+&lt;br/&gt;
+
+&lt;p&gt;However, what actually should happen is that financial plan should be a base
+document for any family. Just like any business has a balance sheet, which
+captures its income, expenses etc, similarly a family balance sheet is known as
+financial plan.&lt;/p&gt;
+&lt;br/&gt;
+
+&lt;p&gt;So the basic starting point for any investment, any kind of financial
+planning, and any kind of finance oriented decision for a family is a financial
+plan. That should start well early in the year rather than at the last quarter.
+&lt;/p&gt;
+&lt;br/&gt;
+
+&lt;p&gt;Financial planning should be the starting point, which should articulate your
+income, articulate your expenses, and articulate your savings, which is nothing
+but income minus expenses.&lt;/p&gt;
+&lt;br/&gt;
+
+&lt;p&gt;Based on your goals, you should invest or decide to invest in products. While
+choosing products, you should figure out whether they have tax saving feature or
+not. However in India, it goes other way round. Indians usually first figure out
+the tax saving products and then see whether it fits into their financial life
+and 90 percent of the time it does not. So, then we get into this trap of
+investing purely because of tax planning.&lt;/p&gt;
+&lt;br/&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;strong&gt;Q:&lt;/strong&gt; You were talking about the products; in the last
+quarter of the year, which are the tax-saving products that you would recommend
+investors to take up?&lt;/strong&gt;&lt;/p&gt;
+&lt;br/&gt;
+
+&lt;p&gt;&lt;strong&gt;A:&lt;/strong&gt; First and foremost, get adequate insurance for yourself.
+After you get adequate insurance, move into health insurance. If you are still
+left out with some savings or some more tax planning to do then get into Public
+Provident Fund (PPF), Employee Provident Fund (EPF) and other kind of
+investments.&lt;/p&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</sv:value>
+            </sv:property>
+          </sv:node>
+          <sv:node sv:name="mootlywcm:copyright">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>mootlywcm:copyright</sv:value>
+            </sv:property>
+            <sv:property sv:name="mootlywcm:description" sv:type="String">
+              <sv:value/>
+            </sv:property>
+            <sv:property sv:name="mootlywcm:url" sv:type="String">
+              <sv:value/>
+            </sv:property>
+          </sv:node>
+          <sv:node sv:name="relateddocs:docs">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>relateddocs:docs</sv:value>
+            </sv:property>
+          </sv:node>
+          <sv:node sv:name="mootlywcm:image">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>hippogallerypicker:imagelink</sv:value>
+            </sv:property>
+            <sv:property sv:name="hippo:docbase" sv:type="String">
+              <sv:value>ef743231-90a4-4726-8317-5d4acb3153a2</sv:value>
+            </sv:property>
+            <sv:property sv:multiple="true" sv:name="hippo:facets" sv:type="String"/>
+            <sv:property sv:multiple="true" sv:name="hippo:modes" sv:type="String"/>
+            <sv:property sv:multiple="true" sv:name="hippo:values" sv:type="String"/>
+          </sv:node>
+        </sv:node>
+      </sv:node>
+      <sv:node sv:name="useful-tips-for-filing-your-tax-returns">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hippo:handle</sv:value>
+        </sv:property>
+        <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+          <sv:value>hippo:hardhandle</sv:value>
+          <sv:value>hippo:translated</sv:value>
+        </sv:property>
+        <sv:property sv:name="jcr:uuid" sv:type="String">
+          <sv:value>7177a683-32f9-4d6f-85d3-53e317235e1a</sv:value>
+        </sv:property>
+        <sv:node sv:name="hippo:translation">
+          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+            <sv:value>hippo:translation</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippo:language" sv:type="String">
+            <sv:value/>
+          </sv:property>
+          <sv:property sv:name="hippo:message" sv:type="String">
+            <sv:value>Useful tips for filing your tax returns!</sv:value>
+          </sv:property>
+        </sv:node>
+        <sv:node sv:name="useful-tips-for-filing-your-tax-returns">
+          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+            <sv:value>mootlywcm:newsitem</sv:value>
+          </sv:property>
+          <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+            <sv:value>hippo:harddocument</sv:value>
+            <sv:value>hippotranslation:translated</sv:value>
+          </sv:property>
+          <sv:property sv:name="jcr:uuid" sv:type="String">
+            <sv:value>b162e78c-710d-4b43-9d78-f924c90f412f</sv:value>
+          </sv:property>
+          <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
+            <sv:value>live</sv:value>
+            <sv:value>preview</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippo:related___pathreference" sv:type="String">
+            <sv:value>news/w4i-news/2013/useful-tips-for-filing-your-tax-returns</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostd:holder" sv:type="String">
+            <sv:value>admin</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostd:state" sv:type="String">
+            <sv:value>published</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostd:stateSummary" sv:type="String">
+            <sv:value>live</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
+            <sv:value>admin</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
+            <sv:value>2013-03-16T13:32:51.766+05:30</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
+            <sv:value>2013-03-16T14:49:50.401+05:30</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
+            <sv:value>admin</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
+            <sv:value>2013-03-16T14:49:53.665+05:30</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippotranslation:id" sv:type="String">
+            <sv:value>7577cdbb-0300-48b5-b0f8-d830fe1d7adc</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippotranslation:locale" sv:type="String">
+            <sv:value>en</sv:value>
+          </sv:property>
+          <sv:property sv:name="mootlywcm:date" sv:type="Date">
+            <sv:value>2013-03-16T13:32:51.766+05:30</sv:value>
+          </sv:property>
+          <sv:property sv:name="mootlywcm:summary" sv:type="String">
+            <sv:value>There is a misconception among some salaried individuals that because the employer has deduced tax at source they are not required to file tax returns.</sv:value>
+          </sv:property>
+          <sv:property sv:name="mootlywcm:title" sv:type="String">
+            <sv:value>Useful tips for filing your tax returns!</sv:value>
+          </sv:property>
+          <sv:node sv:name="hippotranslation:translations">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>hippotranslation:translations</sv:value>
+            </sv:property>
+          </sv:node>
+          <sv:node sv:name="mootlywcm:description">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>hippostd:html</sv:value>
+            </sv:property>
+            <sv:property sv:name="hippostd:content" sv:type="String">
+              <sv:value>&lt;html&gt;
+&lt;body&gt;
+
+&lt;p&gt;It's the tax season. Here are a few tips to ensure an error-free tax filing
+process.&lt;/p&gt;
+&lt;br/&gt;
+
+&lt;p&gt;&lt;strong&gt;1. File your returns &lt;br/&gt;
+&lt;/strong&gt;There is a misconception among some salaried individuals that because
+the employer has deduced tax at source they are not required to file tax
+returns. Even though tax has been deduced and there is no other source of
+income, or liability to pay tax, employees have to file income tax returns.
+Every individual has to necessarily file the returns if the total income, before
+allowing any deduction, exceeds the exemption limit.&lt;/p&gt;
+&lt;br/&gt;
+
+&lt;p&gt;Even if your income is below the exemption limit, which is bound to happen at
+the beginning of one's career, filing returns will help in the documentation
+process if you are taking a loan or an insurance policy or when you are applying
+for a visa.&lt;/p&gt;
+&lt;br/&gt;
+
+&lt;p&gt;&lt;strong&gt;2. Pick the correct form &lt;br/&gt;
+&lt;/strong&gt;There are different Indian Income Tax Return (ITR) forms. Depending on
+the various streams of income you have, you have to select the form accordingly.
+Make sure you select an appropriate form after taking into consideration the
+flow of income from various streams.&lt;/p&gt;
+&lt;br/&gt;
+
+&lt;p&gt;&lt;strong&gt;3. Disclose exempt income &lt;br/&gt;
+&lt;/strong&gt;Income such as dividend received on mutual funds, long-term capital
+gain on securities is exempt from tax. However, tax laws require you to report
+the same in your tax returns even though you do not have to pay any tax on them.
+&lt;/p&gt;
+&lt;br/&gt;
+
+&lt;p&gt;&lt;strong&gt;4. Annual information return &lt;br/&gt;
+&lt;/strong&gt;While filing income tax returns, it is essential to disclose any
+significant investments made during the year, transactions of immoveable
+property, cash deposits and credit card expenses aggregating or exceeding
+certain threshold limits. For example, credit card payments of Rs. 2 lakhs or
+more on a credit card, purchase of shares of a company of Rs. 1 lakh or more,
+and purchase of units of mutual funds of Rs. 2 lakhs or more, etc.&lt;/p&gt;
+&lt;br/&gt;
+
+&lt;p&gt;&lt;strong&gt;5. Consider income received by a minor child &lt;br/&gt;
+&lt;/strong&gt;A minor is not required to file a separate income tax return. However,
+the income earned has to be included in the returns filed by the parents
+although the amount may be negligible e.g. interest on savings in the bank
+account.&lt;/p&gt;
+&lt;br/&gt;
+
+&lt;p&gt;&lt;strong&gt;6. Avoid omission of interest received on bank account &lt;br/&gt;
+&lt;/strong&gt;Section 80L has been omitted from the statute effective April 1, 2006,
+and therefore, any interest earned from a bank deposit is taxable in the hands
+of the taxpayer. Hence, interest received on the balance in your savings account
+is taxable. Make sure you take it into consideration while filing returns to
+ensure avoidable correspondence with the tax authorities.&lt;/p&gt;
+&lt;br/&gt;
+
+&lt;p&gt;&lt;strong&gt;7. Submit ITR-V in time (online filing)  &lt;br/&gt;
+&lt;/strong&gt;After having filed returns online without a digital signature, it is
+mandatory to submit the ITR-V form generated to the income tax officials within
+30 days of filing the returns, else your return filing date will be postponed to
+date of submission of ITR-V rather than date of uploading the return. In effect,
+it means that unless the ITR-V has been submitted, uploading your returns online
+will be treated as equal to non-filing of returns.&lt;/p&gt;
+&lt;br/&gt;
+
+&lt;p&gt;&lt;strong&gt;8. Specify accurate bank details &lt;br/&gt;
+&lt;/strong&gt;The bank account number and the MICR code provided should be accurate
+so as to receive refunds without any hassles. In case of an error, you will have
+to submit a cancelled cheque showing correct particulars.&lt;/p&gt;
+&lt;br/&gt;
+
+&lt;p&gt;&lt;strong&gt;9. File returns on time &lt;br/&gt;
+&lt;/strong&gt;This can prove to be costly for the tax payer who has incurred losses
+and wants to carry it forward to the future years (short-term capital loss,
+house property, loss etc.). Under the tax laws, if returns are filed after the
+due date, losses cannot be carried forward for being set-off against the income
+in future years. Therefore, it is essential to file returns within the
+stipulated time frame.&lt;/p&gt;
+&lt;br/&gt;
+
+&lt;p&gt;&lt;strong&gt;10. A two-year window &lt;br/&gt;
+&lt;/strong&gt;Income tax authorities maintain that returns can be furnished at any
+time before the expiry of two years from the end of the financial year in which
+the income was earned. However, if you have tax outstanding and you do not pay
+your tax, then a simple interest of 1 per cent per month will be charged on the
+amount that is outstanding.&lt;/p&gt;
+&lt;br/&gt;
+
+&lt;p&gt;Filing tax returns is a task we know is compulsory and has to be done on
+time, yet we tend to procrastinate and wait till the last moment. As a result,
+in a hurry you might tend to forget to disclose some items which may prove to be
+an invitation to the tax authorities to get after you. To protect yourself from
+coming under the scanner of the tax man, do your bit by ensuring there are no
+mistakes while filing tax returns.&lt;/p&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</sv:value>
+            </sv:property>
+          </sv:node>
+          <sv:node sv:name="mootlywcm:copyright">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>mootlywcm:copyright</sv:value>
+            </sv:property>
+            <sv:property sv:name="mootlywcm:description" sv:type="String">
+              <sv:value/>
+            </sv:property>
+            <sv:property sv:name="mootlywcm:url" sv:type="String">
+              <sv:value/>
+            </sv:property>
+          </sv:node>
+          <sv:node sv:name="relateddocs:docs">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>relateddocs:docs</sv:value>
+            </sv:property>
+          </sv:node>
+          <sv:node sv:name="mootlywcm:image">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>hippogallerypicker:imagelink</sv:value>
+            </sv:property>
+            <sv:property sv:name="hippo:docbase" sv:type="String">
+              <sv:value>b530684c-637a-4304-843f-8d150758afd0</sv:value>
+            </sv:property>
+            <sv:property sv:multiple="true" sv:name="hippo:facets" sv:type="String"/>
+            <sv:property sv:multiple="true" sv:name="hippo:modes" sv:type="String"/>
+            <sv:property sv:multiple="true" sv:name="hippo:values" sv:type="String"/>
+          </sv:node>
+        </sv:node>
+      </sv:node>
+      <sv:node sv:name="what-leads-to-revaluation-of-assets-for-capital-gains">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hippo:handle</sv:value>
+        </sv:property>
+        <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+          <sv:value>hippo:hardhandle</sv:value>
+          <sv:value>hippo:translated</sv:value>
+        </sv:property>
+        <sv:property sv:name="jcr:uuid" sv:type="String">
+          <sv:value>6fdaeba5-7872-4603-b238-d1c6a7579044</sv:value>
+        </sv:property>
+        <sv:node sv:name="hippo:translation">
+          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+            <sv:value>hippo:translation</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippo:language" sv:type="String">
+            <sv:value/>
+          </sv:property>
+          <sv:property sv:name="hippo:message" sv:type="String">
+            <sv:value>What leads to revaluation of assets for capital gains?</sv:value>
+          </sv:property>
+        </sv:node>
+        <sv:node sv:name="what-leads-to-revaluation-of-assets-for-capital-gains">
+          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+            <sv:value>mootlywcm:newsitem</sv:value>
+          </sv:property>
+          <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+            <sv:value>hippo:harddocument</sv:value>
+            <sv:value>hippotranslation:translated</sv:value>
+          </sv:property>
+          <sv:property sv:name="jcr:uuid" sv:type="String">
+            <sv:value>7ee9a624-4867-4986-a2a5-942be03f8e42</sv:value>
+          </sv:property>
+          <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
+            <sv:value>live</sv:value>
+            <sv:value>preview</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippo:related___pathreference" sv:type="String">
+            <sv:value>news/w4i-news/2013/what-leads-to-revaluation-of-assets-for-capital-gains</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostd:holder" sv:type="String">
+            <sv:value>admin</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostd:state" sv:type="String">
+            <sv:value>published</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostd:stateSummary" sv:type="String">
+            <sv:value>live</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
+            <sv:value>admin</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
+            <sv:value>2013-03-16T13:35:18.312+05:30</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
+            <sv:value>2013-03-16T14:51:08.322+05:30</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
+            <sv:value>admin</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
+            <sv:value>2013-03-16T14:51:11.937+05:30</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippotranslation:id" sv:type="String">
+            <sv:value>97e14c11-d233-497d-be7f-33f212abe3df</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippotranslation:locale" sv:type="String">
+            <sv:value>en</sv:value>
+          </sv:property>
+          <sv:property sv:name="mootlywcm:date" sv:type="Date">
+            <sv:value>2013-03-16T13:35:18.312+05:30</sv:value>
+          </sv:property>
+          <sv:property sv:name="mootlywcm:summary" sv:type="String">
+            <sv:value>There are times when there is a separate valuation adopted for the purpose of computation of capital gains from land and building.</sv:value>
+          </sv:property>
+          <sv:property sv:name="mootlywcm:title" sv:type="String">
+            <sv:value>What leads to revaluation of assets for capital gains?</sv:value>
+          </sv:property>
+          <sv:node sv:name="hippotranslation:translations">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>hippotranslation:translations</sv:value>
+            </sv:property>
+          </sv:node>
+          <sv:node sv:name="mootlywcm:description">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>hippostd:html</sv:value>
+            </sv:property>
+            <sv:property sv:name="hippostd:content" sv:type="String">
+              <sv:value>&lt;html&gt;
+&lt;body&gt;
+
+&lt;p&gt;There are times when there is a separate valuation adopted for the purpose of
+computation of capital gains from land and building. Instead of the actual value
+of the sale price that has been received by the seller there is another value in
+the form of the stamp duty valuation that is brought into the picture. The
+conditions under which this is applicable would be important so that the seller
+of the property knows that there is a different way in which the position has to
+be tackled on the tax front. Here are the conditions under which this would be
+done.&lt;/p&gt;
+&lt;br/&gt;
+
+&lt;p&gt;&lt;strong&gt;Asset conditions: &lt;br/&gt;
+&lt;/strong&gt;One of the first things to consider is the type of asset that will be
+covered for the regulations and the nature of these assets. In terms of the type
+of asset the transfer has to be of land or building or both. Thus there has to
+be a land or a building that is being sold and it could also be a case where the
+property consists of both the land and the building and even in that case the
+basic condition for the applicability of the conditions has been set into
+action.&lt;/p&gt;
+&lt;br/&gt;
+
+&lt;p&gt;Often there is a difference in the situation when it comes to a long term
+capital asset and a short term capital asset because the conditions like a
+specific benefit might be applicable when the asset is either a short term or a
+long term one. However when it comes to the Section 50C which is the area where
+this condition is covered then there is no distinction that is made between the
+short term capital asset and long term capital asset. It is applicable under all
+situations and would be valid even when there is a depreciable asset or a non
+depreciable asset.&lt;/p&gt;
+&lt;br/&gt;
+
+&lt;p&gt;&lt;strong&gt;Value involved &lt;br/&gt;
+&lt;/strong&gt;The entire activity of looking for an alternative value will arise only
+when the sale consideration in the transfer of the land and building would be
+less than the value that is used for the purpose of assessment or could be used
+for the assessment by any authority or state government for the payment of stamp
+duty on the property. There is a valuation that is decided by the local
+authorities for the purpose of stamp duty payment and if this is more than the
+actual sale price then the provision would come into effect. &lt;/p&gt;
+&lt;br/&gt;
+
+&lt;p&gt;This will happen in the sense that instead of the sale consideration it is
+the stamp duty valuation that will be used for the purpose of the computation of
+the capital gains. This will change the base for the calculation and also the
+capital gains that would arise in the transaction leading to a change in the
+capital gains tax to be paid. This requires that the individual make the
+necessary inquiries about the stamp duty valuation before the sale consideration
+is fixed because this might become a factor in the tax payment leading to a
+different financial situation for them at the end of the day.&lt;/p&gt;
+&lt;br/&gt;
+
+&lt;p&gt;&lt;strong&gt;Other conditions &lt;br/&gt;
+&lt;/strong&gt;There are a few other details that also need to be known when the stamp
+duty details are to be used for the working. This condition is not be used for
+the purpose of calculation of business income. This means that one big area is
+excluded from the coverage of this type of working. The second point is that it
+is applicable for the transferor of the property so it is meant for the person
+who has sold the property and the tax changes would thus be applicable on this
+side of the transaction. It cannot be used to target the buyer claiming
+suppression of income due to the higher price paid in the purchase of the
+property.&lt;/p&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</sv:value>
+            </sv:property>
+          </sv:node>
+          <sv:node sv:name="mootlywcm:copyright">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>mootlywcm:copyright</sv:value>
+            </sv:property>
+            <sv:property sv:name="mootlywcm:description" sv:type="String">
+              <sv:value/>
+            </sv:property>
+            <sv:property sv:name="mootlywcm:url" sv:type="String">
+              <sv:value/>
+            </sv:property>
+          </sv:node>
+          <sv:node sv:name="relateddocs:docs">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>relateddocs:docs</sv:value>
+            </sv:property>
+          </sv:node>
+          <sv:node sv:name="mootlywcm:image">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>hippogallerypicker:imagelink</sv:value>
+            </sv:property>
+            <sv:property sv:name="hippo:docbase" sv:type="String">
+              <sv:value>96d74026-a78e-46c1-9761-de6f2f8a4cd0</sv:value>
+            </sv:property>
+            <sv:property sv:multiple="true" sv:name="hippo:facets" sv:type="String"/>
+            <sv:property sv:multiple="true" sv:name="hippo:modes" sv:type="String"/>
+            <sv:property sv:multiple="true" sv:name="hippo:values" sv:type="String"/>
+          </sv:node>
+        </sv:node>
+      </sv:node>
+      <sv:node sv:name="union-budget-2013-need-fms-efforts-to-ease-taxes-on-common-man-say-experts">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hippo:handle</sv:value>
+        </sv:property>
+        <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+          <sv:value>hippo:hardhandle</sv:value>
+          <sv:value>hippo:translated</sv:value>
+        </sv:property>
+        <sv:property sv:name="jcr:uuid" sv:type="String">
+          <sv:value>0374fe06-bac2-4566-b6d3-0ffa67c4c650</sv:value>
+        </sv:property>
+        <sv:node sv:name="hippo:translation">
+          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+            <sv:value>hippo:translation</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippo:language" sv:type="String">
+            <sv:value/>
+          </sv:property>
+          <sv:property sv:name="hippo:message" sv:type="String">
+            <sv:value>Union Budget 2013: Need FM's efforts to ease taxes on common man, say experts</sv:value>
+          </sv:property>
+        </sv:node>
+        <sv:node sv:name="union-budget-2013-need-fms-efforts-to-ease-taxes-on-common-man-say-experts">
+          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+            <sv:value>mootlywcm:newsitem</sv:value>
+          </sv:property>
+          <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+            <sv:value>hippo:harddocument</sv:value>
+            <sv:value>hippotranslation:translated</sv:value>
+          </sv:property>
+          <sv:property sv:name="jcr:uuid" sv:type="String">
+            <sv:value>7bc33bc1-d764-4f59-a669-4b68caae9ab1</sv:value>
+          </sv:property>
+          <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
+            <sv:value>live</sv:value>
+            <sv:value>preview</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippo:related___pathreference" sv:type="String">
+            <sv:value>news/w4i-news/2013/union-budget-2013-need-fms-efforts-to-ease-taxes-on-common-man-say-experts</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostd:holder" sv:type="String">
+            <sv:value>admin</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostd:state" sv:type="String">
+            <sv:value>published</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostd:stateSummary" sv:type="String">
+            <sv:value>live</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
+            <sv:value>admin</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
+            <sv:value>2013-03-16T13:36:41.039+05:30</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
+            <sv:value>2013-03-16T14:52:33.169+05:30</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
+            <sv:value>admin</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
+            <sv:value>2013-03-16T14:52:36.238+05:30</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippotranslation:id" sv:type="String">
+            <sv:value>2a2ba6bf-773b-44ff-8544-811e93dc3b5c</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippotranslation:locale" sv:type="String">
+            <sv:value>en</sv:value>
+          </sv:property>
+          <sv:property sv:name="mootlywcm:date" sv:type="Date">
+            <sv:value>2013-03-16T13:36:41.039+05:30</sv:value>
+          </sv:property>
+          <sv:property sv:name="mootlywcm:summary" sv:type="String">
+            <sv:value>The Union Budget is a peculiar ritual. It is performed for the notion of greater good of all, but reaches out to some of many people anticipating and participating in it.</sv:value>
+          </sv:property>
+          <sv:property sv:name="mootlywcm:title" sv:type="String">
+            <sv:value>Union Budget 2013: Need FM's efforts to ease taxes on common man, say experts</sv:value>
+          </sv:property>
+          <sv:node sv:name="hippotranslation:translations">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>hippotranslation:translations</sv:value>
+            </sv:property>
+          </sv:node>
+          <sv:node sv:name="mootlywcm:description">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>hippostd:html</sv:value>
+            </sv:property>
+            <sv:property sv:name="hippostd:content" sv:type="String">
+              <sv:value>&lt;html&gt;
+&lt;body&gt;
+&lt;strong&gt;&lt;em&gt;Rajiv Raj &lt;br/&gt;
+&lt;/em&gt;&lt;/strong&gt;&lt;a target="_blank" href="http://www.creditvidya.com/"&gt;&lt;strong&gt;&lt;em&gt;www.creditvidya.com&lt;/em&gt;&lt;/strong&gt;&lt;/a&gt;
+&lt;p&gt; &lt;/p&gt;
+&lt;br/&gt;
+
+&lt;p&gt;The Union Budget is a peculiar ritual. It is performed for the notion of
+greater good of all, but reaches out to some of many people anticipating and
+participating in it. Quite naturally, many must have pinned their hopes on the
+Finance Minister P Chidambaram who will present the Budget on February 28.
+Though industry leaders and bodies have been vocal about their wish list and
+there are efforts taken by them to reach out the right ears, the common man
+however has little means to reach to the influential offices. He can simply wait
+and watch. Here is what he may get as a gift from the Finance Minister before
+the government goes for elections in the next year -&lt;/p&gt;
+&lt;br/&gt;
+
+&lt;p&gt;&lt;strong&gt;Section 80 C &lt;br/&gt;
+&lt;/strong&gt;We all know this section due to the tax saving investments of up to Rs
+100,000 we resort to each year. This year you may have a pleasant surprise in
+the form of increase in the overall limit of Rs 100,000 to Rs 300,000. This may
+appear too much for the skeptics. But when seen in the light of overall
+inflation and the general elections round the corner, this could be a
+probability. By allowing you to save more in the 'listed investments' many of
+which are borrowings by government (NSC, PPF, EPF, Insurance to some extent),
+the government is the ultimate beneficiary. The more you invest in these
+investment avenues, the government gets more money to fund the country’s
+deficits. In return you get to enjoy some savings in income tax and some
+interest on your investments too.&lt;/p&gt;
+&lt;br/&gt;
+
+&lt;p&gt;The government may introduce some new investment avenues or some sub-limits
+on investments. It may limit the deduction up to Rs 100,000 on fees paid for the
+education of dependent children and rest (Rs 200,000) can be availed only
+through investments in listed securities. The listed securities may see
+inclusion of dedicated pension products.&lt;/p&gt;
+&lt;br/&gt;
+
+&lt;p&gt;&lt;strong&gt;Housing sector &lt;br/&gt;
+&lt;/strong&gt;Housing sector is a priority sector for the economy. The demand for
+housing is huge but there is no purchasing power due to job uncertainty
+triggered by slowdown in the economy and rising real estate prices. The Finance
+Minister may choose to increase the extend deduction up to a maximum limit of Rs
+150,000 from taxable income towards interest on home loan taken to Rs 300,000.
+Tweaking of section 80 C should offer increased deduction for the principal on
+home loan repayment.&lt;/p&gt;
+&lt;br/&gt;
+
+&lt;p&gt;In inflationary times, real estate prices zoom up and the extant deductions
+are inadequate and must be aligned with the current income and quantum of loans
+in the market. Such an increase in tax benefits associated with house purchase
+should fuel new demand for homes. This should also benefit old home loan
+customers. With interest rates coming down, home loans become attractive and at
+such time if the expansion in tax breaks materialize, it will be an icing on the
+cake for old borrowers. So, for the time being, hope for the best and be
+prepared for it arrange your home loan file with your latest income proof and
+CIBIL Score.&lt;/p&gt;
+&lt;br/&gt;
+
+&lt;p&gt;&lt;strong&gt;Deposits: &lt;br/&gt;
+&lt;/strong&gt;Do not be surprised if you see the Finance Minister shows his
+large-heartedness towards fixed deposit investors. Interest from savings bank
+account with banks is deductible from taxable income to the extent of Rs 10,000
+in a financial year. In FY2012-13, the deposit growth has been lower than the
+credit growth. This is surely a cause of concern, especially when the Finance
+Ministry expects banks to fuel credit off-take with lower interest rates. In
+that case, there may be a serious attempt to encourage investors to put money in
+fixed deposits with banks. The upper limit is expected to be extended and may be
+increased to Rs 20,000. The Finance Minister may qualify this extra deduction by
+allowing it for interest on fixed deposits with more than three-year time frame.
+&lt;/p&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</sv:value>
+            </sv:property>
+          </sv:node>
+          <sv:node sv:name="mootlywcm:copyright">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>mootlywcm:copyright</sv:value>
+            </sv:property>
+            <sv:property sv:name="mootlywcm:description" sv:type="String">
+              <sv:value/>
+            </sv:property>
+            <sv:property sv:name="mootlywcm:url" sv:type="String">
+              <sv:value/>
+            </sv:property>
+          </sv:node>
+          <sv:node sv:name="relateddocs:docs">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>relateddocs:docs</sv:value>
+            </sv:property>
+          </sv:node>
+          <sv:node sv:name="mootlywcm:image">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>hippogallerypicker:imagelink</sv:value>
+            </sv:property>
+            <sv:property sv:name="hippo:docbase" sv:type="String">
+              <sv:value>decd56ba-cc93-47ec-a5c9-c5be880eb5a6</sv:value>
+            </sv:property>
+            <sv:property sv:multiple="true" sv:name="hippo:facets" sv:type="String"/>
+            <sv:property sv:multiple="true" sv:name="hippo:modes" sv:type="String"/>
+            <sv:property sv:multiple="true" sv:name="hippo:values" sv:type="String"/>
+          </sv:node>
+        </sv:node>
+      </sv:node>
+      <sv:node sv:name="lower-tax-slabs-add-exemptions-for-the-salaried">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hippo:handle</sv:value>
+        </sv:property>
+        <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+          <sv:value>hippo:hardhandle</sv:value>
+          <sv:value>hippo:translated</sv:value>
+        </sv:property>
+        <sv:property sv:name="jcr:uuid" sv:type="String">
+          <sv:value>4aac7ca4-01a0-4f3d-aa72-f6ea79a65497</sv:value>
+        </sv:property>
+        <sv:node sv:name="hippo:translation">
+          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+            <sv:value>hippo:translation</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippo:language" sv:type="String">
+            <sv:value/>
+          </sv:property>
+          <sv:property sv:name="hippo:message" sv:type="String">
+            <sv:value>Lower tax slabs, add exemptions for the salaried</sv:value>
+          </sv:property>
+        </sv:node>
+        <sv:node sv:name="lower-tax-slabs-add-exemptions-for-the-salaried">
+          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+            <sv:value>mootlywcm:newsitem</sv:value>
+          </sv:property>
+          <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+            <sv:value>hippo:harddocument</sv:value>
+            <sv:value>hippotranslation:translated</sv:value>
+          </sv:property>
+          <sv:property sv:name="jcr:uuid" sv:type="String">
+            <sv:value>a0f10bbd-17f2-499e-b838-90c82dbd59e3</sv:value>
+          </sv:property>
+          <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
+            <sv:value>live</sv:value>
+            <sv:value>preview</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippo:related___pathreference" sv:type="String">
+            <sv:value>news/w4i-news/2013/lower-tax-slabs-add-exemptions-for-the-salaried</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostd:holder" sv:type="String">
+            <sv:value>admin</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostd:state" sv:type="String">
+            <sv:value>published</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostd:stateSummary" sv:type="String">
+            <sv:value>live</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
+            <sv:value>admin</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
+            <sv:value>2013-03-16T13:38:20.986+05:30</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
+            <sv:value>2013-03-16T14:53:24.247+05:30</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
+            <sv:value>admin</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
+            <sv:value>2013-03-16T14:53:27.551+05:30</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippotranslation:id" sv:type="String">
+            <sv:value>6fdc6867-c521-4434-9b89-72f5bc82f9aa</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippotranslation:locale" sv:type="String">
+            <sv:value>en</sv:value>
+          </sv:property>
+          <sv:property sv:name="mootlywcm:date" sv:type="Date">
+            <sv:value>2013-03-16T13:38:20.986+05:30</sv:value>
+          </sv:property>
+          <sv:property sv:name="mootlywcm:summary" sv:type="String">
+            <sv:value>While the last Budget had lowered, minimum exemption for income tax from Rs 1,80,000 to Rs 2,00,000, salaried individuals are looking for more tax cuts this year too.</sv:value>
+          </sv:property>
+          <sv:property sv:name="mootlywcm:title" sv:type="String">
+            <sv:value>Lower tax slabs, add exemptions for the salaried</sv:value>
+          </sv:property>
+          <sv:node sv:name="hippotranslation:translations">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>hippotranslation:translations</sv:value>
+            </sv:property>
+          </sv:node>
+          <sv:node sv:name="mootlywcm:description">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>hippostd:html</sv:value>
+            </sv:property>
+            <sv:property sv:name="hippostd:content" sv:type="String">
+              <sv:value>&lt;html&gt;
+&lt;body&gt;
+&lt;strong&gt;W&lt;/strong&gt;
+&lt;p&gt;hile the last Budget had raised minimum exemption for income tax from Rs
+1,80,000 to Rs 2,00,000, salaried individuals are looking for more tax cuts this
+year too.&lt;/p&gt;
+
+&lt;p&gt; The government has resorted to some measures to tame the ever-growing fiscal
+deficit but that is directly or indirectly hurting the common man. Therefore,
+the government should consider relaxing home loan, car loan and education loan
+etc, demands the salaried individual.&lt;/p&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</sv:value>
+            </sv:property>
+          </sv:node>
+          <sv:node sv:name="mootlywcm:copyright">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>mootlywcm:copyright</sv:value>
+            </sv:property>
+            <sv:property sv:name="mootlywcm:description" sv:type="String">
+              <sv:value/>
+            </sv:property>
+            <sv:property sv:name="mootlywcm:url" sv:type="String">
+              <sv:value/>
+            </sv:property>
+          </sv:node>
+          <sv:node sv:name="relateddocs:docs">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>relateddocs:docs</sv:value>
+            </sv:property>
+          </sv:node>
+          <sv:node sv:name="mootlywcm:image">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>hippogallerypicker:imagelink</sv:value>
+            </sv:property>
+            <sv:property sv:name="hippo:docbase" sv:type="String">
+              <sv:value>50b7eaba-75d9-41ac-afdc-25e8dfcce798</sv:value>
+            </sv:property>
+            <sv:property sv:multiple="true" sv:name="hippo:facets" sv:type="String"/>
+            <sv:property sv:multiple="true" sv:name="hippo:modes" sv:type="String"/>
+            <sv:property sv:multiple="true" sv:name="hippo:values" sv:type="String"/>
+          </sv:node>
+        </sv:node>
+      </sv:node>
+      <sv:node sv:name="planning-tax-at-last-moment-heres-what-you-should-not-do">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hippo:handle</sv:value>
+        </sv:property>
+        <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+          <sv:value>hippo:hardhandle</sv:value>
+          <sv:value>hippo:translated</sv:value>
+        </sv:property>
+        <sv:property sv:name="jcr:uuid" sv:type="String">
+          <sv:value>78306194-fa3b-4f94-ac4c-179c8dda3c45</sv:value>
+        </sv:property>
+        <sv:node sv:name="hippo:translation">
+          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+            <sv:value>hippo:translation</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippo:language" sv:type="String">
+            <sv:value/>
+          </sv:property>
+          <sv:property sv:name="hippo:message" sv:type="String">
+            <sv:value>Planning tax at last moment? Here's what you should not do</sv:value>
+          </sv:property>
+        </sv:node>
+        <sv:node sv:name="planning-tax-at-last-moment-heres-what-you-should-not-do">
+          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+            <sv:value>mootlywcm:newsitem</sv:value>
+          </sv:property>
+          <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+            <sv:value>hippo:harddocument</sv:value>
+            <sv:value>hippotranslation:translated</sv:value>
+          </sv:property>
+          <sv:property sv:name="jcr:uuid" sv:type="String">
+            <sv:value>026ca3af-cc5c-418c-8950-25086759dc9e</sv:value>
+          </sv:property>
+          <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
+            <sv:value>live</sv:value>
+            <sv:value>preview</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippo:related___pathreference" sv:type="String">
+            <sv:value>news/w4i-news/2013/planning-tax-at-last-moment-heres-what-you-should-not-do</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostd:holder" sv:type="String">
+            <sv:value>admin</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostd:state" sv:type="String">
+            <sv:value>published</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostd:stateSummary" sv:type="String">
+            <sv:value>live</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
+            <sv:value>admin</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
+            <sv:value>2013-03-16T13:52:02.424+05:30</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
+            <sv:value>2013-03-16T14:54:50.165+05:30</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
+            <sv:value>admin</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
+            <sv:value>2013-03-16T14:54:54.287+05:30</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippotranslation:id" sv:type="String">
+            <sv:value>cc16d18c-87f7-47c3-beea-3d63a0a2aae0</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippotranslation:locale" sv:type="String">
+            <sv:value>en</sv:value>
+          </sv:property>
+          <sv:property sv:name="mootlywcm:date" sv:type="Date">
+            <sv:value>2013-03-16T13:52:02.424+05:30</sv:value>
+          </sv:property>
+          <sv:property sv:name="mootlywcm:summary" sv:type="String">
+            <sv:value>In an interview to CNBC-TV18, Sumeet Vaid of Freedom Financial Planners shared his reading and outlook on tax planning.</sv:value>
+          </sv:property>
+          <sv:property sv:name="mootlywcm:title" sv:type="String">
+            <sv:value>Planning tax at last moment? Here's what you should not do</sv:value>
+          </sv:property>
+          <sv:node sv:name="hippotranslation:translations">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>hippotranslation:translations</sv:value>
+            </sv:property>
+          </sv:node>
+          <sv:node sv:name="mootlywcm:description">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>hippostd:html</sv:value>
+            </sv:property>
+            <sv:property sv:name="hippostd:content" sv:type="String">
+              <sv:value>&lt;html&gt;
+&lt;body&gt;
+
+&lt;p&gt;In an interview to CNBC-TV18, Sumeet Vaid of Freedom Financial Planners
+shared his reading and outlook on tax planning.&lt;/p&gt;
+
+&lt;p&gt; &lt;strong&gt;&lt;em&gt;Below is the verbatim transcript of an interview aired on
+CNBC-TV18.&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;br/&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;strong&gt;Q:&lt;/strong&gt; Most employed professionals will be rushing now
+to submit their 80CC investments in the next few days, any advice on what not to
+do in the garb of tax planning?&lt;/strong&gt;&lt;/p&gt;
+&lt;br/&gt;
+
+&lt;p&gt;&lt;strong&gt;A:&lt;/strong&gt; It is so striking that most of the time the last rush tax
+planning investments is so pathetic that while doing financial planning with lot
+of families we get to see many people end up just investing in insurances and
+some of the 80CC products to take tax advantage without even worrying about
+principal, which is completely a wrong way of doing thing. If somebody is trying
+to invest Rs 1 lakh to save 30 percent tax on the 80C but he is not interested
+to understand what will happen to the Rs 1 lakh. He is more interested in saving
+that 30 percent. As a result of which many of the families end up buying new
+insurance policies every year.&lt;/p&gt;
+&lt;br/&gt;
+
+&lt;p&gt;So, first thing which we like to advice is when one does tax planning, it
+should not be at the last minute. One should start at the beginning. The second
+thing which one need to do is that tax planning in itself is not a goal or
+objective. It is one of the features, which a scheme should offer. It should fit
+into a bigger perspective or a financial need of the family. One has a goal for
+education, goal for retirement and within that if one is buying an investment
+product for a certain time period that should give a tax planning feature rather
+than it only having a tax planning kind of a thing in itself.&lt;/p&gt;
+&lt;br/&gt;
+
+&lt;p&gt;Insurance is one of the biggest, most popular taxes saving instrument, which
+is not a right way to look at it. One should never invest in an insurance to
+save tax. One should buy insurance. So, adequacy of insurance cover is very
+importantly. In today’s era where risks are increasing, families do not have
+adequate covers because they end up investing in insurance, paying huge premium,
+getting very less sum insured. So, insurance is important till the time its term
+insurance and it’s adequately covered. There are other features like health
+insurance and few of the other things.   &lt;/p&gt;
+&lt;br/&gt;
+
+&lt;p&gt;The first message is to have a financial plan, within that have goals and
+within the goals, fit the instruments. Do not have a last minute rush to get tax
+planning of 20-30 percent tax rebate.&lt;/p&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</sv:value>
+            </sv:property>
+          </sv:node>
+          <sv:node sv:name="mootlywcm:copyright">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>mootlywcm:copyright</sv:value>
+            </sv:property>
+            <sv:property sv:name="mootlywcm:description" sv:type="String">
+              <sv:value/>
+            </sv:property>
+            <sv:property sv:name="mootlywcm:url" sv:type="String">
+              <sv:value/>
+            </sv:property>
+          </sv:node>
+          <sv:node sv:name="relateddocs:docs">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>relateddocs:docs</sv:value>
+            </sv:property>
+          </sv:node>
+          <sv:node sv:name="mootlywcm:image">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>hippogallerypicker:imagelink</sv:value>
+            </sv:property>
+            <sv:property sv:name="hippo:docbase" sv:type="String">
+              <sv:value>9be9e727-38f5-402d-b393-28f15432017c</sv:value>
+            </sv:property>
+            <sv:property sv:multiple="true" sv:name="hippo:facets" sv:type="String"/>
+            <sv:property sv:multiple="true" sv:name="hippo:modes" sv:type="String"/>
+            <sv:property sv:multiple="true" sv:name="hippo:values" sv:type="String"/>
+          </sv:node>
+        </sv:node>
+      </sv:node>
+      <sv:node sv:name="ensure-your-itrv-reaches-the-taxman-on-time">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hippo:handle</sv:value>
+        </sv:property>
+        <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+          <sv:value>hippo:hardhandle</sv:value>
+          <sv:value>hippo:translated</sv:value>
+        </sv:property>
+        <sv:property sv:name="jcr:uuid" sv:type="String">
+          <sv:value>fa329612-6ebc-49a3-9617-82686fe798cf</sv:value>
+        </sv:property>
+        <sv:node sv:name="hippo:translation">
+          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+            <sv:value>hippo:translation</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippo:language" sv:type="String">
+            <sv:value/>
+          </sv:property>
+          <sv:property sv:name="hippo:message" sv:type="String">
+            <sv:value>Ensure your ITRV reaches the taxman on time</sv:value>
+          </sv:property>
+        </sv:node>
+        <sv:node sv:name="ensure-your-itrv-reaches-the-taxman-on-time">
+          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+            <sv:value>mootlywcm:newsitem</sv:value>
+          </sv:property>
+          <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+            <sv:value>hippo:harddocument</sv:value>
+            <sv:value>hippotranslation:translated</sv:value>
+          </sv:property>
+          <sv:property sv:name="jcr:uuid" sv:type="String">
+            <sv:value>f9719828-a4a5-43fa-9215-1f28b11e08bd</sv:value>
+          </sv:property>
+          <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
+            <sv:value>live</sv:value>
+            <sv:value>preview</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippo:related___pathreference" sv:type="String">
+            <sv:value>news/w4i-news/2013/ensure-your-itrv-reaches-the-taxman-on-time</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostd:holder" sv:type="String">
+            <sv:value>admin</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostd:state" sv:type="String">
+            <sv:value>published</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostd:stateSummary" sv:type="String">
+            <sv:value>live</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
+            <sv:value>admin</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
+            <sv:value>2013-03-16T13:54:09.848+05:30</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
+            <sv:value>2013-03-16T14:56:03.070+05:30</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
+            <sv:value>admin</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
+            <sv:value>2013-03-16T14:56:06.468+05:30</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippotranslation:id" sv:type="String">
+            <sv:value>6c5cafaf-616c-44aa-a541-76107dbb54ec</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippotranslation:locale" sv:type="String">
+            <sv:value>en</sv:value>
+          </sv:property>
+          <sv:property sv:name="mootlywcm:date" sv:type="Date">
+            <sv:value>2013-03-16T13:54:09.848+05:30</sv:value>
+          </sv:property>
+          <sv:property sv:name="mootlywcm:summary" sv:type="String">
+            <sv:value>One of the new provisions in recent years that the investor did not encounter earlier is that related to the submission of the ITR-V forms.</sv:value>
+          </sv:property>
+          <sv:property sv:name="mootlywcm:title" sv:type="String">
+            <sv:value>Ensure your ITRV reaches the taxman on time</sv:value>
+          </sv:property>
+          <sv:node sv:name="hippotranslation:translations">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>hippotranslation:translations</sv:value>
+            </sv:property>
+          </sv:node>
+          <sv:node sv:name="mootlywcm:description">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>hippostd:html</sv:value>
+            </sv:property>
+            <sv:property sv:name="hippostd:content" sv:type="String">
+              <sv:value>&lt;html&gt;
+&lt;body&gt;
+
+&lt;p&gt;One of the new provisions in recent years that the investor did not encounter
+earlier is that related to the submission of the ITR-V forms. This situation of
+submitting of the forms arises only in case of some specific situations and the
+individual has to be alert about knowing about the exact details on this front
+so that they are able to fulfill the details for their income tax return filing.
+This will help them to complete their tax filing requirement properly.  Here is
+a look at the entire issue and when the individual will remain within the time
+limit.&lt;/p&gt;
+&lt;br/&gt;
+
+&lt;p&gt;&lt;strong&gt;Online filing: &lt;br/&gt;
+&lt;/strong&gt;There is the facility of online filing of tax returns that is now
+possible for individuals. There are two ways in which the online returns can be
+filed.  The first one is where the returns are filed using a digital signature
+and the second one where the returns are filed without the use of the digital
+signature. In the case of the usage of the digital signature there is no further
+action that needs to be taken once the online process is complete because the
+digital signature is equivalent to the actual signature and this will complete
+the entire process. &lt;br/&gt;
+When the income tax return is filed without the digital signature then there is
+an additional step that needs to be taken and this will result in some more work
+to be undertaken. The additional step is with respect to the signing of an
+additional form called the ITR V and then sending it to a postal address in
+Bangalore. Once this is received then this will serve as the acknowledgement for
+the tax return filed and the entire return filing process is completed.&lt;/p&gt;
+&lt;br/&gt;
+
+&lt;p&gt;&lt;strong&gt;Time period: &lt;br/&gt;
+&lt;/strong&gt;There is usually a time period within which the ITR V has to be sent to
+the tax department and this is given in the form of two dates which consist of a
+specific date ( For a particular assessment year) or 120 days from the date of
+the filing of the return  whichever is later.  This gives the required time for
+the individual to ensure that they have signed in the form and sent it by post
+to the required address.  What is important is that the individual will get all
+the details in the ITR V form printed as per the return that they have filed as
+this is automatically generated and all that they actually need to do is to sign
+in the required space and send it across through normal or speed post only.&lt;/p&gt;
+&lt;br/&gt;
+
+&lt;p&gt;&lt;strong&gt;Delay: &lt;br/&gt;
+&lt;/strong&gt;A lot of cases have been observed by the tax department wherein  the
+ITR V for the previous assessment years mainly 2010-11 and 2011-12  have not
+actually been received by the department. Till the time that the form is
+actually received the tax department will not consider the return to be filed
+and the entire assessment process cannot be completed. &lt;/p&gt;
+&lt;br/&gt;
+
+&lt;p&gt;The tax department has now ensured that the last date for receiving the ITR V
+forms for these returns already filed have been extended. This will ensure that
+all those who find that they are still in the category of those whose form has
+not been received they can still complete the entire process quickly. It is now
+upto the individual to ensure that they look at their own position over the past
+two years and see whether they need to take some action on this front. If it is
+necessary then they should get the printout of the form and send it to the tax
+department in the manner mentioned so that their assessments can be completed.
+&lt;/p&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</sv:value>
+            </sv:property>
+          </sv:node>
+          <sv:node sv:name="mootlywcm:copyright">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>mootlywcm:copyright</sv:value>
+            </sv:property>
+            <sv:property sv:name="mootlywcm:description" sv:type="String">
+              <sv:value/>
+            </sv:property>
+            <sv:property sv:name="mootlywcm:url" sv:type="String">
+              <sv:value/>
+            </sv:property>
+          </sv:node>
+          <sv:node sv:name="relateddocs:docs">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>relateddocs:docs</sv:value>
+            </sv:property>
+          </sv:node>
+          <sv:node sv:name="mootlywcm:image">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>hippogallerypicker:imagelink</sv:value>
+            </sv:property>
+            <sv:property sv:name="hippo:docbase" sv:type="String">
+              <sv:value>c21dc902-51a8-4a6e-a0c7-5eed8c5244d4</sv:value>
+            </sv:property>
+            <sv:property sv:multiple="true" sv:name="hippo:facets" sv:type="String"/>
+            <sv:property sv:multiple="true" sv:name="hippo:modes" sv:type="String"/>
+            <sv:property sv:multiple="true" sv:name="hippo:values" sv:type="String"/>
+          </sv:node>
+        </sv:node>
+      </sv:node>
+      <sv:node sv:name="why-file-tax-returns">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hippo:handle</sv:value>
+        </sv:property>
+        <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+          <sv:value>hippo:hardhandle</sv:value>
+          <sv:value>hippo:translated</sv:value>
+        </sv:property>
+        <sv:property sv:name="jcr:uuid" sv:type="String">
+          <sv:value>31ae6842-aed8-4fe3-9889-03b8b127809f</sv:value>
+        </sv:property>
+        <sv:node sv:name="hippo:translation">
+          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+            <sv:value>hippo:translation</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippo:language" sv:type="String">
+            <sv:value/>
+          </sv:property>
+          <sv:property sv:name="hippo:message" sv:type="String">
+            <sv:value>Why file tax returns?</sv:value>
+          </sv:property>
+        </sv:node>
+        <sv:node sv:name="why-file-tax-returns">
+          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+            <sv:value>mootlywcm:newsitem</sv:value>
+          </sv:property>
+          <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+            <sv:value>hippo:harddocument</sv:value>
+            <sv:value>hippotranslation:translated</sv:value>
+          </sv:property>
+          <sv:property sv:name="jcr:uuid" sv:type="String">
+            <sv:value>0d5db266-6dd0-424f-8b2f-7bca4c923155</sv:value>
+          </sv:property>
+          <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
+            <sv:value>live</sv:value>
+            <sv:value>preview</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippo:related___pathreference" sv:type="String">
+            <sv:value>news/w4i-news/2013/why-file-tax-returns</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostd:holder" sv:type="String">
+            <sv:value>admin</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostd:state" sv:type="String">
+            <sv:value>published</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostd:stateSummary" sv:type="String">
+            <sv:value>live</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
+            <sv:value>admin</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
+            <sv:value>2013-03-16T13:55:51.982+05:30</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
+            <sv:value>2013-03-16T15:00:46.666+05:30</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
+            <sv:value>admin</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
+            <sv:value>2013-03-16T15:00:50.584+05:30</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippotranslation:id" sv:type="String">
+            <sv:value>1fc3a83a-329f-4ca4-ad69-1b4b34cc047d</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippotranslation:locale" sv:type="String">
+            <sv:value>en</sv:value>
+          </sv:property>
+          <sv:property sv:name="mootlywcm:date" sv:type="Date">
+            <sv:value>2013-03-16T13:55:51.982+05:30</sv:value>
+          </sv:property>
+          <sv:property sv:name="mootlywcm:summary" sv:type="String">
+            <sv:value>Filing tax returns is an annual activity which must be fulfilled as a moral and social obligation by every citizen of this nation.</sv:value>
+          </sv:property>
+          <sv:property sv:name="mootlywcm:title" sv:type="String">
+            <sv:value>Why file tax returns?</sv:value>
+          </sv:property>
+          <sv:node sv:name="hippotranslation:translations">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>hippotranslation:translations</sv:value>
+            </sv:property>
+          </sv:node>
+          <sv:node sv:name="mootlywcm:description">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>hippostd:html</sv:value>
+            </sv:property>
+            <sv:property sv:name="hippostd:content" sv:type="String">
+              <sv:value>&lt;html&gt;
+&lt;body&gt;
+
+&lt;p&gt;Filing tax returns is an annual activity which must be fulfilled as a moral
+and social obligation by every citizen of this nation. This is a means for the
+government to determine the amount and means of expenditure of the citizens and
+also provides a platform for the assessee to claim refunds and other forms of
+relief from taxation as is applicable at that point of time. The government
+mandates a specified amount of income which requires to be filed as a tax return
+within a pre determined due date. The tax as applicable must be paid by the
+assessee failure of which will invite interest and penalties from the IT
+department. While most people are aware of the requirement of filing tax returns
+many are still unclear about the overall implications and repercussions of not
+filing returns on time. The last date for filing returns is 31st July for
+financial years ending on 31st march. In case of assesses whose accounts require
+to be audited as per provisions of the IT Act the date is generally 30th
+September.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Legal and social implications of filing tax returns &lt;br/&gt;
+&lt;/strong&gt;There are several allied issues which are associated with the filing of
+tax returns. Filing the returns provides legal sanction to your income whether
+or not you are liable to pay taxes for that assessment year. The government has
+now in fact made it mandatory for all citizens to file returns whether or not
+they come under the taxable bracket. Filing returns makes it easier for
+individuals and firms to enter into subsequent transactions as the income they
+have shown is now in the knowledge of the tax department and the tax for the
+same has been paid as per records.  This also a means by which every right
+thinking citizen of the nation contributes to the progress and development of
+the nation. The money collected through taxes is the corpus from which the
+government undertakes welfare activities to improve the living conditions of the
+citizens.&lt;/p&gt;
+&lt;br/&gt;
+
+&lt;p&gt;&lt;strong&gt;Advantages of filing tax returns&lt;/strong&gt;&lt;/p&gt;
+&lt;br/&gt;
+
+&lt;p&gt;Apart from helping the cause of the nation, filing income tax returns on time
+has many other individual advantages associated with it.&lt;/p&gt;
+&lt;br/&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Processing of home, educational and other types of loans require income tax
+returns to be shown to the lending institutions. Thus filing returns makes loans
+easier to process.&lt;/li&gt;
+&lt;li&gt;It is mandatory to have income tax returns for the processing of any VISA.
+&lt;/li&gt;
+&lt;li&gt;Registration of immovable properties in most states requires production of
+the tax returns of the last three years. Filing returns makes such registration
+procedures easier.&lt;/li&gt;
+&lt;li&gt;Issuing of financial instruments of all kinds such as credit cards mandates
+the production of tax returns.&lt;/li&gt;
+&lt;li&gt;Filing returns whether eligible for taxes or not helps pad up legally
+tenable income which will be useful subsequently to account for the wealth or
+property owned.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;strong&gt;Consequences of not filing IT returns on time &lt;br/&gt;
+&lt;/strong&gt;
+&lt;p&gt;There are several disadvantages of not filing the tax returns on time under
+the various provisions of the income tax department.&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+&lt;br/&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;The various losses incurred by an individual or a firm in terms of business
+losses both speculative as well as non speculative, capital losses both short
+term as well as long term and various other types of losses which have not been
+reflected through proper tax returns in a financial year cannot be shown for
+exemption the subsequent years for the purpose of tax calculation as laid down
+under the Section 80 of the IT Act.&lt;/li&gt;
+&lt;li&gt;In case the original IT return under Section 139(1) of the IT Act has not
+been filed then the revised return under Section 139(5) also cannot be filed
+subsequently when the assessee needs it.&lt;/li&gt;
+&lt;li&gt;Under the Sections 235(A), 235(B) and 235(C) of the IT Act, non filing of
+returns by assesses can attract a penalty of Rs. 5000 from the IT department.
+&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;While filing of income tax returns may seem a voluntary activity on the face
+of it, there are legal provisions against those who do not do so. Even if a
+person is not eligible for taxes under the current provisions of the IT Act, it
+is wise to file the returns for the same so as to be on the right side of IT
+laws. Additionally filing of proper returns on time lends you a peace of mind
+and declares all your income shown as legal since they have been taxed for.
+Individuals, companies, partnership firms, LLP, AOI, BLP and HUF are all liable
+to file the tax returns before the deadline.&lt;/p&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</sv:value>
+            </sv:property>
+          </sv:node>
+          <sv:node sv:name="mootlywcm:copyright">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>mootlywcm:copyright</sv:value>
+            </sv:property>
+            <sv:property sv:name="mootlywcm:description" sv:type="String">
+              <sv:value/>
+            </sv:property>
+            <sv:property sv:name="mootlywcm:url" sv:type="String">
+              <sv:value/>
+            </sv:property>
+          </sv:node>
+          <sv:node sv:name="relateddocs:docs">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>relateddocs:docs</sv:value>
+            </sv:property>
+          </sv:node>
+          <sv:node sv:name="mootlywcm:image">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>hippogallerypicker:imagelink</sv:value>
+            </sv:property>
+            <sv:property sv:name="hippo:docbase" sv:type="String">
+              <sv:value>12d4c920-c9eb-4aa2-ba33-a8b7c3a9ee8f</sv:value>
+            </sv:property>
+            <sv:property sv:multiple="true" sv:name="hippo:facets" sv:type="String"/>
+            <sv:property sv:multiple="true" sv:name="hippo:modes" sv:type="String"/>
+            <sv:property sv:multiple="true" sv:name="hippo:values" sv:type="String"/>
+          </sv:node>
+        </sv:node>
+      </sv:node>
+    </sv:node>
+  </sv:node>
+</sv:node>

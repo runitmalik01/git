@@ -1,0 +1,1 @@
+mvn -Drepo.path=C:\abhi\trunk\repository clean install

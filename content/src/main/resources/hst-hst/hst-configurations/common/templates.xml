@@ -1,0 +1,2748 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sv:node sv:name="hst:templates" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:templates</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>a3da5e18-ec2b-44e0-be97-79204388cd2e</sv:value>
+  </sv:property>
+  <sv:node sv:name="common.comments">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>a2cfa26e-5082-4ff8-8ba2-00d08beaa492</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:containers" sv:type="String"/>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/common/comments.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+
+<!-- for calculation from all head-->
+<sv:node sv:name="member.calculation">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:template</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>a1510f31-303d-497f-9852-d56a3f1d7449</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:renderpath" sv:type="String">
+    <sv:value>jsp/member/calculation.jsp</sv:value>
+  </sv:property>
+</sv:node>
+
+
+<!-- for otherincome documents-->
+<sv:node sv:name="otherincome">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:template</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>bc6441ba-5a36-4fb3-96ab-e0b5e518589d</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:renderpath" sv:type="String">
+    <sv:value>jsp/member/otherincome.jsp</sv:value>
+  </sv:property>
+</sv:node>
+
+<sv:node sv:name="member.bankinterest">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:template</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>5d20a1d1-b216-40e2-a650-8bed7227a914</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:renderpath" sv:type="String">
+    <sv:value>jsp/member/bankinterest.jsp</sv:value>
+  </sv:property>
+</sv:node>
+<sv:node sv:name="member.otherinterest">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:template</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>23cc1795-dd1c-4bde-b908-aa48b4228237</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:renderpath" sv:type="String">
+    <sv:value>jsp/member/otherinterest.jsp</sv:value>
+  </sv:property>
+</sv:node>
+
+<sv:node sv:name="errormessage">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:template</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>ee67167d-70f6-468b-90ef-444e4470565f</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:renderpath" sv:type="String">
+    <sv:value>jsp/member/errormessage.jsp</sv:value>
+  </sv:property>
+</sv:node>
+
+<sv:node sv:name="member.schedule80C">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:template</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>a67761a3-2cb9-4d64-af3e-7bc9c976fbab</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:renderpath" sv:type="String">
+    <sv:value>jsp/member/schedule80C.jsp</sv:value>
+  </sv:property>
+</sv:node>
+
+<sv:node sv:name="member.schedule80IA">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:template</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>88836253-e5d9-426a-a670-35a8c6741b86</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:renderpath" sv:type="String">
+    <sv:value>jsp/member/schedule80IA.jsp</sv:value>
+  </sv:property>
+</sv:node>
+<sv:node sv:name="member.schedule80IB">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:template</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>829ac000-9f64-4f14-acf0-8eff2265133a</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:renderpath" sv:type="String">
+    <sv:value>jsp/member/schedule80IB.jsp</sv:value>
+  </sv:property>
+</sv:node>
+<sv:node sv:name="member.schedule80IC">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:template</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>fa7bbc9a-c5a8-4dc2-8307-012832c9e80f</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:renderpath" sv:type="String">
+    <sv:value>jsp/member/schedule80IC.jsp</sv:value>
+  </sv:property>
+</sv:node>
+<sv:node sv:name="member.schedule80GG">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:template</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>5b9b2a0a-fdeb-4c77-ac31-93c1fc6a8e2e</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:renderpath" sv:type="String">
+    <sv:value>jsp/member/schedule80GG.jsp</sv:value>
+  </sv:property>
+</sv:node>
+
+<sv:node sv:name="sourceofincome">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:template</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>161e2329-0ee4-4a71-ba6a-79aa6b7cd2a5</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:renderpath" sv:type="String">
+    <sv:value>jsp/member/sourceofincome.jsp</sv:value>
+  </sv:property>
+</sv:node>
+  
+  <sv:node sv:name="member.salaryincome">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>fc2a3fc6-ea8c-43ef-985d-005ffaa92c2a</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/member/salaryincome.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="terms">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>873508a1-c1b0-4cd1-9f25-19f5194d03c0</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/member/terms.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="privacy">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>0444ca9b-98bc-4d4e-98f5-053f9a46962b</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/member/privacy.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="common.feed">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>d6985c70-2510-43e7-ba28-90dc49e54770</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/common/feed.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="common.relateddocuments">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>adc1d224-e357-44ac-a84e-b4f7a6115435</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:containers" sv:type="String"/>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/common/relateddocuments.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="common.simpledocument">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>5c889e72-56b5-416e-88ff-212c9b9f78e4</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/common/simpledocument.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="common.tagcloud">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>c38c83e9-442a-40f4-8cb1-95c221f0093d</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/common/tagcloud.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="common.video">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>1c7f3789-d697-46ff-9ca9-5f4f07492fba</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/common/video.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="common.map">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>c25e1167-1270-414f-9c9c-1a401f6ff17e</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/common/map.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="layout.webpage.ftl">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>f1418e4b-da21-43df-9362-3167cf833c2c</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:containers" sv:type="String">
+      <sv:value>header</sv:value>
+      <sv:value>body</sv:value>
+      <sv:value>footer</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:script" sv:type="String">
+      <sv:value>&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"&gt;
+&lt;#--
+
+    Copyright (C) 2010 Hippo B.V.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+            http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+--&gt;
+&lt;#assign fmt=JspTaglibs["http://java.sun.com/jsp/jstl/fmt"]&gt;
+&lt;#assign hst=JspTaglibs["http://www.hippoecm.org/jsp/hst/core"]&gt;
+&lt;#assign ga=JspTaglibs["http://www.onehippo.org/jsp/google-analytics"]&gt;
+
+&lt;@hst.defineObjects /&gt;
+
+&lt;#assign lang="${hstRequest.locale.language!}" /&gt;
+&lt;#assign textSize="" /&gt;
+&lt;#if hstRequest.cookies?has_content&gt;
+  &lt;#list hstRequest.cookies as cookie&gt;
+    &lt;#if cookie.name == "fontSize"&gt;
+      &lt;#assign textSize="${cookie.value}" /&gt;
+    &lt;/#if&gt;
+  &lt;/#list&gt;
+&lt;/#if&gt;
+
+&lt;html xmlns="http://www.w3.org/1999/xhtml" lang="${lang}"&gt;
+&lt;head&gt;
+    &lt;@hst.headContributions categoryExcludes="css,jsInternal,jsExternal" /&gt;
+    &lt;meta http-equiv="Content-Type" content="text/html;charset=utf-8" /&gt;
+    &lt;link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" /&gt;
+    &lt;link rel="schema.DCTERMS" href="http://purl.org/dc/terms/" /&gt;
+    &lt;meta name="DC.keywords" content="&lt;@fmt.message key="layout.webpage.metadckeywords"/&gt;" /&gt;
+    &lt;meta name="description" content="&lt;@fmt.message key="layout.webpage.metadescription"/&gt;" /&gt;
+    &lt;meta name="DC.type" content="webpagina" scheme="THC.type" /&gt;
+    &lt;meta name="DCTERMS.issued" content="2009-07-09T10:31" scheme="DCTERMS.W3CDTF" /&gt;
+    &lt;meta name="DCTERMS.available" content="2009-07-09T10:31" scheme="DCTERMS.W3CDTF" /&gt;
+    &lt;meta name="DC.title" content="&lt;@fmt.message key="layout.webpage.metadctitle"/&gt;" /&gt;
+    &lt;meta name="DC.language" content="${lang}" scheme="DCTERMS.RFC3066" /&gt;
+
+    &lt;@hst.link var="yuicss" path="/css/yui-css.css"/&gt;
+    &lt;link rel="stylesheet" media="screen" type="text/css" href="${yuicss}"/&gt;
+
+    &lt;@hst.link var="screencss" path="/css/screen.css"/&gt;
+    &lt;link rel="stylesheet" media="screen" type="text/css" href="${screencss}"/&gt;
+
+    &lt;#if hstRequest.requestContext.resolvedMount.mount.channelInfo.themeCss?has_content&gt;
+      &lt;@hst.link var="themecss" path="/binaries${hstRequest.requestContext.resolvedMount.mount.channelInfo.themeCss}"/&gt;
+      &lt;link rel="stylesheet" media="screen" type="text/css" href="${themecss}"/&gt;
+    &lt;/#if&gt;
+
+    &lt;#if loggedin?? &amp;&amp; loggedin&gt;
+      &lt;@hst.link var="resellercss" path="/css/reseller.css"/&gt;
+      &lt;link rel="stylesheet" media="screen" type="text/css" href="${resellercss}"/&gt;
+    &lt;/#if&gt;
+
+    &lt;@hst.headContributions categoryIncludes="css"/&gt;
+
+    &lt;@hst.link var="jquery" path="/js/jquery-1.4.2.min.js"/&gt;
+    &lt;script src="${jquery}" type="text/javascript"&gt;&lt;/script&gt;
+
+    &lt;@hst.link var="favicon" path="/images/favicon.ico"/&gt;
+    &lt;link rel="icon" href="${favicon}" type="image/x-icon"/&gt;
+    &lt;link rel="shortcut icon" href="${favicon}" type="image/x-icon"/&gt;
+
+    &lt;@hst.link var="appletouchicon" path="/images/apple-touch-icon.png"/&gt;
+    &lt;link rel="apple-touch-icon" href="${appletouchicon}"/&gt;
+
+    &lt;!--[if lte IE 7]&gt;
+       &lt;@hst.link var="ie7css" path="/css/ie7.css"/&gt;
+       &lt;link rel="stylesheet" media="screen" type="text/css" href="${ie7css}"&gt;
+       &lt;script type="text/javascript"&gt;ie7 = true;&lt;/script&gt;
+    &lt;![endif]--&gt;
+
+    &lt;!--
+        &lt;@hst.link var="print" path="/css/print.css"/&gt;
+        &lt;link rel="stylesheet" media="print" type="text/css" href="${print}"&gt;
+     --&gt;
+
+    &lt;@hst.link var="rssHref" path="/rss" /&gt;
+    &lt;@fmt.message var="rssTitle" key="standard.header.rss"/&gt;
+    &lt;link rel="alternate" type="application/rss+xml" title="${rssTitle}" href="${rssHref}"/&gt;
+
+&lt;/head&gt;
+&lt;body&lt;#if textSize != ""&gt; style="font-size: ${textSize}px;"&lt;/#if&gt; class="yui-skin-sam"&gt;
+&lt;!-- document wrapper --&gt;
+
+&lt;!--[if lte IE 6]&gt;
+&lt;div id="ie6-warning"&gt;
+  &lt;a href="http://www.onehippo.org/cms7"&gt;&lt;img src="&lt;@hst.link path="/images/logo-hippo2.png"/&gt;" alt="&lt;@fmt.message key="layout.webpage.hippologoalt"/&gt;" /&gt;&lt;/a&gt;
+  &lt;p&gt;&lt;@fmt.message key="layout.webpage.welcome"/&gt;&lt;/p&gt;
+  &lt;p&gt;&lt;@fmt.message key="layout.webpage.unsupportedbrowser"/&gt;&lt;/p&gt;
+  &lt;ul class="bullet-points"&gt;
+    &lt;li&gt;&lt;a href="http://getfirefox.com"&gt;&lt;@fmt.message key="layout.webpage.firefox"/&gt;&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="http://www.opera.com/download"&gt;&lt;@fmt.message key="layout.webpage.opera"/&gt;&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="http://www.google.com/chrome"&gt;&lt;@fmt.message key="layout.webpage.chrome"/&gt;&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="http://www.microsoft.com/windows/downloads/ie/getitnow.mspx"&gt;&lt;@fmt.message key="layout.webpage.ie8"/&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;![endif]--&gt;
+
+
+    
+   &lt;div id="doc" class="yui-d-custom"&gt;
+       &lt;div&gt;
+          &lt;div&gt;
+              &lt;!-- header --&gt;
+                &lt;@hst.include ref="header"/&gt;
+        
+      
+            &lt;!-- body / main --&gt;
+            &lt;@hst.include ref="main"/&gt;
+     
+       
+            &lt;!-- footer --&gt;
+            &lt;@hst.include ref="footer"/&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+   &lt;/div&gt;
+&lt;!--
+&lt;div id="ft-disclaimer"&gt;
+  &lt;@fmt.message key="layout.webpage.disclaimer"&gt;
+    &lt;@fmt.param&gt;&lt;a href="http://www.onehippo.com/en/products/cms"&gt;&lt;/@fmt.param&gt;
+    &lt;@fmt.param&gt;&lt;a href="http://www.onehippo.org/site-toolkit"&gt;&lt;/@fmt.param&gt;
+    &lt;@fmt.param&gt;&lt;a href="https://issues.onehippo.com/browse/GOGREEN"&gt;&lt;/@fmt.param&gt;
+    &lt;@fmt.param&gt;&lt;/a&gt;&lt;/@fmt.param&gt;
+  &lt;/@fmt.message&gt;
+&lt;/div&gt;
+--&gt;
+&lt;@hst.link var="jscommon" path="/js/js-common.js"/&gt;
+&lt;script src="${jscommon}" type="text/javascript"&gt;&lt;/script&gt;
+
+&lt;@hst.link var="jquerytools" path="/js/jquery.tools.min.js"/&gt;
+&lt;script src="${jquerytools}" type="text/javascript"&gt;&lt;/script&gt;
+
+&lt;!--
+&lt;@hst.link var="helpoverlay" path="/js/help-overlay.js"/&gt;
+&lt;script src="${helpoverlay}" type="text/javascript"&gt;&lt;/script&gt;
+--&gt;
+
+&lt;@hst.headContributions categoryIncludes="jsExternal"/&gt;
+&lt;@hst.headContributions categoryIncludes="jsInternal"/&gt;
+&lt;#if composermode?? &amp;&amp; !composermode&gt;
+  &lt;@ga.accountId/&gt;
+  &lt;@hst.link var="googleAnalytics" path="/resources/google-analytics.js"/&gt;
+  &lt;script src="${googleAnalytics}" type="text/javascript"&gt;&lt;/script&gt;
+&lt;/#if&gt;
+&lt;/body&gt;
+&lt;/html&gt;</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="layout.webpage.re.ftl">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>7ee6a93a-5a71-4672-9f76-fdef9b310129</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:containers" sv:type="String">
+      <sv:value>header</sv:value>
+      <sv:value>body</sv:value>
+      <sv:value>footer</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:script" sv:type="String">
+      <sv:value>&lt;!--[if !IE]&gt;      &lt;html class="no-js non-ie" lang="en-US"&gt; &lt;![endif]--&gt;
+&lt;!--[if IE 7 ]&gt;    &lt;html class="no-js ie7" lang="en-US"&gt; &lt;![endif]--&gt;
+&lt;!--[if IE 8 ]&gt;    &lt;html class="no-js ie8" lang="en-US"&gt; &lt;![endif]--&gt;
+&lt;!--[if IE 9 ]&gt;    &lt;html class="no-js ie9" lang="en-US"&gt; &lt;![endif]--&gt;
+&lt;!--[if gt IE 9]&gt;&lt;!--&gt;
+
+&lt;html class="no-js" lang="en-US" xmlns="http://www.w3.org/1999/xhtml"&gt;
+&lt;!--&lt;![endif]--&gt;
+
+&lt;head&gt;
+  &lt;meta charset="UTF-8" /&gt;
+  &lt;meta name="viewport" content=
+  "width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" /&gt;
+
+  &lt;title&gt;Responsive Demo | Just another ThemeID Theme Demos site&lt;/title&gt;
+  &lt;link rel="profile" href="http://gmpg.org/xfn/11" /&gt;
+  &lt;link rel="pingback" href="http://themeid.com/demo/responsive/xmlrpc.php" /&gt;
+  &lt;meta name='robots' content='noindex,nofollow' /&gt;
+  &lt;link rel="alternate" type="application/rss+xml" title="Responsive Demo &amp;#187; Feed"
+  href="http://themeid.com/demo/responsive/feed/" /&gt;
+  &lt;link rel="alternate" type="application/rss+xml" title=
+  "Responsive Demo &amp;#187; Comments Feed" href=
+  "http://themeid.com/demo/responsive/comments/feed/" /&gt;
+  &lt;link rel='stylesheet' id='responsive-style-css' href='./css/style.css' type=
+  'text/css' media='all' /&gt;
+  &lt;script type='text/javascript' src=
+  'http://themeid.com/demo/responsive/wp-includes/js/jquery/jquery.js?ver=1.8.3'&gt;
+&lt;/script&gt;
+  &lt;script type='text/javascript' src=
+  'http://themeid.com/demo/responsive/wp-content/themes/responsive/js/responsive-modernizr.js?ver=2.6.1'&gt;
+&lt;/script&gt;
+  &lt;link rel="EditURI" type="application/rsd+xml" title="RSD" href=
+  "http://themeid.com/demo/responsive/xmlrpc.php?rsd" /&gt;
+  &lt;link rel="wlwmanifest" type="application/wlwmanifest+xml" href=
+  "http://themeid.com/demo/responsive/wp-includes/wlwmanifest.xml" /&gt;
+  &lt;meta name="generator" content="WordPress 3.5.1" /&gt;&lt;!-- We need this for debugging --&gt;
+  &lt;!-- Responsive 1.8.9.3 --&gt;
+&lt;/head&gt;
+
+&lt;body class="home blog"&gt;
+  &lt;div id="container" class="hfeed"&gt;
+    &lt;div id="header"&gt;
+      &lt;ul id="menu-top" class="top-menu"&gt;
+        &lt;li id="menu-item-724" class=
+        "menu-item menu-item-type-post_type menu-item-object-page menu-item-724"&gt;
+			&lt;a href="http://themeid.com/demo/responsive/clearing-floats/"&gt;Login&lt;/a&gt;
+		&lt;/li&gt;
+
+        &lt;li id="menu-item-725" class=
+        "menu-item menu-item-type-post_type menu-item-object-page menu-item-725"&gt;&lt;a href=
+        "http://themeid.com/demo/responsive/page-templates/"&gt;Signup&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+
+      &lt;div id="logo"&gt;
+        &lt;a href="http://themeid.com/demo/responsive/"&gt;&lt;img src="./images/logo.png" width="300" height="100" alt="Responsive Demo" /&gt;&lt;/a&gt;
+      &lt;/div&gt;&lt;!-- end of #logo --&gt;
+
+      &lt;div id="top-widget" class="top-widget"&gt;
+        &lt;div id="text-8" class="widget_text"&gt;
+          &lt;div class="textwidget"&gt;
+            888-555-1212
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;&lt;!-- end of #top-widget --&gt;
+
+      &lt;ul id="menu-main" class="menu"&gt;
+        &lt;li id="menu-item-761" class=
+        "menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-761"&gt;
+        &lt;a href="http://themeid.com/demo/responsive/"&gt;Home&lt;/a&gt;&lt;/li&gt;
+
+        &lt;li id="menu-item-762" class=
+        "menu-item menu-item-type-post_type menu-item-object-page menu-item-762"&gt;
+          &lt;a href="http://themeid.com/demo/responsive/page-templates/"&gt;Why Choose Wealth 4 India?&lt;/a&gt;
+		  &lt;!--
+          &lt;ul class="sub-menu"&gt;
+            &lt;li id="menu-item-763" class=
+            "menu-item menu-item-type-post_type menu-item-object-page menu-item-763"&gt;
+            &lt;a href=
+            "http://themeid.com/demo/responsive/page-templates/blog/"&gt;Blog&lt;/a&gt;&lt;/li&gt;
+
+            &lt;li id="menu-item-764" class=
+            "menu-item menu-item-type-post_type menu-item-object-page menu-item-764"&gt;
+            &lt;a href=
+            "http://themeid.com/demo/responsive/page-templates/blog-summary/"&gt;Blog
+            Summary&lt;/a&gt;&lt;/li&gt;
+
+            &lt;li id="menu-item-765" class=
+            "menu-item menu-item-type-post_type menu-item-object-page menu-item-765"&gt;
+            &lt;a href=
+            "http://themeid.com/demo/responsive/page-templates/content-sidebar/"&gt;Content/Sidebar&lt;/a&gt;&lt;/li&gt;
+
+            &lt;li id="menu-item-769" class=
+            "menu-item menu-item-type-post_type menu-item-object-page menu-item-769"&gt;
+            &lt;a href=
+            "http://themeid.com/demo/responsive/page-templates/sidebar-content/"&gt;Sidebar/Content&lt;/a&gt;&lt;/li&gt;
+
+            &lt;li id="menu-item-766" class=
+            "menu-item menu-item-type-post_type menu-item-object-page menu-item-766"&gt;
+            &lt;a href=
+            "http://themeid.com/demo/responsive/page-templates/contentsidebar-half-page/"&gt;
+            Content/Sidebar Half Page&lt;/a&gt;&lt;/li&gt;
+
+            &lt;li id="menu-item-770" class=
+            "menu-item menu-item-type-post_type menu-item-object-page menu-item-770"&gt;
+            &lt;a href=
+            "http://themeid.com/demo/responsive/page-templates/sidebar-content-half-page/"&gt;
+            Sidebar/Content Half Page&lt;/a&gt;&lt;/li&gt;
+
+            &lt;li id="menu-item-767" class=
+            "menu-item menu-item-type-post_type menu-item-object-page menu-item-767"&gt;
+            &lt;a href=
+            "http://themeid.com/demo/responsive/page-templates/full-width-page/"&gt;Full
+            Width Page&lt;/a&gt;&lt;/li&gt;
+
+            &lt;li id="menu-item-768" class=
+            "menu-item menu-item-type-post_type menu-item-object-page menu-item-768"&gt;
+            &lt;a href=
+            "http://themeid.com/demo/responsive/page-templates/landing-page/"&gt;Landing
+            Page&lt;/a&gt;&lt;/li&gt;
+
+            &lt;li id="menu-item-771" class=
+            "menu-item menu-item-type-post_type menu-item-object-page menu-item-771"&gt;
+            &lt;a href=
+            "http://themeid.com/demo/responsive/page-templates/sitemap/"&gt;Sitemap&lt;/a&gt;&lt;/li&gt;
+          &lt;/ul&gt;
+		  --&gt;
+        &lt;/li&gt;
+
+        &lt;li id="menu-item-772" class=
+        "menu-item menu-item-type-post_type menu-item-object-page menu-item-772"&gt;
+          &lt;a href="http://themeid.com/demo/responsive/level-1/"&gt;Compare Plans/Pricing Packages&lt;/a&gt;
+          &lt;!--
+          &lt;ul class="sub-menu"&gt;
+            &lt;li id="menu-item-773" class=
+            "menu-item menu-item-type-post_type menu-item-object-page menu-item-773"&gt;
+              &lt;a href="http://themeid.com/demo/responsive/level-1/level-2/"&gt;Level 2&lt;/a&gt;
+
+              &lt;ul class="sub-menu"&gt;
+                &lt;li id="menu-item-774" class=
+                "menu-item menu-item-type-post_type menu-item-object-page menu-item-774"&gt;
+                &lt;a href=
+                "http://themeid.com/demo/responsive/level-1/level-2/level-3/"&gt;Level
+                3&lt;/a&gt;&lt;/li&gt;
+              &lt;/ul&gt;
+            &lt;/li&gt;
+          &lt;/ul&gt;
+          --&gt;
+        &lt;/li&gt;
+
+        &lt;li id="menu-item-775" class=
+        "menu-item menu-item-type-post_type menu-item-object-page menu-item-775"&gt;
+          &lt;a href="http://themeid.com/demo/responsive/parent-page/"&gt;Tax Advice/FAQ&lt;/a&gt;
+          &lt;!--
+          &lt;ul class="sub-menu"&gt;
+            &lt;li id="menu-item-776" class=
+            "menu-item menu-item-type-post_type menu-item-object-page menu-item-776"&gt;
+            &lt;a href="http://themeid.com/demo/responsive/parent-page/child-page-1/"&gt;Child
+            page 1&lt;/a&gt;&lt;/li&gt;
+
+            &lt;li id="menu-item-777" class=
+            "menu-item menu-item-type-post_type menu-item-object-page menu-item-777"&gt;
+            &lt;a href="http://themeid.com/demo/responsive/parent-page/child-page-2/"&gt;Child
+            page 2&lt;/a&gt;&lt;/li&gt;
+          &lt;/ul&gt;
+          --&gt;
+        &lt;/li&gt;
+
+        &lt;li id="menu-item-779" class=
+        "menu-item menu-item-type-custom menu-item-object-custom menu-item-779"&gt;
+          &lt;a href="#"&gt;About Us&lt;/a&gt;
+          &lt;!--
+          &lt;ul class="sub-menu"&gt;
+            &lt;li id="menu-item-778" class=
+            "menu-item menu-item-type-custom menu-item-object-custom menu-item-778"&gt;
+            &lt;a href="http://themeid.com/demo/responsive/readability-test/"&gt;Readability
+            Test&lt;/a&gt;&lt;/li&gt;
+
+            &lt;li id="menu-item-781" class=
+            "menu-item menu-item-type-custom menu-item-object-custom menu-item-781"&gt;
+            &lt;a href="http://themeid.com/demo/responsive/post-format-test-gallery/"&gt;Post
+            Format Test: Gallery&lt;/a&gt;&lt;/li&gt;
+
+            &lt;li id="menu-item-782" class=
+            "menu-item menu-item-type-custom menu-item-object-custom menu-item-782"&gt;
+            &lt;a href="http://themeid.com/demo/responsive/page-with-comments/"&gt;Page with
+            comments&lt;/a&gt;&lt;/li&gt;
+          &lt;/ul&gt;
+          --&gt;
+        &lt;/li&gt;
+        &lt;li id="menu-item-879" class=
+        "menu-item menu-item-type-custom menu-item-object-custom menu-item-879"&gt;
+          &lt;a href="#"&gt;Contact Us&lt;/a&gt;    
+        &lt;/li&gt;  
+      &lt;/ul&gt;
+     &lt;!--
+      &lt;ul id="menu-sub" class="sub-header-menu"&gt;
+        &lt;li id="menu-item-710" class=
+        "menu-item menu-item-type-taxonomy menu-item-object-category menu-item-710"&gt;
+        &lt;a href=
+        "http://themeid.com/demo/responsive/category/uncategorized/"&gt;Uncategorized&lt;/a&gt;&lt;/li&gt;
+
+        &lt;li id="menu-item-711" class=
+        "menu-item menu-item-type-taxonomy menu-item-object-category menu-item-711"&gt;
+        &lt;a href="http://themeid.com/demo/responsive/category/aciform/"&gt;aciform&lt;/a&gt;&lt;/li&gt;
+
+        &lt;li id="menu-item-712" class=
+        "menu-item menu-item-type-taxonomy menu-item-object-category menu-item-712"&gt;
+        &lt;a href="http://themeid.com/demo/responsive/category/cat-a/"&gt;Cat A&lt;/a&gt;&lt;/li&gt;
+
+        &lt;li id="menu-item-713" class=
+        "menu-item menu-item-type-taxonomy menu-item-object-category menu-item-713"&gt;
+        &lt;a href=
+        "http://themeid.com/demo/responsive/category/antiquarianism/"&gt;antiquarianism&lt;/a&gt;&lt;/li&gt;
+
+        &lt;li id="menu-item-714" class=
+        "menu-item menu-item-type-taxonomy menu-item-object-category menu-item-714"&gt;
+        &lt;a href=
+        "http://themeid.com/demo/responsive/category/arrangement/"&gt;arrangement&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+--&gt;
+    &lt;/div&gt;&lt;!-- end of #header --&gt;
+
+    &lt;div id="wrapper" class="clearfix"&gt;
+      &lt;div id="featured" class="grid col-940"&gt;
+        &lt;div class="grid col-460"&gt;
+          &lt;!-- &lt;h1 class="featured-title"&gt;Stressed about Income Tax Return?&lt;/h1&gt; --&gt;
+          &lt;h2 class="featured-subtitle"&gt;Stressed about Income Tax Return?&lt;/h2&gt;
+
+          &lt;p&gt;Wealth4India Tax Return can take care of your income tax returns. Its as easy as 1,2,3..&lt;/p&gt;
+
+          &lt;div class="call-to-action"&gt;
+            &lt;a href="#nogo" class="blue button"&gt;Start for Free&lt;/a&gt;
+          &lt;/div&gt;&lt;!-- end of .call-to-action --&gt;
+        &lt;/div&gt;&lt;!-- end of .col-460 --&gt;
+
+        &lt;div id="featured-image" class="grid col-460 fit"&gt;&lt;img class="aligncenter" src=
+        "images/Drawing2.png"
+        width="440" height="300" alt="" /&gt;&lt;/div&gt;&lt;!-- end of #featured-image --&gt;
+      &lt;/div&gt;&lt;!-- end of #featured --&gt;
+	  
+      &lt;div id="widgets" class="home-widgets"&gt;
+        &lt;div class="grid col-220"&gt;
+          &lt;div class="widget-wrapper"&gt;
+            &lt;div class="widget-title-home"&gt;
+              &lt;h3&gt;Basic (FREE)&lt;/h3&gt;
+            &lt;/div&gt;
+            &lt;div class="textwidget"&gt;
+                    &lt;ul&gt;
+                        &lt;li&gt;Income from
+							&lt;ul&gt;
+								&lt;li&gt;Salary/Pension&lt;/li&gt;
+								&lt;li&gt;Interest Income&lt;/li&gt;
+								&lt;li&gt;Family Pension&lt;/li&gt;
+							&lt;/ul&gt;   
+						&lt;/li&gt;						
+                    &lt;/ul&gt;
+					&lt;a class="btn silver left" href="/myRapidTax/?CreateAccount"&gt;Start for Free&lt;/a&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;&lt;!-- end of .widget-wrapper --&gt;
+        &lt;/div&gt;&lt;!-- end of .col-300 --&gt;
+
+        &lt;div class="grid col-220"&gt;
+          &lt;div class="widget-wrapper"&gt;
+            &lt;div class="widget-title-home"&gt;
+              &lt;h3&gt;Delux &amp;#8377;299&lt;/h3&gt;
+            &lt;/div&gt;
+            &lt;div class="textwidget"&gt;
+                    &lt;ul&gt;
+						&lt;li&gt;Income from
+							&lt;ul&gt;
+								&lt;li&gt;One or more house&lt;/li&gt;
+								&lt;li&gt;Other Sources&lt;/li&gt;
+								&lt;li&gt;+ All source from Basic&lt;/li&gt;
+							&lt;/ul&gt;  
+						&lt;/li&gt;						
+                    &lt;/ul&gt;			
+					&lt;a class="btn silver left" href="/myRapidTax/?CreateAccount"&gt;Start for Free&lt;/a&gt;					
+            &lt;/div&gt;
+          &lt;/div&gt;&lt;!-- end of .widget-wrapper --&gt;
+        &lt;/div&gt;&lt;!-- end of .col-300 --&gt;
+		
+		&lt;div class="grid col-220"&gt;
+          &lt;div class="widget-wrapper"&gt;
+            &lt;div class="widget-title-home"&gt;
+              &lt;h3&gt;Premium &amp;#8377;499&lt;/h3&gt;
+            &lt;/div&gt;
+
+            &lt;div class="textwidget"&gt;
+                    &lt;ul&gt;
+						&lt;li&gt;Income from
+							&lt;ul&gt;
+								&lt;li&gt;Capital Gains&lt;/li&gt;
+								&lt;li&gt;Partner in Partnership Firm&lt;/li&gt;
+								&lt;li&gt;+ All source from Basic &amp; Delux&lt;/li&gt;
+							&lt;/ul&gt;  
+						&lt;/li&gt;						
+                    &lt;/ul&gt;
+					&lt;a class="btn silver left" href="/myRapidTax/?CreateAccount"&gt;Start for Free&lt;/a&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;&lt;!-- end of .widget-wrapper --&gt;
+        &lt;/div&gt;&lt;!-- end of .col-300 --&gt;
+
+        &lt;div class="grid col-220 fit"&gt;
+          &lt;div class="widget-wrapper"&gt;
+            &lt;div class="widget-title-home"&gt;
+              &lt;h3&gt;Platinum &amp;#8377;999&lt;/h3&gt;
+            &lt;/div&gt;
+            &lt;div class="textwidget"&gt;
+                    &lt;ul&gt;
+						&lt;li&gt;Income from
+							&lt;ul&gt;
+								&lt;li&gt;Capital Gains&lt;/li&gt;
+								&lt;li&gt;Partner in Partnership Firm&lt;/li&gt;
+								&lt;li&gt;+ All source from Basic &amp; Delux&lt;/li&gt;
+							&lt;/ul&gt;  
+						&lt;/li&gt;						
+                    &lt;/ul&gt;
+					&lt;a class="btn silver left" href="/myRapidTax/?CreateAccount"&gt;Start for Free&lt;/a&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;&lt;!-- end of .widget-wrapper --&gt;
+        &lt;/div&gt;&lt;!-- end of .col-300 fit --&gt;
+      &lt;/div&gt;&lt;!-- end of #widgets --&gt;
+	  &lt;!-- widgets2 --&gt;
+	  &lt;div id="widgets2" class="home-widgets"&gt;
+        &lt;div class="grid col-300"&gt;
+          &lt;div class="widget-wrapper"&gt;
+            &lt;div class="widget-title-home"&gt;
+              &lt;h3&gt;EMI Calculator&lt;/h3&gt;
+            &lt;/div&gt;
+
+            &lt;div class="textwidget"&gt;
+              This is your first home widget box. To edit please go to Appearance &amp;gt;
+              Widgets and choose 6th widget from the top in area 6 called Home Widget 1.
+              Title is also manageable from widgets as well.
+            &lt;/div&gt;
+          &lt;/div&gt;&lt;!-- end of .widget-wrapper --&gt;
+        &lt;/div&gt;&lt;!-- end of .col-300 --&gt;
+
+        &lt;div class="grid col-300"&gt;
+          &lt;div class="widget-wrapper"&gt;
+            &lt;div class="widget-title-home"&gt;
+              &lt;h3&gt;Estimated Tax Calculator&lt;/h3&gt;
+            &lt;/div&gt;
+
+            &lt;div class="textwidget"&gt;
+              This is your second home widget box. To edit please go to Appearance &amp;gt;
+              Widgets and choose 7th widget from the top in area 7 called Home Widget 2.
+              Title is also manageable from widgets as well.
+            &lt;/div&gt;
+          &lt;/div&gt;&lt;!-- end of .widget-wrapper --&gt;
+        &lt;/div&gt;&lt;!-- end of .col-300 --&gt;
+
+        &lt;div class="grid col-300 fit"&gt;
+          &lt;div class="widget-wrapper"&gt;
+            &lt;div class="widget-title-home"&gt;
+              &lt;h3&gt;Additional Resources&lt;/h3&gt;
+            &lt;/div&gt;
+
+            &lt;div class="textwidget"&gt;
+              &lt;ul&gt;
+				&lt;li&gt;Classifieds&lt;/li&gt;
+				&lt;li&gt;Communities&lt;/li&gt;
+				&lt;li&gt;Communities&lt;/li&gt;
+			  &lt;/ul&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;&lt;!-- end of .widget-wrapper --&gt;
+        &lt;/div&gt;&lt;!-- end of .col-300 fit --&gt;
+      &lt;/div&gt;&lt;!-- end of #widgets --&gt;
+	  
+	  
+	  &lt;!-- /widgets2 --&gt;
+    &lt;/div&gt;&lt;!-- end of #wrapper --&gt;
+  &lt;/div&gt;&lt;!-- end of #container --&gt;
+
+  &lt;div id="footer" class="clearfix"&gt;
+    &lt;div id="footer-wrapper"&gt;
+      &lt;div class="grid col-940"&gt;
+        &lt;div class="grid col-540"&gt;
+          &lt;ul id="menu-foot" class="footer-menu"&gt;
+            &lt;li id="menu-item-715" class=
+            "menu-item menu-item-type-post_type menu-item-object-page menu-item-715"&gt;
+            &lt;a href="http://themeid.com/demo/responsive/clearing-floats/"&gt;Clearing Floats&lt;/a&gt;&lt;/li&gt;
+
+            &lt;li id="menu-item-716" class=
+            "menu-item menu-item-type-post_type menu-item-object-page menu-item-716"&gt;
+            &lt;a href=
+            "http://themeid.com/demo/responsive/page-with-comments-disabled/"&gt;Page with comments disabled&lt;/a&gt;&lt;/li&gt;
+
+            &lt;li id="menu-item-717" class=
+            "menu-item menu-item-type-post_type menu-item-object-page menu-item-717"&gt;
+            &lt;a href="http://themeid.com/demo/responsive/page-with-comments/"&gt;Page with comments&lt;/a&gt;&lt;/li&gt;
+          &lt;/ul&gt;
+        &lt;/div&gt;&lt;!-- end of col-540 --&gt;
+
+        &lt;div class="grid col-380 fit"&gt;
+          &lt;ul class="social-icons"&gt;
+            &lt;li class="twitter-icon"&gt;&lt;a href="#"&gt;&lt;img src=
+            "http://themeid.com/demo/responsive/wp-content/themes/responsive/icons/twitter-icon.png"
+            width="24" height="24" alt="Twitter" /&gt;&lt;/a&gt;&lt;/li&gt;
+
+            &lt;li class="facebook-icon"&gt;&lt;a href="#"&gt;&lt;img src=
+            "http://themeid.com/demo/responsive/wp-content/themes/responsive/icons/facebook-icon.png"
+            width="24" height="24" alt="Facebook" /&gt;&lt;/a&gt;&lt;/li&gt;
+
+            &lt;li class="linkedin-icon"&gt;&lt;a href="#"&gt;&lt;img src=
+            "http://themeid.com/demo/responsive/wp-content/themes/responsive/icons/linkedin-icon.png"
+            width="24" height="24" alt="LinkedIn" /&gt;&lt;/a&gt;&lt;/li&gt;
+
+            &lt;li class="youtube-icon"&gt;&lt;a href="#"&gt;&lt;img src=
+            "http://themeid.com/demo/responsive/wp-content/themes/responsive/icons/youtube-icon.png"
+            width="24" height="24" alt="YouTube" /&gt;&lt;/a&gt;&lt;/li&gt;
+
+            &lt;li class="stumble-upon-icon"&gt;&lt;a href="#"&gt;&lt;img src=
+            "http://themeid.com/demo/responsive/wp-content/themes/responsive/icons/stumble-upon-icon.png"
+            width="24" height="24" alt="StumbleUpon" /&gt;&lt;/a&gt;&lt;/li&gt;
+
+            &lt;li class="rss-feed-icon"&gt;&lt;a href="#"&gt;&lt;img src=
+            "http://themeid.com/demo/responsive/wp-content/themes/responsive/icons/rss-feed-icon.png"
+            width="24" height="24" alt="RSS Feed" /&gt;&lt;/a&gt;&lt;/li&gt;
+
+            &lt;li class="google-plus-icon"&gt;&lt;a href="#"&gt;&lt;img src=
+            "http://themeid.com/demo/responsive/wp-content/themes/responsive/icons/googleplus-icon.png"
+            width="24" height="24" alt="Google Plus" /&gt;&lt;/a&gt;&lt;/li&gt;
+
+            &lt;li class="instagram-icon"&gt;&lt;a href="#"&gt;&lt;img src=
+            "http://themeid.com/demo/responsive/wp-content/themes/responsive/icons/instagram-icon.png"
+            width="24" height="24" alt="Instagram" /&gt;&lt;/a&gt;&lt;/li&gt;
+
+            &lt;li class="pinterest-icon"&gt;&lt;a href="#"&gt;&lt;img src=
+            "http://themeid.com/demo/responsive/wp-content/themes/responsive/icons/pinterest-icon.png"
+            width="24" height="24" alt="Pinterest" /&gt;&lt;/a&gt;&lt;/li&gt;
+
+            &lt;li class="yelp-icon"&gt;&lt;a href="#"&gt;&lt;img src=
+            "http://themeid.com/demo/responsive/wp-content/themes/responsive/icons/yelp-icon.png"
+            width="24" height="24" alt="Yelp!" /&gt;&lt;/a&gt;&lt;/li&gt;
+
+            &lt;li class="vimeo-icon"&gt;&lt;a href="#"&gt;&lt;img src=
+            "http://themeid.com/demo/responsive/wp-content/themes/responsive/icons/vimeo-icon.png"
+            width="24" height="24" alt="Vimeo" /&gt;&lt;/a&gt;&lt;/li&gt;
+
+            &lt;li class="foursquare-icon"&gt;&lt;a href="#"&gt;&lt;img src=
+            "http://themeid.com/demo/responsive/wp-content/themes/responsive/icons/foursquare-icon.png"
+            width="24" height="24" alt="foursquare" /&gt;&lt;/a&gt;&lt;/li&gt;
+          &lt;/ul&gt;&lt;!-- end of .social-icons --&gt;
+        &lt;/div&gt;&lt;!-- end of col-380 fit --&gt;
+      &lt;/div&gt;&lt;!-- end of col-940 --&gt;
+	  &lt;!--
+      &lt;div id="colophon-widget" class="grid col-940"&gt;
+        &lt;div id="text-7" class="colophon-widget widget-wrapper widget_text"&gt;
+          &lt;div class="textwidget"&gt;
+            Hey There, I am new here and you can see me only when you need me :)
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+	  --&gt;
+	  &lt;!-- end of #colophon-widget --&gt;
+
+      &lt;div class="grid col-300 copyright"&gt;
+        &amp;#169; 2013 &lt;a href="http://themeid.com/demo/responsive/" title=
+        "Responsive Demo"&gt;Responsive Demo&lt;/a&gt;
+      &lt;/div&gt;&lt;!-- end of .copyright --&gt;
+
+      &lt;div class="grid col-300 scroll-top"&gt;
+        &lt;a href="#scroll-top" title="scroll to top"&gt;&amp;#8593;&lt;/a&gt;
+      &lt;/div&gt;
+
+      &lt;div class="grid col-300 fit powered"&gt;
+        &lt;a href="http://themeid.com/responsive-theme/" title=
+        "Responsive Theme"&gt;Responsive Theme&lt;/a&gt; powered by &lt;a href=
+        "http://wordpress.org/" title="WordPress"&gt;WordPress&lt;/a&gt;
+      &lt;/div&gt;&lt;!-- end .powered --&gt;
+    &lt;/div&gt;&lt;!-- end #footer-wrapper --&gt;
+  &lt;/div&gt;&lt;!-- end #footer --&gt;
+  &lt;script type='text/javascript' src='http://themeid.com/demo/responsive/wp-content/themes/responsive/js/responsive-scripts.js?ver=1.2.3'&gt;&lt;/script&gt;
+  &lt;script type='text/javascript' src='http://themeid.com/demo/responsive/wp-content/themes/responsive/js/responsive-plugins.js?ver=1.2.2'&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="standard.header.ftl">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>d4a410ae-841e-47a7-9b14-2067980bf293</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:containers" sv:type="String">
+      <sv:value>login</sv:value>
+      <sv:value>mainnavigation</sv:value>
+      <sv:value>search</sv:value>
+      <sv:value>topnav</sv:value>
+      <sv:value>langnavigation</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:script" sv:type="String">
+      <sv:value>&lt;#--
+
+    Copyright (C) 2010 Hippo B.V.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+            http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+--&gt;
+
+&lt;#assign fmt=JspTaglibs["http://java.sun.com/jsp/jstl/fmt"]&gt;
+&lt;#assign hst=JspTaglibs["http://www.hippoecm.org/jsp/hst/core"]&gt;
+
+&lt;@hst.defineObjects/&gt;
+
+&lt;!-- header --&gt;
+&lt;div id="hd"&gt;
+    &lt;!-- top navigation --&gt;
+    &lt;@hst.include ref="topnav"/&gt;
+
+    &lt;!-- logo --&gt;
+    &lt;#assign lang=hstRequest.locale.language/&gt;
+    &lt;@hst.link var="linkHome" siteMapItemRefId="home"/&gt;
+
+    &lt;#if logo??&gt;
+        &lt;@hst.link var="imgLogo" hippobean=logo.original /&gt;
+        &lt;h1&gt;&lt;a href="${linkHome}"&gt;&lt;img src="${imgLogo}" alt="${logo.alt!''}" class="logo" width="${logo.original.width}" height="${logo.original.height}" /&gt;&lt;/a&gt;&lt;/h1&gt;
+    &lt;/#if&gt;
+
+    &lt;!-- search bar --&gt;
+    &lt;@hst.include ref="search"/&gt; 
+    
+    &lt;!--  language navigation --&gt;
+    &lt;@hst.include ref="langnavigation" /&gt;
+    
+    &lt;!-- main navigation --&gt;
+    &lt;@hst.include ref="mainnavigation"/&gt;
+ 
+    &lt;!-- login / registration --&gt;
+    &lt;@hst.include ref="login"/&gt;
+&lt;/div&gt;</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="standard.header.topnav">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>59797625-5c93-41a1-8394-d4fb4691bc71</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/standard/header/topnav.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="standard.header.mainnavigation">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>79c308f6-8fff-412d-8aa0-212750de7579</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:containers" sv:type="String"/>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/standard/header/mainnavigation.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="standard.header.login">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>60c10021-7ffc-4457-aaa5-e6a41452fec8</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:containers" sv:type="String"/>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/standard/header/login.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="standard.main.ftl">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>e6c8cc96-f2a7-4209-a358-f804cc0e9086</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:containers" sv:type="String">
+      <sv:value>leftmenu</sv:value>
+      <sv:value>pageactions</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:script" sv:type="String">
+      <sv:value>&lt;#--
+
+    Copyright (C) 2010 Hippo B.V.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+            http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+--&gt;
+
+&lt;#assign fmt=JspTaglibs["http://java.sun.com/jsp/jstl/fmt"]&gt;
+&lt;#assign hst=JspTaglibs["http://www.hippoecm.org/jsp/hst/core"]&gt;
+
+&lt;div id="bd" class="yui-t1"&gt;
+   
+    &lt;!-- left --&gt;
+    &lt;@hst.include ref="left"/&gt;
+    
+    &lt;!-- content --&gt;
+    &lt;@hst.include ref="content"/&gt;
+    
+    &lt;!-- right --&gt;
+    &lt;@hst.include ref="right"/&gt;
+   
+&lt;/div&gt;</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="standard.main.left">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>05b1fbea-b62b-4dce-8825-917a6dbaae21</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:containers" sv:type="String"/>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/standard/main/left.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="standard.main.left.leftmenu">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>b759ecca-d898-4f98-8538-19430ebe60e8</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:containers" sv:type="String"/>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/standard/main/left/leftmenu.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="standard.main.left.pageactions">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>06bb7596-b47d-46ca-ad1a-d720bc27c43d</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:containers" sv:type="String"/>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/standard/main/left/pageactions.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="standard.main.content">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>176ed6c3-baf6-47be-97da-2ba1301c755b</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:containers" sv:type="String"/>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/standard/main/content.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="standard.main.right">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>eff5316b-d000-4633-8d58-a50dd8a5eb24</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:containers" sv:type="String"/>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/standard/main/right.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="standard.footer">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>e0d87fa4-e1d5-49a8-9d19-6f04224f1970</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:containers" sv:type="String"/>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/standard/footer/footer.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="home.main">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>0d18fd24-6852-4961-a56d-c6e9ebdef898</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/home/main.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="home.boxes">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>5c91b93a-a6e0-4a45-bb48-dc3af7f40b74</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/home/boxes.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="products.facetnav">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>4c7cc090-b89d-4bf4-a70c-d7fd603ac34a</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/products/facetnav.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="products.overview">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>2e16451d-e7a0-49e1-9f1f-fa6983088771</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/products/overview.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="products.main">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>93d52ba8-ea8c-4d00-b025-db413695a500</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:containers" sv:type="String">
+      <sv:value>content</sv:value>
+      <sv:value>productfacetnav</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/products/main.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="home.products.facetnav">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>5366ae70-f069-4361-a70e-7a0ee548a36a</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/home/productsfacetnav.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="news.overview.content">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>7a20bbec-c778-4901-a5b4-f79050d5aa45</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:containers" sv:type="String"/>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/news/overview/content.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="news.detail.content">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>da5abe3a-981f-4227-9c82-2ab33ac59577</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:containers" sv:type="String"/>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/news/detail/content.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="news.overview.right">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>d4448e6f-855b-4aaf-b0c7-b989ba9f2517</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:containers" sv:type="String"/>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/news/overview/right.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="news.overview.facetnav">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>9f097ef5-3c43-4ad3-bc59-e920fbcf4691</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/news/overview/facetnav.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="news.latest">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>63405b6e-f168-41c3-bf4c-306998eacdd1</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:containers" sv:type="String"/>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/news/latest.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="comments.latest">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>b6dc7857-971f-40c9-9942-76995ab6a1f9</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:containers" sv:type="String"/>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/comments/latest.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="products.featured">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>e607687f-af33-4cbc-bde9-f35308678511</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/products/featured.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="product.suggestform">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>55b97d42-99f8-4a5f-8fb4-3097a35a974d</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/products/suggest.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="simplepage.main">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>29c4f110-40b4-4908-8f9a-6b7a5950810a</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/simple/main.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="jobs-overview-main">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>431a048d-2986-49ab-a8c3-b76c88ae31f3</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/jobs/main.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="jobs-right-facet">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>f63babfb-9a22-4857-bdee-201fa34c2aa6</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/jobs/jobfacet.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="jobs-detail">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>f62f9c3e-3ccd-445a-879a-f04cc644f38f</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/jobs/detail.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="events.main">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>3f1a139a-7830-4dc1-9af1-e842dfdb6150</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:containers" sv:type="String">
+      <sv:value>eventsandcalendar</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/events/main.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="events.main.eventsandcalendar">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>978aa63c-60bb-4ade-9a94-e3c1d704f354</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:containers" sv:type="String"/>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/events/eventsandcalendar.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="products.leftnav">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>3d7b37b1-42c5-403f-b860-18cc61247ace</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/products/leftnav.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="product.detail.main">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>05e6536b-988c-4b3f-bbd5-e08b30665fbf</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/products/main.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="product.detail.content">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>892cb4b3-0641-4a78-88a9-ff30f28e4908</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/products/detail.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="news.detail.right">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>8cb69657-6565-45ce-8190-9b9256f62354</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/news/detail/right.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="events.latest">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>8e35fac2-776f-498d-9480-d2bada40df17</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:containers" sv:type="String"/>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/events/latest.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="jobs.latest">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>4241b90a-9661-46f3-b15c-cfbfadb7c352</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:containers" sv:type="String"/>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/jobs/latest.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="events.detail.right">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>b33c433a-397d-4837-9913-5cb87dad9eec</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/events/detail/right.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="events.detail.content">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>d6e4200f-284f-4a4b-b125-f814567e283c</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/events/detail/content.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="newsandevents.leftmenu">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>9b4ed5df-dbc4-4019-89af-2fbad35db147</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/common/newsandevents-leftmenu.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="products.right">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>ab6655d3-a3b4-4d84-9a48-bfdd4d60697a</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/products/right.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="search.results">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>2ef44c24-4b68-4a32-8f53-aeb5e986de42</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/search/results.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="search.right">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>48863ef2-5eeb-4fb1-9485-409d0246ae52</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/search/search-right.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="reviews.latest">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>a1b9634f-9cb9-42df-8967-482cb47a1e8d</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:containers" sv:type="String"/>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/reviews/latest.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="faq.content">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>5482f886-69b7-49a8-a4d7-c5e6848e13c1</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:containers" sv:type="String"/>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/service/faq.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="faq.detail">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>dde60e3d-50d5-4f27-996a-9dfbcda1579d</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:containers" sv:type="String"/>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/service/faq-detail.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="faq.right">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>2b834c56-8650-4a9f-b2c9-32e8b0be26de</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:containers" sv:type="String"/>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/service/faq-right.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="error.right">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>416c07aa-aab9-4eaf-a15c-fcc8ba9f3ed3</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:containers" sv:type="String"/>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/search/error-right.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="about.main">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>7fc6f348-8816-42ad-a5ca-2768079c5d2b</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/about/main.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="home.polls">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>9f5e6814-053b-438a-bd45-57d58e19a1ee</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/poll/poll.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="easyform">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>b275360a-c62a-4ff7-a29a-e5c6fb9746d9</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:containers" sv:type="String"/>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/easyforms/formtemplate.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="about.leftmenu">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>7a0e7f51-921b-4221-adde-f1dcaaa43d43</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/about/leftmenu.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="standard.footer.menu">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>7c0f044f-6f3e-43a1-b9f4-2a3875f52d4e</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:containers" sv:type="String"/>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/standard/footer/menu.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="rss.news">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>72d22bd0-355e-4c18-95f7-766384c45077</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/rss/rss-news.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="sitemap.main">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>a3d0e431-70e6-4816-a6c4-a648da98d258</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/service/sitemap-main.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="sitemap.menu">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>08712285-7f36-441c-a9f9-bb3a8495833e</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/service/sitemap-menu.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="search.facetnav">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>cc5f55d6-c57d-4460-89bb-a02743f07ab8</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/search/facetnav.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="newsletter-detail">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>242073f5-9979-4f5c-96e5-a96cb5460515</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:containers" sv:type="String"/>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/common/newsletter-detail.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="restapi-detail">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>6e76c25b-33d1-4d71-b03d-d56ae6f3d007</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:containers" sv:type="String"/>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/restapi/detail.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="restapi-browser">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>d0aeed9f-2eab-461f-903d-ec3aa25f8c4e</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:containers" sv:type="String"/>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/restapi/browser.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="restapi-overview">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>3686bf64-749d-475e-84b1-fd5e0e96cff4</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/restapi/main.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="restapi-documentation">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>69083327-38d6-4c04-b638-59dedf127afd</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/restapi/documentation.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="common.bannercarousel">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>2c032b9f-4d6b-435f-ae10-e4fde4ab1693</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:containers" sv:type="String"/>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/common/bannercarousel.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="contact.main">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>027e90bf-b434-41f7-b5cb-dea40e620146</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:containers" sv:type="String"/>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/contact/contact.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="contact.resellerbox">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>4ee11182-68ec-4448-9415-824403e03411</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:containers" sv:type="String"/>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/contact/resellerbox.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="itreturns.main">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>48535cf8-196e-400a-81ee-d789cc711d1c</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:containers" sv:type="String">
+      <sv:value>content</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/itreturns/main.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="itreturns.overview">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>930fab86-046f-4ba1-85e6-890618e0a0a1</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/itreturns/overview.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="itreturns.detail.content">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>fb8ed590-c382-4588-b006-aa8bf969d7d5</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/itreturns/detail.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="itreturns.detail.itrform">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>189f2c90-b4f9-498e-9492-f620d4b79d2e</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/itreturns/itrform.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="itrform.right">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>216ba62e-17e1-44c6-982d-efdb1aef2ced</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/itreturns/right.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="member.main">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>17d82213-b462-4f52-8836-ee8900682e5c</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:containers" sv:type="String">
+      <sv:value>content</sv:value>
+      <sv:value>right</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/member/main.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="member.home">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>da0363c8-ae8c-4eb7-96e2-360d043adc9b</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/member/home.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="member.startapplication">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>b1e2d87a-d6ff-4680-b378-ea0ea37ff72d</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/member/startapplication.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="member.processapplication">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>4ea3a75c-ced5-4b1a-86b8-fcbbd3267388</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/member/processapplication.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="member.rightnav">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>1516d057-4faa-4776-8a0f-9d9f1092a2c1</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/member/rightnav.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="member.signup.detail">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>d3e85c2f-4f48-41ba-8976-f6cbd84f641b</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/member/signup_detail.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="member.login">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>603d0049-3c9f-4b2f-b3d0-fe5a3be57591</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:containers" sv:type="String"/>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/member/memberlogin.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="taxestimaion-template">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>06e08444-e210-44a1-b9ed-e6f696fc3747</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/member/taxestimation.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="forgotpass">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>533d16de-6c7b-48ac-837e-3d1adc2f65ed</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:containers" sv:type="String"/>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/member/forgotpass.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="member.message">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>0c6abeb7-f72c-4962-af84-039b79128593</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:containers" sv:type="String"/>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/member/message.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="wealth.left">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>03827412-ac21-47c1-87cf-190bcea6651d</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:containers" sv:type="String"/>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/jobs/wealthleft.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="wealth.body">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>a9fb3f30-cc2d-40c8-b687-ca0d753d3321</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:containers" sv:type="String"/>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/jobs/wealthbody.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="wealth.bottom">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>9b72c659-2482-4eef-82f3-e0dc258195ad</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:containers" sv:type="String"/>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/jobs/wealthbottom.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="coming.soon">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>16041695-6048-411c-8e55-5398f646360f</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:containers" sv:type="String"/>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/common/comingsoon.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="changeemail">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>918afb97-9134-431f-870b-8359204b646d</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:containers" sv:type="String"/>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/member/changeemail.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="changeprofile">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>22d9ce83-a7b0-4959-8054-8ef750d21c61</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:containers" sv:type="String"/>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/member/changeprofile.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="changepass">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>5b9ae3a7-2f65-4f62-b999-ddfd1908c831</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:containers" sv:type="String"/>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/member/changepass.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="member.contact.information.rightnav">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>38c6028e-a661-40c0-88b2-8a144055fbe2</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/member/contactinformationrightnav.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="member.contact.information">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>a28e499c-57c8-4ff9-82d7-af57a2612278</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/member/contactinformation.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="houseincome">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>13a6d1ed-2102-4a4f-afb2-cbff54e6c715</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:containers" sv:type="String"/>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/member/houseincome.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="tdsfromsalary">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>06f9c130-c07b-4581-9f82-3389179a4f51</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/member/tdsFromSalary.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="tdsfromothers">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>adc68852-28c6-4028-a0e9-c8aa674f4e70</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/member/tdsFromOthers.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+
+ <sv:node sv:name="advancetaxgrid" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:template</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>d0d512a1-70f6-4989-98f0-8a3a9eb0ef71</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:renderpath" sv:type="String">
+    <sv:value>jsp/member/Advancetax.jsp</sv:value>
+  </sv:property>
+</sv:node>
+<sv:node sv:name="Securities" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:template</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>250aee91-1635-42cf-8811-b17997e81f4d</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:renderpath" sv:type="String">
+    <sv:value>jsp/member/securities.jsp</sv:value>
+  </sv:property>
+</sv:node>
+<sv:node sv:name="rebatesec90" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:template</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>5542d8ec-3ff5-4568-a198-87327b0e9d17</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:renderpath" sv:type="String">
+    <sv:value>jsp/member/RebateSec90.jsp</sv:value>
+  </sv:property>
+</sv:node>
+<sv:node sv:name="tcs" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:template</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>b231efe7-b529-44bd-a5c6-5182bb8f82b2</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:renderpath" sv:type="String">
+    <sv:value>jsp/member/tcs.jsp</sv:value>
+  </sv:property>
+</sv:node>
+
+  <sv:node sv:name="capitalasset" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:template</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>523661d1-1447-48b0-a352-ffb6625bde36</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:renderpath" sv:type="String">
+    <sv:value>jsp/member/capitalAsset.jsp</sv:value>
+  </sv:property>
+</sv:node>
+  
+
+ <sv:node sv:name="advancetaxgrid">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>d0d512a1-70f6-4989-98f0-8a3a9eb0ef71</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/member/processapplication.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+ <sv:node sv:name="Securities">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>250aee91-1635-42cf-8811-b17997e81f4d</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/member/securities.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="capitalasset">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>523661d1-1447-48b0-a352-ffb6625bde36</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/member/capitalAsset.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="npvcalculator">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>37892d16-69db-4488-81e6-1178b0094805</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/member/npvcalculator.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="taxcalculator">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>1d3938a2-6430-4c5d-96bf-2c44c21fcf4c</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/member/taxcalculator.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="member.incomesource">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>183730f7-58bc-4d8a-967e-3946eac3cf74</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/member/incomesource.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="member.incomesource.rightnav">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>05945612-268f-438a-bb13-4a7cf3953a2f</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/member/incomesourcerightnav.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="member.salarydetail">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>c8b0219e-28d4-49d1-8e05-d5521828cbe0</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/member/salarydetail.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="member.salarydetail.rightnav">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>aa642a2d-5c5b-494a-9e57-4f6df50499ca</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/member/salarydetailrightnav.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="member.popup">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>44664645-88ec-4ac9-875e-bef79c0e2037</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/member/popup.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="member.logout">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>7d9723c7-8dfd-4713-92df-f7566a796a19</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:containers" sv:type="String"/>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/member/memberlogout.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="member.frontpage">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>ccd099be-44ae-48f1-bd4d-4f57768d8440</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/member/memberfrontpage.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="member.activaion">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>9e8b8c2c-661b-4f6a-a5c1-34aeb55a23a1</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/member/activation.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="activationcode">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>0749ea51-ab38-4006-a67a-5e78f15da5e8</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/member/activationcode.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="member.bank.detail.rightnav">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>5c9b7179-778d-4240-97da-379aff93800c</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/member/bankdetailrightnav.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="member.bank.detail">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>57273794-e73a-44e4-90e8-dab031d0e466</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/member/bankdetail.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="member.residential.status.rightnav">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>68a569bd-9301-45ab-bebf-d7fe88c4b68f</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/member/residentialstatusrightnav.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="member.residential.status">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>a6fc3988-11a2-481c-8545-158729a583d1</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/member/residentialstatus.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="rebate">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>8615afee-0eba-44f3-87e6-3882eb5d91db</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:containers" sv:type="String"/>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/member/rebate.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="interest">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:template</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>a2d35e5c-736c-4c21-82b0-83e63437cef9</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="hst:containers" sv:type="String"/>
+  <sv:property sv:name="hst:renderpath" sv:type="String">
+    <sv:value>jsp/member/interest.jsp</sv:value>
+  </sv:property>
+</sv:node>
+  
+  <sv:node sv:name="emicalculator">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>e82130d2-0be2-4891-ae78-65e46b413848</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/member/emicalculator.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="member.deduction">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>33daee54-e638-48cb-b9c1-688d9a0ec0f8</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/member/deduction.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="member.deduction.rightnav">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>0a70f384-2b98-4a1c-94e1-3caeb3f14e7c</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/member/deductionrightnav.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="layout.webpage.re">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>a3f973e6-c357-4065-9ee6-3c84ed01b613</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:containers" sv:type="String">
+      <sv:value>header</sv:value>
+      <sv:value>body</sv:value>
+      <sv:value>footer</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/layout/responsive/layout.webpage.re.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="standard.header.re">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>faafee95-f49d-47f5-b674-2881e1c17796</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:containers" sv:type="String">
+      <sv:value>logo</sv:value>
+      <sv:value>manu-main</sv:value>
+      <sv:value>menu-top</sv:value>
+      <sv:value>top-widget</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/layout/responsive/header/header.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="standard.footer.re">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>2b89d09a-849f-485a-ad0c-91042e887e1e</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:containers" sv:type="String"/>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/layout/responsive/footer.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="standard.main.re">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>69c37ed4-441a-4810-affe-b53f11ce4eb1</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/layout/responsive/main.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="standard.header.re.logo">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>3e621fff-a7e0-4735-a878-5e33a6728bc5</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/layout/responsive/header/logo.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="standard.header.re.menu-main">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>974f4251-28b2-4fe6-8e18-00b3ec9fe04f</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/layout/responsive/header/menu-main.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="standard.header.re.menu-top">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>b6d0dc96-586b-44eb-b6ed-6208d82d6ce8</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/layout/responsive/header/menu-top.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="standard.header.re.top-widget">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>be7ed294-ba28-4c0c-8c71-766ee408d2a3</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/layout/responsive/header/top-widget.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="adjustment.of.losses">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>fc0498ca-bb77-40c9-a4cf-39664b7dee03</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:containers" sv:type="String"/>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/member/adjustmentoflosses.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+<sv:node sv:name="member.schedule80G">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:template</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>ac3d1f00-683d-4840-b813-60a059222e72</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:renderpath" sv:type="String">
+    <sv:value>jsp/member/schedule80G.jsp</sv:value>
+  </sv:property>
+</sv:node>
+<sv:node sv:name="home.main.re" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hst:template</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>45089261-a637-42b4-86f5-f2ae6670e49c</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:renderpath" sv:type="String">
+	    <sv:value>jsp/home/responsive/main.jsp</sv:value>
+	  </sv:property>
+	</sv:node>
+	<sv:node sv:name="standard.main.siderbar.re" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hst:template</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>327eb8c5-2136-44db-b9ef-bfda6b001df1</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:renderpath" sv:type="String">
+	    <sv:value>jsp/standard/main/left-re.jsp</sv:value>
+	  </sv:property>
+	</sv:node>
+	<sv:node sv:name="standard.signup.siderbar.re">
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hst:template</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>b42d5cac-ac81-426e-a1dd-8f47550a043a</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:renderpath" sv:type="String">
+	    <sv:value>jsp/layout/responsive/sidebar-signup.jsp</sv:value>
+	  </sv:property>
+	</sv:node>
+	<sv:node sv:name="sidebar.widgets.html.re">
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hst:template</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>ce87e1b6-83e6-4889-92c0-5bc60d36bd1e</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:renderpath" sv:type="String">
+	    <sv:value>jsp/layout/responsive/sidebar-widget.jsp</sv:value>
+	  </sv:property>
+	</sv:node>
+	<sv:node sv:name="member.rebate.section89">
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hst:template</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>58f71142-63d4-4612-ad4f-a5692f160bf3</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:renderpath" sv:type="String">
+	    <sv:value>jsp/member/rebateSection89.jsp</sv:value>
+	  </sv:property>
+	</sv:node>
+	<sv:node sv:name="login.box.signup.ftl" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hst:template</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>10973992-9c30-46cd-bafe-69bb01d370f7</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:script" sv:type="String">
+	    <sv:value>&lt;#--
+	
+	    Copyright (C) 2010 Hippo B.V.
+	
+	    Licensed under the Apache License, Version 2.0 (the "License");
+	    you may not use this file except in compliance with the License.
+	    You may obtain a copy of the License at
+	
+	            http://www.apache.org/licenses/LICENSE-2.0
+	
+	    Unless required by applicable law or agreed to in writing, software
+	    distributed under the License is distributed on an "AS IS" BASIS,
+	    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	    See the License for the specific language governing permissions and
+	    limitations under the License.
+	
+	--&gt;
+	
+	&lt;#assign fmt=JspTaglibs["http://java.sun.com/jsp/jstl/fmt"]&gt;
+	&lt;#assign hst=JspTaglibs["http://www.hippoecm.org/jsp/hst/core"]&gt;
+	
+	&lt;@hst.defineObjects /&gt;
+	&lt;@hst.link var="signup" path="/signup"/&gt;
+	&lt;div id="text-3" class="widget-wrapper widget_text"&gt;
+	   &lt;div class="h3" style="font-weight:bold"&gt;Don't have an account?&lt;/div&gt;
+	   &lt;div class="textwidget"&gt;&lt;a href="${signup}"&gt;Signup&lt;/a&gt;&lt;/div&gt;
+	&lt;/div&gt;</sv:value>
+	  </sv:property>
+	</sv:node>
+	<sv:node sv:name="login.box.forgotpass.ftl" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hst:template</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>f5beaf7d-9f08-4c47-9d6a-f5c6507cacf6</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:script" sv:type="String">
+	    <sv:value>&lt;#--
+	
+	    Copyright (C) 2010 Hippo B.V.
+	
+	    Licensed under the Apache License, Version 2.0 (the "License");
+	    you may not use this file except in compliance with the License.
+	    You may obtain a copy of the License at
+	
+	            http://www.apache.org/licenses/LICENSE-2.0
+	
+	    Unless required by applicable law or agreed to in writing, software
+	    distributed under the License is distributed on an "AS IS" BASIS,
+	    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	    See the License for the specific language governing permissions and
+	    limitations under the License.
+	
+	--&gt;
+	
+	&lt;#assign fmt=JspTaglibs["http://java.sun.com/jsp/jstl/fmt"]&gt;
+	&lt;#assign hst=JspTaglibs["http://www.hippoecm.org/jsp/hst/core"]&gt;
+	
+	&lt;@hst.defineObjects /&gt;
+	&lt;@hst.link var="forgotpass" path="/forgotpass"/&gt;
+	&lt;div id="text-4" class="widget-wrapper widget_text"&gt;
+	   &lt;div class="h3" style="font-weight:bold"&gt;Forgot Password?&lt;/div&gt;
+	   &lt;div class="textwidget"&gt;&lt;a href="${forgotpass}"&gt;Recover it here.&lt;/a&gt;&lt;/div&gt;
+	&lt;/div&gt;</sv:value>
+	  </sv:property>
+	</sv:node>	
+	<sv:node sv:name="signup.box.login.ftl" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hst:template</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>d1fdb3ae-3644-4600-8459-793540d4861f</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:script" sv:type="String">
+	    <sv:value>&lt;#--
+	
+	    Copyright (C) 2010 Hippo B.V.
+	
+	    Licensed under the Apache License, Version 2.0 (the "License");
+	    you may not use this file except in compliance with the License.
+	    You may obtain a copy of the License at
+	
+	            http://www.apache.org/licenses/LICENSE-2.0
+	
+	    Unless required by applicable law or agreed to in writing, software
+	    distributed under the License is distributed on an "AS IS" BASIS,
+	    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	    See the License for the specific language governing permissions and
+	    limitations under the License.
+	
+	--&gt;
+	
+	&lt;#assign fmt=JspTaglibs["http://java.sun.com/jsp/jstl/fmt"]&gt;
+	&lt;#assign hst=JspTaglibs["http://www.hippoecm.org/jsp/hst/core"]&gt;
+	
+	&lt;@hst.defineObjects /&gt;
+	&lt;@hst.link var="login" path="/memberLogin"/&gt;
+	&lt;div id="text-3" class="widget-wrapper widget_text"&gt;
+	   &lt;div class="h3" style="font-weight:bold"&gt;Already a member?&lt;/div&gt;
+	   &lt;div class="textwidget"&gt;&lt;a href="${login}"&gt;Login&lt;/a&gt;&lt;/div&gt;
+	&lt;/div&gt;</sv:value>
+	  </sv:property>
+	</sv:node>	
+	<sv:node sv:name="signup.box.reactivation.ftl" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hst:template</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>f19b8a60-921c-456b-bf5a-24bbfb010946</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:script" sv:type="String">
+	    <sv:value>&lt;#--
+	
+	    Copyright (C) 2010 Hippo B.V.
+	
+	    Licensed under the Apache License, Version 2.0 (the "License");
+	    you may not use this file except in compliance with the License.
+	    You may obtain a copy of the License at
+	
+	            http://www.apache.org/licenses/LICENSE-2.0
+	
+	    Unless required by applicable law or agreed to in writing, software
+	    distributed under the License is distributed on an "AS IS" BASIS,
+	    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	    See the License for the specific language governing permissions and
+	    limitations under the License.
+	
+	--&gt;
+	
+	&lt;#assign fmt=JspTaglibs["http://java.sun.com/jsp/jstl/fmt"]&gt;
+	&lt;#assign hst=JspTaglibs["http://www.hippoecm.org/jsp/hst/core"]&gt;
+	
+	&lt;@hst.defineObjects /&gt;
+	&lt;@hst.link var="activationcode" path="/activationcode"/&gt;
+	&lt;div id="text-3" class="widget-wrapper widget_text"&gt;
+	   &lt;div class="h3" style="font-weight:bold"&gt;Lost activation code?&lt;/div&gt;
+	   &lt;div class="textwidget"&gt;&lt;a href="${activationcode}"&gt;Resend Activation Code&lt;/a&gt;&lt;/div&gt;
+	&lt;/div&gt;</sv:value>
+	  </sv:property>
+	</sv:node>	
+	<sv:node sv:name="itform.action" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hst:template</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>e238b087-40b1-4586-8c90-b1c0387614bf</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:renderpath" sv:type="String">
+	    <sv:value>jsp/itreturns/itformaction.jsp</sv:value>
+	  </sv:property>
+	</sv:node>
+	<sv:node sv:name="itreturn.homepage.addpan" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hst:template</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>87214ba1-6ca9-411c-ad41-a8b346eac5bc</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:renderpath" sv:type="String">
+	    <sv:value>jsp/member/itreturnhome-addpan.jsp</sv:value>
+	  </sv:property>
+	</sv:node>
+	<sv:node sv:name="itreturn.homepage" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hst:template</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>234cc43a-2a35-4650-a977-581c14289d15</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:renderpath" sv:type="String">
+	    <sv:value>jsp/member/itreturnhome.jsp</sv:value>
+	  </sv:property>
+	</sv:node>
+ </sv:node>

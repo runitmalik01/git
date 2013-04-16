@@ -1,0 +1,1 @@
+mvn -P cargo.run -Drepo.path=C:\abhi\trunk\repository

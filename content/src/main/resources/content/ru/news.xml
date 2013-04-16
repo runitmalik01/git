@@ -1,0 +1,1015 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sv:node xmlns:sv="http://www.jcp.org/jcr/sv/1.0" sv:name="новости">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hippostd:folder</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:mixinTypes" sv:type="Name" sv:multiple="true">
+    <sv:value>hippo:harddocument</sv:value>
+    <sv:value>hippotranslation:translated</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>148a9ecf-604b-42be-8d01-91672a023097</sv:value>
+  </sv:property>
+  <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
+  <sv:property sv:name="hippostd:foldertype" sv:type="String" sv:multiple="true">
+    <sv:value>new-news-folder</sv:value>
+    <sv:value>new-news</sv:value>
+  </sv:property>
+  <sv:property sv:name="hippotranslation:id" sv:type="String">
+    <sv:value>08864dfd-8e37-44eb-ba58-63c4e42ff078</sv:value>
+  </sv:property>
+  <sv:property sv:name="hippotranslation:locale" sv:type="String">
+    <sv:value>ru</sv:value>
+  </sv:property>
+  <sv:node sv:name="hippotranslation:translations">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hippotranslation:translations</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="2010">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hippostd:folder</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:mixinTypes" sv:type="Name" sv:multiple="true">
+      <sv:value>hippo:harddocument</sv:value>
+      <sv:value>hippotranslation:translated</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>8eba37dc-7fc3-4a30-84f3-f7804f19b101</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
+    <sv:property sv:name="hippostd:foldertype" sv:type="String" sv:multiple="true">
+      <sv:value>new-news-folder</sv:value>
+      <sv:value>new-news</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippotranslation:id" sv:type="String">
+      <sv:value>4dbebf8b-4208-4421-b168-79ccf7158d44</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippotranslation:locale" sv:type="String">
+      <sv:value>ru</sv:value>
+    </sv:property>
+    <sv:node sv:name="hippotranslation:translations">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>hippotranslation:translations</sv:value>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="07">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>hippostd:folder</sv:value>
+      </sv:property>
+      <sv:property sv:name="jcr:mixinTypes" sv:type="Name" sv:multiple="true">
+        <sv:value>hippo:harddocument</sv:value>
+        <sv:value>hippotranslation:translated</sv:value>
+      </sv:property>
+      <sv:property sv:name="jcr:uuid" sv:type="String">
+        <sv:value>81af1686-f967-4ddb-b810-8d93b833e370</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
+      <sv:property sv:name="hippostd:foldertype" sv:type="String" sv:multiple="true">
+        <sv:value>new-news-folder</sv:value>
+        <sv:value>new-news</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippotranslation:id" sv:type="String">
+        <sv:value>0a885364-4a6a-4492-83f6-8092981d42da</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippotranslation:locale" sv:type="String">
+        <sv:value>ru</sv:value>
+      </sv:property>
+      <sv:node sv:name="hippotranslation:translations">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hippotranslation:translations</sv:value>
+        </sv:property>
+      </sv:node>
+      <sv:node sv:name="эволюция-происходит-гораздо-быстрее-чем-это-раньше-предполагалось.">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hippo:handle</sv:value>
+        </sv:property>
+        <sv:property sv:name="jcr:mixinTypes" sv:type="Name" sv:multiple="true">
+          <sv:value>hippo:hardhandle</sv:value>
+          <sv:value>hippo:translated</sv:value>
+        </sv:property>
+        <sv:property sv:name="jcr:uuid" sv:type="String">
+          <sv:value>10c00d35-12df-4eff-afc3-e57f6288f2de</sv:value>
+        </sv:property>
+        <sv:node sv:name="hippo:translation">
+          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+            <sv:value>hippo:translation</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippo:language" sv:type="String">
+            <sv:value/>
+          </sv:property>
+          <sv:property sv:name="hippo:message" sv:type="String">
+            <sv:value>Эволюция происходит гораздо быстрее, чем это раньше предполагалось.</sv:value>
+          </sv:property>
+        </sv:node>
+        <sv:node sv:name="эволюция-происходит-гораздо-быстрее-чем-это-раньше-предполагалось.">
+          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+            <sv:value>mootlywcm:newsitem</sv:value>
+          </sv:property>
+          <sv:property sv:name="jcr:mixinTypes" sv:type="Name" sv:multiple="true">
+            <sv:value>hippo:harddocument</sv:value>
+            <sv:value>hippotranslation:translated</sv:value>
+          </sv:property>
+          <sv:property sv:name="jcr:uuid" sv:type="String">
+            <sv:value>a70d5c67-6bcc-4655-bfd9-e33b84d2dd49</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippo:availability" sv:type="String" sv:multiple="true">
+            <sv:value>live</sv:value>
+            <sv:value>preview</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippo:related___pathreference" sv:type="String">
+            <sv:value>новости/2010/07/эволюция-происходит-гораздо-быстрее-чем-это-раньше-предполагалось.</sv:value>
+          </sv:property>
+          <sv:property sv:name="mootlywcm:categories" sv:type="String" sv:multiple="true">
+            <sv:value>Ббосферный технологии</sv:value>
+          </sv:property>
+          <sv:property sv:name="mootlywcm:date" sv:type="Date">
+            <sv:value>2010-07-06T10:22:00.000+02:00</sv:value>
+          </sv:property>
+          <sv:property sv:name="mootlywcm:summary" sv:type="String">
+            <sv:value>Два студента, окончившие Гарвардский университет утверждают, что они доказали, что эволюция может происходить гораздо быстрее, чем это раньше предполагалось. Петер Лу, изучающий физику и его бывший сосед по комнате экономист Мотохиро Його, решили применить экономическую модель в отношении широко известного морского ископаемого с целью, предсказать, как быстро жизнь умеет приспособиться к изменениям окружающей среды. Такой метод называется векторная авторегрессия и применяется для предсказания изменений на фондовом рынке на основе предыдущего опыта.</sv:value>
+          </sv:property>
+          <sv:property sv:name="mootlywcm:title" sv:type="String">
+            <sv:value>Эволюция происходит гораздо быстрее, чем это раньше предполагалось.</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostd:holder" sv:type="String">
+            <sv:value>admin</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostd:state" sv:type="String">
+            <sv:value>published</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostd:stateSummary" sv:type="String">
+            <sv:value>live</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
+            <sv:value>Katja de Wit</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
+            <sv:value>2010-07-20T13:43:44.494+02:00</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
+            <sv:value>2011-12-13T17:06:42.720+01:00</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
+            <sv:value>admin</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
+            <sv:value>2011-12-13T17:06:44.907+01:00</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippotranslation:id" sv:type="String">
+            <sv:value>5f4dfddf-dad3-4152-91c6-d30a27df1239</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippotranslation:locale" sv:type="String">
+            <sv:value>ru</sv:value>
+          </sv:property>
+          <sv:node sv:name="hippotranslation:translations">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>hippotranslation:translations</sv:value>
+            </sv:property>
+          </sv:node>
+          <sv:node sv:name="mootlywcm:description">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>hippostd:html</sv:value>
+            </sv:property>
+            <sv:property sv:name="hippostd:content" sv:type="String">
+              <sv:value>&lt;html&gt;
+&lt;body&gt;
+
+&lt;p&gt;Изначально их модель подтвердила раннее предложенные идеи о том, что жизнь
+приспосабливается к изменениям окружающей среды достаточно медленно. Однако
+некоторые скалы, где были обнаружены ископаемые, встречались чаще, чем другие.
+Когда они приняли во внимание этот факт, то идеи о том, что жизнь
+приспосабливается к изменениям медленно, исчезли. Если принимать внимание
+геологические документы, то оказывается, что биосфера сразу же приспосабливается
+к изменениям окружающей среды. Это могло бы обозначать, что жизнь способна очень
+быстро восстанавливается после больших потрясений и вымираний; раньше
+предполагалось, что для такого восстановление потребуется миллионы лет.&lt;/p&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</sv:value>
+            </sv:property>
+          </sv:node>
+          <sv:node sv:name="relateddocs:docs">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>relateddocs:docs</sv:value>
+            </sv:property>
+            <sv:node sv:name="relateddocs:reldoc">
+              <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                <sv:value>hippo:facetselect</sv:value>
+              </sv:property>
+              <sv:property sv:name="hippo:docbase" sv:type="String">
+                <sv:value>8353a5f7-3927-4c27-8738-9035ab0aaf13</sv:value>
+              </sv:property>
+              <sv:property sv:name="hippo:facets" sv:type="String" sv:multiple="true"/>
+              <sv:property sv:name="hippo:modes" sv:type="String" sv:multiple="true"/>
+              <sv:property sv:name="hippo:values" sv:type="String" sv:multiple="true"/>
+            </sv:node>
+          </sv:node>
+          <sv:node sv:name="mootlywcm:copyright">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>mootlywcm:copyright</sv:value>
+            </sv:property>
+            <sv:property sv:name="mootlywcm:description" sv:type="String">
+              <sv:value/>
+            </sv:property>
+            <sv:property sv:name="mootlywcm:url" sv:type="String">
+              <sv:value>http://en.wikinews.org/wiki/Evolution_may_occur_faster_than_once_thought,_scientists_claim</sv:value>
+            </sv:property>
+          </sv:node>
+          <sv:node sv:name="mootlywcm:image">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>hippogallerypicker:imagelink</sv:value>
+            </sv:property>
+            <sv:property sv:name="hippo:docbase" sv:type="String">
+              <sv:value>b491c993-3e62-4db0-9840-6c6fbade277b</sv:value>
+            </sv:property>
+            <sv:property sv:name="hippo:facets" sv:type="String" sv:multiple="true"/>
+            <sv:property sv:name="hippo:modes" sv:type="String" sv:multiple="true"/>
+            <sv:property sv:name="hippo:values" sv:type="String" sv:multiple="true"/>
+          </sv:node>
+        </sv:node>
+      </sv:node>
+      <sv:node sv:name="тающий-глетчер-в-италии-получит-термическое-одеяло">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hippo:handle</sv:value>
+        </sv:property>
+        <sv:property sv:name="jcr:mixinTypes" sv:type="Name" sv:multiple="true">
+          <sv:value>hippo:hardhandle</sv:value>
+          <sv:value>hippo:translated</sv:value>
+        </sv:property>
+        <sv:property sv:name="jcr:uuid" sv:type="String">
+          <sv:value>8353a5f7-3927-4c27-8738-9035ab0aaf13</sv:value>
+        </sv:property>
+        <sv:node sv:name="hippo:translation">
+          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+            <sv:value>hippo:translation</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippo:language" sv:type="String">
+            <sv:value/>
+          </sv:property>
+          <sv:property sv:name="hippo:message" sv:type="String">
+            <sv:value>Тающий глетчер в Италии получит термическое «одеяло»</sv:value>
+          </sv:property>
+        </sv:node>
+        <sv:node sv:name="тающий-глетчер-в-италии-получит-термическое-одеяло">
+          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+            <sv:value>mootlywcm:newsitem</sv:value>
+          </sv:property>
+          <sv:property sv:name="jcr:mixinTypes" sv:type="Name" sv:multiple="true">
+            <sv:value>hippo:harddocument</sv:value>
+            <sv:value>hippotranslation:translated</sv:value>
+          </sv:property>
+          <sv:property sv:name="jcr:uuid" sv:type="String">
+            <sv:value>49d9804a-77f2-422b-aabc-5b9daffdfaf6</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippo:availability" sv:type="String" sv:multiple="true">
+            <sv:value>live</sv:value>
+            <sv:value>preview</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippo:related___pathreference" sv:type="String">
+            <sv:value>новости/2010/07/тающий-глетчер-в-италии-получит-термическое-одеяло</sv:value>
+          </sv:property>
+          <sv:property sv:name="mootlywcm:categories" sv:type="String" sv:multiple="true">
+            <sv:value>Тающий лед</sv:value>
+          </sv:property>
+          <sv:property sv:name="mootlywcm:date" sv:type="Date">
+            <sv:value>2010-07-09T17:04:00.000+02:00</sv:value>
+          </sv:property>
+          <sv:property sv:name="mootlywcm:summary" sv:type="String">
+            <sv:value>В надежде снизить темп, с которым происходит таяние льда в горах на севере Италии, государственные служащие начинали покрывать глетчер, которому угрожает самая большая опасность изолирующим веществом. Таким образом, создается гигантское «одеяло» безопасности, которое предупредит таяние льда в летнюю жару. Это может звучать немного странно, но тесты показали, что термическое «одеяло» является именно тем средством, которое может предотвратить полное исчезновение глетчеров в этом регионе, по крайне мере на первое время.</sv:value>
+          </sv:property>
+          <sv:property sv:name="mootlywcm:title" sv:type="String">
+            <sv:value>Тающий глетчер в Италии получит термическое «одеяло»</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostd:holder" sv:type="String">
+            <sv:value>admin</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostd:state" sv:type="String">
+            <sv:value>published</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostd:stateSummary" sv:type="String">
+            <sv:value>live</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostd:tags" sv:type="String" sv:multiple="true">
+            <sv:value>Таяние ледника</sv:value>
+            <sv:value>климат</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
+            <sv:value>admin</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
+            <sv:value>2010-07-12T14:34:18.722+02:00</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
+            <sv:value>2011-12-13T17:06:22.199+01:00</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
+            <sv:value>admin</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
+            <sv:value>2011-12-13T17:06:24.176+01:00</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippotranslation:id" sv:type="String">
+            <sv:value>9c3705dd-574d-40ef-8352-cb3d42bd7e73</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippotranslation:locale" sv:type="String">
+            <sv:value>ru</sv:value>
+          </sv:property>
+          <sv:node sv:name="hippotranslation:translations">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>hippotranslation:translations</sv:value>
+            </sv:property>
+          </sv:node>
+          <sv:node sv:name="mootlywcm:description">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>hippostd:html</sv:value>
+            </sv:property>
+            <sv:property sv:name="hippostd:content" sv:type="String">
+              <sv:value>&lt;html&gt;
+&lt;body&gt;
+
+&lt;p&gt;Вооружённые почти 970.000 квадратным футом термического материала, толщиной 4
+мм работники спешили защитить находящийся в серьезной опасности глетчер Пресена
+от ультрафиолетовой радиации солнца. Если повезёт, изолирующий материал уменьшит
+количество тающего из-за летней жары льда, до того момента пока жара не спадет.
+&lt;br/&gt;
+Это происходит не в первый раз, что Италия использует этот материал для того,
+чтобы защитить свои глетчеры. Два года назад был проведен небольшой тест,
+результаты которого показали, что этот метод довольно эффективен. Лёд, который
+покрыли изолирующим материалом, таял на 60 процентов меньше, чем подвергнувшиеся
+солнцу участки. Во время тестирования оказалось, что они потеряли в среднем 5
+футов своей толщины. &lt;br/&gt;
+Этот интересное решение было разработано как раз в критический для глетчеров
+Итальянской провинции Тренто момент. Они, также как и многие глетчеры на земле,
+катастрофически тают, по сравнению с прошлыми десятилетиями. По мнению службы
+новостей BBC Brasil, глетчер Пресена потерял только в период с 1993 до 2003 года
+уже 39 процентов своей массы. &lt;br/&gt;
+Кто виновник? Догадайтесь сами. &lt;br/&gt;
+«Одно, несомненно, верно: таяние глетчеров происходит из-за повышения земной
+температуры», говорит Никола Паоли, инженер по окружающей среде службе новостей
+BBC Brasil. «В последние четыре - пять лет мы наблюдали, что количество тающего
+снега увеличилось вдвое по сравнению с нормальным темпом». &lt;br/&gt;
+Как бы честолюбивы или творчески не были бы местные инициативы, разрабатываемые
+в тех областях, где влияние повышения температуры наиболее ощутимы, к сожалению,
+уменьшить эту мировую проблему сможет только международный подход. &lt;br/&gt;
+Следовательно, вся огромная работа, направленная на спасение глетчера Пресена,
+возможно является лишь только отсрочкой неизбежного.&lt;/p&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</sv:value>
+            </sv:property>
+          </sv:node>
+          <sv:node sv:name="relateddocs:docs">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>relateddocs:docs</sv:value>
+            </sv:property>
+            <sv:node sv:name="relateddocs:reldoc">
+              <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                <sv:value>hippo:facetselect</sv:value>
+              </sv:property>
+              <sv:property sv:name="hippo:docbase" sv:type="String">
+                <sv:value>10c00d35-12df-4eff-afc3-e57f6288f2de</sv:value>
+              </sv:property>
+              <sv:property sv:name="hippo:facets" sv:type="String" sv:multiple="true"/>
+              <sv:property sv:name="hippo:modes" sv:type="String" sv:multiple="true"/>
+              <sv:property sv:name="hippo:values" sv:type="String" sv:multiple="true"/>
+            </sv:node>
+          </sv:node>
+          <sv:node sv:name="mootlywcm:image">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>hippogallerypicker:imagelink</sv:value>
+            </sv:property>
+            <sv:property sv:name="hippo:docbase" sv:type="String">
+              <sv:value>0d990656-f544-450a-b4c9-d633f068309c</sv:value>
+            </sv:property>
+            <sv:property sv:name="hippo:facets" sv:type="String" sv:multiple="true"/>
+            <sv:property sv:name="hippo:modes" sv:type="String" sv:multiple="true"/>
+            <sv:property sv:name="hippo:values" sv:type="String" sv:multiple="true"/>
+          </sv:node>
+          <sv:node sv:name="mootlywcm:image">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>hippogallerypicker:imagelink</sv:value>
+            </sv:property>
+            <sv:property sv:name="hippo:docbase" sv:type="String">
+              <sv:value>32cefa88-25ff-4f6a-994d-d9963b86b9a6</sv:value>
+            </sv:property>
+            <sv:property sv:name="hippo:facets" sv:type="String" sv:multiple="true"/>
+            <sv:property sv:name="hippo:modes" sv:type="String" sv:multiple="true"/>
+            <sv:property sv:name="hippo:values" sv:type="String" sv:multiple="true"/>
+          </sv:node>
+          <sv:node sv:name="mootlywcm:copyright">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>mootlywcm:copyright</sv:value>
+            </sv:property>
+            <sv:property sv:name="mootlywcm:description" sv:type="String">
+              <sv:value/>
+            </sv:property>
+            <sv:property sv:name="mootlywcm:url" sv:type="String">
+              <sv:value/>
+            </sv:property>
+          </sv:node>
+        </sv:node>
+      </sv:node>
+      <sv:node sv:name="toyota-и-tesla-намерены-развивать-новую-электрическую-версию-suv">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hippo:handle</sv:value>
+        </sv:property>
+        <sv:property sv:name="jcr:mixinTypes" sv:type="Name" sv:multiple="true">
+          <sv:value>hippo:hardhandle</sv:value>
+          <sv:value>hippo:translated</sv:value>
+        </sv:property>
+        <sv:property sv:name="jcr:uuid" sv:type="String">
+          <sv:value>684bafc5-3dd4-4a3f-bb5c-31d3ffaffb66</sv:value>
+        </sv:property>
+        <sv:node sv:name="hippo:translation">
+          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+            <sv:value>hippo:translation</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippo:language" sv:type="String">
+            <sv:value/>
+          </sv:property>
+          <sv:property sv:name="hippo:message" sv:type="String">
+            <sv:value>Toyota и Tesla намерены развивать новую электрическую версию SUV</sv:value>
+          </sv:property>
+        </sv:node>
+        <sv:node sv:name="toyota-и-tesla-намерены-развивать-новую-электрическую-версию-suv">
+          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+            <sv:value>mootlywcm:newsitem</sv:value>
+          </sv:property>
+          <sv:property sv:name="jcr:mixinTypes" sv:type="Name" sv:multiple="true">
+            <sv:value>hippo:harddocument</sv:value>
+            <sv:value>hippotranslation:translated</sv:value>
+          </sv:property>
+          <sv:property sv:name="jcr:uuid" sv:type="String">
+            <sv:value>15a8104a-7309-403b-b2e0-9344f8f9521b</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippo:availability" sv:type="String" sv:multiple="true">
+            <sv:value>live</sv:value>
+            <sv:value>preview</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippo:related___pathreference" sv:type="String">
+            <sv:value>новости/2010/07/toyota-и-tesla-намерены-развивать-новую-электрическую-версию-suv</sv:value>
+          </sv:property>
+          <sv:property sv:name="mootlywcm:categories" sv:type="String" sv:multiple="true">
+            <sv:value>Электрические автомобиль</sv:value>
+          </sv:property>
+          <sv:property sv:name="mootlywcm:date" sv:type="Date">
+            <sv:value>2010-07-17T10:22:00.000+02:00</sv:value>
+          </sv:property>
+          <sv:property sv:name="mootlywcm:summary" sv:type="String">
+            <sv:value>Toyota Motor Company объявила о заключении договора с Tesla Motors о совместном проекте по разработке электрической версии RAV4 SUV.</sv:value>
+          </sv:property>
+          <sv:property sv:name="mootlywcm:title" sv:type="String">
+            <sv:value>Toyota и Tesla намерены развивать новую электрическую версию SUV</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostd:holder" sv:type="String">
+            <sv:value>admin</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostd:state" sv:type="String">
+            <sv:value>published</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostd:stateSummary" sv:type="String">
+            <sv:value>live</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
+            <sv:value>katja</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
+            <sv:value>2010-07-28T14:35:41.181+02:00</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
+            <sv:value>2011-12-13T17:03:00.388+01:00</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
+            <sv:value>admin</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
+            <sv:value>2011-12-13T17:03:03.339+01:00</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippotranslation:id" sv:type="String">
+            <sv:value>bd547d36-520d-452e-a41b-ce8d92c39d34</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippotranslation:locale" sv:type="String">
+            <sv:value>ru</sv:value>
+          </sv:property>
+          <sv:node sv:name="hippotranslation:translations">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>hippotranslation:translations</sv:value>
+            </sv:property>
+          </sv:node>
+          <sv:node sv:name="mootlywcm:description">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>hippostd:html</sv:value>
+            </sv:property>
+            <sv:property sv:name="hippostd:content" sv:type="String">
+              <sv:value>&lt;html&gt;
+&lt;body&gt;
+
+&lt;p&gt;IВ мае 2010 года, Акио Тойода и Элон Муск, соответственно лидеры Toyota и
+Tesla, объявили о сотрудничестве, цель которого заключается в выпуске
+электромобилей. Этот договор подтверждается заявлением о совместной работе и
+позволяет Tesla сотрудничать с Toyota на производственном заводе в Калифорнии.
+&lt;br/&gt;
+Завод начнет функционировать в 2011 году, после того как Tesla его вновь откроет
+в Калифорнийском городе Фремонт, после закупки. Раньше завод использовался
+компаниями Toyota и General Motors, но после того как Toyota объявила об
+остановке производства автомобилей в Калифорнии завод был закрыт. &lt;br/&gt;
+В настоящее время Tesla производит только одну модель, Roadster, стоящий 109.000
+долларов, но компания занимается разработкой новой модели - Модель S, которая
+будет выпускаться на заводе в Фермонте. &lt;br/&gt;
+Аналитики поддерживают это решение. Джон Бусел, генеральный директор «зеленой»
+транспортной торговой фирмы, говорит что «готовность компании Toyota к
+сотрудничеству с Tesla по выпуску электрической версии одной из её существующих
+моделей показывает, что сотрудничество между двумя предприятиями будет иметь
+большое значение». &lt;br/&gt;
+После этого заявления цена акции Tesla повысилась на 0,75 доллара, цена акции
+Toyota упала до 1,65 доллара.&lt;/p&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</sv:value>
+            </sv:property>
+          </sv:node>
+          <sv:node sv:name="mootlywcm:copyright">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>mootlywcm:copyright</sv:value>
+            </sv:property>
+            <sv:property sv:name="mootlywcm:description" sv:type="String">
+              <sv:value>Toyota, Tesla to develop electric SUV</sv:value>
+            </sv:property>
+            <sv:property sv:name="mootlywcm:url" sv:type="String">
+              <sv:value>http://en.wikinews.org/wiki/Toyota,_Tesla_to_develop_electric_SUV</sv:value>
+            </sv:property>
+          </sv:node>
+          <sv:node sv:name="relateddocs:docs">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>relateddocs:docs</sv:value>
+            </sv:property>
+          </sv:node>
+          <sv:node sv:name="mootlywcm:image">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>hippogallerypicker:imagelink</sv:value>
+            </sv:property>
+            <sv:property sv:name="hippo:docbase" sv:type="String">
+              <sv:value>6d81d6de-8956-48a0-8e3c-ebd3923fbd32</sv:value>
+            </sv:property>
+            <sv:property sv:name="hippo:facets" sv:type="String" sv:multiple="true"/>
+            <sv:property sv:name="hippo:modes" sv:type="String" sv:multiple="true"/>
+            <sv:property sv:name="hippo:values" sv:type="String" sv:multiple="true"/>
+          </sv:node>
+        </sv:node>
+      </sv:node>
+    </sv:node>
+    <sv:node sv:name="06">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>hippostd:folder</sv:value>
+      </sv:property>
+      <sv:property sv:name="jcr:mixinTypes" sv:type="Name" sv:multiple="true">
+        <sv:value>hippo:harddocument</sv:value>
+        <sv:value>hippotranslation:translated</sv:value>
+      </sv:property>
+      <sv:property sv:name="jcr:uuid" sv:type="String">
+        <sv:value>4c7aece4-1cdf-449f-b178-c650ee6ec57f</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
+      <sv:property sv:name="hippostd:foldertype" sv:type="String" sv:multiple="true">
+        <sv:value>new-news-folder</sv:value>
+        <sv:value>new-news</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippotranslation:id" sv:type="String">
+        <sv:value>b59e46a3-ff73-4cdc-b102-6cf5045b2548</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippotranslation:locale" sv:type="String">
+        <sv:value>ru</sv:value>
+      </sv:property>
+      <sv:node sv:name="hippotranslation:translations">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hippotranslation:translations</sv:value>
+        </sv:property>
+      </sv:node>
+      <sv:node sv:name="конференция-по-изменению-климата-откроется-в-копенгагене">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hippo:handle</sv:value>
+        </sv:property>
+        <sv:property sv:name="jcr:mixinTypes" sv:type="Name" sv:multiple="true">
+          <sv:value>hippo:hardhandle</sv:value>
+          <sv:value>hippo:translated</sv:value>
+        </sv:property>
+        <sv:property sv:name="jcr:uuid" sv:type="String">
+          <sv:value>7600ed00-4c02-4114-9896-bb5dee4f5bfe</sv:value>
+        </sv:property>
+        <sv:node sv:name="hippo:translation">
+          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+            <sv:value>hippo:translation</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippo:language" sv:type="String">
+            <sv:value/>
+          </sv:property>
+          <sv:property sv:name="hippo:message" sv:type="String">
+            <sv:value>Конференция по изменению климата откроется в Копенгагене</sv:value>
+          </sv:property>
+        </sv:node>
+        <sv:node sv:name="конференция-по-изменению-климата-откроется-в-копенгагене">
+          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+            <sv:value>mootlywcm:newsitem</sv:value>
+          </sv:property>
+          <sv:property sv:name="jcr:mixinTypes" sv:type="Name" sv:multiple="true">
+            <sv:value>hippo:harddocument</sv:value>
+            <sv:value>hippotranslation:translated</sv:value>
+          </sv:property>
+          <sv:property sv:name="jcr:uuid" sv:type="String">
+            <sv:value>95537712-b8e7-4e9c-8b97-1b2c2884251f</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippo:availability" sv:type="String" sv:multiple="true">
+            <sv:value>live</sv:value>
+            <sv:value>preview</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippo:related___pathreference" sv:type="String">
+            <sv:value>новости/2010/06/конференция-по-изменению-климата-откроется-в-копенгагене</sv:value>
+          </sv:property>
+          <sv:property sv:name="mootlywcm:categories" sv:type="String" sv:multiple="true">
+            <sv:value>конференция</sv:value>
+            <sv:value>Глобальное потепление</sv:value>
+          </sv:property>
+          <sv:property sv:name="mootlywcm:date" sv:type="Date">
+            <sv:value>2010-06-22T10:22:00.000+02:00</sv:value>
+          </sv:property>
+          <sv:property sv:name="mootlywcm:summary" sv:type="String">
+            <sv:value>Соглашение уже почти достигнуто – Датский премьер-министр, Ларс Лёкке Расмуссен</sv:value>
+          </sv:property>
+          <sv:property sv:name="mootlywcm:title" sv:type="String">
+            <sv:value>Конференция по изменению климата откроется в Копенгагене</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostd:holder" sv:type="String">
+            <sv:value>admin</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostd:state" sv:type="String">
+            <sv:value>published</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostd:stateSummary" sv:type="String">
+            <sv:value>live</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostd:tags" sv:type="String" sv:multiple="true">
+            <sv:value>Глобальное потепление</sv:value>
+            <sv:value>Копенгагенский договор</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
+            <sv:value>admin20</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
+            <sv:value>2010-07-30T15:29:10.063+02:00</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
+            <sv:value>2011-12-13T17:04:26.990+01:00</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
+            <sv:value>admin</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
+            <sv:value>2011-12-13T17:04:30.035+01:00</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippotranslation:id" sv:type="String">
+            <sv:value>0faa3f16-bddc-4405-ac6e-0106804872c5</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippotranslation:locale" sv:type="String">
+            <sv:value>ru</sv:value>
+          </sv:property>
+          <sv:node sv:name="hippotranslation:translations">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>hippotranslation:translations</sv:value>
+            </sv:property>
+          </sv:node>
+          <sv:node sv:name="mootlywcm:description">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>hippostd:html</sv:value>
+            </sv:property>
+            <sv:property sv:name="hippostd:content" sv:type="String">
+              <sv:value>&lt;html&gt;
+&lt;body&gt;
+
+&lt;p&gt;Конференция Организации Объединенных Наций по изменению климата (COP15)
+открылась в понедельник призывами к неотложным мерам, которые необходимы для
+предотвращения изменения климата и борьбы с последствиями парникового эффекта.
+Сама большая в истории климатическая конференция в Bella Centra в Копенгагене,
+Дания, продлится две недели, с 7 по 18 декабря. Примерно 15.000 делегатов, в том
+числе представители частного сектора, организации по охране окружающей среды,
+научно-исследовательские институты и государственные служащие, а также 110 глав
+государств и правительств из 192 стран будут присутствовать на этой конференции.
+&lt;br/&gt;
+Во время торжественного культурного открытия конференции COP15 был показан фильм
+датского режиссера Миккела Блаабьерг Пулсен, длящийся четыре минуты, под
+названием Please help the world , для того, чтобы довести до сведения участников
+об опасности, которую представляет собой повышающаяся температура Земли. В
+фильме показана девочка, которая кричит от экологической катастрофы, связанной с
+глобальным потеплением земли, от безлюдной пустыни и от ужасающих потопов. Как
+только девочка очнулась от ночного кошмара, то она и другие дети стали умолять
+нас: «пожалуйста, спасите землю» (“Please save the world”). Пулсен сказал: «Мы
+создали фильм, который берёт за душу, а не за ум». Также на открытии звучала
+музыка трубача, арфиста и Датского народного хора девочек. &lt;br/&gt;
+Конференция ООН по изменению климата, результат двух лет спорных переговоров,
+была открыта в обстановке полной надежд. На конференции царило оптимистическое
+настроение по поводу достижения договора в течение двух недель. На брифниге,
+Конни Хедегард, председатель конференции сказал, что «существуют предельные
+сроки», но «эту задачу мы должны решить в течение того времени, что у нас
+имеется в наличии». Однако Ларс Лёкке Расмуссен подчеркнул, что обсуждения
+должны преодолеть недоверие между богатыми и бедными странами в отношении
+разделения ноши, если речь идёт о сокращении эмиссий. Богатыми и развитыми
+экономическими державами был сделан ряд обещаний по сокращению выброса
+парниковых газов, но большие проблемы, которые нужно решить еще остаются.
+Генеральный секретарь ООН Пан Ги Мун сказал, что юридически обязывающий договор
+по изменению климата будет достигнут в 2010 году. &lt;br/&gt;
+Европейский Союз взял на себя обязательство уменьшить выброс парниковых газов на
+20 процентов в 2020 году, по сравнению с 1990 годом. Но ЕС готов поднять это
+обязательство до 30 процентов в том случае, если другие главные участники
+возьмут на себя «сравнимые обязательства». Новость о парниковых газах, которые
+негативно влияют на здоровье людей, была не одобрена Американской организацией
+по защите окружающей среды (United States Environmental Protection Agency) так
+как это может привести к сокращению выбросов парниковых газов в США. Анонимный
+дипломатический источник упомянул, что газета Financial Times Deutschland
+сообщила, что ЕС должен выделить «1-3 миллиарда евро» на помощь развивающимся
+странам в последующие 3 года, чтобы они смогли преодолеть последствия изменения
+климата и смогли позаботиться о смягчении и адаптации в новых климатических
+условиях. &lt;br/&gt;
+Конференцию обвиняли в лицемерии по отношению к окружающей среде из-за её
+собственного выброса углекислого газа (carbon footprint), к которому причислили
+использование частных самолётов и лимузинов. Датское правительство решило не
+дарить подарки участникам конференции, чтобы уменьшить влияние конференции на
+окружающую среду и климат. Эти деньги будут использоваться для климатических
+стипендий, которые будут называться COP15 Climate Scholarships. Стипендии будут
+давать возможность 10-12 кандидатам пройти магистратуры, связанные с
+климатическими направлениями в датских университетах. Тысячи людей с
+настойчивыми призывами к действиям стоят возле здания, где проводится
+конференция, среди них такие организации как Climate Justice Action, Friends of
+the Earth, Camp for Climate Action, 350.org и Гринпис. Организация по охране
+природы Friends of the Earth осудила «недемократичность акции, принятой датским
+президентом о приглашении малых и эксклюзивных групп стран на конференцию в
+Копенгаген». Первый вариант текста переговоров выпущен к зрителям, но ходят
+слухи, что ведутся переговоры между некоторыми крупными странами и в том числе
+организаторами конференции о создании «альтернативного» документа. &lt;br/&gt;
+По мнению организации Bali Road Map, участники 15-ой конференции ООН Framework
+Convention on Climate Change (COP15) и участники 5-го заседания Киотского
+протокола должны прийти к соглашению в области смягчения климатических изменений
+после 2012 года. Главы государств и главы правительств 110 стран объявили о том,
+что они соберутся в Копенгаген до 18ого декабря, чтобы попытаться прийти к
+соглашению относительно политического мирового договора о климате. Если удастся
+достигнуть договора, то ООН попробует сделать этот договор юридически
+обязывающим, и таким образом заменить Киотский протокол. Ведь регулирования
+этого протокола в отношении эмиссий потеряют свою силу в 2012 году.&lt;/p&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</sv:value>
+            </sv:property>
+          </sv:node>
+          <sv:node sv:name="mootlywcm:copyright">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>mootlywcm:copyright</sv:value>
+            </sv:property>
+            <sv:property sv:name="mootlywcm:description" sv:type="String">
+              <sv:value>Wikinews</sv:value>
+            </sv:property>
+            <sv:property sv:name="mootlywcm:url" sv:type="String">
+              <sv:value>http://en.wikinews.org/wiki/Copenhagen_climate_conference_opens</sv:value>
+            </sv:property>
+          </sv:node>
+          <sv:node sv:name="relateddocs:docs">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>relateddocs:docs</sv:value>
+            </sv:property>
+            <sv:node sv:name="relateddocs:reldoc">
+              <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                <sv:value>hippo:facetselect</sv:value>
+              </sv:property>
+              <sv:property sv:name="hippo:docbase" sv:type="String">
+                <sv:value>88070142-8050-4deb-9d3e-cc0fc33acade</sv:value>
+              </sv:property>
+              <sv:property sv:name="hippo:facets" sv:type="String" sv:multiple="true"/>
+              <sv:property sv:name="hippo:modes" sv:type="String" sv:multiple="true"/>
+              <sv:property sv:name="hippo:values" sv:type="String" sv:multiple="true"/>
+            </sv:node>
+          </sv:node>
+          <sv:node sv:name="mootlywcm:image">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>hippogallerypicker:imagelink</sv:value>
+            </sv:property>
+            <sv:property sv:name="hippo:docbase" sv:type="String">
+              <sv:value>ba3afefe-92f6-4103-9e83-339b27166e69</sv:value>
+            </sv:property>
+            <sv:property sv:name="hippo:facets" sv:type="String" sv:multiple="true"/>
+            <sv:property sv:name="hippo:modes" sv:type="String" sv:multiple="true"/>
+            <sv:property sv:name="hippo:values" sv:type="String" sv:multiple="true"/>
+          </sv:node>
+        </sv:node>
+      </sv:node>
+      <sv:node sv:name="второй-тур-переговоров-оон-по-вопросам-изменения-климата-продолжиться-в-бонне">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hippo:handle</sv:value>
+        </sv:property>
+        <sv:property sv:name="jcr:mixinTypes" sv:type="Name" sv:multiple="true">
+          <sv:value>hippo:hardhandle</sv:value>
+          <sv:value>hippo:translated</sv:value>
+        </sv:property>
+        <sv:property sv:name="jcr:uuid" sv:type="String">
+          <sv:value>88070142-8050-4deb-9d3e-cc0fc33acade</sv:value>
+        </sv:property>
+        <sv:node sv:name="hippo:translation">
+          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+            <sv:value>hippo:translation</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippo:language" sv:type="String">
+            <sv:value/>
+          </sv:property>
+          <sv:property sv:name="hippo:message" sv:type="String">
+            <sv:value>Второй тур переговоров ООН по вопросам изменения климата продолжиться в Бонне</sv:value>
+          </sv:property>
+        </sv:node>
+        <sv:node sv:name="второй-тур-переговоров-оон-по-вопросам-изменения-климата-продолжиться-в-бонне">
+          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+            <sv:value>mootlywcm:newsitem</sv:value>
+          </sv:property>
+          <sv:property sv:name="jcr:mixinTypes" sv:type="Name" sv:multiple="true">
+            <sv:value>hippo:harddocument</sv:value>
+            <sv:value>hippotranslation:translated</sv:value>
+          </sv:property>
+          <sv:property sv:name="jcr:uuid" sv:type="String">
+            <sv:value>bec80fbb-5a0a-41b9-9505-3f0a45cf7ddf</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippo:availability" sv:type="String" sv:multiple="true">
+            <sv:value>live</sv:value>
+            <sv:value>preview</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippo:related___pathreference" sv:type="String">
+            <sv:value>новости/2010/06/второй-тур-переговоров-оон-по-вопросам-изменения-климата-продолжиться-в-бонне</sv:value>
+          </sv:property>
+          <sv:property sv:name="mootlywcm:categories" sv:type="String" sv:multiple="true">
+            <sv:value>Глобальное потепление</sv:value>
+          </sv:property>
+          <sv:property sv:name="mootlywcm:date" sv:type="Date">
+            <sv:value>2010-06-22T10:22:00.000+02:00</sv:value>
+          </sv:property>
+          <sv:property sv:name="mootlywcm:summary" sv:type="String">
+            <sv:value>Переговоры конференции ООН по вопросам изменения климата 2010 года (СОР 16) продолжаться на этой недели в немецком городе Бонн.</sv:value>
+          </sv:property>
+          <sv:property sv:name="mootlywcm:title" sv:type="String">
+            <sv:value>Второй тур переговоров ООН по вопросам изменения климата продолжиться в Бонне</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostd:holder" sv:type="String">
+            <sv:value>admin</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostd:state" sv:type="String">
+            <sv:value>published</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostd:stateSummary" sv:type="String">
+            <sv:value>live</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostd:tags" sv:type="String" sv:multiple="true">
+            <sv:value>Глобальное потепление</sv:value>
+            <sv:value>договор</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
+            <sv:value>admin20</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
+            <sv:value>2010-07-30T15:17:23.923+02:00</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
+            <sv:value>2011-12-13T17:04:43.259+01:00</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
+            <sv:value>admin</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
+            <sv:value>2011-12-13T17:04:45.350+01:00</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippotranslation:id" sv:type="String">
+            <sv:value>f1b0bcc7-7432-46a3-a0b1-e43f41f8df70</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippotranslation:locale" sv:type="String">
+            <sv:value>ru</sv:value>
+          </sv:property>
+          <sv:node sv:name="hippotranslation:translations">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>hippotranslation:translations</sv:value>
+            </sv:property>
+          </sv:node>
+          <sv:node sv:name="mootlywcm:description">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>hippostd:html</sv:value>
+            </sv:property>
+            <sv:property sv:name="hippostd:content" sv:type="String">
+              <sv:value>&lt;html&gt;
+&lt;body&gt;
+
+&lt;p&gt;Переговоры конференции ООН по вопросам изменения климата 2010 г (СОР 16)
+продолжаться на этой недели в немецком городе Бонн. Среди 4.500 участников
+присутствуют 182 правительственных делегата, представители деловой жизни и
+индустрии, организации по охране природы и научно-исследовательские институты.
+СОР 16 будет проходить в мексиканском городе Канкун с 29 ноября по 10 декабря.
+&lt;/p&gt;
+
+&lt;p&gt;Луис Альфонсо де Алба, мексиканский представитель по проблемам изменения
+климата, заявил агентству Рейтер: «Мексика не намерена давать ложную надежду, но
+мы достаточно честолюбивы». Он подверг критике главу секретариата по вопросам
+климата ООН, Иво де Бур, который покидает свой пост и европейского комиссара по
+вопросам климата Конни Хедегорд, за их скептицизм.&lt;/p&gt;
+
+&lt;p&gt;В рамках конвенции ООН об изменении климата (UNFCC) была спланирована
+следующая сессия переговоров, которая состоится в августе. После нее будет
+проведено еще одно последнее промежуточное заседание перед Канкуном, которое
+продлиться одну неделю. Во время переговоров будет обсуждены те вопросы, которые
+не были решены во время Конференции ООН по изменению климата в 2009 году (СОР
+15) в Копенгагене.&lt;/p&gt;
+
+&lt;p&gt;Две рабочие группы Ad Hoc Working Group on Long-Term Cooperative Action
+(AWG-LCA) и Ad Hoc Working Group on Further Commitments for Annex (AWG-KP) были
+специально созданы для разработки долгосрочных мер связанных с изменениями
+климата.&lt;/p&gt;
+
+&lt;p&gt;Группа AWG-LCA ведет переговоры и несет ответственность за разработку нового
+«текста договоров СОР 16» для сессии, которая состоится в июне. Цель группы
+AWG-KP является контроль над выполнением обязательств по снижению выброса
+парниковых газов 37 индустриальными странами, которые ратифицировали Киотский
+протокол на период до 2012 года.&lt;/p&gt;
+
+&lt;p&gt;Также на повестке дня стоят заседания двух вспомогательных органов конвенции
+ООН по изменению климата(UNFCCC): органа для консультирования по научным и
+техническим аспектам (SBSTA) и органа по осуществлению (SBI).&lt;/p&gt;
+
+&lt;p&gt;Официально конференция считается 16 заседанием Конференции сторон конвенции
+(COP 16) в рамках ООН по изменению климата (UNFCCC) и 6 сессией Конференции
+сторон конвенции, они являются заседаниями сторон (CMP 6) Киотского протокола.
+&lt;/p&gt;
+
+&lt;p&gt;Смотрите также: о парниковом эффекте&lt;/p&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</sv:value>
+            </sv:property>
+          </sv:node>
+          <sv:node sv:name="mootlywcm:copyright">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>mootlywcm:copyright</sv:value>
+            </sv:property>
+            <sv:property sv:name="mootlywcm:description" sv:type="String">
+              <sv:value>Wikinews</sv:value>
+            </sv:property>
+            <sv:property sv:name="mootlywcm:url" sv:type="String">
+              <sv:value>http://en.wikinews.org/wiki/Second_round_of_Bonn_UN_Climate_Change_negotiations_continue</sv:value>
+            </sv:property>
+          </sv:node>
+          <sv:node sv:name="relateddocs:docs">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>relateddocs:docs</sv:value>
+            </sv:property>
+            <sv:node sv:name="relateddocs:reldoc">
+              <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                <sv:value>hippo:facetselect</sv:value>
+              </sv:property>
+              <sv:property sv:name="hippo:docbase" sv:type="String">
+                <sv:value>7600ed00-4c02-4114-9896-bb5dee4f5bfe</sv:value>
+              </sv:property>
+              <sv:property sv:name="hippo:facets" sv:type="String" sv:multiple="true"/>
+              <sv:property sv:name="hippo:modes" sv:type="String" sv:multiple="true"/>
+              <sv:property sv:name="hippo:values" sv:type="String" sv:multiple="true"/>
+            </sv:node>
+          </sv:node>
+          <sv:node sv:name="mootlywcm:image">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>hippogallerypicker:imagelink</sv:value>
+            </sv:property>
+            <sv:property sv:name="hippo:docbase" sv:type="String">
+              <sv:value>94638e46-2a0f-412d-b5d8-608e26c6d1ad</sv:value>
+            </sv:property>
+            <sv:property sv:name="hippo:facets" sv:type="String" sv:multiple="true"/>
+            <sv:property sv:name="hippo:modes" sv:type="String" sv:multiple="true"/>
+            <sv:property sv:name="hippo:values" sv:type="String" sv:multiple="true"/>
+          </sv:node>
+        </sv:node>
+      </sv:node>
+    </sv:node>
+  </sv:node>
+  <sv:node sv:name="facetednews">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hippofacnav:facetnavigation</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippo:docbase" sv:type="String">
+      <sv:value>148a9ecf-604b-42be-8d01-91672a023097</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippofacnav:skipresultsetfacetsavailable" sv:type="Boolean">
+      <sv:value>true</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippofacnav:facetnodenames" sv:type="String" sv:multiple="true">
+      <sv:value>период</sv:value>
+      <sv:value>Новости категории</sv:value>
+      <sv:value>год${sortby:'facetvalue', sortorder:'descending'}</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippofacnav:facets" sv:type="String" sv:multiple="true">
+      <sv:value>mootlywcm:date$[{name:'Deze maand', resolution:'month', begin:0, end:1},
+        {name:'Vorige maand', resolution:'month', begin:-1, end:0}, {name:'This year',
+        resolution:'year', begin:0, end:1}]</sv:value>
+      <sv:value>mootlywcm:categories</sv:value>
+      <sv:value>mootlywcm:date$year</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippofacnav:limit" sv:type="Long">
+      <sv:value>1000</sv:value>
+    </sv:property>
+  </sv:node>
+</sv:node>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sv:node sv:name="member" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hipposys:group</sv:value>
+  </sv:property>
+  <sv:property sv:name="hipposys:description" sv:type="String">
+    <sv:value>member</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="hipposys:members" sv:type="String">
+    <sv:value>itr1</sv:value>
+	<sv:value>itr2</sv:value>
+	<sv:value>raghav123</sv:value>
+  </sv:property>
+  <sv:property sv:name="hipposys:securityprovider" sv:type="String">
+    <sv:value>internal</sv:value>
+  </sv:property>
+</sv:node>
