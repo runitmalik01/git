@@ -1078,33 +1078,96 @@
 	              <sv:value>members</sv:value>
 	            </sv:property>
 	          </sv:node>
-	          <sv:node sv:name="capitalgains.html">
-	            <sv:property sv:name="jcr:primaryType" sv:type="Name">
-	              <sv:value>hst:sitemapitem</sv:value>
-	            </sv:property>
-	            <sv:property sv:name="jcr:uuid" sv:type="String">
-	              <sv:value>29d3b614-e903-403d-ac65-1ae791ecbd69</sv:value>
-	            </sv:property>
-	            <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
-	              <sv:value>hst:pages/capitalasset</sv:value>
-	            </sv:property>
-	            <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
-	              <sv:value>pan</sv:value>
-	              <sv:value>mainSiteMapItemRefId</sv:value>
-	              <sv:value>action</sv:value>
-	            </sv:property>
-	            <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
-	              <sv:value>${2}</sv:value>
-	              <sv:value>memberpersonalinformation</sv:value>
-	              <sv:value>EDIT</sv:value>
-	            </sv:property>
-	            <sv:property sv:name="hst:refId" sv:type="String">
-	              <sv:value>memberpersonalinformation</sv:value>
-	            </sv:property>
-	            <sv:property sv:name="hst:relativecontentpath" sv:type="String">
-	              <sv:value>members</sv:value>
-	            </sv:property>
-	          </sv:node>
+	          
+	         <sv:node sv:name="capitalgains.html" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:sitemapitem</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>d43513d5-b0e9-4013-8c80-48753c897d89</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+    <sv:value>hst:pages/capitalasset</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+    <sv:value>pan</sv:value>
+    <sv:value>mainSiteMapItemRefId</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+    <sv:value>${2}</sv:value>
+    <sv:value>capitalasset1</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:refId" sv:type="String">
+    <sv:value>capitalasset1</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:relativecontentpath" sv:type="String">
+    <sv:value>members</sv:value>
+  </sv:property>
+  <sv:node sv:name="_default_">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:sitemapitem</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>19d9bedf-3d60-47a1-8510-48ed1a45906b</sv:value>
+    </sv:property>
+    <sv:node sv:name="edit">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>hst:sitemapitem</sv:value>
+      </sv:property>
+      <sv:property sv:name="jcr:uuid" sv:type="String">
+        <sv:value>87595478-b5e6-4c42-a5cb-aa7b8f486a7c</sv:value>
+      </sv:property>
+      <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+        <sv:value>hst:pages/capitalasset</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+        <sv:value>action</sv:value>
+        <sv:value>uuid</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+        <sv:value>EDIT_CHILD</sv:value>
+        <sv:value>${3}</sv:value>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="delete">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>hst:sitemapitem</sv:value>
+      </sv:property>
+      <sv:property sv:name="jcr:uuid" sv:type="String">
+        <sv:value>bfdcf169-53cb-48f3-b391-9e7fc32ecbbe</sv:value>
+      </sv:property>
+      <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+        <sv:value>hst:pages/capitalasset</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+        <sv:value>action</sv:value>
+        <sv:value>uuid</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+        <sv:value>DELETE_CHILD</sv:value>
+        <sv:value>${3}</sv:value>
+      </sv:property>
+    </sv:node>
+  </sv:node>
+  <sv:node sv:name="new">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:sitemapitem</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>6a357eb6-7b8c-4d4d-bc1b-e04773c90cac</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+      <sv:value>hst:pages/capitalasset</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+      <sv:value>action</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+      <sv:value>NEW_CHILD</sv:value>
+    </sv:property>
+  </sv:node>
+</sv:node> 
+	         
 	          <sv:node sv:name="othersources.html">
 	            <sv:property sv:name="jcr:primaryType" sv:type="Name">
 	              <sv:value>hst:sitemapitem</sv:value>
