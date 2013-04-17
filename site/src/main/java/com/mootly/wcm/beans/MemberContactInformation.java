@@ -44,7 +44,6 @@ import org.hippoecm.hst.content.beans.standard.HippoMirror;
  * Time: 11:26:35 AM
  */
 
-@SuppressWarnings("unused")
 @Node(jcrType = "mootlywcm:MemberContactInformation")
 public class MemberContactInformation extends BaseDocument implements ContentNodeBinder, FormMapFiller {
 	static final public String NAMESPACE = "mootlywcm:MemberContactInformation";

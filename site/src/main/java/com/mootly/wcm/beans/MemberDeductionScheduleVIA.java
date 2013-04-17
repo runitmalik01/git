@@ -15,12 +15,15 @@
  */
 
 package com.mootly.wcm.beans;
+import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import javax.jcr.RepositoryException;
 import javax.jcr.Value;
 import static com.mootly.wcm.utils.Constants.NT_PRODUCTLINK;
 import static com.mootly.wcm.utils.Constants.PROP_PI_PERSONALINFO_LINK;
+
+import org.hippoecm.hst.component.support.forms.FormMap;
 import org.hippoecm.hst.content.beans.ContentNodeBinder;
 import org.hippoecm.hst.content.beans.ContentNodeBindingException;
 import org.hippoecm.hst.content.beans.Node;
@@ -37,7 +40,7 @@ import com.mootly.wcm.utils.GoGreenUtil;
 
 @SuppressWarnings("unused")
 @Node(jcrType = "mootlywcm:MemberDeductionScheduleVIA")
-public class MemberDeductionScheduleVIA extends BaseDocument implements ContentNodeBinder {
+public class MemberDeductionScheduleVIA extends BaseDocument implements ContentNodeBinder,FormMapFiller {
 	static final public String NAMESPACE = "mootlywcm:MemberDeductionScheduleVIA";
 	static final public String NODE_NAME = "MemberDeductionScheduleVIA";
 	
@@ -296,5 +299,41 @@ public class MemberDeductionScheduleVIA extends BaseDocument implements ContentN
     		
     	}
 		return true;
+	}
+	@Override
+	public void fill(FormMap formMap) {
+		// TODO Auto-generated method stub
+		if (log.isInfoEnabled()) {
+			log.info("Into the fill method");			
+		}
+		if (formMap == null) return;
+		if ( formMap.getField("scheduleC") != null) setScheduleC(formMap.getField("scheduleC").getValue());		
+		if ( formMap.getField("scheduleCCC") != null) setScheduleCCC(formMap.getField("scheduleCCC").getValue());		
+		if ( formMap.getField("scheduleCCD") != null) 	setScheduleCCD(formMap.getField("scheduleCCD").getValue());		
+		if ( formMap.getField("scheduleCCF") != null) setScheduleCCF(formMap.getField("scheduleCCF").getValue());	
+		if ( formMap.getField("scheduleD") != null) setScheduleD(formMap.getField("scheduleD").getValue());		
+		if ( formMap.getField("scheduleDD") != null) setScheduleDD(formMap.getField("scheduleDD").getValue());		
+		if ( formMap.getField("scheduleDDB") != null) setScheduleDDB( formMap.getField("scheduleDDB").getValue());			
+		if ( formMap.getField("scheduleE") != null) setScheduleE( formMap.getField("scheduleE").getValue());		
+		if ( formMap.getField("scheduleG") != null) setScheduleG( formMap.getField("scheduleG").getValue());		
+		if ( formMap.getField("scheduleGG") != null) setScheduleGG( formMap.getField("scheduleGG").getValue());		
+		if ( formMap.getField("scheduleGGA") != null) setScheduleGGA( formMap.getField("scheduleGGA").getValue());		
+		if ( formMap.getField("scheduleGGC") != null) setScheduleGGC( formMap.getField("scheduleGGC").getValue());		
+		if ( formMap.getField("scheduleIA") != null) setScheduleIA( formMap.getField("scheduleIA").getValue());		
+		if ( formMap.getField("scheduleIAB") != null) setScheduleIAB( formMap.getField("scheduleIAB").getValue());		
+		if ( formMap.getField("scheduleIB") != null) setScheduleIB( formMap.getField("scheduleIB").getValue());	
+		if ( formMap.getField("scheduleIC") != null) setScheduleIC( formMap.getField("scheduleIC").getValue());		
+		if ( formMap.getField("scheduleID") != null) setScheduleID( formMap.getField("scheduleID").getValue());		
+		if ( formMap.getField("scheduleJJA") != null) setScheduleJJA( formMap.getField("scheduleJJA").getValue());	
+		if ( formMap.getField("scheduleQQB") != null) setScheduleQQB( formMap.getField("scheduleQQB").getValue());	
+		if ( formMap.getField("scheduleRRB") != null) setScheduleRRB( formMap.getField("scheduleRRB").getValue());		
+		if ( formMap.getField("scheduleU") != null) setScheduleU( formMap.getField("scheduleU").getValue());
+		
+	}	
+	
+	@Override
+	public <T extends HippoBean> void cloneBean(T sourceBean) {
+		// TODO Auto-generated method stub
+		
 	}
 }
