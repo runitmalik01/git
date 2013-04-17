@@ -35,12 +35,14 @@ import com.mootly.wcm.annotations.FormFields;
 import com.mootly.wcm.annotations.PrimaryBean;
 import com.mootly.wcm.annotations.RequiredBeans;
 import com.mootly.wcm.annotations.RequiredFields;
+import com.mootly.wcm.beans.AdjustmentOfLossesDoc;
+import com.mootly.wcm.beans.HouseProperty;
 import com.mootly.wcm.beans.MemberPersonalInformation;
 import com.mootly.wcm.beans.MemberRebateSectionEightyNine;
+import com.mootly.wcm.beans.OtherSourceIncome;
 import com.mootly.wcm.beans.SalaryIncomeDocument;
 import com.mootly.wcm.beans.compound.PreviousYearsSalaryInfo;
 import com.mootly.wcm.beans.compound.SalaryIncomeDetail;
-import com.mootly.wcm.components.BaseComponent;
 import com.mootly.wcm.components.ITReturnComponent;
 import com.mootly.wcm.utils.ContentStructure;
 import com.mootly.wcm.utils.GoGreenUtil;
@@ -48,9 +50,9 @@ import com.mootly.wcm.utils.UrlUtility;
 
 @PrimaryBean(primaryBeanClass=MemberRebateSectionEightyNine.class)
 @ChildBean(childBeanClass=SalaryIncomeDetail.class)
-@AdditionalBeans(additionalBeansToLoad=MemberPersonalInformation.class)
-@RequiredBeans(requiredBeans={MemberPersonalInformation.class})
-@FormFields(fieldNames={"Employe_category","Name_employer","Pan_employer","Tan_employer","Address","City","State","Pin","From","To","Gross_salary","Allowance","Perquisite","Profit"})
+@AdditionalBeans(additionalBeansToLoad={MemberPersonalInformation.class,SalaryIncomeDocument.class,OtherSourceIncome.class,AdjustmentOfLossesDoc.class,HouseProperty.class})
+@RequiredBeans(requiredBeans={MemberPersonalInformation.class,SalaryIncomeDocument.class})
+@FormFields(fieldNames={"prevyear1","income1","arrears1","total1"})
 @RequiredFields(fieldNames={"Name_employer","Tan_employer","City","Gross_salary"})
 @DataTypeValidationFields(fieldNames={"Gross_salary"},dataTypes={DataTypeValidationHelper.DataTypeValidationType.DECIMAL})
 public class RebateSection89 extends ITReturnComponent {
@@ -75,8 +77,6 @@ public class RebateSection89 extends ITReturnComponent {
 		// TODO Auto-generated method stub
 		super.doBeforeRender(request, response);
 		log.info("This is Rebate Section 89 Page");
-		request.setAttribute("salaryincome", "230000");
-		request.setAttribute("otherincome","30000");
 		String pan=(String)request.getSession().getAttribute("pan");
 		String filing_year=(String)request.getSession().getAttribute("filing_year");	
 		Member member=(Member)request.getSession().getAttribute("user");
@@ -98,6 +98,32 @@ public class RebateSection89 extends ITReturnComponent {
 								request.setAttribute(strprev, objprev);
 							}
 						}
+					}
+					String spersoanlpath=ContentStructure.getPersonalDocumentPath(pan, filing_year, modusername);
+					MemberPersonalInformation objpersonal=(MemberPersonalInformation)getObjectBeanManager(request).getObject(spersoanlpath);
+					int age=MemberAge.MemberAgeCalculate(objpersonal.getDOB());
+					log.info("this is age of member"+age);
+					request.setAttribute("age",age);
+					request.setAttribute("gender",objpersonal.getSex());
+					request.setAttribute("resistatus",objpersonal.getResident());
+					request.setAttribute("payer",objpersonal.getFilingStatus());
+					request.setAttribute("cbassyear", filing_year);
+					/*SalaryIncome objsalincom=new SalaryIncome();
+					ArrayList<SalaryIncomeDocument> arrLSalaryIncomeDocument =  objsalincom.fetchSalaryIncomeDocument(request, response);
+					if(null != arrLSalaryIncomeDocument){
+						float sumsal=0.0f;
+						for(int i=0;i<arrLSalaryIncomeDocument.size();i++){
+							SalaryIncomeDocument objsaldoc=arrLSalaryIncomeDocument.get(i);
+							sumsal=sumsal+Float.parseFloat(objsaldoc.getGross_salary());
+						}
+					}*/
+					request.setAttribute("salaryincome", "230000");
+					String path3=ContentStructure.getOtherIncomePathUpdate(request, modusername);
+					OtherSourceIncome objotherincome=(OtherSourceIncome)getObjectBeanManager(request).getObject(path3);
+					if(objotherincome!=null){
+						request.setAttribute("otherincome",objotherincome.getTaxable_income());	
+					}else{
+						request.setAttribute("otherincome","30000");
 					}
 				}
 			}catch (ObjectBeanManagerException e) {
@@ -302,6 +328,7 @@ public class RebateSection89 extends ITReturnComponent {
 	}
 	public static class FullReviewedWorkflowCallbackHandler implements WorkflowCallbackHandler<FullReviewedActionsWorkflow> {
 		public void processWorkflow(FullReviewedActionsWorkflow wf) throws Exception {
+			
 			wf.publish();
 		}
 	}

@@ -19,11 +19,12 @@ import com.mootly.wcm.annotations.FormFields;
 import com.mootly.wcm.annotations.PrimaryBean;
 import com.mootly.wcm.annotations.RequiredBeans;
 import com.mootly.wcm.annotations.RequiredFields;
-import com.mootly.wcm.beans.MemberContactInformation;
+import com.mootly.wcm.beans.MemberBankDetail;
 import com.mootly.wcm.beans.MemberPersonalInformation;
 import com.mootly.wcm.components.ITReturnComponent;
 
-@PrimaryBean(primaryBeanClass=MemberContactInformation.class)
+@PrimaryBean(primaryBeanClass=MemberBankDetail.class)
+@AdditionalBeans(additionalBeansToLoad=MemberPersonalInformation.class)
 @FormFields(fieldNames={"bd_bank_name","bd_micr_code","bd_Branch_name","bd_account_type","bd_account_no","bd_ecs"})
 @RequiredFields(fieldNames={"bd_bank_name","bd_micr_code","bd_Branch_name","bd_account_type","bd_account_no","bd_ecs"})
 @RequiredBeans(requiredBeans={MemberPersonalInformation.class})

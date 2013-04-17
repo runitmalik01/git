@@ -8,43 +8,29 @@
  */
 package com.mootly.wcm.member;
 
-import java.io.IOException;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Enumeration;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 
-import javax.jcr.RepositoryException;
-import javax.jcr.Session;
-
-import org.hippoecm.hst.content.beans.ObjectBeanManagerException;
-import org.hippoecm.hst.content.beans.ObjectBeanPersistenceException;
-import org.hippoecm.hst.content.beans.manager.workflow.WorkflowCallbackHandler;
-import org.hippoecm.hst.content.beans.manager.workflow.WorkflowPersistenceManager;
 import org.hippoecm.hst.core.component.HstComponentException;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
-import org.hippoecm.repository.reviewedactions.FullReviewedActionsWorkflow;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.mootly.wcm.annotations.AdditionalBeans;
+import com.mootly.wcm.annotations.FormFields;
 import com.mootly.wcm.annotations.PrimaryBean;
 import com.mootly.wcm.annotations.RequiredBeans;
 import com.mootly.wcm.beans.MemberPersonalInformation;
-import com.mootly.wcm.beans.compound.PersonalInformation;
-import com.mootly.wcm.components.BaseComponent;
+import com.mootly.wcm.beans.MemberResidentialStatus;
 import com.mootly.wcm.components.ITReturnComponent;
-import com.mootly.wcm.utils.ContentStructure;
-import com.mootly.wcm.utils.GoGreenUtil;
-import com.mootly.wcm.utils.UrlUtility;
 
 /*
  * @author Priyank
@@ -54,10 +40,15 @@ import com.mootly.wcm.utils.UrlUtility;
  */
 @AdditionalBeans(additionalBeansToLoad={MemberPersonalInformation.class})
 @RequiredBeans(requiredBeans=MemberPersonalInformation.class)
-@PrimaryBean(primaryBeanClass=MemberPersonalInformation.class)
+@PrimaryBean(primaryBeanClass=MemberResidentialStatus.class)
+@FormFields(fieldNames={"rsstatus_q","rsstatus_q_yes","rsstatus_q_yes_yes",
+		"rsstatus_q_yes_yes_yes","rsstatus_q_yes_no","rsstatus_q_yes_yes_no",
+		"rsstatus_q_no","rsstatus_q_no_yes", "rsstatus_q_no_yes_no","rsstatus_q_no_yes_yes",
+		"rsstatus_q_no_no","rsstatus_q_no_no_no","rsstatus_q_no_no_yes","rsstatus_q_no_no_yes_yes",
+		"rsstatus_q_no_no_yes_yes_yes","rsstatus_q_no_yes_yes_yes","rsstatus_q_no_yes_yes_yes_yes","rsstatus_q_no_yes_yes_yes_no"})
 public class ResidentialStatus extends ITReturnComponent {
 	private static final Logger log = LoggerFactory.getLogger(ResidentialStatus.class);
-	
+
 	public static final String SUCCESS= "success";
 	public static final String ERROR= "error";
 	@Override
@@ -67,7 +58,7 @@ public class ResidentialStatus extends ITReturnComponent {
 		//get the bundle 
 		String assessmentYear = getAssessmentYear() == null ? "2012-2013"  : getAssessmentYear();
 		ResourceBundle rb = ResourceBundle.getBundle("rstatus_"+assessmentYear);
-		
+
 		List<String> keyList = new ArrayList<String>();
 		//Enumeration<String> keys = rb.getKeys();		
 		for (String aKey: rb.keySet() ) {
@@ -79,7 +70,7 @@ public class ResidentialStatus extends ITReturnComponent {
 			MemberPersonalInformation mpi = (MemberPersonalInformation) request.getAttribute(keyToFind);
 			memberName = mpi.getName();
 		}
-		
+
 		Map<String, String> map = new LinkedHashMap<String, String>();
 		Collections.sort(keyList, new SortyByDepth());
 		for (String aKey:keyList) {
@@ -94,7 +85,7 @@ public class ResidentialStatus extends ITReturnComponent {
 				map.put(aKey, rb.getString(aKey));
 			}
 		}
-		
+
 		//map.put(aKey, rb.getString(aKey));
 		JSONObject jsonObject = new JSONObject(map);
 		request.setAttribute("jsonObject", jsonObject);
@@ -108,7 +99,7 @@ public class ResidentialStatus extends ITReturnComponent {
 		// TODO Auto-generated method stub
 		super.doBeforeRender(request, response);	
 	}
-	
+
 	class SortyByDepth implements Comparator<String> {
 		@Override
 		public int compare(String o1, String o2) {
@@ -125,5 +116,5 @@ public class ResidentialStatus extends ITReturnComponent {
 				return 1;
 		}		
 	}
-	
+
 }

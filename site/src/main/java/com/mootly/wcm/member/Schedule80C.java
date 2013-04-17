@@ -25,17 +25,34 @@ import org.hippoecm.repository.reviewedactions.FullReviewedActionsWorkflow;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.mootly.wcm.annotations.ChildBean;
+import com.mootly.wcm.annotations.FormFields;
+import com.mootly.wcm.annotations.PrimaryBean;
+import com.mootly.wcm.annotations.RequiredBeans;
 import com.mootly.wcm.beans.MemberDeductionScheduleC;
-import com.mootly.wcm.components.BaseComponent;
+import com.mootly.wcm.beans.MemberDeductionScheduleVIA;
+import com.mootly.wcm.beans.MemberPersonalInformation;
+import com.mootly.wcm.components.ITReturnComponent;
 import com.mootly.wcm.utils.ContentStructure;
 import com.mootly.wcm.utils.GoGreenUtil;
 import com.mootly.wcm.utils.UrlUtility;
 
+@PrimaryBean(primaryBeanClass=MemberDeductionScheduleVIA.class)
 
-public class Schedule80C extends BaseComponent {
+@RequiredBeans(requiredBeans={MemberPersonalInformation.class})
+@FormFields(fieldNames={"schedule80C1","schedule80C2","schedule80C3"
+		,"schedule80C4","schedule80C5","schedule80C6","schedule80C7"
+		,"schedule80C8","schedule80C9","schedule80C10"
+		,"dp1","dp2","dp3","dp4","dp5","dp6"
+		,"dp7","dp8","dp9","dp10","Total"})
+public class Schedule80C extends ITReturnComponent {
 	private static final Logger log = LoggerFactory.getLogger(Schedule80C.class);
 	@Override
 	public void doBeforeRender(HstRequest request, HstResponse response) {
+		// TODO Auto-generated method stub
+		super.doBeforeRender(request, response);
+	}
+	public void doBeforeRenderOld(HstRequest request, HstResponse response) {
 		// TODO Auto-generated method stub
 		super.doBeforeRender(request, response);
 		log.info("This is Deduction Schedule80C Page");
@@ -61,6 +78,12 @@ public class Schedule80C extends BaseComponent {
 	}
 	@Override
 	public void doAction(HstRequest request, HstResponse response)
+			throws HstComponentException {
+		// TODO Auto-generated method stub
+		super.doAction(request, response);
+	}
+
+	public void doActionOld(HstRequest request, HstResponse response)
 			throws HstComponentException {
 		// TODO Auto-generated method stub
 		super.doAction(request, response);
