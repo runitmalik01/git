@@ -20,41 +20,34 @@
       <sv:value>standard.header.ftl</sv:value>
     </sv:property>
   </sv:node>
-
-
-<!-- for other source income-->
-<sv:node sv:name="member.otherincome">
-  <sv:property sv:name="jcr:primaryType" sv:type="Name">
-    <sv:value>hst:component</sv:value>
-  </sv:property>
-  <sv:property sv:name="jcr:uuid" sv:type="String">
-    <sv:value>233b840b-b691-48f2-9eca-aad72e7a6523</sv:value>
-  </sv:property>
-  <sv:property sv:name="hst:componentclassname" sv:type="String">
-    <sv:value>com.mootly.wcm.member.OtherIncome</sv:value>
-  </sv:property>
-  <sv:property sv:name="hst:template" sv:type="String">
-    <sv:value>otherincome</sv:value>
-  </sv:property>
-</sv:node>
-
-<!-- for calculation from all head-->
-<sv:node sv:name="member.calculation">
-  <sv:property sv:name="jcr:primaryType" sv:type="Name">
-    <sv:value>hst:component</sv:value>
-  </sv:property>
-  <sv:property sv:name="jcr:uuid" sv:type="String">
-    <sv:value>c29da3a8-9f5d-47ff-a310-0512f1742bf1</sv:value>
-  </sv:property>
-  <sv:property sv:name="hst:componentclassname" sv:type="String">
-    <sv:value>com.mootly.wcm.member.Calculations</sv:value>
-  </sv:property>
-  <sv:property sv:name="hst:template" sv:type="String">
-    <sv:value>member.calculation</sv:value>
-  </sv:property>
-</sv:node>
-
-
+  <sv:node sv:name="member.otherincome">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>233b840b-b691-48f2-9eca-aad72e7a6523</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentclassname" sv:type="String">
+      <sv:value>com.mootly.wcm.member.OtherIncome</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>otherincome</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="member.calculation">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>c29da3a8-9f5d-47ff-a310-0512f1742bf1</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentclassname" sv:type="String">
+      <sv:value>com.mootly.wcm.member.Calculations</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>member.calculation</sv:value>
+    </sv:property>
+  </sv:node>
   <sv:node sv:name="sourceofincome">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
       <sv:value>hst:component</sv:value>
@@ -88,21 +81,21 @@
     </sv:property>
   </sv:node>
   <sv:node sv:name="interest">
-  <sv:property sv:name="jcr:primaryType" sv:type="Name">
-    <sv:value>hst:component</sv:value>
-  </sv:property>
-  <sv:property sv:name="jcr:uuid" sv:type="String">
-    <sv:value>02c6b740-a888-48a7-a111-7cc156f2a690</sv:value>
-  </sv:property>
-  <sv:property sv:name="hst:componentclassname" sv:type="String">
-    <sv:value>com.mootly.wcm.member.Interest</sv:value>
-  </sv:property>
-  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String"/>
-  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String"/>
-  <sv:property sv:name="hst:template" sv:type="String">
-    <sv:value>interest</sv:value>
-  </sv:property>
-</sv:node>
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>02c6b740-a888-48a7-a111-7cc156f2a690</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentclassname" sv:type="String">
+      <sv:value>com.mootly.wcm.member.Interest</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String"/>
+    <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String"/>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>interest</sv:value>
+    </sv:property>
+  </sv:node>
   <sv:node sv:name="home">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
       <sv:value>hst:component</sv:value>
@@ -761,39 +754,38 @@
       <sv:value>taxcalculator</sv:value>
     </sv:property>
   </sv:node>
-
-<sv:node sv:name="rebatesec90" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
-  <sv:property sv:name="jcr:primaryType" sv:type="Name">
-    <sv:value>hst:component</sv:value>
-  </sv:property>
-  <sv:property sv:name="jcr:uuid" sv:type="String">
-    <sv:value>eb48302c-271c-43a1-8b5c-1e8c50d9334a</sv:value>
-  </sv:property>
-  <sv:property sv:name="hst:componentclassname" sv:type="String">
-    <sv:value>com.mootly.wcm.member.RebateSec90</sv:value>
-  </sv:property>
-  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String"/>
-  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String"/>
-  <sv:property sv:name="hst:template" sv:type="String">
-    <sv:value>rebatesec90</sv:value>
-  </sv:property>
-</sv:node>
-<sv:node sv:name="tcs" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
-  <sv:property sv:name="jcr:primaryType" sv:type="Name">
-    <sv:value>hst:component</sv:value>
-  </sv:property>
-  <sv:property sv:name="jcr:uuid" sv:type="String">
-    <sv:value>0bf119e9-c703-4819-9c75-8edfc4aad026</sv:value>
-  </sv:property>
-  <sv:property sv:name="hst:componentclassname" sv:type="String">
-    <sv:value>com.mootly.wcm.member.Tcs</sv:value>
-  </sv:property>
-  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String"/>
-  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String"/>
-  <sv:property sv:name="hst:template" sv:type="String">
-    <sv:value>tcs</sv:value>
-  </sv:property>
-</sv:node>
+  <sv:node sv:name="rebatesec90">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>eb48302c-271c-43a1-8b5c-1e8c50d9334a</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentclassname" sv:type="String">
+      <sv:value>com.mootly.wcm.member.RebateSec90</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String"/>
+    <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String"/>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>rebatesec90</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="tcs">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>0bf119e9-c703-4819-9c75-8edfc4aad026</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentclassname" sv:type="String">
+      <sv:value>com.mootly.wcm.member.Tcs</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String"/>
+    <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String"/>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>tcs</sv:value>
+    </sv:property>
+  </sv:node>
   <sv:node sv:name="capitalasset">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
       <sv:value>hst:component</sv:value>
@@ -826,57 +818,54 @@
       <sv:value>Securities</sv:value>
     </sv:property>
   </sv:node>
-  <sv:node sv:name="advancetaxgrid" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
-  <sv:property sv:name="jcr:primaryType" sv:type="Name">
-    <sv:value>hst:component</sv:value>
-  </sv:property>
-  <sv:property sv:name="jcr:uuid" sv:type="String">
-    <sv:value>cf86d3ed-2b25-4adc-b759-abaf1aa93942</sv:value>
-  </sv:property>
-  <sv:property sv:name="hst:componentclassname" sv:type="String">
-    <sv:value>com.mootly.wcm.member.AdvanceTax</sv:value>
-  </sv:property>
-  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String"/>
-  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String"/>
-  <sv:property sv:name="hst:template" sv:type="String">
-    <sv:value>advancetaxgrid</sv:value>
-  </sv:property>
-</sv:node>
-<sv:node sv:name="tdsfromsalary" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
-  <sv:property sv:name="jcr:primaryType" sv:type="Name">
-    <sv:value>hst:component</sv:value>
-  </sv:property>
-  <sv:property sv:name="jcr:uuid" sv:type="String">
-    <sv:value>a802822d-f826-44b6-a76e-0786a6850e50</sv:value>
-  </sv:property>
-  <sv:property sv:name="hst:componentclassname" sv:type="String">
-    <sv:value>com.mootly.wcm.member.TdsFromSalary</sv:value>
-  </sv:property>
-  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String"/>
-  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String"/>
-  <sv:property sv:name="hst:template" sv:type="String">
-    <sv:value>tdsfromsalary</sv:value>
-  </sv:property>
-</sv:node>
-  
-
-  <sv:node sv:name="tdsfromothers" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
-  <sv:property sv:name="jcr:primaryType" sv:type="Name">
-    <sv:value>hst:component</sv:value>
-  </sv:property>
-  <sv:property sv:name="jcr:uuid" sv:type="String">
-    <sv:value>c40fd440-7abc-45c6-9365-63ea74239cf8</sv:value>
-  </sv:property>
-  <sv:property sv:name="hst:componentclassname" sv:type="String">
-    <sv:value>com.mootly.wcm.member.TdsFromOthers</sv:value>
-  </sv:property>
-  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String"/>
-  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String"/>
-  <sv:property sv:name="hst:template" sv:type="String">
-    <sv:value>tdsfromothers</sv:value>
-  </sv:property>
-</sv:node>
-  
+  <sv:node sv:name="advancetaxgrid">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>cf86d3ed-2b25-4adc-b759-abaf1aa93942</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentclassname" sv:type="String">
+      <sv:value>com.mootly.wcm.member.AdvanceTax</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String"/>
+    <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String"/>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>advancetaxgrid</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="tdsfromsalary">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>a802822d-f826-44b6-a76e-0786a6850e50</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentclassname" sv:type="String">
+      <sv:value>com.mootly.wcm.member.TdsFromSalary</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String"/>
+    <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String"/>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>tdsfromsalary</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="tdsfromothers">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>c40fd440-7abc-45c6-9365-63ea74239cf8</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentclassname" sv:type="String">
+      <sv:value>com.mootly.wcm.member.TdsFromOthers</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String"/>
+    <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String"/>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>tdsfromothers</sv:value>
+    </sv:property>
+  </sv:node>
   <sv:node sv:name="houseincome">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
       <sv:value>hst:component</sv:value>
@@ -991,7 +980,6 @@
       <sv:value>standard.header.re</sv:value>
     </sv:property>
   </sv:node>
-
   <sv:node sv:name="adjustment-of-losses">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
       <sv:value>hst:component</sv:value>
@@ -1006,21 +994,18 @@
       <sv:value>adjustment.of.losses</sv:value>
     </sv:property>
   </sv:node>
-<sv:node sv:name="member.rebate.section89">
-  <sv:property sv:name="jcr:primaryType" sv:type="Name">
-    <sv:value>hst:component</sv:value>
-  </sv:property>
-  <sv:property sv:name="jcr:uuid" sv:type="String">
-    <sv:value>a16bf98e-3a1e-438c-b9cb-62c24c47fe97</sv:value>
-  </sv:property>
-  <sv:property sv:name="hst:componentclassname" sv:type="String">
-    <sv:value>com.mootly.wcm.member.RebateSection89</sv:value>
-  </sv:property>
-  <sv:property sv:name="hst:template" sv:type="String">
-    <sv:value>member.rebate.section89</sv:value>
-  </sv:property>
+  <sv:node sv:name="member.rebate.section89">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>a16bf98e-3a1e-438c-b9cb-62c24c47fe97</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentclassname" sv:type="String">
+      <sv:value>com.mootly.wcm.member.RebateSection89</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>member.rebate.section89</sv:value>
+    </sv:property>
+  </sv:node>
 </sv:node>
-</sv:node>
-
-
-
