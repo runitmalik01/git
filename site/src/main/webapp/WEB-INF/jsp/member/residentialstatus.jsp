@@ -20,13 +20,15 @@
 <c:set var="residentialstatus">
 	<fmt:message key="member.residential.status" />
 </c:set>
+<hippo-gogreen:title title="${residentialstatus}"></hippo-gogreen:title>
 <%
 	
 %>
 <script>
 	var qs = <c:out value="${jsonObject}" escapeXml="false"/>
 </script>
-
+<hst:actionURL var="actionUrl"></hst:actionURL>
+<form name="frmResidential" method="post" action="${actionUrl }">
 <ul>
 	<li>
 		<ul>
@@ -50,7 +52,7 @@
 					}
 				%>				
 					<ul id="ul_<c:out value="${item.key}"/>" style="display:none;visiblity:hidden">
-						<li style="display:inline"><c:out value="${item.value}"/></li>
+						<li style="display:inline"><c:out value="${item.value}"/><c:if test="${isAnswer eq true}"><input type="hidden" name="${item.key}" value="${item.value}"/></c:if></li>
 						<li style="display:inline">
 							<c:if test="${isAnswer != 'true'}">
 								<select class="answer" id="<c:out value="${item.key}"/>" name="<c:out value="${item.key}"/>">
@@ -65,6 +67,16 @@
 		</c:forEach>		
 	</li>
 </ul>
+<c:if test="${isAnswer eq true}"><a  id="hrefLogin" class="button orange">Save &amp; Next</a><a href="${modifiedSiteMapRefId}" class="button orange" style="margin-left:100px;">Next</a></c:if>
+</form>
+<script type="text/javascript"> 
+$('#submit').click(function(){
+	var vselect=document.getElementsByTagName('select');
+	for(var i=0; i < vselect.length ;i++){
+		var check=vselect.item(i).attr('style');
+	}
+});
+</script>
 
 <hst:element var="uiCustom" name="script">
     <hst:attribute name="type">text/javascript</hst:attribute>
@@ -92,6 +104,16 @@
 			            str += $(this).text() + " ";
 			  });			  
 			});		
+			$('#frmResidential input').keydown(function(e) {
+				    if (e.keyCode == 13) {
+				   		e.preventDefault();
+				        $('#frmResidential').submit();
+				    }
+				});
+				
+				$('#hrefLogin').click(function() {
+		 			$('#frmResidential').submit();
+				});
 		});    
 </hst:element>
 <hst:headContribution element="${uiCustom}" category="jsInternal"/>
