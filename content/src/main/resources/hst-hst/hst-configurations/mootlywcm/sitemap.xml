@@ -723,7 +723,7 @@
       <sv:value>forgotpass</sv:value>
     </sv:property>
   </sv:node>
-<<<<<<< .mine  <sv:node sv:name="member">
+<sv:node sv:name="member">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
       <sv:value>hst:sitemapitem</sv:value>
     </sv:property>
@@ -1627,7 +1627,7 @@
       </sv:node>
     </sv:node>
   </sv:node>
-=======  <sv:node sv:name="member" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+ <sv:node sv:name="member" >
 	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
 	    <sv:value>hst:sitemapitem</sv:value>
 	  </sv:property>
@@ -1979,7 +1979,7 @@
 	            </sv:property>
 	          </sv:node>
 	          
-	         <sv:node sv:name="capitalgains.html" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+	         <sv:node sv:name="capitalgains.html">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hst:sitemapitem</sv:value>
   </sv:property>
@@ -2483,7 +2483,7 @@
 	    </sv:node>
 	  </sv:node>
 	</sv:node>  
->>>>>>> .theirs  <sv:node sv:name="startapplication">
+ <sv:node sv:name="startapplication">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
       <sv:value>hst:sitemapitem</sv:value>
     </sv:property>
