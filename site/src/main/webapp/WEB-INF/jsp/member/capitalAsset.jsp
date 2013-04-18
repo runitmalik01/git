@@ -99,17 +99,16 @@ else {
 				<tr height="30px">
 					<td class="label"><fmt:message
 							key="capital.gain.date.acquisition" /></td>
-					<td class="input"><c:if test="${ not empty parentBean}">
+					<td class="input">
 							<select onChange="dpdown()" id="drop" name="dropvalue"
 								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.dateAcquisition}"/></c:if>" required="required"
 								onblur="fill()">
 								<option value="">Select</option>
-
-								<c:forEach var="numberyear" items="${objTreeMapYear}">
+									<c:forEach var="numberyear" items="${objTreeMapYear}">
 									<option value="${numberyear.key}">${numberyear.value}</option>
 								</c:forEach>
 							</select>
-						</c:if> 
+						
 
 						
 				<tr height="30px">
