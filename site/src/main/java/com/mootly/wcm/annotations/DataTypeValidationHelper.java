@@ -4,7 +4,11 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
 public  final class DataTypeValidationHelper {
-	public static enum DataTypeValidationType {DECIMAL,INDIANDATE,ITRETURNTYPE,PAN,TAN,BSR,Maxlength}
+
+	
+
+	public static enum DataTypeValidationType {DECIMAL,INDIANDATE,ITRETURNTYPE,PAN,TAN,BSR,Maxlength,CHALLANNO,TDSCERTIFICATE}
+
 	final static public boolean isOfType(String inStr,DataTypeValidationType inType) {
 		switch (inType) {
 			case INDIANDATE:
@@ -41,6 +45,15 @@ public  final class DataTypeValidationHelper {
 				else {
 					return false;
 				}
+
+			case CHALLANNO:
+				if (inStr != null && inStr.matches("^[0-9]{5}")) {
+					return true;
+				}
+				else {
+					return false;
+				}
+
 			case Maxlength:
 				if (inStr != null && inStr.matches("^[0-9]{14}")) {
 					return true;
@@ -48,6 +61,14 @@ public  final class DataTypeValidationHelper {
 				else {
 					return false;
 				}
+			case TDSCERTIFICATE:
+				if (inStr != null && inStr.matches("^[a-zA-Z0-9][a-zA-Z0-9][a-zA-Z0-9][a-zA-Z0-9][a-zA-Z0-9][a-zA-Z0-9][a-zA-Z0-9][a-zA-Z0-9]")) {
+					return true;
+				}
+				else {
+					return false;
+				}
+
 		}
 			
 		return true;
