@@ -30,6 +30,7 @@ public final class ValueListServiceImpl implements ValueListService{
 	private ResourceBundle objValueListNameOfHeadBundle = null;
 	private ResourceBundle objValueListNaturePayment = null;
 	private ResourceBundle objValueListNumbers = null;
+	private ResourceBundle objValueListDeductedYear = null;
 
 	private static final ValueListServiceImpl objValueListServiceImpl = new ValueListServiceImpl(); 
 
@@ -48,6 +49,7 @@ public final class ValueListServiceImpl implements ValueListService{
 		 objValueListNameOfHeadBundle = ResourceBundle.getBundle("valueList_nameofhead");
 		 objValueListNaturePayment=ResourceBundle.getBundle("valueList_naturepayment");
 		 objValueListNumbers=ResourceBundle.getBundle("valueList_numbers");
+		 objValueListDeductedYear=ResourceBundle.getBundle("valueList_deductedyear");
 	 }
 
 	/**
@@ -271,6 +273,20 @@ public final class ValueListServiceImpl implements ValueListService{
 				TreeMapNumbersDropdown.put(objValueListNumbers.getString("valueList.ten"), objValueListNumbers.getString("valueList.ten"));
 				
 				return TreeMapNumbersDropdown;
+			}
+			
+			public TreeMap getDeducterdYear() {
+				// TODO Auto-generated method stub
+				TreeMap TreeDeducterdYear =new TreeMap();
+				 TreeDeducterdYear.put("1", objValueListDeductedYear.getString("valueList.2010"));
+				 TreeDeducterdYear.put("2", objValueListDeductedYear.getString("valueList.2011"));
+				 TreeDeducterdYear.put("3", objValueListDeductedYear.getString("valueList.2012"));
+				 TreeDeducterdYear.put("4", objValueListDeductedYear.getString("valueList.2013"));
+				 TreeDeducterdYear.put("5", objValueListDeductedYear.getString("valueList.2014"));
+				
+				
+				
+				return  TreeDeducterdYear;
 			}
 
 	 }
