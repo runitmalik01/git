@@ -7,7 +7,7 @@ Here we are calculating salary income
 
  --%>
 
-
+<%@page import="com.mootly.wcm.beans.compound.SalaryIncomeDetail"%>
 <%@include file="../includes/tags.jspf"%>
 <%@ page import="com.mootly.wcm.utils.*"%>
 <%@ page import="java.util.*"%>
@@ -17,41 +17,51 @@ Here we are calculating salary income
 	<fmt:message key="member.calculation.title" />
 </c:set>
 <hippo-gogreen:title title="${calculationtitle}" />
+<div id="breadcrumbs">
+	<fmt:message key="member.location.label" />
+	&nbsp;
 
-<script type="text/javascript"
-	src="http://yui.yahooapis.com/2.9.0/build/datatable/datatable-min.js"></script>
-<link rel="stylesheet" type="text/css"
-	href="http://yui.yahooapis.com/2.9.0/build/datatable/assets/skins/sam/datatable.css" />
+	<hst:link var="home" siteMapItemRefId="home" />
+	<a href="${home}"><fmt:message key="products.detail.location.home" />
+	</a>&gt;
 
-<ol id="breadcrumbs">
-	<li><fmt:message key="member.location.label" /></li>
-	<li><hst:link var="home" siteMapItemRefId="home" /> <a
-		href="${home}"><fmt:message key="products.detail.location.home" />
-	</a>&gt;</li>
-	<li><hst:link var="salaryincome" siteMapItemRefId="salaryincome"></hst:link>
-		<a href="${salaryincome}"><fmt:message key="member.start.salary" />
-	</a>
-	</li>
-	<li><hst:link var="otherincome" siteMapItemRefId="otherincome"></hst:link>
-		<a href="${otherincome}"><fmt:message
-				key="member.start.otherincome" /> </a>
-	</li>
-	<li><hst:link var="calculation" siteMapItemRefId="calculation"></hst:link>
+	<hst:link var="startapplication"
+		siteMapItemRefId="member-personal-information"></hst:link>
+	<a href="${startapplication}"><fmt:message
+			key="member.start.application" /> </a>&gt;
+
+	<hst:link var="memberothersources"
+		siteMapItemRefId="member-other-income"></hst:link>
+	<a href="${memberothersources}"><fmt:message
+			key="member.other.income" /> </a>
+	<hst:link var="calculation" siteMapItemRefId="calculation"></hst:link>
 		<a href="${calculation}"><fmt:message
 				key="member.start.calculation" /> </a>
-	</li>
-</ol>
-<br />
+</div>
+<hst:link var="mainSiteMapRefId"
+	siteMapItemRefId="${mainSiteMapItemRefId}" />
+<%
+	String varToReplace = (String) pageContext
+			.getAttribute("mainSiteMapRefId");
+	if (varToReplace != null) {
+		String pan = (String) request.getAttribute("pan");
+		String modifiedSiteMapRefId = varToReplace.replaceAll(
+				"_default_", pan).replaceAll("contactinformation",
+				"residetialstatus");
+		pageContext.setAttribute("modifiedSiteMapRefId",
+				modifiedSiteMapRefId);
+	} else {
+		pageContext.setAttribute("modifiedSiteMapRefId",
+				mainSiteMapRefId);
+	}
+%>
 <hst:actionURL var="actionUrl"></hst:actionURL>
 <form id="calculationfrm" action="${actionUrl}" name="calculationfrm"
 	method="post">
 	<input type="hidden" name="screenMode" id="screenMode" value="CREATE" />
-	<div id="demo" class="yui3-module">
-		<div class="yui3-hd">
-			<h2>Calculation Summary From all Head</h2>
-		</div>
-		<div class="yui3-bd" align="center">
-			<table class="calculation of income" border="1" width="600">
+			<fieldset>
+			<legend style="color: blue" align="left">Calculation Summary From all Head</legend>
+			<table class="calculation of income" border="1" width="500">
 				<tr align="left">
 					<th><b>Income Head</b>
 					</th>
@@ -64,7 +74,7 @@ Here we are calculating salary income
 					<td><b>Gross Salary</b>
 					</td>
 					<td></td>
-					<td align="right"><c:out value="${ GROSS_SALARY}"/></td>
+					<td align="right"><%=request.getAttribute("GROSS_SALARY")%></td>
 				</tr>
 				<tr align="left">
 					<td><b>House Property</b>
@@ -123,7 +133,7 @@ Here we are calculating salary income
 				<tr align="left">
 					<td><b>Income Tax</b>
 					</td>
-					<td= align="right"><%=request.getAttribute("Incometax")%></td>
+					<td align="right"><%=request.getAttribute("Incometax")%></td>
 					<td></td>
 				</tr>
 				<tr align="left">
@@ -249,8 +259,7 @@ Here we are calculating salary income
 				<input name="button" type="button" value="Next"
 					onclick="nextScreen()" />
 			</p>
-		</div>
-	</div>
+			</fieldset>
 </form>
 
 
@@ -266,16 +275,3 @@ document.getElementById('calculationfrm').submit();
     
     
 </script>
-
-<hst:headContribution keyHint="formcss">
-	<link rel="stylesheet"
-		href='<hst:link path="/css/animation/animation.css"/>' type="text/css" />
-</hst:headContribution>
-<hst:headContribution keyHint="formcss">
-	<link rel="stylesheet" href='<hst:link path="/css/adornment.css"/>'
-		type="text/css" />
-</hst:headContribution>
-<hst:headContribution keyHint="seedFile" category="jsExternal">
-	<script src="http://yui.yahooapis.com/3.8.0/build/yui/yui-min.js"
-		type="text/javascript"></script>
-</hst:headContribution>
