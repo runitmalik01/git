@@ -30,6 +30,14 @@ function calculate(){
 
 <hst:link var="mainSiteMapRefId"/>
 
+	
+<%
+ValueListService objValueListService = ValueListServiceImpl.getInstance();
+TreeMap objTreeMapDeductedYear = (TreeMap) objValueListService.getDeducterdYear();
+
+request.setAttribute("objTreeMapDeductedYear", objTreeMapDeductedYear);
+%>
+
 <%
 String varToReplace = (String) pageContext.getAttribute("mainSiteMapRefId");
 if (varToReplace != null) {
@@ -41,6 +49,11 @@ else {
 	pageContext.setAttribute("modifiedSiteMapRefId",mainSiteMapRefId);
 }
 %>
+<c:if test="${not empty formMap}">
+		<c:forEach items="${formMap.message}" var="item">
+			<div class="alert alert-error"><fmt:message key="${item.value}" /></div>
+		</c:forEach>
+	</c:if>
 <h4>
 	<fmt:message key="member.tds.from.others" />
 </h4>
@@ -84,16 +97,21 @@ else {
 					<td class="label"><fmt:message key="tds.unique.certificate" />
 					</td>
 					<td class="input"><input type="text" name="tds_certificate"
-						required="required" class="validate[required] text-input"
+						class="validate[required] text-input" maxlength="8" title="Please enter 8 digit alphanumeric value"
 						value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.tds_Certificate}"/></c:if>"
 						id="income_chargeable"></td>
 				</tr>
 				<tr height="30px">
 					<td class="label"><fmt:message key="tds.financial.year" />
 					</td>
-					<td class="input"><input type="text" name="financial_year"
-						value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.financial_Year}"/></c:if>"
-						 id="consideration" class="validate[required,custom[integer],maxSize[4]] text-input" /></td>
+					<td class="input"><select name="financial_year" id="consideration" title=" Enter deducted year as,for Ex. 2011 for 2011-2012 "
+								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.financial_Year}"/></c:if>" >
+								
+								<option value="">Select</option>
+									<c:forEach var="yeardeducted" items="${objTreeMapDeductedYear}">
+									<option value="${yeardeducted.key}">${yeardeducted.value}</option>
+								</c:forEach>
+							</select>
 				</tr>
 				<tr height="30px">
 					<td class="label"><fmt:message key="tds.total.tax.deducted" />
