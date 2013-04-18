@@ -8,18 +8,6 @@
 <%@include file="../includes/commonincludes.jspf"%>
 
 <hst:link var ="mainSiteMapRefId" siteMapItemRefId="${mainSiteMapItemRefId}"/>
-<%
-String varToReplace = (String) pageContext.getAttribute("mainSiteMapRefId");
-if (varToReplace != null) {
-    String pan = (String) request.getAttribute("pan");
-	String modifiedSiteMapRefId = varToReplace.replaceAll("_default_",pan);
-	pageContext.setAttribute("modifiedSiteMapRefId",modifiedSiteMapRefId);
-}
-else {
-	pageContext.setAttribute("modifiedSiteMapRefId",mainSiteMapRefId);
-}
-%>
-
 <!-- used to set title  -->
 
 <c:set var="interesttitle">
@@ -39,7 +27,7 @@ else {
 
 <div class="page type-page">
 	<h3 id="respond1">ADD:INTEREST</h3>
-		<form id="frmdata" action="${actionUrl}" name="frmdata" method="post" class="formular">
+		<form id="frmdata" action="${actionUrl}" name="frmdata" method="post">
 			<fieldset>
 				<legend>Interest</legend>
 				<p>
