@@ -2257,6 +2257,19 @@
       <sv:value>jsp/member/capitalAsset.jsp</sv:value>
     </sv:property>
   </sv:node>
+  <sv:node sv:name="selfassesmenttax" >
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:template</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>300953ea-76f8-4b52-92ca-334dcc488587</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:renderpath" sv:type="String">
+    <sv:value>jsp/member/selfAssesmentTax.jsp</sv:value>
+  </sv:property>
+</sv:node>
+  
+  
   <sv:node sv:name="npvcalculator">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
       <sv:value>hst:template</sv:value>
