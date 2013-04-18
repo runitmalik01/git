@@ -18,6 +18,148 @@
       <sv:value>jsp/common/comments.jsp</sv:value>
     </sv:property>
   </sv:node>
+<!-- for calculation from all head-->
+<sv:node sv:name="member.calculation">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:template</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>a1510f31-303d-497f-9852-d56a3f1d7449</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:renderpath" sv:type="String">
+    <sv:value>jsp/member/calculation.jsp</sv:value>
+  </sv:property>
+</sv:node>
+<!--itr form selection-->
+<sv:node sv:name="incometaxformselection">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:template</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>749dfada-4e26-46f4-82fa-ffac43590dc4</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:renderpath" sv:type="String">
+    <sv:value>jsp/member/incometaxformselection.jsp</sv:value>
+  </sv:property>
+</sv:node>
+
+<!-- for otherincome documents-->
+<sv:node sv:name="otherincome">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:template</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>bc6441ba-5a36-4fb3-96ab-e0b5e518589d</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:renderpath" sv:type="String">
+    <sv:value>jsp/member/otherincome.jsp</sv:value>
+  </sv:property>
+</sv:node>
+
+<sv:node sv:name="member.bankinterest">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:template</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>5d20a1d1-b216-40e2-a650-8bed7227a914</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:renderpath" sv:type="String">
+    <sv:value>jsp/member/bankinterest.jsp</sv:value>
+  </sv:property>
+</sv:node>
+<sv:node sv:name="member.otherinterest">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:template</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>23cc1795-dd1c-4bde-b908-aa48b4228237</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:renderpath" sv:type="String">
+    <sv:value>jsp/member/otherinterest.jsp</sv:value>
+  </sv:property>
+</sv:node>
+
+<sv:node sv:name="errormessage">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:template</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>ee67167d-70f6-468b-90ef-444e4470565f</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:renderpath" sv:type="String">
+    <sv:value>jsp/member/errormessage.jsp</sv:value>
+  </sv:property>
+</sv:node>
+
+<sv:node sv:name="member.schedule80C">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:template</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>a67761a3-2cb9-4d64-af3e-7bc9c976fbab</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:renderpath" sv:type="String">
+    <sv:value>jsp/member/schedule80C.jsp</sv:value>
+  </sv:property>
+</sv:node>
+
+<sv:node sv:name="member.schedule80IA">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:template</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>88836253-e5d9-426a-a670-35a8c6741b86</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:renderpath" sv:type="String">
+    <sv:value>jsp/member/schedule80IA.jsp</sv:value>
+  </sv:property>
+</sv:node>
+<sv:node sv:name="member.schedule80IB">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:template</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>829ac000-9f64-4f14-acf0-8eff2265133a</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:renderpath" sv:type="String">
+    <sv:value>jsp/member/schedule80IB.jsp</sv:value>
+  </sv:property>
+</sv:node>
+<sv:node sv:name="member.schedule80IC">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:template</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>fa7bbc9a-c5a8-4dc2-8307-012832c9e80f</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:renderpath" sv:type="String">
+    <sv:value>jsp/member/schedule80IC.jsp</sv:value>
+  </sv:property>
+</sv:node>
+<sv:node sv:name="member.schedule80GG">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:template</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>5b9b2a0a-fdeb-4c77-ac31-93c1fc6a8e2e</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:renderpath" sv:type="String">
+    <sv:value>jsp/member/schedule80GG.jsp</sv:value>
+  </sv:property>
+</sv:node>
+
+<sv:node sv:name="sourceofincome">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:template</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>161e2329-0ee4-4a71-ba6a-79aa6b7cd2a5</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:renderpath" sv:type="String">
+    <sv:value>jsp/member/sourceofincome.jsp</sv:value>
+  </sv:property>
+</sv:node>
+
   <sv:node sv:name="member.calculation">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
       <sv:value>hst:template</sv:value>
@@ -139,6 +281,7 @@
       <sv:value>jsp/member/sourceofincome.jsp</sv:value>
     </sv:property>
   </sv:node>
+
   <sv:node sv:name="member.salaryincome">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
       <sv:value>hst:template</sv:value>
