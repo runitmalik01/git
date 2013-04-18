@@ -81,7 +81,7 @@ else {
 					<tr height="30px">
 						<td class="label"><fmt:message key="tds.serial.challan" /></td>
 						<td class="input"><input type="text" name="Serial_challan"
-							required="required"
+							
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.p_Serial}"/></c:if>"
 							id="Serial_challan">
 						</td>
