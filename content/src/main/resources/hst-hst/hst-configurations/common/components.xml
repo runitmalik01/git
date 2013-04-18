@@ -20,6 +20,54 @@
       <sv:value>standard.header.ftl</sv:value>
     </sv:property>
   </sv:node>
+<!-- for other source income-->
+<sv:node sv:name="member.otherincome">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:component</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>233b840b-b691-48f2-9eca-aad72e7a6523</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:componentclassname" sv:type="String">
+    <sv:value>com.mootly.wcm.member.OtherIncome</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:template" sv:type="String">
+    <sv:value>otherincome</sv:value>
+  </sv:property>
+</sv:node>
+
+<!--form selection-->
+<sv:node sv:name="IncomeTaxFormSelection">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:component</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>3bdebbc1-362d-4e93-9241-2c505fc8c4d5</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:componentclassname" sv:type="String">
+    <sv:value>com.mootly.wcm.member.IncomeTaxFormSelection</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:template" sv:type="String">
+    <sv:value>incometaxformselection</sv:value>
+  </sv:property>
+</sv:node>
+
+<!-- for calculation from all head-->
+<sv:node sv:name="member.calculation">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:component</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>c29da3a8-9f5d-47ff-a310-0512f1742bf1</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:componentclassname" sv:type="String">
+    <sv:value>com.mootly.wcm.member.Calculations</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:template" sv:type="String">
+    <sv:value>member.calculation</sv:value>
+  </sv:property>
+</sv:node>
+
   <sv:node sv:name="member.otherincome">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
       <sv:value>hst:component</sv:value>
@@ -34,20 +82,7 @@
       <sv:value>otherincome</sv:value>
     </sv:property>
   </sv:node>
-  <sv:node sv:name="member.calculation">
-    <sv:property sv:name="jcr:primaryType" sv:type="Name">
-      <sv:value>hst:component</sv:value>
-    </sv:property>
-    <sv:property sv:name="jcr:uuid" sv:type="String">
-      <sv:value>c29da3a8-9f5d-47ff-a310-0512f1742bf1</sv:value>
-    </sv:property>
-    <sv:property sv:name="hst:componentclassname" sv:type="String">
-      <sv:value>com.mootly.wcm.member.Calculations</sv:value>
-    </sv:property>
-    <sv:property sv:name="hst:template" sv:type="String">
-      <sv:value>member.calculation</sv:value>
-    </sv:property>
-  </sv:node>
+ 
   <sv:node sv:name="sourceofincome">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
       <sv:value>hst:component</sv:value>
