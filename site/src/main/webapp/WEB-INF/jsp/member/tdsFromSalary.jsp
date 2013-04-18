@@ -6,9 +6,7 @@
 <c:set var="capitalasset">
 	<fmt:message key="member.capital.title" />
 </c:set>
-<hippo-gogreen:title title="${capitalasset}" />
-<hst:link var="Securities" siteMapItemRefId="Securities"></hst:link>
-<hst:actionURL var="actionUrl"></hst:actionURL>
+
 
 <script type="text/javascript"
 	src="http://yui.yahooapis.com/2.9.0/build/datatable/datatable-min.js"></script>
@@ -31,7 +29,11 @@ $m(document).ready(function () {
     });
 });
 </script>
-
+<c:if test="${not empty formMap}">
+		<c:forEach items="${formMap.message}" var="item">
+			<div class="alert alert-error"><fmt:message key="${item.value}" /></div>
+		</c:forEach>
+	</c:if>
 <hst:link var ="mainSiteMapRefId" siteMapItemRefId="${mainSiteMapItemRefId}"/>
 <%
 String varToReplace = (String) pageContext.getAttribute("mainSiteMapRefId");
@@ -65,7 +67,7 @@ else {
 					<td class="input">
 							<input type="text" name="tan_employer"
 								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.tan_Employer}"/></c:if>" id="cost" maxlength="10"
-								required="required" 
+								
 								title="This field accept first four alphabate next five numeric then single alphabate" placeholder="10 Characters" />
 						</td></tr>
 						
@@ -130,6 +132,7 @@ else {
 						<th><b>Name of Employer</b></th>
 						<th><b>Income Chargeable under head salaries</b></th>
 						<th><b>Total tax Deducted</b></th>
+						<th><b>Actions</b></th>
 					</tr>
 					<c:if test="${not empty parentBean}">
 						<c:forEach items="${parentBean.tdsSalaryDetailList}" var="tdsfromsalarydetail">
