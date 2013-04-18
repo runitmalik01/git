@@ -32,9 +32,10 @@ import com.mootly.wcm.components.ITReturnComponent;
 @ChildBean(childBeanClass=SalaryIncomeDetail.class)
 @AdditionalBeans(additionalBeansToLoad=MemberPersonalInformation.class)
 @RequiredBeans(requiredBeans={MemberPersonalInformation.class})
-@FormFields(fieldNames={"Employe_category","Name_employer","Pan_employer","Tan_employer","Address","City","State","Pin","From","To","Gross_salary","Allowance","Perquisite","Profit"})
+@FormFields(fieldNames={"Employe_category","Name_employer","Pan_employer","Tan_employer","Address","City","State","Pin","From","To","Gross_salary","Allowance","Perquisite","Profit","Taxable_earning"})
 @RequiredFields(fieldNames={"Name_employer","Tan_employer","City","Gross_salary"})
-@DataTypeValidationFields(fieldNames={"Gross_salary"},dataTypes={DataTypeValidationHelper.DataTypeValidationType.DECIMAL})
+@DataTypeValidationFields(fieldNames={"Gross_salary","Tan_employer","Pan_employer"},
+dataTypes={DataTypeValidationHelper.DataTypeValidationType.DECIMAL,DataTypeValidationHelper.DataTypeValidationType.TAN,DataTypeValidationHelper.DataTypeValidationType.PAN})
 public class SalaryIncome extends ITReturnComponent {
 	
 	private static final Logger log = LoggerFactory.getLogger(SalaryIncome.class);
