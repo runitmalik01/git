@@ -35,7 +35,7 @@
                 "maxSize": {
                     "regex": "none",
                     "alertText": "* Maximum ",
-                    "alertText2": " characters allowed"
+                    "alertText2": " integers allowed"
                 },
 				"groupRequired": {
                     "regex": "none",
@@ -79,6 +79,11 @@
                     // credit: jquery.h5validate.js / orefalo
                     "regex": /^([\+][0-9]{1,3}[\ \.\-])?([\(]{1}[0-9]{2,6}[\)])?([0-9\ \.\-\/]{3,20})((x|ext|extension)[\ ]?[0-9]{1,4})?$/,
                     "alertText": "* Invalid phone number"
+                },
+                "tan": {
+                    // credit: jquery.h5validate.js / orefalo
+                	"regex":/^[A-Z]{4}\d{5}[A-Z]$/,
+                    "alertText": "* Please enter first four alphabets next five numeric and last one alphabet"
                 },
                 "email": {
                     // HTML5 compatible email regex ( http://www.whatwg.org/specs/web-apps/current-work/multipage/states-of-the-type-attribute.html#    e-mail-state-%28type=email%29 )
