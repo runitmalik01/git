@@ -20,6 +20,36 @@
       <sv:value>standard.header.ftl</sv:value>
     </sv:property>
   </sv:node>
+
+  <sv:node sv:name="member.otherincome">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>233b840b-b691-48f2-9eca-aad72e7a6523</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentclassname" sv:type="String">
+      <sv:value>com.mootly.wcm.member.OtherIncome</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>otherincome</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="member.calculation">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>c29da3a8-9f5d-47ff-a310-0512f1742bf1</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentclassname" sv:type="String">
+      <sv:value>com.mootly.wcm.member.Calculations</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>member.calculation</sv:value>
+    </sv:property>
+  </sv:node>
+
 <!-- for other source income-->
 <sv:node sv:name="member.otherincome">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
@@ -83,6 +113,7 @@
     </sv:property>
   </sv:node>
  
+
   <sv:node sv:name="sourceofincome">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
       <sv:value>hst:component</sv:value>
@@ -1029,6 +1060,7 @@
       <sv:value>adjustment.of.losses</sv:value>
     </sv:property>
   </sv:node>
+
   <sv:node sv:name="member.rebate.section89">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
       <sv:value>hst:component</sv:value>
@@ -1043,4 +1075,36 @@
       <sv:value>member.rebate.section89</sv:value>
     </sv:property>
   </sv:node>
+  <sv:node sv:name="selfassesmenttax">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>6a5375cc-b35c-4aab-ad54-40817a6941be</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentclassname" sv:type="String">
+      <sv:value>com.mootly.wcm.member.SelfAssesmentTax</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String"/>
+    <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String"/>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>selfassesmenttax</sv:value>
+    </sv:property>
+  </sv:node>
+
+  <sv:node sv:name="member.rebate.section89">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>a16bf98e-3a1e-438c-b9cb-62c24c47fe97</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentclassname" sv:type="String">
+      <sv:value>com.mootly.wcm.member.RebateSection89</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>member.rebate.section89</sv:value>
+    </sv:property>
+  </sv:node>
+
 </sv:node>
