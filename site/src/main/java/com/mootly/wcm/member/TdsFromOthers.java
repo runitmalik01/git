@@ -8,6 +8,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.mootly.wcm.annotations.ChildBean;
+import com.mootly.wcm.annotations.DataTypeValidationFields;
+import com.mootly.wcm.annotations.DataTypeValidationHelper;
 import com.mootly.wcm.annotations.FormFields;
 import com.mootly.wcm.annotations.PrimaryBean;
 import com.mootly.wcm.beans.TdsFromothersDocument;
@@ -23,6 +25,7 @@ import com.mootly.wcm.components.ITReturnComponent;
 @ChildBean(childBeanClass=TdsFromothersDetail.class)
 
 @FormFields(fieldNames={"tan_deductor","name_deductor","tds_certificate","financial_year","total_taxdeducted","amount"})
+@DataTypeValidationFields(fieldNames={"tan_deductor","tds_certificate"},dataTypes={DataTypeValidationHelper.DataTypeValidationType.TAN,DataTypeValidationHelper.DataTypeValidationType.TDSCERTIFICATE})
 public class TdsFromOthers extends ITReturnComponent {
 	
 	private static final Logger log = LoggerFactory.getLogger(TdsFromSalary.class);
