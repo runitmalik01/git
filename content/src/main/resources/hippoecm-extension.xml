@@ -2711,6 +2711,160 @@
       </sv:property>
    </sv:node>
    
+     <sv:node sv:name="mootlywcm-type-advancetaxdetail">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+         <sv:value>hippo:initializeitem</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippo:contentresource" sv:type="String">
+         <sv:value>hippo-namespaces/mootlywcm/advancetaxdetail.xml</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippo:contentroot" sv:type="String">
+         <sv:value>/hippo:namespaces/mootlywcm</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippo:sequence" sv:type="Double">
+         <sv:value>11051.088</sv:value>
+      </sv:property>
+   </sv:node>
+   
+     <sv:node sv:name="mootlywcm-type-advancetaxdocument">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+         <sv:value>hippo:initializeitem</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippo:contentresource" sv:type="String">
+         <sv:value>hippo-namespaces/mootlywcm/advancetaxdocument.xml</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippo:contentroot" sv:type="String">
+         <sv:value>/hippo:namespaces/mootlywcm</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippo:sequence" sv:type="Double">
+         <sv:value>11051.088</sv:value>
+      </sv:property>
+   </sv:node>
+   
+     <sv:node sv:name="mootlywcm-type-selfassesmenttaxdetail">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+         <sv:value>hippo:initializeitem</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippo:contentresource" sv:type="String">
+         <sv:value>hippo-namespaces/mootlywcm/selfassesmenttaxdetail.xml</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippo:contentroot" sv:type="String">
+         <sv:value>/hippo:namespaces/mootlywcm</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippo:sequence" sv:type="Double">
+         <sv:value>11051.088</sv:value>
+      </sv:property>
+   </sv:node>
+   
+     <sv:node sv:name="mootlywcm-type-selfassesmenttaxdocument">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+         <sv:value>hippo:initializeitem</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippo:contentresource" sv:type="String">
+         <sv:value>hippo-namespaces/mootlywcm/selfassesmenttaxdocument.xml</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippo:contentroot" sv:type="String">
+         <sv:value>/hippo:namespaces/mootlywcm</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippo:sequence" sv:type="Double">
+         <sv:value>11051.088</sv:value>
+      </sv:property>
+   </sv:node>
+   
+     <sv:node sv:name="mootlywcm-type-tdsfromsalarydetail">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+         <sv:value>hippo:initializeitem</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippo:contentresource" sv:type="String">
+         <sv:value>hippo-namespaces/mootlywcm/tdsfromsalarydetail.xml</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippo:contentroot" sv:type="String">
+         <sv:value>/hippo:namespaces/mootlywcm</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippo:sequence" sv:type="Double">
+         <sv:value>11051.088</sv:value>
+      </sv:property>
+   </sv:node>
+   
+     <sv:node sv:name="mootlywcm-type-tdsfromsalarydocument">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+         <sv:value>hippo:initializeitem</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippo:contentresource" sv:type="String">
+         <sv:value>hippo-namespaces/mootlywcm/tdsfromsalarydocument.xml</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippo:contentroot" sv:type="String">
+         <sv:value>/hippo:namespaces/mootlywcm</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippo:sequence" sv:type="Double">
+         <sv:value>11051.088</sv:value>
+      </sv:property>
+   </sv:node>
+   
+      <sv:node sv:name="mootlywcm-type-securitiesdetail">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+         <sv:value>hippo:initializeitem</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippo:contentresource" sv:type="String">
+         <sv:value>hippo-namespaces/mootlywcm/securitiesdetail.xml</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippo:contentroot" sv:type="String">
+         <sv:value>/hippo:namespaces/mootlywcm</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippo:sequence" sv:type="Double">
+         <sv:value>11051.088</sv:value>
+      </sv:property>
+   </sv:node>
+   
+     <sv:node sv:name="mootlywcm-type-securitiesdocument">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+         <sv:value>hippo:initializeitem</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippo:contentresource" sv:type="String">
+         <sv:value>hippo-namespaces/mootlywcm/securitiesdocument.xml</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippo:contentroot" sv:type="String">
+         <sv:value>/hippo:namespaces/mootlywcm</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippo:sequence" sv:type="Double">
+         <sv:value>11051.088</sv:value>
+      </sv:property>
+   </sv:node>
+   
+   
+      <sv:node sv:name="mootlywcm-type-tdsfromothersdetail">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+         <sv:value>hippo:initializeitem</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippo:contentresource" sv:type="String">
+         <sv:value>hippo-namespaces/mootlywcm/securitiesdetail.xml</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippo:contentroot" sv:type="String">
+         <sv:value>/hippo:namespaces/mootlywcm</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippo:sequence" sv:type="Double">
+         <sv:value>11051.088</sv:value>
+      </sv:property>
+   </sv:node>
+   
+     <sv:node sv:name="mootlywcm-type-tdsfromothersdocument">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+         <sv:value>hippo:initializeitem</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippo:contentresource" sv:type="String">
+         <sv:value>hippo-namespaces/mootlywcm/securitiesdocument.xml</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippo:contentroot" sv:type="String">
+         <sv:value>/hippo:namespaces/mootlywcm</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippo:sequence" sv:type="Double">
+         <sv:value>11051.088</sv:value>
+      </sv:property>
+   </sv:node>
+   
+   
+   
+   
      <sv:node sv:name="mootlywcm-type-adjustmentoflossesdoc">
       <sv:property sv:name="jcr:primaryType" sv:type="Name">
          <sv:value>hippo:initializeitem</sv:value>
