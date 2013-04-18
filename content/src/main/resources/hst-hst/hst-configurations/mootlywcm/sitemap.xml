@@ -2451,6 +2451,38 @@
 	              <sv:value>members</sv:value>
 	            </sv:property>
 	          </sv:node>
+			<!--taxsummary-->
+<sv:node sv:name="taxsummary.html">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:sitemapitem</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>cd1a5f50-8fbc-4f51-b39e-d5866b13505d</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+    <sv:value>hst:pages/calculation</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+    <sv:value>pan</sv:value>
+    <sv:value>mainSiteMapItemRefId</sv:value>
+    <sv:value>action</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+    <sv:value>${2}</sv:value>
+    <sv:value>membersummarypage</sv:value>
+    <sv:value>EDIT</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:refId" sv:type="String">
+    <sv:value>membersummarypage</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:relativecontentpath" sv:type="String">
+    <sv:value>members</sv:value>
+  </sv:property>
+</sv:node>
+
+
+
+
 	          <sv:node sv:name="tcs.html">
 	            <sv:property sv:name="jcr:primaryType" sv:type="Name">
 	              <sv:value>hst:sitemapitem</sv:value>
