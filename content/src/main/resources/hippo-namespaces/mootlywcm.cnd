@@ -156,6 +156,9 @@ orderable
 [mootlywcm:MemberDeductionScheduleC] > hippostd:relaxed, mootlywcm:basedocument orderable
 
 
+[mootlywcm:incometaxformselectiondocument] > hippostd:relaxed, mootlywcm:basedocument orderable
+
+
 [mootlywcm:MemberDeductionScheduleIA] > hippostd:relaxed, mootlywcm:basedocument orderable
 
 
