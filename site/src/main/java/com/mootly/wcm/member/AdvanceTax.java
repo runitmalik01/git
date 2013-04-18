@@ -27,7 +27,9 @@ import com.mootly.wcm.components.ITReturnComponent;
 
 @FormFields(fieldNames={"bsr_code","date_credit","Serial_challan","amount"})
 @RequiredFields(fieldNames={"bsr_code","date_credit","Serial_challan","amount"})
-@DataTypeValidationFields(fieldNames={"bsr_code"},dataTypes={DataTypeValidationHelper.DataTypeValidationType.BSR})
+@DataTypeValidationFields(fieldNames={"bsr_code","Serial_challan","amount"},dataTypes={DataTypeValidationHelper.DataTypeValidationType.BSR,
+		DataTypeValidationHelper.DataTypeValidationType.CHALLANNO
+		})
 public class AdvanceTax extends ITReturnComponent {
 	
 	private static final Logger log = LoggerFactory.getLogger(TdsFromSalary.class);
