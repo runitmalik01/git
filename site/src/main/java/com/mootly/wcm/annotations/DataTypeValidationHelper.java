@@ -4,7 +4,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
 public  final class DataTypeValidationHelper {
-	public static enum DataTypeValidationType {DECIMAL,INDIANDATE,ITRETURNTYPE,PAN}
+	public static enum DataTypeValidationType {DECIMAL,INDIANDATE,ITRETURNTYPE,PAN,TAN,BSR}
 	final static public boolean isOfType(String inStr,DataTypeValidationType inType) {
 		switch (inType) {
 			case INDIANDATE:
@@ -20,6 +20,20 @@ public  final class DataTypeValidationHelper {
 				}
 			case PAN:
 				if (inStr != null && inStr.matches("^([a-zA-Z]){5}([0-9]){4}([a-zA-Z]){1}")) {
+					return true;
+				}
+				else {
+					return false;
+				}
+			case TAN:
+				if (inStr != null && inStr.matches("^([a-zA-Z]){4}([0-9]){5}([a-zA-Z]){1}")) {
+					return true;
+				}
+				else {
+					return false;
+				}
+			case BSR:
+				if (inStr != null && inStr.matches("^[0-9]{7}")) {
 					return true;
 				}
 				else {
