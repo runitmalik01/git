@@ -21,24 +21,7 @@ var $m=jQuery.noConflict(true);
 
 
 <script type="text/javascript">
-hideAllDivs = function () {
-    $m("#hourly").hide();
-    $m("#per_diem").hide();
-};
 
-handleNewSelection = function () {
-
-    hideAllDivs();
-    
-    switch ($(this).val()) {
-        case '1':
-            $("#hourly").show();
-        break;
-        case '2':
-            $("#per_diem").show();
-        break;
-    }
-};
 
 $(document).ready(function() {
     
@@ -79,41 +62,34 @@ $m(document).ready(function () {
 			.getInflationIndex();
 	request.setAttribute("objTreeMapYear", objTreeMapYear);
 %>
-
-
-
-
-
-
-
+<hst:link var ="mainSiteMapRefId" siteMapItemRefId="${mainSiteMapItemRefId}"/>
+<%
+String varToReplace = (String) pageContext.getAttribute("mainSiteMapRefId");
+if (varToReplace != null) {
+    String pan = (String) request.getAttribute("pan");
+	String modifiedSiteMapRefId = varToReplace.replaceAll("_default_",pan);
+	pageContext.setAttribute("modifiedSiteMapRefId",modifiedSiteMapRefId);
+}
+else {
+	pageContext.setAttribute("modifiedSiteMapRefId",mainSiteMapRefId);
+}
+%>
 
 <h2>Capital gain Income Screen</h2>
 <b>Securities</b>
-:
-<select id="project_billing_code_id">
-	<option value="">Select One</option>
-	<c:forEach var="booleanCombo" items="${objHashMapBoolean}">
-		<option value="${booleanCombo.key}">${booleanCombo.value}</option>
-	</c:forEach>
 
-
-</select>
-
+<c:choose>
+	<c:when test="${pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD'}">
 <form id="frmSecurity" action="${actionUrl}" method="post"
 	name="security">
 
-	<div id="hourly">
-
-
-
-		<input type="hidden" name="hidDateAcquisition" id="hidDateAcquisition"
+	<input type="hidden" name="hidDateAcquisition" id="hidDateAcquisition"
 			value=" " /> <input type="hidden" name="hidDateSale"
 			id="hidDateSale" value=" " /> <input type="hidden" name="screenMode"
 			id="screenMode" value="CREATE" />
-		<div id="demo" class="yui3-module">
-			<div class="yui3-hd">
+		
 				<h2>Enter Details</h2>
-			</div>
+			
 			<div class="yui3-bd" align="center">
 				<table class="personal_info">
 					<tr height="30px">
@@ -377,7 +353,31 @@ document.getElementById("consideration").value=g;
 
     }
 </script>
+</c:when>
+<c:otherwise>
+<table>
+					<tr align="center">
+						<th><b>Year Of Acquisition</b></th>
+						<th><b>Year Of Sale</b></th>
+						<th><b>Capital Gain</b></th>
+						<th><b>Actions</b></th>
+					</tr>
+					<c:if test="${not empty parentBean}">
+						<c:forEach items="${parentBean.securitiesDetailList}" var="securitydetail">
+							<tr>
+								<td><a href="${modifiedSiteMapRefId}/<c:out value="${securitydetail.canonicalUUID}"/>/edit"><c:out value="${securitydetail.dateAcquisition}"/></a></td>
+								
+								<td><c:out value="${securitydetail.dateSale}"/></td>
+								<td><c:out value="${securitydetail.capitalGain}"/></td>
+								<td><a href="${redirectURLToSamePage}/<c:out value="${securitydetail.canonicalUUID}"/>/edit"><small>Edit</small></a>&nbsp;&nbsp;<a href="${redirectURLToSamePage}/<c:out value="${securitydetail.canonicalUUID}"/>/delete"><small>Delete</small></a></td>
+							</tr>
+						</c:forEach>					
+					</c:if>			
+				</table>
+				<a href="${redirectURLToSamePage}/new" class="button orange">Add New</a>
 
+</c:otherwise>
+</c:choose>
 <hst:headContribution keyHint="buttonCss" category="css">
 	<hst:link
 		path="http://yui.yahooapis.com/3.8.0/build/cssbutton/cssbutton.css"
