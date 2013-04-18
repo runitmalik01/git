@@ -10,7 +10,10 @@
 package com.mootly.wcm.beans.compound;
 
 import static com.mootly.wcm.utils.Constants.NT_PERSONAL_INFO_LINK;
+import static com.mootly.wcm.utils.Constants.PROP_PI_DOB;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import javax.jcr.RepositoryException;
@@ -69,6 +72,17 @@ public class AdjustmentOfLossesCom extends HippoItem implements FormMapFiller {
 		if (DateOfFilingYear == null) DateOfFilingYear = getProperty("mootlywcm:DateOfFilingYear");
 		return DateOfFilingYear;
 	}
+	
+	  
+    public String getDOBStr() {
+    	if (DateOfFilingYear == null) DateOfFilingYear = getProperty("mootlywcm:DateOfFilingYear");
+    	if (DateOfFilingYear != null) {
+    		String dobStr = getIndianDateFormatter().format(DateOfFilingYear.getTime());
+    		return dobStr;
+    	}
+    	return null;
+    }
+	
 	public final String getDueDate() {
 		if (DueDate == null) DueDate = getProperty("mootlywcm:DueDate");
 		return DueDate;
@@ -151,8 +165,28 @@ public class AdjustmentOfLossesCom extends HippoItem implements FormMapFiller {
 		if ( formMap.getField("DueDate") != null) {
 			setDueDate(formMap.getField("DueDate").getValue());
 		}
-	}
+		if ( formMap.getField("DateOfFilingYear") != null) {
+			String strDate = formMap.getField("DateOfFilingYear").getValue();
+			Date date = null ;
+			DateFormat formatter ; 
+			formatter = getIndianDateFormatter();
+			Calendar cal=Calendar.getInstance();
+			try{
+				date = (Date)formatter.parse(strDate); 
+				log.info("date"+date);
+				cal.setTime(date);
+				setDateOfFilingYear(cal);
+			}
+			catch(Exception e){
+				log.info("calendar error"+e);
+			}
+		}	
 	
+	}
+	 public static final SimpleDateFormat getIndianDateFormatter() {
+	    	return new SimpleDateFormat("dd/MM/yyyy");
+	    }
+	 
 	public <T extends HippoBean> void cloneBean(T sourceBean) {
 		AdjustmentOfLossesCom adjustmentoflossescom = (AdjustmentOfLossesCom) sourceBean;
 		setAssessmentYear(adjustmentoflossescom.getAssessmentYear());
