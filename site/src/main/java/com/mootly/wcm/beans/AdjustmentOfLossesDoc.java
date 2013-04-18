@@ -15,11 +15,11 @@
  */
 
 package com.mootly.wcm.beans;
-
 import static com.mootly.wcm.utils.Constants.NT_PERSONAL_INFO_LINK;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.jcr.NodeIterator;
 import javax.jcr.RepositoryException;
 
@@ -29,14 +29,21 @@ import org.hippoecm.hst.content.beans.ContentNodeBindingException;
 import org.hippoecm.hst.content.beans.Node;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.content.beans.standard.HippoMirror;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import com.mootly.wcm.beans.compound.AdjustmentOfLossesCom;
+import com.mootly.wcm.annotations.TagAsTaxDataProvider;
+import com.mootly.wcm.annotations.TagAsTaxDataProvider.TaxDataProviderType;
 import com.mootly.wcm.beans.compound.PersonalInformation;
+import com.mootly.wcm.beans.compound.AdjustmentOfLossesCom;
 
+@SuppressWarnings("unused")
 @Node(jcrType = "mootlywcm:adjustmentoflossesdoc")
+@TagAsTaxDataProvider(type=TaxDataProviderType.INCOME)
 public class AdjustmentOfLossesDoc extends BaseDocument implements ContentNodeBinder,FormMapFiller,CompoundChildUpdate {
 	static final public String NAMESPACE = "mootlywcm:adjustmentoflossesdoc";            
 	static final public String NODE_NAME = "adjustmentoflossesdoc";
+	private String TotalAmount;
 	private String itFolderUuid;
 
 	private List<AdjustmentOfLossesCom> adjustmentoflossescomlist;
@@ -52,6 +59,16 @@ public class AdjustmentOfLossesDoc extends BaseDocument implements ContentNodeBi
 		getAdjustmentOfLossesList();
 		if (adjustmentoflossescomlist == null) adjustmentoflossescomlist = new ArrayList<AdjustmentOfLossesCom>();
 		adjustmentoflossescomlist.add(adjustmentoflossescom);
+	}
+
+
+	public final String getTotalAmount() {
+		if (TotalAmount == null) TotalAmount = getProperty("mootlywcm:TotalAmount");
+		return TotalAmount;
+	}
+
+	public final void setTotalAmount(String TotalAmount) {
+		this.TotalAmount = TotalAmount;
 	}
 
 	public final String getItFolderUuid() {
@@ -85,19 +102,19 @@ public class AdjustmentOfLossesDoc extends BaseDocument implements ContentNodeBi
 					aNode.remove();
 				}
 			}
+			float sum=0.0f;
 			if (bean.getAdjustmentOfLossesList() != null && bean.getAdjustmentOfLossesList().size() > 0 ){  
 				for (AdjustmentOfLossesCom adjustmentoflossescom:bean.getAdjustmentOfLossesList()) {
-					if(adjustmentoflossescom.equals(null)){
-						log.info("this is null child bean");
-					}
-					if(adjustmentoflossescom.getAmount()!=null){
-						if (!adjustmentoflossescom.isMarkedForDeletion()) {
-							javax.jcr.Node html = node.addNode("mootlywcm:adjustmentoflossescom", "mootlywcm:adjustmentoflossescom");
-							adjustmentoflossescom.bindToNode(html); 
-						}
+					if (!adjustmentoflossescom.isMarkedForDeletion()) {
+						float amount=Float.parseFloat(adjustmentoflossescom.getAmount());
+						sum=sum+amount;
+						javax.jcr.Node html = node.addNode("mootlywcm:adjustmentoflossescom", "mootlywcm:adjustmentoflossescom");
+						adjustmentoflossescom.bindToNode(html); 
 					}
 				}
+				setTotalAmount(String.valueOf(sum));
 			}
+			node.setProperty("mootlywcm:TotalAmount",getTotalAmount());
 			/*
 				javax.jcr.Node prdLinkNode;
 				if (node.hasNode(NT_PERSONAL_INFO_LINK)) {
