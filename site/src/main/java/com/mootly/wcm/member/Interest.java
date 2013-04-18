@@ -1,53 +1,44 @@
-
-/**
- * used for creating and updating  interest document from repository 
- * @author Dhananjay
- * 30/03/2013
+/*
+ * In this class we are creating a document for storing value of salary income details of user
+ * according to form 16.
+ * @author abhishek
+ * 04/03/2013
+ * 
+ * 
  */
 
 package com.mootly.wcm.member;
 
-import java.io.IOException;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
 
-import javax.jcr.Session;
-
-import org.hippoecm.hst.content.beans.manager.workflow.WorkflowCallbackHandler;
-import org.hippoecm.hst.content.beans.manager.workflow.WorkflowPersistenceManager;
 import org.hippoecm.hst.core.component.HstComponentException;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
-import org.hippoecm.repository.reviewedactions.FullReviewedActionsWorkflow;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.mootly.wcm.annotations.AdditionalBeans;
+import com.mootly.wcm.annotations.FormFields;
+import com.mootly.wcm.annotations.PrimaryBean;
+import com.mootly.wcm.annotations.RequiredBeans;
 import com.mootly.wcm.beans.InterestDocument;
-import com.mootly.wcm.components.BaseComponent;
-import com.mootly.wcm.utils.ContentStructure;
-import com.mootly.wcm.utils.GoGreenUtil;
-import com.mootly.wcm.utils.UrlUtility;
+import com.mootly.wcm.beans.MemberPersonalInformation;
+import com.mootly.wcm.components.ITReturnComponent;
 
-public class Interest extends BaseComponent {
+@PrimaryBean(primaryBeanClass=InterestDocument.class)
+@AdditionalBeans(additionalBeansToLoad=MemberPersonalInformation.class)
+@RequiredBeans(requiredBeans={MemberPersonalInformation.class})
+@FormFields(fieldNames={"section234A","section234B","section234C"})
+public class Interest extends ITReturnComponent {
+	
 	private static final Logger log = LoggerFactory.getLogger(Interest.class);
-	public static final String SECTION234A= "section234A";
-	public static final String SECTION234B="section234B";
-	public static final String SECTION234C = "section234C";
 
-	@SuppressWarnings("deprecation")
 	@Override
-
-	/**
-	 * 
-	 * This method is used to calculate interest according to section234a,section234b,section234c
-	 * @param request HstRequest,HstResponse 
-	 * @author Dhananjay
-	 * 
-	 */
 	public void doBeforeRender(HstRequest request, HstResponse response) {
-
 		super.doBeforeRender(request, response);
+		
 
 		final Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("GMT"));
 
@@ -182,131 +173,13 @@ public class Interest extends BaseComponent {
 
 		request.setAttribute("section234c", interest234c);
 
-		request.setAttribute(SECTION234A, request.getParameterValues(SECTION234A));
-		request.setAttribute(SECTION234B, request.getParameterValues(SECTION234B));
-		request.setAttribute(SECTION234C, request.getParameterValues(SECTION234C));
-
 	}
 
-	/**
-	 * 
-	 * This method is used to set values of section234a,section234b,section234c
-	 * @param request HstRequest   
-	 * @author Dhananjay
-	 * 
-	 */
 	@Override
 	public void doAction(HstRequest request, HstResponse response)
 			throws HstComponentException {
-
+		// TODO Auto-generated method stub
 		super.doAction(request, response);
-
-		String section234A=GoGreenUtil.getEscapedParameter(request, "section234A");
-		String section234B=GoGreenUtil.getEscapedParameter(request, "section234B");
-		String section234C=GoGreenUtil.getEscapedParameter(request, "section234C");
-
-		InterestDocument in= new InterestDocument();
-
-		in.setSection234A(section234A);
-		in.setSection234B(section234B);
-		in.setSection234C(section234C);
-
-		createInterestUpdateform(request,in);
-
-		try {
-			response.sendRedirect(UrlUtility.Tcs);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
 	}
 
-	/**
-	 * 
-	 * This method is used to create interest document and to  update interest document
-	 * from Repository for existing user
-	 * @param request HstRequest   
-	 * @author Dhananjay
-	 * 
-	 */
-	private InterestDocument createInterestUpdateform(HstRequest request, InterestDocument in) {
-
-		Session persistableSession = null;
-		WorkflowPersistenceManager wpm;
-		try {
-			persistableSession = getPersistableSession(request);
-			wpm = getWorkflowPersistenceManager(persistableSession);
-			//SIMPLE WORKFLOW
-			wpm.setWorkflowCallbackHandler(new FullReviewedWorkflowCallbackHandler());
-			//getting values of pan,filing year,username from session
-			String filing_year=(String) request.getSession().getAttribute("filing_year");
-			String username=(String) request.getSession().getAttribute("username");
-			String pan=(String) request.getSession().getAttribute("pan");
-
-			//Method to create the interest Document 
-			final String itreturnFolderPath = ContentStructure.getinterestdocumentpath(pan,filing_year,username);
-
-			String updateitReturnPath=ContentStructure.getinterestdocumentfetch(pan,filing_year,username);
-
-			//Method to fetch the interest Document values 
-			InterestDocument updateinterest = (InterestDocument) wpm.getObject(updateitReturnPath);
-			if(updateinterest==null){
-
-				final String itReturnPath = wpm.createAndReturn(itreturnFolderPath, InterestDocument.NAMESPACE ,  InterestDocument.NODE_NAME, true);
-
-				InterestDocument interestdocument= (InterestDocument) wpm.getObject(itReturnPath);
-				// update content properties
-				if (interestdocument != null) {
-					interestdocument.setSection234A(in.getSection234A());
-					interestdocument.setSection234B(in.getSection234B());
-					interestdocument.setSection234C(in.getSection234C());
-					// update now           `
-					wpm.update(interestdocument);
-					return interestdocument;
-				}
-				else {
-					log.warn("Failed to add review for product '{}': could not retrieve Review bean for node '{}'.", InterestDocument.NODE_NAME, itReturnPath);
-					GoGreenUtil.refreshWorkflowManager(wpm);
-					return interestdocument;
-				}
-			}
-			else{
-				updateinterest.setSection234A(in.getSection234A());
-				updateinterest.setSection234B(in.getSection234B());
-				updateinterest.setSection234C(in.getSection234C());
-
-				wpm.update(updateinterest);
-
-				return updateinterest;
-
-			}
-		}
-		catch (Exception e) {
-			log.warn("Failed to signup member ", e);
-			return null;
-		} finally {
-			if (persistableSession != null) {
-				persistableSession.logout();
-			}
-		}
-
-	}
-
-	@Override
-	public void doBeforeServeResource(HstRequest request, HstResponse response)
-			throws HstComponentException {
-
-		super.doBeforeServeResource(request, response);
-	}
-	private static class FullReviewedWorkflowCallbackHandler implements WorkflowCallbackHandler<FullReviewedActionsWorkflow> {
-		public void processWorkflow(FullReviewedActionsWorkflow wf) throws Exception {
-			wf.publish();
-		}
-	}
 }
-
-
-
-
-
-
