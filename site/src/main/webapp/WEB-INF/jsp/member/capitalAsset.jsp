@@ -109,45 +109,18 @@ else {
 									<option value="${numberyear.key}">${numberyear.value}</option>
 								</c:forEach>
 							</select>
-						</c:if> <c:if test="${empty parentBean}">
-							<select onChange="dpdown()" id="drop" name="dropvalue"
-								value="${fn:escapeXml(hidDateAcquisition)}" required="required"
-								onblur="fill()">
-								<option value="">Select</option>
+						</c:if> 
 
-								<c:forEach var="numberyear" items="${objTreeMapYear}">
-									<option value="${numberyear.key}">${numberyear.value}</option>
-								</c:forEach>
-							</select>
-						</c:if> <c:if test="${not empty errors}">
-							<c:forEach items="${errors}" var="error">
-								<c:if test="${error eq 'invalid.date-acquisition-label'}">
-									<span class="form-error"><fmt:message
-											key="capital.gain.date.acquisition.error" /> </span>
-								</c:if>
-							</c:forEach>
-						</c:if>
+						
 				<tr height="30px">
 					<td class="label"><fmt:message
 							key="capital.gain.cost.acquisition" /></td>
-					<td class="input"><c:if test="${ not empty parentBean}">
+					<td class="input">
 							<input type="text" pattern="^[0-9]+$" name="cost_acquisition"
 								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.costAcquisition}"/></c:if>" id="cost" maxlength="14"
 								 class="numberinput"
 								title="Please fill only Numeric value" onChange="fill()" />
-						</c:if> <c:if test="${ empty parentBean}">
-							<input type="text" pattern="^[0-9]+$" name="cost_acquisition"
-								value="${fn:escapeXml(cost_acquisition)}" id="cost"
-								maxlength="14" required="required" class="numberinput"
-								title="Please fill only Numeric value" onChange="fill()" />
-						</c:if> <c:if test="${not empty errors}">
-							<c:forEach items="${errors}" var="error">
-								<c:if test="${error eq 'invalid.cost-acquisition-label'}">
-									<span class="form-error"><fmt:message
-											key="capital.gain.cost.acquisition.error" /> </span>
-								</c:if>
-							</c:forEach>
-						</c:if>
+					
 				<tr height="30px">
 					<td class="label"><fmt:message key="capital.gain.date.sale" />
 					</td>
@@ -160,95 +133,53 @@ else {
 								<option value="${numberyear.key}">${numberyear.value}</option>
 							</c:forEach>
 					</select>
-					<c:if test="${not empty errors}">
-							<c:forEach items="${errors}" var="error">
-								<c:if test="${error eq 'invalid.datesale.dateaquisition'}">
-									<span class="form-error"><fmt:message
-											key="capital.gain.date.acquisition.date.sale.error" /> </span>
-								</c:if>
-							</c:forEach>
-						</c:if></td>
+				</td>
 				</tr>
 
 				<tr height="30px">
 					<td class="label"><fmt:message
 							key="capital.gain.sale.consideration" /></td>
-					<td class="input"><c:if test="${not empty parentBean}">
+					<td class="input">
 							<input type="text" pattern="^[0-9]+$" name="sale_consideration"
 								id="sale" value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.saleConsideration}"/></c:if>" maxlength="14"
 								required="required" class="numberinput"
 								title="Please fill only Numeric value" onChange="fill()"
 								onblur="fill()" />
-						</c:if> <c:if test="${empty parentBean}">
-							<input type="text" pattern="^[0-9]+$" name="sale_consideration"
-								id="sale" required="required" maxlength="14"
-								value="${fn:escapeXml(sale_consideration)}" class="numberinput"
-								title="Please fill only Numeric value" onChange="fill()"
-								onblur="fill()" />
-						</c:if> <c:if test="${not empty errors}">
-							<c:forEach items="${errors}" var="error">
-								<c:if test="${error eq 'invalid.sale-consideration-label'}">
-									<span class="form-error"><fmt:message
-											key="capital.gain.sale.consideration.error" /> </span>
-								</c:if>
-							</c:forEach>
-						</c:if>
+						
 					</td>
 				</tr>
 
 				<tr height="30px">
 					<td class="label"><fmt:message
 							key="capital.gain.cost.inflation.acquisition" /></td>
-					<td class="input"><c:if test="${not empty parentBean}">
+					<td class="input">
 							<input type="text" pattern="^[0-9]+$"
 								name="inflation_acquisition" 
 								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.costIndexAcquisition}"/></c:if>" id="inflation"
 								class="numberinput" onChange="fill()" onblur="fill()" readonly>
-						</c:if> <c:if test="${empty parentBean}">
-							<input type="text" pattern="^[0-9]+$"
-								name="inflation_acquisition" required="required"
-								value="${fn:escapeXml(inflation_acquisition)}" id="inflation"
-								class="numberinput" onChange="fill()" onblur="fill()" readonly>
-						</c:if>
+					
 					</td>
 				</tr>
 				<tr height="30px">
 					<td class="label"><fmt:message
 							key="capital.gain.cost.inflation.consideration" /></td>
-					<td class="input"><c:if test="${not empty parentBean}">
+					<td class="input">
 							<input type="text" pattern="^[0-9]+$"
 								name="inflation_consideration"
 								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.costIndexConsideration}"/></c:if>" required="required"
 								id="consideration" class="numberinput" onChange="fill()"
 								onblur="fill()" readonly />
 
-						</c:if> <c:if test="${empty parentBean}">
-							<input type="text" pattern="^[0-9]+$"
-								name="inflation_consideration"
-								value="${fn:escapeXml(inflation_consideration)}"
-								required="required" id="consideration" class="numberinput"
-								onChange="fill()" onblur="fill()" readonly />
-
-						</c:if>
-					</td>
+										</td>
 				</tr>
 
 				<tr height="30px">
 					<td class="label"><fmt:message key="capital.gain" /></td>
-					<td class="input"><c:if test="${not empty parentBean}">
+					<td class="input">
 							<input type="text" pattern="^[0-9]+$"
 								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.capitalGain}"/></c:if>"  name="capital_gain"
 								class="numberinput" id="gain" readonly />
-						</c:if> <c:if test="${empty parentBean}">
-							<input type="text" pattern="^[0-9]+$" name="capital_gain"
-								value="${fn:escapeXml(capital_gain)}" class="numberinput"
-								id="gain" readonly />
-						</c:if> <c:if test="${not empty errors}">
-							<c:forEach items="${errors}" var="error">
-
-							</c:forEach>
-						</c:if>
-					</td>
+										</td>
 				</tr>
 				<tr height="40px">
 
@@ -331,18 +262,27 @@ document.getElementById("consideration").value=g;
 <c:otherwise>				
 				<table>
 					<tr align="center">
-						<th><b>Year Of Acquisition</b></th>
-						<th><b>Year Of Sale</b></th>
-						<th><b>Capital Gain</b></th>
+					
+							
+						<th><b><fmt:message key="capital.gain.date.acquisition" /></b></th>
+						<th><b><fmt:message key="capital.gain.cost.acquisition" /></b></th>
+						<th><b><fmt:message key="capital.gain.date.sale" /></b></th>
+						<th><b><fmt:message key="capital.gain.sale.consideration" /></b></th>
+						<th><b><fmt:message key="capital.gain" /></b></th>
 						<th><b>Actions</b></th>
+				
 					</tr>
 					<c:if test="${not empty parentBean}">
 						<c:forEach items="${parentBean.capitalAssetDetailList}" var="capitalassetdetail">
 							<tr>
-								<td><a href="${modifiedSiteMapRefId}/<c:out value="${capitalassetdetail.canonicalUUID}"/>/edit"><c:out value="${capitalassetdetail.dateAcquisition}"/></a></td>
-								
+								<td><c:out value="${capitalassetdetail.dateAcquisition}"/></td>
+								<td><c:out value="${capitalassetdetail.costAcquisition}"/></td>
 								<td><c:out value="${capitalassetdetail.dateSale}"/></td>
+								<td><c:out value="${capitalassetdetail.saleConsideration}"/></td>
+								
+								
 								<td><c:out value="${capitalassetdetail.capitalGain}"/></td>
+								
 								<td><a href="${redirectURLToSamePage}/<c:out value="${capitalassetdetail.canonicalUUID}"/>/edit"><small>Edit</small></a>&nbsp;&nbsp;<a href="${redirectURLToSamePage}/<c:out value="${capitalassetdetail.canonicalUUID}"/>/delete"><small>Delete</small></a></td>
 							</tr>
 						</c:forEach>					
