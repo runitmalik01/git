@@ -1,243 +1,285 @@
-
-<%@include file="../includes/tags.jspf"%>
+<%@include file="../includes/commonincludes.jspf"%>
 <%@ page import="com.mootly.wcm.utils.*"%>
 <%@ page import="java.util.*"%>
-<c:set var="parentBeantitle"><fmt:message key="member.parentBean.title"/></c:set>
-<hippo-gogreen:title title="${parentBeantitle}"/>
-<script type="text/javascript"
-	src="http://yui.yahooapis.com/2.9.0/build/datatable/datatable-min.js"></script>
-<link rel="stylesheet" type="text/css"
-	href="http://yui.yahooapis.com/2.9.0/build/datatable/assets/skins/sam/datatable.css" />
-<hst:actionURL var="actionUrl" />
-<script type="text/javascript"
-	src="http://code.jquery.com/jquery-1.6.2.js"></script>
-<script type="text/javascript"
-	src="http://code.jquery.com/jquery-1.7.2.js"></script>
 
-<%-- Script is written for show and hide --%>
+<hst:link var="mainSiteMapRefId"
+	siteMapItemRefId="${mainSiteMapItemRefId}" />
+<%
+	String varToReplace = (String) pageContext
+			.getAttribute("mainSiteMapRefId");
+	if (varToReplace != null) {
+		String pan = (String) request.getAttribute("pan");
+		String modifiedSiteMapRefId = varToReplace.replaceAll(
+				"_default_", pan);
+		pageContext.setAttribute("modifiedSiteMapRefId",
+				modifiedSiteMapRefId);
+	} else {
+		pageContext.setAttribute("modifiedSiteMapRefId",
+				mainSiteMapRefId);
+	}
+%>
+
+<%
+	ValueListService objValueListService = ValueListServiceImpl
+			.getInstance();
+	TreeMap objHashMapBoolean = (TreeMap) objValueListService
+			.getBoolean();
+	request.setAttribute("objHashMapBoolean", objHashMapBoolean);
+%>
 <script type="text/javascript">
+	jQuery(document).ready(function($) {
+		// binds form submission and fields to the validation engine
+		jQuery("#frmhp").validationEngine();
+	});
+</script>
+<c:set var="parentBeantitle">
+	<fmt:message key="member.parentBean.title" />
+</c:set>
+<hippo-gogreen:title title="${parentBeantitle}" />
+
+
+<hst:actionURL var="actionUrl" />
+<c:choose>
+	<c:when
+		test="${pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD'}">
+
+
+
+		<%-- Script is written for show and hide --%>
+		<script type="text/javascript">
 var $m=jQuery.noConflict(true);
 </script>
-<script type="text/javascript">
+
+		<script type="text/javascript">
 hideAllDivs = function () {
-    $("#hourly").hide();
-    $("#per_diem").hide();
-    $("#button").show();
+    $m("#hourly").hide();
+    $m("#per_diem").hide();
+    $m("#button").show();
 };
 
 handleNewSelection = function () {
 
     hideAllDivs();
     
-    switch ($(this).val()) {
+    switch ($m(this).val()) {
         case '1':
-            $("#hourly").show();
-            $("#button").show();
+            $m("#hourly").show();
+            $m("#button").show();
         break;
         case '2':
-            $("#per_diem").show();
-            $("#button").show();
+            $m("#per_diem").show();
+            $m("#button").show();
         break;
     }
 };
 
-$(document).ready(function() {
+$m(document).ready(function() {
     
-    $("#project_billing_code_id").change(handleNewSelection);
+    $m("#project_billing_code_id").change(handleNewSelection);
     
     // Run the event handler once now to ensure everything is as it should be
-    handleNewSelection.apply($("#project_billing_code_id"));
-    
+    handleNewSelection.apply($m("#project_billing_code_id"));
+    var fdp=$m("#fdp").val();
+    var pageaction= '<%=request.getAttribute("pageAction")%>';
+    if(pageaction.match("EDIT_CHILD")){
+    if(fdp!=null){
+    $m("#project_billing_code_id").val(fdp);
+         if(fdp=='1'){
+    	       $m('#hourly').show();
+    	       document.getElementById('project_billing_code_id').setAttribute("disabled", "disabled");
+          }else{
+              $m('#per_diem').show();
+              document.getElementById('project_billing_code_id').setAttribute("disabled", "disabled");
+               }
+    }
+    }
 	});
+	
 
 </script>
 
 
-<%-- Code for Dropdown --%>
-<h2 style="color: blue">Whether your House Property let out:</h2>
+		<%-- Code for Dropdown --%>
+		<form id="frmhp" name="frmhp" action="${actionUrl}" method="POST"
+			class="formular">
 
-<c:set var="searchresultstitle">
-	<fmt:message key="select.one.title" />
-</c:set>
-<c:set var="booleanType">
-	<fmt:message key="dropdown.boolean" />
-</c:set>
-<w4india:dropdown dropDownSelectId="project_billing_code_id"
-	optionSelectString="${searchresultstitle}"
-	dropDownType="${booleanType}" />
-<form action="${actionUrl}" method="POST">
-	<%-- This div is for yes form --%>
-	<div id="hourly">
+			<h2 style="color: blue">Whether your House Property let out:</h2>
+			<select id="project_billing_code_id" name="Let_Out">
+				<option value="">Select One</option>
+				<c:forEach var="booleanCombo" items="${objHashMapBoolean}">
+					<option value="${booleanCombo.key}">${booleanCombo.value}</option>
+				</c:forEach>
+			</select> <input type="hidden" name="fdp"
+				value="<c:if test="${pageAction == 'EDIT_CHILD'}">${childBean.letOut}</c:if>"
+				id="fdp" />
+
+			<%-- This div is for yes form --%>
+			<div id="hourly">
+
+				<table>
+					<tr height="30px">
+						<td class="label"><fmt:message
+								key="house.property.income.grossannual" />
+						</td>
+						<td class="input"><input type="text"
+							name="Gross_Annual_Income" name="Gross_salary" 
+							title="Please fill numeric value " id="grossannual" class="validate[required,custom[integer],maxSize[14]] text-input"
+							onchange="fill()" id=A
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
+						<c:out value="${childBean.grossAnnualIncome}"/></c:if>" />
+						</td>
+					</tr>
+
+					<tr height="30px">
+						<td class="label"><fmt:message
+								key="house.property.rent.unrealised" />
+						</td>
+						<td class="input"><input type="text" name="Unrealised_Rent" 
+							 title="Please fill numeric value " id="rent" class="validate[required,custom[integer],maxSize[14]] text-input"
+							onchange="fill()"
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
+						<c:out value="${childBean.unrealisedRent}"/></c:if>" />
+						</td>
+					</tr>
+
+
+					<tr height="30px">
+						<td class="label"><fmt:message
+								key="house.property.taxes.local" /></td>
+						<td class="input"><input type="text" name="Local_Taxes" class="validate[required,custom[integer],maxSize[14]] text-input"
+							 title="Please fill numeric value " id="taxes" 
+							onchange="fill()"
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
+						<c:out value="${childBean.localTaxes}"/></c:if>" />
+						</td>
+					</tr>
+
+					<tr height="30px">
+						<td class="label"><fmt:message
+								key="house.property.interest.borrowed" />
+						</td>
+						<td class="input"><input type="text"
+							name="Interest_Borrowed2" 
+							title="Please fill numeric value " id="interest" class="validate[required,custom[integer],maxSize[14]] text-input"
+							onchange="fill()"
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
+						<c:out value="${childBean.interestBorrowed2}"/></c:if>" />
+						</td>
+					</tr>
+
+
+					<tr height="30px">
+						<td class="label"><fmt:message
+								key="house.property.income.total" />
+						</td>
+						<td class="input"><input type="text" name="Total_Income"
+							readonly="readonly" id="total" onchange="fill()"
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
+						<c:out value="${childBean.totalIncome}"/></c:if>" />
+
+						</td>
+					</tr>
+				</table>
+
+			</div>
+			<%-- This div is for NO form --%>
+			<div id="per_diem">
+				<table>
+					<tr height="30px">
+						<td class="label"><fmt:message
+								key="house.property.interest.borrowed1" />
+						</td>
+						<td class="input"><input type="text"
+							name="Interest_Borrowed1" 
+							title="Please fill numeric value " id="borrowed" class="validate[required,custom[integer],maxSize[14]] text-input"
+							onchange="fill1()"
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
+						<c:out value="${childBean.interestBorrowed1}"/></c:if>" />
+						</td>
+					</tr>
+
+					<tr>
+						<td><b style="color: blue">Income from House Property is
+								Interest on Borrowed Capital OR 1,50,000 whichever is less...</b></td>
+					</tr>
+					<tr height="30px">
+						<td class="label"><fmt:message
+								key="house.property.income.total" />
+						</td>
+						<td class="input"><input type="text" name="Income_Hproperty"
+							readonly="readonly" id="income" onchange="fill1()"
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
+						<c:out value="${childBean.incomeHproperty}"/></c:if>" />
+						</td>
+					</tr>
+
+
+				</table>
+
+
+
+			</div>
+			<a href="${modifiedSiteMapRefId}" class="button olive">Cancel</a>&nbsp;
+			<input type="submit" id="submit" class="button olive"
+				onclick="save()" value="Save" />
+
+		</form>
+
+	</c:when>
+	<c:otherwise>
+
 
 		<table>
-			<tr height="30px">
-				<td class="label"><fmt:message
-						key="house.property.income.grossannual" /></td>
-				<td class="input"><c:if test="${empty parentBean}">
-						<input type="text" name="Gross_Annual_Income" value=""
-							id="grossannual" onchange="fill()" maxlength="14"
-							class="numberinput" title="Please fill this field " />
-					</c:if> <c:if test="${not empty parentBean}">
-						<input type="text" name="Gross_Annual_Income"
-							value="${parentBean.grossAnnualIncome}" id="grossannual"
-							onchange="fill()" maxlength="14" class="numberinput"
-							title="Please fill this field " />
-					</c:if> <c:if test="${not empty errors}">
-						<c:forEach items="${errors}" var="error">
-							<c:if test="${error eq 'enter.gross.income'}">
-								<span class="form-error"><fmt:message
-										key="house.property.income.grossannual.error" /> </span>
-							</c:if>
-						</c:forEach>
-					</c:if></td>
+			<tr align="center">
+				<th><b>Whether your House Property let out</b>
+				</th>
+				<th><b>Income from House Property</b>
+				</th>
+				<th><b>Actions</b>
+				</th>
 			</tr>
-
-			<tr height="30px">
-				<td class="label"><fmt:message
-						key="house.property.rent.unrealised" /></td>
-				<td class="input"><c:if test="${empty parentBean}">
-						<input type="text" name="Unrealised_Rent" value="" id="rent"
-							onchange="fill()" class="numberinput" maxlength="14"
-							title="Please fill this field " />
-					</c:if> <c:if test="${not empty parentBean}">
-						<input type="text" name="Unrealised_Rent"
-							value="${parentBean.unrealisedRent}" id="rent" onchange="fill()"
-							class="numberinput" maxlength="14"
-							title="Please fill this field " />
-					</c:if> <c:if test="${not empty errors}">
-						<c:forEach items="${errors}" var="error">
-							<c:if test="${error eq 'enter.unrealised.rent'}">
-								<span class="form-error"><fmt:message
-										key="house.property.rent.unrealised.error" /> </span>
-							</c:if>
-						</c:forEach>
-					</c:if>
-				</td>
-			</tr>
-
-			<tr height="30px">
-				<td class="label"><fmt:message key="house.property.taxes.local" />
-				</td>
-				<td class="input"><c:if test="${empty parentBean}">
-						<input type="text" name="Local_Taxes" value="" id="taxes"
-							onchange="fill()" class="numberinput" maxlength="14"
-							title="Please fill this field " />
-					</c:if> <c:if test="${not empty parentBean}">
-						<input type="text" name="Local_Taxes"
-							value="${parentBean.localTaxes}" id="taxes" onchange="fill()"
-							class="numberinput" maxlength="14"
-							title="Please fill this field " />
-					</c:if> <c:if test="${not empty errors}">
-						<c:forEach items="${errors}" var="error">
-							<c:if test="${error eq 'enter.local.taxes'}">
-								<span class="form-error"><fmt:message
-										key="house.property.taxes.local.error" /> </span>
-							</c:if>
-						</c:forEach>
-					</c:if>
-				</td>
-			</tr>
-
-			<tr height="30px">
-				<td class="label"><fmt:message
-						key="house.property.interest.borrowed" /></td>
-				<td class="input"><c:if test="${empty parentBean}">
-						<input type="text" name="Interest_Borrowed2" value=""
-							id="interest" onchange="fill()" class="numberinput"
-							maxlength="14" title="Please fill this field " />
-					</c:if> <c:if test="${not empty parentBean}">
-						<input type="text" name="Interest_Borrowed2"
-							value="${parentBean.interestBorrowed2}" id="interest"
-							onchange="fill()" class="numberinput" maxlength="14"
-							title="Please fill this field " />
-					</c:if> <c:if test="${not empty errors}">
-						<c:forEach items="${errors}" var="error">
-							<c:if test="${error eq 'enter.interest.borrowed'}">
-								<span class="form-error"><fmt:message
-										key="house.property.interest.borrowed.error" /> </span>
-							</c:if>
-						</c:forEach>
-					</c:if>
-				</td>
-			</tr>
-
-			<tr height="30px">
-				<td class="label"><fmt:message
-						key="house.property.income.total" /></td>
-				<td class="input"><c:if test="${empty parentBean}">
-						<input type="text" name="Total_Income" value="" id="total"
-							title="Please fill this field" readonly />
-					</c:if> <c:if test="${not empty parentBean}">
-						<input type="text" name="Total_Income"
-							value="${parentBean.totalIncome}" id="total"
-							title="Please fill this field" readonly />
-					</c:if> <c:if test="${not empty errors}">
-						<c:forEach items="${errors}" var="error">
-
-						</c:forEach>
-					</c:if>
-				</td>
-			</tr>
+			<c:if test="${not empty parentBean}">
+				<c:forEach items="${parentBean.houseIncomeDetailList}"
+					var="houseincomedetail">
+					<tr>
+						<td><a
+							href="${redirectURLToSamePage}/<c:out value="${houseincomedetail.canonicalUUID}"/>/edit"><c:choose>
+									<c:when test="${houseincomedetail.letOut == '1'}">
+										<c:out value="Yes" />
+									</c:when>
+									<c:otherwise>
+										<c:out value="No" />
+									</c:otherwise>
+								</c:choose>
+						</a>
+						</td>
+						<td><c:choose>
+								<c:when test="${not empty houseincomedetail.incomeHproperty}">
+									<c:out value="${houseincomedetail.incomeHproperty}" />
+								</c:when>
+								<c:otherwise>
+									<c:out value="${houseincomedetail.totalIncome}" />
+								</c:otherwise>
+							</c:choose>
+						</td>
+						<td><a
+							href="${redirectURLToSamePage}/<c:out value="${houseincomedetail.canonicalUUID}"/>/edit"><small>Edit</small>
+						</a>&nbsp;&nbsp;<a
+							href="${redirectURLToSamePage}/<c:out value="${houseincomedetail.canonicalUUID}"/>/delete"><small>Delete</small>
+						</a>
+						</td>
+					</tr>
+				</c:forEach>
+			</c:if>
 		</table>
 
-	</div>
-	<%-- This div is for NO form --%>
-	<div id="per_diem">
-		<table>
-			<tr height="30px">
-				<td class="label"><fmt:message
-						key="house.property.interest.borrowed1" /></td>
-				<td class="input"><c:if test="${empty parentBean}">
-						<input type="text" name="Interest_Borrowed1" value=""
-							id="borrowed" onchange="fill1()" class="numberinput"
-							maxlength="14" title="Please fill this field " />
-					</c:if> <c:if test="${not empty parentBean}">
-						<input type="text" name="Interest_Borrowed1"
-							value="${parentBean.interestBorrowed1}" id="borrowed"
-							onchange="fill1()" class="numberinput" maxlength="10"
-							title="Please fill this field " />
-					</c:if> <c:if test="${not empty errors}">
-						<c:forEach items="${errors}" var="error">
-							<c:if test="${error eq 'enter.interest.borrowed'}">
-								<span class="form-error"><fmt:message
-										key="house.property.interest.borrowed.error" /> </span>
-							</c:if>
-						</c:forEach>
-					</c:if>
-				</td>
-			</tr>
-			<tr>
-				<td><b style="color: blue">Income from House Property is
-						Interest on Borrowed Capital OR 1,50,000 whichever is less...</b>
-				</td>
-			</tr>
-			<tr height="30px">
-				<td class="label"><fmt:message
-						key="house.property.income.total" /></td>
-				<td class="input"><c:if test="${empty parentBean}">
-						<input type="text" name="Income_Hproperty" value="" id="income"
-							title="Please fill this field " readonly />
-					</c:if> <c:if test="${not empty parentBean}">
-						<input type="text" name="Income_Hproperty"
-							value="${parentBean.incomeHproperty}" id="income"
-							title="Please fill this field " readonly />
-					</c:if> <c:if test="${not empty errors}">
-						<c:forEach items="${errors}" var="error">
+		<a href="${redirectURLToSamePage}/new" class="button orange">Add
+			New</a>
+	</c:otherwise>
+</c:choose>
 
-						</c:forEach>
-					</c:if>
-				</td>
-			</tr>
-
-		</table>
-
-
-	</div>
-	<input type="submit" name="sunbmou" />
-
-</form>
 <%-- Calculation for YES form using jquery --%>
-<script>
+<script type="text/javascript">
 
     
 function fill() {
