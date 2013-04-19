@@ -24,11 +24,8 @@ var $m=jQuery.noConflict(true);
 
 
 $(document).ready(function() {
-    
-    $("#project_billing_code_id").change(handleNewSelection);
-    
     // Run the event handler once now to ensure everything is as it should be
-    handleNewSelection.apply($("#project_billing_code_id"));
+    
     var checkF=$m("#consideration").val();
 	 if(checkF != null){
     $m("#drop1").val(checkF);
@@ -272,14 +269,6 @@ else {
 					</tr>
 				</table>
 			</div>
-		</div>
-	</div>
-
-	<div id="per_diem">
-
-		<input type="button" value="Next" onclick="nextScreen()">
-	</div>
-
 
 </form>
 
