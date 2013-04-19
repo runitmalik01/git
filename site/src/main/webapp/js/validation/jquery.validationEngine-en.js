@@ -91,7 +91,7 @@
                     "alertText": "* Invalid email address"
                 },
                 "integer": {
-                    "regex": /^[\-\+]?\d+$/,
+                    "regex": /^\d+$/,
                     "alertText": "* Not a valid integer"
                 },
                 "number": {
