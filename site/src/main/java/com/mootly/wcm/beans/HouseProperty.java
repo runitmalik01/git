@@ -13,8 +13,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+/**
+ * 
+ * User: Megha
+ * Date: march 04, 2013
+ * Time: 11:26:35 AM
+ * 
+ */
+
+
+
 
 package com.mootly.wcm.beans;
+import static com.mootly.wcm.utils.Constants.NT_PERSONAL_INFO_LINK;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.jcr.NodeIterator;
 import javax.jcr.RepositoryException;
 
 import org.hippoecm.hst.component.support.forms.FormMap;
@@ -22,131 +38,173 @@ import org.hippoecm.hst.content.beans.ContentNodeBinder;
 import org.hippoecm.hst.content.beans.ContentNodeBindingException;
 import org.hippoecm.hst.content.beans.Node;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
-import org.springframework.beans.factory.config.SetFactoryBean;
+import org.hippoecm.hst.content.beans.standard.HippoMirror;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-/**
- * User: vivek
- * Date: Jun 29, 2010
- * Time: 11:26:35 AM
- */
+import com.mootly.wcm.annotations.TagAsTaxDataProvider;
+import com.mootly.wcm.annotations.TagAsTaxDataProvider.TaxDataProviderType;
+import com.mootly.wcm.beans.compound.PersonalInformation;
+import com.mootly.wcm.beans.compound.HouseIncomeDetail;
 
 @SuppressWarnings("unused")
-@Node(jcrType = "mootlywcm:houseincome")
-public class HouseProperty extends BaseDocument implements ContentNodeBinder,FormMapFiller {
-	static final public String NAMESPACE = "mootlywcm:houseincome";
-	static final public String NODE_NAME = "houseincome";
-	private String grossAnnualIncome;
-	private String unrealisedRent;
-	private String localTaxes;
-	private String totalIncome;
-	private String interestBorrowed1;
-	private String interestBorrowed2;
-	private String incomeHproperty;
-	
-	
-	//for personal information
-	public String getGrossAnnualIncome() {
-        if (grossAnnualIncome == null) grossAnnualIncome = getProperty("mootlywcm:grossAnnualIncome");
-        return grossAnnualIncome;
-    }
+@Node(jcrType = "mootlywcm:houseproperty")
+@TagAsTaxDataProvider(type=TaxDataProviderType.INCOME)
+public class HouseProperty extends BaseDocument implements ContentNodeBinder,FormMapFiller,CompoundChildUpdate {
+	static final public String NAMESPACE = "mootlywcm:houseproperty";
+	static final public String NODE_NAME = "houseproperty";
+	final String PROP_DETAIL_BEAN="mootlywcm:houseincomedetail";
+	private String itFolderUuid;
 
-    public String getUnrealisedRent() {
-    	if (unrealisedRent == null) unrealisedRent = getProperty("mootlywcm:unrealisedRent");
-    	return unrealisedRent;
-    }
-
-    public String getLocalTaxes() {
-    	if (localTaxes== null) localTaxes= getProperty("mootlywcm:localTaxes");
-    	return localTaxes;
-    }
-
-    public String getTotalIncome() {
-    	if (totalIncome == null) totalIncome = getProperty("mootlywcm:totalIncome");
-    	return totalIncome;
-    }
-
-    public String getInterestBorrowed1() {
-    	if (interestBorrowed1 == null) interestBorrowed1= getProperty("mootlywcm:interestBorrowed1");
-    	return interestBorrowed1;
-    }
-    public String getInterestBorrowed2() {
-    	if (interestBorrowed2 == null) interestBorrowed2= getProperty("mootlywcm:interestBorrowed2");
-    	return interestBorrowed2;
-    }
-    public String getIncomeHproperty() {
-    	if (incomeHproperty == null) incomeHproperty = getProperty("mootlywcm:incomeHproperty");
-    	return incomeHproperty;
-    }
-    public final void setGrossAnnualIncome(String  GrossAnnualIncome) {
-		this. grossAnnualIncome =  GrossAnnualIncome;
+	public String getTotal_Income() {
+		return "0";
+	}
+	public String getIncome_Hproperty() {
+		return "0";
 	}
 
-	public final void setUnrealisedRent(String UnrealisedRent) {
-		this.unrealisedRent = UnrealisedRent;
+
+	private final static Logger log = LoggerFactory.getLogger(HouseProperty.class); 
+
+	private List<HouseIncomeDetail> houseincomeDetailList;
+
+
+
+	public final List<HouseIncomeDetail> getHouseIncomeDetailList() {
+		if (houseincomeDetailList == null) houseincomeDetailList= getChildBeans(PROP_DETAIL_BEAN);
+		return houseincomeDetailList;
 	}
 
-	public final void setLocalTaxes(String LocalTaxes) {
-		this.localTaxes = LocalTaxes;
+	public final void setHouseIncomeDetailList(List<HouseIncomeDetail> houseincomeDetailList) {
+		this.houseincomeDetailList = houseincomeDetailList;
 	}
- 
-	public final void setTotalIncome(String TotalIncome) {
-		this.totalIncome = TotalIncome;
+
+	public final void addHouseIncomeDetail(HouseIncomeDetail houseincomeDetail) {
+		getHouseIncomeDetailList();
+		if (houseincomeDetailList == null) houseincomeDetailList = new ArrayList<HouseIncomeDetail>();
+		houseincomeDetailList.add(houseincomeDetail);
 	}
-	public final void setInterestBorrowed1(String InterestBorrowed1) {
-		this.interestBorrowed1 = InterestBorrowed1;
+
+
+	public final String getItFolderUuid() {
+		return itFolderUuid;
 	}
-	public final void setInterestBorrowed2(String InterestBorrowed2) {
-		this.interestBorrowed2 = InterestBorrowed2;
+
+	public final void setItFolderUuid(String itFolderUuid) {
+		this.itFolderUuid = itFolderUuid;
 	}
-	public final void setIncomeHproperty(String IncomeHproperty) {
-		this.incomeHproperty = IncomeHproperty;
+
+	public PersonalInformation getPersonalInformation() {
+		HippoBean bean = getBean(NT_PERSONAL_INFO_LINK);
+		if (!(bean instanceof HippoMirror)) {
+			return null;
+		}
+		PersonalInformation prdBean = (PersonalInformation) ((HippoMirror) bean).getReferencedBean();
+		if (prdBean == null) {
+			return null;
+		}
+		return prdBean;
 	}
-	
-    
-	
-//for house property
-	
-    
+
+
 	@Override
 	public boolean bind(Object content, javax.jcr.Node node)
 			throws ContentNodeBindingException {
 		// TODO Auto-generated method stub
 		try {
-			log.info("this is bean");
-			HouseProperty memberSignup = (HouseProperty) content;
-			node.setProperty("mootlywcm:grossAnnualIncome",memberSignup.getGrossAnnualIncome());
-	    	node.setProperty("mootlywcm:unrealisedRent",memberSignup.getUnrealisedRent());
-	    	node.setProperty("mootlywcm:localTaxes", memberSignup.getLocalTaxes());
-	    	node.setProperty("mootlywcm:totalIncome", memberSignup.getTotalIncome());
-	    	node.setProperty("mootlywcm:interestBorrowed1", memberSignup.getInterestBorrowed1());
-	    	node.setProperty("mootlywcm:interestBorrowed2", memberSignup.getInterestBorrowed2());
-	    	node.setProperty("mootlywcm:incomeHproperty", memberSignup.getIncomeHproperty());
-	    	 	
-	    
-    	}catch (RepositoryException re) {
-    		log.error("Binding Node Error",re);
-    		
-    	}
+			HouseProperty houseincome = (HouseProperty) content;
+
+			NodeIterator nodeIterator = node.getNodes(PROP_DETAIL_BEAN);
+			if (nodeIterator != null) {
+				while (nodeIterator.hasNext()) {
+					javax.jcr.Node aNode = nodeIterator.nextNode();
+					aNode.remove();
+				}
+			}
+			if (houseincome.getHouseIncomeDetailList() != null && houseincome.getHouseIncomeDetailList().size() > 0 ){ 
+				for (HouseIncomeDetail houseincomeDetail:houseincome.getHouseIncomeDetailList()) {
+					if (!houseincomeDetail.isMarkedForDeletion()) {
+						javax.jcr.Node html = node.addNode(PROP_DETAIL_BEAN, PROP_DETAIL_BEAN);
+						houseincomeDetail.bindToNode(html); 
+					}
+				}
+			}
+
+
+		} catch (RepositoryException rex) {
+			log.error("Repository Exception while binding",rex);
+		}
 		return true;
 	}
 
 	@Override
 	public void fill(FormMap formMap) {
 		// TODO Auto-generated method stub
-		// TODO Auto-generated method stub
-		if (formMap == null) return;
-		if (formMap.getField("Gross_Annual_Income") != null) setGrossAnnualIncome(formMap.getField("Gross_Annual_Income").getValue());
-		if (formMap.getField("Unrealised_Rent") != null) setUnrealisedRent(formMap.getField("Unrealised_Rent").getValue());
-		if (formMap.getField("Local_Taxes") != null) setLocalTaxes(formMap.getField("Local_Taxes").getValue());
-		if (formMap.getField("Interest_Borrowed2") != null) setInterestBorrowed2(formMap.getField("Interest_Borrowed2").getValue());
-		if (formMap.getField("Interest_Borrowed1") != null) setInterestBorrowed1(formMap.getField("Interest_Borrowed1").getValue());
-		if (formMap.getField("Total_Income") != null) setTotalIncome(formMap.getField("Total_Income").getValue());
-		if (formMap.getField("Income_Hproperty") != null) setIncomeHproperty(formMap.getField("Income_Hproperty").getValue());
+		if (formMap != null) {
+
+		}
+	}
+
+	public <T extends HippoBean> void cloneBean(T sourceBean) {
+		//we know the source bean will be CapitalAssetDocument but doesn't hurt to check
+		HouseProperty housePropertyDocument = (HouseProperty) sourceBean;
+
+
 	}
 
 	@Override
-	public <T extends HippoBean> void cloneBean(T sourceBean) {
+	public void update(HippoBean child) {
 		// TODO Auto-generated method stub
-		
+		//check for available children
+		if (child.getCanonicalUUID() == null) {
+			HouseIncomeDetail source =(HouseIncomeDetail) child;
+			addHouseIncomeDetail(source);
+		}
+		boolean found = false;
+		List<HouseIncomeDetail> listOfChildren = getHouseIncomeDetailList();
+		for (HippoBean o:listOfChildren) {
+			log.info( o.getCanonicalUUID() );
+			if (child.getCanonicalUUID() != null && child.getCanonicalUUID().equals(o.getCanonicalUUID())) {
+				log.info("GOT A MATCH");
+				HouseIncomeDetail destination =(HouseIncomeDetail) o;
+				HouseIncomeDetail source  = (HouseIncomeDetail) child;
+				destination.cloneBean(source);
+				found = true;
+				break;
+			}
+		}		
+	}
+
+	@Override
+	public void add(HippoBean child) {
+		// TODO Auto-generated method stub
+		//check for available children
+		HouseIncomeDetail source =(HouseIncomeDetail) child;
+		addHouseIncomeDetail(source);		
+	}
+
+	@Override
+	public void delete(HippoBean child) {
+		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub
+		//check for available children
+		boolean found = false;
+		List<HouseIncomeDetail> listOfChildren = getHouseIncomeDetailList();
+		for (HippoBean o:listOfChildren) {
+			log.info( o.getCanonicalUUID() );
+			if (child.getCanonicalUUID() != null && child.getCanonicalUUID().equals(o.getCanonicalUUID())) {
+				log.info("GOT A MATCH");
+				HouseIncomeDetail destination =(HouseIncomeDetail) o;
+				HouseIncomeDetail source  = (HouseIncomeDetail) child;
+				destination.setMarkedForDeletion(true);
+				found = true;
+				break;
+			}
+		}
+		if (!found) {
+			//its a new node lets add it
+			HouseIncomeDetail source =(HouseIncomeDetail) child;
+			addHouseIncomeDetail(source);
+		}		
 	}
 }
