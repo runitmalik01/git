@@ -10,15 +10,36 @@
 <%@ page import="java.util.*"%>
 <%@ page import="com.mootly.wcm.beans.*"%>
 
+<hst:link var ="mainSiteMapRefId" siteMapItemRefId="${mainSiteMapItemRefId}"/>
+<%
+String varToReplace = (String) pageContext.getAttribute("mainSiteMapRefId");
+if (varToReplace != null) {
+    String pan = (String) request.getAttribute("pan");
+    String itReturnType = (String) request.getAttribute("itReturnType");
+ String modifiedSiteMapRefId = varToReplace.replaceFirst("_default_",itReturnType).replace("_default_", pan).replaceAll("adjustmentoflosses.html","deductions.html");
+ pageContext.setAttribute("modifiedSiteMapRefId",modifiedSiteMapRefId);
+}
+else {
+ pageContext.setAttribute("modifiedSiteMapRefId",mainSiteMapRefId);
+}
+%>
+
   <script>
   $(function() {
 	  
 	  jQuery("#frmdata").validationEngine();
 	  
-    $( "#DateOfFilingYear" ).datepicker({
-      changeMonth: true,
-      changeYear: true
-    });
+	  if (Modernizr.touch && Modernizr.inputtypes.date) {
+          
+          document.getElementById('date_credit').type = 'date';
+          
+      } else {
+          $('#DateOfFilingYear').datepicker({
+                   changeMonth: true,
+                   changeYear: true,
+                   yearRange: "2005:2013"
+                  });            
+      }	  	
   });
   </script>
  
@@ -35,20 +56,23 @@ TreeMap  objHashMapBoolean= (TreeMap) objValueListService.getBoolean();
 request.setAttribute("objHashMapBoolean", objHashMapBoolean);
 %>
 
-<!-- used to set date according to assessment year -->
+<!-- used to set calendar  according to assessment year -->
 <script>
 function setYear(){
 	
-var assessmentyear1=document.getElementById("year").value;
+var assessmentyear=document.getElementById("year").value;
 
-var assessmentyear2=assessmentyear1.slice(0,4);
-var assessmentyear2d=assessmentyear2+"-01-01";
+var minyear=assessmentyear.slice(0,4);
+var maxyear=assessmentyear.slice(5,9);
+var dropassessment=minyear+"-"+maxyear;
 
-var assessmentyear3=assessmentyear1.slice(5,9);
-var assessmentyear3d=assessmentyear3+"-12-31";
-
-document.getElementById("filingyear").setAttribute("min",assessmentyear2d);
-document.getElementById("filingyear").setAttribute("max",assessmentyear3d);
+jQuery('#DateOfFilingYear').datepicker('destroy');
+    $('#DateOfFilingYear').datepicker({
+             changeMonth: true,
+             changeYear: true,
+             yearRange: minyear+":"+maxyear
+             
+            });     
 }
 </script>
 
@@ -57,8 +81,11 @@ document.getElementById("filingyear").setAttribute("max",assessmentyear3d);
 <c:set var="adjustmentoflossestitle">
       <fmt:message key="member.adjustment.content.title" />
 </c:set>
+
 <hippo-gogreen:title title="${adjustmentoflossestitle}" />
+
 <hst:actionURL var="actionUrl"></hst:actionURL>
+
 <div class="breadcrumb-list" xmlns:v="http://rdf.data-vocabulary.org/#">
 	<span typeof="v:Breadcrumb"><a rel="v:url" property="v:title" href="">Home</a></span> 
 	<span class="chevron">&#187;</span> 
@@ -78,7 +105,7 @@ document.getElementById("filingyear").setAttribute("max",assessmentyear3d);
 	</c:if>
 	<c:choose>
 	<c:when test="${pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD'}">
-		<form id="frmdata" action="${actionUrl}" name="frmdata" method="post" class="formular">
+		<form id="frmdata" action="${actionUrl}" name="frmdata" method="post">
 			<fieldset>
 				<legend>Detail Of Losses</legend>
 				<p>
@@ -108,7 +135,7 @@ document.getElementById("filingyear").setAttribute("max",assessmentyear3d);
 				</p>
 				<p>
 					<label for="DateOfFilingYear"><fmt:message key="member.adjustment.losses.date"></fmt:message></label>
-					 <input  id="DateOfFilingYear" name="DateOfFilingYear" value="${childBean.dateOfFilingYear}"/> 
+					 <input  id="DateOfFilingYear" name="DateOfFilingYear" value="${childBean.DOBStr}"/> 
 				</p>
 					<p>
 					<label for="DueDate"><fmt:message key="member.adjustment.losses.duedate"></fmt:message></label>
@@ -131,6 +158,7 @@ document.getElementById("filingyear").setAttribute("max",assessmentyear3d);
 						<th><b>Name Of Head</b></th>
 						<th><b>Assessment Year</b></th>
 						<th><b>Amount</b></th>
+						<th><b>Date Of Filing year</b></th>
 						<th><b>Actions</b></th>
 					</tr>
 					<c:if test="${not empty parentBean}">
@@ -138,8 +166,9 @@ document.getElementById("filingyear").setAttribute("max",assessmentyear3d);
 					<c:forEach items="${parentBean.adjustmentOfLossesList}" var="adjustmentOfLosses">
 							<tr>
 								<td><a href="${redirectURLToSamePage}/<c:out value="${adjustmentOfLosses.canonicalUUID}"/>/edit"><c:out value="${adjustmentOfLosses.nameOfHead}"/></a></td>
-								<td id="fetchyear"><c:out value="${adjustmentOfLosses.assessmentYear}"/></td>
-								<td id="fetchname"><c:out value="${adjustmentOfLosses.amount}"/></td>
+								<td id="${adjustmentOfLosses.assessmentYear}"><c:out value="${adjustmentOfLosses.assessmentYear}"/></td>
+								<td id="${adjustmentOfLosses.amount}"><c:out value="${adjustmentOfLosses.amount}"/></td>
+								<td><c:out value="${adjustmentOfLosses.DOBStr}"/></td>
 								<td><a href="${redirectURLToSamePage}/<c:out value="${adjustmentOfLosses.canonicalUUID}"/>/edit"><small>Edit</small></a>&nbsp;&nbsp;<a href="${redirectURLToSamePage}/<c:out value="${adjustmentOfLosses.canonicalUUID}"/>/delete"><small>Delete</small></a></td>
 					        </tr>
 					       
@@ -149,7 +178,7 @@ document.getElementById("filingyear").setAttribute("max",assessmentyear3d);
 					
 				</table>
 				<a href="${redirectURLToSamePage}/new" class="button orange">Add New</a>
-				<a href="${redirectURLToSamePage}/new" class="button orange">Next</a>
+				<a href="${modifiedSiteMapRefId}" class="button orange">Next</a>
 	</c:otherwise>
 	</c:choose>
 </div>
