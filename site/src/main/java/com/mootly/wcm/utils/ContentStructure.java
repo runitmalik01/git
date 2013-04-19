@@ -160,7 +160,7 @@ public final class ContentStructure {
 		//get pan number from session
 		String sPAN = (String)request.getSession().getAttribute("pan");
 		if(null == sPAN){
-			sPAN = "KKKKK1234A";
+			sPAN = "abcdb1234a";
 		}
 		//get filling year from session
 		String sFillingYear = (String)request.getSession().getAttribute("filling_year");
@@ -173,7 +173,19 @@ public final class ContentStructure {
 		// StringBuilder sbSalaryIncome = new StringBuilder(sOriginalPath);
 
 		StringBuffer strnew = new StringBuffer (sOriginalPath );
-		strnew.append("/salaryincome");
+		strnew.append("/salaryincomedocument/salaryincomedocument");
+		return strnew.toString();
+	}
+	
+	public static String getMemberSalaryPathFetchInterest(HstRequest request,String sUserName,String sPAN,String sFillingYear) {
+		// StringBuilder builder = new StringBuilder();
+	
+		String sOriginalPath = getMemberOriginalPath(request, sPAN,sFillingYear,sUserName);
+
+		// StringBuilder sbSalaryIncome = new StringBuilder(sOriginalPath);
+
+		StringBuffer strnew = new StringBuffer (sOriginalPath );
+		strnew.append("/salaryincomedocument/salaryincomedocument");
 		return strnew.toString();
 	}
 	public static String getTdsSalaryDocPath(String pan,String filing_year,String username) {
@@ -304,7 +316,7 @@ public final class ContentStructure {
 		//get pan number from session
 		String sPAN = (String)request.getSession().getAttribute("pan");
 		if(null == sPAN){
-			sPAN = "KKKKK1234A";
+			sPAN = "abcdb1234a";
 		}
 		//get filling year from session
 		String sFillingYear = (String)request.getSession().getAttribute("filling_year");
@@ -316,7 +328,18 @@ public final class ContentStructure {
 		System.out.println("in update structure:-"+sOriginalPath);
 		// StringBuilder sbSalaryIncome = new StringBuilder(sOriginalPath);
 		StringBuffer strnew = new StringBuffer (sOriginalPath );
-		strnew.append("/otherincome/otherincomedocument/otherincomedocument");
+		strnew.append("/othersourceincome/othersourceincome");
+		return strnew.toString();
+	}
+
+	public static String getOtherIncomePathUpdateInterest(HstRequest request,String sUserName,String sPAN,String sFillingYear) {
+		// StringBuilder builder = new StringBuilder();
+	
+		String sOriginalPath = getMemberOriginalPath(request, sPAN,sFillingYear,sUserName);
+		System.out.println("in update structure:-"+sOriginalPath);
+		// StringBuilder sbSalaryIncome = new StringBuilder(sOriginalPath);
+		StringBuffer strnew = new StringBuffer (sOriginalPath );
+		strnew.append("/othersourceincome/othersourceincome");
 		return strnew.toString();
 	}
 
@@ -357,7 +380,7 @@ public final class ContentStructure {
 		StringBuilder builder = new StringBuilder();
 		builder.append("/content/documents/mootlywcm/members/"+username.toLowerCase()+"/pans");
 		builder.append('/').append(pan.toLowerCase());
-		builder.append("/"+filing_year+"/original/personalinformation/personalinformation");
+		builder.append("/"+filing_year+"/original/memberpersonalinformation/memberpersonalinformation");
 		return builder.toString();
 	}
 	public static String getSchedule80GGDocumentPath(String pan,String filing_year,String username) {
