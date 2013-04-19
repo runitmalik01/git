@@ -33,7 +33,7 @@
 	});
 </script>
 <c:set var="parentBeantitle">
-	<fmt:message key="member.parentBean.title" />
+	<fmt:message key="member.houseincome.title" />
 </c:set>
 <hippo-gogreen:title title="${parentBeantitle}" />
 
