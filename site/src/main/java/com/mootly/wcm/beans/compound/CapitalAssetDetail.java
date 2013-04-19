@@ -37,7 +37,7 @@ import org.slf4j.LoggerFactory;
 import com.mootly.wcm.annotations.TagAsTaxDataProvider;
 import com.mootly.wcm.annotations.TagAsTaxDataProvider.TaxDataProviderType;
 import com.mootly.wcm.beans.FormMapFiller;
-import com.mootly.wcm.beans.SalaryIncomeDocument;
+
 
 /**
  * author: Pankaj Singh
@@ -52,6 +52,7 @@ import com.mootly.wcm.beans.SalaryIncomeDocument;
 public class CapitalAssetDetail extends HippoItem implements FormMapFiller {
 	static final public String NAMESPACE = "mootlywcm:capitalassetdetail";
 	static final public String NODE_NAME = CapitalAssetDetail.class.getName().toLowerCase();
+	
 	private final static Logger log = LoggerFactory.getLogger(CapitalAssetDetail.class); 
 	
 	
