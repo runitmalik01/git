@@ -14,19 +14,10 @@
 </c:if>
 <hippo-gogreen:title title="${tds2}" />
 
-<script type="text/javascript">
-$(function() {
 
-	  $m( "#date_credit" ).datepicker({
-		
-	    changeMonth: true,
-	    changeYear: false
-	  });
-	  
-	});
-</script>
+
 <script type="text/javascript">
-var $m=jQuery.noConflict(true);
+
 
 function calculate(){
 	var amt= document.getElementById("taxdeducted").value;
@@ -53,7 +44,7 @@ else {
 }
 %>
 <h4>
-	<fmt:message key="member.tds.selfassesment.tax" />
+	<fmt:message key="advance.tax" />
 </h4>
 
 <c:choose>
@@ -83,7 +74,7 @@ else {
 
 					<tr height="30px">
 						<td class="label"><fmt:message key="tds.date.credit" /></td>
-						<td class="input"><input id="date_credit" name="date_credit"
+						<td><input id="date_credit" name="date_credit"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.dateStr}"/></c:if>"
 							 />
 						</td>
@@ -163,35 +154,75 @@ else {
 				<tr>
 					<td><fmt:message key="tds.amount.total" />
 					</td>
-					<td><input type="text" name="total_value" value="${parentBean.total_Amount}"></td></tr>
+					<td><input type="text" name="total_value" value="${parentBean.total_Amount}"></td>
+					
+					
+					
 			</c:if>
 
 		</table>
 
 		<a href="${redirectURLToSamePage}/new" class="button orange">Add
 			New</a>
-
+		<table><tr align="center">
+		<th><b>Date of Installment</b></th>
+		<th><b>Upto 01/04 To 15/6</b></th>
+		<th><b>Upto 16/6 To 15/9</b></th>
+		<th><b>Upto 16/9 To 15/12</b></th>
+		<th><b>Upto 16/12 To 15/03</b></th>
+		<th><b>Upto 16/03 To 31/03</b></th>
+		
+			</tr>
+			<c:if test="${not empty parentBean}">
+				<tr>	<td> Amount </td>
+						<td><c:out value="${parentBean.total_Sum1}" /></td>
+						<td><c:out value="${parentBean.total_Sum2}" /></td>
+						<td><c:out value="${parentBean.total_Sum3}" /></td>
+						<td><c:out value="${parentBean.total_Sum4}" /></td>
+						<td><c:out value="${parentBean.total_Sum5}" /></td>
+						
+						</tr>
+						</c:if>
+		
+		</table>
 	</c:otherwise>
 </c:choose>
 <hst:element var="uiCustom" name="script">
     <hst:attribute name="type">text/javascript</hst:attribute>
-		$m(document).ready(function() {
+		$(document).ready(function() {
 		
 			    if (Modernizr.touch && Modernizr.inputtypes.date) {
-			        
+			    	
 			        document.getElementById('date_credit').type = 'date';
 			        
 			    } else {
-			        $m('#date_credit').datepicker({
+			        $('#date_credit').datepicker({
+			    
                     changeMonth: true,
                     changeYear: true,
-                    maxDate: "+0M +15D",
-                    yearRange: "2012:2013"
-                   });
+                  
                    
+                    yearRange: "2011:2012"
+                    
+                   });
+                 
 			    }
-	
+			    var filing=$('#filing').val();
+			    if(filing!=null){
+			        $('#status').val(filing);
+			    };
+			    $('#frmPersonalInfo input').keydown(function(e) {
+				    if (e.keyCode == 13) {
+				   		e.preventDefault();
+				        $('#frmPersonalInfo').submit();
+				    }
+				});
 				
+				$('#hrefLogin').click(function() {
+		 			$('#frmPersonalInfo').submit();
+				});
+				
+				$("#pi_first_name").popover({'trigger':'focus'});
 		});    
 </hst:element>
 <hst:headContribution element="${uiCustom}" category="jsInternal"/>
