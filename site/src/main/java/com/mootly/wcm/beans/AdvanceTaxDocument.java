@@ -27,6 +27,7 @@
 package com.mootly.wcm.beans;
 import static com.mootly.wcm.utils.Constants.NT_PERSONAL_INFO_LINK;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -60,6 +61,12 @@ public class AdvanceTaxDocument extends BaseDocument implements ContentNodeBinde
 		return "0";
 	}
 	private String total_amount;
+	private String total_sum1;
+	private String total_sum2;
+	private String total_sum3;
+	private String total_sum4;
+	private String total_sum5;
+	private String total_sum6;
 	private final static Logger log = LoggerFactory.getLogger(AdvanceTaxDocument.class); 
 
 	private List<AdvanceTaxDetail> advancetaxDetailList;
@@ -86,6 +93,43 @@ public class AdvanceTaxDocument extends BaseDocument implements ContentNodeBinde
 	   public final void setTotal_Amount(String totalamount) {
 			this.total_amount = totalamount;
 		}
+	   public String getTotal_Sum1() {
+	    	if (total_sum1 == null) total_sum1 = getProperty("mootlywcm:totalsum1");
+	    	return total_sum1;
+	 }
+	   public final void setTotal_Sum1(String totalsum1) {
+			this.total_sum1 = totalsum1;
+		}
+	   public String getTotal_Sum2() {
+	    	if (total_sum2 == null) total_sum2 = getProperty("mootlywcm:totalsum2");
+	    	return total_sum2;
+	 }
+	   public final void setTotal_Sum2(String totalsum2) {
+			this.total_sum2 = totalsum2;
+		}
+	   public String getTotal_Sum3() {
+	    	if (total_sum3 == null) total_sum3 = getProperty("mootlywcm:totalsum3");
+	    	return total_sum3;
+	 }
+	   public final void setTotal_Sum3(String totalsum3) {
+			this.total_sum3 = totalsum3;
+		}
+	   public String getTotal_Sum4() {
+	    	if (total_sum4 == null) total_sum4 = getProperty("mootlywcm:totalsum4");
+	    	return total_sum4;
+	 }
+	   
+	   public final void setTotal_Sum4(String totalsum4) {
+			this.total_sum4 = totalsum4;
+		}
+	   public String getTotal_Sum5() {
+	    	if (total_sum5 == null) total_sum5 = getProperty("mootlywcm:totalsum5");
+	    	return total_sum5;
+	 }
+	   public final void setTotal_Sum5(String totalsum5) {
+			this.total_sum5 = totalsum5;
+		}
+	  
 		
 
 	public final String getItFolderUuid() {
@@ -122,6 +166,12 @@ public class AdvanceTaxDocument extends BaseDocument implements ContentNodeBinde
 	        	}
         	}
         	 float sum=0.0f;
+        	 float sum1=0.0f;
+        	 float sum2=0.0f;
+        	 float sum3=0.0f;
+        	 float sum4=0.0f;
+        	 float sum5=0.0f;
+        	 float sum6=0.0f;
         	if ( selfasses.getAdvanceTaxDetailList() != null &&  selfasses.getAdvanceTaxDetailList().size() > 0 ){ 
         		log.info("checking size in salary income bean:::"+ selfasses.getAdvanceTaxDetailList().size());
         		
@@ -131,10 +181,83 @@ public class AdvanceTaxDocument extends BaseDocument implements ContentNodeBinde
         				float amount=Float.parseFloat(objSelfAssesment.getP_Amount());
             		    log.info("value of amount after fetching from compound bean"+amount);
             		     sum=sum+amount;
+            		     try{
+            		    // SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+            		     String fetchDatefull=objSelfAssesment.getDateStr();
+            		     log.info("fetchDate"+fetchDatefull);
+            		     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+            		     
+            		     
+            		     java.util.Date fetchDate= sdf.parse(fetchDatefull);
+            		    //  log.info("fetchDateStr"+fetchDateStr);
+            		    //  java.util.Date fetchDate=sdf.parse(fetchDateStr); 
+            		      log.info("fetchDate"+fetchDate);
+            		      log.info("fetchdate"+fetchDate);
+            		      
+            		    		  
+            		    		 java.util.Date date1= sdf.parse("01/04/2012");  
+            		    		 log.info("date1"+date1);
+            		    		 java.util.Date date2=sdf.parse("15/06/2012");  
+            		    		 java.util.Date date3=sdf.parse("15/09/2012");  
+            		    		 java.util.Date date4=sdf.parse("15/12/2012");  
+            		    		 java.util.Date date5=sdf.parse("15/03/2013");  
+            		    		 java.util.Date date6=sdf.parse("31/03/2013");  
+            		    		 
+            		  if(fetchDate.after(date1)  && fetchDate.before(date2) || fetchDate.equals(date2))  {
+            			  sum1=sum1+Float.parseFloat(objSelfAssesment.getP_Amount());
+            			  log.info("conditionfirst");
+            			 
+            		  }else{
+            			  if(fetchDate.after(date2)  && fetchDate.before(date3) ||fetchDate.equals(date3)){
+            			  sum2=sum2+Float.parseFloat(objSelfAssesment.getP_Amount());
+            			  log.info("condition second");
+            		   }else {
+            			   if(fetchDate.after(date3)  && fetchDate.before(date4) || fetchDate.equals(date4)){
+                 			  sum3=sum3+Float.parseFloat(objSelfAssesment.getP_Amount());
+                 			 log.info("condition third");
+            			   
+            		   } else{
+            			   if(fetchDate.after(date4) && fetchDate.before(date5) || fetchDate.equals(date5)){
+            		   
+            			   sum4=sum4+Float.parseFloat(objSelfAssesment.getP_Amount());
+            			   log.info("condition four");
+            		   			} else{
+            		   			   if(fetchDate.after(date5) && fetchDate.before(date6)){
+            	            		   
+                        			   sum5=sum5+Float.parseFloat(objSelfAssesment.getP_Amount());
+                        			   log.info("condition five");
+            		   				
+            		   			} else{
+            		   				log.info("condition last");
+            		   			}
+            		   				
+            		   			}
+            			   }
+            		   }
+            			   }
+            		     }catch(Exception e){
+            		    	 
+            		     }
 		                javax.jcr.Node html = node.addNode(PROP_DETAIL_BEAN, PROP_DETAIL_BEAN);
 		                objSelfAssesment.bindToNode(html); 
         			}
         		}
+        		
+        		setTotal_Sum5(String.valueOf(sum5));
+    			  
+    			  node.setProperty("mootlywcm:totalsum5", getTotal_Sum5());
+        		setTotal_Sum4(String.valueOf(sum4));
+    			  
+    			  node.setProperty("mootlywcm:totalsum4", getTotal_Sum4());
+        		setTotal_Sum3(String.valueOf(sum3));
+   			  
+   			  node.setProperty("mootlywcm:totalsum3", getTotal_Sum3());
+        		setTotal_Sum2(String.valueOf(sum2));
+  			  
+  			  node.setProperty("mootlywcm:totalsum2", getTotal_Sum2());
+        		 setTotal_Sum1(String.valueOf(sum1));
+   			  
+   			  node.setProperty("mootlywcm:totalsum1", getTotal_Sum1());
         		setTotal_Amount(String.valueOf(sum));
         	log.info("value of sum"+String.valueOf(sum));
         	}
