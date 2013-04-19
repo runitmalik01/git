@@ -153,6 +153,9 @@ orderable
 [mootlywcm:MemberBankDetail] > hippostd:relaxed, mootlywcm:basedocument orderable
 
 
+[mootlywcm:OtherSourceIncome] > hippostd:relaxed, mootlywcm:basedocument orderable
+
+
 [mootlywcm:MemberDeductionScheduleC] > hippostd:relaxed, mootlywcm:basedocument orderable
 
 
