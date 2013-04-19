@@ -45,6 +45,10 @@ public class AdjustmentOfLossesDoc extends BaseDocument implements ContentNodeBi
 	static final public String NODE_NAME = "adjustmentoflossesdoc";
 	private String TotalAmount;
 	private String itFolderUuid;
+	
+	public String getGross_salary() {
+		return "0";
+	}
 
 	private List<AdjustmentOfLossesCom> adjustmentoflossescomlist;
 	public final List<AdjustmentOfLossesCom> getAdjustmentOfLossesList(){
@@ -161,6 +165,7 @@ public class AdjustmentOfLossesDoc extends BaseDocument implements ContentNodeBi
 			log.info( o.getCanonicalUUID() );
 			if (child.getCanonicalUUID() != null && child.getCanonicalUUID().equals(o.getCanonicalUUID())) {
 				log.info("GOT A MATCH");
+				log.info("UUID:::"+o.getCanonicalUUID());
 				AdjustmentOfLossesCom destination =(AdjustmentOfLossesCom) o;
 				AdjustmentOfLossesCom source  = (AdjustmentOfLossesCom) child;
 				destination.cloneBean(source);
