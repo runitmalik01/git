@@ -175,8 +175,9 @@ else {
 			        $m('#date_credit').datepicker({
                     changeMonth: true,
                     changeYear: true,
-                    maxDate: "+0M +15D",
                   
+                    minDate: "-13M +15D",
+                     maxDate: "+0M -19D",
                     yearRange: "2012:2013"
                    });
                    
