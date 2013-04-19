@@ -8,6 +8,19 @@
 <%@include file="../includes/commonincludes.jspf"%>
 
 <hst:link var ="mainSiteMapRefId" siteMapItemRefId="${mainSiteMapItemRefId}"/>
+<%
+String varToReplace = (String) pageContext.getAttribute("mainSiteMapRefId");
+if (varToReplace != null) {
+    String pan = (String) request.getAttribute("pan");
+    String itReturnType = (String) request.getAttribute("itReturnType");
+ String modifiedSiteMapRefId = varToReplace.replaceFirst("_default_",itReturnType).replace("_default_", pan).replaceAll("interest.html","taxsummary.html");
+ pageContext.setAttribute("modifiedSiteMapRefId",modifiedSiteMapRefId);
+}
+else {
+ pageContext.setAttribute("modifiedSiteMapRefId",mainSiteMapRefId);
+}
+%>
+
 <!-- used to set title  -->
 
 <c:set var="interesttitle">
@@ -44,7 +57,8 @@
 				</p>					
 			</fieldset>		
 		</form>
-		<input type="submit" id="submit" class="button olive" onclick="save()" value="Next"/>
+		<input type="submit" id="submit" class="button olive" onclick="save()" value="Save"/>
+		<a href="${modifiedSiteMapRefId}" class="button orange">Next</a>
 </div>
 <script>
 function save(){
