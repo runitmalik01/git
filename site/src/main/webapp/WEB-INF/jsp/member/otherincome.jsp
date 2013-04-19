@@ -1,272 +1,290 @@
-<%@include file="../includes/tags.jspf"%>
+
+<%@include file="../includes/commonincludes.jspf"%>
 <c:set var="otherincometitle">
 	<fmt:message key="member.otherincome.title" />
 </c:set>
 <hippo-gogreen:title title="${otherincometitle}" />
 
-<script type="text/javascript"
-	src="http://yui.yahooapis.com/2.9.0/build/datatable/datatable-min.js"></script>
-<link rel="stylesheet" type="text/css"
-	href="http://yui.yahooapis.com/2.9.0/build/datatable/assets/skins/sam/datatable.css" />
+<div id="breadcrumbs">
+	<fmt:message key="member.location.label" />
+	&nbsp;
 
-<ol id="breadcrumbs">
-	<li><fmt:message key="member.location.label" /></li>
-	<li><hst:link var="home" siteMapItemRefId="home" /> <a
-		href="${home}"><fmt:message key="products.detail.location.home" />
-	</a>&gt;</li>
-	<li><hst:link var="otherincome" siteMapItemRefId="otherincome"></hst:link>
-		<a href="${otherincome}"><fmt:message
-				key="member.start.otherincome" /> </a>
-	</li>
-</ol>
-<!-- Load jQuery, SimpleModal and Basic JS files -->
-<script type='text/javascript' src='js/jquery.js'></script>
-<script type='text/javascript' src='js/jquery.simplemodal.js'></script>
-<script type='text/javascript' src='js/basic.js'></script>
-<link type='text/css' href='css/demo.css' rel='stylesheet'
-	media='screen' />
-<!-- Contact Form CSS files -->
-<link type='text/css' href='css/basic.css' rel='stylesheet'
-	media='screen' />
-<link type='text/css' href='css/basic_ie.css' rel='stylesheet'
-	media='screen' />
-<!-- IE6 "fix" for the close png image -->
-<!--[if lt IE 7]>
-<!-- included for yui popup windows -->
-<br />
+	<hst:link var="home" siteMapItemRefId="home" />
+	<a href="${home}"><fmt:message key="products.detail.location.home" />
+	</a>&gt;
+
+	<hst:link var="startapplication"
+		siteMapItemRefId="member-personal-information"></hst:link>
+	<a href="${startapplication}"><fmt:message
+			key="member.start.application" /> </a>&gt;
+
+	<hst:link var="memberothersources"
+		siteMapItemRefId="member-other-income"></hst:link>
+	<a href="${memberothersources}"><fmt:message
+			key="member.other.income" /> </a>
+
+</div>
+<hst:link var="mainSiteMapRefId"
+	siteMapItemRefId="${mainSiteMapItemRefId}" />
+<%
+	String varToReplace = (String) pageContext
+			.getAttribute("mainSiteMapRefId");
+	if (varToReplace != null) {
+		String pan = (String) request.getAttribute("pan");
+		String modifiedSiteMapRefId = varToReplace.replaceAll(
+				"_default_", pan).replaceAll("contactinformation",
+				"residetialstatus");
+		pageContext.setAttribute("modifiedSiteMapRefId",
+				modifiedSiteMapRefId);
+	} else {
+		pageContext.setAttribute("modifiedSiteMapRefId",
+				mainSiteMapRefId);
+	}
+%>
 <hst:actionURL var="actionUrl"></hst:actionURL>
-<form id="frmincome" action="${actionUrl}" method="post"name="f1">
-	<!-- code for personal information popup window -->
-	<div id='container'>
-		<div id='content'>
-			<div id='basic-modal'>
-				<h2>
-					<fmt:message key="member.otherin.message" />
-				</h2>
-				<h3 style="color: blue" align="left">
-					<fmt:message key="member.interest.tax" />
-				</h3>
+<form name="oi" id="frmIncomeinfo" action="${actionUrl}" method="post">
+	<fieldset>
+		<legend style="color: blue" align="left">
+			<fmt:message key="member.interest.tax" />
+		</legend>
+		<table>
+			<tr>
+				<td><label for="Gov_income "><fmt:message
+							key="member.income.gov" /> </label></td>
+				<td><input type="text" name="Gov_income" maxlength="14"
+					title="Enter income from Govt." class="numberinput"
+					value="${parentBean.gov_income}" id="A" onchange="cal1()" />
+				<td><label for="Kissan_patra "><fmt:message
+							key="member.income.kissan" /> </label></td>
+				<td><input type="text" name="Kissan_patra " maxlength="14"
+					value="${parentBean.kissan_patra}" class="numberinput" id="B"
+					onchange="cal1()" /></td>
+			<tr>
+				<td><label for="Bank_interest "><fmt:message
+							key="member.bank.interest" /> </label></td>
+				<td><input type="text" name="Bank_detail" maxlength="14"
+				value="${parentBean.bank_detail}"
+					class="numberinput" id="C"
+					onchange="cal1()" /></td>
+				<td><label for="Indira_patra "><fmt:message
+							key="member.interest.indiravikas" /> </label></td>
+				<td><input type="text" name="Indira_patra " maxlength="14"
+					value="${parentBean.indira_patra}" class="numberinput" id="D"
+					onchange="cal1()" /></td>
+			<tr>
+				<td><label for="Int_nsc "><fmt:message
+							key="member.interest.nsc" /> </label></td>
+				<td><input type="text" name="Int_nsc " maxlength="14"
+					value="${parentBean.int_nsc}" class="numberinput" id="E"
+					onchange="cal1()" /></td>
+				<td><label for="Other_interest "><fmt:message
+							key="member.other.interest" /> </label></td>
+				<td><input type="text" name="Other_interest " maxlength="14"
+					value="${parentBean.other_interest}" class="numberinput" id="F"
+					onchange="cal1()" />
+			<tr>
+				<td><label for="Total_interest "><fmt:message
+							key="member.total.interest" /> </label></td>
+				<td><input type="text" name="Total_interest "
+					value="${parentBean.total_interest}" id="G" onchange="cal1()"
+					readonly="readonly" /></td>
+			</tr>
+		</table>
+	</fieldset>
 
-				<br />
-				<table>
-					<tr>
-						<td width="340"><fmt:message key="member.income.gov" />
-							&nbsp; &nbsp; &nbsp; <input type="text" name="Gov_income"
-							size="15" maxlength="14" onchange="cal1()" id="A" />
-						</td>
-						<td width="350"><fmt:message key="member.income.kissan" /> <input
-							name="Kissan_patra" type="text" size="15" maxlength="14"
-							onchange="cal1()" id="B" />
-						</td>
-					</tr>
-					<tr>
-						<td colspan="2">&nbsp;</td>
-					</tr>
-					<tr>
-						<td><fmt:message key="member.bank.interest" />&nbsp; &nbsp;
-							&nbsp; <input name="Bank_detail" type="text" size="15"
-							maxlength="14" onchange="cal1()" id="C" />&nbsp; 
-						</td>
-						<td><fmt:message key="member.interest.indiravikas" />&nbsp;
-							&nbsp; <input name="Indira_patra" type="text" size="15"
-							maxlength="14" onchange="cal1()" id="D" />
-						</td>
-					</tr>
-					<tr>
-						<td colspan="2">&nbsp;</td>
-					</tr>
-					<tr>
-						<td><fmt:message key="member.interest.nsc" /> &nbsp; &nbsp;
-							&nbsp;&nbsp;<input name="Int_nsc" type="text" size="15"
-							onchange="cal1()" id="E" />
-						</td>
-						<td><fmt:message key="member.other.interest" />&nbsp;&nbsp;
-							&nbsp;&nbsp; <input name="Other_interest" type="text" size="15"
-							onchange="cal1()" id="F" id="otherint" />&nbsp; </td>
-					</tr>
-					<tr>
-						<td colspan="2">&nbsp;</td>
-					</tr>
-					<tr>
-						<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-						<td><fmt:message key="member.total.interest" />&nbsp; &nbsp;
-							&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; <input
-							name="Total_interest" type="text" size="15" onchange="cal1()"
-							id="G" readonly /></td>
-					</tr>
-					<tr>
-						<td colspan="2">&nbsp;</td>
-					</tr>
-				</table>
+	<fieldset>
+		<legend style="color: blue" align="left">
 
+			<fmt:message key="member.otherincome.message1" />
+		</legend>
+		<table>
+			<tr>
+				<td><label for="Family_pension"><fmt:message
+							key="member.family.pension" /> </label></td>
+				<td><input type="text" name="Family_pension"
+					value="${parentBean.family_pension}" maxlength="14"
+					class="numberinput" id="a1" onchange="cal2()" /></td>
+				<td><label for="Dividends"><fmt:message
+							key="member.dividends" /> </label></td>
+				<td><input type="text" name="Dividends"
+					value="${parentBean.dividends}" maxlength="14" class="numberinput"
+					id="a2" onchange="cal2()" /></td>
+			</tr>
+			<tr>
+				<td><label for="Lottery_horse_income"><fmt:message
+							key="member.income.lottery" /> </label></td>
+				<td><input type="text" name="Lottery_horse_income"
+					value="${parentBean.lottery_horse_income}" maxlength="14"
+					class="numberinput" id="a3" onchange="cal2()" /></td>
+				<td><label for="Income_rent_machine"><fmt:message
+							key="member.income.rental" /> </label></td>
+				<td><input type="text" name="Income_rent_machine"
+					value="${parentBean.income_rent_machine}" class="numberinput"
+					id="a4" onchange="cal2()" maxlength="14" /></td>
+			</tr>
+			<tr>
+				<td><label for="Income_rent_machine"><fmt:message
+							key="member.income.maintain" /> </label></td>
+				<td><input type="text" name="Income_maintain"
+					value="${parentBean.income_maintain}" class="numberinput" id="a5"
+					onchange="cal2()" maxlength="14" /></td>
+				<td><label for="Income_other "><fmt:message
+							key="member.income.other" /> </label></td>
+				<td><input type="text" name="Income_other"
+					 maxlength="14" value="${parentBean.income_other}"
+					class="numberinput" id="a6" onchange="cal2()" /></td>
 
-				<h3 style="color: blue" align="left">
+			</tr>
+			<tr>
+				<td><label for="Deduction_57 "><fmt:message
+							key="member.income.deduct" /> </label></td>
+				<td><input type="text" name="Deduction_57"
+					value="${parentBean.deduction_57}" class="numberinput" id="a7"
+					onchange="cal2()" maxlength="14" /></td>
+				<td><label for="TotalOther_income "><fmt:message
+							key="member.income.totalother" /> </label></td>
+				<td><input type="text" name="TotalOther_income"
+					value="${parentBean.totalOther_income}" id="a8" onchange="cal2()"
+					readonly="readonly" /></td>
+			</tr>
+		</table>
 
-					<fmt:message key="member.otherincome.message1" />
-				</h3>
-				<br />
-				<table>
-					<tr>
-						<td width="340"><fmt:message key="member.family.pension" />
-							&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp; <input
-							name="Family_pension" type="text" onchange="cal2()" size="15"
-							id="a1" />
-						</td>
-						<td width="350"><fmt:message key="member.dividends" />
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input
-							name="Dividends" type="text" size="15" onchange="cal2()" id="a2" />
-						</td>
-					</tr>
-					<tr>
-						<td colspan="2">&nbsp;</td>
-					</tr>
-					<tr>
-						<td><fmt:message key="member.income.lottery" /><br /> <fmt:message
-								key="member.income.horse" />&nbsp; <input
-							name="Lottery_horse_income" type="text" onchange="cal2()" id="a3"
-							size="15" /></td>
-						<td><fmt:message key="member.income.rental" /> <br /> <fmt:message
-								key="member.income.machine" />&nbsp; &nbsp; &nbsp; &nbsp; <input
-							name="Income_rent_machine" type="text" size="15"
-							onchange="cal2()" id="a4" />
-						</td>
-					</tr>
-					<tr>
-						<td colspan="2">&nbsp;</td>
-					</tr>
-					<tr>
-						<td><fmt:message key="member.income.maintain" /><br /> <fmt:message
-								key="member.income.racing" /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input
-							name="Income_maintain" type="text" size="15" onchange="cal2()"
-							id="a5" />
-						</td>
-						<td><fmt:message key="member.income.other" />&nbsp;&nbsp;
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input name="Income_other"
-							type="text" size="15" onchange="cal2()" id="a6" /></td>
-					</tr>
-					<tr>
-						<td colspan="2">&nbsp;</td>
-					</tr>
-					<tr>
-						<td><fmt:message key="member.income.deduct" /> &nbsp;
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input name="Deduction_57"
-							type="text" size="15" onchange="cal2()" id="a7" />
-						</td>
-						<td><fmt:message key="member.income.totalother" />&nbsp;
-							&nbsp; &nbsp; &nbsp;&nbsp; <input name="TotalOther_income"
-							type="text" size="15" onchange="cal2()" id="a8" readonly /></td>
-					</tr>
-					<tr>
-						<td colspan="2">&nbsp;</td>
-					</tr>
-				</table>
-
-
-				<h3 style="color: blue" align="left">
-
-					<fmt:message key="member.income.expenses" />
-				</h3>
-				<br />
-				<table>
-					<tr>
-						<td width="340"><fmt:message key="member.income.deductfamily" />
-							<br /> <fmt:message key="member.income.pension" /> &nbsp;
-							&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input
-							name="Familypension_deduction" type="text" size="15"
-							onblur="cal3()" id="b1" readonly />
-						</td>
-						<td width="350"><fmt:message key="member.income.others" />
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input
-							name="Other_deduction" type="text" size="15" onchange="cal3()"
-							id="b2" />
-						</td>
-					</tr>
-					<tr>
-						<td colspan="2">&nbsp;</td>
-					</tr>
-					<tr>
-						<td><fmt:message key="member.income.depreciation" />&nbsp;
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input name="Depreciation"
-							type="text" size="15" onchange="cal3()" id="b3" /></td>
-						<td><fmt:message key="member.total.expenses" />&nbsp; &nbsp;
-							&nbsp;<input name="Total_expenses" type="text" size="15"
-							onchange="cal3()" id="b4" readonly />
-						</td>
-					</tr>
-					<tr>
-						<td colspan="2">&nbsp;</td>
-					</tr>
-
-				</table>
-
-
-				<h3 style="color: blue" align="left">
-					<fmt:message key="member.income.taxfree" />
-				</h3>
-				<br />
-				<table>
-					<tr>
-						<td width="340"><fmt:message key="member.div.uti" /> &nbsp;
-							&nbsp; &nbsp;&nbsp; <input name="Dividends_uti" type="text"
-							size="15" onchange="cal4()" id="c1" />
-						</td>
-						<td width="350"><fmt:message key="member.income.intincome" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							<input name="Interest_income" type="text" size="15"
-							onchange="cal4()" id="c2" />
-						</td>
-					</tr>
-					<tr>
-						<td colspan="2">&nbsp;</td>
-					</tr>
-					<tr>
-						<td><fmt:message key="member.div.mutual" /> <br /> <fmt:message
-								key="member.income.funds" />&nbsp; &nbsp; &nbsp; &nbsp;
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							<input name="Dividends_mutualfund" type="text" size="20"
-							onchange="cal4()" id="c3" /></td>
-						<td><fmt:message key="member.income.agriculture" />&nbsp;
-							&nbsp; &nbsp; <input name="Agriculture_income" type="text"
-							size="20" onchange="cal4()" id="c4" />
-						</td>
-					</tr>
-					<tr>
-						<td colspan="2">&nbsp;</td>
-					</tr>
-					<tr>
-						<td><fmt:message key="member.div.indian" /> <br /> <fmt:message
-								key="member.income.companies" />&nbsp; &nbsp;
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; <input
-							name="Dividends_indian_companies" type="text" size="15"
-							onchange="cal4()" id="c5" />
-						</td>
-						<td><fmt:message key="member.other.income" />&nbsp;&nbsp;
-							&nbsp; &nbsp;&nbsp; <input name="Total_income" type="text"
-							size="15" onchange="cal4()" id="c6" /></td>
-					</tr>
-					<tr>
-						<td colspan="2">&nbsp;</td>
-					</tr>
-					<tr>
-						<td>&nbsp;</td>
-						<td><fmt:message key="member.total.otherincome" />&nbsp;
-							&nbsp; &nbsp; <input name="Total_taxfree_income" type="text"
-							size="15" onchange="cal4()" id="c7" readonly /></td>
-					</tr>
-					<tr>
-						<td width="320"><fmt:message key="member.taxable.income" />
-							&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; <input
-							name="Taxable_income" type="text" size="15" onblur="cal5()"
-							id="Taxable" readonly /><br /> <br /> <br />
-						</td>
-						<td width="370"><input type="submit" value="Save" />&nbsp;
-							&nbsp; &nbsp; <input type="button" onclick="nextScreen()"
-							value="Skip" /></td>
-					</tr>
-				</table>
-			</div>
-		</div>
-	</div>
+	</fieldset>
+	<fieldset>
+		<legend style="color: blue" align="left">
+			<fmt:message key="member.income.expenses" />
+		</legend>
+		<table>
+			<tr>
+				<td><label for="Familypension_deduction "><fmt:message
+							key="member.income.deductfamily" /> </label></td>
+				<td><input type="text" name="Familypension_deduction"
+					maxlength="14" class="numberinput"
+					value="${parentBean.familypension_deduction}" id="b1"
+					onchange="cal3()" readonly="readonly" />
+				<td><label for="Other_deduction "><fmt:message
+							key="member.income.others" /> </label></td>
+				<td><input type="text" name="Other_deduction " maxlength="14"
+					value="${parentBean.other_deduction}" class="numberinput" id="b2"
+					onchange="cal3()" />
+				</td>
+			<tr>
+				<td><label for="Depreciation "><fmt:message
+							key="member.income.depreciation" /> </label>
+				</td>
+				<td><input type="text" name="Depreciation " maxlength="14"
+					value="${parentBean.depreciation}" class="numberinput" id="b3"
+					onchange="cal3()" />
+				</td>
+				<td><label for="Total_expenses "><fmt:message
+							key="member.total.expenses" /> </label>
+				</td>
+				<td><input type="text" name="Total_expenses " maxlength="14"
+					value="${parentBean.total_expenses}" id="b4" onchange="cal3()"
+					readonly="readonly" />
+				</td>
+			</tr>
+		</table>
+	</fieldset>
+	<fieldset>
+		<legend style="color: blue" align="left">
+			<fmt:message key="member.income.taxfree" />
+		</legend>
+		<table>
+			<tr>
+				<td><label for="Dividends_uti"><fmt:message
+							key="member.div.uti" /> </label>
+				</td>
+				<td><input type="text" name="Dividends_uti"
+					value="${parentBean.dividends_uti}" class="numberinput"
+					maxlength="14" id="c1" onchange="cal4()" />
+				</td>
+				<td><label for="Interest_income"><fmt:message
+							key="member.income.intincome" /> </label>
+				</td>
+				<td><input type="text" name="Interest_income"
+					value="${parentBean.interest_income}" class="numberinput" id="c2"
+					onchange="cal4()" maxlength="14" />
+				</td>
+			</tr>
+			<tr>
+				<td><label for="Dividends_mutualfund"><fmt:message
+							key="member.div.mutual" /> </label>
+				</td>
+				<td><input type="text" name="Dividends_mutualfund"
+					value="${parentBean.dividends_mutualfund}" class="numberinput"
+					id="c3" onchange="cal4()" />
+				</td>
+				<td><label for="Agriculture_income"><fmt:message
+							key="member.income.agriculture" /> </label>
+				</td>
+				<td><input type="text" name="Agriculture_income"
+					value="${parentBean.agriculture_income}" class="numberinput"
+					id="c4" onchange="cal4()" maxlength="14" />
+				</td>
+			</tr>
+			<tr>
+				<td><label for="Dividends_indian_companies"><fmt:message
+							key="member.div.indian" /> </label>
+				</td>
+				<td><input type="text" name="Dividends_indian_companies"
+					value="${parentBean.dividends_indian_companies }"
+					class="numberinput" id="c5" onchange="cal4()" maxlength="14" />
+				</td>
+				<td><label for="Other_income "><fmt:message
+							key="member.other.income" /> </label>
+				</td>
+				<td><input type="text" name="Other_income"
+					value="${parentBean.other_income}" maxlength="14"
+					class="numberinput" id="c6" onchange="cal4()" />
+				</td>
+			</tr>
+			<tr>
+				<td><label for="Total_taxfree_income "><fmt:message
+							key="member.total.otherincome" /> </label>
+				</td>
+				<td><input type="text" name="Total_taxfree_income"
+					value="${parentBean.total_taxfree_income}" class="numberinput"
+					id="c7" onchange="cal4()" maxlength="14"  readonly="readonly"/>
+				</td>
+			</tr>
+			<tr>
+				<td><label for="Taxable_income "><fmt:message
+							key="member.taxable.income" /> </label>
+				</td>
+				<td><input type="text" name="Taxable_income"
+					value="${parentBean.taxable_income}" id="Taxable" onblur="cal5()"
+					readonly="readonly" />
+				</td>
+			</tr>
+		</table>
+	</fieldset>
+	<input type="submit" value="Save & Next">
 </form>
+<hst:element var="uiCustom" name="script">
+	<hst:attribute name="type">text/javascript</hst:attribute>
+		$(document).ready(function() {
+		$('input.numberinput').bind('keypress', function (e) {
+        return (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57) && e.which != 46) ? false : true;
+         });
+                 var statekey=$("#statekey").val();
+                if(statekey!=null){
+                 $("#pi_state").val(statekey);
+                  };
+                  
+			    $('#frmIncomeinfo input').keydown(function(e) {
+				    if (e.keyCode == 13) {
+				   		e.preventDefault();
+				        $('#frmIncomeinfo').submit();
+				    }
+				});
+				$('#hrefLogin').click(function() {
+		 			$('#frmIncomeinfo').submit();
+				});
+		});    
+</hst:element>
+<hst:headContribution element="${uiCustom}" category="jsInternal" />
+
 <script>
 	function cal1() {
 		var A = document.getElementById("A").value - 0;
@@ -291,7 +309,7 @@
 	}
 	function cal3() {
 		var a1 = document.getElementById("a1").value - 0;
-		document.getElementById("b1").value = myfamily(a1)
+		document.getElementById("b1").value = myfamily(a1);
 		function myfamily(a) {
 			return (a * 333 / 1000);
 		}
@@ -311,7 +329,6 @@
 
 	}
 	function cal5() {
-		alert("i am in cal 5");
 		var G = document.getElementById("G").value - 0;
 		var a8 = document.getElementById("a8").value - 0;
 		var b4 = document.getElementById("b4").value - 0;
@@ -321,46 +338,4 @@
 	function mycal(a, b, c) {
 		return (a + b - c);
 	}
-
-	function nextScreen() {
-		alert("nextScreen");
-
-		document.forms['frmincome'].elements["screenMode"].value = "NEXTSCREEN";
-		document.getElementById('frmincome').submit();
-	}
 </script>
-
-<!-- code for personal information popup window -->
-<!-- modal content -->
-<div id="basic-modal-contentbankint">
-	<jsp:include page="../member/bankinterest.jsp" flush="false" />
-</div>
-<div id="basic-modal-contentotherint">
-	<jsp:include page="../member/otherinterest.jsp" flush="false" />
-</div>
-<!-- preload the images -->
-
-<div style='display: none'>
-	<img src='images/basic/x.png' alt='' />
-</div>
-
-<hst:headContribution keyHint="formcss">
-	<link rel="stylesheet" href='<hst:link path="/css/adornment.css"/>'
-		type="text/css" />
-</hst:headContribution>
-<hst:headContribution keyHint="formcss">
-	<link rel="stylesheet"
-		href='<hst:link path="/css/animation/animation.css"/>' type="text/css" />
-</hst:headContribution>
-<hst:headContribution keyHint="formcss">
-	<link rel="stylesheet" href='<hst:link path="/css/adornment.css"/>'
-		type="text/css" />
-</hst:headContribution>
-<hst:headContribution keyHint="seedFile" category="jsExternal">
-	<script src="http://yui.yahooapis.com/3.8.0/build/yui/yui-min.js"
-		type="text/javascript"></script>
-</hst:headContribution>
-<hst:headContribution keyHint="form-validation" category="jsInternal">
-	<script type="text/javascript"
-		src='<hst:link path="/js/reverse_animation.js"/>'></script>
-</hst:headContribution>
