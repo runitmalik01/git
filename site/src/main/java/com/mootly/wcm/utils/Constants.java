@@ -57,6 +57,57 @@ public interface Constants {
 
 
 
+    String NT_COMMENT = "mootlywcm:comment";
+    String NT_COPYRIGHT = "mootlywcm:copyright";
+    String NT_DOCUMENTLINK = "mootlywcm:documentlink";
+    String NT_FAQ = "mootlywcm:faq";
+    String NT_HIPPO_MIRROR = "hippo:mirror";
+    String NT_NEWSITEM = "mootlywcm:newsitem";
+    String NT_PRODUCTLINK = "mootlywcm:productlink";
+    String NT_REVIEW = "mootlywcm:review";
+    String NT_PRODUCT = "mootlywcm:product";
+    String NT_SIMPLE_DOCUMENT = "mootlywcm:simpledocument";
+    String NT_ITR_1 = "mootlywcm:itrone";
+    String NT_ITR = "mootlywcm:incometaxreturn";
+    String BSR="mootlywcm:BSRcode";
+    String DATE="mootlywcm:Dateofcredit";
+    String SERIAL="mootlywcm:challanNo";
+    String AMOUNT="mootlywcm:Amount";
+    String NT_NOTIFICATIONITEMS="mootlywcm:notificationitems";
+    
+    String BSR1="mootlywcm:BSR_code1";
+    String DATE1="mootlywcm:Date of credit into Govt Account1";
+    String SERIAL1="mootlywcm:Serail_No_of_Challan1";
+    String AMOUNT1="mootlywcm:Amount1";
+    
+    
+    String BD_BANK_NAME="mootlywcm:bankName";
+    String BD_MICR_CODE="mootlywcm:micrCode";
+    String BD_ADD_BANK_BRANCH="mootlywcm:addBankBranch";
+    String BD_TYPE_ACC="mootlywcm:typeAcc";
+    String BD_ACC_NUMBER="mootlywcm:accNumber";
+    String BD_ECS="mootlywcm:ecs";
+    
+    String tan_Employer="mootlywcm:tanofemployer";
+    String name_Employer="mootlywcm:nameofemployer";
+    String income_Chargeable="mootlywcm:incomechargeable";
+    String total_Taxdeducted="mootlywcm:totaltaxdeducted";
+    
+    String tan_deductor="mootlywcm:tandeductor";
+    String name_deductor="mootlywcm:namedeductor";
+    String tds_Certificate="mootlywcm:tdscertificate";
+    String financial_Year="mootlywcm:financialyear";
+    String total_taxdeducted="mootlywcm:totaltaxdeducted";
+    
+    
+    String amount="mootlywcm:amount";
+   
+    
+    
+    
+    
+
+
 	String PROP_PERSONAL_INFORMATION = "mootlywcm:personalinformation";
 	String PROP_PI_FIRST_NAME = "mootlywcm:pi_first_name";
 	String PROP_PI_FATHER_NAME = "mootlywcm:pi_father_name";
@@ -97,28 +148,7 @@ public interface Constants {
 	String PROP_EMPLOYER_SALARIES = "mootlywcm:income_salaries";
 	String PROP_TOTAL_TAX_DEDUCTED = "mootlywcm:total_tax_deducted";
 
-	String NT_COMMENT = "mootlywcm:comment";
-	String NT_COPYRIGHT = "mootlywcm:copyright";
-	String NT_DOCUMENTLINK = "mootlywcm:documentlink";
-	String NT_FAQ = "mootlywcm:faq";
-	String NT_HIPPO_MIRROR = "hippo:mirror";
-	String NT_NEWSITEM = "mootlywcm:newsitem";
-	String NT_PRODUCTLINK = "mootlywcm:productlink";
-	String NT_REVIEW = "mootlywcm:review";
-	String NT_PRODUCT = "mootlywcm:product";
-	String NT_SIMPLE_DOCUMENT = "mootlywcm:simpledocument";
-	String NT_ITR_1 = "mootlywcm:itrone";
-	String NT_ITR = "mootlywcm:incometaxreturn";
-	String BSR="mootlywcm:BSR_code";
-	String DATE="mootlywcm:Date of credit into Govt Account";
-	String SERIAL="mootlywcm:Serail_No_of_Challan";
-	String AMOUNT="mootlywcm:Amount";
-	String NT_NOTIFICATIONITEMS="mootlywcm:notificationitems";
 
-	String BSR1="mootlywcm:BSR_code1";
-	String DATE1="mootlywcm:Date of credit into Govt Account1";
-	String SERIAL1="mootlywcm:Serail_No_of_Challan1";
-	String AMOUNT1="mootlywcm:Amount1";
 
 	String Rsstatus_q="mootlywcm:rsstatus_q";
 	String Rsstatus_q_yes="mootlywcm:rsstatus_q_yes";
@@ -141,24 +171,10 @@ public interface Constants {
 
 
 
-	String BD_BANK_NAME="mootlywcm:bankName";
-	String BD_MICR_CODE="mootlywcm:micrCode";
-	String BD_ADD_BANK_BRANCH="mootlywcm:addBankBranch";
-	String BD_TYPE_ACC="mootlywcm:typeAcc";
-	String BD_ACC_NUMBER="mootlywcm:accNumber";
-	String BD_ECS="mootlywcm:ecs";
+	
 
-	String tan_Employer="mootlywcm:tanofemployer";
-	String name_Employer="mootlywcm:nameofemployer";
-	String income_Chargeable="mootlywcm:incomechargeable";
-	String total_Taxdeducted="mootlywcm:totaltaxdeducted";
-
-	String tan_deductor="mootlywcm:tandeductor";
-	String name_deductor="mootlywcm:namedeductor";
 	String tds_certificate="mootlywcm:tdscertificate";
 	String deducted_year="mootlywcm:deductedyear";
-	String total_taxdeducted="mootlywcm:totaltaxdeducted";
-	String amount="mootlywcm:amount";
 
 
 
