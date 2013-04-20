@@ -37,7 +37,8 @@
 String varToReplace = (String) pageContext.getAttribute("mainSiteMapRefId");
 if (varToReplace != null) {
     String pan = (String) request.getAttribute("pan");
-	String modifiedSiteMapRefId = varToReplace.replaceAll("_default_",pan).replaceAll("contactinformation","residetialstatus");
+    String itReturnType = (String) request.getAttribute("itReturnType");
+	String modifiedSiteMapRefId = varToReplace.replaceFirst("_default_",itReturnType).replace("_default_", pan).replaceAll("contactinformation","residentialstatus");
 	pageContext.setAttribute("modifiedSiteMapRefId",modifiedSiteMapRefId);
 }
 else {
@@ -105,7 +106,7 @@ else {
   
    
    </fieldset>
-   <br/>
+
    <a  id="hrefLogin" class="button orange">Save & Next</a><a href="${modifiedSiteMapRefId}" class="button orange" style="margin-left:100px;">Next</a>
         </div>              
 </div>
