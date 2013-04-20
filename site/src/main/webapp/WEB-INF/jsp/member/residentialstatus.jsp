@@ -56,7 +56,7 @@ else {
 								</c:otherwise>
 							</c:choose><br/>
 						<c:if test="${fn:startsWith(item.value,'ans_')}">
-						<a  id="hrefLogin" class="button orange" onclick="check()">Save &amp; Next</a>
+						<a  id="hrefLogin" class="button orange" >Save &amp; Next</a>
 						<a href="${modifiedSiteMapRefId}" class="button orange" style="margin-left:100px;">Next</a>
 						<input type="hidden" name="${item.key}" value="${item.value}"/></c:if></li>
 						<li style="display:inline">
