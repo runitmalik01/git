@@ -43,7 +43,6 @@
 	<hst:link var="bankdetail" siteMapItemRefId="member-bank-detail"></hst:link>
 	<a href="${bankdetail}"><fmt:message key="member.bank.detail" /></a>
 </div>
-<br />
 <hst:link var ="mainSiteMapRefId" siteMapItemRefId="${mainSiteMapItemRefId}"/>
 <%
 String varToReplace = (String) pageContext.getAttribute("mainSiteMapRefId");
@@ -61,11 +60,11 @@ else {
 	<div id="row">
 		<div id="span4">
 			 <label><fmt:message key="member.bank.detail.bank.name" /></label> 
-			 <input type="text" name="bd_bank_name" value="${parentBean.BD_BANK_NAME}" title="Enter Name of Bank"maxlength="25" min="1" required="required" />
+			 <input type="text" name="bd_bank_name" value="${parentBean.BD_BANK_NAME}" title="Enter Name of Bank"maxlength="25" min="1" required="required" /><br/>
 			 <label><fmt:message key="member.bank.detail.micr.code" /></label> 
-			 <input type="text" name="bd_micr_code"value="${parentBean.BD_MICR_CODE}" title="Enter 9-Digit valid MICR Code" maxlength="9" class="numberinput" required="required" />
-		     <label><fmt:message key="member.bank.detail.branch.name" /></label>
-			 <input type="text" name="bd_Branch_name" value="${parentBean.BD_ADD_BANK_BRANCH}" title="Enter Name of Bank's Branch" maxlength="120" required="required" /> 
+			 <input type="text" name="bd_micr_code"value="${parentBean.BD_MICR_CODE}" title="Enter 9-Digit valid MICR Code" maxlength="9" class="numberinput" required="required" /><br/>
+		     <label><fmt:message key="member.bank.detail.bank.branch" /></label>
+			 <input type="text" name="bd_Branch_name" value="${parentBean.BD_ADD_BANK_BRANCH}" title="Enter Name of Bank's Branch" maxlength="120" required="required" /> <br/>
 			 <label><fmt:message key="member.bank.detail.acc.type" /> </label> 
 			 <select name="bd_account_type" title="Select Type of Account" id="bd_account_type">
 				<option value=""></option>
@@ -78,7 +77,7 @@ else {
 			</select>
 			<input type="hidden" name="acc_type" value="${parentBean.BD_TYPE_ACC}" id="acc_type"> 
 			<label><fmt:message key="member.bank.detail.acc.number" /></label> 
-			<input type="text" name="bd_account_no" value="${parentBean.BD_ACC_NUMBER}" title="Enter Account Number" maxlength="17" class="numberinput" required="required" />
+			<input type="text" name="bd_account_no" value="${parentBean.BD_ACC_NUMBER}" title="Enter Account Number" maxlength="17" class="numberinput" required="required" /><br/>
 			<label><fmt:message key="member.bank.detail.ecs"/></label>
 			<select name="bd_ecs" title="Select Electronic Clearing System" id="bd_ecs">
 				<option value="N">
@@ -89,7 +88,7 @@ else {
 				</option>
 			</select>
 			<input type="hidden" name="ecs" value="${parentBean.BD_ECS}" id="ecs">
-			<br /> 
+			<br /> <br/>
 			<a id="hrefLogin" class="button orange">Save & Next</a><a href="${modifiedSiteMapRefId}" class="button orange" style="margin-left: 100px;">Next</a>
 		</div>
 	</div>
