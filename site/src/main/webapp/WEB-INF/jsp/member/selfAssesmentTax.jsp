@@ -1,6 +1,32 @@
-<%@include file="../includes/tags.jspf"%>
+<%@include file="../includes/commonincludes.jspf"%>
 <%@ page import="com.mootly.wcm.utils.*"%>
 <%@ page import="java.util.*"%>
+
+<script>
+
+$(document).ready(function() {
+	
+	alert("inside ready");
+    if (Modernizr.touch && Modernizr.inputtypes.date) {
+    	
+        document.getElementById('datecredit').type = 'date';
+        
+    } else {
+        $('#datecredit').datepicker({
+    
+        changeMonth: true,
+        changeYear: true,
+
+        minDate: "-13M +15D",
+         maxDate: "+0M -19D",
+        yearRange: "2012:2013"
+        
+       });
+     
+    }
+});    
+
+</script>
 <c:set var="tds2">
 	<fmt:message key="tds2" />
 </c:set>
@@ -15,7 +41,7 @@
 
 
 <script type="text/javascript">
-var $m=jQuery.noConflict(true);
+
 
 function calculate(){
 	var amt= document.getElementById("taxdeducted").value;
@@ -72,7 +98,7 @@ else {
 
 					<tr height="30px">
 						<td class="label"><fmt:message key="tds.date.credit" /></td>
-						<td class="input"><input id="date_credit" name="date_credit"
+						<td class="input"><input id="datecredit" name="date_credit"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.dateStr}"/></c:if>"
 							 />
 						</td>
@@ -162,29 +188,3 @@ else {
 
 	</c:otherwise>
 </c:choose>
-
-<hst:element var="uiCustom" name="script">
-    <hst:attribute name="type">text/javascript</hst:attribute>
-		$m(document).ready(function() {
-		
-			    if (Modernizr.touch && Modernizr.inputtypes.date) {
-			        
-			        document.getElementById('date_credit').type = 'date';
-			        
-			    } else {
-			        $m('#date_credit').datepicker({
-                    changeMonth: true,
-                    changeYear: true,
-                  
-                    minDate: "-13M +15D",
-                     maxDate: "+0M -19D",
-                    yearRange: "2012:2013"
-                   });
-                   
-			    }
-	
-				
-		});    
-</hst:element>
-<hst:headContribution element="${uiCustom}" category="jsInternal"/>
-
