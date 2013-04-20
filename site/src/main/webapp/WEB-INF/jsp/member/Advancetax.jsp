@@ -36,13 +36,18 @@ function calculate(){
 String varToReplace = (String) pageContext.getAttribute("mainSiteMapRefId");
 if (varToReplace != null) {
     String pan = (String) request.getAttribute("pan");
-	String modifiedSiteMapRefId = varToReplace.replaceAll("_default_",pan);
-	pageContext.setAttribute("modifiedSiteMapRefId",modifiedSiteMapRefId);
+    String itReturnType = (String) request.getAttribute("itReturnType");
+ String modifiedSiteMapRefId = varToReplace.replaceFirst("_default_",itReturnType).replace("_default_", pan).replaceAll("advancetax","selfassesmenttax");
+ pageContext.setAttribute("modifiedSiteMapRefId",modifiedSiteMapRefId);
 }
 else {
-	pageContext.setAttribute("modifiedSiteMapRefId",mainSiteMapRefId);
+ pageContext.setAttribute("modifiedSiteMapRefId",mainSiteMapRefId);
 }
 %>
+ <a href="${modifiedSiteMapRefId}" class="button orange" style="margin-left:100px;">Next</a>
+ <hst:link var ="mainSiteMapRefId" siteMapItemRefId="${mainSiteMapItemRefId}"/>
+
+
 <h4>
 	<fmt:message key="advance.tax" />
 </h4>
@@ -82,7 +87,7 @@ else {
 
 					<tr height="30px">
 						<td class="label"><fmt:message key="tds.serial.challan" /></td>
-						<td class="input"><input type="text" name="Serial_challan"
+						<td class="input"><input type="text" name="Serial_challan" maxlength="5"
 							
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.p_Serial}"/></c:if>"
 							id="Serial_challan">
@@ -91,29 +96,15 @@ else {
 					<tr height="30px">
 						<td class="label"><fmt:message key="tds.amount.selfassesment" />
 						</td>
-						<td class="input"><input type="text" name="amount"
+						<td class="input"><input type="text" name="amount" maxlength="14"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.p_Amount}"/></c:if>"
 							id="amount"
 							class="validate[required,custom[integer],maxSize[14]] text-input" />
 						</td>
 					</tr>
-
-
-
-					<tr height="40px">
-
-						<td class="submit fright" colspan="1" align="right"><input
-							type="submit" value="save" id="submit" onclick="hiddenvalue()" />
-						</td>
-						<td>
-							<button>
-								<a>Skip</a>
-							</button></td>
-					</tr>
-
-
-				</table>
+		</table>
 			</fieldset>
+			<a href="${redirectURLToSamePage}" class="button olive">Cancel</a><input type="submit" class="button orange" value="Save">
 		</form>
 
 	</c:when>
@@ -155,15 +146,12 @@ else {
 					<td><fmt:message key="tds.amount.total" />
 					</td>
 					<td><input type="text" name="total_value" value="${parentBean.total_Amount}"></td>
-					
-					
-					
-			</c:if>
-
+				</c:if>
 		</table>
 
 		<a href="${redirectURLToSamePage}/new" class="button orange">Add
 			New</a>
+			<a href="${modifiedSiteMapRefId}" class="button orange" style="margin-left:100px;">Next</a>
 		<table><tr align="center">
 		<th><b>Date of Installment</b></th>
 		<th><b>Upto 01/04 To 15/6</b></th>
