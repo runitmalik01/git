@@ -34,7 +34,8 @@ public class ContactInformation extends ITReturnComponent {
 	@Override
 	public void doBeforeRender(HstRequest request, HstResponse response) {
 		// TODO Auto-generated method stub
-		super.doBeforeRender(request, response);		
+		super.doBeforeRender(request, response);	
+		log.info("Member Contact Information Page");
 	}
 
 	@Override

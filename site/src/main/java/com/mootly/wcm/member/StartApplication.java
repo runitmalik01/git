@@ -59,7 +59,8 @@ public class StartApplication extends ITReturnComponent {
 	@Override
 	public void doBeforeRender(HstRequest request, HstResponse response) {
 		// TODO Auto-generated method stub
-		super.doBeforeRender(request, response);		
+		super.doBeforeRender(request, response);	
+		log.info("Member personal Information page");
 		if (getParentBean() != null) {
 			MemberPersonalInformation memberPersonalInformation = (MemberPersonalInformation) getParentBean();			
 			Calendar dob= memberPersonalInformation.getDOB();
