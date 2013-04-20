@@ -294,6 +294,7 @@ public class MemberResidentialStatus extends BaseDocument implements ContentNode
 	@Override
 	public void fill(FormMap formMap) {
 		// TODO Auto-generated method stub
+		log.info("in formp fill method");
 		if (formMap == null) return;
 		if (formMap.getField("rsstatus_q") != null) setRsstatusQ(formMap.getField("rsstatus_q").getValue());
 		if (formMap.getField("rsstatus_q_yes") != null) setRsstatusQYes(formMap.getField("rsstatus_q_yes").getValue());
