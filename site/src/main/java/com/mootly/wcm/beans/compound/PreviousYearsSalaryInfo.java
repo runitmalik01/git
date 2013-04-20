@@ -19,17 +19,21 @@ package com.mootly.wcm.beans.compound;
 
 import javax.jcr.RepositoryException;
 
+import org.hippoecm.hst.component.support.forms.FormMap;
 import org.hippoecm.hst.content.beans.Node;
+import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.content.beans.standard.HippoItem;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.mootly.wcm.beans.FormMapFiller;
 
 
 /**
  * Bean mapping class for the 'mootlywcm:address' document type
  */
 @Node(jcrType = "mootlywcm:PreviousYearsSalaryInfo")
-public class PreviousYearsSalaryInfo extends HippoItem {
+public class PreviousYearsSalaryInfo extends HippoItem implements FormMapFiller {
 	
 	private static final Logger log = LoggerFactory.getLogger(PreviousYearsSalaryInfo.class);
 	
@@ -41,7 +45,14 @@ public class PreviousYearsSalaryInfo extends HippoItem {
 	private String prevtaxincome;
 	private String prevtaxdiff;
 
+	private boolean markedForDeletion;
 	
+	public final boolean isMarkedForDeletion() {
+		return markedForDeletion;
+	}
+	public final void setMarkedForDeletion(boolean markedForDeletion) {
+		this.markedForDeletion = markedForDeletion;
+	}
 	
     public String getPrevYear() {
         if (prevyear == null) prevyear = getProperty("mootlywcm:prevYear");
@@ -121,5 +132,46 @@ public class PreviousYearsSalaryInfo extends HippoItem {
 	public final void setPrevTaxDiff(String prevtaxdiff) {
 		this.prevtaxdiff = prevtaxdiff;
 	}
+	@Override
+	public void fill(FormMap formMap) {
+		// TODO Auto-generated method stub
+		if (log.isInfoEnabled()) {
+			log.info("Into the fill method");			
+		}
+		if (formMap == null) return;
+		
+		if ( formMap.getField("prevyear") != null) {
+			setPrevYear(formMap.getField("prevyear").getValue());
+		}
+		if ( formMap.getField("previncome") != null) {
+			setPrevIncome(formMap.getField("previncome").getValue());
+		}
+		if ( formMap.getField("prevarrears") != null) {
+			setPrevArrears(formMap.getField("prevarrears").getValue());
+		}
+		if ( formMap.getField("prevtotal") != null) {
+			setPrevTotalIncome(formMap.getField("prevtotal").getValue());
+		}
+		if ( formMap.getField("prevtaxontotal") != null) {
+			setPrevTaxTotalIncome(formMap.getField("prevtaxontotal").getValue());
+		}
+		if ( formMap.getField("prevtaxincome") != null) {
+			setPrevTaxIncome(formMap.getField("prevtaxincome").getValue());
+		}
+		if ( formMap.getField("prevtaxdiff") != null) {
+			setPrevTaxDiff(formMap.getField("prevtaxdiff").getValue());
+		}		
+	}
+	
+	public <T extends HippoBean> void cloneBean(T sourceBean) {
+		PreviousYearsSalaryInfo prevsalinfo = (PreviousYearsSalaryInfo) sourceBean;
+		setPrevYear(prevsalinfo.getPrevYear());
+		setPrevIncome(prevsalinfo.getPrevIncome());
+		setPrevArrears(prevsalinfo.getPrevArrears());
+		setPrevTotalIncome(prevsalinfo.getPrevTotalIncome());
+		setPrevTaxTotalIncome(prevsalinfo.getPrevTaxTotalIncome());
+		setPrevTaxIncome(prevsalinfo.getPrevTaxIncome());
+		setPrevTaxDiff(prevsalinfo.getPrevTaxDiff());
+	};
     	
 }    	
