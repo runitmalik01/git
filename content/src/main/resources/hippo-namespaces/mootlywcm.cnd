@@ -264,6 +264,10 @@ orderable
 
 [mootlywcm:tdsfromothersdocument] > hippostd:relaxed, mootlywcm:basedocument orderable
 
+[mootlywcm:MemberResidentialStatus] > hippostd:relaxed, mootlywcm:basedocument orderable
+
+[mootlywcm:tdsfromothersdocument] > hippostd:relaxed, mootlywcm:basedocument orderable
+
 [mootlywcm:securitiesdoc] > hippostd:relaxed, mootlywcm:basedocument orderable
 
 [mootlywcm:securitiescomp] > hippo:compound, hippostd:relaxed orderable
