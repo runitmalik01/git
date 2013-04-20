@@ -29,12 +29,9 @@ import org.slf4j.LoggerFactory;
 
 import com.mootly.wcm.annotations.AdditionalBeans;
 import com.mootly.wcm.annotations.ChildBean;
-import com.mootly.wcm.annotations.DataTypeValidationFields;
-import com.mootly.wcm.annotations.DataTypeValidationHelper;
 import com.mootly.wcm.annotations.FormFields;
 import com.mootly.wcm.annotations.PrimaryBean;
 import com.mootly.wcm.annotations.RequiredBeans;
-import com.mootly.wcm.annotations.RequiredFields;
 import com.mootly.wcm.beans.AdjustmentOfLossesDoc;
 import com.mootly.wcm.beans.HouseProperty;
 import com.mootly.wcm.beans.MemberPersonalInformation;
@@ -52,27 +49,26 @@ import com.mootly.wcm.utils.UrlUtility;
 @ChildBean(childBeanClass=SalaryIncomeDetail.class)
 @AdditionalBeans(additionalBeansToLoad={MemberPersonalInformation.class,SalaryIncomeDocument.class,OtherSourceIncome.class,AdjustmentOfLossesDoc.class,HouseProperty.class})
 @RequiredBeans(requiredBeans={MemberPersonalInformation.class,SalaryIncomeDocument.class})
-@FormFields(fieldNames={"prevyear1","income1","arrears1","total1"})
-@RequiredFields(fieldNames={"Name_employer","Tan_employer","City","Gross_salary"})
-@DataTypeValidationFields(fieldNames={"Gross_salary"},dataTypes={DataTypeValidationHelper.DataTypeValidationType.DECIMAL})
+@FormFields(fieldNames={"prevyear","previncome","prevarrears","prevtotal","prevtaxontotal","prevtaxincome","prevtaxdiff",
+		"salaryincome","otherincome","totalArrears","totalincomearrears","taxsalaryincome","taxarrears","Diff","taxRelief","computedtabletotal"})
 public class RebateSection89 extends ITReturnComponent {
 	private static final Logger log = LoggerFactory.getLogger(RebateSection89.class);
-	
+
 	@Override
 	public void doBeforeRender(HstRequest request, HstResponse response) {
 		// TODO Auto-generated method stub
 		super.doBeforeRender(request, response);
 	}
-	
+
 	@Override
 	public void doAction(HstRequest request, HstResponse response)
 			throws HstComponentException {
 		// TODO Auto-generated method stub
 		super.doAction(request, response);
 	}
-	
 
-	
+
+
 	public void doBeforeRenderOld(HstRequest request, HstResponse response) {
 		// TODO Auto-generated method stub
 		super.doBeforeRender(request, response);
@@ -328,7 +324,7 @@ public class RebateSection89 extends ITReturnComponent {
 	}
 	public static class FullReviewedWorkflowCallbackHandler implements WorkflowCallbackHandler<FullReviewedActionsWorkflow> {
 		public void processWorkflow(FullReviewedActionsWorkflow wf) throws Exception {
-			
+
 			wf.publish();
 		}
 	}
