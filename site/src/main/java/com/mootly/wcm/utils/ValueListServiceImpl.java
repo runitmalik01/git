@@ -212,14 +212,14 @@ public final class ValueListServiceImpl implements ValueListService{
 			public TreeMap getAssessmentYear() {
 				// TODO Auto-generated method stub
 				TreeMap TreeMapAssessmentYear =new TreeMap();
-				TreeMapAssessmentYear.put("1", objValueListAssessmentYearBundle.getString("valueList.2013-2012"));
-				TreeMapAssessmentYear.put("2", objValueListAssessmentYearBundle.getString("valueList.2012-2011"));
-				TreeMapAssessmentYear.put("3", objValueListAssessmentYearBundle.getString("valueList.2011-2010"));
-				TreeMapAssessmentYear.put("4", objValueListAssessmentYearBundle.getString("valueList.2010-2009"));
-				TreeMapAssessmentYear.put("5", objValueListAssessmentYearBundle.getString("valueList.2009-2008"));
-				TreeMapAssessmentYear.put("6", objValueListAssessmentYearBundle.getString("valueList.2008-2007"));		
-				TreeMapAssessmentYear.put("7", objValueListAssessmentYearBundle.getString("valueList.2007-2006"));
-				TreeMapAssessmentYear.put("8", objValueListAssessmentYearBundle.getString("valueList.2006-2005"));
+				TreeMapAssessmentYear.put(objValueListAssessmentYearBundle.getString("valueList.2013-2012"), objValueListAssessmentYearBundle.getString("valueList.2013-2012"));
+				TreeMapAssessmentYear.put(objValueListAssessmentYearBundle.getString("valueList.2012-2011"), objValueListAssessmentYearBundle.getString("valueList.2012-2011"));
+				TreeMapAssessmentYear.put(objValueListAssessmentYearBundle.getString("valueList.2011-2010"), objValueListAssessmentYearBundle.getString("valueList.2011-2010"));
+				TreeMapAssessmentYear.put(objValueListAssessmentYearBundle.getString("valueList.2010-2009"), objValueListAssessmentYearBundle.getString("valueList.2010-2009"));
+				TreeMapAssessmentYear.put(objValueListAssessmentYearBundle.getString("valueList.2009-2008"), objValueListAssessmentYearBundle.getString("valueList.2009-2008"));
+				TreeMapAssessmentYear.put(objValueListAssessmentYearBundle.getString("valueList.2008-2007"), objValueListAssessmentYearBundle.getString("valueList.2008-2007"));		
+				TreeMapAssessmentYear.put(objValueListAssessmentYearBundle.getString("valueList.2007-2006"), objValueListAssessmentYearBundle.getString("valueList.2007-2006"));
+				TreeMapAssessmentYear.put(objValueListAssessmentYearBundle.getString("valueList.2006-2005"), objValueListAssessmentYearBundle.getString("valueList.2006-2005"));
 				
 				return TreeMapAssessmentYear;
 			}
