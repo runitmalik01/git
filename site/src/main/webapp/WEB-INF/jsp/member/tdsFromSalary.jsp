@@ -28,6 +28,12 @@ $m(document).ready(function () {
         return (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57) && e.which != 46) ? false : true;
     });
 });
+
+function keyup(){
+	
+var x=document.getElementById("tan_employer");
+x.value=x.value.toUpperCase();
+}
 </script>
 <c:if test="${not empty formMap}">
 		<c:forEach items="${formMap.message}" var="item">
@@ -65,7 +71,7 @@ else {
 					<td class="label"><fmt:message
 							key="tds.tan.emoloyer" /></td>
 					<td class="input">
-							<input type="text" name="tan_employer"
+							<input type="text" name="tan_employer" onkeyup="keyup()" id="tan_employer"
 								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.tan_Employer}"/></c:if>" id="cost" maxlength="10"
 								
 								title="This field accept first four alphabate next five numeric then single alphabate" placeholder="10 Characters" />
@@ -79,7 +85,7 @@ else {
 					<td class="input">
 							<input type="text" name="name_employer"
 								id="sale" value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.name_Employer}"/></c:if>" maxlength="14"
-								required="required" 
+								required="required" maxlength="125" minlength="1"
 								title="Please fill alphabets only"/>
 					</td>
 				</tr>
@@ -89,7 +95,7 @@ else {
 							key="tds.income.chargeable" /></td>
 					<td class="input">
 							<input type="text" 
-								name="income_chargeable" required="required"
+								name="income_chargeable" required="required" maxlength="14"
 								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.income_Chargeable}"/></c:if>" id="income_chargeable"
 								class="numberinput" >
 						
@@ -100,27 +106,15 @@ else {
 							key="tds.total.tax.deducted" /></td>
 					<td class="input">
 							<input type="text"
-								name="total_taxdeducted"
+								name="total_taxdeducted" maxlength="14"
 								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.total_TaxDeducted}"/></c:if>" required="required"
 								id="consideration" class="numberinput"  />
-
-
-					</td>
+						</td>
 				</tr>
 
-
-				<tr height="40px">
-
-					<td class="submit fright" colspan="1" align="right"><input
-						type="submit" value="save" /></td>
-					<td>
-						<button>
-							<a href="${Securities}">Next</a>
-						</button></td>
-				</tr>
-	
-				
 			</table>
+		<a href="${redirectURLToSamePage}" class="button olive">Cancel</a><input type="submit" class="button orange" value="Save">
+
 		
 </form>
 
