@@ -36,7 +36,8 @@
 String varToReplace = (String) pageContext.getAttribute("mainSiteMapRefId");
 if (varToReplace != null) {
     String pan = (String) request.getAttribute("pan");
-	String modifiedSiteMapRefId = varToReplace.replaceAll("_default_",pan).replaceAll("personal","contact");
+    String itReturnType = (String) request.getAttribute("itReturnType");
+	String modifiedSiteMapRefId = varToReplace.replaceFirst("_default_",itReturnType).replace("_default_", pan).replaceAll("personal","contact");
 	pageContext.setAttribute("modifiedSiteMapRefId",modifiedSiteMapRefId);
 }
 else {
