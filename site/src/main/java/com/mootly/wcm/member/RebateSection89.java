@@ -10,6 +10,7 @@ package com.mootly.wcm.member;
 
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,23 +33,22 @@ import com.mootly.wcm.annotations.ChildBean;
 import com.mootly.wcm.annotations.FormFields;
 import com.mootly.wcm.annotations.PrimaryBean;
 import com.mootly.wcm.annotations.RequiredBeans;
-import com.mootly.wcm.beans.AdjustmentOfLossesDoc;
+import com.mootly.wcm.beans.CapitalAssetDocument;
 import com.mootly.wcm.beans.HouseProperty;
 import com.mootly.wcm.beans.MemberPersonalInformation;
 import com.mootly.wcm.beans.MemberRebateSectionEightyNine;
 import com.mootly.wcm.beans.OtherSourceIncome;
 import com.mootly.wcm.beans.SalaryIncomeDocument;
 import com.mootly.wcm.beans.compound.PreviousYearsSalaryInfo;
-import com.mootly.wcm.beans.compound.SalaryIncomeDetail;
 import com.mootly.wcm.components.ITReturnComponent;
 import com.mootly.wcm.utils.ContentStructure;
 import com.mootly.wcm.utils.GoGreenUtil;
 import com.mootly.wcm.utils.UrlUtility;
 
 @PrimaryBean(primaryBeanClass=MemberRebateSectionEightyNine.class)
-@ChildBean(childBeanClass=SalaryIncomeDetail.class)
-@AdditionalBeans(additionalBeansToLoad={MemberPersonalInformation.class,SalaryIncomeDocument.class,OtherSourceIncome.class,AdjustmentOfLossesDoc.class,HouseProperty.class})
-@RequiredBeans(requiredBeans={MemberPersonalInformation.class,SalaryIncomeDocument.class})
+@ChildBean(childBeanClass=PreviousYearsSalaryInfo.class)
+@AdditionalBeans(additionalBeansToLoad={MemberPersonalInformation.class,SalaryIncomeDocument.class,HouseProperty.class,CapitalAssetDocument.class})
+@RequiredBeans(requiredBeans={MemberPersonalInformation.class})
 @FormFields(fieldNames={"prevyear","previncome","prevarrears","prevtotal","prevtaxontotal","prevtaxincome","prevtaxdiff",
 		"salaryincome","otherincome","totalArrears","totalincomearrears","taxsalaryincome","taxarrears","Diff","taxRelief","computedtabletotal"})
 public class RebateSection89 extends ITReturnComponent {
@@ -58,6 +58,36 @@ public class RebateSection89 extends ITReturnComponent {
 	public void doBeforeRender(HstRequest request, HstResponse response) {
 		// TODO Auto-generated method stub
 		super.doBeforeRender(request, response);
+		log.info("Member Rebate Section 89 page");
+   		request.getAttribute("salaryincomedocument");
+   		int decimalPlace = 2;
+   		Calculations cal=new Calculations();
+	    float fSalaryIncome = cal.fetchSalaryIncomeValue(request,response);
+		// fetching OtherIncome value
+		float fOtherIncome = cal.fetchOtherIncomeValue(request,response);
+		//fetching house property values
+		float fHouseProperty = cal.fetchHousePropertyValue(request,response);
+		//fetching capital gain values
+		float fCapitalGain = cal.fetchCapitalGainValue(request,response);
+		// fetching Deduction  value
+		float fDeduction = cal.fetchDeductionsValue(request,response);
+		// fetching Losses value
+		float fAdjustLosses = cal.fetchLossesValue(request,response);
+		// fetching Securities value
+		float fSecurities = cal.fetchSecurityValue(request,response);
+
+		float fTotal= fSalaryIncome + fOtherIncome + fHouseProperty + fCapitalGain + fSecurities;
+		log.info("Total of all"+fTotal);
+		log.info("big decimal"+BigDecimal.valueOf(fTotal).toPlainString());
+		float fGrossTotal = fTotal-fAdjustLosses;
+		float fTaxableIncome= fGrossTotal-fDeduction;
+		request.setAttribute("Taxable", BigDecimal.valueOf(fTaxableIncome).setScale(decimalPlace,BigDecimal.ROUND_UP).toPlainString());
+		//float fIncomeTax=(float)Math.round(fTaxableIncome*(0.1f));
+		// for fetching income tax according to slab rates
+		float fIncomeTax= cal.fetchIncomeTaxValue(request,response,fTaxableIncome);
+		float fEduCess=(float) Math.round(fIncomeTax*0.03f);
+		float fIncomeTaxEduCess=fIncomeTax + fEduCess ;
+		request.setAttribute("IncomeTaxEduCess", BigDecimal.valueOf(fIncomeTaxEduCess).setScale(decimalPlace,BigDecimal.ROUND_UP).toPlainString());
 	}
 
 	@Override
@@ -97,9 +127,9 @@ public class RebateSection89 extends ITReturnComponent {
 					}
 					String spersoanlpath=ContentStructure.getPersonalDocumentPath(pan, filing_year, modusername);
 					MemberPersonalInformation objpersonal=(MemberPersonalInformation)getObjectBeanManager(request).getObject(spersoanlpath);
-					int age=MemberAge.MemberAgeCalculate(objpersonal.getDOB());
+					/*int age=MemberAge.MemberAgeCalculate(objpersonal.getDOB());
 					log.info("this is age of member"+age);
-					request.setAttribute("age",age);
+					request.setAttribute("age",age);*/
 					request.setAttribute("gender",objpersonal.getSex());
 					request.setAttribute("resistatus",objpersonal.getResident());
 					request.setAttribute("payer",objpersonal.getFilingStatus());

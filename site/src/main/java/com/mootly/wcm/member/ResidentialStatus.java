@@ -38,17 +38,18 @@ import com.mootly.wcm.components.ITReturnComponent;
  * 06-Mar-2013
  * 
  */
+@PrimaryBean(primaryBeanClass=MemberResidentialStatus.class)
 @AdditionalBeans(additionalBeansToLoad={MemberPersonalInformation.class})
 @RequiredBeans(requiredBeans=MemberPersonalInformation.class)
-@PrimaryBean(primaryBeanClass=MemberResidentialStatus.class)
 @FormFields(fieldNames={"rsstatus_q","rsstatus_q_yes","rsstatus_q_yes_yes",
 		"rsstatus_q_yes_yes_yes","rsstatus_q_yes_no","rsstatus_q_yes_yes_no",
 		"rsstatus_q_no","rsstatus_q_no_yes", "rsstatus_q_no_yes_no","rsstatus_q_no_yes_yes",
 		"rsstatus_q_no_no","rsstatus_q_no_no_no","rsstatus_q_no_no_yes","rsstatus_q_no_no_yes_yes",
 		"rsstatus_q_no_no_yes_yes_yes","rsstatus_q_no_yes_yes_yes","rsstatus_q_no_yes_yes_yes_yes","rsstatus_q_no_yes_yes_yes_no"})
+
 public class ResidentialStatus extends ITReturnComponent {
 	private static final Logger log = LoggerFactory.getLogger(ResidentialStatus.class);
-
+	
 	public static final String SUCCESS= "success";
 	public static final String ERROR= "error";
 	@Override
@@ -58,7 +59,7 @@ public class ResidentialStatus extends ITReturnComponent {
 		//get the bundle 
 		String assessmentYear = getAssessmentYear() == null ? "2012-2013"  : getAssessmentYear();
 		ResourceBundle rb = ResourceBundle.getBundle("rstatus_"+assessmentYear);
-
+		
 		List<String> keyList = new ArrayList<String>();
 		//Enumeration<String> keys = rb.getKeys();		
 		for (String aKey: rb.keySet() ) {
@@ -70,7 +71,7 @@ public class ResidentialStatus extends ITReturnComponent {
 			MemberPersonalInformation mpi = (MemberPersonalInformation) request.getAttribute(keyToFind);
 			memberName = mpi.getName();
 		}
-
+		
 		Map<String, String> map = new LinkedHashMap<String, String>();
 		Collections.sort(keyList, new SortyByDepth());
 		for (String aKey:keyList) {
@@ -85,11 +86,53 @@ public class ResidentialStatus extends ITReturnComponent {
 				map.put(aKey, rb.getString(aKey));
 			}
 		}
-
+		Map<String, String> fetchmap = new LinkedHashMap<String, String>();
+		if (getParentBean() != null) {
+			MemberResidentialStatus memberresi = (MemberResidentialStatus) getParentBean();			
+			
+			fetchmap.put("rsstatus_q",memberresi.getRsstatusQ());			
+			if(!(memberresi.getRsstatusQYes().matches("Select")))
+				fetchmap.put("rsstatus_q_yes",memberresi.getRsstatusQYes());			
+			if(!(memberresi.getRsstatusQYesYes().matches("Select")))
+				fetchmap.put("rsstatus_q_yes_yes",memberresi.getRsstatusQYesYes());			
+			if(!(memberresi.getRsstatusQYesYesYes().matches("Select")))
+				fetchmap.put("rsstatus_q_yes_yes_yes",memberresi.getRsstatusQYesYesYes());			
+			if(!(memberresi.getRsstatusQYesNo().matches("Select")))
+				fetchmap.put("rsstatus_q_yes_no",memberresi.getRsstatusQYesNo());			
+			if(!(memberresi.getRsstatusQYesYesNo().matches("Select")))
+				fetchmap.put("rsstatus_q_yes_yes_no",memberresi.getRsstatusQYesYesNo());			
+			if(!(memberresi.getRsstatusQNo().matches("Select")))
+				fetchmap.put("rsstatus_q_no",memberresi.getRsstatusQNo());			
+			if(!(memberresi.getRsstatusQNoYes().matches("Select")))
+				fetchmap.put("rsstatus_q_no_yes",memberresi.getRsstatusQNoYes());			
+			if(!(memberresi.getRsstatusQNoYesNo().matches("Select")))
+				fetchmap.put("rsstatus_q_no_yes_no",memberresi.getRsstatusQNoYesNo());			
+			if(!(memberresi.getRsstatusQNoYesYes().matches("Select")))
+				fetchmap.put("rsstatus_q_no_yes_yes",memberresi.getRsstatusQNoYesYes());			
+			if(!(memberresi.getRsstatusQNoNo().matches("Select")))
+				fetchmap.put("rsstatus_q_no_no",memberresi.getRsstatusQNoNo());			
+			if(!(memberresi.getRsstatusQNoNoNo().matches("Select")))
+				fetchmap.put("rsstatus_q_no_no_no",memberresi.getRsstatusQNoNoNo());			
+			if(!(memberresi.getRsstatusQNoNoYes().matches("Select")))
+				fetchmap.put("rsstatus_q_no_no_yes",memberresi.getRsstatusQNoNoYes());			
+			if(!(memberresi.getRsstatusQNoNoYesYes().matches("Select")))
+				fetchmap.put("rsstatus_q_no_no_yes_yes",memberresi.getRsstatusQNoNoYesYes());			
+			if(!(memberresi.getRsstatusQNoNoYesYesYes().matches("Select")))
+				fetchmap.put("rsstatus_q_no_no_yes_yes_yes",memberresi.getRsstatusQNoNoYesYesYes());			
+			if(!(memberresi.getRsstatusQNoYesYesYes().matches("Select")))
+				fetchmap.put("rsstatus_q_no_yes_yes_yes",memberresi.getRsstatusQNoYesYesYes());			
+			if(!(memberresi.getRsstatusQNoYesYesYesYes().matches("Select")))
+				fetchmap.put("rsstatus_q_no_yes_yes_yes_yes",memberresi.getRsstatusQNoYesYesYesYes());
+			if(!(memberresi.getRsstatusQNoYesYesYesNo().matches("Select")))
+				fetchmap.put("rsstatus_q_no_yes_yes_yes_no",memberresi.getRsstatusQNoYesYesYesNo());
+			
+			request.setAttribute("fetchmap", fetchmap);
+		}
 		//map.put(aKey, rb.getString(aKey));
 		JSONObject jsonObject = new JSONObject(map);
 		request.setAttribute("jsonObject", jsonObject);
 		request.setAttribute("map", map);
+		
 	}
 
 	//TODO update in the document for user registration
@@ -97,9 +140,10 @@ public class ResidentialStatus extends ITReturnComponent {
 	public void doAction(HstRequest request, HstResponse response)
 			throws HstComponentException {
 		// TODO Auto-generated method stub
-		super.doBeforeRender(request, response);	
+		log.info("this is do action of residential status");
+		super.doAction(request, response);	
 	}
-
+	
 	class SortyByDepth implements Comparator<String> {
 		@Override
 		public int compare(String o1, String o2) {
@@ -116,5 +160,5 @@ public class ResidentialStatus extends ITReturnComponent {
 				return 1;
 		}		
 	}
-
+	
 }
