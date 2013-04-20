@@ -45,17 +45,39 @@ public interface Constants {
 	String PROP_SUMMARY = "mootlywcm:summary";
 	String PROP_TITLE = "mootlywcm:title";
 	String PROP_FORM = "mootlywcm:form";
-
 	String PROP_NEW_PASSWORD = "mootlywcm:New_Password";
 	String PROP_OLD_PASSWORD = "mootlywcm:Old_Password";
-
 
 	String PROP_CONTACT_US = "mootlywcm:contactus";
 	String PROP_CU_USER_NAME = "mootlywcm:cu_user_name";
 	String PROP_CU_EMAIL_ADDRESS = "mootlywcm:cu_email_address";
 	String PROP_CU_COMMENTS = "mootlywcm:cu_comments";
 
+	String NT_NOTIFICATIONITEMS="mootlywcm:notificationitems";
 
+	String BSR1="mootlywcm:BSR_code1";
+	String DATE1="mootlywcm:Date of credit into Govt Account1";
+	String SERIAL1="mootlywcm:Serail_No_of_Challan1";
+	String AMOUNT1="mootlywcm:Amount1";
+
+	String Rsstatus_q="mootlywcm:rsstatus_q";
+	String Rsstatus_q_yes="mootlywcm:rsstatus_q_yes";
+	String Rsstatus_q_yes_yes="mootlywcm:rsstatus_q_yes_yes";
+	String Rsstatus_q_yes_yes_yes="mootlywcm:rsstatus_q_yes_yes_yes";
+	String Rsstatus_q_yes_no="mootlywcm:rsstatus_q_yes_no";
+	String Rsstatus_q_yes_yes_no="mootlywcm:rsstatus_q_yes_yes_no";
+	String Rsstatus_q_no="mootlywcm:rsstatus_q_no";
+	String Rsstatus_q_no_yes="mootlywcm:rsstatus_q_no_yes";
+	String Rsstatus_q_no_yes_no="mootlywcm:rsstatus_q_no_yes_no";
+	String Rsstatus_q_no_yes_yes="mootlywcm:rsstatus_q_no_yes_yes";
+	String Rsstatus_q_no_no="mootlywcm:rsstatus_q_no_no";
+	String Rsstatus_q_no_no_no="mootlywcm:rsstatus_q_no_no_no";
+	String Rsstatus_q_no_no_yes="mootlywcm:rsstatus_q_no_no_yes";
+	String Rsstatus_q_no_no_yes_yes="mootlywcm:rsstatus_q_no_no_yes_yes";
+	String Rsstatus_q_no_no_yes_yes_yes="mootlywcm:rsstatus_q_no_no_yes_yes_yes";
+	String Rsstatus_q_no_yes_yes_yes="mootlywcm:rsstatus_q_no_yes_yes_yes";
+	String Rsstatus_q_no_yes_yes_yes_yes="mootlywcm:rsstatus_q_no_yes_yes_yes_yes";
+	String Rsstatus_q_no_yes_yes_yes_no="mootlywcm:rsstatus_q_no_yes_yes_yes_no";
 
     String NT_COMMENT = "mootlywcm:comment";
     String NT_COPYRIGHT = "mootlywcm:copyright";
@@ -72,14 +94,7 @@ public interface Constants {
     String BSR="mootlywcm:BSRcode";
     String DATE="mootlywcm:Dateofcredit";
     String SERIAL="mootlywcm:challanNo";
-    String AMOUNT="mootlywcm:Amount";
-    String NT_NOTIFICATIONITEMS="mootlywcm:notificationitems";
-    
-    String BSR1="mootlywcm:BSR_code1";
-    String DATE1="mootlywcm:Date of credit into Govt Account1";
-    String SERIAL1="mootlywcm:Serail_No_of_Challan1";
-    String AMOUNT1="mootlywcm:Amount1";
-    
+    String AMOUNT="mootlywcm:Amount";   
     
     String BD_BANK_NAME="mootlywcm:bankName";
     String BD_MICR_CODE="mootlywcm:micrCode";
@@ -98,16 +113,9 @@ public interface Constants {
     String tds_Certificate="mootlywcm:tdscertificate";
     String financial_Year="mootlywcm:financialyear";
     String total_taxdeducted="mootlywcm:totaltaxdeducted";
-    
-    
+     
     String amount="mootlywcm:amount";
    
-    
-    
-    
-    
-
-
 	String PROP_PERSONAL_INFORMATION = "mootlywcm:personalinformation";
 	String PROP_PI_FIRST_NAME = "mootlywcm:pi_first_name";
 	String PROP_PI_FATHER_NAME = "mootlywcm:pi_father_name";
@@ -148,35 +156,8 @@ public interface Constants {
 	String PROP_EMPLOYER_SALARIES = "mootlywcm:income_salaries";
 	String PROP_TOTAL_TAX_DEDUCTED = "mootlywcm:total_tax_deducted";
 
-
-
-	String Rsstatus_q="mootlywcm:rsstatus_q";
-	String Rsstatus_q_yes="mootlywcm:rsstatus_q_yes";
-	String Rsstatus_q_yes_yes="mootlywcm:rsstatus_q_yes_yes";
-	String Rsstatus_q_yes_yes_yes="mootlywcm:rsstatus_q_yes_yes_yes";
-	String Rsstatus_q_yes_no="mootlywcm:rsstatus_q_yes_no";
-	String Rsstatus_q_yes_yes_no="mootlywcm:rsstatus_q_yes_yes_no";
-	String Rsstatus_q_no="mootlywcm:rsstatus_q_no";
-	String Rsstatus_q_no_yes="mootlywcm:rsstatus_q_no_yes";
-	String Rsstatus_q_no_yes_no="mootlywcm:rsstatus_q_no_yes_no";
-	String Rsstatus_q_no_yes_yes="mootlywcm:rsstatus_q_no_yes_yes";
-	String Rsstatus_q_no_no="mootlywcm:rsstatus_q_no_no";
-	String Rsstatus_q_no_no_no="mootlywcm:rsstatus_q_no_no_no";
-	String Rsstatus_q_no_no_yes="mootlywcm:rsstatus_q_no_no_yes";
-	String Rsstatus_q_no_no_yes_yes="mootlywcm:rsstatus_q_no_no_yes_yes";
-	String Rsstatus_q_no_no_yes_yes_yes="mootlywcm:rsstatus_q_no_no_yes_yes_yes";
-	String Rsstatus_q_no_yes_yes_yes="mootlywcm:rsstatus_q_no_yes_yes_yes";
-	String Rsstatus_q_no_yes_yes_yes_yes="mootlywcm:rsstatus_q_no_yes_yes_yes_yes";
-	String Rsstatus_q_no_yes_yes_yes_no="mootlywcm:rsstatus_q_no_yes_yes_yes_no";
-
-
-
-	
-
 	String tds_certificate="mootlywcm:tdscertificate";
 	String deducted_year="mootlywcm:deductedyear";
-
-
 
 
 
