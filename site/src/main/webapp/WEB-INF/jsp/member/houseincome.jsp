@@ -5,6 +5,19 @@
 <hst:link var="mainSiteMapRefId"
 	siteMapItemRefId="${mainSiteMapItemRefId}" />
 <%
+String varToReplace = (String) pageContext.getAttribute("mainSiteMapRefId");
+if (varToReplace != null) {
+    String pan = (String) request.getAttribute("pan");
+    String itReturnType = (String) request.getAttribute("itReturnType");
+ String modifiedSiteMapRefId = varToReplace.replaceFirst("_default_",itReturnType).replace("_default_", pan).replaceAll("houseincome","capitalgains");
+ pageContext.setAttribute("modifiedSiteMapRefId",modifiedSiteMapRefId);
+}
+else {
+ pageContext.setAttribute("modifiedSiteMapRefId",mainSiteMapRefId);
+}
+%>
+<%--
+<%
 	String varToReplace = (String) pageContext
 			.getAttribute("mainSiteMapRefId");
 	if (varToReplace != null) {
@@ -18,6 +31,7 @@
 				mainSiteMapRefId);
 	}
 %>
+--%>
 
 <%
 	ValueListService objValueListService = ValueListServiceImpl
@@ -119,11 +133,10 @@ $m(document).ready(function() {
 				<table>
 					<tr height="30px">
 						<td class="label"><fmt:message
-								key="house.property.income.grossannual" />
-						</td>
+								key="house.property.income.grossannual" /></td>
 						<td class="input"><input type="text"
-							name="Gross_Annual_Income" name="Gross_salary" 
-							title="Please fill numeric value " id="grossannual" class="validate[required,custom[integer],maxSize[14]] text-input"
+							name="Gross_Annual_Income" name="Gross_salary"
+							title="Please fill numeric value " id="grossannual"
 							onchange="fill()" id=A
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
 						<c:out value="${childBean.grossAnnualIncome}"/></c:if>" />
@@ -132,11 +145,9 @@ $m(document).ready(function() {
 
 					<tr height="30px">
 						<td class="label"><fmt:message
-								key="house.property.rent.unrealised" />
-						</td>
-						<td class="input"><input type="text" name="Unrealised_Rent" 
-							 title="Please fill numeric value " id="rent" class="validate[required,custom[integer],maxSize[14]] text-input"
-							onchange="fill()"
+								key="house.property.rent.unrealised" /></td>
+						<td class="input"><input type="text" name="Unrealised_Rent"
+							title="Please fill numeric value " id="rent" onchange="fill()"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
 						<c:out value="${childBean.unrealisedRent}"/></c:if>" />
 						</td>
@@ -145,10 +156,10 @@ $m(document).ready(function() {
 
 					<tr height="30px">
 						<td class="label"><fmt:message
-								key="house.property.taxes.local" /></td>
-						<td class="input"><input type="text" name="Local_Taxes" class="validate[required,custom[integer],maxSize[14]] text-input"
-							 title="Please fill numeric value " id="taxes" 
-							onchange="fill()"
+								key="house.property.taxes.local" />
+						</td>
+						<td class="input"><input type="text" name="Local_Taxes"
+							title="Please fill numeric value " id="taxes" onchange="fill()"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
 						<c:out value="${childBean.localTaxes}"/></c:if>" />
 						</td>
@@ -156,12 +167,10 @@ $m(document).ready(function() {
 
 					<tr height="30px">
 						<td class="label"><fmt:message
-								key="house.property.interest.borrowed" />
-						</td>
+								key="house.property.interest.borrowed" /></td>
 						<td class="input"><input type="text"
-							name="Interest_Borrowed2" 
-							title="Please fill numeric value " id="interest" class="validate[required,custom[integer],maxSize[14]] text-input"
-							onchange="fill()"
+							name="Interest_Borrowed2" title="Please fill numeric value "
+							id="interest" onchange="fill()"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
 						<c:out value="${childBean.interestBorrowed2}"/></c:if>" />
 						</td>
@@ -170,8 +179,7 @@ $m(document).ready(function() {
 
 					<tr height="30px">
 						<td class="label"><fmt:message
-								key="house.property.income.total" />
-						</td>
+								key="house.property.income.total" /></td>
 						<td class="input"><input type="text" name="Total_Income"
 							readonly="readonly" id="total" onchange="fill()"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
@@ -187,12 +195,10 @@ $m(document).ready(function() {
 				<table>
 					<tr height="30px">
 						<td class="label"><fmt:message
-								key="house.property.interest.borrowed1" />
-						</td>
+								key="house.property.interest.borrowed1" /></td>
 						<td class="input"><input type="text"
-							name="Interest_Borrowed1" 
-							title="Please fill numeric value " id="borrowed" class="validate[required,custom[integer],maxSize[14]] text-input"
-							onchange="fill1()"
+							name="Interest_Borrowed1" title="Please fill numeric value "
+							id="borrowed" onchange="fill1()"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
 						<c:out value="${childBean.interestBorrowed1}"/></c:if>" />
 						</td>
@@ -200,12 +206,12 @@ $m(document).ready(function() {
 
 					<tr>
 						<td><b style="color: blue">Income from House Property is
-								Interest on Borrowed Capital OR 1,50,000 whichever is less...</b></td>
+								Interest on Borrowed Capital OR 1,50,000 whichever is less...</b>
+						</td>
 					</tr>
 					<tr height="30px">
 						<td class="label"><fmt:message
-								key="house.property.income.total" />
-						</td>
+								key="house.property.income.total" /></td>
 						<td class="input"><input type="text" name="Income_Hproperty"
 							readonly="readonly" id="income" onchange="fill1()"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
@@ -231,12 +237,9 @@ $m(document).ready(function() {
 
 		<table>
 			<tr align="center">
-				<th><b>Whether your House Property let out</b>
-				</th>
-				<th><b>Income from House Property</b>
-				</th>
-				<th><b>Actions</b>
-				</th>
+				<th><b>Whether your House Property let out</b></th>
+				<th><b>Income from House Property</b></th>
+				<th><b>Actions</b></th>
 			</tr>
 			<c:if test="${not empty parentBean}">
 				<c:forEach items="${parentBean.houseIncomeDetailList}"
@@ -250,9 +253,7 @@ $m(document).ready(function() {
 									<c:otherwise>
 										<c:out value="No" />
 									</c:otherwise>
-								</c:choose>
-						</a>
-						</td>
+								</c:choose> </a></td>
 						<td><c:choose>
 								<c:when test="${not empty houseincomedetail.incomeHproperty}">
 									<c:out value="${houseincomedetail.incomeHproperty}" />
@@ -260,14 +261,12 @@ $m(document).ready(function() {
 								<c:otherwise>
 									<c:out value="${houseincomedetail.totalIncome}" />
 								</c:otherwise>
-							</c:choose>
-						</td>
+							</c:choose></td>
 						<td><a
 							href="${redirectURLToSamePage}/<c:out value="${houseincomedetail.canonicalUUID}"/>/edit"><small>Edit</small>
 						</a>&nbsp;&nbsp;<a
 							href="${redirectURLToSamePage}/<c:out value="${houseincomedetail.canonicalUUID}"/>/delete"><small>Delete</small>
-						</a>
-						</td>
+						</a></td>
 					</tr>
 				</c:forEach>
 			</c:if>
@@ -275,6 +274,8 @@ $m(document).ready(function() {
 
 		<a href="${redirectURLToSamePage}/new" class="button orange">Add
 			New</a>
+		<a href="${modifiedSiteMapRefId}" class="button orange"
+			style="margin-left: 100px;">Next</a>
 	</c:otherwise>
 </c:choose>
 
@@ -288,24 +289,24 @@ function fill() {
 	  var B = parseFloat(document.getElementById("rent").value);
 	  var C= parseFloat(document.getElementById("taxes").value);
 	  var D= parseFloat(document.getElementById("interest").value);
-	  if(B==0 && C==0 && A==0 && D==0){
+	  if(B>0 && C>0 && A>0 && D>0){
 
-			 
+		  var E = B + C;
+		  var F = A - E;
+
+		  var  H = 0.3 * F;
+
+		  var  J = H + D;
+		  var K = F - J;
+
+		  
+		
+		  document.getElementById("total").value =Math.round(K*100)/100;	 
 	 }
 	  else
 	  {
 		 
-	  var E = B + C;
-	  var F = A - E
-
-	  var  H = 0.3 * F;
-
-	  var  J = H + D;
-	  var K = F - J;
-
 	  
-	
-	  document.getElementById("total").value =Math.round(K*100)/100;
 	}
 		 }
 	 
