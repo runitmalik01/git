@@ -24,10 +24,10 @@ import com.mootly.wcm.beans.MemberPersonalInformation;
 import com.mootly.wcm.components.ITReturnComponent;
 
 @PrimaryBean(primaryBeanClass=MemberBankDetail.class)
-@AdditionalBeans(additionalBeansToLoad=MemberPersonalInformation.class)
 @FormFields(fieldNames={"bd_bank_name","bd_micr_code","bd_Branch_name","bd_account_type","bd_account_no","bd_ecs"})
 @RequiredFields(fieldNames={"bd_bank_name","bd_micr_code","bd_Branch_name","bd_account_type","bd_account_no","bd_ecs"})
 @RequiredBeans(requiredBeans={MemberPersonalInformation.class})
+@AdditionalBeans(additionalBeansToLoad=MemberPersonalInformation.class)
 public class BankDetail extends ITReturnComponent {
 	
 private static final Logger log = LoggerFactory.getLogger(BankDetail.class);
@@ -36,6 +36,7 @@ private static final Logger log = LoggerFactory.getLogger(BankDetail.class);
 public void doBeforeRender(HstRequest request, HstResponse response) {
 	// TODO Auto-generated method stub
 	super.doBeforeRender(request, response);
+	log.info("Member Bank Detail Page");
 }
 
 @Override
