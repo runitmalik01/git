@@ -15,13 +15,10 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-import javax.jcr.Node;
-import javax.jcr.NodeIterator;
 import javax.jcr.Session;
 import javax.transaction.SystemException;
 
 import org.hippoecm.hst.content.beans.ObjectBeanManagerException;
-import org.hippoecm.hst.content.beans.manager.workflow.WorkflowPersistenceManager;
 import org.hippoecm.hst.core.component.HstComponentException;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
@@ -41,7 +38,6 @@ import com.mootly.wcm.beans.SecuritiesInformation;
 import com.mootly.wcm.beans.TcsDocument;
 import com.mootly.wcm.beans.TdsFromOthersInformation;
 import com.mootly.wcm.beans.TdsFromSalaryInformation;
-import com.mootly.wcm.components.BaseComponent;
 import com.mootly.wcm.components.ITReturnComponent;
 import com.mootly.wcm.utils.ContentStructure;
 import com.mootly.wcm.utils.GoGreenUtil;
@@ -54,8 +50,6 @@ public class Calculations extends ITReturnComponent {
 	String modusername= null;
 	String pan = null;
 	Session persistableSession = null;
-
-	@SuppressWarnings("deprecation")
 	@Override
 	public void doBeforeRender(HstRequest request, HstResponse response) {
 		// TODO Auto-generated method stub
@@ -200,7 +194,7 @@ public class Calculations extends ITReturnComponent {
 	 * @author Abhishek
 	 */
 	@SuppressWarnings("unused")
-	private float  fetchSalaryIncomeValue(HstRequest request,HstResponse response) {
+	public float  fetchSalaryIncomeValue(HstRequest request,HstResponse response) {
 		// TODO Auto-generated method stub
 		float fSalary = 0.0f;
 		log.info("inside fetchSalaryIncomeDocument--->before try:-");
@@ -217,449 +211,447 @@ public class Calculations extends ITReturnComponent {
 			fSalary = Float.parseFloat(objSalaryIncomeDocument.getTotal());
 			log.info("total is "+fSalary);
 		}
-     	catch (ObjectBeanManagerException e)
-			{
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				//}
-			}
-			return fSalary; 
+		catch (ObjectBeanManagerException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			//}
+		}
+		return fSalary; 
 
 	}
-	
-
-		@SuppressWarnings("unused")
-
-		private float   fetchOtherIncomeValue(HstRequest request,HstResponse response) {
-			// TODO Auto-generated method stub
-			float fOtherIncome= 0;
-			log.info("inside fetchOtherIncomeDocument--->before try:-");
-			try {
-
-				String itReturnFolderPathFetch = ContentStructure.getOtherIncomePathUpdate(request,member.getUserName());
-				OtherSourceIncome	objOtherSourceIncome = (OtherSourceIncome)getObjectBeanManager(request).getObject(itReturnFolderPathFetch);
-				log.info("Calculation->fetchSalaryIncomeDocument--->objSalaryIncomeDocument:"+objOtherSourceIncome);
-				if(objOtherSourceIncome!=null){
-					fOtherIncome = Float.parseFloat(objOtherSourceIncome.getTaxable_income());
-					log.info("Calculation->fetchSalaryIncomeDocument--->arrlSalaryIncome list:"+fOtherIncome);
-				}
-				
-			}catch (ObjectBeanManagerException e)
-			{
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				//}
-			}	
-			return fOtherIncome;
-		}
-
-		private float  fetchHousePropertyValue(HstRequest request,HstResponse response) {
-			// TODO Auto-generated method stub
-			float fHouseProperty=0.0f;
-			try {
 
 
-				String path=ContentStructure.getHousePropertyDocPath(pan,filing_year, modusername);
-				log.warn(path);
-				HouseProperty houseincome =(HouseProperty)getObjectBeanManager(request).getObject(path);
-				request.setAttribute("houseincome", houseincome);
-				if(houseincome != null){
-					fHouseProperty = Float.parseFloat(houseincome.getTotalIncome());
+	public float   fetchOtherIncomeValue(HstRequest request,HstResponse response) {
+		// TODO Auto-generated method stub
+		float fOtherIncome= 0;
+		log.info("inside fetchOtherIncomeDocument--->before try:-");
+		try {
 
-					log.info("object is"+fHouseProperty);
-				}
-
-			}catch (ObjectBeanManagerException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			return fHouseProperty;
-
-
-		}
-
-		private float   fetchCapitalGainValue(HstRequest request,HstResponse response) {
-			// TODO Auto-generated method stub
-			float fCapitalGain=0.0f;
-			log.info("inside fetchOtherIncomeDocument--->before try:-");
-			try {
-				String path=ContentStructure.getMemberAssetDocPath(pan,filing_year, modusername);
-				log.warn(path);
-				CapitalAssetInformation capital =(CapitalAssetInformation)getObjectBeanManager(request).getObject(path);
-				request.setAttribute("capital", capital);
-				if(capital != null){
-
-					fCapitalGain = Float.parseFloat(capital.getCapitalGain());
-
-					log.info("object is"+fCapitalGain);
-				}
-
-				log.warn("capital object is"+capital);
-
-
-
-			}catch (ObjectBeanManagerException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			return fCapitalGain;
-		}
-
-		private float  fetchTcsDocumentValue(HstRequest request,HstResponse response) {
-			// TODO Auto-generated method stub
-			float fTcsDoc=0.0f;
-			log.info("inside fetchtcsDocument--->before try:-");
-			try {
-
-				String path=ContentStructure.getTcsDocPath(pan,filing_year, modusername);
-				log.warn(path);
-				TcsDocument fetchtcs =(TcsDocument)getObjectBeanManager(request).getObject(path);
-
-				request.setAttribute("fetchtcs", fetchtcs);
-				if(fetchtcs!= null){
-					fTcsDoc = Float.parseFloat(fetchtcs.getAmountClaimed());
-
-					log.warn("security object is"+fetchtcs.getName());
-					log.info("fTcsDoc isssssssss"+fTcsDoc);
-
-				}		
-
-			}catch (ObjectBeanManagerException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			String itReturnFolderPathFetch = ContentStructure.getOtherIncomePathUpdate(request,member.getUserName());
+			OtherSourceIncome	objOtherSourceIncome = (OtherSourceIncome)getObjectBeanManager(request).getObject(itReturnFolderPathFetch);
+			log.info("Calculation->fetchSalaryIncomeDocument--->objSalaryIncomeDocument:"+objOtherSourceIncome);
+			if(objOtherSourceIncome!=null){
+				fOtherIncome = Float.parseFloat(objOtherSourceIncome.getTaxable_income());
+				log.info("Calculation->fetchSalaryIncomeDocument--->arrlSalaryIncome list:"+fOtherIncome);
 			}
 
+		}catch (ObjectBeanManagerException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			//}
+		}	
+		return fOtherIncome;
+	}
 
-			return fTcsDoc;
-		}
-		private float  fetchDeductionsValue(HstRequest request,HstResponse response) {
-			// TODO Auto-generated method stub
-			float fDeduction= 0.0f;
-			log.info("inside fetchtcsDocument--->before try:-");
-			try {
+	public float  fetchHousePropertyValue(HstRequest request,HstResponse response) {
+		// TODO Auto-generated method stub
+		float fHouseProperty=0.0f;
+		try {
 
-				String path=ContentStructure.getScheduleVIADocumentPath(pan,filing_year, modusername);
-				log.warn(path);
-				MemberDeductionScheduleVIA objDeduction =(MemberDeductionScheduleVIA)getObjectBeanManager(request).getObject(path);
 
-				request.setAttribute("objDeduction", objDeduction);
-				if(objDeduction!= null){
-					fDeduction = Float.parseFloat(objDeduction.getTotal());
+			String path=ContentStructure.getHousePropertyDocPath(pan,filing_year, modusername);
+			log.warn(path);
+			HouseProperty houseincome =(HouseProperty)getObjectBeanManager(request).getObject(path);
+			request.setAttribute("houseincome", houseincome);
+			if(houseincome != null){
+				//fHouseProperty = Float.parseFloat(houseincome.getTotalIncome());
 
-				}		
-
-			}catch (ObjectBeanManagerException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				log.info("object is"+fHouseProperty);
 			}
 
-
-			return fDeduction;
+		}catch (ObjectBeanManagerException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		private float  fetchLossesValue(HstRequest request,HstResponse response) {
-			// TODO Auto-generated method stub
-			float fAdjustLosses= 0.0f;
-			log.info("inside fetchtcsDocument--->before try:-");
-			try {
+		return fHouseProperty;
 
-				String path=ContentStructure.getScheduleVIADocumentPath(pan,filing_year, modusername);
-				log.warn(path);
-				MemberDeductionScheduleVIA objDeduction =(MemberDeductionScheduleVIA)getObjectBeanManager(request).getObject(path);
 
-				request.setAttribute("objDeduction", objDeduction);
-				if(objDeduction!= null){
-					fAdjustLosses = Float.parseFloat(objDeduction.getTotal());
+	}
 
-				}		
+	public float   fetchCapitalGainValue(HstRequest request,HstResponse response) {
+		// TODO Auto-generated method stub
+		float fCapitalGain=0.0f;
+		log.info("inside fetchOtherIncomeDocument--->before try:-");
+		try {
+			String path=ContentStructure.getMemberAssetDocPath(pan,filing_year, modusername);
+			log.warn(path);
+			CapitalAssetInformation capital =(CapitalAssetInformation)getObjectBeanManager(request).getObject(path);
+			request.setAttribute("capital", capital);
+			if(capital != null){
 
-			}catch (ObjectBeanManagerException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				fCapitalGain = Float.parseFloat(capital.getCapitalGain());
+
+				log.info("object is"+fCapitalGain);
 			}
 
+			log.warn("capital object is"+capital);
 
-			return fAdjustLosses;
+
+
+		}catch (ObjectBeanManagerException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		private float  fetchSecurityValue(HstRequest request,HstResponse response) {
-			// TODO Auto-generated method stub
-			float fSecurities = 0.0f;
-			log.info("inside fetchtcsDocument--->before try:-");
-			try {
+		return fCapitalGain;
+	}
 
-				String path=ContentStructure.getMemberSecurityDocPath(pan,filing_year, modusername);
-				log.info(path);
-				SecuritiesInformation objSecurity =(SecuritiesInformation)getObjectBeanManager(request).getObject(path);
+	public float  fetchTcsDocumentValue(HstRequest request,HstResponse response) {
+		// TODO Auto-generated method stub
+		float fTcsDoc=0.0f;
+		log.info("inside fetchtcsDocument--->before try:-");
+		try {
 
-				request.setAttribute("security", objSecurity);
-				if(objSecurity != null){
-					fSecurities = Float.parseFloat(objSecurity.getCapitalGain());
-					log.info("securities is"+fSecurities);
-				}		
+			String path=ContentStructure.getTcsDocPath(pan,filing_year, modusername);
+			log.warn(path);
+			TcsDocument fetchtcs =(TcsDocument)getObjectBeanManager(request).getObject(path);
 
-			}catch (ObjectBeanManagerException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			return fSecurities;
-		}
-		private float  fetchinterestValue(HstRequest request,HstResponse response) {
-			// TODO Auto-generated method stub
-			float fInterest = 0.0f;
-			log.info("inside fetchtcsDocument--->before try:-");
-			try {
+			request.setAttribute("fetchtcs", fetchtcs);
+			if(fetchtcs!= null){
+				fTcsDoc = Float.parseFloat(fetchtcs.getAmountClaimed());
 
-				String path=ContentStructure.getinterestdocumentfetch(pan,filing_year, modusername);
-				log.info(path);
-				InterestDocument objInterestDocument =(InterestDocument)getObjectBeanManager(request).getObject(path);
+				log.warn("security object is"+fetchtcs.getName());
+				log.info("fTcsDoc isssssssss"+fTcsDoc);
 
-				request.setAttribute("objInterestDocument", objInterestDocument);
-				if(objInterestDocument != null){
-					fInterest = Float.parseFloat(objInterestDocument.getSection234A())+ Float.parseFloat(objInterestDocument.getSection234B())+ Float.parseFloat(objInterestDocument.getSection234C());
-				}		log.info("tooooootalllllll isssss"+fInterest);
+			}		
 
-			}catch (ObjectBeanManagerException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			return fInterest;
-		}
-		private float  fetchrebate89Value(HstRequest request,HstResponse response) {
-			// TODO Auto-generated method stub
-			float fRebate89 = 0.0f;
-			log.info("inside fetchtcsDocument--->before try:-");
-			try {
-
-				String path=ContentStructure.getRebateSection89(pan,filing_year, modusername);
-				log.info(path);
-				MemberRebateSectionEightyNine objRebate89 =(MemberRebateSectionEightyNine)getObjectBeanManager(request).getObject(path);
-
-				request.setAttribute("objRebate89", objRebate89);
-				if(objRebate89 != null){
-					fRebate89 = Float.parseFloat(objRebate89.getTaxRelief());
-				}		
-
-			}catch (ObjectBeanManagerException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			return fRebate89;
-		}
-		private float  fetchrebate90_91Value(HstRequest request,HstResponse response) {
-			// TODO Auto-generated method stub
-			float fRebate90 = 0.0f;
-			log.info("inside fetchtcsDocument--->before try:-");
-			try {
-
-				String path=ContentStructure.getRebateSec90DocPath(pan,filing_year, modusername);
-				log.info(path);
-				RebateSec90Document objRebate90 =(RebateSec90Document)getObjectBeanManager(request).getObject(path);
-
-				request.setAttribute("objRebate90", objRebate90);
-				if(objRebate90 != null){
-					fRebate90 = Float.parseFloat(objRebate90.getSection90()) + Float.parseFloat(objRebate90.getSection91());
-				}		
-
-			}catch (ObjectBeanManagerException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			return fRebate90;
+		}catch (ObjectBeanManagerException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 
-		private float  fetchTdsfromsalaryValue(HstRequest request,HstResponse response) {
-			// TODO Auto-generated method stub
-			float fTdssalry = 0.0f;
-			log.info("inside fetchtcsDocument--->before try:-");
-			try {
 
-				String path=ContentStructure.getTdsSalaryDocPath(pan,filing_year, modusername);
-				log.info(path);
-				TdsFromSalaryInformation objtdssalry =(TdsFromSalaryInformation)getObjectBeanManager(request).getObject(path);
+		return fTcsDoc;
+	}
+	public float  fetchDeductionsValue(HstRequest request,HstResponse response) {
+		// TODO Auto-generated method stub
+		float fDeduction= 0.0f;
+		log.info("inside fetchtcsDocument--->before try:-");
+		try {
 
-				request.setAttribute("objtdssalry", objtdssalry);
-				if(objtdssalry != null){
-					fTdssalry = Float.parseFloat(objtdssalry.getTotal_Value());
-				}		
+			String path=ContentStructure.getScheduleVIADocumentPath(pan,filing_year, modusername);
+			log.warn(path);
+			MemberDeductionScheduleVIA objDeduction =(MemberDeductionScheduleVIA)getObjectBeanManager(request).getObject(path);
 
-			}catch (ObjectBeanManagerException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			return fTdssalry;
+			request.setAttribute("objDeduction", objDeduction);
+			if(objDeduction!= null){
+				fDeduction = Float.parseFloat(objDeduction.getTotal());
+
+			}		
+
+		}catch (ObjectBeanManagerException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		private float  fetchTdsOtherValue(HstRequest request,HstResponse response) {
-			// TODO Auto-generated method stub
-			float fTdsother = 0.0f;
-			log.info("inside fetchtcsDocument--->before try:-");
-			try {
 
-				String path=ContentStructure.getTdsOthersDocPath(pan,filing_year, modusername);
-				log.info(path);
-				TdsFromOthersInformation objtdsother =(TdsFromOthersInformation)getObjectBeanManager(request).getObject(path);
 
-				request.setAttribute("objtdsother", objtdsother);
-				if(objtdsother != null){
-					fTdsother = Float.parseFloat(objtdsother.getTotal_Value());
-				}		
+		return fDeduction;
+	}
+	public float  fetchLossesValue(HstRequest request,HstResponse response) {
+		// TODO Auto-generated method stub
+		float fAdjustLosses= 0.0f;
+		log.info("inside fetchtcsDocument--->before try:-");
+		try {
 
-			}catch (ObjectBeanManagerException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			return fTdsother;
+			String path=ContentStructure.getScheduleVIADocumentPath(pan,filing_year, modusername);
+			log.warn(path);
+			MemberDeductionScheduleVIA objDeduction =(MemberDeductionScheduleVIA)getObjectBeanManager(request).getObject(path);
+
+			request.setAttribute("objDeduction", objDeduction);
+			if(objDeduction!= null){
+				fAdjustLosses = Float.parseFloat(objDeduction.getTotal());
+
+			}		
+
+		}catch (ObjectBeanManagerException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		private float  fetchIncomeTaxValue(HstRequest request,HstResponse response,float fTaxableIncome) {
-			// TODO Auto-generated method stub
-			float fIncomeTax = 0.0f;
-			log.info("inside fetchtcsDocument--->before try:-");
-			try {
-				String path=ContentStructure.getPersonalDocumentPath(pan,filing_year,modusername);
-				MemberPersonalInformation document=(MemberPersonalInformation)getObjectBeanManager(request).getObject(path);				
-				Calendar dob=document.getDOB();
-				Date date =dob.getTime();
-				DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-				String fetchdob=formatter.format(date);
-				request.setAttribute("dob", fetchdob);
-				request.setAttribute("document", document);
-				MemberAge age = new MemberAge();
-				log.info("dob currentdate1 date  is"+age.MemberAgeCalculate(dob));
-				int Age = age.MemberAgeCalculate(dob);
-				if(filing_year=="2012-2013") {
-					log.info("i am fetching income tax "+filing_year);
-					log.info("value of taxable income is"+fTaxableIncome);
-					if (document.getSex().matches("M")){
-
-						if((Age - 2) < 60 ){
 
 
-							log.info("value of taxable income i male"+fTaxableIncome);
-							if (fTaxableIncome <= 180000.0f && fTaxableIncome !=0.0f ) {
-								log.info("Male is there");
-								float fIncomeTax1=0.0f;
-								return fIncomeTax1;
-							}
-							else if (fTaxableIncome > 180000.0f && fTaxableIncome <= 500000.0f){
-								float A = (float) ((fTaxableIncome - 200000.0f) * 0.1); 
-								float fIncomeTax1 = Math.round((A)* 100) / 100;
-								log.info("Tax is between 2000001 and 500000");
-								return fIncomeTax1;
-							}
-							else if (fTaxableIncome > 500001.0f && fTaxableIncome <= 800000.0f){
-								log.info(" First-->Second Else IF condition");
-								float A = (float) (((fTaxableIncome - 500000.0f) * 0.2) + 32000.0f); 
-								float fIncomeTax1 = Math.round((A)* 100) / 100;
-								log.info("Tax is between 500001 and 1000000");
-								return fIncomeTax1;
-							}
-							else if (fTaxableIncome >800000.0f){
-								log.info(" First-->Third Else IF condition");
-								float A = (float) (((fTaxableIncome - 800000.0f) * 0.3) + 92000.0f); 
-								float fIncomeTax1 = Math.round((A)* 100) / 100;
-								log.info("Tax is more then 1000000");
-								return fIncomeTax1;
+		return fAdjustLosses;
+	}
+	public float  fetchSecurityValue(HstRequest request,HstResponse response) {
+		// TODO Auto-generated method stub
+		float fSecurities = 0.0f;
+		log.info("inside fetchtcsDocument--->before try:-");
+		try {
 
-							}
-						}else{
-							log.info("here we are for senior citizen");
-							log.info("value of taxable income i male"+fTaxableIncome);
-							if (fTaxableIncome <= 250000.0f && fTaxableIncome !=0.0f ) {
-								log.info("Male is there");
-								float fIncomeTax1=0.0f;
-								return fIncomeTax1;
-							}
-							else if (fTaxableIncome > 250000.0f && fTaxableIncome <= 500000.0f){
-								float A = (float) ((fTaxableIncome - 250000.0f) * 0.1); 
-								float fIncomeTax1 = Math.round((A)* 100) / 100;
-								log.info("Tax is between 2000001 and 500000");
-								return fIncomeTax1;
-							}
-							else if (fTaxableIncome > 500001.0f && fTaxableIncome <= 800000.0f){
-								log.info(" First-->Second Else IF condition");
-								float A = (float) (((fTaxableIncome - 500000.0f) * 0.2) + 25000.0f); 
-								float fIncomeTax1 = Math.round((A)* 100) / 100;
-								log.info("Tax is between 500001 and 1000000");
-								return fIncomeTax1;
-							}
-							else if (fTaxableIncome >800000.0f){
-								log.info(" First-->Third Else IF condition");
-								float A = (float) (((fTaxableIncome - 800000.0f) * 0.3) + 85000.0f); 
-								float fIncomeTax1 = Math.round((A)* 100) / 100;
-								log.info("Tax is more then 1000000");
-								return fIncomeTax1;
+			String path=ContentStructure.getMemberSecurityDocPath(pan,filing_year, modusername);
+			log.info(path);
+			SecuritiesInformation objSecurity =(SecuritiesInformation)getObjectBeanManager(request).getObject(path);
 
-							}
+			request.setAttribute("security", objSecurity);
+			if(objSecurity != null){
+				fSecurities = Float.parseFloat(objSecurity.getCapitalGain());
+				log.info("securities is"+fSecurities);
+			}		
+
+		}catch (ObjectBeanManagerException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return fSecurities;
+	}
+	public float  fetchinterestValue(HstRequest request,HstResponse response) {
+		// TODO Auto-generated method stub
+		float fInterest = 0.0f;
+		log.info("inside fetchtcsDocument--->before try:-");
+		try {
+
+			String path=ContentStructure.getinterestdocumentfetch(pan,filing_year, modusername);
+			log.info(path);
+			InterestDocument objInterestDocument =(InterestDocument)getObjectBeanManager(request).getObject(path);
+
+			request.setAttribute("objInterestDocument", objInterestDocument);
+			if(objInterestDocument != null){
+				fInterest = Float.parseFloat(objInterestDocument.getSection234A())+ Float.parseFloat(objInterestDocument.getSection234B())+ Float.parseFloat(objInterestDocument.getSection234C());
+			}		log.info("tooooootalllllll isssss"+fInterest);
+
+		}catch (ObjectBeanManagerException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return fInterest;
+	}
+	public float  fetchrebate89Value(HstRequest request,HstResponse response) {
+		// TODO Auto-generated method stub
+		float fRebate89 = 0.0f;
+		log.info("inside fetchtcsDocument--->before try:-");
+		try {
+
+			String path=ContentStructure.getRebateSection89(pan,filing_year, modusername);
+			log.info(path);
+			MemberRebateSectionEightyNine objRebate89 =(MemberRebateSectionEightyNine)getObjectBeanManager(request).getObject(path);
+
+			request.setAttribute("objRebate89", objRebate89);
+			if(objRebate89 != null){
+				fRebate89 = Float.parseFloat(objRebate89.getTaxRelief());
+			}		
+
+		}catch (ObjectBeanManagerException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return fRebate89;
+	}
+	public float  fetchrebate90_91Value(HstRequest request,HstResponse response) {
+		// TODO Auto-generated method stub
+		float fRebate90 = 0.0f;
+		log.info("inside fetchtcsDocument--->before try:-");
+		try {
+
+			String path=ContentStructure.getRebateSec90DocPath(pan,filing_year, modusername);
+			log.info(path);
+			RebateSec90Document objRebate90 =(RebateSec90Document)getObjectBeanManager(request).getObject(path);
+
+			request.setAttribute("objRebate90", objRebate90);
+			if(objRebate90 != null){
+				fRebate90 = Float.parseFloat(objRebate90.getSection90()) + Float.parseFloat(objRebate90.getSection91());
+			}		
+
+		}catch (ObjectBeanManagerException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return fRebate90;
+	}
+
+	public float  fetchTdsfromsalaryValue(HstRequest request,HstResponse response) {
+		// TODO Auto-generated method stub
+		float fTdssalry = 0.0f;
+		log.info("inside fetchtcsDocument--->before try:-");
+		try {
+
+			String path=ContentStructure.getTdsSalaryDocPath(pan,filing_year, modusername);
+			log.info(path);
+			TdsFromSalaryInformation objtdssalry =(TdsFromSalaryInformation)getObjectBeanManager(request).getObject(path);
+
+			request.setAttribute("objtdssalry", objtdssalry);
+			if(objtdssalry != null){
+				fTdssalry = Float.parseFloat(objtdssalry.getTotal_Value());
+			}		
+
+		}catch (ObjectBeanManagerException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return fTdssalry;
+	}
+	public float  fetchTdsOtherValue(HstRequest request,HstResponse response) {
+		// TODO Auto-generated method stub
+		float fTdsother = 0.0f;
+		log.info("inside fetchtcsDocument--->before try:-");
+		try {
+
+			String path=ContentStructure.getTdsOthersDocPath(pan,filing_year, modusername);
+			log.info(path);
+			TdsFromOthersInformation objtdsother =(TdsFromOthersInformation)getObjectBeanManager(request).getObject(path);
+
+			request.setAttribute("objtdsother", objtdsother);
+			if(objtdsother != null){
+				fTdsother = Float.parseFloat(objtdsother.getTotal_Value());
+			}		
+
+		}catch (ObjectBeanManagerException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return fTdsother;
+	}
+	public float  fetchIncomeTaxValue(HstRequest request,HstResponse response,float fTaxableIncome) {
+		// TODO Auto-generated method stub
+		float fIncomeTax = 0.0f;
+		log.info("inside fetchtcsDocument--->before try:-");
+		try {
+			String path=ContentStructure.getPersonalDocumentPath(pan,filing_year,modusername);
+			MemberPersonalInformation document=(MemberPersonalInformation)getObjectBeanManager(request).getObject(path);				
+			Calendar dob=document.getDOB();
+			Date date =dob.getTime();
+			DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+			String fetchdob=formatter.format(date);
+			request.setAttribute("dob", fetchdob);
+			request.setAttribute("document", document);
+			MemberAge age = new MemberAge();
+			log.info("dob currentdate1 date  is"+age.MemberAgeCalculate(dob));
+			int Age = age.MemberAgeCalculate(dob);
+			if(filing_year=="2012-2013") {
+				log.info("i am fetching income tax "+filing_year);
+				log.info("value of taxable income is"+fTaxableIncome);
+				if (document.getSex().matches("M")){
+
+					if((Age - 2) < 60 ){
+
+
+						log.info("value of taxable income i male"+fTaxableIncome);
+						if (fTaxableIncome <= 180000.0f && fTaxableIncome !=0.0f ) {
+							log.info("Male is there");
+							float fIncomeTax1=0.0f;
+							return fIncomeTax1;
+						}
+						else if (fTaxableIncome > 180000.0f && fTaxableIncome <= 500000.0f){
+							float A = (float) ((fTaxableIncome - 200000.0f) * 0.1); 
+							float fIncomeTax1 = Math.round((A)* 100) / 100;
+							log.info("Tax is between 2000001 and 500000");
+							return fIncomeTax1;
+						}
+						else if (fTaxableIncome > 500001.0f && fTaxableIncome <= 800000.0f){
+							log.info(" First-->Second Else IF condition");
+							float A = (float) (((fTaxableIncome - 500000.0f) * 0.2) + 32000.0f); 
+							float fIncomeTax1 = Math.round((A)* 100) / 100;
+							log.info("Tax is between 500001 and 1000000");
+							return fIncomeTax1;
+						}
+						else if (fTaxableIncome >800000.0f){
+							log.info(" First-->Third Else IF condition");
+							float A = (float) (((fTaxableIncome - 800000.0f) * 0.3) + 92000.0f); 
+							float fIncomeTax1 = Math.round((A)* 100) / 100;
+							log.info("Tax is more then 1000000");
+							return fIncomeTax1;
 
 						}
+					}else{
+						log.info("here we are for senior citizen");
+						log.info("value of taxable income i male"+fTaxableIncome);
+						if (fTaxableIncome <= 250000.0f && fTaxableIncome !=0.0f ) {
+							log.info("Male is there");
+							float fIncomeTax1=0.0f;
+							return fIncomeTax1;
+						}
+						else if (fTaxableIncome > 250000.0f && fTaxableIncome <= 500000.0f){
+							float A = (float) ((fTaxableIncome - 250000.0f) * 0.1); 
+							float fIncomeTax1 = Math.round((A)* 100) / 100;
+							log.info("Tax is between 2000001 and 500000");
+							return fIncomeTax1;
+						}
+						else if (fTaxableIncome > 500001.0f && fTaxableIncome <= 800000.0f){
+							log.info(" First-->Second Else IF condition");
+							float A = (float) (((fTaxableIncome - 500000.0f) * 0.2) + 25000.0f); 
+							float fIncomeTax1 = Math.round((A)* 100) / 100;
+							log.info("Tax is between 500001 and 1000000");
+							return fIncomeTax1;
+						}
+						else if (fTaxableIncome >800000.0f){
+							log.info(" First-->Third Else IF condition");
+							float A = (float) (((fTaxableIncome - 800000.0f) * 0.3) + 85000.0f); 
+							float fIncomeTax1 = Math.round((A)* 100) / 100;
+							log.info("Tax is more then 1000000");
+							return fIncomeTax1;
+
+						}
+
 					}
-					else{
-						log.info("here we are dealing for female");
-						log.info("value of taxable income"+fTaxableIncome);
-						if((Age-2)< 60){
+				}
+				else{
+					log.info("here we are dealing for female");
+					log.info("value of taxable income"+fTaxableIncome);
+					if((Age-2)< 60){
 
-							if (fTaxableIncome <= 190000.0f && fTaxableIncome !=0.0f ) {
-								log.info("FeMale is there");
-								float fIncomeTax1 = 0.0f;
-								return fIncomeTax1;
+						if (fTaxableIncome <= 190000.0f && fTaxableIncome !=0.0f ) {
+							log.info("FeMale is there");
+							float fIncomeTax1 = 0.0f;
+							return fIncomeTax1;
 
-							}
-							else if (fTaxableIncome > 190000.0f && fTaxableIncome <= 500000.0f){
-								float A = (float) ((fTaxableIncome - 190000.0f) * 0.1); 
+						}
+						else if (fTaxableIncome > 190000.0f && fTaxableIncome <= 500000.0f){
+							float A = (float) ((fTaxableIncome - 190000.0f) * 0.1); 
 
-								float fIncomeTax1 = Math.round((A )* 100) / 100;
-								log.info("Tax is between 2000001 and 500000");
-								return fIncomeTax1;
-							}
-							else if (fTaxableIncome > 500001.0f && fTaxableIncome <= 800000.0f){
-								log.info(" First-->Second Else IF condition");
-								float A = (float) (((fTaxableIncome - 500000.0f) * 0.2) + 32000.0f); 
-								float fIncomeTax1 = Math.round((A)* 100) / 100;
-								log.info("Tax is between 500001 and 1000000");
-								return fIncomeTax1;
-							}
-							else if (fTaxableIncome > 800000.0f){
-								log.info(" First-->Third Else IF condition");
-								float A = (float) (((fTaxableIncome - 1000000.0f) * 0.3) + 91000.0f); 
-								float fIncomeTax1 = Math.round((A )* 100) / 100;
-								log.info("Tax is more then 1000000");
-								return fIncomeTax1;
+							float fIncomeTax1 = Math.round((A )* 100) / 100;
+							log.info("Tax is between 2000001 and 500000");
+							return fIncomeTax1;
+						}
+						else if (fTaxableIncome > 500001.0f && fTaxableIncome <= 800000.0f){
+							log.info(" First-->Second Else IF condition");
+							float A = (float) (((fTaxableIncome - 500000.0f) * 0.2) + 32000.0f); 
+							float fIncomeTax1 = Math.round((A)* 100) / 100;
+							log.info("Tax is between 500001 and 1000000");
+							return fIncomeTax1;
+						}
+						else if (fTaxableIncome > 800000.0f){
+							log.info(" First-->Third Else IF condition");
+							float A = (float) (((fTaxableIncome - 1000000.0f) * 0.3) + 91000.0f); 
+							float fIncomeTax1 = Math.round((A )* 100) / 100;
+							log.info("Tax is more then 1000000");
+							return fIncomeTax1;
 
-							}
-						}else{
-							log.info("cinior citizen female");
-							if (fTaxableIncome <= 250000.0f && fTaxableIncome !=0.0f ) {
-								log.info("feMale is there");
-								float fIncomeTax1=0.0f;
-								return fIncomeTax1;
-							}
-							else if (fTaxableIncome > 250000.0f && fTaxableIncome <= 500000.0f){
-								float A = (float) ((fTaxableIncome - 250000.0f) * 0.1); 
-								float fIncomeTax1 = Math.round((A)* 100) / 100;
-								log.info("Tax is between 2000001 and 500000");
-								return fIncomeTax1;
-							}
-							else if (fTaxableIncome > 500001.0f && fTaxableIncome <= 800000.0f){
-								log.info(" First-->Second Else IF condition");
-								float A = (float) (((fTaxableIncome - 500000.0f) * 0.2) + 25000.0f); 
-								float fIncomeTax1 = Math.round((A)* 100) / 100;
-								log.info("Tax is between 500001 and 1000000");
-								return fIncomeTax1;
-							}
-							else if (fTaxableIncome >800000.0f){
-								log.info(" First-->Third Else IF condition");
-								float A = (float) (((fTaxableIncome - 800000.0f) * 0.3) + 85000.0f); 
-								float fIncomeTax1 = Math.round((A)* 100) / 100;
-								log.info("Tax is more then 1000000");
-								return fIncomeTax1;
+						}
+					}else{
+						log.info("cinior citizen female");
+						if (fTaxableIncome <= 250000.0f && fTaxableIncome !=0.0f ) {
+							log.info("feMale is there");
+							float fIncomeTax1=0.0f;
+							return fIncomeTax1;
+						}
+						else if (fTaxableIncome > 250000.0f && fTaxableIncome <= 500000.0f){
+							float A = (float) ((fTaxableIncome - 250000.0f) * 0.1); 
+							float fIncomeTax1 = Math.round((A)* 100) / 100;
+							log.info("Tax is between 2000001 and 500000");
+							return fIncomeTax1;
+						}
+						else if (fTaxableIncome > 500001.0f && fTaxableIncome <= 800000.0f){
+							log.info(" First-->Second Else IF condition");
+							float A = (float) (((fTaxableIncome - 500000.0f) * 0.2) + 25000.0f); 
+							float fIncomeTax1 = Math.round((A)* 100) / 100;
+							log.info("Tax is between 500001 and 1000000");
+							return fIncomeTax1;
+						}
+						else if (fTaxableIncome >800000.0f){
+							log.info(" First-->Third Else IF condition");
+							float A = (float) (((fTaxableIncome - 800000.0f) * 0.3) + 85000.0f); 
+							float fIncomeTax1 = Math.round((A)* 100) / 100;
+							log.info("Tax is more then 1000000");
+							return fIncomeTax1;
 
-							}
 						}
 					}
 				}
 			}
-			catch (ObjectBeanManagerException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			return fIncomeTax;
 		}
+		catch (ObjectBeanManagerException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return fIncomeTax;
 	}
+}
