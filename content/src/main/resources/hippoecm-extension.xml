@@ -3,8 +3,7 @@
 	<sv:property sv:name="jcr:primaryType" sv:type="Name">
 		<sv:value>hippo:initializefolder</sv:value>
 	</sv:property>
-	<sv:property sv:name="hippo:version" sv:type="String"
-		sv:multiple="true">
+	<sv:property sv:name="hippo:version" sv:type="String" sv:multiple="true">
 		<sv:value>mootlywcm-v1_1</sv:value>
 	</sv:property>
 	<sv:node sv:name="mootlywcm-brokenlinks">
@@ -21,24 +20,30 @@
 			<sv:value>70100.0</sv:value>
 		</sv:property>
 	</sv:node>
-	<!-- <sv:node sv:name="mootlywcm-emailconfiguration"> <sv:property sv:name="jcr:primaryType" 
-		sv:type="Name"> <sv:value>hippo:initializeitem</sv:value> </sv:property> 
-		<sv:property sv:name="hippo:contentresource" sv:type="String"> <sv:value>hippo-configuration/emailconfiguration.xml</sv:value> 
-		</sv:property> <sv:property sv:name="hippo:contentroot" sv:type="String"> 
-		<sv:value>/hippo:configuration/hippo:modules</sv:value> </sv:property> <sv:property 
-		sv:name="hippo:sequence" sv:type="Double"> <sv:value>70100.01</sv:value> 
-		</sv:property> </sv:node> -->
+	<!-- 
+	 <sv:node sv:name="mootlywcm-emailconfiguration"> 
+	    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	       <sv:value>hippo:initializeitem</sv:value>
+	    </sv:property> 
+		<sv:property sv:name="hippo:contentresource" sv:type="String"> 
+		   <sv:value>hippo-configuration/emailconfiguration.xml</sv:value> 
+		</sv:property>
+		<sv:property sv:name="hippo:contentroot" sv:type="String"> 
+		   <sv:value>/hippo:configuration/hippo:modules</sv:value>
+		</sv:property> 
+		<sv:property sv:name="hippo:sequence" sv:type="Double"> 
+		   <sv:value>70100.01</sv:value> 
+		</sv:property> 
+	</sv:node> -->
 	<sv:node sv:name="mootlywcm-endtag-gallery">
 		<sv:property sv:name="jcr:primaryType" sv:type="Name">
 			<sv:value>hippo:initializeitem</sv:value>
 		</sv:property>
-		<sv:property sv:name="hippo:contentpropadd" sv:type="String"
-			sv:multiple="true">
+		<sv:property sv:name="hippo:contentpropadd" sv:type="String" sv:multiple="true">
 			<sv:value>v3.2.0-mootlywcm-gallery</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentroot" sv:type="String">
-			<sv:value>/hippo:configuration/hippo:initialize/hippo:version
-			</sv:value>
+			<sv:value>/hippo:configuration/hippo:initialize/hippo:version</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:sequence" sv:type="Double">
 			<sv:value>10009.0</sv:value>
@@ -77,12 +82,10 @@
 			<sv:value>hippo:initializeitem</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentresource" sv:type="String">
-			<sv:value>hippo-configuration/hide-mootlywcmgallery-namespace.xml
-			</sv:value>
+			<sv:value>hippo-configuration/hide-mootlywcmgallery-namespace.xml</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentroot" sv:type="String">
-			<sv:value>/hippo:configuration/hippo:frontend/cms/cms-tree-views/configuration/configurationBrowser
-			</sv:value>
+			<sv:value>/hippo:configuration/hippo:frontend/cms/cms-tree-views/configuration/configurationBrowser</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:sequence" sv:type="Double">
 			<sv:value>10010.4</sv:value>
@@ -93,12 +96,10 @@
 			<sv:value>hippo:initializeitem</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentresource" sv:type="String">
-			<sv:value>hippo-configuration/hide-mootlywcmgallery-namespace.xml
-			</sv:value>
+			<sv:value>hippo-configuration/hide-mootlywcmgallery-namespace.xml</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentroot" sv:type="String">
-			<sv:value>/hippo:configuration/hippo:frontend/cms/cms-folder-views/hipposysedit:namespacefolder/root
-			</sv:value>
+			<sv:value>/hippo:configuration/hippo:frontend/cms/cms-folder-views/hipposysedit:namespacefolder/root</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:sequence" sv:type="Double">
 			<sv:value>10010.4</sv:value>
@@ -126,8 +127,7 @@
 			<sv:value>hippo-configuration/hippo-queries/new-banner.xml</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentroot" sv:type="String">
-			<sv:value>/hippo:configuration/hippo:queries/hippo:templates
-			</sv:value>
+			<sv:value>/hippo:configuration/hippo:queries/hippo:templates</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:sequence" sv:type="Double">
 			<sv:value>11050.01</sv:value>
@@ -138,12 +138,10 @@
 			<sv:value>hippo:initializeitem</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentresource" sv:type="String">
-			<sv:value>hippo-configuration/hippo-queries/new-banner-folder.xml
-			</sv:value>
+			<sv:value>hippo-configuration/hippo-queries/new-banner-folder.xml</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentroot" sv:type="String">
-			<sv:value>/hippo:configuration/hippo:queries/hippo:templates
-			</sv:value>
+			<sv:value>/hippo:configuration/hippo:queries/hippo:templates</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:sequence" sv:type="Double">
 			<sv:value>11050.02</sv:value>
@@ -157,8 +155,7 @@
 			<sv:value>hippo-configuration/hippo-queries/new-event.xml</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentroot" sv:type="String">
-			<sv:value>/hippo:configuration/hippo:queries/hippo:templates
-			</sv:value>
+			<sv:value>/hippo:configuration/hippo:queries/hippo:templates</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:sequence" sv:type="Double">
 			<sv:value>11050.1</sv:value>
@@ -169,12 +166,10 @@
 			<sv:value>hippo:initializeitem</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentresource" sv:type="String">
-			<sv:value>hippo-configuration/hippo-queries/new-event-folder.xml
-			</sv:value>
+			<sv:value>hippo-configuration/hippo-queries/new-event-folder.xml</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentroot" sv:type="String">
-			<sv:value>/hippo:configuration/hippo:queries/hippo:templates
-			</sv:value>
+			<sv:value>/hippo:configuration/hippo:queries/hippo:templates</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:sequence" sv:type="Double">
 			<sv:value>11050.2</sv:value>
@@ -185,12 +180,10 @@
 			<sv:value>hippo:initializeitem</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentresource" sv:type="String">
-			<sv:value>hippo-configuration/hippo-queries/new-event-viawizard.xml
-			</sv:value>
+			<sv:value>hippo-configuration/hippo-queries/new-event-viawizard.xml</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentroot" sv:type="String">
-			<sv:value>/hippo:configuration/hippo:queries/hippo:templates
-			</sv:value>
+			<sv:value>/hippo:configuration/hippo:queries/hippo:templates</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:sequence" sv:type="Double">
 			<sv:value>11050.25</sv:value>
@@ -204,8 +197,7 @@
 			<sv:value>hippo-configuration/hippo-queries/new-faq.xml</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentroot" sv:type="String">
-			<sv:value>/hippo:configuration/hippo:queries/hippo:templates
-			</sv:value>
+			<sv:value>/hippo:configuration/hippo:queries/hippo:templates</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:sequence" sv:type="Double">
 			<sv:value>11050.3</sv:value>
@@ -219,8 +211,7 @@
 			<sv:value>hippo-configuration/hippo-queries/new-job.xml</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentroot" sv:type="String">
-			<sv:value>/hippo:configuration/hippo:queries/hippo:templates
-			</sv:value>
+			<sv:value>/hippo:configuration/hippo:queries/hippo:templates</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:sequence" sv:type="Double">
 			<sv:value>11050.5</sv:value>
@@ -231,12 +222,10 @@
 			<sv:value>hippo:initializeitem</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentresource" sv:type="String">
-			<sv:value>hippo-configuration/hippo-queries/new-job-folder.xml
-			</sv:value>
+			<sv:value>hippo-configuration/hippo-queries/new-job-folder.xml</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentroot" sv:type="String">
-			<sv:value>/hippo:configuration/hippo:queries/hippo:templates
-			</sv:value>
+			<sv:value>/hippo:configuration/hippo:queries/hippo:templates</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:sequence" sv:type="Double">
 			<sv:value>11050.6</sv:value>
@@ -250,8 +239,7 @@
 			<sv:value>hippo-configuration/hippo-queries/new-news.xml</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentroot" sv:type="String">
-			<sv:value>/hippo:configuration/hippo:queries/hippo:templates
-			</sv:value>
+			<sv:value>/hippo:configuration/hippo:queries/hippo:templates</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:sequence" sv:type="Double">
 			<sv:value>11050.7</sv:value>
@@ -262,12 +250,10 @@
 			<sv:value>hippo:initializeitem</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentresource" sv:type="String">
-			<sv:value>hippo-configuration/hippo-queries/new-news-folder.xml
-			</sv:value>
+			<sv:value>hippo-configuration/hippo-queries/new-news-folder.xml</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentroot" sv:type="String">
-			<sv:value>/hippo:configuration/hippo:queries/hippo:templates
-			</sv:value>
+			<sv:value>/hippo:configuration/hippo:queries/hippo:templates</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:sequence" sv:type="Double">
 			<sv:value>11050.8</sv:value>
@@ -278,12 +264,10 @@
 			<sv:value>hippo:initializeitem</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentresource" sv:type="String">
-			<sv:value>hippo-configuration/hippo-queries/new-news-viawizard.xml
-			</sv:value>
+			<sv:value>hippo-configuration/hippo-queries/new-news-viawizard.xml</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentroot" sv:type="String">
-			<sv:value>/hippo:configuration/hippo:queries/hippo:templates
-			</sv:value>
+			<sv:value>/hippo:configuration/hippo:queries/hippo:templates</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:sequence" sv:type="Double">
 			<sv:value>11050.85</sv:value>
@@ -297,8 +281,7 @@
 			<sv:value>hippo-configuration/hippo-queries/new-poll.xml</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentroot" sv:type="String">
-			<sv:value>/hippo:configuration/hippo:queries/hippo:templates
-			</sv:value>
+			<sv:value>/hippo:configuration/hippo:queries/hippo:templates</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:sequence" sv:type="Double">
 			<sv:value>11050.9</sv:value>
@@ -309,12 +292,10 @@
 			<sv:value>hippo:initializeitem</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentresource" sv:type="String">
-			<sv:value>hippo-configuration/hippo-queries/new-poll-folder.xml
-			</sv:value>
+			<sv:value>hippo-configuration/hippo-queries/new-poll-folder.xml</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentroot" sv:type="String">
-			<sv:value>/hippo:configuration/hippo:queries/hippo:templates
-			</sv:value>
+			<sv:value>/hippo:configuration/hippo:queries/hippo:templates</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:sequence" sv:type="Double">
 			<sv:value>11050.1</sv:value>
@@ -325,12 +306,10 @@
 			<sv:value>hippo:initializeitem</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentresource" sv:type="String">
-			<sv:value>hippo-configuration/hippo-queries/new-product.xml
-			</sv:value>
+			<sv:value>hippo-configuration/hippo-queries/new-product.xml</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentroot" sv:type="String">
-			<sv:value>/hippo:configuration/hippo:queries/hippo:templates
-			</sv:value>
+			<sv:value>/hippo:configuration/hippo:queries/hippo:templates</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:sequence" sv:type="Double">
 			<sv:value>11050.11</sv:value>
@@ -341,12 +320,10 @@
 			<sv:value>hippo:initializeitem</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentresource" sv:type="String">
-			<sv:value>hippo-configuration/hippo-queries/new-product-folder.xml
-			</sv:value>
+			<sv:value>hippo-configuration/hippo-queries/new-product-folder.xml</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentroot" sv:type="String">
-			<sv:value>/hippo:configuration/hippo:queries/hippo:templates
-			</sv:value>
+			<sv:value>/hippo:configuration/hippo:queries/hippo:templates</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:sequence" sv:type="Double">
 			<sv:value>11050.12</sv:value>
@@ -360,8 +337,7 @@
 			<sv:value>hippo-configuration/hippo-queries/new-simple.xml</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentroot" sv:type="String">
-			<sv:value>/hippo:configuration/hippo:queries/hippo:templates
-			</sv:value>
+			<sv:value>/hippo:configuration/hippo:queries/hippo:templates</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:sequence" sv:type="Double">
 			<sv:value>11050.13</sv:value>
@@ -372,12 +348,10 @@
 			<sv:value>hippo:initializeitem</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentresource" sv:type="String">
-			<sv:value>hippo-configuration/hippo-queries/new-simple-folder.xml
-			</sv:value>
+			<sv:value>hippo-configuration/hippo-queries/new-simple-folder.xml</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentroot" sv:type="String">
-			<sv:value>/hippo:configuration/hippo:queries/hippo:templates
-			</sv:value>
+			<sv:value>/hippo:configuration/hippo:queries/hippo:templates</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:sequence" sv:type="Double">
 			<sv:value>11050.14</sv:value>
@@ -458,8 +432,7 @@
 			<sv:value>hippo:initializeitem</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentresource" sv:type="String">
-			<sv:value>hst-hst/hst-configurations/hstdefault/catalog.xml
-			</sv:value>
+			<sv:value>hst-hst/hst-configurations/hstdefault/catalog.xml</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentroot" sv:type="String">
 			<sv:value>/hst:hst/hst:configurations/hst:default</sv:value>
@@ -473,8 +446,7 @@
 			<sv:value>hippo:initializeitem</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentresource" sv:type="String">
-			<sv:value>hst-hst/hst-configurations/hstdefault/templates.xml
-			</sv:value>
+			<sv:value>hst-hst/hst-configurations/hstdefault/templates.xml</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentroot" sv:type="String">
 			<sv:value>/hst:hst/hst:configurations/hst:default</sv:value>
@@ -530,8 +502,7 @@
 			<sv:value>hippo:initializeitem</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentresource" sv:type="String">
-			<sv:value>hst-hst/hst-configurations/common-mobile/components.xml
-			</sv:value>
+			<sv:value>hst-hst/hst-configurations/common-mobile/components.xml</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentroot" sv:type="String">
 			<sv:value>/hst:hst/hst:configurations/common-mobile</sv:value>
@@ -545,8 +516,7 @@
 			<sv:value>hippo:initializeitem</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentresource" sv:type="String">
-			<sv:value>hst-hst/hst-configurations/common-mobile/templates.xml
-			</sv:value>
+			<sv:value>hst-hst/hst-configurations/common-mobile/templates.xml</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentroot" sv:type="String">
 			<sv:value>/hst:hst/hst:configurations/common-mobile</sv:value>
@@ -602,8 +572,7 @@
 			<sv:value>hippo:initializeitem</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentresource" sv:type="String">
-			<sv:value>hst-hst/hst-configurations/mootlywcm/sitemenus.xml
-			</sv:value>
+			<sv:value>hst-hst/hst-configurations/mootlywcm/sitemenus.xml</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentroot" sv:type="String">
 			<sv:value>/hst:hst/hst:configurations/mootlywcm</sv:value>
@@ -617,8 +586,7 @@
 			<sv:value>hippo:initializeitem</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentresource" sv:type="String">
-			<sv:value>hippo-namespaces/mootlywcm/salaryincomedetail.xml
-			</sv:value>
+			<sv:value>hippo-namespaces/mootlywcm/salaryincomedetail.xml</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentroot" sv:type="String">
 			<sv:value>/hippo:namespaces/mootlywcm</sv:value>
@@ -632,8 +600,7 @@
 			<sv:value>hippo:initializeitem</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentresource" sv:type="String">
-			<sv:value>hippo-namespaces/mootlywcm/salaryincomedocument.xml
-			</sv:value>
+			<sv:value>hippo-namespaces/mootlywcm/salaryincomedocument.xml</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentroot" sv:type="String">
 			<sv:value>/hippo:namespaces/mootlywcm</sv:value>
@@ -647,8 +614,7 @@
 			<sv:value>hippo:initializeitem</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentresource" sv:type="String">
-			<sv:value>hippo-namespaces/mootlywcm/deductiondocumentdetail.xml
-			</sv:value>
+			<sv:value>hippo-namespaces/mootlywcm/deductiondocumentdetail.xml</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentroot" sv:type="String">
 			<sv:value>/hippo:namespaces/mootlywcm</sv:value>
@@ -676,8 +642,7 @@
 			<sv:value>hippo:initializeitem</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentresource" sv:type="String">
-			<sv:value>hippo-namespaces/mootlywcm/otherincomedocument.xml
-			</sv:value>
+			<sv:value>hippo-namespaces/mootlywcm/otherincomedocument.xml</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentroot" sv:type="String">
 			<sv:value>/hippo:namespaces/mootlywcm</sv:value>
@@ -691,8 +656,7 @@
 			<sv:value>hippo:initializeitem</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentresource" sv:type="String">
-			<sv:value>hippo-namespaces/mootlywcm/SourceOfIncomeDocument.xml
-			</sv:value>
+			<sv:value>hippo-namespaces/mootlywcm/SourceOfIncomeDocument.xml</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentroot" sv:type="String">
 			<sv:value>/hippo:namespaces/mootlywcm</sv:value>
@@ -751,8 +715,7 @@
 			<sv:value>hippo-configuration/gallery-processor.xml</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentroot" sv:type="String">
-			<sv:value>/hippo:configuration/hippo:frontend/cms/cms-services
-			</sv:value>
+			<sv:value>/hippo:configuration/hippo:frontend/cms/cms-services</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:sequence" sv:type="Double">
 			<sv:value>11405.1</sv:value>
@@ -766,8 +729,7 @@
 			<sv:value>hippo-configuration/newimagefolder.xml</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentroot" sv:type="String">
-			<sv:value>/hippo:configuration/hippo:queries/hippo:templates/new-image-folder/hippostd:templates
-			</sv:value>
+			<sv:value>/hippo:configuration/hippo:queries/hippo:templates/new-image-folder/hippostd:templates</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:sequence" sv:type="Double">
 			<sv:value>11405.2</sv:value>
@@ -1086,8 +1048,7 @@
 			<sv:value>hippo:initializeitem</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentresource" sv:type="String">
-			<sv:value>hippo-namespaces/mootlywcm/membersignupdocument.xml
-			</sv:value>
+			<sv:value>hippo-namespaces/mootlywcm/membersignupdocument.xml</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentroot" sv:type="String">
 			<sv:value>/hippo:namespaces/mootlywcm</sv:value>
@@ -1101,8 +1062,7 @@
 			<sv:value>hippo:initializeitem</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentresource" sv:type="String">
-			<sv:value>hippo-namespaces/mootlywcm/advancetaxinformation.xml
-			</sv:value>
+			<sv:value>hippo-namespaces/mootlywcm/advancetaxinformation.xml</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentroot" sv:type="String">
 			<sv:value>/hippo:namespaces/mootlywcm</sv:value>
@@ -1145,8 +1105,7 @@
 			<sv:value>hippo:initializeitem</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentresource" sv:type="String">
-			<sv:value>hippo-namespaces/mootlywcm/rebatedocumentninety.xml
-			</sv:value>
+			<sv:value>hippo-namespaces/mootlywcm/rebatedocumentninety.xml</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentroot" sv:type="String">
 			<sv:value>/hippo:namespaces/mootlywcm</sv:value>
@@ -1189,8 +1148,7 @@
 			<sv:value>hippo:initializeitem</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentresource" sv:type="String">
-			<sv:value>hippo-namespaces/mootlywcm/personalinformation.xml
-			</sv:value>
+			<sv:value>hippo-namespaces/mootlywcm/personalinformation.xml</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentroot" sv:type="String">
 			<sv:value>/hippo:namespaces/mootlywcm</sv:value>
@@ -1218,8 +1176,7 @@
 			<sv:value>hippo:initializeitem</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentresource" sv:type="String">
-			<sv:value>hippo-namespaces/mootlywcm/MemberRebateSectionEightyNine.xml
-			</sv:value>
+			<sv:value>hippo-namespaces/mootlywcm/MemberRebateSectionEightyNine.xml</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentroot" sv:type="String">
 			<sv:value>/hippo:namespaces/mootlywcm</sv:value>
@@ -1264,8 +1221,7 @@
 			<sv:value>hippo-configuration/new-event-shortcut.xml</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentroot" sv:type="String">
-			<sv:value>/hippo:configuration/hippo:frontend/cms/cms-dashshortcuts
-			</sv:value>
+			<sv:value>/hippo:configuration/hippo:frontend/cms/cms-dashshortcuts</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:sequence" sv:type="Double">
 			<sv:value>11600.0</sv:value>
@@ -1279,8 +1235,7 @@
 			<sv:value>hippo-configuration/gotoShortcut.xml</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentroot" sv:type="String">
-			<sv:value>/hippo:configuration/hippo:frontend/cms/cms-dashshortcuts
-			</sv:value>
+			<sv:value>/hippo:configuration/hippo:frontend/cms/cms-dashshortcuts</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:sequence" sv:type="Double">
 			<sv:value>11600.9</sv:value>
@@ -1294,8 +1249,7 @@
 			<sv:value>hippo-configuration/new-job-shortcut.xml</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentroot" sv:type="String">
-			<sv:value>/hippo:configuration/hippo:frontend/cms/cms-dashshortcuts
-			</sv:value>
+			<sv:value>/hippo:configuration/hippo:frontend/cms/cms-dashshortcuts</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:sequence" sv:type="Double">
 			<sv:value>11601.0</sv:value>
@@ -1309,8 +1263,7 @@
 			<sv:value>hippo-configuration/new-product-shortcut.xml</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentroot" sv:type="String">
-			<sv:value>/hippo:configuration/hippo:frontend/cms/cms-dashshortcuts
-			</sv:value>
+			<sv:value>/hippo:configuration/hippo:frontend/cms/cms-dashshortcuts</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:sequence" sv:type="Double">
 			<sv:value>11602.0</sv:value>
@@ -1324,8 +1277,7 @@
 			<sv:value>hippo-configuration/new-newsitem-shortcut.xml</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentroot" sv:type="String">
-			<sv:value>/hippo:configuration/hippo:frontend/cms/cms-dashshortcuts
-			</sv:value>
+			<sv:value>/hippo:configuration/hippo:frontend/cms/cms-dashshortcuts</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:sequence" sv:type="Double">
 			<sv:value>11603.0</sv:value>
@@ -1406,8 +1358,7 @@
 			<sv:value>hippo:initializeitem</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentresource" sv:type="String">
-			<sv:value>hippo-configuration/domain-everywhere-reseller-authrole.xml
-			</sv:value>
+			<sv:value>hippo-configuration/domain-everywhere-reseller-authrole.xml</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentroot" sv:type="String">
 			<sv:value>/hippo:configuration/hippo:domains/everywhere</sv:value>
@@ -1421,8 +1372,7 @@
 			<sv:value>hippo:initializeitem</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentresource" sv:type="String">
-			<sv:value>hippo-configuration/domain-everywhere-member-authrole.xml
-			</sv:value>
+			<sv:value>hippo-configuration/domain-everywhere-member-authrole.xml</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentroot" sv:type="String">
 			<sv:value>/hippo:configuration/hippo:domains/everywhere</sv:value>
@@ -1436,8 +1386,7 @@
 			<sv:value>hippo:initializeitem</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentresource" sv:type="String">
-			<sv:value>hippo-configuration/domain-everywhere-unverifiedmember-authrole.xml
-			</sv:value>
+			<sv:value>hippo-configuration/domain-everywhere-unverifiedmember-authrole.xml</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentroot" sv:type="String">
 			<sv:value>/hippo:configuration/hippo:domains/everywhere</sv:value>
@@ -1862,8 +1811,7 @@
 			<sv:value>author</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentroot" sv:type="String">
-			<sv:value>/hippo:configuration/hippo:groups/author/hipposys:members
-			</sv:value>
+			<sv:value>/hippo:configuration/hippo:groups/author/hipposys:members</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:sequence" sv:type="Double">
 			<sv:value>11204.2</sv:value>
@@ -1878,8 +1826,7 @@
 			<sv:value>editor</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentroot" sv:type="String">
-			<sv:value>/hippo:configuration/hippo:groups/editor/hipposys:members
-			</sv:value>
+			<sv:value>/hippo:configuration/hippo:groups/editor/hipposys:members</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:sequence" sv:type="Double">
 			<sv:value>11204.3</sv:value>
@@ -1890,14 +1837,12 @@
 			<sv:value>hippo:initializeitem</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentroot" sv:type="String">
-			<sv:value>/hippo:configuration/hippo:groups/webmaster/hipposys:members
-			</sv:value>
+			<sv:value>/hippo:configuration/hippo:groups/webmaster/hipposys:members</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:sequence" sv:type="Double">
 			<sv:value>11204.35</sv:value>
 		</sv:property>
-		<sv:property sv:name="hippo:contentpropadd" sv:multiple="true"
-			sv:type="String">
+		<sv:property sv:name="hippo:contentpropadd" sv:multiple="true" sv:type="String">
 			<sv:value>editor</sv:value>
 		</sv:property>
 	</sv:node>
@@ -2162,8 +2107,7 @@
 			</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentroot" sv:type="String">
-			<sv:value>/hippo:configuration/hippo:frontend/cms/cms-services/localeProviderService
-			</sv:value>
+			<sv:value>/hippo:configuration/hippo:frontend/cms/cms-services/localeProviderService</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:sequence" sv:type="Double">
 			<sv:value>10500.0</sv:value>
@@ -2230,12 +2174,10 @@
 			<sv:value>hippo:initializeitem</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentresource" sv:type="String">
-			<sv:value>hippo-configuration/channelmanager-channel-list.xml
-			</sv:value>
+			<sv:value>hippo-configuration/channelmanager-channel-list.xml</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentroot" sv:type="String">
-			<sv:value>/hippo:configuration/hippo:frontend/cms/cms-static/channel-manager-perspective
-			</sv:value>
+			<sv:value>/hippo:configuration/hippo:frontend/cms/cms-static/channel-manager-perspective</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:sequence" sv:type="Double">
 			<sv:value>31000.0</sv:value>
@@ -2249,8 +2191,7 @@
 			<sv:value>hippo-configuration/event-subsite-template.xml</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentroot" sv:type="String">
-			<sv:value>/hippo:configuration/hippo:queries/hippo:templates/new-subsite/hippostd:templates
-			</sv:value>
+			<sv:value>/hippo:configuration/hippo:queries/hippo:templates/new-subsite/hippostd:templates</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:sequence" sv:type="Double">
 			<sv:value>12062.2</sv:value>
@@ -2264,8 +2205,7 @@
 			<sv:value>hippo-configuration/new-subsite-document.xml</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentroot" sv:type="String">
-			<sv:value>/hippo:configuration/hippo:queries/hippo:templates
-			</sv:value>
+			<sv:value>/hippo:configuration/hippo:queries/hippo:templates</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:sequence" sv:type="Double">
 			<sv:value>12062.2</sv:value>
@@ -2279,8 +2219,7 @@
 			<sv:value>hippo-configuration/new-subsite-folder.xml</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentroot" sv:type="String">
-			<sv:value>/hippo:configuration/hippo:queries/hippo:templates
-			</sv:value>
+			<sv:value>/hippo:configuration/hippo:queries/hippo:templates</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:sequence" sv:type="Double">
 			<sv:value>12062.2</sv:value>
@@ -2294,8 +2233,7 @@
 			<sv:value>hippo-configuration/new-subsite-form.xml</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentroot" sv:type="String">
-			<sv:value>/hippo:configuration/hippo:queries/hippo:templates
-			</sv:value>
+			<sv:value>/hippo:configuration/hippo:queries/hippo:templates</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:sequence" sv:type="Double">
 			<sv:value>12062.2</sv:value>
@@ -2348,8 +2286,7 @@
 			<sv:value>hippo:initializeitem</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentresource" sv:type="String">
-			<sv:value>hippo-namespaces/mootlywcm/MemberPersonalInformation.xml
-			</sv:value>
+			<sv:value>hippo-namespaces/mootlywcm/MemberPersonalInformation.xml</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentroot" sv:type="String">
 			<sv:value>/hippo:namespaces/mootlywcm</sv:value>
@@ -2363,8 +2300,7 @@
 			<sv:value>hippo:initializeitem</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentresource" sv:type="String">
-			<sv:value>hippo-namespaces/mootlywcm/MemberContactInformation.xml
-			</sv:value>
+			<sv:value>hippo-namespaces/mootlywcm/MemberContactInformation.xml</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentroot" sv:type="String">
 			<sv:value>/hippo:namespaces/mootlywcm</sv:value>
@@ -2378,8 +2314,7 @@
 			<sv:value>hippo:initializeitem</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentresource" sv:type="String">
-			<sv:value>hippo-namespaces/mootlywcm/MemberDeductionScheduleC.xml
-			</sv:value>
+			<sv:value>hippo-namespaces/mootlywcm/MemberDeductionScheduleC.xml</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentroot" sv:type="String">
 			<sv:value>/hippo:namespaces/mootlywcm</sv:value>
@@ -2393,8 +2328,7 @@
 			<sv:value>hippo:initializeitem</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentresource" sv:type="String">
-			<sv:value>hippo-namespaces/mootlywcm/MemberDeductionScheduleG.xml
-			</sv:value>
+			<sv:value>hippo-namespaces/mootlywcm/MemberDeductionScheduleG.xml</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentroot" sv:type="String">
 			<sv:value>/hippo:namespaces/mootlywcm</sv:value>
@@ -2408,8 +2342,7 @@
 			<sv:value>hippo:initializeitem</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentresource" sv:type="String">
-			<sv:value>hippo-namespaces/mootlywcm/DeductionScheduleGTableA.xml
-			</sv:value>
+			<sv:value>hippo-namespaces/mootlywcm/DeductionScheduleGTableA.xml</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentroot" sv:type="String">
 			<sv:value>/hippo:namespaces/mootlywcm</sv:value>
@@ -2423,8 +2356,7 @@
 			<sv:value>hippo:initializeitem</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentresource" sv:type="String">
-			<sv:value>hippo-namespaces/mootlywcm/DeductionScheduleGTableB.xml
-			</sv:value>
+			<sv:value>hippo-namespaces/mootlywcm/DeductionScheduleGTableB.xml</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentroot" sv:type="String">
 			<sv:value>/hippo:namespaces/mootlywcm</sv:value>
@@ -2438,8 +2370,7 @@
 			<sv:value>hippo:initializeitem</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentresource" sv:type="String">
-			<sv:value>hippo-namespaces/mootlywcm/DeductionScheduleGTableC.xml
-			</sv:value>
+			<sv:value>hippo-namespaces/mootlywcm/DeductionScheduleGTableC.xml</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentroot" sv:type="String">
 			<sv:value>/hippo:namespaces/mootlywcm</sv:value>
@@ -2467,8 +2398,7 @@
 			<sv:value>hippo:initializeitem</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentresource" sv:type="String">
-			<sv:value>hippo-namespaces/mootlywcm/MemberDeductionScheduleIA.xml
-			</sv:value>
+			<sv:value>hippo-namespaces/mootlywcm/MemberDeductionScheduleIA.xml</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentroot" sv:type="String">
 			<sv:value>/hippo:namespaces/mootlywcm</sv:value>
@@ -2482,8 +2412,7 @@
 			<sv:value>hippo:initializeitem</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentresource" sv:type="String">
-			<sv:value>hippo-namespaces/mootlywcm/MemberDeductionScheduleIB.xml
-			</sv:value>
+			<sv:value>hippo-namespaces/mootlywcm/MemberDeductionScheduleIB.xml</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentroot" sv:type="String">
 			<sv:value>/hippo:namespaces/mootlywcm</sv:value>
@@ -2497,8 +2426,7 @@
 			<sv:value>hippo:initializeitem</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentresource" sv:type="String">
-			<sv:value>hippo-namespaces/mootlywcm/MemberDeductionScheduleIC.xml
-			</sv:value>
+			<sv:value>hippo-namespaces/mootlywcm/MemberDeductionScheduleIC.xml</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentroot" sv:type="String">
 			<sv:value>/hippo:namespaces/mootlywcm</sv:value>
@@ -2512,8 +2440,7 @@
 			<sv:value>hippo:initializeitem</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentresource" sv:type="String">
-			<sv:value>hippo-namespaces/mootlywcm/MemberDeductionScheduleVIA.xml
-			</sv:value>
+			<sv:value>hippo-namespaces/mootlywcm/MemberDeductionScheduleVIA.xml</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentroot" sv:type="String">
 			<sv:value>/hippo:namespaces/mootlywcm</sv:value>
@@ -2527,8 +2454,7 @@
 			<sv:value>hippo:initializeitem</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentresource" sv:type="String">
-			<sv:value>hippo-namespaces/mootlywcm/MemberDeductionScheduleGG.xml
-			</sv:value>
+			<sv:value>hippo-namespaces/mootlywcm/MemberDeductionScheduleGG.xml</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentroot" sv:type="String">
 			<sv:value>/hippo:namespaces/mootlywcm</sv:value>
@@ -2543,8 +2469,7 @@
 			<sv:value>hippo:initializeitem</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentresource" sv:type="String">
-			<sv:value>hippo-namespaces/mootlywcm/incometaxformselectiondocument.xml
-			</sv:value>
+			<sv:value>hippo-namespaces/mootlywcm/incometaxformselectiondocument.xml</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentroot" sv:type="String">
 			<sv:value>/hippo:namespaces/mootlywcm</sv:value>
@@ -2558,8 +2483,7 @@
 			<sv:value>hippo:initializeitem</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentresource" sv:type="String">
-			<sv:value>hippo-namespaces/mootlywcm/changepasswordrequest.xml
-			</sv:value>
+			<sv:value>hippo-namespaces/mootlywcm/changepasswordrequest.xml</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentroot" sv:type="String">
 			<sv:value>/hippo:namespaces/mootlywcm</sv:value>
@@ -2587,8 +2511,7 @@
 			<sv:value>hippo:initializeitem</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentresource" sv:type="String">
-			<sv:value>hippo-namespaces/mootlywcm/tdsfromsalaryinformation.xml
-			</sv:value>
+			<sv:value>hippo-namespaces/mootlywcm/tdsfromsalaryinformation.xml</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentroot" sv:type="String">
 			<sv:value>/hippo:namespaces/mootlywcm</sv:value>
@@ -2630,8 +2553,7 @@
 			<sv:value>hippo:initializeitem</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentresource" sv:type="String">
-			<sv:value>hippo-namespaces/mootlywcm/adjustmentoflosses.xml
-			</sv:value>
+			<sv:value>hippo-namespaces/mootlywcm/adjustmentoflosses.xml</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentroot" sv:type="String">
 			<sv:value>/hippo:namespaces/mootlywcm</sv:value>
@@ -2691,8 +2613,7 @@
 			<sv:value>hippo:initializeitem</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentresource" sv:type="String">
-			<sv:value>hippo-namespaces/mootlywcm/listAdvanceAndSelfAssesment.xml
-			</sv:value>
+			<sv:value>hippo-namespaces/mootlywcm/listAdvanceAndSelfAssesment.xml</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentroot" sv:type="String">
 			<sv:value>/hippo:namespaces/mootlywcm</sv:value>
@@ -2723,8 +2644,7 @@
 			<sv:value>hippo:initializeitem</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentresource" sv:type="String">
-			<sv:value>hippo-namespaces/mootlywcm/PreviousYearsSalaryInfo.xml
-			</sv:value>
+			<sv:value>hippo-namespaces/mootlywcm/PreviousYearsSalaryInfo.xml</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentroot" sv:type="String">
 			<sv:value>/hippo:namespaces/mootlywcm</sv:value>
@@ -2753,8 +2673,7 @@
 			<sv:value>hippo:initializeitem</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentresource" sv:type="String">
-			<sv:value>hippo-namespaces/mootlywcm/adjustmentoflossescom.xml
-			</sv:value>
+			<sv:value>hippo-namespaces/mootlywcm/adjustmentoflossescom.xml</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentroot" sv:type="String">
 			<sv:value>/hippo:namespaces/mootlywcm</sv:value>
@@ -2769,8 +2688,7 @@
 			<sv:value>hippo:initializeitem</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentresource" sv:type="String">
-			<sv:value>hippo-namespaces/mootlywcm/capitalassetdocument.xml
-			</sv:value>
+			<sv:value>hippo-namespaces/mootlywcm/capitalassetdocument.xml</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentroot" sv:type="String">
 			<sv:value>/hippo:namespaces/mootlywcm</sv:value>
@@ -2785,8 +2703,7 @@
 			<sv:value>hippo:initializeitem</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentresource" sv:type="String">
-			<sv:value>hippo-namespaces/mootlywcm/capitalassetdetail.xml
-			</sv:value>
+			<sv:value>hippo-namespaces/mootlywcm/capitalassetdetail.xml</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentroot" sv:type="String">
 			<sv:value>/hippo:namespaces/mootlywcm</sv:value>
@@ -2801,8 +2718,7 @@
 			<sv:value>hippo:initializeitem</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentresource" sv:type="String">
-			<sv:value>hippo-namespaces/mootlywcm/securitiesdoc.xml
-			</sv:value>
+			<sv:value>hippo-namespaces/mootlywcm/securitiesdoc.xml</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentroot" sv:type="String">
 			<sv:value>/hippo:namespaces/mootlywcm</sv:value>
@@ -2817,8 +2733,7 @@
 			<sv:value>hippo:initializeitem</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentresource" sv:type="String">
-			<sv:value>hippo-namespaces/mootlywcm/securitiescomp.xml
-			</sv:value>
+			<sv:value>hippo-namespaces/mootlywcm/securitiescomp.xml</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentroot" sv:type="String">
 			<sv:value>/hippo:namespaces/mootlywcm</sv:value>
@@ -2848,8 +2763,7 @@
 			<sv:value>hippo:initializeitem</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentresource" sv:type="String">
-			<sv:value>hippo-namespaces/mootlywcm/advancetaxdocument.xml
-			</sv:value>
+			<sv:value>hippo-namespaces/mootlywcm/advancetaxdocument.xml</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentroot" sv:type="String">
 			<sv:value>/hippo:namespaces/mootlywcm</sv:value>
@@ -2864,8 +2778,7 @@
 			<sv:value>hippo:initializeitem</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentresource" sv:type="String">
-			<sv:value>hippo-namespaces/mootlywcm/selfassesmenttaxdetail.xml
-			</sv:value>
+			<sv:value>hippo-namespaces/mootlywcm/selfassesmenttaxdetail.xml</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentroot" sv:type="String">
 			<sv:value>/hippo:namespaces/mootlywcm</sv:value>
@@ -2880,8 +2793,7 @@
 			<sv:value>hippo:initializeitem</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentresource" sv:type="String">
-			<sv:value>hippo-namespaces/mootlywcm/selfassesmenttaxdocument.xml
-			</sv:value>
+			<sv:value>hippo-namespaces/mootlywcm/selfassesmenttaxdocument.xml</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentroot" sv:type="String">
 			<sv:value>/hippo:namespaces/mootlywcm</sv:value>
@@ -2896,8 +2808,7 @@
 			<sv:value>hippo:initializeitem</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentresource" sv:type="String">
-			<sv:value>hippo-namespaces/mootlywcm/tdsfromsalarydetail.xml
-			</sv:value>
+			<sv:value>hippo-namespaces/mootlywcm/tdsfromsalarydetail.xml</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentroot" sv:type="String">
 			<sv:value>/hippo:namespaces/mootlywcm</sv:value>
@@ -2912,8 +2823,7 @@
 			<sv:value>hippo:initializeitem</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentresource" sv:type="String">
-			<sv:value>hippo-namespaces/mootlywcm/tdsfromsalarydocument.xml
-			</sv:value>
+			<sv:value>hippo-namespaces/mootlywcm/tdsfromsalarydocument.xml</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentroot" sv:type="String">
 			<sv:value>/hippo:namespaces/mootlywcm</sv:value>
@@ -2943,8 +2853,7 @@
 			<sv:value>hippo:initializeitem</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentresource" sv:type="String">
-			<sv:value>hippo-namespaces/mootlywcm/securitiesdocument.xml
-			</sv:value>
+			<sv:value>hippo-namespaces/mootlywcm/securitiesdocument.xml</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentroot" sv:type="String">
 			<sv:value>/hippo:namespaces/mootlywcm</sv:value>
@@ -2975,8 +2884,7 @@
 			<sv:value>hippo:initializeitem</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentresource" sv:type="String">
-			<sv:value>hippo-namespaces/mootlywcm/securitiesdocument.xml
-			</sv:value>
+			<sv:value>hippo-namespaces/mootlywcm/securitiesdocument.xml</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentroot" sv:type="String">
 			<sv:value>/hippo:namespaces/mootlywcm</sv:value>
@@ -2991,8 +2899,7 @@
 			<sv:value>hippo:initializeitem</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentresource" sv:type="String">
-			<sv:value>hippo-namespaces/mootlywcm/OtherSourceIncome.xml
-			</sv:value>
+			<sv:value>hippo-namespaces/mootlywcm/OtherSourceIncome.xml</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentroot" sv:type="String">
 			<sv:value>/hippo:namespaces/mootlywcm</sv:value>
@@ -3008,8 +2915,7 @@
 			<sv:value>hippo:initializeitem</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentresource" sv:type="String">
-			<sv:value>hippo-namespaces/mootlywcm/adjustmentoflossesdoc.xml
-			</sv:value>
+			<sv:value>hippo-namespaces/mootlywcm/adjustmentoflossesdoc.xml</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentroot" sv:type="String">
 			<sv:value>/hippo:namespaces/mootlywcm</sv:value>
@@ -3053,8 +2959,7 @@
 			<sv:value>hippo:initializeitem</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentresource" sv:type="String">
-			<sv:value>hippo-namespaces/mootlywcm/MemberResidentialStatus.xml
-			</sv:value>
+			<sv:value>hippo-namespaces/mootlywcm/MemberResidentialStatus.xml</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentroot" sv:type="String">
 			<sv:value>/hippo:namespaces/mootlywcm</sv:value>
