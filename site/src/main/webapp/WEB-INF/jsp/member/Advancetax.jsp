@@ -2,6 +2,8 @@
 
 <%@ page import="com.mootly.wcm.utils.*"%>
 <%@ page import="java.util.*"%>
+
+
 <c:set var="tds2">
 	<fmt:message key="member.advancetax.title" />
 </c:set>
@@ -216,4 +218,6 @@ else {
 <hst:headContribution element="${uiCustom}" category="jsInternal"/>
 
 
-
+<hst:headContribution keyHint="form-validation" category="jsInternal">
+	<script type="text/javascript" src='<hst:link path="/js/tds.js"/>'></script>
+</hst:headContribution>
