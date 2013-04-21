@@ -25,6 +25,7 @@ import org.hippoecm.hst.core.component.HstResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.mootly.wcm.beans.CapitalAssetDocument;
 import com.mootly.wcm.beans.CapitalAssetInformation;
 import com.mootly.wcm.beans.HouseProperty;
 import com.mootly.wcm.beans.InterestDocument;
@@ -38,6 +39,7 @@ import com.mootly.wcm.beans.SecuritiesInformation;
 import com.mootly.wcm.beans.TcsDocument;
 import com.mootly.wcm.beans.TdsFromOthersInformation;
 import com.mootly.wcm.beans.TdsFromSalaryInformation;
+import com.mootly.wcm.beans.compound.CapitalAssetDetail;
 import com.mootly.wcm.components.ITReturnComponent;
 import com.mootly.wcm.utils.ContentStructure;
 import com.mootly.wcm.utils.GoGreenUtil;
@@ -56,7 +58,7 @@ public class Calculations extends ITReturnComponent {
 		super.doBeforeRender(request, response);
 		log.warn("This is Start calculation Page");
 		member=(Member)request.getSession().getAttribute("user");
-		pan=(String) request.getSession().getAttribute("pan");
+		/*pan=(String) request.getSession().getAttribute("pan");
 		if(null == pan)
 		{
 			pan ="abcdb1234a";
@@ -65,10 +67,16 @@ public class Calculations extends ITReturnComponent {
 		if(null == filing_year)
 		{
 			filing_year ="2012-2013";
-		}
+		}*/
+		
 		String username=member.getUserName().trim();
 		modusername=username.replaceAll("@", "-at-").trim();
+		filing_year = request.getRequestContext().getResolvedSiteMapItem().getParameter("assessmentYear");
+		//itReturnType = request.getRequestContext().getResolvedSiteMapItem().getParameter("itReturnType"); //original versus amend
+		pan = request.getRequestContext().getResolvedSiteMapItem().getParameter("pan"); //original versus amend
 		log.info("inside fetchSalaryIncomeDocument--->member:-"+member);
+		log.info("inside fetchSalaryIncomeDocument--->member:-"+filing_year);
+		log.info("inside fetchSalaryIncomeDocument--->member:-"+pan);
 		if(member!=null){
 
 			// fetching Salary Income value
@@ -200,16 +208,17 @@ public class Calculations extends ITReturnComponent {
 		log.info("inside fetchSalaryIncomeDocument--->before try:-");
 		try {
 
-			final String itReturnFolderPath = ContentStructure.getMemberSalaryPathFetch(request,member.getUserName());
+			final String itReturnFolderPath = ContentStructure.getMemberSalaryPathFetch(request,modusername);
 			log.info("tttttttttttttttttttttttttttttttttttttttttttttttttttttt");
-
 			log.info("inside fetchSalaryIncomeDocument---> itReturnFolderPath:-"+itReturnFolderPath);
-			log.info("after array listttttttttttt");
 			SalaryIncomeDocument objSalaryIncomeDocument = null;
 			objSalaryIncomeDocument = (SalaryIncomeDocument)getObjectBeanManager(request).getObject(itReturnFolderPath);
 			log.info("after objjjjjjjjjjjjsalaryincome documenttttttttttttttttt");
-			fSalary = Float.parseFloat(objSalaryIncomeDocument.getTotal());
-			log.info("total is "+fSalary);
+			if(objSalaryIncomeDocument!=null){
+				fSalary = Float.parseFloat(objSalaryIncomeDocument.getTotal());
+				log.info("total is "+fSalary);
+			}
+			
 		}
 		catch (ObjectBeanManagerException e)
 		{
@@ -228,7 +237,7 @@ public class Calculations extends ITReturnComponent {
 		log.info("inside fetchOtherIncomeDocument--->before try:-");
 		try {
 
-			String itReturnFolderPathFetch = ContentStructure.getOtherIncomePathUpdate(request,member.getUserName());
+			String itReturnFolderPathFetch = ContentStructure.getOtherIncomePathUpdate(request,modusername);
 			OtherSourceIncome	objOtherSourceIncome = (OtherSourceIncome)getObjectBeanManager(request).getObject(itReturnFolderPathFetch);
 			log.info("Calculation->fetchSalaryIncomeDocument--->objSalaryIncomeDocument:"+objOtherSourceIncome);
 			if(objOtherSourceIncome!=null){
@@ -277,7 +286,7 @@ public class Calculations extends ITReturnComponent {
 		try {
 			String path=ContentStructure.getMemberAssetDocPath(pan,filing_year, modusername);
 			log.warn(path);
-			CapitalAssetInformation capital =(CapitalAssetInformation)getObjectBeanManager(request).getObject(path);
+			CapitalAssetDetail capital =(CapitalAssetDetail)getObjectBeanManager(request).getObject(path);
 			request.setAttribute("capital", capital);
 			if(capital != null){
 
@@ -516,7 +525,8 @@ public class Calculations extends ITReturnComponent {
 			MemberAge age = new MemberAge();
 			log.info("dob currentdate1 date  is"+age.MemberAgeCalculate(dob));
 			int Age = age.MemberAgeCalculate(dob);
-			if(filing_year=="2012-2013") {
+			log.info("age is"+Age);
+			//if(filing_year == "2012-2013") { 
 				log.info("i am fetching income tax "+filing_year);
 				log.info("value of taxable income is"+fTaxableIncome);
 				if (document.getSex().matches("M")){
@@ -646,7 +656,6 @@ public class Calculations extends ITReturnComponent {
 						}
 					}
 				}
-			}
 		}
 		catch (ObjectBeanManagerException e) {
 			// TODO Auto-generated catch block
