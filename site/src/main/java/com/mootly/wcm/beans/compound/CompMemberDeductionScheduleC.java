@@ -44,7 +44,7 @@ import com.mootly.wcm.utils.GoGreenUtil;
  */
 
 @SuppressWarnings("unused")
-@Node(jcrType = "mootlywcm:MemberDeductionScheduleC")
+
 public class CompMemberDeductionScheduleC extends HippoItem implements FormMapFiller {
 	static final public String NAMESPACE = "mootlywcm:MemberDeductionScheduleC";
 	static final public String NODE_NAME = "MemberDeductionScheduleC";

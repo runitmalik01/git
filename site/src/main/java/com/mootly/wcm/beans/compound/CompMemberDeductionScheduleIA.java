@@ -39,7 +39,7 @@ import com.mootly.wcm.utils.GoGreenUtil;
  */
 
 @SuppressWarnings("unused")
-@Node(jcrType = "mootlywcm:MemberDeductionScheduleIA")
+
 public class CompMemberDeductionScheduleIA extends HippoItem{
 	static final public String NAMESPACE = "mootlywcm:MemberDeductionScheduleIA";
 	static final public String NODE_NAME = "MemberDeductionScheduleIA";
