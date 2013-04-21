@@ -74,3 +74,12 @@
 <hst:headContribution category="jsExternal">
 	<script type="text/javascript" src="<hst:link path="/js/validation/jquery.validationEngine.js"/>"></script>
 </hst:headContribution>
+<!-- includes for jquery validations ends -->
+
+<!-- includes for interest calculation begins -->
+
+<hst:headContribution category="jsExternal">
+	<script type="text/javascript" src="<hst:link path="/js/interestcalculation/intt234.js"/>"></script>
+</hst:headContribution>
+
+<!-- includes for interest calculation ends -->
