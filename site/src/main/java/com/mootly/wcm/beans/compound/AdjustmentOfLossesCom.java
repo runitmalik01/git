@@ -40,7 +40,7 @@ public class AdjustmentOfLossesCom extends HippoItem implements FormMapFiller {
 	private final static Logger log = LoggerFactory.getLogger(AdjustmentOfLossesDoc.class); 
 	private String AssessmentYear;
 	private String NameOfHead;
-	private String Amount;
+	private Double Amount;
 	private Calendar DateOfFilingYear;
 	private String DueDate;
 	
@@ -64,7 +64,7 @@ public class AdjustmentOfLossesCom extends HippoItem implements FormMapFiller {
 		if (NameOfHead == null) NameOfHead = getProperty("mootlywcm:NameOfHead");
 		return NameOfHead;
 	}
-	public final String getAmount() {
+	public final Double getAmount() {
 		if (Amount == null) Amount = getProperty("mootlywcm:Amount");
 		return Amount;
 	}
@@ -72,13 +72,21 @@ public class AdjustmentOfLossesCom extends HippoItem implements FormMapFiller {
 		if (DateOfFilingYear == null) DateOfFilingYear = getProperty("mootlywcm:DateOfFilingYear");
 		return DateOfFilingYear;
 	}
-	
 	  
     public String getDOBStr() {
     	if (DateOfFilingYear == null) DateOfFilingYear = getProperty("mootlywcm:DateOfFilingYear");
     	if (DateOfFilingYear != null) {
     		String dobStr = getIndianDateFormatter().format(DateOfFilingYear.getTime());
     		return dobStr;
+    	}
+    	return null;
+    }
+    
+    public String getAmountStr() {
+    	if (Amount == null) Amount = getProperty("mootlywcm:Amount");
+    	if (Amount != null) {
+    		String amountStr = Double.toString(Amount);
+    		return amountStr;
     	}
     	return null;
     }
@@ -94,7 +102,7 @@ public class AdjustmentOfLossesCom extends HippoItem implements FormMapFiller {
 	public final void setNameOfHead(String NameOfHead) {
 		this.NameOfHead = NameOfHead;
 	}
-	public final void setAmount(String Amount) {
+	public final void setAmount(Double Amount) {
 		this.Amount = Amount;
 	}
 	public final void setDateOfFilingYear(Calendar DateOfFilingYear) {
@@ -160,7 +168,9 @@ public class AdjustmentOfLossesCom extends HippoItem implements FormMapFiller {
 			setNameOfHead(formMap.getField("NameOfHead").getValue());
 		}
 		if ( formMap.getField("Amount") != null) {
-			setAmount(formMap.getField("Amount").getValue());
+			String strAmount=formMap.getField("Amount").getValue();
+			double amt = Double.parseDouble(strAmount);
+			setAmount(amt);
 		}
 		if ( formMap.getField("DueDate") != null) {
 			setDueDate(formMap.getField("DueDate").getValue());
