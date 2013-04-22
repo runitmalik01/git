@@ -169,7 +169,7 @@ else {
 				</tr>
 				<tr>
 					<td><label>Total Interest payable under Sections 234 A, 234 B and 234 C</label></td>
-					<td><input id="intt"/></td>
+					<td><input id="intt" name="section234ABC" value=""/></td>
 				</tr>
 				<tr><td></td><td align="right"><input type="submit" id="submit" class="button olive" onclick="save()" value="Save"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<a href="${modifiedSiteMapRefId}" onClick="save()" class="button orange">Next</a></td>
