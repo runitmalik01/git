@@ -709,20 +709,24 @@
       <sv:value>hst:pages/activation</sv:value>
     </sv:property>
   </sv:node>
-  <sv:node sv:name="forgotpass">
-    <sv:property sv:name="jcr:primaryType" sv:type="Name">
-      <sv:value>hst:sitemapitem</sv:value>
-    </sv:property>
-    <sv:property sv:name="jcr:uuid" sv:type="String">
-      <sv:value>ad90aa3f-0486-48da-8aa2-5b948978c873</sv:value>
-    </sv:property>
-    <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
-      <sv:value>hst:pages/forgotpass</sv:value>
-    </sv:property>
-    <sv:property sv:name="hst:refId" sv:type="String">
-      <sv:value>forgotpass</sv:value>
-    </sv:property>
-  </sv:node>
+  <sv:node sv:name="forgotpass" >
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:sitemapitem</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>ad90aa3f-0486-48da-8aa2-5b948978c873</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+    <sv:value>hst:pages/forgotpass</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:refId" sv:type="String">
+    <sv:value>forgotpass</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:relativecontentpath" sv:type="String">
+    <sv:value>members</sv:value>
+  </sv:property>
+</sv:node>
+
   <sv:node sv:name="member">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
       <sv:value>hst:sitemapitem</sv:value>
