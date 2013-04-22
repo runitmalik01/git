@@ -27,3 +27,4 @@ $('atiq4').value=Math.round($('atsfq4').value/100);}
 else{$('atiq4').value=0}
 $('ic').value= $('atiq2').value*1+$('atiq3').value*1+$('atiq4').value*1;
 $('intt').value=$('ic').value*1+$('intA').value*1+$('intB').value*1;}
+window.onload=int234();
