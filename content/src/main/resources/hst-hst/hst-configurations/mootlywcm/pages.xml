@@ -3285,44 +3285,58 @@
       </sv:node>
     </sv:node>
   </sv:node>
-  <sv:node sv:name="forgotpass">
+  
+<sv:node sv:name="forgotpass">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:component</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>fda0c6a9-1ca9-4055-8325-119efe9a00fc</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+    <sv:value>bodyCssClass</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+    <sv:value>page</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:referencecomponent" sv:type="String">
+    <sv:value>hst:pages/simplepage.re</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:referencename" sv:type="String">
+    <sv:value/>
+  </sv:property>
+  <sv:node sv:name="main">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
       <sv:value>hst:component</sv:value>
     </sv:property>
     <sv:property sv:name="jcr:uuid" sv:type="String">
-      <sv:value>fda0c6a9-1ca9-4055-8325-119efe9a00fc</sv:value>
+      <sv:value>f0393c30-47cd-4cb7-96e0-ca0874f63b08</sv:value>
     </sv:property>
-    <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String"/>
-    <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String"/>
-    <sv:property sv:name="hst:referencecomponent" sv:type="String">
-      <sv:value>hst:pages/simplepage</sv:value>
+    <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+      <sv:value>contentCssClass</sv:value>
+      <sv:value>widgetsCssClass</sv:value>
     </sv:property>
-    <sv:property sv:name="hst:referencename" sv:type="String">
-      <sv:value/>
+    <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+      <sv:value>grid col-620</sv:value>
+      <sv:value>grid col-300 fit</sv:value>
     </sv:property>
-    <sv:node sv:name="main">
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>standard.main.re</sv:value>
+    </sv:property>
+    <sv:node sv:name="content">
       <sv:property sv:name="jcr:primaryType" sv:type="Name">
         <sv:value>hst:component</sv:value>
       </sv:property>
       <sv:property sv:name="jcr:uuid" sv:type="String">
-        <sv:value>f0393c30-47cd-4cb7-96e0-ca0874f63b08</sv:value>
+        <sv:value>dd3abf34-77f6-49eb-a742-c3554164e561</sv:value>
       </sv:property>
-      <sv:property sv:name="hst:template" sv:type="String">
-        <sv:value>member.main</sv:value>
+      <sv:property sv:name="hst:referencecomponent" sv:type="String">
+        <sv:value>hst:components/forgotpass</sv:value>
       </sv:property>
-      <sv:node sv:name="content">
-        <sv:property sv:name="jcr:primaryType" sv:type="Name">
-          <sv:value>hst:component</sv:value>
-        </sv:property>
-        <sv:property sv:name="jcr:uuid" sv:type="String">
-          <sv:value>dd3abf34-77f6-49eb-a742-c3554164e561</sv:value>
-        </sv:property>
-        <sv:property sv:name="hst:referencecomponent" sv:type="String">
-          <sv:value>hst:components/forgotpass</sv:value>
-        </sv:property>
-      </sv:node>
     </sv:node>
   </sv:node>
+</sv:node>
+
   <sv:node sv:name="member-home">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
       <sv:value>hst:component</sv:value>
