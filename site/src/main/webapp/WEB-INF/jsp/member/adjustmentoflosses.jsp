@@ -135,7 +135,7 @@ jQuery('#DateOfFilingYear').datepicker('destroy');
 				</p>
 				<p>
 					<label for="DateOfFilingYear"><fmt:message key="member.adjustment.losses.date"></fmt:message></label>
-					 <input  id="DateOfFilingYear" name="DateOfFilingYear" value="${childBean.DOBStr}"/> 
+					 <input  id="DateOfFilingYear" class="validate[required] text-input" name="DateOfFilingYear" value="${childBean.DOBStr}"/> 
 				</p>
 					<p>
 					<label for="DueDate"><fmt:message key="member.adjustment.losses.duedate"></fmt:message></label>
