@@ -4252,39 +4252,55 @@
       </sv:node>
     </sv:node>
   </sv:node>
-  <sv:node sv:name="member-changepass">
+  
+<sv:node sv:name="member-changepass">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:component</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>c43be891-a686-4587-bf72-4c8f56448414</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+    <sv:value>bodyCssClass</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+    <sv:value>page</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:referencecomponent" sv:type="String">
+    <sv:value>hst:pages/simplepage.re</sv:value>
+  </sv:property>
+  <sv:node sv:name="main">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
       <sv:value>hst:component</sv:value>
     </sv:property>
     <sv:property sv:name="jcr:uuid" sv:type="String">
-      <sv:value>c43be891-a686-4587-bf72-4c8f56448414</sv:value>
+      <sv:value>0c8579fb-0a37-4e8e-8c90-c0802c73f31c</sv:value>
     </sv:property>
-    <sv:property sv:name="hst:referencecomponent" sv:type="String">
-      <sv:value>hst:pages/simplepage</sv:value>
+    <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+      <sv:value>contentCssClass</sv:value>
+      <sv:value>widgetsCssClass</sv:value>
     </sv:property>
-    <sv:node sv:name="main">
+    <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+      <sv:value>grid col-620</sv:value>
+      <sv:value>grid col-300 fit</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>standard.main.re</sv:value>
+    </sv:property>
+    <sv:node sv:name="content">
       <sv:property sv:name="jcr:primaryType" sv:type="Name">
         <sv:value>hst:component</sv:value>
       </sv:property>
       <sv:property sv:name="jcr:uuid" sv:type="String">
-        <sv:value>0c8579fb-0a37-4e8e-8c90-c0802c73f31c</sv:value>
+        <sv:value>5e473eed-6590-4350-be4a-d2a91a4f625b</sv:value>
       </sv:property>
-      <sv:property sv:name="hst:template" sv:type="String">
-        <sv:value>member.main</sv:value>
+      <sv:property sv:name="hst:referencecomponent" sv:type="String">
+        <sv:value>hst:components/changepass</sv:value>
       </sv:property>
-      <sv:node sv:name="content">
-        <sv:property sv:name="jcr:primaryType" sv:type="Name">
-          <sv:value>hst:component</sv:value>
-        </sv:property>
-        <sv:property sv:name="jcr:uuid" sv:type="String">
-          <sv:value>5e473eed-6590-4350-be4a-d2a91a4f625b</sv:value>
-        </sv:property>
-        <sv:property sv:name="hst:referencecomponent" sv:type="String">
-          <sv:value>hst:components/changepass</sv:value>
-        </sv:property>
-      </sv:node>
     </sv:node>
   </sv:node>
+</sv:node>
+
   <sv:node sv:name="rebatesec90">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
       <sv:value>hst:component</sv:value>
