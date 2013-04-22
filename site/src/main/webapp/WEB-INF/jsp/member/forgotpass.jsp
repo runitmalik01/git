@@ -24,27 +24,15 @@
 <link rel="stylesheet" type="text/css"
 	href="http://yui.yahooapis.com/2.9.0/build/datatable/assets/skins/sam/datatable.css" />
 
-<%-- In this YUI code is written and fields are written--%>
-<div align="center" class="forgotpass">
-	<div id="demo" class="yui3-module" align="center">
-
 		<form action="${forgotpass}" method="post">
-
-			<div class="yui3-hd">
-				<h1>GET YOUR FORGOTTEN PASSWORD !!</h1>
-			</div>
-			<br /> <br />
-			<div class="yui3-bd" align="center">
-				<h2>
+		<fieldset>
+		<legend style="color: blue">GET YOUR FORGOTTEN PASSWORD !!</legend>
+				<h5>
 					<fmt:message key="signup.forgotpass.message" />
-				</h2>
-				<table>
-				<tr>
-				<td><br />
-				</td>
-					</tr>
-					<tr height="30px">
-						<td class="label"><fmt:message key="signup.email.required" />
+				</h5>
+				<table>	
+					<tr>
+						<td><label for="emsil"><fmt:message key="signup.email.required" /></label>
 						</td>
 						<td class="input"><input type="text" name="email"
 							value="${fn:escapeXml(email)}" class="input_data" /> <c:if
@@ -69,10 +57,8 @@
 						</td>
 					</tr>
 				</table>
-			</div>
+				</fieldset>
 		</form>
-	</div>
-</div>
 <hst:headContribution keyHint="tablecss">
 	<link type="text/css" rel="stylesheet"
 		href='<hst:link path="/css/Newstyle.css"/>' />
