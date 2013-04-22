@@ -111,7 +111,7 @@ jQuery('#DateOfFilingYear').datepicker('destroy');
 				<p>
 					<label for="AssessmentYear"> <fmt:message key="member.adjustment.losses.year"></fmt:message></label>
 					<select name="AssessmentYear" class="validate[required] text-input" id="year" onChange="setYear()">
-						  <option value="">Select Year</option>
+						  <option value="">-Select Year-</option>
 						  <c:forEach var="booleanCombo" items="${objHashMapAssessmentYear}">
 						  <option "<c:if test="${pageAction == 'EDIT_CHILD' && childBean.assessmentYear == booleanCombo.value}">selected</c:if>" value="${booleanCombo.value}">${booleanCombo.value}</option>
 						  </c:forEach>
