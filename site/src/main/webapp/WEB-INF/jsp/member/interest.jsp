@@ -3,6 +3,14 @@
 <%@include file="../includes/commonincludes.jspf"%>
 <%@ page import="com.mootly.wcm.beans.*"%>
 
+  <script>
+  $(function() {
+	  
+	  jQuery("#frmdata").validationEngine();
+	   	
+  });
+  </script>
+
 <script type="text/javascript">
 
 function $(){
@@ -30,7 +38,7 @@ if (varToReplace != null) {
  pageContext.setAttribute("modifiedSiteMapRefId",modifiedSiteMapRefId);
 }
 else {
- pageContext.setAttribute("modifiedSiteMapRefId",mainSiteMapRefId);
+	 pageContext.setAttribute("modifiedSiteMapRefId",mainSiteMapRefId);
 }
 %>
 
@@ -53,7 +61,7 @@ else {
 
 
 <div class="page type-page">
-	<h3 id="respond1">Calculator - Interest u/s 234 A B C - Individuals</h3>
+	<h3 id="respond1">Interest under Section 234 A B C</h3>
 		<form id="frmdata" action="${actionUrl}" name="frmdata" method="post">
 		
 		<fieldset>
@@ -64,7 +72,7 @@ else {
 				</tr>
 				<tr>
 					<td><label>A.2 Enter Total Tax Liability for the Assessment Year</label></td>
-					<td><input id="aytaxd" onchange="int234();"/></td>
+					<td><input id="aytaxd" onchange="int234();" value="23400"/></td>
 				</tr>
 				<tr>
 					<td><label>A.3 Enter Income Tax paid upto 31st March 2013</label></td>
@@ -76,8 +84,9 @@ else {
 				</tr>
 				<tr>
 					<td><label>A.5 Month of Payment of Shortfall</label></td>
-					<td><select id="aytaxmp" class="ip" onchange="int234();">
-					    <option value="3" selected="selected">Before March 2013<option value="4">April 2013<option value="5">May 2013<option value="6">June 2013<option value="7">July 2013<option value="8">August 2013<option value="9">September 2013<option value="10"> October 2013<option value="11">November 2013<option value="12">December 2013<option value="13">January 2013<option value="14">February 2013<option value="15">March 2013</select></td>
+					<td><select id="aytaxmp" class="validate[required] text-input" onchange="int234();">
+					    <option value="" selected="selected">-Select Month-</option>
+					    <option value="3">Before March 2013<option value="4">April 2013<option value="5">May 2013<option value="6">June 2013<option value="7">July 2013<option value="8">August 2013<option value="9">September 2013<option value="10"> October 2013<option value="11">November 2013<option value="12">December 2013<option value="13">January 2013<option value="14">February 2013<option value="15">March 2013</select></td>
 				</tr>
 				</table>				
 			</fieldset>	
@@ -90,7 +99,7 @@ else {
 				</tr>
 				<tr>
 					<td><label>B.2 Interest Payable under Section 234 A</label></td>
-					<td><input id="intA" name="section234A" value="${parentBean.section234A}"/></td>
+					<td><input id="intA" name="section234A" value=""/></td>
 				</tr>
 				</table>
 				</fieldset>
@@ -103,7 +112,7 @@ else {
 				</tr>
 				<tr>
 					<td><label>C.2 Interest Payable under Section 234 B</label></td>
-					<td><input id="intB" name="section234B" value="${parentBean.section234B}"/></td>
+					<td><input id="intB" name="section234B" value=""/></td>
 				</tr>
 				</table>
 				</fieldset>
@@ -181,14 +190,16 @@ else {
 				</tr>
 				<tr>
 					<td><label>Total Interest payable under Section 234 C</label></td>
-					<td><input id="ic" name="section234C" value="${parentBean.section234C}"/></td>
+					<td><input id="ic" name="section234C" value=""/></td>
 				</tr>
 				<tr>
 					<td><label>Total Interest payable under Sections 234 A, 234 B and 234 C</label></td>
 					<td><input id="intt"/></td>
 				</tr>
-				<tr><td align="right"><input type="submit" id="submit" class="button olive" onclick="save()" value="Save"/></td><td align="right"><button type="reset">Reset</button></td>
+				<tr><td></td><td align="right"><input type="submit" id="submit" class="button olive" onclick="save()" value="Save"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<a href="${modifiedSiteMapRefId}" onClick="save()" class="button orange">Next</a></td>
 				</table>
+				
 				</fieldset>
 		</form>
 </div>
@@ -197,4 +208,5 @@ else {
 function save(){
 			$("#frmdata").submit();
 }
-</script>				
+</script>
+				
