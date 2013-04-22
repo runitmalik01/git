@@ -131,7 +131,7 @@ jQuery('#DateOfFilingYear').datepicker('destroy');
 				</p>
 				<p>
 					<label for="Amount"><fmt:message key="member.adjustment.losses.amount" /></label>
-					<input id="Amount" class="validate[required,custom[integer],maxSize[14]] text-input" type="text" name="Amount" id="amount" value="<c:if test="${pageAction == 'EDIT_CHILD'}"><c:out value="${childBean.amount}"/></c:if>"/>
+					<input id="Amount" class="validate[required,custom[integer],maxSize[14]] text-input" type="text" name="Amount" id="amount" value="<c:if test="${pageAction == 'EDIT_CHILD'}"><c:out value="${childBean.amountStr}"/></c:if>"/>
 				</p>
 				<p>
 					<label for="DateOfFilingYear"><fmt:message key="member.adjustment.losses.date"></fmt:message></label>
@@ -166,8 +166,8 @@ jQuery('#DateOfFilingYear').datepicker('destroy');
 					<c:forEach items="${parentBean.adjustmentOfLossesList}" var="adjustmentOfLosses">
 							<tr>
 								<td><a href="${redirectURLToSamePage}/<c:out value="${adjustmentOfLosses.canonicalUUID}"/>/edit"><c:out value="${adjustmentOfLosses.nameOfHead}"/></a></td>
-								<td id="${adjustmentOfLosses.assessmentYear}"><c:out value="${adjustmentOfLosses.assessmentYear}"/></td>
-								<td id="${adjustmentOfLosses.amount}"><c:out value="${adjustmentOfLosses.amount}"/></td>
+								<td><c:out value="${adjustmentOfLosses.assessmentYear}"/></td>
+								<td><c:out value="${adjustmentOfLosses.amountStr}"/></td>
 								<td><c:out value="${adjustmentOfLosses.DOBStr}"/></td>
 								<td><a href="${redirectURLToSamePage}/<c:out value="${adjustmentOfLosses.canonicalUUID}"/>/edit"><small>Edit</small></a>&nbsp;&nbsp;<a href="${redirectURLToSamePage}/<c:out value="${adjustmentOfLosses.canonicalUUID}"/>/delete"><small>Delete</small></a></td>
 					        </tr>
