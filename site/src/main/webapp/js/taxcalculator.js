@@ -45,12 +45,12 @@ function fill() {
 	function no_of_year() {
 		var year = $("#no_of_year").val();
 		if (year != null) {
-			window.location.replace("http://localhost:8080/site/npvcalculator?year="+year);	
+			window.location.replace("http://mootlybuilds.zapto.org:8080/site/npvcalculator?year="+year);	
 		}
 	};// End Of function no_of_year.
 
 	function back(){
-		window.location.replace("http://localhost:8080/site/npvcalculator");	
+		window.location.replace("http://mootlybuilds.zapto.org:8080/site/npvcalculator");	
 		};// End Of function back.
 		
 		
