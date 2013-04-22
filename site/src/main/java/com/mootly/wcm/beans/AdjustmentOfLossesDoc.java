@@ -17,6 +17,7 @@
 package com.mootly.wcm.beans;
 import static com.mootly.wcm.utils.Constants.NT_PERSONAL_INFO_LINK;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,7 +44,7 @@ import com.mootly.wcm.beans.compound.AdjustmentOfLossesCom;
 public class AdjustmentOfLossesDoc extends BaseDocument implements ContentNodeBinder,FormMapFiller,CompoundChildUpdate {
 	static final public String NAMESPACE = "mootlywcm:adjustmentoflossesdoc";            
 	static final public String NODE_NAME = "adjustmentoflossesdoc";
-	private String TotalAmount;
+	private Double TotalAmount;
 	private String itFolderUuid;
 	
 	public String getGross_salary() {
@@ -66,12 +67,12 @@ public class AdjustmentOfLossesDoc extends BaseDocument implements ContentNodeBi
 	}
 
 
-	public final String getTotalAmount() {
+	public final Double getTotalAmount() {
 		if (TotalAmount == null) TotalAmount = getProperty("mootlywcm:TotalAmount");
 		return TotalAmount;
 	}
 
-	public final void setTotalAmount(String TotalAmount) {
+	public final void setTotalAmount(Double TotalAmount) {
 		this.TotalAmount = TotalAmount;
 	}
 
@@ -94,7 +95,7 @@ public class AdjustmentOfLossesDoc extends BaseDocument implements ContentNodeBi
 		}
 		return prdBean;
 	}
-
+	
 	public boolean bind(Object content, javax.jcr.Node node) throws ContentNodeBindingException {
 
 		try {
@@ -105,18 +106,18 @@ public class AdjustmentOfLossesDoc extends BaseDocument implements ContentNodeBi
 					javax.jcr.Node aNode = nodeIterator.nextNode();
 					aNode.remove();
 				}
-			}
-			float sum=0.0f;
+			}			
+			Double sum = 0.0D;
 			if (bean.getAdjustmentOfLossesList() != null && bean.getAdjustmentOfLossesList().size() > 0 ){  
 				for (AdjustmentOfLossesCom adjustmentoflossescom:bean.getAdjustmentOfLossesList()) {
 					if (!adjustmentoflossescom.isMarkedForDeletion()) {
-						float amount=Float.parseFloat(adjustmentoflossescom.getAmount());
-						sum=sum+amount;
+						Double amount=adjustmentoflossescom.getAmount();
+						sum=sum+amount;						
 						javax.jcr.Node html = node.addNode("mootlywcm:adjustmentoflossescom", "mootlywcm:adjustmentoflossescom");
 						adjustmentoflossescom.bindToNode(html); 
 					}
-				}
-				setTotalAmount(String.valueOf(sum));
+				}				
+				setTotalAmount(sum);
 			}
 			node.setProperty("mootlywcm:TotalAmount",getTotalAmount());
 			/*
@@ -134,7 +135,7 @@ public class AdjustmentOfLossesDoc extends BaseDocument implements ContentNodeBi
 		}
 		return true;
 
-	}	   
+	}
 
 	@Override
 	public void fill(FormMap formMap) {
