@@ -3,31 +3,6 @@
 <%@include file="../includes/commonincludes.jspf"%>
 <%@ page import="com.mootly.wcm.beans.*"%>
 
-  <script>
-  $(function() {
-	  
-	  jQuery("#frmdata").validationEngine();
-	   	
-  });
-  </script>
-
-<script type="text/javascript">
-
-function $(){
-	
-	var elements=new Array();
-	for (var i=0;i<arguments.length;i++){
-		var element=arguments[i];
-		if(typeof element== 'string')
-			element=document.getElementById(element);
-		if(arguments.length==1) 
-			return element;
-		}
-	return elements;
-	}
-
-</script>
-
 <hst:link var ="mainSiteMapRefId" siteMapItemRefId="${mainSiteMapItemRefId}"/>
 <%
 String varToReplace = (String) pageContext.getAttribute("mainSiteMapRefId");
@@ -203,7 +178,35 @@ else {
 				</fieldset>
 		</form>
 </div>
-				
+
+<!-- used for validation -->
+<script>
+  $(function() {
+	  
+	  jQuery("#frmdata").validationEngine();
+	   	
+  });
+</script>
+
+<!-- used for interest calculation -->
+<script type="text/javascript">
+
+function $(){
+	
+	var elements=new Array();
+	for (var i=0;i<arguments.length;i++){
+		var element=arguments[i];
+		if(typeof element== 'string')
+			element=document.getElementById(element);
+		if(arguments.length==1) 
+			return element;
+		}
+	return elements;
+	}
+
+</script>
+
+<!-- used to submit the form -->				
 <script>
 function save(){
 			$("#frmdata").submit();
