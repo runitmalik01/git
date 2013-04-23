@@ -56,8 +56,8 @@ public class TdsFromothersDetail extends HippoItem implements FormMapFiller {
 	
 	private String tan_Deductor ;
 	
-	private String total_TaxDeductor ;
-	private String val_amount;
+	private Double total_TaxDeductor ;
+	private Double val_amount;
 	private String name_Deductor;
 	private String tds_certificate;
 	private String financial_year;
@@ -75,12 +75,12 @@ public class TdsFromothersDetail extends HippoItem implements FormMapFiller {
     	return tan_Deductor;
     }
 
-    public String getTotal_TaxDeductor() {
+    public Double getTotal_TaxDeductor() {
     	if (total_TaxDeductor == null) total_TaxDeductor = getProperty(total_taxdeducted);
     	return total_TaxDeductor;
     }
 
-    public String getP_Amount() {
+    public Double getP_Amount() {
     	if (val_amount == null) val_amount = getProperty(amount);
     	return val_amount;
     }
@@ -102,7 +102,7 @@ public class TdsFromothersDetail extends HippoItem implements FormMapFiller {
     public final void setTan_Deductor(String tan_Deductor) {
 		this.tan_Deductor = tan_Deductor;
 	}
-	public final void setTotal_TaxDeductor(String total_TaxDeductor) {
+	public final void setTotal_TaxDeductor(Double total_TaxDeductor) {
 		this.total_TaxDeductor = total_TaxDeductor;
 	}
 	public final void setName_Deductor(String name_Deductor) {
@@ -110,7 +110,7 @@ public class TdsFromothersDetail extends HippoItem implements FormMapFiller {
 	}
 	
 
-	public final void setP_Amount(String val_amount) {
+	public final void setP_Amount(Double val_amount) {
 		this.val_amount = val_amount;
 	}
 	public final void setTds_Certificate(String tds_certificate) {
@@ -180,10 +180,14 @@ public class TdsFromothersDetail extends HippoItem implements FormMapFiller {
 			setTds_Certificate(formMap.getField("tds_certificate").getValue());
 		}
 		if ( formMap.getField("total_taxdeducted") != null) {
-			setTotal_TaxDeductor(formMap.getField("total_taxdeducted").getValue());
+			 String strTaxdeducted=formMap.getField("total_taxdeducted").getValue();
+			double TaxDeducted=Double.parseDouble(strTaxdeducted);
+			setTotal_TaxDeductor(TaxDeducted);
 		}
 		if ( formMap.getField("amount") != null) {
-			setP_Amount(formMap.getField("amount").getValue());
+			String strAmt=formMap.getField("amount").getValue();
+			double amt=Double.parseDouble(strAmt);
+			setP_Amount(amt);
 		}
 		
 		if ( formMap.getField("financial_year") != null) {
