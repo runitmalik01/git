@@ -28,18 +28,19 @@ function fill() {
 
 
 // NPV Calculator
+
 	function call() {
 		var a = document.getElementById("initial_invest").value-0;
 		var rate = document.getElementById("rate").value-0;
-		var a1 = document.getElementsByName("cashflow1").value-0;
+		var a1 = document.getElementsByName("cashflow1");
 		var s1 = 0;
-		if(a>0 && rate>0){
+	
 			for (var caflow = 0; caflow <a1.length; caflow++) {
 				s1 = s1 + ( a1.item(caflow).value / (Math.pow((1 + (rate/100)),caflow+1)));
 			}
-			s1=parseFloat(s1)-parseFloat(a);;
-			document.getElementById("calculate").value = Math.round((s1)* 100) / 100;
-		}//End of if (for checking input values should be greater then 0)	
+		s1=parseFloat(s1)-parseFloat(a);
+		document.getElementById("calculate").value = Math.round((s1)* 100) / 100;
+			
 	};// End Of function call
 	
 	function no_of_year() {
@@ -48,7 +49,6 @@ function fill() {
 			window.location.replace("http://mootlybuilds.zapto.org:8080/site/npvcalculator?year="+year);	
 		}
 	};// End Of function no_of_year.
-
 	function back(){
 		window.location.replace("http://mootlybuilds.zapto.org:8080/site/npvcalculator");	
 		};// End Of function back.
