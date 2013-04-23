@@ -172,7 +172,9 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 			throws ContentNodeBindingException {
 		// TODO Auto-generated method stub
 		try {
+			if(log.isInfoEnabled()){
 			log.warn("this is bean");
+			}
 			MemberPersonalInformation memberpersonal = (MemberPersonalInformation) content;
 			node.setProperty(PROP_PI_FIRST_NAME,memberpersonal.getFirstName());
 	    	node.setProperty(PROP_PI_MIDDLE_NAME,memberpersonal.getMiddleName());
@@ -224,7 +226,9 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 			Calendar cal=Calendar.getInstance();
 			try{
 				date = (Date)formatter.parse(strDate); 
+				if(log.isInfoEnabled()){
 				log.info("date"+date);
+				}
 				cal.setTime(date);
 				setDOB(cal);
 			}

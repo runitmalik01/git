@@ -192,7 +192,9 @@ public class MemberContactInformation extends BaseDocument implements ContentNod
 			throws ContentNodeBindingException {
 		// TODO Auto-generated method stub
 		try {
+			if(log.isInfoEnabled()){
 			log.info("this is Contact bean");
+			}
 			MemberContactInformation contact_info = (MemberContactInformation) content;
 			node.setProperty(PROP_PI_PAN, contact_info.getPAN());
 	    	node.setProperty(PROP_PI_FLAT_FLOOR_BUILDING, contact_info.getFlatDoorBuilding());
