@@ -60,7 +60,7 @@ public class TdsFromothersDocument extends BaseDocument implements ContentNodeBi
 	public String getGross_salary() {
 		return "0";
 	}
-	private String total_amount;
+	private Double total_amount;
 	private final static Logger log = LoggerFactory.getLogger(TdsFromothersDocument.class); 
 
 	private List<TdsFromothersDetail> tdsfromothersDetailList;
@@ -79,11 +79,11 @@ public class TdsFromothersDocument extends BaseDocument implements ContentNodeBi
 		if (tdsfromothersDetailList == null) tdsfromothersDetailList = new ArrayList<TdsFromothersDetail>();
 		tdsfromothersDetailList.add(tdsothersdetail);
 	}
-	   public String getTotal_Amount() {
+	   public Double getTotal_Amount() {
 	    	if (total_amount == null) total_amount = getProperty("mootlywcm:totalamount");
 	    	return total_amount;
 	 }
-	   public final void setTotal_Amount(String totalamount) {
+	   public final void setTotal_Amount(Double totalamount) {
 			this.total_amount = totalamount;
 		}
 
@@ -131,13 +131,13 @@ public class TdsFromothersDocument extends BaseDocument implements ContentNodeBi
         				double amount=objtdsfromothers.getP_Amount();
             		    log.info("value of amount after fetching from compound bean"+amount);
             		     sum=sum+ amount;
-            		     Double sum1= (double) sum;
-            		     strSum= BigDecimal.valueOf(sum1).toPlainString();
+            		    // Double sum1= (double) sum;
+            		   //  strSum= BigDecimal.valueOf(sum1).toPlainString();
 		                javax.jcr.Node html = node.addNode(PROP_DETAIL_BEAN, PROP_DETAIL_BEAN);
 		                objtdsfromothers.bindToNode(html); 
         			}
         		}
-        		setTotal_Amount(strSum);
+        		setTotal_Amount(sum);
         		log.info("value of sum"+strSum);
         	}
         	node.setProperty("mootlywcm:totalamount", getTotal_Amount());
