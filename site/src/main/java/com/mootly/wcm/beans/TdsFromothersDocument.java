@@ -27,6 +27,7 @@
 package com.mootly.wcm.beans;
 import static com.mootly.wcm.utils.Constants.NT_PERSONAL_INFO_LINK;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -119,22 +120,25 @@ public class TdsFromothersDocument extends BaseDocument implements ContentNodeBi
 	        		aNode.remove();
 	        	}
         	}
-        	 float sum=0.0f;
+        	 double sum=0.0;
+        	 String strSum="";
         	if ( tdssalary.getTdsSalaryDetailList() != null &&  tdssalary.getTdsSalaryDetailList().size() > 0 ){ 
         		log.info("checking size in salary income bean:::"+ tdssalary.getTdsSalaryDetailList().size());
         		
         		for (TdsFromothersDetail objtdsfromothers:tdssalary.getTdsSalaryDetailList()) {
         		    
         			if (!objtdsfromothers.isMarkedForDeletion()) {
-        				float amount=Float.parseFloat(objtdsfromothers.getP_Amount());
+        				double amount=objtdsfromothers.getP_Amount();
             		    log.info("value of amount after fetching from compound bean"+amount);
-            		     sum=sum+amount;
+            		     sum=sum+ amount;
+            		     Double sum1= (double) sum;
+            		     strSum= BigDecimal.valueOf(sum1).toPlainString();
 		                javax.jcr.Node html = node.addNode(PROP_DETAIL_BEAN, PROP_DETAIL_BEAN);
 		                objtdsfromothers.bindToNode(html); 
         			}
         		}
-        		setTotal_Amount(String.valueOf(sum));
-        		log.info("value of sum"+String.valueOf(sum));
+        		setTotal_Amount(strSum);
+        		log.info("value of sum"+strSum);
         	}
         	node.setProperty("mootlywcm:totalamount", getTotal_Amount());
         	/*
