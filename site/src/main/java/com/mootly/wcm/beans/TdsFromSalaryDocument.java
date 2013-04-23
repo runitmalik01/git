@@ -55,7 +55,7 @@ public class TdsFromSalaryDocument extends BaseDocument implements ContentNodeBi
 	static final public String NODE_NAME = "tdsfromsalarydocument";
 	final String PROP_DETAIL_BEAN="mootlywcm:tdsfromsalarydetail";
 	private String itFolderUuid;
-	private String total_amount;
+	private Double total_amount;
 	public String getGross_salary() {
 		return "0";
 	}
@@ -79,11 +79,11 @@ public class TdsFromSalaryDocument extends BaseDocument implements ContentNodeBi
 		tdsfromSalaryDetailList.add(tdsSalaryetail);
 	}
 
-	   public String getTotal_Amount() {
+	   public Double getTotal_Amount() {
 	    	if (total_amount == null) total_amount = getProperty("mootlywcm:totalamount");
 	    	return total_amount;
-	 }
-	   public final void setTotal_Amount(String totalamount) {
+	   			}
+	   public final void setTotal_Amount(Double totalamount) {
 			this.total_amount = totalamount;
 		}
 
@@ -121,19 +121,19 @@ public class TdsFromSalaryDocument extends BaseDocument implements ContentNodeBi
 	        		aNode.remove();
 	        	}
         	}
-        	 float sum=0.0f;
+        	 double sum=0.0;
         	if ( tdssalary.getTdsSalaryDetailList() != null &&  tdssalary.getTdsSalaryDetailList().size() > 0 ){ 
         		log.info("checking size in salary income bean:::"+ tdssalary.getTdsSalaryDetailList().size());
         		for (TdsFromSalaryDetail objtdsfromsalary:tdssalary.getTdsSalaryDetailList()) {
         			if (!objtdsfromsalary.isMarkedForDeletion()) {
-        				float amount=Float.parseFloat(objtdsfromsalary.getTotal_TaxDeducted());
+        				double amount=objtdsfromsalary.getTotal_TaxDeducted();
             		    log.info("value of amount after fetching from compound bean"+amount);
             		     sum=sum+amount;
 		                javax.jcr.Node html = node.addNode(PROP_DETAIL_BEAN, PROP_DETAIL_BEAN);
 		                objtdsfromsalary.bindToNode(html); 
         			}
         		}
-        		setTotal_Amount(String.valueOf(sum));
+        		setTotal_Amount(sum);
         		log.info("value of sum"+String.valueOf(sum));
         	}
         	node.setProperty("mootlywcm:totalamount", getTotal_Amount());
