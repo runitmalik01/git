@@ -59,8 +59,8 @@ public class TdsFromSalaryDetail extends HippoItem implements FormMapFiller {
 	
 	private String tan_employer ;
 	private String name_employer ;
-	private String income_chargeable ;
-	private String total_taxdeducted;
+	private Double income_chargeable ;
+	private Double total_taxdeducted;
 	
 	private String personalInfoUuid;
 	private boolean markedForDeletion;
@@ -82,12 +82,13 @@ public class TdsFromSalaryDetail extends HippoItem implements FormMapFiller {
     	return name_employer;
     }
 
-    public String getIncome_Chargeable() {
+    public Double getIncome_Chargeable() {
     	if (income_chargeable == null) income_chargeable = getProperty(income_Chargeable);
+    	
     	return income_chargeable;
     }
 
-    public String getTotal_TaxDeducted() {
+    public Double getTotal_TaxDeducted() {
     	if (total_taxdeducted == null) total_taxdeducted = getProperty(total_Taxdeducted);
     	return total_taxdeducted;
     }
@@ -101,11 +102,11 @@ public class TdsFromSalaryDetail extends HippoItem implements FormMapFiller {
 	public final void setName_Employer(String name_employer) {
 		this.name_employer = name_employer;
 	}
-	public final void setIncome_Chargeable(String income_chargeable) {
+	public final void setIncome_Chargeable(Double income_chargeable) {
 		this.income_chargeable = income_chargeable;
 	}
 
-	public final void setTotal_TaxDeducted(String total_taxdeducted) {
+	public final void setTotal_TaxDeducted(Double total_taxdeducted) {
 		this.total_taxdeducted = total_taxdeducted;
 	}
 	
@@ -162,10 +163,14 @@ public class TdsFromSalaryDetail extends HippoItem implements FormMapFiller {
 			setName_Employer(formMap.getField("name_employer").getValue());
 		}
 		if ( formMap.getField("income_chargeable") != null) {
-			setIncome_Chargeable(formMap.getField("income_chargeable").getValue());
+			String strIncome=formMap.getField("income_chargeable").getValue();
+			double DecIncome= Double.parseDouble(strIncome);
+			setIncome_Chargeable(DecIncome);
 		}
 		if ( formMap.getField("total_taxdeducted") != null) {
-			setTotal_TaxDeducted(formMap.getField("total_taxdeducted").getValue());
+			String StrTax=formMap.getField("total_taxdeducted").getValue();
+			double taxdeducted= Double.parseDouble(StrTax);
+			setTotal_TaxDeducted(taxdeducted);
 		}
 		
 	}
