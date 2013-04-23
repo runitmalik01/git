@@ -121,14 +121,14 @@ public class SelfAssesmetTaxDocument extends BaseDocument implements ContentNode
 	        		aNode.remove();
 	        	}
         	}
-        	 float sum=0.0f;
+        	 double sum=0.0;
         	if ( selfasses.getSelfAssesmentDetailList() != null &&  selfasses.getSelfAssesmentDetailList().size() > 0 ){ 
         		log.info("checking size in salary income bean:::"+ selfasses.getSelfAssesmentDetailList().size());
         		
         		for (SelfAssesmentTaxDetail objSelfAssesment:selfasses.getSelfAssesmentDetailList()) {
         		    
         			if (!objSelfAssesment.isMarkedForDeletion()) {
-        				float amount=Float.parseFloat(objSelfAssesment.getP_Amount());
+        				double amount=objSelfAssesment.getP_Amount();
             		    log.info("value of amount after fetching from compound bean"+amount);
             		     sum=sum+amount;
 		                javax.jcr.Node html = node.addNode(PROP_DETAIL_BEAN, PROP_DETAIL_BEAN);
