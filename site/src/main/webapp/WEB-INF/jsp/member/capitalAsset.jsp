@@ -1,4 +1,5 @@
 <%@include file="../includes/tags.jspf"%>
+<%@include file="../includes/commonincludes.jspf"%>
 <%@page import="com.mootly.wcm.beans.compound.CapitalAssetDetail"%>
 <%@page import="com.mootly.wcm.beans.CapitalAssetDocument"%>
 <%@ page import="com.mootly.wcm.utils.*"%>
@@ -10,28 +11,12 @@
 <hst:link var="Securities" siteMapItemRefId="Securities"></hst:link>
 <hst:actionURL var="actionUrl"></hst:actionURL>
 
-<script type="text/javascript"
-	src="http://yui.yahooapis.com/2.9.0/build/datatable/datatable-min.js"></script>
-
-<link rel="stylesheet" type="text/css"
-	href="http://yui.yahooapis.com/2.9.0/build/datatable/assets/skins/sam/datatable.css" />
-<hst:actionURL var="actionUrl" />
-<script type="text/javascript"
-	src="http://code.jquery.com/jquery-1.6.2.js"></script>
-<script type="text/javascript"
-	src=http://code.jquery.com/jquery-1.7.2.js"></script>
 <script type="text/javascript">
 var $m=jQuery.noConflict(true);
 </script>
 
 <script type="text/javascript">
-
-
-
 $m(document).ready(function() {
-   
-    
-
 var checkF=$m("#consideration").val();
 if(checkF != null){
 $m("#drop1").val(checkF);
@@ -52,17 +37,7 @@ $m(document).ready(function () {
     });
 });
 </script>
-<%
-	ValueListService objValueListService = ValueListServiceImpl
-			.getInstance();
-	TreeMap objHashMapBoolean = (TreeMap) objValueListService
-			.getBoolean();
-	request.setAttribute("objHashMapBoolean", objHashMapBoolean);
 
-	TreeMap objTreeMapYear = (TreeMap) objValueListService
-			.getInflationIndex();
-	request.setAttribute("objTreeMapYear", objTreeMapYear);
-%>
 
 <hst:link var ="mainSiteMapRefId" siteMapItemRefId="${mainSiteMapItemRefId}"/>
 <%
@@ -90,8 +65,7 @@ else {
 	<input type="hidden" name="hidDateAcquisition" id="hidDateAcquisition"
 		value=" " /> <input type="hidden" name="hidDateSale" id="hidDateSale"
 		value=" " />
-	<div id="demo" class="yui3-module">
-		<div class="yui3-hd">
+
 			<h2>Enter Details</h2>
 		</div>
 		<div class="yui3-bd" align="center">
@@ -99,15 +73,11 @@ else {
 				<tr height="30px">
 					<td class="label"><fmt:message
 							key="capital.gain.date.acquisition" /></td>
-					<td class="input">
-							<select onChange="dpdown()" id="drop" name="dropvalue"
-								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.dateAcquisition}"/></c:if>" required="required"
-								onblur="fill()">
-								<option value="">Select</option>
-									<c:forEach var="numberyear" items="${objTreeMapYear}">
-									<option value="${numberyear.key}">${numberyear.value}</option>
-								</c:forEach>
-							</select>
+					<td class="input"><input type="text"   name="date_acquisition" 
+								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.dateAcquisition}"/></c:if>" id="cost" maxlength="14"
+								 class="numberinput"
+								title="Please fill only Numeric value" onChange="fill()" />
+						
 						
 
 						
@@ -115,23 +85,18 @@ else {
 					<td class="label"><fmt:message
 							key="capital.gain.cost.acquisition" /></td>
 					<td class="input">
-							<input type="text" pattern="^[0-9]+$" name="cost_acquisition"
+							<input type="text"  name="cost_acquisition"
 								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.costAcquisition}"/></c:if>" id="cost" maxlength="14"
 								 class="numberinput"
 								title="Please fill only Numeric value" onChange="fill()" />
 					
 				<tr height="30px">
 					<td class="label"><fmt:message key="capital.gain.date.sale" />
-					</td>
-					<td class="input"><select onChange="dpdown1()" id="drop1"
-						name="dropvalue1" value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.dateSale}"/></c:if>"
-						required="required" onblur="fill()">
-							<option value="">Select</option>
-
-							<c:forEach var="numberyear" items="${objTreeMapYear}">
-								<option value="${numberyear.key}">${numberyear.value}</option>
-							</c:forEach>
-					</select>
+					</td><td class="input">
+						<input type="text" name="date_sale"
+								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.dateSale}"/></c:if>" id="cost" maxlength="14"
+								 class="numberinput"
+								title="Please fill only Numeric value"  />
 				</td>
 				</tr>
 
@@ -197,21 +162,13 @@ else {
 	</div>
 </form>
 
-				
-				
-	
-</div>
 <script>
+
 function hiddenvalue(){
 
 var s=document.capitalasset.dropvalue; 
 var hid=s.options[s.selectedIndex].text
-
-
-
 document.forms['capitalasset'].elements["hidDateAcquisition"].value = hid;
-
-
 var t=document.capitalasset.dropvalue1;
 var hid1=t.options[t.selectedIndex].text
 
@@ -219,26 +176,18 @@ document.forms['capitalasset'].elements["hidDateSale"].value = hid1;
 	}
 var F=null;
 var g=null;
-    function dpdown(){
-   
-    var e = document.getElementById("drop");
-    
- var f = e.options[e.selectedIndex].value;
 
-	
-
-document.getElementById("inflation").value=f;
+function dpdown1(){
+	 var n = document.getElementById("drop1");
+ 	g = n.options[n.selectedIndex].value;
+	document.getElementById("consideration").value=g;
+	 }
+	function dpdown(){
+  var e = document.getElementById("drop");
+    var f = e.options[e.selectedIndex].value;
+	document.getElementById("inflation").value=f;
     }
     
- function dpdown1(){
-    
-    var n = document.getElementById("drop1");
-    
-  g = n.options[n.selectedIndex].value;
-
-
-document.getElementById("consideration").value=g;
-    }
   function fill() {
 
         var B = document.getElementById("cost").value-0;
@@ -278,8 +227,6 @@ document.getElementById("consideration").value=g;
 								<td><c:out value="${capitalassetdetail.costAcquisition}"/></td>
 								<td><c:out value="${capitalassetdetail.dateSale}"/></td>
 								<td><c:out value="${capitalassetdetail.saleConsideration}"/></td>
-								
-								
 								<td><c:out value="${capitalassetdetail.capitalGain}"/></td>
 								
 								<td><a href="${redirectURLToSamePage}/<c:out value="${capitalassetdetail.canonicalUUID}"/>/edit"><small>Edit</small></a>&nbsp;&nbsp;<a href="${redirectURLToSamePage}/<c:out value="${capitalassetdetail.canonicalUUID}"/>/delete"><small>Delete</small></a></td>
