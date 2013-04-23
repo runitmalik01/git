@@ -58,12 +58,12 @@ public class CapitalAssetDetail extends HippoItem implements FormMapFiller {
 	
 	
 	private String dateAcquisition;
-	private String costAcquisition;
+	private Double costAcquisition;
 	private String dateSale;
 	private String costIndexAcquisition;
-	private String saleConsideration;
+	private Double saleConsideration;
 	private String costIndexConsideration;
-	private String capitalGain;
+	private Double capitalGain;
 	private String personalInfoUuid;
 	
 	private boolean markedForDeletion;
@@ -71,27 +71,22 @@ public class CapitalAssetDetail extends HippoItem implements FormMapFiller {
 	public final boolean isMarkedForDeletion() {
 		return markedForDeletion;
 	}
-	
 	public final void setMarkedForDeletion(boolean markedForDeletion) {
 		this.markedForDeletion = markedForDeletion;
 	}
-	
 	 public String getDateAcquisition() {
 	    	if (dateAcquisition == null) dateAcquisition = getProperty("mootlywcm:year_acquisition");
 	    	return dateAcquisition;
 	 }
-	
-	 
-	 public String getCostAcquisition() {
+	 public Double getCostAcquisition() {
 	    	if (costAcquisition == null) costAcquisition = getProperty("mootlywcm:cost_acquisition");
 	    	return costAcquisition;
 	 }
-	 
 	 public String getDateSale() {
 	    	if (dateSale == null) dateSale = getProperty("mootlywcm:year_sale");
 	    	return dateSale;
 	 }
-	 public String getSaleConsideration() {
+	 public double getSaleConsideration() {
 	    	if (saleConsideration == null) saleConsideration = getProperty("mootlywcm:sale_consideration");
 	    	return saleConsideration;
 	 }
@@ -103,30 +98,22 @@ public class CapitalAssetDetail extends HippoItem implements FormMapFiller {
 	    	if (costIndexConsideration == null) costIndexConsideration = getProperty("mootlywcm:inflation_consideration");
 	    	return costIndexConsideration;
 	 }
-	 public String getCapitalGain() {
+	 public double getCapitalGain() {
 	    	if (capitalGain == null) capitalGain = getProperty("mootlywcm:capital_gain");
 	    	return capitalGain;
 	 }
 	 
-	 
-	
-	
-	 
-	 
-	     
-    
-    
-    public final void setDateAcquisition(String dateAcquisition) {
+	 public final void setDateAcquisition(String dateAcquisition) {
 		this.dateAcquisition = dateAcquisition;
 	}
-    public final void setCostAcquisition(String costAcquisition) {
+    public final void setCostAcquisition(Double costAcquisition) {
 		this.costAcquisition = costAcquisition;
 	}
     public final void setDateSale(String dateSale) {
 		this.dateSale = dateSale;
     }
-    public final void setSaleConsideration(String saleConsideration) {
-		this.saleConsideration = saleConsideration;
+    public final void setSaleConsideration(double saleconsideartion) {
+		this.saleConsideration = saleconsideartion;
 	}
     public final void setCostIndexAcquisition(String costIndexAcquisition) {
 		this.costIndexAcquisition = costIndexAcquisition;
@@ -135,7 +122,7 @@ public class CapitalAssetDetail extends HippoItem implements FormMapFiller {
     public final void setCostIndexConsideration(String costIndexConsideration) {
 		this.costIndexConsideration = costIndexConsideration;
 	}
-    public final void setCapitalGain(String capitalGain) {
+    public final void setCapitalGain(double capitalGain) {
 		this.capitalGain = capitalGain;
 	}
    
@@ -191,14 +178,21 @@ public class CapitalAssetDetail extends HippoItem implements FormMapFiller {
 	public void fill(FormMap formMap) {
 		// TODO Auto-generated method stub
 		log.info("inside the function fill in the capital asset bean");
+		String StrCostAcq=null;
+		String StrSaleCons=null;
 		if (formMap == null) return;
-		if (formMap.getField("hidDateAcquisition") != null) setDateAcquisition(formMap.getField("hidDateAcquisition").getValue());
-		if (formMap.getField("cost_acquisition") != null) setCostAcquisition(formMap.getField("cost_acquisition").getValue());
-		if (formMap.getField("hidDateSale") != null) setDateSale(formMap.getField("hidDateSale").getValue());
-		if (formMap.getField("sale_consideration") != null) setSaleConsideration(formMap.getField("sale_consideration").getValue());
-		if (formMap.getField("inflation_acquisition") != null) setCostIndexAcquisition(formMap.getField("inflation_acquisition").getValue());
-		if (formMap.getField("inflation_consideration") != null)  setCostIndexConsideration(formMap.getField("inflation_consideration").getValue());
-		if (formMap.getField("capital_gain") != null) setCapitalGain(formMap.getField("capital_gain").getValue()); 
+		if (formMap.getField("date_acquisition") != null)
+			setDateAcquisition(formMap.getField("date_acquisition").getValue());
+		if (formMap.getField("cost_acquisition") != null) 
+			 StrCostAcq = formMap.getField("cost_acquisition").getValue();
+		double CostAcq= Double.parseDouble(StrCostAcq);
+			setCostAcquisition(CostAcq);
+		if (formMap.getField("date_sale") != null) setDateSale(formMap.getField("date_sale").getValue());
+		if (formMap.getField("sale_consideration") != null) 
+			StrSaleCons=formMap.getField("sale_consideration").getValue();
+		 double saleconsideartion= Double.parseDouble(StrCostAcq);
+			setSaleConsideration(saleconsideartion);
+
 		log.info("at  the end of the function fill in the capital asset bean");
 	}
 	@Override
