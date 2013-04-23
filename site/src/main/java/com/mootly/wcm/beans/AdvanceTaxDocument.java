@@ -60,13 +60,13 @@ public class AdvanceTaxDocument extends BaseDocument implements ContentNodeBinde
 	public String getGross_salary() {
 		return "0";
 	}
-	private String total_amount;
-	private String total_sum1;
-	private String total_sum2;
-	private String total_sum3;
-	private String total_sum4;
-	private String total_sum5;
-	private String total_sum6;
+	private Double total_amount;
+	private Double total_sum1;
+	private  Double total_sum2;
+	private  Double total_sum3;
+	private  Double total_sum4;
+	private  Double total_sum5;
+	private  Double total_sum6;
 	private final static Logger log = LoggerFactory.getLogger(AdvanceTaxDocument.class); 
 
 	private List<AdvanceTaxDetail> advancetaxDetailList;
@@ -86,47 +86,47 @@ public class AdvanceTaxDocument extends BaseDocument implements ContentNodeBinde
 		advancetaxDetailList.add(tdsothersdetail);
 	}
 	
-	   public String getTotal_Amount() {
+	   public double getTotal_Amount() {
 	    	if (total_amount == null) total_amount = getProperty("mootlywcm:totalamount");
 	    	return total_amount;
 	 }
-	   public final void setTotal_Amount(String totalamount) {
-			this.total_amount = totalamount;
+	   public final void setTotal_Amount(double sum) {
+			this.total_amount = sum;
 		}
-	   public String getTotal_Sum1() {
+	   public Double getTotal_Sum1() {
 	    	if (total_sum1 == null) total_sum1 = getProperty("mootlywcm:totalsum1");
 	    	return total_sum1;
 	 }
-	   public final void setTotal_Sum1(String totalsum1) {
+	   public final void setTotal_Sum1(Double totalsum1) {
 			this.total_sum1 = totalsum1;
 		}
-	   public String getTotal_Sum2() {
+	   public Double getTotal_Sum2() {
 	    	if (total_sum2 == null) total_sum2 = getProperty("mootlywcm:totalsum2");
 	    	return total_sum2;
 	 }
-	   public final void setTotal_Sum2(String totalsum2) {
+	   public final void setTotal_Sum2(Double totalsum2) {
 			this.total_sum2 = totalsum2;
 		}
-	   public String getTotal_Sum3() {
+	   public Double getTotal_Sum3() {
 	    	if (total_sum3 == null) total_sum3 = getProperty("mootlywcm:totalsum3");
 	    	return total_sum3;
 	 }
-	   public final void setTotal_Sum3(String totalsum3) {
+	   public final void setTotal_Sum3(Double totalsum3) {
 			this.total_sum3 = totalsum3;
 		}
-	   public String getTotal_Sum4() {
+	   public Double getTotal_Sum4() {
 	    	if (total_sum4 == null) total_sum4 = getProperty("mootlywcm:totalsum4");
 	    	return total_sum4;
 	 }
 	   
-	   public final void setTotal_Sum4(String totalsum4) {
+	   public final void setTotal_Sum4(Double totalsum4) {
 			this.total_sum4 = totalsum4;
 		}
-	   public String getTotal_Sum5() {
+	   public Double getTotal_Sum5() {
 	    	if (total_sum5 == null) total_sum5 = getProperty("mootlywcm:totalsum5");
 	    	return total_sum5;
 	 }
-	   public final void setTotal_Sum5(String totalsum5) {
+	   public final void setTotal_Sum5(Double totalsum5) {
 			this.total_sum5 = totalsum5;
 		}
 	  
@@ -165,13 +165,13 @@ public class AdvanceTaxDocument extends BaseDocument implements ContentNodeBinde
 	        		aNode.remove();
 	        	}
         	}
-        	 double sum=0.0f;
-        	 double sum1=0.0f;
-        	 double sum2=0.0f;
-        	 double sum3=0.0f;
-        	 double sum4=0.0f;
-        	 double sum5=0.0f;
-        	 double sum6=0.0f;
+        	 double sum=0.0;
+        	 double sum1=0.0;
+        	 double sum2=0.0;
+        	 double sum3=0.0;
+        	 double sum4=0.0;
+        	 double sum5=0.0;
+        	 double sum6=0.0;
         	if ( selfasses.getAdvanceTaxDetailList() != null &&  selfasses.getAdvanceTaxDetailList().size() > 0 ){ 
         		log.info("checking size in salary income bean:::"+ selfasses.getAdvanceTaxDetailList().size());
         		
@@ -234,18 +234,18 @@ public class AdvanceTaxDocument extends BaseDocument implements ContentNodeBinde
         			}
         		}
         		
-        			setTotal_Sum5(String.valueOf(sum5));
+        			setTotal_Sum5(sum5);
         			node.setProperty("mootlywcm:totalsum5", getTotal_Sum5());
-        			setTotal_Sum4(String.valueOf(sum4));
+        			setTotal_Sum4(sum4);
         			node.setProperty("mootlywcm:totalsum4", getTotal_Sum4());
-        			setTotal_Sum3(String.valueOf(sum3));
+        			setTotal_Sum3(sum3);
         			node.setProperty("mootlywcm:totalsum3", getTotal_Sum3());
-        			setTotal_Sum2(String.valueOf(sum2));
+        			setTotal_Sum2(sum2);
         			node.setProperty("mootlywcm:totalsum2", getTotal_Sum2());
-        			setTotal_Sum1(String.valueOf(sum1));
+        			setTotal_Sum1(sum1);
         			node.setProperty("mootlywcm:totalsum1", getTotal_Sum1());
-        			setTotal_Amount(String.valueOf(sum));
-        			log.info("value of sum"+String.valueOf(sum));
+        			setTotal_Amount(sum);
+        			log.info("value of sum"+sum);
         	}
         	node.setProperty("mootlywcm:totalamount", getTotal_Amount());
         	/*
