@@ -41,11 +41,8 @@ import com.mootly.wcm.components.ITReturnComponent;
 @PrimaryBean(primaryBeanClass=MemberResidentialStatus.class)
 @AdditionalBeans(additionalBeansToLoad={MemberPersonalInformation.class})
 @RequiredBeans(requiredBeans=MemberPersonalInformation.class)
-@FormFields(fieldNames={"rsstatus_q","rsstatus_q_yes","rsstatus_q_yes_yes",
-		"rsstatus_q_yes_yes_yes","rsstatus_q_yes_no","rsstatus_q_yes_yes_no",
-		"rsstatus_q_no","rsstatus_q_no_yes", "rsstatus_q_no_yes_no","rsstatus_q_no_yes_yes",
-		"rsstatus_q_no_no","rsstatus_q_no_no_no","rsstatus_q_no_no_yes","rsstatus_q_no_no_yes_yes",
-		"rsstatus_q_no_no_yes_yes_yes","rsstatus_q_no_yes_yes_yes","rsstatus_q_no_yes_yes_yes_yes","rsstatus_q_no_yes_yes_yes_no"})
+@FormFields(fieldNames={"rsstatus_q","rsstatus_q_yes","rsstatus_q_yes_yes","rsstatus_q_no","rsstatus_q_no_yes","rsstatus_q_no_yes_yes",
+		"rsstatus_q_no_no","rsstatus_q_no_no_yes","rsstatus_q_no_no_yes_yes","rsstatus_q_no_yes_yes_yes"})
 
 public class ResidentialStatus extends ITReturnComponent {
 	private static final Logger log = LoggerFactory.getLogger(ResidentialStatus.class);
@@ -94,37 +91,21 @@ public class ResidentialStatus extends ITReturnComponent {
 			if(!(memberresi.getRsstatusQYes().matches("Select")))
 				fetchmap.put("rsstatus_q_yes",memberresi.getRsstatusQYes());			
 			if(!(memberresi.getRsstatusQYesYes().matches("Select")))
-				fetchmap.put("rsstatus_q_yes_yes",memberresi.getRsstatusQYesYes());			
-			if(!(memberresi.getRsstatusQYesYesYes().matches("Select")))
-				fetchmap.put("rsstatus_q_yes_yes_yes",memberresi.getRsstatusQYesYesYes());			
-			if(!(memberresi.getRsstatusQYesNo().matches("Select")))
-				fetchmap.put("rsstatus_q_yes_no",memberresi.getRsstatusQYesNo());			
-			if(!(memberresi.getRsstatusQYesYesNo().matches("Select")))
-				fetchmap.put("rsstatus_q_yes_yes_no",memberresi.getRsstatusQYesYesNo());			
+				fetchmap.put("rsstatus_q_yes_yes",memberresi.getRsstatusQYesYes());									
 			if(!(memberresi.getRsstatusQNo().matches("Select")))
 				fetchmap.put("rsstatus_q_no",memberresi.getRsstatusQNo());			
 			if(!(memberresi.getRsstatusQNoYes().matches("Select")))
-				fetchmap.put("rsstatus_q_no_yes",memberresi.getRsstatusQNoYes());			
-			if(!(memberresi.getRsstatusQNoYesNo().matches("Select")))
-				fetchmap.put("rsstatus_q_no_yes_no",memberresi.getRsstatusQNoYesNo());			
+				fetchmap.put("rsstatus_q_no_yes",memberresi.getRsstatusQNoYes());					
 			if(!(memberresi.getRsstatusQNoYesYes().matches("Select")))
 				fetchmap.put("rsstatus_q_no_yes_yes",memberresi.getRsstatusQNoYesYes());			
 			if(!(memberresi.getRsstatusQNoNo().matches("Select")))
-				fetchmap.put("rsstatus_q_no_no",memberresi.getRsstatusQNoNo());			
-			if(!(memberresi.getRsstatusQNoNoNo().matches("Select")))
-				fetchmap.put("rsstatus_q_no_no_no",memberresi.getRsstatusQNoNoNo());			
+				fetchmap.put("rsstatus_q_no_no",memberresi.getRsstatusQNoNo());						
 			if(!(memberresi.getRsstatusQNoNoYes().matches("Select")))
 				fetchmap.put("rsstatus_q_no_no_yes",memberresi.getRsstatusQNoNoYes());			
 			if(!(memberresi.getRsstatusQNoNoYesYes().matches("Select")))
-				fetchmap.put("rsstatus_q_no_no_yes_yes",memberresi.getRsstatusQNoNoYesYes());			
-			if(!(memberresi.getRsstatusQNoNoYesYesYes().matches("Select")))
-				fetchmap.put("rsstatus_q_no_no_yes_yes_yes",memberresi.getRsstatusQNoNoYesYesYes());			
+				fetchmap.put("rsstatus_q_no_no_yes_yes",memberresi.getRsstatusQNoNoYesYes());						
 			if(!(memberresi.getRsstatusQNoYesYesYes().matches("Select")))
 				fetchmap.put("rsstatus_q_no_yes_yes_yes",memberresi.getRsstatusQNoYesYesYes());			
-			if(!(memberresi.getRsstatusQNoYesYesYesYes().matches("Select")))
-				fetchmap.put("rsstatus_q_no_yes_yes_yes_yes",memberresi.getRsstatusQNoYesYesYesYes());
-			if(!(memberresi.getRsstatusQNoYesYesYesNo().matches("Select")))
-				fetchmap.put("rsstatus_q_no_yes_yes_yes_no",memberresi.getRsstatusQNoYesYesYesNo());
 			
 			request.setAttribute("fetchmap", fetchmap);
 		}
@@ -140,7 +121,9 @@ public class ResidentialStatus extends ITReturnComponent {
 	public void doAction(HstRequest request, HstResponse response)
 			throws HstComponentException {
 		// TODO Auto-generated method stub
+		if(log.isInfoEnabled()){
 		log.info("this is do action of residential status");
+		}
 		super.doAction(request, response);	
 	}
 	

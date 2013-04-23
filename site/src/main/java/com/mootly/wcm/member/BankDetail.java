@@ -36,7 +36,9 @@ private static final Logger log = LoggerFactory.getLogger(BankDetail.class);
 public void doBeforeRender(HstRequest request, HstResponse response) {
 	// TODO Auto-generated method stub
 	super.doBeforeRender(request, response);
+	if(log.isInfoEnabled()){
 	log.info("Member Bank Detail Page");
+	}
 }
 
 @Override

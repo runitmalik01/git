@@ -60,21 +60,8 @@ public class StartApplication extends ITReturnComponent {
 	public void doBeforeRender(HstRequest request, HstResponse response) {
 		// TODO Auto-generated method stub
 		super.doBeforeRender(request, response);	
+		if(log.isInfoEnabled()){
 		log.info("Member personal Information page");
-		if (getParentBean() != null) {
-			MemberPersonalInformation memberPersonalInformation = (MemberPersonalInformation) getParentBean();			
-			Calendar dob= memberPersonalInformation.getDOB();
-			if (dob != null) {
-				Date date =dob.getTime();
-				DateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy");
-				DateFormat formatter2=new SimpleDateFormat("yyyy-mm-dd");
-				String hiddob=formatter2.format(date);
-				String fetchdob=formatter.format(date);
-				request.setAttribute("dob", fetchdob);
-				request.setAttribute("hiddate", hiddob);
-				log.info("date of birth"+fetchdob);
-				log.info("this is info"+fetchdob);
-			}
 		}
 	}
 	
