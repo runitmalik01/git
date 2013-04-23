@@ -1,7 +1,6 @@
 <%@include file="../includes/tags.jspf"%>
 <%@include file="../includes/commonincludes.jspf"%>
-<%@page import="com.mootly.wcm.beans.compound.CapitalAssetDetail"%>
-<%@page import="com.mootly.wcm.beans.CapitalAssetDocument"%>
+
 <%@ page import="com.mootly.wcm.utils.*"%>
 <%@ page import="java.util.*"%>
 <c:set var="tds2">
@@ -23,11 +22,15 @@ var $m=jQuery.noConflict(true);
 function calculate(){
 	var amt= document.getElementById("taxdeducted").value;
 	document.getElementById("amount").value = amt;
-	 
+
 }
-
 </script>
-
+<script type="text/javascript">
+function keyup(){
+	var x=document.getElementById("tandeductor");
+	x.value=x.value.toUpperCase();
+}
+</script>
 <hst:link var="mainSiteMapRefId"/>
 
 	
@@ -74,9 +77,9 @@ else {
 				<tr height="30px">
 					<td class="label"><fmt:message key="tds.tan.deductor" />
 					</td>
-					<td class="input"><input type="text" name="tan_deductor"
+					<td class="input"><input type="text" name="tan_deductor" onkeyup="keyup()" id="tandeductor"
 						value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.tan_Deductor}"/></c:if>"
-						id="cost" maxlength="10" class="validate[required,custom[tan]] text-input"
+						 maxlength="10" class="validate[required,custom[tan]] text-input"
 						title="This field accept first four alphabate next five numeric then single alphabate"
 						placeholder="10 Characters" /></td>
 				</tr>
@@ -89,7 +92,7 @@ else {
 					<td class="input"><input type="text" name="name_deductor"
 						id="sale" class="validate[required] text-input"
 						value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.name_Deductor}"/></c:if>"
-						maxlength="14" 
+						maxlength="125" 
 						title="Please fill alphabets only" /></td>
 				</tr>
 
@@ -109,50 +112,32 @@ else {
 								
 								<option value="">Select</option>
 									<c:forEach var="yeardeducted" items="${objTreeMapDeductedYear}">
-									<option value="${yeardeducted.key}">${yeardeducted.value}</option>
+									<option value="${yeardeducted.value}">${yeardeducted.value}</option>
 								</c:forEach>
 							</select>
 				</tr>
 				<tr height="30px">
 					<td class="label"><fmt:message key="tds.total.tax.deducted" />
 					</td>
-					<td class="input"><input type="text" name="total_taxdeducted"
+					<td class="input"><input type="text" name="total_taxdeducted" maxlength="14"
 						value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.total_TaxDeductor}"/></c:if>"
 						 id="taxdeducted" onblur="calculate()" onchange="calculate" class="validate[required,custom[integer],maxSize[14]] text-input" /></td>
 				</tr>
 				<tr height="30px">
 					<td class="label"><fmt:message key="tds.amount.claimed" />
 					</td>
-					<td class="input"><input type="text" name="amount"
+					<td class="input"><input type="text" name="amount" maxlength="14"
 						value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.p_Amount}"/></c:if>"
 						required="required" id="amount" class="validate[required,custom[integer],maxSize[14]] text-input" /></td>
 				</tr>
-		
-
-				<tr height="40px">
-
-					<td class="submit fright" colspan="1" align="right"><input
-						type="submit" value="save" id="submit"onclick="hiddenvalue()" />
-					</td>
-					<td>
-						<button>
-							<a>Skip</a>
-						</button>
-					</td>
-				</tr>
-
-
+	
 			</table>
-
+<a href="${redirectURLToSamePage}" class="button olive">Cancel</a><input type="submit" class="button orange" value="Save">
 		</form>
 
 	</c:when>
 	<c:otherwise>
-
-
-
-
-		<table>
+	<table>
 			<tr align="center">
 				<th><b><fmt:message key="tds.tan.deductor" />
 				</b>
@@ -211,20 +196,7 @@ else {
 		
 		<a href="${redirectURLToSamePage}/new" class="button orange">Add
 			New</a>
+			<a href="${modifiedSiteMapRefId}" class="button orange" style="margin-left:100px;">Next</a>
 
 	</c:otherwise>
 </c:choose>
-
-<hst:headContribution keyHint="buttonCss" category="css">
-	<hst:link
-		path="http://yui.yahooapis.com/3.8.0/build/cssbutton/cssbutton.css"
-		var="homeSliderCss" />
-	<link rel="stylesheet" media="screen" type="text/css"
-		href="${homeSliderCss}" />
-</hst:headContribution>
-
-
-<hst:headContribution keyHint="seedFile" category="jsExternal">
-	<script src="http://yui.yahooapis.com/3.8.0/build/yui/yui-min.js"
-		type="text/javascript"></script>
-</hst:headContribution>
