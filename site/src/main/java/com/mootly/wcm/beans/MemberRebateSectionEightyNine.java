@@ -45,61 +45,55 @@ public class MemberRebateSectionEightyNine extends BaseDocument implements Conte
 	static final public String NAMESPACE = "mootlywcm:MemberRebateSectionEightyNine";
 	static final public String NODE_NAME = "MemberRebateSectionEightyNine";
 	private final static Logger log = LoggerFactory.getLogger(MemberRebateSectionEightyNine.class); 
-	private String salaryincome;
-	private String otherincome;
-	private String arrears;
-	private String totalincomearrears;
-	private String taxsalaryincome;
-	private String taxarrears;
-	private String diff;
-	private String computedtabletotal;
-	private String taxrelief;
+	private Double netincome;
+	private Double arrears;
+	private Double totalincomearrears;
+	private Double taxsalaryincome;
+	private Double taxarrears;
+	private Double diff;
+	private Double computedtabletotal;
+	private Double taxrelief;
 	private String itFolderUuid;
 	private List<PreviousYearsSalaryInfo> prevsalaryinfoList;
 
 
-	public String getSalaryIncome() {
-		if (salaryincome == null) salaryincome = getProperty("mootlywcm:salaryIncome");
-		return salaryincome;
+	public Double getNetIncome() {
+		if (netincome == null) netincome = getProperty("mootlywcm:netIncome");
+		return netincome;
 	}
 
-	public String getOtherIncome() {
-		if (otherincome == null) otherincome = getProperty("mootlywcm:otherIncome");
-		return otherincome;
-	}
-
-	public String getArrears() {
+	public Double getArrears() {
 		if (arrears == null) arrears = getProperty("mootlywcm:arrears");
 		return arrears;
 	}
 
-	public String getTotalIncomeArrears() {
+	public Double getTotalIncomeArrears() {
 		if (totalincomearrears == null) totalincomearrears = getProperty("mootlywcm:totalIncomearrears");
 		return totalincomearrears;
 	}
 
-	public String getTaxSalaryIncome() {
-		if (taxsalaryincome == null) taxsalaryincome = getProperty("mootlywcm:taxSalaryIncome");
+	public Double getTaxSalaryIncome() {
+		if (taxsalaryincome == null) taxsalaryincome = getProperty("mootlywcm:taxNetIncome");
 		return taxsalaryincome;
 	}
 
-	public String getTaxArrears() {
+	public Double getTaxArrears() {
 		if (taxarrears == null) taxarrears = getProperty("mootlywcm:taxArrears");
 		return taxarrears;
 	}
 
 
-	public String getDiff() {
+	public Double getDiff() {
 		if (diff == null) diff =  getProperty("mootlywcm:diff");
 		return diff;
 	}
 
-	public String getComputedTableTotal() {
+	public Double getComputedTableTotal() {
 		if (computedtabletotal == null) computedtabletotal =  getProperty("mootlywcm:computedTableTotal");
 		return computedtabletotal;
 	}
 
-	public String getTaxRelief() {
+	public Double getTaxRelief() {
 		if (taxrelief == null) taxrelief = getProperty("mootlywcm:taxRelief");
 		return taxrelief;
 	}
@@ -112,38 +106,34 @@ public class MemberRebateSectionEightyNine extends BaseDocument implements Conte
 		this.prevsalaryinfoList = prevsalaryinfoList;
 	}
 
-	public final void setSalaryIncome(String salaryincome) {
-		this.salaryincome = salaryincome;
+	public final void setNetIncome(Double netincome) {
+		this.netincome = netincome;
 	}
 
-	public final void setOtherIncome(String otherincome) {
-		this.otherincome = otherincome;
-	}
-
-	public final void setArrears(String arrears) {
+	public final void setArrears(Double arrears) {
 		this.arrears = arrears;
 	}
 
-	public final void setTotalIncomeArrears(String totalincomearrears) {
+	public final void setTotalIncomeArrears(Double totalincomearrears) {
 		this.totalincomearrears = totalincomearrears;
 	}
 
-	public final void setTaxSalaryIncome(String taxsalaryincome) {
+	public final void setTaxSalaryIncome(Double taxsalaryincome) {
 		this.taxsalaryincome = taxsalaryincome;
 	}
 
-	public final void setTaxArrears(String taxarrears) {
+	public final void setTaxArrears(Double taxarrears) {
 		this.taxarrears = taxarrears;
 	}
-	public final void setDiff(String diff) {
+	public final void setDiff(Double diff) {
 		this.diff = diff;
 	}
 
-	public final void setComputedTableTotal(String computedtabletotal) {
+	public final void setComputedTableTotal(Double computedtabletotal) {
 		this.computedtabletotal = computedtabletotal;
 	}
 
-	public final void setTaxRelief(String taxrelief) {
+	public final void setTaxRelief(Double taxrelief) {
 		this.taxrelief = taxrelief;
 	}
 	public final void addPreviousYearsSalaryInfo(PreviousYearsSalaryInfo prevsalinfo) {
@@ -167,18 +157,10 @@ public class MemberRebateSectionEightyNine extends BaseDocument implements Conte
 			throws ContentNodeBindingException {
 		// TODO Auto-generated method stub
 		try {
+			if(log.isInfoEnabled()){
 			log.info("this is Contact bean");
-			MemberRebateSectionEightyNine section89 = (MemberRebateSectionEightyNine) content;
-
-			node.setProperty("mootlywcm:salaryIncome", section89.getSalaryIncome());
-			node.setProperty("mootlywcm:otherIncome", section89.getOtherIncome());
-			node.setProperty("mootlywcm:arrears", section89.getArrears());
-			node.setProperty("mootlywcm:totalIncomearrears", section89.getTotalIncomeArrears());
-			node.setProperty("mootlywcm:taxSalaryIncome", section89.getTaxSalaryIncome());
-			node.setProperty("mootlywcm:taxArrears", section89.getTaxArrears());
-			node.setProperty("mootlywcm:diff", section89.getDiff());
-			node.setProperty("mootlywcm:computedTableTotal", section89.getComputedTableTotal());
-			node.setProperty("mootlywcm:taxRelief", section89.getTaxRelief());	
+			}
+			MemberRebateSectionEightyNine section89 = (MemberRebateSectionEightyNine) content;	
 
 			NodeIterator nodeIterator = node.getNodes("mootlywcm:PreviousYearsSalaryInfo");
 			if (nodeIterator != null) {
@@ -187,18 +169,27 @@ public class MemberRebateSectionEightyNine extends BaseDocument implements Conte
 					aNode.remove();
 				}
 			}
-			float sumArrears=0.0f,sumPrevTotalTax=0.0f;
+			Double sumArrears=0.0d;Double sumPrevTotalTax=0.0d;
 			if (section89.getPrevSalaryInfoList() != null && section89.getPrevSalaryInfoList().size() > 0 ){ 
 				for (PreviousYearsSalaryInfo prevsalaryinfo:section89.getPrevSalaryInfoList()) {
-					sumArrears=sumArrears+Float.parseFloat(prevsalaryinfo.getPrevArrears());
-					sumPrevTotalTax=sumPrevTotalTax+Float.parseFloat(prevsalaryinfo.getPrevTaxDiff());
+					sumArrears=sumArrears+prevsalaryinfo.getPrevArrears();
+					sumPrevTotalTax=sumPrevTotalTax+prevsalaryinfo.getPrevTaxDiff();
 					javax.jcr.Node html = node.addNode("mootlywcm:PreviousYearsSalaryInfo", "mootlywcm:PreviousYearsSalaryInfo");
 					prevsalaryinfo.bindToNode(html); 
 				}
 			}
-			setArrears(String.valueOf(sumArrears));
-			setComputedTableTotal(String.valueOf(sumPrevTotalTax));
+			setArrears(sumArrears);
+			setComputedTableTotal(sumPrevTotalTax);
 			Calculations cal=new Calculations();
+			
+			node.setProperty("mootlywcm:netIncome", section89.getNetIncome());
+			node.setProperty("mootlywcm:arrears", section89.getArrears());
+			node.setProperty("mootlywcm:totalIncomearrears", section89.getTotalIncomeArrears());
+			node.setProperty("mootlywcm:taxSalaryIncome", section89.getTaxSalaryIncome());
+			node.setProperty("mootlywcm:taxArrears", section89.getTaxArrears());
+			node.setProperty("mootlywcm:diff", section89.getDiff());
+			node.setProperty("mootlywcm:computedTableTotal", section89.getComputedTableTotal());
+			node.setProperty("mootlywcm:taxRelief", section89.getTaxRelief());
 			/**  javax.jcr.Node prdLinkNode;
 
               if (node.hasNode(PROP_PI_PERSONALINFO_LINK)) {
@@ -218,33 +209,26 @@ public class MemberRebateSectionEightyNine extends BaseDocument implements Conte
 	public void fill(FormMap formMap) {
 		// TODO Auto-generated method stub
 		if (formMap != null) {
-			log.info("this is form map in Rebate 89");		
+			if(log.isInfoEnabled()){
+			log.info("this is form map in Rebate 89");
+			}
 			if ( formMap.getField("salaryincome") != null) {
-				setSalaryIncome(formMap.getField("salaryincome").getValue());
-			}
-			if ( formMap.getField("otherincome") != null) {
-				setOtherIncome(formMap.getField("otherincome").getValue());
-			}
-			if ( formMap.getField("totalArrears") != null) {
-				setArrears(formMap.getField("totalArrears").getValue());
+				setNetIncome(Double.parseDouble(formMap.getField("salaryincome").getValue()));
 			}
 			if ( formMap.getField("totalincomearrears") != null) {
-				setTotalIncomeArrears(formMap.getField("totalincomearrears").getValue());
+				setTotalIncomeArrears(Double.parseDouble(formMap.getField("totalincomearrears").getValue()));
 			}
 			if ( formMap.getField("taxsalaryincome") != null) {
-				setTaxSalaryIncome(formMap.getField("taxsalaryincome").getValue());
+				setTaxSalaryIncome(Double.parseDouble(formMap.getField("taxsalaryincome").getValue()));
 			}
 			if ( formMap.getField("taxarrears") != null) {
-				setTaxArrears(formMap.getField("taxarrears").getValue());
+				setTaxArrears(Double.parseDouble(formMap.getField("taxarrears").getValue()));
 			}
 			if ( formMap.getField("Diff") != null) {
-				setDiff(formMap.getField("Diff").getValue());
-			}
-			if ( formMap.getField("computedtabletotal") != null) {
-				setComputedTableTotal(formMap.getField("computedtabletotal").getValue());
+				setDiff(Double.parseDouble(formMap.getField("Diff").getValue()));
 			}
 			if ( formMap.getField("taxRelief") != null) {
-				setTaxRelief(formMap.getField("taxRelief").getValue());
+				setTaxRelief(Double.parseDouble(formMap.getField("taxRelief").getValue()));
 			}
 		}
 	}
