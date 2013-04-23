@@ -29,7 +29,7 @@
         <sv:value>hippo:harddocument</sv:value>
       </sv:property>
       <sv:property sv:name="jcr:uuid" sv:type="String">
-        <sv:value>43da32f1-5a12-4830-b592-9f90fbe0405a</sv:value>
+        <sv:value>e5a60981-b12f-4d62-abac-a195f4b710ae</sv:value>
       </sv:property>
       <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
       <sv:property sv:name="hipposysedit:node" sv:type="Boolean">
@@ -65,29 +65,6 @@
           <sv:value>String</sv:value>
         </sv:property>
       </sv:node>
-      <sv:node sv:name="cost_acquisition">
-        <sv:property sv:name="jcr:primaryType" sv:type="Name">
-          <sv:value>hipposysedit:field</sv:value>
-        </sv:property>
-        <sv:property sv:name="hipposysedit:mandatory" sv:type="Boolean">
-          <sv:value>false</sv:value>
-        </sv:property>
-        <sv:property sv:name="hipposysedit:multiple" sv:type="Boolean">
-          <sv:value>false</sv:value>
-        </sv:property>
-        <sv:property sv:name="hipposysedit:ordered" sv:type="Boolean">
-          <sv:value>false</sv:value>
-        </sv:property>
-        <sv:property sv:name="hipposysedit:path" sv:type="String">
-          <sv:value>mootlywcm:cost_acquisition</sv:value>
-        </sv:property>
-        <sv:property sv:name="hipposysedit:primary" sv:type="Boolean">
-          <sv:value>false</sv:value>
-        </sv:property>
-        <sv:property sv:name="hipposysedit:type" sv:type="String">
-          <sv:value>String</sv:value>
-        </sv:property>
-      </sv:node>
       <sv:node sv:name="year_sale">
         <sv:property sv:name="jcr:primaryType" sv:type="Name">
           <sv:value>hipposysedit:field</sv:value>
@@ -111,6 +88,29 @@
           <sv:value>String</sv:value>
         </sv:property>
       </sv:node>
+      <sv:node sv:name="cost_acquisition">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hipposysedit:field</sv:value>
+        </sv:property>
+        <sv:property sv:name="hipposysedit:mandatory" sv:type="Boolean">
+          <sv:value>false</sv:value>
+        </sv:property>
+        <sv:property sv:name="hipposysedit:multiple" sv:type="Boolean">
+          <sv:value>false</sv:value>
+        </sv:property>
+        <sv:property sv:name="hipposysedit:ordered" sv:type="Boolean">
+          <sv:value>false</sv:value>
+        </sv:property>
+        <sv:property sv:name="hipposysedit:path" sv:type="String">
+          <sv:value>mootlywcm:cost_acquisition</sv:value>
+        </sv:property>
+        <sv:property sv:name="hipposysedit:primary" sv:type="Boolean">
+          <sv:value>false</sv:value>
+        </sv:property>
+        <sv:property sv:name="hipposysedit:type" sv:type="String">
+          <sv:value>Double</sv:value>
+        </sv:property>
+      </sv:node>
       <sv:node sv:name="sale_consideration">
         <sv:property sv:name="jcr:primaryType" sv:type="Name">
           <sv:value>hipposysedit:field</sv:value>
@@ -131,7 +131,7 @@
           <sv:value>false</sv:value>
         </sv:property>
         <sv:property sv:name="hipposysedit:type" sv:type="String">
-          <sv:value>String</sv:value>
+          <sv:value>Double</sv:value>
         </sv:property>
       </sv:node>
       <sv:node sv:name="inflation_acquisition">
@@ -154,7 +154,7 @@
           <sv:value>false</sv:value>
         </sv:property>
         <sv:property sv:name="hipposysedit:type" sv:type="String">
-          <sv:value>String</sv:value>
+          <sv:value>Double</sv:value>
         </sv:property>
       </sv:node>
       <sv:node sv:name="inflation_consideration">
@@ -177,7 +177,7 @@
           <sv:value>false</sv:value>
         </sv:property>
         <sv:property sv:name="hipposysedit:type" sv:type="String">
-          <sv:value>String</sv:value>
+          <sv:value>Double</sv:value>
         </sv:property>
       </sv:node>
       <sv:node sv:name="capital_gain">
@@ -200,7 +200,7 @@
           <sv:value>false</sv:value>
         </sv:property>
         <sv:property sv:name="hipposysedit:type" sv:type="String">
-          <sv:value>String</sv:value>
+          <sv:value>Double</sv:value>
         </sv:property>
       </sv:node>
     </sv:node>
@@ -213,20 +213,20 @@
       <sv:property sv:name="jcr:primaryType" sv:type="Name">
         <sv:value>mootlywcm:capitalassetdetail</sv:value>
       </sv:property>
-      <sv:property sv:name="mootlywcm:capital_gain" sv:type="String">
-        <sv:value/>
+      <sv:property sv:name="mootlywcm:capital_gain" sv:type="Double">
+        <sv:value>0.0</sv:value>
       </sv:property>
-      <sv:property sv:name="mootlywcm:cost_acquisition" sv:type="String">
-        <sv:value/>
+      <sv:property sv:name="mootlywcm:cost_acquisition" sv:type="Double">
+        <sv:value>0.0</sv:value>
       </sv:property>
-      <sv:property sv:name="mootlywcm:inflation_acquisition" sv:type="String">
-        <sv:value/>
+      <sv:property sv:name="mootlywcm:inflation_acquisition" sv:type="Double">
+        <sv:value>0.0</sv:value>
       </sv:property>
-      <sv:property sv:name="mootlywcm:inflation_consideration" sv:type="String">
-        <sv:value/>
+      <sv:property sv:name="mootlywcm:inflation_consideration" sv:type="Double">
+        <sv:value>0.0</sv:value>
       </sv:property>
-      <sv:property sv:name="mootlywcm:sale_consideration" sv:type="String">
-        <sv:value/>
+      <sv:property sv:name="mootlywcm:sale_consideration" sv:type="Double">
+        <sv:value>0.0</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:year_acquisition" sv:type="String">
         <sv:value/>
@@ -346,18 +346,18 @@
           </sv:property>
         </sv:node>
       </sv:node>
-      <sv:node sv:name="cost_acquisition">
+      <sv:node sv:name="year_sale">
         <sv:property sv:name="jcr:primaryType" sv:type="Name">
           <sv:value>frontend:plugin</sv:value>
         </sv:property>
         <sv:property sv:name="caption" sv:type="String">
-          <sv:value>cost_acquisition</sv:value>
+          <sv:value>year_sale</sv:value>
         </sv:property>
         <sv:property sv:name="engine" sv:type="String">
           <sv:value>${engine}</sv:value>
         </sv:property>
         <sv:property sv:name="field" sv:type="String">
-          <sv:value>cost_acquisition</sv:value>
+          <sv:value>year_sale</sv:value>
         </sv:property>
         <sv:property sv:name="mode" sv:type="String">
           <sv:value>${mode}</sv:value>
@@ -383,18 +383,18 @@
           </sv:property>
         </sv:node>
       </sv:node>
-      <sv:node sv:name="year_sale">
+      <sv:node sv:name="cost_acquisition">
         <sv:property sv:name="jcr:primaryType" sv:type="Name">
           <sv:value>frontend:plugin</sv:value>
         </sv:property>
         <sv:property sv:name="caption" sv:type="String">
-          <sv:value>year_sale</sv:value>
+          <sv:value>cost_acquisition</sv:value>
         </sv:property>
         <sv:property sv:name="engine" sv:type="String">
           <sv:value>${engine}</sv:value>
         </sv:property>
         <sv:property sv:name="field" sv:type="String">
-          <sv:value>year_sale</sv:value>
+          <sv:value>cost_acquisition</sv:value>
         </sv:property>
         <sv:property sv:name="mode" sv:type="String">
           <sv:value>${mode}</sv:value>
