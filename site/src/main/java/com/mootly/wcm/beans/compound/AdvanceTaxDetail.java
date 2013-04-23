@@ -57,7 +57,7 @@ public class AdvanceTaxDetail extends HippoItem implements FormMapFiller {
 	private String val_BSR ;
 	private Calendar val_Date ;
 	private String val_serial ;
-	private String	val_amount;
+	private Double	val_amount;
 	
 	private String personalInfoUuid;
 	private boolean markedForDeletion;
@@ -93,7 +93,7 @@ public class AdvanceTaxDetail extends HippoItem implements FormMapFiller {
     	return val_serial;
     }
 
-    public String getP_Amount() {
+    public Double getP_Amount() {
     	if (val_amount == null) val_amount = getProperty(AMOUNT);
     	return val_amount;
     }
@@ -146,7 +146,7 @@ public class AdvanceTaxDetail extends HippoItem implements FormMapFiller {
 		this.val_serial = val_serial;
 	}
 
-	public final void setP_Amount(String val_amount) {
+	public final void setP_Amount(Double val_amount) {
 		this.val_amount = val_amount;
 	}
 	@Override
@@ -165,7 +165,9 @@ public class AdvanceTaxDetail extends HippoItem implements FormMapFiller {
 			setP_Serial(formMap.getField("Serial_challan").getValue());
 		}
 		if ( formMap.getField("amount") != null) {
-			setP_Amount(formMap.getField("amount").getValue());
+			String strAmount=formMap.getField("amount").getValue();
+			double amt=Double.parseDouble(strAmount);
+			setP_Amount(amt);
 		}
 		if ( formMap.getField("date_credit") != null) {
 			String strDate = formMap.getField("date_credit").getValue();
