@@ -29,7 +29,7 @@
         <sv:value>hippo:harddocument</sv:value>
       </sv:property>
       <sv:property sv:name="jcr:uuid" sv:type="String">
-        <sv:value>ba9e745e-6b44-4e61-9693-3387c6fd174d</sv:value>
+        <sv:value>16d520f8-980b-4083-ab01-18aed3a39f25</sv:value>
       </sv:property>
       <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
       <sv:property sv:name="hipposysedit:node" sv:type="Boolean">
@@ -154,7 +154,7 @@
           <sv:value>false</sv:value>
         </sv:property>
         <sv:property sv:name="hipposysedit:type" sv:type="String">
-          <sv:value>String</sv:value>
+          <sv:value>Double</sv:value>
         </sv:property>
       </sv:node>
       <sv:node sv:name="amount">
@@ -177,7 +177,7 @@
           <sv:value>false</sv:value>
         </sv:property>
         <sv:property sv:name="hipposysedit:type" sv:type="String">
-          <sv:value>String</sv:value>
+          <sv:value>Double</sv:value>
         </sv:property>
       </sv:node>
     </sv:node>
@@ -190,8 +190,8 @@
       <sv:property sv:name="jcr:primaryType" sv:type="Name">
         <sv:value>mootlywcm:tdsfromothersdetail</sv:value>
       </sv:property>
-      <sv:property sv:name="mootlywcm:amount" sv:type="String">
-        <sv:value/>
+      <sv:property sv:name="mootlywcm:amount" sv:type="Double">
+        <sv:value>0.0</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:financialyear" sv:type="String">
         <sv:value/>
@@ -205,8 +205,8 @@
       <sv:property sv:name="mootlywcm:tdscertificate" sv:type="String">
         <sv:value/>
       </sv:property>
-      <sv:property sv:name="mootlywcm:totaltaxdeducted" sv:type="String">
-        <sv:value/>
+      <sv:property sv:name="mootlywcm:totaltaxdeducted" sv:type="Double">
+        <sv:value>0.0</sv:value>
       </sv:property>
     </sv:node>
   </sv:node>
