@@ -5,6 +5,10 @@
 	<fmt:message key="member.residential.status" />
 </c:set>
 <hippo-gogreen:title title="${residentialstatus}"></hippo-gogreen:title>
+<h3 id="respond1"><fmt:message key="member.residential.status" /></h3>
+
+<h5><small><fmt:message key="member.resi.status.sentence" /></small></h5>
+
 <hst:link var ="mainSiteMapRefId" siteMapItemRefId="${mainSiteMapItemRefId}"/>
 <%
 String varToReplace = (String) pageContext.getAttribute("mainSiteMapRefId");
@@ -56,9 +60,9 @@ else {
 								</c:otherwise>
 							</c:choose><br/>
 						<c:if test="${fn:startsWith(item.value,'ans_')}">
-						<a  id="hrefLogin" class="button orange" >Save &amp; Next</a>
+						<input type="submit" name="Submit" value="Save &amp; Next"  id="hrefLogin" class="button orange"/>
 						<a href="${modifiedSiteMapRefId}" class="button orange" style="margin-left:100px;">Next</a>
-						<input type="hidden" name="${item.key}" value="${item.value}"/></c:if></li>
+						</c:if></li>
 						<li style="display:inline">
 							<c:if test="${isAnswer != 'true'}">
 								<select class="answer" id="<c:out value="${item.key}"/>" name="<c:out value="${item.key}"/>">
@@ -115,8 +119,8 @@ var choice=$('#rsstatus_q').val();
     <hst:attribute name="type">text/javascript</hst:attribute>
 		$(document).ready(function() {
    
-                var parentbean='<%=request.getAttribute("parentBean")%>';
-       if(parentbean==null){
+                var parentbean='<c:out value="${parentBean}"/>';
+       if(parentbean==''){
               $('#rsstatus_q').val('yes');
 	      $("#ul_rsstatus_q_yes").css("display","block");
               $("#ul_rsstatus_q_yes").css("visibility","visible");

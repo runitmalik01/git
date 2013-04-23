@@ -19,9 +19,9 @@
 <%@include file="../includes/commonincludes.jspf" %>
 <c:set var="contactinformation"><fmt:message key="member.contact.information"/></c:set>
 <hippo-gogreen:title title="${contactinformation}"/>
-<div id="breadcrumbs">
-	<fmt:message key="member.location.label"/>&nbsp;
-	
+<h3 id="respond1"><fmt:message key="member.contact.information"/></h3>
+<div>
+	<fmt:message key="member.location.label"/>&nbsp;	
 	    <hst:link var="home" siteMapItemRefId="home" />
 	    <a href="${home}"><fmt:message key="products.detail.location.home"/></a>&gt;
 	
@@ -30,7 +30,6 @@
 
 	   <hst:link var="contactinformation" siteMapItemRefId="member-contact-information"></hst:link>
 	   <a href="${contactinformation}"><fmt:message key="member.contact.information"/></a>
-
 </div>
 <hst:link var ="mainSiteMapRefId" siteMapItemRefId="${mainSiteMapItemRefId}"/>
 <%

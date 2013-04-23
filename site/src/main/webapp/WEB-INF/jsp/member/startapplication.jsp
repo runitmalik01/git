@@ -20,7 +20,8 @@
    <fmt:message key="member.start.application"/>
 </c:set>
 <hippo-gogreen:title title="${ startapplication}"/>
-<div id="breadcrumb">
+<h3 id="respond1"><fmt:message key="member.start.application"/></h3>
+<div>
 <fmt:message key="member.location.label"/>
 <hst:link var="home" siteMapItemRefId="memberfrontpage" />
 <a href="${home}">

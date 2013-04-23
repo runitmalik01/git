@@ -25,24 +25,25 @@
 	<fmt:message key="member.bank.detail" />
 </c:set>
 <hippo-gogreen:title title="${ bankdetail}" />
-<div id="breadcrumb">
+<h3 id="respond1"><fmt:message key="member.bank.detail" /></h3>
+<p>
 	<fmt:message key="member.location.label" />
 	&nbsp;
 	<hst:link var="home" siteMapItemRefId="home" />
-	<a href="${home}"><fmt:message key="products.detail.location.home" /></a>&gt;
+	<a href="${home}"><fmt:message key="products.detail.location.home" /></a>&gt;&gt;
 	<hst:link var="startapplication" siteMapItemRefId="member-personal-information"></hst:link>
 	<a href="${startapplication}"><fmt:message
-			key="member.start.application" /></a>&gt;
+			key="member.start.application" /></a>&gt;&gt;
 	<hst:link var="contactinformation"
 		siteMapItemRefId="member-contact-information"></hst:link>
 	<a href="${contactinformation}"><fmt:message
-			key="member.contact.information" /></a>&gt;
+			key="member.contact.information" /></a>&gt;&gt;
 	<hst:link var="residentialstatus" siteMapItemRefId="member-residential-status"></hst:link>
 	<a href="${residentialstatus}"><fmt:message
-			key="member.residential.status" /></a>&gt;
+			key="member.residential.status" /></a>&gt;&gt;
 	<hst:link var="bankdetail" siteMapItemRefId="member-bank-detail"></hst:link>
 	<a href="${bankdetail}"><fmt:message key="member.bank.detail" /></a>
-</div>
+</p>
 <hst:link var ="mainSiteMapRefId" siteMapItemRefId="${mainSiteMapItemRefId}"/>
 <%
 String varToReplace = (String) pageContext.getAttribute("mainSiteMapRefId");
@@ -59,6 +60,7 @@ else {
 <form name="bankDetail" action="${actionUrl}" method="post" id="frmBankDetail">
 	<div id="row">
 		<div id="span4">
+		<fieldset>
 			 <label><fmt:message key="member.bank.detail.bank.name" /></label> 
 			 <input type="text" name="bd_bank_name" value="${parentBean.BD_BANK_NAME}" title="Enter Name of Bank"maxlength="25" min="1" required="required" /><br/>
 			 <label><fmt:message key="member.bank.detail.micr.code" /></label> 
@@ -90,6 +92,7 @@ else {
 			<input type="hidden" name="ecs" value="${parentBean.BD_ECS}" id="ecs">
 			<br /> <br/>
 			<a id="hrefLogin" class="button orange">Save & Next</a><a href="${modifiedSiteMapRefId}" class="button orange" style="margin-left: 100px;">Next</a>
+			</fieldset>
 		</div>
 	</div>
 </form>
