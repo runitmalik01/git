@@ -289,7 +289,7 @@ public class Calculations extends ITReturnComponent {
 			request.setAttribute("capital", capital);
 			if(capital != null){
 
-				fCapitalGain =  Double.parseDouble(capital.getCapitalGain());
+				//fCapitalGain =  Double.parseDouble(capital.getCapitalGain());
 
 				log.info("object is"+fCapitalGain);
 			}
@@ -435,7 +435,7 @@ public class Calculations extends ITReturnComponent {
 
 			request.setAttribute("objRebate89", objRebate89);
 			if(objRebate89 != null){
-				fRebate89 =  Double.parseDouble(objRebate89.getTaxRelief());
+				//fRebate89 =  Double.parseDouble(objRebate89.getTaxRelief());
 			}		
 
 		}catch (ObjectBeanManagerException e) {
