@@ -3,10 +3,10 @@
 <%@page import="org.hippoecm.hst.content.beans.standard.HippoFolder"%>
 <%@include file="../includes/tags.jspf"%>
 
-	<hst:link var="originalViewLink" path="/member/itreturn/assessmentYear/original/pan/personalinformation.html"/>
-	<hst:link var="viewLink" path="/member/itreturn/assessmentYear/original/pan/personalinformation.html"/>	
+	<hst:link var="originalViewLink" path="/member/itreturn/financialYear/original/pan/personalinformation.html"/>
+	<hst:link var="viewLink" path="/member/itreturn/financialYear/original/pan/personalinformation.html"/>	
 <form id="addPanForm" action="">	
-	<span class="label1 label-info1">Start a new Return for <c:out value="${assessmentYear}"/></span>	
+	<span class="label1 label-info1">Start a new Return for <c:out value="${financialYear}"/></span>	
 	<p>
 		<label for="newpan">PAN</label>
 		<input id="newpan" style="text-transform:uppercase;" name="newpan" data-content="PAN (10 characters)" maxlength="10">
@@ -27,7 +27,7 @@
 			$.validator.addMethod("PAN", function(value, element) {  
 		   	 return this.optional(element) || /^[a-zA-Z]{5}\d{4}[a-zA-Z]{1}?$/i.test(value);  
 		    }, "PAN is invalid.");
-		    var ay = "<c:out value="${assessmentYear}"/>";
+		    var ay = "<c:out value="${financialYear}"/>";
 			$('#addPanForm input').keydown(function(e) {
 			    if (e.keyCode == 13) {
 			   		e.preventDefault();
@@ -58,7 +58,7 @@
 				var pan = $("#newpan").val().toLowerCase();
 				var ty = $("#addPanForm input[name='returnType']:checked").val();
 				var newLnk = lnk.replace(/pan/g,pan);
-				newLnk = newLnk.replace(/assessmentYear/g,ay);
+				newLnk = newLnk.replace(/financialYear/g,ay);
 				newLnk = newLnk.replace(/original/g,ty);
 				$('#addPanForm').attr("action",newLnk);
 			}

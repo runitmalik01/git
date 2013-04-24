@@ -19,6 +19,8 @@ import com.mootly.wcm.annotations.AdditionalBeans;
 import com.mootly.wcm.annotations.ChildBean;
 import com.mootly.wcm.annotations.DataTypeValidationFields;
 import com.mootly.wcm.annotations.DataTypeValidationHelper;
+import com.mootly.wcm.annotations.DataTypeValidationHelper.DataTypeValidationType;
+
 import com.mootly.wcm.annotations.FormFields;
 import com.mootly.wcm.annotations.PrimaryBean;
 import com.mootly.wcm.annotations.RequiredBeans;
@@ -34,8 +36,31 @@ import com.mootly.wcm.components.ITReturnComponent;
 @RequiredBeans(requiredBeans={MemberPersonalInformation.class})
 @FormFields(fieldNames={"Employe_category","Name_employer","Pan_employer","Tan_employer","Address","City","State","Pin","From","To","Gross_salary","Allowance","Perquisite","Profit","Taxable_earning"})
 @RequiredFields(fieldNames={"Name_employer","Tan_employer","City","Gross_salary"})
-@DataTypeValidationFields(fieldNames={"Gross_salary","Tan_employer","Pan_employer"},
-dataTypes={DataTypeValidationHelper.DataTypeValidationType.DECIMAL,DataTypeValidationHelper.DataTypeValidationType.TAN,DataTypeValidationHelper.DataTypeValidationType.PAN})
+@DataTypeValidationFields(fieldNames={
+									  "Gross_salary",
+									  "Allowance",
+									  "Allowance1",
+									  "Perquisite",
+									  "Profit",
+									  "Taxable_earning",
+									  "Tan_employer",
+									  "Pan_employer",
+									  "From",
+									  "To"
+									  },
+						  dataTypes= {
+									  DataTypeValidationHelper.DataTypeValidationType.DECIMAL, //Gross_salary
+									  DataTypeValidationHelper.DataTypeValidationType.DECIMAL, 
+									  DataTypeValidationHelper.DataTypeValidationType.DECIMAL,
+									  DataTypeValidationHelper.DataTypeValidationType.DECIMAL,
+									  DataTypeValidationHelper.DataTypeValidationType.DECIMAL,
+									  DataTypeValidationHelper.DataTypeValidationType.DECIMAL,
+									  DataTypeValidationHelper.DataTypeValidationType.TAN,
+									  DataTypeValidationHelper.DataTypeValidationType.PAN,
+									  DataTypeValidationType.INDIANDATE,
+									  DataTypeValidationType.INDIANDATE
+									 }
+						)
 public class SalaryIncome extends ITReturnComponent {
 	
 	private static final Logger log = LoggerFactory.getLogger(SalaryIncome.class);

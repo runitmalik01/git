@@ -75,7 +75,7 @@ public  final class DataTypeValidationHelper {
 	}
 	
 	final static  public boolean isOfTypeIndianDate(String inStr) {
-		DateFormat df = new SimpleDateFormat("dd-mm-yyyy");
+		DateFormat df = new SimpleDateFormat("dd/mm/yyyy");
 		try {
 			df.parse(inStr);
 			return true;

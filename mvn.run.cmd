@@ -1,1 +1,1 @@
-mvn -P cargo.run -Drepo.path=C:\abhi\trunk\repository
+mvn -P cargo.run -Drepo.path=C:\Users\admin\Projects\Mootly\cmsrepositories\hippo-solutions\branch_indiantaxonline -Dcargo.debug.address=9003 -Dcargo.debug.suspend=y

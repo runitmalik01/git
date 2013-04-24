@@ -46,13 +46,13 @@ public class BaseComponent extends BaseHstComponent {
         String bodyCssClass = getParameter("bodyCssClass",request);
         String contentCssClass = getParameter("contentCssClass",request);
         String widgetsCssClass = getParameter("widgetsCssClass",request);
-        if (log.isInfoEnabled()) {
-        	log.info("theme:" + theme);
-        	log.info("template:" + template);
-        	log.info("bodyCssClass:" + bodyCssClass);
-        	log.info("contentCssClass:" + contentCssClass);
-        	log.info("widgetsCssClass:" + widgetsCssClass);
-        }
+//        if (log.isInfoEnabled()) {
+//        	log.info("theme:" + theme);
+//        	log.info("template:" + template);
+//        	log.info("bodyCssClass:" + bodyCssClass);
+//        	log.info("contentCssClass:" + contentCssClass);
+//        	log.info("widgetsCssClass:" + widgetsCssClass);
+//        }
         if (theme != null) request.setAttribute("theme", theme);
         if (template != null) request.setAttribute("template", template);
         if (bodyCssClass != null) request.setAttribute("bodyCssClass", bodyCssClass);

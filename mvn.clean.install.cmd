@@ -1,1 +1,1 @@
-mvn -Drepo.path=C:\abhi\trunk\repository clean install
+mvn -Drepo.path=C:\Users\admin\Projects\Mootly\cmsrepositories\hippo-solutions\branch_indiantaxonline clean install  -Dcargo.debug.address=9003 -Dcargo.debug.suspend=y

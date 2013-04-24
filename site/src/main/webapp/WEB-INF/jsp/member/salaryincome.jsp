@@ -1,22 +1,11 @@
+<%@page import="com.mootly.wcm.member.SalaryIncome"%>
+<%@page import="com.mootly.wcm.services.ScreenConfigService"%>
 <%@page import="com.mootly.wcm.beans.compound.SalaryIncomeDetail"%>
 <%@include file="../includes/tags.jspf"%>
 <%@ page import="com.mootly.wcm.utils.*"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.mootly.wcm.beans.*"%>
-<script type="text/javascript">
-	$(function() {
-		$("#datepicker").datepicker({
-			changeMonth : true,
-			changeYear : true
-		});
-	});
-	$(function() {
-		$("#datepicker1").datepicker({
-			changeMonth : true,
-			changeYear : true
-		});
-	});
-</script>
+
 <%
 	ValueListService objValueListService = ValueListServiceImpl
 			.getInstance();
@@ -44,7 +33,7 @@
 	</span>
 </div>
 <div class="page type-page">
-	<h3 id="respond1">Salary Income</h3>
+	<h3 id="respond1"><c:choose><c:when test="${not empty screenConfigDocument && not empty screenConfigDocument.screenHeading}"><c:out value="${screenConfigDocument.screenHeading}"/></c:when><c:otherwise>Salary Income</c:otherwise></c:choose></h3>
 	<c:if test="${not empty formMap}">
 		<c:forEach items="${formMap.message}" var="item">
 			<div class="alert alert-error">
@@ -66,10 +55,23 @@
 					<p>
 						<label for="Name_employer"><fmt:message
 								key="member.employe.category" />
-						</label> <input type="radio" name="Employe_category" value="Govt."
-							checked="checked" />Govt. <input type="radio"
-							name="Employe_category" value="PSU" />PSU <input type="radio"
-							name="Employe_category" value="Others" />Others
+						</label> 
+						<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
+						<c:choose>
+							<c:when test="${childBean.employe_category == 'GOV'}">
+								<c:set var="gov" value="checked=checked"/>
+							</c:when>
+							<c:when test="${childBean.employe_category == 'PSU'}">
+								<c:set var="psu" value="checked=checked"/>
+							</c:when>
+							<c:when test="${childBean.employe_category == 'OTH'}">
+								<c:set var="oth" value="checked=checked"/>
+							</c:when>
+						</c:choose>
+						</c:if>
+							<input type="radio" <c:out value="${gov}"/> name="Employe_category" value="GOV"/>Government 
+							<input type="radio" <c:out value="${psu}"/> name="Employe_category" value="PSU" />PSU 
+							<input type="radio" <c:out value="${oth}"/> name="Employe_category" value="OTH" />Others
 					</p>
 				</fieldset>
 				<fieldset>
@@ -93,7 +95,7 @@
 					<p>
 						<label for="Tan_employer"><fmt:message
 								key="member.info.tan" />
-						</label> <input id="Tan_employer" required type="text" name="Tan_employer"
+						</label> <input id="Tan_employer" type="text" name="Tan_employer"
 							title="This field accept first four alphabate next five numeric then single alphabate"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.tan_employer}"/></c:if>">
 					</p>
@@ -184,39 +186,13 @@
 					</p>
 				</fieldset>
 			</form>
-			<a href="${redirectURLToSamePage}" class="button olive">Cancel</a>&nbsp;<a
+			
+			<a href="${scriptName}" class="button olive">Cancel</a>&nbsp;<a
 				href="javascript:void(0)" id="hrefLogin" class="button orange">Save</a>
 
 			<hst:element var="uiCustom" name="script">
 				<hst:attribute name="type">text/javascript</hst:attribute>
-				$(document).ready(function() {
-					$('#frmdata input').keydown(function(e) {
-					    if (e.keyCode == 13) {
-					   		e.preventDefault();
-					        $('#frmdata').submit();
-					    }
-					});
-					$('#frmdata').validate({
-						rules: {
-							username: {
-								required: true,
-								minlength: 2
-							},
-		
-							password: {
-								required: true
-							}
-						},				
-						messages: {
-							username: "Please enter a valid email address.",
-							password: "Please enter a valid password."
-						}
-					});
-					
-					$('#hrefLogin').click(function() {
-		 				 $('#frmdata').submit();
-					});
-				});    
+				<res:client-validation/>
 		</hst:element>
 			<hst:headContribution element="${uiCustom}" category="jsInternal" />
 		</c:when>
@@ -237,7 +213,7 @@
 						var="salaryItemDetail">
 						<tr>
 							<td><a
-								href="${redirectURLToSamePage}/<c:out value="${salaryItemDetail.canonicalUUID}"/>/edit"><c:out
+								href="${scriptName}/<c:out value="${salaryItemDetail.canonicalUUID}"/>/edit"><c:out
 										value="${salaryItemDetail.name_employer}" />
 							</a>
 							</td>
@@ -247,9 +223,9 @@
 							<td><c:out value="${salaryItemDetail.taxable_earning}" />
 							</td>
 							<td><a
-								href="${redirectURLToSamePage}/<c:out value="${salaryItemDetail.canonicalUUID}"/>/edit"><small>Edit</small>
+								href="${scriptName}/<c:out value="${salaryItemDetail.canonicalUUID}"/>/edit"><small>Edit</small>
 							</a>&nbsp;&nbsp;<a
-								href="${redirectURLToSamePage}/<c:out value="${salaryItemDetail.canonicalUUID}"/>/delete"><small>Delete</small>
+								href="${scriptName}/<c:out value="${salaryItemDetail.canonicalUUID}"/>/delete"><small>Delete</small>
 							</a>
 							</td>
 						</tr>
@@ -260,7 +236,7 @@
 						</td>
 				</c:if>
 			</table>
-			<a href="${redirectURLToSamePage}/new" class="button orange">Add
+			<a href="${scriptName}/new" class="button orange">Add
 				New</a>
 		</c:otherwise>
 	</c:choose>
@@ -276,57 +252,4 @@
 	}
 </script>
 
-<script>
-	function editEmployer(employecategory, empName, pan, tan, address, city,
-			state, pin, from, to, gross, alwnce, perquisite, profit,
-			taxableIncome) {
-		alert("ddd");
-		document.forms['salaryfrm'].elements["Employe_category"].value = employecategory;
-		document.forms['salaryfrm'].elements["Name_employer"].value = empName;
-		document.forms['salaryfrm'].elements["Pan_employer"].value = pan;
-		document.forms['salaryfrm'].elements["Tan_employer"].value = tan;
-		document.forms['salaryfrm'].elements["Address"].value = address;
-		document.forms['salaryfrm'].elements["City"].value = city;
-		document.forms['salaryfrm'].elements["State"].value = state;
-		document.forms['salaryfrm'].elements["Pin"].value = pin;
-		document.forms['salaryfrm'].elements["From"].value = from;
-		document.forms['salaryfrm'].elements["To"].value = to;
-		document.forms['salaryfrm'].elements["Gross_salary"].value = gross;
-		document.forms['salaryfrm'].elements["Allowance"].value = alwnce;
-		document.forms['salaryfrm'].elements["Perquisite"].value = perquisite;
-		document.forms['salaryfrm'].elements["Profit"].value = profit;
-		document.forms['salaryfrm'].elements["Taxable_earning"].value = taxableIncome;
 
-		document.forms['salaryfrm'].elements["screenMode"].value = "UPDATE";
-
-	}
-
-	function nextScreen() {
-		alert("nextScreen");
-
-		document.forms['salaryfrm'].elements["screenMode"].value = "NEXTSCREEN";
-		document.getElementById('salaryfrm').submit();
-	}
-</script>
-
-
-
-<hst:headContribution keyHint="buttonCss" category="css">
-	<hst:link
-		path="http://yui.yahooapis.com/3.8.0/build/cssbutton/cssbutton.css"
-		var="homeSliderCss" />
-	<link rel="stylesheet" media="screen" type="text/css"
-		href="${homeSliderCss}" />
-</hst:headContribution>
-<hst:headContribution keyHint="formcss">
-	<link rel="stylesheet"
-		href='<hst:link path="/css/animation/animation.css"/>' type="text/css" />
-</hst:headContribution>
-<hst:headContribution keyHint="formcss">
-	<link rel="stylesheet" href='<hst:link path="/css/adornment.css"/>'
-		type="text/css" />
-</hst:headContribution>
-<hst:headContribution keyHint="seedFile" category="jsExternal">
-	<script src="http://yui.yahooapis.com/3.8.0/build/yui/yui-min.js"
-		type="text/javascript"></script>
-</hst:headContribution>

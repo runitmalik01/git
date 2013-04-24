@@ -2834,6 +2834,8 @@ BDO[DIR="rtl"] {
 		padding: 0 2px;
 		font-size:9px;
 	}
+	.decimal,.indiandate,.date{text-align:right;}
+	
 	/* End Amit */
 /* =Media Print
     If you're working on a Child Theme, make sure that all

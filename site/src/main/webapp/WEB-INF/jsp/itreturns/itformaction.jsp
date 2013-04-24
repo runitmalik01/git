@@ -46,7 +46,7 @@
     </div>
   </div>
   -->
-  <hst:link var="mi" path="/member/itreturn/${assessmentYear}/${itReturnType}/${pan}"/>
+  <hst:link var="mi" path="/member/itreturn/${financialYear}/${itReturnType}/${pan}"/>
   <div class="accordion-group">
     <div class="accordion-heading">
       <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="${mi}/#collapseTwo">

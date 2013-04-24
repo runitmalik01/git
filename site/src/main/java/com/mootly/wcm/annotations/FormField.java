@@ -1,13 +1,15 @@
 package com.mootly.wcm.annotations;
 
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
-//@Retention(RetentionPolicy.RUNTIME)
-//@Target(ElementType.TYPE)
-public class FormField {
-	final String name;
-	final String[] validators;
-	public FormField(String name, String[] validators) {
-		this.name = name;
-		this.validators = validators;
-	}
+import com.mootly.wcm.annotations.DataTypeValidationHelper.DataTypeValidationType;
+
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.TYPE)
+public @interface FormField {
+	String name();
+	DataTypeValidationType[] dataTypeValidationTypes();
 }

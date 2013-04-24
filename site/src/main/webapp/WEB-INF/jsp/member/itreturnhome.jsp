@@ -4,7 +4,7 @@
 <%@include file="../includes/tags.jspf"%>
 <c:out value="${itReturnType}"/>
 <div class="page">
-	<h3>Income Tax Returns (<c:out value="${assessmentYear}"/>)</h3>
+	<h3>Income Tax Returns (<c:out value="${financialYear}"/>)</h3>
 
 	<c:if test="${not empty pansForMember}">	
 		<table>

@@ -315,3 +315,7 @@ orderable
 [mootlywcm:interestdoc] > hippostd:relaxed, mootlywcm:basedocument orderable
 
 
+[mootlywcm:screenfieldconfig] > hippo:compound, hippostd:relaxed orderable
+[mootlywcm:screenconfig] > hippostd:relaxed, mootlywcm:basedocument orderable
+
+
