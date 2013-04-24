@@ -115,11 +115,11 @@
         <sv:value>true</sv:value>
       </sv:property>
       <sv:property sv:multiple="true" sv:name="mootlywcm:features" sv:type="String">
-        <sv:value>• have Salary Income </sv:value>
-        <sv:value>• have Pension Income </sv:value>
-        <sv:value>• have made investments in life insurance, etc. </sv:value>
-        <sv:value>• have no tax payable or refundable </sv:value>
-        <sv:value>• have single employer </sv:value>
+        <sv:value>ï¿½ have Salary Incomeï¿½</sv:value>
+        <sv:value>ï¿½ have Pension Incomeï¿½</sv:value>
+        <sv:value>ï¿½ have made investments in life insurance, etc.ï¿½</sv:value>
+        <sv:value>ï¿½ have no tax payable or refundableï¿½</sv:value>
+        <sv:value>ï¿½ have single employerï¿½</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:pricing" sv:type="String">
         <sv:value>Free Filing</sv:value>
@@ -135,7 +135,7 @@
           <sv:value>hippotranslation:translations</sv:value>
         </sv:property>
       </sv:node>
-      <sv:node sv:name="mootlywcm:mootlywcm_pricingplanincome">
+      <sv:node sv:name="mootlywcm:pricingplanincome">
         <sv:property sv:name="jcr:primaryType" sv:type="Name">
           <sv:value>mootlywcm:PricingPlanIncome</sv:value>
         </sv:property>
@@ -167,7 +167,7 @@
           <sv:value>true</sv:value>
         </sv:property>
       </sv:node>
-      <sv:node sv:name="mootlywcm:mootlywcm_pricingplandeductions">
+      <sv:node sv:name="mootlywcm:pricingplandeductions">
         <sv:property sv:name="jcr:primaryType" sv:type="Name">
           <sv:value>mootlywcm:PricingPlanDeductions</sv:value>
         </sv:property>
@@ -184,7 +184,7 @@
           <sv:value>false</sv:value>
         </sv:property>
       </sv:node>
-      <sv:node sv:name="mootlywcm:mootlywcm_pricingplantaxes">
+      <sv:node sv:name="mootlywcm:pricingplantaxes">
         <sv:property sv:name="jcr:primaryType" sv:type="Name">
           <sv:value>mootlywcm:PricingPlanTaxes</sv:value>
         </sv:property>
@@ -204,7 +204,7 @@
           <sv:value>true</sv:value>
         </sv:property>
       </sv:node>
-      <sv:node sv:name="mootlywcm:mootlywcm_pricingplanadditionalservices">
+      <sv:node sv:name="mootlywcm:pricingplanadditionalservices">
         <sv:property sv:name="jcr:primaryType" sv:type="Name">
           <sv:value>mootlywcm:PricingPlanAdditionalServices</sv:value>
         </sv:property>
@@ -312,9 +312,9 @@
         <sv:value>true</sv:value>
       </sv:property>
       <sv:property sv:multiple="true" sv:name="mootlywcm:features" sv:type="String">
-        <sv:value>• have Salary/Pension Income </sv:value>
-        <sv:value>• have one or more house </sv:value>
-        <sv:value>• have other source income</sv:value>
+        <sv:value>ï¿½ have Salary/Pension Incomeï¿½</sv:value>
+        <sv:value>ï¿½ have one or more houseï¿½</sv:value>
+        <sv:value>ï¿½ have other source income</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:pricing" sv:type="String">
         <sv:value>299</sv:value>
@@ -330,7 +330,7 @@
           <sv:value>hippotranslation:translations</sv:value>
         </sv:property>
       </sv:node>
-      <sv:node sv:name="mootlywcm:mootlywcm_pricingplanincome">
+      <sv:node sv:name="mootlywcm:pricingplanincome">
         <sv:property sv:name="jcr:primaryType" sv:type="Name">
           <sv:value>mootlywcm:PricingPlanIncome</sv:value>
         </sv:property>
@@ -362,7 +362,7 @@
           <sv:value>true</sv:value>
         </sv:property>
       </sv:node>
-      <sv:node sv:name="mootlywcm:mootlywcm_pricingplandeductions">
+      <sv:node sv:name="mootlywcm:pricingplandeductions">
         <sv:property sv:name="jcr:primaryType" sv:type="Name">
           <sv:value>mootlywcm:PricingPlanDeductions</sv:value>
         </sv:property>
@@ -379,7 +379,7 @@
           <sv:value>false</sv:value>
         </sv:property>
       </sv:node>
-      <sv:node sv:name="mootlywcm:mootlywcm_pricingplantaxes">
+      <sv:node sv:name="mootlywcm:pricingplantaxes">
         <sv:property sv:name="jcr:primaryType" sv:type="Name">
           <sv:value>mootlywcm:PricingPlanTaxes</sv:value>
         </sv:property>
@@ -399,7 +399,7 @@
           <sv:value>true</sv:value>
         </sv:property>
       </sv:node>
-      <sv:node sv:name="mootlywcm:mootlywcm_pricingplanadditionalservices">
+      <sv:node sv:name="mootlywcm:pricingplanadditionalservices">
         <sv:property sv:name="jcr:primaryType" sv:type="Name">
           <sv:value>mootlywcm:PricingPlanAdditionalServices</sv:value>
         </sv:property>
@@ -507,8 +507,8 @@
         <sv:value>true</sv:value>
       </sv:property>
       <sv:property sv:multiple="true" sv:name="mootlywcm:features" sv:type="String">
-        <sv:value>• have professional income </sv:value>
-        <sv:value>• run a small business </sv:value>
+        <sv:value>ï¿½ have professional incomeï¿½</sv:value>
+        <sv:value>ï¿½ run a small businessï¿½</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:pricing" sv:type="String">
         <sv:value>999</sv:value>
@@ -524,7 +524,7 @@
           <sv:value>hippotranslation:translations</sv:value>
         </sv:property>
       </sv:node>
-      <sv:node sv:name="mootlywcm:mootlywcm_pricingplanincome">
+      <sv:node sv:name="mootlywcm:pricingplanincome">
         <sv:property sv:name="jcr:primaryType" sv:type="Name">
           <sv:value>mootlywcm:PricingPlanIncome</sv:value>
         </sv:property>
@@ -556,7 +556,7 @@
           <sv:value>true</sv:value>
         </sv:property>
       </sv:node>
-      <sv:node sv:name="mootlywcm:mootlywcm_pricingplandeductions">
+      <sv:node sv:name="mootlywcm:pricingplandeductions">
         <sv:property sv:name="jcr:primaryType" sv:type="Name">
           <sv:value>mootlywcm:PricingPlanDeductions</sv:value>
         </sv:property>
@@ -573,7 +573,7 @@
           <sv:value>false</sv:value>
         </sv:property>
       </sv:node>
-      <sv:node sv:name="mootlywcm:mootlywcm_pricingplantaxes">
+      <sv:node sv:name="mootlywcm:pricingplantaxes">
         <sv:property sv:name="jcr:primaryType" sv:type="Name">
           <sv:value>mootlywcm:PricingPlanTaxes</sv:value>
         </sv:property>
@@ -593,7 +593,7 @@
           <sv:value>true</sv:value>
         </sv:property>
       </sv:node>
-      <sv:node sv:name="mootlywcm:mootlywcm_pricingplanadditionalservices">
+      <sv:node sv:name="mootlywcm:pricingplanadditionalservices">
         <sv:property sv:name="jcr:primaryType" sv:type="Name">
           <sv:value>mootlywcm:PricingPlanAdditionalServices</sv:value>
         </sv:property>
@@ -624,4 +624,398 @@
       </sv:node>
     </sv:node>
   </sv:node>
+<sv:node sv:name="premier-premium">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hippo:handle</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+    <sv:value>hippo:hardhandle</sv:value>
+    <sv:value>hippo:translated</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>c85e225a-3f67-4392-9e54-fa1e244463db</sv:value>
+  </sv:property>
+  <sv:node sv:name="hippo:translation">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hippo:translation</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippo:language" sv:type="String">
+      <sv:value/>
+    </sv:property>
+    <sv:property sv:name="hippo:message" sv:type="String">
+      <sv:value>PREMIER-PREMIUM</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="premier-premium">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>mootlywcm:PricingPlan</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+      <sv:value>hippo:harddocument</sv:value>
+      <sv:value>hippotranslation:translated</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>06d64c16-d2b1-4a35-9502-f5b32127ee5c</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
+      <sv:value>live</sv:value>
+      <sv:value>preview</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippo:related___pathreference" sv:type="String">
+      <sv:value>premier-premium</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostd:holder" sv:type="String">
+      <sv:value>admin</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostd:state" sv:type="String">
+      <sv:value>published</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostd:stateSummary" sv:type="String">
+      <sv:value>live</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
+      <sv:value>admin</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
+      <sv:value>2013-04-24T17:22:38.882+05:30</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
+      <sv:value>2013-04-24T17:26:33.676+05:30</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
+      <sv:value>admin</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
+      <sv:value>2013-04-24T17:26:35.466+05:30</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippotranslation:id" sv:type="String">
+      <sv:value>270f2cf1-be77-4730-aeed-461100f79538</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippotranslation:locale" sv:type="String">
+      <sv:value>en</sv:value>
+    </sv:property>
+    <sv:property sv:name="mootlywcm:desciption" sv:type="String">
+      <sv:value>People who deal with Capital Gains and Shares or have any other source of Income, need to file through this plan.</sv:value>
+    </sv:property>
+    <sv:property sv:name="mootlywcm:efiling" sv:type="Boolean">
+      <sv:value>true</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="mootlywcm:features" sv:type="String">
+      <sv:value>Recommended if you:</sv:value>
+      <sv:value>â€¢ have Salary IncomeÂ </sv:value>
+      <sv:value>â€¢ own one or more houseÂ </sv:value>
+      <sv:value>â€¢ have invested in sharesÂ </sv:value>
+      <sv:value>â€¢ have other Person's IncomeÂ </sv:value>
+      <sv:value>â€¢ have Other Source IncomeÂ </sv:value>
+    </sv:property>
+    <sv:property sv:name="mootlywcm:pricing" sv:type="String">
+      <sv:value>499</sv:value>
+    </sv:property>
+    <sv:property sv:name="mootlywcm:subtitle" sv:type="String">
+      <sv:value>PREMIUM</sv:value>
+    </sv:property>
+    <sv:property sv:name="mootlywcm:title" sv:type="String">
+      <sv:value>PREMIER</sv:value>
+    </sv:property>
+    <sv:node sv:name="hippotranslation:translations">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>hippotranslation:translations</sv:value>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:pricingplanincome">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:PricingPlanIncome</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:business" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:capitalgain" sv:type="Boolean">
+        <sv:value>true</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:foreignassests" sv:type="Boolean">
+        <sv:value>true</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:houseproperty" sv:type="Boolean">
+        <sv:value>true</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:othersourceagricul" sv:type="Boolean">
+        <sv:value>true</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:othersourceinterest" sv:type="Boolean">
+        <sv:value>true</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:presumtbusiness" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:rateincome" sv:type="Boolean">
+        <sv:value>true</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:salary" sv:type="Boolean">
+        <sv:value>true</sv:value>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:pricingplandeductions">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:PricingPlanDeductions</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:deduction" sv:type="Boolean">
+        <sv:value>true</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:losses" sv:type="Boolean">
+        <sv:value>true</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:reliefeightynine" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:reliefnintyone" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:pricingplantaxes">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:PricingPlanTaxes</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:advancetax" sv:type="Boolean">
+        <sv:value>true</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:sefassessment" sv:type="Boolean">
+        <sv:value>true</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:tcs" sv:type="Boolean">
+        <sv:value>true</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:tdsother" sv:type="Boolean">
+        <sv:value>true</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:tdssalary" sv:type="Boolean">
+        <sv:value>true</sv:value>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:pricingplanadditionalservices">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:PricingPlanAdditionalServices</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:ITR5receiptstatus" sv:type="String">
+        <sv:value>99</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:ITR5submission" sv:type="String">
+        <sv:value>99</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:assessmentprotection" sv:type="String">
+        <sv:value>599</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:documentmanager" sv:type="String">
+        <sv:value>199</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:refundstatus" sv:type="String">
+        <sv:value>199</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:returnprocessingstatus" sv:type="String">
+        <sv:value>99</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:reviewedbyexpert" sv:type="String">
+        <sv:value>599</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:taxplanning1213" sv:type="String">
+        <sv:value>399</sv:value>
+      </sv:property>
+    </sv:node>
+  </sv:node>
+</sv:node>
+  <sv:node sv:name="platinum-foreign">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hippo:handle</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+    <sv:value>hippo:hardhandle</sv:value>
+    <sv:value>hippo:translated</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>f20e8864-f7b3-4dcb-8d7a-cd146168f833</sv:value>
+  </sv:property>
+  <sv:node sv:name="platinum-foreign">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>mootlywcm:PricingPlan</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+      <sv:value>hippo:harddocument</sv:value>
+      <sv:value>hippotranslation:translated</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>55483998-c5cb-422e-831a-7c33a6ef848c</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
+      <sv:value>live</sv:value>
+      <sv:value>preview</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippo:related___pathreference" sv:type="String">
+      <sv:value>platinum-foreign</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostd:holder" sv:type="String">
+      <sv:value>admin</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostd:state" sv:type="String">
+      <sv:value>published</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostd:stateSummary" sv:type="String">
+      <sv:value>live</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
+      <sv:value>admin</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
+      <sv:value>2013-04-24T17:08:14.421+05:30</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
+      <sv:value>2013-04-24T17:11:27.585+05:30</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
+      <sv:value>admin</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
+      <sv:value>2013-04-24T17:11:30.509+05:30</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippotranslation:id" sv:type="String">
+      <sv:value>32b17d3f-94be-4748-985d-511ec7ac7ea3</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippotranslation:locale" sv:type="String">
+      <sv:value>en</sv:value>
+    </sv:property>
+    <sv:property sv:name="mootlywcm:desciption" sv:type="String">
+      <sv:value>File your tax return through this plan declaring your income earned outside India.</sv:value>
+    </sv:property>
+    <sv:property sv:name="mootlywcm:efiling" sv:type="Boolean">
+      <sv:value>true</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="mootlywcm:features" sv:type="String">
+      <sv:value>Recommended if you:</sv:value>
+      <sv:value>â€¢ have foreign earningsÂ </sv:value>
+      <sv:value>â€¢ are an NRIÂ </sv:value>
+      <sv:value>â€¢ have Foreign assetsÂ </sv:value>
+    </sv:property>
+    <sv:property sv:name="mootlywcm:pricing" sv:type="String">
+      <sv:value>1499</sv:value>
+    </sv:property>
+    <sv:property sv:name="mootlywcm:subtitle" sv:type="String">
+      <sv:value>FOREIGN</sv:value>
+    </sv:property>
+    <sv:property sv:name="mootlywcm:title" sv:type="String">
+      <sv:value>PLATINUM</sv:value>
+    </sv:property>
+    <sv:node sv:name="hippotranslation:translations">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>hippotranslation:translations</sv:value>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:pricingplanincome">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:PricingPlanIncome</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:business" sv:type="Boolean">
+        <sv:value>true</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:capitalgain" sv:type="Boolean">
+        <sv:value>true</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:foreignassests" sv:type="Boolean">
+        <sv:value>true</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:houseproperty" sv:type="Boolean">
+        <sv:value>true</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:othersourceagricul" sv:type="Boolean">
+        <sv:value>true</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:othersourceinterest" sv:type="Boolean">
+        <sv:value>true</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:presumtbusiness" sv:type="Boolean">
+        <sv:value>true</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:rateincome" sv:type="Boolean">
+        <sv:value>true</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:salary" sv:type="Boolean">
+        <sv:value>true</sv:value>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:pricingplandeductions">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:PricingPlanDeductions</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:deduction" sv:type="Boolean">
+        <sv:value>true</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:losses" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:reliefeightynine" sv:type="Boolean">
+        <sv:value>true</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:reliefnintyone" sv:type="Boolean">
+        <sv:value>true</sv:value>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:pricingplantaxes">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:PricingPlanTaxes</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:advancetax" sv:type="Boolean">
+        <sv:value>true</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:sefassessment" sv:type="Boolean">
+        <sv:value>true</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:tcs" sv:type="Boolean">
+        <sv:value>true</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:tdsother" sv:type="Boolean">
+        <sv:value>true</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:tdssalary" sv:type="Boolean">
+        <sv:value>true</sv:value>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:pricingplanadditionalservices">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:PricingPlanAdditionalServices</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:ITR5receiptstatus" sv:type="String">
+        <sv:value>99</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:ITR5submission" sv:type="String">
+        <sv:value>99</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:assessmentprotection" sv:type="String">
+        <sv:value>799</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:documentmanager" sv:type="String">
+        <sv:value>199</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:refundstatus" sv:type="String">
+        <sv:value>199</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:returnprocessingstatus" sv:type="String">
+        <sv:value>99</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:reviewedbyexpert" sv:type="String">
+        <sv:value>799</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:taxplanning1213" sv:type="String">
+        <sv:value>599</sv:value>
+      </sv:property>
+    </sv:node>
+  </sv:node>
+  <sv:node sv:name="hippo:translation">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hippo:translation</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippo:language" sv:type="String">
+      <sv:value/>
+    </sv:property>
+    <sv:property sv:name="hippo:message" sv:type="String">
+      <sv:value>PLATINUM-FOREIGN</sv:value>
+    </sv:property>
+  </sv:node>
+</sv:node>
 </sv:node>
