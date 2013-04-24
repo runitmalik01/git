@@ -316,9 +316,9 @@ orderable
 
 [mootlywcm:PricingPlan] > hippostd:relaxed, mootlywcm:basedocument orderable
 
-[mootlywcm:PricingPlanIncome] > hippostd:relaxed, mootlywcm:basedocument orderable
+[mootlywcm:PricingPlanIncome] > hippo:compound, hippostd:relaxed orderable
 
-[mootlywcm:PricingPlanTaxes] > hippostd:relaxed, mootlywcm:basedocument orderable
+[mootlywcm:PricingPlanTaxes] > hippo:compound, hippostd:relaxed orderable
 
 
 [mootlywcm:screenfieldconfig] > hippo:compound, hippostd:relaxed orderable
