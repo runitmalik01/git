@@ -29,42 +29,25 @@ public class InterestDoc extends BaseDocument implements ContentNodeBinder,FormM
 	private Double section234C;
 	private Double section234ABC;
 	
-	public String getSection234A() {
+	public Double getSection234A() {
 		if (section234A == null) section234A = getProperty("mootlywcm:section234A");
-    	if (section234A != null) {
-    		String section234aStr = Double.toString(section234A);
-    		return section234aStr;
-    	}
-    	return null;
+    	return section234A;
     }
 
-    public String getSection234B() {
+    public Double getSection234B() {
     	if (section234B == null) section234B = getProperty("mootlywcm:section234B");
-    	if (section234B != null) {
-    		String section234bStr = Double.toString(section234B);
-    		return section234bStr;
-    	}
-    	return null;
+    	return section234B;
     }
 
-    public String getSection234C() {
+    public Double getSection234C() {
     	if (section234C == null) section234C = getProperty("mootlywcm:section234C");
-    	if (section234C != null) {
-    		String section234cStr = Double.toString(section234C);
-    		return section234cStr;
-    	}
-    	return null;
+    	return section234C;
     }
     
-    public String getSection234ABC() {
+    public Double getSection234ABC() {
     	if (section234ABC == null) section234ABC = getProperty("mootlywcm:section234ABC");
-    	if (section234ABC != null) {
-    		String section234abcStr = Double.toString(section234ABC);
-    		return section234abcStr;
-    	}
-    	return null;
+      	return section234ABC;
     }
-
     
     public final void setSection234A(Double Section234A) {
 		this. section234A =  Section234A;
