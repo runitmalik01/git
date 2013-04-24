@@ -314,8 +314,13 @@ orderable
 [mootlywcm:securitiescomp] > hippo:compound, hippostd:relaxed orderable
 [mootlywcm:interestdoc] > hippostd:relaxed, mootlywcm:basedocument orderable
 
+[mootlywcm:PricingPlan] > hippostd:relaxed, mootlywcm:basedocument orderable
+
+[mootlywcm:PricingPlanIncome] > hippostd:relaxed, mootlywcm:basedocument orderable
+
+[mootlywcm:PricingPlanTaxes] > hippostd:relaxed, mootlywcm:basedocument orderable
+
 
 [mootlywcm:screenfieldconfig] > hippo:compound, hippostd:relaxed orderable
 [mootlywcm:screenconfig] > hippostd:relaxed, mootlywcm:basedocument orderable
-
 
