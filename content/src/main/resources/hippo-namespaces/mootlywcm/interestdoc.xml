@@ -29,7 +29,7 @@
         <sv:value>hippo:harddocument</sv:value>
       </sv:property>
       <sv:property sv:name="jcr:uuid" sv:type="String">
-        <sv:value>e703e2cf-3167-4bce-96a5-455bbd5a875e</sv:value>
+        <sv:value>0acee215-82ca-4726-bd6b-3c0b9f658bce</sv:value>
       </sv:property>
       <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
       <sv:property sv:name="hipposysedit:node" sv:type="Boolean">
@@ -149,7 +149,7 @@
         <sv:value>hippotranslation:translated</sv:value>
       </sv:property>
       <sv:property sv:name="jcr:uuid" sv:type="String">
-        <sv:value>ccbf49eb-685b-4f90-aa25-f824d07deb60</sv:value>
+        <sv:value>4a088aa2-9a0a-4a95-94dd-81ef1c4b6472</sv:value>
       </sv:property>
       <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
       <sv:property sv:name="hippostd:holder" sv:type="String">
