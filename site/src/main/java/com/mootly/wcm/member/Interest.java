@@ -10,6 +10,9 @@
 package com.mootly.wcm.member;
 
 import java.math.BigDecimal;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.TimeZone;
 
 import javax.jcr.Session;
 
@@ -29,8 +32,7 @@ import org.slf4j.LoggerFactory;
 @PrimaryBean(primaryBeanClass=InterestDoc.class)
 @AdditionalBeans(additionalBeansToLoad=MemberPersonalInformation.class)
 @RequiredBeans(requiredBeans={MemberPersonalInformation.class})
-@FormFields(fieldNames={"section234A","section234B","section234C","section234ABC","TaxLiability","DueDate","IncomeTax",
-		"AmountShortfall","MonthShortfall"})
+@FormFields(fieldNames={"section234A","section234B","section234C","section234ABC"})
 
 public class Interest extends ITReturnComponent {
 
@@ -39,7 +41,19 @@ public class Interest extends ITReturnComponent {
 	@Override
 	public void doBeforeRender(HstRequest request, HstResponse response) {
 		super.doBeforeRender(request, response);
-	
+		
+		//current date
+		final Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("GMT"));
+		final Date currentdate=cal.getTime();
+		//conversion of date into string
+		String strDate=new Date().toString();
+		//current month
+		@SuppressWarnings("deprecation")
+		int currentdatemonth =currentdate.getMonth()+1;
+	    request.setAttribute("intmonth", currentdatemonth);
+	    //conversion of month into string
+	    String strmonth=strDate.substring(4,7);
+	    request.setAttribute("strmonth", strmonth);
 	}
 
 	@Override
