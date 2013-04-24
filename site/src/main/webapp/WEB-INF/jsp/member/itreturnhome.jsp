@@ -20,9 +20,9 @@
 			<c:forEach items="${pansForMember}" var="panForMember">				
 				<%
 					HippoFolder hf = (HippoFolder) pageContext.getAttribute("panForMember");
-					String assessmentYear = (String) request.getAttribute("assessmentYear");
+					String financialYear = (String) request.getAttribute("financialYear");
 					String itReturnType = "original";
-					String relPath = assessmentYear + "/" + itReturnType + "/" + MemberPersonalInformation.class.getSimpleName().toLowerCase();
+					String relPath = financialYear + "/" + itReturnType + "/" + MemberPersonalInformation.class.getSimpleName().toLowerCase();
 				    //out.println(relPath);
 				    MemberPersonalInformation memberPersonalInfo =  hf.getBean(relPath,MemberPersonalInformation.class);
 				    if (memberPersonalInfo != null) {
@@ -35,13 +35,13 @@
 				<c:if test="${not empty  memberPersonalInfo}">
 					<tr>
 						<td>
-							<hst:link var="viewLink" path="/member/itreturn/${assessmentYear}/original/${panForMember.name}/personalinformation.html"/>			
+							<hst:link var="viewLink" path="/member/itreturn/${financialYear}/original/${panForMember.name}/personalinformation.html"/>			
 							<span style="text-transform:uppercase;"><a href="${viewLink}"><c:out value="${panForMember.name}"/></a></span>		
 						</td>
 						<td><c:out value="${memberPersonalInfo.filingStatus}"/></td>
 						<td><c:out value="${memberPersonalInfo.name}"/></td>
 						<td>
-							<hst:link var="viewLink" path="/member/itreturn/${assessmentYear}/original/${panForMember.name}/personalinformation.html"/>
+							<hst:link var="viewLink" path="/member/itreturn/${financialYear}/original/${panForMember.name}/personalinformation.html"/>
 							<span style="font-size:10px;"><a href="${viewLink}">Continue</a></span>		
 						</td>
 					</tr>
@@ -54,7 +54,7 @@
 			<c:forEach items="${pansForMember}" var="panForMember">				
 				<%
 					HippoFolder hf = (HippoFolder) pageContext.getAttribute("panForMember");
-					String assessmentYear = (String) request.getAttribute("assessmentYear");
+					String assessmentYear = (String) request.getAttribute("financialYear");
 					String itReturnType = "revised";
 					String relPath = assessmentYear + "/" + itReturnType + "/" + MemberPersonalInformation.class.getSimpleName().toLowerCase();
 				    //out.println(relPath);
@@ -69,13 +69,13 @@
 				<c:if test="${not empty  memberPersonalInfo}">
 					<tr>
 						<td>
-							<hst:link var="viewLink" path="/member/itreturn/${assessmentYear}/revised/${panForMember.name}/personalinformation.html"/>			
+							<hst:link var="viewLink" path="/member/itreturn/${financialYear}/revised/${panForMember.name}/personalinformation.html"/>			
 							<span style="text-transform:uppercase;"><a href="${viewLink}"><c:out value="${panForMember.name}"/></a></span>		
 						</td>
 						<td><c:out value="${memberPersonalInfo.filingStatus}"/></td>
 						<td><c:out value="${memberPersonalInfo.name}"/></td>
 						<td>
-							<hst:link var="viewLink" path="/member/itreturn/${assessmentYear}/revised/${panForMember.name}/personalinformation.html"/>
+							<hst:link var="viewLink" path="/member/itreturn/${financialYear}/revised/${panForMember.name}/personalinformation.html"/>
 							<span style="font-size:10px;"><a href="${viewLink}">Continue</a></span>		
 						</td>
 					</tr>

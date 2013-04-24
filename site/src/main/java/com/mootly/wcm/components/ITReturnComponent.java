@@ -498,10 +498,10 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		if (hippoBeanMemberBase != null) {
 			memberRootFolderAbsolutePath = hippoBeanMemberBase.getPath();
 			//we need to get into pans sub folder 
-			List<HippoFolder> listOfFolders = hippoBeanMemberBase.getChildBeansByName("pans", HippoFolder.class);
-			if (listOfFolders != null && listOfFolders.size() > 0 ){
-				panFolder = listOfFolders.get(0);
-			}
+			panFolder = hippoBeanMemberBase.getBean("pan", HippoFolder.class) ;// .getChildBeansByName("pans", HippoFolder.class);
+			//if (listOfFolders != null && listOfFolders.size() > 0 ){
+			//	panFolder = listOfFolders.get(0);
+			//}
 		}
 		
 		baseRelPathToReturnDocuments = "members/" + getNormalizedMemberEmail() + "/pans/" + getPAN() + "/" + getFinancialYear() + "/" + getITReturnType();

@@ -12,6 +12,7 @@ package com.mootly.wcm.member;
 import java.util.List;
 
 import org.hippoecm.hst.content.beans.standard.HippoFolder;
+import org.hippoecm.hst.content.beans.standard.HippoFolderBean;
 import org.hippoecm.hst.core.component.HstComponentException;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
@@ -39,7 +40,7 @@ public class ITReturnHomePage extends ITReturnComponent {
 		
 		if (getPanFolder()!= null) {
 			//get all PANs for this member
-			List<HippoFolder> pansForMember = getPanFolder().getChildBeans(HippoFolder.class);
+			List<HippoFolderBean> pansForMember = getPanFolder().getFolders(); //.compareTo(hippoBean).getChildBeans(HippoFolder.class);
 			if (pansForMember != null) request.setAttribute("pansForMember", pansForMember);			
 		}
 	}
