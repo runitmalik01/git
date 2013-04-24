@@ -167,7 +167,7 @@ jQuery('#DateOfFilingYear').datepicker('destroy');
 							<tr>
 								<td><a href="${redirectURLToSamePage}/<c:out value="${adjustmentOfLosses.canonicalUUID}"/>/edit"><c:out value="${adjustmentOfLosses.nameOfHead}"/></a></td>
 								<td><c:out value="${adjustmentOfLosses.assessmentYear}"/></td>
-								<td><c:out value="${adjustmentOfLosses.amountStr}"/></td>
+								<td><c:out value="${adjustmentOfLosses.amount}"/></td>
 								<td><c:out value="${adjustmentOfLosses.DOBStr}"/></td>
 								<td><a href="${redirectURLToSamePage}/<c:out value="${adjustmentOfLosses.canonicalUUID}"/>/edit"><small>Edit</small></a>&nbsp;&nbsp;<a href="${redirectURLToSamePage}/<c:out value="${adjustmentOfLosses.canonicalUUID}"/>/delete"><small>Delete</small></a></td>
 					        </tr>
