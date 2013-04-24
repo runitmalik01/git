@@ -81,15 +81,6 @@ public class AdjustmentOfLossesCom extends HippoItem implements FormMapFiller {
     	}
     	return null;
     }
-    
-    public String getAmountStr() {
-    	if (Amount == null) Amount = getProperty("mootlywcm:Amount");
-    	if (Amount != null) {
-    		String amountStr = Double.toString(Amount);
-    		return amountStr;
-    	}
-    	return null;
-    }
 	
 	public final String getDueDate() {
 		if (DueDate == null) DueDate = getProperty("mootlywcm:DueDate");
