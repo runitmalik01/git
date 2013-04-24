@@ -39,29 +39,30 @@ else {
 	<h3 id="respond1">Interest under Section 234 A B C</h3>
 		<form id="frmdata" action="${actionUrl}" name="frmdata" method="post">
 		
-		<fieldset>
-		        <legend>Enter data in shaded boxes</legend>				
+		<fieldset>	       		
 				<table><tr>
 					<td><label>A.1 Select Due Date for filing of Income Tax Return</label></td>
-					<td><select id="ddate" onchange="int234();"><option value="7" selected="selected">31st July 2013<option value="9">30th Sept. 2013</select></td>
+					<td><select id="ddate" name="DueDate" onchange="int234();"><option value="7" selected="selected">31st July 2013<option value="9">30th Sept. 2013</select></td>
 				</tr>
 				<tr>
 					<td><label>A.2 Enter Total Tax Liability for the Assessment Year</label></td>
-					<td><input id="aytaxd" onchange="int234();" value="23400"/></td>
+					<td><input id="aytaxd" onchange="int234();" name="TaxLiability" value=""/></td>
 				</tr>
 				<tr>
 					<td><label>A.3 Enter Income Tax paid upto 31st March 2013</label></td>
-					<td><input id="aytaxp" onchange="int234();"/></td>
+					<td><input id="aytaxp" name="IncomeTax" onchange="int234();"/></td>
 				</tr>
 				<tr>
 					<td><label>A.4 Amount of shortfall in tax payment upto 31st March 2013</label></td>
-					<td><input id="aysfall" onchange="int234();"/></td>
+					<td><input id="aysfall" name="AmountShortfall" onchange="int234();"/></td>
 				</tr>
 				<tr>
 					<td><label>A.5 Month of Payment of Shortfall</label></td>
-					<td><select id="aytaxmp" class="validate[required] text-input" onchange="int234();">
+					<td>
+					<select id="aytaxmp" name="MonthShortfall" class="validate[required] text-input" onchange="int234();">
 					    <option value="" selected="selected">-Select Month-</option>
-					    <option value="3">Before March 2013<option value="4">April 2013<option value="5">May 2013<option value="6">June 2013<option value="7">July 2013<option value="8">August 2013<option value="9">September 2013<option value="10"> October 2013<option value="11">November 2013<option value="12">December 2013<option value="13">January 2013<option value="14">February 2013<option value="15">March 2013</select></td>
+					    <option value="3">Before March 2013<option value="4">April 2013<option value="5">May 2013<option value="6">June 2013<option value="7">July 2013<option value="8">August 2013<option value="9">September 2013<option value="10"> October 2013<option value="11">November 2013<option value="12">December 2013<option value="13">January 2014<option value="14">February 2014<option value="15">March 2014</select>   
+					</td>
 				</tr>
 				</table>				
 			</fieldset>	
@@ -187,6 +188,7 @@ else {
 	   	
   });
 </script>
+
 
 <!-- used for interest calculation -->
 <script type="text/javascript">
