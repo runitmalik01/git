@@ -29,7 +29,7 @@
         <sv:value>hippo:harddocument</sv:value>
       </sv:property>
       <sv:property sv:name="jcr:uuid" sv:type="String">
-        <sv:value>1d481dde-029e-4a61-a28c-a4ded133c1f4</sv:value>
+        <sv:value>0e508a94-e799-4bca-998b-bf9c6425b0e4</sv:value>
       </sv:property>
       <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
       <sv:property sv:name="hipposysedit:node" sv:type="Boolean">
@@ -42,7 +42,7 @@
       <sv:property sv:name="hipposysedit:uri" sv:type="String">
         <sv:value>http://www.onehippo.org/jcr/mootlywcm/2.0</sv:value>
       </sv:property>
-      <sv:node sv:name="deductions">
+      <sv:node sv:name="deduction">
         <sv:property sv:name="jcr:primaryType" sv:type="Name">
           <sv:value>hipposysedit:field</sv:value>
         </sv:property>
@@ -56,16 +56,16 @@
           <sv:value>false</sv:value>
         </sv:property>
         <sv:property sv:name="hipposysedit:path" sv:type="String">
-          <sv:value>mootlywcm:deductions</sv:value>
+          <sv:value>mootlywcm:deduction</sv:value>
         </sv:property>
         <sv:property sv:name="hipposysedit:primary" sv:type="Boolean">
           <sv:value>false</sv:value>
         </sv:property>
         <sv:property sv:name="hipposysedit:type" sv:type="String">
-          <sv:value>String</sv:value>
+          <sv:value>Boolean</sv:value>
         </sv:property>
       </sv:node>
-      <sv:node sv:name="relief89">
+      <sv:node sv:name="reliefeightynine">
         <sv:property sv:name="jcr:primaryType" sv:type="Name">
           <sv:value>hipposysedit:field</sv:value>
         </sv:property>
@@ -79,16 +79,16 @@
           <sv:value>false</sv:value>
         </sv:property>
         <sv:property sv:name="hipposysedit:path" sv:type="String">
-          <sv:value>mootlywcm:relief89</sv:value>
+          <sv:value>mootlywcm:reliefeightynine</sv:value>
         </sv:property>
         <sv:property sv:name="hipposysedit:primary" sv:type="Boolean">
           <sv:value>false</sv:value>
         </sv:property>
         <sv:property sv:name="hipposysedit:type" sv:type="String">
-          <sv:value>String</sv:value>
+          <sv:value>Boolean</sv:value>
         </sv:property>
       </sv:node>
-      <sv:node sv:name="relief9091">
+      <sv:node sv:name="reliefnintyone">
         <sv:property sv:name="jcr:primaryType" sv:type="Name">
           <sv:value>hipposysedit:field</sv:value>
         </sv:property>
@@ -102,13 +102,13 @@
           <sv:value>false</sv:value>
         </sv:property>
         <sv:property sv:name="hipposysedit:path" sv:type="String">
-          <sv:value>mootlywcm:relief9091</sv:value>
+          <sv:value>mootlywcm:reliefnintyone</sv:value>
         </sv:property>
         <sv:property sv:name="hipposysedit:primary" sv:type="Boolean">
           <sv:value>false</sv:value>
         </sv:property>
         <sv:property sv:name="hipposysedit:type" sv:type="String">
-          <sv:value>String</sv:value>
+          <sv:value>Boolean</sv:value>
         </sv:property>
       </sv:node>
       <sv:node sv:name="losses">
@@ -131,7 +131,7 @@
           <sv:value>false</sv:value>
         </sv:property>
         <sv:property sv:name="hipposysedit:type" sv:type="String">
-          <sv:value>String</sv:value>
+          <sv:value>Boolean</sv:value>
         </sv:property>
       </sv:node>
     </sv:node>
@@ -144,17 +144,17 @@
       <sv:property sv:name="jcr:primaryType" sv:type="Name">
         <sv:value>mootlywcm:PricingPlanDeductions</sv:value>
       </sv:property>
-      <sv:property sv:name="mootlywcm:deductions" sv:type="String">
-        <sv:value/>
+      <sv:property sv:name="mootlywcm:deduction" sv:type="Boolean">
+        <sv:value>false</sv:value>
       </sv:property>
-      <sv:property sv:name="mootlywcm:losses" sv:type="String">
-        <sv:value/>
+      <sv:property sv:name="mootlywcm:losses" sv:type="Boolean">
+        <sv:value>false</sv:value>
       </sv:property>
-      <sv:property sv:name="mootlywcm:relief89" sv:type="String">
-        <sv:value/>
+      <sv:property sv:name="mootlywcm:reliefeightynine" sv:type="Boolean">
+        <sv:value>false</sv:value>
       </sv:property>
-      <sv:property sv:name="mootlywcm:relief9091" sv:type="String">
-        <sv:value/>
+      <sv:property sv:name="mootlywcm:reliefnintyone" sv:type="Boolean">
+        <sv:value>false</sv:value>
       </sv:property>
     </sv:node>
   </sv:node>
@@ -231,18 +231,18 @@
           <sv:value>${cluster.id}.right</sv:value>
         </sv:property>
       </sv:node>
-      <sv:node sv:name="deductions">
+      <sv:node sv:name="deduction">
         <sv:property sv:name="jcr:primaryType" sv:type="Name">
           <sv:value>frontend:plugin</sv:value>
         </sv:property>
         <sv:property sv:name="caption" sv:type="String">
-          <sv:value>Deductions</sv:value>
+          <sv:value>Deduction</sv:value>
         </sv:property>
         <sv:property sv:name="engine" sv:type="String">
           <sv:value>${engine}</sv:value>
         </sv:property>
         <sv:property sv:name="field" sv:type="String">
-          <sv:value>deductions</sv:value>
+          <sv:value>deduction</sv:value>
         </sv:property>
         <sv:property sv:name="mode" sv:type="String">
           <sv:value>${mode}</sv:value>
@@ -268,7 +268,7 @@
           </sv:property>
         </sv:node>
       </sv:node>
-      <sv:node sv:name="relief89">
+      <sv:node sv:name="reliefeightynine">
         <sv:property sv:name="jcr:primaryType" sv:type="Name">
           <sv:value>frontend:plugin</sv:value>
         </sv:property>
@@ -279,7 +279,7 @@
           <sv:value>${engine}</sv:value>
         </sv:property>
         <sv:property sv:name="field" sv:type="String">
-          <sv:value>relief89</sv:value>
+          <sv:value>reliefeightynine</sv:value>
         </sv:property>
         <sv:property sv:name="mode" sv:type="String">
           <sv:value>${mode}</sv:value>
@@ -305,7 +305,7 @@
           </sv:property>
         </sv:node>
       </sv:node>
-      <sv:node sv:name="relief9091">
+      <sv:node sv:name="reliefnintyone">
         <sv:property sv:name="jcr:primaryType" sv:type="Name">
           <sv:value>frontend:plugin</sv:value>
         </sv:property>
@@ -316,7 +316,7 @@
           <sv:value>${engine}</sv:value>
         </sv:property>
         <sv:property sv:name="field" sv:type="String">
-          <sv:value>relief9091</sv:value>
+          <sv:value>reliefnintyone</sv:value>
         </sv:property>
         <sv:property sv:name="mode" sv:type="String">
           <sv:value>${mode}</sv:value>
