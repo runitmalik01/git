@@ -324,3 +324,7 @@ orderable
 [mootlywcm:screenfieldconfig] > hippo:compound, hippostd:relaxed orderable
 [mootlywcm:screenconfig] > hippostd:relaxed, mootlywcm:basedocument orderable
 
+[mootlywcm:PricingPlanDeductions] > hippo:compound, hippostd:relaxed orderable
+
+[mootlywcm:PricingPlanAdditionalServices] > hippo:compound, hippostd:relaxed orderable
+
