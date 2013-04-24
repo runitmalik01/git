@@ -9,22 +9,9 @@
 package com.mootly.wcm.member;
 
 
-import java.io.IOException;
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.jcr.RepositoryException;
-import javax.jcr.Session;
-
-import org.hippoecm.hst.content.beans.ObjectBeanManagerException;
-import org.hippoecm.hst.content.beans.ObjectBeanPersistenceException;
-import org.hippoecm.hst.content.beans.manager.workflow.WorkflowCallbackHandler;
-import org.hippoecm.hst.content.beans.manager.workflow.WorkflowPersistenceManager;
 import org.hippoecm.hst.core.component.HstComponentException;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
-import org.hippoecm.repository.reviewedactions.FullReviewedActionsWorkflow;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -37,20 +24,16 @@ import com.mootly.wcm.beans.CapitalAssetDocument;
 import com.mootly.wcm.beans.HouseProperty;
 import com.mootly.wcm.beans.MemberPersonalInformation;
 import com.mootly.wcm.beans.MemberRebateSectionEightyNine;
-import com.mootly.wcm.beans.OtherSourceIncome;
 import com.mootly.wcm.beans.SalaryIncomeDocument;
 import com.mootly.wcm.beans.compound.PreviousYearsSalaryInfo;
 import com.mootly.wcm.components.ITReturnComponent;
-import com.mootly.wcm.utils.ContentStructure;
-import com.mootly.wcm.utils.GoGreenUtil;
-import com.mootly.wcm.utils.UrlUtility;
 
 @PrimaryBean(primaryBeanClass=MemberRebateSectionEightyNine.class)
 @ChildBean(childBeanClass=PreviousYearsSalaryInfo.class)
 @AdditionalBeans(additionalBeansToLoad={MemberPersonalInformation.class,SalaryIncomeDocument.class,HouseProperty.class,CapitalAssetDocument.class})
 @RequiredBeans(requiredBeans={MemberPersonalInformation.class})
-@FormFields(fieldNames={"prevyear","previncome","prevarrears","prevtotal","prevtaxontotal","prevtaxincome","prevtaxdiff",
-		"salaryincome","otherincome","totalArrears","totalincomearrears","taxsalaryincome","taxarrears","Diff","taxRelief","computedtabletotal"})
+@FormFields(fieldNames={"prevyear","previncome","prevarrears","prevtotal","prevtaxontotal","prevtaxincome","prevtaxdiffer","salaryincome",
+		"totalArrears","totalincomearrears","taxsalaryincome","taxarrears","Diff","taxRelief","computedtabletotal"})
 public class RebateSection89 extends ITReturnComponent {
 	private static final Logger log = LoggerFactory.getLogger(RebateSection89.class);
 
@@ -58,8 +41,10 @@ public class RebateSection89 extends ITReturnComponent {
 	public void doBeforeRender(HstRequest request, HstResponse response) {
 		// TODO Auto-generated method stub
 		super.doBeforeRender(request, response);
+		if(log.isInfoEnabled()){
 		log.info("Member Rebate Section 89 page");
-   		request.getAttribute("salaryincomedocument");
+		}
+   		/*request.getAttribute("salaryincomedocument");
    		int decimalPlace = 2;
    		Calculations cal=new Calculations();
 	    float fSalaryIncome = cal.fetchSalaryIncomeValue(request,response);
@@ -77,8 +62,10 @@ public class RebateSection89 extends ITReturnComponent {
 		float fSecurities = cal.fetchSecurityValue(request,response);
 
 		float fTotal= fSalaryIncome + fOtherIncome + fHouseProperty + fCapitalGain + fSecurities;
+		if(log.isInfoEnabled()){
 		log.info("Total of all"+fTotal);
 		log.info("big decimal"+BigDecimal.valueOf(fTotal).toPlainString());
+		}
 		float fGrossTotal = fTotal-fAdjustLosses;
 		float fTaxableIncome= fGrossTotal-fDeduction;
 		request.setAttribute("Taxable", BigDecimal.valueOf(fTaxableIncome).setScale(decimalPlace,BigDecimal.ROUND_UP).toPlainString());
@@ -87,7 +74,7 @@ public class RebateSection89 extends ITReturnComponent {
 		float fIncomeTax= cal.fetchIncomeTaxValue(request,response,fTaxableIncome);
 		float fEduCess=(float) Math.round(fIncomeTax*0.03f);
 		float fIncomeTaxEduCess=fIncomeTax + fEduCess ;
-		request.setAttribute("IncomeTaxEduCess", BigDecimal.valueOf(fIncomeTaxEduCess).setScale(decimalPlace,BigDecimal.ROUND_UP).toPlainString());
+		request.setAttribute("IncomeTaxEduCess", BigDecimal.valueOf(fIncomeTaxEduCess).setScale(decimalPlace,BigDecimal.ROUND_UP).toPlainString());*/
 	}
 
 	@Override
@@ -99,7 +86,7 @@ public class RebateSection89 extends ITReturnComponent {
 
 
 
-	public void doBeforeRenderOld(HstRequest request, HstResponse response) {
+	/*public void doBeforeRenderOld(HstRequest request, HstResponse response) {
 		// TODO Auto-generated method stub
 		super.doBeforeRender(request, response);
 		log.info("This is Rebate Section 89 Page");
@@ -130,10 +117,10 @@ public class RebateSection89 extends ITReturnComponent {
 					/*int age=MemberAge.MemberAgeCalculate(objpersonal.getDOB());
 					log.info("this is age of member"+age);
 					request.setAttribute("age",age);*/
-					request.setAttribute("gender",objpersonal.getSex());
+					/*request.setAttribute("gender",objpersonal.getSex());
 					request.setAttribute("resistatus",objpersonal.getResident());
 					request.setAttribute("payer",objpersonal.getFilingStatus());
-					request.setAttribute("cbassyear", filing_year);
+					request.setAttribute("cbassyear", filing_year);*/
 					/*SalaryIncome objsalincom=new SalaryIncome();
 					ArrayList<SalaryIncomeDocument> arrLSalaryIncomeDocument =  objsalincom.fetchSalaryIncomeDocument(request, response);
 					if(null != arrLSalaryIncomeDocument){
@@ -143,7 +130,7 @@ public class RebateSection89 extends ITReturnComponent {
 							sumsal=sumsal+Float.parseFloat(objsaldoc.getGross_salary());
 						}
 					}*/
-					request.setAttribute("salaryincome", "230000");
+					/*request.setAttribute("salaryincome", "230000");
 					String path3=ContentStructure.getOtherIncomePathUpdate(request, modusername);
 					OtherSourceIncome objotherincome=(OtherSourceIncome)getObjectBeanManager(request).getObject(path3);
 					if(objotherincome!=null){
@@ -257,7 +244,7 @@ public class RebateSection89 extends ITReturnComponent {
 	 * @throws 
 	 * @author Priyank
 	 */
-	public void createMemberRebateSection89(HstRequest request,MemberRebateSectionEightyNine reb89){
+	/*public void createMemberRebateSection89(HstRequest request,MemberRebateSectionEightyNine reb89){
 		Session persistableSession = null;
 		WorkflowPersistenceManager wpm;
 		try {
@@ -274,13 +261,13 @@ public class RebateSection89 extends ITReturnComponent {
 			String modusername=username.replaceAll("@", "-at-").trim();
 			/*Create the path to Save Document in the Repository
 			 * */
-			log.info("this is user"+username);
+			/*log.info("this is user"+username);
 			final String itReturnFolderPath = ContentStructure.getMemberOriginalFilingPath(request, pan, filing_year, modusername);
 			/*CreateAndReturn method is used to Create the Document(Node) Of name NODE_NAME
 			 * NAMESPACE determine the Type of Node with Document Template
 			 * Also return the path of that Document
 			 * */
-			String updatePersonalReturnPath=ContentStructure.getRebateSection89(pan,filing_year,modusername);
+		/*	String updatePersonalReturnPath=ContentStructure.getRebateSection89(pan,filing_year,modusername);
 			MemberRebateSectionEightyNine updaterebateSection89 = (MemberRebateSectionEightyNine) wpm.getObject(updatePersonalReturnPath);
 			if(updaterebateSection89==null){
 				final String personalReturnPath = wpm.createAndReturn(itReturnFolderPath,MemberRebateSectionEightyNine.NAMESPACE ,  MemberRebateSectionEightyNine.NODE_NAME, true);
@@ -297,7 +284,7 @@ public class RebateSection89 extends ITReturnComponent {
 				/*MemberRebateSectionEightyNine
 				 *getObject method get the object at passed path in Repository.
 				 * */
-				MemberRebateSectionEightyNine rebateSection89 = (MemberRebateSectionEightyNine) wpm.getObject(personalReturnPath);
+			/*	MemberRebateSectionEightyNine rebateSection89 = (MemberRebateSectionEightyNine) wpm.getObject(personalReturnPath);
 
 				// update content properties
 				if (rebateSection89 != null) {
@@ -357,6 +344,6 @@ public class RebateSection89 extends ITReturnComponent {
 
 			wf.publish();
 		}
-	}
+	}*/
 
 }
