@@ -25,8 +25,6 @@ import org.hippoecm.hst.core.component.HstResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.mootly.wcm.beans.CapitalAssetDocument;
-import com.mootly.wcm.beans.CapitalAssetInformation;
 import com.mootly.wcm.beans.HouseProperty;
 import com.mootly.wcm.beans.InterestDocument;
 import com.mootly.wcm.beans.MemberDeductionScheduleVIA;
@@ -58,6 +56,11 @@ public class Calculations extends ITReturnComponent {
 		super.doBeforeRender(request, response);
 		log.warn("This is Start calculation Page");
 		member=(Member)request.getSession().getAttribute("user");
+		String username=member.getUserName().trim();
+		modusername=username.replaceAll("@", "-at-").trim();
+		String filing_year = request.getRequestContext().getResolvedSiteMapItem().getParameter("assessmentYear");
+		//itReturnType = request.getRequestContext().getResolvedSiteMapItem().getParameter("itReturnType"); //original versus amend
+		pan = request.getRequestContext().getResolvedSiteMapItem().getParameter("pan"); //original versus amend
 		/*pan=(String) request.getSession().getAttribute("pan");
 		if(null == pan)
 		{
@@ -69,61 +72,57 @@ public class Calculations extends ITReturnComponent {
 			filing_year ="2012-2013";
 		}*/
 		
-		String username=member.getUserName().trim();
-		modusername=username.replaceAll("@", "-at-").trim();
-		filing_year = request.getRequestContext().getResolvedSiteMapItem().getParameter("assessmentYear");
-		//itReturnType = request.getRequestContext().getResolvedSiteMapItem().getParameter("itReturnType"); //original versus amend
-		pan = request.getRequestContext().getResolvedSiteMapItem().getParameter("pan"); //original versus amend
+		
 		log.info("inside fetchSalaryIncomeDocument--->member:-"+member);
 		log.info("inside fetchSalaryIncomeDocument--->member:-"+filing_year);
 		log.info("inside fetchSalaryIncomeDocument--->member:-"+pan);
 		if(member!=null){
 
 			// fetching Salary Income value
-			float fSalaryIncome = fetchSalaryIncomeValue(request,response);
+			double fSalaryIncome = fetchSalaryIncomeValue(request,response);
 			// fetching OtherIncome value
-			float fOtherIncome = fetchOtherIncomeValue(request,response);
+			double fOtherIncome = fetchOtherIncomeValue(request,response);
 			//fetching house property values
-			float fHouseProperty = fetchHousePropertyValue(request,response);
+			double fHouseProperty = fetchHousePropertyValue(request,response);
 			//fetching capital gain values
-			float fCapitalGain = fetchCapitalGainValue(request,response);
+			double fCapitalGain = fetchCapitalGainValue(request,response);
 			//fetching TCS document values
-			float fTcsDoc = fetchTcsDocumentValue(request,response);
+			double fTcsDoc = fetchTcsDocumentValue(request,response);
 			// fetching Deduction  value
-			float fDeduction = fetchDeductionsValue(request,response);
+			double fDeduction = fetchDeductionsValue(request,response);
 			// fetching Losses value
-			float fAdjustLosses = fetchLossesValue(request,response);
+			double fAdjustLosses = fetchLossesValue(request,response);
 			// fetching Securities value
-			float fSecurities = fetchSecurityValue(request,response);
+			double fSecurities = fetchSecurityValue(request,response);
 			// fetching Interest value
-			float fInterest = fetchinterestValue(request,response);
+			double fInterest = fetchinterestValue(request,response);
 			// fetching Rebate89  value
-			float fRebate89 = fetchrebate89Value(request,response);
+			double fRebate89 = fetchrebate89Value(request,response);
 			// fetching Rebate 90-91 value
-			float fRebate90_91 = fetchrebate90_91Value(request,response);
+			double fRebate90_91 = fetchrebate90_91Value(request,response);
 			// fetching TDS from salary value
-			float ftdsSalary=fetchTdsfromsalaryValue(request,response);
+			double ftdsSalary=fetchTdsfromsalaryValue(request,response);
 
-			float flessRebate=fRebate89 + fRebate90_91;
-			float ftdsother=fetchTdsOtherValue(request,response);
-			float fTotal= fSalaryIncome + fOtherIncome + fHouseProperty + fCapitalGain + fSecurities;
+			double flessRebate=fRebate89 + fRebate90_91;
+			double ftdsother=fetchTdsOtherValue(request,response);
+			double fTotal= fSalaryIncome + fOtherIncome + fHouseProperty + fCapitalGain + fSecurities;
 			log.info("Total of all"+fTotal);
 			log.info("big decimal"+BigDecimal.valueOf(fTotal).toPlainString());
-			float fGrossTotal = fTotal-fAdjustLosses;
-			float fTaxableIncome= fGrossTotal-fDeduction;
-			//float fIncomeTax=(float)Math.round(fTaxableIncome*(0.1f));
+			double fGrossTotal = fTotal-fAdjustLosses;
+			double fTaxableIncome= fGrossTotal-fDeduction;
+			//double fIncomeTax=(double)Math.round(fTaxableIncome*(0.1f));
 			// for fetching income tax according to slab rates
-			float fIncomeTax= fetchIncomeTaxValue(request,response,fTaxableIncome);
+			double fIncomeTax= fetchIncomeTaxValue(request,response,fTaxableIncome);
 			log.info("income tax is"+fIncomeTax);
-			float fEduCess=(float) Math.round(fIncomeTax*0.03f);
-			float fIncomeTaxEduCess=fIncomeTax + fEduCess ;
-			float fTaxafterrebate= fIncomeTaxEduCess - flessRebate;
-			float fselfasses =0.0f;
-			float fLessPrepaidTax = ftdsother +  ftdsSalary + fTcsDoc+ fselfasses;
-			float fTax_Payable =(fTaxafterrebate + fInterest - fLessPrepaidTax);
-			float fNormaltax= 0.0f;
-			float fSpecialtax= 0.0f;
-			float fSurcharge= 0.0f;
+			double fEduCess=(double) Math.round(fIncomeTax*0.03f);
+			double fIncomeTaxEduCess=fIncomeTax + fEduCess ;
+			double fTaxafterrebate= fIncomeTaxEduCess - flessRebate;
+			double fselfasses =0.0f;
+			double fLessPrepaidTax = ftdsother +  ftdsSalary + fTcsDoc+ fselfasses;
+			double fTax_Payable =(fTaxafterrebate + fInterest - fLessPrepaidTax);
+			double fNormaltax= 0.0f;
+			double fSpecialtax= 0.0f;
+			double fSurcharge= 0.0f;
 			log.info("dhvdhdg################"+fCapitalGain);
 			int decimalPlace = 2;
 
@@ -202,9 +201,9 @@ public class Calculations extends ITReturnComponent {
 	 * @author Abhishek
 	 */
 	@SuppressWarnings("unused")
-	public float  fetchSalaryIncomeValue(HstRequest request,HstResponse response) {
+	public double  fetchSalaryIncomeValue(HstRequest request,HstResponse response) {
 		// TODO Auto-generated method stub
-		float fSalary = 0.0f;
+		double fSalary = 0.0f;
 		log.info("inside fetchSalaryIncomeDocument--->before try:-");
 		try {
 
@@ -215,7 +214,7 @@ public class Calculations extends ITReturnComponent {
 			objSalaryIncomeDocument = (SalaryIncomeDocument)getObjectBeanManager(request).getObject(itReturnFolderPath);
 			log.info("after objjjjjjjjjjjjsalaryincome documenttttttttttttttttt");
 			if(objSalaryIncomeDocument!=null){
-				fSalary = Float.parseFloat(objSalaryIncomeDocument.getTotal());
+				fSalary = Double.parseDouble(objSalaryIncomeDocument.getTotal());
 				log.info("total is "+fSalary);
 			}
 			
@@ -231,9 +230,9 @@ public class Calculations extends ITReturnComponent {
 	}
 
 
-	public float   fetchOtherIncomeValue(HstRequest request,HstResponse response) {
+	public double   fetchOtherIncomeValue(HstRequest request,HstResponse response) {
 		// TODO Auto-generated method stub
-		float fOtherIncome= 0;
+		double fOtherIncome= 0;
 		log.info("inside fetchOtherIncomeDocument--->before try:-");
 		try {
 
@@ -241,7 +240,7 @@ public class Calculations extends ITReturnComponent {
 			OtherSourceIncome	objOtherSourceIncome = (OtherSourceIncome)getObjectBeanManager(request).getObject(itReturnFolderPathFetch);
 			log.info("Calculation->fetchSalaryIncomeDocument--->objSalaryIncomeDocument:"+objOtherSourceIncome);
 			if(objOtherSourceIncome!=null){
-				fOtherIncome = Float.parseFloat(objOtherSourceIncome.getTaxable_income());
+				fOtherIncome =  Double.parseDouble(objOtherSourceIncome.getTaxable_income());
 				log.info("Calculation->fetchSalaryIncomeDocument--->arrlSalaryIncome list:"+fOtherIncome);
 			}
 
@@ -254,9 +253,9 @@ public class Calculations extends ITReturnComponent {
 		return fOtherIncome;
 	}
 
-	public float  fetchHousePropertyValue(HstRequest request,HstResponse response) {
+	public double  fetchHousePropertyValue(HstRequest request,HstResponse response) {
 		// TODO Auto-generated method stub
-		float fHouseProperty=0.0f;
+		double fHouseProperty=0.0f;
 		try {
 
 
@@ -265,7 +264,7 @@ public class Calculations extends ITReturnComponent {
 			HouseProperty houseincome =(HouseProperty)getObjectBeanManager(request).getObject(path);
 			request.setAttribute("houseincome", houseincome);
 			if(houseincome != null){
-				//fHouseProperty = Float.parseFloat(houseincome.getTotalIncome());
+				//fHouseProperty = double.parsedouble(houseincome.getTotalIncome());
 
 				log.info("object is"+fHouseProperty);
 			}
@@ -279,9 +278,9 @@ public class Calculations extends ITReturnComponent {
 
 	}
 
-	public float   fetchCapitalGainValue(HstRequest request,HstResponse response) {
+	public double   fetchCapitalGainValue(HstRequest request,HstResponse response) {
 		// TODO Auto-generated method stub
-		float fCapitalGain=0.0f;
+		double fCapitalGain=0.0f;
 		log.info("inside fetchOtherIncomeDocument--->before try:-");
 		try {
 			String path=ContentStructure.getMemberAssetDocPath(pan,filing_year, modusername);
@@ -290,7 +289,7 @@ public class Calculations extends ITReturnComponent {
 			request.setAttribute("capital", capital);
 			if(capital != null){
 
-				fCapitalGain = Float.parseFloat(capital.getCapitalGain());
+				fCapitalGain =  Double.parseDouble(capital.getCapitalGain());
 
 				log.info("object is"+fCapitalGain);
 			}
@@ -306,9 +305,9 @@ public class Calculations extends ITReturnComponent {
 		return fCapitalGain;
 	}
 
-	public float  fetchTcsDocumentValue(HstRequest request,HstResponse response) {
+	public double  fetchTcsDocumentValue(HstRequest request,HstResponse response) {
 		// TODO Auto-generated method stub
-		float fTcsDoc=0.0f;
+		double fTcsDoc=0.0f;
 		log.info("inside fetchtcsDocument--->before try:-");
 		try {
 
@@ -318,7 +317,7 @@ public class Calculations extends ITReturnComponent {
 
 			request.setAttribute("fetchtcs", fetchtcs);
 			if(fetchtcs!= null){
-				fTcsDoc = Float.parseFloat(fetchtcs.getAmountClaimed());
+				fTcsDoc =  Double.parseDouble(fetchtcs.getAmountClaimed());
 
 				log.warn("security object is"+fetchtcs.getName());
 				log.info("fTcsDoc isssssssss"+fTcsDoc);
@@ -333,9 +332,9 @@ public class Calculations extends ITReturnComponent {
 
 		return fTcsDoc;
 	}
-	public float  fetchDeductionsValue(HstRequest request,HstResponse response) {
+	public double  fetchDeductionsValue(HstRequest request,HstResponse response) {
 		// TODO Auto-generated method stub
-		float fDeduction= 0.0f;
+		double fDeduction= 0.0f;
 		log.info("inside fetchtcsDocument--->before try:-");
 		try {
 
@@ -345,7 +344,7 @@ public class Calculations extends ITReturnComponent {
 
 			request.setAttribute("objDeduction", objDeduction);
 			if(objDeduction!= null){
-				fDeduction = Float.parseFloat(objDeduction.getTotal());
+				fDeduction =  Double.parseDouble(objDeduction.getTotal());
 
 			}		
 
@@ -357,9 +356,9 @@ public class Calculations extends ITReturnComponent {
 
 		return fDeduction;
 	}
-	public float  fetchLossesValue(HstRequest request,HstResponse response) {
+	public double  fetchLossesValue(HstRequest request,HstResponse response) {
 		// TODO Auto-generated method stub
-		float fAdjustLosses= 0.0f;
+		double fAdjustLosses= 0.0f;
 		log.info("inside fetchtcsDocument--->before try:-");
 		try {
 
@@ -369,7 +368,7 @@ public class Calculations extends ITReturnComponent {
 
 			request.setAttribute("objDeduction", objDeduction);
 			if(objDeduction!= null){
-				fAdjustLosses = Float.parseFloat(objDeduction.getTotal());
+				fAdjustLosses =  Double.parseDouble(objDeduction.getTotal());
 
 			}		
 
@@ -381,9 +380,9 @@ public class Calculations extends ITReturnComponent {
 
 		return fAdjustLosses;
 	}
-	public float  fetchSecurityValue(HstRequest request,HstResponse response) {
+	public double  fetchSecurityValue(HstRequest request,HstResponse response) {
 		// TODO Auto-generated method stub
-		float fSecurities = 0.0f;
+		double fSecurities = 0.0f;
 		log.info("inside fetchtcsDocument--->before try:-");
 		try {
 
@@ -393,7 +392,7 @@ public class Calculations extends ITReturnComponent {
 
 			request.setAttribute("security", objSecurity);
 			if(objSecurity != null){
-				fSecurities = Float.parseFloat(objSecurity.getCapitalGain());
+				fSecurities =  Double.parseDouble(objSecurity.getCapitalGain());
 				log.info("securities is"+fSecurities);
 			}		
 
@@ -403,9 +402,9 @@ public class Calculations extends ITReturnComponent {
 		}
 		return fSecurities;
 	}
-	public float  fetchinterestValue(HstRequest request,HstResponse response) {
+	public double  fetchinterestValue(HstRequest request,HstResponse response) {
 		// TODO Auto-generated method stub
-		float fInterest = 0.0f;
+		double fInterest = 0.0f;
 		log.info("inside fetchtcsDocument--->before try:-");
 		try {
 
@@ -415,7 +414,7 @@ public class Calculations extends ITReturnComponent {
 
 			request.setAttribute("objInterestDocument", objInterestDocument);
 			if(objInterestDocument != null){
-				fInterest = Float.parseFloat(objInterestDocument.getSection234A())+ Float.parseFloat(objInterestDocument.getSection234B())+ Float.parseFloat(objInterestDocument.getSection234C());
+				fInterest =  Double.parseDouble(objInterestDocument.getSection234A())+  Double.parseDouble(objInterestDocument.getSection234B())+  Double.parseDouble(objInterestDocument.getSection234C());
 			}		log.info("tooooootalllllll isssss"+fInterest);
 
 		}catch (ObjectBeanManagerException e) {
@@ -424,9 +423,9 @@ public class Calculations extends ITReturnComponent {
 		}
 		return fInterest;
 	}
-	public float  fetchrebate89Value(HstRequest request,HstResponse response) {
+	public double  fetchrebate89Value(HstRequest request,HstResponse response) {
 		// TODO Auto-generated method stub
-		float fRebate89 = 0.0f;
+		double fRebate89 = 0.0f;
 		log.info("inside fetchtcsDocument--->before try:-");
 		try {
 
@@ -436,7 +435,7 @@ public class Calculations extends ITReturnComponent {
 
 			request.setAttribute("objRebate89", objRebate89);
 			if(objRebate89 != null){
-				fRebate89 = Float.parseFloat(objRebate89.getTaxRelief());
+				fRebate89 =  Double.parseDouble(objRebate89.getTaxRelief());
 			}		
 
 		}catch (ObjectBeanManagerException e) {
@@ -445,9 +444,9 @@ public class Calculations extends ITReturnComponent {
 		}
 		return fRebate89;
 	}
-	public float  fetchrebate90_91Value(HstRequest request,HstResponse response) {
+	public double  fetchrebate90_91Value(HstRequest request,HstResponse response) {
 		// TODO Auto-generated method stub
-		float fRebate90 = 0.0f;
+		double fRebate90 = 0.0f;
 		log.info("inside fetchtcsDocument--->before try:-");
 		try {
 
@@ -457,7 +456,7 @@ public class Calculations extends ITReturnComponent {
 
 			request.setAttribute("objRebate90", objRebate90);
 			if(objRebate90 != null){
-				fRebate90 = Float.parseFloat(objRebate90.getSection90()) + Float.parseFloat(objRebate90.getSection91());
+				fRebate90 =  Double.parseDouble(objRebate90.getSection90()) +  Double.parseDouble(objRebate90.getSection91());
 			}		
 
 		}catch (ObjectBeanManagerException e) {
@@ -467,9 +466,9 @@ public class Calculations extends ITReturnComponent {
 		return fRebate90;
 	}
 
-	public float  fetchTdsfromsalaryValue(HstRequest request,HstResponse response) {
+	public double  fetchTdsfromsalaryValue(HstRequest request,HstResponse response) {
 		// TODO Auto-generated method stub
-		float fTdssalry = 0.0f;
+		double fTdssalry = 0.0f;
 		log.info("inside fetchtcsDocument--->before try:-");
 		try {
 
@@ -479,7 +478,7 @@ public class Calculations extends ITReturnComponent {
 
 			request.setAttribute("objtdssalry", objtdssalry);
 			if(objtdssalry != null){
-				fTdssalry = Float.parseFloat(objtdssalry.getTotal_Value());
+				fTdssalry =  Double.parseDouble(objtdssalry.getTotal_Value());
 			}		
 
 		}catch (ObjectBeanManagerException e) {
@@ -488,9 +487,9 @@ public class Calculations extends ITReturnComponent {
 		}
 		return fTdssalry;
 	}
-	public float  fetchTdsOtherValue(HstRequest request,HstResponse response) {
+	public double  fetchTdsOtherValue(HstRequest request,HstResponse response) {
 		// TODO Auto-generated method stub
-		float fTdsother = 0.0f;
+		double fTdsother = 0.0f;
 		log.info("inside fetchtcsDocument--->before try:-");
 		try {
 
@@ -500,7 +499,7 @@ public class Calculations extends ITReturnComponent {
 
 			request.setAttribute("objtdsother", objtdsother);
 			if(objtdsother != null){
-				fTdsother = Float.parseFloat(objtdsother.getTotal_Value());
+				fTdsother =  Double.parseDouble(objtdsother.getTotal_Value());
 			}		
 
 		}catch (ObjectBeanManagerException e) {
@@ -509,9 +508,9 @@ public class Calculations extends ITReturnComponent {
 		}
 		return fTdsother;
 	}
-	public float  fetchIncomeTaxValue(HstRequest request,HstResponse response,float fTaxableIncome) {
+	public double  fetchIncomeTaxValue(HstRequest request,HstResponse response,double fTaxableIncome) {
 		// TODO Auto-generated method stub
-		float fIncomeTax = 0.0f;
+		double fIncomeTax = 0.0f;
 		log.info("inside fetchtcsDocument--->before try:-");
 		try {
 			String path=ContentStructure.getPersonalDocumentPath(pan,filing_year,modusername);
@@ -526,7 +525,7 @@ public class Calculations extends ITReturnComponent {
 			log.info("dob currentdate1 date  is"+age.MemberAgeCalculate(dob));
 			int Age = age.MemberAgeCalculate(dob);
 			log.info("age is"+Age);
-			//if(filing_year == "2012-2013") { 
+			if(filing_year == "2012-2013") { 
 				log.info("i am fetching income tax "+filing_year);
 				log.info("value of taxable income is"+fTaxableIncome);
 				if (document.getSex().matches("M")){
@@ -537,26 +536,26 @@ public class Calculations extends ITReturnComponent {
 						log.info("value of taxable income i male"+fTaxableIncome);
 						if (fTaxableIncome <= 180000.0f && fTaxableIncome !=0.0f ) {
 							log.info("Male is there");
-							float fIncomeTax1=0.0f;
+							double fIncomeTax1=0.0f;
 							return fIncomeTax1;
 						}
 						else if (fTaxableIncome > 180000.0f && fTaxableIncome <= 500000.0f){
-							float A = (float) ((fTaxableIncome - 200000.0f) * 0.1); 
-							float fIncomeTax1 = Math.round((A)* 100) / 100;
+							double A = (double) ((fTaxableIncome - 200000.0f) * 0.1); 
+							double fIncomeTax1 = Math.round((A)* 100) / 100;
 							log.info("Tax is between 2000001 and 500000");
 							return fIncomeTax1;
 						}
 						else if (fTaxableIncome > 500001.0f && fTaxableIncome <= 800000.0f){
 							log.info(" First-->Second Else IF condition");
-							float A = (float) (((fTaxableIncome - 500000.0f) * 0.2) + 32000.0f); 
-							float fIncomeTax1 = Math.round((A)* 100) / 100;
+							double A = (double) (((fTaxableIncome - 500000.0f) * 0.2) + 32000.0f); 
+							double fIncomeTax1 = Math.round((A)* 100) / 100;
 							log.info("Tax is between 500001 and 1000000");
 							return fIncomeTax1;
 						}
 						else if (fTaxableIncome >800000.0f){
 							log.info(" First-->Third Else IF condition");
-							float A = (float) (((fTaxableIncome - 800000.0f) * 0.3) + 92000.0f); 
-							float fIncomeTax1 = Math.round((A)* 100) / 100;
+							double A = (double) (((fTaxableIncome - 800000.0f) * 0.3) + 92000.0f); 
+							double fIncomeTax1 = Math.round((A)* 100) / 100;
 							log.info("Tax is more then 1000000");
 							return fIncomeTax1;
 
@@ -566,26 +565,26 @@ public class Calculations extends ITReturnComponent {
 						log.info("value of taxable income i male"+fTaxableIncome);
 						if (fTaxableIncome <= 250000.0f && fTaxableIncome !=0.0f ) {
 							log.info("Male is there");
-							float fIncomeTax1=0.0f;
+							double fIncomeTax1=0.0f;
 							return fIncomeTax1;
 						}
 						else if (fTaxableIncome > 250000.0f && fTaxableIncome <= 500000.0f){
-							float A = (float) ((fTaxableIncome - 250000.0f) * 0.1); 
-							float fIncomeTax1 = Math.round((A)* 100) / 100;
+							double A = (double) ((fTaxableIncome - 250000.0f) * 0.1); 
+							double fIncomeTax1 = Math.round((A)* 100) / 100;
 							log.info("Tax is between 2000001 and 500000");
 							return fIncomeTax1;
 						}
 						else if (fTaxableIncome > 500001.0f && fTaxableIncome <= 800000.0f){
 							log.info(" First-->Second Else IF condition");
-							float A = (float) (((fTaxableIncome - 500000.0f) * 0.2) + 25000.0f); 
-							float fIncomeTax1 = Math.round((A)* 100) / 100;
+							double A = (double) (((fTaxableIncome - 500000.0f) * 0.2) + 25000.0f); 
+							double fIncomeTax1 = Math.round((A)* 100) / 100;
 							log.info("Tax is between 500001 and 1000000");
 							return fIncomeTax1;
 						}
 						else if (fTaxableIncome >800000.0f){
 							log.info(" First-->Third Else IF condition");
-							float A = (float) (((fTaxableIncome - 800000.0f) * 0.3) + 85000.0f); 
-							float fIncomeTax1 = Math.round((A)* 100) / 100;
+							double A = (double) (((fTaxableIncome - 800000.0f) * 0.3) + 85000.0f); 
+							double fIncomeTax1 = Math.round((A)* 100) / 100;
 							log.info("Tax is more then 1000000");
 							return fIncomeTax1;
 
@@ -600,28 +599,28 @@ public class Calculations extends ITReturnComponent {
 
 						if (fTaxableIncome <= 190000.0f && fTaxableIncome !=0.0f ) {
 							log.info("FeMale is there");
-							float fIncomeTax1 = 0.0f;
+							double fIncomeTax1 = 0.0f;
 							return fIncomeTax1;
 
 						}
 						else if (fTaxableIncome > 190000.0f && fTaxableIncome <= 500000.0f){
-							float A = (float) ((fTaxableIncome - 190000.0f) * 0.1); 
+							double A = (double) ((fTaxableIncome - 190000.0f) * 0.1); 
 
-							float fIncomeTax1 = Math.round((A )* 100) / 100;
+							double fIncomeTax1 = Math.round((A )* 100) / 100;
 							log.info("Tax is between 2000001 and 500000");
 							return fIncomeTax1;
 						}
 						else if (fTaxableIncome > 500001.0f && fTaxableIncome <= 800000.0f){
 							log.info(" First-->Second Else IF condition");
-							float A = (float) (((fTaxableIncome - 500000.0f) * 0.2) + 32000.0f); 
-							float fIncomeTax1 = Math.round((A)* 100) / 100;
+							double A = (double) (((fTaxableIncome - 500000.0f) * 0.2) + 32000.0f); 
+							double fIncomeTax1 = Math.round((A)* 100) / 100;
 							log.info("Tax is between 500001 and 1000000");
 							return fIncomeTax1;
 						}
 						else if (fTaxableIncome > 800000.0f){
 							log.info(" First-->Third Else IF condition");
-							float A = (float) (((fTaxableIncome - 1000000.0f) * 0.3) + 91000.0f); 
-							float fIncomeTax1 = Math.round((A )* 100) / 100;
+							double A = (double) (((fTaxableIncome - 1000000.0f) * 0.3) + 91000.0f); 
+							double fIncomeTax1 = Math.round((A )* 100) / 100;
 							log.info("Tax is more then 1000000");
 							return fIncomeTax1;
 
@@ -630,32 +629,34 @@ public class Calculations extends ITReturnComponent {
 						log.info("cinior citizen female");
 						if (fTaxableIncome <= 250000.0f && fTaxableIncome !=0.0f ) {
 							log.info("feMale is there");
-							float fIncomeTax1=0.0f;
+							double fIncomeTax1=0.0f;
 							return fIncomeTax1;
 						}
 						else if (fTaxableIncome > 250000.0f && fTaxableIncome <= 500000.0f){
-							float A = (float) ((fTaxableIncome - 250000.0f) * 0.1); 
-							float fIncomeTax1 = Math.round((A)* 100) / 100;
+							double A = (double) ((fTaxableIncome - 250000.0f) * 0.1); 
+							double fIncomeTax1 = Math.round((A)* 100) / 100;
 							log.info("Tax is between 2000001 and 500000");
 							return fIncomeTax1;
 						}
 						else if (fTaxableIncome > 500001.0f && fTaxableIncome <= 800000.0f){
 							log.info(" First-->Second Else IF condition");
-							float A = (float) (((fTaxableIncome - 500000.0f) * 0.2) + 25000.0f); 
-							float fIncomeTax1 = Math.round((A)* 100) / 100;
+							double A = (double) (((fTaxableIncome - 500000.0f) * 0.2) + 25000.0f); 
+							double fIncomeTax1 = Math.round((A)* 100) / 100;
 							log.info("Tax is between 500001 and 1000000");
 							return fIncomeTax1;
 						}
 						else if (fTaxableIncome >800000.0f){
 							log.info(" First-->Third Else IF condition");
-							float A = (float) (((fTaxableIncome - 800000.0f) * 0.3) + 85000.0f); 
-							float fIncomeTax1 = Math.round((A)* 100) / 100;
+							double A = (double) (((fTaxableIncome - 800000.0f) * 0.3) + 85000.0f); 
+							double fIncomeTax1 = Math.round((A)* 100) / 100;
 							log.info("Tax is more then 1000000");
 							return fIncomeTax1;
 
 						}
 					}
 				}
+
+			}
 		}
 		catch (ObjectBeanManagerException e) {
 			// TODO Auto-generated catch block
