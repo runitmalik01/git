@@ -29,7 +29,7 @@
         <sv:value>hippo:harddocument</sv:value>
       </sv:property>
       <sv:property sv:name="jcr:uuid" sv:type="String">
-        <sv:value>248bb02b-393b-40a0-8799-51052c376cb3</sv:value>
+        <sv:value>ed6e23cc-b6bd-4cb8-b403-b95fa170b709</sv:value>
       </sv:property>
       <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
       <sv:property sv:name="hipposysedit:node" sv:type="Boolean">
@@ -62,10 +62,10 @@
           <sv:value>false</sv:value>
         </sv:property>
         <sv:property sv:name="hipposysedit:type" sv:type="String">
-          <sv:value>String</sv:value>
+          <sv:value>Boolean</sv:value>
         </sv:property>
       </sv:node>
-      <sv:node sv:name="othersourcewithinterest">
+      <sv:node sv:name="othersourceinterest">
         <sv:property sv:name="jcr:primaryType" sv:type="Name">
           <sv:value>hipposysedit:field</sv:value>
         </sv:property>
@@ -79,16 +79,16 @@
           <sv:value>false</sv:value>
         </sv:property>
         <sv:property sv:name="hipposysedit:path" sv:type="String">
-          <sv:value>mootlywcm:othersourcewithinterest</sv:value>
+          <sv:value>mootlywcm:othersourceinterest</sv:value>
         </sv:property>
         <sv:property sv:name="hipposysedit:primary" sv:type="Boolean">
           <sv:value>false</sv:value>
         </sv:property>
         <sv:property sv:name="hipposysedit:type" sv:type="String">
-          <sv:value>String</sv:value>
+          <sv:value>Boolean</sv:value>
         </sv:property>
       </sv:node>
-      <sv:node sv:name="othersurceagricul">
+      <sv:node sv:name="othersourceagricul">
         <sv:property sv:name="jcr:primaryType" sv:type="Name">
           <sv:value>hipposysedit:field</sv:value>
         </sv:property>
@@ -102,13 +102,13 @@
           <sv:value>false</sv:value>
         </sv:property>
         <sv:property sv:name="hipposysedit:path" sv:type="String">
-          <sv:value>mootlywcm:othersurceagricul</sv:value>
+          <sv:value>mootlywcm:othersourceagricul</sv:value>
         </sv:property>
         <sv:property sv:name="hipposysedit:primary" sv:type="Boolean">
           <sv:value>false</sv:value>
         </sv:property>
         <sv:property sv:name="hipposysedit:type" sv:type="String">
-          <sv:value>String</sv:value>
+          <sv:value>Boolean</sv:value>
         </sv:property>
       </sv:node>
       <sv:node sv:name="houseproperty">
@@ -131,7 +131,7 @@
           <sv:value>false</sv:value>
         </sv:property>
         <sv:property sv:name="hipposysedit:type" sv:type="String">
-          <sv:value>String</sv:value>
+          <sv:value>Boolean</sv:value>
         </sv:property>
       </sv:node>
       <sv:node sv:name="capitalgain">
@@ -154,30 +154,7 @@
           <sv:value>false</sv:value>
         </sv:property>
         <sv:property sv:name="hipposysedit:type" sv:type="String">
-          <sv:value>String</sv:value>
-        </sv:property>
-      </sv:node>
-      <sv:node sv:name="partner">
-        <sv:property sv:name="jcr:primaryType" sv:type="Name">
-          <sv:value>hipposysedit:field</sv:value>
-        </sv:property>
-        <sv:property sv:name="hipposysedit:mandatory" sv:type="Boolean">
-          <sv:value>false</sv:value>
-        </sv:property>
-        <sv:property sv:name="hipposysedit:multiple" sv:type="Boolean">
-          <sv:value>false</sv:value>
-        </sv:property>
-        <sv:property sv:name="hipposysedit:ordered" sv:type="Boolean">
-          <sv:value>false</sv:value>
-        </sv:property>
-        <sv:property sv:name="hipposysedit:path" sv:type="String">
-          <sv:value>mootlywcm:partner</sv:value>
-        </sv:property>
-        <sv:property sv:name="hipposysedit:primary" sv:type="Boolean">
-          <sv:value>false</sv:value>
-        </sv:property>
-        <sv:property sv:name="hipposysedit:type" sv:type="String">
-          <sv:value>String</sv:value>
+          <sv:value>Boolean</sv:value>
         </sv:property>
       </sv:node>
       <sv:node sv:name="business">
@@ -200,10 +177,10 @@
           <sv:value>false</sv:value>
         </sv:property>
         <sv:property sv:name="hipposysedit:type" sv:type="String">
-          <sv:value>String</sv:value>
+          <sv:value>Boolean</sv:value>
         </sv:property>
       </sv:node>
-      <sv:node sv:name="presumBusiness">
+      <sv:node sv:name="presumtbusiness">
         <sv:property sv:name="jcr:primaryType" sv:type="Name">
           <sv:value>hipposysedit:field</sv:value>
         </sv:property>
@@ -217,16 +194,16 @@
           <sv:value>false</sv:value>
         </sv:property>
         <sv:property sv:name="hipposysedit:path" sv:type="String">
-          <sv:value>mootlywcm:presumBusiness</sv:value>
+          <sv:value>mootlywcm:presumtbusiness</sv:value>
         </sv:property>
         <sv:property sv:name="hipposysedit:primary" sv:type="Boolean">
           <sv:value>false</sv:value>
         </sv:property>
         <sv:property sv:name="hipposysedit:type" sv:type="String">
-          <sv:value>String</sv:value>
+          <sv:value>Boolean</sv:value>
         </sv:property>
       </sv:node>
-      <sv:node sv:name="foreignassets">
+      <sv:node sv:name="foreignassests">
         <sv:property sv:name="jcr:primaryType" sv:type="Name">
           <sv:value>hipposysedit:field</sv:value>
         </sv:property>
@@ -240,13 +217,13 @@
           <sv:value>false</sv:value>
         </sv:property>
         <sv:property sv:name="hipposysedit:path" sv:type="String">
-          <sv:value>mootlywcm:foreignassets</sv:value>
+          <sv:value>mootlywcm:foreignassests</sv:value>
         </sv:property>
         <sv:property sv:name="hipposysedit:primary" sv:type="Boolean">
           <sv:value>false</sv:value>
         </sv:property>
         <sv:property sv:name="hipposysedit:type" sv:type="String">
-          <sv:value>String</sv:value>
+          <sv:value>Boolean</sv:value>
         </sv:property>
       </sv:node>
       <sv:node sv:name="rateincome">
@@ -269,7 +246,7 @@
           <sv:value>false</sv:value>
         </sv:property>
         <sv:property sv:name="hipposysedit:type" sv:type="String">
-          <sv:value>String</sv:value>
+          <sv:value>Boolean</sv:value>
         </sv:property>
       </sv:node>
     </sv:node>
@@ -282,35 +259,32 @@
       <sv:property sv:name="jcr:primaryType" sv:type="Name">
         <sv:value>mootlywcm:PricingPlanIncome</sv:value>
       </sv:property>
-      <sv:property sv:name="mootlywcm:business" sv:type="String">
-        <sv:value/>
+      <sv:property sv:name="mootlywcm:business" sv:type="Boolean">
+        <sv:value>false</sv:value>
       </sv:property>
-      <sv:property sv:name="mootlywcm:capitalgain" sv:type="String">
-        <sv:value/>
+      <sv:property sv:name="mootlywcm:capitalgain" sv:type="Boolean">
+        <sv:value>false</sv:value>
       </sv:property>
-      <sv:property sv:name="mootlywcm:foreignassets" sv:type="String">
-        <sv:value/>
+      <sv:property sv:name="mootlywcm:foreignassests" sv:type="Boolean">
+        <sv:value>false</sv:value>
       </sv:property>
-      <sv:property sv:name="mootlywcm:houseproperty" sv:type="String">
-        <sv:value/>
+      <sv:property sv:name="mootlywcm:houseproperty" sv:type="Boolean">
+        <sv:value>false</sv:value>
       </sv:property>
-      <sv:property sv:name="mootlywcm:othersourcewithinterest" sv:type="String">
-        <sv:value/>
+      <sv:property sv:name="mootlywcm:othersourceagricul" sv:type="Boolean">
+        <sv:value>false</sv:value>
       </sv:property>
-      <sv:property sv:name="mootlywcm:othersurceagricul" sv:type="String">
-        <sv:value/>
+      <sv:property sv:name="mootlywcm:othersourceinterest" sv:type="Boolean">
+        <sv:value>false</sv:value>
       </sv:property>
-      <sv:property sv:name="mootlywcm:partner" sv:type="String">
-        <sv:value/>
+      <sv:property sv:name="mootlywcm:presumtbusiness" sv:type="Boolean">
+        <sv:value>false</sv:value>
       </sv:property>
-      <sv:property sv:name="mootlywcm:presumBusiness" sv:type="String">
-        <sv:value/>
+      <sv:property sv:name="mootlywcm:rateincome" sv:type="Boolean">
+        <sv:value>false</sv:value>
       </sv:property>
-      <sv:property sv:name="mootlywcm:rateincome" sv:type="String">
-        <sv:value/>
-      </sv:property>
-      <sv:property sv:name="mootlywcm:salary" sv:type="String">
-        <sv:value/>
+      <sv:property sv:name="mootlywcm:salary" sv:type="Boolean">
+        <sv:value>false</sv:value>
       </sv:property>
     </sv:node>
   </sv:node>
@@ -389,7 +363,7 @@
           </sv:property>
         </sv:node>
       </sv:node>
-      <sv:node sv:name="othersourcewithinterest">
+      <sv:node sv:name="othersourceinterest">
         <sv:property sv:name="jcr:primaryType" sv:type="Name">
           <sv:value>frontend:plugin</sv:value>
         </sv:property>
@@ -400,7 +374,7 @@
           <sv:value>${engine}</sv:value>
         </sv:property>
         <sv:property sv:name="field" sv:type="String">
-          <sv:value>othersourcewithinterest</sv:value>
+          <sv:value>othersourceinterest</sv:value>
         </sv:property>
         <sv:property sv:name="mode" sv:type="String">
           <sv:value>${mode}</sv:value>
@@ -426,18 +400,18 @@
           </sv:property>
         </sv:node>
       </sv:node>
-      <sv:node sv:name="othersurceagricul">
+      <sv:node sv:name="othersourceagricul">
         <sv:property sv:name="jcr:primaryType" sv:type="Name">
           <sv:value>frontend:plugin</sv:value>
         </sv:property>
         <sv:property sv:name="caption" sv:type="String">
-          <sv:value>Other Source(Agriculture Income Exempt Income)</sv:value>
+          <sv:value>Other Source Agriculture Income Exempt Income</sv:value>
         </sv:property>
         <sv:property sv:name="engine" sv:type="String">
           <sv:value>${engine}</sv:value>
         </sv:property>
         <sv:property sv:name="field" sv:type="String">
-          <sv:value>othersurceagricul</sv:value>
+          <sv:value>othersourceagricul</sv:value>
         </sv:property>
         <sv:property sv:name="mode" sv:type="String">
           <sv:value>${mode}</sv:value>
@@ -537,43 +511,6 @@
           </sv:property>
         </sv:node>
       </sv:node>
-      <sv:node sv:name="partner">
-        <sv:property sv:name="jcr:primaryType" sv:type="Name">
-          <sv:value>frontend:plugin</sv:value>
-        </sv:property>
-        <sv:property sv:name="caption" sv:type="String">
-          <sv:value>Partner in Partnership Firms</sv:value>
-        </sv:property>
-        <sv:property sv:name="engine" sv:type="String">
-          <sv:value>${engine}</sv:value>
-        </sv:property>
-        <sv:property sv:name="field" sv:type="String">
-          <sv:value>partner</sv:value>
-        </sv:property>
-        <sv:property sv:name="mode" sv:type="String">
-          <sv:value>${mode}</sv:value>
-        </sv:property>
-        <sv:property sv:name="model.compareTo" sv:type="String">
-          <sv:value>${model.compareTo}</sv:value>
-        </sv:property>
-        <sv:property sv:name="plugin.class" sv:type="String">
-          <sv:value>org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin</sv:value>
-        </sv:property>
-        <sv:property sv:name="validator.id" sv:type="String">
-          <sv:value>${validator.id}</sv:value>
-        </sv:property>
-        <sv:property sv:name="wicket.id" sv:type="String">
-          <sv:value>${cluster.id}.field</sv:value>
-        </sv:property>
-        <sv:property sv:name="wicket.model" sv:type="String">
-          <sv:value>${wicket.model}</sv:value>
-        </sv:property>
-        <sv:node sv:name="cluster.options">
-          <sv:property sv:name="jcr:primaryType" sv:type="Name">
-            <sv:value>frontend:pluginconfig</sv:value>
-          </sv:property>
-        </sv:node>
-      </sv:node>
       <sv:node sv:name="business">
         <sv:property sv:name="jcr:primaryType" sv:type="Name">
           <sv:value>frontend:plugin</sv:value>
@@ -611,7 +548,7 @@
           </sv:property>
         </sv:node>
       </sv:node>
-      <sv:node sv:name="presumBusiness">
+      <sv:node sv:name="presumtbusiness">
         <sv:property sv:name="jcr:primaryType" sv:type="Name">
           <sv:value>frontend:plugin</sv:value>
         </sv:property>
@@ -622,7 +559,7 @@
           <sv:value>${engine}</sv:value>
         </sv:property>
         <sv:property sv:name="field" sv:type="String">
-          <sv:value>presumBusiness</sv:value>
+          <sv:value>presumtbusiness</sv:value>
         </sv:property>
         <sv:property sv:name="mode" sv:type="String">
           <sv:value>${mode}</sv:value>
@@ -648,7 +585,7 @@
           </sv:property>
         </sv:node>
       </sv:node>
-      <sv:node sv:name="foreignassets">
+      <sv:node sv:name="foreignassests">
         <sv:property sv:name="jcr:primaryType" sv:type="Name">
           <sv:value>frontend:plugin</sv:value>
         </sv:property>
@@ -659,7 +596,7 @@
           <sv:value>${engine}</sv:value>
         </sv:property>
         <sv:property sv:name="field" sv:type="String">
-          <sv:value>foreignassets</sv:value>
+          <sv:value>foreignassests</sv:value>
         </sv:property>
         <sv:property sv:name="mode" sv:type="String">
           <sv:value>${mode}</sv:value>

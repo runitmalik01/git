@@ -29,7 +29,7 @@
         <sv:value>hippo:harddocument</sv:value>
       </sv:property>
       <sv:property sv:name="jcr:uuid" sv:type="String">
-        <sv:value>3bba74d2-b556-43a3-862a-93325cbd47b0</sv:value>
+        <sv:value>29aeb39c-61fd-452a-b630-79c3ba2acee2</sv:value>
       </sv:property>
       <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
       <sv:property sv:name="hipposysedit:node" sv:type="Boolean">
@@ -62,7 +62,7 @@
           <sv:value>false</sv:value>
         </sv:property>
         <sv:property sv:name="hipposysedit:type" sv:type="String">
-          <sv:value>String</sv:value>
+          <sv:value>Boolean</sv:value>
         </sv:property>
       </sv:node>
       <sv:node sv:name="tdsother">
@@ -85,7 +85,7 @@
           <sv:value>false</sv:value>
         </sv:property>
         <sv:property sv:name="hipposysedit:type" sv:type="String">
-          <sv:value>String</sv:value>
+          <sv:value>Boolean</sv:value>
         </sv:property>
       </sv:node>
       <sv:node sv:name="tcs">
@@ -108,7 +108,7 @@
           <sv:value>false</sv:value>
         </sv:property>
         <sv:property sv:name="hipposysedit:type" sv:type="String">
-          <sv:value>String</sv:value>
+          <sv:value>Boolean</sv:value>
         </sv:property>
       </sv:node>
       <sv:node sv:name="advancetax">
@@ -131,10 +131,10 @@
           <sv:value>false</sv:value>
         </sv:property>
         <sv:property sv:name="hipposysedit:type" sv:type="String">
-          <sv:value>String</sv:value>
+          <sv:value>Boolean</sv:value>
         </sv:property>
       </sv:node>
-      <sv:node sv:name="selfassessment">
+      <sv:node sv:name="sefassessment">
         <sv:property sv:name="jcr:primaryType" sv:type="Name">
           <sv:value>hipposysedit:field</sv:value>
         </sv:property>
@@ -148,13 +148,13 @@
           <sv:value>false</sv:value>
         </sv:property>
         <sv:property sv:name="hipposysedit:path" sv:type="String">
-          <sv:value>mootlywcm:selfassessment</sv:value>
+          <sv:value>mootlywcm:sefassessment</sv:value>
         </sv:property>
         <sv:property sv:name="hipposysedit:primary" sv:type="Boolean">
           <sv:value>false</sv:value>
         </sv:property>
         <sv:property sv:name="hipposysedit:type" sv:type="String">
-          <sv:value>String</sv:value>
+          <sv:value>Boolean</sv:value>
         </sv:property>
       </sv:node>
     </sv:node>
@@ -167,20 +167,20 @@
       <sv:property sv:name="jcr:primaryType" sv:type="Name">
         <sv:value>mootlywcm:PricingPlanTaxes</sv:value>
       </sv:property>
-      <sv:property sv:name="mootlywcm:advancetax" sv:type="String">
-        <sv:value/>
+      <sv:property sv:name="mootlywcm:advancetax" sv:type="Boolean">
+        <sv:value>false</sv:value>
       </sv:property>
-      <sv:property sv:name="mootlywcm:selfassessment" sv:type="String">
-        <sv:value/>
+      <sv:property sv:name="mootlywcm:sefassessment" sv:type="Boolean">
+        <sv:value>false</sv:value>
       </sv:property>
-      <sv:property sv:name="mootlywcm:tcs" sv:type="String">
-        <sv:value/>
+      <sv:property sv:name="mootlywcm:tcs" sv:type="Boolean">
+        <sv:value>false</sv:value>
       </sv:property>
-      <sv:property sv:name="mootlywcm:tdsother" sv:type="String">
-        <sv:value/>
+      <sv:property sv:name="mootlywcm:tdsother" sv:type="Boolean">
+        <sv:value>false</sv:value>
       </sv:property>
-      <sv:property sv:name="mootlywcm:tdssalary" sv:type="String">
-        <sv:value/>
+      <sv:property sv:name="mootlywcm:tdssalary" sv:type="Boolean">
+        <sv:value>false</sv:value>
       </sv:property>
     </sv:node>
   </sv:node>
@@ -370,7 +370,7 @@
           </sv:property>
         </sv:node>
       </sv:node>
-      <sv:node sv:name="selfassessment">
+      <sv:node sv:name="sefassessment">
         <sv:property sv:name="jcr:primaryType" sv:type="Name">
           <sv:value>frontend:plugin</sv:value>
         </sv:property>
@@ -381,7 +381,7 @@
           <sv:value>${engine}</sv:value>
         </sv:property>
         <sv:property sv:name="field" sv:type="String">
-          <sv:value>selfassessment</sv:value>
+          <sv:value>sefassessment</sv:value>
         </sv:property>
         <sv:property sv:name="mode" sv:type="String">
           <sv:value>${mode}</sv:value>
