@@ -2448,50 +2448,69 @@
       </sv:node>
     </sv:node>
   </sv:node>
-  <sv:node sv:name="faq">
+  
+<sv:node sv:name="faq">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:component</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>6cd06c2d-a004-467c-83a2-45c3e290e8d3</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+    <sv:value>bodyCss</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+    <sv:value>bodyCssClass</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:referencecomponent" sv:type="String">
+    <sv:value>hst:pages/simplepage.re</sv:value>
+  </sv:property>
+  <sv:node sv:name="main">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
       <sv:value>hst:component</sv:value>
     </sv:property>
     <sv:property sv:name="jcr:uuid" sv:type="String">
-      <sv:value>6cd06c2d-a004-467c-83a2-45c3e290e8d3</sv:value>
+      <sv:value>7167582d-3e9d-4412-a577-89af07d3c186</sv:value>
     </sv:property>
-    <sv:property sv:name="hst:referencecomponent" sv:type="String">
-      <sv:value>hst:pages/simplepage</sv:value>
+    <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+      <sv:value>contentCssClass</sv:value>
+      <sv:value>widgetsCssClass</sv:value>
     </sv:property>
-    <sv:node sv:name="main">
+    <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+      <sv:value>grid-right col-620 fit</sv:value>
+      <sv:value>grid-right col-300 rtl-fit</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>standard.main.re</sv:value>
+    </sv:property>
+    <sv:node sv:name="content">
       <sv:property sv:name="jcr:primaryType" sv:type="Name">
         <sv:value>hst:component</sv:value>
       </sv:property>
       <sv:property sv:name="jcr:uuid" sv:type="String">
-        <sv:value>7167582d-3e9d-4412-a577-89af07d3c186</sv:value>
+        <sv:value>beeb9735-8dcb-4872-a14a-33bbf096805a</sv:value>
       </sv:property>
-      <sv:node sv:name="content">
-        <sv:property sv:name="jcr:primaryType" sv:type="Name">
-          <sv:value>hst:component</sv:value>
-        </sv:property>
-        <sv:property sv:name="jcr:uuid" sv:type="String">
-          <sv:value>beeb9735-8dcb-4872-a14a-33bbf096805a</sv:value>
-        </sv:property>
-        <sv:property sv:name="hst:componentclassname" sv:type="String">
-          <sv:value>com.mootly.wcm.components.common.DocumentList</sv:value>
-        </sv:property>
-        <sv:property sv:name="hst:template" sv:type="String">
-          <sv:value>faq.content</sv:value>
-        </sv:property>
-      </sv:node>
-      <sv:node sv:name="right">
-        <sv:property sv:name="jcr:primaryType" sv:type="Name">
-          <sv:value>hst:component</sv:value>
-        </sv:property>
-        <sv:property sv:name="jcr:uuid" sv:type="String">
-          <sv:value>d8d2a79e-8911-4394-b87a-8ee70de1dc09</sv:value>
-        </sv:property>
-        <sv:property sv:name="hst:template" sv:type="String">
-          <sv:value>faq.right</sv:value>
-        </sv:property>
-      </sv:node>
+      <sv:property sv:name="hst:componentclassname" sv:type="String">
+        <sv:value>com.mootly.wcm.components.common.DocumentList</sv:value>
+      </sv:property>
+      <sv:property sv:name="hst:template" sv:type="String">
+        <sv:value>faq.content</sv:value>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="right">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>hst:component</sv:value>
+      </sv:property>
+      <sv:property sv:name="jcr:uuid" sv:type="String">
+        <sv:value>d8d2a79e-8911-4394-b87a-8ee70de1dc09</sv:value>
+      </sv:property>
+      <sv:property sv:name="hst:template" sv:type="String">
+        <sv:value>faq.right</sv:value>
+      </sv:property>
     </sv:node>
   </sv:node>
+</sv:node>
+
   <sv:node sv:name="faq-detail">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
       <sv:value>hst:component</sv:value>
