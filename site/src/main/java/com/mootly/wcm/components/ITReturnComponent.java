@@ -19,14 +19,10 @@ package com.mootly.wcm.components;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringWriter;
-import java.lang.reflect.Method;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Properties;
-import java.util.ResourceBundle;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
@@ -46,6 +42,7 @@ import org.hippoecm.hst.core.component.HstComponentException;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
 import org.hippoecm.hst.core.linking.HstLink;
+import org.hippoecm.hst.core.request.ResolvedSiteMapItem;
 import org.hippoecm.repository.reviewedactions.FullReviewedActionsWorkflow;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -56,22 +53,20 @@ import com.mootly.wcm.annotations.AdditionalBeans;
 import com.mootly.wcm.annotations.ChildBean;
 import com.mootly.wcm.annotations.DataTypeValidationFields;
 import com.mootly.wcm.annotations.DataTypeValidationHelper;
-import com.mootly.wcm.annotations.FormField;
+import com.mootly.wcm.annotations.DataTypeValidationHelper.DataTypeValidationType;
 import com.mootly.wcm.annotations.FormFields;
 import com.mootly.wcm.annotations.PrimaryBean;
 import com.mootly.wcm.annotations.RegExValidationFields;
 import com.mootly.wcm.annotations.RequiredBeans;
 import com.mootly.wcm.annotations.RequiredFields;
 import com.mootly.wcm.annotations.ValueListBeans;
-import com.mootly.wcm.annotations.DataTypeValidationHelper.DataTypeValidationType;
 import com.mootly.wcm.beans.CompoundChildUpdate;
 import com.mootly.wcm.beans.FormMapFiller;
-import com.mootly.wcm.beans.MemberPersonalInformation;
-import com.mootly.wcm.beans.SourceOfIncomeDocument;
+import com.mootly.wcm.beans.ScreenConfigDocument;
 import com.mootly.wcm.beans.ValueListDocument;
-import com.mootly.wcm.beans.compound.ValueListDocumentDetail;
 import com.mootly.wcm.member.Member;
-import com.mootly.wcm.member.SignupDetail.FullReviewedWorkflowCallbackHandler;
+import com.mootly.wcm.model.FilingStatus;
+import com.mootly.wcm.services.ScreenConfigService;
 import com.mootly.wcm.utils.GoGreenUtil;
 
 public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
@@ -95,8 +90,10 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 	String baseRelPathToReturnDocuments;
 	String baseAbsolutePathToReturnDocuments;
 	String assessmentYear;
+	String financialYear;
 	String itReturnType = "original";
 	String pan = null;
+	FilingStatus filingStatus;
 	
 	//Document Specific
 	HippoBean hippoBeanBaseITReturnDocuments;
@@ -115,6 +112,11 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 	String screenMode;
 	
 	String mainSiteMapItemRefId;
+	
+	String clientSideValidationJSON;
+	
+	///Name of the HTML File and the depth its in
+	String scriptName; 
 
 	@Override
 	public void doBeforeRender(HstRequest request, HstResponse response) {
@@ -197,11 +199,9 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		RequiredBeans requiredBeans = this.getClass().getAnnotation(RequiredBeans.class);
 		if (requiredBeans != null) {
 			 Class<? extends HippoBean>[] requiredBeansList = requiredBeans.requiredBeans();
-			 log.info("requiredBeansList.length"+requiredBeansList.length);
 			 if (requiredBeansList!= null && requiredBeansList.length > 0) {
 				 for (Class<? extends HippoBean> aBean:requiredBeansList) {
 					 if (request.getAttribute(aBean.getSimpleName().toLowerCase()) == null) {
-						 log.info("it is bean name in lower case::"+aBean.getSimpleName().toLowerCase());
 						 redirectToNotFoundPage(response);
 					 }
 				 }
@@ -295,6 +295,10 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		return assessmentYear;
 	}
 
+	public String getFinancialYear() {
+		return financialYear;
+	}
+	
 	public String getITReturnType () {
 		return itReturnType;
 	}
@@ -430,16 +434,17 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 	}
 	
 	protected void initComponent(HstRequest request,HstResponse response) throws InvalidNavigationException,InvalidPANException{
+		ResolvedSiteMapItem resolvedMapItem = request.getRequestContext().getResolvedSiteMapItem();
 		if (request.getSession() != null && request.getSession().getAttribute("user") != null) {
 			member = (Member)request.getSession().getAttribute("user");
 		}
 
 		assessmentYear = request.getRequestContext().getResolvedSiteMapItem().getParameter("assessmentYear");
+		financialYear = request.getRequestContext().getResolvedSiteMapItem().getParameter("financialYear");
 		itReturnType = request.getRequestContext().getResolvedSiteMapItem().getParameter("itReturnType"); //original versus amend
 		pan = request.getRequestContext().getResolvedSiteMapItem().getParameter("pan"); //original versus amend
-		log.info("assessmentYear"+assessmentYear);
-		log.info("itReturnType"+itReturnType);
-		log.info("pan"+pan);
+		
+		redirectURLToSamePage = getRedirectURL(request,response,FormSaveResult.FAILURE);
 		
 		//we must make sure itReturnType and PAN are not empty as well as they are valid
 		if (!StringUtils.isEmpty(pan) && !DataTypeValidationHelper.isOfType(pan, DataTypeValidationType.PAN)) {
@@ -447,6 +452,33 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		}
 		if (!StringUtils.isEmpty(itReturnType) && !DataTypeValidationHelper.isOfType(itReturnType, DataTypeValidationType.ITRETURNTYPE)) {
 			throw new InvalidNavigationException("INVALID ITRETURUN TYPE");
+		}
+		
+		//NOW find 
+		if (!StringUtils.isEmpty(pan)) {
+			char filingStatusChar = pan.charAt(3);
+			filingStatus = FilingStatus.getEnumByString(filingStatusChar);
+		}
+		
+		//how to find the scriptName and the depth
+		//one assumption that the scriptName is always .html file and nothing else
+		String pathInfo = resolvedMapItem.getPathInfo();
+		if (pathInfo != null && pathInfo.contains(".html")) {
+			String[] parts = pathInfo.split("[/]");
+			int depth = 1;
+			for (String aPart:parts) {
+				if (aPart.endsWith(".html")) {
+					scriptName= aPart;
+					break;
+				}
+				depth++;
+			}
+			int remainderOFDepth = parts.length - depth;
+			String basePath = "./";
+			for (int ctr =0;ctr<remainderOFDepth;ctr++) {
+				basePath += "../";
+			}
+			scriptName = basePath + scriptName;
 		}
 		
 		String strPageAction = request.getRequestContext().getResolvedSiteMapItem().getParameter("action");
@@ -466,17 +498,15 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		if (hippoBeanMemberBase != null) {
 			memberRootFolderAbsolutePath = hippoBeanMemberBase.getPath();
 			//we need to get into pans sub folder 
-			List<HippoFolder> listOfFolders = hippoBeanMemberBase.getChildBeansByName("pans", HippoFolder.class);
-			if (listOfFolders != null && listOfFolders.size() > 0 ){
-				panFolder = listOfFolders.get(0);
-			}
+			panFolder = hippoBeanMemberBase.getBean("pans", HippoFolder.class) ;// .getChildBeansByName("pans", HippoFolder.class);
+			//if (listOfFolders != null && listOfFolders.size() > 0 ){
+			//	panFolder = listOfFolders.get(0);
+			//}
 		}
 		
-		baseRelPathToReturnDocuments = "members/" + getNormalizedMemberEmail() + "/pans/" + getPAN() + "/" + getAssessmentYear() + "/" + getITReturnType();
-		log.info("baseRelPathToReturnDocuments"+baseRelPathToReturnDocuments);
+		baseRelPathToReturnDocuments = "members/" + getNormalizedMemberEmail() + "/pans/" + getPAN() + "/" + getFinancialYear() + "/" + getITReturnType();
 		hippoBeanBaseITReturnDocuments = siteContentBase.getBean(baseRelPathToReturnDocuments);
 		baseAbsolutePathToReturnDocuments = request.getRequestContext().getResolvedMount().getMount().getCanonicalContentPath() + "/" + baseRelPathToReturnDocuments;
-		log.info("baseAbsolutePathToReturnDocuments"+baseAbsolutePathToReturnDocuments);
 		//if (hippoBeanBaseITReturnDocuments != null) {
 		//	baseAbsolutePathToReturnDocuments = hippoBeanBaseITReturnDocuments.getPath();
 		//}
@@ -567,14 +597,8 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			}
 		}
 		
-		
-		
 		mainSiteMapItemRefId = request.getRequestContext().getResolvedSiteMapItem().getParameter("mainSiteMapItemRefId");
-		log.info("mainSiteMapItemRefId"+mainSiteMapItemRefId);
-		redirectURLToSamePage = getRedirectURL(request,response,FormSaveResult.FAILURE);
-		log.info("redirectURLToSamePage"+redirectURLToSamePage);
 		onBeforeRender(request);
-		
 		
 		if (pageAction.equals(ITReturnScreen.PAGE_ACTION.EDIT_CHILD) || pageAction.equals(ITReturnScreen.PAGE_ACTION.DELETE_CHILD) && parentBean != null) {
 			//find the object by uuid
@@ -582,62 +606,38 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			if (log.isInfoEnabled()) {
 				log.info("We will now be editing the object with UUID:" + uuid);				
 			}
-			List<HippoBean> listOfChildBeans = parentBean.getChildBeans(HippoBean.class);
-			if (listOfChildBeans != null && listOfChildBeans.size() > 0) {
-				log.info("LIST OF CHILD BEans SIZE:::::"+listOfChildBeans.size());
-				for (HippoBean aBean:listOfChildBeans) {
-					log.info("FINDING TO MATCH THE UUID BEFORE FUNCTION"+aBean.getCanonicalUUID());
-					if (aBean != null && aBean.getCanonicalUUID() != null && aBean.getCanonicalUUID().equals(uuid)) {
-						//childBean = (HippoBean) getObjectBeanManager(request).getObjectByUuid(uuid);
-						log.info("FINDING TO MATCH THE UUID INSIDE FUNCTION"+aBean.getCanonicalUUID());
-						childBean = aBean;
-						request.setAttribute("childBean", childBean);
-						break;
-					} 
+			if (parentBean != null) {
+				List<HippoBean> listOfChildBeans = parentBean.getChildBeans(HippoBean.class);
+				if (listOfChildBeans != null && listOfChildBeans.size() > 0) {
+					for (HippoBean aBean:listOfChildBeans) {
+						if (aBean != null && aBean.getCanonicalUUID() != null && aBean.getCanonicalUUID().equals(uuid)) {
+							//childBean = (HippoBean) getObjectBeanManager(request).getObjectByUuid(uuid);
+							childBean = aBean;
+							request.setAttribute("childBean", childBean);
+							break;
+						} 
+					}
 				}
 			}
 			request.setAttribute("uuid", uuid);
 		}
 		
+		clientSideValidationJSON = ScreenConfigService.generateJSON(this.getClass());
 		
-		JSONObject jsonForValidators = new JSONObject();
-		//this to serialze the validators and send it to the jsp pages if they want to builds things dynamically
-		if (this.getClass().isAnnotationPresent(RequiredFields.class)) {
-			RequiredFields requiredFieldsAnnotations = this.getClass().getAnnotation(RequiredFields.class);
-			String[] fieldNames = requiredFieldsAnnotations.fieldNames();
-			try {
-				jsonForValidators.put("requiredFields", fieldNames);
-			} catch (JSONException e) {
-				// TODO Auto-generated catch block
-				log.warn("Error converting Required Fields to JSON",e);
-				e.printStackTrace();
+		//lets try to load the SCreen Configuration Document for this component
+		String pathToScreenConfig = "configuration/screenconfigs/" + this.getClass().getSimpleName().toLowerCase();
+		ScreenConfigDocument screenConfigDocument = siteContentBase.getBean(pathToScreenConfig, ScreenConfigDocument.class);
+		if (screenConfigDocument != null) {
+			if (log.isInfoEnabled()){
+				log.info("screenConfigDocument:" + screenConfigDocument.toString());
+			}			
+			request.setAttribute("screenConfigDocument",screenConfigDocument);
+			String screenConfigDocumentJSON = ScreenConfigService.generateJSON(screenConfigDocument);
+			if (screenConfigDocumentJSON != null) {
+				request.setAttribute("screenConfigDocumentJSON", screenConfigDocumentJSON);
 			}
 		}
-		
-		if (this.getClass().isAnnotationPresent(RegExValidationFields.class)) {
-			RegExValidationFields regExFieldsAnnotations = this.getClass().getAnnotation(RegExValidationFields.class);
-			String[] fieldNames = regExFieldsAnnotations.fieldNames();
-			String[] patterns = regExFieldsAnnotations.patterns();
-			try {
-				jsonForValidators.put("regExFields", fieldNames);
-				jsonForValidators.put("regExPatterns", patterns);
-			} catch (JSONException e) {
-				// TODO Auto-generated catch block
-				log.warn("Error converting Required Fields to JSON",e);
-				e.printStackTrace();
-			}
-		}
-		
-		if (jsonForValidators != null) {
-			StringWriter sw = new StringWriter();
-			try {
-				jsonForValidators.write(sw);
-				request.setAttribute("jsonForValidators",sw.toString());
-			} catch (JSONException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
+				
 	}
 
 	protected boolean validate(HstRequest request,HstResponse response,FormMap formMap) {
@@ -693,7 +693,15 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			String[] fieldNames = dataTypeValidationFields.fieldNames();
 			DataTypeValidationHelper.DataTypeValidationType[] dataTypes = dataTypeValidationFields.dataTypes();
 			for (int i=0;i<fieldNames.length;i++) {
+				if (formMap.getField(fieldNames[i]) == null) {
+					log.warn("Empty field??Invalid Annotation",fieldNames[i]);
+					continue;
+				}
 				String whatToMatch = formMap.getField(fieldNames[i]).getValue();
+				if (StringUtils.isEmpty(whatToMatch)) {
+					log.warn("Cannot check format for an empty field "+ fieldNames[i] + " was found empty");
+					continue;
+				}
 				DataTypeValidationHelper.DataTypeValidationType dataType = dataTypes[i];
 				if (log.isInfoEnabled()) {
 					log.info("Will now try to match:" + whatToMatch + " with pattern:" + dataType);
@@ -738,8 +746,12 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			request.setAttribute("parentBean", parentBean);
 		}
 		request.setAttribute("assessmentYear",getAssessmentYear());
+		request.setAttribute("financialYear",getFinancialYear());
 		request.setAttribute("itReturnType",getITReturnType());
 		request.setAttribute("pan",getPAN());
+		
+		request.setAttribute("filingStatus",filingStatus);
+		
 		
 		request.setAttribute("pageAction",pageAction);
 		request.setAttribute("mainSiteMapItemRefId", mainSiteMapItemRefId);
@@ -747,10 +759,15 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		request.setAttribute("hippoBeanMemberBase",hippoBeanMemberBase);
 		request.setAttribute("panFolder",panFolder);
 		
-		if (redirectURLToSamePage != null) {
-			request.setAttribute("redirectURLToSamePage", redirectURLToSamePage);
-		
+		if (clientSideValidationJSON!=null) {
+			request.setAttribute("clientSideValidationJSON", clientSideValidationJSON);
 		}
+		
+		if (scriptName != null) {
+			request.setAttribute("scriptName", scriptName);
+		}
+		
+		if (redirectURLToSamePage != null) request.setAttribute("redirectURLToSamePage", redirectURLToSamePage);
 	}
 	
 	protected void redirectToMemberHome(HstRequest hstRequest, HstResponse response) {
@@ -758,8 +775,8 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			response.setRenderParameter("error", "invalid.pan");
 			hstRequest.setAttribute("error", "invalid.pan");
 			String forwardTo = "/member/itreturn";
-			if (getAssessmentYear() != null) {
-				forwardTo += "/" + getAssessmentYear();
+			if (getFinancialYear() != null) {
+				forwardTo += "/" + getFinancialYear();
 			}
 			response.forward(forwardTo);
 		} catch (IOException e) {
@@ -770,7 +787,6 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 	protected void redirectToNotFoundPage(HstResponse response) {
 		try {
 			response.forward("/404");
-			log.info("redirect this page to 404 page not found");
 		} catch (IOException e) {
 			throw new HstComponentException(e);
 		}
