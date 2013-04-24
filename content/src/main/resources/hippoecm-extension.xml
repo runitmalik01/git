@@ -3069,12 +3069,12 @@
 		</sv:property>
 	</sv:node>
 	
-		<sv:node sv:name="mootlywcm-type-pricingplandeductions">
+		<sv:node sv:name="mootlywcm-type-PricingPlanDeductions">
 		<sv:property sv:name="jcr:primaryType" sv:type="Name">
 			<sv:value>hippo:initializeitem</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentresource" sv:type="String">
-			<sv:value>hippo-namespaces/mootlywcm/pricingplandeductions.xml</sv:value>
+			<sv:value>hippo-namespaces/mootlywcm/PricingPlanDeductions.xml</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentroot" sv:type="String">
 			<sv:value>/hippo:namespaces/mootlywcm</sv:value>
@@ -3084,12 +3084,12 @@
 		</sv:property>
 	</sv:node>
 	
-			<sv:node sv:name="mootlywcm-type-pricingplanadditionalservices">
+    <sv:node sv:name="mootlywcm-type-PricingPlanAdditionalServices">
 		<sv:property sv:name="jcr:primaryType" sv:type="Name">
 			<sv:value>hippo:initializeitem</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentresource" sv:type="String">
-			<sv:value>hippo-namespaces/mootlywcm/pricingplanadditionalservices.xml</sv:value>
+			<sv:value>hippo-namespaces/mootlywcm/PricingPlanAdditionalServices.xml</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentroot" sv:type="String">
 			<sv:value>/hippo:namespaces/mootlywcm</sv:value>
