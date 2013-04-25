@@ -20,6 +20,7 @@ import com.mootly.wcm.annotations.ChildBean;
 import com.mootly.wcm.annotations.FormFields;
 import com.mootly.wcm.annotations.PrimaryBean;
 import com.mootly.wcm.annotations.RequiredBeans;
+import com.mootly.wcm.annotations.RequiredFields;
 import com.mootly.wcm.beans.CapitalAssetDocument;
 import com.mootly.wcm.beans.HouseProperty;
 import com.mootly.wcm.beans.MemberPersonalInformation;
@@ -33,7 +34,8 @@ import com.mootly.wcm.components.ITReturnComponent;
 @AdditionalBeans(additionalBeansToLoad={MemberPersonalInformation.class,SalaryIncomeDocument.class,HouseProperty.class,CapitalAssetDocument.class})
 @RequiredBeans(requiredBeans={MemberPersonalInformation.class})
 @FormFields(fieldNames={"prevyear","previncome","prevarrears","prevtotal","prevtaxontotal","prevtaxincome","prevtaxdiffer","salaryincome",
-		"totalArrears","totalincomearrears","taxsalaryincome","taxarrears","Diff","taxRelief","computedtabletotal"})
+		"totalArrears","totalincomewarrears","taxsalaryincome","taxarrears","diff","taxRelief","computedtabletotal"})
+@RequiredFields(fieldNames={"prevyear","previncome","prevarrears"})
 public class RebateSection89 extends ITReturnComponent {
 	private static final Logger log = LoggerFactory.getLogger(RebateSection89.class);
 
