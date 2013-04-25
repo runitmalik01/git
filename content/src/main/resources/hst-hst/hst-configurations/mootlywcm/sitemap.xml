@@ -2436,20 +2436,7 @@
       <sv:value>comingsoon</sv:value>
     </sv:property>
   </sv:node>
-  <sv:node sv:name="serviceprice">
-    <sv:property sv:name="jcr:primaryType" sv:type="Name">
-      <sv:value>hst:sitemapitem</sv:value>
-    </sv:property>
-    <sv:property sv:name="jcr:uuid" sv:type="String">
-      <sv:value>56b18c7d-50a7-46c7-a262-dc530c9e3512</sv:value>
-    </sv:property>
-    <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
-      <sv:value>hst:pages/service-price</sv:value>
-    </sv:property>
-    <sv:property sv:name="hst:refId" sv:type="String">
-      <sv:value>serviceprice</sv:value>
-    </sv:property>
-  </sv:node>
+
   <sv:node sv:name="myservices">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
       <sv:value>hst:sitemapitem</sv:value>
@@ -2882,4 +2869,24 @@
       <sv:value>rebatesection89</sv:value>
     </sv:property>
   </sv:node>
+ 
+<sv:node sv:name="serviceprice">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:sitemapitem</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>56b18c7d-50a7-46c7-a262-dc530c9e3512</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+    <sv:value>hst:pages/service-price</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:refId" sv:type="String">
+    <sv:value>serviceprice</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:relativecontentpath" sv:type="String">
+    <sv:value>mootlypricingplan</sv:value>
+  </sv:property>
+</sv:node>
+  
+  
 </sv:node>
