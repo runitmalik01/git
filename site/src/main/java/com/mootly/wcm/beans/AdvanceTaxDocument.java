@@ -182,18 +182,17 @@ public class AdvanceTaxDocument extends BaseDocument implements ContentNodeBinde
             		    log.info("value of amount after fetching from compound bean"+amount);
             		     sum=sum+amount;
             		     try{
-            		    // SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+            		    
             		     String fetchDatefull=objSelfAssesment.getDateStr();
             		     log.info("fetchDate"+fetchDatefull);
             		     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
             		     java.util.Date fetchDate= sdf.parse(fetchDatefull);
-            		     java.util.Date date1= sdf.parse("01/04/2011");  
-            		    		 log.info("date1"+date1);
-            		    		 java.util.Date date2=sdf.parse("15/06/2011");  
-            		    		 java.util.Date date3=sdf.parse("15/09/2011");  
-            		    		 java.util.Date date4=sdf.parse("15/12/2011");  
-            		    		 java.util.Date date5=sdf.parse("15/03/2012");  
-            		    		 java.util.Date date6=sdf.parse("31/03/2012");  
+            		     java.util.Date date1= sdf.parse("01/04/2012");  
+            		    		 java.util.Date date2=sdf.parse("15/06/2012");  
+            		    		 java.util.Date date3=sdf.parse("15/09/2012");  
+            		    		 java.util.Date date4=sdf.parse("15/12/2012");  
+            		    		 java.util.Date date5=sdf.parse("15/03/2013");  
+            		    		 java.util.Date date6=sdf.parse("31/03/2013");  
             		    		 
             		  if(fetchDate.equals(date1) || fetchDate.after(date1)  && fetchDate.before(date2) || fetchDate.equals(date2))  {
             			  sum1=sum1+objSelfAssesment.getP_Amount();
