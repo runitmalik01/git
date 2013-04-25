@@ -7,7 +7,7 @@ public  final class DataTypeValidationHelper {
 
 	
 
-	public static enum DataTypeValidationType {DECIMAL,INDIANDATE,ITRETURNTYPE,PAN,TAN,BSR,Maxlength,CHALLANNO,TDSCERTIFICATE}
+	public static enum DataTypeValidationType {DECIMAL,INDIANDATE,ITRETURNTYPE,PAN,TAN,BSR,Maxlength,CHALLANNO,TDSCERTIFICATE,ITR}
 
 	final static public boolean isOfType(String inStr,DataTypeValidationType inType) {
 		switch (inType) {
@@ -67,7 +67,14 @@ public  final class DataTypeValidationHelper {
 				}
 				else {
 					return false;
-				}
+				}case ITR:
+					if (inStr.matches("-select-")) {
+						return false;
+					}
+					else {
+						return true;
+					}
+				
 
 		}
 			
