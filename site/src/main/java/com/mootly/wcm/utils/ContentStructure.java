@@ -202,6 +202,14 @@ public final class ContentStructure {
 		builder.append("/"+filing_year+"/original/tcsdocument/tcsdocument");
 		return builder.toString();
 	}
+	
+	public static String getAdvanceTaxcPath(String pan,String filing_year,String username) {
+		StringBuilder builder = new StringBuilder();
+		builder.append("/content/documents/mootlywcm/members/"+username.toLowerCase()+"/pans");
+		builder.append('/').append(pan.toLowerCase());
+		builder.append("/"+filing_year+"/original/advancetaxdocument/advancetaxdocument");
+		return builder.toString();
+	}
 
 
 	/**
