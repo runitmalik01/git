@@ -111,7 +111,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 	PAGE_ACTION pageAction;
 	String screenMode;
 	
-	String mainSiteMapItemRefId;
+	String mainSiteMapItemRefId = null;
 	
 	String clientSideValidationJSON;
 	
@@ -444,6 +444,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		itReturnType = request.getRequestContext().getResolvedSiteMapItem().getParameter("itReturnType"); //original versus amend
 		pan = request.getRequestContext().getResolvedSiteMapItem().getParameter("pan"); //original versus amend
 		
+		if (mainSiteMapItemRefId == null) mainSiteMapItemRefId = request.getRequestContext().getResolvedSiteMapItem().getParameter("mainSiteMapItemRefId");
 		redirectURLToSamePage = getRedirectURL(request,response,FormSaveResult.FAILURE);
 		
 		//we must make sure itReturnType and PAN are not empty as well as they are valid
@@ -596,8 +597,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 				}
 			}
 		}
-		
-		mainSiteMapItemRefId = request.getRequestContext().getResolvedSiteMapItem().getParameter("mainSiteMapItemRefId");
+				
 		onBeforeRender(request);
 		
 		if (pageAction.equals(ITReturnScreen.PAGE_ACTION.EDIT_CHILD) || pageAction.equals(ITReturnScreen.PAGE_ACTION.DELETE_CHILD) && parentBean != null) {
@@ -793,6 +793,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 	}
 	
 	protected String getRedirectURL(HstRequest request,HstResponse response,FormSaveResult formSaveResult) {
+		if (mainSiteMapItemRefId == null) mainSiteMapItemRefId = request.getRequestContext().getResolvedSiteMapItem().getParameter("mainSiteMapItemRefId");
 		HstLink link = request.getRequestContext().getHstLinkCreator().createByRefId(mainSiteMapItemRefId, request.getRequestContext().getResolvedMount().getMount());
 		if (link != null) {
 			String strFirstRep = link.toUrlForm(request.getRequestContext(), true).replaceFirst("_default_", getITReturnType());
