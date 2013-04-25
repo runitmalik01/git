@@ -100,6 +100,8 @@
 
 [mootlywcm:deductiondocumentdetail] > hippo:compound, hippostd:relaxed
   orderable
+[mootlywcm:othersourcesdocument] > hippostd:relaxed, mootlywcm:basedocument
+  orderable
   
 [mootlywcm:otherincomedocument] > hippostd:relaxed, mootlywcm:basedocument
   orderable
