@@ -37,7 +37,7 @@ else {
           $('#DateOfFilingYear').datepicker({
                    changeMonth: true,
                    changeYear: true,
-                   yearRange: "2005:2013"
+                 
                   });            
       }	  	
   });
@@ -64,7 +64,6 @@ var assessmentyear=document.getElementById("year").value;
 
 var minyear=assessmentyear.slice(0,4);
 var maxyear=assessmentyear.slice(5,9);
-var dropassessment=minyear+"-"+maxyear;
 
 jQuery('#DateOfFilingYear').datepicker('destroy');
     $('#DateOfFilingYear').datepicker({
@@ -110,20 +109,20 @@ jQuery('#DateOfFilingYear').datepicker('destroy');
 				<legend>Detail Of Losses</legend>
 				<p>
 					<label for="AssessmentYear"> <fmt:message key="member.adjustment.losses.year"></fmt:message></label>
-					<select name="AssessmentYear" class="validate[required] text-input" id="year" onChange="setYear()">
+					<select name="AssessmentYear" id="year" onChange="setYear()">
 						  <option value="">-Select Year-</option>
 						  <c:forEach var="booleanCombo" items="${objHashMapAssessmentYear}">
-						  <option "<c:if test="${pageAction == 'EDIT_CHILD' && childBean.assessmentYear == booleanCombo.value}">selected</c:if>" value="${booleanCombo.value}">${booleanCombo.value}</option>
+						  <option <c:if test="${pageAction == 'EDIT_CHILD' && childBean.assessmentYear == booleanCombo.value}">selected</c:if> value="${booleanCombo.value}">${booleanCombo.value}</option>
 						  </c:forEach>
 					</select>
 				</p>
 				<p>
 					<label for="NameOfHead"><fmt:message key="member.adjustment.losses.name"></fmt:message></label>
-					      <select name="NameOfHead" id="name" class="validate[required] text-input">
+					      <select name="NameOfHead" id="name">
 					             <option value="">-Select Head-</option>	            
 					             <c:forEach var="booleanCombo" items="${objHashMapNameOfHead}">
 
-					             <option "<c:if test="${pageAction == 'EDIT_CHILD' && childBean.nameOfHead == booleanCombo.value}">selected</c:if>" 
+					             <option <c:if test="${pageAction == 'EDIT_CHILD' && childBean.nameOfHead == booleanCombo.value}">selected</c:if>
 					                                value="${booleanCombo.value}">${booleanCombo.value}</option>
 						             
 						         </c:forEach>
@@ -131,18 +130,18 @@ jQuery('#DateOfFilingYear').datepicker('destroy');
 				</p>
 				<p>
 					<label for="Amount"><fmt:message key="member.adjustment.losses.amount" /></label>
-					<input id="Amount" class="validate[required,custom[integer],maxSize[14]] text-input" type="text" name="Amount" id="amount" value="<c:if test="${pageAction == 'EDIT_CHILD'}"><c:out value="${childBean.amountStr}"/></c:if>"/>
+					<input id="Amount" maxlength="14" type="text" name="Amount" id="amount" value="<c:if test="${pageAction == 'EDIT_CHILD'}"><c:out value="${childBean.amount}"/></c:if>"/>
 				</p>
 				<p>
 					<label for="DateOfFilingYear"><fmt:message key="member.adjustment.losses.date"></fmt:message></label>
-					 <input  id="DateOfFilingYear" class="validate[required] text-input" name="DateOfFilingYear" value="${childBean.DOBStr}"/> 
+					 <input  id="DateOfFilingYear" name="DateOfFilingYear" value="${childBean.DOBStr}" onClick="setYear()"/> 
 				</p>
 					<p>
 					<label for="DueDate"><fmt:message key="member.adjustment.losses.duedate"></fmt:message></label>
-					     <select name="DueDate" id="due" class="validate[required] text-input">
+					     <select name="DueDate" id="due">
 					            <option value="">-Select-</option>
 								<c:forEach var="booleanCombo" items="${objHashMapBoolean}">
-					             <option "<c:if test="${pageAction == 'EDIT_CHILD' && childBean.dueDate == booleanCombo.value}">selected</c:if>" value="${booleanCombo.value}">${booleanCombo.value}</option>
+					             <option <c:if test="${pageAction == 'EDIT_CHILD' && childBean.dueDate == booleanCombo.value}">selected</c:if> value="${booleanCombo.value}">${booleanCombo.value}</option>
 						         </c:forEach>
 					      </select>
 				</p>
