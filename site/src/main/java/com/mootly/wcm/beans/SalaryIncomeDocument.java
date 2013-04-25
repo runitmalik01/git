@@ -124,14 +124,13 @@ public class SalaryIncomeDocument extends BaseDocument implements ContentNodeBin
         	if (salaryincome.getSalaryIncomeDetailList() != null && salaryincome.getSalaryIncomeDetailList().size() > 0 ){ 
         		for (SalaryIncomeDetail salaryIncomeDetail:salaryincome.getSalaryIncomeDetailList()) {
         			if (!salaryIncomeDetail.isMarkedForDeletion()) {
-        				//float amount=Float.parseFloat(salaryIncomeDetail.getTaxable_earning());
-						//sum=sum+amount;
+        				float amount=Float.parseFloat(salaryIncomeDetail.getTaxable_earning());
+						sum=sum+amount;
 		                javax.jcr.Node html = node.addNode(PROP_DETAIL_BEAN, PROP_DETAIL_BEAN);
 		                salaryIncomeDetail.bindToNode(html); 
         			}
-        		}
-        		//setTotal(String.valueOf(sum));
-        		//node.setProperty("mootlywcm:Total",getTotal());
+        		}setTotal(String.valueOf(sum));
+        		node.setProperty("mootlywcm:Total",getTotal());
         	}
         	/*
 			javax.jcr.Node prdLinkNode;
