@@ -12,21 +12,23 @@ import com.mootly.wcm.annotations.DataTypeValidationFields;
 import com.mootly.wcm.annotations.DataTypeValidationHelper;
 import com.mootly.wcm.annotations.FormFields;
 import com.mootly.wcm.annotations.PrimaryBean;
+import com.mootly.wcm.annotations.RequiredBeans;
 import com.mootly.wcm.annotations.RequiredFields;
 import com.mootly.wcm.beans.AdvanceTaxDocument;
+import com.mootly.wcm.beans.MemberPersonalInformation;
 import com.mootly.wcm.beans.compound.AdvanceTaxDetail;
 import com.mootly.wcm.components.ITReturnComponent;
 
 /*
  * Author:Pankaj Singh
  * Date:13/3/2013
- * Description:It will taje value from Tdsfromsalary.jsp and pass it to bean
+ * Description:It will take value from Tdsfromsalary.jsp and pass it to bean
  */
 @PrimaryBean(primaryBeanClass=AdvanceTaxDocument.class)
 @ChildBean(childBeanClass=AdvanceTaxDetail.class)
 
 @FormFields(fieldNames={"bsr_code","date_credit","Serial_challan","amount"})
-@RequiredFields(fieldNames={"bsr_code","date_credit","Serial_challan","amount"})
+
 
 public class AdvanceTax extends ITReturnComponent {
 	
