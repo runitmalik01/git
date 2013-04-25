@@ -20,7 +20,8 @@
 	<fmt:message key="rebate.section89" />
 </c:set>
 <hippo-gogreen:title title="${section89}" />
-<div id="breadcrumbs">
+<h3 id="respond1"><fmt:message key="rebate.section89" /></h3>
+<div>
 	<fmt:message key="member.location.label" />
 	<hst:link var="home" siteMapItemRefId="home" /> <a
 		href="${home}"><fmt:message key="products.detail.location.home" /></a>&gt;
@@ -30,7 +31,7 @@
 		href="${rebatesection89}"><fmt:message key="rebate.section89" /></a>
 
 </div>
-<br />
+
 <script type="text/javascript">
 
 	var $m = jQuery.noConflict(true);
@@ -636,11 +637,11 @@
 	}//End
 </script>
 <hst:actionURL var="actionUrl"></hst:actionURL>
+<form id="frmdata" action="${actionUrl}" name="salaryfrm" method="post">
 <div class="page type-page">
 <c:choose>
 	<c:when test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD') || pageAction == 'NEW_CHILD'}">
 		<h5><small><fmt:message key="member.employe.message" /></small></h5>
-		<form id="frmdata" action="${actionUrl}" name="salaryfrm" method="post">
 		<fieldset>
 		<legend><fmt:message key="rebate.section89.prev.arrears" /></legend>
 		   <p>
@@ -667,10 +668,9 @@
 					<input type='text' size='8' name='prevtaxincome' id="taxincome1" readonly='readonly' value="${childBean.prevTaxIncome }" /></p>
 					<p>
 					    <label><fmt:message key="rebate.section89.prev.taxdiff" /></label>
-					<input type='text' size='8' name='pervtaxdiff' id="taxdiff1" readonly='readonly' value="${childBean.prevTaxDiff }" /></p>
+					<input type='text' size='8' name='prevtaxdiffer' id="taxdiff1" readonly='readonly' value="${childBean.prevTaxDiff }" /></p>
 						</fieldset>
 		<a href="${redirectURLToSamePage}" class="button olive">Cancel</a>&nbsp;<input type="submit" value="Save" id="hrefLogin" class="button orange"/>
-		</form>
 		<hst:element var="uiCustom" name="script">
 		    <hst:attribute name="type">text/javascript</hst:attribute>
 				$(document).ready(function() {
@@ -710,7 +710,6 @@
 					</c:if>			
 				</table>
 				<a href="${redirectURLToSamePage}/new" class="button orange">Add New</a>
-				<form id="frmdata" action="${actionUrl}" name="salaryfrm" method="post">
 				<fieldset>
 				<p>
                 <fmt:message key="rebate.section89.salaryincome" />
@@ -720,7 +719,7 @@
 				<input type="text" name="arrears" value="${parentBean.arrears}" onchange="currcalArrers()" id="arrears" title="Enter Arrears" class="numberinput" readonly="readonly" /></p>
 				<p>		
                 <fmt:message key="rebate.section89.totalincome.arrears" />	
-				<input type="text" name="totalincomearrears" value="${parentBean.totalIncomeArrears}" id="totalincomearrears" title="Total Income in current Year included Arrears"readonly="readonly" /></p>
+				<input type="text" name="totalincomewarrears" value="${parentBean.totalIncomeArrears}" id="totalincomearrears" title="Total Income in current Year included Arrears"readonly="readonly" /></p>
 				<p>		
                 <fmt:message key="rebate.section89.tax.salaryincome" />
 				<input type="text" name="taxsalaryincome" value="${parentBean.taxSalaryIncome}" id="taxsalaryincome" title="Tax on total Income excluded Arrears or Advance" readonly="readonly" /></p>
@@ -735,14 +734,15 @@
 				<input type="text" name="computedtabletotal" value="${parentBean.computedTableTotal}" id="computedtabletotal"	title="Difference(Tax on salary received in arrears or advance)" readonly="readonly" /></p>
 				<p>
 				<fmt:message key="rebate.section89.tax.paid" />
-				<input type="text" name="taxpaid" value="${parentBean.taxRelief}" id="taxpaid" title="Difference(Tax on salary received in arrears or advance)" readonly="readonly" /></p>
+				<input type="text" name="taxRelief" value="${parentBean.taxRelief}" id="taxpaid" title="Difference(Tax on salary received in arrears or advance)" readonly="readonly" /></p>
 						
 				<input type="submit" name=" Next " height="38px" value="Next" width="90px" onclick="Date()" class="button orange"/>
 			</fieldset>
-			</form>
+			
 	</c:otherwise>
 </c:choose>
 </div>
+</form>
 <hst:headContribution keyHint="formcss">
 	<link rel="stylesheet"
 		href='<hst:link path="/css/animation/animation.css"/>' type="text/css" />
