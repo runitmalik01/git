@@ -64,6 +64,8 @@ public class CapitalAssetDetail extends HippoItem implements FormMapFiller {
 	private Double saleConsideration;
 	private String costIndexConsideration;
 	private Double capitalGain;
+	private Double capitalGainTaxLT;
+	
 	private String personalInfoUuid;
 	
 	private boolean markedForDeletion;
@@ -103,6 +105,12 @@ public class CapitalAssetDetail extends HippoItem implements FormMapFiller {
 	    	return capitalGain;
 	 }
 	 
+	 public double getCapitalGainTaxLT() {
+	    	if (capitalGainTaxLT == null) capitalGainTaxLT = getProperty("mootlywcm:capitalgaintaxLT");
+	    	return capitalGainTaxLT;
+	 }
+	 
+	 
 	 public final void setDateAcquisition(String dateAcquisition) {
 		this.dateAcquisition = dateAcquisition;
 	}
@@ -125,6 +133,10 @@ public class CapitalAssetDetail extends HippoItem implements FormMapFiller {
     public final void setCapitalGain(double capitalGain) {
 		this.capitalGain = capitalGain;
 	}
+    public final void setCapitalGainTaxLT(double capitalGainTaxLT) {
+		this.capitalGainTaxLT = capitalGainTaxLT;
+	}
+    
    
 	public final String getPersonalInfoUuid() {
 		return personalInfoUuid;
@@ -164,6 +176,8 @@ public class CapitalAssetDetail extends HippoItem implements FormMapFiller {
 	    	node.setProperty("mootlywcm:inflation_acquisition",getCostIndexAcquisition());
 	    	node.setProperty("mootlywcm:inflation_consideration",getCostIndexConsideration());
 	    	node.setProperty("mootlywcm:capital_gain",getCapitalGain());
+	    	node.setProperty("mootlywcm:capitalgaintaxLT",getCapitalGainTaxLT());
+	    
 	    		
 	    
     	}catch (RepositoryException re) {
@@ -207,6 +221,9 @@ public class CapitalAssetDetail extends HippoItem implements FormMapFiller {
 		setCostIndexAcquisition(objCapitalAssetdetail.getCostIndexConsideration());
 		setCostIndexConsideration(objCapitalAssetdetail.getCostIndexConsideration());
 		setCapitalGain(objCapitalAssetdetail.getCapitalGain());
+		setCapitalGain(objCapitalAssetdetail.getCapitalGain());
+		setCapitalGainTaxLT(objCapitalAssetdetail.getCapitalGainTaxLT());
+		
 	}
 	
 }
