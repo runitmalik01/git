@@ -37,13 +37,13 @@ public class PreviousYearsSalaryInfo extends HippoItem implements FormMapFiller 
 	
 	private static final Logger log = LoggerFactory.getLogger(PreviousYearsSalaryInfo.class);
 	
-	private String prevyear;
-	private double previncome;
-	private double prevarrears;
-	private double prevtotalincome;
-	private double prevtaxtotalincome;
-	private double prevtaxincome;
-	private double prevtaxdiff;
+	private Double prevyear;
+	private Double previncome;
+	private Double prevarrears;
+	private Double prevtotalincome;
+	private Double prevtaxtotalincome;
+	private Double prevtaxincome;
+	private Double prevtaxdiff;
 
 	private boolean markedForDeletion;
 	
@@ -54,38 +54,38 @@ public class PreviousYearsSalaryInfo extends HippoItem implements FormMapFiller 
 		this.markedForDeletion = markedForDeletion;
 	}
 	
-    public String getPrevYear() {
-        if (prevyear==null) prevyear = getProperty("mootlywcm:prevYear");
+    public Double getPrevYear() {
+        if (prevyear == null) prevyear = getProperty("mootlywcm:prevYear");
         return prevyear;
     }
 
-    public double getPrevIncome() {
-    	if (previncome==0.0) previncome = getProperty("mootlywcm:prevIncome");
+    public Double getPrevIncome() {
+    	if (previncome == null) previncome = getProperty("mootlywcm:prevIncome");
     	return previncome;
     }
 
-    public double getPrevArrears() {
-    	if (prevarrears == 0.0) prevarrears = getProperty("mootlywcm:prevArrears");
+    public Double getPrevArrears() {
+    	if (prevarrears == null) prevarrears = getProperty("mootlywcm:prevArrears");
     	return prevarrears;
     }
 
-    public double getPrevTotalIncome() {
-    	if (prevtotalincome == 0.0) prevtotalincome = getProperty("mootlywcm:prevTotalIncome");
+    public Double getPrevTotalIncome() {
+    	if (prevtotalincome == null) prevtotalincome = getProperty("mootlywcm:prevTotalIncome");
     	return prevtotalincome;
     }
 
-    public double getPrevTaxTotalIncome() {
-    	if (prevtaxtotalincome == 0.0) prevtaxtotalincome = getProperty("mootlywcm:prevTaxTotalIncome");
+    public Double getPrevTaxTotalIncome() {
+    	if (prevtaxtotalincome == null) prevtaxtotalincome = getProperty("mootlywcm:prevTaxTotalIncome");
     	return prevtaxtotalincome;
     }
 
-    public double getPrevTaxIncome() {
-    	if (prevtaxincome == 0.0) prevtaxincome = getProperty("mootlywcm:prevTaxIncome");
+    public Double getPrevTaxIncome() {
+    	if (prevtaxincome == null) prevtaxincome = getProperty("mootlywcm:prevTaxIncome");
     	return prevtaxincome;
     }
 
-    public double getPrevTaxDiff() {
-    	if (prevtaxdiff == 0.0) prevtaxdiff = getProperty("mootlywcm:prevTaxDiff");
+    public Double getPrevTaxDiff() {
+    	if (prevtaxdiff == null) prevtaxdiff = getProperty("mootlywcm:prevTaxDiff");
     	return prevtaxdiff;
     }
 
@@ -105,7 +105,7 @@ public class PreviousYearsSalaryInfo extends HippoItem implements FormMapFiller 
     	
     }
 
-	public final void setPrevYear(String prevyear) {
+	public final void setPrevYear(Double prevyear) {
 		this.prevyear = prevyear;
 	}
 
@@ -139,71 +139,27 @@ public class PreviousYearsSalaryInfo extends HippoItem implements FormMapFiller 
 			log.info("Into the fill method");			
 		}
 		if (formMap == null) return;
-		if (log.isInfoEnabled()) {
-			log.info("Into the fill method");			
-		}
+		
 		if ( formMap.getField("prevyear") != null) {
-			setPrevYear(formMap.getField("prevyear").getValue());
-		}
-		if (log.isInfoEnabled()) {
-			log.info("Into the fill method");			
+			setPrevYear(Double.parseDouble(formMap.getField("prevyear").getValue()));
 		}
 		if ( formMap.getField("previncome") != null) {
-			if(formMap.getField("previncome").getValue().isEmpty()){
-				setPrevIncome(0.0);
-			}else{
-				setPrevIncome(Double.valueOf(formMap.getField("previncome").getValue()));	
-			}
-		}
-		if (log.isInfoEnabled()) {
-			log.info("Into the fill method");			
+			setPrevIncome(Double.parseDouble(formMap.getField("previncome").getValue()));
 		}
 		if ( formMap.getField("prevarrears") != null) {
-			if(formMap.getField("prevarrears").getValue().isEmpty()){
-				setPrevArrears(0.0);
-			}else{
-				setPrevArrears(Double.valueOf(formMap.getField("prevarrears").getValue()));
-			}
-		}
-		if (log.isInfoEnabled()) {
-			log.info("Into the fill method");			
+			setPrevArrears(Double.parseDouble(formMap.getField("prevarrears").getValue()));
 		}
 		if ( formMap.getField("prevtotal") != null) {
-			if(formMap.getField("prevtotal").getValue().isEmpty()){
-				setPrevTotalIncome(0.0);
-			}else{
-				setPrevTotalIncome(Double.valueOf(formMap.getField("prevtotal").getValue()));
-			}
-		}
-		if (log.isInfoEnabled()) {
-			log.info("Into the fill method");			
+			setPrevTotalIncome(Double.parseDouble(formMap.getField("prevtotal").getValue()));
 		}
 		if ( formMap.getField("prevtaxontotal") != null) {
-			if(formMap.getField("prevtaxontotal").getValue().isEmpty()){
-				setPrevTaxTotalIncome(0.0);
-			}else{
-				setPrevTaxTotalIncome(Double.valueOf(formMap.getField("prevtaxontotal").getValue()));
-			}
-		}
-		if (log.isInfoEnabled()) {
-			log.info("Into the fill method");			
+			setPrevTaxTotalIncome(Double.parseDouble(formMap.getField("prevtaxontotal").getValue()));
 		}
 		if ( formMap.getField("prevtaxincome") != null) {
-			if(formMap.getField("prevtaxincome").getValue().isEmpty()){
-				setPrevTaxIncome(0.0);
-			}else{
-				setPrevTaxIncome(Double.valueOf(formMap.getField("prevtaxincome").getValue()));
-			}
+			setPrevTaxIncome(Double.parseDouble(formMap.getField("prevtaxincome").getValue()));
 		}
-		if (log.isInfoEnabled()) {
-			log.info("Into the fill method");			
-		}
-		if ( formMap.getField("prevtaxdiffer") != null) {
-			if(formMap.getField("prevtaxdiffer").getValue().isEmpty()){
-				setPrevTaxDiff(0.0);
-			}else{
-				setPrevTaxDiff(Double.valueOf(formMap.getField("prevtaxdiffer").getValue()));
-			}
+		if ( formMap.getField("prevtaxdiff") != null) {
+			setPrevTaxDiff(Double.parseDouble(formMap.getField("prevtaxdiff").getValue()));
 		}		
 	}
 	
