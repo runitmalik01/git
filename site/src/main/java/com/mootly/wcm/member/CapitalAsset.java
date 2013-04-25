@@ -27,10 +27,8 @@ import com.mootly.wcm.components.ITReturnComponent;
  */
 @PrimaryBean(primaryBeanClass=CapitalAssetDocument.class)
 @ChildBean(childBeanClass=CapitalAssetDetail.class)
-@AdditionalBeans(additionalBeansToLoad=MemberPersonalInformation.class)
-@RequiredBeans(requiredBeans={MemberPersonalInformation.class})
-@FormFields(fieldNames={"hidDateAcquisition","cost_acquisition","hidDateSale","sale_consideration","inflation_acquisition","inflation_consideration","capital_gain"})
-@RequiredFields(fieldNames={"hidDateAcquisition","cost_acquisition","hidDateSale","sale_consideration","inflation_acquisition","inflation_consideration","capital_gain"})
+@FormFields(fieldNames={"date_acquisition","cost_acquisition","date_sale","sale_consideration","inflation_acquisition","inflation_consideration","capital_gain"})
+
 
 public class CapitalAsset extends ITReturnComponent {
 	@Override
