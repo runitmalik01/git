@@ -29,6 +29,7 @@ import static com.mootly.wcm.utils.Constants.NT_PERSONAL_INFO_LINK;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.TreeMap;
@@ -123,7 +124,10 @@ public class CapitalAssetDocument extends BaseDocument implements ContentNodeBin
 				log.info("checking size:::"+capitalasset.getCapitalAssetDetailList().size());
 				String ciiAcq=null;
 				String ciiSale=null;
-				
+				java.util.Date userDateAcq=null;
+				java.util.Date userDateSale=null;
+				double years= 0;
+				double capitalGainTaxLT=0;
 				for (CapitalAssetDetail capitalAssetDetail:capitalasset.getCapitalAssetDetailList()) {
 					log.info("going to bind to node method");
 					if (!capitalAssetDetail.isMarkedForDeletion()) {
@@ -139,11 +143,11 @@ public class CapitalAssetDocument extends BaseDocument implements ContentNodeBin
 								log.info("period"+period);
 								String[] arryPeriod=period.split("-");
 								log.info("arryPeriod[0]"+arryPeriod[0]);
-								log.info("arryPeriod[0]"+arryPeriod[1]);
+								log.info("arryPeriod[1]"+arryPeriod[1]);
 								SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 								// fetching cii for date of acquisition
 								log.info("capitalAssetDetail.getDateAcquisition()"+capitalAssetDetail.getDateAcquisition());
-								java.util.Date userDateAcq = sdf.parse(capitalAssetDetail.getDateAcquisition());
+								userDateAcq = sdf.parse(capitalAssetDetail.getDateAcquisition());
 								log.info("userDate"+userDateAcq);
 								java.util.Date fetchdateless= sdf.parse(arryPeriod[0]);
 								log.info("fetchdateless"+fetchdateless);
@@ -157,7 +161,7 @@ public class CapitalAssetDocument extends BaseDocument implements ContentNodeBin
 									log.info("else statement");	
 								}
 								// fetching cii for date of sale
-								java.util.Date userDateSale=sdf.parse(capitalAssetDetail.getDateSale());
+								 userDateSale=sdf.parse(capitalAssetDetail.getDateSale());
 								log.info("userDateSale"+userDateSale);
 								if(userDateSale.after(fetchdateless) && userDateSale.before(fetchdatemore)){
 									ciiSale=(String)rb.getString("valueList."+i+".cii");
@@ -170,20 +174,43 @@ public class CapitalAssetDocument extends BaseDocument implements ContentNodeBin
 							log.warn("exception"+e);
 
 						}
-						// code for doing calcualtion
-					//	float ciiA = Float.parseFloat(ciiAcq);
-						//float ciiS = Float.parseFloat(ciiSale);
 						double ciiA = Double.parseDouble(ciiAcq);
 						double ciiS= Double.parseDouble(ciiSale);
-						double multcii=ciiS*ciiA;
-						log.info("multcii"+multcii);
-						double divAcq=(capitalAssetDetail.getCostAcquisition())/multcii;
-						log.info("divAcq"+divAcq);
-						 capitalgain=(capitalAssetDetail.getSaleConsideration())-divAcq;
+						double divcii=ciiS/ciiA;
+						log.info("divcii"+divcii);
+						double mulAcq=(capitalAssetDetail.getCostAcquisition())*divcii;
+						log.info("divAcq"+mulAcq);
+						 capitalgain=(capitalAssetDetail.getSaleConsideration())-mulAcq;
 						log.info("capitalgain"+capitalgain);
 						capitalAssetDetail.setCapitalGain(capitalgain);
 						capitalAssetDetail.setCostIndexAcquisition(ciiAcq);
 						capitalAssetDetail.setCostIndexConsideration(ciiSale);
+						Calendar cal1=   Calendar.getInstance();
+						Calendar cal2=   Calendar.getInstance();
+						// code for calcualting capital gain tax 
+						if( userDateSale.compareTo(userDateAcq)>0) {
+							int factor=1;
+							if(factor==1){
+								cal2.setTime(userDateSale);
+								cal1.setTime(userDateAcq);
+								long milis1 = cal1.getTimeInMillis();
+								long milis2 = cal2.getTimeInMillis();
+								log.info("milisecond 1"+milis1);
+								log.info("milisecond 2"+milis2);
+								long day=milis2-milis1;
+								float diffDays = day / (24 * 60 * 60 * 1000);
+								
+								 years=diffDays/365;
+								log.info("number of years are"+years);
+							}
+							// calculate tax for long term capital gain
+						if(years>3){
+							log.info("it is long term capital gain");
+							capitalGainTaxLT=capitalgain*.2;
+							log.info("capitalGainTax"+capitalGainTaxLT);
+							capitalAssetDetail.setCapitalGainTaxLT(capitalGainTaxLT);
+						}
+						
 						javax.jcr.Node html = node.addNode(PROP_DETAIL_BEAN, PROP_DETAIL_BEAN);
 						if(html.equals(null)){
 							log.info("this is html node ");
@@ -204,7 +231,7 @@ public class CapitalAssetDocument extends BaseDocument implements ContentNodeBin
 			prdLinkNode.setProperty("hippo:docbase", capitalasset.getPersonalInfoUuid());
 			 */
 			 	
-		}
+			}}
 		catch (RepositoryException rex) {
 			log.error("Repository Exception while binding",rex);
 		}
