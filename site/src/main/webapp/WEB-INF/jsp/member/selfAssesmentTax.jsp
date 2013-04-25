@@ -5,9 +5,7 @@
 <script>
 
 $(document).ready(function() {
-	
-	alert("inside ready");
-    if (Modernizr.touch && Modernizr.inputtypes.date) {
+	if (Modernizr.touch && Modernizr.inputtypes.date) {
     	
         document.getElementById('datecredit').type = 'date';
         
@@ -17,9 +15,9 @@ $(document).ready(function() {
         changeMonth: true,
         changeYear: true,
 
-        minDate: "-13M +15D",
-         maxDate: "+0M -19D",
-        yearRange: "2012:2013"
+       // minDate: "-13M +15D",
+      //   maxDate: "+0M -19D",
+        yearRange: "2013:2014"
         
        });
      
@@ -106,7 +104,7 @@ else {
 
 					<tr height="30px">
 						<td class="label"><fmt:message key="tds.serial.challan" /></td>
-						<td class="input"><input type="text" name="Serial_challan"
+						<td class="input"><input type="text" name="Serial_challan" maxlength="5"
 							
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.p_Serial}"/></c:if>"
 							id="Serial_challan">
