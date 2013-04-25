@@ -3775,39 +3775,7 @@
       </sv:node>
     </sv:node>
   </sv:node>
-  <sv:node sv:name="service-price">
-    <sv:property sv:name="jcr:primaryType" sv:type="Name">
-      <sv:value>hst:component</sv:value>
-    </sv:property>
-    <sv:property sv:name="jcr:uuid" sv:type="String">
-      <sv:value>f975d795-a3f6-477f-8089-e92e5a990af8</sv:value>
-    </sv:property>
-    <sv:property sv:name="hst:referencecomponent" sv:type="String">
-      <sv:value>hst:pages/simplepage</sv:value>
-    </sv:property>
-    <sv:node sv:name="main">
-      <sv:property sv:name="jcr:primaryType" sv:type="Name">
-        <sv:value>hst:component</sv:value>
-      </sv:property>
-      <sv:property sv:name="jcr:uuid" sv:type="String">
-        <sv:value>d3218552-9e2a-495f-a5af-dfce3b093266</sv:value>
-      </sv:property>
-      <sv:property sv:name="hst:template" sv:type="String">
-        <sv:value>member.main</sv:value>
-      </sv:property>
-      <sv:node sv:name="content">
-        <sv:property sv:name="jcr:primaryType" sv:type="Name">
-          <sv:value>hst:component</sv:value>
-        </sv:property>
-        <sv:property sv:name="jcr:uuid" sv:type="String">
-          <sv:value>3ba73f72-77b6-4ede-b746-a401e658afe5</sv:value>
-        </sv:property>
-        <sv:property sv:name="hst:referencecomponent" sv:type="String">
-          <sv:value>hst:components/serviceprice</sv:value>
-        </sv:property>
-      </sv:node>
-    </sv:node>
-  </sv:node>
+
   <sv:node sv:name="my-services">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
       <sv:value>hst:component</sv:value>
