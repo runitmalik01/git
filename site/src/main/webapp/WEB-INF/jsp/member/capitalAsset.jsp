@@ -66,8 +66,8 @@ else {
 		value=" " /> <input type="hidden" name="hidDateSale" id="hidDateSale"
 		value=" " />
 
-			<h2>Enter Details</h2>
-		</div>
+			<h4>Enter Details</h4>
+		
 		<div class="yui3-bd" align="center">
 			<table class="personal_info">
 				<tr height="30px">
@@ -104,7 +104,7 @@ else {
 					<td class="label"><fmt:message
 							key="capital.gain.sale.consideration" /></td>
 					<td class="input">
-							<input type="text" pattern="^[0-9]+$" name="sale_consideration"
+							<input type="text"  name="sale_consideration"
 								id="sale" value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.saleConsideration}"/></c:if>" maxlength="14"
 								required="required" class="numberinput"
 								title="Please fill only Numeric value" onChange="fill()"
@@ -112,100 +112,12 @@ else {
 						
 					</td>
 				</tr>
-
-				<tr height="30px">
-					<td class="label"><fmt:message
-							key="capital.gain.cost.inflation.acquisition" /></td>
-					<td class="input">
-							<input type="text" pattern="^[0-9]+$"
-								name="inflation_acquisition" 
-								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.costIndexAcquisition}"/></c:if>" id="inflation"
-								class="numberinput" onChange="fill()" onblur="fill()" readonly>
-					
-					</td>
-				</tr>
-				<tr height="30px">
-					<td class="label"><fmt:message
-							key="capital.gain.cost.inflation.consideration" /></td>
-					<td class="input">
-							<input type="text" pattern="^[0-9]+$"
-								name="inflation_consideration"
-								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.costIndexConsideration}"/></c:if>" required="required"
-								id="consideration" class="numberinput" onChange="fill()"
-								onblur="fill()" readonly />
-
-										</td>
-				</tr>
-
-				<tr height="30px">
-					<td class="label"><fmt:message key="capital.gain" /></td>
-					<td class="input">
-							<input type="text" pattern="^[0-9]+$"
-								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.capitalGain}"/></c:if>"  name="capital_gain"
-								class="numberinput" id="gain" readonly />
-										</td>
-				</tr>
-				<tr height="40px">
-
-					<td class="submit fright" colspan="1" align="right"><input
-						type="submit" value="save" onclick="hiddenvalue()" /></td>
-					<td>
-						<button>
-							<a href="${Securities}">Next</a>
-						</button></td>
-				</tr>
-				
-				
-			</table>
+	</table>
 		
 		</div>
-	</div>
+	<a href="${redirectURLToSamePage}" class="button olive">Cancel</a><input type="submit" class="button orange" value="Save">
 </form>
 
-<script>
-
-function hiddenvalue(){
-
-var s=document.capitalasset.dropvalue; 
-var hid=s.options[s.selectedIndex].text
-document.forms['capitalasset'].elements["hidDateAcquisition"].value = hid;
-var t=document.capitalasset.dropvalue1;
-var hid1=t.options[t.selectedIndex].text
-
-document.forms['capitalasset'].elements["hidDateSale"].value = hid1;
-	}
-var F=null;
-var g=null;
-
-function dpdown1(){
-	 var n = document.getElementById("drop1");
- 	g = n.options[n.selectedIndex].value;
-	document.getElementById("consideration").value=g;
-	 }
-	function dpdown(){
-  var e = document.getElementById("drop");
-    var f = e.options[e.selectedIndex].value;
-	document.getElementById("inflation").value=f;
-    }
-    
-  function fill() {
-
-        var B = document.getElementById("cost").value-0;
-		var D = document.getElementById("sale").value-0;
-		var E = document.getElementById("inflation").value-0;
-		 F = document.getElementById("consideration").value-0;
-	if (E>0 && F>0 && B>0 && D>0){
-         var be = B/E;
-	var bef=be*F;
-	var total=D-bef;
-	
-	
-	document.getElementById("gain").value=Math.round(total*100)/100;
-	}
-
-
-    }
-</script>
 </c:when>
 <c:otherwise>				
 				<table>
@@ -217,6 +129,7 @@ function dpdown1(){
 						<th><b><fmt:message key="capital.gain.date.sale" /></b></th>
 						<th><b><fmt:message key="capital.gain.sale.consideration" /></b></th>
 						<th><b><fmt:message key="capital.gain" /></b></th>
+						<th><b><fmt:message key="capital.gain.long" /></b></th>
 						<th><b>Actions</b></th>
 				
 					</tr>
@@ -228,6 +141,7 @@ function dpdown1(){
 								<td><c:out value="${capitalassetdetail.dateSale}"/></td>
 								<td><c:out value="${capitalassetdetail.saleConsideration}"/></td>
 								<td><c:out value="${capitalassetdetail.capitalGain}"/></td>
+								<td><c:out value="${capitalassetdetail.capitalGainTaxLT}"/></td>
 								
 								<td><a href="${redirectURLToSamePage}/<c:out value="${capitalassetdetail.canonicalUUID}"/>/edit"><small>Edit</small></a>&nbsp;&nbsp;<a href="${redirectURLToSamePage}/<c:out value="${capitalassetdetail.canonicalUUID}"/>/delete"><small>Delete</small></a></td>
 							</tr>
