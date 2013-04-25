@@ -53,7 +53,7 @@ else {
 				</tr>
 				<tr>
 					<td><label>A.3 Enter Income Tax paid upto 31st March 2013</label></td>
-					<td><input id="aytaxp" onchange="int234();"/></td>
+					<td><input readonly="readonly" id="aytaxp" onchange="int234();" value="${totaltax}"/></td>
 				</tr>
 				<tr>
 					<td><label>A.4 Amount of shortfall in tax payment upto 31st March 2013</label></td>
@@ -108,7 +108,7 @@ else {
 				</tr>
 				<tr>
 					<td><label>D.3 Income Tax paid upto 15th September 2012</label></td>
-					<td><input id="atpq2" onchange="int234();"/></td>
+					<td><input readonly="readonly" id="atpq2" onchange="int234();" value="${dsum12}"/></td>
 				</tr>
 				<tr>
 					<td><label>D.4 Shortfall in Advance Tax payment</label></td>
@@ -131,7 +131,7 @@ else {
 				</tr>
 				<tr>
 					<td><label>E.3 Income Tax paid upto 15th December 2012</label></td>
-					<td><input id="atpq3" onchange="int234();"/></td>
+					<td><input readonly="readonly" id="atpq3" onchange="int234();" value="${dsum3}"/></td>
 				</tr>
 				<tr>
 					<td><label>E.4 Shortfall in Advance Tax payment</label></td>
@@ -154,7 +154,7 @@ else {
 				</tr>
 				<tr>
 					<td><label>F.3 Income Tax paid upto 15th March 2013</label></td>
-					<td><input id="atpq4" onchange="int234();"/></td>
+					<td><input readonly="readonly" id="atpq4" onchange="int234();" value="${dsum4}"/></td>
 				</tr>
 				<tr>
 					<td><label>F.4 Shortfall in Advance Tax payment</label></td>
