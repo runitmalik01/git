@@ -46,7 +46,7 @@ else {
  pageContext.setAttribute("modifiedSiteMapRefId",mainSiteMapRefId);
 }
 %>
- <a href="${modifiedSiteMapRefId}" class="button orange" style="margin-left:100px;">Next</a>
+ 
  <hst:link var ="mainSiteMapRefId" siteMapItemRefId="${mainSiteMapItemRefId}"/>
 
 
@@ -147,7 +147,7 @@ else {
 				<tr>
 					<td><fmt:message key="tds.amount.total" />
 					</td>
-					<td><input type="text" name="total_value" value="${parentBean.total_Amount}"></td>
+					<td><input type="text" name="total_value" maxlength="14" readonly value="${parentBean.total_Amount}"></td>
 				</c:if>
 		</table>
 
@@ -192,7 +192,7 @@ else {
                     changeYear: true,
                   
                    
-                    yearRange: "2011:2012"
+                    yearRange: "2012:2013"
                     
                    });
                  
