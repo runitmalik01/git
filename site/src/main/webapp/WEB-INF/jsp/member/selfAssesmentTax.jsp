@@ -58,11 +58,12 @@ function calculate(){
 String varToReplace = (String) pageContext.getAttribute("mainSiteMapRefId");
 if (varToReplace != null) {
     String pan = (String) request.getAttribute("pan");
-	String modifiedSiteMapRefId = varToReplace.replaceAll("_default_",pan);
-	pageContext.setAttribute("modifiedSiteMapRefId",modifiedSiteMapRefId);
+    String itReturnType = (String) request.getAttribute("itReturnType");
+ String modifiedSiteMapRefId = varToReplace.replaceFirst("_default_",itReturnType).replace("_default_", pan).replaceAll("selfassesmenttax","tdsfromsalary");
+ pageContext.setAttribute("modifiedSiteMapRefId",modifiedSiteMapRefId);
 }
 else {
-	pageContext.setAttribute("modifiedSiteMapRefId",mainSiteMapRefId);
+ pageContext.setAttribute("modifiedSiteMapRefId",mainSiteMapRefId);
 }
 %>
 <h4>
@@ -119,23 +120,9 @@ else {
 							class="validate[required,custom[integer],maxSize[14]] text-input" />
 						</td>
 					</tr>
-
-
-
-					<tr height="40px">
-
-						<td class="submit fright" colspan="1" align="right"><input
-							type="submit" value="save" id="submit" onclick="hiddenvalue()" />
-						</td>
-						<td>
-							<button>
-								<a>Skip</a>
-							</button></td>
-					</tr>
-
-
-				</table>
+		</table>
 			</fieldset>
+			<a href="${redirectURLToSamePage}" class="button olive">Cancel</a><input type="submit" class="button orange" value="Save">
 		</form>
 
 	</c:when>
@@ -183,6 +170,7 @@ else {
 
 		<a href="${redirectURLToSamePage}/new" class="button orange">Add
 			New</a>
+			<a href="${modifiedSiteMapRefId}" class="button orange" style="margin-left:100px;">Next</a>
 
 	</c:otherwise>
 </c:choose>
