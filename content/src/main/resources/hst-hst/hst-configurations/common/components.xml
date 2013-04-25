@@ -1107,4 +1107,20 @@
     </sv:property>
   </sv:node>
 
+
+<sv:node sv:name="serviceprice">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:component</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>9bca3b6a-9a79-4ac6-9ab4-53d991ed0421</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:componentclassname" sv:type="String">
+    <sv:value>com.mootly.wcm.components.common.ServicePrice</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:template" sv:type="String">
+    <sv:value>serviceprice</sv:value>
+  </sv:property>
+</sv:node>
+
 </sv:node>
