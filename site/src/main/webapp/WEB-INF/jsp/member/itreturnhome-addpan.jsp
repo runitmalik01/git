@@ -3,8 +3,8 @@
 <%@page import="org.hippoecm.hst.content.beans.standard.HippoFolder"%>
 <%@include file="../includes/tags.jspf"%>
 
-	<hst:link var="originalViewLink" path="/member/itreturn/financialYear/original/pan/personalinformation.html"/>
-	<hst:link var="viewLink" path="/member/itreturn/financialYear/original/pan/personalinformation.html"/>	
+	<hst:link var="originalViewLink" path="/member/itreturn/financialYear/original/pan/itrformselection.html"/>
+	<hst:link var="viewLink" path="/member/itreturn/financialYear/original/pan/itrformselection.html"/>	
 <form id="addPanForm" action="">	
 	<span class="label1 label-info1">Start a new Return for <c:out value="${financialYear}"/></span>	
 	<p>
