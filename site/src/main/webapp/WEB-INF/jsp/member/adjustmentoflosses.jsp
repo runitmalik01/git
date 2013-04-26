@@ -8,6 +8,7 @@
 <%@page import="com.mootly.wcm.beans.compound.AdjustmentOfLossesCom"%>
 <%@ page import="com.mootly.wcm.utils.*"%>
 <%@ page import="java.util.*"%>
+<%@page import="org.hippoecm.hst.content.beans.standard.HippoFolder"%>
 <%@ page import="com.mootly.wcm.beans.*"%>
 
 <hst:link var ="mainSiteMapRefId" siteMapItemRefId="${mainSiteMapItemRefId}"/>
@@ -105,11 +106,12 @@ jQuery('#DateOfFilingYear').datepicker('destroy');
 	<c:choose>
 	<c:when test="${pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD'}">
 		<form id="frmdata" action="${actionUrl}" name="frmdata" method="post">
+		<div class="row-fluid show-grid">
 			<fieldset>
 				<legend>Detail Of Losses</legend>
 				<p>
 					<label for="AssessmentYear"> <fmt:message key="member.adjustment.losses.year"></fmt:message></label>
-					<select name="AssessmentYear" id="year" onChange="setYear()">
+					<select name="AssessmentYear" id="AssessmentYear" onChange="setYear()">
 						  <option value="">-Select Year-</option>
 						  <c:forEach var="booleanCombo" items="${objHashMapAssessmentYear}">
 						  <option <c:if test="${pageAction == 'EDIT_CHILD' && childBean.assessmentYear == booleanCombo.value}">selected</c:if> value="${booleanCombo.value}">${booleanCombo.value}</option>
@@ -130,11 +132,11 @@ jQuery('#DateOfFilingYear').datepicker('destroy');
 				</p>
 				<p>
 					<label for="Amount"><fmt:message key="member.adjustment.losses.amount" /></label>
-					<input id="Amount" maxlength="14" type="text" name="Amount" id="amount" value="<c:if test="${pageAction == 'EDIT_CHILD'}"><c:out value="${childBean.amount}"/></c:if>"/>
+					<input id="Amount" maxlength="14" type="text" name="Amount" placeholder="Amount" id="amount" value="<c:if test="${pageAction == 'EDIT_CHILD'}"><c:out value="${childBean.amount}"/></c:if>"/>
 				</p>
 				<p>
 					<label for="DateOfFilingYear"><fmt:message key="member.adjustment.losses.date"></fmt:message></label>
-					 <input  id="DateOfFilingYear" name="DateOfFilingYear" value="${childBean.DOBStr}" onClick="setYear()"/> 
+					 <input  id="DateOfFilingYear" placeholder="Date Of Filing Year" name="DateOfFilingYear" value="${childBean.DOBStr}" onClick="setYear()"/> 
 				</p>
 					<p>
 					<label for="DueDate"><fmt:message key="member.adjustment.losses.duedate"></fmt:message></label>
@@ -145,11 +147,13 @@ jQuery('#DateOfFilingYear').datepicker('destroy');
 						         </c:forEach>
 					      </select>
 				</p>
+				
 			</fieldset>
-			
+			</div>
 		</form>
 		<a href="${redirectURLToSamePage}" class="button olive">Cancel</a>&nbsp;
-		<input type="submit" id="submit" class="button olive" onclick="save()" value="Save"/>
+		<a id="myModalHref" onClick="save()" role="button" class="btn orange">Save</a>
+		
 	</c:when>
 	<c:otherwise>				
 				<table>
@@ -181,6 +185,22 @@ jQuery('#DateOfFilingYear').datepicker('destroy');
 	</c:otherwise>
 	</c:choose>
 </div>
+
+<hst:element var="uiCustom" name="script">
+    <hst:attribute name="type">text/javascript</hst:attribute>
+	<res:client-validation/>
+	$(document).ready(function() {
+		
+		$("#myModalHref").click( function() {
+			$("#frmdata").validate();
+			if (!$("#frmdata").valid()) return false;
+		});
+		
+	});
+</hst:element>
+<hst:headContribution element="${uiCustom}" category="jsInternal"/>		
+
+
 
 <script>
 function save(){
