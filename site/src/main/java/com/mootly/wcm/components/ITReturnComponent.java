@@ -66,6 +66,7 @@ import com.mootly.wcm.beans.ScreenConfigDocument;
 import com.mootly.wcm.beans.ValueListDocument;
 import com.mootly.wcm.member.Member;
 import com.mootly.wcm.model.FilingStatus;
+import com.mootly.wcm.model.ITReturnPackage;
 import com.mootly.wcm.services.ScreenConfigService;
 import com.mootly.wcm.utils.GoGreenUtil;
 
@@ -94,6 +95,8 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 	String itReturnType = "original";
 	String pan = null;
 	FilingStatus filingStatus;
+	FormMap formMap = null;
+	ITReturnPackage itReturnPackage = ITReturnPackage.basic;
 	
 	//Document Specific
 	HippoBean hippoBeanBaseITReturnDocuments;
@@ -110,6 +113,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 	//Screen Specific
 	PAGE_ACTION pageAction;
 	String screenMode;
+	String nextScreenSiteMapItemRefId;
 	
 	String mainSiteMapItemRefId = null;
 	
@@ -230,7 +234,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			//hasInitComplete = true;
 		}
 		FormFields formFields = this.getClass().getAnnotation(FormFields.class);
-		FormMap formMap = new FormMap(request,formFields.fieldNames());
+		formMap = new FormMap(request,formFields.fieldNames());
 		
 		boolean isValid = validate(request,response,formMap);
 		if (!isValid) {
@@ -249,7 +253,18 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			}
 			save(request,formMap);
 			try {
-				response.sendRedirect( getRedirectURL(request,response,FormSaveResult.SUCCESS) );
+				if (formMap.getMessage() != null && formMap.getMessage().size() > 0 ) {
+					String urlToRedirect = getRedirectURL(request,response,FormSaveResult.FAILURE) ;
+					if (log.isInfoEnabled()) {
+						log.info("URLToRedirect:"+ urlToRedirect);
+					}
+					response.sendRedirect( urlToRedirect );
+				}
+				else {
+					String urlToRedirect = getRedirectURL(request,response,FormSaveResult.SUCCESS) ;
+					log.info("URLToRedirect:"+ urlToRedirect);
+					response.sendRedirect( urlToRedirect );
+				}
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				log.error("Error in redirection",e);
@@ -421,7 +436,20 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		return  new SimpleDateFormat("yyyy-MM-dd");
 	}
 	
+	public FormMap getFormMap() {
+		return formMap;
+	}
 	
+
+	public String getScriptName() {
+		return scriptName;
+	}
+	
+
+	public ITReturnPackage getItReturnPackage() {
+		return itReturnPackage;
+	}
+
 	
 	@Override
 	public PAGE_ACTION getPageAction() {
@@ -447,6 +475,8 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		if (mainSiteMapItemRefId == null) mainSiteMapItemRefId = request.getRequestContext().getResolvedSiteMapItem().getParameter("mainSiteMapItemRefId");
 		redirectURLToSamePage = getRedirectURL(request,response,FormSaveResult.FAILURE);
 		
+		nextScreenSiteMapItemRefId = request.getRequestContext().getResolvedSiteMapItem().getParameter("nextScreen");
+		
 		//we must make sure itReturnType and PAN are not empty as well as they are valid
 		if (!StringUtils.isEmpty(pan) && !DataTypeValidationHelper.isOfType(pan, DataTypeValidationType.PAN)) {
 			throw new InvalidPANException("INVALID PAN NUMBER");
@@ -454,6 +484,19 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		if (!StringUtils.isEmpty(itReturnType) && !DataTypeValidationHelper.isOfType(itReturnType, DataTypeValidationType.ITRETURNTYPE)) {
 			throw new InvalidNavigationException("INVALID ITRETURUN TYPE");
 		}
+		
+		String strItReturnPackage = request.getRequestContext().getResolvedSiteMapItem().getParameter("itReturnPackage");
+		if (strItReturnPackage == null)
+			itReturnPackage = ITReturnPackage.basic;
+		else {
+			try {
+				itReturnPackage = ITReturnPackage.valueOf(strItReturnPackage);
+			}catch (IllegalArgumentException ie) {
+				log.warn("Illegal Argument:" + strItReturnPackage);
+				itReturnPackage = ITReturnPackage.basic;
+			}
+		}
+		
 		
 		//NOW find 
 		if (!StringUtils.isEmpty(pan)) {
@@ -793,11 +836,23 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 	}
 	
 	protected String getRedirectURL(HstRequest request,HstResponse response,FormSaveResult formSaveResult) {
-		if (mainSiteMapItemRefId == null) mainSiteMapItemRefId = request.getRequestContext().getResolvedSiteMapItem().getParameter("mainSiteMapItemRefId");
-		HstLink link = request.getRequestContext().getHstLinkCreator().createByRefId(mainSiteMapItemRefId, request.getRequestContext().getResolvedMount().getMount());
+		if (formSaveResult.equals(FormSaveResult.FAILURE)) {
+			return getRedirectURL(request, response, formSaveResult,mainSiteMapItemRefId,getITReturnType(), getPAN());
+		}
+		else if (formSaveResult.equals(FormSaveResult.SUCCESS) && nextScreenSiteMapItemRefId != null) {
+			return getRedirectURL(request, response, formSaveResult,nextScreenSiteMapItemRefId,getITReturnType(), getPAN());
+		}
+		else {
+			return getRedirectURL(request, response, formSaveResult,mainSiteMapItemRefId,getITReturnType(), getPAN());
+		}
+	}
+	
+	protected String getRedirectURL(HstRequest request,HstResponse response,FormSaveResult formSaveResult,String siteMapReferenceId,String itReturnType,String pan) {
+		//if (siteMapReferenceId == null) siteMapReferenceId = request.getRequestContext().getResolvedSiteMapItem().getParameter(siteMapReferenceId);
+		HstLink link = request.getRequestContext().getHstLinkCreator().createByRefId(siteMapReferenceId, request.getRequestContext().getResolvedMount().getMount());
 		if (link != null) {
-			String strFirstRep = link.toUrlForm(request.getRequestContext(), true).replaceFirst("_default_", getITReturnType());
-			strFirstRep = strFirstRep.replaceAll("_default_", getPAN());
+			String strFirstRep = link.toUrlForm(request.getRequestContext(), true).replaceFirst("_default_", itReturnType);
+			strFirstRep = strFirstRep.replaceAll("_default_",pan);
 			return strFirstRep;
 		}
 		else {

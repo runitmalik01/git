@@ -24,9 +24,7 @@
     <hst:attribute name="type">text/javascript</hst:attribute>
 		$(document).ready(function() {
 			$('#newpan').popover({'trigger':'focus'})
-			$.validator.addMethod("PAN", function(value, element) {  
-		   	 return this.optional(element) || /^[a-zA-Z]{5}\d{4}[a-zA-Z]{1}?$/i.test(value);  
-		    }, "PAN is invalid.");
+			
 		    var ay = "<c:out value="${financialYear}"/>";
 			$('#addPanForm input').keydown(function(e) {
 			    if (e.keyCode == 13) {

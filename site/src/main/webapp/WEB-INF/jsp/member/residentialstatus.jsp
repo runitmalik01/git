@@ -5,79 +5,78 @@
 	<fmt:message key="member.residential.status" />
 </c:set>
 <hippo-gogreen:title title="${residentialstatus}"></hippo-gogreen:title>
-<h3 id="respond1"><fmt:message key="member.residential.status" /></h3>
+<res:breadcrumb/>
+<div class="page">	
+	<h4><fmt:message key="member.residential.status" /></h4>
+	<h5><small><fmt:message key="member.resi.status.sentence" /></small></h5>
 
-<h5><small><fmt:message key="member.resi.status.sentence" /></small></h5>
-
-<hst:link var ="mainSiteMapRefId" siteMapItemRefId="${mainSiteMapItemRefId}"/>
-<%
-String varToReplace = (String) pageContext.getAttribute("mainSiteMapRefId");
-if (varToReplace != null) {
-    String pan = (String) request.getAttribute("pan");
-    String itReturnType = (String) request.getAttribute("itReturnType");
-	String modifiedSiteMapRefId = varToReplace.replaceFirst("_default_",itReturnType).replace("_default_", pan).replaceAll("residentialstatus","bankdetail");
-	pageContext.setAttribute("modifiedSiteMapRefId",modifiedSiteMapRefId);
-}
-else {
-	pageContext.setAttribute("modifiedSiteMapRefId",mainSiteMapRefId);
-}
-%>
-<script>
-	var qs = <c:out value="${jsonObject}" escapeXml="false"/>
-</script>
-<hst:actionURL var="actionUrl"></hst:actionURL>
-<form name="frmResidential" id="frmResidential" method="post" action="${actionUrl }">
-<ul>
-	<li>
-		<ul>
-			<li style="display:inline"><c:out value="${map['rsstatus_q']}"/></li>
-			<li style="display:inline">
-				<select class="answer" id="rsstatus_q" name="rsstatus_q">
-					<option>Select</option>
-					<option value="yes">Yes</option>
-					<option value="no">No</option>
-				</select>
-			</li>
-		</ul>	
-		<c:forEach items="${map}" var="item" varStatus="status">
-			<c:if test="${item.key != 'rsstatus_q'}">
-				<c:set var="pageItemValue" value="${item.value}"/>
-				<%				
-					pageContext.setAttribute("isAnswer","false");
-					String pageItemValue =  (String) pageContext.getAttribute("pageItemValue");
-					if (pageItemValue != null && pageItemValue.startsWith("ans_")) {
-						pageContext.setAttribute("isAnswer","true");
-					}
-				%>				
-					<ul id="ul_<c:out value="${item.key}"/>" style="display:none;visiblity:hidden">
-						<li style="display:inline"><c:choose>
-								<c:when test="${fn:startsWith(item.value,'ans_')}">
-									<br/><p id="resi<c:out value="${status.index}" />" style="color:#65B43D;">
-									<b><c:out value="${fn:replace(item.value,'ans_','')}"/></b></p>
-								</c:when>
-								<c:otherwise>
-									<c:out value="${item.value}"/>
-								</c:otherwise>
-							</c:choose><br/>
-						<c:if test="${fn:startsWith(item.value,'ans_')}">
-						<input type="submit" name="Submit" value="Save &amp; Next"  id="hrefLogin" class="button orange"/>
-						<a href="${modifiedSiteMapRefId}" class="button orange" style="margin-left:100px;">Next</a>
-						</c:if></li>
-						<li style="display:inline">
-							<c:if test="${isAnswer != 'true'}">
-								<select class="answer" id="<c:out value="${item.key}"/>" name="<c:out value="${item.key}"/>">
-									<option>Select</option>
-									<option value="yes">Yes</option>
-									<option value="no">No</option>
-								</select>
+	<hst:link var ="mainSiteMapRefId" siteMapItemRefId="${mainSiteMapItemRefId}"/>
+	<%
+	String varToReplace = (String) pageContext.getAttribute("mainSiteMapRefId");
+	if (varToReplace != null) {
+	    String pan = (String) request.getAttribute("pan");
+	    String itReturnType = (String) request.getAttribute("itReturnType");
+		String modifiedSiteMapRefId = varToReplace.replaceFirst("_default_",itReturnType).replace("_default_", pan).replaceAll("residentialstatus","bankdetail");
+		pageContext.setAttribute("modifiedSiteMapRefId",modifiedSiteMapRefId);
+	}
+	else {
+		pageContext.setAttribute("modifiedSiteMapRefId",mainSiteMapRefId);
+	}
+	%>
+	<script>
+		var qs = <c:out value="${jsonObject}" escapeXml="false"/>
+	</script>
+	<hst:actionURL var="actionUrl"></hst:actionURL>
+	<form name="frmResidential" id="frmResidential" method="post" action="${actionUrl}">
+		 	<div class="row-fluid show-grid">	  
+				<div class="span10"><c:out value="${map['rsstatus_q']}"/></div>
+				<div class="span2">
+					<select class="answer" id="rsstatus_q" name="rsstatus_q">
+						<option>Select</option>
+						<option value="yes">Yes</option>
+						<option value="no">No</option>
+					</select>
+				</div>
+			</div>
+			<c:forEach items="${map}" var="item" varStatus="status">
+				<c:if test="${item.key != 'rsstatus_q'}">
+					<c:set var="pageItemValue" value="${item.value}"/>
+					<%				
+						pageContext.setAttribute("isAnswer","false");
+						String pageItemValue =  (String) pageContext.getAttribute("pageItemValue");
+						if (pageItemValue != null && pageItemValue.startsWith("ans_")) {
+							pageContext.setAttribute("isAnswer","true");
+						}
+					%>				
+						<div class="row-fluid show-grid" id="ul_<c:out value="${item.key}"/>" style="display:none;visiblity:hidden">
+							<div class="span10">
+								<c:choose>
+									<c:when test="${fn:startsWith(item.value,'ans_')}">
+										<br/><p id="resi<c:out value="${status.index}" />" style="color:#65B43D;">
+										<b><c:out value="${fn:replace(item.value,'ans_','')}"/></b></p>
+									</c:when>
+									<c:otherwise>
+										<c:out value="${item.value}"/>
+									</c:otherwise>
+								</c:choose>
+							<c:if test="${fn:startsWith(item.value,'ans_')}">
+							<input type="submit" name="Submit" value="Save &amp; Next"  id="hrefLogin" class="button orange"/>
 							</c:if>
-						</li>
-					</ul>					
-			</c:if>
-		</c:forEach>		
-	</li>
-</ul>
-</form>
+							</div>
+							<div class="span2">
+								<c:if test="${isAnswer != 'true'}">
+									<select class="answer" id="<c:out value="${item.key}"/>" name="<c:out value="${item.key}"/>">
+										<option>Select</option>
+										<option value="yes">Yes</option>
+										<option value="no">No</option>
+									</select>
+								</c:if>
+							</div>
+						</div>					
+				</c:if>
+			</c:forEach>		
+	</form>
+</div>
 <c:if test="${not empty parentBean }">
 	<c:if test="${not empty fetchmap}">
 <c:forEach items="${fetchmap}" var="item" varStatus="stat">

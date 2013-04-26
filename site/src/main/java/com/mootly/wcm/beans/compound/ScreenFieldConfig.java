@@ -108,7 +108,16 @@ public class ScreenFieldConfig extends HippoItem  {
 		return validators;
 	}
 	public String[] getValidatorArguments() {
-		if (validatorArguments == null) validatorArguments = getProperty(prop_mootlywcm_validatorArguments);
+		if (validatorArguments == null) {
+			Object prop = getProperty(prop_mootlywcm_validatorArguments);
+			if (prop instanceof String) {
+				String tmp= getProperty(prop_mootlywcm_validatorArguments);
+				validatorArguments = new String[]{tmp};
+			}
+			else if (prop instanceof String[]) {
+				validatorArguments =  getProperty(prop_mootlywcm_validatorArguments);
+			}
+		}
 		return validatorArguments;
 	}
 	

@@ -27,31 +27,44 @@
 var validationRules = new Object();
 validationRules.rules = new Object();
 $(document).ready(function() {
-	var fieldConfig = <c:out value="${clientSideValidationJSON}" escapeXml="false"/>
+	var fieldConfig = <c:out value="${screenConfigDocumentJSON}" escapeXml="false"/>
 	for (var fn in fieldConfig) {
-		$("input[name='" + fn + "']").each( function(indx) {									
-				validationRules.rules[$(this).attr('id')] = new Object();
+		var fObj = $("input[name='" + fn + "']");
+		if (fObj.length ==0) {
+			fObj =$("select[name='" + fn + "']");
+			if (fObj.length ==0) continue;
+		}
+		if (fObj.length ==0) continue;
+		
+		fObj.each( function(indx) {									
+				validationRules.rules[fieldConfig[fn].fieldId] = new Object();
 			}
 		)
 		
-		switch (fieldConfig[fn].dataType) {
-			case "INDIANDATE":
-			case "DATE":
-				$("input[name='" + fn + "']").datepicker({
+		switch (fieldConfig[fn].fieldFormat) {
+			case "indiandate":
+			case "date":
+				fObj.datepicker({
 						changeMonth : true,
 						changeYear : true
 					}).addClass("indiandate");	
 				break;
-			case "DECIMAL":
-				$("input[name='" + fn + "']").addClass("decimal");
+			default:				
+				if (fieldConfig[fn].fieldFormat != null && fieldConfig[fn].fieldFormat != '') {
+					fObj.addClass(fieldConfig[fn].fieldFormat);
+					validationRules.rules[fieldConfig[fn].fieldId][fieldConfig[fn].fieldFormat]=true;
+				}
 				break;
 		}
 		if (fieldConfig[fn].isRequired) {
-			$("input[name='" + fn + "']").each( function(indx) {
+			fObj.each( function(indx) {
 					//alert(validationRules.rules);
-					validationRules.rules[$(this).attr('id')].required=true;
+					validationRules.rules[fieldConfig[fn].fieldId].required=true;
 				}
-			)
+			);
+		}
+		if (fieldConfig[fn].fieldTitle != '') {
+			fObj.watermark(fieldConfig[fn].fieldTitle);
 		}
 	}
 	$('#frmdata input').keydown(function(e) {
@@ -61,16 +74,9 @@ $(document).ready(function() {
 	    }
 	});
 	$('#frmdata').validate({
-		rules: validationRules.rules,				
-		messages: {
-			username: "Please enter a valid email address.",
-			password: "Please enter a valid password."
-		}
+		rules: validationRules.rules					
 	});
-	
-	$('#hrefLogin').click(function() {
-			 $('#frmdata').submit();
-	});
+
 });    
 
 

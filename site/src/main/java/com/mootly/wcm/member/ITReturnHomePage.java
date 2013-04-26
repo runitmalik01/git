@@ -9,8 +9,10 @@
 
 package com.mootly.wcm.member;
 
+import java.io.IOException;
 import java.util.List;
 
+import org.hippoecm.hst.component.support.forms.FormUtils;
 import org.hippoecm.hst.content.beans.standard.HippoFolder;
 import org.hippoecm.hst.content.beans.standard.HippoFolderBean;
 import org.hippoecm.hst.core.component.HstComponentException;
@@ -27,7 +29,11 @@ import com.mootly.wcm.annotations.RequiredFields;
 import com.mootly.wcm.beans.MemberPersonalInformation;
 import com.mootly.wcm.beans.SalaryIncomeDocument;
 import com.mootly.wcm.beans.compound.SalaryIncomeDetail;
+import com.mootly.wcm.components.FormSaveResult;
 import com.mootly.wcm.components.ITReturnComponent;
+
+@FormFields(fieldNames={"pan","pi_last_name","pi_dob","pi_return_type"})
+@RequiredFields(fieldNames={"pan","pi_last_name","pi_dob","pi_return_type"})
 
 public class ITReturnHomePage extends ITReturnComponent {
 	
@@ -50,6 +56,16 @@ public class ITReturnHomePage extends ITReturnComponent {
 			throws HstComponentException {
 		// TODO Auto-generated method stub
 		super.doAction(request, response);
+		FormUtils.persistFormMap(request, response, getFormMap(), null);
+		try {
+			String pan = getFormMap().getField("pan").getValue().toLowerCase();
+			String itReturnType =  getFormMap().getField("pi_return_type").getValue();
+			String returnURL = getRedirectURL(request, response, FormSaveResult.SUCCESS,"start-application-basic",itReturnType,pan);
+			response.sendRedirect(returnURL);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }

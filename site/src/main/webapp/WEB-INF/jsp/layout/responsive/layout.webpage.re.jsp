@@ -54,6 +54,9 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" ></script>
     <script>window.jQuery || document.write(unescape('%3Cscript src="http://jqueryui.com/jquery-wp-content/themes/jquery/js/jquery-1.9.1.min.js"%3E%3C/script%3E'))</script>
     <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+    
+    <hst:link var="jqueryWaterMark" path="/js/jquery.watermark.min.js"/>
+    <script src="${jqueryWaterMark}"></script>
 
 	<hst:link var="responsive_modernizr" path="/js/responsive-modernizr.js"/>
 	<script type='text/javascript' src='${responsive_modernizr}'></script>
@@ -78,13 +81,16 @@
 	<hst:headContributions categoryIncludes="jsExternal"/>
 	<script>
 		$.datepicker.setDefaults({
-		  showOn: "both",
-		  buttonImageOnly: true,
-          buttonImage: "<hst:link path="/img/calendar.gif"/>",
-		  buttonText: "Calendar",
+		  /*showOn: "both",*/
+		  /*buttonImageOnly: true,
+          buttonImage: "<hst:link path="/img/calendar.gif"/>",*/
+		  /*buttonText: "Calendar",*/
 	      dateFormat: "dd/mm/yy"
 		});
 		$.datepicker.setDefaults( $.datepicker.regional[ "fr" ] );
+		$.validator.addMethod("pan", function(value, element) {  
+		   	 return this.optional(element) || /^[a-zA-Z]{5}\d{4}[a-zA-Z]{1}?$/i.test(value);  
+		}, "PAN is invalid.");
 	</script>
 </body>
 </html>

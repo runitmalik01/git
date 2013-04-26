@@ -2,10 +2,85 @@
 <%@page import="com.mootly.wcm.beans.MemberPersonalInformation"%>
 <%@page import="org.hippoecm.hst.content.beans.standard.HippoFolder"%>
 <%@include file="../includes/tags.jspf"%>
-<c:out value="${itReturnType}"/>
-<div class="page">
-	<h3>Income Tax Returns (<c:out value="${financialYear}"/>)</h3>
-
+<div class="page">	
+	<h4>Prepare Income Tax Return for FY:<c:out value="${financialYear}"/></h4>
+	<hst:actionURL var="actionURL"/>
+	<form id="frmdata" method="post" action="${actionURL}">
+		<fieldset>
+			<legend>Start preparing New Return - Fill up this form and <a id="myModalHref" role="button" class="btn orange" data-toggle="modal">Click Here!! </a></legend>
+			<div class="row-fluid show-grid">
+		          <div class="span3"><input id="pan" name="pan" placeholder="PAN" type="text" maxlength="10"/></div>
+		          <!-- <div class="span2"><input id="pi_first_name" name="pi_first_name" placeholder="First Name" type="text"/></div>	      
+		          <div class="span1"><input id="pi_middle_name" name="pi_middle_name"  placeholder="Middle Name" type="text"/></div>
+		           -->
+		          <div class="span3"><input id="pi_last_name" name="pi_last_name" placeholder="Last Name" type="text"/></div>	          
+			   	  <div class="span3"><input id="pi_dob" name="pi_dob" placeholder="DOB" type="text" maxlength="10"/></div>
+		          <div class="span3"><select id="pi_return_type" name="pi_return_type"><option value="">Select Type</option><option value="original">Original</option><option value="revised">Revised</option></select></div>
+			 </div>	 
+		 </fieldset>
+	 <%--
+	 <fieldset>
+	 	 <legend>Personal Information</legend>	 
+		 <div class="row-fluid show-grid">	 	
+	          <div class="span1"><label for="fname">First</label></div>
+	          <div class="span3"><input id="fname" type="text" maxlength="10"/></div>
+	          <div class="span1"><label for="mname"/>Middle</div>
+	          <div class="span3"><input id="mname" type="text" maxlength="10"/></div>
+	          <div class="span1"><label for="lname">Last</label></div>
+	          <div class="span3"><input id="lname" type="text" maxlength="10"/></div>
+		</div>	
+		<div class="row-fluid show-grid">	 	
+			  <div class="span1"><label for="gender"/>Gender</div>
+	          <div class="span1"><select><option value="">M</option><option>F</option></select></div>
+	          <div class="span1"><label for="dob">DOB</label></div>
+	          <div class="span2"><input id="fname" type="text" maxlength="10"/></div>
+	          <div class="span1"><label for="lname">Email</label></div>
+	          <div class="span3"><input id="lname" type="text" maxlength="10"/></div>
+	          <div class="span1"><label for="lname">Phone</label></div>
+	          <div class="span2"><input id="lname" type="text" maxlength="10"/></div>
+		</div>	 		
+	 </fieldset>
+	 <fieldset>
+	 	 <legend>Address & Contact Information</legend>	 
+		 <div class="row-fluid show-grid">	 	
+	          <div class="span1"><label for="fname">First</label></div>
+	          <div class="span3"><input id="fname" type="text" maxlength="10"/></div>
+	          <div class="span1"><label for="mname"/>Middle</div>
+	          <div class="span3"><input id="mname" type="text" maxlength="10"/></div>
+	          <div class="span1"><label for="lname">Last</label></div>
+	          <div class="span3"><input id="lname" type="text" maxlength="10"/></div>
+		</div>	
+		<div class="row-fluid show-grid">	 	
+			  <div class="span1"><label for="gender"/>Gender</div>
+	          <div class="span1"><select><option value="">M</option><option>F</option></select></div>
+	          <div class="span1"><label for="dob">DOB</label></div>
+	          <div class="span2"><input id="fname" type="text" maxlength="10"/></div>
+	          <div class="span1"><label for="lname">Email</label></div>
+	          <div class="span3"><input id="lname" type="text" maxlength="10"/></div>
+	          <div class="span1"><label for="lname">Phone</label></div>
+	          <div class="span2"><input id="lname" type="text" maxlength="10"/></div>
+		</div>	 		
+	 </fieldset>
+	  --%>
+	</form>
+	<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-header">
+	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	    <h3 id="myModalLabel">Choose a package which suits your need</h3>
+	  </div>
+	  <div class="modal-body">
+			<div class="row-fluid show-grid">	 
+				<div class="span4"><label for="basicPackage"></label><input id="basicPackage" type="radio" name="packagename" value="basic">Basic</div>
+				<div class="span4"><label for="premiumPackage"></label><input id="premiumPackage" type="radio" name="packagename" value="premium">Premium</div>
+				<div class="span4"><label for="helpmeChoose"></label><input id="helpmeChoose" type="radio" name="packagename" value="">Help me Choose</div>
+			</div>	    	
+	  </div>
+	  <div class="modal-footer">
+	    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+	    <%--<button class="btn disabled button olive">I choose Premium Package</button> --%>
+	    <button id="packageSelector" class="btn btn-primary disabled">Choose a Package</button>
+	  </div>
+	</div>
 	<c:if test="${not empty pansForMember}">	
 		<table>
 			<tr>
@@ -81,16 +156,48 @@
 					</tr>
 				</c:if>
 			</c:forEach>			
-		</table>
-		<hst:element var="uiCustom" name="script">
-			    <hst:attribute name="type">text/javascript</hst:attribute>
-			    	<c:if test="${not empty jsonForValidators}"><c:out value="${jsonForValidators}"/></c:if>		    	
-					$(document).ready(function() {
-						
-					});    
-			</hst:element>
-			<hst:headContribution element="${uiCustom}" category="jsInternal"/>
-		
+		</table>		
 	</c:if>
 </div>
+<hst:element var="uiCustom" name="script">
+    <hst:attribute name="type">text/javascript</hst:attribute>
+	<res:client-validation/>
+	$(document).ready(function() {
+		var selectedPackage = null;
+		$("#basicPackage").click(function (t) {		
+			if (this.checked) {
+				selectedPackage=this.value;
+				$("#packageSelector").button("reset");
+			}		
+		});
+		$("#premiumPackage").click(function (t) {		
+			if (this.checked) {
+				selectedPackage=this.value;
+				$("#packageSelector").button("reset");
+			}
+		});
+		$("#helpmeChoose").click(function (t) {		
+			if (this.checked) {
+				selectedPackage = null;
+				$("#packageSelector").toggleClass("disabled",true);
+			}
+		});
+		$("#myModalHref").click( function() {
+			$("#frmdata").validate();
+			if (!$("#frmdata").valid()) return false;
+			$("#myModal").modal();
+		});
+		$("#packageSelector").click (function(t) {
+			if (selectedPackage == null) return;
+			$("#frmdata").validate();
+			if (!$("#frmdata").valid()) return false;
+			$("#frmdata").submit();
+		 	//var hstMainURL = "<hst:link path="/"/>";
+		 	
+		 	//url = hstMainURL + "/member/itreturn/" + selectedPackage + "/<c:out value="${financialYear}"/>/" + $("#pi_return_type").val() + "/" + $("#pan").val().toLowerCase() + "/personalinformation.html";
+		 	//window.location.href=url;
+		});
+	});
+</hst:element>
+<hst:headContribution element="${uiCustom}" category="jsInternal"/>		
 

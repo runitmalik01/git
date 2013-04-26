@@ -25,77 +25,62 @@
 	<fmt:message key="member.bank.detail" />
 </c:set>
 <hippo-gogreen:title title="${ bankdetail}" />
-<h3 id="respond1"><fmt:message key="member.bank.detail" /></h3>
-<p>
-	<fmt:message key="member.location.label" />
-	&nbsp;
-	<hst:link var="home" siteMapItemRefId="home" />
-	<a href="${home}"><fmt:message key="products.detail.location.home" /></a>&gt;&gt;
-	<hst:link var="startapplication" siteMapItemRefId="member-personal-information"></hst:link>
-	<a href="${startapplication}"><fmt:message
-			key="member.start.application" /></a>&gt;&gt;
-	<hst:link var="contactinformation"
-		siteMapItemRefId="member-contact-information"></hst:link>
-	<a href="${contactinformation}"><fmt:message
-			key="member.contact.information" /></a>&gt;&gt;
-	<hst:link var="residentialstatus" siteMapItemRefId="member-residential-status"></hst:link>
-	<a href="${residentialstatus}"><fmt:message
-			key="member.residential.status" /></a>&gt;&gt;
-	<hst:link var="bankdetail" siteMapItemRefId="member-bank-detail"></hst:link>
-	<a href="${bankdetail}"><fmt:message key="member.bank.detail" /></a>
-</p>
-<hst:link var ="mainSiteMapRefId" siteMapItemRefId="${mainSiteMapItemRefId}"/>
-<%
-String varToReplace = (String) pageContext.getAttribute("mainSiteMapRefId");
-if (varToReplace != null) {
-    String pan = (String) request.getAttribute("pan");
-	String modifiedSiteMapRefId = varToReplace.replaceAll("_default_",pan).replaceAll("bankdetail.html","");
-	pageContext.setAttribute("modifiedSiteMapRefId",modifiedSiteMapRefId);
-}
-else {
-	pageContext.setAttribute("modifiedSiteMapRefId",mainSiteMapRefId);
-}
-%>
-<hst:actionURL var="actionUrl"></hst:actionURL>
-<form name="bankDetail" action="${actionUrl}" method="post" id="frmBankDetail">
-	<div id="row">
-		<div id="span4">
-		<fieldset>
-			 <label><fmt:message key="member.bank.detail.bank.name" /></label> 
-			 <input type="text" name="bd_bank_name" value="${parentBean.BD_BANK_NAME}" title="Enter Name of Bank"maxlength="25" min="1" required="required" /><br/>
-			 <label><fmt:message key="member.bank.detail.micr.code" /></label> 
-			 <input type="text" name="bd_micr_code"value="${parentBean.BD_MICR_CODE}" title="Enter 9-Digit valid MICR Code" maxlength="9" class="numberinput" required="required" /><br/>
-		     <label><fmt:message key="member.bank.detail.bank.branch" /></label>
-			 <input type="text" name="bd_Branch_name" value="${parentBean.BD_ADD_BANK_BRANCH}" title="Enter Name of Bank's Branch" maxlength="120" required="required" /> <br/>
-			 <label><fmt:message key="member.bank.detail.acc.type" /> </label> 
-			 <select name="bd_account_type" title="Select Type of Account" id="bd_account_type">
-				<option value=""></option>
-				<option value="SAV">
-					<fmt:message key="member.bank.detail.acc.type.saving" />
-				</option>
-				<option value="CUR">
-					<fmt:message key="member.bank.detail.acc.type.current" />
-				</option>
-			</select>
-			<input type="hidden" name="acc_type" value="${parentBean.BD_TYPE_ACC}" id="acc_type"> 
-			<label><fmt:message key="member.bank.detail.acc.number" /></label> 
-			<input type="text" name="bd_account_no" value="${parentBean.BD_ACC_NUMBER}" title="Enter Account Number" maxlength="17" class="numberinput" required="required" /><br/>
-			<label><fmt:message key="member.bank.detail.ecs"/></label>
-			<select name="bd_ecs" title="Select Electronic Clearing System" id="bd_ecs">
-				<option value="N">
-					<fmt:message key="member.choice.no" />
-				</option>
-				<option value="Y">
-					<fmt:message key="member.choice.yes" />
-				</option>
-			</select>
-			<input type="hidden" name="ecs" value="${parentBean.BD_ECS}" id="ecs">
-			<br /> <br/>
-			<a id="hrefLogin" class="button orange">Save & Next</a><a href="${modifiedSiteMapRefId}" class="button orange" style="margin-left: 100px;">Next</a>
-			</fieldset>
+<res:breadcrumb/>
+<div class="page">	
+	<h4><fmt:message key="member.bank.detail" /></h4>
+	<hst:link var ="mainSiteMapRefId" siteMapItemRefId="${mainSiteMapItemRefId}"/>
+	<%
+	String varToReplace = (String) pageContext.getAttribute("mainSiteMapRefId");
+	if (varToReplace != null) {
+	    String pan = (String) request.getAttribute("pan");
+		String modifiedSiteMapRefId = varToReplace.replaceAll("_default_",pan).replaceAll("bankdetail.html","");
+		pageContext.setAttribute("modifiedSiteMapRefId",modifiedSiteMapRefId);
+	}
+	else {
+		pageContext.setAttribute("modifiedSiteMapRefId",mainSiteMapRefId);
+	}
+	%>
+	<hst:actionURL var="actionUrl"></hst:actionURL>
+	<form name="bankDetail" action="${actionUrl}" method="post" id="frmBankDetail">
+		<div id="row">
+			<div id="span4">
+			<fieldset>
+				 <label><fmt:message key="member.bank.detail.bank.name" /></label> 
+				 <input type="text" name="bd_bank_name" value="${parentBean.BD_BANK_NAME}" title="Enter Name of Bank"maxlength="25" min="1" required="required" /><br/>
+				 <label><fmt:message key="member.bank.detail.micr.code" /></label> 
+				 <input type="text" name="bd_micr_code"value="${parentBean.BD_MICR_CODE}" title="Enter 9-Digit valid MICR Code" maxlength="9" class="numberinput" required="required" /><br/>
+			     <label><fmt:message key="member.bank.detail.bank.branch" /></label>
+				 <input type="text" name="bd_Branch_name" value="${parentBean.BD_ADD_BANK_BRANCH}" title="Enter Name of Bank's Branch" maxlength="120" required="required" /> <br/>
+				 <label><fmt:message key="member.bank.detail.acc.type" /> </label> 
+				 <select name="bd_account_type" title="Select Type of Account" id="bd_account_type">
+					<option value=""></option>
+					<option value="SAV">
+						<fmt:message key="member.bank.detail.acc.type.saving" />
+					</option>
+					<option value="CUR">
+						<fmt:message key="member.bank.detail.acc.type.current" />
+					</option>
+				</select>
+				<input type="hidden" name="acc_type" value="${parentBean.BD_TYPE_ACC}" id="acc_type"> 
+				<label><fmt:message key="member.bank.detail.acc.number" /></label> 
+				<input type="text" name="bd_account_no" value="${parentBean.BD_ACC_NUMBER}" title="Enter Account Number" maxlength="17" class="numberinput" required="required" /><br/>
+				<label><fmt:message key="member.bank.detail.ecs"/></label>
+				<select name="bd_ecs" title="Select Electronic Clearing System" id="bd_ecs">
+					<option value="N">
+						<fmt:message key="member.choice.no" />
+					</option>
+					<option value="Y">
+						<fmt:message key="member.choice.yes" />
+					</option>
+				</select>
+				<input type="hidden" name="ecs" value="${parentBean.BD_ECS}" id="ecs">
+				<br /> <br/>
+				<a id="hrefLogin" class="button orange">Save & Next</a><a href="${modifiedSiteMapRefId}" class="button orange" style="margin-left: 100px;">Next</a>
+				</fieldset>
+			</div>
 		</div>
-	</div>
-</form>
+	</form>
+</div>
 <hst:element var="uiCustom" name="script">
     <hst:attribute name="type">text/javascript</hst:attribute>
 		$(document).ready(function() {

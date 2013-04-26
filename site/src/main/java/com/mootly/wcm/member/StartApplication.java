@@ -42,8 +42,13 @@ import com.mootly.wcm.utils.GoGreenUtil;
 import com.mootly.wcm.utils.UrlUtility;
 
 @PrimaryBean(primaryBeanClass=MemberPersonalInformation.class)
-@FormFields(fieldNames={"pi_pan","pi_first_name","pi_middle_name","pi_last_name","pi_father_name","gender","status","pi_dob"})
-@RequiredFields(fieldNames={"pi_last_name","pi_dob","gender"})
+@FormFields(fieldNames={
+			"pi_pan","pi_first_name","pi_middle_name","pi_last_name","pi_father_name","gender","status","pi_dob",
+			"pi_road_street","pi_std_code","pi_phone","pi_flat_door_building","pi_area_locality","pi_town_city_district","pi_pin_code","pi_state","pi_mobile","pi_email","pi_premises_building"
+		})
+@RequiredFields(fieldNames={"pi_last_name","pi_dob","gender"
+		//,"pi_flat_door_building","pi_email","pi_pin_code","pi_town_city_district","pi_state","pi_area_locality"
+		})
 public class StartApplication extends ITReturnComponent {
 	private static final Logger log = LoggerFactory.getLogger(StartApplication.class);
 	private static final String FNAME = "pi_first_name";
