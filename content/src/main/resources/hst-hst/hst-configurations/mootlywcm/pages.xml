@@ -7098,7 +7098,8 @@
       </sv:node>
     </sv:node>
   </sv:node>
-<sv:node sv:name="service-price" >
+
+<sv:node sv:name="service-price">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hst:component</sv:value>
   </sv:property>
@@ -7106,10 +7107,10 @@
     <sv:value>e87aac9e-d55b-4571-b069-f6ec6767080a</sv:value>
   </sv:property>
   <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
-    <sv:value>bodyCss</sv:value>
+    <sv:value/>
   </sv:property>
   <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
-    <sv:value>bodyCssClass</sv:value>
+    <sv:value/>
   </sv:property>
   <sv:property sv:name="hst:referencecomponent" sv:type="String">
     <sv:value>hst:pages/simplepage.re</sv:value>
@@ -7145,6 +7146,8 @@
     </sv:node>
   </sv:node>
 </sv:node>
+  
+
   
   
   
