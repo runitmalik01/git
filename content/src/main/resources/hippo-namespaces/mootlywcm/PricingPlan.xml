@@ -29,7 +29,7 @@
         <sv:value>hippo:harddocument</sv:value>
       </sv:property>
       <sv:property sv:name="jcr:uuid" sv:type="String">
-        <sv:value>036f8ec9-99de-4e18-9819-0a0e300543b8</sv:value>
+        <sv:value>a6c97093-c860-4685-aa42-31f579db10a7</sv:value>
       </sv:property>
       <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
       <sv:property sv:name="hipposysedit:node" sv:type="Boolean">
@@ -287,7 +287,7 @@
         <sv:value>hippotranslation:translated</sv:value>
       </sv:property>
       <sv:property sv:name="jcr:uuid" sv:type="String">
-        <sv:value>c8600859-bd98-4cd3-a32e-da9cbaaeb0bb</sv:value>
+        <sv:value>42bb51fa-6e02-4318-a05c-16a3fa921d7c</sv:value>
       </sv:property>
       <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
       <sv:property sv:name="hippostd:holder" sv:type="String">
@@ -360,6 +360,9 @@
           <sv:value>false</sv:value>
         </sv:property>
         <sv:property sv:name="mootlywcm:othersourceinterest" sv:type="Boolean">
+          <sv:value>false</sv:value>
+        </sv:property>
+        <sv:property sv:name="mootlywcm:partnership" sv:type="Boolean">
           <sv:value>false</sv:value>
         </sv:property>
         <sv:property sv:name="mootlywcm:presumtbusiness" sv:type="Boolean">
