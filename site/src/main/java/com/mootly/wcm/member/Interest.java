@@ -43,7 +43,7 @@ public class Interest extends ITReturnComponent {
 	private static final Logger log = LoggerFactory.getLogger(Interest.class);
 
 	Member member = null;
-	String filing_year = null;
+	String financialYear = null;
 	String modusername= null;
 	String pan = null;
 	Session persistableSession = null;
@@ -55,8 +55,7 @@ public class Interest extends ITReturnComponent {
 		member=(Member)request.getSession().getAttribute("user");
 		String username=member.getUserName().trim();
 		modusername=username.replaceAll("@", "-at-").trim();
-		//String filing_year = request.getRequestContext().getResolvedSiteMapItem().getParameter("assessmentYear");
-		filing_year="2012-2013";
+		financialYear = request.getRequestContext().getResolvedSiteMapItem().getParameter("financialYear");
 		//itReturnType = request.getRequestContext().getResolvedSiteMapItem().getParameter("itReturnType"); //original versus amend
 		pan = request.getRequestContext().getResolvedSiteMapItem().getParameter("pan"); //original versus amend
 
@@ -74,7 +73,7 @@ public class Interest extends ITReturnComponent {
 		request.setAttribute("strmonth", strmonth);
 
 		log.info("inside fetchSalaryIncomeDocument--->member:-"+member);
-		log.info("inside fetchSalaryIncomeDocument--->member:-"+filing_year);
+		log.info("inside fetchSalaryIncomeDocument--->member:-"+financialYear);
 		log.info("inside fetchSalaryIncomeDocument--->member:-"+pan);
 
 		if(member!=null){
@@ -88,7 +87,7 @@ public class Interest extends ITReturnComponent {
 			log.info("inside fetchtcsDocument--->before try:-");
 			try {
 
-				String path=ContentStructure.getAdvanceTaxcPath(pan,filing_year, modusername);
+				String path=ContentStructure.getAdvanceTaxcPath(pan,financialYear, modusername);
 				log.info("advance tax path--------------------------------------------"+path);
 				AdvanceTaxDocument advancetaxdocument =(AdvanceTaxDocument)getObjectBeanManager(request).getObject(path);
 				log.info("bean objectttttttttt---------------"+advancetaxdocument);
