@@ -59,4 +59,8 @@ public class PricingPlanIncome extends HippoItem {
     public Boolean getRateIncome() {
         return getProperty("mootlywcm:rateincome");
     }
+    
+    public Boolean getPartnership() {
+        return getProperty("mootlywcm:partnership");
+    }
 }
