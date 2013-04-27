@@ -9,12 +9,18 @@
 package com.mootly.wcm.member;
 
 import java.text.DateFormat;
+import java.text.MessageFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.ResourceBundle;
 
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
@@ -28,6 +34,7 @@ import org.hippoecm.hst.core.component.HstComponentException;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
 import org.hippoecm.repository.reviewedactions.FullReviewedActionsWorkflow;
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -44,11 +51,15 @@ import com.mootly.wcm.utils.UrlUtility;
 @PrimaryBean(primaryBeanClass=MemberPersonalInformation.class)
 @FormFields(fieldNames={
 			"pi_pan","pi_first_name","pi_middle_name","pi_last_name","pi_father_name","gender","status","pi_dob",
-			"pi_road_street","pi_std_code","pi_phone","pi_flat_door_building","pi_area_locality","pi_town_city_district","pi_pin_code","pi_state","pi_mobile","pi_email","pi_premises_building"
-		})
-@RequiredFields(fieldNames={"pi_last_name","pi_dob","gender"
-		//,"pi_flat_door_building","pi_email","pi_pin_code","pi_town_city_district","pi_state","pi_area_locality"
-		})
+			"pi_road_street","pi_std_code","pi_phone","pi_flat_door_building","pi_area_locality","pi_town_city_district",
+			"pi_pin_code","pi_state","pi_mobile","pi_email","pi_premises_building",
+			"rsstatus_q","rsstatus_q_yes","rsstatus_q_yes_yes","rsstatus_q_no","rsstatus_q_no_yes","rsstatus_q_no_yes_yes",
+			"rsstatus_q_no_no","rsstatus_q_no_no_yes","rsstatus_q_no_no_yes_yes","rsstatus_q_no_yes_yes_yes",
+			"bd_bank_name","bd_micr_code","bd_Branch_name","bd_account_type","bd_account_no","bd_ecs"})
+@RequiredFields(fieldNames={
+		"pi_last_name","pi_dob","gender",
+		"pi_flat_door_building","pi_email","pi_pin_code","pi_town_city_district","pi_state","pi_area_locality",
+		"rsstatus_q"})
 public class StartApplication extends ITReturnComponent {
 	private static final Logger log = LoggerFactory.getLogger(StartApplication.class);
 	private static final String FNAME = "pi_first_name";
@@ -68,6 +79,66 @@ public class StartApplication extends ITReturnComponent {
 		if(log.isInfoEnabled()){
 		log.info("Member personal Information page");
 		}
+		 String assessmentYear = getAssessmentYear() == null ? "2012-2013"  : getAssessmentYear();
+			ResourceBundle rb = ResourceBundle.getBundle("rstatus_"+assessmentYear);
+			
+			List<String> keyList = new ArrayList<String>();
+			//Enumeration<String> keys = rb.getKeys();		
+			for (String aKey: rb.keySet() ) {
+				keyList.add(aKey);			
+			}
+			String memberName = null;
+			String keyToFind = MemberPersonalInformation.class.getSimpleName().toLowerCase();
+			if (request.getAttribute(keyToFind) != null) {
+				MemberPersonalInformation mpi = (MemberPersonalInformation) request.getAttribute(keyToFind);
+				memberName = mpi.getName();
+			}
+			
+			Map<String, String> map = new LinkedHashMap<String, String>();
+			Collections.sort(keyList, new SortyByDepth());
+			for (String aKey:keyList) {
+				if (memberName != null) {
+					String ke = rb.getString(aKey);
+					if (log.isInfoEnabled()) {
+						log.info("Now attempting to apply format to " + ke);
+					}
+					map.put(aKey, MessageFormat.format(ke,memberName));
+				}
+				else {
+					map.put(aKey, rb.getString(aKey));
+				}
+			}
+			Map<String, String> fetchmap = new LinkedHashMap<String, String>();
+			if (getParentBean() != null) {
+				MemberPersonalInformation memberresi = (MemberPersonalInformation) getParentBean();			
+				
+				fetchmap.put("rsstatus_q",memberresi.getRsstatusQ());			
+				if(!(memberresi.getRsstatusQYes().matches("Select")))
+					fetchmap.put("rsstatus_q_yes",memberresi.getRsstatusQYes());			
+				if(!(memberresi.getRsstatusQYesYes().matches("Select")))
+					fetchmap.put("rsstatus_q_yes_yes",memberresi.getRsstatusQYesYes());									
+				if(!(memberresi.getRsstatusQNo().matches("Select")))
+					fetchmap.put("rsstatus_q_no",memberresi.getRsstatusQNo());			
+				if(!(memberresi.getRsstatusQNoYes().matches("Select")))
+					fetchmap.put("rsstatus_q_no_yes",memberresi.getRsstatusQNoYes());					
+				if(!(memberresi.getRsstatusQNoYesYes().matches("Select")))
+					fetchmap.put("rsstatus_q_no_yes_yes",memberresi.getRsstatusQNoYesYes());			
+				if(!(memberresi.getRsstatusQNoNo().matches("Select")))
+					fetchmap.put("rsstatus_q_no_no",memberresi.getRsstatusQNoNo());						
+				if(!(memberresi.getRsstatusQNoNoYes().matches("Select")))
+					fetchmap.put("rsstatus_q_no_no_yes",memberresi.getRsstatusQNoNoYes());			
+				if(!(memberresi.getRsstatusQNoNoYesYes().matches("Select")))
+					fetchmap.put("rsstatus_q_no_no_yes_yes",memberresi.getRsstatusQNoNoYesYes());						
+				if(!(memberresi.getRsstatusQNoYesYesYes().matches("Select")))
+					fetchmap.put("rsstatus_q_no_yes_yes_yes",memberresi.getRsstatusQNoYesYesYes());			
+				
+				request.setAttribute("fetchmap", fetchmap);
+			}
+			//map.put(aKey, rb.getString(aKey));
+			JSONObject jsonObject = new JSONObject(map);
+			request.setAttribute("jsonObject", jsonObject);
+			request.setAttribute("map", map);
+
 	}
 	
 	@Override
@@ -75,6 +146,22 @@ public class StartApplication extends ITReturnComponent {
 			throws HstComponentException {
 		// TODO Auto-generated method stub
 		super.doAction(request, response);
+	}
+	class SortyByDepth implements Comparator<String> {
+		@Override
+		public int compare(String o1, String o2) {
+			// TODO Auto-generated method stub
+			String[] leftArray = o1.split("[_]");
+			String[] rightArray = o2.split("[_]");
+			if (leftArray.length < rightArray.length){
+				return -1;
+			}
+			else if (leftArray.length == rightArray.length) {
+				return 0;
+			}
+			else 
+				return 1;
+		}		
 	}
 	
 	public void doBeforeRenderOld(HstRequest request, HstResponse response) {
