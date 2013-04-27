@@ -15,16 +15,13 @@
  */
 
 package com.mootly.wcm.beans;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-
-import javax.jcr.RepositoryException;
-import javax.jcr.Value;
-
+import static com.mootly.wcm.utils.Constants.BD_ACC_NUMBER;
+import static com.mootly.wcm.utils.Constants.BD_ADD_BANK_BRANCH;
+import static com.mootly.wcm.utils.Constants.BD_BANK_NAME;
+import static com.mootly.wcm.utils.Constants.BD_ECS;
+import static com.mootly.wcm.utils.Constants.BD_MICR_CODE;
+import static com.mootly.wcm.utils.Constants.BD_TYPE_ACC;
 import static com.mootly.wcm.utils.Constants.PROP_PI_AREA_LOCALITY;
-import static com.mootly.wcm.utils.Constants.PROP_PI_EMPLOYER_CATEGORY;
 import static com.mootly.wcm.utils.Constants.PROP_PI_DOB;
 import static com.mootly.wcm.utils.Constants.PROP_PI_EMAIL;
 import static com.mootly.wcm.utils.Constants.PROP_PI_FATHER_NAME;
@@ -44,6 +41,23 @@ import static com.mootly.wcm.utils.Constants.PROP_PI_SEX;
 import static com.mootly.wcm.utils.Constants.PROP_PI_STATE;
 import static com.mootly.wcm.utils.Constants.PROP_PI_STD_CODE;
 import static com.mootly.wcm.utils.Constants.PROP_PI_TOWN_CITY_DISTRICT;
+import static com.mootly.wcm.utils.Constants.Rsstatus_q;
+import static com.mootly.wcm.utils.Constants.Rsstatus_q_no;
+import static com.mootly.wcm.utils.Constants.Rsstatus_q_no_no;
+import static com.mootly.wcm.utils.Constants.Rsstatus_q_no_no_yes;
+import static com.mootly.wcm.utils.Constants.Rsstatus_q_no_no_yes_yes;
+import static com.mootly.wcm.utils.Constants.Rsstatus_q_no_yes;
+import static com.mootly.wcm.utils.Constants.Rsstatus_q_no_yes_yes;
+import static com.mootly.wcm.utils.Constants.Rsstatus_q_no_yes_yes_yes;
+import static com.mootly.wcm.utils.Constants.Rsstatus_q_yes;
+import static com.mootly.wcm.utils.Constants.Rsstatus_q_yes_yes;
+
+import java.text.DateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.ResourceBundle;
+
+import javax.jcr.RepositoryException;
 
 import org.hippoecm.hst.component.support.forms.FormMap;
 import org.hippoecm.hst.content.beans.ContentNodeBinder;
@@ -70,7 +84,6 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 	private String filingStatus;
 	private Calendar DOB;
 	private String sex;
-	private String resident;
 	
 	private String flatDoorBuilding;
 	private String premisesBuilding;
@@ -83,6 +96,25 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 	private String mobile;
 	private String stdCode;
 	private String phone;
+	
+	private String accNumber ;
+	private String bankName ;
+	private String ecs ;
+	private String typeAcc;
+	private String addBankBranch;
+	private String micrCode;
+	
+	private String rsstatus_q;
+	private String rsstatus_q_yes;
+	private String rsstatus_q_yes_yes;
+	private String rsstatus_q_no;
+	private String rsstatus_q_no_yes;
+	private String rsstatus_q_no_yes_yes;
+	private String rsstatus_q_no_no;
+	private String rsstatus_q_no_no_yes;
+	private String rsstatus_q_no_no_yes_yes;
+	private String rsstatus_q_no_yes_yes_yes;
+	private String residentCategory;
     private String PIUUID;
 	
 	//This is just a calculated field
@@ -142,11 +174,6 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
     	if (sex == null) sex = getProperty(PROP_PI_SEX);
     	return sex;
     }
-    public String getResident() {
-    	if (resident == null) resident = getProperty(PROP_PI_RESIDENT_CATEGORY);
-    	return resident;
-    }
-    
     public String getFlatDoorBuilding() {
     	if (flatDoorBuilding == null) flatDoorBuilding = getProperty(PROP_PI_FLAT_FLOOR_BUILDING);
     	return flatDoorBuilding;
@@ -180,7 +207,6 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
     	if (pinCode == null) pinCode = getProperty(PROP_PI_PINCODE);
     	return pinCode;
     }
-
 
     public String getEmail() {
     	if (email == null) email =  getProperty(PROP_PI_EMAIL);
@@ -233,10 +259,7 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 	public final void setSex(String sex) {
 		this.sex = sex;
 	}
-	public final void setResident(String resident) {
-		this.resident = resident;
-	}
-	
+	//Member Contact Information
 	public final void setFlatDoorBuilding(String flatDoorBuilding) {
     	this.flatDoorBuilding = flatDoorBuilding;
     }
@@ -277,6 +300,139 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
     public final void setPhone(String phone) {
     	this.phone = phone;
     }
+    // Member Bank Detail
+	public String getBD_ADD_BANK_BRANCH() {
+		if (addBankBranch == null) addBankBranch = getProperty(BD_ADD_BANK_BRANCH);
+		return addBankBranch;
+	}
+	public String getBD_MICR_CODE() {
+		if (micrCode == null) micrCode = getProperty(BD_MICR_CODE);
+		return micrCode;
+	}
+	public String getBD_ACC_NUMBER() {
+		if (accNumber == null) accNumber = getProperty(BD_ACC_NUMBER);
+		return accNumber;
+	}
+	public String getBD_BANK_NAME() {
+		if (bankName == null) bankName = getProperty(BD_BANK_NAME);
+		return bankName;
+	}
+	public String getBD_ECS() {
+		if (ecs == null) ecs = getProperty(BD_ECS);
+		return ecs;
+	}
+	public String getBD_TYPE_ACC() {
+		if (typeAcc == null) typeAcc = getProperty(BD_TYPE_ACC);
+		return typeAcc;
+	}
+	public final void setBD_MICR_CODE(String micrCode) {
+		this.micrCode = micrCode;
+	}
+	public final void setBD_ADD_BANK_BRANCH(String addBankBranch) {
+		this.addBankBranch = addBankBranch;
+	}
+	public final void setBD_ACC_NUMBER(String accNumber) {
+		this.accNumber = accNumber;
+	}
+	public final void setBD_BANK_NAME(String bankName) {
+		this.bankName = bankName;
+	}
+	public final void setBD_ECS(String ecs) {
+		this.ecs = ecs;
+	}
+	public final void setBD_TYPE_ACC(String typeAcc) {
+		this.typeAcc = typeAcc;
+	}
+	public String getRsstatusQ() {
+		if (rsstatus_q == null) rsstatus_q = getProperty(Rsstatus_q);
+		return rsstatus_q;
+	}
+	public String getRsstatusQNoNoYes() {
+		if (rsstatus_q_no_no_yes == null) rsstatus_q_no_no_yes = getProperty(Rsstatus_q_no_no_yes);
+		return rsstatus_q_no_no_yes;
+	}
+	public String getRsstatusQNoNoYesYes() {
+		if (rsstatus_q_no_no_yes_yes == null) rsstatus_q_no_no_yes_yes = getProperty(Rsstatus_q_no_no_yes_yes);
+		return rsstatus_q_no_no_yes_yes;
+	}
+	public String getRsstatusQNoYesYesYes() {
+		if (rsstatus_q_no_yes_yes_yes == null) rsstatus_q_no_yes_yes_yes = getProperty(Rsstatus_q_no_yes_yes_yes);
+		return rsstatus_q_no_yes_yes_yes;
+	}
+	public String getRsstatusQYes() {
+		if (rsstatus_q_yes == null) rsstatus_q_yes = getProperty(Rsstatus_q_yes);
+		return rsstatus_q_yes;
+	}
+	public String getRsstatusQYesYes() {
+		if (rsstatus_q_yes_yes == null) rsstatus_q_yes_yes = getProperty(Rsstatus_q_yes_yes);
+		return rsstatus_q_yes_yes;
+	}
+
+	public String getRsstatusQNo() {
+		if (rsstatus_q_no == null) rsstatus_q_no = getProperty(Rsstatus_q_no);
+		return rsstatus_q_no;
+	}
+
+	public String getRsstatusQNoYes() {
+		if (rsstatus_q_no_yes == null) rsstatus_q_no_yes = getProperty(Rsstatus_q_no_yes);
+		return rsstatus_q_no_yes;
+	}
+
+	public String getRsstatusQNoYesYes() {
+		if (rsstatus_q_no_yes_yes == null) rsstatus_q_no_yes_yes =  getProperty(Rsstatus_q_no_yes_yes);
+		return rsstatus_q_no_yes_yes;
+	}
+
+	public String getRsstatusQNoNo() {
+		if (rsstatus_q_no_no == null) rsstatus_q_no_no = getProperty(Rsstatus_q_no_no);
+		return rsstatus_q_no_no;
+	}
+
+	public String getResidentCategory() {
+		if (residentCategory == null) residentCategory = getProperty(PROP_PI_RESIDENT_CATEGORY);
+		return residentCategory;
+	}
+
+	public final void setRsstatusQ(String rsstatus_q) {
+		this.rsstatus_q = rsstatus_q;
+	}
+
+	public final void setRsstatusQNoNoYes(String rsstatus_q_no_no_yes) {
+		this.rsstatus_q_no_no_yes=rsstatus_q_no_no_yes;
+	}
+
+	public final void setRsstatusQNoNoYesYes(String rsstatus_q_no_no_yes_yes) {
+		this.rsstatus_q_no_no_yes_yes=rsstatus_q_no_no_yes_yes;
+	}
+
+	public final void setRsstatusQNoYesYesYes(String rsstatus_q_no_yes_yes_yes) {
+		this.rsstatus_q_no_yes_yes_yes=rsstatus_q_no_yes_yes_yes;
+	}
+
+	public final void setRsstatusQYes(String rsstatus_q_yes) {
+		this.rsstatus_q_yes = rsstatus_q_yes;
+	}
+
+	public final void setRsstatusQYesYes(String rsstatus_q_yes_yes) {
+		this.rsstatus_q_yes_yes = rsstatus_q_yes_yes;
+	}
+	public final void setRsstatusQNo(String rsstatus_q_no) {
+		this.rsstatus_q_no = rsstatus_q_no;
+	}
+	public final void setRsstatusQNoYes(String rsstatus_q_no_yes) {
+		this.rsstatus_q_no_yes = rsstatus_q_no_yes;
+	}
+	public final void setRsstatusQNoYesYes(String rsstatus_q_no_yes_yes) {
+		this.rsstatus_q_no_yes_yes = rsstatus_q_no_yes_yes;
+	}
+
+	public final void setRsstatusQNoNo(String rsstatus_q_no_no) {
+		this.rsstatus_q_no_no = rsstatus_q_no_no;
+	}
+
+	public final void setResidentCategory(String residentCategory) {
+		this.residentCategory = residentCategory;
+	}
     public void setPersonalInforUuid(String piuuid) {
     	this.PIUUID = piuuid;
     }
@@ -301,21 +457,37 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 	    	node.setProperty(PROP_PI_FILING_STATUS, memberpersonal.getFilingStatus());
 	    	node.setProperty(PROP_PI_DOB, memberpersonal.getDOB());	    	
 	    	node.setProperty(PROP_PI_SEX, memberpersonal.getSex());
-	    	node.setProperty(PROP_PI_RESIDENT_CATEGORY, memberpersonal.getResident());
 	    	
-	    	/*node.setProperty(PROP_PI_PAN, contact_info.getPAN());
-	    	node.setProperty(PROP_PI_FLAT_FLOOR_BUILDING, contact_info.getFlatDoorBuilding());
-	    	node.setProperty(PROP_PI_PREMISES_BUILDING, contact_info.getPremisesBuilding());
-	    	node.setProperty(PROP_PI_ROAD_STREET, contact_info.getRoadStreet());
-	    	node.setProperty(PROP_PI_AREA_LOCALITY, contact_info.getAreaLocality());
-	    	node.setProperty(PROP_PI_TOWN_CITY_DISTRICT, contact_info.getTownCityDistrict());
-	    	node.setProperty(PROP_PI_STATE, contact_info.getState());
-	    	node.setProperty(PROP_PI_PINCODE, contact_info.getPinCode());
-	    	node.setProperty(PROP_PI_EMAIL, contact_info.getEmail());
-	    	node.setProperty(PROP_PI_MOBILE, contact_info.getMobile());
-	    	node.setProperty(PROP_PI_STD_CODE, contact_info.getStdCode());
-	    	node.setProperty(PROP_PI_PHONE, contact_info.getPhone());	*/
+	    	node.setProperty(PROP_PI_FLAT_FLOOR_BUILDING, memberpersonal.getFlatDoorBuilding());
+	    	node.setProperty(PROP_PI_PREMISES_BUILDING, memberpersonal.getPremisesBuilding());
+	    	node.setProperty(PROP_PI_ROAD_STREET, memberpersonal.getRoadStreet());
+	    	node.setProperty(PROP_PI_AREA_LOCALITY, memberpersonal.getAreaLocality());
+	    	node.setProperty(PROP_PI_TOWN_CITY_DISTRICT, memberpersonal.getTownCityDistrict());
+	    	node.setProperty(PROP_PI_STATE, memberpersonal.getState());
+	    	node.setProperty(PROP_PI_PINCODE, memberpersonal.getPinCode());
+	    	node.setProperty(PROP_PI_EMAIL, memberpersonal.getEmail());
+	    	node.setProperty(PROP_PI_MOBILE, memberpersonal.getMobile());
+	    	node.setProperty(PROP_PI_STD_CODE, memberpersonal.getStdCode());
+	    	node.setProperty(PROP_PI_PHONE, memberpersonal.getPhone());
+	    	
+			node.setProperty(BD_ACC_NUMBER,memberpersonal.getBD_ACC_NUMBER());
+			node.setProperty(BD_BANK_NAME,memberpersonal.getBD_BANK_NAME());
+			node.setProperty(BD_ECS,memberpersonal.getBD_ECS());
+			node.setProperty(BD_TYPE_ACC,memberpersonal.getBD_TYPE_ACC());
+			node.setProperty(BD_ADD_BANK_BRANCH,memberpersonal.getBD_ADD_BANK_BRANCH());
+			node.setProperty(BD_MICR_CODE,memberpersonal.getBD_MICR_CODE());
 	    
+			node.setProperty(Rsstatus_q, memberpersonal.getRsstatusQ());
+			node.setProperty(Rsstatus_q_yes, memberpersonal.getRsstatusQYes());
+			node.setProperty(Rsstatus_q_yes_yes, memberpersonal.getRsstatusQYesYes());
+			node.setProperty(Rsstatus_q_no, memberpersonal.getRsstatusQNo());
+			node.setProperty(Rsstatus_q_no_yes, memberpersonal.getRsstatusQNoYes());
+			node.setProperty(Rsstatus_q_no_yes_yes, memberpersonal.getRsstatusQNoYesYes());
+			node.setProperty(Rsstatus_q_no_no, memberpersonal.getRsstatusQNoNo());	    	
+			node.setProperty(Rsstatus_q_no_no_yes, memberpersonal.getRsstatusQNoNoYes());
+			node.setProperty(Rsstatus_q_no_no_yes_yes, memberpersonal.getRsstatusQNoNoYesYes());
+			node.setProperty(Rsstatus_q_no_yes_yes_yes, memberpersonal.getRsstatusQNoYesYesYes());
+			node.setProperty(PROP_PI_RESIDENT_CATEGORY, memberpersonal.getResidentCategory());
     	}catch (RepositoryException re) {
     		log.error("Binding Node Error",re);
     		
@@ -330,24 +502,13 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 			log.info("Into the fill method");			
 		}
 		if (formMap == null) return;
-		if ( formMap.getField("pi_pan") != null) {
-			setFirstName(formMap.getField("pi_pan").getValue());
-		}
-		if ( formMap.getField("pi_first_name") != null) {
-			setFirstName(formMap.getField("pi_first_name").getValue());
-		}
-		if ( formMap.getField("pi_last_name") != null) {
-			setLastName(formMap.getField("pi_last_name").getValue());
-		}
-		if ( formMap.getField("pi_middle_name") != null) {
-			setMiddleName(formMap.getField("pi_middle_name").getValue());
-		}
-		if ( formMap.getField("pi_father_name") != null) {
-			setFatherName(formMap.getField("pi_father_name").getValue());
-		}
-		if ( formMap.getField("gender") != null) {
-			setSex(formMap.getField("gender").getValue());
-		}
+		//Member PersonaInformation
+		if ( formMap.getField("pi_pan") != null) setFirstName(formMap.getField("pi_pan").getValue());
+		if ( formMap.getField("pi_first_name") != null) setFirstName(formMap.getField("pi_first_name").getValue());
+		if ( formMap.getField("pi_last_name") != null) setLastName(formMap.getField("pi_last_name").getValue());
+		if ( formMap.getField("pi_middle_name") != null) setMiddleName(formMap.getField("pi_middle_name").getValue());
+		if ( formMap.getField("pi_father_name") != null) setFatherName(formMap.getField("pi_father_name").getValue());
+		if ( formMap.getField("gender") != null) setSex(formMap.getField("gender").getValue());
 		if ( formMap.getField("pi_dob") != null) {
 			String strDate = formMap.getField("pi_dob").getValue();
 			Date date = null ;
@@ -366,6 +527,7 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 				log.info("calendar error"+e);
 			}
 		}		
+		//Member Contact Information
 		if (formMap.getField("pi_email") != null) setEmail(formMap.getField("pi_email").getValue());
 		if (formMap.getField("pi_road_street") != null) setRoadStreet(formMap.getField("pi_road_street").getValue());
 		if (formMap.getField("pi_std_code") != null) setStdCode(formMap.getField("pi_std_code").getValue());
@@ -377,6 +539,88 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 		if (formMap.getField("pi_pin_code") != null) setPinCode(formMap.getField("pi_pin_code").getValue());
 		if (formMap.getField("pi_state") != null) setState(formMap.getField("pi_state").getValue());
 		if (formMap.getField("pi_mobile") != null) setMobile(formMap.getField("pi_mobile").getValue());
+		//Bank Details
+		if (formMap == null) return;
+		if (formMap.getField("bd_bank_name") != null) setBD_BANK_NAME(formMap.getField("bd_bank_name").getValue());
+		if (formMap.getField("bd_micr_code") != null) setBD_MICR_CODE(formMap.getField("bd_micr_code").getValue());
+		if (formMap.getField("bd_Branch_name") != null) setBD_ADD_BANK_BRANCH(formMap.getField("bd_Branch_name").getValue());
+		if (formMap.getField("bd_account_type") != null) setBD_TYPE_ACC(formMap.getField("bd_account_type").getValue());
+		if (formMap.getField("bd_account_no") != null) setBD_ACC_NUMBER(formMap.getField("bd_account_no").getValue());
+		if (formMap.getField("bd_ecs") != null) setBD_ECS(formMap.getField("bd_ecs").getValue());
+		//Residential Status
+		String choice="";
+		if (formMap.getField("rsstatus_q") != null) {
+			setRsstatusQ(formMap.getField("rsstatus_q").getValue());
+			choice=choice+formMap.getField("rsstatus_q").getValue();
+		}
+		if (formMap.getField("rsstatus_q_yes") != null) {
+			setRsstatusQYes(formMap.getField("rsstatus_q_yes").getValue());
+			if(!(formMap.getField("rsstatus_q_yes").getValue().matches("Select"))){
+				choice=choice+"_"+formMap.getField("rsstatus_q_yes").getValue();
+			}
+		}
+		if (formMap.getField("rsstatus_q_yes_yes") != null) {
+			setRsstatusQYesYes(formMap.getField("rsstatus_q_yes_yes").getValue());
+			if(!(formMap.getField("rsstatus_q_yes_yes").getValue().matches("Select"))){
+				choice=choice+"_"+formMap.getField("rsstatus_q_yes_yes").getValue();
+			}
+		}
+		if (formMap.getField("rsstatus_q_no") != null) {
+			setRsstatusQNo(formMap.getField("rsstatus_q_no").getValue());
+			if(!(formMap.getField("rsstatus_q_no").getValue().matches("Select"))){
+				choice=choice+"_"+formMap.getField("rsstatus_q_no").getValue();
+			}
+		}
+		if (formMap.getField("rsstatus_q_no_yes") != null) {
+			setRsstatusQNoYes(formMap.getField("rsstatus_q_no_yes").getValue());
+			if(!(formMap.getField("rsstatus_q_no_yes").getValue().matches("Select"))){
+				choice=choice+"_"+formMap.getField("rsstatus_q_no_yes").getValue();
+			}
+		}
+		if (formMap.getField("rsstatus_q_no_yes_yes") != null) {
+			setRsstatusQNoYesYes(formMap.getField("rsstatus_q_no_yes_yes").getValue());
+			if(!(formMap.getField("rsstatus_q_no_yes_yes").getValue().matches("Select"))){
+				choice=choice+"_"+formMap.getField("rsstatus_q_no_yes_yes").getValue();
+			}
+		}
+		if (formMap.getField("rsstatus_q_no_no") != null) {
+			setRsstatusQNoNo(formMap.getField("rsstatus_q_no_no").getValue());
+			if(!(formMap.getField("rsstatus_q_no_no").getValue().matches("Select"))){
+				choice=choice+"_"+formMap.getField("rsstatus_q_no_no").getValue();
+			}
+		}
+		if (formMap.getField("rsstatus_q_no_no_yes") != null) {
+			setRsstatusQNoNoYes(formMap.getField("rsstatus_q_no_no_yes").getValue());
+			if(!(formMap.getField("rsstatus_q_no_no_yes").getValue().matches("Select"))){
+				choice=choice+"_"+formMap.getField("rsstatus_q_no_no_yes").getValue();
+			}
+		}
+		if (formMap.getField("rsstatus_q_no_no_yes_yes") != null) {
+			setRsstatusQNoNoYesYes(formMap.getField("rsstatus_q_no_no_yes_yes").getValue());
+			if(!(formMap.getField("rsstatus_q_no_no_yes_yes").getValue().matches("Select"))){
+				choice=choice+"_"+formMap.getField("rsstatus_q_no_no_yes_yes").getValue();
+			}
+		}
+		if (formMap.getField("rsstatus_q_no_yes_yes_yes") != null) {
+			setRsstatusQNoYesYesYes(formMap.getField("rsstatus_q_no_yes_yes_yes").getValue());
+			if(!(formMap.getField("rsstatus_q_no_yes_yes_yes").getValue().matches("Select"))){
+				choice=choice+"_"+formMap.getField("rsstatus_q_no_yes_yes_yes").getValue();
+			}
+		}
+		String modchoice="rsstatus_q_"+choice.trim();
+		if(log.isInfoEnabled()){
+			log.info("this is choice"+modchoice);
+		}
+		ResourceBundle rb = ResourceBundle.getBundle("rstatus_2012-2013");
+		for (String aKey: rb.keySet() ) {
+			if(aKey.matches(modchoice.trim())){
+				if(log.isInfoEnabled()){
+					log.info("this is residential status"+rb.getString(aKey).replaceFirst("ans_","").trim());
+				}
+				setResidentCategory(rb.getString(aKey).replaceFirst("ans_","").trim());
+				break;
+			}			
+		}
 	}
 	
 	@Override
