@@ -1,172 +1,151 @@
 package com.mootly.wcm.member;
 
-
 import java.math.BigDecimal;
+import java.util.ResourceBundle;
 
-import javax.jcr.Session;
-
-import org.hippoecm.hst.content.beans.manager.workflow.WorkflowCallbackHandler;
-import org.hippoecm.hst.content.beans.manager.workflow.WorkflowPersistenceManager;
 import org.hippoecm.hst.core.component.HstComponentException;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
-import org.hippoecm.repository.reviewedactions.FullReviewedActionsWorkflow;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
+import com.mootly.wcm.annotations.AdditionalBeans;
+import com.mootly.wcm.annotations.FormFields;
+import com.mootly.wcm.annotations.PrimaryBean;
+import com.mootly.wcm.annotations.RequiredBeans;
+import com.mootly.wcm.annotations.RequiredFields;
+import com.mootly.wcm.beans.AdjustmentOfLossesDoc;
+import com.mootly.wcm.beans.HouseProperty;
+import com.mootly.wcm.beans.InterestDoc;
+import com.mootly.wcm.beans.MemberDeductionScheduleVIA;
+import com.mootly.wcm.beans.MemberPersonalInformation;
+import com.mootly.wcm.beans.OtherSourceIncome;
 import com.mootly.wcm.beans.RebateSec90Document;
-import com.mootly.wcm.components.BaseComponent;
-import com.mootly.wcm.utils.ContentStructure;
-import com.mootly.wcm.utils.GoGreenUtil;
-import com.mootly.wcm.utils.UrlUtility;
+import com.mootly.wcm.beans.SalaryIncomeDocument;
+import com.mootly.wcm.beans.SecuritiesDoc;
+import com.mootly.wcm.components.ITReturnComponent;
+import com.mootly.wcm.member.Calculations;
+
+/**
+
+ * @author:Pankaj Singh
+ * Date: 3/6/2013
+ * Description: This take data from the form of capital asset and put it into bean
+ *
+ */
+@PrimaryBean(primaryBeanClass=RebateSec90Document.class)
+@FormFields(fieldNames= {"userCountry","taxPaidForeignCountry","incomeForeignCountry"})
+@AdditionalBeans(additionalBeansToLoad={AdjustmentOfLossesDoc.class,InterestDoc.class} )
 
 
-public class RebateSec90 extends BaseComponent {
-	private static final Logger log = LoggerFactory.getLogger(RebateSec90.class);
-	public static final String SECTION_89= "Section_89";
-	public static final String SECTION_90="Section_90";
-	public static final String SECTION_91 = "Section_91";
-	public static final String ERRORS="errors";
-	
-	
-    @Override
-    /**
-     * This method is used to calculate the rebate under section 90/91
-     * on the basis of user select whether india has signed DTAA or not.
-     * @author Pankaj Singh
-     */
+
+public class RebateSec90 extends ITReturnComponent {
+	@Override
 	public void doBeforeRender(HstRequest request, HstResponse response) {
 		// TODO Auto-generated method stub
 		super.doBeforeRender(request, response);
-		log.warn("This is RebateSec90 page");
-		request.setAttribute(ERRORS, request.getParameterValues(ERRORS));
-		// following data is hard codeded for calculation
-		int IncomeOutside=1000000;
-		int intIncomeIndia=500000;
-		int Incometaxable=intIncomeIndia+IncomeOutside;
-		int Tax = 402215;
-		double Rateoftaxinindia1= Tax*100;
-		double Rateoftaxinindia12= Rateoftaxinindia1/Incometaxable;
-		float Rateoftaxinindia = (float) Math.round(Rateoftaxinindia12 * 100) / 100;
-		log.info("Rateoftaxinindia QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ"+Rateoftaxinindia);
+		// to find eithr user lies in section 90 or 91
 		
-		double RateForiegnIncome1=IncomeOutside*100;
-		double RateForiegnIncome12=RateForiegnIncome1/Incometaxable;
-		log.info("RateForiegnIncome12"+RateForiegnIncome12);
-		float  RateForiegnIncome = (float) Math.round(RateForiegnIncome12 * 100) / 100;
-		log.info("RateForiegnIncome"+RateForiegnIncome);
-		// for finding smallest among two rates to show on jsp page.
-		if(Rateoftaxinindia<RateForiegnIncome){
-			double relief1=Rateoftaxinindia*IncomeOutside;
-			String relief=BigDecimal.valueOf(relief1).toPlainString();
-			log.info("relief QQQQQQQQQQQQQQ "+relief);
-			request.setAttribute("relief", relief);
-			log.info("if indian rate is less ");
-			
-		}else{
-			double reliefForiegn=RateForiegnIncome12*IncomeOutside;
-			log.info("if indian rate is more ");
-			request.setAttribute("reliefForiegn", reliefForiegn);
-			log.info("reliefForiegn OOOOOOOOOOOOOO"+reliefForiegn);
+		double fetchHouseProperty=0.0;
+		double fetchOtherIncome=0.0;
+		double fetchDeduction=0.0;
+		double fetchAdjustLosses=0.0;
+		double fetchSecurities=0.0;
+		double fetchInterest= 0.0;
+		double fetchSalaryIncome=0.0;
+		// fetching Salary Income value
+		/*
+		Calculations cal = new Calculations();
+		if(request.getAttribute("salaryincomedocument") != null){
+		fetchSalaryIncome = cal.fetchSalaryIncomeValue(request,response);
+		}
+		// fetching OtherIncome value
+		//if(request.getAttribute("othersourceincome") !=null){
+		 //fetchOtherIncome =cal.fetchOtherIncomeValue(request,response);
+		//}
+		//if(request.getAttribute("houseproperty") !=null){
+			//fetching house property values
+			// fetchHouseProperty = cal.fetchHousePropertyValue(request,response);
+		//}
+		// fetching deductions 
+		//if(request.getAttribute("memberdeductionschedulevi") !=null){
+		 //fetchDeduction = cal.fetchDeductionsValue(request,response);
+		//}
+		// fetching Losses value
+		if(request.getAttribute("adjustmentoflossesdoc") != null){
+		 fetchAdjustLosses = cal.fetchLossesValue(request,response);
+		}
+		// fetching Securities value
+		//if(request.getAttribute("securitiesdoc") !=null){
+		// fetchSecurities = cal.fetchSecurityValue(request,response);
+		//}
+		// fetching Interest value
+		if(request.getAttribute("interestdoc") != null){
+		 fetchInterest =cal.fetchinterestValue(request,response);
 		}
 		
+
+		
+		
+		double fTotal= fetchSalaryIncome + fetchOtherIncome + fetchHouseProperty + fetchSecurities;
+		System.out.println("Total of all"+fTotal);
+		System.out.println("big decimal"+BigDecimal.valueOf(fTotal).toPlainString());
+		double fGrossTotal = fTotal-fetchAdjustLosses;
+		double fTaxableIncome= fGrossTotal-fetchDeduction;
+		System.out.println("fTaxableIncome"+fTaxableIncome);
+		*/
+		RebateSec90Document objRebateNinety = (RebateSec90Document)request.getAttribute("parentBean");
+		String userCountry=objRebateNinety.getUserCountry();
+		System.out.println("userCountry:::::::::::::"+userCountry);
+		ResourceBundle rb = ResourceBundle.getBundle("valueList_dtaaCountries");
+		for(int n=1;n<=4;n++){
+		String listCountry=rb.getString("valueList."+n);
+		System.out.println("N IS:::::"+n);
+		System.out.println("listCountry"+listCountry);
+		if(userCountry.equals(listCountry)){
+			System.out.println("this is the case of section 90");
+			// following data is hard codeded for calculation
+			
+			int IncomeOutside=240000;
+			int intIncomeIndia=450000;
+			int Incometaxable=intIncomeIndia+IncomeOutside;
+			int tax = 68000;
+			double eduCess=tax*0.03;
+			double totalTax=tax+eduCess;
+			double Rateoftaxinindia= (totalTax*100)/Incometaxable;
+			double avgTaxOnForeignIncome=(Rateoftaxinindia*IncomeOutside)/100;
+			double taxPaidInInForeignCountry=objRebateNinety.getTaxPaidForeignCountry();
+			System.out.println("avgTaxOnForeignIncome "+avgTaxOnForeignIncome);
+			System.out.println("taxPaidInInForeignCountry "+taxPaidInInForeignCountry);
+			
+			// for finding smallest among two rates to show on jsp page.
+			if(taxPaidInInForeignCountry>avgTaxOnForeignIncome){
+				String relief=BigDecimal.valueOf(avgTaxOnForeignIncome).toPlainString();
+				System.out.println("relief QQQQQQQQQQQQQQ "+relief);
+				request.setAttribute("relief", relief);
+				System.out.println("if indian rate is less ");
+				
+			}else{
+				System.out.println("if indian rate is more ");
+				String reliefForiegn=BigDecimal.valueOf(taxPaidInInForeignCountry).toPlainString();
+				request.setAttribute("reliefForiegn", reliefForiegn);
+				System.out.println("reliefForiegn OOOOOOOOOOOOOO"+reliefForiegn);
+			}
+		
+		
+		}else{
+			System.out.println("this is the case of rebate sec 91");
+		}
+		}
 		
 	}
-	
 	@Override
 	public void doAction(HstRequest request, HstResponse response)
 			throws HstComponentException {
+		
 		// TODO Auto-generated method stub
 		super.doAction(request, response);
-		log.warn("test page at do action method");
-		String Section90=GoGreenUtil.getEscapedParameter(request, "Section_90");
-		String Section91=GoGreenUtil.getEscapedParameter(request, "Section_91");
-		RebateSec90Document rb= new RebateSec90Document();
-			rb.setSection90(Section90);
-			rb.setSection91(Section91);
-			createRebateUpdateform(request,rb);
-
-			try{  
-				response.sendRedirect(UrlUtility.AdvanceTax);
-			
-			}
-			catch(Exception e)
-			{
-				log.warn("Error in response Send Url");
-			}
-		}
-	
-
-	@SuppressWarnings("null")
-	private RebateSec90Document createRebateUpdateform(HstRequest request,RebateSec90Document rb) {
-		// TODO Auto-generated method stub
-		Session persistableSession = null;
-		WorkflowPersistenceManager wpm;
-		try {
-			persistableSession = getPersistableSession(request);
-			wpm = getWorkflowPersistenceManager(persistableSession);
-			//SIMPLE WORKFLOW
-			wpm.setWorkflowCallbackHandler(new FullReviewedWorkflowCallbackHandler());
-			 Member member=(Member)request.getSession().getAttribute("user");
-			    String username=member.getUserName().trim();
-			    String modusername=username.replaceAll("@", "-at-").trim();
-			     String pan=(String) request.getSession().getAttribute("pan");
-			     if(pan==null){
-			      pan="abcde1234g";
-			     }
-			     String filing_year=(String) request.getSession().getAttribute("filing_year");
-			     log.info("check value in session"+filing_year);
-			  final String memberFolderPath = ContentStructure.getMemberOriginalFilingPath(request, pan,filing_year, modusername);
-			  String updateRebateSec90Path=ContentStructure.getRebateSec90DocPath(pan,filing_year, modusername);
-			  log.info("Path of existing document:::::::"+updateRebateSec90Path);
-			  RebateSec90Document updateRebateSec90 = (RebateSec90Document) wpm.getObject(updateRebateSec90Path);
-			  if(updateRebateSec90 ==null){
-			final String itReturnPath = wpm.createAndReturn(memberFolderPath, RebateSec90Document.NAMESPACE ,  RebateSec90Document.NODE_NAME, true);
-			RebateSec90Document rebatedocument= (RebateSec90Document) wpm.getObject(itReturnPath);
-			// update content properties
-			if (rebatedocument != null) {
-				rebatedocument.setSection90(rb.getSection90());
-				rebatedocument.setSection91(rb.getSection91());
-				log.info("cerating the new document");
-				
-				// update now           `
-				wpm.update(rebatedocument);
-			} }else{
-				log.info("updating the existing dicument");
-				updateRebateSec90.setSection90(rb.getSection90());
-				updateRebateSec90.setSection91(rb.getSection91());
-				wpm.update(updateRebateSec90);
-				
-			}
-		
-		}
-			catch (Exception e) {
-				log.warn("Failed to signup member ", e);
-				return null;
-			} finally {
-				if (persistableSession != null) {
-					persistableSession.logout();
-				}
-			}
-			return rb;
-		}
-
-@Override
-public void doBeforeServeResource(HstRequest request, HstResponse response)
-		throws HstComponentException {
-	// TODO Auto-generated method stub
-	super.doBeforeServeResource(request, response);
-}
-private static class FullReviewedWorkflowCallbackHandler implements WorkflowCallbackHandler<FullReviewedActionsWorkflow> {
-	public void processWorkflow(FullReviewedActionsWorkflow wf) throws Exception {
-		wf.publish();
+		System.out.println("this is do Action  of rebate sec 90/91");
 	}
-}
+	
 }
 
-				
-	
-		
-	
-	
-	
+
