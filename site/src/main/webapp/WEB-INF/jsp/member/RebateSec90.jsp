@@ -1,66 +1,76 @@
-<%@include file="../includes/tags.jspf" %>
-<script type="text/javascript" src="http://yui.yahooapis.com/2.9.0/build/datatable/datatable-min.js"></script>
-<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.9.0/build/datatable/assets/skins/sam/datatable.css" />
+<%@include file="../includes/tags.jspf"%>
+<%@ page import="com.mootly.wcm.utils.*"%>
+<%@ page import="java.util.*"%>
+<hst:link var="mainSiteMapRefId"
+	siteMapItemRefId="${mainSiteMapItemRefId}" />
+<%
+String varToReplace = (String) pageContext.getAttribute("mainSiteMapRefId");
+if (varToReplace != null) {
+    String pan = (String) request.getAttribute("pan");
+	String modifiedSiteMapRefId = varToReplace.replaceAll("_default_",pan).replaceAll("","");
+	pageContext.setAttribute("modifiedSiteMapRefId",modifiedSiteMapRefId);
+}
+else {
+	pageContext.setAttribute("modifiedSiteMapRefId",mainSiteMapRefId);
+}
 
-<hst:actionURL var="actionUrl"/>
-<div align="center" class="signupform">
-<form id="frmrebate" action="${actionUrl}" method="post">
-<div id="demo"class="yui3-module"align="center">
-<div class="yui3-hd">
-<b>LESS: REBATE</b>
-	</div><br/><br/>
-	<div class="yui3-bd" align="center" >
-    <table>
-	
-	       <tr height="30px">
-	<td class="label"><fmt:message key="rebate.section90.required"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-	       <td class="input"><input type="text" name="Section_90" value="${relief}" maxlength="14" class="numberinput" readonly/>
-	       <c:if test="${not empty errors}">
-              <c:forEach items="${errors}" var="error">
-                  <c:if test="${error eq 'rebate.section90.error.required'}">
-                   <span class="form-error"><fmt:message key="rebate.section90.error.required"/></span><br/>
-                  </c:if>
-              </c:forEach>
-            </c:if>
-	       </td></tr>
-	       <tr height="30px">
-	<td class="label"><fmt:message key="rebate.section91.required"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-	       <td class="input"><input type="text" name="Section_91" value="" maxlength="14" class="numberinput" readonly/>
-	       <c:if test="${not empty errors}">
-              <c:forEach items="${errors}" var="error">
-              <c:if test="${error eq 'rebate.section91.error.required'}">
-                   <span class="form-error"><fmt:message key="rebate.section91.error.required"/></span><br/>
-                  </c:if>
-              </c:forEach>
-            </c:if>
-	       </td></tr>
-	       <tr height="30px">
-	
-	       
-	<tr height="40px"> 
-    <td  colspan="3" align="center"><input type="submit"  value="<fmt:message key="member.start.save.label"/>" class="yui3-button" /> 
-</td></tr> 
-</table><br />
+ValueListService objValueListService = ValueListServiceImpl.getInstance();
+TreeMap objTreeMapCountries = (TreeMap) objValueListService.getDtaaCountries();
+request.setAttribute("objTreeMapCountries", objTreeMapCountries);
+
+
+%>
+
+
+<hst:actionURL var="actionUrl" />
+<div align="center" >
+	<form id="frmrebate" action="${actionUrl}" method="post">
+
+		<b>LESS: REBATE</b>
 </div>
+
+<div class="yui3-bd" align="center">
+	<table>
+		<tr height="30px">
+			<td class="label">select country</td>
+			<td class="input"><input type="text" name="userCountry"
+				value="${parentBean.userCountry}"/>
+				</td>
+		<tr height="30px">
+			<td class="label">income earned form others
+				country</td>
+			<td class="input"><input type="text" name="incomeForeignCountry" 
+					value="${parentBean.incomeForeignCountry }" maxlength="14" class="numberinput" /></td>
+		</tr>
+		<tr height="30px">
+			<td class="label">Tax paid in foreign
+				country</td>
+			<td class="input"><input type="text"
+				name="taxPaidForeignCountry"  maxlength="14"
+				value="${parentBean.taxPaidForeignCountry }"
+				class="numberinput" /></td>
+		</tr>
+		
+		
+		<tr height="30px">
+			<td class="label"><fmt:message key="rebate.section90.required" /></td>
+			<td class="input"><input type="text" name="section_90" value="${relief}"
+				maxlength="14" readonly /></td>
+		</tr>
+		<tr height="30px">
+			<td class="label"><fmt:message key="rebate.section91.required" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+			<td class="input"><input type="text" name="section_91" value="Not Applicable"
+				maxlength="14" readonly /></td>
+		</tr>
+		
+		
+			</table>
 </div>
+<a href="${redirectURLToSamePage}" class="button olive">Cancel</a>
+<input type="submit" class="button orange" value="Save">
 </form>
-</div>
-<hst:headContribution keyHint="tablecss">
-<link type="text/css" rel="stylesheet" href='<hst:link path="/css/Newstyle.css"/>'/>
-</hst:headContribution>
+		
 
-<hst:headContribution keyHint="tablecss">
-<link type="text/css" rel="stylesheet" href='<hst:link path="/css/adornment.css"/>'/>
-</hst:headContribution>
-<hst:headContribution keyHint="ExternalCSS">
-<link rel="stylesheet" href='<hst:link path="http://yui.yahooapis.com/3.8.0/build/cssbutton/cssbutton.css"/>' type="text/css"/>
-</hst:headContribution>
-<hst:headContribution keyHint="formcss">
-<link rel="stylesheet" href='<hst:link path="/css/animation/animation.css"/>' type="text/css"/>
-</hst:headContribution>
-<hst:headContribution keyHint="formcss">
-<link type="text/css" rel="stylesheet" href='<hst:link path="/css/adornment.css"/>'/>
-</hst:headContribution>
-<hst:headContribution keyHint="ExternalCSS">
-<link rel="stylesheet" href='<hst:link path="http://yui.yahooapis.com/3.8.0/build/cssbutton/cssbutton.css"/>' type="text/css"/>
-</hst:headContribution>
+
+
+
