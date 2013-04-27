@@ -31,6 +31,7 @@ public final class ValueListServiceImpl implements ValueListService{
 	private ResourceBundle objValueListNaturePayment = null;
 	private ResourceBundle objValueListNumbers = null;
 	private ResourceBundle objValueListDeductedYear = null;
+	private ResourceBundle objValueListDtaaCountries = null;
 
 	private static final ValueListServiceImpl objValueListServiceImpl = new ValueListServiceImpl(); 
 
@@ -50,6 +51,7 @@ public final class ValueListServiceImpl implements ValueListService{
 		 objValueListNaturePayment=ResourceBundle.getBundle("valueList_naturepayment");
 		 objValueListNumbers=ResourceBundle.getBundle("valueList_numbers");
 		 objValueListDeductedYear=ResourceBundle.getBundle("valueList_deductedyear");
+		 objValueListDtaaCountries=ResourceBundle.getBundle("valueList_dtaaCountries");
 	 }
 
 	/**
@@ -287,6 +289,14 @@ public final class ValueListServiceImpl implements ValueListService{
 				
 				
 				return  TreeDeducterdYear;
+			}
+			public TreeMap getDtaaCountries(){
+				TreeMap TreeDtaaCountries = new TreeMap();
+				TreeDtaaCountries.put("1", objValueListDtaaCountries.getString("valueList.1"));
+				TreeDtaaCountries.put("2", objValueListDtaaCountries.getString("valueList.2"));
+				TreeDtaaCountries.put("3", objValueListDtaaCountries.getString("valueList.3"));
+				return TreeDtaaCountries;
+				
 			}
 
 	 }
