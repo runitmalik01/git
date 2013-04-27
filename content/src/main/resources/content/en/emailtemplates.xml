@@ -99,7 +99,7 @@
 &lt;p&gt; Thanks for registering with Wealth4India. To confirm your account we need to validate your email address.&lt;/p&gt;
 
 &lt;p&gt;
-http://${memberHostName}/site/activation?activationcode=${membershipSignupDocument.activationCode} 
+http://${memberHostName}/site/activation/${membershipSignupDocument.canonicalUUID} 
 &lt;/p&gt;
 
 
@@ -218,7 +218,7 @@ Wealth4India Team
 &lt;p&gt;This is your requested activation code. Click the link below to activate your
 account.&lt;/p&gt;
 
-&lt;p&gt; http://${memberHostName}/site/activation?activationcode=${member.ActivationCode} 
+&lt;p&gt; http://${memberHostName}/site/activation/${member.canonicalUUID} 
 &lt;/p&gt;
 
 &lt;p&gt;Sincerely, Wealth4India Team&lt;/p&gt;

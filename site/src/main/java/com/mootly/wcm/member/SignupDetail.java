@@ -179,15 +179,15 @@ public class SignupDetail extends BaseComponent {
 		// TODO Auto-generated method stub
 		Session persistableSession = null;
 		WorkflowPersistenceManager wpm;
+		String finalMembershipDocumentPath = null;
 		try {
 			persistableSession = getPersistableSession(request);
 			wpm = getWorkflowPersistenceManager(persistableSession);
 			//SIMPLE WORKFLOW
 			wpm.setWorkflowCallbackHandler(new FullReviewedWorkflowCallbackHandler());
 			final String memberFolderPath = ContentStructure.getMemberFolder(request,signupDocument.getUserName());
-
-			final String itReturnPath = wpm.createAndReturn(memberFolderPath, MemberSignupDocument.NAMESPACE ,  MemberSignupDocument.NODE_NAME, true);
-			MemberSignupDocument membershipSignupDocument = (MemberSignupDocument) wpm.getObject(itReturnPath);
+			finalMembershipDocumentPath = wpm.createAndReturn(memberFolderPath, MemberSignupDocument.NAMESPACE ,  MemberSignupDocument.NODE_NAME, true);
+			MemberSignupDocument membershipSignupDocument = (MemberSignupDocument) wpm.getObject(finalMembershipDocumentPath);
 			// update content properties
 			if (membershipSignupDocument != null) {
 				membershipSignupDocument.setUserName(signupDocument.getUserName());
@@ -196,22 +196,22 @@ public class SignupDetail extends BaseComponent {
 				membershipSignupDocument.setRoles(new String[]{"unverifiedmember"});
 				membershipSignupDocument.setActivationCode(UUID.randomUUID().toString());
 				membershipSignupDocument.setIsActive(false);
-				
 				// update now           `
 				wpm.update(membershipSignupDocument);
-				
+				MemberSignupDocument publishedSignUpDocument = (MemberSignupDocument) wpm.getObject(finalMembershipDocumentPath); // getSiteContentBaseBean(request).getBean("member/" + signupDocument.getUserName().replaceAll("@","-at-") + "/membersignupdocument");
+				if (publishedSignUpDocument == null) return null;//major screwup
 				//persistableSession = getPersistableSession(request);
 				//wpm = getWorkflowPersistenceManager(persistableSession);
 				//also queue up the message for welcome
 				//first find the template membership_signup, this template is under emailtemplates folder
+				//SIMPLE WORKFLOW
 				Map<String,Object> contextMap = new HashMap<String, Object>();
-				contextMap.put("membershipSignupDocument", membershipSignupDocument);
+				contextMap.put("membershipSignupDocument", publishedSignUpDocument);
 				contextMap.put("member", member);
 				StringBuffer sbHostName = new StringBuffer();
 				sbHostName.append(request.getServerName()).append(":").append(request.getServerPort());
 				
 				contextMap.put("memberHostName", sbHostName.toString());
-				
 				String pathToNewNode = wpm.createAndReturn(memberFolderPath +"/emails", EmailMessage.NAMESPACE, "activation_link", true);
 				EmailMessage emailMessage = (EmailMessage) wpm.getObject(pathToNewNode);
 				emailMessage.setTo(new String[]{membershipSignupDocument.getEmail()});
@@ -234,13 +234,9 @@ public class SignupDetail extends BaseComponent {
 					emailMessage.setHtmlBody("<B>COOL</B>");
 				}
 				wpm.update(emailMessage);
-				
-				return membershipSignupDocument;
-			} else {
-				log.warn("Failed to add membership document for '{}': could not retrieve Review bean for node '{}'.", MemberSignupDocument.NODE_NAME, itReturnPath);
-				GoGreenUtil.refreshWorkflowManager(wpm);
 				return membershipSignupDocument;
 			}
+			return null;
 		} catch (Exception e) {
 			log.warn("Failed to signup member ", e);
 			return null;

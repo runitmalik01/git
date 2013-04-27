@@ -698,16 +698,33 @@
       <sv:value>memberlogin</sv:value>
     </sv:property>
   </sv:node>
-  <sv:node sv:name="activation">
-    <sv:property sv:name="jcr:primaryType" sv:type="Name">
-      <sv:value>hst:sitemapitem</sv:value>
-    </sv:property>
-    <sv:property sv:name="jcr:uuid" sv:type="String">
-      <sv:value>b9537abe-6acf-4035-badf-e8dde202db00</sv:value>
-    </sv:property>
-    <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
-      <sv:value>hst:pages/activation</sv:value>
-    </sv:property>
+  <sv:node sv:name="activation" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hst:sitemapitem</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>b9537abe-6acf-4035-badf-e8dde202db00</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+	    <sv:value>hst:pages/activation</sv:value>
+	  </sv:property>
+	  <sv:node sv:name="_default_">
+	    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	      <sv:value>hst:sitemapitem</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="jcr:uuid" sv:type="String">
+	      <sv:value>b800f9b2-1192-46b2-8c43-05156102a4ac</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+	      <sv:value>hst:pages/activation</sv:value>
+	    </sv:property>
+	    <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+	      <sv:value>activationCode</sv:value>
+	    </sv:property>
+	    <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+	      <sv:value>${1}</sv:value>
+	    </sv:property>
+	  </sv:node>
   </sv:node>
   <sv:node sv:name="forgotpass" >
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
