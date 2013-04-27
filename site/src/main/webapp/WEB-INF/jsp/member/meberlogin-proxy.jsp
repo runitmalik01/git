@@ -36,19 +36,19 @@
 	<c:otherwise>
 		<div class="memberlogin page type-page">
 				<h3 id="respond1">Login to Wealth4India</h3>
-				<form action="j_spring_security_check" method="post" id="loginForm">
+				<form action="${loginProxy}" method="post" id="loginForm">
 				   <p>
 				 	  <label for="username">
 				          <small>Email Address (required)</small>
 				       </label>
-				       <input name="j_username" id="username" value="${fn:escapeXml(userName)}" size="22" tabindex="1" type="text">
+				       <input name="username" id="username" value="${fn:escapeXml(userName)}" size="22" tabindex="1" type="text">
 				       <c:if test="${not empty loginError}"><label for="userName" generated="true" class="error" style="">Either your username or password were incorrect.</label></c:if>
 				   </p>
 				   <p>
 						<label for="password">
 				           <small>Password (required)</small>
 				       </label>
-				       <input name="j_password" id="password" value="" size="22" tabindex="2" type="password">
+				       <input name="password" id="password" value="" size="22" tabindex="2" type="password">
 				   </p>
 				   <p>
 				   		<a href="javascript:void(0)" id="hrefLogin" class="orange button">Login</a>
@@ -92,7 +92,3 @@
 		<hst:headContribution element="${uiCustom}" category="jsInternal"/>
 	</c:otherwise>
 </c:choose>
-
-
-
-

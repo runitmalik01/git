@@ -21,7 +21,15 @@
   version="2.5">
 
   <display-name>Mootly WCM Application</display-name>
-
+  
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>
+      /WEB-INF/applicationContext.xml
+      /WEB-INF/applicationContext-security.xml      
+    </param-value>
+  </context-param>
+  
   <context-param>
     <param-name>webAppRootKey</param-name>
     <param-value>site.webapp.root</param-value>
@@ -55,14 +63,34 @@
     <param-value>classpath*:com/mootly/wcm/beans/**/*.class,
                  classpath*:org/onehippo/forge/poll/**/*.class,
                  classpath*:org/onehippo/forge/properties/**/*.class,
-                 classpath*:org/onehippo/forge/tcmp/**/*.class
+                 classpath*:org/onehippo/forge/tcmp/**/*.class,
+                 classpath*:org/onehippo/forge/security/support/springsecurity/beans/**/*.class
     </param-value>
   </context-param>
+  
+    <!-- 
+    Configure Spring Security Filter.
+    Usually you may just copy and paste the following into your web application descriptor.
+  -->
+  <filter>
+    <filter-name>springSecurityFilterChain</filter-name>
+    <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+  </filter>
   
   <filter>
     <filter-name>XSSUrlFilter</filter-name>
     <filter-class>org.hippoecm.hst.container.XSSUrlFilter</filter-class>
   </filter>
+  
+  <!-- 
+    Configure Spring Security Filter Mapping.
+    Usually you may just copy and paste the following into your web application descriptor.
+  -->
+  <filter-mapping>
+    <filter-name>springSecurityFilterChain</filter-name>
+    <url-pattern>/*</url-pattern>
+    <dispatcher>REQUEST</dispatcher>
+  </filter-mapping>
   
   <filter-mapping>
     <filter-name>XSSUrlFilter</filter-name>
@@ -153,6 +181,13 @@
   
   <listener>
     <listener-class>com.mootly.wcm.login.HstConcurrentLoginSessionListener</listener-class>
+  </listener>
+  
+  <!--
+    Configure Spring Web Application Context Loader Listener.
+  -->
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>
   
   <servlet>
@@ -310,6 +345,7 @@
     </auth-constraint>
   </security-constraint>
   <!-- Custom for Indian Tax Online -->
+  <!-- 
   <security-constraint>
     <web-resource-collection>
       <web-resource-name>memberonly</web-resource-name>
@@ -319,6 +355,7 @@
       <role-name>member</role-name>
     </auth-constraint>
   </security-constraint>
+   -->
   <login-config>
     <auth-method>FORM</auth-method>
     <realm-name>HSTSITE</realm-name>

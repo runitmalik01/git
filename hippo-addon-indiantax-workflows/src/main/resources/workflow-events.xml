@@ -19,6 +19,7 @@
         <sv:property sv:name="jcr:primaryType" sv:type="Name">
             <sv:value>hipposys:workflowcategory</sv:value>
         </sv:property>
+        <!-- 
         <sv:node sv:name="membersignup">
             <sv:property sv:name="jcr:primaryType" sv:type="Name">
                 <sv:value>hipposys:workflowboundmethodevent</sv:value>
@@ -59,6 +60,7 @@
                 <sv:value>publish</sv:value>
             </sv:property>
         </sv:node>
+        -->
          <sv:node sv:name="changepass">
             <sv:property sv:name="jcr:primaryType" sv:type="Name">
                 <sv:value>hipposys:workflowboundmethodevent</sv:value>

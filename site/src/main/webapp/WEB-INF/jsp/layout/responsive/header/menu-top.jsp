@@ -22,7 +22,7 @@
 <%@ taglib uri="http://www.onehippo.org/jsp/google-analytics" prefix="ga" %>
 <%@include file="../../../includes/tags.jspf" %>
 <hst:link var="login" path="/login/login"/>
-<hst:link var="logout" path="/login/logout"/>
+<hst:link var="logout" path="/j_spring_security_logout"/>
 <hst:link var="signup" path="/signup"/>
 <hst:link var="myaccount" path="/member"/>
 <ul id="menu-top" class="top-menu">
