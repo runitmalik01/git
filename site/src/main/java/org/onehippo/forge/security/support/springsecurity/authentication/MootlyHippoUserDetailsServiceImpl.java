@@ -170,8 +170,16 @@ public class MootlyHippoUserDetailsServiceImpl implements HippoUserDetailsServic
 	      QueryResult result = q.execute();
 	      NodeIterator nodeIt = result.getNodes();
 	      Node userNode = (nodeIt.hasNext() ? userNode = nodeIt.nextNode() : null);
-
+	      if (userNode == null) {
+	    	  if (log.isInfoEnabled()) {
+	    		  log.info("User node not found");
+	    	  }
+	    	  throw new UsernameNotFoundException("user.not.found");
+	      }
 	      String passwordProp = userNode.getProperty("mootlywcm:password").getString();
+	      if (!password.equals(passwordProp)) {
+	    	  return null;
+	      }
 	      boolean enabled = userNode.getProperty("mootlywcm:isActive").getBoolean();
 	      boolean accountNonExpired = true;
 	      boolean credentialsNonExpired = true;

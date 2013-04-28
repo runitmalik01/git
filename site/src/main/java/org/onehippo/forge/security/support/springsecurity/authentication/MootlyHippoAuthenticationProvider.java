@@ -27,6 +27,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.authentication.dao.AbstractUserDetailsAuthenticationProvider;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 public class MootlyHippoAuthenticationProvider extends AbstractUserDetailsAuthenticationProvider {
 
@@ -106,7 +107,10 @@ public class MootlyHippoAuthenticationProvider extends AbstractUserDetailsAuthen
 
     try {
       loadedUser = getHippoUserDetailsService().loadUserByUsernameAndPassword(username, password);
-    } catch (DataAccessException repositoryProblem) {
+    }catch (UsernameNotFoundException usernameNotFoundException) {
+    	throw new AuthenticationServiceException("username.not.found");
+    }
+    catch (DataAccessException repositoryProblem) {
       throw new AuthenticationServiceException(repositoryProblem.getMessage(), repositoryProblem);
     }
 

@@ -18,6 +18,23 @@
 <%@page import="org.hippoecm.hst.core.component.HstRequest"%>
 <%@page import="java.util.Enumeration"%>
 <%@include file="../includes/tags.jspf"%>
+<%
+String errorKey = null;
+org.springframework.security.authentication.AuthenticationServiceException authenticationException = (org.springframework.security.authentication.AuthenticationServiceException) request.getSession().getAttribute("SPRING_SECURITY_LAST_EXCEPTION");
+if (authenticationException != null) {
+	String msg = authenticationException.getMessage();
+	if (msg != null && msg.equals("username.not.found")) {
+		errorKey = "login.error.userNameNotFound";
+	}
+	else if (msg != null && msg.startsWith("UserDetailsService returned null")) {
+		errorKey = "login.error.passwordMismatch";
+	}
+	else {
+		errorKey = "login.error";
+	}
+}
+pageContext.setAttribute("login_error_key", errorKey);					
+%>
 <hst:link var="forgotpass" siteMapItemRefId="forgotpass"></hst:link>
 <hst:link var="loginProxy" path="/login/proxy"></hst:link>
 <hst:actionURL var="actionUrl"></hst:actionURL>
@@ -35,20 +52,24 @@
 	</c:when>
 	<c:otherwise>
 		<div class="memberlogin page type-page">
-				<h3 id="respond1">Login to Wealth4India</h3>
+				<h4>Login to Wealth4India</h4>				
+				<c:if test="${not empty login_error_key}">
+					<div class="alert alert-error"><fmt:message key="${login_error_key}"/></div>
+				</c:if>
 				<form action="j_spring_security_check" method="post" id="loginForm">
 				   <p>
 				 	  <label for="username">
 				          <small>Email Address (required)</small>
 				       </label>
 				       <input name="j_username" id="username" value="${fn:escapeXml(userName)}" size="22" tabindex="1" type="text">
-				       <c:if test="${not empty loginError}"><label for="userName" generated="true" class="error" style="">Either your username or password were incorrect.</label></c:if>
+				       <c:if test="${not empty login_error_key &&  (login_error_key == 'login.error' || login_error_key == 'login.error.userNameNotFound')}"><label for="userName" generated="true" class="error" style=""><fmt:message key="${login_error_key}"/></label></c:if>
 				   </p>
 				   <p>
 						<label for="password">
 				           <small>Password (required)</small>
 				       </label>
 				       <input name="j_password" id="password" value="" size="22" tabindex="2" type="password">
+				       <c:if test="${not empty login_error_key &&  (login_error_key == 'login.error' || login_error_key == 'login.error.passwordMismatch')}"><label for="password" generated="true" class="error" style=""><fmt:message key="${login_error_key}"/></label></c:if>
 				   </p>
 				   <p>
 				   		<a href="javascript:void(0)" id="hrefLogin" class="orange button">Login</a>
