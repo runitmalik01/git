@@ -8,6 +8,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
+import javax.jcr.LoginException;
+import javax.jcr.RepositoryException;
+
+import org.hippoecm.hst.content.beans.standard.HippoBean;
+import org.hippoecm.hst.core.component.HstRequest;
+import org.hippoecm.hst.site.HstServices;
+import org.hippoecm.repository.api.HippoSession;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.slf4j.Logger;
@@ -22,6 +29,7 @@ import com.mootly.wcm.beans.BaseDocument;
 import com.mootly.wcm.beans.ScreenConfigDocument;
 import com.mootly.wcm.beans.compound.ScreenFieldConfig;
 import com.mootly.wcm.components.BaseComponent;
+import com.mootly.wcm.components.ITReturnComponent;
 
 public class ScreenConfigService {
 	private static final Logger log = LoggerFactory.getLogger(ScreenConfigService.class); 
@@ -53,6 +61,26 @@ public class ScreenConfigService {
 			}
 		}
 		return screenConfigurationList.get(key);
+	}
+	
+	public static String generateJSON(HippoBean siteContentBaseBean, String screenConfigDocumentName) {
+		if (siteContentBaseBean == null) return null;
+		String pathToScreenConfig = "configuration/screenconfigs/" + screenConfigDocumentName;
+		ScreenConfigDocument screenConfigDocument = siteContentBaseBean.getBean(pathToScreenConfig, ScreenConfigDocument.class);
+		if (screenConfigDocument == null) return null;
+		Map<String,ScreenFieldConfig> fieldConfigMap = screenConfigDocument.getFieldConfigMapByName();
+		if (fieldConfigMap == null || fieldConfigMap.size() == 0) return null;
+		JSONObject jsonObject = new JSONObject();
+		for (String aKey:fieldConfigMap.keySet()) {
+			try {
+				jsonObject.put(aKey,fieldConfigMap.get(aKey).getMapForJSON());
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				log.warn("Error in generating json",e);
+				e.printStackTrace();
+			}
+		}
+		return jsonObject.toString();
 	}
 	
 	public static String generateJSON(ScreenConfigDocument screenConfigDocument) {

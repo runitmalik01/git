@@ -152,7 +152,7 @@ jQuery('#DateOfFilingYear').datepicker('destroy');
 			</div>
 		</form>
 		<a href="${redirectURLToSamePage}" class="button olive">Cancel</a>&nbsp;
-		<a id="myModalHref" onClick="save()" role="button" class="btn orange">Save</a>
+		<a id="myModalHref" role="button" class="btn orange">Save</a>
 		
 	</c:when>
 	<c:otherwise>				
@@ -181,29 +181,8 @@ jQuery('#DateOfFilingYear').datepicker('destroy');
 					
 				</table>
 				<a href="${redirectURLToSamePage}/new" class="button orange">Add New</a>
-				<a href="${modifiedSiteMapRefId}" class="button orange">Next</a>
+				<a href="${modifiedSiteMapRefId}" id="saveAndNext" class="button orange">Next</a>
 	</c:otherwise>
 	</c:choose>
 </div>
-
-<hst:element var="uiCustom" name="script">
-    <hst:attribute name="type">text/javascript</hst:attribute>
-	<res:client-validation/>
-	$(document).ready(function() {
-		
-		$("#myModalHref").click( function() {
-			$("#frmdata").validate();
-			if (!$("#frmdata").valid()) return false;
-		});
-		
-	});
-</hst:element>
-<hst:headContribution element="${uiCustom}" category="jsInternal"/>		
-
-
-
-<script>
-function save(){
-			$("#frmdata").submit();
-}
-</script>
+<res:client-validation formId="frmdata" screenConfigurationDocumentName="adjustmentoflosses" formSubmitButtonId="myModalHref"/>

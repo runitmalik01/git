@@ -15,6 +15,8 @@
     limitations under the License.
 
 --%>
+<%@page import="org.hippoecm.hst.content.beans.standard.HippoBean"%>
+<%@page import="com.mootly.wcm.services.ScreenConfigService"%>
 <%@page import="org.hippoecm.hst.core.component.HstRequest"%>
 <%@page import="java.util.Enumeration"%>
 <%@include file="../includes/tags.jspf"%>
@@ -78,42 +80,8 @@ pageContext.setAttribute("login_error_key", errorKey);
 				   <input type="hidden" name="destination" value="${memberhome}"/> 
 				</form>
 		</div>
-		
-		<hst:element var="uiCustom" name="script">
-		    <hst:attribute name="type">text/javascript</hst:attribute>
-				$(document).ready(function() {
-					$('#loginForm input').keydown(function(e) {
-					    if (e.keyCode == 13) {
-					   		e.preventDefault();
-					        $('#loginForm').submit();
-					    }
-					});
-					$('#loginForm').validate({
-						rules: {
-							username: {
-								required: true,
-								minlength: 2
-							},
-		
-							password: {
-								required: true
-							}
-						},				
-						messages: {
-							username: "Please enter a valid email address.",
-							password: "Please enter a valid password."
-						}
-					});
-					
-					$('#hrefLogin').click(function() {
-		 				 $('#loginForm').submit();
-					});
-				});    
-		</hst:element>
-		<hst:headContribution element="${uiCustom}" category="jsInternal"/>
+		<res:client-validation screenConfigurationDocumentName="memberlogin" formId="loginForm" formSubmitButtonId="hrefLogin"></res:client-validation>
 	</c:otherwise>
 </c:choose>
-
-
 
 

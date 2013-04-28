@@ -17,51 +17,7 @@
 			   	  <div class="span3"><input id="pi_dob" name="pi_dob" placeholder="DOB" type="text" maxlength="10"/></div>
 		          <div class="span3"><select id="pi_return_type" name="pi_return_type"><option value="">Select Type</option><option value="original">Original</option><option value="revised">Revised</option></select></div>
 			 </div>	 
-		 </fieldset>
-	 <%--
-	 <fieldset>
-	 	 <legend>Personal Information</legend>	 
-		 <div class="row-fluid show-grid">	 	
-	          <div class="span1"><label for="fname">First</label></div>
-	          <div class="span3"><input id="fname" type="text" maxlength="10"/></div>
-	          <div class="span1"><label for="mname"/>Middle</div>
-	          <div class="span3"><input id="mname" type="text" maxlength="10"/></div>
-	          <div class="span1"><label for="lname">Last</label></div>
-	          <div class="span3"><input id="lname" type="text" maxlength="10"/></div>
-		</div>	
-		<div class="row-fluid show-grid">	 	
-			  <div class="span1"><label for="gender"/>Gender</div>
-	          <div class="span1"><select><option value="">M</option><option>F</option></select></div>
-	          <div class="span1"><label for="dob">DOB</label></div>
-	          <div class="span2"><input id="fname" type="text" maxlength="10"/></div>
-	          <div class="span1"><label for="lname">Email</label></div>
-	          <div class="span3"><input id="lname" type="text" maxlength="10"/></div>
-	          <div class="span1"><label for="lname">Phone</label></div>
-	          <div class="span2"><input id="lname" type="text" maxlength="10"/></div>
-		</div>	 		
-	 </fieldset>
-	 <fieldset>
-	 	 <legend>Address & Contact Information</legend>	 
-		 <div class="row-fluid show-grid">	 	
-	          <div class="span1"><label for="fname">First</label></div>
-	          <div class="span3"><input id="fname" type="text" maxlength="10"/></div>
-	          <div class="span1"><label for="mname"/>Middle</div>
-	          <div class="span3"><input id="mname" type="text" maxlength="10"/></div>
-	          <div class="span1"><label for="lname">Last</label></div>
-	          <div class="span3"><input id="lname" type="text" maxlength="10"/></div>
-		</div>	
-		<div class="row-fluid show-grid">	 	
-			  <div class="span1"><label for="gender"/>Gender</div>
-	          <div class="span1"><select><option value="">M</option><option>F</option></select></div>
-	          <div class="span1"><label for="dob">DOB</label></div>
-	          <div class="span2"><input id="fname" type="text" maxlength="10"/></div>
-	          <div class="span1"><label for="lname">Email</label></div>
-	          <div class="span3"><input id="lname" type="text" maxlength="10"/></div>
-	          <div class="span1"><label for="lname">Phone</label></div>
-	          <div class="span2"><input id="lname" type="text" maxlength="10"/></div>
-		</div>	 		
-	 </fieldset>
-	  --%>
+		 </fieldset>	 
 	</form>
 	<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	  <div class="modal-header">
@@ -159,9 +115,9 @@
 		</table>		
 	</c:if>
 </div>
+<res:client-validation screenConfigurationDocumentName="itreturnhomepage" formId="frmdata"></res:client-validation>
 <hst:element var="uiCustom" name="script">
     <hst:attribute name="type">text/javascript</hst:attribute>
-	<res:client-validation/>
 	$(document).ready(function() {
 		var selectedPackage = null;
 		$("#basicPackage").click(function (t) {		

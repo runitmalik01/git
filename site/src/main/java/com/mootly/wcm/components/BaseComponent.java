@@ -19,6 +19,7 @@ package com.mootly.wcm.components;
 import java.io.IOException;
 
 import org.hippoecm.hst.component.support.bean.BaseHstComponent;
+import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.core.component.HstComponentException;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
@@ -58,6 +59,9 @@ public class BaseComponent extends BaseHstComponent {
         if (bodyCssClass != null) request.setAttribute("bodyCssClass", bodyCssClass);
         if (contentCssClass != null) request.setAttribute("contentCssClass", contentCssClass);
         if (widgetsCssClass != null) request.setAttribute("widgetsCssClass", widgetsCssClass);
+        
+        HippoBean siteContentBaseBean = getSiteContentBaseBean(request);
+        if (siteContentBaseBean != null) request.setAttribute("siteContentBaseBean", siteContentBaseBean);
     }
     
     protected void redirectToNotFoundPage(HstResponse response) {
