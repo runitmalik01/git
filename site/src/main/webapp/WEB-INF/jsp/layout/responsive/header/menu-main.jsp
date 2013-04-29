@@ -48,7 +48,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/xml" prefix="x" %>
 <%@ taglib uri="http://www.hippoecm.org/jsp/hst/core" prefix='hst'%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<script type="text/javascript" src="WEALTH4INDIA_files/roe.js"></script>
 <%@include file="../../../includes/tags.jspf" %>
 <ul id="menu-main" class="menu">
     <c:forEach var="item" items="${menu.siteMenuItems}">
