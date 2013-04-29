@@ -108,7 +108,12 @@ public class MootlyHippoAuthenticationProvider extends AbstractUserDetailsAuthen
     try {
       loadedUser = getHippoUserDetailsService().loadUserByUsernameAndPassword(username, password);
     }catch (UsernameNotFoundException usernameNotFoundException) {
-    	throw new AuthenticationServiceException("username.not.found");
+    	if (usernameNotFoundException.getMessage() != null && usernameNotFoundException.getMessage().equals("password.mismatch")) {
+    		throw new BadCredentialsException(usernameNotFoundException.getMessage());
+    	}
+    	else {
+    		throw new AuthenticationServiceException(usernameNotFoundException.getMessage());
+    	}
     }
     catch (DataAccessException repositoryProblem) {
       throw new AuthenticationServiceException(repositoryProblem.getMessage(), repositoryProblem);

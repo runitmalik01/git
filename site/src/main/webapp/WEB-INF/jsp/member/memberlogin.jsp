@@ -25,16 +25,20 @@ String errorKey = null;
 org.springframework.security.authentication.AuthenticationServiceException authenticationException = (org.springframework.security.authentication.AuthenticationServiceException) request.getSession().getAttribute("SPRING_SECURITY_LAST_EXCEPTION");
 if (authenticationException != null) {
 	String msg = authenticationException.getMessage();
-	if (msg != null && msg.equals("username.not.found")) {
+	if (msg != null && msg.equals("user.not.found")) {
 		errorKey = "login.error.userNameNotFound";
 	}
-	else if (msg != null && msg.startsWith("UserDetailsService returned null")) {
+	else if (msg != null && msg.equals("password.mismatch")) {
 		errorKey = "login.error.passwordMismatch";
 	}
+	else if (msg != null && msg.equals("user.account.inactive")) {
+		errorKey = "login.error.inactiveuser";
+	}	
 	else {
 		errorKey = "login.error";
 	}
 }
+session.removeAttribute("org.springframework.security.authentication.AuthenticationServiceException");
 pageContext.setAttribute("login_error_key", errorKey);					
 %>
 <hst:link var="forgotpass" siteMapItemRefId="forgotpass"></hst:link>
