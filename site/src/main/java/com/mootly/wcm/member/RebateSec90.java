@@ -96,14 +96,15 @@ public class RebateSec90 extends ITReturnComponent {
 		String userCountry=objRebateNinety.getUserCountry();
 		System.out.println("userCountry:::::::::::::"+userCountry);
 		ResourceBundle rb = ResourceBundle.getBundle("valueList_dtaaCountries");
-		for(int n=1;n<=4;n++){
+		for(int n=1;n<=82;n++){
 		String listCountry=rb.getString("valueList."+n);
-		System.out.println("N IS:::::"+n);
+		
 		System.out.println("listCountry"+listCountry);
 		if(userCountry.equals(listCountry)){
-			System.out.println("this is the case of section 90");
-			// following data is hard codeded for calculation
 			
+			// following data is hard codeded for calculation
+			String reliefsec90=null;
+			String reliefsec91=null;
 			int IncomeOutside=240000;
 			int intIncomeIndia=450000;
 			int Incometaxable=intIncomeIndia+IncomeOutside;
@@ -118,21 +119,23 @@ public class RebateSec90 extends ITReturnComponent {
 			
 			// for finding smallest among two rates to show on jsp page.
 			if(taxPaidInInForeignCountry>avgTaxOnForeignIncome){
-				String relief=BigDecimal.valueOf(avgTaxOnForeignIncome).toPlainString();
-				System.out.println("relief QQQQQQQQQQQQQQ "+relief);
-				request.setAttribute("relief", relief);
-				System.out.println("if indian rate is less ");
+				reliefsec90=BigDecimal.valueOf(avgTaxOnForeignIncome).toPlainString();
+				request.setAttribute("reliefsec90", reliefsec90);
+				
+				
 				
 			}else{
-				System.out.println("if indian rate is more ");
-				String reliefForiegn=BigDecimal.valueOf(taxPaidInInForeignCountry).toPlainString();
-				request.setAttribute("reliefForiegn", reliefForiegn);
-				System.out.println("reliefForiegn OOOOOOOOOOOOOO"+reliefForiegn);
+				
+				reliefsec90=BigDecimal.valueOf(taxPaidInInForeignCountry).toPlainString();
+				request.setAttribute("reliefsec90", reliefsec90);
+				
+				
 			}
 		
 		
 		}else{
 			System.out.println("this is the case of rebate sec 91");
+			
 		}
 		}
 		
