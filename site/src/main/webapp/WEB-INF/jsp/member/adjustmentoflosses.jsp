@@ -61,7 +61,7 @@ request.setAttribute("objHashMapBoolean", objHashMapBoolean);
 <script>
 function setYear(){
 	
-var assessmentyear=document.getElementById("year").value;
+var assessmentyear=document.getElementById("AssessmentYear").value;
 
 var minyear=assessmentyear.slice(0,4);
 var maxyear=assessmentyear.slice(5,9);
@@ -132,7 +132,7 @@ jQuery('#DateOfFilingYear').datepicker('destroy');
 				</p>
 				<p>
 					<label for="Amount"><fmt:message key="member.adjustment.losses.amount" /></label>
-					<input id="Amount" maxlength="14" type="text" name="Amount" placeholder="Amount" id="amount" value="<c:if test="${pageAction == 'EDIT_CHILD'}"><c:out value="${childBean.amount}"/></c:if>"/>
+					<input type="text" name="Amount" placeholder="Amount" id="amount" value="<c:if test="${pageAction == 'EDIT_CHILD'}"><c:out value="${childBean.amount}"/></c:if>"/>
 				</p>
 				<p>
 					<label for="DateOfFilingYear"><fmt:message key="member.adjustment.losses.date"></fmt:message></label>
