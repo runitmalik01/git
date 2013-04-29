@@ -89,8 +89,14 @@
 		});
 		$.datepicker.setDefaults( $.datepicker.regional[ "fr" ] );
 		$.validator.addMethod("pan", function(value, element) {  
-		   	 return this.optional(element) || /^[a-zA-Z]{5}\d{4}[a-zA-Z]{1}?$/i.test(value);  
+		   	 return this.optional(element) || /^[a-zA-Z]{3}[p|P|c|C|h|H|f|F|a|A|t|T|b|B|l|L|j|J|g|G][a-zA-Z]\d{4}[a-zA-Z]{1}?$/i.test(value);  
 		}, "PAN is invalid.");
+		$.validator.addMethod("amount", function(value, element) {  
+		   	 return this.optional(element) || /^[0-9]+\.?[0-9]{0,2}?$/i.test(value);  
+		}, "AMOUNT is invalid.");
+		$.validator.addMethod("max", function(value, element) {  
+		   	 return this.optional(element) || /^([0-9]+\.?[0-9]{0,2}){0,14}?$/i.test(value);  
+		}, "Max length allowed is 14.");
 	</script>
 </body>
 </html>
