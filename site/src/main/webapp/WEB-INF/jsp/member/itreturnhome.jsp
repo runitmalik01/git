@@ -1,3 +1,4 @@
+<%@page import="java.util.List"%>
 <%@page import="com.mootly.wcm.model.FinancialYear"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="com.mootly.wcm.beans.MemberPersonalInformation"%>
@@ -50,73 +51,51 @@
 				<th>Name</th>
 				<th>Actions</th>
 			</tr>
-			<tr>
-				<td colspan="4"><b>Original Returns</b></td>
-			</tr>
-			<c:forEach items="${pansForMember}" var="panForMember">				
+			<c:forEach items="${pansForMember}" var="panForMember">			
+				<tr>
+					<td colspan="4" class="pan"><b><c:out value="${panForMember.name}"/></b></td>
+				</tr>	
 				<%
 					HippoFolder hf = (HippoFolder) pageContext.getAttribute("panForMember");
-					FinancialYear financialYear = (FinancialYear) request.getAttribute("financialYear");
-					String itReturnType = "original";
-					String relPath = financialYear + "/" + itReturnType + "/" + MemberPersonalInformation.class.getSimpleName().toLowerCase();
-				    //out.println(relPath);
-				    MemberPersonalInformation memberPersonalInfo =  hf.getBean(relPath,MemberPersonalInformation.class);
-				    if (memberPersonalInfo != null) {
-				    	request.setAttribute("memberPersonalInfo",memberPersonalInfo);
-				    }
-				    else {
-				    	request.removeAttribute("memberPersonalInfo");
-				    }				    
+					//children of hf will be financialyear
+					List<HippoFolder> financialYearList = hf.getChildBeans(HippoFolder.class);
+					pageContext.setAttribute("financialYearList",financialYearList);
 				%>
-				<c:if test="${not empty  memberPersonalInfo}">
-					<tr>
-						<td>
-							<hst:link var="viewLink" path="/member/itreturn/${financialYear}/original/${panForMember.name}/personalinformation.html"/>			
-							<span style="text-transform:uppercase;"><a href="${viewLink}"><c:out value="${panForMember.name}"/></a></span>		
-						</td>
-						<td><c:out value="${memberPersonalInfo.filingStatus}"/></td>
-						<td><c:out value="${memberPersonalInfo.name}"/></td>
-						<td>
-							<hst:link var="viewLink" path="/member/itreturn/${financialYear}/original/${panForMember.name}/personalinformation.html"/>
-							<span style="font-size:10px;"><a href="${viewLink}">Continue</a></span>		
-						</td>
-					</tr>
-				</c:if>
-			</c:forEach>
-			<!--  duplicating logic will cleanup later -->
-			<tr>
-				<td colspan="4"><b>Revised Returns</b></td>
-			</tr>
-			<c:forEach items="${pansForMember}" var="panForMember">				
-				<%
-					HippoFolder hf = (HippoFolder) pageContext.getAttribute("panForMember");
-					FinancialYear financialYear = (FinancialYear) request.getAttribute("financialYear");
-					String itReturnType = "revised";
-					String relPath = financialYear + "/" + itReturnType + "/" + MemberPersonalInformation.class.getSimpleName().toLowerCase();
-				    //out.println(relPath);
-				    MemberPersonalInformation memberPersonalInfo =  hf.getBean(relPath,MemberPersonalInformation.class);
-				    if (memberPersonalInfo != null) {
-				    	request.setAttribute("memberPersonalInfo",memberPersonalInfo);
-				    }
-				    else {
-				    	request.removeAttribute("memberPersonalInfo");
-				    }
-				%>
-				<c:if test="${not empty  memberPersonalInfo}">
-					<tr>
-						<td>
-							<hst:link var="viewLink" path="/member/itreturn/${financialYear}/revised/${panForMember.name}/personalinformation.html"/>			
-							<span style="text-transform:uppercase;"><a href="${viewLink}"><c:out value="${panForMember.name}"/></a></span>		
-						</td>
-						<td><c:out value="${memberPersonalInfo.filingStatus}"/></td>
-						<td><c:out value="${memberPersonalInfo.name}"/></td>
-						<td>
-							<hst:link var="viewLink" path="/member/itreturn/${financialYear}/revised/${panForMember.name}/personalinformation.html"/>
-							<span style="font-size:10px;"><a href="${viewLink}">Continue</a></span>		
-						</td>
-					</tr>
-				</c:if>
-			</c:forEach>			
+					<c:forEach items="${financialYearList}" var="financialYear">
+						<%
+							HippoFolder financialYearFolder = (HippoFolder) pageContext.getAttribute("financialYear");
+							List<HippoFolder> itReturnTypeList = financialYearFolder.getChildBeans(HippoFolder.class);
+							pageContext.setAttribute("itReturnTypeList",itReturnTypeList);
+						%>
+						<tr>
+							<td colspan="4" class="pan"><b><c:out value="${financialYear.name}"/></b></td>
+						</tr>	
+						<c:forEach items="${itReturnTypeList}" var="itReturnType">
+							<%
+								HippoFolder itReturnTypeFolder = (HippoFolder) pageContext.getAttribute("itReturnType");
+								MemberPersonalInformation memberPersonalInformation = itReturnTypeFolder.getBean("memberpersonalinformation");
+								pageContext.setAttribute("memberPersonalInformation",memberPersonalInformation);
+							%>
+							<tr>
+								<td colspan="4" class="pan"><b><c:out value="${itReturnType.name}"/></b></td>
+							</tr>	
+							<c:if test="${not empty  memberPersonalInformation}">
+								<tr>
+									<td>
+										<hst:link var="viewLink" path="/member/itreturn/${financialYear.name}/${itReturnType.name}/${panForMember.name}/personalinformation.html"/>			
+										<span style="text-transform:uppercase;"><a href="${viewLink}"><c:out value="${panForMember.name}"/></a></span>		
+									</td>
+									<td><c:out value="${memberPersonalInfo.filingStatus}"/></td>
+									<td><c:out value="${memberPersonalInfo.name}"/></td>
+									<td>
+										<hst:link var="viewLink" path="/member/itreturn/${financialYear.name}/${itReturnType.name}/${panForMember.name}/personalinformation.html"/>
+										<span style="font-size:10px;"><a href="${viewLink}">Continue</a></span>		
+									</td>
+								</tr>
+							</c:if>
+						</c:forEach>						
+					</c:forEach>														
+			</c:forEach>	
 		</table>		
 	</c:if>
 </div>

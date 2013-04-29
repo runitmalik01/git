@@ -20,6 +20,7 @@ import javax.jcr.Session;
 import org.apache.commons.lang.StringUtils;
 import org.hippoecm.hst.content.beans.manager.workflow.WorkflowCallbackHandler;
 import org.hippoecm.hst.content.beans.manager.workflow.WorkflowPersistenceManager;
+import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.core.component.HstComponentException;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
@@ -76,6 +77,13 @@ public class SignupDetail extends BaseComponent {
         //request.setAttribute(CONFIRM_PASSWORD, request.getParameter(CONFIRM_PASSWORD));
        
         request.setAttribute(SUCCESS, request.getParameter(SUCCESS));
+        
+        try {
+        	HippoBean siteContentBaseBean = getSiteContentBaseBean(request);
+        	if (siteContentBaseBean != null) request.setAttribute("siteContentBaseBean", siteContentBaseBean);
+        }catch (Exception ex) {
+        	log.info("Error",ex);
+        }
       
 	}
 	

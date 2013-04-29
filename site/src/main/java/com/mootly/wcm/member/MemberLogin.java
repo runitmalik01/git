@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang.StringUtils;
+import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.core.component.HstComponentException;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
@@ -31,8 +32,12 @@ public class MemberLogin extends BaseComponent {
 		super.doBeforeRender(request, response);
 		request.setAttribute(ERRORS, request.getParameterValues(ERRORS));
 		request.setAttribute(LOGIN_ERROR, request.getParameter(LOGIN_ERROR));
-		
-		
+		try {
+        	HippoBean siteContentBaseBean = getSiteContentBaseBean(request);
+        	if (siteContentBaseBean != null) request.setAttribute("siteContentBaseBean", siteContentBaseBean);
+        }catch (Exception ex) {
+        	log.info("Error",ex);
+        }
 	}
 	
 	@Override

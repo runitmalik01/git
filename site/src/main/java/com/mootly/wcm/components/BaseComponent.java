@@ -58,14 +58,7 @@ public class BaseComponent extends BaseHstComponent {
         if (template != null) request.setAttribute("template", template);
         if (bodyCssClass != null) request.setAttribute("bodyCssClass", bodyCssClass);
         if (contentCssClass != null) request.setAttribute("contentCssClass", contentCssClass);
-        if (widgetsCssClass != null) request.setAttribute("widgetsCssClass", widgetsCssClass);
-        //TO DO we need to get this based on some parameter other wise it is causing issue
-        try {
-        	HippoBean siteContentBaseBean = getSiteContentBaseBean(request);
-        	if (siteContentBaseBean != null) request.setAttribute("siteContentBaseBean", siteContentBaseBean);
-        }catch (Exception ex) {
-        	log.info("Error",ex);
-        }
+        if (widgetsCssClass != null) request.setAttribute("widgetsCssClass", widgetsCssClass);        
     }
     
     protected void redirectToNotFoundPage(HstResponse response) {

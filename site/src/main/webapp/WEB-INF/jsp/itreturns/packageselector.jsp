@@ -17,7 +17,7 @@
 --%>
 
 <%@include file="../includes/tags.jspf" %>
-<<hst:actionURL var="actionURL"></hst:actionURL>
+<hst:actionURL var="actionURL"></hst:actionURL>
 <div class="page">
 	<h4>Welcome to Income Tax Return Preparation for Financial Year:<c:out value="${financialYear.displayName}"/></h4>
 	<p>List of available packages for Filing Status <b><c:out value="${filingStatus.name}"/></b></p>

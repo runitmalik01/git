@@ -101,6 +101,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 	FormMap formMap = null;
 	ITReturnPackage itReturnPackage = ITReturnPackage.basic;
 	
+	HippoBean siteContentBaseBean = null;
 	//Document Specific
 	HippoBean hippoBeanBaseITReturnDocuments;
 	Class<? extends HippoBean> parentBeanClass = null;
@@ -555,8 +556,8 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		userName = request.getUserPrincipal() != null ? request.getUserPrincipal().getName() : null;
 		userNameNormalized = request.getUserPrincipal() != null ? request.getUserPrincipal().getName().replaceAll("@", "-at-") : null;
 		
-		HippoBean siteContentBase = getSiteContentBaseBean(request);
-		hippoBeanMemberBase = siteContentBase.getBean("members/" + getNormalizedMemberEmail());
+		siteContentBaseBean = getSiteContentBaseBean(request);
+		hippoBeanMemberBase = siteContentBaseBean.getBean("members/" + getNormalizedMemberEmail());
 		if (hippoBeanMemberBase != null) {
 			memberRootFolderAbsolutePath = hippoBeanMemberBase.getPath();
 			//we need to get into pans sub folder 
@@ -567,7 +568,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		}
 		
 		baseRelPathToReturnDocuments = "members/" + getNormalizedMemberEmail() + "/pans/" + getPAN() + "/" + getFinancialYear() + "/" + getITReturnType();
-		hippoBeanBaseITReturnDocuments = siteContentBase.getBean(baseRelPathToReturnDocuments);
+		hippoBeanBaseITReturnDocuments = siteContentBaseBean.getBean(baseRelPathToReturnDocuments);
 		baseAbsolutePathToReturnDocuments = request.getRequestContext().getResolvedMount().getMount().getCanonicalContentPath() + "/" + baseRelPathToReturnDocuments;
 		//if (hippoBeanBaseITReturnDocuments != null) {
 		//	baseAbsolutePathToReturnDocuments = hippoBeanBaseITReturnDocuments.getPath();
@@ -687,7 +688,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		
 		//lets try to load the SCreen Configuration Document for this component
 		String pathToScreenConfig = "configuration/screenconfigs/" + this.getClass().getSimpleName().toLowerCase();
-		ScreenConfigDocument screenConfigDocument = siteContentBase.getBean(pathToScreenConfig, ScreenConfigDocument.class);
+		ScreenConfigDocument screenConfigDocument = siteContentBaseBean.getBean(pathToScreenConfig, ScreenConfigDocument.class);
 		if (screenConfigDocument != null) {
 			if (log.isInfoEnabled()){
 				log.info("screenConfigDocument:" + screenConfigDocument.toString());
@@ -812,6 +813,14 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		request.setAttribute("pan",getPAN());
 		
 		request.setAttribute("filingStatus",filingStatus);
+		
+		//TO DO we need to get this based on some parameter other wise it is causing issue
+        try {
+        	//HippoBean siteContentBaseBean = getSiteContentBaseBean(request);
+        	if (siteContentBaseBean != null) request.setAttribute("siteContentBaseBean", siteContentBaseBean);
+        }catch (Exception ex) {
+        	log.info("Error",ex);
+        }
 		
 		
 		request.setAttribute("pageAction",pageAction);
