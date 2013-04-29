@@ -32,19 +32,17 @@ request.setAttribute("objTreeMapCountries", objTreeMapCountries);
 <div class="yui3-bd" align="center">
 	<table>
 		<tr height="30px">
-			<td class="label">select country</td>
+			<td class="label"><fmt:message key="rebate.contry.user.earning" /></td>
 			<td class="input"><input type="text" name="userCountry"
 				value="${parentBean.userCountry}"/>
 				</td>
 		<tr height="30px">
-			<td class="label">income earned form others
-				country</td>
+			<td class="label"><fmt:message key="rebate.contry.total.earning" /></td>
 			<td class="input"><input type="text" name="incomeForeignCountry" 
 					value="${parentBean.incomeForeignCountry }" maxlength="14" class="numberinput" /></td>
 		</tr>
 		<tr height="30px">
-			<td class="label">Tax paid in foreign
-				country</td>
+			<td class="label"><fmt:message key="rebate.total.tax.paid" /></td>
 			<td class="input"><input type="text"
 				name="taxPaidForeignCountry"  maxlength="14"
 				value="${parentBean.taxPaidForeignCountry }"
@@ -54,12 +52,12 @@ request.setAttribute("objTreeMapCountries", objTreeMapCountries);
 		
 		<tr height="30px">
 			<td class="label"><fmt:message key="rebate.section90.required" /></td>
-			<td class="input"><input type="text" name="section_90" value="${relief}"
+			<td class="input"><input type="text" name="section_90" value="${reliefsec90}"
 				maxlength="14" readonly /></td>
 		</tr>
 		<tr height="30px">
 			<td class="label"><fmt:message key="rebate.section91.required" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-			<td class="input"><input type="text" name="section_91" value="Not Applicable"
+			<td class="input"><input type="text" name="section_91" value="0"
 				maxlength="14" readonly /></td>
 		</tr>
 		
