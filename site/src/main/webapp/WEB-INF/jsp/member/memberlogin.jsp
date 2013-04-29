@@ -38,7 +38,7 @@ if (authenticationException != null) {
 		errorKey = "login.error";
 	}
 }
-session.removeAttribute("org.springframework.security.authentication.AuthenticationServiceException");
+session.removeAttribute("SPRING_SECURITY_LAST_EXCEPTION");
 pageContext.setAttribute("login_error_key", errorKey);					
 %>
 <hst:link var="forgotpass" siteMapItemRefId="forgotpass"></hst:link>
