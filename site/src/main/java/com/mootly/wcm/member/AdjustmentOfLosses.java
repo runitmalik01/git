@@ -35,7 +35,6 @@ import com.mootly.wcm.components.ITReturnComponent;
 @AdditionalBeans(additionalBeansToLoad=MemberPersonalInformation.class)
 @RequiredBeans(requiredBeans={MemberPersonalInformation.class})
 @FormFields(fieldNames={"AssessmentYear","NameOfHead","Amount","DateOfFilingYear","DueDate"})
-@RequiredFields(fieldNames={"AssessmentYear","NameOfHead","Amount","DateOfFilingYear","DueDate"})
 public class AdjustmentOfLosses extends ITReturnComponent {
 	
 	private static final Logger log = LoggerFactory.getLogger(AdjustmentOfLosses.class);
