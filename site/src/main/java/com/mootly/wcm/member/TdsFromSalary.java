@@ -11,6 +11,7 @@ import com.mootly.wcm.annotations.AdditionalBeans;
 import com.mootly.wcm.annotations.ChildBean;
 import com.mootly.wcm.annotations.DataTypeValidationFields;
 import com.mootly.wcm.annotations.DataTypeValidationHelper;
+import com.mootly.wcm.annotations.DataTypeValidationType;
 import com.mootly.wcm.annotations.FormFields;
 import com.mootly.wcm.annotations.PrimaryBean;
 import com.mootly.wcm.annotations.RequiredBeans;
@@ -31,7 +32,7 @@ import com.mootly.wcm.components.ITReturnComponent;
 @RequiredBeans(requiredBeans={MemberPersonalInformation.class})
 @FormFields(fieldNames={"tan_employer","name_employer","income_chargeable","total_taxdeducted"})
 @RequiredFields(fieldNames={"tan_employer","name_employer","income_chargeable","total_taxdeducted"})
-@DataTypeValidationFields(fieldNames={"tan_employer"},dataTypes={DataTypeValidationHelper.DataTypeValidationType.TAN})
+@DataTypeValidationFields(fieldNames={"tan_employer"},dataTypes={DataTypeValidationType.TAN})
 public class TdsFromSalary extends ITReturnComponent {
 	
 	private static final Logger log = LoggerFactory.getLogger(TdsFromSalary.class);

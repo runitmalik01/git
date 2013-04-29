@@ -98,7 +98,7 @@
 	      <sv:value>2992e659-172d-4a40-bf37-14e7af8b4003</sv:value>
 	    </sv:property>
 	    <sv:property sv:name="hst:referencesitemapitem" sv:type="String">
-	      <sv:value>member</sv:value>
+	      <sv:value>itreturnhome</sv:value>
 	    </sv:property>
 	  </sv:node>
 	</sv:node>

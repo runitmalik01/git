@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import com.mootly.wcm.annotations.ChildBean;
 import com.mootly.wcm.annotations.DataTypeValidationFields;
 import com.mootly.wcm.annotations.DataTypeValidationHelper;
+import com.mootly.wcm.annotations.DataTypeValidationType;
 import com.mootly.wcm.annotations.FormFields;
 import com.mootly.wcm.annotations.PrimaryBean;
 import com.mootly.wcm.annotations.RequiredFields;
@@ -27,7 +28,7 @@ import com.mootly.wcm.components.ITReturnComponent;
 
 @FormFields(fieldNames={"bsr_code","date_credit","Serial_challan","amount"})
 @RequiredFields(fieldNames={"bsr_code","date_credit","Serial_challan","amount"})
-@DataTypeValidationFields(fieldNames={"bsr_code","Serial_challan"},dataTypes={DataTypeValidationHelper.DataTypeValidationType.BSR,DataTypeValidationHelper.DataTypeValidationType.CHALLANNO})
+@DataTypeValidationFields(fieldNames={"bsr_code","Serial_challan"},dataTypes={DataTypeValidationType.BSR,DataTypeValidationType.CHALLANNO})
 public class SelfAssesmentTax extends ITReturnComponent {
 	
 	private static final Logger log = LoggerFactory.getLogger(TdsFromSalary.class);

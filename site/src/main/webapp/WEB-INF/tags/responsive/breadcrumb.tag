@@ -43,11 +43,13 @@
             <span class="caret"></span>
          </button>
          <ul class="dropdown-menu">
+         	<%--
             <li><a href="#">Amit Patkar</a></li>
             <li><a href="#"><b>DOB:</b>12/12/2012</a></li>
             <li><a href="#"><b>Age:</b>23 Years</a></li>
-            <li><a href="#"><b>Type:</b>Original</a></li>
-            <li><a href="#"><b>Status:</b>Individual</a></li>
+             --%>
+            <li><a href="#"><b>Type:</b><c:out value="${itReturnType}"/></a></li>
+            <li><a href="#"><b>Status:</b><c:out value="${filingStatus}"/></a></li>
             <li>
                <a href="#">
                   FY:

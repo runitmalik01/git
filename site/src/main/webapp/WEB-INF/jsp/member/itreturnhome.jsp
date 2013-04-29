@@ -1,21 +1,26 @@
+<%@page import="com.mootly.wcm.model.FinancialYear"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="com.mootly.wcm.beans.MemberPersonalInformation"%>
 <%@page import="org.hippoecm.hst.content.beans.standard.HippoFolder"%>
 <%@include file="../includes/tags.jspf"%>
 <div class="page">	
-	<h4>Prepare Income Tax Return for FY:<c:out value="${financialYear}"/></h4>
+	<h4>Prepare Income Tax Return</h4>
 	<hst:actionURL var="actionURL"/>
 	<form id="frmdata" method="post" action="${actionURL}">
 		<fieldset>
-			<legend>Start preparing New Return - Fill up this form and <a id="myModalHref" role="button" class="btn orange" data-toggle="modal">Click Here!! </a></legend>
+			<legend>Start preparing New Return - Fill up this form and <a id="myModalHref" class="btn orange">Click Here!! </a></legend>
+			<div class="row-fluid show-grid rowlabel">
+		          <div class="span3"><label for="pan"><small>PAN</small></label></div>
+		          <div class="span3"><label for="pi_last_name"><small>Last Name/Org Name</small></label></div>	          
+		          <div class="span3"><label for="pi_last_name"><small>Return Type</small></label></div>
+		          <div class="span3"><label for="pi_last_name"><small>Financial Year</small></label></div>
+			 </div>	 
 			<div class="row-fluid show-grid">
 		          <div class="span3"><input id="pan" name="pan" placeholder="PAN" type="text" maxlength="10"/></div>
-		          <!-- <div class="span2"><input id="pi_first_name" name="pi_first_name" placeholder="First Name" type="text"/></div>	      
-		          <div class="span1"><input id="pi_middle_name" name="pi_middle_name"  placeholder="Middle Name" type="text"/></div>
-		           -->
 		          <div class="span3"><input id="pi_last_name" name="pi_last_name" placeholder="Last Name" type="text"/></div>	          
-			   	  <div class="span3"><input id="pi_dob" name="pi_dob" placeholder="DOB" type="text" maxlength="10"/></div>
+			   	  <!-- <div class="span3"><input id="pi_dob" name="pi_dob" placeholder="DOB" type="text" maxlength="10"/></div> -->
 		          <div class="span3"><select id="pi_return_type" name="pi_return_type"><option value="">Select Type</option><option value="original">Original</option><option value="revised">Revised</option></select></div>
+		          <div class="span3"><select id="fy" name="fy"><option value="2012-2013">2012-2013(Current)</option><option value="2011-2012">2011-2012</option><option value="2011-2012">2010-2011</option></select></div>
 			 </div>	 
 		 </fieldset>	 
 	</form>
@@ -51,7 +56,7 @@
 			<c:forEach items="${pansForMember}" var="panForMember">				
 				<%
 					HippoFolder hf = (HippoFolder) pageContext.getAttribute("panForMember");
-					String financialYear = (String) request.getAttribute("financialYear");
+					FinancialYear financialYear = (FinancialYear) request.getAttribute("financialYear");
 					String itReturnType = "original";
 					String relPath = financialYear + "/" + itReturnType + "/" + MemberPersonalInformation.class.getSimpleName().toLowerCase();
 				    //out.println(relPath);
@@ -85,9 +90,9 @@
 			<c:forEach items="${pansForMember}" var="panForMember">				
 				<%
 					HippoFolder hf = (HippoFolder) pageContext.getAttribute("panForMember");
-					String assessmentYear = (String) request.getAttribute("financialYear");
+					FinancialYear financialYear = (FinancialYear) request.getAttribute("financialYear");
 					String itReturnType = "revised";
-					String relPath = assessmentYear + "/" + itReturnType + "/" + MemberPersonalInformation.class.getSimpleName().toLowerCase();
+					String relPath = financialYear + "/" + itReturnType + "/" + MemberPersonalInformation.class.getSimpleName().toLowerCase();
 				    //out.println(relPath);
 				    MemberPersonalInformation memberPersonalInfo =  hf.getBean(relPath,MemberPersonalInformation.class);
 				    if (memberPersonalInfo != null) {
@@ -115,7 +120,7 @@
 		</table>		
 	</c:if>
 </div>
-<res:client-validation screenConfigurationDocumentName="itreturnhomepage" formId="frmdata"></res:client-validation>
+<res:client-validation  screenConfigurationDocumentName="itreturnhomepage" formId="frmdata"></res:client-validation>
 <hst:element var="uiCustom" name="script">
     <hst:attribute name="type">text/javascript</hst:attribute>
 	$(document).ready(function() {
@@ -141,17 +146,14 @@
 		$("#myModalHref").click( function() {
 			$("#frmdata").validate();
 			if (!$("#frmdata").valid()) return false;
-			$("#myModal").modal();
+			$("#frmdata").submit();
+			//$("#myModal").modal();
 		});
 		$("#packageSelector").click (function(t) {
 			if (selectedPackage == null) return;
 			$("#frmdata").validate();
 			if (!$("#frmdata").valid()) return false;
 			$("#frmdata").submit();
-		 	//var hstMainURL = "<hst:link path="/"/>";
-		 	
-		 	//url = hstMainURL + "/member/itreturn/" + selectedPackage + "/<c:out value="${financialYear}"/>/" + $("#pi_return_type").val() + "/" + $("#pan").val().toLowerCase() + "/personalinformation.html";
-		 	//window.location.href=url;
 		});
 	});
 </hst:element>

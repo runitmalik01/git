@@ -21,7 +21,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.onehippo.org/jsp/google-analytics" prefix="ga" %>
 <%@include file="../../../includes/tags.jspf" %>
-<hst:link var="myitreturns" path="/member"/>
+<hst:link var="myitreturns" path="/member/itreturn"/>
 <div id="top-widget" class="top-widget">
   <div id="text-8" class="widget_text">
     <div class="textwidget">      

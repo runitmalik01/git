@@ -51,7 +51,7 @@
 
    <beans:bean id="successHandler"
            class="org.onehippo.forge.security.support.springsecurity.authentication.login.HippoSimpleUrlAuthenticationSuccessHandler">
-        <beans:property name="defaultTargetUrl" value="/member"/>
+        <beans:property name="defaultTargetUrl" value="/member/itreturn"/>
    </beans:bean>
 
    <beans:bean id="failureHandler"
@@ -133,7 +133,7 @@
   <beans:bean id="hippoLogoutHandler" class="org.onehippo.forge.security.support.springsecurity.authentication.logout.HippoSecurityContextLogoutHandler"/>
 
   <beans:bean id="logoutSuccessHandler" class="org.onehippo.forge.security.support.springsecurity.authentication.logout.HippoLogoutSuccessHandler">
-    <beans:property name="defaultTargetUrl" value="/logout.jsp"/>
+    <beans:property name="defaultTargetUrl" value="/member/logout"/>
   </beans:bean>
 
 

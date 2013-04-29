@@ -1191,9 +1191,12 @@ legend {
 	padding-right: .8em;
 }
 
+/* commented by AP */
+/*
 legend+* {
 	margin-top: 1em;
 }
+*/
 
 input,
 textarea {
@@ -1233,8 +1236,13 @@ li ol {
     margin: 0;
 }
 
+/* commented by AP */
 form div {
-	margin-bottom: .8em;
+	margin-bottom: .2em;
+}
+
+form div.rowlabel {
+	margin-bottom: 0em !important;
 }
 
 /* =Globals

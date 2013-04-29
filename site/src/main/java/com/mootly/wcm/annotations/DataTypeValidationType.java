@@ -7,7 +7,8 @@ public enum DataTypeValidationType {
 	PAN,
 	TAN,
 	BSR,
-	Maxlength,
+	MAXLENGTH,
 	CHALLANNO,
-	TDSCERTIFICATE
+	TDSCERTIFICATE,
+	ITR
 }

@@ -1,35 +1,58 @@
 package com.mootly.wcm.model;
 
 public enum FilingStatus {
-	INDIVIDUAL('i'),
-	HUF('h'),
-	FIRM('f'),
-	COMPANY('c'),
+	COMPANY('c',"Company"),
+	PERSON('p',"Individual"),
+	HUF('h',"HUF(Hindu Undivided Family)"),
+	FIRM('f',"Firm"),
+	AOP('a',"Association of Persons (AOP)"),
+	TRUST('t',"AOP (Trust)"),
+	BOI('b',"Body of Individuals (BOI)"),
+	LOCALAUTHORITY('l',"Local Authority"),
+	AJP('j',"Artificial Juridical Person"),
+	GOVT('g',"Government"),
 	UNKNOWN;
 	
 	char fourthCharInPAN;
+	String name;
+	
 	
 	FilingStatus() {
 	}
 	
-	FilingStatus(char fourthCharInPAN) {
+	FilingStatus(char fourthCharInPAN,String name) {
 		this.fourthCharInPAN = fourthCharInPAN;
+		this.name = name;
 	}
 	
-	public static FilingStatus getEnumByString(char fourthCharInPAN) {
-		String a ="a";
-		switch (fourthCharInPAN) {
-			case 'i':
-				return INDIVIDUAL;
-			case 'h':
-				return HUF;
-			case 'f':
-				return FIRM;
-			case 'c':
-				return COMPANY;
-			default:
-				return UNKNOWN;
+	public char getFourthCharInPAN() {
+		return fourthCharInPAN;
+	}
+	
+	public String getName() {
+		return name;
+	}
+	
+	public String toString() {
+		return name;
+	}
+	
+	public static FilingStatus getEnumByFourthChar(char fourthCharInPAN) {
+		for (FilingStatus aStatus:FilingStatus.values()) {
+			if (fourthCharInPAN == aStatus.getFourthCharInPAN()) {
+				return aStatus;
+			}
 		}
+		return UNKNOWN;
+	}
+	
+	public static FilingStatus getEnumByName(String name) {
+		for (FilingStatus aStatus:FilingStatus.values()) {
+			if (name.equals(aStatus.getName())) {
+				return aStatus;
+			}
+		}
+		return UNKNOWN;
 	}
 	
 }

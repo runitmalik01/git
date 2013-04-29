@@ -49,7 +49,7 @@
    <!-- end of .col-460 -->
    <div id="featured-image2" class="grid col-460 fit">
       <div class="call-to-action">
-         <a href="<hst:link siteMapItemRefId="memberfrontpage"/>" class="orange button">Start preparing your taxes!</a>
+         <a href="<hst:link siteMapItemRefId="itreturnhome"/>" class="orange button">Start preparing your taxes!</a>
       </div>
       <!-- <img class="aligncenter" src="images/Drawing2.png" width="440" height="300" alt=""> -->
    </div>

@@ -1106,21 +1106,35 @@
       <sv:value>member.rebate.section89</sv:value>
     </sv:property>
   </sv:node>
-
-
-<sv:node sv:name="serviceprice">
-  <sv:property sv:name="jcr:primaryType" sv:type="Name">
-    <sv:value>hst:component</sv:value>
-  </sv:property>
-  <sv:property sv:name="jcr:uuid" sv:type="String">
-    <sv:value>9bca3b6a-9a79-4ac6-9ab4-53d991ed0421</sv:value>
-  </sv:property>
-  <sv:property sv:name="hst:componentclassname" sv:type="String">
-    <sv:value>com.mootly.wcm.components.common.ServicePrice</sv:value>
-  </sv:property>
-  <sv:property sv:name="hst:template" sv:type="String">
-    <sv:value>serviceprice</sv:value>
-  </sv:property>
-</sv:node>
+  <sv:node sv:name="serviceprice">
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hst:component</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>9bca3b6a-9a79-4ac6-9ab4-53d991ed0421</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:componentclassname" sv:type="String">
+	    <sv:value>com.mootly.wcm.components.common.ServicePrice</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:template" sv:type="String">
+	    <sv:value>serviceprice</sv:value>
+	  </sv:property>
+  </sv:node>
+  <sv:node sv:name="package-selector" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hst:component</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>56185f9e-c24d-4232-bc69-bf0d2607910a</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:componentclassname" sv:type="String">
+	    <sv:value>com.mootly.wcm.components.itreturns.PackageSelector</sv:value>
+	  </sv:property>
+	  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String"/>
+	  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String"/>
+	  <sv:property sv:name="hst:template" sv:type="String">
+	    <sv:value>package-selector</sv:value>
+	  </sv:property>
+  </sv:node>
 
 </sv:node>
