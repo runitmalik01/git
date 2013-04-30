@@ -48,7 +48,9 @@ else {
 			  <div class="row-fluid show-grid">	   
 		          <div class="span4"><input id="pi_area_locality" value="${parentBean.areaLocality}" name="pi_area_locality" placeholder="Area/Locality" type="text"/></div>
 		          <div class="span3"><input id="pi_town_city_district" value="${parentBean.townCityDistrict }" name="pi_town_city_district" placeholder="Town/City/District" type="text"/></div>
-		          <div class="span1"><input id="pi_state" value="${parentBean.state}" name="pi_state" placeholder="State" type="text"/></div>
+		          <div class="span3"><c:set var="searchresultstitle"><fmt:message key="member.contact_info.state.select"/></c:set>
+                    <c:set var="statesType"><fmt:message key="dropdown.states"/></c:set>
+                   <w4india:dropdown dropDownSelectId="pi_state" optionSelectString="${searchresultstitle}" dropDownType="${statesType}" fetchValue="${parentBean.state}"/></div>
 		          <div class="span2"><input id="pi_pin_code" value="${parentBean.pinCode}" name="pi_pin_code" placeholder="PIN Code" type="text" maxlength="10"/></div>
 			 </div>			
 			 <div class="row-fluid show-grid">	
@@ -159,7 +161,10 @@ else {
 			</legend>
 			<div class="page">
 				<h5>Do you want to add Bank Detail now (for Refund and/or Tax payment). You can always add this detail later.</h5>
-				<a href="#myModal" role="button" class="btn" data-toggle="modal">ADD Bank Detail</a>
+				<a href="#myModal" role="button" class="btn" data-toggle="modal">
+				<c:choose>
+				<c:when test="${parentBean.BD_BANK_NAME eq null || parentBean.BD_BANK_NAME eq ''  }">ADD Bank Detail</c:when>
+				<c:otherwise>Change Bank Detail</c:otherwise></c:choose></a>
 				<!-- Modal -->
 				<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 					<div class="modal-header">
@@ -176,7 +181,7 @@ else {
 				          <input type="text" name="bd_Branch_name" value="${parentBean.BD_ADD_BANK_BRANCH}" title="Enter Name of Bank's Branch" maxlength="120" required="required" /> <br/>
 				             <label><fmt:message key="member.bank.detail.acc.type"/></label> 
 				          <select name="bd_account_type" title="Select Type of Account" id="bd_account_type">
-					         <option value=""></option>
+					         <option value="">Select</option>
 					         <option <c:if test="${not empty parentBean.BD_TYPE_ACC && parentBean.BD_TYPE_ACC == 'SAV'}">selected</c:if> value="SAV">
 						         <fmt:message key="member.bank.detail.acc.type.saving"/></option>
 					         <option <c:if test="${not empty parentBean.BD_TYPE_ACC && parentBean.BD_TYPE_ACC == 'CUR'}">selected</c:if> value="CUR" >
@@ -225,6 +230,9 @@ else {
 			    if(filing!=null){
 			        $('#status').val(filing);
 			    };
+				$('#hrefLogin').click(function() {
+		 			$('#frmPersonalInfo').submit();
+				});
 			    $('#frmPersonalInfo input').keydown(function(e) {
 				    if (e.keyCode == 13) {
 				   		e.preventDefault();
@@ -266,7 +274,7 @@ else {
 			            str += $(this).text() + " ";
 			  });			  
 			});	
-			$('#bd_bank_name').tooltip(data-toggle)
+			$('#bd_bank_name').tooltip('data-toggle');
 				$('#hrefLogin').click(function() {
 		 			$('#frmPersonalInfo').submit();
 				});
