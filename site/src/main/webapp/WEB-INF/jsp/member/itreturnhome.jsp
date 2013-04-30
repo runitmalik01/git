@@ -20,10 +20,27 @@
 		          <div class="span3"><input id="pan" name="pan" placeholder="PAN" type="text" maxlength="10"/></div>
 		          <div class="span3"><input id="pi_last_name" name="pi_last_name" placeholder="Last Name" type="text"/></div>	          
 			   	  <!-- <div class="span3"><input id="pi_dob" name="pi_dob" placeholder="DOB" type="text" maxlength="10"/></div> -->
-		          <div class="span3"><select id="pi_return_type" name="pi_return_type"><option value="">Select Type</option><option value="original">Original</option><option value="revised">Revised</option></select></div>
+		          <div class="span3"><select id="pi_return_type" name="pi_return_type" ><option value="">Select Type</option><option value="original">Original</option><option value="revised">Revised</option></select></div>
 		          <div class="span3"><select id="fy" name="fy"><option value="2012-2013">2012-2013(Current)</option><option value="2011-2012">2011-2012</option><option value="2011-2012">2010-2011</option></select></div>
-			 </div>	 
-		 </fieldset>	 
+			 </div>
+		 </fieldset>	
+                 <fieldset id="ul_revised" style="display:none;visiblity:hidden">
+                        <legend>Revised Return Details</legend>
+                        <div class="row-fluid show-grid rowlabel" id="ul_revised_label">
+                            <div class="span3"><label for="ack_no"><small>Original Ack No</small></label></div>
+                            <div class="span3"><label for="defective"><small>Defective Return (U/s-139)</small></label></div>
+                            <div class="span3" id="ack_date_label" style="display:block;visiblity:visible"><label for="ack_date"><small>Original Ack Date</small></label></div>
+                            <div class="span3" id="notice_no_label" style="display:none;visiblity:hidden"><label for="ack_date"><small>Notice No(U/s-139)</small></label></div>
+                            <div class="span3" id="notice_date_label" style="display:none;visiblity:hidden"><label for="ack_date"><small>Notice Date(U/s-139)</small></label></div>
+                        </div>
+                        <div class="row-fluid show-grid" id="ul_revised_input">
+                            <div class="span3"><input id="ack_no" name="ack_no" placeholder="Enter Original Ack No" type="text"/></div>
+                            <div class="span3"><select id="defective" name="defective"><option value="N">No</option><option value="Y">Yes</option></select></div> 
+                            <div class="span3" id="ack_date_input" style="display:block;visiblity:visible"><input id="ack_date" name="ack_date" placeholder="Enter Ack Date" type="text" maxlength="10" value="<c:if test="${not empty parentBean.DOBStr}"><c:out value="${parentBean.DOBStr}"/></c:if>"/></div>
+                            <div class="span3" id="notice_no_input" style="display:none;visiblity:hidden"><input id="notice_no" name="notice_no" placeholder="Enter Notice No" type="text"/></div>
+                            <div class="span3" id="notice_date_input" style="display:none;visiblity:hidden"><input id="notice_date" name="notice_date" maxlength="10" placeholder="Enter Notice Date" type="text"/></div>
+                        </div>
+                 </fieldset> 
 	</form>
 	<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	  <div class="modal-header">
@@ -128,6 +145,61 @@
 			$("#frmdata").submit();
 			//$("#myModal").modal();
 		});
+		$('#pi_return_type').change(function(){
+              if( $('#pi_return_type').val().match('revised')){  
+		      	$('#ul_revised').css("display", "block");
+			    $('#ul_revised').css("visibility", "visible");
+                      $('#defective').change(function(){
+                            if($('#defective').val().match('Y')){
+                                  $('#notice_no_label').css("display", "block");
+			                      $('#notice_no_label').css("visibility", "visible");
+                                  $('#notice_date_label').css("display", "block");
+			                      $('#notice_date_label').css("visibility", "visible");
+                                  $('#notice_no_input').css("display", "block");
+			                      $('#notice_no_input').css("visibility", "visible");
+                                  $('#notice_date_input').css("display", "block");
+			                      $('#notice_date_input').css("visibility", "visible");
+                                  $('#ack_date_input').css("display", "none");
+			                      $('#ack_date_input').css("visibility", "hidden");
+                                  $('#ack_date_label').css("display", "none");
+			                      $('#ack_date_label').css("visibility", "hidden");                                 
+                               }else{
+                                      $('#notice_no_label').css("display", "none");
+			                          $('#notice_no_label').css("visibility", "hidden");
+                                      $('#notice_date_label').css("display", "none");
+			                          $('#notice_date_label').css("visibility", "hidden");
+                                      $('#notice_no_input').css("display", "none");
+			                          $('#notice_no_input').css("visibility", "hidden");
+                                      $('#notice_date_input').css("display", "none");
+			                          $('#notice_date_input').css("visibility", "hidden");
+                                      $('#ack_date_input').css("display", "block");
+			                          $('#ack_date_input').css("visibility", "visible");
+                                      $('#ack_date_label').css("display", "block");
+			                          $('#ack_date_label').css("visibility", "visible"); 
+                                   }
+                           });
+		        }else{
+		      	      $('#ul_revised').css("display", "none");
+			          $('#ul_revised').css("visibility", "hidden");
+                     }
+		     });
+                if (Modernizr.touch && Modernizr.inputtypes.date) {
+			        document.getElementById('ack_date').type = 'date';
+                                document.getElementById('notice_date').type = 'date';
+			    } else {
+			        $('#ack_date').datepicker({
+                    changeMonth: true,
+                    changeYear: true,
+                    maxDate: "+0M +15D",
+                    yearRange: "1900:2013"
+                   });  
+                 $('#notice_date').datepicker({
+                    changeMonth: true,
+                    changeYear: true,
+                    maxDate: "+0M +15D",
+                    yearRange: "1900:2013"
+                   });
+			    }
 		$("#packageSelector").click (function(t) {
 			if (selectedPackage == null) return;
 			$("#frmdata").validate();
