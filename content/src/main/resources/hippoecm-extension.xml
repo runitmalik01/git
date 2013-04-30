@@ -3054,7 +3054,7 @@
 		</sv:property>
 	</sv:node>
 <!--  This is really disappointing work by the team WHY THE HELL types were moved to the end of the document I have no clue -->
-<!-- What do you mean by Hell Type?I do not get the point.Is that   -->
+<!-- What do you mean by Hell Type?I do not get the point.Is that why these namespaces at the end?   -->
 	<sv:node sv:name="mootlywcm-type-screenfieldconfig">
 		<sv:property sv:name="jcr:primaryType" sv:type="Name">
 			<sv:value>hippo:initializeitem</sv:value>
