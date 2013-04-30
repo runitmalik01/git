@@ -50,9 +50,11 @@ request.setAttribute("objTreeMapNumbersDropdown", objTreeMapNumbersDropdown);
 <%@ attribute name="optionSelectString" required="true" type="java.lang.String" %>
 <%@ attribute name="dropDownType" required="true" type="java.lang.String" %>
 <%@ attribute name="dropDownFuction" required="false" type="java.lang.String" %>
+<%@ attribute name="dropDownSize" required="false" type="java.lang.String" %>
+<%@ attribute name="fetchValue" required="false" type="java.lang.String" %>
 
 
-<select name="${dropDownSelectId}" id="${dropDownSelectId}" onchange="${dropDownFuction}">
+<select name="${dropDownSelectId}" id="${dropDownSelectId}" onchange="${dropDownFuction}" size="${dropDownSize}">
 	<option value="">${optionSelectString}</option>
 	<c:choose>
 		<c:when test="${dropDownType == 'boolean'}">
@@ -62,7 +64,7 @@ request.setAttribute("objTreeMapNumbersDropdown", objTreeMapNumbersDropdown);
 		</c:when>
 		<c:when test="${dropDownType == 'states'}">
 			<c:forEach var="objDropDown" items="${objTreeMapStates}">
-				<option value="${objDropDown.key}">${objDropDown.value}</option>
+				<option value="${objDropDown.key}" <c:if test="${fetchValue eq objDropDown.key}">Selected</c:if>>${objDropDown.value}</option>
 			</c:forEach>
 		</c:when>
 		<c:when test="${dropDownType == 'assessmentyear'}">
