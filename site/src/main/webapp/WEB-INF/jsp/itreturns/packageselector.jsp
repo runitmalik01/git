@@ -26,26 +26,15 @@
 		<input type="hidden" name="selectionUUID" value="${selectionUUID}"/>
 		<input type="hidden" id="partNumber" name="partNumber" value=""/>	
 		<div class="row-fluid show-grid rowlabel">
-			<div class="span4">Basic ()</div>
-			<div class="span4">Premium ()</div>
-			<div class="span4">Assisted ()</div>
-		</div>	
-		<div class="row-fluid show-grid rowlabel">
-			<div class="span4">
-				
-		     </div>
-			 <div class="span4">
-				
-		     </div>
-			 <div class="span4">
-
-		     </div>		     
+			<div class="span6">
+				<div>Basic ()</div>
+				<div><a id="hrefSubmitBasic" name="hrefSubmit" role="button" class="btn orange" data-toggle="modal">Start</a></div>
+		    </div>
+			<div class="span6">
+				<div>Premium ()</div>
+				<div><a id="hrefSubmitPremium" name="hrefSubmit" role="button" class="btn orange" data-toggle="modal">Start</a></div>
+		    </div>				    
 		 </div> 
-		 <div class="row-fluid show-grid rowlabel">
-			<div class="span4"><a id="hrefSubmitBasic" name="hrefSubmit" role="button" class="btn orange" data-toggle="modal">Start</a></div>
-			<div class="span4"><a id="hrefSubmitPremium" name="hrefSubmit" role="button" class="btn orange" data-toggle="modal">Start</a></div>
-			<div class="span4"><a id="hrefSubmitAssisted" name="hrefSubmit" role="button" class="btn orange" data-toggle="modal">Start</a></div>
-		 </div>			 
 	</form>
 </div>
 <hst:element var="uiCustom" name="script">
@@ -59,10 +48,12 @@
 			 $("#partNumber").val("<c:out value="${financialYear.displayName}"/>_<c:out value="${filingStatus.fourthCharInPAN}"/>_premium");
 			 $('#frmdata').submit();
 		});
+		/*
 		$('#hrefSubmitAssisted').click(function() {
 			 $("#partNumber").val("<c:out value="${financialYear.displayName}"/>_<c:out value="${filingStatus.fourthCharInPAN}"/>_assisted");
 			 $('#frmdata').submit();			 
-		});		
+		});	
+		*/	
 	});    
 </hst:element>
 <hst:headContribution element="${uiCustom}" category="jsInternal" />

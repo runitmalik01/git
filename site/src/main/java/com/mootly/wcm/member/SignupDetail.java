@@ -1,12 +1,3 @@
-
-/*
- * 
- * This class creating a document for new user after getting value from signupdetail.jsp file
- * @author abhishek
- * 20/02/2013
- * 
- */
-
 package com.mootly.wcm.member;
 
 import java.util.ArrayList;

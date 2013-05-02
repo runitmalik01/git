@@ -26,6 +26,8 @@ import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 
 import org.apache.commons.lang.StringUtils;
+import org.hippoecm.hst.component.support.forms.FormMap;
+import org.hippoecm.hst.component.support.forms.FormUtils;
 import org.hippoecm.hst.content.beans.ObjectBeanManagerException;
 import org.hippoecm.hst.content.beans.ObjectBeanPersistenceException;
 import org.hippoecm.hst.content.beans.manager.workflow.WorkflowCallbackHandler;
@@ -46,6 +48,7 @@ import com.mootly.wcm.beans.MemberSignupDocument;
 import com.mootly.wcm.components.ITReturnComponent;
 import com.mootly.wcm.utils.ContentStructure;
 import com.mootly.wcm.utils.GoGreenUtil;
+import com.mootly.wcm.utils.MootlyFormUtils;
 import com.mootly.wcm.utils.UrlUtility;
 
 @PrimaryBean(primaryBeanClass=MemberPersonalInformation.class)
@@ -75,7 +78,23 @@ public class StartApplication extends ITReturnComponent {
 	@Override
 	public void doBeforeRender(HstRequest request, HstResponse response) {
 		// TODO Auto-generated method stub
-		super.doBeforeRender(request, response);	
+		super.doBeforeRender(request, response);
+		String publicParameterUUID = getPublicRequestParameter(request, "uuid");
+		if (publicParameterUUID != null) {
+			try {
+				FormUtils.validateId(publicParameterUUID);
+				FormMap savedValuesFormMap = new FormMap(request,getFormMap().getFieldNames());
+				MootlyFormUtils.populate(request, publicParameterUUID, savedValuesFormMap);
+				if (savedValuesFormMap != null) {
+					request.setAttribute("savedValuesFormMap", savedValuesFormMap);
+				}
+				//response.setRenderParameter("uuid", publicPar
+				//response.sendRedirect(request.getRequestURL().toString());
+				//return;
+			}catch (IllegalArgumentException ie) {
+				publicParameterUUID = null;
+			}
+		}
 		if(log.isInfoEnabled()){
 		log.info("Member personal Information page");
 		}

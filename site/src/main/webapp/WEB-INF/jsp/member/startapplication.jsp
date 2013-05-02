@@ -29,9 +29,12 @@ else {
 		<fieldset>
 			  <legend>Name & Gender</legend>
 		      <div class="row-fluid show-grid">	        			 
-		          <div class="span3"><input id="pi_first_name" name="pi_first_name" placeholder="First Name" type="text" value="<c:if test="${not empty parentBean.firstName}"><c:out value="${parentBean.firstName}"/></c:if>"/></div>
+		          <div class="span3">
+		          	<div>First Name</div>
+		          	<div><input id="pi_first_name" name="pi_first_name" placeholder="First Name" type="text" value="<c:if test="${not empty parentBean.firstName}"><c:out value="${parentBean.firstName}"/></c:if>"/></div>
+		          </div>
 		          <div class="span2"><input id="pi_middle_name" name="pi_middle_name"  placeholder="Middle Name" type="text" value="<c:if test="${not empty parentBean.middleName}"><c:out value="${parentBean.middleName}"/></c:if>"/></div>	         
-		          <div class="span2"><input id="pi_last_name" name="pi_last_name" placeholder="Last Name" type="text" value="<c:if test="${not empty parentBean.lastName}"><c:out value="${parentBean.lastName}"/></c:if>"/></div>
+		          <div class="span2"><input id="pi_last_name" name="pi_last_name" placeholder="Last Name" type="text" value="<c:choose><c:when test="${not empty parentBean.lastName}"><c:out value="${parentBean.lastName}"/></c:when><c:when test="${not empty savedValuesFormMap && not empty savedValuesFormMap.value['pi_last_name']}"><c:out value="${savedValuesFormMap.value['pi_last_name'].value}"/></c:when></c:choose>"/></div>
 		          <!--  <div class="span1">Gender</div>  -->
 		          <div class="span2"><input id="pi_dob" name="pi_dob" placeholder="DOB" type="text" maxlength="10" value="<c:if test="${not empty parentBean.DOBStr}"><c:out value="${parentBean.DOBStr}"/></c:if>"/></div>
 		          <div class="span2">
