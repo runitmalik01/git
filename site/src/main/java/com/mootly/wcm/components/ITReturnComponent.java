@@ -555,7 +555,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 				if (log.isInfoEnabled()) {
 					log.info("We will now try to find if it contains the classname");
 				}
-				if (strPageAction != null && strPageAction.contains(this.getClass().getSimpleName())) {
+				if (strPageAction != null && strPageAction.contains(this.getClass().getSimpleName().toLowerCase())) {
 					int indexOfFirstUnderScore = strPageAction.indexOf("_");
 					strPageAction = strPageAction.substring(indexOfFirstUnderScore+1);
 					//now lets try the value of AGAIN
