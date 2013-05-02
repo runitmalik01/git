@@ -549,7 +549,22 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			pageAction = ITReturnScreen.PAGE_ACTION.DEFAULT;
 		}
 		else {
-			pageAction = ITReturnScreen.PAGE_ACTION.valueOf(strPageAction);
+			try {
+				pageAction = ITReturnScreen.PAGE_ACTION.valueOf(strPageAction);
+			}catch (IllegalArgumentException aie) {
+				if (log.isInfoEnabled()) {
+					log.info("We will now try to find if it contains the classname");
+				}
+				if (strPageAction != null && strPageAction.contains(this.getClass().getSimpleName())) {
+					int indexOfFirstUnderScore = strPageAction.indexOf("_");
+					strPageAction = strPageAction.substring(indexOfFirstUnderScore+1);
+					//now lets try the value of AGAIN
+					if (log.isInfoEnabled()) {
+						log.info("strPageAction after substring=" + strPageAction);						
+					}	
+					pageAction = ITReturnScreen.PAGE_ACTION.valueOf(strPageAction);
+				}
+			}
 		}
 
 		isLoggedIn = request.getUserPrincipal() != null ? true : false;
