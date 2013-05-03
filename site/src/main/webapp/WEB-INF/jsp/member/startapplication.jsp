@@ -30,37 +30,74 @@ else {
 			  <legend>Name & Gender</legend>
 		      <div class="row-fluid show-grid">	        			 
 		          <div class="span3">
-		          	<div>First Name</div>
-		          	<div><input id="pi_first_name" name="pi_first_name" placeholder="First Name" type="text" value="<c:if test="${not empty parentBean.firstName}"><c:out value="${parentBean.firstName}"/></c:if>"/></div>
+		            <div class="rowlabel"><label for="pi_first_name"><small>First Name</small></label></div>
+		          	<div class="rowlabel"><input id="pi_first_name" name="pi_first_name" placeholder="First Name" type="text" value="<c:if test="${not empty parentBean.firstName}"><c:out value="${parentBean.firstName}"/></c:if>"/></div>
 		          </div>
-		          <div class="span2"><input id="pi_middle_name" name="pi_middle_name"  placeholder="Middle Name" type="text" value="<c:if test="${not empty parentBean.middleName}"><c:out value="${parentBean.middleName}"/></c:if>"/></div>	         
-		          <div class="span2"><input id="pi_last_name" name="pi_last_name" placeholder="Last Name" type="text" value="<c:choose><c:when test="${not empty parentBean.lastName}"><c:out value="${parentBean.lastName}"/></c:when><c:when test="${not empty savedValuesFormMap && not empty savedValuesFormMap.value['pi_last_name']}"><c:out value="${savedValuesFormMap.value['pi_last_name'].value}"/></c:when></c:choose>"/></div>
-		          <!--  <div class="span1">Gender</div>  -->
-		          <div class="span2"><input id="pi_dob" name="pi_dob" placeholder="DOB" type="text" maxlength="10" value="<c:if test="${not empty parentBean.DOBStr}"><c:out value="${parentBean.DOBStr}"/></c:if>"/></div>
 		          <div class="span2">
-					<select id="gender" name="gender"><option value="">Select Gender</option><option <c:if test="${not empty parentBean.sex && parentBean.sex == 'M'}">selected</c:if> value="M">Male</option><option <c:if test="${not empty parentBean.sex && parentBean.sex == 'F'}">selected</c:if> value="F">Female</option></select>
+		          	<div class="rowlabel"><label for="pi_middle_name"><small>Middle Name</small></label></div>
+		          	<div class="rowlabel"><input id="pi_middle_name" name="pi_middle_name"  placeholder="Middle Name" type="text" value="<c:if test="${not empty parentBean.middleName}"><c:out value="${parentBean.middleName}"/></c:if>"/></div>
+		          </div>	         
+		          <div class="span3">
+		          	<div class="rowlabel"><label for="pi_last_name"><small>Last Name</small></label></div>
+		          	<div class="rowlabel"><input id="pi_last_name" name="pi_last_name" placeholder="Last Name" type="text" value="<c:choose><c:when test="${not empty parentBean.lastName}"><c:out value="${parentBean.lastName}"/></c:when><c:when test="${not empty savedValuesFormMap && not empty savedValuesFormMap.value['pi_last_name']}"><c:out value="${savedValuesFormMap.value['pi_last_name'].value}"/></c:when></c:choose>"/></div>
+		          </div>
+		          <div class="span2">
+		          	<div class="rowlabel"><label for="pi_dob"><small>DOB</small></label></div>
+		          	<div class="rowlabel"><input id="pi_dob" name="pi_dob" placeholder="DOB" type="text" maxlength="10" value="<c:if test="${not empty parentBean.DOBStr}"><c:out value="${parentBean.DOBStr}"/></c:if>"/></div>
+		          </div>
+		          <div class="span2">
+					<div class="rowlabel"><label for="pi_dob"><small>Gender</small></label></div>
+					<div class="rowlabel"><select id="gender" name="gender"><option value="">Select Gender</option><option <c:if test="${not empty parentBean.sex && parentBean.sex == 'M'}">selected</c:if> value="M">Male</option><option <c:if test="${not empty parentBean.sex && parentBean.sex == 'F'}">selected</c:if> value="F">Female</option></select></div>
 		          </div>       
 			  </div>
 		 </fieldset>
 		 <fieldset>
 			 <legend>Address & Contact Information</legend>
 			 <div class="row-fluid show-grid">	   
-			   	  <div class="span6"><input id="pi_flat_door_building" value="${parentBean.flatDoorBuilding}" name="pi_flat_door_building" placeholder="Flat/Door/Building" type="text"  value="<c:if test="${not empty parentBean.flatDoorBuilding}"><c:out value="${parentBean.flatDoorBuilding}"/></c:if>"/></div>
-			   	  <div class="span6"><input id="pi_road_street" value="${parentBean.roadStreet}" name="pi_road_street" placeholder="Road/Street" type="text"/></div>
+			   	  <div class="span6">
+			   	  	<div class="rowlabel"><label for="pi_flat_door_building"><small>Flat/Door/Building</small></label></div>
+			   	  	<div class="rowlabel"><input id="pi_flat_door_building" value="${parentBean.flatDoorBuilding}" name="pi_flat_door_building" placeholder="Flat/Door/Building" type="text"  value="<c:if test="${not empty parentBean.flatDoorBuilding}"><c:out value="${parentBean.flatDoorBuilding}"/></c:if>"/></div>
+			   	  </div>
+			   	  <div class="span6">
+			   	  	<div class="rowlabel"><label for="pi_road_street"><small>Road/Street</small></label></div>
+			   	  	<div class="rowlabel"><input id="pi_road_street" value="${parentBean.roadStreet}" name="pi_road_street" placeholder="Road/Street" type="text"/></div>
+			   	  </div>
 			  </div>
 			  <div class="row-fluid show-grid">	   
-		          <div class="span4"><input id="pi_area_locality" value="${parentBean.areaLocality}" name="pi_area_locality" placeholder="Area/Locality" type="text"/></div>
-		          <div class="span3"><input id="pi_town_city_district" value="${parentBean.townCityDistrict }" name="pi_town_city_district" placeholder="Town/City/District" type="text"/></div>
-		          <div class="span3"><c:set var="searchresultstitle"><fmt:message key="member.contact_info.state.select"/></c:set>
+		          <div class="span4">
+		          	<div class="rowlabel"><label for="pi_area_locality"><small>Area/Locality</small></label></div>
+		          	<input id="pi_area_locality" value="${parentBean.areaLocality}" name="pi_area_locality" placeholder="Area/Locality" type="text"/>
+		          </div>
+		          <div class="span3">
+		          	<div class="rowlabel"><label for="pi_town_city_district"><small>Area/Locality</small></label></div>
+		          	<div class="rowlabel"><input id="pi_town_city_district" value="${parentBean.townCityDistrict }" name="pi_town_city_district" placeholder="Town/City/District" type="text"/></div>
+		          </div>
+		          <div class="span3">
+		          	<div class="rowlabel"><label for="pi_state"><small>State</small></label></div>
+		          	<c:set var="searchresultstitle"><fmt:message key="member.contact_info.state.select"/></c:set>
                     <c:set var="statesType"><fmt:message key="dropdown.states"/></c:set>
-                   <w4india:dropdown dropDownSelectId="pi_state" optionSelectString="${searchresultstitle}" dropDownType="${statesType}" fetchValue="${parentBean.state}"/></div>
-		          <div class="span2"><input id="pi_pin_code" value="${parentBean.pinCode}" name="pi_pin_code" placeholder="PIN Code" type="text" maxlength="10"/></div>
+                    <div class="rowlabel"><w4india:dropdown dropDownSelectId="pi_state" optionSelectString="${searchresultstitle}" dropDownType="${statesType}" fetchValue="${parentBean.state}"/></div>
+                  </div>
+		          <div class="span2">
+		            <div class="rowlabel"><label for="pi_pin_code"><small>PIN</small></label></div>
+		          	<div class="rowlabel"><input id="pi_pin_code" value="${parentBean.pinCode}" name="pi_pin_code" placeholder="PIN Code" type="text" maxlength="10"/></div>
+		          </div>
 			 </div>			
 			 <div class="row-fluid show-grid">	
-			 	  <div class="span2"><input id="std" value="${parentBean.stdCode}" name="pi_std_code"  placeholder="STD"  type="text" maxlength="10"/></div>
-		          <div class="span3"><input id="phone" value="${parentBean.phone}" name="pi_phone"  placeholder="Phone Number"  type="text" maxlength="10"/></div>
-		          <div class="span3"><input id="mobile" value="${parentBean.mobile}" name="pi_mobile"  placeholder="Mobile Phone Number"  type="text" maxlength="10"/></div>
+			 	  <div class="span2">
+			 	  	<div class="rowlabel"><label for="std"><small>STD Code</small></label></div>
+			 	  	<div class="rowlabel"><input id="std" value="${parentBean.stdCode}" name="pi_std_code"  placeholder="STD"  type="text" maxlength="10"/></div>
+			 	  </div>
+		          <div class="span3">
+		          	<div class="rowlabel"><label for="phone"><small>Phone</small></label></div>
+		          	<div class="rowlabel"><input id="phone" value="${parentBean.phone}" name="pi_phone"  placeholder="Phone Number"  type="text" maxlength="10"/></div>
+		          </div>
+		          <div class="span3">
+		          	<div class="rowlabel"><label for="mobile"><small>Mobile</small></label></div>
+		          	<div class="rowlabel"><input id="mobile" value="${parentBean.mobile}" name="pi_mobile"  placeholder="Mobile Phone Number"  type="text" maxlength="10"/></div>
+		          </div>
 		          <div class="span4">
+		          		<div class="rowlabel"><label for="pi_email"><small>Email</small></label></div>
 			          	<div class="input-prepend">
 					      <span class="add-on"><i class="icon-envelope"></i></span>
 					      <input id="pi_email" value="${parentBean.email}" name="pi_email" placeholder="Email Address" type="text"/>
@@ -214,7 +251,7 @@ else {
 	    </div>	    
 	</form>
 </div>
-
+<res:client-validation screenConfigurationDocumentName="startapplication" formId="frmPersonalInfo" formSubmitButtonId="hrefLogin"></res:client-validation>
 <hst:element var="uiCustom" name="script">
     <hst:attribute name="type">text/javascript</hst:attribute>
 		$(document).ready(function() {

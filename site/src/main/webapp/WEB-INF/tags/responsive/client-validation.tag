@@ -76,6 +76,10 @@
 						fObj.each( function(indx) {
 								//alert(validationRules.rules);
 								validationRules.rules[fieldConfig[fn].fieldId].required=true;
+								//set the label with *
+								if ( $("label[for='" + fieldConfig[fn].fieldId + "']").length > 0 ){
+									$("label[for='" + fieldConfig[fn].fieldId + "']").append("<span class='required'>*</span>");
+								}
 							}
 						);
 					}
