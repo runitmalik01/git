@@ -163,6 +163,7 @@ orderable
 
 
 [mootlywcm:OtherSourceIncome] > hippostd:relaxed, mootlywcm:basedocument orderable
+[mootlywcm:formsixteen] > hippostd:relaxed, mootlywcm:basedocument orderable
 
 
 [mootlywcm:MemberDeductionScheduleC] > hippostd:relaxed, mootlywcm:basedocument orderable
