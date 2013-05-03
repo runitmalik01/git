@@ -117,7 +117,7 @@ Wealth4India Team
 &lt;/html&gt;</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:plainBody" sv:type="String">
-        <sv:value>Welcome ${member.firstName}</sv:value>
+        <sv:value>Welcome to Wealth4India</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:subject" sv:type="String">
         <sv:value>Please confirm your registration with Mootly</sv:value>

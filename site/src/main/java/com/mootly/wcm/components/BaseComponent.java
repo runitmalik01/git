@@ -68,5 +68,14 @@ public class BaseComponent extends BaseHstComponent {
             throw new HstComponentException(e);
         }
     }
+    
+    public String getNormalizedUserName(HstRequest request) {
+    	if (request.getUserPrincipal() != null && request.getUserPrincipal().getName() != null) {
+    		return request.getUserPrincipal().getName().replaceAll("@", "-at-");
+    	}
+    	else {
+    		return null;
+    	}
+    }
 
 }

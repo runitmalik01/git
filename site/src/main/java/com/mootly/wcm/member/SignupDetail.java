@@ -135,10 +135,19 @@ public class SignupDetail extends BaseComponent {
 		}
 		// this method fetch username from repository and check whether exist or not
 		
-		Member member = MemberService.getMember(request, email.toLowerCase());
-		if (member != null) {
-			errors.add("signup.email.error.alreadyRegistered");
-		}		
+		 try {
+        	HippoBean siteContentBaseBean = getSiteContentBaseBean(request);
+        	if (siteContentBaseBean != null) request.setAttribute("siteContentBaseBean", siteContentBaseBean);
+        	if (siteContentBaseBean != null) {
+        		String normalizedEmail = email.replaceAll("@","-at-").toLowerCase();
+        		MemberSignupDocument ms = siteContentBaseBean.getBean("members/" + normalizedEmail + "/membersignupdocument");
+        		if (ms != null) {
+        			errors.add("signup.email.error.alreadyRegistered");
+        		}
+        	}
+        }catch (Exception ex) {
+        	log.info("Error",ex);
+        }
 		if (errors != null && errors.size() > 0 ){
 	            response.setRenderParameter(ERRORS, errors.toArray(new String[errors.size()]));
 	            response.setRenderParameter(EMAIL, email);
@@ -159,7 +168,7 @@ public class SignupDetail extends BaseComponent {
 			ms.setUserName(email.toLowerCase());
 			ms.setPassword(password);
 			ms.setEmail(email.toLowerCase());
-			createMemberSignupForm(request,ms,member);
+			createMemberSignupForm(request,ms);
 		}		
 		response.setRenderParameter(SUCCESS, SUCCESS);
 		/*
@@ -174,7 +183,7 @@ public class SignupDetail extends BaseComponent {
 		*/
 	}
 	
-	private MemberSignupDocument createMemberSignupForm(HstRequest request,MemberSignupDocument signupDocument,Member member) {
+	private MemberSignupDocument createMemberSignupForm(HstRequest request,MemberSignupDocument signupDocument) {
 		// TODO Auto-generated method stub
 		Session persistableSession = null;
 		WorkflowPersistenceManager wpm;
@@ -206,7 +215,7 @@ public class SignupDetail extends BaseComponent {
 				//SIMPLE WORKFLOW
 				Map<String,Object> contextMap = new HashMap<String, Object>();
 				contextMap.put("membershipSignupDocument", publishedSignUpDocument);
-				contextMap.put("member", member);
+				//contextMap.put("member", member);
 				StringBuffer sbHostName = new StringBuffer();
 				sbHostName.append(request.getServerName()).append(":").append(request.getServerPort());
 				
