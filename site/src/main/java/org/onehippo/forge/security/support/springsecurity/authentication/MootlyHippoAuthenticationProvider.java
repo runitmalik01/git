@@ -87,6 +87,9 @@ public class MootlyHippoAuthenticationProvider extends AbstractUserDetailsAuthen
 
     Session session = null;
     String password = authentication.getCredentials().toString();
+    if (password == null || password.trim().equals("")) {
+    	throw new BadCredentialsException("Password is null or blank");
+    }
     
     //There is no need to do this as all user's who have the membershipsignupdocument should be allowed to login
     /*
