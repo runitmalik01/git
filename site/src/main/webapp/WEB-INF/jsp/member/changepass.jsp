@@ -1,11 +1,6 @@
 <%@include file="../includes/tags.jspf"%>
-<script type="text/javascript"
-	src="http://yui.yahooapis.com/2.9.0/build/datatable/datatable-min.js"></script>
-<link rel="stylesheet" type="text/css"
-	href="http://yui.yahooapis.com/2.9.0/build/datatable/assets/skins/sam/datatable.css" />
 
 <hst:actionURL var="actionUrl" />
-
 
 <form id="frmchangepass" action="${actionUrl}" method="post">
 	
@@ -13,19 +8,19 @@
 		<table>
 			<tr>
 				<td><label for="Old_Password"><fmt:message
-							key="signup.opassword.required" /><span class="star">*</span>
+							key="signup.opassword.required"/><span class="star">*</span>
 				</label></td>
-				<td class="input"><input required type="password"
+				<td class="input"><input required type="password" id="Old_Password"
 					name="Old_Password" value="${fn:escapeXml(Old_Password)}"
 					class="input_data" /> <c:if test="${not empty errors}">
 						<c:forEach items="${errors}" var="error">
 							<c:if test="${error eq 'signup.password.error.required'}">
-								<span class="form-error"><fmt:message
+								<span class="badge badge-important"><fmt:message
 										key="signup.password.error.required" /> </span>
 								<br />
 							</c:if>
 							<c:if test="${error eq 'signup.password.error.mismatch'}">
-								<span class="form-error"><fmt:message
+								<span class="badge badge-important"><fmt:message
 										key="signup.password.error.mismatch" /> </span>
 								<br />
 							</c:if>
@@ -37,12 +32,12 @@
 				<td><label for="New_Password"> <fmt:message
 							key="signup.npassword.required" /><span class="star">*</span>
 				</label></td>
-				<td class="input"><input required type="password"
+				<td class="input"><input required type="password" id="New_Password"
 					name="New_Password" value="${fn:escapeXml(New_Password)}"
 					class="input_data" /> <c:if test="${not empty errors}">
 						<c:forEach items="${errors}" var="error">
 							<c:if test="${error eq 'signup.password.error.required'}">
-								<span class="form-error"><fmt:message
+								<span class="badge badge-important"><fmt:message
 										key="signup.password.error.required" /> </span>
 								<br />
 							</c:if>
@@ -54,17 +49,17 @@
 				<td><label for="confirm_password"><fmt:message
 							key="signup.cpassword.required" /><span class="star">*</span>
 				</label></td>
-				<td class="input"><input required type="password"
+				<td class="input"><input required type="password" id="confirm_password"
 					name="confirm_password" value="${fn:escapeXml(confirm_password)}"
 					class="input_data" /> <c:if test="${not empty errors}">
 						<c:forEach items="${errors}" var="error">
 							<c:if test="${error eq 'signup.confirm_password.error.mismatch'}">
-								<span class="form-error"><fmt:message
+								<span class="badge badge-important"><fmt:message
 										key="signup.confirm_password.error.mismatch" /> </span>
 								<br />
 							</c:if>
 							<c:if test="${error eq 'signup.confirm_password.error.required'}">
-								<span class="form-error"><fmt:message
+								<span class="badge badge-important"><fmt:message
 										key="signup.confirm_password.error.required" /> </span>
 
 							</c:if>
@@ -72,17 +67,29 @@
 					</c:if>
 				</td>
 			</tr>
-			
-			<tr>
-						<td colspan="3" align="center"><input type="submit"
-							value="<fmt:message key="member.start.cpsubmit.label"/>"
-							class="yui3-button" /></td>
-					</tr> 
-		</table>
-	
 
+		<tr>
+			<td colspan="3" align="center"><a id="hrefLogin" class="orange button">
+			<fmt:message key="member.start.cpsubmit.label" /></a></td>
+		</tr>
+	</table>
 </form>
-
+<res:client-validation screenConfigurationDocumentName="changepass" formId="frmchangepass" formSubmitButtonId="hrefLogin"></res:client-validation>
+<hst:element var="uiCustom" name="script">
+    <hst:attribute name="type">text/javascript</hst:attribute>
+		$(document).ready(function() {
+				$('#hrefLogin').click(function() {
+		 			$('#frmchangepass').submit();
+				});
+			    $('#frmPersonalInfo input').keydown(function(e) {
+				    if (e.keyCode == 13) {
+				   		e.preventDefault();
+				        $('#frmchangepass').submit();
+				    }
+				});
+		});    
+</hst:element>
+<hst:headContribution element="${uiCustom}" category="jsInternal"/>
 <hst:headContribution keyHint="tablecss">
 	<link type="text/css" rel="stylesheet"
 		href='<hst:link path="/css/Newstyle.css"/>' />
@@ -91,22 +98,4 @@
 <hst:headContribution keyHint="tablecss">
 	<link type="text/css" rel="stylesheet"
 		href='<hst:link path="/css/adornment.css"/>' />
-</hst:headContribution>
-<hst:headContribution keyHint="ExternalCSS">
-	<link rel="stylesheet"
-		href='<hst:link path="http://yui.yahooapis.com/3.8.0/build/cssbutton/cssbutton.css"/>'
-		type="text/css" />
-</hst:headContribution>
-<hst:headContribution keyHint="formcss">
-	<link rel="stylesheet"
-		href='<hst:link path="/css/animation/animation.css"/>' type="text/css" />
-</hst:headContribution>
-<hst:headContribution keyHint="formcss">
-	<link type="text/css" rel="stylesheet"
-		href='<hst:link path="/css/adornment.css"/>' />
-</hst:headContribution>
-<hst:headContribution keyHint="ExternalCSS">
-	<link rel="stylesheet"
-		href='<hst:link path="http://yui.yahooapis.com/3.8.0/build/cssbutton/cssbutton.css"/>'
-		type="text/css" />
 </hst:headContribution>
