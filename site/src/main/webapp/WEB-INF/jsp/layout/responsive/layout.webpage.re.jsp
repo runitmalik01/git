@@ -97,6 +97,24 @@
 		$.validator.addMethod("max", function(value, element) {  
 		   	 return this.optional(element) || /^([0-9]+\.?[0-9]{0,2}){0,14}?$/i.test(value);  
 		}, "Max length allowed is 14.");
+		$.validator.addMethod("pin", function(value, element) {  
+		   	 return this.optional(element) || /^[0-9]{6}?$/i.test(value);  
+		}, "PIN Code is invalid");
+		$.validator.addMethod("mobile", function(value, element) {  
+		   	 return this.optional(element) || /^[1-9]{1}[0-9]{9}?$/i.test(value);  
+		}, "Mobile No is invalid");
+		$.validator.addMethod("email", function(value, element) {  
+		   	 return this.optional(element) || /^([\.a-zA-Z0-9_\-])+@([a-zA-Z0-9_\-])+(([a-zA-Z0-9_\-])*\.([a-zA-Z0-9_\-])+)+?$/i.test(value);  
+		}, "Email-ID is invalid");
+		$.validator.addMethod("accountno", function(value, element) {  
+		   	 return this.optional(element) || /^[0-9]{0,17}?$/i.test(value);  
+		}, "Account No is invalid");
+		$.validator.addMethod("micr", function(value, element) {  
+		   	 return this.optional(element) || /^[0-9]{9}?$/i.test(value);  
+		}, "MICR Code is invalid");
+		$.validator.addMethod("tan", function(value, element) {  
+		   	 return this.optional(element) || /^[a-zA-Z]{4}[0-9]{5}[a-zA-Z]{1}?$/i.test(value);  
+		}, "TAN is invalid");
 	</script>
 </body>
 </html>
