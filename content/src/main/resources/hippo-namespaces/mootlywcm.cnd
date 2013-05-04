@@ -331,5 +331,9 @@ orderable
 
 [mootlywcm:PricingPlanAdditionalServices] > hippo:compound, hippostd:relaxed orderable
 
+[mootlywcm:PackageSelectorDetails] > hippostd:relaxed, mootlywcm:basedocument orderable
+
+
 [mootlywcm:ITReturnHome] > hippostd:relaxed, mootlywcm:basedocument orderable
+
 
