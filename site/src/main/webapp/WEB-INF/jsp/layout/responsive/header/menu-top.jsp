@@ -28,7 +28,17 @@
 <ul id="menu-top" class="top-menu">
 		<c:choose>
 			<c:when test="${loggedin}">
-				<li id="menu-item-723" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-724"><a href="${myaccount}">My Account</a></li>
+				<li id="menu-item-723" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-724">
+				 <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">My Account<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                	<hst:link var="changepass" siteMapItemRefId="changepass"></hst:link>
+                  <li><a href="${changepass}">ChangePassword</a></li>
+                 <!--   <li><a href="#">Another action</a></li>
+                  <li><a href="#">Something else here</a></li>-->
+                </ul>
+              </li>
+				<!--  <a href="${myaccount}">My Account</a></li>-->
 				<li id="menu-item-724" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-724"><a href="${logout}">Logout</a></li>
 			</c:when>
 			<c:otherwise>				
