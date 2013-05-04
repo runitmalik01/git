@@ -27,7 +27,7 @@ else {
 	<h4>Personal and Contact Information</h4>
 	<form id="frmPersonalInfo" action="${actionUrl}" method="post" name="pi">
 		<fieldset>
-			  <legend>Name & Gender</legend>
+			  <legend>Name &amp; Gender</legend>
 		      <div class="row-fluid show-grid">	        			 
 		          <div class="span3">
 		            <div class="rowlabel"><label for="pi_first_name"><small>First Name</small></label></div>
@@ -39,7 +39,7 @@ else {
 		          </div>	         
 		          <div class="span3">
 		          	<div class="rowlabel"><label for="pi_last_name"><small>Last Name</small></label></div>
-		          	<div class="rowlabel"><input id="pi_last_name" name="pi_last_name" placeholder="Last Name" type="text" value="<c:choose><c:when test="${not empty parentBean.lastName}"><c:out value="${parentBean.lastName}"/></c:when><c:when test="${not empty savedValuesFormMap && not empty savedValuesFormMap.value['pi_last_name']}"><c:out value="${savedValuesFormMap.value['pi_last_name'].value}"/></c:when></c:choose>"/></div>
+		          	<div class="rowlabel"><input id="pi_last_name" name="pi_last_name" placeholder="Last Name" type="text" value="<c:choose><c:when test="${not empty parentBean.lastName}"><c:out value="${parentBean.lastName}"/></c:when><c:when test="${not empty savedValuesFormMap && not empty savedValuesFormMap.value['pi_last_name']}"><c:out value="${savedValuesFormMap.value['pi_last_name'].value}"/></c:when></c:choose>" readonly="readonly"/></div>
 		          </div>
 		          <div class="span2">
 		          	<div class="rowlabel"><label for="pi_dob"><small>DOB</small></label></div>
@@ -52,7 +52,7 @@ else {
 			  </div>
 		 </fieldset>
 		 <fieldset>
-			 <legend>Address & Contact Information</legend>
+			 <legend>Address &amp; Contact Information</legend>
 			 <div class="row-fluid show-grid">	   
 			   	  <div class="span6">
 			   	  	<div class="rowlabel"><label for="pi_flat_door_building"><small>Flat/Door/Building</small></label></div>
@@ -80,17 +80,17 @@ else {
                   </div>
 		          <div class="span2">
 		            <div class="rowlabel"><label for="pi_pin_code"><small>PIN</small></label></div>
-		          	<div class="rowlabel"><input id="pi_pin_code" value="${parentBean.pinCode}" name="pi_pin_code" placeholder="PIN Code" type="text" maxlength="10"/></div>
+		          	<div class="rowlabel"><input id="pi_pin_code" value="${parentBean.pinCode}" name="pi_pin_code" placeholder="PIN Code" type="text" maxlength="6"/></div>
 		          </div>
 			 </div>			
 			 <div class="row-fluid show-grid">	
 			 	  <div class="span2">
 			 	  	<div class="rowlabel"><label for="std"><small>STD Code</small></label></div>
-			 	  	<div class="rowlabel"><input id="std" value="${parentBean.stdCode}" name="pi_std_code"  placeholder="STD"  type="text" maxlength="10"/></div>
+			 	  	<div class="rowlabel"><input id="pi_std_code" value="${parentBean.stdCode}" name="pi_std_code"  placeholder="STD"  type="text" maxlength="5"/></div>
 			 	  </div>
 		          <div class="span3">
 		          	<div class="rowlabel"><label for="phone"><small>Phone</small></label></div>
-		          	<div class="rowlabel"><input id="phone" value="${parentBean.phone}" name="pi_phone"  placeholder="Phone Number"  type="text" maxlength="10"/></div>
+		          	<div class="rowlabel"><input id="pi_phone" value="${parentBean.phone}" name="pi_phone"  placeholder="Phone Number"  type="text" maxlength="10"/></div>
 		          </div>
 		          <div class="span3">
 		          	<div class="rowlabel"><label for="mobile"><small>Mobile</small></label></div>
@@ -208,17 +208,17 @@ else {
 				<!-- Modal -->
 				<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">�</button>
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
 						<h3 id="myModalLabel">Bank Detail</h3>
 					</div>
 					<div class="modal-body">
 						<fieldset>
 							 <label><fmt:message key="member.bank.detail.bank.name" /></label>
-						  <input type="text" id="bd_bank_name" name="bd_bank_name" value="${parentBean.BD_BANK_NAME}" data-toggle="tooltip" title="Enter Name of Bank"maxlength="25" min="1" required="required" /><br/>
+						  <input type="text" id="bd_bank_name" name="bd_bank_name" value="${parentBean.BD_BANK_NAME}" data-toggle="tooltip" title="Enter Name of Bank" maxlength="25"/><br/>
 				             <label><fmt:message key="member.bank.detail.micr.code"/></label> 
-				          <input type="text" name="bd_micr_code"value="${parentBean.BD_MICR_CODE}" title="Enter 9-Digit valid MICR Code" maxlength="9" class="numberinput" required="required" /><br/>
+				          <input type="text" id="bd_micr_code" name="bd_micr_code"value="${parentBean.BD_MICR_CODE}" title="Enter 9-Digit valid MICR Code" maxlength="9" class="numberinput"/><br/>
 			                 <label><fmt:message key="member.bank.detail.bank.branch" /></label>
-				          <input type="text" name="bd_Branch_name" value="${parentBean.BD_ADD_BANK_BRANCH}" title="Enter Name of Bank's Branch" maxlength="120" required="required" /> <br/>
+				          <input type="text" id="bd_Branch_name" name="bd_Branch_name" value="${parentBean.BD_ADD_BANK_BRANCH}" title="Enter Name of Bank's Branch" maxlength="120"/> <br/>
 				             <label><fmt:message key="member.bank.detail.acc.type"/></label> 
 				          <select name="bd_account_type" title="Select Type of Account" id="bd_account_type">
 					         <option value="">Select</option>
@@ -228,7 +228,7 @@ else {
 						         <fmt:message key="member.bank.detail.acc.type.current"/></option>
 				          </select>
 				              <label><fmt:message key="member.bank.detail.acc.number"/></label> 
-				          <input type="text" name="bd_account_no" value="${parentBean.BD_ACC_NUMBER}" title="Enter Account Number" maxlength="17" class="numberinput" required="required" /><br/>
+				          <input type="text" id="bd_account_no" name="bd_account_no" value="${parentBean.BD_ACC_NUMBER}" title="Enter Account Number" maxlength="17"/><br/>
 				              <label><fmt:message key="member.bank.detail.ecs"/></label>
 				          <select name="bd_ecs" title="Select Electronic Clearing System" id="bd_ecs">
 					          <option <c:if test="${not empty parentBean.BD_ECS && parentBean.BD_ECS == 'N'}">selected</c:if> value="N">
@@ -238,12 +238,22 @@ else {
 				          </select>
 				      </fieldset>
 					</div>
+					<div id="itreturnHomepage" style="display:none;visiblity:hidden">
+						<input id="pan" name="pan" value="${savedValuesFormMap.value['pan'].value}" type="hidden"/>
+					    <input id="pi_return_type" name="pi_return_type" value="${savedValuesFormMap.value['pi_return_type'].value}" type="hidden"/>
+					    <input id="fy" name="fy" value="${savedValuesFormMap.value['fy'].value}" type="hidden"/>
+					    <input id="ack_no" name="ack_no" value="${savedValuesFormMap.value['ack_no'].value}" type="hidden"/>
+			            <input id="defective" name="defective" value="${savedValuesFormMap.value['defective'].value}" type="hidden"/> 
+			            <input id="ack_date" name="ack_date" value="${savedValuesFormMap.value['ack_date'].value}" type="hidden"/>
+			            <input id="notice_no" name="notice_no" value="${savedValuesFormMap.value['notice_no'].value}" type="hidden"/>
+			            <input id="notice_date" name="notice_date" value="${savedValuesFormMap.value['notice_date'].value}" type="hidden"/>
+			            <input id="pi_filing_status" name="pi_filing_status" value="${filingStatus.name}" type="hidden"/>
+			        </div>
 					<div class="modal-footer">
 						<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
 						<button class="btn btn-primary">Save changes</button>
 					</div>
 				</div>
-
 			</div>
 		</fieldset>
 		<div class="row-fluid show-grid">	
@@ -266,10 +276,6 @@ else {
                     yearRange: "1900:2013"
                    });
 			    }
-			    var filing=$('#filing').val();
-			    if(filing!=null){
-			        $('#status').val(filing);
-			    };
 				$('#hrefLogin').click(function() {
 		 			$('#frmPersonalInfo').submit();
 				});
@@ -315,9 +321,6 @@ else {
 			  });			  
 			});	
 			$('#bd_bank_name').tooltip('data-toggle');
-				$('#hrefLogin').click(function() {
-		 			$('#frmPersonalInfo').submit();
-				});
 				$("#pi_first_name").popover({'trigger':'focus'});
 		});    
 </hst:element>
