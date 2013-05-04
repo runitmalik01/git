@@ -102,6 +102,7 @@ public interface Constants {
     String BD_TYPE_ACC="mootlywcm:typeAcc";
     String BD_ACC_NUMBER="mootlywcm:accNumber";
     String BD_ECS="mootlywcm:ecs";
+    String BD_STATUS="mootlywcm:bankDetailStatus";
     
     String tan_Employer="mootlywcm:tanofemployer";
     String name_Employer="mootlywcm:nameofemployer";
@@ -139,7 +140,14 @@ public interface Constants {
 	String PROP_PI_STD_CODE = "mootlywcm:pi_std_code";
 	String PROP_PI_PHONE = "mootlywcm:pi_phone";
 	String PROP_PI_RESIDENT_CATEGORY = "mootlywcm:pi_residential_category";
-
+	String PROP_PI_FINANCIAL_YEAR="mootlywcm:financialYear";
+	String PROP_PI_RETURN_TYPE="mootlywcm:returnType";
+	String PROP_PI_ORIGINAL_ACK_NO="mootlywcm:originalAckNo";
+	String PROP_PI_ORIGINAL_ACK_DATE="mootlywcm:originalAckDate";
+	String PROP_PI_DEFECTIVE="mootlywcm:defective";
+	String PROP_PI_NOTICE_NO="mootlywcm:noticeNo";
+	String PROP_PI_NOTICE_DATE="mootlywcm:noticeDate";
+	
 	String PROP_PI_EMPLOYER_CATEGORY = "mootlywcm:pi_employer_category";
 
 	String PROP_PI_PERSONALINFO_LINK="mootlywcm:personalinfolink";
