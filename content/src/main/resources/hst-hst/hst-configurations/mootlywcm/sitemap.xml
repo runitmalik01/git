@@ -7,7 +7,8 @@
     <sv:value>c6df3aa8-f0a0-4881-aa07-0e9014749903</sv:value>
   </sv:property>
   <sv:node sv:name="home">
-    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">or
+    
       <sv:value>hst:sitemapitem</sv:value>
     </sv:property>
     <sv:property sv:name="jcr:uuid" sv:type="String">
@@ -2166,20 +2167,36 @@
               </sv:property>
             </sv:node>
           </sv:node>
-          <sv:node sv:name="packageselector.html">
-            <sv:property sv:name="jcr:primaryType" sv:type="Name">
-              <sv:value>hst:sitemapitem</sv:value>
-            </sv:property>
-            <sv:property sv:name="jcr:uuid" sv:type="String">
-              <sv:value>bacbcca8-6025-4431-b4a5-5c7835a018de</sv:value>
-            </sv:property>
-            <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
-              <sv:value>hst:pages/package-selector</sv:value>
-            </sv:property>
-            <sv:property sv:name="hst:refId" sv:type="String">
-              <sv:value>packageselector</sv:value>
-            </sv:property>
-          </sv:node>
+
+<sv:node sv:name="packageselector.html">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:sitemapitem</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>bacbcca8-6025-4431-b4a5-5c7835a018de</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+    <sv:value>hst:pages/package-selector</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+    <sv:value>mainSiteMapItemRefId</sv:value>
+    <sv:value>action</sv:value>
+    <sv:value>nextScreen</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+    <sv:value>packageselector</sv:value>
+    <sv:value>EDIT</sv:value>
+    <sv:value>start-application</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:refId" sv:type="String">
+    <sv:value>packageselector</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:relativecontentpath" sv:type="String">
+    <sv:value>mootlypricingplan</sv:value>
+  </sv:property>
+</sv:node>
+
+          
         </sv:node>
       </sv:node>
     </sv:node>
