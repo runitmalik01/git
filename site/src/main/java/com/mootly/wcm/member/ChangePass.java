@@ -1,12 +1,14 @@
 
 package com.mootly.wcm.member;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.jcr.Session;
 
 import org.apache.commons.lang.StringUtils;
+import org.hippoecm.hst.content.beans.ObjectBeanManagerException;
 import org.hippoecm.hst.content.beans.manager.workflow.WorkflowCallbackHandler;
 import org.hippoecm.hst.content.beans.manager.workflow.WorkflowPersistenceManager;
 import org.hippoecm.hst.core.component.HstComponentException;
@@ -40,11 +42,11 @@ public class ChangePass extends BaseComponent {
 
 	public static final String SUCCESS= "success";
 	public static final String ERRORS="errors";
-	private static final String PASSWORD = "Password";
-	private static final String MPASSWORD = "Old_Password";
+	private static final String OPASSWORD = "Old_Password";
 	private static final String NPASSWORD = "New_Password";
 	private static final String CONFIRM_PASSWORD = "confirm_password";
 	public static final String PASSWORD_ERROR="password_error";
+	String userNameNormalized=null;
 	@Override
 	public void doBeforeRender(HstRequest request, HstResponse response) {
 		// TODO Auto-generated method stub
@@ -54,7 +56,7 @@ public class ChangePass extends BaseComponent {
 
 		request.setAttribute(ERRORS, request.getParameterValues(ERRORS));
 		request.setAttribute(PASSWORD_ERROR, request.getParameterValues(PASSWORD_ERROR));
-		request.setAttribute(MPASSWORD, request.getParameterValues(MPASSWORD));
+		request.setAttribute(OPASSWORD, request.getParameterValues(OPASSWORD));
 		request.setAttribute(NPASSWORD, request.getParameterValues(NPASSWORD));
 		request.setAttribute(CONFIRM_PASSWORD, request.getParameterValues(CONFIRM_PASSWORD));
 	}
@@ -64,71 +66,78 @@ public class ChangePass extends BaseComponent {
 			throws HstComponentException {
 		// TODO Auto-generated method stub
 		super.doAction(request, response);
-
 		//Any submission will go here
 		//String email = GoGreenUtil.getEscapedParameter(request, "email");
-
-		String Old_Password = GoGreenUtil.getEscapedParameter(request, "Old_Password");
-		String New_Password = GoGreenUtil.getEscapedParameter(request, "New_Password");
-		String confirm_password = GoGreenUtil.getEscapedParameter(request, "confirm_password");
-
-		Member member=(Member)request.getSession().getAttribute("user");
-		if(member!=null){
-			//check for validation
-			List<String> errors=new ArrayList<String>();
-
-			if (StringUtils.isEmpty(Old_Password)) {
-				errors.add("signup.password.error.required");
-			}
-
-			if (StringUtils.isEmpty(New_Password)) {
-				errors.add("signup.password.error.required");
-			}
-			if (StringUtils.isEmpty(confirm_password)) {
-				errors.add("signup.confirm_password.error.required");
-			}
-			//here new_password and confirm_password are being matched.
-			if (!New_Password.equals(confirm_password)){
-				errors.add("signup.confirm_password.error.mismatch");
-			}
-			// here we are matching the current password with the password in repository
-			log.info("this is pass"+member.getPassword().toString());
-			if(!member.getPassword().toString().equals(Old_Password)){
-				errors.add("signup.password.error.mismatch");
-			}
-			if(errors.size()!=0){
-				response.setRenderParameter(ERRORS, errors.toArray(new String[errors.size()]));
-
-				return;
-			}
-
-			if (errors == null || errors.size() == 0)
-			{
-				ChangePasswordRequest cp = new ChangePasswordRequest();
-
-				cp.setNewPassword(New_Password);
-				cp.setOldPassword(Old_Password);
-				cp.setUserName(member.getUserName().toString());
-				createMemberSignupFormUpdatePass(request,cp,member.getUserName());
-
-				try{  
-					response.sendRedirect(UrlUtility.MemberLogin);
-					request.getSession(false);
-				}
-				catch(Exception e)
-				{
-					log.warn("Error in response Send Url");
-				}
-			}
-
+		if(log.isInfoEnabled()){
+			log.info("this is Change of password");
 		}
+		String Old_Password = GoGreenUtil.getEscapedParameter(request, OPASSWORD);
+		String New_Password = GoGreenUtil.getEscapedParameter(request, NPASSWORD);
+		String confirm_password = GoGreenUtil.getEscapedParameter(request, CONFIRM_PASSWORD);
+
+		userNameNormalized = request.getUserPrincipal() != null ? request.getUserPrincipal().getName().replaceAll("@", "-at-") : null;
+		if(userNameNormalized!=null){
+			String pathToSignupDoc=request.getRequestContext().getResolvedMount().getMount().getCanonicalContentPath()+"/members/"+userNameNormalized+"/membersignupdocument";
+			if(log.isInfoEnabled()){
+				log.info("Path to get MemberSignUpDoc:"+pathToSignupDoc);
+			}
+			try {
+				MemberSignupDocument objSignup=(MemberSignupDocument)getObjectBeanManager(request).getObject(pathToSignupDoc);
+				if(objSignup!=null){
+					/**Member member=(Member)request.getSession().getAttribute("user");
+				if(log.isInfoEnabled()){
+					log.info("this is Member"+member);
+				}***/
+					//check for validation
+					List<String> errors=new ArrayList<String>();
+
+					if (StringUtils.isEmpty(Old_Password)) {
+						errors.add("signup.password.error.required");
+					}
+					if (StringUtils.isEmpty(New_Password)) {
+						errors.add("signup.password.error.required");
+					}
+					if (StringUtils.isEmpty(confirm_password)) {
+						errors.add("signup.confirm_password.error.required");
+					}
+					//here new_password and confirm_password are being matched.
+					if (!New_Password.equals(confirm_password)){
+						errors.add("signup.confirm_password.error.mismatch");
+					}
+					// here we are matching the current password with the password in repository
+					log.info("this is Old Password"+objSignup.getPassword().toString());
+					if(!objSignup.getPassword().toString().equals(Old_Password)){
+						errors.add("signup.password.error.mismatch");
+					}
+					if(errors.size()!=0){
+						response.setRenderParameter(ERRORS, errors.toArray(new String[errors.size()]));
+						return;
+					}else{
+						ChangePasswordRequest cp = new ChangePasswordRequest();
+						cp.setNewPassword(New_Password);
+						cp.setOldPassword(Old_Password);
+						cp.setUserName(userNameNormalized);
+						createMemberSignupFormUpdatePass(request,cp);
+
+						response.sendRedirect(UrlUtility.MemberLogin);
+						request.getSession(false);
+					}
+				}
+			}catch(IOException e){
+				log.warn("Error in response Send Url");
+			}catch (ObjectBeanManagerException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+		/*}
 		else{
 
 			log.info("Error in response Send Url");
-		}
+		}*/
 	}
 
-	private ChangePasswordRequest createMemberSignupFormUpdatePass(HstRequest request,ChangePasswordRequest cp,String username) {
+	private ChangePasswordRequest createMemberSignupFormUpdatePass(HstRequest request,ChangePasswordRequest cp) {
 		// TODO Auto-generated method stub
 		Session persistableSession = null;
 		WorkflowPersistenceManager wpm;
@@ -140,12 +149,12 @@ public class ChangePass extends BaseComponent {
 			//SIMPLE WORKFLOW
 			wpm.setWorkflowCallbackHandler(new FullReviewedWorkflowCallbackHandler());
 			//Password gets change in the following path
-			final String memberitrReturnPath = ContentStructure.getChangePasswordRequest(request,username);
+			final String memberitrReturnPath = ContentStructure.getChangePasswordRequest(request,userNameNormalized);
 			final String itrReturnpath = wpm.createAndReturn(memberitrReturnPath, ChangePasswordRequest.NAMESPACE, ChangePasswordRequest.NODE_NAME, true);
 			ChangePasswordRequest changepassReqDoc = (ChangePasswordRequest) wpm.getObject(itrReturnpath);
 			// update content properties
 			log.info("i am going to update ");
-			final String itReturnPath = "/content/documents/mootlywcm/members/"+username.replaceAll("@", "-at-")+ "/membersignupdocument/membersignupdocument";
+			final String itReturnPath = "/content/documents/mootlywcm/members/"+userNameNormalized+"/membersignupdocument/membersignupdocument";
 			if (changepassReqDoc != null) {	
 				changepassReqDoc.setNewPassword(cp.getNewPassword());
 				changepassReqDoc.setOldPassword(cp.getOldPassword());
