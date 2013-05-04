@@ -20,22 +20,30 @@ import static com.mootly.wcm.utils.Constants.BD_ADD_BANK_BRANCH;
 import static com.mootly.wcm.utils.Constants.BD_BANK_NAME;
 import static com.mootly.wcm.utils.Constants.BD_ECS;
 import static com.mootly.wcm.utils.Constants.BD_MICR_CODE;
+import static com.mootly.wcm.utils.Constants.BD_STATUS;
 import static com.mootly.wcm.utils.Constants.BD_TYPE_ACC;
 import static com.mootly.wcm.utils.Constants.PROP_PI_AREA_LOCALITY;
+import static com.mootly.wcm.utils.Constants.PROP_PI_DEFECTIVE;
 import static com.mootly.wcm.utils.Constants.PROP_PI_DOB;
 import static com.mootly.wcm.utils.Constants.PROP_PI_EMAIL;
 import static com.mootly.wcm.utils.Constants.PROP_PI_FATHER_NAME;
 import static com.mootly.wcm.utils.Constants.PROP_PI_FILING_STATUS;
+import static com.mootly.wcm.utils.Constants.PROP_PI_FINANCIAL_YEAR;
 import static com.mootly.wcm.utils.Constants.PROP_PI_FIRST_NAME;
 import static com.mootly.wcm.utils.Constants.PROP_PI_FLAT_FLOOR_BUILDING;
 import static com.mootly.wcm.utils.Constants.PROP_PI_LAST_NAME;
 import static com.mootly.wcm.utils.Constants.PROP_PI_MIDDLE_NAME;
 import static com.mootly.wcm.utils.Constants.PROP_PI_MOBILE;
+import static com.mootly.wcm.utils.Constants.PROP_PI_NOTICE_DATE;
+import static com.mootly.wcm.utils.Constants.PROP_PI_NOTICE_NO;
+import static com.mootly.wcm.utils.Constants.PROP_PI_ORIGINAL_ACK_DATE;
+import static com.mootly.wcm.utils.Constants.PROP_PI_ORIGINAL_ACK_NO;
 import static com.mootly.wcm.utils.Constants.PROP_PI_PAN;
 import static com.mootly.wcm.utils.Constants.PROP_PI_PHONE;
 import static com.mootly.wcm.utils.Constants.PROP_PI_PINCODE;
 import static com.mootly.wcm.utils.Constants.PROP_PI_PREMISES_BUILDING;
 import static com.mootly.wcm.utils.Constants.PROP_PI_RESIDENT_CATEGORY;
+import static com.mootly.wcm.utils.Constants.PROP_PI_RETURN_TYPE;
 import static com.mootly.wcm.utils.Constants.PROP_PI_ROAD_STREET;
 import static com.mootly.wcm.utils.Constants.PROP_PI_SEX;
 import static com.mootly.wcm.utils.Constants.PROP_PI_STATE;
@@ -76,6 +84,15 @@ import org.hippoecm.hst.content.beans.standard.HippoBean;
 public class MemberPersonalInformation extends BaseDocument implements ContentNodeBinder,FormMapFiller {
 	static final public String NAMESPACE = "mootlywcm:MemberPersonalInformation";
 	static final public String NODE_NAME = "PersonalInformation";
+	
+	private String finacialYear;
+	private String returnType;
+	private String originalAckNo;
+	private String originalAckDate;
+	private String defective;
+	private String noticeNo;
+	private String noticeDate;
+	
 	private String firstName;
 	private String middleName;
 	private String lastName;
@@ -103,6 +120,7 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 	private String typeAcc;
 	private String addBankBranch;
 	private String micrCode;
+	private Boolean bankDetailStatus;
 	
 	private String rsstatus_q;
 	private String rsstatus_q_yes;
@@ -116,7 +134,36 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 	private String rsstatus_q_no_yes_yes_yes;
 	private String residentCategory;
     private String PIUUID;
+    
 	
+	public String getFinancialYear() {
+        if (finacialYear == null) finacialYear = getProperty(PROP_PI_FINANCIAL_YEAR);
+        return finacialYear;
+    }
+	public String getReturnType() {
+        if (returnType == null) returnType = getProperty(PROP_PI_RETURN_TYPE);
+        return returnType;
+    }
+	public String getOriginalAckNo() {
+        if (originalAckNo == null) originalAckNo = getProperty(PROP_PI_ORIGINAL_ACK_NO);
+        return originalAckNo;
+    }
+	public String getOriginalAckDate() {
+        if (originalAckDate == null) originalAckDate = getProperty(PROP_PI_ORIGINAL_ACK_DATE);
+        return originalAckDate;
+    }
+	public String getDefective() {
+        if (defective == null) defective = getProperty(PROP_PI_DEFECTIVE);
+        return defective;
+    }
+	public String getNoticeNo() {
+        if (noticeNo == null) noticeNo = getProperty(PROP_PI_NOTICE_NO);
+        return noticeNo;
+    }
+	public String getNoticeDate() {
+        if (noticeDate == null) noticeDate = getProperty(PROP_PI_NOTICE_DATE);
+        return noticeDate;
+    }
 	//This is just a calculated field
 	public String getName() {
 		StringBuffer sb = new StringBuffer();
@@ -129,7 +176,6 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
         if (firstName == null) firstName = getProperty(PROP_PI_FIRST_NAME);
         return firstName;
     }
-
     public String getMiddleName() {
     	if (middleName == null) middleName = getProperty(PROP_PI_MIDDLE_NAME);
     	return middleName;
@@ -168,8 +214,7 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
     	}
     	return null;
     }
-    
-    
+       
     public String getSex() {
     	if (sex == null) sex = getProperty(PROP_PI_SEX);
     	return sex;
@@ -230,7 +275,27 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
     public String getPersonalInfoUuid() {
     	return PIUUID;
     }
-    
+    public final void setFinancialYear(String finacialYear) {
+		this.finacialYear = finacialYear;
+	}
+    public final void setReturnType(String returnType) {
+		this.returnType = returnType;
+	}
+    public final void setOriginalAckNo(String originalAckNo) {
+		this.originalAckNo = originalAckNo;
+	}
+    public final void setOriginalAckDate(String originalAckDate) {
+		this.originalAckDate = originalAckDate;
+	}
+    public final void setDefective(String defective) {
+		this.defective = defective;
+	}
+    public final void setNoticeNo(String noticeNo) {
+		this.noticeNo = noticeNo;
+	}
+    public final void setNoticeDate(String noticeDate) {
+		this.noticeDate = noticeDate;
+	}
     public final void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
@@ -301,6 +366,10 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
     	this.phone = phone;
     }
     // Member Bank Detail
+    public Boolean getBankDetailStatus(){
+		if (bankDetailStatus == null) bankDetailStatus = getProperty(BD_STATUS);
+		return bankDetailStatus;
+    }
 	public String getBD_ADD_BANK_BRANCH() {
 		if (addBankBranch == null) addBankBranch = getProperty(BD_ADD_BANK_BRANCH);
 		return addBankBranch;
@@ -342,6 +411,9 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 	}
 	public final void setBD_TYPE_ACC(String typeAcc) {
 		this.typeAcc = typeAcc;
+	}
+	public final void setBankDetailStatus(Boolean bankDetailStatus) {
+		this.bankDetailStatus = bankDetailStatus;
 	}
 	public String getRsstatusQ() {
 		if (rsstatus_q == null) rsstatus_q = getProperty(Rsstatus_q);
@@ -448,46 +520,62 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 			if(log.isInfoEnabled()){
 			log.warn("this is bean");
 			}
-			MemberPersonalInformation memberpersonal = (MemberPersonalInformation) content;
-			node.setProperty(PROP_PI_FIRST_NAME,memberpersonal.getFirstName());
-	    	node.setProperty(PROP_PI_MIDDLE_NAME,memberpersonal.getMiddleName());
-	    	node.setProperty(PROP_PI_LAST_NAME, memberpersonal.getLastName());
-	    	node.setProperty(PROP_PI_FATHER_NAME, memberpersonal.getFatherName());
-	    	node.setProperty(PROP_PI_PAN, memberpersonal.getPAN());
-	    	node.setProperty(PROP_PI_FILING_STATUS, memberpersonal.getFilingStatus());
-	    	node.setProperty(PROP_PI_DOB, memberpersonal.getDOB());	    	
-	    	node.setProperty(PROP_PI_SEX, memberpersonal.getSex());
+			MemberPersonalInformation mpi = (MemberPersonalInformation) content;
+			
+			node.setProperty(PROP_PI_FINANCIAL_YEAR,mpi.getFinancialYear());
+			node.setProperty(PROP_PI_RETURN_TYPE,mpi.getReturnType());
+			node.setProperty(PROP_PI_ORIGINAL_ACK_DATE,mpi.getOriginalAckDate());
+			node.setProperty(PROP_PI_ORIGINAL_ACK_NO,mpi.getOriginalAckNo());
+			node.setProperty(PROP_PI_NOTICE_DATE,mpi.getNoticeDate());
+			node.setProperty(PROP_PI_NOTICE_NO,mpi.getNoticeNo());
+			node.setProperty(PROP_PI_DEFECTIVE,mpi.getDefective());
+			
+			node.setProperty(PROP_PI_FIRST_NAME,mpi.getFirstName());
+	    	node.setProperty(PROP_PI_MIDDLE_NAME,mpi.getMiddleName());
+	    	node.setProperty(PROP_PI_LAST_NAME, mpi.getLastName());
+	    	node.setProperty(PROP_PI_FATHER_NAME, mpi.getFatherName());
+	    	node.setProperty(PROP_PI_PAN, mpi.getPAN());
+	    	node.setProperty(PROP_PI_FILING_STATUS, mpi.getFilingStatus());
+	    	node.setProperty(PROP_PI_DOB, mpi.getDOB());	    	
+	    	node.setProperty(PROP_PI_SEX, mpi.getSex());
 	    	
-	    	node.setProperty(PROP_PI_FLAT_FLOOR_BUILDING, memberpersonal.getFlatDoorBuilding());
-	    	node.setProperty(PROP_PI_PREMISES_BUILDING, memberpersonal.getPremisesBuilding());
-	    	node.setProperty(PROP_PI_ROAD_STREET, memberpersonal.getRoadStreet());
-	    	node.setProperty(PROP_PI_AREA_LOCALITY, memberpersonal.getAreaLocality());
-	    	node.setProperty(PROP_PI_TOWN_CITY_DISTRICT, memberpersonal.getTownCityDistrict());
-	    	node.setProperty(PROP_PI_STATE, memberpersonal.getState());
-	    	node.setProperty(PROP_PI_PINCODE, memberpersonal.getPinCode());
-	    	node.setProperty(PROP_PI_EMAIL, memberpersonal.getEmail());
-	    	node.setProperty(PROP_PI_MOBILE, memberpersonal.getMobile());
-	    	node.setProperty(PROP_PI_STD_CODE, memberpersonal.getStdCode());
-	    	node.setProperty(PROP_PI_PHONE, memberpersonal.getPhone());
+	    	node.setProperty(PROP_PI_FLAT_FLOOR_BUILDING, mpi.getFlatDoorBuilding());
+	    	node.setProperty(PROP_PI_PREMISES_BUILDING, mpi.getPremisesBuilding());
+	    	node.setProperty(PROP_PI_ROAD_STREET, mpi.getRoadStreet());
+	    	node.setProperty(PROP_PI_AREA_LOCALITY, mpi.getAreaLocality());
+	    	node.setProperty(PROP_PI_TOWN_CITY_DISTRICT, mpi.getTownCityDistrict());
+	    	node.setProperty(PROP_PI_STATE, mpi.getState());
+	    	node.setProperty(PROP_PI_PINCODE, mpi.getPinCode());
+	    	node.setProperty(PROP_PI_EMAIL, mpi.getEmail());
+	    	node.setProperty(PROP_PI_MOBILE, mpi.getMobile());
+	    	node.setProperty(PROP_PI_STD_CODE, mpi.getStdCode());
+	    	node.setProperty(PROP_PI_PHONE, mpi.getPhone());
 	    	
-			node.setProperty(BD_ACC_NUMBER,memberpersonal.getBD_ACC_NUMBER());
-			node.setProperty(BD_BANK_NAME,memberpersonal.getBD_BANK_NAME());
-			node.setProperty(BD_ECS,memberpersonal.getBD_ECS());
-			node.setProperty(BD_TYPE_ACC,memberpersonal.getBD_TYPE_ACC());
-			node.setProperty(BD_ADD_BANK_BRANCH,memberpersonal.getBD_ADD_BANK_BRANCH());
-			node.setProperty(BD_MICR_CODE,memberpersonal.getBD_MICR_CODE());
-	    
-			node.setProperty(Rsstatus_q, memberpersonal.getRsstatusQ());
-			node.setProperty(Rsstatus_q_yes, memberpersonal.getRsstatusQYes());
-			node.setProperty(Rsstatus_q_yes_yes, memberpersonal.getRsstatusQYesYes());
-			node.setProperty(Rsstatus_q_no, memberpersonal.getRsstatusQNo());
-			node.setProperty(Rsstatus_q_no_yes, memberpersonal.getRsstatusQNoYes());
-			node.setProperty(Rsstatus_q_no_yes_yes, memberpersonal.getRsstatusQNoYesYes());
-			node.setProperty(Rsstatus_q_no_no, memberpersonal.getRsstatusQNoNo());	    	
-			node.setProperty(Rsstatus_q_no_no_yes, memberpersonal.getRsstatusQNoNoYes());
-			node.setProperty(Rsstatus_q_no_no_yes_yes, memberpersonal.getRsstatusQNoNoYesYes());
-			node.setProperty(Rsstatus_q_no_yes_yes_yes, memberpersonal.getRsstatusQNoYesYesYes());
-			node.setProperty(PROP_PI_RESIDENT_CATEGORY, memberpersonal.getResidentCategory());
+			node.setProperty(BD_ACC_NUMBER,mpi.getBD_ACC_NUMBER());
+			node.setProperty(BD_BANK_NAME,mpi.getBD_BANK_NAME());
+			node.setProperty(BD_ECS,mpi.getBD_ECS());
+			node.setProperty(BD_TYPE_ACC,mpi.getBD_TYPE_ACC());
+			node.setProperty(BD_ADD_BANK_BRANCH,mpi.getBD_ADD_BANK_BRANCH());
+			node.setProperty(BD_MICR_CODE,mpi.getBD_MICR_CODE());
+			if(mpi.getBD_ACC_NUMBER().trim().length()!=0&&mpi.getBD_BANK_NAME().trim().length()!=0
+					&&mpi.getBD_ECS().trim().length()!=0&&mpi.getBD_TYPE_ACC().trim().length()!=0
+					&&mpi.getBD_ADD_BANK_BRANCH().trim().length()!=0&&mpi.getBD_MICR_CODE().trim().length()!=0){
+				node.setProperty(BD_STATUS,true);
+			}else{
+				node.setProperty(BD_STATUS,false);
+			}
+
+			node.setProperty(Rsstatus_q, mpi.getRsstatusQ());
+			node.setProperty(Rsstatus_q_yes, mpi.getRsstatusQYes());
+			node.setProperty(Rsstatus_q_yes_yes, mpi.getRsstatusQYesYes());
+			node.setProperty(Rsstatus_q_no, mpi.getRsstatusQNo());
+			node.setProperty(Rsstatus_q_no_yes, mpi.getRsstatusQNoYes());
+			node.setProperty(Rsstatus_q_no_yes_yes, mpi.getRsstatusQNoYesYes());
+			node.setProperty(Rsstatus_q_no_no, mpi.getRsstatusQNoNo());	    	
+			node.setProperty(Rsstatus_q_no_no_yes, mpi.getRsstatusQNoNoYes());
+			node.setProperty(Rsstatus_q_no_no_yes_yes, mpi.getRsstatusQNoNoYesYes());
+			node.setProperty(Rsstatus_q_no_yes_yes_yes, mpi.getRsstatusQNoYesYesYes());
+			node.setProperty(PROP_PI_RESIDENT_CATEGORY, mpi.getResidentCategory());
     	}catch (RepositoryException re) {
     		log.error("Binding Node Error",re);
     		
@@ -502,13 +590,27 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 			log.info("Into the fill method");			
 		}
 		if (formMap == null) return;
+		if ( formMap.getField("pi_return_type") != null) setReturnType(formMap.getField("pi_return_type").getValue());
+		if ( formMap.getField("fy") != null) setFinancialYear(formMap.getField("fy").getValue());
+		if ( formMap.getField("ack_date") != null) setOriginalAckDate(formMap.getField("ack_date").getValue());
+		if ( formMap.getField("ack_no") != null) setOriginalAckNo(formMap.getField("ack_no").getValue());
+		if ( formMap.getField("defective") != null) {
+			if(formMap.getField("pi_return_type")!=null&&formMap.getField("pi_return_type").getValue().matches("revised")){
+				setDefective(formMap.getField("defective").getValue());	
+			}else{
+				setDefective("");
+			}
+			}
+		if ( formMap.getField("notice_no") != null) setNoticeNo(formMap.getField("notice_no").getValue());
+		if ( formMap.getField("notice_date") != null) setNoticeDate(formMap.getField("notice_date").getValue());
 		//Member PersonaInformation
-		if ( formMap.getField("pi_pan") != null) setFirstName(formMap.getField("pi_pan").getValue());
+		if ( formMap.getField("pan") != null) setPAN(formMap.getField("pan").getValue());
 		if ( formMap.getField("pi_first_name") != null) setFirstName(formMap.getField("pi_first_name").getValue());
 		if ( formMap.getField("pi_last_name") != null) setLastName(formMap.getField("pi_last_name").getValue());
 		if ( formMap.getField("pi_middle_name") != null) setMiddleName(formMap.getField("pi_middle_name").getValue());
 		if ( formMap.getField("pi_father_name") != null) setFatherName(formMap.getField("pi_father_name").getValue());
 		if ( formMap.getField("gender") != null) setSex(formMap.getField("gender").getValue());
+		if ( formMap.getField("pi_filing_status") !=null) setFilingStatus(formMap.getField("pi_filing_status").getValue());
 		if ( formMap.getField("pi_dob") != null) {
 			String strDate = formMap.getField("pi_dob").getValue();
 			Date date = null ;
@@ -617,12 +719,17 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 				if(log.isInfoEnabled()){
 					log.info("this is residential status"+rb.getString(aKey).replaceFirst("ans_","").trim());
 				}
-				setResidentCategory(rb.getString(aKey).replaceFirst("ans_","").trim());
+				setResidentCategory(ResidentialFind(rb.getString(aKey)));
 				break;
 			}			
 		}
 	}
-	
+	private String ResidentialFind(String key){
+		if(key.matches("ans_Resident and Ordinarily Resident")) return "RES";
+		if(key.matches("ans_Resident but Not Ordinarily Resident")) return "NOR";
+		if(key.matches("ans_Non Resident")) return "NRI";
+		else return null;
+	}
 	@Override
 	public <T extends HippoBean> void cloneBean(T sourceBean) {
 		// TODO Auto-generated method stub
