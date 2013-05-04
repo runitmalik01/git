@@ -15,10 +15,7 @@
  */
 
 package com.mootly.wcm.components.common;
-
 import java.util.List;
-
-
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.content.beans.standard.HippoDocumentBean;
 import org.hippoecm.hst.content.beans.standard.HippoFolderBean;
@@ -27,10 +24,8 @@ import org.hippoecm.hst.core.component.HstResponse;
 import org.hippoecm.hst.core.request.ResolvedSiteMapItem;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import com.mootly.wcm.components.BaseComponent;
 import com.mootly.wcm.exceptions.BeanTypeException;
-
 public class ServicePrice extends BaseComponent {
 
     private static final Logger log = LoggerFactory.getLogger(ServicePrice.class);
