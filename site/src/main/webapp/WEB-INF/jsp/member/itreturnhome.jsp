@@ -115,8 +115,8 @@
 										<hst:link var="viewLink" path="/member/itreturn/${financialYear.name}/${itReturnType.name}/${panForMember.name}/personalinformation.html"/>			
 										<span style="text-transform:uppercase;"><a href="${viewLink}"><c:out value="${panForMember.name}"/></a></span>		
 									</td>
-									<td><c:out value="${memberPersonalInfo.filingStatus}"/></td>
-									<td><c:out value="${memberPersonalInfo.name}"/></td>
+									<td><c:out value="${memberPersonalInformation.filingStatus}"/></td>
+									<td><c:out value="${memberPersonalInformation.name}"/></td>
 									<td>
 										<hst:link var="viewLink" path="/member/itreturn/${financialYear.name}/${itReturnType.name}/${panForMember.name}/personalinformation.html"/>
 										<span style="font-size:10px;"><a href="${viewLink}">Continue</a></span>		
