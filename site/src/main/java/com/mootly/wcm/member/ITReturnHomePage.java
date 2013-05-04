@@ -10,42 +10,29 @@
 package com.mootly.wcm.member;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
-import org.datanucleus.store.exceptions.DatastoreValidationException;
-import org.hippoecm.hst.component.support.forms.FormField;
 import org.hippoecm.hst.component.support.forms.FormMap;
 import org.hippoecm.hst.component.support.forms.FormUtils;
 import org.hippoecm.hst.component.support.forms.StoreFormResult;
-import org.hippoecm.hst.content.beans.standard.HippoFolder;
 import org.hippoecm.hst.content.beans.standard.HippoFolderBean;
 import org.hippoecm.hst.core.component.HstComponentException;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
-import org.hippoecm.hst.core.component.HstURL;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.mootly.wcm.annotations.ChildBean;
 import com.mootly.wcm.annotations.DataTypeValidationHelper;
 import com.mootly.wcm.annotations.DataTypeValidationType;
 import com.mootly.wcm.annotations.FormFields;
-import com.mootly.wcm.annotations.PrimaryBean;
-import com.mootly.wcm.annotations.RequiredBeans;
 import com.mootly.wcm.annotations.RequiredFields;
-import com.mootly.wcm.beans.MemberPersonalInformation;
-import com.mootly.wcm.beans.SalaryIncomeDocument;
-import com.mootly.wcm.beans.compound.SalaryIncomeDetail;
-import com.mootly.wcm.components.BaseComponent;
 import com.mootly.wcm.components.FormSaveResult;
 import com.mootly.wcm.components.ITReturnComponent;
 import com.mootly.wcm.model.FinancialYear;
 import com.mootly.wcm.model.ITReturnType;
-
-@FormFields(fieldNames={"pan","pi_last_name","pi_dob","pi_return_type","fy"})
+//@PrimaryBean(primaryBeanClass=MemberPersonalInformation.class)
+@FormFields(fieldNames={"pan","pi_last_name","pi_dob","pi_return_type","fy","ack_no","ack_date","defective","notice_no","notice_date"})
 @RequiredFields(fieldNames={"pan","pi_last_name","pi_dob","pi_return_type","fy"})
 public class ITReturnHomePage extends ITReturnComponent {
 	
@@ -67,7 +54,7 @@ public class ITReturnHomePage extends ITReturnComponent {
 			throws HstComponentException {
 		// TODO Auto-generated method stub
 		//super.doAction(request, response);
-		FormMap map = new FormMap(request,new String[]{"pan","pi_last_name","pi_dob","pi_return_type","fy"});
+		FormMap map = new FormMap(request,new String[]{"pan","pi_last_name","pi_dob","pi_return_type","fy","ack_no","ack_date","defective","notice_no","notice_date"});
 		//FormUtils.persistFormMap(request, response, getFormMap(), null);
 		//try {
 		String pan =map.getField("pan").getValue().toLowerCase();
