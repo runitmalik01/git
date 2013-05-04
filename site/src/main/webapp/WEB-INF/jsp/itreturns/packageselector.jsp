@@ -27,7 +27,11 @@
 		<div class="row-fluid show-grid rowlabel">
 			<div class="span4"></div>
 		</div>
-		<ul id="myTab" class="nav nav-tabs">
+		
+		<c:if test="${(financialYear.displayName eq '2012-2013')}">
+		<c:choose>
+				<c:when test="${( filingStatus.name eq 'Individual')}">
+				<ul id="myTab" class="nav nav-tabs">
 			<li class="active"><a href="#doityourself" data-toggle="tab">Do
 					It Yourself </a>
 			</li>
@@ -101,6 +105,51 @@
 			</div> --%>
 			<div class="tab-pane fade" id="assistedfiling">
 				<div id="#assistedfiling">
+					<b><i>File with assistance of Tax Professionals from
+							anywhere!</i> </b><br />
+					<div class="tabText">
+						<span class="tab2SubHeading"><strong>1. Schedule
+								an Appointment</strong> </span><br /> <span class="fontArial fontSize12 ">Schedule
+							an appointment with a tax expert by paying a small fee.</span>
+					</div>
+					<div class="tabText1">
+						<span class="tab2SubHeading"><strong>2. Share your
+								tax document</strong> </span><br /> <span class="fontArial fontSize12 ">Upload
+							your documents that will help the expert to prepare your return.</span>
+					</div>
+					<div class="tabText1">
+						<span class="tab2SubHeading"><strong>3.
+								Interaction</strong> </span><br /> <span class="fontArial fontSize12 ">Chat
+							/ Talk to the expert to finalise your tax return.</span>
+					</div>
+					<div class="tabText1">
+						<span class="tab2SubHeading"><strong>4. Review
+								&amp; Approval</strong> </span><br /> <span class="fontArial fontSize12 ">Check
+							your tax return and give approval to file.</span>
+					</div>
+					<div class="tabText1">
+						<span class="tab2SubHeading"><strong>5. Payment</strong> </span><br />
+						<span class="fontArial fontSize12 ">Pay your fee online or
+							by cheque.</span>
+					</div>
+					<div class="tabText1">
+						<span class="tab2SubHeading"><strong>6. Filing</strong> </span><br />
+						<span class="fontArial fontSize12 ">Get your tax filed and
+							hoards of other value additions.</span>
+					</div>
+					<br/> <a id="hrefSubmitassisted" class="btn orange">Start</a>
+				</div>
+			</div>		
+		</div>
+		</c:when>
+				<c:otherwise>
+				<ul id="myTab" class="nav nav-tabs">
+			<li class="active"><a href="#assistedfiling" data-toggle="tab">Assisted
+					Filing</a>
+			</li>
+		</ul>
+				<div class="tab-pane fade in active " id="assistedfiling">
+				<div id="#assistedfiling">
 
 					<b><i>File with assistance of Tax Professionals from
 							anywhere!</i> </b><br />
@@ -136,9 +185,56 @@
 					</div>
 					<br/> <a id="hrefSubmitassisted" class="btn orange">Start</a>
 				</div>
-			</div>
-		
-		</div>
+			</div>	
+				</c:otherwise>
+				</c:choose>
+				</c:if>
+		<c:if
+			test="${(financialYear.displayName eq '2011-2012') || (financialYear.displayName eq '2010-2011')}">
+			<ul id="myTab" class="nav nav-tabs">
+			<li class="active"><a href="#assistedfiling" data-toggle="tab">Assisted
+					Filing</a>
+			</li>
+		</ul>
+				<div class="tab-pane fade in active " id="assistedfiling">
+				<div id="#assistedfiling">
+
+					<b><i>File with assistance of Tax Professionals from
+							anywhere!</i> </b><br />
+					<div class="tabText">
+						<span class="tab2SubHeading"><strong>1. Schedule
+								an Appointment</strong> </span><br /> <span class="fontArial fontSize12 ">Schedule
+							an appointment with a tax expert by paying a small fee.</span>
+					</div>
+					<div class="tabText1">
+						<span class="tab2SubHeading"><strong>2. Share your
+								tax document</strong> </span><br /> <span class="fontArial fontSize12 ">Upload
+							your documents that will help the expert to prepare your return.</span>
+					</div>
+					<div class="tabText1">
+						<span class="tab2SubHeading"><strong>3.
+								Interaction</strong> </span><br /> <span class="fontArial fontSize12 ">Chat
+							/ Talk to the expert to finalise your tax return.</span>
+					</div>
+					<div class="tabText1">
+						<span class="tab2SubHeading"><strong>4. Review
+								&amp; Approval</strong> </span><br /> <span class="fontArial fontSize12 ">Check
+							your tax return and give approval to file.</span>
+					</div>
+					<div class="tabText1">
+						<span class="tab2SubHeading"><strong>5. Payment</strong> </span><br />
+						<span class="fontArial fontSize12 ">Pay your fee online or
+							by cheque.</span>
+					</div>
+					<div class="tabText1">
+						<span class="tab2SubHeading"><strong>6. Filing</strong> </span><br />
+						<span class="fontArial fontSize12 ">Get your tax filed and
+							hoards of other value additions.</span>
+					</div>
+					<br/> <a id="hrefSubmitassisted" class="btn orange">Start</a>
+				</div>
+			</div>		
+			</c:if>
 	</form>
 </div>
 <hst:element var="uiCustom" name="script">
