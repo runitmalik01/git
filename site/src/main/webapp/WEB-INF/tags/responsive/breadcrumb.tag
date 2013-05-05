@@ -64,7 +64,7 @@
       <span class="divider">/</span>
    </li>
    <li>
-      <fmt:message key="member.start.application"/>
+      <c:out value="${filingStatus}"/> Information
    </li>
 </ul>
 

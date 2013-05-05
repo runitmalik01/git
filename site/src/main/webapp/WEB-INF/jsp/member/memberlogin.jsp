@@ -21,25 +21,32 @@
 <%@page import="java.util.Enumeration"%>
 <%@include file="../includes/tags.jspf"%>
 <%
-String errorKey = null;
-org.springframework.security.authentication.AuthenticationServiceException authenticationException = (org.springframework.security.authentication.AuthenticationServiceException) request.getSession().getAttribute("SPRING_SECURITY_LAST_EXCEPTION");
-if (authenticationException != null) {
-	String msg = authenticationException.getMessage();
-	if (msg != null && msg.equals("user.not.found")) {
-		errorKey = "login.error.userNameNotFound";
+String errorKey = "login.error";
+try {
+	if (request.getSession() != null) {
+		org.springframework.security.authentication.AuthenticationServiceException authenticationException = (org.springframework.security.authentication.AuthenticationServiceException) request.getSession().getAttribute("SPRING_SECURITY_LAST_EXCEPTION");
+		if (authenticationException != null) {
+			String msg = authenticationException.getMessage();
+			if (msg != null && msg.equals("user.not.found")) {
+				errorKey = "login.error.userNameNotFound";
+			}
+			else if (msg != null && msg.equals("password.mismatch")) {
+				errorKey = "login.error.passwordMismatch";
+			}
+			else if (msg != null && msg.equals("user.account.inactive")) {
+				errorKey = "login.error.inactiveuser";
+			}	
+			else {
+				errorKey = "login.error";
+			}
+			session.removeAttribute("SPRING_SECURITY_LAST_EXCEPTION");
+			pageContext.setAttribute("login_error_key", errorKey);	
+		}
 	}
-	else if (msg != null && msg.equals("password.mismatch")) {
-		errorKey = "login.error.passwordMismatch";
-	}
-	else if (msg != null && msg.equals("user.account.inactive")) {
-		errorKey = "login.error.inactiveuser";
-	}	
-	else {
-		errorKey = "login.error";
-	}
+} catch (Exception ex) {
+	
 }
-session.removeAttribute("SPRING_SECURITY_LAST_EXCEPTION");
-pageContext.setAttribute("login_error_key", errorKey);					
+				
 %>
 <hst:link var="forgotpass" siteMapItemRefId="forgotpass"></hst:link>
 <hst:link var="loginProxy" path="/login/proxy"></hst:link>

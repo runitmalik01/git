@@ -129,7 +129,12 @@ public class StartApplication extends ITReturnComponent {
 					map.put(aKey, MessageFormat.format(ke,memberName));
 				}
 				else {
-					map.put(aKey, rb.getString(aKey));
+					//map.put(aKey, rb.getString(aKey));
+					String ke = rb.getString(aKey);
+					if (log.isInfoEnabled()) {
+						log.info("Now attempting to apply format to " + ke);
+					}
+					map.put(aKey, MessageFormat.format(ke,"the Individual"));
 				}
 			}
 			Map<String, String> fetchmap = new LinkedHashMap<String, String>();

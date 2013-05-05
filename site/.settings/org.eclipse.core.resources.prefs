@@ -4,6 +4,7 @@ encoding//src/main/resources=UTF-8
 encoding//src/main/webapp/WEB-INF/jsp/home/responsive/main.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/jsp/member/consolidated-view-sidebar.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/jsp/member/consolidated-view.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/jsp/member/deduction.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/jsp/member/itreturnhome.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/jsp/member/panhomepagebasic.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/jsp/member/salaryincome.jsp=UTF-8

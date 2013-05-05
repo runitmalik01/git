@@ -525,6 +525,11 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		
 		//how to find the scriptName and the depth
 		//one assumption that the scriptName is always .html file and nothing else
+		String actionInSiteMap =  resolvedMapItem.getLocalParameter("action");
+		String tabName = "";
+		if (actionInSiteMap != null && actionInSiteMap.contains("_")) {
+			tabName = actionInSiteMap.substring(0,actionInSiteMap.indexOf("_"));
+		}
 		String pathInfo = resolvedMapItem.getPathInfo();
 		if (pathInfo != null && pathInfo.contains(".html")) {
 			String[] parts = pathInfo.split("[/]");
