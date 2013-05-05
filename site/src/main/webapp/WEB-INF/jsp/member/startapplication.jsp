@@ -242,7 +242,7 @@ else {
 						<div class="row-fluid show-grid">
 							<div class="span5">Control & management of affairs of the taxpayer is</div>
 							<div class="span4">
-								<select id="">
+								<select id="rsstatus_q" name="rsstatus_q">
 									<option value="">Select</option>
 									<option value="RES">Wholly in India</option>
 									<option value="NRI">Wholly outside India</option>

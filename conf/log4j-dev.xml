@@ -138,9 +138,11 @@
     <level value="info"/>
   </category>
   <category name="com.mootly.wcm">
-    <level value="info"/>
+    <level value="debug"/>
   </category>
-
+  <category name="org.onehippo.forge.security.support.springsecurity">
+    <level value="debug"/>
+  </category>
   <root>
     <level value="warn"/>
     <appender-ref ref="cms"/>

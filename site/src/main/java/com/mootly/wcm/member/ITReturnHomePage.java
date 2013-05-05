@@ -10,6 +10,7 @@
 package com.mootly.wcm.member;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
@@ -27,9 +28,12 @@ import com.mootly.wcm.annotations.DataTypeValidationHelper;
 import com.mootly.wcm.annotations.DataTypeValidationType;
 import com.mootly.wcm.annotations.FormFields;
 import com.mootly.wcm.annotations.RequiredFields;
+import com.mootly.wcm.beans.MemberPersonalInformation;
 import com.mootly.wcm.components.FormSaveResult;
 import com.mootly.wcm.components.ITReturnComponent;
+import com.mootly.wcm.model.FilingStatus;
 import com.mootly.wcm.model.FinancialYear;
+import com.mootly.wcm.model.ITReturnHomePageView;
 import com.mootly.wcm.model.ITReturnType;
 //@PrimaryBean(primaryBeanClass=MemberPersonalInformation.class)
 @FormFields(fieldNames={"pan","pi_last_name","pi_dob","pi_return_type","fy","ack_no","ack_date","defective","notice_no","notice_date"})
@@ -44,8 +48,30 @@ public class ITReturnHomePage extends ITReturnComponent {
 		super.doBeforeRender(request, response);			
 		if (getPanFolder()!= null) {
 			//get all PANs for this member
+			List<ITReturnHomePageView> listOfITReturnHomePageView = new ArrayList<ITReturnHomePageView>();
 			List<HippoFolderBean> pansForMember = getPanFolder().getFolders(); //.compareTo(hippoBean).getChildBeans(HippoFolder.class);
-			if (pansForMember != null) request.setAttribute("pansForMember", pansForMember);			
+			if (pansForMember != null) {
+				for (HippoFolderBean hippoFolderBean:pansForMember) {
+					ITReturnHomePageView itReturnHomePageView = new ITReturnHomePageView();
+					itReturnHomePageView.setPan(hippoFolderBean.getName());
+					List<HippoFolderBean> listOfFY = hippoFolderBean.getChildBeans(HippoFolderBean.class);
+					for (HippoFolderBean aFYBean:listOfFY) {
+						FinancialYear fy = FinancialYear.getByDisplayName(aFYBean.getName());
+						itReturnHomePageView.setFinancialYear(fy);
+						List<HippoFolderBean> listOfItReturnTypes = aFYBean.getChildBeans(HippoFolderBean.class);
+						for (HippoFolderBean aItReturnType:listOfItReturnTypes) {
+							ITReturnType itReturnType = ITReturnType.getByDisplayName(aItReturnType.getName());
+							itReturnHomePageView.setItReturnType(itReturnType);
+							MemberPersonalInformation memberPersonalInformation = aItReturnType.getBean("memberpersonalinformation");
+							if (memberPersonalInformation != null) {
+								itReturnHomePageView.setLastOrOrgName(memberPersonalInformation.getLastName());
+							}
+						}
+					}
+					listOfITReturnHomePageView.add(itReturnHomePageView);
+				}
+				request.setAttribute("listOfITReturnHomePageView", listOfITReturnHomePageView);			
+			}
 		}
 	}
 
