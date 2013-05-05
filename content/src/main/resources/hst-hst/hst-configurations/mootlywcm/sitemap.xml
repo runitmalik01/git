@@ -2739,24 +2739,48 @@
       <sv:value>rebatesection89</sv:value>
     </sv:property>
   </sv:node>
- 
-<sv:node sv:name="serviceprice">
-  <sv:property sv:name="jcr:primaryType" sv:type="Name">
-    <sv:value>hst:sitemapitem</sv:value>
-  </sv:property>
-  <sv:property sv:name="jcr:uuid" sv:type="String">
-    <sv:value>56b18c7d-50a7-46c7-a262-dc530c9e3512</sv:value>
-  </sv:property>
-  <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
-    <sv:value>hst:pages/service-price</sv:value>
-  </sv:property>
-  <sv:property sv:name="hst:refId" sv:type="String">
-    <sv:value>serviceprice</sv:value>
-  </sv:property>
-  <sv:property sv:name="hst:relativecontentpath" sv:type="String">
-    <sv:value>mootlypricingplan</sv:value>
-  </sv:property>
-</sv:node>
-  
-  
+	<sv:node sv:name="serviceprice">
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hst:sitemapitem</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>56b18c7d-50a7-46c7-a262-dc530c9e3512</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+	    <sv:value>hst:pages/service-price</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:refId" sv:type="String">
+	    <sv:value>serviceprice</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:relativecontentpath" sv:type="String">
+	    <sv:value>mootlypricingplan</sv:value>
+	  </sv:property>
+	</sv:node>
+	<sv:node sv:name="xmlgenerator.html" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hst:sitemapitem</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>b6fc6b4f-a30a-487c-beca-c249c8b75176</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+	    <sv:value>hst:pages/xml-generator</sv:value>
+	  </sv:property>
+	  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+	    <sv:value>mainSiteMapItemRefId</sv:value>
+	    <sv:value>action</sv:value>
+	    <sv:value>nextScreen</sv:value>
+	  </sv:property>
+	  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+	    <sv:value>packageselector</sv:value>
+	    <sv:value>EDIT</sv:value>
+	    <sv:value>packageselector</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:refId" sv:type="String">
+	    <sv:value>packageselector</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:relativecontentpath" sv:type="String">
+	    <sv:value>mootlypricingplan</sv:value>
+	  </sv:property>
+	</sv:node>
 </sv:node>

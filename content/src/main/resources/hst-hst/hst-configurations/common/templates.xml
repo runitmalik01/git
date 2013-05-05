@@ -2886,5 +2886,16 @@
     <sv:value>jsp/itreturns/packageselector.jsp</sv:value>
   </sv:property>
 </sv:node>
-  
+	<sv:node sv:name="xml-generator" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hst:template</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>836823b5-335f-4fe4-a037-fe21616e23fd</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:renderpath" sv:type="String">
+	    <sv:value>jsp/member/itreturnxml.jsp</sv:value>
+	  </sv:property>
+	</sv:node>
+
 </sv:node>
