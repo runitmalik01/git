@@ -947,7 +947,7 @@
                 <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
                   <sv:value>${4}</sv:value>
                 </sv:property>
-                <sv:node sv:name="edit">
+                <sv:node sv:name="houseincomeedit">
                   <sv:property sv:name="jcr:primaryType" sv:type="Name">
                     <sv:value>hst:sitemapitem</sv:value>
                   </sv:property>
@@ -964,7 +964,7 @@
                     <sv:value>EDIT_CHILD</sv:value>
                   </sv:property>
                 </sv:node>
-                <sv:node sv:name="delete">
+                <sv:node sv:name="houseincomedelete">
                   <sv:property sv:name="jcr:primaryType" sv:type="Name">
                     <sv:value>hst:sitemapitem</sv:value>
                   </sv:property>
@@ -982,7 +982,7 @@
                   </sv:property>
                 </sv:node>
               </sv:node>
-              <sv:node sv:name="new">
+              <sv:node sv:name="houseincomenew">
                 <sv:property sv:name="jcr:primaryType" sv:type="Name">
                   <sv:value>hst:sitemapitem</sv:value>
                 </sv:property>
@@ -1455,7 +1455,7 @@
                 <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
                   <sv:value>${4}</sv:value>
                 </sv:property>
-                <sv:node sv:name="edit">
+                <sv:node sv:name="advancetaxedit">
                   <sv:property sv:name="jcr:primaryType" sv:type="Name">
                     <sv:value>hst:sitemapitem</sv:value>
                   </sv:property>
@@ -1472,7 +1472,7 @@
                     <sv:value>EDIT_CHILD</sv:value>
                   </sv:property>
                 </sv:node>
-                <sv:node sv:name="delete">
+                <sv:node sv:name="advancetaxdelete">
                   <sv:property sv:name="jcr:primaryType" sv:type="Name">
                     <sv:value>hst:sitemapitem</sv:value>
                   </sv:property>
@@ -1490,7 +1490,7 @@
                   </sv:property>
                 </sv:node>
               </sv:node>
-              <sv:node sv:name="new">
+              <sv:node sv:name="advancetaxnew">
                 <sv:property sv:name="jcr:primaryType" sv:type="Name">
                   <sv:value>hst:sitemapitem</sv:value>
                 </sv:property>
