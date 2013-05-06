@@ -1,9 +1,30 @@
 <%@include file="../includes/tags.jspf" %>
 
-<script type="syntaxhighlighter" class="brush: xml">
+<label class="radio inline">
+  <input type="radio" name="optionsRadios" id="showSummary" value="summary" <c:if test="${empty show || show == 'summary'}">checked</c:if>>
+  Show Summary
+</label>
+<label class="radio inline">
+  <input type="radio" name="optionsRadios" id="showXml" value="xml" <c:if test="${show == 'xml'}">checked</c:if>>
+  Show XML
+</label>
+<c:choose>
+	<c:when test="${empty show || show == 'summary'}">
+		<pre>
+			<c:out value="${theForm.personalInfo.assesseeName.surNameOrOrgName}"/>
+		</pre>
+	</c:when>
+	<c:when test="${not empty show || show == 'xml'}">
+		<script type="syntaxhighlighter" class="brush: xml">
 <![CDATA[
   <c:out value="${xml}" escapeXml="false"/>
 ]]></script>
+	</c:when>
+	<c:otherwise>
+		
+	</c:otherwise>
+</c:choose>
+
 <%--
 <pre class="brush: xml">
  	<c:out value="${xml}" escapeXml="true"/>	
@@ -51,6 +72,9 @@
     <hst:attribute name="type">text/javascript</hst:attribute>
 		$(document).ready(function() {
 			SyntaxHighlighter.all();
+			$("#showSummary,#showXml").click(function(){
+				window.location.href="${scriptName}?show=" + $(this).val() ;
+			});
 		});    
 </hst:element>
 <hst:headContribution element="${uiCustom}" category="jsInternal"/>

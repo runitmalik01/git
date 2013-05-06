@@ -47,6 +47,9 @@ public class XmlGenerator extends ITReturnComponent {
 	public void doBeforeRender(HstRequest request, HstResponse response) {
 		// TODO Auto-generated method stub
 		super.doBeforeRender(request, response);	
+		
+		if (getPublicRequestParameter(request, "show") != null) request.setAttribute("show",getPublicRequestParameter(request, "show"));
+		
 		//simple test
 		ITRForm whichITRForm = ITRForm.getEnumByDisplayName(getLocalParameter("formName", request));
 		if (whichITRForm.equals(ITRForm.UNKNOWN)) {
@@ -81,6 +84,9 @@ public class XmlGenerator extends ITReturnComponent {
 		personalInfo.setAssesseeName(assesseeName);
 		itr1.setPersonalInfo(personalInfo);
 		
+		
+		request.setAttribute("theForm", itr1);
+		/* This is where we generate XML */
 		StringWriter sw = new StringWriter();
 		try {
 			JAXBContext jaxbContext = JAXBContext.newInstance(ITR1.class);

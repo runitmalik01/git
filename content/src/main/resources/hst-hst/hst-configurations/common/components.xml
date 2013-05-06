@@ -1144,7 +1144,7 @@
 	    <sv:value>8c7d7e52-c9fd-4e9d-bf45-fdbe14a3d695</sv:value>
 	  </sv:property>
 	  <sv:property sv:name="hst:componentclassname" sv:type="String">
-	    <sv:value>com.mootly.wcm.components.member.XmlGenerator</sv:value>
+	    <sv:value>com.mootly.wcm.member.XmlGenerator</sv:value>
 	  </sv:property>
 	  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String"/>
 	  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String"/>
