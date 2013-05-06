@@ -201,7 +201,7 @@ public class HouseIncomeDetail extends HippoItem implements FormMapFiller {
 		if (Property_share == null) Property_share = getProperty("mootlywcm:Property_share");
 		return Property_share;
 	}
-	
+
 
 	public final void setAddress(String  Address) {
 		this.Address =  Address;
@@ -290,7 +290,7 @@ public class HouseIncomeDetail extends HippoItem implements FormMapFiller {
 	public final void setProperty_share(String Property_share) {
 		this.Property_share = Property_share;
 	}
-	
+
 	public final String getLetOut() {
 		if (letout == null) letout = getProperty("mootlywcm:letout");
 		return letout;
@@ -360,7 +360,7 @@ public class HouseIncomeDetail extends HippoItem implements FormMapFiller {
 			node.setProperty("mootlywcm:Total", getTotal());	
 			node.setProperty("mootlywcm:Income_hproperty", getIncome_hproperty());	
 			node.setProperty("mootlywcm:Property_share", getProperty_share());	
-				
+
 		}catch (RepositoryException re) {
 			log.error("Binding Node Error",re);
 
@@ -372,6 +372,11 @@ public class HouseIncomeDetail extends HippoItem implements FormMapFiller {
 		// TODO Auto-generated method stub
 		// TODO Auto-generated method stub
 		if (formMap == null) return;
+		double amt=0.0;
+		double amt1=0.0;
+		double amt2=0.0;
+		double amt3=0.0;
+		double amt4=0.0;
 		if (formMap.getField("Address") != null){
 			setAddress(formMap.getField("Address").getValue());
 			log.info("valuye of add"+formMap.getField("Address").getValue());
@@ -452,34 +457,66 @@ public class HouseIncomeDetail extends HippoItem implements FormMapFiller {
 		}
 		if (formMap.getField("Letable_value") != null) {
 			String strlet_val= formMap.getField("Letable_value").getValue();
-			double amt=Double.parseDouble(strlet_val);
+			log.info("value of letable is"+strlet_val);
+			if(null != strlet_val){
+				amt=Double.parseDouble(strlet_val);
+			} else {
+				amt= 0.0;
+				log.info("value of amt"+amt);
+			}
 			log.info("value of amt is"+amt);
 			setLetable_value(amt);
 		}
 		if (formMap.getField("Unrealised_rent") != null) {
 			String strunreal_rent=(formMap.getField("Unrealised_rent").getValue());
-			double amt=Double.parseDouble(strunreal_rent);
-			log.info("value of amt is"+amt);
-			setUnrealised_rent(amt);
+			log.info("value of rent is"+strunreal_rent);
+			if(strunreal_rent != null){
+				amt1=Double.parseDouble(strunreal_rent);
+
+			} else {
+				amt1= 0.0;
+			}
+			log.info("value of amt1 is"+amt1);
+			setUnrealised_rent(amt1);
 		}
 		if (formMap.getField("Local_tax") != null) {
 			String strloc_tax=(formMap.getField("Local_tax").getValue());
-			double amt=Double.parseDouble(strloc_tax);
-			log.info("value of amt is"+amt);
-			setLocal_tax(amt);
+			log.info("value of local is"+strloc_tax);
+			if(strloc_tax != null){
+				amt2=Double.parseDouble(strloc_tax);
+
+			} else {
+				amt2= 0.0;
+			}
+
+			log.info("value of amt2 is"+amt2);
+			setLocal_tax(amt2);
 		}
 		if (formMap.getField("Total") != null) {
 			String strtot=(formMap.getField("Total").getValue());
-			double amt=Double.parseDouble(strtot);
-			log.info("value of amt is"+amt);
-			setTotal(amt);
+			log.info("value of total is"+strtot);
+			if(strtot != null){
+				amt3=Double.parseDouble(strtot);
+
+			} else {
+				amt3= 0.0;
+			}
+
+			log.info("value of amt3 is"+amt3);
+			setTotal(amt3);
 		}
 
 		if (formMap.getField("Income_hproperty") != null) {
 			String strincome=(formMap.getField("Income_hproperty").getValue());
-			double amt=Double.parseDouble(strincome);
-			log.info("value of amt is"+amt);
-			setIncome_hproperty(amt);
+			if(strincome != null){
+				amt4=Double.parseDouble(strincome);
+
+			} else {
+				amt4= 0.0;
+			}
+
+			log.info("value of amt4 is"+amt);
+			setIncome_hproperty(amt4);
 		}
 		if (formMap.getField("Property_share") != null) {
 			setProperty_share(formMap.getField("Property_share").getValue());
