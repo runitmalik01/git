@@ -31,6 +31,7 @@ import com.mootly.wcm.beans.MemberDeductionScheduleVIA;
 import com.mootly.wcm.beans.MemberPersonalInformation;
 import com.mootly.wcm.beans.MemberRebateSectionEightyNine;
 import com.mootly.wcm.beans.OtherSourceIncome;
+import com.mootly.wcm.beans.OtherSourcesDocument;
 import com.mootly.wcm.beans.RebateSec90Document;
 import com.mootly.wcm.beans.SalaryIncomeDocument;
 import com.mootly.wcm.beans.SecuritiesInformation;
@@ -58,7 +59,7 @@ public class Calculations extends ITReturnComponent {
 		member=(Member)request.getSession().getAttribute("user");
 		String username=member.getUserName().trim();
 		modusername=username.replaceAll("@", "-at-").trim();
-		String filing_year = request.getRequestContext().getResolvedSiteMapItem().getParameter("assessmentYear");
+	   filing_year = request.getRequestContext().getResolvedSiteMapItem().getParameter("financialYear");
 		//itReturnType = request.getRequestContext().getResolvedSiteMapItem().getParameter("itReturnType"); //original versus amend
 		pan = request.getRequestContext().getResolvedSiteMapItem().getParameter("pan"); //original versus amend
 		/*pan=(String) request.getSession().getAttribute("pan");
@@ -236,11 +237,11 @@ public class Calculations extends ITReturnComponent {
 		log.info("inside fetchOtherIncomeDocument--->before try:-");
 		try {
 
-			String itReturnFolderPathFetch = ContentStructure.getOtherIncomePathUpdate(request,modusername);
-			OtherSourceIncome	objOtherSourceIncome = (OtherSourceIncome)getObjectBeanManager(request).getObject(itReturnFolderPathFetch);
+			String itReturnFolderPathFetch = ContentStructure.getOtherIncomePathUpdate(request,modusername,pan,filing_year);
+			OtherSourcesDocument	objOtherSourceIncome = (OtherSourcesDocument)getObjectBeanManager(request).getObject(itReturnFolderPathFetch);
 			log.info("Calculation->fetchSalaryIncomeDocument--->objSalaryIncomeDocument:"+objOtherSourceIncome);
 			if(objOtherSourceIncome!=null){
-				fOtherIncome =  Double.parseDouble(objOtherSourceIncome.getTaxable_income());
+				fOtherIncome =  (objOtherSourceIncome.getTaxable_income());
 				log.info("Calculation->fetchSalaryIncomeDocument--->arrlSalaryIncome list:"+fOtherIncome);
 			}
 
@@ -515,16 +516,17 @@ public class Calculations extends ITReturnComponent {
 		try {
 			String path=ContentStructure.getPersonalDocumentPath(pan,filing_year,modusername);
 			MemberPersonalInformation document=(MemberPersonalInformation)getObjectBeanManager(request).getObject(path);				
-			Calendar dob=document.getDOB();
-			Date date =dob.getTime();
+			//Calendar dob=document.getDOB();
+			//Date date =dob.getTime();
 			DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-			String fetchdob=formatter.format(date);
-			request.setAttribute("dob", fetchdob);
+			//String fetchdob=formatter.format(date);
+			//request.setAttribute("dob", fetchdob);
 			request.setAttribute("document", document);
 			MemberAge age = new MemberAge();
-			log.info("dob currentdate1 date  is"+age.MemberAgeCalculate(dob));
-			int Age = age.MemberAgeCalculate(dob);
-			log.info("age is"+Age);
+			//log.info("dob currentdate1 date  is"+age.MemberAgeCalculate(dob));
+			//int Age = age.MemberAgeCalculate(dob);
+			int Age = 25;
+			//log.info("age is"+Age);
 			if(filing_year == "2012-2013") { 
 				log.info("i am fetching income tax "+filing_year);
 				log.info("value of taxable income is"+fTaxableIncome);
