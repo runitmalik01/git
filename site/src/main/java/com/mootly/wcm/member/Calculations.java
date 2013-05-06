@@ -215,7 +215,7 @@ public class Calculations extends ITReturnComponent {
 			objSalaryIncomeDocument = (SalaryIncomeDocument)getObjectBeanManager(request).getObject(itReturnFolderPath);
 			log.info("after objjjjjjjjjjjjsalaryincome documenttttttttttttttttt");
 			if(objSalaryIncomeDocument!=null){
-				fSalary = Double.parseDouble(objSalaryIncomeDocument.getTotal());
+				fSalary = objSalaryIncomeDocument.getTotal();
 				log.info("total is "+fSalary);
 			}
 			
