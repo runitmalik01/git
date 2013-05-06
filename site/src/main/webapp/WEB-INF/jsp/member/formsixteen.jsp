@@ -1,6 +1,7 @@
 
 <%@include file="../includes/tags.jspf"%>
 <%@ page import="com.mootly.wcm.utils.*"%>
+<%@ page import="com.mootly.wcm.utils.*"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.mootly.wcm.beans.*"%>
 <hst:actionURL var="actionUrl"></hst:actionURL>
@@ -19,30 +20,27 @@
 		</div>
 	</c:forEach>
 </c:if>
-<h1>Form 16</h1>
+<h3>Form 16</h3>
 <p>Certificate under section 203 of the Income_tax Act, 1961 for tax
-	deducted at source from income chargeable under the head "Salaries"</p>
+	deducted at source from income chargeable under the head "Salaries".</p>
 <form id="frmdata" action="${actionUrl}" name="frm16" method="post">
 	<fieldset>
 		<legend style="color: green">Employer Details</legend>
 		<table>
 			<tr>
-				<td><label>Name and address of the Employer</label></td>
-				<td><input type="text" name="employer"
+				<td><label>Name and address of the Employer</label>
+				<input type="text" name="employer"
 					value="${parentBean.employer}" maxlength="60"
 					placeholder="employer name..."></td>
-				<td><label>Name and designation of the Employee</label></td>
-				<td><input type="text" name="employee"
+				<td><label>Name of the Employee</label>
+				<input type="text" name="employee"
 					value="${parentBean.employee}" maxlength="60"
 					placeholder="employee name..."></td>
 			</tr>
-		</table>
-
-		<table>
 			<tr>
 				<td><label>PAN No. of the Deductor</label>
-				</td>
-				<td><input type="text" name="pan_deductor"
+				
+			<input type="text" name="pan_deductor"
 					value="${parentBean.pan_deductor}" placeholder="123456789">
 				</td>
 
@@ -50,8 +48,8 @@
 					name="tan_deductor" value="${parentBean.tan_deductor}"
 					placeholder="123456789">
 				</td>
-				<td><label>PAN No. of the Employee </label></td>
-				<td><input type="text" name="pan_employee"
+				<td><label>PAN No. of the Employee </label>
+				<input type="text" name="pan_employee"
 					value="${parentBean.pan_employee}" placeholder="123456789">
 				</td>
 
@@ -220,8 +218,8 @@
 				<td><label><strong>3.</strong> </label> <label>
 						Balance(1-2)</label>
 				</td>
-				<td><input type="text" name="deductions_entertainment"
-					class="numberinput" value="${parentBean.employer}"
+				<td><input type="text" name="balance"
+					class="numberinput" value="${parentBean.balance}"
 					placeholder="Rs."></td>
 			</tr>
 			<tr>
@@ -298,7 +296,7 @@
 			<table>
 				<tr>
 					<td><label><strong>9.</strong> </label> <label>Deductions
-							under Chapter VI_A </label>
+							under Chapter VI-A </label>
 					</td>
 					<td></td>
 					<td></td>
@@ -318,10 +316,17 @@
 					<td><label>(a) section 80C </label>
 					</td>
 				</tr>
-				<tr>
+				<tr>         
+					 
+						
 					<td><label>(i) </label></td>
-					<td><input type="text" name="c_1" value="${parentBean.c_1}"
-						class="numberinput" placeholder="Rs.">
+					<td> <select id="c_1" name="c_1">
+					<option value="">Select One</option>
+						<c:forEach var="booleanCombo" items="${objhashmapdeduction}">
+							<option
+								"<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD') && childBean.state == booleanCombo.value}">selected</c:if>" value="${booleanCombo.value}">${booleanCombo.value}</option>
+						</c:forEach>
+					</select> 
 					</td>
 					<td></td>
 					<td></td>
@@ -403,7 +408,7 @@
 		<table>
 			<tr>
 				<th><label>(B) other sections (e.g., 80E, 80G etc.)
-						under Chapter VI_A</label>
+						under Chapter VI-A</label>
 				</th>
 				<th><label>Gross amount </label>
 				</th>
@@ -492,7 +497,7 @@
 		<table>
 			<tr>
 				<td><label><strong>10.</strong> Aggregate of deductible
-						amount under Chapter VI_A</label>
+						amount under Chapter VI-A</label>
 				<td></td>
 				<td></td>
 				<td><input type="text" name="aggregate" class="numberinput"
