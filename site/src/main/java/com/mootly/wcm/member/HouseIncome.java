@@ -34,19 +34,16 @@ import com.mootly.wcm.components.ITReturnComponent;
 		  "Local_tax",
 		  "Total",
 		  "Income_hproperty",
-		  "Tenant_pan",
-		
-		  },
+		  "Tenant_pan"
+	},
 dataTypes= {
 		  DataTypeValidationType.DECIMAL, 
 		  DataTypeValidationType.DECIMAL,
 		  DataTypeValidationType.DECIMAL,
 		  DataTypeValidationType.DECIMAL,
 		  DataTypeValidationType.DECIMAL,
-		  DataTypeValidationType.PAN,
-		  
-		 
-		 }
+		  DataTypeValidationType.PAN
+	 }
 )
 public class HouseIncome extends ITReturnComponent {
 	private static final Logger log = LoggerFactory.getLogger(HouseIncome.class);
