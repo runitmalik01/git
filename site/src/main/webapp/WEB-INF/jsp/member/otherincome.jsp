@@ -23,27 +23,7 @@
 			key="member.other.income" /> </a>
 
 </div>
-<hst:link var="mainSiteMapRefId"
-	siteMapItemRefId="${mainSiteMapItemRefId}" />
-<%
-	String varToReplace = (String) pageContext
-			.getAttribute("mainSiteMapRefId");
-	if (varToReplace != null) {
-		String pan = (String) request.getAttribute("pan");
-		String itReturnType = (String) request
-				.getAttribute("itReturnType");
-		String modifiedSiteMapRefId = varToReplace
-				.replaceFirst("_default_", itReturnType)
-				.replace("_default_", pan)
-				.replaceAll("othersources.html",
-						"adjustmentoflosses.html");
-		pageContext.setAttribute("modifiedSiteMapRefId",
-				modifiedSiteMapRefId);
-	} else {
-		pageContext.setAttribute("modifiedSiteMapRefId",
-				mainSiteMapRefId);
-	}
-%>
+
 
 <hst:actionURL var="actionUrl"></hst:actionURL>
 <form name="oi" id="frmIncomeinfo" action="${actionUrl}" method="post">
