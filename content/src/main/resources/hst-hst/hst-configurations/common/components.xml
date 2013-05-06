@@ -1100,7 +1100,10 @@
     <sv:value>formsixteen</sv:value>
   </sv:property>
 
-	<sv:node sv:name="xml-generator" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+
+</sv:node>
+
+	<sv:node sv:name="xml-generator" >
 	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
 	    <sv:value>hst:component</sv:value>
 	  </sv:property>
@@ -1116,23 +1119,6 @@
 	    <sv:value>xml-generator</sv:value>
 	  </sv:property>
 	</sv:node>
-
-</sv:node>
   
-  <sv:node sv:name="xml-generator">
-    <sv:property sv:name="jcr:primaryType" sv:type="Name">
-      <sv:value>hst:component</sv:value>
-    </sv:property>
-    <sv:property sv:name="jcr:uuid" sv:type="String">
-      <sv:value>8c7d7e52-c9fd-4e9d-bf45-fdbe14a3d695</sv:value>
-    </sv:property>
-    <sv:property sv:name="hst:componentclassname" sv:type="String">
-      <sv:value>com.mootly.wcm.components.member.XmlGenerator</sv:value>
-    </sv:property>
-    <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String"/>
-    <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String"/>
-    <sv:property sv:name="hst:template" sv:type="String">
-      <sv:value>xml-generator</sv:value>
-    </sv:property>
-  </sv:node>
+  
 </sv:node>
