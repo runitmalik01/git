@@ -105,6 +105,7 @@
 			</div> --%>
 			<div class="tab-pane fade" id="assistedfiling">
 				<div id="#assistedfiling">
+
 					<b><i>File with assistance of Tax Professionals from
 							anywhere!</i> </b><br />
 					<div class="tabText">
@@ -191,12 +192,7 @@
 				</c:if>
 		<c:if
 			test="${(financialYear.displayName eq '2011-2012') || (financialYear.displayName eq '2010-2011')}">
-			<ul id="myTab" class="nav nav-tabs">
-			<li class="active"><a href="#assistedfiling" data-toggle="tab">Assisted
-					Filing</a>
-			</li>
-		</ul>
-				<div class="tab-pane fade in active " id="assistedfiling">
+			<div class="tab-pane fade" id="assistedfiling">
 				<div id="#assistedfiling">
 
 					<b><i>File with assistance of Tax Professionals from
