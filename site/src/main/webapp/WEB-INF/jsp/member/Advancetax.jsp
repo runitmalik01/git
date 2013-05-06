@@ -34,19 +34,6 @@ function calculate(){
 
 <hst:link var="mainSiteMapRefId" />
 
-<%
-String varToReplace = (String) pageContext.getAttribute("mainSiteMapRefId");
-if (varToReplace != null) {
-    String pan = (String) request.getAttribute("pan");
-    String itReturnType = (String) request.getAttribute("itReturnType");
- String modifiedSiteMapRefId = varToReplace.replaceFirst("_default_",itReturnType).replace("_default_", pan).replaceAll("advancetax","selfassesmenttax");
- pageContext.setAttribute("modifiedSiteMapRefId",modifiedSiteMapRefId);
-}
-else {
- pageContext.setAttribute("modifiedSiteMapRefId",mainSiteMapRefId);
-}
-%>
- 
  <hst:link var ="mainSiteMapRefId" siteMapItemRefId="${mainSiteMapItemRefId}"/>
 
 
@@ -136,9 +123,9 @@ else {
 						<td><c:out value="${advancetaxdetail.p_Serial}" /></td>
 						<td><c:out value="${advancetaxdetail.p_Amount}" /></td>
 						<td><a
-							href="${redirectURLToSamePage}/<c:out value="${advancetaxdetail.canonicalUUID}"/>/edit"><small>Edit</small>
+							href="${redirectURLToSamePage}/<c:out value="${advancetaxdetail.canonicalUUID}"/>/advancetaxedit"><small>Edit</small>
 						</a>&nbsp;&nbsp;<a
-							href="${redirectURLToSamePage}/<c:out value="${advancetaxdetail.canonicalUUID}"/>/delete"><small>Delete</small>
+							href="${redirectURLToSamePage}/<c:out value="${advancetaxdetail.canonicalUUID}"/>/advancetaxdelete"><small>Delete</small>
 						</a></td>
 
 					</tr>
@@ -151,7 +138,7 @@ else {
 				</c:if>
 		</table>
 
-		<a href="${redirectURLToSamePage}/new" class="button orange">Add
+		<a href="${redirectURLToSamePage}/advancetaxnew" class="button orange">Add
 			New</a>
 			<a href="${modifiedSiteMapRefId}" class="button orange" style="margin-left:100px;">Next</a>
 		<table><tr align="center">
