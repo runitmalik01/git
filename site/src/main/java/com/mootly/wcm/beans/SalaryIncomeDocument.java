@@ -55,7 +55,7 @@ public class SalaryIncomeDocument extends BaseDocument implements ContentNodeBin
 	static final public String NODE_NAME = "salaryincomedocument";
 	final String PROP_DETAIL_BEAN="mootlywcm:salaryincomedetail";
 	private String itFolderUuid;
-	private String Total;
+	private Double Total;
 	public String getGross_salary() {
 		return "0";
 	}
@@ -78,12 +78,12 @@ public class SalaryIncomeDocument extends BaseDocument implements ContentNodeBin
 		if (salaryIncomeDetailList == null) salaryIncomeDetailList = new ArrayList<SalaryIncomeDetail>();
 		salaryIncomeDetailList.add(salaryIncomeDetail);
 	}
-	public final String getTotal() {
+	public final Double getTotal() {
 		if (Total == null) Total = getProperty("mootlywcm:Total");
 		return Total;
 	}
 
-	public final void setTotal(String Total) {
+	public final void setTotal(Double Total) {
 		this.Total = Total;
 	}
 
@@ -120,16 +120,16 @@ public class SalaryIncomeDocument extends BaseDocument implements ContentNodeBin
 	        		aNode.remove();
 	        	}
         	}
-        	float sum=0.0f;
+        	double sum=0.0;
         	if (salaryincome.getSalaryIncomeDetailList() != null && salaryincome.getSalaryIncomeDetailList().size() > 0 ){ 
         		for (SalaryIncomeDetail salaryIncomeDetail:salaryincome.getSalaryIncomeDetailList()) {
         			if (!salaryIncomeDetail.isMarkedForDeletion()) {
-        				float amount=Float.parseFloat(salaryIncomeDetail.getTaxable_earning());
+        				double amount=salaryIncomeDetail.getTaxable_earning();
 						sum=sum+amount;
 		                javax.jcr.Node html = node.addNode(PROP_DETAIL_BEAN, PROP_DETAIL_BEAN);
 		                salaryIncomeDetail.bindToNode(html); 
         			}
-        		}setTotal(String.valueOf(sum));
+        		}setTotal(sum);
         		node.setProperty("mootlywcm:Total",getTotal());
         	}
         	/*
