@@ -859,24 +859,7 @@
                 <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
                   <sv:value>${4}</sv:value>
                 </sv:property>
-                <sv:node sv:name="edit">
-                  <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                    <sv:value>hst:sitemapitem</sv:value>
-                  </sv:property>
-                  <sv:property sv:name="jcr:uuid" sv:type="String">
-                    <sv:value>e12cc2cd-cf17-45e9-bc24-58fb00f4a015</sv:value>
-                  </sv:property>
-                  <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
-                    <sv:value>hst:pages/salaryincome</sv:value>
-                  </sv:property>
-                  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
-                    <sv:value>action</sv:value>
-                  </sv:property>
-                  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
-                    <sv:value>EDIT_CHILD</sv:value>
-                  </sv:property>
-                </sv:node>
-                <sv:node sv:name="delete">
+                <sv:node sv:name="salaryincomedelete">
                   <sv:property sv:name="jcr:primaryType" sv:type="Name">
                     <sv:value>hst:sitemapitem</sv:value>
                   </sv:property>
@@ -893,8 +876,25 @@
                     <sv:value>DELETE_CHILD</sv:value>
                   </sv:property>
                 </sv:node>
+                <sv:node sv:name="salaryincomeedit">
+                  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                    <sv:value>hst:sitemapitem</sv:value>
+                  </sv:property>
+                  <sv:property sv:name="jcr:uuid" sv:type="String">
+                    <sv:value>e12cc2cd-cf17-45e9-bc24-58fb00f4a015</sv:value>
+                  </sv:property>
+                  <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+                    <sv:value>hst:pages/salaryincome</sv:value>
+                  </sv:property>
+                  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+                    <sv:value>action</sv:value>
+                  </sv:property>
+                  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+                    <sv:value>EDIT_CHILD</sv:value>
+                  </sv:property>
+                </sv:node>
               </sv:node>
-              <sv:node sv:name="new">
+              <sv:node sv:name="salaryincomenew">
                 <sv:property sv:name="jcr:primaryType" sv:type="Name">
                   <sv:value>hst:sitemapitem</sv:value>
                 </sv:property>
