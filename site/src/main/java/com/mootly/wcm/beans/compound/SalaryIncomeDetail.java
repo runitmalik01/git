@@ -59,7 +59,7 @@ public class SalaryIncomeDetail extends HippoItem implements FormMapFiller {
 	private String Perquisite;
 	private String Profit;
 	private String Employe_category;
-	private String Taxable_earning;
+	private Double Taxable_earning;
 	private String from;
 	private String To;
 	private String From;
@@ -121,7 +121,7 @@ public class SalaryIncomeDetail extends HippoItem implements FormMapFiller {
 		if (To== null) To = getProperty("mootlywcm:To");
 		return To;
 	}
-	public final String getTaxable_earning() {
+	public final Double getTaxable_earning() {
 		if (Taxable_earning== null) Taxable_earning = getProperty("mootlywcm:Taxable_earning");
 		return Taxable_earning;
 	}
@@ -181,7 +181,7 @@ public class SalaryIncomeDetail extends HippoItem implements FormMapFiller {
 	public void setProfit(String Profit) {
 		this.Profit = Profit;
 	}
-	public void setTaxable_earning(String Taxable_earning) {
+	public void setTaxable_earning(Double Taxable_earning) {
 		this.Taxable_earning = Taxable_earning;
 	}
 	
@@ -265,6 +265,11 @@ public class SalaryIncomeDetail extends HippoItem implements FormMapFiller {
 		}
 		if ( formMap.getField("State") != null) {
 			setState(formMap.getField("State").getValue());
+		}
+		if ( formMap.getField("Taxable_earning") != null) {
+			String strEarning=formMap.getField("Taxable_earning").getValue();
+			Double taxableEarning=Double.parseDouble(strEarning);
+			setTaxable_earning(taxableEarning);
 		}
 		if ( formMap.getField("Pin") != null) {
 			setPin(formMap.getField("Pin").getValue());
