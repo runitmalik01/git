@@ -1,8 +1,7 @@
 <%@include file="../includes/tags.jspf"%>
 <%@ page import="com.mootly.wcm.utils.*"%>
 <%@ page import="java.util.*"%>
-<%@page import="com.mootly.wcm.beans.compound.HouseIncomeDetail"%>
-<%@page import="com.mootly.wcm.member.HouseIncome"%>
+
 <%@ page import="com.mootly.wcm.beans.*"%>
 <%
 	ValueListService objValueListService = ValueListServiceImpl
@@ -401,6 +400,8 @@
 	</c:when>
 	<c:otherwise>
 		<!--  show the table -->
+		
+
 		<table>
 				<tr align="center">
 					<th><b>Property Let Out</b>
@@ -442,6 +443,7 @@
 					
 				</c:if>
 			</table>
-		<a href="${redirectURLToSamePage}/new" class="button orange">Add New</a>
+		<a href="${scriptName}/houseincomenew" class="button orange">Add New</a>
+
 	</c:otherwise>
 </c:choose>
