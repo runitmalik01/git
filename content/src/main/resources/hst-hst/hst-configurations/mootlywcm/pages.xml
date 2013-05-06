@@ -6577,41 +6577,39 @@
       </sv:node>
     </sv:node>
   </sv:node>
-  
-   <sv:node sv:name="formsixteen" >
-  <sv:property sv:name="jcr:primaryType" sv:type="Name">
-    <sv:value>hst:component</sv:value>
-  </sv:property>
-  <sv:property sv:name="jcr:uuid" sv:type="String">
-    <sv:value>1285c3a7-861d-43c9-8ad8-51b933753d9a</sv:value>
-  </sv:property>
-  <sv:property sv:name="hst:referencecomponent" sv:type="String">
-    <sv:value>hst:pages/simplepage.re</sv:value>
-  </sv:property>
-  <sv:node sv:name="main">
+  <sv:node sv:name="formsixteen">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
       <sv:value>hst:component</sv:value>
     </sv:property>
     <sv:property sv:name="jcr:uuid" sv:type="String">
-      <sv:value>f2995e03-d883-4b6e-9b88-64609c3c772e</sv:value>
+      <sv:value>1285c3a7-861d-43c9-8ad8-51b933753d9a</sv:value>
     </sv:property>
-    <sv:property sv:name="hst:template" sv:type="String">
-      <sv:value>standard.main.re</sv:value>
+    <sv:property sv:name="hst:referencecomponent" sv:type="String">
+      <sv:value>hst:pages/simplepage.re</sv:value>
     </sv:property>
-    <sv:node sv:name="content">
+    <sv:node sv:name="main">
       <sv:property sv:name="jcr:primaryType" sv:type="Name">
         <sv:value>hst:component</sv:value>
       </sv:property>
       <sv:property sv:name="jcr:uuid" sv:type="String">
-        <sv:value>924c46f1-bc42-437a-9583-ea5ee5d34481</sv:value>
+        <sv:value>f2995e03-d883-4b6e-9b88-64609c3c772e</sv:value>
       </sv:property>
-      <sv:property sv:name="hst:referencecomponent" sv:type="String">
-        <sv:value>hst:components/member.formsixteen</sv:value>
+      <sv:property sv:name="hst:template" sv:type="String">
+        <sv:value>standard.main.re</sv:value>
       </sv:property>
+      <sv:node sv:name="content">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hst:component</sv:value>
+        </sv:property>
+        <sv:property sv:name="jcr:uuid" sv:type="String">
+          <sv:value>924c46f1-bc42-437a-9583-ea5ee5d34481</sv:value>
+        </sv:property>
+        <sv:property sv:name="hst:referencecomponent" sv:type="String">
+          <sv:value>hst:components/member.formsixteen</sv:value>
+        </sv:property>
+      </sv:node>
     </sv:node>
   </sv:node>
-</sv:node>
-  
   <sv:node sv:name="member-itreturn">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
       <sv:value>hst:component</sv:value>
@@ -7248,6 +7246,20 @@
           </sv:property>
           <sv:property sv:name="hst:template" sv:type="String">
             <sv:value>advancetaxgrid</sv:value>
+          </sv:property>
+        </sv:node>
+        <sv:node sv:name="salaryAndpenson">
+          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+            <sv:value>hst:component</sv:value>
+          </sv:property>
+          <sv:property sv:name="jcr:uuid" sv:type="String">
+            <sv:value>f5ad8a33-8f17-4f7f-9f9c-7e429e958a34</sv:value>
+          </sv:property>
+          <sv:property sv:name="hst:componentclassname" sv:type="String">
+            <sv:value>com.mootly.wcm.member.FormSixteen</sv:value>
+          </sv:property>
+          <sv:property sv:name="hst:template" sv:type="String">
+            <sv:value>formsixteen</sv:value>
           </sv:property>
         </sv:node>
       </sv:node>
