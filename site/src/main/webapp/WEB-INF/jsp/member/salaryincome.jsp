@@ -188,13 +188,10 @@
 			</form>
 			
 			<a href="${scriptName}" class="button olive">Cancel</a>&nbsp;<a
-				href="javascript:void(0)" id="hrefLogin" class="button orange">Save</a>
+				href="javascript:void(0)" id="myModalHref" class="button orange">Save</a>
 
-			<hst:element var="uiCustom" name="script">
-				<hst:attribute name="type">text/javascript</hst:attribute>
-				<res:client-validation/>
-		</hst:element>
-			<hst:headContribution element="${uiCustom}" category="jsInternal" />
+			<res:client-validation formId="frmdata" screenConfigurationDocumentName="salaryincome" formSubmitButtonId="myModalHref"/>
+			
 		</c:when>
 		<c:otherwise>
 			<table>
@@ -213,7 +210,7 @@
 						var="salaryItemDetail">
 						<tr>
 							<td><a
-								href="${scriptName}/<c:out value="${salaryItemDetail.canonicalUUID}"/>/edit"><c:out
+								href="${scriptName}/<c:out value="${salaryItemDetail.canonicalUUID}"/>/salaryincomeedit"><c:out
 										value="${salaryItemDetail.name_employer}" />
 							</a>
 							</td>
@@ -223,9 +220,9 @@
 							<td><c:out value="${salaryItemDetail.taxable_earning}" />
 							</td>
 							<td><a
-								href="${scriptName}/<c:out value="${salaryItemDetail.canonicalUUID}"/>/edit"><small>Edit</small>
+								href="${scriptName}/<c:out value="${salaryItemDetail.canonicalUUID}"/>/salaryincomeedit"><small>Edit</small>
 							</a>&nbsp;&nbsp;<a
-								href="${scriptName}/<c:out value="${salaryItemDetail.canonicalUUID}"/>/delete"><small>Delete</small>
+								href="${scriptName}/<c:out value="${salaryItemDetail.canonicalUUID}"/>/salaryincomedelete"><small>Delete</small>
 							</a>
 							</td>
 						</tr>
@@ -236,7 +233,7 @@
 						</td>
 				</c:if>
 			</table>
-			<a href="${scriptName}/new" class="button orange">Add
+			<a href="${scriptName}/salaryincomenew" class="button orange">Add
 				New</a>
 		</c:otherwise>
 	</c:choose>
