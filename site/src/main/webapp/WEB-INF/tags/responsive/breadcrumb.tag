@@ -35,7 +35,6 @@
       </a>
       <span class="divider">/</span>
    </li>
-   <li><a href="#">Basic Package</a> <span class="divider">/</span></li>
    <li class="active">
       <div class="btn-group">
          <button class="btn btn-info dropdown-toggle pan" data-toggle="dropdown">
