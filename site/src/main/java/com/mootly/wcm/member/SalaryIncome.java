@@ -52,6 +52,7 @@ import com.mootly.wcm.components.ITReturnComponent;
 									  DataTypeValidationType.DECIMAL,
 									  DataTypeValidationType.DECIMAL,
 									  DataTypeValidationType.DECIMAL,
+									  DataTypeValidationType.DECIMAL,
 									  DataTypeValidationType.TAN,
 									  DataTypeValidationType.PAN,
 									  DataTypeValidationType.INDIANDATE,
