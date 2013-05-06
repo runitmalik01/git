@@ -15,7 +15,7 @@
  */
 /**
  * 
- * User: abhishek
+ * User: megha
  * Date: march 04, 2013
  * Time: 11:26:35 AM
  * 
@@ -40,7 +40,7 @@ import com.mootly.wcm.annotations.TagAsTaxDataProvider.TaxDataProviderType;
 import com.mootly.wcm.beans.BaseDocument;
 import com.mootly.wcm.beans.FormMapFiller;
 import com.mootly.wcm.beans.HouseProperty;
-import com.mootly.wcm.beans.SalaryIncomeDocument;
+
 
 @SuppressWarnings("unused")
 @Node(jcrType = "mootlywcm:houseincomedetail")
@@ -49,16 +49,36 @@ public class HouseIncomeDetail extends HippoItem implements FormMapFiller {
 	static final public String NAMESPACE = "mootlywcm:houseincomedetail";
 	static final public String NODE_NAME = HouseIncomeDetail.class.getName().toLowerCase();
 	private final static Logger log = LoggerFactory.getLogger(HouseIncomeDetail.class); 
-	private String grossAnnualIncome;
-	private String unrealisedRent;
-	private String localTaxes;
-	private String totalIncome;
-	private String interestBorrowed1;
-	private String interestBorrowed2;
-	private String incomeHproperty;
+	private String Address;
+	private String Tenant_pan;
+	private String Pin;
+	private String Tenant_name;
+	private String share1;
+	private String share2;
+	private String share3;
+	private String share4;
+	private String share5;
+	private String coownerpan1;
+	private String coownername1;
+	private String coownerpan2;
+	private String coownername2;
+	private String coownerpan3;
+	private String coownername3;
+	private String coownerpan4;
+	private String coownername4;
+	private String coownerpan5;
+	private String coownername5;
+	private String City;
+	private String states;
+	private String Coowned;
 	private String letout;
+	private Double Letable_value;
+	private Double Unrealised_rent;
+	private Double Local_tax;
+	private Double Total;
+	private Double Income_hproperty;
 	private String personalInfoUuid;
-
+	private String Property_share;
 
 	private boolean markedForDeletion;
 
@@ -69,66 +89,215 @@ public class HouseIncomeDetail extends HippoItem implements FormMapFiller {
 		this.markedForDeletion = markedForDeletion;
 	}
 
-	public final String getGrossAnnualIncome() {
-		if (grossAnnualIncome == null) grossAnnualIncome = getProperty("mootlywcm:grossAnnualIncome");
-		return grossAnnualIncome;
+	public final String getAddress() {
+		if (Address == null) Address = getProperty("mootlywcm:Address");
+		return Address;
 	}
-	public final String getUnrealisedRent() {
-		if (unrealisedRent == null) unrealisedRent = getProperty("mootlywcm:unrealisedRent");
-		return unrealisedRent;
+	public final String getTenant_pan() {
+		if (Tenant_pan == null) Tenant_pan = getProperty("mootlywcm:Tenant_pan");
+		return Tenant_pan;
 	}
-	public final String getLocalTaxes() {
-		if (localTaxes == null) localTaxes = getProperty("mootlywcm:localTaxes");
-		return localTaxes;
+	public final String getPin() {
+		if (Pin == null) Pin = getProperty("mootlywcm:Pin");
+		return Pin;
 	}
-	public final String getTotalIncome() {
-		if (totalIncome == null) totalIncome = getProperty("mootlywcm:totalIncome");
-		return totalIncome;
+	public final String getTenant_name() {
+		if (Tenant_name == null) Tenant_name = getProperty("mootlywcm:Tenant_name");
+		return Tenant_name;
 	}
-	public final String getInterestBorrowed1() {
-		if (interestBorrowed1 == null) interestBorrowed1 = getProperty("mootlywcm:interestBorrowed1");
-		return interestBorrowed1;
+	public final String getShare1() {
+		if (share1 == null) share1 = getProperty("mootlywcm:Share1");
+		return share1;
 	}
-	public final String getInterestBorrowed2() {
-		if (interestBorrowed2 == null) interestBorrowed2 = getProperty("mootlywcm:interestBorrowed2");
-		return interestBorrowed2;
+	public final String getCoownerpan1() {
+		if (coownerpan1 == null) coownerpan1 = getProperty("mootlywcm:Coowner_pan1");
+		return coownerpan1;
 	}
-	public final String getIncomeHproperty() {
-		if (incomeHproperty == null) incomeHproperty = getProperty("mootlywcm:incomeHproperty");
-		return incomeHproperty;
+	public final String getCoownername1() {
+		if (coownername1 == null) coownername1 = getProperty("mootlywcm:Coowner_name1");
+		return coownername1;
+	}
+	public final String getShare2() {
+		if (share1 == null) share1 = getProperty("mootlywcm:Share1");
+		return share1;
+	}
+	public final String getCoownerpan2() {
+		if (coownerpan1 == null) coownerpan1 = getProperty("mootlywcm:Coowner_pan1");
+		return coownerpan1;
+	}
+	public final String getCoownername2() {
+		if (coownername1 == null) coownername1 = getProperty("mootlywcm:Coowner_name1");
+		return coownername1;
+	}
+	public final String getShare3() {
+		if (share1 == null) share1 = getProperty("mootlywcm:Share1");
+		return share1;
+	}
+	public final String getCoownerpan3() {
+		if (coownerpan1 == null) coownerpan1 = getProperty("mootlywcm:Coowner_pan1");
+		return coownerpan1;
+	}
+	public final String getCoownername3() {
+		if (coownername1 == null) coownername1 = getProperty("mootlywcm:Coowner_name1");
+		return coownername1;
+	}
+	public final String getShare4() {
+		if (share1 == null) share1 = getProperty("mootlywcm:Share1");
+		return share1;
+	}
+	public final String getCoownerpan4() {
+		if (coownerpan1 == null) coownerpan1 = getProperty("mootlywcm:Coowner_pan1");
+		return coownerpan1;
+	}
+	public final String getCoownername4() {
+		if (coownername1 == null) coownername1 = getProperty("mootlywcm:Coowner_name1");
+		return coownername1;
+	}
+	public final String getShare5() {
+		if (share1 == null) share1 = getProperty("mootlywcm:Share1");
+		return share1;
+	}
+	public final String getCoownerpan5() {
+		if (coownerpan1 == null) coownerpan1 = getProperty("mootlywcm:Coowner_pan1");
+		return coownerpan1;
+	}
+	public final String getCoownername5() {
+		if (coownername1 == null) coownername1 = getProperty("mootlywcm:Coowner_name1");
+		return coownername1;
+	}
+	public final String getCity() {
+		if (City == null) City = getProperty("mootlywcm:City");
+		return City;
+	}
+	public final String getStates() {
+		if (states == null) states = getProperty("mootlywcm:State");
+		return states;
+	}
+	public final String getCoowned() {
+		if (Coowned == null) Coowned = getProperty("mootlywcm:Coowned");
+		return Coowned;
+	}
+	public final Double getLetable_value() {
+		if (Letable_value == null) Letable_value = getProperty("mootlywcm:Letable_value");
+		return Letable_value;
+	}
+	public final Double getUnrealised_rent() {
+		if (Unrealised_rent == null) Unrealised_rent = getProperty("mootlywcm:Unrealised_rent");
+		return Unrealised_rent;
+	}
+	public final Double getLocal_tax() {
+		if (Local_tax == null) Local_tax = getProperty("mootlywcm:Local_tax");
+		return Local_tax;
+	}
+	public final Double getTotal() {
+		if (Total == null) Total = getProperty("mootlywcm:Total");
+		return Total;
+	}
+	public final Double getIncome_hproperty() {
+		if (Income_hproperty == null) Income_hproperty = getProperty("mootlywcm:Income_hproperty");
+		return Income_hproperty;
+	}
+	public final String getProperty_share() {
+		if (Property_share == null) Property_share = getProperty("mootlywcm:Property_share");
+		return Property_share;
+	}
+	
+
+	public final void setAddress(String  Address) {
+		this.Address =  Address;
 	}
 
-	public final void setGrossAnnualIncome(String  GrossAnnualIncome) {
-		this. grossAnnualIncome =  GrossAnnualIncome;
+	public final void setTenant_pan(String Tenant_pan) {
+		this.Tenant_pan = Tenant_pan;
 	}
 
-	public final void setUnrealisedRent(String UnrealisedRent) {
-		this.unrealisedRent = UnrealisedRent;
+	public final void setPin(String Pin) {
+		this.Pin = Pin;
 	}
 
-	public final void setLocalTaxes(String LocalTaxes) {
-		this.localTaxes = LocalTaxes;
+	public final void setTenant_name(String Tenant_name) {
+		this.Tenant_name = Tenant_name;
 	}
-
-	public final void setTotalIncome(String TotalIncome) {
-		this.totalIncome = TotalIncome;
+	public final void setShare1(String share1) {
+		this.share1 = share1;
 	}
-	public final void setInterestBorrowed1(String InterestBorrowed1) {
-		this.interestBorrowed1 = InterestBorrowed1;
+	public final void setCoownerpan1(String coownerpan1) {
+		this.coownerpan1 = coownerpan1;
 	}
-	public final void setInterestBorrowed2(String InterestBorrowed2) {
-		this.interestBorrowed2 = InterestBorrowed2;
+	public final void setCoownername1(String coownername1) {
+		this.coownername1 = coownername1;
 	}
-	public final void setIncomeHproperty(String IncomeHproperty) {
-		this.incomeHproperty = IncomeHproperty;
+	public final void setShare2(String share2) {
+		this.share2 = share2;
 	}
+	public final void setCoownerpan2(String coownerpan2) {
+		this.coownerpan2 = coownerpan2;
+	}
+	public final void setCoownername2(String coownername2) {
+		this.coownername2 = coownername2;
+	}
+	public final void setShare3(String share3) {
+		this.share3 = share3;
+	}
+	public final void setCoownerpan3(String coownerpan3) {
+		this.coownerpan3 = coownerpan3;
+	}
+	public final void setCoownername3(String coownername3) {
+		this.coownername3 = coownername3;
+	}
+	public final void setShare4(String share4) {
+		this.share4 = share4;
+	}
+	public final void setCoownerpan4(String coownerpan4) {
+		this.coownerpan4 = coownerpan4;
+	}
+	public final void setCoownername4(String coownername4) {
+		this.coownername4 = coownername4;
+	}
+	public final void setShare5(String share5) {
+		this.share5 = share5;
+	}
+	public final void setCoownerpan5(String coownerpan5) {
+		this.coownerpan5 = coownerpan5;
+	}
+	public final void setCoownername5(String coownername5) {
+		this.coownername5 = coownername5;
+	}
+	public final void setCity(String City) {
+		this.City = City;
+	}
+	public final void setStates(String states) {
+		this.states = states;
+	}
+	public final void setCoowned(String Coowned) {
+		this.Coowned = Coowned;
+	}
+	public final void setLetable_value(Double Letable_value) {
+		this.Letable_value = Letable_value;
+	}
+	public final void setUnrealised_rent(Double Unrealised_rent) {
+		this.Unrealised_rent = Unrealised_rent;
+	}
+	public final void setLocal_tax(Double Local_tax) {
+		this.Local_tax = Local_tax;
+	}
+	public final void setTotal(Double Total) {
+		this.Total = Total;
+	}
+	public final void setIncome_hproperty(Double Income_hproperty) {
+		this.Income_hproperty = Income_hproperty;
+	}
+	public final void setProperty_share(String Property_share) {
+		this.Property_share = Property_share;
+	}
+	
 	public final String getLetOut() {
 		if (letout == null) letout = getProperty("mootlywcm:letout");
 		return letout;
 	}
 
-	public final void setLetOut(String LetOut) {
-		this.letout = LetOut;
+	public final void setLetOut(String letout) {
+		this.letout = letout;
 	}
 
 
@@ -162,15 +331,36 @@ public class HouseIncomeDetail extends HippoItem implements FormMapFiller {
 		try {
 			log.info("this is bean");
 			//HouseProperty memberSignup = (HouseProperty) ;
-			node.setProperty("mootlywcm:grossAnnualIncome",getGrossAnnualIncome());
-			node.setProperty("mootlywcm:unrealisedRent",getUnrealisedRent());
-			node.setProperty("mootlywcm:localTaxes", getLocalTaxes());
-			node.setProperty("mootlywcm:totalIncome", getTotalIncome());
-			node.setProperty("mootlywcm:interestBorrowed1", getInterestBorrowed1());
-			node.setProperty("mootlywcm:interestBorrowed2", getInterestBorrowed2());
-			node.setProperty("mootlywcm:incomeHproperty", getIncomeHproperty());
+			node.setProperty("mootlywcm:Address",getAddress());
+			node.setProperty("mootlywcm:Tenant_pan",getTenant_pan());
+			node.setProperty("mootlywcm:Pin", getPin());
+			node.setProperty("mootlywcm:Tenant_name", getTenant_name());
+			node.setProperty("mootlywcm:Share1", getShare1());
+			node.setProperty("mootlywcm:Coowner_pan1", getCoownerpan1());
+			node.setProperty("mootlywcm:Coowner_name1", getCoownername1());
+			node.setProperty("mootlywcm:Share2", getShare2());
+			node.setProperty("mootlywcm:Coowner_pan2", getCoownerpan2());
+			node.setProperty("mootlywcm:Coowner_name2", getCoownername2());
+			node.setProperty("mootlywcm:Share3", getShare3());
+			node.setProperty("mootlywcm:Coowner_pan3", getCoownerpan3());
+			node.setProperty("mootlywcm:Coowner_name3", getCoownername3());
+			node.setProperty("mootlywcm:Share4", getShare4());
+			node.setProperty("mootlywcm:Coowner_pan4", getCoownerpan4());
+			node.setProperty("mootlywcm:Coowner_name4", getCoownername4());
+			node.setProperty("mootlywcm:Share5", getShare5());
+			node.setProperty("mootlywcm:Coowner_pan5", getCoownerpan5());
+			node.setProperty("mootlywcm:Coowner_name5", getCoownername5());
+			node.setProperty("mootlywcm:City", getCity());
+			node.setProperty("mootlywcm:State", getStates());	
+			node.setProperty("mootlywcm:Coowned", getCoowned());	
 			node.setProperty("mootlywcm:letout", getLetOut());	
-
+			node.setProperty("mootlywcm:Letable_value", getLetable_value());	
+			node.setProperty("mootlywcm:Unrealised_rent", getUnrealised_rent());	
+			node.setProperty("mootlywcm:Local_tax", getLocal_tax());	
+			node.setProperty("mootlywcm:Total", getTotal());	
+			node.setProperty("mootlywcm:Income_hproperty", getIncome_hproperty());	
+			node.setProperty("mootlywcm:Property_share", getProperty_share());	
+				
 		}catch (RepositoryException re) {
 			log.error("Binding Node Error",re);
 
@@ -182,31 +372,121 @@ public class HouseIncomeDetail extends HippoItem implements FormMapFiller {
 		// TODO Auto-generated method stub
 		// TODO Auto-generated method stub
 		if (formMap == null) return;
-		if (formMap.getField("Gross_Annual_Income") != null){
-			setGrossAnnualIncome(formMap.getField("Gross_Annual_Income").getValue());
+		if (formMap.getField("Address") != null){
+			setAddress(formMap.getField("Address").getValue());
+			log.info("valuye of add"+formMap.getField("Address").getValue());
 		}
-		if (formMap.getField("Unrealised_Rent") != null){
-			setUnrealisedRent(formMap.getField("Unrealised_Rent").getValue());
+		if (formMap.getField("Tenant_pan") != null){
+			setTenant_pan(formMap.getField("Tenant_pan").getValue());
+			log.info("valuye of tepan"+formMap.getField("Tenant_pan").getValue());
 		}
-		if (formMap.getField("Local_Taxes") != null){
-			setLocalTaxes(formMap.getField("Local_Taxes").getValue());
+		if (formMap.getField("Pin") != null){
+			setPin(formMap.getField("Pin").getValue());
 		}
 
-		if (formMap.getField("Interest_Borrowed2") != null) {
-			setInterestBorrowed2(formMap.getField("Interest_Borrowed2").getValue());
+		if (formMap.getField("Tenant_name") != null) {
+			setTenant_name(formMap.getField("Tenant_name").getValue());
+			log.info("valuye of tename"+formMap.getField("Tenant_name").getValue());
 		}
-		if (formMap.getField("Interest_Borrowed1") != null){
-			setInterestBorrowed1(formMap.getField("Interest_Borrowed1").getValue());
+		if (formMap.getField("share1") != null){
+			setShare1(formMap.getField("share1").getValue());
+			log.info("valuye of share1"+formMap.getField("share1").getValue());
 		}
-		if (formMap.getField("Total_Income") != null){
-			setTotalIncome(formMap.getField("Total_Income").getValue());
+		if (formMap.getField("coownerpan1") != null){
+			setCoownerpan1(formMap.getField("coownerpan1").getValue());
+			log.info("valuye of copan1"+formMap.getField("coownerpan1").getValue());
 		}
-		if (formMap.getField("Income_Hproperty") != null) {
-			setIncomeHproperty(formMap.getField("Income_Hproperty").getValue());
+		if (formMap.getField("coownername1") != null){
+			setCoownername1(formMap.getField("coownername1").getValue());
+			log.info("valuye of coname1"+formMap.getField("coownername1").getValue());
 		}
-		if (formMap.getField("Let_Out") != null){
-			log.info("value"+formMap.getField("Let_Out").getValue());
-			setLetOut(formMap.getField("Let_Out").getValue());
+		if (formMap.getField("share2") != null){
+			setShare2(formMap.getField("share2").getValue());
+		}
+		if (formMap.getField("coownerpan2") != null){
+			setCoownerpan2(formMap.getField("coownerpan2").getValue());
+		}
+		if (formMap.getField("coownername2") != null){
+			setCoownername2(formMap.getField("coownername2").getValue());
+		}
+		if (formMap.getField("share3") != null){
+			setShare3(formMap.getField("share3").getValue());
+		}
+		if (formMap.getField("coownerpan3") != null){
+			setCoownerpan3(formMap.getField("coownerpan3").getValue());
+		}
+		if (formMap.getField("coownername3") != null){
+			setCoownername3(formMap.getField("coownername3").getValue());
+		}
+		if (formMap.getField("share4") != null){
+			setShare4(formMap.getField("share4").getValue());
+		}
+		if (formMap.getField("coownerpan4") != null){
+			setCoownerpan4(formMap.getField("coownerpan4").getValue());
+		}
+		if (formMap.getField("coownername4") != null){
+			setCoownername4(formMap.getField("coownername4").getValue());
+		}
+		if (formMap.getField("share5") != null){
+			setShare5(formMap.getField("share5").getValue());
+		}
+		if (formMap.getField("coownerpan5") != null){
+			setCoownerpan5(formMap.getField("coownerpan5").getValue());
+			log.info("valuye of copan5"+formMap.getField("coownerpan5").getValue());
+		}
+		if (formMap.getField("coownername5") != null){
+			setCoownername5(formMap.getField("coownername5").getValue());
+			log.info("valuye of coownername5"+formMap.getField("coownername5").getValue());
+		}
+		if (formMap.getField("City") != null) {
+			setCity(formMap.getField("City").getValue());
+			log.info("valuye of city"+formMap.getField("City").getValue());
+		}
+		if (formMap.getField("states") != null) {
+			setStates(formMap.getField("states").getValue());
+			log.info("valuye of state"+formMap.getField("states").getValue());
+		}
+		if (formMap.getField("Coowned") != null) {
+			setCoowned(formMap.getField("Coowned").getValue());
+			log.info("valuye of coown"+formMap.getField("Coowned").getValue());
+		}
+		if (formMap.getField("Letable_value") != null) {
+			String strlet_val= formMap.getField("Letable_value").getValue();
+			double amt=Double.parseDouble(strlet_val);
+			log.info("value of amt is"+amt);
+			setLetable_value(amt);
+		}
+		if (formMap.getField("Unrealised_rent") != null) {
+			String strunreal_rent=(formMap.getField("Unrealised_rent").getValue());
+			double amt=Double.parseDouble(strunreal_rent);
+			log.info("value of amt is"+amt);
+			setUnrealised_rent(amt);
+		}
+		if (formMap.getField("Local_tax") != null) {
+			String strloc_tax=(formMap.getField("Local_tax").getValue());
+			double amt=Double.parseDouble(strloc_tax);
+			log.info("value of amt is"+amt);
+			setLocal_tax(amt);
+		}
+		if (formMap.getField("Total") != null) {
+			String strtot=(formMap.getField("Total").getValue());
+			double amt=Double.parseDouble(strtot);
+			log.info("value of amt is"+amt);
+			setTotal(amt);
+		}
+
+		if (formMap.getField("Income_hproperty") != null) {
+			String strincome=(formMap.getField("Income_hproperty").getValue());
+			double amt=Double.parseDouble(strincome);
+			log.info("value of amt is"+amt);
+			setIncome_hproperty(amt);
+		}
+		if (formMap.getField("Property_share") != null) {
+			setProperty_share(formMap.getField("Property_share").getValue());
+		}
+		if (formMap.getField("letout") != null){
+			log.info("value"+formMap.getField("letout").getValue());
+			setLetOut(formMap.getField("letout").getValue());
 		}
 	}
 
@@ -214,13 +494,34 @@ public class HouseIncomeDetail extends HippoItem implements FormMapFiller {
 	public <T extends HippoBean> void cloneBean(T sourceBean) {
 		HouseIncomeDetail objhouseIncomeDetail = (HouseIncomeDetail) sourceBean;
 
-		setGrossAnnualIncome(objhouseIncomeDetail.getGrossAnnualIncome());
-		setUnrealisedRent(objhouseIncomeDetail.getUnrealisedRent());
-		setLocalTaxes(objhouseIncomeDetail.getLocalTaxes());
-		setInterestBorrowed2(objhouseIncomeDetail.getInterestBorrowed2());
-		setInterestBorrowed1(objhouseIncomeDetail.getInterestBorrowed1());
-		setTotalIncome(objhouseIncomeDetail.getTotalIncome());
-		setIncomeHproperty(objhouseIncomeDetail.getIncomeHproperty());
-		setIncomeHproperty(objhouseIncomeDetail.getLetOut());
+		setAddress(objhouseIncomeDetail.getAddress());
+		setTenant_pan(objhouseIncomeDetail.getTenant_pan());
+		setPin(objhouseIncomeDetail.getPin());
+		setTenant_name(objhouseIncomeDetail.getTenant_name());
+		setShare1(objhouseIncomeDetail.getShare1());
+		setCoownerpan1(objhouseIncomeDetail.getCoownerpan1());
+		setCoownername1(objhouseIncomeDetail.getCoownername1());
+		setShare2(objhouseIncomeDetail.getShare2());
+		setCoownerpan2(objhouseIncomeDetail.getCoownerpan2());
+		setCoownername2(objhouseIncomeDetail.getCoownername2());
+		setShare3(objhouseIncomeDetail.getShare3());
+		setCoownerpan3(objhouseIncomeDetail.getCoownerpan3());
+		setCoownername3(objhouseIncomeDetail.getCoownername3());
+		setShare4(objhouseIncomeDetail.getShare4());
+		setCoownerpan4(objhouseIncomeDetail.getCoownerpan4());
+		setCoownername4(objhouseIncomeDetail.getCoownername4());
+		setShare5(objhouseIncomeDetail.getShare5());
+		setCoownerpan5(objhouseIncomeDetail.getCoownerpan5());
+		setCoownername5(objhouseIncomeDetail.getCoownername5());
+		setCity(objhouseIncomeDetail.getCity());
+		setLetOut(objhouseIncomeDetail.getLetOut());
+		setStates(objhouseIncomeDetail.getStates());
+		setCoowned(objhouseIncomeDetail.getCoowned());
+		setLetable_value(objhouseIncomeDetail.getLetable_value());
+		setUnrealised_rent(objhouseIncomeDetail.getUnrealised_rent());
+		setLocal_tax(objhouseIncomeDetail.getLocal_tax());
+		setTotal(objhouseIncomeDetail.getTotal());
+		setIncome_hproperty(objhouseIncomeDetail.getIncome_hproperty());
+		setProperty_share(objhouseIncomeDetail.getProperty_share());
 	};
 }
