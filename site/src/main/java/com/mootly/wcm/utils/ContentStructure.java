@@ -319,24 +319,14 @@ public final class ContentStructure {
 	 * @author Abhishek
 	 */
 
-	public static String getOtherIncomePathUpdate(HstRequest request,String sUserName) {
+	public static String getOtherIncomePathUpdate(HstRequest request,String sUserName,String pan, String filing_year) {
 		// StringBuilder builder = new StringBuilder();
 		//get pan number from session
-		String sPAN = (String)request.getSession().getAttribute("pan");
-		if(null == sPAN){
-			sPAN = "abcdb1234a";
-		}
-		//get filling year from session
-		String sFillingYear = (String)request.getSession().getAttribute("filling_year");
-		if(null == sFillingYear)
-		{
-			sFillingYear ="2012-2013";
-		}
-		String sOriginalPath = getMemberOriginalPath(request, sPAN,sFillingYear,sUserName);
+		String sOriginalPath = getMemberOriginalPath(request, pan,filing_year,sUserName);
 		System.out.println("in update structure:-"+sOriginalPath);
 		// StringBuilder sbSalaryIncome = new StringBuilder(sOriginalPath);
 		StringBuffer strnew = new StringBuffer (sOriginalPath );
-		strnew.append("/othersourceincome/othersourceincome");
+		strnew.append("/othersourcesdocument/othersourcesdocument");
 		return strnew.toString();
 	}
 
