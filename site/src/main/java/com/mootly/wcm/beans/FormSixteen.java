@@ -106,6 +106,7 @@ public class FormSixteen extends FormSixteenSectionA    implements ContentNodeBi
 			node.setProperty("mootlywcm:lessalwnc2", objformsixteen.getLess_allowance_2());
 			node.setProperty("mootlywcm:lessrs2", objformsixteen.getLess_rs_2());
 			node.setProperty("mootlywcm:lesstot2", objformsixteen.getLess_total_2());
+			node.setProperty("mootlywcm:balance", objformsixteen.getBalance());
 			node.setProperty("mootlywcm:dedenter", objformsixteen.getDeductions_entertainment());
 			node.setProperty("mootlywcm:dedtax", objformsixteen.getDeductions_tax());
 			node.setProperty("mootlywcm:dedtot", objformsixteen.getDeductions_total());
@@ -310,6 +311,11 @@ public class FormSixteen extends FormSixteenSectionA    implements ContentNodeBi
 			String strBankdetail=formMap.getField("less_total_2").getValue();
 			double amt= Double.parseDouble(strBankdetail);
 			setLess_total_2(amt);
+		}
+		if (formMap.getField("balance") != null) {
+			String strbalance=formMap.getField("balance").getValue();
+			double amt= Double.parseDouble(strbalance);
+			setBalance(amt);
 		}
 		if (formMap.getField("deductions_tax") != null) {
 			String strBankdetail=formMap.getField("deductions_tax").getValue();

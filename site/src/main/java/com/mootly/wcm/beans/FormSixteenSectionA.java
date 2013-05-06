@@ -45,6 +45,7 @@ public abstract class FormSixteenSectionA extends BaseDocument {
 	private Double less_allowance_2;
 	private Double less_rs_2;
 	private Double less_total_2;
+	private Double balance;
 	private Double deductions_entertainment;
 	private Double deductions_tax;
 	private Double deductions_total;
@@ -248,6 +249,10 @@ public abstract class FormSixteenSectionA extends BaseDocument {
 	public  Double getLess_total_2() {
 		if (less_total_2 == null) less_total_2 = getProperty("mootlywcm:lesstot2");
 		return less_total_2;
+	}
+	public  Double getBalance() {
+		if (balance == null) balance = getProperty("mootlywcm:balance");
+		return balance;
 	}
 	public  Double getDeductions_entertainment() {
 		if (deductions_entertainment == null) deductions_entertainment = getProperty("mootlywcm:dedenter");
@@ -596,6 +601,9 @@ public abstract class FormSixteenSectionA extends BaseDocument {
 	}
 	public void setLess_total_2(Double less_total_2) {
 		this.less_total_2 = less_total_2;
+	}
+	public void setBalance(Double balance) {
+		this.balance = balance;
 	}
 	public void setDeductions_entertainment(Double deductions_entertainment) {
 		this.deductions_entertainment = deductions_entertainment;
