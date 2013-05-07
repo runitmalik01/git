@@ -17,7 +17,7 @@
 
 <hst:actionURL var="actionUrl" />
 <script type="text/javascript">
-var $m=jQuery.noConflict(true);
+
 
 function calculate(){
 	var amt= document.getElementById("taxdeducted").value;
@@ -27,7 +27,7 @@ function calculate(){
 </script>
 <script type="text/javascript">
 function keyup(){
-	var x=document.getElementById("tandeductor");
+	var x=document.getElementById("tan_deductor");
 	x.value=x.value.toUpperCase();
 }
 </script>
@@ -77,11 +77,10 @@ else {
 				<tr height="30px">
 					<td class="label"><fmt:message key="tds.tan.deductor" />
 					</td>
-					<td class="input"><input type="text" name="tan_deductor" onkeyup="keyup()" id="tandeductor"
+					<td class="input"><input type="text" name="tan_deductor" onkeyup="keyup()" id="tan_deductor"
 						value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.tan_Deductor}"/></c:if>"
-						 maxlength="10" class="validate[required,custom[tan]] text-input"
-						title="This field accept first four alphabate next five numeric then single alphabate"
-						placeholder="10 Characters" /></td>
+						 maxlength="10" 
+						/></td>
 				</tr>
 
 
@@ -90,19 +89,19 @@ else {
 					<td class="label"><fmt:message key="tds.name.deductor" />
 					</td>
 					<td class="input"><input type="text" name="name_deductor"
-						id="sale" class="validate[required] text-input"
+						id="name_deductor" 
 						value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.name_Deductor}"/></c:if>"
-						maxlength="125" 
-						title="Please fill alphabets only" /></td>
+						maxlength="125"  /></td>
+						
 				</tr>
 
 				<tr height="30px">
 					<td class="label"><fmt:message key="tds.unique.certificate" />
 					</td>
 					<td class="input"><input type="text" name="tds_certificate"
-						class="validate[required] text-input" maxlength="8" title="Please enter 8 digit alphanumeric value"
+						 maxlength="6" 
 						value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.tds_Certificate}"/></c:if>"
-						id="income_chargeable"></td>
+						id="tds_certificate"></td>
 				</tr>
 				<tr height="30px">
 					<td class="label"><fmt:message key="tds.financial.year" />
@@ -121,19 +120,20 @@ else {
 					</td>
 					<td class="input"><input type="text" name="total_taxdeducted" maxlength="14"
 						value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.total_TaxDeductor}"/></c:if>"
-						 id="taxdeducted" onblur="calculate()" onchange="calculate" class="validate[required,custom[integer],maxSize[14]] text-input" /></td>
+						 id="taxdeducted" onblur="calculate()" onchange="calculate"  /></td>
 				</tr>
 				<tr height="30px">
 					<td class="label"><fmt:message key="tds.amount.claimed" />
 					</td>
 					<td class="input"><input type="text" name="amount" maxlength="14"
 						value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.p_Amount}"/></c:if>"
-						required="required" id="amount" class="validate[required,custom[integer],maxSize[14]] text-input" /></td>
+						required="required" id="amount" readonly /></td>
 				</tr>
 	
 			</table>
-<a href="${redirectURLToSamePage}" class="button olive">Cancel</a><input type="submit" class="button orange" value="Save">
+<a href="${redirectURLToSamePage}" class="button olive">Cancel</a><input type="submit" id="myModalHref" class="button orange" value="Save">
 		</form>
+		
 
 	</c:when>
 	<c:otherwise>
@@ -200,3 +200,5 @@ else {
 
 	</c:otherwise>
 </c:choose>
+
+<res:client-validation formId="tdsfromothers" screenConfigurationDocumentName="tdsfromothers" formSubmitButtonId="myModalHref"/>
