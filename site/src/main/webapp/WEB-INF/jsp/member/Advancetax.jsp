@@ -58,9 +58,8 @@ function calculate(){
 						<td class="label"><fmt:message key="tds.bsr.code" /></td>
 						<td class="input"><input type="text" name="bsr_code"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.p_BSR}"/></c:if>"
-							id="cost" maxlength="7"
-							title="This field accept 7 digit numeric value"
-							placeholder="7 digits" />
+							id="bsr_code"/> 
+							
 						</td>
 					</tr>
 
@@ -87,13 +86,13 @@ function calculate(){
 						</td>
 						<td class="input"><input type="text" name="amount" maxlength="14"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.p_Amount}"/></c:if>"
-							id="amount"
-							class="validate[required,custom[integer],maxSize[14]] text-input" />
+							id="amount"/>
+							
 						</td>
 					</tr>
 		</table>
 			</fieldset>
-			<a href="${redirectURLToSamePage}" class="button olive">Cancel</a><input type="submit" class="button orange" value="Save">
+			<a href="${redirectURLToSamePage}" class="button olive">Cancel</a><input type="submit" id="myModalHref" class="button orange" value="Save">
 		</form>
 
 	</c:when>
@@ -204,7 +203,4 @@ function calculate(){
 </hst:element>
 <hst:headContribution element="${uiCustom}" category="jsInternal"/>
 
-
-<hst:headContribution keyHint="form-validation" category="jsInternal">
-	<script type="text/javascript" src='<hst:link path="/js/tds.js"/>'></script>
-</hst:headContribution>
+<res:client-validation formId="advancetax" screenConfigurationDocumentName="advancetax" formSubmitButtonId="myModalHref"/>
