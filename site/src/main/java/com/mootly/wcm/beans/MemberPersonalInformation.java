@@ -15,6 +15,7 @@
  */
 
 package com.mootly.wcm.beans;
+
 import static com.mootly.wcm.utils.Constants.BD_ACC_NUMBER;
 import static com.mootly.wcm.utils.Constants.BD_ADD_BANK_BRANCH;
 import static com.mootly.wcm.utils.Constants.BD_BANK_NAME;
@@ -45,6 +46,10 @@ import static com.mootly.wcm.utils.Constants.PROP_PI_PREMISES_BUILDING;
 import static com.mootly.wcm.utils.Constants.PROP_PI_RESIDENT_CATEGORY;
 import static com.mootly.wcm.utils.Constants.PROP_PI_RETURN_TYPE;
 import static com.mootly.wcm.utils.Constants.PROP_PI_ROAD_STREET;
+import static com.mootly.wcm.utils.Constants.PROP_PI_EMPLOYER_CATEGORY;
+import static com.mootly.wcm.utils.Constants.PROP_PI_RECEIPT_NO;
+import static com.mootly.wcm.utils.Constants.PROP_PI_INCOME_TAX_WARD;
+import static com.mootly.wcm.utils.Constants.PROP_PI_RETURN_FILE_SECTION;
 import static com.mootly.wcm.utils.Constants.PROP_PI_SEX;
 import static com.mootly.wcm.utils.Constants.PROP_PI_STATE;
 import static com.mootly.wcm.utils.Constants.PROP_PI_STD_CODE;
@@ -58,6 +63,7 @@ import static com.mootly.wcm.utils.Constants.Rsstatus_q_no_yes;
 import static com.mootly.wcm.utils.Constants.Rsstatus_q_no_yes_yes;
 import static com.mootly.wcm.utils.Constants.Rsstatus_q_no_yes_yes_yes;
 import static com.mootly.wcm.utils.Constants.Rsstatus_q_yes;
+import static com.mootly.wcm.utils.Constants.PROP_PI_TAX_STATUS;
 import static com.mootly.wcm.utils.Constants.Rsstatus_q_yes_yes;
 
 import java.math.BigInteger;
@@ -90,13 +96,18 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 	static final public String NAMESPACE = "mootlywcm:MemberPersonalInformation";
 	static final public String NODE_NAME = "PersonalInformation";
 
+	private String employerCategory;
+	private String returnFileSection;
+	private String incomeTaxWard;
+	private String receiptNo;
+	private String taxStatus;
 	private String finacialYear;
 	private String returnType;
 	private String originalAckNo;
-	private String originalAckDate;
+	private GregorianCalendar originalAckDate;
 	private String defective;
 	private String noticeNo;
-	private String noticeDate;
+	private GregorianCalendar noticeDate;
 
 	private String firstName;
 	private String middleName;
@@ -141,6 +152,26 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 	private String PIUUID;
 
 
+	public String getTaxStatus() {
+		if (taxStatus == null) taxStatus = getProperty(PROP_PI_TAX_STATUS);
+		return taxStatus;
+	}
+	public String getEmployerCategory() {
+		if (employerCategory == null) employerCategory = getProperty(PROP_PI_EMPLOYER_CATEGORY);
+		return employerCategory;
+	}
+	public String getReceiptNo() {
+		if (receiptNo == null) receiptNo = getProperty(PROP_PI_RECEIPT_NO);
+		return receiptNo;
+	}
+	public String getReturnFileSection() {
+		if (returnFileSection == null) returnFileSection = getProperty(PROP_PI_RETURN_FILE_SECTION);
+		return returnFileSection;
+	}
+	public String getIncomeTaxWard() {
+		if (incomeTaxWard == null) incomeTaxWard = getProperty(PROP_PI_INCOME_TAX_WARD);
+		return incomeTaxWard;
+	}
 	public String getFinancialYear() {
 		if (finacialYear == null) finacialYear = getProperty(PROP_PI_FINANCIAL_YEAR);
 		return finacialYear;
@@ -153,11 +184,11 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 		if (originalAckNo == null) originalAckNo = getProperty(PROP_PI_ORIGINAL_ACK_NO);
 		return originalAckNo;
 	}
-	public String getOriginalAckDate() {
+	public GregorianCalendar getOriginalAckDate() {
 		if (originalAckDate == null) originalAckDate = getProperty(PROP_PI_ORIGINAL_ACK_DATE);
 		return originalAckDate;
 	}	
-	
+
 	public String getDefective() {
 		if (defective == null) defective = getProperty(PROP_PI_DEFECTIVE);
 		return defective;
@@ -166,7 +197,7 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 		if (noticeNo == null) noticeNo = getProperty(PROP_PI_NOTICE_NO);
 		return noticeNo;
 	}
-	public String getNoticeDate() {
+	public GregorianCalendar getNoticeDate() {
 		if (noticeDate == null) noticeDate = getProperty(PROP_PI_NOTICE_DATE);
 		return noticeDate;
 	}
@@ -207,7 +238,7 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 		return filingStatus;
 	}
 
-	public Calendar getDOB() {
+	public GregorianCalendar getDOB() {
 		if (DOB == null) DOB = getProperty(PROP_PI_DOB);
 		return DOB;
 	}
@@ -226,9 +257,9 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 		String dobStr = getIndianDateFormatter().format(DOB.getTime());
 		XMLGregorianCalendar date2=null;
 		try {
-			 //date2 = DatatypeFactory.newInstance().newXMLGregorianCalendar(dobStr);
-			 date2 = DatatypeFactory.newInstance().newXMLGregorianCalendar(DOB);
-			
+			//date2 = DatatypeFactory.newInstance().newXMLGregorianCalendar(dobStr);
+			date2 = DatatypeFactory.newInstance().newXMLGregorianCalendar(DOB);
+
 		} catch (DatatypeConfigurationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -278,11 +309,11 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 		if (pinCode == null) pinCode = getProperty(PROP_PI_PINCODE);
 		BigInteger bigPin=null;
 		if(pinCode.length()>0){
-		bigPin = new BigInteger(pinCode);
-		return bigPin;
+			bigPin = new BigInteger(pinCode);
+			return bigPin;
 		}else
-	     return null;
-		
+			return null;
+
 	}
 
 	public String getEmail() {
@@ -298,8 +329,8 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 	public BigInteger getBigMobile() {
 		if (mobile== null) mobile= getProperty(PROP_PI_MOBILE);
 		if(mobile.length()>0){
-		BigInteger bigMobile = new BigInteger(mobile );
-		return bigMobile;
+			BigInteger bigMobile = new BigInteger(mobile );
+			return bigMobile;
 		}else
 			return null;
 	}
@@ -312,8 +343,8 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 	public BigInteger getBigStdCode() {
 		if (stdCode == null) stdCode= getProperty(PROP_PI_STD_CODE);
 		if(stdCode.length()>0){
-		BigInteger bigStd = new BigInteger(stdCode );
-		return bigStd;
+			BigInteger bigStd = new BigInteger(stdCode );
+			return bigStd;
 		}else
 			return null;
 	}
@@ -326,14 +357,29 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 	public BigInteger getBigPhone() {
 		if (phone == null) phone= getProperty(PROP_PI_PHONE);
 		if(phone.length()>0){
-		BigInteger bigPhone = new BigInteger(phone );
-		return bigPhone;
+			BigInteger bigPhone = new BigInteger(phone );
+			return bigPhone;
 		}else
 			return null;
 	}
 
 	public String getPersonalInfoUuid() {
 		return PIUUID;
+	}
+	public final void setTaxStatus(String taxStatus) {
+		this.taxStatus = taxStatus;
+	}
+	public final void setIncomeTaxWard(String incomeTaxWard) {
+		this.incomeTaxWard = incomeTaxWard;
+	}
+	public final void setReceiptNo(String receiptNo) {
+		this.receiptNo = receiptNo;
+	}
+	public final void setEmployerCategory(String employerCategory) {
+		this.employerCategory = employerCategory;
+	}
+	public final void setReturnFileSection(String returnFileSection) {
+		this.returnFileSection = returnFileSection;
 	}
 	public final void setFinancialYear(String finacialYear) {
 		this.finacialYear = finacialYear;
@@ -344,7 +390,7 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 	public final void setOriginalAckNo(String originalAckNo) {
 		this.originalAckNo = originalAckNo;
 	}
-	public final void setOriginalAckDate(String originalAckDate) {
+	public final void setOriginalAckDate(GregorianCalendar originalAckDate) {
 		this.originalAckDate = originalAckDate;
 	}
 	public final void setDefective(String defective) {
@@ -353,7 +399,7 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 	public final void setNoticeNo(String noticeNo) {
 		this.noticeNo = noticeNo;
 	}
-	public final void setNoticeDate(String noticeDate) {
+	public final void setNoticeDate(GregorianCalendar noticeDate) {
 		this.noticeDate = noticeDate;
 	}
 	public final void setFirstName(String firstName) {
@@ -589,7 +635,12 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 			node.setProperty(PROP_PI_NOTICE_DATE,mpi.getNoticeDate());
 			node.setProperty(PROP_PI_NOTICE_NO,mpi.getNoticeNo());
 			node.setProperty(PROP_PI_DEFECTIVE,mpi.getDefective());
-
+			node.setProperty(PROP_PI_RECEIPT_NO,mpi.getReceiptNo());
+			node.setProperty(PROP_PI_INCOME_TAX_WARD,mpi.getIncomeTaxWard());
+			node.setProperty(PROP_PI_RETURN_FILE_SECTION,mpi.getReturnFileSection());
+			node.setProperty(PROP_PI_EMPLOYER_CATEGORY,mpi.getEmployerCategory());
+			node.setProperty(PROP_PI_TAX_STATUS,mpi.getTaxStatus());
+			
 			node.setProperty(PROP_PI_FIRST_NAME,mpi.getFirstName());
 			node.setProperty(PROP_PI_MIDDLE_NAME,mpi.getMiddleName());
 			node.setProperty(PROP_PI_LAST_NAME, mpi.getLastName());
@@ -650,9 +701,32 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 			log.info("Into the fill method");			
 		}
 		if (formMap == null) return;
+		if ( formMap.getField("tax_status") != null) setTaxStatus(formMap.getField("tax_status").getValue());
+		if ( formMap.getField("return_section") != null) setReturnFileSection(formMap.getField("return_section").getValue());
+		if ( formMap.getField("emp_category") != null) setEmployerCategory(formMap.getField("emp_category").getValue());
+		if ( formMap.getField("receipt_no") != null) setReceiptNo(formMap.getField("receipt_no").getValue());
+		if ( formMap.getField("tax_ward") != null) setIncomeTaxWard(formMap.getField("tax_ward").getValue());
+		
 		if ( formMap.getField("pi_return_type") != null) setReturnType(formMap.getField("pi_return_type").getValue());
 		if ( formMap.getField("fy") != null) setFinancialYear(formMap.getField("fy").getValue());
-		if ( formMap.getField("ack_date") != null) setOriginalAckDate(formMap.getField("ack_date").getValue());
+		if ( formMap.getField("ack_date") != null){
+			String strDate = formMap.getField("ack_date").getValue();
+			Date date = null ;
+			DateFormat formatter ; 
+			formatter = getIndianDateFormatter();
+			GregorianCalendar cal=(GregorianCalendar) GregorianCalendar.getInstance();
+			try{
+				date = (Date)formatter.parse(strDate); 
+				if(log.isInfoEnabled()){
+					log.info("date"+date);
+				}
+				cal.setTime(date);
+				setOriginalAckDate(cal);
+			}
+			catch(Exception e){
+				log.info("calendar error"+e);
+			}
+		}
 		if ( formMap.getField("ack_no") != null) setOriginalAckNo(formMap.getField("ack_no").getValue());
 		if ( formMap.getField("defective") != null) {
 			if(formMap.getField("pi_return_type")!=null&&formMap.getField("pi_return_type").getValue().matches("revised")){
@@ -662,7 +736,24 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 			}
 		}
 		if ( formMap.getField("notice_no") != null) setNoticeNo(formMap.getField("notice_no").getValue());
-		if ( formMap.getField("notice_date") != null) setNoticeDate(formMap.getField("notice_date").getValue());
+		if ( formMap.getField("notice_date") != null){ 
+			String strDate = formMap.getField("notice_date").getValue();
+			Date date = null ;
+			DateFormat formatter ; 
+			formatter = getIndianDateFormatter();
+			GregorianCalendar cal=(GregorianCalendar) GregorianCalendar.getInstance();
+			try{
+				date = (Date)formatter.parse(strDate); 
+				if(log.isInfoEnabled()){
+					log.info("date"+date);
+				}
+				cal.setTime(date);
+				setNoticeDate(cal);
+			}
+			catch(Exception e){
+				log.info("calendar error"+e);
+			}
+		}
 		//Member PersonaInformation
 		if ( formMap.getField("pan") != null) setPAN(formMap.getField("pan").getValue());
 		if ( formMap.getField("pi_first_name") != null) setFirstName(formMap.getField("pi_first_name").getValue());
