@@ -147,6 +147,11 @@ public interface Constants {
 	String PROP_PI_DEFECTIVE="mootlywcm:defective";
 	String PROP_PI_NOTICE_NO="mootlywcm:noticeNo";
 	String PROP_PI_NOTICE_DATE="mootlywcm:noticeDate";
+	String PROP_PI_EMPLOYEE_CATEGORY="mootlywcm:employeeCategory";
+	String PROP_PI_RETURN_FILE_SECTION="mootlywcm:returnFileSection";
+	String PROP_PI_INCOME_TAX_WARD="mootlywcm:incomeTaxWard";
+	String PROP_PI_RECEIPT_NO="mootlywcm:receiptNo";
+	String PROP_PI_TAX_STATUS="mootlywcm:taxStatus";
 	
 	String PROP_PI_EMPLOYER_CATEGORY = "mootlywcm:pi_employer_category";
 
