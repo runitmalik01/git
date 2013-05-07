@@ -60,12 +60,17 @@ import static com.mootly.wcm.utils.Constants.Rsstatus_q_no_yes_yes_yes;
 import static com.mootly.wcm.utils.Constants.Rsstatus_q_yes;
 import static com.mootly.wcm.utils.Constants.Rsstatus_q_yes_yes;
 
+import java.math.BigInteger;
 import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.ResourceBundle;
 
 import javax.jcr.RepositoryException;
+import javax.xml.datatype.DatatypeConfigurationException;
+import javax.xml.datatype.DatatypeFactory;
+import javax.xml.datatype.XMLGregorianCalendar;
 
 import org.hippoecm.hst.component.support.forms.FormMap;
 import org.hippoecm.hst.content.beans.ContentNodeBinder;
@@ -84,7 +89,7 @@ import org.hippoecm.hst.content.beans.standard.HippoBean;
 public class MemberPersonalInformation extends BaseDocument implements ContentNodeBinder,FormMapFiller {
 	static final public String NAMESPACE = "mootlywcm:MemberPersonalInformation";
 	static final public String NODE_NAME = "PersonalInformation";
-	
+
 	private String finacialYear;
 	private String returnType;
 	private String originalAckNo;
@@ -92,16 +97,16 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 	private String defective;
 	private String noticeNo;
 	private String noticeDate;
-	
+
 	private String firstName;
 	private String middleName;
 	private String lastName;
 	private String fatherName;
 	private String PAN;	
 	private String filingStatus;
-	private Calendar DOB;
+	private GregorianCalendar DOB;
 	private String sex;
-	
+
 	private String flatDoorBuilding;
 	private String premisesBuilding;
 	private String roadStreet;
@@ -113,7 +118,7 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 	private String mobile;
 	private String stdCode;
 	private String phone;
-	
+
 	private String accNumber ;
 	private String bankName ;
 	private String ecs ;
@@ -121,7 +126,7 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 	private String addBankBranch;
 	private String micrCode;
 	private Boolean bankDetailStatus;
-	
+
 	private String rsstatus_q;
 	private String rsstatus_q_yes;
 	private String rsstatus_q_yes_yes;
@@ -133,37 +138,38 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 	private String rsstatus_q_no_no_yes_yes;
 	private String rsstatus_q_no_yes_yes_yes;
 	private String residentCategory;
-    private String PIUUID;
-    
-	
+	private String PIUUID;
+
+
 	public String getFinancialYear() {
-        if (finacialYear == null) finacialYear = getProperty(PROP_PI_FINANCIAL_YEAR);
-        return finacialYear;
-    }
+		if (finacialYear == null) finacialYear = getProperty(PROP_PI_FINANCIAL_YEAR);
+		return finacialYear;
+	}
 	public String getReturnType() {
-        if (returnType == null) returnType = getProperty(PROP_PI_RETURN_TYPE);
-        return returnType;
-    }
+		if (returnType == null) returnType = getProperty(PROP_PI_RETURN_TYPE);
+		return returnType;
+	}
 	public String getOriginalAckNo() {
-        if (originalAckNo == null) originalAckNo = getProperty(PROP_PI_ORIGINAL_ACK_NO);
-        return originalAckNo;
-    }
+		if (originalAckNo == null) originalAckNo = getProperty(PROP_PI_ORIGINAL_ACK_NO);
+		return originalAckNo;
+	}
 	public String getOriginalAckDate() {
-        if (originalAckDate == null) originalAckDate = getProperty(PROP_PI_ORIGINAL_ACK_DATE);
-        return originalAckDate;
-    }
+		if (originalAckDate == null) originalAckDate = getProperty(PROP_PI_ORIGINAL_ACK_DATE);
+		return originalAckDate;
+	}	
+	
 	public String getDefective() {
-        if (defective == null) defective = getProperty(PROP_PI_DEFECTIVE);
-        return defective;
-    }
+		if (defective == null) defective = getProperty(PROP_PI_DEFECTIVE);
+		return defective;
+	}
 	public String getNoticeNo() {
-        if (noticeNo == null) noticeNo = getProperty(PROP_PI_NOTICE_NO);
-        return noticeNo;
-    }
+		if (noticeNo == null) noticeNo = getProperty(PROP_PI_NOTICE_NO);
+		return noticeNo;
+	}
 	public String getNoticeDate() {
-        if (noticeDate == null) noticeDate = getProperty(PROP_PI_NOTICE_DATE);
-        return noticeDate;
-    }
+		if (noticeDate == null) noticeDate = getProperty(PROP_PI_NOTICE_DATE);
+		return noticeDate;
+	}
 	//This is just a calculated field
 	public String getName() {
 		StringBuffer sb = new StringBuffer();
@@ -173,130 +179,184 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 	}
 	//for personal information
 	public String getFirstName() {
-        if (firstName == null) firstName = getProperty(PROP_PI_FIRST_NAME);
-        return firstName;
-    }
-    public String getMiddleName() {
-    	if (middleName == null) middleName = getProperty(PROP_PI_MIDDLE_NAME);
-    	return middleName;
-    }
+		if (firstName == null) firstName = getProperty(PROP_PI_FIRST_NAME);
+		return firstName;
+	}
+	public String getMiddleName() {
+		if (middleName == null) middleName = getProperty(PROP_PI_MIDDLE_NAME);
+		return middleName;
+	}
 
-    public String getLastName() {
-    	if (lastName == null) lastName = getProperty(PROP_PI_LAST_NAME);
-    	return lastName;
-    }
+	public String getLastName() {
+		if (lastName == null) lastName = getProperty(PROP_PI_LAST_NAME);
+		return lastName;
+	}
 
-    public String getFatherName() {
-    	if (fatherName == null) fatherName = getProperty(PROP_PI_FATHER_NAME);
-    	return fatherName;
-    }
+	public String getFatherName() {
+		if (fatherName == null) fatherName = getProperty(PROP_PI_FATHER_NAME);
+		return fatherName;
+	}
 
-    public String getPAN() {
-    	if (PAN == null) PAN = getProperty(PROP_PI_PAN);
-    	return PAN;
-    }
+	public String getPAN() {
+		if (PAN == null) PAN = getProperty(PROP_PI_PAN);
+		return PAN;
+	}
 
-    public String getFilingStatus() {
-    	if (filingStatus == null) filingStatus = getProperty(PROP_PI_FILING_STATUS);
-    	return filingStatus;
-    }
+	public String getFilingStatus() {
+		if (filingStatus == null) filingStatus = getProperty(PROP_PI_FILING_STATUS);
+		return filingStatus;
+	}
 
-    public Calendar getDOB() {
-    	if (DOB == null) DOB = getProperty(PROP_PI_DOB);
-    	return DOB;
-    }
-    
-    public String getDOBStr() {
-    	if (DOB == null) DOB = getProperty(PROP_PI_DOB);
-    	if (DOB != null) {
-    		String dobStr = getIndianDateFormatter().format(DOB.getTime());
-    		return dobStr;
-    	}
-    	return null;
-    }
-       
-    public String getSex() {
-    	if (sex == null) sex = getProperty(PROP_PI_SEX);
-    	return sex;
-    }
-    public String getFlatDoorBuilding() {
-    	if (flatDoorBuilding == null) flatDoorBuilding = getProperty(PROP_PI_FLAT_FLOOR_BUILDING);
-    	return flatDoorBuilding;
-    }
-    public String getPremisesBuilding() {
-    	if (premisesBuilding == null) premisesBuilding = getProperty(PROP_PI_PREMISES_BUILDING);
-    	return premisesBuilding;
-    }
+	public Calendar getDOB() {
+		if (DOB == null) DOB = getProperty(PROP_PI_DOB);
+		return DOB;
+	}
 
-    public String getRoadStreet() {
-    	if (roadStreet == null) roadStreet = getProperty(PROP_PI_ROAD_STREET);
-    	return roadStreet;
-    }
+	public String getDOBStr() {
+		if (DOB == null) DOB = getProperty(PROP_PI_DOB);
+		if (DOB != null) {
+			String dobStr = getIndianDateFormatter().format(DOB.getTime());
+			return dobStr;
+		}
+		return null;
+	}
 
-    public String getAreaLocality() {
-    	if (areaLocality == null) areaLocality = getProperty(PROP_PI_AREA_LOCALITY);
-    	return areaLocality;
-    }
+	public XMLGregorianCalendar getGregorianDOB() {
+		if (DOB == null) DOB = getProperty(PROP_PI_DOB);
+		String dobStr = getIndianDateFormatter().format(DOB.getTime());
+		XMLGregorianCalendar date2=null;
+		try {
+			 //date2 = DatatypeFactory.newInstance().newXMLGregorianCalendar(dobStr);
+			 date2 = DatatypeFactory.newInstance().newXMLGregorianCalendar(DOB);
+			
+		} catch (DatatypeConfigurationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return date2;
+	}
 
-    public String getTownCityDistrict() {
-    	if (townCityDistrict == null) townCityDistrict = getProperty(PROP_PI_TOWN_CITY_DISTRICT);
-    	return townCityDistrict;
-    }
+	public String getSex() {
+		if (sex == null) sex = getProperty(PROP_PI_SEX);
+		return sex;
+	}
+	public String getFlatDoorBuilding() {
+		if (flatDoorBuilding == null) flatDoorBuilding = getProperty(PROP_PI_FLAT_FLOOR_BUILDING);
+		return flatDoorBuilding;
+	}
+	public String getPremisesBuilding() {
+		if (premisesBuilding == null) premisesBuilding = getProperty(PROP_PI_PREMISES_BUILDING);
+		return premisesBuilding;
+	}
 
-    public String getState() {
-    	if (state == null) state = getProperty(PROP_PI_STATE);
-    	return state;
-    }
+	public String getRoadStreet() {
+		if (roadStreet == null) roadStreet = getProperty(PROP_PI_ROAD_STREET);
+		return roadStreet;
+	}
 
-    public String getPinCode() {
-    	if (pinCode == null) pinCode = getProperty(PROP_PI_PINCODE);
-    	return pinCode;
-    }
+	public String getAreaLocality() {
+		if (areaLocality == null) areaLocality = getProperty(PROP_PI_AREA_LOCALITY);
+		return areaLocality;
+	}
 
-    public String getEmail() {
-    	if (email == null) email =  getProperty(PROP_PI_EMAIL);
-    	return email;
-    }
+	public String getTownCityDistrict() {
+		if (townCityDistrict == null) townCityDistrict = getProperty(PROP_PI_TOWN_CITY_DISTRICT);
+		return townCityDistrict;
+	}
 
-    public String getMobile() {
-    	if (mobile == null) mobile =  getProperty(PROP_PI_MOBILE);
-    	return mobile;
-    }
+	public String getState() {
+		if (state == null) state = getProperty(PROP_PI_STATE);
+		return state;
+	}
 
-    public String getStdCode() {
-    	if (stdCode == null) stdCode = getProperty(PROP_PI_STD_CODE);
-    	return stdCode;
-    }
+	public String getPinCode() {
+		if (pinCode == null) pinCode = getProperty(PROP_PI_PINCODE);
+		return pinCode;
+	}
 
-    public String getPhone() {
-    	if (phone == null) phone = getProperty(PROP_PI_PHONE);
-    	return phone;
-    }
-    public String getPersonalInfoUuid() {
-    	return PIUUID;
-    }
-    public final void setFinancialYear(String finacialYear) {
+	public BigInteger getBigPinCode() {
+		if (pinCode == null) pinCode = getProperty(PROP_PI_PINCODE);
+		BigInteger bigPin=null;
+		if(pinCode.length()>0){
+		bigPin = new BigInteger(pinCode);
+		return bigPin;
+		}else
+	     return null;
+		
+	}
+
+	public String getEmail() {
+		if (email == null) email =  getProperty(PROP_PI_EMAIL);
+		return email;
+	}
+
+	public String getMobile() {
+		if (mobile == null) mobile =  getProperty(PROP_PI_MOBILE);
+		return mobile;
+	}
+
+	public BigInteger getBigMobile() {
+		if (mobile== null) mobile= getProperty(PROP_PI_MOBILE);
+		if(mobile.length()>0){
+		BigInteger bigMobile = new BigInteger(mobile );
+		return bigMobile;
+		}else
+			return null;
+	}
+
+	public String getStdCode() {
+		if (stdCode == null) stdCode = getProperty(PROP_PI_STD_CODE);
+		return stdCode;
+	}
+
+	public BigInteger getBigStdCode() {
+		if (stdCode == null) stdCode= getProperty(PROP_PI_STD_CODE);
+		if(stdCode.length()>0){
+		BigInteger bigStd = new BigInteger(stdCode );
+		return bigStd;
+		}else
+			return null;
+	}
+
+	public String getPhone() {
+		if (phone == null) phone = getProperty(PROP_PI_PHONE);
+		return phone;
+	}
+
+	public BigInteger getBigPhone() {
+		if (phone == null) phone= getProperty(PROP_PI_PHONE);
+		if(phone.length()>0){
+		BigInteger bigPhone = new BigInteger(phone );
+		return bigPhone;
+		}else
+			return null;
+	}
+
+	public String getPersonalInfoUuid() {
+		return PIUUID;
+	}
+	public final void setFinancialYear(String finacialYear) {
 		this.finacialYear = finacialYear;
 	}
-    public final void setReturnType(String returnType) {
+	public final void setReturnType(String returnType) {
 		this.returnType = returnType;
 	}
-    public final void setOriginalAckNo(String originalAckNo) {
+	public final void setOriginalAckNo(String originalAckNo) {
 		this.originalAckNo = originalAckNo;
 	}
-    public final void setOriginalAckDate(String originalAckDate) {
+	public final void setOriginalAckDate(String originalAckDate) {
 		this.originalAckDate = originalAckDate;
 	}
-    public final void setDefective(String defective) {
+	public final void setDefective(String defective) {
 		this.defective = defective;
 	}
-    public final void setNoticeNo(String noticeNo) {
+	public final void setNoticeNo(String noticeNo) {
 		this.noticeNo = noticeNo;
 	}
-    public final void setNoticeDate(String noticeDate) {
+	public final void setNoticeDate(String noticeDate) {
 		this.noticeDate = noticeDate;
 	}
-    public final void setFirstName(String firstName) {
+	public final void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
 
@@ -307,7 +367,7 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 	public final void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
- 
+
 	public final void setFatherName(String fatherName) {
 		this.fatherName = fatherName;
 	}
@@ -317,7 +377,7 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 	public final void setFilingStatus(String filingStatus) {
 		this.filingStatus = filingStatus;
 	}
-	public final void setDOB(Calendar dOB) {
+	public final void setDOB(GregorianCalendar dOB) {
 		this.DOB = dOB;
 	}
 
@@ -326,50 +386,50 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 	}
 	//Member Contact Information
 	public final void setFlatDoorBuilding(String flatDoorBuilding) {
-    	this.flatDoorBuilding = flatDoorBuilding;
-    }
-    public final void setPremisesBuilding(String premisesBuilding) {
-    	this.premisesBuilding = premisesBuilding;
-    }
-    public final void setRoadStreet(String roadStreet) {
-    	this.roadStreet = roadStreet;
-    }
+		this.flatDoorBuilding = flatDoorBuilding;
+	}
+	public final void setPremisesBuilding(String premisesBuilding) {
+		this.premisesBuilding = premisesBuilding;
+	}
+	public final void setRoadStreet(String roadStreet) {
+		this.roadStreet = roadStreet;
+	}
 
-    public final void setAreaLocality(String areaLocality) {
-    	this.areaLocality = areaLocality;
-    }
+	public final void setAreaLocality(String areaLocality) {
+		this.areaLocality = areaLocality;
+	}
 
-    public final void setTownCityDistrict(String townCityDistrict) {
-    	this.townCityDistrict = townCityDistrict;
-    }
+	public final void setTownCityDistrict(String townCityDistrict) {
+		this.townCityDistrict = townCityDistrict;
+	}
 
-    public final void setState(String state) {
-    	this.state = state;
-    }
+	public final void setState(String state) {
+		this.state = state;
+	}
 
-    public final void setPinCode(String pinCode) {
-    	this.pinCode = pinCode;
-    }
-    public final void setEmail(String email) {
-    	this.email = email;
-    }
+	public final void setPinCode(String pinCode) {
+		this.pinCode = pinCode;
+	}
+	public final void setEmail(String email) {
+		this.email = email;
+	}
 
-    public final void setMobile(String mobile) {
-    	this.mobile = mobile;
-    }
+	public final void setMobile(String mobile) {
+		this.mobile = mobile;
+	}
 
-    public final void setStdCode(String stdCode) {
-    	this.stdCode = stdCode;
-    }
+	public final void setStdCode(String stdCode) {
+		this.stdCode = stdCode;
+	}
 
-    public final void setPhone(String phone) {
-    	this.phone = phone;
-    }
-    // Member Bank Detail
-    public Boolean getBankDetailStatus(){
+	public final void setPhone(String phone) {
+		this.phone = phone;
+	}
+	// Member Bank Detail
+	public Boolean getBankDetailStatus(){
 		if (bankDetailStatus == null) bankDetailStatus = getProperty(BD_STATUS);
 		return bankDetailStatus;
-    }
+	}
 	public String getBD_ADD_BANK_BRANCH() {
 		if (addBankBranch == null) addBankBranch = getProperty(BD_ADD_BANK_BRANCH);
 		return addBankBranch;
@@ -505,23 +565,23 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 	public final void setResidentCategory(String residentCategory) {
 		this.residentCategory = residentCategory;
 	}
-    public void setPersonalInforUuid(String piuuid) {
-    	this.PIUUID = piuuid;
-    }
-	
-//for personal information
-	
-    
+	public void setPersonalInforUuid(String piuuid) {
+		this.PIUUID = piuuid;
+	}
+
+	//for personal information
+
+
 	@Override
 	public boolean bind(Object content, javax.jcr.Node node)
 			throws ContentNodeBindingException {
 		// TODO Auto-generated method stub
 		try {
 			if(log.isInfoEnabled()){
-			log.warn("this is bean");
+				log.warn("this is bean");
 			}
 			MemberPersonalInformation mpi = (MemberPersonalInformation) content;
-			
+
 			node.setProperty(PROP_PI_FINANCIAL_YEAR,mpi.getFinancialYear());
 			node.setProperty(PROP_PI_RETURN_TYPE,mpi.getReturnType());
 			node.setProperty(PROP_PI_ORIGINAL_ACK_DATE,mpi.getOriginalAckDate());
@@ -529,28 +589,28 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 			node.setProperty(PROP_PI_NOTICE_DATE,mpi.getNoticeDate());
 			node.setProperty(PROP_PI_NOTICE_NO,mpi.getNoticeNo());
 			node.setProperty(PROP_PI_DEFECTIVE,mpi.getDefective());
-			
+
 			node.setProperty(PROP_PI_FIRST_NAME,mpi.getFirstName());
-	    	node.setProperty(PROP_PI_MIDDLE_NAME,mpi.getMiddleName());
-	    	node.setProperty(PROP_PI_LAST_NAME, mpi.getLastName());
-	    	node.setProperty(PROP_PI_FATHER_NAME, mpi.getFatherName());
-	    	node.setProperty(PROP_PI_PAN, mpi.getPAN());
-	    	node.setProperty(PROP_PI_FILING_STATUS, mpi.getFilingStatus());
-	    	node.setProperty(PROP_PI_DOB, mpi.getDOB());	    	
-	    	node.setProperty(PROP_PI_SEX, mpi.getSex());
-	    	
-	    	node.setProperty(PROP_PI_FLAT_FLOOR_BUILDING, mpi.getFlatDoorBuilding());
-	    	node.setProperty(PROP_PI_PREMISES_BUILDING, mpi.getPremisesBuilding());
-	    	node.setProperty(PROP_PI_ROAD_STREET, mpi.getRoadStreet());
-	    	node.setProperty(PROP_PI_AREA_LOCALITY, mpi.getAreaLocality());
-	    	node.setProperty(PROP_PI_TOWN_CITY_DISTRICT, mpi.getTownCityDistrict());
-	    	node.setProperty(PROP_PI_STATE, mpi.getState());
-	    	node.setProperty(PROP_PI_PINCODE, mpi.getPinCode());
-	    	node.setProperty(PROP_PI_EMAIL, mpi.getEmail());
-	    	node.setProperty(PROP_PI_MOBILE, mpi.getMobile());
-	    	node.setProperty(PROP_PI_STD_CODE, mpi.getStdCode());
-	    	node.setProperty(PROP_PI_PHONE, mpi.getPhone());
-	    	
+			node.setProperty(PROP_PI_MIDDLE_NAME,mpi.getMiddleName());
+			node.setProperty(PROP_PI_LAST_NAME, mpi.getLastName());
+			node.setProperty(PROP_PI_FATHER_NAME, mpi.getFatherName());
+			node.setProperty(PROP_PI_PAN, mpi.getPAN());
+			node.setProperty(PROP_PI_FILING_STATUS, mpi.getFilingStatus());
+			node.setProperty(PROP_PI_DOB, mpi.getDOB());	    	
+			node.setProperty(PROP_PI_SEX, mpi.getSex());
+
+			node.setProperty(PROP_PI_FLAT_FLOOR_BUILDING, mpi.getFlatDoorBuilding());
+			node.setProperty(PROP_PI_PREMISES_BUILDING, mpi.getPremisesBuilding());
+			node.setProperty(PROP_PI_ROAD_STREET, mpi.getRoadStreet());
+			node.setProperty(PROP_PI_AREA_LOCALITY, mpi.getAreaLocality());
+			node.setProperty(PROP_PI_TOWN_CITY_DISTRICT, mpi.getTownCityDistrict());
+			node.setProperty(PROP_PI_STATE, mpi.getState());
+			node.setProperty(PROP_PI_PINCODE, mpi.getPinCode());
+			node.setProperty(PROP_PI_EMAIL, mpi.getEmail());
+			node.setProperty(PROP_PI_MOBILE, mpi.getMobile());
+			node.setProperty(PROP_PI_STD_CODE, mpi.getStdCode());
+			node.setProperty(PROP_PI_PHONE, mpi.getPhone());
+
 			node.setProperty(BD_ACC_NUMBER,mpi.getBD_ACC_NUMBER());
 			node.setProperty(BD_BANK_NAME,mpi.getBD_BANK_NAME());
 			node.setProperty(BD_ECS,mpi.getBD_ECS());
@@ -576,10 +636,10 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 			node.setProperty(Rsstatus_q_no_no_yes_yes, mpi.getRsstatusQNoNoYesYes());
 			node.setProperty(Rsstatus_q_no_yes_yes_yes, mpi.getRsstatusQNoYesYesYes());
 			node.setProperty(PROP_PI_RESIDENT_CATEGORY, mpi.getResidentCategory());
-    	}catch (RepositoryException re) {
-    		log.error("Binding Node Error",re);
-    		
-    	}
+		}catch (RepositoryException re) {
+			log.error("Binding Node Error",re);
+
+		}
 		return true;
 	}
 
@@ -600,7 +660,7 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 			}else{
 				setDefective("");
 			}
-			}
+		}
 		if ( formMap.getField("notice_no") != null) setNoticeNo(formMap.getField("notice_no").getValue());
 		if ( formMap.getField("notice_date") != null) setNoticeDate(formMap.getField("notice_date").getValue());
 		//Member PersonaInformation
@@ -616,11 +676,11 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 			Date date = null ;
 			DateFormat formatter ; 
 			formatter = getIndianDateFormatter();
-			Calendar cal=Calendar.getInstance();
+			GregorianCalendar cal=(GregorianCalendar) GregorianCalendar.getInstance();
 			try{
 				date = (Date)formatter.parse(strDate); 
 				if(log.isInfoEnabled()){
-				log.info("date"+date);
+					log.info("date"+date);
 				}
 				cal.setTime(date);
 				setDOB(cal);
@@ -733,6 +793,6 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 	@Override
 	public <T extends HippoBean> void cloneBean(T sourceBean) {
 		// TODO Auto-generated method stub
-		
+
 	}
 }
