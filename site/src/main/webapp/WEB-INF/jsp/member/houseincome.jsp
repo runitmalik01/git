@@ -1,5 +1,6 @@
 <%@include file="../includes/tags.jspf"%>
 <%@ page import="com.mootly.wcm.utils.*"%>
+<%@page import="com.mootly.wcm.services.ScreenConfigService"%>
 <%@ page import="java.util.*"%>
 <%@page import="com.mootly.wcm.beans.compound.HouseIncomeDetail"%>
 <%@page import="com.mootly.wcm.member.HouseIncome"%>
@@ -18,8 +19,11 @@
 <c:set var="parentBeantitle">
 	<fmt:message key="member.houseincome.title" />
 </c:set>
-<hippo-gogreen:title title="${parentBeantitle}" />
 
+<hippo-gogreen:title title="${parentBeantitle}" />
+<hst:actionURL var="actionUrl"></hst:actionURL>
+<div class="page">
+<h3 id="respond1"><c:choose><c:when test="${not empty screenConfigDocument && not empty screenConfigDocument.screenHeading}"><c:out value="${screenConfigDocument.screenHeading}"/></c:when><c:otherwise>House Income</c:otherwise></c:choose></h3>
 <c:if test="${not empty formMap}">
 	<c:forEach items="${formMap.message}" var="item">
 		<div class="alert alert-error">
@@ -27,11 +31,11 @@
 		</div>
 	</c:forEach>
 </c:if>
-<hst:actionURL var="actionUrl"></hst:actionURL>
+
 <c:choose>
 	<c:when
 		test="${pageAction == 'NEW_CHILD' || pageAction == 'EDIT_CHILD'}">
-		<div class="page">
+		
 			<h4>Property Income</h4>
 			<form id="frmdata" action="${actionUrl}" method="post"
 				name="housefrm">
@@ -82,7 +86,7 @@
 							</div>
 							<div>
 								<input id="Pin" type="text" class="numberinput" name="Pin"
-									maxlength="6" title="Enter Pin code of your area"
+									maxlength="6" 
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
 						<c:out value="${childBean.pin}"/></c:if>" />
 
@@ -394,6 +398,44 @@
 						</div>
 						<div class="span2 offset1">
 							<div>
+								<input id="Balance" name="Balance"
+									placeholder="Rs." type="text"
+									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.balance}"/></c:if>">
+							</div>
+						</div>
+					</div>
+					<div class="row-fluid show-grid">
+						<div class="span1 decimal">
+							<div class="rowlabel">
+								<small>g</small>
+							</div>
+						</div>
+						<div class="span7 decimal">
+							<div class="rowlabel">
+								<label for=""><small>Interest on Borrowed Capital</small> </label>
+							</div>
+						</div>
+						<div class="span2 offset1">
+							<div>
+								<input id="Interest_borrowed" name="Interest_borrowed"
+									placeholder="Rs." type="text"
+									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.interest_borrowed}"/></c:if>">
+							</div>
+						</div>
+					</div>
+					<div class="row-fluid show-grid">
+						<div class="span1 decimal">
+							<div class="rowlabel">
+								<small>h</small>
+							</div>
+						</div>
+						<div class="span7 decimal">
+							<div class="rowlabel">
+								<label for=""><small>Income fron House Property</small> </label>
+							</div>
+						</div>
+						<div class="span2 offset1">
+							<div>
 								<input id="Income_hproperty" name="Income_hproperty"
 									placeholder="Rs." type="text"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.income_hproperty}"/></c:if>">
@@ -404,24 +446,31 @@
 				<div class="row-fluid show-grid">
 					<div class="span4 offset8 decimal">
 						<a href="${scriptName}" class="button olive">Cancel</a>&nbsp; <input
-							type="submit" id="submit" class="button olive" onclick="save()"
+							type="submit" id="myModalHref" class="button olive" onclick="save()"
 							value="Save" />
 
 					</div>
 				</div>
 			</form>
-		</div>
-
+		
 	</c:when>
+	
+	
+	
 	<c:otherwise>
 		<!--  show the table -->
 		<table>
 			<tr align="center">
-				<th><b>Property Let Out</b></th>
-				<th><b>Address</b></th>
-				<th><b>Ownership %</b></th>
-				<th><b>Income from House Property</b></th>
-				<th><b>Actions</b></th>
+				<th><b>Property Let Out</b>
+				</th>
+				<th><b>Address</b>
+				</th>
+				<th><b>Ownership %</b>
+				</th>
+				<th><b>Income from House Property</b>
+				</th>
+				<th><b>Actions</b>
+				</th>
 			</tr>
 			<c:if test="${not empty parentBean}">
 				<c:forEach items="${parentBean.houseIncomeDetailList}"
@@ -429,23 +478,30 @@
 					<tr>
 						<td><a
 							href="${scriptName}/<c:out value="${houseincomedetail.canonicalUUID}"/>/edit"><c:out
-									value="${houseincomedetail.letOut}" /> </a></td>
-						<td><c:out value="${houseincomedetail.address}" /></td>
+									value="${houseincomedetail.letOut}" /> </a>
+						</td>
+						<td><c:out value="${houseincomedetail.address}" />
+						</td>
 
-						<td><c:out value="${houseincomedetail.property_share}" /></td>
+						<td><c:out value="${houseincomedetail.property_share}" />
+						</td>
 						<td><c:out value="${houseincomedetail.income_hproperty}" />
 						</td>
 						<td><a
 							href="${scriptName}/<c:out value="${houseincomedetail.canonicalUUID}"/>/edit"><small>Edit</small>
 						</a>&nbsp;&nbsp;<a
 							href="${scriptName}/<c:out value="${houseincomedetail.canonicalUUID}"/>/delete"><small>Delete</small>
-						</a></td>
+						</a>
+						</td>
 					</tr>
 
 				</c:forEach>
 
 			</c:if>
 		</table>
-		<a href="${scriptName}/new" class="button orange">Add New</a>
+		<a href="${scriptName}/houseincomenew" class="button orange">Add New</a>
 	</c:otherwise>
 </c:choose>
+</div>
+
+<res:client-validation formId="frmdata" screenConfigurationDocumentName="houseincome" formSubmitButtonId="myModalHref"/>
