@@ -76,6 +76,8 @@ public class HouseIncomeDetail extends HippoItem implements FormMapFiller {
 	private Double Unrealised_rent;
 	private Double Local_tax;
 	private Double Total;
+	private Double Balance;
+	private Double Interest_borrowed;
 	private Double Income_hproperty;
 	private String personalInfoUuid;
 	private String Property_share;
@@ -193,6 +195,14 @@ public class HouseIncomeDetail extends HippoItem implements FormMapFiller {
 		if (Total == null) Total = getProperty("mootlywcm:Total");
 		return Total;
 	}
+	public final Double getBalance() {
+		if (Balance == null) Balance = getProperty("mootlywcm:Balance");
+		return Balance;
+	}
+	public final Double getInterest_borrowed() {
+		if (Interest_borrowed == null) Interest_borrowed = getProperty("mootlywcm:Interest_borrowed");
+		return Interest_borrowed;
+	}
 	public final Double getIncome_hproperty() {
 		if (Income_hproperty == null) Income_hproperty = getProperty("mootlywcm:Income_hproperty");
 		return Income_hproperty;
@@ -284,6 +294,12 @@ public class HouseIncomeDetail extends HippoItem implements FormMapFiller {
 	public final void setTotal(Double Total) {
 		this.Total = Total;
 	}
+	public final void setBalance(Double Balance) {
+		this.Balance = Balance;
+	}
+	public final void setInterest_borrowed(Double Interest_borrowed) {
+		this.Interest_borrowed = Interest_borrowed;
+	}
 	public final void setIncome_hproperty(Double Income_hproperty) {
 		this.Income_hproperty = Income_hproperty;
 	}
@@ -357,7 +373,9 @@ public class HouseIncomeDetail extends HippoItem implements FormMapFiller {
 			node.setProperty("mootlywcm:Letable_value", getLetable_value());	
 			node.setProperty("mootlywcm:Unrealised_rent", getUnrealised_rent());	
 			node.setProperty("mootlywcm:Local_tax", getLocal_tax());	
-			node.setProperty("mootlywcm:Total", getTotal());	
+			node.setProperty("mootlywcm:Total", getTotal());
+			node.setProperty("mootlywcm:Balance", getBalance());
+			node.setProperty("mootlywcm:Interest_borrowed", getInterest_borrowed());
 			node.setProperty("mootlywcm:Income_hproperty", getIncome_hproperty());	
 			node.setProperty("mootlywcm:Property_share", getProperty_share());	
 
@@ -370,13 +388,14 @@ public class HouseIncomeDetail extends HippoItem implements FormMapFiller {
 	@Override
 	public void fill(FormMap formMap) {
 		// TODO Auto-generated method stub
-		// TODO Auto-generated method stub
 		if (formMap == null) return;
-		double amt=0.0;
-		double amt1=0.0;
-		double amt2=0.0;
-		double amt3=0.0;
-		double amt4=0.0;
+		Double amt=0.0;
+		Double amt1=0.0;
+		Double amt2=0.0;
+		Double amt3=0.0;
+		Double amt4=0.0;
+		Double amt5=0.0;
+		Double amt6=0.0;
 		if (formMap.getField("Address") != null){
 			setAddress(formMap.getField("Address").getValue());
 			log.info("valuye of add"+formMap.getField("Address").getValue());
@@ -457,67 +476,89 @@ public class HouseIncomeDetail extends HippoItem implements FormMapFiller {
 		}
 		if (formMap.getField("Letable_value") != null) {
 			String strlet_val= formMap.getField("Letable_value").getValue();
-			log.info("value of letable is"+strlet_val);
-			if(null != strlet_val){
+			if(!(strlet_val.isEmpty())){
 				amt=Double.parseDouble(strlet_val);
-			} else {
-				amt= 0.0;
-				log.info("value of amt"+amt);
+				log.info("amt inside if loop "+amt);
+			}else {
+				amt=0.0;
+				log.info("amt inside else loop "+amt);
 			}
-			log.info("value of amt is"+amt);
+			log.info("value after all is"+amt);
 			setLetable_value(amt);
 		}
 		if (formMap.getField("Unrealised_rent") != null) {
 			String strunreal_rent=(formMap.getField("Unrealised_rent").getValue());
-			log.info("value of rent is"+strunreal_rent);
-			if(strunreal_rent != null){
+			if(!(strunreal_rent.isEmpty())){
 				amt1=Double.parseDouble(strunreal_rent);
-
-			} else {
-				amt1= 0.0;
+				log.info("value of amt1 is"+amt1);
 			}
-			log.info("value of amt1 is"+amt1);
-			setUnrealised_rent(amt1);
+			else {
+				amt1=0.0;
+				log.info("amt inside else loop "+amt1);
+
+			}setUnrealised_rent(amt1);
 		}
-		if (formMap.getField("Local_tax") != null) {
+
+
+		if (formMap.getField("Local_tax")!= null) {
 			String strloc_tax=(formMap.getField("Local_tax").getValue());
-			log.info("value of local is"+strloc_tax);
-			if(strloc_tax != null){
+			if(!(strloc_tax.isEmpty())){
 				amt2=Double.parseDouble(strloc_tax);
+				log.info("value of amt2 is"+amt2);
+			}else {
 
-			} else {
-				amt2= 0.0;
-			}
-
-			log.info("value of amt2 is"+amt2);
+				amt2=0.0;
+			}log.info("value after all is"+amt2);
 			setLocal_tax(amt2);
-		}
-		if (formMap.getField("Total") != null) {
+		} 
+
+		if (formMap.getField("Total")!= null) {
 			String strtot=(formMap.getField("Total").getValue());
-			log.info("value of total is"+strtot);
-			if(strtot != null){
+			if(!(strtot.isEmpty())){
 				amt3=Double.parseDouble(strtot);
-
-			} else {
-				amt3= 0.0;
+				log.info("value of amt3 is"+amt3);
 			}
-
-			log.info("value of amt3 is"+amt3);
+			else {
+				amt3=0.0;
+			}log.info("value after all is"+amt3);
 			setTotal(amt3);
+
 		}
-
-		if (formMap.getField("Income_hproperty") != null) {
-			String strincome=(formMap.getField("Income_hproperty").getValue());
-			if(strincome != null){
-				amt4=Double.parseDouble(strincome);
-
-			} else {
-				amt4= 0.0;
+		if (formMap.getField("Balance")!= null) {
+			String strbal=(formMap.getField("Balance").getValue());
+			if(!(strbal.isEmpty())){
+				amt4=Double.parseDouble(strbal);
+				log.info("value of amt4 is"+amt4);
 			}
+			else {
+				amt4=0.0;
+			}log.info("value after all is"+amt4);
+			setBalance(amt4);
 
-			log.info("value of amt4 is"+amt);
-			setIncome_hproperty(amt4);
 		}
+		if (formMap.getField("Interest_borrowed")!= null) {
+			String strintb=(formMap.getField("Interest_borrowed").getValue());
+			if(!(strintb.isEmpty())){
+				amt5=Double.parseDouble(strintb);
+				log.info("value of amt5 is"+amt5);
+			}
+			else {
+				amt5=0.0;
+			}log.info("value after all is"+amt5);
+			setInterest_borrowed(amt5);
+
+		}
+		if (formMap.getField("Income_hproperty")!= null) {
+			String strincome=(formMap.getField("Income_hproperty").getValue());
+			if(!(strincome.isEmpty())){
+				amt6=Double.parseDouble(strincome);
+				log.info("value of amt6 is"+amt6);
+			}else {
+				amt6=0.0;
+			}log.info("value after all is"+amt6);
+			setIncome_hproperty(amt6);
+		} 
+
 		if (formMap.getField("Property_share") != null) {
 			setProperty_share(formMap.getField("Property_share").getValue());
 		}
@@ -558,7 +599,10 @@ public class HouseIncomeDetail extends HippoItem implements FormMapFiller {
 		setUnrealised_rent(objhouseIncomeDetail.getUnrealised_rent());
 		setLocal_tax(objhouseIncomeDetail.getLocal_tax());
 		setTotal(objhouseIncomeDetail.getTotal());
+		setBalance(objhouseIncomeDetail.getBalance());
+		setInterest_borrowed(objhouseIncomeDetail.getInterest_borrowed());
 		setIncome_hproperty(objhouseIncomeDetail.getIncome_hproperty());
 		setProperty_share(objhouseIncomeDetail.getProperty_share());
+		
 	};
 }
