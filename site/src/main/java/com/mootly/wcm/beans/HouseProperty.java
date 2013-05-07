@@ -56,7 +56,7 @@ public class HouseProperty extends BaseDocument implements ContentNodeBinder,For
 	final String PROP_DETAIL_BEAN="mootlywcm:houseincomedetail";
 	private String itFolderUuid;
 
-	
+
 	private final static Logger log = LoggerFactory.getLogger(HouseProperty.class); 
 
 	private List<HouseIncomeDetail> houseincomeDetailList;
