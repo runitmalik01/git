@@ -336,4 +336,5 @@ orderable
 
 [mootlywcm:ITReturnHome] > hippostd:relaxed, mootlywcm:basedocument orderable
 
+[mootlywcm:tdsothersdetail] > hippo:compound, hippostd:relaxed orderable
 
