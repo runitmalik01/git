@@ -97,7 +97,7 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 	static final public String NODE_NAME = "PersonalInformation";
 
 	private String employerCategory;
-	private String returnFileSection;
+	private Long returnFileSection;
 	private String incomeTaxWard;
 	private String receiptNo;
 	private String taxStatus;
@@ -164,7 +164,7 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 		if (receiptNo == null) receiptNo = getProperty(PROP_PI_RECEIPT_NO);
 		return receiptNo;
 	}
-	public String getReturnFileSection() {
+	public long getReturnFileSection() {
 		if (returnFileSection == null) returnFileSection = getProperty(PROP_PI_RETURN_FILE_SECTION);
 		return returnFileSection;
 	}
@@ -189,6 +189,22 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 		return originalAckDate;
 	}	
 
+	public XMLGregorianCalendar getGregorianOriginalAckDate() {
+		if (originalAckDate == null) originalAckDate = getProperty(PROP_PI_ORIGINAL_ACK_DATE);
+		String dobStr = getIndianDateFormatter().format(originalAckDate.getTime());
+		XMLGregorianCalendar date2=null;
+		try {
+			//date2 = DatatypeFactory.newInstance().newXMLGregorianCalendar(dobStr);
+			date2 = DatatypeFactory.newInstance().newXMLGregorianCalendar(originalAckDate);
+
+		} catch (DatatypeConfigurationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return date2;
+	}
+
+	
 	public String getDefective() {
 		if (defective == null) defective = getProperty(PROP_PI_DEFECTIVE);
 		return defective;
@@ -201,6 +217,22 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 		if (noticeDate == null) noticeDate = getProperty(PROP_PI_NOTICE_DATE);
 		return noticeDate;
 	}
+	
+	public XMLGregorianCalendar getGregorianNoticeDate() {
+		if (noticeDate == null) noticeDate = getProperty(PROP_PI_NOTICE_DATE);
+		String dobStr = getIndianDateFormatter().format(noticeDate.getTime());
+		XMLGregorianCalendar date2=null;
+		try {
+			//date2 = DatatypeFactory.newInstance().newXMLGregorianCalendar(dobStr);
+			date2 = DatatypeFactory.newInstance().newXMLGregorianCalendar(noticeDate);
+
+		} catch (DatatypeConfigurationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return date2;
+	}
+	
 	//This is just a calculated field
 	public String getName() {
 		StringBuffer sb = new StringBuffer();
@@ -378,7 +410,7 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 	public final void setEmployerCategory(String employerCategory) {
 		this.employerCategory = employerCategory;
 	}
-	public final void setReturnFileSection(String returnFileSection) {
+	public final void setReturnFileSection(long returnFileSection) {
 		this.returnFileSection = returnFileSection;
 	}
 	public final void setFinancialYear(String finacialYear) {
@@ -702,7 +734,7 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 		}
 		if (formMap == null) return;
 		if ( formMap.getField("tax_status") != null) setTaxStatus(formMap.getField("tax_status").getValue());
-		if ( formMap.getField("return_section") != null) setReturnFileSection(formMap.getField("return_section").getValue());
+		if ( formMap.getField("return_section") != null) setReturnFileSection(Long.parseLong(formMap.getField("return_section").getValue()));
 		if ( formMap.getField("emp_category") != null) setEmployerCategory(formMap.getField("emp_category").getValue());
 		if ( formMap.getField("receipt_no") != null) setReceiptNo(formMap.getField("receipt_no").getValue());
 		if ( formMap.getField("tax_ward") != null) setIncomeTaxWard(formMap.getField("tax_ward").getValue());
