@@ -17,6 +17,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -75,13 +76,13 @@ public class StartApplication extends ITReturnComponent {
 	private static final String STATUS = "status";
 	private static final String ERRORS = "errors";
 	private static final String DOB = "pi_dob";
-	
+	FormMap savedValuesFormMap=null;	
 	@Override
 	public void doBeforeRender(HstRequest request, HstResponse response) {
 		// TODO Auto-generated method stub
 		super.doBeforeRender(request, response);
 		String publicParameterUUID = getPublicRequestParameter(request, "uuid");
-		FormMap savedValuesFormMap=null;
+
 		if (publicParameterUUID != null) {
 			try {
 				FormUtils.validateId(publicParameterUUID);
@@ -277,7 +278,7 @@ public class StartApplication extends ITReturnComponent {
 		Date date = null ;
 		DateFormat formatter ; 
 		formatter = new SimpleDateFormat("yyyy-mm-dd");
-		Calendar cal=Calendar.getInstance();
+		GregorianCalendar cal=(GregorianCalendar) GregorianCalendar.getInstance();
 		try{
 			date = (Date)formatter.parse(dob); 
 			log.info("date"+date);
@@ -404,7 +405,7 @@ public class StartApplication extends ITReturnComponent {
 					objpersonalInformation.setLastName(personal_info.getLastName());
 					objpersonalInformation.setSex(personal_info.getSex());
 					objpersonalInformation.setFatherName(personal_info.getFatherName());
-					objpersonalInformation.setDOB(personal_info.getDOB());
+					objpersonalInformation.setDOB((GregorianCalendar) personal_info.getDOB());
 					objpersonalInformation.setFilingStatus(personal_info.getFilingStatus());
 					// update now  
 					wpm.update(objpersonalInformation);
@@ -437,7 +438,7 @@ public class StartApplication extends ITReturnComponent {
 				objupdateobjpersonalInformation.setLastName(personal_info.getLastName());
 				objupdateobjpersonalInformation.setSex(personal_info.getSex());
 				objupdateobjpersonalInformation.setFatherName(personal_info.getFatherName());
-				objupdateobjpersonalInformation.setDOB(personal_info.getDOB());
+				objupdateobjpersonalInformation.setDOB((GregorianCalendar)personal_info.getDOB());
 				objupdateobjpersonalInformation.setFilingStatus(personal_info.getFilingStatus());
 				wpm.update(objupdateobjpersonalInformation);
 				String signUpPath=ContentStructure.getSignUpDocumentPath(modusername);
