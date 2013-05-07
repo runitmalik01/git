@@ -20,20 +20,26 @@
 <hst:actionURL var="actionUrl"></hst:actionURL>
 <div class="breadcrumb-list" xmlns:v="http://rdf.data-vocabulary.org/#">
 	<span typeof="v:Breadcrumb"><a rel="v:url" property="v:title"
-		href="">Home</a>
-	</span> <span class="chevron">&#187;</span> <span typeof="v:Breadcrumb"><a
-		rel="v:url" property="v:title" href="">My Income Tax Returns</a>
-	</span> <span class="chevron">&#187;</span> <span
-		class="breadcrumb-current pan"><c:out value="${pan}" />
-	</span> <span class="chevron">&#187;</span> <span class="breadcrumb-current"><select
+		href="">Home</a> </span> <span class="chevron">&#187;</span> <span
+		typeof="v:Breadcrumb"><a rel="v:url" property="v:title" href="">My
+			Income Tax Returns</a> </span> <span class="chevron">&#187;</span> <span
+		class="breadcrumb-current pan"><c:out value="${pan}" /> </span> <span
+		class="chevron">&#187;</span> <span class="breadcrumb-current"><select
 		style="width: 120px"><option>Salary Income</option>
 			<option>a</option>
 			<option>a</option>
-	</select>
-	</span>
+	</select> </span>
 </div>
 <div class="page type-page">
-	<h3 id="respond1"><c:choose><c:when test="${not empty screenConfigDocument && not empty screenConfigDocument.screenHeading}"><c:out value="${screenConfigDocument.screenHeading}"/></c:when><c:otherwise>Salary Income</c:otherwise></c:choose></h3>
+	<h3 id="respond1">
+		<c:choose>
+			<c:when
+				test="${not empty screenConfigDocument && not empty screenConfigDocument.screenHeading}">
+				<c:out value="${screenConfigDocument.screenHeading}" />
+			</c:when>
+			<c:otherwise>Salary Income</c:otherwise>
+		</c:choose>
+	</h3>
 	<c:if test="${not empty formMap}">
 		<c:forEach items="${formMap.message}" var="item">
 			<div class="alert alert-error">
@@ -45,8 +51,7 @@
 		<c:when
 			test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD') || pageAction == 'NEW_CHILD'}">
 			<h5>
-				<small><fmt:message key="member.employe.message" />
-				</small>
+				<small><fmt:message key="member.employe.message" /> </small>
 			</h5>
 			<form id="frmdata" action="${actionUrl}" name="salaryfrm"
 				method="post">
@@ -54,48 +59,49 @@
 					<legend>Employment</legend>
 					<p>
 						<label for="Name_employer"><fmt:message
-								key="member.employe.category" />
-						</label> 
-						<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
-						<c:choose>
-							<c:when test="${childBean.employe_category == 'GOV'}">
-								<c:set var="gov" value="checked=checked"/>
-							</c:when>
-							<c:when test="${childBean.employe_category == 'PSU'}">
-								<c:set var="psu" value="checked=checked"/>
-							</c:when>
-							<c:when test="${childBean.employe_category == 'OTH'}">
-								<c:set var="oth" value="checked=checked"/>
-							</c:when>
-						</c:choose>
+								key="member.employe.category" /> </label>
+						<c:if
+							test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
+							<c:choose>
+								<c:when test="${childBean.employe_category == 'GOV'}">
+									<c:set var="gov" value="checked=checked" />
+								</c:when>
+								<c:when test="${childBean.employe_category == 'PSU'}">
+									<c:set var="psu" value="checked=checked" />
+								</c:when>
+								<c:when test="${childBean.employe_category == 'OTH'}">
+									<c:set var="oth" value="checked=checked" />
+								</c:when>
+							</c:choose>
 						</c:if>
-							<input type="radio" <c:out value="${gov}"/> name="Employe_category" value="GOV"/>Government 
-							<input type="radio" <c:out value="${psu}"/> name="Employe_category" value="PSU" />PSU 
-							<input type="radio" <c:out value="${oth}"/> name="Employe_category" value="OTH" />Others
+						<input type="radio" <c:out value="${gov}"/>
+							name="Employe_category" value="GOV" />Government <input
+							type="radio" <c:out value="${psu}"/> name="Employe_category"
+							value="PSU" />PSU <input type="radio" <c:out value="${oth}"/>
+							name="Employe_category" value="OTH" />Others
 					</p>
 				</fieldset>
 				<fieldset>
 					<legend>Employer</legend>
 					<p>
 						<label for="Name_employer"><fmt:message
-								key="member.employe.name" />
-						</label> <input id="Name_employer" required type="text"
-							name="Name_employer" maxlength="25" class="alphaonly"
-							title="Enter Employer Name"
+								key="member.employe.name" /> </label> <input id="Name_employer"
+							required type="text" name="Name_employer" maxlength="25"
+							class="alphaonly" title="Enter Employer Name"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.name_employer}"/></c:if>" />
 					</p>
 					<p>
 						<label for="Pan_employer"><fmt:message
-								key="member.info.pan" />
-						</label> <input id="Pan_employer" type="text" name="Pan_employer"
+								key="member.info.pan" /> </label> <input id="Pan_employer" type="text"
+							name="Pan_employer"
 							title="This field accept first five alphabate next four numeric then single alphabate"
 							placeholder="10 Characters"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.pan_employer}"/></c:if>" />
 					</p>
 					<p>
 						<label for="Tan_employer"><fmt:message
-								key="member.info.tan" />
-						</label> <input id="Tan_employer" type="text" name="Tan_employer"
+								key="member.info.tan" /> </label> <input id="Tan_employer" type="text"
+							name="Tan_employer"
 							title="This field accept first four alphabate next five numeric then single alphabate"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.tan_employer}"/></c:if>">
 					</p>
@@ -105,8 +111,8 @@
 					<label for="Address"><fmt:message key="member.address.info" />
 					</label> <input id="Address" type="text" name="Address" maxlength="35"
 						value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.address}"/></c:if>" />
-					<label for="City"><fmt:message key="member.city.info" />
-					</label> <input id="City" type="text" name="City"
+					<label for="City"><fmt:message key="member.city.info" /> </label>
+					<input id="City" type="text" name="City"
 						value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.city}"/></c:if>" />
 					<label for="State"><fmt:message key="member.salary.state" />
 					</label> <select id="State" name="State">
@@ -116,9 +122,9 @@
 								"<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD') && childBean.state == booleanCombo.value}">selected</c:if>" value="${booleanCombo.value}">${booleanCombo.value}</option>
 						</c:forEach>
 					</select> <label></label> <label for="Pin"><fmt:message
-							key="member.pin.info" />
-					</label> <input id="Pin" type="text" class="numberinput" name="Pin"
-						maxlength="6" title="Enter Pin code of your area"
+							key="member.pin.info" /> </label> <input id="Pin" type="text"
+						class="numberinput" name="Pin" maxlength="6"
+						title="Enter Pin code of your area"
 						value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
 						<c:out value="${childBean.pin}"/></c:if>" />
 				</fieldset>
@@ -129,14 +135,12 @@
 					<table>
 						<tr>
 							<td><label><fmt:message key="member.period.info1" />
-							</label>
-							</td>
+							</label></td>
 							<td><input id="datepicker" name="From"
 								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.from}"/></c:if>" />
 							</td>
 							<td><label><fmt:message key="member.period.infoto" />
-							</label>
-							</td>
+							</label></td>
 							<td><input id="datepicker1" name="To"
 								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.to}"/></c:if>" />
 							</td>
@@ -145,65 +149,76 @@
 				</fieldset>
 				<fieldset>
 					<legend>Compensation and Taxation</legend>
-					<p>
-						<label><fmt:message key="member.gross.salary" />
-						</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input title="enter gross salary" name="Gross_salary"
-							maxlength="14" id="A" onchange="fill()" id=A
-							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
+					<table>
+						<tr>
+							<td><label><fmt:message key="member.gross.salary" />
+							</label>
+							</td>
+							<td><input title="enter gross salary" name="Gross_salary"
+								maxlength="14" id="Gross_salary" onchange="fill()" id=A
+								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
 						<c:out value="${childBean.gross_salary}"/></c:if>" />
-					</p>
-					<p>
-						<label><fmt:message key="member.allowance.salary" />
-						</label> &nbsp;&nbsp;&nbsp;<input name="Allowance" id="B" maxlength="14" onchange="fill()"
-							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.allowance}"/></c:if>">
-					</p>
-					<p>
-						<label>Allowance Not Exempt:
-						</label> &nbsp;&nbsp;&nbsp;<input name="Allowance1"  maxlength="14" 
-							value="">
-					</p>
-					<p>
-						<label><fmt:message key="member.value.preq" />
-						</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						&nbsp;&nbsp;&nbsp;<input maxlength="14" name="Perquisite" id="C" onchange="fill()"
-							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.perquisite}"/></c:if>">
-					</p>
-					<p>
-						<label><fmt:message key="member.value.profit" />
-						</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input maxlength="14" name="Profit" id="D" onchange="fill()"
-							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.profit}"/></c:if>">
-					</p>
-					<p>
-						<label><fmt:message key="member.value.tax" />
-						</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input name="Taxable_earning" readonly="readonly" id="E"
-							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.taxable_earning}"/></c:if>" />
-					</p>
+							</td>
+						</tr>
+						<tr>
+							<td><label><fmt:message
+										key="member.allowance.salary" /> </label>
+							</td>
+							<td><input name="Allowance" id="Allowance" maxlength="14"
+								onchange="fill()"
+								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.allowance}"/></c:if>">
+							</td>
+						</tr>
+
+						<tr>
+							<td><label>Allowance Not Exempt: </label></td>
+							<td><input name="Allowance1" maxlength="14" value="">
+							</td>
+						</tr>
+						<tr>
+							<td><label><fmt:message key="member.value.preq" />
+							</label></td>
+							<td><input maxlength="14" name="Perquisite" id="Perquisite"
+								onchange="fill()"
+								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.perquisite}"/></c:if>">
+							</td>
+						</tr>
+
+						<tr>
+							<td><label><fmt:message key="member.value.profit" />
+							</label>
+							</td>
+							<td><input maxlength="14" name="Profit" id="Profit"
+								onchange="fill()"
+								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.profit}"/></c:if>">
+							</td>
+						</tr>
+						<tr>
+							<td><label><fmt:message key="member.value.tax" /> </label>
+							</td>
+							<td><input name="Taxable_earning" readonly="readonly" id="Taxable_earning"
+								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.taxable_earning}"/></c:if>" />
+							</td>
+						</tr>
+					</table>
 				</fieldset>
 			</form>
-			
+
 			<a href="${scriptName}" class="button olive">Cancel</a>&nbsp;<a
 				href="javascript:void(0)" id="myModalHref" class="button orange">Save</a>
 
-			<res:client-validation formId="frmdata" screenConfigurationDocumentName="salaryincome" formSubmitButtonId="myModalHref"/>
-			
+			<res:client-validation formId="frmdata"
+				screenConfigurationDocumentName="salaryincome"
+				formSubmitButtonId="myModalHref" />
+
 		</c:when>
 		<c:otherwise>
 			<table>
 				<tr align="center">
-					<th><b>Employer's Name</b>
-					</th>
-					<th><b>Employment Period</b>
-					</th>
-					<th><b>Taxable Earning</b>
-					</th>
-					<th><b>Actions</b>
-					</th>
+					<th><b>Employer's Name</b></th>
+					<th><b>Employment Period</b></th>
+					<th><b>Taxable Earning</b></th>
+					<th><b>Actions</b></th>
 				</tr>
 				<c:if test="${not empty parentBean}">
 					<c:forEach items="${parentBean.salaryIncomeDetailList}"
@@ -211,26 +226,20 @@
 						<tr>
 							<td><a
 								href="${scriptName}/<c:out value="${salaryItemDetail.canonicalUUID}"/>/salaryincomeedit"><c:out
-										value="${salaryItemDetail.name_employer}" />
-							</a>
-							</td>
+										value="${salaryItemDetail.name_employer}" /> </a></td>
 							<td><c:out value="${salaryItemDetail.from}" /> - <c:out
-									value="${salaryItemDetail.to}" />
-							</td>
-							<td><c:out value="${salaryItemDetail.taxable_earning}" />
-							</td>
+									value="${salaryItemDetail.to}" /></td>
+							<td><c:out value="${salaryItemDetail.taxable_earning}" /></td>
 							<td><a
 								href="${scriptName}/<c:out value="${salaryItemDetail.canonicalUUID}"/>/salaryincomeedit"><small>Edit</small>
 							</a>&nbsp;&nbsp;<a
 								href="${scriptName}/<c:out value="${salaryItemDetail.canonicalUUID}"/>/salaryincomedelete"><small>Delete</small>
-							</a>
-							</td>
+							</a></td>
 						</tr>
 					</c:forEach>
 					<tr align="center">
 						<td colspan="2">Total Earning</td>
-						<td><c:out value="${parentBean.total}"></c:out>
-						</td>
+						<td><c:out value="${parentBean.total}"></c:out></td>
 				</c:if>
 			</table>
 			<a href="${scriptName}/salaryincomenew" class="button orange">Add
@@ -240,11 +249,11 @@
 </div>
 <script>
 	function fill() {
-		var A = document.getElementById("A").value - 0;
-		var B = document.getElementById("B").value - 0;
-		var C = document.getElementById("C").value - 0;
-		var D = document.getElementById("D").value - 0;
-		document.getElementById("E").value = (A + B + C + D);
+		var A = document.getElementById("Gross_salary").value - 0;
+		var B = document.getElementById("Allowance").value - 0;
+		var C = document.getElementById("Perquisite").value - 0;
+		var D = document.getElementById("Profit").value - 0;
+		document.getElementById("Taxable_earning").value = (A + B + C + D);
 
 	}
 </script>
