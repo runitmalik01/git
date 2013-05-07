@@ -2822,6 +2822,28 @@
         <sv:value>Email</sv:value>
       </sv:property>
     </sv:node>
+    <sv:node sv:name="selection:listitem" >
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>selection:listitem</sv:value>
+  </sv:property>
+  <sv:property sv:name="selection:key" sv:type="String">
+    <sv:value>bsr</sv:value>
+  </sv:property>
+  <sv:property sv:name="selection:label" sv:type="String">
+    <sv:value>BSR</sv:value>
+  </sv:property>
+</sv:node>
+<sv:node sv:name="selection:listitem" >
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>selection:listitem</sv:value>
+  </sv:property>
+  <sv:property sv:name="selection:key" sv:type="String">
+    <sv:value>serial</sv:value>
+  </sv:property>
+  <sv:property sv:name="selection:label" sv:type="String">
+    <sv:value>Challan Serial No.</sv:value>
+  </sv:property>
+</sv:node>
     <sv:node sv:name="selection:listitem">
       <sv:property sv:name="jcr:primaryType" sv:type="Name">
         <sv:value>selection:listitem</sv:value>
