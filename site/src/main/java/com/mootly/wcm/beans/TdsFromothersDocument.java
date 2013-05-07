@@ -46,7 +46,7 @@ import org.slf4j.LoggerFactory;
 import com.mootly.wcm.annotations.TagAsTaxDataProvider;
 import com.mootly.wcm.annotations.TagAsTaxDataProvider.TaxDataProviderType;
 import com.mootly.wcm.beans.compound.PersonalInformation;
-import com.mootly.wcm.beans.compound.TdsFromothersDetail;
+import com.mootly.wcm.beans.compound.TdsOthersDetail;
 
 @SuppressWarnings("unused")
 @Node(jcrType = "mootlywcm:tdsfromothersdocument")
@@ -54,7 +54,7 @@ import com.mootly.wcm.beans.compound.TdsFromothersDetail;
 public class TdsFromothersDocument extends BaseDocument implements ContentNodeBinder,FormMapFiller,CompoundChildUpdate {
 	static final public String NAMESPACE = "mootlywcm:tdsfromothersdocument";
 	static final public String NODE_NAME = "tdsfromothersdocument";
-	final String PROP_DETAIL_BEAN="mootlywcm:tdsfromothersdetail";
+	final String PROP_DETAIL_BEAN="mootlywcm:tdsothersdetail";
 	private String itFolderUuid;
 	
 	public String getGross_salary() {
@@ -63,20 +63,20 @@ public class TdsFromothersDocument extends BaseDocument implements ContentNodeBi
 	private Double total_amount;
 	private final static Logger log = LoggerFactory.getLogger(TdsFromothersDocument.class); 
 
-	private List<TdsFromothersDetail> tdsfromothersDetailList;
+	private List<TdsOthersDetail> tdsfromothersDetailList;
 
-	public final List<TdsFromothersDetail> getTdsSalaryDetailList() {
+	public final List<TdsOthersDetail> getTdsSalaryDetailList() {
 		if (tdsfromothersDetailList == null) tdsfromothersDetailList= getChildBeans(PROP_DETAIL_BEAN);
 		return tdsfromothersDetailList;
 	}
 
-	public final void setSalaryIncomeDetailList(List<TdsFromothersDetail> tdsothersDetailList) {
+	public final void setSalaryIncomeDetailList(List<TdsOthersDetail> tdsothersDetailList) {
 		this.tdsfromothersDetailList = tdsothersDetailList;
 	}
 	
-	public final void addTdsOthersDetail(TdsFromothersDetail tdsothersdetail) {
+	public final void addTdsOthersDetail(TdsOthersDetail tdsothersdetail) {
 		getTdsSalaryDetailList();
-		if (tdsfromothersDetailList == null) tdsfromothersDetailList = new ArrayList<TdsFromothersDetail>();
+		if (tdsfromothersDetailList == null) tdsfromothersDetailList = new ArrayList<TdsOthersDetail>();
 		tdsfromothersDetailList.add(tdsothersdetail);
 	}
 	   public Double getTotal_Amount() {
@@ -125,7 +125,7 @@ public class TdsFromothersDocument extends BaseDocument implements ContentNodeBi
         	if ( tdssalary.getTdsSalaryDetailList() != null &&  tdssalary.getTdsSalaryDetailList().size() > 0 ){ 
         		log.info("checking size in salary income bean:::"+ tdssalary.getTdsSalaryDetailList().size());
         		
-        		for (TdsFromothersDetail objtdsfromothers:tdssalary.getTdsSalaryDetailList()) {
+        		for (TdsOthersDetail objtdsfromothers:tdssalary.getTdsSalaryDetailList()) {
         		    
         			if (!objtdsfromothers.isMarkedForDeletion()) {
         				double amount=objtdsfromothers.getP_Amount();
@@ -177,17 +177,17 @@ public class TdsFromothersDocument extends BaseDocument implements ContentNodeBi
 		// TODO Auto-generated method stub
 		//check for available children
 		if (child.getCanonicalUUID() == null) {
-			TdsFromothersDetail source =(TdsFromothersDetail) child;
+			TdsOthersDetail source =(TdsOthersDetail) child;
 			addTdsOthersDetail(source);
 		}
 		boolean found = false;
-		List<TdsFromothersDetail> listOfChildren = getTdsSalaryDetailList();
+		List<TdsOthersDetail> listOfChildren = getTdsSalaryDetailList();
 		for (HippoBean o:listOfChildren) {
 			log.info( o.getCanonicalUUID() );
 			if (child.getCanonicalUUID() != null && child.getCanonicalUUID().equals(o.getCanonicalUUID())) {
 				log.info("GOT A MATCH");
-				TdsFromothersDetail destination =(TdsFromothersDetail) o;
-				TdsFromothersDetail source  = (TdsFromothersDetail) child;
+				TdsOthersDetail destination =(TdsOthersDetail) o;
+				TdsOthersDetail source  = (TdsOthersDetail) child;
 				destination.cloneBean(source);
 				found = true;
 				break;
@@ -199,7 +199,7 @@ public class TdsFromothersDocument extends BaseDocument implements ContentNodeBi
 	public void add(HippoBean child) {
 		// TODO Auto-generated method stub
 		//check for available children
-		TdsFromothersDetail source =(TdsFromothersDetail) child;
+		TdsOthersDetail source =(TdsOthersDetail) child;
 		addTdsOthersDetail(source);		
 	}
 	
@@ -209,13 +209,13 @@ public class TdsFromothersDocument extends BaseDocument implements ContentNodeBi
 		// TODO Auto-generated method stub
 		//check for available children
 		boolean found = false;
-		List<TdsFromothersDetail> listOfChildren = getTdsSalaryDetailList();
+		List<TdsOthersDetail> listOfChildren = getTdsSalaryDetailList();
 		for (HippoBean o:listOfChildren) {
 			log.info( o.getCanonicalUUID() );
 			if (child.getCanonicalUUID() != null && child.getCanonicalUUID().equals(o.getCanonicalUUID())) {
 				log.info("GOT A MATCH");
-				TdsFromothersDetail destination =(TdsFromothersDetail) o;
-				TdsFromothersDetail source  = (TdsFromothersDetail) child;
+				TdsOthersDetail destination =(TdsOthersDetail) o;
+				TdsOthersDetail source  = (TdsOthersDetail) child;
 				destination.setMarkedForDeletion(true);
 				found = true;
 				break;
@@ -223,7 +223,7 @@ public class TdsFromothersDocument extends BaseDocument implements ContentNodeBi
 		}
 		if (!found) {
 			//its a new node lets add it
-			TdsFromothersDetail source =(TdsFromothersDetail) child;
+			TdsOthersDetail source =(TdsOthersDetail) child;
 			addTdsOthersDetail(source);
 		}		
 	}
