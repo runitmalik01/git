@@ -117,6 +117,13 @@
 		$.validator.addMethod("tan", function(value, element) {  
 		   	 return this.optional(element) || /^[a-zA-Z]{4}[0-9]{5}[a-zA-Z]{1}?$/i.test(value);  
 		}, "TAN is invalid");
+		$.validator.addMethod("bsr", function(value, element) {  
+		   	 return this.optional(element) || /^[0-9]{7}?$/i.test(value); 
+		}, "BSR Code is invalid");
+		$.validator.addMethod("serial", function(value, element) {  
+		   	 return this.optional(element) || /^[0-9]{0,5}?$/i.test(value); 
+		}, "Challan Serial No is invalid");
+	
 	</script>
 </body>
 </html>
