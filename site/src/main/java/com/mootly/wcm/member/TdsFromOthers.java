@@ -14,7 +14,7 @@ import com.mootly.wcm.annotations.DataTypeValidationType;
 import com.mootly.wcm.annotations.FormFields;
 import com.mootly.wcm.annotations.PrimaryBean;
 import com.mootly.wcm.beans.TdsFromothersDocument;
-import com.mootly.wcm.beans.compound.TdsFromothersDetail;
+import com.mootly.wcm.beans.compound.TdsOthersDetail;
 import com.mootly.wcm.components.ITReturnComponent;
 
 /*
@@ -23,10 +23,10 @@ import com.mootly.wcm.components.ITReturnComponent;
  * Description:It will taje value from Tdsfromsalary.jsp and pass it to bean
  */
 @PrimaryBean(primaryBeanClass=TdsFromothersDocument.class)
-@ChildBean(childBeanClass=TdsFromothersDetail.class)
+@ChildBean(childBeanClass=TdsOthersDetail.class)
 
 @FormFields(fieldNames={"tan_deductor","name_deductor","tds_certificate","financial_year","total_taxdeducted","amount"})
-@DataTypeValidationFields(fieldNames={"tan_deductor","tds_certificate"},dataTypes={DataTypeValidationType.TAN,DataTypeValidationType.TDSCERTIFICATE})
+
 public class TdsFromOthers extends ITReturnComponent {
 	
 	private static final Logger log = LoggerFactory.getLogger(TdsFromSalary.class);
