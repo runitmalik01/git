@@ -47,26 +47,26 @@ if (actionInSiteMap != null && actionInSiteMap.contains("_")) {
 		<form id="frmIncomeinfo" action="${actionUrl}" name="oi" method="post">
 			
 			<ul id="myTab" class="nav nav-tabs">
-              <li class="active1"><a href="#incometaxsummary" data-toggle="tab" >Income Tax Summary </a></li>
+              <li class="active1"><a href="#incometaxsummary" data-toggle="tab" ><fmt:message key="income.tax.summary" /> </a></li>
                <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Income - Salaries and Penson <b class="caret"></b></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><fmt:message key="income" /> <b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                  <li ><a href="#formsixteen" data-toggle="tab">Form16</a></li>
-                  <li <%if (tabName != null && tabName.equals("salaryincome")){%>class="active"<%}%>><a href="#incomesalaries" data-toggle="tab">Salary Penson</a></li>
-                    <li ><a href="#incomeothersources" data-toggle="tab">Income - Other Sources</a></li>
-             		 <li <%if (tabName != null && tabName.equals("houseincome")){%>class="active"<%}%>><a href="#incomesinglehouse" data-toggle="tab" >Income - Single House</a></li>
+                  <li ><a href="#formsixteen" data-toggle="tab"><fmt:message key="income.form.sixteen" /></a></li>
+                  <li <%if (tabName != null && tabName.equals("salaryincome")){%>class="active"<%}%>><a href="#incomesalaries" data-toggle="tab"><fmt:message key="income.salary.penson" /></a></li>
+                    <li ><a href="#incomeothersources" data-toggle="tab"><fmt:message key="income.other.sources" /></a></li>
+             		 <li <%if (tabName != null && tabName.equals("houseincome")){%>class="active"<%}%>><a href="#incomesinglehouse" data-toggle="tab" ><fmt:message key="income.house.itr1" /></a></li>
                 </ul>
               </li>
                <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tax Paid <b class="caret"></b></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><fmt:message key="income.taxpaid.itr1" /> <b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                  <li <%if (tabName != null && tabName.equals("advancetax")){%>class="active"<%}%>><a href="#advancetax" data-toggle="tab">Advance Tax</a></li>
-                  <li <%if (tabName != null && tabName.equals("tdsfromsalary")){%>class="active"<%}%>><a href="#tdsfromsalary" data-toggle="tab">Tds From salary</a></li>
-                    <li <%if (tabName != null && tabName.equals("tdsfromothers")){%>class="active"<%}%> ><a href="#tdsfromothers" data-toggle="tab">Tds From others</a></li>
+                  <li <%if (tabName != null && tabName.equals("advancetax")){%>class="active"<%}%>><a href="#advancetax" data-toggle="tab"><fmt:message key="advance.tax.itr1" /></a></li>
+                  <li <%if (tabName != null && tabName.equals("tdsfromsalary")){%>class="active"<%}%>><a href="#tdsfromsalary" data-toggle="tab"><fmt:message key="advance.tdssalary.itr1" /></a></li>
+                    <li <%if (tabName != null && tabName.equals("tdsfromothers")){%>class="active"<%}%> ><a href="#tdsfromothers" data-toggle="tab"><fmt:message key="advance.tdsothers.itr1" /></a></li>
              		 
                 </ul>
               </li>
-              <li><a href="#deductions" data-toggle="tab">Deductions</a></li>
+              <li><a href="#deductions" data-toggle="tab"><fmt:message key="deductions.itr1" /></a></li>
               
             </ul>
 			 
