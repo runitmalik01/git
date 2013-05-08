@@ -33,6 +33,8 @@ import in.gov.incometaxindiaefiling.y2012_2013.master.Refund;
 import in.gov.incometaxindiaefiling.y2012_2013.master.Refund.DepositToBankAccount;
 import in.gov.incometaxindiaefiling.y2012_2013.master.TaxPaid;
 import in.gov.incometaxindiaefiling.y2012_2013.master.TaxesPaid;
+import in.gov.incometaxindiaefiling.y2012_2013.master.Verification;
+import in.gov.incometaxindiaefiling.y2012_2013.master.Verification.Declaration;
 
 import org.hippoecm.hst.core.component.HstComponentException;
 import org.hippoecm.hst.core.component.HstRequest;
@@ -114,6 +116,7 @@ public class XmlGenerator extends ITReturnComponent {
 		TaxPaid taxPaid = new TaxPaid();
 		TaxesPaid taxesPaid = new TaxesPaid();
         Refund refund = new Refund();
+        Verification verification = new Verification();
 		
 		//personal information
 		assesseeName.setFirstName(memberPersonalInformation.getFirstName());
@@ -216,7 +219,6 @@ public class XmlGenerator extends ITReturnComponent {
 		itr1.setTaxPaid(taxPaid);
 		
 		//refund
-	
 		refund.setRefundDue(null);// need to be calculated
 		refund.setBankAccountNumber(memberPersonalInformation.getBD_ACC_NUMBER());
 		refund.setEcsRequired(memberPersonalInformation.getBD_ECS());
@@ -227,6 +229,28 @@ public class XmlGenerator extends ITReturnComponent {
 		itr1.setRefund(refund);
 		
 		//Schedule80G
+		//TDSonSalaries
+		//TDSonOthThanSals
+		//TaxPayments
+		//TaxExmpIntInc
+		
+		//Verification
+		Declaration declaration = new Declaration();
+		declaration.setAssesseeVerName(memberPersonalInformation.getFirstName()+" "+memberPersonalInformation.getLastName());
+		declaration.setFatherName(memberPersonalInformation.getFatherName());
+		declaration.setAssesseeVerName(memberPersonalInformation.getPAN());
+		verification.setDeclaration(declaration);
+		verification.setPlace(memberPersonalInformation.getTownCityDistrict());	
+		try {
+			DatatypeFactory df = DatatypeFactory.newInstance();
+			GregorianCalendar gc = new GregorianCalendar();
+			XMLGregorianCalendar xmlGC =  df.newXMLGregorianCalendar(gc);
+			verification.setDate(xmlGC);
+		} catch (DatatypeConfigurationException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		itr1.setVerification(verification);	
 	
 		request.setAttribute("theForm", itr1);
 		/* This is where we generate XML */
