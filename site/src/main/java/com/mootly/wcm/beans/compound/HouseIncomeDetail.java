@@ -122,52 +122,52 @@ public class HouseIncomeDetail extends HippoItem implements FormMapFiller {
 		return coownername1;
 	}
 	public final String getShare2() {
-		if (share1 == null) share1 = getProperty("mootlywcm:Share1");
-		return share1;
+		if (share2 == null) share2 = getProperty("mootlywcm:Share2");
+		return share2;
 	}
 	public final String getCoownerpan2() {
-		if (coownerpan1 == null) coownerpan1 = getProperty("mootlywcm:Coowner_pan1");
-		return coownerpan1;
+		if (coownerpan2 == null) coownerpan2 = getProperty("mootlywcm:Coowner_pan2");
+		return coownerpan2;
 	}
 	public final String getCoownername2() {
-		if (coownername1 == null) coownername1 = getProperty("mootlywcm:Coowner_name1");
-		return coownername1;
+		if (coownername2== null) coownername2 = getProperty("mootlywcm:Coowner_name2");
+		return coownername2;
 	}
 	public final String getShare3() {
-		if (share1 == null) share1 = getProperty("mootlywcm:Share1");
-		return share1;
+		if (share3 == null) share3 = getProperty("mootlywcm:Share3");
+		return share3;
 	}
 	public final String getCoownerpan3() {
-		if (coownerpan1 == null) coownerpan1 = getProperty("mootlywcm:Coowner_pan1");
-		return coownerpan1;
+		if (coownerpan3 == null) coownerpan3 = getProperty("mootlywcm:Coowner_pan3");
+		return coownerpan3;
 	}
 	public final String getCoownername3() {
-		if (coownername1 == null) coownername1 = getProperty("mootlywcm:Coowner_name1");
-		return coownername1;
+		if (coownername3 == null) coownername3 = getProperty("mootlywcm:Coowner_name3");
+		return coownername3;
 	}
 	public final String getShare4() {
-		if (share1 == null) share1 = getProperty("mootlywcm:Share1");
-		return share1;
+		if (share4 == null) share4 = getProperty("mootlywcm:Share4");
+		return share4;
 	}
 	public final String getCoownerpan4() {
-		if (coownerpan1 == null) coownerpan1 = getProperty("mootlywcm:Coowner_pan1");
-		return coownerpan1;
+		if (coownerpan4 == null) coownerpan4 = getProperty("mootlywcm:Coowner_pan4");
+		return coownerpan4;
 	}
 	public final String getCoownername4() {
-		if (coownername1 == null) coownername1 = getProperty("mootlywcm:Coowner_name1");
-		return coownername1;
+		if (coownername4 == null) coownername4 = getProperty("mootlywcm:Coowner_name4");
+		return coownername4;
 	}
 	public final String getShare5() {
-		if (share1 == null) share1 = getProperty("mootlywcm:Share1");
-		return share1;
+		if (share5 == null) share5 = getProperty("mootlywcm:Share5");
+		return share5;
 	}
 	public final String getCoownerpan5() {
-		if (coownerpan1 == null) coownerpan1 = getProperty("mootlywcm:Coowner_pan1");
-		return coownerpan1;
+		if (coownerpan5 == null) coownerpan5 = getProperty("mootlywcm:Coowner_pan5");
+		return coownerpan5;
 	}
 	public final String getCoownername5() {
-		if (coownername1 == null) coownername1 = getProperty("mootlywcm:Coowner_name1");
-		return coownername1;
+		if (coownername5 == null) coownername5 = getProperty("mootlywcm:Coowner_name5");
+		return coownername5;
 	}
 	public final String getCity() {
 		if (City == null) City = getProperty("mootlywcm:City");
