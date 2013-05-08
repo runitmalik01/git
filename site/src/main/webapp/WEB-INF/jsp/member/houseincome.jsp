@@ -437,7 +437,7 @@
 						</div>
 						<div class="span7 decimal">
 							<div class="rowlabel">
-								<label for=""><small>Income fron House Property</small> </label>
+								<label for=""><small>Income from House Property</small> </label>
 							</div>
 						</div>
 						<div class="span2 offset1">
