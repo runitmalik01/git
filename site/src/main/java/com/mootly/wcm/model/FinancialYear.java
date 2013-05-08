@@ -76,6 +76,11 @@ public enum FinancialYear {
 		}
 	}
 	
+	public boolean isPastDue(ITRForm itrForm) {
+		GregorianCalendar dueDate = new GregorianCalendar();
+		return isPastDue(itrForm,dueDate);
+	}
+	
 	public static FinancialYear getByDisplayName(String displayName) {
 		if (displayName == null) return UNKNOWN;
 		for (FinancialYear aYear:FinancialYear.values()) {
