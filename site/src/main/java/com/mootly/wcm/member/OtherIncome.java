@@ -29,16 +29,28 @@ import com.mootly.wcm.components.ITReturnComponent;
 		"Dividends_indian_companies","Otherincome","Total_taxfree_income","Taxable_income"})
 public class OtherIncome extends ITReturnComponent {
 	private static final Logger log = LoggerFactory.getLogger(OtherIncome.class);
-	
+
 	@Override
 	public void doBeforeRender(HstRequest request, HstResponse response) {
 		// TODO Auto-generated method stub
-		super.doBeforeRender(request, response);		
+		if(log.isInfoEnabled()){
+			log.info("This is Other Income page");
+		}
+		super.doBeforeRender(request, response);	
+		String hideHorseIncome = getParameter("hidehorseincome", request);
+		request.setAttribute("hideHorseIncome", "hideHorseIncome");
+		if(log.isInfoEnabled()){
+			log.info(hideHorseIncome+" do before render hideHorseIncome");
+		}
+		
 	}
 
 	@Override
 	public void doAction(HstRequest request, HstResponse response) throws HstComponentException {
 		// TODO Auto-generated method stub
 		super.doAction(request, response);
+		if(log.isInfoEnabled()){
+			log.info("i am in do action of otherincome");
+		}
 	}
 }
