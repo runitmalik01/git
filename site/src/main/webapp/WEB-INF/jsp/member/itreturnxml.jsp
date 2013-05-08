@@ -42,18 +42,18 @@
 					<td></td>
 					<td align="right"><c:out value="${theForm.ITR1IncomeDeductions.incomeOthSrc}"/></td>
 				</tr>
-				<tr align="left">
-					<td><b>Total</b>
-					</td>
-					<td></td>
-					<td align ="right"><%=request.getAttribute("Total")%></td>
-				</tr>
 				
 				<tr align="left">
 					<td><b>Gross Total Income</b>
 					</td>
 					<td></td>
-					<td align="right"><%=request.getAttribute("GrossTotal")%></td>
+					<td align="right"><c:out value="${theForm.ITR1IncomeDeductions.grossTotIncome}"/></td>
+				</tr>
+					<tr align="left">
+					<td><b>Total Income</b>
+					</td>
+					<td></td>
+					<td align ="right"><c:out value="${theForm.ITR1IncomeDeductions.totalIncome}"/></td>
 				</tr>
 				<tr align="left">
 					<td><b>Less: Deduction Under Chapter 6A</b>
