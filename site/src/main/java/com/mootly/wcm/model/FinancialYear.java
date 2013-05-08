@@ -81,6 +81,20 @@ public enum FinancialYear {
 		return isPastDue(itrForm,dueDate);
 	}
 	
+	public FilingSection getFilingSection (ITRForm itrForm,ITReturnType itReturnType) {
+		GregorianCalendar dueDate = new GregorianCalendar();
+		boolean isPastDue = isPastDue(itrForm,dueDate);
+		if (itReturnType.equals(ITReturnType.ORIGINAL)) {
+			if (!isPastDue) {
+				return FilingSection.BeforeDueDate_139_1;
+			}
+			else if (isPastDue) {
+				return FilingSection.AfterDueDate_139_4;
+			}
+		}
+		return FilingSection.UNKNOWN;
+	}
+	
 	public static FinancialYear getByDisplayName(String displayName) {
 		if (displayName == null) return UNKNOWN;
 		for (FinancialYear aYear:FinancialYear.values()) {
