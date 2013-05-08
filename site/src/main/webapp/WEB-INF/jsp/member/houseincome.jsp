@@ -1,3 +1,9 @@
+<%--
+@author Megha Agarwal
+06/05/2013
+ --%>
+
+
 <%@include file="../includes/tags.jspf"%>
 <%@ page import="com.mootly.wcm.utils.*"%>
 <%@page import="com.mootly.wcm.services.ScreenConfigService"%>
@@ -488,9 +494,9 @@
 						<td><c:out value="${houseincomedetail.income_hproperty}" />
 						</td>
 						<td><a
-							href="${scriptName}/<c:out value="${houseincomedetail.canonicalUUID}"/>/edit"><small>Edit</small>
+							href="${scriptName}/<c:out value="${houseincomedetail.canonicalUUID}"/>/houseincomeedit"><small>Edit</small>
 						</a>&nbsp;&nbsp;<a
-							href="${scriptName}/<c:out value="${houseincomedetail.canonicalUUID}"/>/delete"><small>Delete</small>
+							href="${scriptName}/<c:out value="${houseincomedetail.canonicalUUID}"/>/houseincomedelete"><small>Delete</small>
 						</a>
 						</td>
 					</tr>
