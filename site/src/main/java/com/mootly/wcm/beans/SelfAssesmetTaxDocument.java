@@ -27,6 +27,8 @@
 package com.mootly.wcm.beans;
 import static com.mootly.wcm.utils.Constants.NT_PERSONAL_INFO_LINK;
 
+import java.math.BigInteger;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -83,6 +85,18 @@ public class SelfAssesmetTaxDocument extends BaseDocument implements ContentNode
 	    	if (total_amount == null) total_amount = getProperty("mootlywcm:totalamount");
 	    	return total_amount;
 	 }
+	   
+		public BigInteger getBigTotal_Amount() {
+			if (total_amount == null) total_amount = getProperty("mootlywcm:totalamount");
+			DecimalFormat decimalFormat=new DecimalFormat("#.#");
+			BigInteger bigTotal=null;
+			if(total_amount!=null && total_amount.toString().length()>0){
+				bigTotal = new BigInteger(decimalFormat.format(total_amount));
+				return bigTotal;
+			}else
+				return null;
+		}
+		
 	   public final void setTotal_Amount(String totalamount) {
 			this.total_amount = totalamount;
 		}
