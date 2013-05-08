@@ -114,7 +114,7 @@
       <sv:value>en</sv:value>
     </sv:property>
     <sv:property sv:name="mootlywcm:screenHeading" sv:type="String">
-      <sv:value>Screen Income Amit</sv:value>
+      <sv:value>Screen Income</sv:value>
     </sv:property>
     <sv:property sv:name="mootlywcm:screenHelp" sv:type="String">
       <sv:value>&lt;html&gt;
@@ -324,7 +324,7 @@
       <sv:value>en</sv:value>
     </sv:property>
     <sv:property sv:name="mootlywcm:screenHeading" sv:type="String">
-      <sv:value>Screen Income Amit</sv:value>
+      <sv:value>House/Property Income</sv:value>
     </sv:property>
     <sv:property sv:name="mootlywcm:screenHelp" sv:type="String">
       <sv:value>&lt;html&gt;
