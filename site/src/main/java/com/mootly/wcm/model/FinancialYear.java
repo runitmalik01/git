@@ -20,12 +20,13 @@ public enum FinancialYear {
 	String displayAssessmentYear;
 	int startAssessmentYear;
 	int endAssessmentYear;
-	Date dateStartFinancialYear;
-	Date dateEndFinancialYear;
-	Date dateStartAssessmentYear;
-	Date dateEndAssessmentYear;
+	GregorianCalendar dateStartFinancialYear;
+	GregorianCalendar dateEndFinancialYear;
+	Integer assessmentYear;
+	GregorianCalendar dueDate;
 	
 	boolean isActive = true;
+	boolean isPastDue = false;
 	
 	
 	FinancialYear() {
@@ -43,11 +44,10 @@ public enum FinancialYear {
 		this.displayName = this.startYear + "-" + endYear;
 		this.displayAssessmentYear = this.startAssessmentYear + "-" + this.endAssessmentYear;
 		
-		this.dateStartFinancialYear = new GregorianCalendar(startYear, 03, 01).getTime();
-		this.dateEndFinancialYear = new GregorianCalendar(endYear, 04, 30).getTime();
+		this.dateStartFinancialYear = new GregorianCalendar(startYear, 03, 01);
+		this.dateEndFinancialYear = new GregorianCalendar(endYear, 04, 30);
 		
-		this.dateStartAssessmentYear = new GregorianCalendar(this.startAssessmentYear, 03, 01).getTime();
-		this.dateEndAssessmentYear = new GregorianCalendar(this.endAssessmentYear, 04, 30).getTime();
+		this.assessmentYear = endYear;
 		
 	}
 	
@@ -55,7 +55,26 @@ public enum FinancialYear {
 		return displayName;
 	}
 	
+	public GregorianCalendar getDueDate(ITRForm itrForm) {
+		GregorianCalendar gc = null;
+		switch (itrForm) {
+			case ITR1: 
+				gc = new GregorianCalendar(dateEndFinancialYear.get(GregorianCalendar.YEAR),07,31);
+				break;
+		}
+		return gc;
+	}
 	
+	public boolean isPastDue(ITRForm itrForm, GregorianCalendar filingDate) {
+		GregorianCalendar dueDate = getDueDate(itrForm);
+		if (dueDate == null) return false;
+		if (filingDate.after(dueDate)) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
 	
 	public static FinancialYear getByDisplayName(String displayName) {
 		if (displayName == null) return UNKNOWN;
@@ -105,21 +124,16 @@ public enum FinancialYear {
 		return endAssessmentYear;
 	}
 
-	public Date getDateStartFinancialYear() {
+	public GregorianCalendar getDateStartFinancialYear() {
 		return dateStartFinancialYear;
 	}
 
-	public Date getDateEndFinancialYear() {
+	public GregorianCalendar getDateEndFinancialYear() {
 		return dateEndFinancialYear;
 	}
 
-	public Date getDateStartAssessmentYear() {
-		return dateStartAssessmentYear;
+	public Integer getAssessmentYear() {
+		return assessmentYear;
 	}
 
-	public Date getDateEndAssessmentYear() {
-		return dateEndAssessmentYear;
-	}
-
-	
 }
