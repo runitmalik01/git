@@ -483,7 +483,7 @@
 					var="houseincomedetail">
 					<tr>
 						<td><a
-							href="${scriptName}/<c:out value="${houseincomedetail.canonicalUUID}"/>/edit"><c:out
+							href="${scriptName}/<c:out value="${houseincomedetail.canonicalUUID}"/>/houseincomeedit"><c:out
 									value="${houseincomedetail.letOut}" /> </a>
 						</td>
 						<td><c:out value="${houseincomedetail.address}" />
