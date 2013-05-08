@@ -134,6 +134,7 @@ public class OtherSourcesDocument extends BaseDocument implements ContentNodeBin
 		if (Taxable_income== null) Taxable_income = getProperty("mootlywcm:Taxable_income");
 		return Taxable_income;
 	}
+	
 	public  Double getOtherincome() {
 		if (Otherincome== null) Otherincome = getProperty("mootlywcm:Other_income");
 		return Otherincome;
