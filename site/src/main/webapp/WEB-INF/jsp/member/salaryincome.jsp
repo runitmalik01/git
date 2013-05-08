@@ -87,9 +87,17 @@
 						<label for="Name_employer"><fmt:message
 								key="member.employe.name" /> </label> <input id="Name_employer"
 							required type="text" name="Name_employer" maxlength="25"
-							class="alphaonly" title="Enter Employer Name"
+							class="alphaonly" placeholder="name of employer"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.name_employer}"/></c:if>" />
 					</p>
+					<p>
+						<label for="Name_employee"><fmt:message
+								key="member.employee.name" /> </label> <input id="Name_employee"
+							required type="text" name="Name_employee" maxlength="25"
+							class="alphaonly" placeholder="name of employee"
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.name_employer}"/></c:if>" />
+					</p>
+					
 					<p>
 						<label for="Pan_employer"><fmt:message
 								key="member.info.pan" /> </label> <input id="Pan_employer" type="text"
@@ -101,9 +109,17 @@
 					<p>
 						<label for="Tan_employer"><fmt:message
 								key="member.info.tan" /> </label> <input id="Tan_employer" type="text"
-							name="Tan_employer"
+							name="Tan_employer" placeholder=" 10 Characters"
 							title="This field accept first four alphabate next five numeric then single alphabate"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.tan_employer}"/></c:if>">
+					</p>
+					<p>
+						<label for="Pan_employee"><fmt:message
+								key="member.info.pan.employee" /> </label> <input id="Pan_employee" type="text"
+							name="Pan_employee"
+							title="This field accept first five alphabate next four numeric then single alphabate"
+							placeholder="10 Characters"
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.pan_employer}"/></c:if>" />
 					</p>
 				</fieldset>
 				<fieldset>
@@ -188,7 +204,7 @@
 							<td><label><fmt:message key="member.value.profit" />
 							</label>
 							</td>
-							<td><input maxlength="14" name="Profit" id="Profit"
+							<td><input maxlength="14" name="profit" id="profit"
 								onchange="fill()"
 								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.profit}"/></c:if>">
 							</td>
@@ -229,7 +245,7 @@
 										value="${salaryItemDetail.name_employer}" /> </a></td>
 							<td><c:out value="${salaryItemDetail.from}" /> - <c:out
 									value="${salaryItemDetail.to}" /></td>
-							<td><c:out value="${salaryItemDetail.taxable_earning}" /></td>
+							<td align="right"><c:out value="${salaryItemDetail.taxable_earning}" /></td>
 							<td><a
 								href="${scriptName}/<c:out value="${salaryItemDetail.canonicalUUID}"/>/salaryincomeedit"><small>Edit</small>
 							</a>&nbsp;&nbsp;<a
@@ -239,7 +255,7 @@
 					</c:forEach>
 					<tr align="center">
 						<td colspan="2">Total Earning</td>
-						<td><c:out value="${parentBean.total}"></c:out></td>
+						<td align="right"><c:out value="${parentBean.total}"></c:out></td>
 				</c:if>
 			</table>
 			<a href="${scriptName}/salaryincomenew" class="button orange">Add
