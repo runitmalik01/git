@@ -95,7 +95,7 @@
 								key="member.employee.name" /> </label> <input id="Name_employee"
 							required type="text" name="Name_employee" maxlength="25"
 							class="alphaonly" placeholder="name of employee"
-							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.name_employer}"/></c:if>" />
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.name_employee}"/></c:if>" />
 					</p>
 					
 					<p>
@@ -119,7 +119,7 @@
 							name="Pan_employee"
 							title="This field accept first five alphabate next four numeric then single alphabate"
 							placeholder="10 Characters"
-							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.pan_employer}"/></c:if>" />
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.pan_employee}"/></c:if>" />
 					</p>
 				</fieldset>
 				<fieldset>
@@ -177,8 +177,7 @@
 							</td>
 						</tr>
 						<tr>
-							<td><label><fmt:message
-										key="member.allowance.salary" /> </label>
+							<td><label>Allowance Not Exempt: </label>
 							</td>
 							<td><input name="Allowance" id="Allowance" maxlength="14"
 								onchange="fill()"
@@ -187,7 +186,8 @@
 						</tr>
 
 						<tr>
-							<td><label>Allowance Not Exempt: </label></td>
+							<td><label><fmt:message
+										key="member.allowance.salary" /> </label></td>
 							<td><input name="Allowance1" maxlength="14" value="">
 							</td>
 						</tr>
@@ -268,10 +268,9 @@
 		var A = document.getElementById("Gross_salary").value - 0;
 		var B = document.getElementById("Allowance").value - 0;
 		var C = document.getElementById("Perquisite").value - 0;
-		var D = document.getElementById("Profit").value - 0;
+		var D = document.getElementById("profit").value - 0;
 		document.getElementById("Taxable_earning").value = (A + B + C + D);
-
-	}
+		}
 </script>
 
 
