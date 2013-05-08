@@ -24,6 +24,8 @@
 package com.mootly.wcm.beans.compound;
 import static com.mootly.wcm.utils.Constants.NT_PERSONAL_INFO_LINK;
 
+import java.math.BigInteger;
+
 import javax.jcr.RepositoryException;
 
 import org.hippoecm.hst.component.support.forms.FormMap;
@@ -207,6 +209,7 @@ public class HouseIncomeDetail extends HippoItem implements FormMapFiller {
 		if (Income_hproperty == null) Income_hproperty = getProperty("mootlywcm:Income_hproperty");
 		return Income_hproperty;
 	}
+	
 	public final String getProperty_share() {
 		if (Property_share == null) Property_share = getProperty("mootlywcm:Property_share");
 		return Property_share;
