@@ -26,7 +26,10 @@
 
 package com.mootly.wcm.beans;
 import static com.mootly.wcm.utils.Constants.NT_PERSONAL_INFO_LINK;
+import static com.mootly.wcm.utils.Constants.PROP_PI_PINCODE;
 
+import java.math.BigInteger;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -81,6 +84,17 @@ public class SalaryIncomeDocument extends BaseDocument implements ContentNodeBin
 	public final Double getTotal() {
 		if (Total == null) Total = getProperty("mootlywcm:Total");
 		return Total;
+	}
+	// created for xml
+	public BigInteger getBigTotal() {
+		if (Total == null) Total = getProperty("mootlywcm:Total");
+		DecimalFormat decimalFormat=new DecimalFormat("#.#");
+		BigInteger bigTotal=null;
+		if(Total!=null && Total.toString().length()>0){
+			bigTotal = new BigInteger(decimalFormat.format(Total));
+			return bigTotal;
+		}else
+			return null;
 	}
 
 	public final void setTotal(Double Total) {
