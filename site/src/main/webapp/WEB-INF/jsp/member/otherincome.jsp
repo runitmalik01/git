@@ -1,4 +1,4 @@
-
+<%@page import="org.hippoecm.hst.core.component.HstRequest"%>
 <%@include file="../includes/commonincludes.jspf"%>
 <c:set var="otherincometitle">
 	<fmt:message key="member.otherincome.title" />
@@ -15,7 +15,7 @@
 	<hst:link var="startapplication"
 		siteMapItemRefId="member-personal-information"></hst:link>
 	<a href="${startapplication}"><fmt:message
-			key="member.start.application" /> </a>&gt;
+			key="member.start.application" /> </a>&gt; 
 
 	<hst:link var="memberothersources"
 		siteMapItemRefId="member-other-income"></hst:link>
@@ -118,14 +118,16 @@
 					id="a2" onchange="cal2()" />
 				</td>
 			</tr>
+			
 			<tr>
+			<c:if test="${empty hideHorseIncome }" >
 				<td><label for="Lottery_horse_income"><fmt:message
 							key="member.income.lottery" /> </label>
 				</td>
 				<td><input type="text" name="Lottery_horse_income"
 					value="${parentBean.lottery_horse_income}" maxlength="14"
 					class="numberinput" id="a3" onchange="cal2()" />
-				</td>
+				</td></c:if>
 				<td><label for="Income_rent_machine"><fmt:message
 							key="member.income.rental" /> </label>
 				</td>
@@ -279,6 +281,9 @@
 					readonly="readonly" />
 				</td>
 			</tr>
+			
+			<tr><td> <input type="text" value=${hideHorseIncome}></td></tr>
+			
 		</table>
 	</fieldset>
 	<input type="submit" value="Save & Next"><a
