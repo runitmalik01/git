@@ -59,7 +59,7 @@
 					<td><b>Less: Deduction Under Chapter 6A</b>
 					</td>
 					<td></td>
-					<td align="right"><%=request.getAttribute("DEDUCTION")%></td>
+					<td align="right"><c:out value="${theForm.ITR1IncomeDeductions.deductUndChapVIA.totalChapVIADeductions}"/></td>
 				</tr>
 				<tr align="left">
 					<td><b>Taxable Income</b>
@@ -114,17 +114,12 @@
 				<tr align="left">
 					<td>Advance/ Self assesment tax
 					</td>
-					<td align="right"><%=request.getAttribute("Selfasses")%></td>
-					<td></td>
-				</tr>
-				<tr align="left">
-					<td>TDS Salary</td>
-					<td align="right"><%=request.getAttribute("TdsSalary")%></td>
+					<td align="right"><c:out value="${theForm.taxPaid.taxesPaid.advanceTax}"/></td>
 					<td></td>
 				</tr>
 				<tr align="left">
 					<td>TDS</td>
-					<td align="right"><%=request.getAttribute("TdsOther")%></td>
+					<td align="right"><c:out value="${theForm.taxPaid.taxesPaid.TDS}"/></td>
 					<td></td>
 				</tr>
 				
