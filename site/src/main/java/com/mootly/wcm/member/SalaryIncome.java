@@ -32,7 +32,8 @@ import com.mootly.wcm.components.ITReturnComponent;
 @ChildBean(childBeanClass=SalaryIncomeDetail.class)
 @AdditionalBeans(additionalBeansToLoad=MemberPersonalInformation.class)
 @RequiredBeans(requiredBeans={MemberPersonalInformation.class})
-@FormFields(fieldNames={"Employe_category","Name_employer","Pan_employer","Tan_employer","Address","City","State","Pin","From","To","Gross_salary","Allowance","Perquisite","Profit","Taxable_earning"})
+@FormFields(fieldNames={"Employe_category","Name_employer","Name_employee","Pan_employer","Tan_employer","Pan_employee","Address",
+		"City","State","Pin","From","To","Gross_salary","Allowance","Perquisite","profit","Taxable_earning"})
 @RequiredFields(fieldNames={"Name_employer","Tan_employer","City","Gross_salary"})
 @DataTypeValidationFields(fieldNames={
 									  "Gross_salary",
@@ -43,6 +44,7 @@ import com.mootly.wcm.components.ITReturnComponent;
 									  "Taxable_earning",
 									  "Tan_employer",
 									  "Pan_employer",
+									  "Pan_employee",
 									  "From",
 									  "To"
 									  },
@@ -54,6 +56,7 @@ import com.mootly.wcm.components.ITReturnComponent;
 									  DataTypeValidationType.DECIMAL,
 									  DataTypeValidationType.DECIMAL,
 									  DataTypeValidationType.TAN,
+									  DataTypeValidationType.PAN,
 									  DataTypeValidationType.PAN,
 									  DataTypeValidationType.INDIANDATE,
 									  DataTypeValidationType.INDIANDATE
