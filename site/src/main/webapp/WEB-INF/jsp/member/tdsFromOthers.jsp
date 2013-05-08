@@ -1,6 +1,5 @@
 <%@include file="../includes/tags.jspf"%>
 <%@include file="../includes/commonincludes.jspf"%>
-
 <%@ page import="com.mootly.wcm.utils.*"%>
 <%@ page import="java.util.*"%>
 <c:set var="tds2">
@@ -179,9 +178,9 @@ else {
 						
 
 						<td><a
-							href="${redirectURLToSamePage}/<c:out value="${tdsfromothersdetail.canonicalUUID}"/>/edit"><small>Edit</small>
+							href="${redirectURLToSamePage}/<c:out value="${tdsfromothersdetail.canonicalUUID}"/>/tdsfromothersedit"><small>Edit</small>
 						</a>&nbsp;&nbsp;<a
-							href="${redirectURLToSamePage}/<c:out value="${tdsfromothersdetail.canonicalUUID}"/>/delete"><small>Delete</small>
+							href="${redirectURLToSamePage}/<c:out value="${tdsfromothersdetail.canonicalUUID}"/>/tdsfromothersdelete"><small>Delete</small>
 						</a>
 						</td>
 
@@ -194,7 +193,7 @@ else {
 			
 		</table>
 		
-		<a href="${redirectURLToSamePage}/new" class="button orange">Add
+		<a href="${redirectURLToSamePage}/tdsfromothersnew" class="button orange">Add
 			New</a>
 			<a href="${modifiedSiteMapRefId}" class="button orange" style="margin-left:100px;">Next</a>
 
