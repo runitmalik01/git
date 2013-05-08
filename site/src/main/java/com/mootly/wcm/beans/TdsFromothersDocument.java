@@ -28,6 +28,8 @@ package com.mootly.wcm.beans;
 import static com.mootly.wcm.utils.Constants.NT_PERSONAL_INFO_LINK;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -83,6 +85,19 @@ public class TdsFromothersDocument extends BaseDocument implements ContentNodeBi
 	    	if (total_amount == null) total_amount = getProperty("mootlywcm:totalamount");
 	    	return total_amount;
 	 }
+	   
+	   //created for xml
+		public BigInteger getBigTotal_Amount() {
+			if (total_amount == null) total_amount = getProperty("mootlywcm:totalamount");
+			DecimalFormat decimalFormat=new DecimalFormat("#.#");
+			BigInteger bigTotal=null;
+			if(total_amount!=null && total_amount.toString().length()>0){
+				bigTotal = new BigInteger(decimalFormat.format(total_amount));
+				return bigTotal;
+			}else
+				return null;
+		}
+		
 	   public final void setTotal_Amount(Double totalamount) {
 			this.total_amount = totalamount;
 		}
