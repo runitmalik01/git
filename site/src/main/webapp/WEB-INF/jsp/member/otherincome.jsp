@@ -282,8 +282,6 @@
 				</td>
 			</tr>
 			
-			<tr><td> <input type="text" value=${hideHorseIncome}></td></tr>
-			
 		</table>
 	</fieldset>
 	<input type="submit" value="Save & Next"><a
@@ -329,12 +327,12 @@
 	function cal2() {
 		var a1 = document.getElementById("a1").value - 0;
 		var a2 = document.getElementById("a2").value - 0;
-		var a3 = document.getElementById("a3").value - 0;
+		//var a3 = document.getElementById("a3").value - 0;
 		var a4 = document.getElementById("a4").value - 0;
 		var a5 = document.getElementById("a5").value - 0;
 		var a7 = document.getElementById("a7").value - 0;
 		var a6 = document.getElementById("a6").value - 0;
-		document.getElementById("a8").value = (a1 + a2 + a3 + a4 + (a5 - a7) + a6);
+		document.getElementById("a8").value = (a1 + a2 + a4 + (a5 - a7) + a6);
 
 	}
 	function cal3() {
