@@ -51,18 +51,18 @@ if (actionInSiteMap != null && actionInSiteMap.contains("_")) {
                <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Income - Salaries and Penson <b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                  <li><a href="#formsixteen" data-toggle="tab">Form16</a></li>
-                  <li <%if (tabName != null && tabName.equals("advancetax")){%>class="active"<%}%>><a href="#incomesalaries" data-toggle="tab">Salary Penson</a></li>
+                  <li ><a href="#formsixteen" data-toggle="tab">Form16</a></li>
+                  <li <%if (tabName != null && tabName.equals("salaryincome")){%>class="active"<%}%>><a href="#incomesalaries" data-toggle="tab">Salary Penson</a></li>
                     <li ><a href="#incomeothersources" data-toggle="tab">Income - Other Sources</a></li>
-             		 <li ><a href="#incomesinglehouse" data-toggle="tab" >Income - Single House</a></li>
+             		 <li <%if (tabName != null && tabName.equals("houseincome")){%>class="active"<%}%>><a href="#incomesinglehouse" data-toggle="tab" >Income - Single House</a></li>
                 </ul>
               </li>
                <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tax Paid <b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                  <li><a href="#advancetax" data-toggle="tab">Advance Tax</a></li>
-                  <li><a href="#tdsfromsalary" data-toggle="tab">Tds From salary</a></li>
-                    <li ><a href="#tdsfromothers" data-toggle="tab">Tds From others</a></li>
+                  <li <%if (tabName != null && tabName.equals("advancetax")){%>class="active"<%}%>><a href="#advancetax" data-toggle="tab">Advance Tax</a></li>
+                  <li <%if (tabName != null && tabName.equals("tdsfromsalary")){%>class="active"<%}%>><a href="#tdsfromsalary" data-toggle="tab">Tds From salary</a></li>
+                    <li <%if (tabName != null && tabName.equals("tdsfromothers")){%>class="active"<%}%> ><a href="#tdsfromothers" data-toggle="tab">Tds From others</a></li>
              		 
                 </ul>
               </li>
@@ -86,17 +86,17 @@ if (actionInSiteMap != null && actionInSiteMap.contains("_")) {
               <div class="tab-pane fade" id="incomeothersources">
                <hst:include ref="otherincome"/>
               </div>
-               <div class="tab-pane fade " id="incomesinglehouse">
+               <div class="tab-pane fade <%if (tabName != null && tabName.equals("houseincome")){%>in active<%}%> " id="incomesinglehouse">
                  <hst:include ref="singlehouseincome"/>
               </div>
               <div class="tab-pane fade <%if (tabName != null && tabName.equals("advancetax")){%>in active<%}%>  " id="advancetax">
                 <hst:include ref="advanceataxITR1"/>
                 </div>
-              <div class="tab-pane fade" id="tdsfromothers">
+            <div class="tab-pane fade <%if (tabName != null && tabName.equals("tdsfromothers")){%>in active<%}%>  " id="tdsfromothers">
                 <hst:include ref="tdsfromothersITR1"/>
             	  </div>
-            	  <div class="tab-pane fade" id="tdsfromsalary">
-                <hst:include ref="tdsfromsalaryITR1"/>
+           	<div class="tab-pane fade <%if (tabName != null && tabName.equals("tdsfromsalary")){%>in active<%}%>  " id="tdsfromsalary">
+            <hst:include ref="tdsfromsalaryITR1"/>
             	  </div>
             	  <div class="tab-pane fade" id="deductions">
                 <hst:include ref="deductionITR1"/>
