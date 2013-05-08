@@ -13,7 +13,6 @@
 		<pre>
 			<c:out value="${theForm.personalInfo.assesseeName.firstName}"/>
 			<c:out value="${theForm.personalInfo.assesseeName.surNameOrOrgName}"/>
-			
 			<fieldset>
 			<table class="calculation of income" border="1" width="500">
 				<tr align="left">
@@ -28,20 +27,20 @@
 					<td><b>Gross Salary</b>
 					</td>
 					<td></td>
-					<td align="right"></td>
+					<td align="right"><c:out value="${theForm.ITR1IncomeDeductions.incomeFromSal}"/></td>
 				</tr>
 				<tr align="left">
 					<td><b>House Property</b>
 					</td>
 					<td></td>
-					<td align="right"><%=request.getAttribute("HouseProperty")%></td>
+					<td align="right"><c:out value="${theForm.ITR1IncomeDeductions.totalIncomeOfHP}"/></td>
 				</tr>
 				
 				<tr align="left">
 					<td><b>Income From Other Sources</b>
 					</td>
 					<td></td>
-					<td align="right"><%=request.getAttribute("TAXABLE_INCOME")%></td>
+					<td align="right"><c:out value="${theForm.ITR1IncomeDeductions.incomeOthSrc}"/></td>
 				</tr>
 				<tr align="left">
 					<td><b>Total</b>
