@@ -49,15 +49,17 @@ public class SalaryIncomeDetail extends HippoItem implements FormMapFiller {
 	static final public String NODE_NAME = SalaryIncomeDetail.class.getName().toLowerCase();
 	private final static Logger log = LoggerFactory.getLogger(SalaryIncomeDocument.class); 
 	private String Name_employer;
+	private String Name_employee;
 	private String Pan_employer;
+	private String Pan_employee;
 	private String Tan_employer;
 	private String Address;
 	private String City;
 	private String State;
-	private String Gross_salary;
-	private String Allowance;
-	private String Perquisite;
-	private String Profit;
+	private Double Gross_salary;
+	private Double Allowance;
+	private Double Perquisite;
+	private Double profit;
 	private String Employe_category;
 	private Double Taxable_earning;
 	private String from;
@@ -80,6 +82,10 @@ public class SalaryIncomeDetail extends HippoItem implements FormMapFiller {
 		if (Name_employer == null) Name_employer = getProperty("mootlywcm:Name_employer");
 		return Name_employer;
 	}
+	public final String getName_employee() {
+		if (Name_employee == null) Name_employee = getProperty("mootlywcm:Name_employee");
+		return Name_employee;
+	}
 	public final String getPan_employer() {
 		if (Pan_employer == null) Pan_employer = getProperty("mootlywcm:Pan_employer");
 		return Pan_employer;
@@ -87,6 +93,10 @@ public class SalaryIncomeDetail extends HippoItem implements FormMapFiller {
 	public final String getTan_employer() {
 		if (Tan_employer == null) Tan_employer = getProperty("mootlywcm:Tan_employer");
 		return Tan_employer;
+	}
+	public final String getPan_employee() {
+		if (Pan_employee == null) Pan_employee = getProperty("mootlywcm:Pan_employee");
+		return Pan_employee;
 	}
 	public final String getAddress() {
 		if (Address == null) Address = getProperty("mootlywcm:Address");
@@ -100,20 +110,20 @@ public class SalaryIncomeDetail extends HippoItem implements FormMapFiller {
 		if (State == null) State = getProperty("mootlywcm:State");
 		return State;
 	}
-	public final String getProfit() {
-		if (Profit == null) Profit = getProperty("mootlywcm:Profit");
-		return Profit;
+	public final Double getProfit() {
+		if (profit == null) profit = getProperty("mootlywcm:Profit");
+		return profit;
 	}
-	public String getPerquisite() {
+	public Double getPerquisite() {
 		if (Perquisite == null) Perquisite = getProperty("mootlywcm:Perquisite");
 		return Perquisite;
 	}
 	
-	public final String getAllowance() {
+	public final Double getAllowance() {
 		if (Allowance== null) Allowance = getProperty("mootlywcm:Allowance");
 		return Allowance;
 	}
-	public final String getGross_salary() {
+	public final Double getGross_salary() {
 		if (Gross_salary== null) Gross_salary = getProperty("mootlywcm:Gross_salary");
 		return Gross_salary;
 	}
@@ -142,11 +152,17 @@ public class SalaryIncomeDetail extends HippoItem implements FormMapFiller {
 	public final void setName_employer(String Name_employer) {
 		this.Name_employer = Name_employer;
 	}
+	public final void setName_employee(String Name_employee) {
+		this.Name_employee = Name_employee;
+	}
 	public final void setPan_employer(String Pan_employer) {
 		this.Pan_employer = Pan_employer;
 	}
 	public final void setTan_employer(String Tan_employer) {
 		this.Tan_employer = Tan_employer;
+	}
+	public final void setPan_employee(String Pan_employee) {
+		this.Pan_employee = Pan_employee;
 	}
 	public final void setCity(String City) {
 		this.City = City;
@@ -169,17 +185,17 @@ public class SalaryIncomeDetail extends HippoItem implements FormMapFiller {
 	public void setEmploye_category(String Employe_category) {
 		this.Employe_category = Employe_category;
 	}
-	public final void setGross_salary(String Gross_salary) {
+	public final void setGross_salary(Double Gross_salary) {
 		this.Gross_salary = Gross_salary;
 	}
-	public final void setAllowance(String Allowance) {
+	public final void setAllowance(Double Allowance) {
 		this.Allowance = Allowance;
 	}
-	public void setPerquisite(String Perquisite) {
+	public void setPerquisite(Double Perquisite) {
 		this.Perquisite = Perquisite;
 	}
-	public void setProfit(String Profit) {
-		this.Profit = Profit;
+	public void setProfit(Double profit) {
+		this.profit = profit;
 	}
 	public void setTaxable_earning(Double Taxable_earning) {
 		this.Taxable_earning = Taxable_earning;
@@ -213,24 +229,38 @@ public class SalaryIncomeDetail extends HippoItem implements FormMapFiller {
 		// TODO Auto-generated method stub
 		try {
 			node.setProperty("mootlywcm:Name_employer", getName_employer());
+			node.setProperty("mootlywcm:Name_employee", getName_employee());
 			node.setProperty("mootlywcm:Address", getAddress());
+			if (getProfit()!=null) {
 			node.setProperty("mootlywcm:Profit", getProfit());
+			}
+			if(getPerquisite()!=null){
 			node.setProperty("mootlywcm:Perquisite", getPerquisite());
+			}
 			if (getPan_employer() != null) {
 				node.setProperty("mootlywcm:Pan_employer", getPan_employer());
+			}
+			if (getPan_employee() != null) {
+				node.setProperty("mootlywcm:Pan_employee", getPan_employee());
 			}
 			if (getTan_employer() != null) {
 				node.setProperty("mootlywcm:Tan_employer", getTan_employer());
 			}
 			node.setProperty("mootlywcm:City", getCity());
 			node.setProperty("mootlywcm:State", getState());
+			if(getTaxable_earning()!=null){
 			node.setProperty("mootlywcm:Taxable_earning", getTaxable_earning());
+			}
 			node.setProperty("mootlywcm:To", getTo());
 			node.setProperty("mootlywcm:From", getFrom());
 			node.setProperty("mootlywcm:Employe_category", getEmploye_category());
 			node.setProperty("mootlywcm:Pin", getPin());
+			if(getGross_salary()!=null){
 			node.setProperty("mootlywcm:Gross_salary", getGross_salary());
+			}
+			if(getAllowance()!=null){
 			node.setProperty("mootlywcm:Allowance", getAllowance());
+			}
 			
 		} catch (RepositoryException rex) {
 			log.error("Repository Exception while binding",rex);
@@ -251,11 +281,17 @@ public class SalaryIncomeDetail extends HippoItem implements FormMapFiller {
 		if ( formMap.getField("Name_employer") != null) {
 			setName_employer(formMap.getField("Name_employer").getValue());
 		}
+		if ( formMap.getField("Name_employee") != null) {
+			setName_employee(formMap.getField("Name_employee").getValue());
+		}
 		if ( formMap.getField("Pan_employer") != null) {
 			setPan_employer(formMap.getField("Pan_employer").getValue());
 		}
 		if ( formMap.getField("Tan_employer") != null) {
 			setTan_employer(formMap.getField("Tan_employer").getValue());
+		}
+		if ( formMap.getField("Pan_employee") != null) {
+			setPan_employee(formMap.getField("Pan_employee").getValue());
 		}
 		if ( formMap.getField("Address") != null) {
 			setAddress(formMap.getField("Address").getValue());
@@ -266,7 +302,8 @@ public class SalaryIncomeDetail extends HippoItem implements FormMapFiller {
 		if ( formMap.getField("State") != null) {
 			setState(formMap.getField("State").getValue());
 		}
-		if ( formMap.getField("Taxable_earning") != null) {
+		if ( formMap.getField("Taxable_earning").getValue().isEmpty()) {}
+		else{
 			String strEarning=formMap.getField("Taxable_earning").getValue();
 			Double taxableEarning=Double.parseDouble(strEarning);
 			setTaxable_earning(taxableEarning);
@@ -280,17 +317,29 @@ public class SalaryIncomeDetail extends HippoItem implements FormMapFiller {
 		if ( formMap.getField("To") != null) {
 			setTo(formMap.getField("To").getValue());
 		}
-		if ( formMap.getField("Gross_salary") != null) {
-			setGross_salary(formMap.getField("Gross_salary").getValue());
+		if ( formMap.getField("Gross_salary").getValue().isEmpty()) {}
+		else{
+			String strGross_salary = formMap.getField("Gross_salary").getValue();
+			double amt = Double.parseDouble(strGross_salary);
+			setGross_salary(amt);
 		}
-		if ( formMap.getField("Allowance") != null) {
-			setAllowance(formMap.getField("Allowance").getValue());
+		if ( formMap.getField("Allowance").getValue().isEmpty()) {}
+		else{
+			String strAllowance = formMap.getField("Allowance").getValue();
+			double amt = Double.parseDouble(strAllowance);
+			setAllowance(amt);
 		}
-		if ( formMap.getField("Perquisite") != null) {
-			setPerquisite(formMap.getField("Perquisite").getValue());
+		if ( formMap.getField("Perquisite").getValue().isEmpty()) {}
+		else{
+			String strPerquisite = formMap.getField("Perquisite").getValue();
+			double amt = Double.parseDouble(strPerquisite);
+			setPerquisite(amt);
 		}
-		if ( formMap.getField("Profit") != null) {
-			setProfit(formMap.getField("Profit").getValue());
+		if ( formMap.getField("profit").getValue().isEmpty()) {}
+		else{
+			String strProfit = formMap.getField("profit").getValue();
+			double amt = Double.parseDouble(strProfit);
+			setProfit(amt);
 		}
 	}
 	
@@ -298,7 +347,9 @@ public class SalaryIncomeDetail extends HippoItem implements FormMapFiller {
 		SalaryIncomeDetail salaryIncomeDetail = (SalaryIncomeDetail) sourceBean;
 		setEmploye_category(salaryIncomeDetail.getEmploye_category());
 		setName_employer(salaryIncomeDetail.getName_employer());
+		setName_employee(salaryIncomeDetail.getName_employee());
 		setPan_employer(salaryIncomeDetail.getPan_employer());
+		setPan_employee(salaryIncomeDetail.getPan_employee());
 		setTan_employer(salaryIncomeDetail.getTan_employer());
 		setAddress(salaryIncomeDetail.getAddress());
 		setCity(salaryIncomeDetail.getCity());
