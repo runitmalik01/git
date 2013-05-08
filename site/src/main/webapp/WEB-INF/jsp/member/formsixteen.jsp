@@ -319,17 +319,14 @@
 				<tr>         
 					 
 						
-					<td><label>(i) </label></td>
-					<td> <select id="c_1" name="c_1">
-					<option value="">Select One</option>
-						<c:forEach var="booleanCombo" items="${objhashmapdeduction}">
-							<option
-								"<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD') && childBean.state == booleanCombo.value}">selected</c:if>" value="${booleanCombo.value}">${booleanCombo.value}</option>
-						</c:forEach>
-					</select> 
+					<td><label>(i) </label>
+					</td>
+					<td><input type="text" name="c_1" value="${parentBean.c_1}"
+						class="numberinput" placeholder="Rs.">
 					</td>
 					<td></td>
 					<td></td>
+				
 				</tr>
 				<tr>
 					<td><label>(ii)</label>
