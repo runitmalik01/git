@@ -23,6 +23,7 @@ import in.gov.incometaxindiaefiling.y2012_2013.itr1.ObjectFactory;
 import in.gov.incometaxindiaefiling.y2012_2013.master.Address.Phone;
 import in.gov.incometaxindiaefiling.y2012_2013.master.AssesseeName;
 import in.gov.incometaxindiaefiling.y2012_2013.master.CreationInfo;
+import in.gov.incometaxindiaefiling.y2012_2013.master.EmployerOrDeductorOrCollectDetl;
 import in.gov.incometaxindiaefiling.y2012_2013.master.ITR1TaxComputation;
 import in.gov.incometaxindiaefiling.y2012_2013.master.PersonalInfo;
 import in.gov.incometaxindiaefiling.y2012_2013.master.Address;
@@ -31,7 +32,13 @@ import in.gov.incometaxindiaefiling.y2012_2013.master.ITR1IncomeDeductions;
 import in.gov.incometaxindiaefiling.y2012_2013.master.DeductUndChapVIA;
 import in.gov.incometaxindiaefiling.y2012_2013.master.Refund;
 import in.gov.incometaxindiaefiling.y2012_2013.master.Refund.DepositToBankAccount;
+import in.gov.incometaxindiaefiling.y2012_2013.master.TDSonOthThanSal;
+import in.gov.incometaxindiaefiling.y2012_2013.master.TDSonOthThanSals;
+import in.gov.incometaxindiaefiling.y2012_2013.master.TDSonSalaries;
+import in.gov.incometaxindiaefiling.y2012_2013.master.TDSonSalary;
 import in.gov.incometaxindiaefiling.y2012_2013.master.TaxPaid;
+import in.gov.incometaxindiaefiling.y2012_2013.master.TaxPayment;
+import in.gov.incometaxindiaefiling.y2012_2013.master.TaxPayments;
 import in.gov.incometaxindiaefiling.y2012_2013.master.TaxesPaid;
 import in.gov.incometaxindiaefiling.y2012_2013.master.Verification;
 import in.gov.incometaxindiaefiling.y2012_2013.master.Verification.Declaration;
@@ -54,12 +61,16 @@ import com.mootly.wcm.beans.SelfAssesmetTaxDocument;
 import com.mootly.wcm.beans.TdsFromSalaryDocument;
 import com.mootly.wcm.beans.TdsFromothersDocument;
 import com.mootly.wcm.beans.compound.HouseIncomeDetail;
+import com.mootly.wcm.beans.compound.TdsFromSalaryDetail;
+import com.mootly.wcm.beans.compound.TdsOthersDetail;
+import com.mootly.wcm.beans.compound.AdvanceTaxDetail;
 import com.mootly.wcm.components.ITReturnComponent;
 import com.mootly.wcm.model.ITRForm;
+import com.mootly.wcm.utils.XmlCalculation;
 
 @AdditionalBeans(additionalBeansToLoad={MemberPersonalInformation.class,MemberContactInformation.class,SalaryIncomeDocument.class,
-		HouseIncomeDetail.class,HouseProperty.class,OtherSourcesDocument.class,AdvanceTaxDocument.class,TdsFromSalaryDocument.class,
-		TdsFromothersDocument.class,SelfAssesmetTaxDocument.class})
+		HouseIncomeDetail.class,HouseProperty.class,OtherSourcesDocument.class,AdvanceTaxDocument.class,AdvanceTaxDetail.class,TdsFromSalaryDocument.class,
+		TdsFromSalaryDetail.class,TdsFromothersDocument.class,SelfAssesmetTaxDocument.class})
 @RequiredBeans(requiredBeans={MemberPersonalInformation.class})
 public class XmlGenerator extends ITReturnComponent {
 	private static final Logger log = LoggerFactory.getLogger(XmlGenerator.class);
@@ -108,6 +119,7 @@ public class XmlGenerator extends ITReturnComponent {
 
 		itr1.setCreationInfo(creationInfo);
 
+		XmlCalculation xmlCalculation = new XmlCalculation();
 		PersonalInfo personalInfo = new PersonalInfo();
 		AssesseeName assesseeName = new AssesseeName();
 		Address address= new Address(); 
@@ -119,6 +131,13 @@ public class XmlGenerator extends ITReturnComponent {
 		TaxesPaid taxesPaid = new TaxesPaid();
 		Refund refund = new Refund();
 		Verification verification = new Verification();
+		TDSonSalaries tdsonSalaries = new TDSonSalaries();
+		TDSonSalary tdsonSalary = new TDSonSalary();
+		EmployerOrDeductorOrCollectDetl employerOrDeductorOrCollectDetl = new EmployerOrDeductorOrCollectDetl();
+		TDSonOthThanSals tdsonOthThanSals = new TDSonOthThanSals();
+		TDSonOthThanSal tdsonOthThanSal = new TDSonOthThanSal();
+		TaxPayments taxPayments = new TaxPayments();
+		TaxPayment taxPayment = new TaxPayment();
 
 		//personal information
 		assesseeName.setFirstName(memberPersonalInformation.getFirstName());
@@ -171,8 +190,9 @@ public class XmlGenerator extends ITReturnComponent {
 		}
 		if(otherSourcesDocument!=null)
 			incomeDeductions.setIncomeOthSrc(otherSourcesDocument.getTaxable_income().longValue());
-		incomeDeductions.setGrossTotIncome(0);	// calculation needed(incomefromsalary+house income+othersrcincome)
-		//added deduction with null values 
+		long grsstotal = xmlCalculation.grossTotal(request, response);
+		incomeDeductions.setGrossTotIncome(grsstotal);	// calculation needed(incomefromsalary+house income+othersrcincome)
+		//added deduction with null values (incomplete)
 		deductUndChapVIA.setSection80C(null);
 		deductUndChapVIA.setSection80CCC(null);
 		deductUndChapVIA.setSection80CCDEmployeeOrSE(null);
@@ -189,7 +209,7 @@ public class XmlGenerator extends ITReturnComponent {
 		deductUndChapVIA.setSection80U(null);
 		deductUndChapVIA.setTotalChapVIADeductions(null);
 		incomeDeductions.setDeductUndChapVIA(deductUndChapVIA);
-		incomeDeductions.setTotalIncome(0); //calculation needed(GrossTotIncome-TotalChapVIADeductions)
+		incomeDeductions.setTotalIncome(grsstotal-0); //calculation needed(GrossTotIncome-TotalChapVIADeductions(HARDCODDED 0))
 
 		itr1.setITR1IncomeDeductions(incomeDeductions);
 
@@ -235,10 +255,61 @@ public class XmlGenerator extends ITReturnComponent {
 		refund.setDepositToBankAccount(depositToBankAccount);
 		itr1.setRefund(refund);
 
-		//Schedule80G
+		//Schedule80G is remaining 
+
 		//TDSonSalaries
+		if(tdsFromSalaryDocument!=null){
+			if (tdsFromSalaryDocument.getTdsSalaryDetailList() != null && tdsFromSalaryDocument.getTdsSalaryDetailList().size() > 0 ){
+				log.info("inside if loop");
+				for(TdsFromSalaryDetail tdsFromSalaryDetail:tdsFromSalaryDocument.getTdsSalaryDetailList()){
+					log.info("inside for loop");
+					employerOrDeductorOrCollectDetl.setTAN(tdsFromSalaryDetail.getTan_Employer());
+					log.info("tan employer"+tdsFromSalaryDetail.getTan_Employer());
+					employerOrDeductorOrCollectDetl.setEmployerOrDeductorOrCollecterName(tdsFromSalaryDetail.getName_Employer());
+					tdsonSalary.setEmployerOrDeductorOrCollectDetl(employerOrDeductorOrCollectDetl);
+					tdsonSalary.setIncChrgSal(tdsFromSalaryDetail.getBigIncome_Chargeable());
+					tdsonSalary.setTotalTDSSal(tdsFromSalaryDetail.getBigTotal_TaxDeducted());			
+					tdsonSalaries.getTDSonSalary().add(tdsonSalary);
+					itr1.setTDSonSalaries(tdsonSalaries);
+				}		
+			}		
+		}
+		
 		//TDSonOthThanSals
+		if(tdsFromothersDocument!=null){
+			if (tdsFromothersDocument.getTdsSalaryDetailList() != null && tdsFromothersDocument.getTdsSalaryDetailList().size() > 0 ){
+				log.info("inside if loop");
+				for(TdsOthersDetail tdsOthersDetail:tdsFromothersDocument.getTdsSalaryDetailList()){
+					log.info("inside for loop");
+					employerOrDeductorOrCollectDetl.setTAN(tdsOthersDetail.getTan_Deductor());
+					employerOrDeductorOrCollectDetl.setEmployerOrDeductorOrCollecterName(tdsOthersDetail.getName_Deductor());
+					tdsonOthThanSal.setEmployerOrDeductorOrCollectDetl(employerOrDeductorOrCollectDetl);
+					tdsonOthThanSal.setTotTDSOnAmtPaid(tdsOthersDetail.getBigTotal_TaxDeductor());
+					tdsonOthThanSal.setClaimOutOfTotTDSOnAmtPaid(tdsOthersDetail.getBigP_Amount());
+					tdsonOthThanSals.getTDSonOthThanSal().add(tdsonOthThanSal);
+					itr1.setTDSonOthThanSals(tdsonOthThanSals);
+				}
+			}
+		}
+
+
 		//TaxPayments
+		if(advanceTaxDocument!=null){
+			if (advanceTaxDocument.getAdvanceTaxDetailList() != null && advanceTaxDocument.getAdvanceTaxDetailList().size() > 0 ){
+				log.info("inside if loop");
+				for(AdvanceTaxDetail advanceTaxDetail:advanceTaxDocument.getAdvanceTaxDetailList()){
+					log.info("inside for loop");
+					taxPayment.setBSRCode(advanceTaxDetail.getP_BSR());
+					taxPayment.setDateDep(advanceTaxDetail.getGregorianP_Date());
+					taxPayment.setSrlNoOfChaln(advanceTaxDetail.getBigP_Serial());
+					taxPayment.setAmt(advanceTaxDetail.getBigP_Amount() );
+					taxPayments.getTaxPayment().add(taxPayment);
+					itr1.setTaxPayments(taxPayments);
+				}
+			}
+		}
+
+
 		//TaxExmpIntInc
 
 		//Verification
