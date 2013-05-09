@@ -51,7 +51,10 @@ try {
 <hst:link var="forgotpass" siteMapItemRefId="forgotpass"></hst:link>
 <hst:link var="loginProxy" path="/login/proxy"></hst:link>
 <hst:actionURL var="actionUrl"></hst:actionURL>
-<c:choose>
+<c:if test="${ not empty cpmsg}">
+		Your password has been changed
+		</c:if>
+		<c:choose>
 	<c:when test="${loggedin}">
 		<hst:link var="redirectUrl" path="/member">
 		</hst:link>
@@ -91,6 +94,7 @@ try {
 				   <input type="hidden" name="destination" value="${memberhome}"/> 
 				</form>
 		</div>
+		
 		<res:client-validation screenConfigurationDocumentName="memberlogin" formId="loginForm" formSubmitButtonId="hrefLogin"></res:client-validation>
 	</c:otherwise>
 </c:choose>
