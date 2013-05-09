@@ -7266,4 +7266,43 @@
       </sv:node>
     </sv:node>
   </sv:node>
+	<sv:node sv:name="c6-deduction" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hst:component</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>0929eac4-bb70-4fd6-8543-f2372853661e</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:referencecomponent" sv:type="String">
+	    <sv:value>hst:pages/standardpage.re</sv:value>
+	  </sv:property>
+	  <sv:node sv:name="main">
+	    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	      <sv:value>hst:component</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="jcr:uuid" sv:type="String">
+	      <sv:value>d800fbc6-842c-452a-b3e0-1461085861a6</sv:value>
+	    </sv:property>
+	    <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+	      <sv:value>contentCssClass</sv:value>
+	    </sv:property>
+	    <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+	      <sv:value>grid-right col-940</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="hst:template" sv:type="String">
+	      <sv:value>standard.main.re</sv:value>
+	    </sv:property>
+	    <sv:node sv:name="content">
+	      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	        <sv:value>hst:component</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="jcr:uuid" sv:type="String">
+	        <sv:value>3e8d1554-8d49-46bb-aa72-3d3e2205c7e9</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="hst:referencecomponent" sv:type="String">
+	        <sv:value>hst:components/member.deduction</sv:value>
+	      </sv:property>
+	    </sv:node>
+	  </sv:node>
+	</sv:node>  
 </sv:node>
