@@ -45,6 +45,7 @@ import org.slf4j.LoggerFactory;
 import com.mootly.wcm.annotations.AdditionalBeans;
 import com.mootly.wcm.annotations.RequiredBeans;
 import com.mootly.wcm.beans.AdvanceTaxDocument;
+import com.mootly.wcm.beans.HouseProperty;
 import com.mootly.wcm.beans.MemberContactInformation;
 import com.mootly.wcm.beans.MemberPersonalInformation;
 import com.mootly.wcm.beans.OtherSourcesDocument;
@@ -57,18 +58,18 @@ import com.mootly.wcm.components.ITReturnComponent;
 import com.mootly.wcm.model.ITRForm;
 
 @AdditionalBeans(additionalBeansToLoad={MemberPersonalInformation.class,MemberContactInformation.class,SalaryIncomeDocument.class,
-		HouseIncomeDetail.class,OtherSourcesDocument.class,AdvanceTaxDocument.class,TdsFromSalaryDocument.class,
+		HouseIncomeDetail.class,HouseProperty.class,OtherSourcesDocument.class,AdvanceTaxDocument.class,TdsFromSalaryDocument.class,
 		TdsFromothersDocument.class,SelfAssesmetTaxDocument.class})
 @RequiredBeans(requiredBeans={MemberPersonalInformation.class})
 public class XmlGenerator extends ITReturnComponent {
 	private static final Logger log = LoggerFactory.getLogger(XmlGenerator.class);
 	DecimalFormat decimalFormat=new DecimalFormat("#.#");
 	@Override
-	
+
 	public void doBeforeRender(HstRequest request, HstResponse response) {
 		// TODO Auto-generated method stub
 		super.doBeforeRender(request, response);	
-        
+
 		if (getPublicRequestParameter(request, "show") != null) request.setAttribute("show",getPublicRequestParameter(request, "show"));
 
 		//simple test
@@ -79,16 +80,17 @@ public class XmlGenerator extends ITReturnComponent {
 
 		BigInteger bigTotalTdsOther=new BigInteger ("0");
 		BigInteger bigTotalTdsSalary=new BigInteger ("0");
-		
+
 		MemberPersonalInformation memberPersonalInformation = (MemberPersonalInformation) request.getAttribute(MemberPersonalInformation.class.getSimpleName().toLowerCase());
 		SalaryIncomeDocument salaryIncomeDocument = (SalaryIncomeDocument) request.getAttribute(SalaryIncomeDocument.class.getSimpleName().toLowerCase());
-		HouseIncomeDetail houseIncomeDetail = (HouseIncomeDetail) request.getAttribute(HouseIncomeDetail.class.getSimpleName().toLowerCase());
+		//HouseIncomeDetail houseIncomeDetail = (HouseIncomeDetail) request.getAttribute(HouseIncomeDetail.class.getSimpleName().toLowerCase());
+		HouseProperty houseProperty = (HouseProperty) request.getAttribute(HouseProperty.class.getSimpleName().toLowerCase());
 		OtherSourcesDocument otherSourcesDocument = (OtherSourcesDocument) request.getAttribute(OtherSourcesDocument.class.getSimpleName().toLowerCase());
-        AdvanceTaxDocument advanceTaxDocument = (AdvanceTaxDocument) request.getAttribute(AdvanceTaxDocument.class.getSimpleName().toLowerCase());
+		AdvanceTaxDocument advanceTaxDocument = (AdvanceTaxDocument) request.getAttribute(AdvanceTaxDocument.class.getSimpleName().toLowerCase());
 		TdsFromSalaryDocument tdsFromSalaryDocument = (TdsFromSalaryDocument) request.getAttribute(TdsFromSalaryDocument.class.getSimpleName().toLowerCase());
-        TdsFromothersDocument tdsFromothersDocument = (TdsFromothersDocument) request.getAttribute(TdsFromothersDocument.class.getSimpleName().toLowerCase());
+		TdsFromothersDocument tdsFromothersDocument = (TdsFromothersDocument) request.getAttribute(TdsFromothersDocument.class.getSimpleName().toLowerCase());
 		SelfAssesmetTaxDocument selfAssesmetTaxDocument = (SelfAssesmetTaxDocument) request.getAttribute(SelfAssesmetTaxDocument.class.getSimpleName().toLowerCase());
-        
+
 		ITR1 itr1 = new ObjectFactory().createITR1();
 		CreationInfo creationInfo = new CreationInfo();
 		creationInfo.setIntermediaryCity("Delhi");
@@ -115,9 +117,9 @@ public class XmlGenerator extends ITReturnComponent {
 		ITR1TaxComputation itr1TaxComputation = new ITR1TaxComputation();
 		TaxPaid taxPaid = new TaxPaid();
 		TaxesPaid taxesPaid = new TaxesPaid();
-        Refund refund = new Refund();
-        Verification verification = new Verification();
-		
+		Refund refund = new Refund();
+		Verification verification = new Verification();
+
 		//personal information
 		assesseeName.setFirstName(memberPersonalInformation.getFirstName());
 		assesseeName.setSurNameOrOrgName(memberPersonalInformation.getLastName());
@@ -140,9 +142,9 @@ public class XmlGenerator extends ITReturnComponent {
 		personalInfo.setEmployerCategory(memberPersonalInformation.getEmployerCategory());
 		personalInfo.setGender(memberPersonalInformation.getSex());
 		personalInfo.setStatus(memberPersonalInformation.getFilingStatus());
-		
+
 		itr1.setPersonalInfo(personalInfo);
-		
+
 		//Filing Status
 		filingstatus.setDesigOfficerWardorCircle(memberPersonalInformation.getIncomeTaxWard());
 		filingstatus.setReturnFileSec(memberPersonalInformation.getReturnFileSection());
@@ -156,14 +158,19 @@ public class XmlGenerator extends ITReturnComponent {
 		filingstatus.setReceiptNo(memberPersonalInformation.getReceiptNo());
 
 		itr1.setFilingStatus(filingstatus);
-        
+
 		//Income Deductions
 		if(salaryIncomeDocument!=null)
-		incomeDeductions.setIncomeFromSal(salaryIncomeDocument.getBigTotal());
-		if(houseIncomeDetail!=null)
-		incomeDeductions.setTotalIncomeOfHP(houseIncomeDetail.getIncome_hproperty().longValue());
+			incomeDeductions.setIncomeFromSal(salaryIncomeDocument.getBigTotal());
+		if(houseProperty!=null){
+			if (houseProperty.getHouseIncomeDetailList() != null && houseProperty.getHouseIncomeDetailList().size() > 0 ){
+				for(HouseIncomeDetail houseIncomeDetail: houseProperty.getHouseIncomeDetailList()){
+					incomeDeductions.setTotalIncomeOfHP(houseIncomeDetail.getIncome_hproperty().longValue());
+				}
+			}
+		}
 		if(otherSourcesDocument!=null)
-		incomeDeductions.setIncomeOthSrc(otherSourcesDocument.getTaxable_income().longValue());
+			incomeDeductions.setIncomeOthSrc(otherSourcesDocument.getTaxable_income().longValue());
 		incomeDeductions.setGrossTotIncome(0);	// calculation needed(incomefromsalary+house income+othersrcincome)
 		//added deduction with null values 
 		deductUndChapVIA.setSection80C(null);
@@ -183,9 +190,9 @@ public class XmlGenerator extends ITReturnComponent {
 		deductUndChapVIA.setTotalChapVIADeductions(null);
 		incomeDeductions.setDeductUndChapVIA(deductUndChapVIA);
 		incomeDeductions.setTotalIncome(0); //calculation needed(GrossTotIncome-TotalChapVIADeductions)
-		
+
 		itr1.setITR1IncomeDeductions(incomeDeductions);
-		
+
 		//ITR1 Tax Computation (without calculation) with null values
 		itr1TaxComputation.setTotalTaxPayable(null);
 		itr1TaxComputation.setSurchargeOnTaxPayable(null);
@@ -196,12 +203,12 @@ public class XmlGenerator extends ITReturnComponent {
 		itr1TaxComputation.setNetTaxLiability(null);
 		itr1TaxComputation.setTotalIntrstPay(null);
 		itr1TaxComputation.setTotTaxPlusIntrstPay(null);
-		
+
 		itr1.setITR1TaxComputation(itr1TaxComputation);
-		
+
 		//TaxPaid and TaxesPaid
 		if(advanceTaxDocument!=null)
-		taxesPaid.setAdvanceTax(advanceTaxDocument.getBigTotal_Amount());
+			taxesPaid.setAdvanceTax(advanceTaxDocument.getBigTotal_Amount());
 		if(tdsFromSalaryDocument!=null){	
 			bigTotalTdsSalary= new BigInteger(decimalFormat.format(tdsFromSalaryDocument.getTotal_Amount()));
 		}
@@ -211,13 +218,13 @@ public class XmlGenerator extends ITReturnComponent {
 		BigInteger bigTotalTds=bigTotalTdsSalary.add(bigTotalTdsOther);
 		taxesPaid.setTDS(bigTotalTds);
 		if(selfAssesmetTaxDocument!=null)
-		taxesPaid.setSelfAssessmentTax(selfAssesmetTaxDocument.getBigTotal_Amount());
+			taxesPaid.setSelfAssessmentTax(selfAssesmetTaxDocument.getBigTotal_Amount());
 		taxesPaid.setTotalTaxesPaid(null);//calculation needed (advancetax+tds+selfassessmenttax)
 		taxPaid.setTaxesPaid(taxesPaid);
 		taxPaid.setBalTaxPayable(null); // calculation needed (totaltaxintrstpay-totaltaxpaid)
-		
+
 		itr1.setTaxPaid(taxPaid);
-		
+
 		//refund
 		refund.setRefundDue(null);// need to be calculated
 		refund.setBankAccountNumber(memberPersonalInformation.getBD_ACC_NUMBER());
@@ -227,13 +234,13 @@ public class XmlGenerator extends ITReturnComponent {
 		depositToBankAccount.setBankAccountType(memberPersonalInformation.getBD_TYPE_ACC());
 		refund.setDepositToBankAccount(depositToBankAccount);
 		itr1.setRefund(refund);
-		
+
 		//Schedule80G
 		//TDSonSalaries
 		//TDSonOthThanSals
 		//TaxPayments
 		//TaxExmpIntInc
-		
+
 		//Verification
 		Declaration declaration = new Declaration();
 		declaration.setAssesseeVerName(memberPersonalInformation.getFirstName()+" "+memberPersonalInformation.getLastName());
@@ -251,7 +258,7 @@ public class XmlGenerator extends ITReturnComponent {
 			e1.printStackTrace();
 		}
 		itr1.setVerification(verification);	
-	
+
 		request.setAttribute("theForm", itr1);
 		/* This is where we generate XML */
 		StringWriter sw = new StringWriter();
