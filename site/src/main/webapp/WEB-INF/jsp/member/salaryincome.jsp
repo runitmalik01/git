@@ -213,7 +213,7 @@
 							<td><label><fmt:message key="member.value.tax" /> </label>
 							</td>
 
-							<td><input name="Taxable_earning" readonly="readonly" id="Taxable_earning" 
+							<td><input name="Taxable_earning" id="Taxable_earning" 
 								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.taxable_earning}"/></c:if>" />
 							</td>
 						</tr>
