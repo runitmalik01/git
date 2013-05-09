@@ -3151,39 +3151,39 @@
       </sv:node>
     </sv:node>
   </sv:node>
-  <sv:node sv:name="activationcode">
-    <sv:property sv:name="jcr:primaryType" sv:type="Name">
-      <sv:value>hst:component</sv:value>
-    </sv:property>
-    <sv:property sv:name="jcr:uuid" sv:type="String">
-      <sv:value>860b0182-9d37-4fd9-ba16-7500edf31361</sv:value>
-    </sv:property>
-    <sv:property sv:name="hst:referencecomponent" sv:type="String">
-      <sv:value>hst:pages/simplepage.re</sv:value>
-    </sv:property>
-    <sv:node sv:name="main">
-      <sv:property sv:name="jcr:primaryType" sv:type="Name">
-        <sv:value>hst:component</sv:value>
-      </sv:property>
-      <sv:property sv:name="jcr:uuid" sv:type="String">
-        <sv:value>622dea44-4065-4bd5-ab1c-24fd3de8a962</sv:value>
-      </sv:property>
-      <sv:property sv:name="hst:template" sv:type="String">
-        <sv:value>member.main.re</sv:value>
-      </sv:property>
-      <sv:node sv:name="content">
-        <sv:property sv:name="jcr:primaryType" sv:type="Name">
-          <sv:value>hst:component</sv:value>
-        </sv:property>
-        <sv:property sv:name="jcr:uuid" sv:type="String">
-          <sv:value>73061975-72f7-4867-9a38-009522315e2b</sv:value>
-        </sv:property>
-        <sv:property sv:name="hst:referencecomponent" sv:type="String">
-          <sv:value>hst:components/activationcode</sv:value>
-        </sv:property>
-      </sv:node>
-    </sv:node>
-  </sv:node>
+  <sv:node sv:name="activationcode" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hst:component</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>860b0182-9d37-4fd9-ba16-7500edf31361</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:referencecomponent" sv:type="String">
+	    <sv:value>hst:pages/simplepage.re</sv:value>
+	  </sv:property>
+	  <sv:node sv:name="main">
+	    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	      <sv:value>hst:component</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="jcr:uuid" sv:type="String">
+	      <sv:value>622dea44-4065-4bd5-ab1c-24fd3de8a962</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="hst:template" sv:type="String">
+	      <sv:value>standard.main.re</sv:value>
+	    </sv:property>
+	    <sv:node sv:name="content">
+	      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	        <sv:value>hst:component</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="jcr:uuid" sv:type="String">
+	        <sv:value>73061975-72f7-4867-9a38-009522315e2b</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="hst:referencecomponent" sv:type="String">
+	        <sv:value>hst:components/activationcode</sv:value>
+	      </sv:property>
+	    </sv:node>
+	  </sv:node>
+  </sv:node>  
   <sv:node sv:name="activation">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
       <sv:value>hst:component</sv:value>

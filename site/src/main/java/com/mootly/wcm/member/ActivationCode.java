@@ -46,7 +46,6 @@ public class ActivationCode extends BaseComponent {
 	public void doBeforeRender(HstRequest request, HstResponse response) {
 		// TODO Auto-generated method stub
 		super.doBeforeRender(request, response);
-		log.error("This is activationcode page");
 		request.setAttribute(ERRORS, request.getParameterValues(ERRORS));
 		request.setAttribute(EMAIL_ERROR, request.getParameterValues(EMAIL_ERROR));
 	}
@@ -170,7 +169,8 @@ public class ActivationCode extends BaseComponent {
 		// TODO Auto-generated method stub
 		super.doBeforeServeResource(request, response);
 	}
-	private static class FullReviewedWorkflowCallbackHandler implements WorkflowCallbackHandler<FullReviewedActionsWorkflow> {
+	
+	public static class FullReviewedWorkflowCallbackHandler implements WorkflowCallbackHandler<FullReviewedActionsWorkflow> {
 		public void processWorkflow(FullReviewedActionsWorkflow wf) throws Exception {
 			wf.publish();
 		}
