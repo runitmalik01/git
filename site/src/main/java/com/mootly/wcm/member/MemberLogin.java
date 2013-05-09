@@ -32,6 +32,14 @@ public class MemberLogin extends BaseComponent {
 		super.doBeforeRender(request, response);
 		request.setAttribute(ERRORS, request.getParameterValues(ERRORS));
 		request.setAttribute(LOGIN_ERROR, request.getParameter(LOGIN_ERROR));
+	    String cpmsg=getPublicRequestParameter(request, "SUCCESS");
+	log.info(""+cpmsg);
+		if(cpmsg!= null){
+			log.info("inside if"+cpmsg);
+			request.setAttribute("cpmsg", cpmsg);
+		}
+			
+		
 		try {
         	HippoBean siteContentBaseBean = getSiteContentBaseBean(request);
         	if (siteContentBaseBean != null) request.setAttribute("siteContentBaseBean", siteContentBaseBean);
