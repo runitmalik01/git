@@ -20,14 +20,23 @@ import static com.mootly.wcm.utils.Constants.AMOUNT;
 import static com.mootly.wcm.utils.Constants.BSR;
 import static com.mootly.wcm.utils.Constants.DATE;
 import static com.mootly.wcm.utils.Constants.NT_PERSONAL_INFO_LINK;
+import static com.mootly.wcm.utils.Constants.PROP_PI_DOB;
+import static com.mootly.wcm.utils.Constants.PROP_PI_PINCODE;
 import static com.mootly.wcm.utils.Constants.SERIAL;
+import static com.mootly.wcm.utils.Constants.total_Taxdeducted;
 
+import java.math.BigInteger;
 import java.text.DateFormat;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 import javax.jcr.RepositoryException;
+import javax.xml.datatype.DatatypeConfigurationException;
+import javax.xml.datatype.DatatypeFactory;
+import javax.xml.datatype.XMLGregorianCalendar;
 
 import org.hippoecm.hst.component.support.forms.FormMap;
 import org.hippoecm.hst.content.beans.Node;
@@ -55,7 +64,7 @@ public class AdvanceTaxDetail extends HippoItem implements FormMapFiller {
 
 	
 	private String val_BSR ;
-	private Calendar val_Date ;
+	private GregorianCalendar val_Date ;
 	private String val_serial ;
 	private Double	val_amount;
 	
@@ -74,7 +83,7 @@ public class AdvanceTaxDetail extends HippoItem implements FormMapFiller {
     	return val_BSR;
     }
 
-    public Calendar getP_Date() {
+    public GregorianCalendar getP_Date() {
     	if (val_Date == null) val_Date = getProperty(DATE);
     	return val_Date;
     }
@@ -86,17 +95,53 @@ public class AdvanceTaxDetail extends HippoItem implements FormMapFiller {
     	}
     	return null;
     }
-   
+   //created for xml
+	public XMLGregorianCalendar getGregorianP_Date() {
+		if (val_Date == null) val_Date = getProperty(DATE);
+		String dobStr = getIndianDateFormatter().format(val_Date.getTime());
+		XMLGregorianCalendar date2=null;
+		try {
+			//date2 = DatatypeFactory.newInstance().newXMLGregorianCalendar(dobStr);
+			date2 = DatatypeFactory.newInstance().newXMLGregorianCalendar(val_Date);
+
+		} catch (DatatypeConfigurationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return date2;
+	}
 
     public String getP_Serial() {
     	if (val_serial == null) val_serial = getProperty(SERIAL);
     	return val_serial;
     }
+    //created for xml
+    public BigInteger getBigP_Serial() {
+		if (val_serial == null) val_serial = getProperty(SERIAL);
+		BigInteger bigval_serial=null;
+		if(val_serial.length()>0){
+			bigval_serial = new BigInteger(val_serial);
+			return bigval_serial;
+		}else
+			return null;
+
+	}
 
     public Double getP_Amount() {
     	if (val_amount == null) val_amount = getProperty(AMOUNT);
     	return val_amount;
     }
+    //created for xml
+	public BigInteger getBigP_Amount() {
+		if (val_amount == null) val_amount = getProperty(AMOUNT);
+		DecimalFormat decimalFormat=new DecimalFormat("#.#");
+		BigInteger bigval_amount=null;
+		if(val_amount!=null && val_amount.toString().length()>0){
+			bigval_amount = new BigInteger(decimalFormat.format(val_amount));
+			return bigval_amount;
+		}else
+			return null;
+	}
    
 	public final String getPersonalInfoUuid() {
 		return personalInfoUuid;
@@ -137,7 +182,7 @@ public class AdvanceTaxDetail extends HippoItem implements FormMapFiller {
 
 
  	
-	public final void setP_Date(Calendar val_Date) {
+	public final void setP_Date(GregorianCalendar val_Date) {
 	this.val_Date = val_Date;
 }
 	
@@ -174,7 +219,7 @@ public class AdvanceTaxDetail extends HippoItem implements FormMapFiller {
 			Date date = null ;
 			DateFormat formatter ; 
 			formatter = getIndianDateFormatter();
-			Calendar cal=Calendar.getInstance();
+			GregorianCalendar cal=(GregorianCalendar) GregorianCalendar.getInstance();
 			try{
 				date = (Date)formatter.parse(strDate); 
 				log.info("date"+date);
