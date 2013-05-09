@@ -17,10 +17,9 @@
 HstRequest hstRequest = (HstRequest) request;
 ResolvedSiteMapItem resolvedMapItem = hstRequest.getRequestContext().getResolvedSiteMapItem();
 String actionInSiteMap =  resolvedMapItem.getLocalParameter("action");
-String tabName = "";
+String tabName = "summary";
 if (actionInSiteMap != null && actionInSiteMap.contains("_")) {
  tabName = actionInSiteMap.substring(0,actionInSiteMap.indexOf("_"));
- System.out.println("tabName OOOOOOOOOOO)"+tabName);
 }
 
 
@@ -47,7 +46,7 @@ if (actionInSiteMap != null && actionInSiteMap.contains("_")) {
 		<form id="frmIncomeinfo" action="${actionUrl}" name="oi" method="post">
 			
 			<ul id="myTab" class="nav nav-tabs">
-              <li class="active1"><a href="#incometaxsummary" data-toggle="tab" ><fmt:message key="income.tax.summary" /> </a></li>
+              <li <%if (tabName == "summary" ){%>class="active "<%}%>><a href="#incometaxsummary" data-toggle="tab" ><fmt:message key="income.tax.summary" /> </a></li>
                <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><fmt:message key="income" /> <b class="caret"></b></a>
                 <ul class="dropdown-menu">
@@ -71,7 +70,7 @@ if (actionInSiteMap != null && actionInSiteMap.contains("_")) {
             </ul>
 			 
 			 <div id="myTabContent" class="tab-content" >
-			 <div class="tab-pane fade in active1 " id="incometaxsummary">
+			 <div class="tab-pane fade <%if (tabName == "summary"){%>in active <%}%>" id="incometaxsummary">
             	 <hst:include ref="calculation"/>
               </div>
               <div class="tab-pane fade" id="formsixteen" >
