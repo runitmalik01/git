@@ -28,8 +28,8 @@
         <div class="grid col-540">
 			        <ul id="menu-foot" class="footer-menu">
 			        	<hst:link var="contactUs" siteMapItemRefId="contactus"/>
-			        	<hst:link var="tos" path="/about/terms--conditions/terms--conditions"/>
-			        	<hst:link var="pp" path="/about/terms--conditions/privacy-policy"/>
+			        	<hst:link var="tos" path="/privacy"/>
+			        	<hst:link var="pp" path="/terms"/>
 			        	<li id="menu-item-715" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-715"><a href="${pp}">Privacy Policy</a></li>
 						<li id="menu-item-716" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-716"><a href="${tos}">Terms of Use</a></li>
 						<li id="menu-item-717" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-717"><a href="<hst:link siteMapItemRefId="about"/>">About Us</a></li>
@@ -48,13 +48,13 @@
 				 </div>
          --%>    
             </div><!-- end of #colophon-widget -->                
-        <div class="grid col-300 copyright">© 2013<a href="http://www.wealth4india.com/" title="Responsive Demo">Wealth4India</a>
+        <div class="grid col-300 copyright">© 2013<a href="http://www.wealth4india.com/" title="Wealth4India">Wealth4India</a>
         </div><!-- end of .copyright -->
         
         <div class="grid col-300 scroll-top"><a href="#scroll-top" title="scroll to top">↑</a></div>
         
         <div class="grid col-300 fit powered">
-            <a href="http://themeid.com/responsive-theme/" title="Responsive Theme">Wealth4India</a>
+            <a href='<hst:link path="/"/>' title="Wealth4India">Wealth4India</a>
             developed by <a href="http://www.mootly.com/" title="Mootly. Get IT Done Get IT Right">
                     Mootly Pvt Ltd.</a>
         </div><!-- end .powered -->

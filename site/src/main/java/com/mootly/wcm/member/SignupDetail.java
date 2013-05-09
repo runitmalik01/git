@@ -133,6 +133,10 @@ public class SignupDetail extends BaseComponent {
 			response.setRenderParameter(ERRORS, errors.toArray(new String[errors.size()]));
 			return;
 		}
+		else {
+			email = email.toLowerCase();
+			confirmEmail = confirmEmail.toLowerCase();
+		}
 		// this method fetch username from repository and check whether exist or not
 		
 		 try {

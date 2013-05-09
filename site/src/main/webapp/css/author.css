@@ -9,3 +9,5 @@
 
 label {padding: 3px; vertical-align: text-bottom;}
 input {margin: 0 0 0 0; padding: 0 0 0 0;}
+
+.username {text-transform:lowercase;}

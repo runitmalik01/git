@@ -74,14 +74,14 @@ try {
 				 	  <label for="username">
 				          <small>Email Address</small>
 				       </label>
-				       <input name="j_username" id="username" value="${fn:escapeXml(userName)}" size="22" tabindex="1" type="text">
+				       <input class="username" name="j_username" id="username" value="${fn:escapeXml(userName)}" size="22" tabindex="1" type="text" maxlength="50">
 				       <c:if test="${not empty login_error_key &&  (login_error_key == 'login.error' || login_error_key == 'login.error.userNameNotFound')}"><label for="userName" generated="true" class="error" style=""><fmt:message key="${login_error_key}"/></label></c:if>
 				   </p>
 				   <p>
 						<label for="password">
 				           <small>Password</small>
 				       </label>
-				       <input name="j_password" id="password" value="" size="22" tabindex="2" type="password">
+				       <input name="j_password" id="password" value="" maxlength="20" size="22" tabindex="2" type="password">
 				       <c:if test="${not empty login_error_key &&  (login_error_key == 'login.error' || login_error_key == 'login.error.passwordMismatch')}"><label for="password" generated="true" class="error" style=""><fmt:message key="${login_error_key}"/></label></c:if>
 				   </p>
 				   <p>

@@ -27,33 +27,33 @@
 		 	  <label for="email">
 		          <small>Email Address (required)</small>
 		       </label>
-		       <input name="email" id="email" value="${fn:escapeXml(email)}" size="22" tabindex="1" type="text">
+		       <input class="username" name="email" id="email" value="${fn:escapeXml(email)}" size="22" tabindex="1" type="text" maxlength="50">
 		       <label for="email" class="error" generated="false"><c:if test="${not empty emailError}"><fmt:message key="${emailError}"/></c:if></label>
 		   </p>
 		   <p>
 		 	  <label for="confirmEmail">
 		          <small>Confirm Email Address (required)</small>
 		       </label>
-		       <input name="confirmEmail" id="confirmEmail" value="" size="22" tabindex="2" type="text">	
+		       <input class="username" name="confirmEmail" id="confirmEmail" value="" size="22" tabindex="2" type="text" maxlength="50">	
 		       <label for="confirmEmail" class="error" generated="false"><c:if test="${not empty confirmEmailError}"><fmt:message key="${confirmEmailError}"/></c:if></label>	       
 		   </p>
 		   <p>
 				<label for="password">
 		           <small>Password (required)</small>
 		       </label>
-		       <input name="password" id="password" value="" size="22" tabindex="3" type="password">
+		       <input name="password" id="password" value="" size="22" tabindex="3" type="password" maxlength="20">
 		       <label for="password" class="error" generated="false"><c:if test="${not empty passwordError}"><fmt:message key="${passwordError}"/></c:if></label>
 		   </p>
 		   <p>
 				<label for="confirmPassword">
 		           <small>Confirm Password (required)</small>
 		       </label>
-		       <input name="confirmPassword" id="confirmPassword" value="" size="22" tabindex="4" type="password">
+		       <input name="confirmPassword" id="confirmPassword" value="" size="22" tabindex="4" type="password" maxlength="20">
 		       <label for="confirmPassword" class="error" generated="false"><c:if test="${not empty confirmPasswordError}"><fmt:message key="${confirmPasswordError}"/></c:if></label>
 		   </p>
 		   <p>
 				<input class="checkbox" id="signupTerms" name="signupTerms" tabindex="5" type="checkbox" value="on">
-				<label for="signupTerms">Yes, I agree to the&nbsp;<a href="" target="_blank">Terms of Use</a></label>
+				<label for="signupTerms">Yes, I agree to the&nbsp;<a href='<hst:link path="/terms"/>' target="_blank">Terms of Use</a></label>
 				<label for="signupTerms" class="error" generated="false"><c:if test="${not empty signupTermsError}"><fmt:message key="${signupTermsError}"/></c:if></label>
 		   </p>
 		   <p>

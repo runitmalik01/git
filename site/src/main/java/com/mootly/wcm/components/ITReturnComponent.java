@@ -256,6 +256,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			//this action is save
 			return;
 		}
+		sanitize(request,response,formMap);
 		if (pageAction.equals(PAGE_ACTION.EDIT) || pageAction.equals(PAGE_ACTION.EDIT_CHILD) || pageAction.equals(PAGE_ACTION.NEW_CHILD)) {
 			//lets save the document
 			//interesting how to get all the form data			
@@ -722,6 +723,9 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 				
 	}
 
+	protected void sanitize(HstRequest request,HstResponse response,FormMap formMap) {
+		
+	}
 	protected boolean validate(HstRequest request,HstResponse response,FormMap formMap) {
 		//validate required fields first
 		if (this.getClass().isAnnotationPresent(RequiredFields.class)) {

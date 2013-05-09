@@ -71,6 +71,12 @@ public class MemberLogin extends BaseComponent {
 			response.setRenderParameter(ERRORS, errors.toArray(new String[errors.size()]));
 			return;
 		}
+		else {
+			if (log.isInfoEnabled()) {
+				log.info("Will now convert username to lowercase");
+				userName = userName.toLowerCase();
+			}
+		}
 		if(member!=null){
 			log.warn("member found at memberLogin");
 			if(member.getPassword().toString().equals(password)){

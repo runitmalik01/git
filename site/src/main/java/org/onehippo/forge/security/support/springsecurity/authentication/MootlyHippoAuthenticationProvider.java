@@ -88,7 +88,7 @@ public class MootlyHippoAuthenticationProvider extends AbstractUserDetailsAuthen
     Session session = null;
     String password = authentication.getCredentials().toString();
     if (password == null || password.trim().equals("")) {
-    	throw new BadCredentialsException("Password is null or blank");
+    	throw new AuthenticationServiceException("password.mismatch");
     }
     
     //There is no need to do this as all user's who have the membershipsignupdocument should be allowed to login
@@ -112,7 +112,7 @@ public class MootlyHippoAuthenticationProvider extends AbstractUserDetailsAuthen
       loadedUser = getHippoUserDetailsService().loadUserByUsernameAndPassword(username, password);
     }catch (UsernameNotFoundException usernameNotFoundException) {
     	if (usernameNotFoundException.getMessage() != null && usernameNotFoundException.getMessage().equals("password.mismatch")) {
-    		throw new BadCredentialsException(usernameNotFoundException.getMessage());
+    		throw new AuthenticationServiceException(usernameNotFoundException.getMessage());
     	}
     	else {
     		throw new AuthenticationServiceException(usernameNotFoundException.getMessage());
