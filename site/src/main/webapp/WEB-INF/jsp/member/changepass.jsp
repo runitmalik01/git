@@ -1,4 +1,5 @@
 <%@include file="../includes/tags.jspf"%>
+<%@page import="com.mootly.wcm.services.ScreenConfigService"%>
 
 <hst:actionURL var="actionUrl" />
 
