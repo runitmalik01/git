@@ -16,6 +16,8 @@
 
 package com.mootly.wcm.beans.compound;
 
+import java.math.BigInteger;
+import java.text.DecimalFormat;
 import java.util.Calendar;
 
 import javax.jcr.RepositoryException;
@@ -87,15 +89,34 @@ public class TdsFromSalaryDetail extends HippoItem implements FormMapFiller {
     	
     	return income_chargeable;
     }
+    //created for xml
+	public BigInteger getBigIncome_Chargeable() {
+		if (income_chargeable == null) income_chargeable = getProperty(income_Chargeable);
+		DecimalFormat decimalFormat=new DecimalFormat("#.#");
+		BigInteger bigincome_chargeable=null;
+		if(income_chargeable!=null && income_chargeable.toString().length()>0){
+			bigincome_chargeable = new BigInteger(decimalFormat.format(income_chargeable));
+			return bigincome_chargeable;
+		}else
+			return null;
+	}
 
     public Double getTotal_TaxDeducted() {
     	if (total_taxdeducted == null) total_taxdeducted = getProperty(total_Taxdeducted);
     	return total_taxdeducted;
     }
-   
+    //created for xml
+	public BigInteger getBigTotal_TaxDeducted() {
+		if (total_taxdeducted == null) total_taxdeducted = getProperty(total_Taxdeducted);
+		DecimalFormat decimalFormat=new DecimalFormat("#.#");
+		BigInteger bigtotal_taxdeducted=null;
+		if(total_taxdeducted!=null && total_taxdeducted.toString().length()>0){
+			bigtotal_taxdeducted = new BigInteger(decimalFormat.format(total_taxdeducted));
+			return bigtotal_taxdeducted;
+		}else
+			return null;
+	}
     
-    
-
 	public final void setTan_Employer(String tan_employer) {
 		this.tan_employer = tan_employer;
 	}
