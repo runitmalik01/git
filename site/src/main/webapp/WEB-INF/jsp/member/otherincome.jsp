@@ -138,14 +138,14 @@
 			</tr>
 			
 			<tr>
-			<c:if test="${empty hideHorseIncome }" >
+			
 				<td><label for="Income_rent_machine"><fmt:message
 							key="member.income.maintain" /> </label>
 				</td>
 				<td><input type="text" name="Income_maintain"
 					value="${parentBean.income_maintain}" class="numberinput" id="a5"
 					onchange="cal2()" maxlength="14" />
-				</td></c:if>
+				</td>
 				<td><label for="Income_other "><fmt:message
 							key="member.income.other" /> </label>
 				</td>
