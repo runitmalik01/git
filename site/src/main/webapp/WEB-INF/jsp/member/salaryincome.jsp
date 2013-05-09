@@ -135,7 +135,7 @@
 						<option value="">Select One</option>
 						<c:forEach var="booleanCombo" items="${objHashMapStates}">
 							<option
-								"<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD') && childBean.state == booleanCombo.value}">selected</c:if>" value="${booleanCombo.value}">${booleanCombo.value}</option>
+								"<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD') && childBean.state == booleanCombo.value}">selected</c:if>" value="${booleanCombo.key}">${booleanCombo.value}</option>
 						</c:forEach>
 					</select> <label></label> <label for="Pin"><fmt:message
 							key="member.pin.info" /> </label> <input id="Pin" type="text"
@@ -171,7 +171,7 @@
 							</label>
 							</td>
 							<td><input title="enter gross salary" name="Gross_salary"
-								maxlength="14" id="Gross_salary" onchange="fill()" id=A
+								maxlength="14" id="Gross_salary" onchange="fill()" id=A class="numberinput"
 								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
 						<c:out value="${childBean.gross_salary}"/></c:if>" />
 							</td>
@@ -180,7 +180,7 @@
 							<td><label>Allowance Not Exempt: </label>
 							</td>
 							<td><input name="Allowance" id="Allowance" maxlength="14"
-								onchange="fill()"
+								onchange="fill()" class="numberinput"
 								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.allowance}"/></c:if>">
 							</td>
 						</tr>
@@ -188,13 +188,13 @@
 						<tr>
 							<td><label><fmt:message
 										key="member.allowance.salary" /> </label></td>
-							<td><input name="Allowance1" maxlength="14" value="">
+							<td><input name="Allowance1" maxlength="14" value="" class="numberinput">
 							</td>
 						</tr>
 						<tr>
 							<td><label><fmt:message key="member.value.preq" />
 							</label></td>
-							<td><input maxlength="14" name="Perquisite" id="Perquisite"
+							<td><input maxlength="14" name="Perquisite" id="Perquisite" class="numberinput"
 								onchange="fill()"
 								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.perquisite}"/></c:if>">
 							</td>
@@ -204,7 +204,7 @@
 							<td><label><fmt:message key="member.value.profit" />
 							</label>
 							</td>
-							<td><input maxlength="14" name="profit" id="profit"
+							<td><input maxlength="14" name="profit" id="profit" class="numberinput"
 								onchange="fill()"
 								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.profit}"/></c:if>">
 							</td>
@@ -212,7 +212,8 @@
 						<tr>
 							<td><label><fmt:message key="member.value.tax" /> </label>
 							</td>
-							<td><input name="Taxable_earning"  id="Taxable_earning"
+
+							<td><input name="Taxable_earning" readonly="readonly" id="Taxable_earning" 
 								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.taxable_earning}"/></c:if>" />
 							</td>
 						</tr>
@@ -273,4 +274,17 @@
 		}
 </script>
 
-
+<hst:element var="uiCustom" name="script">
+	<hst:attribute name="type">text/javascript</hst:attribute>
+		$(document).ready(function() {
+		$('input.numberinput').bind('keypress', function (e) {
+        return (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57) && e.which != 46) ? false : true;
+         });
+                 var statekey=$("#statekey").val();
+                if(statekey!=null){
+                 $("#pi_state").val(statekey);
+                  };
+                  
+		});    
+</hst:element>
+<hst:headContribution element="${uiCustom}" category="jsInternal" />
