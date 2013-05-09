@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sv:node sv:name="articles" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hippostd:folder</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+    <sv:value>hippo:harddocument</sv:value>
+    <sv:value>hippotranslation:translated</sv:value>
+    <sv:value>hippo:translated</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>8ff24c54-3829-4c56-b3be-e353efea5d3b</sv:value>
+  </sv:property>
+  <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
+  <sv:property sv:multiple="true" sv:name="hippostd:foldertype" sv:type="String">
+    <sv:value>new-translated-folder</sv:value>
+    <sv:value>new-document</sv:value>
+  </sv:property>
+  <sv:property sv:name="hippotranslation:id" sv:type="String">
+    <sv:value>8b4692a2-f0e4-4f15-b330-9fac3f84cee9</sv:value>
+  </sv:property>
+  <sv:property sv:name="hippotranslation:locale" sv:type="String">
+    <sv:value>en</sv:value>
+  </sv:property>
+  <sv:node sv:name="hippotranslation:translations">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hippotranslation:translations</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="hippo:translation">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hippo:translation</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippo:language" sv:type="String">
+      <sv:value/>
+    </sv:property>
+    <sv:property sv:name="hippo:message" sv:type="String">
+      <sv:value>Articles</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="which-itr-form-to-choose-itr1-itr2-itr4">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hippo:handle</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+      <sv:value>hippo:hardhandle</sv:value>
+      <sv:value>hippo:translated</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>b170f6f5-46a9-492f-84f5-e3404744033b</sv:value>
+    </sv:property>
+    <sv:node sv:name="which-itr-form-to-choose-itr1-itr2-itr4">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:simpledocument</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+        <sv:value>hippo:harddocument</sv:value>
+        <sv:value>hippotranslation:translated</sv:value>
+      </sv:property>
+      <sv:property sv:name="jcr:uuid" sv:type="String">
+        <sv:value>736e9991-e3bd-4d25-ad7d-5f8c5b5f17c2</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
+        <sv:value>live</sv:value>
+        <sv:value>preview</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippo:related___pathreference" sv:type="String">
+        <sv:value>articles/which-itr-form-to-choose-itr1-itr2-itr4</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostd:holder" sv:type="String">
+        <sv:value>admin</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostd:state" sv:type="String">
+        <sv:value>published</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostd:stateSummary" sv:type="String">
+        <sv:value>live</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="hippostd:tags" sv:type="String">
+        <sv:value>itr1</sv:value>
+        <sv:value>incometaxform</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
+        <sv:value>admin</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
+        <sv:value>2013-05-08T21:30:30.278-07:00</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
+        <sv:value>2013-05-08T21:31:32.564-07:00</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
+        <sv:value>admin</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
+        <sv:value>2013-05-08T21:31:38.098-07:00</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippotranslation:id" sv:type="String">
+        <sv:value>3fcfb8ab-6708-481f-99c5-25f6718d35e8</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippotranslation:locale" sv:type="String">
+        <sv:value>en</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:summary" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:title" sv:type="String">
+        <sv:value>Which ITR Form to Choose: ITR1, ITR2, ITR4?</sv:value>
+      </sv:property>
+      <sv:node sv:name="hippotranslation:translations">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hippotranslation:translations</sv:value>
+        </sv:property>
+      </sv:node>
+      <sv:node sv:name="mootlywcm:description">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hippostd:html</sv:value>
+        </sv:property>
+        <sv:property sv:name="hippostd:content" sv:type="String">
+          <sv:value>&lt;html&gt;
+&lt;body&gt;
+
+&lt;p&gt;Income Tax department has unveiled the new income tax return forms for the
+Assessment Year 2011-12 i.e. Sahaj and Sugam.Thus making the existing Saral II
+forms no longer applicable. The main intention behind the modification is to
+simplify the ITR forms and make it user friendly.&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;SAHAJ and SUGAM are the first technology enabled Tax Payer Friendly Forms in
+the country. “Sahaj'' and ''Sugam'' aimed at reducing compliance burden on
+salaried persons and small businessmen. While Sahaj is for salaried people,
+Sugam return form is applicable for small businessmen and professionals covered
+under presumptive taxation.&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;Benefits of SAHAJ and SUGAM Forms are listed below&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Simpler and Tax Friendly forms&lt;/li&gt;
+&lt;li&gt;Enhanced Accuracy in processing&lt;/li&gt;
+&lt;li&gt;Cost Optimization&lt;/li&gt;
+&lt;li&gt;Automation and Harnessing Technology&lt;/li&gt;
+&lt;li&gt;Implementation of International best practices&lt;/li&gt;
+&lt;li&gt;Increased Transparency&lt;/li&gt;
+&lt;li&gt;Simplicity in record management system&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Applicability of these forms depends on tax payer’s source of income. It is
+thus important to know the relevance of each of these forms&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;ITR-1 Form&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;This Return Form is to be used by an individual whose total income for the
+assessment year includes:-&lt;/p&gt;
+
+&lt;p&gt;(a) Income from Salary/ Pension; or&lt;/p&gt;
+
+&lt;p&gt;(b) Income from One House Property (excluding cases where loss is brought
+forward from previous years); or&lt;/p&gt;
+
+&lt;p&gt;(c) Income from Other Sources (Excluding Winning from Lottery and Income from
+Race Horses).&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;Further, in a case where the income of another person like spouse, minor
+child, etc. is to be clubbed with the income of the assessee, this Return Form
+can be used only if the income being clubbed falls into the above income
+categories.&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;ITR-2 Form&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;This Return Form is to be used by an individual or a Hindu Undivided Family
+whose total income for the assessment year includes:-&lt;/p&gt;
+
+&lt;p&gt;(a) Income from Salary / Pension; or&lt;/p&gt;
+
+&lt;p&gt;(b) Income from House Property; or&lt;/p&gt;
+
+&lt;p&gt;(c) Income from Capital Gains; or&lt;/p&gt;
+
+&lt;p&gt;(c) Income from Other Sources (including Winning from Lottery and Income from
+Race Horses)...&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;Further, in a case where the income of another person like spouse, minor
+child, etc. is to be clubbed with the income of the assessee, this Return Form
+can be used where such income falls in any of the above categories.&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;IT-3 Form&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;This Return Form is to be used by an individual or an Hindu Undivided Family
+who is a partner in a firm and where income chargeable to income-tax under the
+head “Profits or gains of business or profession” does not include any income
+except the income by way of any interest, salary, bonus, commission or
+remuneration, by whatever name called, due to, or received by him from such
+firm. In case a partner in the firm does not have any income from the firm by
+way of interest, salary, etc. and has only exempt income by way of share in the
+profit of the firm shall use this form only and not Form ITR-2.&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Sugam ITR (4S)&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;It is applicable for small businessmen and professionals covered under
+presumptive taxation.&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;ITR-4 Form&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;This form is applicable, both, to Individuals and HUFs who carry out any
+business or professional activity in addition to having sources of income
+applicable to ITR-3.&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;ITR-5 Form&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;This Form can be used a person being a firm, AOP, BOI, artificial juridical
+person referred to in section 2(31) (vii), cooperative society and local
+authority. However, a person who is required to file the return of income under
+section 139(4) (a) or 139(4) (a) or 139(4) (b) or 139(4) (c) or 139(4) (d) shall
+not use this form&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;ITR-6 Form&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;This Form can be used by a company, other than a company claiming exemption
+under section 11.&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;ITR-7 Form&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;This Form can be used by persons including companies who are required to
+furnish return under section 139(4A) or under section 139(4B) or under section
+139(4C) or under section 139(4D).&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;ITR-V/Acknowledgement Form&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Acknowledgement form for all ITR- Forms &lt;/p&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</sv:value>
+        </sv:property>
+      </sv:node>
+      <sv:node sv:name="mootlywcm:form">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hippo:mirror</sv:value>
+        </sv:property>
+        <sv:property sv:name="hippo:docbase" sv:type="String">
+          <sv:value>cafebabe-cafe-babe-cafe-babecafebabe</sv:value>
+        </sv:property>
+      </sv:node>
+    </sv:node>
+    <sv:node sv:name="hippo:translation">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>hippo:translation</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippo:language" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="hippo:message" sv:type="String">
+        <sv:value>Which ITR Form to Choose: ITR1, ITR2, ITR4?</sv:value>
+      </sv:property>
+    </sv:node>
+  </sv:node>
+</sv:node>

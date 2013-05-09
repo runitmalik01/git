@@ -121,8 +121,7 @@ public class AbstractSearchComponent extends TagComponent {
             HstQueryManager manager = getQueryManager(request);
 
             @SuppressWarnings("unchecked")
-            HstQuery hstQuery = manager.createQuery(scope, EventDocument.class, JobsDocument.class, NewsItem.class,
-                    Product.class, HippoAsset.class, SimpleDocument.class, Faq.class);
+            HstQuery hstQuery = manager.createQuery(scope, SimpleDocument.class, Faq.class);
 
             HippoBean assetScope = getAssetBaseBean(request);
             hstQuery.addScopes(Collections.singletonList(assetScope));
@@ -155,6 +154,10 @@ public class AbstractSearchComponent extends TagComponent {
             int currentPage = getCurrentPage(request);
 
             PageableCollection<HippoBean> results = new PageableCollection<HippoBean>(beans, pageSize, currentPage);
+            if (results != null) {
+            	HippoBean firstBean = results.getItems().get(0);
+            	request.setAttribute("firstBean", firstBean);
+            }
             request.setAttribute("searchResult", results);
         } catch (QueryException e) {
             if(log.isDebugEnabled()) {
