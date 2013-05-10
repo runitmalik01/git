@@ -1,3 +1,5 @@
+
+
 <%@include file="../includes/tags.jspf" %>
 
 <label class="radio inline">
@@ -11,8 +13,6 @@
 <c:choose>
 	<c:when test="${empty show || show == 'summary'}">
 		<pre>
-			<c:out value="${theForm.personalInfo.assesseeName.firstName}"/>
-			<c:out value="${theForm.personalInfo.assesseeName.surNameOrOrgName}"/>
 			<fieldset>
 			<table class="calculation of income" border="1" width="500">
 				<tr align="left">
