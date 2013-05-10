@@ -47,23 +47,25 @@ import com.mootly.wcm.annotations.RequiredFields;
 import com.mootly.wcm.beans.MemberPersonalInformation;
 import com.mootly.wcm.beans.MemberSignupDocument;
 import com.mootly.wcm.components.ITReturnComponent;
+import com.mootly.wcm.model.FilingStatus;
 import com.mootly.wcm.utils.ContentStructure;
 import com.mootly.wcm.utils.GoGreenUtil;
 import com.mootly.wcm.utils.MootlyFormUtils;
 import com.mootly.wcm.utils.UrlUtility;
 
 @PrimaryBean(primaryBeanClass=MemberPersonalInformation.class)
-@FormFields(fieldNames={"pan","pi_first_name","pi_middle_name","pi_last_name","gender","pi_dob","pi_filing_status",
-			"pi_road_street","pi_std_code","pi_phone","pi_flat_door_building","pi_area_locality","pi_town_city_district",
-			"pi_pin_code","pi_state","pi_mobile","pi_email","pi_premises_building",
-			"rsstatus_q","rsstatus_q_yes","rsstatus_q_yes_yes","rsstatus_q_no","rsstatus_q_no_yes","rsstatus_q_no_yes_yes",
-			"rsstatus_q_no_no","rsstatus_q_no_no_yes","rsstatus_q_no_no_yes_yes","rsstatus_q_no_yes_yes_yes",
-			"bd_bank_name","bd_micr_code","bd_Branch_name","bd_account_type","bd_account_no","bd_ecs",
-			"pi_return_type","fy","ack_no","ack_date","defective","notice_no","notice_date"})
+@FormFields(fieldNames={"pi_return_type","fy","ack_no","ack_date","defective","notice_no","notice_date",
+		"pan","pi_first_name","pi_middle_name","pi_last_name","gender","pi_dob","pi_filing_status",
+		"pi_road_street","pi_std_code","pi_phone","pi_flat_door_building","pi_area_locality","pi_town_city_district",
+		"pi_pin_code","pi_state","pi_mobile","pi_email","pi_premises_building",
+		"rsstatus_q","rsstatus_q_yes","rsstatus_q_yes_yes","rsstatus_q_no","rsstatus_q_no_yes","rsstatus_q_no_yes_yes",
+		"rsstatus_q_no_no","rsstatus_q_no_no_yes","rsstatus_q_no_no_yes_yes","rsstatus_q_no_yes_yes_yes",
+		"bd_bank_name","bd_micr_code","bd_Branch_name","bd_account_type","bd_account_no","bd_ecs",
+		"pi_return_type","fy","ack_no","ack_date","defective","notice_no","notice_date"})
 @RequiredFields(fieldNames={
 		"pi_last_name","pi_dob","gender",
 		"pi_flat_door_building","pi_email","pi_pin_code","pi_town_city_district","pi_state","pi_area_locality",
-		"rsstatus_q"})
+"rsstatus_q"})
 
 public class StartApplication extends ITReturnComponent {
 	private static final Logger log = LoggerFactory.getLogger(StartApplication.class);
@@ -77,100 +79,106 @@ public class StartApplication extends ITReturnComponent {
 	private static final String ERRORS = "errors";
 	private static final String DOB = "pi_dob";
 	FormMap savedValuesFormMap=null;	
+	String memberName = null;
 	@Override
 	public void doBeforeRender(HstRequest request, HstResponse response) {
 		// TODO Auto-generated method stub
 		super.doBeforeRender(request, response);
+		log.info("get uuid"+request.getParameter("uuid"));
 		String publicParameterUUID = getPublicRequestParameter(request, "uuid");
-
+		if(log.isInfoEnabled()){
+			log.info("getting value from session");
+		}
+		if(publicParameterUUID==null){
+			publicParameterUUID=(String)request.getSession().getAttribute("uuid");
+		}
 		if (publicParameterUUID != null) {
 			try {
 				FormUtils.validateId(publicParameterUUID);
-				//log.info("Getting form Map and names of fields"+getFormMap().getFieldNames().toString());
-				savedValuesFormMap = new FormMap(request,new String[]{"pan","pi_last_name","pi_dob","pi_return_type","fy","ack_no","ack_date","defective","notice_no","notice_date"});
+				savedValuesFormMap = new FormMap(request,new String[]{"pan","pi_last_name","pi_dob","pi_return_type","fy"});
 				MootlyFormUtils.populate(request, publicParameterUUID, savedValuesFormMap);
 				if (savedValuesFormMap != null) {
 					request.setAttribute("savedValuesFormMap", savedValuesFormMap);
 				}
-				//response.setRenderParameter("uuid", publicPar
-				//response.sendRedirect(request.getRequestURL().toString());
-				//return;
 			}catch (IllegalArgumentException ie) {
 				publicParameterUUID = null;
 			}
 		}
 		if(log.isInfoEnabled()){
-		log.info("Member personal Information page");
+			log.info("Member personal Information page");
 		}
-		 String assessmentYear = getAssessmentYear() == null ? "2012-2013"  : getAssessmentYear();
-			ResourceBundle rb = ResourceBundle.getBundle("rstatus_"+assessmentYear);
-			
-			List<String> keyList = new ArrayList<String>();
-			//Enumeration<String> keys = rb.getKeys();		
-			for (String aKey: rb.keySet() ) {
-				keyList.add(aKey);			
+		String assessmentYear = getAssessmentYear() == null ? "2012-2013"  : getAssessmentYear();
+		ResourceBundle rb = ResourceBundle.getBundle("rstatus_"+assessmentYear);
+
+		List<String> keyList = new ArrayList<String>();		
+		for (String aKey: rb.keySet() ) {
+			keyList.add(aKey);			
+		}
+		if (savedValuesFormMap != null) {
+			memberName=savedValuesFormMap.getField("pi_last_name").getValue();
+		}else{
+			MemberPersonalInformation parentBean=(MemberPersonalInformation)request.getAttribute("parentBean");
+			if(parentBean!=null){
+				memberName=parentBean.getLastName();				
 			}
-			String memberName = null;
-			if (savedValuesFormMap != null) {
-				memberName=savedValuesFormMap.getField("pi_last_name").getValue();
-			}else{
-				MemberPersonalInformation parentBean=(MemberPersonalInformation)request.getAttribute("parentBean");
-				if(parentBean!=null){
-					memberName=parentBean.getLastName();				
-					}
+		}
+		if(StringUtils.isEmpty(memberName)||memberName==null){
+			FilingStatus filstat=(FilingStatus)request.getAttribute("filingStatus");
+			if(filstat!=null){
+				memberName="the "+filstat.getName();
 			}
-			Map<String, String> map = new LinkedHashMap<String, String>();
-			Collections.sort(keyList, new SortyByDepth());
-			for (String aKey:keyList) {
-				if (memberName != null) {
-					String ke = rb.getString(aKey);
-					if (log.isInfoEnabled()) {
-						log.info("Now attempting to apply format to " + ke);
-					}
-					map.put(aKey, MessageFormat.format(ke,memberName));
+		}
+		Map<String, String> map = new LinkedHashMap<String, String>();
+		Collections.sort(keyList, new SortyByDepth());
+		for (String aKey:keyList) {
+			if (memberName != null) {
+				String ke = rb.getString(aKey);
+				if (log.isInfoEnabled()) {
+					log.info("Now attempting to apply format to " + ke);
 				}
-				else {
+				map.put(aKey, MessageFormat.format(ke,memberName));
+			}
+			/*else {
 					//map.put(aKey, rb.getString(aKey));
 					String ke = rb.getString(aKey);
 					if (log.isInfoEnabled()) {
 						log.info("Now attempting to apply format to " + ke);
 					}
 					map.put(aKey, MessageFormat.format(ke,"the Individual"));
-				}
-			}
-			Map<String, String> fetchmap = new LinkedHashMap<String, String>();
-			if (getParentBean() != null) {
-				MemberPersonalInformation memberresi = (MemberPersonalInformation) getParentBean();			
-				
-				fetchmap.put("rsstatus_q",memberresi.getRsstatusQ());			
-				if(!(memberresi.getRsstatusQYes().matches("Select")))
-					fetchmap.put("rsstatus_q_yes",memberresi.getRsstatusQYes());			
-				if(!(memberresi.getRsstatusQYesYes().matches("Select")))
-					fetchmap.put("rsstatus_q_yes_yes",memberresi.getRsstatusQYesYes());									
-				if(!(memberresi.getRsstatusQNo().matches("Select")))
-					fetchmap.put("rsstatus_q_no",memberresi.getRsstatusQNo());			
-				if(!(memberresi.getRsstatusQNoYes().matches("Select")))
-					fetchmap.put("rsstatus_q_no_yes",memberresi.getRsstatusQNoYes());					
-				if(!(memberresi.getRsstatusQNoYesYes().matches("Select")))
-					fetchmap.put("rsstatus_q_no_yes_yes",memberresi.getRsstatusQNoYesYes());			
-				if(!(memberresi.getRsstatusQNoNo().matches("Select")))
-					fetchmap.put("rsstatus_q_no_no",memberresi.getRsstatusQNoNo());						
-				if(!(memberresi.getRsstatusQNoNoYes().matches("Select")))
-					fetchmap.put("rsstatus_q_no_no_yes",memberresi.getRsstatusQNoNoYes());			
-				if(!(memberresi.getRsstatusQNoNoYesYes().matches("Select")))
-					fetchmap.put("rsstatus_q_no_no_yes_yes",memberresi.getRsstatusQNoNoYesYes());						
-				if(!(memberresi.getRsstatusQNoYesYesYes().matches("Select")))
-					fetchmap.put("rsstatus_q_no_yes_yes_yes",memberresi.getRsstatusQNoYesYesYes());			
-				
-				request.setAttribute("fetchmap", fetchmap);
-			}
-			//map.put(aKey, rb.getString(aKey));
-			JSONObject jsonObject = new JSONObject(map);
-			request.setAttribute("jsonObject", jsonObject);
-			request.setAttribute("map", map);
+				}*/
+		}
+		Map<String, String> fetchmap = new LinkedHashMap<String, String>();
+		if (getParentBean() != null) {
+			MemberPersonalInformation memberresi = (MemberPersonalInformation) getParentBean();			
+
+			fetchmap.put("rsstatus_q",memberresi.getRsstatusQ());			
+			if(!(memberresi.getRsstatusQYes().matches("Select")))
+				fetchmap.put("rsstatus_q_yes",memberresi.getRsstatusQYes());			
+			if(!(memberresi.getRsstatusQYesYes().matches("Select")))
+				fetchmap.put("rsstatus_q_yes_yes",memberresi.getRsstatusQYesYes());									
+			if(!(memberresi.getRsstatusQNo().matches("Select")))
+				fetchmap.put("rsstatus_q_no",memberresi.getRsstatusQNo());			
+			if(!(memberresi.getRsstatusQNoYes().matches("Select")))
+				fetchmap.put("rsstatus_q_no_yes",memberresi.getRsstatusQNoYes());					
+			if(!(memberresi.getRsstatusQNoYesYes().matches("Select")))
+				fetchmap.put("rsstatus_q_no_yes_yes",memberresi.getRsstatusQNoYesYes());			
+			if(!(memberresi.getRsstatusQNoNo().matches("Select")))
+				fetchmap.put("rsstatus_q_no_no",memberresi.getRsstatusQNoNo());						
+			if(!(memberresi.getRsstatusQNoNoYes().matches("Select")))
+				fetchmap.put("rsstatus_q_no_no_yes",memberresi.getRsstatusQNoNoYes());			
+			if(!(memberresi.getRsstatusQNoNoYesYes().matches("Select")))
+				fetchmap.put("rsstatus_q_no_no_yes_yes",memberresi.getRsstatusQNoNoYesYes());						
+			if(!(memberresi.getRsstatusQNoYesYesYes().matches("Select")))
+				fetchmap.put("rsstatus_q_no_yes_yes_yes",memberresi.getRsstatusQNoYesYesYes());			
+
+			request.setAttribute("fetchmap", fetchmap);
+		}
+		JSONObject jsonObject = new JSONObject(map);
+		request.setAttribute("jsonObject", jsonObject);
+		request.setAttribute("map", map);
 
 	}
-	
+
 	@Override
 	public void doAction(HstRequest request, HstResponse response)
 			throws HstComponentException {
@@ -193,7 +201,7 @@ public class StartApplication extends ITReturnComponent {
 				return 1;
 		}		
 	}
-	
+
 	public void doBeforeRenderOld(HstRequest request, HstResponse response) {
 		// TODO Auto-generated method stub
 		super.doBeforeRender(request, response);
@@ -210,7 +218,7 @@ public class StartApplication extends ITReturnComponent {
 					String path=ContentStructure.getPersonalDocumentPath(pan,filing_year,modusername);
 					MemberPersonalInformation objdocument=(MemberPersonalInformation)getObjectBeanManager(request).getObject(path);				
 					Calendar dob=objdocument.getDOB();
-					
+
 					Date date =dob.getTime();
 					DateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy");
 					DateFormat formatter2=new SimpleDateFormat("yyyy-mm-dd");
@@ -270,7 +278,7 @@ public class StartApplication extends ITReturnComponent {
 		String gender=GoGreenUtil.getEscapedParameter(request, GENDER);
 		String status=GoGreenUtil.getEscapedParameter(request, STATUS);
 		String dob=GoGreenUtil.getEscapedParameter(request, DOB);
-	    String repDob=dob;
+		String repDob=dob;
 		/*Next 6-7 lines
 		 * to covert String date into Calendar object
 		 * */
@@ -329,14 +337,14 @@ public class StartApplication extends ITReturnComponent {
 				 * Set the Values get from Form
 				 * */
 				MemberPersonalInformation objpi = new MemberPersonalInformation();
-				     objpi.setPAN(pan);
-				     objpi.setMiddleName(mname);
-				     objpi.setFirstName(fname);
-				     objpi.setLastName(lname);
-				     objpi.setSex(gender);
-				     objpi.setDOB(cal);
-				     objpi.setFilingStatus(status);
-				     objpi.setFatherName(fathername);
+				objpi.setPAN(pan);
+				objpi.setMiddleName(mname);
+				objpi.setFirstName(fname);
+				objpi.setLastName(lname);
+				objpi.setSex(gender);
+				objpi.setDOB(cal);
+				objpi.setFilingStatus(status);
+				objpi.setFatherName(fathername);
 				createMemberPersoanlInformation(request, objpi);
 				try{
 					request.getSession().setAttribute("start_pan",pan);
