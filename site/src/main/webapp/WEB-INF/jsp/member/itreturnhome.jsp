@@ -94,7 +94,7 @@
 					<td class="filingStatus decimal"><c:out value="${anEntry.filingStatus}"/></td>
 					<td class="filingStatus"  style="text-transform:capitalize;"><c:out value="${anEntry.itReturnType}"/></td>
 					<td>
-						<hst:link var="viewLink" path="/member/itreturn/${anEntry.financialYear.displayName}/${anEntry.itReturnType.displayName}/${anEntry.pan}/personalinformation.html"/>			
+						<hst:link var="viewLink" path="/member/itreturn/${anEntry.financialYear.displayName}/${anEntry.itReturnType.displayName}/${anEntry.pan}/itreturn-ITR1.html"/>			
 						<span style=""><a href="${viewLink}">Continue Filing</a></span>
 					</td>
 				</tr>	
