@@ -81,7 +81,7 @@ public class ForgotPass extends BaseComponent {
 		   createEmail(request,ms,memberSignupDocument);
 		  response.setRenderParameter(SUCCESS, SUCCESS);
 		try{
-			  response.sendRedirect(UrlUtility.MemberLogin+"?SUCCESS=SUCCESS");
+			  response.sendRedirect(UrlUtility.MemberLogin);
 		  }
 		  catch(Exception e)
 		  {
