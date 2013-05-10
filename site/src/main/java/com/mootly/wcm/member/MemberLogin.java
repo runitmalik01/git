@@ -26,6 +26,7 @@ public class MemberLogin extends BaseComponent {
     private static final String SUCCESS = "success";
 	public static final String ERRORS="errors";
 	public static final String LOGIN_ERROR="loginError";
+	private static final String EMAIL = null;
 	@Override
 	public void doBeforeRender(HstRequest request, HstResponse response) {
 		// TODO Auto-generated method stub
@@ -33,7 +34,9 @@ public class MemberLogin extends BaseComponent {
 		request.setAttribute(ERRORS, request.getParameterValues(ERRORS));
 		request.setAttribute(LOGIN_ERROR, request.getParameter(LOGIN_ERROR));
 	    String cpmsg=getPublicRequestParameter(request, "SUCCESS");
-	log.info(""+cpmsg);
+	    if (SUCCESS.equals(EMAIL)){
+	    	
+	    }
 		if(cpmsg!= null){
 			log.info("inside if"+cpmsg);
 			request.setAttribute("cpmsg", cpmsg);
