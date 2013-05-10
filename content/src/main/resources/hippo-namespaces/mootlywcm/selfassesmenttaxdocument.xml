@@ -29,7 +29,7 @@
         <sv:value>hippo:harddocument</sv:value>
       </sv:property>
       <sv:property sv:name="jcr:uuid" sv:type="String">
-        <sv:value>3feec578-ff40-4f6b-9722-3f63179dd94b</sv:value>
+        <sv:value>18d1a54e-f6e6-495e-80dc-bf0193bff5e2</sv:value>
       </sv:property>
       <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
       <sv:property sv:name="hipposysedit:node" sv:type="Boolean">
@@ -65,7 +65,7 @@
           <sv:value>mootlywcm:selfassesmenttaxdetail</sv:value>
         </sv:property>
       </sv:node>
-      <sv:node sv:name="totalamount">
+      <sv:node sv:name="double">
         <sv:property sv:name="jcr:primaryType" sv:type="Name">
           <sv:value>hipposysedit:field</sv:value>
         </sv:property>
@@ -85,7 +85,7 @@
           <sv:value>false</sv:value>
         </sv:property>
         <sv:property sv:name="hipposysedit:type" sv:type="String">
-          <sv:value>String</sv:value>
+          <sv:value>Double</sv:value>
         </sv:property>
       </sv:node>
     </sv:node>
@@ -103,7 +103,7 @@
         <sv:value>hippotranslation:translated</sv:value>
       </sv:property>
       <sv:property sv:name="jcr:uuid" sv:type="String">
-        <sv:value>df051701-b691-4a4e-8c77-c7d5d84a69e0</sv:value>
+        <sv:value>6171f645-b185-442a-bf93-393af976d188</sv:value>
       </sv:property>
       <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
       <sv:property sv:name="hippostd:holder" sv:type="String">
@@ -133,8 +133,8 @@
       <sv:property sv:name="hippotranslation:locale" sv:type="String">
         <sv:value>document-type-locale</sv:value>
       </sv:property>
-      <sv:property sv:name="mootlywcm:totalamount" sv:type="String">
-        <sv:value/>
+      <sv:property sv:name="mootlywcm:totalamount" sv:type="Double">
+        <sv:value>0.0</sv:value>
       </sv:property>
       <sv:node sv:name="hippotranslation:translations">
         <sv:property sv:name="jcr:primaryType" sv:type="Name">
@@ -264,7 +264,7 @@
           <sv:value>${engine}</sv:value>
         </sv:property>
         <sv:property sv:name="field" sv:type="String">
-          <sv:value>totalamount</sv:value>
+          <sv:value>double</sv:value>
         </sv:property>
         <sv:property sv:name="mode" sv:type="String">
           <sv:value>${mode}</sv:value>
