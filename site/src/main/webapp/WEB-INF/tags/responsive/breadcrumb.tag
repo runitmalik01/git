@@ -24,6 +24,7 @@
 
 <%@ tag import="com.mootly.wcm.utils.*" %>
 <%@ tag import="java.util.*" %>
+<%@ attribute name="breadcrumType" required="false" type="java.lang.String" %>
 <ul class="breadcrumb">
    <li><a href="#">Home</a> <span class="divider">/</span></li>
    <li><a href="#">IT Return</a> <span class="divider">/</span></li>
@@ -63,7 +64,16 @@
       <span class="divider">/</span>
    </li>
    <li>
-      <c:out value="${filingStatus}"/> Information
+   <c:choose>
+   <c:when test="${not empty breadcrumType }">
+   <c:out value="${breadcrumType}"/>
+   </c:when>
+   <c:otherwise>
+   <c:out value="${filingStatus}"/> Information
+   </c:otherwise>
+      
+      </c:choose>
    </li>
+   
 </ul>
 
