@@ -29,19 +29,27 @@
 <hippo-gogreen:title title="${parentBeantitle}" />
 <hst:actionURL var="actionUrl"></hst:actionURL>
 <div class="page">
-<h3 id="respond1"><c:choose><c:when test="${not empty screenConfigDocument && not empty screenConfigDocument.screenHeading}"><c:out value="${screenConfigDocument.screenHeading}"/></c:when><c:otherwise>House Income</c:otherwise></c:choose></h3>
-<c:if test="${not empty formMap}">
-	<c:forEach items="${formMap.message}" var="item">
-		<div class="alert alert-error">
-			<fmt:message key="${item.value}" />
-		</div>
-	</c:forEach>
-</c:if>
+	<h3 id="respond1">
+		<c:choose>
+			<c:when
+				test="${not empty screenConfigDocument && not empty screenConfigDocument.screenHeading}">
+				<c:out value="${screenConfigDocument.screenHeading}" />
+			</c:when>
+			<c:otherwise>House Income</c:otherwise>
+		</c:choose>
+	</h3>
+	<c:if test="${not empty formMap}">
+		<c:forEach items="${formMap.message}" var="item">
+			<div class="alert alert-error">
+				<fmt:message key="${item.value}" />
+			</div>
+		</c:forEach>
+	</c:if>
 
-<c:choose>
-	<c:when
-		test="${pageAction == 'NEW_CHILD' || pageAction == 'EDIT_CHILD'}">
-		
+	<c:choose>
+		<c:when
+			test="${pageAction == 'NEW_CHILD' || pageAction == 'EDIT_CHILD'}">
+
 			<h4>Property Income</h4>
 			<form id="frmdata" action="${actionUrl}" method="post"
 				name="housefrm">
@@ -92,7 +100,7 @@
 							</div>
 							<div>
 								<input id="Pin" type="text" class="numberinput" name="Pin"
-									maxlength="6" 
+									maxlength="6"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
 						<c:out value="${childBean.pin}"/></c:if>" />
 
@@ -404,8 +412,7 @@
 						</div>
 						<div class="span2 offset1">
 							<div>
-								<input id="Balance" name="Balance"
-									placeholder="Rs." type="text"
+								<input id="Balance" name="Balance" placeholder="Rs." type="text"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.balance}"/></c:if>">
 							</div>
 						</div>
@@ -418,7 +425,8 @@
 						</div>
 						<div class="span7 decimal">
 							<div class="rowlabel">
-								<label for=""><small>Interest on Borrowed Capital</small> </label>
+								<label for=""><small>Interest on Borrowed
+										Capital</small> </label>
 							</div>
 						</div>
 						<div class="span2 offset1">
@@ -437,7 +445,8 @@
 						</div>
 						<div class="span7 decimal">
 							<div class="rowlabel">
-								<label for=""><small>Income from House Property</small> </label>
+								<label for=""><small>Income from House Property</small>
+								</label>
 							</div>
 						</div>
 						<div class="span2 offset1">
@@ -451,63 +460,56 @@
 				</fieldset>
 				<div class="row-fluid show-grid">
 					<div class="span4 offset8 decimal">
-						<a href="${scriptName}" class="button olive">Cancel</a>&nbsp; <input
-							type="submit" id="myModalHref" class="button olive" onclick="save()"
-							value="Save" />
+						<a href="${scriptName}" class="button olive">Cancel</a>&nbsp; <a
+							href="javascript:void(0)" id="myModalHref" class="button orange">Save</a>
 
 					</div>
 				</div>
 			</form>
-		
-	</c:when>
-	
-	
-	
-	<c:otherwise>
-		<!--  show the table -->
-		<table>
-			<tr align="center">
-				<th><b>Property Let Out</b>
-				</th>
-				<th><b>Address</b>
-				</th>
-				<th><b>Ownership %</b>
-				</th>
-				<th><b>Income from House Property</b>
-				</th>
-				<th><b>Actions</b>
-				</th>
-			</tr>
-			<c:if test="${not empty parentBean}">
-				<c:forEach items="${parentBean.houseIncomeDetailList}"
-					var="houseincomedetail">
-					<tr>
-						<td><a
-							href="${scriptName}/<c:out value="${houseincomedetail.canonicalUUID}"/>/houseincomeedit"><c:out
-									value="${houseincomedetail.letOut}" /> </a>
-						</td>
-						<td><c:out value="${houseincomedetail.address}" />
-						</td>
 
-						<td><c:out value="${houseincomedetail.property_share}" />
-						</td>
-						<td><c:out value="${houseincomedetail.income_hproperty}" />
-						</td>
-						<td><a
-							href="${scriptName}/<c:out value="${houseincomedetail.canonicalUUID}"/>/houseincomeedit"><small>Edit</small>
-						</a>&nbsp;&nbsp;<a
-							href="${scriptName}/<c:out value="${houseincomedetail.canonicalUUID}"/>/houseincomedelete"><small>Delete</small>
-						</a>
-						</td>
-					</tr>
+		</c:when>
 
-				</c:forEach>
 
-			</c:if>
-		</table>
-		<a href="${scriptName}/houseincomenew" class="button orange">Add New</a>
-	</c:otherwise>
-</c:choose>
+
+		<c:otherwise>
+			<!--  show the table -->
+			<table>
+				<tr align="center">
+					<th><b>Property Let Out</b></th>
+					<th><b>Address</b></th>
+					<th><b>Ownership %</b></th>
+					<th><b>Income from House Property</b></th>
+					<th><b>Actions</b></th>
+				</tr>
+				<c:if test="${not empty parentBean}">
+					<c:forEach items="${parentBean.houseIncomeDetailList}"
+						var="houseincomedetail">
+						<tr>
+							<td><a
+								href="${scriptName}/<c:out value="${houseincomedetail.canonicalUUID}"/>/houseincomeedit"><c:out
+										value="${houseincomedetail.letOut}" /> </a></td>
+							<td><c:out value="${houseincomedetail.address}" /></td>
+
+							<td><c:out value="${houseincomedetail.property_share}" /></td>
+							<td><c:out value="${houseincomedetail.income_hproperty}" />
+							</td>
+							<td><a
+								href="${scriptName}/<c:out value="${houseincomedetail.canonicalUUID}"/>/houseincomeedit"><small>Edit</small>
+							</a>&nbsp;&nbsp;<a
+								href="${scriptName}/<c:out value="${houseincomedetail.canonicalUUID}"/>/houseincomedelete"><small>Delete</small>
+							</a></td>
+						</tr>
+
+					</c:forEach>
+
+				</c:if>
+			</table>
+			<a href="${scriptName}/houseincomenew" class="button orange">Add
+				New</a>
+		</c:otherwise>
+	</c:choose>
 </div>
 
-<res:client-validation formId="frmdata" screenConfigurationDocumentName="houseincome" formSubmitButtonId="myModalHref"/>
+<res:client-validation formId="frmdata"
+	screenConfigurationDocumentName="houseincome"
+	formSubmitButtonId="myModalHref" />
