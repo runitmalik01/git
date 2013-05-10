@@ -120,7 +120,7 @@ public class ChangePass extends BaseComponent {
 						createMemberSignupFormUpdatePass(request,cp);
 						response.setRenderParameter(SUCCESS, SUCCESS);
 
-						response.sendRedirect(UrlUtility.MemberLogin+"?SUCCESS=SUCCESS");
+						response.sendRedirect(UrlUtility.MemberLogin+"?SUCCESS=CHANGE");
 						request.getSession(false);
 					}
 				}
