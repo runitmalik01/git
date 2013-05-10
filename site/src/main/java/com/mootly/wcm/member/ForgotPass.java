@@ -19,6 +19,7 @@ import org.slf4j.LoggerFactory;
 
 import com.mootly.wcm.beans.EmailMessage;
 import com.mootly.wcm.beans.EmailTemplate;
+import com.mootly.wcm.beans.MemberSignupDocument;
 import com.mootly.wcm.components.BaseComponent;
 import com.mootly.wcm.utils.ContentStructure;
 import com.mootly.wcm.utils.GoGreenUtil;
@@ -61,16 +62,23 @@ public class ForgotPass extends BaseComponent {
 			}
 		//Get forgotpass is used to check whether the user is registered or not
 		
-		Member member= MemberService.getForgotPass(request, email);
-		log.info("i am at member if");
-		if(member!= null){
+		//Member member= MemberService.getForgotPass(request, email);
+		//log.info("i am at member if");
+		//if(member!= null){
 			
 			
-			if((member.getEmail().toString()).equals(email))
-			{
+			//if((member.getEmail().toString()).equals(email))
+			//{
+				String pathToMemberSignupDocument = "members/" + email.replaceAll("@", "-at-") + "/membersignupdocument";
+				MemberSignupDocument memberSignupDocument =  getSiteContentBaseBean(request).getBean(pathToMemberSignupDocument);
+
+				if(memberSignupDocument!= null)
+				{
+					if((memberSignupDocument.getEmail().toString()).equalsIgnoreCase(email))
+					{
 		   EmailMessage ms = new EmailMessage();
 		   ms.setTo(new String[] {email});
-		   createEmail(request,ms,member);
+		   createEmail(request,ms,memberSignupDocument);
 		  response.setRenderParameter(SUCCESS, SUCCESS);
 		try{
 			  response.sendRedirect(UrlUtility.MemberLogin+"?SUCCESS=SUCCESS");
@@ -103,7 +111,7 @@ else{
 	 * 
 	 */	
 	
-	public EmailMessage createEmail(HstRequest request,EmailMessage msg,Member member){
+	public EmailMessage createEmail(HstRequest request,EmailMessage msg,MemberSignupDocument member){
 		
 		Session persistableSession = null;
 		WorkflowPersistenceManager wpm;
@@ -116,6 +124,9 @@ else{
 		Map<String,Object> contextMap = new HashMap<String, Object>();
 		//Member object is being used to fetch firstname and password from repository.
 		contextMap.put("member", member);
+		StringBuffer sbHostName = new StringBuffer();
+		sbHostName.append(request.getServerName()).append(":").append(request.getServerPort());
+		contextMap.put("memberHostName", sbHostName.toString());
 		
 		//It will create a path "content/docunments/mootlywcm/members/forgotpass"
 	    final String memberpath=ContentStructure.getMemberForgotpass(request,member.getUserName());
