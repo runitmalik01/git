@@ -230,7 +230,7 @@
 							<div class="rowlabel">
 								<input title="enter gross salary" name="Gross_salary"
 									maxlength="14" id="Gross_salary" onchange="fill()" id=A
-									class="numberinput"
+									class="numberinput decimal"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
 						<c:out value="${childBean.gross_salary}"/></c:if>" />
 							</div>
@@ -241,7 +241,7 @@
 							</div>
 							<div class="rowlabel">
 								<input name="Allowance" id="Allowance" maxlength="14"
-									onchange="fill()" class="numberinput"
+									onchange="fill()" class="numberinput decimal"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.allowance}"/></c:if>">
 							</div>
 						</div>
@@ -252,7 +252,7 @@
 							</div>
 							<div class="rowlabel">
 								<input name="Allowance1" maxlength="14" value=""
-									class="numberinput">
+									class="numberinput decimal">
 							</div>
 						</div>
 					</div>
@@ -263,7 +263,7 @@
 							</div>
 							<div class="rowlabel">
 								<input maxlength="14" name="Perquisite" id="Perquisite"
-									class="numberinput" onchange="fill()"
+									class="numberinput decimal" onchange="fill()"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.perquisite}"/></c:if>">
 							</div>
 						</div>
@@ -274,7 +274,7 @@
 							</div>
 							<div class="rowlabel">
 								<input maxlength="14" name="profit" id="profit"
-									class="numberinput" onchange="fill()"
+									class="numberinput decimal" onchange="fill()"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.profit}"/></c:if>">
 							</div>
 						</div>
@@ -284,7 +284,7 @@
 							</div>
 
 							<div class="rowlabel">
-								<input name="Taxable_earning" id="Taxable_earning"
+								<input name="Taxable_earning" id="Taxable_earning" class="decimal"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.taxable_earning}"/></c:if>" />
 							</div>
 						</div>
