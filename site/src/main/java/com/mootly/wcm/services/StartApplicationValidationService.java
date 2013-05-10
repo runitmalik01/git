@@ -3,6 +3,11 @@
  */
 package com.mootly.wcm.services;
 
+import java.text.DateFormat;
+import java.text.MessageFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.ResourceBundle;
 import java.util.regex.PatternSyntaxException;
 
@@ -25,17 +30,24 @@ import com.mootly.wcm.beans.ScreenConfigDocument;
 public class StartApplicationValidationService {
 
 	private static final Logger log = LoggerFactory.getLogger(StartApplicationValidationService.class);
+	/***
+	 * This Method is Used to Validate The Start Application Screen
+	 * 
+	 * @param request HstRequest
+	 * @param response HstRespose
+	 * @param screenConfigDocument Which need to be validate
+	 * @param formMap formMap object of Validation screen having values and list of Fields
+	 * @param assessmentYear of ITR-Form Filing
+	 * 
+	 * @return Boolean 
+	 * 
+	 * ***/
 
-	public Boolean validateITReturn(HstRequest request,HstResponse response,ScreenConfigDocument screenConfigDocument,FormMap formMap,String assessmentYear){
+	protected Boolean validateITReturn(HstRequest request,HstResponse response,ScreenConfigDocument screenConfigDocument,FormMap formMap,String assessmentYear){
 		if(log.isInfoEnabled()){
 			log.info("Server Side Validation Class");
 		}
 		try {
-			String pathToScreenConfig ="configuration/screenconfigs/";
-			if(log.isInfoEnabled()){
-				log.info("this is path To screen config"+pathToScreenConfig);
-			}
-
 			if (screenConfigDocument != null) {
 				if (log.isInfoEnabled()){
 					log.info("screenConfigDocument:" + screenConfigDocument.toString());
@@ -52,9 +64,9 @@ public class StartApplicationValidationService {
 					}
 					for(String aValidField:formMap.getFieldNames()){
 						if(!objJson.isNull(aValidField)){
-							if(aValidField.matches("rsstatus_q")){
-								validResidential(formMap,assessmentYear);
-							}
+							validResidential(formMap,assessmentYear);
+							validLastName(formMap);
+							validDateofBirth(formMap);
 							JSONObject validRul=objJson.getJSONObject(aValidField);
 							//Field value for isRequired
 							if((!validRul.isNull("isRequired")) && validRul.getString("isRequired").matches("true")){
@@ -124,30 +136,99 @@ public class StartApplicationValidationService {
 			return true;
 		}
 	}
-	public void validResidential(FormMap formMap,String assessmentYear){
+	/**
+	 * This method is used to check that 
+	 * 
+	 * Residential Status of Member has been Decided yet or not.
+	 * 
+	 * @param formMap to get the value of Field
+	 * @param assessmentYear of ITR-Form Filing
+	 * 
+	 * @return null 
+	 * 
+	 * */
+	protected void validResidential(FormMap formMap,String assessmentYear){
 		String choice=null;
-		if(formMap.getField("rsstatus_q").getValue().matches("Select")){
-			formMap.getField("rsstatus_q").addMessage("Decide Your Residential Status");
-		}else{
-			choice=formMap.getField("rsstatus_q").getValue();
-			ResourceBundle rbstat=ResourceBundle.getBundle("rstatus_"+assessmentYear);			
-			for (String aKey: rbstat.keySet()) {
-				if(!aKey.matches("rsstatus_q")){
-					if(!rbstat.getString(aKey).startsWith("ans_")){
-						if(!formMap.getField(aKey).getValue().matches("Select")){
-							choice=choice+"_"+formMap.getField(aKey).getValue();
-						}else{
-							formMap.getField(aKey).addMessage("Decide Your Residential Status");
-							break;
-						}
-					}
-				}
-			}	
-			if(!rbstat.containsKey("rsstatus_q_"+choice)){
+		if(formMap.getField("rsstatus_q")!=null){
+			if(formMap.getField("rsstatus_q").getValue().matches("Select")){
 				formMap.getField("rsstatus_q").addMessage("Decide Your Residential Status");
 			}else{
-				if(rbstat.getString("rsstatus_q_"+choice).startsWith("_ans")){
+				choice=formMap.getField("rsstatus_q").getValue();
+				ResourceBundle rbstat=ResourceBundle.getBundle("rstatus_"+assessmentYear);			
+				for (String aKey: rbstat.keySet()) {
+					if(!aKey.matches("rsstatus_q")){
+						if(!rbstat.getString(aKey).startsWith("ans_")){
+							if(!formMap.getField(aKey).getValue().matches("Select")){
+								choice=choice+"_"+formMap.getField(aKey).getValue();
+							}else{
+								formMap.getField(aKey).addMessage("Decide Your Residential Status");
+								break;
+							}
+						}
+					}
+				}	
+				if(!rbstat.containsKey("rsstatus_q_"+choice)){
 					formMap.getField("rsstatus_q").addMessage("Decide Your Residential Status");
+				}else{
+					if(rbstat.getString("rsstatus_q_"+choice).startsWith("_ans")){
+						formMap.getField("rsstatus_q").addMessage("Decide Your Residential Status");
+					}
+				}
+			}
+		}
+	}
+
+	/**
+	 * This Method is Used to Test last name of Member 
+	 * 
+	 * With 5thChar of PAN
+	 * 
+	 * @param formMap object to get the last name field value 
+	 * 
+	 * @return null
+	 * */
+	protected void validLastName(FormMap formMap){
+		String check=MasterConfigService.shouldValidate5thChar();
+		if(check!=null){
+			if(formMap.getField("pi_last_name")!=null&& formMap.getField("pan")!=null){
+				char pan5thChar=formMap.getField("pan").getValue().toLowerCase().charAt(4);
+				char lastName1stChar=formMap.getField("pi_last_name").getValue().toLowerCase().charAt(0);
+				if(pan5thChar!=lastName1stChar){
+					formMap.getField("pi_last_name").addMessage("1st Char Last Name Should match with 5th Char PAN");
+				}
+			}
+		}
+	}
+	/**
+	 * This Method is Used to Test Date of Birth of Member 
+	 * 
+	 * According MasterConfigService i.e. before current Return Filing Date
+	 * 
+	 * Also validate the Age of Member above 18 Years
+	 * 
+	 * @param formMap object to get the DOB field Value
+	 * 
+	 * @throws ParseException while Parse String into Date
+	 * @return null
+	 * 
+	 * */
+	@SuppressWarnings("deprecation")
+	protected void validDateofBirth(FormMap formMap){
+		String check=MasterConfigService.shouldValidate5thChar();
+		if(check!=null){
+			if(formMap.getField("pi_dob")!=null){
+				Date date=new Date();
+				String validDate="01/04/"+date.getYear();
+				DateFormat dateformat=new SimpleDateFormat("dd/mm/yyyy");
+				try {
+					Date currDate=dateformat.parse(validDate);
+					Date DOB=dateformat.parse(formMap.getField("pi_dob").getValue());
+					if(DOB.after(currDate)){
+						formMap.getField("pi_dob").addMessage(MessageFormat.format("Enter Date Before 01/04/{0}",date.getYear()));
+					}
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
 			}
 		}

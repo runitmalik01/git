@@ -13,11 +13,20 @@ import org.apache.commons.lang.StringUtils;
  */
 public class MasterConfigService {
 
-	public String shouldValidate5thChar(){
-		ResourceBundle mstrRb=ResourceBundle.getBundle("master_config");
+	static ResourceBundle mstrRb=ResourceBundle.getBundle("master_config");
+	public static String shouldValidate5thChar(){
 		if(mstrRb!=null){
 			String check=mstrRb.getString("itreturn.pan.shouldValidate5thChar");
 			if(check!=null && StringUtils.isNotEmpty(check)){
+				return check;
+			}
+		}
+		return null;
+	}
+	public static String shouldValidateDate(){
+		if(mstrRb!=null){
+			String check=mstrRb.getString("itreturn.dob.shouldValidateDob");
+			if(check!=null&& StringUtils.isNotEmpty(check)){
 				return check;
 			}
 		}
