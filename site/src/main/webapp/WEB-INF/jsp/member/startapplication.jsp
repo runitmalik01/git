@@ -4,7 +4,7 @@
 </c:set>
 <hippo-gogreen:title title="${ startapplication}"/>
 <res:breadcrumb/>	
-<hst:link var ="mainSiteMapRefId" siteMapItemRefId="${mainSiteMapItemRefId}"/>
+<%-- <hst:link var ="mainSiteMapRefId" siteMapItemRefId="${mainSiteMapItemRefId}"/>
 <%
 String varToReplace = (String) pageContext.getAttribute("mainSiteMapRefId");
 if (varToReplace != null) {
@@ -16,7 +16,7 @@ if (varToReplace != null) {
 else {
 	pageContext.setAttribute("modifiedSiteMapRefId",mainSiteMapRefId);
 }
-%>
+%>--%>
 <c:if test="${not empty formMap}">
 	<c:forEach items="${formMap.message}" var="item">
 		<div class="alert alert-error"><fmt:message key="${item.value}" /></div>
@@ -32,7 +32,7 @@ else {
 	             <div class="row-fluid show-grid" id="ul_revised_input">
 	                 <div class="span3">
 	                 	<div class="rowlabel"><label for="ack_no"><small>Original Ack No</small></label></div>
-	                 	<div class="rowlabel"><input id="ack_no" name="ack_no" placeholder="Enter Original Ack No" type="text"/></div>
+	                 	<div class="rowlabel"><input id="ack_no" name="ack_no" value="${parentBean.originalAckNo}" placeholder="Enter Original Ack No" type="text"/></div>
 	                 </div>
 	                 <div class="span2">
 	                 	<div class="rowlabel" id="ack_date_label"><label for="ack_date"><small>Original Ack Date</small></label></div>
@@ -40,14 +40,16 @@ else {
 	                 </div>
 	                 <div class="span2">
 	                 	<div class="rowlabel"><label for="defective"><small><abbr title="Defective Return (U/s-139)">Defective?</abbr></small></label></div>
-	                 	<div class="rowlabel"><select id="defective" name="defective"><option value="">Select</option><option value="N">No</option><option value="Y">Yes</option></select></div>
+	                 	<div class="rowlabel"><select id="defective" name="defective"><option value="">Select</option>
+	                 	<option value="N" <c:if test="${not empty parentBean.defective && parentBean.defective =='N'}">selected</c:if>>No</option>
+	                 	<option value="Y" <c:if test="${not empty parentBean.defective && parentBean.defective =='Y'}">selected</c:if>>Yes</option></select></div>
 	                 </div> 
 	                 <div class="span3 defective_Y_v defective_N_h" style="display:none">                            
-	                 	<div class="rowlabel"><label for="ack_date"><small>Notice No(U/s-139)</small></label></div>
-	                 	<div class="rowlabel"><input id="notice_no" name="notice_no" placeholder="Enter Notice No" type="text"/></div>
+	                 	<div class="rowlabel"><label for="notice_no"><small>Notice No(U/s-139)</small></label></div>
+	                 	<div class="rowlabel"><input id="notice_no" name="notice_no" value="${parentBean.noticeNo}" placeholder="Enter Notice No" type="text"/></div>
 	                 </div>
 	                 <div  class="span2 defective_Y_v defective_N_h" style="display:none">   
-	                 	<div class="rowlabel"><label for="ack_date"><small>Notice Date(U/s-139)</small></label></div>
+	                 	<div class="rowlabel"><label for="notice_date"><small>Notice Date(U/s-139)</small></label></div>
 	                 	<div class="rowlabel"><input id="notice_date" name="notice_date" maxlength="10" placeholder="Enter Notice Date" type="text"/></div>
 	              </div>
 	             </div>
@@ -240,7 +242,7 @@ else {
 					</c:when>
 					<c:otherwise>
 						<div class="row-fluid show-grid">
-							<div class="span5">Control & management of affairs of the taxpayer is</div>
+							<div class="span5">Control &amp; management of affairs of the taxpayer is</div>
 							<div class="span4">
 								<select id="rsstatus_q" name="rsstatus_q">
 									<option value="">Select</option>
@@ -259,7 +261,7 @@ else {
 			</legend>
 			<div class="page">
 				<h5>Do you want to add Bank Detail now (for Refund and/or Tax payment). You can always add this detail later.</h5>
-				<a href="#myModal" role="button" class="btn" data-toggle="modal">
+				<a href="#myModal" role="button" class="btn" id="bank" data-toggle="modal" onclick="bankDetail()">
 				<c:choose>
 				<c:when test="${parentBean.BD_BANK_NAME eq null || parentBean.BD_BANK_NAME eq ''  }">ADD Bank Detail</c:when>
 				<c:otherwise>Change Bank Detail</c:otherwise></c:choose></a>
@@ -296,22 +298,23 @@ else {
 				          </select>
 				      </fieldset>
 					</div>
-					<div id="itreturnHomepage" style="display:none;visiblity:hidden">
-						<input id="pan" name="pan" value="${savedValuesFormMap.value['pan'].value}" type="hidden"/>
-					    <input id="pi_return_type" name="pi_return_type" value="${savedValuesFormMap.value['pi_return_type'].value}" type="hidden"/>
-					    <input id="fy" name="fy" value="${savedValuesFormMap.value['fy'].value}" type="hidden"/>
-					    <input id="ack_no" name="ack_no" value="${savedValuesFormMap.value['ack_no'].value}" type="hidden"/>
-			            <input id="defective" name="defective" value="${savedValuesFormMap.value['defective'].value}" type="hidden"/> 
-			            <input id="ack_date" name="ack_date" value="${savedValuesFormMap.value['ack_date'].value}" type="hidden"/>
-			            <input id="notice_no" name="notice_no" value="${savedValuesFormMap.value['notice_no'].value}" type="hidden"/>
-			            <input id="notice_date" name="notice_date" value="${savedValuesFormMap.value['notice_date'].value}" type="hidden"/>
-			            <input id="pi_filing_status" name="pi_filing_status" value="${filingStatus.name}" type="hidden"/>
-			        </div>
 					<div class="modal-footer">
 						<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
 						<button class="btn btn-primary">Save changes</button>
 					</div>
 				</div>
+				<div id="itreturnHomepage" style="display:none;visiblity:hidden">
+					<input id="pan" name="pan" value="<c:choose><c:when test="${not empty parentBean&&parentBean.PAN}"><c:out value="${parentBean.PAN}"/></c:when><c:when test="${not empty savedValuesFormMap && not empty savedValuesFormMap.value['pan']}"><c:out value="${savedValuesFormMap.value['pan'].value}"/></c:when></c:choose>" type="hidden"/>
+				    <input id="pi_return_type" name="pi_return_type" value="<c:choose><c:when test="${not empty parentBean&&parentBean.returnType}"><c:out value="${parentBean.returnType}"/></c:when><c:otherwise><c:out value="${itReturnType.xmlStatus}"/></c:otherwise></c:choose>" type="hidden"/>
+				    <input id="fy" name="fy" value="<c:choose><c:when test="${not empty parentBean&&parentBean.financialYear}"><c:out value="${parentBean.financialYear}"/></c:when><c:when test="${not empty savedValuesFormMap && not empty savedValuesFormMap.value['fy']}"><c:out value="${savedValuesFormMap.value['fy'].value}"/></c:when></c:choose>" type="hidden"/>
+				   <!-- <input id="ack_no" name="ack_no" value="<c:choose><c:when test="${not empty parentBean&&parentBean.originalAckNo}"><c:out value="${parentBean.originalAckNo}"/></c:when><c:when test="${not empty savedValuesFormMap && not empty savedValuesFormMap.value['ack_no']}"><c:out value="${savedValuesFormMap.value['ack_no'].value}"/></c:when></c:choose>" type="hidden"/>
+		            <input id="defective" name="defective" value="<c:choose><c:when test="${not empty parentBean&&parentBean.defective}"><c:out value="${parentBean.defective}"/></c:when><c:when test="${not empty savedValuesFormMap && not empty savedValuesFormMap.value['defective']}"><c:out value="${savedValuesFormMap.value['defective'].value}"/></c:when></c:choose>" type="hidden"/> 
+		            <input id="ack_date" name="ack_date" value="<c:choose><c:when test="${not empty parentBean&&parentBean.originalAckDate}"><c:out value="${parentBean.originalAckDate}"/></c:when><c:when test="${not empty savedValuesFormMap && not empty savedValuesFormMap.value['ack_date']}"><c:out value="${savedValuesFormMap.value['ack_date'].value}"/></c:when></c:choose>" type="hidden"/>
+		            <input id="notice_no" name="notice_no" value="<c:choose><c:when test="${not empty parentBean&&parentBean.noticeNo}"><c:out value="${parentBean.noticeNo}"/></c:when><c:when test="${not empty savedValuesFormMap && not empty savedValuesFormMap.value['notice_no']}"><c:out value="${savedValuesFormMap.value['notice_no'].value}"/></c:when></c:choose>" type="hidden"/>
+		            <input id="notice_date" name="notice_date" value="<c:choose><c:when test="${not empty parentBean&&parentBean.noticeDate}"><c:out value="${parentBean.noticeDate}"/></c:when><c:when test="${not empty savedValuesFormMap && not empty savedValuesFormMap.value['notice_date']}"><c:out value="${savedValuesFormMap.value['notice_date'].value}"/></c:when></c:choose>" type="hidden"/>-->
+		            <input id="pi_filing_status" name="pi_filing_status" value="<c:choose><c:when test="${not empty parentBean&&parentBean.filingStatus}"><c:out value="${parentBean.filingStatus}"/></c:when><c:when test="${not empty filingStatus }">
+		            <c:choose><c:when test="${filingStatus.fourthCharInPAN =='p' ||filingStatus.fourthCharInPAN =='P'}">I</c:when><c:otherwise>${filingStatus.fourthCharInPAN}</c:otherwise></c:choose></c:when></c:choose>" type="hidden"/>
+			    </div>
 			</div>
 		</fieldset>
 		<div class="row-fluid show-grid">	
@@ -328,16 +331,10 @@ else {
 				$('.defective_' + $(this).val() + '_h').hide();
 			});
 			$("#mobile").watermark("Mobile # (Optional)");
-			    if (Modernizr.touch && Modernizr.inputtypes.date) {
-			        document.getElementById('pi_dob').type = 'date';
-			    } else {
-			        $('#pi_dob').datepicker({
-                    changeMonth: true,
-                    changeYear: true,
-                    maxDate: "+0M +15D",
-                    yearRange: "1900:2013"
-                   });
-			    }
+			var d = new Date();
+			itrDob="01/04/"+d.getFullYear();
+			$( ".indiandate" ).datepicker( "option", "defaultDate", "01/01/1980" );
+			$( ".indiandate" ).datepicker( "option", "maxDate", itrDob );
 				$('#hrefLogin').click(function() {
 		 			$('#frmPersonalInfo').submit();
 				});
@@ -347,16 +344,16 @@ else {
 				        $('#frmPersonalInfo').submit();
 				    }
 				});
-	    var parentbean='<c:out value="${parentBean}"/>';
-       if(parentbean==''){
+	       var parentbean='<c:out value="${parentBean}"/>';
+              if(parentbean==''){
               $('#rsstatus_q').val('yes');
-	      $("#ul_rsstatus_q_yes").css("display","block");
+	          $("#ul_rsstatus_q_yes").css("display","block");
               $("#ul_rsstatus_q_yes").css("visibility","visible");
               $('#rsstatus_q_yes').val('yes');
-	      $("#ul_rsstatus_q_yes_yes").css("display","block");
+	          $("#ul_rsstatus_q_yes_yes").css("display","block");
               $("#ul_rsstatus_q_yes_yes").css("visibility","visible");
               $('#rsstatus_q_yes_yes').val('yes');
-	      $("#ul_rsstatus_q_yes_yes_yes").css("display","block");
+	          $("#ul_rsstatus_q_yes_yes_yes").css("display","block");
               $("#ul_rsstatus_q_yes_yes_yes").css("visibility","visible");
               }
               $('.answer').change(function() {
@@ -382,6 +379,15 @@ else {
 			            str += $(this).text() + " ";
 			  });			  
 			});	
+			$('#pi_state').change(function(){
+			if($('#pi_state').val()=='99'){
+			      $('#pi_pin_code').val('999999');
+			      $('#pi_pin_code').attr('readonly','readonly');
+			   }else{
+                     $('#pi_pin_code').val('');
+                     $('#pi_pin_code').removeAttr('readonly');
+                    }
+			});
 			$('#bd_bank_name').tooltip('data-toggle');
 				$("#pi_first_name").popover({'trigger':'focus'});
 		});    
