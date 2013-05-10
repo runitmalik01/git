@@ -61,7 +61,7 @@ public class SelfAssesmetTaxDocument extends BaseDocument implements ContentNode
 	public String getGross_salary() {
 		return "0";
 	}
-	private String total_amount;
+	private Double total_amount;
 	private final static Logger log = LoggerFactory.getLogger(SelfAssesmetTaxDocument.class); 
 
 	private List<SelfAssesmentTaxDetail> selfAssesmentDetailList;
@@ -81,7 +81,7 @@ public class SelfAssesmetTaxDocument extends BaseDocument implements ContentNode
 		selfAssesmentDetailList.add(tdsothersdetail);
 	}
 	
-	   public String getTotal_Amount() {
+	   public Double getTotal_Amount() {
 	    	if (total_amount == null) total_amount = getProperty("mootlywcm:totalamount");
 	    	return total_amount;
 	 }
@@ -97,7 +97,7 @@ public class SelfAssesmetTaxDocument extends BaseDocument implements ContentNode
 				return null;
 		}
 		
-	   public final void setTotal_Amount(String totalamount) {
+	   public final void setTotal_Amount(Double totalamount) {
 			this.total_amount = totalamount;
 		}
 		
@@ -149,7 +149,7 @@ public class SelfAssesmetTaxDocument extends BaseDocument implements ContentNode
 		                objSelfAssesment.bindToNode(html); 
         			}
         		}
-        		setTotal_Amount(String.valueOf(sum));
+        		setTotal_Amount(sum);
         	log.info("value of sum"+String.valueOf(sum));
         	}
         	node.setProperty("mootlywcm:totalamount", getTotal_Amount());
