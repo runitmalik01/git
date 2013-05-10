@@ -21,9 +21,6 @@
  * 
  */
 
-
-
-
 package com.mootly.wcm.beans;
 import static com.mootly.wcm.utils.Constants.NT_PERSONAL_INFO_LINK;
 
