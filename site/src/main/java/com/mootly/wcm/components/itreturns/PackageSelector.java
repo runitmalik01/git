@@ -80,12 +80,16 @@ public class PackageSelector extends ITReturnComponent{
 			try {
 				FormUtils.validateId(publicUUID);
 				returnURL +="?uuid=" +publicUUID;
+				request.getSession().setAttribute("uuid",publicUUID);
+				if(log.isInfoEnabled()){
+					log.info("setted value in session");
+				}
 			}catch (IllegalArgumentException ie) {
 
 			}
 		} 
 		try {
-			response.sendRedirect(returnURL);
+			response.sendRedirect(response.encodeURL(returnURL));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
