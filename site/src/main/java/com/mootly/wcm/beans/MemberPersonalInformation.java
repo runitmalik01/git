@@ -760,13 +760,7 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 			}
 		}
 		if ( formMap.getField("ack_no") != null) setOriginalAckNo(formMap.getField("ack_no").getValue());
-		if ( formMap.getField("defective") != null) {
-			if(formMap.getField("pi_return_type")!=null&&formMap.getField("pi_return_type").getValue().matches("revised")){
-				setDefective(formMap.getField("defective").getValue());	
-			}else{
-				setDefective("");
-			}
-		}
+		if ( formMap.getField("defective") != null) setDefective(formMap.getField("defective").getValue());	
 		if ( formMap.getField("notice_no") != null) setNoticeNo(formMap.getField("notice_no").getValue());
 		if ( formMap.getField("notice_date") != null){ 
 			String strDate = formMap.getField("notice_date").getValue();
@@ -821,8 +815,16 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 		if (formMap.getField("pi_premises_building") != null) setPremisesBuilding(formMap.getField("pi_premises_building").getValue());
 		if (formMap.getField("pi_area_locality") != null) setAreaLocality(formMap.getField("pi_area_locality").getValue());
 		if (formMap.getField("pi_town_city_district") != null) setTownCityDistrict(formMap.getField("pi_town_city_district").getValue());
-		if (formMap.getField("pi_pin_code") != null) setPinCode(formMap.getField("pi_pin_code").getValue());
-		if (formMap.getField("pi_state") != null) setState(formMap.getField("pi_state").getValue());
+		if (formMap.getField("pi_state") != null) {
+			setState(formMap.getField("pi_state").getValue());
+			if (formMap.getField("pi_pin_code") != null) {
+				if(formMap.getField("pi_state").getValue().matches("99")){
+					setPinCode("999999");
+				}else{
+					setPinCode(formMap.getField("pi_pin_code").getValue());
+				}
+			}
+		}
 		if (formMap.getField("pi_mobile") != null) setMobile(formMap.getField("pi_mobile").getValue());
 		//Bank Details
 		if (formMap == null) return;
