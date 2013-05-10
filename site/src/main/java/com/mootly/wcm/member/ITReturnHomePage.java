@@ -31,18 +31,16 @@ import com.mootly.wcm.annotations.RequiredFields;
 import com.mootly.wcm.beans.MemberPersonalInformation;
 import com.mootly.wcm.components.FormSaveResult;
 import com.mootly.wcm.components.ITReturnComponent;
-import com.mootly.wcm.model.FilingStatus;
 import com.mootly.wcm.model.FinancialYear;
 import com.mootly.wcm.model.ITReturnHomePageView;
 import com.mootly.wcm.model.ITReturnType;
 //@PrimaryBean(primaryBeanClass=MemberPersonalInformation.class)
-@FormFields(fieldNames={"pan","pi_last_name","pi_dob","pi_return_type","fy","ack_no","ack_date","defective","notice_no","notice_date"})
+@FormFields(fieldNames={"pan","pi_last_name","pi_dob","pi_return_type","fy"})
 @RequiredFields(fieldNames={"pan","pi_last_name","pi_dob","pi_return_type","fy"})
 public class ITReturnHomePage extends ITReturnComponent {
 	
 	private static final Logger log = LoggerFactory.getLogger(ITReturnHomePage.class);
 
-	@SuppressWarnings("deprecation")
 	@Override
 	public void doBeforeRender(HstRequest request, HstResponse response) {
 		super.doBeforeRender(request, response);			
@@ -80,7 +78,8 @@ public class ITReturnHomePage extends ITReturnComponent {
 			throws HstComponentException {
 		// TODO Auto-generated method stub
 		//super.doAction(request, response);
-		FormMap map = new FormMap(request,new String[]{"pan","pi_last_name","pi_dob","pi_return_type","fy","ack_no","ack_date","defective","notice_no","notice_date"});
+		//FormMap map = new FormMap(request,new String[]{"pan","pi_last_name","pi_dob","pi_return_type","fy","ack_no","ack_date","defective","notice_no","notice_date"});
+		FormMap map = new FormMap(request,new String[]{"pan","pi_last_name","pi_dob","pi_return_type","fy"});
 		//FormUtils.persistFormMap(request, response, getFormMap(), null);
 		//try {
 		String pan =map.getField("pan").getValue().toLowerCase();
