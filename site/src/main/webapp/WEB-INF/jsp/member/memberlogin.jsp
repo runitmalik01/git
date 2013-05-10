@@ -52,8 +52,9 @@ try {
 <hst:link var="loginProxy" path="/login/proxy"></hst:link>
 <hst:actionURL var="actionUrl"></hst:actionURL>
 <c:if test="${ not empty cpmsg}">
-		Your password has been changed
+		Your password has been changed successfully
 		</c:if>
+		
 		<c:choose>
 	<c:when test="${loggedin}">
 		<hst:link var="redirectUrl" path="/member">
