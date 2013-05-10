@@ -32,7 +32,7 @@
 				</h5>
 				<table>	
 					<tr>
-						<td><label for="emsil"><fmt:message key="signup.email.required" /></label>
+						<td><label for="email"><fmt:message key="signup.email.required" /></label>
 						</td>
 						<td class="input"><input type="text" name="email"
 							value="${fn:escapeXml(email)}" class="input_data" /> <c:if
