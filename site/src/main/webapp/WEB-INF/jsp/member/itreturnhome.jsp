@@ -29,7 +29,7 @@
 		          </div>
 			 </div>
 		 </fieldset>	
-                 <fieldset id="ul_revised" style="display:none;" class="revised_v original_h">
+                <!--   <fieldset id="ul_revised" style="display:none;" class="revised_v original_h">
                         <legend>Revised Return Details</legend>
                         <div class="row-fluid show-grid" id="ul_revised_input">
                             <div class="span3">
@@ -53,7 +53,7 @@
                             	<div class="rowlabel"><input id="notice_date" name="notice_date" maxlength="10" placeholder="Enter Notice Date" type="text"/></div>
 	                        </div>
                         </div>
-                 </fieldset> 
+                 </fieldset> -->
 	</form>
 	<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	  <div class="modal-header">
@@ -139,24 +139,6 @@
 			$('.defective_' + $(this).val() + '_v').show();
 			$('.defective_' + $(this).val() + '_h').hide();
 		});
-
-        if (Modernizr.touch && Modernizr.inputtypes.date) {
-	        document.getElementById('ack_date').type = 'date';
-                              document.getElementById('notice_date').type = 'date';
-	    } else {
-	        $('#ack_date').datepicker({
-                  changeMonth: true,
-                  changeYear: true,
-                  maxDate: "+0M +15D",
-                  yearRange: "1900:2013"
-                 });  
-               $('#notice_date').datepicker({
-                  changeMonth: true,
-                  changeYear: true,
-                  maxDate: "+0M +15D",
-                  yearRange: "1900:2013"
-                 });
-	    }
 		$("#packageSelector").click (function(t) {
 			if (selectedPackage == null) return;
 			$("#frmdata").validate();
