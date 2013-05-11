@@ -68,13 +68,10 @@ if (actionInSiteMap != null && actionInSiteMap.contains("_")) {
               </div>
               <div class="tab-pane fade" id="formsixteen" >
            	 <hst:include ref="formsixteenITR1"/>
-           	 
-              </div> 
+           	  </div> 
               <div class="tab-pane fade <%if (tabName != null && tabName.equals("salaryincome")){%>in active<%}%>" id="incomesalaries" >
-           	 
            	 <hst:include ref="salaryincomeITR1"/>
               </div> 
-              
               <div class="tab-pane fade" id="incomeothersources">
                <hst:include ref="otherincome"/>
               </div>
