@@ -23,66 +23,42 @@
 </c:if>
 <hst:link var="mainSiteMapRefId" />
 
-<%
-String varToReplace = (String) pageContext.getAttribute("mainSiteMapRefId");
-if (varToReplace != null) {
-    String pan = (String) request.getAttribute("pan");
-	String modifiedSiteMapRefId = varToReplace.replaceAll("_default_",pan);
-	pageContext.setAttribute("modifiedSiteMapRefId",modifiedSiteMapRefId);
-}
-else {
-	pageContext.setAttribute("modifiedSiteMapRefId",mainSiteMapRefId);
-}
-%>
 <c:choose>
 	<c:when
 		test="${pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD'}">
 		<form id="tdsfromsalary" action="${actionUrl}" method="post"
 			name="tdsfromsalary">
-			<h2>Enter Details</h2>
-			<table class="personal_info">
-				<tr height="30px">
-					<td class="label"><fmt:message key="tds.tan.emoloyer" /></td>
-					<td class="input"><input type="text" name="tan_employer"
-						onkeyup="keyup()" id="tan_employer"
-						value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.tan_Employer}"/></c:if>"
-						id="cost" maxlength="10"
-						title="This field accept first four alphabate next five numeric then single alphabate"
-						placeholder="10 Characters" />
-					</td>
-				</tr>
-				<tr height="30px">
-					<td class="label"><fmt:message key="tds.name.employer" /></td>
-					<td class="input"><input type="text" name="name_employer"
-						id="sale"
-						value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.name_Employer}"/></c:if>"
-						maxlength="14" required="required" maxlength="125"
-						title="Please fill alphabets only" />
-					</td>
-				</tr>
-				<tr height="30px">
-					<td class="label"><fmt:message key="tds.income.chargeable" />
-					</td>
-					<td class="input"><input type="text" name="income_chargeable"
-						required="required" maxlength="14"
-						value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.income_Chargeable}"/></c:if>"
-						id="income_chargeable">
-					</td>
-				</tr>
-				<tr height="30px">
-					<td class="label"><fmt:message key="tds.total.tax.deducted" />
-					</td>
-					<td class="input"><input type="text" name="total_taxdeducted"
-						maxlength="14"
-						value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.total_TaxDeducted}"/></c:if>"
-						required="required" id="consideration" />
-					</td>
-				</tr>
+			<fieldset>
+				<legend style="color: blue">Enter Details</legend>
+			
+						<div class="span4">
+			            <div class="rowlabel"><label for="tan_employer"><small><fmt:message key="tds.tan.emoloyer" /></small></label></div>
+			          	<div class="rowlabel"><input id="tan_employer" name="tan_employer" type="text" maxlength="10" onkeyup="keyup()"
+			          	value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.tan_Employer}"/></c:if>"/></div>
+			          </div>
+			          <div class="span4">
+			            <div class="rowlabel"><label for="name_employer"><small><fmt:message key="tds.name.employer" /></small></label></div>
+			          	<div class="rowlabel"><input id="name_employer" name="name_employer" type="text" maxlength="125"
+			          	value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.name_Employer}"/></c:if>"/></div>
+			          </div>
+			           <div class="span4">
+			            <div class="rowlabel"><label for="income_chargeable"><small><fmt:message key="tds.income.chargeable" /></small></label></div>
+			          	<div class="rowlabel"><input id="income_chargeable" name="income_chargeable" type="text" maxlength="14"
+			          	value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.income_Chargeable}"/></c:if>"/></div>
+			          </div>
+			           <div class="span4">
+			            <div class="rowlabel"><label for="total_taxdeducted"><small><fmt:message key="tds.total.tax.deducted" /></small></label></div>
+			          	<div class="rowlabel"><input id="total_taxdeducted" name="total_taxdeducted" type="text" maxlength="14" class=" decimal"
+			          	value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.total_TaxDeducted}"/></c:if>"/></div>
+			          </div>
+			</fieldset>
+			<div class="row-fluid show-grid">
+					<div class="span4 offset7 decimal">
+						<a href="${scriptName}" class="button olive">Cancel</a>&nbsp; <a
+   					 href="javascript:void(0)" id="myModalHref" class="button orange">Save</a>
 
-			</table>
-			<a href="${redirectURLToSamePage}" class="button olive">Cancel</a><input
-				type="submit" class="button orange" id="myModalHref" value="Save">
-
+					</div>
+				</div>
 		</form>
 
 	</c:when>
@@ -131,3 +107,10 @@ else {
 <res:client-validation formId="tdsfromsalary"
 	screenConfigurationDocumentName="tdsfromsalary"
 	formSubmitButtonId="myModalHref" />
+	<script>
+	$("#myModalHref").click(function(){
+		$("#tdsfromsalary").submit();
+	})
+		
+	
+	</script>
