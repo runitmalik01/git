@@ -335,7 +335,13 @@
 
 		</div>
 	</fieldset>
-	<input type="submit" value="Save">
+	<div class="row-fluid show-grid">
+					<div class="span4 offset8 decimal">
+						
+								<input type="submit" id="myModalHref" class="button olive" value="Save">
+
+					</div>
+				</div>
 </form>
 <hst:element var="uiCustom" name="script">
 	<hst:attribute name="type">text/javascript</hst:attribute>
