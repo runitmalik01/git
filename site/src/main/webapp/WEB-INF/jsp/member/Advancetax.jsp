@@ -38,22 +38,22 @@
 				<legend style="color: blue">Enter Details</legend>
 					<div class="span4">
 			            <div class="rowlabel"><label for="bsr_code"><small><fmt:message key="tds.bsr.code" /></small></label></div>
-			          	<div class="rowlabel"><input id="bsr_code" name="bsr_code" placeholder="First Name" type="text" maxlength="7"
+			          	<div class="rowlabel"><input id="bsr_code" name="bsr_code"  type="text" maxlength="7"
 			          	value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.p_BSR}"/></c:if>"/></div>
 			          </div>
 			        <div class="span4">
 			            <div class="rowlabel"><label for="date_credit"><small><fmt:message key="tds.date.credit" /></small></label></div>
-			          	<div class="rowlabel"><input id="date_credit" name="date_credit" placeholder="First Name" type="text" 
+			          	<div class="rowlabel"><input id="date_credit" name="date_credit"  type="text" 
 			          	value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.dateStr}"/></c:if>"/></div>
 			          </div>
 			              <div class="span4">
 			            <div class="rowlabel"><label for="Serial_challan"><small><fmt:message key="tds.serial.challan" /></small></label></div>
-			          	<div class="rowlabel"><input id="Serial_challan" name="Serial_challan" placeholder="First Name" type="text" maxlength="5"
+			          	<div class="rowlabel"><input id="Serial_challan" name="Serial_challan"  type="text" maxlength="5"
 			          	value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.p_Serial}"/></c:if>"/></div>
 			          </div>
 			               <div class="span4">
 			            <div class="rowlabel"><label for="amount"><small><fmt:message key="tds.amount.selfassesment" /></small></label></div>
-			          	<div class="rowlabel"><input id="amount" name="amount" placeholder="First Name" type="text" maxlength="14"
+			          	<div class="rowlabel"><input id="amount" name="amount"  type="text" maxlength="14"
 			          	value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.p_Serial}"/></c:if>"/></div>
 			          </div>
 			</fieldset>
