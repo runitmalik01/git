@@ -181,8 +181,7 @@
 			</table>
 			<a href="${redirectURLToSamePage}/tdsfromothersnew"
 			class="button orange">Add New</a>
-		<a href="${modifiedSiteMapRefId}" class="button orange"
-			style="margin-left: 100px;">Next</a>
+		
 
 	</c:otherwise>
 </c:choose>
