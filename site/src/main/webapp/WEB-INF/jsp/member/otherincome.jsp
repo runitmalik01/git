@@ -5,6 +5,7 @@
 </c:set>
 <hippo-gogreen:title title="${otherincometitle}" />
 
+
 <hst:actionURL var="actionUrl"></hst:actionURL>
 <form name="oi" id="frmIncomeinfo" action="${actionUrl}" method="post">
 	<fieldset>
