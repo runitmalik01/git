@@ -83,7 +83,7 @@
 					<div class="rowlabel">
 						<select id="financial_year" name="financial_year" value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.financial_Year}"/></c:if>">
 							<c:if test="${empty childBean.financial_Year}">
-							<option>select</option>
+							<option value="">select</option>
 							</c:if>
 							<option value="${eight}" <c:if test="${not empty childBean.financial_Year && childBean.financial_Year =='eight'}">selected</c:if>>${eight}</option>
 							<option value="${nine}">${nine}</option>
