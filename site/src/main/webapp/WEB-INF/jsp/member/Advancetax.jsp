@@ -15,156 +15,141 @@
 	</c:forEach>
 </c:if>
 <hippo-gogreen:title title="${tds2}" />
-
-
-
 <script type="text/javascript">
-
-
-function calculate(){
-	var amt= document.getElementById("taxdeducted").value;
-	document.getElementById("amount").value = amt;
-	 
-}
-
+	function calculate() {
+		var amt = document.getElementById("taxdeducted").value;
+		document.getElementById("amount").value = amt;
+	}
 </script>
-
 <hst:actionURL var="actionUrl" />
-
-
 <hst:link var="mainSiteMapRefId" />
-
- <hst:link var ="mainSiteMapRefId" siteMapItemRefId="${mainSiteMapItemRefId}"/>
-
-
+<hst:link var="mainSiteMapRefId"
+	siteMapItemRefId="${mainSiteMapItemRefId}" />
 <h4>
 	<fmt:message key="advance.tax" />
 </h4>
-
 <c:choose>
 	<c:when
 		test="${pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD'}">
-
-
 		<form id="advancetax" action="${actionUrl}" method="post"
 			name="advancetax">
-
-			<fieldset>
-				<legend style="color: blue" align="left">Enter Details</legend>
-
-				<table class="personal_info">
-
-					<tr height="30px">
-						<td class="label"><fmt:message key="tds.bsr.code" /></td>
-						<td class="input"><input type="text" name="bsr_code"
-							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.p_BSR}"/></c:if>"
-							id="bsr_code"/> 
-							
-						</td>
-					</tr>
-
-
-
-					<tr height="30px">
-						<td class="label"><fmt:message key="tds.date.credit" /></td>
-						<td><input id="date_credit" name="date_credit"
-							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.dateStr}"/></c:if>"
-							 />
-						</td>
-					</tr>
-
-					<tr height="30px">
-						<td class="label"><fmt:message key="tds.serial.challan" /></td>
-						<td class="input"><input type="text" name="Serial_challan" maxlength="5"
-							
-							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.p_Serial}"/></c:if>"
-							id="Serial_challan">
-						</td>
-					</tr>
-					<tr height="30px">
-						<td class="label"><fmt:message key="tds.amount.selfassesment" />
-						</td>
-						<td class="input"><input type="text" name="amount" maxlength="14"
-							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.p_Amount}"/></c:if>"
-							id="amount"/>
-							
-						</td>
-					</tr>
-		</table>
+		
+		<fieldset>
+				<legend style="color: blue">Enter Details</legend>
+					<div class="span4">
+			            <div class="rowlabel"><label for="bsr_code"><small><fmt:message key="tds.bsr.code" /></small></label></div>
+			          	<div class="rowlabel"><input id="bsr_code" name="bsr_code" placeholder="First Name" type="text" maxlength="7"
+			          	value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.p_BSR}"/></c:if>"/></div>
+			          </div>
+			        <div class="span4">
+			            <div class="rowlabel"><label for="date_credit"><small><fmt:message key="tds.date.credit" /></small></label></div>
+			          	<div class="rowlabel"><input id="date_credit" name="date_credit" placeholder="First Name" type="text" 
+			          	value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.dateStr}"/></c:if>"/></div>
+			          </div>
+			              <div class="span4">
+			            <div class="rowlabel"><label for="Serial_challan"><small><fmt:message key="tds.serial.challan" /></small></label></div>
+			          	<div class="rowlabel"><input id="Serial_challan" name="Serial_challan" placeholder="First Name" type="text" maxlength="5"
+			          	value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.p_Serial}"/></c:if>"/></div>
+			          </div>
+			               <div class="span4">
+			            <div class="rowlabel"><label for="amount"><small><fmt:message key="tds.amount.selfassesment" /></small></label></div>
+			          	<div class="rowlabel"><input id="amount" name="amount" placeholder="First Name" type="text" maxlength="14"
+			          	value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.p_Serial}"/></c:if>"/></div>
+			          </div>
 			</fieldset>
-			<a href="${redirectURLToSamePage}" class="button olive">Cancel</a><input type="submit" id="myModalHref" class="button orange" value="Save">
+				<div class="row-fluid show-grid">
+					<div class="span4 offset7 decimal">
+						<a href="${scriptName}" class="button olive">Cancel</a>&nbsp; <a
+   					 href="javascript:void(0)" id="myModalHref" class="button orange">Save</a>
+
+					</div>
+				</div>
 		</form>
 
 	</c:when>
 	<c:otherwise>
-
-
-
-
 		<table>
 			<tr align="center">
-				<th><b><fmt:message key="tds.bsr.code" /> </b></th>
-				<th><b><fmt:message key="tds.date.credit" /> </b></th>
-				<th><b><fmt:message key="tds.serial.challan" /> </b></th>
-				<th><b><fmt:message key="tds.amount.selfassesment" /> </b></th>
-
-				<th><b>Actions</b>
+				<th><b><fmt:message key="tds.bsr.code" /> </b>
 				</th>
-
-
+				<th><b><fmt:message key="tds.date.credit" /> </b>
+				</th>
+				<th><b><fmt:message key="tds.serial.challan" /> </b>
+				</th>
+				<th><b><fmt:message key="tds.amount.selfassesment" /> </b>
+				</th>
+				<th><b>Actions</b></th>
 			</tr>
 			<c:if test="${not empty parentBean}">
 				<c:forEach items="${parentBean.advanceTaxDetailList}"
 					var="advancetaxdetail">
 					<tr>
-						<td><c:out value="${advancetaxdetail.p_BSR}" /></td>
-						<td><c:out value="${advancetaxdetail.dateStr}" /></td>
-						<td><c:out value="${advancetaxdetail.p_Serial}" /></td>
-						<td><c:out value="${advancetaxdetail.p_Amount}" /></td>
+						<td><c:out value="${advancetaxdetail.p_BSR}" />
+						</td>
+						<td><c:out value="${advancetaxdetail.dateStr}" />
+						</td>
+						<td><c:out value="${advancetaxdetail.p_Serial}" />
+						</td>
+						<td><c:out value="${advancetaxdetail.p_Amount}" />
+						</td>
 						<td><a
 							href="${redirectURLToSamePage}/<c:out value="${advancetaxdetail.canonicalUUID}"/>/advancetaxedit"><small>Edit</small>
 						</a>&nbsp;&nbsp;<a
 							href="${redirectURLToSamePage}/<c:out value="${advancetaxdetail.canonicalUUID}"/>/advancetaxdelete"><small>Delete</small>
-						</a></td>
-
+						</a>
+						</td>
 					</tr>
 
 				</c:forEach>
 				<tr>
-					<td><fmt:message key="tds.amount.total" />
+					<td><fmt:message key="tds.amount.total" /></td>
+					<td><input type="text" name="total_value" maxlength="14"
+						readonly value="${parentBean.total_Amount}">
 					</td>
-					<td><input type="text" name="total_value" maxlength="14" readonly value="${parentBean.total_Amount}"></td>
-				</c:if>
+			</c:if>
 		</table>
-
 		<a href="${redirectURLToSamePage}/advancetaxnew" class="button orange">Add
 			New</a>
-			<a href="${modifiedSiteMapRefId}" class="button orange" style="margin-left:100px;">Next</a>
-		<table><tr align="center">
-		<th><b>Date of Installment</b></th>
-		<th><b>Upto 01/04 To 15/6</b></th>
-		<th><b>Upto 16/6 To 15/9</b></th>
-		<th><b>Upto 16/9 To 15/12</b></th>
-		<th><b>Upto 16/12 To 15/03</b></th>
-		<th><b>Upto 16/03 To 31/03</b></th>
-		
+		<!-- 
+		<table>
+			<tr align="center">
+				<th><b>Date of Installment</b>
+				</th>
+				<th><b>Upto 01/04 To 15/6</b>
+				</th>
+				<th><b>Upto 16/6 To 15/9</b>
+				</th>
+				<th><b>Upto 16/9 To 15/12</b>
+				</th>
+				<th><b>Upto 16/12 To 15/03</b>
+				</th>
+				<th><b>Upto 16/03 To 31/03</b>
+				</th>
+
 			</tr>
 			<c:if test="${not empty parentBean}">
-				<tr>	<td> Amount </td>
-						<td><c:out value="${parentBean.total_Sum1}" /></td>
-						<td><c:out value="${parentBean.total_Sum2}" /></td>
-						<td><c:out value="${parentBean.total_Sum3}" /></td>
-						<td><c:out value="${parentBean.total_Sum4}" /></td>
-						<td><c:out value="${parentBean.total_Sum5}" /></td>
-						
-						</tr>
-						</c:if>
-		
+				<tr>
+					<td>Amount</td>
+					<td><c:out value="${parentBean.total_Sum1}" />
+					</td>
+					<td><c:out value="${parentBean.total_Sum2}" />
+					</td>
+					<td><c:out value="${parentBean.total_Sum3}" />
+					</td>
+					<td><c:out value="${parentBean.total_Sum4}" />
+					</td>
+					<td><c:out value="${parentBean.total_Sum5}" />
+					</td>
+
+				</tr>
+			</c:if>
+
 		</table>
+		 -->
 	</c:otherwise>
 </c:choose>
 <hst:element var="uiCustom" name="script">
-    <hst:attribute name="type">text/javascript</hst:attribute>
+	<hst:attribute name="type">text/javascript</hst:attribute>
 		$(document).ready(function() {
 		
 			    if (Modernizr.touch && Modernizr.inputtypes.date) {
@@ -201,6 +186,8 @@ function calculate(){
 				$("#pi_first_name").popover({'trigger':'focus'});
 		});    
 </hst:element>
-<hst:headContribution element="${uiCustom}" category="jsInternal"/>
+<hst:headContribution element="${uiCustom}" category="jsInternal" />
 
-<res:client-validation formId="advancetax" screenConfigurationDocumentName="advancetax" formSubmitButtonId="myModalHref"/>
+<res:client-validation formId="advancetax"
+	screenConfigurationDocumentName="advancetax"
+	formSubmitButtonId="myModalHref" />
