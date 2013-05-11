@@ -323,7 +323,7 @@
 					id="c7" onchange="cal4()" maxlength="14" readonly="readonly" />
 				</div>
 			</div>
-			<div class="span2">
+			<div class="span3">
 				<div class="rowlabel"><label for="Taxable_income "><fmt:message
 							key="member.taxable.income" /> </label>
 				</div>
