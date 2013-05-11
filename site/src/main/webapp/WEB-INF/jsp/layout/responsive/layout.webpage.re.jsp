@@ -109,7 +109,7 @@
 		   	 return this.optional(element) || /^([\.a-zA-Z0-9_\-])+@([a-zA-Z0-9_\-])+(([a-zA-Z0-9_\-])*\.([a-zA-Z0-9_\-])+)+?$/i.test(value);  
 		}, "Email-ID is invalid");
 		$.validator.addMethod("accountno", function(value, element) {  
-		   	 return this.optional(element) || /^[0-9]{0,17}?$/i.test(value);  
+		   	 return this.optional(element) || /^[0-9]{2,17}$|^[^0]{1}$/i.test(value);  
 		}, "Account No is invalid");
 		$.validator.addMethod("micr", function(value, element) {  
 		   	 return this.optional(element) || /^[0-9]{9}?$/i.test(value);  
@@ -126,7 +126,9 @@
 		$.validator.addMethod("tdscertificate", function(value, element) {  
 		   	 return this.optional(element) || /^[a-zA-Z]{6}?$/i.test(value); 
 		}, "TDS Certificate No is invalid");
-	
+		$.validator.addMethod("ackno", function(value, element) {  
+		   	 return this.optional(element) || /^[0-9]{15}?$/i.test(value); 
+		}, "Ack No is invalid");	
 	</script>
 </body>
 </html>
