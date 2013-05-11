@@ -1,21 +1,3 @@
-<%--
-
-    Copyright (C) 2010 Hippo B.V.
-
-    Licensed under the Apache License, Version 2.0 (the "License");
-    you may not use this file except in compliance with the License.
-    You may obtain a copy of the License at
-
-            http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing, software
-    distributed under the License is distributed on an "AS IS" BASIS,
-    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-    See the License for the specific language governing permissions and
-    limitations under the License.
-
---%>
-
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="hst" uri="http://www.hippoecm.org/jsp/hst/core" %>
@@ -26,24 +8,29 @@
 <%@ tag import="java.util.*" %>
 
 <%
+
 //create TreeMap object of boolean values  
 ValueListService  objValueListService = ValueListServiceImpl.getInstance();
 
-TreeMap  objTreeMapResidentialStatus =  (TreeMap) objValueListService.getResidentialStatus();
-TreeMap  objTreeMapBoolean = (TreeMap) objValueListService.getBoolean();
-TreeMap  objTreeMapStates = (TreeMap) objValueListService.getStates();
-TreeMap  objTreeMapSchedule80CDropdown = (TreeMap) objValueListService.getSchedule80CDropdown();
-TreeMap  objTreeMapAssessmentYear = (TreeMap) objValueListService.getAssessmentYear();
-TreeMap  objTreeMapNameOfHead = (TreeMap) objValueListService.getNameOfHead();
-TreeMap  objTreeMapNumbersDropdown = (TreeMap) objValueListService.getNumbersDropdown();
-
+TreeMap<String ,String>  objTreeMapResidentialStatus =  (TreeMap<String ,String>) objValueListService.getResidentialStatus();
+TreeMap<String ,String>  objTreeMapBoolean = (TreeMap<String ,String>) objValueListService.getBoolean();
+TreeMap<String ,String>  objTreeMapStates = (TreeMap<String ,String>) objValueListService.getStates();
+TreeMap<String ,String>  objTreeMapForeignStates = (TreeMap<String ,String>) objValueListService.getForeignState();
+TreeMap<String ,String>  objTreeMapUnionTerritory = (TreeMap<String ,String>) objValueListService.getUnionTerritory();
+TreeMap<String ,String>  objTreeMapSchedule80CDropdown = (TreeMap<String ,String>) objValueListService.getSchedule80CDropdown();
+TreeMap<String ,String>  objTreeMapAssessmentYear = (TreeMap<String ,String>) objValueListService.getAssessmentYear();
+TreeMap<String ,String>  objTreeMapNameOfHead = (TreeMap<String ,String>) objValueListService.getNameOfHead();
+TreeMap<String ,String>  objTreeMapNumbersDropdown = (TreeMap<String ,String>) objValueListService.getNumbersDropdown();
 request.setAttribute("objTreeMapResidentialStatus", objTreeMapResidentialStatus);
 request.setAttribute("objTreeMapBoolean", objTreeMapBoolean);
 request.setAttribute("objTreeMapStates", objTreeMapStates);
+request.setAttribute("objTreeMapForeignStates", objTreeMapForeignStates);
+request.setAttribute("objTreeMapUnionTeritory", objTreeMapUnionTerritory);
 request.setAttribute("objTreeMapSchedule80CDropdown", objTreeMapSchedule80CDropdown);
 request.setAttribute("objTreeMapAssessmentYear", objTreeMapAssessmentYear);
 request.setAttribute("objTreeMapNameOfHead", objTreeMapNameOfHead);
 request.setAttribute("objTreeMapNumbersDropdown", objTreeMapNumbersDropdown);
+
 %>
 
 <%@ attribute name="dropDownSelectId" required="true" type="java.lang.String"  %>
@@ -66,6 +53,16 @@ request.setAttribute("objTreeMapNumbersDropdown", objTreeMapNumbersDropdown);
 			<c:forEach var="objDropDown" items="${objTreeMapStates}">
 				<option value="${objDropDown.key}" <c:if test="${fetchValue eq objDropDown.key}">Selected</c:if>>${objDropDown.value}</option>
 			</c:forEach>
+			<optgroup label="Union Territories">
+			    <c:forEach var="objDropDown" items="${objTreeMapUnionTerritory}">
+				   <option value="${objDropDown.key}" <c:if test="${fetchValue eq objDropDown.key}">Selected</c:if>>${objDropDown.value}</option>
+			    </c:forEach>
+			</optgroup>
+			<optgroup label="Foreign">
+			    <c:forEach var="objDropDown" items="${objTreeMapForeignStates}">
+				   <option value="${objDropDown.key}" <c:if test="${fetchValue eq objDropDown.key}">Selected</c:if>>${objDropDown.value}</option>
+			    </c:forEach>
+			</optgroup>
 		</c:when>
 		<c:when test="${dropDownType == 'assessmentyear'}">
 			<c:forEach var="objDropDown" items="${objTreeMapAssessmentYear}">
