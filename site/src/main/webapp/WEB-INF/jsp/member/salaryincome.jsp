@@ -290,11 +290,14 @@
 						</div>
 					</div>
 				</fieldset>
-			</form>
+				<div class="row-fluid show-grid">
+					<div class="span4 offset8 decimal">
+						<a href="${scriptName}" class="button olive">Cancel</a>&nbsp;
+								<a id="myModalHref" role="button" class="btn orange">Save</a>
 
-			<a href="${scriptName}" class="button olive">Cancel</a>&nbsp;
-				
-				<a id="myModalHref" role="button" class="btn orange">Save</a>
+					</div>
+					</div>
+			</form>
 
 			<res:client-validation formId="frmdata"
 				screenConfigurationDocumentName="salaryincome"
