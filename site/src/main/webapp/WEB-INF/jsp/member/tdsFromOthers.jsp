@@ -6,56 +6,17 @@
 	<fmt:message key="tds2" />
 </c:set>
 <hippo-gogreen:title title="${tds2}" />
-<script type="text/javascript">
- jQuery(document).ready(function(cash) {
-  // binds form submission and fields to the validation engine
-  jQuery("#tdsfromothers").validationEngine();
- });
-</script>
-
-
 <hst:actionURL var="actionUrl" />
-<script type="text/javascript">
 
+<hst:link var="mainSiteMapRefId" />
 
-function calculate(){
-	var amt= document.getElementById("taxdeducted").value;
-	document.getElementById("amount").value = amt;
-
-}
-</script>
-<script type="text/javascript">
-function keyup(){
-	var x=document.getElementById("tan_deductor");
-	x.value=x.value.toUpperCase();
-}
-</script>
-<hst:link var="mainSiteMapRefId"/>
-
-	
-<%
-ValueListService objValueListService = ValueListServiceImpl.getInstance();
-TreeMap objTreeMapDeductedYear = (TreeMap) objValueListService.getDeducterdYear();
-
-request.setAttribute("objTreeMapDeductedYear", objTreeMapDeductedYear);
-%>
-
-<%
-String varToReplace = (String) pageContext.getAttribute("mainSiteMapRefId");
-if (varToReplace != null) {
-    String pan = (String) request.getAttribute("pan");
-	String modifiedSiteMapRefId = varToReplace.replaceAll("_default_",pan);
-	pageContext.setAttribute("modifiedSiteMapRefId",modifiedSiteMapRefId);
-}
-else {
-	pageContext.setAttribute("modifiedSiteMapRefId",mainSiteMapRefId);
-}
-%>
 <c:if test="${not empty formMap}">
-		<c:forEach items="${formMap.message}" var="item">
-			<div class="alert alert-error"><fmt:message key="${item.value}" /></div>
-		</c:forEach>
-	</c:if>
+	<c:forEach items="${formMap.message}" var="item">
+		<div class="alert alert-error">
+			<fmt:message key="${item.value}" />
+		</div>
+	</c:forEach>
+</c:if>
 <h4>
 	<fmt:message key="member.tds.from.others" />
 </h4>
@@ -70,134 +31,172 @@ else {
 
 
 			<h2>Enter Details</h2>
+			<div class="row-fluid show-grid">
+				<div class="span4">
+					<div class="rowlabel">
+						<label for="tan_employer"><small><fmt:message
+									key="tds.tan.deductor" />
+						</small>
+						</label>
+					</div>
+					<div class="rowlabel">
+						<input id="tan_deductor" name="tan_deductor" type="text"
+							maxlength="10" onkeyup="keyup()"
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.tan_Deductor}"/></c:if>" />
+					</div>
+				</div>
+				<div class="span4">
+					<div class="rowlabel">
+						<label for="name_deductor"><small><fmt:message
+									key="tds.name.deductor" />
+						</small>
+						</label>
+					</div>
+					<div class="rowlabel">
+						<input id="name_deductor" name="name_deductor" type="text"
+							maxlength="125"
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.name_Deductor}"/></c:if>" />
+					</div>
+				</div>
+				<div class="span4">
+					<div class="rowlabel">
+						<label for="tds_certificate"><small><fmt:message
+									key="tds.unique.certificate" />
+						</small>
+						</label>
+					</div>
+					<div class="rowlabel">
+						<input id="tds_certificate" name="tds_certificate" type="text"
+							maxlength="6"
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.tds_Certificate}"/></c:if>" />
+					</div>
+				</div>
+			</div>
+			<div class="row-fluid show-grid">
+				<div class="span4">
+					<div class="rowlabel">
+						<label for="financial_year"><small><fmt:message
+									key="tds.financial.year" />
+						</small>
+						</label>
+					</div>
+					<div class="rowlabel">
+						<select id="financial_year" name="financial_year" value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.financial_Year}"/></c:if>">
+							<c:if test="${empty childBean.financial_Year}">
+							<option>select</option>
+							</c:if>
+							<option value="${eight}" <c:if test="${not empty childBean.financial_Year && childBean.financial_Year =='eight'}">selected</c:if>>${eight}</option>
+							<option value="${nine}">${nine}</option>
+							<option value="${ten}">${ten}</option>
+							<option value="${eleven}">${eleven}</option>
+							<option value="${nine}">${twelve}</option>
+							<option value="${thirteen}">${thirteen}</option>
+							<option value="${forteen}">${forteen}</option>
+							<option value="${fifteen}">${fifteen}</option>
 
-			<table class="personal_info">
+						</select>
+					</div>
+				</div>
+				<div class="span4">
+					<div class="rowlabel">
+						<label for="total_taxdeducted"><small><fmt:message
+									key="tds.total.tax.deducted" />
+						</small>
+						</label>
+					</div>
+					<div class="rowlabel">
+						<input id="total_taxdeducted" name="total_taxdeducted" type="text"
+							maxlength="14" onblur="calculate()" onchange="calculate"
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.total_TaxDeductor}"/></c:if>" />
+					</div>
+				</div>
+				<div class="span4">
+					<div class="rowlabel">
+						<label for="amount"><small><fmt:message
+									key="tds.amount.claimed" />
+						</small>
+						</label>
+					</div>
+					<div class="rowlabel">
+						<input id="amount" name="amount" type="text" maxlength="14"
+							required="required"
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.p_Amount}"/></c:if>" />
+					</div>
+				</div>
+			</div>
+			<div class="row-fluid show-grid">
+				<div class="span4 offset8 decimal">
+					<a href="${scriptName}" class="button olive">Cancel</a>&nbsp; <a
+						href="javascript:void(0)" id="myModalHref" class="button orange">Save</a>
 
-				<tr height="30px">
-					<td class="label"><fmt:message key="tds.tan.deductor" />
-					</td>
-					<td class="input"><input type="text" name="tan_deductor" onkeyup="keyup()" id="tan_deductor"
-						value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.tan_Deductor}"/></c:if>"
-						 maxlength="10" 
-						/></td>
-				</tr>
-
-
-
-				<tr height="30px">
-					<td class="label"><fmt:message key="tds.name.deductor" />
-					</td>
-					<td class="input"><input type="text" name="name_deductor"
-						id="name_deductor" 
-						value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.name_Deductor}"/></c:if>"
-						maxlength="125"  /></td>
-						
-				</tr>
-
-				<tr height="30px">
-					<td class="label"><fmt:message key="tds.unique.certificate" />
-					</td>
-					<td class="input"><input type="text" name="tds_certificate"
-						 maxlength="6" 
-						value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.tds_Certificate}"/></c:if>"
-						id="tds_certificate"></td>
-				</tr>
-				<tr height="30px">
-					<td class="label"><fmt:message key="tds.financial.year" />
-					</td>
-					<td class="input"><select name="financial_year" id="consideration" title=" Enter deducted year as,for Ex. 2011 for 2011-2012 "
-								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.financial_Year}"/></c:if>" >
-								
-								<option value="">Select</option>
-									<c:forEach var="yeardeducted" items="${objTreeMapDeductedYear}">
-									<option value="${yeardeducted.value}">${yeardeducted.value}</option>
-								</c:forEach>
-							</select>
-				</tr>
-				<tr height="30px">
-					<td class="label"><fmt:message key="tds.total.tax.deducted" />
-					</td>
-					<td class="input"><input type="text" name="total_taxdeducted" maxlength="14"
-						value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.total_TaxDeductor}"/></c:if>"
-						 id="taxdeducted" onblur="calculate()" onchange="calculate"  /></td>
-				</tr>
-				<tr height="30px">
-					<td class="label"><fmt:message key="tds.amount.claimed" />
-					</td>
-					<td class="input"><input type="text" name="amount" maxlength="14"
-						value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.p_Amount}"/></c:if>"
-						required="required" id="amount" readonly /></td>
-				</tr>
-	
-			</table>
-<a href="${redirectURLToSamePage}" class="button olive">Cancel</a><input type="submit" id="myModalHref" class="button orange" value="Save">
+				</div>
+			</div>
 		</form>
-		
-
-	</c:when>
+		</c:when>
 	<c:otherwise>
-	<table>
+		<table>
 			<tr align="center">
-				<th><b><fmt:message key="tds.tan.deductor" />
-				</b>
+				<th><b><fmt:message key="tds.tan.deductor" /> </b></th>
+				<th><b><fmt:message key="tds.name.deductor" /> </b></th>
+				<th><b><fmt:message key="tds.unique.certificate" /> </b></th>
+				<th><b><fmt:message key="tds.financial.year" /> </b></th>
+				<th><b><fmt:message key="tds.total.tax.deducted" /> </b>
 				</th>
-				<th><b><fmt:message key="tds.name.deductor" />
-				</b>
+				<th><b><fmt:message key="tds.amount.claimed" /> </b>
 				</th>
-				<th><b><fmt:message key="tds.unique.certificate" />
-				</b>
+				<th><b>Actions</b>
 				</th>
-				<th><b><fmt:message key="tds.financial.year" />
-				</b>
-				</th>
-				<th><b><fmt:message key="tds.total.tax.deducted" />
-				</b></th>
-				<th><b><fmt:message key="tds.amount.claimed" />
-				</b></th>
-				<th><b>Actions</b></th>
-				
-
 			</tr>
 			<c:if test="${not empty parentBean}">
 				<c:forEach items="${parentBean.tdsSalaryDetailList}"
 					var="tdsfromothersdetail">
 					<tr>
-						<td><c:out value="${tdsfromothersdetail.tan_Deductor}" />
-						</td>
-						<td><c:out value="${tdsfromothersdetail.name_Deductor}" />
-						</td>
+						<td><c:out value="${tdsfromothersdetail.tan_Deductor}" /></td>
+						<td><c:out value="${tdsfromothersdetail.name_Deductor}" /></td>
 						<td><c:out value="${tdsfromothersdetail.tds_Certificate}" />
 						</td>
 						<td><c:out value="${tdsfromothersdetail.financial_Year}" />
 						</td>
 						<td><c:out value="${tdsfromothersdetail.total_TaxDeductor}" />
 						</td>
-						<td><c:out value="${tdsfromothersdetail.p_Amount}" />
+						<td><c:out value="${tdsfromothersdetail.p_Amount}" /></td>
 						</td>
-						</td>
-						
+
 
 						<td><a
 							href="${redirectURLToSamePage}/<c:out value="${tdsfromothersdetail.canonicalUUID}"/>/tdsfromothersedit"><small>Edit</small>
 						</a>&nbsp;&nbsp;<a
 							href="${redirectURLToSamePage}/<c:out value="${tdsfromothersdetail.canonicalUUID}"/>/tdsfromothersdelete"><small>Delete</small>
-						</a>
-						</td>
-
-					</tr>
-
-				</c:forEach>
-				<tr><td><fmt:message key="tds.amount.total" /></td>
-			<td><input type="text" name="total_value" value="${parentBean.total_Amount}"></td></tr>
+						</a></td>
+						</tr>
+			</c:forEach>
+				<tr>
+					<td><fmt:message key="tds.amount.total" />
+					</td>
+					<td><input type="text" name="total_value"
+						value="${parentBean.total_Amount}">
+					</td>
+				</tr>
 			</c:if>
-			
-		</table>
-		
-		<a href="${redirectURLToSamePage}/tdsfromothersnew" class="button orange">Add
-			New</a>
-			<a href="${modifiedSiteMapRefId}" class="button orange" style="margin-left:100px;">Next</a>
+			</table>
+			<a href="${redirectURLToSamePage}/tdsfromothersnew"
+			class="button orange">Add New</a>
+		<a href="${modifiedSiteMapRefId}" class="button orange"
+			style="margin-left: 100px;">Next</a>
 
 	</c:otherwise>
 </c:choose>
+<res:client-validation formId="tdsfromothers"
+	screenConfigurationDocumentName="tdsfromothers"
+	formSubmitButtonId="myModalHref" />
+<script type="text/javascript">
+function keyup(){
+	var x=document.getElementById("tan_deductor");
+	x.value=x.value.toUpperCase();
+}
+function calculate(){
+	var amt= document.getElementById("total_taxdeducted").value;
+	document.getElementById("amount").value = amt;
 
-<res:client-validation formId="tdsfromothers" screenConfigurationDocumentName="tdsfromothers" formSubmitButtonId="myModalHref"/>
+}
+</script>
