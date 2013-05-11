@@ -29,7 +29,7 @@
 		<form id="tdsfromsalary" action="${actionUrl}" method="post"
 			name="tdsfromsalary">
 			<fieldset>
-				<legend style="color: blue">Enter Details</legend>
+				<legend style="color: black">Enter Details</legend>
 			
 						<div class="span4">
 			            <div class="rowlabel"><label for="tan_employer"><small><fmt:message key="tds.tan.emoloyer" /></small></label></div>
