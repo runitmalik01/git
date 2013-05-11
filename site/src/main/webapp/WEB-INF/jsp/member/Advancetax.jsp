@@ -53,7 +53,7 @@
 			          </div>
 			               <div class="span4">
 			            <div class="rowlabel"><label for="amount"><small><fmt:message key="tds.amount.selfassesment" /></small></label></div>
-			          	<div class="rowlabel"><input id="amount" name="amount"  type="text" maxlength="14"
+			          	<div class="rowlabel"><input id="amount" name="amount"  type="text" maxlength="14" class="decimal"
 			          	value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.p_Serial}"/></c:if>"/></div>
 			          </div>
 			</fieldset>
