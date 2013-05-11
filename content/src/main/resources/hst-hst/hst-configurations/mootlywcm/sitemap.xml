@@ -1507,93 +1507,94 @@
               </sv:node>
             </sv:node>
             <sv:node sv:name="selfassesmenttax.html">
-              <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                <sv:value>hst:sitemapitem</sv:value>
-              </sv:property>
-              <sv:property sv:name="jcr:uuid" sv:type="String">
-                <sv:value>eb4627e1-2840-4082-aef4-e7340acb107f</sv:value>
-              </sv:property>
-              <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
-                <sv:value>hst:pages/selfassesmenttax</sv:value>
-              </sv:property>
-              <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
-                <sv:value>mainSiteMapItemRefId</sv:value>
-              </sv:property>
-              <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
-                <sv:value>selfassesmenttax</sv:value>
-              </sv:property>
-              <sv:property sv:name="hst:refId" sv:type="String">
-                <sv:value>selfassesmenttax</sv:value>
-              </sv:property>
-              <sv:property sv:name="hst:relativecontentpath" sv:type="String">
-                <sv:value>members</sv:value>
-              </sv:property>
-              <sv:node sv:name="_default_">
-                <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                  <sv:value>hst:sitemapitem</sv:value>
-                </sv:property>
-                <sv:property sv:name="jcr:uuid" sv:type="String">
-                  <sv:value>c31e576c-ab45-40f2-b269-98c7aa1427f9</sv:value>
-                </sv:property>
-                <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
-                  <sv:value>uuid</sv:value>
-                </sv:property>
-                <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
-                  <sv:value>${4}</sv:value>
-                </sv:property>
-                <sv:node sv:name="edit">
-                  <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                    <sv:value>hst:sitemapitem</sv:value>
-                  </sv:property>
-                  <sv:property sv:name="jcr:uuid" sv:type="String">
-                    <sv:value>182f41f9-e454-4b12-bb4e-9c9fb8fe1737</sv:value>
-                  </sv:property>
-                  <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
-                    <sv:value>hst:pages/selfassesmenttax</sv:value>
-                  </sv:property>
-                  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
-                    <sv:value>action</sv:value>
-                  </sv:property>
-                  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
-                    <sv:value>EDIT_CHILD</sv:value>
-                  </sv:property>
-                </sv:node>
-                <sv:node sv:name="delete">
-                  <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                    <sv:value>hst:sitemapitem</sv:value>
-                  </sv:property>
-                  <sv:property sv:name="jcr:uuid" sv:type="String">
-                    <sv:value>d4097a89-d70d-4e3d-af4f-5cdedf27f070</sv:value>
-                  </sv:property>
-                  <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
-                    <sv:value>hst:pages/selfassesmenttax</sv:value>
-                  </sv:property>
-                  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
-                    <sv:value>action</sv:value>
-                  </sv:property>
-                  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
-                    <sv:value>DELETE_CHILD</sv:value>
-                  </sv:property>
-                </sv:node>
-              </sv:node>
-              <sv:node sv:name="new">
-                <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                  <sv:value>hst:sitemapitem</sv:value>
-                </sv:property>
-                <sv:property sv:name="jcr:uuid" sv:type="String">
-                  <sv:value>43b8ac5b-ad25-4c6d-b09b-03712d03e37f</sv:value>
-                </sv:property>
-                <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
-                  <sv:value>hst:pages/selfassesmenttax</sv:value>
-                </sv:property>
-                <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
-                  <sv:value>action</sv:value>
-                </sv:property>
-                <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
-                  <sv:value>NEW_CHILD</sv:value>
-                </sv:property>
-              </sv:node>
-            </sv:node>
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:sitemapitem</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>eb4627e1-2840-4082-aef4-e7340acb107f</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+    <sv:value>hst:pages/selfassesmenttax</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+    <sv:value>mainSiteMapItemRefId</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+    <sv:value>selfassesmenttax</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:refId" sv:type="String">
+    <sv:value>selfassesmenttax</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:relativecontentpath" sv:type="String">
+    <sv:value>members</sv:value>
+  </sv:property>
+  <sv:node sv:name="_default_">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:sitemapitem</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>c31e576c-ab45-40f2-b269-98c7aa1427f9</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+      <sv:value>uuid</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+      <sv:value>${4}</sv:value>
+    </sv:property>
+    <sv:node sv:name="selfassesmenttaxdelete">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>hst:sitemapitem</sv:value>
+      </sv:property>
+      <sv:property sv:name="jcr:uuid" sv:type="String">
+        <sv:value>d4097a89-d70d-4e3d-af4f-5cdedf27f070</sv:value>
+      </sv:property>
+      <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+        <sv:value>hst:pages/selfassesmenttax</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+        <sv:value>action</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+        <sv:value>DELETE_CHILD</sv:value>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="selfassesmenttaxedit">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>hst:sitemapitem</sv:value>
+      </sv:property>
+      <sv:property sv:name="jcr:uuid" sv:type="String">
+        <sv:value>182f41f9-e454-4b12-bb4e-9c9fb8fe1737</sv:value>
+      </sv:property>
+      <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+        <sv:value>hst:pages/selfassesmenttax</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+        <sv:value>action</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+        <sv:value>EDIT_CHILD</sv:value>
+      </sv:property>
+    </sv:node>
+  </sv:node>
+  <sv:node sv:name="selfassesmenttaxnew">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:sitemapitem</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>43b8ac5b-ad25-4c6d-b09b-03712d03e37f</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+      <sv:value>hst:pages/selfassesmenttax</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+      <sv:value>action</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+      <sv:value>NEW_CHILD</sv:value>
+    </sv:property>
+  </sv:node>
+</sv:node>
+            
             <sv:node sv:name="othersources.html">
               <sv:property sv:name="jcr:primaryType" sv:type="Name">
                 <sv:value>hst:sitemapitem</sv:value>
