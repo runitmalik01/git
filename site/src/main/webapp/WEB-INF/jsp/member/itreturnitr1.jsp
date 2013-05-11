@@ -1,6 +1,6 @@
 
 <%--
-@author Dhananjay Panwar
+@author Pankaj Singh
 13/03/2013
  --%>
 
@@ -11,7 +11,8 @@
 <%@ page import="java.util.*"%>
 <%@ page import="com.mootly.wcm.beans.*"%>
 <%@page import="org.hippoecm.hst.content.beans.standard.HippoFolder"%>
-
+<%@include file="../includes/tags.jspf" %>
+<res:breadcrumb breadcrumType="IT Return-ITR1"/>	
 <!-- used to set title  -->
 <%
 HstRequest hstRequest = (HstRequest) request;
@@ -31,15 +32,6 @@ if (actionInSiteMap != null && actionInSiteMap.contains("_")) {
 
 <hst:actionURL var="actionUrl"></hst:actionURL>
 
-<div class="breadcrumb-list" xmlns:v="http://rdf.data-vocabulary.org/#">
-	<span typeof="v:Breadcrumb"><a rel="v:url" property="v:title" href="">Home</a></span> 
-	<span class="chevron">&#187;</span> 
-	<span typeof="v:Breadcrumb"><a rel="v:url" property="v:title" href="">My Income Tax Returns</a></span>
-	<span class="chevron">&#187;</span> 
-	<span class="breadcrumb-current"><c:out value="${pan}"/></span>
-	<span class="chevron">&#187;</span> 
-	<span class="breadcrumb-current"><select style="width:120px"><option>ITReturn-ITR1</option><option>a</option><option>a</option></select></span>
-</div>
 
 <div class="page type-page">
 	<h3 id="respond1">ITReturn-ITR1</h3>	
@@ -47,10 +39,10 @@ if (actionInSiteMap != null && actionInSiteMap.contains("_")) {
 			
 			<ul id="myTab" class="nav nav-tabs">
               <li <%if (tabName == "summary" ){%>class="active "<%}%>><a href="#incometaxsummary" data-toggle="tab" ><fmt:message key="income.tax.summary" /> </a></li>
+              <li><a href="#formsixteen" data-toggle="tab"><fmt:message key="income.form.sixteen" /></a></li>
                <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><fmt:message key="income" /> <b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                  <li ><a href="#formsixteen" data-toggle="tab"><fmt:message key="income.form.sixteen" /></a></li>
                   <li <%if (tabName != null && tabName.equals("salaryincome")){%>class="active"<%}%>><a href="#incomesalaries" data-toggle="tab"><fmt:message key="income.salary.penson" /></a></li>
                     <li ><a href="#incomeothersources" data-toggle="tab"><fmt:message key="income.other.sources" /></a></li>
              		 <li <%if (tabName != null && tabName.equals("houseincome")){%>class="active"<%}%>><a href="#incomesinglehouse" data-toggle="tab" ><fmt:message key="income.house.itr1" /></a></li>
@@ -66,6 +58,7 @@ if (actionInSiteMap != null && actionInSiteMap.contains("_")) {
                 </ul>
               </li>
               <li><a href="#deductions" data-toggle="tab"><fmt:message key="deductions.itr1" /></a></li>
+              
               
             </ul>
 			 
