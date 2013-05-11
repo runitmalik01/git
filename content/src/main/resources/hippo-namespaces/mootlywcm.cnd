@@ -96,7 +96,17 @@
 
 [mootlywcm:deductiondocument] >hippostd:relaxed, mootlywcm:basedocument
   orderable
+  
+[mootlywcm:formsixteendetail] > hippo:compound, hippostd:relaxed
+  orderable
 
+
+[mootlywcm:formsixteendocument] > hippostd:relaxed, mootlywcm:basedocument
+  orderable
+  
+
+[mootlywcm:deductiondocument] >hippostd:relaxed, mootlywcm:basedocument
+  orderable
 
 [mootlywcm:deductiondocumentdetail] > hippo:compound, hippostd:relaxed
   orderable
@@ -163,6 +173,7 @@ orderable
 
 
 [mootlywcm:OtherSourceIncome] > hippostd:relaxed, mootlywcm:basedocument orderable
+
 [mootlywcm:formsixteen] > hippostd:relaxed, mootlywcm:basedocument orderable
 
 
