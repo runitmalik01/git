@@ -112,76 +112,149 @@ public class FormSixteenDetail extends FormSixteenSectionB{
 			node.setProperty("mootlywcm:yr2", getYear2());
 			node.setProperty("mootlywcm:yr3", getYear3());
 			node.setProperty("mootlywcm:yr4", getYear4());
-			node.setProperty("mootlywcm:grossb", getGross_b());
-			node.setProperty("mootlywcm:grossc", getGross_c());
-			node.setProperty("mootlywcm:grosstotal", getGross_total());
-			node.setProperty("mootlywcm:lessalwnc1", getLess_allowance_1());
-			node.setProperty("mootlywcm:lessrs1", getLess_rs_1());
-			node.setProperty("mootlywcm:lesstot1", getLess_total_1());
-			node.setProperty("mootlywcm:lessalwnc2", getLess_allowance_2());
-			node.setProperty("mootlywcm:lessrs2", getLess_rs_2());
-			node.setProperty("mootlywcm:lesstot2", getLess_total_2());
-			node.setProperty("mootlywcm:balance", getBalance());
-			node.setProperty("mootlywcm:dedenter", getDeductions_entertainment());
-			node.setProperty("mootlywcm:dedtax", getDeductions_tax());
-			node.setProperty("mootlywcm:dedtot", getDeductions_total());
-			node.setProperty("mootlywcm:incomechargtot", getIncome_chargable_tax());
-			node.setProperty("mootlywcm:add1", getAdditional_1());
-			node.setProperty("mootlywcm:add2", getAdditional_2());
-			node.setProperty("mootlywcm:grossincometot", getGross_income_total());
-			node.setProperty("mootlywcm:dedundrch6a", getDed_underchapter_6a());
-			node.setProperty("mootlywcm:80c1", getC_1());
-			node.setProperty("mootlywcm:80c2", getC_2());
-			node.setProperty("mootlywcm:80c3", getC_3());
-			node.setProperty("mootlywcm:80c4", getC_4());
-			node.setProperty("mootlywcm:80c5", getC_5());
-			node.setProperty("mootlywcm:80c6a", getC_6a());
-			node.setProperty("mootlywcm:80c6b", getC_6b());
-			node.setProperty("mootlywcm:80c6c", getC_6c());
-			node.setProperty("mootlywcm:80ccc1", getCcc_1());
-			node.setProperty("mootlywcm:80ccc2", getCcc_2());
-			node.setProperty("mootlywcm:80ccd1", getCcd_1());
-			node.setProperty("mootlywcm:80ccd2", getCcd_2());
-			node.setProperty("mootlywcm:asec", getA_section());
-			node.setProperty("mootlywcm:asec1", getA_section_1());
-			node.setProperty("mootlywcm:asec2", getA_section_2());
-			node.setProperty("mootlywcm:asec3", getA_section_3());
-			node.setProperty("mootlywcm:bsec", getB_section());
-			node.setProperty("mootlywcm:bsec1", getB_section_1());
-			node.setProperty("mootlywcm:bsec2", getB_section_2());
-			node.setProperty("mootlywcm:bsec3", getB_section_3());
-			node.setProperty("mootlywcm:csec", getC_section());
-			node.setProperty("mootlywcm:csec1", getC_section_1());
-			node.setProperty("mootlywcm:csec2", getC_section_2());
-			node.setProperty("mootlywcm:csec3", getC_section_3());
-			node.setProperty("mootlywcm:dsec", getD_section());
-			node.setProperty("mootlywcm:dsec1", getD_section_1());
-			node.setProperty("mootlywcm:dsec2", getD_section_2());
-			node.setProperty("mootlywcm:dsec3", getD_section_3());
-			node.setProperty("mootlywcm:esec", getE_section());
-			node.setProperty("mootlywcm:esec1", getE_section_1());
-			node.setProperty("mootlywcm:esec2", getE_section_2());
-			node.setProperty("mootlywcm:esec3", getE_section_3());
-			node.setProperty("mootlywcm:aggrigate", getAggregate());
-			node.setProperty("mootlywcm:totincome1", getTotal_income_1());
-			node.setProperty("mootlywcm:totincome2", getTotal_income_2());
-			node.setProperty("mootlywcm:taxtotincome1", getTax_total_income_1());
-			node.setProperty("mootlywcm:taxtotincome2", getTax_total_income_2());
-			node.setProperty("mootlywcm:surcharge1", getSurcharge_1());
-			node.setProperty("mootlywcm:surcharge2", getSurcharge_2());
-			node.setProperty("mootlywcm:educess", getEducation_cess());
-			node.setProperty("mootlywcm:taxpay", getTax_payable());
-			node.setProperty("mootlywcm:relief1", getRelief_1());
-			node.setProperty("mootlywcm:relief2", getRelief_2());
-			node.setProperty("mootlywcm:taxpayable", getTax_payable1());
-			node.setProperty("mootlywcm:taxpayable1", getTax_payable_1());
-			node.setProperty("mootlywcm:taxpayable2", getTax_payable_2());
-			node.setProperty("mootlywcm:dedent1", getDed_ent_1());
-			node.setProperty("mootlywcm:dedent2", getDed_ent_2());
-			node.setProperty("mootlywcm:dedent3", getDed_ent_3());
-			node.setProperty("mootlywcm:dedent4", getDed_ent_4());
-			node.setProperty("mootlywcm:relief1.1", getRelief_11());
-			node.setProperty("mootlywcm:relief1.2", getRelief_12());
+			if(getGross_a()!=null){
+			node.setProperty("mootlywcm:grossa", getGross_a());
+			}
+			if(getGross_b()!=null){
+			node.setProperty("mootlywcm:grossb", getGross_b());}
+			if(getGross_c()!=null){
+			node.setProperty("mootlywcm:grossc", getGross_c());}
+			if(getGross_total()!=null){
+			node.setProperty("mootlywcm:grosstotal", getGross_total());}
+			if(getLess_allowance_1()!=null){
+			node.setProperty("mootlywcm:lessalwnc1", getLess_allowance_1());}
+			if(getLess_rs_1()!=null){
+			node.setProperty("mootlywcm:lessrs1", getLess_rs_1());}
+			if(getLess_total_1()!=null){
+			node.setProperty("mootlywcm:lesstot1", getLess_total_1());}
+			if(getLess_allowance_2()!=null){
+			node.setProperty("mootlywcm:lessalwnc2", getLess_allowance_2());}
+			if(getLess_rs_2()!=null){
+			node.setProperty("mootlywcm:lessrs2", getLess_rs_2());}
+			if(getLess_total_2()!=null){
+			node.setProperty("mootlywcm:lesstot2", getLess_total_2());}
+			if(getBalance()!=null){
+			node.setProperty("mootlywcm:balance", getBalance());}
+			if(getDeductions_entertainment()!=null){
+			node.setProperty("mootlywcm:dedenter", getDeductions_entertainment());}
+			if(getDeductions_tax()!=null){
+			node.setProperty("mootlywcm:dedtax", getDeductions_tax());}
+			if(getDeductions_total()!=null){
+			node.setProperty("mootlywcm:dedtot", getDeductions_total());}
+			if(getIncome_chargable_tax()!=null){
+			node.setProperty("mootlywcm:incomechargtot", getIncome_chargable_tax());}
+			if(getAdditional_1()!=null){
+			node.setProperty("mootlywcm:add1", getAdditional_1());}
+			if(getAdditional_2()!=null){
+			node.setProperty("mootlywcm:add2", getAdditional_2());}
+			if(getGross_income_total()!=null){
+			node.setProperty("mootlywcm:grossincometot", getGross_income_total());}
+			if(getDed_underchapter_6a()!=null){
+			node.setProperty("mootlywcm:dedundrch6a", getDed_underchapter_6a());}
+			if(getC_1()!=null){
+			node.setProperty("mootlywcm:80c1", getC_1());}
+			if(getC_2()!=null){
+			node.setProperty("mootlywcm:80c2", getC_2());}
+			if(getC_3()!=null){
+			node.setProperty("mootlywcm:80c3", getC_3());}
+			if(getC_4()!=null){
+			node.setProperty("mootlywcm:80c4", getC_4());}
+			if(getC_5()!=null){
+			node.setProperty("mootlywcm:80c5", getC_5());}
+			if(getC_6a()!=null){
+			node.setProperty("mootlywcm:80c6a", getC_6a());}
+			if(getC_6b()!=null){
+			node.setProperty("mootlywcm:80c6b", getC_6b());}
+			if(getC_6c()!=null){
+			node.setProperty("mootlywcm:80c6c", getC_6c());}
+			if(getCcc_1()!=null){
+			node.setProperty("mootlywcm:80ccc1", getCcc_1());}
+			if(getCcc_2()!=null){
+			node.setProperty("mootlywcm:80ccc2", getCcc_2());}
+			if(getCcd_1()!=null){
+			node.setProperty("mootlywcm:80ccd1", getCcd_1());}
+			if(getCcd_2()!=null){
+			node.setProperty("mootlywcm:80ccd2", getCcd_2());}
+			if(getA_section()!=null){
+			node.setProperty("mootlywcm:asec", getA_section());}
+			if(getA_section_1()!=null){
+			node.setProperty("mootlywcm:asec1", getA_section_1());}
+			if(getA_section_2()!=null){
+			node.setProperty("mootlywcm:asec2", getA_section_2());}
+			if(getA_section_3()!=null){
+			node.setProperty("mootlywcm:asec3", getA_section_3());}
+			if(getB_section()!=null){
+			node.setProperty("mootlywcm:bsec", getB_section());}
+			if(getB_section_1()!=null){
+			node.setProperty("mootlywcm:bsec1", getB_section_1());}
+			if(getB_section_2()!=null){
+			node.setProperty("mootlywcm:bsec2", getB_section_2());}
+			if(getB_section_3()!=null){
+			node.setProperty("mootlywcm:bsec3", getB_section_3());}
+			if(getC_section()!=null){
+			node.setProperty("mootlywcm:csec", getC_section());}
+			if(getC_section_1()!=null){
+			node.setProperty("mootlywcm:csec1", getC_section_1());}
+			if(getC_section_2()!=null){
+			node.setProperty("mootlywcm:csec2", getC_section_2());}
+			if(getC_section_3()!=null){
+			node.setProperty("mootlywcm:csec3", getC_section_3());}
+			if(getD_section()!=null){
+			node.setProperty("mootlywcm:dsec", getD_section());}
+			if(getD_section_1()!=null){
+			node.setProperty("mootlywcm:dsec1", getD_section_1());}
+			if(getD_section_2()!=null){
+			node.setProperty("mootlywcm:dsec2", getD_section_2());}
+			if(getD_section_3()!=null){
+			node.setProperty("mootlywcm:dsec3", getD_section_3());}
+			if(getE_section()!=null){
+			node.setProperty("mootlywcm:esec", getE_section());}
+			if(getE_section_1()!=null){
+			node.setProperty("mootlywcm:esec1", getE_section_1());}
+			if(getE_section_2()!=null){
+			node.setProperty("mootlywcm:esec2", getE_section_2());}
+			if(getE_section_3()!=null){
+			node.setProperty("mootlywcm:esec3", getE_section_3());}
+			if(getAggregate()!=null){
+			node.setProperty("mootlywcm:aggrigate", getAggregate());}
+			if(getTotal_income_1()!=null){
+			node.setProperty("mootlywcm:totincome1", getTotal_income_1());}
+			if(getTotal_income_2()!=null){
+			node.setProperty("mootlywcm:totincome2", getTotal_income_2());}
+			if(getTax_total_income_1()!=null){
+			node.setProperty("mootlywcm:taxtotincome1", getTax_total_income_1());}
+			if(getTax_total_income_2()!=null){
+			node.setProperty("mootlywcm:taxtotincome2", getTax_total_income_2());}
+			if(getSurcharge_1()!=null){
+			node.setProperty("mootlywcm:surcharge1", getSurcharge_1());}
+			if(getSurcharge_2()!=null){
+			node.setProperty("mootlywcm:surcharge2", getSurcharge_2());}
+			if(getEducation_cess()!=null){
+			node.setProperty("mootlywcm:educess", getEducation_cess());}
+			if(getTax_payable()!=null){
+			node.setProperty("mootlywcm:taxpay", getTax_payable());}
+			if(getRelief_1()!=null){
+			node.setProperty("mootlywcm:relief1", getRelief_1());}
+			if(getRelief_2()!=null){
+			node.setProperty("mootlywcm:relief2", getRelief_2());}
+			if(getTax_payable1()!=null){
+			node.setProperty("mootlywcm:taxpayable", getTax_payable1());}
+			if(getTax_payable_1()!=null){
+			node.setProperty("mootlywcm:taxpayable1", getTax_payable_1());}
+			if(getTax_payable_2() !=null){
+			node.setProperty("mootlywcm:taxpayable2", getTax_payable_2());}
+			if(getDed_ent_1()!=null){
+			node.setProperty("mootlywcm:dedent1", getDed_ent_1());}
+			if(getDed_ent_2()!=null){
+			node.setProperty("mootlywcm:dedent2", getDed_ent_2());}
+			if(getDed_ent_3()!=null){
+			node.setProperty("mootlywcm:dedent3", getDed_ent_3());}
+			if(getDed_ent_4()!=null){
+			node.setProperty("mootlywcm:dedent4", getDed_ent_4());}
+			if(getRelief_11()!=null){
+			node.setProperty("mootlywcm:relief1.1", getRelief_11());}
+			if(getRelief_12()!=null){
+			node.setProperty("mootlywcm:relief1.2", getRelief_12());}
 
 		} catch (RepositoryException rex) {
 			log.error("Repository Exception while binding",rex);

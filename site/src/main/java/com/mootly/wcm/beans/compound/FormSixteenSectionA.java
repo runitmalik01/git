@@ -129,7 +129,7 @@ private final static Logger log = LoggerFactory.getLogger(FormSixteenSectionA.cl
 		return pan_deductor;
 	}
 	public  String getTan_deductor() {
-		if (tan_deductor == null) pan_deductor = getProperty("mootlywcm:tandeductor");
+		if (tan_deductor == null) tan_deductor = getProperty("mootlywcm:tandeductor");
 		return tan_deductor;
 	}
 	public  String getPan_employee() {
