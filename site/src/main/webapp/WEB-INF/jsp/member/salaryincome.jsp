@@ -83,7 +83,7 @@
 							<div class="rowlabel">
 								<input id="Name_employer" required type="text"
 									name="Name_employer" maxlength="25" class="alphaonly"
-									placeholder="name of employer"
+									placeholder="Name of employer"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.name_employer}"/></c:if>" />
 
 							</div>
@@ -97,7 +97,7 @@
 							<div class="rowlabel">
 								<input id="Name_employee" required type="text"
 									name="Name_employee" maxlength="25" class="alphaonly"
-									placeholder="name of employee"
+									placeholder="Name of employee"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.name_employee}"/></c:if>" />
 							</div>
 						</div>
@@ -123,7 +123,7 @@
 							<div class="rowlabel">
 								<input id="Pan_employer" type="text" name="Pan_employer"
 									title="This field accept first five alphabate next four numeric then single alphabate"
-									placeholder="10 Characters"
+									placeholder=" 10 Characters"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.pan_employer}"/></c:if>" />
 							</div>
 						</div>
@@ -151,7 +151,7 @@
 										key="member.address.info" /> </label>
 							</div>
 							<div class="rowlabel">
-								<input id="Address" type="text" name="Address" maxlength="35"
+								<input id="Address" type="text" name="Address"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.address}"/></c:if>" />
 							</div>
 						</div>
@@ -161,7 +161,7 @@
 								</label>
 							</div>
 							<div class="rowlabel">
-								<input id="City" type="text" name="City"
+								<input id="City" type="text" name="City" placeholder="City"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.city}"/></c:if>" />
 							</div>
 						</div>
@@ -172,7 +172,7 @@
 							</div>
 							<div class="rowlabel">
 								<input id="Pin" type="text" class="numberinput" name="Pin"
-									maxlength="6" title="Enter Pin code of your area"
+									maxlength="6" title="Enter Pin code of your area" placeholder="Pin"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
 						<c:out value="${childBean.pin}"/></c:if>" />
 							</div>
@@ -200,7 +200,7 @@
 						<fmt:message key="member.period.info" />
 					</legend>
 					<div class="row-fluid show-grid">
-						<div class="span3">
+						<div class="span4">
 							<div class="rowlabel">
 								<label><fmt:message key="member.period.info1" /> </label>
 							</div>
@@ -209,7 +209,7 @@
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.from}"/></c:if>" />
 							</div>
 						</div>
-						<div class="span3">
+						<div class="span4">
 							<div class="rowlabel">
 								<label><fmt:message key="member.period.infoto" /> </label>
 							</div>
@@ -284,7 +284,7 @@
 							</div>
 
 							<div class="rowlabel">
-								<input name="Taxable_earning" id="Taxable_earning" class="decimal"
+								<input name="Taxable_earning" id="Taxable_earning" class="decimal" readonly="readonly"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.taxable_earning}"/></c:if>" />
 							</div>
 						</div>
