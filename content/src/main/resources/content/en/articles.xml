@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <sv:node sv:name="articles" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hippostd:folder</sv:value>
@@ -49,6 +49,17 @@
     <sv:property sv:name="jcr:uuid" sv:type="String">
       <sv:value>b170f6f5-46a9-492f-84f5-e3404744033b</sv:value>
     </sv:property>
+    <sv:node sv:name="hippo:translation">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>hippo:translation</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippo:language" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="hippo:message" sv:type="String">
+        <sv:value>Which ITR Form to Choose: ITR1, ITR2, ITR4?</sv:value>
+      </sv:property>
+    </sv:node>
     <sv:node sv:name="which-itr-form-to-choose-itr1-itr2-itr4">
       <sv:property sv:name="jcr:primaryType" sv:type="Name">
         <sv:value>mootlywcm:simpledocument</sv:value>
@@ -58,7 +69,7 @@
         <sv:value>hippotranslation:translated</sv:value>
       </sv:property>
       <sv:property sv:name="jcr:uuid" sv:type="String">
-        <sv:value>736e9991-e3bd-4d25-ad7d-5f8c5b5f17c2</sv:value>
+        <sv:value>7ec733a3-eef0-4de8-9255-bfe48acd6375</sv:value>
       </sv:property>
       <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
         <sv:value>live</sv:value>
@@ -79,21 +90,23 @@
       <sv:property sv:multiple="true" sv:name="hippostd:tags" sv:type="String">
         <sv:value>itr1</sv:value>
         <sv:value>incometaxform</sv:value>
+        <sv:value>itr2</sv:value>
+        <sv:value>itr4</sv:value>
       </sv:property>
       <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
         <sv:value>admin</sv:value>
       </sv:property>
       <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
-        <sv:value>2013-05-08T21:30:30.278-07:00</sv:value>
+        <sv:value>2013-05-09T10:00:30.278+05:30</sv:value>
       </sv:property>
       <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-        <sv:value>2013-05-08T21:31:32.564-07:00</sv:value>
+        <sv:value>2013-05-13T18:05:54.542+05:30</sv:value>
       </sv:property>
       <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
         <sv:value>admin</sv:value>
       </sv:property>
       <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-        <sv:value>2013-05-08T21:31:38.098-07:00</sv:value>
+        <sv:value>2013-05-13T18:06:00.798+05:30</sv:value>
       </sv:property>
       <sv:property sv:name="hippotranslation:id" sv:type="String">
         <sv:value>3fcfb8ab-6708-481f-99c5-25f6718d35e8</sv:value>
@@ -266,6 +279,18 @@ furnish return under section 139(4A) or under section 139(4B) or under section
         </sv:property>
       </sv:node>
     </sv:node>
+  </sv:node>
+  <sv:node sv:name="difference-between-form-16-and-form-16a">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hippo:handle</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+      <sv:value>hippo:hardhandle</sv:value>
+      <sv:value>hippo:translated</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>e8929814-bfae-405d-b7c5-fe9ef733906e</sv:value>
+    </sv:property>
     <sv:node sv:name="hippo:translation">
       <sv:property sv:name="jcr:primaryType" sv:type="Name">
         <sv:value>hippo:translation</sv:value>
@@ -274,8 +299,109 @@ furnish return under section 139(4A) or under section 139(4B) or under section
         <sv:value/>
       </sv:property>
       <sv:property sv:name="hippo:message" sv:type="String">
-        <sv:value>Which ITR Form to Choose: ITR1, ITR2, ITR4?</sv:value>
+        <sv:value>Difference Between Form 16 and Form 16A</sv:value>
       </sv:property>
+    </sv:node>
+    <sv:node sv:name="difference-between-form-16-and-form-16a">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:simpledocument</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+        <sv:value>hippo:harddocument</sv:value>
+        <sv:value>hippotranslation:translated</sv:value>
+      </sv:property>
+      <sv:property sv:name="jcr:uuid" sv:type="String">
+        <sv:value>b4a8bbb2-8627-4fb3-9530-d184a8c0ca50</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
+        <sv:value>live</sv:value>
+        <sv:value>preview</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippo:related___pathreference" sv:type="String">
+        <sv:value>articles/difference-between-form-16-and-form-16a</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostd:holder" sv:type="String">
+        <sv:value>admin</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostd:state" sv:type="String">
+        <sv:value>published</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostd:stateSummary" sv:type="String">
+        <sv:value>live</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="hippostd:tags" sv:type="String">
+        <sv:value>Form16</sv:value>
+        <sv:value>Form 16A</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
+        <sv:value>admin</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
+        <sv:value>2013-05-09T10:00:30.278+05:30</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
+        <sv:value>2013-05-13T23:12:45.000+05:30</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
+        <sv:value>admin</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
+        <sv:value>2013-05-13T23:12:52.529+05:30</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippotranslation:id" sv:type="String">
+        <sv:value>bcf1ede4-bc7a-4bf7-965d-05814c781849</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippotranslation:locale" sv:type="String">
+        <sv:value>en</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:summary" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:title" sv:type="String">
+        <sv:value>Difference between Form 16 and Form 16A?</sv:value>
+      </sv:property>
+      <sv:node sv:name="hippotranslation:translations">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hippotranslation:translations</sv:value>
+        </sv:property>
+      </sv:node>
+      <sv:node sv:name="mootlywcm:description">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hippostd:html</sv:value>
+        </sv:property>
+        <sv:property sv:name="hippostd:content" sv:type="String">
+          <sv:value>&lt;html&gt;
+&lt;body&gt;
+
+&lt;p&gt;&lt;strong&gt;Form 16&lt;/strong&gt; represent TDS deducted on Salaries where
+&lt;strong&gt;Form 16 A &lt;/strong&gt;represents TDS deducted other than Salaries like
+Interest on securities, Insurance commission, winning from lottery.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Form 16&lt;/strong&gt; is a TDS certificate issued by an employer deducting
+the TDS while making payments to an employee. As per Income Tax Act, every
+employer at a time of payment of Salaries shall deduct at the average rate of
+income tax computed on the basis of Income Tax slab rates in the force for that
+ financial year in which the payments is made on the estimated income of
+the assesses but &lt;strong&gt;Form 16 A &lt;/strong&gt;is a TDS certifying the amount of
+TDS deducted, Nature of payments and TDS payments (TDS on Interest, TDS on rent)
+deposited to Income Tax Department.&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</sv:value>
+        </sv:property>
+      </sv:node>
+      <sv:node sv:name="mootlywcm:form">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hippo:mirror</sv:value>
+        </sv:property>
+        <sv:property sv:name="hippo:docbase" sv:type="String">
+          <sv:value>cafebabe-cafe-babe-cafe-babecafebabe</sv:value>
+        </sv:property>
+      </sv:node>
     </sv:node>
   </sv:node>
 </sv:node>
