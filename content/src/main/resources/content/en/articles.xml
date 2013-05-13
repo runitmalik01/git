@@ -404,4 +404,198 @@ deposited to Income Tax Department.&lt;/p&gt;
       </sv:node>
     </sv:node>
   </sv:node>
+  <sv:node sv:name="get-familiar-with-income-tax-terms">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hippo:handle</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+      <sv:value>hippo:hardhandle</sv:value>
+      <sv:value>hippo:translated</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>2ec864e7-f299-4356-8792-433f8d84f62a</sv:value>
+    </sv:property>
+    <sv:node sv:name="hippo:translation">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>hippo:translation</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippo:language" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="hippo:message" sv:type="String">
+        <sv:value>Get familiar with Income Tax terms</sv:value>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="get-familiar-with-income-tax-terms">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:simpledocument</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+        <sv:value>hippo:harddocument</sv:value>
+        <sv:value>hippotranslation:translated</sv:value>
+      </sv:property>
+      <sv:property sv:name="jcr:uuid" sv:type="String">
+        <sv:value>2326608b-6985-49d8-8005-6f0f7dd18a85</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
+        <sv:value>live</sv:value>
+        <sv:value>preview</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippo:related___pathreference" sv:type="String">
+        <sv:value>articles/get-familiar-with-income-tax-terms</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostd:holder" sv:type="String">
+        <sv:value>admin</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostd:state" sv:type="String">
+        <sv:value>published</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostd:stateSummary" sv:type="String">
+        <sv:value>live</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="hippostd:tags" sv:type="String">
+        <sv:value>tan</sv:value>
+        <sv:value>assessmentyear</sv:value>
+        <sv:value>financialyear</sv:value>
+        <sv:value>pannumber</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
+        <sv:value>admin</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
+        <sv:value>2013-05-09T10:00:30.278+05:30</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
+        <sv:value>2013-05-14T00:35:54.523+05:30</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
+        <sv:value>admin</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
+        <sv:value>2013-05-14T00:35:58.777+05:30</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippotranslation:id" sv:type="String">
+        <sv:value>e391a514-b889-4f6a-8452-44d7b8110c19</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippotranslation:locale" sv:type="String">
+        <sv:value>en</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:summary" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:title" sv:type="String">
+        <sv:value>Get familiar with Income Tax terms</sv:value>
+      </sv:property>
+      <sv:node sv:name="hippotranslation:translations">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hippotranslation:translations</sv:value>
+        </sv:property>
+      </sv:node>
+      <sv:node sv:name="mootlywcm:description">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hippostd:html</sv:value>
+        </sv:property>
+        <sv:property sv:name="hippostd:content" sv:type="String">
+          <sv:value>&lt;html&gt;
+&lt;body&gt;
+
+&lt;p&gt;&lt;strong&gt;Permanent Account Number&lt;/strong&gt; (&lt;em&gt;PAN&lt;/em&gt;) is unique
+alphanumeric combination issued to all juristic entities identifiable under the
+Indian Income Tax Act 19.&lt;/p&gt;
+
+&lt;p&gt; 1.      PAN structure is as follows: AAAAA9999A: First five characters are
+letters, next 4 numerals, last character letter.&lt;/p&gt;
+
+&lt;p&gt; 2.      The first three letters are sequence of alphabets from AAA to ZZZ.
+&lt;/p&gt;
+
+&lt;p&gt;3.      The fourth character informs about the type of holder of the
+Card.Each assesse is uniquely&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;C&lt;/strong&gt; — Company&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;P&lt;/strong&gt; — Person&lt;/p&gt;
+
+&lt;p&gt; &lt;strong&gt;H&lt;/strong&gt; — HUF(Hindu Undivided Family)&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;F&lt;/strong&gt; — Firm&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;A&lt;/strong&gt; — Association of Persons (AOP)&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;T&lt;/strong&gt; — AOP (Trust)&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;B&lt;/strong&gt; — Body of Individuals (BOI)&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;L&lt;/strong&gt; — Local Authority&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;J&lt;/strong&gt; — Artificial Judicial Person&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;G&lt;/strong&gt; — Government&lt;/p&gt;
+
+&lt;p&gt;4.      The fifth character of the PAN is the first character&lt;/p&gt;
+
+&lt;p&gt;a)      of the surname / last name of the person, in the case of a "Personal"
+PAN card, where the fourth character is "P" or&lt;/p&gt;
+
+&lt;p&gt;(b) of the name of the Entity/ Trust/ Society/ Organisation in the case of
+Company/ HUF/ Firm/ AOP/ BOI/ Local Authority/ Artificial Jurdical Person/ Govt,
+where the fourth character is "C","H","F","A","T","B","L","J","G".&lt;/p&gt;
+
+&lt;p&gt;5.      The last character is a alphabetic check digit.&lt;/p&gt;
+
+&lt;p&gt; Note - Nowadays, the DOI (Date of Issue) of PAN card is mentioned at the
+right (vertical) hand side of the photo on the PAN card&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tax Deduction Account Number &lt;/strong&gt;&lt;em&gt;&lt;u&gt;(TAN)&lt;/u&gt;&lt;/em&gt; is an
+alphanumeric number issued to individuals who are required to deduct tax on
+payments made by them under the Indian Income Tax Act, 1961.&lt;/p&gt;
+
+&lt;p&gt; 1.      An Assessee cannot obtain a TAN number without having a PAN.&lt;/p&gt;
+
+&lt;p&gt; 2.      TAN structure is as follows: AAAA99999A: First four characters are
+letters, next 5 numerals, last character letter.&lt;/p&gt;
+
+&lt;p&gt; 3.      First three characters represent the city or state where the TAN was
+issued and fourth character of the TAN is the initial letter of the tax
+deductor.&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Financial year &lt;/strong&gt;is a period for which your taxes and income
+are computed and for which you have to file your return.It is considered from
+1st of April of a year to 31st of march of next year. For example FY 2011-12
+means it starts from 1st of April of 2011 to 31st of March of 2012. You have to
+file the return afterwards.&lt;/p&gt;
+
+&lt;p&gt; &lt;strong&gt;Assessment year &lt;/strong&gt;is the year in which the income earned is
+assessed.&lt;/p&gt;
+
+&lt;p&gt; Please note that Financial Year 2011-12 means Assessment Year 2012-13.&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</sv:value>
+        </sv:property>
+      </sv:node>
+      <sv:node sv:name="mootlywcm:form">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hippo:mirror</sv:value>
+        </sv:property>
+        <sv:property sv:name="hippo:docbase" sv:type="String">
+          <sv:value>cafebabe-cafe-babe-cafe-babecafebabe</sv:value>
+        </sv:property>
+      </sv:node>
+    </sv:node>
+  </sv:node>
 </sv:node>
