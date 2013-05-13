@@ -25,7 +25,7 @@ request.setAttribute("objTreeMapResidentialStatus", objTreeMapResidentialStatus)
 request.setAttribute("objTreeMapBoolean", objTreeMapBoolean);
 request.setAttribute("objTreeMapStates", objTreeMapStates);
 request.setAttribute("objTreeMapForeignStates", objTreeMapForeignStates);
-request.setAttribute("objTreeMapUnionTeritory", objTreeMapUnionTerritory);
+request.setAttribute("objTreeMapUnionTerritory", objTreeMapUnionTerritory);
 request.setAttribute("objTreeMapSchedule80CDropdown", objTreeMapSchedule80CDropdown);
 request.setAttribute("objTreeMapAssessmentYear", objTreeMapAssessmentYear);
 request.setAttribute("objTreeMapNameOfHead", objTreeMapNameOfHead);
@@ -58,7 +58,7 @@ request.setAttribute("objTreeMapNumbersDropdown", objTreeMapNumbersDropdown);
 				   <option value="${objDropDown.key}" <c:if test="${fetchValue eq objDropDown.key}">Selected</c:if>>${objDropDown.value}</option>
 			    </c:forEach>
 			</optgroup>
-			<optgroup label="Foreign">
+			<optgroup label="Others">
 			    <c:forEach var="objDropDown" items="${objTreeMapForeignStates}">
 				   <option value="${objDropDown.key}" <c:if test="${fetchValue eq objDropDown.key}">Selected</c:if>>${objDropDown.value}</option>
 			    </c:forEach>
