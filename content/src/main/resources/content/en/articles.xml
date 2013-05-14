@@ -499,7 +499,7 @@ No. of the Deductee, Certificate No. and the Total Amount Deducted &lt;/p&gt;
         <sv:value>hippotranslation:translated</sv:value>
       </sv:property>
       <sv:property sv:name="jcr:uuid" sv:type="String">
-        <sv:value>2326608b-6985-49d8-8005-6f0f7dd18a85</sv:value>
+        <sv:value>cfbbdcb4-4a54-4414-aa33-4ec0633aa4df</sv:value>
       </sv:property>
       <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
         <sv:value>live</sv:value>
@@ -518,7 +518,7 @@ No. of the Deductee, Certificate No. and the Total Amount Deducted &lt;/p&gt;
         <sv:value>live</sv:value>
       </sv:property>
       <sv:property sv:multiple="true" sv:name="hippostd:tags" sv:type="String">
-        <sv:value>tan</sv:value>
+        <sv:value>tannumber</sv:value>
         <sv:value>assessmentyear</sv:value>
         <sv:value>financialyear</sv:value>
         <sv:value>pannumber</sv:value>
@@ -530,13 +530,13 @@ No. of the Deductee, Certificate No. and the Total Amount Deducted &lt;/p&gt;
         <sv:value>2013-05-09T10:00:30.278+05:30</sv:value>
       </sv:property>
       <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-        <sv:value>2013-05-14T00:35:54.523+05:30</sv:value>
+        <sv:value>2013-05-14T12:41:50.454+05:30</sv:value>
       </sv:property>
       <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
         <sv:value>admin</sv:value>
       </sv:property>
       <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-        <sv:value>2013-05-14T00:35:58.777+05:30</sv:value>
+        <sv:value>2013-05-14T12:41:54.646+05:30</sv:value>
       </sv:property>
       <sv:property sv:name="hippotranslation:id" sv:type="String">
         <sv:value>e391a514-b889-4f6a-8452-44d7b8110c19</sv:value>
@@ -643,6 +643,136 @@ assessed.&lt;/p&gt;
 &lt;p&gt; &lt;/p&gt;
 
 &lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</sv:value>
+        </sv:property>
+      </sv:node>
+      <sv:node sv:name="mootlywcm:form">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hippo:mirror</sv:value>
+        </sv:property>
+        <sv:property sv:name="hippo:docbase" sv:type="String">
+          <sv:value>cafebabe-cafe-babe-cafe-babecafebabe</sv:value>
+        </sv:property>
+      </sv:node>
+    </sv:node>
+  </sv:node>
+  <sv:node sv:name="what-is-huf">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hippo:handle</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+      <sv:value>hippo:hardhandle</sv:value>
+      <sv:value>hippo:translated</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>ddad06d8-638b-4207-bf28-a11337a6f2a8</sv:value>
+    </sv:property>
+    <sv:node sv:name="hippo:translation">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>hippo:translation</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippo:language" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="hippo:message" sv:type="String">
+        <sv:value>What is HUF ?</sv:value>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="what-is-huf">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:simpledocument</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+        <sv:value>hippo:harddocument</sv:value>
+        <sv:value>hippotranslation:translated</sv:value>
+      </sv:property>
+      <sv:property sv:name="jcr:uuid" sv:type="String">
+        <sv:value>48046d47-efdd-4cd1-9363-145e7805ca0c</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
+        <sv:value>live</sv:value>
+        <sv:value>preview</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippo:related___pathreference" sv:type="String">
+        <sv:value>articles/what-is-huf</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostd:holder" sv:type="String">
+        <sv:value>admin</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostd:state" sv:type="String">
+        <sv:value>published</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostd:stateSummary" sv:type="String">
+        <sv:value>live</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="hippostd:tags" sv:type="String">
+        <sv:value>hindufamily</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
+        <sv:value>admin</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
+        <sv:value>2013-05-09T10:00:30.278+05:30</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
+        <sv:value>2013-05-14T12:41:09.967+05:30</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
+        <sv:value>admin</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
+        <sv:value>2013-05-14T12:41:29.399+05:30</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippotranslation:id" sv:type="String">
+        <sv:value>18a0e977-92c6-4345-bcde-682f2f27d262</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippotranslation:locale" sv:type="String">
+        <sv:value>en</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:summary" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:title" sv:type="String">
+        <sv:value>What is HUF ?</sv:value>
+      </sv:property>
+      <sv:node sv:name="hippotranslation:translations">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hippotranslation:translations</sv:value>
+        </sv:property>
+      </sv:node>
+      <sv:node sv:name="mootlywcm:description">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hippostd:html</sv:value>
+        </sv:property>
+        <sv:property sv:name="hippostd:content" sv:type="String">
+          <sv:value>&lt;html&gt;
+&lt;body&gt;
+
+&lt;p&gt;HUF stands for &lt;strong&gt;Hindu Undivided Family&lt;/strong&gt;. In India, there is a
+culture of Joint Families and there are many Incomes which arise to the Family
+as a whole and not to one specific Individual say for e.g. Rent. If Rent is
+received from a property which is jointly owned by all the Members of the
+Family, that Income will be taxed in the hands of the whole Family and not in
+the hands of one specific Individual.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;PAN structure &lt;/strong&gt;&lt;strong&gt;for HUF&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;First five characters are letters, next 4 numerals, last character letter as
+AAAAA9999A where fourth character will be &lt;strong&gt;‘H’&lt;/strong&gt; as AAAHA9999A to
+represent PAN holder as HUF.&lt;/p&gt;
+
+&lt;p&gt; &lt;strong&gt;Advantage of HUF&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;To avail the benefit of an extra PAN Card legally. As the Income of the
+Family is not taxed in the hands of any specific Individual, a new PAN Card is
+allotted to the HUF and Tax would be paid by the Family using this PAN Card.
+&lt;/p&gt;
 
 &lt;p&gt; &lt;/p&gt;
 
