@@ -311,7 +311,7 @@ furnish return under section 139(4A) or under section 139(4B) or under section
         <sv:value>hippotranslation:translated</sv:value>
       </sv:property>
       <sv:property sv:name="jcr:uuid" sv:type="String">
-        <sv:value>b4a8bbb2-8627-4fb3-9530-d184a8c0ca50</sv:value>
+        <sv:value>ca062dc1-71f7-4528-b28c-e5182ab40756</sv:value>
       </sv:property>
       <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
         <sv:value>live</sv:value>
@@ -330,8 +330,8 @@ furnish return under section 139(4A) or under section 139(4B) or under section
         <sv:value>live</sv:value>
       </sv:property>
       <sv:property sv:multiple="true" sv:name="hippostd:tags" sv:type="String">
-        <sv:value>Form16</sv:value>
-        <sv:value>Form 16A</sv:value>
+        <sv:value>form16</sv:value>
+        <sv:value>form16a</sv:value>
       </sv:property>
       <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
         <sv:value>admin</sv:value>
@@ -340,13 +340,13 @@ furnish return under section 139(4A) or under section 139(4B) or under section
         <sv:value>2013-05-09T10:00:30.278+05:30</sv:value>
       </sv:property>
       <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-        <sv:value>2013-05-13T23:12:45.000+05:30</sv:value>
+        <sv:value>2013-05-14T11:40:44.633+05:30</sv:value>
       </sv:property>
       <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
         <sv:value>admin</sv:value>
       </sv:property>
       <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-        <sv:value>2013-05-13T23:12:52.529+05:30</sv:value>
+        <sv:value>2013-05-14T11:40:47.983+05:30</sv:value>
       </sv:property>
       <sv:property sv:name="hippotranslation:id" sv:type="String">
         <sv:value>bcf1ede4-bc7a-4bf7-965d-05814c781849</sv:value>
@@ -373,18 +373,82 @@ furnish return under section 139(4A) or under section 139(4B) or under section
           <sv:value>&lt;html&gt;
 &lt;body&gt;
 
-&lt;p&gt;&lt;strong&gt;Form 16&lt;/strong&gt; represent TDS deducted on Salaries where
-&lt;strong&gt;Form 16 A &lt;/strong&gt;represents TDS deducted other than Salaries like
-Interest on securities, Insurance commission, winning from lottery.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Form 16&lt;/strong&gt; represent TDS deducted on Salaries
+where &lt;strong&gt;Form 16 A &lt;/strong&gt;represents TDS deducted other than Salaries
+like Interest on securities, Insurance commission, winning from lottery.&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Form 16&lt;/strong&gt; is a TDS certificate issued by an employer deducting
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Form 16&lt;/strong&gt; is a TDS certificate issued by an employer deducting
 the TDS while making payments to an employee. As per Income Tax Act, every
 employer at a time of payment of Salaries shall deduct at the average rate of
 income tax computed on the basis of Income Tax slab rates in the force for that
  financial year in which the payments is made on the estimated income of
-the assesses but &lt;strong&gt;Form 16 A &lt;/strong&gt;is a TDS certifying the amount of
+the assesses but &lt;strong&gt;Form 16 A &lt;/strong&gt;is a TDS certifying the amount of
 TDS deducted, Nature of payments and TDS payments (TDS on Interest, TDS on rent)
 deposited to Income Tax Department.&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;Components of &lt;strong&gt;Form 16&lt;/strong&gt; are as&lt;/p&gt;
+
+&lt;p&gt;1.    Name and PAN of employee.  &lt;/p&gt;
+
+&lt;p&gt;2.    Name, PAN and TAN of employer&lt;/p&gt;
+
+&lt;p&gt;3.    Acknowledgment number of TDS payment deposited with Indian Government 
+&lt;/p&gt;
+
+&lt;p&gt;4.    Detailed Salary particulars like House rent allowance, Leave travel
+allowance, Leave encashment, Pension, Deductions.&lt;/p&gt;
+
+&lt;p&gt;5.    Total income and total tax on Salaries thereon&lt;/p&gt;
+
+&lt;p&gt;6.    Educational Cess and Surcharge if any&lt;/p&gt;
+
+&lt;p&gt;7.    Tax deducted under section 192(1A)&lt;/p&gt;
+
+&lt;p&gt;8.    Balance tax payable/tax refundable&lt;/p&gt;
+
+&lt;p&gt;  This TDS Certificate also contains a declaration at the end that the person
+deducting the tax has deposited the same with the Central Govt.&lt;/p&gt;
+
+&lt;p&gt;Benefits of &lt;strong&gt;Form 16&lt;/strong&gt; are as&lt;/p&gt;
+
+&lt;p&gt;1.    This TDS Certificate contains all particulars and details of the TDS
+deducted and deposited. Although a copy of this TDS Certificate is not required
+to be furnished at the time of filing of Income Tax Return, the details
+mentioned in Form 16 are required to be furnished in the Income Tax Return.&lt;/p&gt;
+
+&lt;p&gt;2.    This TDS Certificate is the most powerful proof of the Income of an
+Individual and the fact that the tax has been paid thereon. Banks heavily rely
+on this TDS Certificate to assess the Income of an Individual at the time of
+Home Loan application and require any Home Loan applicant to furnish his Form
+16 &lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Form 16&lt;/strong&gt; in case of Job Change&lt;/p&gt;
+
+&lt;p&gt;In case you have changed your job during the year, you are required to
+collect this form from both the previous employer as well as the new employer as
+you would be filing your Income Tax Returns on the basis of your Form 16.&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;Components of &lt;strong&gt;Form 16A&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;1.    Name, PAN No. &amp;amp; TAN No. of the Deductor&lt;/p&gt;
+
+&lt;p&gt;2.    Name &amp;amp; PAN No. of the Deductee&lt;/p&gt;
+
+&lt;p&gt;3.    Nature of Payment, Amount Paid &amp;amp; the date of payment&lt;/p&gt;
+
+&lt;p&gt;4.    Receipt No. of the TDS Payment&lt;/p&gt;
+
+&lt;p&gt;An Assessee can verify the particulars of this Tax Declaration Statement by
+furnishing the Quarter and the Financial Year, the TAN No. of the Deductor, PAN
+No. of the Deductee, Certificate No. and the Total Amount Deducted &lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
 
 &lt;p&gt; &lt;/p&gt;
 
