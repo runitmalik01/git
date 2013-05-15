@@ -25,8 +25,11 @@ public class ItreturnItr1 extends ITReturnComponent {
 		if(log.isInfoEnabled()){
 		log.info("this is do before render of ItreturnItr1");
 		}
-	
-		
+	String Tab=getPublicRequestParameter(request, "tab");
+	if(Tab!=null){
+	request.setAttribute("Tab", Tab);
+	}else
+		request.setAttribute("Tab","summary");
 	}
 	@Override
 	public void doAction(HstRequest request, HstResponse response)
