@@ -405,14 +405,12 @@
 							</tr>
 							<tr>
 								<td><label>(a) section 80C </label>
-								</td>
+								</td><td></td><td></td>
 							</tr>
 							<tr>
 
 
 								<td><label>(i) </label>
-								</td>
-								<td>
 								<select id="State" name="State">
 									<option value="">Select One</option>
 									<c:forEach var="Deduction" items="${objHashMapDeduction}">
@@ -429,8 +427,7 @@
 							</tr>
 							<tr>
 								<td><label>(ii)</label>
-								</td>
-								<td><select id="State" name="State">
+								<select id="State" name="State">
 									<option value="">Select One</option>
 									<c:forEach var="Deduction" items="${objHashMapDeduction}">
 										<option
@@ -444,8 +441,7 @@
 								<td></td>
 							</tr>
 							<tr>
-								<td><label>(iii) </label></td>
-								<td><select id="State" name="State">
+								<td><label>(iii) </label><select id="State" name="State">
 									<option value="">Select One</option>
 									<c:forEach var="Deduction" items="${objHashMapDeduction}">
 										<option
@@ -458,8 +454,7 @@
 								<td></td>
 							</tr>
 							<tr>
-								<td><label>(iv)</label></td>
-								<td><select id="State" name="State">
+								<td><label>(iv)</label><select id="State" name="State">
 									<option value="">Select One</option>
 									<c:forEach var="Deduction" items="${objHashMapDeduction}">
 										<option
@@ -473,8 +468,7 @@
 								<td></td>
 							</tr>
 							<tr>
-								<td><label>(v)</label></td>
-								<td><select id="State" name="State">
+								<td><label>(v)</label><select id="State" name="State">
 									<option value="">Select One</option>
 									<c:forEach var="Deduction" items="${objHashMapDeduction}">
 										<option
@@ -877,13 +871,13 @@
 						var="salaryItemDetail">
 						<tr>
 							<td><a
-								href="${scriptName}/<c:out value="${salaryItemDetail.canonicalUUID}"/>/salaryincomeedit"><c:out
+								href="${scriptName}/<c:out value="${salaryItemDetail.canonicalUUID}"/>/formsixteenedit"><c:out
 										value="${salaryItemDetail.employer}" /> </a>
 							</td>
 							<td><c:out value="${salaryItemDetail.employee}" />
 							</td>
 							<td align="right"><c:out
-									value="${salaryItemDetail.relief_11 + salaryItemDetail.relief_12 }" />
+									value="${salaryItemDetail.relief_11}" />
 							</td>
 							<td><a
 								href="${scriptName}/<c:out value="${salaryItemDetail.canonicalUUID}"/>/formsixteenedit"><small>Edit</small>
