@@ -1,6 +1,5 @@
 package com.mootly.wcm.model;
 
-import java.util.Date;
 import java.util.GregorianCalendar;
 
 public enum FinancialYear {
@@ -113,6 +112,10 @@ public enum FinancialYear {
 			}
 		}
 		return UNKNOWN;
+	}
+	
+	public boolean getActive() {
+		return isActive;
 	}
 	
 	public boolean isActive() {
