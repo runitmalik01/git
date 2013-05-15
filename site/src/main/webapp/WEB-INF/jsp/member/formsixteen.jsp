@@ -6,7 +6,16 @@
 <%@ page import="java.util.*"%>
 <%@ page import="com.mootly.wcm.beans.*"%>
 <hst:actionURL var="actionUrl"></hst:actionURL>
-
+<%
+	ValueListService objValueListService = ValueListServiceImpl
+			.getInstance();
+	TreeMap objHashMapDeduction = (TreeMap) objValueListService
+			.getDeduction();
+	request.setAttribute("objHashMapDeduction", objHashMapDeduction);
+	
+	TreeMap objHashMapDeduction6a = (TreeMap) objValueListService.getDeduction6a();
+	request.setAttribute("objHashMapDeduction6a", objHashMapDeduction6a);
+%>
 
 <div class="page type-page">
 	<h3 id="respond1">
@@ -248,7 +257,7 @@
 							<th><label> Allowance </label></th>
 
 							<th><label>Rs. </label></th>
-							<th></th>
+							<th><label>Total</label></th>
 						</tr>
 
 						<tr>
@@ -296,29 +305,29 @@
 								placeholder="Rs."></td>
 						</tr>
 						<tr>
-							<td><label><strong>4.</strong> </label> <label>
-									Deductions : </label>
-						</tr>
-						<tr>
-							<td><label> (a) Entertainment allowance</label>
-							</td>
-							<td><input type="text" name="deductions_entertainment"
+						</table>
+							<div class="row-fluid show-grid">
+
+						<div class="span4">
+							<div class="rowlabel"><label><strong>4.</strong> </label> <label>
+									Deductions : </label></div></div></div>
+						<div class="row-fluid show-grid"><div class="span4">
+							<div class="rowlabel"><label> (a) Entertainment allowance</label>
+							</div>
+							<div class="rowlabel"><input type="text" name="deductions_entertainment"
 								class="numberinput decimal"
 								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.deductions_entertainment}"/></c:if>"
-								placeholder="Rs.">
-							</td>
-						</tr>
-
-						<tr>
-							<td><label>(b) Tax on Employment</label>
-							</td>
-							<td><input type="text" name="deductions_tax"
+								placeholder="Rs."></div>
+							</div>
+							<div class="span4">
+							<div class="rowlabel"><label>(b) Tax on Employment</label>
+							</div>
+							<div class="rowlabel"><input type="text" name="deductions_tax"
 								class="numberinput decimal"
 								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.deductions_tax}"/></c:if>"
 								placeholder="Rs.">
-							</td>
-						</tr>
-					</table>
+							</div></div></div>
+				
 
 					<table>
 						<tr>
@@ -403,48 +412,79 @@
 
 								<td><label>(i) </label>
 								</td>
+								<td>
+								<select id="State" name="State">
+									<option value="">Select One</option>
+									<c:forEach var="Deduction" items="${objHashMapDeduction}">
+										<option
+											 value="${Deduction.key}">${Deduction.value}</option>
+									</c:forEach>
+								</select>
+								</td>
 								<td><input type="text" name="c_1"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.c_1}"/></c:if>"
-									class="numberinput decimal" placeholder="Rs.">
-								</td>
-								<td></td>
+									class="numberinput decimal" placeholder="Rs."></td>
 								<td></td>
 
 							</tr>
 							<tr>
 								<td><label>(ii)</label>
 								</td>
+								<td><select id="State" name="State">
+									<option value="">Select One</option>
+									<c:forEach var="Deduction" items="${objHashMapDeduction}">
+										<option
+											 value="${Deduction.key}">${Deduction.value}</option>
+									</c:forEach>
+								</select>
+								</td>
 								<td><input type="text" name="c_2"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.c_2}"/></c:if>"
-									class="numberinput decimal" placeholder="Rs.">
-								</td>
-								<td></td>
+									class="numberinput decimal" placeholder="Rs."></td>
 								<td></td>
 							</tr>
 							<tr>
 								<td><label>(iii) </label></td>
+								<td><select id="State" name="State">
+									<option value="">Select One</option>
+									<c:forEach var="Deduction" items="${objHashMapDeduction}">
+										<option
+											 value="${Deduction.key}">${Deduction.value}</option>
+									</c:forEach>
+								</select></td>
 								<td><input type="text" name="c_3"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.c_3}"/></c:if>"
 									class="numberinput decimal" placeholder="Rs."></td>
 								<td></td>
-								<td></td>
 							</tr>
 							<tr>
 								<td><label>(iv)</label></td>
+								<td><select id="State" name="State">
+									<option value="">Select One</option>
+									<c:forEach var="Deduction" items="${objHashMapDeduction}">
+										<option
+											 value="${Deduction.key}">${Deduction.value}</option>
+									</c:forEach>
+								</select>
+								</td>
 								<td><input type="text" name="c_4"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.c_4}"/></c:if>"
-									class="numberinput decimal" placeholder="Rs.">
-								</td>
-								<td></td>
+									class="numberinput decimal" placeholder="Rs."></td>
 								<td></td>
 							</tr>
 							<tr>
 								<td><label>(v)</label></td>
+								<td><select id="State" name="State">
+									<option value="">Select One</option>
+									<c:forEach var="Deduction" items="${objHashMapDeduction}">
+										<option
+											 value="${Deduction.key}">${Deduction.value}</option>
+									</c:forEach>
+								</select>
+								</td>
 								<td><input type="text" name="c_5"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.c_5}"/></c:if>"
-									class="numberinput decimal" placeholder="Rs.">
-								</td>
-								<td></td>
+									class="numberinput decimal" placeholder="Rs."></td>
 								<td></td>
 							</tr>
 							<tr>
@@ -509,9 +549,13 @@
 							</th>
 						</tr>
 						<tr>
-							<td><label> (a) section <input type="text"
-									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.a_section}"/></c:if>"
-									name="a_section" placeholder="(a)section"> </label>
+							<td><label> (a) section <select id="a_section" name="a_section">
+									<option value="">Select One</option>
+									<c:forEach var="Deduction6a" items="${objHashMapDeduction6a}">
+										<option
+											 value="${Deduction6a.key}">${Deduction6a.value}</option>
+									</c:forEach>
+								</select> </label>
 							</td>
 							<td><input type="text"
 								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.a_section_1}"/></c:if>"
@@ -527,9 +571,13 @@
 							</td>
 						</tr>
 						<tr>
-							<td><label>(b) section <input type="text"
-									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.b_section}"/></c:if>"
-									name="b_section" placeholder="(b)section"> </label>
+							<td><label>(b) section <select id="b_section" name="b_section">
+									<option value="">Select One</option>
+									<c:forEach var="Deduction6a" items="${objHashMapDeduction6a}">
+										<option
+											 value="${Deduction6a.key}">${Deduction6a.value}</option>
+									</c:forEach>
+								</select> </label>
 							</td>
 							<td><input type="text" name="b_section_1"
 								class="numberinput decimal"
@@ -548,9 +596,13 @@
 							</td>
 						</tr>
 						<tr>
-							<td><label>(c) section <input type="text"
-									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.c_section}"/></c:if>"
-									name="c_section" placeholder="(c)section"> </label>
+							<td><label>(c) section <select id="c_section" name="c_section">
+									<option value="">Select One</option>
+									<c:forEach var="Deduction6a" items="${objHashMapDeduction6a}">
+										<option
+											 value="${Deduction6a.key}">${Deduction6a.value}</option>
+									</c:forEach>
+								</select>  </label>
 							</td>
 
 							<td><input type="text" name="c_section_1"
@@ -567,9 +619,13 @@
 							</td>
 						</tr>
 						<tr>
-							<td><label>(d) section <input type="text"
-									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.d_section}"/></c:if>"
-									name="d_section" placeholder="(d)section"> </label>
+							<td><label>(d) section <select id="d_section" name="d_section">
+									<option value="">Select One</option>
+									<c:forEach var="Deduction6a" items="${objHashMapDeduction6a}">
+										<option
+											 value="${Deduction6a.key}">${Deduction6a.value}</option>
+									</c:forEach>
+								</select>  </label>
 							</td>
 
 							<td><input type="text" name="d_section_1"
@@ -586,9 +642,13 @@
 							</td>
 						</tr>
 						<tr>
-							<td><label>(e) section <input type="text"
-									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.e_section}"/></c:if>"
-									name="e_section" placeholder="(e)section"> </label>
+							<td><label>(e) section <select id="e_section" name="e_section">
+									<option value="">Select One</option>
+									<c:forEach var="Deduction6a" items="${objHashMapDeduction6a}">
+										<option
+											 value="${Deduction6a.key}">${Deduction6a.value}</option>
+									</c:forEach>
+								</select> </label>
 							</td>
 							<td><input type="text" name="e_section_1"
 								class="numberinput decimal" placeholder="Rs."
@@ -823,7 +883,7 @@
 							<td><c:out value="${salaryItemDetail.employee}" />
 							</td>
 							<td align="right"><c:out
-									value="${salaryItemDetail.relief_11}" />
+									value="${salaryItemDetail.relief_11 + salaryItemDetail.relief_12 }" />
 							</td>
 							<td><a
 								href="${scriptName}/<c:out value="${salaryItemDetail.canonicalUUID}"/>/formsixteenedit"><small>Edit</small>
