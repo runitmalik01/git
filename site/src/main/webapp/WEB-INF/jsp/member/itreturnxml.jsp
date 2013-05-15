@@ -31,11 +31,16 @@
 										<c:out value="${ theForm.ITR1IncomeDeductions.incomeFromSal}" />
 									</c:when>
 									<c:otherwise>
-										<c:out value="Not Filled" />
+										<c:out value="Fill Now" />
 									</c:otherwise>
 								</c:choose>
 								<span class="caret"></span>
 							</button>
+							<ul class="dropdown-menu">
+								<li><a
+									href="<c:out value="${scriptName}"/>?tab=salaryincome"><fmt:message
+											key="income.salary.penson" /> </a></li>
+							</ul>
 						</div>
 					</td>
 				</tr>
@@ -49,16 +54,20 @@
 								<c:choose>
 									<c:when
 										test="${theForm.ITR1IncomeDeductions.totalIncomeOfHP eq '0'}">
-										<c:out value="Not Filled" />
+										<c:out value="Fill Now" />
 									</c:when>
 									<c:otherwise>
 										<c:out
 											value="${ theForm.ITR1IncomeDeductions.totalIncomeOfHP}" />
 									</c:otherwise>
 								</c:choose>
-
 								<span class="caret"></span>
 							</button>
+							<ul class="dropdown-menu">
+								<li><a
+									href="<c:out value="${scriptName}"/>?tab=houseincome"><fmt:message
+											key="income.house.itr1" /> </a></li>
+							</ul>
 						</div>
 					</td>
 				</tr>
@@ -71,15 +80,19 @@
 								<c:choose>
 									<c:when
 										test="${theForm.ITR1IncomeDeductions.incomeOthSrc eq '0'}">
-										<c:out value="Not Filled" />
+										<c:out value="Fill Now" />
 									</c:when>
 									<c:otherwise>
 										<c:out value="${ theForm.ITR1IncomeDeductions.incomeOthSrc}" />
 									</c:otherwise>
 								</c:choose>
-
 								<span class="caret"></span>
 							</button>
+							<ul class="dropdown-menu">
+								<li><a
+									href="<c:out value="${scriptName}"/>?tab=incomeothersources"><fmt:message
+											key="income.other.sources" /> </a></li>
+							</ul>
 						</div>
 					</td>
 				</tr>
@@ -116,12 +129,15 @@
 											value="${theForm.ITR1IncomeDeductions.deductUndChapVIA.totalChapVIADeductions}" />
 									</c:when>
 									<c:otherwise>
-										<c:out value="Not Filled" />
+										<c:out value="Fill Now" />
 									</c:otherwise>
 								</c:choose>
-
 								<span class="caret"></span>
 							</button>
+							<ul class="dropdown-menu">
+								<li><a href="<c:out value="${scriptName}"/>?tab=deductions"><fmt:message
+											key="deductions.itr1" /> </a></li>
+							</ul>
 						</div>
 					</td>
 				</tr>
@@ -220,17 +236,20 @@
 										<c:out value="${ theForm.taxPaid.taxesPaid.advanceTax}" />
 									</c:when>
 									<c:otherwise>
-										<c:out value="Not Filled" />
+										<c:out value="Fill Now" />
 									</c:otherwise>
 								</c:choose>
-
 								<span class="caret"></span>
 							</button>
+							<ul class="dropdown-menu">
+								<li><a href="<c:out value="${scriptName}"/>?tab=advancetax"><fmt:message
+											key="advance.tax.itr1" /> </a></li>
+							</ul>
 						</div>
 					</td>
 				</tr>
 				<tr>
-					<td colspan="1">Self assesment Tax</td>
+					<td colspan="1">Self Assesment Tax</td>
 					<td>
 						<div class="btn-group" class="decimal">
 							<button class="btn btn-small dropdown-toggle"
@@ -244,29 +263,60 @@
 										<c:out value="Not Filled" />
 									</c:otherwise>
 								</c:choose>
-
 								<span class="caret"></span>
 							</button>
+							<ul class="dropdown-menu">
+								<li><a href="<c:out value="${scriptName}"/>?tab=advancetax"><fmt:message
+											key="advance.tax.itr1" /> </a></li>
+							</ul>
 						</div>
 					</td>
 				</tr>
 				<tr>
-					<td colspan="1">TDS</td>
+					<td colspan="1">TDS From Salary</td>
 					<td>
 						<div class="btn-group" class="decimal">
 							<button class="btn btn-small dropdown-toggle"
 								data-toggle="dropdown">
 								<c:choose>
 									<c:when test="${ theForm.taxPaid.taxesPaid.TDS eq '0'}">
-										<c:out value="Not Filled" />
+										<c:out value="Fill Now" />
 									</c:when>
 									<c:otherwise>
 										<c:out value="${ theForm.taxPaid.taxesPaid.TDS}" />
 									</c:otherwise>
 								</c:choose>
-
 								<span class="caret"></span>
 							</button>
+							<ul class="dropdown-menu">
+								<li><a
+									href="<c:out value="${scriptName}"/>?tab=tdsfromsalary"><fmt:message
+											key="advance.tdssalary.itr1" /> </a></li>
+							</ul>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="1">TDS From Others</td>
+					<td>
+						<div class="btn-group" class="decimal">
+							<button class="btn btn-small dropdown-toggle"
+								data-toggle="dropdown">
+								<c:choose>
+									<c:when test="${ theForm.taxPaid.taxesPaid.TDS eq '0'}">
+										<c:out value="Fill Now" />
+									</c:when>
+									<c:otherwise>
+										<c:out value="${ theForm.taxPaid.taxesPaid.TDS}" />
+									</c:otherwise>
+								</c:choose>
+								<span class="caret"></span>
+							</button>
+							<ul class="dropdown-menu">
+								<li><a
+									href="<c:out value="${scriptName}"/>?tab=tdsfromothers"><fmt:message
+											key="advance.tdsothers.itr1" /> </a></li>
+							</ul>
 						</div>
 					</td>
 				</tr>
