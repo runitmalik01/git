@@ -18,11 +18,10 @@
 HstRequest hstRequest = (HstRequest) request;
 ResolvedSiteMapItem resolvedMapItem = hstRequest.getRequestContext().getResolvedSiteMapItem();
 String actionInSiteMap =  resolvedMapItem.getLocalParameter("action");
-String tabName = "summary";
+String tabName = (String)request.getAttribute("Tab");
 if (actionInSiteMap != null && actionInSiteMap.contains("_")) {
  tabName = actionInSiteMap.substring(0,actionInSiteMap.indexOf("_"));
 }
-
 
 	%>
 <c:set var="itreturnitr1title">
@@ -35,20 +34,20 @@ if (actionInSiteMap != null && actionInSiteMap.contains("_")) {
 
 <div class="page type-page">
 	<h3 id="respond1">ITReturn-ITR1</h3>	
-		<form id="frmIncomeinfo" action="${actionUrl}" name="oi" method="post">
+		<form id="frmdata" action="${actionUrl}" name="oi" method="post">
 			
 			<ul id="myTab" class="nav nav-tabs">
               <li <%if (tabName == "summary" ){%>class="active "<%}%>><a href="#incometaxsummary" data-toggle="tab" ><fmt:message key="income.tax.summary" /> </a></li>
               <li><a href="#formsixteen" data-toggle="tab"><fmt:message key="income.form.sixteen" /></a></li>
-               <li class="dropdown">
+               <li  <%if (tabName != null && (tabName.equals("salaryincome")||tabName.equals("incomeothersources")||tabName.equals("houseincome"))){%>class="dropdown active"<%}%>  class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><fmt:message key="income" /> <b class="caret"></b></a>
                 <ul class="dropdown-menu">
                   <li <%if (tabName != null && tabName.equals("salaryincome")){%>class="active"<%}%>><a href="#incomesalaries" data-toggle="tab"><fmt:message key="income.salary.penson" /></a></li>
-                    <li ><a href="#incomeothersources" data-toggle="tab"><fmt:message key="income.other.sources" /></a></li>
+                    <li <%if (tabName != null && tabName.equals("incomeothersources")){%>class="active"<%}%> ><a href="#incomeothersources" data-toggle="tab"><fmt:message key="income.other.sources" /></a></li>
              		 <li <%if (tabName != null && tabName.equals("houseincome")){%>class="active"<%}%>><a href="#incomesinglehouse" data-toggle="tab" ><fmt:message key="income.house.itr1" /></a></li>
                 </ul>
               </li>
-               <li class="dropdown">
+               <li <%if (tabName != null && (tabName.equals("advancetax")||tabName.equals("tdsfromsalary")||tabName.equals("tdsfromothers"))){%>class="dropdown active"<%}%>  class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><fmt:message key="income.taxpaid.itr1" /> <b class="caret"></b></a>
                 <ul class="dropdown-menu">
                   <li <%if (tabName != null && tabName.equals("advancetax")){%>class="active"<%}%>><a href="#advancetax" data-toggle="tab"><fmt:message key="advance.tax.itr1" /></a></li>
@@ -57,7 +56,7 @@ if (actionInSiteMap != null && actionInSiteMap.contains("_")) {
              		 
                 </ul>
               </li>
-              <li><a href="#deductions" data-toggle="tab"><fmt:message key="deductions.itr1" /></a></li>
+              <li <%if (tabName != null && tabName.equals("deductions")){%>class="active"<%}%>><a href="#deductions" data-toggle="tab"><fmt:message key="deductions.itr1" /></a></li>
               
               
             </ul>
@@ -72,7 +71,7 @@ if (actionInSiteMap != null && actionInSiteMap.contains("_")) {
               <div class="tab-pane fade <%if (tabName != null && tabName.equals("salaryincome")){%>in active<%}%>" id="incomesalaries" >
            	 <hst:include ref="salaryincomeITR1"/>
               </div> 
-              <div class="tab-pane fade" id="incomeothersources">
+              <div class="tab-pane fade <%if (tabName != null && tabName.equals("incomeothersources")){%>in active<%}%>" id="incomeothersources">
                <hst:include ref="otherincome"/>
               </div>
                <div class="tab-pane fade <%if (tabName != null && tabName.equals("houseincome")){%>in active<%}%> " id="incomesinglehouse">
@@ -87,10 +86,12 @@ if (actionInSiteMap != null && actionInSiteMap.contains("_")) {
            	<div class="tab-pane fade <%if (tabName != null && tabName.equals("tdsfromsalary")){%>in active<%}%>  " id="tdsfromsalary">
             <hst:include ref="tdsfromsalaryITR1"/>
             	  </div>
-            	  <div class="tab-pane fade" id="deductions">
+            	  <div class="tab-pane fade <%if (tabName != null && tabName.equals("deductions")){%>in active<%}%> " id="deductions">
                 <hst:include ref="deductionITR1"/>
             	  </div>
-             </div>        
+             </div>       
+               
 		</form>	
+ 
 </div>
 
