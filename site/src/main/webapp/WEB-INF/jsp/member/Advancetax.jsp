@@ -15,12 +15,6 @@
 	</c:forEach>
 </c:if>
 <hippo-gogreen:title title="${tds2}" />
-<script type="text/javascript">
-	function calculate() {
-		var amt = document.getElementById("taxdeducted").value;
-		document.getElementById("amount").value = amt;
-	}
-</script>
 <hst:actionURL var="actionUrl" />
 <hst:link var="mainSiteMapRefId" />
 <hst:link var="mainSiteMapRefId"
@@ -58,12 +52,12 @@
 			          </div>
 			</fieldset>
 				<div class="row-fluid show-grid">
-					<div class="span4 offset7 decimal">
-						<a href="${scriptName}" class="button olive">Cancel</a>&nbsp; <a
-   					 href="javascript:void(0)" id="myModalHref" class="button orange">Save</a>
+					<div class="span4 offset8 decimal">
+						<a href="${scriptName}?tab=advancetax" class="button olive">Cancel</a>&nbsp;
+								<a id="myModalHref" role="button" class="btn orange">Save</a>
 
 					</div>
-				</div>
+					</div>
 		</form>
 
 	</c:when>
@@ -148,45 +142,6 @@
 		 -->
 	</c:otherwise>
 </c:choose>
-<hst:element var="uiCustom" name="script">
-	<hst:attribute name="type">text/javascript</hst:attribute>
-		$(document).ready(function() {
-		
-			    if (Modernizr.touch && Modernizr.inputtypes.date) {
-			    	
-			        document.getElementById('date_credit').type = 'date';
-			        
-			    } else {
-			        $('#date_credit').datepicker({
-			    
-                    changeMonth: true,
-                    changeYear: true,
-                  
-                   
-                    yearRange: "2012:2013"
-                    
-                   });
-                 
-			    }
-			    var filing=$('#filing').val();
-			    if(filing!=null){
-			        $('#status').val(filing);
-			    };
-			    $('#frmPersonalInfo input').keydown(function(e) {
-				    if (e.keyCode == 13) {
-				   		e.preventDefault();
-				        $('#frmPersonalInfo').submit();
-				    }
-				});
-				
-				$('#hrefLogin').click(function() {
-		 			$('#frmPersonalInfo').submit();
-				});
-				
-				$("#pi_first_name").popover({'trigger':'focus'});
-		});    
-</hst:element>
-<hst:headContribution element="${uiCustom}" category="jsInternal" />
 
 <res:client-validation formId="advancetax"
 	screenConfigurationDocumentName="advancetax"
