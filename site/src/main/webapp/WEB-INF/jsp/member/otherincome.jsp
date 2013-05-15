@@ -323,11 +323,11 @@
 					id="c7" onchange="cal4()" maxlength="14" readonly="readonly" />
 				</div>
 			</div>
-			<div class="span3">
+			<div class="span2">
 				<div class="rowlabel"><label for="Taxable_income "><fmt:message
 							key="member.taxable.income" /> </label>
 				</div>
-				<div class="rowlabel"><input type="text" name="Taxable_income"
+				<div class="rowlabel"><input type="text" name="Taxable_income" class="decimal"
 					value="${parentBean.taxable_income}" id="Taxable" onblur="cal5()"
 					readonly="readonly" />
 				</div>
@@ -345,25 +345,7 @@
 </form>
 <hst:element var="uiCustom" name="script">
 	<hst:attribute name="type">text/javascript</hst:attribute>
-		$(document).ready(function() {
-		$('input.numberinput').bind('keypress', function (e) {
-        return (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57) && e.which != 46) ? false : true;
-         });
-                 var statekey=$("#statekey").val();
-                if(statekey!=null){
-                 $("#pi_state").val(statekey);
-                  };
-                  
-			    $('#frmIncomeinfo input').keydown(function(e) {
-				    if (e.keyCode == 13) {
-				   		e.preventDefault();
-				        $('#frmIncomeinfo').submit();
-				    }
-				});
-				$('#hrefLogin').click(function() {
-		 			$('#frmIncomeinfo').submit();
-				});
-		});    
+		
 </hst:element> <hst:headContribution
 						element="${uiCustom}" category="jsInternal" /> <script>
 							function cal1() {
