@@ -284,7 +284,7 @@
 							</div>
 
 							<div class="rowlabel">
-								<input name="Taxable_earning" id="Taxable_earning" class="decimal" readonly="readonly"
+								<input name="Taxable_earning" id="Taxable_earning" class="decimal"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.taxable_earning}"/></c:if>" />
 							</div>
 						</div>
@@ -292,16 +292,11 @@
 				</fieldset>
 				<div class="row-fluid show-grid">
 					<div class="span4 offset8 decimal">
-						<a href="${scriptName}" class="button olive">Cancel</a>&nbsp;
+						<a href="${scriptName}?tab=salaryincome" class="button olive">Cancel</a>&nbsp;
 								<a id="myModalHref" role="button" class="btn orange">Save</a>
-
 					</div>
 					</div>
 			</form>
-
-			<res:client-validation formId="frmdata"
-				screenConfigurationDocumentName="salaryincome"
-				formSubmitButtonId="myModalHref" />
 
 		</c:when>
 		<c:otherwise>
@@ -359,19 +354,5 @@
 	}
 </script>
 
-<hst:element var="uiCustom" name="script">
-	<hst:attribute name="type">text/javascript</hst:attribute>
-		$(document).ready(function() {
-		$('input.numberinput').bind('keypress', function (e) {
-        return (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57) && e.which != 46) ? false : true;
-         });
-                 var statekey=$("#statekey").val();
-                if(statekey!=null){
-                 $("#pi_state").val(statekey);
-                  };
-                  
-		});    
-</hst:element>
-<hst:headContribution element="${uiCustom}" category="jsInternal" />
-<res:client-validation formId="frmdata" screenConfigurationDocumentName="salaryincome" formSubmitButtonId="myModalHref"/>
 
+<res:client-validation formId="frmdata" screenConfigurationDocumentName="salaryincome" formSubmitButtonId="myModalHref"/>
