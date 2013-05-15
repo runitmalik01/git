@@ -662,7 +662,7 @@ assessed.&lt;/p&gt;
       </sv:node>
     </sv:node>
   </sv:node>
-  <sv:node sv:name="what-is-huf">
+  <sv:node sv:name="how-to-save-taxes-by-forming-huf">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
       <sv:value>hippo:handle</sv:value>
     </sv:property>
@@ -671,7 +671,7 @@ assessed.&lt;/p&gt;
       <sv:value>hippo:translated</sv:value>
     </sv:property>
     <sv:property sv:name="jcr:uuid" sv:type="String">
-      <sv:value>ddad06d8-638b-4207-bf28-a11337a6f2a8</sv:value>
+      <sv:value>a3c3ff90-f19b-402c-98db-635a3b508c55</sv:value>
     </sv:property>
     <sv:node sv:name="hippo:translation">
       <sv:property sv:name="jcr:primaryType" sv:type="Name">
@@ -681,10 +681,10 @@ assessed.&lt;/p&gt;
         <sv:value/>
       </sv:property>
       <sv:property sv:name="hippo:message" sv:type="String">
-        <sv:value>What is HUF ?</sv:value>
+        <sv:value>How to Save Taxes by forming HUF?</sv:value>
       </sv:property>
     </sv:node>
-    <sv:node sv:name="what-is-huf">
+    <sv:node sv:name="how-to-save-taxes-by-forming-huf">
       <sv:property sv:name="jcr:primaryType" sv:type="Name">
         <sv:value>mootlywcm:simpledocument</sv:value>
       </sv:property>
@@ -693,14 +693,14 @@ assessed.&lt;/p&gt;
         <sv:value>hippotranslation:translated</sv:value>
       </sv:property>
       <sv:property sv:name="jcr:uuid" sv:type="String">
-        <sv:value>48046d47-efdd-4cd1-9363-145e7805ca0c</sv:value>
+        <sv:value>61cb632c-44fe-4ab7-a53b-aea90f282ac5</sv:value>
       </sv:property>
       <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
         <sv:value>live</sv:value>
         <sv:value>preview</sv:value>
       </sv:property>
       <sv:property sv:name="hippo:related___pathreference" sv:type="String">
-        <sv:value>articles/what-is-huf</sv:value>
+        <sv:value>articles/how-to-save-taxes-by-forming-huf</sv:value>
       </sv:property>
       <sv:property sv:name="hippostd:holder" sv:type="String">
         <sv:value>admin</sv:value>
@@ -713,6 +713,7 @@ assessed.&lt;/p&gt;
       </sv:property>
       <sv:property sv:multiple="true" sv:name="hippostd:tags" sv:type="String">
         <sv:value>hindufamily</sv:value>
+        <sv:value>savetax</sv:value>
       </sv:property>
       <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
         <sv:value>admin</sv:value>
@@ -721,16 +722,16 @@ assessed.&lt;/p&gt;
         <sv:value>2013-05-09T10:00:30.278+05:30</sv:value>
       </sv:property>
       <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-        <sv:value>2013-05-14T12:41:09.967+05:30</sv:value>
+        <sv:value>2013-05-14T15:36:51.797+05:30</sv:value>
       </sv:property>
       <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
         <sv:value>admin</sv:value>
       </sv:property>
       <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-        <sv:value>2013-05-14T12:41:29.399+05:30</sv:value>
+        <sv:value>2013-05-14T15:36:55.923+05:30</sv:value>
       </sv:property>
       <sv:property sv:name="hippotranslation:id" sv:type="String">
-        <sv:value>18a0e977-92c6-4345-bcde-682f2f27d262</sv:value>
+        <sv:value>9db1bc62-3556-4922-ab93-d1dcab65ac8f</sv:value>
       </sv:property>
       <sv:property sv:name="hippotranslation:locale" sv:type="String">
         <sv:value>en</sv:value>
@@ -739,7 +740,7 @@ assessed.&lt;/p&gt;
         <sv:value/>
       </sv:property>
       <sv:property sv:name="mootlywcm:title" sv:type="String">
-        <sv:value>What is HUF ?</sv:value>
+        <sv:value>How to Save Taxes by forming HUF ?</sv:value>
       </sv:property>
       <sv:node sv:name="hippotranslation:translations">
         <sv:property sv:name="jcr:primaryType" sv:type="Name">
@@ -754,27 +755,353 @@ assessed.&lt;/p&gt;
           <sv:value>&lt;html&gt;
 &lt;body&gt;
 
-&lt;p&gt;HUF stands for &lt;strong&gt;Hindu Undivided Family&lt;/strong&gt;. In India, there is a
-culture of Joint Families and there are many Incomes which arise to the Family
-as a whole and not to one specific Individual say for e.g. Rent. If Rent is
-received from a property which is jointly owned by all the Members of the
-Family, that Income will be taxed in the hands of the whole Family and not in
-the hands of one specific Individual.&lt;/p&gt;
+&lt;p&gt; &lt;strong&gt;&lt;u&gt;What is a HUF?&lt;/u&gt;&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;PAN structure &lt;/strong&gt;&lt;strong&gt;for HUF&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;HUF stands for Hindu Undivided Family. In India, there is a culture of Joint
+Families and there are many Incomes which arise to the Family as a whole and not
+to one specific Individual say for e.g. Rent. If Rent is received from a
+property which is jointly owned by all the Members of the Family, that Income
+will be taxed in the hands of the whole Family and not in the hands of one
+specific Individual.&lt;/li&gt;
+&lt;li&gt;HUF belonging to other religions are not allowed to form HUF’s except Jain
+and Sikh who can create HUF even though they are not governed by the Hindu Law.
+&lt;/li&gt;
+&lt;/ol&gt;
 
-&lt;p&gt;First five characters are letters, next 4 numerals, last character letter as
-AAAAA9999A where fourth character will be &lt;strong&gt;‘H’&lt;/strong&gt; as AAAHA9999A to
-represent PAN holder as HUF.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;u&gt;An HUF consists of&lt;/u&gt;&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt; &lt;strong&gt;Advantage of HUF&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Karta:&lt;/strong&gt; Karta is generally the father of the family who has
+the right to do all the things for the family and takes all the decisions on the
+behalf of the family.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Co-Parceners:&lt;/strong&gt; Coparcener is the person who has the right to
+demand the share of the property of family if he/she wants to part away with the
+family with his/her share&lt;/li&gt;
+&lt;li&gt;Not all members of the HUF are its coparceners. The co-parcenery extends to
+four degrees down the family hierarchy in the following manner:&lt;/li&gt;
+&lt;/ol&gt;
 
-&lt;p&gt;To avail the benefit of an extra PAN Card legally. As the Income of the
-Family is not taxed in the hands of any specific Individual, a new PAN Card is
-allotted to the HUF and Tax would be paid by the Family using this PAN Card.
-&lt;/p&gt;
+&lt;p&gt;·         1st degree: Holder of ancestral property for the first time.&lt;/p&gt;
+
+&lt;p&gt;·         2nd degree: Sons and daughters&lt;/p&gt;
+
+&lt;p&gt;·         3rd degree: Grandsons&lt;/p&gt;
+
+&lt;p&gt;·         4th degree: Great grandsons&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;u&gt;Benefits of forming an HUF&lt;/u&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;HUF can earn income from all sources like Income from Interest on Fixed
+Deposit, Capital Gains, Income from Business etc. except Income from Salaries
+&lt;/li&gt;
+&lt;li&gt;HUF is eligible for deductions under section 80D (insurance premium paid on
+health of its members), 80G (donation), 80L (income from bank and post office
+deposits), 80C (assorted list of items) under Income Tax Act. 1961&lt;/li&gt;
+&lt;li&gt;HUF also enjoys exemptions under sections 54 and 54F in respect of capital
+gains.&lt;/li&gt;
+&lt;li&gt;HUF also gets advantage of slab rate taxability.&lt;/li&gt;
+&lt;li&gt;HUF is to avail the benefit of an extra PAN Card legally. As the Income of
+the Family is not taxed in the hands of any specific Individual, a new PAN Card
+is allotted to the HUF and Tax would be paid by the Family using this PAN Card.
+&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;u&gt;Specific Tax Planning Tools for an HUF&lt;/u&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Create more assessable units by partition of HUF – The tax liability can be
+reduced by partition of the HUF. This can be easily done in a case where the
+partition results in separate independent taxable units.&lt;/li&gt;
+&lt;li&gt;Remuneration to the Karta &amp;amp; members – pay remuneration to the Karta and
+its members for the services rendered by them to the family business. The
+remuneration so paid would be allowed as a deduction from the income of the HUF
+and thereby tax liability of the HUF would be reduced.&lt;/li&gt;
+&lt;li&gt;Making loans to members of HUF can be used an effective tool in tax
+planning. Loan can be made with or without interest.&lt;/li&gt;
+&lt;li&gt;Providing gifts to members of HUF does not attract gift tax liability.&lt;/li&gt;
+&lt;li&gt;Family Settlement / Arrangement – Family settlements / arrangements are also
+effective devices for the distribution of ancestral property. Since family
+arrangement does not involve transfer, it would not attract gift tax, capital
+gains tax or clubbing.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</sv:value>
+        </sv:property>
+      </sv:node>
+      <sv:node sv:name="mootlywcm:form">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hippo:mirror</sv:value>
+        </sv:property>
+        <sv:property sv:name="hippo:docbase" sv:type="String">
+          <sv:value>cafebabe-cafe-babe-cafe-babecafebabe</sv:value>
+        </sv:property>
+      </sv:node>
+    </sv:node>
+  </sv:node>
+  <sv:node sv:name="deductions-allowable-under-various-sections-of-chapter-via-of-income-tax-act">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hippo:handle</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+      <sv:value>hippo:hardhandle</sv:value>
+      <sv:value>hippo:translated</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>1d9f37de-16d7-448e-8ccb-e0696b7c1c78</sv:value>
+    </sv:property>
+    <sv:node sv:name="hippo:translation">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>hippo:translation</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippo:language" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="hippo:message" sv:type="String">
+        <sv:value>Deductions Allowable under various sections of Chapter VIA of Income Tax Act</sv:value>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="deductions-allowable-under-various-sections-of-chapter-via-of-income-tax-act">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:simpledocument</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+        <sv:value>hippo:harddocument</sv:value>
+        <sv:value>hippotranslation:translated</sv:value>
+      </sv:property>
+      <sv:property sv:name="jcr:uuid" sv:type="String">
+        <sv:value>e333d6cd-b7a0-4326-b827-06f295714a2d</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
+        <sv:value>live</sv:value>
+        <sv:value>preview</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippo:related___pathreference" sv:type="String">
+        <sv:value>articles/deductions-allowable-under-various-sections-of-chapter-via-of-income-tax-act</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostd:holder" sv:type="String">
+        <sv:value>admin</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostd:state" sv:type="String">
+        <sv:value>published</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostd:stateSummary" sv:type="String">
+        <sv:value>live</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="hippostd:tags" sv:type="String">
+        <sv:value>chaptervideductions</sv:value>
+        <sv:value>chapter%20vi%20deductions</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
+        <sv:value>admin</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
+        <sv:value>2013-05-09T10:00:30.278+05:30</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
+        <sv:value>2013-05-14T21:56:27.287+05:30</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
+        <sv:value>admin</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
+        <sv:value>2013-05-14T21:56:32.598+05:30</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippotranslation:id" sv:type="String">
+        <sv:value>4bfc6824-b86e-47c5-b6ff-d1eea272b1b5</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippotranslation:locale" sv:type="String">
+        <sv:value>en</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:summary" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:title" sv:type="String">
+        <sv:value>Deductions Allowable under various sections of Chapter VIA of Income Tax Act</sv:value>
+      </sv:property>
+      <sv:node sv:name="hippotranslation:translations">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hippotranslation:translations</sv:value>
+        </sv:property>
+      </sv:node>
+      <sv:node sv:name="mootlywcm:description">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hippostd:html</sv:value>
+        </sv:property>
+        <sv:property sv:name="hippostd:content" sv:type="String">
+          <sv:value>&lt;html&gt;
+&lt;body&gt;
 
 &lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;Deductions allowed under Chapter VI-A i.e., sections 80C to 80U, cannot
+exceed gross total income of an assessee excluding short term capital gains
+under section 111A and any long term capital gains.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Section 80C&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;1. Deduction under this section is available only to an individual or an HUF.
+&lt;/p&gt;
+
+&lt;p&gt;2. Payment of life insurance premium. subscriptions to National Savings
+Certificates VIII issues.&lt;/p&gt;
+
+&lt;p&gt;3. Income Tax Act allows certain investments and expenditure to be deducted
+from total income up to the maximum of Rs 100,000.&lt;/p&gt;
+
+&lt;p&gt;4. It is allowed on premium paid on self, spouse and children even if they
+are not dependent on father or mother (subject to a maximum of 20% of sum
+assured upto FY 2012-13).&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Section 80CCC &lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;1. Payments made to LIC or to any other approved insurer under an approved
+pension plan are admissible for deduction under this section. Then pension plan
+policy should be for individual himself out of his taxable income. &lt;/p&gt;
+
+&lt;p&gt;2. Income Tax Act allows certain investments and expenditure to be deducted
+from total income up to the maximum of Rs 100,000.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Section 80CCD &lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;1. Contribution made by the assessee and by employer to a Notified Pension
+Scheme is admissible for deduction under this section. The assesse should be an
+individual who is employed on or after 1 January 2004. The deduction shall be
+equal to the amount contributed by the assessee and/or by the employer, not
+exceeding 10% of his salary (basic+dearness allowance). Even a self-employed
+person can claim this deduction which will be restricted to 10% of gross total
+income.&lt;/p&gt;
+
+&lt;p&gt;2. Income Tax Act allows certain investments and expenditure to be deducted
+from total income up to the maximum of Rs 100,000.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Section 80CCG&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;As per the Budget 2012 anouncements, a new scheme Rajiv Gandhi Equity Saving
+Scheme (RGESS) will be launched for investors whose annual income is less than
+Rs. 10 lakh (proposed Rs. 12 lakh from A.Y. 2014-15) can invest in this scheme
+up to Rs. 50,000 and get a deduction of 50% of the investment..&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Section 80CCF&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;1. Deduction under Investment in Infrastructure Bonds&lt;/p&gt;
+
+&lt;p&gt;2. From 1 April 2011, a maximum of ₹20,000 is deductible under section 80CCF
+provided that amount is invested in infrastructure bonds.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Section 80D&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;1. Deduction under Medical insurance premiums &lt;/p&gt;
+
+&lt;p&gt;2. Health insurance, popularly known as Mediclaim Policies, provides a
+deduction of up to 35,000.00 (₹15,000.00 for premium payments towards policies
+on self, spouse and children and ₹15,000.00 for premium payment towards
+non-senior citizen dependent parents or ₹20,000.00 for premium payment towards
+senior citizen dependent). &lt;/p&gt;
+
+&lt;p&gt;3. This deduction is in addition to ₹100,000 savings under IT deductions
+clause 80C. For consideration under a senior citizen category, the incumbent's
+age should be 60 years during any part of the current fiscal.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Section 80DD&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;1. Deduction in respect of Rehabilitation of Handicapped Dependent Relative
+&lt;/p&gt;
+
+&lt;p&gt;2. Deduction of Rs. 50,000/- w.e.f. 01.04.2004 in respect of&lt;/p&gt;
+
+&lt;p&gt;3. Expenditure incurred on medical treatment, (including nursing), training
+and rehabilitation of handicapped dependent relative.&lt;/p&gt;
+
+&lt;p&gt;4. Payment or deposit to specified scheme for maintenance of dependent
+handicapped relative.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Section 80DDB &lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;1. Deduction in respect of medical treatment&lt;/p&gt;
+
+&lt;p&gt;2. Deduction is allowed to resident individual or HUF in respect of
+expenditure actually during the PY incurred for the medical treatment of
+specified disease or ailment as specified in the rules 11DD for himself or a
+dependent relative or a member of a HUF.&lt;/p&gt;
+
+&lt;p&gt;3. Deduction of 50% is allowed on investments up to Rs:50,000 under the Rajiv
+Gandhi Equity Savings Scheme on select securities.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Section 80E&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;This provision has been introduced to provide relief to students taking loans
+for higher studies. &lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Section 80G&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;1. Donations to certain funds, charitable institutions etc.&lt;/p&gt;
+
+&lt;p&gt;2. The various donations specified in Sec.80G are eligible for deduction upto
+either 100% or 50% with or without restriction as provided in Sec 80G&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Section 80GG&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Deduction available is the least of&lt;/p&gt;
+
+&lt;p&gt;1. Rent paid less 10% of total income&lt;/p&gt;
+
+&lt;p&gt;2. Rs. 2000/- per month i.e. Maximum Deduction available is 24,000/-&lt;/p&gt;
+
+&lt;p&gt;3. 25% of total income, provided&lt;/p&gt;
+
+&lt;p&gt; • Assessee or his spouse or minor child should not own residential
+accommodation at the place of employment.&lt;/p&gt;
+
+&lt;p&gt;• He should not be in receipt of house rent allowance.&lt;/p&gt;
+
+&lt;p&gt;• He should not have self occupied residential premises in any other place.
+&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Section 80GGA&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt; Deduction in respect of certain donations for scientific research or rural
+development&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Section 80GGC&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt; Deduction in respect of contributions given by any person to political
+parties&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Section 80QQB&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;1. Royalty Income on patents.&lt;/p&gt;
+
+&lt;p&gt;2. Maximum deduction Rs. 3,00,000/-&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Section 80RRB&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;1. Royalty Income to author of certain books other than text books.&lt;/p&gt;
+
+&lt;p&gt;2. Maximum deduction Rs. 3,00,000/-&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Section 80 TTA&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;1. Deduction from gross total income in respect of any Income by way of
+Interest on Savings account&lt;/p&gt;
+
+&lt;p&gt;2. Deduction from gross total income of an individual or HUF, up to a maximum
+of Rs. 10,000/-, in respect of interest on deposits in savings account ( not
+time deposits ) with a bank, co-operative society or post office, is allowable
+w.e.f. 01.04.2012 (Assessment Year 2013-14)&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Section 80U&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;1. Deduction of Rs. 50,000/- to an individual who suffers from a physical
+disability(including blindness) or mental retardation.&lt;/p&gt;
+
+&lt;p&gt;2. If the individual is a person with severe disability, deduction of Rs.
+100,000/- shall be available u/s      80U.&lt;/p&gt;
+
+&lt;p&gt;3. Certificate should be obtained from a Govt. Doctor. The relevant rule is
+Rule 11D.&lt;/p&gt;
 
 &lt;p&gt; &lt;/p&gt;
 
