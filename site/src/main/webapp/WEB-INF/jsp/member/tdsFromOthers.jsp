@@ -26,7 +26,7 @@
 		test="${pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD'}">
 
 
-		<form id="tdsfromothers" action="${actionUrl}" method="post"
+		<form id="frmdata" action="${actionUrl}" method="post"
 			name="tdsfromothers">
 
 
@@ -126,7 +126,7 @@
 			</div>
 			<div class="row-fluid show-grid">
 				<div class="span4 offset8 decimal">
-					<a href="${scriptName}" class="button olive">Cancel</a>&nbsp; <a
+					<a href="${scriptName}?tab=tdsfromothers" class="button olive">Cancel</a>&nbsp; <a
 						href="javascript:void(0)" id="myModalHref" class="button orange">Save</a>
 
 				</div>
@@ -160,9 +160,6 @@
 						<td><c:out value="${tdsfromothersdetail.total_TaxDeductor}" />
 						</td>
 						<td><c:out value="${tdsfromothersdetail.p_Amount}" /></td>
-						</td>
-
-
 						<td><a
 							href="${redirectURLToSamePage}/<c:out value="${tdsfromothersdetail.canonicalUUID}"/>/tdsfromothersedit"><small>Edit</small>
 						</a>&nbsp;&nbsp;<a
@@ -185,7 +182,7 @@
 
 	</c:otherwise>
 </c:choose>
-<res:client-validation formId="tdsfromothers"
+<res:client-validation formId="frmdata"
 	screenConfigurationDocumentName="tdsfromothers"
 	formSubmitButtonId="myModalHref" />
 <script type="text/javascript">
