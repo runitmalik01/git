@@ -21,8 +21,10 @@ import java.util.TreeMap;
  * 
  */
 public interface ValueListService {
+	
+	
 	/**
-	 * This method fetches the information valueList_states.properties file	
+	 * This method fetches the information valueList_boolean.properties file	
 	 * 
 	 * @return TreeMap  object
 	 */
@@ -44,7 +46,9 @@ public interface ValueListService {
 	 * 
 	 * @return TreeMap  object
 	 */
+
 	TreeMap<String,String> getBoolean();
+
 	/**
 	 * This method fetches the information valueList_residentialStatus.properties file	
 	 * 
@@ -92,6 +96,9 @@ public interface ValueListService {
 	 * @return TreeMap  object
 	 */
 	TreeMap<String,String> getNumbersDropdown();
+	TreeMap<String,String> getDeduction();
+	
+	TreeMap<String,String> getDeduction6a();
 
 	TreeMap<String,String> getDeducterdYear();
 

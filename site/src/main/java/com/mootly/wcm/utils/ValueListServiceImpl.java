@@ -29,6 +29,8 @@ import org.slf4j.LoggerFactory;
 
 public final class ValueListServiceImpl implements ValueListService{
 	private ResourceBundle objValueListStatesBundle = null;
+	private ResourceBundle objValueListDeductionBundle = null;
+	private ResourceBundle objValueListDeduction6aBundle = null;
 	private ResourceBundle objValueListBooleanBundle = null;
 	private ResourceBundle objValueListResStatusBundle = null;
 	private ResourceBundle objValueListYearInflationBundle = null;
@@ -59,6 +61,8 @@ public final class ValueListServiceImpl implements ValueListService{
 		objValueListNumbers=ResourceBundle.getBundle("valueList_numbers");
 		objValueListDeductedYear=ResourceBundle.getBundle("valueList_deductedyear");
 		objValueListDtaaCountries=ResourceBundle.getBundle("valueList_dtaaCountries");
+		objValueListDeductionBundle=ResourceBundle.getBundle("valueList_deduction");
+		objValueListDeduction6aBundle=ResourceBundle.getBundle("valueList_deduction6a");
 	}
 
 	/**
@@ -116,6 +120,47 @@ public final class ValueListServiceImpl implements ValueListService{
 	}
 
 
+
+	public TreeMap<String, String> getDeduction()
+	{
+		TreeMap<String, String> TreeMapDeductionDropdown =new TreeMap<String, String>();
+		TreeMapDeductionDropdown.put(objValueListDeductionBundle.getString("80c_1"), objValueListDeductionBundle.getString("80c_1"));
+		TreeMapDeductionDropdown.put(objValueListDeductionBundle.getString("80c_2"), objValueListDeductionBundle.getString("80c_2"));
+		TreeMapDeductionDropdown.put(objValueListDeductionBundle.getString("80c_3"), objValueListDeductionBundle.getString("80c_3"));
+		TreeMapDeductionDropdown.put(objValueListDeductionBundle.getString("80c_4"), objValueListDeductionBundle.getString("80c_4"));
+		TreeMapDeductionDropdown.put(objValueListDeductionBundle.getString("80c_5"), objValueListDeductionBundle.getString("80c_5"));
+		TreeMapDeductionDropdown.put(objValueListDeductionBundle.getString("80c_6"), objValueListDeductionBundle.getString("80c_6"));
+		TreeMapDeductionDropdown.put(objValueListDeductionBundle.getString("80c_7"), objValueListDeductionBundle.getString("80c_7"));
+		TreeMapDeductionDropdown.put(objValueListDeductionBundle.getString("80c_8"), objValueListDeductionBundle.getString("80c_8"));
+		TreeMapDeductionDropdown.put(objValueListDeductionBundle.getString("80c_9"), objValueListDeductionBundle.getString("80c_9"));
+		TreeMapDeductionDropdown.put(objValueListDeductionBundle.getString("80d_1"), objValueListDeductionBundle.getString("80d_1"));
+		TreeMapDeductionDropdown.put(objValueListDeductionBundle.getString("80d_2"), objValueListDeductionBundle.getString("80d_2"));
+		TreeMapDeductionDropdown.put(objValueListDeductionBundle.getString("80d_3"), objValueListDeductionBundle.getString("80d_3"));
+		TreeMapDeductionDropdown.put(objValueListDeductionBundle.getString("80d_4"), objValueListDeductionBundle.getString("80d_4"));
+		TreeMapDeductionDropdown.put(objValueListDeductionBundle.getString("80d_5"), objValueListDeductionBundle.getString("80d_5"));
+		return TreeMapDeductionDropdown;
+	}		 
+
+	public TreeMap<String, String> getDeduction6a()
+	{
+		TreeMap<String, String> TreeMapDeductionaDropdown =new TreeMap<String, String>();
+		TreeMapDeductionaDropdown.put(objValueListDeduction6aBundle.getString("80c"), objValueListDeduction6aBundle.getString("80c"));
+		TreeMapDeductionaDropdown.put(objValueListDeduction6aBundle.getString("80ccc"), objValueListDeduction6aBundle.getString("80ccc"));
+		TreeMapDeductionaDropdown.put(objValueListDeduction6aBundle.getString("80ccd"), objValueListDeduction6aBundle.getString("80ccd"));
+		TreeMapDeductionaDropdown.put(objValueListDeduction6aBundle.getString("80ccf"), objValueListDeduction6aBundle.getString("80ccf"));
+		TreeMapDeductionaDropdown.put(objValueListDeduction6aBundle.getString("80ccg"), objValueListDeduction6aBundle.getString("80ccg"));
+		TreeMapDeductionaDropdown.put(objValueListDeduction6aBundle.getString("80d"), objValueListDeduction6aBundle.getString("80d"));
+		TreeMapDeductionaDropdown.put(objValueListDeduction6aBundle.getString("80dd"), objValueListDeduction6aBundle.getString("80dd"));
+		TreeMapDeductionaDropdown.put(objValueListDeduction6aBundle.getString("80ddb"), objValueListDeduction6aBundle.getString("80ddb"));
+		TreeMapDeductionaDropdown.put(objValueListDeduction6aBundle.getString("80e"), objValueListDeduction6aBundle.getString("80e"));
+		TreeMapDeductionaDropdown.put(objValueListDeduction6aBundle.getString("80g"), objValueListDeduction6aBundle.getString("80g"));
+		TreeMapDeductionaDropdown.put(objValueListDeduction6aBundle.getString("80gg"), objValueListDeduction6aBundle.getString("80gg"));
+		TreeMapDeductionaDropdown.put(objValueListDeduction6aBundle.getString("80u"), objValueListDeduction6aBundle.getString("80u"));
+		TreeMapDeductionaDropdown.put(objValueListDeduction6aBundle.getString("80rrb"), objValueListDeduction6aBundle.getString("80rrb"));
+		TreeMapDeductionaDropdown.put(objValueListDeduction6aBundle.getString("80tta"), objValueListDeduction6aBundle.getString("80tta"));
+
+		return TreeMapDeductionaDropdown;
+	}		 
 
 	/**
 	 * This method fetches the information valueList_boolean.properties file	
@@ -329,13 +374,30 @@ public final class ValueListServiceImpl implements ValueListService{
 		Collections.sort(keyList);
 		for(String key:keyList){
 			if(log.isInfoEnabled()){
-			log.info("this is key of new"+key);
+				log.info("this is key of new"+key);
 			}
 		}
 		return keyList;
 	}
 
+
+	public ResourceBundle getObjValueListDeduction6aBundle() {
+		return objValueListDeduction6aBundle;
+	}
+
+	public void setObjValueListDeduction6aBundle(
+			ResourceBundle objValueListDeduction6aBundle) {
+		this.objValueListDeduction6aBundle = objValueListDeduction6aBundle;
+	}
+
 }
+
+
+
+
+
+
+
 
 
 
