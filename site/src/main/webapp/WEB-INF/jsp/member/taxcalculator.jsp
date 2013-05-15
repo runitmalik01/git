@@ -38,8 +38,7 @@
 	<p>
 		<label for="cbasscategory"><span id="gender"><fmt:message
 					key="tax_gender" />
-		</span> </label> <select name="cbasscategory" id="cbasscategory"
-			onchange="calculateTax();age()">
+		</span> </label> <select name="cbasscategory" id="cbasscategory">
 				<option value="Select One">Select One</option>
 				<option value="Male">Male</option>
 				<option value="Female">Female</option>
@@ -50,8 +49,7 @@
 	<p>
 		<label for="cbresistatus"><span id="resistatus"><fmt:message
 					key="tax_residential_status" />
-		</span> </label> <select name="cbresistatus" id="cbresistatus"
-			onchange="calculateTax()" />
+		</span> </label> <select name="cbresistatus" id="cbresistatus"/>
 		<option value="Select One">Select One</option>
 		<option value="Resident">Resident</option>
 		<option value="Non-Resident">Non-Resident</option>
@@ -61,7 +59,7 @@
 	<p>
 		<label for="txtNetIncome"><fmt:message
 				key="tax_net_taxable_income" /> </label> <input name="txtNetIncome"
-			type="text" id="txtNetIncome" onchange="calculateTax()" />
+			type="text" id="txtNetIncome"/>
 	</p>
 	<p>
 		<label for="txtTax"><fmt:message key="tax_income_tax" /> </label> <input
