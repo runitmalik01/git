@@ -460,8 +460,8 @@
 				</fieldset>
 				<div class="row-fluid show-grid">
 					<div class="span4 offset8 decimal">
-						<a href="${scriptName}" class="button olive">Cancel</a>&nbsp; <a
-							href="javascript:void(0)" id="myModalHref" class="button orange">Save</a>
+						<a href="${scriptName}?tab=houseincome" class="button olive">Cancel</a>&nbsp;
+								<a id="myModalHref" role="button" class="btn orange">Save</a>
 
 					</div>
 				</div>
