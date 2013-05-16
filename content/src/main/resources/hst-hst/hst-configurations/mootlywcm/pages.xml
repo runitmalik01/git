@@ -6993,6 +6993,20 @@
       </sv:node>
     </sv:node>
   </sv:node>
+  <sv:node sv:name="selfassesmenttaxITR1" >
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:component</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>bd284eb4-c618-4d45-9566-92303a6ed545</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:componentclassname" sv:type="String">
+    <sv:value>com.mootly.wcm.member.SelfAssesmentTax</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:template" sv:type="String">
+    <sv:value>selfassesmenttax</sv:value>
+  </sv:property>
+</sv:node>
 </sv:node>
 
   <sv:node sv:name="xml-generator">
