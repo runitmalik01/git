@@ -1119,4 +1119,470 @@ Rule 11D.&lt;/p&gt;
       </sv:node>
     </sv:node>
   </sv:node>
+  <sv:node sv:name="surcharge-and-cess-on-tax">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hippo:handle</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+      <sv:value>hippo:hardhandle</sv:value>
+      <sv:value>hippo:translated</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>f71507ce-fa52-412e-9289-fcfcd547346b</sv:value>
+    </sv:property>
+    <sv:node sv:name="hippo:translation">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>hippo:translation</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippo:language" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="hippo:message" sv:type="String">
+        <sv:value>Surcharge and cess on tax</sv:value>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="surcharge-and-cess-on-tax">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:simpledocument</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+        <sv:value>hippo:harddocument</sv:value>
+        <sv:value>hippotranslation:translated</sv:value>
+      </sv:property>
+      <sv:property sv:name="jcr:uuid" sv:type="String">
+        <sv:value>2073b895-702a-4569-9714-a8e9156e563b</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
+        <sv:value>live</sv:value>
+        <sv:value>preview</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippo:related___pathreference" sv:type="String">
+        <sv:value>articles/surcharge-and-cess-on-tax</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostd:holder" sv:type="String">
+        <sv:value>admin</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostd:state" sv:type="String">
+        <sv:value>published</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostd:stateSummary" sv:type="String">
+        <sv:value>live</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="hippostd:tags" sv:type="String">
+        <sv:value>surcharge</sv:value>
+        <sv:value>educationcess</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
+        <sv:value>admin</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
+        <sv:value>2013-05-16T11:58:44.985+05:30</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
+        <sv:value>2013-05-16T12:01:19.131+05:30</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
+        <sv:value>admin</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
+        <sv:value>2013-05-16T12:01:23.343+05:30</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippotranslation:id" sv:type="String">
+        <sv:value>289fba90-7be8-4ce2-b6fd-1227c5230922</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippotranslation:locale" sv:type="String">
+        <sv:value>en</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:summary" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:title" sv:type="String">
+        <sv:value>Surcharge and cess on tax</sv:value>
+      </sv:property>
+      <sv:node sv:name="hippotranslation:translations">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hippotranslation:translations</sv:value>
+        </sv:property>
+      </sv:node>
+      <sv:node sv:name="mootlywcm:description">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hippostd:html</sv:value>
+        </sv:property>
+        <sv:property sv:name="hippostd:content" sv:type="String">
+          <sv:value>&lt;html&gt;
+&lt;body&gt;
+
+&lt;p&gt;The amount of income tax computed as per rates specified above is to be
+reduced by the amount of rebate of income tax calculated under chapter VIII A of
+the I.T. Act 1961 (in case of individuals, HUF, AOP &amp;amp; BOI). The income tax
+so arrived at is to be increased by a surcharge calculated at the rate of 10% on
+such income tax. Uptill the Finance Act 2008 surcharge was levied only when the
+total income exceeded Rs. 10,00,00/-. However no surcharge is to be levied as
+per the Finance Act, 2010 in case of individuals HUF, AOP &amp;amp; BOI even where
+the total income exceeded Rs.10,00,000/-. The amount of income tax (as increased
+by surcharge, if any), shall be further increased by an Education and higher
+Education Cess of 3% on the income tax and surcharge, which is payable by
+Resident as well as Non-Resident assessees. The deduction of tax at source is
+then to be made after also taking into account the Cess on tax so calculated.
+&lt;/p&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</sv:value>
+        </sv:property>
+      </sv:node>
+      <sv:node sv:name="mootlywcm:form">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hippo:mirror</sv:value>
+        </sv:property>
+        <sv:property sv:name="hippo:docbase" sv:type="String">
+          <sv:value>cafebabe-cafe-babe-cafe-babecafebabe</sv:value>
+        </sv:property>
+      </sv:node>
+    </sv:node>
+  </sv:node>
+  <sv:node sv:name="loss-from-house-property">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hippo:handle</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+      <sv:value>hippo:hardhandle</sv:value>
+      <sv:value>hippo:translated</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>53d340c7-95e2-49c5-b6d0-5ac9b4cc053b</sv:value>
+    </sv:property>
+    <sv:node sv:name="loss-from-house-property">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:simpledocument</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+        <sv:value>hippo:harddocument</sv:value>
+        <sv:value>hippotranslation:translated</sv:value>
+      </sv:property>
+      <sv:property sv:name="jcr:uuid" sv:type="String">
+        <sv:value>3ab98327-364d-4afa-bfc6-5f1ccd702625</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
+        <sv:value>live</sv:value>
+        <sv:value>preview</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippo:related___pathreference" sv:type="String">
+        <sv:value>articles/loss-from-house-property</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostd:holder" sv:type="String">
+        <sv:value>admin</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostd:state" sv:type="String">
+        <sv:value>published</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostd:stateSummary" sv:type="String">
+        <sv:value>live</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="hippostd:tags" sv:type="String">
+        <sv:value>housepropertyloss</sv:value>
+        <sv:value>computationofhousepropertyloss</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
+        <sv:value>admin</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
+        <sv:value>2013-05-16T12:17:20.513+05:30</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
+        <sv:value>2013-05-16T12:19:13.687+05:30</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
+        <sv:value>admin</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
+        <sv:value>2013-05-16T16:57:50.899+05:30</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippotranslation:id" sv:type="String">
+        <sv:value>4c6cac59-dbe2-40ba-b6ab-bca404e83fd5</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippotranslation:locale" sv:type="String">
+        <sv:value>en</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:summary" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:title" sv:type="String">
+        <sv:value>Loss from House Property</sv:value>
+      </sv:property>
+      <sv:node sv:name="hippotranslation:translations">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hippotranslation:translations</sv:value>
+        </sv:property>
+      </sv:node>
+      <sv:node sv:name="mootlywcm:description">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hippostd:html</sv:value>
+        </sv:property>
+        <sv:property sv:name="hippostd:content" sv:type="String">
+          <sv:value>&lt;html&gt;
+&lt;body&gt;
+
+&lt;p&gt;&lt;strong&gt;Introduction &lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;An employee may be in receipt of other income chargeable to tax such as
+interest income, capital gains, income from house property, etc. In such a case,
+sub-section 2B of Section 192 enables the employee to furnish particulars of
+such income and any TDS thereon to the employer/drawing &amp;amp; disbursing
+officer. This should be furnished in the prescribed Form-12C (read with Rule
+26B). However w.e.f.1.10.2003 form 12C has been omitted and the particulars of
+loss may be furnished in a simple statement which is properly verified by the
+tax payer in the same manner as in form 12C. The particulars of income furnished
+should not be loss under any such head, other than loss under the head “Income
+from House Property”, for the same financial year. The person responsible for
+making payments shall take such income and the loss, if any, under the head
+income from house property into account for the purpose of computing tax
+deductible u/s 192. It is further provided that except in a case where loss
+under the head income from house property has been taken into account, this
+sub-section shall not in any other case have the effect of reducing the tax
+deductible from income under the head salaries below the amount which would have
+been deductible if the other income and tax deductible thereon had not been
+taken into account.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Loss from House Property&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;The D.D.O. can take into account any loss from a house property only for
+working out the amount of total tax to be deducted. While taking into account
+this loss the D.D.O.4 242 4 3 shall ensure that the assessee files a declaration
+and encloses there with the computation of such loss.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt; Computation of loss from House Property&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;A loss is determinable under the head ‘house property’ only in a case where
+such loss is arising on account of payment of interest on borrowed capital,
+which has been used for acquiring, constructing, repairing or renewing or
+reconstructing the house property. In case of a let out property the entire
+amount of such interest is allowable as a deduction from the annual value of
+house property. However, in the case of a self occupied property or a property
+unoccupied by owner for reasons of employment, business/profession at another
+place, such deduction is limited to Rs.30,000/-. Where the property, however,
+has been acquired or constructed with capital borrowed, on or after the 1st day
+of April 1999 and such acquisition or construction is completed before the 1st
+day of April 2003, then the amount of deduction allowable is upto Rs. one lakh
+fifty thousand. The Finance Act, 2002 has provided that w.e.f. 01.04.2003, this
+higher deduction of Rs.1,50,000/- on account of interest will be available if
+such loan has been taken after 01.04.99 and the construction or acquisition of
+the residential unit of such loan has been completed within 3 years from the end
+of the financial year in which capital was borrowed. Now the assessee is also
+required to furnish a certificate from the person to whom such interest is
+payable, specifying the amount of interest payable for the purpose of such
+acquisition or construction of property, or conversion of whole or any part of
+the capital borrowed which remains to be repaid as a new loan. Further the
+interest on borrowed capital corresponding to the period prior to the previous
+year in which property has been acquired or constructed is also allowed as
+deduction in five equal installments, in the year of completion and four
+immediately succeeding years.&lt;/p&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</sv:value>
+        </sv:property>
+      </sv:node>
+      <sv:node sv:name="mootlywcm:form">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hippo:mirror</sv:value>
+        </sv:property>
+        <sv:property sv:name="hippo:docbase" sv:type="String">
+          <sv:value>cafebabe-cafe-babe-cafe-babecafebabe</sv:value>
+        </sv:property>
+      </sv:node>
+    </sv:node>
+    <sv:node sv:name="hippo:translation">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>hippo:translation</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippo:language" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="hippo:message" sv:type="String">
+        <sv:value>Loss from House Property</sv:value>
+      </sv:property>
+    </sv:node>
+  </sv:node>
+  <sv:node sv:name="advance-tax-payment">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hippo:handle</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+      <sv:value>hippo:hardhandle</sv:value>
+      <sv:value>hippo:translated</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>07a695b5-e749-41c4-8a9a-1d3258fea965</sv:value>
+    </sv:property>
+    <sv:node sv:name="hippo:translation">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>hippo:translation</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippo:language" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="hippo:message" sv:type="String">
+        <sv:value>Advance Tax Payment</sv:value>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="advance-tax-payment">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:simpledocument</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+        <sv:value>hippo:harddocument</sv:value>
+        <sv:value>hippotranslation:translated</sv:value>
+      </sv:property>
+      <sv:property sv:name="jcr:uuid" sv:type="String">
+        <sv:value>aaf68257-26cf-46c6-ae82-4d117291d665</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
+        <sv:value>live</sv:value>
+        <sv:value>preview</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippo:related___pathreference" sv:type="String">
+        <sv:value>articles/advance-tax-payment</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostd:holder" sv:type="String">
+        <sv:value>admin</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostd:state" sv:type="String">
+        <sv:value>published</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostd:stateSummary" sv:type="String">
+        <sv:value>live</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="hippostd:tags" sv:type="String">
+        <sv:value>advancetax</sv:value>
+        <sv:value>duedatesofadvancetax</sv:value>
+        <sv:value>advancetaxscheme</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
+        <sv:value>admin</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
+        <sv:value>2013-05-16T12:54:52.951+05:30</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
+        <sv:value>2013-05-16T12:56:34.728+05:30</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
+        <sv:value>admin</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
+        <sv:value>2013-05-16T16:57:20.744+05:30</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippotranslation:id" sv:type="String">
+        <sv:value>0c636e10-9cd0-4fbf-bb98-e03ff2397d4c</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippotranslation:locale" sv:type="String">
+        <sv:value>en</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:summary" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:title" sv:type="String">
+        <sv:value>Advance tax apyment</sv:value>
+      </sv:property>
+      <sv:node sv:name="hippotranslation:translations">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hippotranslation:translations</sv:value>
+        </sv:property>
+      </sv:node>
+      <sv:node sv:name="mootlywcm:description">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hippostd:html</sv:value>
+        </sv:property>
+        <sv:property sv:name="hippostd:content" sv:type="String">
+          <sv:value>&lt;html&gt;
+&lt;body&gt;
+
+&lt;p&gt;&lt;strong&gt;INTRODUCTION &lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;As you have already understood the calculation of taxable income and tax on
+it. In the previous lesson you have also read about the payment of tax; you have
+read that the tax liability of a person should be paid in the self-assessment
+u/s 140A.  Let us now elaborate further, if the tax payable is Rs. 5,000 or
+more, then the tax  is paid in the previous year itself. In other words, payment
+of tax is not allowed to be deferred to the assessment year. Perhaps the motive
+of government is to collect the big amount of tax at the earliest.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt; OBJECTIVE&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;After going through this lesson you will be able to understand when and how
+advance tax is paid. The due dates for payment of advance tax, and the concept
+of “the pay as you earn” scheme.&lt;/p&gt;
+
+&lt;p&gt; &lt;strong&gt;ADVANCE TAX SCHEME&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Tax is paid in advance when the liability of advance tax is Rs.5, 000 or
+more. The provisions of advance tax are applicable on all types of persons
+irrespective of the residential status of the person. The advance tax is paid in
+the previous year itself.  Thus, the tax is paid in the year of earning of
+income, in other words the earning of income and payment of tax goes
+simultaneously. Thus, the tax is paid as income is earned. This scheme of
+advance payment of tax is also called pay as you earn scheme, i.e., pay tax as
+you earn income.&lt;/p&gt;
+
+&lt;p&gt; &lt;strong&gt;DATES OF PAYMENT OF ADVANCE TAX&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt; Advance tax is paid by the all persons, both corporate assessee (company
+assessee) and non-corporate assessee (other than non-corporate assessee). The 
+advance tax is to be paid in the following, installments on the following dates:
+&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;For Non-Corporate Assessee&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;Due Dates Amount of Tax payable&lt;/p&gt;
+
+&lt;p&gt;On or before 15 September - not less than 30% of tax payable&lt;/p&gt;
+
+&lt;p&gt;On or before 15 December - not less than 60% of tax payable&lt;/p&gt;
+
+&lt;p&gt;On or before 15 March - not less than 100% of tax payable&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;For Corporate Assessee &lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;Due Dates Amount of Tax payable&lt;/p&gt;
+
+&lt;p&gt;On or before 15 June - not less than15% of tax payable&lt;/p&gt;
+
+&lt;p&gt;On or before 15 September - not less than 30% of tax payable&lt;/p&gt;
+
+&lt;p&gt;On or before 15 December - not less than 60% of tax payable&lt;/p&gt;
+
+&lt;p&gt;On or before 15 March - not less than 100% of tax payable&lt;/p&gt;
+
+&lt;p&gt;Since, the actual tax and actual income can be computed only after completion
+of the year therefore, the income is estimated at different due dates mentioned
+above. The tax on such estimated income is computed and percentage of the tax as
+mentioned above is payable by the assessee at different due dates.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Corporate: &lt;/strong&gt;Corporate means an organization which is
+registered under any act and therefore it is recognized by law as a separate
+legal entity, e.g., A Company, A Society etc.&lt;/p&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</sv:value>
+        </sv:property>
+      </sv:node>
+      <sv:node sv:name="mootlywcm:form">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hippo:mirror</sv:value>
+        </sv:property>
+        <sv:property sv:name="hippo:docbase" sv:type="String">
+          <sv:value>cafebabe-cafe-babe-cafe-babecafebabe</sv:value>
+        </sv:property>
+      </sv:node>
+    </sv:node>
+  </sv:node>
 </sv:node>
