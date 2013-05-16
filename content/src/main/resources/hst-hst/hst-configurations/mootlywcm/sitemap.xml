@@ -2292,7 +2292,7 @@
 
           
 <sv:node sv:name="itreturn-ITR1.html" >
-  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+ <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hst:sitemapitem</sv:value>
   </sv:property>
   <sv:property sv:name="jcr:uuid" sv:type="String">
@@ -2498,6 +2498,40 @@
         <sv:value>tdsfromsalary_EDIT_CHILD</sv:value>
       </sv:property>
     </sv:node>
+    <sv:node sv:name="formsixteenedit">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>hst:sitemapitem</sv:value>
+      </sv:property>
+      <sv:property sv:name="jcr:uuid" sv:type="String">
+        <sv:value>f4393006-c2fe-480a-abac-f0aa9c8ef3de</sv:value>
+      </sv:property>
+      <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+        <sv:value>hst:pages/itreturn-ITR1</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+        <sv:value>action</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+        <sv:value>formsixteen_EDIT_CHILD</sv:value>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="formsixteendelete">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>hst:sitemapitem</sv:value>
+      </sv:property>
+      <sv:property sv:name="jcr:uuid" sv:type="String">
+        <sv:value>3353c58e-c5de-4ab5-9f6f-4cdee03487aa</sv:value>
+      </sv:property>
+      <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+        <sv:value>hst:pages/itreturn-ITR1</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+        <sv:value>action</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+        <sv:value>formsixteen_DELETE_CHILD</sv:value>
+      </sv:property>
+    </sv:node>
   </sv:node>
   <sv:node sv:name="houseincomenew">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
@@ -2584,7 +2618,25 @@
       <sv:value>tdsfromothers_NEW_CHILD</sv:value>
     </sv:property>
   </sv:node>
+  <sv:node sv:name="formsixteennew">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:sitemapitem</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>6d9016c9-2d2f-4bd1-b223-19ae70c6cf1d</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+      <sv:value>hst:pages/itreturn-ITR1</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+      <sv:value>action</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+      <sv:value>formsixteen_NEW_CHILD</sv:value>
+    </sv:property>
+  </sv:node>
 </sv:node>
+
           
             <sv:node sv:name="xmlgenerator.html">
               <sv:property sv:name="jcr:primaryType" sv:type="Name">
