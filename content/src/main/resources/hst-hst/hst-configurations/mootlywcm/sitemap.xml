@@ -2532,6 +2532,40 @@
         <sv:value>formsixteen_DELETE_CHILD</sv:value>
       </sv:property>
     </sv:node>
+    <sv:node sv:name="selfassesmenttaxdelete">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>hst:sitemapitem</sv:value>
+      </sv:property>
+      <sv:property sv:name="jcr:uuid" sv:type="String">
+        <sv:value>90ba16f5-d7f5-4c46-90ff-f1546361c4c5</sv:value>
+      </sv:property>
+      <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+        <sv:value>hst:pages/itreturn-ITR1</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+        <sv:value>action</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+        <sv:value>selfassesmenttax_DELETE_CHILD</sv:value>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="selfassesmenttaxedit">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>hst:sitemapitem</sv:value>
+      </sv:property>
+      <sv:property sv:name="jcr:uuid" sv:type="String">
+        <sv:value>b269eb6c-ce60-419d-bdf9-ead68ad3ff10</sv:value>
+      </sv:property>
+      <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+        <sv:value>hst:pages/itreturn-ITR1</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+        <sv:value>action</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+        <sv:value>tdsfromsalary_EDIT_CHILD</sv:value>
+      </sv:property>
+    </sv:node>
   </sv:node>
   <sv:node sv:name="houseincomenew">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
@@ -2635,7 +2669,25 @@
       <sv:value>formsixteen_NEW_CHILD</sv:value>
     </sv:property>
   </sv:node>
+  <sv:node sv:name="selfassesmenttaxnew">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:sitemapitem</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>d3991544-e84a-4875-9761-78e6335860e0</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+      <sv:value>hst:pages/itreturn-ITR1</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+      <sv:value>action</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+      <sv:value>selfassesmenttax_NEW_CHILD</sv:value>
+    </sv:property>
+  </sv:node>
 </sv:node>
+
 
           
             <sv:node sv:name="xmlgenerator.html">
