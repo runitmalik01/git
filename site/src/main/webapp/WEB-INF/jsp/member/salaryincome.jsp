@@ -42,7 +42,7 @@
 			<h5>
 				<small><fmt:message key="member.employe.message" /> </small>
 			</h5>
-			<form id="frmdataSalaryIncome" action="${actionUrl}" name="salaryfrm"
+			<form id="frmdataSalaryIncome" action="${actionUrl}" name="salaryincome"
 				method="post">
 				<fieldset>
 					<legend>Employment</legend>
@@ -293,7 +293,7 @@
 				<div class="row-fluid show-grid">
 					<div class="span4 offset8 decimal">
 						<a href="${scriptName}?tab=salaryincome" class="button olive">Cancel</a>&nbsp;
-								<a id="myModalHrefSalaryIncome" role="button" class="btn orange">Save</a>
+								<a id="myModalHrefSlryIncome" role="button" class="btn orange">Save</a>
 					</div>
 					</div>
 			</form>
@@ -344,15 +344,7 @@
 		</c:otherwise>
 	</c:choose>
 </div>
-<script>
-	function fill() {
-		var A = document.getElementById("Gross_salary").value - 0;
-		var B = document.getElementById("Allowance").value - 0;
-		var C = document.getElementById("Perquisite").value - 0;
-		var D = document.getElementById("profit").value - 0;
-		document.getElementById("Taxable_earning").value = (A + B + C + D);
-	}
-</script>
 
-
-<res:client-validation formId="frmdataSalaryIncome" screenConfigurationDocumentName="salaryincome" formSubmitButtonId="myModalHrefSalaryIncome"/>
+<res:client-validation formId="frmdataSalaryIncome"
+	screenConfigurationDocumentName="salaryincome"
+	formSubmitButtonId="myModalHrefSlryIncome" />
