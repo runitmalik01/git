@@ -42,7 +42,7 @@
 			<h5>
 				<small><fmt:message key="member.employe.message" /> </small>
 			</h5>
-			<form id="frmdata" action="${actionUrl}" name="salaryfrm"
+			<form id="frmdataSalaryIncome" action="${actionUrl}" name="salaryfrm"
 				method="post">
 				<fieldset>
 					<legend>Employment</legend>
@@ -293,7 +293,7 @@
 				<div class="row-fluid show-grid">
 					<div class="span4 offset8 decimal">
 						<a href="${scriptName}?tab=salaryincome" class="button olive">Cancel</a>&nbsp;
-								<a id="myModalHref" role="button" class="btn orange">Save</a>
+								<a id="myModalHrefSalaryIncome" role="button" class="btn orange">Save</a>
 					</div>
 					</div>
 			</form>
@@ -355,4 +355,4 @@
 </script>
 
 
-<res:client-validation formId="frmdata" screenConfigurationDocumentName="salaryincome" formSubmitButtonId="myModalHref"/>
+<res:client-validation formId="frmdataSalaryIncome" screenConfigurationDocumentName="salaryincome" formSubmitButtonId="myModalHrefSalaryIncome"/>

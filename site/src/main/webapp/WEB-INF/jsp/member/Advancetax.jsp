@@ -26,7 +26,7 @@
 <c:choose>
 	<c:when
 		test="${pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD'}">
-		<form id="frmdata" action="${actionUrl}" method="post"
+		<form id="frmdataAdvTax" action="${actionUrl}" method="post"
 			name="advancetax">
 		
 		<fieldset>
@@ -61,7 +61,7 @@
 
 					<div class="span4 offset8 decimal">
 						<a href="${scriptName}?tab=advancetax" class="button olive">Cancel</a>&nbsp;
-								<a id="myModalHref" role="button" class="btn orange">Save</a>
+								<a id="myModalHrefAdvTax" role="button" class="btn orange">Save</a>
 
 
 					</div>
@@ -151,4 +151,4 @@
 	</c:otherwise>
 </c:choose>
 
-<res:client-validation formId="frmdata" screenConfigurationDocumentName="advancetax" formSubmitButtonId="myModalHref" />
+<res:client-validation formId="frmdataAdvTax" screenConfigurationDocumentName="advancetax" formSubmitButtonId="myModalHrefAdvTax" />
