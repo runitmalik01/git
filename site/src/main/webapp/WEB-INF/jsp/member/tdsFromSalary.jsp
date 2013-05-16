@@ -14,6 +14,9 @@
 		x.value = x.value.toUpperCase();
 	}
 </script>
+<h4>
+	<fmt:message key="member.tds.from.salary" />
+</h4>
 <c:if test="${not empty formMap}">
 	<c:forEach items="${formMap.message}" var="item">
 		<div class="alert alert-error">
@@ -30,7 +33,7 @@
 			name="tdsfromsalary">
 			<fieldset>
 				<legend style="color: black">Enter Details</legend>
-			
+			<div class="row-fluid show-grid" >
 						<div class="span4">
 			            <div class="rowlabel"><label for="tan_employer"><small><fmt:message key="tds.tan.emoloyer" /></small></label></div>
 			          	<div class="rowlabel"><input id="tan_employer" name="tan_employer" type="text" maxlength="10" onkeyup="keyup()"
@@ -40,7 +43,8 @@
 			            <div class="rowlabel"><label for="name_employer"><small><fmt:message key="tds.name.employer" /></small></label></div>
 			          	<div class="rowlabel"><input id="name_employer" name="name_employer" type="text" maxlength="125"
 			          	value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.name_Employer}"/></c:if>"/></div>
-			          </div>
+			          </div></div>
+			          <div class="row-fluid show-grid" >
 			           <div class="span4">
 			            <div class="rowlabel"><label for="income_chargeable"><small><fmt:message key="tds.income.chargeable" /></small></label></div>
 			          	<div class="rowlabel"><input id="income_chargeable" name="income_chargeable" type="text" maxlength="14"
@@ -50,7 +54,7 @@
 			            <div class="rowlabel"><label for="total_taxdeducted"><small><fmt:message key="tds.total.tax.deducted" /></small></label></div>
 			          	<div class="rowlabel"><input id="total_taxdeducted" name="total_taxdeducted" type="text" maxlength="14" class=" decimal"
 			          	value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.total_TaxDeducted}"/></c:if>"/></div>
-			          </div>
+			          </div></div>
 			</fieldset>
 			<div class="row-fluid show-grid">
 					<div class="span4 offset7 decimal">
