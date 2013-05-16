@@ -94,7 +94,6 @@ public class XmlGenerator extends ITReturnComponent {
 
 		MemberPersonalInformation memberPersonalInformation = (MemberPersonalInformation) request.getAttribute(MemberPersonalInformation.class.getSimpleName().toLowerCase());
 		SalaryIncomeDocument salaryIncomeDocument = (SalaryIncomeDocument) request.getAttribute(SalaryIncomeDocument.class.getSimpleName().toLowerCase());
-		//HouseIncomeDetail houseIncomeDetail = (HouseIncomeDetail) request.getAttribute(HouseIncomeDetail.class.getSimpleName().toLowerCase());
 		HouseProperty houseProperty = (HouseProperty) request.getAttribute(HouseProperty.class.getSimpleName().toLowerCase());
 		OtherSourcesDocument otherSourcesDocument = (OtherSourcesDocument) request.getAttribute(OtherSourcesDocument.class.getSimpleName().toLowerCase());
 		AdvanceTaxDocument advanceTaxDocument = (AdvanceTaxDocument) request.getAttribute(AdvanceTaxDocument.class.getSimpleName().toLowerCase());
@@ -304,19 +303,21 @@ public class XmlGenerator extends ITReturnComponent {
 					taxPayment.setSrlNoOfChaln(advanceTaxDetail.getBigP_Serial());
 					taxPayment.setAmt(advanceTaxDetail.getBigP_Amount() );
 					taxPayments.getTaxPayment().add(taxPayment);
-					itr1.setTaxPayments(taxPayments);
+					
 				}
+			
 			}
+			
 		}
 
-
+		itr1.setTaxPayments(taxPayments);
 		//TaxExmpIntInc
 
 		//Verification
 		Declaration declaration = new Declaration();
 		declaration.setAssesseeVerName(memberPersonalInformation.getFirstName()+" "+memberPersonalInformation.getLastName());
 		declaration.setFatherName(memberPersonalInformation.getFatherName());
-		declaration.setAssesseeVerName(memberPersonalInformation.getPAN());
+		declaration.setAssesseeVerPAN(memberPersonalInformation.getPAN());
 		verification.setDeclaration(declaration);
 		verification.setPlace(memberPersonalInformation.getTownCityDistrict());	
 		try {
