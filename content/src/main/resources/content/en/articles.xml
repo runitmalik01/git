@@ -1585,4 +1585,404 @@ legal entity, e.g., A Company, A Society etc.&lt;/p&gt;
       </sv:node>
     </sv:node>
   </sv:node>
+  <sv:node sv:name="e-filing---dos--dont">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hippo:handle</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+      <sv:value>hippo:hardhandle</sv:value>
+      <sv:value>hippo:translated</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>04db8c69-6918-4d89-9744-85216a2057eb</sv:value>
+    </sv:property>
+    <sv:node sv:name="hippo:translation">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>hippo:translation</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippo:language" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="hippo:message" sv:type="String">
+        <sv:value>E-Filing - Do's &amp; Don't</sv:value>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="e-filing---dos--dont">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:simpledocument</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+        <sv:value>hippo:harddocument</sv:value>
+        <sv:value>hippotranslation:translated</sv:value>
+      </sv:property>
+      <sv:property sv:name="jcr:uuid" sv:type="String">
+        <sv:value>89bde001-8148-42f9-b075-af7c57cb9dab</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
+        <sv:value>live</sv:value>
+        <sv:value>preview</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippo:related___pathreference" sv:type="String">
+        <sv:value>articles/e-filing---dos--dont</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostd:holder" sv:type="String">
+        <sv:value>admin</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostd:state" sv:type="String">
+        <sv:value>published</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostd:stateSummary" sv:type="String">
+        <sv:value>live</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="hippostd:tags" sv:type="String">
+        <sv:value>dosanddontsofefiling</sv:value>
+        <sv:value>efilingincometax</sv:value>
+        <sv:value>errorswhileefiling</sv:value>
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
+        <sv:value>admin</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
+        <sv:value>2013-05-16T17:24:37.986+05:30</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
+        <sv:value>2013-05-16T17:33:22.233+05:30</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
+        <sv:value>admin</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
+        <sv:value>2013-05-16T17:33:25.903+05:30</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippotranslation:id" sv:type="String">
+        <sv:value>3a1cec5d-0f60-4101-8d22-5c2afa1ed55a</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippotranslation:locale" sv:type="String">
+        <sv:value>en</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:summary" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:title" sv:type="String">
+        <sv:value>E-Filing - Do's &amp; Don't</sv:value>
+      </sv:property>
+      <sv:node sv:name="hippotranslation:translations">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hippotranslation:translations</sv:value>
+        </sv:property>
+      </sv:node>
+      <sv:node sv:name="mootlywcm:description">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hippostd:html</sv:value>
+        </sv:property>
+        <sv:property sv:name="hippostd:content" sv:type="String">
+          <sv:value>&lt;html&gt;
+&lt;body&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Impact of Errors made while filing returns&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt; Returns can be classified as defective u/s 139 (9) and in some scenarios
+the return can be declared in valid / Non Est. ITD is not introducing this
+concept to cover certain types of errors in order to prevent future grievances
+&lt;/p&gt;
+
+&lt;p&gt;  &lt;strong&gt;Computation Errors &lt;/strong&gt;- In electronic filing it has been
+noticed that most of the errors are due to data errors as filed by the assessee
+This includes non filling of key schedules, wrong details etc resulting in
+rectification requests etc which delay closure of processing&lt;/p&gt;
+
+&lt;p&gt;  Inability to pay refunds to the assessee&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Key rules to be followed to ensure trouble free processing&lt;/strong&gt;
+&lt;/p&gt;
+
+&lt;p&gt;  Once E filing is done (without digital signature), ITR V needs to be sent
+in time to CPC. In case ITR V acknowledgement is not received within reasonable
+time, the assessee may call up the CPC call centre to verify status Nearly 10%
+of assessees have failed to send the ITR V to CPC after E filing.&lt;/p&gt;
+
+&lt;p&gt;  Assessee needs to fill his email address, mobile no correctly to ensure
+appropriate communication from the Income Tax Department. The use of the Tax
+practioner/CA's email address may not be appropriate&lt;/p&gt;
+
+&lt;p&gt;  The assessee should make sure the correct (latest) address, bank account,
+MICR no. is filled&lt;/p&gt;
+
+&lt;p&gt;  The assessee should verify tax credits available in Form 26AS/NSDL
+websites. Mismatches are the single largest cause of incorrect tax computation.
+Non credits may be taken up with the TDS deductor and/or the banker as soon as
+they are noticed&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt; &lt;strong&gt;Dos &amp;amp; Don't - ITR 1-7&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt; &lt;strong&gt;Part A - Personal Information Schedule&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;  &lt;strong&gt;Name&lt;/strong&gt;: Has to match the PAN database&lt;/p&gt;
+
+&lt;p&gt;  &lt;strong&gt;Date of Birth&lt;/strong&gt;: Mistakes here will result in computation
+of higher taxes in case of senior citizens&lt;/p&gt;
+
+&lt;p&gt;  &lt;strong&gt;Address&lt;/strong&gt;: House/Flat no, City, PIN Code, are mandatory
+fields. Non filling will result in refund delays&lt;/p&gt;
+
+&lt;p&gt;  &lt;strong&gt;E mail Address&lt;/strong&gt;: Needs to be filled correctly, is the
+basis of all communication from CPC. Mistake will result in non receipt of all
+intimations from CPC. Use of Auditor/Tax practitioner's ID may be avoided&lt;/p&gt;
+
+&lt;p&gt;  &lt;strong&gt;Mobile No&lt;/strong&gt;: Full Mobile No without use of +91 needs to be
+enterered. This is essential for all SMS based communication&lt;/p&gt;
+
+&lt;p&gt;  &lt;strong&gt;Sex&lt;/strong&gt;: Should match the PAN database. If PAN database is
+wrong, it results in mistakes in computation&lt;/p&gt;
+
+&lt;p&gt;  &lt;strong&gt;Status &lt;/strong&gt;: Should be correctly filled&lt;/p&gt;
+
+&lt;p&gt;  &lt;strong&gt;Residential Status &lt;/strong&gt;- the status of NOR and NRI should be
+mentioned only where applicable as they are not eligible for certain benefits
+available to resident assessee&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt; &lt;strong&gt;Part B - TI&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;  Salary amount entered in BTI should be same as in TDS Salary and final
+value in Schedule salary.&lt;/p&gt;
+
+&lt;p&gt;  CYLA or BFLA loss has to be mentioned in the appropriate rows, else loss
+will not be allowed.&lt;/p&gt;
+
+&lt;p&gt;  In STCG many users confuse between STCG under section 111A and STCG others
+and enter against one another leading doubling to income from Capital Gains.
+&lt;/p&gt;
+
+&lt;p&gt;  In case of HP loss, BTI value for Income HP should be 0 or null and final
+value in schedule HP should be a loss&lt;/p&gt;
+
+&lt;p&gt;  It is not enough if just part B TI is filled. Respective schedules also
+need to be filled for Eg Schedule HP, Sch Depreciation etc. Else the return can
+be treated as a defective return u/s 139 (9).&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt; &lt;strong&gt;Part B - TTI&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;  Relief under 89,90,91 is to be entered ONLY if applicable. The value
+entered in schedule TDS, IT and TCS has to be entered in Part B TTI also. Eg.
+Schedule IT is entered but in no amount is mentioned in this section as Advance
+Tax or SAT.&lt;/p&gt;
+
+&lt;p&gt;  The Bank account no. has to given correctly and entered even if no refund
+is due. This is to ensure that refund arising from recomputation of income by
+the ITD can be paid to the assessee. The A/c no and the name in the bank account
+has to tally.&lt;/p&gt;
+
+&lt;p&gt;  The MICR No. should be in 9 DIGITS and first 3 digits of MICR code denotes
+the place of residence as mentioned in address's PIN Code.&lt;/p&gt;
+
+&lt;p&gt;  Eg. 560056025- '560' refers to Bangalore whose PIN starts with 560 000.
+The assessees may avoid giving bank accounts where MICR starts with '0'.&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt; &lt;strong&gt;Income Schedules Salary, HP&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;  Net Salary should be entered and not Gross Salary. This will result in
+higher taxes&lt;/p&gt;
+
+&lt;p&gt;  The Salary value should tally with that entered in Schedule TDS&lt;/p&gt;
+
+&lt;p&gt;  In Schedule HP, the loss from house property has to be entered with all
+mandatory details of the property including details as to whether it is let out.
+Entering only the loss as summary makes it incomplete&lt;/p&gt;
+
+&lt;p&gt;  Co-owners of property should enter only the income pertaining to their
+share in the property. Entering the gross rental receipt and thereafter offering
+this share of income from such rental will increase total income&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Capital Gains&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;  Deemed Capital Gains arising out of Schedule deprecation should be
+considered by the assessee in schedule CG.&lt;/p&gt;
+
+&lt;p&gt;  Non filing of full value of consideration or filling only expenditure
+under various sub categories of CG leads to incorrect computation of income.
+&lt;/p&gt;
+
+&lt;p&gt;  Filling of only cost of acquisition also leads to incorrect computation.
+&lt;/p&gt;
+
+&lt;p&gt;  The quarterly breakup of capital gains in the CG schedule should be post
+set off of all losses.&lt;/p&gt;
+
+&lt;p&gt;  Filling of accurate quarterly breakup is necessary for computation of
+interest under 234C.&lt;/p&gt;
+
+&lt;p&gt;  Correct section codes should be used depending upon the type of capital
+gains income in the SI schedule.&lt;/p&gt;
+
+&lt;p&gt;  Exempt LTCG should not be entered in CG schedule as well as in BTI, it has
+to be mentioned in Schedule EI&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt; &lt;strong&gt;Schedule BP&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;  PBT should NOT BE included Deprecation value&lt;/p&gt;
+
+&lt;p&gt;  Income from speculative business included in PBT should be shown
+separately in Sl. 2 and Sl. 38 of schedule BP.&lt;/p&gt;
+
+&lt;p&gt;  Income offered under other heads other than BP included in P&amp;amp;L should
+be reduced in Sl. 3 of Schedule BP.&lt;/p&gt;
+
+&lt;p&gt;  All disallowances in Part A OI should be considered in Schedule BP.&lt;/p&gt;
+
+&lt;p&gt;  Income offered under section 44AF (Deemed Income) if included in PBT
+should be reduced in Sl. 4 of Schedule BP.&lt;/p&gt;
+
+&lt;p&gt;  Deprecation as entered In P&amp;amp;L should be shown in Sl.11 of Schedule BP
+alone and not in Sl 22 or 7 or another row in BP. The schedule DPM, DOA should
+be mandatorily filled.&lt;/p&gt;
+
+&lt;p&gt;  Assessee claiming benefit of rule 7A 7B 7C should mention appropriate code
+in nature of business schedule.&lt;/p&gt;
+
+&lt;p&gt;  PBT in P&amp;amp;L and PBT shown in sl. No.1 of Schedule BP should be same.
+&lt;/p&gt;
+
+&lt;p&gt;  Specific schedule for ESR, 10A etc should also be filled when a claim is
+made in schedule B&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt; &lt;strong&gt;SCHEDULES DPM, DOA, DCG AND DEP&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;  All the relevant values to arrive at the deprecation mentioned in Schedule
+BP is to be filled in Schedule DPM, DOA.&lt;/p&gt;
+
+&lt;p&gt;  DCG arising out of depreciation schedules should be accounted for in CG
+and taxes paid.&lt;/p&gt;
+
+&lt;p&gt;  The value of depreciation as per Schedule DEP and value mentioned in
+Schedule BP should be the same.&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt; &lt;strong&gt;Chapter VI A, MATC&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;  In case of deductions where separate schedules is also required to be
+filled, the same should be FILLED WITHOUT FAIL- Eg. 80G,80IA, 80IB, etc.
+Deductions will not be allowed If specific schedules are not filled,&lt;/p&gt;
+
+&lt;p&gt;  Entering of only total deductions alone in Schedule VIA total will not be
+result in wrong computation of deductions. Section wise (amount claimed for 80C,
+80IA, 80G etc) should be broken up and mentioned in as per the schedule&lt;/p&gt;
+
+&lt;p&gt;  To compute and avail MAT credit in MATC, sl. No. 1 to 6 should be filled
+with relevant details and the final value should be claimed in sl. No. 7 (Lower
+value of that in Sl.No. 3 or Sl. NO 6) should be specifically filled.&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt; &lt;strong&gt;Schedule CYLA&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;  Loss sought to be adjusted should be claimed against a specific income and
+also under the loss to be adjusted heading. If lottery income is offered as part
+of OS income, the value to the extent of lottery income should be excluded while
+claiming income from OS in CYLA.&lt;/p&gt;
+
+&lt;p&gt;  The respective schedules should also contain loss details for CYLA.&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt; &lt;strong&gt;Schedule CFL&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;  Date of filing of return for relevant year in CFL should be filled.&lt;/p&gt;
+
+&lt;p&gt;  Loss details should be entered under respective income sources.&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt; &lt;strong&gt;Schedule BFLA&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;  Specific differentiation in allocating the losses under BFLA should be
+made and the claim of adjustment should be made based of the relevant heads&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt; &lt;strong&gt;Schedule SI (Special Income) &amp;amp; Schedule EI (Exempt
+Income)&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;  The assessee has to verify the nature of special income and enter
+appropriate Section Code. Entering wrong section code can lead to consideration
+of the incorrectly offered income for taxation&lt;/p&gt;
+
+&lt;p&gt;  The assessee needs to bifurcate incomes taxable at special rate and normal
+rate and if there is no provision in respective schedules like CG or OS, he/she
+has to offer income chargeable at special rate- they need to be disclosed on in
+Schedule SI.&lt;/p&gt;
+
+&lt;p&gt;  The income exempt from tax shown in P&amp;amp;L or BP or BTI should also be
+filled in EI and they should tally&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt; &lt;strong&gt;Schedule TDS and TCS&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;  TDS on salary should be claimed ONLY in schedule TDS Salary (ITR1) or TDS1
+(ITR 2-4).&lt;/p&gt;
+
+&lt;p&gt;  TDS on Interest should be claimed ONLY in TDS on interest(ITR 1) or
+TDS2(2-4).&lt;/p&gt;
+
+&lt;p&gt;  Claiming of TCS claims in TDS schedules and vice versa will lead to
+mismatch translating into excess demand or lower refund The claim of TDS amount
+should be made in TDS deducted as well as TDS Claimed for the year columns in
+schedule TDS2 and TCS.&lt;/p&gt;
+
+&lt;p&gt;  TDS claims should tally with Form 26AS or NSDL database which are
+accessible very easily.&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt; &lt;strong&gt;Schedule IT&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;  Dates of deposits should be entered in DD/MM/YYYY format and not in any
+other format like MM/DD/YYYY format. This will lead to mismatches&lt;/p&gt;
+
+&lt;p&gt;  Exact amount paid in the challan should be claimed in return- rounding off
+to nearest 10 or 100 leads to mismatch.&lt;/p&gt;
+
+&lt;p&gt;  Individual payments should be separately claimed. Clubbing of multiple
+challans or entering consolidated payment will lead to mismatch.&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</sv:value>
+        </sv:property>
+      </sv:node>
+      <sv:node sv:name="mootlywcm:form">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hippo:mirror</sv:value>
+        </sv:property>
+        <sv:property sv:name="hippo:docbase" sv:type="String">
+          <sv:value>cafebabe-cafe-babe-cafe-babecafebabe</sv:value>
+        </sv:property>
+      </sv:node>
+    </sv:node>
+  </sv:node>
 </sv:node>
