@@ -62,10 +62,11 @@
 					<div class="span4 offset8 decimal">
 						<a href="${scriptName}?tab=advancetax" class="button olive">Cancel</a>&nbsp;
 								<a id="myModalHrefAdvTax" role="button" class="btn orange">Save</a>
-
+<INPUT TYPE="SUBMIT" VALUE="SAVE1">
 
 					</div>
 					</div>
+				
 		</form>
 
 	</c:when>
