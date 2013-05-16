@@ -37,11 +37,11 @@
 	<c:choose>
 		<c:when
 			test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD') || pageAction == 'NEW_CHILD'}">
+			<form id="frmdataFormSixteen" action="${actionUrl}" name="formsixteen" method="post">
 			<h3>Form 16</h3>
 			<p>Certificate under section 203 of the Income_tax Act, 1961 for
 				tax deducted at source from income chargeable under the head
 				"Salaries".</p>
-			<form id="frmdata" action="${actionUrl}" name="frm16" method="post">
 				<fieldset>
 					<legend style="color: black">Employer Details</legend>
 					<div class="row-fluid show-grid">
@@ -855,9 +855,14 @@
 							</td>
 						</tr>
 					</table>
-					<a href="${scriptName}" class="button olive">Cancel</a>&nbsp;<input
-						type="submit" value="save" style="color: orange">
+					
 				</fieldset>
+				<div class="row-fluid show-grid">
+					<div class="span4 offset8 decimal">
+						<a href="${scriptName}?tab=formsixteen" class="button olive">Cancel</a>&nbsp;
+						   <a id="myModalHrefFormSixteen" role="button" class="btn orange">Save</a>
+					</div>
+					</div>
 			</form>
 		</c:when>
 		<c:otherwise>
@@ -901,19 +906,5 @@
 	</c:choose>
 </div>
 
-<hst:element var="uiCustom" name="script">
-	<hst:attribute name="type">text/javascript</hst:attribute>
-		$(document).ready(function() {
-		$('input.numberinput').bind('keypress', function (e) {
-        return (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57) && e.which != 46) ? false : true;
-         });
-                
-				$('#hrefLogin').click(function() {
-		 			$('#frmIncomeinfo').submit();
-				});
-		});    
-</hst:element>
-<hst:headContribution element="${uiCustom}" category="jsInternal" />
-<res:client-validation formId="frmdata"
-	screenConfigurationDocumentName="formsixteen"
-	formSubmitButtonId="myModalHref" />
+
+<res:client-validation formId="frmdataFormSixteen" screenConfigurationDocumentName="formsixteen" formSubmitButtonId="myModalHrefFormSixteen" />
