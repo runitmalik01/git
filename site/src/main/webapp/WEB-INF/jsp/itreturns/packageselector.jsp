@@ -93,16 +93,16 @@
 									<c:out value="${features}" />
 								</c:forEach>
 								<br/>
-									<a href="javascript:package_detail()">Know More</a>
+								<a href='<hst:link path="/serviceprice"/>' target="_blank">Know More</a>	
 								</td>
 						</c:forEach>
 					</tr>
 				</table>
 				</div>
-		<%-- 		<div class="modal-footer">
-					<a href="javascript:package_detail()">Know More</a>
-				</div>
-			</div> --%>
+		<%--	<div class="modal-footer">
+					<a href='<hst:link path="/serviceprice"/>' target="_blank">Know More</a>
+				</div> 
+				 --%>
 			<div class="tab-pane fade" id="assistedfiling">
 				<div id="#assistedfiling">
 
@@ -262,11 +262,7 @@
 	});    
 </hst:element>
 <hst:headContribution element="${uiCustom}" category="jsInternal" />
-<script>
-function package_detail(){
-	window.location.replace("http://mootlybuilds.zapto.org:8080/site/serviceprice");	
-};
-</script>
+
 
 
 
