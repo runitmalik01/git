@@ -112,7 +112,7 @@
 			<fmt:message key="member.otherincome.message1" />
 		</legend>
 		<div class="row-fluid show-grid">
-			<div class="span3">
+			<div class="span4">
 				<div class="rowlabel">
 					<label for="Family_pension"><fmt:message
 							key="member.family.pension" /> </label>
@@ -123,7 +123,7 @@
 						class="numberinput decimal" id="a1" onchange="cal2()" />
 				</div>
 			</div>
-			<div class="span3">
+			<div class="span4">
 				<div class="rowlabel">
 					<label for="Dividends"><fmt:message key="member.dividends" />
 					</label>
@@ -145,7 +145,7 @@
 						class="numberinput" id="a3" onchange="cal2()" />
 					</td>
 				</c:if> --%>
-			<div class="span3">
+			<div class="span4">
 				<div class="rowlabel">
 					<label for="Income_rent_machine"><fmt:message
 							key="member.income.rental" /> </label>
@@ -160,7 +160,7 @@
 		</div>
 
 		<div class="row-fluid show-grid">
-			<div class="span3">
+			<div class="span4">
 				<div class="rowlabel">
 					<label for="Income_rent_machine"><fmt:message
 							key="member.income.maintain" /> </label>
@@ -194,7 +194,7 @@
 						id="a7" onchange="cal2()" maxlength="14" />
 				</div>
 			</div>
-			<div class="span3">
+			<div class="span2">
 				<div class="rowlabel">
 					<label for="TotalOther_income "><fmt:message
 							key="member.income.totalother" /> </label>
@@ -316,7 +316,7 @@
 		</div>
 		
 		<div class="row-fluid show-grid">
-			<div class="span3">
+			<div class="span4">
 				<div class="rowlabel">
 					<label for="Dividends_indian_companies"><fmt:message
 							key="member.div.indian" /> </label>
@@ -328,7 +328,7 @@
 						maxlength="14" />
 				</div>
 			</div>
-			<div class="span3">
+			<div class="span4">
 				<div class="rowlabel">
 					<label for="Other_income "><fmt:message
 							key="member.other.income" /> </label>
@@ -339,7 +339,7 @@
 						class="numberinput decimal" id="c6" onchange="cal4()" />
 				</div>
 			</div>
-			<div class="span3">
+			<div class="span4">
 				<div class="rowlabel">
 					<label for="Total_taxfree_income "><fmt:message
 							key="member.total.otherincome" /> </label>
@@ -354,7 +354,7 @@
 		</div>
 	</fieldset>
 	<div class="row-fluid show-grid">
-		<div class="span3">
+		<div class="span4">
 			<div class="rowlabel">
 				<label for="Taxable_income "><fmt:message
 						key="member.taxable.income" /> </label>
