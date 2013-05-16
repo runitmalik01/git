@@ -51,7 +51,7 @@
 			test="${pageAction == 'NEW_CHILD' || pageAction == 'EDIT_CHILD'}">
 
 			<h4>Property Income</h4>
-			<form id="frmdata" action="${actionUrl}" method="post"
+			<form id="frmdataHouseIncome" action="${actionUrl}" method="post"
 				name="housefrm">
 				<fieldset>
 					<legend>Property Details</legend>
@@ -461,7 +461,7 @@
 				<div class="row-fluid show-grid">
 					<div class="span4 offset8 decimal">
 						<a href="${scriptName}?tab=houseincome" class="button olive">Cancel</a>&nbsp;
-								<a id="myModalHref" role="button" class="btn orange">Save</a>
+								<a id="myModalHrefHouseIncome" role="button" class="btn orange">Save</a>
 
 					</div>
 				</div>
@@ -510,6 +510,6 @@
 	</c:choose>
 </div>
 
-<res:client-validation formId="frmdata"
-	screenConfigurationDocumentName="houseincome"
-	formSubmitButtonId="myModalHref" />
+<res:client-validation formId="frmdataHouseIncome"
+	screenConfigurationDocumentName="tdsfromsalary"
+	formSubmitButtonId="myModalHrefHouseIncome" />
