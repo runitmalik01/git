@@ -26,7 +26,7 @@
 		test="${pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD'}">
 
 
-		<form id="frmdata" action="${actionUrl}" method="post"
+		<form id="frmdataTdsOther" action="${actionUrl}" method="post"
 			name="tdsfromothers">
 
 
@@ -127,7 +127,7 @@
 			<div class="row-fluid show-grid">
 				<div class="span4 offset8 decimal">
 					<a href="${scriptName}?tab=tdsfromothers" class="button olive">Cancel</a>&nbsp; <a
-						href="javascript:void(0)" id="myModalHref" class="button orange">Save</a>
+						href="javascript:void(0)" id="myModalHrefTdsOther" class="button orange">Save</a>
 
 				</div>
 			</div>
@@ -182,9 +182,7 @@
 
 	</c:otherwise>
 </c:choose>
-<res:client-validation formId="frmdata"
-	screenConfigurationDocumentName="tdsfromothers"
-	formSubmitButtonId="myModalHref" />
+
 <script type="text/javascript">
 function keyup(){
 	var x=document.getElementById("tan_deductor");
@@ -196,3 +194,8 @@ function calculate(){
 
 }
 </script>
+
+
+<res:client-validation formId="frmdataTdsOther"
+	screenConfigurationDocumentName="tdsfromothers"
+	formSubmitButtonId="myModalHrefTdsOther" />
