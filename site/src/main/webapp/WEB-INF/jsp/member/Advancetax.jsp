@@ -1,8 +1,8 @@
 <%@include file="../includes/tags.jspf"%>
-
+<%@page import="com.mootly.wcm.services.ScreenConfigService"%>
 <%@ page import="com.mootly.wcm.utils.*"%>
 <%@ page import="java.util.*"%>
-
+<%@ page import="com.mootly.wcm.beans.*"%>
 
 <c:set var="tds2">
 	<fmt:message key="member.advancetax.title" />
@@ -15,21 +15,23 @@
 	</c:forEach>
 </c:if>
 <hippo-gogreen:title title="${tds2}" />
+
 <hst:actionURL var="actionUrl" />
 <hst:link var="mainSiteMapRefId" />
-<hst:link var="mainSiteMapRefId"
-	siteMapItemRefId="${mainSiteMapItemRefId}" />
+
+	
 <h4>
 	<fmt:message key="advance.tax" />
 </h4>
 <c:choose>
 	<c:when
 		test="${pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD'}">
-		<form id="advancetax" action="${actionUrl}" method="post"
+		<form id="frmdata" action="${actionUrl}" method="post"
 			name="advancetax">
 		
 		<fieldset>
-				<legend style="color: blue">Enter Details</legend>
+				<legend style="color: black">Enter Details</legend>
+				<div class="row-fluid show-grid" >
 					<div class="span4">
 			            <div class="rowlabel"><label for="bsr_code"><small><fmt:message key="tds.bsr.code" /></small></label></div>
 			          	<div class="rowlabel"><input id="bsr_code" name="bsr_code"  type="text" maxlength="7"
@@ -40,6 +42,8 @@
 			          	<div class="rowlabel"><input id="date_credit" name="date_credit"  type="text" 
 			          	value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.dateStr}"/></c:if>"/></div>
 			          </div>
+			          </div>
+			          <div class="row-fluid show-grid" id="ul_revised_input">
 			              <div class="span4">
 			            <div class="rowlabel"><label for="Serial_challan"><small><fmt:message key="tds.serial.challan" /></small></label></div>
 			          	<div class="rowlabel"><input id="Serial_challan" name="Serial_challan"  type="text" maxlength="5"
@@ -50,11 +54,15 @@
 			          	<div class="rowlabel"><input id="amount" name="amount"  type="text" maxlength="14" class="decimal"
 			          	value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.p_Serial}"/></c:if>"/></div>
 			          </div>
+			          </div>
 			</fieldset>
 				<div class="row-fluid show-grid">
+
+
 					<div class="span4 offset8 decimal">
 						<a href="${scriptName}?tab=advancetax" class="button olive">Cancel</a>&nbsp;
 								<a id="myModalHref" role="button" class="btn orange">Save</a>
+
 
 					</div>
 					</div>
@@ -87,9 +95,9 @@
 						<td><c:out value="${advancetaxdetail.p_Amount}" />
 						</td>
 						<td><a
-							href="${redirectURLToSamePage}/<c:out value="${advancetaxdetail.canonicalUUID}"/>/advancetaxedit"><small>Edit</small>
+							href="${scriptName}/<c:out value="${advancetaxdetail.canonicalUUID}"/>/advancetaxedit"><small>Edit</small>
 						</a>&nbsp;&nbsp;<a
-							href="${redirectURLToSamePage}/<c:out value="${advancetaxdetail.canonicalUUID}"/>/advancetaxdelete"><small>Delete</small>
+							href="${scriptName}/<c:out value="${advancetaxdetail.canonicalUUID}"/>/advancetaxdelete"><small>Delete</small>
 						</a>
 						</td>
 					</tr>
@@ -143,6 +151,4 @@
 	</c:otherwise>
 </c:choose>
 
-<res:client-validation formId="advancetax"
-	screenConfigurationDocumentName="advancetax"
-	formSubmitButtonId="myModalHref" />
+<res:client-validation formId="frmdata" screenConfigurationDocumentName="advancetax" formSubmitButtonId="myModalHref" />
