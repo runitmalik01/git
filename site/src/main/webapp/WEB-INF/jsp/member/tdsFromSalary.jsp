@@ -29,7 +29,7 @@
 <c:choose>
 	<c:when
 		test="${pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD'}">
-		<form id="frmdata" action="${actionUrl}" method="post"
+		<form id="frmdatatdssalary" action="${actionUrl}" method="post"
 			name="tdsfromsalary">
 			<fieldset>
 				<legend style="color: black">Enter Details</legend>
@@ -59,10 +59,7 @@
 			<div class="row-fluid show-grid">
 					<div class="span4 offset7 decimal">
 						<a href="${scriptName}?tab=tdsfromsalary" class="button olive">Cancel</a>&nbsp; <a
-   					 href="javascript:void(0)" id="myModalHref" class="button orange">Save</a>
-   					 
-                     <res:client-validation formId="frmdata"
-	                  screenConfigurationDocumentName="tdsfromsalary" formSubmitButtonId="myModalHref" />
+   					 href="javascript:void(0)" id="myModalHreftds" class="button orange">Save</a>
 	                  
 					</div>
 				</div>
@@ -110,3 +107,8 @@
 
 	</c:otherwise>
 </c:choose>
+
+
+<res:client-validation formId="frmdatatdssalary"
+	screenConfigurationDocumentName="tdsfromsalary"
+	formSubmitButtonId="myModalHreftds" />
