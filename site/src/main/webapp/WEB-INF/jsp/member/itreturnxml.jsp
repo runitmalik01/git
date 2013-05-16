@@ -266,8 +266,7 @@
 								<span class="caret"></span>
 							</button>
 							<ul class="dropdown-menu">
-								<li><a href="<c:out value="${scriptName}"/>?tab=advancetax"><fmt:message
-											key="advance.tax.itr1" /> </a></li>
+								<li><a href="<c:out value="${scriptName}"/>?tab=selfassesmenttax"><fmt:message key="advance.selfassesmenttax.itr1" /></a></li>
 							</ul>
 						</div>
 					</td>
