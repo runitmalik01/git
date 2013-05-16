@@ -549,6 +549,7 @@
 									<option value="">Select One</option>
 									<c:forEach var="Deduction6a" items="${objHashMapDeduction6a}">
 										<option
+										<c:if test="${pageAction == 'EDIT_CHILD' && childBean.a_section == Deduction6a.value}">selected</c:if>
 											 value="${Deduction6a.key}">${Deduction6a.value}</option>
 									</c:forEach>
 								</select> </label>
@@ -574,6 +575,7 @@
 									<option value="">Select One</option>
 									<c:forEach var="Deduction6a" items="${objHashMapDeduction6a}">
 										<option
+										<c:if test="${pageAction == 'EDIT_CHILD' && childBean.b_section == Deduction6a.value}">selected</c:if>
 											 value="${Deduction6a.key}">${Deduction6a.value}</option>
 									</c:forEach>
 								</select></label>
@@ -600,6 +602,7 @@
 									<option value="">Select One</option>
 									<c:forEach var="Deduction6a" items="${objHashMapDeduction6a}">
 										<option
+										<c:if test="${pageAction == 'EDIT_CHILD' && childBean.c_section == Deduction6a.value}">selected</c:if>
 											 value="${Deduction6a.key}">${Deduction6a.value}</option>
 									</c:forEach>
 								</select>  </label>
@@ -623,6 +626,7 @@
 									<option value="">Select One</option>
 									<c:forEach var="Deduction6a" items="${objHashMapDeduction6a}">
 										<option
+										<c:if test="${pageAction == 'EDIT_CHILD' && childBean.d_section == Deduction6a.value}">selected</c:if>
 											 value="${Deduction6a.key}">${Deduction6a.value}</option>
 									</c:forEach>
 								</select>  </label>
@@ -646,6 +650,7 @@
 									<option value="">Select One</option>
 									<c:forEach var="Deduction6a" items="${objHashMapDeduction6a}">
 										<option
+										<c:if test="${pageAction == 'EDIT_CHILD' && childBean.e_section == Deduction6a.value}">selected</c:if>
 											 value="${Deduction6a.key}">${Deduction6a.value}</option>
 									</c:forEach>
 								</select> </label>
