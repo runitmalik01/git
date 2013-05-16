@@ -38,7 +38,7 @@ if (actionInSiteMap != null && actionInSiteMap.contains("_")) {
 			
 			<ul id="myTab" class="nav nav-tabs">
               <li <%if (tabName == "summary" ){%>class="active "<%}%>><a href="#incometaxsummary" data-toggle="tab" ><fmt:message key="income.tax.summary" /> </a></li>
-              <li><a href="#formsixteen" data-toggle="tab"><fmt:message key="income.form.sixteen" /></a></li>
+              <li <%if (tabName != null && tabName.equals("formsixteen")){%>class="active"<%}%>><a href="#formsixteen" data-toggle="tab"><fmt:message key="income.form.sixteen" /></a></li>
                <li  <%if (tabName != null && (tabName.equals("salaryincome")||tabName.equals("incomeothersources")||tabName.equals("houseincome"))){%>class="dropdown active"<%}%>  class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><fmt:message key="income" /> <b class="caret"></b></a>
                 <ul class="dropdown-menu">
@@ -65,7 +65,7 @@ if (actionInSiteMap != null && actionInSiteMap.contains("_")) {
 			 <div class="tab-pane fade <%if (tabName == "summary"){%>in active <%}%>" id="incometaxsummary">
             	 <hst:include ref="calculation"/>
               </div>
-              <div class="tab-pane fade" id="formsixteen" >
+              <div class="tab-pane fade <%if (tabName != null && tabName.equals("formsixteen")){%>in active<%}%>" id="formsixteen" >
            	 <hst:include ref="formsixteenITR1"/>
            	  </div> 
               <div class="tab-pane fade <%if (tabName != null && tabName.equals("salaryincome")){%>in active<%}%>" id="incomesalaries" >
