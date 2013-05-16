@@ -25,7 +25,7 @@
 	<c:when
 		test="${pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD'}">
 		<form id="frmdataSelfTax" action="${actionUrl}" method="post"
-			name="selfassesmenttax">
+			name="selfassementtax">
 
 			<fieldset>
 				<legend style="color: black">Enter Details</legend>
@@ -138,5 +138,5 @@
 
 
 <res:client-validation formId="frmdataSelfTax"
-	screenConfigurationDocumentName="selfassesmenttax"
+	screenConfigurationDocumentName="selfassementtax"
 	formSubmitButtonId="myModalHrefSelfTax" />
