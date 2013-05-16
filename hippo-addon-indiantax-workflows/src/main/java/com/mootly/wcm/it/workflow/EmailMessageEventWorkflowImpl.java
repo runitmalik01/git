@@ -69,7 +69,7 @@ public class EmailMessageEventWorkflowImpl extends WorkflowImpl implements Workf
     		try {    			
     			//EmailService.sendEmail(to,cc,bcc,subject,htmlBody,plainBody);
     			EmailTask emailTask = new EmailTask();
-    			emailTask.addMessage(emailAddress, emailAddress, "info@mootly.com", "info@mootly.com", subject, plainBody, htmlBody);
+    			emailTask.addMessage(emailAddress, emailAddress, "info@wealth4india.com", "info@wealth4india.com", subject, plainBody, htmlBody);
     			emailTask.run();
     			delivered = true;
     		}catch (Exception ex) {
