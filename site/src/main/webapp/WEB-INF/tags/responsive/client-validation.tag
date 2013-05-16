@@ -29,7 +29,9 @@
 <%@ attribute name="screenConfigurationDocumentName" type="java.lang.String" rtexprvalue="true" required="true"%>
 <%@ attribute name="formId" type="java.lang.String" rtexprvalue="true" required="true"%>
 <%@ attribute name="formSubmitButtonId" type="java.lang.String" rtexprvalue="true" required="false"%>
-
+<%@ attribute name="validationType" type="java.lang.String" description="Enter the Name of validation for 5th char like Pan:pan & Tan:tan" required="false" %>
+<%@ attribute name="fieldOneID" description="Id of Field PAN/TAN" type="java.lang.String" required="false"%>
+<%@ attribute name="fieldTwoID" description="Id of Field Last Name" type="java.lang.String" required="false"%>
 <%
 	HippoBean siteContentBaseBean = (HippoBean) request.getAttribute("siteContentBaseBean");
 	if (siteContentBaseBean != null) {
@@ -37,6 +39,7 @@
 		request.setAttribute("screenConfigDocumentJSON",screenConfigDocumentJSON);
 	}
 %>	
+<hst:componentRenderingURL var="ajaxLinkToComponent"></hst:componentRenderingURL>
 <c:if test="${not empty siteContentBaseBean && not empty screenConfigDocumentJSON}">
 	<hst:element var="uiCustom" name="script">
 		<hst:attribute name="type">text/javascript</hst:attribute>	
@@ -62,7 +65,8 @@
 						case "date":
 							fObj.datepicker({
 									changeMonth : true,
-									changeYear : true
+									changeYear : true,
+                                    showAnim: "fadeIn"
 								}).addClass("indiandate");	
 							break;
 						default:				
@@ -87,6 +91,29 @@
 						fObj.watermark(fieldConfig[fn].fieldTitle);
 					}
 				}
+				<c:if test="${not empty validationType}">
+                    $('#<c:out value="${fieldOneID}"/>,#<c:out value="${fieldTwoID}"/>').blur(function(){
+                        var ConvertFormToJSON=function(){
+						     var array = jQuery('form').serializeArray();
+						     var json = {};
+						     jQuery.each(array, function(){
+						     if(this.name.match('<c:out value="${fieldOneID}"/>')||this.name.match('<c:out value="${fieldTwoID}"/>'))
+							 json[this.name] = this.value || '';
+							 });
+						     return json;
+						     };
+                       var reqFromJson=JSON.stringify(ConvertFormToJSON());
+				          $.ajax({
+						         url:'<c:out value="${ajaxLinkToComponent}"/>?validation=<c:out value="${validationType}"/>',
+						         data: 'data='+reqFromJson,
+						         datatype:'text',
+						         success: function(data,textStatus,jqXhr) {
+						                   if(jqXhr.getResponseHeader("myHeader").match('error'))
+							                   $('#error').show();
+							              else $('#error').hide();
+					              }
+					          });	
+					   });</c:if>
 				$('#<c:out value="${formId}"/> input').keydown(function(e) {
 				    if (e.keyCode == 13) {
 				   		e.preventDefault();
