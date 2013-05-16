@@ -8,6 +8,7 @@
 	<h4>Prepare Income Tax Return</h4>
 	<hst:actionURL var="actionURL"/>
 	<form id="frmdata" method="post" action="${actionURL}">
+     <div id="error" class="alert alert-error" style="display:none;">PAN's Fivth Character should be Match with Last Name's First Character</div>
 		<fieldset>
 			<legend>Start preparing New Return - Fill up this form and <a id="myModalHref" class="btn orange">Click Here!! </a></legend>
 			<div class="row-fluid show-grid">
@@ -17,7 +18,7 @@
 		          </div>
 		          <div class="span3">
 		          	<div class="rowlabel"><label for="pi_last_name"><small>Last Name/Org Name</small></label></div>
-		          	<div class="rowlabel"><input id="pi_last_name" name="pi_last_name" placeholder="Last Name" type="text"/></div>
+		          	<div class="rowlabel"><input id="pi_last_name" name="pi_last_name" placeholder="Last Name" type="text" onblur="callMe()"/></div>
 		          </div>	      
 		          <div class="span3">    
 		            <div class="rowlabel"><label for="pi_return_type"><small>Return Type</small></label></div>
@@ -83,7 +84,8 @@
 				<th>Return Type</th>
 				<th>Actions</th>
 			</tr>
-			<c:forEach items="${listOfITReturnHomePageView}" var="anEntry">			
+			<c:forEach items="${listOfITReturnHomePageView}" var="anEntry">	
+                   <c:if test="${not empty anEntry.lastOrOrgName}">		
 				<tr>
 					<td class="pan">
 						<hst:link var="viewLink" path="/member/itreturn/${anEntry.financialYear.displayName}/${anEntry.itReturnType.displayName}/${anEntry.pan}/personalinformation.html"/>			
@@ -97,12 +99,12 @@
 						<hst:link var="viewLink" path="/member/itreturn/${anEntry.financialYear.displayName}/${anEntry.itReturnType.displayName}/${anEntry.pan}/itreturn-ITR1.html"/>			
 						<span style=""><a href="${viewLink}">Continue Filing</a></span>
 					</td>
-				</tr>	
+				</tr></c:if>
 			</c:forEach>	
 		</table>		
 	</c:if>
 </div>
-<res:client-validation  screenConfigurationDocumentName="itreturnhomepage" formId="frmdata"></res:client-validation>
+<res:client-validation  screenConfigurationDocumentName="itreturnhomepage" formId="frmdata" fieldOneID="pan" fieldTwoID="pi_last_name" validationType="pan"></res:client-validation>
 <hst:element var="uiCustom" name="script">
     <hst:attribute name="type">text/javascript</hst:attribute>
 	$(document).ready(function() {
