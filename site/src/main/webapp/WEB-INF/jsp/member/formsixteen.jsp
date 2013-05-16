@@ -43,7 +43,7 @@
 				"Salaries".</p>
 			<form id="frmdata" action="${actionUrl}" name="frm16" method="post">
 				<fieldset>
-					<legend style="color: green">Employer Details</legend>
+					<legend style="color: black">Employer Details</legend>
 					<div class="row-fluid show-grid">
 
 						<div class="span4">
@@ -75,7 +75,7 @@
 							<div class="rowlabel">
 								<input type="text" name="pan_deductor"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.pan_deductor}"/></c:if>"
-									placeholder="123456789">
+									placeholder="AAAAA1234A">
 							</div>
 						</div>
 						<div class="span3">
@@ -85,7 +85,7 @@
 							<div class="rowlabel">
 								<input type="text" name="tan_deductor"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.tan_deductor}"/></c:if>"
-									placeholder="123456789">
+									placeholder="AAAA12345A">
 							</div>
 						</div>
 						<div class="span3">
@@ -93,7 +93,7 @@
 								<label>PAN of Employee </label> <input type="text"
 									name="pan_employee"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.pan_employee}"/></c:if>"
-									placeholder="123456789">
+									placeholder="AAAAA1234A">
 
 							</div>
 						</div>
@@ -103,7 +103,7 @@
 
 				<fieldset>
 
-					<legend style="color: green">
+					<legend style="color: black">
 						Acknowledgement Nos. of all quarterly statements of TDS under
 						sub_section (3) of section 200 as<br /> provided by TIN
 						Facilitation Centre or NSDL web_site
@@ -213,7 +213,7 @@
 						</tr>
 					</table>
 					<fieldset>
-						<legend style="color: green"> DETAILS OF SALARY PAID AND
+						<legend style="color: black"> DETAILS OF SALARY PAID AND
 							ANY OTHER INCOME AND TAX DEDUCTED</legend>
 						<label><strong>1.</strong> </label> <label> Gross salary</label>
 						<table>
@@ -312,7 +312,7 @@
 							<div class="rowlabel"><label><strong>4.</strong> </label> <label>
 									Deductions : </label></div></div></div>
 						<div class="row-fluid show-grid"><div class="span4">
-							<div class="rowlabel"><label> (a) Entertainment allowance</label>
+							<div class="rowlabel">(a) Entertainment allowance
 							</div>
 							<div class="rowlabel"><input type="text" name="deductions_entertainment"
 								class="numberinput decimal"
@@ -320,7 +320,7 @@
 								placeholder="Rs."></div>
 							</div>
 							<div class="span4">
-							<div class="rowlabel"><label>(b) Tax on Employment</label>
+							<div class="rowlabel">(b) Tax on Employment
 							</div>
 							<div class="rowlabel"><input type="text" name="deductions_tax"
 								class="numberinput decimal"
@@ -340,7 +340,7 @@
 								placeholder="Rs."></td>
 						</tr>
 						<tr>
-							<td><label><strong>6.</strong> </label> <label>Income
+							<td><label><strong>6.</strong>Income
 									chargeable under the head."Salaries"(3-5) </label>
 							</td>
 							<td><input type="text" name="income_chargable_total"
@@ -383,7 +383,7 @@
 						</tr>
 					</table>
 					<fieldset>
-						<legend style="color: green">Deductions</legend>
+						<legend style="color: black">Deductions</legend>
 						<table>
 							<tr>
 								<td><label><strong>9.</strong> </label> <label>Deductions
@@ -405,7 +405,7 @@
 							</tr>
 							<tr>
 								<td><label>(a) section 80C </label>
-								</td><td></td><td></td>
+								</td><td></td><td></td><td></td>
 							</tr>
 							<tr>
 
@@ -476,11 +476,13 @@
 									</c:forEach>
 								</select>
 								</td>
+								
 								<td><input type="text" name="c_5"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.c_5}"/></c:if>"
 									class="numberinput decimal" placeholder="Rs."></td>
 								<td></td>
 							</tr>
+							
 							<tr>
 								<td><label>(vi)</label></td>
 								<td><input type="text" name="c_6a"
@@ -565,13 +567,17 @@
 							</td>
 						</tr>
 						<tr>
-							<td><label>(b) section <select id="b_section" name="b_section">
+							<td>
+							
+							 <label>(b) section
+									<select id="b_section" name="b_section">
 									<option value="">Select One</option>
 									<c:forEach var="Deduction6a" items="${objHashMapDeduction6a}">
 										<option
 											 value="${Deduction6a.key}">${Deduction6a.value}</option>
 									</c:forEach>
-								</select> </label>
+								</select></label>
+								
 							</td>
 							<td><input type="text" name="b_section_1"
 								class="numberinput decimal"
@@ -799,7 +805,7 @@
 						</tr>
 
 						<tr>
-							<td><label> (a) Tax Deducted at Source u/s 192(1)</label>
+							<td>(a) Tax Deducted at Source u/s 192(1)
 							</td>
 							<td></td>
 
@@ -815,8 +821,8 @@
 						</tr>
 
 						<tr>
-							<td><label>(b) Tax paid by the employer on behalf of
-									the employee u/s 192(1A) on perquisites u/s 17(2)</label>
+							<td>(b) Tax paid by the employer on behalf of
+									the employee u/s 192(1A) on perquisites u/s 17(2)
 							</td>
 							<td></td>
 
