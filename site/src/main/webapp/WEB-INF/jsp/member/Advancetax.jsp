@@ -33,7 +33,7 @@
 				<legend style="color: black">Enter Details</legend>
 				<div class="row-fluid show-grid" >
 					<div class="span4">
-			            <div class="rowlabel"><label for="bsr_code"><small><fmt:message key="tds.bsr.code" /></small></label></div>
+			            <div class="rowlabel"><label for="bsr_code"><abbr title=" Basic Statistical Return Code"><small><fmt:message key="tds.bsr.code" /></small></abbr></label></div>
 			          	<div class="rowlabel"><input id="bsr_code" name="bsr_code"  type="text" maxlength="7"
 			          	value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.p_BSR}"/></c:if>"/></div>
 			          </div>
@@ -62,8 +62,6 @@
 					<div class="span4 offset8 decimal">
 						<a href="${scriptName}?tab=advancetax" class="button olive">Cancel</a>&nbsp;
 								<a id="myModalHrefAdvTax" role="button" class="btn orange">Save</a>
-<INPUT TYPE="SUBMIT" VALUE="SAVE1">
-
 					</div>
 					</div>
 				
