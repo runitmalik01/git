@@ -24,6 +24,7 @@ if (actionInSiteMap != null && actionInSiteMap.contains("_")) {
 }
 
 	%>
+	
 <c:set var="itreturnitr1title">
       <fmt:message key="member.itreturnitr1.title" />
 </c:set>
@@ -47,13 +48,14 @@ if (actionInSiteMap != null && actionInSiteMap.contains("_")) {
              		 <li <%if (tabName != null && tabName.equals("houseincome")){%>class="active"<%}%>><a href="#incomesinglehouse" data-toggle="tab" ><fmt:message key="income.house.itr1" /></a></li>
                 </ul>
               </li>
-               <li <%if (tabName != null && (tabName.equals("advancetax")||tabName.equals("tdsfromsalary")||tabName.equals("tdsfromothers"))){%>class="dropdown active"<%}%>  class="dropdown">
+               <li <%if (tabName != null && (tabName.equals("advancetax")||tabName.equals("tdsfromsalary")||tabName.equals("tdsfromothers")||tabName.equals("selfassesmenttax"))){%>class="dropdown active"<%}%>  class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><fmt:message key="income.taxpaid.itr1" /> <b class="caret"></b></a>
                 <ul class="dropdown-menu">
                   <li <%if (tabName != null && tabName.equals("advancetax")){%>class="active"<%}%>><a href="#advancetax" data-toggle="tab"><fmt:message key="advance.tax.itr1" /></a></li>
+                  <li <%if (tabName != null && tabName.equals("selfassesmenttax")){%>class="active"<%}%> ><a href="#selfassesmenttax" data-toggle="tab"><fmt:message key="advance.selfassesmenttax.itr1" /></a></li>
                   <li <%if (tabName != null && tabName.equals("tdsfromsalary")){%>class="active"<%}%>><a href="#tdsfromsalary" data-toggle="tab"><fmt:message key="advance.tdssalary.itr1" /></a></li>
-                    <li <%if (tabName != null && tabName.equals("tdsfromothers")){%>class="active"<%}%> ><a href="#tdsfromothers" data-toggle="tab"><fmt:message key="advance.tdsothers.itr1" /></a></li>
-             		 
+                  <li <%if (tabName != null && tabName.equals("tdsfromothers")){%>class="active"<%}%> ><a href="#tdsfromothers" data-toggle="tab"><fmt:message key="advance.tdsothers.itr1" /></a></li>
+               	 
                 </ul>
               </li>
               <li <%if (tabName != null && tabName.equals("deductions")){%>class="active"<%}%>><a href="#deductions" data-toggle="tab"><fmt:message key="deductions.itr1" /></a></li>
@@ -80,6 +82,9 @@ if (actionInSiteMap != null && actionInSiteMap.contains("_")) {
               <div class="tab-pane fade <%if (tabName != null && tabName.equals("advancetax")){%>in active<%}%>  " id="advancetax">
                 <hst:include ref="advanceataxITR1"/>
                 </div>
+               <div class="tab-pane fade <%if (tabName != null && tabName.equals("selfassesmenttax")){%>in active<%}%>  " id="selfassesmenttax">
+                <hst:include ref="selfassesmenttaxITR1"/>
+                </div>
             <div class="tab-pane fade <%if (tabName != null && tabName.equals("tdsfromothers")){%>in active<%}%>  " id="tdsfromothers">
                 <hst:include ref="tdsfromothersITR1"/>
             	  </div>
@@ -90,8 +95,6 @@ if (actionInSiteMap != null && actionInSiteMap.contains("_")) {
                 <hst:include ref="deductionITR1"/>
             	  </div>
              </div>       
-               
 		</form>	
- 
 </div>
-
+               
