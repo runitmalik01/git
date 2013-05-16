@@ -22,14 +22,14 @@ public class EmailService {
 		Session session = Session.getDefaultInstance(props,
 			new javax.mail.Authenticator() {
 				protected PasswordAuthentication getPasswordAuthentication() {
-					return new PasswordAuthentication("info@mootly.com","mootly007");
+					return new PasswordAuthentication("info@wealth4india.com","mootly007");
 				}
 			});
  
 		try {
  
 			Message message = new MimeMessage(session);
-			message.setFrom(new InternetAddress("info@mootly.com"));
+			message.setFrom(new InternetAddress("info@wealth4india.com"));
 			InternetAddress[] toAddresses = new InternetAddress[to.length];
 			int ctr = 0;
 			for (String aTo:to) {
