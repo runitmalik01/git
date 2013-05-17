@@ -32,7 +32,7 @@
 				<div class="row-fluid show-grid">
 					<div class="span4">
 						<div class="rowlabel">
-							<label for="bsr_code"><abbr
+							<label for="bsr_codeself"><abbr
 								title=" Basic Statistical Return Code"><small><fmt:message
 											key="tds.bsr.code" />
 								</small>
@@ -40,19 +40,19 @@
 							</label>
 						</div>
 						<div class="rowlabel">
-							<input id="bsr_code" name="bsr_code" type="text" maxlength="7"
+							<input id="bsr_codeself" name="bsr_codeself" type="text" maxlength="7"
 								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.p_BSR}"/></c:if>" />
 						</div>
 					</div>
 					<div class="span4">
 						<div class="rowlabel">
-							<label for="date_credit"><small><fmt:message
+							<label for="date_creditself"><small><fmt:message
 										key="tds.date.credit" />
 							</small>
 							</label>
 						</div>
 						<div class="rowlabel">
-							<input id="date_credit" name="date_credit" type="text"
+							<input id="date_creditself" name="date_creditself" type="text"
 								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.dateStr}"/></c:if>" />
 						</div>
 					</div>
@@ -60,26 +60,26 @@
 				<div class="row-fluid show-grid" id="ul_revised_input">
 					<div class="span4">
 						<div class="rowlabel">
-							<label for="Serial_challan"><small><fmt:message
+							<label for="Serial_challanself"><small><fmt:message
 										key="tds.serial.challan" />
 							</small>
 							</label>
 						</div>
 						<div class="rowlabel">
-							<input id="Serial_challan" name="Serial_challan" type="text"
+							<input id="Serial_challanself" name="Serial_challanself" type="text"
 								maxlength="5"
 								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.p_Serial}"/></c:if>" />
 						</div>
 					</div>
 					<div class="span4">
 						<div class="rowlabel">
-							<label for="amount"><small><fmt:message
+							<label for="amountself"><small><fmt:message
 										key="tds.amount.selfassesment" />
 							</small>
 							</label>
 						</div>
 						<div class="rowlabel">
-							<input id="amount" name="amount" type="text" maxlength="14"
+							<input id="amountself" name="amountself" type="text" maxlength="14"
 								class="decimal"
 								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.p_Serial}"/></c:if>" />
 						</div>
