@@ -293,14 +293,14 @@ public class SalaryIncomeDetail extends HippoItem implements FormMapFiller {
 		if ( formMap.getField("Pan_employee") != null) {
 			setPan_employee(formMap.getField("Pan_employee").getValue());
 		}
-		if ( formMap.getField("Address") != null) {
-			setAddress(formMap.getField("Address").getValue());
+		if ( formMap.getField("Addressslry") != null) {
+			setAddress(formMap.getField("Addressslry").getValue());
 		}
 		if ( formMap.getField("City") != null) {
 			setCity(formMap.getField("City").getValue());
 		}
-		if ( formMap.getField("State") != null) {
-			setState(formMap.getField("State").getValue());
+		if ( formMap.getField("Stateslry") != null) {
+			setState(formMap.getField("Stateslry").getValue());
 		}
 		if ( formMap.getField("Taxable_earning").getValue().isEmpty()) {}
 		else{
@@ -308,8 +308,8 @@ public class SalaryIncomeDetail extends HippoItem implements FormMapFiller {
 			Double taxableEarning=Double.parseDouble(strEarning);
 			setTaxable_earning(taxableEarning);
 		}
-		if ( formMap.getField("Pin") != null) {
-			setPin(formMap.getField("Pin").getValue());
+		if ( formMap.getField("Pinslry") != null) {
+			setPin(formMap.getField("Pinslry").getValue());
 		}
 		if ( formMap.getField("From") != null) {
 			setFrom(formMap.getField("From").getValue());
