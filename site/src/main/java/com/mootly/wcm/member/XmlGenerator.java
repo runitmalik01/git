@@ -230,9 +230,11 @@ public class XmlGenerator extends ITReturnComponent {
 			taxesPaid.setAdvanceTax(advanceTaxDocument.getBigTotal_Amount());
 		if(tdsFromSalaryDocument!=null){	
 			bigTotalTdsSalary= new BigInteger(decimalFormat.format(tdsFromSalaryDocument.getTotal_Amount()));
+			request.setAttribute("bigTotalTdsSalary", bigTotalTdsSalary);
 		}
 		if(tdsFromothersDocument!=null){
 			bigTotalTdsOther=new BigInteger(decimalFormat.format(tdsFromothersDocument.getTotal_Amount()));
+			request.setAttribute("bigTotalTdsOther", bigTotalTdsOther);
 		}
 		BigInteger bigTotalTds=bigTotalTdsSalary.add(bigTotalTdsOther);
 		taxesPaid.setTDS(bigTotalTds);
