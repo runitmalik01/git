@@ -27,11 +27,11 @@ import com.mootly.wcm.components.ITReturnComponent;
 @PrimaryBean(primaryBeanClass=AdvanceTaxDocument.class)
 @ChildBean(childBeanClass=AdvanceTaxDetail.class)
 
-@FormFields(fieldNames={"bsr_code","date_credit","Serial_challan","amount"})
+@FormFields(fieldNames={"bsr_codeadv","date_creditadv","Serial_challanadv","amountadv"})
 
 
 public class AdvanceTax extends ITReturnComponent {
-	
+
 	private static final Logger log = LoggerFactory.getLogger(TdsFromSalary.class);
 	public void doBeforeRender(HstRequest request, HstResponse response) {
 		// TODO Auto-generated method stub
@@ -41,12 +41,13 @@ public class AdvanceTax extends ITReturnComponent {
 	@Override
 	public void doAction(HstRequest request, HstResponse response)
 			throws HstComponentException {
-		
 		// TODO Auto-generated method stub
 		super.doAction(request, response);
 		System.out.println("this is do Action of self assesment tax");
-	} }
+	} 
 	
-	
-	
+}
+
+
+
 
