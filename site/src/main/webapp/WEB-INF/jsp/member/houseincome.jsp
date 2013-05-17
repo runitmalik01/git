@@ -511,5 +511,5 @@
 </div>
 
 <res:client-validation formId="frmdataHouseIncome"
-	screenConfigurationDocumentName="tdsfromsalary"
+	screenConfigurationDocumentName="houseincome"
 	formSubmitButtonId="myModalHrefHouseIncome" />
