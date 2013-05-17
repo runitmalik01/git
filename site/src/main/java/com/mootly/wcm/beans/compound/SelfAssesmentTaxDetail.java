@@ -157,20 +157,20 @@ public class SelfAssesmentTaxDetail extends HippoItem implements FormMapFiller {
 		}
 		if (formMap == null) return;
 		
-		if ( formMap.getField("bsr_code") != null) {
-			setP_BSR(formMap.getField("bsr_code").getValue());
+		if ( formMap.getField("bsr_codeself") != null) {
+			setP_BSR(formMap.getField("bsr_codeself").getValue());
 		}
 		
-		if ( formMap.getField("Serial_challan") != null) {
-			setP_Serial(formMap.getField("Serial_challan").getValue());
+		if ( formMap.getField("Serial_challanself") != null) {
+			setP_Serial(formMap.getField("Serial_challanself").getValue());
 		}
-		if ( formMap.getField("amount") != null) {
-			String stramt=formMap.getField("amount").getValue();
+		if ( formMap.getField("amountself") != null) {
+			String stramt=formMap.getField("amountself").getValue();
 			double amt=Double.parseDouble(stramt);
 			setP_Amount(amt);
 		}
-		if ( formMap.getField("date_credit") != null) {
-			String strDate = formMap.getField("date_credit").getValue();
+		if ( formMap.getField("date_creditself") != null) {
+			String strDate = formMap.getField("date_creditself").getValue();
 			Date date = null ;
 			DateFormat formatter ; 
 			formatter = getIndianDateFormatter();
