@@ -197,28 +197,28 @@ public class TdsOthersDetail extends HippoItem implements FormMapFiller {
 		}
 		if (formMap == null) return;
 		
-		if ( formMap.getField("tan_deductor") != null) {
-			setTan_Deductor(formMap.getField("tan_deductor").getValue());
+		if ( formMap.getField("tan_deductortdsoth") != null) {
+			setTan_Deductor(formMap.getField("tan_deductortdsoth").getValue());
 		}
-		if ( formMap.getField("name_deductor") != null) {
-			setName_Deductor(formMap.getField("name_deductor").getValue());
+		if ( formMap.getField("name_deductortdsoth") != null) {
+			setName_Deductor(formMap.getField("name_deductortdsoth").getValue());
 		}
-		if ( formMap.getField("tds_certificate") != null) {
-			setTds_Certificate(formMap.getField("tds_certificate").getValue());
+		if ( formMap.getField("tds_certificatetdsoth") != null) {
+			setTds_Certificate(formMap.getField("tds_certificatetdsoth").getValue());
 		}
-		if ( formMap.getField("total_taxdeducted") != null) {
-			 String strTaxdeducted=formMap.getField("total_taxdeducted").getValue();
+		if ( formMap.getField("total_taxdeductedtdsoth") != null) {
+			 String strTaxdeducted=formMap.getField("total_taxdeductedtdsoth").getValue();
 			double TaxDeducted=Double.parseDouble(strTaxdeducted);
 			setTotal_TaxDeductor(TaxDeducted);
 		}
-		if ( formMap.getField("amount") != null) {
-			String strAmt=formMap.getField("amount").getValue();
+		if ( formMap.getField("amounttdsoth") != null) {
+			String strAmt=formMap.getField("amounttdsoth").getValue();
 			double amt=Double.parseDouble(strAmt);
 			setP_Amount(amt);
 		}
 		
-		if ( formMap.getField("financial_year") != null) {
-			setFinancial_Year(formMap.getField("financial_year").getValue());
+		if ( formMap.getField("financial_yeartdsoth") != null) {
+			setFinancial_Year(formMap.getField("financial_yeartdsoth").getValue());
 		}
 		
 		
