@@ -141,11 +141,11 @@
 					<div class="row-fluid show-grid">
 						<div class="span3">
 							<div class="rowlabel">
-								<label for="Address"><fmt:message
+								<label for="Addressslry"><fmt:message
 										key="member.address.info" /> </label>
 							</div>
 							<div class="rowlabel">
-								<input id="Address" type="text" name="Address"
+								<input id="Addressslry" type="text" name="Addressslry"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.address}"/></c:if>" />
 							</div>
 						</div>
@@ -161,11 +161,11 @@
 						</div>
 						<div class="span3">
 							<div class="rowlabel">
-								<label for="Pin"><fmt:message key="member.pin.info" />
+								<label for="Pinslry"><fmt:message key="member.pin.info" />
 								</label>
 							</div>
 							<div class="rowlabel">
-								<input id="Pin" type="text" name="Pin"
+								<input id="Pinslry" type="text" name="Pinslry"
 									maxlength="6" 
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
 						<c:out value="${childBean.pin}"/></c:if>" />
@@ -173,11 +173,11 @@
 						</div>
 						<div class="span3">
 							<div class="rowlabel">
-								<label for="State"><fmt:message
+								<label for="Stateslry"><fmt:message
 										key="member.salary.state" /> </label>
 							</div>
 							<div class="rowlabel">
-								<select id="State" name="State">
+								<select id="Stateslry" name="Stateslry">
 									<option value="">Select One</option>
 									<c:forEach var="booleanCombo" items="${objHashMapStates}">
 										<option
