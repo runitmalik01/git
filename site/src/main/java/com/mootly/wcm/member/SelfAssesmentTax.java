@@ -26,9 +26,8 @@ import com.mootly.wcm.components.ITReturnComponent;
 @PrimaryBean(primaryBeanClass=SelfAssesmetTaxDocument.class)
 @ChildBean(childBeanClass=SelfAssesmentTaxDetail.class)
 
-@FormFields(fieldNames={"bsr_code","date_credit","Serial_challan","amount"})
-@RequiredFields(fieldNames={"bsr_code","date_credit","Serial_challan","amount"})
-@DataTypeValidationFields(fieldNames={"bsr_code","Serial_challan"},dataTypes={DataTypeValidationType.BSR,DataTypeValidationType.CHALLANNO})
+@FormFields(fieldNames={"bsr_codeself","date_creditself","Serial_challanself","amountself"})
+
 public class SelfAssesmentTax extends ITReturnComponent {
 	
 	private static final Logger log = LoggerFactory.getLogger(TdsFromSalary.class);
