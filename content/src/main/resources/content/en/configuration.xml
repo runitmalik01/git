@@ -56,8 +56,7 @@
 
     <!--salaryincome-->
 
-
-<sv:node sv:name="salaryincome" >
+<sv:node sv:name="salaryincome">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hippo:handle</sv:value>
   </sv:property>
@@ -76,7 +75,7 @@
       <sv:value>hippotranslation:translated</sv:value>
     </sv:property>
     <sv:property sv:name="jcr:uuid" sv:type="String">
-      <sv:value>220fd734-d718-4cae-b805-f30b9f9a4efe</sv:value>
+      <sv:value>67ea4599-fae5-4f5c-9aa2-c16cda44c93c</sv:value>
     </sv:property>
     <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
       <sv:value>live</sv:value>
@@ -101,13 +100,13 @@
       <sv:value>2013-04-24T08:26:03.045+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-      <sv:value>2013-05-17T12:59:23.497+05:30</sv:value>
+      <sv:value>2013-05-17T17:29:08.621+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
       <sv:value>admin</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-      <sv:value>2013-05-17T12:59:27.560+05:30</sv:value>
+      <sv:value>2013-05-17T17:29:14.982+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippotranslation:id" sv:type="String">
       <sv:value>002d8629-0c00-448c-9cd4-26ce2019854f</sv:value>
@@ -116,19 +115,19 @@
       <sv:value>en</sv:value>
     </sv:property>
     <sv:property sv:name="mootlywcm:screenHeading" sv:type="String">
-      <sv:value>Screen Income Amit</sv:value>
+      <sv:value>Screen Income</sv:value>
     </sv:property>
     <sv:property sv:name="mootlywcm:screenHelp" sv:type="String">
       <sv:value>&lt;html&gt;
 &lt;body&gt;
 
-&lt;p&gt;this is not good&lt;/p&gt;
+&lt;p&gt; &lt;/p&gt;
 
 &lt;/body&gt;
 &lt;/html&gt;</sv:value>
     </sv:property>
     <sv:property sv:name="mootlywcm:screenSubHeading" sv:type="String">
-      <sv:value>This screen will be used</sv:value>
+      <sv:value/>
     </sv:property>
     <sv:node sv:name="hippotranslation:translations">
       <sv:property sv:name="jcr:primaryType" sv:type="Name">
@@ -215,10 +214,10 @@
         <sv:value>pin</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
-        <sv:value>Pin</sv:value>
+        <sv:value>Pinslry</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
-        <sv:value>Pin</sv:value>
+        <sv:value>Pinslry</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
         <sv:value>&lt;html&gt;
@@ -308,8 +307,241 @@ serving since beginning then select first day of financial year.&lt;/p&gt;
         <sv:value/>
       </sv:property>
     </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>Name_employer</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>Name_employer</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value>Enter Employer Name</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>true</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>Name_employee</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>Name_employee</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value>Enter Employee Name</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>true</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>pan</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>Pan_employee</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>Pan_employee</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>true</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>Addressslry</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>Addressslry</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>true</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>City</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>City</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>true</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>Stateslry</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>Stateslry</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>true</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>amount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>Gross_salary</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>Gross_salary</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>true</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>amount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>Taxable_earning</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>Taxable_earning</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>true</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
   </sv:node>
 </sv:node>
+
 
 
 
@@ -2603,8 +2835,7 @@ serving since beginning then select first day of financial year.&lt;/p&gt;
   </sv:node>
 </sv:node>
 
-
-
+<!-- tdsfromothers -->
 <sv:node sv:name="tdsfromothers">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hippo:handle</sv:value>
@@ -2624,7 +2855,7 @@ serving since beginning then select first day of financial year.&lt;/p&gt;
       <sv:value>hippotranslation:translated</sv:value>
     </sv:property>
     <sv:property sv:name="jcr:uuid" sv:type="String">
-      <sv:value>3bee76af-80d6-45cc-bb91-63c9b88e3974</sv:value>
+      <sv:value>ad996340-308d-4a56-b88e-723541ff596e</sv:value>
     </sv:property>
     <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
       <sv:value>live</sv:value>
@@ -2649,13 +2880,13 @@ serving since beginning then select first day of financial year.&lt;/p&gt;
       <sv:value>2013-05-07T15:55:11.255+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-      <sv:value>2013-05-11T14:50:55.011+05:30</sv:value>
+      <sv:value>2013-05-17T15:38:40.918+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
       <sv:value>admin</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-      <sv:value>2013-05-11T14:50:58.953+05:30</sv:value>
+      <sv:value>2013-05-17T15:38:45.704+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippotranslation:id" sv:type="String">
       <sv:value>ab6f9ca3-87eb-47f5-bceb-b1436b75b92a</sv:value>
@@ -2685,10 +2916,10 @@ serving since beginning then select first day of financial year.&lt;/p&gt;
         <sv:value>tan</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
-        <sv:value>tan_deductor</sv:value>
+        <sv:value>tan_deductortdsoth</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
-        <sv:value>tan_deductor</sv:value>
+        <sv:value>tan_deductortdsoth</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
         <sv:value/>
@@ -2714,10 +2945,10 @@ serving since beginning then select first day of financial year.&lt;/p&gt;
         <sv:value/>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
-        <sv:value>name_deductor</sv:value>
+        <sv:value>name_deductortdsoth</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
-        <sv:value>name_deductor</sv:value>
+        <sv:value>name_deductortdsoth</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
         <sv:value/>
@@ -2743,10 +2974,10 @@ serving since beginning then select first day of financial year.&lt;/p&gt;
         <sv:value>tdscertificate</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
-        <sv:value>tds_certificate</sv:value>
+        <sv:value>tds_certificatetdsoth</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
-        <sv:value>tds_certificate</sv:value>
+        <sv:value>tds_certificatetdsoth</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
         <sv:value/>
@@ -2772,10 +3003,10 @@ serving since beginning then select first day of financial year.&lt;/p&gt;
         <sv:value/>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
-        <sv:value>financial_year</sv:value>
+        <sv:value>financial_yeartdsoth</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
-        <sv:value>financial_year</sv:value>
+        <sv:value>financial_yeartdsoth</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
         <sv:value/>
@@ -2801,10 +3032,10 @@ serving since beginning then select first day of financial year.&lt;/p&gt;
         <sv:value>amount</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
-        <sv:value>total_taxdeducted</sv:value>
+        <sv:value>total_taxdeductedtdsoth</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
-        <sv:value>total_taxdeducted</sv:value>
+        <sv:value>total_taxdeductedtdsoth</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
         <sv:value/>
@@ -2830,10 +3061,10 @@ serving since beginning then select first day of financial year.&lt;/p&gt;
         <sv:value/>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
-        <sv:value>amount</sv:value>
+        <sv:value>amounttdsoth</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
-        <sv:value>amount</sv:value>
+        <sv:value>amounttdsoth</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
         <sv:value/>
@@ -2855,6 +3086,7 @@ serving since beginning then select first day of financial year.&lt;/p&gt;
 </sv:node>
 
 
+<!-- advancetax -->
 <sv:node sv:name="advancetax">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hippo:handle</sv:value>
@@ -2874,7 +3106,7 @@ serving since beginning then select first day of financial year.&lt;/p&gt;
       <sv:value>hippotranslation:translated</sv:value>
     </sv:property>
     <sv:property sv:name="jcr:uuid" sv:type="String">
-      <sv:value>a7d8f5ed-7461-4da7-a10e-6c04fa8dc16b</sv:value>
+      <sv:value>ccdeb43f-7e97-457f-b9bf-24ede412f3e3</sv:value>
     </sv:property>
     <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
       <sv:value>live</sv:value>
@@ -2899,13 +3131,13 @@ serving since beginning then select first day of financial year.&lt;/p&gt;
       <sv:value>2013-05-07T11:52:08.718+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-      <sv:value>2013-05-07T12:27:47.692+05:30</sv:value>
+      <sv:value>2013-05-17T15:22:43.476+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
       <sv:value>admin</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-      <sv:value>2013-05-07T12:27:50.620+05:30</sv:value>
+      <sv:value>2013-05-17T15:22:48.124+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippotranslation:id" sv:type="String">
       <sv:value>48deddfd-fb35-4efa-97d1-75e353acf740</sv:value>
@@ -2935,10 +3167,10 @@ serving since beginning then select first day of financial year.&lt;/p&gt;
         <sv:value>bsr</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
-        <sv:value>bsr_code</sv:value>
+        <sv:value>bsr_codeadv</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
-        <sv:value>bsr_code</sv:value>
+        <sv:value>bsr_codeadv</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
         <sv:value/>
@@ -2964,10 +3196,10 @@ serving since beginning then select first day of financial year.&lt;/p&gt;
         <sv:value>indiandate</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
-        <sv:value>date_credit</sv:value>
+        <sv:value>date_creditadv</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
-        <sv:value>date_credit</sv:value>
+        <sv:value>date_creditadv</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
         <sv:value/>
@@ -2993,10 +3225,10 @@ serving since beginning then select first day of financial year.&lt;/p&gt;
         <sv:value>serial</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
-        <sv:value>Serial_challan</sv:value>
+        <sv:value>Serial_challanadv</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
-        <sv:value>Serial_challan</sv:value>
+        <sv:value>Serial_challanadv</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
         <sv:value/>
@@ -3022,10 +3254,10 @@ serving since beginning then select first day of financial year.&lt;/p&gt;
         <sv:value>amount</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
-        <sv:value>amount</sv:value>
+        <sv:value>amountadv</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
-        <sv:value>amount</sv:value>
+        <sv:value>amountadv</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
         <sv:value/>
@@ -3045,6 +3277,8 @@ serving since beginning then select first day of financial year.&lt;/p&gt;
     </sv:node>
   </sv:node>
 </sv:node>
+
+<!-- tdsfromsalary -->
 <sv:node sv:name="tdsfromsalary">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hippo:handle</sv:value>
@@ -3064,7 +3298,7 @@ serving since beginning then select first day of financial year.&lt;/p&gt;
       <sv:value>hippotranslation:translated</sv:value>
     </sv:property>
     <sv:property sv:name="jcr:uuid" sv:type="String">
-      <sv:value>4bb4b308-b779-4586-9b64-a8e27c056896</sv:value>
+      <sv:value>f70916bf-f97e-404c-864e-a1588534187c</sv:value>
     </sv:property>
     <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
       <sv:value>live</sv:value>
@@ -3089,13 +3323,13 @@ serving since beginning then select first day of financial year.&lt;/p&gt;
       <sv:value>2013-05-11T15:04:24.742+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-      <sv:value>2013-05-11T15:12:44.019+05:30</sv:value>
+      <sv:value>2013-05-17T15:34:59.543+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
       <sv:value>admin</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-      <sv:value>2013-05-11T15:12:47.257+05:30</sv:value>
+      <sv:value>2013-05-17T15:35:04.309+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippotranslation:id" sv:type="String">
       <sv:value>2a9b8c5a-a8d4-4bf2-b62a-f89fb1c168b3</sv:value>
@@ -3125,10 +3359,10 @@ serving since beginning then select first day of financial year.&lt;/p&gt;
         <sv:value>tan</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
-        <sv:value>tan_employer</sv:value>
+        <sv:value>tan_employertds</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
-        <sv:value>tan_employer</sv:value>
+        <sv:value>tan_employertds</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
         <sv:value/>
@@ -3154,10 +3388,10 @@ serving since beginning then select first day of financial year.&lt;/p&gt;
         <sv:value/>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
-        <sv:value>name_employer</sv:value>
+        <sv:value>name_employertds</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
-        <sv:value>name_employer</sv:value>
+        <sv:value>name_employertds</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
         <sv:value/>
@@ -3183,10 +3417,10 @@ serving since beginning then select first day of financial year.&lt;/p&gt;
         <sv:value>amount</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
-        <sv:value>income_chargeable</sv:value>
+        <sv:value>income_chargeabletds</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
-        <sv:value>income_chargeable</sv:value>
+        <sv:value>income_chargeabletds</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
         <sv:value/>
@@ -3212,10 +3446,10 @@ serving since beginning then select first day of financial year.&lt;/p&gt;
         <sv:value>amount</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
-        <sv:value>total_taxdeducted</sv:value>
+        <sv:value>total_taxdeductedtds</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
-        <sv:value>total_taxdeducted</sv:value>
+        <sv:value>total_taxdeductedtds</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
         <sv:value/>
@@ -3235,7 +3469,9 @@ serving since beginning then select first day of financial year.&lt;/p&gt;
     </sv:node>
   </sv:node>
 </sv:node>
-<sv:node sv:name="selfassementtax" >
+
+<!-- selfassementtax -->
+<sv:node sv:name="selfassementtax">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hippo:handle</sv:value>
   </sv:property>
@@ -3254,7 +3490,7 @@ serving since beginning then select first day of financial year.&lt;/p&gt;
       <sv:value>hippotranslation:translated</sv:value>
     </sv:property>
     <sv:property sv:name="jcr:uuid" sv:type="String">
-      <sv:value>086d161f-53d1-4791-8374-ba014d9b09ee</sv:value>
+      <sv:value>f31b9011-5788-49fb-9eca-490ad4bf80aa</sv:value>
     </sv:property>
     <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
       <sv:value>live</sv:value>
@@ -3279,13 +3515,13 @@ serving since beginning then select first day of financial year.&lt;/p&gt;
       <sv:value>2013-05-16T14:39:25.577+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-      <sv:value>2013-05-16T14:43:02.151+05:30</sv:value>
+      <sv:value>2013-05-17T15:41:41.462+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
       <sv:value>admin</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-      <sv:value>2013-05-16T14:43:06.027+05:30</sv:value>
+      <sv:value>2013-05-17T15:41:45.680+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippotranslation:id" sv:type="String">
       <sv:value>013e6f38-0c9d-4a55-8e84-937487895a89</sv:value>
@@ -3315,10 +3551,10 @@ serving since beginning then select first day of financial year.&lt;/p&gt;
         <sv:value>bsr</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
-        <sv:value>bsr_code</sv:value>
+        <sv:value>bsr_codeself</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
-        <sv:value>bsr_code</sv:value>
+        <sv:value>bsr_codeself</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
         <sv:value/>
@@ -3344,10 +3580,10 @@ serving since beginning then select first day of financial year.&lt;/p&gt;
         <sv:value>indiandate</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
-        <sv:value>date_credit</sv:value>
+        <sv:value>date_creditself</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
-        <sv:value>date_credit</sv:value>
+        <sv:value>date_creditself</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
         <sv:value/>
@@ -3373,10 +3609,10 @@ serving since beginning then select first day of financial year.&lt;/p&gt;
         <sv:value>serial</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
-        <sv:value>Serial_challan</sv:value>
+        <sv:value>Serial_challanself</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
-        <sv:value>Serial_challan</sv:value>
+        <sv:value>Serial_challanself</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
         <sv:value/>
@@ -3402,10 +3638,10 @@ serving since beginning then select first day of financial year.&lt;/p&gt;
         <sv:value>amount</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
-        <sv:value>amount</sv:value>
+        <sv:value>amountself</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
-        <sv:value>amount</sv:value>
+        <sv:value>amountself</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
         <sv:value/>
@@ -3425,6 +3661,7 @@ serving since beginning then select first day of financial year.&lt;/p&gt;
     </sv:node>
   </sv:node>
 </sv:node>
+
 
 	
 <sv:node sv:name="changepass">
