@@ -19,7 +19,6 @@
 <hippo-gogreen:title title="${salaryincometitle}" />
 <hst:actionURL var="actionUrl"></hst:actionURL>
 
-<div class="page type-page">
 	<h3 id="respond1">
 		<c:choose>
 			<c:when
@@ -42,14 +41,15 @@
 			<h5>
 				<small><fmt:message key="member.employe.message" /> </small>
 			</h5>
-			<form id="frmdataSalaryIncome" action="${actionUrl}" name="salaryincome"
+			<form id="frmdataSlryInc" action="${actionUrl}" name="salaryincome"
 				method="post">
 				<fieldset>
 					<legend>Employment</legend>
 					<div class="row-fluid show-grid">
-
-						<label for="Name_employer"><fmt:message
-								key="member.employe.category" /> </label>
+                         <div class="span4">
+                         <div class="rowlabel">
+						<label><fmt:message
+								key="member.employe.category" /> </label></div>
 						<c:if
 							test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
 							<c:choose>
@@ -64,12 +64,14 @@
 								</c:when>
 							</c:choose>
 						</c:if>
+						<div class="rowlabel">
 						<input type="radio" <c:out value="${gov}"/>
 							name="Employe_category" value="GOV" />Government <input
 							type="radio" <c:out value="${psu}"/> name="Employe_category"
 							value="PSU" />PSU <input type="radio" <c:out value="${oth}"/>
 							name="Employe_category" value="OTH" />Others
-
+                     </div>
+                     </div>
 					</div>
 				</fieldset>
 				<fieldset>
@@ -81,9 +83,8 @@
 										key="member.employe.name" /> </label>
 							</div>
 							<div class="rowlabel">
-								<input id="Name_employer" required type="text"
-									name="Name_employer" maxlength="25" class="alphaonly"
-									placeholder="Name of employer"
+								<input id="Name_employer" type="text"
+									name="Name_employer" maxlength="25"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.name_employer}"/></c:if>" />
 
 							</div>
@@ -95,9 +96,8 @@
 										key="member.employee.name" /> </label>
 							</div>
 							<div class="rowlabel">
-								<input id="Name_employee" required type="text"
-									name="Name_employee" maxlength="25" class="alphaonly"
-									placeholder="Name of employee"
+								<input id="Name_employee" type="text"
+									name="Name_employee" maxlength="25"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.name_employee}"/></c:if>" />
 							</div>
 						</div>
@@ -108,8 +108,6 @@
 							</div>
 							<div class="rowlabel">
 								<input id="Pan_employee" type="text" name="Pan_employee"
-									title="This field accept first five alphabate next four numeric then single alphabate"
-									placeholder="10 Characters"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.pan_employee}"/></c:if>" />
 							</div>
 						</div>
@@ -122,8 +120,6 @@
 							</div>
 							<div class="rowlabel">
 								<input id="Pan_employer" type="text" name="Pan_employer"
-									title="This field accept first five alphabate next four numeric then single alphabate"
-									placeholder=" 10 Characters"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.pan_employer}"/></c:if>" />
 							</div>
 						</div>
@@ -134,8 +130,6 @@
 							</div>
 							<div class="rowlabel">
 								<input id="Tan_employer" type="text" name="Tan_employer"
-									placeholder=" 10 Characters"
-									title="This field accept first four alphabate next five numeric then single alphabate"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.tan_employer}"/></c:if>">
 							</div>
 						</div>
@@ -161,7 +155,7 @@
 								</label>
 							</div>
 							<div class="rowlabel">
-								<input id="City" type="text" name="City" placeholder="City"
+								<input id="City" type="text" name="City"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.city}"/></c:if>" />
 							</div>
 						</div>
@@ -171,8 +165,8 @@
 								</label>
 							</div>
 							<div class="rowlabel">
-								<input id="Pin" type="text" class="numberinput" name="Pin"
-									maxlength="6" title="Enter Pin code of your area" placeholder="Pin"
+								<input id="Pin" type="text" name="Pin"
+									maxlength="6" 
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
 						<c:out value="${childBean.pin}"/></c:if>" />
 							</div>
@@ -187,7 +181,7 @@
 									<option value="">Select One</option>
 									<c:forEach var="booleanCombo" items="${objHashMapStates}">
 										<option
-											"<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD') && childBean.state == booleanCombo.value}">selected</c:if>" value="${booleanCombo.key}">${booleanCombo.value}</option>
+											<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD') && childBean.state == booleanCombo.value}">selected</c:if> value="${booleanCombo.key}">${booleanCombo.value}</option>
 									</c:forEach>
 								</select>
 							</div>
@@ -202,19 +196,19 @@
 					<div class="row-fluid show-grid">
 						<div class="span4">
 							<div class="rowlabel">
-								<label><fmt:message key="member.period.info1" /> </label>
+								<label for="From"><fmt:message key="member.period.info1" /> </label>
 							</div>
 							<div class="rowlabel">
-								<input id="datepicker" name="From"
+								<input id="From" name="From"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.from}"/></c:if>" />
 							</div>
 						</div>
 						<div class="span4">
 							<div class="rowlabel">
-								<label><fmt:message key="member.period.infoto" /> </label>
+								<label for="To"><fmt:message key="member.period.infoto" /> </label>
 							</div>
 							<div class="rowlabel">
-								<input id="datepicker1" name="To"
+								<input id="To" name="To"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.to}"/></c:if>" />
 							</div>
 						</div>
@@ -225,12 +219,12 @@
 					<div class="row-fluid show-grid">
 						<div class="span4">
 							<div class="rowlabel">
-								<label><fmt:message key="member.gross.salary" /> </label>
+								<label for="Gross_salary"><fmt:message key="member.gross.salary" /> </label>
 							</div>
 							<div class="rowlabel">
-								<input title="enter gross salary" name="Gross_salary"
-									maxlength="14" id="Gross_salary" onchange="fill()" id=A
-									class="numberinput decimal"
+								<input type="text" name="Gross_salary"
+									maxlength="14" id="Gross_salary"
+									class="decimal"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
 						<c:out value="${childBean.gross_salary}"/></c:if>" />
 							</div>
@@ -240,8 +234,8 @@
 								<label>Allowance Not Exempt: </label>
 							</div>
 							<div class="rowlabel">
-								<input name="Allowance" id="Allowance" maxlength="14"
-									onchange="fill()" class="numberinput decimal"
+								<input type="text" name="Allowance" id="Allowance" maxlength="14"
+								 class="decimal"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.allowance}"/></c:if>">
 							</div>
 						</div>
@@ -251,8 +245,8 @@
 								<label><fmt:message key="member.allowance.salary" /> </label>
 							</div>
 							<div class="rowlabel">
-								<input name="Allowance1" maxlength="14" value=""
-									class="numberinput decimal">
+								<input type="text" name="Allowance1" maxlength="14" value=""
+									class="decimal">
 							</div>
 						</div>
 					</div>
@@ -262,8 +256,8 @@
 								<label><fmt:message key="member.value.preq" /> </label>
 							</div>
 							<div class="rowlabel">
-								<input maxlength="14" name="Perquisite" id="Perquisite"
-									class="numberinput decimal" onchange="fill()"
+								<input type="text" maxlength="14" name="Perquisite" id="Perquisite"
+									class="decimal"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.perquisite}"/></c:if>">
 							</div>
 						</div>
@@ -273,18 +267,18 @@
 								<label><fmt:message key="member.value.profit" /> </label>
 							</div>
 							<div class="rowlabel">
-								<input maxlength="14" name="profit" id="profit"
-									class="numberinput decimal" onchange="fill()"
+								<input type="text" maxlength="14" name="profit" id="profit"
+									class="decimal"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.profit}"/></c:if>">
 							</div>
 						</div>
 						<div class="span4">
 							<div class="rowlabel">
-								<label><fmt:message key="member.value.tax" /> </label>
+								<label for="Taxable_earning"><fmt:message key="member.value.tax" /> </label>
 							</div>
 
 							<div class="rowlabel">
-								<input name="Taxable_earning" id="Taxable_earning" class="decimal"
+								<input type="text" name="Taxable_earning" id="Taxable_earning" class="decimal"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.taxable_earning}"/></c:if>" />
 							</div>
 						</div>
@@ -293,7 +287,7 @@
 				<div class="row-fluid show-grid">
 					<div class="span4 offset8 decimal">
 						<a href="${scriptName}?tab=salaryincome" class="button olive">Cancel</a>&nbsp;
-								<a id="myModalHrefSlryIncome" role="button" class="btn orange">Save</a>
+								<a id="myModalHrefSlryInc" role="button" class="btn orange">Save</a>
 					</div>
 					</div>
 			</form>
@@ -343,8 +337,7 @@
 				New</a>
 		</c:otherwise>
 	</c:choose>
-</div>
 
-<res:client-validation formId="frmdataSalaryIncome"
+<res:client-validation formId="frmdataSlryInc"
 	screenConfigurationDocumentName="salaryincome"
-	formSubmitButtonId="myModalHrefSlryIncome" />
+	formSubmitButtonId="myModalHrefSlryInc" />
