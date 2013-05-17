@@ -69,7 +69,7 @@
 
 						<div class="span3">
 							<div class="rowlabel">
-								<label>PAN of Deductor</label>
+								<label>PAN of Employer</label>
 							</div>
 
 							<div class="rowlabel">
@@ -80,7 +80,7 @@
 						</div>
 						<div class="span3">
 							<div class="rowlabel">
-								<label>TAN of Deductor</label>
+								<label>TAN of Employer</label>
 							</div>
 							<div class="rowlabel">
 								<input type="text" name="tan_deductor"
