@@ -1985,4 +1985,1383 @@ challans or entering consolidated payment will lead to mismatch.&lt;/p&gt;
       </sv:node>
     </sv:node>
   </sv:node>
+  <sv:node sv:name="what-is-lbt">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hippo:handle</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+      <sv:value>hippo:hardhandle</sv:value>
+      <sv:value>hippo:translated</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>da48c39d-a53c-4c01-8173-0c24f2e37f71</sv:value>
+    </sv:property>
+    <sv:node sv:name="what-is-lbt">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:simpledocument</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+        <sv:value>hippo:harddocument</sv:value>
+        <sv:value>hippotranslation:translated</sv:value>
+      </sv:property>
+      <sv:property sv:name="jcr:uuid" sv:type="String">
+        <sv:value>9d811408-159b-403f-a2f4-9952ce73dfb6</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
+        <sv:value>live</sv:value>
+        <sv:value>preview</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippo:related___pathreference" sv:type="String">
+        <sv:value>articles/what-is-lbt</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostd:holder" sv:type="String">
+        <sv:value>admin</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostd:state" sv:type="String">
+        <sv:value>published</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostd:stateSummary" sv:type="String">
+        <sv:value>live</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="hippostd:tags" sv:type="String">
+        <sv:value>lbt</sv:value>
+        <sv:value>localbodytax</sv:value>
+        <sv:value>lbtsignificance</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
+        <sv:value>admin</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
+        <sv:value>2013-05-16T18:02:06.719+05:30</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
+        <sv:value>2013-05-16T18:12:17.409+05:30</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
+        <sv:value>admin</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
+        <sv:value>2013-05-16T18:12:20.747+05:30</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippotranslation:id" sv:type="String">
+        <sv:value>9fdfd721-108c-4df1-b289-22d53c8d10e2</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippotranslation:locale" sv:type="String">
+        <sv:value>en</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:summary" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:title" sv:type="String">
+        <sv:value>What is LBT?</sv:value>
+      </sv:property>
+      <sv:node sv:name="hippotranslation:translations">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hippotranslation:translations</sv:value>
+        </sv:property>
+      </sv:node>
+      <sv:node sv:name="mootlywcm:description">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hippostd:html</sv:value>
+        </sv:property>
+        <sv:property sv:name="hippostd:content" sv:type="String">
+          <sv:value>&lt;html&gt;
+&lt;body&gt;
+
+&lt;p&gt;LBT (Local Body Tax) is the tax on entry of goods for use / consumption
+within areas of the local civic bodies. It is a self assessment or account based
+method of paying local tax, where the businessmen or trader himself declares his
+tax liability. Unlike in the octroi regime, trucks carrying goods will not be
+subjected to physical checking at check posts.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;How does LBT work? &lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;It works differently from the octroi system. Traders have to compile a list
+of all goods procured within the month, feed the matter into the software
+provided by the civic body to check their LBT liability. They have to make
+payment once every 40 days using online portals, cheque, demand draft or cash
+through a designated bank or counters of the civic bodies.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Significance of LBT &lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;LBT will be the main source of income for civic bodies. It contributes
+between 50-70 per cent of the actual revenues of the corporation. The Pune
+Municipal Corporation collected Rs 1314.27 crores by way of octroi for the
+financial year 2012-2013, while the Pimpri Chinchwad Municipal Corporation 
+collected Rs 1200 crores  in the last financial year.&lt;/p&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</sv:value>
+        </sv:property>
+      </sv:node>
+      <sv:node sv:name="mootlywcm:form">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hippo:mirror</sv:value>
+        </sv:property>
+        <sv:property sv:name="hippo:docbase" sv:type="String">
+          <sv:value>cafebabe-cafe-babe-cafe-babecafebabe</sv:value>
+        </sv:property>
+      </sv:node>
+    </sv:node>
+    <sv:node sv:name="hippo:translation">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>hippo:translation</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippo:language" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="hippo:message" sv:type="String">
+        <sv:value>What is LBT?</sv:value>
+      </sv:property>
+    </sv:node>
+  </sv:node>
+  <sv:node sv:name="undisclosed-income-what-it-means">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hippo:handle</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+      <sv:value>hippo:hardhandle</sv:value>
+      <sv:value>hippo:translated</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>177c0203-da00-4afe-b493-e5bacee21e52</sv:value>
+    </sv:property>
+    <sv:node sv:name="undisclosed-income-what-it-means">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:simpledocument</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+        <sv:value>hippo:harddocument</sv:value>
+        <sv:value>hippotranslation:translated</sv:value>
+      </sv:property>
+      <sv:property sv:name="jcr:uuid" sv:type="String">
+        <sv:value>54f498fd-4488-426d-9189-3f86478e369d</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
+        <sv:value>live</sv:value>
+        <sv:value>preview</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippo:related___pathreference" sv:type="String">
+        <sv:value>articles/undisclosed-income-what-it-means</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostd:holder" sv:type="String">
+        <sv:value>admin</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostd:state" sv:type="String">
+        <sv:value>published</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostd:stateSummary" sv:type="String">
+        <sv:value>live</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="hippostd:tags" sv:type="String">
+        <sv:value>undisclosedincome</sv:value>
+        <sv:value>blockassessment</sv:value>
+        <sv:value>section68</sv:value>
+        <sv:value>section69a</sv:value>
+        <sv:value>section69b</sv:value>
+        <sv:value>section69c</sv:value>
+        <sv:value>section69d</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
+        <sv:value>admin</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
+        <sv:value>2013-05-17T10:30:05.833+05:30</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
+        <sv:value>2013-05-17T10:34:35.514+05:30</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
+        <sv:value>admin</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
+        <sv:value>2013-05-17T10:34:41.442+05:30</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippotranslation:id" sv:type="String">
+        <sv:value>4c1821b4-8242-4933-9a02-a3feaa73d8f1</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippotranslation:locale" sv:type="String">
+        <sv:value>en</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:summary" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:title" sv:type="String">
+        <sv:value>Undisclosed Income-What it means?</sv:value>
+      </sv:property>
+      <sv:node sv:name="hippotranslation:translations">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hippotranslation:translations</sv:value>
+        </sv:property>
+      </sv:node>
+      <sv:node sv:name="mootlywcm:description">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hippostd:html</sv:value>
+        </sv:property>
+        <sv:property sv:name="hippostd:content" sv:type="String">
+          <sv:value>&lt;html&gt;
+&lt;body&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;‘Undisclosed’ income — What it means :&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;·         The concept of undisclosed income has been a matter of great
+deliberation and controversy. Though the definition of undisclosed income
+u/s.158B(b) is wide in the sense that it widens the scope of the term
+‘undisclosed income’, the Courts have held that the definition is restrictive in
+the sense that only ‘Undisclosed’ income can be assessed in block assessment
+proceedings.&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;·         Crucial words of S. 158B(b) defining undisclosed income are ‘income
+which has not been or would not have been disclosed for the purpose of this
+Act’, which restrict the type of income that can be treated as undisclosed
+income. Before any income can be assessed as undisclosed income, it is necessary
+that the nature of income is such that it has not been and would not have been
+disclosed for the purpose of this Act.&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;Scope of block assessment and undisclosed income&lt;/em&gt;&lt;/strong&gt; 
+&lt;/p&gt;
+
+&lt;p&gt;S. 158BA(1) provides for assessment of undisclosed income found during
+search.&lt;/p&gt;
+
+&lt;p&gt;Before any amount can be treated as undisclosed income, it has to be income
+which has been detected during the course of search. As the very purpose of
+introduction of Chapter XIV-B is assessment in search cases as evidenced by the
+heading of Chapter itself, income which has not been detected in pursuance of
+search, cannot be assessed as undisclosed income under Chapter XIV-B. Further,
+S. 158BB calls for determination of total income including undisclosed income on
+the basis of evidence found during search. Some evidence as to the particular
+item of undisclosed income must have been detected during search.
+The Assessing Officer cannot make roving enquiries and cannot make additions to
+undisclosed income by assumptions and presumptions.&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt; &lt;strong&gt;&lt;em&gt;Computation of undisclosed income :&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;·         Assuming that the Assessing Officer had jurisdiction to enquire in
+block assessment proceedings, on account of any evidence found during search
+relating to such transaction of sale of plot of land, the querist can contend
+that the Assessing Officer erred in bringing to tax as undisclosed income the
+whole amount of Rs.90 lakhs, in view of the computation machinery provided for
+determining the undisclosed income in S. 158BB.&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;·         S. 158BB provides for determination of the total income including
+undisclosed income for each of the years and thereafter aggregate the same, to
+determine the total income including undisclosed income for the entire block
+period. After this aggregation, the aggregate of income as per clauses (a) to
+(f) of S. 158BB, that can be described as disclosed or returned income, has to
+be excluded. The provisions relating to computa-tion of undisclosed income are
+mandatory and the same have to be compulsorily followed. [See &lt;em&gt;BDA
+Ltd.,&lt;/em&gt; 65 ITD 501 (Mumbai)]. The Assessing Officer while making additions
+and determining the undisclosed income, failed to consider the computation
+provisions. The querist has already disclosed the capital gains arising from the
+sale of land in the return of income. Thus while computing the undisclosed
+income, the Assessing Officer should have deducted Rs.86,68,852/-, which the
+querist has offered in his return for A.Y. 2001-02 as capital gains. Thus even
+if the Assessing Officer considered the income arising from the sale of plot as
+business income, the undisclosed income on that account will be limited to the
+extent of benefit of indexation &lt;em&gt;i.e.&lt;/em&gt;Rs.3,31,148/-.&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;In view of the facts narrated and above discus-sion, the opinion on queries
+raised is as follows :&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;·         The Assessing Officer could not have treated income from sale of
+plot as undisclosed income as the transaction was already disclosed in the
+return of income and also no evidence relating to the said transaction had been
+found during search.&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;·         Having regard to the fact that capital gains had already been
+disclosed in the return of income, the Assessing Officer could not have treated
+whole of alleged business income of Rs.90 lakhs as undisclosed income.&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;·         Provisions of S. 158BB are mandatory for computation of undisclosed
+income and the Assessing Officer was not justified in determining undisclosed
+income item-wise.&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;What constitutes Undisclosed Income?&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Certain transaction of amounts, satisfying some conditions under Income Tax
+Act, will be considered as&lt;/p&gt;
+
+&lt;p&gt;deemed incomes. Thus, such income will be included in the income of the
+assessee for income tax&lt;/p&gt;
+
+&lt;p&gt;purposes.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Section 68&lt;/strong&gt; – Unexplained Cash Credit: According to section
+68 of Income Tax Act 1961, unexplained&lt;/p&gt;
+
+&lt;p&gt;cash credit is where any sum is found credited in the books of an assessee
+(who pays taxes)&lt;/p&gt;
+
+&lt;p&gt;maintained for any previous year, and the assessee is not able to furnish any
+explanation about the&lt;/p&gt;
+
+&lt;p&gt;nature and source of such activity to the A.O. (Assessing Officer). This
+means the Identity of the&lt;/p&gt;
+
+&lt;p&gt;creditor, the capacity of the creditor to advance money and the genuineness
+of the transaction is&lt;/p&gt;
+
+&lt;p&gt;unknown/vague.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Section 69A&lt;/strong&gt; – Unexplained Money: Where, in any financial
+years, the assessee is found to be the&lt;/p&gt;
+
+&lt;p&gt;owner of any money, bullion, jewellery or other valuable article and such
+money, bullion, jewellery or&lt;/p&gt;
+
+&lt;p&gt;valuable article as is not recorded in the account, if any maintained by him
+for any source of income and&lt;/p&gt;
+
+&lt;p&gt;the assessee offers no explaining about the nature and source of the
+acquisition.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Section 69B&lt;/strong&gt; – Unexplained Investments: Where, in any
+financial year, the assessee has made an&lt;/p&gt;
+
+&lt;p&gt;investment or is found to be the owner of any bullion, jewellery, valuable
+article and other investments&lt;/p&gt;
+
+&lt;p&gt;which has not been fully disclosed in the books of account.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Section 69C&lt;/strong&gt; – Unexplained Expenditure: Where, in any
+financial year, an assessee has incurred any&lt;/p&gt;
+
+&lt;p&gt;expenditure and he/she offers no explanation about the sources of such
+expenditure or part thereof, or&lt;/p&gt;
+
+&lt;p&gt;the explanation, if any, offered is not satisfactory in the opinion of
+Assessing Officer.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Section 69D&lt;/strong&gt; – Amount Borrowed or Repaid on Hundi: Where any
+amount is borrowed on a hundi&lt;/p&gt;
+
+&lt;p&gt;from, or any amount due thereon is repaid to, any person otherwise than
+through an account payee&lt;/p&gt;
+
+&lt;p&gt;cheque drawn on a bank, the amount so borrowed or repaid shall be deemed to
+be the income of the&lt;/p&gt;
+
+&lt;p&gt;person borrowing or repaying the amount aforesaid for the previous year in
+which the amount was&lt;/p&gt;
+
+&lt;p&gt;borrowed or repaid, as the case may be:&lt;/p&gt;
+
+&lt;p&gt;Provided that, if in any case, amount borrowed on hundi has been deemed under
+the provisions of this&lt;/p&gt;
+
+&lt;p&gt;section to be the income of any person, such person shall not be liable to be
+assessed again in respect&lt;/p&gt;
+
+&lt;p&gt;of such amount under the provisions of this section on repayment of such
+amount.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Explanation&lt;/strong&gt;: For the purposes of this section, the amount
+repaid shall include the amount of interest&lt;/p&gt;
+
+&lt;p&gt;paid on the amount borrowed.&lt;/p&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</sv:value>
+        </sv:property>
+      </sv:node>
+      <sv:node sv:name="mootlywcm:form">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hippo:mirror</sv:value>
+        </sv:property>
+        <sv:property sv:name="hippo:docbase" sv:type="String">
+          <sv:value>cafebabe-cafe-babe-cafe-babecafebabe</sv:value>
+        </sv:property>
+      </sv:node>
+    </sv:node>
+    <sv:node sv:name="hippo:translation">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>hippo:translation</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippo:language" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="hippo:message" sv:type="String">
+        <sv:value>Undisclosed Income-What it means?</sv:value>
+      </sv:property>
+    </sv:node>
+  </sv:node>
+  <sv:node sv:name="tds">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hippo:handle</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+      <sv:value>hippo:hardhandle</sv:value>
+      <sv:value>hippo:translated</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>9d62b108-83bd-45a4-92ad-65d4ba6a87fc</sv:value>
+    </sv:property>
+    <sv:node sv:name="tds">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:simpledocument</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+        <sv:value>hippo:harddocument</sv:value>
+        <sv:value>hippotranslation:translated</sv:value>
+      </sv:property>
+      <sv:property sv:name="jcr:uuid" sv:type="String">
+        <sv:value>29a8693c-7639-4f74-bc07-2d4f548e4129</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
+        <sv:value>live</sv:value>
+        <sv:value>preview</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippo:related___pathreference" sv:type="String">
+        <sv:value>articles/tds</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostd:holder" sv:type="String">
+        <sv:value>admin</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostd:state" sv:type="String">
+        <sv:value>published</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostd:stateSummary" sv:type="String">
+        <sv:value>live</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="hippostd:tags" sv:type="String">
+        <sv:value>tds</sv:value>
+        <sv:value>tdscertificates</sv:value>
+        <sv:value>taxdeductedatsource</sv:value>
+        <sv:value>tdsrefundprocedure</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
+        <sv:value>admin</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
+        <sv:value>2013-05-17T10:46:43.455+05:30</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
+        <sv:value>2013-05-17T10:49:00.020+05:30</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
+        <sv:value>admin</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
+        <sv:value>2013-05-17T10:49:02.699+05:30</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippotranslation:id" sv:type="String">
+        <sv:value>1299a2d2-5d8c-44ec-90d0-5d1ad199b625</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippotranslation:locale" sv:type="String">
+        <sv:value>en</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:summary" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:title" sv:type="String">
+        <sv:value>TDS</sv:value>
+      </sv:property>
+      <sv:node sv:name="hippotranslation:translations">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hippotranslation:translations</sv:value>
+        </sv:property>
+      </sv:node>
+      <sv:node sv:name="mootlywcm:description">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hippostd:html</sv:value>
+        </sv:property>
+        <sv:property sv:name="hippostd:content" sv:type="String">
+          <sv:value>&lt;html&gt;
+&lt;body&gt;
+
+&lt;p&gt;&lt;strong&gt;TDS&lt;/strong&gt; or best known &lt;strong&gt;Tax Deducted at
+Source&lt;/strong&gt; of
+collecting &lt;a title="Income tax" href="http://en.wikipedia.org/wiki/Income_tax"&gt;income
+tax&lt;/a&gt; from the assessees
+in &lt;a title="India" href="http://en.wikipedia.org/wiki/India"&gt;India&lt;/a&gt;. This is
+governed under Indian Income Tax Act, 1961, by
+the &lt;a title="Central Board for Direct Taxes" href="http://en.wikipedia.org/wiki/Central_Board_for_Direct_Taxes"&gt;Central
+Board for Direct Taxes&lt;/a&gt;(CBDT) and is part of the Department of Revenue
+managed
+by &lt;a title="Indian Revenue Service (IRS)" href="http://en.wikipedia.org/wiki/Indian_Revenue_Service_(IRS)"&gt;Indian
+Revenue Service
+(IRS)&lt;/a&gt;, &lt;a title="Ministry of Finance" href="http://en.wikipedia.org/wiki/Ministry_of_Finance"&gt;Ministry
+of
+Finance&lt;/a&gt;, &lt;a title="Govt. of India" href="http://en.wikipedia.org/wiki/Govt._of_India"&gt;Govt.
+of India&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt; It is essentially an indirect method of collecting tax which combines the
+concepts of “pay as you earn” and “collect as it is being earned.” Its
+significance to the government lies in the fact that it prepones the collection
+of tax, ensures a regular source of revenue, provides for a greater reach and
+wider base for tax. At the same time, to the tax payer, it distributes the
+incidence of tax and provides for a simple and convenient mode of payment.&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;The concept of TDS requires that the person on whom responsibility has been
+cast, is to deduct tax at the appropriate rates, from payments of specific
+nature which are being made to a specified recipient. The deducted sum is
+required to be deposited to the credit of the Central Government. The recipient
+from whose income tax has been deducted at source, gets the credit of the amount
+deducted in his personal assessment on the basis of the certificate issued by
+the deductor.&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+&lt;h1&gt;TDS Certificates &lt;/h1&gt;
+&lt;p&gt;A tax deductor is also required to issue TDS certificate to the deductee
+within specified timed under section 203 of the I T Act. The con from the
+deductor, for the deduction and payment of the respective TDS amount to the
+bank, issued to the deductee is a TDS
+certificate.&lt;sup&gt;&lt;a href="http://en.wikipedia.org/wiki/Tax_Deducted_at_Source#cite_note-2"&gt;[2]&lt;/a&gt;&lt;/sup&gt;
+&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;The deductee should produce the details of this certificate, during
+the regular assessment of income tax, to adjust the amount of TDS against the
+Tax payable by the Deductee [assessee].&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Types of TDS
+certificates &lt;/strong&gt;[&lt;a title="Edit section: Types of TDS certificates" href="http://en.wikipedia.org/w/index.php?title=Tax_Deducted_at_Source&amp;amp;action=edit&amp;amp;section=5"&gt;edit&lt;/a&gt;]
+&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Salaries — Form 16:&lt;/strong&gt; In case of Salaries, the certificate
+should be issued in FORM 16 containing the Tax computation details and the Tax
+deducted &amp;amp; Paid details. This refers to the details submitted over Form 24Q.
+&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Non-salaries — Form 16A:&lt;/strong&gt; In case of Non-Salaries, the
+certificate should be issued in FORM 16A containing the Tax deducted &amp;amp; Paid
+details. Separate certificates should be prepared for each Section [nature of
+payment]. This refers to the details submitted over Form 26Q and 27Q.&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;TDS Certificates Form 16A for Financial Year 2011-12 For the following
+categories of deductors, it is mandatory to download Form 16A from TIN Web Site
+and issue such downloaded certificates to deductees&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;1.     Companies&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;2.     Banks&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;3.     Co-operative society engaged in banking business&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;For other deductors, it is optional to download Form 16A from TIN Web
+site.but it is recommended to download and file it,since it is simpler compared
+to manual filing. Such downloaded TDS certificate will have a unique TDS
+Certificate Number This procedure is applicable for all deductions made on or
+after 01-04-2011&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+&lt;h2&gt;Who shall deduct tax at source?&lt;/h2&gt;
+&lt;p&gt;Every person responsible for making payment of nature covered by TDS
+provisions of Income Tax Act shall be responsible to deduct tax.&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;However in case of payments made under sec. 194A, 194C, 194H, 194I and 194J
+in respect of individual and HUF, only if the turnover or professional receipt
+exceeds sum of Rs. 40 lakh or Rs. 10 lakh respectively (the limits will be Rs.60
+Lakh or Rs. 15 Lakh respectively w.e.f. 01.07.2010) in previous year, he is
+required to deduct tax at source.&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;These persons are mainly:&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;- Principal Officer of a company for TDS purpose including the employer in
+case of private employment or an employee making payment on behalf of the
+employer.&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;- DDO (Drawing &amp;amp; Disbursing Officer), In case of Govt. Office any officer
+designated as such.&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;- In the case of "interest on securities" other than payments made by or on
+behalf of the Central govt. or the State Government, it is the local authority,
+corporation or company, including the Principal Officer thereof.&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;Such person is called &lt;u&gt;Deductor&lt;/u&gt; while the person from whom the tax is
+deducted is called &lt;u&gt;Deductee&lt;/u&gt;.&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;Tax must be deducted at the time of payment in cash or cheque or credit to
+the payee's account whichever is earlier. Credit to payable account or suspense
+account is also considered to be credit to payee's account and TDS must be made
+at the time of such credit.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;What is the procedure for refund of TDS?&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;In case of excess deduction of tax at source, claim of refund of such excess
+TDS can be made by the deductor. The excess amount is refundable as per
+procedure laid down for refund of TDS.&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;The difference between the actual payment made by the deductor and the tax
+deducted at source or deductible, whichever is more will be treated as the
+excess payment made. This amount is to be first adjusted against any existing
+tax liability under any of the Direct Tax Acts. After meeting such liability,
+the balance amount is to be refunded.&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</sv:value>
+        </sv:property>
+      </sv:node>
+      <sv:node sv:name="mootlywcm:form">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hippo:mirror</sv:value>
+        </sv:property>
+        <sv:property sv:name="hippo:docbase" sv:type="String">
+          <sv:value>cafebabe-cafe-babe-cafe-babecafebabe</sv:value>
+        </sv:property>
+      </sv:node>
+    </sv:node>
+    <sv:node sv:name="hippo:translation">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>hippo:translation</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippo:language" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="hippo:message" sv:type="String">
+        <sv:value>TDS</sv:value>
+      </sv:property>
+    </sv:node>
+  </sv:node>
+  <sv:node sv:name="tax-saving-provisions">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hippo:handle</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+      <sv:value>hippo:hardhandle</sv:value>
+      <sv:value>hippo:translated</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>b0fb59b6-ed37-4f77-894e-d22028d0eb01</sv:value>
+    </sv:property>
+    <sv:node sv:name="tax-saving-provisions">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:simpledocument</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+        <sv:value>hippo:harddocument</sv:value>
+        <sv:value>hippotranslation:translated</sv:value>
+      </sv:property>
+      <sv:property sv:name="jcr:uuid" sv:type="String">
+        <sv:value>7c62a936-face-41ec-b24e-87e43e266732</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
+        <sv:value>live</sv:value>
+        <sv:value>preview</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippo:related___pathreference" sv:type="String">
+        <sv:value>articles/tax-saving-provisions</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostd:holder" sv:type="String">
+        <sv:value>admin</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostd:state" sv:type="String">
+        <sv:value>published</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostd:stateSummary" sv:type="String">
+        <sv:value>live</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="hippostd:tags" sv:type="String">
+        <sv:value>taxsavingstrategies</sv:value>
+        <sv:value>taxsavingoptions</sv:value>
+        <sv:value>howtosavetax</sv:value>
+        <sv:value>seventaxsavingavenues</sv:value>
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
+        <sv:value>admin</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
+        <sv:value>2013-05-17T11:15:15.384+05:30</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
+        <sv:value>2013-05-17T11:18:42.166+05:30</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
+        <sv:value>admin</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
+        <sv:value>2013-05-17T11:18:44.924+05:30</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippotranslation:id" sv:type="String">
+        <sv:value>de990dab-13b9-426b-88b5-84309f859a95</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippotranslation:locale" sv:type="String">
+        <sv:value>en</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:summary" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:title" sv:type="String">
+        <sv:value>Tax Saving Provisions</sv:value>
+      </sv:property>
+      <sv:node sv:name="hippotranslation:translations">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hippotranslation:translations</sv:value>
+        </sv:property>
+      </sv:node>
+      <sv:node sv:name="mootlywcm:description">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hippostd:html</sv:value>
+        </sv:property>
+        <sv:property sv:name="hippostd:content" sv:type="String">
+          <sv:value>&lt;html&gt;
+&lt;body&gt;
+
+&lt;p&gt;&lt;strong&gt;7 Tax Saving Strategies for Salaried Individuals&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;At the end of every financial year, many tax payers frantically make
+investments to minimize taxes, without adequate knowledge of the various
+available options. The Income Tax Act offers many more incentives and
+allowances, apart from the
+popular &lt;a target="_blank" href="http://www.investmentyogi.com/taxes/tax-saving-options-under-section-80c.aspx"&gt;80C&lt;/a&gt;,
+which could reduce tax liability substantially for the salaried individuals.
+Here are seven smart tips to help you save more and reduce taxes.&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt; &lt;strong&gt;1.&lt;/strong&gt; &lt;strong&gt;Salary Restructuring&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Restructuring your salary may not always be possible. But if your company
+permits, or if you are on good terms with your HR department, restructuring a
+few components could reduce your tax liability.&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Opt for food coupons instead of lunch allowances, as they are exempt from
+tax up to Rs 60,000 p.a.&lt;/li&gt;
+&lt;li&gt;Include medical allowance, transport allowance, education allowance, uniform
+expenses (if any), and telephone expenses as part of salary. Produce bills of
+actual expenses incurred for these allowances to reduce tax.&lt;/li&gt;
+&lt;li&gt;Opt for the company car instead of using your own car, to reduce high
+prerequisite taxation.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;2.&lt;/strong&gt; &lt;strong&gt;Utilizing Section 80C&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;
+&lt;a target="_blank" href="http://www.investmentyogi.com/taxes/tax-saving-options-under-section-80c.aspx"&gt;Section
+80C&lt;/a&gt; offers a maximum deduction of up to Rs. 1, 00,000. Utilize this section
+to the fullest by investing in any of the available investment options. A few of
+the options are as follows.&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Public Provident Fund&lt;/li&gt;
+&lt;li&gt;
+&lt;a target="_blank" href="http://www.investmentyogi.com/insurance/buying-life-insurance-a-guide-to-help-you-choose-the-right-plan.aspx"&gt;Life
+Insurance&lt;/a&gt; Premium&lt;/li&gt;
+&lt;li&gt;
+&lt;a target="_blank" href="http://www.investmentyogi.com/planning/national-savings-certificates-nsc.aspx"&gt;National
+Savings Certificate&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;a target="_blank" href="http://www.investmentyogi.com/taxes/best-tax-saving-mutual-funds-for-2010.aspx"&gt;Equity
+Linked Savings Scheme&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;5
+year &lt;a target="_blank" href="http://www.investmentyogi.com/investing/fixed-deposit-watch-out-for-that-penalty.aspx"&gt;fixed
+deposits&lt;/a&gt; with banks and post office.&lt;/li&gt;
+&lt;li&gt;Tuition fees paid for children’s education, up to a maximum of 2 children.
+&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;3. Options beyond 80C&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;If you have exhausted your limit of one lakh under section 80C, here are a
+few more options.&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;
+&lt;a target="_blank" href="http://www.investmentyogi.com/taxes/tax-benefits-under-section-80d-80dd-and-80ddb.aspx"&gt;Section
+80D&lt;/a&gt; – Deduction of Rs. 15,000 for medical insurance of self, spouse and
+dependent children and Rs. 20,000 for medical insurance of parents above 65
+years.&lt;/li&gt;
+&lt;li&gt;
+&lt;a target="_blank" href="http://www.investmentyogi.com/taxes/rec-tax-free-infrastructure-bonds-under-section-80ccf.aspx"&gt;Section
+80CCF&lt;/a&gt;&lt;strong&gt;-&lt;/strong&gt; Deduction of Rs 20,000, in addition to the Rs 1 lakh
+under 80C, for investments in
+notified &lt;a target="_blank" href="http://www.investmentyogi.com/taxes/rec-tax-free-infrastructure-bonds-under-section-80ccf.aspx"&gt;infrastructure
+bonds&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;
+&lt;a target="_blank" href="http://www.investmentyogi.com/taxes/tax-deduction-under-section-80g-for-donations-towards-social-causes.aspx"&gt;Section
+80G&lt;/a&gt;- Donations to specified funds or charitable institutions.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;4.&lt;/strong&gt; &lt;strong&gt;House Rent Allowance&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Are you paying rent, yet not receiving any HRA from your company? The least
+of the following could be claimed under Section 80GG.&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;25% of the total income or,&lt;/li&gt;
+&lt;li&gt;Rs 2,000 per month or,&lt;/li&gt;
+&lt;li&gt;Excess of rent paid over 10% of total income&lt;/li&gt;
+&lt;li&gt;This deduction will however not be allowed, if you, your spouse or minor
+child owns a residential accommodation in the location where you reside or
+perform office duties.&lt;/li&gt;
+&lt;li&gt;If HRA forms part of your salary, then the minimum of the following three is
+available as exemption.&lt;/li&gt;
+&lt;li&gt;The
+actual &lt;a target="_blank" href="http://www.investmentyogi.com/taxexpert/eligibility-for-hra-exemption.aspx"&gt;HRA&lt;/a&gt; received
+from your employer&lt;/li&gt;
+&lt;li&gt;The actual rent paid by you for the house, minus 10% of your salary (this
+includes basic + dearness allowance, if any)&lt;/li&gt;
+&lt;li&gt;50% of your basic salary (for a metro) or 40% of your basic salary (for
+non-metro).&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt; &lt;strong&gt;5.&lt;/strong&gt; &lt;strong&gt;Tax Saving from Home Loans&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Use your home loan efficiently to save more tax. The principal component of
+your loan, is included under Section 80c, offering a deduction up to Rs. 1,
+00,000. The interest portion offers a deduction up to Rs. 1, 50,000 separately
+under Section 24.&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt; &lt;strong&gt;6.&lt;/strong&gt; &lt;strong&gt;Leave Travel Allowance&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Use your Leave Travel Allowance for your holidays, which is available twice
+in a block of four years. In case you have been unable to claim the benefit in a
+particular 4 year block, you could now carry forward one journey to the
+succeeding block and claim it in the first calendar year of that block. Thus,
+you may be eligible for three exemptions in that block.&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt; &lt;strong&gt;7.&lt;/strong&gt; &lt;strong&gt;Tax on Bonus&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;A bonus from your employer is fully taxable in the year in which you receive
+it. However request your employer for the following.&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;If you anticipate tax rates to be reduced or slabs to be modified in the
+subsequent year, see if you could push the bonus payment to the subsequent year.
+&lt;/li&gt;
+&lt;li&gt;Produce your tax investment details well before, to prevent your employer
+from deducting tax on bonus before handing it over.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt; &lt;strong&gt;A Final Word&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Keep in mind the below points, to avoid the hassles of last minute tax
+planning.&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Give your employer details loans and tax saving investments before hand, to
+prevent any excess deduction.&lt;/li&gt;
+&lt;li&gt;Check the Form 16 received at the end of each year from your employer
+thoroughly.&lt;/li&gt;
+&lt;li&gt;It is important to start your tax planning well before
+31&lt;sup&gt;st&lt;/sup&gt; March, and to file your returns before the 31&lt;sup&gt;st&lt;/sup&gt; of
+July each year.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</sv:value>
+        </sv:property>
+      </sv:node>
+      <sv:node sv:name="mootlywcm:form">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hippo:mirror</sv:value>
+        </sv:property>
+        <sv:property sv:name="hippo:docbase" sv:type="String">
+          <sv:value>cafebabe-cafe-babe-cafe-babecafebabe</sv:value>
+        </sv:property>
+      </sv:node>
+    </sv:node>
+    <sv:node sv:name="hippo:translation">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>hippo:translation</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippo:language" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="hippo:message" sv:type="String">
+        <sv:value>Tax Saving Provisions</sv:value>
+      </sv:property>
+    </sv:node>
+  </sv:node>
+  <sv:node sv:name="how-to-file-revised-tax-return-online">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hippo:handle</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+      <sv:value>hippo:hardhandle</sv:value>
+      <sv:value>hippo:translated</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>1ecaba9c-d63b-4493-ab7a-22671f86c7b2</sv:value>
+    </sv:property>
+    <sv:node sv:name="how-to-file-revised-tax-return-online">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:simpledocument</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+        <sv:value>hippo:harddocument</sv:value>
+        <sv:value>hippotranslation:translated</sv:value>
+      </sv:property>
+      <sv:property sv:name="jcr:uuid" sv:type="String">
+        <sv:value>f1b38b86-9d76-47af-979a-0a1aebaf9e5d</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
+        <sv:value>live</sv:value>
+        <sv:value>preview</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippo:related___pathreference" sv:type="String">
+        <sv:value>articles/how-to-file-revised-tax-return-online</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostd:holder" sv:type="String">
+        <sv:value>admin</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostd:state" sv:type="String">
+        <sv:value>published</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostd:stateSummary" sv:type="String">
+        <sv:value>live</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="hippostd:tags" sv:type="String">
+        <sv:value>revisedreturn</sv:value>
+        <sv:value>revisedincometaxreturn</sv:value>
+        <sv:value>howtofilerevisedreturn</sv:value>
+        <sv:value>timetofileincometaxreturn</sv:value>
+        <sv:value>rulesofrevisedreturn</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
+        <sv:value>admin</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
+        <sv:value>2013-05-17T11:34:50.341+05:30</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
+        <sv:value>2013-05-17T11:39:56.048+05:30</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
+        <sv:value>admin</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
+        <sv:value>2013-05-17T11:39:59.615+05:30</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippotranslation:id" sv:type="String">
+        <sv:value>ed4556e8-8b66-42f6-b34e-b51b1b269a9c</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippotranslation:locale" sv:type="String">
+        <sv:value>en</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:summary" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:title" sv:type="String">
+        <sv:value>How to File Revised Tax Return Online</sv:value>
+      </sv:property>
+      <sv:node sv:name="hippotranslation:translations">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hippotranslation:translations</sv:value>
+        </sv:property>
+      </sv:node>
+      <sv:node sv:name="mootlywcm:description">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hippostd:html</sv:value>
+        </sv:property>
+        <sv:property sv:name="hippostd:content" sv:type="String">
+          <sv:value>&lt;html&gt;
+&lt;body&gt;
+
+&lt;p&gt;&lt;strong&gt;Revise Income Tax Return Filed Earlier – What you need to
+Know&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;If an assessee has filed the original or first return before the due date,
+then he may revise the original return. In case of revising the original return,
+the assessee has to choose the option of revise turn in place of original
+return. On choosing the „Revised‟ return option, assessee needs to provide the
+Original efiling acknowledgement number and date of filing the original return.
+Further, the assessee is required to select the section of return filing as
+139(5).&lt;/p&gt;
+
+&lt;p&gt; The Revised Return must be filed by the assessee before the assessment is
+made. The Income tax Act doesn’t have any limit in respect of the Number of Time
+for&lt;/p&gt;
+
+&lt;p&gt;which the return of income may be revised by the assessee. Hence a revised
+return can be done as many times.&lt;/p&gt;
+
+&lt;p&gt;However, be aware that,  if a person DELIBERATELY files A False Return he
+will be liable to be imprisoned under section 277 and the offence will not be
+condoned by filing a revised return.&lt;/p&gt;
+&lt;h2&gt;Time Period to Revise the Income Tax Return&lt;/h2&gt;
+&lt;p&gt; Section 139(5) says that the revised return can be filed before the expiry
+of one year from the end of the relevant assessment year or before the
+completion of assessment, Whichever is earlier.&lt;/p&gt;
+
+&lt;p&gt;Thus a return of Income filed for A.Y 2013-14 can be revised till 31st March
+2015 or before the completion of the assessment whichever is earlier.&lt;/p&gt;
+
+&lt;p&gt; &lt;strong&gt;Rules related to Revised Return&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Revised return can be filed for any previous year at any time before the
+expiry of 1 year from the end of the relevant assessment year or before
+completion of the assessment whichever is earlier. For this financial year
+(2010-11), you can file the revised return till March 31st, 2012&lt;/li&gt;
+&lt;li&gt;However, if the income tax department completes the assessment of your
+return earlier, then a revised return cannot be filed.&lt;/li&gt;
+&lt;li&gt;Revised return can be filed only if the original return was filed before due
+date. Thus if a return is filed after a due date then it cannot be revised&lt;/li&gt;
+&lt;li&gt;A loss return filed within time can also be revised and in such case loss as
+per the revised is carried forward&lt;/li&gt;
+&lt;li&gt;One should have acknowledgement number and date of filing the original
+return in order to file a revised return&lt;/li&gt;
+&lt;li&gt;Return filed in response to the notice u/s 148 can also be revised. It
+should be noted that notice u/s 148 is issued in respect of the escaped income
+in the respective assessment year&lt;/li&gt;
+&lt;li&gt;In case of concealment of income and furnishing of inaccurate information in
+income tax return an individual will be penalized.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;How to file revised return?&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;You can either use online or physical mode of return filing. But if you
+filed original return online then you have to file online mode only.&lt;/li&gt;
+&lt;li&gt;Open the excel file where you originally filed return.&lt;/li&gt;
+&lt;li&gt;Enable the macros.&lt;/li&gt;
+&lt;li&gt;Mentioned as revised return and select the Sec 139(5) instead of 139(1).
+&lt;/li&gt;
+&lt;li&gt;Do the necessary changes to your return.&lt;/li&gt;
+&lt;li&gt;Fill acknowledgement number and date of original return.&lt;/li&gt;
+&lt;li&gt;Click on compute tax, generate XML file by validating each sheet.&lt;/li&gt;
+&lt;li&gt;Upload the file to Income Tax e-filing site.&lt;/li&gt;
+&lt;li&gt;Download the revised ITR and sign it.&lt;/li&gt;
+&lt;li&gt;Send the original and revised ITR sheets to CPC Bangalore.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</sv:value>
+        </sv:property>
+      </sv:node>
+      <sv:node sv:name="mootlywcm:form">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hippo:mirror</sv:value>
+        </sv:property>
+        <sv:property sv:name="hippo:docbase" sv:type="String">
+          <sv:value>cafebabe-cafe-babe-cafe-babecafebabe</sv:value>
+        </sv:property>
+      </sv:node>
+    </sv:node>
+    <sv:node sv:name="hippo:translation">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>hippo:translation</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippo:language" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="hippo:message" sv:type="String">
+        <sv:value>How to File Revised Tax Return Online</sv:value>
+      </sv:property>
+    </sv:node>
+  </sv:node>
+  <sv:node sv:name="what-are-relief-under-section-899091-of-income-tax-rules">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hippo:handle</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+      <sv:value>hippo:hardhandle</sv:value>
+      <sv:value>hippo:translated</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>a3a0e869-4ae8-43be-b043-514e8f1a2ced</sv:value>
+    </sv:property>
+    <sv:node sv:name="what-are-relief-under-section-899091-of-income-tax-rules">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:simpledocument</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+        <sv:value>hippo:harddocument</sv:value>
+        <sv:value>hippotranslation:translated</sv:value>
+      </sv:property>
+      <sv:property sv:name="jcr:uuid" sv:type="String">
+        <sv:value>12a3e996-2157-428f-8653-16c28d04061e</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
+        <sv:value>live</sv:value>
+        <sv:value>preview</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippo:related___pathreference" sv:type="String">
+        <sv:value>articles/what-are-relief-under-section-899091-of-income-tax-rules</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostd:holder" sv:type="String">
+        <sv:value>admin</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostd:state" sv:type="String">
+        <sv:value>published</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostd:stateSummary" sv:type="String">
+        <sv:value>live</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="hippostd:tags" sv:type="String">
+        <sv:value>rebateu/s89</sv:value>
+        <sv:value>rebateu/s90</sv:value>
+        <sv:value>rebateu/s91</sv:value>
+        <sv:value>reliefinincometax</sv:value>
+        <sv:value>taxrelief</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
+        <sv:value>admin</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
+        <sv:value>2013-05-17T12:00:35.221+05:30</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
+        <sv:value>2013-05-17T12:06:35.346+05:30</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
+        <sv:value>admin</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
+        <sv:value>2013-05-17T12:06:38.860+05:30</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippotranslation:id" sv:type="String">
+        <sv:value>c96d3359-0c39-428e-88e5-7469e270d2ed</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippotranslation:locale" sv:type="String">
+        <sv:value>en</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:summary" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:title" sv:type="String">
+        <sv:value>What are relief under section 89,90,91 of Income Tax rules? ?</sv:value>
+      </sv:property>
+      <sv:node sv:name="hippotranslation:translations">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hippotranslation:translations</sv:value>
+        </sv:property>
+      </sv:node>
+      <sv:node sv:name="mootlywcm:description">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hippostd:html</sv:value>
+        </sv:property>
+        <sv:property sv:name="hippostd:content" sv:type="String">
+          <sv:value>&lt;html&gt;
+&lt;body&gt;
+
+&lt;p&gt;&lt;strong&gt;Relief U/S 89 Paid&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt; Where an assessee is in receipt of a sum in the nature of salary, being paid
+in arrears or in advance or is in receipt, in any one financial year, of salary
+for more than twelve months or a payment which under the provisions of clause
+(3) of section 17 is a profit in lieu of salary, or is in receipt of a sum in
+the nature of family pension as defined in the Explanation to clause (iia) of
+section 57, being paid in arrears, due to which his total income is assessed at
+a rate higher than that at which it would otherwise have been assessed, the
+Assessing Officer shall, on an application made to him in this behalf, grant
+such relief as may be prescribed&lt;/p&gt;
+
+&lt;p&gt;The following proviso shall be inserted in section 89 by the Finance (No. 2)
+Act, 2009, w.e.f. 1-4-2010 : &lt;br/&gt;
+Provided that no such relief shall be granted in respect of any amount received
+or receivable by an assessee on his voluntary retirement or termination of his
+service, in accordance with any scheme or schemes of voluntary retirement or in
+the case of a public sector company referred to in sub-clause (i) of clause
+(10C) of section 10, a scheme of voluntary separation, if an exemption in
+respect of any amount received or receivable on such voluntary retirement or
+termination of his service or voluntary separation has been claimed by the
+assessee under clause (10C) of section 10 in respect of such, or any other,
+assessment year.&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Relief U/S 91. COUNTRIES WITH WHICH NO AGREEMENT EXISTS.
+Paid&lt;/strong&gt; &lt;/p&gt;
+
+&lt;p&gt;(1) If any person who is resident in India in any previous year proves that,
+in respect of his income which accrued or arose during that previous year
+outside India (and which is not deemed to accrue or arise in India), he has paid
+in any country with which there is no agreement under section 90 for the relief
+or avoidance of double taxation, income-tax, by deduction or otherwise, under
+the law in force in that country, he shall be entitled to the deduction from the
+Indian income-tax payable by him of a sum calculated on such doubly taxed income
+at the Indian rate of tax or the rate of tax of the said country, whichever is
+the lower, or at the Indian rate of tax if both the rates are equal. &lt;br/&gt;
+(2) If any person who is resident in India in any previous year proves that in
+respect of his income which accrued or arose to him during that previous year in
+Pakistan he has paid in that country, by deduction or otherwise, tax payable to
+the Government under any law for the time being in force in that country
+relating to taxation of agricultural income, he shall be entitled to a deduction
+from the Indian income-tax payable by him - (a) Of the amount of the tax paid in
+Pakistan under any law aforesaid on such income which is liable to tax under
+this Act also; or &lt;br/&gt;
+(b) Of a sum calculated on that income at the Indian rate of tax; whichever is
+less.&lt;/p&gt;
+
+&lt;p&gt;(3) If any non-resident person is assessed on his share in the income of a
+registered firm assessed as resident in India in any previous year and such
+share includes any income accruing or arising outside India during that previous
+year (and which is not deemed to accrue or arise in India) in a country with
+which there is no agreement under section 90 for the relief or avoidance of
+double taxation and he proves that he has paid income-tax by deduction or
+otherwise under the law in force in that country in respect of the income so
+included he shall be entitled to a deduction from the Indian income-tax payable
+by him of a sum calculated on such doubly taxed income so included at the Indian
+rate of tax or the rate of tax of the said country, whichever is the lower, or
+at the Indian rate of tax if both the rates are equal.&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Relief U/S 90 Salary in two or more countries and double taxation
+relief Paid&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Substantial number of such Indians renders services both in and outside India
+during the same assessment year. They receive salary and other income in India
+as well as outside India. They may receive remuneration either from the same
+employer or from different employers. In certain cases, the salary of such
+employees accrues partially in India and partially outside India during any
+assessment year. &lt;br/&gt;
+In case the employees are residents of India, by virtue of S. 5 of the
+Income-tax Act, 1961, their global income becomes liable to tax in India. Income
+accruing to or received by resident Indians outside India may be taxable under
+the laws of the countries where such income is received or accrues.
+Additionally, such income is also taxable in India. &lt;br/&gt;
+Double Taxation Avoidance agreement, if any, entered into between India and a
+country outside India comes to the aid of such employees, by providing a relief
+u/s.90 against double taxation. Employees are entitled to relief u/s.90 in
+respect of their salary and other income that has been doubly taxed. Relevant
+portion of S. 90 is extracted below for convenience. &lt;br/&gt;
+"90. (1) The Central Government may enter into an agreement with the Government
+of any country outside India: &lt;br/&gt;
+(a) for the granting of relief in respect of : &lt;br/&gt;
+(i) income on which have been paid both income-tax under this Act and income-tax
+in that country; or &lt;br/&gt;
+(ii) income-tax chargeable under this Act and under the corresponding law in
+force in that country to promote mutual economic relations, trade and
+investment, or &lt;br/&gt;
+(b) for the avoidance of double taxation of income under this Act and under the
+corresponding law in force in that country, or &lt;br/&gt;
+(c) for exchange of information for the prevention of evasion or avoidance of
+income-tax chargeable under this Act or under the corresponding law in force in
+that country, or investigation of cases of such evasion or avoidance, or &lt;br/&gt;
+(d) for recovery of income-tax under this Act and under the corresponding law in
+force in that country, and may, by notification in the Official Gazette, make
+such provisions as may be necessary for implementing the agreement.&lt;/p&gt;
+
+&lt;p&gt;(2) Where the Central Government has entered into an agreement with the
+Government of any country outside India U/ss.(1) for granting relief of tax, or
+as the case may be, avoidance of double taxation, then, in relation to the
+assessee to whom such agreement applies, the provisions of this Act shall apply
+to the extent they are more beneficial to that assessee." &lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</sv:value>
+        </sv:property>
+      </sv:node>
+      <sv:node sv:name="mootlywcm:form">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hippo:mirror</sv:value>
+        </sv:property>
+        <sv:property sv:name="hippo:docbase" sv:type="String">
+          <sv:value>cafebabe-cafe-babe-cafe-babecafebabe</sv:value>
+        </sv:property>
+      </sv:node>
+    </sv:node>
+    <sv:node sv:name="hippo:translation">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>hippo:translation</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippo:language" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="hippo:message" sv:type="String">
+        <sv:value>What are relief under section 89,90,91 of Income Tax rules? ?</sv:value>
+      </sv:property>
+    </sv:node>
+  </sv:node>
 </sv:node>
