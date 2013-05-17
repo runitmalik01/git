@@ -202,20 +202,20 @@ public class AdvanceTaxDetail extends HippoItem implements FormMapFiller {
 		}
 		if (formMap == null) return;
 		
-		if ( formMap.getField("bsr_code") != null) {
-			setP_BSR(formMap.getField("bsr_code").getValue());
+		if ( formMap.getField("bsr_codeadv") != null) {
+			setP_BSR(formMap.getField("bsr_codeadv").getValue());
 		}
 		
-		if ( formMap.getField("Serial_challan") != null) {
-			setP_Serial(formMap.getField("Serial_challan").getValue());
+		if ( formMap.getField("Serial_challanadv") != null) {
+			setP_Serial(formMap.getField("Serial_challanadv").getValue());
 		}
-		if ( formMap.getField("amount") != null) {
-			String strAmount=formMap.getField("amount").getValue();
+		if ( formMap.getField("amountadv") != null) {
+			String strAmount=formMap.getField("amountadv").getValue();
 			double amt=Double.parseDouble(strAmount);
 			setP_Amount(amt);
 		}
-		if ( formMap.getField("date_credit") != null) {
-			String strDate = formMap.getField("date_credit").getValue();
+		if ( formMap.getField("date_creditadv") != null) {
+			String strDate = formMap.getField("date_creditadv").getValue();
 			Date date = null ;
 			DateFormat formatter ; 
 			formatter = getIndianDateFormatter();
