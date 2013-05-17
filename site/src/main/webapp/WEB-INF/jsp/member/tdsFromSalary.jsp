@@ -1,5 +1,4 @@
 <%@include file="../includes/tags.jspf"%>
-<%@include file="../includes/commonincludes.jspf"%>
 <%@ page import="com.mootly.wcm.utils.*"%>
 <%@ page import="java.util.*"%>
 <c:set var="tds2">
@@ -35,34 +34,34 @@
 				<legend style="color: black">Enter Details</legend>
 			<div class="row-fluid show-grid" >
 						<div class="span4">
-			            <div class="rowlabel"><label for="tan_employer"><small><fmt:message key="tds.tan.emoloyer" /></small></label></div>
-			          	<div class="rowlabel"><input id="tan_employer" name="tan_employer" type="text" maxlength="10" onkeyup="keyup()"
+			            <div class="rowlabel"><label for="tan_employertds"><small><fmt:message key="tds.tan.emoloyer" /></small></label></div>
+			          	<div class="rowlabel"><input id="tan_employertds" name="tan_employertds" type="text" maxlength="10" onkeyup="keyup()"
 			          	value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.tan_Employer}"/></c:if>"/></div>
 			          </div>
 			          <div class="span4">
-			            <div class="rowlabel"><label for="name_employer"><small><fmt:message key="tds.name.employer" /></small></label></div>
-			          	<div class="rowlabel"><input id="name_employer" name="name_employer" type="text" maxlength="125"
+			            <div class="rowlabel"><label for="name_employertds"><small><fmt:message key="tds.name.employer" /></small></label></div>
+			          	<div class="rowlabel"><input id="name_employertds" name="name_employertds" type="text" maxlength="125"
 			          	value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.name_Employer}"/></c:if>"/></div>
 			          </div></div>
 			          <div class="row-fluid show-grid" >
 			           <div class="span4">
-			            <div class="rowlabel"><label for="income_chargeable"><small><fmt:message key="tds.income.chargeable" /></small></label></div>
-			          	<div class="rowlabel"><input id="income_chargeable" name="income_chargeable" type="text" maxlength="14"
+			            <div class="rowlabel"><label for="income_chargeabletds"><small><fmt:message key="tds.income.chargeable" /></small></label></div>
+			          	<div class="rowlabel"><input id="income_chargeabletds" name="income_chargeabletds" type="text" maxlength="14"
 			          	value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.income_Chargeable}"/></c:if>"/></div>
 			          </div>
 			           <div class="span4">
-			            <div class="rowlabel"><label for="total_taxdeducted"><small><fmt:message key="tds.total.tax.deducted" /></small></label></div>
-			          	<div class="rowlabel"><input id="total_taxdeducted" name="total_taxdeducted" type="text" maxlength="14" class=" decimal"
+			            <div class="rowlabel"><label for="total_taxdeductedtds"><small><fmt:message key="tds.total.tax.deducted" /></small></label></div>
+			          	<div class="rowlabel"><input id="total_taxdeductedtds" name="total_taxdeductedtds" type="text" maxlength="14" class=" decimal"
 			          	value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.total_TaxDeducted}"/></c:if>"/></div>
 			          </div></div>
 			</fieldset>
-			<div class="row-fluid show-grid">
-					<div class="span4 offset7 decimal">
-						<a href="${scriptName}?tab=tdsfromsalary" class="button olive">Cancel</a>&nbsp; <a
-   					 href="javascript:void(0)" id="myModalHreftds" class="button orange">Save</a>
-	                  
+			
+				<div class="row-fluid show-grid">
+					<div class="span4 offset8 decimal">
+						<a href="${scriptName}?tab=tdsfromsalary" class="button olive">Cancel</a>&nbsp;
+								<a id="myModalHreftds" role="button" class="btn orange">Save</a>
 					</div>
-				</div>
+					</div>
 		</form>
 
 	</c:when>
