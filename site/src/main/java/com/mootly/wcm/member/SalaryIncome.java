@@ -30,46 +30,16 @@ import com.mootly.wcm.beans.compound.SalaryIncomeDetail;
 import com.mootly.wcm.components.ITReturnComponent;
 @PrimaryBean(primaryBeanClass=SalaryIncomeDocument.class)
 @ChildBean(childBeanClass=SalaryIncomeDetail.class)
-@AdditionalBeans(additionalBeansToLoad=MemberPersonalInformation.class)
-@RequiredBeans(requiredBeans={MemberPersonalInformation.class})
-@FormFields(fieldNames={"Employe_category","Name_employer","Name_employee","Pan_employer","Tan_employer","Pan_employee","Address",
-		"City","State","Pin","From","To","Gross_salary","Allowance","Perquisite","profit","Taxable_earning"})
-@RequiredFields(fieldNames={"Name_employer","Tan_employer","City","Gross_salary"})
-@DataTypeValidationFields(fieldNames={
-									  "Gross_salary",
-									  "Allowance",
-									  "Allowance1",
-									  "Perquisite",
-									  "Profit",
-									  "Taxable_earning",
-									  "Tan_employer",
-									  "Pan_employer",
-									  "Pan_employee",
-									  "From",
-									  "To"
-									  },
-						  dataTypes= {
-									  DataTypeValidationType.DECIMAL, //Gross_salary
-									  DataTypeValidationType.DECIMAL,
-									  DataTypeValidationType.DECIMAL,
-									  DataTypeValidationType.DECIMAL,
-									  DataTypeValidationType.DECIMAL,
-									  DataTypeValidationType.DECIMAL,
-									  DataTypeValidationType.TAN,
-									  DataTypeValidationType.PAN,
-									  DataTypeValidationType.PAN,
-									  DataTypeValidationType.INDIANDATE,
-									  DataTypeValidationType.INDIANDATE
-									 }
-						)
+
+@FormFields(fieldNames={"Employe_category","Name_employer","Name_employee","Pan_employer","Tan_employer","Pan_employee","Addressslry",
+		"City","Stateslry","Pinslry","From","To","Gross_salary","Allowance","Perquisite","profit","Taxable_earning"})
+
 public class SalaryIncome extends ITReturnComponent {
 	
 	private static final Logger log = LoggerFactory.getLogger(SalaryIncome.class);
-
-	@SuppressWarnings("deprecation")
-	@Override
 	public void doBeforeRender(HstRequest request, HstResponse response) {
 		super.doBeforeRender(request, response);
+		System.out.println("this is do before render of salary income");
 	}
 
 	@Override
