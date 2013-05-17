@@ -17,7 +17,6 @@
 	request.setAttribute("objHashMapDeduction6a", objHashMapDeduction6a);
 %>
 
-<div class="page type-page">
 	<h3 id="respond1">
 		<c:choose>
 			<c:when
@@ -909,7 +908,6 @@
 				New</a>
 		</c:otherwise>
 	</c:choose>
-</div>
 
 
 <res:client-validation formId="frmdataFormSixteen" screenConfigurationDocumentName="formsixteen" formSubmitButtonId="myModalHrefFormSixteen" />
