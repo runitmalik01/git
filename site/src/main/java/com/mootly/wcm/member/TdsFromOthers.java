@@ -29,7 +29,7 @@ import com.mootly.wcm.model.FinancialYear;
 @PrimaryBean(primaryBeanClass=TdsFromothersDocument.class)
 @ChildBean(childBeanClass=TdsOthersDetail.class)
 
-@FormFields(fieldNames={"tan_deductor","name_deductor","tds_certificate","financial_year","total_taxdeducted","amount"})
+@FormFields(fieldNames={"tan_deductortdsoth","name_deductortdsoth","tds_certificatetdsoth","financial_yeartdsoth","total_taxdeductedtdsoth","amounttdsoth"})
 
 public class TdsFromOthers extends ITReturnComponent {
 	
