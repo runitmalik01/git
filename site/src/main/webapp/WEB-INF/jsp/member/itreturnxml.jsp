@@ -278,11 +278,11 @@
 							<button class="btn btn-small dropdown-toggle"
 								data-toggle="dropdown">
 								<c:choose>
-									<c:when test="${ theForm.taxPaid.taxesPaid.TDS eq '0'}">
+									<c:when test="${bigTotalTdsSalary eq '0'}">
 										<c:out value="Fill Now" />
 									</c:when>
 									<c:otherwise>
-										<c:out value="${ theForm.taxPaid.taxesPaid.TDS}" />
+										<c:out value="${bigTotalTdsSalary}" />
 									</c:otherwise>
 								</c:choose>
 								<span class="caret"></span>
@@ -302,11 +302,11 @@
 							<button class="btn btn-small dropdown-toggle"
 								data-toggle="dropdown">
 								<c:choose>
-									<c:when test="${ theForm.taxPaid.taxesPaid.TDS eq '0'}">
+									<c:when test="${bigTotalTdsOther eq '0'}">
 										<c:out value="Fill Now" />
 									</c:when>
 									<c:otherwise>
-										<c:out value="${ theForm.taxPaid.taxesPaid.TDS}" />
+										<c:out value="${bigTotalTdsOther}" />
 									</c:otherwise>
 								</c:choose>
 								<span class="caret"></span>
