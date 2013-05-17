@@ -6,7 +6,6 @@
 
 <%@page import="org.hippoecm.hst.core.request.ResolvedSiteMapItem"%>
 <%@page import="org.hippoecm.hst.core.component.HstRequest"%>
-<%@include file="../includes/commonincludes.jspf"%>
 <%@ page import="com.mootly.wcm.utils.*"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.mootly.wcm.beans.*"%>
