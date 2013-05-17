@@ -177,19 +177,19 @@ public class TdsFromSalaryDetail extends HippoItem implements FormMapFiller {
 		}
 		if (formMap == null) return;
 		
-		if ( formMap.getField("tan_employer") != null) {
-			setTan_Employer(formMap.getField("tan_employer").getValue());
+		if ( formMap.getField("tan_employertds") != null) {
+			setTan_Employer(formMap.getField("tan_employertds").getValue());
 		}
-		if ( formMap.getField("name_employer") != null) {
-			setName_Employer(formMap.getField("name_employer").getValue());
+		if ( formMap.getField("name_employertds") != null) {
+			setName_Employer(formMap.getField("name_employertds").getValue());
 		}
-		if ( formMap.getField("income_chargeable") != null) {
-			String strIncome=formMap.getField("income_chargeable").getValue();
+		if ( formMap.getField("income_chargeabletds") != null) {
+			String strIncome=formMap.getField("income_chargeabletds").getValue();
 			double DecIncome= Double.parseDouble(strIncome);
 			setIncome_Chargeable(DecIncome);
 		}
-		if ( formMap.getField("total_taxdeducted") != null) {
-			String StrTax=formMap.getField("total_taxdeducted").getValue();
+		if ( formMap.getField("total_taxdeductedtds") != null) {
+			String StrTax=formMap.getField("total_taxdeductedtds").getValue();
 			double taxdeducted= Double.parseDouble(StrTax);
 			setTotal_TaxDeducted(taxdeducted);
 		}
