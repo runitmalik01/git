@@ -30,8 +30,7 @@ import com.mootly.wcm.components.ITReturnComponent;
 @ChildBean(childBeanClass=TdsFromSalaryDetail.class)
 @AdditionalBeans(additionalBeansToLoad=MemberPersonalInformation.class)
 @RequiredBeans(requiredBeans={MemberPersonalInformation.class})
-@FormFields(fieldNames={"tan_employer","name_employer","income_chargeable","total_taxdeducted"})
-@RequiredFields(fieldNames={"tan_employer","name_employer","income_chargeable","total_taxdeducted"})
+@FormFields(fieldNames={"tan_employertds","name_employertds","income_chargeabletds","total_taxdeductedtds"})
 @DataTypeValidationFields(fieldNames={"tan_employer"},dataTypes={DataTypeValidationType.TAN})
 public class TdsFromSalary extends ITReturnComponent {
 	
