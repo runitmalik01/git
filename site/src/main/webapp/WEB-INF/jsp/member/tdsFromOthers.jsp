@@ -1,5 +1,4 @@
 <%@include file="../includes/tags.jspf"%>
-<%@include file="../includes/commonincludes.jspf"%>
 <%@ page import="com.mootly.wcm.utils.*"%>
 <%@ page import="java.util.*"%>
 <c:set var="tds2">
@@ -34,39 +33,39 @@
 			<div class="row-fluid show-grid">
 				<div class="span4">
 					<div class="rowlabel">
-						<label for="tan_employer"><small><fmt:message
+						<label for="tan_deductortdsoth"><small><fmt:message
 									key="tds.tan.deductor" />
 						</small>
 						</label>
 					</div>
 					<div class="rowlabel">
-						<input id="tan_deductor" name="tan_deductor" type="text"
-							maxlength="10" onkeyup="keyup()"
+						<input id="tan_deductortdsoth" name="tan_deductortdsoth" type="text"
+							maxlength="10"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.tan_Deductor}"/></c:if>" />
 					</div>
 				</div>
 				<div class="span4">
 					<div class="rowlabel">
-						<label for="name_deductor"><small><fmt:message
+						<label for="name_deductortdsoth"><small><fmt:message
 									key="tds.name.deductor" />
 						</small>
 						</label>
 					</div>
 					<div class="rowlabel">
-						<input id="name_deductor" name="name_deductor" type="text"
+						<input id="name_deductortdsoth" name="name_deductortdsoth" type="text"
 							maxlength="125"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.name_Deductor}"/></c:if>" />
 					</div>
 				</div>
 				<div class="span4">
 					<div class="rowlabel">
-						<label for="tds_certificate"><small><fmt:message
+						<label for="tds_certificatetdsoth"><small><fmt:message
 									key="tds.unique.certificate" />
 						</small>
 						</label>
 					</div>
 					<div class="rowlabel">
-						<input id="tds_certificate" name="tds_certificate" type="text"
+						<input id="tds_certificatetdsoth" name="tds_certificatetdsoth" type="text"
 							maxlength="6"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.tds_Certificate}"/></c:if>" />
 					</div>
@@ -75,13 +74,13 @@
 			<div class="row-fluid show-grid">
 				<div class="span4">
 					<div class="rowlabel">
-						<label for="financial_year"><small><fmt:message
+						<label for="financial_yeartdsoth"><small><fmt:message
 									key="tds.financial.year" />
 						</small>
 						</label>
 					</div>
 					<div class="rowlabel">
-						<select id="financial_year" name="financial_year" value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.financial_Year}"/></c:if>">
+						<select id="financial_yeartdsoth" name="financial_yeartdsoth" value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.financial_Year}"/></c:if>">
 							<c:if test="${empty childBean.financial_Year}">
 							<option value="">select</option>
 							</c:if>
@@ -99,38 +98,37 @@
 				</div>
 				<div class="span4">
 					<div class="rowlabel">
-						<label for="total_taxdeducted"><small><fmt:message
+						<label for="total_taxdeductedtdsoth"><small><fmt:message
 									key="tds.total.tax.deducted" />
 						</small>
 						</label>
 					</div>
 					<div class="rowlabel">
-						<input id="total_taxdeducted" name="total_taxdeducted" type="text"
+						<input id="total_taxdeductedtdsoth" name="total_taxdeductedtdsoth" type="text"
 							maxlength="14" onblur="calculate()" onchange="calculate"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.total_TaxDeductor}"/></c:if>" />
 					</div>
 				</div>
 				<div class="span4">
 					<div class="rowlabel">
-						<label for="amount"><small><fmt:message
+						<label for="amounttdsoth"><small><fmt:message
 									key="tds.amount.claimed" />
 						</small>
 						</label>
 					</div>
 					<div class="rowlabel">
-						<input id="amount" name="amount" type="text" maxlength="14"
+						<input id="amounttdsoth" name="amounttdsoth" type="text" maxlength="14"
 							required="required"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.p_Amount}"/></c:if>" />
 					</div>
 				</div>
 			</div>
-			<div class="row-fluid show-grid">
-				<div class="span4 offset8 decimal">
-					<a href="${scriptName}?tab=tdsfromothers" class="button olive">Cancel</a>&nbsp; <a
-						href="javascript:void(0)" id="myModalHrefTdsOther" class="button orange">Save</a>
-
-				</div>
-			</div>
+				<div class="row-fluid show-grid">
+					<div class="span4 offset8 decimal">
+						<a href="${scriptName}?tab=tdsfromothers" class="button olive">Cancel</a>&nbsp;
+								<a id="myModalHrefTdsOther" role="button" class="btn orange">Save</a>
+					</div>
+					</div>
 		</form>
 		</c:when>
 	<c:otherwise>
