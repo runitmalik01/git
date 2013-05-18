@@ -72,7 +72,7 @@
 								<label for=""><small>Town/City/District</small> </label>
 							</div>
 							<div>
-								<input id="City" name="City" placeholder="City" type="text"
+								<input id="City" name="City" placeholder="Town/City/District" type="text"
 									maxlength="50"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.city}"/></c:if>" />
 							</div>
@@ -389,7 +389,27 @@
 						</div>
 						<div class="span7 decimal">
 							<div class="rowlabel">
-								<label for=""><small>Total (b+c)</small> </label>
+								<label for=""><small>Interest on Borrowed
+										Capital</small> </label>
+							</div>
+						</div>
+						<div class="span2 offset1">
+							<div>
+								<input id="Interest_borrowed" name="Interest_borrowed"
+									placeholder="Rs." type="text"
+									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.interest_borrowed}"/></c:if>">
+							</div>
+						</div>
+					</div>
+					<div class="row-fluid show-grid">
+						<div class="span1 decimal">
+							<div class="rowlabel">
+								<small>e</small>
+							</div>
+						</div>
+						<div class="span7 decimal">
+							<div class="rowlabel">
+								<label for=""><small>Balance</small> </label>
 							</div>
 						</div>
 						<div class="span2 offset1">
@@ -417,30 +437,11 @@
 							</div>
 						</div>
 					</div>
+					
 					<div class="row-fluid show-grid">
 						<div class="span1 decimal">
 							<div class="rowlabel">
 								<small>g</small>
-							</div>
-						</div>
-						<div class="span7 decimal">
-							<div class="rowlabel">
-								<label for=""><small>Interest on Borrowed
-										Capital</small> </label>
-							</div>
-						</div>
-						<div class="span2 offset1">
-							<div>
-								<input id="Interest_borrowed" name="Interest_borrowed"
-									placeholder="Rs." type="text"
-									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.interest_borrowed}"/></c:if>">
-							</div>
-						</div>
-					</div>
-					<div class="row-fluid show-grid">
-						<div class="span1 decimal">
-							<div class="rowlabel">
-								<small>h</small>
 							</div>
 						</div>
 						<div class="span7 decimal">
@@ -495,8 +496,9 @@
 							</td>
 							<td><a
 								href="${scriptName}/<c:out value="${houseincomedetail.canonicalUUID}"/>/houseincomeedit"><small>Edit</small>
-							</a>&nbsp;&nbsp;<a
-								href="${scriptName}/<c:out value="${houseincomedetail.canonicalUUID}"/>/houseincomedelete"><small>Delete</small>
+								<c:set var="canonicalUUID" value="${houseincomedetail.canonicalUUID}"/>
+								<c:set var="scriptName" value="${scriptName}"/>
+							</a>&nbsp;&nbsp;<a id="delete"><small>Delete</small>
 							</a></td>
 						</tr>
 
@@ -509,6 +511,14 @@
 		</c:otherwise>
 	</c:choose>
 </div>
+<script>
+$('#delete').click(function(){
+	var result=confirm("Do you want to delete permanently");	
+	if(result){
+		$('#delete').attr('href','<c:out value="${scriptName}"/>/<c:out value="${canonicalUUID}"/>/houseincomedelete');
+	}
+});
+</script>
 
 <res:client-validation formId="frmdataHouseIncome"
 	screenConfigurationDocumentName="houseincome"
