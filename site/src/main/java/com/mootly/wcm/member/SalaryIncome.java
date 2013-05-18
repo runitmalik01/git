@@ -32,7 +32,7 @@ import com.mootly.wcm.components.ITReturnComponent;
 @ChildBean(childBeanClass=SalaryIncomeDetail.class)
 
 @FormFields(fieldNames={"Employe_category","Name_employer","Name_employee","Pan_employer","Tan_employer","Pan_employee","Addressslry",
-		"City","Stateslry","Pinslry","From","To","Gross_salary","Allowance","Perquisite","profit","Taxable_earning"})
+		"Cityslry","Stateslry","Pinslry","From","To","Gross_salary","Allowance","Perquisite","profit","Taxable_earning"})
 
 public class SalaryIncome extends ITReturnComponent {
 	
