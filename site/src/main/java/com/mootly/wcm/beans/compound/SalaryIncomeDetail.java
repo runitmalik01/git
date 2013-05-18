@@ -296,8 +296,8 @@ public class SalaryIncomeDetail extends HippoItem implements FormMapFiller {
 		if ( formMap.getField("Addressslry") != null) {
 			setAddress(formMap.getField("Addressslry").getValue());
 		}
-		if ( formMap.getField("City") != null) {
-			setCity(formMap.getField("City").getValue());
+		if ( formMap.getField("Cityslry") != null) {
+			setCity(formMap.getField("Cityslry").getValue());
 		}
 		if ( formMap.getField("Stateslry") != null) {
 			setState(formMap.getField("Stateslry").getValue());
