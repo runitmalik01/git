@@ -118,10 +118,7 @@ public class ChangePass extends BaseComponent {
 						cp.setOldPassword(Old_Password);
 						cp.setUserName(userNameNormalized);
 						createMemberSignupFormUpdatePass(request,cp);
-						response.setRenderParameter(SUCCESS, SUCCESS);
-
 						response.sendRedirect(UrlUtility.MemberLogin+"?SUCCESS=CHANGE");
-						request.getSession(false);
 					}
 				}
 			}catch(IOException e){
