@@ -260,7 +260,7 @@
 										<c:out value="${theForm.taxPaid.taxesPaid.selfAssessmentTax}" />
 									</c:when>
 									<c:otherwise>
-										<c:out value="Not Filled" />
+										<c:out value="Fill Now" />
 									</c:otherwise>
 								</c:choose>
 								<span class="caret"></span>
