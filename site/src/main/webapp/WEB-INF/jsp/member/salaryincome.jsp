@@ -151,11 +151,11 @@
 						</div>
 						<div class="span3">
 							<div class="rowlabel">
-								<label for="City"><fmt:message key="member.city.info" />
+								<label for="Cityslry"><fmt:message key="member.city.info" />
 								</label>
 							</div>
 							<div class="rowlabel">
-								<input id="City" type="text" name="City"
+								<input id="Cityslry" type="text" name="Cityslry"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.city}"/></c:if>" />
 							</div>
 						</div>
