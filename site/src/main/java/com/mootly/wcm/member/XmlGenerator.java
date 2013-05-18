@@ -230,12 +230,14 @@ public class XmlGenerator extends ITReturnComponent {
 			taxesPaid.setAdvanceTax(advanceTaxDocument.getBigTotal_Amount());
 		if(tdsFromSalaryDocument!=null){	
 			bigTotalTdsSalary= new BigInteger(decimalFormat.format(tdsFromSalaryDocument.getTotal_Amount()));
-			request.setAttribute("bigTotalTdsSalary", bigTotalTdsSalary);
+
 		}
+		request.setAttribute("bigTotalTdsSalary", bigTotalTdsSalary);
 		if(tdsFromothersDocument!=null){
 			bigTotalTdsOther=new BigInteger(decimalFormat.format(tdsFromothersDocument.getTotal_Amount()));
-			request.setAttribute("bigTotalTdsOther", bigTotalTdsOther);
+
 		}
+		request.setAttribute("bigTotalTdsOther", bigTotalTdsOther);
 		BigInteger bigTotalTds=bigTotalTdsSalary.add(bigTotalTdsOther);
 		taxesPaid.setTDS(bigTotalTds);
 		if(selfAssesmetTaxDocument!=null)
@@ -275,7 +277,7 @@ public class XmlGenerator extends ITReturnComponent {
 				}		
 			}		
 		}
-		
+
 		//TDSonOthThanSals
 		if(tdsFromothersDocument!=null){
 			if (tdsFromothersDocument.getTdsSalaryDetailList() != null && tdsFromothersDocument.getTdsSalaryDetailList().size() > 0 ){
@@ -305,11 +307,11 @@ public class XmlGenerator extends ITReturnComponent {
 					taxPayment.setSrlNoOfChaln(advanceTaxDetail.getBigP_Serial());
 					taxPayment.setAmt(advanceTaxDetail.getBigP_Amount() );
 					taxPayments.getTaxPayment().add(taxPayment);
-					
+
 				}
-			
+
 			}
-			
+
 		}
 
 		itr1.setTaxPayments(taxPayments);
