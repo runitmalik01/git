@@ -86,11 +86,9 @@
 							<div>
 								<select id="states" name="states">
 									<option value="">Select One</option>
-									<c:forEach var="booleanCombo" items="${objHashMapStates}">
-										<option
-											<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD') && childBean.states == booleanCombo.value}">selected</c:if>
-											value="${booleanCombo.value}">${booleanCombo.value}</option>
-									</c:forEach>
+									<c:set var="searchresultstitle"><fmt:message key="member.contact_info.state.select"/></c:set>
+                    <c:set var="statesType"><fmt:message key="dropdown.states"/></c:set>
+                    <div class="rowlabel"><w4india:dropdown dropDownSelectId="states" optionSelectString="${searchresultstitle}" dropDownType="${statesType}" fetchValue="${childBean.states}"/></div>
 								</select>
 							</div>
 						</div>
