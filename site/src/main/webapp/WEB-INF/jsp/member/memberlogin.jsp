@@ -51,8 +51,8 @@ try {
 <hst:link var="forgotpass" siteMapItemRefId="forgotpass"></hst:link>
 <hst:link var="loginProxy" path="/login/proxy"></hst:link>
 <hst:actionURL var="actionUrl"></hst:actionURL>
-<c:if test="${ not empty cpmsg}">
-		<div class="alert alert-success"><c:out value="${cpmsg}"/></div>
+<c:if test="${ not empty errormsg}">
+		<div class="alert alert-success"><c:out value="${errormsg}"/></div>
 		</c:if>	
 		<c:choose>
 	<c:when test="${loggedin}">
