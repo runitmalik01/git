@@ -53,20 +53,17 @@ if (actionInSiteMap != null && actionInSiteMap.contains("_")) {
                   <li <%if (tabName != null && tabName.equals("advancetax")){%>class="active"<%}%>><a href="#advancetax" data-toggle="tab"><fmt:message key="advance.tax.itr1" /></a></li>
                   <li <%if (tabName != null && tabName.equals("selfassesmenttax")){%>class="active"<%}%> ><a href="#selfassesmenttax" data-toggle="tab"><fmt:message key="advance.selfassesmenttax.itr1" /></a></li>
                   <li <%if (tabName != null && tabName.equals("tdsfromsalary")){%>class="active"<%}%>><a href="#tdsfromsalary" data-toggle="tab"><fmt:message key="advance.tdssalary.itr1" /></a></li>
-                  <li <%if (tabName != null && tabName.equals("tdsfromothers")){%>class="active"<%}%> ><a href="#tdsfromothers" data-toggle="tab"><fmt:message key="advance.tdsothers.itr1" /></a></li>
-               	 
+                  <li <%if (tabName != null && tabName.equals("tdsfromothers")){%>class="active"<%}%> ><a href="#tdsfromothers" data-toggle="tab"><fmt:message key="advance.tdsothers.itr1" /></a></li> 
                 </ul>
               </li>
-              <li <%if (tabName != null && tabName.equals("deductions")){%>class="active"<%}%>><a href="#deductions" data-toggle="tab"><fmt:message key="deductions.itr1" /></a></li>
-              
-              
+              <li <%if (tabName != null && tabName.equals("deductions")){%>class="active"<%}%>><a href="#deductions" data-toggle="tab"><fmt:message key="deductions.itr1" /></a></li>       
             </ul>
 			 
 			 <div id="myTabContent" class="tab-content" >
 			 <div class="tab-pane fade <%if (tabName == "summary"){%>in active <%}%>" id="incometaxsummary">
-            	 <hst:include ref="calculation"/>
+            	 <hst:include ref="calculation"/> 	 
               </div>
-              <div class="tab-pane fade <%if (tabName != null && tabName.equals("formsixteen")){%>in active<%}%>" id="formsixteen" >
+              <div class="tab-pane fade <%if (tabName != null && tabName.equals("formsixteen")){%>in active<%}%>" id="formsixteen" >   	
            	 <hst:include ref="formsixteenITR1"/>
            	  </div> 
               <div class="tab-pane fade <%if (tabName != null && tabName.equals("salaryincome")){%>in active<%}%>" id="incomesalaries" >
@@ -93,7 +90,12 @@ if (actionInSiteMap != null && actionInSiteMap.contains("_")) {
             	  <div class="tab-pane fade <%if (tabName != null && tabName.equals("deductions")){%>in active<%}%> " id="deductions">
                 <hst:include ref="deductionITR1"/>
             	  </div>
-             </div>       
+             </div>   
+             <div id="reviewModal">
+			 <hst:include ref="reviewsITR1"/> 	
+			 </div>
 		</form>	
+		
 </div>
+
                
