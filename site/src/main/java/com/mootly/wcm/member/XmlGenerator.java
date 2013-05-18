@@ -61,6 +61,7 @@ import com.mootly.wcm.beans.SelfAssesmetTaxDocument;
 import com.mootly.wcm.beans.TdsFromSalaryDocument;
 import com.mootly.wcm.beans.TdsFromothersDocument;
 import com.mootly.wcm.beans.compound.HouseIncomeDetail;
+import com.mootly.wcm.beans.compound.SalaryIncomeDetail;
 import com.mootly.wcm.beans.compound.TdsFromSalaryDetail;
 import com.mootly.wcm.beans.compound.TdsOthersDetail;
 import com.mootly.wcm.beans.compound.AdvanceTaxDetail;
@@ -70,7 +71,7 @@ import com.mootly.wcm.utils.XmlCalculation;
 
 @AdditionalBeans(additionalBeansToLoad={MemberPersonalInformation.class,MemberContactInformation.class,SalaryIncomeDocument.class,
 		HouseIncomeDetail.class,HouseProperty.class,OtherSourcesDocument.class,AdvanceTaxDocument.class,AdvanceTaxDetail.class,TdsFromSalaryDocument.class,
-		TdsFromSalaryDetail.class,TdsFromothersDocument.class,SelfAssesmetTaxDocument.class})
+		TdsFromSalaryDetail.class,TdsFromothersDocument.class,SelfAssesmetTaxDocument.class,SalaryIncomeDetail.class})
 @RequiredBeans(requiredBeans={MemberPersonalInformation.class})
 public class XmlGenerator extends ITReturnComponent {
 	private static final Logger log = LoggerFactory.getLogger(XmlGenerator.class);
@@ -157,7 +158,15 @@ public class XmlGenerator extends ITReturnComponent {
 		address.setEmailAddress(memberPersonalInformation.getEmail());
 		personalInfo.setAddress(address);
 		personalInfo.setDOB(memberPersonalInformation.getGregorianDOB());
-		personalInfo.setEmployerCategory(memberPersonalInformation.getEmployerCategory());
+		
+		if( salaryIncomeDocument!=null){
+			if ( salaryIncomeDocument.getSalaryIncomeDetailList() != null && salaryIncomeDocument.getSalaryIncomeDetailList().size() > 0 ){
+				for(SalaryIncomeDetail salaryIncomeDetail:salaryIncomeDocument.getSalaryIncomeDetailList()){
+					personalInfo.setEmployerCategory(salaryIncomeDetail.getEmploye_category());
+				}
+			}
+		}
+		
 		personalInfo.setGender(memberPersonalInformation.getSex());
 		personalInfo.setStatus(memberPersonalInformation.getFilingStatus());
 
