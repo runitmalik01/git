@@ -8,7 +8,7 @@
 	<h4>Prepare Income Tax Return</h4>
 	<hst:actionURL var="actionURL"/>
 	<form id="frmdata" method="post" action="${actionURL}">
-     <div id="error" class="alert alert-error" style="display:none;">PAN's Fifth Character should be Match with Last Name's First Character</div>
+     <div id="error" class="alert alert-error" style="display:none;">PAN's fifth alphabet should be first alphabet of Last Name</div>
 		<fieldset>
 			<legend>Start preparing New Return - Fill up this form and <a id="myModalHref" class="btn orange">Click Here!! </a></legend>
 			<div class="row-fluid show-grid">
