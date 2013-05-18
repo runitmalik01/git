@@ -2761,27 +2761,30 @@
     <sv:property sv:multiple="true" sv:name="hst:containers" sv:type="String">
       <sv:value>calculation</sv:value>
       <sv:value>otherincome</sv:value>
-      <sv:value>houseincome</sv:value>
+      <sv:value>singlehouseincome</sv:value>
       <sv:value>advanceataxITR1</sv:value>
       <sv:value>deductionITR1</sv:value>
+      <sv:value>salaryincomeITR1</sv:value>
+      <sv:value>formsixteenITR1</sv:value>
+      <sv:value>reviewsITR1</sv:value>
+      <sv:value>tdsfromsalaryITR1</sv:value>
+      <sv:value>tdsfromothersITR1</sv:value>
     </sv:property>
     <sv:property sv:name="hst:renderpath" sv:type="String">
       <sv:value>jsp/member/itreturnitr1.jsp</sv:value>
     </sv:property>
   </sv:node>
-  
-  <sv:node sv:name="formsixteen" >
-  <sv:property sv:name="jcr:primaryType" sv:type="Name">
-    <sv:value>hst:template</sv:value>
-  </sv:property>
-  <sv:property sv:name="jcr:uuid" sv:type="String">
-    <sv:value>864af69c-d1d4-4db4-9fba-402e50802f20</sv:value>
-  </sv:property>
-  <sv:property sv:name="hst:renderpath" sv:type="String">
-    <sv:value>jsp/member/formsixteen.jsp</sv:value>
-  </sv:property>
-</sv:node>
-  
+  <sv:node sv:name="formsixteen">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>864af69c-d1d4-4db4-9fba-402e50802f20</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/member/formsixteen.jsp</sv:value>
+    </sv:property>
+  </sv:node>
   <sv:node sv:name="xml-generator">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
       <sv:value>hst:template</sv:value>
@@ -2791,6 +2794,17 @@
     </sv:property>
     <sv:property sv:name="hst:renderpath" sv:type="String">
       <sv:value>jsp/member/itreturnxml.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="reviews">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>ff8757df-dd0b-450f-9420-dda9844cbba1</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/member/review.jsp</sv:value>
     </sv:property>
   </sv:node>
 </sv:node>
