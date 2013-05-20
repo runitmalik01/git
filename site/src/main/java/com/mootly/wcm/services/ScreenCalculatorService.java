@@ -13,20 +13,21 @@ import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
 
-import org.hippoecm.hst.component.support.forms.FormField;
-import org.hippoecm.hst.component.support.forms.FormMap;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public final class ScreenCalculatorService {
-	
-	public static final Map<String,Object> getScreenCalculations(String scriptName,Map<String,String[]> requestParameterMap,Map<String,Object> additionalBindings) {
-		String calculatorScript = loadScript(scriptName);
-		
+	private static final Logger log = LoggerFactory.getLogger(ScreenCalculatorService.class);
+	public static final Map<String,Object> getScreenCalculations(String Script,Map<String,String[]> requestParameterMap,Map<String,Object> additionalBindings) {
+		//String calculatorScript = loadScript(scriptName);
+		String calculatorScript=Script.replaceAll("<.*?>", "");
+		log.info("this is enough script"+calculatorScript);
 		StringBuilder theJavaScript = new StringBuilder();
 		theJavaScript.append(Calculator.JS_IMPORTS).append(Calculator.NEW_LINE);
 		theJavaScript.append(Calculator.JS_PREFIX).append(Calculator.NEW_LINE);
 		theJavaScript.append(calculatorScript).append(Calculator.NEW_LINE);
 		theJavaScript.append(Calculator.JS_SUFFIX).append(Calculator.NEW_LINE);
-		
+		log.info("this is javascript"+theJavaScript.toString());
 		
 		ScriptEngineManager manager = new ScriptEngineManager();
         ScriptEngine engine = manager.getEngineByName("JavaScript");
@@ -36,7 +37,9 @@ public final class ScreenCalculatorService {
         	Bindings engineScope = engine.getBindings(ScriptContext.ENGINE_SCOPE);
         	//engineScope.
         	for (String fieldName:requestParameterMap.keySet()) {
+        		log.info("fields name"+fieldName);
         		String fieldValue = requestParameterMap.get(fieldName)[0];
+        		log.info("field value"+fieldValue);
         		engineScope.put(fieldName,fieldValue);
         	}
         	if (additionalBindings != null) engineScope.putAll(additionalBindings);
@@ -44,6 +47,8 @@ public final class ScreenCalculatorService {
         	Map<String,Object> resultset = new HashMap<String, Object>();
         	for (String aKey: engineScope.keySet()) {
         		if (aKey.startsWith("out_")) {
+        			log.info("get the key of fields"+aKey);
+        			log.info("get the engine scope"+engineScope.get(aKey).toString());
         			resultset.put(aKey.substring(4), engineScope.get(aKey));
         		}        		
         	}
