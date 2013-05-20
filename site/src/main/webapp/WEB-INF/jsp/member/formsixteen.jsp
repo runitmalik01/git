@@ -5,6 +5,10 @@
 <%@ page import="com.mootly.wcm.utils.*"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.mootly.wcm.beans.*"%>
+<c:set var="formsixteentitle">
+	<fmt:message key="member.form16.title" />
+</c:set>
+<hippo-gogreen:title title="${formsixteentitle}" />
 <hst:actionURL var="actionUrl"></hst:actionURL>
 <%
 	ValueListService objValueListService = ValueListServiceImpl
@@ -12,203 +16,220 @@
 	TreeMap objHashMapDeduction = (TreeMap) objValueListService
 			.getDeduction();
 	request.setAttribute("objHashMapDeduction", objHashMapDeduction);
-	
-	TreeMap objHashMapDeduction6a = (TreeMap) objValueListService.getDeduction6a();
+
+	TreeMap objHashMapDeduction6a = (TreeMap) objValueListService
+			.getDeduction6a();
 	request.setAttribute("objHashMapDeduction6a", objHashMapDeduction6a);
 %>
 
-	<h3 id="respond1">
-		<c:choose>
-			<c:when
-				test="${not empty screenConfigDocument && not empty screenConfigDocument.screenHeading}">
-				<c:out value="${screenConfigDocument.screenHeading}" />
-			</c:when>
-			<c:otherwise></c:otherwise>
-		</c:choose>
-	</h3>
-	<c:if test="${not empty formMap}">
-		<c:forEach items="${formMap.message}" var="item">
-			<div class="alert alert_error">
-				<fmt:message key="${item.value}" />
-			</div>
-		</c:forEach>
-	</c:if>
+<h3 id="respond1">
 	<c:choose>
 		<c:when
-			test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD') || pageAction == 'NEW_CHILD'}">
-			<form id="frmdataFormSixteen" action="${actionUrl}" name="formsixteen" method="post">
+			test="${not empty screenConfigDocument && not empty screenConfigDocument.screenHeading}">
+			<c:out value="${screenConfigDocument.screenHeading}" />
+		</c:when>
+		<c:otherwise></c:otherwise>
+	</c:choose>
+</h3>
+<c:if test="${not empty formMap}">
+	<c:forEach items="${formMap.message}" var="item">
+		<div class="alert alert_error">
+			<fmt:message key="${item.value}" />
+		</div>
+	</c:forEach>
+</c:if>
+<c:choose>
+	<c:when
+		test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD') || pageAction == 'NEW_CHILD'}">
+		<form id="frmdataFormSixteen" action="${actionUrl}" name="formsixteen"
+			method="post">
 			<h3>Form 16</h3>
 			<p>Certificate under section 203 of the Income_tax Act, 1961 for
 				tax deducted at source from income chargeable under the head
 				"Salaries".</p>
-				<fieldset>
-					<legend style="color: black">Employer Details</legend>
-					<div class="row-fluid show-grid">
+			<fieldset>
+				<legend style="color: black">Employer Details</legend>
+				<div class="row-fluid show-grid">
 
-						<div class="span4">
-							<div class="rowlabel">
-								<label>Name and address of Employer</label>
-							</div>
-							<div class="rowlabel">
-								<input type="text" name="employer" id="employer"
-									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.employer}"/></c:if>"
-									maxlength="60" placeholder="Employer Name...">
-							</div>
+					<div class="span4">
+						<div class="rowlabel">
+							<label for="employer">Name and address of Employer</label>
 						</div>
-						<div class="span4">
-							<div class="rowlabel">
-								<label>Name of Employee</label>
-							</div>
-							<div class="rowlabel">
-								<input type="text" name="employee"
-									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.employee}"/></c:if>"
-									maxlength="60" placeholder="Employee Name...">
-							</div>
+						<div class="rowlabel">
+							<input type="text" name="employer" id="employer"
+								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.employer}"/></c:if>"
+								maxlength="60">
 						</div>
-
-						<div class="span3">
-							<div class="rowlabel">
-								<label>PAN of Employer</label>
-							</div>
-
-							<div class="rowlabel">
-								<input type="text" name="pan_deductor"
-									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.pan_deductor}"/></c:if>"
-									placeholder="AAAAA1234A">
-							</div>
+					</div>
+					<div class="span4">
+						<div class="rowlabel">
+							<label for="employee">Name of Employee</label>
 						</div>
-						<div class="span3">
-							<div class="rowlabel">
-								<label>TAN of Employer</label>
-							</div>
-							<div class="rowlabel">
-								<input type="text" name="tan_deductor"
-									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.tan_deductor}"/></c:if>"
-									placeholder="AAAA12345A">
-							</div>
-						</div>
-						<div class="span3">
-							<div class="rowlabel">
-								<label>PAN of Employee </label> <input type="text"
-									name="pan_employee"
-									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.pan_employee}"/></c:if>"
-									placeholder="AAAAA1234A">
-
-							</div>
+						<div class="rowlabel">
+							<input type="text" name="employee"
+								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.employee}"/></c:if>"
+								maxlength="60">
 						</div>
 					</div>
 
-				</fieldset>
+					<div class="span3">
+						<div class="rowlabel">
+							<label for="pan_deductor">PAN of Employer</label>
+						</div>
 
-				<fieldset>
+						<div class="rowlabel">
+							<input type="text" name="pan_deductor"
+								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.pan_deductor}"/></c:if>">
+						</div>
+					</div>
+					<div class="span3">
+						<div class="rowlabel">
+							<label for="tan_deductor">TAN of Employer</label>
+						</div>
+						<div class="rowlabel">
+							<input type="text" name="tan_deductor"
+								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.tan_deductor}"/></c:if>">
+						</div>
+					</div>
+					<div class="span3">
+						<div class="rowlabel">
+							<label>PAN of Employee </label> <input type="text"
+								name="pan_employee"
+								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.pan_employee}"/></c:if>">
 
-					<legend style="color: black">
-						Acknowledgement Nos. of all quarterly statements of TDS under
-						sub_section (3) of section 200 as<br /> provided by TIN
-						Facilitation Centre or NSDL web_site
-					</legend>
+						</div>
+					</div>
+				</div>
 
+			</fieldset>
 
+			<fieldset>
 
-					<table>
-						<tr>
-							<th><label>Quarter</label></th>
-
-							<th><label>Acknowledgement No.</label></th>
-
-							<th><label>From</label></th>
-							<th><label>To</label></th>
-							<th><label>Assessment Year</label></th>
-						</tr>
-
-						<tr>
-							<td><input type="text" name="quarter_1"
-								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.quarter_1}"/></c:if>"
-								placeholder="Quarter"></td>
-
-
-							<td><input type="text" name="acknowledge_1"
-								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.acknowledge_1}"/></c:if>"
-								placeholder="123456789">
-							</td>
-
-							<td><input type="text" name="from_1"
-								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.from_1}"/></c:if>"
-								placeholder="dd/mm"></td>
-
-							<td><input type="text" name="to_1"
-								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.to_1}"/></c:if>"
-								placeholder="dd/mm"></td>
-
-							<td><input type="text" name="year1"
-								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.year1}"/></c:if>"
-								placeholder="yyyy"></td>
-						</tr>
+				<legend style="color: black">
+					Acknowledgement Nos. of all quarterly statements of TDS under
+					sub_section (3) of section 200 as<br /> provided by TIN
+					Facilitation Centre or NSDL web_site
+				</legend>
 
 
-						<tr>
-							<td><input type="text" name="quarter_2"
-								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.quarter_2}"/></c:if>"
-								placeholder="Quarter"></td>
 
-							<td><input type="text" name="acknowledge_2"
-								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.acknowledge_2}"/></c:if>"
-								placeholder="123456789">
-							</td>
+				<table>
+					<tr>
+						<th><label>Quarter</label>
+						</th>
 
-							<td><input type="text" name="from_2"
-								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.from_2}"/></c:if>"
-								placeholder="dd/mm"></td>
+						<th><label>Acknowledgement No.</label>
+						</th>
 
-							<td><input type="text" name="to_2"
-								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.to_2}"/></c:if>"
-								placeholder="dd/mm"></td>
+						<th><label>From</label>
+						</th>
+						<th><label>To</label>
+						</th>
+						<th><label>Assessment Year</label>
+						</th>
+					</tr>
 
-							<td><input type="text" name="year2"
-								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.year2}"/></c:if>"
-								placeholder="yyyy"></td>
+					<tr>
+						<td><input type="text" name="quarter_1"
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.quarter_1}"/></c:if>"
+							placeholder="Quarter">
+						</td>
 
-						</tr>
-						<tr>
-							<td><input type="text" name="quarter_3"
-								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.quarter_3}"/></c:if>"
-								placeholder="Quarter"></td>
 
-							<td><input type="text" name="acknowledge_3"
-								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.acknowledge_3}"/></c:if>"
-								placeholder="123456789">
-							</td>
+						<td><input type="text" name="acknowledge_1"
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.acknowledge_1}"/></c:if>"
+							placeholder="123456789"></td>
 
-							<td><input type="text" name="from_3"
-								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.from_3}"/></c:if>"
-								placeholder="dd/mm"></td>
+						<td><input type="text" name="from_1"
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.from_1}"/></c:if>"
+							placeholder="dd/mm">
+						</td>
 
-							<td><input type="text" name="to_3"
-								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.to_3}"/></c:if>"
-								placeholder="dd/mm"></td>
-							<td><input type="text" name="year3"
-								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.year3}"/></c:if>"
-								placeholder="yyyy"></td>
+						<td><input type="text" name="to_1"
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.to_1}"/></c:if>"
+							placeholder="dd/mm">
+						</td>
+
+						<td><input type="text" name="year1"
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.year1}"/></c:if>"
+							placeholder="yyyy">
+						</td>
+					</tr>
+
+
+					<tr>
+						<td><input type="text" name="quarter_2"
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.quarter_2}"/></c:if>"
+							placeholder="Quarter">
+						</td>
+
+						<td><input type="text" name="acknowledge_2"
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.acknowledge_2}"/></c:if>"
+							placeholder="123456789"></td>
+
+						<td><input type="text" name="from_2"
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.from_2}"/></c:if>"
+							placeholder="dd/mm">
+						</td>
+
+						<td><input type="text" name="to_2"
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.to_2}"/></c:if>"
+							placeholder="dd/mm">
+						</td>
+
+						<td><input type="text" name="year2"
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.year2}"/></c:if>"
+							placeholder="yyyy">
+						</td>
+
+					</tr>
+					<tr>
+						<td><input type="text" name="quarter_3"
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.quarter_3}"/></c:if>"
+							placeholder="Quarter">
+						</td>
+
+						<td><input type="text" name="acknowledge_3"
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.acknowledge_3}"/></c:if>"
+							placeholder="123456789"></td>
+
+						<td><input type="text" name="from_3"
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.from_3}"/></c:if>"
+							placeholder="dd/mm">
+						</td>
+
+						<td><input type="text" name="to_3"
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.to_3}"/></c:if>"
+							placeholder="dd/mm">
+						</td>
+						<td><input type="text" name="year3"
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.year3}"/></c:if>"
+							placeholder="yyyy">
+						</td>
 						<tr>
 							<td><input type="text" name="quarter_4"
-								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.quarter_4}"/></c:if>"
-								placeholder="Quarter"></td>
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.quarter_4}"/></c:if>"
+							placeholder="Quarter">
+						</td>
 
 							<td><input type="text" name="acknowledge_4"
-								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.acknowledge_4}"/></c:if>"
-								placeholder="123456789">
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.acknowledge_4}"/></c:if>"
+							placeholder="123456789">
 							</td>
 							<td><input type="text" name="from_4"
-								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.from_4}"/></c:if>"
-								placeholder="dd/mm"></td>
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.from_4}"/></c:if>"
+							placeholder="dd/mm">
+						</td>
 
 							<td><input type="text" name="to_4"
-								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.to_4}"/></c:if>"
-								placeholder="dd/mm"></td>
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.to_4}"/></c:if>"
+							placeholder="dd/mm">
+						</td>
 
 							<td><input type="text" name="year4"
-								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.year4}"/></c:if>"
-								placeholder="yyyy"></td>
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.year4}"/></c:if>"
+							placeholder="yyyy">
+						</td>
 						</tr>
 					</table>
 					<fieldset>
@@ -220,31 +241,35 @@
 								<td>(a) Salary as per provisions contained in section 17(1)
 								</td>
 								<td><input type="text" name="gross_a"
-									class="numberinput decimal"
-									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.gross_a}"/></c:if>"
-									placeholder="Rs."></td>
+								class="numberinput decimal"
+								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.gross_a}"/></c:if>"
+								placeholder="Rs.">
+							</td>
 							</tr>
 							<tr>
 								<td>(b) Value of perquisites u/s 17(2)</td>
 								<td><input type="text" name="gross_b"
-									class="numberinput decimal"
-									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.gross_b}"/></c:if>"
-									placeholder="Rs."></td>
+								class="numberinput decimal"
+								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.gross_b}"/></c:if>"
+								placeholder="Rs.">
+							</td>
 							</tr>
 							<tr>
 								<td>(c) Profits in lieu of salary under section 17(3)</td>
 								<td><input type="text" name="gross_c"
-									class="numberinput decimal"
-									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.gross_c}"/></c:if>"
-									placeholder="Rs."></td>
+								class="numberinput decimal"
+								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.gross_c}"/></c:if>"
+								placeholder="Rs.">
+							</td>
 							</tr>
 							<tr>
 								<td><label>TOTAL</label>
 								</td>
 								<td><input type="text" name="gross_total"
-									class="numberinput decimal"
-									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.gross_total}"/></c:if>"
-									placeholder="Rs."></td>
+								class="numberinput decimal"
+								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.gross_total}"/></c:if>"
+								placeholder="Rs.">
+							</td>
 							</tr>
 						</table>
 					</fieldset>
@@ -253,44 +278,53 @@
 					<table>
 						<tr>
 
-							<th><label> Allowance </label></th>
+							<th><label> Allowance </label>
+						</th>
 
-							<th><label>Rs. </label></th>
-							<th><label>Total</label></th>
+							<th><label>Rs. </label>
+						</th>
+							<th><label>Total</label>
+						</th>
 						</tr>
 
 						<tr>
 							<td><input type="text" name="less_allowance_1"
-								class="numberinput decimal"
-								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.less_allowance_1}"/></c:if>"
-								placeholder="Allowance"></td>
+							class="numberinput decimal"
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.less_allowance_1}"/></c:if>"
+							placeholder="Allowance">
+						</td>
 
 							<td><input type="text" name="less_rs_1"
-								class="numberinput decimal"
-								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.less_rs_1}"/></c:if>"
-								placeholder="Rs."></td>
+							class="numberinput decimal"
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.less_rs_1}"/></c:if>"
+							placeholder="Rs.">
+						</td>
 
 							<td><input type="text" name="less_total_1"
-								class="numberinput decimal"
-								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.less_total_1}"/></c:if>"
-								placeholder="Rs."></td>
+							class="numberinput decimal"
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.less_total_1}"/></c:if>"
+							placeholder="Rs.">
+						</td>
 						</tr>
 
 						<tr>
 							<td><input type="text" name="less_allowance_2"
-								class="numberinput decimal"
-								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.less_allowance_2}"/></c:if>"
-								placeholder="Allowance"></td>
+							class="numberinput decimal"
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.less_allowance_2}"/></c:if>"
+							placeholder="Allowance">
+						</td>
 
 							<td><input type="text" name="less_rs_2"
-								class="numberinput decimal"
-								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.less_rs_2}"/></c:if>"
-								placeholder="Rs."></td>
+							class="numberinput decimal"
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.less_rs_2}"/></c:if>"
+							placeholder="Rs.">
+						</td>
 
 							<td><input type="text" name="less_total_2"
-								class="numberinput decimal"
-								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.less_total_2}"/></c:if>"
-								placeholder="Rs."></td>
+							class="numberinput decimal"
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.less_total_2}"/></c:if>"
+							placeholder="Rs.">
+						</td>
 						</tr>
 					</table>
 					<table>
@@ -299,33 +333,45 @@
 									Balance(1-2)</label>
 							</td>
 							<td><input type="text" name="balance"
-								class="numberinput decimal"
-								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.balance}"/></c:if>"
-								placeholder="Rs."></td>
+							class="numberinput decimal"
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.balance}"/></c:if>"
+							placeholder="Rs.">
+						</td>
 						</tr>
 						<tr>
-						</table>
+						
+				</table>
 							<div class="row-fluid show-grid">
 
 						<div class="span4">
-							<div class="rowlabel"><label><strong>4.</strong> </label> <label>
-									Deductions : </label></div></div></div>
-						<div class="row-fluid show-grid"><div class="span4">
+							<div class="rowlabel">
+							<label><strong>4.</strong> </label> <label>
+									Deductions : </label>
+						</div>
+					</div>
+				</div>
+						<div class="row-fluid show-grid">
+					<div class="span4">
 							<div class="rowlabel">(a) Entertainment allowance
 							</div>
-							<div class="rowlabel"><input type="text" name="deductions_entertainment"
+							<div class="rowlabel">
+							<input type="text" name="deductions_entertainment"
 								class="numberinput decimal"
 								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.deductions_entertainment}"/></c:if>"
-								placeholder="Rs."></div>
+								placeholder="Rs.">
+						</div>
 							</div>
 							<div class="span4">
 							<div class="rowlabel">(b) Tax on Employment
 							</div>
-							<div class="rowlabel"><input type="text" name="deductions_tax"
+							<div class="rowlabel">
+							<input type="text" name="deductions_tax"
 								class="numberinput decimal"
 								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.deductions_tax}"/></c:if>"
 								placeholder="Rs.">
-							</div></div></div>
+							</div>
+					</div>
+				</div>
 				
 
 					<table>
@@ -334,23 +380,26 @@
 									of 4(a) and (b) </label>
 							</td>
 							<td><input type="text" name="deductions_total"
-								class="numberinput decimal"
-								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.deductions_total}"/></c:if>"
-								placeholder="Rs."></td>
+							class="numberinput decimal"
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.deductions_total}"/></c:if>"
+							placeholder="Rs.">
+						</td>
 						</tr>
 						<tr>
 							<td><label><strong>6.</strong>Income
-									chargeable under the head."Salaries"(3-5) </label>
-							</td>
-							<td><input type="text" name="income_chargable_total"
-								class="numberinput decimal"
-								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.income_chargable_tax}"/></c:if>"
-								placeholder="Rs.">
-							</td>
+									chargeable under the head."Salaries"(3-5) 
+					</label>
+						</td>
+						<td><input type="text" name="income_chargable_total"
+							class="numberinput decimal"
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.income_chargable_tax}"/></c:if>"
+							placeholder="Rs."></td>
 						</tr>
+					
 						<tr>
 							<td><label><strong>7.</strong> </label> <label><em>Add</em>:
-									Any other income reported by the employee </label></td>
+									Any other income reported by the employee </label>
+						</td>
 							<td><label>Rs. </label>
 							</td>
 						</tr>
@@ -358,26 +407,27 @@
 						<tr>
 							<td>(i)</td>
 							<td><input type="text" name="additional_1"
-								class="numberinput decimal"
-								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.additional_1}"/></c:if>"
-								placeholder="Rs.">
+							class="numberinput decimal"
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.additional_1}"/></c:if>"
+							placeholder="Rs.">
 							</td>
 						</tr>
 						<tr>
 							<td>(ii)</td>
 							<td><input type="text" name="additional_2"
-								class="numberinput decimal"
-								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.additional_2}"/></c:if>"
-								placeholder="Rs."></td>
+							class="numberinput decimal"
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.additional_2}"/></c:if>"
+							placeholder="Rs.">
+						</td>
 						</tr>
 						<tr>
 							<td><label><strong>8.</strong> </label> <label>Gross
 									total income (6 + 7)</label>
 							</td>
 							<td><input type="text" name="gross_income_total"
-								class="numberinput decimal"
-								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.gross_income_total}"/></c:if>"
-								placeholder="Rs.">
+							class="numberinput decimal"
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.gross_income_total}"/></c:if>"
+							placeholder="Rs.">
 							</td>
 						</tr>
 					</table>
@@ -391,20 +441,25 @@
 								<td></td>
 								<td></td>
 								<td><input type="text" class="numberinput decimal"
-									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.ded_underchapter_6a}"/></c:if>"
-									name="ded_underchapter_6a" placeholder="Rs.">
+								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.ded_underchapter_6a}"/></c:if>"
+								name="ded_underchapter_6a" placeholder="Rs.">
 								</td>
 							</tr>
 							<tr>
 								<th><label>(A) sections 80C, 80CCC and 80CCD </label>
 								</th>
 								<th></th>
-								<th><label>Gross amount</label></th>
-								<th><label>Deductible amount</label></th>
+								<th><label>Gross amount</label>
+							</th>
+								<th><label>Deductible amount</label>
+							</th>
 							</tr>
 							<tr>
 								<td><label>(a) section 80C </label>
-								</td><td></td><td></td><td></td>
+								</td>
+							<td></td>
+							<td></td>
+							<td></td>
 							</tr>
 							<tr>
 
@@ -413,14 +468,14 @@
 								<select id="State" name="State">
 									<option value="">Select One</option>
 									<c:forEach var="Deduction" items="${objHashMapDeduction}">
-										<option
-											 value="${Deduction.key}">${Deduction.value}</option>
+										<option value="${Deduction.key}">${Deduction.value}</option>
 									</c:forEach>
 								</select>
 								</td>
 								<td><input type="text" name="c_1"
-									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.c_1}"/></c:if>"
-									class="numberinput decimal" placeholder="Rs."></td>
+								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.c_1}"/></c:if>"
+								class="numberinput decimal" placeholder="Rs.">
+							</td>
 								<td></td>
 
 							</tr>
@@ -429,83 +484,87 @@
 								<select id="State" name="State">
 									<option value="">Select One</option>
 									<c:forEach var="Deduction" items="${objHashMapDeduction}">
-										<option
-											 value="${Deduction.key}">${Deduction.value}</option>
+										<option value="${Deduction.key}">${Deduction.value}</option>
 									</c:forEach>
 								</select>
 								</td>
 								<td><input type="text" name="c_2"
-									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.c_2}"/></c:if>"
-									class="numberinput decimal" placeholder="Rs."></td>
+								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.c_2}"/></c:if>"
+								class="numberinput decimal" placeholder="Rs.">
+							</td>
 								<td></td>
 							</tr>
 							<tr>
 								<td><label>(iii) </label><select id="State" name="State">
 									<option value="">Select One</option>
 									<c:forEach var="Deduction" items="${objHashMapDeduction}">
-										<option
-											 value="${Deduction.key}">${Deduction.value}</option>
+										<option value="${Deduction.key}">${Deduction.value}</option>
 									</c:forEach>
-								</select></td>
+								</select>
+							</td>
 								<td><input type="text" name="c_3"
-									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.c_3}"/></c:if>"
-									class="numberinput decimal" placeholder="Rs."></td>
+								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.c_3}"/></c:if>"
+								class="numberinput decimal" placeholder="Rs.">
+							</td>
 								<td></td>
 							</tr>
 							<tr>
 								<td><label>(iv)</label><select id="State" name="State">
 									<option value="">Select One</option>
 									<c:forEach var="Deduction" items="${objHashMapDeduction}">
-										<option
-											 value="${Deduction.key}">${Deduction.value}</option>
+										<option value="${Deduction.key}">${Deduction.value}</option>
 									</c:forEach>
 								</select>
 								</td>
 								<td><input type="text" name="c_4"
-									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.c_4}"/></c:if>"
-									class="numberinput decimal" placeholder="Rs."></td>
+								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.c_4}"/></c:if>"
+								class="numberinput decimal" placeholder="Rs.">
+							</td>
 								<td></td>
 							</tr>
 							<tr>
 								<td><label>(v)</label><select id="State" name="State">
 									<option value="">Select One</option>
 									<c:forEach var="Deduction" items="${objHashMapDeduction}">
-										<option
-											 value="${Deduction.key}">${Deduction.value}</option>
+										<option value="${Deduction.key}">${Deduction.value}</option>
 									</c:forEach>
 								</select>
 								</td>
 								
 								<td><input type="text" name="c_5"
-									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.c_5}"/></c:if>"
-									class="numberinput decimal" placeholder="Rs."></td>
+								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.c_5}"/></c:if>"
+								class="numberinput decimal" placeholder="Rs.">
+							</td>
 								<td></td>
 							</tr>
 							
 							<tr>
-								<td><label>(vi)</label></td>
+								<td><label>(vi)</label>
+							</td>
 								<td><input type="text" name="c_6a"
-									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.c_6a}"/></c:if>"
-									class="numberinput decimal" placeholder="Rs."></td>
+								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.c_6a}"/></c:if>"
+								class="numberinput decimal" placeholder="Rs.">
+							</td>
 								<td><input type="text" name="c_6b"
-									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.c_6b}"/></c:if>"
-									class="numberinput decimal" placeholder="Rs.">
+								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.c_6b}"/></c:if>"
+								class="numberinput decimal" placeholder="Rs.">
 								</td>
 								<td><input type="text" name="c_6c"
-									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.c_6c}"/></c:if>"
-									class="numberinput decimal" placeholder="Rs.">
+								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.c_6c}"/></c:if>"
+								class="numberinput decimal" placeholder="Rs.">
 								</td>
 							</tr>
 							<tr>
-								<td><label>(b) section 80CCC </label></td>
+								<td><label>(b) section 80CCC </label>
+							</td>
 								<td></td>
 								<td><input type="text" name="ccc_1"
-									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.ccc_1}"/></c:if>"
-									class="numberinput decimal" placeholder="Rs.">
+								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.ccc_1}"/></c:if>"
+								class="numberinput decimal" placeholder="Rs.">
 								</td>
 								<td><input type="text" name="ccc_2"
-									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.ccc_2}"/></c:if>"
-									class="numberinput decimal" placeholder="Rs.">
+								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.ccc_2}"/></c:if>"
+								class="numberinput decimal" placeholder="Rs.">
 								</td>
 							</tr>
 							<tr>
@@ -513,13 +572,13 @@
 								</td>
 								<td></td>
 								<td><input type="text"
-									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.ccd_1}"/></c:if>"
-									class="numberinput decimal" name="ccd_1" placeholder="Rs.">
+								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.ccd_1}"/></c:if>"
+								class="numberinput decimal" name="ccd_1" placeholder="Rs.">
 								</td>
 
 								<td><input type="text" name="ccd_2"
-									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.ccd_2}"/></c:if>"
-									class="numberinput decimal" placeholder="Rs.">
+								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.ccd_2}"/></c:if>"
+								class="numberinput decimal" placeholder="Rs.">
 								</td>
 							</tr>
 						</table>
@@ -544,26 +603,27 @@
 							</th>
 						</tr>
 						<tr>
-							<td><label> (a) section <select id="a_section" name="a_section">
+							<td><label> (a) section <select id="a_section"
+								name="a_section">
 									<option value="">Select One</option>
 									<c:forEach var="Deduction6a" items="${objHashMapDeduction6a}">
 										<option
-										<c:if test="${pageAction == 'EDIT_CHILD' && childBean.a_section == Deduction6a.value}">selected</c:if>
-											 value="${Deduction6a.key}">${Deduction6a.value}</option>
+											<c:if test="${pageAction == 'EDIT_CHILD' && childBean.a_section == Deduction6a.value}">selected</c:if>
+											value="${Deduction6a.key}">${Deduction6a.value}</option>
 									</c:forEach>
 								</select> </label>
 							</td>
 							<td><input type="text"
-								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.a_section_1}"/></c:if>"
-								name="a_section_1" class="numberinput decimal" placeholder="Rs.">
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.a_section_1}"/></c:if>"
+							name="a_section_1" class="numberinput decimal" placeholder="Rs.">
 							</td>
 							<td><input type="text"
-								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.a_section_2}"/></c:if>"
-								name="a_section_2" class="numberinput decimal" placeholder="Rs.">
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.a_section_2}"/></c:if>"
+							name="a_section_2" class="numberinput decimal" placeholder="Rs.">
 							</td>
 							<td><input type="text"
-								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.a_section_3}"/></c:if>"
-								name="a_section_3" class="numberinput decimal" placeholder="Rs.">
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.a_section_3}"/></c:if>"
+							name="a_section_3" class="numberinput decimal" placeholder="Rs.">
 							</td>
 						</tr>
 						<tr>
@@ -574,97 +634,101 @@
 									<option value="">Select One</option>
 									<c:forEach var="Deduction6a" items="${objHashMapDeduction6a}">
 										<option
-										<c:if test="${pageAction == 'EDIT_CHILD' && childBean.b_section == Deduction6a.value}">selected</c:if>
-											 value="${Deduction6a.key}">${Deduction6a.value}</option>
+											<c:if test="${pageAction == 'EDIT_CHILD' && childBean.b_section == Deduction6a.value}">selected</c:if>
+											value="${Deduction6a.key}">${Deduction6a.value}</option>
 									</c:forEach>
-								</select></label>
+								</select>
+						</label>
 								
 							</td>
 							<td><input type="text" name="b_section_1"
-								class="numberinput decimal"
-								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.b_section_1}"/></c:if>"
-								placeholder="Rs.">
+							class="numberinput decimal"
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.b_section_1}"/></c:if>"
+							placeholder="Rs.">
 							</td>
 							<td><input type="text" name="b_section_2"
-								class="numberinput decimal" placeholder="Rs."
-								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.b_section_2}"/></c:if>">
+							class="numberinput decimal" placeholder="Rs."
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.b_section_2}"/></c:if>">
 							</td>
 							<td><input type="text" name="b_section_3"
-								class="numberinput decimal"
-								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.b_section_3}"/>
+							class="numberinput decimal"
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.b_section_3}"/>
 							</c:if>"
-								placeholder="Rs.">
+							placeholder="Rs.">
 							</td>
 						</tr>
 						<tr>
-							<td><label>(c) section <select id="c_section" name="c_section">
+							<td><label>(c) section <select id="c_section"
+								name="c_section">
 									<option value="">Select One</option>
 									<c:forEach var="Deduction6a" items="${objHashMapDeduction6a}">
 										<option
-										<c:if test="${pageAction == 'EDIT_CHILD' && childBean.c_section == Deduction6a.value}">selected</c:if>
-											 value="${Deduction6a.key}">${Deduction6a.value}</option>
+											<c:if test="${pageAction == 'EDIT_CHILD' && childBean.c_section == Deduction6a.value}">selected</c:if>
+											value="${Deduction6a.key}">${Deduction6a.value}</option>
 									</c:forEach>
 								</select>  </label>
 							</td>
 
 							<td><input type="text" name="c_section_1"
-								class="numberinput decimal" placeholder="Rs."
-								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.c_section_1}"/></c:if>">
+							class="numberinput decimal" placeholder="Rs."
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.c_section_1}"/></c:if>">
 							</td>
 							<td><input type="text" name="c_section_2"
-								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.c_section_2}"/></c:if>"
-								class="numberinput decimal" placeholder="Rs.">
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.c_section_2}"/></c:if>"
+							class="numberinput decimal" placeholder="Rs.">
 							</td>
 							<td><input type="text" name="c_section_3"
-								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.c_section_3}"/></c:if>"
-								class="numberinput decimal" placeholder="Rs.">
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.c_section_3}"/></c:if>"
+							class="numberinput decimal" placeholder="Rs.">
 							</td>
 						</tr>
 						<tr>
-							<td><label>(d) section <select id="d_section" name="d_section">
+							<td><label>(d) section <select id="d_section"
+								name="d_section">
 									<option value="">Select One</option>
 									<c:forEach var="Deduction6a" items="${objHashMapDeduction6a}">
 										<option
-										<c:if test="${pageAction == 'EDIT_CHILD' && childBean.d_section == Deduction6a.value}">selected</c:if>
-											 value="${Deduction6a.key}">${Deduction6a.value}</option>
+											<c:if test="${pageAction == 'EDIT_CHILD' && childBean.d_section == Deduction6a.value}">selected</c:if>
+											value="${Deduction6a.key}">${Deduction6a.value}</option>
 									</c:forEach>
 								</select>  </label>
 							</td>
 
 							<td><input type="text" name="d_section_1"
-								class="numberinput decimal" placeholder="Rs."
-								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.d_section_1}"/></c:if>">
+							class="numberinput decimal" placeholder="Rs."
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.d_section_1}"/></c:if>">
 							</td>
 							<td><input type="text" name="d_section_2"
-								class="numberinput decimal" placeholder="Rs."
-								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.d_section_2}"/></c:if>">
+							class="numberinput decimal" placeholder="Rs."
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.d_section_2}"/></c:if>">
 							</td>
 							<td><input type="text" name="d_section_3"
-								class="numberinput decimal" placeholder="Rs."
-								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.d_section_3}"/></c:if>">
+							class="numberinput decimal" placeholder="Rs."
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.d_section_3}"/></c:if>">
 							</td>
 						</tr>
 						<tr>
-							<td><label>(e) section <select id="e_section" name="e_section">
+							<td><label>(e) section <select id="e_section"
+								name="e_section">
 									<option value="">Select One</option>
 									<c:forEach var="Deduction6a" items="${objHashMapDeduction6a}">
 										<option
-										<c:if test="${pageAction == 'EDIT_CHILD' && childBean.e_section == Deduction6a.value}">selected</c:if>
-											 value="${Deduction6a.key}">${Deduction6a.value}</option>
+											<c:if test="${pageAction == 'EDIT_CHILD' && childBean.e_section == Deduction6a.value}">selected</c:if>
+											value="${Deduction6a.key}">${Deduction6a.value}</option>
 									</c:forEach>
 								</select> </label>
 							</td>
 							<td><input type="text" name="e_section_1"
-								class="numberinput decimal" placeholder="Rs."
-								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.e_section_1}"/></c:if>">
+							class="numberinput decimal" placeholder="Rs."
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.e_section_1}"/></c:if>">
 							</td>
 							<td><input type="text" name="e_section_2"
-								class="numberinput decimal" placeholder="Rs."
-								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.e_section_2}"/></c:if>">
+							class="numberinput decimal" placeholder="Rs."
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.e_section_2}"/></c:if>">
 							</td>
 							<td><input type="text" name="e_section_3"
-								class="numberinput decimal" placeholder="Rs."
-								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.e_section_3}"/></c:if>">
+							class="numberinput decimal" placeholder="Rs."
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.e_section_3}"/></c:if>">
 							</td>
 						</tr>
 					</table>
@@ -672,12 +736,13 @@
 						<tr>
 							<td><label><strong>10.</strong> Aggregate of
 									deductible amount under Chapter VI-A</label>
-							<td></td>
+							
+						<td></td>
 							<td></td>
 							<td><input type="text" name="aggregate"
-								class="numberinput decimal"
-								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.aggregate}"/></c:if>"
-								placeholder="Rs.">
+							class="numberinput decimal"
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.aggregate}"/></c:if>"
+							placeholder="Rs.">
 							</td>
 						</tr>
 						<tr>
@@ -685,15 +750,15 @@
 									income (8-10) </label>
 							</td>
 							<td><input type="text" name="total_income_1"
-								class="numberinput decimal"
-								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.total_income_1}"/></c:if>"
-								placeholder="Rs.">
+							class="numberinput decimal"
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.total_income_1}"/></c:if>"
+							placeholder="Rs.">
 							</td>
 							<td></td>
 							<td><input type="text" name="total_income_2"
-								class="numberinput decimal"
-								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.total_income_2}"/></c:if>"
-								placeholder="Rs.">
+							class="numberinput decimal"
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.total_income_2}"/></c:if>"
+							placeholder="Rs.">
 							</td>
 						</tr>
 						<tr>
@@ -701,15 +766,15 @@
 									on total income </label>
 							</td>
 							<td><input type="text" name="tax_total_income_1"
-								class="numberinput decimal"
-								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.tax_total_income_1}"/></c:if>"
-								placeholder="Rs.">
+							class="numberinput decimal"
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.tax_total_income_1}"/></c:if>"
+							placeholder="Rs.">
 							</td>
 							<td></td>
 							<td><input type="text" name="tax_total_income_2"
-								class="numberinput decimal"
-								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.tax_total_income_1}"/></c:if>"
-								placeholder="Rs.">
+							class="numberinput decimal"
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.tax_total_income_1}"/></c:if>"
+							placeholder="Rs.">
 							</td>
 						</tr>
 
@@ -719,16 +784,16 @@
 							</td>
 
 							<td><input type="text" name="surcharge_1"
-								class="numberinput decimal"
-								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.surcharge_1}"/></c:if>"
-								placeholder="Rs.">
+							class="numberinput decimal"
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.surcharge_1}"/></c:if>"
+							placeholder="Rs.">
 							</td>
 							<td></td>
 
 							<td><input type="text" name="surcharge_2"
-								class="numberinput decimal"
-								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.surcharge_1}"/></c:if>"
-								placeholder="Rs.">
+							class="numberinput decimal"
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.surcharge_1}"/></c:if>"
+							placeholder="Rs.">
 							</td>
 						</tr>
 
@@ -739,9 +804,9 @@
 							<td></td>
 							<td></td>
 							<td><input type="text" name="education_cess"
-								class="numberinput decimal"
-								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.education_cess}"/></c:if>"
-								placeholder="Rs.">
+							class="numberinput decimal"
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.education_cess}"/></c:if>"
+							placeholder="Rs.">
 							</td>
 						</tr>
 
@@ -753,9 +818,9 @@
 							<td></td>
 
 							<td><input type="text" name="tax_payable"
-								class="numberinput decimal"
-								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.tax_payable}"/></c:if>"
-								placeholder="Rs.">
+							class="numberinput decimal"
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.tax_payable}"/></c:if>"
+							placeholder="Rs.">
 							</td>
 						</tr>
 
@@ -765,16 +830,16 @@
 							</td>
 
 							<td><input type="text" name="relief_1"
-								class="numberinput decimal"
-								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.relief_1}"/></c:if>"
-								placeholder="Rs.">
+							class="numberinput decimal"
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.relief_1}"/></c:if>"
+							placeholder="Rs.">
 							</td>
 							<td></td>
 
 							<td><input type="text" name="relief_2"
-								class="numberinput decimal"
-								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.relief_2}"/></c:if>"
-								placeholder="Rs.">
+							class="numberinput decimal"
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.relief_2}"/></c:if>"
+							placeholder="Rs.">
 							</td>
 						</tr>
 
@@ -784,21 +849,21 @@
 							</td>
 
 							<td><input type="text" name="tax_payable1"
-								class="numberinput decimal"
-								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.tax_payable1}"/></c:if>"
-								placeholder="Rs.">
+							class="numberinput decimal"
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.tax_payable1}"/></c:if>"
+							placeholder="Rs.">
 							</td>
 
 							<td><input type="text" name="tax_payable_1"
-								class="numberinput decimal"
-								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.tax_payable_1}"/></c:if>"
-								placeholder="Rs.">
+							class="numberinput decimal"
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.tax_payable_1}"/></c:if>"
+							placeholder="Rs.">
 							</td>
 
 							<td><input type="text" name="tax_payable_2"
-								class="numberinput decimal"
-								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.tax_payable_2}"/></c:if>"
-								placeholder="Rs.">
+							class="numberinput decimal"
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.tax_payable_2}"/></c:if>"
+							placeholder="Rs.">
 							</td>
 						</tr>
 
@@ -814,13 +879,13 @@
 							<td></td>
 
 							<td><input type="text" name="ded_ent1"
-								class="numberinput decimal" placeholder="Rs."
-								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.ded_ent_1}"/></c:if>">
+							class="numberinput decimal" placeholder="Rs."
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.ded_ent_1}"/></c:if>">
 							</td>
 
 							<td><input type="text" name="ded_ent2"
-								class="numberinput decimal" placeholder="Rs."
-								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.ded_ent_2}"/></c:if>">
+							class="numberinput decimal" placeholder="Rs."
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.ded_ent_2}"/></c:if>">
 							</td>
 						</tr>
 
@@ -831,13 +896,13 @@
 							<td></td>
 
 							<td><input type="text" name="ded_ent3"
-								class="numberinput decimal" placeholder="Rs."
-								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.ded_ent_3}"/></c:if>">
+							class="numberinput decimal" placeholder="Rs."
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.ded_ent_3}"/></c:if>">
 							</td>
 
 							<td><input type="text" name="ded_ent4"
-								class="numberinput decimal" placeholder="Rs."
-								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.ded_ent_4}"/></c:if>">
+							class="numberinput decimal" placeholder="Rs."
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.ded_ent_4}"/></c:if>">
 							</td>
 						</tr>
 						<tr>
@@ -847,15 +912,15 @@
 							<td></td>
 
 							<td><input type="text" name="relief_11"
-								class="numberinput decimal"
-								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.relief_11}"/></c:if>"
-								placeholder="Rs.">
+							class="numberinput decimal"
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.relief_11}"/></c:if>"
+							placeholder="Rs.">
 							</td>
 
 							<td><input type="text" name="relief_12"
-								class="numberinput decimal"
-								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.relief_12}"/></c:if>"
-								placeholder="Rs.">
+							class="numberinput decimal"
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.relief_12}"/></c:if>"
+							placeholder="Rs.">
 							</td>
 						</tr>
 					</table>
@@ -883,21 +948,21 @@
 				</tr>
 				<c:if test="${not empty parentBean}">
 					<c:forEach items="${parentBean.formSixteenDetailList}"
-						var="salaryItemDetail">
+					var="salaryItemDetail">
 						<tr>
 							<td><a
-								href="${scriptName}/<c:out value="${salaryItemDetail.canonicalUUID}"/>/formsixteenedit"><c:out
-										value="${salaryItemDetail.employer}" /> </a>
+							href="${scriptName}/<c:out value="${salaryItemDetail.canonicalUUID}"/>/formsixteenedit"><c:out
+									value="${salaryItemDetail.employer}" /> </a>
 							</td>
 							<td><c:out value="${salaryItemDetail.employee}" />
 							</td>
 							<td align="right"><c:out
-									value="${salaryItemDetail.relief_11}" />
+								value="${salaryItemDetail.relief_11}" />
 							</td>
 							<td><a
-								href="${scriptName}/<c:out value="${salaryItemDetail.canonicalUUID}"/>/formsixteenedit"><small>Edit</small>
+							href="${scriptName}/<c:out value="${salaryItemDetail.canonicalUUID}"/>/formsixteenedit"><small>Edit</small>
 							</a>&nbsp;&nbsp;<a
-								href="${scriptName}/<c:out value="${salaryItemDetail.canonicalUUID}"/>/formsixteendelete"><small>Delete</small>
+							href="${scriptName}/<c:out value="${salaryItemDetail.canonicalUUID}"/>/formsixteendelete"><small>Delete</small>
 							</a>
 							</td>
 						</tr>

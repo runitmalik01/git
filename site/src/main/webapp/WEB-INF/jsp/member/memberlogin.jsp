@@ -20,6 +20,10 @@
 <%@page import="org.hippoecm.hst.core.component.HstRequest"%>
 <%@page import="java.util.Enumeration"%>
 <%@include file="../includes/tags.jspf"%>
+<c:set var="memberlogintitle">
+	<fmt:message key="member.login.title" />
+</c:set>
+<hippo-gogreen:title title="${memberlogintitle}" />
 <%
 String errorKey = "login.error";
 try {
