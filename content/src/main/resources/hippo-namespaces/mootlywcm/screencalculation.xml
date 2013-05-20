@@ -29,7 +29,7 @@
         <sv:value>hippo:harddocument</sv:value>
       </sv:property>
       <sv:property sv:name="jcr:uuid" sv:type="String">
-        <sv:value>75a9f2a0-2e79-4ed5-bb56-65001d2588ee</sv:value>
+        <sv:value>bcc8edf0-8b1d-44aa-a708-4c917bb85107</sv:value>
       </sv:property>
       <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
       <sv:property sv:name="hipposysedit:node" sv:type="Boolean">
@@ -149,7 +149,7 @@
         <sv:value>hippotranslation:translated</sv:value>
       </sv:property>
       <sv:property sv:name="jcr:uuid" sv:type="String">
-        <sv:value>c0d6882c-d037-44bf-b6d7-7f03774243cf</sv:value>
+        <sv:value>642e6bd8-5dac-4371-8771-6d458e0790c9</sv:value>
       </sv:property>
       <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
       <sv:property sv:name="hippostd:holder" sv:type="String">
@@ -179,8 +179,12 @@
       <sv:property sv:name="hippotranslation:locale" sv:type="String">
         <sv:value>document-type-locale</sv:value>
       </sv:property>
-      <sv:property sv:multiple="true" sv:name="mootlywcm:dropRadio" sv:type="Double"/>
-      <sv:property sv:multiple="true" sv:name="mootlywcm:input" sv:type="Double"/>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:dropRadio" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:input" sv:type="String">
+        <sv:value/>
+      </sv:property>
       <sv:property sv:name="mootlywcm:script" sv:type="String">
         <sv:value>&lt;html&gt;
 &lt;body&gt;
@@ -354,7 +358,7 @@
           <sv:value>frontend:plugin</sv:value>
         </sv:property>
         <sv:property sv:name="caption" sv:type="String">
-          <sv:value>DropDown/Radio Type Fields</sv:value>
+          <sv:value>DropDown /Radio Type Fields</sv:value>
         </sv:property>
         <sv:property sv:name="engine" sv:type="String">
           <sv:value>${engine}</sv:value>
