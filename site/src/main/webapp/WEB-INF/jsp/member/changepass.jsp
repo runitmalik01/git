@@ -1,6 +1,9 @@
 <%@include file="../includes/tags.jspf"%>
 <%@page import="com.mootly.wcm.services.ScreenConfigService"%>
-
+<c:set var="changepass">
+ <fmt:message key="member.change.title" />
+</c:set>
+<hippo-gogreen:title title="${changepass}" />
 <hst:actionURL var="actionUrl" />
 
 <form id="frmchangepass" action="${actionUrl}" method="post">
