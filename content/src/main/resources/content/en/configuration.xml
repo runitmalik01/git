@@ -1720,7 +1720,7 @@ serving since beginning then select first day of financial year.&lt;/p&gt;
             <sv:value/>
           </sv:property>
           <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
-            <sv:value>PAN Number(AAAAA1111A)</sv:value>
+            <sv:value>AAAAA1111A</sv:value>
           </sv:property>
           <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
             <sv:value>true</sv:value>
