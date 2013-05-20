@@ -26,8 +26,8 @@
 <%@ tag import="java.util.*" %>
 <%@ attribute name="label" required="true" type="java.lang.String" %>
 <%
-if (label != null && label.length() > 15) {
-	label = label.substring(0,14) + "...";
-}
+//if (label != null && label.length() > 15) {
+//	label = label.substring(0,14) + "...";
+//}
 out.println(label);
 %>

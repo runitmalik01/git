@@ -62,7 +62,20 @@
 							</c:otherwise>
 						</c:choose>
 					</td>
-					<td  style="text-align:right"><span class="decimal">0</span></td>
+					<td  style="text-align:right">
+						<span class="decimal">
+							<c:set var="theKey" value="total_${fn:replace(deductionSectionName,'-','_')}"/>
+							<c:choose>
+								<c:when test="${not empty totalMapForJS && not empty totalMapForJS[theKey]}">
+									<c:out value="${totalMapForJS[theKey]}"/>
+								</c:when>	
+								<c:otherwise>
+									0
+								</c:otherwise>
+							</c:choose>
+							
+						</span>
+					</td>
 				</tr>	
 			</c:forEach>		
 			<tr class="success">

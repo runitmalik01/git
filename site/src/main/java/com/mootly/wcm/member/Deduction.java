@@ -8,6 +8,7 @@
  */
 package com.mootly.wcm.member;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -57,6 +58,7 @@ import com.mootly.wcm.model.DoneeWithPan;
 import com.mootly.wcm.model.FinancialYear;
 import com.mootly.wcm.model.deduction.DeductionSection;
 import com.mootly.wcm.services.DeductionListService;
+import com.mootly.wcm.services.ScreenCalculatorService;
 import com.mootly.wcm.utils.ContentStructure;
 import com.mootly.wcm.utils.GoGreenUtil;
 import com.mootly.wcm.utils.UrlUtility;
@@ -92,6 +94,7 @@ public class Deduction extends ITReturnComponent {
 	public void doBeforeRender(HstRequest request, HstResponse response) {
 		// TODO Auto-generated method stub
 		Map<String,DeductionSection> deductionSectionMap = null; //listOfDeductionSections = null;
+		Map<String, Double> totalOfSavedData = new HashMap<String, Double>();
 		super.doBeforeRender(request, response);
 		request.setAttribute("deductionListService", deductionListService);
 		if (deductionListService != null && deductionListService.getDeductionSectionMap() != null &&  deductionListService.getDeductionSectionMap().containsKey(getFinancialYear())) {
@@ -102,9 +105,9 @@ public class Deduction extends ITReturnComponent {
 		if (getParentBean()!= null) {
 			DeductionDocument deductionDocument = (DeductionDocument) getParentBean();
 			List<DeductionDocumentDetail> deductionDocumentDetailList = deductionDocument.getDeductionDocumentDetailList();
+			Double grandTotal = 0D;
 			if (deductionDocumentDetailList != null && deductionDocumentDetailList.size() > 0){
 				Map<String, List<DeductionDocumentDetail>> savedData = new HashMap<String, List<DeductionDocumentDetail>>();
-				Map<String, Double> totalOfSavedData = new HashMap<String, Double>();
 				for (DeductionDocumentDetail deductionDocumentDetail:deductionDocumentDetailList) {
 					if (!savedData.containsKey(deductionDocumentDetail.getSection())) {
 						savedData.put(deductionDocumentDetail.getSection(), new ArrayList<DeductionDocumentDetail>());
@@ -119,7 +122,14 @@ public class Deduction extends ITReturnComponent {
 					totalOfSavedData.put( deductionDocumentDetail.getSection(),  totalOfSavedData.get(deductionDocumentDetail.getSection()).doubleValue() + deductionDocumentDetail.getInvestment().doubleValue());
 				}
 				if (savedData != null && savedData.size() > 0) request.setAttribute("savedData",savedData);
-				if (totalOfSavedData != null && totalOfSavedData.size() > 0) request.setAttribute("totalOfSavedData",totalOfSavedData);
+				if (totalOfSavedData != null && totalOfSavedData.size() > 0){
+					for (String aSection:totalOfSavedData.keySet()) {
+						grandTotal += totalOfSavedData.get(aSection);
+					}
+					request.setAttribute("grandTotal",grandTotal);
+					request.setAttribute("totalOfSavedData",totalOfSavedData);
+				}
+				
 			}
 		}
 		
@@ -144,6 +154,26 @@ public class Deduction extends ITReturnComponent {
 			}
 		}
 		
+		//time to calculate
+		if (getParentBean() != null) {
+			//hashmap for javascript
+			Map<String,Object> totalMapForJS = new HashMap<String, Object>();
+			for (String deductionSection :deductionSectionMap.keySet()){
+				String sanitizedKey =  "total_" +  deductionSection.replaceAll("-", "_");
+				if (totalOfSavedData != null && totalOfSavedData.containsKey(deductionSection)) {
+					totalMapForJS.put(sanitizedKey,totalOfSavedData.get(deductionSection));
+				}
+				else {
+					totalMapForJS.put(sanitizedKey,0D);
+				}
+			}			
+			Map<String,Object> resultMap = ScreenCalculatorService.getScreenCalculations("Chapter6Calc.js", request.getParameterMap(), totalMapForJS);
+			if (resultMap != null && resultMap.size() > 0 ) {
+				totalMapForJS.putAll(resultMap);
+				request.setAttribute("totalMapForJS", totalMapForJS);
+				log.info(resultMap.toString()); //lets analye the map
+			}
+		}
 	}
 	
 	@Override
