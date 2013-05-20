@@ -18,10 +18,8 @@
 	if (siteContentBaseBean != null) {
 		String pathToScreenCalc = "configuration/screencalculation/" + screenCalc.toLowerCase();
 		ScreenCalculation screencalc=siteContentBaseBean.getBean(pathToScreenCalc, ScreenCalculation.class);
-		String jqinput="";String jqdrop="";out.print("htis is f"+screencalc.getRadioDropTypeFields().length);
-		for(String field:screencalc.getInputTypeFields()) jqinput=jqinput+"#"+field.trim()+",";
-		if(screencalc.getRadioDropTypeFields().length!=0)
-			
+		String jqinput="";String jqdrop="";
+		for(String field:screencalc.getInputTypeFields()) jqinput=jqinput+"#"+field.trim()+",";	
 		for(String field:screencalc.getRadioDropTypeFields()) jqdrop=jqdrop+"#"+field.trim()+",";
 		request.setAttribute("jqinput", jqinput.substring(0,jqinput.length()-1));
 		request.setAttribute("jqdrop", jqdrop.substring(0,jqdrop.length()-1));
