@@ -18,9 +18,13 @@ import org.slf4j.LoggerFactory;
 
 public final class ScreenCalculatorService {
 	private static final Logger log = LoggerFactory.getLogger(ScreenCalculatorService.class);
-	public static final Map<String,Object> getScreenCalculations(String Script,Map<String,String[]> requestParameterMap,Map<String,Object> additionalBindings) {
-		//String calculatorScript = loadScript(scriptName);
-		String calculatorScript=Script.replaceAll("<.*?>", "");
+	private static String calculatorScript=null;
+	public static final Map<String,Object> getScreenCalculations(String scriptName,Map<String,String[]> requestParameterMap,Map<String,Object> additionalBindings) {
+		if(scriptName.contains(".js")){
+			calculatorScript	= loadScript(scriptName);
+		}else{
+			calculatorScript=scriptName.replaceAll("<.*?>", "");
+		}
 		log.info("this is enough script"+calculatorScript);
 		StringBuilder theJavaScript = new StringBuilder();
 		theJavaScript.append(Calculator.JS_IMPORTS).append(Calculator.NEW_LINE);
