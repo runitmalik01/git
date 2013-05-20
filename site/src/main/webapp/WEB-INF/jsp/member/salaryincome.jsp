@@ -98,7 +98,7 @@
 							<div class="rowlabel">
 								<input id="Name_employee" type="text"
 									name="Name_employee" maxlength="25"
-									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.name_employee}"/></c:if>" />
+									value="<c:choose><c:when test="${pageAction == 'EDIT_CHILD'}"><c:out value="${childBean.name_employee}"/></c:when><c:otherwise><c:out value="${memberpersonalinformation.name}"/></c:otherwise></c:choose>" readonly="readonly"/>
 							</div>
 						</div>
 						<div class="span4">
@@ -108,7 +108,7 @@
 							</div>
 							<div class="rowlabel">
 								<input id="Pan_employee" type="text" name="Pan_employee"
-									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.pan_employee}"/></c:if>" />
+									value="<c:choose><c:when test="${pageAction == 'EDIT_CHILD'}"><c:out value="${childBean.pan_employee}"/></c:when><c:otherwise><c:out value="${memberpersonalinformation.PAN}"/></c:otherwise></c:choose>" readonly="readonly"/>
 							</div>
 						</div>
 					</div>
@@ -177,13 +177,9 @@
 										key="member.salary.state" /> </label>
 							</div>
 							<div class="rowlabel">
-								<select id="Stateslry" name="Stateslry">
-									<option value="">Select One</option>
-									<c:forEach var="booleanCombo" items="${objHashMapStates}">
-										<option
-											<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD') && childBean.state == booleanCombo.value}">selected</c:if> value="${booleanCombo.key}">${booleanCombo.value}</option>
-									</c:forEach>
-								</select>
+								<c:set var="searchresultstitle"><fmt:message key="member.contact_info.state.select"/></c:set>
+                                <c:set var="statesType"><fmt:message key="dropdown.states"/></c:set>
+                    <w4india:dropdown dropDownSelectId="State" optionSelectString="${searchresultstitle}" dropDownType="${statesType}" fetchValue="${childBean.state}"/>
 							</div>
 						</div>
 
@@ -338,6 +334,17 @@
 		</c:otherwise>
 	</c:choose>
 
+<script>
+	/*function fill() {
+		var A = document.getElementById("Gross_salary").value - 0;
+		var B = document.getElementById("Allowance").value - 0;
+		var C = document.getElementById("Perquisite").value - 0;
+		var D = document.getElementById("profit").value - 0;
+		document.getElementById("Taxable_earning").value = (A + B + C + D);
+	}**/
+</script>
+
+<res:calc screenCalc="salaryincome" formId="frmdataSalaryIncome"></res:calc>
 <res:client-validation formId="frmdataSlryInc"
 	screenConfigurationDocumentName="salaryincome"
 	formSubmitButtonId="myModalHrefSlryInc" />
