@@ -95,6 +95,7 @@ public class Deduction extends ITReturnComponent {
 		// TODO Auto-generated method stub
 		Map<String,DeductionSection> deductionSectionMap = null; //listOfDeductionSections = null;
 		Map<String, Double> totalOfSavedData = new HashMap<String, Double>();
+		Map<String, Double> totalOfSavedDataPerHead = new HashMap<String, Double>();
 		super.doBeforeRender(request, response);
 		request.setAttribute("deductionListService", deductionListService);
 		if (deductionListService != null && deductionListService.getDeductionSectionMap() != null &&  deductionListService.getDeductionSectionMap().containsKey(getFinancialYear())) {
@@ -108,6 +109,7 @@ public class Deduction extends ITReturnComponent {
 			Double grandTotal = 0D;
 			if (deductionDocumentDetailList != null && deductionDocumentDetailList.size() > 0){
 				Map<String, List<DeductionDocumentDetail>> savedData = new HashMap<String, List<DeductionDocumentDetail>>();
+				
 				for (DeductionDocumentDetail deductionDocumentDetail:deductionDocumentDetailList) {
 					if (!savedData.containsKey(deductionDocumentDetail.getSection())) {
 						savedData.put(deductionDocumentDetail.getSection(), new ArrayList<DeductionDocumentDetail>());
@@ -119,6 +121,10 @@ public class Deduction extends ITReturnComponent {
 					if (!totalOfSavedData.containsKey(deductionDocumentDetail.getSection())){
 						totalOfSavedData.put(deductionDocumentDetail.getSection(), 0D);
 					}
+					if (!totalOfSavedDataPerHead.containsKey(deductionDocumentDetail.getHead())) {
+						totalOfSavedDataPerHead.put(deductionDocumentDetail.getHead(), 0D);
+					}
+					totalOfSavedDataPerHead.put(deductionDocumentDetail.getHead(), totalOfSavedDataPerHead.get(deductionDocumentDetail.getHead()) + deductionDocumentDetail.getInvestment());
 					totalOfSavedData.put( deductionDocumentDetail.getSection(),  totalOfSavedData.get(deductionDocumentDetail.getSection()).doubleValue() + deductionDocumentDetail.getInvestment().doubleValue());
 				}
 				if (savedData != null && savedData.size() > 0) request.setAttribute("savedData",savedData);
@@ -127,6 +133,7 @@ public class Deduction extends ITReturnComponent {
 						grandTotal += totalOfSavedData.get(aSection);
 					}
 					request.setAttribute("grandTotal",grandTotal);
+					request.setAttribute("totalOfSavedDataPerHead",totalOfSavedDataPerHead);
 					request.setAttribute("totalOfSavedData",totalOfSavedData);
 				}
 				
@@ -157,16 +164,25 @@ public class Deduction extends ITReturnComponent {
 		//time to calculate
 		if (getParentBean() != null) {
 			//hashmap for javascript
-			Map<String,Object> totalMapForJS = new HashMap<String, Object>();
-			for (String deductionSection :deductionSectionMap.keySet()){
-				String sanitizedKey =  "total_" +  deductionSection.replaceAll("-", "_");
-				if (totalOfSavedData != null && totalOfSavedData.containsKey(deductionSection)) {
-					totalMapForJS.put(sanitizedKey,totalOfSavedData.get(deductionSection));
+			Map<String,Object> totalMapForJS = new HashMap<String, Object>();			
+			for (String deductionSectionKey:deductionSectionMap.keySet()){
+				String sanitizedKey =  "total_" +  deductionSectionKey.replaceAll("-", "_");
+				DeductionSection deductionSection = deductionSectionMap.get(deductionSectionKey);
+				if (deductionSection.getListOfDeductionHead() != null) {
+					
+				}
+				if (totalOfSavedData != null && totalOfSavedData.containsKey(deductionSectionKey)) {
+					totalMapForJS.put(sanitizedKey,totalOfSavedData.get(deductionSectionKey));
 				}
 				else {
 					totalMapForJS.put(sanitizedKey,0D);
 				}
-			}			
+			}	
+			for (String savedDataPerHead:totalOfSavedDataPerHead.keySet()){
+				String sanitizedKey =  "total_" +  savedDataPerHead.replaceAll("-", "_");
+				Double totalForSectionHead = totalOfSavedDataPerHead.get(savedDataPerHead);
+				totalMapForJS.put(sanitizedKey,totalForSectionHead);
+			}	
 			Map<String,Object> resultMap = ScreenCalculatorService.getScreenCalculations("Chapter6Calc.js", request.getParameterMap(), totalMapForJS);
 			if (resultMap != null && resultMap.size() > 0 ) {
 				totalMapForJS.putAll(resultMap);

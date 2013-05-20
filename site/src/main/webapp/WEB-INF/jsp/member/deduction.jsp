@@ -21,6 +21,7 @@
 				<th><abbr title="Maximum Allowed Deduction">Total Deduction (&#8377;)</abbr></th>
 			</tr>
 			<c:forEach items="${deductionSectionMap}" var="deductionSectionMapEntry">
+				<c:set var="totalEligibleDeduction" value="0"/>
 				<c:set var="deductionSectionName" value="${deductionSectionMapEntry.key}"/>
 				<c:set var="deductionSectionLabel" value="${deductionSectionMapEntry.value.additionalProperties['label']}"/>
 				<c:set var="deductionAdditionalScreen" value="${deductionSectionMapEntry.value.additionalProperties['additionalScreen']}"/>
@@ -31,12 +32,15 @@
 							<button class="btn btn-small dropdown-toggle" data-toggle="dropdown"><c:out value="${deductionSectionLabel}"/><span class="caret"></span></button>
 							<ul class="dropdown-menu">
 				            	<li><a href="<c:out value="${scriptName}"/>/newc6deduction/<c:out value="${deductionSectionName}"/>">Add</a></li>
+								<%-- commented out --%>
+								<%--
 								<c:if test="${not empty savedData && not empty savedData[deductionSectionName]}">
 								<li class="divider"></li>
 									<c:forEach items="${savedData[deductionSectionName]}" var="aSectionHead">
 										<li><a href="<c:out value="${scriptName}/${aSectionHead.canonicalUUID}"/>/editc6deduction"><fmt:message var="label" bundle="${dSectionHeads}" key="sectionhead.${aSectionHead.head}.label"></fmt:message><res:displaylabel label="${label}"/>(<c:out value="${aSectionHead.investment}"/>)</a></li>
 									</c:forEach>								 	
 								</c:if>	
+								 --%>
 							</ul>								
 						</div>	
 					</td>		
@@ -47,9 +51,11 @@
 								<div class="btn-group">	
 									<button class="btn btn-small dropdown-toggle" data-toggle="dropdown"><c:out value="${totalOfSavedData[deductionSectionName]}"/><span class="caret"></span></button>
 									<ul class="dropdown-menu">
+						            	<%-- commented out --%>
+						            	<%-- 
 						            	<li><a href="<c:out value="${scriptName}"/>/newc6deduction/<c:out value="${deductionSectionName}"/>">Add</a></li>
-										<c:if test="${not empty savedData && not empty savedData[deductionSectionName]}">
-										<li class="divider"></li>
+						            	 --%>
+										<c:if test="${not empty savedData && not empty savedData[deductionSectionName]}">											
 											<c:forEach items="${savedData[deductionSectionName]}" var="aSectionHead">
 												<li><a href="<c:out value="${scriptName}/${aSectionHead.canonicalUUID}"/>/editc6deduction"><fmt:message var="label" bundle="${dSectionHeads}" key="sectionhead.${aSectionHead.head}.label"></fmt:message><res:displaylabel label="${label}"></res:displaylabel> |<c:out value="${aSectionHead.investment}"/>|</a></li>
 											</c:forEach>								 	
@@ -68,6 +74,7 @@
 							<c:choose>
 								<c:when test="${not empty totalMapForJS && not empty totalMapForJS[theKey]}">
 									<c:out value="${totalMapForJS[theKey]}"/>
+									<c:set var="totalEligibleDeduction" value="${totalEligibleDeduction + totalMapForJS[theKey]}"/>
 								</c:when>	
 								<c:otherwise>
 									0
@@ -79,9 +86,9 @@
 				</tr>	
 			</c:forEach>		
 			<tr class="success">
-				<td colspan="2"><b>Total <c:out value="${deduction_sections[deduction_section_item.key]}"/></b></td>
-				<td align="right"><b><c:out value="${totalForSection}"/></b></td>
-				<c:set var="grandTotal" value="${grandTotal + totalForSection}"/>
+				<td colspan="2"><b>Total</b></td>
+				<td align="right"><b><c:out value="${grandTotal}"/></b></td>
+				<c:set var="grandTotal" value="${totalEligibleDeduction}"/>
 			</tr>	
 		</table>
 </div>
