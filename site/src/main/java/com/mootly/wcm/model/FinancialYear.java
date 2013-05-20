@@ -1,6 +1,9 @@
 package com.mootly.wcm.model;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.Locale;
 
 public enum FinancialYear {
 	TwentyEight(2008,false),
@@ -52,6 +55,47 @@ public enum FinancialYear {
 	
 	public String toString() {
 		return displayName;
+	}
+	
+	
+	public int getAgeInYears(Date dateOfBirth) {
+	    Calendar dob = Calendar.getInstance();
+
+	    dob.setTime(dateOfBirth);
+
+	    if (dob.after(dateEndFinancialYear)) 
+	    {
+	        throw new IllegalArgumentException("Can't be born in the future");
+	    }
+
+	    int age = dateEndFinancialYear.get(Calendar.YEAR) - dob.get(Calendar.YEAR);
+
+	    if (dateEndFinancialYear.get(Calendar.DAY_OF_YEAR) < dob.get(Calendar.DAY_OF_YEAR)) 
+	    {
+	        age--;
+	    }
+
+	    return age;
+	}
+	
+	public boolean isSeniorCitizen(Date dateOfBirth) {
+	    Calendar dob = Calendar.getInstance();
+
+	    dob.setTime(dateOfBirth);
+
+	    if (dob.after(dateEndFinancialYear)) 
+	    {
+	        throw new IllegalArgumentException("Can't be born in the future");
+	    }
+
+	    int age = dateEndFinancialYear.get(Calendar.YEAR) - dob.get(Calendar.YEAR);
+
+	    if (dateEndFinancialYear.get(Calendar.DAY_OF_YEAR) < dob.get(Calendar.DAY_OF_YEAR)) 
+	    {
+	        age--;
+	    }
+
+	    return (age >=60 ? true : false);
 	}
 	
 	public GregorianCalendar getDueDate(ITRForm itrForm) {

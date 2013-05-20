@@ -10,10 +10,10 @@
 </c:if>
 <fmt:setLocale value="en"/>
 <fmt:setBundle basename="com.mootly.wcm.components.deduction-section-heads-${financialYear.displayName}" var="dSectionHeads"/>
+<fmt:setBundle basename="com.mootly.wcm.components.deduction-sections-${financialYear.displayName}" var="dSections"/>
 <div class="page">
 	<h4>Deductions</h4>
 	<h5><small>List of deductions</small></h5>
-		<c:set var="grandTotal" value="0"/>
 		<table class="table table-hover table-bordered">
 			<tr>
 				<th>Deduction Section</th>
@@ -49,8 +49,9 @@
 						<c:choose>
 							<c:when test="${not empty totalOfSavedData && not empty totalOfSavedData[deductionSectionName]}">								
 								<div class="btn-group">	
-									<button class="btn btn-small dropdown-toggle" data-toggle="dropdown"><c:out value="${totalOfSavedData[deductionSectionName]}"/><span class="caret"></span></button>
+									<button class="btn btn-small dropdown-toggle" data-toggle="dropdown"><w4india:inr value="${totalOfSavedData[deductionSectionName]}"></w4india:inr><span class="caret"></span></button>
 									<ul class="dropdown-menu">
+										<li class="divider"></li>
 						            	<%-- commented out --%>
 						            	<%-- 
 						            	<li><a href="<c:out value="${scriptName}"/>/newc6deduction/<c:out value="${deductionSectionName}"/>">Add</a></li>
@@ -64,7 +65,7 @@
 								</div>
 							</c:when>
 							<c:otherwise>
-								0.00
+								<w4india:inr value="0"></w4india:inr>
 							</c:otherwise>
 						</c:choose>
 					</td>
@@ -73,11 +74,11 @@
 							<c:set var="theKey" value="total_${fn:replace(deductionSectionName,'-','_')}"/>
 							<c:choose>
 								<c:when test="${not empty totalMapForJS && not empty totalMapForJS[theKey]}">
-									<c:out value="${totalMapForJS[theKey]}"/>
+									<w4india:inr value="${totalMapForJS[theKey]}"/>
 									<c:set var="totalEligibleDeduction" value="${totalEligibleDeduction + totalMapForJS[theKey]}"/>
 								</c:when>	
 								<c:otherwise>
-									0
+									<w4india:inr value="0"/>
 								</c:otherwise>
 							</c:choose>
 							
@@ -86,9 +87,9 @@
 				</tr>	
 			</c:forEach>		
 			<tr class="success">
-				<td colspan="2"><b>Total</b></td>
-				<td align="right"><b><c:out value="${grandTotal}"/></b></td>
-				<c:set var="grandTotal" value="${totalEligibleDeduction}"/>
+				<td colspan="1" style="text-align:right"><b>Total</b></td>				
+				<td align="right" style="text-align:right"><b><w4india:inr value="${grandTotal}"/></b></td>
+				<td align="right" style="text-align:right"><b><w4india:inr value="${totalMapForJS['total_eligiblededuction']}"/></b></td>
 			</tr>	
 		</table>
 </div>

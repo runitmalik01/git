@@ -1,6 +1,9 @@
 package com.mootly.wcm.services;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -66,7 +69,18 @@ public final class ScreenCalculatorService {
 	
 	public static String loadScript(String scriptName) {
 		String newLine = System.getProperty("line.separator");
-		InputStream is = TestScripting.class.getClassLoader().getResourceAsStream("scripts/"+scriptName);
+		String thePath = ScreenCalculatorService.class.getClassLoader().getResource("").getPath();	
+		InputStream is = null;
+		try {
+			is = new FileInputStream(thePath + "/scripts/"+scriptName);
+			//File f = new File
+			//System.out.println(theFile.)
+		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		//InputStream is = TestScripting.class.getClassLoader().getResourceAsStream("scripts/"+scriptName);
 		if (is == null) {
 			return null;
 		}

@@ -56,6 +56,7 @@ import com.mootly.wcm.beans.compound.DeductionDocumentDetail;
 import com.mootly.wcm.components.ITReturnComponent;
 import com.mootly.wcm.model.DoneeWithPan;
 import com.mootly.wcm.model.FinancialYear;
+import com.mootly.wcm.model.deduction.DeductionHead;
 import com.mootly.wcm.model.deduction.DeductionSection;
 import com.mootly.wcm.services.DeductionListService;
 import com.mootly.wcm.services.ScreenCalculatorService;
@@ -169,25 +170,48 @@ public class Deduction extends ITReturnComponent {
 				String sanitizedKey =  "total_" +  deductionSectionKey.replaceAll("-", "_");
 				DeductionSection deductionSection = deductionSectionMap.get(deductionSectionKey);
 				if (deductionSection.getListOfDeductionHead() != null) {
-					
+					for (DeductionHead aDeductionHead:deductionSection.getListOfDeductionHead()) {
+						String sanitizedKey2 =  "total_" +  aDeductionHead.getName().replaceAll("-", "_");
+						if (totalOfSavedDataPerHead != null && totalOfSavedDataPerHead.containsKey(aDeductionHead.getName())) {
+							totalMapForJS.put(sanitizedKey2,totalOfSavedDataPerHead.get(aDeductionHead.getName()));
+						}
+						else {
+							totalMapForJS.put(sanitizedKey2,0D);
+						}	
+					}
 				}
 				if (totalOfSavedData != null && totalOfSavedData.containsKey(deductionSectionKey)) {
 					totalMapForJS.put(sanitizedKey,totalOfSavedData.get(deductionSectionKey));
 				}
 				else {
 					totalMapForJS.put(sanitizedKey,0D);
-				}
+				}				
 			}	
+			/*
 			for (String savedDataPerHead:totalOfSavedDataPerHead.keySet()){
 				String sanitizedKey =  "total_" +  savedDataPerHead.replaceAll("-", "_");
 				Double totalForSectionHead = totalOfSavedDataPerHead.get(savedDataPerHead);
 				totalMapForJS.put(sanitizedKey,totalForSectionHead);
-			}	
+			}
+			*/	
+			//ALSO WE NEED to have the following variables for calculation
+			// AGI == Adjusted Gross Income
+			// totalSalaryIncome 
+			// totalIncomeFromProperty
+			// totaIncomeFromOtherSourcesIncludingTaxFreeIncome
+			// totalIncomeFromOtherSourcesExcludingTaxFreeIncome
+			MemberPersonalInformation memberPersonalInformation = (MemberPersonalInformation) request.getAttribute(MemberPersonalInformation.class.getSimpleName().toLowerCase());
+			if (memberPersonalInformation != null) {
+				int ageInYears = getFinancialYear().getAgeInYears(memberPersonalInformation.getDOB().getTime()); 
+				boolean isSeniorCitizen = getFinancialYear().isSeniorCitizen(memberPersonalInformation.getDOB().getTime());
+				totalMapForJS.put("ageInYears",ageInYears);
+				totalMapForJS.put("isSeniorCitizen",isSeniorCitizen);
+			}
 			Map<String,Object> resultMap = ScreenCalculatorService.getScreenCalculations("Chapter6Calc.js", request.getParameterMap(), totalMapForJS);
 			if (resultMap != null && resultMap.size() > 0 ) {
 				totalMapForJS.putAll(resultMap);
 				request.setAttribute("totalMapForJS", totalMapForJS);
-				log.info(resultMap.toString()); //lets analye the map
+				log.info(resultMap.toString()); //lets analyze the map
 			}
 		}
 	}
