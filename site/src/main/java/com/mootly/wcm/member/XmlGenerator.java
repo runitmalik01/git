@@ -158,7 +158,7 @@ public class XmlGenerator extends ITReturnComponent {
 		address.setEmailAddress(memberPersonalInformation.getEmail());
 		personalInfo.setAddress(address);
 		personalInfo.setDOB(memberPersonalInformation.getGregorianDOB());
-		
+
 		if( salaryIncomeDocument!=null){
 			if ( salaryIncomeDocument.getSalaryIncomeDetailList() != null && salaryIncomeDocument.getSalaryIncomeDetailList().size() > 0 ){
 				for(SalaryIncomeDetail salaryIncomeDetail:salaryIncomeDocument.getSalaryIncomeDetailList()){
@@ -166,7 +166,7 @@ public class XmlGenerator extends ITReturnComponent {
 				}
 			}
 		}
-		
+
 		personalInfo.setGender(memberPersonalInformation.getSex());
 		personalInfo.setStatus(memberPersonalInformation.getFilingStatus());
 
@@ -178,11 +178,17 @@ public class XmlGenerator extends ITReturnComponent {
 		filingstatus.setReturnType(memberPersonalInformation.getReturnType());
 		filingstatus.setResidentialStatus(memberPersonalInformation.getResidentCategory());
 		filingstatus.setTaxStatus(memberPersonalInformation.getTaxStatus());
-		filingstatus.setAckNoOriginalReturn(memberPersonalInformation.getOriginalAckNo());
-		//filingstatus.setOrigRetFiledDate(memberPersonalInformation.getGregorianOriginalAckDate());
-		filingstatus.setNoticeNo(memberPersonalInformation.getNoticeNo());
-		//filingstatus.setNoticeDate(memberPersonalInformation.getGregorianNoticeDate());
-		filingstatus.setReceiptNo(memberPersonalInformation.getReceiptNo());
+		
+		if (memberPersonalInformation.getReturnType().equals("R")) {	
+			filingstatus.setAckNoOriginalReturn(memberPersonalInformation.getOriginalAckNo());
+			filingstatus.setOrigRetFiledDate(memberPersonalInformation.getGregorianOriginalAckDate());
+
+			if(memberPersonalInformation.getDefective().equals("Y")){
+				filingstatus.setNoticeNo(memberPersonalInformation.getNoticeNo());
+				filingstatus.setNoticeDate(memberPersonalInformation.getGregorianNoticeDate());
+				filingstatus.setReceiptNo(memberPersonalInformation.getReceiptNo());
+			}
+		}
 
 		itr1.setFilingStatus(filingstatus);
 
@@ -282,9 +288,10 @@ public class XmlGenerator extends ITReturnComponent {
 					tdsonSalary.setIncChrgSal(tdsFromSalaryDetail.getBigIncome_Chargeable());
 					tdsonSalary.setTotalTDSSal(tdsFromSalaryDetail.getBigTotal_TaxDeducted());			
 					tdsonSalaries.getTDSonSalary().add(tdsonSalary);
-					itr1.setTDSonSalaries(tdsonSalaries);
+
 				}		
 			}		
+			itr1.setTDSonSalaries(tdsonSalaries);
 		}
 
 		//TDSonOthThanSals
