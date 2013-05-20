@@ -23,7 +23,10 @@
 	src="http://yui.yahooapis.com/2.9.0/build/datatable/datatable-min.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="http://yui.yahooapis.com/2.9.0/build/datatable/assets/skins/sam/datatable.css" />
-
+<c:set var="forgotpass">
+ <fmt:message key="member.forgot.title" />
+</c:set>
+<hippo-gogreen:title title="${forgotpass}" />
 		<form action="${forgotpass}" method="post">
 		<fieldset>
 		<legend style="color: blue">GET YOUR FORGOTTEN PASSWORD !!</legend>
