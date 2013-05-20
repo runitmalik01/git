@@ -7,9 +7,14 @@
  */
 package com.mootly.wcm.member;
 
+import java.util.Map;
+
+import org.hippoecm.hst.component.support.forms.FormMap;
+import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.core.component.HstComponentException;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -19,8 +24,10 @@ import com.mootly.wcm.annotations.DataTypeValidationType;
 import com.mootly.wcm.annotations.FormFields;
 import com.mootly.wcm.annotations.PrimaryBean;
 import com.mootly.wcm.beans.HouseProperty;
+import com.mootly.wcm.beans.ScreenCalculation;
 import com.mootly.wcm.beans.compound.HouseIncomeDetail;
 import com.mootly.wcm.components.ITReturnComponent;
+import com.mootly.wcm.services.ScreenCalculatorService;
 
 @PrimaryBean(primaryBeanClass=HouseProperty.class)
 @ChildBean(childBeanClass=HouseIncomeDetail.class)
@@ -55,6 +62,22 @@ public class HouseIncome extends ITReturnComponent {
 	public void doBeforeRender(HstRequest request, HstResponse response) {
 		// TODO Auto-generated method stub
 		super.doBeforeRender(request, response);
+		String isCalc = getPublicRequestParameter(request,"command");
+		if (isCalc != null && isCalc.equals("calc")) {
+			String pathToScreenCalc = "configuration/screencalculation/" + this.getClass().getSimpleName().toLowerCase();
+			HippoBean siteContentBaseBean=(HippoBean)request.getAttribute("siteContentBaseBean");
+			ScreenCalculation screencalc=siteContentBaseBean.getBean(pathToScreenCalc, ScreenCalculation.class);
+			Map<String,Object> resultSet = ScreenCalculatorService.getScreenCalculations(screencalc.getScript(), request.getParameterMap(""), null);
+			if (resultSet != null) {
+				log.info("get the result");
+				request.setAttribute("resultSet", resultSet);
+				JSONObject jsonObject  = new JSONObject(resultSet);
+				log.info("get the json object"+jsonObject.toString());
+				request.setAttribute("jsonObject", jsonObject);
+				//response.setContentType("application/json");
+				response.setRenderPath("jsp/common/calculation_response.jsp");
+			}
+		}
 	}
 
 	@Override
