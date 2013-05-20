@@ -88,7 +88,7 @@
 								<c:set var="statesType">
 									<fmt:message key="dropdown.states" />
 								</c:set>
-								<w4india:dropdown dropDownSelectId="State"
+								<w4india:dropdown dropDownSelectId="states"
 									optionSelectString="${searchresultstitle}"
 									dropDownType="${statesType}" fetchValue="${childBean.states}" />
 							</div>
