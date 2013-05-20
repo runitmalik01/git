@@ -318,7 +318,7 @@ else {
 			</div>
 		</fieldset>
 		<div class="row-fluid show-grid">	
-	    	<div class="span2 offset10"><a  id="hrefLogin" class="button orange">Save &amp; Next</a></div>
+	    	<div class="span2 offset10"><a  id="hrefLogin" class="button orange">Save &amp; Continue</a></div>
 	    </div>	    
 	</form>
 </div>

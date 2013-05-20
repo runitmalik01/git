@@ -69,8 +69,9 @@ public final class ScreenCalculatorService {
 	
 	public static String loadScript(String scriptName) {
 		String newLine = System.getProperty("line.separator");
-		String thePath = ScreenCalculatorService.class.getClassLoader().getResource("").getPath();	
+		//String thePath = ScreenCalculatorService.class.getClassLoader().getResource("").getPath();	
 		InputStream is = null;
+		/*
 		try {
 			is = new FileInputStream(thePath + "/scripts/"+scriptName);
 			//File f = new File
@@ -79,8 +80,8 @@ public final class ScreenCalculatorService {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		
-		//InputStream is = TestScripting.class.getClassLoader().getResourceAsStream("scripts/"+scriptName);
+		*/
+		is = TestScripting.class.getClassLoader().getResourceAsStream("scripts/"+scriptName);
 		if (is == null) {
 			return null;
 		}
