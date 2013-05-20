@@ -344,7 +344,7 @@
 	}**/
 </script>
 
-<res:calc screenCalc="salaryincome" formId="frmdataSalaryIncome"></res:calc>
+<res:calc screenCalc="salaryincome" formId="frmdataSlryInc"></res:calc>
 <res:client-validation formId="frmdataSlryInc"
 	screenConfigurationDocumentName="salaryincome"
 	formSubmitButtonId="myModalHrefSlryInc" />
