@@ -349,3 +349,7 @@ orderable
 
 [mootlywcm:tdsothersdetail] > hippo:compound, hippostd:relaxed orderable
 
+
+
+[mootlywcm:screencalculation] > hippostd:relaxed, mootlywcm:basedocument orderable
+
