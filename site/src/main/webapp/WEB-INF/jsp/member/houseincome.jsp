@@ -2,8 +2,6 @@
 @author Megha Agarwal
 06/05/2013
  --%>
-
-
 <%@include file="../includes/tags.jspf"%>
 <%@ page import="com.mootly.wcm.utils.*"%>
 <%@page import="com.mootly.wcm.services.ScreenConfigService"%>
@@ -12,8 +10,7 @@
 <%@page import="com.mootly.wcm.member.HouseIncome"%>
 <%@ page import="com.mootly.wcm.beans.*"%>
 <%
-	ValueListService objValueListService = ValueListServiceImpl
-			.getInstance();
+	ValueListService objValueListService = ValueListServiceImpl.getInstance();
 	TreeMap objHashMapStates = (TreeMap) objValueListService
 			.getStates();
 	request.setAttribute("objHashMapStates", objHashMapStates);
@@ -319,7 +316,7 @@
 				</fieldset>
 				<fieldset>
 					<legend>Property Income Details</legend>
-					<div class="row-fluid show-grid">
+					<div class="row-fluid show-grid letout_Yes_v letout_No_h" style="dispaly:none;">
 						<div class="span1 decimal">
 							<div class="rowlabel">
 								<small>a.</small>
@@ -333,13 +330,13 @@
 						</div>
 						<div class="span2 offset1">
 							<div>
-								<input id="Letable_value" name="Letable_value" placeholder="Rs."
+								<input id="Letable_value" name="Letable_value" placeholder="Rs." class="letout_Yes_inv letout_No_inh"
 									type="text" maxlength="14"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.letable_value}"/></c:if>">
 							</div>
 						</div>
 					</div>
-					<div class="row-fluid show-grid">
+					<div class="row-fluid show-grid letout_Yes_v letout_No_h" style="dispaly:none;">
 						<div class="span1 decimal">
 							<div class="rowlabel">
 								<small>b.</small>
@@ -353,13 +350,13 @@
 						</div>
 						<div class="span2 offset1">
 							<div>
-								<input id="Unrealised_rent" name="Unrealised_rent"
+								<input id="Unrealised_rent" name="Unrealised_rent" class="letout_Yes_inv letout_No_inh"
 									placeholder="Rs." type="text" maxlength="14"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.unrealised_rent}"/></c:if>">
 							</div>
 						</div>
 					</div>
-					<div class="row-fluid show-grid">
+					<div class="row-fluid show-grid letout_Yes_v letout_No_h" style="dispaly:none;">
 						<div class="span1 decimal">
 							<div class="rowlabel">
 								<small>c.</small>
@@ -373,7 +370,7 @@
 						</div>
 						<div class="span2 offset1">
 							<div>
-								<input id="Local_tax" name="Local_tax" placeholder="Rs."
+								<input id="Local_tax" name="Local_tax" placeholder="Rs." class="letout_Yes_inv letout_No_inh"
 									type="text" maxlength="14"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.local_tax}"/></c:if>">
 							</div>
@@ -393,13 +390,13 @@
 						</div>
 						<div class="span2 offset1">
 							<div>
-								<input id="Interest_borrowed" name="Interest_borrowed"
+								<input id="Interest_borrowed" name="Interest_borrowed" class="letout_Yes_inv letout_No_inh"
 									placeholder="Rs." type="text"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.interest_borrowed}"/></c:if>">
 							</div>
 						</div>
 					</div>
-					<div class="row-fluid show-grid">
+					<div class="row-fluid show-grid letout_Yes_v letout_No_h" style="dispaly:none;">
 						<div class="span1 decimal">
 							<div class="rowlabel">
 								<small>e</small>
@@ -412,12 +409,12 @@
 						</div>
 						<div class="span2 offset1">
 							<div>
-								<input id="Total" name="Total" placeholder="Rs." type="text"
-									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.total}"/></c:if>">
+								<input id="Total" name="Total" placeholder="Rs." type="text" class="letout_Yes_inv letout_No_inh"
+									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.total}"/></c:if>" readonly="readonly"/>
 							</div>
 						</div>
 					</div>
-					<div class="row-fluid show-grid">
+					<div class="row-fluid show-grid letout_Yes_v letout_No_h" style="dispaly:none;">
 						<div class="span1 decimal">
 							<div class="rowlabel">
 								<small>f</small>
@@ -430,8 +427,8 @@
 						</div>
 						<div class="span2 offset1">
 							<div>
-								<input id="Balance" name="Balance" placeholder="Rs." type="text"
-									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.balance}"/></c:if>">
+								<input id="Balance" name="Balance" placeholder="Rs." type="text" class="letout_Yes_inv letout_No_inh"
+									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.balance}"/></c:if>" readonly="readonly"/>
 							</div>
 						</div>
 					</div>
@@ -450,9 +447,9 @@
 						</div>
 						<div class="span2 offset1">
 							<div>
-								<input id="Income_hproperty" name="Income_hproperty"
+								<input id="Income_hproperty" name="Income_hproperty" class="letout_Yes_inv letout_No_inh"
 									placeholder="Rs." type="text"
-									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.income_hproperty}"/></c:if>">
+									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.income_hproperty}"/></c:if>" readonly="readonly"/>
 							</div>
 						</div>
 					</div>
@@ -461,15 +458,10 @@
 					<div class="span4 offset8 decimal">
 						<a href="${scriptName}?tab=houseincome" class="button olive">Cancel</a>&nbsp;
 								<a id="myModalHrefHouseIncome" role="button" class="btn orange">Save</a>
-
 					</div>
 				</div>
 			</form>
-
 		</c:when>
-
-
-
 		<c:otherwise>
 			<!--  show the table -->
 			<table>
@@ -509,7 +501,13 @@
 		</c:otherwise>
 	</c:choose>
 </div>
-<script>
+<script type="text/javascript">
+$('#letout').change(function(){
+	$('.letout_' + $(this).val() + '_v').show();
+	$('.letout_' + $(this).val() + '_h').hide();
+	$('.letout_' + $(this).val() + '_inv').val('');
+	$('.letout_' + $(this).val() + '_inh').val('');
+});
 $('#delete').click(function(){
 	var result=confirm("Do you want to delete permanently");	
 	if(result){
@@ -517,7 +515,5 @@ $('#delete').click(function(){
 	}
 });
 </script>
-
-<res:client-validation formId="frmdataHouseIncome"
-	screenConfigurationDocumentName="houseincome"
-	formSubmitButtonId="myModalHrefHouseIncome" />
+<res:client-validation formId="frmdataHouseIncome" screenConfigurationDocumentName="houseincome" formSubmitButtonId="myModalHrefHouseIncome" />
+<res:calc screenCalc="houseincome" formId="frmdataHouseIncome"></res:calc>
