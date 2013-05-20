@@ -2,54 +2,33 @@
 <%@page import="java.util.Map"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="java.util.List"%>
-<%@include file="../includes/commonincludes.jspf" %>
+<%@include file="../includes/tags.jspf" %>
 
-<%
-	List<String> listOfChoices = new ArrayList<String>();
-%>
-<c:forEach items="${deduction_section_heads}" var="item">
-	<c:if test="${fn:startsWith(item.key,deduction_section)}">
-			<c:set var="itemKey" value="${item.key}"/>
-			<%
-				listOfChoices.add((String) pageContext.getAttribute("itemKey"));
-			%>
-	</c:if>
-</c:forEach>
-<%
-	if (listOfChoices != null && listOfChoices.size() >0 ) {
-		pageContext.setAttribute("listOfChoices",listOfChoices);
-	}
-%>
 <hst:actionURL var="actionUrl"></hst:actionURL>
-<table class="table table-striped">
-	<%--<div class="span8"><c:out value="${deduction_sections[deduction_section]}"/></div> --%>
-	<tr>
-		<td>
-			<c:choose>
-				<c:when test="${not empty listOfChoices}">
-					<select style="width:400px" name="head" width="100%">
-						<c:forEach items="${listOfChoices}" var="aChoiceKey">	
-							<c:if test="${fn:startsWith(aChoiceKey,deduction_section)}">					
-								<option <c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD') && childBean.head == aChoiceKey}">selected="selected"</c:if> value="<c:out value="${aChoiceKey}"/>"><c:out value="${deduction_section_heads[aChoiceKey]}"/></option>
-							</c:if>
-						</c:forEach>
-					</select>
-				</c:when>
-				<c:otherwise>
-					<span>Enter investment under <c:out value="${deduction_sections[deduction_section]}"/></span>
-					<input type="hidden" name="head" value="<c:out value="${deduction_sections[deduction_section]}"/>"/>
-				</c:otherwise>
-			</c:choose>	
-		</td>
-		<td>
-			<div class="input-prepend">
-				<span class="add-on">&#8377;</span> <input name="investment" class="span2" id="prependedInput" type="text" placeholder="Gross Investment" value="<c:out value="${childBean.investment}"/>">
-			</div>
-		</td>
-		<!-- 
-		<td>
-			<a id="$('#frmData').submit()">Save</a> &nbsp;&nbsp;<a href="${redirectURLToSamePage}">Cancel</a>
-		</td>
-		 -->
-	</tr>
-</table>
+  <fieldset>
+  	  <legend>Deduction Detail</legend>
+	  <div class="row-fluid show-grid">
+	       <div class="span8">
+	        	<div class="rowlabel"><label for="ack_no"><small>Deduction Head</small></label></div>
+	        	<div class="rowlabel">
+	        		<c:choose>
+						<c:when test="${not empty deductionSection.listOfDeductionHead}">
+							<select name="head" width="100%">
+								<c:forEach items="${deductionSection.listOfDeductionHead}" var="deductionHead">	
+									<option <c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD') && not empty editingSection && editingSection.head == deductionHead.name}">selected="selected"</c:if> value="<c:out value="${deductionHead.name}"/>"><c:out value="${deductionHead.label}"/></option>
+								</c:forEach>
+							</select>
+						</c:when>
+						<c:otherwise>
+							<span>Enter investment under <c:out value="${deductionSection.label}"/></span>
+							<input type="hidden" name="head" value="<c:out value="${deductionSection.name}"/>"/>
+						</c:otherwise>
+					</c:choose>	
+	        	</div>
+	       </div>
+	       <div class="span4">
+				<div class="rowlabel"><label for="investment"><small><abbr title="Enter the gross amount. We will calculate the eligible amount">Gross Amount</abbr></small></label></div>
+	       		<div class="rowlabel"><input id="investment" name="investment" type="text" placeholder="Gross Investment" value="<c:out value="${childBean.investment}"/>"></div>
+	       </div>
+		</div>	     
+	</fieldset>            

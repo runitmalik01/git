@@ -18,7 +18,6 @@ package com.mootly.wcm.components;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.StringWriter;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -45,8 +44,6 @@ import org.hippoecm.hst.core.component.HstResponse;
 import org.hippoecm.hst.core.linking.HstLink;
 import org.hippoecm.hst.core.request.ResolvedSiteMapItem;
 import org.hippoecm.repository.reviewedactions.FullReviewedActionsWorkflow;
-import org.json.JSONException;
-import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -207,7 +204,12 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 				save(request,formMap);
 				//initComponent(request);
 				try {
-					response.sendRedirect( getRedirectURL(request,response,FormSaveResult.SUCCESS));
+					String redirectURL = getScriptName(); //getRedirectURL(request,response,FormSaveResult.SUCCESS);
+					if (log.isInfoEnabled()) {
+						log.info(redirectURL + ":" + redirectURL); 
+					}
+					response.sendRedirect(redirectURL);
+					return;
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					log.error("Error in redirection",e);
@@ -270,14 +272,14 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			save(request,formMap);
 			try {
 				if (formMap.getMessage() != null && formMap.getMessage().size() > 0 ) {
-					String urlToRedirect = getRedirectURL(request,response,FormSaveResult.FAILURE) ;
+					String urlToRedirect = getScriptName(); //getRedirectURL(request,response,FormSaveResult.FAILURE) ;
 					if (log.isInfoEnabled()) {
 						log.info("URLToRedirect:"+ urlToRedirect);
 					}
 					response.sendRedirect( urlToRedirect );
 				}
 				else {
-					String urlToRedirect = getRedirectURL(request,response,FormSaveResult.SUCCESS) ;
+					String urlToRedirect = getScriptName(); // getRedirectURL(request,response,FormSaveResult.SUCCESS) ;
 					log.info("URLToRedirect:"+ urlToRedirect);
 					response.sendRedirect( urlToRedirect );
 				}
@@ -457,7 +459,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 	}
 	
 
-	public String getScriptName() {
+	public String getScriptName() {		
 		return scriptName;
 	}
 	
@@ -465,8 +467,15 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 	public ITReturnPackage getItReturnPackage() {
 		return itReturnPackage;
 	}
-
 	
+	public String getUuid() {
+		return uuid;
+	}
+
+	public void setUuid(String uuid) {
+		this.uuid = uuid;
+	}
+
 	@Override
 	public PAGE_ACTION getPageAction() {
 		// TODO Auto-generated method stub
@@ -477,12 +486,40 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		return hippoBeanMemberBase;
 	}
 	
+	protected void findScriptName(HstRequest request) {
+		String pathInfo = request.getRequestContext().getResolvedSiteMapItem().getPathInfo();
+		if (pathInfo != null && pathInfo.contains(".html")) {
+			String[] parts = pathInfo.split("[/]");
+			StringBuilder sb = new StringBuilder(request.getContextPath()).append("/");
+			int depth = 1;
+			for (String aPart:parts) {
+				if (aPart.endsWith(".html")) {
+					scriptName= aPart;					
+					break;
+				}
+				else {
+					sb.append(aPart).append("/");
+				}
+				depth++;
+			}
+			sb.append(scriptName);
+			//int remainderOFDepth = parts.length - depth;
+			//String basePath = "./";
+			//for (int ctr =0;ctr<remainderOFDepth;ctr++) {
+			//	basePath += "../";
+			//}
+			//scriptName = basePath + scriptName;
+			scriptName = sb.toString();
+			if (scriptName.endsWith("/")) scriptName = scriptName.substring(0, scriptName.length()-2);
+		}
+	}
+	
 	protected void initComponent(HstRequest request,HstResponse response) throws InvalidNavigationException,InvalidPANException{
 		ResolvedSiteMapItem resolvedMapItem = request.getRequestContext().getResolvedSiteMapItem();
 		if (request.getSession() != null && request.getSession().getAttribute("user") != null) {
 			member = (Member)request.getSession().getAttribute("user");
 		}
-
+		findScriptName(request);
 		//assessmentYear = request.getRequestContext().getResolvedSiteMapItem().getParameter("assessmentYear");
 		String strFinancialYear = request.getRequestContext().getResolvedSiteMapItem().getParameter("financialYear");
 		financialYear =  FinancialYear.getByDisplayName(strFinancialYear);
@@ -493,7 +530,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		pan = request.getRequestContext().getResolvedSiteMapItem().getParameter("pan"); //original versus amend
 		
 		if (mainSiteMapItemRefId == null) mainSiteMapItemRefId = request.getRequestContext().getResolvedSiteMapItem().getParameter("mainSiteMapItemRefId");
-		redirectURLToSamePage = getRedirectURL(request,response,FormSaveResult.FAILURE);
+		redirectURLToSamePage = getScriptName();// getRedirectURL(request,response,FormSaveResult.FAILURE);
 		
 		nextScreenSiteMapItemRefId = request.getRequestContext().getResolvedSiteMapItem().getParameter("nextScreen");
 		
@@ -530,24 +567,6 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		String tabName = "";
 		if (actionInSiteMap != null && actionInSiteMap.contains("_")) {
 			tabName = actionInSiteMap.substring(0,actionInSiteMap.indexOf("_"));
-		}
-		String pathInfo = resolvedMapItem.getPathInfo();
-		if (pathInfo != null && pathInfo.contains(".html")) {
-			String[] parts = pathInfo.split("[/]");
-			int depth = 1;
-			for (String aPart:parts) {
-				if (aPart.endsWith(".html")) {
-					scriptName= aPart;
-					break;
-				}
-				depth++;
-			}
-			int remainderOFDepth = parts.length - depth;
-			String basePath = "./";
-			for (int ctr =0;ctr<remainderOFDepth;ctr++) {
-				basePath += "../";
-			}
-			scriptName = basePath + scriptName;
 		}
 		
 		String strPageAction = request.getRequestContext().getResolvedSiteMapItem().getParameter("action");
@@ -633,8 +652,8 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 				//attemp to get the list from properties file instead
 				//I really don't know what is causing the behavior on zapto server
 				//It could be a memory issue, for now the implementation can be changed to ensure the 
-				String quotedPattern = Pattern.quote("${assessmentYear}");
-				String replacedValueListBeanPath = valueListBeanPath.replaceAll(quotedPattern, assessmentYear);
+				String quotedPattern = Pattern.quote("${financialYear}");
+				String replacedValueListBeanPath = valueListBeanPath.replaceAll(quotedPattern, financialYear.getDisplayName());
 				Properties properties = null;
 				InputStream is = this.getClass().getClassLoader().getResourceAsStream("com/mootly/wcm/components/" + replacedValueListBeanPath + ".properties");
 				if (is == null) {
@@ -886,20 +905,19 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		}
 	}
 	
-	protected String getRedirectURL(HstRequest request,HstResponse response,FormSaveResult formSaveResult) {
+	protected String getRedirectURLForSiteMapItem(HstRequest request,HstResponse response,FormSaveResult formSaveResult) {
 		if (formSaveResult.equals(FormSaveResult.FAILURE)) {
-			return getRedirectURL(request, response, formSaveResult,mainSiteMapItemRefId,getFinancialYear(), getITReturnType(), getPAN());
+			return getRedirectURLForSiteMapItem(request, response, formSaveResult,mainSiteMapItemRefId,getFinancialYear(), getITReturnType(), getPAN());
 		}
 		else if (formSaveResult.equals(FormSaveResult.SUCCESS) && nextScreenSiteMapItemRefId != null) {
-			return getRedirectURL(request, response, formSaveResult,nextScreenSiteMapItemRefId,getFinancialYear(), getITReturnType(), getPAN());
+			return getRedirectURLForSiteMapItem(request, response, formSaveResult,nextScreenSiteMapItemRefId,getFinancialYear(), getITReturnType(), getPAN());
 		}
 		else {
-			return getRedirectURL(request, response, formSaveResult,mainSiteMapItemRefId,getFinancialYear(),getITReturnType(), getPAN());
+			return getRedirectURLForSiteMapItem(request, response, formSaveResult,mainSiteMapItemRefId,getFinancialYear(),getITReturnType(), getPAN());
 		}
 	}
 	
-	protected String getRedirectURL(HstRequest request,HstResponse response,FormSaveResult formSaveResult,String siteMapReferenceId,FinancialYear financialYear, ITReturnType itReturnType,String pan) {
-		//if (siteMapReferenceId == null) siteMapReferenceId = request.getRequestContext().getResolvedSiteMapItem().getParameter(siteMapReferenceId);
+	protected String getRedirectURLForSiteMapItem(HstRequest request,HstResponse response,FormSaveResult formSaveResult,String siteMapReferenceId,FinancialYear financialYear, ITReturnType itReturnType,String pan) {
 		if (siteMapReferenceId == null) return null;
 		if (financialYear == null || financialYear.equals(FinancialYear.UNKNOWN)) return null;
 		if (itReturnType == null || itReturnType.equals(ITReturnType.UNKNOWN)) return null;
@@ -914,6 +932,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			return null;
 		}
 	}
+	
 	
 	/*
 	 * The ultimate goal here is to save the parent bean and if it didn't exist then it should have been created in the first place

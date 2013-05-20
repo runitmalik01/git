@@ -40,8 +40,10 @@ request.setAttribute("objTreeMapNumbersDropdown", objTreeMapNumbersDropdown);
 <%@ attribute name="dropDownSize" required="false" type="java.lang.String" %>
 <%@ attribute name="fetchValue" required="false" type="java.lang.String" %>
 
+<%@ attribute name="dropDownSelectName" required="false" type="java.lang.String" %>
 
-<select name="${dropDownSelectId}" id="${dropDownSelectId}" onchange="${dropDownFuction}" size="${dropDownSize}">
+
+<select name="${dropDownSelectName == null? dropDownSelectId : dropDownSelectName}" id="${dropDownSelectId}" onchange="${dropDownFuction}" size="${dropDownSize}">
 	<option value="">${optionSelectString}</option>
 	<c:choose>
 		<c:when test="${dropDownType == 'boolean'}">

@@ -9,9 +9,14 @@
 package com.mootly.wcm.member;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
+import javax.servlet.ServletContext;
 
 import org.hippoecm.hst.content.beans.ObjectBeanManagerException;
 import org.hippoecm.hst.content.beans.ObjectBeanPersistenceException;
@@ -20,9 +25,12 @@ import org.hippoecm.hst.content.beans.manager.workflow.WorkflowPersistenceManage
 import org.hippoecm.hst.core.component.HstComponentException;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
+import org.hippoecm.hst.core.request.ComponentConfiguration;
 import org.hippoecm.repository.reviewedactions.FullReviewedActionsWorkflow;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import com.mootly.wcm.annotations.AdditionalBeans;
 import com.mootly.wcm.annotations.ChildBean;
@@ -45,6 +53,10 @@ import com.mootly.wcm.beans.MemberDeductionScheduleVIA;
 import com.mootly.wcm.beans.MemberPersonalInformation;
 import com.mootly.wcm.beans.compound.DeductionDocumentDetail;
 import com.mootly.wcm.components.ITReturnComponent;
+import com.mootly.wcm.model.DoneeWithPan;
+import com.mootly.wcm.model.FinancialYear;
+import com.mootly.wcm.model.deduction.DeductionSection;
+import com.mootly.wcm.services.DeductionListService;
 import com.mootly.wcm.utils.ContentStructure;
 import com.mootly.wcm.utils.GoGreenUtil;
 import com.mootly.wcm.utils.UrlUtility;
@@ -53,23 +65,85 @@ import com.mootly.wcm.utils.UrlUtility;
 @ChildBean(childBeanClass=DeductionDocumentDetail.class)
 @AdditionalBeans(additionalBeansToLoad=MemberPersonalInformation.class)
 @RequiredBeans(requiredBeans={MemberPersonalInformation.class})
-@ValueListBeans(paths={"deduction-sections-${assessmentYear}","deduction-section-heads-${assessmentYear}","deduction-section-maxallowed-${assessmentYear}"},
+@ValueListBeans(paths={"deduction-sections-${financialYear}","deduction-section-heads-${financialYear}","deduction-section-maxallowed-${financialYear}"},
 				accessKey={"deduction_sections","deduction_section_heads","deduction_section_maxallowed"})
-@FormFields(fieldNames={"head","investment"})
+@FormFields(fieldNames={"head","investment","flex_field_string_0","flex_field_string_1","flex_field_string_2","flex_field_string_3","flex_field_string_4","flex_field_string_5","flex_field_string_6","flex_field_string_7","flex_field_string_8"})
 @RequiredFields(fieldNames={"head","investment"})
 @DataTypeValidationFields(fieldNames={"investment"},dataTypes={DataTypeValidationType.DECIMAL})
 public class Deduction extends ITReturnComponent {
 
 	private static final Logger log = LoggerFactory.getLogger(Deduction.class);
 	String deduction_section = null;
+	
+	DeductionListService deductionListService = null;
+	
+	@Override
+	public void init(ServletContext servletContext,
+			ComponentConfiguration componentConfig)
+			throws HstComponentException {
+		// TODO Auto-generated method stub
+		super.init(servletContext, componentConfig);
+		ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(servletContext);
+		deductionListService = context.getBean(DeductionListService.class);
+		//deductionListService
+	}
+	
 	@Override
 	public void doBeforeRender(HstRequest request, HstResponse response) {
 		// TODO Auto-generated method stub
+		Map<String,DeductionSection> deductionSectionMap = null; //listOfDeductionSections = null;
 		super.doBeforeRender(request, response);
-		String deduction_section = request.getRequestContext().getResolvedSiteMapItem().getParameter("deduction_section");
-		if (deduction_section != null) {
-			request.setAttribute("deduction_section", deduction_section);
+		request.setAttribute("deductionListService", deductionListService);
+		if (deductionListService != null && deductionListService.getDeductionSectionMap() != null &&  deductionListService.getDeductionSectionMap().containsKey(getFinancialYear())) {
+			deductionSectionMap = deductionListService.getDeductionSectionMap().get(getFinancialYear());
+			request.setAttribute("deductionSectionMap", deductionSectionMap);
 		}
+		
+		if (getParentBean()!= null) {
+			DeductionDocument deductionDocument = (DeductionDocument) getParentBean();
+			List<DeductionDocumentDetail> deductionDocumentDetailList = deductionDocument.getDeductionDocumentDetailList();
+			if (deductionDocumentDetailList != null && deductionDocumentDetailList.size() > 0){
+				Map<String, List<DeductionDocumentDetail>> savedData = new HashMap<String, List<DeductionDocumentDetail>>();
+				Map<String, Double> totalOfSavedData = new HashMap<String, Double>();
+				for (DeductionDocumentDetail deductionDocumentDetail:deductionDocumentDetailList) {
+					if (!savedData.containsKey(deductionDocumentDetail.getSection())) {
+						savedData.put(deductionDocumentDetail.getSection(), new ArrayList<DeductionDocumentDetail>());
+					}
+					savedData.get(deductionDocumentDetail.getSection()).add(deductionDocumentDetail);
+					if (getPageAction() == PAGE_ACTION.EDIT_CHILD && getUuid() != null && getUuid().equals(deductionDocumentDetail.getCanonicalUUID())) {
+						request.setAttribute("editingSection", deductionDocumentDetail);
+					}
+					if (!totalOfSavedData.containsKey(deductionDocumentDetail.getSection())){
+						totalOfSavedData.put(deductionDocumentDetail.getSection(), 0D);
+					}
+					totalOfSavedData.put( deductionDocumentDetail.getSection(),  totalOfSavedData.get(deductionDocumentDetail.getSection()).doubleValue() + deductionDocumentDetail.getInvestment().doubleValue());
+				}
+				if (savedData != null && savedData.size() > 0) request.setAttribute("savedData",savedData);
+				if (totalOfSavedData != null && totalOfSavedData.size() > 0) request.setAttribute("totalOfSavedData",totalOfSavedData);
+			}
+		}
+		
+		if (getPageAction() == PAGE_ACTION.EDIT_CHILD && getUuid() != null && getChildBean() != null) {
+			DeductionDocumentDetail dDetail = (DeductionDocumentDetail) getChildBean();
+			DoneeWithPan doneeWithPAN = DoneeWithPan.getInstanceFromChildBean(dDetail);
+			request.setAttribute("doneeWithPAN", doneeWithPAN);
+			if (deductionSectionMap != null && dDetail != null && dDetail.getSection() != null && deductionSectionMap.containsKey(dDetail.getSection())) {
+				request.setAttribute("deductionSection", deductionSectionMap.get(dDetail.getSection()));
+			}
+		}
+		else {
+			DeductionDocumentDetail dDetail = (DeductionDocumentDetail) getChildBean();
+			DoneeWithPan doneeWithPAN = DoneeWithPan.getInstanceFromFormMap(getFormMap());
+			if (doneeWithPAN != null)request.setAttribute("doneeWithPAN", doneeWithPAN);
+			String deduction_section = request.getRequestContext().getResolvedSiteMapItem().getParameter("deduction_section");
+			if (deduction_section != null) {
+				request.setAttribute("deduction_section", deduction_section);
+				if (deductionSectionMap != null && deductionSectionMap.containsKey(deduction_section)) {
+					request.setAttribute("deductionSection", deductionSectionMap.get(deduction_section));
+				}
+			}
+		}
+		
 	}
 	
 	@Override

@@ -1,4 +1,5 @@
 <%@include file="../includes/tags.jspf" %>
+
 <%
 	pageContext.removeAttribute("redirectURLToSamePage");
 %>
@@ -7,6 +8,8 @@
 		pageContext.setAttribute("redirectURLToSamePage",request.getRequestURL());
 	%>
 </c:if>
+<fmt:setLocale value="en"/>
+<fmt:setBundle basename="com.mootly.wcm.components.deduction-section-heads-${financialYear.displayName}" var="dSectionHeads"/>
 <div class="page">
 	<h4>Deductions</h4>
 	<h5><small>List of deductions</small></h5>
@@ -17,59 +20,50 @@
 				<th><abbr title="How much money you have invested">Gross Investment (&#8377;)</abbr></th>
 				<th><abbr title="Maximum Allowed Deduction">Total Deduction (&#8377;)</abbr></th>
 			</tr>
-			<c:forEach items="${deduction_sections}" var="deduction_section_item">
+			<c:forEach items="${deductionSectionMap}" var="deductionSectionMapEntry">
+				<c:set var="deductionSectionName" value="${deductionSectionMapEntry.key}"/>
+				<c:set var="deductionSectionLabel" value="${deductionSectionMapEntry.value.additionalProperties['label']}"/>
+				<c:set var="deductionAdditionalScreen" value="${deductionSectionMapEntry.value.additionalProperties['additionalScreen']}"/>
 				<!--  lets create a bookmark for each section -->
 				<tr>    
 					<td colspan="1">     	
-						<%-- - Max Deduction <c:out value="${deduction_section_maxallowed[deduction_section_item.key]}"/> --%>			
-						<c:out value="${deduction_sections[deduction_section_item.key]}"/>&nbsp;						
+						<div class="btn-group">	
+							<button class="btn btn-small dropdown-toggle" data-toggle="dropdown"><c:out value="${deductionSectionLabel}"/><span class="caret"></span></button>
+							<ul class="dropdown-menu">
+				            	<li><a href="<c:out value="${scriptName}"/>/newc6deduction/<c:out value="${deductionSectionName}"/>">Add</a></li>
+								<c:if test="${not empty savedData && not empty savedData[deductionSectionName]}">
+								<li class="divider"></li>
+									<c:forEach items="${savedData[deductionSectionName]}" var="aSectionHead">
+										<li><a href="<c:out value="${scriptName}/${aSectionHead.canonicalUUID}"/>/editc6deduction"><fmt:message var="label" bundle="${dSectionHeads}" key="sectionhead.${aSectionHead.head}.label"></fmt:message><res:displaylabel label="${label}"/>(<c:out value="${aSectionHead.investment}"/>)</a></li>
+									</c:forEach>								 	
+								</c:if>	
+							</ul>								
+						</div>	
 					</td>		
-					<td>
-						<div class="btn-group" class="decimal">
-			                <button class="btn btn-small dropdown-toggle" data-toggle="dropdown">0<span class="caret"></span></button>
-			                <ul class="dropdown-menu">
-			                  <li><a href="<c:out value="${scriptName}"/>/new/<c:out value="${deduction_section_item.key}"/>">Add</a></li>
-			                </ul>
-			              </div>
+					<td  style="text-align:right">
+						<!--  we will show total for all deductions -->
+						<c:choose>
+							<c:when test="${not empty totalOfSavedData && not empty totalOfSavedData[deductionSectionName]}">								
+								<div class="btn-group">	
+									<button class="btn btn-small dropdown-toggle" data-toggle="dropdown"><c:out value="${totalOfSavedData[deductionSectionName]}"/><span class="caret"></span></button>
+									<ul class="dropdown-menu">
+						            	<li><a href="<c:out value="${scriptName}"/>/newc6deduction/<c:out value="${deductionSectionName}"/>">Add</a></li>
+										<c:if test="${not empty savedData && not empty savedData[deductionSectionName]}">
+										<li class="divider"></li>
+											<c:forEach items="${savedData[deductionSectionName]}" var="aSectionHead">
+												<li><a href="<c:out value="${scriptName}/${aSectionHead.canonicalUUID}"/>/editc6deduction"><fmt:message var="label" bundle="${dSectionHeads}" key="sectionhead.${aSectionHead.head}.label"></fmt:message><res:displaylabel label="${label}"></res:displaylabel> |<c:out value="${aSectionHead.investment}"/>|</a></li>
+											</c:forEach>								 	
+										</c:if>	
+									</ul>								
+								</div>
+							</c:when>
+							<c:otherwise>
+								0.00
+							</c:otherwise>
+						</c:choose>
 					</td>
-					<td align="right"><span class="decimal">0</span></td>
+					<td  style="text-align:right"><span class="decimal">0</span></td>
 				</tr>	
-				<c:if test="${pageAction =='NEW_CHILD' && deduction_section_item.key == deduction_section}">
-					<c:set var="formHTML">
-						<c:set var="modalHeading" value="${deduction_sections[deduction_section_item.key]}"></c:set>
-						<jsp:include page="deduction_addrow.jsp"/>
-					</c:set>
-				</c:if>
-				<c:if test="${not empty parentBean}">
-					<c:set var="totalForSection" value="0"/>
-					<c:forEach items="${parentBean.deductionDocumentDetailList}" var="deductionDocumentDetail">				
-							<c:if test="${deductionDocumentDetail.section == deduction_section_item.key}">
-								<c:set var="totalForSection" value="${totalForSection + deductionDocumentDetail.investment}"/>
-								<tr>
-									<%--<td><c:out value="${deductionDocumentDetail.section}"/></td> --%>
-									<td colspan="1" align="right"><c:out value="${deduction_section_heads[deductionDocumentDetail.head]}"/></td>
-									<td>
-										<div class="btn-group" align="right">
-							                <button class="btn btn-small dropdown-toggle" data-toggle="dropdown"><c:out value="${deductionDocumentDetail.investment}"/><span class="caret"></span></button>
-							                <ul class="dropdown-menu">
-							                  <li><a href="<c:out value="${scriptName}/${deductionDocumentDetail.canonicalUUID}"/>/edit">Edit</a></li>
-							                  <li><a href="${scriptName}/<c:out value="${deductionDocumentDetail.canonicalUUID}"/>/delete">Delete</a></li>
-							                </ul>
-							              </div>
-									</td>
-									<td><span class="decimal">0</span></td>
-								</tr>
-								<c:if test="${(pageAction == 'EDIT_CHILD' && uuid == deductionDocumentDetail.canonicalUUID)}">
-									<%out.flush();%>
-									<c:set var="formHTML">
-										<c:set var="modalHeading" value="${deduction_sections[deduction_section_item.key]}"></c:set>
-										<jsp:include page="deduction_addrow.jsp"/>
-									</c:set>
-									<%out.flush();%>
-								</c:if>
-							</c:if>
-					</c:forEach>				
-				</c:if>	
 			</c:forEach>		
 			<tr class="success">
 				<td colspan="2"><b>Total <c:out value="${deduction_sections[deduction_section_item.key]}"/></b></td>
@@ -78,7 +72,32 @@
 			</tr>	
 		</table>
 </div>
-
+<c:set var="deductionAdditionalScreen" value="${deductionSection.additionalProperties['additionalScreen']}"/>
+<c:choose>
+	<c:when test="${not empty deductionAdditionalScreen && deductionAdditionalScreen != ''}">
+		<c:set var="jspFilePath" value="${deductionAdditionalScreen}.jsp"/>
+		<c:set var="additionalScreenHTML">
+			<jsp:include page="${jspFilePath}"/>
+		</c:set>
+	</c:when>
+	<c:otherwise>
+		<%pageContext.removeAttribute("additionalScreenHTML");%>
+	</c:otherwise>
+</c:choose>	
+<c:if test="${pageAction =='NEW_CHILD'}">
+	<c:set var="formHTML">
+		<c:set var="modalHeading" value="${deductionSection.label}"></c:set>
+		<jsp:include page="deduction_addrow.jsp"/>
+	</c:set>
+</c:if>
+<c:if test="${(pageAction == 'EDIT_CHILD' && not empty editingSection)}">
+		<%out.flush();%>
+		<c:set var="formHTML">
+			<c:set var="modalHeading" value="${editingSection.section}"></c:set>
+			<jsp:include page="deduction_addrow.jsp"/>
+		</c:set>
+		<%out.flush();%>
+</c:if>
 <c:if test="${not empty formHTML}">
 	<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	  <div class="modal-header">
@@ -86,13 +105,21 @@
 	    <h3><c:out value="${modalHeading}"/></h3>
 	  </div>
 	  <div class="modal-body">
-	    <form>
+	  	<c:if test="${not empty formMap}">
+			<c:forEach items="${formMap.message}" var="item">
+				<div class="alert alert-error"><fmt:message key="${item.value}" /></div>
+			</c:forEach>
+		</c:if>
+	  	<hst:actionURL var="submitDeduction"></hst:actionURL>
+	    <form class="frmDeduction" action="${submitDeduction}">
 	    	<c:out value="${formHTML}" escapeXml="false"/>
+	    	<c:if test="${not empty additionalScreenHTML}"><c:out value="${additionalScreenHTML}" escapeXml="false"/></c:if>
 	    </form>
 	  </div>
 	  <div class="modal-footer">
-	    <a href="#" class="btn">Close</a>
-	    <a href="#" class="btn btn-primary">Save changes</a>
+	    <a href="#" class="btn" data-dismiss="modal">Close</a>
+	    <c:if test="${pageAction =='EDIT_CHILD'}"><button class="btn btn-danger" onclick="$('.frmDeduction').attr('action','<c:out value="${scriptName}/${editingSection.canonicalUUID}"/>/deletec6deduction');$('.frmDeduction').attr('method','get');$('.frmDeduction').submit()">Delete</button></c:if>
+	    <a href="javascript:$('.frmDeduction').submit()" class="btn btn-primary">Save changes</a>
 	  </div>
 	</div>
 </c:if>

@@ -75,7 +75,7 @@ public class PackageSelector extends ITReturnComponent{
 			log.info("Entering Package Selector");
 		}		
 		String publicUUID = getPublicRequestParameter(request, "uuid");
-		String returnURL = getRedirectURL(request, response, FormSaveResult.SUCCESS,"start-application",getFinancialYear(),getITReturnType(),getPAN());
+		String returnURL = getRedirectURLForSiteMapItem(request, response, FormSaveResult.SUCCESS,"start-application",getFinancialYear(),getITReturnType(),getPAN());
 		if (publicUUID != null) {
 			try {
 				FormUtils.validateId(publicUUID);
