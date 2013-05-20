@@ -37,7 +37,7 @@ import com.mootly.wcm.services.ScreenCalculatorService;
 @ChildBean(childBeanClass=SalaryIncomeDetail.class)
 @AdditionalBeans(additionalBeansToLoad=MemberPersonalInformation.class)
 @RequiredBeans(requiredBeans={MemberPersonalInformation.class})
-@RequiredFields(fieldNames={"Name_employer","Tan_employer","City","Gross_salary"})
+@RequiredFields(fieldNames={"Name_employer","Tan_employer","Cityslry","Gross_salary"})
 @DataTypeValidationFields(fieldNames={
 		"Gross_salary",
 		"Allowance",
