@@ -45,9 +45,9 @@ if (total_80ccf > maxAllowed_80CCF) out_total_80ccf = maxAllowed_80CCF;
 //medical insurance premium
 //self,spouse,spousesenior,parentsnonsenior,parentssenior
 var maxMedicalPremiumAllowed = ((isSeniorCitizen || (total_spousesenior > 0) || (total_parentssenior > 0)) ? 20000 : 15000);
-//var maxMedicalPremium = (total_self + total_spouse + total_spousesenior + total_parentsnonsenior + total_parentssenior);
-//if (maxMedicalPremium > maxMedicalPremiumAllowed) maxMedicalPremium = maxAllowed;
-out_total_80d=maxMedicalPremiumAllowed;
+var maxMedicalPremium = (total_self + total_spouse + total_spousesenior + total_parentsnonsenior + total_parentssenior);
+if (maxMedicalPremium > maxMedicalPremiumAllowed) maxMedicalPremium = maxAllowed;
+out_total_80d=maxMedicalPremium;
 
 //Donations 100%
 out_total_80g = (total_NoAppr50 * 0.5) + (total_Appr50 * 0.5) + (total_Appr100) + (total_Appr50) 

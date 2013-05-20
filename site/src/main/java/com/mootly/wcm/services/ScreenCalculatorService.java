@@ -28,7 +28,7 @@ public final class ScreenCalculatorService {
 		}else{
 			calculatorScript=scriptName.replaceAll("<.*?>", "");
 		}
-		log.info("this is enough script"+calculatorScript);
+		//log.info("this is enough script"+calculatorScript);
 		StringBuilder theJavaScript = new StringBuilder();
 		theJavaScript.append(Calculator.JS_IMPORTS).append(Calculator.NEW_LINE);
 		theJavaScript.append(Calculator.JS_PREFIX).append(Calculator.NEW_LINE);
