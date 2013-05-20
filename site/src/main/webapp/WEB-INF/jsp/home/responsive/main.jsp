@@ -19,13 +19,14 @@
    <fmt:message key="home.title"/>
 </c:set>
 <hippo-gogreen:title title="${hometitle}"/>
+<%--
 <div class="slider-wrapper grid col-940 theme-default">
    <div id="slider" class="nivoSlider">
-      <img src="http://www.cfs-ifa.co.uk/tops1/retirement.png"/>
-      <img src="http://www.cfs-ifa.co.uk/tops1/businessprotection.png"/>
-      <img src="http://tinytaxreturn.com/wp-content/uploads/2013/01/grow_income.jpg" alt="" title="#htmlcaption1"/>
-      <img src="http://www.businessandtax.com.au/layouts/default/images/slide08.jpg" alt="" title="#htmlcaption1"/>
-      <a href="http://dev7studios.com"><img src="http://versantgroup.co.uk/wp-conten/uploads/2012/10/taxation.jpg" alt="" title="#htmlcaption2" /></a>
+      <img src="<hst:link path="/images/retirement.png"/>"/>
+      <img src="<hst:link path="/images/businessprotection.png"/>"/>
+      <img src="<hst:link path="/images/grow_income.jpg"/>"/>
+      <img src="<hst:link path="/images/slide08.jpg"/>"/>
+      <img src="<hst:link path="/images/taxation.jpg"/>"/>
    </div>
 </div>
 <div id="htmlcaption1" class="nivo-html-caption">
@@ -34,34 +35,66 @@
 <div id="htmlcaption2" class="nivo-html-caption">
    <a href="#nogo" class="orange button">Free! Get Started!</a>
 </div>
-<div id="featured2" class="grid col-940">
-   <div class="grid col-460">
-      <!-- <h1 class="featured-title">Stressed about Income Tax Return?</h1> -->
-      <h3 class="featured-subtitle">June 30th 2013 is approaching fast.</h3>
-      <!-- <p>Don't wait. Get Started </p>  -->
-      <!-- 
-         <div class="call-to-action">
-           <a href="#nogo" class="orange button">Get Started!</a>
-         </div>
-          -->
-      <!-- end of .call-to-action -->
-   </div>
-   <!-- end of .col-460 -->
-   <div id="featured-image2" class="grid col-460 fit">
-      <div class="call-to-action">
-         <a href="<hst:link siteMapItemRefId="itreturnhome"/>" class="orange button">Start preparing your taxes!</a>
-      </div>
-      <!-- <img class="aligncenter" src="images/Drawing2.png" width="440" height="300" alt=""> -->
-   </div>
+ --%>
+<div class="slider-wrapper grid col-940 theme-default">
+	<div id="myCarousel" class="carousel slide">
+	  <ol class="carousel-indicators">
+	    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+	    <li data-target="#myCarousel" data-slide-to="1"></li>
+	    <li data-target="#myCarousel" data-slide-to="2"></li>
+	    <li data-target="#myCarousel" data-slide-to="3"></li>
+	    <li data-target="#myCarousel" data-slide-to="4"></li>
+	  </ol>
+	  <!-- Carousel items -->
+	  <div class="carousel-inner">
+	    <div class="active item"><img src="<hst:link path="/images/retirement.png"/>"/> </div>
+	    <div class="item"><img src="<hst:link path="/images/businessprotection.png"/>"/> </div>
+	    <div class="item"><img src="<hst:link path="/images/grow_income.jpg"/>"/> </div>
+	    <div class="item"><img src="<hst:link path="/images/slide08.jpg"/>"/> </div>
+	    <div class="item"><img src="<hst:link path="/images/taxation.jpg"/>"/> </div>
+	  </div>
+	  <!-- Carousel nav -->
+	  <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+	  <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+	</div>
 </div>
-<div id="widgets" class="home-widgets">
+
+<div class="row-fluid show-grid">	        
+	<div class="span6" style="border-bottom:1px solid green;border-top:1px solid green">
+		<h2 style="display:inline">eFile</h2>&nbsp;&nbsp;<a href="">Learn More..</a>
+		<div class="row-fluid show-grid">	
+			<div class="span6">
+				<h3>Basic</h3>			
+			</div>
+			<div class="span6">
+				<h3>Standard</h3>
+			</div>
+		</div>		
+	</div>
+	<div class="span6" style="border-bottom:1px solid olive;border-top:1px solid olive">
+		<h2  style="display:inline">eZ-File</h2>&nbsp;&nbsp;<a href="">Learn More..</a>
+		<div class="row-fluid show-grid">	
+			<div class="span6">
+				<h3>Premium</h3>
+			</div>
+			<div class="span6">
+				<h3>Platinum</h3>
+			</div>
+		</div>			
+	</div>
+</div>
+<div id="widgets" class="home-widgets" style="margin-top:20px;">
    <div class="grid col-220">
       <div class="widget-wrapper">
          <div class="widget-title-home">
-            <h3>Acquire Wealth</h3>
+            <h4>For Individuals</h4>
          </div>
          <div class="textwidget">
-            Helping you grow your wealth is an important part of what we do.
+           <ul>
+           		<li>Single Source Of Income</li>
+           		<li>Single Property Income</li>
+           		<li>No Loss or Gain to be carried forward</li>
+           </ul>
          </div>
       </div>
       <!-- end of .widget-wrapper -->
@@ -70,7 +103,7 @@
    <div class="grid col-220">
       <div class="widget-wrapper">
          <div class="widget-title-home">
-            <h3>Pass on Wealth</h3>
+            <h3>ITR1</h3>
          </div>
          <div class="textwidget">
             Your wealth can have a massive impact beyond your lifetime. With foresight, you can ensure that impact is as positive as possible. We can help you prepare for tomorrow.				
@@ -82,7 +115,7 @@
    <div class="grid col-220">
       <div class="widget-wrapper">
          <div class="widget-title-home">
-            <h3>Protect Wealth</h3>
+            <h3>ITR2</h3>
          </div>
          <div class="textwidget">
             We can help you prepare for a changing future by protecting your wealth now.
@@ -94,7 +127,7 @@
    <div class="grid col-220 fit">
       <div class="widget-wrapper">
          <div class="widget-title-home">
-            <h3>Use and Enjoy Wealth</h3>
+            <h3>Company Taxes</h3>
          </div>
          <div class="textwidget">
             Lear More..
@@ -103,7 +136,8 @@
       <!-- end of .widget-wrapper -->
    </div>
    <!-- end of .col-300 fit -->
-</div>
+</div>  	
+
 <hst:headContribution keyHint="detectMobile" category="jsInternal">
    <script type="text/javascript">
       $(document).ready(function(){
@@ -192,6 +226,7 @@
       }
    </style>
 </hst:headContribution>
+<%--
 <hst:headContribution  category="css">
    <link rel="stylesheet" type="text/css" href="http://demo.dev7studios.com/nivo-slider/wp-content/plugins/nivo-slider/scripts/nivo-slider/nivo-slider.css?ver=3.5.1"/>
 </hst:headContribution>
@@ -200,6 +235,9 @@
 </hst:headContribution>
 <hst:headContribution  category="jsInternal">
    <link rel='stylesheet' id='nivoslider-theme-dark-css'  href='http://demo.dev7studios.com/nivo-slider/wp-content/plugins/nivo-slider/scripts/nivo-slider/themes/dark/dark.css?ver=3.5.1' type='text/css' media='all' />
+</hst:headContribution>
+<hst:headContribution category="jsExternal">
+   <script type='text/javascript' src='http://twitter.github.io/bootstrap/assets/js/bootstrap-carousel.js'></script>
 </hst:headContribution>
 <hst:headContribution  category="jsInternal">
    <link rel='stylesheet' id='nivoslider-theme-default-css'  href='http://demo.dev7studios.com/nivo-slider/wp-content/plugins/nivo-slider/scripts/nivo-slider/themes/default/default.css?ver=3.5.1' type='text/css' media='all' />
@@ -211,6 +249,7 @@
 <hst:headContribution  category="jsExternal">
    <script type='text/javascript' src='${nivoSlider}'></script>
 </hst:headContribution>
+ --%>
 <hst:headContribution  category="jsInternal">
    <script type="text/javascript">
       jQuery(function($){

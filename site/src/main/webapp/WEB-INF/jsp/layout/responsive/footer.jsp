@@ -38,15 +38,7 @@
 					</ul>                  
 		</div><!-- end of col-540 -->
         <div class="grid col-380 fit">
-        	<!-- <ul class="social-icons"><li class="twitter-icon"><a href="#"><img src="http://themeid.com/demo/responsive/wp-content/themes/responsive/icons/twitter-icon.png" width="24" height="24" alt="Twitter"></a></li><li class="facebook-icon"><a href="#"><img src="http://themeid.com/demo/responsive/wp-content/themes/responsive/icons/facebook-icon.png" width="24" height="24" alt="Facebook"></a></li><li class="linkedin-icon"><a href="#"><img src="http://themeid.com/demo/responsive/wp-content/themes/responsive/icons/linkedin-icon.png" width="24" height="24" alt="LinkedIn"></a></li><li class="youtube-icon"><a href="#"><img src="http://themeid.com/demo/responsive/wp-content/themes/responsive/icons/youtube-icon.png" width="24" height="24" alt="YouTube"></a></li><li class="stumble-upon-icon"><a href="#"><img src="http://themeid.com/demo/responsive/wp-content/themes/responsive/icons/stumble-upon-icon.png" width="24" height="24" alt="StumbleUpon"></a></li><li class="rss-feed-icon"><a href="#"><img src="http://themeid.com/demo/responsive/wp-content/themes/responsive/icons/rss-feed-icon.png" width="24" height="24" alt="RSS Feed"></a></li><li class="google-plus-icon"><a href="#"><img src="http://themeid.com/demo/responsive/wp-content/themes/responsive/icons/googleplus-icon.png" width="24" height="24" alt="Google Plus"></a></li><li class="instagram-icon"><a href="#"><img src="http://themeid.com/demo/responsive/wp-content/themes/responsive/icons/instagram-icon.png" width="24" height="24" alt="Instagram"></a></li><li class="pinterest-icon"><a href="#"><img src="http://themeid.com/demo/responsive/wp-content/themes/responsive/icons/pinterest-icon.png" width="24" height="24" alt="Pinterest"></a></li><li class="yelp-icon"><a href="#"><img src="http://themeid.com/demo/responsive/wp-content/themes/responsive/icons/yelp-icon.png" width="24" height="24" alt="Yelp!"></a></li><li class="vimeo-icon"><a href="#"><img src="http://themeid.com/demo/responsive/wp-content/themes/responsive/icons/vimeo-icon.png" width="24" height="24" alt="Vimeo"></a></li><li class="foursquare-icon"><a href="#"><img src="http://themeid.com/demo/responsive/wp-content/themes/responsive/icons/foursquare-icon.png" width="24" height="24" alt="foursquare"></a></li></ul> --><!-- end of .social-icons -->         </div><!-- end of col-380 fit -->
-         
-         </div><!-- end of col-940 -->
-         <%--
-                 <div id="colophon-widget" class="grid col-940">
-            		<div id="text-7" class="colophon-widget widget-wrapper widget_text">			
-            		<div class="textwidget">Hey There, I am new here and you can see me only when you need me :)</div>
-				 </div>
-         --%>    
+        </div><!-- end of col-940 -->
             </div><!-- end of #colophon-widget -->                
         <div class="grid col-300 copyright">© 2013<a href="http://www.wealth4india.com/" title="Wealth4India">Wealth4India</a>
         </div><!-- end of .copyright -->
