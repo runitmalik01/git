@@ -4,6 +4,8 @@ package com.mootly.wcm.member;
 import org.hippoecm.hst.core.component.HstComponentException;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -39,6 +41,28 @@ public class TdsFromSalary extends ITReturnComponent {
 		// TODO Auto-generated method stub
 		super.doBeforeRender(request, response);
 		System.out.println("this is do before render of tds from salary");
+	
+	String reqFormJson=getPublicRequestParameter(request, "data");
+	String validation=getPublicRequestParameter(request, "validation");
+	if(reqFormJson!=null&&validation!=null){
+		try {
+			JSONObject formJson=new JSONObject(reqFormJson);
+				if(formJson.getString("tan_employertds").length()!=0&&formJson.getString("name_employertds").length()!=0){
+					char pan5thChar=formJson.getString("tan_employertds").toLowerCase().charAt(3);
+					char lastName1stChar=formJson.getString("name_employertds").toLowerCase().charAt(0);
+					System.out.println("lastName1stChar"+lastName1stChar);
+					System.out.println("pan5thChar"+pan5thChar);
+					if(pan5thChar!=lastName1stChar){
+						response.setHeader("myHeader", "error");
+					}else{
+						response.setHeader("myHeader", "success");
+					}
+				}}
+		catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	}
 	@Override
 	public void doAction(HstRequest request, HstResponse response)
