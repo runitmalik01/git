@@ -26,6 +26,9 @@
 								data-toggle="dropdown">
 
 								<c:choose>
+								<c:when test="${theForm.ITR1IncomeDeductions.incomeFromSal eq'0'}">
+								<c:out value="Fill Now" />
+								</c:when>
 									<c:when
 										test="${not empty theForm.ITR1IncomeDeductions.incomeFromSal}">
 										<c:out value="${ theForm.ITR1IncomeDeductions.incomeFromSal}" />
@@ -123,6 +126,9 @@
 							<button class="btn btn-small dropdown-toggle"
 								data-toggle="dropdown">
 								<c:choose>
+								<c:when test="${theForm.ITR1IncomeDeductions.deductUndChapVIA.totalChapVIADeductions eq'0'}">
+								<c:out value="Fill Now" />
+								</c:when>
 									<c:when
 										test="${not empty theForm.ITR1IncomeDeductions.deductUndChapVIA.totalChapVIADeductions}">
 										<c:out
@@ -231,6 +237,9 @@
 							<button class="btn btn-small dropdown-toggle"
 								data-toggle="dropdown">
 								<c:choose>
+								<c:when test="${theForm.taxPaid.taxesPaid.advanceTax eq'0'}">
+								<c:out value="Fill Now" />
+								</c:when>
 									<c:when
 										test="${not empty theForm.taxPaid.taxesPaid.advanceTax}">
 										<c:out value="${ theForm.taxPaid.taxesPaid.advanceTax}" />
@@ -255,6 +264,9 @@
 							<button class="btn btn-small dropdown-toggle"
 								data-toggle="dropdown">
 								<c:choose>
+								<c:when test="${theForm.taxPaid.taxesPaid.selfAssessmentTax eq'0'}">
+								<c:out value="Fill Now" />
+								</c:when>
 									<c:when
 										test="${not empty theForm.taxPaid.taxesPaid.selfAssessmentTax}">
 										<c:out value="${theForm.taxPaid.taxesPaid.selfAssessmentTax}" />
