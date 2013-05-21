@@ -89,6 +89,9 @@
 		$.validator.addMethod("amount", function(value, element) {  
 		   	 return this.optional(element) || /^[0-9]+\.?[0-9]{0,2}?$/i.test(value);  
 		}, "AMOUNT is invalid.");
+		$.validator.addMethod("percentage", function(value, element) {  
+		   	 return this.optional(element) || /^(100(\.00?)?|[1-9]?\d(\.\d\d?)?)?$/i.test(value);  
+		}, "Percentage is invalid.");
 		$.validator.addMethod("max", function(value, element) {  
 		   	 return this.optional(element) || /^([0-9]+\.?[0-9]{0,2}){0,14}?$/i.test(value);  
 		}, "Max length allowed is 14.");
