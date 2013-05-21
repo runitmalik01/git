@@ -50,12 +50,6 @@
              --%>
             <li><a href="#"><b>Type:</b><c:out value="${itReturnType}"/></a></li>
             <li><a href="#"><b>Status:</b><c:out value="${filingStatus}"/></a></li>
-            <li>
-               <a href="#">
-                  FY:
-                  <c:out value="${financialYear}"/>
-               </a>
-            </li>
             <!-- <li class="divider"></li>
                <li><a href="#">Go back to PAN Home</a></li>
                 -->
