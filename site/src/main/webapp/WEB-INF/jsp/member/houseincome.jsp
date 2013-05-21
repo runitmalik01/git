@@ -56,7 +56,7 @@
 					<div class="row-fluid show-grid">
 						<div class="span3">
 							<div class="rowlabel">
-								<label for=""><small>Address</small><span class="star">*</span> </label>
+								<label for="Address"><small>Address</small></label>
 							</div>
 							<div>
 								<input id="Address" name="Address" placeholder="Address"
@@ -67,7 +67,7 @@
 						</div>
 						<div class="span3">
 							<div class="rowlabel">
-								<label for=""><small>Town/City/District</small><span class="star">*</span> </label>
+								<label for="City"><small>Town/City/District</small> </label>
 							</div>
 							<div>
 								<input id="City" name="City" placeholder="Town/City/District"
@@ -79,7 +79,7 @@
 
 						<div class="span3">
 							<div class="rowlabel">
-								<label for=""><small>State</small><span class="star">*</span> </label>
+								<label for="states"><small>State</small></label>
 							</div>
 							<div>
 								<c:set var="searchresultstitle">
@@ -95,7 +95,7 @@
 						</div>
 						<div class="span3">
 							<div class="rowlabel">
-								<label for=""><small>PIN Code</small><span class="star">*</span> </label>
+								<label for="Pin"><small>PIN Code</small></label>
 							</div>
 							<div>
 								<input id="Pin" type="text" class="numberinput" name="Pin"
@@ -109,7 +109,7 @@
 					<div class="row-fluid show-grid">
 						<div class="span4">
 							<div class="rowlabel">
-								<label for=""><small>Is the property let out?</small><span class="star">*</span> </label>
+								<label for="letout"><small>Is the property let out?</small></label>
 							</div>
 							<div>
 								<select name="letout" id="letout">
