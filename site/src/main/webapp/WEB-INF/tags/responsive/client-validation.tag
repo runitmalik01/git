@@ -128,8 +128,10 @@
 					$('#<c:out value="${formSubmitButtonId}"/>').click(function() {
 		 				 $('#<c:out value="${formId}"/>').submit();
 					});
-				</c:if>			
-			});    
+				</c:if>	
+				$('.tan').attr("style","text-transform: uppercase;");		
+			});   
+			 
 	</hst:element>
 	<hst:headContribution element="${uiCustom}" category="jsInternal"/>	
 </c:if>
