@@ -2580,7 +2580,7 @@
                     <sv:value>action</sv:value>
                   </sv:property>
                   <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
-                    <sv:value>tdsfromsalary_EDIT_CHILD</sv:value>
+                    <sv:value>selfassesmenttax_EDIT_CHILD</sv:value>
                   </sv:property>
                 </sv:node>
               </sv:node>
