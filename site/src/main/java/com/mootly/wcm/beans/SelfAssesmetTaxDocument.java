@@ -83,17 +83,6 @@ public class SelfAssesmetTaxDocument extends BaseDocument implements ContentNode
 	    	return total_amount;
 	 }
 	   
-		public BigInteger getBigTotal_Amount() {
-			if (total_amount == null) total_amount = getProperty("mootlywcm:totalamount");
-			DecimalFormat decimalFormat=new DecimalFormat("#.#");
-			BigInteger bigTotal=null;
-			if(total_amount!=null && total_amount.toString().length()>0){
-				bigTotal = new BigInteger(decimalFormat.format(total_amount));
-				return bigTotal;
-			}else
-				return null;
-		}
-		
 	   public final void setTotal_Amount(Double totalamount) {
 			this.total_amount = totalamount;
 		}
