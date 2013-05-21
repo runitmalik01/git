@@ -7,6 +7,16 @@
 
 
 <hst:actionURL var="actionUrl"></hst:actionURL>
+<div class="page type-page">
+	<h3 id="respond1">
+		<c:choose>
+			<c:when
+				test="${not empty screenConfigDocument && not empty screenConfigDocument.screenHeading}">
+				<c:out value="${screenConfigDocument.screenHeading}" />
+			</c:when>
+			<c:otherwise></c:otherwise>
+		</c:choose>
+	</h3>
 <form name="oi" id="frmIncomeinfo" action="${actionUrl}" method="post">
 	<fieldset>
 		<legend>
@@ -19,8 +29,8 @@
 							key="member.income.gov" /> </label>
 				</div>
 				<div class="rowlabel">
-					<input type="text" name="Gov_income" maxlength="14"
-						title="Enter income from Govt." class="numberinput decimal"
+					<input type="text" name="Gov_income"
+						title="Enter income from Govt." class="decimal"
 						value="${parentBean.gov_income}" id="A" onchange="cal1()" />
 				</div>
 			</div>
@@ -376,9 +386,21 @@
 		</div>
 	</div>
 </form>
+</div>
+<res:client-validation formId="frmIncomeinfo" screenConfigurationDocumentName="otherincome" formSubmitButtonId="myModalHrefFormSixteen" />
 <hst:element var="uiCustom" name="script">
 	<hst:attribute name="type">text/javascript</hst:attribute>
 
+		$(document).ready(function() {
+		$('input.numberinput').bind('keypress', function (e) {
+        return (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57) && e.which != 46) ? false : true;
+         });
+                 var statekey=$("#statekey").val();
+                if(statekey!=null){
+                 $("#pi_state").val(statekey);
+                  };
+                  
+		});    
 </hst:element>
 <hst:headContribution element="${uiCustom}" category="jsInternal" />
 <script>
