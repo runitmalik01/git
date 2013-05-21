@@ -67,8 +67,9 @@
 						</div>
 						<div class="rowlabel">
 							<input type="text" name="employee"
-								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.employee}"/></c:if>"
-								maxlength="60">
+								value="<c:choose><c:when test="${pageAction == 'EDIT_CHILD'}"><c:out value="${childBean.name_employee}"/>
+								</c:when><c:otherwise><c:out value="${memberpersonalinformation.name}"/></c:otherwise></c:choose>" readonly="readonly"/>
+				
 						</div>
 					</div>
 
@@ -95,7 +96,8 @@
 						<div class="rowlabel">
 							<label>PAN of Employee </label> <input type="text"
 								name="pan_employee"
-								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.pan_employee}"/></c:if>">
+								value="<c:choose><c:when test="${pageAction == 'EDIT_CHILD'}"><c:out value="${childBean.name_employee}"/>
+								</c:when><c:otherwise><c:out value="${memberpersonalinformation.PAN}"/></c:otherwise></c:choose>" readonly="readonly"/>
 
 						</div>
 					</div>
@@ -136,7 +138,7 @@
 						</td>
 
 
-						<td><input type="text" name="acknowledge_1"
+						<td><input type="text" name="acknowledge_1" maxlength="15"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.acknowledge_1}"/></c:if>"
 							placeholder="123456789"></td>
 
@@ -163,7 +165,7 @@
 							placeholder="Quarter">
 						</td>
 
-						<td><input type="text" name="acknowledge_2"
+						<td><input type="text" name="acknowledge_2" maxlength="15"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.acknowledge_2}"/></c:if>"
 							placeholder="123456789"></td>
 
@@ -189,7 +191,7 @@
 							placeholder="Quarter">
 						</td>
 
-						<td><input type="text" name="acknowledge_3"
+						<td><input type="text" name="acknowledge_3" maxlength="15"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.acknowledge_3}"/></c:if>"
 							placeholder="123456789"></td>
 
@@ -212,7 +214,7 @@
 							placeholder="Quarter">
 						</td>
 
-							<td><input type="text" name="acknowledge_4"
+							<td><input type="text" name="acknowledge_4" maxlength="15"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.acknowledge_4}"/></c:if>"
 							placeholder="123456789">
 							</td>
@@ -961,10 +963,10 @@
 							</td>
 							<td><a
 							href="${scriptName}/<c:out value="${salaryItemDetail.canonicalUUID}"/>/formsixteenedit"><small>Edit</small>
-							</a>&nbsp;&nbsp;<a
-							href="${scriptName}/<c:out value="${salaryItemDetail.canonicalUUID}"/>/formsixteendelete"><small>Delete</small>
-							</a>
-							</td>
+							<c:set var="canonicalUUID" value="${salaryItemDetail.canonicalUUID}"/>
+								<c:set var="scriptName" value="${scriptName}"/>
+							</a>&nbsp;&nbsp;<a id="delete"><small>Delete</small>
+							</a></td>
 						</tr>
 					</c:forEach>
 				</c:if>
@@ -973,6 +975,14 @@
 				New</a>
 		</c:otherwise>
 	</c:choose>
+<script type="text/javascript">
 
+$('#delete').click(function(){
+	var result=confirm("Do you want to delete permanently");	
+	if(result){
+		$('#delete').attr('href','<c:out value="${scriptName}"/>/<c:out value="${canonicalUUID}"/>/formsixteendelete');
+	}
+});
+</script>
 
 <res:client-validation formId="frmdataFormSixteen" screenConfigurationDocumentName="formsixteen" formSubmitButtonId="myModalHrefFormSixteen" />
