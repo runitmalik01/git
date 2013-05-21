@@ -5,14 +5,7 @@
 	<fmt:message key="tds2" />
 </c:set>
 <hippo-gogreen:title title="${tds2}" />
-
 <hst:actionURL var="actionUrl" />
-<script type="text/javascript">
-	function keyup() {
-		var x = document.getElementById("tan_employer");
-		x.value = x.value.toUpperCase();
-	}
-</script>
 <h4>
 	<fmt:message key="member.tds.from.salary" />
 </h4>
@@ -30,6 +23,7 @@
 		test="${pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD'}">
 		<form id="frmdatatdssalary" action="${actionUrl}" method="post"
 			name="tdsfromsalary">
+			<div id="error" class="alert alert-error" style="display:none;">TAN's fourth alphabet should be first alphabet of Name of Employer</div>
 			<fieldset>
 				<legend style="color: black">Enter Details</legend>
 			<div class="row-fluid show-grid" >
@@ -79,13 +73,11 @@
 					var="tdsfromsalarydetail">
 					<tr>
 						<td><c:out value="${tdsfromsalarydetail.tan_Employer}" /></td>
-
 						<td><c:out value="${tdsfromsalarydetail.name_Employer}" /></td>
 						<td><c:out value="${tdsfromsalarydetail.income_Chargeable}" />
 						</td>
 						<td><c:out value="${tdsfromsalarydetail.total_TaxDeducted}" />
 						</td>
-
 						<td><a
 							href="${redirectURLToSamePage}/<c:out value="${tdsfromsalarydetail.canonicalUUID}"/>/tdsfromsalaryedit"><small>Edit</small>
 						</a>&nbsp;&nbsp;<a
@@ -107,7 +99,4 @@
 	</c:otherwise>
 </c:choose>
 
-
-<res:client-validation formId="frmdatatdssalary"
-	screenConfigurationDocumentName="tdsfromsalary"
-	formSubmitButtonId="myModalHreftds" />
+<res:client-validation  screenConfigurationDocumentName="tdsfromsalary" formId="frmdatatdssalary" formSubmitButtonId="myModalHreftds" fieldOneID="tan_employertds" fieldTwoID="name_employertds" validationType="tan"></res:client-validation>
