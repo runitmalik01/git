@@ -67,7 +67,7 @@ public class HouseIncome extends ITReturnComponent {
 			String pathToScreenCalc = "configuration/screencalculation/" + this.getClass().getSimpleName().toLowerCase();
 			HippoBean siteContentBaseBean=(HippoBean)request.getAttribute("siteContentBaseBean");
 			ScreenCalculation screencalc=siteContentBaseBean.getBean(pathToScreenCalc, ScreenCalculation.class);
-			Map<String,Object> resultSet = ScreenCalculatorService.getScreenCalculations(screencalc.getScript(), request.getParameterMap(""), null);
+			Map<String,Object> resultSet = ScreenCalculatorService.getScreenCalculations("houseincome.js", request.getParameterMap(""), null);
 			if (resultSet != null) {
 				log.info("get the result");
 				request.setAttribute("resultSet", resultSet);
