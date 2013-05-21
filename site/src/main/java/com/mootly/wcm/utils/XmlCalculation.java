@@ -61,6 +61,7 @@ import com.mootly.wcm.beans.compound.TdsOthersDetail;
 import com.mootly.wcm.beans.compound.AdvanceTaxDetail;
 import com.mootly.wcm.components.ITReturnComponent;
 import com.mootly.wcm.model.ITRForm;
+import com.mootly.wcm.services.IndianCurrencyHelper;
 
 
 @AdditionalBeans(additionalBeansToLoad={MemberPersonalInformation.class,MemberContactInformation.class,SalaryIncomeDocument.class,
@@ -75,6 +76,7 @@ public class XmlCalculation {
 			//HouseIncomeDetail houseIncomeDetail = (HouseIncomeDetail) request.getAttribute(HouseIncomeDetail.class.getSimpleName().toLowerCase());
 			HouseProperty houseProperty = (HouseProperty) request.getAttribute(HouseProperty.class.getSimpleName().toLowerCase());
 			OtherSourcesDocument otherSourcesDocument = (OtherSourcesDocument) request.getAttribute(OtherSourcesDocument.class.getSimpleName().toLowerCase());
+			IndianCurrencyHelper indianCurrencyHelper = new IndianCurrencyHelper(); 
 			
 			BigInteger salarytotal=new BigInteger("0");
 			long longsalarytotal=0;
@@ -83,18 +85,18 @@ public class XmlCalculation {
 			long otherincome=0;
 			
 			if(salaryIncomeDocument!=null){
-				salarytotal = salaryIncomeDocument.getBigTotal();
+				salarytotal = indianCurrencyHelper.bigIntegerRound(salaryIncomeDocument.getTotal());
 			    longsalarytotal = salarytotal.longValue();
 			}
 			if(houseProperty!=null){
 				if (houseProperty.getHouseIncomeDetailList() != null && houseProperty.getHouseIncomeDetailList().size() > 0 ){
 					for(HouseIncomeDetail houseIncomeDetail: houseProperty.getHouseIncomeDetailList()){
-					houseincome = houseIncomeDetail.getIncome_hproperty().longValue();
+					houseincome = indianCurrencyHelper.longRound(houseIncomeDetail.getIncome_hproperty());
 					}
 				}
 			}
 			if(otherSourcesDocument!=null){
-			       otherincome = otherSourcesDocument.getTaxable_income().longValue();
+			       otherincome = indianCurrencyHelper.longRound(otherSourcesDocument.getTaxable_income());
 			}
 			grosstotal = longsalarytotal+houseincome+grosstotal+otherincome;
 			
