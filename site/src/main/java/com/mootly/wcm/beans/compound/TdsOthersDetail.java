@@ -83,34 +83,11 @@ public class TdsOthersDetail extends HippoItem implements FormMapFiller {
     	return total_TaxDeductor;
     }
 
-    //created for xml
-	public BigInteger getBigTotal_TaxDeductor() {
-		if (total_TaxDeductor == null) total_TaxDeductor = getProperty(total_taxdeducted);
-		DecimalFormat decimalFormat=new DecimalFormat("#.#");
-		BigInteger bigtotal_TaxDeductor=null;
-		if(total_TaxDeductor!=null && total_TaxDeductor.toString().length()>0){
-			bigtotal_TaxDeductor = new BigInteger(decimalFormat.format(total_TaxDeductor));
-			return bigtotal_TaxDeductor;
-		}else
-			return null;
-	}
     public Double getP_Amount() {
     	if (val_amount == null) val_amount = getProperty(amount);
     	return val_amount;
     }
-    
-    //created for xml
- 	public BigInteger getBigP_Amount() {
- 		if (val_amount == null) val_amount = getProperty(amount);
- 		DecimalFormat decimalFormat=new DecimalFormat("#.#");
- 		BigInteger bigval_amount=null;
- 		if(val_amount!=null && val_amount.toString().length()>0){
- 			bigval_amount = new BigInteger(decimalFormat.format(val_amount));
- 			return bigval_amount;
- 		}else
- 			return null;
- 	}
- 	
+ 
     public String getName_Deductor() {
     	if (name_Deductor == null) name_Deductor = getProperty(name_deductor);
     	return name_Deductor;
