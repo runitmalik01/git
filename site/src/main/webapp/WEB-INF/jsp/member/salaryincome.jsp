@@ -19,7 +19,7 @@
 <hippo-gogreen:title title="${salaryincometitle}" />
 <hst:actionURL var="actionUrl"></hst:actionURL>
 
-	<h3 id="respond1">
+<h3 id="respond1">
 		<c:choose>
 			<c:when
 				test="${not empty screenConfigDocument && not empty screenConfigDocument.screenHeading}">
@@ -108,7 +108,7 @@
 							</div>
 							<div class="rowlabel">
 								<input id="Pan_employee" type="text" name="Pan_employee"
-									value="<c:choose><c:when test="${pageAction == 'EDIT_CHILD'}"><c:out value="${childBean.pan_employee}"/></c:when><c:otherwise><c:out value="${memberpersonalinformation.PAN}"/></c:otherwise></c:choose>" readonly="readonly"/>
+									value="<c:choose><c:when test="${pageAction == 'EDIT_CHILD'}"><c:out value="${childBean.pan_employee}"/></c:when><c:otherwise><c:out value="${memberpersonalinformation.PAN}"/></c:otherwise></c:choose>"/>
 							</div>
 						</div>
 					</div>
@@ -179,7 +179,7 @@
 							<div class="rowlabel">
 								<c:set var="searchresultstitle"><fmt:message key="member.contact_info.state.select"/></c:set>
                                 <c:set var="statesType"><fmt:message key="dropdown.states"/></c:set>
-                    <w4india:dropdown dropDownSelectId="State" optionSelectString="${searchresultstitle}" dropDownType="${statesType}" fetchValue="${childBean.state}"/>
+                    <w4india:dropdown dropDownSelectId="Stateslry" optionSelectString="${searchresultstitle}" dropDownType="${statesType}" fetchValue="${childBean.state}"/>
 							</div>
 						</div>
 
@@ -204,7 +204,7 @@
 								<label for="To"><fmt:message key="member.period.infoto" /> </label>
 							</div>
 							<div class="rowlabel">
-								<input id="To" name="To"
+								<input id="To" name="To" placeholder="DD/MM"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.to}"/></c:if>" />
 							</div>
 						</div>
@@ -317,10 +317,10 @@
 							</td>
 							<td><a
 								href="${scriptName}/<c:out value="${salaryItemDetail.canonicalUUID}"/>/salaryincomeedit"><small>Edit</small>
-							</a>&nbsp;&nbsp;<a
-								href="${scriptName}/<c:out value="${salaryItemDetail.canonicalUUID}"/>/salaryincomedelete"><small>Delete</small>
-							</a>
-							</td>
+								<c:set var="canonicalUUID" value="${salaryItemDetail.canonicalUUID}"/>
+								<c:set var="scriptName" value="${scriptName}"/>
+							</a>&nbsp;&nbsp;<a id="delete"><small>Delete</small>
+							</a></td>
 						</tr>
 					</c:forEach>
 					<tr align="center">
@@ -343,7 +343,15 @@
 		document.getElementById("Taxable_earning").value = (A + B + C + D);
 	}**/
 </script>
+<script type="text/javascript">
 
+$('#delete').click(function(){
+	var result=confirm("Do you want to delete permanently");	
+	if(result){
+		$('#delete').attr('href','<c:out value="${scriptName}"/>/<c:out value="${canonicalUUID}"/>/salaryincomedelete');
+	}
+});
+</script>
 <res:calc screenCalc="salaryincome" formId="frmdataSlryInc"></res:calc>
 <res:client-validation formId="frmdataSlryInc"
 	screenConfigurationDocumentName="salaryincome"
