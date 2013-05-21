@@ -67,6 +67,7 @@ import com.mootly.wcm.beans.compound.TdsOthersDetail;
 import com.mootly.wcm.beans.compound.AdvanceTaxDetail;
 import com.mootly.wcm.components.ITReturnComponent;
 import com.mootly.wcm.model.ITRForm;
+import com.mootly.wcm.services.IndianCurrencyHelper;
 import com.mootly.wcm.utils.XmlCalculation;
 
 @AdditionalBeans(additionalBeansToLoad={MemberPersonalInformation.class,MemberContactInformation.class,SalaryIncomeDocument.class,
@@ -138,6 +139,7 @@ public class XmlGenerator extends ITReturnComponent {
 		TDSonOthThanSal tdsonOthThanSal = new TDSonOthThanSal();
 		TaxPayments taxPayments = new TaxPayments();
 		TaxPayment taxPayment = new TaxPayment();
+		IndianCurrencyHelper indianCurrencyHelper = new IndianCurrencyHelper(); 
 
 		//personal information
 		assesseeName.setFirstName(memberPersonalInformation.getFirstName());
@@ -178,7 +180,7 @@ public class XmlGenerator extends ITReturnComponent {
 		filingstatus.setReturnType(memberPersonalInformation.getReturnType());
 		filingstatus.setResidentialStatus(memberPersonalInformation.getResidentCategory());
 		filingstatus.setTaxStatus(memberPersonalInformation.getTaxStatus());
-		
+
 		if (memberPersonalInformation.getReturnType().equals("R")) {	
 			filingstatus.setAckNoOriginalReturn(memberPersonalInformation.getOriginalAckNo());
 			filingstatus.setOrigRetFiledDate(memberPersonalInformation.getGregorianOriginalAckDate());
@@ -194,16 +196,16 @@ public class XmlGenerator extends ITReturnComponent {
 
 		//Income Deductions
 		if(salaryIncomeDocument!=null)
-			incomeDeductions.setIncomeFromSal(salaryIncomeDocument.getBigTotal());
+			incomeDeductions.setIncomeFromSal(indianCurrencyHelper.bigIntegerRound(salaryIncomeDocument.getTotal()));
 		if(houseProperty!=null){
 			if (houseProperty.getHouseIncomeDetailList() != null && houseProperty.getHouseIncomeDetailList().size() > 0 ){
 				for(HouseIncomeDetail houseIncomeDetail: houseProperty.getHouseIncomeDetailList()){
-					incomeDeductions.setTotalIncomeOfHP(houseIncomeDetail.getIncome_hproperty().longValue());
+					incomeDeductions.setTotalIncomeOfHP(indianCurrencyHelper.longRound(houseIncomeDetail.getIncome_hproperty()));
 				}
 			}
 		}
 		if(otherSourcesDocument!=null)
-			incomeDeductions.setIncomeOthSrc(otherSourcesDocument.getTaxable_income().longValue());
+			incomeDeductions.setIncomeOthSrc(indianCurrencyHelper.longRound(otherSourcesDocument.getTaxable_income()));
 		long grsstotal = xmlCalculation.grossTotal(request, response);
 		incomeDeductions.setGrossTotIncome(grsstotal);	// calculation needed(incomefromsalary+house income+othersrcincome)
 		//added deduction with null values (incomplete)
@@ -242,21 +244,21 @@ public class XmlGenerator extends ITReturnComponent {
 
 		//TaxPaid and TaxesPaid
 		if(advanceTaxDocument!=null)
-			taxesPaid.setAdvanceTax(advanceTaxDocument.getBigTotal_Amount());
+			taxesPaid.setAdvanceTax(indianCurrencyHelper.bigIntegerRound(advanceTaxDocument.getTotal_Amount()));
 		if(tdsFromSalaryDocument!=null){	
-			bigTotalTdsSalary= new BigInteger(decimalFormat.format(tdsFromSalaryDocument.getTotal_Amount()));
-
+			bigTotalTdsSalary= indianCurrencyHelper.bigIntegerRound(tdsFromSalaryDocument.getTotal_Amount());
 		}
 		request.setAttribute("bigTotalTdsSalary", bigTotalTdsSalary);
 		if(tdsFromothersDocument!=null){
-			bigTotalTdsOther=new BigInteger(decimalFormat.format(tdsFromothersDocument.getTotal_Amount()));
-
+			bigTotalTdsOther=indianCurrencyHelper.bigIntegerRound(tdsFromothersDocument.getTotal_Amount());
 		}
 		request.setAttribute("bigTotalTdsOther", bigTotalTdsOther);
+
 		BigInteger bigTotalTds=bigTotalTdsSalary.add(bigTotalTdsOther);
 		taxesPaid.setTDS(bigTotalTds);
+
 		if(selfAssesmetTaxDocument!=null)
-			taxesPaid.setSelfAssessmentTax(selfAssesmetTaxDocument.getBigTotal_Amount());
+			taxesPaid.setSelfAssessmentTax(indianCurrencyHelper.bigIntegerRound(selfAssesmetTaxDocument.getTotal_Amount()));
 		taxesPaid.setTotalTaxesPaid(null);//calculation needed (advancetax+tds+selfassessmenttax)
 		taxPaid.setTaxesPaid(taxesPaid);
 		taxPaid.setBalTaxPayable(null); // calculation needed (totaltaxintrstpay-totaltaxpaid)
@@ -285,8 +287,8 @@ public class XmlGenerator extends ITReturnComponent {
 					log.info("tan employer"+tdsFromSalaryDetail.getTan_Employer());
 					employerOrDeductorOrCollectDetl.setEmployerOrDeductorOrCollecterName(tdsFromSalaryDetail.getName_Employer());
 					tdsonSalary.setEmployerOrDeductorOrCollectDetl(employerOrDeductorOrCollectDetl);
-					tdsonSalary.setIncChrgSal(tdsFromSalaryDetail.getBigIncome_Chargeable());
-					tdsonSalary.setTotalTDSSal(tdsFromSalaryDetail.getBigTotal_TaxDeducted());			
+					tdsonSalary.setIncChrgSal(indianCurrencyHelper.bigIntegerRound(tdsFromSalaryDetail.getIncome_Chargeable()));
+					tdsonSalary.setTotalTDSSal(indianCurrencyHelper.bigIntegerRound(tdsFromSalaryDetail.getTotal_TaxDeducted()));			
 					tdsonSalaries.getTDSonSalary().add(tdsonSalary);
 
 				}		
@@ -303,14 +305,13 @@ public class XmlGenerator extends ITReturnComponent {
 					employerOrDeductorOrCollectDetl.setTAN(tdsOthersDetail.getTan_Deductor());
 					employerOrDeductorOrCollectDetl.setEmployerOrDeductorOrCollecterName(tdsOthersDetail.getName_Deductor());
 					tdsonOthThanSal.setEmployerOrDeductorOrCollectDetl(employerOrDeductorOrCollectDetl);
-					tdsonOthThanSal.setTotTDSOnAmtPaid(tdsOthersDetail.getBigTotal_TaxDeductor());
-					tdsonOthThanSal.setClaimOutOfTotTDSOnAmtPaid(tdsOthersDetail.getBigP_Amount());
+					tdsonOthThanSal.setTotTDSOnAmtPaid(indianCurrencyHelper.bigIntegerRound(tdsOthersDetail.getTotal_TaxDeductor()));
+					tdsonOthThanSal.setClaimOutOfTotTDSOnAmtPaid(indianCurrencyHelper.bigIntegerRound(tdsOthersDetail.getP_Amount()));
 					tdsonOthThanSals.getTDSonOthThanSal().add(tdsonOthThanSal);
 					itr1.setTDSonOthThanSals(tdsonOthThanSals);
 				}
 			}
 		}
-
 
 		//TaxPayments
 		if(advanceTaxDocument!=null){
@@ -320,14 +321,11 @@ public class XmlGenerator extends ITReturnComponent {
 					log.info("inside for loop");
 					taxPayment.setBSRCode(advanceTaxDetail.getP_BSR());
 					taxPayment.setDateDep(advanceTaxDetail.getGregorianP_Date());
-					taxPayment.setSrlNoOfChaln(advanceTaxDetail.getBigP_Serial());
-					taxPayment.setAmt(advanceTaxDetail.getBigP_Amount() );
+					taxPayment.setSrlNoOfChaln(indianCurrencyHelper.bigIntegerRoundStr(advanceTaxDetail.getP_Serial()));
+					taxPayment.setAmt(indianCurrencyHelper.bigIntegerRound(advanceTaxDetail.getP_Amount()));
 					taxPayments.getTaxPayment().add(taxPayment);
-
 				}
-
 			}
-
 		}
 
 		itr1.setTaxPayments(taxPayments);
