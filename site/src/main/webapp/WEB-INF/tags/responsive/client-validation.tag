@@ -42,8 +42,9 @@
 <hst:componentRenderingURL var="ajaxLinkToComponent"></hst:componentRenderingURL>
 <c:if test="${not empty siteContentBaseBean && not empty screenConfigDocumentJSON}">
 	<hst:element var="uiCustom" name="script">
-		<hst:attribute name="type">text/javascript</hst:attribute>	
-			var validationRules = new Object();
+		<hst:attribute name="type">text/javascript</hst:attribute>
+		var flagforPanAndTan=true;
+		var validationRules = new Object();
 			validationRules.rules = new Object();
 			$(document).ready(function() {
 				var fieldConfig = <c:out value="${screenConfigDocumentJSON}" escapeXml="false"/>
@@ -92,32 +93,42 @@
 					}
 				}
 				<c:if test="${not empty validationType}">
+				
+				
                     $('#<c:out value="${fieldOneID}"/>,#<c:out value="${fieldTwoID}"/>').blur(function(){
+                  
                         var ConvertFormToJSON=function(){
 						     var array = jQuery('form').serializeArray();
 						     var json = {};
 						     jQuery.each(array, function(){
 						     if(this.name.match('<c:out value="${fieldOneID}"/>')||this.name.match('<c:out value="${fieldTwoID}"/>'))
-							 json[this.name] = this.value || '';
+						     json[this.name] = this.value || '';
 							 });
 						     return json;
 						     };
                        var reqFromJson=JSON.stringify(ConvertFormToJSON());
-				          $.ajax({
+                          $.ajax({
 						         url:'<c:out value="${ajaxLinkToComponent}"/>?validation=<c:out value="${validationType}"/>',
 						         data: 'data='+reqFromJson,
 						         datatype:'text',
 						         success: function(data,textStatus,jqXhr) {
-						                   if(jqXhr.getResponseHeader("myHeader").match('error'))
+						                   if(jqXhr.getResponseHeader("myHeader").match('error')){
 							                   $('#error').show();
-							              else $('#error').hide();
+							                   flagforPanAndTan=false;
+							                   }
+							             		 else {
+							             		 $('#error').hide();
+							             		 flagforPanAndTan=true;
+							             		 }
 					              }
 					          });	
 					   });</c:if>
 				$('#<c:out value="${formId}"/> input').keydown(function(e) {
 				    if (e.keyCode == 13) {
 				   		e.preventDefault();
+				
 				        $('#<c:out value="${formId}"/>').submit();
+				      
 				    }
 				});
 				$('#<c:out value="${formId}"/>').validate({
@@ -126,7 +137,9 @@
 				
 				<c:if test="${not empty formSubmitButtonId}">
 					$('#<c:out value="${formSubmitButtonId}"/>').click(function() {
+					if(flagforPanAndTan){
 		 				 $('#<c:out value="${formId}"/>').submit();
+		 				 }
 					});
 				</c:if>	
 				$('.tan').attr("style","text-transform: uppercase;");		
