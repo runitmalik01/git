@@ -33,7 +33,7 @@ if (actionInSiteMap != null && actionInSiteMap.contains("_")) {
 
 <div class="page type-page">
 	<h3 id="respond1"><fmt:message key="titile.itr1.page" /></h3>
-	<form id="frmdata" action="${actionUrl}" name="oi" method="post">
+	<!-- <form id="frmdata" action="${actionUrl}" name="oi" method="post"> -->
 
 		<ul id="myTab" class="nav nav-tabs">
 			<li <%if (tabName == "summary" ){%> class="active " <%}%>><a
@@ -160,7 +160,7 @@ if (actionInSiteMap != null && actionInSiteMap.contains("_")) {
 		<div id="reviewModal">
 			<hst:include ref="reviewsITR1" />
 		</div>
-	</form>
+	
 
 </div>
 
