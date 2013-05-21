@@ -115,34 +115,12 @@ public class AdvanceTaxDetail extends HippoItem implements FormMapFiller {
     	if (val_serial == null) val_serial = getProperty(SERIAL);
     	return val_serial;
     }
-    //created for xml
-    public BigInteger getBigP_Serial() {
-		if (val_serial == null) val_serial = getProperty(SERIAL);
-		BigInteger bigval_serial=null;
-		if(val_serial.length()>0){
-			bigval_serial = new BigInteger(val_serial);
-			return bigval_serial;
-		}else
-			return null;
-
-	}
 
     public Double getP_Amount() {
     	if (val_amount == null) val_amount = getProperty(AMOUNT);
     	return val_amount;
     }
-    //created for xml
-	public BigInteger getBigP_Amount() {
-		if (val_amount == null) val_amount = getProperty(AMOUNT);
-		DecimalFormat decimalFormat=new DecimalFormat("#.#");
-		BigInteger bigval_amount=null;
-		if(val_amount!=null && val_amount.toString().length()>0){
-			bigval_amount = new BigInteger(decimalFormat.format(val_amount));
-			return bigval_amount;
-		}else
-			return null;
-	}
-   
+  
 	public final String getPersonalInfoUuid() {
 		return personalInfoUuid;
 	}
