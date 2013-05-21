@@ -17,6 +17,7 @@
 //
 // Begin anonymous function. This is used to contain local scope variables without polutting global scope.
 //
+
 var SyntaxHighlighter = function() { 
 
 // CommonJS
