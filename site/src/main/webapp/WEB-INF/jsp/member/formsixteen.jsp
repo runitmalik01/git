@@ -67,7 +67,7 @@
 						</div>
 						<div class="rowlabel">
 							<input type="text" name="employee"
-								value="<c:choose><c:when test="${pageAction == 'EDIT_CHILD'}"><c:out value="${childBean.name_employee}"/>
+								value="<c:choose><c:when test="${pageAction == 'EDIT_CHILD'}"><c:out value="${memberpersonalinformation.name}"/>
 								</c:when><c:otherwise><c:out value="${memberpersonalinformation.name}"/></c:otherwise></c:choose>" readonly="readonly"/>
 				
 						</div>
@@ -96,7 +96,7 @@
 						<div class="rowlabel">
 							<label>PAN of Employee </label> <input type="text"
 								name="pan_employee"
-								value="<c:choose><c:when test="${pageAction == 'EDIT_CHILD'}"><c:out value="${childBean.name_employee}"/>
+								value="<c:choose><c:when test="${pageAction == 'EDIT_CHILD'}"><c:out value="${memberpersonalinformation.PAN}"/>
 								</c:when><c:otherwise><c:out value="${memberpersonalinformation.PAN}"/></c:otherwise></c:choose>" readonly="readonly"/>
 
 						</div>

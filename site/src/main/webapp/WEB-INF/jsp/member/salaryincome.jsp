@@ -108,7 +108,7 @@
 							</div>
 							<div class="rowlabel">
 								<input id="Pan_employee" type="text" name="Pan_employee"
-									value="<c:choose><c:when test="${pageAction == 'EDIT_CHILD'}"><c:out value="${childBean.pan_employee}"/></c:when><c:otherwise><c:out value="${memberpersonalinformation.PAN}"/></c:otherwise></c:choose>"/>
+									value="<c:choose><c:when test="${pageAction == 'EDIT_CHILD'}"><c:out value="${childBean.pan_employee}"/></c:when><c:otherwise><c:out value="${memberpersonalinformation.PAN}"/></c:otherwise></c:choose>" readonly="readonly"/>
 							</div>
 						</div>
 					</div>
