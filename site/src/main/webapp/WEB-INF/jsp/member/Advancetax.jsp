@@ -62,9 +62,7 @@
 								<a id="myModalHrefAdvTax" role="button" class="btn orange">Save</a>
 					</div>
 					</div>
-				
 		</form>
-
 	</c:when>
 	<c:otherwise>
 		<table>
@@ -98,8 +96,7 @@
 						</a>
 						</td>
 					</tr>
-
-				</c:forEach>
+			</c:forEach>
 				<tr>
 					<td><fmt:message key="tds.amount.total" /></td>
 					<td><input type="text" name="total_value" maxlength="14"
@@ -109,6 +106,7 @@
 		</table>
 		<a href="${redirectURLToSamePage}/advancetaxnew" class="button orange">Add
 			New</a>
+			
 		<!-- 
 		<table>
 			<tr align="center">
@@ -149,3 +147,16 @@
 </c:choose>
 
 <res:client-validation formId="frmdataAdvTax" screenConfigurationDocumentName="advancetax" formSubmitButtonId="myModalHrefAdvTax" />
+
+<hst:element var="uiCustom" name="script">
+    <hst:attribute name="type">text/javascript</hst:attribute>
+    $(document).ready(function() {
+	var fY='<c:out value="${assessmentYear}"/>'.split("-", 4);
+	itrFinYr="01/04/"+fY[1];
+		$( ".indiandate" ).datepicker( "option", "defaultDate", "01/04/2013" );
+		$( ".indiandate" ).datepicker( "option", "minDate", "31/03/2013" );
+			$( ".indiandate" ).datepicker( "option", "maxDate", itrFinYr );
+			});
+   
+</hst:element>
+<hst:headContribution element="${uiCustom}" category="jsInternal"/>
