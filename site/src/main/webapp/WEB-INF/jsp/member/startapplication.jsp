@@ -1,4 +1,5 @@
 <%@include file="../includes/tags.jspf" %>
+<%@page import="com.mootly.wcm.model.FilingStatus"%>
 <c:set var="startapplication">
    <fmt:message key="member.start.application"/>
 </c:set>
@@ -59,7 +60,7 @@ else {
 			  <legend><c:out value="${filingStatus}"/> Details</legend>			  
 		      <div class="row-fluid show-grid">	        
 		      	  <c:choose>
-		      	  	<c:when test="${filingStatus.fourthCharInPAN == 'p'}">
+		      	  	<c:when test="${filingStatus eq 'PERSON'}">
 			          <div class="span3">
 			            <div class="rowlabel"><label for="pi_first_name"><small>First Name</small></label></div>
 			          	<div class="rowlabel"><input id="pi_first_name" name="pi_first_name" placeholder="First Name" type="text" value="<c:if test="${not empty parentBean.firstName}"><c:out value="${parentBean.firstName}"/></c:if>"/></div>
@@ -84,7 +85,7 @@ else {
 			          	</div>
 		      	  	</c:otherwise>
 		      	  </c:choose>			 
-		          <c:if test="${filingStatus.fourthCharInPAN == 'p'}">
+		          <c:if test="${filingStatus eq 'PERSON'}">
 			          <div class="span2">
 			          	<div class="rowlabel"><label for="pi_dob"><small>DOB</small></label></div>
 			          	<div class="rowlabel"><input id="pi_dob" name="pi_dob" placeholder="DOB" type="text" maxlength="10" value="<c:if test="${not empty parentBean.DOBStr}"><c:out value="${parentBean.DOBStr}"/></c:if>"/></div>
@@ -153,7 +154,7 @@ else {
 		<fieldset>
 		<legend><fmt:message key="member.residential.status" /></legend>
 			 <c:choose>
-		      	  	<c:when test="${filingStatus.fourthCharInPAN == 'p'}">
+		      	  	<c:when test="${filingStatus eq 'PERSON'}">
 						<h5>
 							<small><fmt:message key="member.resi.status.sentence" /></small>
 						</h5>
@@ -312,8 +313,7 @@ else {
 		            <input id="ack_date" name="ack_date" value="<c:choose><c:when test="${not empty parentBean&&parentBean.originalAckDate}"><c:out value="${parentBean.originalAckDate}"/></c:when><c:when test="${not empty savedValuesFormMap && not empty savedValuesFormMap.value['ack_date']}"><c:out value="${savedValuesFormMap.value['ack_date'].value}"/></c:when></c:choose>" type="hidden"/>
 		            <input id="notice_no" name="notice_no" value="<c:choose><c:when test="${not empty parentBean&&parentBean.noticeNo}"><c:out value="${parentBean.noticeNo}"/></c:when><c:when test="${not empty savedValuesFormMap && not empty savedValuesFormMap.value['notice_no']}"><c:out value="${savedValuesFormMap.value['notice_no'].value}"/></c:when></c:choose>" type="hidden"/>
 		            <input id="notice_date" name="notice_date" value="<c:choose><c:when test="${not empty parentBean&&parentBean.noticeDate}"><c:out value="${parentBean.noticeDate}"/></c:when><c:when test="${not empty savedValuesFormMap && not empty savedValuesFormMap.value['notice_date']}"><c:out value="${savedValuesFormMap.value['notice_date'].value}"/></c:when></c:choose>" type="hidden"/>-->
-		            <input id="pi_filing_status" name="pi_filing_status" value="<c:choose><c:when test="${not empty parentBean&&parentBean.filingStatus}"><c:out value="${parentBean.filingStatus}"/></c:when><c:when test="${not empty filingStatus }">
-		            <c:choose><c:when test="${filingStatus.fourthCharInPAN =='p' ||filingStatus.fourthCharInPAN =='P'}">I</c:when><c:otherwise>${filingStatus.fourthCharInPAN}</c:otherwise></c:choose></c:when></c:choose>" type="hidden"/>
+		            <input id="pi_filing_status" name="pi_filing_status" value="${filingStatus.xmlCode}" type="hidden"/>
 			    </div>
 			</div>
 		</fieldset>

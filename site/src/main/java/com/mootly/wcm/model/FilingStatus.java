@@ -1,28 +1,29 @@
 package com.mootly.wcm.model;
 
 public enum FilingStatus {
-	COMPANY('c',"Company"),
-	PERSON('p',"Individual"),
-	HUF('h',"HUF(Hindu Undivided Family)"),
-	FIRM('f',"Firm"),
-	AOP('a',"Association of Persons (AOP)"),
-	TRUST('t',"AOP (Trust)"),
-	BOI('b',"Body of Individuals (BOI)"),
-	LOCALAUTHORITY('l',"Local Authority"),
-	AJP('j',"Artificial Juridical Person"),
-	GOVT('g',"Government"),
+	COMPANY('c',"Company","C"),
+	PERSON('p',"Individual","I"),
+	HUF('h',"HUF(Hindu Undivided Family)","H"),
+	FIRM('f',"Firm","F"),
+	AOP('a',"Association of Persons (AOP)","A"),
+	TRUST('t',"AOP (Trust)","T"),
+	BOI('b',"Body of Individuals (BOI)","B"),
+	LOCALAUTHORITY('l',"Local Authority","L"),
+	AJP('j',"Artificial Juridical Person","A"),
+	GOVT('g',"Government","G"),
 	UNKNOWN;
 	
 	char fourthCharInPAN;
 	String name;
-	
+	String xmlCode;
 	
 	FilingStatus() {
 	}
 	
-	FilingStatus(char fourthCharInPAN,String name) {
+	FilingStatus(char fourthCharInPAN,String name,String xmlCode) {
 		this.fourthCharInPAN = fourthCharInPAN;
 		this.name = name;
+		this.xmlCode = xmlCode;
 	}
 	
 	public char getFourthCharInPAN() {
@@ -35,6 +36,10 @@ public enum FilingStatus {
 	
 	public String toString() {
 		return name;
+	}
+	
+	public String xmlCode(){
+		return xmlCode;
 	}
 	
 	public static FilingStatus getEnumByFourthChar(char fourthCharInPAN) {

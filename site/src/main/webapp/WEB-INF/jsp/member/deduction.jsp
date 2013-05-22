@@ -89,7 +89,7 @@
 			<tr class="success">
 				<td colspan="1" style="text-align:right"><b>Total</b></td>				
 				<td align="right" style="text-align:right"><b><w4india:inr value="${grandTotal}"/></b></td>
-				<td align="right" style="text-align:right"><b><w4india:inr value="${totalMapForJS['total_eligiblededuction']}"/></b></td>
+				<td align="right" style="text-align:right"><b><w4india:inr value="${totalEligibleDeduction}"/></b></td>
 			</tr>	
 		</table>
 </div>
