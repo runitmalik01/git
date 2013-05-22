@@ -40,7 +40,7 @@
 </c:if>
 <c:choose>
 	<c:when
-		test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD') || pageAction == 'NEW_CHILD'}">
+		test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
 		<form id="frmdataFormSixteen" action="${actionUrl}" name="formsixteen"
 			method="post">
 			<h3>Form 16</h3>
@@ -436,10 +436,25 @@
 					<fieldset>
 						<legend style="color: black">Deductions</legend>
 						<table>
+						<tr><td><label><strong>9.</strong>Deductions
+										under Chapter VI-A </label></td>
+						<td class="btn-group" class="decimal" >
+							<button class="btn btn-small dropdown-toggle" 
+								data-toggle="dropdown">Click to Add Deductions
+								<span class="caret"></span>
+							</button>
+							<ul class="dropdown-menu">
+								<li><a
+									href="<c:out value="${scriptName}"/>?tab=deductions"> Add </a></li>
+							</ul>
+						</td>
+					
+						</tr><!-- 
 							<tr>
 								<td><label><strong>9.</strong> </label> <label>Deductions
 										under Chapter VI-A </label>
 								</td>
+								
 								<td></td>
 								<td></td>
 								<td><input type="text" class="numberinput decimal"
@@ -732,8 +747,9 @@
 							class="numberinput decimal" placeholder="Rs."
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.e_section_3}"/></c:if>">
 							</td>
-						</tr>
-					</table>
+						</tr> -->
+						
+					</table></fieldset>
 					<table>
 						<tr>
 							<td><label><strong>10.</strong> Aggregate of
@@ -932,6 +948,7 @@
 					<div class="span4 offset8 decimal">
 						<a href="${scriptName}?tab=formsixteen" class="button olive">Cancel</a>&nbsp;
 						   <a id="myModalHrefFormSixteen" role="button" class="btn orange">Save</a>
+						   <input type="submit" value="SAVE">
 					</div>
 					</div>
 			</form>
