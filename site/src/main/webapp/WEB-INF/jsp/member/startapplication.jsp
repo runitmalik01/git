@@ -247,9 +247,9 @@ else {
 							<div class="span4">
 								<select id="rsstatus_q" name="rsstatus_q">
 									<option value="">Select</option>
-									<option value="RES">Wholly in India</option>
-									<option value="NRI">Wholly outside India</option>
-									<option value="NRO">Partly in India partly outside India</option>
+									<option <c:if test="${not empty parentBean.rsstatusQ=='RES'}">selected</c:if> value="RES">Wholly in India</option>
+									<option <c:if test="${not empty parentBean.rsstatusQ=='NRI'}">selected</c:if> value="NRI">Wholly outside India</option>
+									<option <c:if test="${not empty parentBean.rsstatusQ=='NRO'}">selected</c:if> value="NRO">Partly in India partly outside India</option>
 								</select>			
 							</div>
 						</div>
