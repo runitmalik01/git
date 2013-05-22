@@ -26,7 +26,7 @@ import com.mootly.wcm.components.ITReturnComponent;
 @PrimaryBean(primaryBeanClass=FormSixteenDocument.class)
 @ChildBean(childBeanClass=FormSixteenDetail.class)
 @AdditionalBeans(additionalBeansToLoad=MemberPersonalInformation.class)
-@FormFields(fieldNames={"employer","employee","pan_deductor","tan_deductor","pan_employee","quarter_1","acknowledge_1","from_1","to_1","year1",
+@FormFields(fieldNames={"Employe_category","employer","employee","pan_deductor","tan_deductor","pan_employee","quarter_1","acknowledge_1","from_1","to_1","year1",
 		"quarter_2","acknowledge_2","from_2","to_2","year2","quarter_3","acknowledge_3","from_3","to_3","year3","quarter_4","acknowledge_4",
 		"from_4","to_4","year4","gross_a","gross_b","gross_c","gross_total","less_allowance_1","less_rs_1","less_total_1","less_allowance_2","less_rs_2",
 		"less_total_2","deductions_entertainment","deductions_tax","deductions_total","income_chargable_total","additional_1","additional_2",
