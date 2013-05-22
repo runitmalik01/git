@@ -20,6 +20,9 @@
 	TreeMap objHashMapDeduction6a = (TreeMap) objValueListService
 			.getDeduction6a();
 	request.setAttribute("objHashMapDeduction6a", objHashMapDeduction6a);
+	TreeMap objHashMapquarter = (TreeMap) objValueListService
+			.getQuarter();
+	request.setAttribute("objHashMapquarter", objHashMapquarter);
 %>
 
 <h3 id="respond1">
@@ -49,6 +52,34 @@
 				"Salaries".</p>
 			<fieldset>
 				<legend style="color: black">Employer Details</legend>
+					<div class="row-fluid show-grid">
+                         <div class="span3">
+                         <div class="rowlabel">
+						<label><fmt:message
+								key="member.employe.category" /> </label></div>
+						<c:if
+							test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
+							<c:choose>
+								<c:when test="${childBean.employe_category == 'GOV'}">
+									<c:set var="gov" value="checked=checked" />
+								</c:when>
+								<c:when test="${childBean.employe_category == 'PSU'}">
+									<c:set var="psu" value="checked=checked" />
+								</c:when>
+								<c:when test="${childBean.employe_category == 'OTH'}">
+									<c:set var="oth" value="checked=checked" />
+								</c:when>
+							</c:choose>
+						</c:if>
+						<div class="rowlabel">
+						<input type="radio" <c:out value="${gov}"/>
+							name="Employe_category" value="GOV" />Government <input
+							type="radio" <c:out value="${psu}"/> name="Employe_category"
+							value="PSU" />PSU <input type="radio" <c:out value="${oth}"/>
+							name="Employe_category" value="OTH" />Others
+                     </div>
+                     </div>
+					</div><br />
 				<div class="row-fluid show-grid">
 
 					<div class="span4">
@@ -132,9 +163,15 @@
 					</tr>
 
 					<tr>
-						<td><input type="text" name="quarter_1"
-							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.quarter_1}"/></c:if>"
-							placeholder="Quarter">
+						<td><select id="quarter_1"
+								name="quarter_1">
+									<option value="">Select One</option>
+									<c:forEach var="Quarter" items="${objHashMapquarter}">
+										<option
+											<c:if test="${pageAction == 'EDIT_CHILD' && childBean.quarter_1 == Quarter.key}">selected</c:if>
+											value="${Quarter.key}">${Quarter.value}</option>
+									</c:forEach>
+								</select>
 						</td>
 
 
@@ -160,9 +197,14 @@
 
 
 					<tr>
-						<td><input type="text" name="quarter_2"
-							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.quarter_2}"/></c:if>"
-							placeholder="Quarter">
+						<td><select id="quarter_2" name="quarter_2">
+									<option value="">Select One</option>
+									<c:forEach var="Quarter" items="${objHashMapquarter}">
+										<option
+											<c:if test="${pageAction == 'EDIT_CHILD' && childBean.quarter_2 == Quarter.key}">selected</c:if>
+											value="${Quarter.key}">${Quarter.value}</option>
+									</c:forEach>
+								</select>
 						</td>
 
 						<td><input type="text" name="acknowledge_2" maxlength="15"
@@ -186,9 +228,14 @@
 
 					</tr>
 					<tr>
-						<td><input type="text" name="quarter_3"
-							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.quarter_3}"/></c:if>"
-							placeholder="Quarter">
+						<td><select id="quarter_3" name="quarter_3">
+									<option value="">Select One</option>
+									<c:forEach var="Quarter" items="${objHashMapquarter}">
+										<option
+											<c:if test="${pageAction == 'EDIT_CHILD' && childBean.quarter_3 == Quarter.key}">selected</c:if>
+											value="${Quarter.key}">${Quarter.value}</option>
+									</c:forEach>
+								</select>
 						</td>
 
 						<td><input type="text" name="acknowledge_3" maxlength="15"
@@ -209,9 +256,14 @@
 							placeholder="yyyy">
 						</td>
 						<tr>
-							<td><input type="text" name="quarter_4"
-							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.quarter_4}"/></c:if>"
-							placeholder="Quarter">
+							<td><select id="quarter_4" name="quarter_4">
+									<option value="">Select One</option>
+									<c:forEach var="Quarter" items="${objHashMapquarter}">
+										<option
+											<c:if test="${pageAction == 'EDIT_CHILD' && childBean.quarter_4 == Quarter.key}">selected</c:if>
+											value="${Quarter.key}">${Quarter.value}</option>
+									</c:forEach>
+								</select>
 						</td>
 
 							<td><input type="text" name="acknowledge_4" maxlength="15"
@@ -948,7 +1000,6 @@
 					<div class="span4 offset8 decimal">
 						<a href="${scriptName}?tab=formsixteen" class="button olive">Cancel</a>&nbsp;
 						   <a id="myModalHrefFormSixteen" role="button" class="btn orange">Save</a>
-						   <input type="submit" value="SAVE">
 					</div>
 					</div>
 			</form>
