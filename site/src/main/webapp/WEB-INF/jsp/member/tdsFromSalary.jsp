@@ -40,7 +40,7 @@
 			          <div class="row-fluid show-grid" >
 			           <div class="span4">
 			            <div class="rowlabel"><label for="income_chargeabletds"><small><fmt:message key="tds.income.chargeable" /></small></label></div>
-			          	<div class="rowlabel"><input id="income_chargeabletds" name="income_chargeabletds" type="text" maxlength="14"
+			          	<div class="rowlabel"><input id="income_chargeabletds" name="income_chargeabletds" type="text" maxlength="14" class=" decimal"
 			          	value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.income_Chargeable}"/></c:if>"/></div>
 			          </div>
 			           <div class="span4">
