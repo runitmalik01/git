@@ -87,7 +87,7 @@ else {
 		      	  </c:choose>			 
 		          <c:if test="${filingStatus eq 'PERSON'}">
 			          <div class="span2">
-			          	<div class="rowlabel"><label for="pi_dob"><small>DOB</small></label></div>
+			          	<div class="rowlabel"><label for="pi_dob"><small>Date Of Birth</small></label></div>
 			          	<div class="rowlabel"><input id="pi_dob" name="pi_dob" placeholder="DOB" type="text" maxlength="10" value="<c:if test="${not empty parentBean.DOBStr}"><c:out value="${parentBean.DOBStr}"/></c:if>"/></div>
 			          </div>
 			          <div class="span2">
