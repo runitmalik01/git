@@ -18,7 +18,7 @@
 		          </div>
 		          <div class="span3">
 		          	<div class="rowlabel"><label for="pi_last_name"><small>Last Name/Org Name</small></label></div>
-		          	<div class="rowlabel"><input id="pi_last_name" name="pi_last_name" placeholder="Last Name" type="text" onblur="callMe()"/></div>
+		          	<div class="rowlabel"><input id="pi_last_name" name="pi_last_name" placeholder="Last Name" type="text"/></div>
 		          </div>	      
 		          <div class="span3">    
 		            <div class="rowlabel"><label for="pi_return_type"><small>Return Type</small></label></div>
@@ -104,7 +104,7 @@
 		</table>		
 	</c:if>
 </div>
-<res:client-validation  screenConfigurationDocumentName="itreturnhomepage" formId="frmdata" fieldOneID="pan" fieldTwoID="pi_last_name" validationType="pan"></res:client-validation>
+<res:client-validation formSubmitButtonId="myModalHref" screenConfigurationDocumentName="itreturnhomepage" formId="frmdata" fieldOneID="pan" fieldTwoID="pi_last_name" validationType="pan"></res:client-validation>
 <hst:element var="uiCustom" name="script">
     <hst:attribute name="type">text/javascript</hst:attribute>
 	$(document).ready(function() {
@@ -127,12 +127,12 @@
 				$("#packageSelector").toggleClass("disabled",true);
 			}
 		});
-		$("#myModalHref").click( function() {
+		/*$("#myModalHref").click( function() {
 			$("#frmdata").validate();
 			if (!$("#frmdata").valid()) return false;
 			$("#frmdata").submit();
 			//$("#myModal").modal();
-		});
+		});*/
 		$('#pi_return_type').change(function(){			
 			$('.' + $(this).val() + '_v').show();
 			$('.' + $(this).val() + '_h').hide();
