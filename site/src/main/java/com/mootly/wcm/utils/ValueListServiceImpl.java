@@ -29,6 +29,7 @@ import org.slf4j.LoggerFactory;
 
 public final class ValueListServiceImpl implements ValueListService{
 	private ResourceBundle objValueListStatesBundle = null;
+	private ResourceBundle objValueListQuarterBundle = null;
 	private ResourceBundle objValueListDeductionBundle = null;
 	private ResourceBundle objValueListDeduction6aBundle = null;
 	private ResourceBundle objValueListBooleanBundle = null;
@@ -63,6 +64,7 @@ public final class ValueListServiceImpl implements ValueListService{
 		objValueListDtaaCountries=ResourceBundle.getBundle("valueList_dtaaCountries");
 		objValueListDeductionBundle=ResourceBundle.getBundle("valueList_deduction");
 		objValueListDeduction6aBundle=ResourceBundle.getBundle("valueList_deduction6a");
+		objValueListQuarterBundle    = ResourceBundle.getBundle("valueList_quarter");
 	}
 
 	/**
@@ -192,6 +194,24 @@ public final class ValueListServiceImpl implements ValueListService{
 		TreeMapResStatus.put("3", objValueListResStatusBundle.getString("valueList.notOrdinaryResident"));
 
 		return TreeMapResStatus;
+	}		 
+
+
+	/**
+	 * This method fetches the information valueList_quarter.properties file	
+	 * 
+	 * @return TreeMap  object
+	 */
+
+	public TreeMap<String, String> getQuarter()
+	{
+		TreeMap<String, String> TreeMapQuarter =new TreeMap<String, String>();
+		TreeMapQuarter.put("1", objValueListQuarterBundle.getString("valueList.qtr1"));
+		TreeMapQuarter.put("2", objValueListQuarterBundle.getString("valueList.qtr2"));
+		TreeMapQuarter.put("3", objValueListQuarterBundle.getString("valueList.qtr3"));
+		TreeMapQuarter.put("4", objValueListQuarterBundle.getString("valueList.qtr4"));
+
+		return TreeMapQuarter;
 	}		 
 
 	public TreeMap<String, String> getInflationIndex(){

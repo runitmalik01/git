@@ -96,9 +96,25 @@ public interface ValueListService {
 	 * @return TreeMap  object
 	 */
 	TreeMap<String,String> getNumbersDropdown();
+	/**
+	 * 
+	 * This method fetches the information valueList_deduction.properties file	
+	 * @return TreeMap  object
+	 */
 	TreeMap<String,String> getDeduction();
-	
+	/**
+	 * 
+	 * This method fetches the information valueList_deduction6a.properties file	
+	 * @return TreeMap  object
+	 */
 	TreeMap<String,String> getDeduction6a();
+	/**
+	 * 
+	 * This method fetches the information valueList_quarter.properties file	
+	 * @return TreeMap  object
+	 */
+	TreeMap<String,String> getQuarter();
+	
 
 	TreeMap<String,String> getDeducterdYear();
 
