@@ -15,7 +15,8 @@ import org.slf4j.LoggerFactory;
 
 public abstract class FormSixteenSectionA extends HippoItem {
 private final static Logger log = LoggerFactory.getLogger(FormSixteenSectionA.class); 
-	
+    
+    private String Employe_category;
 	private String employer;
 	private String employee;
 	private String pan_deductor;
@@ -116,6 +117,10 @@ private final static Logger log = LoggerFactory.getLogger(FormSixteenSectionA.cl
 
 
 	//for personal information
+	public  String getEmploye_category() {
+		if (Employe_category == null) Employe_category = getProperty("mootlywcm:empcat");
+		return Employe_category;
+	}
 	public  String getEmployer() {
 		if (employer == null) employer = getProperty("mootlywcm:employer");
 		return employer;
@@ -503,6 +508,9 @@ private final static Logger log = LoggerFactory.getLogger(FormSixteenSectionA.cl
 	}
 
 	// for setter method
+	public final void  setEmploye_category(String Employe_category) {
+		this.Employe_category = Employe_category;
+	}
 	public final void  setEmployer(String employer) {
 		this.employer = employer;
 	}

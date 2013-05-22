@@ -87,6 +87,7 @@ public class FormSixteenDetail extends FormSixteenSectionB{
 		// TODO Auto_generated method stub
 		try {
 			log.info("im in bindtonode");
+			node.setProperty("mootlywcm:empcat", getEmploye_category());
 			node.setProperty("mootlywcm:employer", getEmployer());
 			node.setProperty("mootlywcm:employee", getEmployee());
 			node.setProperty("mootlywcm:pandeductor", getPan_deductor());
@@ -267,6 +268,7 @@ public class FormSixteenDetail extends FormSixteenSectionB{
 	public <T extends HippoBean> void cloneBean(T sourceBean) {
 		log.info("im in clone");
 		FormSixteenDetail objFormSixteen = (FormSixteenDetail) sourceBean;
+		setEmploye_category(objFormSixteen.getEmploye_category());
 		setEmployer(objFormSixteen.getEmployer());
 		setEmployee(objFormSixteen.getEmployee());
 		setPan_deductor(objFormSixteen.getPan_deductor());

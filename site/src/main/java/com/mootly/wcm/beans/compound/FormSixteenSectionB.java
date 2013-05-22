@@ -25,6 +25,10 @@ public abstract class FormSixteenSectionB extends FormSixteenSectionA  implement
 		// TODO Auto_generated method stub
 		if (formMap == null) return;
 		
+		if (formMap.getField("Employe_category") != null){
+			setEmploye_category(formMap.getField("Employe_category").getValue());
+			log.info("im in employer category");
+		}
 		if (formMap.getField("employer") != null){
 			setEmployer(formMap.getField("employer").getValue());
 			log.info("im in employer");
