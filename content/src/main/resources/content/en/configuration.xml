@@ -1989,7 +1989,7 @@ serving since beginning then select first day of financial year.&lt;/p&gt;
             <sv:value/>
           </sv:property>
           <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
-            <sv:value>Date of Birth (dd/mm/yyyy)</sv:value>
+            <sv:value>DD/MM/YYYY</sv:value>
           </sv:property>
           <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
             <sv:value>true</sv:value>
