@@ -72,7 +72,7 @@
 	
 	<hst:link var="jquery_validate_min" path="/js/jquery.validate.min.js"/>
 	<script type='text/javascript' src='${jquery_validate_min}'></script>
-	
+	<hst:componentRenderingURL var="ajaxLinkToComponent"></hst:componentRenderingURL>
 	<hst:headContributions categoryIncludes="jsExternal"/>
 	<script>
 		$.datepicker.setDefaults({
@@ -81,7 +81,7 @@
           buttonImage: "<hst:link path="/img/calendar.gif"/>",*/
 		  /*buttonText: "Calendar",*/
 	      dateFormat: "dd/mm/yy"
-		});
+		});  
 		$.datepicker.setDefaults( $.datepicker.regional[ "fr" ] );
 		$.validator.addMethod("pan", function(value, element) {  
 		   	 return this.optional(element) || /^[a-zA-Z]{3}[p|P|c|C|h|H|f|F|a|A|t|T|b|B|l|L|j|J|g|G][a-zA-Z]\d{4}[a-zA-Z]{1}?$/i.test(value);  
@@ -124,7 +124,10 @@
 		}, "TDS Certificate No is invalid");
 		$.validator.addMethod("ackno", function(value, element) {  
 		   	 return this.optional(element) || /^[0-9]{15}?$/i.test(value); 
-		}, "Ack No is invalid");	
+		}, "Ack No is invalid");
+		$.validator.addMethod("indiandate", function(value, element) {  
+		   	 return this.optional(element) || /^[0-9]{2}\/[0-9]{2}\/[0-9]{4}?$/i.test(value); 
+		}, "Date of Birth is invalid");
 	</script>
 </body>
 </html>
