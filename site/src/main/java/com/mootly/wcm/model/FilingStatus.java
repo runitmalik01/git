@@ -38,10 +38,22 @@ public enum FilingStatus {
 		return name;
 	}
 	
-	public String xmlCode(){
+	public String getXmlCode() {
 		return xmlCode;
 	}
-	
+
+	public void setXmlCode(String xmlCode) {
+		this.xmlCode = xmlCode;
+	}
+
+	public void setFourthCharInPAN(char fourthCharInPAN) {
+		this.fourthCharInPAN = fourthCharInPAN;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	public static FilingStatus getEnumByFourthChar(char fourthCharInPAN) {
 		for (FilingStatus aStatus:FilingStatus.values()) {
 			if (fourthCharInPAN == aStatus.getFourthCharInPAN()) {
