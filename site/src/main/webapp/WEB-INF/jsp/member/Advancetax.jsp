@@ -33,7 +33,7 @@
 				<legend style="color: black">Enter Details</legend>
 				<div class="row-fluid show-grid" >
 					<div class="span4">
-			            <div class="rowlabel"><label for="bsr_codeadv"><abbr title=" Basic Statistical Return Code"><small><fmt:message key="tds.bsr.code" /></small></abbr></label></div>
+			            <div class="rowlabel"><label for="bsr_codeadv"><abbr title=" Basic Statistical Return Code"><fmt:message key="tds.bsr.code" /></abbr></label></div>
 			          	<div class="rowlabel"><input id="bsr_codeadv" name="bsr_codeadv"  type="text" maxlength="7"
 			          	value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.p_BSR}"/></c:if>"/></div>
 			          </div>
@@ -46,7 +46,7 @@
 			          <div class="row-fluid show-grid" id="ul_revised_input">
 			              <div class="span4">
 			            <div class="rowlabel"><label for="Serial_challanadv"><small><fmt:message key="tds.serial.challan" /></small></label></div>
-			          	<div class="rowlabel"><input id="Serial_challanadv" name="Serial_challanadv"  type="text" maxlength="5"
+			          	<div class="rowlabel"><input id="Serial_challanadv" name="Serial_challanadv"  type="text" maxlength="5" 
 			          	value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.p_Serial}"/></c:if>"/></div>
 			          </div>
 			               <div class="span4">
@@ -151,6 +151,7 @@
 <hst:element var="uiCustom" name="script">
     <hst:attribute name="type">text/javascript</hst:attribute>
     $(document).ready(function() {
+    
 	var fY='<c:out value="${assessmentYear}"/>'.split("-", 4);
 	itrFinYr="01/04/"+fY[1];
 		$( ".indiandate" ).datepicker( "option", "defaultDate", "01/04/2013" );
