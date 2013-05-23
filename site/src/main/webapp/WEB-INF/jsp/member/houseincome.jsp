@@ -510,7 +510,7 @@
 							</td>
 							<td><a
 								href="${scriptName}/<c:out value="${houseincomedetail.canonicalUUID}"/>/houseincomeedit"><small>Edit</small>
-	                    </a>&nbsp;&nbsp;<a href="${scriptName}/<c:out value="${houseincomedetail.canonicalUUID}"/>/houseincomedelete" id="delete" onclick="return checkdelete()"><small>Delete</small> </a>
+	                    </a>&nbsp;&nbsp;<a href="${scriptName}/<c:out value="${houseincomedetail.canonicalUUID}"/>/houseincomedelete" onclick="return checkdelete()"><small>Delete</small> </a>
 							</td>
 						</tr>
 
