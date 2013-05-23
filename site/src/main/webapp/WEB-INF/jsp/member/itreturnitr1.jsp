@@ -50,7 +50,7 @@ if (actionInSiteMap != null && actionInSiteMap.contains("_")) {
 				<ul class="dropdown-menu">
 					<li <%if (tabName != null && tabName.equals("salaryincome")){%>
 						class="active" <%}%>><a href="#incomesalaries"
-						data-toggle="tab"><fmt:message key="income.form16.penson" />
+						data-toggle="tab"><fmt:message key="income.salary.penson" />
 					</a>
 					</li>
 					<li
