@@ -19,7 +19,7 @@
 				</tr>
 				<!--  lets create a bookmark for each section -->
 				<tr>
-					<td colspan="1">Gross Salary</td>
+					<td colspan="1">Salary Income</td>
 					<td>
 						<div class="btn-group" class="decimal">
 							<button class="btn btn-small dropdown-toggle"
@@ -41,7 +41,7 @@
 							</button>
 							<ul class="dropdown-menu">
 								<li><a
-									href="<c:out value="${scriptName}"/>?tab=salaryincome"><fmt:message
+									href="<c:out value="${scriptName}"/>?tab=formsixteen"><fmt:message
 											key="income.salary.penson" /> </a></li>
 							</ul>
 						</div>
