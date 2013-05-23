@@ -44,6 +44,8 @@
 	<hst:element var="uiCustom" name="script">
 		<hst:attribute name="type">text/javascript</hst:attribute>
 		var flagforPanAndTan=true;
+		var d = new Date();
+		yrRange="1900:"+d.getFullYear();
 		var validationRules = new Object();
 			validationRules.rules = new Object();
 			$(document).ready(function() {
@@ -68,7 +70,8 @@
 									changeMonth : true,
 									changeYear : true,
                                     showAnim: "fadeIn",
-                                    minDate: "01/01/1990"
+                                    minDate: "01/01/1900",
+                                    yearRange: yrRange
 								}).addClass("indiandate");	
 							break;
 						default:				
