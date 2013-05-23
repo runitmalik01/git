@@ -4,9 +4,7 @@
 <%@ page import="java.util.*"%>
 <%@ page import="com.mootly.wcm.beans.*"%>
 
-<c:set var="tds2">
-	<fmt:message key="member.advancetax.title" />
-</c:set>
+
 <c:if test="${not empty formMap}">
 	<c:forEach items="${formMap.message}" var="item">
 		<div class="alert alert-error">
@@ -14,7 +12,7 @@
 		</div>
 	</c:forEach>
 </c:if>
-<hippo-gogreen:title title="${tds2}" />
+
 
 <hst:actionURL var="actionUrl" />
 <hst:link var="mainSiteMapRefId" />
@@ -62,6 +60,7 @@
 								<a id="myModalHrefAdvTax" role="button" class="btn orange">Save</a>
 					</div>
 					</div>
+					
 		</form>
 	</c:when>
 	<c:otherwise>
@@ -91,10 +90,10 @@
 						</td>
 						<td><a
 							href="${scriptName}/<c:out value="${advancetaxdetail.canonicalUUID}"/>/advancetaxedit"><small>Edit</small>
-						</a>&nbsp;&nbsp;<a
-							href="${scriptName}/<c:out value="${advancetaxdetail.canonicalUUID}"/>/advancetaxdelete"><small>Delete</small>
-						</a>
-						</td>
+						</a><c:set var="canonicalUUID" value="${advancetaxdetail.canonicalUUID}"/>
+								<c:set var="scriptName" value="${scriptName}"/>
+							&nbsp;&nbsp;<a id="delete" onclick="return checkdelete()"><small>Delete</small>
+							</a></td>
 					</tr>
 			</c:forEach>
 				<tr>
@@ -104,7 +103,7 @@
 					</td>
 			</c:if>
 		</table>
-		<a href="${redirectURLToSamePage}/advancetaxnew" class="button orange">Add
+		<a href="${scriptName}/advancetaxnew" class="button orange">Add
 			New</a>
 			
 		<!-- 
@@ -158,6 +157,20 @@
 		$( ".indiandate" ).datepicker( "option", "minDate", "31/03/2013" );
 			$( ".indiandate" ).datepicker( "option", "maxDate", itrFinYr );
 			});
-   
+   function checkdelete(){
+	        var re=confirm("Do You want to Delete it");
+	          if (re) return true;
+	          else return false;
+                    }
 </hst:element>
 <hst:headContribution element="${uiCustom}" category="jsInternal"/>
+<script type="text/javascript">
+$('#delete')
+.click(
+		function() {
+			var result = confirm("Do you want to delete permanently");
+			if(result){
+				$('#delete').attr('href','<c:out value="${scriptName}"/>/<c:out value="${canonicalUUID}"/>/advancetaxdelete');
+			}
+		});
+</script>
