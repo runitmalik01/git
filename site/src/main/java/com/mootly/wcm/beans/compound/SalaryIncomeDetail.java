@@ -305,8 +305,9 @@ public class SalaryIncomeDetail extends HippoItem implements FormMapFiller {
 		if ( formMap.getField("Taxable_earning").getValue().isEmpty()) {}
 		else{
 			String strEarning=formMap.getField("Taxable_earning").getValue();
-			Double taxableEarning=Double.parseDouble(strEarning);
+			double taxableEarning = Double.parseDouble(strEarning);
 			setTaxable_earning(taxableEarning);
+			log.info("Taxable_earning"+taxableEarning);  
 		}
 		if ( formMap.getField("Pinslry") != null) {
 			setPin(formMap.getField("Pinslry").getValue());
@@ -361,5 +362,6 @@ public class SalaryIncomeDetail extends HippoItem implements FormMapFiller {
 		setAllowance(salaryIncomeDetail.getAllowance());
 		setPerquisite(salaryIncomeDetail.getPerquisite());
 		setProfit(salaryIncomeDetail.getProfit());
+		setTaxable_earning(salaryIncomeDetail.getTaxable_earning());
 	};
 }
