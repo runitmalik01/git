@@ -106,8 +106,6 @@ public class XmlGenerator extends ITReturnComponent {
 		BigInteger dedccd2total=new BigInteger ("0");
 		BigInteger dedccf=new BigInteger ("0");
 		BigInteger dedccftotal=new BigInteger ("0");
-		BigInteger dedccg=new BigInteger ("0");
-		BigInteger dedccgtotal=new BigInteger ("0");
 		BigInteger dedd=new BigInteger ("0");
 		BigInteger deddtotal=new BigInteger ("0");
 		BigInteger deddd=new BigInteger ("0");
@@ -118,6 +116,30 @@ public class XmlGenerator extends ITReturnComponent {
 		BigInteger dedetotal=new BigInteger ("0");
 		BigInteger dedg=new BigInteger ("0");
 		BigInteger dedgtotal=new BigInteger ("0");
+		BigInteger dedgg=new BigInteger ("0");
+		BigInteger dedggtotal=new BigInteger ("0");
+		BigInteger dedgga=new BigInteger ("0");
+		BigInteger dedggatotal=new BigInteger ("0");
+		BigInteger dedggc=new BigInteger ("0");
+		BigInteger dedggctotal=new BigInteger ("0");
+		BigInteger dedia=new BigInteger ("0");
+		BigInteger dediatotal=new BigInteger ("0");
+		BigInteger dediab=new BigInteger ("0");
+		BigInteger dediabtotal=new BigInteger ("0");
+		BigInteger dedib=new BigInteger ("0");
+		BigInteger dedibtotal=new BigInteger ("0");
+		BigInteger dedic=new BigInteger ("0");
+		BigInteger dedictotal=new BigInteger ("0");
+		BigInteger dedid=new BigInteger ("0");
+		BigInteger dedidtotal=new BigInteger ("0");
+		BigInteger dedjja=new BigInteger ("0");
+		BigInteger dedjjatotal=new BigInteger ("0");
+		BigInteger dedqqb=new BigInteger ("0");
+		BigInteger dedqqbtotal=new BigInteger ("0");
+		BigInteger dedrrb=new BigInteger ("0");
+		BigInteger dedrrbtotal=new BigInteger ("0");
+		BigInteger dedu=new BigInteger ("0");
+		BigInteger dedutotal=new BigInteger ("0");
 		BigInteger deductiontotal=new BigInteger ("0");
 
 		MemberPersonalInformation memberPersonalInformation = (MemberPersonalInformation) request.getAttribute(MemberPersonalInformation.class.getSimpleName().toLowerCase());
@@ -280,12 +302,62 @@ public class XmlGenerator extends ITReturnComponent {
 						dedg = indianCurrencyHelper.bigIntegerRound(deductionDocumentDetail.getInvestment());
 						dedgtotal = dedgtotal.add(dedg);
 					}
+					if(deductionDocumentDetail.getSection().equals("80gg")){
+						dedgg = indianCurrencyHelper.bigIntegerRound(deductionDocumentDetail.getInvestment());
+						dedggtotal = dedggtotal.add(dedgg);
+					}
+					if(deductionDocumentDetail.getSection().equals("80gga")){
+						dedgga = indianCurrencyHelper.bigIntegerRound(deductionDocumentDetail.getInvestment());
+						dedggatotal = dedggatotal.add(dedgga);
+					}
+					if(deductionDocumentDetail.getSection().equals("80ggc")){
+						dedggc = indianCurrencyHelper.bigIntegerRound(deductionDocumentDetail.getInvestment());
+						dedggctotal = dedggctotal.add(dedggc);
+					}
+					if(deductionDocumentDetail.getSection().equals("80ia")){
+						dedia = indianCurrencyHelper.bigIntegerRound(deductionDocumentDetail.getInvestment());
+						dediatotal = dediatotal.add(dedia);
+					}
+					if(deductionDocumentDetail.getSection().equals("80iab")){
+						dediab = indianCurrencyHelper.bigIntegerRound(deductionDocumentDetail.getInvestment());
+						dediabtotal = dediabtotal.add(dediab);
+					}
+					if(deductionDocumentDetail.getSection().equals("80ib")){
+						dedib = indianCurrencyHelper.bigIntegerRound(deductionDocumentDetail.getInvestment());
+						dedibtotal = dedibtotal.add(dedib);
+					}
+					if(deductionDocumentDetail.getSection().equals("80ic")){
+						dedic = indianCurrencyHelper.bigIntegerRound(deductionDocumentDetail.getInvestment());
+						dedictotal = dedictotal.add(dedic);
+					}
+					if(deductionDocumentDetail.getSection().equals("80id")){
+						dedid = indianCurrencyHelper.bigIntegerRound(deductionDocumentDetail.getInvestment());
+						dedidtotal = dedidtotal.add(dedid);
+					}
+					if(deductionDocumentDetail.getSection().equals("80jja")){
+						dedjja = indianCurrencyHelper.bigIntegerRound(deductionDocumentDetail.getInvestment());
+						dedjjatotal = dedjjatotal.add(dedjja);
+					}
+					if(deductionDocumentDetail.getSection().equals("80qqb")){
+						dedqqb = indianCurrencyHelper.bigIntegerRound(deductionDocumentDetail.getInvestment());
+						dedqqbtotal = dedqqbtotal.add(dedqqb);
+					}
+					if(deductionDocumentDetail.getSection().equals("80rrb")){
+						dedrrb = indianCurrencyHelper.bigIntegerRound(deductionDocumentDetail.getInvestment());
+						dedrrbtotal = dedrrbtotal.add(dedrrb);
+					}
+					if(deductionDocumentDetail.getSection().equals("80u")){
+						dedu = indianCurrencyHelper.bigIntegerRound(deductionDocumentDetail.getInvestment());
+						dedutotal = dedutotal.add(dedu);
+					}
 				}		
 			}
 		}
 
 		deductiontotal = deductiontotal.add(dedctotal).add(dedccctotal).add(dedccd1total).add(dedccd2total)
-				.add(dedccftotal).add(deddtotal).add(dedddtotal).add(dedddbtotal).add(dedetotal).add(dedgtotal);
+				.add(dedccftotal).add(deddtotal).add(dedddtotal).add(dedddbtotal).add(dedetotal).add(dedgtotal)
+				.add(dedggtotal).add(dedggatotal).add(dedggctotal).add(dediatotal).add(dediabtotal).add(dedibtotal)
+				.add(dedictotal).add(dedidtotal).add(dedjjatotal).add(dedqqbtotal).add(dedrrbtotal).add(dedutotal);
 
 		deductUndChapVIA.setSection80C(dedctotal);
 		deductUndChapVIA.setSection80CCC(dedccctotal);
@@ -297,10 +369,18 @@ public class XmlGenerator extends ITReturnComponent {
 		deductUndChapVIA.setSection80DDB(dedddbtotal);
 		deductUndChapVIA.setSection80E(dedetotal);
 		deductUndChapVIA.setSection80G(dedgtotal);
-		deductUndChapVIA.setSection80GG(null);
-		deductUndChapVIA.setSection80GGA(null);
-		deductUndChapVIA.setSection80GGC(null);
-		deductUndChapVIA.setSection80U(null);
+		deductUndChapVIA.setSection80GG(dedggtotal);
+		deductUndChapVIA.setSection80GGA(dedggatotal);
+		deductUndChapVIA.setSection80GGC(dedggctotal);
+		deductUndChapVIA.setSection80IA(dediatotal);
+		deductUndChapVIA.setSection80IAB(dediabtotal);
+		deductUndChapVIA.setSection80IB(dedibtotal);
+		deductUndChapVIA.setSection80IC(dedictotal);
+		deductUndChapVIA.setSection80ID(dedidtotal);
+		deductUndChapVIA.setSection80JJA(dedjjatotal);
+		deductUndChapVIA.setSection80QQB(dedqqbtotal);
+		deductUndChapVIA.setSection80RRB(dedrrbtotal);
+		deductUndChapVIA.setSection80U(dedutotal);
 		deductUndChapVIA.setTotalChapVIADeductions(deductiontotal);
 		incomeDeductions.setDeductUndChapVIA(deductUndChapVIA);
 		incomeDeductions.setTotalIncome(grsstotal-0); //calculation needed(GrossTotIncome-TotalChapVIADeductions(HARDCODDED 0))
