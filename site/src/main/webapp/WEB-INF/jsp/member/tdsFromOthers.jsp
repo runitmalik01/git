@@ -150,11 +150,10 @@
 						<td><c:out value="${tdsfromothersdetail.p_Amount}" />
 						</td>
 						<td><a
-							href="${redirectURLToSamePage}/<c:out value="${tdsfromothersdetail.canonicalUUID}"/>/tdsfromothersedit"><small>Edit</small>
-						</a>&nbsp;&nbsp;<a
-							href="${redirectURLToSamePage}/<c:out value="${tdsfromothersdetail.canonicalUUID}"/>/tdsfromothersdelete"><small>Delete</small>
-						</a>
-						</td>
+							href="${scriptName}/<c:out value="${tdsfromothersdetail.canonicalUUID}"/>/tdsfromothersedit"><small>Edit</small>
+						</a>&nbsp;<a href="${scriptName}/<c:out value="${tdsfromothersdetail.canonicalUUID}"/>/tdsfromothersdelete" id="delete" onclick="return checkdelete()"><small>Delete</small> </a>
+							</td>
+						</tr>
 					</tr>
 				</c:forEach>
 				<tr>
@@ -164,7 +163,7 @@
 				</tr>
 			</c:if>
 		</table>
-		<a href="${redirectURLToSamePage}/tdsfromothersnew"
+		<a href="${scriptName}/tdsfromothersnew"
 			class="button orange">Add New</a>
 	</c:otherwise>
 </c:choose>
@@ -182,3 +181,11 @@ function calculate(){
 <res:client-validation formId="frmdataTdsOther"
 	screenConfigurationDocumentName="tdsfromothers"
 	formSubmitButtonId="myModalHrefTdsOther" fieldOneID="tan_deductortdsoth" fieldTwoID="name_deductortdsoth" validationType="tan"/>
+	
+	<script type="text/javascript">
+	  function checkdelete(){
+	        var re=confirm("Do You want to Delete it");
+	          if (re) return true;
+	          else return false;
+                  }
+	</script>
