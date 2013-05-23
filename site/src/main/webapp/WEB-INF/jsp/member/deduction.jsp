@@ -139,7 +139,7 @@
 	    </form>
 	  </div>
 	  <div class="modal-footer">
-	    <a href="#" class="btn" data-dismiss="modal">Close</a>
+	    <a href="${scriptName}?tab=deductions" class="btn" data-dismiss="">Close</a>
 	    <c:if test="${pageAction =='EDIT_CHILD'}"><button class="btn btn-danger" onclick="$('.frmDeduction').attr('action','<c:out value="${scriptName}/${editingSection.canonicalUUID}"/>/deletec6deduction');$('.frmDeduction').attr('method','get');$('.frmDeduction').submit()">Delete</button></c:if>
 	    <a href="javascript:$('.frmDeduction').submit()" class="btn btn-primary">Save changes</a>
 	  </div>
