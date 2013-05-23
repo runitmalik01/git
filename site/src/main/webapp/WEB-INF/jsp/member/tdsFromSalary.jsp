@@ -1,10 +1,10 @@
 <%@include file="../includes/tags.jspf"%>
 <%@ page import="com.mootly.wcm.utils.*"%>
 <%@ page import="java.util.*"%>
-<c:set var="tds2">
-	<fmt:message key="tds2" />
+<c:set var="tds1">
+	<fmt:message key="tds1" />
 </c:set>
-<hippo-gogreen:title title="${tds2}" />
+<hippo-gogreen:title title="${tds1}" />
 <hst:actionURL var="actionUrl" />
 <h4>
 	<fmt:message key="member.tds.from.salary" />
@@ -79,10 +79,9 @@
 						<td><c:out value="${tdsfromsalarydetail.total_TaxDeducted}" />
 						</td>
 						<td><a
-							href="${redirectURLToSamePage}/<c:out value="${tdsfromsalarydetail.canonicalUUID}"/>/tdsfromsalaryedit"><small>Edit</small>
-						</a>&nbsp;&nbsp;<a
-							href="${redirectURLToSamePage}/<c:out value="${tdsfromsalarydetail.canonicalUUID}"/>/tdsfromsalarydelete"><small>Delete</small>
-						</a></td>
+							href="${scriptName}/<c:out value="${tdsfromsalarydetail.canonicalUUID}"/>/tdsfromsalaryedit"><small>Edit</small>
+						</a>&nbsp;&nbsp;<a href="${scriptName}/<c:out value="${tdsfromsalarydetail.canonicalUUID}"/>/tdsfromsalarydelete" id="delete" onclick="return checkdelete()"><small>Delete</small> </a>
+							</td>
 
 					</tr>
 				</c:forEach>
@@ -93,10 +92,16 @@
 				</tr>
 			</c:if>
 		</table>
-		<a href="${redirectURLToSamePage}/tdsfromsalarynew" class="button orange">Add
+		<a href="${scriptName}/tdsfromsalarynew" class="button orange">Add
 			New</a>
 
 	</c:otherwise>
 </c:choose>
-
 <res:client-validation  screenConfigurationDocumentName="tdsfromsalary" formId="frmdatatdssalary" formSubmitButtonId="myModalHreftds" fieldOneID="tan_employertds" fieldTwoID="name_employertds" validationType="tan"></res:client-validation>
+<script type="text/javascript">
+
+function checkdelete(){
+    var re=confirm("Do You want to Delete it");
+      if (re) return true;
+      else return false;
+            }</script>
