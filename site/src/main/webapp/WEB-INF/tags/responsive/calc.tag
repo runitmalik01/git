@@ -28,17 +28,17 @@
 <hst:componentRenderingURL var="ajaxLinkToComponent"></hst:componentRenderingURL>
 		<hst:element var="uiCustom" name="script">
 			<hst:attribute name="type">text/javascript</hst:attribute>
-				$(document).ready(function() {
+				//$(document).ready(function() {
 					$("<c:out value="${jqinput}"/>").blur(
 					recalc
 					);
 					$("<c:if test="${not empty jqdrop}"><c:out value="${jqdrop}"/></c:if>").change(
 					recalc
 					);							
-				});    
+				//});    
 				function recalc() {
 					$.ajax({
-						url:'<c:out value="${ajaxLinkToComponent}"/>?command=calc',
+						url:'<c:out value="${ajaxLinkToComponent}"/>?command=calc&screen=<c:out value="${screenCalc}"/>',
 						data: $("#<c:out value="${formId}"/>").serialize(),
 						datatype:'json',
 						success: function(data,textStatus,jqXhr) {
