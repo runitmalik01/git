@@ -135,6 +135,7 @@
 	    <form class="frmDeduction" action="${submitDeduction}">
 	    	<c:out value="${formHTML}" escapeXml="false"/>
 	    	<c:if test="${not empty additionalScreenHTML}"><c:out value="${additionalScreenHTML}" escapeXml="false"/></c:if>
+	    	
 	    </form>
 	  </div>
 	  <div class="modal-footer">
@@ -144,6 +145,13 @@
 	  </div>
 	</div>
 </c:if>
+<a  id="click" role="button" class="btn" data-toggle="" onclick="lastURL()"><fmt:message key="back.to.formsixteen" /></a>
+<script>
+function lastURL() {
+	var oldURL = document.referrer;
+	window.location.href=oldURL  ;
+}
+</script>
 
 <hst:element var="uiCustom" name="script">
     <hst:attribute name="type">text/javascript</hst:attribute>
