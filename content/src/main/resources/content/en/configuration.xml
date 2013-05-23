@@ -4430,7 +4430,7 @@ acknowledgement&lt;/p&gt;
       <sv:value>hippo:hardhandle</sv:value>
     </sv:property>
     <sv:property sv:name="jcr:uuid" sv:type="String">
-      <sv:value>5dbba904-068f-4fb1-9823-0cda8603c8f2</sv:value>
+      <sv:value>0f5f78b9-371a-46a9-8675-c5ce25e2baba</sv:value>
     </sv:property>
     <sv:node sv:name="salaryincome">
       <sv:property sv:name="jcr:primaryType" sv:type="Name">
@@ -4438,10 +4438,9 @@ acknowledgement&lt;/p&gt;
       </sv:property>
       <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
         <sv:value>hippo:harddocument</sv:value>
-        <sv:value>hippotranslation:translated</sv:value>
       </sv:property>
       <sv:property sv:name="jcr:uuid" sv:type="String">
-        <sv:value>2a992328-3b5a-4630-bdc8-c04809c7b330</sv:value>
+        <sv:value>b997857a-1f3f-4352-8e0c-573656e1cb33</sv:value>
       </sv:property>
       <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
         <sv:value>live</sv:value>
@@ -4449,9 +4448,6 @@ acknowledgement&lt;/p&gt;
       </sv:property>
       <sv:property sv:name="hippo:related___pathreference" sv:type="String">
         <sv:value>screencalculation/salaryincome</sv:value>
-      </sv:property>
-      <sv:property sv:name="hippostd:holder" sv:type="String">
-        <sv:value>admin</sv:value>
       </sv:property>
       <sv:property sv:name="hippostd:state" sv:type="String">
         <sv:value>published</sv:value>
@@ -4463,22 +4459,19 @@ acknowledgement&lt;/p&gt;
         <sv:value>admin</sv:value>
       </sv:property>
       <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
-        <sv:value>2013-05-20T00:37:51.255+05:30</sv:value>
+        <sv:value>2013-05-24T01:55:56.242+05:30</sv:value>
       </sv:property>
       <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-        <sv:value>2013-05-20T12:14:31.256+05:30</sv:value>
+        <sv:value>2013-05-24T01:57:29.782+05:30</sv:value>
       </sv:property>
       <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
         <sv:value>admin</sv:value>
       </sv:property>
       <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-        <sv:value>2013-05-20T12:14:35.684+05:30</sv:value>
+        <sv:value>2013-05-24T01:57:32.856+05:30</sv:value>
       </sv:property>
-      <sv:property sv:name="hippotranslation:id" sv:type="String">
-        <sv:value>ca20ff94-88d3-4eae-90e0-5ac391e2a3c3</sv:value>
-      </sv:property>
-      <sv:property sv:name="hippotranslation:locale" sv:type="String">
-        <sv:value>en</sv:value>
+      <sv:property sv:name="mootlywcm:additionalScript" sv:type="String">
+        <sv:value/>
       </sv:property>
       <sv:property sv:multiple="true" sv:name="mootlywcm:dropRadio" sv:type="String">
         <sv:value/>
@@ -4490,30 +4483,20 @@ acknowledgement&lt;/p&gt;
         <sv:value>profit</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:script" sv:type="String">
-        <sv:value>&lt;html&gt;
-&lt;body&gt;
+        <sv:value>/***
+* This File is being used to calculate Salary Income
+* 
+* 
+* **/
 
-&lt;p&gt;
-out_Taxable_earning=(Gross_salary-0)+(Allowance-0)+(Perquisite-0)+(profit-0);
-&lt;/p&gt;
-
-&lt;/body&gt;
-&lt;/html&gt;</sv:value>
-      </sv:property>
-      <sv:property sv:name="mootlywcm:text" sv:type="String">
-        <sv:value/>
+out_Taxable_earning=(Gross_salary-0)+(Allowance-0)+(Perquisite-0)+(profit-0);</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:title" sv:type="String">
         <sv:value>Calculation of Salary Income Screen</sv:value>
       </sv:property>
-      <sv:node sv:name="hippotranslation:translations">
-        <sv:property sv:name="jcr:primaryType" sv:type="Name">
-          <sv:value>hippotranslation:translations</sv:value>
-        </sv:property>
-      </sv:node>
     </sv:node>
   </sv:node>
-  <sv:node sv:name="otherincome">
+  <sv:node sv:name="houseincome">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
       <sv:value>hippo:handle</sv:value>
     </sv:property>
@@ -4521,9 +4504,9 @@ out_Taxable_earning=(Gross_salary-0)+(Allowance-0)+(Perquisite-0)+(profit-0);
       <sv:value>hippo:hardhandle</sv:value>
     </sv:property>
     <sv:property sv:name="jcr:uuid" sv:type="String">
-      <sv:value>ac0a15d2-52ca-440d-a16c-f8180fce0ba2</sv:value>
+      <sv:value>30e92136-0106-4ac3-9bdc-128d0c160663</sv:value>
     </sv:property>
-    <sv:node sv:name="otherincome">
+    <sv:node sv:name="houseincome">
       <sv:property sv:name="jcr:primaryType" sv:type="Name">
         <sv:value>mootlywcm:screencalculation</sv:value>
       </sv:property>
@@ -4531,17 +4514,14 @@ out_Taxable_earning=(Gross_salary-0)+(Allowance-0)+(Perquisite-0)+(profit-0);
         <sv:value>hippo:harddocument</sv:value>
       </sv:property>
       <sv:property sv:name="jcr:uuid" sv:type="String">
-        <sv:value>380ff337-215d-4486-a5df-f4f940d04a47</sv:value>
+        <sv:value>1e0a44e9-a039-412f-8c8e-36468b280453</sv:value>
       </sv:property>
       <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
         <sv:value>live</sv:value>
         <sv:value>preview</sv:value>
       </sv:property>
       <sv:property sv:name="hippo:related___pathreference" sv:type="String">
-        <sv:value>screencalculation/otherincome</sv:value>
-      </sv:property>
-      <sv:property sv:name="hippostd:holder" sv:type="String">
-        <sv:value>admin</sv:value>
+        <sv:value>screencalculation/houseincome</sv:value>
       </sv:property>
       <sv:property sv:name="hippostd:state" sv:type="String">
         <sv:value>published</sv:value>
@@ -4553,16 +4533,109 @@ out_Taxable_earning=(Gross_salary-0)+(Allowance-0)+(Perquisite-0)+(profit-0);
         <sv:value>admin</sv:value>
       </sv:property>
       <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
-        <sv:value>2013-05-21T13:05:51.016+05:30</sv:value>
+        <sv:value>2013-05-24T01:58:54.710+05:30</sv:value>
       </sv:property>
       <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-        <sv:value>2013-05-21T13:14:52.302+05:30</sv:value>
+        <sv:value>2013-05-24T02:00:18.809+05:30</sv:value>
       </sv:property>
       <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
         <sv:value>admin</sv:value>
       </sv:property>
       <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-        <sv:value>2013-05-21T13:15:02.461+05:30</sv:value>
+        <sv:value>2013-05-24T02:00:26.715+05:30</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:additionalScript" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:dropRadio" sv:type="String">
+        <sv:value>letout</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:input" sv:type="String">
+        <sv:value>Unrealised_rent</sv:value>
+        <sv:value>Local_tax</sv:value>
+        <sv:value>Letable_value</sv:value>
+        <sv:value>Interest_borrowed</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:script" sv:type="String">
+        <sv:value>/**
+* This File is being used to calculate House Income
+* 
+* **/
+//Define Helper Classes
+var indianCurrencyHelper = new com.mootly.wcm.services.IndianCurrencyHelper();
+
+if(letout=='Yes'){
+//if(Unrealised_rent!=0 &amp;&amp; Local_tax!=0 &amp;&amp; Letable_value!=0 &amp;&amp; Interest_borrowed!=0){
+var total = Letable_value - (Unrealised_rent + Local_tax);
+var balance=(0.3 * total);
+var hous_income = total-(balance + Interest_borrowed);
+out_Total=total;
+out_Balance=indianCurrencyHelper.RoundTo2Decimals(balance*100)/100;
+out_Income_hproperty=indianCurrencyHelper.RoundTo2Decimals(hous_income*100)/100;
+//}
+}else if(letout=='No'){
+if(Interest_borrowed&lt;=150000 &amp;&amp; Interest_borrowed!=0){
+out_Income_hproperty=-Interest_borrowed;
+}else{
+out_Income_hproperty=-150000;
+}
+}</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:title" sv:type="String">
+        <sv:value>Screen Calculation for House Income</sv:value>
+      </sv:property>
+    </sv:node>
+  </sv:node>
+  <sv:node sv:name="otherincome">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hippo:handle</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+      <sv:value>hippo:hardhandle</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>2ba6ebe0-848e-44eb-86db-a9d4623d9d42</sv:value>
+    </sv:property>
+    <sv:node sv:name="otherincome">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screencalculation</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+        <sv:value>hippo:harddocument</sv:value>
+      </sv:property>
+      <sv:property sv:name="jcr:uuid" sv:type="String">
+        <sv:value>9730d6d1-7fcd-489b-9483-467d89254c77</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
+        <sv:value>live</sv:value>
+        <sv:value>preview</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippo:related___pathreference" sv:type="String">
+        <sv:value>screencalculation/otherincome</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostd:state" sv:type="String">
+        <sv:value>published</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostd:stateSummary" sv:type="String">
+        <sv:value>live</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
+        <sv:value>admin</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
+        <sv:value>2013-05-24T02:01:44.056+05:30</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
+        <sv:value>2013-05-24T02:05:21.177+05:30</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
+        <sv:value>admin</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
+        <sv:value>2013-05-24T02:05:23.907+05:30</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:additionalScript" sv:type="String">
+        <sv:value/>
       </sv:property>
       <sv:property sv:multiple="true" sv:name="mootlywcm:dropRadio" sv:type="String">
         <sv:value/>
@@ -4591,128 +4664,35 @@ out_Taxable_earning=(Gross_salary-0)+(Allowance-0)+(Perquisite-0)+(profit-0);
         <sv:value>Otherincome</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:script" sv:type="String">
-        <sv:value>&lt;html&gt;
-&lt;body&gt;
+        <sv:value>/** 
+* 
+* This File is being used to calculate Other Income 
+* 
+**/ 
+//Define Helper Classes
 
-&lt;p&gt;/**  * This File is being used to calculate Other Income  *   * **/ //Define
-Helper Classes&lt;/p&gt;
+var indianCurrencyHelper = new com.mootly.wcm.services.IndianCurrencyHelper();
 
-&lt;pre&gt;var indianCurrencyHelper = newcom.mootly.wcm.services.IndianCurrencyHelper(); &lt;/pre&gt;
 
-&lt;p&gt;
-out_Totalint=(Gov_income-0)+(Kissan-0)+(Bank_detail_fdr-0)+(Bank_detail_saving-0)+(Indira-0)+(intnsc-0)+(Otherint-0);
-&lt;br/&gt;
+out_Totalint=(Gov_income-0)+(Kissan+Bank_detail_fdr-0)+(Bank_detail_saving-0)+(Indira-0)+(intnsc-0)+(Otherint-0);
+
+
 out_TotalOther_income=(Family_pension-0)+(Dividends-0)+(Income_rent_machine-0)+(Income_maintain-0)+(Income_other-0)+(Deduction_57-0);
-&lt;/p&gt;
 
-&lt;p&gt;var familypenseion=((Family_pension-0)*.333); &lt;br/&gt;
-out_Familypension_deduction=indianCurrencyHelper.round(familypenseion*100)/100;
-&lt;br/&gt;
-out_totalexpense=familypenseion+(Otherdeduction-0)+(depreciation-0);&lt;/p&gt;
 
-&lt;p&gt;
 out_Total_taxfree_income=(Dividends_uti-0)+(Interest_income-0)+(Dividends_mutualfund-0)+(Agriculture_income-0)+(Dividends_indian_companies-0)+(Otherincome-0);
-&lt;/p&gt;
 
-&lt;p&gt;out_Taxable_income= ((Totalint-0)+(TotalOther_income-0))-(totalexpense-0);
-&lt;/p&gt;
 
-&lt;/body&gt;
-&lt;/html&gt;</sv:value>
+out_Familypension_deduction=indianCurrencyHelper.RoundTo2Decimals((Family_pension-0)*.333*100)/100;
+
+
+out_totalexpense=(out_Familypension_deduction)+(Otherdeduction-0)+(depreciation-0);
+
+
+out_Taxable_income=((out_Totalint)+(out_TotalOther_income))-out_totalexpense;</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:title" sv:type="String">
         <sv:value>this is Screen calculation for otherincome</sv:value>
-      </sv:property>
-    </sv:node>
-  </sv:node>
-  <sv:node sv:name="houseincome">
-    <sv:property sv:name="jcr:primaryType" sv:type="Name">
-      <sv:value>hippo:handle</sv:value>
-    </sv:property>
-    <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
-      <sv:value>hippo:hardhandle</sv:value>
-    </sv:property>
-    <sv:property sv:name="jcr:uuid" sv:type="String">
-      <sv:value>be006e9e-1766-45c4-8197-06d1ab36f06f</sv:value>
-    </sv:property>
-    <sv:node sv:name="houseincome">
-      <sv:property sv:name="jcr:primaryType" sv:type="Name">
-        <sv:value>mootlywcm:screencalculation</sv:value>
-      </sv:property>
-      <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
-        <sv:value>hippo:harddocument</sv:value>
-      </sv:property>
-      <sv:property sv:name="jcr:uuid" sv:type="String">
-        <sv:value>bb5c6b57-e511-4efc-a036-7cef19bfc545</sv:value>
-      </sv:property>
-      <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
-        <sv:value>live</sv:value>
-        <sv:value>preview</sv:value>
-      </sv:property>
-      <sv:property sv:name="hippo:related___pathreference" sv:type="String">
-        <sv:value>screencalculation/houseincome</sv:value>
-      </sv:property>
-      <sv:property sv:name="hippostd:state" sv:type="String">
-        <sv:value>published</sv:value>
-      </sv:property>
-      <sv:property sv:name="hippostd:stateSummary" sv:type="String">
-        <sv:value>live</sv:value>
-      </sv:property>
-      <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
-        <sv:value>admin</sv:value>
-      </sv:property>
-      <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
-        <sv:value>2013-05-21T13:31:16.229+05:30</sv:value>
-      </sv:property>
-      <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-        <sv:value>2013-05-21T13:34:00.654+05:30</sv:value>
-      </sv:property>
-      <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
-        <sv:value>admin</sv:value>
-      </sv:property>
-      <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-        <sv:value>2013-05-21T13:34:04.000+05:30</sv:value>
-      </sv:property>
-      <sv:property sv:multiple="true" sv:name="mootlywcm:dropRadio" sv:type="String">
-        <sv:value>letout</sv:value>
-      </sv:property>
-      <sv:property sv:multiple="true" sv:name="mootlywcm:input" sv:type="String">
-        <sv:value>Unrealised_rent</sv:value>
-        <sv:value>Local_tax</sv:value>
-        <sv:value>Letable_value</sv:value>
-        <sv:value>Interest_borrowed</sv:value>
-      </sv:property>
-      <sv:property sv:name="mootlywcm:script" sv:type="String">
-        <sv:value>&lt;html&gt;
-&lt;body&gt;
-
-&lt;p&gt;/**  * This File is being used to calculate House Income  *   * **/ //Define
-Helper Classes var indianCurrencyHelper = new
-com.mootly.wcm.services.IndianCurrencyHelper();&lt;/p&gt;
-
-&lt;p&gt; &lt;/p&gt;
-
-&lt;p&gt;if(letout=='Yes'){&lt;/p&gt;
-
-&lt;p&gt;if(Unrealised_rent!=0 &amp;amp;&amp;amp; Local_tax!=0 &amp;amp;&amp;amp; Letable_value!=0
-&amp;amp;&amp;amp; Interest_borrowed!=0){ var total = Letable_value - (Unrealised_rent +
-Local_tax); var balance=(0.3 * total); var hous_income = total-(balance +
-Interest_borrowed); out_Total=total;
-out_Balance=indianCurrencyHelper.round(balance*100)/100;
-out_Income_hproperty=indianCurrencyHelper.round(hous_income*100)/100; } }else
-if(letout=='No'){ if(Interest_borrowed&amp;lt;=150000 &amp;amp;&amp;amp;
-Interest_borrowed!=0){ out_Income_hproperty=-Interest_borrowed; }else{
-out_Income_hproperty=-150000;&lt;/p&gt;
-
-&lt;p&gt;}&lt;/p&gt;
-
-&lt;p&gt;}&lt;/p&gt;
-
-&lt;/body&gt;
-&lt;/html&gt;</sv:value>
-      </sv:property>
-      <sv:property sv:name="mootlywcm:title" sv:type="String">
-        <sv:value>Screen Calculation for House Income</sv:value>
       </sv:property>
     </sv:node>
   </sv:node>
