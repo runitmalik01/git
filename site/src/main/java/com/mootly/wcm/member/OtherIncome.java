@@ -10,16 +10,22 @@
 package com.mootly.wcm.member;
 
 
+import java.util.Map;
+
+import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.core.component.HstComponentException;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.mootly.wcm.annotations.FormFields;
 import com.mootly.wcm.annotations.PrimaryBean;
 import com.mootly.wcm.beans.OtherSourcesDocument;
+import com.mootly.wcm.beans.ScreenCalculation;
 import com.mootly.wcm.components.ITReturnComponent;
+import com.mootly.wcm.services.ScreenCalculatorService;
 
 @PrimaryBean(primaryBeanClass=OtherSourcesDocument.class)
 @FormFields(fieldNames={"Gov_income","Kissan","Bank_detail_fdr","Bank_detail_saving","Indira","intnsc","Otherint",
@@ -41,6 +47,22 @@ public class OtherIncome extends ITReturnComponent {
 		request.setAttribute("hideHorseIncome", "hideHorseIncome");
 		if(log.isInfoEnabled()){
 			log.info(hideHorseIncome+" do before render hideHorseIncome");
+		}
+		String isCalc = getPublicRequestParameter(request,"command");
+		if (isCalc != null && isCalc.equals("calc")) {
+			String pathToScreenCalc = "configuration/screencalculation/" + this.getClass().getSimpleName().toLowerCase();
+			HippoBean siteContentBaseBean=(HippoBean)request.getAttribute("siteContentBaseBean");
+			ScreenCalculation screencalc=siteContentBaseBean.getBean(pathToScreenCalc, ScreenCalculation.class);
+			Map<String,Object> resultSet = ScreenCalculatorService.getScreenCalculations("otherincome.js", request.getParameterMap(""), null);
+			if (resultSet != null) {
+				log.info("get the result");
+				request.setAttribute("resultSet", resultSet);
+				JSONObject jsonObject  = new JSONObject(resultSet);
+				log.info("get the json object"+jsonObject.toString());
+				request.setAttribute("jsonObject", jsonObject);
+				//response.setContentType("application/json");
+				response.setRenderPath("jsp/common/calculation_response.jsp");
+			}
 		}
 		
 	}
