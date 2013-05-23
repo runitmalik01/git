@@ -22,15 +22,11 @@ if (actionInSiteMap != null && actionInSiteMap.contains("_")) {
  tabName = actionInSiteMap.substring(0,actionInSiteMap.indexOf("_"));
 }
 	%>
-
-<c:set var="itreturnitr1title">
-	<fmt:message key="member.itreturnitr1.title" />
+<c:set var="tds1">
+	<fmt:message key="tds1" />
 </c:set>
-<hippo-gogreen:title title="${itreturnitr1title}" />
-
+<hippo-gogreen:title title="${tds1}" />
 <hst:actionURL var="actionUrl"></hst:actionURL>
-
-
 <div class="page type-page">
 	<h3 id="respond1"><fmt:message key="titile.itr1.page" /></h3>
 	<!-- <form id="frmdata" action="${actionUrl}" name="oi" method="post"> -->
@@ -54,7 +50,7 @@ if (actionInSiteMap != null && actionInSiteMap.contains("_")) {
 				<ul class="dropdown-menu">
 					<li <%if (tabName != null && tabName.equals("salaryincome")){%>
 						class="active" <%}%>><a href="#incomesalaries"
-						data-toggle="tab"><fmt:message key="income.salary.penson" />
+						data-toggle="tab"><fmt:message key="income.form16.penson" />
 					</a>
 					</li>
 					<li
