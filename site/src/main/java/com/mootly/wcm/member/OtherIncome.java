@@ -48,23 +48,6 @@ public class OtherIncome extends ITReturnComponent {
 		if(log.isInfoEnabled()){
 			log.info(hideHorseIncome+" do before render hideHorseIncome");
 		}
-		String isCalc = getPublicRequestParameter(request,"command");
-		if (isCalc != null && isCalc.equals("calc")) {
-			String pathToScreenCalc = "configuration/screencalculation/" + this.getClass().getSimpleName().toLowerCase();
-			HippoBean siteContentBaseBean=(HippoBean)request.getAttribute("siteContentBaseBean");
-			ScreenCalculation screencalc=siteContentBaseBean.getBean(pathToScreenCalc, ScreenCalculation.class);
-			Map<String,Object> resultSet = ScreenCalculatorService.getScreenCalculations("otherincome.js", request.getParameterMap(""), null);
-			if (resultSet != null) {
-				log.info("get the result");
-				request.setAttribute("resultSet", resultSet);
-				JSONObject jsonObject  = new JSONObject(resultSet);
-				log.info("get the json object"+jsonObject.toString());
-				request.setAttribute("jsonObject", jsonObject);
-				//response.setContentType("application/json");
-				response.setRenderPath("jsp/common/calculation_response.jsp");
-			}
-		}
-		
 	}
 
 	@Override
