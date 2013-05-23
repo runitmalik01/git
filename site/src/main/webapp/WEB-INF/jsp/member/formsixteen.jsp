@@ -295,7 +295,7 @@
 								<td>(a) Salary as per provisions contained in section 17(1)
 								</td>
 								<td><input type="text" name="gross_a"
-								class="numberinput decimal"
+								class=" decimal"
 								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.gross_a}"/></c:if>"
 								placeholder="Rs.">
 							</td>
@@ -303,7 +303,7 @@
 							<tr>
 								<td>(b) Value of perquisites u/s 17(2)</td>
 								<td><input type="text" name="gross_b"
-								class="numberinput decimal"
+								class=" decimal"
 								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.gross_b}"/></c:if>"
 								placeholder="Rs.">
 							</td>
@@ -311,7 +311,7 @@
 							<tr>
 								<td>(c) Profits in lieu of salary under section 17(3)</td>
 								<td><input type="text" name="gross_c"
-								class="numberinput decimal"
+								class=" decimal"
 								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.gross_c}"/></c:if>"
 								placeholder="Rs.">
 							</td>
@@ -819,10 +819,10 @@
 							<td><label><strong>11.</strong> </label> <label>Total
 									income (8-10) </label>
 							</td>
-							<td><input type="text" name="total_income_1"
+							<td><!--  <input type="text" name="total_income_1"
 							class="numberinput decimal"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.total_income_1}"/></c:if>"
-							placeholder="Rs.">
+							placeholder="Rs.">-->
 							</td>
 							<td></td>
 							<td><input type="text" name="total_income_2"
@@ -835,10 +835,10 @@
 							<td><label><strong>12.</strong> </label> <label>Tax
 									on total income </label>
 							</td>
-							<td><input type="text" name="tax_total_income_1"
+							<td><!-- <input type="text" name="tax_total_income_1"
 							class="numberinput decimal"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.tax_total_income_1}"/></c:if>"
-							placeholder="Rs.">
+							placeholder="Rs.">-->
 							</td>
 							<td></td>
 							<td><input type="text" name="tax_total_income_2"
@@ -853,10 +853,10 @@
 									(on tax computed at S. No. 12)</label>
 							</td>
 
-							<td><input type="text" name="surcharge_1"
+							<td><!-- <input type="text" name="surcharge_1"
 							class="numberinput decimal"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.surcharge_1}"/></c:if>"
-							placeholder="Rs.">
+							placeholder="Rs."> -->
 							</td>
 							<td></td>
 
@@ -899,10 +899,10 @@
 									under section 89 (attach details) </label>
 							</td>
 
-							<td><input type="text" name="relief_1"
+							<td><!--  <input type="text" name="relief_1"
 							class="numberinput decimal"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.relief_1}"/></c:if>"
-							placeholder="Rs.">
+							placeholder="Rs.">-->
 							</td>
 							<td></td>
 
@@ -918,16 +918,16 @@
 									payable (15-16)</label>
 							</td>
 
-							<td><input type="text" name="tax_payable1"
+							<td><!--  <input type="text" name="tax_payable1"
 							class="numberinput decimal"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.tax_payable1}"/></c:if>"
-							placeholder="Rs.">
+							placeholder="Rs.">-->
 							</td>
 
-							<td><input type="text" name="tax_payable_1"
+							<td><!-- <input type="text" name="tax_payable_1"
 							class="numberinput decimal"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.tax_payable_1}"/></c:if>"
-							placeholder="Rs.">
+							placeholder="Rs.">-->
 							</td>
 
 							<td><input type="text" name="tax_payable_2"
@@ -981,10 +981,10 @@
 							</td>
 							<td></td>
 
-							<td><input type="text" name="relief_11"
+							<td><!-- <input type="text" name="relief_11"
 							class="numberinput decimal"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.relief_11}"/></c:if>"
-							placeholder="Rs.">
+							placeholder="Rs."> -->
 							</td>
 
 							<td><input type="text" name="relief_12"
@@ -1027,7 +1027,7 @@
 							<td><c:out value="${salaryItemDetail.employee}" />
 							</td>
 							<td align="right"><c:out
-								value="${salaryItemDetail.relief_11}" />
+								value="${salaryItemDetail.relief_12}" />
 							</td>
 							<td><a
 							href="${scriptName}/<c:out value="${salaryItemDetail.canonicalUUID}"/>/formsixteenedit"><small>Edit</small>
