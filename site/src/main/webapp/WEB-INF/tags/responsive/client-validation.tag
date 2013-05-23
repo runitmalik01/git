@@ -67,7 +67,8 @@
 							fObj.datepicker({
 									changeMonth : true,
 									changeYear : true,
-                                    showAnim: "fadeIn"
+                                    showAnim: "fadeIn",
+                                    minDate: "01/01/1990"
 								}).addClass("indiandate");	
 							break;
 						default:				
@@ -141,10 +142,10 @@
 		 				 $('#<c:out value="${formId}"/>').submit();
 		 				 }
 					});
-				</c:if>	
+                 </c:if>	
 				$('.tan').attr("style","text-transform: uppercase;");		
 			});   
 			 
-	</hst:element>
+   </hst:element>
 	<hst:headContribution element="${uiCustom}" category="jsInternal"/>	
 </c:if>
