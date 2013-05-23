@@ -1,5 +1,5 @@
 <%@page import="org.hippoecm.hst.core.component.HstRequest"%>
-<%@include file="../includes/commonincludes.jspf"%>
+<%@include file="../includes/tags.jspf"%>
 <c:set var="otherincometitle">
 	<fmt:message key="member.otherincome.title" />
 </c:set>
@@ -31,7 +31,7 @@
 				<div class="rowlabel">
 					<input type="text" name="Gov_income"
 						title="Enter income from Govt." class="decimal"
-						value="${parentBean.gov_income}" id="A" onchange="cal1()" />
+						value="${parentBean.gov_income}" id="Gov_income" onchange="cal1()" />
 				</div>
 			</div>
 			<div class="span3">
@@ -41,7 +41,7 @@
 				</div>
 				<div class="rowlabel">
 					<input type="text" name="Kissan" maxlength="14"
-						value="${parentBean.kissan}" class="numberinput decimal" id="B"
+						value="${parentBean.kissan}" class="numberinput decimal" id="Kissan"
 						onchange="cal1()" />
 				</div>
 			</div>
@@ -53,7 +53,7 @@
 				<div class="rowlabel">
 					<input type="text" name="Bank_detail_fdr" maxlength="14"
 						value="${parentBean.bank_detail_fdr}" class="numberinput decimal"
-						id="C" onchange="cal1()" />
+						id="Bank_detail_fdr" onchange="cal1()" />
 				</div>
 			</div>
 			<div class="span3">
@@ -64,7 +64,7 @@
 				<div class="rowlabel">
 					<input type="text" name="Bank_detail_saving" maxlength="14"
 						value="${parentBean.bank_detail_saving}"
-						class="numberinput decimal" id="S" onchange="cal1()" />
+						class="numberinput decimal" id="Bank_detail_saving" onchange="cal1()" />
 				</div>
 			</div>
 		</div>
@@ -77,7 +77,7 @@
 				</div>
 				<div class="rowlabel">
 					<input type="text" name="Indira" maxlength="14"
-						value="${parentBean.indira}" class="numberinput decimal" id="D"
+						value="${parentBean.indira}" class="numberinput decimal" id="Indira"
 						onchange="cal1()" />
 				</div>
 			</div>
@@ -88,7 +88,7 @@
 				</div>
 				<div class="rowlabel">
 					<input type="text" name="intnsc" maxlength="14"
-						value="${parentBean.intnsc}" class="numberinput decimal" id="E"
+						value="${parentBean.intnsc}" class="numberinput decimal" id="intnsc"
 						onchange="cal1()" />
 				</div>
 			</div>
@@ -100,7 +100,7 @@
 				</div>
 				<div class="rowlabel">
 					<input type="text" name="Otherint" maxlength="14"
-						value="${parentBean.otherint}" class="numberinput decimal" id="F"
+						value="${parentBean.otherint}" class="numberinput decimal" id="Otherint"
 						onchange="cal1()" />
 				</div>
 			</div>
@@ -111,7 +111,7 @@
 				</div>
 				<div class="rowlabel">
 					<input type="text" name="Totalint" value="${parentBean.totalint}"
-						class="decimal" id="G" onchange="cal1()" readonly="readonly" />
+						class="decimal" id="Totalint" onchange="cal1()" readonly="readonly" />
 				</div>
 			</div>
 		</div>
@@ -130,7 +130,7 @@
 				<div class="rowlabel">
 					<input type="text" name="Family_pension"
 						value="${parentBean.family_pension}" maxlength="14"
-						class="numberinput decimal" id="a1" onchange="cal2()" />
+						class="numberinput decimal" id="Family_pension" onchange="cal2()" />
 				</div>
 			</div>
 			<div class="span4">
@@ -140,7 +140,7 @@
 				</div>
 				<div class="rowlabel">
 					<input type="text" name="Dividends" value="${parentBean.dividends}"
-						maxlength="14" class="numberinput decimal" id="a2"
+						maxlength="14" class="numberinput decimal" id="Dividends"
 						onchange="cal2()" />
 				</div>
 			</div>
@@ -163,7 +163,7 @@
 				<div class="rowlabel">
 					<input type="text" name="Income_rent_machine"
 						value="${parentBean.income_rent_machine}"
-						class="numberinput decimal" id="a4" onchange="cal2()"
+						class="numberinput decimal" id="Income_rent_machine" onchange="cal2()"
 						maxlength="14" />
 				</div>
 			</div>
@@ -178,7 +178,7 @@
 				<div class="rowlabel">
 					<input type="text" name="Income_maintain"
 						value="${parentBean.income_maintain}" class="numberinput decimal"
-						id="a5" onchange="cal2()" maxlength="14" />
+						id="Income_maintain" onchange="cal2()" maxlength="14" />
 				</div>
 			</div>
 			<div class="span3">
@@ -189,7 +189,7 @@
 				<div class="rowlabel">
 					<input type="text" name="Income_other" maxlength="14"
 						value="${parentBean.income_other}" class="numberinput decimal"
-						id="a6" onchange="cal2()" />
+						id="Income_other" onchange="cal2()" />
 				</div>
 			</div>
 
@@ -201,7 +201,7 @@
 				<div class="rowlabel">
 					<input type="text" name="Deduction_57"
 						value="${parentBean.deduction_57}" class="numberinput decimal"
-						id="a7" onchange="cal2()" maxlength="14" />
+						id="Deduction_57" onchange="cal2()" maxlength="14" />
 				</div>
 			</div>
 			<div class="span2">
@@ -211,7 +211,7 @@
 				</div>
 				<div class="rowlabel">
 					<input type="text" name="TotalOther_income"
-						value="${parentBean.totalOther_income}" id="a8" onchange="cal2()"
+						value="${parentBean.totalOther_income}" id="TotalOther_income" onchange="cal2()"
 						class="decimal" readonly="readonly" />
 				</div>
 			</div>
@@ -231,7 +231,7 @@
 				<div class="rowlabel">
 					<input type="text" name="Familypension_deduction" maxlength="14"
 						class="numberinput decimal"
-						value="${parentBean.familypension_deduction}" id="b1"
+						value="${parentBean.familypension_deduction}" id="Familypension_deduction"
 						onchange="cal3()" readonly="readonly" />
 				</div>
 			</div>
@@ -244,7 +244,7 @@
 				<div class="rowlabel">
 					<input type="text" name="Otherdeduction" maxlength="14"
 						value="${parentBean.otherdeduction}" class="numberinput decimal"
-						id="b2" onchange="cal3()" />
+						id="Otherdeduction" onchange="cal3()" />
 				</div>
 			</div>
 			<div class="span3">
@@ -257,7 +257,7 @@
 				<div class="rowlabel">
 					<input type="text" name="depreciation" maxlength="14"
 						value="${parentBean.depreciation}" class="numberinput decimal"
-						id="b3" onchange="cal3()" />
+						id="depreciation" onchange="cal3()" />
 				</div>
 			</div>
 			<div class="span3">
@@ -267,7 +267,7 @@
 				</div>
 				<div class="rowlabel">
 					<input type="text" name="totalexpense" maxlength="14"
-						value="${parentBean.totalexpense}" id="b4" onchange="cal3()"
+						value="${parentBean.totalexpense}" id="totalexpense" onchange="cal3()"
 						class="decimal" readonly="readonly" />
 				</div>
 			</div>
@@ -286,7 +286,7 @@
 				<div class="rowlabel">
 					<input type="text" name="Dividends_uti"
 						value="${parentBean.dividends_uti}" class="numberinput decimal"
-						maxlength="14" id="c1" onchange="cal4()" />
+						maxlength="14" id="Dividends_uti" onchange="cal4()" />
 				</div>
 			</div>
 			<div class="span3">
@@ -297,7 +297,7 @@
 				<div class="rowlabel">
 					<input type="text" name="Interest_income"
 						value="${parentBean.interest_income}" class="numberinput decimal"
-						id="c2" onchange="cal4()" maxlength="14" />
+						id="Interest_income" onchange="cal4()" maxlength="14" />
 				</div>
 			</div>
 			<div class="span3">
@@ -308,7 +308,7 @@
 				<div class="rowlabel">
 					<input type="text" name="Dividends_mutualfund"
 						value="${parentBean.dividends_mutualfund}"
-						class="numberinput decimal" id="c3" onchange="cal4()" />
+						class="numberinput decimal" id="Dividends_mutualfund" onchange="cal4()" />
 				</div>
 			</div>
 			<div class="span3">
@@ -319,7 +319,7 @@
 				<div class="rowlabel">
 					<input type="text" name="Agriculture_income"
 						value="${parentBean.agriculture_income}"
-						class="numberinput decimal" id="c4" onchange="cal4()"
+						class="numberinput decimal" id="Agriculture_income" onchange="cal4()"
 						maxlength="14" />
 				</div>
 			</div>
@@ -334,7 +334,7 @@
 				<div class="rowlabel">
 					<input type="text" name="Dividends_indian_companies"
 						value="${parentBean.dividends_indian_companies }"
-						class="numberinput decimal" id="c5" onchange="cal4()"
+						class="numberinput decimal" id="Dividends_indian_companies" onchange="cal4()"
 						maxlength="14" />
 				</div>
 			</div>
@@ -346,7 +346,7 @@
 				<div class="rowlabel">
 					<input type="text" name="Otherincome"
 						value="${parentBean.otherincome}" maxlength="14"
-						class="numberinput decimal" id="c6" onchange="cal4()" />
+						class="numberinput decimal" id="Otherincome" onchange="cal4()" />
 				</div>
 			</div>
 			<div class="span4">
@@ -357,7 +357,7 @@
 				<div class="rowlabel">
 					<input type="text" name="Total_taxfree_income"
 						value="${parentBean.total_taxfree_income}"
-						class="numberinput decimal" id="c7" onchange="cal4()"
+						class="numberinput decimal" id="Total_taxfree_income" onchange="cal4()"
 						maxlength="14" readonly="readonly" />
 				</div>
 			</div>
@@ -371,7 +371,7 @@
 			</div>
 			<div class="rowlabel">
 				<input type="text" name="Taxable_income" class="decimal"
-					value="${parentBean.taxable_income}" id="Taxable" onblur="cal5()"
+					value="${parentBean.taxable_income}" id="Taxable_income" onblur="cal5()"
 					readonly="readonly" />
 			</div>
 		</div>
@@ -403,8 +403,9 @@
 		});    
 </hst:element>
 <hst:headContribution element="${uiCustom}" category="jsInternal" />
+<res:calc screenCalc="otherincome" formId="frmIncomeinfo"></res:calc>
 <script>
-	function cal1() {
+	/*function cal1() {
 		var A = document.getElementById("A").value - 0;
 		var B = document.getElementById("B").value - 0;
 		var C = document.getElementById("C").value - 0;
@@ -456,5 +457,5 @@
 	}
 	function mycal(a, b, c) {
 		return (a + b - c);
-	}
+	}**/
 </script>
