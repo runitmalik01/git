@@ -14,12 +14,12 @@
 		<div class="page">
 			<table class="table table-hover table-bordered">
 				<tr>
-					<th>Income Head</th>
-					<th>Total Amount</th>
+					<th><fmt:message key="income.head"/></th>
+					<th><fmt:message key="total.amount"/></th>
 				</tr>
 				<!--  lets create a bookmark for each section -->
 				<tr>
-					<td colspan="1">Salary Income</td>
+					<td colspan="1"><fmt:message key="salary.income"/></td>
 					<td>
 						<div class="btn-group" class="decimal">
 							<button class="btn btn-small dropdown-toggle"
@@ -31,7 +31,7 @@
 								</c:when>
 									<c:when
 										test="${not empty theForm.ITR1IncomeDeductions.incomeFromSal}">
-										<c:out value="${ theForm.ITR1IncomeDeductions.incomeFromSal}" />
+										<w4india:inr value="${ theForm.ITR1IncomeDeductions.incomeFromSal}" />
 									</c:when>
 									<c:otherwise>
 										<c:out value="Fill Now" />
@@ -48,7 +48,7 @@
 					</td>
 				</tr>
 				<tr>
-					<td colspan="1">House Property</td>
+					<td colspan="1"><fmt:message key="income.house.itr1" /></td>
 					<td>
 						<div class="btn-group" class="decimal">
 							<button class="btn btn-small dropdown-toggle"
@@ -60,22 +60,21 @@
 										<c:out value="Fill Now" />
 									</c:when>
 									<c:otherwise>
-										<c:out
-											value="${ theForm.ITR1IncomeDeductions.totalIncomeOfHP}" />
+									<w4india:inr value="${ theForm.ITR1IncomeDeductions.totalIncomeOfHP}"/>
+										
 									</c:otherwise>
 								</c:choose>
 								<span class="caret"></span>
 							</button>
 							<ul class="dropdown-menu">
 								<li><a
-									href="<c:out value="${scriptName}"/>?tab=houseincome"><fmt:message
-											key="income.house.itr1" /> </a></li>
+									href="<c:out value="${scriptName}"/>?tab=houseincome"><fmt:message key="income.house.itr1" /> </a></li>
 							</ul>
 						</div>
 					</td>
 				</tr>
 				<tr>
-					<td colspan="1">Income From Other Sources</td>
+					<td colspan="1"><fmt:message key="income.other.sources" /></td>
 					<td>
 						<div class="btn-group" class="decimal">
 							<button class="btn btn-small dropdown-toggle"
@@ -86,41 +85,36 @@
 										<c:out value="Fill Now" />
 									</c:when>
 									<c:otherwise>
-										<c:out value="${ theForm.ITR1IncomeDeductions.incomeOthSrc}" />
+									<w4india:inr value="${ theForm.ITR1IncomeDeductions.incomeOthSrc}"/>
 									</c:otherwise>
 								</c:choose>
 								<span class="caret"></span>
 							</button>
 							<ul class="dropdown-menu">
 								<li><a
-									href="<c:out value="${scriptName}"/>?tab=incomeothersources"><fmt:message
-											key="income.other.sources" /> </a></li>
+									href="<c:out value="${scriptName}"/>?tab=incomeothersources"><fmt:message key="income.other.sources" /> </a></li>
 							</ul>
 						</div>
 					</td>
 				</tr>
 				<tr>
-					<td colspan="1">Gross Total Income</td>
-					<td>
-						<div class="btn-group" class="decimal">
-							<button class="btn btn-small dropdown-toggle"
-								data-toggle="dropdown">
-								<c:choose>
+					<td colspan="1"><fmt:message key="gross.total.income"/></td>
+					<td  style="text-align:left">
+						<span class="decimal">
+									<c:choose>
 									<c:when
 										test="${theForm.ITR1IncomeDeductions.grossTotIncome eq '0'}">
-										<c:out value="Not Calculated" />
-									</c:when>
-									<c:otherwise>
-										<c:out value="${ theForm.ITR1IncomeDeductions.grossTotIncome}" />
+										<w4india:inr value="0"/>
+										</c:when>
+										<c:otherwise>
+									<w4india:inr value="${theForm.ITR1IncomeDeductions.grossTotIncome}"/>
 									</c:otherwise>
 								</c:choose>
-
-							</button>
-						</div>
+						</span>
 					</td>
 				</tr>
 				<tr>
-					<td colspan="1">Less: Deduction Under Chapter 6A</td>
+					<td colspan="1"><fmt:message key="deduction.under.6a"/></td>
 					<td>
 						<div class="btn-group" class="decimal">
 							<button class="btn btn-small dropdown-toggle"
@@ -131,8 +125,8 @@
 								</c:when>
 									<c:when
 										test="${not empty theForm.ITR1IncomeDeductions.deductUndChapVIA.totalChapVIADeductions}">
-										<c:out
-											value="${theForm.ITR1IncomeDeductions.deductUndChapVIA.totalChapVIADeductions}" />
+										<w4india:inr value="${theForm.ITR1IncomeDeductions.deductUndChapVIA.totalChapVIADeductions}"/>
+										
 									</c:when>
 									<c:otherwise>
 										<c:out value="Fill Now" />
@@ -148,86 +142,75 @@
 					</td>
 				</tr>
 				<tr>
-					<td colspan="1">Taxable Income</td>
-					<td>
-						<div class="btn-group" class="decimal">
-							<button class="btn btn-small dropdown-toggle"
-								data-toggle="dropdown">
-								<c:choose>
+					<td colspan="1"><fmt:message key="taxable.income"/></td>
+					<td  style="text-align:left">
+						<span class="decimal">
+									<c:choose>
 									<c:when
 										test="${ theForm.ITR1IncomeDeductions.totalIncome eq '0'}">
-										<c:out value="Not Calculated" />
-									</c:when>
-									<c:otherwise>
-										<c:out value="${ theForm.ITR1IncomeDeductions.totalIncome}" />
+										<w4india:inr value="0"/>
+										</c:when>
+										<c:otherwise>
+									<w4india:inr value="${ theForm.ITR1IncomeDeductions.totalIncome}"/>
 									</c:otherwise>
 								</c:choose>
-
-							</button>
-						</div>
+						</span>
 					</td>
 				</tr>
 				<tr>
-					<td colspan="1">Income Tax</td>
-					<td>
-						<div class="btn-group" class="decimal">
-							<button class="btn btn-small dropdown-toggle"
-								data-toggle="dropdown">Not Calculated</button>
-						</div>
+					<td colspan="1"><fmt:message key="income.tax"/></td>
+					<td  style="text-align:left">
+						<span class="decimal">
+									<w4india:inr value="0"/>
+						</span>
 					</td>
 				</tr>
 				<tr>
-					<td colspan="1">Normal Tax</td>
-					<td>
-						<div class="btn-group" class="decimal">
-							<button class="btn btn-small dropdown-toggle"
-								data-toggle="dropdown">Not Calculated</button>
-						</div>
+					<td colspan="1"><fmt:message key="normal.tax"/></td>
+					<td  style="text-align:left">
+						<span class="decimal">
+									<w4india:inr value="0"/>
+						</span>
 					</td>
 				</tr>
 				<tr>
-					<td colspan="1">Special Tax</td>
-					<td>
-						<div class="btn-group" class="decimal">
-							<button class="btn btn-small dropdown-toggle"
-								data-toggle="dropdown">Not Calculated</button>
-						</div>
+					<td colspan="1"><fmt:message key="special.tax"/></td>
+					<td  style="text-align:left">
+						<span class="decimal">
+									<w4india:inr value="0"/>
+						</span>
 					</td>
 				</tr>
 				<tr>
-					<td colspan="1">Surcharge</td>
-					<td>
-						<div class="btn-group" class="decimal">
-							<button class="btn btn-small dropdown-toggle"
-								data-toggle="dropdown">Not Calculated</button>
-						</div>
+					<td colspan="1"><fmt:message key="surcharge.tax"/></td>
+					<td  style="text-align:left">
+						<span class="decimal">
+									<w4india:inr value="0"/>
+						</span>
 					</td>
 				</tr>
 				<tr>
-					<td colspan="1">Education Cess</td>
-					<td>
-						<div class="btn-group" class="decimal">
-							<button class="btn btn-small dropdown-toggle"
-								data-toggle="dropdown">Not Calculated</button>
-						</div>
+					<td colspan="1"><fmt:message key="education.cess"/></td>
+					<td  style="text-align:left">
+						<span class="decimal">
+									<w4india:inr value="0"/>
+						</span>
 					</td>
 				</tr>
 				<tr>
-					<td colspan="1">Tax including Surcharge & Education Cess</td>
-					<td>
-						<div class="btn-group" class="decimal">
-							<button class="btn btn-small dropdown-toggle"
-								data-toggle="dropdown">Not Calculated</button>
-						</div>
+					<td colspan="1"><fmt:message key="tax.education.surcharge"/></td>
+					<td  style="text-align:left">
+						<span class="decimal">
+									<w4india:inr value="0"/>
+						</span>
 					</td>
 				</tr>
 				<tr>
-					<td colspan="1">Less:prepaid Tax</td>
-					<td>
-						<div class="btn-group" class="decimal">
-							<button class="btn btn-small dropdown-toggle"
-								data-toggle="dropdown">Not Calculated</button>
-						</div>
+					<td colspan="1"><fmt:message key="less.prepaid.tax"/></td>
+					<td  style="text-align:left">
+						<span class="decimal">
+									<w4india:inr value="0"/>
+						</span>
 					</td>
 				</tr>
 				<tr>
@@ -242,7 +225,7 @@
 								</c:when>
 									<c:when
 										test="${not empty theForm.taxPaid.taxesPaid.advanceTax}">
-										<c:out value="${ theForm.taxPaid.taxesPaid.advanceTax}" />
+										<w4india:inr value="${ theForm.taxPaid.taxesPaid.advanceTax}"/>
 									</c:when>
 									<c:otherwise>
 										<c:out value="Fill Now" />
@@ -258,7 +241,7 @@
 					</td>
 				</tr>
 				<tr>
-					<td colspan="1">Self Assesment Tax</td>
+					<td colspan="1"><fmt:message key="advance.selfassesmenttax.itr1" /></td>
 					<td>
 						<div class="btn-group" class="decimal">
 							<button class="btn btn-small dropdown-toggle"
@@ -269,7 +252,8 @@
 								</c:when>
 									<c:when
 										test="${not empty theForm.taxPaid.taxesPaid.selfAssessmentTax}">
-										<c:out value="${theForm.taxPaid.taxesPaid.selfAssessmentTax}" />
+										<w4india:inr value="${theForm.taxPaid.taxesPaid.selfAssessmentTax}"/>
+										
 									</c:when>
 									<c:otherwise>
 										<c:out value="Fill Now" />
@@ -278,13 +262,14 @@
 								<span class="caret"></span>
 							</button>
 							<ul class="dropdown-menu">
-								<li><a href="<c:out value="${scriptName}"/>?tab=selfassesmenttax"><fmt:message key="advance.selfassesmenttax.itr1" /></a></li>
+								<li><a href="<c:out value="${scriptName}"/>?tab=selfassesmenttax">
+								<fmt:message key="advance.selfassesmenttax.itr1" /></a></li>
 							</ul>
 						</div>
 					</td>
 				</tr>
 				<tr>
-					<td colspan="1">TDS From Salary</td>
+					<td colspan="1"><fmt:message key="advance.tdssalary.itr1" /></td>
 					<td>
 						<div class="btn-group" class="decimal">
 							<button class="btn btn-small dropdown-toggle"
@@ -294,21 +279,21 @@
 										<c:out value="Fill Now" />
 									</c:when>
 									<c:otherwise>
-										<c:out value="${bigTotalTdsSalary}" />
+										<w4india:inr value="${bigTotalTdsSalary}"/>
 									</c:otherwise>
 								</c:choose>
 								<span class="caret"></span>
 							</button>
 							<ul class="dropdown-menu">
 								<li><a
-									href="<c:out value="${scriptName}"/>?tab=tdsfromsalary"><fmt:message
-											key="advance.tdssalary.itr1" /> </a></li>
+									href="<c:out value="${scriptName}"/>?tab=tdsfromsalary">
+									<fmt:message key="advance.tdssalary.itr1" /> </a></li>
 							</ul>
 						</div>
 					</td>
 				</tr>
 				<tr>
-					<td colspan="1">TDS From Others</td>
+					<td colspan="1"><fmt:message key="advance.tdsothers.itr1" /></td>
 					<td>
 						<div class="btn-group" class="decimal">
 							<button class="btn btn-small dropdown-toggle"
@@ -318,27 +303,44 @@
 										<c:out value="Fill Now" />
 									</c:when>
 									<c:otherwise>
-										<c:out value="${bigTotalTdsOther}" />
+									<w4india:inr value="${bigTotalTdsOther}"/>
+										
 									</c:otherwise>
 								</c:choose>
 								<span class="caret"></span>
 							</button>
 							<ul class="dropdown-menu">
 								<li><a
-									href="<c:out value="${scriptName}"/>?tab=tdsfromothers"><fmt:message
-											key="advance.tdsothers.itr1" /> </a></li>
+									href="<c:out value="${scriptName}"/>?tab=tdsfromothers">
+									<fmt:message key="advance.tdsothers.itr1" /> </a></li>
 							</ul>
 						</div>
 					</td>
 				</tr>
 				<tr>
+					<td colspan="1"><fmt:message key="relief.section.89"/></td>
+					<td  style="text-align:left">
+						<span class="decimal">
+									<w4india:inr value="0"/>
+						</span>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="1"><fmt:message key="relief.section.90/91"/></td>
+					<td  style="text-align:left">
+						<span class="decimal">
+									<w4india:inr value="0"/>
+						</span>
+					</td>
+				</tr>
+				
+				<tr>
 				<tr class="success">
-					<td colspan="1"><b>Tax Payable/Refund </b>
-					<td>
-						<div class="btn-group" class="decimal">
-							<button class="btn btn-small dropdown-toggle"
-								data-toggle="dropdown">Not Calculated</button>
-						</div>
+					<td colspan="1"><b><fmt:message key="tax.payble.refund"/></b>
+					<td  style="text-align:left">
+						<span class="decimal">
+									<w4india:inr value="0"/>
+						</span>
 					</td>
 				</tr>
 			</table>
