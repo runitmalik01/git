@@ -21,6 +21,22 @@ public final class IndianCurrencyHelper {
 			return null;
 	}
 
+	/**
+	 * This Method is used to Round the Decimal Values Upto 
+	 * two decimal places
+	 *
+	 * @return double 
+	 * @param double
+	 * 
+	 * ****/
+
+	public double RoundTo2Decimals(double val) {
+		DecimalFormat df2 = new DecimalFormat("###.##");
+		return Double.valueOf(df2.format(val));
+	}
+
+
+
 	// method to convert double value into Long
 	public Long longRound(Double in){
 		BigDecimal bd = new BigDecimal(in).setScale(0, RoundingMode.HALF_EVEN);
