@@ -504,17 +504,13 @@
 							</td>
 							<td><c:out value="${houseincomedetail.address}" />
 							</td>
-
 							<td><c:out value="${houseincomedetail.property_share}" />
 							</td>
 							<td><c:out value="${houseincomedetail.income_hproperty}" />
 							</td>
 							<td><a
 								href="${scriptName}/<c:out value="${houseincomedetail.canonicalUUID}"/>/houseincomeedit"><small>Edit</small>
-									<c:set var="canonicalUUID"
-										value="${houseincomedetail.canonicalUUID}" /> <c:set
-										var="scriptName" value="${scriptName}" /> </a>&nbsp;&nbsp;<a
-								id="delete"><small>Delete</small> </a>
+	                    </a>&nbsp;&nbsp;<a href="${scriptName}/<c:out value="${houseincomedetail.canonicalUUID}"/>/houseincomedelete" id="delete" onclick="return checkdelete()"><small>Delete</small> </a>
 							</td>
 						</tr>
 
@@ -527,25 +523,6 @@
 		</c:otherwise>
 	</c:choose>
 </div>
-<script type="text/javascript">
-	$('#letout').change(function() {
-		$('.letout_' + $(this).val() + '_v').show();
-		$('.letout_' + $(this).val() + '_h').hide();
-		$('.letout_' + $(this).val() + '_inv').val('');
-		$('.letout_' + $(this).val() + '_inh').val('');
-	});
-	$('#delete')
-			.click(
-					function() {
-						var result = confirm("Do you want to delete permanently");
-						if (result) {
-							$('#delete')
-									.attr(
-											'href',
-											'<c:out value="${scriptName}"/>/<c:out value="${canonicalUUID}"/>/houseincomedelete');
-						}
-					});
-</script>
 <res:client-validation formId="frmdataHouseIncome" screenConfigurationDocumentName="houseincome" formSubmitButtonId="myModalHrefHouseIncome" />
 <hst:element var="uiCustom" name="script">
     <hst:attribute name="type">text/javascript</hst:attribute>
@@ -554,11 +531,25 @@
 			      $('#Pin').val('999999');
 			      $('#Pin').attr('readonly','readonly');
 			   }else{
-                     $('#Pin').val('');
-                     $('#Pin').removeAttr('readonly');
-                    }
+                            $('#Pin').val('');
+                            $('#Pin').removeAttr('readonly');
+                            }
 			});
+	$('#letout').change(function(){
+		$('.letout_' + $(this).val() + '_v').show();
+		$('.letout_' + $(this).val() + '_h').hide();
+	});
+        function checkdelete(){
+	        var re=confirm("Do You want to Delete it");
+	          if (re) return true;
+	          else return false;
+                    }
+<c:if test="${not empty childBean.letOut}">
+	var letout='<c:out value="${childBean.letOut}"/>';
+	if(letout!=''){
+		$('.letout_' + letout + '_v').show();
+		$('.letout_' + letout + '_h').hide();
+	}</c:if>
 			</hst:element>
-			<hst:headContribution element="${uiCustom}" category="jsInternal"/>
-
+<hst:headContribution element="${uiCustom}" category="jsInternal"/>
 <res:calc screenCalc="houseincome" formId="frmdataHouseIncome"></res:calc>
