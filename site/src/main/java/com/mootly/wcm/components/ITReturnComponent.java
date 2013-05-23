@@ -21,6 +21,7 @@ import java.io.InputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
@@ -44,6 +45,7 @@ import org.hippoecm.hst.core.component.HstResponse;
 import org.hippoecm.hst.core.linking.HstLink;
 import org.hippoecm.hst.core.request.ResolvedSiteMapItem;
 import org.hippoecm.repository.reviewedactions.FullReviewedActionsWorkflow;
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -60,6 +62,7 @@ import com.mootly.wcm.annotations.RequiredFields;
 import com.mootly.wcm.annotations.ValueListBeans;
 import com.mootly.wcm.beans.CompoundChildUpdate;
 import com.mootly.wcm.beans.FormMapFiller;
+import com.mootly.wcm.beans.ScreenCalculation;
 import com.mootly.wcm.beans.ScreenConfigDocument;
 import com.mootly.wcm.beans.ValueListDocument;
 import com.mootly.wcm.member.Member;
@@ -67,6 +70,7 @@ import com.mootly.wcm.model.FilingStatus;
 import com.mootly.wcm.model.FinancialYear;
 import com.mootly.wcm.model.ITReturnPackage;
 import com.mootly.wcm.model.ITReturnType;
+import com.mootly.wcm.services.ScreenCalculatorService;
 import com.mootly.wcm.services.ScreenConfigService;
 import com.mootly.wcm.utils.GoGreenUtil;
 
@@ -739,7 +743,22 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 				request.setAttribute("screenConfigDocumentJSON", screenConfigDocumentJSON);
 			}
 		}
-				
+		//Screen Calculation Configuration
+		String isCalc = getPublicRequestParameter(request,"command");
+		String screen=getPublicRequestParameter(request, "screen");
+		if (isCalc != null && isCalc.equals("calc") && screen!=null) {
+			log.info("we are on to calculate for"+screen);
+			String pathToScreenCalc = "configuration/screencalculation/" + screen.toLowerCase();
+			ScreenCalculation screencalc=siteContentBaseBean.getBean(pathToScreenCalc, ScreenCalculation.class);
+			Map<String,Object> resultSet = ScreenCalculatorService.getScreenCalculations(screencalc.getScript(), request.getParameterMap(""), null);
+			if (resultSet != null) {
+				request.setAttribute("resultSet", resultSet);
+				JSONObject jsonObject  = new JSONObject(resultSet);
+				request.setAttribute("jsonObject", jsonObject);
+				//response.setContentType("application/json");
+				response.setRenderPath("jsp/common/calculation_response.jsp");
+			}
+		}		
 	}
 
 	protected void sanitize(HstRequest request,HstResponse response,FormMap formMap) {
