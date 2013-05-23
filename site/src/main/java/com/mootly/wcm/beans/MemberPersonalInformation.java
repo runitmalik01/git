@@ -203,8 +203,14 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 		}
 		return date2;
 	}
-
-	
+	public String getAckDateStr() {
+		if (originalAckDate == null) originalAckDate = getProperty(PROP_PI_ORIGINAL_ACK_DATE);
+		if (originalAckDate != null) {
+			String ackdateStr = getIndianDateFormatter().format(originalAckDate.getTime());
+			return ackdateStr;
+		}
+		return null;
+	}
 	public String getDefective() {
 		if (defective == null) defective = getProperty(PROP_PI_DEFECTIVE);
 		return defective;
@@ -217,7 +223,14 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 		if (noticeDate == null) noticeDate = getProperty(PROP_PI_NOTICE_DATE);
 		return noticeDate;
 	}
-	
+	public String getNoticeDateStr() {
+		if (noticeDate == null) noticeDate = getProperty(PROP_PI_NOTICE_DATE);
+		if (noticeDate != null) {
+			String noticeStr = getIndianDateFormatter().format(noticeDate.getTime());
+			return noticeStr;
+		}
+		return null;
+	}
 	public XMLGregorianCalendar getGregorianNoticeDate() {
 		if (noticeDate == null) noticeDate = getProperty(PROP_PI_NOTICE_DATE);
 		String dobStr = getIndianDateFormatter().format(noticeDate.getTime());
