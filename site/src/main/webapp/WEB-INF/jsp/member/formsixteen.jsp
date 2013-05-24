@@ -488,22 +488,20 @@
 					<fieldset>
 						<legend style="color: black">Deductions</legend>
 						<table>
-						<c:choose>
-						<c:when test="${not empty dedWithFormSixteen }">
-						<tr><td><label><strong>9.</strong>Deductions under Chapter VI-A </label></td>
+						<tr><td><label><strong>9.</strong>Deductions
+										under Chapter VI-A </label></td>
 						<td class="btn-group" class="decimal" >
-						<a id="click" role="button" class="btn" onclick="submitBeforeGo()" data-toggle="" ><fmt:message key="click.add.deductions" /></a>
+							<button class="btn btn-small dropdown-toggle" 
+								data-toggle="dropdown">Click to Add Deductions
+								<span class="caret"></span>
+							</button>
+							<ul class="dropdown-menu">
+								<li><a
+									href="<c:out value="${scriptName}"/>?tab=deductions"> Add </a></li>
+							</ul>
 						</td>
-					</tr></c:when>
-					<c:otherwise>
-				
-					</c:otherwise>
-						</c:choose>
-						<!-- 
-						EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE -->
-			
-						
-		<!-- 
+					
+						</tr><!-- 
 							<tr>
 								<td><label><strong>9.</strong> </label> <label>Deductions
 										under Chapter VI-A </label>
@@ -1004,7 +1002,6 @@
 						   <a id="myModalHrefFormSixteen" role="button" class="btn orange">Save</a>
 					</div>
 					</div>
-					
 			</form>
 		</c:when>
 		<c:otherwise>
@@ -1054,13 +1051,6 @@ $('#delete').click(function(){
 		$('#delete').attr('href','<c:out value="${scriptName}"/>/<c:out value="${canonicalUUID}"/>/formsixteendelete');
 	}
 });
-$('#click').click(function(){
-$('#frmdataFormSixteen').submit()
-		$('#delete').attr('href',"<c:out value="${scriptName}"/>?tab=deductions");
-	
-});
-
 </script>
 
 <res:client-validation formId="frmdataFormSixteen" screenConfigurationDocumentName="formsixteen" formSubmitButtonId="myModalHrefFormSixteen" />
-
