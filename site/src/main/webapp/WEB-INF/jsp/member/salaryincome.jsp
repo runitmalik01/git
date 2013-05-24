@@ -274,7 +274,7 @@
 							</div>
 
 							<div class="rowlabel">
-								<input type="text" name="Taxable_earning" id="Taxable_earning" class="decimal"
+								<input type="text" name="Taxable_earning" id="Taxable_earning" class="decimal" readonly="readonly"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.taxable_earning}"/></c:if>" />
 							</div>
 						</div>
