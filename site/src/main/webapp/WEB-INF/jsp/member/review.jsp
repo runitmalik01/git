@@ -8,9 +8,28 @@
 
 <hst:actionURL var="actionUrl"></hst:actionURL>
 <form id="frmReview" action="${actionUrl}" name="rating" method="post">
+<div id="comments">
+      <%--@elvariable id="reviews" type="java.util.List<com.mootly.wcm.beans.Review>"--%>
+      <c:forEach items="${reviews}" var="review">
+          <ul class="comment-item">
+              <li class="name"><a href="#">Name:<c:out value="${review.name}"/></a></li>
+              <li class="date"><span class="seperator">|</span> <fmt:formatDate value="${review.date.time}"
+                                                                                pattern="MMM dd, yyyy"/></li>
+              <li class="text">
+                  <ul>
+                      <li class="score"><fmt:message key="products.detail.score"/>:</li>
+                      <fmt:formatNumber value="${review.rating * 10}" var="reviewRatingStyle" pattern="#0"/>
+                      <li class="rating stars-${reviewRatingStyle}"></li>
+                      <li class="review"><c:out value="${review.comment}"/></li>
+                  </ul>
+              </li>
+              <li class="bg-bottom"></li>
+          </ul>
+      </c:forEach>
+  </div>
 
 <div align="center">
-	<a href="#myModal" id="click" role="button" class="btn" data-toggle="modal" >Review This Page</a>
+	<a href="#myModalReview" id="clickReview" role="button" class="btn" data-toggle="modal" >Review This Page</a>
 </div>
 	<!-- Modal -->
 	<div id="" class="modal hide fade" tabindex="-1" role="dialog"
@@ -19,13 +38,21 @@
 			<button type="button" class="close" data-dismiss="modal"
 				aria-hidden="true">×</button>
 			<h3 id="myModalLabel">Review This Page</h3>
+
+			<c:if test="${not empty success}">
+				<fmt:message key="products.detail.thanksforreview" />
+				<br />
+				<br />
+			</c:if>
+
 		</div>
 		<div class="modal-body">
+		
 			<fieldset>
-				<label for="review_name">Name</label> 
-				<input type="text" id="review_name" name="review_name" value=" " data-toggle="tooltip"  maxlength="25" /> 
-				<label for="review_email">Email</label>
-				<input type="text" id="review_email" name="review_email" value=""/>
+				<label for="name">Name</label> 
+				<input type="text" required="required" id="name" name="name" value="" data-toggle="tooltip"  maxlength="25" /></br>
+				<label for="email">Email</label></br>
+				<input type="email" required="required" id="email" name="email" value=""/></br>
 				<label for="review_score">Score</label>
 				 <ol class="rate">
                                   <li><span title="Rate: 1">1</span></li>
@@ -35,26 +62,22 @@
                                   <li><span title="Rate: 5">5</span></li>
                               </ol>
                 <input type="hidden" value="0" name="rating" id="ratingField" /></br>
-				<label for="review">Review</label>
-				<textarea  name="review" id="review" rows="5" cols="50"></textarea>
+				<label for="comment">Review</label>
+				<textarea name="comment" id="comment" rows="5" cols="50"><c:if test="${not empty comment}"><c:out value="${comment}"/></c:if></textarea>
 				
 			</fieldset>
 		</div>
 		<div class="modal-footer">
 			<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-			<button id="myModalHrefReview" class="btn btn-primary">Submit</button>
+			<input type="submit" value="Submit" class="btn btn-primary"/>
 		</div>
 	</div>
 
 </form>
 
-
-<res:client-validation formId="frmReview" screenConfigurationDocumentName="review" formSubmitButtonId="myModalHrefReview" />
-
-
 <script type="text/javascript">
-		$('#click').click(function(){
-			$('.modal').attr('id','myModal');
+		$('#clickReview').click(function(){
+			$('.modal').attr('id','myModalReview');
 		});
 		</script>
 
@@ -63,6 +86,9 @@
     <script type="text/javascript" src="${rateJs}"></script>
 </hst:headContribution>
 
+<c:if test="${preview && inlineEditingEnabled}">
+    <jsp:include page="../inc/inline-editing-editor-form.jsp"/>
+</c:if>
 
 <style>
 
