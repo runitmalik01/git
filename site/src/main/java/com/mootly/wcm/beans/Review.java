@@ -25,6 +25,7 @@ import static com.mootly.wcm.utils.Constants.PROP_RATING;
 
 import java.util.Calendar;
 
+import org.hippoecm.hst.component.support.forms.FormMap;
 import org.hippoecm.hst.content.beans.ContentNodeBinder;
 import org.hippoecm.hst.content.beans.ContentNodeBindingException;
 import org.hippoecm.hst.content.beans.Node;
@@ -46,7 +47,7 @@ import com.mootly.wcm.utils.Constants;
  */
 
 @Node(jcrType = Constants.NT_REVIEW)
-public class Review extends BaseDocument implements ContentNodeBinder {
+public class Review extends BaseDocument implements ContentNodeBinder ,FormMapFiller {
 
     private static final Logger log = LoggerFactory.getLogger(Review.class);
 
@@ -101,20 +102,6 @@ public class Review extends BaseDocument implements ContentNodeBinder {
         this.comment = comment;
     }
 
-    public Product getProduct() {
-        HippoBean bean = getBean(NT_PRODUCTLINK);
-        if (!(bean instanceof HippoMirror)) {
-            return null;
-        }
-
-        Product prdBean = (Product) ((HippoMirror) bean).getReferencedBean();
-
-        if (prdBean == null) {
-            return null;
-        }
-        return prdBean;
-    }
-
     @Override
     public boolean bind(Object content, javax.jcr.Node node) throws ContentNodeBindingException {
         if (content instanceof Review) {
@@ -126,15 +113,6 @@ public class Review extends BaseDocument implements ContentNodeBinder {
                 node.setProperty(PROP_RATING, review.getRating());
                 node.setProperty(PROP_DATE, Calendar.getInstance());
 
-                javax.jcr.Node prdLinkNode;
-
-                if (node.hasNode(NT_PRODUCTLINK)) {
-                    prdLinkNode = node.getNode(NT_PRODUCTLINK);
-                } else {
-                    prdLinkNode = node.addNode(NT_PRODUCTLINK, "hippo:mirror");
-                }
-                prdLinkNode.setProperty("hippo:docbase", review.getProductUuid());
-
             } catch (Exception e) {
                 log.error("Unable to bind the content to the JCR Node" + e.getMessage(), e);
                 throw new ContentNodeBindingException(e);
@@ -143,4 +121,38 @@ public class Review extends BaseDocument implements ContentNodeBinder {
         }
         return true;
     }
+    
+    @Override
+	public void fill(FormMap formMap) {
+		// TODO Auto-generated method stub
+		if (log.isInfoEnabled()) {
+			log.info("Into the fill method");			
+		}
+		if (formMap == null) return;
+		if ( formMap.getField("name") != null) {
+			String name=formMap.getField("name").getValue();
+			setName(name);
+		}
+		if ( formMap.getField("email") != null) {
+			String email=formMap.getField("email").getValue();
+			setEmail(email);
+		}
+		if ( formMap.getField("comment") != null) {
+			String comment=formMap.getField("comment").getValue();
+			setComment(comment);
+		}
+		if ( formMap.getField("rating") != null) {
+			String rating=formMap.getField("rating").getValue();
+			Long longrating=Long.parseLong(rating);
+			setRating(longrating);
+		}
+		
+	}
+	
+	@Override
+	public <T extends HippoBean> void cloneBean(T sourceBean) {
+		// TODO Auto-generated method stub
+		
+	}
+    
 }
