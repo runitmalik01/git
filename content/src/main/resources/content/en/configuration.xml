@@ -4674,7 +4674,7 @@ out_Income_hproperty=-150000;
 var indianCurrencyHelper = new com.mootly.wcm.services.IndianCurrencyHelper();
 
 
-out_Totalint=(Gov_income-0)+(Kissan+Bank_detail_fdr-0)+(Bank_detail_saving-0)+(Indira-0)+(intnsc-0)+(Otherint-0);
+out_Totalint=(Gov_income-0)+(Kissan-0)+(Bank_detail_fdr-0)+(Bank_detail_saving-0)+(Indira-0)+(intnsc-0)+(Otherint-0);
 
 
 out_TotalOther_income=(Family_pension-0)+(Dividends-0)+(Income_rent_machine-0)+(Income_maintain-0)+(Income_other-0)+(Deduction_57-0);
