@@ -74,22 +74,27 @@
 							<c:set var="theKey" value="total_${fn:replace(deductionSectionName,'-','_')}"/>
 							<c:choose>
 								<c:when test="${not empty totalMapForJS && not empty totalMapForJS[theKey]}">
-									<w4india:inr value="${totalMapForJS[theKey]}"/>
-									<c:set var="totalEligibleDeduction" value="${totalEligibleDeduction + totalMapForJS[theKey]}"/>
+									<w4india:inr value="${totalMapForJS[theKey]}"/>									
 								</c:when>	
 								<c:otherwise>
 									<w4india:inr value="0"/>
 								</c:otherwise>
 							</c:choose>
-							
 						</span>
 					</td>
 				</tr>	
-			</c:forEach>		
+			</c:forEach>	
+				<c:forEach items="${deductionSectionMap}" var="deductionSectionMapEntry">
+				<c:set var="key" value="total_${deductionSectionMapEntry.key }"/>
+				<c:if test="${not empty totalMapForJS && not empty totalMapForJS[key]}">
+				<c:set var="finaltotalEligibleDeduction" value="${finaltotalEligibleDeduction + totalMapForJS[key]}"/>
+				</c:if>
+				</c:forEach>	
 			<tr class="success">
 				<td colspan="1" style="text-align:right"><b>Total</b></td>				
 				<td align="right" style="text-align:right"><b><w4india:inr value="${grandTotal}"/></b></td>
-				<td align="right" style="text-align:right"><b><w4india:inr value="${totalEligibleDeduction}"/></b></td>
+				<td align="right" style="text-align:right"><b><w4india:inr value="${finaltotalEligibleDeduction}"/></b>
+				</td>
 			</tr>	
 		</table>
 </div>
