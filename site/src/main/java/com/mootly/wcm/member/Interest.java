@@ -1,7 +1,6 @@
 /*
- * In this class we are creating a document for storing value of salary income details of user
- * according to form 16.
- * @author abhishek
+ * In this class we are getting values required for the calculation of interest
+ * @author Dhananjay
  * 04/03/2013
  * 
  * 
@@ -21,8 +20,21 @@ import com.mootly.wcm.annotations.FormFields;
 import com.mootly.wcm.annotations.PrimaryBean;
 import com.mootly.wcm.annotations.RequiredBeans;
 import com.mootly.wcm.beans.AdvanceTaxDocument;
+import com.mootly.wcm.beans.DeductionDocument;
+import com.mootly.wcm.beans.HouseProperty;
 import com.mootly.wcm.beans.InterestDoc;
+import com.mootly.wcm.beans.MemberContactInformation;
 import com.mootly.wcm.beans.MemberPersonalInformation;
+import com.mootly.wcm.beans.OtherSourcesDocument;
+import com.mootly.wcm.beans.SalaryIncomeDocument;
+import com.mootly.wcm.beans.SelfAssesmetTaxDocument;
+import com.mootly.wcm.beans.TdsFromSalaryDocument;
+import com.mootly.wcm.beans.TdsFromothersDocument;
+import com.mootly.wcm.beans.compound.AdvanceTaxDetail;
+import com.mootly.wcm.beans.compound.DeductionDocumentDetail;
+import com.mootly.wcm.beans.compound.HouseIncomeDetail;
+import com.mootly.wcm.beans.compound.SalaryIncomeDetail;
+import com.mootly.wcm.beans.compound.TdsFromSalaryDetail;
 import com.mootly.wcm.components.ITReturnComponent;
 import com.mootly.wcm.utils.ContentStructure;
 
@@ -34,7 +46,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @PrimaryBean(primaryBeanClass=InterestDoc.class)
-@AdditionalBeans(additionalBeansToLoad=MemberPersonalInformation.class)
+@AdditionalBeans(additionalBeansToLoad={MemberPersonalInformation.class,AdvanceTaxDocument.class,AdvanceTaxDetail.class})
 @RequiredBeans(requiredBeans={MemberPersonalInformation.class})
 @FormFields(fieldNames={"section234A","section234B","section234C","section234ABC"})
 
@@ -42,22 +54,11 @@ public class Interest extends ITReturnComponent {
 
 	private static final Logger log = LoggerFactory.getLogger(Interest.class);
 
-	Member member = null;
-	String financialYear = null;
-	String modusername= null;
-	String pan = null;
-	Session persistableSession = null;
-
 	@Override
 	public void doBeforeRender(HstRequest request, HstResponse response) {
 		super.doBeforeRender(request, response);
 
-		member=(Member)request.getSession().getAttribute("user");
-		String username=member.getUserName().trim();
-		modusername=username.replaceAll("@", "-at-").trim();
-		financialYear = request.getRequestContext().getResolvedSiteMapItem().getParameter("financialYear");
-		//itReturnType = request.getRequestContext().getResolvedSiteMapItem().getParameter("itReturnType"); //original versus amend
-		pan = request.getRequestContext().getResolvedSiteMapItem().getParameter("pan"); //original versus amend
+		AdvanceTaxDocument advanceTaxDocument = (AdvanceTaxDocument) request.getAttribute(AdvanceTaxDocument.class.getSimpleName().toLowerCase());
 
 		//current date
 		final Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("GMT"));
@@ -66,59 +67,44 @@ public class Interest extends ITReturnComponent {
 		String strDate=new Date().toString();
 		//current month
 		@SuppressWarnings("deprecation")
-		int currentdatemonth =currentdate.getMonth()+1;
-		request.setAttribute("intmonth", currentdatemonth);
+		int year=currentdate.getYear()+1900;
+
+		if(year==2013){
+			int currentdatemonth =currentdate.getMonth()+1;
+			request.setAttribute("intmonth", currentdatemonth);
+		}
+		if(year==2014){
+			int currentdatemonth =currentdate.getMonth()+1+12;
+		}
 		//conversion of month into string
 		String strmonth=strDate.substring(4,7);
 		request.setAttribute("strmonth", strmonth);
 
-		log.info("inside fetchSalaryIncomeDocument--->member:-"+member);
-		log.info("inside fetchSalaryIncomeDocument--->member:-"+financialYear);
-		log.info("inside fetchSalaryIncomeDocument--->member:-"+pan);
+		double dtotalamount=0.0d;
+		double dsum1=0.0d;
+		double dsum2=0.0d;
+		double dsum3=0.0d;
+		double dsum4=0.0d;
+		double dsum12=0.0d;
 
-		if(member!=null){
-			double dtotalamount=0.0d;
-			double dsum1=0.0d;
-			double dsum2=0.0d;
-			double dsum3=0.0d;
-			double dsum4=0.0d;
-			double dsum12=0.0d;
+		if(advanceTaxDocument!= null){
 
-			log.info("inside fetchtcsDocument--->before try:-");
-			try {
+			dtotalamount = advanceTaxDocument.getTotal_Amount();
+			dsum1=advanceTaxDocument.getTotal_Sum1();
+			dsum2=advanceTaxDocument.getTotal_Sum2();
+			dsum3=advanceTaxDocument.getTotal_Sum3();
+			dsum4=advanceTaxDocument.getTotal_Sum4();
+			dsum12=dsum1+dsum2;
 
-				String path=ContentStructure.getAdvanceTaxcPath(pan,financialYear, modusername);
-				log.info("advance tax path--------------------------------------------"+path);
-				AdvanceTaxDocument advancetaxdocument =(AdvanceTaxDocument)getObjectBeanManager(request).getObject(path);
-				log.info("bean objectttttttttt---------------"+advancetaxdocument);
-				request.setAttribute("advancetaxdocument", advancetaxdocument);
-				if(advancetaxdocument!= null){
-					log.info("inside if-----------------------------------------");
-					dtotalamount = advancetaxdocument.getTotal_Amount();
-					dsum1=advancetaxdocument.getTotal_Sum1();
-					dsum2=advancetaxdocument.getTotal_Sum2();
-					dsum3=advancetaxdocument.getTotal_Sum3();
-					dsum4=advancetaxdocument.getTotal_Sum4();
-					dsum12=dsum1+dsum2;
-
-					log.warn("total amount object is"+advancetaxdocument.getTotal_Amount());
-					log.info("total amount is  isssssssss"+dtotalamount);
-					request.setAttribute("totaltax", dtotalamount);
-					request.setAttribute("dsum12",dsum12);
-					request.setAttribute("dsum3",dsum3);
-					request.setAttribute("dsum4",dsum4);
-				}else{
-					log.info("inside else---------------------------------------------");
-					request.setAttribute("totaltax", "0");
-					request.setAttribute("dsum12","0");
-					request.setAttribute("dsum3","0");
-					request.setAttribute("dsum4","0");
-				}
-
-			}catch (ObjectBeanManagerException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			request.setAttribute("totaltax", dtotalamount);
+			request.setAttribute("dsum12",dsum12);
+			request.setAttribute("dsum3",dsum3);
+			request.setAttribute("dsum4",dsum4);
+		}else{
+			request.setAttribute("totaltax", "0");
+			request.setAttribute("dsum12","0");
+			request.setAttribute("dsum3","0");
+			request.setAttribute("dsum4","0");
 		}
 	}
 
