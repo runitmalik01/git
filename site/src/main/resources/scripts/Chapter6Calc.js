@@ -12,7 +12,7 @@ var maxAllowed_80D=35000;
 var maxAllowed_80DD=100000;
 var maxAllowed_80U=100000;
 var maxAllowed_80qqb_80rrb=300000;
-out_total_eligiblededuction=0;
+//out_total_eligiblededuction=0;
 //isSeniorCitizen=true;
 /** - END Configuration */
 //80E-It depends on gross total income
@@ -45,7 +45,7 @@ out_total_80ccd_2=doubleArray[2].doubleValue();
 //-- This is specially for total_80ccd_er (employer's this is dependent on total of salary income, houseincome and other sources)
 
 //exempt for Employee's Contribution to Pension Account i.e. 80ccd_1
-var tenperSalincome=(salarypension-0)/10;
+var tenperSalincome=(salarypension *0.1);
 if(total_80ccd_1 >= tenperSalincome)
 	out_total_80ccd_1=tenperSalincome;
 else out_total_80ccd_1=total_80ccd_1;
@@ -115,12 +115,13 @@ out_total_80id= (total_80id < grosstotal) ? total_80id:grosstotal;
 
 out_total_80jja= (total_80jja < grosstotal) ? total_80jja:grosstotal;
 
-out_total_80ia= (total_80ia < grosstotal) ? total_80ia:grosstotal;
+//out_total_80ia= (total_80ia < grosstotal) ? total_80ia:grosstotal;
 
-out_total_eligiblededuction= out_total_80c + out_total_80ccc + out_total_80ccd_1 + out_total_80ccd_2 + out_total_80ccf + out_total_80g + out_total_80d + out_total_80dd + out_total_80e + out_total_80ddb + out_total_80gga + out_total_80ggc + out_total_80u + out_total_80qqb + out_total_80rrb + out_total_80id + out_total_80jja + out_total_80ia;
-if(out_total_eligiblededuction>grosstotal)
-	out_total_eligiblededuction=grosstotal;
-print(grosstotal);
+out_total_eligiblededuction= out_total_80c + out_total_80ccc + out_total_80ccd_1 + out_total_80ccd_2 + out_total_80ccf + out_total_80g + out_total_80d + out_total_80dd + out_total_80e + out_total_80ddb + out_total_80gga + out_total_80ggc + out_total_80u + out_total_80qqb + out_total_80rrb + out_total_80id + out_total_80jja;
+
+/*if(out_total_eligiblededuction>grosstotal)
+	out_total_eligiblededuction=grosstotal;*/
+print("hello word"+grosstotal);
 //lets break the module into functions for easier maintenance
 function calcEligibleMedicalPremium(inAmount,isSeniorCitizen) {
 	if (inAmount > 15000 && !isSeniorCitizen) {
