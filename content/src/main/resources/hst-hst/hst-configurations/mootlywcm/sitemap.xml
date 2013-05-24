@@ -1866,12 +1866,10 @@
                 <sv:value>hst:pages/interest</sv:value>
               </sv:property>
               <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
-                <sv:value>pan</sv:value>
                 <sv:value>mainSiteMapItemRefId</sv:value>
                 <sv:value>action</sv:value>
               </sv:property>
               <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
-                <sv:value>${2}</sv:value>
                 <sv:value>interest</sv:value>
                 <sv:value>EDIT</sv:value>
               </sv:property>
