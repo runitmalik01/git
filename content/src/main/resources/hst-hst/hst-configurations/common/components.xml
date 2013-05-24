@@ -1122,7 +1122,7 @@
       <sv:value>d46343be-be4f-4f09-a084-4e15de0f57a8</sv:value>
     </sv:property>
     <sv:property sv:name="hst:componentclassname" sv:type="String">
-      <sv:value>com.mootly.wcm.member.Review</sv:value>
+      <sv:value>com.mootly.wcm.member.Reviews</sv:value>
     </sv:property>
     <sv:property sv:name="hst:template" sv:type="String">
       <sv:value>reviews</sv:value>
