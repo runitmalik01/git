@@ -145,13 +145,8 @@
 	  </div>
 	</div>
 </c:if>
-<a  id="click" role="button" class="btn" data-toggle="" onclick="lastURL()"><fmt:message key="back.to.formsixteen" /></a>
-<script>
-function lastURL() {
-	var oldURL = document.referrer;
-	window.location.href=oldURL  ;
-}
-</script>
+<a href="${scriptName}?tab=formsixteen" id="test" role="button" class="btn" data-toggle="" ><fmt:message key="back.to.formsixteen" /></a>
+
 
 <hst:element var="uiCustom" name="script">
     <hst:attribute name="type">text/javascript</hst:attribute>
