@@ -42,7 +42,7 @@
 							<ul class="dropdown-menu">
 								<li><a
 									href="<c:out value="${scriptName}"/>?tab=formsixteen"><fmt:message
-											key="income.salary.penson" /> </a></li>
+											key="income.Form16.penson" /> </a></li>
 							</ul>
 						</div>
 					</td>
