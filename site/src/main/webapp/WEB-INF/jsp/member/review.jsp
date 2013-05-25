@@ -8,7 +8,19 @@
 
 <hst:actionURL var="actionUrl"></hst:actionURL>
 <form id="frmReview" action="${actionUrl}" name="rating" method="post">
+
 <div id="comments">
+
+
+
+			<c:if test="${not empty success}">
+				<fmt:message key="products.detail.thanksforreview" />
+				<br />
+				<br />
+			</c:if>
+
+
+
       <%--@elvariable id="reviews" type="java.util.List<com.mootly.wcm.beans.Review>"--%>
       <c:forEach items="${reviews}" var="review">
           <ul class="comment-item">
@@ -39,12 +51,6 @@
 				aria-hidden="true">×</button>
 			<h3 id="myModalLabel">Review This Page</h3>
 
-			<c:if test="${not empty success}">
-				<fmt:message key="products.detail.thanksforreview" />
-				<br />
-				<br />
-			</c:if>
-
 		</div>
 		<div class="modal-body">
 		
@@ -63,7 +69,7 @@
                               </ol>
                 <input type="hidden" value="0" name="rating" id="ratingField" /></br>
 				<label for="comment">Review</label>
-				<textarea name="comment" id="comment" rows="5" cols="50"><c:if test="${not empty comment}"><c:out value="${comment}"/></c:if></textarea>
+				<textarea name="comment" id="comment" rows="5" cols="50" required><c:if test="${not empty comment}"><c:out value="${comment}"/></c:if></textarea>
 				
 			</fieldset>
 		</div>
