@@ -1,7 +1,7 @@
 /*
  * In this class we are creating a document for storing value of Deduction details of user
  * according to form 16.
- * @author Priyank
+ * @author 
  * 04/03/2013
  * 
  * 
@@ -44,6 +44,7 @@ import com.mootly.wcm.annotations.RequiredBeans;
 import com.mootly.wcm.annotations.RequiredFields;
 import com.mootly.wcm.annotations.ValueListBeans;
 import com.mootly.wcm.beans.DeductionDocument;
+import com.mootly.wcm.beans.HouseProperty;
 import com.mootly.wcm.beans.MemberDeductionScheduleC;
 import com.mootly.wcm.beans.MemberDeductionScheduleG;
 import com.mootly.wcm.beans.MemberDeductionScheduleGG;
@@ -52,7 +53,10 @@ import com.mootly.wcm.beans.MemberDeductionScheduleIB;
 import com.mootly.wcm.beans.MemberDeductionScheduleIC;
 import com.mootly.wcm.beans.MemberDeductionScheduleVIA;
 import com.mootly.wcm.beans.MemberPersonalInformation;
+import com.mootly.wcm.beans.OtherSourcesDocument;
+import com.mootly.wcm.beans.SalaryIncomeDocument;
 import com.mootly.wcm.beans.compound.DeductionDocumentDetail;
+import com.mootly.wcm.beans.compound.HouseIncomeDetail;
 import com.mootly.wcm.components.ITReturnComponent;
 import com.mootly.wcm.model.DoneeWithPan;
 import com.mootly.wcm.model.FinancialYear;
@@ -66,10 +70,10 @@ import com.mootly.wcm.utils.UrlUtility;
 
 @PrimaryBean(primaryBeanClass=DeductionDocument.class)
 @ChildBean(childBeanClass=DeductionDocumentDetail.class)
-@AdditionalBeans(additionalBeansToLoad=MemberPersonalInformation.class)
+@AdditionalBeans(additionalBeansToLoad={MemberPersonalInformation.class,SalaryIncomeDocument.class,HouseProperty.class,OtherSourcesDocument.class})
 @RequiredBeans(requiredBeans={MemberPersonalInformation.class})
 @ValueListBeans(paths={"deduction-sections-${financialYear}","deduction-section-heads-${financialYear}","deduction-section-maxallowed-${financialYear}"},
-				accessKey={"deduction_sections","deduction_section_heads","deduction_section_maxallowed"})
+accessKey={"deduction_sections","deduction_section_heads","deduction_section_maxallowed"})
 @FormFields(fieldNames={"head","investment","flex_field_string_0","flex_field_string_1","flex_field_string_2","flex_field_string_3","flex_field_string_4","flex_field_string_5","flex_field_string_6","flex_field_string_7","flex_field_string_8"})
 @RequiredFields(fieldNames={"head","investment"})
 @DataTypeValidationFields(fieldNames={"investment"},dataTypes={DataTypeValidationType.DECIMAL})
@@ -77,20 +81,20 @@ public class Deduction extends ITReturnComponent {
 
 	private static final Logger log = LoggerFactory.getLogger(Deduction.class);
 	String deduction_section = null;
-	
+
 	DeductionListService deductionListService = null;
-	
+
 	@Override
 	public void init(ServletContext servletContext,
 			ComponentConfiguration componentConfig)
-			throws HstComponentException {
+					throws HstComponentException {
 		// TODO Auto-generated method stub
 		super.init(servletContext, componentConfig);
 		ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(servletContext);
 		deductionListService = context.getBean(DeductionListService.class);
 		//deductionListService
 	}
-	
+
 	@Override
 	public void doBeforeRender(HstRequest request, HstResponse response) {
 		// TODO Auto-generated method stub
@@ -103,14 +107,14 @@ public class Deduction extends ITReturnComponent {
 			deductionSectionMap = deductionListService.getDeductionSectionMap().get(getFinancialYear());
 			request.setAttribute("deductionSectionMap", deductionSectionMap);
 		}
-		
+
 		if (getParentBean()!= null) {
 			DeductionDocument deductionDocument = (DeductionDocument) getParentBean();
 			List<DeductionDocumentDetail> deductionDocumentDetailList = deductionDocument.getDeductionDocumentDetailList();
 			Double grandTotal = 0D;
 			if (deductionDocumentDetailList != null && deductionDocumentDetailList.size() > 0){
 				Map<String, List<DeductionDocumentDetail>> savedData = new HashMap<String, List<DeductionDocumentDetail>>();
-				
+
 				for (DeductionDocumentDetail deductionDocumentDetail:deductionDocumentDetailList) {
 					if (!savedData.containsKey(deductionDocumentDetail.getSection())) {
 						savedData.put(deductionDocumentDetail.getSection(), new ArrayList<DeductionDocumentDetail>());
@@ -137,10 +141,10 @@ public class Deduction extends ITReturnComponent {
 					request.setAttribute("totalOfSavedDataPerHead",totalOfSavedDataPerHead);
 					request.setAttribute("totalOfSavedData",totalOfSavedData);
 				}
-				
+
 			}
 		}
-		
+
 		if (getPageAction() == PAGE_ACTION.EDIT_CHILD && getUuid() != null && getChildBean() != null) {
 			DeductionDocumentDetail dDetail = (DeductionDocumentDetail) getChildBean();
 			DoneeWithPan doneeWithPAN = DoneeWithPan.getInstanceFromChildBean(dDetail);
@@ -161,7 +165,7 @@ public class Deduction extends ITReturnComponent {
 				}
 			}
 		}
-		
+
 		//time to calculate
 		if (getParentBean() != null) {
 			//hashmap for javascript
@@ -193,7 +197,7 @@ public class Deduction extends ITReturnComponent {
 				Double totalForSectionHead = totalOfSavedDataPerHead.get(savedDataPerHead);
 				totalMapForJS.put(sanitizedKey,totalForSectionHead);
 			}
-			*/	
+			 */	
 			//ALSO WE NEED to have the following variables for calculation
 			// AGI == Adjusted Gross Income
 			// totalSalaryIncome 
@@ -207,6 +211,23 @@ public class Deduction extends ITReturnComponent {
 				totalMapForJS.put("ageInYears",ageInYears);
 				totalMapForJS.put("isSeniorCitizen",isSeniorCitizen);
 			}
+			double salarypension=0D;double othersources=0D;double housproperty=0D;
+			SalaryIncomeDocument salaryincome=(SalaryIncomeDocument)request.getAttribute(SalaryIncomeDocument.class.getSimpleName().toLowerCase());
+			if(salaryincome!=null)
+				salarypension=salaryincome.getTotal();
+			totalMapForJS.put("salarypension", salarypension);
+			OtherSourcesDocument othersourcesdoc=(OtherSourcesDocument)request.getAttribute(OtherSourcesDocument.class.getSimpleName().toLowerCase());
+			if(othersourcesdoc!=null)
+				othersources=othersourcesdoc.getTaxable_income();
+			totalMapForJS.put("othersources", othersources);
+			HouseProperty housprop=(HouseProperty)request.getAttribute(HouseProperty.class.getSimpleName().toLowerCase());
+			if (housprop.getHouseIncomeDetailList() != null && housprop.getHouseIncomeDetailList().size() > 0 ){ 
+				for (HouseIncomeDetail houseincomeDetail:housprop.getHouseIncomeDetailList()) {
+					housproperty=housproperty+houseincomeDetail.getIncome_hproperty(); 
+				}	
+			}
+			totalMapForJS.put("housproperty", housproperty);
+			totalMapForJS.put("total_eligiblededuction", 0D);
 			Map<String,Object> resultMap = ScreenCalculatorService.getScreenCalculations("Chapter6Calc.js", request.getParameterMap(), totalMapForJS);
 			if (resultMap != null && resultMap.size() > 0 ) {
 				totalMapForJS.putAll(resultMap);
@@ -215,14 +236,14 @@ public class Deduction extends ITReturnComponent {
 			}
 		}
 	}
-	
+
 	@Override
 	public void doAction(HstRequest request, HstResponse response)
 			throws HstComponentException {
 		// TODO Auto-generated method stub
 		super.doAction(request, response);
 	}
-	
+
 	@Override
 	public boolean beforeSave(HstRequest request) {
 		// TODO Auto-generated method stub
@@ -436,7 +457,7 @@ public class Deduction extends ITReturnComponent {
 	 * @param String
 	 * @return String returns the form to create method.
 	 * @throws 
-	 * @author Priyank
+	 * @author 
 	 */
 	public MemberDeductionScheduleVIA createMemberDeductionScheduleVIA(HstRequest request,MemberDeductionScheduleVIA schvia){
 
