@@ -90,11 +90,9 @@
 						<td><c:out value="${advancetaxdetail.p_Amount}" />
 						</td>
 						<td><a
-							href="${scriptName}/<c:out value="${advancetaxdetail.canonicalUUID}"/>/advancetaxedit"><small>Edit</small>
-						</a><c:set var="canonicalUUID" value="${advancetaxdetail.canonicalUUID}"/>
-								<c:set var="scriptName" value="${scriptName}"/>
-							&nbsp;&nbsp;<a id="delete" onclick="return checkdelete()"><small>Delete</small>
-							</a></td>
+							href="${scriptName}/<c:out value="${advancetaxdetail.canonicalUUID}"/>/advancetaxedit"><small>Edit</small></a>
+						<a href="${scriptName}/<c:out value="${advancetaxdetail.canonicalUUID}"/>/advancetaxdelete" onclick="return checkdelete()"><small>Delete</small></a>
+							</td>
 					</tr>
 			</c:forEach>
 				<tr>
@@ -158,20 +156,16 @@
 		$( ".indiandate" ).datepicker( "option", "minDate", "31/03/2013" );
 			$( ".indiandate" ).datepicker( "option", "maxDate", itrFinYr );
 			});
-   function checkdelete(){
-	        var re=confirm("Do You want to Delete it");
-	          if (re) return true;
-	          else return false;
-                    }
+  
 </hst:element>
 <hst:headContribution element="${uiCustom}" category="jsInternal"/>
-<script type="text/javascript">
-$('#delete')
-.click(
-		function() {
-			var result = confirm("Do you want to delete permanently");
-			if(result){
-				$('#delete').attr('href','<c:out value="${scriptName}"/>/<c:out value="${canonicalUUID}"/>/advancetaxdelete');
-			}
-		});
-</script>
+<hst:element var="uiCustom" name="script">
+ <hst:attribute name="type">text/javascript</hst:attribute>
+        function checkdelete(){
+       
+         var re=confirm("Do You want to Delete it");
+           if (re) return true;
+           else return false;
+                    }
+   </hst:element>
+<hst:headContribution element="${uiCustom}" category="jsInternal" />
