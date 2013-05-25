@@ -11,6 +11,8 @@ import java.math.BigInteger;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -70,7 +72,11 @@ import com.mootly.wcm.beans.compound.TdsOthersDetail;
 import com.mootly.wcm.beans.compound.AdvanceTaxDetail;
 import com.mootly.wcm.components.ITReturnComponent;
 import com.mootly.wcm.model.ITRForm;
+import com.mootly.wcm.model.deduction.DeductionHead;
+import com.mootly.wcm.model.deduction.DeductionSection;
+import com.mootly.wcm.services.DeductionListService;
 import com.mootly.wcm.services.IndianCurrencyHelper;
+import com.mootly.wcm.services.ScreenCalculatorService;
 import com.mootly.wcm.utils.XmlCalculation;
 
 @AdditionalBeans(additionalBeansToLoad={MemberPersonalInformation.class,MemberContactInformation.class,SalaryIncomeDocument.class,
@@ -258,7 +264,67 @@ public class XmlGenerator extends ITReturnComponent {
 		long grsstotal = xmlCalculation.grossTotal(request, response);
 		incomeDeductions.setGrossTotIncome(grsstotal);	// calculation needed(incomefromsalary+house income+othersrcincome)
 		//added deduction with null values (incomplete)
-
+		Map<String,Object> totalMapForJSDe = new HashMap<String, Object>();
+		Double sum=0D;
+		DeductionListService deductionListService=new DeductionListService();
+		Map<String,DeductionSection> deductionSectionMap=deductionListService.getDeductionSectionMap().get(getFinancialYear());
+		if(deductionDocument!=null){
+			if (deductionDocument.getDeductionDocumentDetailList() != null && deductionDocument.getDeductionDocumentDetailList().size() > 0 ){
+				for(String key:deductionSectionMap.keySet()){
+					DeductionSection deductionsec=deductionSectionMap.get(key);
+					if(deductionsec.getListOfDeductionHead().size()!=0){
+						for(DeductionHead head:deductionsec.getListOfDeductionHead()){
+							for(DeductionDocumentDetail deductionDocumentDetail:deductionDocument.getDeductionDocumentDetailList()){
+								if(deductionDocumentDetail.getHead().equals(head)){
+									sum=sum+deductionDocumentDetail.getInvestment();
+								}
+							}
+							String sanitizedKey="total_"+head.getName().replaceAll("-", "_");
+							log.info("head kkey"+sanitizedKey);
+							totalMapForJSDe.put(sanitizedKey, sum);
+							log.info("sec sum"+sum);
+							sum=0D;
+						}
+					}
+					for(DeductionDocumentDetail deductionDocumentDetail:deductionDocument.getDeductionDocumentDetailList()){
+						if(deductionDocumentDetail.getSection().equals(key)){
+							sum=sum+deductionDocumentDetail.getInvestment();
+						}
+					}
+					String sanitizedKey="total_"+key.replaceAll("-", "_");
+					log.info("sec key"+sanitizedKey);
+					totalMapForJSDe.put(sanitizedKey,sum);
+					log.info("sec sum"+sum);
+					sum=0D;
+				}
+			}
+		}
+		//totalMapForJSDe.put("ageInYears",ageInYears);
+		totalMapForJSDe.put("isSeniorCitizen",getFinancialYear().isSeniorCitizen(memberPersonalInformation.getDOB().getTime()));
+		totalMapForJSDe.put("salarypension", salaryIncomeDocument.getTotal());
+		totalMapForJSDe.put("othersources", otherSourcesDocument.getTaxable_income());
+		totalMapForJSDe.put("housproperty", incomeDeductions.getTotalIncomeOfHP());
+		log.info("get the list of all"+totalMapForJSDe.toString());
+		Map<String,Object> resultMapDe = ScreenCalculatorService.getScreenCalculations("Chapter6Calc.js", request.getParameterMap(), totalMapForJSDe);
+		/*if (resultMapDe != null && resultMapDe.size() > 0 ) {
+			totalMapForJSDe.putAll(resultMapDe);
+			//request.setAttribute("totalMapForJS", totalMapForJSDe);
+			log.info(resultMapDe.toString()); //lets analyze the map
+		}*/
+		BigInteger finalDeduction=new BigInteger("0");
+		Double sumdeduction=0D;
+		for(String deductionsec:deductionSectionMap.keySet()){
+			String sanitizedKey="total_"+deductionsec.replaceAll("-", "_");
+			log.info("intila to amctch"+sanitizedKey);
+			if(resultMapDe.containsKey(sanitizedKey)){
+				log.info("Got a match"+sanitizedKey);
+			sumdeduction=sumdeduction+Double.parseDouble(resultMapDe.get(sanitizedKey).toString());
+			}
+		}
+		log.info("thank god it willl help toc cal"+sumdeduction);
+		if(indianCurrencyHelper.longRound(sumdeduction)>grsstotal){
+			sumdeduction=Double.parseDouble(String.valueOf(grsstotal));
+		}
 		if( deductionDocument!=null){
 			if ( deductionDocument.getDeductionDocumentDetailList() != null && deductionDocument.getDeductionDocumentDetailList().size() > 0 ){
 				for(DeductionDocumentDetail deductionDocumentDetail:deductionDocument.getDeductionDocumentDetailList()){
@@ -381,17 +447,30 @@ public class XmlGenerator extends ITReturnComponent {
 		deductUndChapVIA.setSection80QQB(dedqqbtotal);
 		deductUndChapVIA.setSection80RRB(dedrrbtotal);
 		deductUndChapVIA.setSection80U(dedutotal);
-		deductUndChapVIA.setTotalChapVIADeductions(deductiontotal);
+		deductUndChapVIA.setTotalChapVIADeductions(indianCurrencyHelper.bigIntegerRound(sumdeduction));
 		incomeDeductions.setDeductUndChapVIA(deductUndChapVIA);
-		incomeDeductions.setTotalIncome(grsstotal-0); //calculation needed(GrossTotIncome-TotalChapVIADeductions(HARDCODDED 0))
+		incomeDeductions.setTotalIncome(grsstotal-indianCurrencyHelper.longRound(sumdeduction)); //calculation needed(GrossTotIncome-TotalChapVIADeductions(HARDCODDED 0))
 
 		itr1.setITR1IncomeDeductions(incomeDeductions);
-
+		Map<String,Object> totalMapForJS = new HashMap<String, Object>();
+		totalMapForJS.put("cbassyear",getAssessmentYear());
+		totalMapForJS.put("cbasstype", memberPersonalInformation.getFilingStatus());
+		totalMapForJS.put("cbresistatus",memberPersonalInformation.getResidentCategory());
+		totalMapForJS.put("txtNetIncome",grsstotal);
+		boolean isSeniorCitizen = getFinancialYear().isSeniorCitizen(memberPersonalInformation.getDOB().getTime());
+		if(isSeniorCitizen)
+			totalMapForJS.put("cbasscategory","Senior Citizen");
+		else
+			totalMapForJS.put("cbasscategory",memberPersonalInformation.getSex());
+		Map<String,Object> resultMap = ScreenCalculatorService.getScreenCalculations("xmlCalculation.js", request.getParameterMap(), totalMapForJS);
+		if (log.isInfoEnabled()){
+			log.info(resultMap.toString()); 
+		}
 		//ITR1 Tax Computation (without calculation) with null values
-		itr1TaxComputation.setTotalTaxPayable(null);
-		itr1TaxComputation.setSurchargeOnTaxPayable(null);
-		itr1TaxComputation.setEducationCess(null);
-		itr1TaxComputation.setGrossTaxLiability(null);
+		itr1TaxComputation.setTotalTaxPayable(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMap.get("txtTax").toString())));
+		itr1TaxComputation.setSurchargeOnTaxPayable(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMap.get("txtsurcharge").toString())));
+		itr1TaxComputation.setEducationCess(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMap.get("txtHEduCess").toString())));
+		itr1TaxComputation.setGrossTaxLiability(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMap.get("txttotaltax").toString())));
 		itr1TaxComputation.setSection89(null);
 		itr1TaxComputation.setSection90And91(null);
 		itr1TaxComputation.setNetTaxLiability(null);
