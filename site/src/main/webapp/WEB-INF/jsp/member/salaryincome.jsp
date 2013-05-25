@@ -1,3 +1,4 @@
+<%@page import="com.mootly.wcm.model.ITRTab"%>
 <%@page import="com.mootly.wcm.member.SalaryIncome"%>
 <%@page import="com.mootly.wcm.services.ScreenConfigService"%>
 <%@page import="com.mootly.wcm.beans.compound.SalaryIncomeDetail"%>
@@ -282,7 +283,7 @@
 				</fieldset>
 				<div class="row-fluid show-grid">
 					<div class="span4 offset8 decimal">
-						<a href="${scriptName}?tab=salaryincome" class="button olive">Cancel</a>&nbsp;
+						<a href="${scriptName}?selectedItrTab=<%=ITRTab.INCOME_SALARY_PENSION%>" class="button olive">Cancel</a>&nbsp;
 								<a id="myModalHrefSlryInc" role="button" class="btn orange">Save</a>
 					</div>
 					</div>

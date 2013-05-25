@@ -1,3 +1,4 @@
+<%@page import="com.mootly.wcm.model.ITRTab"%>
 <%@include file="../includes/tags.jspf"%>
 <%@ page import="com.mootly.wcm.utils.*"%>
 <%@ page import="java.util.*"%>
@@ -112,7 +113,7 @@
 			</div>
 			<div class="row-fluid show-grid">
 				<div class="span4 offset8 decimal">
-					<a href="${scriptName}?tab=tdsfromothers" class="button olive">Cancel</a>&nbsp;
+					<a href="${scriptName}?selectedItrTab=<%=ITRTab.TAX_TDS_OTHERS%>" class="button olive">Cancel</a>&nbsp;
 					<a id="myModalHrefTdsOther" role="button" class="btn orange">Save</a>
 				</div>
 			</div>

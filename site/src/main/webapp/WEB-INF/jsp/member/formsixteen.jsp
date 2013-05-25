@@ -1,3 +1,4 @@
+<%@page import="com.mootly.wcm.model.ITRTab"%>
 <%@page import="com.mootly.wcm.member.FormSixteen"%>
 <%@page import="com.mootly.wcm.services.ScreenConfigService"%>
 <%@page import="com.mootly.wcm.beans.compound.FormSixteenDetail"%>
@@ -497,7 +498,7 @@
 							</button>
 							<ul class="dropdown-menu">
 								<li><a
-									href="<c:out value="${scriptName}"/>?tab=deductions"> Add </a></li>
+									href="<c:out value="${scriptName}"/>?selectedItrTab=<%=ITRTab.DEDUCTIONS%>"> Add </a></li>
 							</ul>
 						</td>
 					
@@ -998,7 +999,7 @@
 				</fieldset>
 				<div class="row-fluid show-grid">
 					<div class="span4 offset8 decimal">
-						<a href="${scriptName}?tab=formsixteen" class="button olive">Cancel</a>&nbsp;
+						<a href="${scriptName}?selectedItrTab=<%=ITRTab.FORM16_SINGLE%>" class="button olive">Cancel</a>&nbsp;
 						   <a id="myModalHrefFormSixteen" role="button" class="btn orange">Save</a>
 					</div>
 					</div>

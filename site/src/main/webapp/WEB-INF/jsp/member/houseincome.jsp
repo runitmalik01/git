@@ -2,6 +2,7 @@
 @author Megha Agarwal
 06/05/2013
  --%>
+<%@page import="com.mootly.wcm.model.ITRTab"%>
 <%@include file="../includes/tags.jspf"%>
 <%@ page import="com.mootly.wcm.utils.*"%>
 <%@page import="com.mootly.wcm.services.ScreenConfigService"%>
@@ -473,7 +474,7 @@
 				</fieldset>
 				<div class="row-fluid show-grid">
 					<div class="span4 offset8 decimal">
-						<a href="${scriptName}?tab=houseincome" class="button olive">Cancel</a>&nbsp;
+						<a href="${scriptName}?selectedItrTab=<%=ITRTab.INCOME_HOUSE_PROPERTY_SINGLE%>" class="button olive">Cancel</a>&nbsp;
 						<a id="myModalHrefHouseIncome" role="button" class="btn orange">Save</a>
 					</div>
 				</div>

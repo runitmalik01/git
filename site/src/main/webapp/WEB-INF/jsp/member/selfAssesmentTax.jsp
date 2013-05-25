@@ -1,3 +1,4 @@
+<%@page import="com.mootly.wcm.model.ITRTab"%>
 <%@include file="../includes/tags.jspf"%>
 <%@page import="com.mootly.wcm.services.ScreenConfigService"%>
 <%@ page import="com.mootly.wcm.utils.*"%>
@@ -80,7 +81,7 @@
 			</fieldset>
 			<div class="row-fluid show-grid">
 				<div class="span4 offset8 decimal">
-					<a href="${scriptName}?tab=selfassesmenttax" class="button olive">Cancel</a>&nbsp;
+					<a href="${scriptName}?selectedItrTab=<%=ITRTab.TAX_SELF_ASSESSMENT%>" class="button olive">Cancel</a>&nbsp;
 					<a id="myModalHrefSelfTax" role="button" class="btn orange">Save</a>
 				</div>
 			</div>
