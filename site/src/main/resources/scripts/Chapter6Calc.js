@@ -12,7 +12,7 @@ var maxAllowed_80D=35000;
 var maxAllowed_80DD=100000;
 var maxAllowed_80U=100000;
 var maxAllowed_80qqb_80rrb=300000;
-//out_total_eligiblededuction=0;
+out_total_eligiblededuction=0;
 //isSeniorCitizen=true;
 /** - END Configuration */
 //80E-It depends on gross total income
@@ -103,7 +103,7 @@ else out_total_80qqb=total_80qqb;
 
 //Donations 100%
 out_total_80g = (total_NoAppr50 * 0.5) + (total_Appr50 * 0.5) + (total_Appr100) + (total_Appr50); 
-//100% deductions
+//100% deductions on 80E,80GGA,80GGC,80JJA,80ID,80IA
 
 out_total_80e= (total_80e < grosstotal) ? total_80e:grosstotal;
 
@@ -111,19 +111,29 @@ out_total_80gga= (total_80gga < grosstotal) ? total_80gga:grosstotal;
 
 out_total_80ggc= (total_80ggc < grosstotal) ? total_80ggc:grosstotal;
 
-out_total_80id= (total_80id < grosstotal) ? total_80id:grosstotal;
+//out_total_80id= (total_80id < grosstotal) ? total_80id:grosstotal;
 
 out_total_80jja= (total_80jja < grosstotal) ? total_80jja:grosstotal;
 
 //out_total_80ia= (total_80ia < grosstotal) ? total_80ia:grosstotal;
+	
+out_total_eligiblededuction = out_total_80c + out_total_80ccc + out_total_80ccd_1 + out_total_80ccd_2 + out_total_80qqb + out_total_80rrb + out_total_80gga + out_total_80ggc + out_total_80g + out_total_80jja + out_total_80ddb + out_total_80u + out_total_80dd + out_total_80qqb + out_total_80e ;
 
-out_total_eligiblededuction= out_total_80c + out_total_80ccc + out_total_80ccd_1 + out_total_80ccd_2 + out_total_80ccf + out_total_80g + out_total_80d + out_total_80dd + out_total_80e + out_total_80ddb + out_total_80gga + out_total_80ggc + out_total_80u + out_total_80qqb + out_total_80rrb + out_total_80id + out_total_80jja;
-
-/*if(out_total_eligiblededuction>grosstotal)
-	out_total_eligiblededuction=grosstotal;*/
-print("hello word"+grosstotal);
+//80G- Calculate AdjustedGrossTotal and Excess Rent Paid and 2000 per Month
+var adjuestedGrossTotal=grosstotal - out_total_eligiblededuction;
+var adjuestedGross10per=adjuestedGrossTotal * 0.1;
+var	adjuestedGross25per=adjuestedGrossTotal * 0.25;
+var excessRentPaid=total_80gg-adjuestedGross10per;
+var rent2000permnth=24000;
+out_total_80gg=Math.min(rent2000permnth,adjuestedGross25per,excessRentPaid);
+if(out_total_80gg<0)
+	out_total_80gg=0;
+out_total_eligiblededuction=out_total_eligiblededuction+out_total_80gg;
+if(out_total_eligiblededuction>grosstotal)
+	out_total_eligiblededuction=grosstotal;
+//print("hello word"+grosstotal);
 //lets break the module into functions for easier maintenance
-function calcEligibleMedicalPremium(inAmount,isSeniorCitizen) {
+/*function calcEligibleMedicalPremium(inAmount,isSeniorCitizen) {
 	if (inAmount > 15000 && !isSeniorCitizen) {
 		return 15000;
 	}
@@ -138,4 +148,4 @@ function calcEligibleMedicalPremium(inAmount,isSeniorCitizen) {
 			return inAmount;
 		}
 	}
-}
+}*/
