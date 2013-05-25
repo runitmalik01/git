@@ -1,5 +1,4 @@
 
-
 <%@page import="com.mootly.wcm.model.ITRTab"%>
 <%@include file="../includes/tags.jspf"%>
 
@@ -43,7 +42,7 @@
 							<ul class="dropdown-menu">
 								<li><a
 									href="<c:out value="${scriptName}"/>?selectedItrTab=<%=ITRTab.FORM16_SINGLE%>"><fmt:message
-											key="income.Form16.penson" /> </a></li>
+											key="income.form.sixteen" /> </a></li>
 							</ul>
 						</div>
 					</td>
@@ -206,16 +205,9 @@
 						</span>
 					</td>
 				</tr>
+				
 				<tr>
-					<td colspan="1"><fmt:message key="less.prepaid.tax"/></td>
-					<td  style="text-align:left">
-						<span class="decimal">
-									<w4india:inr value="0"/>
-						</span>
-					</td>
-				</tr>
-				<tr>
-					<td colspan="1">Advance Tax</td>
+					<td colspan="1"><fmt:message key="advance.tax.itr1" /></td>
 					<td>
 						<div class="btn-group" class="decimal">
 							<button class="btn btn-small dropdown-toggle"
@@ -235,8 +227,7 @@
 								<span class="caret"></span>
 							</button>
 							<ul class="dropdown-menu">
-								<li><a href="<c:out value="${scriptName}"/>?selectedItrTab=<%=ITRTab.TAX_ADVANCE%>"><fmt:message
-											key="advance.tax.itr1" /> </a></li>
+								<li><a href="<c:out value="${scriptName}"/>?selectedItrTab=<%=ITRTab.TAX_ADVANCE%>"><fmt:message key="advance.tax.itr1" /> </a></li>
 							</ul>
 						</div>
 					</td>
@@ -319,6 +310,14 @@
 					</td>
 				</tr>
 				<tr>
+					<td colspan="1"><fmt:message key="less.prepaid.tax"/></td>
+					<td  style="text-align:left">
+						<span class="decimal">
+									<w4india:inr value="${theForm.taxPaid.balTaxPayable}"/>
+						</span>
+					</td>
+				</tr>
+				<tr>
 					<td colspan="1"><fmt:message key="relief.section.89"/></td>
 					<td  style="text-align:left">
 						<span class="decimal">
@@ -336,6 +335,14 @@
 				</tr>
 				
 				<tr>
+					<td colspan="1"><fmt:message key="interest.under.section.234abc"/></td>
+					<td  style="text-align:left">
+						<span class="decimal">
+									<w4india:inr value="0"/>
+						</span>
+					</td>
+					
+				</tr>
 				<tr class="success">
 					<td colspan="1"><b><fmt:message key="tax.payble.refund"/></b>
 					<td  style="text-align:left">
@@ -344,6 +351,7 @@
 						</span>
 					</td>
 				</tr>
+				
 			</table>
 		</div>
 	</c:when>
