@@ -57,6 +57,7 @@ import com.mootly.wcm.annotations.RequiredBeans;
 import com.mootly.wcm.beans.AdvanceTaxDocument;
 import com.mootly.wcm.beans.DeductionDocument;
 import com.mootly.wcm.beans.HouseProperty;
+import com.mootly.wcm.beans.InterestDoc;
 import com.mootly.wcm.beans.MemberContactInformation;
 import com.mootly.wcm.beans.MemberPersonalInformation;
 import com.mootly.wcm.beans.OtherSourcesDocument;
@@ -81,7 +82,7 @@ import com.mootly.wcm.utils.XmlCalculation;
 
 @AdditionalBeans(additionalBeansToLoad={MemberPersonalInformation.class,MemberContactInformation.class,SalaryIncomeDocument.class,
 		HouseIncomeDetail.class,HouseProperty.class,OtherSourcesDocument.class,AdvanceTaxDocument.class,AdvanceTaxDetail.class,TdsFromSalaryDocument.class,
-		TdsFromSalaryDetail.class,TdsFromothersDocument.class,SelfAssesmetTaxDocument.class,SalaryIncomeDetail.class,DeductionDocument.class,DeductionDocumentDetail.class})
+		TdsFromSalaryDetail.class,TdsFromothersDocument.class,SelfAssesmetTaxDocument.class,SalaryIncomeDetail.class,DeductionDocument.class,DeductionDocumentDetail.class,InterestDoc.class})
 @RequiredBeans(requiredBeans={MemberPersonalInformation.class})
 public class XmlGenerator extends ITReturnComponent {
 	private static final Logger log = LoggerFactory.getLogger(XmlGenerator.class);
@@ -157,7 +158,8 @@ public class XmlGenerator extends ITReturnComponent {
 		TdsFromothersDocument tdsFromothersDocument = (TdsFromothersDocument) request.getAttribute(TdsFromothersDocument.class.getSimpleName().toLowerCase());
 		SelfAssesmetTaxDocument selfAssesmetTaxDocument = (SelfAssesmetTaxDocument) request.getAttribute(SelfAssesmetTaxDocument.class.getSimpleName().toLowerCase());
 		DeductionDocument deductionDocument = (DeductionDocument) request.getAttribute(DeductionDocument.class.getSimpleName().toLowerCase());
-
+		InterestDoc interestDoc = (InterestDoc) request.getAttribute(InterestDoc.class.getSimpleName().toLowerCase());
+		
 		ITR1 itr1 = new ObjectFactory().createITR1();
 		CreationInfo creationInfo = new CreationInfo();
 		creationInfo.setIntermediaryCity("Delhi");
@@ -471,11 +473,13 @@ public class XmlGenerator extends ITReturnComponent {
 		itr1TaxComputation.setSurchargeOnTaxPayable(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMap.get("txtsurcharge").toString())));
 		itr1TaxComputation.setEducationCess(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMap.get("txtHEduCess").toString())));
 		itr1TaxComputation.setGrossTaxLiability(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMap.get("txttotaltax").toString())));
-		itr1TaxComputation.setSection89(null);
-		itr1TaxComputation.setSection90And91(null);
-		itr1TaxComputation.setNetTaxLiability(null);
-		itr1TaxComputation.setTotalIntrstPay(null);
-		itr1TaxComputation.setTotTaxPlusIntrstPay(null);
+		itr1TaxComputation.setSection89(new BigInteger("0"));
+		itr1TaxComputation.setSection90And91(new BigInteger("0"));
+		BigInteger rebate=itr1TaxComputation.getSection89().add(itr1TaxComputation.getSection90And91());
+		itr1TaxComputation.setNetTaxLiability(itr1TaxComputation.getGrossTaxLiability().subtract(rebate));
+		//itr1TaxComputation.setTotalIntrstPay(indianCurrencyHelper.bigIntegerRound(interestDoc.getSection234ABC()));
+		itr1TaxComputation.setTotalIntrstPay(new BigInteger("0"));
+		itr1TaxComputation.setTotTaxPlusIntrstPay(itr1TaxComputation.getNetTaxLiability().add(itr1TaxComputation.getTotalIntrstPay()));
 
 		itr1.setITR1TaxComputation(itr1TaxComputation);
 
@@ -496,12 +500,12 @@ public class XmlGenerator extends ITReturnComponent {
 
 		if(selfAssesmetTaxDocument!=null)
 			taxesPaid.setSelfAssessmentTax(indianCurrencyHelper.bigIntegerRound(selfAssesmetTaxDocument.getTotal_Amount()));
-		taxesPaid.setTotalTaxesPaid(null);//calculation needed (advancetax+tds+selfassessmenttax)
+		//calculation needed (advancetax+tds+selfassessmenttax)
+		taxesPaid.setTotalTaxesPaid(taxesPaid.getTDS().add(taxesPaid.getAdvanceTax()).add(taxesPaid.getSelfAssessmentTax()));
 		taxPaid.setTaxesPaid(taxesPaid);
-		taxPaid.setBalTaxPayable(null); // calculation needed (totaltaxintrstpay-totaltaxpaid)
-
+		taxPaid.setBalTaxPayable(itr1TaxComputation.getTotTaxPlusIntrstPay().subtract(taxesPaid.getTotalTaxesPaid())); // calculation needed (totaltaxintrstpay-totaltaxpaid)
+		
 		itr1.setTaxPaid(taxPaid);
-
 		//refund
 		refund.setRefundDue(null);// need to be calculated
 		refund.setBankAccountNumber(memberPersonalInformation.getBD_ACC_NUMBER());
