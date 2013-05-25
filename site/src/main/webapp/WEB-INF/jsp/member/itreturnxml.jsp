@@ -1,5 +1,6 @@
 
 
+<%@page import="com.mootly.wcm.model.ITRTab"%>
 <%@include file="../includes/tags.jspf"%>
 
 <label class="radio inline"> <input type="radio"
@@ -41,7 +42,7 @@
 							</button>
 							<ul class="dropdown-menu">
 								<li><a
-									href="<c:out value="${scriptName}"/>?tab=formsixteen"><fmt:message
+									href="<c:out value="${scriptName}"/>?selectedItrTab=<%=ITRTab.FORM16_SINGLE%>"><fmt:message
 											key="income.Form16.penson" /> </a></li>
 							</ul>
 						</div>
@@ -68,7 +69,7 @@
 							</button>
 							<ul class="dropdown-menu">
 								<li><a
-									href="<c:out value="${scriptName}"/>?tab=houseincome"><fmt:message key="income.house.itr1" /> </a></li>
+									href="<c:out value="${scriptName}"/>?selectedItrTab=<%=ITRTab.INCOME_HOUSE_PROPERTY_SINGLE%>"><fmt:message key="income.house.itr1" /> </a></li>
 							</ul>
 						</div>
 					</td>
@@ -92,7 +93,7 @@
 							</button>
 							<ul class="dropdown-menu">
 								<li><a
-									href="<c:out value="${scriptName}"/>?tab=incomeothersources"><fmt:message key="income.other.sources" /> </a></li>
+									href="<c:out value="${scriptName}"/>?selectedItrTab=<%=ITRTab.INCOME_OTHER_SOURCE%>"><fmt:message key="income.other.sources" /> </a></li>
 							</ul>
 						</div>
 					</td>
@@ -135,7 +136,7 @@
 								<span class="caret"></span>
 							</button>
 							<ul class="dropdown-menu">
-								<li><a href="<c:out value="${scriptName}"/>?tab=deductions"><fmt:message
+								<li><a href="<c:out value="${scriptName}"/>?selectedItrTab=<%=ITRTab.DEDUCTIONS%>"><fmt:message
 											key="deductions.itr1" /> </a></li>
 							</ul>
 						</div>
@@ -234,7 +235,7 @@
 								<span class="caret"></span>
 							</button>
 							<ul class="dropdown-menu">
-								<li><a href="<c:out value="${scriptName}"/>?tab=advancetax"><fmt:message
+								<li><a href="<c:out value="${scriptName}"/>?selectedItrTab=<%=ITRTab.TAX_ADVANCE%>"><fmt:message
 											key="advance.tax.itr1" /> </a></li>
 							</ul>
 						</div>
@@ -262,7 +263,7 @@
 								<span class="caret"></span>
 							</button>
 							<ul class="dropdown-menu">
-								<li><a href="<c:out value="${scriptName}"/>?tab=selfassesmenttax">
+								<li><a href="<c:out value="${scriptName}"/>?selectedItrTab=<%=ITRTab.TAX_SELF_ASSESSMENT%>">
 								<fmt:message key="advance.selfassesmenttax.itr1" /></a></li>
 							</ul>
 						</div>
@@ -286,7 +287,7 @@
 							</button>
 							<ul class="dropdown-menu">
 								<li><a
-									href="<c:out value="${scriptName}"/>?tab=tdsfromsalary">
+									href="<c:out value="${scriptName}"/>?selectedItrTab=<%=ITRTab.TAX_TDS_SALARY%>">
 									<fmt:message key="advance.tdssalary.itr1" /> </a></li>
 							</ul>
 						</div>
@@ -311,7 +312,7 @@
 							</button>
 							<ul class="dropdown-menu">
 								<li><a
-									href="<c:out value="${scriptName}"/>?tab=tdsfromothers">
+									href="<c:out value="${scriptName}"/>?selectedItrTab=<%=ITRTab.TAX_TDS_OTHERS%>">
 									<fmt:message key="advance.tdsothers.itr1" /> </a></li>
 							</ul>
 						</div>

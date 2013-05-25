@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
@@ -68,6 +69,7 @@ import com.mootly.wcm.beans.ValueListDocument;
 import com.mootly.wcm.member.Member;
 import com.mootly.wcm.model.FilingStatus;
 import com.mootly.wcm.model.FinancialYear;
+import com.mootly.wcm.model.ITRTab;
 import com.mootly.wcm.model.ITReturnPackage;
 import com.mootly.wcm.model.ITReturnType;
 import com.mootly.wcm.services.ScreenCalculatorService;
@@ -280,11 +282,19 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 					if (log.isInfoEnabled()) {
 						log.info("URLToRedirect:"+ urlToRedirect);
 					}
+					if (request.getAttribute("selectedItrTab") != null) {
+						response.setRenderParameter("selectedItrTab", ((ITRTab)request.getAttribute("selectedItrTab")).name());
+						urlToRedirect += "?selectedItrTab=" +  ((ITRTab)request.getAttribute("selectedItrTab")).name();
+					}
 					response.sendRedirect( urlToRedirect );
 				}
 				else {
 					String urlToRedirect = getScriptName(); // getRedirectURL(request,response,FormSaveResult.SUCCESS) ;
 					log.info("URLToRedirect:"+ urlToRedirect);
+					if (request.getAttribute("selectedItrTab") != null) {
+						response.setRenderParameter("selectedItrTab", ((ITRTab)request.getAttribute("selectedItrTab")).name());
+						urlToRedirect += "?selectedItrTab=" +  ((ITRTab)request.getAttribute("selectedItrTab")).name();
+					}
 					response.sendRedirect( urlToRedirect );
 				}
 			} catch (IOException e) {
@@ -515,6 +525,34 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			//scriptName = basePath + scriptName;
 			scriptName = sb.toString();
 			if (scriptName.endsWith("/")) scriptName = scriptName.substring(0, scriptName.length()-2);
+			
+			//one more loop just to capture the parts after the URL
+			List<String> urlParts = new ArrayList<String>();
+			boolean startCapturing = false;
+			for (String aPart:parts) {
+				if (startCapturing) {
+					urlParts.add(aPart);
+				}
+				if (aPart.endsWith(".html")) {
+					startCapturing = true;
+				}
+				
+			}
+			if (urlParts != null && urlParts.size() > 0) {
+				String[] strParts = urlParts.toArray(new String[urlParts.size()]);
+				ITRTab itrTab = ITRTab.getByAka(strParts);
+				request.setAttribute("urlParts", urlParts);
+				if (itrTab != null) request.setAttribute("selectedItrTab", itrTab);
+			}			
+		}
+		if (request.getAttribute("selectedItrTab") == null && getPublicRequestParameter(request, "selectedItrTab") != null) {
+			 ITRTab itrTab = null;
+			 try {
+				 itrTab= ITRTab.valueOf(getPublicRequestParameter(request, "selectedItrTab"));
+				 request.setAttribute("selectedItrTab", itrTab);
+			 }catch (IllegalArgumentException ie) {
+				 
+			 }
 		}
 	}
 	

@@ -21,7 +21,9 @@ String tabName = (String)request.getAttribute("Tab");
 if (actionInSiteMap != null && actionInSiteMap.contains("_")) {
  tabName = actionInSiteMap.substring(0,actionInSiteMap.indexOf("_"));
 }
-	%>
+
+//How is the page designed, lets define a structure for this page using simple linkedhashmap and arraylist
+%>
 <c:set var="tds1">
 	<fmt:message key="tds1" />
 </c:set>
@@ -31,77 +33,43 @@ if (actionInSiteMap != null && actionInSiteMap.contains("_")) {
 	<h3 id="respond1"><fmt:message key="titile.itr1.page" /></h3>
 	<!-- <form id="frmdata" action="${actionUrl}" name="oi" method="post"> -->
 
-		<ul id="myTab" class="nav nav-tabs">
-			<li <%if (tabName == "summary" ){%> class="active " <%}%>><a
-				href="#incometaxsummary" data-toggle="tab"><fmt:message
-						key="income.tax.summary" /> </a>
-			</li>
-			<li <%if (tabName != null && tabName.equals("formsixteen")){%>
-				class="active" <%}%>><a href="#formsixteen" data-toggle="tab"><fmt:message
-						key="income.form.sixteen" />
-			</a>
-			</li>
-			<li
-				<%if (tabName != null && (tabName.equals("salaryincome")||tabName.equals("incomeothersources")||tabName.equals("houseincome"))){%>
-				class="dropdown active" <%}%> class="dropdown"><a href="#"
-				class="dropdown-toggle" data-toggle="dropdown"><fmt:message
-						key="income" /> <b class="caret"></b>
-			</a>
-				<ul class="dropdown-menu">
-					<li <%if (tabName != null && tabName.equals("salaryincome")){%>
-						class="active" <%}%>><a href="#incomesalaries"
-						data-toggle="tab"><fmt:message key="income.salary.penson" />
-					</a>
+	<ul id="myTab" class="nav nav-tabs">
+		<c:forEach items="${view.listOfITRTabs}" var="itrTab" >
+			<c:choose>
+				<c:when test="${not empty itrTab.itrTabType && itrTab.itrTabType == 'group'}">
+					<li class="dropdown <c:if test='${not empty selectedItrTab && fn:contains(itrTab.tabNames,selectedItrTab)}'>active</c:if>"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><fmt:message key="${itrTab.labelKey}"/> <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<c:forEach items="${itrTab.tabList}" var="aTab">
+								<li <c:if test='${empty selectedItrTab && selectedItrTab == aTab}'>class="active"</c:if>><a href="#<c:out value="${aTab}"/>" data-toggle="tab"><fmt:message key="${aTab.labelKey}" /></a></li>
+							</c:forEach>	
+						</ul>
 					</li>
-					<li
-						<%if (tabName != null && tabName.equals("incomeothersources")){%>
-						class="active" <%}%>><a href="#incomeothersources"
-						data-toggle="tab"><fmt:message key="income.other.sources" />
-					</a>
-					</li>
-					<li <%if (tabName != null && tabName.equals("houseincome")){%>
-						class="active" <%}%>><a href="#incomesinglehouse"
-						data-toggle="tab"><fmt:message key="income.house.itr1" />
-					</a>
-					</li>
-				</ul></li>
-			<li
-				<%if (tabName != null && (tabName.equals("advancetax")||tabName.equals("tdsfromsalary")||tabName.equals("tdsfromothers")||tabName.equals("selfassesmenttax"))){%>
-				class="dropdown active" <%}%> class="dropdown"><a href="#"
-				class="dropdown-toggle" data-toggle="dropdown"><fmt:message
-						key="income.taxpaid.itr1" /> <b class="caret"></b>
-			</a>
-				<ul class="dropdown-menu">
-					<li <%if (tabName != null && tabName.equals("advancetax")){%>
-						class="active" <%}%>><a href="#advancetax" data-toggle="tab"><fmt:message
-								key="advance.tax.itr1" />
-					</a>
-					</li>
-					<li <%if (tabName != null && tabName.equals("selfassesmenttax")){%>
-						class="active" <%}%>><a href="#selfassesmenttax"
-						data-toggle="tab"><fmt:message
-								key="advance.selfassesmenttax.itr1" />
-					</a>
-					</li>
-					<li <%if (tabName != null && tabName.equals("tdsfromsalary")){%>
-						class="active" <%}%>><a href="#tdsfromsalary"
-						data-toggle="tab"><fmt:message key="advance.tdssalary.itr1" />
-					</a>
-					</li>
-					<li <%if (tabName != null && tabName.equals("tdsfromothers")){%>
-						class="active" <%}%>><a href="#tdsfromothers"
-						data-toggle="tab"><fmt:message key="advance.tdsothers.itr1" />
-					</a>
-					</li>
-				</ul></li>
-			<li <%if (tabName != null && tabName.equals("deductions")){%>
-				class="active" <%}%>><a href="#deductions" data-toggle="tab"><fmt:message
-						key="deductions.itr1" />
-			</a>
-			</li>
-		</ul>
-
-		<div id="myTabContent" class="tab-content">
+				</c:when>
+				<c:otherwise>
+					<li <c:if test='${not empty selectedItrTab && selectedItrTab == itrTab}'>class="active"</c:if>><a href="#<c:out value="${itrTab}"/>" data-toggle="tab"><fmt:message key="${itrTab.labelKey}" /></a></li>
+				</c:otherwise>
+			</c:choose>				
+		</c:forEach>			
+	</ul>
+	<%-- active tab gets the class in active --%>
+	<div id="myTabContent" class="tab-content">
+		<c:forEach items="${view.listOfITRTabs}" var="itrTab" >
+			<c:choose>
+				<c:when test="${not empty itrTab.itrTabType && itrTab.itrTabType == 'group'}">
+					<c:forEach items="${itrTab.tabList}" var="aTab">
+						<div class="tab-pane fade <c:if test='${not empty selectedItrTab && selectedItrTab == aTab}'>in active</c:if>" id="<c:out value="${aTab}"/>">
+							<hst:include ref="${aTab.componentName}" />
+						</div>
+					</c:forEach>	
+				</c:when>
+				<c:otherwise>
+					<div class="tab-pane fade <c:if test='${not empty selectedItrTab && selectedItrTab == itrTab}'>in active</c:if>" id="<c:out value="${itrTab}"/>">
+						<hst:include ref="${itrTab.componentName}" />
+					</div>
+				</c:otherwise>
+			</c:choose>				
+		</c:forEach>	
+			<%--		
 			<div
 				class="tab-pane fade <%if (tabName == "summary"){%>in active <%}%>"
 				id="incometaxsummary">
@@ -152,7 +120,9 @@ if (actionInSiteMap != null && actionInSiteMap.contains("_")) {
 				id="deductions">
 				<hst:include ref="deductionITR1" />
 			</div>
+			 --%>
 		</div>
+		
 		<div id="reviewModal">
 			<hst:include ref="reviewsITR1" />
 		</div>
