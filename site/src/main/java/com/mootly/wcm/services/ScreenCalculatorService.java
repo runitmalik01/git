@@ -23,10 +23,10 @@ public final class ScreenCalculatorService {
 	private static final Logger log = LoggerFactory.getLogger(ScreenCalculatorService.class);
 	private static String calculatorScript=null;
 	public static final Map<String,Object> getScreenCalculations(String scriptName,Map<String,String[]> requestParameterMap,Map<String,Object> additionalBindings) {
-		if(scriptName.contains(".js")){
-			calculatorScript	= loadScript(scriptName);
+		if(scriptName.contains(".js")){	
+			calculatorScript = loadScript(scriptName);
 		}else{
-			calculatorScript=scriptName.replaceAll("<.*?>", "");
+			calculatorScript=scriptName.trim().replaceAll("<.*?>", "");
 		}
 		//log.info("this is enough script"+calculatorScript);
 		StringBuilder theJavaScript = new StringBuilder();
@@ -34,7 +34,6 @@ public final class ScreenCalculatorService {
 		theJavaScript.append(Calculator.JS_PREFIX).append(Calculator.NEW_LINE);
 		theJavaScript.append(calculatorScript).append(Calculator.NEW_LINE);
 		theJavaScript.append(Calculator.JS_SUFFIX).append(Calculator.NEW_LINE);
-		log.info("this is javascript"+theJavaScript.toString());
 		
 		ScriptEngineManager manager = new ScriptEngineManager();
         ScriptEngine engine = manager.getEngineByName("JavaScript");
@@ -43,10 +42,8 @@ public final class ScreenCalculatorService {
         try {
         	Bindings engineScope = engine.getBindings(ScriptContext.ENGINE_SCOPE);
         	//engineScope.
-        	for (String fieldName:requestParameterMap.keySet()) {
-        		log.info("fields name"+fieldName);
+        	for (String fieldName:requestParameterMap.keySet()) {;
         		String fieldValue = requestParameterMap.get(fieldName)[0];
-        		log.info("field value"+fieldValue);
         		engineScope.put(fieldName,fieldValue);
         	}
         	if (additionalBindings != null) engineScope.putAll(additionalBindings);
