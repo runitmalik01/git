@@ -320,8 +320,8 @@
 								href="${scriptName}/<c:out value="${salaryItemDetail.canonicalUUID}"/>/salaryincomeedit"><small>Edit</small>
 								<c:set var="canonicalUUID" value="${salaryItemDetail.canonicalUUID}"/>
 								<c:set var="scriptName" value="${scriptName}"/>
-							</a>&nbsp;&nbsp;<a id="delete"><small>Delete</small>
-							</a></td>
+							</a>&nbsp;&nbsp;<a href="${scriptName}/<c:out value="${salaryItemDetail.canonicalUUID}"/>/salaryincomedelete" onclick="return checkdelete()"><small>Delete</small></a>
+							</td></td>
 						</tr>
 					</c:forEach>
 					<tr align="center">
@@ -344,15 +344,16 @@
 		document.getElementById("Taxable_earning").value = (A + B + C + D);
 	}**/
 </script>
-<script type="text/javascript">
 
-$('#delete').click(function(){
-	var result=confirm("Do you want to delete permanently");	
-	if(result){
-		$('#delete').attr('href','<c:out value="${scriptName}"/>/<c:out value="${canonicalUUID}"/>/salaryincomedelete');
-	}
-});
-</script>
+<hst:element var="uiCustom" name="script">
+ <hst:attribute name="type">text/javascript</hst:attribute>
+        function checkdelete(){
+        var re=confirm("Do You want to Delete it");
+           if (re) return true;
+           else return false;
+                    }
+   </hst:element>
+<hst:headContribution element="${uiCustom}" category="jsInternal" />
 <res:calc screenCalc="salaryincome" formId="frmdataSlryInc"></res:calc>
 <res:client-validation formId="frmdataSlryInc"
 	screenConfigurationDocumentName="salaryincome"
