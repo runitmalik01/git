@@ -27,7 +27,7 @@ if (cbassyear == "2013-2014") {
             var A = (txtNetIncome - 200000) * 0.1;
             var B = A * 0.02;
             var C = A * 0.01;
-            var D = indianCurrencyHelper.round((A + B + C) * 100) / 100;
+            var D = indianCurrencyHelper.RoundTo2Decimals((A + B + C) * 100) / 100;
             var E = 0;
             out_txtTax = A;
             out_txtEduCess = B;
@@ -39,7 +39,7 @@ if (cbassyear == "2013-2014") {
             var A = ((txtNetIncome - 500000) * 0.2) + 30000;
             var B = A * 0.02;
             var C = A * 0.01;
-            var D = indianCurrencyHelper.round((A + B + C) * 100) / 100;
+            var D = indianCurrencyHelper.RoundTo2Decimals((A + B + C) * 100) / 100;
             var E = 0;
             out_txtTax = A;
             out_txtEduCess = B;
@@ -51,7 +51,7 @@ if (cbassyear == "2013-2014") {
             var A = ((txtNetIncome - 1000000) * 0.3) + 130000;
             var B = A * 0.02;
             var C = A * 0.01;
-            var D = indianCurrencyHelper.round((A + B + C) * 100) / 100;
+            var D = indianCurrencyHelper.RoundTo2Decimals((A + B + C) * 100) / 100;
             var E = 0;
             out_txtTax = A;
             out_txtEduCess = B;
@@ -77,7 +77,7 @@ if (cbassyear == "2013-2014") {
             var A = ((txtNetIncome - 250000) * 0.1);
             var B = A * 0.02;
             var C = A * 0.01;
-            var D = indianCurrencyHelper.round((A + B + C) * 100) / 100;
+            var D = indianCurrencyHelper.RoundTo2Decimals((A + B + C) * 100) / 100;
             var E = 0;
             out_txtTax = A;
             out_txtEduCess = B;
@@ -89,7 +89,7 @@ if (cbassyear == "2013-2014") {
             var A = ((txtNetIncome - 500000) * 0.2) + 25000;
             var B = A * 0.02;
             var C = A * 0.01;
-            var D = indianCurrencyHelper.round((A + B + C) * 100) / 100;
+            var D = indianCurrencyHelper.RoundTo2Decimals((A + B + C) * 100) / 100;
             var E = 0;
             out_txtTax = A;
             out_txtEduCess = B;
@@ -101,7 +101,7 @@ if (cbassyear == "2013-2014") {
             var A = ((txtNetIncome - 1000000) * 0.3) + 125000;
             var B = A * 0.02;
             var C = A * 0.01;
-            var D = indianCurrencyHelper.round((A + B + C) * 100) / 100;
+            var D = indianCurrencyHelper.RoundTo2Decimals((A + B + C) * 100) / 100;
             var E = 0;
             out_txtTax = A;
             out_txtEduCess = B;
@@ -127,7 +127,7 @@ if (cbassyear == "2013-2014") {
             var A = ((txtNetIncome - 500000) * 0.2);
             var B = A * 0.02;
             var C = A * 0.01;
-            var D = indianCurrencyHelper.round((A + B + C) * 100) / 100;
+            var D = indianCurrencyHelper.RoundTo2Decimals((A + B + C) * 100) / 100;
             var E = 0;
             out_txtTax = A;
             out_txtEduCess = B;
@@ -139,7 +139,7 @@ if (cbassyear == "2013-2014") {
             var A = ((txtNetIncome - 1000000) * 0.3) + 100000;
             var B = A * 0.02;
             var C = A * 0.01;
-            var D = indianCurrencyHelper.round((A + B + C) * 100) / 100;
+            var D = indianCurrencyHelper.RoundTo2Decimals((A + B + C) * 100) / 100;
             var E = 0;
             out_txtTax = A;
             out_txtEduCess = B;
@@ -180,7 +180,7 @@ if (cbassyear == "2013-2014") {
             var A = (txtNetIncome - 200000) * 0.1;
             var B = A * 0.02;
             var C = A * 0.01;
-            var D = indianCurrencyHelper.round((A + B + C) * 100) / 100;
+            var D = indianCurrencyHelper.RoundTo2Decimals((A + B + C) * 100) / 100;
             var E = 0;
             out_txtTax = A;
             out_txtEduCess = B;
@@ -192,7 +192,7 @@ if (cbassyear == "2013-2014") {
             var A = ((txtNetIncome - 500000) * 0.2) + 30000;
             var B = A * 0.02;
             var C = A * 0.01;
-            var D = indianCurrencyHelper.round((A + B + C) * 100) / 100;
+            var D = indianCurrencyHelper.RoundTo2Decimals((A + B + C) * 100) / 100;
             var E = 0;
             out_txtTax = A;
             out_txtEduCess = B;
@@ -204,7 +204,7 @@ if (cbassyear == "2013-2014") {
             var A = ((txtNetIncome - 1000000) * 0.3) + 130000;
             var B = A * 0.02;
             var C = A * 0.01;
-            var D = indianCurrencyHelper.round((A + B + C) * 100) / 100;
+            var D = indianCurrencyHelper.RoundTo2Decimals((A + B + C) * 100) / 100;
             var E = 0;
             out_txtTax = A;
             out_txtEduCess = B;
@@ -274,7 +274,7 @@ if (cbassyear == "2013-2014") {
             var B = A * 0.02;
             var C = A * 0.01;
             var E = 0;
-            var D = indianCurrencyHelper.round((A + B + C + E) * 100) / 100;
+            var D = indianCurrencyHelper.RoundTo2Decimals((A + B + C + E) * 100) / 100;
             out_txtTax = A;
             out_txtEduCess = B;
             out_txtHEduCess = C;
@@ -286,7 +286,7 @@ if (cbassyear == "2013-2014") {
             var B = A * 0.02;
             var C = A * 0.01;
             var E = 0;
-            var D = indianCurrencyHelper.round((A + B + C + E) * 100) / 100;
+            var D = indianCurrencyHelper.RoundTo2Decimals((A + B + C + E) * 100) / 100;
             out_txtTax = A;
             out_txtEduCess = B;
             out_txtHEduCess = C;
@@ -298,7 +298,7 @@ if (cbassyear == "2013-2014") {
             var B = A * 0.02;
             var C = A * 0.01;
             var E = 0;
-            var D = indianCurrencyHelper.round((A + B + C + E) * 100) / 100;
+            var D = indianCurrencyHelper.RoundTo2Decimals((A + B + C + E) * 100) / 100;
             out_txtTax = A;
             out_txtEduCess = B;
             out_txtHEduCess = C;
@@ -324,7 +324,7 @@ if (cbassyear == "2013-2014") {
             var B = A * 0.02;
             var C = A * 0.01;
             var E = 0;
-            var D = indianCurrencyHelper.round((A + B + C + E) * 100) / 100;
+            var D = indianCurrencyHelper.RoundTo2Decimals((A + B + C + E) * 100) / 100;
             out_txtTax = A;
             out_txtEduCess = B;
             out_txtHEduCess = C;
@@ -336,7 +336,7 @@ if (cbassyear == "2013-2014") {
             var B = A * 0.02;
             var C = A * 0.01;
             var E = 0;
-            var D = indianCurrencyHelper.round((A + B + C + E) * 100) / 100;
+            var D = indianCurrencyHelper.RoundTo2Decimals((A + B + C + E) * 100) / 100;
             out_txtTax = A;
             out_txtEduCess = B;
             out_txtHEduCess = C;
@@ -348,7 +348,7 @@ if (cbassyear == "2013-2014") {
             var B = A * 0.02;
             var C = A * 0.01;
             var E = 0;
-            var D = indianCurrencyHelper.round((A + B + C + E) * 100) / 100;
+            var D = indianCurrencyHelper.RoundTo2Decimals((A + B + C + E) * 100) / 100;
             out_txtTax = A;
             out_txtEduCess = B;
             out_txtHEduCess = C;
@@ -374,7 +374,7 @@ if (cbassyear == "2013-2014") {
             var B = A * 0.02;
             var C = A * 0.01;
             var E = 0;
-            var D = indianCurrencyHelper.round((A + B + C + E) * 100) / 100;
+            var D = indianCurrencyHelper.RoundTo2Decimals((A + B + C + E) * 100) / 100;
             out_txtTax = A;
             out_txtEduCess = B;
             out_txtHEduCess = C;
@@ -386,7 +386,7 @@ if (cbassyear == "2013-2014") {
             var B = A * 0.02;
             var C = A * 0.01;
             var E = 0;
-            var D = indianCurrencyHelper.round((A + B + C + E) * 100) / 100;
+            var D = indianCurrencyHelper.RoundTo2Decimals((A + B + C + E) * 100) / 100;
             out_txtTax = A;
             out_txtEduCess = B;
             out_txtHEduCess = C;
@@ -398,7 +398,7 @@ if (cbassyear == "2013-2014") {
             var B = A * 0.02;
             var C = A * 0.01;
             var E = 0;
-            var D = indianCurrencyHelper.round((A + B + C) * 100) / 100;
+            var D = indianCurrencyHelper.RoundTo2Decimals((A + B + C) * 100) / 100;
             out_txtTax = A;
             out_txtEduCess = B;
             out_txtHEduCess = C;
@@ -424,7 +424,7 @@ if (cbassyear == "2013-2014") {
             var B = A * 0.02;
             var C = A * 0.01;
             var E = 0;
-            var D = indianCurrencyHelper.round((A + B + C + E) * 100) / 100;
+            var D = indianCurrencyHelper.RoundTo2Decimals((A + B + C + E) * 100) / 100;
             out_txtTax = A;
             out_txtEduCess = B;
             out_txtHEduCess = C;
@@ -436,7 +436,7 @@ if (cbassyear == "2013-2014") {
             var B = A * 0.02;
             var C = A * 0.01;
             var E = 0;
-            var D = indianCurrencyHelper.round((A + B + C + E) * 100) / 100;
+            var D = indianCurrencyHelper.RoundTo2Decimals((A + B + C + E) * 100) / 100;
             out_txtTax = A;
             out_txtEduCess = B;
             out_txtHEduCess = C;
@@ -499,7 +499,7 @@ if (cbassyear == "2013-2014") {
             var B = A * 0.02;
             var C = A * 0.01;
             var E = 0;
-            var D = indianCurrencyHelper.round((A + B + C + E) * 100) / 100;
+            var D = indianCurrencyHelper.RoundTo2Decimals((A + B + C + E) * 100) / 100;
             out_txtTax = A;
             out_txtEduCess = B;
             out_txtHEduCess = C;
@@ -511,7 +511,7 @@ if (cbassyear == "2013-2014") {
             var B = A * 0.02;
             var C = A * 0.01;
             var E = 0;
-            var D = indianCurrencyHelper.round((A + B + C + E) * 100) / 100;
+            var D = indianCurrencyHelper.RoundTo2Decimals((A + B + C + E) * 100) / 100;
             out_txtTax = A;
             out_txtEduCess = B;
             out_txtHEduCess = C;
@@ -523,7 +523,7 @@ if (cbassyear == "2013-2014") {
             var B = A * 0.02;
             var C = A * 0.01;
             var E = 0;
-            var D = indianCurrencyHelper.round((A + B + C + E) * 100) / 100;
+            var D = indianCurrencyHelper.RoundTo2Decimals((A + B + C + E) * 100) / 100;
             out_txtTax = A;
             out_txtEduCess = B;
             out_txtHEduCess = C;
@@ -592,7 +592,7 @@ if (cbassyear == "2013-2014") {
             var B = A * 0.02;
             var C = A * 0.01;
             var E = 0;
-            var D = indianCurrencyHelper.round((A + B + C + E) * 100) / 100;
+            var D = indianCurrencyHelper.RoundTo2Decimals((A + B + C + E) * 100) / 100;
             out_txtTax = A;
             out_txtEduCess = B;
             out_txtHEduCess = C;
@@ -604,7 +604,7 @@ if (cbassyear == "2013-2014") {
             var B = A * 0.02;
             var C = A * 0.01;
             var E = 0;
-            var D = indianCurrencyHelper.round((A + B + C + E) * 100) / 100;
+            var D = indianCurrencyHelper.RoundTo2Decimals((A + B + C + E) * 100) / 100;
             out_txtTax = A;
             out_txtEduCess = B;
             out_txtHEduCess = C;
@@ -616,7 +616,7 @@ if (cbassyear == "2013-2014") {
             var B = A * 0.02;
             var C = A * 0.01;
             var E = 0;
-            var D = indianCurrencyHelper.round((A + B + C + E) * 100) / 100;
+            var D = indianCurrencyHelper.RoundTo2Decimals((A + B + C + E) * 100) / 100;
             out_txtTax = A;
             out_txtEduCess = B;
             out_txtHEduCess = C;
@@ -642,7 +642,7 @@ if (cbassyear == "2013-2014") {
             var B = A * 0.02;
             var C = A * 0.01;
             var E = 0;
-            var D = indianCurrencyHelper.round((A + B + C + E) * 100) / 100;
+            var D = indianCurrencyHelper.RoundTo2Decimals((A + B + C + E) * 100) / 100;
 
             out_txtTax = A;
             out_txtEduCess = B;
@@ -655,7 +655,7 @@ if (cbassyear == "2013-2014") {
             var B = A * 0.02;
             var C = A * 0.01;
             var E = 0;
-            var D = indianCurrencyHelper.round((A + B + C + E) * 100) / 100;
+            var D = indianCurrencyHelper.RoundTo2Decimals((A + B + C + E) * 100) / 100;
             out_txtTax = A;
             out_txtEduCess = B;
             out_txtHEduCess = C;
@@ -667,7 +667,7 @@ if (cbassyear == "2013-2014") {
             var B = A * 0.02;
             var C = A * 0.01;
             var E = 0;
-            var D = indianCurrencyHelper.round((A + B + C + E) * 100) / 100;
+            var D = indianCurrencyHelper.RoundTo2Decimals((A + B + C + E) * 100) / 100;
             out_txtTax = A;
             out_txtEduCess = B;
             out_txtHEduCess = C;
@@ -693,7 +693,7 @@ if (cbassyear == "2013-2014") {
             var B = A * 0.02;
             var C = A * 0.01;
             var E = 0;
-            var D = indianCurrencyHelper.round((A + B + C + E) * 100) / 100;
+            var D = indianCurrencyHelper.RoundTo2Decimals((A + B + C + E) * 100) / 100;
             out_txtTax = A;
             out_txtEduCess = B;
             out_txtHEduCess = C;
@@ -705,7 +705,7 @@ if (cbassyear == "2013-2014") {
             var B = A * 0.02;
             var C = A * 0.01;
             var E = 0;
-            var D = indianCurrencyHelper.round((A + B + C + E) * 100) / 100;
+            var D = indianCurrencyHelper.RoundTo2Decimals((A + B + C + E) * 100) / 100;
             out_txtTax = A;
             out_txtEduCess = B;
             out_txtHEduCess = C;
@@ -717,7 +717,7 @@ if (cbassyear == "2013-2014") {
             var B = A * 0.02;
             var C = A * 0.01;
             var E = 0;
-            var D = indianCurrencyHelper.round((A + B + C + E) * 100) / 100;
+            var D = indianCurrencyHelper.RoundTo2Decimals((A + B + C + E) * 100) / 100;
             out_txtTax = A;
             out_txtEduCess = B;
             out_txtHEduCess = C;
@@ -781,7 +781,7 @@ if (cbassyear == "2013-2014") {
             var B = A * 0.02;
             var C = A * 0.01;
             var E = 0;
-            var D = indianCurrencyHelper.round((A + B + C + E) * 100) / 100;
+            var D = indianCurrencyHelper.RoundTo2Decimals((A + B + C + E) * 100) / 100;
             out_txtTax = A;
             out_txtEduCess = B;
             out_txtHEduCess = C;
@@ -793,7 +793,7 @@ if (cbassyear == "2013-2014") {
             var B = A * 0.02;
             var C = A * 0.01;
             var E = 0;
-            var D = indianCurrencyHelper.round((A + B + C + E) * 100) / 100;
+            var D = indianCurrencyHelper.RoundTo2Decimals((A + B + C + E) * 100) / 100;
             out_txtTax = A;
             out_txtEduCess = B;
             out_txtHEduCess = C;
@@ -805,7 +805,7 @@ if (cbassyear == "2013-2014") {
             var B = A * 0.02;
             var C = A * 0.01;
             var E = 0;
-            var D = indianCurrencyHelper.round((A + B + C + E) * 100) / 100;
+            var D = indianCurrencyHelper.RoundTo2Decimals((A + B + C + E) * 100) / 100;
             out_txtTax = A;
             out_txtEduCess = B;
             out_txtHEduCess = C;
