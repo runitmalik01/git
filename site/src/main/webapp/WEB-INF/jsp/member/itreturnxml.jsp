@@ -162,7 +162,7 @@
 					<td colspan="1"><fmt:message key="income.tax"/></td>
 					<td  style="text-align:left">
 						<span class="decimal">
-									<w4india:inr value="0"/>
+									<w4india:inr value="${theForm.ITR1TaxComputation.totalTaxPayable}"/>
 						</span>
 					</td>
 				</tr>
@@ -186,7 +186,7 @@
 					<td colspan="1"><fmt:message key="surcharge.tax"/></td>
 					<td  style="text-align:left">
 						<span class="decimal">
-									<w4india:inr value="0"/>
+									<w4india:inr value="${theForm.ITR1TaxComputation.surchargeOnTaxPayable}"/>
 						</span>
 					</td>
 				</tr>
@@ -194,7 +194,7 @@
 					<td colspan="1"><fmt:message key="education.cess"/></td>
 					<td  style="text-align:left">
 						<span class="decimal">
-									<w4india:inr value="0"/>
+									<w4india:inr value="${theForm.ITR1TaxComputation.educationCess }"/>
 						</span>
 					</td>
 				</tr>
@@ -202,7 +202,7 @@
 					<td colspan="1"><fmt:message key="tax.education.surcharge"/></td>
 					<td  style="text-align:left">
 						<span class="decimal">
-									<w4india:inr value="0"/>
+									<w4india:inr value="${theForm.ITR1TaxComputation.grossTaxLiability }"/>
 						</span>
 					</td>
 				</tr>
@@ -340,7 +340,7 @@
 					<td colspan="1"><b><fmt:message key="tax.payble.refund"/></b>
 					<td  style="text-align:left">
 						<span class="decimal">
-									<w4india:inr value="0"/>
+									<w4india:inr value="${theForm.taxPaid.balTaxPayable}"/>
 						</span>
 					</td>
 				</tr>
