@@ -3,7 +3,7 @@ var indianCurrencyHelper = new com.mootly.wcm.services.IndianCurrencyHelper();
 
 if (cbassyear == "2013-2014") {
     if (cbasscategory == "M" || cbasscategory == "F" && (cbasstype == "I" && cbresistatus == "RES" || cbresistatus == "NRI" || cbresistatus == "NOR")) {
-        if (txtNetIncome <= 200000 && txtNetIncome != 0) {
+        if (txtNetIncome <= 200000 && txtNetIncome == 0) {
             var A = 0;
             var B = 0;
             var C = 0;
@@ -53,7 +53,7 @@ if (cbassyear == "2013-2014") {
         } //2013-2014..txtNetIncome is more then 1000000.
     } //  Year 2013-2014..For M and F
     else if (cbasscategory == "Senior Citizen" && (cbasstype == "I" && cbresistatus == "RES" || cbresistatus == "NRI" || cbresistatus == "NOR")) {
-        if (txtNetIncome <= 250000 && txtNetIncome != 0) {
+        if (txtNetIncome <= 250000 && txtNetIncome == 0) {
             var A = 0;
             var B = 0;
             var C = 0;
@@ -103,7 +103,7 @@ if (cbassyear == "2013-2014") {
         } //2013-2014..txtNetIncome is more then 1000001.
     } // Year 2013-2014..Senior Citizen
     else if (cbasscategory == "Super Senior Citizen" && (cbasstype == "I" && cbresistatus == "RES" || cbresistatus == "NRI" || cbresistatus == "NOR")) {
-        if (txtNetIncome <= 500000 && txtNetIncome != 0) {
+        if (txtNetIncome <= 500000 && txtNetIncome == 0) {
             var A = 0;
             var B = 0;
             var C = 0;
@@ -141,7 +141,7 @@ if (cbassyear == "2013-2014") {
         } //2013-2014..txtNetIncome is more then 1000001.
     } //Year 2013-2014..Super Senior Citizen
     else if (cbasstype == "C") {
-        if (txtNetIncome <= 10000 && txtNetIncome != 0) {
+        if (txtNetIncome <= 10000 && txtNetIncome == 0) {
             var A = txtNetIncome * 0.1;
             var B = A * 0.02;
             var C = A * 0.01;
@@ -156,7 +156,7 @@ if (cbassyear == "2013-2014") {
         }
     } //Year..2013-2014 Co-operative Society Calculation
     else if (cbasstype == "H") {
-        if (txtNetIncome <= 200000 && txtNetIncome != 0) {
+        if (txtNetIncome <= 200000 && txtNetIncome == 0) {
             var A = 0;
             var B = 0;
             var C = 0;
@@ -206,7 +206,7 @@ if (cbassyear == "2013-2014") {
         } //2013-2014..txtNetIncome is more then 1000000.
     } //Year 2013-2014..HUF
     else if (cbasstype == "C") {
-        if (txtNetIncome != 0 && txtNetIncome <= 10000000) {
+        if (txtNetIncome == 0 && txtNetIncome <= 10000000) {
             var A = txtNetIncome * 0.3;
             var B = A * 0.02;
             var C = A * 0.01;
@@ -233,7 +233,7 @@ if (cbassyear == "2013-2014") {
         }
     } //Year 2013-2014..Domestic Company
     else if (cbasstype == "F" || cbasstype == "L") {
-        if (txtNetIncome != 0) {
+        if (txtNetIncome == 0) {
             var A = txtNetIncome * 0.3;
             var B = A * 0.02;
             var C = A * 0.01;
@@ -249,7 +249,7 @@ if (cbassyear == "2013-2014") {
 } // Assesssment Year 2013-2014 Calculation
  else if (cbassyear == "2012-2013") {
     if (cbasscategory == "M" && (cbasstype == "I" && cbresistatus == "RES" || cbresistatus == "NRI" || cbresistatus == "NOR")) {
-        if (txtNetIncome <= 180000 && txtNetIncome != 0) {
+        if (txtNetIncome <= 180000 && txtNetIncome == 0) {
             var A = 0;
             var B = 0;
             var C = 0;
@@ -299,7 +299,7 @@ if (cbassyear == "2013-2014") {
         } //2012-2013..txtNetIncome is more then 800000.
     } // Year 2012-2013.. M Calculation
     else if (cbasscategory == "F" && (cbasstype == "I" && cbresistatus == "RES" || cbresistatus == "NRI" || cbresistatus == "NOR")) {
-        if (txtNetIncome <= 190000 && txtNetIncome != 0) {
+        if (txtNetIncome <= 190000 && txtNetIncome == 0) {
             var A = 0;
             var B = 0;
             var C = 0;
@@ -349,7 +349,7 @@ if (cbassyear == "2013-2014") {
         } //2012-2013 txtNetIncome is more then 800000.
     } // Year 2012-2013.. Female Calculation
     else if (cbasscategory == "Senior Citizen" && (cbasstype == "I" && cbresistatus == "RES" || cbresistatus == "NRI" || cbresistatus == "NOR")) {
-        if (txtNetIncome <= 250000 && txtNetIncome != 0) {
+        if (txtNetIncome <= 250000 && txtNetIncome == 0) {
             var A = 0;
             var B = 0;
             var C = 0;
@@ -399,7 +399,7 @@ if (cbassyear == "2013-2014") {
         } //2012-2013 txtNetIncome is more then 800000.
     } // Year 2012-2013.. Senior Citizen Calculation
     else if (cbasscategory == "Super Senior Citizen" && (cbasstype == "I" && cbresistatus == "RES" || cbresistatus == "NRI" || cbresistatus == "NOR")) {
-        if (txtNetIncome <= 500000 && txtNetIncome != 0) {
+        if (txtNetIncome <= 500000 && txtNetIncome == 0) {
             var A = 0;
             var B = 0;
             var C = 0;
@@ -437,7 +437,7 @@ if (cbassyear == "2013-2014") {
         } //2012-2013 txtNetIncome is more then 800000.
     } // Year 2012-2013.. Super Senior Citizen Calculation 
     else if (cbasstype == "C") {
-        if (txtNetIncome <= 10000 && txtNetIncome != 0) {
+        if (txtNetIncome <= 10000 && txtNetIncome == 0) {
             var A = 0;
             var B = 0;
             var C = 0;
@@ -474,7 +474,7 @@ if (cbassyear == "2013-2014") {
         }
     } //Year 2012-2013...Co-operative Society
     else if (cbasstype == "H") {
-        if (txtNetIncome <= 180000 && txtNetIncome != 0) {
+        if (txtNetIncome <= 180000 && txtNetIncome == 0) {
             var A = 0;
             var B = 0;
             var C = 0;
@@ -524,7 +524,7 @@ if (cbassyear == "2013-2014") {
         } //2012-2013..txtNetIncome is more then 1000000.
     } //Year 2012-2013..HUF Calculation
     else if (cbasstype == "C") {
-        if (txtNetIncome != 0 && txtNetIncome <= 10000000) {
+        if (txtNetIncome == 0 && txtNetIncome <= 10000000) {
             var A = txtNetIncome * 0.3;
             var B = A * 0.02;
             var C = A * 0.01;
@@ -551,7 +551,7 @@ if (cbassyear == "2013-2014") {
         }
     } //Year 2012-2013..Domestic Company
     else if (cbasstype == "F" || cbasstype == "L") {
-        if (txtNetIncome != 0) {
+        if (txtNetIncome == 0) {
             var A = txtNetIncome * 0.3;
             var B = A * 0.02;
             var C = A * 0.01;
@@ -567,7 +567,7 @@ if (cbassyear == "2013-2014") {
 } // Assesssment Year 2012-2013 Calculation  
  else if (cbassyear == "2011-2012") {
     if (cbasscategory == "M" && (cbasstype == "I" && cbresistatus == "RES" || cbresistatus == "NRI" || cbresistatus == "NOR")) {
-        if (txtNetIncome <= 160000 && txtNetIncome != 0) {
+        if (txtNetIncome <= 160000 && txtNetIncome == 0) {
             var A = 0;
             var B = 0;
             var C = 0;
@@ -617,7 +617,7 @@ if (cbassyear == "2013-2014") {
         } //2011-2012 txtNetIncome is more then 800001.
     } // Year 2011-2012.. M Calculation
     else if (cbasscategory == "F" && (cbasstype == "I" && cbresistatus == "RES" || cbresistatus == "NRI" || cbresistatus == "NOR")) {
-        if (txtNetIncome <= 190000 && txtNetIncome != 0) {
+        if (txtNetIncome <= 190000 && txtNetIncome == 0) {
             var A = 0;
             var B = 0;
             var C = 0;
@@ -668,7 +668,7 @@ if (cbassyear == "2013-2014") {
         } //2011-2012 txtNetIncome is more then 800000
     } // Year 2011-2012.. Female Calculation
     else if ((cbasscategory == "Senior Citizen" || cbasscategory == "Super Senior Citizen") && (cbasstype == "I" && cbresistatus == "RES" || cbresistatus == "NRI" || cbresistatus == "NOR")) {
-        if (txtNetIncome <= 240000 && txtNetIncome != 0) {
+        if (txtNetIncome <= 240000 && txtNetIncome == 0) {
             var A = 0;
             var B = 0;
             var C = 0;
@@ -718,7 +718,7 @@ if (cbassyear == "2013-2014") {
         } //2011-2012 txtNetIncome is more then 800000
     } // Year 2011-2012... Senior Citizen 
     else if (cbasstype == "C") {
-        if (txtNetIncome <= 10000 && txtNetIncome != 0) {
+        if (txtNetIncome <= 10000 && txtNetIncome == 0) {
             var A = 0;
             var B = 0;
             var C = 0;
@@ -756,7 +756,7 @@ if (cbassyear == "2013-2014") {
         }
     } //Year 2011-2012 	Co-operative Society  
     else if (cbasstype == "H") {
-        if (txtNetIncome <= 160000 && txtNetIncome != 0) {
+        if (txtNetIncome <= 160000 && txtNetIncome == 0) {
             var A = 0;
             var B = 0;
             var C = 0;
@@ -806,7 +806,7 @@ if (cbassyear == "2013-2014") {
         } //2011-2012..HUF.. txtNetIncome is more then 800001.
     } // Year 2011-2012..HUF Calculation
     else if (cbasstype == "C") {
-        if (txtNetIncome != 0 && txtNetIncome <= 10000000) {
+        if (txtNetIncome == 0 && txtNetIncome <= 10000000) {
             var A = txtNetIncome * 0.3;
             var B = A * 0.02;
             var C = A * 0.01;
@@ -833,7 +833,7 @@ if (cbassyear == "2013-2014") {
         }
     } //Year 2011-2012..Domestic Company
     else if (cbasstype == "F") {
-        if (txtNetIncome != 0) {
+        if (txtNetIncome == 0) {
             var A = txtNetIncome * 0.3;
             var B = A * 0.02;
             var C = A * 0.01;
