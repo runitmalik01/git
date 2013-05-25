@@ -1032,10 +1032,8 @@
 							</td>
 							<td><a
 							href="${scriptName}/<c:out value="${salaryItemDetail.canonicalUUID}"/>/formsixteenedit"><small>Edit</small>
-							<c:set var="canonicalUUID" value="${salaryItemDetail.canonicalUUID}"/>
-								<c:set var="scriptName" value="${scriptName}"/>
-							</a>&nbsp;&nbsp;<a id="delete"><small>Delete</small>
-							</a></td>
+							 </a>&nbsp;&nbsp;<a href="${scriptName}/<c:out value="${salaryItemDetail.canonicalUUID}"/>/formsixteendelete" onclick="return checkdelete()"><small>Delete</small></a>
+							</td></td>
 						</tr>
 					</c:forEach>
 				</c:if>
@@ -1046,12 +1044,16 @@
 	</c:choose>
 <script type="text/javascript">
 
-$('#delete').click(function(){
-	var result=confirm("Do you want to delete permanently");	
-	if(result){
-		$('#delete').attr('href','<c:out value="${scriptName}"/>/<c:out value="${canonicalUUID}"/>/formsixteendelete');
-	}
-});
-</script>
+
+<hst:element var="uiCustom" name="script">
+ <hst:attribute name="type">text/javascript</hst:attribute>
+        function checkdelete(){
+        alert("hiiiiiiiiiii");
+         var re=confirm("Do You want to Delete it");
+           if (re) return true;
+           else return false;
+                    }
+   </hst:element>
+<hst:headContribution element="${uiCustom}" category="jsInternal" />
 
 <res:client-validation formId="frmdataFormSixteen" screenConfigurationDocumentName="formsixteen" formSubmitButtonId="myModalHrefFormSixteen" />
