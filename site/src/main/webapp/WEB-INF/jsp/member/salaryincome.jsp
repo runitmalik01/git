@@ -19,8 +19,8 @@
 </c:set>
 <hippo-gogreen:title title="${salaryincometitle}" />
 <hst:actionURL var="actionUrl"></hst:actionURL>
-
-<h3 id="respond1">
+<div class="page">
+	<h3 id="respond1">
 		<c:choose>
 			<c:when
 				test="${not empty screenConfigDocument && not empty screenConfigDocument.screenHeading}">
@@ -47,32 +47,32 @@
 				<fieldset>
 					<legend>Employment</legend>
 					<div class="row-fluid show-grid">
-                         <div class="span4">
-                         <div class="rowlabel">
-						<label><fmt:message
-								key="member.employe.category" /> </label></div>
-						<c:if
-							test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
-							<c:choose>
-								<c:when test="${childBean.employe_category == 'GOV'}">
-									<c:set var="gov" value="checked=checked" />
-								</c:when>
-								<c:when test="${childBean.employe_category == 'PSU'}">
-									<c:set var="psu" value="checked=checked" />
-								</c:when>
-								<c:when test="${childBean.employe_category == 'OTH'}">
-									<c:set var="oth" value="checked=checked" />
-								</c:when>
-							</c:choose>
-						</c:if>
-						<div class="rowlabel">
-						<input type="radio" <c:out value="${gov}"/>
-							name="Employe_category" value="GOV" />Government <input
-							type="radio" <c:out value="${psu}"/> name="Employe_category"
-							value="PSU" />PSU <input type="radio" <c:out value="${oth}"/>
-							name="Employe_category" value="OTH" />Others
-                     </div>
-                     </div>
+						<div class="span4">
+							<div class="rowlabel">
+								<label><fmt:message key="member.employe.category" /> </label>
+							</div>
+							<c:if
+								test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
+								<c:choose>
+									<c:when test="${childBean.employe_category == 'GOV'}">
+										<c:set var="gov" value="checked=checked" />
+									</c:when>
+									<c:when test="${childBean.employe_category == 'PSU'}">
+										<c:set var="psu" value="checked=checked" />
+									</c:when>
+									<c:when test="${childBean.employe_category == 'OTH'}">
+										<c:set var="oth" value="checked=checked" />
+									</c:when>
+								</c:choose>
+							</c:if>
+							<div class="rowlabel">
+								<input type="radio" <c:out value="${gov}"/>
+									name="Employe_category" value="GOV" />Government <input
+									type="radio" <c:out value="${psu}"/> name="Employe_category"
+									value="PSU" />PSU <input type="radio" <c:out value="${oth}"/>
+									name="Employe_category" value="OTH" />Others
+							</div>
+						</div>
 					</div>
 				</fieldset>
 				<fieldset>
@@ -84,8 +84,8 @@
 										key="member.employe.name" /> </label>
 							</div>
 							<div class="rowlabel">
-								<input id="Name_employer" type="text"
-									name="Name_employer" maxlength="25"
+								<input id="Name_employer" type="text" name="Name_employer"
+									maxlength="25"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.name_employer}"/></c:if>" />
 
 							</div>
@@ -97,9 +97,10 @@
 										key="member.employee.name" /> </label>
 							</div>
 							<div class="rowlabel">
-								<input id="Name_employee" type="text"
-									name="Name_employee" maxlength="25"
-									value="<c:choose><c:when test="${pageAction == 'EDIT_CHILD'}"><c:out value="${childBean.name_employee}"/></c:when><c:otherwise><c:out value="${memberpersonalinformation.name}"/></c:otherwise></c:choose>" readonly="readonly"/>
+								<input id="Name_employee" type="text" name="Name_employee"
+									maxlength="25"
+									value="<c:choose><c:when test="${pageAction == 'EDIT_CHILD'}"><c:out value="${childBean.name_employee}"/></c:when><c:otherwise><c:out value="${memberpersonalinformation.name}"/></c:otherwise></c:choose>"
+									readonly="readonly" />
 							</div>
 						</div>
 						<div class="span4">
@@ -109,7 +110,8 @@
 							</div>
 							<div class="rowlabel">
 								<input id="Pan_employee" type="text" name="Pan_employee"
-									value="<c:choose><c:when test="${pageAction == 'EDIT_CHILD'}"><c:out value="${childBean.pan_employee}"/></c:when><c:otherwise><c:out value="${memberpersonalinformation.PAN}"/></c:otherwise></c:choose>" readonly="readonly"/>
+									value="<c:choose><c:when test="${pageAction == 'EDIT_CHILD'}"><c:out value="${childBean.pan_employee}"/></c:when><c:otherwise><c:out value="${memberpersonalinformation.PAN}"/></c:otherwise></c:choose>"
+									readonly="readonly" />
 							</div>
 						</div>
 					</div>
@@ -152,8 +154,8 @@
 						</div>
 						<div class="span3">
 							<div class="rowlabel">
-								<label for="Cityslry"><fmt:message key="member.city.info" />
-								</label>
+								<label for="Cityslry"><fmt:message
+										key="member.city.info" /> </label>
 							</div>
 							<div class="rowlabel">
 								<input id="Cityslry" type="text" name="Cityslry"
@@ -166,8 +168,7 @@
 								</label>
 							</div>
 							<div class="rowlabel">
-								<input id="Pinslry" type="text" name="Pinslry"
-									maxlength="6" 
+								<input id="Pinslry" type="text" name="Pinslry" maxlength="6"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
 						<c:out value="${childBean.pin}"/></c:if>" />
 							</div>
@@ -178,9 +179,15 @@
 										key="member.salary.state" /> </label>
 							</div>
 							<div class="rowlabel">
-								<c:set var="searchresultstitle"><fmt:message key="member.contact_info.state.select"/></c:set>
-                                <c:set var="statesType"><fmt:message key="dropdown.states"/></c:set>
-                    <w4india:dropdown dropDownSelectId="Stateslry" optionSelectString="${searchresultstitle}" dropDownType="${statesType}" fetchValue="${childBean.state}"/>
+								<c:set var="searchresultstitle">
+									<fmt:message key="member.contact_info.state.select" />
+								</c:set>
+								<c:set var="statesType">
+									<fmt:message key="dropdown.states" />
+								</c:set>
+								<w4india:dropdown dropDownSelectId="Stateslry"
+									optionSelectString="${searchresultstitle}"
+									dropDownType="${statesType}" fetchValue="${childBean.state}" />
 							</div>
 						</div>
 
@@ -193,7 +200,8 @@
 					<div class="row-fluid show-grid">
 						<div class="span4">
 							<div class="rowlabel">
-								<label for="From"><fmt:message key="member.period.info1" /> </label>
+								<label for="From"><fmt:message key="member.period.info1" />
+								</label>
 							</div>
 							<div class="rowlabel">
 								<input id="From" name="From"
@@ -202,10 +210,11 @@
 						</div>
 						<div class="span4">
 							<div class="rowlabel">
-								<label for="To"><fmt:message key="member.period.infoto" /> </label>
+								<label for="To"><fmt:message key="member.period.infoto" />
+								</label>
 							</div>
 							<div class="rowlabel">
-								<input id="To" name="To" placeholder="DD/MM"
+								<input id="To" name="To" 
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.to}"/></c:if>" />
 							</div>
 						</div>
@@ -216,12 +225,12 @@
 					<div class="row-fluid show-grid">
 						<div class="span4">
 							<div class="rowlabel">
-								<label for="Gross_salary"><fmt:message key="member.gross.salary" /> </label>
+								<label for="Gross_salary"><fmt:message
+										key="member.gross.salary" /> </label>
 							</div>
 							<div class="rowlabel">
-								<input type="text" name="Gross_salary"
-									maxlength="14" id="Gross_salary"
-									class="decimal"
+								<input type="text" name="Gross_salary" maxlength="14"
+									id="Gross_salary" class="decimal"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
 						<c:out value="${childBean.gross_salary}"/></c:if>" />
 							</div>
@@ -231,8 +240,8 @@
 								<label>Allowance Not Exempt: </label>
 							</div>
 							<div class="rowlabel">
-								<input type="text" name="Allowance" id="Allowance" maxlength="14"
-								 class="decimal"
+								<input type="text" name="Allowance" id="Allowance"
+									maxlength="14" class="decimal"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.allowance}"/></c:if>">
 							</div>
 						</div>
@@ -253,8 +262,8 @@
 								<label><fmt:message key="member.value.preq" /> </label>
 							</div>
 							<div class="rowlabel">
-								<input type="text" maxlength="14" name="Perquisite" id="Perquisite"
-									class="decimal"
+								<input type="text" maxlength="14" name="Perquisite"
+									id="Perquisite" class="decimal"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.perquisite}"/></c:if>">
 							</div>
 						</div>
@@ -271,11 +280,13 @@
 						</div>
 						<div class="span4">
 							<div class="rowlabel">
-								<label for="Taxable_earning"><fmt:message key="member.value.tax" /> </label>
+								<label for="Taxable_earning"><fmt:message
+										key="member.value.tax" /> </label>
 							</div>
 
 							<div class="rowlabel">
-								<input type="text" name="Taxable_earning" id="Taxable_earning" class="decimal" readonly="readonly"
+								<input type="text" name="Taxable_earning" id="Taxable_earning"
+									class="decimal" readonly="readonly"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.taxable_earning}"/></c:if>" />
 							</div>
 						</div>
@@ -283,12 +294,13 @@
 				</fieldset>
 				<div class="row-fluid show-grid">
 					<div class="span4 offset8 decimal">
-						<a href="${scriptName}?selectedItrTab=<%=ITRTab.INCOME_SALARY_PENSION%>" class="button olive">Cancel</a>&nbsp;
-								<a id="myModalHrefSlryInc" role="button" class="btn orange">Save</a>
+						<a
+							href="${scriptName}?selectedItrTab=<%=ITRTab.INCOME_SALARY_PENSION%>"
+							class="button olive">Cancel</a>&nbsp; <a id="myModalHrefSlryInc"
+							role="button" class="btn orange">Save</a>
 					</div>
-					</div>
+				</div>
 			</form>
-
 		</c:when>
 		<c:otherwise>
 			<table>
@@ -318,10 +330,9 @@
 							</td>
 							<td><a
 								href="${scriptName}/<c:out value="${salaryItemDetail.canonicalUUID}"/>/salaryincomeedit"><small>Edit</small>
-								<c:set var="canonicalUUID" value="${salaryItemDetail.canonicalUUID}"/>
-								<c:set var="scriptName" value="${scriptName}"/>
-							</a>&nbsp;&nbsp;<a href="${scriptName}/<c:out value="${salaryItemDetail.canonicalUUID}"/>/salaryincomedelete" onclick="return checkdelete()"><small>Delete</small></a>
-							</td></td>
+									 </a>&nbsp;&nbsp;<a href="${scriptName}/<c:out value="${salaryItemDetail.canonicalUUID}"/>/salaryincomedelete" onclick="return checkdelete()">
+									 <small>Delete</small> </a></td>
+								
 						</tr>
 					</c:forEach>
 					<tr align="center">
@@ -334,27 +345,28 @@
 				New</a>
 		</c:otherwise>
 	</c:choose>
-
-<script>
-	/*function fill() {
-		var A = document.getElementById("Gross_salary").value - 0;
-		var B = document.getElementById("Allowance").value - 0;
-		var C = document.getElementById("Perquisite").value - 0;
-		var D = document.getElementById("profit").value - 0;
-		document.getElementById("Taxable_earning").value = (A + B + C + D);
-	}**/
-</script>
-
-<hst:element var="uiCustom" name="script">
- <hst:attribute name="type">text/javascript</hst:attribute>
-        function checkdelete(){
-        var re=confirm("Do You want to Delete it");
-           if (re) return true;
-           else return false;
-                    }
-   </hst:element>
-<hst:headContribution element="${uiCustom}" category="jsInternal" />
+</div>
 <res:calc screenCalc="salaryincome" formId="frmdataSlryInc"></res:calc>
 <res:client-validation formId="frmdataSlryInc"
 	screenConfigurationDocumentName="salaryincome"
 	formSubmitButtonId="myModalHrefSlryInc" />
+
+<hst:element var="uiCustom" name="script">
+	<hst:attribute name="type">text/javascript</hst:attribute>
+    $('#Stateslry').change(function(){
+			if($('#Stateslry').val()=='99'){
+			      $('#Pinslry').val('999999');
+			      $('#Pinslry').attr('readonly','readonly');
+			   }else{
+                            $('#Pinslry').val('');
+                            $('#Pinslry').removeAttr('readonly');
+                            }
+			});
+        function checkdelete(){
+        alert("hiiiiiiiiiii");
+	        var re=confirm("Do You want to Delete it");
+	          if (re) return true;
+	          else return false;
+                    }
+			</hst:element>
+<hst:headContribution element="${uiCustom}" category="jsInternal" />
