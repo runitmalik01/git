@@ -227,7 +227,7 @@ public class Deduction extends ITReturnComponent {
 				}	
 			}
 			totalMapForJS.put("housproperty", housproperty);
-			totalMapForJS.put("total_eligiblededuction", 0D);
+			//totalMapForJS.put("total_eligiblededuction", 0D);
 			Map<String,Object> resultMap = ScreenCalculatorService.getScreenCalculations("Chapter6Calc.js", request.getParameterMap(), totalMapForJS);
 			if (resultMap != null && resultMap.size() > 0 ) {
 				totalMapForJS.putAll(resultMap);
