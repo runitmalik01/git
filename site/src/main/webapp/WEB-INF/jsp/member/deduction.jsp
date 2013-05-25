@@ -85,12 +85,7 @@
 					</td>
 				</tr>	
 			</c:forEach>	
-				<c:forEach items="${deductionSectionMap}" var="deductionSectionMapEntry">
-				<c:set var="key" value="total_${deductionSectionMapEntry.key }"/>
-				<c:if test="${not empty totalMapForJS && not empty totalMapForJS[key]}">
-				<c:set var="finaltotalEligibleDeduction" value="${finaltotalEligibleDeduction + totalMapForJS[key]}"/>
-				</c:if>
-				</c:forEach>	
+				<c:set var="finaltotalEligibleDeduction" value="${totalMapForJS['total_eligiblededuction']}"/>
 			<tr class="success">
 				<td colspan="1" style="text-align:right"><b>Total</b></td>				
 				<td align="right" style="text-align:right"><b><w4india:inr value="${grandTotal}"/></b></td>
