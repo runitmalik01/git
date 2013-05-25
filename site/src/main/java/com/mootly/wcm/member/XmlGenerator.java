@@ -24,8 +24,10 @@ import javax.xml.datatype.XMLGregorianCalendar;
 import in.gov.incometaxindiaefiling.y2012_2013.itr1.ITR1;
 import in.gov.incometaxindiaefiling.y2012_2013.itr1.ObjectFactory;
 import in.gov.incometaxindiaefiling.y2012_2013.master.Address.Phone;
+import in.gov.incometaxindiaefiling.y2012_2013.master.AddressDetail;
 import in.gov.incometaxindiaefiling.y2012_2013.master.AssesseeName;
 import in.gov.incometaxindiaefiling.y2012_2013.master.CreationInfo;
+import in.gov.incometaxindiaefiling.y2012_2013.master.DoneeWithPan;
 import in.gov.incometaxindiaefiling.y2012_2013.master.EmployerOrDeductorOrCollectDetl;
 import in.gov.incometaxindiaefiling.y2012_2013.master.ITR1TaxComputation;
 import in.gov.incometaxindiaefiling.y2012_2013.master.PersonalInfo;
@@ -197,6 +199,9 @@ public class XmlGenerator extends ITReturnComponent {
 		TaxPayments taxPayments = new TaxPayments();
 		TaxPayment taxPayment = new TaxPayment();
 		IndianCurrencyHelper indianCurrencyHelper = new IndianCurrencyHelper(); 
+		DoneeWithPan doneeWithPan = new DoneeWithPan();
+		Schedule80G schedule80G = new Schedule80G();
+		AddressDetail addressDetail = new AddressDetail();
 
 		//personal information
 		assesseeName.setFirstName(memberPersonalInformation.getFirstName());
@@ -263,6 +268,7 @@ public class XmlGenerator extends ITReturnComponent {
 		}
 		if(otherSourcesDocument!=null)
 			incomeDeductions.setIncomeOthSrc(indianCurrencyHelper.longRound(otherSourcesDocument.getTaxable_income()));
+		
 		long grsstotal = xmlCalculation.grossTotal(request, response);
 		incomeDeductions.setGrossTotIncome(grsstotal);	// calculation needed(incomefromsalary+house income+othersrcincome)
 		//added deduction with null values (incomplete)
@@ -303,9 +309,9 @@ public class XmlGenerator extends ITReturnComponent {
 		}
 		//totalMapForJSDe.put("ageInYears",ageInYears);
 		totalMapForJSDe.put("isSeniorCitizen",getFinancialYear().isSeniorCitizen(memberPersonalInformation.getDOB().getTime()));
-		totalMapForJSDe.put("salarypension", salaryIncomeDocument.getTotal());
-		totalMapForJSDe.put("othersources", otherSourcesDocument.getTaxable_income());
-		totalMapForJSDe.put("housproperty", incomeDeductions.getTotalIncomeOfHP());
+		totalMapForJSDe.put("salarypension",incomeDeductions.getIncomeFromSal());
+		totalMapForJSDe.put("othersources",incomeDeductions.getIncomeOthSrc());
+		totalMapForJSDe.put("housproperty",incomeDeductions.getTotalIncomeOfHP());
 		log.info("get the list of all"+totalMapForJSDe.toString());
 		Map<String,Object> resultMapDe = ScreenCalculatorService.getScreenCalculations("Chapter6Calc.js", request.getParameterMap(), totalMapForJSDe);
 		/*if (resultMapDe != null && resultMapDe.size() > 0 ) {
@@ -454,6 +460,7 @@ public class XmlGenerator extends ITReturnComponent {
 		incomeDeductions.setTotalIncome(grsstotal-indianCurrencyHelper.longRound(sumdeduction)); //calculation needed(GrossTotIncome-TotalChapVIADeductions(HARDCODDED 0))
 
 		itr1.setITR1IncomeDeductions(incomeDeductions);
+		
 		Map<String,Object> totalMapForJS = new HashMap<String, Object>();
 		totalMapForJS.put("cbassyear",getAssessmentYear());
 		totalMapForJS.put("cbasstype", memberPersonalInformation.getFilingStatus());
@@ -483,9 +490,12 @@ public class XmlGenerator extends ITReturnComponent {
 
 		itr1.setITR1TaxComputation(itr1TaxComputation);
 
+		BigInteger advancetax =new BigInteger ("0");
 		//TaxPaid and TaxesPaid
-		if(advanceTaxDocument!=null)
-			taxesPaid.setAdvanceTax(indianCurrencyHelper.bigIntegerRound(advanceTaxDocument.getTotal_Amount()));
+		if(advanceTaxDocument!=null){
+			advancetax=indianCurrencyHelper.bigIntegerRound(advanceTaxDocument.getTotal_Amount());
+			taxesPaid.setAdvanceTax(advancetax);
+		}
 		if(tdsFromSalaryDocument!=null){	
 			bigTotalTdsSalary= indianCurrencyHelper.bigIntegerRound(tdsFromSalaryDocument.getTotal_Amount());
 		}
@@ -498,10 +508,14 @@ public class XmlGenerator extends ITReturnComponent {
 		BigInteger bigTotalTds=bigTotalTdsSalary.add(bigTotalTdsOther);
 		taxesPaid.setTDS(bigTotalTds);
 
-		if(selfAssesmetTaxDocument!=null)
-			taxesPaid.setSelfAssessmentTax(indianCurrencyHelper.bigIntegerRound(selfAssesmetTaxDocument.getTotal_Amount()));
+		BigInteger selfassessmenttax = new BigInteger("0");
+		if(selfAssesmetTaxDocument!=null){
+			selfassessmenttax = indianCurrencyHelper.bigIntegerRound(selfAssesmetTaxDocument.getTotal_Amount());
+			taxesPaid.setSelfAssessmentTax(selfassessmenttax);
+		}
 		//calculation needed (advancetax+tds+selfassessmenttax)
-		taxesPaid.setTotalTaxesPaid(taxesPaid.getTDS().add(taxesPaid.getAdvanceTax()).add(taxesPaid.getSelfAssessmentTax()));
+		
+		taxesPaid.setTotalTaxesPaid(bigTotalTds.add(advancetax).add(selfassessmenttax));
 		taxPaid.setTaxesPaid(taxesPaid);
 		taxPaid.setBalTaxPayable(itr1TaxComputation.getTotTaxPlusIntrstPay().subtract(taxesPaid.getTotalTaxesPaid())); // calculation needed (totaltaxintrstpay-totaltaxpaid)
 		
@@ -517,6 +531,27 @@ public class XmlGenerator extends ITReturnComponent {
 		itr1.setRefund(refund);
 
 		//Schedule80G is remaining 
+		
+		/**
+		DeductionDocumentDetail dDetail = (DeductionDocumentDetail) getChildBean();
+		com.mootly.wcm.model.DoneeWithPan doneewithPan = com.mootly.wcm.model.DoneeWithPan.getInstanceFromChildBean(dDetail);
+		
+		doneeWithPan.setDoneeWithPanName(doneewithPan.getDoneeName());
+		doneeWithPan.setDoneePAN(doneewithPan.getDoneePAN());
+		addressDetail.setAddrDetail(doneewithPan.getDoneeAreaLocality());
+		addressDetail.setCityOrTownOrDistrict(doneewithPan.getDoneeCityTownDistrict());
+		addressDetail.setStateCode(doneewithPan.getDoneeState());
+		addressDetail.setPinCode(indianCurrencyHelper.bigIntegerRoundStr(doneewithPan.getDoneePostalCode()));
+		doneeWithPan.setAddressDetail(addressDetail);
+		Don100Percent don100Percent = new Don100Percent();
+		don100Percent.getDoneeWithPan().add(doneeWithPan);
+		don100Percent.setTotDon100Percent(dedgtotal);
+		don100Percent.setTotEligibleDon100Percent(dedgtotal);
+		schedule80G.setDon100Percent(don100Percent);
+		schedule80G.setTotalDonationsUs80G(dedgtotal);
+		schedule80G.setTotalEligibleDonationsUs80G(dedgtotal);
+		itr1.setSchedule80G(schedule80G);
+**/
 
 		//TDSonSalaries
 		if(tdsFromSalaryDocument!=null){
