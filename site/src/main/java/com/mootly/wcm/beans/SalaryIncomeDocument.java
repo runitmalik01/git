@@ -33,7 +33,9 @@ import java.math.BigInteger;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.jcr.NodeIterator;
 import javax.jcr.RepositoryException;
@@ -51,6 +53,7 @@ import com.mootly.wcm.annotations.TagAsTaxDataProvider;
 import com.mootly.wcm.annotations.TagAsTaxDataProvider.TaxDataProviderType;
 import com.mootly.wcm.beans.compound.PersonalInformation;
 import com.mootly.wcm.beans.compound.SalaryIncomeDetail;
+import com.mootly.wcm.services.ScreenCalculatorService;
 
 @SuppressWarnings("unused")
 @Node(jcrType = "mootlywcm:salaryincomedocument")
@@ -125,18 +128,20 @@ public class SalaryIncomeDocument extends BaseDocument implements ContentNodeBin
 	        		aNode.remove();
 	        	}
         	}
-        	double sum=0.0;
         	if (salaryincome.getSalaryIncomeDetailList() != null && salaryincome.getSalaryIncomeDetailList().size() > 0 ){ 
         		for (SalaryIncomeDetail salaryIncomeDetail:salaryincome.getSalaryIncomeDetailList()) {
         			if (!salaryIncomeDetail.isMarkedForDeletion()) {
-        				double amount=salaryIncomeDetail.getTaxable_earning();
-						sum=sum+amount;
 		                javax.jcr.Node html = node.addNode(PROP_DETAIL_BEAN, PROP_DETAIL_BEAN);
 		                salaryIncomeDetail.bindToNode(html); 
         			}
-        		}setTotal(sum);
-        		node.setProperty("mootlywcm:Total",getTotal());
+        		}
         	}
+    		Map<String,Object> totalMapForJSSalary = new HashMap<String, Object>();
+    		Map<String,String[]> requestParameterMap=new HashMap<String,String[]>();
+    		totalMapForJSSalary.put("salaryincome", salaryincome);
+    		Map<String,Object> resultMapSalary = ScreenCalculatorService.getScreenCalculations("salaryincome.js", requestParameterMap , totalMapForJSSalary);
+    		setTotal(Double.parseDouble(resultMapSalary.get("total_salaryincome").toString()));
+        	node.setProperty("mootlywcm:Total",getTotal());
         	/*
 			javax.jcr.Node prdLinkNode;
 			if (node.hasNode(NT_PERSONAL_INFO_LINK)) {
