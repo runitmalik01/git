@@ -11,12 +11,15 @@ public final class IndianCurrencyHelper {
 
 	//method to convert double value into Biginteger
 	public BigInteger bigIntegerRound(Double in) {
+		if(in!=null){
 		BigDecimal bd = new BigDecimal(in).setScale(0, RoundingMode.HALF_EVEN);
 		DecimalFormat decimalFormat=new DecimalFormat("#.#");
 		BigInteger bigTotal=null;
 		if(bd!=null && bd.toString().length()>0){
 			bigTotal = new BigInteger(decimalFormat.format(bd));		
 			return bigTotal;
+		}else
+			return null;
 		}else
 			return null;
 	}
@@ -53,5 +56,7 @@ public final class IndianCurrencyHelper {
 		}else
 			return null;
 	}
+	
+	
 
 }
