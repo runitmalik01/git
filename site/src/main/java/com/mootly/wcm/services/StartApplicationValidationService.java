@@ -147,31 +147,29 @@ public class StartApplicationValidationService {
 	 * @return null 
 	 * 
 	 * */
-	protected void validResidential(FormMap formMap,String assessmentYear){
-		String choice=null;
+	public void validResidential(FormMap formMap,String assessmentYear){
+		String choice="";
+		ResourceBundle rbstat=ResourceBundle.getBundle("rstatus_"+assessmentYear);
 		if(formMap.getField("rsstatus_q")!=null){
 			if(formMap.getField("rsstatus_q").getValue().matches("Select")){
-				formMap.getField("rsstatus_q").addMessage("Decide Your Residential Status");
+				formMap.getField("rsstatus_q").addMessage("err.required.residential");
 			}else{
-				choice=formMap.getField("rsstatus_q").getValue();
-				ResourceBundle rbstat=ResourceBundle.getBundle("rstatus_"+assessmentYear);			
-				for (String aKey: rbstat.keySet()) {
-					if(!aKey.matches("rsstatus_q")){
-						if(!rbstat.getString(aKey).startsWith("ans_")){
-							if(!formMap.getField(aKey).getValue().matches("Select")){
-								choice=choice+"_"+formMap.getField(aKey).getValue();
-							}else{
-								formMap.getField(aKey).addMessage("Decide Your Residential Status");
+				choice="rsstatus_q_"+formMap.getField("rsstatus_q").getValue();
+				for(String fieldsName:formMap.getFieldNames()){
+					if(fieldsName.startsWith("rsstatus_q_")){
+						if(!formMap.getField(choice).getValue().matches("Select")){
+							choice=choice+"_"+formMap.getField(choice).getValue();
+							if(rbstat.getString(choice).startsWith("ans_")){
 								break;
 							}
 						}
 					}
-				}	
-				if(!rbstat.containsKey("rsstatus_q_"+choice)){
-					formMap.getField("rsstatus_q").addMessage("Decide Your Residential Status");
+				}
+				if(!rbstat.containsKey(choice)){
+					formMap.getField("rsstatus_q").addMessage("err.required.residential");
 				}else{
-					if(rbstat.getString("rsstatus_q_"+choice).startsWith("_ans")){
-						formMap.getField("rsstatus_q").addMessage("Decide Your Residential Status");
+					if(!rbstat.getString(choice).startsWith("ans_")){
+						formMap.getField("rsstatus_q").addMessage("err.required.residential");
 					}
 				}
 			}
@@ -214,7 +212,7 @@ public class StartApplicationValidationService {
 	 * */
 	@SuppressWarnings("deprecation")
 	protected void validDateofBirth(FormMap formMap){
-		String check=MasterConfigService.shouldValidate5thChar();
+		String check=MasterConfigService.shouldValidateDate();
 		if(check!=null){
 			if(formMap.getField("pi_dob")!=null){
 				Date date=new Date();
