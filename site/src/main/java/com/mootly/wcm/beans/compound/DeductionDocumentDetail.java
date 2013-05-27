@@ -30,14 +30,20 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import javax.jcr.Property;
+import javax.jcr.PropertyIterator;
 import javax.jcr.RepositoryException;
+import javax.jcr.Value;
+import javax.jcr.ValueFactory;
 
+import org.apache.jackrabbit.value.ValueFactoryImpl;
 import org.hippoecm.hst.component.support.forms.FormMap;
 import org.hippoecm.hst.content.beans.ContentNodeBindingException;
 import org.hippoecm.hst.content.beans.Node;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.content.beans.standard.HippoItem;
 import org.hippoecm.hst.content.beans.standard.HippoMirror;
+import org.hippoecm.hst.jaxrs.model.content.PropertyValue;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -56,7 +62,7 @@ public class DeductionDocumentDetail extends HippoItem implements FormMapFiller 
 	private String head;
 	private Double investment;
 	private Double maxAllowed;
-	private Map<String,List<String>> valueOfFlexFields = new HashMap<String, List<String>>();
+	private Map<String,List<Value>> valueOfFlexFields = new HashMap<String, List<Value>>();
 	
 	private final String prop_section ="mootlywcm:Section";
 	private final String prop_head ="mootlywcm:head";
@@ -109,14 +115,40 @@ public class DeductionDocumentDetail extends HippoItem implements FormMapFiller 
 	 * 
 	 * @return
 	 */
-	public Map<String, List<String>> getValueOfFlexFields() {
+	public Map<String, List<Value>> getValueOfFlexFields() {
+		if (valueOfFlexFields == null) {
+			try {
+				PropertyIterator propertyIterator = node.getProperties("flex_field_*");
+				while ( propertyIterator.hasNext()){
+					Property p = propertyIterator.nextProperty();
+					String fieldName = p.getName();
+					int ordOfTheField = fieldName.indexOf("flex_field_")+ "flex_field_".length(); 
+					String dataTypeAndOrd = fieldName.substring(ordOfTheField);
+					String[] splittingParts = dataTypeAndOrd.split("[_]");
+					if (splittingParts.length !=  2) {
+						log.warn(dataTypeAndOrd + " is not in the format of flex_field_string_0. Skipping..");
+						continue;
+					}
+					String fieldDataType = splittingParts[0];
+					String fieldOrd = splittingParts[1];
+					if (!valueOfFlexFields.containsKey(fieldDataType)) {
+						valueOfFlexFields.put (fieldDataType,new ArrayList<Value>());
+					}
+					valueOfFlexFields.get(fieldDataType).add(p.getValue());
+				}
+				
+			} catch (RepositoryException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		return valueOfFlexFields;
 	}
 	/**
 	 * 
 	 * @param valueOfFlexFields
 	 */
-	public void setValueOfFlexFields(Map<String, List<String>> valueOfFlexFields) {
+	public void setValueOfFlexFields(Map<String, List<Value>> valueOfFlexFields) {
 		this.valueOfFlexFields = valueOfFlexFields;
 	}
 	/**
@@ -212,7 +244,8 @@ public class DeductionDocumentDetail extends HippoItem implements FormMapFiller 
 		else {
 			setMaxAllowed(0D);
 		}
-		Map<String,List<String>> valueOfFlexFields = new HashMap<String, List<String>>();
+		ValueFactory vf = ValueFactoryImpl.getInstance();
+		Map<String,List<Value>> valueOfFlexFields = new HashMap<String, List<Value>>();
 		for (String fieldName:formMap.getFieldNames()){
 			if (log.isInfoEnabled()){
 				log.info("Flex Field check:" + fieldName);
@@ -228,9 +261,9 @@ public class DeductionDocumentDetail extends HippoItem implements FormMapFiller 
 			}
 			String fieldDataType = splittingParts[0];
 			String fieldOrd = splittingParts[1];
-			List<String> listOfValues = null;
+			List<Value> listOfValues = null;
 			if (!valueOfFlexFields.containsKey(fieldDataType)) {
-				valueOfFlexFields.put(fieldDataType, new ArrayList<String>());
+				valueOfFlexFields.put(fieldDataType, new ArrayList<Value>());
 			}
 			listOfValues = valueOfFlexFields.get(fieldDataType);
 			String v = formMap.getField(fieldName).getValue();
@@ -241,7 +274,7 @@ public class DeductionDocumentDetail extends HippoItem implements FormMapFiller 
 				int loopMax = intFieldOrd - listOfValues.size();
 				for (int i=0;i<loopMax;i++) listOfValues.add(null);
 			}
-			listOfValues.add(intFieldOrd,v);
+			listOfValues.add(intFieldOrd,vf.createValue(v));
 			//String fieldValue = formMap.getField(fieldName).getValue();
 		}
 		//valueOfFlexFields
