@@ -1,4 +1,5 @@
 
+
 <%@page import="com.mootly.wcm.model.ITRTab"%>
 <%@include file="../includes/tags.jspf"%>
 
@@ -101,15 +102,9 @@
 					<td colspan="1"><fmt:message key="gross.total.income"/></td>
 					<td  style="text-align:left">
 						<span class="decimal">
-									<c:choose>
-									<c:when
-										test="${theForm.ITR1IncomeDeductions.grossTotIncome eq '0'}">
-										<w4india:inr value="0"/>
-										</c:when>
-										<c:otherwise>
+									
 									<w4india:inr value="${theForm.ITR1IncomeDeductions.grossTotIncome}"/>
-									</c:otherwise>
-								</c:choose>
+								
 						</span>
 					</td>
 				</tr>
@@ -145,18 +140,13 @@
 					<td colspan="1"><fmt:message key="taxable.income"/></td>
 					<td  style="text-align:left">
 						<span class="decimal">
-									<c:choose>
-									<c:when
-										test="${ theForm.ITR1IncomeDeductions.totalIncome eq '0'}">
-										<w4india:inr value="0"/>
-										</c:when>
-										<c:otherwise>
+									
 									<w4india:inr value="${ theForm.ITR1IncomeDeductions.totalIncome}"/>
-									</c:otherwise>
-								</c:choose>
+									
 						</span>
 					</td>
 				</tr>
+				<!-- 
 				<tr>
 					<td colspan="1"><fmt:message key="income.tax"/></td>
 					<td  style="text-align:left">
@@ -181,6 +171,7 @@
 						</span>
 					</td>
 				</tr>
+				 -->
 				<tr>
 					<td colspan="1"><fmt:message key="surcharge.tax"/></td>
 					<td  style="text-align:left">
@@ -321,7 +312,9 @@
 					<td colspan="1"><fmt:message key="relief.section.89"/></td>
 					<td  style="text-align:left">
 						<span class="decimal">
-									<w4india:inr value="0"/>
+						
+								<w4india:inr value="${theForm.ITR1TaxComputation.section89}"/>
+						
 						</span>
 					</td>
 				</tr>
@@ -338,16 +331,29 @@
 					<td colspan="1"><fmt:message key="interest.under.section.234abc"/></td>
 					<td  style="text-align:left">
 						<span class="decimal">
-									<w4india:inr value="0"/>
+						<w4india:inr value="0"/>
+						<!-- 
+						<c:choose>
+							<c:when test="${theForm.ITR1TaxComputation.totalIntrstPay eq '0'}">
+								<a href="#myModalInterest" id="clickInterest" role="button" class="btn" data-toggle="modal" >
+								<c:out value="Calculate Interest" /></a>
+							</c:when>
+							<c:otherwise>
+								<w4india:inr value="${theForm.ITR1TaxComputation.totalIntrstPay}"/>
+							</c:otherwise>
+						</c:choose>
+						 -->
 						</span>
 					</td>
-					
 				</tr>
+				
 				<tr class="success">
 					<td colspan="1"><b><fmt:message key="tax.payble.refund"/></b>
 					<td  style="text-align:left">
 						<span class="decimal">
-									<w4india:inr value="${theForm.taxPaid.balTaxPayable}"/>
+						
+								<w4india:inr value="${theForm.taxPaid.balTaxPayable}"/>
+							
 						</span>
 					</td>
 				</tr>
