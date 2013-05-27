@@ -74,6 +74,7 @@ import com.mootly.wcm.model.ITReturnPackage;
 import com.mootly.wcm.model.ITReturnType;
 import com.mootly.wcm.services.ScreenCalculatorService;
 import com.mootly.wcm.services.ScreenConfigService;
+import com.mootly.wcm.services.StartApplicationValidationService;
 import com.mootly.wcm.utils.GoGreenUtil;
 
 public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
@@ -596,7 +597,6 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			}
 		}
 		
-		
 		//NOW find 
 		if (!StringUtils.isEmpty(pan)) {
 			char filingStatusChar = pan.charAt(3);
@@ -785,7 +785,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		String isCalc = getPublicRequestParameter(request,"command");
 		String screen=getPublicRequestParameter(request, "screen");
 		if (isCalc != null && isCalc.equals("calc") && screen!=null) {
-			log.info("we are on to calculate for"+screen);
+			log.info("We are Requesting fot this "+screen+" Screen");
 			String pathToScreenCalc = "configuration/screencalculation/" + screen.toLowerCase();
 			ScreenCalculation screencalc=siteContentBaseBean.getBean(pathToScreenCalc, ScreenCalculation.class);
 			Map<String,Object> resultSet = ScreenCalculatorService.getScreenCalculations(screencalc.getScript(), request.getParameterMap(""), null);
@@ -884,7 +884,8 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 				}
 			}
 		}
-		
+		StartApplicationValidationService startappvalidserv=new StartApplicationValidationService();
+		startappvalidserv.validResidential(formMap, assessmentYear);
 		
 		if (formMap.getMessage() != null && formMap.getMessage().size() > 0) {
 			FormUtils.persistFormMap(request, response, formMap, null);
