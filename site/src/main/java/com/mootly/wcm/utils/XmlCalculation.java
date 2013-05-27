@@ -47,6 +47,7 @@ import org.slf4j.LoggerFactory;
 import com.mootly.wcm.annotations.AdditionalBeans;
 import com.mootly.wcm.annotations.RequiredBeans;
 import com.mootly.wcm.beans.AdvanceTaxDocument;
+import com.mootly.wcm.beans.FormSixteenDocument;
 import com.mootly.wcm.beans.HouseProperty;
 import com.mootly.wcm.beans.MemberContactInformation;
 import com.mootly.wcm.beans.MemberPersonalInformation;
@@ -55,6 +56,7 @@ import com.mootly.wcm.beans.SalaryIncomeDocument;
 import com.mootly.wcm.beans.SelfAssesmetTaxDocument;
 import com.mootly.wcm.beans.TdsFromSalaryDocument;
 import com.mootly.wcm.beans.TdsFromothersDocument;
+import com.mootly.wcm.beans.compound.FormSixteenDetail;
 import com.mootly.wcm.beans.compound.HouseIncomeDetail;
 import com.mootly.wcm.beans.compound.TdsFromSalaryDetail;
 import com.mootly.wcm.beans.compound.TdsOthersDetail;
@@ -66,39 +68,56 @@ import com.mootly.wcm.services.IndianCurrencyHelper;
 
 @AdditionalBeans(additionalBeansToLoad={MemberPersonalInformation.class,MemberContactInformation.class,SalaryIncomeDocument.class,
 		HouseIncomeDetail.class,HouseProperty.class,OtherSourcesDocument.class,AdvanceTaxDocument.class,AdvanceTaxDetail.class,TdsFromSalaryDocument.class,
-		TdsFromSalaryDetail.class,TdsFromothersDocument.class,SelfAssesmetTaxDocument.class})
+		TdsFromSalaryDetail.class,TdsFromothersDocument.class,SelfAssesmetTaxDocument.class,FormSixteenDocument.class,FormSixteenDetail.class})
 
 public class XmlCalculation {
 	
 	//method to calculate gross total
 		public long grossTotal(HstRequest request,HstResponse response){
-			SalaryIncomeDocument salaryIncomeDocument = (SalaryIncomeDocument) request.getAttribute(SalaryIncomeDocument.class.getSimpleName().toLowerCase());
+			//SalaryIncomeDocument salaryIncomeDocument = (SalaryIncomeDocument) request.getAttribute(SalaryIncomeDocument.class.getSimpleName().toLowerCase());
 			//HouseIncomeDetail houseIncomeDetail = (HouseIncomeDetail) request.getAttribute(HouseIncomeDetail.class.getSimpleName().toLowerCase());
+			FormSixteenDocument formSixteenDocument = (FormSixteenDocument) request.getAttribute(FormSixteenDocument.class.getSimpleName().toLowerCase());
 			HouseProperty houseProperty = (HouseProperty) request.getAttribute(HouseProperty.class.getSimpleName().toLowerCase());
 			OtherSourcesDocument otherSourcesDocument = (OtherSourcesDocument) request.getAttribute(OtherSourcesDocument.class.getSimpleName().toLowerCase());
 			IndianCurrencyHelper indianCurrencyHelper = new IndianCurrencyHelper(); 
 			
-			BigInteger salarytotal=new BigInteger("0");
+			//BigInteger salarytotal=new BigInteger("0");
 			long longsalarytotal=0;
-			long houseincome=0;
+			long houseIncome=0;
+			long houseIncomeTotal=0;
 			long grosstotal=0;
 			long otherincome=0;
+			BigInteger GrossIncome=new BigInteger("0");
+			BigInteger GrossIncomeTotal=new BigInteger("0");
 			
-			if(salaryIncomeDocument!=null){
-				salarytotal = indianCurrencyHelper.bigIntegerRound(salaryIncomeDocument.getTotal());
-			    longsalarytotal = salarytotal.longValue();
-			}
-			if(houseProperty!=null){
-				if (houseProperty.getHouseIncomeDetailList() != null && houseProperty.getHouseIncomeDetailList().size() > 0 ){
-					for(HouseIncomeDetail houseIncomeDetail: houseProperty.getHouseIncomeDetailList()){
-					houseincome = indianCurrencyHelper.longRound(houseIncomeDetail.getIncome_hproperty());
+			if( formSixteenDocument!=null){
+				if ( formSixteenDocument.getFormSixteenDetailList() != null && formSixteenDocument.getFormSixteenDetailList().size() > 0 ){
+					for(FormSixteenDetail formSixteenDetail:formSixteenDocument.getFormSixteenDetailList()){
+						GrossIncome=indianCurrencyHelper.bigIntegerRound(formSixteenDetail.getGross_income_total());
+						GrossIncomeTotal=GrossIncomeTotal.add(GrossIncome);
 					}
 				}
 			}
+			longsalarytotal = GrossIncomeTotal.longValue();
+			/*
+			if(salaryIncomeDocument!=null){
+				salarytotal = indianCurrencyHelper.bigIntegerRound(salaryIncomeDocument.getTotal());
+			    longsalarytotal = salarytotal.longValue();
+			}*/
+		
+			if(houseProperty!=null){
+				if (houseProperty.getHouseIncomeDetailList() != null && houseProperty.getHouseIncomeDetailList().size() > 0 ){
+					for(HouseIncomeDetail houseIncomeDetail: houseProperty.getHouseIncomeDetailList()){
+						houseIncome = indianCurrencyHelper.longRound(houseIncomeDetail.getIncome_hproperty());
+						houseIncomeTotal = houseIncomeTotal+houseIncome;
+					}
+				}
+			}
+			
 			if(otherSourcesDocument!=null){
 			       otherincome = indianCurrencyHelper.longRound(otherSourcesDocument.getTaxable_income());
 			}
-			grosstotal = longsalarytotal+houseincome+grosstotal+otherincome;
+			grosstotal = longsalarytotal+houseIncomeTotal+otherincome;
 			
 			return grosstotal;
 		}
