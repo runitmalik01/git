@@ -62,7 +62,7 @@ public class DeductionDocumentDetail extends HippoItem implements FormMapFiller 
 	private String head;
 	private Double investment;
 	private Double maxAllowed;
-	private Map<String,List<Value>> valueOfFlexFields = new HashMap<String, List<Value>>();
+	private Map<String,List<Value>> valueOfFlexFields = null; //new HashMap<String, List<Value>>();
 	
 	private final String prop_section ="mootlywcm:Section";
 	private final String prop_head ="mootlywcm:head";
@@ -117,6 +117,7 @@ public class DeductionDocumentDetail extends HippoItem implements FormMapFiller 
 	 */
 	public Map<String, List<Value>> getValueOfFlexFields() {
 		if (valueOfFlexFields == null) {
+			valueOfFlexFields = new HashMap<String, List<Value>>();
 			try {
 				PropertyIterator propertyIterator = node.getProperties("flex_field_*");
 				while ( propertyIterator.hasNext()){
