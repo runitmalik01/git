@@ -45,7 +45,7 @@
 		<hst:attribute name="type">text/javascript</hst:attribute>
 		var flagforPanAndTan=true;
 		var d = new Date();
-		yrRange="1900:"+d.getFullYear();
+		yrRange="1900:"+d.getFullYear();		
 		var validationRules = new Object();
 			validationRules.rules = new Object();
 			$(document).ready(function() {
@@ -94,6 +94,9 @@
 					}
 					if (fieldConfig[fn].fieldTitle != '') {
 						fObj.watermark(fieldConfig[fn].fieldTitle);
+					}
+					if (fieldConfig[fn].fieldPopoverText != '') {
+						fObj.popover({"html":true,"trigger":"focus",content:fieldConfig[fn].fieldPopoverText});
 					}
 				}
 				<c:if test="${not empty validationType}">
