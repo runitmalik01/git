@@ -202,7 +202,7 @@ public class DeductionDocumentDetail extends HippoItem implements FormMapFiller 
 			if (getValueOfFlexFields() != null) {
 				for (String keyOfDataType:getValueOfFlexFields().keySet()) {
 					String propName = "mootlywcm:flex_field_"+keyOfDataType;
-					String[] arrayOfStringValues = getValueOfFlexFields().get(keyOfDataType).toArray(new String[getValueOfFlexFields().get(keyOfDataType).size()]);
+					Value[] arrayOfStringValues = getValueOfFlexFields().get(keyOfDataType).toArray(new Value[getValueOfFlexFields().get(keyOfDataType).size()]);
 					if (keyOfDataType.equals("string")) {
 						node.setProperty(propName, arrayOfStringValues);
 					}
