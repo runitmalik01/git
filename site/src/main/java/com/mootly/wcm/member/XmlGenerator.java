@@ -60,6 +60,7 @@ import com.mootly.wcm.annotations.AdditionalBeans;
 import com.mootly.wcm.annotations.RequiredBeans;
 import com.mootly.wcm.beans.AdvanceTaxDocument;
 import com.mootly.wcm.beans.DeductionDocument;
+import com.mootly.wcm.beans.FormSixteenDocument;
 import com.mootly.wcm.beans.HouseProperty;
 import com.mootly.wcm.beans.InterestDoc;
 import com.mootly.wcm.beans.MemberContactInformation;
@@ -70,6 +71,7 @@ import com.mootly.wcm.beans.SelfAssesmetTaxDocument;
 import com.mootly.wcm.beans.TdsFromSalaryDocument;
 import com.mootly.wcm.beans.TdsFromothersDocument;
 import com.mootly.wcm.beans.compound.DeductionDocumentDetail;
+import com.mootly.wcm.beans.compound.FormSixteenDetail;
 import com.mootly.wcm.beans.compound.HouseIncomeDetail;
 import com.mootly.wcm.beans.compound.SalaryIncomeDetail;
 import com.mootly.wcm.beans.compound.TdsFromSalaryDetail;
@@ -86,7 +88,8 @@ import com.mootly.wcm.utils.XmlCalculation;
 
 @AdditionalBeans(additionalBeansToLoad={MemberPersonalInformation.class,MemberContactInformation.class,SalaryIncomeDocument.class,
 		HouseIncomeDetail.class,HouseProperty.class,OtherSourcesDocument.class,AdvanceTaxDocument.class,AdvanceTaxDetail.class,TdsFromSalaryDocument.class,
-		TdsFromSalaryDetail.class,TdsFromothersDocument.class,SelfAssesmetTaxDocument.class,SalaryIncomeDetail.class,DeductionDocument.class,DeductionDocumentDetail.class,InterestDoc.class})
+		TdsFromSalaryDetail.class,TdsFromothersDocument.class,SelfAssesmetTaxDocument.class,SalaryIncomeDetail.class,DeductionDocument.class,
+		DeductionDocumentDetail.class,InterestDoc.class,FormSixteenDocument.class,FormSixteenDetail.class})
 @RequiredBeans(requiredBeans={MemberPersonalInformation.class})
 public class XmlGenerator extends ITReturnComponent {
 	private static final Logger log = LoggerFactory.getLogger(XmlGenerator.class);
@@ -154,7 +157,7 @@ public class XmlGenerator extends ITReturnComponent {
 		BigInteger deductiontotal=new BigInteger ("0");
 
 		MemberPersonalInformation memberPersonalInformation = (MemberPersonalInformation) request.getAttribute(MemberPersonalInformation.class.getSimpleName().toLowerCase());
-		SalaryIncomeDocument salaryIncomeDocument = (SalaryIncomeDocument) request.getAttribute(SalaryIncomeDocument.class.getSimpleName().toLowerCase());
+		//SalaryIncomeDocument salaryIncomeDocument = (SalaryIncomeDocument) request.getAttribute(SalaryIncomeDocument.class.getSimpleName().toLowerCase());
 		HouseProperty houseProperty = (HouseProperty) request.getAttribute(HouseProperty.class.getSimpleName().toLowerCase());
 		OtherSourcesDocument otherSourcesDocument = (OtherSourcesDocument) request.getAttribute(OtherSourcesDocument.class.getSimpleName().toLowerCase());
 		AdvanceTaxDocument advanceTaxDocument = (AdvanceTaxDocument) request.getAttribute(AdvanceTaxDocument.class.getSimpleName().toLowerCase());
@@ -163,7 +166,8 @@ public class XmlGenerator extends ITReturnComponent {
 		SelfAssesmetTaxDocument selfAssesmetTaxDocument = (SelfAssesmetTaxDocument) request.getAttribute(SelfAssesmetTaxDocument.class.getSimpleName().toLowerCase());
 		DeductionDocument deductionDocument = (DeductionDocument) request.getAttribute(DeductionDocument.class.getSimpleName().toLowerCase());
 		InterestDoc interestDoc = (InterestDoc) request.getAttribute(InterestDoc.class.getSimpleName().toLowerCase());
-		
+		FormSixteenDocument formSixteenDocument = (FormSixteenDocument) request.getAttribute(FormSixteenDocument.class.getSimpleName().toLowerCase());
+
 		ITR1 itr1 = new ObjectFactory().createITR1();
 		CreationInfo creationInfo = new CreationInfo();
 		creationInfo.setIntermediaryCity("Delhi");
@@ -225,10 +229,10 @@ public class XmlGenerator extends ITReturnComponent {
 		personalInfo.setAddress(address);
 		personalInfo.setDOB(memberPersonalInformation.getGregorianDOB());
 
-		if( salaryIncomeDocument!=null){
-			if ( salaryIncomeDocument.getSalaryIncomeDetailList() != null && salaryIncomeDocument.getSalaryIncomeDetailList().size() > 0 ){
-				for(SalaryIncomeDetail salaryIncomeDetail:salaryIncomeDocument.getSalaryIncomeDetailList()){
-					personalInfo.setEmployerCategory(salaryIncomeDetail.getEmploye_category());
+		if( formSixteenDocument!=null){
+			if ( formSixteenDocument.getFormSixteenDetailList() != null && formSixteenDocument.getFormSixteenDetailList().size() > 0 ){
+				for(FormSixteenDetail formSixteenDetail:formSixteenDocument.getFormSixteenDetailList()){
+					personalInfo.setEmployerCategory(formSixteenDetail.getEmploye_category());
 				}
 			}
 		}
@@ -259,19 +263,38 @@ public class XmlGenerator extends ITReturnComponent {
 		itr1.setFilingStatus(filingstatus);
 
 		//Income Deductions
-		if(salaryIncomeDocument!=null)
-			incomeDeductions.setIncomeFromSal(indianCurrencyHelper.bigIntegerRound(salaryIncomeDocument.getTotal()));
-		if(houseProperty!=null){
-			if (houseProperty.getHouseIncomeDetailList() != null && houseProperty.getHouseIncomeDetailList().size() > 0 ){
-				for(HouseIncomeDetail houseIncomeDetail: houseProperty.getHouseIncomeDetailList()){
-					incomeDeductions.setTotalIncomeOfHP(indianCurrencyHelper.longRound(houseIncomeDetail.getIncome_hproperty()));
+		BigInteger GrossIncome=new BigInteger("0");
+		BigInteger GrossIncomeTotal=new BigInteger("0");
+		if( formSixteenDocument!=null){
+			if ( formSixteenDocument.getFormSixteenDetailList() != null && formSixteenDocument.getFormSixteenDetailList().size() > 0 ){
+				for(FormSixteenDetail formSixteenDetail:formSixteenDocument.getFormSixteenDetailList()){
+					GrossIncome=indianCurrencyHelper.bigIntegerRound(formSixteenDetail.getGross_income_total());
+					GrossIncomeTotal=GrossIncomeTotal.add(GrossIncome);
 				}
 			}
 		}
+		incomeDeductions.setIncomeFromSal(GrossIncomeTotal);
+
+		//	if(salaryIncomeDocument!=null)
+		//	incomeDeductions.setIncomeFromSal(indianCurrencyHelper.bigIntegerRound(salaryIncomeDocument.getTotal()));
+		
+		long houseIncome=0;
+		long houseIncomeTotal=0;
+		if(houseProperty!=null){
+			if (houseProperty.getHouseIncomeDetailList() != null && houseProperty.getHouseIncomeDetailList().size() > 0 ){
+				for(HouseIncomeDetail houseIncomeDetail: houseProperty.getHouseIncomeDetailList()){
+					houseIncome = indianCurrencyHelper.longRound(houseIncomeDetail.getIncome_hproperty());
+					houseIncomeTotal = houseIncomeTotal+houseIncome;
+				}
+			}
+		}
+		incomeDeductions.setTotalIncomeOfHP(houseIncomeTotal);
+		
 		if(otherSourcesDocument!=null)
 			incomeDeductions.setIncomeOthSrc(indianCurrencyHelper.longRound(otherSourcesDocument.getTaxable_income()));
-		
+
 		long grsstotal = xmlCalculation.grossTotal(request, response);
+
 		incomeDeductions.setGrossTotIncome(grsstotal);	// calculation needed(incomefromsalary+house income+othersrcincome)
 		//added deduction with null values (incomplete)
 		Map<String,Object> totalMapForJSDe = new HashMap<String, Object>();
@@ -328,7 +351,7 @@ public class XmlGenerator extends ITReturnComponent {
 			log.info("intila to amctch"+sanitizedKey);
 			if(resultMapDe.containsKey(sanitizedKey)){
 				log.info("Got a match"+sanitizedKey);
-			sumdeduction=sumdeduction+Double.parseDouble(resultMapDe.get(sanitizedKey).toString());
+				sumdeduction=sumdeduction+Double.parseDouble(resultMapDe.get(sanitizedKey).toString());
 			}
 		}
 		log.info("thank god it willl help toc cal"+sumdeduction);
@@ -462,7 +485,7 @@ public class XmlGenerator extends ITReturnComponent {
 		incomeDeductions.setTotalIncome(grsstotal-indianCurrencyHelper.longRound(sumdeduction)); //calculation needed(GrossTotIncome-TotalChapVIADeductions(HARDCODDED 0))
 
 		itr1.setITR1IncomeDeductions(incomeDeductions);
-		
+
 		Map<String,Object> totalMapForJS = new HashMap<String, Object>();
 		totalMapForJS.put("cbassyear",getAssessmentYear());
 		totalMapForJS.put("cbasstype", memberPersonalInformation.getFilingStatus());
@@ -482,9 +505,24 @@ public class XmlGenerator extends ITReturnComponent {
 		itr1TaxComputation.setSurchargeOnTaxPayable(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMap.get("txtsurcharge").toString())));
 		itr1TaxComputation.setEducationCess(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMap.get("txtHEduCess").toString())));
 		itr1TaxComputation.setGrossTaxLiability(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMap.get("txttotaltax").toString())));
-		itr1TaxComputation.setSection89(new BigInteger("0"));
+
+		BigInteger Relief89 =new BigInteger ("0");
+		BigInteger Relief89Total =new BigInteger ("0");
+		if( formSixteenDocument!=null){
+			if ( formSixteenDocument.getFormSixteenDetailList() != null && formSixteenDocument.getFormSixteenDetailList().size() > 0 ){
+				for(FormSixteenDetail formSixteenDetail:formSixteenDocument.getFormSixteenDetailList()){
+					if(formSixteenDetail.getRelief_2()!=null){
+					Relief89=indianCurrencyHelper.bigIntegerRound(formSixteenDetail.getRelief_2());
+					Relief89Total=Relief89Total.add(Relief89);
+					}
+				}
+			}
+		}
+
+		itr1TaxComputation.setSection89(Relief89Total);
 		itr1TaxComputation.setSection90And91(new BigInteger("0"));
-		BigInteger rebate=itr1TaxComputation.getSection89().add(itr1TaxComputation.getSection90And91());
+		BigInteger rebate =new BigInteger ("0");
+		rebate=Relief89Total.add(itr1TaxComputation.getSection90And91());
 		itr1TaxComputation.setNetTaxLiability(itr1TaxComputation.getGrossTaxLiability().subtract(rebate));
 		//itr1TaxComputation.setTotalIntrstPay(indianCurrencyHelper.bigIntegerRound(interestDoc.getSection234ABC()));
 		itr1TaxComputation.setTotalIntrstPay(new BigInteger("0"));
@@ -516,11 +554,11 @@ public class XmlGenerator extends ITReturnComponent {
 			taxesPaid.setSelfAssessmentTax(selfassessmenttax);
 		}
 		//calculation needed (advancetax+tds+selfassessmenttax)
-		
+
 		taxesPaid.setTotalTaxesPaid(bigTotalTds.add(advancetax).add(selfassessmenttax));
 		taxPaid.setTaxesPaid(taxesPaid);
 		taxPaid.setBalTaxPayable(itr1TaxComputation.getTotTaxPlusIntrstPay().subtract(taxesPaid.getTotalTaxesPaid())); // calculation needed (totaltaxintrstpay-totaltaxpaid)
-		
+
 		itr1.setTaxPaid(taxPaid);
 		//refund
 		refund.setRefundDue(null);// need to be calculated
@@ -533,11 +571,11 @@ public class XmlGenerator extends ITReturnComponent {
 		itr1.setRefund(refund);
 
 		//Schedule80G is remaining 
-		
+
 		/**
 		DeductionDocumentDetail dDetail = (DeductionDocumentDetail) getChildBean();
 		com.mootly.wcm.model.DoneeWithPan doneewithPan = com.mootly.wcm.model.DoneeWithPan.getInstanceFromChildBean(dDetail);
-		
+
 		doneeWithPan.setDoneeWithPanName(doneewithPan.getDoneeName());
 		doneeWithPan.setDoneePAN(doneewithPan.getDoneePAN());
 		addressDetail.setAddrDetail(doneewithPan.getDoneeAreaLocality());
@@ -553,7 +591,7 @@ public class XmlGenerator extends ITReturnComponent {
 		schedule80G.setTotalDonationsUs80G(dedgtotal);
 		schedule80G.setTotalEligibleDonationsUs80G(dedgtotal);
 		itr1.setSchedule80G(schedule80G);
-**/
+		 **/
 
 		//TDSonSalaries
 		if(tdsFromSalaryDocument!=null){
