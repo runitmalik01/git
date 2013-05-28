@@ -27,7 +27,9 @@ import static com.mootly.wcm.utils.Constants.NT_PERSONAL_INFO_LINK;
 import java.math.BigInteger;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.jcr.NodeIterator;
 import javax.jcr.RepositoryException;
@@ -45,6 +47,7 @@ import com.mootly.wcm.annotations.TagAsTaxDataProvider;
 import com.mootly.wcm.annotations.TagAsTaxDataProvider.TaxDataProviderType;
 import com.mootly.wcm.beans.compound.PersonalInformation;
 import com.mootly.wcm.beans.compound.SelfAssesmentTaxDetail;
+import com.mootly.wcm.services.ScreenCalculatorService;
 
 @SuppressWarnings("unused")
 @Node(jcrType = "mootlywcm:selfassesmenttaxdocument")
@@ -121,23 +124,19 @@ public class SelfAssesmetTaxDocument extends BaseDocument implements ContentNode
 	        		aNode.remove();
 	        	}
         	}
-        	 double sum=0.0;
-        	if ( selfasses.getSelfAssesmentDetailList() != null &&  selfasses.getSelfAssesmentDetailList().size() > 0 ){ 
-        		log.info("checking size in salary income bean:::"+ selfasses.getSelfAssesmentDetailList().size());
-        		
-        		for (SelfAssesmentTaxDetail objSelfAssesment:selfasses.getSelfAssesmentDetailList()) {
-        		    
+        	if ( selfasses.getSelfAssesmentDetailList() != null &&  selfasses.getSelfAssesmentDetailList().size() > 0 ){         		
+        		for (SelfAssesmentTaxDetail objSelfAssesment:selfasses.getSelfAssesmentDetailList()) {       		    
         			if (!objSelfAssesment.isMarkedForDeletion()) {
-        				double amount=objSelfAssesment.getP_Amount();
-            		    log.info("value of amount after fetching from compound bean"+amount);
-            		     sum=sum+amount;
 		                javax.jcr.Node html = node.addNode(PROP_DETAIL_BEAN, PROP_DETAIL_BEAN);
 		                objSelfAssesment.bindToNode(html); 
         			}
         		}
-        		setTotal_Amount(sum);
-        	log.info("value of sum"+String.valueOf(sum));
         	}
+       		Map<String,Object> totalMapForJSSalary = new HashMap<String, Object>();
+    		Map<String,String[]> requestParameterMap=new HashMap<String,String[]>();
+    		totalMapForJSSalary.put("selfassess", selfasses);
+    		Map<String,Object> resultMapSalary = ScreenCalculatorService.getScreenCalculations("selfassess.js", requestParameterMap , totalMapForJSSalary);
+    		setTotal_Amount(Double.parseDouble(resultMapSalary.get("total_selfassess").toString()));
         	node.setProperty("mootlywcm:totalamount", getTotal_Amount());
         	/*
 			javax.jcr.Node prdLinkNode;
