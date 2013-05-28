@@ -491,8 +491,8 @@ public class XmlGenerator extends ITReturnComponent {
 
 		Map<String,Object> totalMapForJS = new HashMap<String, Object>();
 		totalMapForJS.put("cbassyear",getAssessmentYear());
-		//totalMapForJS.put("cbasstype", memberPersonalInformation.getFilingStatus());
-		totalMapForJS.put("cbasstype", "I");
+		totalMapForJS.put("cbasstype", memberPersonalInformation.getFilingStatus());
+		//totalMapForJS.put("cbasstype", "I");
 		totalMapForJS.put("cbresistatus",memberPersonalInformation.getResidentCategory());
 		totalMapForJS.put("txtNetIncome",grsstotal);
 		boolean isSeniorCitizen = getFinancialYear().isSeniorCitizen(memberPersonalInformation.getDOB().getTime());
