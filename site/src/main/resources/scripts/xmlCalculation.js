@@ -2,7 +2,7 @@
 var indianCurrencyHelper = new com.mootly.wcm.services.IndianCurrencyHelper();
 
 if (cbassyear == "2013-2014") {
-    if (cbasscategory == "M" || cbasscategory == "F" && (cbasstype == "I" && cbresistatus == "RES" || cbresistatus == "NRI" || cbresistatus == "NOR")) {
+    if ((cbasscategory == "M" || cbasscategory == "F") && (cbasstype == "I") && (cbresistatus == "RES" || cbresistatus == "NRI" || cbresistatus == "NOR")) {
         if (txtNetIncome <= 200000 || txtNetIncome == 0) {
             var A = 0;
             var B = 0;
@@ -52,7 +52,7 @@ if (cbassyear == "2013-2014") {
             out_txtsurcharge = E;
         } //2013-2014..txtNetIncome is more then 1000000.
     } //  Year 2013-2014..For M and F
-    else if (cbasscategory == "Senior Citizen" && (cbasstype == "I" && cbresistatus == "RES" || cbresistatus == "NRI" || cbresistatus == "NOR")) {
+    else if ((cbasscategory == "Senior Citizen") && (cbasstype == "I") && (cbresistatus == "RES" || cbresistatus == "NRI" || cbresistatus == "NOR")) {
         if (txtNetIncome <= 250000 || txtNetIncome == 0) {
             var A = 0;
             var B = 0;
@@ -102,7 +102,7 @@ if (cbassyear == "2013-2014") {
             out_txtsurcharge = E;
         } //2013-2014..txtNetIncome is more then 1000001.
     } // Year 2013-2014..Senior Citizen
-    else if (cbasscategory == "Super Senior Citizen" && (cbasstype == "I" && cbresistatus == "RES" || cbresistatus == "NRI" || cbresistatus == "NOR")) {
+    else if ((cbasscategory == "Super Senior Citizen") && (cbasstype == "I") && (cbresistatus == "RES" || cbresistatus == "NRI" || cbresistatus == "NOR")) {
         if (txtNetIncome <= 500000 || txtNetIncome == 0) {
             var A = 0;
             var B = 0;
@@ -248,7 +248,7 @@ if (cbassyear == "2013-2014") {
     } // 2013-2014 Firms and Local Authority Calculation
 } // Assesssment Year 2013-2014 Calculation
  else if (cbassyear == "2012-2013") {
-    if (cbasscategory == "M" && (cbasstype == "I" && cbresistatus == "RES" || cbresistatus == "NRI" || cbresistatus == "NOR")) {
+    if ((cbasscategory == "M") && (cbasstype == "I") && (cbresistatus == "RES" || cbresistatus == "NRI" || cbresistatus == "NOR")) {
         if (txtNetIncome <= 180000 || txtNetIncome == 0) {
             var A = 0;
             var B = 0;
@@ -298,7 +298,7 @@ if (cbassyear == "2013-2014") {
             out_txtsurcharge = E;
         } //2012-2013..txtNetIncome is more then 800000.
     } // Year 2012-2013.. M Calculation
-    else if (cbasscategory == "F" && (cbasstype == "I" && cbresistatus == "RES" || cbresistatus == "NRI" || cbresistatus == "NOR")) {
+    else if ((cbasscategory == "F") && (cbasstype == "I") && (cbresistatus == "RES" || cbresistatus == "NRI" || cbresistatus == "NOR")) {
         if (txtNetIncome <= 190000 || txtNetIncome == 0) {
             var A = 0;
             var B = 0;
@@ -348,7 +348,7 @@ if (cbassyear == "2013-2014") {
             out_txtsurcharge = E;
         } //2012-2013 txtNetIncome is more then 800000.
     } // Year 2012-2013.. Female Calculation
-    else if (cbasscategory == "Senior Citizen" && (cbasstype == "I" && cbresistatus == "RES" || cbresistatus == "NRI" || cbresistatus == "NOR")) {
+    else if ((cbasscategory == "Senior Citizen") && (cbasstype == "I") && (cbresistatus == "RES" || cbresistatus == "NRI" || cbresistatus == "NOR")) {
         if (txtNetIncome <= 250000 || txtNetIncome == 0) {
             var A = 0;
             var B = 0;
@@ -398,7 +398,7 @@ if (cbassyear == "2013-2014") {
             out_txtsurcharge = E;
         } //2012-2013 txtNetIncome is more then 800000.
     } // Year 2012-2013.. Senior Citizen Calculation
-    else if (cbasscategory == "Super Senior Citizen" && (cbasstype == "I" && cbresistatus == "RES" || cbresistatus == "NRI" || cbresistatus == "NOR")) {
+    else if ((cbasscategory == "Super Senior Citizen") && (cbasstype == "I") && (cbresistatus == "RES" || cbresistatus == "NRI" || cbresistatus == "NOR")) {
         if (txtNetIncome <= 500000 && txtNetIncome == 0) {
             var A = 0;
             var B = 0;
@@ -566,7 +566,7 @@ if (cbassyear == "2013-2014") {
     } // 2012-2013 Firms and Local Authority Calculation
 } // Assesssment Year 2012-2013 Calculation  
  else if (cbassyear == "2011-2012") {
-    if (cbasscategory == "M" && (cbasstype == "I" && cbresistatus == "RES" || cbresistatus == "NRI" || cbresistatus == "NOR")) {
+    if ((cbasscategory == "M") && (cbasstype == "I") && (cbresistatus == "RES" || cbresistatus == "NRI" || cbresistatus == "NOR")) {
         if (txtNetIncome <= 160000 || txtNetIncome == 0) {
             var A = 0;
             var B = 0;
@@ -616,7 +616,7 @@ if (cbassyear == "2013-2014") {
             out_txtsurcharge = E;
         } //2011-2012 txtNetIncome is more then 800001.
     } // Year 2011-2012.. M Calculation
-    else if (cbasscategory == "F" && (cbasstype == "I" && cbresistatus == "RES" || cbresistatus == "NRI" || cbresistatus == "NOR")) {
+    else if ((cbasscategory == "F") && (cbasstype == "I") && (cbresistatus == "RES" || cbresistatus == "NRI" || cbresistatus == "NOR")) {
         if (txtNetIncome <= 190000 || txtNetIncome == 0) {
             var A = 0;
             var B = 0;
@@ -667,7 +667,7 @@ if (cbassyear == "2013-2014") {
             out_txtsurcharge = E;
         } //2011-2012 txtNetIncome is more then 800000
     } // Year 2011-2012.. Female Calculation
-    else if ((cbasscategory == "Senior Citizen" || cbasscategory == "Super Senior Citizen") && (cbasstype == "I" && cbresistatus == "RES" || cbresistatus == "NRI" || cbresistatus == "NOR")) {
+    else if ((cbasscategory == "Senior Citizen" || cbasscategory == "Super Senior Citizen") && (cbasstype == "I") && (cbresistatus == "RES" || cbresistatus == "NRI" || cbresistatus == "NOR")) {
         if (txtNetIncome <= 240000 || txtNetIncome == 0) {
             var A = 0;
             var B = 0;
