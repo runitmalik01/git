@@ -30,7 +30,9 @@ import static com.mootly.wcm.utils.Constants.NT_PERSONAL_INFO_LINK;
 import java.math.BigInteger;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.jcr.NodeIterator;
 import javax.jcr.RepositoryException;
@@ -48,6 +50,7 @@ import com.mootly.wcm.annotations.TagAsTaxDataProvider;
 import com.mootly.wcm.annotations.TagAsTaxDataProvider.TaxDataProviderType;
 import com.mootly.wcm.beans.compound.PersonalInformation;
 import com.mootly.wcm.beans.compound.TdsFromSalaryDetail;
+import com.mootly.wcm.services.ScreenCalculatorService;
 
 @SuppressWarnings("unused")
 @Node(jcrType = "mootlywcm:tdsfromsalarydocument")
@@ -124,21 +127,19 @@ public class TdsFromSalaryDocument extends BaseDocument implements ContentNodeBi
 	        		aNode.remove();
 	        	}
         	}
-        	 double sum=0.0;
         	if ( tdssalary.getTdsSalaryDetailList() != null &&  tdssalary.getTdsSalaryDetailList().size() > 0 ){ 
-        		log.info("checking size in salary income bean:::"+ tdssalary.getTdsSalaryDetailList().size());
         		for (TdsFromSalaryDetail objtdsfromsalary:tdssalary.getTdsSalaryDetailList()) {
         			if (!objtdsfromsalary.isMarkedForDeletion()) {
-        				double amount=objtdsfromsalary.getTotal_TaxDeducted();
-            		    log.info("value of amount after fetching from compound bean"+amount);
-            		     sum=sum+amount;
 		                javax.jcr.Node html = node.addNode(PROP_DETAIL_BEAN, PROP_DETAIL_BEAN);
 		                objtdsfromsalary.bindToNode(html); 
         			}
         		}
-        		setTotal_Amount(sum);
-        		log.info("value of sum"+String.valueOf(sum));
         	}
+    		Map<String,Object> totalMapForJSSalary = new HashMap<String, Object>();
+    		Map<String,String[]> requestParameterMap=new HashMap<String,String[]>();
+    		totalMapForJSSalary.put("tdssalary", tdssalary);
+    		Map<String,Object> resultMapSalary = ScreenCalculatorService.getScreenCalculations("tdssalary.js", requestParameterMap , totalMapForJSSalary);
+    		setTotal_Amount(Double.parseDouble(resultMapSalary.get("total_tdssalary").toString()));
         	node.setProperty("mootlywcm:totalamount", getTotal_Amount());
         	/*
 			javax.jcr.Node prdLinkNode;
