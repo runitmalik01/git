@@ -30,6 +30,7 @@ import in.gov.incometaxindiaefiling.y2012_2013.master.AddressDetail;
 import in.gov.incometaxindiaefiling.y2012_2013.master.AssesseeName;
 import in.gov.incometaxindiaefiling.y2012_2013.master.CreationInfo;
 import in.gov.incometaxindiaefiling.y2012_2013.master.DoneeWithPan;
+import in.gov.incometaxindiaefiling.y2012_2013.master.Schedule80G;
 import in.gov.incometaxindiaefiling.y2012_2013.master.EmployerOrDeductorOrCollectDetl;
 import in.gov.incometaxindiaefiling.y2012_2013.master.ITR1TaxComputation;
 import in.gov.incometaxindiaefiling.y2012_2013.master.PersonalInfo;
@@ -39,6 +40,7 @@ import in.gov.incometaxindiaefiling.y2012_2013.master.ITR1IncomeDeductions;
 import in.gov.incometaxindiaefiling.y2012_2013.master.DeductUndChapVIA;
 import in.gov.incometaxindiaefiling.y2012_2013.master.Refund;
 import in.gov.incometaxindiaefiling.y2012_2013.master.Refund.DepositToBankAccount;
+import in.gov.incometaxindiaefiling.y2012_2013.master.Schedule80G.Don100Percent;
 import in.gov.incometaxindiaefiling.y2012_2013.master.TDSonOthThanSal;
 import in.gov.incometaxindiaefiling.y2012_2013.master.TDSonOthThanSals;
 import in.gov.incometaxindiaefiling.y2012_2013.master.TDSonSalaries;
@@ -74,6 +76,7 @@ import com.mootly.wcm.beans.compound.DeductionDocumentDetail;
 import com.mootly.wcm.beans.compound.FormSixteenDetail;
 import com.mootly.wcm.beans.compound.HouseIncomeDetail;
 import com.mootly.wcm.beans.compound.SalaryIncomeDetail;
+import com.mootly.wcm.beans.compound.SelfAssesmentTaxDetail;
 import com.mootly.wcm.beans.compound.TdsFromSalaryDetail;
 import com.mootly.wcm.beans.compound.TdsOthersDetail;
 import com.mootly.wcm.beans.compound.AdvanceTaxDetail;
@@ -88,7 +91,7 @@ import com.mootly.wcm.utils.XmlCalculation;
 
 @AdditionalBeans(additionalBeansToLoad={MemberPersonalInformation.class,MemberContactInformation.class,SalaryIncomeDocument.class,
 		HouseIncomeDetail.class,HouseProperty.class,OtherSourcesDocument.class,AdvanceTaxDocument.class,AdvanceTaxDetail.class,TdsFromSalaryDocument.class,
-		TdsFromSalaryDetail.class,TdsFromothersDocument.class,SelfAssesmetTaxDocument.class,SalaryIncomeDetail.class,DeductionDocument.class,
+		TdsFromSalaryDetail.class,TdsFromothersDocument.class,SelfAssesmetTaxDocument.class,SelfAssesmentTaxDetail.class,SalaryIncomeDetail.class,DeductionDocument.class,
 		DeductionDocumentDetail.class,InterestDoc.class,FormSixteenDocument.class,FormSixteenDetail.class})
 @RequiredBeans(requiredBeans={MemberPersonalInformation.class})
 public class XmlGenerator extends ITReturnComponent {
@@ -572,10 +575,14 @@ public class XmlGenerator extends ITReturnComponent {
 
 		//Schedule80G is remaining 
 
-		/**
-		DeductionDocumentDetail dDetail = (DeductionDocumentDetail) getChildBean();
-		com.mootly.wcm.model.DoneeWithPan doneewithPan = com.mootly.wcm.model.DoneeWithPan.getInstanceFromChildBean(dDetail);
+		
+		//DeductionDocumentDetail dDetail = (DeductionDocumentDetail) getChildBean();
+	//	com.mootly.wcm.model.DoneeWithPan doneewithPan = com.mootly.wcm.model.DoneeWithPan.getInstanceFromChildBean(dDetail);
 
+	/**	
+		com.mootly.wcm.model.DoneeWithPan doneewithPan = com.mootly.wcm.model.DoneeWithPan.getInstanceFromFormMap(getFormMap());
+		if (doneewithPan != null){
+			log.info("inside donee loop");
 		doneeWithPan.setDoneeWithPanName(doneewithPan.getDoneeName());
 		doneeWithPan.setDoneePAN(doneewithPan.getDoneePAN());
 		addressDetail.setAddrDetail(doneewithPan.getDoneeAreaLocality());
@@ -590,9 +597,10 @@ public class XmlGenerator extends ITReturnComponent {
 		schedule80G.setDon100Percent(don100Percent);
 		schedule80G.setTotalDonationsUs80G(dedgtotal);
 		schedule80G.setTotalEligibleDonationsUs80G(dedgtotal);
+		}
 		itr1.setSchedule80G(schedule80G);
-		 **/
-
+		**/
+		
 		//TDSonSalaries
 		if(tdsFromSalaryDocument!=null){
 			if (tdsFromSalaryDocument.getTdsSalaryDetailList() != null && tdsFromSalaryDocument.getTdsSalaryDetailList().size() > 0 ){
@@ -629,14 +637,14 @@ public class XmlGenerator extends ITReturnComponent {
 			}
 		}
 
-		//TaxPayments
+		//TaxPayments (advance tax and self assessment tax)
 		if(advanceTaxDocument!=null){
 			if (advanceTaxDocument.getAdvanceTaxDetailList() != null && advanceTaxDocument.getAdvanceTaxDetailList().size() > 0 ){
 				log.info("inside if loop");
 				for(AdvanceTaxDetail advanceTaxDetail:advanceTaxDocument.getAdvanceTaxDetailList()){
 					log.info("inside for loop");
 					taxPayment.setBSRCode(advanceTaxDetail.getP_BSR());
-					taxPayment.setDateDep(advanceTaxDetail.getGregorianP_Date());
+					taxPayment.setDateDep(indianCurrencyHelper.gregorianCalendar(advanceTaxDetail.getP_Date()));
 					taxPayment.setSrlNoOfChaln(indianCurrencyHelper.bigIntegerRoundStr(advanceTaxDetail.getP_Serial()));
 					taxPayment.setAmt(indianCurrencyHelper.bigIntegerRound(advanceTaxDetail.getP_Amount()));
 					taxPayments.getTaxPayment().add(taxPayment);
@@ -644,6 +652,20 @@ public class XmlGenerator extends ITReturnComponent {
 			}
 		}
 
+		if( selfAssesmetTaxDocument!=null){
+			if ( selfAssesmetTaxDocument.getSelfAssesmentDetailList() != null && selfAssesmetTaxDocument.getSelfAssesmentDetailList().size() > 0 ){
+				log.info("inside if loop");
+				for(SelfAssesmentTaxDetail selfAssesmentTaxDetail:selfAssesmetTaxDocument.getSelfAssesmentDetailList()){
+					log.info("inside for loop");
+					taxPayment.setBSRCode(selfAssesmentTaxDetail.getP_BSR());
+					taxPayment.setDateDep(indianCurrencyHelper.gregorianCalendar(selfAssesmentTaxDetail.getP_Date()));
+					taxPayment.setSrlNoOfChaln(indianCurrencyHelper.bigIntegerRoundStr(selfAssesmentTaxDetail.getP_Serial()));
+					taxPayment.setAmt(indianCurrencyHelper.bigIntegerRound(selfAssesmentTaxDetail.getP_Amount()));
+					taxPayments.getTaxPayment().add(taxPayment);
+				}
+			}
+		}
+		
 		itr1.setTaxPayments(taxPayments);
 		//TaxExmpIntInc
 
