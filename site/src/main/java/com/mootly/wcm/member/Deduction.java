@@ -211,7 +211,7 @@ public class Deduction extends ITReturnComponent {
 				totalMapForJS.put("ageInYears",ageInYears);
 				totalMapForJS.put("isSeniorCitizen",isSeniorCitizen);
 			}
-			double salarypension=0D;double othersources=0D;double housproperty=0D;
+			double salarypension=0D;double othersources=0D;double houseproperty=0D;
 			SalaryIncomeDocument salaryincome=(SalaryIncomeDocument)request.getAttribute(SalaryIncomeDocument.class.getSimpleName().toLowerCase());
 			if(salaryincome!=null)
 				salarypension=salaryincome.getTotal();
@@ -223,16 +223,15 @@ public class Deduction extends ITReturnComponent {
 			HouseProperty housprop=(HouseProperty)request.getAttribute(HouseProperty.class.getSimpleName().toLowerCase());
 			if (housprop.getHouseIncomeDetailList() != null && housprop.getHouseIncomeDetailList().size() > 0 ){ 
 				for (HouseIncomeDetail houseincomeDetail:housprop.getHouseIncomeDetailList()) {
-					housproperty=housproperty+houseincomeDetail.getIncome_hproperty(); 
+					houseproperty=houseproperty+houseincomeDetail.getIncome_hproperty(); 
 				}	
 			}
-			totalMapForJS.put("housproperty", housproperty);
+			totalMapForJS.put("houseproperty", houseproperty);
 			//totalMapForJS.put("total_eligiblededuction", 0D);
 			Map<String,Object> resultMap = ScreenCalculatorService.getScreenCalculations("Chapter6Calc.js", request.getParameterMap(), totalMapForJS);
 			if (resultMap != null && resultMap.size() > 0 ) {
 				totalMapForJS.putAll(resultMap);
 				request.setAttribute("totalMapForJS", totalMapForJS);
-				log.info(resultMap.toString()); //lets analyze the map
 			}
 		}
 	}
