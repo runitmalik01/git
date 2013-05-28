@@ -26,6 +26,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 import javax.jcr.RepositoryException;
 
@@ -55,7 +56,7 @@ public class SelfAssesmentTaxDetail extends HippoItem implements FormMapFiller {
 
 	
 	private String val_BSR ;
-	private Calendar val_Date ;
+	private GregorianCalendar val_Date ;
 	private String val_serial ;
 	private Double	val_amount;
 	
@@ -84,7 +85,7 @@ public class SelfAssesmentTaxDetail extends HippoItem implements FormMapFiller {
     	if (val_amount == null) val_amount = getProperty(AMOUNT);
     	return val_amount;
     }
-    public Calendar getP_Date() {
+    public GregorianCalendar getP_Date() {
     	if (val_Date == null) val_Date = getProperty(DATE);
     	return val_Date;
     }
@@ -137,7 +138,7 @@ public class SelfAssesmentTaxDetail extends HippoItem implements FormMapFiller {
 
 
  	
-	public final void setP_Date(Calendar val_Date) {
+	public final void setP_Date(GregorianCalendar val_Date) {
 	this.val_Date = val_Date;
 }
 	
@@ -174,7 +175,7 @@ public class SelfAssesmentTaxDetail extends HippoItem implements FormMapFiller {
 			Date date = null ;
 			DateFormat formatter ; 
 			formatter = getIndianDateFormatter();
-			Calendar cal=Calendar.getInstance();
+			GregorianCalendar cal=(GregorianCalendar) GregorianCalendar.getInstance();
 			try{
 				date = (Date)formatter.parse(strDate); 
 				log.info("date"+date);
@@ -184,8 +185,7 @@ public class SelfAssesmentTaxDetail extends HippoItem implements FormMapFiller {
 			catch(Exception e){
 				log.info("calendar error"+e);
 			}
-		}
-		
+		}	
 	}
 	 public static final SimpleDateFormat getIndianDateFormatter() {
 	      return new SimpleDateFormat("dd/MM/yyyy");
