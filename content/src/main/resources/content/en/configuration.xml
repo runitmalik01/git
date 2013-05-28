@@ -3944,7 +3944,7 @@ acknowledgement&lt;/p&gt;
 &lt;/html&gt;</sv:value>
           </sv:property>
           <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
-            <sv:value>Enter date between 1/04/2012 to 31/03/2013</sv:value>
+            <sv:value>dd/mm/yyyy</sv:value>
           </sv:property>
           <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
             <sv:value>true</sv:value>
@@ -4219,7 +4219,7 @@ acknowledgement&lt;/p&gt;
         </sv:node>
       </sv:node>
     </sv:node>
-    <sv:node sv:name="selfassementtax">
+    <sv:node sv:name="selfassesmenttax">
       <sv:property sv:name="jcr:primaryType" sv:type="Name">
         <sv:value>hippo:handle</sv:value>
       </sv:property>
@@ -4344,7 +4344,7 @@ acknowledgement&lt;/p&gt;
             <sv:value/>
           </sv:property>
           <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
-            <sv:value>Enter in dd/MM/YYYY</sv:value>
+            <sv:value>dd/mm/yyyy</sv:value>
           </sv:property>
           <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
             <sv:value>true</sv:value>
