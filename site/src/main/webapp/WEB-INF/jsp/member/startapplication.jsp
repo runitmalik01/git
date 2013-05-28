@@ -313,7 +313,7 @@ else {
 		            <input id="ack_date" name="ack_date" value="<c:choose><c:when test="${not empty parentBean&&parentBean.originalAckDate}"><c:out value="${parentBean.originalAckDate}"/></c:when><c:when test="${not empty savedValuesFormMap && not empty savedValuesFormMap.value['ack_date']}"><c:out value="${savedValuesFormMap.value['ack_date'].value}"/></c:when></c:choose>" type="hidden"/>
 		            <input id="notice_no" name="notice_no" value="<c:choose><c:when test="${not empty parentBean&&parentBean.noticeNo}"><c:out value="${parentBean.noticeNo}"/></c:when><c:when test="${not empty savedValuesFormMap && not empty savedValuesFormMap.value['notice_no']}"><c:out value="${savedValuesFormMap.value['notice_no'].value}"/></c:when></c:choose>" type="hidden"/>
 		            <input id="notice_date" name="notice_date" value="<c:choose><c:when test="${not empty parentBean&&parentBean.noticeDate}"><c:out value="${parentBean.noticeDate}"/></c:when><c:when test="${not empty savedValuesFormMap && not empty savedValuesFormMap.value['notice_date']}"><c:out value="${savedValuesFormMap.value['notice_date'].value}"/></c:when></c:choose>" type="hidden"/>--%>
-		            <input id="pi_filing_status" name="pi_filing_status" value="<c:choose><c:when test="${not empty parentBean.financialYear}"><c:out value="${parentBean.financialYear}"/></c:when><c:otherwise><c:out value="${filingStatus.xmlCode}"/></c:otherwise></c:choose>" type="hidden"/>
+		            <input id="pi_filing_status" name="pi_filing_status" value="<c:choose><c:when test="${not empty parentBean.filingStatus}"><c:out value="${parentBean.filingStatus}"/></c:when><c:otherwise><c:out value="${filingStatus.xmlCode}"/></c:otherwise></c:choose>" type="hidden"/>
 			    </div>
 			</div>
 		</fieldset>
