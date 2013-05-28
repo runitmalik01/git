@@ -491,7 +491,8 @@ public class XmlGenerator extends ITReturnComponent {
 
 		Map<String,Object> totalMapForJS = new HashMap<String, Object>();
 		totalMapForJS.put("cbassyear",getAssessmentYear());
-		totalMapForJS.put("cbasstype", memberPersonalInformation.getFilingStatus());
+		//totalMapForJS.put("cbasstype", memberPersonalInformation.getFilingStatus());
+		totalMapForJS.put("cbasstype", "I");
 		totalMapForJS.put("cbresistatus",memberPersonalInformation.getResidentCategory());
 		totalMapForJS.put("txtNetIncome",grsstotal);
 		boolean isSeniorCitizen = getFinancialYear().isSeniorCitizen(memberPersonalInformation.getDOB().getTime());
@@ -499,6 +500,7 @@ public class XmlGenerator extends ITReturnComponent {
 			totalMapForJS.put("cbasscategory","Senior Citizen");
 		else
 			totalMapForJS.put("cbasscategory",memberPersonalInformation.getSex());
+		
 		Map<String,Object> resultMap = ScreenCalculatorService.getScreenCalculations("xmlCalculation.js", request.getParameterMap(), totalMapForJS);
 		if (log.isInfoEnabled()){
 			log.info(resultMap.toString()); 
