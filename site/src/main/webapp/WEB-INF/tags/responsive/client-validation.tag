@@ -150,8 +150,22 @@
 					});
                  </c:if>	
 				$('.tan').attr("style","text-transform: uppercase;");		
-			});   
+			});  
 			 
+			  $('#Stateslry').change(function(){
+			if($('#Stateslry').val()=='99'){
+			      $('#Pinslry').val('999999');
+			      $('#Pinslry').attr('readonly','readonly');
+			   }else{
+                            $('#Pinslry').val('');
+                            $('#Pinslry').removeAttr('readonly');
+                            }
+			});
+        function checkdelete(){
+	        var re=confirm("Do You want to Delete it");
+	          if (re) return true;
+	          else return false;
+                    }
    </hst:element>
 	<hst:headContribution element="${uiCustom}" category="jsInternal"/>	
 </c:if>
