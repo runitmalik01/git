@@ -151,10 +151,10 @@
     $(document).ready(function() {
     
 	var fY='<c:out value="${assessmentYear}"/>'.split("-", 4);
-	itrFinYr="01/04/"+fY[1];
-		$( ".indiandate" ).datepicker( "option", "defaultDate", "01/04/2013" );
-		$( ".indiandate" ).datepicker( "option", "minDate", "31/03/2013" );
-			$( ".indiandate" ).datepicker( "option", "maxDate", itrFinYr );
+	itrFinYrMax="01/04/"+fY[1];
+	itrFinYrMin="01/04/"+fY[0];
+			$( ".indiandateAdvance" ).datepicker( "option", "minDate", itrFinYrMin );
+			$( ".indiandateAdvance" ).datepicker( "option", "maxDate", itrFinYrMax );
 			});
   
 </hst:element>
