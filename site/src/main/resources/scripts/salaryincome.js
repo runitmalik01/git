@@ -8,7 +8,7 @@ var sumSalary=0;
 if(salaryincome!=null){
 	if (salaryincome.getSalaryIncomeDetailList() != null && salaryincome.getSalaryIncomeDetailList().size() > 0){ 
 		for(var i=0;i<salaryincome.getSalaryIncomeDetailList().size();i++)       			
-			sumSalary=sumSalary+salaryincome.getSalaryIncomeDetailList().get(i).getTaxable_earning();         					
+			sumSalary=(sumSalary-0) + (salaryincome.getSalaryIncomeDetailList().get(i).getTaxable_earning()-0);         					
 	}	
 }
 
