@@ -231,11 +231,12 @@ public class XmlGenerator extends ITReturnComponent {
 				}
 			}
 		}
-
+		request.setAttribute("salaryincome", GrossIncomeTotal);
 		BigInteger Penson=new BigInteger("0");
 		if(salaryIncomeDocument!=null){
 			Penson = indianCurrencyHelper.bigIntegerRound(salaryIncomeDocument.getTotal());
 		}
+		request.setAttribute("Penson", Penson);
 		BigInteger TotalSalaryIncome=new BigInteger("0");
 		TotalSalaryIncome = GrossIncomeTotal.add(Penson);
 		incomeDeductions.setIncomeFromSal(TotalSalaryIncome);
