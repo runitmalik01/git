@@ -44,6 +44,7 @@ import java.math.BigInteger;
 import java.text.DecimalFormat;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.xml.bind.JAXBContext;
@@ -156,13 +157,13 @@ public class XmlGenerator extends ITReturnComponent {
 		TaxesPaid taxesPaid = new TaxesPaid();
 		Refund refund = new Refund();
 		Verification verification = new Verification();
-		TDSonSalaries tdsonSalaries = new TDSonSalaries();
-		TDSonSalary tdsonSalary = new TDSonSalary();
+		//TDSonSalaries tdsonSalaries = new TDSonSalaries();
+		//TDSonSalary tdsonSalary = new TDSonSalary();
 		EmployerOrDeductorOrCollectDetl employerOrDeductorOrCollectDetl = new EmployerOrDeductorOrCollectDetl();
-		TDSonOthThanSals tdsonOthThanSals = new TDSonOthThanSals();
-		TDSonOthThanSal tdsonOthThanSal = new TDSonOthThanSal();
-		TaxPayments taxPayments = new TaxPayments();
-		TaxPayment taxPayment = new TaxPayment();
+		//TDSonOthThanSals tdsonOthThanSals = new TDSonOthThanSals();
+		//TDSonOthThanSal tdsonOthThanSal = new TDSonOthThanSal();
+		//TaxPayments taxPayments = new TaxPayments();
+		//TaxPayment taxPayment = new TaxPayment();
 		IndianCurrencyHelper indianCurrencyHelper = new IndianCurrencyHelper(); 
 		DoneeWithPan doneeWithPan = new DoneeWithPan();
 		Schedule80G schedule80G = new Schedule80G();
@@ -459,45 +460,62 @@ public class XmlGenerator extends ITReturnComponent {
 		
 		//TDSonSalaries
 		if(tdsFromSalaryDocument!=null){
-			if (tdsFromSalaryDocument.getTdsSalaryDetailList() != null && tdsFromSalaryDocument.getTdsSalaryDetailList().size() > 0 ){
-				log.info("inside if loop");
-				for(TdsFromSalaryDetail tdsFromSalaryDetail:tdsFromSalaryDocument.getTdsSalaryDetailList()){
-					log.info("inside for loop");
+			List<TdsFromSalaryDetail> listOfTdsSalaryDetail = tdsFromSalaryDocument.getTdsSalaryDetailList();
+			if (listOfTdsSalaryDetail != null && listOfTdsSalaryDetail.size() > 0 ){
+				TDSonSalaries tdsonSalaries = new TDSonSalaries();					
+				if (log.isDebugEnabled()) { 
+					log.info("inside if loop");
+				}
+				for(TdsFromSalaryDetail tdsFromSalaryDetail:listOfTdsSalaryDetail){
+					TDSonSalary tdsonSalary = new TDSonSalary();
+					if (log.isDebugEnabled()) {
+						log.info("inside for loop");
+					}
 					employerOrDeductorOrCollectDetl.setTAN(tdsFromSalaryDetail.getTan_Employer());
-					log.info("tan employer"+tdsFromSalaryDetail.getTan_Employer());
+					if (log.isDebugEnabled()) {
+						log.info("tan employer"+tdsFromSalaryDetail.getTan_Employer());
+					}
 					employerOrDeductorOrCollectDetl.setEmployerOrDeductorOrCollecterName(tdsFromSalaryDetail.getName_Employer());
 					tdsonSalary.setEmployerOrDeductorOrCollectDetl(employerOrDeductorOrCollectDetl);
 					tdsonSalary.setIncChrgSal(indianCurrencyHelper.bigIntegerRound(tdsFromSalaryDetail.getIncome_Chargeable()));
 					tdsonSalary.setTotalTDSSal(indianCurrencyHelper.bigIntegerRound(tdsFromSalaryDetail.getTotal_TaxDeducted()));			
 					tdsonSalaries.getTDSonSalary().add(tdsonSalary);
-
-				}		
-			}		
-			itr1.setTDSonSalaries(tdsonSalaries);
+				}	
+				itr1.setTDSonSalaries(tdsonSalaries);
+				if (log.isDebugEnabled()) {
+					log.debug("Now lets do a final check on what's being assigned in XML versus what's in my object??");
+				}
+			}					
 		}
 
 		//TDSonOthThanSals
 		if(tdsFromothersDocument!=null){
-			if (tdsFromothersDocument.getTdsSalaryDetailList() != null && tdsFromothersDocument.getTdsSalaryDetailList().size() > 0 ){
+			List<TdsOthersDetail> listOfTdsFromOthers = tdsFromothersDocument.getTdsSalaryDetailList();
+			if (listOfTdsFromOthers != null && listOfTdsFromOthers.size() > 0 ){
+				TDSonOthThanSals tdsonOthThanSals = new TDSonOthThanSals();				
 				log.info("inside if loop");
-				for(TdsOthersDetail tdsOthersDetail:tdsFromothersDocument.getTdsSalaryDetailList()){
+				for(TdsOthersDetail tdsOthersDetail:listOfTdsFromOthers){
+					TDSonOthThanSal tdsonOthThanSal = new TDSonOthThanSal();
 					log.info("inside for loop");
 					employerOrDeductorOrCollectDetl.setTAN(tdsOthersDetail.getTan_Deductor());
 					employerOrDeductorOrCollectDetl.setEmployerOrDeductorOrCollecterName(tdsOthersDetail.getName_Deductor());
 					tdsonOthThanSal.setEmployerOrDeductorOrCollectDetl(employerOrDeductorOrCollectDetl);
 					tdsonOthThanSal.setTotTDSOnAmtPaid(indianCurrencyHelper.bigIntegerRound(tdsOthersDetail.getTotal_TaxDeductor()));
 					tdsonOthThanSal.setClaimOutOfTotTDSOnAmtPaid(indianCurrencyHelper.bigIntegerRound(tdsOthersDetail.getP_Amount()));
-					tdsonOthThanSals.getTDSonOthThanSal().add(tdsonOthThanSal);
-					itr1.setTDSonOthThanSals(tdsonOthThanSals);
+					tdsonOthThanSals.getTDSonOthThanSal().add(tdsonOthThanSal);					
 				}
+				itr1.setTDSonOthThanSals(tdsonOthThanSals);
 			}
 		}
 
 		//TaxPayments (advance tax and self assessment tax)
 		if(advanceTaxDocument!=null){
-			if (advanceTaxDocument.getAdvanceTaxDetailList() != null && advanceTaxDocument.getAdvanceTaxDetailList().size() > 0 ){
+			List<AdvanceTaxDetail> listOfAdvanceTaxDetail = advanceTaxDocument.getAdvanceTaxDetailList() ;
+			if (listOfAdvanceTaxDetail != null && listOfAdvanceTaxDetail.size() > 0 ){
 				log.info("inside if loop");
-				for(AdvanceTaxDetail advanceTaxDetail:advanceTaxDocument.getAdvanceTaxDetailList()){
+				TaxPayments taxPayments = new TaxPayments();					
+				for(AdvanceTaxDetail advanceTaxDetail:listOfAdvanceTaxDetail){
+					TaxPayment taxPayment = new TaxPayment();
 					log.info("inside for loop");
 					taxPayment.setBSRCode(advanceTaxDetail.getP_BSR());
 					taxPayment.setDateDep(indianCurrencyHelper.gregorianCalendar(advanceTaxDetail.getP_Date()));
@@ -505,7 +523,8 @@ public class XmlGenerator extends ITReturnComponent {
 					taxPayment.setAmt(indianCurrencyHelper.bigIntegerRound(advanceTaxDetail.getP_Amount()));
 					taxPayments.getTaxPayment().add(taxPayment);
 				}
-			}
+				itr1.setTaxPayments(taxPayments);
+			}			
 		}
 
 		if( selfAssesmetTaxDocument!=null){
