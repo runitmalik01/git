@@ -351,22 +351,4 @@
 	screenConfigurationDocumentName="salaryincome"
 	formSubmitButtonId="myModalHrefSlryInc" />
 
-<hst:element var="uiCustom" name="script">
-	<hst:attribute name="type">text/javascript</hst:attribute>
-    $('#Stateslry').change(function(){
-			if($('#Stateslry').val()=='99'){
-			      $('#Pinslry').val('999999');
-			      $('#Pinslry').attr('readonly','readonly');
-			   }else{
-                            $('#Pinslry').val('');
-                            $('#Pinslry').removeAttr('readonly');
-                            }
-			});
-        function checkdelete(){
-        alert("hiiiiiiiiiii");
-	        var re=confirm("Do You want to Delete it");
-	          if (re) return true;
-	          else return false;
-                    }
-			</hst:element>
-<hst:headContribution element="${uiCustom}" category="jsInternal" />
+
