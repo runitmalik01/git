@@ -211,11 +211,17 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 				save(request,formMap);
 				//initComponent(request);
 				try {
-					String redirectURL = getScriptName(); //getRedirectURL(request,response,FormSaveResult.SUCCESS);
+					String urlToRedirect = getScriptName(); //getRedirectURL(request,response,FormSaveResult.SUCCESS);
 					if (log.isInfoEnabled()) {
-						log.info(redirectURL + ":" + redirectURL); 
+						log.info(urlToRedirect + ":" + urlToRedirect); 
 					}
-					response.sendRedirect(redirectURL);
+					if (request.getAttribute("selectedItrTab") != null) {
+						response.setRenderParameter("selectedItrTab", ((ITRTab)request.getAttribute("selectedItrTab")).name());
+						urlToRedirect += "?selectedItrTab=" +  ((ITRTab)request.getAttribute("selectedItrTab")).name();
+					}
+					log.info("urlToRedirect EEEEEEEEEEEE"+urlToRedirect);
+					response.sendRedirect( urlToRedirect );
+					//response.sendRedirect(redirectURL);
 					return;
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
