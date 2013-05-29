@@ -27,4 +27,7 @@
 <%@ taglib prefix="w4india" tagdir="/WEB-INF/tags/w4india" %>
 <%@ taglib prefix="res" tagdir="/WEB-INF/tags/responsive" %>
 
-
+<!-- Used in taxcalculator -->
+<hst:headContribution category="jsExternal">
+	<script type="text/javascript" src="<hst:link path="/js/taxcalculator.js"/>"></script>
+</hst:headContribution>
