@@ -28,7 +28,7 @@
   </sv:node>
 
   <!--member signup-->
-<sv:node sv:name="member_signup" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+<sv:node sv:name="member_signup">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hippo:handle</sv:value>
   </sv:property>
@@ -47,7 +47,7 @@
       <sv:value>hippotranslation:translated</sv:value>
     </sv:property>
     <sv:property sv:name="jcr:uuid" sv:type="String">
-      <sv:value>d0cea35f-4b2f-4807-ba67-809c0c81aee6</sv:value>
+      <sv:value>ee365b84-b99c-4a25-a642-6bdff74cf6da</sv:value>
     </sv:property>
     <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
       <sv:value>live</sv:value>
@@ -72,13 +72,13 @@
       <sv:value>2013-01-03T02:22:18.719+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-      <sv:value>2013-05-13T16:37:17.368+05:30</sv:value>
+      <sv:value>2013-05-29T16:56:13.492+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
       <sv:value>admin</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-      <sv:value>2013-05-13T16:37:20.387+05:30</sv:value>
+      <sv:value>2013-05-29T16:56:15.821+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippotranslation:id" sv:type="String">
       <sv:value>488af69c-d897-4b4d-84bd-962b5e2de3f1</sv:value>
@@ -87,10 +87,10 @@
       <sv:value>en</sv:value>
     </sv:property>
     <sv:property sv:name="mootlywcm:From" sv:type="String">
-      <sv:value>info@wealth4india.com</sv:value>
+      <sv:value>Wealth4India</sv:value>
     </sv:property>
     <sv:property sv:name="mootlywcm:fromName" sv:type="String">
-      <sv:value>Mootly Information</sv:value>
+      <sv:value>Wealth4india Information</sv:value>
     </sv:property>
     <sv:property sv:name="mootlywcm:htmlBody" sv:type="String">
       <sv:value>&lt;html&gt;
@@ -98,10 +98,10 @@
 
 &lt;p&gt;Dear User,&lt;/p&gt;
 
-&lt;p&gt; Thanks for registering with Wealth4India. To confirm your account we need to validate your email address.&lt;/p&gt;
+&lt;p&gt; Thanks for registering with Wealth4India. To confirm your account we need to validate your email address.&lt;/p&gt;
 
 &lt;p&gt;
-http://${memberHostName}/site/activation/${membershipSignupDocument.canonicalUUID} 
+http://${memberHostName}/site/activation/${membershipSignupDocument.canonicalUUID} 
 &lt;/p&gt;
 
 
@@ -135,115 +135,6 @@ Wealth4India Team
   </sv:node>
 </sv:node>
 
-<sv:node sv:name="activation_code">
-  <sv:property sv:name="jcr:primaryType" sv:type="Name">
-    <sv:value>hippo:handle</sv:value>
-  </sv:property>
-  <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
-    <sv:value>hippo:hardhandle</sv:value>
-    <sv:value>hippo:translated</sv:value>
-  </sv:property>
-  <sv:property sv:name="jcr:uuid" sv:type="String">
-    <sv:value>b76f9106-65e5-4110-98ba-33cbc03f3302</sv:value>
-  </sv:property>
-  <sv:node sv:name="hippo:translation">
-    <sv:property sv:name="jcr:primaryType" sv:type="Name">
-      <sv:value>hippo:translation</sv:value>
-    </sv:property>
-    <sv:property sv:name="hippo:language" sv:type="String">
-      <sv:value/>
-    </sv:property>
-    <sv:property sv:name="hippo:message" sv:type="String">
-      <sv:value>activation_code</sv:value>
-    </sv:property>
-  </sv:node>
-  <sv:node sv:name="activation_code">
-    <sv:property sv:name="jcr:primaryType" sv:type="Name">
-      <sv:value>mootlywcm:emailtemplate</sv:value>
-    </sv:property>
-    <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
-      <sv:value>hippo:harddocument</sv:value>
-      <sv:value>hippotranslation:translated</sv:value>
-    </sv:property>
-    <sv:property sv:name="jcr:uuid" sv:type="String">
-      <sv:value>4136a541-be32-4809-b9e6-bcdb85cd140a</sv:value>
-    </sv:property>
-    <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
-      <sv:value>live</sv:value>
-      <sv:value>preview</sv:value>
-    </sv:property>
-    <sv:property sv:name="hippo:related___pathreference" sv:type="String">
-      <sv:value>activation_code</sv:value>
-    </sv:property>
-    <sv:property sv:name="hippostd:holder" sv:type="String">
-      <sv:value>admin</sv:value>
-    </sv:property>
-    <sv:property sv:name="hippostd:state" sv:type="String">
-      <sv:value>published</sv:value>
-    </sv:property>
-    <sv:property sv:name="hippostd:stateSummary" sv:type="String">
-      <sv:value>live</sv:value>
-    </sv:property>
-    <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
-      <sv:value>admin</sv:value>
-    </sv:property>
-    <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
-      <sv:value>2013-02-08T17:47:20.205+05:30</sv:value>
-    </sv:property>
-    <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-      <sv:value>2013-03-13T16:00:45.717+05:30</sv:value>
-    </sv:property>
-    <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
-      <sv:value>admin</sv:value>
-    </sv:property>
-    <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-      <sv:value>2013-03-13T16:00:48.922+05:30</sv:value>
-    </sv:property>
-    <sv:property sv:name="hippotranslation:id" sv:type="String">
-      <sv:value>d4c56e21-311a-434d-862e-0c23c604f8a1</sv:value>
-    </sv:property>
-    <sv:property sv:name="hippotranslation:locale" sv:type="String">
-      <sv:value>en</sv:value>
-    </sv:property>
-    <sv:property sv:name="mootlywcm:From" sv:type="String">
-      <sv:value>info@mootly.com</sv:value>
-    </sv:property>
-    <sv:property sv:name="mootlywcm:fromName" sv:type="String">
-      <sv:value>Wealth4India Services</sv:value>
-    </sv:property>
-    <sv:property sv:name="mootlywcm:htmlBody" sv:type="String">
-      <sv:value>&lt;html&gt;
-&lt;body&gt;
-
-&lt;p&gt;&lt;strong&gt;Dear User,&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;This is your requested activation code. Click the link below to activate your
-account.&lt;/p&gt;
-
-&lt;p&gt; http://${memberHostName}/site/activation/${member.canonicalUUID} 
-&lt;/p&gt;
-
-&lt;p&gt;Sincerely, Wealth4India Team&lt;/p&gt;
-
-&lt;/body&gt;
-&lt;/html&gt;</sv:value>
-    </sv:property>
-    <sv:property sv:name="mootlywcm:plainBody" sv:type="String">
-      <sv:value>Welcome</sv:value>
-    </sv:property>
-    <sv:property sv:name="mootlywcm:subject" sv:type="String">
-      <sv:value>Re Activation_Code</sv:value>
-    </sv:property>
-    <sv:property sv:name="mootlywcm:templateKey" sv:type="String">
-      <sv:value>activation_code</sv:value>
-    </sv:property>
-    <sv:node sv:name="hippotranslation:translations">
-      <sv:property sv:name="jcr:primaryType" sv:type="Name">
-        <sv:value>hippotranslation:translations</sv:value>
-      </sv:property>
-    </sv:node>
-  </sv:node>
-</sv:node>
 
 
 
