@@ -115,6 +115,11 @@
 		</hst:element>
 		<hst:headContribution element="${uiCustom}" category="jsInternal" />
 </form>
+
+<!-- Used in taxcalculator -->
+<hst:headContribution category="jsExternal">
+	<script type="text/javascript" src="<hst:link path="/js/taxcalculator.js"/>"></script>
+</hst:headContribution>
 <%--
 $('#hrefTaxCalc').click(function() {
 		 				 $('#frmTaxCalc').submit();
