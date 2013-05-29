@@ -74,7 +74,7 @@
 						<div class="rowlabel">
 							<input id="amountself" name="amountself" type="text"
 								maxlength="14" class="decimal"
-								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.p_Serial}"/></c:if>" />
+								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.p_Amount}"/></c:if>" />
 						</div>
 					</div>
 				</div>
