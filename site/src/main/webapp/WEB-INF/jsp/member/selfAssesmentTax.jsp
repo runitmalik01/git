@@ -129,13 +129,19 @@
 		<a href="${scriptName}/selfassesmenttaxnew" class="button orange">Add New</a>
 	</c:otherwise>
 </c:choose>
+<hst:element var="uiCustom" name="script">
+    <hst:attribute name="type">text/javascript</hst:attribute>
+    $(document).ready(function() {
+   
+    var fY='<c:out value="${assessmentYear}"/>'.split("-", 4);
+	itrFinYrMax="01/04/"+fY[1];
+	itrFinYrMin="01/04/"+fY[0];
+			$( ".indiandateSelfAssesment" ).datepicker( "option", "minDate", itrFinYrMin );
+			$( ".indiandateSelfAssesment" ).datepicker( "option", "maxDate", itrFinYrMax );
+			});
+  
+</hst:element>
+<hst:headContribution element="${uiCustom}" category="jsInternal"/>
 <res:client-validation formId="frmdataSelfTax"
 	screenConfigurationDocumentName="selfassementtax"
 	formSubmitButtonId="myModalHrefSelfTax" />
-<script type="text/javascript">
-function checkdelete(){
-    var re=confirm("Do You want to Delete it");
-      if (re) return true;
-      else return false;
-            }
-</script>
