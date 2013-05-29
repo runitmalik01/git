@@ -159,7 +159,7 @@ public class XmlGenerator extends ITReturnComponent {
 		Verification verification = new Verification();
 		//TDSonSalaries tdsonSalaries = new TDSonSalaries();
 		//TDSonSalary tdsonSalary = new TDSonSalary();
-		EmployerOrDeductorOrCollectDetl employerOrDeductorOrCollectDetl = new EmployerOrDeductorOrCollectDetl();
+		//EmployerOrDeductorOrCollectDetl employerOrDeductorOrCollectDetl = new EmployerOrDeductorOrCollectDetl();
 		//TDSonOthThanSals tdsonOthThanSals = new TDSonOthThanSals();
 		//TDSonOthThanSal tdsonOthThanSal = new TDSonOthThanSal();
 		//TaxPayments taxPayments = new TaxPayments();
@@ -468,6 +468,7 @@ public class XmlGenerator extends ITReturnComponent {
 				}
 				for(TdsFromSalaryDetail tdsFromSalaryDetail:listOfTdsSalaryDetail){
 					TDSonSalary tdsonSalary = new TDSonSalary();
+					EmployerOrDeductorOrCollectDetl employerOrDeductorOrCollectDetl = new EmployerOrDeductorOrCollectDetl();
 					if (log.isDebugEnabled()) {
 						log.info("inside for loop");
 					}
@@ -496,6 +497,7 @@ public class XmlGenerator extends ITReturnComponent {
 				log.info("inside if loop");
 				for(TdsOthersDetail tdsOthersDetail:listOfTdsFromOthers){
 					TDSonOthThanSal tdsonOthThanSal = new TDSonOthThanSal();
+					EmployerOrDeductorOrCollectDetl employerOrDeductorOrCollectDetl = new EmployerOrDeductorOrCollectDetl();
 					log.info("inside for loop");
 					employerOrDeductorOrCollectDetl.setTAN(tdsOthersDetail.getTan_Deductor());
 					employerOrDeductorOrCollectDetl.setEmployerOrDeductorOrCollecterName(tdsOthersDetail.getName_Deductor());
