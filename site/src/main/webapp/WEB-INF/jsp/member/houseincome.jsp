@@ -540,11 +540,7 @@
 		$('.letout_' + $(this).val() + '_v').show();
 		$('.letout_' + $(this).val() + '_h').hide();
 	});
-        function checkdelete(){
-	        var re=confirm("Do You want to Delete it");
-	          if (re) return true;
-	          else return false;
-                    }
+        
 <c:if test="${not empty childBean.letOut}">
 	var letout='<c:out value="${childBean.letOut}"/>';
 	if(letout!=''){
