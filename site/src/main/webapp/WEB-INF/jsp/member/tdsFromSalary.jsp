@@ -99,10 +99,3 @@
 	</c:otherwise>
 </c:choose>
 <res:client-validation  screenConfigurationDocumentName="tdsfromsalary" formId="frmdatatdssalary" formSubmitButtonId="myModalHreftds" fieldOneID="tan_employertds" fieldTwoID="name_employertds" validationType="tan"></res:client-validation>
-<script type="text/javascript">
-
-function checkdelete(){
-    var re=confirm("Do You want to Delete it");
-      if (re) return true;
-      else return false;
-            }</script>
