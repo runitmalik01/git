@@ -509,11 +509,11 @@ public class XmlGenerator extends ITReturnComponent {
 		}
 
 		//TaxPayments (advance tax and self assessment tax)
+		TaxPayments taxPayments = new TaxPayments();
 		if(advanceTaxDocument!=null){
 			List<AdvanceTaxDetail> listOfAdvanceTaxDetail = advanceTaxDocument.getAdvanceTaxDetailList() ;
 			if (listOfAdvanceTaxDetail != null && listOfAdvanceTaxDetail.size() > 0 ){
 				log.info("inside if loop");
-				TaxPayments taxPayments = new TaxPayments();					
 				for(AdvanceTaxDetail advanceTaxDetail:listOfAdvanceTaxDetail){
 					TaxPayment taxPayment = new TaxPayment();
 					log.info("inside for loop");
@@ -523,7 +523,6 @@ public class XmlGenerator extends ITReturnComponent {
 					taxPayment.setAmt(indianCurrencyHelper.bigIntegerRound(advanceTaxDetail.getP_Amount()));
 					taxPayments.getTaxPayment().add(taxPayment);
 				}
-				itr1.setTaxPayments(taxPayments);
 			}			
 		}
 
@@ -532,6 +531,7 @@ public class XmlGenerator extends ITReturnComponent {
 				log.info("inside if loop");
 				for(SelfAssesmentTaxDetail selfAssesmentTaxDetail:selfAssesmetTaxDocument.getSelfAssesmentDetailList()){
 					log.info("inside for loop");
+					TaxPayment taxPayment = new TaxPayment();
 					taxPayment.setBSRCode(selfAssesmentTaxDetail.getP_BSR());
 					taxPayment.setDateDep(indianCurrencyHelper.gregorianCalendar(selfAssesmentTaxDetail.getP_Date()));
 					taxPayment.setSrlNoOfChaln(indianCurrencyHelper.bigIntegerRoundStr(selfAssesmentTaxDetail.getP_Serial()));
@@ -540,8 +540,9 @@ public class XmlGenerator extends ITReturnComponent {
 				}
 			}
 		}
-		
-		itr1.setTaxPayments(taxPayments);
+		if (taxPayments != null && taxPayments.getTaxPayment() != null && taxPayments.getTaxPayment().size() > 0 ) {
+			itr1.setTaxPayments(taxPayments);
+		}			
 		//TaxExmpIntInc
 
 		//Verification
