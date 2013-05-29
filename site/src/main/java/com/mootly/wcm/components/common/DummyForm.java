@@ -49,35 +49,35 @@ import com.mootly.wcm.utils.VelocityUtils;
 public class DummyForm extends EmailForm {
 
 	private static final Logger log = LoggerFactory.getLogger(DummyForm.class);
-    
+
 	@Override
-    public boolean onValidationSuccess(final HstRequest request, final HstResponse response, final Form form, final FormMap map) {
-        
-	   // To fetch the details of form like field_0 for username, field_1 for email address, field_2 for comments.
-    	String userName=map.getField("name").getValue().toString();
-    	String emailAddress=map.getField("email").getValue().toString();
-    	String comments=map.getField("comments").getValue().toString();
-     	String subject=map.getField("subject").getValue().toString();
-     	log.info("New added fields of subject"+subject);
-     	log.info("names of all fields"+map.getFieldNames().toString());
-    	
-    	//To create document as contact (ContactUs-Bean).
-    	 ContactUs contact = new  ContactUs();
-    	 
-    	 //Create setter the values of required fields.
-    	 contact.setUserName(userName);
-    	 contact.setEmailAddress(emailAddress);
-    	 contact.setComments(comments);
-    	 //contact.setSubject(subject);
-    	 
-    	// To fetch the values of fields in Form(ContactUs) through contact document..
-    	createContactUsForm(request,contact);
-    	return true;
-      }
-    
-	
+	public boolean onValidationSuccess(final HstRequest request, final HstResponse response, final Form form, final FormMap map) {
+
+		// To fetch the details of form like field_0 for username, field_1 for email address, field_2 for comments.
+		String userName=map.getField("name").getValue().toString();
+		String emailAddress=map.getField("email").getValue().toString();
+		String comments=map.getField("comments").getValue().toString();
+		String subject=map.getField("subject").getValue().toString();
+		log.info("New added fields of subject"+subject);
+
+
+		//To create document as contact (ContactUs-Bean).
+		ContactUs contact = new  ContactUs();
+
+		//Create setter the values of required fields.
+		contact.setUserName(userName);
+		contact.setEmailAddress(emailAddress);
+		contact.setComments(comments);
+		contact.setSubject(subject);
+
+		// To fetch the values of fields in Form(ContactUs) through contact document..
+		createContactUsForm(request,contact);
+		return true;
+	}
+
+
 	private void createContactUsForm(HstRequest request, ContactUs contact) {
-	
+
 		// TODO Auto-generated method stub
 		log.warn("contact document method");
 		Session persistableSession = null;
@@ -93,13 +93,13 @@ public class DummyForm extends EmailForm {
 			// If user is registered,then a document of type mootlywcm:contactus will be created under a member directory.
 			if(member!=null){
 				itReturnFolderPath = ContentStructure.getContactUsFolder(request);
-			
+
 			}
 			//If user is not registered,then a document of type mootlywcm:contactus, content/contactus/UserName directory.
 			else{
 				itReturnFolderPath = ContentStructure.getContactUsFolderNonReg(request);
 			}
-              log.warn(itReturnFolderPath);
+			log.warn(itReturnFolderPath);
 			final String itReturnPath = wpm.createAndReturn(itReturnFolderPath, ContactUs.NAMESPACE , contact.getUserName(), true);
 			log.warn(itReturnPath);
 			ContactUs Contactdocument = (ContactUs) wpm.getObject(itReturnPath);
@@ -117,13 +117,13 @@ public class DummyForm extends EmailForm {
 				String memberFolderPath=ContentStructure.getMemberContactUs(request);
 				//A node is created with directory member/contactus.
 				String pathToNewNode = wpm.createAndReturn(memberFolderPath +"/contactus", EmailMessage.NAMESPACE, "ack_contact_mail", true);
-				 //It creates an object of EmailMessage type.
+				//It creates an object of EmailMessage type.
 				EmailMessage emailMessage = (EmailMessage) wpm.getObject(pathToNewNode);
 				emailMessage.setTo(new String[]{Contactdocument.getEmailAddress()});
 				emailMessage.setTemplateKey("contactus");	
 				//It will return an object of Contactdocument at path "content/docunments/mootlywcm/conctactus".
 				EmailTemplate emailTemplate = (EmailTemplate) wpm.getObject(ContentStructure.getEmailTemplatesPath(request) + "/contactus");
-				
+
 				// It will send an email to user's email address after submitting the ContactUs Form.
 				if (emailTemplate != null) {
 					log.error("Email template found");
@@ -141,10 +141,10 @@ public class DummyForm extends EmailForm {
 					emailMessage.setHtmlBody("<B>COOL</B>");
 				}
 				wpm.update(emailMessage);
-				
+
 				return;
-		  }
-			
+			}
+
 			else {
 				//log.warn("Failed to add review for product '{}': could not retrieve 
 				// review bean for node '{}'.", ContactUs.NODE_NAME, itReturnPath);
@@ -161,30 +161,30 @@ public class DummyForm extends EmailForm {
 			}
 		}
 	}
-   
+
 	@Override
-    public void onProcessFail(HstRequest request, HstResponse response, Form form, FormMap map) {
-        super.onProcessFail(request, response, form, map);
-        request.setAttribute("success","dummysuccess");
-    }
-    
-    @Override
-    public void onProcessDone(HstRequest request, HstResponse response, Form form, FormMap map) {
-        super.onProcessDone(request, response, form, map);
-        request.setAttribute("success","dummysuccess");
-    }
+	public void onProcessFail(HstRequest request, HstResponse response, Form form, FormMap map) {
+		super.onProcessFail(request, response, form, map);
+		request.setAttribute("success","dummysuccess");
+	}
+
+	@Override
+	public void onProcessDone(HstRequest request, HstResponse response, Form form, FormMap map) {
+		super.onProcessDone(request, response, form, map);
+		request.setAttribute("success","dummysuccess");
+	}
 }
 
 //To see the data of fields of Contact Us Form.
-		//System.out.println(map.getField("field_0").getValue().toString());
- 	//System.out.println(map.getField("field_1").getValue().toString());
- 	//System.out.println(map.getField("field_2").getValue().toString());
-		//System.out.println(map.toString());
- 	//List<String> dumy= new ArrayList<String>();
- 	//String sName=form.getName().toString().trim();
- 	//String sEmail=form.getEmail().toString().trim();
- 	//String sComments=form.getComments().toString().trim();
- 	//System.out.println(name);
- 	//System.out.println(email);
+//System.out.println(map.getField("field_0").getValue().toString());
+//System.out.println(map.getField("field_1").getValue().toString());
+//System.out.println(map.getField("field_2").getValue().toString());
+//System.out.println(map.toString());
+//List<String> dumy= new ArrayList<String>();
+//String sName=form.getName().toString().trim();
+//String sEmail=form.getEmail().toString().trim();
+//String sComments=form.getComments().toString().trim();
+//System.out.println(name);
+//System.out.println(email);
 
 
