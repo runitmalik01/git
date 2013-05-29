@@ -183,10 +183,3 @@ function calculate(){
 	screenConfigurationDocumentName="tdsfromothers"
 	formSubmitButtonId="myModalHrefTdsOther" fieldOneID="tan_deductortdsoth" fieldTwoID="name_deductortdsoth" validationType="tan"/>
 	
-	<script type="text/javascript">
-	  function checkdelete(){
-	        var re=confirm("Do You want to Delete it");
-	          if (re) return true;
-	          else return false;
-                  }
-	</script>
