@@ -54,10 +54,12 @@ public class DummyForm extends EmailForm {
     public boolean onValidationSuccess(final HstRequest request, final HstResponse response, final Form form, final FormMap map) {
         
 	   // To fetch the details of form like field_0 for username, field_1 for email address, field_2 for comments.
-    	String userName=map.getField("field_0").getValue().toString();
-    	String emailAddress=map.getField("field_1").getValue().toString();
-    	String comments=map.getField("field_2").getValue().toString();
-     	
+    	String userName=map.getField("name").getValue().toString();
+    	String emailAddress=map.getField("email").getValue().toString();
+    	String comments=map.getField("comments").getValue().toString();
+     	String subject=map.getField("subject").getValue().toString();
+     	log.info("New added fields of subject"+subject);
+     	log.info("names of all fields"+map.getFieldNames().toString());
     	
     	//To create document as contact (ContactUs-Bean).
     	 ContactUs contact = new  ContactUs();
@@ -66,6 +68,7 @@ public class DummyForm extends EmailForm {
     	 contact.setUserName(userName);
     	 contact.setEmailAddress(emailAddress);
     	 contact.setComments(comments);
+    	 //contact.setSubject(subject);
     	 
     	// To fetch the values of fields in Form(ContactUs) through contact document..
     	createContactUsForm(request,contact);
@@ -86,7 +89,7 @@ public class DummyForm extends EmailForm {
 			wpm.setWorkflowCallbackHandler(new FullReviewedWorkflowCallbackHandler());
 			//Contact Us Module is used to check whether the user is registered or not.
 			String itReturnFolderPath=null;
-			Member member=MemberService.getForgotPass(request,contact.getEmailAddress());
+			Member member=MemberService.getForgotPass(request,contact.getEmailAddress().toLowerCase());
 			// If user is registered,then a document of type mootlywcm:contactus will be created under a member directory.
 			if(member!=null){
 				itReturnFolderPath = ContentStructure.getContactUsFolder(request);
@@ -97,7 +100,7 @@ public class DummyForm extends EmailForm {
 				itReturnFolderPath = ContentStructure.getContactUsFolderNonReg(request);
 			}
               log.warn(itReturnFolderPath);
-			final String itReturnPath = wpm.createAndReturn(itReturnFolderPath, ContactUs.NAMESPACE ,  ContactUs.NODE_NAME, true);
+			final String itReturnPath = wpm.createAndReturn(itReturnFolderPath, ContactUs.NAMESPACE , contact.getUserName(), true);
 			log.warn(itReturnPath);
 			ContactUs Contactdocument = (ContactUs) wpm.getObject(itReturnPath);
 			// update Contactdocument properties..
@@ -105,7 +108,7 @@ public class DummyForm extends EmailForm {
 				Contactdocument.setUserName(contact.getUserName());
 				Contactdocument.setEmailAddress(contact.getEmailAddress());
 				Contactdocument.setComments(contact.getComments());
-				
+				Contactdocument.setSubject(contact.getSubject());
 				// update now           `
 				wpm.update(Contactdocument);
 				Map<String,Object> contextMap = new HashMap<String, Object>();
@@ -117,8 +120,7 @@ public class DummyForm extends EmailForm {
 				 //It creates an object of EmailMessage type.
 				EmailMessage emailMessage = (EmailMessage) wpm.getObject(pathToNewNode);
 				emailMessage.setTo(new String[]{Contactdocument.getEmailAddress()});
-				emailMessage.setTemplateKey("contactus");
-				
+				emailMessage.setTemplateKey("contactus");	
 				//It will return an object of Contactdocument at path "content/docunments/mootlywcm/conctactus".
 				EmailTemplate emailTemplate = (EmailTemplate) wpm.getObject(ContentStructure.getEmailTemplatesPath(request) + "/contactus");
 				
@@ -132,8 +134,7 @@ public class DummyForm extends EmailForm {
 					emailMessage.setSubject(subject);
 					emailMessage.setHtmlBody(htmlBody);
 					emailMessage.setPlainBody(plainBody);
-				}
-				
+				}	
 				//It will show the error message.
 				else {
 					emailMessage.setSubject("This is TEST, Welcome to MOOTLY");
