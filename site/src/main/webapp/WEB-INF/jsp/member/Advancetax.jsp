@@ -159,13 +159,3 @@
   
 </hst:element>
 <hst:headContribution element="${uiCustom}" category="jsInternal"/>
-<hst:element var="uiCustom" name="script">
- <hst:attribute name="type">text/javascript</hst:attribute>
-        function checkdelete(){
-       
-         var re=confirm("Do You want to Delete it");
-           if (re) return true;
-           else return false;
-                    }
-   </hst:element>
-<hst:headContribution element="${uiCustom}" category="jsInternal" />
