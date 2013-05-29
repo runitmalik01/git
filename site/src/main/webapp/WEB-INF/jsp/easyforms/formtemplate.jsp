@@ -37,6 +37,7 @@
         <div class="form-error"><c:out value="${error.message}"/></div>
     </c:forEach>
    <form class="form" action="<hst:actionURL />" method="post" id="${form.id}">
+ 
        <c:forEach var="field" items="${form.fields}">
             <c:choose>
                 <c:when test="${field.simpleText}">
@@ -50,10 +51,15 @@
   <%-- simple types layout--%>
   
                 <c:when test="${field.textField or field.password or field.textArea or field.dropdown or field.radioBox or field.checkBox}">
-                    <div class="ef-field clearfix">
-                        <label><c:out value="${field.label}"/><span class="ef-req"><c:out value="${field.requiredMarker}"/></span></label>${field.html}<span
-                            class="ef-hint"><c:out value="${field.hint}"/></span>
-                    </div>
+                   <!--   <div class="ef-field clearfix">
+                        <label><c:out value="${field.label}"/><span class="ef-req"><c:out value="${field.requiredMarker}"/></span></label>
+                        <>${field.html}<span class="ef-hint"><c:out value="${field.hint}"/></span>
+                    </div>-->
+                    <div class="span2">
+                        <label><c:out value="${field.label}"/><span class="ef-req"><c:out value="${field.requiredMarker}"/></span></label>
+                        ${field.html}
+                        <span class="ef-hint"><c:out value="${field.hint}"/></span>
+                      </div>  
                 </c:when>
                 <c:when test="${field.radioGroup}">
                     <div class="ef-field clearfix">
@@ -104,11 +110,13 @@
                 </c:when>
             </c:choose>
         </c:forEach>
+        
         <div class="ef-buttons">
             <c:forEach var="button" items="${form.buttons}">
                 ${button.html}
             </c:forEach>
         </div>
+        
     </form>
   </c:otherwise>
 </c:choose>
