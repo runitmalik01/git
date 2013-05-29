@@ -1,7 +1,7 @@
 <%--
 This file is for NPV Calculator
 --%>
-<%@include file="../includes/commonincludes.jspf"%>
+<%@include file="../includes/tags.jspf" %>
 
 
 <hst:actionURL var="actionUrl"></hst:actionURL>
@@ -9,8 +9,11 @@ This file is for NPV Calculator
 <h3>
 	<fmt:message key="npv_calculator" />
 </h3>
-
-
+Net Present Value (NPV) of a time series of cash flows, both incoming and outgoing, is defined as the sum of the present values of the individual cash flows with rate.
+Its a tool in discounted cash flow (DCF) analysis and is a standard method for using the time value of money to appraise long-term projects and for capital budgeting as if </br>
+ NPV>0,  investment would add value to firm. </br>
+ NPV<0,  investment would subtract value from firm. </br>
+ NPV=0,  investment would neither gain nor lose value for the firm. </br>
 <%
 	if (request.getQueryString() != null) {
 		pageContext.setAttribute("year", request.getQueryString()
