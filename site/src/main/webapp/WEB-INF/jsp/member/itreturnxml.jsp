@@ -27,15 +27,11 @@
 								data-toggle="dropdown">
 
 								<c:choose>
-								<c:when test="${theForm.ITR1IncomeDeductions.incomeFromSal eq'0'}">
+								<c:when test="${salaryincome eq'0'}">
 								<c:out value="Fill Now" />
 								</c:when>
-									<c:when
-										test="${not empty theForm.ITR1IncomeDeductions.incomeFromSal}">
-										<w4india:inr value="${ theForm.ITR1IncomeDeductions.incomeFromSal}" />
-									</c:when>
 									<c:otherwise>
-										<c:out value="Fill Now" />
+										<w4india:inr value="${salaryincome}" />
 									</c:otherwise>
 								</c:choose>
 								<span class="caret"></span>
@@ -44,6 +40,31 @@
 								<li><a
 									href="<c:out value="${scriptName}"/>?selectedItrTab=<%=ITRTab.FORM16_SINGLE%>"><fmt:message
 											key="income.form.sixteen" /> </a></li>
+							</ul>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="1"><fmt:message key="income.salary.penson"/></td>
+					<td>
+						<div class="btn-group" class="decimal">
+							<button class="btn btn-small dropdown-toggle"
+								data-toggle="dropdown">
+
+								<c:choose>
+								<c:when test="${Penson eq'0'}">
+								<c:out value="Fill Now" />
+								</c:when>
+									<c:otherwise>
+										<w4india:inr value="${Penson}" />
+									</c:otherwise>
+								</c:choose>
+								<span class="caret"></span>
+							</button>
+							<ul class="dropdown-menu">
+								<li><a
+									href="<c:out value="${scriptName}"/>?selectedItrTab=<%=ITRTab.INCOME_SALARY_PENSION%>"><fmt:message
+											key="income.salary.penson" /> </a></li>
 							</ul>
 						</div>
 					</td>
