@@ -49,7 +49,6 @@
 		<c:when
 			test="${pageAction == 'NEW_CHILD' || pageAction == 'EDIT_CHILD'}">
 
-			<h4>Property Income</h4>
 			<form id="frmdataHouseIncome" action="${actionUrl}" method="post"
 				name="housefrm">
 				<fieldset>
