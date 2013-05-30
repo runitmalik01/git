@@ -1,5 +1,5 @@
 
- 
+ <%@page import="com.mootly.wcm.model.ITRTab"%>
 <%@include file="../includes/tags.jspf" %>
 <%@ page import="com.mootly.wcm.beans.*"%>
 
@@ -14,31 +14,38 @@
 <hst:actionURL var="actionUrl"></hst:actionURL>
 
 	<h4>Interest under Section 234 A B C</h4>
-		<form id="frmdata" action="${actionUrl}" name="frmdata" method="post">
-			
+		<form id="frmdataInterest" action="${actionUrl}" name="interest" method="post">
+		
 		<fieldset>	
 				<div class="row-fluid show-grid" >
-					<div class="span4">
-			            <div class="rowlabel"><label for="section234A"><small> Interest Payable under Section 234 A</small></label></div>
-			          	<div class="rowlabel"><input readonly="readonly" id="intA" name="section234A" value=""/></div>
+					<div class="span6">
+			            <div class="rowlabel"><label for="intA"><small> Interest Payable under Section 234 A</small></label></div>
+			          	<div class="rowlabel"><input type="text" readonly="readonly" id="intA" name="intA" value=""/></div>
 			          </div>
-			        <div class="span4">
-			            <div class="rowlabel"><label for="section234B"><small>Interest Payable under Section 234 B</small></label></div>
-			          	<div class="rowlabel"><input readonly="readonly" id="intB" name="section234B" value=""/></div>
+			        <div class="span6">
+			            <div class="rowlabel"><label for="intB"><small>Interest Payable under Section 234 B</small></label></div>
+			          	<div class="rowlabel"><input type="text" readonly="readonly" id="intB" name="intB" value=""/></div>
 			          </div>
 			          </div>
 			          <div class="row-fluid show-grid">
-			              <div class="span4">
-			            <div class="rowlabel"><label for="section234C"><small>Interest Payable under Section 234 C</small></label></div>
-			          	<div class="rowlabel"><input  readonly="readonly" id="ic" name="section234C" value=""/></div>
+			              <div class="span6">
+			            <div class="rowlabel"><label for="ic"><small>Interest Payable under Section 234 C</small></label></div>
+			          	<div class="rowlabel"><input type="text"  readonly="readonly" id="ic" name="ic" value=""/></div>
 			          </div>
-			               <div class="span4">
-			            <div class="rowlabel"><label for="section234ABC"><small>Total Interest payable under Sections 234 A, 234 B and 234 C</small></label></div>
-			          	<div class="rowlabel"><input readonly="readonly" id="intt" name="section234ABC" value=""/></div>
+			               <div class="span6">
+			            <div class="rowlabel"><label for="intt"><small>Total Interest payable under Sections 234 A, 234 B and 234 C</small></label></div>
+			          	<div class="rowlabel"><input type="text" readonly="readonly" id="intt" name="intt" value=""/></div>
 			          </div>
 			          </div>
 			</fieldset>
+			<div class="row-fluid show-grid">
+					<div class="span4 offset8 decimal">
+								<a id="myModalHrefInterest" role="button" class="btn orange">Save</a>
+					</div>
+					</div>
 				
+	<!--hidden fields used for calculation  -->
+	<div style="display: none;">			
 		<fieldset>	       		
 				<table><tr>
 					<td><label>A.1 Due Date for filing of Income Tax Return</label></td>
@@ -49,7 +56,7 @@
 				</tr>
 				<tr>
 					<td><label>A.2 Enter Total Tax Liability for the Assessment Year</label></td>
-					<td><input id="aytaxd" onchange="int234();" value=""/></td>
+					<td><input id="aytaxd" onchange="int234();" value="${TaxLiability}"/></td>
 				</tr>
 				<tr>
 					<td><label>A.3 Enter Income Tax paid upto 31st March 2014</label></td>
@@ -175,39 +182,15 @@
 					<td><label>Total Interest payable under Sections 234 A, 234 B and 234 C</label></td>
 					<td><input readonly="readonly" id="intt" name="section234ABC" value=""/></td>
 				</tr>
-				<tr><td></td><td align="right"><input type="submit" id="submit" class="button olive" onclick="save()" value="Save"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<a href="${modifiedSiteMapRefId}" onClick="save()" class="button orange">Next</a></td>
+				<tr><td></td>
 				</table>
-				
 				</fieldset>
+				</div>
 		</form>
 
-<!-- used for interest calculation -->
-<script type="text/javascript">
-
-function $(){
-	
-	var elements=new Array();
-	for (var i=0;i<arguments.length;i++){
-		var element=arguments[i];
-		if(typeof element== 'string')
-			element=document.getElementById(element);
-		if(arguments.length==1) 
-			return element;
-		}
-	return elements;
-	}
-
-</script>
+<res:client-validation formId="frmdataInterest" screenConfigurationDocumentName="interest" formSubmitButtonId="myModalHrefInterest" />
 
 <hst:headContribution category="jsExternal">
 	<script type="text/javascript" src="<hst:link path="/js/interestcalculation/intt234.js"/>"></script>
 </hst:headContribution>
-
-<!-- used to submit the form -->				
-<script>
-function save(){
-			$("#frmdata").submit();
-}
-</script>
 				
