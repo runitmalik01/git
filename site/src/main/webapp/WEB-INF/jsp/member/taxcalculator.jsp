@@ -1,12 +1,13 @@
+<%@include file="../includes/commonincludes.jspf"%>
 <%@page import="com.mootly.wcm.model.FilingStatus"%>
 <%@page import="com.mootly.wcm.model.FinancialYear"%>
-<%@include file="../includes/tags.jspf" %>
 <hst:actionURL var="actionUrl"></hst:actionURL>
 <%
 	pageContext.setAttribute("financialYearValues",FinancialYear.values()); 
 	pageContext.setAttribute("filingStatusValues",FilingStatus.values()); 
 	//FinancialYear.TwentyEleven.is
 %>
+<c:out value="${resultSet}"></c:out>
 <div class="memberlogin page type-page"></div>
 <h3>
 	<fmt:message key="tax_calculator" />
@@ -26,7 +27,7 @@
 	</p>
 	<p>
 		<label for="cbasstype"><fmt:message key="tax_tax_payer" /> </label> 
-		<select name="cbasstype" id="cbasstype">
+		<select name="cbasstype" id="cbasstype" onchange="display()">
 			<option value="">Select One</option>
 			<c:forEach items="${filingStatusValues}" var="filingStatus">
 				<c:if test="${filingStatus != 'UNKNOWN'}"> 
@@ -49,7 +50,7 @@
 	<p>
 		<label for="cbresistatus"><span id="resistatus"><fmt:message
 					key="tax_residential_status" />
-		</span> </label> <select name="cbresistatus" id="cbresistatus"/>
+		</span> </label> <select name="cbresistatus" id="cbresistatus">
 		<option value="Select One">Select One</option>
 		<option value="Resident">Resident</option>
 		<option value="Non-Resident">Non-Resident</option>
@@ -59,7 +60,7 @@
 	<p>
 		<label for="txtNetIncome"><fmt:message
 				key="tax_net_taxable_income" /> </label> <input name="txtNetIncome"
-			type="text" id="txtNetIncome"/>
+			type="text" id="txtNetIncome" onkeypress="return isNumberKey(event)" />
 	</p>
 	<p>
 		<label for="txtTax"><fmt:message key="tax_income_tax" /> </label> <input
@@ -84,7 +85,7 @@
 	</p>
 
 	<p>
-		<a id="hrefTaxCalc" href="#" class="button orange"><fmt:message key="tax_button" /></a>
+	<%-- 	<a id="hrefTaxCalc" href="#" class="button orange"><fmt:message key="tax_button" /></a> --%>
 		<hst:componentRenderingURL var="ajaxLinkToComponent">
 			
 		</hst:componentRenderingURL>
@@ -94,7 +95,7 @@
 					$("#txtNetIncome").blur(
 						recalc
 					);	
-					$("#cbassyear,#cbasstype").change(
+					$("#cbassyear,#cbasstype,#cbasscategory,#cbresistatus").change(
 						recalc
 					);							
 				});    
@@ -109,8 +110,7 @@
 								$("#"+key).val(data[key]);
 							}
 					    }
-					   }
-					)
+					   })
 				}
 		</hst:element>
 		<hst:headContribution element="${uiCustom}" category="jsInternal" />
