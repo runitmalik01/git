@@ -98,7 +98,7 @@ import com.mootly.wcm.utils.XmlCalculation;
 @RequiredBeans(requiredBeans={MemberPersonalInformation.class})
 public class XmlGenerator extends ITReturnComponent {
 	private static final Logger log = LoggerFactory.getLogger(XmlGenerator.class);
-	DecimalFormat decimalFormat=new DecimalFormat("#.#");
+	//DecimalFormat decimalFormat=new DecimalFormat("#.#");
 	@Override
 
 	public void doBeforeRender(HstRequest request, HstResponse response) {
@@ -389,8 +389,12 @@ public class XmlGenerator extends ITReturnComponent {
 		BigInteger rebate =new BigInteger ("0");
 		rebate=Relief89Total.add(itr1TaxComputation.getSection90And91());
 		itr1TaxComputation.setNetTaxLiability(itr1TaxComputation.getGrossTaxLiability().subtract(rebate));
-		//itr1TaxComputation.setTotalIntrstPay(indianCurrencyHelper.bigIntegerRound(interestDoc.getSection234ABC()));
-		itr1TaxComputation.setTotalIntrstPay(new BigInteger("0"));
+		BigInteger TaxLiability= new BigInteger("0");
+		TaxLiability = itr1TaxComputation.getGrossTaxLiability().subtract(rebate);
+		request.getSession().setAttribute("TaxLiability", TaxLiability);
+		if(interestDoc!=null){
+		itr1TaxComputation.setTotalIntrstPay(indianCurrencyHelper.bigIntegerRound(interestDoc.getSection234ABC()));
+		}
 		itr1TaxComputation.setTotTaxPlusIntrstPay(itr1TaxComputation.getNetTaxLiability().add(itr1TaxComputation.getTotalIntrstPay()));
 
 		itr1.setITR1TaxComputation(itr1TaxComputation);
