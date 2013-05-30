@@ -415,7 +415,7 @@ diligence.&lt;/p&gt;
 
 &lt;p&gt;You seem to have requested your password&lt;/p&gt;
 
-&lt;p&gt;Your password is *** ${member.password}.&lt;/p&gt;
+&lt;p&gt;Your password is  ${member.password}&lt;/p&gt;
 
 &lt;p&gt;Regards&lt;/p&gt;
 &lt;p&gt;Wealth4India Team &lt;/p&gt;
