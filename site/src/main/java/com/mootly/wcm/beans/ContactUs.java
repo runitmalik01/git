@@ -33,7 +33,7 @@ public class ContactUs extends BaseDocument implements ContentNodeBinder {
 	private String userName;
 	private String emailaddress;
 	private String comments;
-	
+	private String subject;
 	// To create getter for variables.
 	public String getUserName() {
         if (userName == null) userName = getProperty("mootlywcm:cu_user_name");
@@ -48,7 +48,10 @@ public class ContactUs extends BaseDocument implements ContentNodeBinder {
     	if (comments == null) comments =  getProperty("mootlywcm:cu_comments");
     	return comments;
     }
-	
+	public String getSubject() {
+    	if (subject == null) subject =  getProperty("mootlywcm:cu_subject");
+    	return subject;
+    }
 	// To create setter for variables.
 	public final void setUserName(String userName) {
 		this.userName = userName;
@@ -60,6 +63,9 @@ public class ContactUs extends BaseDocument implements ContentNodeBinder {
 
 	public final void setComments(String comments) {
 		this.comments = comments;
+	}
+	public final void setSubject(String subject) {
+		this.subject = subject;
 	}
 	
 	
@@ -74,6 +80,7 @@ public class ContactUs extends BaseDocument implements ContentNodeBinder {
 			node.setProperty("mootlywcm:cu_user_name",contactus_doc.getUserName());
 			node.setProperty("mootlywcm:cu_email_address",contactus_doc.getEmailAddress());
 			node.setProperty("mootlywcm:cu_comments",contactus_doc.getComments());
+			node.setProperty("mootlywcm:cu_subject",contactus_doc.getSubject());
 		} catch (RepositoryException rex) {
 			log.error("Repository Exception while binding",rex);
 		}
