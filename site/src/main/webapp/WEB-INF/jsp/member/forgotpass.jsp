@@ -18,7 +18,7 @@
 <%--@elvariable id="document" type="com.mootly.wcm.beans.Product"--%>
 
 <%@include file="../includes/tags.jspf"%>
-<hst:actionURL var="forgotpass"></hst:actionURL>
+<hst:actionURL var="forgotpassaction"></hst:actionURL>
 <script type="text/javascript"
 	src="http://yui.yahooapis.com/2.9.0/build/datatable/datatable-min.js"></script>
 <link rel="stylesheet" type="text/css"
@@ -27,9 +27,9 @@
  <fmt:message key="member.forgot.title" />
 </c:set>
 <hippo-gogreen:title title="${forgotpass}" />
-		<form action="${forgotpass}" method="post">
+		<form action="${forgotpassaction}" method="post">
 		<fieldset>
-		<legend style="color: blue">GET YOUR FORGOTTEN PASSWORD !!</legend>
+		<legend>Enter your email address</legend>
 				<h5>
 					<fmt:message key="signup.forgotpass.message" />
 				</h5>
