@@ -65,7 +65,6 @@ public class InterestDoc extends BaseDocument implements ContentNodeBinder,FormM
 		this.section234ABC = Section234ABC;
 	}
 	
-	@SuppressWarnings("deprecation")
 	@Override
 	public boolean bind(Object content, javax.jcr.Node node)
 			throws ContentNodeBindingException {
@@ -92,23 +91,23 @@ public class InterestDoc extends BaseDocument implements ContentNodeBinder,FormM
 			log.info("Into the fill method");			
 		}
 		if (formMap == null) return;
-		if ( formMap.getField("section234A") != null) {
-			String strSection234A=formMap.getField("section234A").getValue();
+		if ( formMap.getField("intA") != null) {
+			String strSection234A=formMap.getField("intA").getValue();
 			double sec234a = Double.parseDouble(strSection234A);
 			setSection234A(sec234a);
 		}
-		if ( formMap.getField("section234B") != null) {
-			String strSection234B=formMap.getField("section234B").getValue();
+		if ( formMap.getField("intB") != null) {
+			String strSection234B=formMap.getField("intB").getValue();
 			double sec234b = Double.parseDouble(strSection234B);
 			setSection234B(sec234b);
 		}
-		if ( formMap.getField("section234C") != null) {
-			String strSection234C=formMap.getField("section234C").getValue();
+		if ( formMap.getField("ic") != null) {
+			String strSection234C=formMap.getField("ic").getValue();
 			double sec234c = Double.parseDouble(strSection234C);
 			setSection234C(sec234c);
 		}
-		if ( formMap.getField("section234ABC") != null) {
-			String strSection234ABC=formMap.getField("section234ABC").getValue();
+		if ( formMap.getField("intt") != null) {
+			String strSection234ABC=formMap.getField("intt").getValue();
 			double sec234abc = Double.parseDouble(strSection234ABC);
 			setSection234ABC(sec234abc);
 		}
