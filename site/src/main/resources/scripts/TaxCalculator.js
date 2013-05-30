@@ -68,10 +68,11 @@ if (cbassyear == "2013-2014") {
 	else if (condition_6) {
 		if (txtNetIncome != 0 && txtNetIncome <= 10000000) {
 			A = txtNetIncome * 0.3;
-			E = A * 0.05;
+			
 		}
 		else if (txtNetIncome > 10000000) {
 			A = txtNetIncome * 0.3;
+			E = A * 0.05;
 		}
 	}// Company 
 	else if (condition_7) {
@@ -163,12 +164,6 @@ else if (cbassyear == "2012-2013") {
 		else if (txtNetIncome > 10000000) {
 			A = txtNetIncome * 0.3;
 			E = A * 0.05;
-		}
-		else if (txtNetIncome > 500001 && txtNetIncome <= 800000) {
-			A = ((txtNetIncome - 500000) * 0.2) + 32000;
-		}
-		else if (txtNetIncome > 800000) {
-			A = ((txtNetIncome - 800000) * 0.3) + 92000;
 		}
 	}// 2012-2013 --Company
 	else if(condition_7){
