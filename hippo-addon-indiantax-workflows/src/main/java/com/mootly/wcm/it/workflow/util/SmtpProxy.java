@@ -201,7 +201,7 @@ public class SmtpProxy {
             mailProps.setProperty("mail.smtp.host", host);
             mailProps.setProperty("mail.smtp.port",String.valueOf(port));
             mailProps.setProperty("mail.debug", String.valueOf(debugEnabled));
-            mailProps.put("mail.smtp.starttls.enable", "true");
+            mailProps.put("mail.smtp.starttls.enable", "false");
             mailProps.put("mail.smtp.auth", "true");
 
             // Methology from an article on www.javaworld.com (Java Tip 115)

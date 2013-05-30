@@ -118,9 +118,9 @@ public class EmailTask implements Runnable {
 //    private String ssl      = SymbolGlobals.getSymbolProperty("mail.smtp.ssl");
 //    private String debug    = SymbolGlobals.getSymbolProperty("mail.debug");
     
-    private String host     = "smtp.gmail.com";
+    private String host     = "mail.wealth4india.com";
     private String port     = "587";
-    private String username = "info@mootly.com";
+    private String username = "info@wealth4india.com";
     private String password = "mootly007";
     private String ssl      = "false";
     private String debug    = "true";
@@ -315,7 +315,7 @@ public class EmailTask implements Runnable {
     
     public static void main(String[] args) {
 		EmailTask emailTask = new EmailTask();
-		emailTask.addMessage("Amit Patkar", "amitpatkar@gmail.com", "amit@mootly.com", "amit@mootly.com", "test", "test", "test");
+		emailTask.addMessage("Amit Patkar", "amitpatkar@gmail.com", "info@wealth4india.com", "info@wealth4india.com", "test", "test", "test");
 		emailTask.run();
 	}
 }
