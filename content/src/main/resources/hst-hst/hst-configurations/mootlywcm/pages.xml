@@ -6802,6 +6802,34 @@
             <sv:value>reviews</sv:value>
           </sv:property>
         </sv:node>
+        <sv:node sv:name="rebatesITR1" >
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:component</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>59673f3e-cbb4-4940-a9e4-2ac469cecfd5</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:componentclassname" sv:type="String">
+    <sv:value>com.mootly.wcm.member.RebateSec90</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:template" sv:type="String">
+    <sv:value>rebatesec90</sv:value>
+  </sv:property>
+</sv:node>
+<sv:node sv:name="interestITR1" >
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:component</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>5fb79ed8-b200-4141-8c1c-dd4be0d19440</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:componentclassname" sv:type="String">
+    <sv:value>com.mootly.wcm.member.Interest</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:template" sv:type="String">
+    <sv:value>interest</sv:value>
+  </sv:property>
+</sv:node>
       </sv:node>
     </sv:node>
   </sv:node>
@@ -6850,6 +6878,40 @@
       </sv:node>
     </sv:node>
   </sv:node>
+  <sv:node sv:name="rebates">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:component</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>6be27b6f-6b99-440a-8f2d-4be1589c9a93</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:referencecomponent" sv:type="String">
+    <sv:value>hst:pages/simplepage.re</sv:value>
+  </sv:property>
+  <sv:node sv:name="main">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>24945b3f-cbdf-4c1d-b71a-02f3f0880428</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>standard.main.re</sv:value>
+    </sv:property>
+    <sv:node sv:name="content">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>hst:component</sv:value>
+      </sv:property>
+      <sv:property sv:name="jcr:uuid" sv:type="String">
+        <sv:value>f2fe30f4-cb53-4c12-a40c-3535e66c82cb</sv:value>
+      </sv:property>
+      <sv:property sv:name="hst:referencecomponent" sv:type="String">
+        <sv:value>hst:components/rebatesec90</sv:value>
+      </sv:property>
+    </sv:node>
+  </sv:node>
+</sv:node>
+  
   <sv:node sv:name="c6-deduction">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
       <sv:value>hst:component</sv:value>
