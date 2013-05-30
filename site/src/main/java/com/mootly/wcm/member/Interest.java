@@ -48,7 +48,7 @@ import org.slf4j.LoggerFactory;
 @PrimaryBean(primaryBeanClass=InterestDoc.class)
 @AdditionalBeans(additionalBeansToLoad={MemberPersonalInformation.class,AdvanceTaxDocument.class,AdvanceTaxDetail.class})
 @RequiredBeans(requiredBeans={MemberPersonalInformation.class})
-@FormFields(fieldNames={"section234A","section234B","section234C","section234ABC"})
+@FormFields(fieldNames={"intA","intB","ic","intt"})
 
 public class Interest extends ITReturnComponent {
 
@@ -106,6 +106,8 @@ public class Interest extends ITReturnComponent {
 			request.setAttribute("dsum3","0");
 			request.setAttribute("dsum4","0");
 		}
+		String TaxLiability = (String) request.getSession().getAttribute("TaxLiability");
+		request.setAttribute("TaxLiability", TaxLiability);
 	}
 
 	@Override
