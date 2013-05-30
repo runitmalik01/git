@@ -54,12 +54,12 @@ public class DummyForm extends EmailForm {
 	public boolean onValidationSuccess(final HstRequest request, final HstResponse response, final Form form, final FormMap map) {
 
 		// To fetch the details of form like field_0 for username, field_1 for email address, field_2 for comments.
+		
 		String userName=map.getField("name").getValue().toString();
 		String emailAddress=map.getField("email").getValue().toString();
 		String comments=map.getField("comments").getValue().toString();
 		String subject=map.getField("subject").getValue().toString();
 		log.info("New added fields of subject"+subject);
-
 
 		//To create document as contact (ContactUs-Bean).
 		ContactUs contact = new  ContactUs();
@@ -74,8 +74,6 @@ public class DummyForm extends EmailForm {
 		createContactUsForm(request,contact);
 		return true;
 	}
-
-
 	private void createContactUsForm(HstRequest request, ContactUs contact) {
 
 		// TODO Auto-generated method stub
