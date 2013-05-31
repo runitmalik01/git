@@ -21,6 +21,7 @@ import java.io.InputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
@@ -65,6 +66,7 @@ import com.mootly.wcm.annotations.ValueListBeans;
 import com.mootly.wcm.beans.CompoundChildUpdate;
 import com.mootly.wcm.beans.FormMapFiller;
 import com.mootly.wcm.beans.FormSixteenDocument;
+import com.mootly.wcm.beans.MemberPersonalInformation;
 import com.mootly.wcm.beans.ScreenCalculation;
 import com.mootly.wcm.beans.ScreenConfigDocument;
 import com.mootly.wcm.beans.ValueListDocument;
@@ -79,6 +81,7 @@ import com.mootly.wcm.services.ScreenCalculatorService;
 import com.mootly.wcm.services.ScreenConfigService;
 import com.mootly.wcm.services.StartApplicationValidationService;
 import com.mootly.wcm.utils.GoGreenUtil;
+import com.mootly.wcm.utils.XmlCalculation;
 
 public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 	private static final Logger log = LoggerFactory.getLogger(ITReturnComponent.class);
@@ -824,7 +827,25 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			log.info("We are Requesting fot this "+screen+" Screen");
 			String pathToScreenCalc = "configuration/screencalculation/" + screen.toLowerCase();
 			ScreenCalculation screencalc=siteContentBaseBean.getBean(pathToScreenCalc, ScreenCalculation.class);
-			Map<String,Object> resultSet = ScreenCalculatorService.getScreenCalculations(screencalc.getScript(), request.getParameterMap(""), null);
+			// for screen calcualtions.......
+			Map<String,Object> additionalParameters= new HashMap<String,Object>();
+			MemberPersonalInformation objMemberInfo= (MemberPersonalInformation) request.getAttribute("memberpersonalinformation");
+			if(objMemberInfo != null){
+			additionalParameters.put("IsSeniorCitizen",getFinancialYear().isSeniorCitizen(objMemberInfo.getDOB().getTime()));
+			if(getFinancialYear().isSeniorCitizen(objMemberInfo.getDOB().getTime())){
+				additionalParameters.put("cbasscategory","Senior Citizen");
+			}else{
+				additionalParameters.put("cbasscategory",objMemberInfo.getSex());
+			}
+			additionalParameters.put("objMemberInfo",objMemberInfo);
+			additionalParameters.put("cbresistatus",objMemberInfo.getResidentCategory());
+			additionalParameters.put("cbassyear",getAssessmentYear());
+			additionalParameters.put("cbasstype",objMemberInfo.getFilingStatus());
+			
+			XmlCalculation objXmlCalc= new XmlCalculation ();
+				additionalParameters.put("txtNetIndianIncome",objXmlCalc.grossTotal(request, response));
+			}
+			Map<String,Object> resultSet = ScreenCalculatorService.getScreenCalculations(screencalc.getScript(), request.getParameterMap(""), additionalParameters);
 			if (resultSet != null) {
 				request.setAttribute("resultSet", resultSet);
 				JSONObject jsonObject  = new JSONObject(resultSet);
