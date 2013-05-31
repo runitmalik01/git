@@ -93,8 +93,10 @@ public class XmlCalculation {
 		if( formSixteenDocument!=null){
 			if ( formSixteenDocument.getFormSixteenDetailList() != null && formSixteenDocument.getFormSixteenDetailList().size() > 0 ){
 				for(FormSixteenDetail formSixteenDetail:formSixteenDocument.getFormSixteenDetailList()){
+					if(formSixteenDetail.getGross_income_total()!=null){
 					GrossIncome=indianCurrencyHelper.bigIntegerRound(formSixteenDetail.getGross_income_total());
 					GrossIncomeTotal=GrossIncomeTotal.add(GrossIncome);
+					}
 				}
 			}
 		}
