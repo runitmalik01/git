@@ -52,41 +52,44 @@ import com.mootly.wcm.annotations.TagAsTaxDataProvider.TaxDataProviderType;
 import com.mootly.wcm.beans.BaseDocument;
 import com.mootly.wcm.beans.FormMapFiller;
 import com.mootly.wcm.beans.SalaryIncomeDocument;
+import com.mootly.wcm.utils.Constants;
 
 @SuppressWarnings("unused")
 @Node(jcrType = "mootlywcm:deductiondocumentdetail")
 @TagAsTaxDataProvider(type=TaxDataProviderType.INCOME)
 public class DeductionDocumentDetail extends HippoItem implements FormMapFiller {
-	private final static Logger log = LoggerFactory.getLogger(DeductionDocumentDetail.class); 
+	private final static Logger log = LoggerFactory.getLogger(DeductionDocumentDetail.class);
+	private String form16uuid;
 	private String section;
 	private String head;
 	private Double investment;
 	private Double maxAllowed;
 	private Map<String,List<Value>> valueOfFlexFields = null; //new HashMap<String, List<Value>>();
-	
+
 	private final String prop_section ="mootlywcm:Section";
 	private final String prop_head ="mootlywcm:head";
 	private final String prop_investment ="mootlywcm:investment";
 	private final String prop_maxAllowed ="mootlywcm:maxallowed";
-	
+
 	private final String prop_flex_string ="mootlywcm:flex_field_string";
 	private final String prop_flex_long ="mootlywcm:flex_field_long";
 	private final String prop_flex_date ="mootlywcm:flex_field_date";
 	private final String prop_flex_boolean ="mootlywcm:flex_field_boolean";
 	private final String prop_flex_double ="mootlywcm:flex_field_double";
 	private final String prop_flex_docbase ="mootlywcm:flex_field_docbase";
-	
+	private final String prop_form16_uuid ="mootlywcm:formsixteenuuid";
+
 	//flex_field_string
 	//flex_field_long
 	//flex_field_double
 	//flex_field_date
 	//flex_field_boolean
 	//flex_field_docbase
-	
+
 	private final String prop_nt_ ="mootlywcm:maxallowed";
-	
+
 	private boolean markedForDeletion;
-	
+
 	public final boolean isMarkedForDeletion() {
 		return markedForDeletion;
 	}
@@ -110,7 +113,7 @@ public class DeductionDocumentDetail extends HippoItem implements FormMapFiller 
 		if (maxAllowed == null) maxAllowed = getProperty(prop_maxAllowed);
 		return maxAllowed;
 	}
-	
+
 	/**
 	 * 
 	 * @return
@@ -137,7 +140,7 @@ public class DeductionDocumentDetail extends HippoItem implements FormMapFiller 
 					}
 					valueOfFlexFields.get(fieldDataType).add(p.getValue());
 				}
-				
+
 			} catch (RepositoryException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -164,7 +167,7 @@ public class DeductionDocumentDetail extends HippoItem implements FormMapFiller 
 		T[] propertyValues = getProperty(propField,defaultValues);
 		return propertyValues;
 	}
-	
+
 	public final <T> T getFlexField(int ord,T[] defaultValues) {
 		//the flex fields are defined as flex_field_string depending upon the class of the defaultValue
 		T[] propertyValues = getFlexFields(defaultValues);
@@ -175,23 +178,32 @@ public class DeductionDocumentDetail extends HippoItem implements FormMapFiller 
 			return null;
 		}
 	}
-	
+
 	public final void setSection(String section) {
 		this.section = section;
 	}
-	
+
 	public final void setHead(String head) {
 		this.head = head;
 	}
-	
+
 	public final void setInvestment(Double investment) {
 		this.investment = investment;
 	}
-	
+
 	public final void setMaxAllowed(Double maxAllowed) {
 		this.maxAllowed = maxAllowed;
 	}
-	
+
+	public String getForm16Uuid() {
+		if (form16uuid == null) form16uuid = getProperty(prop_form16_uuid);
+		return form16uuid;
+	}
+
+	public void setForm16Uuid(String form16uuid) {
+		this.form16uuid = form16uuid;
+	}
+
 	public boolean bindToNode(javax.jcr.Node node)
 			throws ContentNodeBindingException {
 		// TODO Auto-generated method stub
@@ -209,6 +221,7 @@ public class DeductionDocumentDetail extends HippoItem implements FormMapFiller 
 					}
 				}
 			}
+			node.setProperty(prop_form16_uuid, getForm16Uuid());
 		} catch (RepositoryException rex) {
 			log.error("Repository Exception while binding",rex);
 		}
@@ -221,7 +234,7 @@ public class DeductionDocumentDetail extends HippoItem implements FormMapFiller 
 			log.info("Into the fill method");			
 		}
 		if (formMap == null) return;
-		
+
 		if ( formMap.getField("section") != null) {
 			setSection(formMap.getField("section").getValue());
 		}
@@ -280,8 +293,13 @@ public class DeductionDocumentDetail extends HippoItem implements FormMapFiller 
 		}
 		//valueOfFlexFields
 		setValueOfFlexFields(valueOfFlexFields);
+		if ( formMap.getField("decuuidform16") != null) {
+			log.info("this is uuid of form"+formMap.getField("decuuidform16").getValue());
+			if(formMap.getField("decuuidform16").getValue()!=null)
+				setForm16Uuid(formMap.getField("decuuidform16").getValue());
+		}
 	}
-	
+
 	public <T extends HippoBean> void cloneBean(T sourceBean) {
 		DeductionDocumentDetail deductionDocumentDetail = (DeductionDocumentDetail) sourceBean;
 		setSection(deductionDocumentDetail.getSection());
@@ -289,5 +307,6 @@ public class DeductionDocumentDetail extends HippoItem implements FormMapFiller 
 		setInvestment(deductionDocumentDetail.getInvestment());
 		setMaxAllowed(deductionDocumentDetail.getMaxAllowed());
 		setValueOfFlexFields(deductionDocumentDetail.getValueOfFlexFields());
+		setForm16Uuid(deductionDocumentDetail.getForm16Uuid());
 	}
 }
