@@ -358,7 +358,7 @@ public class XmlGenerator extends ITReturnComponent {
 		totalMapForJS.put("cbasstype", memberPersonalInformation.getFilingStatus());
 		//totalMapForJS.put("cbasstype", "I");
 		totalMapForJS.put("cbresistatus",memberPersonalInformation.getResidentCategory());
-		totalMapForJS.put("txtNetIncome",grsstotal);
+		totalMapForJS.put("txtNetIncome",incomeDeductions.getTotalIncome());
 		boolean isSeniorCitizen = getFinancialYear().isSeniorCitizen(memberPersonalInformation.getDOB().getTime());
 		if(isSeniorCitizen)
 			totalMapForJS.put("cbasscategory","Senior Citizen");
