@@ -44,6 +44,7 @@ import com.mootly.wcm.annotations.RequiredBeans;
 import com.mootly.wcm.annotations.RequiredFields;
 import com.mootly.wcm.annotations.ValueListBeans;
 import com.mootly.wcm.beans.DeductionDocument;
+import com.mootly.wcm.beans.FormSixteenDocument;
 import com.mootly.wcm.beans.HouseProperty;
 import com.mootly.wcm.beans.MemberDeductionScheduleC;
 import com.mootly.wcm.beans.MemberDeductionScheduleG;
@@ -70,11 +71,11 @@ import com.mootly.wcm.utils.UrlUtility;
 
 @PrimaryBean(primaryBeanClass=DeductionDocument.class)
 @ChildBean(childBeanClass=DeductionDocumentDetail.class)
-@AdditionalBeans(additionalBeansToLoad={MemberPersonalInformation.class,SalaryIncomeDocument.class,HouseProperty.class,OtherSourcesDocument.class})
+@AdditionalBeans(additionalBeansToLoad={MemberPersonalInformation.class,SalaryIncomeDocument.class,HouseProperty.class,OtherSourcesDocument.class,FormSixteenDocument.class})
 @RequiredBeans(requiredBeans={MemberPersonalInformation.class})
 @ValueListBeans(paths={"deduction-sections-${financialYear}","deduction-section-heads-${financialYear}","deduction-section-maxallowed-${financialYear}"},
 accessKey={"deduction_sections","deduction_section_heads","deduction_section_maxallowed"})
-@FormFields(fieldNames={"head","investment","flex_field_string_0","flex_field_string_1","flex_field_string_2","flex_field_string_3","flex_field_string_4","flex_field_string_5","flex_field_string_6","flex_field_string_7","flex_field_string_8"})
+@FormFields(fieldNames={"head","investment","flex_field_string_0","flex_field_string_1","flex_field_string_2","flex_field_string_3","flex_field_string_4","flex_field_string_5","flex_field_string_6","flex_field_string_7","flex_field_string_8","decuuidform16"})
 @RequiredFields(fieldNames={"head","investment"})
 @DataTypeValidationFields(fieldNames={"investment"},dataTypes={DataTypeValidationType.DECIMAL})
 public class Deduction extends ITReturnComponent {
@@ -255,6 +256,8 @@ public class Deduction extends ITReturnComponent {
 				dd.setSection(deduction_section);
 			}
 		}
+		 String uuidform16=request.getRequestContext().getResolvedSiteMapItem().getParameter("uuidform-16");
+		 log.info("This is uuid of form sixteen"+uuidform16);
 		return true;
 	}
 
