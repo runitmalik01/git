@@ -9,6 +9,9 @@
 
 package com.mootly.wcm.member;
 
+import java.io.IOException;
+import java.util.List;
+
 import org.hippoecm.hst.core.component.HstComponentException;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
@@ -35,16 +38,33 @@ import com.mootly.wcm.components.ITReturnComponent;
 		"c_section_2","c_section_3","d_section","d_section_1","d_section_2","d_section_3","e_section","e_section_1","e_section_2","e_section_3",
 		"aggregate","total_income_1","total_income_2","tax_total_income_1","tax_total_income_2","surcharge_1","surcharge_2",
 		"education_cess","tax_payable","relief_1","relief_2","tax_payable1","tax_payable_1","tax_payable_2","ded_ent1","ded_ent2",
-		"ded_ent3","ded_ent4","relief_11","relief_12"})
+		"ded_ent3","ded_ent4","relief_11","relief_12","uuidform16"})
 
 public class FormSixteen extends ITReturnComponent {
-	
+
 	private static final Logger log = LoggerFactory.getLogger(FormSixteen.class);
 
-	@SuppressWarnings("deprecation")
+
 	@Override
 	public void doBeforeRender(HstRequest request, HstResponse response) {
-		super.doBeforeRender(request, response);
+		super.doBeforeRender(request, response);	
+
+		//request.getRequestContext().getResolvedSiteMapItem().getHstSiteMapItem().toString();
+		// this code is check to open the partial submit form with check that action is what
+		if(request.getParameter("partialSubmit")!=null){
+			if(request.getRequestContext().getResolvedSiteMapItem().getParameter("action").equalsIgnoreCase("formsixteen_NEW_CHILD")){
+				FormSixteenDocument form16=(FormSixteenDocument)request.getAttribute("parentBean");
+				String lastCanonicalUuid=form16.getFormSixteenDetailList().get(form16.getFormSixteenDetailList().size()-1).getCanonicalUUID();
+				String modUrlToRedirect=getScriptName()+"/"+lastCanonicalUuid+"/formsixteenedit";
+				log.info("this is canonical uuid of child as in dobefore"+modUrlToRedirect);
+				try {
+					response.sendRedirect(modUrlToRedirect);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
 	}
 
 	@Override
