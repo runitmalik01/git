@@ -343,7 +343,7 @@
 						</td>
 
 						<td><input id="less_total_1" name="less_total_1"
-							class="numberinput decimal"
+							class="numberinput decimal" readonly="readonly"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.less_total_1}"/></c:if>"
 							placeholder="Rs." type="text"/>
 						</td>
@@ -798,7 +798,7 @@
 								deductible amount under Chapter VI-A</label>
 						<td></td>
 						<td></td>
-						<td><input type="text" name="aggregate"
+						<td><input id="aggregate" name="aggregate"
 							class="numberinput decimal"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.aggregate}"/></c:if>"
 							placeholder="Rs.">
@@ -815,8 +815,8 @@
 							placeholder="Rs.">-->
 						</td>
 						<td></td>
-						<td><input type="text" name="total_income_2"
-							class="numberinput decimal"
+						<td><input id="total_income_2" name="total_income_2"
+							class="numberinput decimal" readonly="readonly"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.total_income_2}"/></c:if>"
 							placeholder="Rs.">
 						</td>
@@ -832,8 +832,8 @@
 							placeholder="Rs.">-->
 						</td>
 						<td></td>
-						<td><input type="text" name="tax_total_income_2"
-							class="numberinput decimal"
+						<td><input id="tax_total_income_2" name="tax_total_income_2"
+							class="numberinput decimal" readonly="readonly"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.tax_total_income_1}"/></c:if>"
 							placeholder="Rs.">
 						</td>
@@ -852,7 +852,7 @@
 						</td>
 						<td></td>
 
-						<td><input type="text" name="surcharge_2"
+						<td><input id="surcharge_2" name="surcharge_2"
 							class="numberinput decimal"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.surcharge_1}"/></c:if>"
 							placeholder="Rs.">
@@ -865,7 +865,7 @@
 						</td>
 						<td></td>
 						<td></td>
-						<td><input type="text" name="education_cess"
+						<td><input id="education_cess" name="education_cess"
 							class="numberinput decimal"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.education_cess}"/></c:if>"
 							placeholder="Rs.">
@@ -879,8 +879,8 @@
 						<td></td>
 						<td></td>
 
-						<td><input type="text" name="tax_payable"
-							class="numberinput decimal"
+						<td><input id="tax_payable" name="tax_payable"
+							class="numberinput decimal" readonly="readonly"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.tax_payable}"/></c:if>"
 							placeholder="Rs.">
 						</td>
@@ -899,7 +899,7 @@
 						</td>
 						<td></td>
 
-						<td><input type="text" name="relief_2"
+						<td><input id="relief_2" name="relief_2"
 							class="numberinput decimal"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.relief_2}"/></c:if>"
 							placeholder="Rs.">
@@ -925,8 +925,8 @@
 							placeholder="Rs.">-->
 						</td>
 
-						<td><input type="text" name="tax_payable_2"
-							class="numberinput decimal"
+						<td><input id="tax_payable_2" name="tax_payable_2"
+							class=" decimal" readonly="readonly"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.tax_payable_2}"/></c:if>"
 							placeholder="Rs.">
 						</td>
@@ -942,13 +942,13 @@
 						<td>(a) Tax Deducted at Source u/s 192(1)</td>
 						<td></td>
 
-						<td><input type="text" name="ded_ent1"
+						<td><input id="ded_ent1" name="ded_ent1"
 							class="numberinput decimal" placeholder="Rs."
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.ded_ent_1}"/></c:if>">
 						</td>
 
-						<td><input type="text" name="ded_ent2"
-							class="numberinput decimal" placeholder="Rs."
+						<td><input id="ded_ent2" name="ded_ent2"
+							class=" decimal" placeholder="Rs." readonly="readonly"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.ded_ent_2}"/></c:if>">
 						</td>
 					</tr>
@@ -958,13 +958,13 @@
 							u/s 192(1A) on perquisites u/s 17(2)</td>
 						<td></td>
 
-						<td><input type="text" name="ded_ent3"
+						<td><input id="ded_ent3" name="ded_ent3"
 							class="numberinput decimal" placeholder="Rs."
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.ded_ent_3}"/></c:if>">
 						</td>
 
-						<td><input type="text" name="ded_ent4"
-							class="numberinput decimal" placeholder="Rs."
+						<td><input id="ded_ent4" name="ded_ent4"
+							class=" decimal" placeholder="Rs." readonly="readonly"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.ded_ent_4}"/></c:if>">
 						</td>
 					</tr>
@@ -981,8 +981,8 @@
 							placeholder="Rs."> -->
 						</td>
 
-						<td><input type="text" name="relief_12"
-							class="numberinput decimal"
+						<td><input id="relief_12" name="relief_12"
+							class="decimal" readonly="readonly"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.relief_12}"/></c:if>"
 							placeholder="Rs.">
 						</td>
@@ -1022,8 +1022,8 @@
 						</td>
 						<td><c:out value="${salaryItemDetail.employee}" />
 						</td>
-						<td align="right"><c:out
-								value="${salaryItemDetail.relief_12}" />
+						<td align="right" ><w4india:inr 
+             value="${salaryItemDetail.relief_12}"/>
 						</td>
 						<td><a
 							href="${scriptName}/<c:out value="${salaryItemDetail.canonicalUUID}"/>/formsixteenedit"><small>Edit</small>
@@ -1040,8 +1040,6 @@
 <res:calc screenCalc="formsixteen" formId="frmdataFormSixteen"></res:calc>
 <res:client-validation formId="frmdataFormSixteen" screenConfigurationDocumentName="formsixteen" formSubmitButtonId="myModalHrefFormSixteen" />
 	
-
-
 
 
 
