@@ -352,7 +352,7 @@
 					<td colspan="1"><fmt:message key="interest.under.section.234abc"/></td>
 					<td  style="text-align:left">
 						<span class="decimal">
-						<w4india:inr value="0"/>
+						<w4india:inr value="${theForm.ITR1TaxComputation.totalIntrstPay}"/>
 						<!-- 
 						<c:choose>
 							<c:when test="${theForm.ITR1TaxComputation.totalIntrstPay eq '0'}">
