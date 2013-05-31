@@ -18,6 +18,7 @@ import com.mootly.wcm.beans.InterestDoc;
 import com.mootly.wcm.beans.MemberDeductionScheduleVIA;
 import com.mootly.wcm.beans.MemberPersonalInformation;
 import com.mootly.wcm.beans.OtherSourceIncome;
+import com.mootly.wcm.beans.OtherSourcesDocument;
 import com.mootly.wcm.beans.RebateSec90Document;
 import com.mootly.wcm.beans.SalaryIncomeDocument;
 import com.mootly.wcm.beans.SecuritiesDoc;
@@ -33,7 +34,9 @@ import com.mootly.wcm.member.Calculations;
  */
 @PrimaryBean(primaryBeanClass=RebateSec90Document.class)
 @FormFields(fieldNames= {"userCountry","taxPaidForeignCountry","incomeForeignCountry"})
-@AdditionalBeans(additionalBeansToLoad={AdjustmentOfLossesDoc.class,InterestDoc.class} )
+@AdditionalBeans(additionalBeansToLoad={MemberPersonalInformation.class,SalaryIncomeDocument.class,HouseProperty.class,OtherSourcesDocument.class})
+@RequiredBeans(requiredBeans={MemberPersonalInformation.class})
+
 
 
 
@@ -43,103 +46,9 @@ public class RebateSec90 extends ITReturnComponent {
 		// TODO Auto-generated method stub
 		super.doBeforeRender(request, response);
 		// to find eithr user lies in section 90 or 91
-		
-		double fetchHouseProperty=0.0;
-		double fetchOtherIncome=0.0;
-		double fetchDeduction=0.0;
-		double fetchAdjustLosses=0.0;
-		double fetchSecurities=0.0;
-		double fetchInterest= 0.0;
-		double fetchSalaryIncome=0.0;
-		// fetching Salary Income value
-		/*
-		Calculations cal = new Calculations();
-		if(request.getAttribute("salaryincomedocument") != null){
-		fetchSalaryIncome = cal.fetchSalaryIncomeValue(request,response);
-		}
-		// fetching OtherIncome value
-		//if(request.getAttribute("othersourceincome") !=null){
-		 //fetchOtherIncome =cal.fetchOtherIncomeValue(request,response);
-		//}
-		//if(request.getAttribute("houseproperty") !=null){
-			//fetching house property values
-			// fetchHouseProperty = cal.fetchHousePropertyValue(request,response);
-		//}
-		// fetching deductions 
-		//if(request.getAttribute("memberdeductionschedulevi") !=null){
-		 //fetchDeduction = cal.fetchDeductionsValue(request,response);
-		//}
-		// fetching Losses value
-		if(request.getAttribute("adjustmentoflossesdoc") != null){
-		 fetchAdjustLosses = cal.fetchLossesValue(request,response);
-		}
-		// fetching Securities value
-		//if(request.getAttribute("securitiesdoc") !=null){
-		// fetchSecurities = cal.fetchSecurityValue(request,response);
-		//}
-		// fetching Interest value
-		if(request.getAttribute("interestdoc") != null){
-		 fetchInterest =cal.fetchinterestValue(request,response);
-		}
-		
-
-		
-		
-		double fTotal= fetchSalaryIncome + fetchOtherIncome + fetchHouseProperty + fetchSecurities;
-		System.out.println("Total of all"+fTotal);
-		System.out.println("big decimal"+BigDecimal.valueOf(fTotal).toPlainString());
-		double fGrossTotal = fTotal-fetchAdjustLosses;
-		double fTaxableIncome= fGrossTotal-fetchDeduction;
-		System.out.println("fTaxableIncome"+fTaxableIncome);
-		*/
-		RebateSec90Document objRebateNinety = (RebateSec90Document)request.getAttribute("parentBean");
-		String userCountry=objRebateNinety.getUserCountry();
-		System.out.println("userCountry:::::::::::::"+userCountry);
-		ResourceBundle rb = ResourceBundle.getBundle("valueList_dtaaCountries");
-		for(int n=1;n<=82;n++){
-		String listCountry=rb.getString("valueList."+n);
-		
-		System.out.println("listCountry"+listCountry);
-		if(userCountry.equals(listCountry)){
-			
-			// following data is hard codeded for calculation
-			String reliefsec90=null;
-			String reliefsec91=null;
-			int IncomeOutside=240000;
-			int intIncomeIndia=450000;
-			int Incometaxable=intIncomeIndia+IncomeOutside;
-			int tax = 68000;
-			double eduCess=tax*0.03;
-			double totalTax=tax+eduCess;
-			double Rateoftaxinindia= (totalTax*100)/Incometaxable;
-			double avgTaxOnForeignIncome=(Rateoftaxinindia*IncomeOutside)/100;
-			double taxPaidInInForeignCountry=objRebateNinety.getTaxPaidForeignCountry();
-			System.out.println("avgTaxOnForeignIncome "+avgTaxOnForeignIncome);
-			System.out.println("taxPaidInInForeignCountry "+taxPaidInInForeignCountry);
-			
-			// for finding smallest among two rates to show on jsp page.
-			if(taxPaidInInForeignCountry>avgTaxOnForeignIncome){
-				reliefsec90=BigDecimal.valueOf(avgTaxOnForeignIncome).toPlainString();
-				request.setAttribute("reliefsec90", reliefsec90);
-				
-				
-				
-			}else{
-				
-				reliefsec90=BigDecimal.valueOf(taxPaidInInForeignCountry).toPlainString();
-				request.setAttribute("reliefsec90", reliefsec90);
-				
-				
-			}
-		
-		
-		}else{
-			System.out.println("this is the case of rebate sec 91");
-			
-		}
-		}
-		
+	System.out.println("this is do before render  of rebate sec 90/91");
 	}
+	
 	@Override
 	public void doAction(HstRequest request, HstResponse response)
 			throws HstComponentException {
