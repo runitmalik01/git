@@ -256,7 +256,7 @@ public class FormSixteenDetail extends FormSixteenSectionB{
 			node.setProperty("mootlywcm:relief1.1", getRelief_11());}
 			if(getRelief_12()!=null){
 			node.setProperty("mootlywcm:relief1.2", getRelief_12());}
-
+			node.setProperty("mootlywcm:formsixteenuuid", getForm16Uuid());
 		} catch (RepositoryException rex) {
 			log.error("Repository Exception while binding",rex);
 		}
@@ -365,6 +365,7 @@ public class FormSixteenDetail extends FormSixteenSectionB{
 		setDed_ent2(objFormSixteen.getDed_ent_2());
 		setDed_ent3(objFormSixteen.getDed_ent_3());
 		setDed_ent4(objFormSixteen.getDed_ent_4());	
+		setForm16Uuid(objFormSixteen.getForm16Uuid());
 	}
 
 	
