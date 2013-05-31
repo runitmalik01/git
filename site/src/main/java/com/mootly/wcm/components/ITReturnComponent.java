@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
+import java.util.UUID;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
@@ -63,9 +64,11 @@ import com.mootly.wcm.annotations.RequiredFields;
 import com.mootly.wcm.annotations.ValueListBeans;
 import com.mootly.wcm.beans.CompoundChildUpdate;
 import com.mootly.wcm.beans.FormMapFiller;
+import com.mootly.wcm.beans.FormSixteenDocument;
 import com.mootly.wcm.beans.ScreenCalculation;
 import com.mootly.wcm.beans.ScreenConfigDocument;
 import com.mootly.wcm.beans.ValueListDocument;
+import com.mootly.wcm.beans.compound.FormSixteenDetail;
 import com.mootly.wcm.member.Member;
 import com.mootly.wcm.model.FilingStatus;
 import com.mootly.wcm.model.FinancialYear;
@@ -79,11 +82,11 @@ import com.mootly.wcm.utils.GoGreenUtil;
 
 public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 	private static final Logger log = LoggerFactory.getLogger(ITReturnComponent.class);
-	
+
 	//local variables
 	boolean hasInitComplete = false; 
 	String redirectURLToSamePage=  null;
-	
+
 	//User/Member Parameters
 	String userName;
 	String userNameNormalized;
@@ -104,7 +107,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 	FilingStatus filingStatus;
 	FormMap formMap = null;
 	ITReturnPackage itReturnPackage = ITReturnPackage.basic;
-	
+
 	HippoBean siteContentBaseBean = null;
 	//Document Specific
 	HippoBean hippoBeanBaseITReturnDocuments;
@@ -114,7 +117,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 	String parentBeanAbsolutePath;
 	HippoBean parentBean;
 	HippoBean childBean;
-	
+
 	String uuid;
 
 	//MemberPersonalInformation memberPersonalInformation = null;
@@ -122,11 +125,11 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 	PAGE_ACTION pageAction;
 	String screenMode;
 	String nextScreenSiteMapItemRefId;
-	
+
 	String mainSiteMapItemRefId = null;
-	
+
 	String clientSideValidationJSON;
-	
+
 	///Name of the HTML File and the depth its in
 	String scriptName; 
 
@@ -157,7 +160,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			response.setRenderPath("jsp/security/invalidpan.jsp");
 			return;
 		}
-		
+
 		if (getClass().isAnnotationPresent(FormFields.class)) {
 			FormFields formFields = this.getClass().getAnnotation(FormFields.class);
 			FormMap formMap = new FormMap(request,formFields.fieldNames());
@@ -206,7 +209,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 				}
 				request.setAttribute("error","true");
 			}
-			
+
 			if (pageAction.equals(PAGE_ACTION.DELETE) || pageAction.equals(PAGE_ACTION.DELETE_CHILD)) {	
 				save(request,formMap);
 				//initComponent(request);
@@ -232,16 +235,16 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		/** This check is required for all screens except for Personal Information Screen */
 		RequiredBeans requiredBeans = this.getClass().getAnnotation(RequiredBeans.class);
 		if (requiredBeans != null) {
-			 Class<? extends HippoBean>[] requiredBeansList = requiredBeans.requiredBeans();
-			 if (requiredBeansList!= null && requiredBeansList.length > 0) {
-				 for (Class<? extends HippoBean> aBean:requiredBeansList) {
-					 if (request.getAttribute(aBean.getSimpleName().toLowerCase()) == null) {
-						 redirectToNotFoundPage(response);
-					 }
-				 }
-			 }
+			Class<? extends HippoBean>[] requiredBeansList = requiredBeans.requiredBeans();
+			if (requiredBeansList!= null && requiredBeansList.length > 0) {
+				for (Class<? extends HippoBean> aBean:requiredBeansList) {
+					if (request.getAttribute(aBean.getSimpleName().toLowerCase()) == null) {
+						redirectToNotFoundPage(response);
+					}
+				}
+			}
 		}
-		
+
 	}
 
 	@Override
@@ -265,7 +268,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		}
 		FormFields formFields = this.getClass().getAnnotation(FormFields.class);
 		formMap = new FormMap(request,formFields.fieldNames());
-		
+
 		boolean isValid = validate(request,response,formMap);
 		if (!isValid) {
 			//this action is save
@@ -274,7 +277,26 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		sanitize(request,response,formMap);
 		if (pageAction.equals(PAGE_ACTION.EDIT) || pageAction.equals(PAGE_ACTION.EDIT_CHILD) || pageAction.equals(PAGE_ACTION.NEW_CHILD)) {
 			//lets save the document
-			//interesting how to get all the form data			
+			//interesting how to get all the form data
+			//Put Random unique uuid in form16 Document
+			if(request.getRequestContext().getResolvedSiteMapItem().getParameter("action").equalsIgnoreCase("formsixteen_NEW_CHILD")){
+				formMap.getField("uuidform16").addValue(UUID.randomUUID().toString());
+			}
+			//put the value in uuidform16 field of deduction Screen form form sixteen unique random uuid.
+			if(request.getRequestContext().getResolvedSiteMapItem().getParameter("uuidform-16")!=null){
+				String prmuuidform16=request.getRequestContext().getResolvedSiteMapItem().getParameter("uuidform-16");
+				String uniquuidfomr16=null;
+				FormSixteenDocument form16doc=(FormSixteenDocument)request.getAttribute("formsixteendocument");
+				if(form16doc!=null){
+					for(FormSixteenDetail form16detail:form16doc.getFormSixteenDetailList()){
+						if(form16detail.getCanonicalUUID().equals(prmuuidform16)){
+							uniquuidfomr16=form16detail.getForm16Uuid();
+							break;
+						}
+					}
+					formMap.getField("decuuidform16").addValue(uniquuidfomr16);
+				}
+			}
 			if (log.isInfoEnabled()) {
 				if (formMap != null) {
 					for (String aFieldName:formFields.fieldNames()) {
@@ -298,11 +320,19 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 				else {
 					String urlToRedirect = getScriptName(); // getRedirectURL(request,response,FormSaveResult.SUCCESS) ;
 					log.info("URLToRedirect:"+ urlToRedirect);
-					if (request.getAttribute("selectedItrTab") != null) {
+					if (request.getAttribute("selectedItrTab") != null){
 						response.setRenderParameter("selectedItrTab", ((ITRTab)request.getAttribute("selectedItrTab")).name());
 						urlToRedirect += "?selectedItrTab=" +  ((ITRTab)request.getAttribute("selectedItrTab")).name();
 					}
-					response.sendRedirect( urlToRedirect );
+					//check if we are on form sixteen then it should not redirect to Scripturl
+					if(parentBean != null && getParentBean().getName().equalsIgnoreCase("FormSixteenDocument")&&pageAction.equals(PAGE_ACTION.NEW_CHILD)){
+						response.setRenderParameter("partialSubmit", "partialSubmit");
+					}//After submit of deduction in form 16 redirect to form in edited mode 
+					else if(request.getRequestContext().getResolvedSiteMapItem().getParameter("uuidform-16")!=null){
+						String modUrlToredirect=getScriptName()+"/"+request.getRequestContext().getResolvedSiteMapItem().getParameter("uuidform-16")+"/formsixteenedit";
+						request.setAttribute("modUrlToredirect", modUrlToredirect);
+						response.sendRedirect(modUrlToredirect);
+					}else response.sendRedirect( urlToRedirect );
 				}
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
@@ -336,7 +366,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 	public String getRootMemberFolderRelPath() {
 		return this.memberRootFolderRelPath;
 	}
-	
+
 	public String getRootMemberFolderAbsolutePath() {
 		return this.memberRootFolderAbsolutePath;
 	}
@@ -352,7 +382,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 	public FinancialYear getFinancialYear() {
 		return financialYear;
 	}
-	
+
 	public ITReturnType getITReturnType () {
 		return itReturnType;
 	}
@@ -430,7 +460,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		// TODO Auto-generated method stub
 		return false;
 	}
-	
+
 	@Override
 	public boolean hasPrevScreen() {
 		// TODO Auto-generated method stub
@@ -461,34 +491,34 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		// TODO Auto-generated method stub
 		return baseAbsolutePathToReturnDocuments;
 	}
-	
+
 	@Override
 	public String getRelBasePathToReturnDocuments()
 			throws InvalidNavigationException {
 		// TODO Auto-generated method stub
 		return baseRelPathToReturnDocuments;
 	}
-	
+
 	@Override
 	public DateFormat getDateFormatter() {
 		// TODO Auto-generated method stub
 		return  new SimpleDateFormat("yyyy-MM-dd");
 	}
-	
+
 	public FormMap getFormMap() {
 		return formMap;
 	}
-	
+
 
 	public String getScriptName() {		
 		return scriptName;
 	}
-	
+
 
 	public ITReturnPackage getItReturnPackage() {
 		return itReturnPackage;
 	}
-	
+
 	public String getUuid() {
 		return uuid;
 	}
@@ -502,11 +532,11 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		// TODO Auto-generated method stub
 		return pageAction;
 	}
-	
+
 	public final HippoBean getHippoBeanMemberBase() {
 		return hippoBeanMemberBase;
 	}
-	
+
 	protected void findScriptName(HstRequest request) {
 		String pathInfo = request.getRequestContext().getResolvedSiteMapItem().getPathInfo();
 		if (pathInfo != null && pathInfo.contains(".html")) {
@@ -532,7 +562,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			//scriptName = basePath + scriptName;
 			scriptName = sb.toString();
 			if (scriptName.endsWith("/")) scriptName = scriptName.substring(0, scriptName.length()-2);
-			
+
 			//one more loop just to capture the parts after the URL
 			List<String> urlParts = new ArrayList<String>();
 			boolean startCapturing = false;
@@ -543,7 +573,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 				if (aPart.endsWith(".html")) {
 					startCapturing = true;
 				}
-				
+
 			}
 			if (urlParts != null && urlParts.size() > 0) {
 				String[] strParts = urlParts.toArray(new String[urlParts.size()]);
@@ -553,16 +583,16 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			}			
 		}
 		if (request.getAttribute("selectedItrTab") == null && getPublicRequestParameter(request, "selectedItrTab") != null) {
-			 ITRTab itrTab = null;
-			 try {
-				 itrTab= ITRTab.valueOf(getPublicRequestParameter(request, "selectedItrTab"));
-				 request.setAttribute("selectedItrTab", itrTab);
-			 }catch (IllegalArgumentException ie) {
-				 
-			 }
+			ITRTab itrTab = null;
+			try {
+				itrTab= ITRTab.valueOf(getPublicRequestParameter(request, "selectedItrTab"));
+				request.setAttribute("selectedItrTab", itrTab);
+			}catch (IllegalArgumentException ie) {
+
+			}
 		}
 	}
-	
+
 	protected void initComponent(HstRequest request,HstResponse response) throws InvalidNavigationException,InvalidPANException{
 		ResolvedSiteMapItem resolvedMapItem = request.getRequestContext().getResolvedSiteMapItem();
 		if (request.getSession() != null && request.getSession().getAttribute("user") != null) {
@@ -577,12 +607,12 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		}
 		itReturnType = ITReturnType.getByDisplayName(request.getRequestContext().getResolvedSiteMapItem().getParameter("itReturnType")); //original versus amend
 		pan = request.getRequestContext().getResolvedSiteMapItem().getParameter("pan"); //original versus amend
-		
+
 		if (mainSiteMapItemRefId == null) mainSiteMapItemRefId = request.getRequestContext().getResolvedSiteMapItem().getParameter("mainSiteMapItemRefId");
 		redirectURLToSamePage = getScriptName();// getRedirectURL(request,response,FormSaveResult.FAILURE);
-		
+
 		nextScreenSiteMapItemRefId = request.getRequestContext().getResolvedSiteMapItem().getParameter("nextScreen");
-		
+
 		//we must make sure itReturnType and PAN are not empty as well as they are valid
 		if (!StringUtils.isEmpty(pan) && !DataTypeValidationHelper.isOfType(pan, DataTypeValidationType.PAN)) {
 			throw new InvalidPANException("INVALID PAN NUMBER");
@@ -590,7 +620,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		if (itReturnType != null && itReturnType.equals(ITReturnType.UNKNOWN)) {
 			throw new InvalidNavigationException("INVALID ITRETURUN TYPE");
 		}
-		
+
 		String strItReturnPackage = request.getRequestContext().getResolvedSiteMapItem().getParameter("itReturnPackage");
 		if (strItReturnPackage == null)
 			itReturnPackage = ITReturnPackage.basic;
@@ -602,13 +632,13 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 				itReturnPackage = ITReturnPackage.basic;
 			}
 		}
-		
+
 		//NOW find 
 		if (!StringUtils.isEmpty(pan)) {
 			char filingStatusChar = pan.charAt(3);
 			filingStatus = FilingStatus.getEnumByFourthChar(filingStatusChar);
 		}
-		
+
 		//how to find the scriptName and the depth
 		//one assumption that the scriptName is always .html file and nothing else
 		String actionInSiteMap =  resolvedMapItem.getLocalParameter("action");
@@ -616,7 +646,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		if (actionInSiteMap != null && actionInSiteMap.contains("_")) {
 			tabName = actionInSiteMap.substring(0,actionInSiteMap.indexOf("_"));
 		}
-		
+
 		String strPageAction = request.getRequestContext().getResolvedSiteMapItem().getParameter("action");
 		if (strPageAction == null) {
 			pageAction = ITReturnScreen.PAGE_ACTION.DEFAULT;
@@ -643,7 +673,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		isLoggedIn = request.getUserPrincipal() != null ? true : false;
 		userName = request.getUserPrincipal() != null ? request.getUserPrincipal().getName() : null;
 		userNameNormalized = request.getUserPrincipal() != null ? request.getUserPrincipal().getName().replaceAll("@", "-at-") : null;
-		
+
 		siteContentBaseBean = getSiteContentBaseBean(request);
 		hippoBeanMemberBase = siteContentBaseBean.getBean("members/" + getNormalizedMemberEmail());
 		if (hippoBeanMemberBase != null) {
@@ -654,7 +684,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			//	panFolder = listOfFolders.get(0);
 			//}
 		}
-		
+
 		baseRelPathToReturnDocuments = "members/" + getNormalizedMemberEmail() + "/pans/" + getPAN() + "/" + getFinancialYear() + "/" + getITReturnType();
 		hippoBeanBaseITReturnDocuments = siteContentBaseBean.getBean(baseRelPathToReturnDocuments);
 		baseAbsolutePathToReturnDocuments = request.getRequestContext().getResolvedMount().getMount().getCanonicalContentPath() + "/" + baseRelPathToReturnDocuments;
@@ -672,7 +702,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			parentBeanAbsolutePath = baseAbsolutePathToReturnDocuments + "/" + getParentBeanNodeName();
 		}
 		screenMode = GoGreenUtil.getEscapedParameter(request, "screenMode");
-		
+
 		//loading Additional Beans
 		AdditionalBeans additionalBeans = this.getClass().getAnnotation(AdditionalBeans.class);
 		if (additionalBeans != null && additionalBeans.additionalBeansToLoad() != null && additionalBeans.additionalBeansToLoad().length > 0 ) {
@@ -690,7 +720,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 				}					
 			}
 		}
-		
+
 		//lets load ValueList Beans
 		ValueListBeans valueListBeans = this.getClass().getAnnotation(ValueListBeans.class);
 		if (valueListBeans != null && valueListBeans.paths() != null && valueListBeans.paths().length > 0 ) {
@@ -747,9 +777,9 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 				}
 			}
 		}
-				
+
 		onBeforeRender(request);
-		
+
 		if (pageAction.equals(ITReturnScreen.PAGE_ACTION.EDIT_CHILD) || pageAction.equals(ITReturnScreen.PAGE_ACTION.DELETE_CHILD) && parentBean != null) {
 			//find the object by uuid
 			uuid = request.getRequestContext().getResolvedSiteMapItem().getParameter("uuid");
@@ -771,9 +801,9 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			}
 			request.setAttribute("uuid", uuid);
 		}
-		
+
 		clientSideValidationJSON = ScreenConfigService.generateJSON(this.getClass());
-		
+
 		//lets try to load the SCreen Configuration Document for this component
 		String pathToScreenConfig = "configuration/screenconfigs/" + this.getClass().getSimpleName().toLowerCase();
 		ScreenConfigDocument screenConfigDocument = siteContentBaseBean.getBean(pathToScreenConfig, ScreenConfigDocument.class);
@@ -806,7 +836,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 	}
 
 	protected void sanitize(HstRequest request,HstResponse response,FormMap formMap) {
-		
+
 	}
 	protected boolean validate(HstRequest request,HstResponse response,FormMap formMap) {
 		//validate required fields first
@@ -826,7 +856,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 				}
 			}
 		}
-		
+
 		if (this.getClass().isAnnotationPresent(RegExValidationFields.class)) {
 			RegExValidationFields regExValidationFields = this.getClass().getAnnotation(RegExValidationFields.class);
 			String[] fieldNames = regExValidationFields.fieldNames();
@@ -849,12 +879,12 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 						log.warn("Pattern Syntax Exception",pse);
 					}
 					finally {
-						
+
 					}
 				}
 			}
 		}
-		
+
 		//
 		if (this.getClass().isAnnotationPresent(DataTypeValidationFields.class)) {
 			DataTypeValidationFields dataTypeValidationFields = this.getClass().getAnnotation(DataTypeValidationFields.class);
@@ -885,14 +915,14 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 						log.warn("Pattern Syntax Exception",pse);
 					}
 					finally {
-						
+
 					}
 				}
 			}
 		}
 		StartApplicationValidationService startappvalidserv=new StartApplicationValidationService();
 		startappvalidserv.validResidential(formMap, assessmentYear);
-		
+
 		if (formMap.getMessage() != null && formMap.getMessage().size() > 0) {
 			FormUtils.persistFormMap(request, response, formMap, null);
 			return false;
@@ -901,7 +931,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			return true;
 		}
 	}
-	
+
 	protected void loadParentBean(HstRequest request) {
 		//what we need to do is to get the object using the path
 		if (log.isInfoEnabled()) {
@@ -918,35 +948,49 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		request.setAttribute("financialYear",getFinancialYear());
 		request.setAttribute("itReturnType",getITReturnType());
 		request.setAttribute("pan",getPAN());
-		
+
 		request.setAttribute("filingStatus",filingStatus);
-		
+
 		//TO DO we need to get this based on some parameter other wise it is causing issue
-        try {
-        	//HippoBean siteContentBaseBean = getSiteContentBaseBean(request);
-        	if (siteContentBaseBean != null) request.setAttribute("siteContentBaseBean", siteContentBaseBean);
-        }catch (Exception ex) {
-        	log.info("Error",ex);
-        }
-		
-		
+		try {
+			//HippoBean siteContentBaseBean = getSiteContentBaseBean(request);
+			if (siteContentBaseBean != null) request.setAttribute("siteContentBaseBean", siteContentBaseBean);
+		}catch (Exception ex) {
+			log.info("Error",ex);
+		}
+
+
 		request.setAttribute("pageAction",pageAction);
 		request.setAttribute("mainSiteMapItemRefId", mainSiteMapItemRefId);
-		
+
 		request.setAttribute("hippoBeanMemberBase",hippoBeanMemberBase);
 		request.setAttribute("panFolder",panFolder);
-		
+
 		if (clientSideValidationJSON!=null) {
 			request.setAttribute("clientSideValidationJSON", clientSideValidationJSON);
 		}
-		
+
 		if (scriptName != null) {
+			//this is use to get modified Script url when deduction included in form 16
+			String form16=request.getRequestContext().getResolvedSiteMapItem().getParameter("form16");
+			String fomr16action=request.getRequestContext().getResolvedSiteMapItem().getParameter("action");
+			if(fomr16action.equalsIgnoreCase("formsixteen_EDIT_CHILD")){
+				if(request.getRequestContext().getResolvedSiteMapItem().getParameter("uuid")!=null){
+					String modScriptUrl=scriptName+"/"+request.getRequestContext().getResolvedSiteMapItem().getParameter("uuid")+"/formsixteenedit";
+					request.setAttribute("modScriptUrl", modScriptUrl);
+				}
+			}
+			//set the url for deduction modal close button
+			if(request.getRequestContext().getResolvedSiteMapItem().getParameter("uuidform-16")!=null){
+				String modUrlToredirect=getScriptName()+"/"+request.getRequestContext().getResolvedSiteMapItem().getParameter("uuidform-16")+"/formsixteenedit";
+				request.setAttribute("modUrlToredirect", modUrlToredirect);
+			}
 			request.setAttribute("scriptName", scriptName);
 		}
-		
+
 		if (redirectURLToSamePage != null) request.setAttribute("redirectURLToSamePage", redirectURLToSamePage);
 	}
-	
+
 	protected void redirectToMemberHome(HstRequest hstRequest, HstResponse response) {
 		try {
 			response.setRenderParameter("error", "invalid.pan");
@@ -960,7 +1004,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			throw new HstComponentException(e);
 		}
 	}
-	
+
 	protected void redirectToNotFoundPage(HstResponse response) {
 		try {
 			response.forward("/404");
@@ -968,7 +1012,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			throw new HstComponentException(e);
 		}
 	}
-	
+
 	protected String getRedirectURLForSiteMapItem(HstRequest request,HstResponse response,FormSaveResult formSaveResult) {
 		if (formSaveResult.equals(FormSaveResult.FAILURE)) {
 			return getRedirectURLForSiteMapItem(request, response, formSaveResult,mainSiteMapItemRefId,getFinancialYear(), getITReturnType(), getPAN());
@@ -980,7 +1024,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			return getRedirectURLForSiteMapItem(request, response, formSaveResult,mainSiteMapItemRefId,getFinancialYear(),getITReturnType(), getPAN());
 		}
 	}
-	
+
 	protected String getRedirectURLForSiteMapItem(HstRequest request,HstResponse response,FormSaveResult formSaveResult,String siteMapReferenceId,FinancialYear financialYear, ITReturnType itReturnType,String pan) {
 		if (siteMapReferenceId == null) return null;
 		if (financialYear == null || financialYear.equals(FinancialYear.UNKNOWN)) return null;
@@ -996,8 +1040,8 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			return null;
 		}
 	}
-	
-	
+
+
 	/*
 	 * The ultimate goal here is to save the parent bean and if it didn't exist then it should have been created in the first place
 	 * a child cannot exist without a parent
@@ -1014,7 +1058,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			//this is fun, now we should ensure that parentBeanExists and if not create it
 			//also a new childNode will be added to this parentBean
 		}
-		
+
 		Session persistableSession = null;
 		WorkflowPersistenceManager wpm;
 		try {
@@ -1128,7 +1172,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 							log.error("Error in Save",e);
 						}
 					}
-					
+
 				} catch (ObjectBeanManagerException e) {
 					// TODO Auto-generated catch block
 					log.error("Error saving document",e);
@@ -1177,7 +1221,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			}
 		}
 	}
-	
+
 	public static class FullReviewedWorkflowCallbackHandler implements WorkflowCallbackHandler<FullReviewedActionsWorkflow> {
 		public void processWorkflow(FullReviewedActionsWorkflow wf) throws Exception {
 			wf.publish();
@@ -1193,7 +1237,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 	@Override
 	public void afterSave() {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
+
 }
