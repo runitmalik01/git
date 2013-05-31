@@ -56,7 +56,6 @@ public class FormSixteen extends ITReturnComponent {
 				FormSixteenDocument form16=(FormSixteenDocument)request.getAttribute("parentBean");
 				String lastCanonicalUuid=form16.getFormSixteenDetailList().get(form16.getFormSixteenDetailList().size()-1).getCanonicalUUID();
 				String modUrlToRedirect=getScriptName()+"/"+lastCanonicalUuid+"/formsixteenedit";
-				log.info("this is canonical uuid of child as in dobefore"+modUrlToRedirect);
 				try {
 					response.sendRedirect(modUrlToRedirect);
 				} catch (IOException e) {
