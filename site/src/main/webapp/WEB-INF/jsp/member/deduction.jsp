@@ -32,7 +32,7 @@
 						<div class="btn-group">	
 							<button class="btn btn-small dropdown-toggle" data-toggle="dropdown"><c:out value="${deductionSectionLabel}"/><span class="caret"></span></button>
 							<ul class="dropdown-menu">
-				            	<li><a href="<c:out value="${scriptName}"/>/newc6deduction/<c:out value="${deductionSectionName}"/>">Add</a></li>
+				            	<li><a href="<c:choose><c:when test="${not empty modScriptUrl}"><c:out value="${modScriptUrl}"/></c:when><c:otherwise><c:out value="${scriptName}"/></c:otherwise></c:choose>/newc6deduction/<c:out value="${deductionSectionName}"/>">Add</a></li>
 								<%-- commented out --%>
 								<%--
 								<c:if test="${not empty savedData && not empty savedData[deductionSectionName]}">
@@ -59,7 +59,7 @@
 						            	 --%>
 										<c:if test="${not empty savedData && not empty savedData[deductionSectionName]}">											
 											<c:forEach items="${savedData[deductionSectionName]}" var="aSectionHead">
-												<li><a href="<c:out value="${scriptName}/${aSectionHead.canonicalUUID}"/>/editc6deduction"><fmt:message var="label" bundle="${dSectionHeads}" key="sectionhead.${aSectionHead.head}.label"></fmt:message><res:displaylabel label="${label}"></res:displaylabel> |<c:out value="${aSectionHead.investment}"/>|</a></li>
+												<li><a href="<c:choose><c:when test="${not empty modScriptUrl}"><c:out value="${modScriptUrl}"/></c:when><c:otherwise><c:out value="${scriptName}"/></c:otherwise></c:choose><c:out value="/${aSectionHead.canonicalUUID}"/>/editc6deduction"><fmt:message var="label" bundle="${dSectionHeads}" key="sectionhead.${aSectionHead.head}.label"></fmt:message><res:displaylabel label="${label}"></res:displaylabel> |<c:out value="${aSectionHead.investment}"/>|</a></li>
 											</c:forEach>								 	
 										</c:if>	
 									</ul>								
@@ -140,13 +140,13 @@
 	    </form>
 	  </div>
 	  <div class="modal-footer">
-	    <a href="${scriptName}?selectedItrTab=<%=ITRTab.DEDUCTIONS%>" class="btn" data-dismiss="">Close</a>
-	    <c:if test="${pageAction =='EDIT_CHILD'}"><button class="btn btn-danger" onclick="$('.frmDeduction').attr('action','<c:out value="${scriptName}/${editingSection.canonicalUUID}"/>/deletec6deduction');$('.frmDeduction').attr('method','get');$('.frmDeduction').submit()">Delete</button></c:if>
+	    <a href="<c:choose><c:when test="${not empty modUrlToredirect}"><c:out value="${modUrlToredirect}"/></c:when><c:otherwise><c:out value="${scriptName}?selectedItrTab="/><%=ITRTab.DEDUCTIONS%></c:otherwise></c:choose>" class="btn" data-dismiss="">Close</a>
+	    <c:if test="${pageAction =='EDIT_CHILD'}"><button class="btn btn-danger" onclick="$('.frmDeduction').attr('action','<c:choose><c:when test="${not empty modUrlToredirect}"><c:out value="${modUrlToredirect}"/></c:when><c:otherwise><c:out value="${scriptName}"/></c:otherwise></c:choose><c:out value="/${editingSection.canonicalUUID}"/>/deletec6deduction');$('.frmDeduction').attr('method','get');$('.frmDeduction').submit()">Delete</button></c:if>
 	    <a href="javascript:$('.frmDeduction').submit()" class="btn btn-primary">Save changes</a>
 	  </div>
 	</div>
 </c:if>
-<a href="${scriptName}?selectedItrTab=<%=ITRTab.FORM16_SINGLE%>" id="test" role="button" class="btn" data-toggle="" ><fmt:message key="back.to.formsixteen" /></a>
+<%-- <a href="${scriptName}?selectedItrTab=<%=ITRTab.FORM16_SINGLE%>" id="test" role="button" class="btn" data-toggle="" ><fmt:message key="back.to.formsixteen" /></a>--%>
 
 
 <hst:element var="uiCustom" name="script">
