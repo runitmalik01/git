@@ -325,8 +325,7 @@
 							<td><c:out value="${salaryItemDetail.from}" /> - <c:out
 									value="${salaryItemDetail.to}" />
 							</td>
-							<td align="right"><c:out
-									value="${salaryItemDetail.taxable_earning}" />
+							<td align="right"><w4india:inr value="${salaryItemDetail.taxable_earning}" />
 							</td>
 							<td><a
 								href="${scriptName}/<c:out value="${salaryItemDetail.canonicalUUID}"/>/salaryincomeedit"><small>Edit</small>
@@ -337,7 +336,8 @@
 					</c:forEach>
 					<tr align="center">
 						<td colspan="2">Total Earning</td>
-						<td align="right"><c:out value="${parentBean.total}"></c:out>
+						<td align="right"><w4india:inr 
+             value="${parentBean.total}" />
 						</td>
 				</c:if>
 			</table>
