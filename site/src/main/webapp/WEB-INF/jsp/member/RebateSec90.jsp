@@ -53,13 +53,6 @@ request.setAttribute("objTreeMapCountries", objTreeMapCountries);
 				 /></td>
 		</tr>
 		<tr height="30px">
-			<td class="label">Income Earned in India</td>
-			<td class="input"><input id="incomeEarnedIndia"
-				name="incomeEarnedIndia"  maxlength="14"
-				 /></td>
-		</tr>
-		
-		<tr height="30px">
 			<td class="label"><fmt:message key="rebate.section90.required" /></td>
 			<td class="input"><input id="txttotaltax" name="txttotaltax " value="" readonly="readonly"
 				maxlength="14"  /></td>
