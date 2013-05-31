@@ -540,6 +540,10 @@ public abstract class FormSixteenSectionB extends FormSixteenSectionA  implement
 			double amt= Double.parseDouble(strIncome_maintain);
 			setRelief_12(amt);
 		}
+		if ( formMap.getField("uuidform16") != null) {
+			log.info("this is uuid of form"+formMap.getField("uuidform16").getValue());
+			setForm16Uuid(formMap.getField("uuidform16").getValue());
+		}
 	}
 	
 	
