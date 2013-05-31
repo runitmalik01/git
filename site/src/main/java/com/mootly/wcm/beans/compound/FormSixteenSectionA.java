@@ -113,7 +113,7 @@ private final static Logger log = LoggerFactory.getLogger(FormSixteenSectionA.cl
 	private Double ded_ent4;
 	private Double relief_11;
 	private Double relief_12;
-
+	private String form16uuid;
 
 
 	//for personal information
@@ -800,5 +800,11 @@ private final static Logger log = LoggerFactory.getLogger(FormSixteenSectionA.cl
 	public void setRelief_12(Double relief_12) {
 		this.relief_12 = relief_12;
 	}
-
+    public String getForm16Uuid() {
+		if (form16uuid == null) form16uuid = getProperty("mootlywcm:formsixteenuuid");
+        return form16uuid;
+    }
+    public void setForm16Uuid(String form16uuid) {
+        this.form16uuid = form16uuid;
+    }
 }
