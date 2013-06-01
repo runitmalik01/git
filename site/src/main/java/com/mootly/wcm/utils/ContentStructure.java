@@ -19,6 +19,7 @@ public final class ContentStructure {
 
 	final static String MEMBER_FOLDER_NAME = "members";
 	final static String EMAILTEMPLATES_FOLDER_NAME = "emailtemplates";
+	final static String VENDOR_FOLDER_NAME = "vendors";
 
 	// it specify the path for the document in repository.
 	public static String getMemberTdsFolder(HstRequest request) {
@@ -112,6 +113,15 @@ public final class ContentStructure {
 		builder.append(request.getRequestContext().getResolvedMount().getMount().getCanonicalContentPath());
 		builder.append('/');
 		builder.append(MEMBER_FOLDER_NAME).append("/").append(userName);
+		return builder.toString();
+	} 
+	
+	public static String getVendorFolder(HstRequest request, String userName) {
+		//String md5UserName = org.apache.commons.codec.digest.DigestUtils.md5He(angry) userName );
+		StringBuilder builder = new StringBuilder();
+		builder.append(request.getRequestContext().getResolvedMount().getMount().getCanonicalContentPath());
+		builder.append('/');
+		builder.append(VENDOR_FOLDER_NAME).append("/").append(userName);
 		return builder.toString();
 	} 
 
