@@ -2891,6 +2891,23 @@
         <sv:value>members</sv:value>
       </sv:property>
     </sv:node>
+    <sv:node sv:name="attachdoc.html">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>hst:sitemapitem</sv:value>
+      </sv:property>
+      <sv:property sv:name="jcr:uuid" sv:type="String">
+        <sv:value>3997d1d0-8daa-4fd9-b024-4b8e2ba0772f</sv:value>
+      </sv:property>
+      <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+        <sv:value>hst:pages/attachments</sv:value>
+      </sv:property>
+      <sv:property sv:name="hst:refId" sv:type="String">
+        <sv:value>docattach</sv:value>
+      </sv:property>
+      <sv:property sv:name="hst:relativecontentpath" sv:type="String">
+        <sv:value>members</sv:value>
+      </sv:property>
+    </sv:node>
   </sv:node>
   <sv:node sv:name="message">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
@@ -3185,7 +3202,7 @@
       <sv:value>0f706016-69ab-40c4-a212-05a13dcf3513</sv:value>
     </sv:property>
     <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
-      <sv:value>hst:pages/products-overview</sv:value>
+      <sv:value>hst:pages/products-overview.re</sv:value>
     </sv:property>
     <sv:property sv:name="hst:refId" sv:type="String">
       <sv:value>knowledgeportal</sv:value>
@@ -3201,7 +3218,7 @@
         <sv:value>cb804757-fffe-4fef-b144-87db8f2ed5ef</sv:value>
       </sv:property>
       <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
-        <sv:value>hst:pages/products-overview</sv:value>
+        <sv:value>hst:pages/products-overview.re</sv:value>
       </sv:property>
       <sv:property sv:name="hst:relativecontentpath" sv:type="String">
         <sv:value>${parent}/facetedproducts/${1}</sv:value>
