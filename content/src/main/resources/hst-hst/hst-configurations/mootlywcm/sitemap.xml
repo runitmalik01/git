@@ -3194,6 +3194,26 @@
       <sv:value>mootlypricingplan</sv:value>
     </sv:property>
   </sv:node>
+  
+<sv:node sv:name="vendorsignup">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:sitemapitem</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>4fba0e77-0798-4efc-8745-22ed100d4882</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+    <sv:value>hst:pages/vendor-signup</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:refId" sv:type="String">
+    <sv:value>vendorsignup</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:relativecontentpath" sv:type="String">
+    <sv:value>vendors</sv:value>
+  </sv:property>
+</sv:node>
+  
+  
   <sv:node sv:name="knowledgeportal">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
       <sv:value>hst:sitemapitem</sv:value>
