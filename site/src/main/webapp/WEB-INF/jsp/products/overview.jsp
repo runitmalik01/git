@@ -26,8 +26,8 @@
       <a href="${home}"><fmt:message key="products.overview.location.home"/></a> &gt;
     </li>
   </ol>
-
-  <h2><fmt:message key="products.overview.title"/></h2>
+<br />
+  <h2>What do we know, What we have learnt!! :- Abhishek </h2>
 
 </c:if>
 
@@ -37,20 +37,20 @@
     <%--@elvariable id="product" type="com.mootly.wcm.beans.Product"--%>
     <hst:link var="prdlink" hippobean="${product}"/>
     <ul class="product-item<c:if test="${preview}"> editable</c:if>">
-      <li class="image">
+    <!--    <li class="image">
         <c:if test="${not empty product.mainImage and not empty product.mainImage.smallThumbnail}">
           <a href="${fn:escapeXml(prdlink)}">
             <img src='<hst:link hippobean="${product.mainImage.smallThumbnail}"/>' alt='${fn:escapeXml(product.mainImage.alt)}'/>
           </a>
         </c:if>
-      </li>
+      </li>-->
       <c:if test="${preview}">
         <li><hst:cmseditlink hippobean="${product}"/></li>
       </c:if>
       <li class="title"><a href="${fn:escapeXml(prdlink)}"><c:out value="${product.title}"/></a></li>
-      <li class="${reseller ? 'nonresellerprice' : 'price'}">
+      <!--  <li class="${reseller ? 'nonresellerprice' : 'price'}">
         <a href="${fn:escapeXml(prdlink)}"><fmt:formatNumber value="${product.price}" type="currency"/></a> |
-      </li>
+      </li>-->
       <fmt:formatNumber value="${product.rating * 10}" var="ratingStyle" pattern="#0"/>
       <li class="rating stars-${ratingStyle}"><a href="${fn:escapeXml(prdlink)}"><c:out value="${product.rating}"/></a>
       </li>
