@@ -16,58 +16,46 @@ ValueListService objValueListService = ValueListServiceImpl.getInstance();
 TreeMap objTreeMapCountries = (TreeMap) objValueListService.getDtaaCountries();
 request.setAttribute("objTreeMapCountries", objTreeMapCountries);
 
-
 %>
-
-
 <hst:actionURL var="actionUrl" />
-<div align="center" >
-
-
-		<b>LESS: REBATE</b>
-</div>
 <form id="frmrebate" action="${actionUrl}" method="post">
-<div class="yui3-bd" align="center">
-	<table>
-		<tr height="30px">
-			<td class="label"><fmt:message key="rebate.contry.user.earning" /></td>
-			<td class="input">
-			<select name="userCountry" id="userCountry">
+
+<fieldset>
+				<legend style="color: black">LESS: REBATE</legend>
+<div class="row-fluid show-grid" >
+	
+		<div class="span4"> <div class="rowlabel">
+			<label for="userCountry"><small><fmt:message key="rebate.contry.user.earning" /></small></label></div>
+				<div class="rowlabel"><select name="userCountry" id="userCountry">
 			<c:forEach var="countries" items="${objTreeMapCountries}">
 			<option value="${countries.value}">${countries.value}</option>
 			</c:forEach>
 			
-			</select>
-				
-				</td>
-				
-		<tr height="30px">
-			<td class="label"><fmt:message key="rebate.contry.total.earning" /></td>
-			<td class="input"><input id="incomeForeignCountry" name="incomeForeignCountry" 
-					 maxlength="14" class="numberinput" /></td>
-		</tr>
-		<tr height="30px">
-			<td class="label"><fmt:message key="rebate.total.tax.paid" /></td>
-			<td class="input"><input id="taxPaidForeignCountry"
-				name="taxPaidForeignCountry"  maxlength="14"
-				 /></td>
-		</tr>
-		<tr height="30px">
-			<td class="label"><fmt:message key="rebate.section90.required" /></td>
-			<td class="input"><input id="txttotaltax" name="txttotaltax " value="" readonly="readonly"
-				maxlength="14"  /></td>
-		</tr>
-		<tr height="30px">
-			<td class="label"><fmt:message key="rebate.section91.required" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-			<td class="input"><input id="section91" name="section91" 
-				maxlength="14"  /></td>
-		</tr>
-		
-		
-			</table>
-</div>
+			</select></div></div>
+		<div class="span4"> <div class="rowlabel">
+		<label for="incomeForeignCountry"><small><fmt:message key="rebate.contry.total.earning" /></small></label></div>
+			<div class="rowlabel"><input id="incomeForeignCountry" name="incomeForeignCountry" maxlength="14" class="numberinput" value="${parentBean.incomeForeignCountry}"/></div>
+		</div>
+		<div class="span4"> <div class="rowlabel">
+			<label for="taxPaidForeignCountry"><small><fmt:message key="rebate.total.tax.paid" /></small></label></div>
+			<div class="rowlabel"><input id="taxPaidForeignCountry" name="taxPaidForeignCountry"  maxlength="14" value="${parentBean.taxPaidForeignCountry}"/></div>
+		</div></div>
+		<div class="row-fluid show-grid" ><div class="span4"> <div class="rowlabel">
+			<label for="txttotaltax"><small><fmt:message key="rebate.section90.required" /></small></label></div>
+			<div class="rowlabel"><input id="txttotaltax" name="txttotaltax " value="" readonly="readonly" maxlength="14" value="${parentBean.txttotaltax}"/></div>
+			</div>
+	<div class="span4"> <div class="rowlabel">
+			<label for="section91"><small><fmt:message key="rebate.section91.required" /></small></label></div>
+			<div class="rowlabel"><input id="section91" name="section91" maxlength="14" value="${parentBean.section91}" /></div>
+		</div>
+		</div>
+</fieldset>
+<div class="row-fluid show-grid">
+<div class="span4 offset8 decimal">
 <a href="${redirectURLToSamePage}" class="button olive">Cancel</a>
 <input type="submit" class="button orange" value="Save">
+</div>
+</div>
 </form>
 		
 <res:calc screenCalc="rebatesCalculation" formId="frmrebate"></res:calc>
