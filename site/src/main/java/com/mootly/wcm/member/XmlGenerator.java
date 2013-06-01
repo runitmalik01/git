@@ -368,10 +368,12 @@ public class XmlGenerator extends ITReturnComponent {
 		Map<String,Object> resultMap = ScreenCalculatorService.getScreenCalculations("xmlCalculation.js", request.getParameterMap(), totalMapForJS);
 		//ITR1 Tax Computation (without calculation) with null values
 		itr1TaxComputation.setTotalTaxPayable(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMap.get("txtTax").toString())));
+		log.info("total tax payable"+indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMap.get("txtTax").toString())));
 		itr1TaxComputation.setSurchargeOnTaxPayable(resultMap.get("txtsurcharge"));
-		itr1TaxComputation.setEducationCess(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMap.get("txtHEduCess").toString())));
+		itr1TaxComputation.setEducationCess(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMap.get("txtEduCess").toString())));
 		itr1TaxComputation.setGrossTaxLiability(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMap.get("txttotaltax").toString())));
-
+        log.info("gross tax liability"+indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMap.get("txttotaltax").toString())));
+		
 		BigInteger Relief89 =new BigInteger ("0");
 		BigInteger Relief89Total =new BigInteger ("0");
 		if( formSixteenDocument!=null){
