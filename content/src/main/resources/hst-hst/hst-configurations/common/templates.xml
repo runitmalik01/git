@@ -2807,4 +2807,16 @@
       <sv:value>jsp/member/review.jsp</sv:value>
     </sv:property>
   </sv:node>
+  <sv:node sv:name="member.attachment">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>fd048f0e-e379-411d-8efc-32fa540b22c7</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:containers" sv:type="String"/>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/member/docattach.jsp</sv:value>
+    </sv:property>
+  </sv:node>
 </sv:node>
