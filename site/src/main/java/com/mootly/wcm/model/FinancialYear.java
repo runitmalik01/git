@@ -15,7 +15,7 @@ public enum FinancialYear {
 	TwentyForteen(2014,false),
 	TwentyFifteen(2015,false),
 	UNKNOWN;
-	
+
 	int startYear;
 	int endYear;
 	String displayName;
@@ -26,88 +26,108 @@ public enum FinancialYear {
 	GregorianCalendar dateEndFinancialYear;
 	Integer assessmentYear;
 	GregorianCalendar dueDate;
-	
+
 	boolean isActive = true;
 	boolean isPastDue = false;
-	
-	
+
+
 	FinancialYear() {
 	}
-	
+
 	FinancialYear(int startYear,boolean isActive) {
 		this.startYear = startYear;
 		this.isActive = isActive;
-		
+
 		this.endYear = startYear + 1;
-		
+
 		this.startAssessmentYear = startYear + 1;
 		this.endAssessmentYear = startYear + 2;
-		
+
 		this.displayName = this.startYear + "-" + endYear;
 		this.displayAssessmentYear = this.startAssessmentYear + "-" + this.endAssessmentYear;
-		
+
 		this.dateStartFinancialYear = new GregorianCalendar(startYear, 03, 01);
 		this.dateEndFinancialYear = new GregorianCalendar(endYear, 04, 30);
-		
+
 		this.assessmentYear = endYear;
-		
+
 	}
-	
+
 	public String toString() {
 		return displayName;
 	}
-	
-	
+
+
 	public int getAgeInYears(Date dateOfBirth) {
 	    Calendar dob = Calendar.getInstance();
 
 	    dob.setTime(dateOfBirth);
 
-	    if (dob.after(dateEndFinancialYear)) 
+	    if (dob.after(dateEndFinancialYear))
 	    {
 	        throw new IllegalArgumentException("Can't be born in the future");
 	    }
 
 	    int age = dateEndFinancialYear.get(Calendar.YEAR) - dob.get(Calendar.YEAR);
 
-	    if (dateEndFinancialYear.get(Calendar.DAY_OF_YEAR) < dob.get(Calendar.DAY_OF_YEAR)) 
+	    if (dateEndFinancialYear.get(Calendar.DAY_OF_YEAR) < dob.get(Calendar.DAY_OF_YEAR))
 	    {
 	        age--;
 	    }
 
 	    return age;
 	}
-	
+
 	public boolean isSeniorCitizen(Date dateOfBirth) {
 	    Calendar dob = Calendar.getInstance();
 
 	    dob.setTime(dateOfBirth);
 
-	    if (dob.after(dateEndFinancialYear)) 
+	    if (dob.after(dateEndFinancialYear))
 	    {
 	        throw new IllegalArgumentException("Can't be born in the future");
 	    }
 
 	    int age = dateEndFinancialYear.get(Calendar.YEAR) - dob.get(Calendar.YEAR);
 
-	    if (dateEndFinancialYear.get(Calendar.DAY_OF_YEAR) < dob.get(Calendar.DAY_OF_YEAR)) 
+	    if (dateEndFinancialYear.get(Calendar.DAY_OF_YEAR) < dob.get(Calendar.DAY_OF_YEAR))
 	    {
 	        age--;
 	    }
 
 	    return (age >=60 ? true : false);
 	}
-	
+
+	public boolean isSuperSeniorCitizen(Date dateOfBirth) {
+	    Calendar dob = Calendar.getInstance();
+
+	    dob.setTime(dateOfBirth);
+
+	    if (dob.after(dateEndFinancialYear))
+	    {
+	        throw new IllegalArgumentException("Can't be born in the future");
+	    }
+
+	    int age = dateEndFinancialYear.get(Calendar.YEAR) - dob.get(Calendar.YEAR);
+
+	    if (dateEndFinancialYear.get(Calendar.DAY_OF_YEAR) < dob.get(Calendar.DAY_OF_YEAR))
+	    {
+	        age--;
+	    }
+
+	    return (age >=80 ? true : false);
+	}
+
 	public GregorianCalendar getDueDate(ITRForm itrForm) {
 		GregorianCalendar gc = null;
 		switch (itrForm) {
-			case ITR1: 
+			case ITR1:
 				gc = new GregorianCalendar(dateEndFinancialYear.get(GregorianCalendar.YEAR),07,31);
 				break;
 		}
 		return gc;
 	}
-	
+
 	public boolean isPastDue(ITRForm itrForm, GregorianCalendar filingDate) {
 		GregorianCalendar dueDate = getDueDate(itrForm);
 		if (dueDate == null) return false;
@@ -118,12 +138,12 @@ public enum FinancialYear {
 			return false;
 		}
 	}
-	
+
 	public boolean isPastDue(ITRForm itrForm) {
 		GregorianCalendar dueDate = new GregorianCalendar();
 		return isPastDue(itrForm,dueDate);
 	}
-	
+
 	public FilingSection getFilingSection (ITRForm itrForm,ITReturnType itReturnType) {
 		GregorianCalendar dueDate = new GregorianCalendar();
 		boolean isPastDue = isPastDue(itrForm,dueDate);
@@ -137,7 +157,7 @@ public enum FinancialYear {
 		}
 		return FilingSection.UNKNOWN;
 	}
-	
+
 	public static FinancialYear getByDisplayName(String displayName) {
 		if (displayName == null) return UNKNOWN;
 		for (FinancialYear aYear:FinancialYear.values()) {
@@ -147,7 +167,7 @@ public enum FinancialYear {
 		}
 		return UNKNOWN;
 	}
-	
+
 	public static FinancialYear getByAssessmentYear(String displayAssessmentYear) {
 		if (displayAssessmentYear == null) return UNKNOWN;
 		for (FinancialYear aYear:FinancialYear.values()) {
@@ -157,11 +177,11 @@ public enum FinancialYear {
 		}
 		return UNKNOWN;
 	}
-	
+
 	public boolean getActive() {
 		return isActive;
 	}
-	
+
 	public boolean isActive() {
 		return isActive;
 	}
