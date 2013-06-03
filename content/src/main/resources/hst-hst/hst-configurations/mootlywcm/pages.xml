@@ -1635,142 +1635,101 @@
       </sv:node>
     </sv:node>
   </sv:node>
-  <sv:node sv:name="products-overview">
+
+<sv:node sv:name="products-overview">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:component</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>c61295af-df80-4a85-84f2-c95311f80023</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:referencecomponent" sv:type="String">
+    <sv:value>hst:pages/standardpage</sv:value>
+  </sv:property>
+  <sv:node sv:name="main">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
       <sv:value>hst:component</sv:value>
     </sv:property>
     <sv:property sv:name="jcr:uuid" sv:type="String">
-      <sv:value>c61295af-df80-4a85-84f2-c95311f80023</sv:value>
+      <sv:value>6b923ff8-0603-4812-8e7d-067916ad9a75</sv:value>
     </sv:property>
-    <sv:property sv:name="hst:referencecomponent" sv:type="String">
-      <sv:value>hst:pages/standardpage</sv:value>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>products.main</sv:value>
     </sv:property>
-    <sv:node sv:name="main">
+    <sv:node sv:name="content">
       <sv:property sv:name="jcr:primaryType" sv:type="Name">
         <sv:value>hst:component</sv:value>
       </sv:property>
       <sv:property sv:name="jcr:uuid" sv:type="String">
-        <sv:value>6b923ff8-0603-4812-8e7d-067916ad9a75</sv:value>
+        <sv:value>1ddbb849-7611-4b3b-a578-824c247afaed</sv:value>
       </sv:property>
-      <sv:property sv:name="hst:template" sv:type="String">
-        <sv:value>products.main</sv:value>
+      <sv:property sv:name="hst:referencecomponent" sv:type="String">
+        <sv:value>hst:components/productsoverview</sv:value>
       </sv:property>
-      <sv:node sv:name="content">
+    </sv:node>
+    <sv:node sv:name="leftnav">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>hst:component</sv:value>
+      </sv:property>
+      <sv:property sv:name="jcr:uuid" sv:type="String">
+        <sv:value>097a72f2-4eb8-4b1e-ad9d-460d5ad17b19</sv:value>
+      </sv:property>
+      <sv:property sv:name="hst:referencecomponent" sv:type="String">
+        <sv:value>hst:components/productleftnav</sv:value>
+      </sv:property>
+      <sv:node sv:name="boxes-left">
         <sv:property sv:name="jcr:primaryType" sv:type="Name">
-          <sv:value>hst:component</sv:value>
+          <sv:value>hst:containercomponent</sv:value>
         </sv:property>
         <sv:property sv:name="jcr:uuid" sv:type="String">
-          <sv:value>1ddbb849-7611-4b3b-a578-824c247afaed</sv:value>
+          <sv:value>b1c5da45-b69c-4229-be00-595ec1e6775f</sv:value>
         </sv:property>
-        <sv:property sv:name="hst:referencecomponent" sv:type="String">
-          <sv:value>hst:components/productsoverview</sv:value>
+        <sv:property sv:name="hst:xtype" sv:type="String">
+          <sv:value>HST.vBox</sv:value>
         </sv:property>
-      </sv:node>
-      <sv:node sv:name="leftnav">
-        <sv:property sv:name="jcr:primaryType" sv:type="Name">
-          <sv:value>hst:component</sv:value>
-        </sv:property>
-        <sv:property sv:name="jcr:uuid" sv:type="String">
-          <sv:value>097a72f2-4eb8-4b1e-ad9d-460d5ad17b19</sv:value>
-        </sv:property>
-        <sv:property sv:name="hst:referencecomponent" sv:type="String">
-          <sv:value>hst:components/productleftnav</sv:value>
-        </sv:property>
-        <sv:node sv:name="boxes-left">
+        <sv:node sv:name="pageactions">
           <sv:property sv:name="jcr:primaryType" sv:type="Name">
-            <sv:value>hst:containercomponent</sv:value>
+            <sv:value>hst:containeritemcomponent</sv:value>
           </sv:property>
           <sv:property sv:name="jcr:uuid" sv:type="String">
-            <sv:value>b1c5da45-b69c-4229-be00-595ec1e6775f</sv:value>
+            <sv:value>82a89c76-0ce4-40e5-aa5e-1521e49bc36e</sv:value>
+          </sv:property>
+          <sv:property sv:name="hst:template" sv:type="String">
+            <sv:value>standard.main.left.pageactions</sv:value>
           </sv:property>
           <sv:property sv:name="hst:xtype" sv:type="String">
-            <sv:value>HST.vBox</sv:value>
+            <sv:value>HST.Item</sv:value>
           </sv:property>
-          <sv:node sv:name="pageactions">
-            <sv:property sv:name="jcr:primaryType" sv:type="Name">
-              <sv:value>hst:containeritemcomponent</sv:value>
-            </sv:property>
-            <sv:property sv:name="jcr:uuid" sv:type="String">
-              <sv:value>82a89c76-0ce4-40e5-aa5e-1521e49bc36e</sv:value>
-            </sv:property>
-            <sv:property sv:name="hst:template" sv:type="String">
-              <sv:value>standard.main.left.pageactions</sv:value>
-            </sv:property>
-            <sv:property sv:name="hst:xtype" sv:type="String">
-              <sv:value>HST.Item</sv:value>
-            </sv:property>
-          </sv:node>
-          <sv:node sv:name="simpledocument">
-            <sv:property sv:name="jcr:primaryType" sv:type="Name">
-              <sv:value>hst:containeritemcomponent</sv:value>
-            </sv:property>
-            <sv:property sv:name="jcr:uuid" sv:type="String">
-              <sv:value>997ce548-b52b-4618-bec2-5d503ddd704a</sv:value>
-            </sv:property>
-            <sv:property sv:name="hst:componentclassname" sv:type="String">
-              <sv:value>com.mootly.wcm.components.common.SimpleDocument
+        </sv:node>
+        <sv:node sv:name="simpledocument">
+          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+            <sv:value>hst:containeritemcomponent</sv:value>
+          </sv:property>
+          <sv:property sv:name="jcr:uuid" sv:type="String">
+            <sv:value>997ce548-b52b-4618-bec2-5d503ddd704a</sv:value>
+          </sv:property>
+          <sv:property sv:name="hst:componentclassname" sv:type="String">
+            <sv:value>com.mootly.wcm.components.common.SimpleDocument
 							</sv:value>
-            </sv:property>
-            <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
-              <sv:value>documentlocation</sv:value>
-            </sv:property>
-            <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
-              <sv:value>common/homepage-intro</sv:value>
-            </sv:property>
-            <sv:property sv:name="hst:template" sv:type="String">
-              <sv:value>common.simpledocument</sv:value>
-            </sv:property>
-            <sv:property sv:name="hst:xtype" sv:type="String">
-              <sv:value>HST.Item</sv:value>
-            </sv:property>
-          </sv:node>
-        </sv:node>
-      </sv:node>
-      <sv:node sv:name="right">
-        <sv:property sv:name="jcr:primaryType" sv:type="Name">
-          <sv:value>hst:component</sv:value>
-        </sv:property>
-        <sv:property sv:name="jcr:uuid" sv:type="String">
-          <sv:value>b3f43e5d-026c-46ef-9ec8-72d35b5086c5</sv:value>
-        </sv:property>
-        <sv:property sv:name="hst:componentclassname" sv:type="String">
-          <sv:value>com.mootly.wcm.components.common.FacetNavigation
-					</sv:value>
-        </sv:property>
-        <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
-          <sv:value>facetnav.location</sv:value>
-        </sv:property>
-        <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
-          <sv:value>products/facetedproducts</sv:value>
-        </sv:property>
-        <sv:property sv:name="hst:template" sv:type="String">
-          <sv:value>products.facetnav</sv:value>
-        </sv:property>
-        <sv:node sv:name="suggestproduct">
-          <sv:property sv:name="jcr:primaryType" sv:type="Name">
-            <sv:value>hst:component</sv:value>
           </sv:property>
-          <sv:property sv:name="jcr:uuid" sv:type="String">
-            <sv:value>a7e54cf5-571b-4668-8d0a-e7b88602f786</sv:value>
+          <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+            <sv:value>documentlocation</sv:value>
           </sv:property>
-          <sv:property sv:name="hst:referencecomponent" sv:type="String">
-            <sv:value>hst:components/suggestproduct</sv:value>
+          <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+            <sv:value>common/homepage-intro</sv:value>
           </sv:property>
-        </sv:node>
-        <sv:node sv:name="boxes-right">
-          <sv:property sv:name="jcr:primaryType" sv:type="Name">
-            <sv:value>hst:containercomponent</sv:value>
-          </sv:property>
-          <sv:property sv:name="jcr:uuid" sv:type="String">
-            <sv:value>ecd39249-fc26-4da4-a5e4-e677b34d464c</sv:value>
+          <sv:property sv:name="hst:template" sv:type="String">
+            <sv:value>common.simpledocument</sv:value>
           </sv:property>
           <sv:property sv:name="hst:xtype" sv:type="String">
-            <sv:value>HST.vBox</sv:value>
+            <sv:value>HST.Item</sv:value>
           </sv:property>
         </sv:node>
       </sv:node>
     </sv:node>
   </sv:node>
+</sv:node>
+
   <sv:node sv:name="product-detail">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
       <sv:value>hst:component</sv:value>
