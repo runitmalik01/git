@@ -83,7 +83,7 @@
 									</c:when>
 									<c:otherwise>
 									<w4india:inr value="${ theForm.ITR1IncomeDeductions.totalIncomeOfHP}"/>
-										
+
 									</c:otherwise>
 								</c:choose>
 								<span class="caret"></span>
@@ -123,9 +123,9 @@
 					<td colspan="1"><fmt:message key="gross.total.income"/></td>
 					<td  style="text-align:left">
 						<span class="decimal">
-									
+
 									<w4india:inr value="${theForm.ITR1IncomeDeductions.grossTotIncome}"/>
-								
+
 						</span>
 					</td>
 				</tr>
@@ -142,7 +142,7 @@
 									<c:when
 										test="${not empty theForm.ITR1IncomeDeductions.deductUndChapVIA.totalChapVIADeductions}">
 										<w4india:inr value="${theForm.ITR1IncomeDeductions.deductUndChapVIA.totalChapVIADeductions}"/>
-										
+
 									</c:when>
 									<c:otherwise>
 										<c:out value="Fill Now" />
@@ -161,13 +161,21 @@
 					<td colspan="1"><fmt:message key="taxable.income"/></td>
 					<td  style="text-align:left">
 						<span class="decimal">
-									
+
 									<w4india:inr value="${ theForm.ITR1IncomeDeductions.totalIncome}"/>
-									
+
 						</span>
 					</td>
 				</tr>
-				<!-- 
+				<tr>
+				<td colspan="1"><fmt:message key="income.tax"/></td>
+					<td  style="text-align:left">
+						<span class="decimal">
+									<w4india:inr value="${theForm.ITR1TaxComputation.totalTaxPayable }"/>
+						</span>
+					</td>
+				</tr>
+				<!--
 				<tr>
 					<td colspan="1"><fmt:message key="income.tax"/></td>
 					<td  style="text-align:left">
@@ -192,7 +200,6 @@
 						</span>
 					</td>
 				</tr>
-				 -->
 				<tr>
 					<td colspan="1"><fmt:message key="surcharge.tax"/></td>
 					<td  style="text-align:left">
@@ -201,8 +208,9 @@
 						</span>
 					</td>
 				</tr>
+				-->
 				<tr>
-					<td colspan="1"><fmt:message key="education.cess"/></td>
+				<td colspan="1"><fmt:message key="education.cess"/></td>
 					<td  style="text-align:left">
 						<span class="decimal">
 									<w4india:inr value="${theForm.ITR1TaxComputation.educationCess }"/>
@@ -217,7 +225,7 @@
 						</span>
 					</td>
 				</tr>
-				
+
 				<tr>
 					<td colspan="1"><fmt:message key="advance.tax.itr1" /></td>
 					<td>
@@ -257,7 +265,7 @@
 									<c:when
 										test="${not empty theForm.taxPaid.taxesPaid.selfAssessmentTax}">
 										<w4india:inr value="${theForm.taxPaid.taxesPaid.selfAssessmentTax}"/>
-										
+
 									</c:when>
 									<c:otherwise>
 										<c:out value="Fill Now" />
@@ -292,7 +300,7 @@
 									</c:when>
 									<c:otherwise>
 									<w4india:inr value="${bigTotalTdsOther}"/>
-										
+
 									</c:otherwise>
 								</c:choose>
 								<span class="caret"></span>
@@ -314,12 +322,20 @@
 					</td>
 				</tr>
 				<tr>
+					<td colspan="1"><fmt:message key="net.tax.liability"/></td>
+					<td  style="text-align:left">
+						<span class="decimal">
+									<w4india:inr value="${theForm.ITR1TaxComputation.netTaxLiability}"/>
+						</span>
+					</td>
+				</tr>
+				<tr>
 					<td colspan="1"><fmt:message key="relief.section.89"/></td>
 					<td  style="text-align:left">
 						<span class="decimal">
-						
+
 								<w4india:inr value="${theForm.ITR1TaxComputation.section89}"/>
-						
+
 						</span>
 					</td>
 				</tr>
@@ -331,13 +347,13 @@
 						</span>
 					</td>
 				</tr>
-				
+
 				<tr>
 					<td colspan="1"><fmt:message key="interest.under.section.234abc"/></td>
 					<td  style="text-align:left">
 						<span class="decimal">
 						<w4india:inr value="${theForm.ITR1TaxComputation.totalIntrstPay}"/>
-						<!-- 
+						<!--
 						<c:choose>
 							<c:when test="${theForm.ITR1TaxComputation.totalIntrstPay eq '0'}">
 								<a href="#myModalInterest" id="clickInterest" role="button" class="btn" data-toggle="modal" >
@@ -351,18 +367,18 @@
 						</span>
 					</td>
 				</tr>
-				
+
 				<tr class="success">
 					<td colspan="1"><b><fmt:message key="tax.payble.refund"/></b>
 					<td  style="text-align:left">
 						<span class="decimal">
-						
+
 								<w4india:inr value="${theForm.taxPaid.balTaxPayable}"/>
-							
+
 						</span>
 					</td>
 				</tr>
-				
+
 			</table>
 		</div>
 	</c:when>
@@ -380,7 +396,7 @@
 
 <%--
 <pre class="brush: xml">
- 	<c:out value="${xml}" escapeXml="true"/>	
+ 	<c:out value="${xml}" escapeXml="true"/>
 </pre>
 --%>
 
@@ -407,6 +423,6 @@
 			$("#showSummary,#showXml").click(function(){
 				window.location.href="${scriptName}?show=" + $(this).val() ;
 			});
-		});    
+		});
 </hst:element>
 <hst:headContribution element="${uiCustom}" category="jsInternal" />
