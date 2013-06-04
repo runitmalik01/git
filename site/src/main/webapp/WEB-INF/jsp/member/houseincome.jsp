@@ -108,11 +108,11 @@
 					</div>
 					<div class="row-fluid show-grid">
 						<div class="span4">
-							<div class="rowlabel">
+							<div class="rowlabel" id="idletout">
 								<label for="letout"><small>Is the property let out?</small></label>
 							</div>
 							<div>
-								<select name="letout" id="letout">
+								<select name="letout" id="letout" onChange="hideTanPan()"> 
 									<option value="">-Select-</option>
 									<c:forEach var="booleanCombo" items="${objHashMapBoolean}">
 										<option
@@ -124,17 +124,17 @@
 							</div>
 						</div>
 						<div class="span4">
-							<div class="rowlabel">
+							<div class="rowlabel" id="idtenantname">
 								<label for=""><small>Tenant Name</small> </label>
 							</div>
 							<div>
 								<input id="Tenant_name" name="Tenant_name" maxlength="75"
-									placeholder="Tenant Name" type="text"
+									placeholder="Tenant Name" type="text" 
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.tenant_name}"/></c:if>" />
 							</div>
 						</div>
 						<div class="span4">
-							<div class="rowlabel">
+							<div class="rowlabel" id="idtenantpan">
 								<label for=""><small>Tenant PAN</small> </label>
 							</div>
 							<div>
@@ -150,12 +150,13 @@
 								<label for=""><small>Is the property co-owned?</small> </label>
 							</div>
 							<div>
-								<select name="Coowned" id="coowned">
+								<select name="Coowned" id="coowned" onChange="hidecoOwner()">
 									<option value="">-Select-</option>
 									<c:forEach var="booleanCombo" items="${objHashMapBoolean}">
 										<option
 											<c:if test="${pageAction == 'EDIT_CHILD' && childBean.coowned == booleanCombo.value}">selected</c:if>
 											value="${booleanCombo.value}">${booleanCombo.value}</option>
+											
 									</c:forEach>
 								</select>
 							</div>
@@ -174,12 +175,13 @@
 						</div>
 					</div>
 				</fieldset>
-				<fieldset>
+				<fieldset id="coOwner">
 					<legend>
 						<abbr title="Is this property being owned by someone else">Ownership
 							Details</abbr>
 					</legend>
-					<div class="row-fluid show-grid">
+					
+					<div class="row-fluid show-grid" >
 						<div class="span1">
 							<div class="rowlabel decimal">
 								<label for=""><small>S.No</small> </label>
@@ -196,6 +198,7 @@
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.coownername1}"/></c:if>" />
 							</div>
 						</div>
+						<div>
 						<div class="span4">
 							<div class="rowlabel">
 								<label for=""><small>PAN of the Co-owner</small> </label>
@@ -316,6 +319,7 @@
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.share5}"/></c:if>" />
 							</div>
 						</div>
+					</div>
 					</div>
 				</fieldset>
 				<fieldset>
@@ -546,6 +550,33 @@
 		$('.letout_' + letout + '_v').show();
 		$('.letout_' + letout + '_h').hide();
 	}</c:if>
+	
 			</hst:element>
 <hst:headContribution element="${uiCustom}" category="jsInternal"/>
 <res:calc screenCalc="houseincome" formId="frmdataHouseIncome"></res:calc>
+<script type="text/javascript">
+function hideTanPan(){
+	var e=document.getElementById("letout");
+	var valueLetout = e.options[e.selectedIndex].value;
+		if(valueLetout == "No"){
+					$("#Tenant_pan").hide();
+					$("#Tenant_name").hide();
+					$("#idtenantname").hide();
+					$("#idtenantpan").hide();
+			}else{
+					$("#Tenant_pan").show();
+					$("#Tenant_name").show();
+					$("#idtenantname").show();
+					$("#idtenantpan").show();
+			}
+	}
+	function hidecoOwner(){
+		var d=document.getElementById("coowned");
+		var valuePropCoOwned = d.options[d.selectedIndex].value;
+		if(valuePropCoOwned=="Yes"){
+			$("#coOwner").show();
+		} else{
+			$("#coOwner").hide();
+		}
+	}
+	</script>
