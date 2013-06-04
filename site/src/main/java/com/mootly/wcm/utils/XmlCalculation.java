@@ -79,7 +79,7 @@ public class XmlCalculation {
 		FormSixteenDocument formSixteenDocument = (FormSixteenDocument) request.getAttribute(FormSixteenDocument.class.getSimpleName().toLowerCase());
 		HouseProperty houseProperty = (HouseProperty) request.getAttribute(HouseProperty.class.getSimpleName().toLowerCase());
 		OtherSourcesDocument otherSourcesDocument = (OtherSourcesDocument) request.getAttribute(OtherSourcesDocument.class.getSimpleName().toLowerCase());
-		IndianCurrencyHelper indianCurrencyHelper = new IndianCurrencyHelper(); 
+		IndianCurrencyHelper indianCurrencyHelper = new IndianCurrencyHelper();
 
 		//BigInteger salarytotal=new BigInteger("0");
 		long longsalarytotal=0;
@@ -93,8 +93,8 @@ public class XmlCalculation {
 		if( formSixteenDocument!=null){
 			if ( formSixteenDocument.getFormSixteenDetailList() != null && formSixteenDocument.getFormSixteenDetailList().size() > 0 ){
 				for(FormSixteenDetail formSixteenDetail:formSixteenDocument.getFormSixteenDetailList()){
-					if(formSixteenDetail.getGross_income_total()!=null){
-					GrossIncome=indianCurrencyHelper.bigIntegerRound(formSixteenDetail.getGross_income_total());
+					if(formSixteenDetail.getIncome_chargable_tax()!=null){
+					GrossIncome=indianCurrencyHelper.bigIntegerRound(formSixteenDetail.getIncome_chargable_tax());
 					GrossIncomeTotal=GrossIncomeTotal.add(GrossIncome);
 					}
 				}
@@ -107,7 +107,7 @@ public class XmlCalculation {
 		BigInteger TotalSalaryIncome=new BigInteger("0");
 		TotalSalaryIncome = GrossIncomeTotal.add(Penson);
 		longsalarytotal = TotalSalaryIncome.longValue();
-		
+
 		if(houseProperty!=null){
 			if (houseProperty.getHouseIncomeDetailList() != null && houseProperty.getHouseIncomeDetailList().size() > 0 ){
 				for(HouseIncomeDetail houseIncomeDetail: houseProperty.getHouseIncomeDetailList()){
