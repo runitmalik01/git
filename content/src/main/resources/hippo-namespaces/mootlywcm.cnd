@@ -304,6 +304,9 @@ orderable
 [mootlywcm:tdsfromsalarydocument] > hippostd:relaxed, mootlywcm:basedocument orderable
 
 
+[mootlywcm:vendorsignupdocument] > hippostd:relaxed, mootlywcm:basedocument orderable
+
+
 [mootlywcm:securitiesdetail] > hippo:compound, hippostd:relaxed orderable
 
 
