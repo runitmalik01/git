@@ -29,9 +29,11 @@ import static com.mootly.wcm.utils.Constants.NT_PERSONAL_INFO_LINK;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.jcr.NodeIterator;
 import javax.jcr.RepositoryException;
+import javax.jcr.Value;
 
 import org.hippoecm.hst.component.support.forms.FormMap;
 import org.hippoecm.hst.content.beans.ContentNodeBinder;
@@ -46,11 +48,12 @@ import com.mootly.wcm.annotations.TagAsTaxDataProvider;
 import com.mootly.wcm.annotations.TagAsTaxDataProvider.TaxDataProviderType;
 import com.mootly.wcm.beans.compound.DeductionDocumentDetail;
 import com.mootly.wcm.beans.compound.PersonalInformation;
+import com.mootly.wcm.beans.standard.FlexibleDocument;
 
 @SuppressWarnings("unused")
 @Node(jcrType = "mootlywcm:deductiondocument")
 @TagAsTaxDataProvider(type=TaxDataProviderType.INCOME)
-public class DeductionDocument extends BaseDocument implements ContentNodeBinder,FormMapFiller,CompoundChildUpdate {
+public class DeductionDocument extends FlexibleDocument implements ContentNodeBinder,FormMapFiller,CompoundChildUpdate {
 	final String PROP_DETAIL_BEAN="mootlywcm:deductiondocumentdetail";
 	private final static Logger log = LoggerFactory.getLogger(DeductionDocument.class); 
 
@@ -76,6 +79,7 @@ public class DeductionDocument extends BaseDocument implements ContentNodeBinder
 			throws ContentNodeBindingException {
 		// TODO Auto-generated method stub
 		try {
+			super.bindToNode(node);
 			DeductionDocument deductionDocument = (DeductionDocument) content;
 			NodeIterator nodeIterator = node.getNodes(PROP_DETAIL_BEAN);
         	if (nodeIterator != null) {
@@ -87,8 +91,9 @@ public class DeductionDocument extends BaseDocument implements ContentNodeBinder
         	if (deductionDocument.getDeductionDocumentDetailList() != null && deductionDocument.getDeductionDocumentDetailList().size() > 0 ){ 
         		for (DeductionDocumentDetail deductionDocumentDetail:deductionDocument.getDeductionDocumentDetailList()) {
         			if (!deductionDocumentDetail.isMarkedForDeletion()) {
-		                javax.jcr.Node html = node.addNode(PROP_DETAIL_BEAN, PROP_DETAIL_BEAN);
-		                deductionDocumentDetail.bindToNode(html); 
+		                javax.jcr.Node childNode = node.addNode(PROP_DETAIL_BEAN, PROP_DETAIL_BEAN);
+		                Map<String, Value>  vv = deductionDocumentDetail.getValueOfFlexFields();
+		                deductionDocumentDetail.bindToNode(childNode); 
         			}
         		}
         	}
@@ -111,6 +116,7 @@ public class DeductionDocument extends BaseDocument implements ContentNodeBinder
 	@Override
 	public void fill(FormMap formMap) {
 		// TODO Auto-generated method stub
+		super.fill(formMap);
 		if (formMap != null) {
 			
 		}
@@ -118,6 +124,7 @@ public class DeductionDocument extends BaseDocument implements ContentNodeBinder
 	
 	public <T extends HippoBean> void cloneBean(T sourceBean) {
 		//we know the source bean will be SalaryIncomeDocument but doesn't hurt to check
+		super.cloneBean(sourceBean);
 		DeductionDocument salaryIncomeDocument = (DeductionDocument) sourceBean;
 		
 		
@@ -134,9 +141,7 @@ public class DeductionDocument extends BaseDocument implements ContentNodeBinder
 		boolean found = false;
 		List<DeductionDocumentDetail> listOfChildren = getDeductionDocumentDetailList();
 		for (HippoBean o:listOfChildren) {
-			log.info( o.getCanonicalUUID() );
 			if (child.getCanonicalUUID() != null && child.getCanonicalUUID().equals(o.getCanonicalUUID())) {
-				log.info("GOT A MATCH");
 				DeductionDocumentDetail destination =(DeductionDocumentDetail) o;
 				DeductionDocumentDetail source  = (DeductionDocumentDetail) child;
 				destination.cloneBean(source);
@@ -162,9 +167,7 @@ public class DeductionDocument extends BaseDocument implements ContentNodeBinder
 		boolean found = false;
 		List<DeductionDocumentDetail> listOfChildren = getDeductionDocumentDetailList();
 		for (HippoBean o:listOfChildren) {
-			log.info( o.getCanonicalUUID() );
 			if (child.getCanonicalUUID() != null && child.getCanonicalUUID().equals(o.getCanonicalUUID())) {
-				log.info("GOT A MATCH");
 				DeductionDocumentDetail destination =(DeductionDocumentDetail) o;
 				DeductionDocumentDetail source  = (DeductionDocumentDetail) child;
 				destination.setMarkedForDeletion(true);

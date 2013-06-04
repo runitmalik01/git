@@ -52,12 +52,13 @@ import com.mootly.wcm.annotations.TagAsTaxDataProvider.TaxDataProviderType;
 import com.mootly.wcm.beans.BaseDocument;
 import com.mootly.wcm.beans.FormMapFiller;
 import com.mootly.wcm.beans.SalaryIncomeDocument;
+import com.mootly.wcm.beans.standard.FlexibleDocument;
 import com.mootly.wcm.utils.Constants;
 
 @SuppressWarnings("unused")
 @Node(jcrType = "mootlywcm:deductiondocumentdetail")
 @TagAsTaxDataProvider(type=TaxDataProviderType.INCOME)
-public class DeductionDocumentDetail extends HippoItem implements FormMapFiller {
+public class DeductionDocumentDetail extends FlexibleDocument implements FormMapFiller {
 	private final static Logger log = LoggerFactory.getLogger(DeductionDocumentDetail.class);
 	private String form16uuid;
 	private String section;
@@ -78,13 +79,6 @@ public class DeductionDocumentDetail extends HippoItem implements FormMapFiller 
 	private final String prop_flex_double ="mootlywcm:flex_field_double";
 	private final String prop_flex_docbase ="mootlywcm:flex_field_docbase";
 	private final String prop_form16_uuid ="mootlywcm:formsixteenuuid";
-
-	//flex_field_string
-	//flex_field_long
-	//flex_field_double
-	//flex_field_date
-	//flex_field_boolean
-	//flex_field_docbase
 
 	private final String prop_nt_ ="mootlywcm:maxallowed";
 
@@ -107,78 +101,15 @@ public class DeductionDocumentDetail extends HippoItem implements FormMapFiller 
 	}
 	public final Double getInvestment() {
 		if (investment == null) investment = getProperty(prop_investment);
+		if (investment == null) investment = 0D;
 		return investment;
 	}
 	public final Double getMaxAllowed() {
 		if (maxAllowed == null) maxAllowed = getProperty(prop_maxAllowed);
+		if (maxAllowed == null) maxAllowed =0D;
 		return maxAllowed;
 	}
-
-	/**
-	 * 
-	 * @return
-	 */
-	public Map<String, List<Value>> getValueOfFlexFields() {
-		if (valueOfFlexFields == null) {
-			valueOfFlexFields = new HashMap<String, List<Value>>();
-			try {
-				PropertyIterator propertyIterator = node.getProperties("flex_field_*");
-				while ( propertyIterator.hasNext()){
-					Property p = propertyIterator.nextProperty();
-					String fieldName = p.getName();
-					int ordOfTheField = fieldName.indexOf("flex_field_")+ "flex_field_".length(); 
-					String dataTypeAndOrd = fieldName.substring(ordOfTheField);
-					String[] splittingParts = dataTypeAndOrd.split("[_]");
-					if (splittingParts.length !=  2) {
-						log.warn(dataTypeAndOrd + " is not in the format of flex_field_string_0. Skipping..");
-						continue;
-					}
-					String fieldDataType = splittingParts[0];
-					String fieldOrd = splittingParts[1];
-					if (!valueOfFlexFields.containsKey(fieldDataType)) {
-						valueOfFlexFields.put (fieldDataType,new ArrayList<Value>());
-					}
-					valueOfFlexFields.get(fieldDataType).add(p.getValue());
-				}
-
-			} catch (RepositoryException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		return valueOfFlexFields;
-	}
-	/**
-	 * 
-	 * @param valueOfFlexFields
-	 */
-	public void setValueOfFlexFields(Map<String, List<Value>> valueOfFlexFields) {
-		this.valueOfFlexFields = valueOfFlexFields;
-	}
-	/**
-	 * Flex Fields will be used by this module to store variety of data including
-	 * string,calendar,long,
-	 * @param defaultValues
-	 * @return
-	 */
-	public final <T> T[] getFlexFields(T[] defaultValues) {
-		//the flex fields are defined as flex_field_string depending upon the class of the defaultValue
-		String propField = "mootlywcm:flex_field_" + defaultValues[0].getClass().getSimpleName().toLowerCase();
-		T[] propertyValues = getProperty(propField,defaultValues);
-		return propertyValues;
-	}
-
-	public final <T> T getFlexField(int ord,T[] defaultValues) {
-		//the flex fields are defined as flex_field_string depending upon the class of the defaultValue
-		T[] propertyValues = getFlexFields(defaultValues);
-		if (propertyValues != null && propertyValues.length > ord ) {
-			return propertyValues[ord];
-		}
-		else {
-			return null;
-		}
-	}
-
+	
 	public final void setSection(String section) {
 		this.section = section;
 	}
@@ -208,19 +139,11 @@ public class DeductionDocumentDetail extends HippoItem implements FormMapFiller 
 			throws ContentNodeBindingException {
 		// TODO Auto-generated method stub
 		try {
+			super.bindToNode(node);
 			node.setProperty(prop_section, getSection());
 			node.setProperty(prop_head, getHead());
 			node.setProperty(prop_investment, getInvestment());
 			node.setProperty(prop_maxAllowed, getMaxAllowed());
-			if (getValueOfFlexFields() != null) {
-				for (String keyOfDataType:getValueOfFlexFields().keySet()) {
-					String propName = "mootlywcm:flex_field_"+keyOfDataType;
-					Value[] arrayOfStringValues = getValueOfFlexFields().get(keyOfDataType).toArray(new Value[getValueOfFlexFields().get(keyOfDataType).size()]);
-					if (keyOfDataType.equals("string")) {
-						node.setProperty(propName, arrayOfStringValues);
-					}
-				}
-			}
 			node.setProperty(prop_form16_uuid, getForm16Uuid());
 		} catch (RepositoryException rex) {
 			log.error("Repository Exception while binding",rex);
@@ -229,12 +152,12 @@ public class DeductionDocumentDetail extends HippoItem implements FormMapFiller 
 	}
 	@Override
 	public void fill(FormMap formMap) {
+		super.fill(formMap);
 		// TODO Auto-generated method stub
 		if (log.isInfoEnabled()) {
 			log.info("Into the fill method");			
 		}
 		if (formMap == null) return;
-
 		if ( formMap.getField("section") != null) {
 			setSection(formMap.getField("section").getValue());
 		}
@@ -258,41 +181,7 @@ public class DeductionDocumentDetail extends HippoItem implements FormMapFiller 
 		else {
 			setMaxAllowed(0D);
 		}
-		ValueFactory vf = ValueFactoryImpl.getInstance();
-		Map<String,List<Value>> valueOfFlexFields = new HashMap<String, List<Value>>();
-		for (String fieldName:formMap.getFieldNames()){
-			if (log.isInfoEnabled()){
-				log.info("Flex Field check:" + fieldName);
-			}
-			//the format of the fieldname must be flex_field_string_0 flex_field_string_1 
-			if (!fieldName.startsWith("flex_field_")) continue;
-			int ordOfTheField = fieldName.indexOf("flex_field_")+ "flex_field_".length(); 
-			String dataTypeAndOrd = fieldName.substring(ordOfTheField);
-			String[] splittingParts = dataTypeAndOrd.split("[_]");
-			if (splittingParts.length !=  2) {
-				log.warn(dataTypeAndOrd + " is not in the format of flex_field_string_0. Skipping..");
-				continue;
-			}
-			String fieldDataType = splittingParts[0];
-			String fieldOrd = splittingParts[1];
-			List<Value> listOfValues = null;
-			if (!valueOfFlexFields.containsKey(fieldDataType)) {
-				valueOfFlexFields.put(fieldDataType, new ArrayList<Value>());
-			}
-			listOfValues = valueOfFlexFields.get(fieldDataType);
-			String v = formMap.getField(fieldName).getValue();
-			//if (listOfValues.get(Integer.valueOf(fieldOrd)) == null) listOfValues.add
-			//listOfValues.add(Integer.valueOf(fieldOrd), v);
-			int intFieldOrd =  Integer.valueOf(fieldOrd);
-			if (listOfValues.size() <= intFieldOrd) {
-				int loopMax = intFieldOrd - listOfValues.size();
-				for (int i=0;i<loopMax;i++) listOfValues.add(null);
-			}
-			listOfValues.add(intFieldOrd,vf.createValue(v));
-			//String fieldValue = formMap.getField(fieldName).getValue();
-		}
-		//valueOfFlexFields
-		setValueOfFlexFields(valueOfFlexFields);
+		
 		if ( formMap.getField("decuuidform16") != null) {
 			log.info("this is uuid of form"+formMap.getField("decuuidform16").getValue());
 			if(formMap.getField("decuuidform16").getValue()!=null)
@@ -301,12 +190,12 @@ public class DeductionDocumentDetail extends HippoItem implements FormMapFiller 
 	}
 
 	public <T extends HippoBean> void cloneBean(T sourceBean) {
+		super.cloneBean(sourceBean);
 		DeductionDocumentDetail deductionDocumentDetail = (DeductionDocumentDetail) sourceBean;
 		setSection(deductionDocumentDetail.getSection());
 		setHead(deductionDocumentDetail.getHead());
 		setInvestment(deductionDocumentDetail.getInvestment());
 		setMaxAllowed(deductionDocumentDetail.getMaxAllowed());
-		setValueOfFlexFields(deductionDocumentDetail.getValueOfFlexFields());
 		setForm16Uuid(deductionDocumentDetail.getForm16Uuid());
 	}
 }

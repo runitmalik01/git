@@ -57,8 +57,10 @@ import com.mootly.wcm.beans.MemberPersonalInformation;
 import com.mootly.wcm.beans.OtherSourcesDocument;
 import com.mootly.wcm.beans.SalaryIncomeDocument;
 import com.mootly.wcm.beans.compound.DeductionDocumentDetail;
+import com.mootly.wcm.beans.compound.FormSixteenDetail;
 import com.mootly.wcm.beans.compound.HouseIncomeDetail;
 import com.mootly.wcm.components.ITReturnComponent;
+import com.mootly.wcm.components.ITReturnScreen.PAGE_ACTION;
 import com.mootly.wcm.model.DoneeWithPan;
 import com.mootly.wcm.model.FinancialYear;
 import com.mootly.wcm.model.deduction.DeductionHead;
@@ -75,7 +77,7 @@ import com.mootly.wcm.utils.UrlUtility;
 @RequiredBeans(requiredBeans={MemberPersonalInformation.class})
 @ValueListBeans(paths={"deduction-sections-${financialYear}","deduction-section-heads-${financialYear}","deduction-section-maxallowed-${financialYear}"},
 accessKey={"deduction_sections","deduction_section_heads","deduction_section_maxallowed"})
-@FormFields(fieldNames={"head","investment","flex_field_string_0","flex_field_string_1","flex_field_string_2","flex_field_string_3","flex_field_string_4","flex_field_string_5","flex_field_string_6","flex_field_string_7","flex_field_string_8","decuuidform16"})
+@FormFields(fieldNames={"head","investment","decuuidform16","flex_string_doneeName","flex_string_doneePAN","flex_string_doneeFlatFloorBuilding","flex_string_doneePAN","flex_string_doneeRoadStreet","flex_string_doneeAreaLocality","flex_string_doneeCityTownDistrict","flex_string_doneeState","flex_string_doneePostalCode"})
 @RequiredFields(fieldNames={"head","investment"})
 @DataTypeValidationFields(fieldNames={"investment"},dataTypes={DataTypeValidationType.DECIMAL})
 public class Deduction extends ITReturnComponent {
@@ -103,6 +105,15 @@ public class Deduction extends ITReturnComponent {
 		Map<String, Double> totalOfSavedData = new HashMap<String, Double>();
 		Map<String, Double> totalOfSavedDataPerHead = new HashMap<String, Double>();
 		super.doBeforeRender(request, response);
+		Boolean form16InEditMode = Boolean.FALSE;
+		String form16UniqueUUID = null;
+		//if (getPageAction() != null && getPageAction().equals(PAGE_ACTION.EDIT_CHILD)) {
+			//FormSixteenDetail form16Detail=(FormSixteenDetail) getChildBean();
+			form16InEditMode = (Boolean) request.getRequestContext().getAttribute("form16InEditMode");
+			form16UniqueUUID = (String) request.getRequestContext().getAttribute("form16UniqueUUID");
+		//}
+		if ( form16InEditMode == null ) form16InEditMode = Boolean.FALSE;
+		
 		request.setAttribute("deductionListService", deductionListService);
 		if (deductionListService != null && deductionListService.getDeductionSectionMap() != null &&  deductionListService.getDeductionSectionMap().containsKey(getFinancialYear())) {
 			deductionSectionMap = deductionListService.getDeductionSectionMap().get(getFinancialYear());
@@ -117,6 +128,11 @@ public class Deduction extends ITReturnComponent {
 				Map<String, List<DeductionDocumentDetail>> savedData = new HashMap<String, List<DeductionDocumentDetail>>();
 
 				for (DeductionDocumentDetail deductionDocumentDetail:deductionDocumentDetailList) {
+					if (form16InEditMode && form16UniqueUUID != null) {
+						if (deductionDocumentDetail.getForm16Uuid() != null && !deductionDocumentDetail.getForm16Uuid().equals(form16UniqueUUID)) {
+							continue;
+						}
+					}
 					if (!savedData.containsKey(deductionDocumentDetail.getSection())) {
 						savedData.put(deductionDocumentDetail.getSection(), new ArrayList<DeductionDocumentDetail>());
 					}

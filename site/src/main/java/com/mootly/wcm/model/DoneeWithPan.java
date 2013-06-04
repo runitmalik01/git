@@ -1,5 +1,7 @@
 package com.mootly.wcm.model;
 
+import javax.jcr.Value;
+
 import org.hippoecm.hst.component.support.forms.FormMap;
 
 import com.mootly.wcm.beans.compound.DeductionDocumentDetail;
@@ -75,14 +77,16 @@ public class DoneeWithPan {
 		if (deductionDocumentDetail == null) return null;
 		
 		DoneeWithPan dp = new DoneeWithPan();
-		String doneeName = deductionDocumentDetail.getFlexField(0, new String[]{""});
-		String doneePAN = deductionDocumentDetail.getFlexField(1, new String[]{""});
-		String doneeFlatFloorBuilding = deductionDocumentDetail.getFlexField(2, new String[]{""});
-		String doneeRoadStreet = deductionDocumentDetail.getFlexField(3, new String[]{""});
-		String doneeAreaLocality = deductionDocumentDetail.getFlexField(4, new String[]{""});
-		String doneeCityTownDistrict = deductionDocumentDetail.getFlexField(5, new String[]{""});
-		String doneeState = deductionDocumentDetail.getFlexField(6, new String[]{""});
-		String doneePostalCode = deductionDocumentDetail.getFlexField(7, new String[]{""});
+		
+		String doneeName = deductionDocumentDetail.getFlexField("flex_string_doneeName","");
+		String doneePAN = deductionDocumentDetail.getFlexField("flex_string_doneePAN","");
+		String doneeFlatFloorBuilding = deductionDocumentDetail.getFlexField("flex_string_doneeFlatFloorBuilding","");
+		
+		String doneeRoadStreet = deductionDocumentDetail.getFlexField("flex_string_doneeRoadStreet","");
+		String doneeAreaLocality = deductionDocumentDetail.getFlexField("flex_string_doneeAreaLocality","");
+		String doneeCityTownDistrict = deductionDocumentDetail.getFlexField("flex_string_doneeCityTownDistrict","");
+		String doneeState = deductionDocumentDetail.getFlexField("flex_string_doneeState","");
+		String doneePostalCode = deductionDocumentDetail.getFlexField("flex_string_doneePostalCode","");
 		
 		dp.setDoneeName(doneeName);
 		dp.setDoneePAN(doneePAN);

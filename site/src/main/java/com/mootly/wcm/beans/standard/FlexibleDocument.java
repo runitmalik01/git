@@ -135,22 +135,22 @@ public class FlexibleDocument extends BaseDocument implements FormMapFiller {
 	 */
 	public Map<String, Value> getValueOfFlexFields() {
 		if (valueOfFlexFields == null) {
-			try {				
-				Map<String,Object> props = getProperty();
-				PropertyIterator propertyIterator = node.getProperties();
-				while(propertyIterator.hasNext()) {
-					Property property = propertyIterator.nextProperty();
-					log.info(property.getName());
-					if (property.getName().startsWith(FLEX_FIELD_PRFIX)) {						
-						valueOfFlexFields.put(property.getName(), property.getValue());
+			valueOfFlexFields = new HashMap<String, Value>();
+			Map<String,Object> props = getProperty();
+			//PropertyIterator propertyIterator = node.getProperties();
+			for (String propertyName:props.keySet()) {
+				if (propertyName.startsWith(FLEX_FIELD_PRFIX)) {		
+					try {
+						String fieldDataType = getDataTypeFromFieldName(propertyName);
+						Value aValue = null;
+						aValue = getValueFromDataType(fieldDataType, (String)props.get(propertyName));
+						if (aValue != null) valueOfFlexFields.put(propertyName,aValue);
+					} catch (ParseException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
 					}
 				}
-			} catch (RepositoryException e) {
-				// TODO Auto-generated catch block
-				log.error("Error in getValueOfFlexFields",e);
-				e.printStackTrace();
 			}
-			
 		}
 		return valueOfFlexFields;
 	}

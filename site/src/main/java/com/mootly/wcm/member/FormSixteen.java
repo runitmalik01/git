@@ -48,7 +48,11 @@ public class FormSixteen extends ITReturnComponent {
 	@Override
 	public void doBeforeRender(HstRequest request, HstResponse response) {
 		super.doBeforeRender(request, response);	
-
+		if (getPageAction() != null && getPageAction().equals(PAGE_ACTION.EDIT_CHILD) && getChildBean() != null) {
+			FormSixteenDetail form16Detail=(FormSixteenDetail) getChildBean();
+			request.getRequestContext().setAttribute("form16InEditMode",Boolean.TRUE);
+			request.getRequestContext().setAttribute("form16UniqueUUID",form16Detail.getForm16Uuid());
+		}
 		//request.getRequestContext().getResolvedSiteMapItem().getHstSiteMapItem().toString();
 		// this code is check to open the partial submit form with check that action is what
 		if(request.getParameter("partialSubmit")!=null){
