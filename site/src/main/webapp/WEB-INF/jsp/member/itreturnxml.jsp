@@ -305,14 +305,14 @@
 						</div>
 					</td>
 				</tr>
-			<%-- 	<tr>
+			    <tr>
 					<td colspan="1"><fmt:message key="advance.tdssalary.itr1" /></td>
 					<td  style="text-align:left">
 						<span class="decimal">
 									<w4india:inr value="${bigTotalTdsSalary}"/>
 						</span>
 					</td>
-				</tr> --%>
+				</tr>
 				<tr>
 					<td colspan="1">
 					<a style="color:buttontext;" href="<c:out value="${scriptName}"/>?selectedItrTab=<%=ITRTab.TAX_TDS_OTHERS%>">
