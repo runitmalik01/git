@@ -15,8 +15,8 @@
 
 	<h4>Interest under Section 234 A B C</h4>
 		<form id="frmdataInterest" action="${actionUrl}" name="interest" method="post">
-		
-		<fieldset>	
+
+		<fieldset>
 				<div class="row-fluid show-grid" >
 					<div class="span6">
 			            <div class="rowlabel"><label for="intA"><small> Interest Payable under Section 234 A</small></label></div>
@@ -43,14 +43,14 @@
 								<a id="myModalHrefInterest" role="button" class="btn orange">Save</a>
 					</div>
 					</div>
-				
+
 	<!--hidden fields used for calculation  -->
-	<div style="display: none;">			
-		<fieldset>	       		
+	<div style="display: none;">
+		<fieldset>
 				<table><tr>
 					<td><label>A.1 Due Date for filing of Income Tax Return</label></td>
 					<td><select id="ddate" onchange="int234();">
-					    <option value="19" selected="selected">31st July 2014</option>
+					    <option value="7" selected="selected">31st July 2013</option>
 					    </select>
 					</td>
 				</tr>
@@ -59,11 +59,11 @@
 					<td><input id="aytaxd" onchange="int234();" value="${TaxLiability}"/></td>
 				</tr>
 				<tr>
-					<td><label>A.3 Enter Income Tax paid upto 31st March 2014</label></td>
+					<td><label>A.3 Enter Income Tax paid upto 31st March 2013</label></td>
 					<td><input readonly="readonly" id="aytaxp" onchange="int234();" value="${totaltax}"/></td>
 				</tr>
 				<tr>
-					<td><label>A.4 Amount of shortfall in tax payment upto 31st March 2014</label></td>
+					<td><label>A.4 Amount of shortfall in tax payment upto 31st March 2013</label></td>
 					<td><input readonly="readonly" id="aysfall" onchange="int234();"/></td>
 				</tr>
 				<tr>
@@ -71,14 +71,14 @@
 					<td>
 					<select id="aytaxmp" onchange="int234();">
 					    <option value="${intmonth}" selected="selected">${strmonth}</option>
-					</select>   
+					</select>
 					</td>
 				</tr>
-				</table>				
-			</fieldset>	
+				</table>
+			</fieldset>
 			<fieldset>
-		        <legend>Calculation of Interest Payable Under Section 234 A</legend>		
-		        <table>		
+		        <legend>Calculation of Interest Payable Under Section 234 A</legend>
+		        <table>
 				<tr>
 					<td><label>B.1 Number of months for which interest is payable on shortfall amount @ 1% per month</label></td>
 					<td><input readonly="readonly" id="dateA" onchange="int234();"/></td>
@@ -90,8 +90,8 @@
 				</table>
 				</fieldset>
 				<fieldset>
-		        <legend>Calculation of Interest Payable Under Section 234 B</legend>	
-		        <table>			
+		        <legend>Calculation of Interest Payable Under Section 234 B</legend>
+		        <table>
 				<tr>
 					<td><label>C.1 Number of months for which interest is payable on shortfall amount @ 1% per month</label></td>
 					<td><input readonly="readonly" id="dateB" onchange="int234();"/></td>
@@ -104,9 +104,9 @@
 				</fieldset>
 				<fieldset>
 		        <legend>Calculation of Interest Payable Under Section 234 C</legend>
-		        <table>				
+		        <table>
 				<tr>
-					<td><label>D.1 Advance Tax Payable upto 15th September 2013 (At least 30% of Total Tax Liability)</label></td>
+					<td><label>D.1 Advance Tax Payable upto 15th September 2012 (At least 30% of Total Tax Liability)</label></td>
 					<td><input readonly="readonly" id="atdq2"/></td>
 				</tr>
 				<tr>
@@ -114,7 +114,7 @@
 					<td><input id="atlq2" onchange="int234();"/></td>
 				</tr>
 				<tr>
-					<td><label>D.3 Income Tax paid upto 15th September 2013</label></td>
+					<td><label>D.3 Income Tax paid upto 15th September 2012</label></td>
 					<td><input readonly="readonly" id="atpq2" onchange="int234();" value="${dsum12}"/></td>
 				</tr>
 				<tr>
@@ -129,7 +129,7 @@
 					<td>&nbsp;</td>
 				</tr>
 				<tr>
-					<td><label>E.1 Advance Tax Payable upto 15th December 2013 (At least 60% of Total Tax Liability)</label></td>
+					<td><label>E.1 Advance Tax Payable upto 15th December 2012 (At least 60% of Total Tax Liability)</label></td>
 					<td><input readonly="readonly" id="atdq3"/></td>
 				</tr>
 				<tr>
@@ -137,7 +137,7 @@
 					<td><input id="atlq3" onchange="int234();"/></td>
 				</tr>
 				<tr>
-					<td><label>E.3 Income Tax paid upto 15th December 2013</label></td>
+					<td><label>E.3 Income Tax paid upto 15th December 2012</label></td>
 					<td><input readonly="readonly" id="atpq3" onchange="int234();" value="${dsum3}"/></td>
 				</tr>
 				<tr>
@@ -152,7 +152,7 @@
 					<td>&nbsp;</td>
 				</tr>
 				<tr>
-					<td><label>F.1 Advance Tax Payable upto 15th March 2014 (100% of Total Tax Liability)</label></td>
+					<td><label>F.1 Advance Tax Payable upto 15th March 2013 (100% of Total Tax Liability)</label></td>
 					<td><input readonly="readonly" id="atdq4"/></td>
 				</tr>
 				<tr>
@@ -160,7 +160,7 @@
 					<td><input id="atlq4" onchange="int234();"/></td>
 				</tr>
 				<tr>
-					<td><label>F.3 Income Tax paid upto 15th March 2014</label></td>
+					<td><label>F.3 Income Tax paid upto 15th March 2013</label></td>
 					<td><input readonly="readonly" id="atpq4" onchange="int234();" value="${dsum4}"/></td>
 				</tr>
 				<tr>
@@ -193,4 +193,3 @@
 <hst:headContribution category="jsExternal">
 	<script type="text/javascript" src="<hst:link path="/js/interestcalculation/intt234.js"/>"></script>
 </hst:headContribution>
-				
