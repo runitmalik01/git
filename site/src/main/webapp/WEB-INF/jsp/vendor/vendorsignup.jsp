@@ -28,7 +28,6 @@
 		          <small>Organization/Business (required)</small>
 		       </label>
 		       <input name="organization" id="organization" value="${fn:escapeXml(organization)}" size="22" tabindex="1" type="text" maxlength="50">
-		       <label for="email" class="error" generated="false"><c:if test="${not empty emailError}"><fmt:message key="${emailError}"/></c:if></label>
 		   </p>
 		   <p>
 		 	  <label for="email">
@@ -41,8 +40,8 @@
 		 	  <label for="confirmEmail">
 		          <small>Confirm Email Address (required)</small>
 		       </label>
-		       <input class="username" name="confirmEmail" id="confirmEmail" value="" size="22" tabindex="2" type="text" maxlength="50">	
-		       <label for="confirmEmail" class="error" generated="false"><c:if test="${not empty confirmEmailError}"><fmt:message key="${confirmEmailError}"/></c:if></label>	       
+		       <input class="username" name="confirmEmail" id="confirmEmail" value="" size="22" tabindex="2" type="text" maxlength="50">
+		       <label for="confirmEmail" class="error" generated="false"><c:if test="${not empty confirmEmailError}"><fmt:message key="${confirmEmailError}"/></c:if></label>
 		   </p>
 		   <p>
 				<label for="password">
@@ -106,7 +105,7 @@
 					signupTerms: {
 						required: true
 					}
-				},				
+				},
 				messages: {
 					email: "Please enter a valid email address.",
 					confirmEmail: "Please enter a valid email address.",
@@ -115,9 +114,9 @@
 					signupTerms: "Terms of Use must be checked."
 				}
 			});
-			
-			
-		});    
+
+
+		});
 </hst:element>
 <hst:headContribution element="${uiCustom}" category="jsInternal"/>
 
