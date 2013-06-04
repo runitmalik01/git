@@ -26,7 +26,7 @@ public class ITR1SummaryPage {
 		List<ITRTab> listOfTaxTabs = new LinkedList<ITRTab>();
 		listOfTaxTabs.add(ITRTab.TAX_ADVANCE);
 		listOfTaxTabs.add(ITRTab.TAX_SELF_ASSESSMENT);
-		listOfTaxTabs.add(ITRTab.TAX_TDS_SALARY);
+		//listOfTaxTabs.add(ITRTab.TAX_TDS_SALARY);
 		listOfTaxTabs.add(ITRTab.TAX_TDS_OTHERS);
 		ITRTabGroup itrTabGroupTax = new ITRTabGroup(listOfTaxTabs);
 		itrTabGroupTax.setLabelKey("income.taxpaid.itr1");
