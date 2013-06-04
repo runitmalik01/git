@@ -2,8 +2,8 @@
  * In this class we are getting values required for the calculation of interest
  * @author Dhananjay
  * 04/03/2013
- * 
- * 
+ *
+ *
  */
 
 package com.mootly.wcm.member;
@@ -67,14 +67,15 @@ public class Interest extends ITReturnComponent {
 		String strDate=new Date().toString();
 		//current month
 		@SuppressWarnings("deprecation")
-		int year=currentdate.getYear()+1900;
+		int year=currentdate.getYear()+1900-1;
 
-		if(year==2013){
+		if(year==2012){
 			int currentdatemonth =currentdate.getMonth()+1;
 			request.setAttribute("intmonth", currentdatemonth);
-		}
-		if(year==2014){
+		}else
+		if(year==2013){
 			int currentdatemonth =currentdate.getMonth()+1+12;
+			request.setAttribute("intmonth", currentdatemonth);
 		}
 		//conversion of month into string
 		String strmonth=strDate.substring(4,7);
