@@ -11,7 +11,7 @@ public enum ITRTab {
 	//INCOME_HOUSE_PROPERTY("singlehouseincome","income.house.itr1",new String[]{"houseincomenew","houseincomeedit","houseincomedelete"}),
 	TAX_ADVANCE ("advanceataxITR1","advance.tax.itr1",new String[]{"advancetaxnew","advancetaxedit","advancetaxdelete"}),
 	TAX_SELF_ASSESSMENT ("selfassesmenttaxITR1","advance.selfassesmenttax.itr1",new String[]{"selfassesmenttaxnew","selfassesmenttaxedit","selfassesmenttaxdelete"}),
-	TAX_TDS_SALARY ("tdsfromsalaryITR1","advance.tdssalary.itr1",new String[]{"tdsfromsalarynew","tdsfromsalaryedit","tdsfromsalarydelete"}),
+	//TAX_TDS_SALARY ("tdsfromsalaryITR1","advance.tdssalary.itr1",new String[]{"tdsfromsalarynew","tdsfromsalaryedit","tdsfromsalarydelete"}),
 	TAX_TDS_OTHERS ("tdsfromothersITR1","advance.tdsothers.itr1",new String[] {"tdsfromothersnew","tdsfromothersedit","tdsfromothersdelete"}),
 	DEDUCTIONS ("deductionITR1","deductions.itr1",new String[]{"newc6deduction","editc6deduction","deletec6deduction"});
 	
