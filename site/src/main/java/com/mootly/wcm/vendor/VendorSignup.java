@@ -29,6 +29,7 @@ import org.slf4j.LoggerFactory;
 import com.mootly.wcm.beans.EmailMessage;
 import com.mootly.wcm.beans.EmailTemplate;
 import com.mootly.wcm.beans.MemberSignupDocument;
+import com.mootly.wcm.beans.Review;
 import com.mootly.wcm.beans.VendorSignupDocument;
 import com.mootly.wcm.components.BaseComponent;
 import com.mootly.wcm.utils.ContentStructure;
@@ -37,7 +38,7 @@ import com.mootly.wcm.utils.VelocityUtils;
 
 public class VendorSignup extends BaseComponent {
 	private static final Logger log = LoggerFactory.getLogger(VendorSignup.class);
-	
+
 	//private static final String DATE_PATTERN = "yyyy-MM-dd HH.mm.ss.SSS";
 	private static final String ORGANIZATION = "organization";
     private static final String EMAIL = "email";
@@ -45,21 +46,21 @@ public class VendorSignup extends BaseComponent {
     private static final String PASSWORD = "password";
     private static final String CONFIRM_PASSWORD = "confirmPassword";
     private static final String SIGNUP_TERMS = "signupTerms";
-    
+
     private static final String SUCCESS = "success";
     private static final String ERRORS = "errors";
-    
+
 	@Override
 	public void doBeforeRender(HstRequest request, HstResponse response) {
 		// TODO Auto-generated method stub
 		super.doBeforeRender(request, response);
-		
+
 		String success=request.getParameter(SUCCESS);
 		if (success != null && SUCCESS.equals(success)) {
 			response.setRenderPath("jsp/member/signup_success.jsp");
 			return;
 		}
-		
+
 		String[] errors = request.getParameterValues(ERRORS);
 		if (errors != null) {
 			for (String anError:errors) {
@@ -70,29 +71,29 @@ public class VendorSignup extends BaseComponent {
 				else if (anError.startsWith("signup.terms.")) request.setAttribute("signupTermsError",anError);
 			}
 		}
-		
+
 		//request.setAttribute(ERRORS, request.getParameterValues(ERRORS));
         request.setAttribute(EMAIL, request.getParameter(EMAIL));
         //request.setAttribute(PASSWORD, request.getParameter(PASSWORD));
         //request.setAttribute(CONFIRM_PASSWORD, request.getParameter(CONFIRM_PASSWORD));
-       
+
         request.setAttribute(SUCCESS, request.getParameter(SUCCESS));
-        
+
         try {
         	HippoBean siteContentBaseBean = getSiteContentBaseBean(request);
         	if (siteContentBaseBean != null) request.setAttribute("siteContentBaseBean", siteContentBaseBean);
         }catch (Exception ex) {
         	log.info("Error",ex);
         }
-      
+
 	}
-	
+
 	@Override
 	public void doAction(HstRequest request, HstResponse response)
 			throws HstComponentException {
 		// TODO Auto-generated method stub
 		super.doAction(request, response);
-		
+
 		String email = GoGreenUtil.getEscapedParameter(request, EMAIL);
 		String confirmEmail = GoGreenUtil.getEscapedParameter(request, CONFIRM_EMAIL);
 		String password = GoGreenUtil.getEscapedParameter(request, PASSWORD);
@@ -100,26 +101,26 @@ public class VendorSignup extends BaseComponent {
 		String signupTerms = GoGreenUtil.getEscapedParameter(request, SIGNUP_TERMS);
 		String organization = GoGreenUtil.getEscapedParameter(request, ORGANIZATION);
 		//String passwordReminder = GoGreenUtil.getEscapedParameter(request, "passwordReminder");
-		
+
 		List<String> errors = new ArrayList<String>();
-		
+
 		if (StringUtils.isEmpty(email) || email.indexOf("@")==-1) {
 			errors.add("signup.email.error.required");
 		}
-		
+
 		if (StringUtils.isEmpty(confirmEmail) || confirmEmail.indexOf("@")==-1) {
 			errors.add("signup.confirmEmail.error.required");
 		}
-		
+
 		if (StringUtils.isEmpty(password)) {
 			errors.add("signup.password.error.required");
 		}
-		
+
 		if (StringUtils.isEmpty(signupTerms)) {
 			errors.add("signup.terms.error.required");
 		}
-		
-		
+
+
 		if (StringUtils.isEmpty(confirmPassword)) {
 			errors.add("signup.confirm_password.error.required");
 		}
@@ -130,14 +131,14 @@ public class VendorSignup extends BaseComponent {
 				}
 			}
 		}
-		
+
 		if (!StringUtils.isEmpty(email) && !StringUtils.isEmpty(confirmEmail)){
 			if (!email.equals(confirmEmail)){
 				errors.add("signup.confirmEmail.error.mismatch");
 			}
 		}
-		
-		
+
+
 		if (errors != null && errors.size() > 0) {
 			response.setRenderParameter(EMAIL, email);
 			response.setRenderParameter(ERRORS, errors.toArray(new String[errors.size()]));
@@ -148,7 +149,7 @@ public class VendorSignup extends BaseComponent {
 			confirmEmail = confirmEmail.toLowerCase();
 		}
 		// this method fetch username from repository and check whether exist or not
-		
+
 		 try {
         	HippoBean siteContentBaseBean = getSiteContentBaseBean(request);
         	if (siteContentBaseBean != null) request.setAttribute("siteContentBaseBean", siteContentBaseBean);
@@ -168,14 +169,14 @@ public class VendorSignup extends BaseComponent {
 	            //response.setRenderParameter(PASSWORD, password);
 	            //response.setRenderParameter(CONFIRM_PASSWORD, confirm_password);
 	            response.setRenderParameter(EMAIL, email);
-	    
+
 	            for (String error:errors) {
 	            	log.warn(error);
 	            }
 	            return;
 		}
-		
-		if (errors == null || errors.size() == 0) 
+
+		if (errors == null || errors.size() == 0)
 		{
 			// here we are creating object of vendorsignupdocument  for craeting documents.
 			VendorSignupDocument vs = new VendorSignupDocument();
@@ -184,11 +185,11 @@ public class VendorSignup extends BaseComponent {
 			vs.setPassword(password);
 			vs.setEmail(email.toLowerCase());
 			createVendorSignupForm(request,vs);
-		}		
+		}
 		response.setRenderParameter(SUCCESS, SUCCESS);
 		/*
 		try {
-			
+
 			// after signup it show a message to user about activate account
 			response.sendRedirect("/site/message");
 		} catch (IOException e) {
@@ -197,7 +198,7 @@ public class VendorSignup extends BaseComponent {
 		}
 		*/
 	}
-	
+
 	private VendorSignupDocument createVendorSignupForm(HstRequest request,VendorSignupDocument signupDocument) {
 		// TODO Auto-generated method stub
 		Session persistableSession = null;
@@ -233,14 +234,14 @@ public class VendorSignup extends BaseComponent {
 				//contextMap.put("member", member);
 				StringBuffer sbHostName = new StringBuffer();
 				sbHostName.append(request.getServerName()).append(":").append(request.getServerPort());
-				
+
 				contextMap.put("vendorHostName", sbHostName.toString());
 				String pathToNewNode = wpm.createAndReturn(vendorFolderPath +"/emails", EmailMessage.NAMESPACE, "activation_link", true);
 				EmailMessage emailMessage = (EmailMessage) wpm.getObject(pathToNewNode);
 				emailMessage.setTo(new String[]{vendorshipSignupDocument.getEmail()});
 				emailMessage.setTemplateKey("vendor_signup");
 				// here we are creating template for email.
-				
+
 				EmailTemplate emailTemplate = (EmailTemplate) wpm.getObject(ContentStructure.getEmailTemplatesPath(request) + "/vendor_signup");
 				if (emailTemplate != null) {
 					log.error("Email template found");
@@ -259,7 +260,11 @@ public class VendorSignup extends BaseComponent {
 				wpm.update(emailMessage);
 				return vendorshipSignupDocument;
 			}
-			return null;
+			else {
+				log.warn("Failed to add vendorship document for '{}'", VendorSignupDocument.NODE_NAME, vendorFolderPath);
+				GoGreenUtil.refreshWorkflowManager(wpm);
+				return vendorshipSignupDocument;
+			}
 		} catch (Exception e) {
 			log.warn("Failed to signup vendor ", e);
 			return null;
@@ -275,11 +280,11 @@ public class VendorSignup extends BaseComponent {
 		// TODO Auto-generated method stub
 		super.doBeforeServeResource(request, response);
 	}
-	
+
 	public static class FullReviewedWorkflowCallbackHandler implements WorkflowCallbackHandler<FullReviewedActionsWorkflow> {
 		public void processWorkflow(FullReviewedActionsWorkflow wf) throws Exception {
 			wf.publish();
 		}
 	}
-	
+
 }
