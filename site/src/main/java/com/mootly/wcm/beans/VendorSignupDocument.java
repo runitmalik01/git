@@ -1,5 +1,5 @@
 /*
- * class containing methods for vendor sigup document 
+ * class containing methods for vendor sigup document
  * @author Dhananjay
  * 01/06/2013
  */
@@ -22,7 +22,7 @@ public class VendorSignupDocument extends BaseDocument implements ContentNodeBin
 	String password;
 	String activationCode;
 	Boolean isActive;
-	
+
 	//for personal information
 	public final String getOrganization() {
 		if (organization == null) organization = getProperty("mootlywcm:organization");
@@ -49,7 +49,7 @@ public class VendorSignupDocument extends BaseDocument implements ContentNodeBin
 		if (isActive == null) isActive = getProperty("mootlywcm:isActive");
 		return isActive;
 	}
-	
+
 	public final void setOrganization(String organization) {
 		this.organization = organization;
 	}
@@ -70,14 +70,14 @@ public class VendorSignupDocument extends BaseDocument implements ContentNodeBin
 	}
 
 //for personal information
-	
-    
+
+
 	@Override
 	public boolean bind(Object content, javax.jcr.Node node)
 			throws ContentNodeBindingException {
 		// TODO Auto-generated method stub
 		try {
-			log.warn("this is Vendor signup Bena");
+			log.warn("this is Vendor signup Bean");
 			VendorSignupDocument vendorSignup = (VendorSignupDocument) content;
 			node.setProperty("mootlywcm:organization", vendorSignup.getOrganization());
 			node.setProperty("mootlywcm:userName", vendorSignup.getUserName());
