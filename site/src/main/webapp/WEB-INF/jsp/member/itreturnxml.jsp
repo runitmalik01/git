@@ -20,7 +20,11 @@
 				</tr>
 				<!--  lets create a bookmark for each section -->
 				<tr>
-					<td colspan="1"><fmt:message key="salary.income"/></td>
+					<td colspan="1" >
+					<a style="color:buttontext;" href="<c:out value="${scriptName}"/>?selectedItrTab=<%=ITRTab.FORM16_SINGLE%>">
+					<fmt:message key="salary.income"/>
+					</a>
+					</td>
 					<td>
 						<div class="btn-group" class="decimal">
 							<button class="btn btn-small dropdown-toggle"
@@ -37,15 +41,20 @@
 								<span class="caret"></span>
 							</button>
 							<ul class="dropdown-menu">
-								<li><a
-									href="<c:out value="${scriptName}"/>?selectedItrTab=<%=ITRTab.FORM16_SINGLE%>"><fmt:message
-											key="income.form.sixteen" /> </a></li>
+								<li>
+								<a href="<c:out value="${scriptName}"/>?selectedItrTab=<%=ITRTab.FORM16_SINGLE%>">
+								<fmt:message key="income.form.sixteen" /></a>
+								</li>
 							</ul>
 						</div>
 					</td>
 				</tr>
 				<tr>
-					<td colspan="1"><fmt:message key="income.salary.penson"/></td>
+					<td colspan="1">
+					<a style="color:buttontext;" href="<c:out value="${scriptName}"/>?selectedItrTab=<%=ITRTab.INCOME_SALARY_PENSION%>">
+					<fmt:message key="income.salary.penson"/>
+					</a>
+					</td>
 					<td>
 						<div class="btn-group" class="decimal">
 							<button class="btn btn-small dropdown-toggle"
@@ -62,15 +71,19 @@
 								<span class="caret"></span>
 							</button>
 							<ul class="dropdown-menu">
-								<li><a
-									href="<c:out value="${scriptName}"/>?selectedItrTab=<%=ITRTab.INCOME_SALARY_PENSION%>"><fmt:message
-											key="income.salary.penson" /> </a></li>
+								<li><a href="<c:out value="${scriptName}"/>?selectedItrTab=<%=ITRTab.INCOME_SALARY_PENSION%>">
+								<fmt:message key="income.salary.penson" /></a>
+								</li>
 							</ul>
 						</div>
 					</td>
 				</tr>
 				<tr>
-					<td colspan="1"><fmt:message key="income.house.itr1" /></td>
+					<td colspan="1">
+					<a style="color:buttontext;" href="<c:out value="${scriptName}"/>?selectedItrTab=<%=ITRTab.INCOME_HOUSE_PROPERTY_SINGLE%>">
+					<fmt:message key="income.house.itr1" />
+					</a>
+					</td>
 					<td>
 						<div class="btn-group" class="decimal">
 							<button class="btn btn-small dropdown-toggle"
@@ -89,14 +102,19 @@
 								<span class="caret"></span>
 							</button>
 							<ul class="dropdown-menu">
-								<li><a
-									href="<c:out value="${scriptName}"/>?selectedItrTab=<%=ITRTab.INCOME_HOUSE_PROPERTY_SINGLE%>"><fmt:message key="income.house.itr1" /> </a></li>
+								<li><a href="<c:out value="${scriptName}"/>?selectedItrTab=<%=ITRTab.INCOME_HOUSE_PROPERTY_SINGLE%>">
+								<fmt:message key="income.house.itr1" /></a>
+								</li>
 							</ul>
 						</div>
 					</td>
 				</tr>
 				<tr>
-					<td colspan="1"><fmt:message key="income.other.sources" /></td>
+					<td colspan="1">
+					<a style="color:buttontext;" href="<c:out value="${scriptName}"/>?selectedItrTab=<%=ITRTab.INCOME_OTHER_SOURCE%>">
+					<fmt:message key="income.other.sources" />
+					</a>
+					</td>
 					<td>
 						<div class="btn-group" class="decimal">
 							<button class="btn btn-small dropdown-toggle"
@@ -113,8 +131,8 @@
 								<span class="caret"></span>
 							</button>
 							<ul class="dropdown-menu">
-								<li><a
-									href="<c:out value="${scriptName}"/>?selectedItrTab=<%=ITRTab.INCOME_OTHER_SOURCE%>"><fmt:message key="income.other.sources" /> </a></li>
+								<li><a href="<c:out value="${scriptName}"/>?selectedItrTab=<%=ITRTab.INCOME_OTHER_SOURCE%>">
+								<fmt:message key="income.other.sources" /></a></li>
 							</ul>
 						</div>
 					</td>
@@ -123,9 +141,7 @@
 					<td colspan="1"><fmt:message key="gross.total.income"/></td>
 					<td  style="text-align:left">
 						<span class="decimal">
-
 									<w4india:inr value="${theForm.ITR1IncomeDeductions.grossTotIncome}"/>
-
 						</span>
 					</td>
 				</tr>
@@ -200,6 +216,7 @@
 						</span>
 					</td>
 				</tr>
+						-->
 				<tr>
 					<td colspan="1"><fmt:message key="surcharge.tax"/></td>
 					<td  style="text-align:left">
@@ -208,7 +225,6 @@
 						</span>
 					</td>
 				</tr>
-				-->
 				<tr>
 				<td colspan="1"><fmt:message key="education.cess"/></td>
 					<td  style="text-align:left">
@@ -227,7 +243,11 @@
 				</tr>
 
 				<tr>
-					<td colspan="1"><fmt:message key="advance.tax.itr1" /></td>
+					<td colspan="1">
+					<a style="color:buttontext;" href="<c:out value="${scriptName}"/>?selectedItrTab=<%=ITRTab.TAX_ADVANCE%>">
+					<fmt:message key="advance.tax.itr1" />
+					</a>
+					</td>
 					<td>
 						<div class="btn-group" class="decimal">
 							<button class="btn btn-small dropdown-toggle"
@@ -247,13 +267,18 @@
 								<span class="caret"></span>
 							</button>
 							<ul class="dropdown-menu">
-								<li><a href="<c:out value="${scriptName}"/>?selectedItrTab=<%=ITRTab.TAX_ADVANCE%>"><fmt:message key="advance.tax.itr1" /> </a></li>
+								<li><a href="<c:out value="${scriptName}"/>?selectedItrTab=<%=ITRTab.TAX_ADVANCE%>">
+								<fmt:message key="advance.tax.itr1" /></a></li>
 							</ul>
 						</div>
 					</td>
 				</tr>
 				<tr>
-					<td colspan="1"><fmt:message key="advance.selfassesmenttax.itr1" /></td>
+					<td colspan="1">
+					<a style="color:buttontext;" href="<c:out value="${scriptName}"/>?selectedItrTab=<%=ITRTab.TAX_SELF_ASSESSMENT%>">
+					<fmt:message key="advance.selfassesmenttax.itr1" />
+					</a>
+					</td>
 					<td>
 						<div class="btn-group" class="decimal">
 							<button class="btn btn-small dropdown-toggle"
@@ -289,7 +314,11 @@
 					</td>
 				</tr>
 				<tr>
-					<td colspan="1"><fmt:message key="advance.tdsothers.itr1" /></td>
+					<td colspan="1">
+					<a style="color:buttontext;" href="<c:out value="${scriptName}"/>?selectedItrTab=<%=ITRTab.TAX_TDS_OTHERS%>">
+					<fmt:message key="advance.tdsothers.itr1" />
+					</a>
+					</td>
 					<td>
 						<div class="btn-group" class="decimal">
 							<button class="btn btn-small dropdown-toggle"
@@ -306,9 +335,8 @@
 								<span class="caret"></span>
 							</button>
 							<ul class="dropdown-menu">
-								<li><a
-									href="<c:out value="${scriptName}"/>?selectedItrTab=<%=ITRTab.TAX_TDS_OTHERS%>">
-									<fmt:message key="advance.tdsothers.itr1" /> </a></li>
+								<li><a href="<c:out value="${scriptName}"/>?selectedItrTab=<%=ITRTab.TAX_TDS_OTHERS%>">
+									<fmt:message key="advance.tdsothers.itr1" /></a></li>
 							</ul>
 						</div>
 					</td>
