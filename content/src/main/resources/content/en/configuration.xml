@@ -5392,8 +5392,7 @@ out_txttotaltax = (taxPaidForeignCountry -0);
       <sv:value>gross_a</sv:value>
       <sv:value>gross_b</sv:value>
       <sv:value>gross_c</sv:value>
-      <sv:value>less_rs_1</sv:value>
-      <sv:value>less_rs_2</sv:value>
+      
       <sv:value>deductions_entertainment</sv:value>
       <sv:value>deductions_tax</sv:value>
       <sv:value>additional_1</sv:value>
@@ -5405,6 +5404,7 @@ out_txttotaltax = (taxPaidForeignCountry -0);
       <sv:value>relief_2</sv:value>
       <sv:value>ded_ent1</sv:value>
       <sv:value>ded_ent3</sv:value>
+      <sv:value>less_total_2</sv:value>
     </sv:property>
     <sv:property sv:name="mootlywcm:script" sv:type="String">
       <sv:value>/***
@@ -5414,9 +5414,7 @@ out_txttotaltax = (taxPaidForeignCountry -0);
 * **/
 
 out_gross_total=(gross_a -0)+(gross_b -0)+(gross_c -0);
-out_less_total_1=(less_rs_1 -0);
-out_less_total_2=(less_rs_1 -0)+(less_rs_2 -0);
-out_balance=(out_gross_total )-(out_less_total_2);
+out_balance=(out_gross_total )-(less_total_2 - 0);
 out_deductions_total=(deductions_entertainment -0)+(deductions_tax -0);
 out_income_chargable_total=(out_balance)-(out_deductions_total);
 var add=(additional_1 -0)+(additional_2 -0);
