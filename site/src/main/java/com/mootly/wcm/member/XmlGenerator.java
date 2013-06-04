@@ -226,8 +226,8 @@ public class XmlGenerator extends ITReturnComponent {
 			List<FormSixteenDetail> listOfFormSixteenDetail = formSixteenDocument.getFormSixteenDetailList();
 			if ( listOfFormSixteenDetail != null && listOfFormSixteenDetail.size() > 0 ){
 				for(FormSixteenDetail formSixteenDetail:listOfFormSixteenDetail){
-					if(formSixteenDetail.getGross_income_total()!=null){
-						GrossIncome=indianCurrencyHelper.bigIntegerRound(formSixteenDetail.getGross_income_total());
+					if(formSixteenDetail.getIncome_chargable_tax()!=null){
+						GrossIncome=indianCurrencyHelper.bigIntegerRound(formSixteenDetail.getIncome_chargable_tax());
 						GrossIncomeTotal=GrossIncomeTotal.add(GrossIncome);
 					}
 				}
