@@ -137,15 +137,13 @@
 			</fieldset>
             <c:if test="${pageAction != 'NEW_CHILD'}">
 			<fieldset>
-
+<!-- 
 				<legend style="color: black">
 					Acknowledgement Nos. of all quarterly statements of TDS under
 					sub_section (3) of section 200 as<br /> provided by TIN
 					Facilitation Centre or NSDL web_site
 				</legend>
-
-
-
+ 
 				<table>
 					<tr>
 						<th><label>Quarter</label>
@@ -277,6 +275,7 @@
 						</td>
 					</tr>
 				</table>
+  -->				
 				<fieldset>
 					<legend style="color: black"> DETAILS OF SALARY PAID AND
 						ANY OTHER INCOME AND TAX DEDUCTED</legend>
@@ -315,18 +314,19 @@
 						</tr>
 					</table>
 				</fieldset>
+				
 				<label><strong>2.</strong> </label><label> <em>Less:</em>
 					Allowance to the extent exempt under section 10</label>
-				<table>
-					<tr>
-
-						<th><label> Allowance </label>
-						</th>
-
+				
+				<table><tr>
+						<td><label>  Total Allowance </label>
+						</td>
+<!-- 
 						<th><label>Rs. </label>
 						</th>
 						<th><label>Total</label>
 						</th>
+						 
 					</tr>
 
 					<tr>
@@ -361,9 +361,9 @@
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.less_rs_2}"/></c:if>"
 							placeholder="Rs." type="text"/>
 						</td>
-
+-->
 						<td><input id="less_total_2" name="less_total_2"
-							class="numberinput decimal" readonly="readonly"
+							class="numberinput decimal" 
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.less_total_2}"/></c:if>"
 							placeholder="Rs." type="text"/>
 						</td>
@@ -1040,5 +1040,6 @@
 <res:calc screenCalc="formsixteen" formId="frmdataFormSixteen"></res:calc>
 <res:client-validation formId="frmdataFormSixteen" screenConfigurationDocumentName="formsixteen" formSubmitButtonId="myModalHrefFormSixteen" />
 	
+
 
 
