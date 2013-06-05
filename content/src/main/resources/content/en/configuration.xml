@@ -3908,7 +3908,7 @@ serving since beginning then select first day of financial year.&lt;/p&gt;
             <sv:value>Enter 6 character</sv:value>
           </sv:property>
           <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
-            <sv:value>true</sv:value>
+            <sv:value>false</sv:value>
           </sv:property>
           <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
             <sv:value/>
@@ -3937,7 +3937,7 @@ serving since beginning then select first day of financial year.&lt;/p&gt;
             <sv:value>E.g.select 2011 for 2011-2012</sv:value>
           </sv:property>
           <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
-            <sv:value>true</sv:value>
+            <sv:value>false</sv:value>
           </sv:property>
           <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
             <sv:value/>
