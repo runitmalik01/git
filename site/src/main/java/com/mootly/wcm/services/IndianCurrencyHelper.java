@@ -12,6 +12,7 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 import javax.xml.datatype.DatatypeConfigurationException;
+import javax.xml.datatype.DatatypeConstants;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
@@ -22,7 +23,7 @@ public final class IndianCurrencyHelper {
 	 * This Method is used to Round the Decimal Values and convert it into BigIngteger
 	 * @return BigInteger
 	 * @param double
-	 * 
+	 *
 	 * */
 	public BigInteger bigIntegerRound(Double in) {
 		if(in!=null){
@@ -30,7 +31,7 @@ public final class IndianCurrencyHelper {
 			DecimalFormat decimalFormat=new DecimalFormat("#.#");
 			BigInteger bigTotal=null;
 			if(bd!=null && bd.toString().length()>0){
-				bigTotal = new BigInteger(decimalFormat.format(bd));		
+				bigTotal = new BigInteger(decimalFormat.format(bd));
 				return bigTotal;
 			}else
 				return null;
@@ -39,12 +40,12 @@ public final class IndianCurrencyHelper {
 	}
 
 	/**
-	 * This Method is used to Round the Decimal Values Upto 
+	 * This Method is used to Round the Decimal Values Upto
 	 * two decimal places
 	 *
-	 * @return double 
+	 * @return double
 	 * @param double
-	 * 
+	 *
 	 * ****/
 
 	public double RoundTo2Decimals(double val) {
@@ -56,7 +57,7 @@ public final class IndianCurrencyHelper {
 	 * This Method is used to Round the Decimal Values and convert it into Long
 	 * @return Long
 	 * @param double
-	 * 
+	 *
 	 * */
 	public Long longRound(Double in){
 		BigDecimal bd = new BigDecimal(in).setScale(0, RoundingMode.HALF_EVEN);
@@ -67,7 +68,7 @@ public final class IndianCurrencyHelper {
 	 * This Method is used to convert String into BigIngteger
 	 * @return BigInteger
 	 * @param String
-	 * 
+	 *
 	 * */
 	public BigInteger bigIntegerRoundStr(String in){
 
@@ -83,15 +84,15 @@ public final class IndianCurrencyHelper {
 	 * This Method is used to GregorianCalend into XMLGregorianCalendar
 	 * @return GregorianCalendar
 	 * @param Calendar
-	 * 
+	 *
 	 * */
 	public XMLGregorianCalendar gregorianCalendar(GregorianCalendar val_Date){
 
 		XMLGregorianCalendar date2=null;
 		try {
 			//date2 = DatatypeFactory.newInstance().newXMLGregorianCalendar(dobStr);
-			date2 = DatatypeFactory.newInstance().newXMLGregorianCalendar(val_Date);
-
+			//date2 = DatatypeFactory.newInstance().newXMLGregorianCalendar(val_Date);
+			date2 = DatatypeFactory.newInstance().newXMLGregorianCalendarDate(val_Date.get(Calendar.YEAR),val_Date.get(Calendar.MONTH)+1,val_Date.get(Calendar.DAY_OF_MONTH),DatatypeConstants.FIELD_UNDEFINED);
 		} catch (DatatypeConfigurationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
