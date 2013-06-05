@@ -179,21 +179,17 @@ public class XmlGenerator extends ITReturnComponent {
 		address.setLocalityOrArea(memberPersonalInformation.getAreaLocality());
 		address.setCityOrTownOrDistrict(memberPersonalInformation.getTownCityDistrict());
 		address.setStateCode(memberPersonalInformation.getState());
-		address.setPinCode(memberPersonalInformation.getBigPinCode());
+		address.setPinCode(indianCurrencyHelper.bigIntegerRoundStr(memberPersonalInformation.getPinCode()));
 		Phone phone = new Phone();
-		phone.setSTDcode(memberPersonalInformation.getBigStdCode());
-		phone.setPhoneNo(memberPersonalInformation.getBigPhone());
-		address.setMobileNo(memberPersonalInformation.getBigMobile());
+		phone.setSTDcode(indianCurrencyHelper.bigIntegerRoundStr(memberPersonalInformation.getStdCode()));
+		phone.setPhoneNo(indianCurrencyHelper.bigIntegerRoundStr(memberPersonalInformation.getPhone()));
+		address.setPhone(phone);
+		address.setMobileNo(indianCurrencyHelper.bigIntegerRoundStr(memberPersonalInformation.getMobile()));
 		address.setEmailAddress(memberPersonalInformation.getEmail());
 		personalInfo.setAddress(address);
 		personalInfo.setDOB(indianCurrencyHelper.gregorianCalendar(memberPersonalInformation.getDOB()));
-
-		if( formSixteenDocument!=null){
-			if ( formSixteenDocument.getFormSixteenDetailList() != null && formSixteenDocument.getFormSixteenDetailList().size() > 0 ){
-				for(FormSixteenDetail formSixteenDetail:formSixteenDocument.getFormSixteenDetailList()){
-					personalInfo.setEmployerCategory(formSixteenDetail.getEmploye_category());
-				}
-			}
+		if(memberPersonalInformation.getEmploye_category()!=null){
+		personalInfo.setEmployerCategory(memberPersonalInformation.getEmploye_category());
 		}
 
 		personalInfo.setGender(memberPersonalInformation.getSex());
@@ -202,7 +198,9 @@ public class XmlGenerator extends ITReturnComponent {
 		itr1.setPersonalInfo(personalInfo);
 
 		//Filing Status
-		filingstatus.setDesigOfficerWardorCircle(memberPersonalInformation.getIncomeTaxWard());
+		if(memberPersonalInformation.getWard_circle()!=null){
+		filingstatus.setDesigOfficerWardorCircle(memberPersonalInformation.getWard_circle());
+		}
 		filingstatus.setReturnFileSec(memberPersonalInformation.getReturnFileSection());
 		filingstatus.setReturnType(memberPersonalInformation.getReturnType());
 		filingstatus.setResidentialStatus(memberPersonalInformation.getResidentCategory());
