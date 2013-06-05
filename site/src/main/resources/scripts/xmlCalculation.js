@@ -6,23 +6,25 @@ var C = 0;
 var D = 0;
 var E = 0;
 
-
-var condition_1=(cbasscategory == "M" && cbasstype == "I" && ((cbresistatus == "RES") || (cbresistatus == "NOR"))) ? true : false;
-var condition_2=(cbasscategory == "F" && cbasstype == "I" && ((cbresistatus == "RES") || (cbresistatus == "NOR"))) ? true :false;
+var condition_1=(cbasscategory == "M" && cbasstype == "I" && ((cbresistatus == "RES") || (cbresistatus == "NRI")|| (cbresistatus == "NOR"))) ? true : false;
+var condition_2=(cbasscategory == "F" && cbasstype == "I" && ((cbresistatus == "RES")|| (cbresistatus == "NRI") || (cbresistatus == "NOR"))) ? true :false;
 var condition_3=(cbasscategory == "Senior Citizen" && cbasstype == "I" && ((cbresistatus == "RES") || (cbresistatus == "NOR"))) ? true :false;
 var condition_4=(cbasscategory == "Super Senior Citizen" && cbasstype == "I" && ((cbresistatus == "RES") || (cbresistatus == "NOR"))) ? true :false;
 var condition_5=(cbasstype == "h") ? true :false;
 var condition_6=(cbasstype == "c") ? true :false;
 var condition_7=(cbasstype == "f" || cbasstype == "l") ? true :false;
 var condition_8=(cbasstype == "a" || cbasstype == "b") ? true :false;
+var condition_9=(cbasscategory == "M" && cbasstype == "I" && ((cbresistatus == "RES") || (cbresistatus == "NOR"))) ? true : false;
+var condition_10=(cbasscategory == "F" && cbasstype == "I" && ((cbresistatus == "RES")|| (cbresistatus == "NOR"))) ? true :false;
 
-out_condition_1=condition_1;
-out_condition_3=condition_3;
+out_condition_9=condition_9;
+out_condition_10=condition_10;
 out_condition_4=condition_4;
 out_value_cat_1=cbassyear;
 out_value_cat_2=cbasstype;
 out_value_cat_3=cbresistatus;
 out_value_tax=txtNetIncome;
+
 
 if (cbassyear == "2013-2014") {
 	if(condition_1 || condition_2){
@@ -35,8 +37,8 @@ if (cbassyear == "2013-2014") {
 			A = ((txtNetIncome - 500000) * 0.2) + 30000;
 		}
 		else if (txtNetIncome > 1000000) {
-			A = ((txtNetIncome - 1000000) * 0.3) + 130000;		
-		} 
+			A = ((txtNetIncome - 1000000) * 0.3) + 130000;
+		}
 	}// 2013-2014-- Male & Female
 	else if(condition_3){
 		if (txtNetIncome <= 250000 && txtNetIncome != 0) {
@@ -48,8 +50,8 @@ if (cbassyear == "2013-2014") {
 			A = ((txtNetIncome - 500000) * 0.2) + 25000;
 		}
 		else if (txtNetIncome > 1000000) {
-			A = ((txtNetIncome - 1000000) * 0.3) + 125000;		
-		} 
+			A = ((txtNetIncome - 1000000) * 0.3) + 125000;
+		}
 	}// Senior Citizen as Resident
 	else if(condition_4){
 		if (txtNetIncome <= 500000 && txtNetIncome != 0) {
@@ -71,19 +73,19 @@ if (cbassyear == "2013-2014") {
 			A = ((txtNetIncome - 500000) * 0.2) + 30000;
 		}
 		else if (txtNetIncome > 1000000) {
-			A = ((txtNetIncome - 1000000) * 0.3) + 130000;	
-		} 
-	}// HUF 
+			A = ((txtNetIncome - 1000000) * 0.3) + 130000;
+		}
+	}// HUF
 	else if (condition_6) {
 		if (txtNetIncome != 0 && txtNetIncome <= 10000000) {
 			A = txtNetIncome * 0.3;
-			
+
 		}
 		else if (txtNetIncome > 10000000) {
 			A = txtNetIncome * 0.3;
 			E = A * 0.05;
 		}
-	}// Company 
+	}// Company
 	else if (condition_7) {
 		if (txtNetIncome != 0) {
 			A = txtNetIncome * 0.3;
@@ -99,12 +101,12 @@ if (cbassyear == "2013-2014") {
 			A = ((txtNetIncome - 500000) * 0.2) + 30000;
 		}
 		else if (txtNetIncome > 1000000) {
-			A = ((txtNetIncome - 1000000) * 0.3) + 130000;	
-		} 
+			A = ((txtNetIncome - 1000000) * 0.3) + 130000;
+		}
 	}// Association of Persons (AOP) and Body of Individuals (BOI)
-}// 2013-2014	
+}// 2013-2014
 else if (cbassyear == "2012-2013") {
-	if(condition_1){
+	if(condition_9){
 		if (txtNetIncome <= 180000 && txtNetIncome != 0) {
 		}
 		else if (txtNetIncome > 180001 && txtNetIncome <= 500000) {
@@ -114,10 +116,10 @@ else if (cbassyear == "2012-2013") {
 			A = ((txtNetIncome - 500000) * 0.2) + 32000;
 		}
 		else if (txtNetIncome > 800000) {
-			A = ((txtNetIncome - 800000) * 0.3) + 92000;		
-		} 
+			A = ((txtNetIncome - 800000) * 0.3) + 92000;
+		}
 	}//2012-2013-- Male as Resident
-	else if(condition_2){
+	else if(condition_10){
 		if (txtNetIncome <= 190000 && txtNetIncome != 0) {
 		}
 		else if (txtNetIncome > 190001 && txtNetIncome <= 500000) {
@@ -127,8 +129,8 @@ else if (cbassyear == "2012-2013") {
 			A = ((txtNetIncome - 500000) * 0.2) + 31000;
 		}
 		else if (txtNetIncome > 800000) {
-			A = ((txtNetIncome - 800000) * 0.3) + 91000;		
-		} 
+			A = ((txtNetIncome - 800000) * 0.3) + 91000;
+		}
 	}// 2012-2013 --Female as Resident
 	else if(condition_3){
 		if (txtNetIncome <= 250000 && txtNetIncome != 0) {
@@ -140,8 +142,8 @@ else if (cbassyear == "2012-2013") {
 			A = ((txtNetIncome - 500000) * 0.2) + 25000;
 		}
 		else if (txtNetIncome > 800000) {
-			A = ((txtNetIncome - 800000) * 0.3) + 85000;		
-		} 
+			A = ((txtNetIncome - 800000) * 0.3) + 85000;
+		}
 	}// 2012-2013 --Senior Citizen as Resident
 	else if(condition_4){
 		if (txtNetIncome <= 500000 && txtNetIncome != 0) {
@@ -169,7 +171,7 @@ else if (cbassyear == "2012-2013") {
 	else if(condition_6){
 		if (txtNetIncome != 0 && txtNetIncome <= 10000000) {
 			A = txtNetIncome * 0.3;
-		} 
+		}
 		else if (txtNetIncome > 10000000) {
 			A = txtNetIncome * 0.3;
 			E = A * 0.05;
@@ -190,12 +192,12 @@ else if (cbassyear == "2012-2013") {
 			A = ((txtNetIncome - 500000) * 0.2) + 32000;
 		}
 		else if (txtNetIncome > 800000) {
-			A = ((txtNetIncome - 800000) * 0.3) + 92000;	
-		} 
+			A = ((txtNetIncome - 800000) * 0.3) + 92000;
+		}
 	}// Association of Persons (AOP) and Body of Individuals (BOI)
 }// 2012-2013
 else if (cbassyear == "2011-2012") {
-	if(condition_1){
+	if(condition_9){
 		if (txtNetIncome <= 160000 && txtNetIncome != 0) {
 		}
 		else if (txtNetIncome > 160001 && txtNetIncome <= 500000) {
@@ -206,9 +208,9 @@ else if (cbassyear == "2011-2012") {
 		}
 		else if (txtNetIncome > 800000) {
 			A = ((txtNetIncome - 800000) * 0.3) + 94000;
-		} 
+		}
 	}//2011-2012-- Male
-	else if(condition_2){
+	else if(condition_10){
 		if (txtNetIncome <= 190000 && txtNetIncome != 0) {
 		}
 		else if (txtNetIncome > 190001 && txtNetIncome <= 500000) {
@@ -218,8 +220,8 @@ else if (cbassyear == "2011-2012") {
 			A = ((txtNetIncome - 500000) * 0.2) + 26000;
 		}
 		else if (txtNetIncome > 800000) {
-			A = ((txtNetIncome - 800000) * 0.3) + 86000;
-		} 
+			A = ((txtNetIncome - 800000) * 0.3) + 91000;
+		}
 	}//2011-2012-- Female
 	else if(condition_3 || condition_4){
 		if (txtNetIncome <= 240000 && txtNetIncome != 0) {
@@ -232,7 +234,7 @@ else if (cbassyear == "2011-2012") {
 		}
 		else if (txtNetIncome > 800000) {
 			A = ((txtNetIncome - 800000) * 0.3) + 86000;
-		} 
+		}
 	}//2011-2012-- Senior Citizen and Super Senior Citizen
 	else if(condition_5){
 		if (txtNetIncome <= 160000 && txtNetIncome != 0) {
@@ -245,7 +247,7 @@ else if (cbassyear == "2011-2012") {
 		}
 		else if (txtNetIncome > 800000) {
 			A = ((txtNetIncome - 800000) * 0.3) + 94000;
-		} 
+		}
 	}//2011-2012--HUF
 	else if(condition_6){
 		if (txtNetIncome != 0 && txtNetIncome <= 10000000) {
@@ -264,7 +266,7 @@ else if (cbassyear == "2011-2012") {
 			A = txtNetIncome * 0.3;
 			E = A * 0.075;
 		}
-	}//2011-2012--Firms	
+	}//2011-2012--Firms
 }//2011-2012
 
 B = (A + E) * 0.02;
@@ -274,6 +276,6 @@ out_txtTax = Math.round ( A ) ;
 out_txtEduCess = Math.round (B) ;
 out_txtHEduCess = Math.round (C) ;
 out_txttotaltax = Math.round (D) ;
-out_txtsurcharge = Math.round (E); 
+out_txtsurcharge = Math.round (E);
 
 
