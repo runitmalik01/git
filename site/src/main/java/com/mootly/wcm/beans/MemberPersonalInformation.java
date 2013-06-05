@@ -35,6 +35,8 @@ import static com.mootly.wcm.utils.Constants.PROP_PI_FLAT_FLOOR_BUILDING;
 import static com.mootly.wcm.utils.Constants.PROP_PI_LAST_NAME;
 import static com.mootly.wcm.utils.Constants.PROP_PI_MIDDLE_NAME;
 import static com.mootly.wcm.utils.Constants.PROP_PI_MOBILE;
+import static com.mootly.wcm.utils.Constants.PROP_PI_MOBILE1;
+import static com.mootly.wcm.utils.Constants.PROP_PI_WARD_CIRCLE;
 import static com.mootly.wcm.utils.Constants.PROP_PI_NOTICE_DATE;
 import static com.mootly.wcm.utils.Constants.PROP_PI_NOTICE_NO;
 import static com.mootly.wcm.utils.Constants.PROP_PI_ORIGINAL_ACK_DATE;
@@ -108,7 +110,6 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 	private String defective;
 	private String noticeNo;
 	private GregorianCalendar noticeDate;
-
 	private String firstName;
 	private String middleName;
 	private String lastName;
@@ -124,11 +125,14 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 	private String areaLocality;
 	private String townCityDistrict;
 	private String state;
+	private String ward_circle;
 	private String pinCode;
 	private String email;
 	private String mobile;
+	private String mobile1;
 	private String stdCode;
 	private String phone;
+	private String Employe_category;
 
 	private String accNumber ;
 	private String bankName ;
@@ -272,6 +276,10 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 		if (fatherName == null) fatherName = getProperty(PROP_PI_FATHER_NAME);
 		return fatherName;
 	}
+	public String getEmploye_category() {
+		if (Employe_category == null) Employe_category = getProperty(PROP_PI_EMPLOYER_CATEGORY);
+		return Employe_category;
+	}
 
 	public String getPAN() {
 		if (PAN == null) PAN = getProperty(PROP_PI_PAN);
@@ -370,6 +378,10 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 		if (mobile == null) mobile =  getProperty(PROP_PI_MOBILE);
 		return mobile;
 	}
+	public String getMobile1() {
+		if (mobile1 == null) mobile1 =  getProperty(PROP_PI_MOBILE1);
+		return mobile1;
+	}
 
 	public BigInteger getBigMobile() {
 		if (mobile== null) mobile= getProperty(PROP_PI_MOBILE);
@@ -383,6 +395,10 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 	public String getStdCode() {
 		if (stdCode == null) stdCode = getProperty(PROP_PI_STD_CODE);
 		return stdCode;
+	}
+	public String getWard_circle() {
+		if (ward_circle == null) ward_circle = getProperty(PROP_PI_WARD_CIRCLE);
+		return ward_circle;
 	}
 
 	public BigInteger getBigStdCode() {
@@ -462,6 +478,9 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 	public final void setFatherName(String fatherName) {
 		this.fatherName = fatherName;
 	}
+	public final void setEmploye_category(String Employe_category) {
+		this.Employe_category = Employe_category;
+	}
 	public final void setPAN(String pAN) {
 		this.PAN = pAN;
 	}
@@ -497,6 +516,10 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 	public final void setState(String state) {
 		this.state = state;
 	}
+	public final void setWard_circle(String ward_circle) {
+		this.ward_circle = ward_circle;
+	}
+	
 
 	public final void setPinCode(String pinCode) {
 		this.pinCode = pinCode;
@@ -507,6 +530,9 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 
 	public final void setMobile(String mobile) {
 		this.mobile = mobile;
+	}
+	public final void setMobile1(String mobile1) {
+		this.mobile1 = mobile1;
 	}
 
 	public final void setStdCode(String stdCode) {
@@ -683,9 +709,9 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 			node.setProperty(PROP_PI_RECEIPT_NO,mpi.getReceiptNo());
 			node.setProperty(PROP_PI_INCOME_TAX_WARD,mpi.getIncomeTaxWard());
 			node.setProperty(PROP_PI_RETURN_FILE_SECTION,mpi.getReturnFileSection());
-			node.setProperty(PROP_PI_EMPLOYER_CATEGORY,mpi.getEmployerCategory());
+			//node.setProperty(PROP_PI_EMPLOYER_CATEGORY,mpi.getEmployerCategory());
 			node.setProperty(PROP_PI_TAX_STATUS,mpi.getTaxStatus());
-			
+			node.setProperty(PROP_PI_EMPLOYER_CATEGORY,mpi.getEmploye_category());
 			node.setProperty(PROP_PI_FIRST_NAME,mpi.getFirstName());
 			node.setProperty(PROP_PI_MIDDLE_NAME,mpi.getMiddleName());
 			node.setProperty(PROP_PI_LAST_NAME, mpi.getLastName());
@@ -704,6 +730,8 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 			node.setProperty(PROP_PI_PINCODE, mpi.getPinCode());
 			node.setProperty(PROP_PI_EMAIL, mpi.getEmail());
 			node.setProperty(PROP_PI_MOBILE, mpi.getMobile());
+			node.setProperty(PROP_PI_MOBILE1, mpi.getMobile1());
+			node.setProperty(PROP_PI_WARD_CIRCLE, mpi.getWard_circle());
 			node.setProperty(PROP_PI_STD_CODE, mpi.getStdCode());
 			node.setProperty(PROP_PI_PHONE, mpi.getPhone());
 
@@ -795,6 +823,7 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 		}
 		//Member PersonaInformation
 		if ( formMap.getField("pan") != null) setPAN(formMap.getField("pan").getValue());
+		if ( formMap.getField("Employe_category") != null) setEmploye_category(formMap.getField("Employe_category").getValue());
 		if ( formMap.getField("pi_first_name") != null) setFirstName(formMap.getField("pi_first_name").getValue());
 		if ( formMap.getField("pi_last_name") != null) setLastName(formMap.getField("pi_last_name").getValue());
 		if ( formMap.getField("pi_middle_name") != null) setMiddleName(formMap.getField("pi_middle_name").getValue());
@@ -823,6 +852,7 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 		if (formMap.getField("pi_email") != null) setEmail(formMap.getField("pi_email").getValue());
 		if (formMap.getField("pi_road_street") != null) setRoadStreet(formMap.getField("pi_road_street").getValue());
 		if (formMap.getField("pi_std_code") != null) setStdCode(formMap.getField("pi_std_code").getValue());
+		if (formMap.getField("ward_circle") != null) setWard_circle(formMap.getField("ward_circle").getValue());
 		if (formMap.getField("pi_phone") != null) setPhone(formMap.getField("pi_phone").getValue());
 		if (formMap.getField("pi_flat_door_building") != null) setFlatDoorBuilding(formMap.getField("pi_flat_door_building").getValue());
 		if (formMap.getField("pi_premises_building") != null) setPremisesBuilding(formMap.getField("pi_premises_building").getValue());
@@ -839,6 +869,7 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 			}
 		}
 		if (formMap.getField("pi_mobile") != null) setMobile(formMap.getField("pi_mobile").getValue());
+		if (formMap.getField("pi_mobile1") != null) setMobile1(formMap.getField("pi_mobile1").getValue());
 		//Bank Details
 		if (formMap == null) return;
 		if (formMap.getField("bd_bank_name") != null) setBD_BANK_NAME(formMap.getField("bd_bank_name").getValue());
