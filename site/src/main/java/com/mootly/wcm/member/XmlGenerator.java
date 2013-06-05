@@ -42,6 +42,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.math.BigInteger;
 import java.text.DecimalFormat;
+import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
@@ -51,6 +52,7 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.datatype.DatatypeConfigurationException;
+import javax.xml.datatype.DatatypeConstants;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
@@ -133,7 +135,7 @@ public class XmlGenerator extends ITReturnComponent {
 		try {
 			DatatypeFactory df = DatatypeFactory.newInstance();
 			GregorianCalendar gc = new GregorianCalendar();
-			XMLGregorianCalendar xmlGC =  df.newXMLGregorianCalendar(gc);
+			XMLGregorianCalendar xmlGC =   DatatypeFactory.newInstance().newXMLGregorianCalendarDate(gc.get(Calendar.YEAR),gc.get(Calendar.MONTH)+1,gc.get(Calendar.DAY_OF_MONTH),DatatypeConstants.FIELD_UNDEFINED);
 			creationInfo.setXMLCreationDate(xmlGC);
 		} catch (DatatypeConfigurationException e1) {
 			// TODO Auto-generated catch block
@@ -184,7 +186,7 @@ public class XmlGenerator extends ITReturnComponent {
 		address.setMobileNo(memberPersonalInformation.getBigMobile());
 		address.setEmailAddress(memberPersonalInformation.getEmail());
 		personalInfo.setAddress(address);
-		personalInfo.setDOB(memberPersonalInformation.getGregorianDOB());
+		personalInfo.setDOB(indianCurrencyHelper.gregorianCalendar(memberPersonalInformation.getDOB()));
 
 		if( formSixteenDocument!=null){
 			if ( formSixteenDocument.getFormSixteenDetailList() != null && formSixteenDocument.getFormSixteenDetailList().size() > 0 ){
@@ -208,11 +210,11 @@ public class XmlGenerator extends ITReturnComponent {
 
 		if (memberPersonalInformation.getReturnType().equals("R")) {
 			filingstatus.setAckNoOriginalReturn(memberPersonalInformation.getOriginalAckNo());
-			filingstatus.setOrigRetFiledDate(memberPersonalInformation.getGregorianOriginalAckDate());
+			filingstatus.setOrigRetFiledDate(indianCurrencyHelper.gregorianCalendar(memberPersonalInformation.getOriginalAckDate()));
 
 			if(memberPersonalInformation.getDefective().equals("Y")){
 				filingstatus.setNoticeNo(memberPersonalInformation.getNoticeNo());
-				filingstatus.setNoticeDate(memberPersonalInformation.getGregorianNoticeDate());
+				filingstatus.setNoticeDate(indianCurrencyHelper.gregorianCalendar(memberPersonalInformation.getNoticeDate()));
 				filingstatus.setReceiptNo(memberPersonalInformation.getReceiptNo());
 			}
 		}
@@ -471,15 +473,18 @@ public class XmlGenerator extends ITReturnComponent {
 
 		//Schedule80G is remaining
 
+/**
+		DeductionDocumentDetail dDetail = new DeductionDocumentDetail();
+		log.info("dDatil"+dDetail);
+		com.mootly.wcm.model.DoneeWithPan doneewithPan = com.mootly.wcm.model.DoneeWithPan.getInstanceFromChildBean(dDetail);
 
-		//DeductionDocumentDetail dDetail = (DeductionDocumentDetail) getChildBean();
-		//	com.mootly.wcm.model.DoneeWithPan doneewithPan = com.mootly.wcm.model.DoneeWithPan.getInstanceFromChildBean(dDetail);
 
-		/**
-		com.mootly.wcm.model.DoneeWithPan doneewithPan = com.mootly.wcm.model.DoneeWithPan.getInstanceFromFormMap(getFormMap());
-		if (doneewithPan != null){
+		//com.mootly.wcm.model.DoneeWithPan doneewithPan = com.mootly.wcm.model.DoneeWithPan.getInstanceFromFormMap(getFormMap());
+
+		if (dDetail != null){
 			log.info("inside donee loop");
 		doneeWithPan.setDoneeWithPanName(doneewithPan.getDoneeName());
+		log.info("donee pan"+doneewithPan.getDoneePAN());
 		doneeWithPan.setDoneePAN(doneewithPan.getDoneePAN());
 		addressDetail.setAddrDetail(doneewithPan.getDoneeAreaLocality());
 		addressDetail.setCityOrTownOrDistrict(doneewithPan.getDoneeCityTownDistrict());
@@ -488,14 +493,14 @@ public class XmlGenerator extends ITReturnComponent {
 		doneeWithPan.setAddressDetail(addressDetail);
 		Don100Percent don100Percent = new Don100Percent();
 		don100Percent.getDoneeWithPan().add(doneeWithPan);
-		don100Percent.setTotDon100Percent(dedgtotal);
-		don100Percent.setTotEligibleDon100Percent(dedgtotal);
+		//don100Percent.setTotDon100Percent(dedgtotal);
+		//don100Percent.setTotEligibleDon100Percent(dedgtotal);
 		schedule80G.setDon100Percent(don100Percent);
-		schedule80G.setTotalDonationsUs80G(dedgtotal);
-		schedule80G.setTotalEligibleDonationsUs80G(dedgtotal);
+		//schedule80G.setTotalDonationsUs80G(dedgtotal);
+		//schedule80G.setTotalEligibleDonationsUs80G(dedgtotal);
 		}
 		itr1.setSchedule80G(schedule80G);
-		 **/
+**/
 
 		//TDSonSalaries
 		if( formSixteenDocument!=null){
@@ -620,7 +625,7 @@ public class XmlGenerator extends ITReturnComponent {
 		try {
 			DatatypeFactory df = DatatypeFactory.newInstance();
 			GregorianCalendar gc = new GregorianCalendar();
-			XMLGregorianCalendar xmlGC =  df.newXMLGregorianCalendar(gc);
+			XMLGregorianCalendar xmlGC =   DatatypeFactory.newInstance().newXMLGregorianCalendarDate(gc.get(Calendar.YEAR),gc.get(Calendar.MONTH)+1,gc.get(Calendar.DAY_OF_MONTH),DatatypeConstants.FIELD_UNDEFINED);
 			verification.setDate(xmlGC);
 		} catch (DatatypeConfigurationException e1) {
 			// TODO Auto-generated catch block
