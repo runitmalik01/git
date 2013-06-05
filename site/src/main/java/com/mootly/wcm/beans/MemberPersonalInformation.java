@@ -114,7 +114,7 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 	private String middleName;
 	private String lastName;
 	private String fatherName;
-	private String PAN;	
+	private String PAN;
 	private String filingStatus;
 	private GregorianCalendar DOB;
 	private String sex;
@@ -191,22 +191,8 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 	public GregorianCalendar getOriginalAckDate() {
 		if (originalAckDate == null) originalAckDate = getProperty(PROP_PI_ORIGINAL_ACK_DATE);
 		return originalAckDate;
-	}	
-
-	public XMLGregorianCalendar getGregorianOriginalAckDate() {
-		if (originalAckDate == null) originalAckDate = getProperty(PROP_PI_ORIGINAL_ACK_DATE);
-		String dobStr = getIndianDateFormatter().format(originalAckDate.getTime());
-		XMLGregorianCalendar date2=null;
-		try {
-			//date2 = DatatypeFactory.newInstance().newXMLGregorianCalendar(dobStr);
-			date2 = DatatypeFactory.newInstance().newXMLGregorianCalendar(originalAckDate);
-
-		} catch (DatatypeConfigurationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return date2;
 	}
+
 	public String getAckDateStr() {
 		if (originalAckDate == null) originalAckDate = getProperty(PROP_PI_ORIGINAL_ACK_DATE);
 		if (originalAckDate != null) {
@@ -235,21 +221,7 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 		}
 		return null;
 	}
-	public XMLGregorianCalendar getGregorianNoticeDate() {
-		if (noticeDate == null) noticeDate = getProperty(PROP_PI_NOTICE_DATE);
-		String dobStr = getIndianDateFormatter().format(noticeDate.getTime());
-		XMLGregorianCalendar date2=null;
-		try {
-			//date2 = DatatypeFactory.newInstance().newXMLGregorianCalendar(dobStr);
-			date2 = DatatypeFactory.newInstance().newXMLGregorianCalendar(noticeDate);
 
-		} catch (DatatypeConfigurationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return date2;
-	}
-	
 	//This is just a calculated field
 	public String getName() {
 		StringBuffer sb = new StringBuffer();
@@ -305,21 +277,6 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 		return null;
 	}
 
-	public XMLGregorianCalendar getGregorianDOB() {
-		if (DOB == null) DOB = getProperty(PROP_PI_DOB);
-		String dobStr = getIndianDateFormatter().format(DOB.getTime());
-		XMLGregorianCalendar date2=null;
-		try {
-			//date2 = DatatypeFactory.newInstance().newXMLGregorianCalendar(dobStr);
-			date2 = DatatypeFactory.newInstance().newXMLGregorianCalendar(DOB);
-
-		} catch (DatatypeConfigurationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return date2;
-	}
-
 	public String getSex() {
 		if (sex == null) sex = getProperty(PROP_PI_SEX);
 		return sex;
@@ -358,17 +315,6 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 		return pinCode;
 	}
 
-	public BigInteger getBigPinCode() {
-		if (pinCode == null) pinCode = getProperty(PROP_PI_PINCODE);
-		BigInteger bigPin=null;
-		if(pinCode.length()>0){
-			bigPin = new BigInteger(pinCode);
-			return bigPin;
-		}else
-			return null;
-
-	}
-
 	public String getEmail() {
 		if (email == null) email =  getProperty(PROP_PI_EMAIL);
 		return email;
@@ -383,15 +329,6 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 		return mobile1;
 	}
 
-	public BigInteger getBigMobile() {
-		if (mobile== null) mobile= getProperty(PROP_PI_MOBILE);
-		if(mobile.length()>0){
-			BigInteger bigMobile = new BigInteger(mobile );
-			return bigMobile;
-		}else
-			return null;
-	}
-
 	public String getStdCode() {
 		if (stdCode == null) stdCode = getProperty(PROP_PI_STD_CODE);
 		return stdCode;
@@ -401,27 +338,9 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 		return ward_circle;
 	}
 
-	public BigInteger getBigStdCode() {
-		if (stdCode == null) stdCode= getProperty(PROP_PI_STD_CODE);
-		if(stdCode.length()>0){
-			BigInteger bigStd = new BigInteger(stdCode );
-			return bigStd;
-		}else
-			return null;
-	}
-
 	public String getPhone() {
 		if (phone == null) phone = getProperty(PROP_PI_PHONE);
 		return phone;
-	}
-
-	public BigInteger getBigPhone() {
-		if (phone == null) phone= getProperty(PROP_PI_PHONE);
-		if(phone.length()>0){
-			BigInteger bigPhone = new BigInteger(phone );
-			return bigPhone;
-		}else
-			return null;
 	}
 
 	public String getPersonalInfoUuid() {
@@ -519,7 +438,7 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 	public final void setWard_circle(String ward_circle) {
 		this.ward_circle = ward_circle;
 	}
-	
+
 
 	public final void setPinCode(String pinCode) {
 		this.pinCode = pinCode;
@@ -718,7 +637,7 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 			node.setProperty(PROP_PI_FATHER_NAME, mpi.getFatherName());
 			node.setProperty(PROP_PI_PAN, mpi.getPAN());
 			node.setProperty(PROP_PI_FILING_STATUS, mpi.getFilingStatus());
-			node.setProperty(PROP_PI_DOB, mpi.getDOB());	    	
+			node.setProperty(PROP_PI_DOB, mpi.getDOB());
 			node.setProperty(PROP_PI_SEX, mpi.getSex());
 
 			node.setProperty(PROP_PI_FLAT_FLOOR_BUILDING, mpi.getFlatDoorBuilding());
@@ -755,7 +674,7 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 			node.setProperty(Rsstatus_q_no, mpi.getRsstatusQNo());
 			node.setProperty(Rsstatus_q_no_yes, mpi.getRsstatusQNoYes());
 			node.setProperty(Rsstatus_q_no_yes_yes, mpi.getRsstatusQNoYesYes());
-			node.setProperty(Rsstatus_q_no_no, mpi.getRsstatusQNoNo());	    	
+			node.setProperty(Rsstatus_q_no_no, mpi.getRsstatusQNoNo());
 			node.setProperty(Rsstatus_q_no_no_yes, mpi.getRsstatusQNoNoYes());
 			node.setProperty(Rsstatus_q_no_no_yes_yes, mpi.getRsstatusQNoNoYesYes());
 			node.setProperty(Rsstatus_q_no_yes_yes_yes, mpi.getRsstatusQNoYesYesYes());
@@ -771,7 +690,7 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 	public void fill(FormMap formMap) {
 		// TODO Auto-generated method stub
 		if (log.isInfoEnabled()) {
-			log.info("Into the fill method");			
+			log.info("Into the fill method");
 		}
 		if (formMap == null) return;
 		if ( formMap.getField("tax_status") != null) setTaxStatus(formMap.getField("tax_status").getValue());
@@ -779,17 +698,17 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 		if ( formMap.getField("emp_category") != null) setEmployerCategory(formMap.getField("emp_category").getValue());
 		if ( formMap.getField("receipt_no") != null) setReceiptNo(formMap.getField("receipt_no").getValue());
 		if ( formMap.getField("tax_ward") != null) setIncomeTaxWard(formMap.getField("tax_ward").getValue());
-		
+
 		if ( formMap.getField("pi_return_type") != null) setReturnType(formMap.getField("pi_return_type").getValue());
 		if ( formMap.getField("fy") != null) setFinancialYear(formMap.getField("fy").getValue());
 		if ( formMap.getField("ack_date") != null){
 			String strDate = formMap.getField("ack_date").getValue();
 			Date date = null ;
-			DateFormat formatter ; 
+			DateFormat formatter ;
 			formatter = getIndianDateFormatter();
 			GregorianCalendar cal=(GregorianCalendar) GregorianCalendar.getInstance();
 			try{
-				date = (Date)formatter.parse(strDate); 
+				date = (Date)formatter.parse(strDate);
 				if(log.isInfoEnabled()){
 					log.info("date"+date);
 				}
@@ -801,16 +720,16 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 			}
 		}
 		if ( formMap.getField("ack_no") != null) setOriginalAckNo(formMap.getField("ack_no").getValue());
-		if ( formMap.getField("defective") != null) setDefective(formMap.getField("defective").getValue());	
+		if ( formMap.getField("defective") != null) setDefective(formMap.getField("defective").getValue());
 		if ( formMap.getField("notice_no") != null) setNoticeNo(formMap.getField("notice_no").getValue());
-		if ( formMap.getField("notice_date") != null){ 
+		if ( formMap.getField("notice_date") != null){
 			String strDate = formMap.getField("notice_date").getValue();
 			Date date = null ;
-			DateFormat formatter ; 
+			DateFormat formatter ;
 			formatter = getIndianDateFormatter();
 			GregorianCalendar cal=(GregorianCalendar) GregorianCalendar.getInstance();
 			try{
-				date = (Date)formatter.parse(strDate); 
+				date = (Date)formatter.parse(strDate);
 				if(log.isInfoEnabled()){
 					log.info("date"+date);
 				}
@@ -833,11 +752,11 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 		if ( formMap.getField("pi_dob") != null) {
 			String strDate = formMap.getField("pi_dob").getValue();
 			Date date = null ;
-			DateFormat formatter ; 
+			DateFormat formatter ;
 			formatter = getIndianDateFormatter();
 			GregorianCalendar cal=(GregorianCalendar) GregorianCalendar.getInstance();
 			try{
-				date = (Date)formatter.parse(strDate); 
+				date = (Date)formatter.parse(strDate);
 				if(log.isInfoEnabled()){
 					log.info("date"+date);
 				}
@@ -847,7 +766,7 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 			catch(Exception e){
 				log.info("calendar error"+e);
 			}
-		}		
+		}
 		//Member Contact Information
 		if (formMap.getField("pi_email") != null) setEmail(formMap.getField("pi_email").getValue());
 		if (formMap.getField("pi_road_street") != null) setRoadStreet(formMap.getField("pi_road_street").getValue());
@@ -950,7 +869,7 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 				}
 				setResidentCategory(ResidentialFind(rb.getString(aKey)));
 				break;
-			}			
+			}
 		}
 	}
 	private String ResidentialFind(String key){
