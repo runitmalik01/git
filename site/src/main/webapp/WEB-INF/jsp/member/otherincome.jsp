@@ -319,7 +319,7 @@
 				<div class="rowlabel">
 					<input type="text" name="Agriculture_income"
 						value="${parentBean.agriculture_income}"
-						class="numberinput decimal" id="Agriculture_income" onchange="cal4()"
+						class=" decimal" id="Agriculture_income" onchange="cal4()"
 						maxlength="14" />
 				</div>
 			</div>
@@ -334,7 +334,7 @@
 				<div class="rowlabel">
 					<input type="text" name="Dividends_indian_companies"
 						value="${parentBean.dividends_indian_companies }"
-						class="numberinput decimal" id="Dividends_indian_companies" onchange="cal4()"
+						class=" decimal" id="Dividends_indian_companies" onchange="cal4()"
 						maxlength="14" />
 				</div>
 			</div>
@@ -346,7 +346,7 @@
 				<div class="rowlabel">
 					<input type="text" name="Otherincome"
 						value="${parentBean.otherincome}" maxlength="14"
-						class="numberinput decimal" id="Otherincome" onchange="cal4()" />
+						class="decimal" id="Otherincome" onchange="cal4()" />
 				</div>
 			</div>
 			<div class="span4">
@@ -357,7 +357,7 @@
 				<div class="rowlabel">
 					<input type="text" name="Total_taxfree_income"
 						value="${parentBean.total_taxfree_income}"
-						class="numberinput decimal" id="Total_taxfree_income" onchange="cal4()"
+						class="decimal" id="Total_taxfree_income" onchange="cal4()"
 						maxlength="14" readonly="readonly" />
 				</div>
 			</div>
@@ -381,7 +381,7 @@
 		<div class="span4 offset8 decimal">
 
 			<a href="${scriptName}" class="button olive">Cancel</a>&nbsp;<input
-				type="submit" value="save" style="color: orange">
+				type="submit" value="Save" style="color: orange">
 
 		</div>
 	</div>
@@ -404,58 +404,6 @@
 </hst:element>
 <hst:headContribution element="${uiCustom}" category="jsInternal" />
 <res:calc screenCalc="otherincome" formId="frmIncomeinfo"></res:calc>
-<script>
-	/*function cal1() {
-		var A = document.getElementById("A").value - 0;
-		var B = document.getElementById("B").value - 0;
-		var C = document.getElementById("C").value - 0;
-		var D = document.getElementById("D").value - 0;
-		var E = document.getElementById("E").value - 0;
-		var F = document.getElementById("F").value - 0;
-		var S = document.getElementById("F").value - 0;
-		document.getElementById("G").value = (A + B + C + S + D + E + F);
-
-	}
-	function cal2() {
-		var a1 = document.getElementById("a1").value - 0;
-		var a2 = document.getElementById("a2").value - 0;
-		//var a3 = document.getElementById("a3").value - 0;
-		var a4 = document.getElementById("a4").value - 0;
-		var a5 = document.getElementById("a5").value - 0;
-		var a7 = document.getElementById("a7").value - 0;
-		var a6 = document.getElementById("a6").value - 0;
-		document.getElementById("a8").value = (a1 + a2 + a4 + (a5 - a7) + a6);
-
-	}
-	function cal3() {
-		var a1 = document.getElementById("a1").value - 0;
-		document.getElementById("b1").value = myfamily(a1);
-		function myfamily(a) {
-			return (a * 333 / 1000);
-		}
-		var b1 = document.getElementById("b1").value - 0;
-		var b2 = document.getElementById("b2").value - 0;
-		var b3 = document.getElementById("b3").value - 0;
-		document.getElementById("b4").value = (b1 + b2 + b3);
-	}
-	function cal4() {
-		var c1 = document.getElementById("c1").value - 0;
-		var c2 = document.getElementById("c2").value - 0;
-		var c3 = document.getElementById("c3").value - 0;
-		var c4 = document.getElementById("c4").value - 0;
-		var c5 = document.getElementById("c5").value - 0;
-		var c6 = document.getElementById("c6").value - 0;
-		document.getElementById("c7").value = (c1 + c2 + c3 + c4 + c5 + c6);
-
-	}
-	function cal5() {
-		var G = document.getElementById("G").value - 0;
-		var a8 = document.getElementById("a8").value - 0;
-		var b4 = document.getElementById("b4").value - 0;
-		document.getElementById("Taxable").value = mycal(G, a8, b4);
-
-	}
-	function mycal(a, b, c) {
-		return (a + b - c);
-	}**/
-</script>
+<res:client-validation formId="frmdataSlryInc"
+	screenConfigurationDocumentName="salaryincome"
+	formSubmitButtonId="myModalHrefSlryInc" />
