@@ -152,12 +152,15 @@
     <hst:attribute name="type">text/javascript</hst:attribute>
     $(document).ready(function() {
     
-	var fY='<c:out value="${assessmentYear}"/>'.split("-", 4);
-	itrFinYrMax="01/04/"+fY[1];
+	var fY='<c:out value="${financialYear}"/>'.split("-", 4);
+	itrFinYrMax="31/03/"+fY[1];
 	itrFinYrMin="01/04/"+fY[0];
 			$( ".indiandateAdvance" ).datepicker( "option", "minDate", itrFinYrMin );
 			$( ".indiandateAdvance" ).datepicker( "option", "maxDate", itrFinYrMax );
 			});
+	
   
 </hst:element>
 <hst:headContribution element="${uiCustom}" category="jsInternal"/>
+
+
