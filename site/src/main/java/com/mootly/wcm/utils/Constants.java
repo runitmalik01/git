@@ -137,7 +137,9 @@ public interface Constants {
 	String PROP_PI_SEX = "mootlywcm:pi_sex";
 	String PROP_PI_EMAIL = "mootlywcm:pi_email";
 	String PROP_PI_MOBILE = "mootlywcm:pi_mobile";
+	String PROP_PI_MOBILE1 = "mootlywcm:pi_mobile1";
 	String PROP_PI_STD_CODE = "mootlywcm:pi_std_code";
+	String PROP_PI_WARD_CIRCLE = "mootlywcm:ward";
 	String PROP_PI_PHONE = "mootlywcm:pi_phone";
 	String PROP_PI_RESIDENT_CATEGORY = "mootlywcm:pi_residential_category";
 	String PROP_PI_FINANCIAL_YEAR="mootlywcm:financialYear";
