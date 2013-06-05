@@ -198,7 +198,7 @@
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.coownername1}"/></c:if>" />
 							</div>
 						</div>
-						<div>
+						
 						<div class="span4">
 							<div class="rowlabel">
 								<label for=""><small>PAN of the Co-owner</small> </label>
@@ -219,7 +219,7 @@
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.share1}"/></c:if>" />
 							</div>
 						</div>
-					</div>
+					
 					<div class="row-fluid show-grid">
 						<div class="span1">
 							<div class="decimal">2.</div>
