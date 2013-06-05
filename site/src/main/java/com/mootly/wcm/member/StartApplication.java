@@ -57,14 +57,14 @@ import com.mootly.wcm.utils.UrlUtility;
 @FormFields(fieldNames={"pi_return_type","fy","ack_no","ack_date","defective","notice_no","notice_date",
 		"pan","pi_first_name","pi_middle_name","pi_last_name","gender","pi_dob","pi_filing_status",
 		"pi_road_street","pi_std_code","pi_phone","pi_flat_door_building","pi_area_locality","pi_town_city_district",
-		"pi_pin_code","pi_state","pi_mobile","pi_email","pi_premises_building",
+		"pi_pin_code","pi_state","pi_mobile","pi_mobile1","pi_email","pi_premises_building",
 		"rsstatus_q","rsstatus_q_yes","rsstatus_q_yes_yes","rsstatus_q_no","rsstatus_q_no_yes","rsstatus_q_no_yes_yes",
 		"rsstatus_q_no_no","rsstatus_q_no_no_yes","rsstatus_q_no_no_yes_yes","rsstatus_q_no_yes_yes_yes",
 		"bd_bank_name","bd_micr_code","bd_Branch_name","bd_account_type","bd_account_no","bd_ecs",
-		"pi_return_type","fy","ack_no","ack_date","defective","notice_no","notice_date"})
+		"pi_return_type","fy","ack_no","ack_date","defective","notice_no","notice_date","ward_circle","Employe_category"})
 @RequiredFields(fieldNames={
 		"pi_last_name","pi_dob","gender",
-		"pi_flat_door_building","pi_email","pi_pin_code","pi_town_city_district","pi_state","pi_area_locality",
+		"pi_flat_door_building","pi_email","pi_pin_code","pi_town_city_district","pi_state","pi_area_locality","pi_std_code","pi_mobile",
 "rsstatus_q"})
 
 public class StartApplication extends ITReturnComponent {
