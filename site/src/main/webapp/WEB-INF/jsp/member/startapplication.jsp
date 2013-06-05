@@ -58,9 +58,39 @@ else {
         </c:if>
 		<fieldset>
 			  <legend><c:out value="${filingStatus}"/> Details</legend>			  
-		      <div class="row-fluid show-grid">	        
+		      <div class="row-fluid show-grid">	  
+		      <div class="span3">
+							<div class="rowlabel">
+								<label><fmt:message key="member.employe.category" /></label>
+							</div>
+							<c:if
+								test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
+								<c:choose>
+									<c:when test="${parentBean.employerCategory == 'GOV'}">
+										<c:set var="gov" value="checked=checked" />
+									</c:when>
+									<c:when test="${parentBean.employerCategory == 'PSU'}">
+										<c:set var="psu" value="checked=checked" />
+									</c:when>
+									<c:when test="${parentBean.employerCategory == 'OTH'}">
+										<c:set var="oth" value="checked=checked" />
+									</c:when>
+								</c:choose>
+							</c:if>
+							<div class="rowlabel">
+								<input type="radio" <c:out value="${gov}"/>
+									name="employerCategory" value="GOV" />Government <input
+									type="radio" <c:out value="${psu}"/> name="Employe_category"
+									value="PSU" />PSU <input type="radio" <c:out value="${oth}"/>
+									name="Employe_category" value="OTH" />Others
+							</div>
+						</div>   
+						</div>  
+						<div class="row-fluid show-grid">	   
 		      	  <c:choose>
 		      	  	<c:when test="${filingStatus eq 'PERSON'}">
+		      	  	
+						
 			          <div class="span3">
 			            <div class="rowlabel"><label for="pi_first_name"><small>First Name</small></label></div>
 			          	<div class="rowlabel"><input id="pi_first_name" name="pi_first_name" placeholder="First Name" type="text" value="<c:if test="${not empty parentBean.firstName}"><c:out value="${parentBean.firstName}"/></c:if>"/></div>
@@ -99,7 +129,8 @@ else {
 		 </fieldset>
 		 <fieldset>
 			 <legend>Address &amp; Contact Information</legend>
-			 <div class="row-fluid show-grid">	   
+			 <div class="row-fluid show-grid">	
+			 
 			   	  <div class="span6">
 			   	  	<div class="rowlabel"><label for="pi_flat_door_building"><small>Flat/Door/Building</small></label></div>
 			   	  	<div class="rowlabel"><input id="pi_flat_door_building" value="${parentBean.flatDoorBuilding}" name="pi_flat_door_building" placeholder="Flat/Door/Building" type="text"  value="<c:if test="${not empty parentBean.flatDoorBuilding}"><c:out value="${parentBean.flatDoorBuilding}"/></c:if>"/></div>
@@ -110,7 +141,7 @@ else {
 			   	  </div>
 			  </div>
 			  <div class="row-fluid show-grid">	   
-		          <div class="span4">
+		          <div class="span3">
 		          	<div class="rowlabel"><label for="pi_area_locality"><small>Area/Locality</small></label></div>
 		          	<input id="pi_area_locality" value="${parentBean.areaLocality}" name="pi_area_locality" placeholder="Area/Locality" type="text"/>
 		          </div>
@@ -134,21 +165,35 @@ else {
 			 	  	<div class="rowlabel"><label for="std"><small>STD Code</small></label></div>
 			 	  	<div class="rowlabel"><input id="pi_std_code" value="${parentBean.stdCode}" name="pi_std_code"  placeholder="STD"  type="text" maxlength="5"/></div>
 			 	  </div>
-		          <div class="span3">
+		          <div class="span2">
 		          	<div class="rowlabel"><label for="phone"><small>Phone</small></label></div>
 		          	<div class="rowlabel"><input id="pi_phone" value="${parentBean.phone}" name="pi_phone"  placeholder="Phone Number"  type="text" maxlength="10"/></div>
 		          </div>
-		          <div class="span3">
+		          <div class="span2">
 		          	<div class="rowlabel"><label for="mobile"><small>Mobile</small></label></div>
 		          	<div class="rowlabel"><input id="mobile" value="${parentBean.mobile}" name="pi_mobile"  placeholder="Mobile Phone Number"  type="text" maxlength="10"/></div>
 		          </div>
+		          <div class="span2">
+		          	<div class="rowlabel"><label for="mobile1"><small>Mobile(If any other)</small></label></div>
+		          	<div class="rowlabel"><input id="mobile1" value="${parentBean.mobile1}" name="pi_mobile1"  placeholder="Mobile Phone Number"  type="text" maxlength="10"/></div>
+		          </div>
+		           <div class="span4">
+		          		<div class="rowlabel"><label for="ward_circle"><small>IncomeTax Ward/Circle</small></label></div>
+			          	<div class="input-prepend">
+					    
+					      <input id="ward_circle" value="<c:choose><c:when test="${empty parentBean || empty parentBean.ward_circle}"><%=request.getUserPrincipal().getName()%><c:out value="${request.userPrincipal.name}"/></c:when><c:otherwise>${parentBean.ward_circle}</c:otherwise></c:choose>" name="ward_circle" placeholder="Your Ward/Circle " type="text"/>
+	    				</div>
+	    				
+    			  </div>
 		          <div class="span4">
 		          		<div class="rowlabel"><label for="pi_email"><small>Email</small></label></div>
 			          	<div class="input-prepend">
 					      <span class="add-on"><i class="icon-envelope"></i></span>
 					      <input id="pi_email" value="<c:choose><c:when test="${empty parentBean || empty parentBean.email}"><%=request.getUserPrincipal().getName()%><c:out value="${request.userPrincipal.name}"/></c:when><c:otherwise>${parentBean.email}</c:otherwise></c:choose>" name="pi_email" placeholder="Email Address" type="text"/>
 	    				</div>
+	    				
     			  </div>
+    			 
 		     </div>
 		</fieldset>
 		<fieldset>
