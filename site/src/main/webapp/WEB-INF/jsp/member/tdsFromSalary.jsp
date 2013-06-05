@@ -50,10 +50,10 @@
 			          	value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.total_TaxDeducted}"/></c:if>"/></div>
 			          </div></div>
 			</fieldset>
-			
+
 				<div class="row-fluid show-grid">
 					<div class="span4 offset8 decimal">
-						<a href="${scriptName}?selectedItrTab=<%=ITRTab.TAX_TDS_SALARY%>" class="button olive">Cancel</a>&nbsp;
+						<a href="${scriptName}" class="button olive">Cancel</a>&nbsp;
 								<a id="myModalHreftds" role="button" class="btn orange">Save</a>
 					</div>
 					</div>
