@@ -176,7 +176,7 @@
                             }
 			});
         function checkdelete(){
-	        var re=confirm("Do You want to Delete it");
+	        var re=confirm("Do you want to delete it ?");
 	          if (re) return true;
 	          else return false;
                     }
