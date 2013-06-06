@@ -20,6 +20,7 @@
 <hippo-gogreen:title title="${salaryincometitle}" />
 <hst:actionURL var="actionUrl"></hst:actionURL>
 <div class="page">
+    <w4india:itrmenu></w4india:itrmenu>
 	<h3 id="respond1">
 		<c:choose>
 			<c:when

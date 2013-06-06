@@ -15,6 +15,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.jcr.ItemNotFoundException;
+import javax.jcr.LoginException;
+import javax.jcr.Node;
+import javax.jcr.Property;
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 import javax.servlet.ServletContext;
@@ -105,13 +109,18 @@ public class Deduction extends ITReturnComponent {
 		Map<String, Double> totalOfSavedData = new HashMap<String, Double>();
 		Map<String, Double> totalOfSavedDataPerHead = new HashMap<String, Double>();
 		super.doBeforeRender(request, response);
+		//String a = getComponentConfiguration().getParameter("ischildofform16", request.getRequestContext().getResolvedSiteMapItem());
+		//String ischildofform16 = getLocalParameter("ischildofform16", request);
+		//getParameter("ischildofform16", request)
+		String ischildofform16 =  getParameter("ischildofform16", request);
+		request.setAttribute("ischildofform16",ischildofform16);
 		Boolean form16InEditMode = Boolean.FALSE;
 		String form16UniqueUUID = null;
-		//if (getPageAction() != null && getPageAction().equals(PAGE_ACTION.EDIT_CHILD)) {
-			//FormSixteenDetail form16Detail=(FormSixteenDetail) getChildBean();
-			form16InEditMode = (Boolean) request.getRequestContext().getAttribute("form16InEditMode");
-			form16UniqueUUID = (String) request.getRequestContext().getAttribute("form16UniqueUUID");
-		//}
+		form16InEditMode = (Boolean) request.getRequestContext().getAttribute("form16InEditMode");
+		form16UniqueUUID = (String) request.getRequestContext().getAttribute("form16UniqueUUID");
+		if (request.getRequestContext().getResolvedSiteMapItem().getParameter("uuidform_16") != null) {
+			request.setAttribute("uuidform_16", request.getRequestContext().getResolvedSiteMapItem().getParameter("uuidform_16"));
+		}
 		if ( form16InEditMode == null ) form16InEditMode = Boolean.FALSE;
 		
 		request.setAttribute("deductionListService", deductionListService);
@@ -238,7 +247,7 @@ public class Deduction extends ITReturnComponent {
 				othersources=othersourcesdoc.getTaxable_income();
 			totalMapForJS.put("othersources", othersources);
 			HouseProperty housprop=(HouseProperty)request.getAttribute(HouseProperty.class.getSimpleName().toLowerCase());
-			if (housprop.getHouseIncomeDetailList() != null && housprop.getHouseIncomeDetailList().size() > 0 ){ 
+			if (housprop != null && housprop.getHouseIncomeDetailList() != null && housprop.getHouseIncomeDetailList().size() > 0 ){ 
 				for (HouseIncomeDetail houseincomeDetail:housprop.getHouseIncomeDetailList()) {
 					houseproperty=houseproperty+houseincomeDetail.getIncome_hproperty(); 
 				}	
@@ -257,6 +266,10 @@ public class Deduction extends ITReturnComponent {
 	public void doAction(HstRequest request, HstResponse response)
 			throws HstComponentException {
 		// TODO Auto-generated method stub
+		String aa = getParameter("ischildofform16", request);
+		String a = getComponentConfiguration().getParameter("ischildofform16", request.getRequestContext().getResolvedSiteMapItem());
+		String ischildofform16 = getLocalParameter("ischildofform16", request);
+		ischildofform16 =  getParameter("ischildofform16", request);
 		super.doAction(request, response);
 	}
 
@@ -270,10 +283,35 @@ public class Deduction extends ITReturnComponent {
 			if (getChildBean() != null) {
 				DeductionDocumentDetail dd = (DeductionDocumentDetail) getChildBean();				
 				dd.setSection(deduction_section);
+				String uuidform_16 = request.getRequestContext().getResolvedSiteMapItem().getParameter("uuidform_16");
+				//String form16UniqueUUID = (String) request.getRequestContext().getAttribute("form16UniqueUUID");
+				String ischildofform16 =  getParameter("ischildofform16", request);
+				//if (dd.getForm16Uuid())
+				//form16InEditMode = (Boolean) request.getRequestContext().getAttribute("form16InEditMode");
+				if (ischildofform16 != null && ischildofform16.equals("true")) {
+					try {
+						Node theForm16Node = request.getRequestContext().getSession().getNodeByIdentifier(uuidform_16);
+						if (theForm16Node != null) {
+							Property p = theForm16Node.getProperty("mootlywcm:formsixteenuuid");
+							if (p != null) {
+								dd.setForm16Uuid(p.getString());
+							}
+						}
+					} catch (ItemNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (LoginException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (RepositoryException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					//dd.setForm16Uuid();
+				}
 			}
 		}
-		 String uuidform16=request.getRequestContext().getResolvedSiteMapItem().getParameter("uuidform-16");
-		 log.info("This is uuid of form sixteen"+uuidform16);
+		String uuidform16=request.getRequestContext().getResolvedSiteMapItem().getParameter("uuidform-16");		
 		return true;
 	}
 

@@ -60,7 +60,8 @@
 	<div id="container" class="hfeed">	
 		<hst:include ref="header"/>	
 		<div id="wrapper" class="clearfix">
-			<hst:include ref="main"/>
+			<hst:include ref="main"/>		
+			<hst:headContributions categoryIncludes="customHTML" xhtml="false"/>	
 	    </div><!-- end of #wrapper -->
 	</div><!-- end of #container -->
 	<hst:include ref="footer"/>

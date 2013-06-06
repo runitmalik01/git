@@ -225,7 +225,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 						response.setRenderParameter("selectedItrTab", ((ITRTab)request.getAttribute("selectedItrTab")).name());
 						urlToRedirect += "?selectedItrTab=" +  ((ITRTab)request.getAttribute("selectedItrTab")).name();
 					}
-					log.info("urlToRedirect EEEEEEEEEEEE"+urlToRedirect);
+					//log.info("urlToRedirect EEEEEEEEEEEE"+urlToRedirect);
 					response.sendRedirect( urlToRedirect );
 					//response.sendRedirect(redirectURL);
 					return;
@@ -278,28 +278,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			return;
 		}
 		sanitize(request,response,formMap);
-		if (pageAction.equals(PAGE_ACTION.EDIT) || pageAction.equals(PAGE_ACTION.EDIT_CHILD) || pageAction.equals(PAGE_ACTION.NEW_CHILD)) {
-			//lets save the document
-			//interesting how to get all the form data
-			//Put Random unique uuid in form16 Document
-			if(request.getRequestContext().getResolvedSiteMapItem().getParameter("action").equalsIgnoreCase("formsixteen_NEW_CHILD")){
-				formMap.getField("uuidform16").addValue(UUID.randomUUID().toString());
-			}
-			//put the value in uuidform16 field of deduction Screen form form sixteen unique random uuid.
-			if(request.getRequestContext().getResolvedSiteMapItem().getParameter("uuidform-16")!=null){
-				String prmuuidform16=request.getRequestContext().getResolvedSiteMapItem().getParameter("uuidform-16");
-				String uniquuidfomr16=null;
-				FormSixteenDocument form16doc=(FormSixteenDocument)request.getAttribute("formsixteendocument");
-				if(form16doc!=null){
-					for(FormSixteenDetail form16detail:form16doc.getFormSixteenDetailList()){
-						if(form16detail.getCanonicalUUID().equals(prmuuidform16)){
-							uniquuidfomr16=form16detail.getForm16Uuid();
-							break;
-						}
-					}
-					formMap.getField("decuuidform16").addValue(uniquuidfomr16);
-				}
-			}
+		if (pageAction.equals(PAGE_ACTION.EDIT) || pageAction.equals(PAGE_ACTION.EDIT_CHILD) || pageAction.equals(PAGE_ACTION.NEW_CHILD)) {	
 			if (log.isInfoEnabled()) {
 				if (formMap != null) {
 					for (String aFieldName:formFields.fieldNames()) {
@@ -327,15 +306,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 						response.setRenderParameter("selectedItrTab", ((ITRTab)request.getAttribute("selectedItrTab")).name());
 						urlToRedirect += "?selectedItrTab=" +  ((ITRTab)request.getAttribute("selectedItrTab")).name();
 					}
-					//check if we are on form sixteen then it should not redirect to Scripturl
-					if(parentBean != null && getParentBean().getName().equalsIgnoreCase("FormSixteenDocument")&&pageAction.equals(PAGE_ACTION.NEW_CHILD)){
-						response.setRenderParameter("partialSubmit", "partialSubmit");
-					}//After submit of deduction in form 16 redirect to form in edited mode 
-					else if(request.getRequestContext().getResolvedSiteMapItem().getParameter("uuidform-16")!=null){
-						String modUrlToredirect=getScriptName()+"/"+request.getRequestContext().getResolvedSiteMapItem().getParameter("uuidform-16")+"/formsixteenedit";
-						request.setAttribute("modUrlToredirect", modUrlToredirect);
-						response.sendRedirect(modUrlToredirect);
-					}else response.sendRedirect( urlToRedirect );
+					response.sendRedirect( urlToRedirect );
 				}
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
@@ -650,25 +621,40 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			tabName = actionInSiteMap.substring(0,actionInSiteMap.indexOf("_"));
 		}
 
-		String strPageAction = request.getRequestContext().getResolvedSiteMapItem().getParameter("action");
+		String strPageAction = request.getRequestContext().getResolvedSiteMapItem().getParameter("action");		
+		//this is tricky lets allow components to override the configuration by passing it themselves
+		//this is useful for form16 -- deductions scenario where a parent is hosting a child
+		String strPageActionFromComponent = getParameter("action", request);
+		if (strPageActionFromComponent != null) {
+			if (log.isInfoEnabled()) {
+				log.info("Found action parameter in the component. Will override " + strPageAction + " with the component action " + strPageActionFromComponent );
+			}
+			strPageAction = strPageActionFromComponent;
+		}
 		if (strPageAction == null) {
 			pageAction = ITReturnScreen.PAGE_ACTION.DEFAULT;
 		}
 		else {
-			try {
-				pageAction = ITReturnScreen.PAGE_ACTION.valueOf(strPageAction);
-			}catch (IllegalArgumentException aie) {
-				if (log.isInfoEnabled()) {
-					log.info("We will now try to find if it contains the classname");
-				}
-				if (strPageAction != null && strPageAction.contains(this.getClass().getSimpleName().toLowerCase())) {
-					int indexOfFirstUnderScore = strPageAction.indexOf("_");
-					strPageAction = strPageAction.substring(indexOfFirstUnderScore+1);
-					//now lets try the value of AGAIN
+			String[] listOfPageActions = null;
+			listOfPageActions = strPageAction.split("[,]");
+			for (String aPageAction:listOfPageActions) {
+				try {
+					pageAction = ITReturnScreen.PAGE_ACTION.valueOf(aPageAction);
+					break;
+				}catch (IllegalArgumentException aie) {
 					if (log.isInfoEnabled()) {
-						log.info("strPageAction after substring=" + strPageAction);						
-					}	
-					pageAction = ITReturnScreen.PAGE_ACTION.valueOf(strPageAction);
+						log.info("We will now try to find if it contains the classname");
+					}
+					if (aPageAction != null && aPageAction.contains(this.getClass().getSimpleName().toLowerCase())) {
+						int indexOfFirstUnderScore = aPageAction.indexOf("_");
+						aPageAction = aPageAction.substring(indexOfFirstUnderScore+1);
+						//now lets try the value of AGAIN
+						if (log.isInfoEnabled()) {
+							log.info("strPageAction after substring=" + aPageAction);						
+						}	
+						pageAction = ITReturnScreen.PAGE_ACTION.valueOf(aPageAction);
+						break;
+					}
 				}
 			}
 		}
@@ -991,21 +977,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			request.setAttribute("clientSideValidationJSON", clientSideValidationJSON);
 		}
 
-		if (scriptName != null) {
-			//this is use to get modified Script url when deduction included in form 16
-			String form16=request.getRequestContext().getResolvedSiteMapItem().getParameter("form16");
-			String fomr16action=request.getRequestContext().getResolvedSiteMapItem().getParameter("action");
-			if(fomr16action.equalsIgnoreCase("formsixteen_EDIT_CHILD")){
-				if(request.getRequestContext().getResolvedSiteMapItem().getParameter("uuid")!=null){
-					String modScriptUrl=scriptName+"/"+request.getRequestContext().getResolvedSiteMapItem().getParameter("uuid")+"/formsixteenedit";
-					request.setAttribute("modScriptUrl", modScriptUrl);
-				}
-			}
-			//set the url for deduction modal close button
-			if(request.getRequestContext().getResolvedSiteMapItem().getParameter("uuidform-16")!=null){
-				String modUrlToredirect=getScriptName()+"/"+request.getRequestContext().getResolvedSiteMapItem().getParameter("uuidform-16")+"/formsixteenedit";
-				request.setAttribute("modUrlToredirect", modUrlToredirect);
-			}
+		if (scriptName != null) {			
 			request.setAttribute("scriptName", scriptName);
 		}
 
@@ -1046,7 +1018,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		}
 	}
 
-	protected String getRedirectURLForSiteMapItem(HstRequest request,HstResponse response,FormSaveResult formSaveResult,String siteMapReferenceId,FinancialYear financialYear, ITReturnType itReturnType,String pan) {
+	public String getRedirectURLForSiteMapItem(HstRequest request,HstResponse response,FormSaveResult formSaveResult,String siteMapReferenceId,FinancialYear financialYear, ITReturnType itReturnType,String pan) {
 		if (siteMapReferenceId == null) return null;
 		if (financialYear == null || financialYear.equals(FinancialYear.UNKNOWN)) return null;
 		if (itReturnType == null || itReturnType.equals(ITReturnType.UNKNOWN)) return null;

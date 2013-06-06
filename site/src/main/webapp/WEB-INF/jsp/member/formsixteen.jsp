@@ -1,3 +1,4 @@
+<%@page import="org.hippoecm.hst.core.component.HstRequest"%>
 <%@page import="com.mootly.wcm.model.ITRTab"%>
 <%@page import="com.mootly.wcm.member.FormSixteen"%>
 <%@page import="com.mootly.wcm.services.ScreenConfigService"%>
@@ -25,7 +26,7 @@
 			.getQuarter();
 	request.setAttribute("objHashMapquarter", objHashMapquarter);
 %>
-
+<w4india:itrmenu></w4india:itrmenu>
 <h3 id="respond1">
 	<c:choose>
 		<c:when
@@ -1037,6 +1038,12 @@
 			New</a>
 	</c:otherwise>
 </c:choose>
+<%
+HstRequest hstRequest = (HstRequest) request;
+String formHTMLComplete = (String) hstRequest.getRequestContext().getAttribute("formHTMLComplete");
+//request.setAttribute("formHTMLComplete, arg1)
+%>
+<% if (formHTMLComplete != null) out.println(formHTMLComplete); %>
 <res:calc screenCalc="formsixteen" formId="frmdataFormSixteen"></res:calc>
 <res:client-validation formId="frmdataFormSixteen" screenConfigurationDocumentName="formsixteen" formSubmitButtonId="myModalHrefFormSixteen" />
 	

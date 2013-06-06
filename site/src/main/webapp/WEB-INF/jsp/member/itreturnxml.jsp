@@ -2,7 +2,7 @@
 
 <%@page import="com.mootly.wcm.model.ITRTab"%>
 <%@include file="../includes/tags.jspf"%>
-
+<w4india:itrmenu></w4india:itrmenu>
 <label class="radio inline"> <input type="radio"
 	name="optionsRadios" id="showSummary" value="summary"
 	<c:if test="${empty show || show == 'summary'}">checked</c:if>>

@@ -4,6 +4,11 @@
 13/03/2013
  --%>
 
+<%@page import="org.hippoecm.hst.core.sitemenu.HstSiteMenuItem"%>
+<%@page import="org.hippoecm.hst.core.sitemenu.HstSiteMenusImpl"%>
+<%@page import="org.hippoecm.hst.core.sitemenu.HstSiteMenusManagerImpl"%>
+<%@page import="org.hippoecm.hst.core.sitemenu.HstSiteMenuImpl"%>
+<%@page import="org.hippoecm.hst.core.sitemenu.HstSiteMenu"%>
 <%@page import="org.hippoecm.hst.core.request.ResolvedSiteMapItem"%>
 <%@page import="org.hippoecm.hst.core.component.HstRequest"%>
 <%@ page import="com.mootly.wcm.utils.*"%>
@@ -11,7 +16,7 @@
 <%@ page import="com.mootly.wcm.beans.*"%>
 <%@page import="org.hippoecm.hst.content.beans.standard.HippoFolder"%>
 <%@include file="../includes/tags.jspf"%>
-<res:breadcrumb breadcrumType="IT Return-ITR1" />
+<%--res:breadcrumb breadcrumType="IT Return-ITR1" / --%>
 <!-- used to set title  -->
 <%
 HstRequest hstRequest = (HstRequest) request;
@@ -22,6 +27,12 @@ if (actionInSiteMap != null && actionInSiteMap.contains("_")) {
  tabName = actionInSiteMap.substring(0,actionInSiteMap.indexOf("_"));
 }
 
+HstSiteMenusImpl itrSiteMenuImpl = new HstSiteMenusImpl(hstRequest.getRequestContext());
+HstSiteMenu itrSiteMenu = itrSiteMenuImpl.getSiteMenu("itrmenu");
+for (HstSiteMenuItem siteMenuItem : itrSiteMenu.getSiteMenuItems() ){
+	
+}
+pageContext.setAttribute("itrSiteMenu", itrSiteMenu);
 //How is the page designed, lets define a structure for this page using simple linkedhashmap and arraylist
 %>
 <c:set var="tds1">
@@ -29,104 +40,77 @@ if (actionInSiteMap != null && actionInSiteMap.contains("_")) {
 </c:set>
 <hippo-gogreen:title title="${tds1}" />
 <hst:actionURL var="actionUrl"></hst:actionURL>
-<div class="page type-page">
-	<h3 id="respond1"><fmt:message key="titile.itr1.page" /></h3>
-	<!-- <form id="frmdata" action="${actionUrl}" name="oi" method="post"> -->
-
-	<ul id="myTab" class="nav nav-tabs">
-		<c:forEach items="${view.listOfITRTabs}" var="itrTab" >
-			<c:choose>
-				<c:when test="${not empty itrTab.itrTabType && itrTab.itrTabType == 'group'}">
-					<li class="dropdown <c:if test='${not empty selectedItrTab && fn:contains(itrTab.tabNames,selectedItrTab)}'>active</c:if>"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><fmt:message key="${itrTab.labelKey}"/> <b class="caret"></b></a>
-						<ul class="dropdown-menu">
-							<c:forEach items="${itrTab.tabList}" var="aTab">
-								<li <c:if test='${empty selectedItrTab && selectedItrTab == aTab}'>class="active"</c:if>><a href="#<c:out value="${aTab}"/>" data-toggle="tab"><fmt:message key="${aTab.labelKey}" /></a></li>
-							</c:forEach>	
-						</ul>
-					</li>
-				</c:when>
-				<c:otherwise>
-					<li <c:if test='${not empty selectedItrTab && selectedItrTab == itrTab}'>class="active"</c:if>><a href="#<c:out value="${itrTab}"/>" data-toggle="tab"><fmt:message key="${itrTab.labelKey}" /></a></li>
-				</c:otherwise>
-			</c:choose>				
-		</c:forEach>			
-	</ul>
-	<%-- active tab gets the class in active --%>
-	<div id="myTabContent" class="tab-content">
-		<c:forEach items="${view.listOfITRTabs}" var="itrTab" >
-			<c:choose>
-				<c:when test="${not empty itrTab.itrTabType && itrTab.itrTabType == 'group'}">
-					<c:forEach items="${itrTab.tabList}" var="aTab">
-						<div class="tab-pane fade <c:if test='${not empty selectedItrTab && selectedItrTab == aTab}'>in active</c:if>" id="<c:out value="${aTab}"/>">
-							<hst:include ref="${aTab.componentName}" />
-						</div>
-					</c:forEach>	
-				</c:when>
-				<c:otherwise>
-					<div class="tab-pane fade <c:if test='${not empty selectedItrTab && selectedItrTab == itrTab}'>in active</c:if>" id="<c:out value="${itrTab}"/>">
-						<hst:include ref="${itrTab.componentName}" />
-					</div>
-				</c:otherwise>
-			</c:choose>				
-		</c:forEach>	
-			<%--		
-			<div
-				class="tab-pane fade <%if (tabName == "summary"){%>in active <%}%>"
-				id="incometaxsummary">
-				<hst:include ref="calculation" />
-			</div>
-			<div
-				class="tab-pane fade <%if (tabName != null && tabName.equals("formsixteen")){%>in active<%}%>"
-				id="formsixteen">
-				<hst:include ref="formsixteenITR1" />
-			</div>
-			<div
-				class="tab-pane fade <%if (tabName != null && tabName.equals("salaryincome")){%>in active<%}%>"
-				id="incomesalaries">
-				<hst:include ref="salaryincomeITR1" />
-			</div>
-			<div
-				class="tab-pane fade <%if (tabName != null && tabName.equals("incomeothersources")){%>in active<%}%>"
-				id="incomeothersources">
-				<hst:include ref="otherincome" />
-			</div>
-			<div
-				class="tab-pane fade <%if (tabName != null && tabName.equals("houseincome")){%>in active<%}%> "
-				id="incomesinglehouse">
-				<hst:include ref="singlehouseincome" />
-			</div>
-			<div
-				class="tab-pane fade <%if (tabName != null && tabName.equals("advancetax")){%>in active<%}%>  "
-				id="advancetax">
-				<hst:include ref="advanceataxITR1" />
-			</div>
-			<div
-				class="tab-pane fade <%if (tabName != null && tabName.equals("selfassesmenttax")){%>in active<%}%>  "
-				id="selfassesmenttax">
-				<hst:include ref="selfassesmenttaxITR1" />
-			</div>
-			<div
-				class="tab-pane fade <%if (tabName != null && tabName.equals("tdsfromothers")){%>in active<%}%>  "
-				id="tdsfromothers">
-				<hst:include ref="tdsfromothersITR1" />
-			</div>
-			<div
-				class="tab-pane fade <%if (tabName != null && tabName.equals("tdsfromsalary")){%>in active<%}%>  "
-				id="tdsfromsalary">
-				<hst:include ref="tdsfromsalaryITR1" />
-			</div>
-			<div
-				class="tab-pane fade <%if (tabName != null && tabName.equals("deductions")){%>in active<%}%> "
-				id="deductions">
-				<hst:include ref="deductionITR1" />
-			</div>
-			 --%>
-		</div>
-		
-		<div id="reviewModal">
-			<hst:include ref="reviewsITR1" />
-		</div>
-	
-
+<div class="page">
+   <div class="navbar">
+      <div class="navbar-inner">
+         <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </a>
+            <a class="brand" href="#">
+               <span class="pan">
+                  <c:out value="${pan}"/>
+               </span>
+            </a>
+            <div class="nav-collapse collapse navbar-responsive-collapse">
+               <ul class="nav">                  
+                  <c:forEach items="${itrSiteMenu.siteMenuItems}" var="itrSiteMenuItem">
+                  	<c:set var="childCount" value="${fn:length(itrSiteMenuItem.childMenuItems)}"/>
+                  	<c:choose>
+	                  	<c:when test="${childCount gt 0}">	                  		
+	                  		<li class="dropdown">
+	                  			<a href="#" class="dropdown-toggle" data-toggle="dropdown">${itrSiteMenuItem.name}<b class="caret"></b></a>
+	                  			<ul class="dropdown-menu">	                  				
+	                  				<c:forEach items="${itrSiteMenuItem.childMenuItems}" var="childMenuItem">
+	                  					<%
+	                  					 HstSiteMenuItem anItem = ( HstSiteMenuItem ) pageContext.getAttribute("childMenuItem");
+	                  					 if (anItem != null) {
+	                  						String theURL =  anItem.getParameter("theURL");
+	                  					 	//String theURL = anItem.getHstLink().toUrlForm(hstRequest.getRequestContext(), true);
+	                  	 				 	if (theURL != null) pageContext.setAttribute("theURL",theURL);
+	                  					 }
+	                  					%>
+	                  					<c:choose>
+	                  						<c:when test="${childMenuItem.name == 'nav-header' || childMenuItem.name == 'divider' }">
+	                  							<li class="${childMenuItem.name}"></li>
+	                  						</c:when>
+	                  						<c:otherwise>
+	                  							<li><a href="${theURL}">${childMenuItem.name}</a></li>
+	                  						</c:otherwise>
+	                  					</c:choose>	                  					
+	                  				</c:forEach>
+	                  			</ul>
+                  		</c:when>
+                  		<c:otherwise>
+                  			<li><a href="${scriptName}">${itrSiteMenuItem.name}</a></li>
+                  		</c:otherwise>
+                  	</c:choose>
+                  </c:forEach>  
+                </ul>               
+	               <!-- 
+	                  <form class="navbar-search pull-left" action="">
+	                    <input type="text" class="search-query span2" placeholder="Search">
+	                  </form>
+	                   -->
+               <ul class="nav pull-right">
+                  <!-- <li><a href="#">Link</a></li> -->
+                  <li class="divider-vertical"></li>
+                  <li class="dropdown">
+                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">My Return<b class="caret"></b></a>
+                     <ul class="dropdown-menu">
+                        <li><a href="#">View XML</a></li>
+                        <li><a href="#">Download XML</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">Download Return</a></li>
+                     </ul>
+                  </li>
+               </ul>
+            </div>
+            <!-- /.nav-collapse -->
+         </div>
+      </div>
+      <!-- /navbar-inner -->
+   </div>
 </div>
-

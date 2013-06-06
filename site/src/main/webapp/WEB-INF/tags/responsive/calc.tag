@@ -20,9 +20,12 @@
 		ScreenCalculation screencalc=siteContentBaseBean.getBean(pathToScreenCalc, ScreenCalculation.class);
 		String jqinput="";String jqdrop="";
 		for(String field:screencalc.getInputTypeFields()) jqinput=jqinput+"#"+field.trim()+",";	
-		for(String field:screencalc.getRadioDropTypeFields()) jqdrop=jqdrop+"#"+field.trim()+",";
+		for(String field:screencalc.getRadioDropTypeFields()){
+			if ("".equals(field.trim())) continue;
+			jqdrop=jqdrop+"#"+field.trim()+",";
+		}		
 		request.setAttribute("jqinput", jqinput.substring(0,jqinput.length()-1));
-		request.setAttribute("jqdrop", jqdrop.substring(0,jqdrop.length()-1));
+		if (jqdrop != null && jqdrop.length() > 0) request.setAttribute("jqdrop", jqdrop.substring(0,jqdrop.length()-1));
 	}
 %>
 <hst:componentRenderingURL var="ajaxLinkToComponent"></hst:componentRenderingURL>
@@ -30,10 +33,10 @@
 			<hst:attribute name="type">text/javascript</hst:attribute>
 				//$(document).ready(function() {
 					$("<c:out value="${jqinput}"/>").blur(
-					recalc
+						recalc
 					);
 					$("<c:if test="${not empty jqdrop}"><c:out value="${jqdrop}"/></c:if>").change(
-					recalc
+						recalc
 					);							
 				//});    
 				function recalc() {

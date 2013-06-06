@@ -11,6 +11,7 @@ package com.mootly.wcm.member;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
 
 import org.hippoecm.hst.core.component.HstComponentException;
 import org.hippoecm.hst.core.component.HstRequest;
@@ -68,6 +69,18 @@ public class FormSixteen extends ITReturnComponent {
 				}
 			}
 		}
+	}
+	
+	@Override
+	public boolean beforeSave(HstRequest request) {
+		// TODO Auto-generated method stub
+		if (getPageAction().equals(PAGE_ACTION.NEW_CHILD)) {
+			FormSixteenDetail formSixteenDetail = (FormSixteenDetail) getChildBean();
+			if (formSixteenDetail != null) {
+				formSixteenDetail.setForm16Uuid(UUID.randomUUID().toString());
+			}
+		} 
+		return super.beforeSave(request);
 	}
 
 	@Override
