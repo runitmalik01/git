@@ -34,6 +34,7 @@
 						<c:set var="addURL" value="${scriptName}/newc6deduction/${deductionSectionName}"/>
 					</c:when>
 					<c:otherwise>
+						<c:set var="successURL" value="./formsixteenedit"/>
 						<c:set var="addURL" value="./formsixteenedit/newc6deduction/${deductionSectionName}"/>
 						<c:set var="showOnForm16" value="${deductionSectionMapEntry.value.additionalProperties['showOnForm16']}"/>
 						<c:if test="${empty showOnForm16}">
@@ -146,7 +147,7 @@
 		<%out.flush();%>
 </c:if>
 <c:set var="formHTMLComplete">
-	<c:if test="${not empty formHTML and not empty uuidform_16}">
+	<c:if test="${not empty formHTML and ( (empty ischildofform16 )  || ( not empty ischildofform16 &&  not empty uuidform_16) ) }">
 		<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		  <div class="modal-header">
 		    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -161,6 +162,7 @@
 		  	<hst:actionURL var="submitDeduction"></hst:actionURL>
 		    <form id="frmDeduction" method="post" name="frmDeduction" action="${submitDeduction}">
 		    	<c:out value="${formHTML}" escapeXml="false"/>
+		    	<c:if test="${not empty successURL && not empty uuidform_16}"><input type="hidden" name="successURL" value="${scriptName}/${uuidform_16}/formsixteenedit"/></c:if>
 		    	<c:if test="${not empty additionalScreenHTML}"><c:out value="${additionalScreenHTML}" escapeXml="false"/></c:if>
 		    	
 		    </form>

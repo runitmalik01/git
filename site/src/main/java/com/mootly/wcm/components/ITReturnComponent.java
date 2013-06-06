@@ -301,6 +301,10 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 				}
 				else {
 					String urlToRedirect = getScriptName(); // getRedirectURL(request,response,FormSaveResult.SUCCESS) ;
+					//if the page passes a URL as a parameter take that into consideration
+					if (request.getParameter("successURL") != null) {
+						urlToRedirect  = request.getParameter("successURL");
+					}
 					log.info("URLToRedirect:"+ urlToRedirect);
 					if (request.getAttribute("selectedItrTab") != null){
 						response.setRenderParameter("selectedItrTab", ((ITRTab)request.getAttribute("selectedItrTab")).name());
