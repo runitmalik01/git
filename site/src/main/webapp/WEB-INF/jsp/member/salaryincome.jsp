@@ -20,14 +20,13 @@
 <hippo-gogreen:title title="${salaryincometitle}" />
 <hst:actionURL var="actionUrl"></hst:actionURL>
 <div class="page">
-    <w4india:itrmenu></w4india:itrmenu>
 	<h3 id="respond1">
 		<c:choose>
 			<c:when
 				test="${not empty screenConfigDocument && not empty screenConfigDocument.screenHeading}">
 				<c:out value="${screenConfigDocument.screenHeading}" />
 			</c:when>
-			<c:otherwise>Salary Income</c:otherwise>
+			<c:otherwise>Pension Income</c:otherwise>
 		</c:choose>
 	</h3>
 	<c:if test="${not empty formMap}">
@@ -163,17 +162,7 @@
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.city}"/></c:if>" />
 							</div>
 						</div>
-						<div class="span3">
-							<div class="rowlabel">
-								<label for="Pinslry"><fmt:message key="member.pin.info" />
-								</label>
-							</div>
-							<div class="rowlabel">
-								<input id="Pinslry" type="text" name="Pinslry" maxlength="6"
-									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
-						<c:out value="${childBean.pin}"/></c:if>" />
-							</div>
-						</div>
+
 						<div class="span3">
 							<div class="rowlabel">
 								<label for="Stateslry"><fmt:message
@@ -189,6 +178,17 @@
 								<w4india:dropdown dropDownSelectId="Stateslry"
 									optionSelectString="${searchresultstitle}"
 									dropDownType="${statesType}" fetchValue="${childBean.state}" />
+							</div>
+						</div>
+						<div class="span3">
+							<div class="rowlabel">
+								<label for="Pinslry"><fmt:message key="member.pin.info" />
+								</label>
+							</div>
+							<div class="rowlabel">
+								<input id="Pinslry" type="text" name="Pinslry" maxlength="6"
+									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
+						<c:out value="${childBean.pin}"/></c:if>" />
 							</div>
 						</div>
 
@@ -215,7 +215,7 @@
 								</label>
 							</div>
 							<div class="rowlabel">
-								<input id="To" name="To" 
+								<input id="To" name="To"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.to}"/></c:if>" />
 							</div>
 						</div>
@@ -233,7 +233,8 @@
 								<input type="text" name="Gross_salary" maxlength="14"
 									id="Gross_salary" class="decimal"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
-						<c:out value="${childBean.gross_salary}"/></c:if>" />
+						<fmt:formatNumber type="number"  groupingUsed="false"
+            value="${childBean.gross_salary}" /></c:if>" />
 							</div>
 						</div>
 						<div class="span4">
@@ -288,7 +289,8 @@
 							<div class="rowlabel">
 								<input type="text" name="Taxable_earning" id="Taxable_earning"
 									class="decimal" readonly="readonly"
-									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.taxable_earning}"/></c:if>" />
+									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number" 
+            maxIntegerDigits="14" value="${childBean.taxable_earning}" /></c:if>" />
 							</div>
 						</div>
 					</div>
@@ -306,14 +308,10 @@
 		<c:otherwise>
 			<table>
 				<tr align="center">
-					<th><b>Employer's Name</b>
-					</th>
-					<th><b>Employment Period</b>
-					</th>
-					<th><b>Taxable Earning</b>
-					</th>
-					<th><b>Actions</b>
-					</th>
+					<th><b>Employer's Name</b></th>
+					<th><b>Employment Period</b></th>
+					<th><b>Taxable Earning</b></th>
+					<th><b>Actions</b></th>
 				</tr>
 				<c:if test="${not empty parentBean}">
 					<c:forEach items="${parentBean.salaryIncomeDetailList}"
@@ -321,25 +319,24 @@
 						<tr>
 							<td><a
 								href="${scriptName}/<c:out value="${salaryItemDetail.canonicalUUID}"/>/salaryincomeedit"><c:out
-										value="${salaryItemDetail.name_employer}" /> </a>
-							</td>
+										value="${salaryItemDetail.name_employer}" /> </a></td>
 							<td><c:out value="${salaryItemDetail.from}" /> - <c:out
-									value="${salaryItemDetail.to}" />
-							</td>
-							<td align="right"><w4india:inr value="${salaryItemDetail.taxable_earning}" />
-							</td>
+									value="${salaryItemDetail.to}" /></td>
+							<td align="right"><w4india:inr
+									value="${salaryItemDetail.taxable_earning}" /></td>
 							<td><a
 								href="${scriptName}/<c:out value="${salaryItemDetail.canonicalUUID}"/>/salaryincomeedit"><small>Edit</small>
-									 </a>&nbsp;&nbsp;<a href="${scriptName}/<c:out value="${salaryItemDetail.canonicalUUID}"/>/salaryincomedelete" onclick="return checkdelete()">
-									 <small>Delete</small> </a></td>
-								
+							</a>&nbsp;&nbsp;<a
+								href="${scriptName}/<c:out value="${salaryItemDetail.canonicalUUID}"/>/salaryincomedelete"
+								onclick="return checkdelete()"> <small>Delete</small> </a>
+							</td>
+
 						</tr>
 					</c:forEach>
 					<tr align="center">
 						<td colspan="2">Total Earning</td>
-						<td align="right"><w4india:inr 
-             value="${parentBean.total}" />
-						</td>
+						<td align="right"><w4india:inr
+									value="${parentBean.total}" /></td>
 				</c:if>
 			</table>
 			<a href="${scriptName}/salaryincomenew" class="button orange">Add
