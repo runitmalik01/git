@@ -3,12 +3,12 @@
 @author Dhananjay Panwar
 18/05/2013
  --%>
- 
+
 <%@include file="../includes/tags.jspf"%>
 
 <hst:actionURL var="actionUrl"></hst:actionURL>
 <form id="frmReview" action="${actionUrl}" name="rating" method="post">
-
+<!--
 <div id="comments">
 
 
@@ -39,7 +39,7 @@
           </ul>
       </c:forEach>
   </div>
-
+ -->
 <div align="center">
 	<a href="#myModalReview" id="clickReview" role="button" class="btn" data-toggle="modal" >Review This Page</a>
 </div>
@@ -53,9 +53,9 @@
 
 		</div>
 		<div class="modal-body">
-		
+
 			<fieldset>
-				<label for="name">Name</label> 
+				<label for="name">Name</label>
 				<input type="text" required="required" id="name" name="name" value="" data-toggle="tooltip"  maxlength="25" /></br>
 				<label for="email">Email</label></br>
 				<input type="email" required="required" id="email" name="email" value=""/></br>
@@ -70,7 +70,7 @@
                 <input type="hidden" value="0" name="rating" id="ratingField" /></br>
 				<label for="comment">Review</label>
 				<textarea name="comment" id="comment" rows="5" cols="50" required><c:if test="${not empty comment}"><c:out value="${comment}"/></c:if></textarea>
-				
+
 			</fieldset>
 		</div>
 		<div class="modal-footer">
