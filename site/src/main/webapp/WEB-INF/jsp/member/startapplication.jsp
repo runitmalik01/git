@@ -111,15 +111,15 @@ else {
 								<label><fmt:message key="member.employe.category" /><span style="color: red">*</span> </label>
 							</div>
 							<c:if
-								test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
+								test="${not empty parentBean.employe_category}">
 								<c:choose>
-									<c:when test="${childBean.employe_category == 'GOV'}">
+									<c:when test="${parentBean.employe_category == 'GOV'}">
 										<c:set var="gov" value="checked=checked" />
 									</c:when>
-									<c:when test="${childBean.employe_category == 'PSU'}">
+									<c:when test="${parentBean.employe_category == 'PSU'}">
 										<c:set var="psu" value="checked=checked" />
 									</c:when>
-									<c:when test="${childBean.employe_category == 'OTH'}">
+									<c:when test="${parentBean.employe_category == 'OTH'}">
 										<c:set var="oth" value="checked=checked" />
 									</c:when>
 								</c:choose>
