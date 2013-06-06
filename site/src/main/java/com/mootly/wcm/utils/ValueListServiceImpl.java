@@ -42,6 +42,7 @@ public final class ValueListServiceImpl implements ValueListService{
 	private ResourceBundle objValueListNumbers = null;
 	private ResourceBundle objValueListDeductedYear = null;
 	private ResourceBundle objValueListDtaaCountries = null;
+	private ResourceBundle objvalueListReturnFile=null;
 
 	private static final ValueListServiceImpl objValueListServiceImpl = new ValueListServiceImpl(); 
 	private static final Logger log = LoggerFactory.getLogger(ValueListServiceImpl.class);
@@ -65,6 +66,7 @@ public final class ValueListServiceImpl implements ValueListService{
 		objValueListDeductionBundle=ResourceBundle.getBundle("valueList_deduction");
 		objValueListDeduction6aBundle=ResourceBundle.getBundle("valueList_deduction6a");
 		objValueListQuarterBundle    = ResourceBundle.getBundle("valueList_quarter");
+		objvalueListReturnFile = ResourceBundle.getBundle("valueList_returnFile");
 	}
 
 	/**
@@ -349,11 +351,22 @@ public final class ValueListServiceImpl implements ValueListService{
 		TreeDeducterdYear.put("3", objValueListDeductedYear.getString("valueList.2012"));
 		TreeDeducterdYear.put("4", objValueListDeductedYear.getString("valueList.2013"));
 		TreeDeducterdYear.put("5", objValueListDeductedYear.getString("valueList.2014"));
-
-
-
 		return  TreeDeducterdYear;
 	}
+	public TreeMap<String, String> getReturnFile() {
+		// TODO Auto-generated method stub
+		TreeMap<String, String> TreeReturnType =new TreeMap<String, String>();
+		TreeReturnType.put("1", objvalueListReturnFile.getString("valueList.before.duedate"));
+		TreeReturnType.put("2", objvalueListReturnFile.getString("valueList.after.duedate"));
+		TreeReturnType.put("3", objvalueListReturnFile.getString("valueList.section.142"));
+		TreeReturnType.put("4", objvalueListReturnFile.getString("valueList.section.148"));
+		TreeReturnType.put("5", objvalueListReturnFile.getString("valueList.section.153"));
+		TreeReturnType.put("6", objvalueListReturnFile.getString("valueList.section.153C"));
+		TreeReturnType.put("7", objvalueListReturnFile.getString("valueList.section.139"));
+		TreeReturnType.put("8", objvalueListReturnFile.getString("valueList.section.139(9)"));
+		return  TreeReturnType;
+	}
+	
 	public TreeMap<String, String> getDtaaCountries(){
 		TreeMap<String, String> TreeDtaaCountries = new TreeMap<String, String>();
 		TreeDtaaCountries.put("1", objValueListDtaaCountries.getString("valueList.1"));
