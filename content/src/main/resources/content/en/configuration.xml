@@ -3002,7 +3002,7 @@ serving since beginning then select first day of financial year.&lt;/p&gt;
             <sv:value>First Name</sv:value>
           </sv:property>
           <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
-            <sv:value>true</sv:value>
+            <sv:value>false</sv:value>
           </sv:property>
           <sv:property sv:multiple="true" sv:name="mootlywcm:validatorArguments" sv:type="String">
             <sv:value/>
