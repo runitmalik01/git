@@ -164,7 +164,7 @@
 		    <form id="frmDeduction" method="post" name="frmDeduction" action="${submitDeduction}">
 		    	<c:out value="${formHTML}" escapeXml="false"/>
 		    	<c:if test="${not empty successURL && not empty uuidform_16}"><input type="hidden" name="successURL" value="${scriptName}/${uuidform_16}/formsixteenedit"/></c:if>
-		    	<c:if test="${(pageAction == 'EDIT_CHILD' && not empty editingSection)}"><input type="hidden" name="decuuidform16" value="${editingSection.form16uuid}"/></c:if>
+		    	<c:if test="${(pageAction == 'EDIT_CHILD' && not empty editingSection)}"><input type="hidden" name="decuuidform16" value="${childBean.form16Uuid}"/></c:if>
 		    	<c:if test="${not empty additionalScreenHTML}"><c:out value="${additionalScreenHTML}" escapeXml="false"/></c:if>
 		    	
 		    </form>
