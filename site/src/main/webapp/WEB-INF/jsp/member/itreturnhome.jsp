@@ -1,35 +1,55 @@
-﻿<%@page import="java.util.List"%>
+﻿<%@page import="com.mootly.wcm.utils.ValueListServiceImpl"%>
+<%@page import="java.util.TreeMap"%>
+<%@page import="java.util.List"%>
 <%@page import="com.mootly.wcm.model.FinancialYear"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="com.mootly.wcm.beans.MemberPersonalInformation"%>
 <%@page import="org.hippoecm.hst.content.beans.standard.HippoFolder"%>
 <%@include file="../includes/tags.jspf"%>
+<%@page import="com.mootly.wcm.utils.ValueListService"%>
+<%
+ValueListService objValueListService = ValueListServiceImpl
+.getInstance();
+TreeMap objTreeMapSection = (TreeMap) objValueListService.getReturnFile();
+	request.setAttribute("objTreeMapSection", objTreeMapSection);
+	 %>
 <div class="page">	
 	<h4>Prepare Income Tax Return</h4>
 	<hst:actionURL var="actionURL"/>
 	<form id="frmdata" method="post" action="${actionURL}">
      <div id="error" class="alert alert-error" style="display:none;">PAN's fifth alphabet should be first alphabet of Last Name</div>
 		<fieldset>
-			<legend>Start preparing New Return - Fill up this form and <a id="myModalHref" class="btn orange">Click Here!! </a></legend>
+			<legend><fmt:message key="member.homepage.fillform"/> </legend>
 			<div class="row-fluid show-grid">
-		          <div class="span3">
+		          <div class="span2">
 		          	<div class="rowlabel"><label for="pan"><small>PAN</small></label></div>
 		          	<div class="rowlabel"><input id="pan" name="pan" placeholder="PAN" type="text" maxlength="10"/></div>
 		          </div>
 		          <div class="span3">
-		          	<div class="rowlabel"><label for="pi_last_name"><small>Last Name/Org Name</small></label></div>
+		          	<div class="rowlabel"><label for="pi_last_name"><small><fmt:message key="member.homepage.lastname"/></small></label></div>
 		          	<div class="rowlabel"><input id="pi_last_name" name="pi_last_name" placeholder="Last Name" type="text"/></div>
+		          </div>
+		           <div class="span3">    
+		            <div class="rowlabel"><label for="pi_return_section"><small>Return filed under section</small></label></div>
+		          	<div class="rowlabel"><select id="pi_return_section" name="pi_return_section" onChange="getSection()">
+		          	<option value="">Select </option>
+		          	<c:forEach var="section" items="${objTreeMapSection}">
+		          	<option value="${section.value}">${section.value}</option>
+		          	</c:forEach>
+		          	</select></div>
 		          </div>	      
-		          <div class="span3">    
+		          <div class="span2">    
 		            <div class="rowlabel"><label for="pi_return_type"><small>Return Type</small></label></div>
 		          	<div class="rowlabel"><select id="pi_return_type" name="pi_return_type" ><option value="">Select Type</option><option value="original">Original</option><option value="revised">Revised</option></select></div>
 		          </div>
-		          <div class="span3"> 
+		          <div class="span2"> 
 		          	<div class="rowlabel"><label for="fy"><small>Financial Year</small></label></div>
 		          	<div class="rowlabel"><select id="fy" name="fy"><option value="2012-2013">2012-2013(Current)</option><option value="2011-2012">2011-2012</option><option value="2011-2012">2010-2011</option></select></div>
 		          </div>
-			 </div>
-		 </fieldset>	
+		     </div>
+		     <div align="center" ><a id="myModalHref" class="btn orange">Click Here!! </a></div>
+		</fieldset>	
+			
                 <!--   <fieldset id="ul_revised" style="display:none;" class="revised_v original_h">
                         <legend>Revised Return Details</legend>
                         <div class="row-fluid show-grid" id="ul_revised_input">
@@ -78,7 +98,7 @@
 		<table class="table table-striped table-hover">
 			<tr>
 				<th>PAN</th>
-				<th>Last Name/Org Name</th>
+				<th><fmt:message key="member.homepage.lastname"/></th>
 				<th>FY</th>
 				<th>Filing As</th>
 				<th>Return Type</th>
@@ -147,7 +167,17 @@
 			if (!$("#frmdata").valid()) return false;
 			$("#frmdata").submit();
 		});
+		
 	});
+	function getSection(){
+		var option=document.getElementById("pi_return_section");
+		var sectionName = option.options[option.selectedIndex].value;
+		if(sectionName=="u/s 139(9)" || sectionName == "Revised 139(5)"){
+		$("#pi_return_type").val("revised");
+		} else{
+		$("#pi_return_type").val("original");
+		}
+		}
 </hst:element>
 <hst:headContribution element="${uiCustom}" category="jsInternal"/>		
 
