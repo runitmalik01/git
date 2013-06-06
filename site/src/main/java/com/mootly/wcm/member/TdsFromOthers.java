@@ -69,7 +69,10 @@ public class TdsFromOthers extends ITReturnComponent {
 		
 		// TODO Auto-generated method stub
 		super.doAction(request, response);
-		System.out.println("this is do Action of tds from salary");
+		if(log.isInfoEnabled()){
+			log.info("this is do Action of tds from salary");
+		}
+		
 	} }
 	
 	
