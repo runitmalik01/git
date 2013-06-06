@@ -8,6 +8,7 @@
 
 <hst:actionURL var="actionUrl"></hst:actionURL>
 <div class="page type-page">
+	<w4india:itrmenu/>
 	<h3 id="respond1">
 		<c:choose>
 			<c:when
