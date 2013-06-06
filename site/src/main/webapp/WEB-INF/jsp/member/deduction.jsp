@@ -82,6 +82,7 @@
 														</c:when>
 														<c:otherwise>
 															<c:set var="editURL" value="./formsixteenedit/${aSectionHead.canonicalUUID}/editc6deduction"/>
+															<c:set var="successURL" value="./formsixteenedit"/>
 														</c:otherwise>
 													</c:choose>
 													<li><a href="${editURL}"><fmt:message var="label" bundle="${dSectionHeads}" key="sectionhead.${aSectionHead.head}.label"></fmt:message><res:displaylabel label="${label}"></res:displaylabel> |<c:out value="${aSectionHead.investment}"/>|</a></li>
