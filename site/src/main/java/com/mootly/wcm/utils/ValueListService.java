@@ -117,6 +117,8 @@ public interface ValueListService {
 	
 
 	TreeMap<String,String> getDeducterdYear();
+	
+	TreeMap<String,String> getReturnFile();
 
 
 	TreeMap<String,String> getDtaaCountries();
