@@ -1,3 +1,6 @@
+<%@page import="com.mootly.wcm.utils.ValueListServiceImpl"%>
+<%@page import="com.mootly.wcm.utils.ValueListService"%>
+<%@page import="java.util.TreeMap"%>
 <%@include file="../includes/tags.jspf"%>
 <%@page import="com.mootly.wcm.model.FilingStatus"%>
 <c:set var="startapplication">
@@ -18,6 +21,11 @@ else {
 	pageContext.setAttribute("modifiedSiteMapRefId",mainSiteMapRefId);
 }
 %>--%>
+<%
+ValueListService objValueListService = ValueListServiceImpl.getInstance();
+TreeMap objHashMapBoolean = (TreeMap) objValueListService.getBoolean();
+request.setAttribute("objHashMapBoolean", objHashMapBoolean); 
+%>
 <c:if test="${not empty formMap}">
 	<c:forEach items="${formMap.message}" var="item">
 		<div class="alert alert-error">
@@ -131,6 +139,18 @@ else {
 									value="PSU" />PSU <input type="radio" <c:out value="${oth}"/>
 									name="Employe_category" value="OTH" />Others
 							</div>
+						</div>
+						<div class="span4">
+						<div class="rowlabel">
+								<label><fmt:message key="member.portugese.civil" /><span style="color: red">*</span> </label>
+							</div>
+							<div><select id="portugeseCivil" name="portugeseCivil">
+								<option value="">Select</option>
+							<c:forEach var="YesNo" items="${objHashMapBoolean}">
+						
+							<option value="${YesNo.value }">${YesNo.value }</option>
+							</c:forEach></select></div>
+						
 						</div>
 					</div>
 				</fieldset>
