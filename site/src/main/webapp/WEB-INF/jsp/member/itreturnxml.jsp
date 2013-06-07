@@ -241,7 +241,51 @@
 						</span>
 					</td>
 				</tr>
+                <tr>
+					<td colspan="1"><fmt:message key="relief.section.89"/></td>
+					<td  style="text-align:left">
+						<span class="decimal">
 
+								<w4india:inr value="${theForm.ITR1TaxComputation.section89}"/>
+
+						</span>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="1"><fmt:message key="relief.section.90/91"/></td>
+					<td  style="text-align:left">
+						<span class="decimal">
+									<w4india:inr value="0"/>
+						</span>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="1"><fmt:message key="interest.under.section.234abc"/></td>
+					<td  style="text-align:left">
+						<span class="decimal">
+						<w4india:inr value="${theForm.ITR1TaxComputation.totalIntrstPay}"/>
+						<!--
+						<c:choose>
+							<c:when test="${theForm.ITR1TaxComputation.totalIntrstPay eq '0'}">
+								<a href="#myModalInterest" id="clickInterest" role="button" class="btn" data-toggle="modal" >
+								<c:out value="Calculate Interest" /></a>
+							</c:when>
+							<c:otherwise>
+								<w4india:inr value="${theForm.ITR1TaxComputation.totalIntrstPay}"/>
+							</c:otherwise>
+						</c:choose>
+						 -->
+						</span>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="1"><fmt:message key="total.tax.interest.payable"/></td>
+					<td  style="text-align:left">
+						<span class="decimal">
+									<w4india:inr value="${theForm.ITR1TaxComputation.totTaxPlusIntrstPay}"/>
+						</span>
+					</td>
+				</tr>
 				<tr>
 					<td colspan="1">
 					<a style="color:buttontext;" href="<c:out value="${scriptName}"/>?selectedItrTab=<%=ITRTab.TAX_ADVANCE%>">
@@ -345,67 +389,43 @@
 					<td colspan="1"><fmt:message key="less.prepaid.tax"/></td>
 					<td  style="text-align:left">
 						<span class="decimal">
-									<w4india:inr value="${theForm.taxPaid.balTaxPayable}"/>
+									<w4india:inr value="${theForm.taxPaid.taxesPaid.totalTaxesPaid}"/>
 						</span>
 					</td>
 				</tr>
-				<tr>
-					<td colspan="1"><fmt:message key="net.tax.liability"/></td>
-					<td  style="text-align:left">
-						<span class="decimal">
-									<w4india:inr value="${theForm.ITR1TaxComputation.netTaxLiability}"/>
-						</span>
-					</td>
-				</tr>
-				<tr>
-					<td colspan="1"><fmt:message key="relief.section.89"/></td>
-					<td  style="text-align:left">
-						<span class="decimal">
-
-								<w4india:inr value="${theForm.ITR1TaxComputation.section89}"/>
-
-						</span>
-					</td>
-				</tr>
-				<tr>
-					<td colspan="1"><fmt:message key="relief.section.90/91"/></td>
-					<td  style="text-align:left">
-						<span class="decimal">
-									<w4india:inr value="0"/>
-						</span>
-					</td>
-				</tr>
-
-				<tr>
-					<td colspan="1"><fmt:message key="interest.under.section.234abc"/></td>
-					<td  style="text-align:left">
-						<span class="decimal">
-						<w4india:inr value="${theForm.ITR1TaxComputation.totalIntrstPay}"/>
-						<!--
-						<c:choose>
-							<c:when test="${theForm.ITR1TaxComputation.totalIntrstPay eq '0'}">
-								<a href="#myModalInterest" id="clickInterest" role="button" class="btn" data-toggle="modal" >
-								<c:out value="Calculate Interest" /></a>
-							</c:when>
-							<c:otherwise>
-								<w4india:inr value="${theForm.ITR1TaxComputation.totalIntrstPay}"/>
-							</c:otherwise>
-						</c:choose>
-						 -->
-						</span>
-					</td>
-				</tr>
-
+				<c:choose>
+				<c:when test="${theForm.taxPaid.balTaxPayable gt 0}">
 				<tr class="success">
-					<td colspan="1"><b><fmt:message key="tax.payble.refund"/></b>
+					<td colspan="1"><b>Tax Payable</b>
 					<td  style="text-align:left">
 						<span class="decimal">
-
 								<w4india:inr value="${theForm.taxPaid.balTaxPayable}"/>
-
 						</span>
 					</td>
 				</tr>
+				</c:when>
+				<c:when test="${theForm.taxPaid.balTaxPayable eq 0}">
+				<tr class="success">
+					<td colspan="1"><b>Tax</b>
+					<td  style="text-align:left">
+						<span class="decimal">
+								<w4india:inr value="${theForm.taxPaid.balTaxPayable}"/>
+						</span>
+					</td>
+				</tr>
+				</c:when>
+				<c:otherwise>
+				<tr class="success">
+					<td colspan="1"><b>Tax Refundable</b>
+					<td  style="text-align:left">
+						<span class="decimal">
+								<w4india:inr value="${theForm.taxPaid.balTaxPayable}"/>
+						</span>
+					</td>
+				</tr>
+				</c:otherwise>
+				</c:choose>
+
 
 			</table>
 		</div>
