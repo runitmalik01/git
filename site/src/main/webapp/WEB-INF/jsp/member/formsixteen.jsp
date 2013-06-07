@@ -801,8 +801,9 @@
 						<td></td>
 						<td><input id="aggregate" name="aggregate"
 							class="numberinput decimal"
-							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.aggregate}"/></c:if>"
-							placeholder="Rs.">
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${totalDeductions}"/></c:if>" 
+						
+							placeholder="Rs."/>
 						</td>
 					</tr>
 					<tr>
