@@ -3895,7 +3895,7 @@ format&lt;/p&gt;
         <sv:value>mootlywcm:screenfieldconfig</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
-        <sv:value>pan</sv:value>
+         <sv:value/>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
         <sv:value>Employe_category</sv:value>
