@@ -2889,9 +2889,9 @@ serving since beginning then select first day of financial year.&lt;/p&gt;
           <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
             <sv:value>&lt;html&gt;
 		&lt;body&gt;
-		
+
 		&lt;p&gt;Enter your password (case-sensitive)&lt;/p&gt;
-		
+
 		&lt;/body&gt;
 		&lt;/html&gt;</sv:value>
           </sv:property>
@@ -4277,6 +4277,314 @@ acknowledgement&lt;/p&gt;
         </sv:node>
       </sv:node>
     </sv:node>
+
+<sv:node sv:name="doneedetails">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hippo:handle</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+    <sv:value>hippo:hardhandle</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>9f784cad-20b1-4d32-a3b3-6db9eab96b14</sv:value>
+  </sv:property>
+  <sv:node sv:name="doneedetails">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>mootlywcm:screenconfig</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+      <sv:value>hippo:harddocument</sv:value>
+      <sv:value>hippotranslation:translated</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>0bcb63b9-2ae5-423a-b148-1e56ae9efbd9</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
+      <sv:value>live</sv:value>
+      <sv:value>preview</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippo:related___pathreference" sv:type="String">
+      <sv:value>doneedetails</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostd:holder" sv:type="String">
+      <sv:value>admin</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostd:state" sv:type="String">
+      <sv:value>published</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostd:stateSummary" sv:type="String">
+      <sv:value>live</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
+      <sv:value>admin</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
+      <sv:value>2013-06-07T15:24:27.317+05:30</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
+      <sv:value>2013-06-07T15:56:12.831+05:30</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
+      <sv:value>admin</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
+      <sv:value>2013-06-07T15:56:16.475+05:30</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippotranslation:id" sv:type="String">
+      <sv:value>e6b80f88-1a65-4831-b04c-b8250beb208b</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippotranslation:locale" sv:type="String">
+      <sv:value>en</sv:value>
+    </sv:property>
+    <sv:property sv:name="mootlywcm:screenHeading" sv:type="String">
+      <sv:value/>
+    </sv:property>
+    <sv:property sv:name="mootlywcm:screenHelp" sv:type="String">
+      <sv:value/>
+    </sv:property>
+    <sv:property sv:name="mootlywcm:screenSubHeading" sv:type="String">
+      <sv:value/>
+    </sv:property>
+    <sv:node sv:name="hippotranslation:translations">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>hippotranslation:translations</sv:value>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>flex_string_doneeName</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>flex_string_doneeName</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>true</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>pan</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>flex_string_doneePAN</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>flex_string_doneePAN</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>true</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>flex_string_doneeFlatFloorBuilding</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>flex_string_doneeFlatFloorBuilding</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>true</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>flex_string_doneeRoadStreet</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>flex_string_doneeRoadStreet</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>true</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>flex_string_doneeAreaLocality</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>flex_string_doneeAreaLocality</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>true</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>flex_string_doneePostalCode</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>flex_string_doneePostalCode</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>true</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>flex_string_doneeState</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>flex_string_doneeState</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>true</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>flex_string_doneeCityTownDistrict</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>flex_string_doneeCityTownDistrict</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>true</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+  </sv:node>
+</sv:node>
+
     <sv:node sv:name="tdsfromsalary">
       <sv:property sv:name="jcr:primaryType" sv:type="Name">
         <sv:value>hippo:handle</sv:value>
@@ -5630,8 +5938,8 @@ acknowledgement&lt;/p&gt;
         <sv:property sv:name="mootlywcm:script" sv:type="String">
           <sv:value>/***
 * This File is being used to calculate Salary Income
-* 
-* 
+*
+*
 * **/
 
 out_Taxable_earning=(Gross_salary-0)+(Allowance-0)+(Perquisite-0)+(profit-0);</sv:value>
@@ -5704,7 +6012,7 @@ out_Taxable_earning=(Gross_salary-0)+(Allowance-0)+(Perquisite-0)+(profit-0);</s
         <sv:property sv:name="mootlywcm:script" sv:type="String">
           <sv:value>/**
 * This File is being used to calculate House Income
-* 
+*
 * **/
 //Define Helper Classes
 var indianCurrencyHelper = new com.mootly.wcm.services.IndianCurrencyHelper();
@@ -5812,11 +6120,11 @@ out_Income_hproperty=-150000;
           <sv:value>Otherincome</sv:value>
         </sv:property>
         <sv:property sv:name="mootlywcm:script" sv:type="String">
-          <sv:value>/** 
-* 
-* This File is being used to calculate Other Income 
-* 
-**/ 
+          <sv:value>/**
+*
+* This File is being used to calculate Other Income
+*
+**/
 //Define Helper Classes
 
 var indianCurrencyHelper = new com.mootly.wcm.services.IndianCurrencyHelper();
@@ -5946,7 +6254,7 @@ if (cbassyear == "2013-2014") {
 	if(condition_1 || condition_2){
 
 		if (txtNetIncome &lt;= 200000 &amp;&amp; txtNetIncome != 0) {
-      
+
 		}
 		else if (txtNetIncome &gt; 200001 &amp;&amp; txtNetIncome &lt;= 500000) {
 			A = (txtNetIncome - 200000) * 0.1;
@@ -5957,9 +6265,9 @@ if (cbassyear == "2013-2014") {
 
 		}
 		else if (txtNetIncome &gt; 1000000) {
-			A = ((txtNetIncome - 1000000) * 0.3) + 130000;	
+			A = ((txtNetIncome - 1000000) * 0.3) + 130000;
 
-		} 
+		}
 	}// 2013-2014-- Male &amp; Female
 	else if(condition_3){
 		if (txtNetIncome &lt;= 250000 &amp;&amp; txtNetIncome != 0) {
@@ -5971,11 +6279,11 @@ if (cbassyear == "2013-2014") {
 			A = ((txtNetIncome - 500000) * 0.2) + 25000;
 		}
 		else if (txtNetIncome &gt; 1000000) {
-			((txtNetIncome - 1000000) * 0.3) + 125000;		
-		} 
+			((txtNetIncome - 1000000) * 0.3) + 125000;
+		}
 	}// Senior Citizen as Resident
-	
-		}// 2013-2014	
+
+		}// 2013-2014
 	else if (cbassyear == "2012-2013") {
 	if(condition_1){
 		if (txtNetIncome &lt;= 180000 &amp;&amp; txtNetIncome != 0) {
@@ -5987,8 +6295,8 @@ if (cbassyear == "2013-2014") {
 			A = ((txtNetIncome - 500000) * 0.2) + 32000;
 		}
 		else if (txtNetIncome &gt; 800000) {
-			A = ((txtNetIncome - 800000) * 0.3) + 92000;		
-		} 
+			A = ((txtNetIncome - 800000) * 0.3) + 92000;
+		}
 	}//2012-2013-- Male
 	else if(condition_2){
 		if (txtNetIncome &lt;= 190000 &amp;&amp; txtNetIncome != 0) {
@@ -6000,9 +6308,9 @@ if (cbassyear == "2013-2014") {
 			A = ((txtNetIncome - 500000) * 0.2) + 31000;
 		}
 		else if (txtNetIncome &gt; 800000) {
-			A = ((txtNetIncome - 800000) * 0.3) + 91000;		
-		} 
-	}// 2012-2013 --Female 
+			A = ((txtNetIncome - 800000) * 0.3) + 91000;
+		}
+	}// 2012-2013 --Female
 	else if(condition_3){
 		if (txtNetIncome &lt;= 250000 &amp;&amp; txtNetIncome != 0) {
 		}
@@ -6013,10 +6321,10 @@ if (cbassyear == "2013-2014") {
 			A = ((txtNetIncome - 500000) * 0.2) + 25000;
 		}
 		else if (txtNetIncome &gt; 800000) {
-			A = ((txtNetIncome - 800000) * 0.3) + 85000;		
-		} 
+			A = ((txtNetIncome - 800000) * 0.3) + 85000;
+		}
 	}// 2012-2013 --Senior Citizen as Resident
-	
+
 }// 2012-2013
 	else if (cbassyear == "2011-2012") {
 	if(condition_1){
@@ -6030,7 +6338,7 @@ if (cbassyear == "2013-2014") {
 		}
 		else if (txtNetIncome &gt; 800000) {
 			A = ((txtNetIncome - 800000) * 0.3) + 94000;
-		} 
+		}
 	}//2011-2012-- Male
 	else if(condition_2){
 		if (txtNetIncome &lt;= 190000 &amp;&amp; txtNetIncome != 0) {
@@ -6043,7 +6351,7 @@ if (cbassyear == "2013-2014") {
 		}
 		else if (txtNetIncome &gt; 800000) {
 			A = ((txtNetIncome - 800000) * 0.3) + 86000;
-		} 
+		}
 	}//2011-2012-- Female
 	else if(condition_3 ){
 		if (txtNetIncome &lt;= 240000 &amp;&amp; txtNetIncome != 0) {
@@ -6056,7 +6364,7 @@ if (cbassyear == "2013-2014") {
 		}
 		else if (txtNetIncome &gt; 800000) {
 			A = ((txtNetIncome - 800000) * 0.3) + 86000;
-		} 
+		}
 	}//2011-2012-- Senior Citizen and Super Senior Citizen
 
 }//2011-2012
@@ -6170,8 +6478,8 @@ out_txttotaltax = (taxPaidForeignCountry -0);
         <sv:property sv:name="mootlywcm:script" sv:type="String">
           <sv:value>/***
 * This File is being used to calculate formsixteen
-* 
-* 
+*
+*
 * **/
 
 out_gross_total=(gross_a -0)+(gross_b -0)+(gross_c -0);
@@ -6202,7 +6510,7 @@ if (cbassyear == "2013-2014") {
 	if(condition_1 || condition_2){
 
 		if (txtNetIncome &lt;= 200000 &amp;&amp; txtNetIncome != 0) {
-      
+
 		}
 		else if (txtNetIncome &gt; 200001 &amp;&amp; txtNetIncome &lt;= 500000) {
 			A = (txtNetIncome - 200000) * 0.1;
@@ -6213,9 +6521,9 @@ if (cbassyear == "2013-2014") {
 
 		}
 		else if (txtNetIncome &gt; 1000000) {
-			A = ((txtNetIncome - 1000000) * 0.3) + 130000;	
+			A = ((txtNetIncome - 1000000) * 0.3) + 130000;
 
-		} 
+		}
 	}// 2013-2014-- Male &amp; Female
 	else if(condition_3){
 		if (txtNetIncome &lt;= 250000 &amp;&amp; txtNetIncome != 0) {
@@ -6227,11 +6535,11 @@ if (cbassyear == "2013-2014") {
 			A = ((txtNetIncome - 500000) * 0.2) + 25000;
 		}
 		else if (txtNetIncome &gt; 1000000) {
-			((txtNetIncome - 1000000) * 0.3) + 125000;		
-		} 
+			((txtNetIncome - 1000000) * 0.3) + 125000;
+		}
 	}// Senior Citizen as Resident
-	
-		}// 2013-2014	
+
+		}// 2013-2014
 	else if (cbassyear == "2012-2013") {
 	if(condition_1){
 		if (txtNetIncome &lt;= 180000 &amp;&amp; txtNetIncome != 0) {
@@ -6243,8 +6551,8 @@ if (cbassyear == "2013-2014") {
 			A = ((txtNetIncome - 500000) * 0.2) + 32000;
 		}
 		else if (txtNetIncome &gt; 800000) {
-			A = ((txtNetIncome - 800000) * 0.3) + 92000;		
-		} 
+			A = ((txtNetIncome - 800000) * 0.3) + 92000;
+		}
 	}//2012-2013-- Male
 	else if(condition_2){
 		if (txtNetIncome &lt;= 190000 &amp;&amp; txtNetIncome != 0) {
@@ -6256,9 +6564,9 @@ if (cbassyear == "2013-2014") {
 			A = ((txtNetIncome - 500000) * 0.2) + 31000;
 		}
 		else if (txtNetIncome &gt; 800000) {
-			A = ((txtNetIncome - 800000) * 0.3) + 91000;		
-		} 
-	}// 2012-2013 --Female 
+			A = ((txtNetIncome - 800000) * 0.3) + 91000;
+		}
+	}// 2012-2013 --Female
 	else if(condition_3){
 		if (txtNetIncome &lt;= 250000 &amp;&amp; txtNetIncome != 0) {
 		}
@@ -6269,10 +6577,10 @@ if (cbassyear == "2013-2014") {
 			A = ((txtNetIncome - 500000) * 0.2) + 25000;
 		}
 		else if (txtNetIncome &gt; 800000) {
-			A = ((txtNetIncome - 800000) * 0.3) + 85000;		
-		} 
+			A = ((txtNetIncome - 800000) * 0.3) + 85000;
+		}
 	}// 2012-2013 --Senior Citizen as Resident
-	
+
 }// 2012-2013
 	else if (cbassyear == "2011-2012") {
 	if(condition_1){
@@ -6286,7 +6594,7 @@ if (cbassyear == "2013-2014") {
 		}
 		else if (txtNetIncome &gt; 800000) {
 			A = ((txtNetIncome - 800000) * 0.3) + 94000;
-		} 
+		}
 	}//2011-2012-- Male
 	else if(condition_2){
 		if (txtNetIncome &lt;= 190000 &amp;&amp; txtNetIncome != 0) {
@@ -6299,7 +6607,7 @@ if (cbassyear == "2013-2014") {
 		}
 		else if (txtNetIncome &gt; 800000) {
 			A = ((txtNetIncome - 800000) * 0.3) + 86000;
-		} 
+		}
 	}//2011-2012-- Female
 	else if(condition_3 ){
 		if (txtNetIncome &lt;= 240000 &amp;&amp; txtNetIncome != 0) {
@@ -6312,7 +6620,7 @@ if (cbassyear == "2013-2014") {
 		}
 		else if (txtNetIncome &gt; 800000) {
 			A = ((txtNetIncome - 800000) * 0.3) + 86000;
-		} 
+		}
 	}//2011-2012-- Senior Citizen and Super Senior Citizen
 
 }//2011-2012
