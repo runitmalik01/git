@@ -19,6 +19,8 @@
 </c:set>
 <hippo-gogreen:title title="${salaryincometitle}" />
 <hst:actionURL var="actionUrl"></hst:actionURL>
+<div class="page type-page">
+	<w4india:itrmenu/>
 <div class="page">
 	<h3 id="respond1">
 		<c:choose>
@@ -343,6 +345,7 @@
 				New</a>
 		</c:otherwise>
 	</c:choose>
+</div>
 </div>
 <res:calc screenCalc="salaryincome" formId="frmdataSlryInc"></res:calc>
 <res:client-validation formId="frmdataSlryInc"
