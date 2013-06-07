@@ -112,7 +112,7 @@ request.setAttribute("objHashMapBoolean", objHashMapBoolean);
 			</fieldset>
 		</c:if>
 		<fieldset>
-					<legend>Employment</legend>
+					<legend>Filing Status</legend>
 					<div class="row-fluid show-grid">
 						<div class="span4">
 							<div class="rowlabel">
@@ -144,12 +144,14 @@ request.setAttribute("objHashMapBoolean", objHashMapBoolean);
 						<div class="rowlabel">
 								<label><fmt:message key="member.portugese.civil" /><span style="color: red">*</span> </label>
 							</div>
-							<div><select id="portugeseCivil" name="portugeseCivil">
-								<option value="">Select</option>
-							<c:forEach var="YesNo" items="${objHashMapBoolean}">
-						
-							<option value="${YesNo.value }">${YesNo.value }</option>
-							</c:forEach></select></div>
+							<div><select id="portugesecivil" name="portugesecivil">
+							
+								<option value="">-Select-</option>
+								<c:forEach var="booleanCombo" items="${objHashMapBoolean}">
+										<option
+											<c:if test="${pageAction == 'EDIT_CHILD' && childBean.portugesecivil == booleanCombo.value}">selected</c:if>
+											value="${booleanCombo.value}">${booleanCombo.value}</option>
+									</c:forEach>							</select></div>
 						
 						</div>
 					</div>
@@ -220,8 +222,11 @@ request.setAttribute("objHashMapBoolean", objHashMapBoolean);
 						</div>
 					</c:otherwise>
 				</c:choose>
+				
 				<c:if test="${filingStatus eq 'PERSON'}">
-					<div class="span2">
+				
+				
+					<div class="span3">
 						<div class="rowlabel">
 							<label for="pi_dob"><small>Date Of Birth</small>
 							</label>
@@ -232,7 +237,7 @@ request.setAttribute("objHashMapBoolean", objHashMapBoolean);
 								value="<c:if test="${not empty parentBean.DOBStr}"><c:out value="${parentBean.DOBStr}"/></c:if>" />
 						</div>
 					</div>
-					<div class="span2">
+					<div class="span3">
 						<div class="rowlabel">
 							<label for="pi_dob"><small>Gender</small>
 							</label>
@@ -249,8 +254,20 @@ request.setAttribute("objHashMapBoolean", objHashMapBoolean);
 							</select>
 						</div>
 					</div>
+					<div class="span3">
+							<div class="rowlabel">
+								<label for="pi_father_name"><small>Father Name</small>
+								</label>
+							</div>
+							<div class="rowlabel">
+								<input id="pi_father_name" name="pi_father_name"
+									placeholder="Father Name" type="text"
+									value="<c:if test="${not empty parentBean.fatherName}"><c:out value="${parentBean.fatherName}"/></c:if>" />
+							</div>
+						</div>
+						
 				</c:if>
-			</div>
+				</div>
 		</fieldset>
 		<fieldset>
 			<legend>Address &amp; Contact Information</legend>
@@ -305,7 +322,7 @@ request.setAttribute("objHashMapBoolean", objHashMapBoolean);
 					<div class="rowlabel">
 						<label for="pi_state"><small>State</small>
 						</label>
-					</div>
+					</div>	
 					<c:set var="searchresultstitle">
 						<fmt:message key="member.contact_info.state.select" />
 					</c:set>
