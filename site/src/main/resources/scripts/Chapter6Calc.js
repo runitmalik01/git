@@ -22,33 +22,33 @@ var grosstotal= salarypension + othersources + houseproperty;
 var doubleArray = java.lang.reflect.Array.newInstance(java.lang.Double, 3);
 doubleArray[0]=total_80c;
 doubleArray[1]=total_80ccc;
-doubleArray[2]=total_80ccd_2;
+doubleArray[2]=total_80ccd_1;
 var maxAllowed=maxAllowed_80C;
 var leftOver = maxAllowed_80C;
 for (var i=0;i<3;i++){
 	if (leftOver <=0) {
 		doubleArray[i] =  0;
-	}
+	} 
 	else {
 		leftOver = maxAllowed - doubleArray[i].doubleValue();
 		if (leftOver < 0) {
-			doubleArray[i] =  maxAllowed;
+			doubleArray[i] =  maxAllowed;		
 		}
 		maxAllowed = leftOver;
 	}
 }
 out_total_80c=doubleArray[0].doubleValue();
 out_total_80ccc=doubleArray[1].doubleValue();
-out_total_80ccd_2=doubleArray[2].doubleValue();
+out_total_80ccd_1=doubleArray[2].doubleValue();
 //--- This concludes 80c,80ccc,80D Employee's Contribution
 
 //-- This is specially for total_80ccd_er (employer's this is dependent on total of salary income, houseincome and other sources)
 
 //exempt for Employee's Contribution to Pension Account i.e. 80ccd_1
 var tenperSalincome=(salarypension *0.1);
-if(total_80ccd_1 >= tenperSalincome)
-	out_total_80ccd_1=tenperSalincome;
-else out_total_80ccd_1=total_80ccd_1;
+if(total_80ccd_2 >= tenperSalincome)
+	out_total_80ccd_2=tenperSalincome;
+else out_total_80ccd_2=total_80ccd_2;
 //--this one is 80CCF this upper limit it 20000
 out_total_80ccf=0;
 if (total_80ccf > maxAllowed_80CCF) out_total_80ccf = maxAllowed_80CCF;
@@ -94,7 +94,7 @@ if((total_disability+total_sdisability)>maxAllowed_80U)
 	out_total_80u=maxAllowed_80U;
 else out_total_80u= (total_disability + total_sdisability);
 
-//80RRB and 80QQB -exempt limit for 80RRB and 80QQB
+//80RRB and 80QQB -exempt limit for 80RRB and 80QQB 
 if(total_80rrb>maxAllowed_80qqb_80rrb)
 	out_total_80rrb=maxAllowed_80qqb_80rrb;
 else out_total_80rrb=total_80rrb;
@@ -103,7 +103,7 @@ if(total_80qqb>maxAllowed_80qqb_80rrb)
 else out_total_80qqb=total_80qqb;
 
 //Donations 100%
-out_total_80g = (total_NoAppr50 * 0.5) + (total_Appr50 * 0.5) + (total_Appr100) + (total_NoAppr100);
+out_total_80g = (total_NoAppr50 * 0.5) + (total_Appr50 * 0.5) + (total_Appr100) + ((total_NoAppr100)); 
 //100% deductions on 80E,80GGA,80GGC,80JJA,80ID,80IA
 
 out_total_80e= (total_80e < grosstotal) ? total_80e:grosstotal;
