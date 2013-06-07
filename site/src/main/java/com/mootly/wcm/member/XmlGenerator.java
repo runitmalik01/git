@@ -26,6 +26,9 @@ import in.gov.incometaxindiaefiling.y2012_2013.master.PersonalInfo;
 import in.gov.incometaxindiaefiling.y2012_2013.master.Refund;
 import in.gov.incometaxindiaefiling.y2012_2013.master.Refund.DepositToBankAccount;
 import in.gov.incometaxindiaefiling.y2012_2013.master.Schedule80G.Don100Percent;
+import in.gov.incometaxindiaefiling.y2012_2013.master.Schedule80G.Don100PercentApprReqd;
+import in.gov.incometaxindiaefiling.y2012_2013.master.Schedule80G.Don50PercentApprReqd;
+import in.gov.incometaxindiaefiling.y2012_2013.master.Schedule80G.Don50PercentNoApprReqd;
 import in.gov.incometaxindiaefiling.y2012_2013.master.TDSonOthThanSal;
 import in.gov.incometaxindiaefiling.y2012_2013.master.TDSonOthThanSals;
 import in.gov.incometaxindiaefiling.y2012_2013.master.TDSonSalaries;
@@ -64,6 +67,7 @@ import org.slf4j.LoggerFactory;
 
 import com.mootly.wcm.annotations.AdditionalBeans;
 import com.mootly.wcm.annotations.RequiredBeans;
+import com.mootly.wcm.annotations.ValueListBeans;
 import com.mootly.wcm.beans.AdvanceTaxDocument;
 import com.mootly.wcm.beans.DeductionDocument;
 import com.mootly.wcm.beans.FormSixteenDocument;
@@ -98,6 +102,8 @@ import com.mootly.wcm.utils.XmlCalculation;
 		TdsFromSalaryDetail.class,TdsFromothersDocument.class,SelfAssesmetTaxDocument.class,SelfAssesmentTaxDetail.class,SalaryIncomeDetail.class,DeductionDocument.class,
 		DeductionDocumentDetail.class,InterestDoc.class,FormSixteenDocument.class,FormSixteenDetail.class})
 @RequiredBeans(requiredBeans={MemberPersonalInformation.class})
+@ValueListBeans(paths={"deduction-sections-${financialYear}","deduction-section-heads-${financialYear}","deduction-section-maxallowed-${financialYear}"},
+accessKey={"deduction_sections","deduction_section_heads","deduction_section_maxallowed"})
 public class XmlGenerator extends ITReturnComponent {
 	private static final Logger log = LoggerFactory.getLogger(XmlGenerator.class);
 	//DecimalFormat decimalFormat=new DecimalFormat("#.#");
@@ -164,9 +170,7 @@ public class XmlGenerator extends ITReturnComponent {
 		//TaxPayments taxPayments = new TaxPayments();
 		//TaxPayment taxPayment = new TaxPayment();
 		IndianCurrencyHelper indianCurrencyHelper = new IndianCurrencyHelper();
-		DoneeWithPan doneeWithPan = new DoneeWithPan();
 		Schedule80G schedule80G = new Schedule80G();
-		AddressDetail addressDetail = new AddressDetail();
 
 		//personal information
 		assesseeName.setFirstName(memberPersonalInformation.getFirstName());
@@ -189,7 +193,7 @@ public class XmlGenerator extends ITReturnComponent {
 		personalInfo.setAddress(address);
 		personalInfo.setDOB(indianCurrencyHelper.gregorianCalendar(memberPersonalInformation.getDOB()));
 		if(memberPersonalInformation.getEmploye_category()!=null){
-		personalInfo.setEmployerCategory(memberPersonalInformation.getEmploye_category());
+			personalInfo.setEmployerCategory(memberPersonalInformation.getEmploye_category());
 		}
 
 		personalInfo.setGender(memberPersonalInformation.getSex());
@@ -199,7 +203,7 @@ public class XmlGenerator extends ITReturnComponent {
 
 		//Filing Status
 		if(memberPersonalInformation.getWard_circle()!=null){
-		filingstatus.setDesigOfficerWardorCircle(memberPersonalInformation.getWard_circle());
+			filingstatus.setDesigOfficerWardorCircle(memberPersonalInformation.getWard_circle());
 		}
 		filingstatus.setReturnFileSec(memberPersonalInformation.getReturnFileSection());
 		filingstatus.setReturnType(memberPersonalInformation.getReturnType());
@@ -365,7 +369,7 @@ public class XmlGenerator extends ITReturnComponent {
 			if(isSuperSeniorCitizen){
 				totalMapForJS.put("cbasscategory","Super Senior Citizen");
 			}else
-			totalMapForJS.put("cbasscategory","Senior Citizen");
+				totalMapForJS.put("cbasscategory","Senior Citizen");
 		}
 		else
 			totalMapForJS.put("cbasscategory",memberPersonalInformation.getSex());
@@ -380,7 +384,7 @@ public class XmlGenerator extends ITReturnComponent {
 		BigInteger TotalEduCess = EduCess.add(HigherEduCess);
 		itr1TaxComputation.setEducationCess(TotalEduCess);
 		itr1TaxComputation.setGrossTaxLiability(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMap.get("txttotaltax").toString())));
-        log.info("gross tax liability"+indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMap.get("txttotaltax").toString())));
+		log.info("gross tax liability"+indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMap.get("txttotaltax").toString())));
 
 		BigInteger Relief89 =new BigInteger ("0");
 		BigInteger Relief89Total =new BigInteger ("0");
@@ -469,36 +473,92 @@ public class XmlGenerator extends ITReturnComponent {
 		refund.setDepositToBankAccount(depositToBankAccount);
 		itr1.setRefund(refund);
 
-		//Schedule80G is remaining
+		//Schedule80G
 
-/**
-		DeductionDocumentDetail dDetail = new DeductionDocumentDetail();
-		log.info("dDatil"+dDetail);
-		com.mootly.wcm.model.DoneeWithPan doneewithPan = com.mootly.wcm.model.DoneeWithPan.getInstanceFromChildBean(dDetail);
-
-
-		//com.mootly.wcm.model.DoneeWithPan doneewithPan = com.mootly.wcm.model.DoneeWithPan.getInstanceFromFormMap(getFormMap());
-
-		if (dDetail != null){
-			log.info("inside donee loop");
-		doneeWithPan.setDoneeWithPanName(doneewithPan.getDoneeName());
-		log.info("donee pan"+doneewithPan.getDoneePAN());
-		doneeWithPan.setDoneePAN(doneewithPan.getDoneePAN());
-		addressDetail.setAddrDetail(doneewithPan.getDoneeAreaLocality());
-		addressDetail.setCityOrTownOrDistrict(doneewithPan.getDoneeCityTownDistrict());
-		addressDetail.setStateCode(doneewithPan.getDoneeState());
-		addressDetail.setPinCode(indianCurrencyHelper.bigIntegerRoundStr(doneewithPan.getDoneePostalCode()));
-		doneeWithPan.setAddressDetail(addressDetail);
-		Don100Percent don100Percent = new Don100Percent();
-		don100Percent.getDoneeWithPan().add(doneeWithPan);
-		//don100Percent.setTotDon100Percent(dedgtotal);
-		//don100Percent.setTotEligibleDon100Percent(dedgtotal);
-		schedule80G.setDon100Percent(don100Percent);
-		//schedule80G.setTotalDonationsUs80G(dedgtotal);
-		//schedule80G.setTotalEligibleDonationsUs80G(dedgtotal);
+		BigInteger Total100Appr = new BigInteger("0");
+		BigInteger Total100NoAppr = new BigInteger("0");
+		BigInteger Total50Appr = new BigInteger("0");
+		BigInteger Total50NoAppr = new BigInteger("0");
+		if(deductionDocument!=null){
+			List<DeductionDocumentDetail> listOfDeductionDocumentDetail = deductionDocument.getDeductionDocumentDetailList();
+			if (listOfDeductionDocumentDetail!= null && listOfDeductionDocumentDetail.size() > 0 ){
+				Don100Percent don100Percent = new Don100Percent();
+				Don100PercentApprReqd don100PercentApprReqd = new Don100PercentApprReqd();
+				Don50PercentNoApprReqd don50PercentNoApprReqd = new Don50PercentNoApprReqd();
+				Don50PercentApprReqd don50PercentApprReqd = new Don50PercentApprReqd();
+				for(DeductionDocumentDetail deductionDocumentDetail: listOfDeductionDocumentDetail){
+					com.mootly.wcm.model.DoneeWithPan doneewithPan = new com.mootly.wcm.model.DoneeWithPan();
+					doneewithPan = com.mootly.wcm.model.DoneeWithPan.getInstanceFromChildBean(deductionDocumentDetail);
+					if(doneewithPan!=null){
+						DoneeWithPan doneeWithPan = new DoneeWithPan();
+						AddressDetail addressDetail = new AddressDetail();
+						if(deductionDocumentDetail.getHead()!=null && deductionDocumentDetail.getHead().equals("NoAppr100")){
+							doneeWithPan.setDoneeWithPanName(doneewithPan.getDoneeName());
+							doneeWithPan.setDoneePAN(doneewithPan.getDoneePAN());
+							addressDetail.setAddrDetail(doneewithPan.getDoneeAreaLocality());
+							addressDetail.setCityOrTownOrDistrict(doneewithPan.getDoneeCityTownDistrict());
+							addressDetail.setStateCode(doneewithPan.getDoneeState());
+							addressDetail.setPinCode(indianCurrencyHelper.bigIntegerRoundStr(doneewithPan.getDoneePostalCode()));
+							doneeWithPan.setAddressDetail(addressDetail);
+							don100Percent.getDoneeWithPan().add(doneeWithPan);
+							BigInteger Investment = indianCurrencyHelper.bigIntegerRound(deductionDocumentDetail.getInvestment());
+							Total100NoAppr = Total100NoAppr.add(Investment);
+							don100Percent.setTotDon100Percent(Total100NoAppr);
+							don100Percent.setTotEligibleDon100Percent(Total100NoAppr);
+							schedule80G.setDon100Percent(don100Percent);
+						}
+						if(deductionDocumentDetail.getHead()!=null && deductionDocumentDetail.getHead().equals("Appr100")){
+							doneeWithPan.setDoneeWithPanName(doneewithPan.getDoneeName());
+							doneeWithPan.setDoneePAN(doneewithPan.getDoneePAN());
+							addressDetail.setAddrDetail(doneewithPan.getDoneeAreaLocality());
+							addressDetail.setCityOrTownOrDistrict(doneewithPan.getDoneeCityTownDistrict());
+							addressDetail.setStateCode(doneewithPan.getDoneeState());
+							addressDetail.setPinCode(indianCurrencyHelper.bigIntegerRoundStr(doneewithPan.getDoneePostalCode()));
+							doneeWithPan.setAddressDetail(addressDetail);
+							don100PercentApprReqd.getDoneeWithPan().add(doneeWithPan);
+							BigInteger Investment = indianCurrencyHelper.bigIntegerRound(deductionDocumentDetail.getInvestment());
+							Total100Appr = Total100Appr.add(Investment);
+							don100PercentApprReqd.setTotDon100PercentApprReqd(Total100Appr);
+							don100PercentApprReqd.setTotEligibleDon100PercentApprReqd(Total100Appr);
+							schedule80G.setDon100PercentApprReqd(don100PercentApprReqd);
+						}
+						if(deductionDocumentDetail.getHead()!=null && deductionDocumentDetail.getHead().equals("NoAppr50")){
+							doneeWithPan.setDoneeWithPanName(doneewithPan.getDoneeName());
+							doneeWithPan.setDoneePAN(doneewithPan.getDoneePAN());
+							addressDetail.setAddrDetail(doneewithPan.getDoneeAreaLocality());
+							addressDetail.setCityOrTownOrDistrict(doneewithPan.getDoneeCityTownDistrict());
+							addressDetail.setStateCode(doneewithPan.getDoneeState());
+							addressDetail.setPinCode(indianCurrencyHelper.bigIntegerRoundStr(doneewithPan.getDoneePostalCode()));
+							doneeWithPan.setAddressDetail(addressDetail);
+							don50PercentNoApprReqd.getDoneeWithPan().add(doneeWithPan);
+							BigInteger Investment = indianCurrencyHelper.bigIntegerRound(deductionDocumentDetail.getInvestment());
+							Total50NoAppr = Total50NoAppr.add(Investment);
+							don50PercentNoApprReqd.setTotDon50PercentNoApprReqd(Total50NoAppr);
+							don50PercentNoApprReqd.setTotEligibleDon50Percent(Total50NoAppr.divide(new BigInteger("2")));
+							schedule80G.setDon50PercentNoApprReqd(don50PercentNoApprReqd);
+						}
+						if(deductionDocumentDetail.getHead()!=null && deductionDocumentDetail.getHead().equals("Appr50")){
+							doneeWithPan.setDoneeWithPanName(doneewithPan.getDoneeName());
+							doneeWithPan.setDoneePAN(doneewithPan.getDoneePAN());
+							addressDetail.setAddrDetail(doneewithPan.getDoneeAreaLocality());
+							addressDetail.setCityOrTownOrDistrict(doneewithPan.getDoneeCityTownDistrict());
+							addressDetail.setStateCode(doneewithPan.getDoneeState());
+							addressDetail.setPinCode(indianCurrencyHelper.bigIntegerRoundStr(doneewithPan.getDoneePostalCode()));
+							doneeWithPan.setAddressDetail(addressDetail);
+							don50PercentApprReqd.getDoneeWithPan().add(doneeWithPan);
+							BigInteger Investment = indianCurrencyHelper.bigIntegerRound(deductionDocumentDetail.getInvestment());
+							Total50Appr = Total50Appr.add(Investment);
+							don50PercentApprReqd.setTotDon50PercentApprReqd(Total50Appr);
+							don50PercentApprReqd.setTotEligibleDon50PercentApprReqd(Total50Appr.divide(new BigInteger("2")));
+							schedule80G.setDon50PercentApprReqd(don50PercentApprReqd);
+						}
+						schedule80G.setTotalDonationsUs80G(Total100NoAppr.add(Total100Appr).add(Total50NoAppr).add(Total50Appr));
+						schedule80G.setTotalEligibleDonationsUs80G(incomeDeductions.getDeductUndChapVIA().getSection80G());
+					}
+				}
+				itr1.setSchedule80G(schedule80G);
+			}
 		}
-		itr1.setSchedule80G(schedule80G);
-**/
 
 		//TDSonSalaries
 		if( formSixteenDocument!=null){
