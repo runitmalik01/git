@@ -56,7 +56,7 @@
 				<div class="row-fluid show-grid">
 					<div class="span3">
 						<div class="rowlabel">
-							<label for=""><fmt:message key="member.employe.category" />
+							<label><fmt:message key="member.employe.category" /><span style="color: red">*</span>
 							</label>
 						</div>
 						<c:if
@@ -363,8 +363,8 @@
 							placeholder="Rs." type="text"/>
 						</td>
 -->
-						<td><input id="less_total_2" name="less_total_2"
-							class="numberinput decimal" 
+						<td><input id="less_total_2" name="less_total_2" class="decimal"
+					
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.less_total_2}"/></c:if>"
 							placeholder="Rs." type="text"/>
 						</td>
@@ -376,7 +376,7 @@
 								Balance(1-2)</label>
 						</td>
 						<td><input id="balance" name="balance"
-							class="numberinput decimal" readonly="readonly"
+							class=" decimal" readonly="readonly"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.balance}"/></c:if>"
 							placeholder="Rs." type="text"/>
 						</td>
@@ -397,7 +397,7 @@
 						<div class="rowlabel">(a) Entertainment allowance</div>
 						<div class="rowlabel">
 							<input id="deductions_entertainment"
-								name="deductions_entertainment" class="numberinput decimal"
+								name="deductions_entertainment" class=" decimal"
 								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.deductions_entertainment}"/></c:if>"
 								placeholder="Rs." type="text"/>
 						</div>
@@ -406,7 +406,7 @@
 						<div class="rowlabel">(b) Tax on Employment</div>
 						<div class="rowlabel">
 							<input id="deductions_tax" name="deductions_tax"
-								class="numberinput decimal"
+								class=" decimal"
 								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.deductions_tax}"/></c:if>"
 								placeholder="Rs." type="text"/>
 						</div>
@@ -420,7 +420,7 @@
 								of 4(a) and (b) </label>
 						</td>
 						<td><input id="deductions_total" name="deductions_total"
-							class="numberinput decimal" readonly="readonly"
+							class="decimal" readonly="readonly"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.deductions_total}"/></c:if>"
 							placeholder="Rs." type="text"/>
 						</td>
@@ -430,7 +430,7 @@
 								the head."Salaries"(3-5) </label>
 						</td>
 						<td><input id="income_chargable_total"
-							name="income_chargable_total" class="numberinput decimal" readonly="readonly"
+							name="income_chargable_total" class=" decimal" readonly="readonly"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.income_chargable_tax}"/></c:if>"
 							placeholder="Rs." type="text"/></td>
 					</tr>
@@ -446,7 +446,7 @@
 					<tr>
 						<td>(i)</td>
 						<td><input id="additional_1" name="additional_1"
-							class="numberinput decimal"
+							class=" decimal"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.additional_1}"/></c:if>"
 							placeholder="Rs." type="text"/>
 						</td>
@@ -454,7 +454,7 @@
 					<tr>
 						<td>(ii)</td>
 						<td><input id="additional_2" name="additional_2"
-							class="numberinput decimal"
+							class="decimal"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.additional_2}"/></c:if>"
 							placeholder="Rs." type="text"/>
 						</td>
@@ -464,7 +464,7 @@
 								total income (6 + 7)</label>
 						</td>
 						<td><input id="gross_income_total" name="gross_income_total"
-							class="numberinput decimal" readonly="readonly"
+							class=" decimal" readonly="readonly"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.gross_income_total}"/></c:if>"
 							placeholder="Rs." type="text"/>
 						</td>
@@ -839,17 +839,17 @@
 							placeholder="Rs.">
 						</td>
 					</tr>
-
+					<!-- 
 					<tr>
 						<td><label><strong>13.</strong> </label> <label>Surcharge
 								(on tax computed at S. No. 12)</label>
 						</td>
 
 						<td>
-							<!-- <input type="text" name="surcharge_1"
+							<input type="text" name="surcharge_1"
 							class="numberinput decimal"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.surcharge_1}"/></c:if>"
-							placeholder="Rs."> -->
+							placeholder="Rs."> 
 						</td>
 						<td></td>
 
@@ -858,24 +858,24 @@
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.surcharge_1}"/></c:if>"
 							placeholder="Rs.">
 						</td>
-					</tr>
+					</tr>-->
 
 					<tr>
-						<td><label> <strong>14.</strong>Education Cess @2%
-								(on tax at S. No. 12 plus surcharge at S. No. 13)</label>
+						<td><label> <strong>13.</strong>Education Cess @2%
+								(on tax at S. No. 12 )</label>
 						</td>
 						<td></td>
 						<td></td>
 						<td><input id="education_cess" name="education_cess"
-							class="numberinput decimal"
+							class=" decimal" readonly="readonly"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.education_cess}"/></c:if>"
 							placeholder="Rs.">
 						</td>
 					</tr>
 
 					<tr>
-						<td><label><strong>15.</strong> </label> <label>Tax
-								payable (12+13+14) </label>
+						<td><label><strong>14.</strong> </label> <label>Tax
+								payable (12+13) </label>
 						</td>
 						<td></td>
 						<td></td>
@@ -888,7 +888,7 @@
 					</tr>
 
 					<tr>
-						<td><label><strong>16.</strong> </label> <label>Relief
+						<td><label><strong>15.</strong> </label> <label>Relief
 								under section 89 (attach details) </label>
 						</td>
 
@@ -908,8 +908,8 @@
 					</tr>
 
 					<tr>
-						<td><label><strong>17.</strong> </label> <label>Tax
-								payable (15-16)</label>
+						<td><label><strong>16.</strong> </label> <label>Tax
+								payable (14-15)</label>
 						</td>
 
 						<td>
@@ -934,7 +934,7 @@
 					</tr>
 
 					<tr>
-						<td><label><strong>18.</strong> </label> <label> Less
+						<td><label><strong>17.</strong> </label> <label> Less
 								: </label>
 						</td>
 					</tr>
@@ -970,8 +970,8 @@
 						</td>
 					</tr>
 					<tr>
-						<td><label><strong>19.</strong> </label> <label>Tax
-								payable/refundable (17-18)</label>
+						<td><label><strong>18.</strong> </label> <label>Tax
+								payable/refundable (16-17)</label>
 						</td>
 						<td></td>
 
