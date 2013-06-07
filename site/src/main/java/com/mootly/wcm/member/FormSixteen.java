@@ -54,6 +54,18 @@ public class FormSixteen extends ITReturnComponent {
 			request.getRequestContext().setAttribute("form16InEditMode",Boolean.TRUE);
 			request.getRequestContext().setAttribute("form16UniqueUUID",form16Detail.getForm16Uuid());
 		}
+	//	String testdeductiontotal=request.getRequestContext().getAttribute("dedForm16").toString();
+		log.info("This is do before render form sixteen");
+		//log.info("GGGGGGGGGGFFFFFFFFFFFFKKKKKKKK"+testdeductiontotal);
+		if(null!=request.getSession().getAttribute("dedTotalOnForm16").toString())
+		{
+			log.info("GGGGGGHHHHHHHHJJJJJJJJKKKKKKKKKK"+request.getSession().getAttribute("dedTotalOnForm16").toString());
+		request.setAttribute("totalDeductions",request.getSession().getAttribute("dedTotalOnForm16").toString());
+		}
+		else{
+			request.setAttribute("totalDeductions","0.0");
+		}
+		
 		//request.getRequestContext().getResolvedSiteMapItem().getHstSiteMapItem().toString();
 		// this code is check to open the partial submit form with check that action is what
 		if(request.getParameter("partialSubmit")!=null){
