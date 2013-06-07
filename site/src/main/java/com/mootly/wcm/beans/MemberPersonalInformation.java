@@ -27,16 +27,16 @@ import static com.mootly.wcm.utils.Constants.PROP_PI_AREA_LOCALITY;
 import static com.mootly.wcm.utils.Constants.PROP_PI_DEFECTIVE;
 import static com.mootly.wcm.utils.Constants.PROP_PI_DOB;
 import static com.mootly.wcm.utils.Constants.PROP_PI_EMAIL;
+import static com.mootly.wcm.utils.Constants.PROP_PI_EMPLOYER_CATEGORY;
 import static com.mootly.wcm.utils.Constants.PROP_PI_FATHER_NAME;
 import static com.mootly.wcm.utils.Constants.PROP_PI_FILING_STATUS;
 import static com.mootly.wcm.utils.Constants.PROP_PI_FINANCIAL_YEAR;
 import static com.mootly.wcm.utils.Constants.PROP_PI_FIRST_NAME;
 import static com.mootly.wcm.utils.Constants.PROP_PI_FLAT_FLOOR_BUILDING;
+import static com.mootly.wcm.utils.Constants.PROP_PI_INCOME_TAX_WARD;
 import static com.mootly.wcm.utils.Constants.PROP_PI_LAST_NAME;
 import static com.mootly.wcm.utils.Constants.PROP_PI_MIDDLE_NAME;
 import static com.mootly.wcm.utils.Constants.PROP_PI_MOBILE;
-import static com.mootly.wcm.utils.Constants.PROP_PI_MOBILE1;
-import static com.mootly.wcm.utils.Constants.PROP_PI_WARD_CIRCLE;
 import static com.mootly.wcm.utils.Constants.PROP_PI_NOTICE_DATE;
 import static com.mootly.wcm.utils.Constants.PROP_PI_NOTICE_NO;
 import static com.mootly.wcm.utils.Constants.PROP_PI_ORIGINAL_ACK_DATE;
@@ -45,16 +45,16 @@ import static com.mootly.wcm.utils.Constants.PROP_PI_PAN;
 import static com.mootly.wcm.utils.Constants.PROP_PI_PHONE;
 import static com.mootly.wcm.utils.Constants.PROP_PI_PINCODE;
 import static com.mootly.wcm.utils.Constants.PROP_PI_PREMISES_BUILDING;
+import static com.mootly.wcm.utils.Constants.PROP_PI_RECEIPT_NO;
 import static com.mootly.wcm.utils.Constants.PROP_PI_RESIDENT_CATEGORY;
+import static com.mootly.wcm.utils.Constants.PROP_PI_RETURN_FILE_SECTION;
+import static com.mootly.wcm.utils.Constants.PROP_PI_RETURN_SECTION;
 import static com.mootly.wcm.utils.Constants.PROP_PI_RETURN_TYPE;
 import static com.mootly.wcm.utils.Constants.PROP_PI_ROAD_STREET;
-import static com.mootly.wcm.utils.Constants.PROP_PI_EMPLOYER_CATEGORY;
-import static com.mootly.wcm.utils.Constants.PROP_PI_RECEIPT_NO;
-import static com.mootly.wcm.utils.Constants.PROP_PI_INCOME_TAX_WARD;
-import static com.mootly.wcm.utils.Constants.PROP_PI_RETURN_FILE_SECTION;
 import static com.mootly.wcm.utils.Constants.PROP_PI_SEX;
 import static com.mootly.wcm.utils.Constants.PROP_PI_STATE;
 import static com.mootly.wcm.utils.Constants.PROP_PI_STD_CODE;
+import static com.mootly.wcm.utils.Constants.PROP_PI_TAX_STATUS;
 import static com.mootly.wcm.utils.Constants.PROP_PI_TOWN_CITY_DISTRICT;
 import static com.mootly.wcm.utils.Constants.Rsstatus_q;
 import static com.mootly.wcm.utils.Constants.Rsstatus_q_no;
@@ -65,20 +65,17 @@ import static com.mootly.wcm.utils.Constants.Rsstatus_q_no_yes;
 import static com.mootly.wcm.utils.Constants.Rsstatus_q_no_yes_yes;
 import static com.mootly.wcm.utils.Constants.Rsstatus_q_no_yes_yes_yes;
 import static com.mootly.wcm.utils.Constants.Rsstatus_q_yes;
-import static com.mootly.wcm.utils.Constants.PROP_PI_TAX_STATUS;
 import static com.mootly.wcm.utils.Constants.Rsstatus_q_yes_yes;
+import static com.mootly.wcm.utils.Constants.PROP_PI_WARD_CIRCLE;
+import static com.mootly.wcm.utils.Constants.PROP_PI_MOBILE1; 
+import static com.mootly.wcm.utils.Constants.PROP_PI_PORTUGESE_CIVIL;
 
-import java.math.BigInteger;
 import java.text.DateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.ResourceBundle;
 
 import javax.jcr.RepositoryException;
-import javax.xml.datatype.DatatypeConfigurationException;
-import javax.xml.datatype.DatatypeFactory;
-import javax.xml.datatype.XMLGregorianCalendar;
 
 import org.hippoecm.hst.component.support.forms.FormMap;
 import org.hippoecm.hst.content.beans.ContentNodeBinder;
@@ -99,6 +96,7 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 	static final public String NODE_NAME = "PersonalInformation";
 
 	private String employerCategory;
+	private String portugeseCivil;
 	private Long returnFileSection;
 	private String incomeTaxWard;
 	private String receiptNo;
@@ -113,12 +111,14 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 	private String firstName;
 	private String middleName;
 	private String lastName;
+	private String section;
 	private String fatherName;
 	private String PAN;
 	private String filingStatus;
 	private GregorianCalendar DOB;
 	private String sex;
-
+	
+	
 	private String flatDoorBuilding;
 	private String premisesBuilding;
 	private String roadStreet;
@@ -160,6 +160,10 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 		if (taxStatus == null) taxStatus = getProperty(PROP_PI_TAX_STATUS);
 		return taxStatus;
 	}
+	public String getPortugeseCivil() {
+		if (portugeseCivil == null) portugeseCivil = getProperty(PROP_PI_PORTUGESE_CIVIL);
+		return portugeseCivil;
+	}
 	public String getEmployerCategory() {
 		if (employerCategory == null) employerCategory = getProperty(PROP_PI_EMPLOYER_CATEGORY);
 		return employerCategory;
@@ -183,6 +187,10 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 	public String getReturnType() {
 		if (returnType == null) returnType = getProperty(PROP_PI_RETURN_TYPE);
 		return returnType;
+	}
+	public String getReturnSection() {
+		if (section == null) section = getProperty(PROP_PI_RETURN_SECTION);
+		return section;
 	}
 	public String getOriginalAckNo() {
 		if (originalAckNo == null) originalAckNo = getProperty(PROP_PI_ORIGINAL_ACK_NO);
@@ -345,6 +353,12 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 
 	public String getPersonalInfoUuid() {
 		return PIUUID;
+	}
+	public final void  setReturnSection(String Section){
+		this.section = Section;
+	}
+	public final void setPortugeseCivil(String portugeseCivil) {
+		this.portugeseCivil = portugeseCivil;
 	}
 	public final void setTaxStatus(String taxStatus) {
 		this.taxStatus = taxStatus;
@@ -637,7 +651,13 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 			node.setProperty(PROP_PI_FATHER_NAME, mpi.getFatherName());
 			node.setProperty(PROP_PI_PAN, mpi.getPAN());
 			node.setProperty(PROP_PI_FILING_STATUS, mpi.getFilingStatus());
+			node.setProperty(PROP_PI_PORTUGESE_CIVIL, mpi.getPortugeseCivil());
+
 			node.setProperty(PROP_PI_DOB, mpi.getDOB());
+			node.setProperty(PROP_PI_RETURN_SECTION, mpi.getReturnSection());
+
+			node.setProperty(PROP_PI_DOB, mpi.getDOB());
+
 			node.setProperty(PROP_PI_SEX, mpi.getSex());
 
 			node.setProperty(PROP_PI_FLAT_FLOOR_BUILDING, mpi.getFlatDoorBuilding());
@@ -698,6 +718,9 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 		if ( formMap.getField("emp_category") != null) setEmployerCategory(formMap.getField("emp_category").getValue());
 		if ( formMap.getField("receipt_no") != null) setReceiptNo(formMap.getField("receipt_no").getValue());
 		if ( formMap.getField("tax_ward") != null) setIncomeTaxWard(formMap.getField("tax_ward").getValue());
+		if ( formMap.getField("portugeseCivil") != null) setPortugeseCivil(formMap.getField("portugeseCivil").getValue());
+		
+	log.info("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"+formMap.getField("portugeseCivil").getValue());
 
 		if ( formMap.getField("pi_return_type") != null) setReturnType(formMap.getField("pi_return_type").getValue());
 		if ( formMap.getField("fy") != null) setFinancialYear(formMap.getField("fy").getValue());
@@ -745,6 +768,7 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 		if ( formMap.getField("Employe_category") != null) setEmploye_category(formMap.getField("Employe_category").getValue());
 		if ( formMap.getField("pi_first_name") != null) setFirstName(formMap.getField("pi_first_name").getValue());
 		if ( formMap.getField("pi_last_name") != null) setLastName(formMap.getField("pi_last_name").getValue());
+		if	(formMap.getField("pi_return_section") != null) setReturnSection(formMap.getField("pi_return_section").getValue());
 		if ( formMap.getField("pi_middle_name") != null) setMiddleName(formMap.getField("pi_middle_name").getValue());
 		if ( formMap.getField("pi_father_name") != null) setFatherName(formMap.getField("pi_father_name").getValue());
 		if ( formMap.getField("gender") != null) setSex(formMap.getField("gender").getValue());
