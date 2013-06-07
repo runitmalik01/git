@@ -7,9 +7,9 @@
 </c:set>
 <hippo-gogreen:title title="${tds2}" />
 <hst:actionURL var="actionUrl" />
-
+<div class="page type-page">
+	<w4india:itrmenu/>
 <hst:link var="mainSiteMapRefId" />
-
 <c:if test="${not empty formMap}">
 	<c:forEach items="${formMap.message}" var="item">
 		<div class="alert alert-error">
@@ -168,13 +168,11 @@
 			class="button orange">Add New</a>
 	</c:otherwise>
 </c:choose>
-
+</div>
 <script type="text/javascript">
-
 function calculate(){
 	var amt= document.getElementById("total_taxdeductedtdsoth").value;
 	document.getElementById("amounttdsoth").value = amt;
-
 }
 </script>
 
