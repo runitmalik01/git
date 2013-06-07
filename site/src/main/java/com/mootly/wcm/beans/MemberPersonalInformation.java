@@ -96,7 +96,7 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 	static final public String NODE_NAME = "PersonalInformation";
 
 	private String employerCategory;
-	private String portugeseCivil;
+	private String portugesecivil;
 	private Long returnFileSection;
 	private String incomeTaxWard;
 	private String receiptNo;
@@ -160,9 +160,9 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 		if (taxStatus == null) taxStatus = getProperty(PROP_PI_TAX_STATUS);
 		return taxStatus;
 	}
-	public String getPortugeseCivil() {
-		if (portugeseCivil == null) portugeseCivil = getProperty(PROP_PI_PORTUGESE_CIVIL);
-		return portugeseCivil;
+	public String getPortugesecivil() {
+		if (portugesecivil == null) portugesecivil = getProperty(PROP_PI_PORTUGESE_CIVIL);
+		return portugesecivil;
 	}
 	public String getEmployerCategory() {
 		if (employerCategory == null) employerCategory = getProperty(PROP_PI_EMPLOYER_CATEGORY);
@@ -357,8 +357,8 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 	public final void  setReturnSection(String Section){
 		this.section = Section;
 	}
-	public final void setPortugeseCivil(String portugeseCivil) {
-		this.portugeseCivil = portugeseCivil;
+	public final void setPortugesecivil(String portugesecivil) {
+		this.portugesecivil = portugesecivil;
 	}
 	public final void setTaxStatus(String taxStatus) {
 		this.taxStatus = taxStatus;
@@ -651,7 +651,7 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 			node.setProperty(PROP_PI_FATHER_NAME, mpi.getFatherName());
 			node.setProperty(PROP_PI_PAN, mpi.getPAN());
 			node.setProperty(PROP_PI_FILING_STATUS, mpi.getFilingStatus());
-			node.setProperty(PROP_PI_PORTUGESE_CIVIL, mpi.getPortugeseCivil());
+			node.setProperty(PROP_PI_PORTUGESE_CIVIL, mpi.getPortugesecivil());
 
 			node.setProperty(PROP_PI_DOB, mpi.getDOB());
 			node.setProperty(PROP_PI_RETURN_SECTION, mpi.getReturnSection());
@@ -718,9 +718,9 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 		if ( formMap.getField("emp_category") != null) setEmployerCategory(formMap.getField("emp_category").getValue());
 		if ( formMap.getField("receipt_no") != null) setReceiptNo(formMap.getField("receipt_no").getValue());
 		if ( formMap.getField("tax_ward") != null) setIncomeTaxWard(formMap.getField("tax_ward").getValue());
-		if ( formMap.getField("portugeseCivil") != null) setPortugeseCivil(formMap.getField("portugeseCivil").getValue());
+		if ( formMap.getField("portugesecivil") != null) setPortugesecivil(formMap.getField("portugesecivil").getValue());
 		
-	log.info("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"+formMap.getField("portugeseCivil").getValue());
+	log.info("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"+formMap.getField("portugesecivil").getValue());
 
 		if ( formMap.getField("pi_return_type") != null) setReturnType(formMap.getField("pi_return_type").getValue());
 		if ( formMap.getField("fy") != null) setFinancialYear(formMap.getField("fy").getValue());
