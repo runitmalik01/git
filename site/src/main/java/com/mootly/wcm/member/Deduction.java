@@ -258,6 +258,7 @@ public class Deduction extends ITReturnComponent {
 			if (resultMap != null && resultMap.size() > 0 ) {
 				totalMapForJS.putAll(resultMap);
 				request.setAttribute("totalMapForJS", totalMapForJS);
+				request.setAttribute("finaltotalEligibleDeduction",resultMap.get("total_eligiblededuction").toString());
 			}
 		}
 	}
