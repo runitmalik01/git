@@ -154,6 +154,8 @@ public interface Constants {
 	String PROP_PI_INCOME_TAX_WARD="mootlywcm:incomeTaxWard";
 	String PROP_PI_RECEIPT_NO="mootlywcm:receiptNo";
 	String PROP_PI_TAX_STATUS="mootlywcm:taxStatus";
+	String PROP_PI_RETURN_SECTION="mootlywcm:returnsection";
+	String PROP_PI_PORTUGESE_CIVIL="mootlywcm:portugeseCivil";
 	
 	String PROP_PI_EMPLOYER_CATEGORY = "mootlywcm:pi_employer_category";
 
