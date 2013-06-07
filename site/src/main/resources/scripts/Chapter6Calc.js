@@ -28,11 +28,11 @@ var leftOver = maxAllowed_80C;
 for (var i=0;i<3;i++){
 	if (leftOver <=0) {
 		doubleArray[i] =  0;
-	} 
+	}
 	else {
 		leftOver = maxAllowed - doubleArray[i].doubleValue();
 		if (leftOver < 0) {
-			doubleArray[i] =  maxAllowed;		
+			doubleArray[i] =  maxAllowed;
 		}
 		maxAllowed = leftOver;
 	}
@@ -94,7 +94,7 @@ if((total_disability+total_sdisability)>maxAllowed_80U)
 	out_total_80u=maxAllowed_80U;
 else out_total_80u= (total_disability + total_sdisability);
 
-//80RRB and 80QQB -exempt limit for 80RRB and 80QQB 
+//80RRB and 80QQB -exempt limit for 80RRB and 80QQB
 if(total_80rrb>maxAllowed_80qqb_80rrb)
 	out_total_80rrb=maxAllowed_80qqb_80rrb;
 else out_total_80rrb=total_80rrb;
@@ -103,7 +103,7 @@ if(total_80qqb>maxAllowed_80qqb_80rrb)
 else out_total_80qqb=total_80qqb;
 
 //Donations 100%
-out_total_80g = (total_NoAppr50 * 0.5) + (total_Appr50 * 0.5) + (total_Appr100) + (total_Appr50); 
+out_total_80g = (total_NoAppr50 * 0.5) + (total_Appr50 * 0.5) + (total_Appr100) + (total_NoAppr100);
 //100% deductions on 80E,80GGA,80GGC,80JJA,80ID,80IA
 
 out_total_80e= (total_80e < grosstotal) ? total_80e:grosstotal;
