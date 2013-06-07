@@ -2831,4 +2831,85 @@
       <sv:value>jsp/member/docattach.jsp</sv:value>
     </sv:property>
   </sv:node>
+	<sv:node sv:name="knowledgearticles.leftnav" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hst:template</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>125cdedb-2cd2-4bc9-bdf0-a633ce88de4f</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:renderpath" sv:type="String">
+	    <sv:value>jsp/knowledgearticles/leftnav.jsp</sv:value>
+	  </sv:property>
+	</sv:node>
+	<sv:node sv:name="knowledgearticles.right" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hst:template</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>48aecfa8-030d-4a5e-a77c-be8d355f1e8e</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:renderpath" sv:type="String">
+	    <sv:value>jsp/knowledgearticles/right.jsp</sv:value>
+	  </sv:property>
+	</sv:node>
+	<sv:node sv:name="knowledgearticle.detail.main" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hst:template</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>c3c2fa9b-cbce-41e8-bd54-c52fe7065e3d</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:renderpath" sv:type="String">
+	    <sv:value>jsp/knowledgearticles/main.jsp</sv:value>
+	  </sv:property>
+	</sv:node>
+	<sv:node sv:name="knowledgearticle.detail.content" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hst:template</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>4014ce2c-8f5e-4428-bc6b-dd0798ba5586</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:renderpath" sv:type="String">
+	    <sv:value>jsp/knowledgearticles/detail.jsp</sv:value>
+	  </sv:property>
+	</sv:node>
+	<sv:node sv:name="knowledgearticles.facetnav" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hst:template</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>e837c6e1-d4fc-4406-892a-e563e825bad0</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:renderpath" sv:type="String">
+	    <sv:value>jsp/knowledgearticles/facetnav.jsp</sv:value>
+	  </sv:property>
+	</sv:node>
+	<sv:node sv:name="knowledgearticles.overview" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hst:template</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>15540fad-02d0-4303-8ec1-86165155d995</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:renderpath" sv:type="String">
+	    <sv:value>jsp/knowledgearticles/overview.jsp</sv:value>
+	  </sv:property>
+	</sv:node>
+	<sv:node sv:name="knowledgearticles.main" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hst:template</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>ff5fe6e6-8eb3-4806-80be-f72ca4a2b32f</sv:value>
+	  </sv:property>
+	  <sv:property sv:multiple="true" sv:name="hst:containers" sv:type="String">
+	    <sv:value>content</sv:value>
+	    <sv:value>knowledgearticlefacetnav</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:renderpath" sv:type="String">
+	    <sv:value>jsp/knowledgearticles/main.jsp</sv:value>
+	  </sv:property>
+	</sv:node>
 </sv:node>
