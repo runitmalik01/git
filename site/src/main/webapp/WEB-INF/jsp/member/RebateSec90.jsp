@@ -18,6 +18,8 @@ request.setAttribute("objTreeMapCountries", objTreeMapCountries);
 
 %>
 <hst:actionURL var="actionUrl" />
+<div class="page type-page">
+	<w4india:itrmenu/>
 <form id="frmrebate" action="${actionUrl}" method="post">
 
 <fieldset>
@@ -57,7 +59,7 @@ request.setAttribute("objTreeMapCountries", objTreeMapCountries);
 </div>
 </div>
 </form>
-		
+</div>
 <res:calc screenCalc="rebatesCalculation" formId="frmrebate"></res:calc>
 
 
