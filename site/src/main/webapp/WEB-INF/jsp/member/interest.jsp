@@ -12,7 +12,8 @@
 </c:set>
 <hippo-gogreen:title title="${interesttitle}" />
 <hst:actionURL var="actionUrl"></hst:actionURL>
-
+<div class="page type-page">
+	<w4india:itrmenu/>
 	<h4>Interest under Section 234 A B C</h4>
 		<form id="frmdataInterest" action="${actionUrl}" name="interest" method="post">
 
@@ -187,7 +188,7 @@
 				</fieldset>
 				</div>
 		</form>
-
+</div>
 <res:client-validation formId="frmdataInterest" screenConfigurationDocumentName="interest" formSubmitButtonId="myModalHrefInterest" />
 
 <hst:headContribution category="jsExternal">
