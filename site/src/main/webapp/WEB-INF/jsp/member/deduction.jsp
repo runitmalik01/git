@@ -44,9 +44,9 @@
 				</c:choose>
 				<!--  lets create a bookmark for each section -->
 				<c:if test="${skipIt == 'false'}">
-					<tr>    
-						<td colspan="1">     	
-							<div class="btn-group">	
+					<tr>
+						<td colspan="1">
+							<div class="btn-group">
 								<button class="btn btn-small dropdown-toggle" data-toggle="dropdown"><c:out value="${deductionSectionLabel}"/><span class="caret"></span></button>
 								<ul class="dropdown-menu">
 					            	<li><a href="${addURL}">Add</a></li>
@@ -56,25 +56,25 @@
 									<li class="divider"></li>
 										<c:forEach items="${savedData[deductionSectionName]}" var="aSectionHead">
 											<li><a href="<c:out value="${scriptName}/${aSectionHead.canonicalUUID}"/>/editc6deduction"><fmt:message var="label" bundle="${dSectionHeads}" key="sectionhead.${aSectionHead.head}.label"></fmt:message><res:displaylabel label="${label}"/>(<c:out value="${aSectionHead.investment}"/>)</a></li>
-										</c:forEach>								 	
-									</c:if>	
+										</c:forEach>
+									</c:if>
 									 --%>
-								</ul>								
-							</div>	
-						</td>		
+								</ul>
+							</div>
+						</td>
 						<td  style="text-align:right">
 							<!--  we will show total for all deductions -->
 							<c:choose>
-								<c:when test="${not empty totalOfSavedData && not empty totalOfSavedData[deductionSectionName]}">								
-									<div class="btn-group">	
+								<c:when test="${not empty totalOfSavedData && not empty totalOfSavedData[deductionSectionName]}">
+									<div class="btn-group">
 										<button class="btn btn-small dropdown-toggle" data-toggle="dropdown"><w4india:inr value="${totalOfSavedData[deductionSectionName]}"></w4india:inr><span class="caret"></span></button>
 										<ul class="dropdown-menu">
 											<li class="divider"></li>
 							            	<%-- commented out --%>
-							            	<%-- 
+							            	<%--
 							            	<li><a href="<c:out value="${scriptName}"/>/newc6deduction/<c:out value="${deductionSectionName}"/>">Add</a></li>
 							            	 --%>
-											<c:if test="${not empty savedData && not empty savedData[deductionSectionName]}">											
+											<c:if test="${not empty savedData && not empty savedData[deductionSectionName]}">
 												<c:forEach items="${savedData[deductionSectionName]}" var="aSectionHead">
 													<c:choose>
 														<c:when test="${empty ischildofform16 || ischildofform16 !='true'}">
@@ -86,9 +86,9 @@
 														</c:otherwise>
 													</c:choose>
 													<li><a href="${editURL}"><fmt:message var="label" bundle="${dSectionHeads}" key="sectionhead.${aSectionHead.head}.label"></fmt:message><res:displaylabel label="${label}"></res:displaylabel> |<c:out value="${aSectionHead.investment}"/>|</a></li>
-												</c:forEach>								 	
-											</c:if>	
-										</ul>								
+												</c:forEach>
+											</c:if>
+										</ul>
 									</div>
 								</c:when>
 								<c:otherwise>
@@ -101,24 +101,24 @@
 								<c:set var="theKey" value="total_${fn:replace(deductionSectionName,'-','_')}"/>
 								<c:choose>
 									<c:when test="${not empty totalMapForJS && not empty totalMapForJS[theKey]}">
-										<w4india:inr value="${totalMapForJS[theKey]}"/>									
-									</c:when>	
+										<w4india:inr value="${totalMapForJS[theKey]}"/>
+									</c:when>
 									<c:otherwise>
 										<w4india:inr value="0"/>
 									</c:otherwise>
 								</c:choose>
 							</span>
 						</td>
-					</tr>	
+					</tr>
 				</c:if>
-			</c:forEach>	
+			</c:forEach>
 				<c:set var="finaltotalEligibleDeduction" value="${totalMapForJS['total_eligiblededuction']}"/>
 			<tr class="success">
-				<td colspan="1" style="text-align:right"><b>Total</b></td>				
+				<td colspan="1" style="text-align:right"><b>Total</b></td>
 				<td align="right" style="text-align:right"><b><w4india:inr value="${grandTotal}"/></b></td>
 				<td align="right" style="text-align:right"><b><w4india:inr value="${finaltotalEligibleDeduction}"/></b>
 				</td>
-			</tr>	
+			</tr>
 		</table>
 </div>
 <c:set var="deductionAdditionalScreen" value="${deductionSection.additionalProperties['additionalScreen']}"/>
@@ -132,7 +132,7 @@
 	<c:otherwise>
 		<%pageContext.removeAttribute("additionalScreenHTML");%>
 	</c:otherwise>
-</c:choose>	
+</c:choose>
 <c:if test="${pageAction =='NEW_CHILD'}">
 	<c:set var="formHTML">
 		<c:set var="modalHeading" value="${deductionSection.label}"></c:set>
@@ -166,7 +166,7 @@
 		    	<c:if test="${not empty successURL && not empty uuidform_16}"><input type="hidden" name="successURL" value="${scriptName}/${uuidform_16}/formsixteenedit"/></c:if>
 		    	<c:if test="${(pageAction == 'EDIT_CHILD' && not empty editingSection)}"><input type="hidden" name="decuuidform16" value="${childBean.form16Uuid}"/></c:if>
 		    	<c:if test="${not empty additionalScreenHTML}"><c:out value="${additionalScreenHTML}" escapeXml="false"/></c:if>
-		    	
+
 		    </form>
 		  </div>
 		  <div class="modal-footer">
@@ -182,7 +182,7 @@
 		<c:out value="${formHTMLComplete}" escapeXml="false"/>
 	</c:when>
 	<c:otherwise>
-		<% 
+		<%
 			HstRequest hstRequest = (HstRequest) request;
 		    String formHTMLComplete = (String) pageContext.getAttribute("formHTMLComplete");
 			hstRequest.getRequestContext().setAttribute("formHTMLComplete",formHTMLComplete);
@@ -191,6 +191,7 @@
 	</c:otherwise>
 </c:choose>
 <%-- <a href="${scriptName}?selectedItrTab=<%=ITRTab.FORM16_SINGLE%>" id="test" role="button" class="btn" data-toggle="" ><fmt:message key="back.to.formsixteen" /></a>--%>
+<res:client-validation formId="frmDeduction" screenConfigurationDocumentName="doneedetails" formSubmitButtonId="deductionSave" />
 
 
 <hst:element var="uiCustom" name="script">
@@ -213,16 +214,16 @@
 					password: {
 						required: true
 					}
-				},				
+				},
 				messages: {
 					username: "Please enter a valid email address.",
 					password: "Please enter a valid password."
 				}
 			});
-			
+
 			$('#deductionSave').click(function() {
  				 $('#frmDeduction').submit();
 			});
-		});    
+		});
 </hst:element>
 <hst:headContribution element="${uiCustom}" category="jsInternal"/>
