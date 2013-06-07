@@ -31,7 +31,8 @@ TreeMap objTreeMapSection = (TreeMap) objValueListService.getReturnFile();
 		          </div>
 		           <div class="span3">    
 		            <div class="rowlabel"><label for="pi_return_section"><small>Return filed under section</small></label></div>
-		          	<div class="rowlabel"><select id="pi_return_section" name="pi_return_section" onChange="getSection()">
+		          	<div class="rowlabel">
+		          	<select id="pi_return_section" name="pi_return_section" onChange="getSection()">
 		          	<option value="">Select </option>
 		          	<c:forEach var="section" items="${objTreeMapSection}">
 		          	<option value="${section.value}">${section.value}</option>
