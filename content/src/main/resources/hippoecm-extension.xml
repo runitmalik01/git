@@ -315,6 +315,20 @@
 			<sv:value>11050.11</sv:value>
 		</sv:property>
 	</sv:node>
+	<sv:node sv:name="new-knowledgearticle-query">
+		<sv:property sv:name="jcr:primaryType" sv:type="Name">
+			<sv:value>hippo:initializeitem</sv:value>
+		</sv:property>
+		<sv:property sv:name="hippo:contentresource" sv:type="String">
+			<sv:value>hippo-configuration/hippo-queries/new-knowledgearticle.xml</sv:value>
+		</sv:property>
+		<sv:property sv:name="hippo:contentroot" sv:type="String">
+			<sv:value>/hippo:configuration/hippo:queries/hippo:templates</sv:value>
+		</sv:property>
+		<sv:property sv:name="hippo:sequence" sv:type="Double">
+			<sv:value>11050.112</sv:value>
+		</sv:property>
+	</sv:node>
 	<sv:node sv:name="new-product-folder-query">
 		<sv:property sv:name="jcr:primaryType" sv:type="Name">
 			<sv:value>hippo:initializeitem</sv:value>
@@ -327,6 +341,20 @@
 		</sv:property>
 		<sv:property sv:name="hippo:sequence" sv:type="Double">
 			<sv:value>11050.12</sv:value>
+		</sv:property>
+	</sv:node>
+	<sv:node sv:name="new-knowledgearticle-folder-query">
+		<sv:property sv:name="jcr:primaryType" sv:type="Name">
+			<sv:value>hippo:initializeitem</sv:value>
+		</sv:property>
+		<sv:property sv:name="hippo:contentresource" sv:type="String">
+			<sv:value>hippo-configuration/hippo-queries/new-knowledgearticle-folder.xml</sv:value>
+		</sv:property>
+		<sv:property sv:name="hippo:contentroot" sv:type="String">
+			<sv:value>/hippo:configuration/hippo:queries/hippo:templates</sv:value>
+		</sv:property>
+		<sv:property sv:name="hippo:sequence" sv:type="Double">
+			<sv:value>11050.123</sv:value>
 		</sv:property>
 	</sv:node>
 	<sv:node sv:name="new-simple-query">
@@ -891,6 +919,20 @@
 			<sv:value>11051.04</sv:value>
 		</sv:property>
 	</sv:node>
+	<sv:node sv:name="mootlywcm-type-knowledgearticle">
+		<sv:property sv:name="jcr:primaryType" sv:type="Name">
+			<sv:value>hippo:initializeitem</sv:value>
+		</sv:property>
+		<sv:property sv:name="hippo:contentresource" sv:type="String">
+			<sv:value>hippo-namespaces/mootlywcm/knowledgearticle.xml</sv:value>
+		</sv:property>
+		<sv:property sv:name="hippo:contentroot" sv:type="String">
+			<sv:value>/hippo:namespaces/mootlywcm</sv:value>
+		</sv:property>
+		<sv:property sv:name="hippo:sequence" sv:type="Double">
+			<sv:value>11051.045</sv:value>
+		</sv:property>
+	</sv:node>
 	<sv:node sv:name="mootlywcm-type-job">
 		<sv:property sv:name="jcr:primaryType" sv:type="Name">
 			<sv:value>hippo:initializeitem</sv:value>
@@ -1313,6 +1355,7 @@
 			<sv:value>11600.9</sv:value>
 		</sv:property>
 	</sv:node>
+	<!-- 
 	<sv:node sv:name="new-job-shortcut">
 		<sv:property sv:name="jcr:primaryType" sv:type="Name">
 			<sv:value>hippo:initializeitem</sv:value>
@@ -1333,6 +1376,21 @@
 		</sv:property>
 		<sv:property sv:name="hippo:contentresource" sv:type="String">
 			<sv:value>hippo-configuration/new-product-shortcut.xml</sv:value>
+		</sv:property>
+		<sv:property sv:name="hippo:contentroot" sv:type="String">
+			<sv:value>/hippo:configuration/hippo:frontend/cms/cms-dashshortcuts</sv:value>
+		</sv:property>
+		<sv:property sv:name="hippo:sequence" sv:type="Double">
+			<sv:value>11602.0</sv:value>
+		</sv:property>
+	</sv:node>
+	 -->
+    <sv:node sv:name="new-knowledgearticle-shortcut">
+		<sv:property sv:name="jcr:primaryType" sv:type="Name">
+			<sv:value>hippo:initializeitem</sv:value>
+		</sv:property>
+		<sv:property sv:name="hippo:contentresource" sv:type="String">
+			<sv:value>hippo-configuration/new-knowledgearticle-shortcut.xml</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentroot" sv:type="String">
 			<sv:value>/hippo:configuration/hippo:frontend/cms/cms-dashshortcuts</sv:value>
@@ -1717,6 +1775,20 @@
 		</sv:property>
 		<sv:property sv:name="hippo:sequence" sv:type="Double">
 			<sv:value>11404.4</sv:value>
+		</sv:property>
+	</sv:node>
+	<sv:node sv:name="mootlywcm-en-knowledgearticles">
+		<sv:property sv:name="jcr:primaryType" sv:type="Name">
+			<sv:value>hippo:initializeitem</sv:value>
+		</sv:property>
+		<sv:property sv:name="hippo:contentresource" sv:type="String">
+			<sv:value>content/en/knowledgearticles.xml</sv:value>
+		</sv:property>
+		<sv:property sv:name="hippo:contentroot" sv:type="String">
+			<sv:value>/content/documents/mootlywcm</sv:value>
+		</sv:property>
+		<sv:property sv:name="hippo:sequence" sv:type="Double">
+			<sv:value>11404.41</sv:value>
 		</sv:property>
 	</sv:node>
 	<sv:node sv:name="mootlywcm-en-faqs">

@@ -48,6 +48,7 @@
 [mootlywcm:event] > mootlywcm:document, relateddocs:relatabledocs
 
 [mootlywcm:product] > mootlywcm:document, relateddocs:relatabledocs
+[mootlywcm:knowledgearticle] > mootlywcm:document, relateddocs:relatabledocs
 
 [mootlywcm:job] > mootlywcm:document
 
