@@ -54,7 +54,7 @@ import com.mootly.wcm.utils.MootlyFormUtils;
 import com.mootly.wcm.utils.UrlUtility;
 
 @PrimaryBean(primaryBeanClass=MemberPersonalInformation.class)
-@FormFields(fieldNames={"pi_return_type","fy","ack_no","ack_date","defective","notice_no","notice_date",
+@FormFields(fieldNames={"pi_return_type","pi_return_section","portugeseCivil","fy","ack_no","ack_date","defective","notice_no","notice_date",
 		"pan","pi_first_name","pi_middle_name","pi_last_name","gender","pi_dob","pi_filing_status",
 		"pi_road_street","pi_std_code","pi_phone","pi_flat_door_building","pi_area_locality","pi_town_city_district",
 		"pi_pin_code","pi_state","pi_mobile","pi_mobile1","pi_email","pi_premises_building",
@@ -76,6 +76,7 @@ public class StartApplication extends ITReturnComponent {
 	private static final String PAN = "pi_pan";
 	private static final String GENDER = "gender";
 	private static final String STATUS = "status";
+	private static final String SECTION= "pi_return_section";
 	private static final String ERRORS = "errors";
 	private static final String DOB = "pi_dob";
 	FormMap savedValuesFormMap=null;	
@@ -95,7 +96,7 @@ public class StartApplication extends ITReturnComponent {
 		if (publicParameterUUID != null) {
 			try {
 				FormUtils.validateId(publicParameterUUID);
-				savedValuesFormMap = new FormMap(request,new String[]{"pan","pi_last_name","pi_dob","pi_return_type","fy"});
+				savedValuesFormMap = new FormMap(request,new String[]{"pan","pi_last_name","pi_dob","pi_return_type","fy","pi_return_section"});
 				MootlyFormUtils.populate(request, publicParameterUUID, savedValuesFormMap);
 				if (savedValuesFormMap != null) {
 					request.setAttribute("savedValuesFormMap", savedValuesFormMap);
@@ -262,6 +263,7 @@ public class StartApplication extends ITReturnComponent {
 		request.setAttribute(FA_NAME, request.getParameter(FA_NAME));
 		request.setAttribute(GENDER, request.getParameter(GENDER));
 		request.setAttribute(STATUS, request.getParameter(STATUS));
+		request.setAttribute(SECTION, request.getParameter(SECTION));
 
 	}
 
@@ -277,8 +279,15 @@ public class StartApplication extends ITReturnComponent {
 		String fathername=GoGreenUtil.getEscapedParameter(request, FA_NAME);		
 		String gender=GoGreenUtil.getEscapedParameter(request, GENDER);
 		String status=GoGreenUtil.getEscapedParameter(request, STATUS);
+		if(log.isInfoEnabled()){
+			log.info("DDDDDDDDDDDDDDDDD KKKKKKKKK"+status);
+		}
 		String dob=GoGreenUtil.getEscapedParameter(request, DOB);
 		String repDob=dob;
+		String section=GoGreenUtil.getEscapedParameter(request,SECTION);
+		if(log.isInfoEnabled()){
+			log.info("section HHHHHHHHHH"+section);
+		}
 		/*Next 6-7 lines
 		 * to covert String date into Calendar object
 		 * */
@@ -321,6 +330,9 @@ public class StartApplication extends ITReturnComponent {
 			if(StringUtils.isEmpty(dob)){
 				errors.add("invalid.dob-label");
 			}
+			//if(StringUtils.isEmpty(section)){
+			//	errors.add("select.one.section");
+			//}
 			if (errors.size()!=0){
 				response.setRenderParameter(ERRORS, errors.toArray(new String[errors.size()]));
 				response.setRenderParameter(PAN, pan);
@@ -330,6 +342,7 @@ public class StartApplication extends ITReturnComponent {
 				response.setRenderParameter(STATUS, status);
 				response.setRenderParameter(FA_NAME, fathername);
 				response.setRenderParameter(DOB, repDob);
+				//response.setRenderParameter(SECTION, section);
 				return;
 			}
 			else{
@@ -414,6 +427,7 @@ public class StartApplication extends ITReturnComponent {
 					objpersonalInformation.setSex(personal_info.getSex());
 					objpersonalInformation.setFatherName(personal_info.getFatherName());
 					objpersonalInformation.setDOB((GregorianCalendar) personal_info.getDOB());
+					objpersonalInformation.setFilingStatus(personal_info.getFilingStatus());
 					objpersonalInformation.setFilingStatus(personal_info.getFilingStatus());
 					// update now  
 					wpm.update(objpersonalInformation);
