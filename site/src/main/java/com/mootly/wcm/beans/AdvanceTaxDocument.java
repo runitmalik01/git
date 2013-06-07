@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 /**
- * 
+ *
  * User: abhishek
  * Date: march 04, 2013
  * Time: 11:26:35 AM
- * 
+ *
  */
 
 
@@ -58,7 +58,7 @@ public class AdvanceTaxDocument extends BaseDocument implements ContentNodeBinde
 	static final public String NODE_NAME = "advancetaxdocument";
 	final String PROP_DETAIL_BEAN="mootlywcm:advancetaxdetail";
 	private String itFolderUuid;
-	
+
 	public String getGross_salary() {
 		return "0";
 	}
@@ -69,7 +69,7 @@ public class AdvanceTaxDocument extends BaseDocument implements ContentNodeBinde
 	private  Double total_sum4;
 	private  Double total_sum5;
 	private  Double total_sum6;
-	private final static Logger log = LoggerFactory.getLogger(AdvanceTaxDocument.class); 
+	private final static Logger log = LoggerFactory.getLogger(AdvanceTaxDocument.class);
 
 	private List<AdvanceTaxDetail> advancetaxDetailList;
 
@@ -81,18 +81,18 @@ public class AdvanceTaxDocument extends BaseDocument implements ContentNodeBinde
 	public final void setSelfAssesmentDetailList(List<AdvanceTaxDetail> advancetaxDetailList) {
 		this.advancetaxDetailList = advancetaxDetailList;
 	}
-	
+
 	public final void addSelfAssesmentDetail(AdvanceTaxDetail tdsothersdetail) {
 		getAdvanceTaxDetailList();
 		if (advancetaxDetailList == null) advancetaxDetailList = new ArrayList<AdvanceTaxDetail>();
 		advancetaxDetailList.add(tdsothersdetail);
 	}
-	
+
 	   public double getTotal_Amount() {
 	    	if (total_amount == null) total_amount = getProperty("mootlywcm:totalamount");
 	    	return total_amount;
 	 }
-       
+
 	   public final void setTotal_Amount(double sum) {
 			this.total_amount = sum;
 		}
@@ -121,7 +121,7 @@ public class AdvanceTaxDocument extends BaseDocument implements ContentNodeBinde
 	    	if (total_sum4 == null) total_sum4 = getProperty("mootlywcm:totalsum4");
 	    	return total_sum4;
 	 }
-	   
+
 	   public final void setTotal_Sum4(Double totalsum4) {
 			this.total_sum4 = totalsum4;
 		}
@@ -132,8 +132,8 @@ public class AdvanceTaxDocument extends BaseDocument implements ContentNodeBinde
 	   public final void setTotal_Sum5(Double totalsum5) {
 			this.total_sum5 = totalsum5;
 		}
-	  
-		
+
+
 
 	public final String getItFolderUuid() {
 		return itFolderUuid;
@@ -175,32 +175,32 @@ public class AdvanceTaxDocument extends BaseDocument implements ContentNodeBinde
         	 double sum4=0.0;
         	 double sum5=0.0;
         	 double sum6=0.0;
-        	if ( selfasses.getAdvanceTaxDetailList() != null &&  selfasses.getAdvanceTaxDetailList().size() > 0 ){ 
+        	if ( selfasses.getAdvanceTaxDetailList() != null &&  selfasses.getAdvanceTaxDetailList().size() > 0 ){
         		log.info("checking size in salary income bean:::"+ selfasses.getAdvanceTaxDetailList().size());
-        		
+
         		for (AdvanceTaxDetail objSelfAssesment:selfasses.getAdvanceTaxDetailList()) {
-        		    
+
         			if (!objSelfAssesment.isMarkedForDeletion()) {
         				double amount=objSelfAssesment.getP_Amount();
             		    log.info("value of amount after fetching from compound bean"+amount);
             		     sum=sum+amount;
             		     try{
-            		    
+
             		     String fetchDatefull=objSelfAssesment.getDateStr();
             		     log.info("fetchDate"+fetchDatefull);
             		     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
             		     java.util.Date fetchDate= sdf.parse(fetchDatefull);
-            		     java.util.Date date1= sdf.parse("01/04/2013");  
-            		    		 java.util.Date date2=sdf.parse("15/06/2013");  
-            		    		 java.util.Date date3=sdf.parse("15/09/2013");  
-            		    		 java.util.Date date4=sdf.parse("15/12/2013");  
-            		    		 java.util.Date date5=sdf.parse("15/03/2014");  
-            		    		 java.util.Date date6=sdf.parse("31/03/2014");  
-            		    		 
+            		     java.util.Date date1= sdf.parse("01/04/2012");
+            		    		 java.util.Date date2=sdf.parse("15/06/2012");
+            		    		 java.util.Date date3=sdf.parse("15/09/2012");
+            		    		 java.util.Date date4=sdf.parse("15/12/2012");
+            		    		 java.util.Date date5=sdf.parse("15/03/2013");
+            		    		 java.util.Date date6=sdf.parse("31/03/2013");
+
             		  if(fetchDate.equals(date1) || fetchDate.after(date1)  && fetchDate.before(date2) || fetchDate.equals(date2))  {
             			  sum1=sum1+objSelfAssesment.getP_Amount();
             			  log.info("conditionfirst");
-            			 
+
             		  }else{
             			  if(fetchDate.after(date2)  && fetchDate.before(date3) ||fetchDate.equals(date3)){
             			  sum2=sum2+objSelfAssesment.getP_Amount();
@@ -209,33 +209,33 @@ public class AdvanceTaxDocument extends BaseDocument implements ContentNodeBinde
             			   if(fetchDate.after(date3)  && fetchDate.before(date4) || fetchDate.equals(date4)){
                  			  sum3=sum3+objSelfAssesment.getP_Amount();
                  			 log.info("condition third");
-            			   
+
             		   } else{
             			   if(fetchDate.after(date4) && fetchDate.before(date5) || fetchDate.equals(date5)){
-            		   
+
             			   sum4=sum4+objSelfAssesment.getP_Amount();
             			   log.info("condition four");
             		   			} else{
             		   	 if(fetchDate.after(date5) && fetchDate.before(date6) || fetchDate.equals(date6)){
             	        			   sum5=sum5+objSelfAssesment.getP_Amount();
                         			   log.info("condition five");
-            		   				
+
             		   			} else{
             		   				log.info("condition last");
             		   			}
-            		   				
+
             		   			}
             			   }
             		   }
             			   }
             		     }catch(Exception e){
-            		    	 
+
             		     }
 		                javax.jcr.Node html = node.addNode(PROP_DETAIL_BEAN, PROP_DETAIL_BEAN);
-		                objSelfAssesment.bindToNode(html); 
+		                objSelfAssesment.bindToNode(html);
         			}
         		}
-        		
+
         			setTotal_Sum5(sum5);
         			node.setProperty("mootlywcm:totalsum5", getTotal_Sum5());
         			setTotal_Sum4(sum4);
@@ -270,17 +270,17 @@ public class AdvanceTaxDocument extends BaseDocument implements ContentNodeBinde
 	public void fill(FormMap formMap) {
 		// TODO Auto-generated method stub
 		if (formMap != null) {
-			
+
 		}
 	}
-	
+
 	public <T extends HippoBean> void cloneBean(T sourceBean) {
 		//we know the source bean will be SalaryIncomeDocument but doesn't hurt to check
 		AdvanceTaxDocument salaryIncomeDocument = (AdvanceTaxDocument) sourceBean;
-		
-		
+
+
 	}
-	
+
 	@Override
 	public void update(HippoBean child) {
 		// TODO Auto-generated method stub
@@ -301,17 +301,17 @@ public class AdvanceTaxDocument extends BaseDocument implements ContentNodeBinde
 				found = true;
 				break;
 			}
-		}		
+		}
 	}
-	
+
 	@Override
 	public void add(HippoBean child) {
 		// TODO Auto-generated method stub
 		//check for available children
 		AdvanceTaxDetail source =(AdvanceTaxDetail) child;
-		addSelfAssesmentDetail(source);		
+		addSelfAssesmentDetail(source);
 	}
-	
+
 	@Override
 	public void delete(HippoBean child) {
 		// TODO Auto-generated method stub
@@ -334,6 +334,6 @@ public class AdvanceTaxDocument extends BaseDocument implements ContentNodeBinde
 			//its a new node lets add it
 			AdvanceTaxDetail source =(AdvanceTaxDetail) child;
 			addSelfAssesmentDetail(source);
-		}		
+		}
 	}
 }
