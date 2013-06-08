@@ -57,7 +57,7 @@
 					</div>
 					<div class="rowlabel">
 						<input id="tds_certificatetdsoth" name="tds_certificatetdsoth"
-							type="text" maxlength="6"
+							type="text" maxlength="8"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.tds_Certificate}"/></c:if>" />
 					</div>
 				</div>
