@@ -383,9 +383,6 @@ public class XmlGenerator extends ITReturnComponent {
 		BigInteger rebate =new BigInteger ("0");
 		rebate=Relief89Total.add(itr1TaxComputation.getSection90And91());
 		itr1TaxComputation.setNetTaxLiability(itr1TaxComputation.getGrossTaxLiability().subtract(rebate));
-		BigInteger TaxLiability= new BigInteger("0");
-		TaxLiability = itr1TaxComputation.getGrossTaxLiability().subtract(rebate);
-		request.getSession().setAttribute("TaxLiability", TaxLiability);
 		BigInteger TotalInterest = new BigInteger("0");
 		if(interestDoc!=null){
 			TotalInterest = indianCurrencyHelper.bigIntegerRound(interestDoc.getSection234ABC());
