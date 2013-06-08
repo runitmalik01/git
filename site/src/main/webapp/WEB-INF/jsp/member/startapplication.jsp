@@ -24,7 +24,7 @@ else {
 <%
 ValueListService objValueListService = ValueListServiceImpl.getInstance();
 TreeMap objHashMapBoolean = (TreeMap) objValueListService.getBoolean();
-request.setAttribute("objHashMapBoolean", objHashMapBoolean); 
+request.setAttribute("objHashMapBoolean", objHashMapBoolean);
 %>
 <c:if test="${not empty formMap}">
 	<c:forEach items="${formMap.message}" var="item">
@@ -114,7 +114,7 @@ request.setAttribute("objHashMapBoolean", objHashMapBoolean);
 		<fieldset>
 					<legend>Filing Status</legend>
 					<div class="row-fluid show-grid">
-						<div class="span4">
+						<div class="span6">
 							<div class="rowlabel">
 								<label><fmt:message key="member.employe.category" /><span style="color: red">*</span> </label>
 							</div>
@@ -140,19 +140,19 @@ request.setAttribute("objHashMapBoolean", objHashMapBoolean);
 									name="Employe_category" value="OTH" />Others
 							</div>
 						</div>
-						<div class="span4">
+						<div class="span6">
 						<div class="rowlabel">
 								<label><fmt:message key="member.portugese.civil" /><span style="color: red">*</span> </label>
 							</div>
 							<div><select id="portugesecivil" name="portugesecivil">
-							
+
 								<option value="">-Select-</option>
 								<c:forEach var="booleanCombo" items="${objHashMapBoolean}">
 										<option
 											<c:if test="${pageAction == 'EDIT_CHILD' && parentBean.portugesecivil == booleanCombo.value}">selected</c:if>
 											value="${booleanCombo.value}">${booleanCombo.value}</option>
 									</c:forEach></select></div>
-						
+
 						</div>
 					</div>
 				</fieldset>
@@ -222,11 +222,10 @@ request.setAttribute("objHashMapBoolean", objHashMapBoolean);
 						</div>
 					</c:otherwise>
 				</c:choose>
-				
+
 				<c:if test="${filingStatus eq 'PERSON'}">
-				
-				
-					<div class="span3">
+                    <div class="row-fluid show-grid">
+					<div class="span4">
 						<div class="rowlabel">
 							<label for="pi_dob"><small>Date Of Birth</small>
 							</label>
@@ -237,7 +236,7 @@ request.setAttribute("objHashMapBoolean", objHashMapBoolean);
 								value="<c:if test="${not empty parentBean.DOBStr}"><c:out value="${parentBean.DOBStr}"/></c:if>" />
 						</div>
 					</div>
-					<div class="span3">
+					<div class="span4">
 						<div class="rowlabel">
 							<label for="pi_dob"><small>Gender</small>
 							</label>
@@ -265,7 +264,8 @@ request.setAttribute("objHashMapBoolean", objHashMapBoolean);
 									value="<c:if test="${not empty parentBean.fatherName}"><c:out value="${parentBean.fatherName}"/></c:if>" />
 							</div>
 						</div>
-						
+						</div>
+
 				</c:if>
 				</div>
 		</fieldset>
@@ -322,7 +322,7 @@ request.setAttribute("objHashMapBoolean", objHashMapBoolean);
 					<div class="rowlabel">
 						<label for="pi_state"><small>State</small>
 						</label>
-					</div>	
+					</div>
 					<c:set var="searchresultstitle">
 						<fmt:message key="member.contact_info.state.select" />
 					</c:set>
@@ -335,7 +335,7 @@ request.setAttribute("objHashMapBoolean", objHashMapBoolean);
 							dropDownType="${statesType}" fetchValue="${parentBean.state}" />
 					</div>
 				</div>
-				<div class="span2">
+				<div class="span3">
 					<div class="rowlabel">
 						<label for="pi_pin_code"><small>PIN</small>
 						</label>
@@ -378,7 +378,7 @@ request.setAttribute("objHashMapBoolean", objHashMapBoolean);
 							placeholder="Mobile Number" type="text" maxlength="10" />
 					</div>
 				</div>
-				<div class="span2">
+				<div class="span3">
 					<div class="rowlabel">
 						<label for="mobile1"><small>Mobile(If any other)</small>
 						</label>
@@ -403,7 +403,7 @@ request.setAttribute("objHashMapBoolean", objHashMapBoolean);
 				</div>
 				</div>
 				<div class="row-fluid show-grid">
-				<div class="span4">
+				<div class="span6">
 					<div class="rowlabel">
 						<label for="pi_email"><small>Email</small>
 						</label>
@@ -635,7 +635,7 @@ request.setAttribute("objHashMapBoolean", objHashMapBoolean);
 						value="<c:choose><c:when test="${not empty parentBean && not empty parentBean.financialYear}"><c:out value="${parentBean.financialYear}"/></c:when><c:otherwise><c:if test="${not empty savedValuesFormMap && not empty savedValuesFormMap.value['fy']}"><c:out value="${savedValuesFormMap.value['fy'].value}"/></c:if></c:otherwise></c:choose>"
 						type="hidden" />
 					<%-- <input id="ack_no" name="ack_no" value="<c:choose><c:when test="${not empty parentBean&&parentBean.originalAckNo}"><c:out value="${parentBean.originalAckNo}"/></c:when><c:when test="${not empty savedValuesFormMap && not empty savedValuesFormMap.value['ack_no']}"><c:out value="${savedValuesFormMap.value['ack_no'].value}"/></c:when></c:choose>" type="hidden"/>
-		            <input id="defective" name="defective" value="<c:choose><c:when test="${not empty parentBean&&parentBean.defective}"><c:out value="${parentBean.defective}"/></c:when><c:when test="${not empty savedValuesFormMap && not empty savedValuesFormMap.value['defective']}"><c:out value="${savedValuesFormMap.value['defective'].value}"/></c:when></c:choose>" type="hidden"/> 
+		            <input id="defective" name="defective" value="<c:choose><c:when test="${not empty parentBean&&parentBean.defective}"><c:out value="${parentBean.defective}"/></c:when><c:when test="${not empty savedValuesFormMap && not empty savedValuesFormMap.value['defective']}"><c:out value="${savedValuesFormMap.value['defective'].value}"/></c:when></c:choose>" type="hidden"/>
 		            <input id="ack_date" name="ack_date" value="<c:choose><c:when test="${not empty parentBean&&parentBean.originalAckDate}"><c:out value="${parentBean.originalAckDate}"/></c:when><c:when test="${not empty savedValuesFormMap && not empty savedValuesFormMap.value['ack_date']}"><c:out value="${savedValuesFormMap.value['ack_date'].value}"/></c:when></c:choose>" type="hidden"/>
 		            <input id="notice_no" name="notice_no" value="<c:choose><c:when test="${not empty parentBean&&parentBean.noticeNo}"><c:out value="${parentBean.noticeNo}"/></c:when><c:when test="${not empty savedValuesFormMap && not empty savedValuesFormMap.value['notice_no']}"><c:out value="${savedValuesFormMap.value['notice_no'].value}"/></c:when></c:choose>" type="hidden"/>
 		            <input id="notice_date" name="notice_date" value="<c:choose><c:when test="${not empty parentBean&&parentBean.noticeDate}"><c:out value="${parentBean.noticeDate}"/></c:when><c:when test="${not empty savedValuesFormMap && not empty savedValuesFormMap.value['notice_date']}"><c:out value="${savedValuesFormMap.value['notice_date'].value}"/></c:when></c:choose>" type="hidden"/>--%>
@@ -708,14 +708,14 @@ request.setAttribute("objHashMapBoolean", objHashMapBoolean);
 			  	if (qid.indexOf(selectedId) == 0) {
 			  		$("#ul_" +qid).css("display","none");
 			  		$("#ul_" +qid).css("visibility","hidden");
-			  		if ($("#" + qid).length > 0 ) $("#" + qid).get(0).selectedIndex= 0;		  		
+			  		if ($("#" + qid).length > 0 ) $("#" + qid).get(0).selectedIndex= 0;
 			  	}
-			  }			
+			  }
 			  var str = "";
 			  $("ul option:selected").each(function () {
 			            str += $(this).text() + " ";
-			  });			  
-			});	
+			  });
+			});
 			$('#pi_state').change(function(){
 			if($('#pi_state').val()=='99'){
 			      $('#pi_pin_code').val('999999');
@@ -727,6 +727,6 @@ request.setAttribute("objHashMapBoolean", objHashMapBoolean);
 			});
 			$('#bd_bank_name').tooltip('data-toggle');
 				$("#pi_first_name").popover({'trigger':'focus'});
-		});    
+		});
 </hst:element>
 <hst:headContribution element="${uiCustom}" category="jsInternal" />
