@@ -63,18 +63,18 @@ public class RebateSec90Document extends BaseDocument implements ContentNodeBind
 
 
 
-	private String section90;
-	private String section91;
+	private Double section90;
+	private Double section91;
 	private String userCountry;
 	private Double taxPaidForeignCountry;
 	private Double incomeForeignCountry;
 	
-	public String getSection90() {
+	public Double getSection90() {
     	if (section90 == null) section90 = getProperty("mootlywcm:section90");
     	return section90;
     }
 
-    public String getSection91() {
+    public Double getSection91() {
     	if (section91== null) section91= getProperty("mootlywcm:section91");
     	return section91;
     }
@@ -92,11 +92,11 @@ public class RebateSec90Document extends BaseDocument implements ContentNodeBind
     }
 
 
-	public final void setSection90(String Section90) {
-		this.section90 = Section90;
+	public final void setSection90(Double totaltaxninety) {
+		this.section90 = totaltaxninety;
 	}
 
-	public final void setSection91(String Section91) {
+	public final void setSection91(Double Section91) {
 		this.section91 = Section91;
 	}
 	public final void setUserCountry(String userCountry) {
@@ -145,6 +145,10 @@ public class RebateSec90Document extends BaseDocument implements ContentNodeBind
 		if (formMap == null) return;
 		String strTaxpaid=null;
 		String strIncomeForeign=null;
+		String strTotaltax90= null;
+		String strTotaltax91= null;
+		double Totaltaxninety=0d;
+		double TotalTaxninetyOne=0d;
 		if (formMap.getField("userCountry") != null) setUserCountry(formMap.getField("userCountry").getValue());
 		if (formMap.getField("taxPaidForeignCountry") != null) 
 			strTaxpaid=formMap.getField("taxPaidForeignCountry").getValue();
@@ -152,9 +156,20 @@ public class RebateSec90Document extends BaseDocument implements ContentNodeBind
 			setTaxPaidForeignCountry(TaxpaidInForeignCountry);
 		if (formMap.getField("incomeForeignCountry") != null) 
 			strIncomeForeign=formMap.getField("incomeForeignCountry").getValue();
+		log.info("HHHHHJJJJKKKLL"+strIncomeForeign);
 		double IncomeForeign=Double.parseDouble(strIncomeForeign);
 				setIncomeForeignCountry(IncomeForeign);
-		
+		if (formMap.getField("txttotaltax") != null) {
+				strTotaltax90=formMap.getField("txttotaltax").getValue();
+				 Totaltaxninety=Double.parseDouble(strTotaltax90);
+			}
+			setSection90(Totaltaxninety);
+			if(formMap.getField("section91").getValue() != null){
+					strTotaltax91=formMap.getField("section91").getValue();
+					log.info("HGHGHGHGHGGH"+strTotaltax91);
+					 TotalTaxninetyOne=Double.parseDouble(strTotaltax91);
+				}
+			setSection91(TotalTaxninetyOne);
 		
 	}
 	
