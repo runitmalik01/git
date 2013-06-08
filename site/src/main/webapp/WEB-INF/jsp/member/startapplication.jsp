@@ -149,9 +149,9 @@ request.setAttribute("objHashMapBoolean", objHashMapBoolean);
 								<option value="">-Select-</option>
 								<c:forEach var="booleanCombo" items="${objHashMapBoolean}">
 										<option
-											<c:if test="${pageAction == 'EDIT_CHILD' && childBean.portugesecivil == booleanCombo.value}">selected</c:if>
+											<c:if test="${pageAction == 'EDIT_CHILD' && parentBean.portugesecivil == booleanCombo.value}">selected</c:if>
 											value="${booleanCombo.value}">${booleanCombo.value}</option>
-									</c:forEach>							</select></div>
+									</c:forEach></select></div>
 						
 						</div>
 					</div>
@@ -166,7 +166,7 @@ request.setAttribute("objHashMapBoolean", objHashMapBoolean);
 					<c:when test="${filingStatus eq 'PERSON'}">
 
 
-						<div class="span3">
+						<div class="span4">
 							<div class="rowlabel">
 								<label for="pi_first_name"><small>First Name</small>
 								</label>
@@ -177,7 +177,7 @@ request.setAttribute("objHashMapBoolean", objHashMapBoolean);
 									value="<c:if test="${not empty parentBean.firstName}"><c:out value="${parentBean.firstName}"/></c:if>" />
 							</div>
 						</div>
-						<div class="span2">
+						<div class="span4">
 							<div class="rowlabel">
 								<label for="pi_middle_name"><small>Middle Name</small>
 								</label>
@@ -188,7 +188,7 @@ request.setAttribute("objHashMapBoolean", objHashMapBoolean);
 									value="<c:if test="${not empty parentBean.middleName}"><c:out value="${parentBean.middleName}"/></c:if>" />
 							</div>
 						</div>
-						<div class="span3">
+						<div class="span4">
 							<div class="rowlabel">
 								<label for="pi_last_name"><small>Last Name</small>
 								</label>
@@ -254,7 +254,7 @@ request.setAttribute("objHashMapBoolean", objHashMapBoolean);
 							</select>
 						</div>
 					</div>
-					<div class="span3">
+					<div class="span4">
 							<div class="rowlabel">
 								<label for="pi_father_name"><small>Father Name</small>
 								</label>
