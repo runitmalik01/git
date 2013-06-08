@@ -99,6 +99,9 @@
 		$.validator.addMethod("pin", function(value, element) {  
 		   	 return this.optional(element) || /^[0-9]{6}?$/i.test(value);  
 		}, "PIN Code is invalid");
+		$.validator.addMethod("std", function(value, element) {  
+		   	 return this.optional(element) || /^[0-9]{1,5}?$/i.test(value);  
+		}, "STD Code is invalid");
 		$.validator.addMethod("mobile", function(value, element) {  
 		   	 return this.optional(element) || /^[1-9]{1}[0-9]{9}?$/i.test(value);  
 		}, "Mobile No is invalid");
