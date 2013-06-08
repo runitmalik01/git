@@ -23,7 +23,7 @@ import org.hippoecm.hst.content.beans.ContentNodeBindingException;
 import org.hippoecm.hst.content.beans.Node;
 
 
-@SuppressWarnings("unused")
+
 @Node(jcrType = "mootlywcm:ContactUs")
 public class ContactUs extends BaseDocument implements ContentNodeBinder {
 	static final public String NAMESPACE = "mootlywcm:ContactUs";
