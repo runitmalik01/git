@@ -460,11 +460,21 @@ public class XmlGenerator extends ITReturnComponent {
 
 		taxesPaid.setTotalTaxesPaid(bigTotalTds.add(advancetax).add(selfassessmenttax));
 		taxPaid.setTaxesPaid(taxesPaid);
-		taxPaid.setBalTaxPayable(itr1TaxComputation.getTotTaxPlusIntrstPay().subtract(taxesPaid.getTotalTaxesPaid())); // calculation needed (totaltaxintrstpay-totaltaxpaid)
-
+		BigInteger BalTaxPayable = new BigInteger("0");
+		BalTaxPayable = itr1TaxComputation.getTotTaxPlusIntrstPay().subtract(taxesPaid.getTotalTaxesPaid());
+		request.setAttribute("BalTaxPayable",BalTaxPayable);
+		if (BalTaxPayable.compareTo(BigInteger.ZERO) > 0){
+			taxPaid.setBalTaxPayable(BalTaxPayable); // calculation needed (totaltaxintrstpay-totaltaxpaid)
+		}else{
+			taxPaid.setBalTaxPayable(new BigInteger("0"));
+		}
 		itr1.setTaxPaid(taxPaid);
 		//refund
-		refund.setRefundDue(null);// need to be calculated
+		if (BalTaxPayable.compareTo(BigInteger.ZERO) < 0){
+			refund.setRefundDue(BalTaxPayable.multiply(new BigInteger("-1")));// need to be calculated
+		}else{
+			refund.setRefundDue(new BigInteger("0"));
+		}
 		refund.setBankAccountNumber(memberPersonalInformation.getBD_ACC_NUMBER());
 		refund.setEcsRequired(memberPersonalInformation.getBD_ECS());
 		DepositToBankAccount depositToBankAccount = new DepositToBankAccount();
