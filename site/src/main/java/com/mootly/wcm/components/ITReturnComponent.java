@@ -67,6 +67,7 @@ import com.mootly.wcm.beans.CompoundChildUpdate;
 import com.mootly.wcm.beans.FormMapFiller;
 import com.mootly.wcm.beans.FormSixteenDocument;
 import com.mootly.wcm.beans.MemberPersonalInformation;
+
 import com.mootly.wcm.beans.ScreenCalculation;
 import com.mootly.wcm.beans.ScreenConfigDocument;
 import com.mootly.wcm.beans.ValueListDocument;
@@ -221,10 +222,10 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 					if (log.isInfoEnabled()) {
 						log.info(urlToRedirect + ":" + urlToRedirect); 
 					}
-					if (request.getAttribute("selectedItrTab") != null) {
-						response.setRenderParameter("selectedItrTab", ((ITRTab)request.getAttribute("selectedItrTab")).name());
-						urlToRedirect += "?selectedItrTab=" +  ((ITRTab)request.getAttribute("selectedItrTab")).name();
-					}
+					//if (request.getAttribute("selectedItrTab") != null) {
+						//response.setRenderParameter("selectedItrTab", ((ITRTab)request.getAttribute("selectedItrTab")).name());
+						//urlToRedirect += "?selectedItrTab=" +  ((ITRTab)request.getAttribute("selectedItrTab")).name();
+				//	}
 					//log.info("urlToRedirect EEEEEEEEEEEE"+urlToRedirect);
 					response.sendRedirect( urlToRedirect );
 					//response.sendRedirect(redirectURL);
@@ -293,10 +294,10 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 					if (log.isInfoEnabled()) {
 						log.info("URLToRedirect:"+ urlToRedirect);
 					}
-					if (request.getAttribute("selectedItrTab") != null) {
-						response.setRenderParameter("selectedItrTab", ((ITRTab)request.getAttribute("selectedItrTab")).name());
-						urlToRedirect += "?selectedItrTab=" +  ((ITRTab)request.getAttribute("selectedItrTab")).name();
-					}
+					//if (request.getAttribute("selectedItrTab") != null) {
+					//	response.setRenderParameter("selectedItrTab", ((ITRTab)request.getAttribute("selectedItrTab")).name());
+					//	urlToRedirect += "?selectedItrTab=" +  ((ITRTab)request.getAttribute("selectedItrTab")).name();
+					//}
 					response.sendRedirect( urlToRedirect );
 				}
 				else {
@@ -306,10 +307,10 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 						urlToRedirect  = request.getParameter("successURL");
 					}
 					log.info("URLToRedirect:"+ urlToRedirect);
-					if (request.getAttribute("selectedItrTab") != null){
-						response.setRenderParameter("selectedItrTab", ((ITRTab)request.getAttribute("selectedItrTab")).name());
-						urlToRedirect += "?selectedItrTab=" +  ((ITRTab)request.getAttribute("selectedItrTab")).name();
-					}
+				//	if (request.getAttribute("selectedItrTab") != null){
+				//		response.setRenderParameter("selectedItrTab", ((ITRTab)request.getAttribute("selectedItrTab")).name());
+				//		urlToRedirect += "?selectedItrTab=" +  ((ITRTab)request.getAttribute("selectedItrTab")).name();
+				//	}
 					response.sendRedirect( urlToRedirect );
 				}
 			} catch (IOException e) {
