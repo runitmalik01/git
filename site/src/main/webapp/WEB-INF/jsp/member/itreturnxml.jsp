@@ -394,22 +394,22 @@
 					</td>
 				</tr>
 				<c:choose>
-				<c:when test="${theForm.taxPaid.balTaxPayable gt 0}">
+				<c:when test="${BalTaxPayable gt 0}">
 				<tr class="success">
 					<td colspan="1"><b>Tax Payable</b>
 					<td  style="text-align:left">
 						<span class="decimal">
-								<w4india:inr value="${theForm.taxPaid.balTaxPayable}"/>
+								<w4india:inr value="${BalTaxPayable}"/>
 						</span>
 					</td>
 				</tr>
 				</c:when>
-				<c:when test="${theForm.taxPaid.balTaxPayable eq 0}">
+				<c:when test="${BalTaxPayable eq 0}">
 				<tr class="success">
 					<td colspan="1"><b>Tax</b>
 					<td  style="text-align:left">
 						<span class="decimal">
-								<w4india:inr value="${theForm.taxPaid.balTaxPayable}"/>
+								<w4india:inr value="${BalTaxPayable}"/>
 						</span>
 					</td>
 				</tr>
@@ -419,7 +419,7 @@
 					<td colspan="1"><b>Tax Refundable</b>
 					<td  style="text-align:left">
 						<span class="decimal">
-								<w4india:inr value="${theForm.taxPaid.balTaxPayable}"/>
+								<w4india:inr value="${BalTaxPayable}"/>
 						</span>
 					</td>
 				</tr>
