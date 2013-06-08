@@ -239,7 +239,6 @@ public class Interest extends ITReturnComponent {
 		//ITR1 Tax Computation (without calculation) with null values
 		BigInteger GrossTaxLiability = new BigInteger("0");
 		GrossTaxLiability = indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMap.get("txttotaltax").toString()));
-		log.info("gross tax liability"+indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMap.get("txttotaltax").toString())));
 
 		BigInteger Relief89 =new BigInteger ("0");
 		BigInteger Relief89Total =new BigInteger ("0");
