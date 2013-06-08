@@ -128,19 +128,24 @@ public class SalaryIncomeDocument extends BaseDocument implements ContentNodeBin
 	        		aNode.remove();
 	        	}
         	}
+        	double sum=0d;
         	if (salaryincome.getSalaryIncomeDetailList() != null && salaryincome.getSalaryIncomeDetailList().size() > 0 ){ 
         		for (SalaryIncomeDetail salaryIncomeDetail:salaryincome.getSalaryIncomeDetailList()) {
+        			
         			if (!salaryIncomeDetail.isMarkedForDeletion()) {
+        				double amount=salaryIncomeDetail.getTaxable_earning();
+            			sum=sum+amount;
 		                javax.jcr.Node html = node.addNode(PROP_DETAIL_BEAN, PROP_DETAIL_BEAN);
 		                salaryIncomeDetail.bindToNode(html); 
-        			}
+		            }
         		}
+        		setTotal(sum);
         	}
-    		Map<String,Object> totalMapForJSSalary = new HashMap<String, Object>();
-    		Map<String,String[]> requestParameterMap=new HashMap<String,String[]>();
-    		totalMapForJSSalary.put("salaryincome", salaryincome);
-    		Map<String,Object> resultMapSalary = ScreenCalculatorService.getScreenCalculations("salaryincome.js", requestParameterMap , totalMapForJSSalary);
-    		setTotal(Double.parseDouble(resultMapSalary.get("total_salaryincome").toString()));
+    		//Map<String,Object> totalMapForJSSalary = new HashMap<String, Object>();
+    		//Map<String,String[]> requestParameterMap=new HashMap<String,String[]>();
+    		//totalMapForJSSalary.put("salaryincome", salaryincome);
+    		//Map<String,Object> resultMapSalary = ScreenCalculatorService.getScreenCalculations("salaryincome.js", requestParameterMap , totalMapForJSSalary);
+    		//setTotal(Double.parseDouble(resultMapSalary.get("total_salaryincome").toString()));
         	node.setProperty("mootlywcm:Total",getTotal());
         	/*
 			javax.jcr.Node prdLinkNode;
