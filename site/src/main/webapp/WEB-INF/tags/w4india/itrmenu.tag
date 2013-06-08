@@ -24,7 +24,7 @@ if (actionInSiteMap != null && actionInSiteMap.contains("_")) {
 HstSiteMenusImpl itrSiteMenuImpl = new HstSiteMenusImpl(hstRequest.getRequestContext());
 HstSiteMenu itrSiteMenu = itrSiteMenuImpl.getSiteMenu("itrmenu");
 for (HstSiteMenuItem siteMenuItem : itrSiteMenu.getSiteMenuItems() ){
-	
+
 }
 request.setAttribute("itrSiteMenu", itrSiteMenu);
 //How is the page designed, lets define a structure for this page using simple linkedhashmap and arraylist
@@ -43,14 +43,14 @@ request.setAttribute("itrSiteMenu", itrSiteMenu);
             </span>
          </a>
          <div class="nav-collapse collapse navbar-responsive-collapse">
-            <ul class="nav">                  
+            <ul class="nav">
                <c:forEach items="${itrSiteMenu.siteMenuItems}" var="itrSiteMenuItem">
                	<c:set var="childCount" value="${fn:length(itrSiteMenuItem.childMenuItems)}"/>
                	<c:choose>
-                	<c:when test="${childCount gt 0}">	                  		
+                	<c:when test="${childCount gt 0}">
                 		<li class="dropdown">
                 			<a href="#" class="dropdown-toggle" data-toggle="dropdown">${itrSiteMenuItem.name}<b class="caret"></b></a>
-                			<ul class="dropdown-menu">	                  				
+                			<ul class="dropdown-menu">
                 				<c:forEach items="${itrSiteMenuItem.childMenuItems}" var="childMenuItem">
                 					<c:set var="childMenuItemReq" scope="request" value="${childMenuItem}"/>
                 					<%
@@ -73,11 +73,11 @@ request.setAttribute("itrSiteMenu", itrSiteMenu);
                 						<c:otherwise>
                 							<li><a href="${scriptName}${theURL}">${childMenuItem.name}</a></li>
                 						</c:otherwise>
-                					</c:choose>	                  					
+                					</c:choose>
                 				</c:forEach>
                 			</ul>
                		</c:when>
-               		<c:otherwise>         
+               		<c:otherwise>
 						<c:set var="parentMenuItemReq" scope="request" value="${itrSiteMenuItem}"/>
 		    			<%
 		    				HstSiteMenuItem parentItem = ( HstSiteMenuItem ) request.getAttribute("parentMenuItemReq");
@@ -101,14 +101,14 @@ request.setAttribute("itrSiteMenu", itrSiteMenu);
 			    					request.removeAttribute("isActive");
 			    				}
 		    				}
-		    				
-		        		%>      			
+
+		        		%>
                			<li <c:if test='${not empty isActive && isActive == "true"}'>class="active"</c:if>><a href="${scriptName}${theURLParent}">${itrSiteMenuItem.name}</a></li>
                		</c:otherwise>
                	</c:choose>
-               </c:forEach>  
-             </ul>               
-             <!-- 
+               </c:forEach>
+             </ul>
+             <!--
                 <form class="navbar-search pull-left" action="">
                   <input type="text" class="search-query span2" placeholder="Search">
                 </form>
@@ -119,7 +119,8 @@ request.setAttribute("itrSiteMenu", itrSiteMenu);
                <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">My Return<b class="caret"></b></a>
                   <ul class="dropdown-menu">
-                     <li><a href="#">View XML</a></li>
+                  <li><a href="xmlgenerator.html?show=summary">View Summary</a></li>
+                     <li><a href="xmlgenerator.html?show=xml">View XML</a></li>
                      <li><a href="#">Download XML</a></li>
                      <li class="divider"></li>
                      <li><a href="#">Download Return</a></li>
