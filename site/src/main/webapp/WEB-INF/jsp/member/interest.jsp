@@ -1,5 +1,5 @@
 
- <%@page import="com.mootly.wcm.model.ITRTab"%>
+<%@page import="com.mootly.wcm.model.ITRTab"%>
 <%@include file="../includes/tags.jspf" %>
 <%@ page import="com.mootly.wcm.beans.*"%>
 
@@ -112,7 +112,7 @@
 				</tr>
 				<tr>
 					<td><label>D.2 Income Tax deductible / collectible at source on income included in D.1 above</label></td>
-					<td><input id="atlq2" onchange="int234();"/></td>
+					<td><input id="atlq2" onchange="int234();" value="${bigTotalTdsSalary}"/></td>
 				</tr>
 				<tr>
 					<td><label>D.3 Income Tax paid upto 15th September 2012</label></td>
@@ -135,7 +135,7 @@
 				</tr>
 				<tr>
 					<td><label>E.2 Income Tax deductible / collectible at source on income included in E.1 above</label></td>
-					<td><input id="atlq3" onchange="int234();"/></td>
+					<td><input id="atlq3" onchange="int234();" value="${bigTotalTdsSalary}"/></td>
 				</tr>
 				<tr>
 					<td><label>E.3 Income Tax paid upto 15th December 2012</label></td>
@@ -158,7 +158,7 @@
 				</tr>
 				<tr>
 					<td><label>F.2 Income Tax deductible / collectible at source on income included in F.1 above</label></td>
-					<td><input id="atlq4" onchange="int234();"/></td>
+					<td><input id="atlq4" onchange="int234();" value="${bigTotalTdsSalary}"/></td>
 				</tr>
 				<tr>
 					<td><label>F.3 Income Tax paid upto 15th March 2013</label></td>
