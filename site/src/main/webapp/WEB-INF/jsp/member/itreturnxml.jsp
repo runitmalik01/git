@@ -251,7 +251,7 @@
 								<c:out value="Fill Now" />
 								</c:when>
 									<c:otherwise>
-										<c:out value="theForm.ITR1TaxComputation.totalIntrstPay" />
+										<c:out value="${theForm.ITR1TaxComputation.totalIntrstPay}" />
 									</c:otherwise>
 								</c:choose>
 								<span class="caret"></span>
