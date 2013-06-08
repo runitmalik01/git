@@ -457,7 +457,7 @@
 </hst:headContribution>
 
 <hst:headContribution category="css">
-	<link rel="stylesheet" href='<hst:link path="/js/syntaxhighlighter_3.0.83/styles/shCore.css.css"/>' type="text/css" />
+	<link rel="stylesheet" href='<hst:link path="/js/syntaxhighlighter_3.0.83/styles/shCore.css"/>' type="text/css" />
 </hst:headContribution>
 
 <hst:headContribution category="css">
