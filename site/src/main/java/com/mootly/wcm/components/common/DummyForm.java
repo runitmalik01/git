@@ -98,7 +98,7 @@ public class DummyForm extends EmailForm {
 				itReturnFolderPath = ContentStructure.getContactUsFolderNonReg(request);
 			}
 			log.warn(itReturnFolderPath);
-			final String itReturnPath = wpm.createAndReturn(itReturnFolderPath, ContactUs.NAMESPACE , contact.getUserName(), true);
+			final String itReturnPath = wpm.createAndReturn(itReturnFolderPath, ContactUs.NAMESPACE , ContactUs.NODE_NAME, true);
 			log.warn(itReturnPath);
 			ContactUs Contactdocument = (ContactUs) wpm.getObject(itReturnPath);
 			// update Contactdocument properties..
