@@ -201,28 +201,6 @@ public class XmlGenerator extends ITReturnComponent {
 
 		itr1.setPersonalInfo(personalInfo);
 
-		//Filing Status
-		if(memberPersonalInformation.getWard_circle()!=null){
-			filingstatus.setDesigOfficerWardorCircle(memberPersonalInformation.getWard_circle());
-		}
-		filingstatus.setReturnFileSec(memberPersonalInformation.getReturnFileSection());
-		filingstatus.setReturnType(memberPersonalInformation.getReturnType());
-		filingstatus.setResidentialStatus(memberPersonalInformation.getResidentCategory());
-		filingstatus.setTaxStatus(memberPersonalInformation.getTaxStatus());
-
-		if (memberPersonalInformation.getReturnType().equals("R")) {
-			filingstatus.setAckNoOriginalReturn(memberPersonalInformation.getOriginalAckNo());
-			filingstatus.setOrigRetFiledDate(indianCurrencyHelper.gregorianCalendar(memberPersonalInformation.getOriginalAckDate()));
-
-			if(memberPersonalInformation.getDefective().equals("Y")){
-				filingstatus.setNoticeNo(memberPersonalInformation.getNoticeNo());
-				filingstatus.setNoticeDate(indianCurrencyHelper.gregorianCalendar(memberPersonalInformation.getNoticeDate()));
-				filingstatus.setReceiptNo(memberPersonalInformation.getReceiptNo());
-			}
-		}
-
-		itr1.setFilingStatus(filingstatus);
-
 		//Income Deductions
 		BigInteger GrossIncome=new BigInteger("0");
 		BigInteger GrossIncomeTotal=new BigInteger("0");
@@ -482,6 +460,34 @@ public class XmlGenerator extends ITReturnComponent {
 		depositToBankAccount.setBankAccountType(memberPersonalInformation.getBD_TYPE_ACC());
 		refund.setDepositToBankAccount(depositToBankAccount);
 		itr1.setRefund(refund);
+
+		//Filing Status
+		if(memberPersonalInformation.getWard_circle()!=null){
+			filingstatus.setDesigOfficerWardorCircle(memberPersonalInformation.getWard_circle());
+		}
+		filingstatus.setReturnFileSec(memberPersonalInformation.getReturnFileSection());
+		filingstatus.setReturnType(memberPersonalInformation.getReturnType());
+		filingstatus.setResidentialStatus(memberPersonalInformation.getResidentCategory());
+		if (BalTaxPayable.compareTo(BigInteger.ZERO) > 0){
+			filingstatus.setTaxStatus("TP");
+		}else
+			if (BalTaxPayable.compareTo(BigInteger.ZERO) < 0){
+				filingstatus.setTaxStatus("TR");
+			}else
+				filingstatus.setTaxStatus("NT");
+
+		if (memberPersonalInformation.getReturnType().equals("R")) {
+			filingstatus.setAckNoOriginalReturn(memberPersonalInformation.getOriginalAckNo());
+			filingstatus.setOrigRetFiledDate(indianCurrencyHelper.gregorianCalendar(memberPersonalInformation.getOriginalAckDate()));
+
+			if(memberPersonalInformation.getDefective().equals("Y")){
+				filingstatus.setNoticeNo(memberPersonalInformation.getNoticeNo());
+				filingstatus.setNoticeDate(indianCurrencyHelper.gregorianCalendar(memberPersonalInformation.getNoticeDate()));
+				filingstatus.setReceiptNo(memberPersonalInformation.getReceiptNo());
+			}
+		}
+
+		itr1.setFilingStatus(filingstatus);
 
 		//Schedule80G
 
