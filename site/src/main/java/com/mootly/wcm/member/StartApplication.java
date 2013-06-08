@@ -54,8 +54,8 @@ import com.mootly.wcm.utils.MootlyFormUtils;
 import com.mootly.wcm.utils.UrlUtility;
 
 @PrimaryBean(primaryBeanClass=MemberPersonalInformation.class)
-@FormFields(fieldNames={"pi_return_type","pi_return_section","portugeseCivil","fy","ack_no","ack_date","defective","notice_no","notice_date",
-		"pan","pi_first_name","pi_middle_name","pi_last_name","gender","pi_dob","pi_filing_status",
+@FormFields(fieldNames={"pi_return_type","pi_return_section","portugesecivil","fy","ack_no","ack_date","defective","notice_no","notice_date",
+		"pan","pi_first_name","pi_middle_name","pi_last_name","gender","pi_dob","pi_filing_status","pi_father_name",
 		"pi_road_street","pi_std_code","pi_phone","pi_flat_door_building","pi_area_locality","pi_town_city_district",
 		"pi_pin_code","pi_state","pi_mobile","pi_mobile1","pi_email","pi_premises_building",
 		"rsstatus_q","rsstatus_q_yes","rsstatus_q_yes_yes","rsstatus_q_no","rsstatus_q_no_yes","rsstatus_q_no_yes_yes",
