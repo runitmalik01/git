@@ -124,19 +124,23 @@ public class SelfAssesmetTaxDocument extends BaseDocument implements ContentNode
 	        		aNode.remove();
 	        	}
         	}
+        	double sum=0d;
         	if ( selfasses.getSelfAssesmentDetailList() != null &&  selfasses.getSelfAssesmentDetailList().size() > 0 ){         		
         		for (SelfAssesmentTaxDetail objSelfAssesment:selfasses.getSelfAssesmentDetailList()) {       		    
         			if (!objSelfAssesment.isMarkedForDeletion()) {
+        				double amount=objSelfAssesment.getP_Amount();
+        				sum=sum+amount;
 		                javax.jcr.Node html = node.addNode(PROP_DETAIL_BEAN, PROP_DETAIL_BEAN);
 		                objSelfAssesment.bindToNode(html); 
         			}
         		}
+        		setTotal_Amount(sum);
         	}
-       		Map<String,Object> totalMapForJSSalary = new HashMap<String, Object>();
-    		Map<String,String[]> requestParameterMap=new HashMap<String,String[]>();
-    		totalMapForJSSalary.put("selfassess", selfasses);
-    		Map<String,Object> resultMapSalary = ScreenCalculatorService.getScreenCalculations("selfassess.js", requestParameterMap , totalMapForJSSalary);
-    		setTotal_Amount(Double.parseDouble(resultMapSalary.get("total_selfassess").toString()));
+       		//Map<String,Object> totalMapForJSSalary = new HashMap<String, Object>();
+    		//Map<String,String[]> requestParameterMap=new HashMap<String,String[]>();
+    		//totalMapForJSSalary.put("selfassess", selfasses);
+    		//Map<String,Object> resultMapSalary = ScreenCalculatorService.getScreenCalculations("selfassess.js", requestParameterMap , totalMapForJSSalary);
+    		//setTotal_Amount(Double.parseDouble(resultMapSalary.get("total_selfassess").toString()));
         	node.setProperty("mootlywcm:totalamount", getTotal_Amount());
         	/*
 			javax.jcr.Node prdLinkNode;
