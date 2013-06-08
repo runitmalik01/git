@@ -126,10 +126,6 @@
 				</th>
 				<th><b><fmt:message key="tds.name.deductor" /> </b>
 				</th>
-				<th><b><fmt:message key="tds.unique.certificate" /> </b>
-				</th>
-				<th><b><fmt:message key="tds.financial.year" /> </b>
-				</th>
 				<th><b><fmt:message key="tds.total.tax.deducted" /> </b></th>
 				<th><b><fmt:message key="tds.amount.claimed" /> </b></th>
 				<th><b>Actions</b></th>
@@ -141,10 +137,6 @@
 						<td><c:out value="${tdsfromothersdetail.tan_Deductor}" />
 						</td>
 						<td><c:out value="${tdsfromothersdetail.name_Deductor}" />
-						</td>
-						<td><c:out value="${tdsfromothersdetail.tds_Certificate}" />
-						</td>
-						<td><c:out value="${tdsfromothersdetail.financial_Year}" />
 						</td>
 						<td><c:out value="${tdsfromothersdetail.total_TaxDeductor}" />
 						</td>
