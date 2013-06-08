@@ -1,9 +1,9 @@
 /*
- * 
+ *
  * In this class we are creating a document for calculations of incomes from all head
  * @author abhishek
  * 29/03/2013
- * 
+ *
  */
 
 package com.mootly.wcm.member;
@@ -72,8 +72,8 @@ public class Calculations extends ITReturnComponent {
 		{
 			filing_year ="2012-2013";
 		}*/
-		
-		
+
+
 		log.info("inside fetchSalaryIncomeDocument--->member:-"+member);
 		log.info("inside fetchSalaryIncomeDocument--->member:-"+filing_year);
 		log.info("inside fetchSalaryIncomeDocument--->member:-"+pan);
@@ -175,7 +175,7 @@ public class Calculations extends ITReturnComponent {
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				log.warn("SalaryIncome-doAction()-->error in redirection:-"+e);
-			} 	
+			}
 		}
 		else{
 			try {
@@ -194,9 +194,9 @@ public class Calculations extends ITReturnComponent {
 	/**
 	 * This method is used to fetch Salary Income  Document from Repository
 	 * when page is loaded
-	 * @param HstRequest 
-	 * @param con Connection object required for transaction. If value of the connection 
-	 * object is null the method will create a new connection object. 
+	 * @param HstRequest
+	 * @param con Connection object required for transaction. If value of the connection
+	 * object is null the method will create a new connection object.
 	 * @return fetched data from repository
 	 * @throws SystemException System Exception thrown by the system
 	 * @author Abhishek
@@ -218,7 +218,7 @@ public class Calculations extends ITReturnComponent {
 				fSalary = objSalaryIncomeDocument.getTotal();
 				log.info("total is "+fSalary);
 			}
-			
+
 		}
 		catch (ObjectBeanManagerException e)
 		{
@@ -226,7 +226,7 @@ public class Calculations extends ITReturnComponent {
 			e.printStackTrace();
 			//}
 		}
-		return fSalary; 
+		return fSalary;
 
 	}
 
@@ -250,7 +250,7 @@ public class Calculations extends ITReturnComponent {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			//}
-		}	
+		}
 		return fOtherIncome;
 	}
 
@@ -323,7 +323,7 @@ public class Calculations extends ITReturnComponent {
 				log.warn("security object is"+fetchtcs.getName());
 				log.info("fTcsDoc isssssssss"+fTcsDoc);
 
-			}		
+			}
 
 		}catch (ObjectBeanManagerException e) {
 			// TODO Auto-generated catch block
@@ -347,7 +347,7 @@ public class Calculations extends ITReturnComponent {
 			if(objDeduction!= null){
 				fDeduction =  Double.parseDouble(objDeduction.getTotal());
 
-			}		
+			}
 
 		}catch (ObjectBeanManagerException e) {
 			// TODO Auto-generated catch block
@@ -371,7 +371,7 @@ public class Calculations extends ITReturnComponent {
 			if(objDeduction!= null){
 				fAdjustLosses =  Double.parseDouble(objDeduction.getTotal());
 
-			}		
+			}
 
 		}catch (ObjectBeanManagerException e) {
 			// TODO Auto-generated catch block
@@ -395,7 +395,7 @@ public class Calculations extends ITReturnComponent {
 			if(objSecurity != null){
 				fSecurities =  Double.parseDouble(objSecurity.getCapitalGain());
 				log.info("securities is"+fSecurities);
-			}		
+			}
 
 		}catch (ObjectBeanManagerException e) {
 			// TODO Auto-generated catch block
@@ -437,7 +437,7 @@ public class Calculations extends ITReturnComponent {
 			request.setAttribute("objRebate89", objRebate89);
 			if(objRebate89 != null){
 				//fRebate89 =  Double.parseDouble(objRebate89.getTaxRelief());
-			}		
+			}
 
 		}catch (ObjectBeanManagerException e) {
 			// TODO Auto-generated catch block
@@ -457,8 +457,8 @@ public class Calculations extends ITReturnComponent {
 
 			request.setAttribute("objRebate90", objRebate90);
 			if(objRebate90 != null){
-				fRebate90 =  Double.parseDouble(objRebate90.getSection90()) +  Double.parseDouble(objRebate90.getSection91());
-			}		
+				fRebate90 =  objRebate90.getSection90() + objRebate90.getSection91();
+			}
 
 		}catch (ObjectBeanManagerException e) {
 			// TODO Auto-generated catch block
@@ -480,7 +480,7 @@ public class Calculations extends ITReturnComponent {
 			request.setAttribute("objtdssalry", objtdssalry);
 			if(objtdssalry != null){
 				fTdssalry =  Double.parseDouble(objtdssalry.getTotal_Value());
-			}		
+			}
 
 		}catch (ObjectBeanManagerException e) {
 			// TODO Auto-generated catch block
@@ -501,7 +501,7 @@ public class Calculations extends ITReturnComponent {
 			request.setAttribute("objtdsother", objtdsother);
 			if(objtdsother != null){
 				fTdsother =  Double.parseDouble(objtdsother.getTotal_Value());
-			}		
+			}
 
 		}catch (ObjectBeanManagerException e) {
 			// TODO Auto-generated catch block
@@ -515,7 +515,7 @@ public class Calculations extends ITReturnComponent {
 		log.info("inside fetchtcsDocument--->before try:-");
 		try {
 			String path=ContentStructure.getPersonalDocumentPath(pan,filing_year,modusername);
-			MemberPersonalInformation document=(MemberPersonalInformation)getObjectBeanManager(request).getObject(path);				
+			MemberPersonalInformation document=(MemberPersonalInformation)getObjectBeanManager(request).getObject(path);
 			//Calendar dob=document.getDOB();
 			//Date date =dob.getTime();
 			DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
@@ -527,7 +527,7 @@ public class Calculations extends ITReturnComponent {
 			//int Age = age.MemberAgeCalculate(dob);
 			int Age = 25;
 			//log.info("age is"+Age);
-			if(filing_year == "2012-2013") { 
+			if(filing_year == "2012-2013") {
 				log.info("i am fetching income tax "+filing_year);
 				log.info("value of taxable income is"+fTaxableIncome);
 				if (document.getSex().matches("M")){
@@ -542,21 +542,21 @@ public class Calculations extends ITReturnComponent {
 							return fIncomeTax1;
 						}
 						else if (fTaxableIncome > 180000.0f && fTaxableIncome <= 500000.0f){
-							double A = (double) ((fTaxableIncome - 200000.0f) * 0.1); 
+							double A = (double) ((fTaxableIncome - 200000.0f) * 0.1);
 							double fIncomeTax1 = Math.round((A)* 100) / 100;
 							log.info("Tax is between 2000001 and 500000");
 							return fIncomeTax1;
 						}
 						else if (fTaxableIncome > 500001.0f && fTaxableIncome <= 800000.0f){
 							log.info(" First-->Second Else IF condition");
-							double A = (double) (((fTaxableIncome - 500000.0f) * 0.2) + 32000.0f); 
+							double A = (double) (((fTaxableIncome - 500000.0f) * 0.2) + 32000.0f);
 							double fIncomeTax1 = Math.round((A)* 100) / 100;
 							log.info("Tax is between 500001 and 1000000");
 							return fIncomeTax1;
 						}
 						else if (fTaxableIncome >800000.0f){
 							log.info(" First-->Third Else IF condition");
-							double A = (double) (((fTaxableIncome - 800000.0f) * 0.3) + 92000.0f); 
+							double A = (double) (((fTaxableIncome - 800000.0f) * 0.3) + 92000.0f);
 							double fIncomeTax1 = Math.round((A)* 100) / 100;
 							log.info("Tax is more then 1000000");
 							return fIncomeTax1;
@@ -571,21 +571,21 @@ public class Calculations extends ITReturnComponent {
 							return fIncomeTax1;
 						}
 						else if (fTaxableIncome > 250000.0f && fTaxableIncome <= 500000.0f){
-							double A = (double) ((fTaxableIncome - 250000.0f) * 0.1); 
+							double A = (double) ((fTaxableIncome - 250000.0f) * 0.1);
 							double fIncomeTax1 = Math.round((A)* 100) / 100;
 							log.info("Tax is between 2000001 and 500000");
 							return fIncomeTax1;
 						}
 						else if (fTaxableIncome > 500001.0f && fTaxableIncome <= 800000.0f){
 							log.info(" First-->Second Else IF condition");
-							double A = (double) (((fTaxableIncome - 500000.0f) * 0.2) + 25000.0f); 
+							double A = (double) (((fTaxableIncome - 500000.0f) * 0.2) + 25000.0f);
 							double fIncomeTax1 = Math.round((A)* 100) / 100;
 							log.info("Tax is between 500001 and 1000000");
 							return fIncomeTax1;
 						}
 						else if (fTaxableIncome >800000.0f){
 							log.info(" First-->Third Else IF condition");
-							double A = (double) (((fTaxableIncome - 800000.0f) * 0.3) + 85000.0f); 
+							double A = (double) (((fTaxableIncome - 800000.0f) * 0.3) + 85000.0f);
 							double fIncomeTax1 = Math.round((A)* 100) / 100;
 							log.info("Tax is more then 1000000");
 							return fIncomeTax1;
@@ -606,7 +606,7 @@ public class Calculations extends ITReturnComponent {
 
 						}
 						else if (fTaxableIncome > 190000.0f && fTaxableIncome <= 500000.0f){
-							double A = (double) ((fTaxableIncome - 190000.0f) * 0.1); 
+							double A = (double) ((fTaxableIncome - 190000.0f) * 0.1);
 
 							double fIncomeTax1 = Math.round((A )* 100) / 100;
 							log.info("Tax is between 2000001 and 500000");
@@ -614,14 +614,14 @@ public class Calculations extends ITReturnComponent {
 						}
 						else if (fTaxableIncome > 500001.0f && fTaxableIncome <= 800000.0f){
 							log.info(" First-->Second Else IF condition");
-							double A = (double) (((fTaxableIncome - 500000.0f) * 0.2) + 32000.0f); 
+							double A = (double) (((fTaxableIncome - 500000.0f) * 0.2) + 32000.0f);
 							double fIncomeTax1 = Math.round((A)* 100) / 100;
 							log.info("Tax is between 500001 and 1000000");
 							return fIncomeTax1;
 						}
 						else if (fTaxableIncome > 800000.0f){
 							log.info(" First-->Third Else IF condition");
-							double A = (double) (((fTaxableIncome - 1000000.0f) * 0.3) + 91000.0f); 
+							double A = (double) (((fTaxableIncome - 1000000.0f) * 0.3) + 91000.0f);
 							double fIncomeTax1 = Math.round((A )* 100) / 100;
 							log.info("Tax is more then 1000000");
 							return fIncomeTax1;
@@ -635,21 +635,21 @@ public class Calculations extends ITReturnComponent {
 							return fIncomeTax1;
 						}
 						else if (fTaxableIncome > 250000.0f && fTaxableIncome <= 500000.0f){
-							double A = (double) ((fTaxableIncome - 250000.0f) * 0.1); 
+							double A = (double) ((fTaxableIncome - 250000.0f) * 0.1);
 							double fIncomeTax1 = Math.round((A)* 100) / 100;
 							log.info("Tax is between 2000001 and 500000");
 							return fIncomeTax1;
 						}
 						else if (fTaxableIncome > 500001.0f && fTaxableIncome <= 800000.0f){
 							log.info(" First-->Second Else IF condition");
-							double A = (double) (((fTaxableIncome - 500000.0f) * 0.2) + 25000.0f); 
+							double A = (double) (((fTaxableIncome - 500000.0f) * 0.2) + 25000.0f);
 							double fIncomeTax1 = Math.round((A)* 100) / 100;
 							log.info("Tax is between 500001 and 1000000");
 							return fIncomeTax1;
 						}
 						else if (fTaxableIncome >800000.0f){
 							log.info(" First-->Third Else IF condition");
-							double A = (double) (((fTaxableIncome - 800000.0f) * 0.3) + 85000.0f); 
+							double A = (double) (((fTaxableIncome - 800000.0f) * 0.3) + 85000.0f);
 							double fIncomeTax1 = Math.round((A)* 100) / 100;
 							log.info("Tax is more then 1000000");
 							return fIncomeTax1;
