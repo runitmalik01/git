@@ -124,7 +124,7 @@
 		   	 return this.optional(element) || /^[0-9]{0,5}?$/i.test(value); 
 		}, "Challan Serial No is invalid");
 		$.validator.addMethod("tdscertificate", function(value, element) {  
-		   	 return this.optional(element) || /^[a-zA-Z]{6}?$/i.test(value); 
+		   	 return this.optional(element) || /^[0-9]{0,8}?$/i.test(value); 
 		}, "TDS Certificate No is invalid");
 		$.validator.addMethod("ackno", function(value, element) {  
 		   	 return this.optional(element) || /^[0-9]{15}?$/i.test(value); 
