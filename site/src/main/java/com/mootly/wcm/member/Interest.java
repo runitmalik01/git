@@ -35,6 +35,7 @@ import com.mootly.wcm.beans.InterestDoc;
 import com.mootly.wcm.beans.MemberContactInformation;
 import com.mootly.wcm.beans.MemberPersonalInformation;
 import com.mootly.wcm.beans.OtherSourcesDocument;
+import com.mootly.wcm.beans.RebateSec90Document;
 import com.mootly.wcm.beans.SalaryIncomeDocument;
 import com.mootly.wcm.beans.SelfAssesmetTaxDocument;
 import com.mootly.wcm.beans.TdsFromSalaryDocument;
@@ -66,7 +67,7 @@ import org.slf4j.LoggerFactory;
 @AdditionalBeans(additionalBeansToLoad={MemberPersonalInformation.class,MemberContactInformation.class,SalaryIncomeDocument.class,
 		HouseIncomeDetail.class,HouseProperty.class,OtherSourcesDocument.class,AdvanceTaxDocument.class,AdvanceTaxDetail.class,TdsFromSalaryDocument.class,
 		TdsFromSalaryDetail.class,TdsFromothersDocument.class,SelfAssesmetTaxDocument.class,SelfAssesmentTaxDetail.class,SalaryIncomeDetail.class,DeductionDocument.class,
-		DeductionDocumentDetail.class,InterestDoc.class,FormSixteenDocument.class,FormSixteenDetail.class})
+		DeductionDocumentDetail.class,InterestDoc.class,FormSixteenDocument.class,FormSixteenDetail.class,RebateSec90Document.class})
 @RequiredBeans(requiredBeans={MemberPersonalInformation.class})
 @FormFields(fieldNames={"intA","intB","ic","intt"})
 
@@ -85,6 +86,7 @@ public class Interest extends ITReturnComponent {
 		AdvanceTaxDocument advanceTaxDocument = (AdvanceTaxDocument) request.getAttribute(AdvanceTaxDocument.class.getSimpleName().toLowerCase());
 		DeductionDocument deductionDocument = (DeductionDocument) request.getAttribute(DeductionDocument.class.getSimpleName().toLowerCase());
 		FormSixteenDocument formSixteenDocument = (FormSixteenDocument) request.getAttribute(FormSixteenDocument.class.getSimpleName().toLowerCase());
+		RebateSec90Document rebateSec90Document = (RebateSec90Document) request.getAttribute(RebateSec90Document.class.getSimpleName().toLowerCase());
 
 		XmlCalculation xmlCalculation = new XmlCalculation();
 		IndianCurrencyHelper indianCurrencyHelper = new IndianCurrencyHelper();
@@ -254,9 +256,14 @@ public class Interest extends ITReturnComponent {
 			}
 		}
 
-		BigInteger Relief90and91 = new BigInteger("0");
+		BigInteger Rebate90 = new BigInteger("0");
+		BigInteger Rebate91 = new BigInteger("0");
+		if(rebateSec90Document!=null){
+			Rebate90 = indianCurrencyHelper.bigIntegerRound(rebateSec90Document.getSection90());
+			Rebate91 = indianCurrencyHelper.bigIntegerRound(rebateSec90Document.getSection91());
+		}
 		BigInteger rebate =new BigInteger ("0");
-		rebate=Relief89Total.add(Relief90and91);
+		rebate=Relief89Total.add(Rebate90).add(Rebate91);
 		BigInteger NetTaxLiability = new BigInteger("0");
 		NetTaxLiability = GrossTaxLiability.subtract(rebate);
 
