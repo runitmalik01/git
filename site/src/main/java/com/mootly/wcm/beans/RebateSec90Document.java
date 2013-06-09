@@ -15,18 +15,7 @@
  */
 
 package com.mootly.wcm.beans;
-import static com.mootly.wcm.utils.Constants.PROP_PI_AREA_LOCALITY;
-import static com.mootly.wcm.utils.Constants.PROP_PI_EMAIL;
-import static com.mootly.wcm.utils.Constants.PROP_PI_FLAT_FLOOR_BUILDING;
-import static com.mootly.wcm.utils.Constants.PROP_PI_MOBILE;
-import static com.mootly.wcm.utils.Constants.PROP_PI_PAN;
-import static com.mootly.wcm.utils.Constants.PROP_PI_PHONE;
-import static com.mootly.wcm.utils.Constants.PROP_PI_PINCODE;
-import static com.mootly.wcm.utils.Constants.PROP_PI_PREMISES_BUILDING;
-import static com.mootly.wcm.utils.Constants.PROP_PI_ROAD_STREET;
-import static com.mootly.wcm.utils.Constants.PROP_PI_STATE;
-import static com.mootly.wcm.utils.Constants.PROP_PI_STD_CODE;
-import static com.mootly.wcm.utils.Constants.PROP_PI_TOWN_CITY_DISTRICT;
+
 
 import java.math.BigDecimal;
 import java.util.Calendar;
@@ -147,8 +136,8 @@ public class RebateSec90Document extends BaseDocument implements ContentNodeBind
 		String strIncomeForeign=null;
 		String strTotaltax90= null;
 		String strTotaltax91= null;
-		double Totaltaxninety=0d;
-		double TotalTaxninetyOne=0d;
+		Double Totaltaxninety=0.0;
+		Double TotalTaxninetyOne=0.0;
 		if (formMap.getField("userCountry") != null) setUserCountry(formMap.getField("userCountry").getValue());
 		if (formMap.getField("taxPaidForeignCountry") != null) 
 			strTaxpaid=formMap.getField("taxPaidForeignCountry").getValue();
@@ -156,21 +145,27 @@ public class RebateSec90Document extends BaseDocument implements ContentNodeBind
 			setTaxPaidForeignCountry(TaxpaidInForeignCountry);
 		if (formMap.getField("incomeForeignCountry") != null) 
 			strIncomeForeign=formMap.getField("incomeForeignCountry").getValue();
-		log.info("HHHHHJJJJKKKLL"+strIncomeForeign);
 		double IncomeForeign=Double.parseDouble(strIncomeForeign);
 				setIncomeForeignCountry(IncomeForeign);
 		if (formMap.getField("txttotaltax") != null) {
-				strTotaltax90=formMap.getField("txttotaltax").getValue();
+			strTotaltax90=formMap.getField("txttotaltax").getValue();
+			if(!(strTotaltax90.isEmpty())){
 				 Totaltaxninety=Double.parseDouble(strTotaltax90);
+			}else{
+				Totaltaxninety=0.0;
 			}
 			setSection90(Totaltaxninety);
-			if(formMap.getField("section91").getValue() != null){
+		}
+			if(formMap.getField("section91") != null){
 					strTotaltax91=formMap.getField("section91").getValue();
-					log.info("HGHGHGHGHGGH"+strTotaltax91);
+					if(!(strTotaltax91.isEmpty())){
 					 TotalTaxninetyOne=Double.parseDouble(strTotaltax91);
-				}
+					}
+				 else{
+					TotalTaxninetyOne=0.0;
+				 }
 			setSection91(TotalTaxninetyOne);
-		
+				}
 	}
 	
 	@Override
