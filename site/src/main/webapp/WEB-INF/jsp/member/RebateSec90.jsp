@@ -54,7 +54,7 @@ request.setAttribute("objTreeMapCountries", objTreeMapCountries);
 	         <div class="span6">
 	          <div class="rowlabel">
 			<label for="section91"><small><fmt:message key="rebate.section91.required" /></small></label></div>
-			<div class="rowlabel"><input type="text" id="section91" name="section91" readonly="readonly" maxlength="14" read value="${parentBean.section91}" /></div>
+			<div class="rowlabel"><input type="text" id="section91" name="section91" readonly="readonly"  maxlength="14" read value="${parentBean.section91}" /></div>
 		</div>
 		</div>
 </fieldset>
