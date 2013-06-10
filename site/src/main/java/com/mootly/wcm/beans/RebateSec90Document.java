@@ -143,10 +143,11 @@ public class RebateSec90Document extends BaseDocument implements ContentNodeBind
 			strTaxpaid=formMap.getField("taxPaidForeignCountry").getValue();
 			double TaxpaidInForeignCountry=Double.parseDouble(strTaxpaid);
 			setTaxPaidForeignCountry(TaxpaidInForeignCountry);
-		if (formMap.getField("incomeForeignCountry") != null) 
+		if (formMap.getField("incomeForeignCountry") != null) {
 			strIncomeForeign=formMap.getField("incomeForeignCountry").getValue();
 		double IncomeForeign=Double.parseDouble(strIncomeForeign);
 				setIncomeForeignCountry(IncomeForeign);
+		}
 		if (formMap.getField("txttotaltax") != null) {
 			strTotaltax90=formMap.getField("txttotaltax").getValue();
 			if(!(strTotaltax90.isEmpty())){
