@@ -357,14 +357,12 @@ public class XmlGenerator extends ITReturnComponent {
 		Map<String,Object> resultMap = ScreenCalculatorService.getScreenCalculations("xmlCalculation.js", request.getParameterMap(), totalMapForJS);
 		//ITR1 Tax Computation (without calculation) with null values
 		itr1TaxComputation.setTotalTaxPayable(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMap.get("txtTax").toString())));
-		log.info("total tax payable"+indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMap.get("txtTax").toString())));
 		itr1TaxComputation.setSurchargeOnTaxPayable(resultMap.get("txtsurcharge"));
 		BigInteger EduCess = indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMap.get("txtEduCess").toString()));
 		BigInteger HigherEduCess =indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMap.get("txtHEduCess").toString()));
 		BigInteger TotalEduCess = EduCess.add(HigherEduCess);
 		itr1TaxComputation.setEducationCess(TotalEduCess);
 		itr1TaxComputation.setGrossTaxLiability(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMap.get("txttotaltax").toString())));
-		log.info("gross tax liability"+indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMap.get("txttotaltax").toString())));
 
 		BigInteger Relief89 =new BigInteger ("0");
 		BigInteger Relief89Total =new BigInteger ("0");
@@ -589,6 +587,7 @@ public class XmlGenerator extends ITReturnComponent {
 				for(FormSixteenDetail formSixteenDetail:listOfFormSixteenDetail){
 					TDSonSalary tdsonSalary = new TDSonSalary();
 					EmployerOrDeductorOrCollectDetl employerOrDeductorOrCollectDetl = new EmployerOrDeductorOrCollectDetl();
+					if(formSixteenDetail.getDed_ent_4()!=null && formSixteenDetail.getDed_ent_4()!=0.0){
 					if(formSixteenDetail.getTan_deductor()!=null){
 						employerOrDeductorOrCollectDetl.setTAN(formSixteenDetail.getTan_deductor());
 					}
@@ -603,8 +602,9 @@ public class XmlGenerator extends ITReturnComponent {
 						tdsonSalary.setTotalTDSSal(indianCurrencyHelper.bigIntegerRound(formSixteenDetail.getDed_ent_4()));
 					}
 					tdsonSalaries.getTDSonSalary().add(tdsonSalary);
+					itr1.setTDSonSalaries(tdsonSalaries);
+					}
 				}
-				itr1.setTDSonSalaries(tdsonSalaries);
 			}
 		}
 
