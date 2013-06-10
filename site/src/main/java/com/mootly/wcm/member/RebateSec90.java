@@ -3,6 +3,7 @@ package com.mootly.wcm.member;
 import java.math.BigDecimal;
 import java.util.ResourceBundle;
 
+import org.apache.commons.logging.Log;
 import org.hippoecm.hst.core.component.HstComponentException;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
@@ -24,7 +25,8 @@ import com.mootly.wcm.beans.SalaryIncomeDocument;
 import com.mootly.wcm.beans.SecuritiesDoc;
 import com.mootly.wcm.components.ITReturnComponent;
 import com.mootly.wcm.member.Calculations;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 /**
 
  * @author:Pankaj Singh
@@ -33,7 +35,7 @@ import com.mootly.wcm.member.Calculations;
  *
  */
 @PrimaryBean(primaryBeanClass=RebateSec90Document.class)
-@FormFields(fieldNames= {"userCountry","taxPaidForeignCountry","incomeForeignCountry"})
+@FormFields(fieldNames= {"userCountry","taxPaidForeignCountry","incomeForeignCountry","txttotaltax","section91"})
 @AdditionalBeans(additionalBeansToLoad={MemberPersonalInformation.class,SalaryIncomeDocument.class,HouseProperty.class,OtherSourcesDocument.class})
 @RequiredBeans(requiredBeans={MemberPersonalInformation.class})
 
@@ -46,7 +48,7 @@ public class RebateSec90 extends ITReturnComponent {
 		// TODO Auto-generated method stub
 		super.doBeforeRender(request, response);
 		// to find eithr user lies in section 90 or 91
-	System.out.println("this is do before render  of rebate sec 90/91");
+	
 	}
 	
 	@Override
@@ -55,7 +57,7 @@ public class RebateSec90 extends ITReturnComponent {
 		
 		// TODO Auto-generated method stub
 		super.doAction(request, response);
-		System.out.println("this is do Action  of rebate sec 90/91");
+		
 	}
 	
 }
