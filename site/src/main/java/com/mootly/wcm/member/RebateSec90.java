@@ -1,32 +1,18 @@
 package com.mootly.wcm.member;
-
-import java.math.BigDecimal;
-import java.util.ResourceBundle;
-
-import org.apache.commons.logging.Log;
 import org.hippoecm.hst.core.component.HstComponentException;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
-
 import com.mootly.wcm.annotations.AdditionalBeans;
 import com.mootly.wcm.annotations.FormFields;
 import com.mootly.wcm.annotations.PrimaryBean;
 import com.mootly.wcm.annotations.RequiredBeans;
-import com.mootly.wcm.annotations.RequiredFields;
-import com.mootly.wcm.beans.AdjustmentOfLossesDoc;
 import com.mootly.wcm.beans.HouseProperty;
-import com.mootly.wcm.beans.InterestDoc;
-import com.mootly.wcm.beans.MemberDeductionScheduleVIA;
 import com.mootly.wcm.beans.MemberPersonalInformation;
-import com.mootly.wcm.beans.OtherSourceIncome;
 import com.mootly.wcm.beans.OtherSourcesDocument;
 import com.mootly.wcm.beans.RebateSec90Document;
 import com.mootly.wcm.beans.SalaryIncomeDocument;
-import com.mootly.wcm.beans.SecuritiesDoc;
 import com.mootly.wcm.components.ITReturnComponent;
-import com.mootly.wcm.member.Calculations;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 /**
 
  * @author:Pankaj Singh
