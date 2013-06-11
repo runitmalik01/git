@@ -25,6 +25,9 @@ else {
 ValueListService objValueListService = ValueListServiceImpl.getInstance();
 TreeMap objHashMapBoolean = (TreeMap) objValueListService.getBoolean();
 request.setAttribute("objHashMapBoolean", objHashMapBoolean);
+TreeMap objHashMapcountry = (TreeMap) objValueListService.getCountry();
+request.setAttribute("objHashMapcountry", objHashMapcountry);
+
 %>
 <c:if test="${not empty formMap}">
 	<c:forEach items="${formMap.message}" var="item">
@@ -338,6 +341,20 @@ request.setAttribute("objHashMapBoolean", objHashMapBoolean);
 				</div>
 				<div class="span3">
 					<div class="rowlabel">
+						<label for="pi_country"><small>Country</small> </label>
+					</div>
+					<select id="pi_country" name="pi_country">
+						<option value="">-Select-</option>
+						<c:forEach var="booleanCombo" items="${objHashMapcountry}">
+							<option
+								<c:if test="${pageAction == 'EDIT_CHILD' || parentBean.country == booleanCombo.key}">selected</c:if>
+								value="${booleanCombo.key}">${booleanCombo.value}</option>
+						</c:forEach>
+					</select>
+				</div></div>
+				<div class="row-fluid show-grid">
+				<div class="span3">
+					<div class="rowlabel">
 						<label for="pi_pin_code"><small>PIN</small>
 						</label>
 					</div>
@@ -347,8 +364,6 @@ request.setAttribute("objHashMapBoolean", objHashMapBoolean);
 							maxlength="6" />
 					</div>
 				</div>
-			</div>
-			<div class="row-fluid show-grid">
 				<div class="span2">
 					<div class="rowlabel">
 						<label for="pi_std_code"><small>STD Code</small>
@@ -390,6 +405,8 @@ request.setAttribute("objHashMapBoolean", objHashMapBoolean);
 							maxlength="10" />
 					</div>
 				</div>
+				</div>
+				<div class="row-fluid show-grid">
 				<div class="span3">
 					<div class="rowlabel">
 						<label for="ward_circle"><small>IncomeTax
@@ -402,8 +419,6 @@ request.setAttribute("objHashMapBoolean", objHashMapBoolean);
 							name="ward_circle" placeholder=" Ward/Circle" type="text"/>
 					</div>
 				</div>
-				</div>
-				<div class="row-fluid show-grid">
 				<div class="span6">
 					<div class="rowlabel">
 						<label for="pi_email"><small>Email</small>
