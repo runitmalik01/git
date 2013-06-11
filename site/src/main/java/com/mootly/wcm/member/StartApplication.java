@@ -64,7 +64,7 @@ import com.mootly.wcm.utils.UrlUtility;
 		"pi_return_type","fy","ack_no","ack_date","defective","notice_no","notice_date","ward_circle","Employe_category"})
 @RequiredFields(fieldNames={
 		"pi_last_name","pi_dob","gender",
-		"pi_flat_door_building","pi_email","pi_pin_code","pi_town_city_district","pi_state","pi_area_locality","pi_std_code","pi_mobile",
+		"pi_flat_door_building","pi_email","pi_pin_code","pi_town_city_district","pi_state","pi_country","pi_area_locality","pi_std_code","pi_mobile"
 })
 
 public class StartApplication extends ITReturnComponent {
