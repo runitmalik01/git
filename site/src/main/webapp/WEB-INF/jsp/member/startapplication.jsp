@@ -27,7 +27,8 @@ TreeMap objHashMapBoolean = (TreeMap) objValueListService.getBoolean();
 request.setAttribute("objHashMapBoolean", objHashMapBoolean);
 TreeMap objHashMapcountry = (TreeMap) objValueListService.getCountry();
 request.setAttribute("objHashMapcountry", objHashMapcountry);
-
+TreeMap objHashMapstates = (TreeMap) objValueListService.getStates();
+request.setAttribute("objHashMapstates", objHashMapstates);
 %>
 <c:if test="${not empty formMap}">
 	<c:forEach items="${formMap.message}" var="item">
@@ -327,23 +328,21 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 						<label for="pi_state"><small>State</small>
 						</label>
 					</div>
-					<c:set var="searchresultstitle">
-						<fmt:message key="member.contact_info.state.select" />
-					</c:set>
-					<c:set var="statesType">
-						<fmt:message key="dropdown.states" />
-					</c:set>
-					<div class="rowlabel">
-						<w4india:dropdown dropDownSelectId="pi_state"
-							optionSelectString="${searchresultstitle}"
-							dropDownType="${statesType}" fetchValue="${parentBean.state}" />
+					<select id="pi_state" name="pi_state" onchange="getautoState()">
+      <option value="">-Select-</option>
+      <c:forEach var="booleanCombo" items="${objHashMapstates}">
+       <option
+        <c:if test="${pageAction == 'EDIT_CHILD' || parentBean.state == booleanCombo.key}">selected</c:if>
+        value="${booleanCombo.key}">${booleanCombo.value}</option>
+      </c:forEach>
+     </select>
 					</div>
-				</div>
-				<div class="span3">
+				
+				<div class="span2">
 					<div class="rowlabel">
 						<label for="pi_country"><small>Country</small> </label>
 					</div>
-					<select id="pi_country" name="pi_country">
+					<select id="pi_country"  name="pi_country">
 						<option value="">-Select-</option>
 						<c:forEach var="booleanCombo" items="${objHashMapcountry}">
 							<option
@@ -747,5 +746,18 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 			$('#bd_bank_name').tooltip('data-toggle');
 				$("#pi_first_name").popover({'trigger':'focus'});
 		});
+		function getautoState(){
+  alert("hiiiiiii");
+  var option=document.getElementById("pi_state");
+  var stateName = option.options[option.selectedIndex].value;
+  if(stateName!="99"){
+  $("#pi_country").val("91");
+  } else{
+  $("#pi_country").val("");
+  }
+  }
 </hst:element>
 <hst:headContribution element="${uiCustom}" category="jsInternal" />
+
+
+
