@@ -155,10 +155,15 @@ public class StartApplicationValidationService {
 				formMap.getField("rsstatus_q").addMessage("err.required.residential");
 			}else{
 				choice="rsstatus_q_"+formMap.getField("rsstatus_q").getValue();
+				log.info("choice HHHHHHHJJJJJKKKK"+choice);
 				for(String fieldsName:formMap.getFieldNames()){
+					log.info("THIS is Inside form");
 					if(fieldsName.startsWith("rsstatus_q_")){
+						log.info("NNNBBBMMMKKKJJJJHHHGGFFFFF"+fieldsName.startsWith("rsstatus_q_"));
+						log.info("HHJJJJJKKKMMMNNNNNBBBVVVV"+formMap.getField(choice).getValue());
 						if(!formMap.getField(choice).getValue().matches("Select")){
 							choice=choice+"_"+formMap.getField(choice).getValue();
+							log.info("JJJJJJJJBBBBHBVBVGGVGV"+choice);
 							if(rbstat.getString(choice).startsWith("ans_")){
 								break;
 							}
