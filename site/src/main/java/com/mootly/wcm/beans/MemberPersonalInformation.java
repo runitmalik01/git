@@ -53,6 +53,7 @@ import static com.mootly.wcm.utils.Constants.PROP_PI_RETURN_TYPE;
 import static com.mootly.wcm.utils.Constants.PROP_PI_ROAD_STREET;
 import static com.mootly.wcm.utils.Constants.PROP_PI_SEX;
 import static com.mootly.wcm.utils.Constants.PROP_PI_STATE;
+import static com.mootly.wcm.utils.Constants.PROP_PI_COUNTRY;
 import static com.mootly.wcm.utils.Constants.PROP_PI_STD_CODE;
 import static com.mootly.wcm.utils.Constants.PROP_PI_TAX_STATUS;
 import static com.mootly.wcm.utils.Constants.PROP_PI_TOWN_CITY_DISTRICT;
@@ -319,7 +320,7 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 		return state;
 	}
 	public String getCountry() {
-		if (country == null) country = getProperty(PROP_PI_COUNTRY;
+		if (country == null) country = getProperty(PROP_PI_COUNTRY);
 		return country;
 	}
 	public String getPinCode() {
