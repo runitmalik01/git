@@ -33,8 +33,7 @@ import org.slf4j.LoggerFactory;
 import com.mootly.wcm.beans.ContactUs;
 import com.mootly.wcm.beans.EmailMessage;
 import com.mootly.wcm.beans.EmailTemplate;
-import com.mootly.wcm.member.Member;
-import com.mootly.wcm.member.MemberService;
+import com.mootly.wcm.beans.MemberSignupDocument;
 import com.mootly.wcm.member.StartApplication.FullReviewedWorkflowCallbackHandler;
 import com.mootly.wcm.utils.ContentStructure;
 import com.mootly.wcm.utils.GoGreenUtil;
@@ -53,17 +52,14 @@ public class DummyForm extends EmailForm {
 	@Override
 	public boolean onValidationSuccess(final HstRequest request, final HstResponse response, final Form form, final FormMap map) {
 
-		// To fetch the details of form like field_0 for username, field_1 for email address, field_2 for comments.
-		
+		// To fetch the details of form like field_0 for username, field_1 for email address, field_2 for comments,.
 		String userName=map.getField("name").getValue().toString();
 		String emailAddress=map.getField("email").getValue().toString();
 		String comments=map.getField("comments").getValue().toString();
 		String subject=map.getField("subject").getValue().toString();
-		log.info("New added fields of subject"+subject);
-
+		
 		//To create document as contact (ContactUs-Bean).
 		ContactUs contact = new  ContactUs();
-
 		//Create setter the values of required fields.
 		contact.setUserName(userName);
 		contact.setEmailAddress(emailAddress);
@@ -71,11 +67,11 @@ public class DummyForm extends EmailForm {
 		contact.setSubject(subject);
 
 		// To fetch the values of fields in Form(ContactUs) through contact document..
-		createContactUsForm(request,contact);
+		createContactUsForm(request,contact,emailAddress);
 		return true;
 	}
-	private void createContactUsForm(HstRequest request, ContactUs contact) {
-
+	
+	private void createContactUsForm(HstRequest request, ContactUs contact,String emailAddress) {
 		// TODO Auto-generated method stub
 		log.warn("contact document method");
 		Session persistableSession = null;
@@ -87,11 +83,12 @@ public class DummyForm extends EmailForm {
 			wpm.setWorkflowCallbackHandler(new FullReviewedWorkflowCallbackHandler());
 			//Contact Us Module is used to check whether the user is registered or not.
 			String itReturnFolderPath=null;
-			Member member=MemberService.getForgotPass(request,contact.getEmailAddress().toLowerCase());
+			String pathToMemberSignupDocument = "members/" + emailAddress.replaceAll("@", "-at-") + "/membersignupdocument";
+			MemberSignupDocument memberSignupDocument =  getSiteContentBaseBean(request).getBean(pathToMemberSignupDocument);
+			if(memberSignupDocument!= null)
+			{
 			// If user is registered,then a document of type mootlywcm:contactus will be created under a member directory.
-			if(member!=null){
 				itReturnFolderPath = ContentStructure.getContactUsFolder(request);
-
 			}
 			//If user is not registered,then a document of type mootlywcm:contactus, content/contactus/UserName directory.
 			else{
@@ -110,7 +107,7 @@ public class DummyForm extends EmailForm {
 				// update now           `
 				wpm.update(Contactdocument);
 				Map<String,Object> contextMap = new HashMap<String, Object>();
-				// object is being used to fetch emailaddress repository.
+				// object is being used to fetch emailaddress from repository.
 				contextMap.put("Contactdocument", Contactdocument);
 				String memberFolderPath=ContentStructure.getMemberContactUs(request);
 				//A node is created with directory member/contactus.
@@ -173,16 +170,5 @@ public class DummyForm extends EmailForm {
 	}
 }
 
-//To see the data of fields of Contact Us Form.
-//System.out.println(map.getField("field_0").getValue().toString());
-//System.out.println(map.getField("field_1").getValue().toString());
-//System.out.println(map.getField("field_2").getValue().toString());
-//System.out.println(map.toString());
-//List<String> dumy= new ArrayList<String>();
-//String sName=form.getName().toString().trim();
-//String sEmail=form.getEmail().toString().trim();
-//String sComments=form.getComments().toString().trim();
-//System.out.println(name);
-//System.out.println(email);
 
 
