@@ -87,6 +87,8 @@ public class Interest extends ITReturnComponent {
 		DeductionDocument deductionDocument = (DeductionDocument) request.getAttribute(DeductionDocument.class.getSimpleName().toLowerCase());
 		FormSixteenDocument formSixteenDocument = (FormSixteenDocument) request.getAttribute(FormSixteenDocument.class.getSimpleName().toLowerCase());
 		RebateSec90Document rebateSec90Document = (RebateSec90Document) request.getAttribute(RebateSec90Document.class.getSimpleName().toLowerCase());
+		TdsFromothersDocument tdsFromothersDocument = (TdsFromothersDocument) request.getAttribute(TdsFromothersDocument.class.getSimpleName().toLowerCase());
+
 
 		XmlCalculation xmlCalculation = new XmlCalculation();
 		IndianCurrencyHelper indianCurrencyHelper = new IndianCurrencyHelper();
@@ -280,9 +282,15 @@ public class Interest extends ITReturnComponent {
 				}
 			}
 		}
+		BigInteger bigTdsOther=new BigInteger ("0");
+		if(tdsFromothersDocument!=null){
+			bigTdsOther=indianCurrencyHelper.bigIntegerRound(tdsFromothersDocument.getTotal_Amount());
+		}
+        BigInteger TDS = new BigInteger("0");
+        TDS = bigTotalTdsSalary.add(bigTdsOther);
 		BigInteger TaxLiability= new BigInteger("0");
-		TaxLiability = NetTaxLiability.subtract(bigTotalTdsSalary);
-        request.setAttribute("bigTotalTdsSalary",bigTotalTdsSalary);
+		TaxLiability = NetTaxLiability.subtract(TDS);
+        request.setAttribute("bigTotalTdsSalary",0);
 		request.setAttribute("TaxLiability", TaxLiability); //attribute used in interest.jsp
 
 		//current date
@@ -311,6 +319,7 @@ public class Interest extends ITReturnComponent {
 		double dsum2=0.0d;
 		double dsum3=0.0d;
 		double dsum4=0.0d;
+		double dsum5=0.0d;
 		double dsum12=0.0d;
 
 		if(advanceTaxDocument!= null){
@@ -320,12 +329,13 @@ public class Interest extends ITReturnComponent {
 			dsum2=advanceTaxDocument.getTotal_Sum2();
 			dsum3=advanceTaxDocument.getTotal_Sum3();
 			dsum4=advanceTaxDocument.getTotal_Sum4();
+			dsum5=advanceTaxDocument.getTotal_Sum5();
 			dsum12=dsum1+dsum2;
 
 			request.setAttribute("totaltax", dtotalamount);
 			request.setAttribute("dsum12",dsum12);
-			request.setAttribute("dsum3",dsum3);
-			request.setAttribute("dsum4",dsum4);
+			request.setAttribute("dsum3",dsum3+dsum12);
+			request.setAttribute("dsum4",dsum4+dsum3+dsum12);
 		}else{
 			request.setAttribute("totaltax", "0");
 			request.setAttribute("dsum12","0");
