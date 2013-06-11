@@ -34,6 +34,7 @@ public interface ValueListService {
 	 * 
 	 * @return TreeMap  object
 	 */
+	
 	TreeMap<String,String> getUnionTerritory();
 	/**
 	 * This method fetches the information valueList_states.properties file	
@@ -46,7 +47,12 @@ public interface ValueListService {
 	 * 
 	 * @return TreeMap  object
 	 */
-
+	TreeMap<String,String> getCountry();
+	/**
+	 * This method fetches the information valueList_countries.properties file	
+	 * 
+	 * @return TreeMap  object
+	 */
 	TreeMap<String,String> getBoolean();
 
 	/**
