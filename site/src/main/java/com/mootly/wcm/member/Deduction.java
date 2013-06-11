@@ -470,6 +470,7 @@ public class Deduction extends ITReturnComponent {
 		String Section80CCC=GoGreenUtil.getEscapedParameter(request,"Section80CCC");
 		String Section80QQB=GoGreenUtil.getEscapedParameter(request,"Section80QQB");
 		String Section80CCD=GoGreenUtil.getEscapedParameter(request,"Section80CCD");
+		String Section80CCG=GoGreenUtil.getEscapedParameter(request,"Section80CCG");
 		String Section80RRB=GoGreenUtil.getEscapedParameter(request,"Section80RRB");
 		String Section80D=GoGreenUtil.getEscapedParameter(request,"Section80D");
 		String Section80U=GoGreenUtil.getEscapedParameter(request,"Section80U");
@@ -481,6 +482,7 @@ public class Deduction extends ITReturnComponent {
 		String Section80IC=GoGreenUtil.getEscapedParameter(request,"Section80IC");
 		String Section80G=GoGreenUtil.getEscapedParameter(request,"Section80G");
 		String Section80JJA=GoGreenUtil.getEscapedParameter(request,"Section80JJA");
+		String Section80TTA=GoGreenUtil.getEscapedParameter(request,"Section80TTA");
 		String Section80GG=GoGreenUtil.getEscapedParameter(request,"Section80GG");
 		String Section80ID=GoGreenUtil.getEscapedParameter(request,"Section80ID");
 		String Section80GGA=GoGreenUtil.getEscapedParameter(request,"Section80GGA");
