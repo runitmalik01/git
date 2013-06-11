@@ -120,7 +120,7 @@ public final class ValueListServiceImpl implements ValueListService{
 		TreeMapStates.put("33", objValueListStatesBundle.getString("valueList.chhattisgarh"));
 		TreeMapStates.put("34", objValueListStatesBundle.getString("valueList.uttaranchal"));		
 		TreeMapStates.put("35", objValueListStatesBundle.getString("valueList.jharkhand"));
-		TreeMapStates.put("99", objValueListStatesBundle.getString("valueList.foreign"));
+		
 		//SortedMap<String, String> m = Collections.synchronizedSortedMap(TreeMapStates);
 		return TreeMapStates;
 	}
