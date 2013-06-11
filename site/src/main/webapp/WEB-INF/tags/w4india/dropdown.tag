@@ -17,12 +17,14 @@ TreeMap<String ,String>  objTreeMapBoolean = (TreeMap<String ,String>) objValueL
 TreeMap<String ,String>  objTreeMapStates = (TreeMap<String ,String>) objValueListService.getStates();
 TreeMap<String ,String>  objTreeMapForeignStates = (TreeMap<String ,String>) objValueListService.getForeignState();
 TreeMap<String ,String>  objTreeMapUnionTerritory = (TreeMap<String ,String>) objValueListService.getUnionTerritory();
+TreeMap<String ,String>  objTreeMapCountry = (TreeMap<String ,String>) objValueListService.getCountry();
 TreeMap<String ,String>  objTreeMapSchedule80CDropdown = (TreeMap<String ,String>) objValueListService.getSchedule80CDropdown();
 TreeMap<String ,String>  objTreeMapAssessmentYear = (TreeMap<String ,String>) objValueListService.getAssessmentYear();
 TreeMap<String ,String>  objTreeMapNameOfHead = (TreeMap<String ,String>) objValueListService.getNameOfHead();
 TreeMap<String ,String>  objTreeMapNumbersDropdown = (TreeMap<String ,String>) objValueListService.getNumbersDropdown();
 request.setAttribute("objTreeMapResidentialStatus", objTreeMapResidentialStatus);
 request.setAttribute("objTreeMapBoolean", objTreeMapBoolean);
+request.setAttribute("objTreeMapCountry", objTreeMapCountry);
 request.setAttribute("objTreeMapStates", objTreeMapStates);
 request.setAttribute("objTreeMapForeignStates", objTreeMapForeignStates);
 request.setAttribute("objTreeMapUnionTerritory", objTreeMapUnionTerritory);
@@ -65,6 +67,11 @@ request.setAttribute("objTreeMapNumbersDropdown", objTreeMapNumbersDropdown);
 				   <option value="${objDropDown.key}" <c:if test="${fetchValue eq objDropDown.key}">Selected</c:if>>${objDropDown.value}</option>
 			    </c:forEach>
 			</optgroup>
+		</c:when>
+		<c:when test="${dropDownType == 'country'}">
+		<c:forEach var="objDropDown" items="${objTreeMapCountry}">
+				<option value="${objDropDown.key}" <c:if test="${fetchValue eq objDropDown.key}">Selected</c:if>>${objDropDown.value}</option>
+			</c:forEach>
 		</c:when>
 		<c:when test="${dropDownType == 'assessmentyear'}">
 			<c:forEach var="objDropDown" items="${objTreeMapAssessmentYear}">
