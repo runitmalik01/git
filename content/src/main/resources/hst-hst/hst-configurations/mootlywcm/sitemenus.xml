@@ -484,44 +484,19 @@
         </sv:property>
       </sv:node>
     </sv:node>
-    <sv:node sv:name="Rebate &amp; Interest">
-      <sv:property sv:name="jcr:primaryType" sv:type="Name">
-        <sv:value>hst:sitemenuitem</sv:value>
-      </sv:property>
-      <sv:property sv:name="jcr:uuid" sv:type="String">
-        <sv:value>cf31990c-6993-496b-a0c1-6ec687fb453d</sv:value>
-      </sv:property>
-      <sv:property sv:name="hst:referencesitemapitem" sv:type="String">
-        <sv:value>products</sv:value>
-      </sv:property>
-      <sv:node sv:name="Interest">
-        <sv:property sv:name="jcr:primaryType" sv:type="Name">
-          <sv:value>hst:sitemenuitem</sv:value>
-        </sv:property>
-        <sv:property sv:name="jcr:uuid" sv:type="String">
-          <sv:value>071aea95-32c3-459f-905f-eca9530d349a</sv:value>
-        </sv:property>
-        <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
-          <sv:value>theURL</sv:value>
-        </sv:property>
-        <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
-          <sv:value>/../interest.html</sv:value>
-        </sv:property>
-      </sv:node>
-      <sv:node sv:name="Rebates">
-        <sv:property sv:name="jcr:primaryType" sv:type="Name">
-          <sv:value>hst:sitemenuitem</sv:value>
-        </sv:property>
-        <sv:property sv:name="jcr:uuid" sv:type="String">
-          <sv:value>07d37753-5658-4d3b-b700-2f98bac2940e</sv:value>
-        </sv:property>
-        <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
-          <sv:value>theURL</sv:value>
-        </sv:property>
-        <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
-          <sv:value>/../rebates.html</sv:value>
-        </sv:property>
-      </sv:node>
-    </sv:node>
+   <sv:node sv:name="Rebates">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:sitemenuitem</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>cf31990c-6993-496b-a0c1-6ec687fb453d</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+    <sv:value>theURL</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+    <sv:value>/../rebates.html</sv:value>
+  </sv:property>
+</sv:node>
   </sv:node>
 </sv:node>
