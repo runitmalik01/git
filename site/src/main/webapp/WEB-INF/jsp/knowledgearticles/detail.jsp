@@ -186,7 +186,7 @@
     <link rel="stylesheet" href="<hst:link path="/css/easyforms.css"/>" type="text/css"/>
 </hst:headContribution>
 
-<ga:trackDocument hippoDocumentBean="${document}"/>
+<%--<ga:trackDocument hippoDocumentBean="${document}"/> --%>
 
 <c:if test="${preview && inlineEditingEnabled}">
     <jsp:include page="../inc/inline-editing-editor-form.jsp"/>

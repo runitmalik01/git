@@ -29,9 +29,18 @@
 				<c:set var="deductionSectionName" value="${deductionSectionMapEntry.key}"/>
 				<c:set var="deductionSectionLabel" value="${deductionSectionMapEntry.value.additionalProperties['label']}"/>
 				<c:set var="deductionAdditionalScreen" value="${deductionSectionMapEntry.value.additionalProperties['additionalScreen']}"/>
+				<c:set var="appliesToFilingStatus" value="${deductionSectionMapEntry.value.additionalProperties['filingStatus']}"/>
+				<c:set var="appliesToResidentStatus" value="${deductionSectionMapEntry.value.additionalProperties['residentStatus']}"/>
 				<c:choose>
 					<c:when test="${empty ischildofform16 || ischildofform16 !='true'}">
 						<c:set var="addURL" value="${scriptName}/newc6deduction/${deductionSectionName}"/>
+						<c:if test="${not empty appliesToFilingStatus && ( (filingStatus.name == appliesToFilingStatus) || fn:contains(filingStatus,appliesToFilingStatus))}">
+							<c:set var="skipIt" value="true"/>
+							<c:out value="${deductionSectionName}---${filingStatus.name}"/>
+						</c:if>
+						<c:if test="${skipIt != 'true' && not empty appliesToResidentStatus && memberpersonalinformation.residentCategory != appliesToResidentStatus}">
+							<c:set var="skipIt" value="true"/>
+						</c:if>
 					</c:when>
 					<c:otherwise>
 						<c:set var="successURL" value="./formsixteenedit"/>

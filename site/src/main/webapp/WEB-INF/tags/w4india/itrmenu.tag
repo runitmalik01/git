@@ -1,3 +1,4 @@
+<%@tag import="org.hippoecm.hst.content.beans.standard.HippoBean"%>
 <%@tag import="org.hippoecm.hst.core.sitemenu.HstSiteMenuItem"%>
 <%@tag import="org.hippoecm.hst.core.sitemenu.HstSiteMenu"%>
 <%@tag import="org.hippoecm.hst.core.sitemenu.HstSiteMenusImpl"%>
@@ -26,6 +27,15 @@ HstSiteMenu itrSiteMenu = itrSiteMenuImpl.getSiteMenu("itrmenu");
 for (HstSiteMenuItem siteMenuItem : itrSiteMenu.getSiteMenuItems() ){
 
 }
+request.setAttribute("nomenu", "false");
+//out.println( resolvedMapItem.getHstComponentConfiguration().getId() );
+if ( resolvedMapItem.getHstComponentConfiguration().getId().equals("hst:pages/member-start-application")) {
+	request.setAttribute("nomenu", "true");
+	HippoBean memberPersonalInformation = (HippoBean) request.getAttribute("parentBean");
+	if (memberPersonalInformation != null) {
+		if (memberPersonalInformation.getNode() != null) request.setAttribute("nomenu", "false");
+	}
+}
 request.setAttribute("itrSiteMenu", itrSiteMenu);
 //How is the page designed, lets define a structure for this page using simple linkedhashmap and arraylist
 %>
@@ -37,97 +47,99 @@ request.setAttribute("itrSiteMenu", itrSiteMenu);
 	         <span class="icon-bar"></span>
 	         <span class="icon-bar"></span>
          </a>
-         <a class="brand" href="#">
+         <a class="brand" href="./personalinformation.html">
             <span class="pan">
                <c:out value="${pan}"/>
             </span>
          </a>
-         <div class="nav-collapse collapse navbar-responsive-collapse">
-            <ul class="nav">
-               <c:forEach items="${itrSiteMenu.siteMenuItems}" var="itrSiteMenuItem">
-               	<c:set var="childCount" value="${fn:length(itrSiteMenuItem.childMenuItems)}"/>
-               	<c:choose>
-                	<c:when test="${childCount gt 0}">
-                		<li class="dropdown">
-                			<a href="#" class="dropdown-toggle" data-toggle="dropdown">${itrSiteMenuItem.name}<b class="caret"></b></a>
-                			<ul class="dropdown-menu">
-                				<c:forEach items="${itrSiteMenuItem.childMenuItems}" var="childMenuItem">
-                					<c:set var="childMenuItemReq" scope="request" value="${childMenuItem}"/>
-                					<%
-                					 HstSiteMenuItem anItem = ( HstSiteMenuItem ) request.getAttribute("childMenuItemReq");
-                					 if (anItem != null) {
-                						String theURL =  anItem.getParameter("theURL");
-                					 	//String theURL = anItem.getHstLink().toUrlForm(hstRequest.getRequestContext(), true);
-                	 				 	if (theURL != null) {
-                	 				 		request.setAttribute("theURL",theURL);
-                	 				 	}
-                	 				 	else {
-                	 				 		request.setAttribute("theURL", "#");
-                	 				 	}
-                					 }
-                					%>
-                					<c:choose>
-                						<c:when test="${childMenuItem.name == 'nav-header' || childMenuItem.name == 'divider' }">
-                							<li class="${childMenuItem.name}"></li>
-                						</c:when>
-                						<c:otherwise>
-                							<li><a href="${scriptName}${theURL}">${childMenuItem.name}</a></li>
-                						</c:otherwise>
-                					</c:choose>
-                				</c:forEach>
-                			</ul>
-               		</c:when>
-               		<c:otherwise>
-						<c:set var="parentMenuItemReq" scope="request" value="${itrSiteMenuItem}"/>
-		    			<%
-		    				HstSiteMenuItem parentItem = ( HstSiteMenuItem ) request.getAttribute("parentMenuItemReq");
-		    				if (parentItem != null) {
-		    					String theURL =  parentItem.getParameter("theURL");
-		    					String currentScriptHTMLName = null;
-		    					//String theURL = anItem.getHstLink().toUrlForm(hstRequest.getRequestContext(), true);
-		    	 				if (theURL != null) {
-									request.setAttribute("theURLParent",theURL);
-									String[] parts = theURL.split("[/]");
-									if (parts != null && parts.length > 0) currentScriptHTMLName = parts[parts.length-1];
-								}
-								else {
-									request.setAttribute("theURLParent", "#");
-								}
-		    	 				String theScript = (String) request.getAttribute("scriptName");
-			    				if (theScript != null && currentScriptHTMLName != null && theScript.contains(currentScriptHTMLName) ) {
-			    					request.setAttribute("isActive", "true");
+         <c:if test="${nomenu != 'true'}">
+	         <div class="nav-collapse collapse navbar-responsive-collapse">
+	            <ul class="nav">
+	               <c:forEach items="${itrSiteMenu.siteMenuItems}" var="itrSiteMenuItem">
+	               	<c:set var="childCount" value="${fn:length(itrSiteMenuItem.childMenuItems)}"/>
+	               	<c:choose>
+	                	<c:when test="${childCount gt 0}">
+	                		<li class="dropdown">
+	                			<a href="#" class="dropdown-toggle" data-toggle="dropdown">${itrSiteMenuItem.name}<b class="caret"></b></a>
+	                			<ul class="dropdown-menu">
+	                				<c:forEach items="${itrSiteMenuItem.childMenuItems}" var="childMenuItem">
+	                					<c:set var="childMenuItemReq" scope="request" value="${childMenuItem}"/>
+	                					<%
+	                					 HstSiteMenuItem anItem = ( HstSiteMenuItem ) request.getAttribute("childMenuItemReq");
+	                					 if (anItem != null) {
+	                						String theURL =  anItem.getParameter("theURL");
+	                					 	//String theURL = anItem.getHstLink().toUrlForm(hstRequest.getRequestContext(), true);
+	                	 				 	if (theURL != null) {
+	                	 				 		request.setAttribute("theURL",theURL);
+	                	 				 	}
+	                	 				 	else {
+	                	 				 		request.setAttribute("theURL", "#");
+	                	 				 	}
+	                					 }
+	                					%>
+	                					<c:choose>
+	                						<c:when test="${childMenuItem.name == 'nav-header' || childMenuItem.name == 'divider' }">
+	                							<li class="${childMenuItem.name}"></li>
+	                						</c:when>
+	                						<c:otherwise>
+	                							<li><a href="${scriptName}${theURL}">${childMenuItem.name}</a></li>
+	                						</c:otherwise>
+	                					</c:choose>
+	                				</c:forEach>
+	                			</ul>
+	               		</c:when>
+	               		<c:otherwise>
+							<c:set var="parentMenuItemReq" scope="request" value="${itrSiteMenuItem}"/>
+			    			<%
+			    				HstSiteMenuItem parentItem = ( HstSiteMenuItem ) request.getAttribute("parentMenuItemReq");
+			    				if (parentItem != null) {
+			    					String theURL =  parentItem.getParameter("theURL");
+			    					String currentScriptHTMLName = null;
+			    					//String theURL = anItem.getHstLink().toUrlForm(hstRequest.getRequestContext(), true);
+			    	 				if (theURL != null) {
+										request.setAttribute("theURLParent",theURL);
+										String[] parts = theURL.split("[/]");
+										if (parts != null && parts.length > 0) currentScriptHTMLName = parts[parts.length-1];
+									}
+									else {
+										request.setAttribute("theURLParent", "#");
+									}
+			    	 				String theScript = (String) request.getAttribute("scriptName");
+				    				if (theScript != null && currentScriptHTMLName != null && theScript.contains(currentScriptHTMLName) ) {
+				    					request.setAttribute("isActive", "true");
+				    				}
+				    				else {
+				    					request.removeAttribute("isActive");
+				    				}
 			    				}
-			    				else {
-			    					request.removeAttribute("isActive");
-			    				}
-		    				}
-
-		        		%>
-               			<li <c:if test='${not empty isActive && isActive == "true"}'>class="active"</c:if>><a href="${scriptName}${theURLParent}">${itrSiteMenuItem.name}</a></li>
-               		</c:otherwise>
-               	</c:choose>
-               </c:forEach>
-             </ul>
-             <!--
-                <form class="navbar-search pull-left" action="">
-                  <input type="text" class="search-query span2" placeholder="Search">
-                </form>
-                 -->
-            <ul class="nav pull-right">
-               <!-- <li><a href="#">Link</a></li> -->
-               <li class="divider-vertical"></li>
-               <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">My Return<b class="caret"></b></a>
-                  <ul class="dropdown-menu">
-                  <li><a href="xmlgenerator.html?show=summary">View Summary</a></li>
-                     <li><a href="xmlgenerator.html?show=xml">View XML</a></li>
-                     <li><a href="#">Download XML</a></li>
-                     <li class="divider"></li>
-                     <li><a href="#">Download Return</a></li>
-                  </ul>
-               </li>
-            </ul>
-         </div>
+	
+			        		%>
+	               			<li <c:if test='${not empty isActive && isActive == "true"}'>class="active"</c:if>><a href="${scriptName}${theURLParent}">${itrSiteMenuItem.name}</a></li>
+	               		</c:otherwise>
+	               	</c:choose>
+	               </c:forEach>
+	             </ul>
+	             <!--
+	                <form class="navbar-search pull-left" action="">
+	                  <input type="text" class="search-query span2" placeholder="Search">
+	                </form>
+	                 -->
+	            <ul class="nav pull-right">
+	               <!-- <li><a href="#">Link</a></li> -->
+	               <li class="divider-vertical"></li>
+	               <li class="dropdown">
+	                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">My Return<b class="caret"></b></a>
+	                  <ul class="dropdown-menu">
+	                  <li><a href="xmlgenerator.html?show=summary">View Summary</a></li>
+	                     <li><a href="xmlgenerator.html?show=xml">View XML</a></li>
+	                     <li><a href="#">Download XML</a></li>
+	                     <li class="divider"></li>
+	                     <li><a href="#">Download Return</a></li>
+	                  </ul>
+	               </li>
+	            </ul>
+	         </div>
+         </c:if>
          <!-- /.nav-collapse -->
       </div>
    </div>
