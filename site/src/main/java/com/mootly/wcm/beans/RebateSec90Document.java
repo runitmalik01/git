@@ -54,6 +54,7 @@ public class RebateSec90Document extends BaseDocument implements ContentNodeBind
 
 	private Double section90;
 	private Double section91;
+	private Double section89; 
 	private String userCountry;
 	private Double taxPaidForeignCountry;
 	private Double incomeForeignCountry;
@@ -66,6 +67,10 @@ public class RebateSec90Document extends BaseDocument implements ContentNodeBind
     public Double getSection91() {
     	if (section91== null) section91= getProperty("mootlywcm:section91");
     	return section91;
+    }
+    public Double getSection89(){
+    	if(section89== null) section89=getProperty("mootlywcm:section89");
+    	return section89;
     }
     public String getUserCountry() {
     	if (userCountry== null) userCountry= getProperty("mootlywcm:userCountry");
@@ -87,6 +92,9 @@ public class RebateSec90Document extends BaseDocument implements ContentNodeBind
 
 	public final void setSection91(Double Section91) {
 		this.section91 = Section91;
+	}
+	public final void setSection89(Double Section89){
+		this.section89=Section89;
 	}
 	public final void setUserCountry(String userCountry) {
 		this.userCountry = userCountry;
@@ -111,6 +119,8 @@ public class RebateSec90Document extends BaseDocument implements ContentNodeBind
 	    	node.setProperty("mootlywcm:userCountry", rebate.getUserCountry());
 	    	node.setProperty("mootlywcm:taxPaidForeignCountry", rebate.getTaxPaidForeignCountry());
 	    	node.setProperty("mootlywcm:incomeForeignCountry", rebate.getIncomeForeignCountry());
+	    	node.setProperty("mootlywcm:section89", rebate.getSection89());
+	    	
 	    	
 	    		
 	    	/**  javax.jcr.Node prdLinkNode;
@@ -137,6 +147,8 @@ public class RebateSec90Document extends BaseDocument implements ContentNodeBind
 		String strTotaltax90= null;
 		String strTotaltax91= null;
 		Double Totaltaxninety=0.0;
+		Double TotalTaxEightyNine=0.0;
+		 String strTotaltax89= null;
 		Double TotalTaxninetyOne=0.0;
 		if (formMap.getField("userCountry") != null) setUserCountry(formMap.getField("userCountry").getValue());
 		if (formMap.getField("taxPaidForeignCountry") != null) 
@@ -167,6 +179,18 @@ public class RebateSec90Document extends BaseDocument implements ContentNodeBind
 				 }
 			setSection91(TotalTaxninetyOne);
 				}
+			if(formMap.getField("section89") != null){
+				strTotaltax89=formMap.getField("section89").getValue();
+				
+				if(!(strTotaltax89.isEmpty())){
+				 TotalTaxEightyNine=Double.parseDouble(strTotaltax89);
+				
+				}
+			 else{
+				 TotalTaxEightyNine=0.0;
+			 }
+		setSection89(TotalTaxEightyNine);
+			}
 	}
 	
 	@Override
