@@ -125,6 +125,7 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 	private String areaLocality;
 	private String townCityDistrict;
 	private String state;
+	private String country;
 	private String ward_circle;
 	private String pinCode;
 	private String email;
@@ -317,7 +318,10 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 		if (state == null) state = getProperty(PROP_PI_STATE);
 		return state;
 	}
-
+	public String getCountry() {
+		if (country == null) country = getProperty(PROP_PI_COUNTRY;
+		return country;
+	}
 	public String getPinCode() {
 		if (pinCode == null) pinCode = getProperty(PROP_PI_PINCODE);
 		return pinCode;
@@ -448,6 +452,9 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 
 	public final void setState(String state) {
 		this.state = state;
+	}
+	public final void setCountry(String country) {
+		this.country = country;
 	}
 	public final void setWard_circle(String ward_circle) {
 		this.ward_circle = ward_circle;
@@ -666,6 +673,7 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 			node.setProperty(PROP_PI_AREA_LOCALITY, mpi.getAreaLocality());
 			node.setProperty(PROP_PI_TOWN_CITY_DISTRICT, mpi.getTownCityDistrict());
 			node.setProperty(PROP_PI_STATE, mpi.getState());
+			node.setProperty(PROP_PI_COUNTRY, mpi.getCountry());
 			node.setProperty(PROP_PI_PINCODE, mpi.getPinCode());
 			node.setProperty(PROP_PI_EMAIL, mpi.getEmail());
 			node.setProperty(PROP_PI_MOBILE, mpi.getMobile());
@@ -800,6 +808,9 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 		if (formMap.getField("pi_premises_building") != null) setPremisesBuilding(formMap.getField("pi_premises_building").getValue());
 		if (formMap.getField("pi_area_locality") != null) setAreaLocality(formMap.getField("pi_area_locality").getValue());
 		if (formMap.getField("pi_town_city_district") != null) setTownCityDistrict(formMap.getField("pi_town_city_district").getValue());
+		if (formMap.getField("pi_country") != null) {
+			setCountry(formMap.getField("pi_country").getValue());
+		}
 		if (formMap.getField("pi_state") != null) {
 			setState(formMap.getField("pi_state").getValue());
 			if (formMap.getField("pi_pin_code") != null) {
