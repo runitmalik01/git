@@ -54,7 +54,7 @@ import com.mootly.wcm.utils.MootlyFormUtils;
 import com.mootly.wcm.utils.UrlUtility;
 
 @PrimaryBean(primaryBeanClass=MemberPersonalInformation.class)
-@FormFields(fieldNames={"pi_return_type","pi_return_section","portugesecivil","fy","ack_no","ack_date","defective","notice_no","notice_date",
+@FormFields(fieldNames={"pi_return_type","ReturnSection","portugesecivil","fy","ack_no","ack_date","defective","notice_no","notice_date",
 		"pan","pi_first_name","pi_middle_name","pi_last_name","gender","pi_dob","pi_filing_status","pi_father_name",
 		"pi_road_street","pi_std_code","pi_phone","pi_flat_door_building","pi_area_locality","pi_town_city_district",
 		"pi_pin_code","pi_state","pi_mobile","pi_mobile1","pi_email","pi_premises_building",
@@ -76,7 +76,7 @@ public class StartApplication extends ITReturnComponent {
 	private static final String PAN = "pi_pan";
 	private static final String GENDER = "gender";
 	private static final String STATUS = "status";
-	private static final String SECTION= "pi_return_section";
+	private static final String SECTION= "ReturnSection";
 	private static final String ERRORS = "errors";
 	private static final String DOB = "pi_dob";
 	FormMap savedValuesFormMap=null;	
@@ -96,7 +96,7 @@ public class StartApplication extends ITReturnComponent {
 		if (publicParameterUUID != null) {
 			try {
 				FormUtils.validateId(publicParameterUUID);
-				savedValuesFormMap = new FormMap(request,new String[]{"pan","pi_last_name","pi_dob","pi_return_type","fy","pi_return_section"});
+				savedValuesFormMap = new FormMap(request,new String[]{"pan","pi_last_name","pi_dob","pi_return_type","fy","ReturnSection"});
 				MootlyFormUtils.populate(request, publicParameterUUID, savedValuesFormMap);
 				if (savedValuesFormMap != null) {
 					request.setAttribute("savedValuesFormMap", savedValuesFormMap);
