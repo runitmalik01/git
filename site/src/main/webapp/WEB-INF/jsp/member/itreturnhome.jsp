@@ -7,6 +7,10 @@
 <%@page import="org.hippoecm.hst.content.beans.standard.HippoFolder"%>
 <%@include file="../includes/tags.jspf"%>
 <%@page import="com.mootly.wcm.utils.ValueListService"%>
+<c:set var="startapplication">
+	<fmt:message key="member.start.application" />
+</c:set>
+<hippo-gogreen:title title="${startapplication}" />
 <%
 ValueListService objValueListService = ValueListServiceImpl
 .getInstance();
@@ -30,9 +34,9 @@ TreeMap objTreeMapSection = (TreeMap) objValueListService.getReturnFile();
 		          	<div class="rowlabel"><input id="pi_last_name" name="pi_last_name" placeholder="Last Name" type="text"/></div>
 		          </div>
 		           <div class="span3">    
-		            <div class="rowlabel"><label for="pi_return_section"><small>Return filed under section</small></label></div>
+		            <div class="rowlabel"><label for="ReturnSection"><small>Return filed under section</small><c:out value="${parentBean.returnSection}"/></label></div>
 		          	<div class="rowlabel">
-		          	<select id="pi_return_section" name="pi_return_section" onChange="getSection()">
+		          	<select id="ReturnSection" name="ReturnSection" onChange="getSection()">
 		          	<option value="">Select </option>
 		          	<c:forEach var="section" items="${objTreeMapSection}">
 		          	<option value="${section.value}">${section.value}</option>
@@ -171,7 +175,7 @@ TreeMap objTreeMapSection = (TreeMap) objValueListService.getReturnFile();
 		
 	});
 	function getSection(){
-		var option=document.getElementById("pi_return_section");
+		var option=document.getElementById("ReturnSection");
 		var sectionName = option.options[option.selectedIndex].value;
 		if(sectionName=="u/s 139(9)" || sectionName == "Revised 139(5)"){
 		$("#pi_return_type").val("revised");
