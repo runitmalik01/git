@@ -46,10 +46,12 @@ import java.lang.reflect.Method;
 import java.math.BigInteger;
 import java.text.DecimalFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TimeZone;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -185,6 +187,7 @@ public class XmlGenerator extends ITReturnComponent {
 		address.setLocalityOrArea(memberPersonalInformation.getAreaLocality());
 		address.setCityOrTownOrDistrict(memberPersonalInformation.getTownCityDistrict());
 		address.setStateCode(memberPersonalInformation.getState());
+		//address.setCountryCode(memberPersonalInformation.getCountry());
 		address.setPinCode(indianCurrencyHelper.bigIntegerRoundStr(memberPersonalInformation.getPinCode()));
 		Phone phone = new Phone();
 		phone.setSTDcode(indianCurrencyHelper.bigIntegerRoundStr(memberPersonalInformation.getStdCode()));
@@ -389,10 +392,93 @@ public class XmlGenerator extends ITReturnComponent {
 		BigInteger rebate =new BigInteger ("0");
 		rebate=Relief89Total.add(itr1TaxComputation.getSection90And91());
 		itr1TaxComputation.setNetTaxLiability(itr1TaxComputation.getGrossTaxLiability().subtract(rebate));
-		BigInteger TotalInterest = new BigInteger("0");
-		if(interestDoc!=null){
-			TotalInterest = indianCurrencyHelper.bigIntegerRound(interestDoc.getSection234ABC());
+
+		//interest calculation
+
+		BigInteger bigTdsSlry=new BigInteger ("0");
+		BigInteger bigTotalTdsSlry=new BigInteger ("0");
+		if( formSixteenDocument!=null){
+			List<FormSixteenDetail> listOfFormSixteenDetail = formSixteenDocument.getFormSixteenDetailList();
+			if ( listOfFormSixteenDetail != null && listOfFormSixteenDetail.size() > 0 ){
+				for(FormSixteenDetail formSixteenDetail:listOfFormSixteenDetail){
+					if(formSixteenDetail.getDed_ent_4()!=null){
+						bigTdsSlry=indianCurrencyHelper.bigIntegerRound(formSixteenDetail.getDed_ent_4());
+						bigTotalTdsSlry= bigTotalTdsSlry.add(bigTdsSlry);
+					}
+				}
+			}
 		}
+		BigInteger bigTdsOther=new BigInteger ("0");
+		if(tdsFromothersDocument!=null){
+			bigTdsOther=indianCurrencyHelper.bigIntegerRound(tdsFromothersDocument.getTotal_Amount());
+		}
+		BigInteger TDS = new BigInteger("0");
+		TDS = bigTotalTdsSlry.add(bigTdsOther);
+		BigInteger TaxLiability= new BigInteger("0");
+		TaxLiability = itr1TaxComputation.getNetTaxLiability().subtract(TDS);
+		//current date
+		final Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("GMT"));
+		final Date currentdate=cal.getTime();
+		//conversion of date into string
+		String strDate=new Date().toString();
+		//current month
+		@SuppressWarnings("deprecation")
+		int year=currentdate.getYear()+1900-1;
+		int currentdatemonth = 0;
+
+		if(year==2012){
+			currentdatemonth =currentdate.getMonth()+1;
+		}else
+			if(year==2013){
+				currentdatemonth =currentdate.getMonth()+1+12;
+			}
+
+		double dtotalamount=0.0d;
+		double dsum1=0.0d;
+		double dsum2=0.0d;
+		double dsum3=0.0d;
+		double dsum4=0.0d;
+		double dsum5=0.0d;
+		double dsum12=0.0d;
+
+		if(advanceTaxDocument!= null){
+
+			dtotalamount = advanceTaxDocument.getTotal_Amount();
+			dsum1=advanceTaxDocument.getTotal_Sum1();
+			dsum2=advanceTaxDocument.getTotal_Sum2();
+			dsum3=advanceTaxDocument.getTotal_Sum3();
+			dsum4=advanceTaxDocument.getTotal_Sum4();
+			dsum5=advanceTaxDocument.getTotal_Sum5();
+			dsum12=dsum1+dsum2;
+
+		}
+		Map<String,Object> totalMapForINTREST = new HashMap<String, Object>();
+		totalMapForINTREST.put("aytaxmp",currentdatemonth);
+		totalMapForINTREST.put("ddate", 7);
+		totalMapForINTREST.put("aytaxd", TaxLiability);
+		totalMapForINTREST.put("aytaxp", dtotalamount);
+		totalMapForINTREST.put("atpq2", dsum12);
+		totalMapForINTREST.put("atpq3", dsum3+dsum12);
+		totalMapForINTREST.put("atpq4", dsum4+dsum3+dsum12);
+		totalMapForINTREST.put("atlq2", 0);
+		totalMapForINTREST.put("atlq3", 0);
+		totalMapForINTREST.put("atlq4", 0);
+		Map<String,Object> resultMapINTEREST = ScreenCalculatorService.getScreenCalculations("interestCalculation.js", request.getParameterMap(), totalMapForINTREST);
+
+		BigInteger Interest234A = new BigInteger("0");
+		BigInteger Interest234B = new BigInteger("0");
+		BigInteger Interest234C = new BigInteger("0");
+		BigInteger TotalInterest = new BigInteger("0");
+		Interest234A = indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMapINTEREST.get("intA").toString()));
+		request.setAttribute("Interest234A", Interest234A);
+		Interest234B = indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMapINTEREST.get("intB").toString()));
+		request.setAttribute("Interest234B", Interest234B);
+		Interest234C = indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMapINTEREST.get("ic").toString()));
+		request.setAttribute("Interest234C", Interest234C);
+		TotalInterest = indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMapINTEREST.get("intt").toString()));
+		//if(interestDoc!=null){
+		//TotalInterest = indianCurrencyHelper.bigIntegerRound(interestDoc.getSection234ABC());
+		//}
 		itr1TaxComputation.setTotalIntrstPay(TotalInterest);
 		itr1TaxComputation.setTotTaxPlusIntrstPay(itr1TaxComputation.getNetTaxLiability().add(itr1TaxComputation.getTotalIntrstPay()));
 
@@ -478,6 +564,8 @@ public class XmlGenerator extends ITReturnComponent {
 				filingstatus.setTaxStatus("TR");
 			}else
 				filingstatus.setTaxStatus("NT");
+
+		//filingstatus.setPortugeseCC5A(memberPersonalInformation.getPortugesecivil());
 
 		if (memberPersonalInformation.getReturnType().equals("R")) {
 			filingstatus.setAckNoOriginalReturn(memberPersonalInformation.getOriginalAckNo());
@@ -588,21 +676,21 @@ public class XmlGenerator extends ITReturnComponent {
 					TDSonSalary tdsonSalary = new TDSonSalary();
 					EmployerOrDeductorOrCollectDetl employerOrDeductorOrCollectDetl = new EmployerOrDeductorOrCollectDetl();
 					if(formSixteenDetail.getDed_ent_4()!=null && formSixteenDetail.getDed_ent_4()!=0.0){
-					if(formSixteenDetail.getTan_deductor()!=null){
-						employerOrDeductorOrCollectDetl.setTAN(formSixteenDetail.getTan_deductor());
-					}
-					if(formSixteenDetail.getEmployer()!=null){
-						employerOrDeductorOrCollectDetl.setEmployerOrDeductorOrCollecterName(formSixteenDetail.getEmployer());
-					}
-					tdsonSalary.setEmployerOrDeductorOrCollectDetl(employerOrDeductorOrCollectDetl);
-					if(formSixteenDetail.getIncome_chargable_tax()!=null){
-						tdsonSalary.setIncChrgSal(indianCurrencyHelper.bigIntegerRound(formSixteenDetail.getIncome_chargable_tax()));
-					}
-					if(formSixteenDetail.getDed_ent_4()!=null){
-						tdsonSalary.setTotalTDSSal(indianCurrencyHelper.bigIntegerRound(formSixteenDetail.getDed_ent_4()));
-					}
-					tdsonSalaries.getTDSonSalary().add(tdsonSalary);
-					itr1.setTDSonSalaries(tdsonSalaries);
+						if(formSixteenDetail.getTan_deductor()!=null){
+							employerOrDeductorOrCollectDetl.setTAN(formSixteenDetail.getTan_deductor());
+						}
+						if(formSixteenDetail.getEmployer()!=null){
+							employerOrDeductorOrCollectDetl.setEmployerOrDeductorOrCollecterName(formSixteenDetail.getEmployer());
+						}
+						tdsonSalary.setEmployerOrDeductorOrCollectDetl(employerOrDeductorOrCollectDetl);
+						if(formSixteenDetail.getIncome_chargable_tax()!=null){
+							tdsonSalary.setIncChrgSal(indianCurrencyHelper.bigIntegerRound(formSixteenDetail.getIncome_chargable_tax()));
+						}
+						if(formSixteenDetail.getDed_ent_4()!=null){
+							tdsonSalary.setTotalTDSSal(indianCurrencyHelper.bigIntegerRound(formSixteenDetail.getDed_ent_4()));
+						}
+						tdsonSalaries.getTDSonSalary().add(tdsonSalary);
+						itr1.setTDSonSalaries(tdsonSalaries);
 					}
 				}
 			}
