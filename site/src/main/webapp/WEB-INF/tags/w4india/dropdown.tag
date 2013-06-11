@@ -54,6 +54,7 @@ request.setAttribute("objTreeMapNumbersDropdown", objTreeMapNumbersDropdown);
 			</c:forEach>
 		</c:when>
 		<c:when test="${dropDownType == 'states'}">
+		
 			<c:forEach var="objDropDown" items="${objTreeMapStates}">
 				<option value="${objDropDown.key}" <c:if test="${fetchValue eq objDropDown.key}">Selected</c:if>>${objDropDown.value}</option>
 			</c:forEach>
