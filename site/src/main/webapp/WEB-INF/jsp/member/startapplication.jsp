@@ -747,7 +747,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 				$("#pi_first_name").popover({'trigger':'focus'});
 		});
 		function getautoState(){
-  alert("hiiiiiii");
+  
   var option=document.getElementById("pi_state");
   var stateName = option.options[option.selectedIndex].value;
   if(stateName!="99"){
