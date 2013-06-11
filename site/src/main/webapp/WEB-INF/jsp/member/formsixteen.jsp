@@ -136,7 +136,7 @@
 					</div>
 				</div>
 			</fieldset>
-            <c:if test="${pageAction != 'NEW_CHILD'}">
+            
 			<fieldset>
 <!-- 
 				<legend style="color: black">
@@ -472,7 +472,7 @@
 				</table>
 				<fieldset>
 					<legend style="color: black">Deductions</legend>
-					<hst:include ref="deduction-form16"/>
+					<b>Message to be written</b>
 					<!-- <table>
 						<tr>
 							<td><label><strong>9.</strong>Deductions under
@@ -992,7 +992,7 @@
 				</table>
 
 			</fieldset>
-			</c:if>
+			
 			<div class="row-fluid show-grid">
 				<div class="span4 offset8 decimal">
 					<a href="${scriptName}?selectedItrTab=<%=ITRTab.FORM16_SINGLE%>"
