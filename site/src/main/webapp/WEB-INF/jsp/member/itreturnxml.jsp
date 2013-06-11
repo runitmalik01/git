@@ -254,26 +254,20 @@
 				</tr>
 				<tr>
 					<td colspan="1">
-					<a href="interest.html">
+					<a href="#">
 					<fmt:message key="interest.under.section.234abc"/></a>
 					</td>
 					<td  style="text-align:left">
 					<div class="btn-group" class="decimal">
 							<button class="btn btn-small dropdown-toggle"
 								data-toggle="dropdown">
-								<c:choose>
-								<c:when test="${theForm.ITR1TaxComputation.totalIntrstPay eq'0'}">
-								<c:out value="Fill Now" />
-								</c:when>
-									<c:otherwise>
 										<w4india:inr value="${theForm.ITR1TaxComputation.totalIntrstPay}" />
-									</c:otherwise>
-								</c:choose>
 								<span class="caret"></span>
 							</button>
 							<ul class="dropdown-menu">
-								<li><a href="interest.html">
-								<fmt:message key="interest.under.section.234abc"/></a></li>
+								<li><a href=""><fmt:message key="interest.under.section.234a"></fmt:message> |<w4india:inr value="${Interest234A}" />|</a></li>
+								<li><a href=""><fmt:message key="interest.under.section.234b"></fmt:message> |<w4india:inr value="${Interest234B}" />|</a></li>
+								<li><a href=""><fmt:message key="interest.under.section.234c"></fmt:message> |<w4india:inr value="${Interest234C}" />|</a></li>
 							</ul>
 						</div>
 					</td>
