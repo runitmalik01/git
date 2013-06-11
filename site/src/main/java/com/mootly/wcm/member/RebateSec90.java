@@ -1,9 +1,9 @@
 package com.mootly.wcm.member;
-import org.apache.commons.logging.Log;
+
 import org.hippoecm.hst.core.component.HstComponentException;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
-import org.hippoecm.hst.core.request.ResolvedSiteMapItem;
+
 
 import com.mootly.wcm.annotations.AdditionalBeans;
 import com.mootly.wcm.annotations.FormFields;
@@ -15,11 +15,6 @@ import com.mootly.wcm.beans.OtherSourcesDocument;
 import com.mootly.wcm.beans.RebateSec90Document;
 import com.mootly.wcm.beans.SalaryIncomeDocument;
 import com.mootly.wcm.components.ITReturnComponent;
-import com.mootly.wcm.utils.GoGreenUtil;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.hippoecm.hst.core.request.ResolvedSiteMapItem;
 
 /**
 
