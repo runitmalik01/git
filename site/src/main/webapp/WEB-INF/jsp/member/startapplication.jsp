@@ -150,7 +150,7 @@ request.setAttribute("objHashMapBoolean", objHashMapBoolean);
 								<option value="">-Select-</option>
 								<c:forEach var="booleanCombo" items="${objHashMapBoolean}">
 										<option
-											<c:if test="${pageAction == 'EDIT_CHILD' && parentBean.portugesecivil == booleanCombo.value}">selected</c:if>
+											<c:if test="${pageAction == 'EDIT_CHILD' || parentBean.portugesecivil == booleanCombo.value}">selected</c:if>
 											value="${booleanCombo.value}">${booleanCombo.value}</option>
 									</c:forEach></select></div>
 
@@ -371,11 +371,11 @@ request.setAttribute("objHashMapBoolean", objHashMapBoolean);
 				</div>
 				<div class="span2">
 					<div class="rowlabel">
-						<label for="mobile"><small>Mobile</small>
+						<label for="pi_mobile"><small>Mobile</small>
 						</label>
 					</div>
 					<div class="rowlabel">
-						<input id="mobile" value="${parentBean.mobile}" name="pi_mobile"
+						<input id="pi_mobile" value="${parentBean.mobile}" name="pi_mobile"
 							placeholder="Mobile Number" type="text" maxlength="10" />
 					</div>
 				</div>
@@ -630,6 +630,9 @@ request.setAttribute("objHashMapBoolean", objHashMapBoolean);
 				<div id="itreturnHomepage" style="display: none; visiblity: hidden">
 					<input id="pan" name="pan"
 						value="<c:choose><c:when test="${not empty parentBean && not empty parentBean.PAN}"><c:out value="${parentBean.PAN}"/></c:when><c:otherwise><c:if test="${not empty savedValuesFormMap && not empty savedValuesFormMap.value['pan']}"><c:out value="${savedValuesFormMap.value['pan'].value}"/></c:if></c:otherwise></c:choose>"
+						type="hidden" />
+						<input id="ReturnSection" name="ReturnSection"
+						value="<c:choose><c:when test="${not empty parentBean && not empty parentBean.returnSection}"><c:out value="${parentBean.returnSection}"/></c:when><c:otherwise><c:if test="${not empty savedValuesFormMap && not empty savedValuesFormMap.value['ReturnSection']}"><c:out value="${savedValuesFormMap.value['ReturnSection'].value}"/></c:if></c:otherwise></c:choose>"
 						type="hidden" /> <input id="pi_return_type" name="pi_return_type"
 						value="<c:choose><c:when test="${not empty parentBean && not empty parentBean.returnType}"><c:out value="${parentBean.returnType}"/></c:when><c:otherwise><c:out value="${itReturnType.xmlStatus}"/></c:otherwise></c:choose>"
 						type="hidden" /> <input id="fy" name="fy"
@@ -668,7 +671,7 @@ request.setAttribute("objHashMapBoolean", objHashMapBoolean);
 				$('.defective_' + defective + '_v').show();
 				$('.defective_' + defective + '_h').hide();
 			};
-			$("#mobile").watermark("Mobile # (Optional)");
+			//$("#mobile").watermark("Mobile # (Optional)");
 			var d = new Date();
 			itrDob="01/04/"+d.getFullYear();
 			$( ".indiandate" ).datepicker( "option", "defaultDate", "01/01/1980" );
