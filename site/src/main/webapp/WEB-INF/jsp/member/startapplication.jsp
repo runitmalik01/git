@@ -40,11 +40,8 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 	</c:forEach>
 </c:if>
 <hst:actionURL var="actionUrl"></hst:actionURL>
-<c:if test="${not empty parentBean && not empty parentBean.valueOfFlexFields}">
-	<c:set var="IFSCCode" value="${parentBean.valueOfFlexFields['flex_string_IFSCCode'].string}"/>
-</c:if>
 <div class="page">
-	<w4india:itrmenu/>
+	<w4india:itrmenu />
 	<h4>
 		<c:out value="${filingStatus}" />
 		Information
@@ -57,8 +54,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 				<div class="row-fluid show-grid" id="ul_revised_input">
 					<div class="span3">
 						<div class="rowlabel">
-							<label for="ack_no"><small>Original Ack No</small>
-							</label>
+							<label for="ack_no"><small>Original Ack No</small> </label>
 						</div>
 						<div class="rowlabel">
 							<input id="ack_no" name="ack_no"
@@ -68,8 +64,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 					</div>
 					<div class="span2">
 						<div class="rowlabel" id="ack_date_label">
-							<label for="ack_date"><small>Original Ack Date</small>
-							</label>
+							<label for="ack_date"><small>Original Ack Date</small> </label>
 						</div>
 						<div class="rowlabel">
 							<input id="ack_date" name="ack_date" placeholder="Enter Ack Date"
@@ -80,9 +75,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 					<div class="span2">
 						<div class="rowlabel">
 							<label for="defective"><small><abbr
-									title="Defective Return (U/s-139)">Defective?</abbr>
-							</small>
-							</label>
+									title="Defective Return (U/s-139)">Defective?</abbr> </small> </label>
 						</div>
 						<div class="rowlabel">
 							<select id="defective" name="defective"><option value="">Select</option>
@@ -109,8 +102,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 						style="display: none">
 						<div class="rowlabel">
 							<label for="notice_date"><small>Notice
-									Date(U/s-139)</small>
-							</label>
+									Date(U/s-139)</small> </label>
 						</div>
 						<div class="rowlabel">
 							<input id="notice_date" name="notice_date"
@@ -122,62 +114,54 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 			</fieldset>
 		</c:if>
 		<fieldset>
-					<legend>Filing Status</legend>
-					<div class="row-fluid show-grid">
-						<div class="span6">
-							<div class="rowlabel">
-								<label><fmt:message key="member.employe.category" /><span style="color: red">*</span> </label>
-							</div>
-							<c:if
-								test="${not empty parentBean.employe_category}">
-								<c:choose>
-									<c:when test="${parentBean.employe_category == 'GOV'}">
-										<c:set var="gov" value="checked=checked" />
-									</c:when>
-									<c:when test="${parentBean.employe_category == 'PSU'}">
-										<c:set var="psu" value="checked=checked" />
-									</c:when>
-									<c:when test="${parentBean.employe_category == 'OTH'}">
-										<c:set var="oth" value="checked=checked" />
-									</c:when>
-								</c:choose>
-							</c:if>
-							<div class="rowlabel">
-								<input type="radio" <c:out value="${gov}"/>
-									name="Employe_category" value="GOV" />Government <input
-									type="radio" <c:out value="${psu}"/> name="Employe_category"
-									value="PSU" />PSU <input type="radio" <c:out value="${oth}"/>
-									name="Employe_category" value="OTH" />Others
-							</div>
-						</div>
-						<div class="span6">
-						<div class="rowlabel">
-								<label><fmt:message key="member.portugese.civil" /><span style="color: red">*</span> </label>
-							</div>
-							<div><select id="portugesecivil" name="portugesecivil"><option value="">-Select-</option>
-							
-								<option
-									<c:if test="${not empty parentBean.portugesecivil && parentBean.portugesecivil == 'Y'}">selected</c:if>
-									value="Y">
-									<fmt:message key="member.choice.yes" />
-								</option>
-								<option
-									<c:if test="${not empty parentBean.portugesecivil && parentBean.portugesecivil == 'N'}">selected</c:if>
-									value="N">
-									<fmt:message key="member.choice.no" />
-								</option>
-							</select>
-<!--  
-								<option value="">-Select-</option>
-								<c:forEach var="booleanCombo" items="${objHashMapBoolean}">
-										<option
-											<c:if test="${pageAction == 'EDIT_CHILD' || parentBean.portugesecivil == booleanCombo.value}">selected</c:if>
-											value="${booleanCombo.value}">${booleanCombo.value}</option>
-									</c:forEach></select> --></div>
-
-						</div>
+			<legend>Filing Status</legend>
+			<div class="row-fluid show-grid">
+				<div class="span6">
+					<div class="rowlabel">
+						<label><fmt:message key="member.employe.category" /><span
+							style="color: red">*</span> </label>
 					</div>
-				</fieldset>
+					<c:if test="${not empty parentBean.employe_category}">
+						<c:choose>
+							<c:when test="${parentBean.employe_category == 'GOV'}">
+								<c:set var="gov" value="checked=checked" />
+							</c:when>
+							<c:when test="${parentBean.employe_category == 'PSU'}">
+								<c:set var="psu" value="checked=checked" />
+							</c:when>
+							<c:when test="${parentBean.employe_category == 'OTH'}">
+								<c:set var="oth" value="checked=checked" />
+							</c:when>
+						</c:choose>
+					</c:if>
+					<div class="rowlabel">
+						<input type="radio" <c:out value="${gov}"/>
+							name="Employe_category" value="GOV" />Government <input
+							type="radio" <c:out value="${psu}"/> name="Employe_category"
+							value="PSU" />PSU <input type="radio" <c:out value="${oth}"/>
+							name="Employe_category" value="OTH" />Others
+					</div>
+				</div>
+				<div class="span6">
+					<div class="rowlabel">
+						<label><fmt:message key="member.portugese.civil" /><span
+							style="color: red">*</span> </label>
+					</div>
+					<div>
+						<select id="portugesecivil" name="portugesecivil">
+
+							<option value="">-Select-</option>
+							<c:forEach var="booleanCombo" items="${objHashMapBoolean}">
+								<option
+									<c:if test="${pageAction == 'EDIT_CHILD' || parentBean.portugesecivil == booleanCombo.value}">selected</c:if>
+									value="${booleanCombo.value}">${booleanCombo.value}</option>
+							</c:forEach>
+						</select>
+					</div>
+
+				</div>
+			</div>
+		</fieldset>
 		<fieldset>
 			<legend>
 				<c:out value="${filingStatus}" />
@@ -190,8 +174,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 
 						<div class="span4">
 							<div class="rowlabel">
-								<label for="pi_first_name"><small>First Name</small>
-								</label>
+								<label for="pi_first_name"><small>First Name</small> </label>
 							</div>
 							<div class="rowlabel">
 								<input id="pi_first_name" name="pi_first_name"
@@ -201,8 +184,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 						</div>
 						<div class="span4">
 							<div class="rowlabel">
-								<label for="pi_middle_name"><small>Middle Name</small>
-								</label>
+								<label for="pi_middle_name"><small>Middle Name</small> </label>
 							</div>
 							<div class="rowlabel">
 								<input id="pi_middle_name" name="pi_middle_name"
@@ -212,8 +194,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 						</div>
 						<div class="span4">
 							<div class="rowlabel">
-								<label for="pi_last_name"><small>Last Name</small>
-								</label>
+								<label for="pi_last_name"><small>Last Name</small> </label>
 							</div>
 							<div class="rowlabel">
 								<input id="pi_last_name" name="pi_last_name"
@@ -228,8 +209,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 							<div class="rowlabel">
 								<label for="pi_last_name"><small><abbr
 										title="Name of your organization name"><c:out
-												value="${filingStatus}" /> Name</abbr> </small>
-								</label>
+												value="${filingStatus}" /> Name</abbr> </small> </label>
 							</div>
 							<div class="rowlabel">
 								<input id="pi_last_name" name="pi_last_name"
@@ -246,39 +226,36 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 				</c:choose>
 
 				<c:if test="${filingStatus eq 'PERSON'}">
-                    <div class="row-fluid show-grid">
-					<div class="span4">
-						<div class="rowlabel">
-							<label for="pi_dob"><small>Date Of Birth</small>
-							</label>
-						</div>
-						<div class="rowlabel">
-							<input id="pi_dob" name="pi_dob" placeholder="DOB" type="text"
-								maxlength="10"
-								value="<c:if test="${not empty parentBean.DOBStr}"><c:out value="${parentBean.DOBStr}"/></c:if>" />
-						</div>
-					</div>
-					<div class="span4">
-						<div class="rowlabel">
-							<label for="pi_dob"><small>Gender</small>
-							</label>
-						</div>
-						<div class="rowlabel">
-							<select id="gender" name="gender"><option value="">Select
-									Gender</option>
-								<option
-									<c:if test="${not empty parentBean.sex && parentBean.sex == 'M'}">selected</c:if>
-									value="M">Male</option>
-								<option
-									<c:if test="${not empty parentBean.sex && parentBean.sex == 'F'}">selected</c:if>
-									value="F">Female</option>
-							</select>
-						</div>
-					</div>
-					<div class="span4">
+					<div class="row-fluid show-grid">
+						<div class="span4">
 							<div class="rowlabel">
-								<label for="pi_father_name"><small>Father Name</small>
-								</label>
+								<label for="pi_dob"><small>Date Of Birth</small> </label>
+							</div>
+							<div class="rowlabel">
+								<input id="pi_dob" name="pi_dob" placeholder="DOB" type="text"
+									maxlength="10"
+									value="<c:if test="${not empty parentBean.DOBStr}"><c:out value="${parentBean.DOBStr}"/></c:if>" />
+							</div>
+						</div>
+						<div class="span4">
+							<div class="rowlabel">
+								<label for="pi_dob"><small>Gender</small> </label>
+							</div>
+							<div class="rowlabel">
+								<select id="gender" name="gender"><option value="">Select
+										Gender</option>
+									<option
+										<c:if test="${not empty parentBean.sex && parentBean.sex == 'M'}">selected</c:if>
+										value="M">Male</option>
+									<option
+										<c:if test="${not empty parentBean.sex && parentBean.sex == 'F'}">selected</c:if>
+										value="F">Female</option>
+								</select>
+							</div>
+						</div>
+						<div class="span4">
+							<div class="rowlabel">
+								<label for="pi_father_name"><small>Father Name</small> </label>
 							</div>
 							<div class="rowlabel">
 								<input id="pi_father_name" name="pi_father_name"
@@ -286,10 +263,10 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 									value="<c:if test="${not empty parentBean.fatherName}"><c:out value="${parentBean.fatherName}"/></c:if>" />
 							</div>
 						</div>
-						</div>
+					</div>
 
 				</c:if>
-				</div>
+			</div>
 		</fieldset>
 		<fieldset>
 			<legend>Address &amp; Contact Information</legend>
@@ -310,8 +287,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 				</div>
 				<div class="span6">
 					<div class="rowlabel">
-						<label for="pi_road_street"><small>Road/Street</small>
-						</label>
+						<label for="pi_road_street"><small>Road/Street</small> </label>
 					</div>
 					<div class="rowlabel">
 						<input id="pi_road_street" value="${parentBean.roadStreet}"
@@ -342,24 +318,23 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 				</div>
 				<div class="span3">
 					<div class="rowlabel">
-						<label for="pi_state"><small>State</small>
-						</label>
+						<label for="pi_state"><small>State</small> </label>
 					</div>
 					<select id="pi_state" name="pi_state" onchange="getautoState()">
-      <option value="">-Select-</option>
-      <c:forEach var="booleanCombo" items="${objHashMapstates}">
-       <option
-        <c:if test="${pageAction == 'EDIT_CHILD' || parentBean.state == booleanCombo.key}">selected</c:if>
-        value="${booleanCombo.key}">${booleanCombo.value}</option>
-      </c:forEach>
-     </select>
-					</div>
-				
+						<option value="">-Select-</option>
+						<c:forEach var="booleanCombo" items="${objHashMapstates}">
+							<option
+								<c:if test="${pageAction == 'EDIT_CHILD' || parentBean.state == booleanCombo.key}">selected</c:if>
+								value="${booleanCombo.key}">${booleanCombo.value}</option>
+						</c:forEach>
+					</select>
+				</div>
+
 				<div class="span2">
 					<div class="rowlabel">
 						<label for="pi_country"><small>Country</small> </label>
 					</div>
-					<select id="pi_country"  name="pi_country">
+					<select id="pi_country" name="pi_country">
 						<option value="">-Select-</option>
 						<c:forEach var="booleanCombo" items="${objHashMapcountry}">
 							<option
@@ -367,12 +342,12 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 								value="${booleanCombo.key}">${booleanCombo.value}</option>
 						</c:forEach>
 					</select>
-				</div></div>
-				<div class="row-fluid show-grid">
+				</div>
+			</div>
+			<div class="row-fluid show-grid">
 				<div class="span3">
 					<div class="rowlabel">
-						<label for="pi_pin_code"><small>PIN</small>
-						</label>
+						<label for="pi_pin_code"><small>PIN</small> </label>
 					</div>
 					<div class="rowlabel">
 						<input id="pi_pin_code" value="${parentBean.pinCode}"
@@ -382,8 +357,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 				</div>
 				<div class="span2">
 					<div class="rowlabel">
-						<label for="pi_std_code"><small>STD Code</small>
-						</label>
+						<label for="pi_std_code"><small>STD Code</small> </label>
 					</div>
 					<div class="rowlabel">
 						<input id="pi_std_code" value="${parentBean.stdCode}"
@@ -392,8 +366,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 				</div>
 				<div class="span2">
 					<div class="rowlabel">
-						<label for="phone"><small>Phone</small>
-						</label>
+						<label for="phone"><small>Phone</small> </label>
 					</div>
 					<div class="rowlabel">
 						<input id="pi_phone" value="${parentBean.phone}" name="pi_phone"
@@ -402,18 +375,17 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 				</div>
 				<div class="span2">
 					<div class="rowlabel">
-						<label for="pi_mobile"><small>Mobile</small>
-						</label>
+						<label for="pi_mobile"><small>Mobile</small> </label>
 					</div>
 					<div class="rowlabel">
-						<input id="pi_mobile" value="${parentBean.mobile}" name="pi_mobile"
-							placeholder="Mobile Number" type="text" maxlength="10" />
+						<input id="pi_mobile" value="${parentBean.mobile}"
+							name="pi_mobile" placeholder="Mobile Number" type="text"
+							maxlength="10" />
 					</div>
 				</div>
 				<div class="span3">
 					<div class="rowlabel">
-						<label for="mobile1"><small>Mobile(If any other)</small>
-						</label>
+						<label for="mobile1"><small>Mobile(If any other)</small> </label>
 					</div>
 					<div class="rowlabel">
 						<input id="mobile1" value="${parentBean.mobile1}"
@@ -421,28 +393,25 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 							maxlength="10" />
 					</div>
 				</div>
-				</div>
-				<div class="row-fluid show-grid">
+			</div>
+			<div class="row-fluid show-grid">
 				<div class="span3">
 					<div class="rowlabel">
 						<label for="ward_circle"><small>IncomeTax
-								Ward/Circle</small>
-						</label>
+								Ward/Circle</small> </label>
 					</div>
 					<div class="rowlabel">
-						<input id="ward_circle"
-							value="${parentBean.ward_circle}"
-							name="ward_circle" placeholder=" Ward/Circle" type="text"/>
+						<input id="ward_circle" value="${parentBean.ward_circle}"
+							name="ward_circle" placeholder=" Ward/Circle" type="text" />
 					</div>
 				</div>
 				<div class="span6">
 					<div class="rowlabel">
-						<label for="pi_email"><small>Email</small>
-						</label>
+						<label for="pi_email"><small>Email</small> </label>
 					</div>
 					<div class="input-prepend">
-						<span class="add-on"><i class="icon-envelope"></i>
-						</span> <input id="pi_email"
+						<span class="add-on"><i class="icon-envelope"></i> </span> <input
+							id="pi_email"
 							value="<c:choose><c:when test="${empty parentBean || empty parentBean.email}"><%=request.getUserPrincipal().getName()%><c:out value="${request.userPrincipal.name}"/></c:when><c:otherwise>${parentBean.email}</c:otherwise></c:choose>"
 							name="pi_email" placeholder="Email Address" type="text" />
 					</div>
@@ -585,11 +554,9 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 		<fieldset>
 			<legend>
 				<fmt:message key="member.bank.detail" />
+
 			</legend>
-			<div class="page">
-				<h5>Do you want to add Bank Detail now (for Refund and/or Tax
-					payment). You can always add this detail later.</h5>
-				<a href="#myModal" role="button" class="btn" id="bank"
+			<%--<a href="#myModal" role="button" class="btn" id="bank"
 					data-toggle="modal" onclick="bankDetail()"> <c:choose>
 						<c:when
 							test="${parentBean.BD_BANK_NAME eq null || parentBean.BD_BANK_NAME eq ''  }">ADD Bank Detail</c:when>
@@ -597,43 +564,57 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 					</c:choose>
 				</a>
 				<!-- Modal -->
-				<div id="myModal" class="modal hide fade" tabindex="-1"
+				 <div id="myModal" class="modal hide fade" tabindex="-1"
 					role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal"
 							aria-hidden="true">x</button>
 						<h3 id="myModalLabel">Bank Detail</h3>
 					</div>
-					<div class="modal-body">
-						<fieldset>
-							<label><fmt:message key="member.bank.detail.bank.name" />
-							</label> <input type="text" id="bd_bank_name" name="bd_bank_name"
-								value="${parentBean.BD_BANK_NAME}" data-toggle="tooltip"
-								title="Enter Name of Bank" maxlength="25" /><br /> 
-						  
-						    <c:choose>
-						    	<c:when test="${financialYear.startYear == 2012}">
-							    	<label>IFSC Code</label> 
-									<input type="text" id="flex_string_IFSCCode" name="flex_string_IFSCCode"
-										value="<c:if test="${not empty IFSCCode}"><c:out value="${IFSCCode}"/></c:if>"
-										title="IFSC Code" maxlength="9"
-										class="numberinput" /><br /> 
-						    	</c:when>
-						    	<c:otherwise>
-									<label><fmt:message key="member.bank.detail.micr.code" /></label> 
-									<input type="text" id="bd_micr_code" name="bd_micr_code"
-									value="${parentBean.BD_MICR_CODE}"
-									title="Enter 9-Digit valid MICR Code" maxlength="9"
-									class="numberinput" /><br /> 
-						    	</c:otherwise>
-						    </c:choose>
-							<label><fmt:message
-									key="member.bank.detail.bank.branch" />
-							</label> <input type="text" id="bd_Branch_name" name="bd_Branch_name"
-								value="${parentBean.BD_ADD_BANK_BRANCH}"
-								title="Enter Name of Bank's Branch" maxlength="120" /> <br /> <label><fmt:message
-									key="member.bank.detail.acc.type" />
-							</label> <select name="bd_account_type" title="Select Type of Account"
+					<div class="modal-body">--%>
+			<div class="row-fluid show-grid">
+				<div class="span4">
+					<div class="rowlabel">
+						<label for="bd_bank_name"><fmt:message
+								key="member.bank.detail.bank.name" /> </label>
+					</div>
+					<div class="rowlabel">
+						<input type="text" id="bd_bank_name" name="bd_bank_name"
+							value="${parentBean.BD_BANK_NAME}" data-toggle="tooltip"
+							title="Enter Name of Bank" maxlength="25" />
+					</div>
+				</div>
+				<div class="span4">
+					<div class="rowlabel">
+						<label for="bd_micr_code"><fmt:message
+								key="member.bank.detail.micr.code" /> </label>
+					</div>
+					<div class="rowlabel">
+						<input type="text" id="bd_micr_code" name="bd_micr_code"
+							value="${parentBean.BD_MICR_CODE}"
+							title="Enter 9-Digit valid MICR Code" maxlength="9"
+							class="numberinput" />
+					</div>
+				</div>
+				<div class="span4">
+					<div class="rowlabel">
+						<label for="bd_Branch_name"><fmt:message
+								key="member.bank.detail.bank.branch" /> </label>
+					</div>
+					<div class="rowlabel">
+						<input type="text" id="bd_Branch_name" name="bd_Branch_name"
+							value="${parentBean.BD_ADD_BANK_BRANCH}"
+							title="Enter Name of Bank's Branch" maxlength="120" />
+					</div>
+				</div>
+				<div class="row-fluid show-grid">
+					<div class="span4">
+						<div class="rowlabel">
+							<label for="bd_account_type"><fmt:message
+									key="member.bank.detail.acc.type" /> </label>
+						</div>
+						<div class="rowlabel">
+							<select name="bd_account_type" title="Select Type of Account"
 								id="bd_account_type">
 								<option value="">Select</option>
 								<option
@@ -646,12 +627,27 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 									value="CUR">
 									<fmt:message key="member.bank.detail.acc.type.current" />
 								</option>
-							</select> <label><fmt:message key="member.bank.detail.acc.number" />
-							</label> <input type="text" id="bd_account_no" name="bd_account_no"
+							</select>
+						</div>
+					</div>
+					<div class="span4">
+						<div class="rowlabel">
+							<label for="bd_account_no"><fmt:message
+									key="member.bank.detail.acc.number" /> </label>
+						</div>
+						<div class="rowlabel">
+							<input type="text" id="bd_account_no" name="bd_account_no"
 								value="${parentBean.BD_ACC_NUMBER}" title="Enter Account Number"
-								maxlength="17" /><br /> <label><fmt:message
-									key="member.bank.detail.ecs" />
-							</label> <select name="bd_ecs" title="Select Electronic Clearing System"
+								maxlength="17" />
+						</div>
+					</div>
+					<div class="span4">
+						<div class="rowlabel">
+							<label for="bd_ecs"><fmt:message
+									key="member.bank.detail.ecs" /> </label>
+						</div>
+						<div class="rowlabel">
+							<select name="bd_ecs" title="Select Electronic Clearing System"
 								id="bd_ecs">
 								<option
 									<c:if test="${not empty parentBean.BD_ECS && parentBean.BD_ECS == 'N'}">selected</c:if>
@@ -664,35 +660,30 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 									<fmt:message key="member.choice.yes" />
 								</option>
 							</select>
-						</fieldset>
-					</div>
-					<div class="modal-footer">
-						<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-						<button class="btn btn-primary">Save changes</button>
+						</div>
 					</div>
 				</div>
-				<div id="itreturnHomepage" style="display: none; visiblity: hidden">
-					<input id="pan" name="pan"
-						value="<c:choose><c:when test="${not empty parentBean && not empty parentBean.PAN}"><c:out value="${parentBean.PAN}"/></c:when><c:otherwise><c:if test="${not empty savedValuesFormMap && not empty savedValuesFormMap.value['pan']}"><c:out value="${savedValuesFormMap.value['pan'].value}"/></c:if></c:otherwise></c:choose>"
-						type="hidden" />
-						<input id="ReturnSection" name="ReturnSection"
-						value="<c:choose><c:when test="${not empty parentBean && not empty parentBean.returnSection}"><c:out value="${parentBean.returnSection}"/></c:when><c:otherwise><c:if test="${not empty savedValuesFormMap && not empty savedValuesFormMap.value['ReturnSection']}"><c:out value="${savedValuesFormMap.value['ReturnSection'].value}"/></c:if></c:otherwise></c:choose>"
-						type="hidden" /> <input id="pi_return_type" name="pi_return_type"
-						value="<c:choose><c:when test="${not empty parentBean && not empty parentBean.returnType}"><c:out value="${parentBean.returnType}"/></c:when><c:otherwise><c:out value="${itReturnType.xmlStatus}"/></c:otherwise></c:choose>"
-						type="hidden" /> <input id="fy" name="fy"
-						value="<c:choose><c:when test="${not empty parentBean && not empty parentBean.financialYear}"><c:out value="${parentBean.financialYear}"/></c:when><c:otherwise><c:if test="${not empty savedValuesFormMap && not empty savedValuesFormMap.value['fy']}"><c:out value="${savedValuesFormMap.value['fy'].value}"/></c:if></c:otherwise></c:choose>"
-						type="hidden" />
-					<%-- <input id="ack_no" name="ack_no" value="<c:choose><c:when test="${not empty parentBean&&parentBean.originalAckNo}"><c:out value="${parentBean.originalAckNo}"/></c:when><c:when test="${not empty savedValuesFormMap && not empty savedValuesFormMap.value['ack_no']}"><c:out value="${savedValuesFormMap.value['ack_no'].value}"/></c:when></c:choose>" type="hidden"/>
+			</div>
+		</fieldset>
+		<div id="itreturnHomepage" style="display: none; visiblity: hidden">
+			<input id="pan" name="pan"
+				value="<c:choose><c:when test="${not empty parentBean && not empty parentBean.PAN}"><c:out value="${parentBean.PAN}"/></c:when><c:otherwise><c:if test="${not empty savedValuesFormMap && not empty savedValuesFormMap.value['pan']}"><c:out value="${savedValuesFormMap.value['pan'].value}"/></c:if></c:otherwise></c:choose>"
+				type="hidden" /> <input id="ReturnSection" name="ReturnSection"
+				value="<c:choose><c:when test="${not empty parentBean && not empty parentBean.returnSection}"><c:out value="${parentBean.returnSection}"/></c:when><c:otherwise><c:if test="${not empty savedValuesFormMap && not empty savedValuesFormMap.value['ReturnSection']}"><c:out value="${savedValuesFormMap.value['ReturnSection'].value}"/></c:if></c:otherwise></c:choose>"
+				type="hidden" /> <input id="pi_return_type" name="pi_return_type"
+				value="<c:choose><c:when test="${not empty parentBean && not empty parentBean.returnType}"><c:out value="${parentBean.returnType}"/></c:when><c:otherwise><c:out value="${itReturnType.xmlStatus}"/></c:otherwise></c:choose>"
+				type="hidden" /> <input id="fy" name="fy"
+				value="<c:choose><c:when test="${not empty parentBean && not empty parentBean.financialYear}"><c:out value="${parentBean.financialYear}"/></c:when><c:otherwise><c:if test="${not empty savedValuesFormMap && not empty savedValuesFormMap.value['fy']}"><c:out value="${savedValuesFormMap.value['fy'].value}"/></c:if></c:otherwise></c:choose>"
+				type="hidden" />
+			<%-- <input id="ack_no" name="ack_no" value="<c:choose><c:when test="${not empty parentBean&&parentBean.originalAckNo}"><c:out value="${parentBean.originalAckNo}"/></c:when><c:when test="${not empty savedValuesFormMap && not empty savedValuesFormMap.value['ack_no']}"><c:out value="${savedValuesFormMap.value['ack_no'].value}"/></c:when></c:choose>" type="hidden"/>
 		            <input id="defective" name="defective" value="<c:choose><c:when test="${not empty parentBean&&parentBean.defective}"><c:out value="${parentBean.defective}"/></c:when><c:when test="${not empty savedValuesFormMap && not empty savedValuesFormMap.value['defective']}"><c:out value="${savedValuesFormMap.value['defective'].value}"/></c:when></c:choose>" type="hidden"/>
 		            <input id="ack_date" name="ack_date" value="<c:choose><c:when test="${not empty parentBean&&parentBean.originalAckDate}"><c:out value="${parentBean.originalAckDate}"/></c:when><c:when test="${not empty savedValuesFormMap && not empty savedValuesFormMap.value['ack_date']}"><c:out value="${savedValuesFormMap.value['ack_date'].value}"/></c:when></c:choose>" type="hidden"/>
 		            <input id="notice_no" name="notice_no" value="<c:choose><c:when test="${not empty parentBean&&parentBean.noticeNo}"><c:out value="${parentBean.noticeNo}"/></c:when><c:when test="${not empty savedValuesFormMap && not empty savedValuesFormMap.value['notice_no']}"><c:out value="${savedValuesFormMap.value['notice_no'].value}"/></c:when></c:choose>" type="hidden"/>
 		            <input id="notice_date" name="notice_date" value="<c:choose><c:when test="${not empty parentBean&&parentBean.noticeDate}"><c:out value="${parentBean.noticeDate}"/></c:when><c:when test="${not empty savedValuesFormMap && not empty savedValuesFormMap.value['notice_date']}"><c:out value="${savedValuesFormMap.value['notice_date'].value}"/></c:when></c:choose>" type="hidden"/>--%>
-					<input id="pi_filing_status" name="pi_filing_status"
-						value="<c:choose><c:when test="${not empty parentBean.filingStatus}"><c:out value="${parentBean.filingStatus}"/></c:when><c:otherwise><c:out value="${filingStatus.xmlCode}"/></c:otherwise></c:choose>"
-						type="hidden" />
-				</div>
-			</div>
-		</fieldset>
+			<input id="pi_filing_status" name="pi_filing_status"
+				value="<c:choose><c:when test="${not empty parentBean.filingStatus}"><c:out value="${parentBean.filingStatus}"/></c:when><c:otherwise><c:out value="${filingStatus.xmlCode}"/></c:otherwise></c:choose>"
+				type="hidden" />
+		</div>
 		<div class="row-fluid show-grid">
 			<div class="span2 offset10">
 				<a id="hrefLogin" class="button orange">Save</a>
