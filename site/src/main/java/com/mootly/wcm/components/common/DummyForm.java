@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+
 package com.mootly.wcm.components.common;
 
 import java.util.HashMap;
@@ -34,11 +35,12 @@ import com.mootly.wcm.beans.ContactUs;
 import com.mootly.wcm.beans.EmailMessage;
 import com.mootly.wcm.beans.EmailTemplate;
 import com.mootly.wcm.beans.MemberSignupDocument;
+import com.mootly.wcm.member.Member;
+import com.mootly.wcm.member.MemberService;
 import com.mootly.wcm.member.StartApplication.FullReviewedWorkflowCallbackHandler;
 import com.mootly.wcm.utils.ContentStructure;
 import com.mootly.wcm.utils.GoGreenUtil;
 import com.mootly.wcm.utils.VelocityUtils;
-
 
 /*
  * Written by Kusumlata 
@@ -57,7 +59,6 @@ public class DummyForm extends EmailForm {
 		String emailAddress=map.getField("email").getValue().toString();
 		String comments=map.getField("comments").getValue().toString();
 		String subject=map.getField("subject").getValue().toString();
-		
 		//To create document as contact (ContactUs-Bean).
 		ContactUs contact = new  ContactUs();
 		//Create setter the values of required fields.
@@ -94,9 +95,7 @@ public class DummyForm extends EmailForm {
 			else{
 				itReturnFolderPath = ContentStructure.getContactUsFolderNonReg(request);
 			}
-			log.warn(itReturnFolderPath);
 			final String itReturnPath = wpm.createAndReturn(itReturnFolderPath, ContactUs.NAMESPACE , ContactUs.NODE_NAME, true);
-			log.warn(itReturnPath);
 			ContactUs Contactdocument = (ContactUs) wpm.getObject(itReturnPath);
 			// update Contactdocument properties..
 			if (Contactdocument != null) {
