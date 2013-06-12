@@ -125,7 +125,7 @@ public class Deduction extends ITReturnComponent {
 			request.setAttribute("uuidform_16", request.getRequestContext().getResolvedSiteMapItem().getParameter("uuidform_16"));
 		}
 		if ( form16InEditMode == null ) form16InEditMode = Boolean.FALSE;
-		
+
 		request.setAttribute("deductionListService", deductionListService);
 		if (deductionListService != null && deductionListService.getDeductionSectionMap() != null &&  deductionListService.getDeductionSectionMap().containsKey(getFinancialYear())) {
 			deductionSectionMap = deductionListService.getDeductionSectionMap().get(getFinancialYear());
@@ -138,7 +138,7 @@ public class Deduction extends ITReturnComponent {
 			Double grandTotal = 0D;
 			if (deductionDocumentDetailList != null && deductionDocumentDetailList.size() > 0){
 				Map<String, List<DeductionDocumentDetail>> savedData = new HashMap<String, List<DeductionDocumentDetail>>();
-				
+
 				for (DeductionDocumentDetail deductionDocumentDetail:deductionDocumentDetailList) {
 					if (form16InEditMode && form16UniqueUUID != null) {
 						if (deductionDocumentDetail.getForm16Uuid() != null && !deductionDocumentDetail.getForm16Uuid().equals(form16UniqueUUID)) {
@@ -233,7 +233,7 @@ public class Deduction extends ITReturnComponent {
 			// totalIncomeFromProperty
 			// totaIncomeFromOtherSourcesIncludingTaxFreeIncome
 			// totalIncomeFromOtherSourcesExcludingTaxFreeIncome
-			
+
 			if (memberPersonalInformation != null) {
 				int ageInYears = getFinancialYear().getAgeInYears(memberPersonalInformation.getDOB().getTime()); 
 				boolean isSeniorCitizen = getFinancialYear().isSeniorCitizen(memberPersonalInformation.getDOB().getTime());
@@ -243,8 +243,15 @@ public class Deduction extends ITReturnComponent {
 			}
 			double salarypension=0D;double othersources=0D;double houseproperty=0D;
 			SalaryIncomeDocument salaryincome=(SalaryIncomeDocument)request.getAttribute(SalaryIncomeDocument.class.getSimpleName().toLowerCase());
-			if(salaryincome!=null)
-				salarypension=salaryincome.getTotal();
+			FormSixteenDocument objFormSixteen=(FormSixteenDocument)request.getAttribute(FormSixteenDocument.class.getSimpleName().toLowerCase());
+			if(objFormSixteen != null && objFormSixteen.getFormSixteenDetailList() != null && objFormSixteen.getFormSixteenDetailList().size() >0){
+				for(FormSixteenDetail formsixteendetail:objFormSixteen.getFormSixteenDetailList()){
+					salarypension=salarypension+formsixteendetail.getGross_a();
+				}
+			}else{
+				if(salaryincome!=null)
+					salarypension=salaryincome.getTotal();				
+			}
 			totalMapForJS.put("salarypension", salarypension);
 			OtherSourcesDocument othersourcesdoc=(OtherSourcesDocument)request.getAttribute(OtherSourcesDocument.class.getSimpleName().toLowerCase());
 			if(othersourcesdoc!=null)
