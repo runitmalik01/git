@@ -25,6 +25,7 @@ import in.gov.incometaxindiaefiling.y2012_2013.TaxPaid;
 import in.gov.incometaxindiaefiling.y2012_2013.TaxPayment;
 import in.gov.incometaxindiaefiling.y2012_2013.TaxPayments;
 import in.gov.incometaxindiaefiling.y2012_2013.TaxesPaid;
+import in.gov.incometaxindiaefiling.y2012_2013.UsrDeductUndChapVIA;
 import in.gov.incometaxindiaefiling.y2012_2013.Verification;
 import in.gov.incometaxindiaefiling.y2012_2013.Address.Phone;
 import in.gov.incometaxindiaefiling.y2012_2013.Refund.DepositToBankAccount;
@@ -112,7 +113,7 @@ public class ITRXmlGeneratorService extends ITRXmlGeneratorServiceCommon  implem
 
 		ITR1 itr1 = new ObjectFactory().createITR1();
 		CreationInfo creationInfo = new CreationInfo();
-		creationInfo.setSWVersionNo("R4");
+		creationInfo.setSWVersionNo(null);
 		creationInfo.setIntermediaryCity("Delhi");
 		creationInfo.setSWCreatedBy("Wealth4India");
 		creationInfo.setXMLCreatedBy("Wealth4India");
@@ -150,6 +151,7 @@ public class ITRXmlGeneratorService extends ITRXmlGeneratorServiceCommon  implem
 		IndianCurrencyHelper indianCurrencyHelper = new IndianCurrencyHelper();
 		Schedule80G schedule80G = new Schedule80G();
 		FormITR1 formITR1 = new FormITR1();
+		UsrDeductUndChapVIA usrDeductUndChapVIA = new UsrDeductUndChapVIA();
 
 		//Form_ITR1
 		formITR1.setFormName("ITR-1");
@@ -302,18 +304,23 @@ public class ITRXmlGeneratorService extends ITRXmlGeneratorServiceCommon  implem
 			if(keySection.contains("ccd_2"))
 				methodname="setSection80CCDEmployer";
 			String eligbleSection="total_"+keySection.replaceAll("-", "_");
+
 			if(resultMapDe.containsKey(eligbleSection)){
 				try {
 					Method meth = DeductUndChapVIA.class.getMethod(methodname, partypes);
+					Method methusr = UsrDeductUndChapVIA.class.getMethod(methodname, partypes);
 					Object[] args = new Object[]{new BigInteger(String.valueOf(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMapDe.get(eligbleSection).toString()))))};
 					meth.invoke(deductUndChapVIA, args);
+					methusr.invoke(usrDeductUndChapVIA, args);
 				}catch (NoSuchMethodException e) {
 					log.warn ("The following method does not exist in this year's return " + methodname + " will continue with next method");
 				}
 			}
 		}
 		deductUndChapVIA.setTotalChapVIADeductions(indianCurrencyHelper.bigIntegerRound(totaleligiblededuction));
+		usrDeductUndChapVIA.setTotalChapVIADeductions(indianCurrencyHelper.bigIntegerRound(totaleligiblededuction));
 		incomeDeductions.setDeductUndChapVIA(deductUndChapVIA);
+		incomeDeductions.setUsrDeductUndChapVIA(usrDeductUndChapVIA);
 		incomeDeductions.setTotalIncome(grsstotal-indianCurrencyHelper.longRound(totaleligiblededuction)); //calculation needed(GrossTotIncome-TotalChapVIADeductions(HARDCODDED 0))
 
 		itr1.setITR1IncomeDeductions(incomeDeductions);
