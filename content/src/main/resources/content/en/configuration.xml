@@ -2777,7 +2777,7 @@ format&lt;/p&gt;
           <sv:value>hippotranslation:translated</sv:value>
         </sv:property>
         <sv:property sv:name="jcr:uuid" sv:type="String">
-          <sv:value>d087c270-581a-49aa-b015-d920db68e835</sv:value>
+          <sv:value>3d45de96-d45f-4030-83dd-26e0fc82be23</sv:value>
         </sv:property>
         <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
           <sv:value>live</sv:value>
@@ -2802,13 +2802,13 @@ format&lt;/p&gt;
           <sv:value>2013-05-02T03:53:31.540+05:30</sv:value>
         </sv:property>
         <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-          <sv:value>2013-06-12T14:45:41.796+05:30</sv:value>
+          <sv:value>2013-06-12T16:16:02.562+05:30</sv:value>
         </sv:property>
         <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
           <sv:value>admin</sv:value>
         </sv:property>
         <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-          <sv:value>2013-06-12T14:45:47.613+05:30</sv:value>
+          <sv:value>2013-06-12T16:16:07.822+05:30</sv:value>
         </sv:property>
         <sv:property sv:name="hippotranslation:id" sv:type="String">
           <sv:value>548dcb42-edfa-49e4-925c-32c9f4acabd0</sv:value>
@@ -3164,7 +3164,7 @@ format&lt;/p&gt;
             <sv:value>Enter Name of Bank</sv:value>
           </sv:property>
           <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
-            <sv:value>true</sv:value>
+            <sv:value>false</sv:value>
           </sv:property>
           <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
             <sv:value/>
@@ -3190,7 +3190,7 @@ format&lt;/p&gt;
             <sv:value/>
           </sv:property>
           <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
-            <sv:value>Enter 9-Digit valid MICR Code</sv:value>
+            <sv:value>Enter IFSC Code</sv:value>
           </sv:property>
           <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
             <sv:value>true</sv:value>
@@ -3309,7 +3309,7 @@ format&lt;/p&gt;
             <sv:value>Enter Name of Bank's Branch</sv:value>
           </sv:property>
           <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
-            <sv:value>true</sv:value>
+            <sv:value>false</sv:value>
           </sv:property>
           <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
             <sv:value/>
@@ -6459,7 +6459,7 @@ out_txttotaltax = (taxPaidForeignCountry -0);
           <sv:value>hippo:harddocument</sv:value>
         </sv:property>
         <sv:property sv:name="jcr:uuid" sv:type="String">
-          <sv:value>65fa8d71-4bce-438c-a2b7-1c3774c349b5</sv:value>
+          <sv:value>225d1ffb-7ace-4ac5-b6f5-add74c2edfd4</sv:value>
         </sv:property>
         <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
           <sv:value>live</sv:value>
@@ -6484,13 +6484,13 @@ out_txttotaltax = (taxPaidForeignCountry -0);
           <sv:value>2013-05-24T01:55:56.242+05:30</sv:value>
         </sv:property>
         <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-          <sv:value>2013-06-07T13:43:48.479+05:30</sv:value>
+          <sv:value>2013-06-12T15:47:37.655+05:30</sv:value>
         </sv:property>
         <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
           <sv:value>admin</sv:value>
         </sv:property>
         <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-          <sv:value>2013-06-07T13:43:50.929+05:30</sv:value>
+          <sv:value>2013-06-12T15:47:39.770+05:30</sv:value>
         </sv:property>
         <sv:property sv:name="mootlywcm:additionalScript" sv:type="String">
           <sv:value/>
@@ -6527,13 +6527,14 @@ out_gross_total=(gross_a -0)+(gross_b -0)+(gross_c -0);
 out_balance=(out_gross_total )-(less_total_2 - 0);
 out_deductions_total=(deductions_entertainment -0)+(deductions_tax -0);
 out_income_chargable_total=(out_balance)-(out_deductions_total);
+out_ded_ent4=(ded_ent1 -0)+(ded_ent3 -0);
 var add=(additional_1 -0)+(additional_2 -0);
 out_gross_income_total=(out_income_chargable_total)+(add);
 out_total_income_2=(out_gross_income_total)-(aggregate -0);
 
 //Define Helper Classes
 //var indianCurrencyHelper = new com.mootly.wcm.services.IndianCurrencyHelper();
-var A = 0;
+/*var A = 0;
 var B = 0;
 var C = 0;
 var D = 0;
@@ -6672,13 +6673,11 @@ var avgRateTax=(D*100)/txtNetIncome ;
 //var avgTaxForeignIncome=(incomeForeignCountry*avgRateTax)
 
 //if(taxPaidForeignCountry &gt; avgTaxForeignIncome){
-out_tax_total_income_2= (D-0);
-out_education_cess=(B-0);
-out_tax_payable=(out_tax_total_income_2)+(out_education_cess );
-out_tax_payable_2=(out_tax_payable)-(relief_2 -0);
-out_ded_ent2=(ded_ent1 -0);
-out_ded_ent4=(out_ded_ent2)+(ded_ent3 -0);
-out_relief_12=(out_tax_payable_2)-(out_ded_ent4);</sv:value>
+//out_tax_total_income_2= (D-0);
+//out_education_cess=(B-0);
+//out_tax_payable=(out_tax_total_income_2)+(out_education_cess );
+//out_tax_payable_2=(out_tax_payable)-(relief_2 -0);
+*/</sv:value>
         </sv:property>
         <sv:property sv:name="mootlywcm:title" sv:type="String">
           <sv:value>Calculation of FormSixteen Screen</sv:value>
