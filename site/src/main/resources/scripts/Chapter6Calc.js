@@ -8,7 +8,7 @@
 /** - Configuration */
 var maxAllowed_80C=100000;
 var maxAllowed_80CCF=20000;
-var maxAllowed_80D=35000;
+var maxAllowed_80D=20000;
 var maxAllowed_80DD=100000;
 var maxAllowed_80U=100000;
 var maxAllowed_80qqb_80rrb=300000;
@@ -17,12 +17,20 @@ out_total_eligiblededuction=0;
 /** - END Configuration */
 //80E-It depends on gross total income
 var grosstotal= salarypension + othersources + houseproperty;
+//--- This concludes 80c,80ccc,80D Employee's Contribution
 
+//-- This is specially for total_80ccd_er (employer's this is dependent on total of salary income, houseincome and other sources)
+var tenperSalincome=(salarypension *0.1);
+//exempt for Employee's Contribution to Pension Account i.e. 80ccd_1
+
+if(total_80ccd_1 >= tenperSalincome)
+	out_total_80ccd_1=tenperSalincome;
+else out_total_80ccd_1=total_80ccd_1;
 //--- This starts 80c,80ccc,80D Employee's Contribution
-var doubleArray = java.lang.reflect.Array.newInstance(java.lang.Double, 3);
+var doubleArray = java.lang.reflect.Array.newInstance(java.lang.Double,3);
 doubleArray[0]=total_80c;
 doubleArray[1]=total_80ccc;
-doubleArray[2]=total_80ccd_1;
+doubleArray[2]=out_total_80ccd_1;
 var maxAllowed=maxAllowed_80C;
 var leftOver = maxAllowed_80C;
 for (var i=0;i<3;i++){
@@ -40,15 +48,12 @@ for (var i=0;i<3;i++){
 out_total_80c=doubleArray[0].doubleValue();
 out_total_80ccc=doubleArray[1].doubleValue();
 out_total_80ccd_1=doubleArray[2].doubleValue();
-//--- This concludes 80c,80ccc,80D Employee's Contribution
+//exempt for Employer's Contribution to Pension Account i.e. 80ccd_2
 
-//-- This is specially for total_80ccd_er (employer's this is dependent on total of salary income, houseincome and other sources)
-
-//exempt for Employee's Contribution to Pension Account i.e. 80ccd_1
-var tenperSalincome=(salarypension *0.1);
 if(total_80ccd_2 >= tenperSalincome)
 	out_total_80ccd_2=tenperSalincome;
 else out_total_80ccd_2=total_80ccd_2;
+
 //--this one is 80CCF this upper limit it 20000
 out_total_80ccf=0;
 if (total_80ccf > maxAllowed_80CCF) out_total_80ccf = maxAllowed_80CCF;
@@ -56,9 +61,11 @@ if (total_80ccf > maxAllowed_80CCF) out_total_80ccf = maxAllowed_80CCF;
 //medical insurance premium
 //self,spouse,spousesenior,parentsnonsenior,parentssenior
 var maxMedicalPremiumAllowed = ((isSeniorCitizen || (total_spousesenior > 0) || (total_parentssenior > 0)) ? 20000 : 15000);
-var maxMedicalPremium = (total_self + total_spouse + total_spousesenior + total_parentsnonsenior + total_parentssenior);
+var maxMedicalPremium = (total_self + total_spouse + total_spousesenior + total_parentsnonsenior + total_parentssenior +  total_healthcheckup);
 //if (maxMedicalPremium > maxMedicalPremiumAllowed) maxMedicalPremium = maxAllowed;
-if (maxMedicalPremium > maxMedicalPremiumAllowed) maxMedicalPremium = maxAllowed_80D;
+if (maxMedicalPremium > maxMedicalPremiumAllowed) maxMedicalPremium = maxMedicalPremiumAllowed;
+if(maxMedicalPremium >maxAllowed_80D) maxMedicalPremium=maxAllowed_80D;
+
 out_total_80d=maxMedicalPremium;
 
 //80DD - Medical Treatment/Maintenance of Handicapped Dependents
@@ -118,7 +125,7 @@ out_total_80jja= (total_80jja < grosstotal) ? total_80jja:grosstotal;
 
 //out_total_80ia= (total_80ia < grosstotal) ? total_80ia:grosstotal;
 
-out_total_eligiblededuction = out_total_80c + out_total_80ccc + out_total_80ccd_1 + out_total_80ccd_2 + out_total_80qqb + out_total_80rrb + out_total_80gga + out_total_80ggc + out_total_80g + out_total_80jja + out_total_80ddb + out_total_80u + out_total_80dd + out_total_80qqb + out_total_80e ;
+out_total_eligiblededuction = out_total_80c + out_total_80ccc + out_total_80ccd_1 + out_total_80ccd_2 + out_total_80d + out_total_80qqb + out_total_80rrb + out_total_80gga + out_total_80ggc + out_total_80g + out_total_80jja + out_total_80ddb + out_total_80u + out_total_80dd + out_total_80qqb + out_total_80e ;
 
 //80G- Calculate AdjustedGrossTotal and Excess Rent Paid and 2000 per Month
 out_total_80gg=0;
