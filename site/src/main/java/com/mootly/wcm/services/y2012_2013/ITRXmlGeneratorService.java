@@ -8,9 +8,11 @@ import in.gov.incometaxindiaefiling.y2012_2013.DeductUndChapVIA;
 import in.gov.incometaxindiaefiling.y2012_2013.DoneeWithPan;
 import in.gov.incometaxindiaefiling.y2012_2013.EmployerOrDeductorOrCollectDetl;
 import in.gov.incometaxindiaefiling.y2012_2013.FilingStatus;
+import in.gov.incometaxindiaefiling.y2012_2013.FormITR1;
 import in.gov.incometaxindiaefiling.y2012_2013.ITR1;
 import in.gov.incometaxindiaefiling.y2012_2013.ITR1IncomeDeductions;
 import in.gov.incometaxindiaefiling.y2012_2013.ITR1TaxComputation;
+import in.gov.incometaxindiaefiling.y2012_2013.IntrstPay;
 import in.gov.incometaxindiaefiling.y2012_2013.ObjectFactory;
 import in.gov.incometaxindiaefiling.y2012_2013.PersonalInfo;
 import in.gov.incometaxindiaefiling.y2012_2013.Refund;
@@ -92,7 +94,7 @@ public class ITRXmlGeneratorService extends ITRXmlGeneratorServiceCommon  implem
 	public void generateXml(HstRequest request,HstResponse response) throws Exception {
 		// TODO Auto-generated method stub
 		super.generateXml(request, response);
-		
+
 		FinancialYear financialYear =  (FinancialYear) request.getAttribute("financialYear");
 
 		MemberPersonalInformation memberPersonalInformation = (MemberPersonalInformation) request.getAttribute(MemberPersonalInformation.class.getSimpleName().toLowerCase());
@@ -110,9 +112,10 @@ public class ITRXmlGeneratorService extends ITRXmlGeneratorServiceCommon  implem
 
 		ITR1 itr1 = new ObjectFactory().createITR1();
 		CreationInfo creationInfo = new CreationInfo();
+		creationInfo.setSWVersionNo("R4");
 		creationInfo.setIntermediaryCity("Delhi");
 		creationInfo.setSWCreatedBy("Wealth4India");
-		creationInfo.setXMLCreatedBy("Wealth4India");		
+		creationInfo.setXMLCreatedBy("Wealth4India");
 		try {
 			DatatypeFactory df = DatatypeFactory.newInstance();
 			GregorianCalendar gc = new GregorianCalendar();
@@ -146,6 +149,15 @@ public class ITRXmlGeneratorService extends ITRXmlGeneratorServiceCommon  implem
 		//TaxPayment taxPayment = new TaxPayment();
 		IndianCurrencyHelper indianCurrencyHelper = new IndianCurrencyHelper();
 		Schedule80G schedule80G = new Schedule80G();
+		FormITR1 formITR1 = new FormITR1();
+
+		//Form_ITR1
+		formITR1.setFormName("ITR-1");
+		formITR1.setDescription("For Indls having Income from Salary, Pension, family pension and Interest");
+		formITR1.setAssessmentYear("2013");
+		formITR1.setSchemaVer("Ver1.0");
+		formITR1.setFormVer("Ver1.0");
+		itr1.setFormITR1(formITR1);
 
 		//personal information
 		assesseeName.setFirstName(memberPersonalInformation.getFirstName());
@@ -165,6 +177,7 @@ public class ITRXmlGeneratorService extends ITRXmlGeneratorServiceCommon  implem
 		phone.setPhoneNo(indianCurrencyHelper.bigIntegerRoundStr(memberPersonalInformation.getPhone()));
 		address.setPhone(phone);
 		address.setMobileNo(indianCurrencyHelper.bigIntegerRoundStr(memberPersonalInformation.getMobile()));
+		address.setMobileNoSec(indianCurrencyHelper.bigIntegerRoundStr(memberPersonalInformation.getMobile1()));
 		address.setEmailAddress(memberPersonalInformation.getEmail());
 		personalInfo.setAddress(address);
 		personalInfo.setDOB(indianCurrencyHelper.gregorianCalendar(memberPersonalInformation.getDOB()));
@@ -174,7 +187,7 @@ public class ITRXmlGeneratorService extends ITRXmlGeneratorServiceCommon  implem
 
 		personalInfo.setGender(memberPersonalInformation.getSex());
 		personalInfo.setStatus(memberPersonalInformation.getFilingStatus());
-		
+
 		itr1.setPersonalInfo(personalInfo);
 
 		//Income Deductions
@@ -207,6 +220,9 @@ public class ITRXmlGeneratorService extends ITRXmlGeneratorServiceCommon  implem
 			List<HouseIncomeDetail> listOfHouseIncomeDetail = houseProperty.getHouseIncomeDetailList() ;
 			if (listOfHouseIncomeDetail!= null && listOfHouseIncomeDetail.size() > 0 ){
 				for(HouseIncomeDetail houseIncomeDetail: listOfHouseIncomeDetail){
+					if(houseIncomeDetail.getLetOut()!=null){
+						incomeDeductions.setTypeOfHP(houseIncomeDetail.getLetOut());
+					}
 					houseIncome = indianCurrencyHelper.longRound(houseIncomeDetail.getIncome_hproperty());
 					houseIncomeTotal = houseIncomeTotal+houseIncome;
 				}
@@ -214,8 +230,11 @@ public class ITRXmlGeneratorService extends ITRXmlGeneratorServiceCommon  implem
 		}
 		incomeDeductions.setTotalIncomeOfHP(houseIncomeTotal);
 
-		if(otherSourcesDocument!=null)
-			incomeDeductions.setIncomeOthSrc(indianCurrencyHelper.bigIntegerRound(otherSourcesDocument.getTaxable_income()));
+		BigInteger OtherIncome = new BigInteger("0");
+		if(otherSourcesDocument!=null){
+			OtherIncome = indianCurrencyHelper.bigIntegerRound(otherSourcesDocument.getTaxable_income());
+		}
+		incomeDeductions.setIncomeOthSrc(OtherIncome);
 
 		long grsstotal = xmlCalculation.grossTotal(request, response);
 
@@ -292,7 +311,7 @@ public class ITRXmlGeneratorService extends ITRXmlGeneratorServiceCommon  implem
 					log.warn ("The following method does not exist in this year's return " + methodname + " will continue with next method");
 				}
 			}
-		}		
+		}
 		deductUndChapVIA.setTotalChapVIADeductions(indianCurrencyHelper.bigIntegerRound(totaleligiblededuction));
 		incomeDeductions.setDeductUndChapVIA(deductUndChapVIA);
 		incomeDeductions.setTotalIncome(grsstotal-indianCurrencyHelper.longRound(totaleligiblededuction)); //calculation needed(GrossTotIncome-TotalChapVIADeductions(HARDCODDED 0))
@@ -341,17 +360,7 @@ public class ITRXmlGeneratorService extends ITRXmlGeneratorServiceCommon  implem
 		}
 
 		itr1TaxComputation.setSection89(Relief89Total);
-		BigInteger Rebate90 = new BigInteger("0");
-		BigInteger Rebate91 = new BigInteger("0");
-		if(rebateSec90Document!=null){
-			Rebate90 = indianCurrencyHelper.bigIntegerRound(rebateSec90Document.getSection90());
-			Rebate91 = indianCurrencyHelper.bigIntegerRound(rebateSec90Document.getSection91());
-		}
-		//itr1TaxComputation.setSection90And91(Rebate90.add(Rebate91));
-		BigInteger rebate =new BigInteger ("0");
-		//rebate=Relief89Total.add(itr1TaxComputation.getSection90And91());
-		rebate=Relief89Total.add(itr1TaxComputation.getSection89());
-		itr1TaxComputation.setNetTaxLiability(itr1TaxComputation.getGrossTaxLiability().subtract(rebate));
+		itr1TaxComputation.setNetTaxLiability(itr1TaxComputation.getGrossTaxLiability().subtract(Relief89Total));
 
 		//interest calculation
 
@@ -440,6 +449,12 @@ public class ITRXmlGeneratorService extends ITRXmlGeneratorServiceCommon  implem
 		//TotalInterest = indianCurrencyHelper.bigIntegerRound(interestDoc.getSection234ABC());
 		//}
 		itr1TaxComputation.setTotalIntrstPay(TotalInterest);
+		IntrstPay intrstPay = new IntrstPay();
+		intrstPay.setIntrstPayUs234A(Interest234A);
+		intrstPay.setIntrstPayUs234B(Interest234B);
+		intrstPay.setIntrstPayUs234C(Interest234C);
+		intrstPay.setTotalIntrstPay(TotalInterest);
+		itr1TaxComputation.setIntrstPay(intrstPay);
 		itr1TaxComputation.setTotTaxPlusIntrstPay(itr1TaxComputation.getNetTaxLiability().add(itr1TaxComputation.getTotalIntrstPay()));
 
 		itr1.setITR1TaxComputation(itr1TaxComputation);
@@ -448,8 +463,8 @@ public class ITRXmlGeneratorService extends ITRXmlGeneratorServiceCommon  implem
 		//TaxPaid and TaxesPaid
 		if(advanceTaxDocument!=null){
 			advancetax=indianCurrencyHelper.bigIntegerRound(advanceTaxDocument.getTotal_Amount());
-			taxesPaid.setAdvanceTax(advancetax);
 		}
+		taxesPaid.setAdvanceTax(advancetax);
 
 		BigInteger bigTdsSalary=new BigInteger ("0");
 		BigInteger bigTotalTdsSalary=new BigInteger ("0");
@@ -481,8 +496,8 @@ public class ITRXmlGeneratorService extends ITRXmlGeneratorServiceCommon  implem
 		BigInteger selfassessmenttax = new BigInteger("0");
 		if(selfAssesmetTaxDocument!=null){
 			selfassessmenttax = indianCurrencyHelper.bigIntegerRound(selfAssesmetTaxDocument.getTotal_Amount());
-			taxesPaid.setSelfAssessmentTax(selfassessmenttax);
 		}
+		taxesPaid.setSelfAssessmentTax(selfassessmenttax);
 		//calculation needed (advancetax+tds+selfassessmenttax)
 
 		taxesPaid.setTotalTaxesPaid(bigTotalTds.add(advancetax).add(selfassessmenttax));
@@ -742,10 +757,11 @@ public class ITRXmlGeneratorService extends ITRXmlGeneratorServiceCommon  implem
 			itr1.setTaxPayments(taxPayments);
 		}
 		//TaxExmpIntInc
+		itr1.setTaxExmpIntInc(0);
 
 		//Verification
 		Declaration declaration = new Declaration();
-		declaration.setAssesseeVerName(memberPersonalInformation.getFirstName()+" "+memberPersonalInformation.getLastName());
+		declaration.setAssesseeVerName(memberPersonalInformation.getFirstName()+" "+memberPersonalInformation.getMiddleName()+" "+memberPersonalInformation.getLastName());
 		declaration.setFatherName(memberPersonalInformation.getFatherName());
 		declaration.setAssesseeVerPAN(memberPersonalInformation.getPAN());
 		verification.setDeclaration(declaration);
@@ -775,7 +791,7 @@ public class ITRXmlGeneratorService extends ITRXmlGeneratorServiceCommon  implem
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 	}
 
 }
