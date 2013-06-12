@@ -627,6 +627,11 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 									value="CUR">
 									<fmt:message key="member.bank.detail.acc.type.current" />
 								</option>
+								<option
+									<c:if test="${not empty parentBean.BD_TYPE_ACC && parentBean.BD_TYPE_ACC == 'CASH'}">selected</c:if>
+									value="CASH">
+									<fmt:message key="member.bank.detail.acc.type.cash" />
+								</option>
 							</select>
 						</div>
 					</div>
