@@ -962,19 +962,16 @@
 			<tr align="center">
 				<th><b>Employer Name</b></th>
 				<th><b>Employee Name</b></th>
-				<th><b>Tax Payable/Refundable</b></th>
 				<th><b>Actions</b></th>
 			</tr>
 			<c:if test="${not empty parentBean}">
 				<c:forEach items="${parentBean.formSixteenDetailList}"
 					var="salaryItemDetail">
-					<tr>
+					<tr align="center">
 						<td><a
 							href="${scriptName}/<c:out value="${salaryItemDetail.canonicalUUID}"/>/formsixteenedit"><c:out
 									value="${salaryItemDetail.employer}" /> </a></td>
 						<td><c:out value="${salaryItemDetail.employee}" /></td>
-						<td align="right"><w4india:inr
-								value="${salaryItemDetail.relief_12}" /></td>
 						<td><a
 							href="${scriptName}/<c:out value="${salaryItemDetail.canonicalUUID}"/>/formsixteenedit"><small>Edit</small>
 						</a>&nbsp;&nbsp;<a
