@@ -6,14 +6,6 @@
 <%@ page import="com.mootly.wcm.utils.*"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.mootly.wcm.beans.*"%>
-
-<%
-	ValueListService objValueListService = ValueListServiceImpl
-			.getInstance();
-	TreeMap objHashMapStates = (TreeMap) objValueListService
-			.getStates();
-	request.setAttribute("objHashMapStates", objHashMapStates);
-%>
 <c:set var="salaryincometitle">
 	<fmt:message key="member.salary.title" />
 </c:set>
