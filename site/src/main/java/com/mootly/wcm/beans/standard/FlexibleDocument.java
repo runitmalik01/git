@@ -61,7 +61,7 @@ import com.mootly.wcm.beans.FormMapFiller;
 //@Node(jcrType = "mootlywcm:flexibledocument")
 @SuppressWarnings("unused")
 public class FlexibleDocument extends BaseDocument implements FormMapFiller {
-	private final static Logger log = LoggerFactory.getLogger(FlexibleDocument.class); 
+	public final static Logger log = LoggerFactory.getLogger(FlexibleDocument.class); 
 	
 	private Map<String,Value> valueOfFlexFields = null;//new HashMap<String, Value>();
 	

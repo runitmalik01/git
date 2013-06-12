@@ -40,6 +40,9 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 	</c:forEach>
 </c:if>
 <hst:actionURL var="actionUrl"></hst:actionURL>
+<c:if test="${not empty parentBean && not empty parentBean.valueOfFlexFields}">
+	<c:set var="IFSCCode" value="${parentBean.valueOfFlexFields['flex_string_IFSCCode'].string}"/>
+</c:if>
 <div class="page">
 	<w4india:itrmenu/>
 	<h4>
@@ -594,12 +597,25 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 							<label><fmt:message key="member.bank.detail.bank.name" />
 							</label> <input type="text" id="bd_bank_name" name="bd_bank_name"
 								value="${parentBean.BD_BANK_NAME}" data-toggle="tooltip"
-								title="Enter Name of Bank" maxlength="25" /><br /> <label><fmt:message
-									key="member.bank.detail.micr.code" />
-							</label> <input type="text" id="bd_micr_code" name="bd_micr_code"
-								value="${parentBean.BD_MICR_CODE}"
-								title="Enter 9-Digit valid MICR Code" maxlength="9"
-								class="numberinput" /><br /> <label><fmt:message
+								title="Enter Name of Bank" maxlength="25" /><br /> 
+						  
+						    <c:choose>
+						    	<c:when test="${financialYear.startYear == 2012}">
+							    	<label>IFSC Code</label> 
+									<input type="text" id="flex_string_IFSCCode" name="flex_string_IFSCCode"
+										value="<c:if test="${not empty IFSCCode}"><c:out value="${IFSCCode}"/></c:if>"
+										title="IFSC Code" maxlength="9"
+										class="numberinput" /><br /> 
+						    	</c:when>
+						    	<c:otherwise>
+									<label><fmt:message key="member.bank.detail.micr.code" /></label> 
+									<input type="text" id="bd_micr_code" name="bd_micr_code"
+									value="${parentBean.BD_MICR_CODE}"
+									title="Enter 9-Digit valid MICR Code" maxlength="9"
+									class="numberinput" /><br /> 
+						    	</c:otherwise>
+						    </c:choose>
+							<label><fmt:message
 									key="member.bank.detail.bank.branch" />
 							</label> <input type="text" id="bd_Branch_name" name="bd_Branch_name"
 								value="${parentBean.BD_ADD_BANK_BRANCH}"

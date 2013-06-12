@@ -16,7 +16,9 @@ import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.mootly.wcm.model.FilingStatus;
 import com.mootly.wcm.model.FinancialYear;
+import com.mootly.wcm.model.ResidentStatus;
 import com.mootly.wcm.model.deduction.DeductionHead;
 import com.mootly.wcm.model.deduction.DeductionSection;
 
@@ -57,8 +59,7 @@ public class DeductionListService {
 			Map<FinancialYear, Map<String, DeductionSection>> deductionSectionMap) {
 		this.deductionSectionMap = deductionSectionMap;
 	}
-
-
+	
 	protected Map<String,DeductionSection> parseDeductionSectionPropertyFile(Properties deductionSections,Properties deductionSectionHeads) {
 		DeductionSection ds = null;
 		DeductionHead dh = null;

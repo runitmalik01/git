@@ -84,6 +84,8 @@ import org.hippoecm.hst.content.beans.ContentNodeBindingException;
 import org.hippoecm.hst.content.beans.Node;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 
+import com.mootly.wcm.beans.standard.FlexibleDocument;
+
 /**
  * User: vivek
  * Date: Jun 29, 2010
@@ -92,7 +94,7 @@ import org.hippoecm.hst.content.beans.standard.HippoBean;
 
 @SuppressWarnings("unused")
 @Node(jcrType = "mootlywcm:MemberPersonalInformation")
-public class MemberPersonalInformation extends BaseDocument implements ContentNodeBinder,FormMapFiller {
+public class MemberPersonalInformation extends FlexibleDocument implements ContentNodeBinder,FormMapFiller {
 	static final public String NAMESPACE = "mootlywcm:MemberPersonalInformation";
 	static final public String NODE_NAME = "PersonalInformation";
 
@@ -638,6 +640,7 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 			if(log.isInfoEnabled()){
 				log.warn("this is bean");
 			}
+			super.bindToNode(node);
 			MemberPersonalInformation mpi = (MemberPersonalInformation) content;
 
 			node.setProperty(PROP_PI_FINANCIAL_YEAR,mpi.getFinancialYear());
@@ -718,6 +721,7 @@ public class MemberPersonalInformation extends BaseDocument implements ContentNo
 	@Override
 	public void fill(FormMap formMap) {
 		// TODO Auto-generated method stub
+		super.fill(formMap);
 		if (log.isInfoEnabled()) {
 			log.info("Into the fill method");
 		}
