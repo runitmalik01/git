@@ -155,13 +155,24 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 								<label><fmt:message key="member.portugese.civil" /><span style="color: red">*</span> </label>
 							</div>
 							<div><select id="portugesecivil" name="portugesecivil">
-
+							<option
+									<c:if test="${not empty parentBean.portugesecivil && parentBean.portugesecivil == 'N'}">selected</c:if>
+									value="N">
+									<fmt:message key="member.choice.no" />
+								</option>
+								<option
+									<c:if test="${not empty parentBean.portugesecivil && parentBean.portugesecivil == 'Y'}">selected</c:if>
+									value="Y">
+									<fmt:message key="member.choice.yes" />
+								</option>
+							</select>
+<!--  
 								<option value="">-Select-</option>
 								<c:forEach var="booleanCombo" items="${objHashMapBoolean}">
 										<option
 											<c:if test="${pageAction == 'EDIT_CHILD' || parentBean.portugesecivil == booleanCombo.value}">selected</c:if>
 											value="${booleanCombo.value}">${booleanCombo.value}</option>
-									</c:forEach></select></div>
+									</c:forEach></select> --></div>
 
 						</div>
 					</div>
