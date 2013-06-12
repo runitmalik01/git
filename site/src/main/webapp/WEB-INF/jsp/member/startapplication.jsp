@@ -154,16 +154,17 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 						<div class="rowlabel">
 								<label><fmt:message key="member.portugese.civil" /><span style="color: red">*</span> </label>
 							</div>
-							<div><select id="portugesecivil" name="portugesecivil">
-							<option
-									<c:if test="${not empty parentBean.portugesecivil && parentBean.portugesecivil == 'N'}">selected</c:if>
-									value="N">
-									<fmt:message key="member.choice.no" />
-								</option>
+							<div><select id="portugesecivil" name="portugesecivil"><option value="">-Select-</option>
+							
 								<option
 									<c:if test="${not empty parentBean.portugesecivil && parentBean.portugesecivil == 'Y'}">selected</c:if>
 									value="Y">
 									<fmt:message key="member.choice.yes" />
+								</option>
+								<option
+									<c:if test="${not empty parentBean.portugesecivil && parentBean.portugesecivil == 'N'}">selected</c:if>
+									value="N">
+									<fmt:message key="member.choice.no" />
 								</option>
 							</select>
 <!--  
