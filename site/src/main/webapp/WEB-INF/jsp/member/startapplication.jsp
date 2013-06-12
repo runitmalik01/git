@@ -118,8 +118,8 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 			<div class="row-fluid show-grid">
 				<div class="span6">
 					<div class="rowlabel">
-						<label><fmt:message key="member.employe.category" /><span
-							style="color: red">*</span> </label>
+						<label><small><fmt:message key="member.employe.category" /><span
+							style="color: red">*</span> </small></label>
 					</div>
 					<c:if test="${not empty parentBean.employe_category}">
 						<c:choose>
@@ -142,10 +142,10 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 							name="Employe_category" value="OTH" />Others
 					</div>
 				</div>
-				<div class="span6">
+				<div class="span4">
 					<div class="rowlabel">
-						<label><fmt:message key="member.portugese.civil" /><span
-							style="color: red">*</span> </label>
+						<label><small><fmt:message key="member.portugese.civil" /><span
+							style="color: red">*</span></small> </label>
 					</div>
 					<div>
 						<select id="portugesecivil" name="portugesecivil">
@@ -575,8 +575,8 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 			<div class="row-fluid show-grid">
 				<div class="span4">
 					<div class="rowlabel">
-						<label for="bd_bank_name"><fmt:message
-								key="member.bank.detail.bank.name" /> </label>
+						<label for="bd_bank_name"><small>
+								<fmt:message key="member.bank.detail.bank.name" /></small> </label>
 					</div>
 					<div class="rowlabel">
 						<input type="text" id="bd_bank_name" name="bd_bank_name"
@@ -586,8 +586,8 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 				</div>
 				<div class="span4">
 					<div class="rowlabel">
-						<label for="bd_micr_code"><fmt:message
-								key="member.bank.detail.micr.code" /> </label>
+						<label for="bd_micr_code"><small><fmt:message
+								key="member.bank.detail.ifsc.code" /> </small></label>
 					</div>
 					<div class="rowlabel">
 						<input type="text" id="bd_micr_code" name="bd_micr_code"
@@ -598,8 +598,8 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 				</div>
 				<div class="span4">
 					<div class="rowlabel">
-						<label for="bd_Branch_name"><fmt:message
-								key="member.bank.detail.bank.branch" /> </label>
+						<label for="bd_Branch_name"><small><fmt:message
+								key="member.bank.detail.bank.branch" /> </small></label>
 					</div>
 					<div class="rowlabel">
 						<input type="text" id="bd_Branch_name" name="bd_Branch_name"
@@ -610,8 +610,8 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 				<div class="row-fluid show-grid">
 					<div class="span4">
 						<div class="rowlabel">
-							<label for="bd_account_type"><fmt:message
-									key="member.bank.detail.acc.type" /> </label>
+							<label for="bd_account_type"><small><fmt:message
+									key="member.bank.detail.acc.type" /></small> </label>
 						</div>
 						<div class="rowlabel">
 							<select name="bd_account_type" title="Select Type of Account"
@@ -637,8 +637,8 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 					</div>
 					<div class="span4">
 						<div class="rowlabel">
-							<label for="bd_account_no"><fmt:message
-									key="member.bank.detail.acc.number" /> </label>
+							<label for="bd_account_no"><small><fmt:message
+									key="member.bank.detail.acc.number" /></small> </label>
 						</div>
 						<div class="rowlabel">
 							<input type="text" id="bd_account_no" name="bd_account_no"
@@ -646,14 +646,17 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 								maxlength="17" />
 						</div>
 					</div>
+					</div>
+					<div class="row-fluid show-grid">
 					<div class="span4">
 						<div class="rowlabel">
-							<label for="bd_ecs"><fmt:message
-									key="member.bank.detail.ecs" /> </label>
+							<small><label for="bd_ecs"><fmt:message
+									key="member.bank.detail.ecs" /> </label></small>
 						</div>
 						<div class="rowlabel">
 							<select name="bd_ecs" title="Select Electronic Clearing System"
 								id="bd_ecs">
+								<option value="">-select-</option>
 								<option
 									<c:if test="${not empty parentBean.BD_ECS && parentBean.BD_ECS == 'N'}">selected</c:if>
 									value="N">
