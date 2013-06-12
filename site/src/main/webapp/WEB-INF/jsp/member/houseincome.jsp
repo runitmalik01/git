@@ -13,10 +13,8 @@
 <%
 	ValueListService objValueListService = ValueListServiceImpl
 			.getInstance();
-	TreeMap objHashMapStates = (TreeMap) objValueListService
-			.getStates();
-	request.setAttribute("objHashMapStates", objHashMapStates);
-
+SortedSet<Map.Entry<String,String>> objHashMapstates = objValueListService.getStates();
+request.setAttribute("objHashMapstates", objHashMapstates);
 	TreeMap objHashMapBoolean = (TreeMap) objValueListService
 			.getBoolean();
 	request.setAttribute("objHashMapBoolean", objHashMapBoolean);
@@ -82,17 +80,15 @@
 							<div class="rowlabel">
 								<label for="states"><small>State</small></label>
 							</div>
-							<div>
-								<c:set var="searchresultstitle">
-									<fmt:message key="member.contact_info.state.select" />
-								</c:set>
-								<c:set var="statesType">
-									<fmt:message key="dropdown.states" />
-								</c:set>
-								<w4india:dropdown dropDownSelectId="states"
-									optionSelectString="${searchresultstitle}"
-									dropDownType="${statesType}" fetchValue="${childBean.states}" />
-							</div>
+							<select id="pi_state" name="pi_state" >
+      <option value="">-Select-</option>
+      <c:forEach var="booleanCombo" items="${objHashMapstates}">
+       <option
+        <c:if test="${pageAction == 'EDIT_CHILD' || childBean.state == booleanCombo.key}">selected</c:if>
+        value="${booleanCombo.key}">${booleanCombo.value}</option>
+      </c:forEach>
+     </select>
+							
 						</div>
 						<div class="span3">
 							<div class="rowlabel">
@@ -110,18 +106,29 @@
 					<div class="row-fluid show-grid">
 						<div class="span4">
 							<div class="rowlabel" id="idletout">
-								<label for="letout"><small>Is the property let out?</small></label>
+								<label for="letout"><small>Type of House Property</small></label>
 							</div>
 							<div>
 								<select name="letout" id="letout" onChange="hideTanPan()"> 
 									<option value="">-Select-</option>
+									<option
+									<c:if test="${not empty childBean.letout && childBean.letout == 'S'}">selected</c:if>
+									value="S">
+									<fmt:message key="member.choice.selfocc" />
+								</option>
+								<option
+									<c:if test="${not empty childBean.letout && childBean.letout == 'L'}">selected</c:if>
+									value="L">
+									<fmt:message key="member.choice.letout" />
+								</option>
+							</select><!--  
 									<c:forEach var="booleanCombo" items="${objHashMapBoolean}">
 										<option
 											<c:if test="${pageAction == 'EDIT_CHILD' && childBean.letOut == booleanCombo.value}">selected</c:if>
 											value="${booleanCombo.value}">${booleanCombo.value}</option>
 									</c:forEach>
 								</select>
-
+-->
 							</div>
 						</div>
 						<div class="span4">
@@ -559,7 +566,7 @@
 function hideTanPan(){
 	var e=document.getElementById("letout");
 	var valueLetout = e.options[e.selectedIndex].value;
-		if(valueLetout == "No"){
+		if(valueLetout == "S"){
 					$("#Tenant_pan").hide();
 					$("#Tenant_name").hide();
 					$("#idtenantname").hide();
