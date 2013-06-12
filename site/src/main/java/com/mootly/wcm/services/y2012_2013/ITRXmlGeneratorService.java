@@ -505,7 +505,7 @@ public class ITRXmlGeneratorService extends ITRXmlGeneratorServiceCommon  implem
 		refund.setBankAccountNumber(memberPersonalInformation.getBD_ACC_NUMBER());
 		refund.setEcsRequired(memberPersonalInformation.getBD_ECS());
 		DepositToBankAccount depositToBankAccount = new DepositToBankAccount();
-		depositToBankAccount.setIFSCCode(memberPersonalInformation.getBD_MICR_CODE());
+		depositToBankAccount.setIFSCCode(memberPersonalInformation.getFlexField("flex_string_IFSCCode", ""));
 		depositToBankAccount.setBankAccountType(memberPersonalInformation.getBD_TYPE_ACC());
 		refund.setDepositToBankAccount(depositToBankAccount);
 		itr1.setRefund(refund);
