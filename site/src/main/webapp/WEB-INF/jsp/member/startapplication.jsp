@@ -652,6 +652,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 						<div class="rowlabel">
 							<small><label for="bd_ecs"><fmt:message
 									key="member.bank.detail.ecs" /> </label></small>
+									
 						</div>
 						<div class="rowlabel">
 							<select name="bd_ecs" title="Select Electronic Clearing System"
