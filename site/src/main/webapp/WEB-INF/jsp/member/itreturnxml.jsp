@@ -260,6 +260,13 @@
 					<fmt:message key="interest.under.section.234abc"/></a>
 					</td>
 					<td  style="text-align:left">
+					<c:choose>
+					<c:when test="${theForm.ITR1TaxComputation.totalIntrstPay eq '0'}">
+					<span class="decimal">
+									<w4india:inr value="${theForm.ITR1TaxComputation.totalIntrstPay}"/>
+						</span>
+					</c:when>
+					<c:otherwise>
 					<div class="btn-group" class="decimal">
 							<button class="btn btn-small dropdown-toggle"
 								data-toggle="dropdown">
@@ -267,11 +274,13 @@
 								<span class="caret"></span>
 							</button>
 							<ul class="dropdown-menu">
-								<li><a href=""><fmt:message key="interest.under.section.234a"></fmt:message> |<w4india:inr value="${Interest234A}" />|</a></li>
-								<li><a href=""><fmt:message key="interest.under.section.234b"></fmt:message> |<w4india:inr value="${Interest234B}" />|</a></li>
-								<li><a href=""><fmt:message key="interest.under.section.234c"></fmt:message> |<w4india:inr value="${Interest234C}" />|</a></li>
+								<li><a href="#"><fmt:message key="interest.under.section.234a"></fmt:message> |<w4india:inr value="${Interest234A}" />|</a></li>
+								<li><a href="#"><fmt:message key="interest.under.section.234b"></fmt:message> |<w4india:inr value="${Interest234B}" />|</a></li>
+								<li><a href="#"><fmt:message key="interest.under.section.234c"></fmt:message> |<w4india:inr value="${Interest234C}" />|</a></li>
 							</ul>
 						</div>
+					</c:otherwise>
+					</c:choose>
 					</td>
 				</tr>
 				<tr>
