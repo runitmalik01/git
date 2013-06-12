@@ -2777,7 +2777,7 @@ format&lt;/p&gt;
           <sv:value>hippotranslation:translated</sv:value>
         </sv:property>
         <sv:property sv:name="jcr:uuid" sv:type="String">
-          <sv:value>3d45de96-d45f-4030-83dd-26e0fc82be23</sv:value>
+          <sv:value>e8c7896b-1313-40a4-9eba-3f3998dedf57</sv:value>
         </sv:property>
         <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
           <sv:value>live</sv:value>
@@ -2802,13 +2802,13 @@ format&lt;/p&gt;
           <sv:value>2013-05-02T03:53:31.540+05:30</sv:value>
         </sv:property>
         <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-          <sv:value>2013-06-12T16:16:02.562+05:30</sv:value>
+          <sv:value>2013-06-12T17:50:35.960+05:30</sv:value>
         </sv:property>
         <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
           <sv:value>admin</sv:value>
         </sv:property>
         <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-          <sv:value>2013-06-12T16:16:07.822+05:30</sv:value>
+          <sv:value>2013-06-12T17:50:43.656+05:30</sv:value>
         </sv:property>
         <sv:property sv:name="hippotranslation:id" sv:type="String">
           <sv:value>548dcb42-edfa-49e4-925c-32c9f4acabd0</sv:value>
@@ -3158,7 +3158,9 @@ format&lt;/p&gt;
             <sv:value>bd_bank_name</sv:value>
           </sv:property>
           <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
-            <sv:value/>
+            <sv:value>&lt;html&gt;
+&lt;body/&gt;
+&lt;/html&gt;</sv:value>
           </sv:property>
           <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
             <sv:value>Enter Name of Bank</sv:value>
@@ -3178,7 +3180,7 @@ format&lt;/p&gt;
             <sv:value>mootlywcm:screenfieldconfig</sv:value>
           </sv:property>
           <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
-            <sv:value>micr</sv:value>
+            <sv:value/>
           </sv:property>
           <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
             <sv:value>bd_micr_code</sv:value>
@@ -3187,7 +3189,13 @@ format&lt;/p&gt;
             <sv:value>bd_micr_code</sv:value>
           </sv:property>
           <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
-            <sv:value/>
+            <sv:value>&lt;html&gt;
+&lt;body&gt;
+
+&lt;p&gt;For Example : For SBI Account the IFSC Code will be as SBIN0123456&lt;/p&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</sv:value>
           </sv:property>
           <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
             <sv:value>Enter IFSC Code</sv:value>
@@ -3216,7 +3224,13 @@ format&lt;/p&gt;
             <sv:value>bd_account_type</sv:value>
           </sv:property>
           <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
-            <sv:value/>
+            <sv:value>&lt;html&gt;
+&lt;body&gt;
+
+&lt;p&gt;Select appropriate nature of the account&lt;/p&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</sv:value>
           </sv:property>
           <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
             <sv:value/>
@@ -3657,7 +3671,14 @@ format&lt;/p&gt;
             <sv:value>portugesecivil</sv:value>
           </sv:property>
           <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
-            <sv:value/>
+            <sv:value>&lt;html&gt;
+&lt;body&gt;
+
+&lt;p&gt;Portugese Civil Code is in force in states of Goa, Union Territories of Dadra
+and Nagar Haveli and Daman and Diu&lt;/p&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</sv:value>
           </sv:property>
           <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
             <sv:value/>
