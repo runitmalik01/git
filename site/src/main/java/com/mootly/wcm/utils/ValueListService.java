@@ -9,6 +9,8 @@
 package com.mootly.wcm.utils;
 
 import java.util.List;
+import java.util.Map;
+import java.util.SortedSet;
 import java.util.TreeMap;
 
 
@@ -28,7 +30,7 @@ public interface ValueListService {
 	 * 
 	 * @return TreeMap  object
 	 */
-	TreeMap<String,String> getStates();
+	SortedSet<Map.Entry<String,String>> getStates();
 	/**
 	 * This method fetches the information valueList_states.properties file	
 	 * 
@@ -47,7 +49,7 @@ public interface ValueListService {
 	 * 
 	 * @return TreeMap  object
 	 */
-	TreeMap<String,String> getCountry();
+	SortedSet<Map.Entry<String,String>> getCountry();
 	/**
 	 * This method fetches the information valueList_countries.properties file	
 	 * 

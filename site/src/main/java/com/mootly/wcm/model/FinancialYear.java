@@ -26,6 +26,7 @@ public enum FinancialYear {
 	GregorianCalendar dateEndFinancialYear;
 	Integer assessmentYear;
 	GregorianCalendar dueDate;
+	String javaPackageName;
 
 	boolean isActive = true;
 	boolean isPastDue = false;
@@ -45,6 +46,7 @@ public enum FinancialYear {
 
 		this.displayName = this.startYear + "-" + endYear;
 		this.displayAssessmentYear = this.startAssessmentYear + "-" + this.endAssessmentYear;
+		this.javaPackageName = "y" + displayName.replace("-", "_");
 
 		this.dateStartFinancialYear = new GregorianCalendar(startYear, 03, 01);
 		this.dateEndFinancialYear = new GregorianCalendar(endYear, 04, 30);
@@ -208,6 +210,14 @@ public enum FinancialYear {
 
 	public int getEndAssessmentYear() {
 		return endAssessmentYear;
+	}
+	
+	/** 
+	 * The convention is y2012_2013
+	 * @return
+	 */
+	public String getJavaPackageName() {
+		return javaPackageName;
 	}
 
 	public GregorianCalendar getDateStartFinancialYear() {

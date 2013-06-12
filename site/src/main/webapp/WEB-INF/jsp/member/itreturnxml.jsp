@@ -1,5 +1,3 @@
-
-
 <%@page import="com.mootly.wcm.model.ITRTab"%>
 <%@include file="../includes/tags.jspf"%>
 <w4india:itrmenu></w4india:itrmenu>
@@ -81,7 +79,7 @@
 				<tr>
 					<td colspan="1">
 					<a href="houseincome.html">
-					<fmt:message key="income.house.itr1" />
+						<fmt:message key="income.house.itr1" />
 					</a>
 					</td>
 					<td>
@@ -95,7 +93,7 @@
 										<c:out value="Fill Now" />
 									</c:when>
 									<c:otherwise>
-									<w4india:inr value="${ theForm.ITR1IncomeDeductions.totalIncomeOfHP}"/>
+									<w4india:inr value="${theForm.ITR1IncomeDeductions.totalIncomeOfHP}"/>
 
 									</c:otherwise>
 								</c:choose>
@@ -116,16 +114,17 @@
 					</a>
 					</td>
 					<td>
+						<c:out value="${theForm.ITR1IncomeDeductions.incomeOthSrc}"/>
 						<div class="btn-group" class="decimal">
 							<button class="btn btn-small dropdown-toggle"
 								data-toggle="dropdown">
 								<c:choose>
 									<c:when
-										test="${theForm.ITR1IncomeDeductions.incomeOthSrc eq '0'}">
+										test="${empty theForm.ITR1IncomeDeductions.incomeOthSrc  || theForm.ITR1IncomeDeductions.incomeOthSrc eq '0'}">
 										<c:out value="Fill Now" />
 									</c:when>
 									<c:otherwise>
-									<w4india:inr value="${ theForm.ITR1IncomeDeductions.incomeOthSrc}"/>
+										<w4india:inr value="${theForm.ITR1IncomeDeductions.incomeOthSrc}"/>
 									</c:otherwise>
 								</c:choose>
 								<span class="caret"></span>
@@ -183,7 +182,7 @@
 					<td colspan="1"><a href="#"><fmt:message key="taxable.income"/></a></td>
 					<td  style="text-align:left">
 						<span class="decimal">
-									<w4india:inr value="${ theForm.ITR1IncomeDeductions.totalIncome}"/>
+									<w4india:inr value="${theForm.ITR1IncomeDeductions.totalIncome}"/>
 						</span>
 					</td>
 				</tr>
@@ -227,6 +226,9 @@
 						</span>
 					</td>
 				</tr>
+				<c:set var="pageToInclude" value="../itreturns/${financialYear.javaPackageName}/itreturnxml-rebates.jsp"/>
+				<jsp:include page="${pageToInclude}"></jsp:include>
+				<%--
 				<tr>
 					<td colspan="1"><a href="rebates.html">
 					<fmt:message key="relief.section.90/91"/></a>
@@ -252,6 +254,7 @@
 						</div>
 					</td>
 				</tr>
+				 --%>
 				<tr>
 					<td colspan="1">
 					<a href="#">

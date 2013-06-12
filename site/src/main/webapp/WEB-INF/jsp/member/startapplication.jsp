@@ -1,3 +1,5 @@
+<%@page import="java.util.Map"%>
+<%@page import="java.util.SortedSet"%>
 <%@page import="com.mootly.wcm.utils.ValueListServiceImpl"%>
 <%@page import="com.mootly.wcm.utils.ValueListService"%>
 <%@page import="java.util.TreeMap"%>
@@ -25,9 +27,9 @@ else {
 ValueListService objValueListService = ValueListServiceImpl.getInstance();
 TreeMap objHashMapBoolean = (TreeMap) objValueListService.getBoolean();
 request.setAttribute("objHashMapBoolean", objHashMapBoolean);
-TreeMap objHashMapcountry = (TreeMap) objValueListService.getCountry();
+SortedSet<Map.Entry<String,String>> objHashMapcountry = objValueListService.getCountry();
 request.setAttribute("objHashMapcountry", objHashMapcountry);
-TreeMap objHashMapstates = (TreeMap) objValueListService.getStates();
+SortedSet<Map.Entry<String,String>> objHashMapstates = objValueListService.getStates();
 request.setAttribute("objHashMapstates", objHashMapstates);
 %>
 <c:if test="${not empty formMap}">

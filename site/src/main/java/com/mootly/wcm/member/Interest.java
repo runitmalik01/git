@@ -8,7 +8,6 @@
 
 package com.mootly.wcm.member;
 
-import in.gov.incometaxindiaefiling.y2012_2013.master.DeductUndChapVIA;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -92,7 +91,7 @@ public class Interest extends ITReturnComponent {
 
 		XmlCalculation xmlCalculation = new XmlCalculation();
 		IndianCurrencyHelper indianCurrencyHelper = new IndianCurrencyHelper();
-		DeductUndChapVIA deductUndChapVIA = new DeductUndChapVIA();
+		//DeductUndChapVIA deductUndChapVIA = new DeductUndChapVIA();
 
 		long grsstotal = xmlCalculation.grossTotal(request, response);
 
@@ -187,7 +186,7 @@ public class Interest extends ITReturnComponent {
 		Double totaleligiblededuction=0D;
 		if(resultMapDe.containsKey("total_eligiblededuction"))
 			totaleligiblededuction=Double.parseDouble(resultMapDe.get("total_eligiblededuction").toString());
-		try {
+		/*try {
 			Class[] partypes = new Class[]{BigInteger.class};
 			for(String keySection:deductionSectionMap.keySet()){
 				String methodname="setSection"+keySection.toUpperCase();
@@ -217,7 +216,7 @@ public class Interest extends ITReturnComponent {
 		} catch (InvocationTargetException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 
         long TotalIncome = 0;
         TotalIncome = grsstotal - indianCurrencyHelper.longRound(totaleligiblededuction);
