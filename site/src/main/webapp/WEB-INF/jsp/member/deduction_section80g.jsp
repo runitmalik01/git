@@ -17,31 +17,31 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 	<div class="row-fluid show-grid">
 	      <div class="span8">
 	      	<div class="rowlabel"><label for="flex_string_doneeName"><small>Donee Name</small></label></div>
-	      	<div class="rowlabel"><input id="flex_string_doneeName" name="flex_string_doneeName" placeholder="Donee Name" type="text" value="${doneeWithPAN.doneeName}"/></div>
+	      	<div class="rowlabel"><input id="flex_string_doneeName" class="uprcase" name="flex_string_doneeName" placeholder="Donee Name" type="text" value="${doneeWithPAN.doneeName}"/></div>
 	      </div>
 	      <div class="span4">
 	      	<div class="rowlabel"><label for="flex_string_doneePAN"><small>Donee PAN</small></label></div>
-	      	<div class="rowlabel"><input id="flex_string_doneePAN" name="flex_string_doneePAN" placeholder="Donee PAN" type="text" maxlength="10" value="${doneeWithPAN.doneePAN}"/></div>
+	      	<div class="rowlabel"><input id="flex_string_doneePAN" class="uprcase" name="flex_string_doneePAN" placeholder="Donee PAN" type="text" maxlength="10" value="${doneeWithPAN.doneePAN}"/></div>
 	      </div>
 	</div>
 	 <div class="row-fluid show-grid">
 	   	  <div class="span6">
 	   	  	<div class="rowlabel"><label for="flex_string_doneeFlatFloorBuilding"><small>Flat/Door/Building</small></label></div>
-	   	  	<div class="rowlabel"><input id="flex_string_doneeFlatFloorBuilding" name="flex_string_doneeFlatFloorBuilding" placeholder="Flat/Door/Building" type="text"  value="${doneeWithPAN.doneeFlatFloorBuilding}"/></div>
+	   	  	<div class="rowlabel"><input id="flex_string_doneeFlatFloorBuilding" class="uprcase" name="flex_string_doneeFlatFloorBuilding" placeholder="Flat/Door/Building" type="text"  value="${doneeWithPAN.doneeFlatFloorBuilding}"/></div>
 	   	  </div>
 	   	  <div class="span6">
 	   	  	<div class="rowlabel"><label for="flex_string_doneeRoadStreet"><small>Road/Street</small></label></div>
-	   	  	<div class="rowlabel"><input id="flex_string_doneeRoadStreet" name="flex_string_doneeRoadStreet" placeholder="Road/Street" type="text" value="${doneeWithPAN.doneeRoadStreet}" /></div>
+	   	  	<div class="rowlabel"><input id="flex_string_doneeRoadStreet" class="uprcase" name="flex_string_doneeRoadStreet" placeholder="Road/Street" type="text" value="${doneeWithPAN.doneeRoadStreet}" /></div>
 	   	  </div>
 	  </div>
 	  <div class="row-fluid show-grid">
           <div class="span4">
           	<div class="rowlabel"><label for="flex_string_doneeAreaLocality"><small>Area/Locality</small></label></div>
-          	<input id="flex_string_doneeAreaLocality" name="flex_string_doneeAreaLocality" placeholder="Area/Locality" type="text" value="${doneeWithPAN.doneeAreaLocality}"/>
+          	<input id="flex_string_doneeAreaLocality" class="uprcase" name="flex_string_doneeAreaLocality" placeholder="Area/Locality" type="text" value="${doneeWithPAN.doneeAreaLocality}"/>
           </div>
           <div class="span3">
           	<div class="rowlabel"><label for="flex_string_doneeCityTownDistrict"><small>City/Town/District</small></label></div>
-          	<div class="rowlabel"><input id="flex_string_doneeCityTownDistrict" name="flex_string_doneeCityTownDistrict" placeholder="Town/City/District" type="text" value="${doneeWithPAN.doneeCityTownDistrict}"/></div>
+          	<div class="rowlabel"><input id="flex_string_doneeCityTownDistrict" class="uprcase" name="flex_string_doneeCityTownDistrict" placeholder="Town/City/District" type="text" value="${doneeWithPAN.doneeCityTownDistrict}"/></div>
           </div>
           <div class="span3">
           	<div class="rowlabel"><label for="flex_string_doneeState"><small>State</small></label></div>
