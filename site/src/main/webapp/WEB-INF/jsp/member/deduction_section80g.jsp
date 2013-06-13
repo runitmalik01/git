@@ -46,7 +46,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
           <div class="span3">
           	<div class="rowlabel"><label for="flex_string_doneeState"><small>State</small></label></div>
                   <div class="rowlabel">
-                  	<select id="flex_string_doneeState" name="flex_string_doneeState">
+                  	<select id="flex_string_doneeState" name="flex_string_doneeState" class="uprcase">
 						<option value="">-Select-</option>
 						<c:forEach var="booleanCombo" items="${objHashMapstates}">
 							<option
