@@ -50,9 +50,12 @@
     
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" ></script>
     <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+    <script src="http://twitter.github.io/bootstrap/assets/js/bootstrap-typeahead.js"></script>
     
     <hst:link var="jqueryWaterMark" path="/js/jquery.watermark.min.js"/>
     <script src="${jqueryWaterMark}"></script>
+    
+    
 
 	<hst:link var="responsive_modernizr" path="/js/responsive-modernizr.js"/>
 	<script type='text/javascript' src='${responsive_modernizr}'></script>
