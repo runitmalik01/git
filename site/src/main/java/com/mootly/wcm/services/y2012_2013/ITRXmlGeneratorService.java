@@ -162,17 +162,17 @@ public class ITRXmlGeneratorService extends ITRXmlGeneratorServiceCommon  implem
 		itr1.setFormITR1(formITR1);
 
 		//personal information
-		assesseeName.setFirstName(memberPersonalInformation.getFirstName());
-		assesseeName.setSurNameOrOrgName(memberPersonalInformation.getLastName());
-		assesseeName.setMiddleName(memberPersonalInformation.getMiddleName());
+		assesseeName.setFirstName(memberPersonalInformation.getFirstName().toUpperCase());
+		assesseeName.setSurNameOrOrgName(memberPersonalInformation.getLastName().toUpperCase());
+		assesseeName.setMiddleName(memberPersonalInformation.getMiddleName().toUpperCase());
 		personalInfo.setAssesseeName(assesseeName);
-		personalInfo.setPAN(memberPersonalInformation.getPAN());
-		address.setResidenceNo(memberPersonalInformation.getFlatDoorBuilding());
-		address.setRoadOrStreet(memberPersonalInformation.getRoadStreet());
-		address.setLocalityOrArea(memberPersonalInformation.getAreaLocality());
-		address.setCityOrTownOrDistrict(memberPersonalInformation.getTownCityDistrict());
-		address.setStateCode(memberPersonalInformation.getState());
-		address.setCountryCode(memberPersonalInformation.getCountry());
+		personalInfo.setPAN(memberPersonalInformation.getPAN().toUpperCase());
+		address.setResidenceNo(memberPersonalInformation.getFlatDoorBuilding().toUpperCase());
+		address.setRoadOrStreet(memberPersonalInformation.getRoadStreet().toUpperCase());
+		address.setLocalityOrArea(memberPersonalInformation.getAreaLocality().toUpperCase());
+		address.setCityOrTownOrDistrict(memberPersonalInformation.getTownCityDistrict().toUpperCase());
+		address.setStateCode(memberPersonalInformation.getState().toUpperCase());
+		address.setCountryCode(memberPersonalInformation.getCountry().toUpperCase());
 		address.setPinCode(indianCurrencyHelper.bigIntegerRoundStr(memberPersonalInformation.getPinCode()));
 		Phone phone = new Phone();
 		phone.setSTDcode(indianCurrencyHelper.bigIntegerRoundStr(memberPersonalInformation.getStdCode()));
@@ -527,11 +527,11 @@ public class ITRXmlGeneratorService extends ITRXmlGeneratorServiceCommon  implem
 		}else{
 			refund.setRefundDue(new BigInteger("0"));
 		}
-		refund.setBankAccountNumber(memberPersonalInformation.getBD_ACC_NUMBER());
+		refund.setBankAccountNumber(memberPersonalInformation.getBD_ACC_NUMBER().toUpperCase());
 		refund.setEcsRequired(memberPersonalInformation.getBD_ECS());
 		DepositToBankAccount depositToBankAccount = new DepositToBankAccount();
-		depositToBankAccount.setIFSCCode(memberPersonalInformation.getFlexField("flex_string_IFSCCode", ""));
-		depositToBankAccount.setBankAccountType(memberPersonalInformation.getBD_TYPE_ACC());
+		depositToBankAccount.setIFSCCode(memberPersonalInformation.getFlexField("flex_string_IFSCCode", "").toUpperCase());
+		depositToBankAccount.setBankAccountType(memberPersonalInformation.getBD_TYPE_ACC().toUpperCase());
 		refund.setDepositToBankAccount(depositToBankAccount);
 		itr1.setRefund(refund);
 
@@ -586,10 +586,10 @@ public class ITRXmlGeneratorService extends ITRXmlGeneratorServiceCommon  implem
 						DoneeWithPan doneeWithPan = new DoneeWithPan();
 						AddressDetail addressDetail = new AddressDetail();
 						if(deductionDocumentDetail.getHead()!=null && deductionDocumentDetail.getHead().equals("NoAppr100")){
-							doneeWithPan.setDoneeWithPanName(doneewithPan.getDoneeName());
-							doneeWithPan.setDoneePAN(doneewithPan.getDoneePAN());
-							addressDetail.setAddrDetail(doneewithPan.getDoneeAreaLocality());
-							addressDetail.setCityOrTownOrDistrict(doneewithPan.getDoneeCityTownDistrict());
+							doneeWithPan.setDoneeWithPanName(doneewithPan.getDoneeName().toUpperCase());
+							doneeWithPan.setDoneePAN(doneewithPan.getDoneePAN().toUpperCase());
+							addressDetail.setAddrDetail(doneewithPan.getDoneeAreaLocality().toUpperCase());
+							addressDetail.setCityOrTownOrDistrict(doneewithPan.getDoneeCityTownDistrict().toUpperCase());
 							addressDetail.setStateCode(doneewithPan.getDoneeState());
 							addressDetail.setPinCode(indianCurrencyHelper.bigIntegerRoundStr(doneewithPan.getDoneePostalCode()));
 							doneeWithPan.setAddressDetail(addressDetail);
@@ -601,10 +601,10 @@ public class ITRXmlGeneratorService extends ITRXmlGeneratorServiceCommon  implem
 							schedule80G.setDon100Percent(don100Percent);
 						}
 						if(deductionDocumentDetail.getHead()!=null && deductionDocumentDetail.getHead().equals("Appr100")){
-							doneeWithPan.setDoneeWithPanName(doneewithPan.getDoneeName());
-							doneeWithPan.setDoneePAN(doneewithPan.getDoneePAN());
-							addressDetail.setAddrDetail(doneewithPan.getDoneeAreaLocality());
-							addressDetail.setCityOrTownOrDistrict(doneewithPan.getDoneeCityTownDistrict());
+							doneeWithPan.setDoneeWithPanName(doneewithPan.getDoneeName().toUpperCase());
+							doneeWithPan.setDoneePAN(doneewithPan.getDoneePAN().toUpperCase());
+							addressDetail.setAddrDetail(doneewithPan.getDoneeAreaLocality().toUpperCase());
+							addressDetail.setCityOrTownOrDistrict(doneewithPan.getDoneeCityTownDistrict().toUpperCase());
 							addressDetail.setStateCode(doneewithPan.getDoneeState());
 							addressDetail.setPinCode(indianCurrencyHelper.bigIntegerRoundStr(doneewithPan.getDoneePostalCode()));
 							doneeWithPan.setAddressDetail(addressDetail);
@@ -616,10 +616,10 @@ public class ITRXmlGeneratorService extends ITRXmlGeneratorServiceCommon  implem
 							schedule80G.setDon100PercentApprReqd(don100PercentApprReqd);
 						}
 						if(deductionDocumentDetail.getHead()!=null && deductionDocumentDetail.getHead().equals("NoAppr50")){
-							doneeWithPan.setDoneeWithPanName(doneewithPan.getDoneeName());
-							doneeWithPan.setDoneePAN(doneewithPan.getDoneePAN());
-							addressDetail.setAddrDetail(doneewithPan.getDoneeAreaLocality());
-							addressDetail.setCityOrTownOrDistrict(doneewithPan.getDoneeCityTownDistrict());
+							doneeWithPan.setDoneeWithPanName(doneewithPan.getDoneeName().toUpperCase());
+							doneeWithPan.setDoneePAN(doneewithPan.getDoneePAN().toUpperCase());
+							addressDetail.setAddrDetail(doneewithPan.getDoneeAreaLocality().toUpperCase());
+							addressDetail.setCityOrTownOrDistrict(doneewithPan.getDoneeCityTownDistrict().toUpperCase());
 							addressDetail.setStateCode(doneewithPan.getDoneeState());
 							addressDetail.setPinCode(indianCurrencyHelper.bigIntegerRoundStr(doneewithPan.getDoneePostalCode()));
 							doneeWithPan.setAddressDetail(addressDetail);
@@ -631,10 +631,10 @@ public class ITRXmlGeneratorService extends ITRXmlGeneratorServiceCommon  implem
 							schedule80G.setDon50PercentNoApprReqd(don50PercentNoApprReqd);
 						}
 						if(deductionDocumentDetail.getHead()!=null && deductionDocumentDetail.getHead().equals("Appr50")){
-							doneeWithPan.setDoneeWithPanName(doneewithPan.getDoneeName());
-							doneeWithPan.setDoneePAN(doneewithPan.getDoneePAN());
-							addressDetail.setAddrDetail(doneewithPan.getDoneeAreaLocality());
-							addressDetail.setCityOrTownOrDistrict(doneewithPan.getDoneeCityTownDistrict());
+							doneeWithPan.setDoneeWithPanName(doneewithPan.getDoneeName().toUpperCase());
+							doneeWithPan.setDoneePAN(doneewithPan.getDoneePAN().toUpperCase());
+							addressDetail.setAddrDetail(doneewithPan.getDoneeAreaLocality().toUpperCase());
+							addressDetail.setCityOrTownOrDistrict(doneewithPan.getDoneeCityTownDistrict().toUpperCase());
 							addressDetail.setStateCode(doneewithPan.getDoneeState());
 							addressDetail.setPinCode(indianCurrencyHelper.bigIntegerRoundStr(doneewithPan.getDoneePostalCode()));
 							doneeWithPan.setAddressDetail(addressDetail);
@@ -663,10 +663,10 @@ public class ITRXmlGeneratorService extends ITRXmlGeneratorServiceCommon  implem
 					EmployerOrDeductorOrCollectDetl employerOrDeductorOrCollectDetl = new EmployerOrDeductorOrCollectDetl();
 					if(formSixteenDetail.getDed_ent_4()!=null && formSixteenDetail.getDed_ent_4()!=0.0){
 						if(formSixteenDetail.getTan_deductor()!=null){
-							employerOrDeductorOrCollectDetl.setTAN(formSixteenDetail.getTan_deductor());
+							employerOrDeductorOrCollectDetl.setTAN(formSixteenDetail.getTan_deductor().toUpperCase());
 						}
 						if(formSixteenDetail.getEmployer()!=null){
-							employerOrDeductorOrCollectDetl.setEmployerOrDeductorOrCollecterName(formSixteenDetail.getEmployer());
+							employerOrDeductorOrCollectDetl.setEmployerOrDeductorOrCollecterName(formSixteenDetail.getEmployer().toUpperCase());
 						}
 						tdsonSalary.setEmployerOrDeductorOrCollectDetl(employerOrDeductorOrCollectDetl);
 						if(formSixteenDetail.getIncome_chargable_tax()!=null){
@@ -723,8 +723,8 @@ public class ITRXmlGeneratorService extends ITRXmlGeneratorServiceCommon  implem
 				for(TdsOthersDetail tdsOthersDetail:listOfTdsFromOthers){
 					TDSonOthThanSal tdsonOthThanSal = new TDSonOthThanSal();
 					EmployerOrDeductorOrCollectDetl employerOrDeductorOrCollectDetl = new EmployerOrDeductorOrCollectDetl();
-					employerOrDeductorOrCollectDetl.setTAN(tdsOthersDetail.getTan_Deductor());
-					employerOrDeductorOrCollectDetl.setEmployerOrDeductorOrCollecterName(tdsOthersDetail.getName_Deductor());
+					employerOrDeductorOrCollectDetl.setTAN(tdsOthersDetail.getTan_Deductor().toUpperCase());
+					employerOrDeductorOrCollectDetl.setEmployerOrDeductorOrCollecterName(tdsOthersDetail.getName_Deductor().toUpperCase());
 					tdsonOthThanSal.setEmployerOrDeductorOrCollectDetl(employerOrDeductorOrCollectDetl);
 					tdsonOthThanSal.setTotTDSOnAmtPaid(indianCurrencyHelper.bigIntegerRound(tdsOthersDetail.getTotal_TaxDeductor()));
 					tdsonOthThanSal.setClaimOutOfTotTDSOnAmtPaid(indianCurrencyHelper.bigIntegerRound(tdsOthersDetail.getP_Amount()));
@@ -771,11 +771,12 @@ public class ITRXmlGeneratorService extends ITRXmlGeneratorServiceCommon  implem
 
 		//Verification
 		Declaration declaration = new Declaration();
-		declaration.setAssesseeVerName(memberPersonalInformation.getFirstName()+" "+memberPersonalInformation.getMiddleName()+" "+memberPersonalInformation.getLastName());
-		declaration.setFatherName(memberPersonalInformation.getFatherName());
-		declaration.setAssesseeVerPAN(memberPersonalInformation.getPAN());
+		declaration.setAssesseeVerName(memberPersonalInformation.getFirstName().toUpperCase()+" "+
+				memberPersonalInformation.getMiddleName().toUpperCase()+" "+memberPersonalInformation.getLastName().toUpperCase());
+		declaration.setFatherName(memberPersonalInformation.getFatherName().toUpperCase());
+		declaration.setAssesseeVerPAN(memberPersonalInformation.getPAN().toUpperCase());
 		verification.setDeclaration(declaration);
-		verification.setPlace(memberPersonalInformation.getTownCityDistrict());
+		verification.setPlace(memberPersonalInformation.getTownCityDistrict().toUpperCase());
 		try {
 			DatatypeFactory df = DatatypeFactory.newInstance();
 			GregorianCalendar gc = new GregorianCalendar();
