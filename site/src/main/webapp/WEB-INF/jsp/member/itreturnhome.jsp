@@ -7,6 +7,7 @@
 <%@page import="org.hippoecm.hst.content.beans.standard.HippoFolder"%>
 <%@include file="../includes/tags.jspf"%>
 <%@page import="com.mootly.wcm.utils.ValueListService"%>
+<%@page import="com.mootly.wcm.model.FilingSection"%>
 <c:set var="startapplication">
 	<fmt:message key="member.start.application" />
 </c:set>
@@ -16,6 +17,7 @@ ValueListService objValueListService = ValueListServiceImpl
 .getInstance();
 TreeMap objTreeMapSection = (TreeMap) objValueListService.getReturnFile();
 	request.setAttribute("objTreeMapSection", objTreeMapSection);
+	pageContext.setAttribute("filingSectionValues", FilingSection.values());
 	 %>
 <div class="page">	
 	<h4>Prepare Income Tax Return</h4>
@@ -38,9 +40,11 @@ TreeMap objTreeMapSection = (TreeMap) objValueListService.getReturnFile();
 		          	<div class="rowlabel">
 		          	<select id="ReturnSection" name="ReturnSection" onChange="getSection()">
 		          	<option value="">Select </option>
-		          	<c:forEach var="section" items="${objTreeMapSection}">
-		          	<option value="${section.value}">${section.value}</option>
-		          	</c:forEach>
+			        <c:forEach items="${filingSectionValues}" var="fs">
+				      <c:if test="${fs != 'UNKNOWN'}"> 
+					 <option value='<c:out value="${fs.xmlCode}"/>'><c:out value="${fs.displayString}"/></option>
+				       </c:if>
+			        </c:forEach>
 		          	</select></div>
 		          </div>	      
 		          <div class="span2">    
@@ -177,7 +181,7 @@ TreeMap objTreeMapSection = (TreeMap) objValueListService.getReturnFile();
 	function getSection(){
 		var option=document.getElementById("ReturnSection");
 		var sectionName = option.options[option.selectedIndex].value;
-		if(sectionName=="u/s 139(9)" || sectionName == "Revised 139(5)"){
+		if(sectionName=="17" || sectionName == "18"){
 		$("#pi_return_type").val("revised");
 		} else{
 		$("#pi_return_type").val("original");
