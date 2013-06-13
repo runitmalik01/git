@@ -635,7 +635,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 					<div class="rowlabel">
 						<input type="text" id="<c:out value="${bnkcode}"/>"
 							name="<c:out value="${bnkcode}"/>"
-							value="${parentBean.BD_MICR_CODE}"
+							value="<c:choose><c:when test="${parentBean.BD_MICR_CODE}"><c:out value="${parentBean.BD_MICR_CODE}"/></c:when><c:otherwise><c:out value="${ifsccode}"/></c:otherwise></c:choose>"
 							maxlength="<c:out value="${maxlen}"/>" />
 					</div>
 				</div>
