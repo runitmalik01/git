@@ -47,34 +47,34 @@
 <body class="<c:choose><c:when test="${not empty bodyCssClass}"><c:out value="${bodyCssClass}"/></c:when><c:otherwise>page</c:otherwise></c:choose>">
     <hst:link var="modernizr" path="/js/modernizr.custom.39581.js"/>
 	<script type='text/javascript' src='${modernizr}'></script>
-    
+
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" ></script>
     <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
     <script src="http://twitter.github.io/bootstrap/assets/js/bootstrap-typeahead.js"></script>
-    
+
     <hst:link var="jqueryWaterMark" path="/js/jquery.watermark.min.js"/>
     <script src="${jqueryWaterMark}"></script>
-    
-    
+
+
 
 	<hst:link var="responsive_modernizr" path="/js/responsive-modernizr.js"/>
 	<script type='text/javascript' src='${responsive_modernizr}'></script>
-	
+
 	<script type='text/javascript' src='<hst:link path="/js/bootstrap.min.js"></hst:link>'></script>
-	<div id="container" class="hfeed">	
-		<hst:include ref="header"/>	
+	<div id="container" class="hfeed">
+		<hst:include ref="header"/>
 		<div id="wrapper" class="clearfix">
-			<hst:include ref="main"/>		
-			<hst:headContributions categoryIncludes="customHTML" xhtml="false"/>	
+			<hst:include ref="main"/>
+			<hst:headContributions categoryIncludes="customHTML" xhtml="false"/>
 	    </div><!-- end of #wrapper -->
 	</div><!-- end of #container -->
 	<hst:include ref="footer"/>
 	<hst:headContributions categoryIncludes="jsInternal"/>
 	<hst:link var="responsive_scripts" path="/js/responsive-scripts.js"/>
-	<script type='text/javascript' src='${responsive_scripts}'></script> 
+	<script type='text/javascript' src='${responsive_scripts}'></script>
 	<hst:link var="responsive_plugin" path="/js/responsive-plugins.js"/>
 	<script type='text/javascript' src='${responsive_plugin}'></script>
-	
+
 	<hst:link var="jquery_validate_min" path="/js/jquery.validate.min.js"/>
 	<script type='text/javascript' src='${jquery_validate_min}'></script>
 	<hst:componentRenderingURL var="ajaxLinkToComponent"></hst:componentRenderingURL>
@@ -86,66 +86,70 @@
           buttonImage: "<hst:link path="/img/calendar.gif"/>",*/
 		  /*buttonText: "Calendar",*/
 	      dateFormat: "dd/mm/yy"
-		});  
+		});
 		$.datepicker.setDefaults( $.datepicker.regional[ "fr" ] );
-		$.validator.addMethod("pan", function(value, element) {  
-		   	 return this.optional(element) || /^[a-zA-Z]{3}[p|P|c|C|h|H|f|F|a|A|t|T|b|B|l|L|j|J|g|G][a-zA-Z]\d{4}[a-zA-Z]{1}?$/i.test(value);  
+		$.validator.addMethod("pan", function(value, element) {
+		   	 return this.optional(element) || /^[a-zA-Z]{3}[p|P|c|C|h|H|f|F|a|A|t|T|b|B|l|L|j|J|g|G][a-zA-Z]\d{4}[a-zA-Z]{1}?$/i.test(value);
 		}, "PAN is invalid.");
-		$.validator.addMethod("amount", function(value, element) {  
-		   	 return this.optional(element) || /^[0-9]+\.?[0-9]{0,2}?$/i.test(value);  
+		$.validator.addMethod("amount", function(value, element) {
+		   	 return this.optional(element) || /^[0-9]+\.?[0-9]{0,2}?$/i.test(value);
 		}, "AMOUNT is invalid.");
-		$.validator.addMethod("percentage", function(value, element) {  
-		   	 return this.optional(element) || /^(100(\.00?)?|[1-9]?\d(\.\d\d?)?)?$/i.test(value);  
+		$.validator.addMethod("percentage", function(value, element) {
+		   	 return this.optional(element) || /^(100(\.00?)?|[1-9]?\d(\.\d\d?)?)?$/i.test(value);
 		}, "Percentage is invalid.");
-		$.validator.addMethod("max", function(value, element) {  
-		   	 return this.optional(element) || /^([0-9]+\.?[0-9]{0,2}){0,14}?$/i.test(value);  
+		$.validator.addMethod("max", function(value, element) {
+		   	 return this.optional(element) || /^([0-9]+\.?[0-9]{0,2}){0,14}?$/i.test(value);
 		}, "Max length allowed is 14.");
-		$.validator.addMethod("pin", function(value, element) {  
-		   	 return this.optional(element) || /^[0-9]{6}?$/i.test(value);  
+		$.validator.addMethod("pin", function(value, element) {
+		   	 return this.optional(element) || /^[0-9]{6}?$/i.test(value);
 		}, "PIN Code is invalid");
-		$.validator.addMethod("std", function(value, element) {  
-		   	 return this.optional(element) || /^[0-9]{1,5}?$/i.test(value);  
+		$.validator.addMethod("std", function(value, element) {
+		   	 return this.optional(element) || /^[0-9]{1,5}?$/i.test(value);
 		}, "STD Code is invalid");
-		$.validator.addMethod("mobile", function(value, element) {  
-		   	 return this.optional(element) || /^[1-9]{1}[0-9]{9}?$/i.test(value);  
+		$.validator.addMethod("mobile", function(value, element) {
+		   	 return this.optional(element) || /^[1-9]{1}[0-9]{9}?$/i.test(value);
 		}, "Mobile No is invalid");
-		$.validator.addMethod("email", function(value, element) {  
-		   	 return this.optional(element) || /^([\.a-zA-Z0-9_\-])+@([a-zA-Z0-9_\-])+(([a-zA-Z0-9_\-])*\.([a-zA-Z0-9_\-])+)+?$/i.test(value);  
+		$.validator.addMethod("email", function(value, element) {
+		   	 return this.optional(element) || /^([\.a-zA-Z0-9_\-])+@([a-zA-Z0-9_\-])+(([a-zA-Z0-9_\-])*\.([a-zA-Z0-9_\-])+)+?$/i.test(value);
 		}, "Email-ID is invalid");
-		$.validator.addMethod("accountno", function(value, element) {  
-		   	 return this.optional(element) || /^[0-9]{2,17}$|^[^0]{1}$/i.test(value);  
+		$.validator.addMethod("accountno", function(value, element) {
+		   	 return this.optional(element) || /^[0-9]{2,17}$|^[^0]{1}$/i.test(value);
 		}, "Account No is invalid");
-		$.validator.addMethod("micr", function(value, element) {  
-		   	 return this.optional(element) || /^[0-9]{9}?$/i.test(value);  
+		$.validator.addMethod("micr", function(value, element) {
+		   	 return this.optional(element) || /^[0-9]{9}?$/i.test(value);
 		}, "MICR Code is invalid");
-		$.validator.addMethod("ifsc", function(value, element) {  
-		   	 return this.optional(element) || /^[a-zA-Z0-9]{4}[0]{1}[a-zA-Z0-9]{6}?$/i.test(value);  
+		$.validator.addMethod("ifsc", function(value, element) {
+		   	 return this.optional(element) || /^[a-zA-Z0-9]{4}[0]{1}[a-zA-Z0-9]{6}?$/i.test(value);
 		}, "IFSC Code is invalid");
-		$.validator.addMethod("tan", function(value, element) {  
-		   	 return this.optional(element) || /^[a-zA-Z]{4}[0-9]{5}[a-zA-Z]{1}?$/i.test(value);  
+		$.validator.addMethod("tan", function(value, element) {
+		   	 return this.optional(element) || /^[a-zA-Z]{4}[0-9]{5}[a-zA-Z]{1}?$/i.test(value);
 		}, "TAN is invalid");
-		$.validator.addMethod("bsr", function(value, element) {  
-		   	 return this.optional(element) || /^[0-9]{7}?$/i.test(value); 
+		$.validator.addMethod("bsr", function(value, element) {
+		   	 return this.optional(element) || /^[0-9]{7}?$/i.test(value);
 		}, "BSR Code is invalid");
-		$.validator.addMethod("serial", function(value, element) {  
-		   	 return this.optional(element) || /^[0-9]{0,5}?$/i.test(value); 
+		$.validator.addMethod("serial", function(value, element) {
+		   	 return this.optional(element) || /^[0-9]{0,5}?$/i.test(value);
 		}, "Challan Serial No is invalid");
-		$.validator.addMethod("tdscertificate", function(value, element) {  
-		   	 return this.optional(element) || /^[0-9]{0,8}?$/i.test(value); 
+		$.validator.addMethod("tdscertificate", function(value, element) {
+		   	 return this.optional(element) || /^[0-9]{0,8}?$/i.test(value);
 		}, "TDS Certificate No is invalid");
-		$.validator.addMethod("ackno", function(value, element) {  
-		   	 return this.optional(element) || /^[0-9]{15}?$/i.test(value); 
+		$.validator.addMethod("ackno", function(value, element) {
+		   	 return this.optional(element) || /^[0-9]{15}?$/i.test(value);
 		}, "Ack No is invalid");
-		$.validator.addMethod("indiandate", function(value, element) {  
-		   	 return this.optional(element) || /^[0-9]{2}\/[0-9]{2}\/[0-9]{4}?$/i.test(value); 
+		$.validator.addMethod("indiandate", function(value, element) {
+		   	 return this.optional(element) || /^[0-9]{2}\/[0-9]{2}\/[0-9]{4}?$/i.test(value);
 		}, "Date of Birth is invalid");
-		$.validator.addMethod("indiandateAdvance", function(value, element) {  
-		   	 return this.optional(element) || /^[0-9]{2}\/[0-9]{2}\/[0-9]{4}?$/i.test(value); 
+		$.validator.addMethod("indiandateAdvance", function(value, element) {
+		   	 return this.optional(element) || /^[0-9]{2}\/[0-9]{2}\/[0-9]{4}?$/i.test(value);
 		}, "Date Format is invalid");
-		$.validator.addMethod("indiandateSelfAssesment", function(value, element) {  
-		   	 return this.optional(element) || /^[0-9]{2}\/[0-9]{2}\/[0-9]{4}?$/i.test(value); 
+		$.validator.addMethod("indiandateSelfAssesment", function(value, element) {
+		   	 return this.optional(element) || /^[0-9]{2}\/[0-9]{2}\/[0-9]{4}?$/i.test(value);
 		}, "Date Format is invalid");
+
+		$("input[type=text]").keyup(function(){
+			  $(this).val( $(this).val().toUpperCase() );
+			});
+
 	</script>
 </body>
 </html>
- 
