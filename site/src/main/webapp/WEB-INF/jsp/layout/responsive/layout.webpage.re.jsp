@@ -146,9 +146,6 @@
 		   	 return this.optional(element) || /^[0-9]{2}\/[0-9]{2}\/[0-9]{4}?$/i.test(value);
 		}, "Date Format is invalid");
 
-		$("input[type=text]").keyup(function(){
-			  $(this).val( $(this).val().toUpperCase() );
-			});
 
 	</script>
 </body>
