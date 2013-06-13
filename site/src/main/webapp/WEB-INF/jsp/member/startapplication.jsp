@@ -180,7 +180,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 								<label for="pi_first_name"><small>First Name</small> </label>
 							</div>
 							<div class="rowlabel">
-								<input id="pi_first_name" name="pi_first_name"
+								<input id="pi_first_name" name="pi_first_name" class="uprcase"
 									placeholder="First Name" type="text"
 									value="<c:if test="${not empty parentBean.firstName}"><c:out value="${parentBean.firstName}"/></c:if>" />
 							</div>
@@ -190,7 +190,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 								<label for="pi_middle_name"><small>Middle Name</small> </label>
 							</div>
 							<div class="rowlabel">
-								<input id="pi_middle_name" name="pi_middle_name"
+								<input id="pi_middle_name" name="pi_middle_name" class="uprcase"
 									placeholder="Middle Name" type="text"
 									value="<c:if test="${not empty parentBean.middleName}"><c:out value="${parentBean.middleName}"/></c:if>" />
 							</div>
@@ -200,7 +200,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 								<label for="pi_last_name"><small>Last Name</small> </label>
 							</div>
 							<div class="rowlabel">
-								<input id="pi_last_name" name="pi_last_name"
+								<input id="pi_last_name" name="pi_last_name" class="uprcase"
 									placeholder="Last Name" type="text"
 									value="<c:choose><c:when test="${not empty parentBean.lastName}"><c:out value="${parentBean.lastName}"/></c:when><c:when test="${not empty savedValuesFormMap && not empty savedValuesFormMap.value['pi_last_name']}"><c:out value="${savedValuesFormMap.value['pi_last_name'].value}"/></c:when></c:choose>"
 									readonly="readonly" />
@@ -216,11 +216,11 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 							</div>
 							<div class="rowlabel">
 								<input id="pi_last_name" name="pi_last_name"
-									placeholder="Organization Name" type="text"
+									placeholder="Organization Name" type="text" class="uprcase"
 									value="<c:choose><c:when test="${not empty parentBean.lastName}"><c:out value="${parentBean.lastName}"/></c:when><c:when test="${not empty savedValuesFormMap && not empty savedValuesFormMap.value['pi_last_name']}"><c:out value="${savedValuesFormMap.value['pi_last_name'].value}"/></c:when></c:choose>" />
 							</div>
-							<input type="hidden" id="pi_first_name" name="pi_first_name"
-								value="-" /> <input type="hidden" id="pi_last_name"
+							<input type="hidden" id="pi_first_name" name="pi_first_name" class="uprcase"
+								value="-" /> <input type="hidden" id="pi_last_name" class="uprcase"
 								name="pi_last_name" value="-" /> <input type="hidden"
 								id="pi_dob" name="pi_dob" value="01/01/1970" /> <input
 								type="hidden" id="gender" name="gender" value="X" />
@@ -245,14 +245,14 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 								<label for="pi_dob"><small>Gender</small> </label>
 							</div>
 							<div class="rowlabel">
-								<select id="gender" name="gender"><option value="">Select
+								<select id="gender" name="gender" class="uprcase"><option value="">Select
 										Gender</option>
 									<option
 										<c:if test="${not empty parentBean.sex && parentBean.sex == 'M'}">selected</c:if>
-										value="M">Male</option>
+										value="M">MALE</option>
 									<option
 										<c:if test="${not empty parentBean.sex && parentBean.sex == 'F'}">selected</c:if>
-										value="F">Female</option>
+										value="F">FEMALE</option>
 								</select>
 							</div>
 						</div>
@@ -262,7 +262,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 							</div>
 							<div class="rowlabel">
 								<input id="pi_father_name" name="pi_father_name"
-									placeholder="Father Name" type="text"
+									placeholder="Father Name" type="text" class="uprcase"
 									value="<c:if test="${not empty parentBean.fatherName}"><c:out value="${parentBean.fatherName}"/></c:if>" />
 							</div>
 						</div>
@@ -281,7 +281,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 						</label>
 					</div>
 					<div class="rowlabel">
-						<input id="pi_flat_door_building"
+						<input id="pi_flat_door_building" class="uprcase"
 							value="${parentBean.flatDoorBuilding}"
 							name="pi_flat_door_building" placeholder="Flat/Door/Building"
 							type="text"
@@ -293,7 +293,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 						<label for="pi_road_street"><small>Road/Street</small> </label>
 					</div>
 					<div class="rowlabel">
-						<input id="pi_road_street" value="${parentBean.roadStreet}"
+						<input id="pi_road_street" value="${parentBean.roadStreet}" class="uprcase"
 							name="pi_road_street" placeholder="Road/Street" type="text" />
 					</div>
 				</div>
@@ -304,7 +304,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 						<label for="pi_area_locality"><small>Area/Locality</small>
 						</label>
 					</div>
-					<input id="pi_area_locality" value="${parentBean.areaLocality}"
+					<input id="pi_area_locality" value="${parentBean.areaLocality}" class="uprcase"
 						name="pi_area_locality" placeholder="Area/Locality" type="text" />
 				</div>
 				<div class="span3">
@@ -313,7 +313,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 						</label>
 					</div>
 					<div class="rowlabel">
-						<input id="pi_town_city_district"
+						<input id="pi_town_city_district" class="uprcase"
 							value="${parentBean.townCityDistrict }"
 							name="pi_town_city_district" placeholder="Town/City/District"
 							type="text" />
@@ -323,7 +323,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 					<div class="rowlabel">
 						<label for="pi_state"><small>State</small> </label>
 					</div>
-					<select id="pi_state" name="pi_state" onchange="getautoState()">
+					<select id="pi_state" name="pi_state" onchange="getautoState()" class="uprcase">
 						<option value="">-Select-</option>
 						<c:forEach var="booleanCombo" items="${objHashMapstates}">
 							<option
@@ -337,7 +337,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 					<div class="rowlabel">
 						<label for="pi_country"><small>Country</small> </label>
 					</div>
-					<select id="pi_country" name="pi_country">
+					<select id="pi_country" name="pi_country" class="uprcase">
 						<option value="">-Select-</option>
 						<c:forEach var="booleanCombo" items="${objHashMapcountry}">
 							<option
@@ -404,7 +404,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 								Ward/Circle</small> </label>
 					</div>
 					<div class="rowlabel">
-						<input id="ward_circle" value="${parentBean.ward_circle}"
+						<input id="ward_circle" value="${parentBean.ward_circle}" class="uprcase"
 							name="ward_circle" placeholder=" Ward/Circle" type="text" />
 					</div>
 				</div>
@@ -594,7 +594,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 						</small>
 					</div>
 					<div class="rowlabel">
-						<input type="text" id="bd_bank_name" name="bd_bank_name"
+						<input type="text" id="bd_bank_name" name="bd_bank_name" class="uprcase"
 							value="${parentBean.BD_BANK_NAME}" maxlength="25" />
 					</div>
 				</div>
@@ -607,7 +607,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 						</small>
 					</div>
 					<div class="rowlabel">
-						<input type="text" id="bd_Branch_name" name="bd_Branch_name"
+						<input type="text" id="bd_Branch_name" name="bd_Branch_name" class="uprcase"
 							value="${parentBean.BD_ADD_BANK_BRANCH}" maxlength="120" />
 					</div>
 				</div>
@@ -620,7 +620,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 						</small> </label>
 					</div>
 					<div class="rowlabel">
-						<input type="text" id="bd_account_no" name="bd_account_no"
+						<input type="text" id="bd_account_no" name="bd_account_no" class="uprcase"
 							value="${parentBean.BD_ACC_NUMBER}" title="Account Number"
 							maxlength="17" />
 					</div>
@@ -633,7 +633,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 						</small>
 					</div>
 					<div class="rowlabel">
-						<input type="text" id="<c:out value="${bnkcode}"/>"
+						<input type="text" class="uprcase" id="<c:out value="${bnkcode}"/>"
 							name="<c:out value="${bnkcode}"/>"
 							value="<c:choose><c:when test="${parentBean.BD_MICR_CODE}"><c:out value="${parentBean.BD_MICR_CODE}"/></c:when><c:otherwise><c:out value="${ifsccode}"/></c:otherwise></c:choose>"
 							maxlength="<c:out value="${maxlen}"/>" />
@@ -732,14 +732,14 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 	<hst:attribute name="type">text/javascript</hst:attribute>
 		var solrField = 'text';
 		var solrExtra = '';
-		
-		function callSolr_bd_bank_name(q,process) {		   
+
+		function callSolr_bd_bank_name(q,process) {
 			solrField = 'BANK';
 			solrFieldFacet = solrField + '_s';
 			solrExtra = '';
 			callSolr(q,process);
 		}
-		
+
 		function callSolr_bd_Branch_name(q,process) {
 			solrField = 'BRANCH_NAME';
 			solrFieldFacet = solrField + '_s';
@@ -747,9 +747,9 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 			callSolr(q,process);
 		}
 		//nice example http://fusiongrokker.com/post/heavily-customizing-a-bootstrap-typeahead
-		
+
 		function callSolr(q,process) {
-			$.ajax({ 
+			$.ajax({
 				'url':'/site/solr/bankdata/select?q='+ solrField + ':' + q + '*'+ solrExtra +'&wt=json&indent=true&facet=on&facet.field=' + solrField + '_s',
 				dataType:'json'
 			}).done(function(data)  {
@@ -763,13 +763,13 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 			}
 			);
 		}
-		
-		$(document).ready(function() {					
+
+		$(document).ready(function() {
 			var
 		options={source:callSolr_bd_bank_name}
 		$("#bd_bank_name").attr('autocomplete','off');
 			$("#bd_bank_name").typeahead(options);
-			
+
 			options={source:callSolr_bd_Branch_name}
 		$("#bd_Branch_name").attr('autocomplete','off');
 			$("#bd_Branch_name").typeahead(options);
@@ -851,7 +851,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 	getautoState(){ var option=document.getElementById("pi_state"); var
 	stateName = option.options[option.selectedIndex].value;
 	if(stateName!="99"){ $("#pi_country").val("91"); } else{
-	$("#pi_country").val(""); } } 
+	$("#pi_country").val(""); } }
 </hst:element>
 <hst:headContribution element="${uiCustom}" category="jsInternal" />
 
