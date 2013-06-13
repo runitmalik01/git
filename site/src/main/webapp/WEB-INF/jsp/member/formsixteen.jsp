@@ -85,13 +85,12 @@
 				</div>
 				<br />
 				<div class="row-fluid show-grid">
-
 					<div class="span4">
 						<div class="rowlabel">
 							<label for="employer">Name and address of Employer</label>
 						</div>
 						<div class="rowlabel">
-							<input type="text" name="employer" id="employer"
+							<input type="text" name="employer" id="employer" class="uprcase"
 								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.employer}"/></c:if>"
 								maxlength="60">
 						</div>
@@ -101,50 +100,52 @@
 							<label for="employee">Name of Employee</label>
 						</div>
 						<div class="rowlabel">
-							<input type="text" name="employee"
+							<input type="text" name="employee" class="uprcase"
 								value="<c:choose><c:when test="${pageAction == 'EDIT_CHILD'}"><c:out value="${memberpersonalinformation.name}"/>
 								</c:when><c:otherwise><c:out value="${memberpersonalinformation.name}"/></c:otherwise></c:choose>"
 								readonly="readonly" />
 						</div>
 					</div>
-					<div class="span3">
+					<div class="span4">
 						<div class="rowlabel">
 							<label for="pan_deductor">PAN of Employer</label>
 						</div>
 
 						<div class="rowlabel">
-							<input type="text" name="pan_deductor"
+							<input type="text" name="pan_deductor" class="uprcase"
 								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.pan_deductor}"/></c:if>">
 						</div>
 					</div>
-					<div class="span3">
+					</div>
+					<div class="row-fluid show-grid">
+					<div class="span6">
 						<div class="rowlabel">
 							<label for="tan_deductor">TAN of Employer</label>
 						</div>
 						<div class="rowlabel">
-							<input type="text" name="tan_deductor"
+							<input type="text" name="tan_deductor" class="uprcase"
 								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.tan_deductor}"/></c:if>">
 						</div>
 					</div>
-					<div class="span3">
+					<div class="span6">
 						<div class="rowlabel">
 							<label>PAN of Employee </label> <input type="text"
-								name="pan_employee"
+								name="pan_employee" class="uprcase"
 								value="<c:choose><c:when test="${pageAction == 'EDIT_CHILD'}"><c:out value="${memberpersonalinformation.PAN}"/>
 								</c:when><c:otherwise><c:out value="${memberpersonalinformation.PAN}"/></c:otherwise></c:choose>"
 								readonly="readonly" />
 						</div>
 					</div>
-				</div>
+					</div>
 			</fieldset>
 				<fieldset>
-					<!-- 
+					<!--
 				<legend style="color: black">
 					Acknowledgement Nos. of all quarterly statements of TDS under
 					sub_section (3) of section 200 as<br /> provided by TIN
 					Facilitation Centre or NSDL web_site
 				</legend>
- 
+
 				<table>
 					<tr>
 						<th><label>Quarter</label>
@@ -318,12 +319,12 @@
 					<table>
 						<tr>
 							<td><label><strong>2.</strong> Total Allowance </label></td>
-							<!-- 
+							<!--
 						<th><label>Rs. </label>
 						</th>
 						<th><label>Total</label>
 						</th>
-						 
+
 					</tr>
 
 					<tr>
@@ -469,13 +470,13 @@
 							</td>
 
 						</tr>
-						
-						
+
+
 							<tr>
 								<td><label><strong>9.</strong> </label> <label>Deductions
 										under Chapter VI-A </label>
 								</td>
-								
+
 								<td></td>
 								<td></td>
 								<td><input type="text" class="numberinput decimal"
@@ -568,14 +569,14 @@
 									</c:forEach>
 								</select>
 								</td>
-								
+
 								<td><input type="text" name="c_5"
 								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.c_5}"/></c:if>"
 								class="numberinput decimal" placeholder="Rs.">
 							</td>
 								<td></td>
 							</tr>
-							
+
 							<tr>
 								<td><label>(vi)</label>
 							</td>
@@ -666,7 +667,7 @@
 						</tr>
 						<tr>
 							<td>
-							
+
 							 <label>(b) section
 									<select id="b_section" name="b_section">
 									<option value="">Select One</option>
@@ -677,7 +678,7 @@
 									</c:forEach>
 								</select>
 						</label>
-								
+
 							</td>
 							<td><input type="text" name="b_section_1"
 							class="numberinput decimal"
@@ -811,7 +812,7 @@
 								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.tax_total_income_2}"/></c:if>"
 								placeholder="Rs."></td>
 						</tr>
-						<!-- 
+						<!--
 					<tr>
 						<td><label><strong>13.</strong> </label> <label>Surcharge
 								(on tax computed at S. No. 12)</label>
@@ -821,7 +822,7 @@
 							<input type="text" name="surcharge_1"
 							class="numberinput decimal"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.surcharge_1}"/></c:if>"
-							placeholder="Rs."> 
+							placeholder="Rs.">
 						</td>
 						<td></td>
 
@@ -868,7 +869,7 @@
 
 							<td><input id="relief_2" name="relief_2"
 								class="numberinput decimal"
-								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number" 
+								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"
             maxIntegerDigits="14" value="${childBean.relief_2}"/></c:if>"
 								placeholder="Rs."></td>
 						</tr>
@@ -891,7 +892,7 @@
 
 							<td><input id="tax_payable_2" name="tax_payable_2"
 								class=" decimal" readonly="readonly"
-								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number" 
+								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"
             maxIntegerDigits="14" value="${childBean.tax_payable_2}"/></c:if>"
 								placeholder="Rs."></td>
 						</tr>--%>
