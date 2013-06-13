@@ -69,7 +69,7 @@
 									key="tds.financial.year" /> </small> </label>
 					</div>
 					<div class="rowlabel">
-						<select id="financial_yeartdsoth" name="financial_yeartdsoth"
+						<select id="financial_yeartdsoth" name="financial_yeartdsoth" class="uprcase"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.financial_Year}"/></c:if>">
 							<c:if test="${empty childBean.financial_Year}">
 								<option value="">Select</option>
