@@ -1,9 +1,17 @@
 <%@page import="java.util.ArrayList"%>
+<%@page import="java.util.SortedSet"%>
+<%@page import="com.mootly.wcm.utils.ValueListServiceImpl"%>
+<%@page import="com.mootly.wcm.utils.ValueListService"%>
+<%@page import="java.util.TreeMap"%>
 <%@page import="java.util.Map"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="java.util.List"%>
 <%@include file="../includes/tags.jspf" %>
-
+<%
+ValueListService objValueListService = ValueListServiceImpl.getInstance();
+SortedSet<Map.Entry<String,String>> objHashMapstates = objValueListService.getStates();
+request.setAttribute("objHashMapstates", objHashMapstates);
+%>
 <fieldset>
 	<legend>Donation Detail</legend>
 	<div class="row-fluid show-grid">
@@ -37,9 +45,16 @@
           </div>
           <div class="span3">
           	<div class="rowlabel"><label for="flex_string_doneeState"><small>State</small></label></div>
-          	<c:set var="searchresultstitle"><fmt:message key="member.contact_info.state.select"/></c:set>
-                  <c:set var="statesType"><fmt:message key="dropdown.states"/></c:set>
-                  <div class="rowlabel"><w4india:dropdown dropDownSelectName="flex_string_doneeState" dropDownSelectId="flex_string_doneeState" optionSelectString="${searchresultstitle}" dropDownType="${statesType}" fetchValue="${doneeWithPAN.doneeState}"/></div>
+                  <div class="rowlabel">
+                  	<select id="flex_string_doneeState" name="flex_string_doneeState">
+						<option value="">-Select-</option>
+						<c:forEach var="booleanCombo" items="${objHashMapstates}">
+							<option
+								<c:if test="${pageAction == 'EDIT_CHILD' || doneeWithPAN.doneeState == booleanCombo.key}">selected</c:if>
+								value="${booleanCombo.key}">${booleanCombo.value}</option>
+						</c:forEach>
+					</select>
+                  </div>
                 </div>
           <div class="span2">
             <div class="rowlabel"><label for="flex_string_doneePostalCode"><small>PIN</small></label></div>
