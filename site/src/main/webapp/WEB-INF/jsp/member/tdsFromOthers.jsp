@@ -34,7 +34,7 @@
 									key="tds.tan.deductor" /> </small> </label>
 					</div>
 					<div class="rowlabel">
-						<input id="tan_deductortdsoth" name="tan_deductortdsoth"
+						<input id="tan_deductortdsoth" name="tan_deductortdsoth" class="uprcase"
 							type="text" onchange="keyup()" onblur=" keyup()" maxlength="10"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.tan_Deductor}"/></c:if>" />
 					</div>
@@ -46,7 +46,7 @@
 					</div>
 					<div class="rowlabel">
 						<input id="name_deductortdsoth" name="name_deductortdsoth"
-							type="text" maxlength="125"
+							type="text" maxlength="125" class="uprcase"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.name_Deductor}"/></c:if>" />
 					</div>
 				</div>
@@ -57,7 +57,7 @@
 					</div>
 					<div class="rowlabel">
 						<input id="tds_certificatetdsoth" name="tds_certificatetdsoth"
-							type="text" maxlength="8"
+							type="text" maxlength="8" class="uprcase"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.tds_Certificate}"/></c:if>" />
 					</div>
 				</div>
@@ -172,4 +172,3 @@ function calculate(){
 <res:client-validation formId="frmdataTdsOther"
 	screenConfigurationDocumentName="tdsfromothers"
 	formSubmitButtonId="myModalHrefTdsOther" fieldOneID="tan_deductortdsoth" fieldTwoID="name_deductortdsoth" validationType="tan"/>
-	
