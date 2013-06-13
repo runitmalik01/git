@@ -242,6 +242,7 @@ public class ITRXmlGeneratorService extends ITRXmlGeneratorServiceCommon  implem
 
 		incomeDeductions.setGrossTotIncome(grsstotal);	// calculation needed(incomefromsalary+house income+othersrcincome)
 		//added deduction with null values (incomplete)
+		Double grossInvestment = 0D;
 		Map<String,Object> totalMapForJSDe = new HashMap<String, Object>();
 		DeductionListService deductionListService=new DeductionListService();
 		Map<String,DeductionSection> deductionSectionMap=deductionListService.getDeductionSectionMap().get(financialYear);
@@ -267,6 +268,7 @@ public class ITRXmlGeneratorService extends ITRXmlGeneratorServiceCommon  implem
 							sumSection=sumSection+deductionDocumentDetail.getInvestment();
 						}
 					}
+					grossInvestment = grossInvestment + sumSection;
 					String sanitizedKey="total_"+key.replaceAll("-", "_");
 					totalMapForJSDe.put(sanitizedKey,sumSection);
 				}
@@ -310,15 +312,16 @@ public class ITRXmlGeneratorService extends ITRXmlGeneratorServiceCommon  implem
 					Method meth = DeductUndChapVIA.class.getMethod(methodname, partypes);
 					Method methusr = UsrDeductUndChapVIA.class.getMethod(methodname, partypes);
 					Object[] args = new Object[]{new BigInteger(String.valueOf(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMapDe.get(eligbleSection).toString()))))};
+					Object[] argsusr=new Object[]{new BigInteger(String.valueOf(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(totalMapForJSDe.get(eligbleSection).toString()))))};
 					meth.invoke(deductUndChapVIA, args);
-					methusr.invoke(usrDeductUndChapVIA, args);
+					methusr.invoke(usrDeductUndChapVIA, argsusr);
 				}catch (NoSuchMethodException e) {
 					log.warn ("The following method does not exist in this year's return " + methodname + " will continue with next method");
 				}
 			}
 		}
 		deductUndChapVIA.setTotalChapVIADeductions(indianCurrencyHelper.bigIntegerRound(totaleligiblededuction));
-		usrDeductUndChapVIA.setTotalChapVIADeductions(indianCurrencyHelper.bigIntegerRound(totaleligiblededuction));
+		usrDeductUndChapVIA.setTotalChapVIADeductions(indianCurrencyHelper.bigIntegerRound(grossInvestment));
 		incomeDeductions.setDeductUndChapVIA(deductUndChapVIA);
 		incomeDeductions.setUsrDeductUndChapVIA(usrDeductUndChapVIA);
 		incomeDeductions.setTotalIncome(grsstotal-indianCurrencyHelper.longRound(totaleligiblededuction)); //calculation needed(GrossTotIncome-TotalChapVIADeductions(HARDCODDED 0))
@@ -536,7 +539,7 @@ public class ITRXmlGeneratorService extends ITRXmlGeneratorServiceCommon  implem
 		if(memberPersonalInformation.getWard_circle()!=null){
 			filingstatus.setDesigOfficerWardorCircle(memberPersonalInformation.getWard_circle());
 		}
-		filingstatus.setReturnFileSec(memberPersonalInformation.getReturnFileSection());
+		filingstatus.setReturnFileSec(Long.parseLong(memberPersonalInformation.getReturnSection()));
 		filingstatus.setReturnType(memberPersonalInformation.getReturnType());
 		filingstatus.setResidentialStatus(memberPersonalInformation.getResidentCategory());
 		filingstatus.setPortugeseCC5A(memberPersonalInformation.getPortugesecivil());
