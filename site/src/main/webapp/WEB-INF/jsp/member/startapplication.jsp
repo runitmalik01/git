@@ -78,7 +78,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 									title="Defective Return (U/s-139)">Defective?</abbr> </small> </label>
 						</div>
 						<div class="rowlabel">
-							<select id="defective" name="defective"><option value="">Select</option>
+							<select id="defective" name="defective" class="uprcase"><option value="">Select</option>
 								<option value="N"
 									<c:if test="${not empty parentBean.defective && parentBean.defective =='N'}">selected</c:if>>No</option>
 								<option value="Y"
@@ -151,7 +151,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 						</small> </label>
 					</div>
 					<div>
-						<select id="portugesecivil" name="portugesecivil">
+						<select id="portugesecivil" name="portugesecivil" class="uprcase">
 
 							<option value="">-Select-</option>
 							<c:forEach var="booleanCombo" items="${objHashMapBoolean}">
@@ -646,7 +646,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 						</small> </label>
 					</div>
 					<div class="rowlabel">
-						<select name="bd_account_type" id="bd_account_type">
+						<select name="bd_account_type" id="bd_account_type" class="uprcase">
 							<option value="">Select</option>
 							<option
 								<c:if test="${not empty parentBean.BD_TYPE_ACC && parentBean.BD_TYPE_ACC == 'SAV'}">selected</c:if>
@@ -678,7 +678,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 				</div>
 				<div class="span2">
 					<div class="rowlabel">
-						<select name="bd_ecs" title="Select Electronic Clearing System"
+						<select name="bd_ecs" title="Select Electronic Clearing System" class="uprcase"
 							id="bd_ecs">
 							<option value="">Select</option>
 							<option
