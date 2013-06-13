@@ -36,8 +36,8 @@ import com.mootly.wcm.model.FinancialYear;
 import com.mootly.wcm.model.ITReturnHomePageView;
 import com.mootly.wcm.model.ITReturnType;
 //@PrimaryBean(primaryBeanClass=MemberPersonalInformation.class)
-@FormFields(fieldNames={"pan","pi_last_name","pi_dob","pi_return_type","fy"})
-@RequiredFields(fieldNames={"pan","pi_last_name","pi_dob","pi_return_type","fy"})
+@FormFields(fieldNames={"pan","pi_last_name","pi_dob","pi_return_type","fy","ReturnSection"})
+@RequiredFields(fieldNames={"pan","pi_last_name","pi_dob","pi_return_type","fy","ReturnSection"})
 public class ITReturnHomePage extends ITReturnComponent {
 
 	private static final Logger log = LoggerFactory.getLogger(ITReturnHomePage.class);
@@ -115,7 +115,7 @@ public class ITReturnHomePage extends ITReturnComponent {
 		// TODO Auto-generated method stub
 		//super.doAction(request, response);
 		//FormMap map = new FormMap(request,new String[]{"pan","pi_last_name","pi_dob","pi_return_type","fy","ack_no","ack_date","defective","notice_no","notice_date"});
-		FormMap map = new FormMap(request,new String[]{"pan","pi_last_name","pi_dob","pi_return_type","fy"});
+		FormMap map = new FormMap(request,new String[]{"pan","pi_last_name","pi_dob","pi_return_type","fy","ReturnSection"});
 		//FormUtils.persistFormMap(request, response, getFormMap(), null);
 		//try {
 		String pan =map.getField("pan").getValue().toLowerCase();
