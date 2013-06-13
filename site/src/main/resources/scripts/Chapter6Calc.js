@@ -12,13 +12,15 @@ var maxAllowed_80D=20000;
 var maxAllowed_80DD=100000;
 var maxAllowed_80U=100000;
 var maxAllowed_80qqb_80rrb=300000;
+var maxAllowed_80TTA=10000;
+var maxAllowed_80CCG=25000;
 out_total_eligiblededuction=0;
 //isSeniorCitizen=true;
 /** - END Configuration */
 //80E-It depends on gross total income
 var grosstotal= salarypension + othersources + houseproperty;
 //--- This concludes 80c,80ccc,80D Employee's Contribution
-
+out_grosstotal=grosstotal;
 //-- This is specially for total_80ccd_er (employer's this is dependent on total of salary income, houseincome and other sources)
 var tenperSalincome=(salarypension *0.1);
 //exempt for Employee's Contribution to Pension Account i.e. 80ccd_1
@@ -50,18 +52,22 @@ out_total_80ccc=doubleArray[1].doubleValue();
 out_total_80ccd_1=doubleArray[2].doubleValue();
 //exempt for Employer's Contribution to Pension Account i.e. 80ccd_2
 
-if(total_80ccd_2 >= tenperSalincome)
-	out_total_80ccd_2=tenperSalincome;
-else out_total_80ccd_2=total_80ccd_2;
+out_total_80ccd_2=(total_80ccd_2 >= tenperSalincome) ? tenperSalincome : total_80ccd_2;
+
+//80TTA- Interest on Bank Saving Accounts
+out_total_80tta=(total_80tta>maxAllowed_80TTA) ? maxAllowed_80TTA : total_80tta ;
+
+//80GGA- Interest on Bank Saving Accounts
+out_total_80ccg=(total_80ccg>maxAllowed_80CCG) ? maxAllowed_80CCG : total_80ccg;
 
 //--this one is 80CCF this upper limit it 20000
-out_total_80ccf=0;
-if (total_80ccf > maxAllowed_80CCF) out_total_80ccf = maxAllowed_80CCF;
+/*out_total_80ccf=0;
+if (total_80ccf > maxAllowed_80CCF) out_total_80ccf = maxAllowed_80CCF;*/
 
 //medical insurance premium
 //self,spouse,spousesenior,parentsnonsenior,parentssenior
-var maxMedicalPremiumAllowed = ((isSeniorCitizen || (total_spousesenior > 0) || (total_parentssenior > 0)) ? 20000 : 15000);
-var maxMedicalPremium = (total_self + total_spouse + total_spousesenior + total_parentsnonsenior + total_parentssenior +  total_healthcheckup);
+var maxMedicalPremiumAllowed = (isSeniorCitizen || (total_spousesenior > 0) || (total_parentssenior > 0) ? 20000 : 15000);
+var maxMedicalPremium = (total_self + total_spouse + total_spousesenior + total_parentsnonsenior + total_parentssenior + total_healthcheckup);
 //if (maxMedicalPremium > maxMedicalPremiumAllowed) maxMedicalPremium = maxAllowed;
 if (maxMedicalPremium > maxMedicalPremiumAllowed) maxMedicalPremium = maxMedicalPremiumAllowed;
 if(maxMedicalPremium >maxAllowed_80D) maxMedicalPremium=maxAllowed_80D;
@@ -83,13 +89,9 @@ else out_total_80dd= (total_normaldisability + total_severedisability);
 //80DDB-Treatment of Specified diseases
 var total_deases=total_neurological + total_parkinson + total_malignantcancer + total_aids + total_chronicrenalfailure + total_hemophilia + total_thallassaemia;
 if(isSeniorCitizen){
-	if(total_deases>=60000)
-		out_total_80ddb=60000;
-	else out_total_80ddb=total_deases;
+	out_total_80ddb=(total_deases>=60000) ? 60000 : total_deases;
 }else{
-	if(total_deases>=40000)
-		out_total_80ddb=40000;
-	else out_total_80ddb=total_deases;
+	out_total_80ddb=(total_deases>=40000) ? 40000 : total_deases;
 }
 
 //80U - Person suffering from specified disability
@@ -102,12 +104,9 @@ if((total_disability+total_sdisability)>maxAllowed_80U)
 else out_total_80u= (total_disability + total_sdisability);
 
 //80RRB and 80QQB -exempt limit for 80RRB and 80QQB 
-if(total_80rrb>maxAllowed_80qqb_80rrb)
-	out_total_80rrb=maxAllowed_80qqb_80rrb;
-else out_total_80rrb=total_80rrb;
-if(total_80qqb>maxAllowed_80qqb_80rrb)
-	out_total_80qqb=maxAllowed_80qqb_80rrb;
-else out_total_80qqb=total_80qqb;
+out_total_80rrb=(total_80rrb>maxAllowed_80qqb_80rrb) ? maxAllowed_80qqb_80rrb : total_80rrb;
+
+out_total_80qqb=(total_80qqb>maxAllowed_80qqb_80rrb) ? maxAllowed_80qqb_80rrb : total_80qqb;
 
 //Donations 100%
 out_total_80g = (total_NoAppr50 * 0.5) + (total_Appr50 * 0.5) + (total_Appr100) + ((total_NoAppr100)); 
@@ -121,11 +120,11 @@ out_total_80ggc= (total_80ggc < grosstotal) ? total_80ggc:grosstotal;
 
 //out_total_80id= (total_80id < grosstotal) ? total_80id:grosstotal;
 
-out_total_80jja= (total_80jja < grosstotal) ? total_80jja:grosstotal;
+//out_total_80jja= (total_80jja < grosstotal) ? total_80jja:grosstotal;
 
 //out_total_80ia= (total_80ia < grosstotal) ? total_80ia:grosstotal;
 
-out_total_eligiblededuction = out_total_80c + out_total_80ccc + out_total_80ccd_1 + out_total_80ccd_2 + out_total_80d + out_total_80qqb + out_total_80rrb + out_total_80gga + out_total_80ggc + out_total_80g + out_total_80jja + out_total_80ddb + out_total_80u + out_total_80dd + out_total_80qqb + out_total_80e ;
+out_total_eligiblededuction = out_total_80c + out_total_80ccc + out_total_80ccd_1 + out_total_80ccd_2 + out_total_80d + out_total_80qqb + out_total_80rrb + out_total_80gga + out_total_80ggc + out_total_80g + out_total_80ddb /*+ out_total_80u*/ + out_total_80dd + out_total_80e + out_total_80tta + out_total_80ccg;
 
 //80G- Calculate AdjustedGrossTotal and Excess Rent Paid and 2000 per Month
 out_total_80gg=0;
