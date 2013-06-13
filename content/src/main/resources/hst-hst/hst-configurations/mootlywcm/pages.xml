@@ -1635,101 +1635,99 @@
       </sv:node>
     </sv:node>
   </sv:node>
-
-<sv:node sv:name="products-overview">
-  <sv:property sv:name="jcr:primaryType" sv:type="Name">
-    <sv:value>hst:component</sv:value>
-  </sv:property>
-  <sv:property sv:name="jcr:uuid" sv:type="String">
-    <sv:value>c61295af-df80-4a85-84f2-c95311f80023</sv:value>
-  </sv:property>
-  <sv:property sv:name="hst:referencecomponent" sv:type="String">
-    <sv:value>hst:pages/standardpage</sv:value>
-  </sv:property>
-  <sv:node sv:name="main">
+  <sv:node sv:name="products-overview">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
       <sv:value>hst:component</sv:value>
     </sv:property>
     <sv:property sv:name="jcr:uuid" sv:type="String">
-      <sv:value>6b923ff8-0603-4812-8e7d-067916ad9a75</sv:value>
+      <sv:value>c61295af-df80-4a85-84f2-c95311f80023</sv:value>
     </sv:property>
-    <sv:property sv:name="hst:template" sv:type="String">
-      <sv:value>products.main</sv:value>
+    <sv:property sv:name="hst:referencecomponent" sv:type="String">
+      <sv:value>hst:pages/standardpage</sv:value>
     </sv:property>
-    <sv:node sv:name="content">
+    <sv:node sv:name="main">
       <sv:property sv:name="jcr:primaryType" sv:type="Name">
         <sv:value>hst:component</sv:value>
       </sv:property>
       <sv:property sv:name="jcr:uuid" sv:type="String">
-        <sv:value>1ddbb849-7611-4b3b-a578-824c247afaed</sv:value>
+        <sv:value>6b923ff8-0603-4812-8e7d-067916ad9a75</sv:value>
       </sv:property>
-      <sv:property sv:name="hst:referencecomponent" sv:type="String">
-        <sv:value>hst:components/productsoverview</sv:value>
+      <sv:property sv:name="hst:template" sv:type="String">
+        <sv:value>products.main</sv:value>
       </sv:property>
-    </sv:node>
-    <sv:node sv:name="leftnav">
-      <sv:property sv:name="jcr:primaryType" sv:type="Name">
-        <sv:value>hst:component</sv:value>
-      </sv:property>
-      <sv:property sv:name="jcr:uuid" sv:type="String">
-        <sv:value>097a72f2-4eb8-4b1e-ad9d-460d5ad17b19</sv:value>
-      </sv:property>
-      <sv:property sv:name="hst:referencecomponent" sv:type="String">
-        <sv:value>hst:components/productleftnav</sv:value>
-      </sv:property>
-      <sv:node sv:name="boxes-left">
+      <sv:node sv:name="content">
         <sv:property sv:name="jcr:primaryType" sv:type="Name">
-          <sv:value>hst:containercomponent</sv:value>
+          <sv:value>hst:component</sv:value>
         </sv:property>
         <sv:property sv:name="jcr:uuid" sv:type="String">
-          <sv:value>b1c5da45-b69c-4229-be00-595ec1e6775f</sv:value>
+          <sv:value>1ddbb849-7611-4b3b-a578-824c247afaed</sv:value>
         </sv:property>
-        <sv:property sv:name="hst:xtype" sv:type="String">
-          <sv:value>HST.vBox</sv:value>
+        <sv:property sv:name="hst:referencecomponent" sv:type="String">
+          <sv:value>hst:components/productsoverview</sv:value>
         </sv:property>
-        <sv:node sv:name="pageactions">
+      </sv:node>
+      <sv:node sv:name="leftnav">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hst:component</sv:value>
+        </sv:property>
+        <sv:property sv:name="jcr:uuid" sv:type="String">
+          <sv:value>097a72f2-4eb8-4b1e-ad9d-460d5ad17b19</sv:value>
+        </sv:property>
+        <sv:property sv:name="hst:referencecomponent" sv:type="String">
+          <sv:value>hst:components/productleftnav</sv:value>
+        </sv:property>
+        <sv:node sv:name="boxes-left">
           <sv:property sv:name="jcr:primaryType" sv:type="Name">
-            <sv:value>hst:containeritemcomponent</sv:value>
+            <sv:value>hst:containercomponent</sv:value>
           </sv:property>
           <sv:property sv:name="jcr:uuid" sv:type="String">
-            <sv:value>82a89c76-0ce4-40e5-aa5e-1521e49bc36e</sv:value>
-          </sv:property>
-          <sv:property sv:name="hst:template" sv:type="String">
-            <sv:value>standard.main.left.pageactions</sv:value>
+            <sv:value>b1c5da45-b69c-4229-be00-595ec1e6775f</sv:value>
           </sv:property>
           <sv:property sv:name="hst:xtype" sv:type="String">
-            <sv:value>HST.Item</sv:value>
+            <sv:value>HST.vBox</sv:value>
           </sv:property>
-        </sv:node>
-        <sv:node sv:name="simpledocument">
-          <sv:property sv:name="jcr:primaryType" sv:type="Name">
-            <sv:value>hst:containeritemcomponent</sv:value>
-          </sv:property>
-          <sv:property sv:name="jcr:uuid" sv:type="String">
-            <sv:value>997ce548-b52b-4618-bec2-5d503ddd704a</sv:value>
-          </sv:property>
-          <sv:property sv:name="hst:componentclassname" sv:type="String">
-            <sv:value>com.mootly.wcm.components.common.SimpleDocument
+          <sv:node sv:name="pageactions">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>hst:containeritemcomponent</sv:value>
+            </sv:property>
+            <sv:property sv:name="jcr:uuid" sv:type="String">
+              <sv:value>82a89c76-0ce4-40e5-aa5e-1521e49bc36e</sv:value>
+            </sv:property>
+            <sv:property sv:name="hst:template" sv:type="String">
+              <sv:value>standard.main.left.pageactions</sv:value>
+            </sv:property>
+            <sv:property sv:name="hst:xtype" sv:type="String">
+              <sv:value>HST.Item</sv:value>
+            </sv:property>
+          </sv:node>
+          <sv:node sv:name="simpledocument">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>hst:containeritemcomponent</sv:value>
+            </sv:property>
+            <sv:property sv:name="jcr:uuid" sv:type="String">
+              <sv:value>997ce548-b52b-4618-bec2-5d503ddd704a</sv:value>
+            </sv:property>
+            <sv:property sv:name="hst:componentclassname" sv:type="String">
+              <sv:value>com.mootly.wcm.components.common.SimpleDocument
 							</sv:value>
-          </sv:property>
-          <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
-            <sv:value>documentlocation</sv:value>
-          </sv:property>
-          <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
-            <sv:value>common/homepage-intro</sv:value>
-          </sv:property>
-          <sv:property sv:name="hst:template" sv:type="String">
-            <sv:value>common.simpledocument</sv:value>
-          </sv:property>
-          <sv:property sv:name="hst:xtype" sv:type="String">
-            <sv:value>HST.Item</sv:value>
-          </sv:property>
+            </sv:property>
+            <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+              <sv:value>documentlocation</sv:value>
+            </sv:property>
+            <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+              <sv:value>common/homepage-intro</sv:value>
+            </sv:property>
+            <sv:property sv:name="hst:template" sv:type="String">
+              <sv:value>common.simpledocument</sv:value>
+            </sv:property>
+            <sv:property sv:name="hst:xtype" sv:type="String">
+              <sv:value>HST.Item</sv:value>
+            </sv:property>
+          </sv:node>
         </sv:node>
       </sv:node>
     </sv:node>
   </sv:node>
-</sv:node>
-
   <sv:node sv:name="product-detail">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
       <sv:value>hst:component</sv:value>
@@ -4257,45 +4255,39 @@
       </sv:node>
     </sv:node>
   </sv:node>
-<!-- attachments-->
-
-
-<sv:node sv:name="attachments">
-  <sv:property sv:name="jcr:primaryType" sv:type="Name">
-    <sv:value>hst:component</sv:value>
-  </sv:property>
-  <sv:property sv:name="jcr:uuid" sv:type="String">
-    <sv:value>7ca7b950-552c-4097-a393-16ba2b797379</sv:value>
-  </sv:property>
-  <sv:property sv:name="hst:referencecomponent" sv:type="String">
-    <sv:value>hst:pages/simplepage.re</sv:value>
-  </sv:property>
-  <sv:node sv:name="main">
+  <sv:node sv:name="attachments">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
       <sv:value>hst:component</sv:value>
     </sv:property>
     <sv:property sv:name="jcr:uuid" sv:type="String">
-      <sv:value>57e09e3f-5f52-4893-93db-e1460f81b735</sv:value>
+      <sv:value>7ca7b950-552c-4097-a393-16ba2b797379</sv:value>
     </sv:property>
-    <sv:property sv:name="hst:template" sv:type="String">
-      <sv:value>standard.main.re</sv:value>
+    <sv:property sv:name="hst:referencecomponent" sv:type="String">
+      <sv:value>hst:pages/simplepage.re</sv:value>
     </sv:property>
-    <sv:node sv:name="content">
+    <sv:node sv:name="main">
       <sv:property sv:name="jcr:primaryType" sv:type="Name">
         <sv:value>hst:component</sv:value>
       </sv:property>
       <sv:property sv:name="jcr:uuid" sv:type="String">
-        <sv:value>310c71ef-8fce-4f65-8b6f-ec801b79fe91</sv:value>
+        <sv:value>57e09e3f-5f52-4893-93db-e1460f81b735</sv:value>
       </sv:property>
-      <sv:property sv:name="hst:referencecomponent" sv:type="String">
-        <sv:value>hst:components/Attachments</sv:value>
+      <sv:property sv:name="hst:template" sv:type="String">
+        <sv:value>standard.main.re</sv:value>
       </sv:property>
+      <sv:node sv:name="content">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hst:component</sv:value>
+        </sv:property>
+        <sv:property sv:name="jcr:uuid" sv:type="String">
+          <sv:value>310c71ef-8fce-4f65-8b6f-ec801b79fe91</sv:value>
+        </sv:property>
+        <sv:property sv:name="hst:referencecomponent" sv:type="String">
+          <sv:value>hst:components/Attachments</sv:value>
+        </sv:property>
+      </sv:node>
     </sv:node>
   </sv:node>
-</sv:node>
-
-
-
   <sv:node sv:name="rebatesec90">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
       <sv:value>hst:component</sv:value>
@@ -6097,59 +6089,59 @@
       </sv:node>
     </sv:node>
   </sv:node>
-  <sv:node sv:name="formsixteen" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
-	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
-	    <sv:value>hst:component</sv:value>
-	  </sv:property>
-	  <sv:property sv:name="jcr:uuid" sv:type="String">
-	    <sv:value>1285c3a7-861d-43c9-8ad8-51b933753d9a</sv:value>
-	  </sv:property>
-	  <sv:property sv:name="hst:referencecomponent" sv:type="String">
-	    <sv:value>hst:pages/simplepage.re</sv:value>
-	  </sv:property>
-	  <sv:node sv:name="main">
-	    <sv:property sv:name="jcr:primaryType" sv:type="Name">
-	      <sv:value>hst:component</sv:value>
-	    </sv:property>
-	    <sv:property sv:name="jcr:uuid" sv:type="String">
-	      <sv:value>f2995e03-d883-4b6e-9b88-64609c3c772e</sv:value>
-	    </sv:property>
-	    <sv:property sv:name="hst:template" sv:type="String">
-	      <sv:value>standard.main.re</sv:value>
-	    </sv:property>
-	    <sv:node sv:name="content">
-	      <sv:property sv:name="jcr:primaryType" sv:type="Name">
-	        <sv:value>hst:component</sv:value>
-	      </sv:property>
-	      <sv:property sv:name="jcr:uuid" sv:type="String">
-	        <sv:value>924c46f1-bc42-437a-9583-ea5ee5d34481</sv:value>
-	      </sv:property>
-	      <sv:property sv:name="hst:referencecomponent" sv:type="String">
-	        <sv:value>hst:components/member.formsixteen</sv:value>
-	      </sv:property>
-	      <sv:node sv:name="deduction-form16">
-	        <sv:property sv:name="jcr:primaryType" sv:type="Name">
-	          <sv:value>hst:component</sv:value>
-	        </sv:property>
-	        <sv:property sv:name="jcr:uuid" sv:type="String">
-	          <sv:value>56d2693e-9510-44c2-aaf3-5ac5b118b68d</sv:value>
-	        </sv:property>
-	        <sv:property sv:name="hst:componentclassname" sv:type="String">
-	          <sv:value>com.mootly.wcm.member.Deduction</sv:value>
-	        </sv:property>
-	        <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
-	          <sv:value>ischildofform16</sv:value>
-	        </sv:property>
-	        <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
-	          <sv:value>true</sv:value>
-	        </sv:property>
-	        <sv:property sv:name="hst:template" sv:type="String">
-	          <sv:value>member.deduction</sv:value>
-	        </sv:property>
-	      </sv:node>
-	    </sv:node>
-	  </sv:node>
-  </sv:node>  
+  <sv:node sv:name="formsixteen">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>1285c3a7-861d-43c9-8ad8-51b933753d9a</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:referencecomponent" sv:type="String">
+      <sv:value>hst:pages/simplepage.re</sv:value>
+    </sv:property>
+    <sv:node sv:name="main">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>hst:component</sv:value>
+      </sv:property>
+      <sv:property sv:name="jcr:uuid" sv:type="String">
+        <sv:value>f2995e03-d883-4b6e-9b88-64609c3c772e</sv:value>
+      </sv:property>
+      <sv:property sv:name="hst:template" sv:type="String">
+        <sv:value>standard.main.re</sv:value>
+      </sv:property>
+      <sv:node sv:name="content">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hst:component</sv:value>
+        </sv:property>
+        <sv:property sv:name="jcr:uuid" sv:type="String">
+          <sv:value>924c46f1-bc42-437a-9583-ea5ee5d34481</sv:value>
+        </sv:property>
+        <sv:property sv:name="hst:referencecomponent" sv:type="String">
+          <sv:value>hst:components/member.formsixteen</sv:value>
+        </sv:property>
+        <sv:node sv:name="deduction-form16">
+          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+            <sv:value>hst:component</sv:value>
+          </sv:property>
+          <sv:property sv:name="jcr:uuid" sv:type="String">
+            <sv:value>56d2693e-9510-44c2-aaf3-5ac5b118b68d</sv:value>
+          </sv:property>
+          <sv:property sv:name="hst:componentclassname" sv:type="String">
+            <sv:value>com.mootly.wcm.member.Deduction</sv:value>
+          </sv:property>
+          <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+            <sv:value>ischildofform16</sv:value>
+          </sv:property>
+          <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+            <sv:value>true</sv:value>
+          </sv:property>
+          <sv:property sv:name="hst:template" sv:type="String">
+            <sv:value>member.deduction</sv:value>
+          </sv:property>
+        </sv:node>
+      </sv:node>
+    </sv:node>
+  </sv:node>
   <sv:node sv:name="member-itreturn">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
       <sv:value>hst:component</sv:value>
@@ -6240,12 +6232,6 @@
     <sv:property sv:name="jcr:uuid" sv:type="String">
       <sv:value>8a0ac03e-c671-4670-ae82-ce8b7e4ee674</sv:value>
     </sv:property>
-    <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
-      <sv:value>bodyCss</sv:value>
-    </sv:property>
-    <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
-      <sv:value>bodyCssClass</sv:value>
-    </sv:property>
     <sv:property sv:name="hst:referencecomponent" sv:type="String">
       <sv:value>hst:pages/simplepage.re</sv:value>
     </sv:property>
@@ -6255,14 +6241,6 @@
       </sv:property>
       <sv:property sv:name="jcr:uuid" sv:type="String">
         <sv:value>6b198e42-4029-46f9-87f9-f2433e10250c</sv:value>
-      </sv:property>
-      <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
-        <sv:value>contentCssClass</sv:value>
-        <sv:value>widgetsCssClass</sv:value>
-      </sv:property>
-      <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
-        <sv:value>grid-right col-620 fit</sv:value>
-        <sv:value>grid-right col-300 rtl-fit</sv:value>
       </sv:property>
       <sv:property sv:name="hst:template" sv:type="String">
         <sv:value>standard.main.re</sv:value>
@@ -6277,57 +6255,6 @@
         <sv:property sv:name="hst:referencecomponent" sv:type="String">
           <sv:value>hst:components/adjustment-of-losses</sv:value>
         </sv:property>
-      </sv:node>
-      <sv:node sv:name="sidebar">
-        <sv:property sv:name="jcr:primaryType" sv:type="Name">
-          <sv:value>hst:component</sv:value>
-        </sv:property>
-        <sv:property sv:name="jcr:uuid" sv:type="String">
-          <sv:value>2296f702-bdc2-4fc0-a528-f3f7292d987c</sv:value>
-        </sv:property>
-        <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
-          <sv:value>cssClass</sv:value>
-        </sv:property>
-        <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
-          <sv:value>grid col-460 fit</sv:value>
-        </sv:property>
-        <sv:property sv:name="hst:template" sv:type="String">
-          <sv:value>standard.main.siderbar.re</sv:value>
-        </sv:property>
-        <sv:node sv:name="boxes-right">
-          <sv:property sv:name="jcr:primaryType" sv:type="Name">
-            <sv:value>hst:containercomponent</sv:value>
-          </sv:property>
-          <sv:property sv:name="jcr:uuid" sv:type="String">
-            <sv:value>4bb60d4b-5077-43ec-afcf-9a96b435257f</sv:value>
-          </sv:property>
-          <sv:property sv:name="hst:xtype" sv:type="String">
-            <sv:value>HST.vBox</sv:value>
-          </sv:property>
-          <sv:node sv:name="box1">
-            <sv:property sv:name="jcr:primaryType" sv:type="Name">
-              <sv:value>hst:containeritemcomponent</sv:value>
-            </sv:property>
-            <sv:property sv:name="jcr:uuid" sv:type="String">
-              <sv:value>861c8277-8466-4b06-979e-d4f3f926481a</sv:value>
-            </sv:property>
-            <sv:property sv:name="hst:componentclassname" sv:type="String">
-              <sv:value>com.mootly.wcm.member.ITReturnHomePageAddPan</sv:value>
-            </sv:property>
-            <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
-              <sv:value>htmlContent</sv:value>
-            </sv:property>
-            <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
-              <sv:value>&lt;h1&gt;asd&lt;/h1&gt;</sv:value>
-            </sv:property>
-            <sv:property sv:name="hst:template" sv:type="String">
-              <sv:value>itform.action</sv:value>
-            </sv:property>
-            <sv:property sv:name="hst:xtype" sv:type="String">
-              <sv:value>HST.Item</sv:value>
-            </sv:property>
-          </sv:node>
-        </sv:node>
       </sv:node>
     </sv:node>
   </sv:node>
@@ -6624,151 +6551,104 @@
       </sv:node>
     </sv:node>
   </sv:node>
-<sv:node sv:name="itreturn-ITR1">
-  <sv:property sv:name="jcr:primaryType" sv:type="Name">
-    <sv:value>hst:component</sv:value>
-  </sv:property>
-  <sv:property sv:name="jcr:uuid" sv:type="String">
-    <sv:value>62bc5708-62b6-4d47-a703-348bb94f5b76</sv:value>
-  </sv:property>
-  <sv:property sv:name="hst:referencecomponent" sv:type="String">
-    <sv:value>hst:pages/standardpage.re</sv:value>
-  </sv:property>
-  <sv:node sv:name="main">
+  <sv:node sv:name="itreturn-ITR1">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
       <sv:value>hst:component</sv:value>
     </sv:property>
     <sv:property sv:name="jcr:uuid" sv:type="String">
-      <sv:value>32adb3d7-21c7-4350-8bf7-b0c02357177a</sv:value>
+      <sv:value>62bc5708-62b6-4d47-a703-348bb94f5b76</sv:value>
     </sv:property>
-    <sv:property sv:name="hst:template" sv:type="String">
-      <sv:value>standard.main.re</sv:value>
+    <sv:property sv:name="hst:referencecomponent" sv:type="String">
+      <sv:value>hst:pages/standardpage.re</sv:value>
     </sv:property>
-    <sv:node sv:name="content">
+    <sv:node sv:name="main">
       <sv:property sv:name="jcr:primaryType" sv:type="Name">
         <sv:value>hst:component</sv:value>
       </sv:property>
       <sv:property sv:name="jcr:uuid" sv:type="String">
-        <sv:value>bf26654d-d5c5-4019-ab67-b7fb22a58d58</sv:value>
+        <sv:value>32adb3d7-21c7-4350-8bf7-b0c02357177a</sv:value>
       </sv:property>
-      <sv:property sv:name="hst:referencecomponent" sv:type="String">
-        <sv:value>hst:components/itreturn-ITR1</sv:value>
+      <sv:property sv:name="hst:template" sv:type="String">
+        <sv:value>standard.main.re</sv:value>
       </sv:property>
-      <sv:node sv:name="calculation">
+      <sv:node sv:name="content">
         <sv:property sv:name="jcr:primaryType" sv:type="Name">
           <sv:value>hst:component</sv:value>
         </sv:property>
         <sv:property sv:name="jcr:uuid" sv:type="String">
-          <sv:value>1012fa54-0929-4441-a1b1-0c3e092d8db1</sv:value>
+          <sv:value>bf26654d-d5c5-4019-ab67-b7fb22a58d58</sv:value>
         </sv:property>
-        <sv:property sv:name="hst:componentclassname" sv:type="String">
-          <sv:value>com.mootly.wcm.member.XmlGenerator</sv:value>
+        <sv:property sv:name="hst:referencecomponent" sv:type="String">
+          <sv:value>hst:components/itreturn-ITR1</sv:value>
         </sv:property>
-        <sv:property sv:name="hst:template" sv:type="String">
-          <sv:value>xml-generator</sv:value>
-        </sv:property>
-      </sv:node>
-      <sv:node sv:name="salaryincomeITR1">
-        <sv:property sv:name="jcr:primaryType" sv:type="Name">
-          <sv:value>hst:component</sv:value>
-        </sv:property>
-        <sv:property sv:name="jcr:uuid" sv:type="String">
-          <sv:value>8387dc28-eb1a-4897-a4df-f57ad2f41942</sv:value>
-        </sv:property>
-        <sv:property sv:name="hst:componentclassname" sv:type="String">
-          <sv:value>com.mootly.wcm.member.SalaryIncome</sv:value>
-        </sv:property>
-        <sv:property sv:name="hst:template" sv:type="String">
-          <sv:value>member.salaryincome</sv:value>
-        </sv:property>
-      </sv:node>
-      <sv:node sv:name="otherincome">
-        <sv:property sv:name="jcr:primaryType" sv:type="Name">
-          <sv:value>hst:component</sv:value>
-        </sv:property>
-        <sv:property sv:name="jcr:uuid" sv:type="String">
-          <sv:value>723d8bb4-427c-430a-9908-767a16151728</sv:value>
-        </sv:property>
-        <sv:property sv:name="hst:componentclassname" sv:type="String">
-          <sv:value>com.mootly.wcm.member.OtherIncome</sv:value>
-        </sv:property>
-        <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
-          <sv:value>hidehorseincome</sv:value>
-        </sv:property>
-        <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
-          <sv:value>notforitr1</sv:value>
-        </sv:property>
-        <sv:property sv:name="hst:template" sv:type="String">
-          <sv:value>otherincome</sv:value>
-        </sv:property>
-      </sv:node>
-      <sv:node sv:name="singlehouseincome">
-        <sv:property sv:name="jcr:primaryType" sv:type="Name">
-          <sv:value>hst:component</sv:value>
-        </sv:property>
-        <sv:property sv:name="jcr:uuid" sv:type="String">
-          <sv:value>1a0450ab-b9c0-48b9-ab50-daa7455d928c</sv:value>
-        </sv:property>
-        <sv:property sv:name="hst:componentclassname" sv:type="String">
-          <sv:value>com.mootly.wcm.member.HouseIncome</sv:value>
-        </sv:property>
-        <sv:property sv:name="hst:template" sv:type="String">
-          <sv:value>houseincome</sv:value>
-        </sv:property>
-      </sv:node>
-      <sv:node sv:name="deductionITR1">
-        <sv:property sv:name="jcr:primaryType" sv:type="Name">
-          <sv:value>hst:component</sv:value>
-        </sv:property>
-        <sv:property sv:name="jcr:uuid" sv:type="String">
-          <sv:value>7dfb1456-6ad9-408c-86cc-0b87a94ff329</sv:value>
-        </sv:property>
-        <sv:property sv:name="hst:componentclassname" sv:type="String">
-          <sv:value>com.mootly.wcm.member.Deduction</sv:value>
-        </sv:property>
-        <sv:property sv:name="hst:template" sv:type="String">
-          <sv:value>member.deduction</sv:value>
-        </sv:property>
-      </sv:node>
-      <sv:node sv:name="advanceataxITR1">
-        <sv:property sv:name="jcr:primaryType" sv:type="Name">
-          <sv:value>hst:component</sv:value>
-        </sv:property>
-        <sv:property sv:name="jcr:uuid" sv:type="String">
-          <sv:value>9a20ab01-673c-4579-9872-c7d0599e23c0</sv:value>
-        </sv:property>
-        <sv:property sv:name="hst:componentclassname" sv:type="String">
-          <sv:value>com.mootly.wcm.member.AdvanceTax</sv:value>
-        </sv:property>
-        <sv:property sv:name="hst:template" sv:type="String">
-          <sv:value>advancetaxgrid</sv:value>
-        </sv:property>
-      </sv:node>
-      <sv:node sv:name="formsixteenITR1">
-        <sv:property sv:name="jcr:primaryType" sv:type="Name">
-          <sv:value>hst:component</sv:value>
-        </sv:property>
-        <sv:property sv:name="jcr:uuid" sv:type="String">
-          <sv:value>f5ad8a33-8f17-4f7f-9f9c-7e429e958a34</sv:value>
-        </sv:property>
-        <sv:property sv:name="hst:componentclassname" sv:type="String">
-          <sv:value>com.mootly.wcm.member.FormSixteen</sv:value>
-        </sv:property>
-        <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
-          <sv:value>deductionwithformsixteen</sv:value>
-        </sv:property>
-        <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
-          <sv:value>deductionWithFormSixteen</sv:value>
-        </sv:property>
-        <sv:property sv:name="hst:template" sv:type="String">
-          <sv:value>formsixteen</sv:value>
-        </sv:property>
-        <sv:node sv:name="deduction-form16">
+        <sv:node sv:name="calculation">
           <sv:property sv:name="jcr:primaryType" sv:type="Name">
             <sv:value>hst:component</sv:value>
           </sv:property>
           <sv:property sv:name="jcr:uuid" sv:type="String">
-            <sv:value>50d1ad97-d8e3-40d6-b196-0e6af082c274</sv:value>
+            <sv:value>1012fa54-0929-4441-a1b1-0c3e092d8db1</sv:value>
+          </sv:property>
+          <sv:property sv:name="hst:componentclassname" sv:type="String">
+            <sv:value>com.mootly.wcm.member.XmlGenerator</sv:value>
+          </sv:property>
+          <sv:property sv:name="hst:template" sv:type="String">
+            <sv:value>xml-generator</sv:value>
+          </sv:property>
+        </sv:node>
+        <sv:node sv:name="salaryincomeITR1">
+          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+            <sv:value>hst:component</sv:value>
+          </sv:property>
+          <sv:property sv:name="jcr:uuid" sv:type="String">
+            <sv:value>8387dc28-eb1a-4897-a4df-f57ad2f41942</sv:value>
+          </sv:property>
+          <sv:property sv:name="hst:componentclassname" sv:type="String">
+            <sv:value>com.mootly.wcm.member.SalaryIncome</sv:value>
+          </sv:property>
+          <sv:property sv:name="hst:template" sv:type="String">
+            <sv:value>member.salaryincome</sv:value>
+          </sv:property>
+        </sv:node>
+        <sv:node sv:name="otherincome">
+          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+            <sv:value>hst:component</sv:value>
+          </sv:property>
+          <sv:property sv:name="jcr:uuid" sv:type="String">
+            <sv:value>723d8bb4-427c-430a-9908-767a16151728</sv:value>
+          </sv:property>
+          <sv:property sv:name="hst:componentclassname" sv:type="String">
+            <sv:value>com.mootly.wcm.member.OtherIncome</sv:value>
+          </sv:property>
+          <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+            <sv:value>hidehorseincome</sv:value>
+          </sv:property>
+          <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+            <sv:value>notforitr1</sv:value>
+          </sv:property>
+          <sv:property sv:name="hst:template" sv:type="String">
+            <sv:value>otherincome</sv:value>
+          </sv:property>
+        </sv:node>
+        <sv:node sv:name="singlehouseincome">
+          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+            <sv:value>hst:component</sv:value>
+          </sv:property>
+          <sv:property sv:name="jcr:uuid" sv:type="String">
+            <sv:value>1a0450ab-b9c0-48b9-ab50-daa7455d928c</sv:value>
+          </sv:property>
+          <sv:property sv:name="hst:componentclassname" sv:type="String">
+            <sv:value>com.mootly.wcm.member.HouseIncome</sv:value>
+          </sv:property>
+          <sv:property sv:name="hst:template" sv:type="String">
+            <sv:value>houseincome</sv:value>
+          </sv:property>
+        </sv:node>
+        <sv:node sv:name="deductionITR1">
+          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+            <sv:value>hst:component</sv:value>
+          </sv:property>
+          <sv:property sv:name="jcr:uuid" sv:type="String">
+            <sv:value>7dfb1456-6ad9-408c-86cc-0b87a94ff329</sv:value>
           </sv:property>
           <sv:property sv:name="hst:componentclassname" sv:type="String">
             <sv:value>com.mootly.wcm.member.Deduction</sv:value>
@@ -6777,94 +6657,141 @@
             <sv:value>member.deduction</sv:value>
           </sv:property>
         </sv:node>
-  </sv:node>
-        <sv:node sv:name="rebatesITR1" >
-  <sv:property sv:name="jcr:primaryType" sv:type="Name">
-    <sv:value>hst:component</sv:value>
-  </sv:property>
-  <sv:property sv:name="jcr:uuid" sv:type="String">
-    <sv:value>59673f3e-cbb4-4940-a9e4-2ac469cecfd5</sv:value>
-  </sv:property>
-  <sv:property sv:name="hst:componentclassname" sv:type="String">
-    <sv:value>com.mootly.wcm.member.RebateSec90</sv:value>
-  </sv:property>
-  <sv:property sv:name="hst:template" sv:type="String">
-    <sv:value>rebatesec90</sv:value>
-  </sv:property>
-</sv:node>
-<sv:node sv:name="interestITR1" >
-  <sv:property sv:name="jcr:primaryType" sv:type="Name">
-    <sv:value>hst:component</sv:value>
-  </sv:property>
-  <sv:property sv:name="jcr:uuid" sv:type="String">
-    <sv:value>5fb79ed8-b200-4141-8c1c-dd4be0d19440</sv:value>
-  </sv:property>
-  <sv:property sv:name="hst:componentclassname" sv:type="String">
-    <sv:value>com.mootly.wcm.member.Interest</sv:value>
-  </sv:property>
-  <sv:property sv:name="hst:template" sv:type="String">
-    <sv:value>interest</sv:value>
-  </sv:property>
-</sv:node>
-      <sv:node sv:name="tdsfromsalaryITR1">
-        <sv:property sv:name="jcr:primaryType" sv:type="Name">
-          <sv:value>hst:component</sv:value>
-        </sv:property>
-        <sv:property sv:name="jcr:uuid" sv:type="String">
-          <sv:value>60484f94-466e-4315-a557-bd6d2c6420d6</sv:value>
-        </sv:property>
-        <sv:property sv:name="hst:componentclassname" sv:type="String">
-          <sv:value>com.mootly.wcm.member.TdsFromSalary</sv:value>
-        </sv:property>
-        <sv:property sv:name="hst:template" sv:type="String">
-          <sv:value>tdsfromsalary</sv:value>
-        </sv:property>
-      </sv:node>
-      <sv:node sv:name="tdsfromothersITR1">
-        <sv:property sv:name="jcr:primaryType" sv:type="Name">
-          <sv:value>hst:component</sv:value>
-        </sv:property>
-        <sv:property sv:name="jcr:uuid" sv:type="String">
-          <sv:value>b79050f1-126b-4e16-9147-636c38aef851</sv:value>
-        </sv:property>
-        <sv:property sv:name="hst:componentclassname" sv:type="String">
-          <sv:value>com.mootly.wcm.member.TdsFromOthers</sv:value>
-        </sv:property>
-        <sv:property sv:name="hst:template" sv:type="String">
-          <sv:value>tdsfromothers</sv:value>
-        </sv:property>
-      </sv:node>
-      <sv:node sv:name="selfassesmenttaxITR1">
-        <sv:property sv:name="jcr:primaryType" sv:type="Name">
-          <sv:value>hst:component</sv:value>
-        </sv:property>
-        <sv:property sv:name="jcr:uuid" sv:type="String">
-          <sv:value>b6ad3a79-6c60-490a-8c63-4fdbcfa752ae</sv:value>
-        </sv:property>
-        <sv:property sv:name="hst:componentclassname" sv:type="String">
-          <sv:value>com.mootly.wcm.member.SelfAssesmentTax</sv:value>
-        </sv:property>
-        <sv:property sv:name="hst:template" sv:type="String">
-          <sv:value>selfassesmenttax</sv:value>
-        </sv:property>
-      </sv:node>
-      <sv:node sv:name="reviewsITR1">
-        <sv:property sv:name="jcr:primaryType" sv:type="Name">
-          <sv:value>hst:component</sv:value>
-        </sv:property>
-        <sv:property sv:name="jcr:uuid" sv:type="String">
-          <sv:value>12de6716-cb8d-4236-a0e2-dfe2ec49f243</sv:value>
-        </sv:property>
-        <sv:property sv:name="hst:componentclassname" sv:type="String">
-          <sv:value>com.mootly.wcm.member.Reviews</sv:value>
-        </sv:property>
-        <sv:property sv:name="hst:template" sv:type="String">
-          <sv:value>reviews</sv:value>
-        </sv:property>
+        <sv:node sv:name="advanceataxITR1">
+          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+            <sv:value>hst:component</sv:value>
+          </sv:property>
+          <sv:property sv:name="jcr:uuid" sv:type="String">
+            <sv:value>9a20ab01-673c-4579-9872-c7d0599e23c0</sv:value>
+          </sv:property>
+          <sv:property sv:name="hst:componentclassname" sv:type="String">
+            <sv:value>com.mootly.wcm.member.AdvanceTax</sv:value>
+          </sv:property>
+          <sv:property sv:name="hst:template" sv:type="String">
+            <sv:value>advancetaxgrid</sv:value>
+          </sv:property>
+        </sv:node>
+        <sv:node sv:name="formsixteenITR1">
+          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+            <sv:value>hst:component</sv:value>
+          </sv:property>
+          <sv:property sv:name="jcr:uuid" sv:type="String">
+            <sv:value>f5ad8a33-8f17-4f7f-9f9c-7e429e958a34</sv:value>
+          </sv:property>
+          <sv:property sv:name="hst:componentclassname" sv:type="String">
+            <sv:value>com.mootly.wcm.member.FormSixteen</sv:value>
+          </sv:property>
+          <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+            <sv:value>deductionwithformsixteen</sv:value>
+          </sv:property>
+          <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+            <sv:value>deductionWithFormSixteen</sv:value>
+          </sv:property>
+          <sv:property sv:name="hst:template" sv:type="String">
+            <sv:value>formsixteen</sv:value>
+          </sv:property>
+          <sv:node sv:name="deduction-form16">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>hst:component</sv:value>
+            </sv:property>
+            <sv:property sv:name="jcr:uuid" sv:type="String">
+              <sv:value>50d1ad97-d8e3-40d6-b196-0e6af082c274</sv:value>
+            </sv:property>
+            <sv:property sv:name="hst:componentclassname" sv:type="String">
+              <sv:value>com.mootly.wcm.member.Deduction</sv:value>
+            </sv:property>
+            <sv:property sv:name="hst:template" sv:type="String">
+              <sv:value>member.deduction</sv:value>
+            </sv:property>
+          </sv:node>
+        </sv:node>
+        <sv:node sv:name="rebatesITR1">
+          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+            <sv:value>hst:component</sv:value>
+          </sv:property>
+          <sv:property sv:name="jcr:uuid" sv:type="String">
+            <sv:value>59673f3e-cbb4-4940-a9e4-2ac469cecfd5</sv:value>
+          </sv:property>
+          <sv:property sv:name="hst:componentclassname" sv:type="String">
+            <sv:value>com.mootly.wcm.member.RebateSec90</sv:value>
+          </sv:property>
+          <sv:property sv:name="hst:template" sv:type="String">
+            <sv:value>rebatesec90</sv:value>
+          </sv:property>
+        </sv:node>
+        <sv:node sv:name="interestITR1">
+          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+            <sv:value>hst:component</sv:value>
+          </sv:property>
+          <sv:property sv:name="jcr:uuid" sv:type="String">
+            <sv:value>5fb79ed8-b200-4141-8c1c-dd4be0d19440</sv:value>
+          </sv:property>
+          <sv:property sv:name="hst:componentclassname" sv:type="String">
+            <sv:value>com.mootly.wcm.member.Interest</sv:value>
+          </sv:property>
+          <sv:property sv:name="hst:template" sv:type="String">
+            <sv:value>interest</sv:value>
+          </sv:property>
+        </sv:node>
+        <sv:node sv:name="tdsfromsalaryITR1">
+          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+            <sv:value>hst:component</sv:value>
+          </sv:property>
+          <sv:property sv:name="jcr:uuid" sv:type="String">
+            <sv:value>60484f94-466e-4315-a557-bd6d2c6420d6</sv:value>
+          </sv:property>
+          <sv:property sv:name="hst:componentclassname" sv:type="String">
+            <sv:value>com.mootly.wcm.member.TdsFromSalary</sv:value>
+          </sv:property>
+          <sv:property sv:name="hst:template" sv:type="String">
+            <sv:value>tdsfromsalary</sv:value>
+          </sv:property>
+        </sv:node>
+        <sv:node sv:name="tdsfromothersITR1">
+          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+            <sv:value>hst:component</sv:value>
+          </sv:property>
+          <sv:property sv:name="jcr:uuid" sv:type="String">
+            <sv:value>b79050f1-126b-4e16-9147-636c38aef851</sv:value>
+          </sv:property>
+          <sv:property sv:name="hst:componentclassname" sv:type="String">
+            <sv:value>com.mootly.wcm.member.TdsFromOthers</sv:value>
+          </sv:property>
+          <sv:property sv:name="hst:template" sv:type="String">
+            <sv:value>tdsfromothers</sv:value>
+          </sv:property>
+        </sv:node>
+        <sv:node sv:name="selfassesmenttaxITR1">
+          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+            <sv:value>hst:component</sv:value>
+          </sv:property>
+          <sv:property sv:name="jcr:uuid" sv:type="String">
+            <sv:value>b6ad3a79-6c60-490a-8c63-4fdbcfa752ae</sv:value>
+          </sv:property>
+          <sv:property sv:name="hst:componentclassname" sv:type="String">
+            <sv:value>com.mootly.wcm.member.SelfAssesmentTax</sv:value>
+          </sv:property>
+          <sv:property sv:name="hst:template" sv:type="String">
+            <sv:value>selfassesmenttax</sv:value>
+          </sv:property>
+        </sv:node>
+        <sv:node sv:name="reviewsITR1">
+          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+            <sv:value>hst:component</sv:value>
+          </sv:property>
+          <sv:property sv:name="jcr:uuid" sv:type="String">
+            <sv:value>12de6716-cb8d-4236-a0e2-dfe2ec49f243</sv:value>
+          </sv:property>
+          <sv:property sv:name="hst:componentclassname" sv:type="String">
+            <sv:value>com.mootly.wcm.member.Reviews</sv:value>
+          </sv:property>
+          <sv:property sv:name="hst:template" sv:type="String">
+            <sv:value>reviews</sv:value>
+          </sv:property>
+        </sv:node>
       </sv:node>
     </sv:node>
   </sv:node>
-</sv:node>
   <sv:node sv:name="xml-generator">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
       <sv:value>hst:component</sv:value>
@@ -6911,39 +6838,38 @@
     </sv:node>
   </sv:node>
   <sv:node sv:name="rebates">
-  <sv:property sv:name="jcr:primaryType" sv:type="Name">
-    <sv:value>hst:component</sv:value>
-  </sv:property>
-  <sv:property sv:name="jcr:uuid" sv:type="String">
-    <sv:value>6be27b6f-6b99-440a-8f2d-4be1589c9a93</sv:value>
-  </sv:property>
-  <sv:property sv:name="hst:referencecomponent" sv:type="String">
-    <sv:value>hst:pages/simplepage.re</sv:value>
-  </sv:property>
-  <sv:node sv:name="main">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
       <sv:value>hst:component</sv:value>
     </sv:property>
     <sv:property sv:name="jcr:uuid" sv:type="String">
-      <sv:value>24945b3f-cbdf-4c1d-b71a-02f3f0880428</sv:value>
+      <sv:value>6be27b6f-6b99-440a-8f2d-4be1589c9a93</sv:value>
     </sv:property>
-    <sv:property sv:name="hst:template" sv:type="String">
-      <sv:value>standard.main.re</sv:value>
+    <sv:property sv:name="hst:referencecomponent" sv:type="String">
+      <sv:value>hst:pages/simplepage.re</sv:value>
     </sv:property>
-    <sv:node sv:name="content">
+    <sv:node sv:name="main">
       <sv:property sv:name="jcr:primaryType" sv:type="Name">
         <sv:value>hst:component</sv:value>
       </sv:property>
       <sv:property sv:name="jcr:uuid" sv:type="String">
-        <sv:value>f2fe30f4-cb53-4c12-a40c-3535e66c82cb</sv:value>
+        <sv:value>24945b3f-cbdf-4c1d-b71a-02f3f0880428</sv:value>
       </sv:property>
-      <sv:property sv:name="hst:referencecomponent" sv:type="String">
-        <sv:value>hst:components/rebatesec90</sv:value>
+      <sv:property sv:name="hst:template" sv:type="String">
+        <sv:value>standard.main.re</sv:value>
       </sv:property>
+      <sv:node sv:name="content">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hst:component</sv:value>
+        </sv:property>
+        <sv:property sv:name="jcr:uuid" sv:type="String">
+          <sv:value>f2fe30f4-cb53-4c12-a40c-3535e66c82cb</sv:value>
+        </sv:property>
+        <sv:property sv:name="hst:referencecomponent" sv:type="String">
+          <sv:value>hst:components/rebatesec90</sv:value>
+        </sv:property>
+      </sv:node>
     </sv:node>
   </sv:node>
-</sv:node>
-  
   <sv:node sv:name="c6-deduction">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
       <sv:value>hst:component</sv:value>
@@ -7074,429 +7000,427 @@
       </sv:node>
     </sv:node>
   </sv:node>
-  
-<sv:node sv:name="vendor-signup">
-  <sv:property sv:name="jcr:primaryType" sv:type="Name">
-    <sv:value>hst:component</sv:value>
-  </sv:property>
-  <sv:property sv:name="jcr:uuid" sv:type="String">
-    <sv:value>6b2d6bd5-3745-47ca-bcb3-c8851e28f463</sv:value>
-  </sv:property>
-  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
-    <sv:value>bodyCssClass</sv:value>
-  </sv:property>
-  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
-    <sv:value>page</sv:value>
-  </sv:property>
-  <sv:property sv:name="hst:referencecomponent" sv:type="String">
-    <sv:value>hst:pages/simplepage.re</sv:value>
-  </sv:property>
-  <sv:node sv:name="main">
+  <sv:node sv:name="vendor-signup">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
       <sv:value>hst:component</sv:value>
     </sv:property>
     <sv:property sv:name="jcr:uuid" sv:type="String">
-      <sv:value>d7527309-0d1c-4e3c-9cf7-85332806132f</sv:value>
+      <sv:value>6b2d6bd5-3745-47ca-bcb3-c8851e28f463</sv:value>
     </sv:property>
     <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
-      <sv:value>contentCssClass</sv:value>
-      <sv:value>widgetsCssClass</sv:value>
+      <sv:value>bodyCssClass</sv:value>
     </sv:property>
     <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
-      <sv:value>grid col-620</sv:value>
-      <sv:value>grid col-300 fit</sv:value>
+      <sv:value>page</sv:value>
     </sv:property>
-    <sv:property sv:name="hst:template" sv:type="String">
-      <sv:value>standard.main.re</sv:value>
+    <sv:property sv:name="hst:referencecomponent" sv:type="String">
+      <sv:value>hst:pages/simplepage.re</sv:value>
     </sv:property>
-    <sv:node sv:name="content">
+    <sv:node sv:name="main">
       <sv:property sv:name="jcr:primaryType" sv:type="Name">
         <sv:value>hst:component</sv:value>
       </sv:property>
       <sv:property sv:name="jcr:uuid" sv:type="String">
-        <sv:value>b0f17100-37d8-498b-9cc9-1fab0dfa0849</sv:value>
-      </sv:property>
-      <sv:property sv:name="hst:componentclassname" sv:type="String">
-        <sv:value>com.mootly.wcm.vendor.VendorSignup</sv:value>
-      </sv:property>
-      <sv:property sv:name="hst:template" sv:type="String">
-        <sv:value>vendor.signup.detail</sv:value>
-      </sv:property>
-    </sv:node>
-    <sv:node sv:name="sidebar">
-      <sv:property sv:name="jcr:primaryType" sv:type="Name">
-        <sv:value>hst:component</sv:value>
-      </sv:property>
-      <sv:property sv:name="jcr:uuid" sv:type="String">
-        <sv:value>9304e4fd-30d4-4506-9929-553cfa76ac18</sv:value>
+        <sv:value>d7527309-0d1c-4e3c-9cf7-85332806132f</sv:value>
       </sv:property>
       <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
-        <sv:value>cssClass</sv:value>
+        <sv:value>contentCssClass</sv:value>
+        <sv:value>widgetsCssClass</sv:value>
       </sv:property>
       <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
-        <sv:value>grid col-460 fit</sv:value>
+        <sv:value>grid col-620</sv:value>
+        <sv:value>grid col-300 fit</sv:value>
       </sv:property>
       <sv:property sv:name="hst:template" sv:type="String">
-        <sv:value>standard.main.siderbar.re</sv:value>
+        <sv:value>standard.main.re</sv:value>
       </sv:property>
-      <sv:node sv:name="boxes-right">
+      <sv:node sv:name="content">
         <sv:property sv:name="jcr:primaryType" sv:type="Name">
-          <sv:value>hst:containercomponent</sv:value>
+          <sv:value>hst:component</sv:value>
         </sv:property>
         <sv:property sv:name="jcr:uuid" sv:type="String">
-          <sv:value>aa714e53-d9a8-4283-b9f4-6d6bb71bc740</sv:value>
+          <sv:value>b0f17100-37d8-498b-9cc9-1fab0dfa0849</sv:value>
         </sv:property>
-        <sv:property sv:name="hst:xtype" sv:type="String">
-          <sv:value>HST.vBox</sv:value>
+        <sv:property sv:name="hst:componentclassname" sv:type="String">
+          <sv:value>com.mootly.wcm.vendor.VendorSignup</sv:value>
         </sv:property>
-        <sv:node sv:name="box1">
+        <sv:property sv:name="hst:template" sv:type="String">
+          <sv:value>vendor.signup.detail</sv:value>
+        </sv:property>
+      </sv:node>
+      <sv:node sv:name="sidebar">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hst:component</sv:value>
+        </sv:property>
+        <sv:property sv:name="jcr:uuid" sv:type="String">
+          <sv:value>9304e4fd-30d4-4506-9929-553cfa76ac18</sv:value>
+        </sv:property>
+        <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+          <sv:value>cssClass</sv:value>
+        </sv:property>
+        <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+          <sv:value>grid col-460 fit</sv:value>
+        </sv:property>
+        <sv:property sv:name="hst:template" sv:type="String">
+          <sv:value>standard.main.siderbar.re</sv:value>
+        </sv:property>
+        <sv:node sv:name="boxes-right">
           <sv:property sv:name="jcr:primaryType" sv:type="Name">
-            <sv:value>hst:containeritemcomponent</sv:value>
+            <sv:value>hst:containercomponent</sv:value>
           </sv:property>
           <sv:property sv:name="jcr:uuid" sv:type="String">
-            <sv:value>f656fc55-b407-4d17-a4bd-c442747dddf9</sv:value>
-          </sv:property>
-          <sv:property sv:name="hst:componentclassname" sv:type="String">
-            <sv:value>com.mootly.wcm.components.BaseComponent</sv:value>
-          </sv:property>
-          <sv:property sv:name="hst:template" sv:type="String">
-            <sv:value>signup.box.login.ftl</sv:value>
+            <sv:value>aa714e53-d9a8-4283-b9f4-6d6bb71bc740</sv:value>
           </sv:property>
           <sv:property sv:name="hst:xtype" sv:type="String">
-            <sv:value>HST.Item</sv:value>
+            <sv:value>HST.vBox</sv:value>
           </sv:property>
-        </sv:node>
-        <sv:node sv:name="box2">
-          <sv:property sv:name="jcr:primaryType" sv:type="Name">
-            <sv:value>hst:containeritemcomponent</sv:value>
-          </sv:property>
-          <sv:property sv:name="jcr:uuid" sv:type="String">
-            <sv:value>72a6192c-ca9e-433a-905c-3c16ecb8058f</sv:value>
-          </sv:property>
-          <sv:property sv:name="hst:componentclassname" sv:type="String">
-            <sv:value>com.mootly.wcm.components.BaseComponent</sv:value>
-          </sv:property>
-          <sv:property sv:name="hst:template" sv:type="String">
-            <sv:value>signup.box.reactivation.ftl</sv:value>
-          </sv:property>
-          <sv:property sv:name="hst:xtype" sv:type="String">
-            <sv:value>HST.Item</sv:value>
-          </sv:property>
+          <sv:node sv:name="box1">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>hst:containeritemcomponent</sv:value>
+            </sv:property>
+            <sv:property sv:name="jcr:uuid" sv:type="String">
+              <sv:value>f656fc55-b407-4d17-a4bd-c442747dddf9</sv:value>
+            </sv:property>
+            <sv:property sv:name="hst:componentclassname" sv:type="String">
+              <sv:value>com.mootly.wcm.components.BaseComponent</sv:value>
+            </sv:property>
+            <sv:property sv:name="hst:template" sv:type="String">
+              <sv:value>signup.box.login.ftl</sv:value>
+            </sv:property>
+            <sv:property sv:name="hst:xtype" sv:type="String">
+              <sv:value>HST.Item</sv:value>
+            </sv:property>
+          </sv:node>
+          <sv:node sv:name="box2">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>hst:containeritemcomponent</sv:value>
+            </sv:property>
+            <sv:property sv:name="jcr:uuid" sv:type="String">
+              <sv:value>72a6192c-ca9e-433a-905c-3c16ecb8058f</sv:value>
+            </sv:property>
+            <sv:property sv:name="hst:componentclassname" sv:type="String">
+              <sv:value>com.mootly.wcm.components.BaseComponent</sv:value>
+            </sv:property>
+            <sv:property sv:name="hst:template" sv:type="String">
+              <sv:value>signup.box.reactivation.ftl</sv:value>
+            </sv:property>
+            <sv:property sv:name="hst:xtype" sv:type="String">
+              <sv:value>HST.Item</sv:value>
+            </sv:property>
+          </sv:node>
         </sv:node>
       </sv:node>
     </sv:node>
   </sv:node>
-</sv:node>
-	<sv:node sv:name="knowledgearticle-detail" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
-	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
-	    <sv:value>hst:component</sv:value>
-	  </sv:property>
-	  <sv:property sv:name="jcr:uuid" sv:type="String">
-	    <sv:value>ab929bce-fa2a-439c-85b5-bbcb4d0f2876</sv:value>
-	  </sv:property>
-	  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
-	    <sv:value>bodyCssClass</sv:value>
-	  </sv:property>
-	  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
-	    <sv:value>page</sv:value>
-	  </sv:property>
-	  <sv:property sv:name="hst:referencecomponent" sv:type="String">
-	    <sv:value>hst:pages/simplepage.re</sv:value>
-	  </sv:property>
-	  <sv:node sv:name="main">
-	    <sv:property sv:name="jcr:primaryType" sv:type="Name">
-	      <sv:value>hst:component</sv:value>
-	    </sv:property>
-	    <sv:property sv:name="jcr:uuid" sv:type="String">
-	      <sv:value>dbce3b8b-932c-46fd-93eb-240e02bf0efa</sv:value>
-	    </sv:property>
-	    <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
-	      <sv:value>contentCssClass</sv:value>
-	      <sv:value>widgetsCssClass</sv:value>
-	    </sv:property>
-	    <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
-	      <sv:value>grid col-620</sv:value>
-	      <sv:value>grid col-300 fit</sv:value>
-	    </sv:property>
-	    <sv:property sv:name="hst:template" sv:type="String">
-	      <sv:value>standard.main.re</sv:value>
-	    </sv:property>
-	    <sv:node sv:name="content">
-	      <sv:property sv:name="jcr:primaryType" sv:type="Name">
-	        <sv:value>hst:component</sv:value>
-	      </sv:property>
-	      <sv:property sv:name="jcr:uuid" sv:type="String">
-	        <sv:value>fe82708a-3f0f-47a5-9c3d-da24d4784003</sv:value>
-	      </sv:property>
-	      <sv:property sv:name="hst:componentclassname" sv:type="String">
-	        <sv:value>com.mootly.wcm.components.knowledgearticles.KnowledgeArticleDetail1</sv:value>
-	      </sv:property>
-	      <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
-	        <sv:value>pageSize</sv:value>
-	      </sv:property>
-	      <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
-	        <sv:value>3</sv:value>
-	      </sv:property>
-	      <sv:property sv:name="hst:template" sv:type="String">
-	        <sv:value>knowledgearticle.detail.content</sv:value>
-	      </sv:property>
-	    </sv:node>
-	    <sv:node sv:name="leftnav">
-	      <sv:property sv:name="jcr:primaryType" sv:type="Name">
-	        <sv:value>hst:component</sv:value>
-	      </sv:property>
-	      <sv:property sv:name="jcr:uuid" sv:type="String">
-	        <sv:value>0fe78a33-a582-4068-b7f7-4c320ce7fbdb</sv:value>
-	      </sv:property>
-	      <sv:property sv:name="hst:referencecomponent" sv:type="String">
-	        <sv:value>hst:components/knowledgearticleleftnav</sv:value>
-	      </sv:property>
-	      <sv:node sv:name="boxes-left">
-	        <sv:property sv:name="jcr:primaryType" sv:type="Name">
-	          <sv:value>hst:containercomponent</sv:value>
-	        </sv:property>
-	        <sv:property sv:name="jcr:uuid" sv:type="String">
-	          <sv:value>942a8ae6-975f-40e1-8eba-eb0e4a7c728e</sv:value>
-	        </sv:property>
-	        <sv:property sv:name="hst:xtype" sv:type="String">
-	          <sv:value>HST.vBox</sv:value>
-	        </sv:property>
-	        <sv:node sv:name="pageactions">
-	          <sv:property sv:name="jcr:primaryType" sv:type="Name">
-	            <sv:value>hst:containeritemcomponent</sv:value>
-	          </sv:property>
-	          <sv:property sv:name="jcr:uuid" sv:type="String">
-	            <sv:value>7192f277-e82d-4f04-ba01-6cd1735ec352</sv:value>
-	          </sv:property>
-	          <sv:property sv:name="hst:template" sv:type="String">
-	            <sv:value>standard.main.left.pageactions</sv:value>
-	          </sv:property>
-	          <sv:property sv:name="hst:xtype" sv:type="String">
-	            <sv:value>HST.Item</sv:value>
-	          </sv:property>
-	        </sv:node>
-	        <sv:node sv:name="simpledocument">
-	          <sv:property sv:name="jcr:primaryType" sv:type="Name">
-	            <sv:value>hst:containeritemcomponent</sv:value>
-	          </sv:property>
-	          <sv:property sv:name="jcr:uuid" sv:type="String">
-	            <sv:value>695aa480-5a77-4a0c-8fb4-4d4516f1a884</sv:value>
-	          </sv:property>
-	          <sv:property sv:name="hst:componentclassname" sv:type="String">
-	            <sv:value>com.mootly.wcm.components.common.SimpleDocument
+  <sv:node sv:name="knowledgearticle-detail">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>ab929bce-fa2a-439c-85b5-bbcb4d0f2876</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+      <sv:value>bodyCssClass</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+      <sv:value>page</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:referencecomponent" sv:type="String">
+      <sv:value>hst:pages/simplepage.re</sv:value>
+    </sv:property>
+    <sv:node sv:name="main">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>hst:component</sv:value>
+      </sv:property>
+      <sv:property sv:name="jcr:uuid" sv:type="String">
+        <sv:value>dbce3b8b-932c-46fd-93eb-240e02bf0efa</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+        <sv:value>contentCssClass</sv:value>
+        <sv:value>widgetsCssClass</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+        <sv:value>grid col-620</sv:value>
+        <sv:value>grid col-300 fit</sv:value>
+      </sv:property>
+      <sv:property sv:name="hst:template" sv:type="String">
+        <sv:value>standard.main.re</sv:value>
+      </sv:property>
+      <sv:node sv:name="content">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hst:component</sv:value>
+        </sv:property>
+        <sv:property sv:name="jcr:uuid" sv:type="String">
+          <sv:value>fe82708a-3f0f-47a5-9c3d-da24d4784003</sv:value>
+        </sv:property>
+        <sv:property sv:name="hst:componentclassname" sv:type="String">
+          <sv:value>com.mootly.wcm.components.knowledgearticles.KnowledgeArticleDetail1</sv:value>
+        </sv:property>
+        <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+          <sv:value>pageSize</sv:value>
+        </sv:property>
+        <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+          <sv:value>3</sv:value>
+        </sv:property>
+        <sv:property sv:name="hst:template" sv:type="String">
+          <sv:value>knowledgearticle.detail.content</sv:value>
+        </sv:property>
+      </sv:node>
+      <sv:node sv:name="leftnav">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hst:component</sv:value>
+        </sv:property>
+        <sv:property sv:name="jcr:uuid" sv:type="String">
+          <sv:value>0fe78a33-a582-4068-b7f7-4c320ce7fbdb</sv:value>
+        </sv:property>
+        <sv:property sv:name="hst:referencecomponent" sv:type="String">
+          <sv:value>hst:components/knowledgearticleleftnav</sv:value>
+        </sv:property>
+        <sv:node sv:name="boxes-left">
+          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+            <sv:value>hst:containercomponent</sv:value>
+          </sv:property>
+          <sv:property sv:name="jcr:uuid" sv:type="String">
+            <sv:value>942a8ae6-975f-40e1-8eba-eb0e4a7c728e</sv:value>
+          </sv:property>
+          <sv:property sv:name="hst:xtype" sv:type="String">
+            <sv:value>HST.vBox</sv:value>
+          </sv:property>
+          <sv:node sv:name="pageactions">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>hst:containeritemcomponent</sv:value>
+            </sv:property>
+            <sv:property sv:name="jcr:uuid" sv:type="String">
+              <sv:value>7192f277-e82d-4f04-ba01-6cd1735ec352</sv:value>
+            </sv:property>
+            <sv:property sv:name="hst:template" sv:type="String">
+              <sv:value>standard.main.left.pageactions</sv:value>
+            </sv:property>
+            <sv:property sv:name="hst:xtype" sv:type="String">
+              <sv:value>HST.Item</sv:value>
+            </sv:property>
+          </sv:node>
+          <sv:node sv:name="simpledocument">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>hst:containeritemcomponent</sv:value>
+            </sv:property>
+            <sv:property sv:name="jcr:uuid" sv:type="String">
+              <sv:value>695aa480-5a77-4a0c-8fb4-4d4516f1a884</sv:value>
+            </sv:property>
+            <sv:property sv:name="hst:componentclassname" sv:type="String">
+              <sv:value>com.mootly.wcm.components.common.SimpleDocument
 								</sv:value>
-	          </sv:property>
-	          <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
-	            <sv:value>documentlocation</sv:value>
-	          </sv:property>
-	          <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
-	            <sv:value>common/homepage-intro</sv:value>
-	          </sv:property>
-	          <sv:property sv:name="hst:template" sv:type="String">
-	            <sv:value>common.simpledocument</sv:value>
-	          </sv:property>
-	          <sv:property sv:name="hst:xtype" sv:type="String">
-	            <sv:value>HST.Item</sv:value>
-	          </sv:property>
-	        </sv:node>
-	      </sv:node>
-	    </sv:node>
-	    <sv:node sv:name="right">
-	      <sv:property sv:name="jcr:primaryType" sv:type="Name">
-	        <sv:value>hst:component</sv:value>
-	      </sv:property>
-	      <sv:property sv:name="jcr:uuid" sv:type="String">
-	        <sv:value>979f3709-4e75-497e-8ae1-6d6ac6b25e00</sv:value>
-	      </sv:property>
-	      <sv:property sv:name="hst:template" sv:type="String">
-	        <sv:value>knowledgearticles.right</sv:value>
-	      </sv:property>
-	      <sv:node sv:name="relatednews">
-	        <sv:property sv:name="jcr:primaryType" sv:type="Name">
-	          <sv:value>hst:component</sv:value>
-	        </sv:property>
-	        <sv:property sv:name="jcr:uuid" sv:type="String">
-	          <sv:value>94b7fe3e-03cc-4372-b906-44314d9ff931</sv:value>
-	        </sv:property>
-	        <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
-	          <sv:value>headline</sv:value>
-	          <sv:value>primaryNodeType</sv:value>
-	        </sv:property>
-	        <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
-	          <sv:value>Related News</sv:value>
-	          <sv:value>mootlywcm:newsitem</sv:value>
-	        </sv:property>
-	        <sv:property sv:name="hst:referencecomponent" sv:type="String">
-	          <sv:value>hst:components/relateddocuments</sv:value>
-	        </sv:property>
-	      </sv:node>
-	      <sv:node sv:name="relatedproducts">
-	        <sv:property sv:name="jcr:primaryType" sv:type="Name">
-	          <sv:value>hst:component</sv:value>
-	        </sv:property>
-	        <sv:property sv:name="jcr:uuid" sv:type="String">
-	          <sv:value>5b4b7810-6031-4d73-8016-3244c3437c62</sv:value>
-	        </sv:property>
-	        <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
-	          <sv:value>headline</sv:value>
-	          <sv:value>primaryNodeType</sv:value>
-	        </sv:property>
-	        <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
-	          <sv:value>Related Knowledge Articles</sv:value>
-	          <sv:value>mootlywcm:knowledgearticle</sv:value>
-	        </sv:property>
-	        <sv:property sv:name="hst:referencecomponent" sv:type="String">
-	          <sv:value>hst:components/relateddocuments</sv:value>
-	        </sv:property>
-	      </sv:node>
-	      <sv:node sv:name="relatedevents">
-	        <sv:property sv:name="jcr:primaryType" sv:type="Name">
-	          <sv:value>hst:component</sv:value>
-	        </sv:property>
-	        <sv:property sv:name="jcr:uuid" sv:type="String">
-	          <sv:value>f35964ea-a3c7-410c-ba0e-6f2c6a37b4f6</sv:value>
-	        </sv:property>
-	        <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
-	          <sv:value>headline</sv:value>
-	          <sv:value>primaryNodeType</sv:value>
-	        </sv:property>
-	        <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
-	          <sv:value>Related Events</sv:value>
-	          <sv:value>mootlywcm:event</sv:value>
-	        </sv:property>
-	        <sv:property sv:name="hst:referencecomponent" sv:type="String">
-	          <sv:value>hst:components/relateddocuments</sv:value>
-	        </sv:property>
-	      </sv:node>
-	      <sv:node sv:name="boxes-right">
-	        <sv:property sv:name="jcr:primaryType" sv:type="Name">
-	          <sv:value>hst:containercomponent</sv:value>
-	        </sv:property>
-	        <sv:property sv:name="jcr:uuid" sv:type="String">
-	          <sv:value>fb8b03db-9dbc-4a9e-96a1-8fdd6171c178</sv:value>
-	        </sv:property>
-	        <sv:property sv:name="hst:xtype" sv:type="String">
-	          <sv:value>HST.vBox</sv:value>
-	        </sv:property>
-	        <sv:node sv:name="banner">
-	          <sv:property sv:name="jcr:primaryType" sv:type="Name">
-	            <sv:value>hst:containeritemcomponent</sv:value>
-	          </sv:property>
-	          <sv:property sv:name="jcr:uuid" sv:type="String">
-	            <sv:value>34ebdc66-82b9-461a-bf59-97af7494796c</sv:value>
-	          </sv:property>
-	          <sv:property sv:name="hst:componentclassname" sv:type="String">
-	            <sv:value>com.mootly.wcm.components.common.Banner</sv:value>
-	          </sv:property>
-	          <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
-	            <sv:value>bannerlocation</sv:value>
-	          </sv:property>
-	          <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
-	            <sv:value>${bannerlocation}</sv:value>
-	          </sv:property>
-	          <sv:property sv:name="hst:template" sv:type="String">
-	            <sv:value>common.banner</sv:value>
-	          </sv:property>
-	          <sv:property sv:name="hst:xtype" sv:type="String">
-	            <sv:value>HST.Item</sv:value>
-	          </sv:property>
-	        </sv:node>
-	      </sv:node>
-	    </sv:node>
-	  </sv:node>
-	</sv:node>
-	<sv:node sv:name="knowledgearticles-overview" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
-	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
-	    <sv:value>hst:component</sv:value>
-	  </sv:property>
-	  <sv:property sv:name="jcr:uuid" sv:type="String">
-	    <sv:value>0a4ed224-2cde-45a2-be46-38e0de44e0d1</sv:value>
-	  </sv:property>
-	  <sv:property sv:name="hst:referencecomponent" sv:type="String">
-	    <sv:value>hst:pages/standardpage</sv:value>
-	  </sv:property>
-	  <sv:node sv:name="main">
-	    <sv:property sv:name="jcr:primaryType" sv:type="Name">
-	      <sv:value>hst:component</sv:value>
-	    </sv:property>
-	    <sv:property sv:name="jcr:uuid" sv:type="String">
-	      <sv:value>8e478fc9-83bd-4564-8c32-6fb1a4eab7a7</sv:value>
-	    </sv:property>
-	    <sv:property sv:name="hst:template" sv:type="String">
-	      <sv:value>knowledgearticles.main</sv:value>
-	    </sv:property>
-	    <sv:node sv:name="content">
-	      <sv:property sv:name="jcr:primaryType" sv:type="Name">
-	        <sv:value>hst:component</sv:value>
-	      </sv:property>
-	      <sv:property sv:name="jcr:uuid" sv:type="String">
-	        <sv:value>c2737543-a06c-436e-88df-ecb68481e809</sv:value>
-	      </sv:property>
-	      <sv:property sv:name="hst:referencecomponent" sv:type="String">
-	        <sv:value>hst:components/knowledgearticlesoverview</sv:value>
-	      </sv:property>
-	    </sv:node>
-	    <sv:node sv:name="leftnav">
-	      <sv:property sv:name="jcr:primaryType" sv:type="Name">
-	        <sv:value>hst:component</sv:value>
-	      </sv:property>
-	      <sv:property sv:name="jcr:uuid" sv:type="String">
-	        <sv:value>7421b701-80a5-423b-b3a4-9c45f9e7c451</sv:value>
-	      </sv:property>
-	      <sv:property sv:name="hst:referencecomponent" sv:type="String">
-	        <sv:value>hst:components/knowledgearticleleftnav</sv:value>
-	      </sv:property>
-	      <sv:node sv:name="boxes-left">
-	        <sv:property sv:name="jcr:primaryType" sv:type="Name">
-	          <sv:value>hst:containercomponent</sv:value>
-	        </sv:property>
-	        <sv:property sv:name="jcr:uuid" sv:type="String">
-	          <sv:value>e4fbf2d5-1e16-42fe-863c-73ca4669aeaf</sv:value>
-	        </sv:property>
-	        <sv:property sv:name="hst:xtype" sv:type="String">
-	          <sv:value>HST.vBox</sv:value>
-	        </sv:property>
-	        <sv:node sv:name="pageactions">
-	          <sv:property sv:name="jcr:primaryType" sv:type="Name">
-	            <sv:value>hst:containeritemcomponent</sv:value>
-	          </sv:property>
-	          <sv:property sv:name="jcr:uuid" sv:type="String">
-	            <sv:value>d7cdbc80-f9bd-4003-a298-10464d322f1b</sv:value>
-	          </sv:property>
-	          <sv:property sv:name="hst:template" sv:type="String">
-	            <sv:value>standard.main.left.pageactions</sv:value>
-	          </sv:property>
-	          <sv:property sv:name="hst:xtype" sv:type="String">
-	            <sv:value>HST.Item</sv:value>
-	          </sv:property>
-	        </sv:node>
-	        <sv:node sv:name="simpledocument">
-	          <sv:property sv:name="jcr:primaryType" sv:type="Name">
-	            <sv:value>hst:containeritemcomponent</sv:value>
-	          </sv:property>
-	          <sv:property sv:name="jcr:uuid" sv:type="String">
-	            <sv:value>8fa2a0ab-f300-4b4d-9a68-fe9859825254</sv:value>
-	          </sv:property>
-	          <sv:property sv:name="hst:componentclassname" sv:type="String">
-	            <sv:value>com.mootly.wcm.components.common.SimpleDocument
+            </sv:property>
+            <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+              <sv:value>documentlocation</sv:value>
+            </sv:property>
+            <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+              <sv:value>common/homepage-intro</sv:value>
+            </sv:property>
+            <sv:property sv:name="hst:template" sv:type="String">
+              <sv:value>common.simpledocument</sv:value>
+            </sv:property>
+            <sv:property sv:name="hst:xtype" sv:type="String">
+              <sv:value>HST.Item</sv:value>
+            </sv:property>
+          </sv:node>
+        </sv:node>
+      </sv:node>
+      <sv:node sv:name="right">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hst:component</sv:value>
+        </sv:property>
+        <sv:property sv:name="jcr:uuid" sv:type="String">
+          <sv:value>979f3709-4e75-497e-8ae1-6d6ac6b25e00</sv:value>
+        </sv:property>
+        <sv:property sv:name="hst:template" sv:type="String">
+          <sv:value>knowledgearticles.right</sv:value>
+        </sv:property>
+        <sv:node sv:name="relatednews">
+          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+            <sv:value>hst:component</sv:value>
+          </sv:property>
+          <sv:property sv:name="jcr:uuid" sv:type="String">
+            <sv:value>94b7fe3e-03cc-4372-b906-44314d9ff931</sv:value>
+          </sv:property>
+          <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+            <sv:value>headline</sv:value>
+            <sv:value>primaryNodeType</sv:value>
+          </sv:property>
+          <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+            <sv:value>Related News</sv:value>
+            <sv:value>mootlywcm:newsitem</sv:value>
+          </sv:property>
+          <sv:property sv:name="hst:referencecomponent" sv:type="String">
+            <sv:value>hst:components/relateddocuments</sv:value>
+          </sv:property>
+        </sv:node>
+        <sv:node sv:name="relatedproducts">
+          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+            <sv:value>hst:component</sv:value>
+          </sv:property>
+          <sv:property sv:name="jcr:uuid" sv:type="String">
+            <sv:value>5b4b7810-6031-4d73-8016-3244c3437c62</sv:value>
+          </sv:property>
+          <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+            <sv:value>headline</sv:value>
+            <sv:value>primaryNodeType</sv:value>
+          </sv:property>
+          <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+            <sv:value>Related Knowledge Articles</sv:value>
+            <sv:value>mootlywcm:knowledgearticle</sv:value>
+          </sv:property>
+          <sv:property sv:name="hst:referencecomponent" sv:type="String">
+            <sv:value>hst:components/relateddocuments</sv:value>
+          </sv:property>
+        </sv:node>
+        <sv:node sv:name="relatedevents">
+          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+            <sv:value>hst:component</sv:value>
+          </sv:property>
+          <sv:property sv:name="jcr:uuid" sv:type="String">
+            <sv:value>f35964ea-a3c7-410c-ba0e-6f2c6a37b4f6</sv:value>
+          </sv:property>
+          <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+            <sv:value>headline</sv:value>
+            <sv:value>primaryNodeType</sv:value>
+          </sv:property>
+          <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+            <sv:value>Related Events</sv:value>
+            <sv:value>mootlywcm:event</sv:value>
+          </sv:property>
+          <sv:property sv:name="hst:referencecomponent" sv:type="String">
+            <sv:value>hst:components/relateddocuments</sv:value>
+          </sv:property>
+        </sv:node>
+        <sv:node sv:name="boxes-right">
+          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+            <sv:value>hst:containercomponent</sv:value>
+          </sv:property>
+          <sv:property sv:name="jcr:uuid" sv:type="String">
+            <sv:value>fb8b03db-9dbc-4a9e-96a1-8fdd6171c178</sv:value>
+          </sv:property>
+          <sv:property sv:name="hst:xtype" sv:type="String">
+            <sv:value>HST.vBox</sv:value>
+          </sv:property>
+          <sv:node sv:name="banner">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>hst:containeritemcomponent</sv:value>
+            </sv:property>
+            <sv:property sv:name="jcr:uuid" sv:type="String">
+              <sv:value>34ebdc66-82b9-461a-bf59-97af7494796c</sv:value>
+            </sv:property>
+            <sv:property sv:name="hst:componentclassname" sv:type="String">
+              <sv:value>com.mootly.wcm.components.common.Banner</sv:value>
+            </sv:property>
+            <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+              <sv:value>bannerlocation</sv:value>
+            </sv:property>
+            <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+              <sv:value>${bannerlocation}</sv:value>
+            </sv:property>
+            <sv:property sv:name="hst:template" sv:type="String">
+              <sv:value>common.banner</sv:value>
+            </sv:property>
+            <sv:property sv:name="hst:xtype" sv:type="String">
+              <sv:value>HST.Item</sv:value>
+            </sv:property>
+          </sv:node>
+        </sv:node>
+      </sv:node>
+    </sv:node>
+  </sv:node>
+  <sv:node sv:name="knowledgearticles-overview">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>0a4ed224-2cde-45a2-be46-38e0de44e0d1</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:referencecomponent" sv:type="String">
+      <sv:value>hst:pages/standardpage</sv:value>
+    </sv:property>
+    <sv:node sv:name="main">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>hst:component</sv:value>
+      </sv:property>
+      <sv:property sv:name="jcr:uuid" sv:type="String">
+        <sv:value>8e478fc9-83bd-4564-8c32-6fb1a4eab7a7</sv:value>
+      </sv:property>
+      <sv:property sv:name="hst:template" sv:type="String">
+        <sv:value>knowledgearticles.main</sv:value>
+      </sv:property>
+      <sv:node sv:name="content">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hst:component</sv:value>
+        </sv:property>
+        <sv:property sv:name="jcr:uuid" sv:type="String">
+          <sv:value>c2737543-a06c-436e-88df-ecb68481e809</sv:value>
+        </sv:property>
+        <sv:property sv:name="hst:referencecomponent" sv:type="String">
+          <sv:value>hst:components/knowledgearticlesoverview</sv:value>
+        </sv:property>
+      </sv:node>
+      <sv:node sv:name="leftnav">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hst:component</sv:value>
+        </sv:property>
+        <sv:property sv:name="jcr:uuid" sv:type="String">
+          <sv:value>7421b701-80a5-423b-b3a4-9c45f9e7c451</sv:value>
+        </sv:property>
+        <sv:property sv:name="hst:referencecomponent" sv:type="String">
+          <sv:value>hst:components/knowledgearticleleftnav</sv:value>
+        </sv:property>
+        <sv:node sv:name="boxes-left">
+          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+            <sv:value>hst:containercomponent</sv:value>
+          </sv:property>
+          <sv:property sv:name="jcr:uuid" sv:type="String">
+            <sv:value>e4fbf2d5-1e16-42fe-863c-73ca4669aeaf</sv:value>
+          </sv:property>
+          <sv:property sv:name="hst:xtype" sv:type="String">
+            <sv:value>HST.vBox</sv:value>
+          </sv:property>
+          <sv:node sv:name="pageactions">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>hst:containeritemcomponent</sv:value>
+            </sv:property>
+            <sv:property sv:name="jcr:uuid" sv:type="String">
+              <sv:value>d7cdbc80-f9bd-4003-a298-10464d322f1b</sv:value>
+            </sv:property>
+            <sv:property sv:name="hst:template" sv:type="String">
+              <sv:value>standard.main.left.pageactions</sv:value>
+            </sv:property>
+            <sv:property sv:name="hst:xtype" sv:type="String">
+              <sv:value>HST.Item</sv:value>
+            </sv:property>
+          </sv:node>
+          <sv:node sv:name="simpledocument">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>hst:containeritemcomponent</sv:value>
+            </sv:property>
+            <sv:property sv:name="jcr:uuid" sv:type="String">
+              <sv:value>8fa2a0ab-f300-4b4d-9a68-fe9859825254</sv:value>
+            </sv:property>
+            <sv:property sv:name="hst:componentclassname" sv:type="String">
+              <sv:value>com.mootly.wcm.components.common.SimpleDocument
 								</sv:value>
-	          </sv:property>
-	          <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
-	            <sv:value>documentlocation</sv:value>
-	          </sv:property>
-	          <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
-	            <sv:value>common/homepage-intro</sv:value>
-	          </sv:property>
-	          <sv:property sv:name="hst:template" sv:type="String">
-	            <sv:value>common.simpledocument</sv:value>
-	          </sv:property>
-	          <sv:property sv:name="hst:xtype" sv:type="String">
-	            <sv:value>HST.Item</sv:value>
-	          </sv:property>
-	        </sv:node>
-	      </sv:node>
-	    </sv:node>
-	  </sv:node>
-	</sv:node>
-  
+            </sv:property>
+            <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+              <sv:value>documentlocation</sv:value>
+            </sv:property>
+            <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+              <sv:value>common/homepage-intro</sv:value>
+            </sv:property>
+            <sv:property sv:name="hst:template" sv:type="String">
+              <sv:value>common.simpledocument</sv:value>
+            </sv:property>
+            <sv:property sv:name="hst:xtype" sv:type="String">
+              <sv:value>HST.Item</sv:value>
+            </sv:property>
+          </sv:node>
+        </sv:node>
+      </sv:node>
+    </sv:node>
+  </sv:node>
 </sv:node>
