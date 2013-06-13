@@ -416,7 +416,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 						<span class="add-on"><i class="icon-envelope"></i> </span> <input
 							id="pi_email" style="width: 200px"
 							value="<c:choose><c:when test="${empty parentBean || empty parentBean.email}"><%=request.getUserPrincipal().getName()%><c:out value="${request.userPrincipal.name}"/></c:when><c:otherwise>${parentBean.email}</c:otherwise></c:choose>"
-							name="pi_email" placeholder="Email Address" />
+							name="pi_email" placeholder="Email Address" type="text"/>
 					</div>
 
 				</div>
