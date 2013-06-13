@@ -4,46 +4,12 @@
 13/03/2013
  --%>
 
-<%@include file="../includes/commonincludes.jspf"%>
-<%@page import="com.mootly.wcm.beans.compound.AdjustmentOfLossesCom"%>
+<%@include file="../includes/tags.jspf"%>
+<%@page import="com.mootly.wcm.services.ScreenConfigService"%>
 <%@ page import="com.mootly.wcm.utils.*"%>
 <%@ page import="java.util.*"%>
-<%@page import="org.hippoecm.hst.content.beans.standard.HippoFolder"%>
 <%@ page import="com.mootly.wcm.beans.*"%>
 
-<hst:link var ="mainSiteMapRefId" siteMapItemRefId="${mainSiteMapItemRefId}"/>
-<%
-String varToReplace = (String) pageContext.getAttribute("mainSiteMapRefId");
-if (varToReplace != null) {
-    String pan = (String) request.getAttribute("pan");
-    String itReturnType = (String) request.getAttribute("itReturnType");
- String modifiedSiteMapRefId = varToReplace.replaceFirst("_default_",itReturnType).replace("_default_", pan).replaceAll("adjustmentoflosses.html","deductions.html");
- pageContext.setAttribute("modifiedSiteMapRefId",modifiedSiteMapRefId);
-}
-else {
- pageContext.setAttribute("modifiedSiteMapRefId",mainSiteMapRefId);
-}
-%>
-
-  <script>
-  $(function() {
-	  
-	  jQuery("#frmdata").validationEngine();
-	  
-	  if (Modernizr.touch && Modernizr.inputtypes.date) {
-          
-          document.getElementById('date_credit').type = 'date';
-          
-      } else {
-          $('#DateOfFilingYear').datepicker({
-                   changeMonth: true,
-                   changeYear: true,
-                 
-                  });            
-      }	  	
-  });
-  </script>
- 
 <%
 
 ValueListService  objValueListService = ValueListServiceImpl.getInstance();
@@ -57,25 +23,6 @@ TreeMap  objHashMapBoolean= (TreeMap) objValueListService.getBoolean();
 request.setAttribute("objHashMapBoolean", objHashMapBoolean);
 %>
 
-<!-- used to set calendar  according to assessment year -->
-<script>
-function setYear(){
-	
-var assessmentyear=document.getElementById("AssessmentYear").value;
-
-var minyear=assessmentyear.slice(0,4);
-var maxyear=assessmentyear.slice(5,9);
-
-jQuery('#DateOfFilingYear').datepicker('destroy');
-    $('#DateOfFilingYear').datepicker({
-             changeMonth: true,
-             changeYear: true,
-             yearRange: minyear+":"+maxyear
-             
-            });     
-}
-</script>
-
 <!-- used to set title  -->
 
 <c:set var="adjustmentoflossestitle">
@@ -85,19 +32,11 @@ jQuery('#DateOfFilingYear').datepicker('destroy');
 <hippo-gogreen:title title="${adjustmentoflossestitle}" />
 
 <hst:actionURL var="actionUrl"></hst:actionURL>
+<hst:link var="mainSiteMapRefId" />
 
-<div class="breadcrumb-list" xmlns:v="http://rdf.data-vocabulary.org/#">
-	<span typeof="v:Breadcrumb"><a rel="v:url" property="v:title" href="">Home</a></span> 
-	<span class="chevron">&#187;</span> 
-	<span typeof="v:Breadcrumb"><a rel="v:url" property="v:title" href="">My Income Tax Returns</a></span>
-	<span class="chevron">&#187;</span> 
-	<span class="breadcrumb-current"><c:out value="${pan}"/></span>
-	<span class="chevron">&#187;</span> 
-	<span class="breadcrumb-current"><select style="width:120px"><option>Losses</option><option>a</option><option>a</option></select></span>
-</div>
-
-<div class="page type-page">
-	<h3 id="respond1">Losses</h3>
+<h4>
+	Losses
+</h4>
 	<c:if test="${not empty formMap}">
 		<c:forEach items="${formMap.message}" var="item">
 			<div class="alert alert-error"><c:out value="${item.key}"/> - <c:out value="${item.value}"/> </div>
@@ -105,57 +44,65 @@ jQuery('#DateOfFilingYear').datepicker('destroy');
 	</c:if>
 	<c:choose>
 	<c:when test="${pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD'}">
-		<form id="frmdata" action="${actionUrl}" name="frmdata" method="post">
-		<div class="row-fluid show-grid">
+		<form id="frmdataLosses" action="${actionUrl}" name="adjustmentoflosses" method="post">
 			<fieldset>
 				<legend>Detail Of Losses</legend>
-				<p>
-					<label for="AssessmentYear"> <fmt:message key="member.adjustment.losses.year"></fmt:message></label>
-					<select name="AssessmentYear" id="AssessmentYear" onChange="setYear()">
+				<div class="row-fluid show-grid" >
+				     <div class="span6">
+					 <div class="rowlabel"><label for="AssessmentYear"><small><fmt:message key="member.adjustment.losses.year"></fmt:message></small></label></div>
+					 <div class="rowlabel"><select name="AssessmentYear" id="AssessmentYear">
 						  <option value="">-Select Year-</option>
 						  <c:forEach var="booleanCombo" items="${objHashMapAssessmentYear}">
 						  <option <c:if test="${pageAction == 'EDIT_CHILD' && childBean.assessmentYear == booleanCombo.value}">selected</c:if> value="${booleanCombo.value}">${booleanCombo.value}</option>
 						  </c:forEach>
 					</select>
-				</p>
-				<p>
-					<label for="NameOfHead"><fmt:message key="member.adjustment.losses.name"></fmt:message></label>
-					      <select name="NameOfHead" id="name">
-					             <option value="">-Select Head-</option>	            
+					</div>
+					</div>
+                    <div class="span6">
+					<div class="rowlabel"><label for="NameOfHead"><small><fmt:message key="member.adjustment.losses.name"></fmt:message></small></label></div>
+					<div class="rowlabel"><select name="NameOfHead" id="NameOfHead">
+					             <option value="">-Select Head-</option>
 					             <c:forEach var="booleanCombo" items="${objHashMapNameOfHead}">
 
 					             <option <c:if test="${pageAction == 'EDIT_CHILD' && childBean.nameOfHead == booleanCombo.value}">selected</c:if>
 					                                value="${booleanCombo.value}">${booleanCombo.value}</option>
-						             
+
 						         </c:forEach>
 					      </select>
-				</p>
-				<p>
-					<label for="Amount"><fmt:message key="member.adjustment.losses.amount" /></label>
-					<input type="text" name="Amount" placeholder="Amount" id="amount" value="<c:if test="${pageAction == 'EDIT_CHILD'}"><c:out value="${childBean.amount}"/></c:if>"/>
-				</p>
-				<p>
-					<label for="DateOfFilingYear"><fmt:message key="member.adjustment.losses.date"></fmt:message></label>
-					 <input  id="DateOfFilingYear" placeholder="Date Of Filing Year" name="DateOfFilingYear" value="${childBean.DOBStr}" onClick="setYear()"/> 
-				</p>
-					<p>
-					<label for="DueDate"><fmt:message key="member.adjustment.losses.duedate"></fmt:message></label>
-					     <select name="DueDate" id="due">
+					      </div>
+					      </div>
+					</div>
+				<div class="row-fluid show-grid" >
+				 <div class="span6">
+					<div class="rowlabel"><label for="DueDate"><small><fmt:message key="member.adjustment.losses.duedate"></fmt:message></small></label></div>
+					<div class="rowlabel"><select name="DueDate" id="DueDate">
 					            <option value="">-Select-</option>
 								<c:forEach var="booleanCombo" items="${objHashMapBoolean}">
 					             <option <c:if test="${pageAction == 'EDIT_CHILD' && childBean.dueDate == booleanCombo.value}">selected</c:if> value="${booleanCombo.value}">${booleanCombo.value}</option>
 						         </c:forEach>
 					      </select>
-				</p>
-				
-			</fieldset>
+					</div>
+				</div>
+				<div class="span3">
+					 <div class="rowlabel"><label for="DateOfFilingYear"><small><fmt:message key="member.adjustment.losses.date"></fmt:message></small></label></div>
+					 <div class="rowlabel"><input type="text" id="DateOfFilingYear" name="DateOfFilingYear" value="${childBean.DOBStr}"/></div>
+				</div>
+				<div class="span3">
+					 <div class="rowlabel"><label for="Amount"><small><fmt:message key="member.adjustment.losses.amount" /></small></label></div>
+					 <div class="rowlabel"><input type="text" name="Amount" id="Amount" value="<c:if test="${pageAction == 'EDIT_CHILD'}"><c:out value="${childBean.amount}"/></c:if>"/></div>
+				</div>
 			</div>
+			</fieldset>
+			          <div class="row-fluid show-grid">
+					      <div class="span4 offset8 decimal">
+						      <a href="${scriptName}" class="button olive">Cancel</a>&nbsp;
+					          <a id="myModalHref" role="button" class="btn orange">Save</a>
+					     </div>
+					 </div>
 		</form>
-		<a href="${redirectURLToSamePage}" class="button olive">Cancel</a>&nbsp;
-		<a id="myModalHref" role="button" class="btn orange">Save</a>
-		
+
 	</c:when>
-	<c:otherwise>				
+	<c:otherwise>
 				<table>
 					<tr align="center">
 						<th><b>Name Of Head</b></th>
@@ -165,24 +112,25 @@ jQuery('#DateOfFilingYear').datepicker('destroy');
 						<th><b>Actions</b></th>
 					</tr>
 					<c:if test="${not empty parentBean}">
-					
+
 					<c:forEach items="${parentBean.adjustmentOfLossesList}" var="adjustmentOfLosses">
 							<tr>
-								<td><a href="${redirectURLToSamePage}/<c:out value="${adjustmentOfLosses.canonicalUUID}"/>/edit"><c:out value="${adjustmentOfLosses.nameOfHead}"/></a></td>
+								<td><c:out value="${adjustmentOfLosses.nameOfHead}"/></td>
 								<td><c:out value="${adjustmentOfLosses.assessmentYear}"/></td>
 								<td><c:out value="${adjustmentOfLosses.amount}"/></td>
 								<td><c:out value="${adjustmentOfLosses.DOBStr}"/></td>
-								<td><a href="${redirectURLToSamePage}/<c:out value="${adjustmentOfLosses.canonicalUUID}"/>/edit"><small>Edit</small></a>&nbsp;&nbsp;<a href="${redirectURLToSamePage}/<c:out value="${adjustmentOfLosses.canonicalUUID}"/>/delete"><small>Delete</small></a></td>
+								<td><a href="${scriptName}/<c:out value="${adjustmentOfLosses.canonicalUUID}"/>/edit"><small>Edit</small></a>&nbsp;&nbsp;<a href="${scriptName}/<c:out value="${adjustmentOfLosses.canonicalUUID}"/>/delete"><small>Delete</small></a></td>
 					        </tr>
-					       
-						</c:forEach>	
-						 <tr align="center"><td colspan="2">Total Amount</td><td><c:out value="${parentBean.totalAmount}"></c:out></td>					
-					</c:if>		
-					
+
+						</c:forEach>
+						<tr>
+					       <td><fmt:message key="tds.amount.total" /></td>
+					       <td><input type="text" name="total_value" maxlength="14" readonly value="${parentBean.totalAmount}"></td>
+					    </tr>
+					</c:if>
+
 				</table>
-				<a href="${redirectURLToSamePage}/new" class="button orange">Add New</a>
-				<a href="${modifiedSiteMapRefId}" id="saveAndNext" class="button orange">Next</a>
+				<a href="${scriptName}/new" class="button orange">Add New</a>
 	</c:otherwise>
 	</c:choose>
-</div>
-<res:client-validation formId="frmdata" screenConfigurationDocumentName="adjustmentoflosses" formSubmitButtonId="myModalHref"/>
+<res:client-validation formId="frmdataLosses" screenConfigurationDocumentName="adjustmentoflosses" formSubmitButtonId="myModalHref"/>
