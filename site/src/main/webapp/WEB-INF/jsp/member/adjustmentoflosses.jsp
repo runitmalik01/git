@@ -89,7 +89,7 @@ request.setAttribute("objHashMapBoolean", objHashMapBoolean);
 				</div>
 				<div class="span3">
 					 <div class="rowlabel"><label for="Amount"><small><fmt:message key="member.adjustment.losses.amount" /></small></label></div>
-					 <div class="rowlabel"><input type="text" name="Amount" id="Amount" value="<c:if test="${pageAction == 'EDIT_CHILD'}"><c:out value="${childBean.amount}"/></c:if>"/></div>
+					 <div class="rowlabel"><input type="text" name="Amount" id="Amount" class="decimal" value="<c:if test="${pageAction == 'EDIT_CHILD'}"><c:out value="${childBean.amount}"/></c:if>"/></div>
 				</div>
 			</div>
 			</fieldset>
@@ -125,7 +125,7 @@ request.setAttribute("objHashMapBoolean", objHashMapBoolean);
 						</c:forEach>
 						<tr>
 					       <td><fmt:message key="tds.amount.total" /></td>
-					       <td><input type="text" name="total_value" maxlength="14" readonly value="${parentBean.totalAmount}"></td>
+					       <td><input type="text" class="decimal" name="total_value" maxlength="14" readonly value="${parentBean.totalAmount}"></td>
 					    </tr>
 					</c:if>
 
