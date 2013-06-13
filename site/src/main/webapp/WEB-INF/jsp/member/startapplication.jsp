@@ -551,60 +551,35 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 				</c:otherwise>
 			</c:choose>
 		</fieldset>
+		<c:choose>
+		<c:when test="${not empty parentBean && not empty parentBean.financialYear}">
+		<c:set value="${fn:substringBefore(parentBean.financialYear,'-')}" var="fy"/></c:when>
+		<c:otherwise><c:if test="${not empty savedValuesFormMap && not empty savedValuesFormMap.value['fy']}">
+		<c:set value="${fn:substringBefore(savedValuesFormMap.value['fy'].value,'-')}" var="fy"/></c:if></c:otherwise></c:choose>
+		<c:choose><c:when test="${fy=='2012'}"><c:set var="bnkcode" value="flex_string_IFSCCode"/><c:set var="maxlen" value="11"/><c:set var="label" value="IFSC Code"/></c:when>
+		<c:when test="${fy=='2011'}"><c:set var="bnkcode" value="bd_micr_code"/><c:set var="maxlen" value="9"/><c:set var="label" value="MICR Code"/></c:when></c:choose>
 		<fieldset>
 			<legend>
 				<fmt:message key="member.bank.detail" />
-
 			</legend>
-			<%--<a href="#myModal" role="button" class="btn" id="bank"
-					data-toggle="modal" onclick="bankDetail()"> <c:choose>
-						<c:when
-							test="${parentBean.BD_BANK_NAME eq null || parentBean.BD_BANK_NAME eq ''  }">ADD Bank Detail</c:when>
-						<c:otherwise>Change Bank Detail</c:otherwise>
-					</c:choose>
-				</a>
-				<!-- Modal -->
-				 <div id="myModal" class="modal hide fade" tabindex="-1"
-					role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal"
-							aria-hidden="true">x</button>
-						<h3 id="myModalLabel">Bank Detail</h3>
-					</div>
-					<div class="modal-body">--%>
 			<div class="row-fluid show-grid">
-				<div class="span4">
-					<div class="rowlabel">
-						<label for="bd_bank_name"><small>
-								<fmt:message key="member.bank.detail.bank.name" /></small> </label>
-					</div>
-					<div class="rowlabel">
-						<input type="text" id="bd_bank_name" name="bd_bank_name"
-							value="${parentBean.BD_BANK_NAME}" data-toggle="tooltip"
-							title="Enter Name of Bank" maxlength="25" />
-					</div>
-				</div>
-				<div class="span4">
-					<div class="rowlabel">
-						<label for="bd_micr_code"><small><fmt:message
-								key="member.bank.detail.ifsc.code" /> </small></label>
-					</div>
-					<div class="rowlabel">
-						<input type="text" id="bd_micr_code" name="bd_micr_code"
-							value="${parentBean.BD_MICR_CODE}"
-							title="Enter 9-Digit valid MICR Code" maxlength="9"
-							class="numberinput" />
-					</div>
-				</div>
-				<div class="span4">
-					<div class="rowlabel">
-						<label for="bd_Branch_name"><small><fmt:message
-								key="member.bank.detail.bank.branch" /> </small></label>
-					</div>
-					<div class="rowlabel">
-						<input type="text" id="bd_Branch_name" name="bd_Branch_name"
-							value="${parentBean.BD_ADD_BANK_BRANCH}"
-							title="Enter Name of Bank's Branch" maxlength="120" />
+					<div class="span4">
+					        <div class="rowlabel"><small><label for="bd_bank_name">
+					        <fmt:message key="member.bank.detail.bank.name" /></label></small></div>
+							<div class="rowlabel">
+							<input type="text" id="bd_bank_name" name="bd_bank_name" value="${parentBean.BD_BANK_NAME}" maxlength="25"/></div>
+					 </div>
+					 <div class="span4">
+					        <div class="rowlabel"><small><label for="<c:out value="${bnkcode}"/>">
+							<c:out value="${label}"/></label></small></div>
+							<div class="rowlabel"> 
+							<input type="text" id="<c:out value="${bnkcode}"/>" name="<c:out value="${bnkcode}"/>" value="${parentBean.BD_MICR_CODE}" maxlength="<c:out value="${maxlen}"/>"/></div>
+					 </div>
+					<div class="span4">
+					        <div class="rowlabel"><small><label for="bd_Branch_name">
+					        <fmt:message key="member.bank.detail.bank.branch"/></label></small></div>
+					        <div class="rowlabel">
+							<input type="text" id="bd_Branch_name" name="bd_Branch_name" value="${parentBean.BD_ADD_BANK_BRANCH}" maxlength="120" /></div>
 					</div>
 				</div>
 				<div class="row-fluid show-grid">
@@ -614,8 +589,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 									key="member.bank.detail.acc.type" /></small> </label>
 						</div>
 						<div class="rowlabel">
-							<select name="bd_account_type" title="Select Type of Account"
-								id="bd_account_type">
+							<select name="bd_account_type" id="bd_account_type">
 								<option value="">Select</option>
 								<option
 									<c:if test="${not empty parentBean.BD_TYPE_ACC && parentBean.BD_TYPE_ACC == 'SAV'}">selected</c:if>
@@ -642,12 +616,10 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 						</div>
 						<div class="rowlabel">
 							<input type="text" id="bd_account_no" name="bd_account_no"
-								value="${parentBean.BD_ACC_NUMBER}" title="Enter Account Number"
+								value="${parentBean.BD_ACC_NUMBER}" title="Account Number"
 								maxlength="17" />
 						</div>
 					</div>
-					</div>
-					<div class="row-fluid show-grid">
 					<div class="span4">
 						<div class="rowlabel">
 							<small><label for="bd_ecs"><fmt:message
@@ -657,7 +629,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 						<div class="rowlabel">
 							<select name="bd_ecs" title="Select Electronic Clearing System"
 								id="bd_ecs">
-								<option value="">-select-</option>
+								<option value="">Select</option>
 								<option
 									<c:if test="${not empty parentBean.BD_ECS && parentBean.BD_ECS == 'N'}">selected</c:if>
 									value="N">
@@ -671,8 +643,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 							</select>
 						</div>
 					</div>
-				</div>
-			</div>
+					</div>
 		</fieldset>
 		<div id="itreturnHomepage" style="display: none; visiblity: hidden">
 			<input id="pan" name="pan"
