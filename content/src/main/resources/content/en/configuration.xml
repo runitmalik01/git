@@ -4870,92 +4870,92 @@ acknowledgement&lt;/p&gt;
       </sv:node>
     </sv:node>
     <sv:node sv:name="selfassementtax">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hippo:handle</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+    <sv:value>hippo:hardhandle</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>dc063bf9-75ee-4b9f-8a44-f1285f811cc9</sv:value>
+  </sv:property>
+  <sv:node sv:name="selfassementtax">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>mootlywcm:screenconfig</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+      <sv:value>hippo:harddocument</sv:value>
+      <sv:value>hippotranslation:translated</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>c8e0abd1-3484-49e1-9eba-bef01785f0f8</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
+      <sv:value>live</sv:value>
+      <sv:value>preview</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippo:related___pathreference" sv:type="String">
+      <sv:value>selfassementtax</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostd:holder" sv:type="String">
+      <sv:value>admin</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostd:state" sv:type="String">
+      <sv:value>published</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostd:stateSummary" sv:type="String">
+      <sv:value>live</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
+      <sv:value>admin</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
+      <sv:value>2013-05-16T14:39:25.577+05:30</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
+      <sv:value>2013-06-13T15:04:01.252+05:30</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
+      <sv:value>admin</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
+      <sv:value>2013-06-13T15:04:05.452+05:30</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippotranslation:id" sv:type="String">
+      <sv:value>013e6f38-0c9d-4a55-8e84-937487895a89</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippotranslation:locale" sv:type="String">
+      <sv:value>en</sv:value>
+    </sv:property>
+    <sv:property sv:name="mootlywcm:screenHeading" sv:type="String">
+      <sv:value/>
+    </sv:property>
+    <sv:property sv:name="mootlywcm:screenHelp" sv:type="String">
+      <sv:value/>
+    </sv:property>
+    <sv:property sv:name="mootlywcm:screenSubHeading" sv:type="String">
+      <sv:value/>
+    </sv:property>
+    <sv:node sv:name="hippotranslation:translations">
       <sv:property sv:name="jcr:primaryType" sv:type="Name">
-        <sv:value>hippo:handle</sv:value>
+        <sv:value>hippotranslation:translations</sv:value>
       </sv:property>
-      <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
-        <sv:value>hippo:hardhandle</sv:value>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
       </sv:property>
-      <sv:property sv:name="jcr:uuid" sv:type="String">
-        <sv:value>dc063bf9-75ee-4b9f-8a44-f1285f811cc9</sv:value>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>bsr</sv:value>
       </sv:property>
-      <sv:node sv:name="selfassementtax">
-        <sv:property sv:name="jcr:primaryType" sv:type="Name">
-          <sv:value>mootlywcm:screenconfig</sv:value>
-        </sv:property>
-        <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
-          <sv:value>hippo:harddocument</sv:value>
-          <sv:value>hippotranslation:translated</sv:value>
-        </sv:property>
-        <sv:property sv:name="jcr:uuid" sv:type="String">
-          <sv:value>767d9f20-3642-4e8e-9c09-00bae94f44ae</sv:value>
-        </sv:property>
-        <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
-          <sv:value>live</sv:value>
-          <sv:value>preview</sv:value>
-        </sv:property>
-        <sv:property sv:name="hippo:related___pathreference" sv:type="String">
-          <sv:value>configuration/screenconfigs/selfassementtax</sv:value>
-        </sv:property>
-        <sv:property sv:name="hippostd:holder" sv:type="String">
-          <sv:value>admin</sv:value>
-        </sv:property>
-        <sv:property sv:name="hippostd:state" sv:type="String">
-          <sv:value>published</sv:value>
-        </sv:property>
-        <sv:property sv:name="hippostd:stateSummary" sv:type="String">
-          <sv:value>live</sv:value>
-        </sv:property>
-        <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
-          <sv:value>admin</sv:value>
-        </sv:property>
-        <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
-          <sv:value>2013-05-16T14:39:25.577+05:30</sv:value>
-        </sv:property>
-        <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-          <sv:value>2013-05-21T12:39:27.784+05:30</sv:value>
-        </sv:property>
-        <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
-          <sv:value>admin</sv:value>
-        </sv:property>
-        <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-          <sv:value>2013-05-21T12:39:31.274+05:30</sv:value>
-        </sv:property>
-        <sv:property sv:name="hippotranslation:id" sv:type="String">
-          <sv:value>013e6f38-0c9d-4a55-8e84-937487895a89</sv:value>
-        </sv:property>
-        <sv:property sv:name="hippotranslation:locale" sv:type="String">
-          <sv:value>en</sv:value>
-        </sv:property>
-        <sv:property sv:name="mootlywcm:screenHeading" sv:type="String">
-          <sv:value/>
-        </sv:property>
-        <sv:property sv:name="mootlywcm:screenHelp" sv:type="String">
-          <sv:value/>
-        </sv:property>
-        <sv:property sv:name="mootlywcm:screenSubHeading" sv:type="String">
-          <sv:value/>
-        </sv:property>
-        <sv:node sv:name="hippotranslation:translations">
-          <sv:property sv:name="jcr:primaryType" sv:type="Name">
-            <sv:value>hippotranslation:translations</sv:value>
-          </sv:property>
-        </sv:node>
-        <sv:node sv:name="mootlywcm:screenfieldconfig">
-          <sv:property sv:name="jcr:primaryType" sv:type="Name">
-            <sv:value>mootlywcm:screenfieldconfig</sv:value>
-          </sv:property>
-          <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
-            <sv:value>bsr</sv:value>
-          </sv:property>
-          <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
-            <sv:value>bsr_codeself</sv:value>
-          </sv:property>
-          <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
-            <sv:value>bsr_codeself</sv:value>
-          </sv:property>
-          <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
-            <sv:value>&lt;html&gt;
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>bsr_codeself</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>bsr_codeself</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value>&lt;html&gt;
 &lt;body&gt;
 
 &lt;p&gt;Enter the BSR code of the bank, as mentioned in your challan or on e-payment
@@ -4963,64 +4963,64 @@ acknowledgement&lt;/p&gt;
 
 &lt;/body&gt;
 &lt;/html&gt;</sv:value>
-          </sv:property>
-          <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
-            <sv:value>Enter exactly 7 digit numeric code</sv:value>
-          </sv:property>
-          <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
-            <sv:value>true</sv:value>
-          </sv:property>
-          <sv:property sv:multiple="true" sv:name="mootlywcm:validatorArguments" sv:type="String">
-            <sv:value/>
-          </sv:property>
-          <sv:property sv:name="mootlywcm:validators" sv:type="String">
-            <sv:value/>
-          </sv:property>
-        </sv:node>
-        <sv:node sv:name="mootlywcm:screenfieldconfig">
-          <sv:property sv:name="jcr:primaryType" sv:type="Name">
-            <sv:value>mootlywcm:screenfieldconfig</sv:value>
-          </sv:property>
-          <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
-            <sv:value>indiandate</sv:value>
-          </sv:property>
-          <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
-            <sv:value>date_creditself</sv:value>
-          </sv:property>
-          <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
-            <sv:value>date_creditself</sv:value>
-          </sv:property>
-          <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
-            <sv:value/>
-          </sv:property>
-          <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
-            <sv:value>Enter in dd/MM/YYYY</sv:value>
-          </sv:property>
-          <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
-            <sv:value>true</sv:value>
-          </sv:property>
-          <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
-            <sv:value/>
-          </sv:property>
-          <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
-            <sv:value/>
-          </sv:property>
-        </sv:node>
-        <sv:node sv:name="mootlywcm:screenfieldconfig">
-          <sv:property sv:name="jcr:primaryType" sv:type="Name">
-            <sv:value>mootlywcm:screenfieldconfig</sv:value>
-          </sv:property>
-          <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
-            <sv:value>serial</sv:value>
-          </sv:property>
-          <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
-            <sv:value>Serial_challanself</sv:value>
-          </sv:property>
-          <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
-            <sv:value>Serial_challanself</sv:value>
-          </sv:property>
-          <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
-            <sv:value>&lt;html&gt;
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value>Enter exactly 7 digit numeric code</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>true</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>indiandateSelfAssesment</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>date_creditself</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>date_creditself</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value>Enter in dd/MM/YYYY</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>true</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>serial</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>Serial_challanself</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>Serial_challanself</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value>&lt;html&gt;
 &lt;body&gt;
 
 &lt;p&gt;Enter the Challan no, as mentioned in your challan or on e-payment
@@ -5028,57 +5028,58 @@ acknowledgement&lt;/p&gt;
 
 &lt;/body&gt;
 &lt;/html&gt;</sv:value>
-          </sv:property>
-          <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
-            <sv:value>Enter exactly 5 digit</sv:value>
-          </sv:property>
-          <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
-            <sv:value>true</sv:value>
-          </sv:property>
-          <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
-            <sv:value/>
-          </sv:property>
-          <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
-            <sv:value/>
-          </sv:property>
-        </sv:node>
-        <sv:node sv:name="mootlywcm:screenfieldconfig">
-          <sv:property sv:name="jcr:primaryType" sv:type="Name">
-            <sv:value>mootlywcm:screenfieldconfig</sv:value>
-          </sv:property>
-          <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
-            <sv:value>amount</sv:value>
-          </sv:property>
-          <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
-            <sv:value>amountself</sv:value>
-          </sv:property>
-          <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
-            <sv:value>amountself</sv:value>
-          </sv:property>
-          <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
-            <sv:value>&lt;html&gt;
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value>Enter exactly 5 digit</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>true</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>amount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>amountself</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>amountself</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value>&lt;html&gt;
 &lt;body&gt;
 
 &lt;p&gt;ENter the amount of Self Assessment tax paid&lt;/p&gt;
 
 &lt;/body&gt;
 &lt;/html&gt;</sv:value>
-          </sv:property>
-          <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
-            <sv:value>Enter amount</sv:value>
-          </sv:property>
-          <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
-            <sv:value>true</sv:value>
-          </sv:property>
-          <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
-            <sv:value/>
-          </sv:property>
-          <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
-            <sv:value/>
-          </sv:property>
-        </sv:node>
-      </sv:node>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value>Enter amount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>true</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
     </sv:node>
+  </sv:node>
+</sv:node>
+
     <sv:node sv:name="changepass">
       <sv:property sv:name="jcr:primaryType" sv:type="Name">
         <sv:value>hippo:handle</sv:value>
