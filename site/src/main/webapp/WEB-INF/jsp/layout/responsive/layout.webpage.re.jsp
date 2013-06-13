@@ -27,6 +27,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.onehippo.org/jsp/google-analytics" prefix="ga" %>
 <%@include file="../../includes/tags.jspf" %>
+<%@page import="com.mootly.wcm.beans.MemberPersonalInformation"%>
 <c:set var="lang" value="${pageContext.request.locale.language}"/>
 <head>
     <hst:headContributions categoryExcludes="css,jsInternal,jsExternal" />
@@ -114,6 +115,9 @@
 		$.validator.addMethod("micr", function(value, element) {  
 		   	 return this.optional(element) || /^[0-9]{9}?$/i.test(value);  
 		}, "MICR Code is invalid");
+		$.validator.addMethod("ifsc", function(value, element) {  
+		   	 return this.optional(element) || /^[a-zA-Z0-9]{4}[0]{1}[a-zA-Z0-9]{6}?$/i.test(value);  
+		}, "IFSC Code is invalid");
 		$.validator.addMethod("tan", function(value, element) {  
 		   	 return this.optional(element) || /^[a-zA-Z]{4}[0-9]{5}[a-zA-Z]{1}?$/i.test(value);  
 		}, "TAN is invalid");
