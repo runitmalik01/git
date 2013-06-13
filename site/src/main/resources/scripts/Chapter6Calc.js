@@ -58,7 +58,8 @@ out_total_80ccd_2=(total_80ccd_2 >= tenperSalincome) ? tenperSalincome : total_8
 out_total_80tta=(total_80tta>maxAllowed_80TTA) ? maxAllowed_80TTA : total_80tta ;
 
 //80GGA- Interest on Bank Saving Accounts
-out_total_80ccg=(total_80ccg>maxAllowed_80CCG) ? maxAllowed_80CCG : total_80ccg;
+var fiftyPerCcg=(total_80ccg)*.5;
+out_total_80ccg=(fiftyPerCcg>maxAllowed_80CCG) ? maxAllowed_80CCG : fiftyPerCcg;
 
 //--this one is 80CCF this upper limit it 20000
 /*out_total_80ccf=0;
