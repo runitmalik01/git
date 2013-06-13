@@ -118,8 +118,10 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 			<div class="row-fluid show-grid">
 				<div class="span6">
 					<div class="rowlabel">
-						<label><small><fmt:message key="member.employe.category" /><span
-							style="color: red">*</span> </small></label>
+						<label><small><fmt:message
+									key="member.employe.category" /><span style="color: red">*</span>
+						</small>
+						</label>
 					</div>
 					<c:if test="${not empty parentBean.employe_category}">
 						<c:choose>
@@ -142,10 +144,11 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 							name="Employe_category" value="OTH" />Others
 					</div>
 				</div>
-				<div class="span4">
+				<div class="span5">
 					<div class="rowlabel">
-						<label><small><fmt:message key="member.portugese.civil" /><span
-							style="color: red">*</span></small> </label>
+						<label><small><fmt:message
+									key="member.portugese.civil" /><span style="color: red">*</span>
+						</small> </label>
 					</div>
 					<div>
 						<select id="portugesecivil" name="portugesecivil">
@@ -405,15 +408,15 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 							name="ward_circle" placeholder=" Ward/Circle" type="text" />
 					</div>
 				</div>
-				<div class="span6">
+				<div class="span7">
 					<div class="rowlabel">
 						<label for="pi_email"><small>Email</small> </label>
 					</div>
 					<div class="input-prepend">
 						<span class="add-on"><i class="icon-envelope"></i> </span> <input
-							id="pi_email"
+							id="pi_email" style="width: 200px"
 							value="<c:choose><c:when test="${empty parentBean || empty parentBean.email}"><%=request.getUserPrincipal().getName()%><c:out value="${request.userPrincipal.name}"/></c:when><c:otherwise>${parentBean.email}</c:otherwise></c:choose>"
-							name="pi_email" placeholder="Email Address" type="text" />
+							name="pi_email" placeholder="Email Address" />
 					</div>
 
 				</div>
@@ -552,98 +555,148 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 			</c:choose>
 		</fieldset>
 		<c:choose>
-		<c:when test="${not empty parentBean && not empty parentBean.financialYear}">
-		<c:set value="${fn:substringBefore(parentBean.financialYear,'-')}" var="fy"/></c:when>
-		<c:otherwise><c:if test="${not empty savedValuesFormMap && not empty savedValuesFormMap.value['fy']}">
-		<c:set value="${fn:substringBefore(savedValuesFormMap.value['fy'].value,'-')}" var="fy"/></c:if></c:otherwise></c:choose>
-		<c:choose><c:when test="${fy=='2012'}"><c:set var="bnkcode" value="flex_string_IFSCCode"/><c:set var="maxlen" value="11"/><c:set var="label" value="IFSC Code"/></c:when>
-		<c:when test="${fy=='2011'}"><c:set var="bnkcode" value="bd_micr_code"/><c:set var="maxlen" value="9"/><c:set var="label" value="MICR Code"/></c:when></c:choose>
+			<c:when
+				test="${not empty parentBean && not empty parentBean.financialYear}">
+				<c:set value="${fn:substringBefore(parentBean.financialYear,'-')}"
+					var="fy" />
+			</c:when>
+			<c:otherwise>
+				<c:if
+					test="${not empty savedValuesFormMap && not empty savedValuesFormMap.value['fy']}">
+					<c:set
+						value="${fn:substringBefore(savedValuesFormMap.value['fy'].value,'-')}"
+						var="fy" />
+				</c:if>
+			</c:otherwise>
+		</c:choose>
+		<c:choose>
+			<c:when test="${fy=='2012'}">
+				<c:set var="bnkcode" value="flex_string_IFSCCode" />
+				<c:set var="maxlen" value="11" />
+				<c:set var="label" value="IFSC Code" />
+			</c:when>
+			<c:when test="${fy=='2011'}">
+				<c:set var="bnkcode" value="bd_micr_code" />
+				<c:set var="maxlen" value="9" />
+				<c:set var="label" value="MICR Code" />
+			</c:when>
+		</c:choose>
 		<fieldset>
 			<legend>
 				<fmt:message key="member.bank.detail" />
 			</legend>
 			<div class="row-fluid show-grid">
-					<div class="span4">
-					        <div class="rowlabel"><small><label for="bd_bank_name">
-					        <fmt:message key="member.bank.detail.bank.name" /></label></small></div>
-							<div class="rowlabel">
-							<input type="text" id="bd_bank_name" name="bd_bank_name" value="${parentBean.BD_BANK_NAME}" maxlength="25"/></div>
-					 </div>
-					 <div class="span4">
-					        <div class="rowlabel"><small><label for="<c:out value="${bnkcode}"/>">
-							<c:out value="${label}"/></label></small></div>
-							<div class="rowlabel"> 
-							<input type="text" id="<c:out value="${bnkcode}"/>" name="<c:out value="${bnkcode}"/>" value="${parentBean.BD_MICR_CODE}" maxlength="<c:out value="${maxlen}"/>"/></div>
-					 </div>
-					<div class="span4">
-					        <div class="rowlabel"><small><label for="bd_Branch_name">
-					        <fmt:message key="member.bank.detail.bank.branch"/></label></small></div>
-					        <div class="rowlabel">
-							<input type="text" id="bd_Branch_name" name="bd_Branch_name" value="${parentBean.BD_ADD_BANK_BRANCH}" maxlength="120" /></div>
+				<div class="span6">
+					<div class="rowlabel">
+						<small><label for="bd_bank_name"> <fmt:message
+									key="member.bank.detail.bank.name" />
+						</label>
+						</small>
+					</div>
+					<div class="rowlabel">
+						<input type="text" id="bd_bank_name" name="bd_bank_name"
+							value="${parentBean.BD_BANK_NAME}" maxlength="25" />
 					</div>
 				</div>
-				<div class="row-fluid show-grid">
-					<div class="span4">
-						<div class="rowlabel">
-							<label for="bd_account_type"><small><fmt:message
-									key="member.bank.detail.acc.type" /></small> </label>
-						</div>
-						<div class="rowlabel">
-							<select name="bd_account_type" id="bd_account_type">
-								<option value="">Select</option>
-								<option
-									<c:if test="${not empty parentBean.BD_TYPE_ACC && parentBean.BD_TYPE_ACC == 'SAV'}">selected</c:if>
-									value="SAV">
-									<fmt:message key="member.bank.detail.acc.type.saving" />
-								</option>
-								<option
-									<c:if test="${not empty parentBean.BD_TYPE_ACC && parentBean.BD_TYPE_ACC == 'CUR'}">selected</c:if>
-									value="CUR">
-									<fmt:message key="member.bank.detail.acc.type.current" />
-								</option>
-								<option
-									<c:if test="${not empty parentBean.BD_TYPE_ACC && parentBean.BD_TYPE_ACC == 'CASH'}">selected</c:if>
-									value="CASH">
-									<fmt:message key="member.bank.detail.acc.type.cash" />
-								</option>
-							</select>
-						</div>
+
+				<div class="span6">
+					<div class="rowlabel">
+						<small><label for="bd_Branch_name"> <fmt:message
+									key="member.bank.detail.bank.branch" />
+						</label>
+						</small>
 					</div>
-					<div class="span4">
-						<div class="rowlabel">
-							<label for="bd_account_no"><small><fmt:message
-									key="member.bank.detail.acc.number" /></small> </label>
-						</div>
-						<div class="rowlabel">
-							<input type="text" id="bd_account_no" name="bd_account_no"
-								value="${parentBean.BD_ACC_NUMBER}" title="Account Number"
-								maxlength="17" />
-						</div>
+					<div class="rowlabel">
+						<input type="text" id="bd_Branch_name" name="bd_Branch_name"
+							value="${parentBean.BD_ADD_BANK_BRANCH}" maxlength="120" />
 					</div>
-					<div class="span4">
-						<div class="rowlabel">
-							<small><label for="bd_ecs"><fmt:message
-									key="member.bank.detail.ecs" /> </label></small>
-									
-						</div>
-						<div class="rowlabel">
-							<select name="bd_ecs" title="Select Electronic Clearing System"
-								id="bd_ecs">
-								<option value="">Select</option>
-								<option
-									<c:if test="${not empty parentBean.BD_ECS && parentBean.BD_ECS == 'N'}">selected</c:if>
-									value="N">
-									<fmt:message key="member.choice.no" />
-								</option>
-								<option
-									<c:if test="${not empty parentBean.BD_ECS && parentBean.BD_ECS == 'Y'}">selected</c:if>
-									value="Y">
-									<fmt:message key="member.choice.yes" />
-								</option>
-							</select>
-						</div>
+				</div>
+			</div>
+			<div class="row-fluid show-grid">
+				<div class="span4">
+					<div class="rowlabel">
+						<label for="bd_account_no"><small><fmt:message
+									key="member.bank.detail.acc.number" />
+						</small> </label>
 					</div>
+					<div class="rowlabel">
+						<input type="text" id="bd_account_no" name="bd_account_no"
+							value="${parentBean.BD_ACC_NUMBER}" title="Account Number"
+							maxlength="17" />
 					</div>
+				</div>
+				<div class="span4">
+					<div class="rowlabel">
+						<small><label for="<c:out value="${bnkcode}"/>"> <c:out
+									value="${label}" />
+						</label>
+						</small>
+					</div>
+					<div class="rowlabel">
+						<input type="text" id="<c:out value="${bnkcode}"/>"
+							name="<c:out value="${bnkcode}"/>"
+							value="${parentBean.BD_MICR_CODE}"
+							maxlength="<c:out value="${maxlen}"/>" />
+					</div>
+				</div>
+				<div class="span4">
+					<div class="rowlabel">
+						<label for="bd_account_type"><small><fmt:message
+									key="member.bank.detail.acc.type" />
+						</small> </label>
+					</div>
+					<div class="rowlabel">
+						<select name="bd_account_type" id="bd_account_type">
+							<option value="">Select</option>
+							<option
+								<c:if test="${not empty parentBean.BD_TYPE_ACC && parentBean.BD_TYPE_ACC == 'SAV'}">selected</c:if>
+								value="SAV">
+								<fmt:message key="member.bank.detail.acc.type.saving" />
+							</option>
+							<option
+								<c:if test="${not empty parentBean.BD_TYPE_ACC && parentBean.BD_TYPE_ACC == 'CUR'}">selected</c:if>
+								value="CUR">
+								<fmt:message key="member.bank.detail.acc.type.current" />
+							</option>
+							<option
+								<c:if test="${not empty parentBean.BD_TYPE_ACC && parentBean.BD_TYPE_ACC == 'CCT'}">selected</c:if>
+								value="CCT">
+								<fmt:message key="member.bank.detail.acc.type.cash" />
+							</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class="row-fluid show-grid">
+				<div class="span9">
+					<div class="rowlabel">
+						<small><label for="bd_ecs"><fmt:message
+									key="member.bank.detail.ecs" /> </label>
+						</small>
+
+					</div>
+				</div>
+				<div class="span2">
+					<div class="rowlabel">
+						<select name="bd_ecs" title="Select Electronic Clearing System"
+							id="bd_ecs">
+							<option value="">Select</option>
+							<option
+								<c:if test="${not empty parentBean.BD_ECS && parentBean.BD_ECS == 'Y'}">selected</c:if>
+								value="Y">
+								<fmt:message key="member.choice.yes" />
+							</option>
+							<option
+								<c:if test="${not empty parentBean.BD_ECS && parentBean.BD_ECS == 'N'}">selected</c:if>
+								value="N">
+								<fmt:message key="member.choice.no" />
+							</option>
+
+						</select>
+					</div>
+				</div>
+			</div>
+
 		</fieldset>
 		<div id="itreturnHomepage" style="display: none; visiblity: hidden">
 			<input id="pan" name="pan"
@@ -665,8 +718,9 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 				type="hidden" />
 		</div>
 		<div class="row-fluid show-grid">
-			<div class="span2 offset10">
-				<a id="hrefLogin" class="button orange">Save</a>
+			<div class="span4 offset8 decimal">
+
+				<a id="hrefLogin" role="button" class="btn orange">Save</a>
 			</div>
 		</div>
 	</form>
@@ -700,47 +754,60 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 				dataType:'json'
 			}).done(function(data)  {
 			    retArr = new Array();
-				for ( var i=0;i<data.facet_counts.facet_fields[solrFieldFacet].length;i++) {
-					if ( (i % 2) == 0 ) retArr[retArr.length] = data.facet_counts.facet_fields[solrFieldFacet][i];
-				}
+				for ( var i=0;i<data.facet_counts.facet_fields
+		[solrFieldFacet].length;i++) {
+					if ( (i % 2) ==
+		0 ) retArr[retArr.length] =data.facet_counts.facet_fields[solrFieldFacet][i];
+		}
 				process(retArr);
 			}
 			);
 		}
 		
 		$(document).ready(function() {					
-			var options = {source:callSolr_bd_bank_name}
-			$("#bd_bank_name").attr('autocomplete','off');
+			var
+		options={source:callSolr_bd_bank_name}
+		$("#bd_bank_name").attr('autocomplete','off');
 			$("#bd_bank_name").typeahead(options);
 			
-			options = {source:callSolr_bd_Branch_name}
-			$("#bd_Branch_name").attr('autocomplete','off');
+			options={source:callSolr_bd_Branch_name}
+		$("#bd_Branch_name").attr('autocomplete','off');
 			$("#bd_Branch_name").typeahead(options);
 			$('#defective').change(function(){
 				$('.defective_' + $(this).val() + '_v').show();
 				$('.defective_' + $(this).val() + '_h').hide();
 			});
-			var defective='<c:out value="${parentBean.defective}" />';
-			if(defective!=''){
+			var
+		defective='<c:out value="${parentBean.defective}" />'
+		;
+			if(defective!=''
+		){
 				$('.defective_' + defective + '_v').show();
 				$('.defective_' + defective + '_h').hide();
 			};
 			//$("#mobile").watermark("Mobile # (Optional)");
-			var d = new Date();
-			itrDob="01/04/"+d.getFullYear();
+			var
+		d=new Date();
+			itrDob="01/04/"
+		+d.getFullYear();
 			$( ".indiandate" ).datepicker( "option", "defaultDate", "01/01/1980" );
 			$( ".indiandate" ).datepicker( "option", "maxDate", itrDob );
 				$('#hrefLogin').click(function() {
 		 			$('#frmPersonalInfo').submit();
 				});
-			    $('#frmPersonalInfo input').keydown(function(e) {
-				    if (e.keyCode == 13) {
+			    $('#frmPersonalInfo
+		input').keydown(function(e) {
+				    if (e.keyCode==
+		13) {
 				   		e.preventDefault();
 				        $('#frmPersonalInfo').submit();
 				    }
 				});
-	       var parentbean='<c:out value="${parentBean}" />';
-              if(parentbean==''){
+	       var
+		parentbean='<c:out value="${parentBean}" />'
+		;
+              if(parentbean==
+		''){
               $('#rsstatus_q').val('yes');
 	          $("#ul_rsstatus_q_yes").css("display","block");
               $("#ul_rsstatus_q_yes").css("visibility","visible");
@@ -752,49 +819,39 @@ request.setAttribute("objHashMapstates", objHashMapstates);
               $("#ul_rsstatus_q_yes_yes_yes").css("visibility","visible");
               }
               $('.answer').change(function() {
-			  //we should now turn off the one which were selected with previous selection
-			  selectedId= $(this).attr('id');
-			  idToShow= selectedId +"_"+ $(this).val();
+			  //we
+		should now turn off the one which were selected with previous
+		selection selectedId=$(this).attr( 'id');
+			  idToShow=selectedId
+		+"_"+ $(this).val();
 			  for (qid in qs) {
-			    qidul = "ul_" + qid ;
-			  	if (qid == selectedId || qid == 'rsstatus_q') continue;
-			  	if (qid == idToShow) {
+			    qidul="ul_"
+		+ qid ;
+			  	if (qid== selectedId || qid==
+		'rsstatus_q') continue;
+			  	if (qid==
+		idToShow) {
 			  		 $("#ul_" + idToShow).css("display","block");
 			  		 $("#ul_" + idToShow).css("visibility","visible");
 			  		 continue;
 			  	}
-			  	if (qid.indexOf(selectedId) == 0) {
+			  	if (qid.indexOf(selectedId) ==
+		0) {
 			  		$("#ul_" +qid).css("display","none");
 			  		$("#ul_" +qid).css("visibility","hidden");
-			  		if ($("#" + qid).length > 0 ) $("#" + qid).get(0).selectedIndex= 0;
-			  	}
-			  }
-			  var str = "";
-			  $("ul option:selected").each(function () {
-			            str += $(this).text() + " ";
-			  });
-			});
-			$('#pi_state').change(function(){
-			if($('#pi_state').val()=='99'){
-			      $('#pi_pin_code').val('999999');
-			      $('#pi_pin_code').attr('readonly','readonly');
-			   }else{
-                     $('#pi_pin_code').val('');
-                     $('#pi_pin_code').removeAttr('readonly');
-                    }
-			});
-			$('#bd_bank_name').tooltip('data-toggle');
-				$("#pi_first_name").popover({'trigger':'focus'});
-		});
-		function getautoState(){
-  var option=document.getElementById("pi_state");
-  var stateName = option.options[option.selectedIndex].value;
-  if(stateName!="99"){
-  $("#pi_country").val("91");
-  } else{
-  $("#pi_country").val("");
-  }
-  }
+			  		if ($("#" + qid).length>
+	0 ) $("#" + qid).get(0).selectedIndex= 0; } } var str = ""; $("ul
+	option:selected").each(function () { str += $(this).text() + " "; });
+	}); $('#pi_state').change(function(){ if($('#pi_state').val()=='99'){
+	$('#pi_pin_code').val('999999');
+	$('#pi_pin_code').attr('readonly','readonly'); }else{
+	$('#pi_pin_code').val(''); $('#pi_pin_code').removeAttr('readonly'); }
+	}); $('#bd_bank_name').tooltip('data-toggle');
+	$("#pi_first_name").popover({'trigger':'focus'}); }); function
+	getautoState(){ var option=document.getElementById("pi_state"); var
+	stateName = option.options[option.selectedIndex].value;
+	if(stateName!="99"){ $("#pi_country").val("91"); } else{
+	$("#pi_country").val(""); } } 
 </hst:element>
 <hst:headContribution element="${uiCustom}" category="jsInternal" />
 
