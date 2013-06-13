@@ -58,7 +58,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 								<label for="Address"><small>Address</small></label>
 							</div>
 							<div>
-								<input id="Address" name="Address" placeholder="Address"
+								<input id="Address" name="Address" placeholder="Address" class="uprcase"
 									type="text" maxLength="200"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.address}"/></c:if>" />
 
@@ -70,7 +70,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 							</div>
 							<div>
 								<input id="City" name="City" placeholder="Town/City/District"
-									type="text" maxlength="50"
+									type="text" maxlength="50" class="uprcase"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.city}"/></c:if>" />
 							</div>
 						</div>
@@ -88,7 +88,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
         value="${booleanCombo.key}">${booleanCombo.value}</option>
       </c:forEach>
      </select>
-							
+
 						</div>
 						<div class="span3">
 							<div class="rowlabel">
@@ -109,7 +109,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 								<label for="letout"><small>Type of House Property</small></label>
 							</div>
 							<div>
-								<select name="letout" id="letout" onChange="hideTanPan()"> 
+								<select name="letout" id="letout" onChange="hideTanPan()">
 									<option value="">-Select-</option>
 									<option
 									<c:if test="${not empty childBean.letout && childBean.letout == 'S'}">selected</c:if>
@@ -121,7 +121,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 									value="L">
 									<fmt:message key="member.choice.letout" />
 								</option>
-							</select><!--  
+							</select><!--
 									<c:forEach var="booleanCombo" items="${objHashMapBoolean}">
 										<option
 											<c:if test="${pageAction == 'EDIT_CHILD' && childBean.letOut == booleanCombo.value}">selected</c:if>
@@ -137,7 +137,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 							</div>
 							<div>
 								<input id="Tenant_name" name="Tenant_name" maxlength="75"
-									placeholder="Tenant Name" type="text" 
+									placeholder="Tenant Name" type="text" class="uprcase"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.tenant_name}"/></c:if>" />
 							</div>
 						</div>
@@ -147,7 +147,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 							</div>
 							<div>
 								<input id="Tenant_pan" name="Tenant_pan"
-									placeholder="10 Characters" type="text"
+									placeholder="10 Characters" type="text" class="uprcase"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.tenant_pan}"/></c:if>" />
 							</div>
 						</div>
@@ -164,7 +164,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 										<option
 											<c:if test="${pageAction == 'EDIT_CHILD' && childBean.coowned == booleanCombo.value}">selected</c:if>
 											value="${booleanCombo.value}">${booleanCombo.value}</option>
-											
+
 									</c:forEach>
 								</select>
 							</div>
@@ -188,7 +188,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 						<abbr title="Is this property being owned by someone else">Ownership
 							Details</abbr>
 					</legend>
-					
+
 					<div class="row-fluid show-grid" >
 						<div class="span1">
 							<div class="rowlabel decimal">
@@ -201,18 +201,18 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 								<label for=""><small>Name of Co-owner</small> </label>
 							</div>
 							<div>
-								<input id="coownername1" name="coownername1"
+								<input id="coownername1" name="coownername1" class="uprcase"
 									placeholder="Name of Co-owner" type="text" maxLength="125"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.coownername1}"/></c:if>" />
 							</div>
 						</div>
-						
+
 						<div class="span4">
 							<div class="rowlabel">
 								<label for=""><small>PAN of the Co-owner</small> </label>
 							</div>
 							<div>
-								<input id="coownerpan1" name="coownerpan1"
+								<input id="coownerpan1" name="coownerpan1" class="uprcase"
 									placeholder="10 Characters" type="text"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.coownerpan1}"/></c:if>" />
 							</div>
@@ -227,21 +227,21 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.share1}"/></c:if>" />
 							</div>
 						</div>
-					
+
 					<div class="row-fluid show-grid">
 						<div class="span1">
 							<div class="decimal">2.</div>
 						</div>
 						<div class="span4">
 							<div>
-								<input id="coownername2" name="coownername2"
+								<input id="coownername2" name="coownername2" class="uprcase"
 									placeholder="Name of Co-owner" type="text" maxLength="125"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.coownername2}"/></c:if>" />
 							</div>
 						</div>
 						<div class="span4">
 							<div>
-								<input id="coownerpan2" name="coownerpan2"
+								<input id="coownerpan2" name="coownerpan2" class="uprcase"
 									placeholder="10 Characters" type="text"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.coownerpan2}"/></c:if>" />
 							</div>
@@ -259,14 +259,14 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 						</div>
 						<div class="span4">
 							<div>
-								<input id="coownername3" name="coownername3"
+								<input id="coownername3" name="coownername3" class="uprcase"
 									placeholder="Name of Co-owner" type="text" maxLength="125"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.coownername3}"/></c:if>" />
 							</div>
 						</div>
 						<div class="span4">
 							<div>
-								<input id="coownerpan3" name="coownerpan3"
+								<input id="coownerpan3" name="coownerpan3" class="uprcase"
 									placeholder="10 Characters" type="text"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.coownerpan3}"/></c:if>" />
 							</div>
@@ -284,7 +284,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 						</div>
 						<div class="span4">
 							<div>
-								<input id="coownername4" name="coownername4"
+								<input id="coownername4" name="coownername4" class="uprcase"
 									placeholder="Name of Co-owner" type="text" maxLength="125"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.coownername4}"/></c:if>" />
 							</div>
@@ -292,7 +292,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 						<div class="span4">
 							<div>
 								<input id="coownerpan4" name="coownerpan4"
-									placeholder="10 Characters" type="text"
+									placeholder="10 Characters" type="text" class="uprcase"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.coownerpan4}"/></c:if>" />
 							</div>
 						</div>
@@ -309,14 +309,14 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 						</div>
 						<div class="span4">
 							<div>
-								<input id="coownername5" name="coownername5"
+								<input id="coownername5" name="coownername5" class="uprcase"
 									placeholder="Name of Co-owner" type="text" maxLength="125"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.coownername5}"/></c:if>" />
 							</div>
 						</div>
 						<div class="span4">
 							<div>
-								<input id="coownerpan5" name="coownerpan5"
+								<input id="coownerpan5" name="coownerpan5" class="uprcase"
 									placeholder="10 Characters" type="text"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.coownerpan5}"/></c:if>" />
 							</div>
@@ -551,14 +551,14 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 		$('.letout_' + $(this).val() + '_v').show();
 		$('.letout_' + $(this).val() + '_h').hide();
 	});
-        
+
 <c:if test="${not empty childBean.letOut}">
 	var letout='<c:out value="${childBean.letOut}"/>';
 	if(letout!=''){
 		$('.letout_' + letout + '_v').show();
 		$('.letout_' + letout + '_h').hide();
 	}</c:if>
-	
+
 			</hst:element>
 <hst:headContribution element="${uiCustom}" category="jsInternal"/>
 <res:calc screenCalc="houseincome" formId="frmdataHouseIncome"></res:calc>
