@@ -78,6 +78,7 @@ import java.util.ResourceBundle;
 
 import javax.jcr.RepositoryException;
 
+import org.apache.commons.lang.StringUtils;
 import org.hippoecm.hst.component.support.forms.FormMap;
 import org.hippoecm.hst.content.beans.ContentNodeBinder;
 import org.hippoecm.hst.content.beans.ContentNodeBindingException;
@@ -97,7 +98,10 @@ import com.mootly.wcm.beans.standard.FlexibleDocument;
 public class MemberPersonalInformation extends FlexibleDocument implements ContentNodeBinder,FormMapFiller {
 	static final public String NAMESPACE = "mootlywcm:MemberPersonalInformation";
 	static final public String NODE_NAME = "PersonalInformation";
-
+	
+	private String rbfilename="rstatus_";
+	private String choice="";
+	
 	private String employerCategory;
 	private String portugesecivil;
 	private Long returnFileSection;
@@ -692,13 +696,6 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 			node.setProperty(BD_TYPE_ACC,mpi.getBD_TYPE_ACC());
 			node.setProperty(BD_ADD_BANK_BRANCH,mpi.getBD_ADD_BANK_BRANCH());
 			node.setProperty(BD_MICR_CODE,mpi.getBD_MICR_CODE());
-			if(mpi.getBD_ACC_NUMBER().trim().length()!=0&&mpi.getBD_BANK_NAME().trim().length()!=0
-					&&mpi.getBD_ECS().trim().length()!=0&&mpi.getBD_TYPE_ACC().trim().length()!=0
-					&&mpi.getBD_ADD_BANK_BRANCH().trim().length()!=0&&mpi.getBD_MICR_CODE().trim().length()!=0){
-				node.setProperty(BD_STATUS,true);
-			}else{
-				node.setProperty(BD_STATUS,false);
-			}
 
 			node.setProperty(Rsstatus_q, mpi.getRsstatusQ());
 			node.setProperty(Rsstatus_q_yes, mpi.getRsstatusQYes());
@@ -732,47 +729,25 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 		if ( formMap.getField("receipt_no") != null) setReceiptNo(formMap.getField("receipt_no").getValue());
 		if ( formMap.getField("tax_ward") != null) setIncomeTaxWard(formMap.getField("tax_ward").getValue());
 		if ( formMap.getField("portugesecivil") != null) setPortugesecivil(formMap.getField("portugesecivil").getValue());
-
 		if ( formMap.getField("pi_return_type") != null) setReturnType(formMap.getField("pi_return_type").getValue());
-		if ( formMap.getField("fy") != null) setFinancialYear(formMap.getField("fy").getValue());
+		if ( formMap.getField("fy") != null) {
+			setFinancialYear(formMap.getField("fy").getValue());
+			if(StringUtils.isNotEmpty(formMap.getField("fy").getValue())){
+				rbfilename=rbfilename+formMap.getField("fy").getValue();
+			}else{
+				rbfilename=rbfilename+"2012-2013";
+			}
+		}
 		if ( formMap.getField("ack_date") != null){
 			String strDate = formMap.getField("ack_date").getValue();
-			Date date = null ;
-			DateFormat formatter ;
-			formatter = getIndianDateFormatter();
-			GregorianCalendar cal=(GregorianCalendar) GregorianCalendar.getInstance();
-			try{
-				date = (Date)formatter.parse(strDate);
-				if(log.isInfoEnabled()){
-					log.info("date"+date);
-				}
-				cal.setTime(date);
-				setOriginalAckDate(cal);
-			}
-			catch(Exception e){
-				log.info("calendar error"+e);
-			}
+			setOriginalAckDate(ConvDateStringToCalendar(strDate));
 		}
 		if ( formMap.getField("ack_no") != null) setOriginalAckNo(formMap.getField("ack_no").getValue());
 		if ( formMap.getField("defective") != null) setDefective(formMap.getField("defective").getValue());
 		if ( formMap.getField("notice_no") != null) setNoticeNo(formMap.getField("notice_no").getValue());
 		if ( formMap.getField("notice_date") != null){
 			String strDate = formMap.getField("notice_date").getValue();
-			Date date = null ;
-			DateFormat formatter ;
-			formatter = getIndianDateFormatter();
-			GregorianCalendar cal=(GregorianCalendar) GregorianCalendar.getInstance();
-			try{
-				date = (Date)formatter.parse(strDate);
-				if(log.isInfoEnabled()){
-					log.info("date"+date);
-				}
-				cal.setTime(date);
-				setNoticeDate(cal);
-			}
-			catch(Exception e){
-				log.info("calendar error"+e);
-			}
+			setNoticeDate(ConvDateStringToCalendar(strDate));
 		}
 		//Member PersonaInformation
 		if ( formMap.getField("pan") != null) setPAN(formMap.getField("pan").getValue());
@@ -780,28 +755,13 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 		if ( formMap.getField("pi_first_name") != null) setFirstName(formMap.getField("pi_first_name").getValue());
 		if ( formMap.getField("pi_last_name") != null) setLastName(formMap.getField("pi_last_name").getValue());
 		if	(formMap.getField("ReturnSection") != null) setReturnSection(formMap.getField("ReturnSection").getValue());
-		log.info("herrrrrrrrrrrr"+formMap.getField("ReturnSection").getValue());
 		if ( formMap.getField("pi_middle_name") != null) setMiddleName(formMap.getField("pi_middle_name").getValue());
 		if ( formMap.getField("pi_father_name") != null) setFatherName(formMap.getField("pi_father_name").getValue());
 		if ( formMap.getField("gender") != null) setSex(formMap.getField("gender").getValue());
 		if ( formMap.getField("pi_filing_status") !=null) setFilingStatus(formMap.getField("pi_filing_status").getValue());
 		if ( formMap.getField("pi_dob") != null) {
 			String strDate = formMap.getField("pi_dob").getValue();
-			Date date = null ;
-			DateFormat formatter ;
-			formatter = getIndianDateFormatter();
-			GregorianCalendar cal=(GregorianCalendar) GregorianCalendar.getInstance();
-			try{
-				date = (Date)formatter.parse(strDate);
-				if(log.isInfoEnabled()){
-					log.info("date"+date);
-				}
-				cal.setTime(date);
-				setDOB(cal);
-			}
-			catch(Exception e){
-				log.info("calendar error"+e);
-			}
+			setDOB(ConvDateStringToCalendar(strDate));
 		}
 		//Member Contact Information
 		if (formMap.getField("pi_email") != null) setEmail(formMap.getField("pi_email").getValue());
@@ -813,9 +773,7 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 		if (formMap.getField("pi_premises_building") != null) setPremisesBuilding(formMap.getField("pi_premises_building").getValue());
 		if (formMap.getField("pi_area_locality") != null) setAreaLocality(formMap.getField("pi_area_locality").getValue());
 		if (formMap.getField("pi_town_city_district") != null) setTownCityDistrict(formMap.getField("pi_town_city_district").getValue());
-		if (formMap.getField("pi_country") != null) {
-			setCountry(formMap.getField("pi_country").getValue());
-		}
+		if (formMap.getField("pi_country") != null) setCountry(formMap.getField("pi_country").getValue());
 		if (formMap.getField("pi_state") != null) {
 			setState(formMap.getField("pi_state").getValue());
 			if (formMap.getField("pi_pin_code") != null) {
@@ -829,7 +787,6 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 		if (formMap.getField("pi_mobile") != null) setMobile(formMap.getField("pi_mobile").getValue());
 		if (formMap.getField("pi_mobile1") != null) setMobile1(formMap.getField("pi_mobile1").getValue());
 		//Bank Details
-		if (formMap == null) return;
 		if (formMap.getField("bd_bank_name") != null) setBD_BANK_NAME(formMap.getField("bd_bank_name").getValue());
 		if (formMap.getField("bd_micr_code") != null) setBD_MICR_CODE(formMap.getField("bd_micr_code").getValue());
 		if (formMap.getField("bd_Branch_name") != null) setBD_ADD_BANK_BRANCH(formMap.getField("bd_Branch_name").getValue());
@@ -837,7 +794,6 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 		if (formMap.getField("bd_account_no") != null) setBD_ACC_NUMBER(formMap.getField("bd_account_no").getValue());
 		if (formMap.getField("bd_ecs") != null) setBD_ECS(formMap.getField("bd_ecs").getValue());
 		//Residential Status
-		String choice="";
 		if (formMap.getField("rsstatus_q") != null) {
 			setRsstatusQ(formMap.getField("rsstatus_q").getValue());
 			choice=choice+formMap.getField("rsstatus_q").getValue();
@@ -897,10 +853,7 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 			}
 		}
 		String modchoice="rsstatus_q_"+choice.trim();
-		if(log.isInfoEnabled()){
-			log.info("this is choice"+modchoice);
-		}
-		ResourceBundle rb = ResourceBundle.getBundle("rstatus_2012-2013");
+		ResourceBundle rb = ResourceBundle.getBundle(rbfilename);
 		for (String aKey: rb.keySet() ) {
 			if(aKey.matches(modchoice.trim())){
 				if(log.isInfoEnabled()){
@@ -916,6 +869,23 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 		if(key.matches("ans_Resident but Not Ordinarily Resident")) return "NOR";
 		if(key.matches("ans_Non Resident")) return "NRI";
 		else return null;
+	}
+	private GregorianCalendar ConvDateStringToCalendar(String strDate){
+		Date date = null ;
+		DateFormat formatter = getIndianDateFormatter();
+		GregorianCalendar cal=null;
+		if(StringUtils.isNotEmpty(strDate)){
+			cal=(GregorianCalendar) GregorianCalendar.getInstance();
+			try{
+				date = (Date)formatter.parse(strDate);
+				cal.setTime(date);
+			}
+			catch(Exception e){
+				log.error("calendar error"+e);
+			}
+			return cal;
+		}else return null;
+		
 	}
 	@Override
 	public <T extends HippoBean> void cloneBean(T sourceBean) {
