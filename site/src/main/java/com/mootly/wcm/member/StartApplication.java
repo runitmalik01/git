@@ -81,10 +81,12 @@ public class StartApplication extends ITReturnComponent {
 	private static final String DOB = "pi_dob";
 	FormMap savedValuesFormMap=null;	
 	String memberName = null;
+	MemberPersonalInformation parentBean=null;
 	@Override
 	public void doBeforeRender(HstRequest request, HstResponse response) {
 		// TODO Auto-generated method stub
 		super.doBeforeRender(request, response);
+		parentBean=(MemberPersonalInformation)request.getAttribute("parentBean");
 		String publicParameterUUID = getPublicRequestParameter(request, "uuid");
 		if(publicParameterUUID==null){
 			publicParameterUUID=(String)request.getSession().getAttribute("uuid");
@@ -110,11 +112,13 @@ public class StartApplication extends ITReturnComponent {
 		}
 		if (savedValuesFormMap != null) {
 			memberName=savedValuesFormMap.getField("pi_last_name").getValue();
-		}else{
-			MemberPersonalInformation parentBean=(MemberPersonalInformation)request.getAttribute("parentBean");
+		}else{	
 			if(parentBean!=null){
 				memberName=parentBean.getLastName();				
 			}
+		}
+		if(parentBean!=null){
+			request.setAttribute("ifsccode", parentBean.getFlexField("flex_string_IFSCCode", ""));
 		}
 		if(StringUtils.isEmpty(memberName)||memberName==null){
 			FilingStatus filstat=(FilingStatus)request.getAttribute("filingStatus");
