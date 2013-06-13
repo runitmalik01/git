@@ -80,7 +80,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 							<div class="rowlabel">
 								<label for="states"><small>State</small></label>
 							</div>
-							<select id="pi_state" name="pi_state" >
+							<select id="pi_state" name="pi_state" class="uprcase" >
       <option value="">-Select-</option>
       <c:forEach var="booleanCombo" items="${objHashMapstates}">
        <option
@@ -109,7 +109,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 								<label for="letout"><small>Type of House Property</small></label>
 							</div>
 							<div>
-								<select name="letout" id="letout" onChange="hideTanPan()">
+								<select name="letout" id="letout" onChange="hideTanPan()" class="uprcase">
 									<option value="">-Select-</option>
 									<option
 									<c:if test="${not empty childBean.letout && childBean.letout == 'S'}">selected</c:if>
@@ -158,7 +158,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 								<label for=""><small>Is the property co-owned?</small> </label>
 							</div>
 							<div>
-								<select name="Coowned" id="coowned" onChange="hidecoOwner()">
+								<select name="Coowned" id="coowned" onChange="hidecoOwner()" style="text-transform: uppercase;">
 									<option value="">-Select-</option>
 									<c:forEach var="booleanCombo" items="${objHashMapBoolean}">
 										<option
