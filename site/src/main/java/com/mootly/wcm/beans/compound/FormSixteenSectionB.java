@@ -17,25 +17,25 @@ import com.mootly.wcm.beans.FormMapFiller;
 
 public abstract class FormSixteenSectionB extends FormSixteenSectionA  implements FormMapFiller{
 	private final static Logger log = LoggerFactory.getLogger(FormSixteenSectionB.class); 
-	
+
 	public void fill(FormMap formMap) {
 		if (log.isInfoEnabled()) {
-			log.info("Into the fill method");			
+			log.info("Into the fill method of form sixteen");			
 		}
 		// TODO Auto_generated method stub
 		if (formMap == null) return;
-		
+
 		if (formMap.getField("Employe_category") != null){
 			setEmploye_category(formMap.getField("Employe_category").getValue());
-			log.info("im in employer category");
+
 		}
 		if (formMap.getField("employer") != null){
 			setEmployer(formMap.getField("employer").getValue());
-			log.info("im in employer");
+
 		}
 		if (formMap.getField("employee") != null){
 			setEmployee(formMap.getField("employee").getValue());
-			log.info("im in employer");
+
 		}
 		if (formMap.getField("pan_deductor") != null){
 			setPan_deductor(formMap.getField("pan_deductor").getValue());
@@ -102,7 +102,7 @@ public abstract class FormSixteenSectionB extends FormSixteenSectionA  implement
 		}
 		if (formMap.getField("year3") != null){
 			setYear3(formMap.getField("year3").getValue());
-			
+
 		}
 		if (formMap.getField("year4") != null){
 			setYear4(formMap.getField("year4").getValue());
@@ -123,7 +123,7 @@ public abstract class FormSixteenSectionB extends FormSixteenSectionA  implement
 		else{
 			String strgross_c=formMap.getField("gross_c").getValue();
 			double amt= Double.parseDouble(strgross_c);
-			
+
 			setGross_c(amt);
 		}
 		if (formMap.getField("gross_total").getValue().isEmpty()) {}
@@ -545,11 +545,11 @@ public abstract class FormSixteenSectionB extends FormSixteenSectionA  implement
 			setForm16Uuid(formMap.getField("uuidform16").getValue());
 		}
 	}
-	
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
+
 }

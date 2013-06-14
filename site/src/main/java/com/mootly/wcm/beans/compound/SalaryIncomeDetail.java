@@ -68,9 +68,9 @@ public class SalaryIncomeDetail extends HippoItem implements FormMapFiller {
 	private String state;
 	private String Pin;
 	private String personalInfoUuid;
-	
+
 	private boolean markedForDeletion;
-	
+
 	public final boolean isMarkedForDeletion() {
 		return markedForDeletion;
 	}
@@ -118,7 +118,7 @@ public class SalaryIncomeDetail extends HippoItem implements FormMapFiller {
 		if (Perquisite == null) Perquisite = getProperty("mootlywcm:Perquisite");
 		return Perquisite;
 	}
-	
+
 	public final Double getAllowance() {
 		if (Allowance== null) Allowance = getProperty("mootlywcm:Allowance");
 		return Allowance;
@@ -147,8 +147,8 @@ public class SalaryIncomeDetail extends HippoItem implements FormMapFiller {
 		if (Employe_category== null) Employe_category = getProperty("mootlywcm:Employe_category");
 		return Employe_category;
 	}
-	
-	
+
+
 	public final void setName_employer(String Name_employer) {
 		this.Name_employer = Name_employer;
 	}
@@ -200,30 +200,30 @@ public class SalaryIncomeDetail extends HippoItem implements FormMapFiller {
 	public void setTaxable_earning(Double Taxable_earning) {
 		this.Taxable_earning = Taxable_earning;
 	}
-	
-//for personal information
+
+	//for personal information
 	public final String getPersonalInfoUuid() {
 		return personalInfoUuid;
 	}
-	
+
 	public final void setPersonalInfoUuid(String personalInfoUuid) {
 		this.personalInfoUuid = personalInfoUuid;
 	}
-	
+
 	public PersonalInformation getPersonalInformation() {
-        HippoBean bean = getBean(NT_PERSONAL_INFO_LINK);
-        if (!(bean instanceof HippoMirror)) {
-            return null;
-        }
+		HippoBean bean = getBean(NT_PERSONAL_INFO_LINK);
+		if (!(bean instanceof HippoMirror)) {
+			return null;
+		}
 
-        PersonalInformation prdBean = (PersonalInformation) ((HippoMirror) bean).getReferencedBean();
+		PersonalInformation prdBean = (PersonalInformation) ((HippoMirror) bean).getReferencedBean();
 
-        if (prdBean == null) {
-            return null;
-        }
-        return prdBean;
-    }
-	
+		if (prdBean == null) {
+			return null;
+		}
+		return prdBean;
+	}
+
 	public boolean bindToNode(javax.jcr.Node node)
 			throws ContentNodeBindingException {
 		// TODO Auto-generated method stub
@@ -232,10 +232,10 @@ public class SalaryIncomeDetail extends HippoItem implements FormMapFiller {
 			node.setProperty("mootlywcm:Name_employee", getName_employee());
 			node.setProperty("mootlywcm:Address", getAddress());
 			if (getProfit()!=null) {
-			node.setProperty("mootlywcm:Profit", getProfit());
+				node.setProperty("mootlywcm:Profit", getProfit());
 			}
 			if(getPerquisite()!=null){
-			node.setProperty("mootlywcm:Perquisite", getPerquisite());
+				node.setProperty("mootlywcm:Perquisite", getPerquisite());
 			}
 			if (getPan_employer() != null) {
 				node.setProperty("mootlywcm:Pan_employer", getPan_employer());
@@ -249,19 +249,19 @@ public class SalaryIncomeDetail extends HippoItem implements FormMapFiller {
 			node.setProperty("mootlywcm:City", getCity());
 			node.setProperty("mootlywcm:State", getState());
 			if(getTaxable_earning()!=null){
-			node.setProperty("mootlywcm:Taxable_earning", getTaxable_earning());
+				node.setProperty("mootlywcm:Taxable_earning", getTaxable_earning());
 			}
 			node.setProperty("mootlywcm:To", getTo());
 			node.setProperty("mootlywcm:From", getFrom());
 			node.setProperty("mootlywcm:Employe_category", getEmploye_category());
 			node.setProperty("mootlywcm:Pin", getPin());
 			if(getGross_salary()!=null){
-			node.setProperty("mootlywcm:Gross_salary", getGross_salary());
+				node.setProperty("mootlywcm:Gross_salary", getGross_salary());
 			}
 			if(getAllowance()!=null){
-			node.setProperty("mootlywcm:Allowance", getAllowance());
+				node.setProperty("mootlywcm:Allowance", getAllowance());
 			}
-			
+
 		} catch (RepositoryException rex) {
 			log.error("Repository Exception while binding",rex);
 		}
@@ -274,7 +274,7 @@ public class SalaryIncomeDetail extends HippoItem implements FormMapFiller {
 			log.info("Into the fill method");			
 		}
 		if (formMap == null) return;
-		
+
 		if ( formMap.getField("Employe_category") != null) {
 			setEmploye_category(formMap.getField("Employe_category").getValue());
 		}
@@ -307,7 +307,7 @@ public class SalaryIncomeDetail extends HippoItem implements FormMapFiller {
 			String strEarning=formMap.getField("Taxable_earning").getValue();
 			double taxableEarning = Double.parseDouble(strEarning);
 			setTaxable_earning(taxableEarning);
-			log.info("Taxable_earning"+taxableEarning);  
+
 		}
 		if ( formMap.getField("Pinslry") != null) {
 			setPin(formMap.getField("Pinslry").getValue());
@@ -343,7 +343,7 @@ public class SalaryIncomeDetail extends HippoItem implements FormMapFiller {
 			setProfit(amt);
 		}
 	}
-	
+
 	public <T extends HippoBean> void cloneBean(T sourceBean) {
 		SalaryIncomeDetail salaryIncomeDetail = (SalaryIncomeDetail) sourceBean;
 		setEmploye_category(salaryIncomeDetail.getEmploye_category());
