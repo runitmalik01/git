@@ -2828,7 +2828,7 @@
     </sv:property>
     <sv:property sv:multiple="true" sv:name="hst:containers" sv:type="String"/>
     <sv:property sv:name="hst:renderpath" sv:type="String">
-      <sv:value>jsp/member/docattach.jsp</sv:value>
+      <sv:value>jsp/member/memberdrive.jsp</sv:value>
     </sv:property>
   </sv:node>
 	<sv:node sv:name="knowledgearticles.leftnav" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
