@@ -357,3 +357,5 @@ orderable
 
 [mootlywcm:screencalculation] > hippostd:relaxed, mootlywcm:basedocument orderable
 
+
+[mootlywcm:memberdrivedocument] > hippostd:relaxed, mootlywcm:basedocument orderable
