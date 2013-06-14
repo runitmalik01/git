@@ -110,7 +110,8 @@ out_total_80rrb=(total_80rrb>maxAllowed_80qqb_80rrb) ? maxAllowed_80qqb_80rrb : 
 out_total_80qqb=(total_80qqb>maxAllowed_80qqb_80rrb) ? maxAllowed_80qqb_80rrb : total_80qqb;
 
 //Donations 100%
-out_total_80g = (total_NoAppr50 * 0.5) + (total_Appr50 * 0.5) + (total_Appr100) + ((total_NoAppr100)); 
+
+out_total_80g = (total_JNMFund_50 * 0.5) + (total_PMDroughtFund_50 * 0.5)+(total_NatChild_50 * 0.5)+(total_IndraMem_50 * 0.5) +(total_RajivFound_50 * 0.5) + (total_NatDefFund_100) + (total_PMNationalFund_100) +(total_PMEarthquakeFund_100)+(total_AfricanFund_100)+(total_CommHarmony_100)+(total_EduInstitute_100)+(total_CMrelief_100)+(total_GujaratEarth_100)+(total_ZilaSakshar_100)+(total_BloodTrans_100)+(total_PoorMedRelief_100)+(total_ArmyWelfare_100)+(total_CycloneRelief_100)+(total_NatIllness_100)+(total_GovRelief_100)+(total_SportsFund_100); 
 //100% deductions on 80E,80GGA,80GGC,80JJA,80ID,80IA
 
 out_total_80e= (total_80e < grosstotal) ? total_80e:grosstotal;
