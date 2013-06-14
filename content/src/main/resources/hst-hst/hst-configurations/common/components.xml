@@ -1136,7 +1136,7 @@
       <sv:value>c13698e0-39e8-449d-8d09-27af8757e3f4</sv:value>
     </sv:property>
     <sv:property sv:name="hst:componentclassname" sv:type="String">
-      <sv:value>com.mootly.wcm.member.Attachments</sv:value>
+      <sv:value>com.mootly.wcm.member.MemberDrive</sv:value>
     </sv:property>
     <sv:property sv:name="hst:template" sv:type="String">
       <sv:value>member.attachment</sv:value>
