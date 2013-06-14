@@ -754,19 +754,15 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 				dataType:'json'
 			}).done(function(data)  {
 			    retArr = new Array();
-				for ( var i=0;i<data.facet_counts.facet_fields
-		[solrFieldFacet].length;i++) {
-					if ( (i % 2) ==
-		0 ) retArr[retArr.length] =data.facet_counts.facet_fields[solrFieldFacet][i];
+				for ( var i=0;i<data.facet_counts.facet_fields [solrFieldFacet].length;i++) {
+					if ( (i % 2) == 0 ) retArr[retArr.length] =data.facet_counts.facet_fields[solrFieldFacet][i];
 		}
 				process(retArr);
-			}
-			);
+			});
 		}
 
 		$(document).ready(function() {
-			var
-		options={source:callSolr_bd_bank_name}
+			var options={source:callSolr_bd_bank_name}
 		$("#bd_bank_name").attr('autocomplete','off');
 			$("#bd_bank_name").typeahead(options);
 
@@ -777,37 +773,27 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 				$('.defective_' + $(this).val() + '_v').show();
 				$('.defective_' + $(this).val() + '_h').hide();
 			});
-			var
-		defective='<c:out value="${parentBean.defective}" />'
-		;
-			if(defective!=''
-		){
+			var defective='<c:out value="${parentBean.defective}" />' ;
+			if(defective!=''){
 				$('.defective_' + defective + '_v').show();
 				$('.defective_' + defective + '_h').hide();
 			};
 			//$("#mobile").watermark("Mobile # (Optional)");
-			var
-		d=new Date();
-			itrDob="01/04/"
-		+d.getFullYear();
+			var d=new Date();
+			itrDob="01/04/"+d.getFullYear();
 			$( ".indiandate" ).datepicker( "option", "defaultDate", "01/01/1980" );
 			$( ".indiandate" ).datepicker( "option", "maxDate", itrDob );
 				$('#hrefLogin').click(function() {
 		 			$('#frmPersonalInfo').submit();
 				});
-			    $('#frmPersonalInfo
-		input').keydown(function(e) {
-				    if (e.keyCode==
-		13) {
+			    $('#frmPersonalInfoinput').keydown(function(e) {
+				    if (e.keyCode==13) {
 				   		e.preventDefault();
 				        $('#frmPersonalInfo').submit();
 				    }
 				});
-	       var
-		parentbean='<c:out value="${parentBean}" />'
-		;
-              if(parentbean==
-		''){
+	       var parentbean='<c:out value="${parentBean}" />';
+              if(parentbean==''){
               $('#rsstatus_q').val('yes');
 	          $("#ul_rsstatus_q_yes").css("display","block");
               $("#ul_rsstatus_q_yes").css("visibility","visible");
@@ -819,39 +805,49 @@ request.setAttribute("objHashMapstates", objHashMapstates);
               $("#ul_rsstatus_q_yes_yes_yes").css("visibility","visible");
               }
               $('.answer').change(function() {
-			  //we
-		should now turn off the one which were selected with previous
-		selection selectedId=$(this).attr( 'id');
-			  idToShow=selectedId
-		+"_"+ $(this).val();
+			  //weshould now turn off the one which were selected with previousselection
+			  selectedId= $(this).attr('id');
+			  idToShow= selectedId +"_"+ $(this).val();
 			  for (qid in qs) {
-			    qidul="ul_"
-		+ qid ;
-			  	if (qid== selectedId || qid==
-		'rsstatus_q') continue;
-			  	if (qid==
-		idToShow) {
+			    qidul = "ul_" + qid ;
+			  	if (qid == selectedId || qid == 'rsstatus_q') continue;
+			  	if (qid == idToShow) {
 			  		 $("#ul_" + idToShow).css("display","block");
 			  		 $("#ul_" + idToShow).css("visibility","visible");
 			  		 continue;
 			  	}
-			  	if (qid.indexOf(selectedId) ==
-		0) {
+			  	if (qid.indexOf(selectedId) == 0) {
 			  		$("#ul_" +qid).css("display","none");
 			  		$("#ul_" +qid).css("visibility","hidden");
-			  		if ($("#" + qid).length>
-	0 ) $("#" + qid).get(0).selectedIndex= 0; } } var str = ""; $("ul
-	option:selected").each(function () { str += $(this).text() + " "; });
-	}); $('#pi_state').change(function(){ if($('#pi_state').val()=='99'){
-	$('#pi_pin_code').val('999999');
-	$('#pi_pin_code').attr('readonly','readonly'); }else{
-	$('#pi_pin_code').val(''); $('#pi_pin_code').removeAttr('readonly'); }
-	}); $('#bd_bank_name').tooltip('data-toggle');
-	$("#pi_first_name").popover({'trigger':'focus'}); }); function
-	getautoState(){ var option=document.getElementById("pi_state"); var
-	stateName = option.options[option.selectedIndex].value;
-	if(stateName!="99"){ $("#pi_country").val("91"); } else{
-	$("#pi_country").val(""); } }
+			  		if ($("#" + qid).length > 0 ) $("#" + qid).get(0).selectedIndex= 0;
+			  	}
+			  }
+			  var str = "";
+			  $("ul option:selected").each(function () {
+			            str += $(this).text() + " ";
+			  });
+			});
+			$('#pi_state').change(function(){
+			if($('#pi_state').val()=='99'){
+			      $('#pi_pin_code').val('999999');
+			      $('#pi_pin_code').attr('readonly','readonly');
+			   }else{
+                     $('#pi_pin_code').val('');
+                     $('#pi_pin_code').removeAttr('readonly');
+                    }
+			});
+			$('#bd_bank_name').tooltip('data-toggle');
+				$("#pi_first_name").popover({'trigger':'focus'});
+		});
+	    function getautoState(){
+	        var option=document.getElementById("pi_state");
+	        var stateName = option.options[option.selectedIndex].value;
+	        if(stateName!="99"){
+	        $("#pi_country").val("91");
+	         }else{
+              	$("#pi_country").val("");
+              	 }
+              	  }
 </hst:element>
 <hst:headContribution element="${uiCustom}" category="jsInternal" />
 
