@@ -149,7 +149,7 @@
 		$(".uprcase").each(function(){
 	          this.style.textTransform = 'uppercase';
 	       })
-	       .keyup(function(){
+	       .change(function(){
 	          this.value = this.value.toUpperCase();
 	       });
 
