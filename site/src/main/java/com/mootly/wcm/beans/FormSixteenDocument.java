@@ -90,15 +90,10 @@ public class FormSixteenDocument extends BaseDocument implements ContentNodeBind
 	        		javax.jcr.Node aNode = nodeIterator.nextNode();
 	        		aNode.remove();
 	        	}
-	        	log.info("hjgjgghhhfyfyfyfy");
         	}
         	if (objFormSixteen.getFormSixteenDetailList() != null && objFormSixteen.getFormSixteenDetailList().size() > 0 ){ 
-        		log.info("hjgjgghhhfyfyfyfy");
         		for (FormSixteenDetail formSixteenDetail:objFormSixteen.getFormSixteenDetailList()) {
         			if (!formSixteenDetail.isMarkedForDeletion()) {
-        				log.info("hjgjgghhh"+objFormSixteen.getFormSixteenDetailList().size());
-        				log.info("hjgjgghhhfyfyfyfy");
-        	
 		                javax.jcr.Node html = node.addNode(PROP_DETAIL_BEAN, PROP_DETAIL_BEAN);
 		                formSixteenDetail.bindToNode(html); 
         			}
