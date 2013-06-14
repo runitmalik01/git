@@ -9,13 +9,9 @@
 
 package com.mootly.wcm.member;
 
-import java.util.Map;
-
-import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.core.component.HstComponentException;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
-import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -29,10 +25,8 @@ import com.mootly.wcm.annotations.RequiredBeans;
 import com.mootly.wcm.annotations.RequiredFields;
 import com.mootly.wcm.beans.MemberPersonalInformation;
 import com.mootly.wcm.beans.SalaryIncomeDocument;
-import com.mootly.wcm.beans.ScreenCalculation;
 import com.mootly.wcm.beans.compound.SalaryIncomeDetail;
 import com.mootly.wcm.components.ITReturnComponent;
-import com.mootly.wcm.services.ScreenCalculatorService;
 @PrimaryBean(primaryBeanClass=SalaryIncomeDocument.class)
 @ChildBean(childBeanClass=SalaryIncomeDetail.class)
 @AdditionalBeans(additionalBeansToLoad=MemberPersonalInformation.class)
