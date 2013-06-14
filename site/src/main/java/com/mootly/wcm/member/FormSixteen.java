@@ -54,12 +54,11 @@ public class FormSixteen extends ITReturnComponent {
 			request.getRequestContext().setAttribute("form16InEditMode",Boolean.TRUE);
 			request.getRequestContext().setAttribute("form16UniqueUUID",form16Detail.getForm16Uuid());
 		}
-	//	String testdeductiontotal=request.getRequestContext().getAttribute("dedForm16").toString();
-		log.info("This is do before render form sixteen");
-		//log.info("GGGGGGGGGGFFFFFFFFFFFFKKKKKKKK"+testdeductiontotal);
+	
+		if (log.isInfoEnabled()) {
+		log.info("This is do before render form sixteen");}
 		if(null!=request.getSession().getAttribute("dedTotalOnForm16").toString())
 		{
-			log.info("GGGGGGHHHHHHHHJJJJJJJJKKKKKKKKKK"+request.getSession().getAttribute("dedTotalOnForm16").toString());
 		request.setAttribute("totalDeductions",request.getSession().getAttribute("dedTotalOnForm16").toString());
 		}
 		else{
