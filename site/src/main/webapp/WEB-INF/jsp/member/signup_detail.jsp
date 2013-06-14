@@ -22,6 +22,13 @@
 <hst:actionURL var="actionUrl"></hst:actionURL>
 <div class="memberlogin page type-page">
 		<h3 id="respond1">Signup to Wealth4India</h3>
+		
+		<p style="color:blue;" >
+
+
+It takes just a minute to join.
+Please enter the following information to create your account.</p>
+		
 		<form action="${actionUrl}" method="post" id="signupForm">
 		   <p>
 		 	  <label for="email">
