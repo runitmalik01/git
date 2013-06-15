@@ -1,0 +1,24 @@
+/*
+This File create to apply CSS on File upload Button And Progress bar 
+
+*/
+.ui-progressbar {
+	position: relative;
+}
+
+.progress-label {
+	position: absolute;
+	left: 50%;
+	top: 4px;
+	font-weight: bold;
+	text-shadow: 1px 1px 0 #fff;
+}
+#upload-file-container {
+   height :64px;
+   width :64px;
+   background: url(http://icons.iconarchive.com/icons/vargas21/aquave-metal/48/Document-icon.png) no-repeat;
+}
+#upload-file-container input {
+   filter: alpha(opacity=0);
+   opacity: 0;
+}
