@@ -52,166 +52,198 @@ import com.mootly.wcm.beans.FormMapFiller;
 public class CapitalAssetDetail extends HippoItem implements FormMapFiller {
 	static final public String NAMESPACE = "mootlywcm:capitalassetdetail";
 	static final public String NODE_NAME = CapitalAssetDetail.class.getName().toLowerCase();
-	
+
 	private final static Logger log = LoggerFactory.getLogger(CapitalAssetDetail.class); 
-	
-	
-	
+
+
+
 	private String dateAcquisition;
-	private Double costAcquisition;
+	private String costAcquisition;
 	private String dateSale;
 	private String costIndexAcquisition;
-	private Double saleConsideration;
+	private String saleConsideration;
 	private String costIndexConsideration;
-	private Double capitalGain;
-	private Double capitalGainTaxLT;
-	
+	private String capitalGain;
+	private String capitalGainTaxLT;
+	private String indexedprice;
+
 	private String personalInfoUuid;
-	
+
 	private boolean markedForDeletion;
-	
+
 	public final boolean isMarkedForDeletion() {
 		return markedForDeletion;
 	}
 	public final void setMarkedForDeletion(boolean markedForDeletion) {
 		this.markedForDeletion = markedForDeletion;
 	}
-	 public String getDateAcquisition() {
-	    	if (dateAcquisition == null) dateAcquisition = getProperty("mootlywcm:year_acquisition");
-	    	return dateAcquisition;
-	 }
-	 public Double getCostAcquisition() {
-	    	if (costAcquisition == null) costAcquisition = getProperty("mootlywcm:cost_acquisition");
-	    	return costAcquisition;
-	 }
-	 public String getDateSale() {
-	    	if (dateSale == null) dateSale = getProperty("mootlywcm:year_sale");
-	    	return dateSale;
-	 }
-	 public double getSaleConsideration() {
-	    	if (saleConsideration == null) saleConsideration = getProperty("mootlywcm:sale_consideration");
-	    	return saleConsideration;
-	 }
-	 public String getCostIndexAcquisition() {
-	    	if (costIndexAcquisition == null) costIndexAcquisition = getProperty("mootlywcm:inflation_acquisition");
-	    	return costIndexAcquisition;
-	 }
-	 public String getCostIndexConsideration() {
-	    	if (costIndexConsideration == null) costIndexConsideration = getProperty("mootlywcm:inflation_consideration");
-	    	return costIndexConsideration;
-	 }
-	 public double getCapitalGain() {
-	    	if (capitalGain == null) capitalGain = getProperty("mootlywcm:capital_gain");
-	    	return capitalGain;
-	 }
-	 
-	 public double getCapitalGainTaxLT() {
-	    	if (capitalGainTaxLT == null) capitalGainTaxLT = getProperty("mootlywcm:capitalgaintaxLT");
-	    	return capitalGainTaxLT;
-	 }
-	 
-	 
-	 public final void setDateAcquisition(String dateAcquisition) {
+	public String getDateAcquisition() {
+		if (dateAcquisition == null) dateAcquisition = getProperty("mootlywcm:year_acquisition");
+		return dateAcquisition;
+	}
+	public String getCostAcquisition() {
+		if (costAcquisition == null) costAcquisition = getProperty("mootlywcm:cost_acquisition");
+		return costAcquisition;
+	}
+	public String getIndexedprice() {
+		if (indexedprice == null) indexedprice = getProperty("mootlywcm:indexedprice");
+		return indexedprice;
+	}
+	public String getDateSale() {
+		if (dateSale == null) dateSale = getProperty("mootlywcm:year_sale");
+		return dateSale;
+	}
+	public String getSaleConsideration() {
+		if (saleConsideration == null) saleConsideration = getProperty("mootlywcm:sale_consideration");
+		return saleConsideration;
+	}
+	public String getCostIndexAcquisition() {
+		if (costIndexAcquisition == null) costIndexAcquisition = getProperty("mootlywcm:inflation_acquisition");
+		return costIndexAcquisition;
+	}
+	public String getCostIndexConsideration() {
+		if (costIndexConsideration == null) costIndexConsideration = getProperty("mootlywcm:inflation_consideration");
+		return costIndexConsideration;
+	}
+	public String getCapitalGain() {
+		if (capitalGain == null) capitalGain = getProperty("mootlywcm:capital_gain");
+		return capitalGain;
+	}
+
+	public String getCapitalGainTaxLT() {
+		if (capitalGainTaxLT == null) capitalGainTaxLT = getProperty("mootlywcm:capitalgaintaxLT");
+		return capitalGainTaxLT;
+	}
+
+
+	public final void setDateAcquisition(String dateAcquisition) {
 		this.dateAcquisition = dateAcquisition;
 	}
-    public final void setCostAcquisition(Double costAcquisition) {
+	public final void setCostAcquisition(String costAcquisition) {
 		this.costAcquisition = costAcquisition;
 	}
-    public final void setDateSale(String dateSale) {
+	public final void setDateSale(String dateSale) {
 		this.dateSale = dateSale;
-    }
-    public final void setSaleConsideration(double saleconsideartion) {
+	}
+	public final void setSaleConsideration(String saleconsideartion) {
 		this.saleConsideration = saleconsideartion;
 	}
-    public final void setCostIndexAcquisition(String costIndexAcquisition) {
+	public final void setCostIndexAcquisition(String costIndexAcquisition) {
 		this.costIndexAcquisition = costIndexAcquisition;
 	}
-    
-    public final void setCostIndexConsideration(String costIndexConsideration) {
+
+	public final void setCostIndexConsideration(String costIndexConsideration) {
 		this.costIndexConsideration = costIndexConsideration;
 	}
-    public final void setCapitalGain(double capitalGain) {
+	public final void setCapitalGain(String capitalGain) {
 		this.capitalGain = capitalGain;
 	}
-    public final void setCapitalGainTaxLT(double capitalGainTaxLT) {
+	public final void setIndexedprice(String indexedprice) {
+		this.indexedprice = indexedprice;
+	}
+	public final void setCapitalGainTaxLT(String capitalGainTaxLT) {
 		this.capitalGainTaxLT = capitalGainTaxLT;
 	}
-    
-   
+
+
 	public final String getPersonalInfoUuid() {
 		return personalInfoUuid;
 	}
-	
+
 	public final void setPersonalInfoUuid(String personalInfoUuid) {
 		this.personalInfoUuid = personalInfoUuid;
 	}
-	
+
 	public PersonalInformation getPersonalInformation() {
-        HippoBean bean = getBean(NT_PERSONAL_INFO_LINK);
-        if (!(bean instanceof HippoMirror)) {
-            return null;
-        }
+		HippoBean bean = getBean(NT_PERSONAL_INFO_LINK);
+		if (!(bean instanceof HippoMirror)) {
+			return null;
+		}
 
-        PersonalInformation prdBean = (PersonalInformation) ((HippoMirror) bean).getReferencedBean();
+		PersonalInformation prdBean = (PersonalInformation) ((HippoMirror) bean).getReferencedBean();
 
-        if (prdBean == null) {
-            return null;
-        }
-        return prdBean;
-    }
-    
-    
-    
+		if (prdBean == null) {
+			return null;
+		}
+		return prdBean;
+	}
+
+
+
 	public boolean bindToNode(javax.jcr.Node node)
 			throws ContentNodeBindingException {
 		// TODO Auto-generated method stub
 		try {
-			log.warn("this is Contact bean");
-			System.out.println(" inside of cbean starting");
-			
+			if(log.isInfoEnabled()){
+				log.warn("this is Contact bean");
+			}
+
 			node.setProperty("mootlywcm:year_acquisition", getDateAcquisition());
-	    	node.setProperty("mootlywcm:cost_acquisition", getCostAcquisition());
-	    	node.setProperty("mootlywcm:year_sale", getDateSale());
-	    	node.setProperty("mootlywcm:sale_consideration", getSaleConsideration());
-	    	node.setProperty("mootlywcm:inflation_acquisition",getCostIndexAcquisition());
-	    	node.setProperty("mootlywcm:inflation_consideration",getCostIndexConsideration());
-	    	node.setProperty("mootlywcm:capital_gain",getCapitalGain());
-	    	node.setProperty("mootlywcm:capitalgaintaxLT",getCapitalGainTaxLT());
-	    
-	    		
-	    
-    	}catch (RepositoryException re) {
-    		log.error("Binding Node Error",re);
-    		System.out.println(" in the c catch of bean");
-    		
-    	}
+			if(getCostAcquisition()!=null){
+			node.setProperty("mootlywcm:cost_acquisition", getCostAcquisition());}
+			
+			node.setProperty("mootlywcm:year_sale", getDateSale());
+			if(getSaleConsideration()!=null){
+			node.setProperty("mootlywcm:sale_consideration", getSaleConsideration());}
+			if(getIndexedprice()!=null){
+			node.setProperty("mootlywcm:indexedprice", getIndexedprice());
+			}
+			if(getCostIndexAcquisition()!=null){
+			node.setProperty("mootlywcm:inflation_acquisition",getCostIndexAcquisition());
+			}
+			if(getCostIndexAcquisition()!=null){
+			node.setProperty("mootlywcm:inflation_consideration",getCostIndexConsideration());}
+			if(getCapitalGain()!=null){
+			node.setProperty("mootlywcm:capital_gain",getCapitalGain());
+			//node.setProperty("mootlywcm:capitalgaintaxLT",getCapitalGainTaxLT());
+			}
+
+
+		}catch (RepositoryException re) {
+			if(log.isInfoEnabled()){
+				log.error("Binding Node Error",re);
+
+			}
+		}
 		return true;
 	}
-	
+
 	@Override
 	public void fill(FormMap formMap) {
 		// TODO Auto-generated method stub
-		log.info("inside the function fill in the capital asset bean");
-		String StrCostAcq=null;
-		String StrSaleCons=null;
+		if(log.isInfoEnabled()){
+			log.info("inside the function fill in the capital asset bean");
+		}
 		if (formMap == null) return;
 		if (formMap.getField("date_acquisition") != null)
 			setDateAcquisition(formMap.getField("date_acquisition").getValue());
-		if (formMap.getField("cost_acquisition") != null) 
-			 StrCostAcq = formMap.getField("cost_acquisition").getValue();
-		double CostAcq= Double.parseDouble(StrCostAcq);
-			setCostAcquisition(CostAcq);
-		if (formMap.getField("date_sale") != null) setDateSale(formMap.getField("date_sale").getValue());
-		if (formMap.getField("sale_consideration") != null) 
-			StrSaleCons=formMap.getField("sale_consideration").getValue();
-		 double saleconsideartion= Double.parseDouble(StrCostAcq);
-			setSaleConsideration(saleconsideartion);
-
-		log.info("at  the end of the function fill in the capital asset bean");
+		if (formMap.getField("cost_acquisition") != null) {
+			setCostAcquisition(formMap.getField("cost_acquisition").getValue());
+		}
+		if (formMap.getField("inflation_acquisition") != null) {
+			setCostIndexAcquisition(formMap.getField("inflation_acquisition").getValue());
+			log.info("hurrrrrrrrrrrr"+formMap.getField("inflation_acquisition").getValue());
+		}
+		if (formMap.getField("inflation_consideration") != null) {
+			setCostIndexConsideration(formMap.getField("inflation_consideration").getValue());
+			log.info("hurrrrrrrrrrrr"+formMap.getField("inflation_consideration").getValue());
+		}
+		if (formMap.getField("date_sale") != null)
+			setDateSale(formMap.getField("date_sale").getValue());
+		if (formMap.getField("sale_consideration") != null) {
+			setSaleConsideration(formMap.getField("sale_consideration").getValue());
+		}
+		if (formMap.getField("capital_gain") != null) {
+			setCapitalGain(formMap.getField("capital_gain").getValue());
+		}
+		if (formMap.getField("indexed_price") != null) {
+			setIndexedprice(formMap.getField("indexed_price").getValue());
+			log.info("at  the end of the function fill in the capital asset bean"+formMap.getField("indexed_price").getValue());
+		}
 	}
 	@Override
 	public <T extends HippoBean> void cloneBean(T sourceBean) {
-	
+
 		// TODO Auto-generated method stub
 		CapitalAssetDetail objCapitalAssetdetail = (CapitalAssetDetail) sourceBean;
 		setDateAcquisition(objCapitalAssetdetail.getDateAcquisition());
@@ -221,9 +253,9 @@ public class CapitalAssetDetail extends HippoItem implements FormMapFiller {
 		setCostIndexAcquisition(objCapitalAssetdetail.getCostIndexConsideration());
 		setCostIndexConsideration(objCapitalAssetdetail.getCostIndexConsideration());
 		setCapitalGain(objCapitalAssetdetail.getCapitalGain());
-		setCapitalGain(objCapitalAssetdetail.getCapitalGain());
+		setIndexedprice(objCapitalAssetdetail.getIndexedprice());
 		setCapitalGainTaxLT(objCapitalAssetdetail.getCapitalGainTaxLT());
-		
+
 	}
-	
+
 }
