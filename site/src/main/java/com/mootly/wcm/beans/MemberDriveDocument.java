@@ -17,10 +17,18 @@
 package com.mootly.wcm.beans;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 
 import javax.jcr.Binary;
 import javax.jcr.RepositoryException;
+import javax.jcr.Value;
+import javax.jcr.ValueFactory;
 
+import org.apache.commons.codec.binary.Base64;
+import org.apache.jackrabbit.JcrConstants;
+import org.apache.jackrabbit.value.ValueFactoryImpl;
 import org.hippoecm.hst.content.beans.ContentNodeBinder;
 import org.hippoecm.hst.content.beans.ContentNodeBindingException;
 import org.hippoecm.hst.content.beans.Node;
@@ -60,22 +68,42 @@ public class MemberDriveDocument extends BaseDocument implements ContentNodeBind
 
 	@Override
 	public boolean bind(Object content, javax.jcr.Node node) throws ContentNodeBindingException {
-
+		InputStream is = null;
 		MemberDriveDocument bean = (MemberDriveDocument) content;        
 		try {
-			log.info("this is bean File");
+			if (log.isInfoEnabled()) {
+				log.info("this is bean File");
+			}
+			ValueFactory vf = ValueFactoryImpl.getInstance();
 			if(node.hasNode(MEMBER_DOCS)){
-				log.info("document contain node");
+				if (log.isInfoEnabled()) {
+					log.info("document contain node");
+				}
 				javax.jcr.Node resourceNode= node.getNode(MEMBER_DOCS);
 				if(resourceNode!=null){
-					log.info("thi sos jcr type"+((Node) resourceNode).jcrType());
-					resourceNode.setProperty("jcr:data",(Binary) bean.getMemberFile());
+					if (log.isInfoEnabled()) { //BE CAREFUL this can cause exception 
+						try {
+						log.info("thi sos jcr type"+((Node) resourceNode).jcrType());
+						}catch (Exception ex) {
+							log.warn("Error while logging ",ex);
+						}
+					}
+					is = new FileInputStream( bean.getMemberFile() );
+					Binary binaryValue = vf.createBinary(is);
+					resourceNode.setProperty(JcrConstants.JCR_DATA,binaryValue);
 				}
 			}
-			node.setProperty(MEMBER_DOCS, (Binary)bean.getMemberFile());
-
-		} catch (RepositoryException e) {
+		} 
+		catch (FileNotFoundException e) {
+			log.error("File was not found ", e);
 			throw new ContentNodeBindingException(e);
+		}
+		catch (RepositoryException e) {
+			log.error("Repository Exception",e);
+			throw new ContentNodeBindingException(e);
+		}
+		finally {
+			if (is != null) try { is.close(); } catch (Exception ex) {}
 		}
 		return true;
 	}
