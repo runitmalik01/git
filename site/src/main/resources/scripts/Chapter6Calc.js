@@ -151,12 +151,13 @@ if(total_80g>0){
 //80G- Calculate AdjustedGrossTotal and Excess Rent Paid and 2000 per Month
 out_total_80gg=0;
 if(total_80gg>0){
-	var adjuestedGrossTotal=grosstotal - out_total_eligiblededuction;
+	var adjuestedGrossTotal=grosstotal - (out_total_eligiblededuction-out_total_80gg);
 	var adjuestedGross10per=adjuestedGrossTotal * 0.1;
 	var	adjuestedGross25per=adjuestedGrossTotal * 0.25;
 	var excessRentPaid=total_80gg-adjuestedGross10per;
 	var rent2000permnth=24000;
 	out_total_80gg=Math.min(rent2000permnth,adjuestedGross25per,excessRentPaid);
+	
 	if(out_total_80gg<0)
 		out_total_80gg=0;
 	out_total_eligiblededuction=out_total_eligiblededuction+out_total_80gg;
