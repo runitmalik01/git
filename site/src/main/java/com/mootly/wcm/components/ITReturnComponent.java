@@ -848,7 +848,16 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 	}
 
 	protected void sanitize(HstRequest request,HstResponse response,FormMap formMap) {
-
+		//lets add the username into form map
+		FormField formFieldLoggedInUser = null;
+		if (formMap != null && request.getUserPrincipal() != null && request.getUserPrincipal().getName() != null) { 
+			formFieldLoggedInUser = formMap.getField("formFieldLoggedInUser");
+			if (formFieldLoggedInUser ==null) {
+				formFieldLoggedInUser = new FormField("formFieldLoggedInUser");
+				formFieldLoggedInUser.setName("formFieldLoggedInUser");
+				formFieldLoggedInUser.addValue(request.getUserPrincipal().getName());
+			}
+		}
 	}
 	protected boolean validate(HstRequest request,HstResponse response,FormMap formMap) {
 		//validate required fields first

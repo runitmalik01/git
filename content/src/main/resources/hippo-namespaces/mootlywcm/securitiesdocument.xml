@@ -95,6 +95,12 @@
       <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
         <sv:value/>
       </sv:property>
+      <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
+        <sv:value>2013-03-08T12:30:37.547+05:30</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
+        <sv:value>2013-03-08T12:30:37.546+05:30</sv:value>
+      </sv:property>      
       <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
         <sv:value/>
       </sv:property>
