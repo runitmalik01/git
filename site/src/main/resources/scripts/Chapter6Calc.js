@@ -111,23 +111,25 @@ out_total_80rrb=(total_80rrb>maxAllowed_80qqb_80rrb) ? maxAllowed_80qqb_80rrb : 
 
 out_total_80qqb=(total_80qqb>maxAllowed_80qqb_80rrb) ? maxAllowed_80qqb_80rrb : total_80qqb;
 
+//Donations 100%
+out_total_80g = (total_NoAppr50 * 0.5) + (total_Appr50 * 0.5) + (total_Appr100) + ((total_NoAppr100)); 
 //100% deductions on 80E,80GGA,80GGC,80JJA,80ID,80IA
 
 out_total_80e= (total_80e < maxAllowed_80E) ? total_80e:maxAllowed_80E;
 
+//out_total_80gga= (total_80gga < grosstotal) ? total_80gga:grosstotal;
 if(total_InCash>10000){
 	out_total_80gga=10000;
 }
 if(total_OtherThanCash>grosstotal)
 	out_total_80gga=grosstotal;
-if((total_disability+total_sdisability)>(grosstotal+10000))
+if((total_InCash+total_OtherThanCash)>(grosstotal+10000))
 	out_total_80gga=(grosstotal+10000);
 else out_total_80gga= (total_OtherThanCash + total_InCash);
 
 //out_total_80gga= (total_InCash < maxAllowed_80GGA) ? total_InCash:maxAllowed_80GGA;
 
 //out_total_80gga= (total_OtherThanCash < grosstotal) ? total_OtherThanCash:grosstotal;
-	
 out_total_80ggc= (total_80ggc < grosstotal) ? total_80ggc:grosstotal;
 
 //out_total_80id= (total_80id < grosstotal) ? total_80id:grosstotal;
@@ -136,17 +138,7 @@ out_total_80ggc= (total_80ggc < grosstotal) ? total_80ggc:grosstotal;
 
 //out_total_80ia= (total_80ia < grosstotal) ? total_80ia:grosstotal;
 
-out_total_eligiblededuction = out_total_80c + out_total_80ccc + out_total_80ccd_1 + out_total_80ccd_2 + out_total_80d + out_total_80qqb + out_total_80rrb + out_total_80gga + out_total_80ggc +/*+ out_total_80g */+ out_total_80ddb /*+ out_total_80u*/ + out_total_80dd + out_total_80e + out_total_80tta + out_total_80ccg;
-
-//Donations 100%
-var total80G = (total_JNMFund_50 * 0.5) + (total_PMDroughtFund_50 * 0.5)+(total_NatChild_50 * 0.5)+(total_IndraMem_50 * 0.5) +(total_RajivFound_50 * 0.5) + (total_NatDefFund_100) + (total_PMNationalFund_100) +(total_PMEarthquakeFund_100)+(total_AfricanFund_100)+(total_CommHarmony_100)+(total_EduInstitute_100)+(total_CMrelief_100)+(total_GujaratEarth_100)+(total_ZilaSakshar_100)+(total_BloodTrans_100)+(total_PoorMedRelief_100)+(total_ArmyWelfare_100)+(total_CycloneRelief_100)+(total_NatIllness_100)+(total_GovRelief_100)+(total_SportsFund_100);
-if(total_80g>0){
-	var grossQualifyLimit=grosstotal - out_total_eligiblededuction;
-	var NQA=(grossQualifyLimit)*.1;
-	out_total_80g=(total80G>NQA)  ? NQA:total80G; 
-	out_total_eligiblededuction=out_total_eligiblededuction+out_total_80g;
-}
- 
+out_total_eligiblededuction = out_total_80c + out_total_80ccc + out_total_80ccd_1 + out_total_80ccd_2 + out_total_80d + out_total_80qqb + out_total_80rrb + out_total_80gga + out_total_80ggc + out_total_80g + out_total_80ddb /*+ out_total_80u*/ + out_total_80dd + out_total_80e + out_total_80tta + out_total_80ccg;
 
 //80G- Calculate AdjustedGrossTotal and Excess Rent Paid and 2000 per Month
 out_total_80gg=0;
@@ -156,8 +148,8 @@ if(total_80gg>0){
 	var	adjuestedGross25per=adjuestedGrossTotal * 0.25;
 	var excessRentPaid=total_80gg-adjuestedGross10per;
 	var rent2000permnth=24000;
+	//out_total_80gg=adjuestedGross10per;
 	out_total_80gg=Math.min(rent2000permnth,adjuestedGross25per,excessRentPaid);
-	
 	if(out_total_80gg<0)
 		out_total_80gg=0;
 	out_total_eligiblededuction=out_total_eligiblededuction+out_total_80gg;
