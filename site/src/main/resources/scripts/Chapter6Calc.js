@@ -120,12 +120,21 @@ out_total_80e= (total_80e < maxAllowed_80E) ? total_80e:maxAllowed_80E;
 //out_total_80gga= (total_80gga < grosstotal) ? total_80gga:grosstotal;
 if(total_InCash>10000){
 	out_total_80gga=10000;
+} else out_total_80gga=total_InCash;
+if(total_OtherThanCash>0){
+	if(total_OtherThanCash > grosstotal){
+		out_total_80gga=grosstotal; 
+	} else 
+		out_total_80gga=total_OtherThanCash;}
+if((total_InCash>0) && (total_OtherThanCash >0) && (( total_InCash)+(total_OtherThanCash)) > (grosstotal)){
+	out_total_80gga=(grosstotal);
 }
-if(total_OtherThanCash>grosstotal)
-	out_total_80gga=grosstotal;
-if((total_InCash+total_OtherThanCash)>(grosstotal+10000))
-	out_total_80gga=(grosstotal+10000);
-else out_total_80gga= (total_OtherThanCash + total_InCash);
+else {
+	if((total_InCash>0) && (total_OtherThanCash >0) )
+	{ 
+		out_total_80gga= (total_OtherThanCash) + (total_InCash);
+	}
+}
 
 //out_total_80gga= (total_InCash < maxAllowed_80GGA) ? total_InCash:maxAllowed_80GGA;
 
