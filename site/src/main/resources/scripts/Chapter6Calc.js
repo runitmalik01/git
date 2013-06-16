@@ -14,7 +14,8 @@ var maxAllowed_80U=100000;
 var maxAllowed_80qqb_80rrb=300000;
 var maxAllowed_80TTA=10000;
 var maxAllowed_80CCG=25000;
-
+var maxAllowed_80GGA=10000;
+var maxAllowed_80E=60000;
 out_total_eligiblededuction=0;
 //isSeniorCitizen=true;
 /** - END Configuration */
@@ -114,24 +115,18 @@ out_total_80qqb=(total_80qqb>maxAllowed_80qqb_80rrb) ? maxAllowed_80qqb_80rrb : 
 out_total_80g = (total_NoAppr50 * 0.5) + (total_Appr50 * 0.5) + (total_Appr100) + ((total_NoAppr100)); 
 //100% deductions on 80E,80GGA,80GGC,80JJA,80ID,80IA
 
-out_total_80e= (total_80e < grosstotal) ? total_80e:grosstotal;
+out_total_80e= (total_80e < maxAllowed_80E) ? total_80e:maxAllowed_80E;
 
 //out_total_80gga= (total_80gga < grosstotal) ? total_80gga:grosstotal;
-var maxAllowed_80GGA=10000;
 if(total_InCash>10000){
 	out_total_80gga=10000;
-	// maxAllowed_80GGA=10000;
 }
-if(total_OtherThanCash>grosstotal){
+if(total_OtherThanCash>grosstotal)
 	out_total_80gga=grosstotal;
-}
-if((total_InCash>0) && (total_OtherThanCash >0) && ( total_InCash+total_OtherThanCash)>(grosstotal)){
-	out_total_80gga=(grosstotal);
-}
-else if((total_InCash>0) && (total_OtherThanCash >0) )
-{ 
-	out_total_80gga= (total_OtherThanCash) + (total_InCash);
-}
+if((total_InCash+total_OtherThanCash)>(grosstotal+10000))
+	out_total_80gga=(grosstotal+10000);
+else out_total_80gga= (total_OtherThanCash + total_InCash);
+
 //out_total_80gga= (total_InCash < maxAllowed_80GGA) ? total_InCash:maxAllowed_80GGA;
 
 //out_total_80gga= (total_OtherThanCash < grosstotal) ? total_OtherThanCash:grosstotal;
