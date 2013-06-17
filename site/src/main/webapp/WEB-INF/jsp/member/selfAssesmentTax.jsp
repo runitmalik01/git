@@ -74,7 +74,7 @@
 						<div class="rowlabel">
 							<input id="amountself" name="amountself" type="text"
 								maxlength="14" class="decimal"
-								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.p_Amount}"/></c:if>" />
+								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.p_Amount}"/></c:if>" />
 						</div>
 					</div>
 				</div>
@@ -111,10 +111,10 @@
 						</td>
 						<td><c:out value="${selfassesmentdetail.p_Serial}" />
 						</td>
-						<td><c:out value="${selfassesmentdetail.p_Amount}" />
+						<td><w4india:inr value="${selfassesmentdetail.p_Amount}" />
 						</td>
 						<td><a
-							href="${scriptName}/<c:out value="${selfassesmentdetail.canonicalUUID}"/>/selfassesmenttaxedit"><small>Edit</small>
+							href="${scriptName}/<c:out value="${selfassesmentdetail.canonicalUUID}"/>/selfassesmenttaxedit"><small>Edit</small> &nbsp;&nbsp;
 						</a>&nbsp;&nbsp;<a href="${scriptName}/<c:out value="${selfassesmentdetail.canonicalUUID}"/>/selfassesmenttaxdelete" id="delete" onclick="return checkdelete()"><small>Delete</small> </a>
 							</td>
 					</tr>
