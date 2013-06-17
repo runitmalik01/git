@@ -8,23 +8,29 @@
  */
 package com.mootly.wcm.member;
 
-import java.io.File;
-import java.io.FileInputStream;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
-import javax.jcr.Binary;
-import javax.jcr.Node;
-import javax.jcr.NodeIterator;
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 import javax.jcr.SimpleCredentials;
 
+import org.apache.commons.fileupload.FileItemIterator;
+import org.apache.commons.fileupload.FileItemStream;
+import org.apache.commons.fileupload.FileUploadBase;
+import org.apache.commons.fileupload.FileUploadException;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.apache.commons.io.IOUtils;
+import org.hippoecm.hst.component.support.forms.FormField;
+import org.hippoecm.hst.component.support.forms.FormMap;
 import org.hippoecm.hst.content.beans.ObjectBeanManagerException;
 import org.hippoecm.hst.content.beans.manager.workflow.WorkflowCallbackHandler;
 import org.hippoecm.hst.content.beans.manager.workflow.WorkflowPersistenceManager;
+import org.hippoecm.hst.content.beans.standard.HippoFolder;
 import org.hippoecm.hst.core.component.HstComponentException;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
@@ -33,19 +39,17 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.mootly.wcm.annotations.AdditionalBeans;
-import com.mootly.wcm.annotations.DataTypeValidationFields;
-import com.mootly.wcm.annotations.DataTypeValidationType;
 import com.mootly.wcm.beans.MemberDriveDocument;
 import com.mootly.wcm.beans.MemberPersonalInformation;
 import com.mootly.wcm.components.BaseComponent;
-import com.mootly.wcm.utils.GoGreenUtil;
+
 
 @AdditionalBeans(additionalBeansToLoad={MemberPersonalInformation.class})
-@DataTypeValidationFields(fieldNames={"investment"},dataTypes={DataTypeValidationType.DECIMAL})
 public class MemberDrive extends BaseComponent {
 
 	private static final Logger log = LoggerFactory.getLogger(MemberDrive.class);
 	private static final String MEMBER_DRIVE_FOLDER_NAME="MemberDrive";
+	private static final long MEMBER_FILE_MAX_SIZE=50 * 1024 * 1024;
 	@Override
 	public void doBeforeRender(HstRequest request, HstResponse response) {
 		// TODO Auto-generated method stub
@@ -53,43 +57,10 @@ public class MemberDrive extends BaseComponent {
 		if(log.isInfoEnabled()){
 			log.info("This is member Drive page");
 		}
-		/*String strcmd=getPublicRequestParameter(request, "command");
-		String reqFormJson=getPublicRequestParameter(request, "data");
-		if(strcmd!=null&&strcmd.equals("upload")&&reqFormJson!=null){
-			try {
-				JSONObject formJson=new JSONObject(reqFormJson);
-				String memberfile=formJson.getString("member_file").toString();
-				File upldFile=new File(memberfile);
-				MemberDriveDocument memberDrive=new MemberDriveDocument();
-				memberDrive.setMemberFileResource(upldFile);
-				MemberDriveDocument returnMemberDriveDoc=createMemberDrive(request, response, memberDrive);
-				if(returnMemberDriveDoc!=null){
-					response.setHeader("myfileheader", upldFile.getName());
-				}
-			} catch (JSONException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}*/
-		/*List<String> fileNames=new ArrayList<String>();
-		try {
-			Node node=(Node) getObjectBeanManager(request).getObject(getMemberDriveDocPath(request).toLowerCase());
-			NodeIterator itrnode=node.getNodes();
-			while(itrnode.hasNext()){
-				fileNames.add(itrnode.nextNode().getName());
-				itrnode.remove();
-			}
-			if(fileNames.size()!=0){
-				request.setAttribute("fileNames", "fileNames");
-			}
-		} catch (ObjectBeanManagerException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (RepositoryException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/
-		
+		if(getMemberDriveFileResource(request, response)!=null){
+			request.setAttribute("memberFiles", getMemberDriveFileResource(request, response));
+		}
+		request.setAttribute("msg", request.getParameter("FileUpload"));
 	}
 
 	@Override
@@ -97,13 +68,52 @@ public class MemberDrive extends BaseComponent {
 			throws HstComponentException {
 		// TODO Auto-generated method stub
 		super.doAction(request, response);
-		String memberfile=GoGreenUtil.getEscapedParameter(request, "member_file");
-		File upldFile=new File(memberfile);
+		if(log.isInfoEnabled()){
+			log.info("This is member Drive Action");
+		}
+		FormMap formMap=new FormMap(request, new String[]{"member_file"});
+		HashMap<String, byte[]> files = new HashMap<String, byte[]>();
+		FileItemStream fileItemStream=null;
+		boolean isMultipart = ServletFileUpload.isMultipartContent(request);
+		if (isMultipart) {
+			ServletFileUpload servletFileUpload = new ServletFileUpload();
+			servletFileUpload.setFileSizeMax(MEMBER_FILE_MAX_SIZE);
+			try {
+				FileItemIterator iter = servletFileUpload.getItemIterator(request);
+				try {
+					while (iter.hasNext()) {
+						fileItemStream = iter.next();
+						if(formMap.getField(fileItemStream.getFieldName())!=null){
+							FormField formField = formMap.getField(fileItemStream.getFieldName());
+							if (formField != null) {
+								InputStream inputStream = fileItemStream.openStream();
+								/*if (fileItemStream.isFormField()) {
+									StringWriter writer = new StringWriter();
+									IOUtils.copy(fileItemStream.openStream(), writer, "UTF-8");
+									formField.addValue(writer.toString());
+								} else {*/
+								byte[] data = IOUtils.toByteArray(inputStream);
+								files.put(fileItemStream.getName(), data);
+								//}
+								inputStream.close();
+							}
+						}
+					}
+				} catch(FileUploadBase.FileUploadIOException e) {
+					log.error("File size exceeded", e);
+				}
+			} catch(FileUploadException e) {
+				log.error("A file upload error occurred", e);
+			} catch (IOException e) {
+				log.error("An error occurred while processing multipart form data", e);
+			}
+		}
 		MemberDriveDocument memberDrive=new MemberDriveDocument();
-		memberDrive.setMemberFile(upldFile);
-		MemberDriveDocument returnMemberDriveDoc=createMemberDrive(request, response, memberDrive);
+		memberDrive.setMemberFile(new ByteArrayInputStream(files.get(fileItemStream.getName())));
+		memberDrive.setContentType(fileItemStream.getContentType());
+		MemberDriveDocument returnMemberDriveDoc=createMemberDrive(request, response, memberDrive, fileItemStream.getName());
 		if(returnMemberDriveDoc!=null){
-			response.setRenderParameter("myfilename", upldFile.getName());
+			response.setRenderParameter("FileUpload", "Success");
 		}
 	}
 	/**
@@ -118,7 +128,7 @@ public class MemberDrive extends BaseComponent {
 	 * @return {@link MemberDriveDocument} Created in Repository
 	 * 
 	 * **/
-	public MemberDriveDocument createMemberDrive(HstRequest request,HstResponse response,MemberDriveDocument memberDrive){
+	public MemberDriveDocument createMemberDrive(HstRequest request,HstResponse response,MemberDriveDocument memberDrive,String fileName){
 		WorkflowPersistenceManager wpm=null;
 		Session persistableSession=null;
 		String memberDriveDocPath=null; 
@@ -127,10 +137,11 @@ public class MemberDrive extends BaseComponent {
 			wpm=getWorkflowPersistenceManager(persistableSession);
 			wpm.setWorkflowCallbackHandler(new FullReviewedWorkflowCallbackHandler());
 			String primaryPath=getMemberDriveDocPath(request);
-			memberDriveDocPath=wpm.createAndReturn(primaryPath, MemberDriveDocument.NAMESPACE, memberDrive.getMemberFile().getName(), true);
+			memberDriveDocPath=wpm.createAndReturn(primaryPath, MemberDriveDocument.NAMESPACE, fileName, true);
 			MemberDriveDocument memberDriveDoc=(MemberDriveDocument) wpm.getObject(memberDriveDocPath);
 			if(memberDriveDoc!=null){
 				memberDriveDoc.setMemberFile(memberDrive.getMemberFile());
+				memberDriveDoc.setContentType(memberDrive.getContentType());
 				wpm.update(memberDriveDoc);
 				return memberDriveDoc;
 			}
@@ -160,12 +171,34 @@ public class MemberDrive extends BaseComponent {
 		StringBuilder builder = new StringBuilder();
 		builder.append(request.getRequestContext().getResolvedMount().getMount().getCanonicalContentPath());
 		builder.append('/');
-		builder.append(MEMBER_DRIVE_FOLDER_NAME).append("/").append(request.getUserPrincipal().getName()).append("/").append("Documents");
+		builder.append(MEMBER_DRIVE_FOLDER_NAME).append("/").append(request.getUserPrincipal().getName().replaceAll("@","-at-")).append("/").append("Documents");
 		return builder.toString();
 	}
 	public static class FullReviewedWorkflowCallbackHandler implements WorkflowCallbackHandler<FullReviewedActionsWorkflow> {
 		public void processWorkflow(FullReviewedActionsWorkflow wf) throws Exception {
 			wf.publish();
+		}
+	}
+	/**
+	 * This Method is used to Get all Files Saved in Member Drive 
+	 * 
+	 * @param HstRequest
+	 * @param HstResponse
+	 * 
+	 * @return List<MemberDriveDocument> type {@link MemberDriveDocument}
+	 * */
+	public List<MemberDriveDocument> getMemberDriveFileResource(HstRequest request,HstResponse response){
+		List<MemberDriveDocument> memberFiles=new ArrayList<MemberDriveDocument>();
+		try {
+			HippoFolder hippofolder=(HippoFolder) getObjectBeanManager(request).getObject(getMemberDriveDocPath(request).toLowerCase());
+			if(hippofolder!=null){
+				memberFiles=hippofolder.getDocuments(MemberDriveDocument.class);				
+			}
+			return memberFiles;
+		} catch (ObjectBeanManagerException e) {
+			// TODO Auto-generated catch block
+			log.error("Error while to get the Object from Repo path"+e);
+			return null;
 		}
 	}
 }
