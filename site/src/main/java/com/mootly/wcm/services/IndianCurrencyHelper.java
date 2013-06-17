@@ -81,11 +81,30 @@ public final class IndianCurrencyHelper {
 	}
 
 	/**
-	 * This Method is used to GregorianCalend into XMLGregorianCalendar
+	 * This Method is used to convert long into BigInteger
+	 * @return BigInteger
+	 * @param Long
+	 *
+	 * */
+
+	public BigInteger longToBigInteger(long in){
+
+		BigInteger bigStr=null;
+		if(in!=0 && in>0){
+			bigStr = BigInteger.valueOf(in);
+			return bigStr;
+		}else
+			return null;
+	}
+
+
+	/**
+	 * This Method is used to convert GregorianCalend into XMLGregorianCalendar
 	 * @return GregorianCalendar
 	 * @param Calendar
 	 *
 	 * */
+
 	public XMLGregorianCalendar gregorianCalendar(GregorianCalendar val_Date){
 
 		XMLGregorianCalendar date2=null;
