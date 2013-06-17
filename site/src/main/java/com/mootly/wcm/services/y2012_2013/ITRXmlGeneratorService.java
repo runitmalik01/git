@@ -597,7 +597,13 @@ public class ITRXmlGeneratorService extends ITRXmlGeneratorServiceCommon  implem
 							BigInteger Investment = indianCurrencyHelper.bigIntegerRound(deductionDocumentDetail.getInvestment());
 							Total100NoAppr = Total100NoAppr.add(Investment);
 							don100Percent.setTotDon100Percent(Total100NoAppr);
-							don100Percent.setTotEligibleDon100Percent(Total100NoAppr);
+							if(Total100NoAppr.longValue()<grsstotal){
+								don100Percent.setTotEligibleDon100Percent(Total100NoAppr);
+							}else if(Total100NoAppr.longValue()>=grsstotal && grsstotal>0){
+								don100Percent.setTotEligibleDon100Percent(indianCurrencyHelper.longToBigInteger(grsstotal));
+							}else if(Total100NoAppr.longValue()>=grsstotal && grsstotal==0){
+								don100Percent.setTotEligibleDon100Percent(new BigInteger("0"));
+							}
 							schedule80G.setDon100Percent(don100Percent);
 						}
 						if(deductionDocumentDetail.getHead()!=null && deductionDocumentDetail.getHead().equals("Appr100")){
@@ -611,8 +617,18 @@ public class ITRXmlGeneratorService extends ITRXmlGeneratorServiceCommon  implem
 							don100PercentApprReqd.getDoneeWithPan().add(doneeWithPan);
 							BigInteger Investment = indianCurrencyHelper.bigIntegerRound(deductionDocumentDetail.getInvestment());
 							Total100Appr = Total100Appr.add(Investment);
+							long adjGrossTotal=grsstotal - totaleligiblededuction.longValue();
+							long NetQualifyLmt=(long) (adjGrossTotal*0.1);
+							if(Total100Appr.longValue()  > 0){
+								if(NetQualifyLmt>Total100Appr.longValue()){
+									don100PercentApprReqd.setTotEligibleDon100PercentApprReqd(Total100Appr);
+								}else if(NetQualifyLmt<=Total100Appr.longValue() && NetQualifyLmt>0){
+									don100PercentApprReqd.setTotEligibleDon100PercentApprReqd(indianCurrencyHelper.longToBigInteger(NetQualifyLmt));
+								}else if(NetQualifyLmt<Total100Appr.longValue() && NetQualifyLmt<=0){
+									don100PercentApprReqd.setTotEligibleDon100PercentApprReqd(new BigInteger("0"));
+								}
+							}
 							don100PercentApprReqd.setTotDon100PercentApprReqd(Total100Appr);
-							don100PercentApprReqd.setTotEligibleDon100PercentApprReqd(Total100Appr);
 							schedule80G.setDon100PercentApprReqd(don100PercentApprReqd);
 						}
 						if(deductionDocumentDetail.getHead()!=null && deductionDocumentDetail.getHead().equals("NoAppr50")){
@@ -627,7 +643,13 @@ public class ITRXmlGeneratorService extends ITRXmlGeneratorServiceCommon  implem
 							BigInteger Investment = indianCurrencyHelper.bigIntegerRound(deductionDocumentDetail.getInvestment());
 							Total50NoAppr = Total50NoAppr.add(Investment);
 							don50PercentNoApprReqd.setTotDon50PercentNoApprReqd(Total50NoAppr);
-							don50PercentNoApprReqd.setTotEligibleDon50Percent(Total50NoAppr.divide(new BigInteger("2")));
+							if(Total50NoAppr.divide(new BigInteger("2")).longValue()<grsstotal){
+								don50PercentNoApprReqd.setTotEligibleDon50Percent(Total50NoAppr.divide(new BigInteger("2")));
+							}else if(Total50NoAppr.divide(new BigInteger("2")).longValue()>=grsstotal && grsstotal>0){
+								don50PercentNoApprReqd.setTotEligibleDon50Percent(indianCurrencyHelper.longToBigInteger(grsstotal));
+							}else if(Total50NoAppr.divide(new BigInteger("2")).longValue()>=grsstotal && grsstotal==0){
+								don50PercentNoApprReqd.setTotEligibleDon50Percent(new BigInteger("0"));
+							}
 							schedule80G.setDon50PercentNoApprReqd(don50PercentNoApprReqd);
 						}
 						if(deductionDocumentDetail.getHead()!=null && deductionDocumentDetail.getHead().equals("Appr50")){
@@ -642,6 +664,17 @@ public class ITRXmlGeneratorService extends ITRXmlGeneratorServiceCommon  implem
 							BigInteger Investment = indianCurrencyHelper.bigIntegerRound(deductionDocumentDetail.getInvestment());
 							Total50Appr = Total50Appr.add(Investment);
 							don50PercentApprReqd.setTotDon50PercentApprReqd(Total50Appr);
+							long adjGrossTotal=grsstotal - totaleligiblededuction.longValue();
+							long NetQualifyLmt=(long) (adjGrossTotal*0.1);
+							if(Total50Appr.longValue()  > 0){
+								if(NetQualifyLmt>Total50Appr.longValue()){
+									don50PercentApprReqd.setTotEligibleDon50PercentApprReqd(Total50Appr.divide(new BigInteger("2")));
+								}else if(NetQualifyLmt<=Total50Appr.longValue() && NetQualifyLmt>0){
+									don50PercentApprReqd.setTotEligibleDon50PercentApprReqd(indianCurrencyHelper.longToBigInteger(NetQualifyLmt));
+								}else if(NetQualifyLmt<Total100Appr.longValue() && NetQualifyLmt<=0){
+									don50PercentApprReqd.setTotEligibleDon50PercentApprReqd(new BigInteger("0"));
+								}
+							}
 							don50PercentApprReqd.setTotEligibleDon50PercentApprReqd(Total50Appr.divide(new BigInteger("2")));
 							schedule80G.setDon50PercentApprReqd(don50PercentApprReqd);
 						}
