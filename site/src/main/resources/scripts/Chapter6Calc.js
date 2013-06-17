@@ -112,9 +112,10 @@ out_total_80rrb=(total_80rrb>maxAllowed_80qqb_80rrb) ? maxAllowed_80qqb_80rrb : 
 out_total_80qqb=(total_80qqb>maxAllowed_80qqb_80rrb) ? maxAllowed_80qqb_80rrb : total_80qqb;
 
 //Donations 100%
-out_total_80g = (total_NoAppr50 * 0.5) + (total_Appr50 * 0.5) + (total_Appr100) + ((total_NoAppr100)); 
+//out_total_80g = (total_NoAppr50 * 0.5) + (total_Appr50 * 0.5) + (total_Appr100) + ((total_NoAppr100)); 
 //100% deductions on 80E,80GGA,80GGC,80JJA,80ID,80IA
 
+	
 out_total_80e= (total_80e < maxAllowed_80E) ? total_80e:maxAllowed_80E;
 
 //out_total_80gga= (total_80gga < grosstotal) ? total_80gga:grosstotal;
@@ -125,7 +126,8 @@ if(total_OtherThanCash>0){
 	if(total_OtherThanCash > grosstotal){
 		out_total_80gga=grosstotal; 
 	} else 
-		out_total_80gga=total_OtherThanCash;}
+		out_total_80gga=total_OtherThanCash;
+	}
 if((total_InCash>0) && (total_OtherThanCash >0) && (( total_InCash)+(total_OtherThanCash)) > (grosstotal)){
 	out_total_80gga=(grosstotal);
 }
@@ -147,12 +149,33 @@ out_total_80ggc= (total_80ggc < grosstotal) ? total_80ggc:grosstotal;
 
 //out_total_80ia= (total_80ia < grosstotal) ? total_80ia:grosstotal;
 
-out_total_eligiblededuction = out_total_80c + out_total_80ccc + out_total_80ccd_1 + out_total_80ccd_2 + out_total_80d + out_total_80qqb + out_total_80rrb + out_total_80gga + out_total_80ggc + out_total_80g + out_total_80ddb /*+ out_total_80u*/ + out_total_80dd + out_total_80e + out_total_80tta + out_total_80ccg;
+out_total_eligiblededuction = out_total_80c + out_total_80ccc + out_total_80ccd_1 + out_total_80ccd_2 + out_total_80d + out_total_80qqb + out_total_80rrb + out_total_80gga + out_total_80ggc +/* out_total_80g*/ + out_total_80ddb /*+ out_total_80u*/ + out_total_80dd + out_total_80e + out_total_80tta + out_total_80ccg;
 
 //80G- Calculate AdjustedGrossTotal and Excess Rent Paid and 2000 per Month
-out_total_80gg=0;
-if(total_80gg>0){
-	var adjuestedGrossTotal=grosstotal - (out_total_eligiblededuction-out_total_80gg);
+//out_total_80g = (total_NoAppr50 * 0.5) + (total_Appr50 * 0.5) + (total_Appr100) + ((total_NoAppr100)); 
+var NAppr=0;
+if((total_NoAppr50 >0 || total_NoAppr100>0) && (total_NoAppr50 + total_NoAppr100) > grosstotal)
+	out_total_80g= grosstotal;
+else out_total_80g=(total_NoAppr50)*.5 + total_NoAppr100;
+	var adjGrossTotal=grosstotal - (out_total_eligiblededuction);
+	var NetQualifyLmt=adjGrossTotal*.1;
+	if(total_Appr50  > 0){
+		NoApprFifty=total_Appr50 * 0.5;
+		if(NetQualifyLmt>NoApprFifty)
+			out_total_80g=out_total_80g+NoApprFifty;
+		else out_total_80g=out_total_80g+NetQualifyLmt;
+	}
+	if(total_Appr100  > 0){
+		NoApprFull=total_Appr100;
+		if(NetQualifyLmt>NoApprFull)
+			out_total_80g=out_total_80g+NoApprFull;
+		else out_total_80g=out_total_80g+NetQualifyLmt;
+	}
+	out_total_eligiblededuction=out_total_eligiblededuction+out_total_80g;
+	
+
+  if(total_80gg>0){
+	var adjuestedGrossTotal=grosstotal - (out_total_eligiblededuction);
 	var adjuestedGross10per=adjuestedGrossTotal * 0.1;
 	var	adjuestedGross25per=adjuestedGrossTotal * 0.25;
 	var excessRentPaid=total_80gg-adjuestedGross10per;
@@ -161,8 +184,9 @@ if(total_80gg>0){
 	out_total_80gg=Math.min(rent2000permnth,adjuestedGross25per,excessRentPaid);
 	if(out_total_80gg<0)
 		out_total_80gg=0;
-	out_total_eligiblededuction=out_total_eligiblededuction+out_total_80gg;
+	
 }
+  out_total_eligiblededuction=out_total_eligiblededuction+out_total_80gg;
 if(out_total_eligiblededuction>grosstotal)
 	out_total_eligiblededuction=grosstotal;
 //print("hello word"+grosstotal);
