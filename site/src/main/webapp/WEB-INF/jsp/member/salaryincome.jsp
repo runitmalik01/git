@@ -238,7 +238,7 @@
 							<div class="rowlabel">
 								<input type="text" name="Allowance" id="Allowance"
 									maxlength="14" class="decimal"
-									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.allowance}"/></c:if>">
+									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.allowance}"/></c:if>">
 							</div>
 						</div>
 
@@ -260,7 +260,7 @@
 							<div class="rowlabel">
 								<input type="text" maxlength="14" name="Perquisite"
 									id="Perquisite" class="decimal"
-									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.perquisite}"/></c:if>">
+									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.perquisite}"/></c:if>">
 							</div>
 						</div>
 
@@ -271,7 +271,7 @@
 							<div class="rowlabel">
 								<input type="text" maxlength="14" name="profit" id="profit"
 									class="decimal"
-									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.profit}"/></c:if>">
+									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.profit}"/></c:if>">
 							</div>
 						</div>
 						<div class="span4">
@@ -343,5 +343,4 @@
 <res:client-validation formId="frmdataSlryInc"
 	screenConfigurationDocumentName="salaryincome"
 	formSubmitButtonId="myModalHrefSlryInc" />
-
 
