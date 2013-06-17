@@ -97,10 +97,9 @@
 					
 			</c:forEach>
 				<tr>
-					<td><fmt:message key="tds.amount.total" /></td>
-					<td><input type="text" name="total_value" maxlength="14"
-						readonly value="${parentBean.total_Amount}">
-					</td>
+					<td colspan="3"><fmt:message key="tds.amount.total" /></td>
+					<td ><w4india:inr value="${parentBean.total_Amount}" />
+						</td>
 			</c:if>
 			
 		</table>
