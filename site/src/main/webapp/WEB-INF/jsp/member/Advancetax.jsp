@@ -51,7 +51,7 @@
 			               <div class="span4">
 			            <div class="rowlabel"><label for="amountadv"><small><fmt:message key="tds.amount.selfassesment" /></small></label></div>
 			          	<div class="rowlabel"><input id="amountadv" name="amountadv"  type="text" maxlength="14" class="decimal"
-			          	value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.p_Amount}"/></c:if>"/></div>
+			          	value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.p_Amount}"/></c:if>"/></div>
 			          </div>
 			          </div>
 			</fieldset>
@@ -87,10 +87,10 @@
 						</td>
 						<td><c:out value="${advancetaxdetail.p_Serial}" />
 						</td>
-						<td><c:out value="${advancetaxdetail.p_Amount}" />
+						<td><w4india:inr value="${advancetaxdetail.p_Amount}" />
 						</td>
 						<td><a
-							href="${scriptName}/<c:out value="${advancetaxdetail.canonicalUUID}"/>/advancetaxedit"><small>Edit</small></a>
+							href="${scriptName}/<c:out value="${advancetaxdetail.canonicalUUID}"/>/advancetaxedit"><small>Edit</small></a>&nbsp;&nbsp;
 						<a href="${scriptName}/<c:out value="${advancetaxdetail.canonicalUUID}"/>/advancetaxdelete" onclick="return checkdelete()"><small>Delete</small></a>
 							</td>
 					</tr>
@@ -98,8 +98,7 @@
 			</c:forEach>
 				<tr>
 					<td colspan="3"><fmt:message key="tds.amount.total" /></td>
-					<td ><w4india:inr value="${parentBean.total_Amount}" />
-						</td>
+					<td ><w4india:inr value="${parentBean.total_Amount}" /></td>
 			</c:if>
 			
 		</table>
