@@ -96,7 +96,7 @@
 						<input id="total_taxdeductedtdsoth" name="total_taxdeductedtdsoth"
 							type="text" maxlength="14" onblur="calculate()"
 							onchange="calculate" class="decimal"
-							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.total_TaxDeductor}"/></c:if>" />
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.total_TaxDeductor}"/></c:if>" />
 					</div>
 				</div>
 				<div class="span4">
@@ -107,7 +107,7 @@
 					<div class="rowlabel">
 						<input id="amounttdsoth" name="amounttdsoth" type="text"
 							maxlength="14" readonly required="required" class="decimal"
-							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.p_Amount}"/></c:if>" />
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.p_Amount}"/></c:if>" />
 					</div>
 				</div>
 			</div>
@@ -138,12 +138,12 @@
 						</td>
 						<td><c:out value="${tdsfromothersdetail.name_Deductor}" />
 						</td>
-						<td><c:out value="${tdsfromothersdetail.total_TaxDeductor}" />
+						<td><w4india:inr value="${tdsfromothersdetail.total_TaxDeductor}" />
 						</td>
-						<td><c:out value="${tdsfromothersdetail.p_Amount}" />
+						<td><w4india:inr value="${tdsfromothersdetail.p_Amount}" />
 						</td>
 						<td><a
-							href="${scriptName}/<c:out value="${tdsfromothersdetail.canonicalUUID}"/>/tdsfromothersedit"><small>Edit</small>
+							href="${scriptName}/<c:out value="${tdsfromothersdetail.canonicalUUID}"/>/tdsfromothersedit"><small>Edit</small> &nbsp;&nbsp;
 						</a>&nbsp;<a href="${scriptName}/<c:out value="${tdsfromothersdetail.canonicalUUID}"/>/tdsfromothersdelete" id="delete" onclick="return checkdelete()"><small>Delete</small> </a>
 							</td>
 						</tr>
