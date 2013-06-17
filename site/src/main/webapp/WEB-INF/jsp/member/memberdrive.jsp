@@ -24,6 +24,7 @@
 <c:set var="startapplication">
 	<fmt:message key="member.start.application" />
 </c:set>
+
 <hippo-gogreen:title title="${ startapplication}" />
 <c:if test="${not empty formMap}">
 	<c:forEach items="${formMap.message}" var="item">
@@ -36,7 +37,7 @@
 <hst:componentRenderingURL var="ajaxLinkToComponent"></hst:componentRenderingURL>
 <w4india:itrmenu/>
 	<h4>Member Drive</h4>
-	<form id="memberdrive" action="${actionUrl}" method="post" name="memberdrive">
+	<form id="memberdrive" action="${actionUrl}" method="post" name="memberdrive" enctype="multipart/form-data">
 	<fieldset>
 		<legend>Upload Your Document to File Income Tax Return
 			${memberpersonalinformnation.financialYear}</legend>
@@ -47,13 +48,22 @@
 					</div>
 			   </div>
 		    </div>-->
-		    <div class="row-fluid show-grid">
+		<c:if test="${not empty msg}">
+			<div class="row-fluid show-grid">
+				<div class="alert alert-success">Your have Successfully
+					Uploaded File in Member Drive.</div>
+			</div>
+		</c:if>
+		<div class="row-fluid show-grid">
 			   <div class="span6">
 					<div class="rowlabel">			            
 			             <!--   <div class="input-prepend">
 			                  <span class="add-on"><i class="icon-file"></i></span>-->
 			             <div id="upload-file-container">
-			                 <input type="file" id="member_file" name="member_file" title="Select a File to Upload in Member Drive" size="10"/>			              
+			                   <input type="file" id="member_file" name="member_file" title="Select a File to Upload in Member Drive" size="10"/>
+			                 <!--<c:forEach var="fields" items="${form.field}">
+			                 ${fields.html}
+			                 </c:forEach>-->			              
 			             </div>
 			             <div id="member_file_name"></div>
 				   </div>
@@ -61,18 +71,20 @@
 			</div>
 		    <div class="row-fluid show-grid">
 			   <div class="span6">
+			    <c:forEach var="file" items="${memberFiles}">
 					<div class="rowlabel">
-                        <span class="add-on"><i class="icon-folder-open"></i></span><div class="file_name">
-                        <c:forEach items="${fileNames}" var="filename">
-                           <c:out value="${filename}"/>
-                        </c:forEach></div>
+                        <div class="file_name"><span class="add-on"><i class="icon-file"></i></span>
+                        	<hst:link var="assetLink" hippobean="${file.memberFileResource}"/>
+                            <a href="${assetLink}"><c:out value="${file.name}"/></a>
+                         </div>
 				   </div>
+				 </c:forEach>
 			   </div>
 		    </div>
 		    <div class="row-fluid show-grid">
 				 <div class="span2 offset10">
-					<!--  <a href="#" id="upload" class="orange button">Upload File</a>-->
-					<input type="Submit" name="Submit" value="Upload File"/>
+					 <a href="#" id="upload" class="orange button">Upload File</a>
+					<!-- <input type="Submit" name="Submit" value="Upload File"/>-->
 				 </div>
 		    </div>
 	</fieldset>
@@ -82,6 +94,9 @@
 		$(document).ready(function(){
 		$('#member_file').bind('change', function(){
 		    $('#member_file_name').text(this.files[0].name);
+          });
+          $('#upload').click(function(){
+            $('#memberdrive').submit();
           });
 		 /* $('#upload').click(function(){
 		  var ConvertFormToJSON=function(){
