@@ -48,7 +48,8 @@ public class MemberDriveDocument extends BaseDocument implements ContentNodeBind
 	static final public String NAMESPACE = "mootlywcm:memberdrivedocument";
 	static final public String NODE_NAME = "MemberDrive";
 
-	private File memberFileResource;
+	private InputStream memberFileResource;
+	private String contentType;
 	private String MEMBER_DOCS="mootlywcm:memberDocs";
 	/**
 	 * @return the memberFileResource
@@ -56,19 +57,30 @@ public class MemberDriveDocument extends BaseDocument implements ContentNodeBind
 	public HippoResource getMemberFileResource() {
 		return getBean(MEMBER_DOCS);
 	}
-	public File getMemberFile(){
+	public InputStream getMemberFile(){
 		return memberFileResource;
 	}
 	/**
 	 * @param memberFileResource the memberFileResource to set
 	 */
-	public void setMemberFile(File memberFileResource) {
+	public void setMemberFile(InputStream memberFileResource) {
 		this.memberFileResource = memberFileResource;
 	}
 
+	/**
+	 * @return the contentType
+	 */
+	public String getContentType() {
+		return contentType;
+	}
+	/**
+	 * @param contentType the contentType to set
+	 */
+	public void setContentType(String contentType) {
+		this.contentType = contentType;
+	}
 	@Override
 	public boolean bind(Object content, javax.jcr.Node node) throws ContentNodeBindingException {
-		InputStream is = null;
 		MemberDriveDocument bean = (MemberDriveDocument) content;        
 		try {
 			if (log.isInfoEnabled()) {
@@ -81,29 +93,15 @@ public class MemberDriveDocument extends BaseDocument implements ContentNodeBind
 				}
 				javax.jcr.Node resourceNode= node.getNode(MEMBER_DOCS);
 				if(resourceNode!=null){
-					if (log.isInfoEnabled()) { //BE CAREFUL this can cause exception 
-						try {
-						log.info("thi sos jcr type"+((Node) resourceNode).jcrType());
-						}catch (Exception ex) {
-							log.warn("Error while logging ",ex);
-						}
-					}
-					is = new FileInputStream( bean.getMemberFile() );
-					Binary binaryValue = vf.createBinary(is);
+					Binary binaryValue = vf.createBinary(bean.getMemberFile());
 					resourceNode.setProperty(JcrConstants.JCR_DATA,binaryValue);
+					resourceNode.setProperty(JcrConstants.JCR_MIMETYPE, bean.getContentType());
 				}
 			}
 		} 
-		catch (FileNotFoundException e) {
-			log.error("File was not found ", e);
-			throw new ContentNodeBindingException(e);
-		}
 		catch (RepositoryException e) {
 			log.error("Repository Exception",e);
 			throw new ContentNodeBindingException(e);
-		}
-		finally {
-			if (is != null) try { is.close(); } catch (Exception ex) {}
 		}
 		return true;
 	}
