@@ -150,9 +150,8 @@
 					</tr>
 				</c:forEach>
 				<tr>
-					<td><fmt:message key="tds.amount.total" /></td>
-					<td><input type="text" name="total_value"
-						value="${parentBean.total_Amount}"></td>
+					<td colspan="3"><fmt:message key="tds.amount.total" /></td>
+					<td><w4india:inr value="${parentBean.total_Amount}" /></td>
 				</tr>
 			</c:if>
 		</table>
