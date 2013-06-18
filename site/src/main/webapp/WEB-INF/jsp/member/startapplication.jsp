@@ -737,42 +737,65 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 	<hst:attribute name="type">text/javascript</hst:attribute>
 		var solrField = 'text';
 		var solrExtra = '';
-
+		ifsc = {};
 		function callSolr_bd_bank_name(q,process) {
 			solrField = 'BANK';
 			solrFieldFacet = solrField + '_s';
 			solrExtra = '';
-			callSolr(q,process);
+			doneFunc = function(data)  {
+			    retArr = new Array();
+			    for ( var i=0;i<data.facet_counts.facet_fields [solrFieldFacet].length;i++) {				
+				if ( (i % 2) == 0 ) retArr[retArr.length] =data.facet_counts.facet_fields[solrFieldFacet][i];
+			    }
+			    process(retArr);
+			}			
+			callSolr(q,process,doneFunc);
 		}
 
 		function callSolr_bd_Branch_name(q,process) {
 			solrField = 'BRANCH_NAME';
 			solrFieldFacet = solrField + '_s';
 			solrExtra = "%20%2BBANK:" + $("#bd_bank_name").val();
-			callSolr(q,process);
+			doneFunc = function(data)  {
+			    retArr = new Array();
+			    for ( var i=0;i<data.response.docs.length;i++) {
+				//if ( (i % 2) == 0 ) retArr[retArr.length] =data.facet_counts.facet_fields[solrFieldFacet][i];
+				if ( (i % 2) == 0 ) {
+					retArr[retArr.length] = data.response.docs[i][solrFieldFacet];
+					ifsc[data.response.docs[i][solrFieldFacet]] = data.response.docs[i]['ID']
+				}
+			    }
+			    process(retArr);
+			}
+			callSolr(q,process,doneFunc);
 		}
 		//nice example http://fusiongrokker.com/post/heavily-customizing-a-bootstrap-typeahead
 
-		function callSolr(q,process) {
+		function callSolr(q,process,doneFunc) {
 			$.ajax({
 				'url':'/site/solr/bankdata/select?q='+ solrField + ':' + q + '*'+ solrExtra +'&wt=json&indent=true&facet=on&facet.field=' + solrField + '_s',
 				dataType:'json'
-			}).done(function(data)  {
-			    retArr = new Array();
-				for ( var i=0;i<data.facet_counts.facet_fields [solrFieldFacet].length;i++) {
-					if ( (i % 2) == 0 ) retArr[retArr.length] =data.facet_counts.facet_fields[solrFieldFacet][i];
+			}).done(doneFunc);
 		}
-				process(retArr);
-			});
+		function bankSelected(item){
+			$("#bd_Branch_name").val("");
+			$("#flex_string_IFSCCode").val("");
+			return item;
+		}	
+		function branchSelected(item) {
+			if (ifsc != null && typeof(ifsc[item]) != 'undefined') {
+				$("#flex_string_IFSCCode").val(ifsc[item]);
+			}
+			return item;
 		}
 
 		$(document).ready(function() {
-			var options={source:callSolr_bd_bank_name}
-		$("#bd_bank_name").attr('autocomplete','off');
+			var options={source:callSolr_bd_bank_name,updater:bankSelected}
+			$("#bd_bank_name").attr('autocomplete','off');
 			$("#bd_bank_name").typeahead(options);
 
-			options={source:callSolr_bd_Branch_name}
-		$("#bd_Branch_name").attr('autocomplete','off');
+			options={source:callSolr_bd_Branch_name,updater:branchSelected}
+			$("#bd_Branch_name").attr('autocomplete','off');
 			$("#bd_Branch_name").typeahead(options);
 			$('#defective').change(function(){
 				$('.defective_' + $(this).val() + '_v').show();
@@ -855,6 +878,3 @@ request.setAttribute("objHashMapstates", objHashMapstates);
               	  }
 </hst:element>
 <hst:headContribution element="${uiCustom}" category="jsInternal" />
-
-
-
