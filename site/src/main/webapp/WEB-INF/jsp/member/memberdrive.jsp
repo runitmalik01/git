@@ -24,7 +24,7 @@
 <c:set var="startapplication">
 	<fmt:message key="member.start.application" />
 </c:set>
-
+<hst:link var="memberDriveComp" siteMapItemRefId="docattach"></hst:link>
 <hippo-gogreen:title title="${ startapplication}" />
 <c:if test="${not empty formMap}">
 	<c:forEach items="${formMap.message}" var="item">
@@ -75,7 +75,7 @@
 					<div class="rowlabel">
                         <div class="file_name"><span class="add-on"><i class="icon-file"></i></span>
                         	<hst:link var="assetLink" hippobean="${file.memberFileResource}"/>
-                            <a href="${assetLink}"><c:out value="${file.name}"/></a>
+                            <a href="${assetLink}"><c:out value="${file.name}"/></a> : <a href="${scriptName}?delete=${file.canonicalUUID}" id="deletefile">Delete</a>
                          </div>
 				   </div>
 				 </c:forEach>
@@ -83,10 +83,17 @@
 		    </div>
 		    <div class="row-fluid show-grid">
 				 <div class="span2 offset10">
-					 <a href="#" id="upload" class="orange button">Upload File</a>
+					 <a href="#" id="upload" class="btn orange">Upload File</a>
 					<!-- <input type="Submit" name="Submit" value="Upload File"/>-->
 				 </div>
 		    </div>
+		<div id="dialog-confirm" title="Empty the recycle bin?" style="display: none;">
+			<p>
+				<span class="ui-icon ui-icon-alert"
+					style="float: left; margin: 0 7px 20px 0;"></span>These items will
+				be permanently deleted and cannot be recovered. Are you sure?
+			</p>
+		</div>
 	</fieldset>
 </form>
 <hst:element var="uiCustom" name="script">
@@ -98,6 +105,27 @@
           $('#upload').click(function(){
             $('#memberdrive').submit();
           });
+          $('#deletefile').click(function(){
+            var resp=confirm("Do you want to delete it ?");
+	          if(resp) return true;
+	          else return false;
+          });
+          /*$('#deletefile').click(function(){$( "#dialog-confirm" ).dialog({
+                resizable: false,
+                height:200,
+                width:200,
+                modal: true,
+                draggable: false,
+                buttons: {
+                    "Delete all items": function() {
+                        $( this ).dialog( "close" );
+                       },
+                Cancel: function() {
+                         $( this ).dialog( "close" );
+                  }
+                }
+             });
+          });*/
 		 /* $('#upload').click(function(){
 		  var ConvertFormToJSON=function(){
 						     var array = jQuery('form').serializeArray();
