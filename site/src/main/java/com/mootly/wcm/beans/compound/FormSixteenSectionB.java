@@ -107,38 +107,52 @@ public abstract class FormSixteenSectionB extends FormSixteenSectionA  implement
 		if (formMap.getField("year4") != null){
 			setYear4(formMap.getField("year4").getValue());
 		}
-		if (formMap.getField("gross_a").getValue().isEmpty()) {}
+		double amtA=0.0d;
+		if (formMap.getField("gross_a").getValue().isEmpty()) {
+			setGross_a(amtA);
+		}
 		else{
 			String strgross_a=formMap.getField("gross_a").getValue();
-			double amt= Double.parseDouble(strgross_a);
-			setGross_a(amt);
+			amtA= Double.parseDouble(strgross_a);
+			setGross_a(amtA);
 		}
-		if (formMap.getField("gross_b").getValue().isEmpty()) {}
+		double amtB=0.0d;
+		if (formMap.getField("gross_b").getValue().isEmpty()) {
+			setGross_b(amtB);
+		}
 		else{
 			String strgross_b=formMap.getField("gross_b").getValue();
-			double amt= Double.parseDouble(strgross_b);
-			setGross_b(amt);
+			 amtB= Double.parseDouble(strgross_b);
+			setGross_b(amtB);
+		}double amtC=0.0d;
+		if (formMap.getField("gross_c").getValue().isEmpty()) {
+			setGross_c(amtC);
 		}
-		if (formMap.getField("gross_c").getValue().isEmpty()) {}
 		else{
 			String strgross_c=formMap.getField("gross_c").getValue();
-			double amt= Double.parseDouble(strgross_c);
+			 amtC= Double.parseDouble(strgross_c);
+			 setGross_c(amtC);
 
-			setGross_c(amt);
 		}
-		if (formMap.getField("gross_total").getValue().isEmpty()) {}
+		double amtGt=0.0d;
+		if (formMap.getField("gross_total").getValue().isEmpty()) {
+			setGross_total(amtGt);
+		}
 		else{
 			String strgross_total=formMap.getField("gross_total").getValue();
-			double amt= Double.parseDouble(strgross_total);
-			log.info("value of amt is"+amt);
-			setGross_total(amt);
+			 amtGt= Double.parseDouble(strgross_total);
+			log.info("value of amt is"+amtGt);
+			setGross_total(amtGt);
 		}
-		if (formMap.getField("less_allowance_1").getValue().isEmpty()) {}
+		double amtLA=0.0;
+		if (formMap.getField("less_allowance_1").getValue().isEmpty()) {
+			setLess_allowance_1(amtLA);
+		}
 		else{
 			String strBankdetail=formMap.getField("less_allowance_1").getValue();
-			double amt= Double.parseDouble(strBankdetail);
-			log.info("value of amt is"+amt);
-			setLess_allowance_1(amt);
+			amtLA= Double.parseDouble(strBankdetail);
+			log.info("value of amt is"+amtLA);
+			setLess_allowance_1(amtLA);
 		}
 		if (formMap.getField("less_rs_1").getValue().isEmpty()) {}
 		else{
@@ -165,45 +179,58 @@ public abstract class FormSixteenSectionB extends FormSixteenSectionA  implement
 			double amt= Double.parseDouble(strBankdetail);
 			setLess_rs_2(amt);
 		}
-		if (formMap.getField("less_total_2").getValue().isEmpty()) {}
+		double amtLessTotal=0.0d;
+		if (formMap.getField("less_total_2").getValue().isEmpty()) {
+			setLess_total_2(amtLessTotal);
+		}
 		else{
 			String strBankdetail=formMap.getField("less_total_2").getValue();
-			double amt= Double.parseDouble(strBankdetail);
-			setLess_total_2(amt);
+			amtLessTotal= Double.parseDouble(strBankdetail);
+			setLess_total_2(amtLessTotal);
 		}
-		if (formMap.getField("balance").getValue().isEmpty()) {}
+		double amtBal=0.0d;
+		if (formMap.getField("balance").getValue().isEmpty()) {
+			setBalance(amtBal);
+		}
 		else{
 			String strbalance=formMap.getField("balance").getValue();
-			double amt= Double.parseDouble(strbalance);
-			setBalance(amt);
+			 amtBal= Double.parseDouble(strbalance);
+			setBalance(amtBal);
+		}double amtDTax=0.0d;
+		if (formMap.getField("deductions_tax").getValue().isEmpty()) {
+			setDeductions_tax(amtDTax);
 		}
-		if (formMap.getField("deductions_tax").getValue().isEmpty()) {}
 		else{
 			String strBankdetail=formMap.getField("deductions_tax").getValue();
-			double amt= Double.parseDouble(strBankdetail);
-			log.info("value of amt is"+amt);
-			setDeductions_tax(amt);
+			 amtDTax= Double.parseDouble(strBankdetail);
+			setDeductions_tax(amtDTax);
 		}
-		if (formMap.getField("deductions_entertainment") .getValue().isEmpty()) {}
+		double amtEnter=0.0d;
+		if (formMap.getField("deductions_entertainment") .getValue().isEmpty()) {
+			setDeductions_entertainment(amtEnter);
+		}
 		else{
 			String strBankdetail=formMap.getField("deductions_entertainment").getValue();
-			double amt= Double.parseDouble(strBankdetail);
-			log.info("value of amt is"+amt);
-			setDeductions_entertainment(amt);
+			amtEnter= Double.parseDouble(strBankdetail);
+			setDeductions_entertainment(amtEnter);
 		}
-		if (formMap.getField("deductions_total").getValue().isEmpty()) {}
+		double amtDTotl=0.0d;
+		if (formMap.getField("deductions_total").getValue().isEmpty()) {
+			setDeductions_total(amtDTotl);
+		}
 		else{
 			String strBankdetail=formMap.getField("deductions_total").getValue();
-			double amt= Double.parseDouble(strBankdetail);
-			log.info("value of amt is"+amt);
-			setDeductions_total(amt);
+			 amtDTotl= Double.parseDouble(strBankdetail);
+			setDeductions_total(amtDTotl);
+		} 
+		double amtIncome=0.0d;
+		if (formMap.getField("income_chargable_total").getValue().isEmpty()) {
+			setIncome_chargable_total(amtIncome);
 		}
-		if (formMap.getField("income_chargable_total").getValue().isEmpty()) {}
 		else{
 			String strBankdetail=formMap.getField("income_chargable_total").getValue();
-			double amt= Double.parseDouble(strBankdetail);
-			log.info("value of amt is"+amt);
-			setIncome_chargable_total(amt);
+			amtIncome= Double.parseDouble(strBankdetail);
+			setIncome_chargable_total(amtIncome);
 		}
 		if (formMap.getField("additional_1").getValue().isEmpty()) {}
 		else{
@@ -480,11 +507,14 @@ public abstract class FormSixteenSectionB extends FormSixteenSectionA  implement
 			double amt= Double.parseDouble(strTotalOther_income);
 			setRelief_1(amt);
 		}
-		if (formMap.getField("relief_2") .getValue().isEmpty()) {}
+		double amtRelief=0.0d;
+		if (formMap.getField("relief_2") .getValue().isEmpty()) {
+			setRelief_2(amtRelief);
+		}
 		else{
 			String strTotalOther_income=formMap.getField("relief_2").getValue();
-			double amt= Double.parseDouble(strTotalOther_income);
-			setRelief_2(amt);
+			amtRelief= Double.parseDouble(strTotalOther_income);
+			setRelief_2(amtRelief);
 		}
 		if (formMap.getField("tax_payable1").getValue().isEmpty()) {}
 		else{
@@ -504,11 +534,14 @@ public abstract class FormSixteenSectionB extends FormSixteenSectionA  implement
 			double amt= Double.parseDouble(strDepreciation);
 			setTax_payable_2(amt);
 		}
-		if (formMap.getField("ded_ent1").getValue().isEmpty()) {}
+		double amtDed1=0.0d;
+		if (formMap.getField("ded_ent1").getValue().isEmpty()) {
+			setDed_ent1(amtDed1);
+		}
 		else{
 			String strDepreciation=formMap.getField("ded_ent1").getValue();
-			double amt= Double.parseDouble(strDepreciation);
-			setDed_ent1(amt);
+			amtDed1= Double.parseDouble(strDepreciation);
+			setDed_ent1(amtDed1);
 		}
 		if (formMap.getField("ded_ent2").getValue().isEmpty()) {}
 		else{
@@ -516,17 +549,23 @@ public abstract class FormSixteenSectionB extends FormSixteenSectionA  implement
 			double amt= Double.parseDouble(strDepreciation);
 			setDed_ent2(amt);
 		}
-		if (formMap.getField("ded_ent3").getValue().isEmpty()) {}
+		double amtDed3=0.0d;
+		if (formMap.getField("ded_ent3").getValue().isEmpty()) {
+			setDed_ent3(amtDed3);
+		}
 		else{
 			String strDepreciation=formMap.getField("ded_ent3").getValue();
-			double amt= Double.parseDouble(strDepreciation);
-			setDed_ent3(amt);
+			 amtDed3= Double.parseDouble(strDepreciation);
+			setDed_ent3(amtDed3);
 		}
-		if (formMap.getField("ded_ent4").getValue().isEmpty()) {}
+		double amtDed4=0.0d;
+		if (formMap.getField("ded_ent4").getValue().isEmpty()) {
+			setDed_ent4(amtDed4);
+		}
 		else{
 			String strDepreciation=formMap.getField("ded_ent4").getValue();
-			double amt= Double.parseDouble(strDepreciation);
-			setDed_ent4(amt);
+			 amtDed4= Double.parseDouble(strDepreciation);
+			setDed_ent4(amtDed4);
 		}
 		if (formMap.getField("relief_11") .getValue().isEmpty()) {}
 		else{
