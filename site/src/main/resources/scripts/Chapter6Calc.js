@@ -16,6 +16,7 @@ var maxAllowed_80TTA=10000;
 var maxAllowed_80CCG=25000;
 var maxAllowed_80GGA=10000;
 var maxAllowed_80E=60000;
+var maxAllowed_80DDNormal=50000;
 out_total_eligiblededuction=0;
 //isSeniorCitizen=true;
 /** - END Configuration */
@@ -64,7 +65,10 @@ if(total_80tta>maxAllowed_80TTA){
 
 //80GGA- Interest on Bank Saving Accounts
 var fiftyPerCcg=(total_80ccg)*.5;
-out_total_80ccg=(fiftyPerCcg>maxAllowed_80CCG) ? maxAllowed_80CCG : fiftyPerCcg;
+//out_total_80ccg=(fiftyPerCcg>maxAllowed_80CCG) ? maxAllowed_80CCG : fiftyPerCcg;
+if(fiftyPerCcg>maxAllowed_80CCG){
+	out_total_80ccg=(grosstotal>maxAllowed_80CCG) ? maxAllowed_80CCG : grosstotal;
+} else out_total_80ccg=(fiftyPerCcg>maxAllowed_80CCG) ? maxAllowed_80CCG : fiftyPerCcg;
 
 //--this one is 80CCF this upper limit it 20000
 /*out_total_80ccf=0;
@@ -82,15 +86,18 @@ out_total_80d=maxMedicalPremium;
 
 //80DD - Medical Treatment/Maintenance of Handicapped Dependents
 //--exempt limit for NormalDisability
-if(total_normaldisability>50000)
-	total_normaldisability=50000;
+if(total_normaldisability>maxAllowed_80DDNormal)
+	total_normaldisability=(maxAllowed_80DDNormal>grosstotal) ? grosstotal : maxAllowed_80DDNormal;
+else out_total_80dd= ((total_normaldisability)>grosstotal) ? grosstotal: total_normaldisability;
 //--exempt limit for Severe Disability
 if(total_severedisability>maxAllowed_80DD)
-	total_severedisability=maxAllowed_80DD;
+	total_severedisability=(maxAllowed_80DD>grosstotal) ? grosstotal : maxAllowed_80DD;
+else out_total_80dd= ((total_severedisability)>grosstotal) ? grosstotal: total_severedisability;
 //--Overall exempt limit
 if((total_normaldisability+total_severedisability)>maxAllowed_80DD)
-	out_total_80dd=maxAllowed_80DD;
-else out_total_80dd= (total_normaldisability + total_severedisability);
+	//out_total_80dd=maxAllowed_80DD;
+	out_total_80dd=(maxAllowed_80DD>grosstotal) ? grosstotal : maxAllowed_80DD;
+else out_total_80dd= ((total_normaldisability + total_severedisability)>grosstotal) ? grosstotal:(total_normaldisability + total_severedisability);
 
 //80DDB-Treatment of Specified diseases
 var total_deases=total_neurological + total_parkinson + total_malignantcancer + total_aids + total_chronicrenalfailure + total_hemophilia + total_thallassaemia;
