@@ -28,6 +28,7 @@ import org.apache.commons.io.IOUtils;
 import org.hippoecm.hst.component.support.forms.FormField;
 import org.hippoecm.hst.component.support.forms.FormMap;
 import org.hippoecm.hst.content.beans.ObjectBeanManagerException;
+import org.hippoecm.hst.content.beans.ObjectBeanPersistenceException;
 import org.hippoecm.hst.content.beans.manager.workflow.WorkflowCallbackHandler;
 import org.hippoecm.hst.content.beans.manager.workflow.WorkflowPersistenceManager;
 import org.hippoecm.hst.content.beans.standard.HippoFolder;
@@ -39,17 +40,18 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.mootly.wcm.annotations.AdditionalBeans;
+import com.mootly.wcm.annotations.RequiredBeans;
 import com.mootly.wcm.beans.MemberDriveDocument;
 import com.mootly.wcm.beans.MemberPersonalInformation;
-import com.mootly.wcm.components.BaseComponent;
+import com.mootly.wcm.components.ITReturnComponent;
 
-
+@RequiredBeans(requiredBeans=MemberPersonalInformation.class)
 @AdditionalBeans(additionalBeansToLoad={MemberPersonalInformation.class})
-public class MemberDrive extends BaseComponent {
+public class MemberDrive extends ITReturnComponent {
 
 	private static final Logger log = LoggerFactory.getLogger(MemberDrive.class);
-	private static final String MEMBER_DRIVE_FOLDER_NAME="MemberDrive";
-	private static final long MEMBER_FILE_MAX_SIZE=50 * 1024 * 1024;
+	private static final String MEMBER_DRIVE_FOLDER_NAME="Members";
+	private static final long MEMBER_FILE_SIZE= 1024 * 1024;
 	@Override
 	public void doBeforeRender(HstRequest request, HstResponse response) {
 		// TODO Auto-generated method stub
@@ -61,23 +63,26 @@ public class MemberDrive extends BaseComponent {
 			request.setAttribute("memberFiles", getMemberDriveFileResource(request, response));
 		}
 		request.setAttribute("msg", request.getParameter("FileUpload"));
+		String fileuuid=getPublicRequestParameter(request, "delete");
+		if(DeleteMemberDriveFile(request, response, fileuuid)){
+			request.setAttribute("delete", "Success");
+		}
+		String o=MemberPersonalInformation.class.getSimpleName().toLowerCase();
+		request.setAttribute(o, request.getAttribute(o));
 	}
 
 	@Override
 	public void doAction(HstRequest request, HstResponse response)
 			throws HstComponentException {
 		// TODO Auto-generated method stub
-		super.doAction(request, response);
-		if(log.isInfoEnabled()){
-			log.info("This is member Drive Action");
-		}
 		FormMap formMap=new FormMap(request, new String[]{"member_file"});
 		HashMap<String, byte[]> files = new HashMap<String, byte[]>();
 		FileItemStream fileItemStream=null;
 		boolean isMultipart = ServletFileUpload.isMultipartContent(request);
 		if (isMultipart) {
 			ServletFileUpload servletFileUpload = new ServletFileUpload();
-			servletFileUpload.setFileSizeMax(MEMBER_FILE_MAX_SIZE);
+			long maxsize=Long.parseLong(request.getRequestContext().getResolvedSiteMapItem().getParameter("maxsize"));
+			servletFileUpload.setFileSizeMax(MEMBER_FILE_SIZE * maxsize);
 			try {
 				FileItemIterator iter = servletFileUpload.getItemIterator(request);
 				try {
@@ -171,7 +176,7 @@ public class MemberDrive extends BaseComponent {
 		StringBuilder builder = new StringBuilder();
 		builder.append(request.getRequestContext().getResolvedMount().getMount().getCanonicalContentPath());
 		builder.append('/');
-		builder.append(MEMBER_DRIVE_FOLDER_NAME).append("/").append(request.getUserPrincipal().getName().replaceAll("@","-at-")).append("/").append("Documents");
+		builder.append(MEMBER_DRIVE_FOLDER_NAME).append("/").append(request.getUserPrincipal().getName().replaceAll("@","-at-")).append("/").append("Drive");
 		return builder.toString();
 	}
 	public static class FullReviewedWorkflowCallbackHandler implements WorkflowCallbackHandler<FullReviewedActionsWorkflow> {
@@ -199,6 +204,50 @@ public class MemberDrive extends BaseComponent {
 			// TODO Auto-generated catch block
 			log.error("Error while to get the Object from Repo path"+e);
 			return null;
+		}
+	}
+	/**
+	 * This Method is used to Delete Files Saved in Member Drive 
+	 * 
+	 * @param HstRequest
+	 * @param HstResponse
+	 * @String fileuuid CanonicalUUID of document that to Be deleted
+	 * 
+	 * @return Boolean To confirm that File has been Deleted From Member Drive
+	 * */
+	public boolean DeleteMemberDriveFile(HstRequest request,HstResponse response,String fileuuid){
+		WorkflowPersistenceManager wpm=null;
+		Session persistableSession=null;
+		boolean delete=false;
+		try {
+			persistableSession=getPersistableSession(request,new SimpleCredentials("admin", "admin".toCharArray()));
+			wpm=getWorkflowPersistenceManager(persistableSession);
+			wpm.setWorkflowCallbackHandler(new FullDeleteWorkflowCallbackHandler());
+			for(MemberDriveDocument o:getMemberDriveFileResource(request, response)){
+				if(o.getCanonicalUUID().equals(fileuuid)){
+					wpm.update(o);
+					delete=true;
+					break;
+				}
+			}
+			return delete;
+		} catch (RepositoryException e) {
+			// TODO Auto-generated catch block
+			log.error("Error to get the PersistableSession From JCR Repository!!"+e);
+			return false;
+		} catch (ObjectBeanPersistenceException e) {
+			// TODO Auto-generated catch block
+			log.error("Error while to Delete the Object from Repo path"+e);
+			return false;
+		} finally{
+			if(persistableSession!=null){
+				persistableSession.logout();
+			}
+		}
+	}
+	public static class FullDeleteWorkflowCallbackHandler implements WorkflowCallbackHandler<FullReviewedActionsWorkflow> {
+		public void processWorkflow(FullReviewedActionsWorkflow wf) throws Exception {
+			wf.delete();
 		}
 	}
 }
