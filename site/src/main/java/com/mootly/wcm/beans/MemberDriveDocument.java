@@ -16,17 +16,12 @@
 
 package com.mootly.wcm.beans;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.InputStream;
 
 import javax.jcr.Binary;
 import javax.jcr.RepositoryException;
-import javax.jcr.Value;
 import javax.jcr.ValueFactory;
 
-import org.apache.commons.codec.binary.Base64;
 import org.apache.jackrabbit.JcrConstants;
 import org.apache.jackrabbit.value.ValueFactoryImpl;
 import org.hippoecm.hst.content.beans.ContentNodeBinder;
