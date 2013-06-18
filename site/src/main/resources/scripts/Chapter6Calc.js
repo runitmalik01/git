@@ -126,8 +126,10 @@ if(total_80qqb>maxAllowed_80qqb_80rrb){
 //out_total_80g = (total_NoAppr50 * 0.5) + (total_Appr50 * 0.5) + (total_Appr100) + ((total_NoAppr100)); 
 //100% deductions on 80E,80GGA,80GGC,80JJA,80ID,80IA
 
-	
-out_total_80e= (total_80e < maxAllowed_80E) ? total_80e:maxAllowed_80E;
+	if(total_80e > maxAllowed_80E){
+		out_total_80e =(maxAllowed_80E>grosstotal) ? grosstotal : maxAllowed_80E;
+	} else out_total_80e =(total_80e>grosstotal) ? grosstotal : total_80e;
+//out_total_80e= (total_80e < maxAllowed_80E) ? total_80e:maxAllowed_80E;
 
 //out_total_80gga= (total_80gga < grosstotal) ? total_80gga:grosstotal;
 if(total_InCash>10000){
