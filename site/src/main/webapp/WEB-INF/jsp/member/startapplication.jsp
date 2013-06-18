@@ -701,7 +701,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 					</div>
 				</div>
 			</div>
-
+			<input type="hidden" name="bnk_name_solr" id="bnk_name_solr"/>
 		</fieldset>
 		<div id="itreturnHomepage" style="display: none; visiblity: hidden">
 			<input id="pan" name="pan"
@@ -755,7 +755,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 		function callSolr_bd_Branch_name(q,process) {
 			solrField = 'BRANCH_NAME';
 			solrFieldFacet = solrField + '_s';
-			solrExtra = "%20%2BBANK:" + $("#bd_bank_name").val();
+			solrExtra = "%20%2BBANK:" + $("#bnk_name_solr").val();
 			doneFunc = function(data)  {
 			    retArr = new Array();
 			    for ( var i=0;i<data.response.docs.length;i++) {
@@ -780,7 +780,13 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 		function bankSelected(item){
 			$("#bd_Branch_name").val("");
 			$("#flex_string_IFSCCode").val("");
-			return item;
+			$("#bnk_name_solr").val(item);
+			if (item.length > 25) {
+				return item.substring(0,25);
+			}
+			else {
+				return item;
+			}
 		}	
 		function branchSelected(item) {
 			if (ifsc != null && typeof(ifsc[item]) != 'undefined') {
