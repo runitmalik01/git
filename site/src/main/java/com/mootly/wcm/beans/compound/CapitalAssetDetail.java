@@ -19,6 +19,7 @@ import static com.mootly.wcm.utils.Constants.NT_PERSONAL_INFO_LINK;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.ResourceBundle;
 
 import javax.jcr.RepositoryException;
 import javax.jcr.Value;
@@ -56,8 +57,12 @@ public class CapitalAssetDetail extends HippoItem implements FormMapFiller {
 	private final static Logger log = LoggerFactory.getLogger(CapitalAssetDetail.class); 
 
 
-
+	private String rbfilename="rstatus_";
 	private String dateAcquisition;
+	private String nameAsset;
+	private String assetType;
+	private String costImprovement;
+	private String sstCharge;
 	private String costAcquisition;
 	private String dateSale;
 	private String costIndexAcquisition;
@@ -80,6 +85,22 @@ public class CapitalAssetDetail extends HippoItem implements FormMapFiller {
 	public String getDateAcquisition() {
 		if (dateAcquisition == null) dateAcquisition = getProperty("mootlywcm:year_acquisition");
 		return dateAcquisition;
+	}
+	public String getAssetType() {
+		if (assetType == null) assetType = getProperty("mootlywcm:assettype");
+		return assetType;
+	}
+	public String getSstCharge() {
+		if (sstCharge == null) sstCharge = getProperty("mootlywcm:sstcharge");
+		return sstCharge;
+	}
+	public String getCostImprovement() {
+		if (costImprovement == null) costImprovement = getProperty("mootlywcm:costimprove");
+		return costImprovement;
+	}
+	public String getNameAsset() {
+		if (nameAsset == null) nameAsset = getProperty("mootlywcm:assetname");
+		return nameAsset;
 	}
 	public String getCostAcquisition() {
 		if (costAcquisition == null) costAcquisition = getProperty("mootlywcm:cost_acquisition");
@@ -124,6 +145,18 @@ public class CapitalAssetDetail extends HippoItem implements FormMapFiller {
 	}
 	public final void setDateSale(String dateSale) {
 		this.dateSale = dateSale;
+	}
+	public final void setAssetType(String assetType) {
+		this.assetType = assetType;
+	}
+	public final void setNameAsset(String nameAsset) {
+		this.nameAsset = nameAsset;
+	}
+	public final void setSstCharge(String sstCharge) {
+		this.sstCharge = sstCharge;
+	}
+	public final void setCostImprovement(String costImprovement) {
+		this.costImprovement = costImprovement;
 	}
 	public final void setSaleConsideration(String saleconsideartion) {
 		this.saleConsideration = saleconsideartion;
@@ -179,23 +212,30 @@ public class CapitalAssetDetail extends HippoItem implements FormMapFiller {
 			}
 
 			node.setProperty("mootlywcm:year_acquisition", getDateAcquisition());
+			node.setProperty("mootlywcm:nameasset", getNameAsset());
+			node.setProperty("mootlywcm:sstcharge", getSstCharge());
+			node.setProperty("mootlywcm:assettype", getAssetType());
 			if(getCostAcquisition()!=null){
-			node.setProperty("mootlywcm:cost_acquisition", getCostAcquisition());}
-			
+				node.setProperty("mootlywcm:cost_acquisition", getCostAcquisition());
+			}
+			if(getCostImprovement()!=null){
+				node.setProperty("mootlywcm:costimprove", getCostImprovement());
+			}
+
 			node.setProperty("mootlywcm:year_sale", getDateSale());
 			if(getSaleConsideration()!=null){
-			node.setProperty("mootlywcm:sale_consideration", getSaleConsideration());}
+				node.setProperty("mootlywcm:sale_consideration", getSaleConsideration());}
 			if(getIndexedprice()!=null){
-			node.setProperty("mootlywcm:indexedprice", getIndexedprice());
+				node.setProperty("mootlywcm:indexedprice", getIndexedprice());
 			}
 			if(getCostIndexAcquisition()!=null){
-			node.setProperty("mootlywcm:inflation_acquisition",getCostIndexAcquisition());
+				node.setProperty("mootlywcm:inflation_acquisition",getCostIndexAcquisition());
 			}
 			if(getCostIndexAcquisition()!=null){
-			node.setProperty("mootlywcm:inflation_consideration",getCostIndexConsideration());}
+				node.setProperty("mootlywcm:inflation_consideration",getCostIndexConsideration());}
 			if(getCapitalGain()!=null){
-			node.setProperty("mootlywcm:capital_gain",getCapitalGain());
-			//node.setProperty("mootlywcm:capitalgaintaxLT",getCapitalGainTaxLT());
+				node.setProperty("mootlywcm:capital_gain",getCapitalGain());
+				//node.setProperty("mootlywcm:capitalgaintaxLT",getCapitalGainTaxLT());
 			}
 
 
@@ -217,16 +257,27 @@ public class CapitalAssetDetail extends HippoItem implements FormMapFiller {
 		if (formMap == null) return;
 		if (formMap.getField("date_acquisition") != null)
 			setDateAcquisition(formMap.getField("date_acquisition").getValue());
+		if (formMap.getField("sst_charge") != null)
+			setSstCharge(formMap.getField("sst_charge").getValue());
+		if (formMap.getField("name_asset") != null)
+			setNameAsset(formMap.getField("name_asset").getValue());
+		if (formMap.getField("asset_type") != null)
+			setAssetType(formMap.getField("asset_type").getValue());
 		if (formMap.getField("cost_acquisition") != null) {
 			setCostAcquisition(formMap.getField("cost_acquisition").getValue());
 		}
+		if (formMap.getField("cost_improvement").getValue().isEmpty()) {
+
+		}else{
+			setCostImprovement(formMap.getField("cost_improvement").getValue());
+		}
 		if (formMap.getField("inflation_acquisition") != null) {
 			setCostIndexAcquisition(formMap.getField("inflation_acquisition").getValue());
-			log.info("hurrrrrrrrrrrr"+formMap.getField("inflation_acquisition").getValue());
+
 		}
 		if (formMap.getField("inflation_consideration") != null) {
 			setCostIndexConsideration(formMap.getField("inflation_consideration").getValue());
-			log.info("hurrrrrrrrrrrr"+formMap.getField("inflation_consideration").getValue());
+
 		}
 		if (formMap.getField("date_sale") != null)
 			setDateSale(formMap.getField("date_sale").getValue());
@@ -255,6 +306,10 @@ public class CapitalAssetDetail extends HippoItem implements FormMapFiller {
 		setCapitalGain(objCapitalAssetdetail.getCapitalGain());
 		setIndexedprice(objCapitalAssetdetail.getIndexedprice());
 		setCapitalGainTaxLT(objCapitalAssetdetail.getCapitalGainTaxLT());
+		setAssetType(objCapitalAssetdetail.getAssetType());
+		setNameAsset(objCapitalAssetdetail.getNameAsset());
+		setCostImprovement(objCapitalAssetdetail.getCostImprovement());
+		setSstCharge(objCapitalAssetdetail.getSstCharge());
 
 	}
 
