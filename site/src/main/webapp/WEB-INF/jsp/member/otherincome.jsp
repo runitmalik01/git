@@ -30,7 +30,7 @@
 				<div class="rowlabel">
 					<input type="text" name="Gov_income"
 						title="Enter income from Govt." class="decimal" maxlength="14"
-						value= <fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.gov_income}"/> id="Gov_income" onchange="cal1()" />
+						value= "<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.gov_income}"/>" id="Gov_income" onchange="cal1()" />
 						 
 				</div>
 			</div>
@@ -41,7 +41,7 @@
 				</div>
 				<div class="rowlabel">
 					<input type="text" name="Kissan" maxlength="14"
-						value=<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.kissan}"/>  id="Kissan"
+						value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.kissan}"/>"  id="Kissan"
 						onchange="cal1()" />
 				</div>
 			</div>
@@ -52,7 +52,7 @@
 				</div>
 				<div class="rowlabel">
 					<input type="text" name="Bank_detail_fdr" maxlength="14"
-						value=<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.bank_detail_fdr}" /> class="decimal"
+						value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.bank_detail_fdr}" />" class="decimal"
 						id="Bank_detail_fdr" onchange="cal1()" />
 				</div>
 			</div>
@@ -63,7 +63,7 @@
 				</div>
 				<div class="rowlabel">
 					<input type="text" name="Bank_detail_saving" maxlength="14"
-						value=<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.bank_detail_saving}"/>
+						value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.bank_detail_saving}"/>"
 						 class=" decimal" id="Bank_detail_saving" onchange="cal1()" />
 				</div>
 			</div>
@@ -77,7 +77,7 @@
 				</div>
 				<div class="rowlabel">
 					<input type="text" name="Indira" maxlength="14"
-						value=<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.indira}" /> class=" decimal" id="Indira"
+						value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.indira}" />" class=" decimal" id="Indira"
 						onchange="cal1()" />
 				</div>
 			</div>
@@ -88,7 +88,7 @@
 				</div>
 				<div class="rowlabel">
 					<input type="text" name="intnsc" maxlength="14"
-						value=<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.intnsc}" /> class=" decimal" id="intnsc"
+						value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.intnsc}" />" class=" decimal" id="intnsc"
 						onchange="cal1()" />
 				</div>
 			</div>
@@ -100,7 +100,7 @@
 				</div>
 				<div class="rowlabel">
 					<input type="text" name="Otherint" maxlength="14"
-						value=<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.otherint}" /> class="decimal" id="Otherint"
+						value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.otherint}" />" class="decimal" id="Otherint"
 						onchange="cal1()" />
 				</div>
 			</div>
@@ -110,7 +110,7 @@
 							key="member.total.interest" /> </label>
 				</div>
 				<div class="rowlabel">
-					<input type="text" name="Totalint" value=<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.totalint}"/>
+					<input type="text" name="Totalint" value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.totalint}"/>"
 						class="decimal" id="Totalint" onchange="cal1()" readonly="readonly" />
 				</div>
 			</div>
@@ -129,7 +129,7 @@
 				</div>
 				<div class="rowlabel">
 					<input type="text" name="Family_pension"
-						value=<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.family_pension}"/> maxlength="14"
+						value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.family_pension}"/>" maxlength="14"
 						class=" decimal" id="Family_pension" onchange="cal2()" />
 				</div>
 			</div>
@@ -139,7 +139,7 @@
 					</label>
 				</div>
 				<div class="rowlabel">
-					<input type="text" name="Dividends" value=<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.dividends}"/>
+					<input type="text" name="Dividends" value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.dividends}"/>"
 						maxlength="14" class=" decimal" id="Dividends"
 						onchange="cal2()" />
 				</div>
@@ -162,7 +162,7 @@
 				</div>
 				<div class="rowlabel">
 					<input type="text" name="Income_rent_machine" 
-						value=<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.income_rent_machine}"/>
+						value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.income_rent_machine}"/>"
 						class=" decimal" id="Income_rent_machine" onchange="cal2()"
 						maxlength="14" />
 				</div>
@@ -177,7 +177,7 @@
 				</div>
 				<div class="rowlabel">
 					<input type="text" name="Income_maintain"
-						value=<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.income_maintain}"/> class=" decimal"
+						value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.income_maintain}"/>" class=" decimal"
 						id="Income_maintain" onchange="cal2()" maxlength="14" />
 				</div>
 			</div>
@@ -188,7 +188,7 @@
 				</div>
 				<div class="rowlabel">
 					<input type="text" name="Income_other" maxlength="14"
-						value=<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.income_other}"/> class=" decimal"
+						value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.income_other}"/>" class=" decimal"
 						id="Income_other" onchange="cal2()" />
 				</div>
 			</div>
@@ -199,7 +199,7 @@
 				</div>
 				<div class="rowlabel">
 					<input type="text" name="Deduction_57"
-						value=<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.deduction_57}"/> class=" decimal"
+						value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.deduction_57}"/>" class=" decimal"
 						id="Deduction_57" onchange="cal2()" maxlength="14" />
 				</div>
 			</div>
@@ -210,7 +210,7 @@
 				</div>
 				<div class="rowlabel">
 					<input type="text" name="TotalOther_income"
-						value=<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.totalOther_income}" /> id="TotalOther_income" onchange="cal2()"
+						value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.totalOther_income}" />" id="TotalOther_income" onchange="cal2()"
 						class="decimal" readonly="readonly" />
 				</div>
 			</div>
@@ -230,7 +230,7 @@
 				<div class="rowlabel">
 					<input type="text" name="Familypension_deduction" maxlength="14"
 						class=" decimal"
-						value=<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.familypension_deduction}"/> id="Familypension_deduction"
+						value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.familypension_deduction}"/>" id="Familypension_deduction"
 						onchange="cal3()" readonly="readonly" />
 				</div>
 			</div>
@@ -242,7 +242,7 @@
 
 				<div class="rowlabel">
 					<input type="text" name="Otherdeduction" maxlength="14"
-						value=<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.otherdeduction}" /> class=" decimal"
+						value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.otherdeduction}" />" class=" decimal"
 						id="Otherdeduction" onchange="cal3()" />
 				</div>
 			</div>
@@ -253,7 +253,7 @@
 				</div>
 				<div class="rowlabel">
 					<input type="text" name="depreciation" maxlength="14"
-						value=<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.depreciation}"/> class=" decimal"
+						value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.depreciation}"/>" class=" decimal"
 						id="depreciation" onchange="cal3()" />
 				</div>
 			</div>
@@ -264,7 +264,7 @@
 				</div>
 				<div class="rowlabel">
 					<input type="text" name="totalexpense" maxlength="14"
-						value=<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.totalexpense}"/> id="totalexpense" onchange="cal3()"
+						value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.totalexpense}"/>" id="totalexpense" onchange="cal3()"
 						class="decimal" readonly="readonly" />
 				</div>
 			</div>
@@ -282,7 +282,7 @@
 				</div>
 				<div class="rowlabel">
 					<input type="text" name="Dividends_uti"
-						value=<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.dividends_uti}" /> class=" decimal"
+						value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.dividends_uti}" />" class=" decimal"
 						maxlength="14" id="Dividends_uti" onchange="cal4()" />
 				</div>
 			</div>
@@ -293,7 +293,7 @@
 				</div>
 				<div class="rowlabel">
 					<input type="text" name="Interest_income"
-						value=<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.interest_income}"/> class=" decimal"
+						value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.interest_income}"/>" class=" decimal"
 						id="Interest_income" onchange="cal4()" maxlength="14" />
 				</div>
 			</div>
@@ -304,7 +304,7 @@
 				</div>
 				<div class="rowlabel">
 					<input type="text" name="Dividends_mutualfund"
-						value=<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.dividends_mutualfund}"/>
+						value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.dividends_mutualfund}"/>"
 						class=" decimal" id="Dividends_mutualfund" onchange="cal4()" />
 				</div>
 			</div>
@@ -315,7 +315,7 @@
 				</div>
 				<div class="rowlabel">
 					<input type="text" name="Agriculture_income"
-						value=<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.agriculture_income}"/>
+						value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.agriculture_income}"/>"
 						class=" decimal" id="Agriculture_income" onchange="cal4()"
 						maxlength="14" />
 				</div>
@@ -330,7 +330,7 @@
 				</div>
 				<div class="rowlabel">
 					<input type="text" name="Dividends_indian_companies"
-						value=<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.dividends_indian_companies }"/> class=" decimal" 
+						value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.dividends_indian_companies }"/>" class=" decimal" 
 						id="Dividends_indian_companies" onchange="cal4()"
 						maxlength="14" />
 				</div>
@@ -342,7 +342,7 @@
 				</div>
 				<div class="rowlabel">
 					<input type="text" name="Otherincome"
-						value=<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.otherincome}"/> maxlength="14"
+						value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.otherincome}"/>" maxlength="14"
 						class="decimal" id="Otherincome" onchange="cal4()" />
 				</div>
 			</div>
@@ -353,7 +353,7 @@
 				</div>
 				<div class="rowlabel">
 					<input type="text" name="Total_taxfree_income"
-						value=<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.total_taxfree_income}"/>
+						value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.total_taxfree_income}"/>"
 						class="decimal" id="Total_taxfree_income" onchange="cal4()"
 						maxlength="14" readonly="readonly" />
 				</div>
@@ -368,7 +368,7 @@
 			</div>
 			<div class="rowlabel">
 				<input type="text" name="Taxable_income" class="decimal"
-					value=<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.taxable_income}"/> id="Taxable_income" onblur="cal5()"
+					value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.taxable_income}"/>" id="Taxable_income" onblur="cal5()"
 					readonly="readonly" />
 			</div>
 		</div>
