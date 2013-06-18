@@ -113,9 +113,14 @@ if((total_disability+total_sdisability)>maxAllowed_80U)
 else out_total_80u= ((total_disability + total_sdisability)>grosstotal) ? grosstotal : (total_disability + total_sdisability);
 
 //80RRB and 80QQB -exempt limit for 80RRB and 80QQB 
-out_total_80rrb=(total_80rrb>maxAllowed_80qqb_80rrb) ? maxAllowed_80qqb_80rrb : total_80rrb;
-
-out_total_80qqb=(total_80qqb>maxAllowed_80qqb_80rrb) ? maxAllowed_80qqb_80rrb : total_80qqb;
+if(total_80rrb>maxAllowed_80qqb_80rrb){
+	out_total_80rrb=(grosstotal>maxAllowed_80qqb_80rrb) ? maxAllowed_80qqb_80rrb : grosstotal;
+} else out_total_80rrb=(grosstotal>total_80rrb) ? total_80rrb : grosstotal;
+//out_total_80rrb=(total_80rrb>maxAllowed_80qqb_80rrb) ? maxAllowed_80qqb_80rrb : total_80rrb;
+if(total_80qqb>maxAllowed_80qqb_80rrb){
+	out_total_80qqb=(grosstotal>maxAllowed_80qqb_80rrb) ? maxAllowed_80qqb_80rrb : grosstotal;
+} else out_total_80qqb=(grosstotal>total_80qqb) ? total_80qqb : grosstotal;
+//out_total_80qqb=(total_80qqb>maxAllowed_80qqb_80rrb) ? maxAllowed_80qqb_80rrb : total_80qqb;
 
 //Donations 100%
 //out_total_80g = (total_NoAppr50 * 0.5) + (total_Appr50 * 0.5) + (total_Appr100) + ((total_NoAppr100)); 
