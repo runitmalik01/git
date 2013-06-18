@@ -39,7 +39,7 @@
     <link rel="stylesheet" media="screen" type="text/css" href="${stylecss}"/>
     <hst:link var="w4indiacss" path="/css/w4india.css"/>
     <link rel="stylesheet" media="screen" type="text/css" href="${w4indiacss}"/>
-    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
+    <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/themes/smoothness/jquery-ui.css" />
     <link rel="stylesheet" media="screen" type="text/css" href='<hst:link path="/css/bootstrap.css"></hst:link>'/>
 	<link rel="stylesheet" media="screen" type="text/css" href='<hst:link path="/css/bootstrap-responsive.css"></hst:link>'/>
     <hst:headContributions categoryIncludes="css"/>
@@ -49,8 +49,7 @@
 	<script type='text/javascript' src='${modernizr}'></script>
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" ></script>
-    <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
-    <script src="http://twitter.github.io/bootstrap/assets/js/bootstrap-typeahead.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.js"></script>
 
     <hst:link var="jqueryWaterMark" path="/js/jquery.watermark.min.js"/>
     <script src="${jqueryWaterMark}"></script>
@@ -61,6 +60,7 @@
 	<script type='text/javascript' src='${responsive_modernizr}'></script>
 
 	<script type='text/javascript' src='<hst:link path="/js/bootstrap.min.js"></hst:link>'></script>
+	<script src="<hst:link path="/js/bootstrap-typeahead.js"></hst:link>"></script>
 	<div id="container" class="hfeed">
 		<hst:include ref="header"/>
 		<div id="wrapper" class="clearfix">

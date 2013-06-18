@@ -34,7 +34,7 @@
          </script>
       </hst:headContribution>
       <hst:headContribution keyHint="addtoany" category="jsExternal">
-        <script type="text/javascript" src="http://static.addtoany.com/menu/page.js"></script>
+        <script type="text/javascript" src="//static.addtoany.com/menu/page.js"></script>
       </hst:headContribution>
     </li>
 </ul>

@@ -33,7 +33,7 @@
     <sv:value>/javascript/yui</sv:value>
   </sv:property>
   <sv:property sv:name="hst:scheme" sv:type="String">
-    <sv:value>http</sv:value>
+    <sv:value>https</sv:value>
   </sv:property>
   <sv:property sv:name="hst:showcontextpath" sv:type="Boolean">
     <sv:value>true</sv:value>
@@ -74,7 +74,7 @@
       <sv:value>http://localhost:8080/cms</sv:value>
     </sv:property>
     <sv:property sv:name="hst:defaultport" sv:type="Long">
-      <sv:value>8080</sv:value>
+      <sv:value>443</sv:value>
     </sv:property>
     <sv:node sv:name="localhost">
       <sv:property sv:name="jcr:primaryType" sv:type="Name">
