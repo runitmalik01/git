@@ -2970,23 +2970,29 @@
                 <sv:value>members</sv:value>
               </sv:property>
             </sv:node>
-            <sv:node sv:name="attachdoc.html">
-                <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                  <sv:value>hst:sitemapitem</sv:value>
-                </sv:property>
-                <sv:property sv:name="jcr:uuid" sv:type="String">
-                   <sv:value>3997d1d0-8daa-4fd9-b024-4b8e2ba0772f</sv:value>
-                </sv:property>
-                <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
-                   <sv:value>hst:pages/attachments</sv:value>
-                </sv:property>
-                <sv:property sv:name="hst:refId" sv:type="String">
-                   <sv:value>docattach</sv:value>
-                </sv:property>
-                <sv:property sv:name="hst:relativecontentpath" sv:type="String">
-                    <sv:value>members</sv:value>
-                </sv:property>
-            </sv:node>
+            <sv:node sv:name="attachdoc.html" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+  				<sv:property sv:name="jcr:primaryType" sv:type="Name">
+    				<sv:value>hst:sitemapitem</sv:value>
+  				</sv:property>
+  				<sv:property sv:name="jcr:uuid" sv:type="String">
+    				<sv:value>3997d1d0-8daa-4fd9-b024-4b8e2ba0772f</sv:value>
+  				</sv:property>
+  				<sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+    				<sv:value>hst:pages/attachments</sv:value>
+  				</sv:property>
+  				<sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+    				<sv:value>maxsize</sv:value>
+  				</sv:property>
+  				<sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+    				<sv:value>100</sv:value>
+  				</sv:property>
+  				<sv:property sv:name="hst:refId" sv:type="String">
+    				<sv:value>docattach</sv:value>
+  				</sv:property>
+  				<sv:property sv:name="hst:relativecontentpath" sv:type="String">
+    				<sv:value>memberdrive</sv:value>
+  				</sv:property>
+			</sv:node>
           </sv:node>
         </sv:node>
       </sv:node>
