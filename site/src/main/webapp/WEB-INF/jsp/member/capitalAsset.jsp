@@ -298,10 +298,10 @@ pageContext.setAttribute("inflationindexValues", InflationIndex.values());
 							</td>
 
 							<td><a
-								href="${redirectURLToSamePage}/<c:out value="${capitalassetdetail.canonicalUUID}"/>/edit"><small>Edit</small>
+								href="${scriptName}/<c:out value="${capitalassetdetail.canonicalUUID}"/>/edit"><small>Edit</small>
 							</a>&nbsp;&nbsp;<a
-								href="${redirectURLToSamePage}/<c:out value="${capitalassetdetail.canonicalUUID}"/>/delete"><small>Delete</small>
-							</a>
+								href="${scriptName}/<c:out value="${capitalassetdetail.canonicalUUID}"/>/delete"
+								onclick="return checkdelete()"> <small>Delete</small> </a>
 							</td>
 						</tr>
 					</c:forEach>
