@@ -6235,7 +6235,7 @@ out_Taxable_earning=(Gross_salary-0)-(Allowance-0)+(Perquisite-0)+(profit-0);</s
 //Define Helper Classes
 var indianCurrencyHelper = new com.mootly.wcm.services.IndianCurrencyHelper();
 
-if(letout=='S'){
+if(letout=='Yes'){
 //if(Unrealised_rent!=0 &amp;&amp; Local_tax!=0 &amp;&amp; Letable_value!=0 &amp;&amp; Interest_borrowed!=0){
 var total = Letable_value - Unrealised_rent - Local_tax;
 var balance=(0.3 * total);
@@ -6244,7 +6244,7 @@ out_Total=total;
 out_Balance=indianCurrencyHelper.RoundTo2Decimals(balance*100)/100;
 out_Income_hproperty=indianCurrencyHelper.RoundTo2Decimals(hous_income*100)/100;
 //}
-}else if(letout=='L'){
+}else if(letout=='No'){
 if(Interest_borrowed&lt;=150000 &amp;&amp; Interest_borrowed!=0){
 out_Income_hproperty=-Interest_borrowed;
 }else{
@@ -6891,7 +6891,7 @@ var avgRateTax=(D*100)/txtNetIncome ;
           <sv:value>hippo:harddocument</sv:value>
         </sv:property>
         <sv:property sv:name="jcr:uuid" sv:type="String">
-          <sv:value>6d789c04-1e5b-4196-9894-ff1eee2ed598</sv:value>
+          <sv:value>1803b628-d1ec-4db4-a29b-d625d07a110a</sv:value>
         </sv:property>
         <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
           <sv:value>live</sv:value>
@@ -6916,13 +6916,13 @@ var avgRateTax=(D*100)/txtNetIncome ;
           <sv:value>2013-05-24T01:55:56.242+05:30</sv:value>
         </sv:property>
         <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-          <sv:value>2013-06-18T13:52:09.254+05:30</sv:value>
+          <sv:value>2013-06-18T17:41:36.237+05:30</sv:value>
         </sv:property>
         <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
           <sv:value>admin</sv:value>
         </sv:property>
         <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-          <sv:value>2013-06-18T13:52:11.861+05:30</sv:value>
+          <sv:value>2013-06-18T17:41:39.590+05:30</sv:value>
         </sv:property>
         <sv:property sv:name="mootlywcm:additionalScript" sv:type="String">
           <sv:value/>
@@ -6945,7 +6945,7 @@ var avgRateTax=(D*100)/txtNetIncome ;
 *
 * **/
 out_indexed_price=(cost_acquisition -0)*((inflation_consideration-0)/(inflation_acquisition-0));
-out_capital_gain=(out_indexed_price)-(sale_consideration);</sv:value>
+out_capital_gain=(sale_consideration) - (out_indexed_price);</sv:value>
         </sv:property>
         <sv:property sv:name="mootlywcm:title" sv:type="String">
           <sv:value>Calculation of capitalasset Screen</sv:value>
