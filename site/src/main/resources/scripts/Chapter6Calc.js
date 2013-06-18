@@ -57,7 +57,10 @@ out_total_80ccd_1=doubleArray[2].doubleValue();
 out_total_80ccd_2=(total_80ccd_2 >= tenperSalincome) ? tenperSalincome : total_80ccd_2;
 
 //80TTA- Interest on Bank Saving Accounts
-out_total_80tta=(total_80tta>maxAllowed_80TTA) ? maxAllowed_80TTA : total_80tta ;
+//out_total_80tta=(total_80tta>maxAllowed_80TTA) ? maxAllowed_80TTA : total_80tta ;
+if(total_80tta>maxAllowed_80TTA){
+	out_total_80tta=(maxAllowed_80TTA>grosstotal) ? grosstotal : maxAllowed_80TTA;
+} else  out_total_80tta=(total_80tta>grosstotal) ? grosstotal : total_80tta;
 
 //80GGA- Interest on Bank Saving Accounts
 var fiftyPerCcg=(total_80ccg)*.5;
@@ -101,10 +104,13 @@ if(isSeniorCitizen){
 if(total_disability>50000)
 	total_disability=50000;
 if(total_sdisability>maxAllowed_80U)
-	total_sdisability=maxAllowed_80U;
+	//total_sdisability=maxAllowed_80U;
+	total_sdisability=(maxAllowed_80U>grosstotal) ? grosstotal : maxAllowed_80U;
 if((total_disability+total_sdisability)>maxAllowed_80U)
-	out_total_80u=maxAllowed_80U;
-else out_total_80u= (total_disability + total_sdisability);
+	//out_total_80u=maxAllowed_80U;
+	out_total_80u=(maxAllowed_80U>grosstotal) ? grosstotal : maxAllowed_80U;
+//else out_total_80u= (total_disability + total_sdisability);
+else out_total_80u= ((total_disability + total_sdisability)>grosstotal) ? grosstotal : (total_disability + total_sdisability);
 
 //80RRB and 80QQB -exempt limit for 80RRB and 80QQB 
 out_total_80rrb=(total_80rrb>maxAllowed_80qqb_80rrb) ? maxAllowed_80qqb_80rrb : total_80rrb;
@@ -187,8 +193,8 @@ else out_total_80g=(total_NoAppr50)*.5 + total_NoAppr100;
 	
 }
   out_total_eligiblededuction=out_total_eligiblededuction+out_total_80gg;
-if(out_total_eligiblededuction>grosstotal)
-	out_total_eligiblededuction=grosstotal;
+  if(out_total_eligiblededuction>grosstotal)
+		out_total_eligiblededuction=grosstotal;
 //print("hello word"+grosstotal);
 //lets break the module into functions for easier maintenance
 /*function calcEligibleMedicalPremium(inAmount,isSeniorCitizen) {
