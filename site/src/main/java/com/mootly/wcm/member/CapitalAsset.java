@@ -3,6 +3,8 @@ package com.mootly.wcm.member;
 import org.hippoecm.hst.core.component.HstComponentException;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.mootly.wcm.annotations.AdditionalBeans;
 import com.mootly.wcm.annotations.ChildBean;
@@ -20,23 +22,25 @@ import com.mootly.wcm.components.ITReturnComponent;
 
 /**
 
- * @author:Pankaj Singh
+ * @author:Abhishek Bhardwaj
  * Date: 3/6/2013
  * Description: This take data from the form of capital asset and put it into bean
  *
  */
 @PrimaryBean(primaryBeanClass=CapitalAssetDocument.class)
 @ChildBean(childBeanClass=CapitalAssetDetail.class)
-@FormFields(fieldNames={"date_acquisition","cost_acquisition","date_sale","sale_consideration","inflation_acquisition","inflation_consideration","capital_gain"})
-
-
+@FormFields(fieldNames={"date_acquisition","cost_acquisition","date_sale","sale_consideration",
+		"inflation_acquisition","inflation_consideration","indexed_price","capital_gain","name_asset","cost_improvement","sst_charge","asset_type"})
 public class CapitalAsset extends ITReturnComponent {
-	@Override
+	
+	private static final Logger log = LoggerFactory.getLogger(CapitalAsset.class);
 	public void doBeforeRender(HstRequest request, HstResponse response) {
 		// TODO Auto-generated method stub
 		super.doBeforeRender(request, response);
-		
-		System.out.println("this is do before render of capital asset");
+		if(log.isInfoEnabled()){
+			log.info("this is do before render of capital asset");
+		}
+		System.out.println();
 	}
 	@Override
 	public void doAction(HstRequest request, HstResponse response)
