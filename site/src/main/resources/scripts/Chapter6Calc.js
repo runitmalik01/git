@@ -169,8 +169,9 @@ out_total_80ggc= (total_80ggc < grosstotal) ? total_80ggc:grosstotal;
 
 //out_total_80ia= (total_80ia < grosstotal) ? total_80ia:grosstotal;
 
-out_total_eligiblededuction = out_total_80c + out_total_80ccc + out_total_80ccd_1 + out_total_80ccd_2 + out_total_80d + out_total_80qqb + out_total_80rrb + out_total_80gga + out_total_80ggc +/* out_total_80g*/ + out_total_80ddb /*+ out_total_80u*/ + out_total_80dd + out_total_80e + out_total_80tta + out_total_80ccg;
-
+out_total_eligiblededuction = out_total_80c + out_total_80ccc + out_total_80ccd_1 + out_total_80ccd_2 + out_total_80d + out_total_80qqb + out_total_80rrb + out_total_80gga + out_total_80ggc +/* out_total_80g*/ + out_total_80ddb + out_total_80u + out_total_80dd + out_total_80e + out_total_80tta + out_total_80ccg;
+if(out_total_eligiblededuction>grosstotal)
+	out_total_eligiblededuction=grosstotal;
 //80G- Calculate AdjustedGrossTotal and Excess Rent Paid and 2000 per Month
 //out_total_80g = (total_NoAppr50 * 0.5) + (total_Appr50 * 0.5) + (total_Appr100) + ((total_NoAppr100)); 
 var NAppr=0;
@@ -192,7 +193,8 @@ else out_total_80g=(total_NoAppr50)*.5 + total_NoAppr100;
 		else out_total_80g=out_total_80g+NetQualifyLmt;
 	}
 	out_total_eligiblededuction=out_total_eligiblededuction+out_total_80g;
-	
+	if(out_total_eligiblededuction>grosstotal)
+		out_total_eligiblededuction=grosstotal;
 
   if(total_80gg>0){
 	var adjuestedGrossTotal=grosstotal - (out_total_eligiblededuction);
