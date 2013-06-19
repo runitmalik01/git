@@ -112,12 +112,11 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 								<select name="letout" id="letout" onChange="hideTanPan()"
 									class="uprcase">
 									<option value="">-Select-</option>
-									<option value="S">
-											<fmt:message key="member.choice.selfocc" />
-									</option>
-									<option value="L">
-										<fmt:message key="member.choice.letout" />
-									</option>
+									<option value="S"
+										<c:if test="${not empty childBean.letOut && childBean.letOut =='S'}">selected</c:if>>Self
+										Occupied</option>
+									<option value="L"
+										<c:if test="${not empty childBean.letOut && childBean.letOut =='L'}">selected</c:if>>Letout</option>
 								</select>
 								<!--
 									<c:forEach var="booleanCombo" items="${objHashMapBoolean}">
@@ -576,6 +575,19 @@ $(document).ready(function() {
 			$("#coOwner").hide();
 		}
 	 
+	
+	var OnLoadLetOut = $("#letout").val();
+	if(OnLoadLetOut == "S"){
+		$("#Tenant_pan").hide();
+		$("#Tenant_name").hide();
+		$("#idtenantname").hide();
+		$("#idtenantpan").hide();
+			}else{
+			$("#Tenant_pan").show();
+			$("#Tenant_name").show();
+			$("#idtenantname").show();
+			$("#idtenantpan").show();
+		}
 	});
 function hideTanPan(){
 	var e=document.getElementById("letout");
