@@ -49,7 +49,7 @@ TreeMap objTreeMapSection = (TreeMap) objValueListService.getReturnFile();
 		          </div>
 		          <div class="span2">
 		            <div class="rowlabel"><label for="pi_return_type"><small>Return Type</small></label></div>
-		          	<div class="rowlabel"><select id="pi_return_type" name="pi_return_type" style="text-transform: uppercase;"><option value="">Select Type</option><option value="original">Original</option><option value="revised">Revised</option></select></div>
+		          	<div class="rowlabel"><select id="pi_return_type" readonly="readonly" name="pi_return_type" style="text-transform: uppercase;"><option value="">Select Type</option><option value="original">Original</option><option value="revised">Revised</option></select></div>
 		          </div>
 		          <div class="span2">
 		          	<div class="rowlabel"><label for="fy"><small>Financial Year</small></label></div>
