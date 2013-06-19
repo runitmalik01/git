@@ -223,9 +223,9 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 						log.info(urlToRedirect + ":" + urlToRedirect); 
 					}
 					//if (request.getAttribute("selectedItrTab") != null) {
-						//response.setRenderParameter("selectedItrTab", ((ITRTab)request.getAttribute("selectedItrTab")).name());
-						//urlToRedirect += "?selectedItrTab=" +  ((ITRTab)request.getAttribute("selectedItrTab")).name();
-				//	}
+					//response.setRenderParameter("selectedItrTab", ((ITRTab)request.getAttribute("selectedItrTab")).name());
+					//urlToRedirect += "?selectedItrTab=" +  ((ITRTab)request.getAttribute("selectedItrTab")).name();
+					//	}
 					//log.info("urlToRedirect EEEEEEEEEEEE"+urlToRedirect);
 					response.sendRedirect( urlToRedirect );
 					//response.sendRedirect(redirectURL);
@@ -307,10 +307,10 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 						urlToRedirect  = request.getParameter("successURL");
 					}
 					log.info("URLToRedirect:"+ urlToRedirect);
-				//	if (request.getAttribute("selectedItrTab") != null){
-				//		response.setRenderParameter("selectedItrTab", ((ITRTab)request.getAttribute("selectedItrTab")).name());
-				//		urlToRedirect += "?selectedItrTab=" +  ((ITRTab)request.getAttribute("selectedItrTab")).name();
-				//	}
+					//	if (request.getAttribute("selectedItrTab") != null){
+					//		response.setRenderParameter("selectedItrTab", ((ITRTab)request.getAttribute("selectedItrTab")).name());
+					//		urlToRedirect += "?selectedItrTab=" +  ((ITRTab)request.getAttribute("selectedItrTab")).name();
+					//	}
 					response.sendRedirect( urlToRedirect );
 				}
 			} catch (IOException e) {
@@ -826,18 +826,18 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			Map<String,Object> additionalParameters= new HashMap<String,Object>();
 			MemberPersonalInformation objMemberInfo= (MemberPersonalInformation) request.getAttribute("memberpersonalinformation");
 			if(objMemberInfo != null){
-			additionalParameters.put("IsSeniorCitizen",getFinancialYear().isSeniorCitizen(objMemberInfo.getDOB().getTime()));
-			if(getFinancialYear().isSeniorCitizen(objMemberInfo.getDOB().getTime())){
-				additionalParameters.put("cbasscategory","Senior Citizen");
-			}else{
-				additionalParameters.put("cbasscategory",objMemberInfo.getSex());
-			}
-			additionalParameters.put("objMemberInfo",objMemberInfo);
-			additionalParameters.put("cbresistatus",objMemberInfo.getResidentCategory());
-			additionalParameters.put("cbassyear",getAssessmentYear());
-			additionalParameters.put("cbasstype",objMemberInfo.getFilingStatus());
-			
-			XmlCalculation objXmlCalc= new XmlCalculation ();
+				additionalParameters.put("IsSeniorCitizen",getFinancialYear().isSeniorCitizen(objMemberInfo.getDOB().getTime()));
+				if(getFinancialYear().isSeniorCitizen(objMemberInfo.getDOB().getTime())){
+					additionalParameters.put("cbasscategory","Senior Citizen");
+				}else{
+					additionalParameters.put("cbasscategory",objMemberInfo.getSex());
+				}
+				additionalParameters.put("objMemberInfo",objMemberInfo);
+				additionalParameters.put("cbresistatus",objMemberInfo.getResidentCategory());
+				additionalParameters.put("cbassyear",getAssessmentYear());
+				additionalParameters.put("cbasstype",objMemberInfo.getFilingStatus());
+
+				XmlCalculation objXmlCalc= new XmlCalculation ();
 				additionalParameters.put("txtNetIndianIncome",objXmlCalc.grossTotal(request, response));
 			}
 			Map<String,Object> resultSet = ScreenCalculatorService.getScreenCalculations(screencalc.getScript(), request.getParameterMap(""), additionalParameters);
@@ -945,9 +945,10 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 				}
 			}
 		}
-		StartApplicationValidationService startappvalidserv=new StartApplicationValidationService();
-		startappvalidserv.validResidential(formMap, assessmentYear);
-
+		if(filingStatus.getXmlCode()=="I"){
+			StartApplicationValidationService startappvalidserv=new StartApplicationValidationService();
+			startappvalidserv.validResidential(formMap, assessmentYear);
+		}
 		if (formMap.getMessage() != null && formMap.getMessage().size() > 0) {
 			FormUtils.persistFormMap(request, response, formMap, null);
 			return false;
