@@ -58,6 +58,7 @@ public class SalaryIncomeDetail extends HippoItem implements FormMapFiller {
 	private String State;
 	private Double Gross_salary;
 	private Double Allowance;
+	private Double Allowance1;
 	private Double Perquisite;
 	private Double profit;
 	private String Employe_category;
@@ -122,6 +123,10 @@ public class SalaryIncomeDetail extends HippoItem implements FormMapFiller {
 	public final Double getAllowance() {
 		if (Allowance== null) Allowance = getProperty("mootlywcm:Allowance");
 		return Allowance;
+	}
+	public final Double getAllowance1() {
+		if (Allowance1== null) Allowance1 = getProperty("mootlywcm:Allowance1");
+		return Allowance1;
 	}
 	public final Double getGross_salary() {
 		if (Gross_salary== null) Gross_salary = getProperty("mootlywcm:Gross_salary");
@@ -190,6 +195,9 @@ public class SalaryIncomeDetail extends HippoItem implements FormMapFiller {
 	}
 	public final void setAllowance(Double Allowance) {
 		this.Allowance = Allowance;
+	}
+	public final void setAllowance1(Double Allowance1) {
+		this.Allowance1 = Allowance1;
 	}
 	public void setPerquisite(Double Perquisite) {
 		this.Perquisite = Perquisite;
@@ -261,6 +269,9 @@ public class SalaryIncomeDetail extends HippoItem implements FormMapFiller {
 			if(getAllowance()!=null){
 				node.setProperty("mootlywcm:Allowance", getAllowance());
 			}
+			if(getAllowance1()!=null){
+				node.setProperty("mootlywcm:Allowance1", getAllowance1());
+			}
 
 		} catch (RepositoryException rex) {
 			log.error("Repository Exception while binding",rex);
@@ -318,29 +329,52 @@ public class SalaryIncomeDetail extends HippoItem implements FormMapFiller {
 		if ( formMap.getField("To") != null) {
 			setTo(formMap.getField("To").getValue());
 		}
-		if ( formMap.getField("Gross_salary").getValue().isEmpty()) {}
+		double amtGS=0.0d;
+		if ( formMap.getField("Gross_salary").getValue().isEmpty()) {
+			setGross_salary(amtGS);
+		}
 		else{
 			String strGross_salary = formMap.getField("Gross_salary").getValue();
-			double amt = Double.parseDouble(strGross_salary);
-			setGross_salary(amt);
+			amtGS = Double.parseDouble(strGross_salary);
+			setGross_salary(amtGS);
 		}
-		if ( formMap.getField("Allowance").getValue().isEmpty()) {}
+		double amtAll=0.0d;
+		if ( formMap.getField("Allowance").getValue().isEmpty()) {
+			setAllowance(amtAll);
+		}
 		else{
 			String strAllowance = formMap.getField("Allowance").getValue();
-			double amt = Double.parseDouble(strAllowance);
-			setAllowance(amt);
+			amtAll = Double.parseDouble(strAllowance);
+			setAllowance(amtAll);
 		}
-		if ( formMap.getField("Perquisite").getValue().isEmpty()) {}
+		double amtAll1=0.0d;
+		log.info("JJJJJJJJJBBBBBBBBBBBBbHHHHHHHHHHHHHGGGGGGGGGGGgFFFFFFFFFF"+formMap.getField("Allowance1").getValue());
+		log.info("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"+formMap.getField("Allowance1"));
+		if ( formMap.getField("Allowance1").getValue().isEmpty()) {
+			setAllowance1(amtAll1);
+		}
+		else{
+			String strAllowance1 = formMap.getField("Allowance1").getValue();
+			amtAll1 = Double.parseDouble(strAllowance1);
+			setAllowance1(amtAll1);
+		}
+		double amtPer=0.0d;
+		if ( formMap.getField("Perquisite").getValue().isEmpty()) {
+			setPerquisite(amtPer);
+		}
 		else{
 			String strPerquisite = formMap.getField("Perquisite").getValue();
-			double amt = Double.parseDouble(strPerquisite);
-			setPerquisite(amt);
+			amtPer = Double.parseDouble(strPerquisite);
+			setPerquisite(amtPer);
 		}
-		if ( formMap.getField("profit").getValue().isEmpty()) {}
+		double amtProfit=0.0d;
+		if ( formMap.getField("profit").getValue().isEmpty()) {
+			setProfit(amtProfit);
+		}
 		else{
 			String strProfit = formMap.getField("profit").getValue();
-			double amt = Double.parseDouble(strProfit);
-			setProfit(amt);
+			amtProfit = Double.parseDouble(strProfit);
+			setProfit(amtProfit);
 		}
 	}
 
@@ -360,6 +394,7 @@ public class SalaryIncomeDetail extends HippoItem implements FormMapFiller {
 		setTo(salaryIncomeDetail.getTo());
 		setGross_salary(salaryIncomeDetail.getGross_salary());
 		setAllowance(salaryIncomeDetail.getAllowance());
+		setAllowance1(salaryIncomeDetail.getAllowance1());
 		setPerquisite(salaryIncomeDetail.getPerquisite());
 		setProfit(salaryIncomeDetail.getProfit());
 		setTaxable_earning(salaryIncomeDetail.getTaxable_earning());
