@@ -518,7 +518,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 							</td>
 							<td><c:out value="${houseincomedetail.property_share}" />
 							</td>
-							<td><c:out value="${houseincomedetail.income_hproperty}" />
+							<td><w4india:inr value="${houseincomedetail.income_hproperty}" />
 							</td>
 							<td><a
 								href="${scriptName}/<c:out value="${houseincomedetail.canonicalUUID}"/>/houseincomeedit"><small>Edit</small>
