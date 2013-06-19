@@ -8,7 +8,7 @@
 /** - Configuration */
 var maxAllowed_80C=100000;
 var maxAllowed_80CCF=20000;
-var maxAllowed_80D=20000;
+var maxAllowed_80D=35000;
 var maxAllowed_80DD=100000;
 var maxAllowed_80U=100000;
 var maxAllowed_80qqb_80rrb=300000;
@@ -76,10 +76,15 @@ if (total_80ccf > maxAllowed_80CCF) out_total_80ccf = maxAllowed_80CCF;*/
 
 //medical insurance premium
 //self,spouse,spousesenior,parentsnonsenior,parentssenior
+out_total_80d=0;
 var maxMedicalPremiumAllowed = (isSeniorCitizen || (total_spousesenior > 0) || (total_parentssenior > 0) ? 20000 : 15000);
+total_self= (total_self > maxMedicalPremiumAllowed) ? maxMedicalPremiumAllowed : total_self;
+total_spousesenior= (total_spousesenior > maxMedicalPremiumAllowed) ? maxMedicalPremiumAllowed : total_spousesenior;
+total_parentsnonsenior= (total_parentsnonsenior > maxMedicalPremiumAllowed) ? maxMedicalPremiumAllowed : total_parentsnonsenior;
+total_parentssenior= (total_parentssenior > maxMedicalPremiumAllowed) ? maxMedicalPremiumAllowed : total_parentssenior;
+total_healthcheckup= (total_healthcheckup > maxMedicalPremiumAllowed) ? maxMedicalPremiumAllowed : total_healthcheckup;
 var maxMedicalPremium = (total_self + total_spousesenior + total_parentsnonsenior + total_parentssenior + total_healthcheckup);
 //if (maxMedicalPremium > maxMedicalPremiumAllowed) maxMedicalPremium = maxAllowed;
-if (maxMedicalPremium > maxMedicalPremiumAllowed) maxMedicalPremium = maxMedicalPremiumAllowed;
 if(maxMedicalPremium >maxAllowed_80D) maxMedicalPremium=maxAllowed_80D;
 
 out_total_80d=maxMedicalPremium;
