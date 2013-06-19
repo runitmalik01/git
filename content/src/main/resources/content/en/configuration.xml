@@ -2380,10 +2380,10 @@ format&lt;/p&gt;
             <sv:value/>
           </sv:property>
           <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
-            <sv:value>pi_return_section</sv:value>
+            <sv:value>ReturnSection</sv:value>
           </sv:property>
           <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
-            <sv:value>pi_return_section</sv:value>
+            <sv:value>ReturnSection</sv:value>
           </sv:property>
           <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
             <sv:value/>
