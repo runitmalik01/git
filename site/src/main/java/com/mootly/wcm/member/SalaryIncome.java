@@ -61,7 +61,7 @@ dataTypes= {
 		)
 
 @FormFields(fieldNames={"Employe_category","Name_employer","Name_employee","Pan_employer","Tan_employer","Pan_employee","Addressslry",
-		"Cityslry","Stateslry","Pinslry","From","To","Gross_salary","Allowance","Perquisite","profit","Taxable_earning"})
+		"Cityslry","Stateslry","Pinslry","From","To","Gross_salary","Allowance","Allowance1","Perquisite","profit","Taxable_earning"})
 
 public class SalaryIncome extends ITReturnComponent {
 
