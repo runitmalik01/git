@@ -33,7 +33,7 @@
     <sv:value>/javascript/yui</sv:value>
   </sv:property>
   <sv:property sv:name="hst:scheme" sv:type="String">
-    <sv:value>https</sv:value>
+    <sv:value>http</sv:value>
   </sv:property>
   <sv:property sv:name="hst:showcontextpath" sv:type="Boolean">
     <sv:value>true</sv:value>
