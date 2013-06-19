@@ -247,7 +247,7 @@
 								<label><fmt:message key="member.allowance.salary" /> </label>
 							</div>
 							<div class="rowlabel">
-								<input type="text" name="Allowance1" maxlength="14" value=""
+								<input type="text" name="Allowance1" maxlength="14" value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.allowance1}"/></c:if>"
 									class="decimal">
 							</div>
 						</div>
