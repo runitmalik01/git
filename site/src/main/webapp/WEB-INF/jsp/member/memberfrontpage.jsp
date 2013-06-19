@@ -221,7 +221,7 @@ function getPANAndContinue() {
 			break;
 		}
 	}
-	window.location.href="<hst:link path='/member/itreturn/2012-2013/original/'/>/" + pan.toLowerCase() + "/personalinformation.html";
+	window.location.href="<hst:link path='/member/itreturn/2012-2013/original/'/>/" + pan.toLowerCase() + "/servicerequest-itr.html";
 }
 
 function showAlert(){

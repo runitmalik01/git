@@ -50,7 +50,7 @@ request.setAttribute("itrSiteMenu", itrSiteMenu);
 	         <span class="icon-bar"></span>
 	         <span class="icon-bar"></span>
          </a>
-         <a class="brand" href="./personalinformation.html">
+         <a class="brand" href="./servicerequest-itr.html">
             <span class="pan">
                <a href=""><img class="logo" width="290" height="40" src="${logopath}">&nbsp;</a>
             </span>

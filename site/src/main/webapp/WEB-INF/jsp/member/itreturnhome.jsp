@@ -117,7 +117,7 @@ TreeMap objTreeMapSection = (TreeMap) objValueListService.getReturnFile();
                    <c:if test="${not empty anEntry.lastOrOrgName}">
 				<tr>
 					<td class="pan">
-						<hst:link var="viewLink" path="/member/itreturn/${anEntry.financialYear.displayName}/${anEntry.itReturnType.displayName}/${anEntry.pan}/personalinformation.html"/>
+						<hst:link var="viewLink" path="/member/itreturn/${anEntry.financialYear.displayName}/${anEntry.itReturnType.displayName}/${anEntry.pan}/servicerequest-itr.html"/>
 						<span style="text-transform:uppercase;"><a href="${viewLink}"><c:out value="${anEntry.pan}"/></a></span>
 					</td>
 					<td class="pan"><b><c:out value="${anEntry.lastOrOrgName}"/></b></td>

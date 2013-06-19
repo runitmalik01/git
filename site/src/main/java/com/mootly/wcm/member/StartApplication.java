@@ -46,6 +46,7 @@ import com.mootly.wcm.annotations.PrimaryBean;
 import com.mootly.wcm.annotations.RequiredFields;
 import com.mootly.wcm.beans.MemberPersonalInformation;
 import com.mootly.wcm.beans.MemberSignupDocument;
+import com.mootly.wcm.components.FormSaveResult;
 import com.mootly.wcm.components.ITReturnComponent;
 import com.mootly.wcm.model.FilingStatus;
 import com.mootly.wcm.utils.ContentStructure;
@@ -181,8 +182,27 @@ public class StartApplication extends ITReturnComponent {
 	public void doAction(HstRequest request, HstResponse response)
 			throws HstComponentException {
 		// TODO Auto-generated method stub
-		super.doAction(request, response);
+		super.doAction(request, response);		
 	}
+	
+	/**
+	 * This will be used to ensure the page redirects properly 
+	 */
+	@Override
+	public String getScriptName(HstRequest request,HstResponse response, FormSaveResult formSaveResult) {
+		// TODO Auto-generated method stub
+		if (formSaveResult == null || formSaveResult != FormSaveResult.SUCCESS) {
+			return super.getScriptName();
+		}
+		else {
+			String redirectURL = getRedirectURLForSiteMapItem(request,response,formSaveResult);
+			if (log.isInfoEnabled()) {
+				log.info("Will now redirect to:"+ redirectURL);
+			}
+			return getRedirectURLForSiteMapItem(request,response,formSaveResult);
+		}
+	}
+	
 	class SortyByDepth implements Comparator<String> {
 		@Override
 		public int compare(String o1, String o2) {

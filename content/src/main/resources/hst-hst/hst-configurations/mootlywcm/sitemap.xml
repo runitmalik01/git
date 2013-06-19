@@ -987,7 +987,7 @@
               <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
                 <sv:value>servicerequest-itr</sv:value>
                 <sv:value>EDIT</sv:value>
-                <sv:value>itreturn</sv:value>
+                <sv:value>xmlgenerator</sv:value>
               </sv:property>
               <sv:property sv:name="hst:refId" sv:type="String">
                 <sv:value>servicerequest-itr</sv:value>

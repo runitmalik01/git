@@ -301,7 +301,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 					response.sendRedirect( urlToRedirect );
 				}
 				else {
-					String urlToRedirect = getScriptName(); // getRedirectURL(request,response,FormSaveResult.SUCCESS) ;
+					String urlToRedirect = getScriptName(request,response,FormSaveResult.SUCCESS); // getRedirectURL(request,response,FormSaveResult.SUCCESS) ;
 					//if the page passes a URL as a parameter take that into consideration
 					if (request.getParameter("successURL") != null) {
 						urlToRedirect  = request.getParameter("successURL");
@@ -486,6 +486,10 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 
 	public FormMap getFormMap() {
 		return formMap;
+	}
+
+	public String getScriptName(HstRequest request,HstResponse response, FormSaveResult formSaveResult) {		
+		return scriptName;
 	}
 
 

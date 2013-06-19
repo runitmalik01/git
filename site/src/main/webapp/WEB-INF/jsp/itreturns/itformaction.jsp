@@ -55,7 +55,7 @@
     </div>
     <div id="collapseTwo" class="accordion-body collapse in">
       <div class="accordion-inner">
-      		<div style="font-size:11px"><a href="${mi}/personalinformation.html">Personal Information</a></div>
+      		<div style="font-size:11px"><a href="${mi}/servicerequest-itr.html">Personal Information</a></div>
       		<div style="font-size:11px"><a href="${mi}/contactinformation.html">Contact Information</a></div>
 	        <div style="font-size:11px"><a href="${mi}/residentialstatus.html">Residential Status</a></div>
 	        <div style="font-size:11px"><a href="${mi}/bankdetail.html">Bank Detail</a></div>
