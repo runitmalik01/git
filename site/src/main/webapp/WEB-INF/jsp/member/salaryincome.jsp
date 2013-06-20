@@ -41,31 +41,16 @@
 				<fieldset>
 					<legend>Employment</legend>
 					<div class="row-fluid show-grid">
-						<div class="span4">
+						<div class="span3">
 							<div class="rowlabel">
 								<label><fmt:message key="member.employe.category" /> </label>
 							</div>
-							<c:if
-								test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
-								<c:choose>
-									<c:when test="${childBean.employe_category == 'GOV'}">
-										<c:set var="gov" value="checked=checked" />
-									</c:when>
-									<c:when test="${childBean.employe_category == 'PSU'}">
-										<c:set var="psu" value="checked=checked" />
-									</c:when>
-									<c:when test="${childBean.employe_category == 'OTH'}">
-										<c:set var="oth" value="checked=checked" />
-									</c:when>
-								</c:choose>
-							</c:if>
-							<div class="rowlabel">
-								<input type="radio" <c:out value="${gov}"/>
-									name="Employe_category" value="GOV" />Government <input
-									type="radio" <c:out value="${psu}"/> name="Employe_category"
-									value="PSU" />PSU <input type="radio" <c:out value="${oth}"/>
-									name="Employe_category" value="OTH" />Others
-							</div>
+							<select id= "Employe_category" name="Employe_category">
+							<option value="">-Select-</option>
+									<option value="GOV" <c:if test="${not empty childBean.employe_category && childBean.employe_category =='GOV'}">selected</c:if>>GOVT.</option>
+									<option value="PSU"<c:if test="${not empty childBean.employe_category && childBean.employe_category =='PSU'}">selected</c:if>>PSU</option>
+									<option value="OTH" <c:if test="${not empty childBean.employe_category && childBean.employe_category =='OTH'}">selected</c:if>>OTHERS.</option>
+								</select>
 						</div>
 					</div>
 				</fieldset>

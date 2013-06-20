@@ -123,7 +123,13 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 						</small>
 						</label>
 					</div>
-					<c:if test="${not empty parentBean.employe_category}">
+					<select id= "Employe_category" name="Employe_category">
+							<option value="">-Select-</option>
+									<option value="GOV" <c:if test="${not empty parentBean.employe_category && parentBean.employe_category =='GOV'}">selected</c:if>>GOVT.</option>
+									<option value="PSU"<c:if test="${not empty parentBean.employe_category && parentBean.employe_category =='PSU'}">selected</c:if>>PSU</option>
+									<option value="OTH" <c:if test="${not empty parentBean.employe_category && parentBean.employe_category =='OTH'}">selected</c:if>>OTHERS.</option>
+								</select>
+					<%-- <c:if test="${not empty parentBean.employe_category}">
 						<c:choose>
 							<c:when test="${parentBean.employe_category == 'GOV'}">
 								<c:set var="gov" value="checked=checked" />
@@ -142,7 +148,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 							type="radio" <c:out value="${psu}"/> name="Employe_category"
 							value="PSU" />PSU <input type="radio" <c:out value="${oth}"/>
 							name="Employe_category" value="OTH" />Others
-					</div>
+					</div>--%>
 				</div>
 				<div class="span5">
 					<div class="rowlabel">
