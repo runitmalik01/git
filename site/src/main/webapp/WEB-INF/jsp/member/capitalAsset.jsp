@@ -12,11 +12,8 @@
 <hst:link var="Securities" siteMapItemRefId="Securities"></hst:link>
 <hst:actionURL var="actionUrl"></hst:actionURL>
 <%
-	ValueListService objValueListService = ValueListServiceImpl
-			.getInstance();
-TreeMap<String,String> objHashMapindex  = objValueListService.getInflationIndex();
-request.setAttribute("objHashMapindex", objHashMapindex);
-pageContext.setAttribute("inflationindexValues", InflationIndex.values());
+	pageContext.setAttribute("inflationindexValues",
+			InflationIndex.values());
 %>
 
 <script type="text/javascript">
@@ -63,90 +60,145 @@ pageContext.setAttribute("inflationindexValues", InflationIndex.values());
 					name="hidDateSale" id="hidDateSale" value=" " />--%>
 				<fieldset>
 					<legend>Enter Details</legend>
+					<div align="center" style="color: red">Please enter your
+						details in shaded portion</div>
+					<br />
 					<div class="row-fluid show-grid">
-						<div class="span4">
+						<div class="span1 decimal">
 							<div class="rowlabel">
-								<label for="asset_type"><small>Asset Type </small> </label>
+								<small>a.</small>
 							</div>
+						</div>
+						<div class="span7 decimal">
 							<div class="rowlabel">
+								<label for="asset_type"><small>Asset Type</small> </label>
+							</div>
+						</div>
+						<div class="span3 offset1">
+							<div>
 								<select id="asset_type" name="asset_type">
 									<option value="">-Select-</option>
-									<option value="SHARES" <c:if test="${not empty childBean.assetType && childBean.assetType =='SHARES'}">selected</c:if>>Listed Shares/Debentures/Bond/
-										Unit of Mutual Fund etc</option>
-									<option value="OTH"<c:if test="${not empty childBean.assetType && childBean.assetType =='OTH'}">selected</c:if>>Other than above</option>
-								</select>
-							</div>
-						</div>
-						<div class="span4">
-							<div class="rowlabel">
-								<label for="name_asset"><small><fmt:message
-											key="capital.gain.name.asset" /> </small> </label>
-							</div>
-							<div class="rowlabel">
-								<input id="name_asset" name="name_asset"
-									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.nameAsset}"/></c:if>"
-									type="text">
-
-							</div>
-						</div>
-						<div class="span4">
-							<div class="rowlabel">
-								<label for="date_acquisition"><small><fmt:message
-											key="capital.gain.date.acquisition" /> </small> </label>
-							</div>
-							<div class="rowlabel">
-								<select id="date_acquisition" name="date_acquisition"
-									onchange="getautoindex()" >
-									<option value="">-Select-</option>
-									<c:forEach items="${inflationindexValues}" var="fs">
-										<c:if test="${fs != 'UNKNOWN'}">
-											<option value='<c:out value="${fs.xmlCode}"/>'>
-												<c:out value="${fs.displayString}"  />
-											</option>
-										</c:if>
-										<c:out value="${childBean.dateAcquisition}" />
-									</c:forEach>
-									<%-- <c:forEach var="index" items="${objHashMapindex}">
-										<option
-											<c:if test="${pageAction == 'EDIT_CHILD' || childBean.dateAcquisition == booleanCombo.value}">selected</c:if>
-											value="${index.key}">${index.value}</option>--%>
+									<option value="SHARES"
+										<c:if test="${not empty childBean.assetType && childBean.assetType =='SHARES'}">selected</c:if>>Listed
+										Shares/Debentures/Bond/ Unit of Mutual Fund etc</option>
+									<option value="OTH"
+										<c:if test="${not empty childBean.assetType && childBean.assetType =='OTH'}">selected</c:if>>Other
+										than above</option>
 								</select>
 							</div>
 						</div>
 					</div>
+
 					<div class="row-fluid show-grid">
-						<div class="span4">
+						<div class="span1 decimal">
+							<div class="rowlabel">
+								<small>b.</small>
+							</div>
+						</div>
+						<div class="span7 decimal">
+							<div class="rowlabel">
+								<label for="name_asset"><small><fmt:message
+											key="capital.gain.name.asset" /> </small> </label>
+							</div>
+						</div>
+						<div class="span3 offset1">
+							<div>
+								<input id="name_asset" name="name_asset"
+									style="background-color: #DFDFDF"
+									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.nameAsset}"/></c:if>"
+									type="text">
+							</div>
+						</div>
+					</div>
+					<div class="row-fluid show-grid">
+						<div class="span1 decimal">
+							<div class="rowlabel">
+								<small>c.</small>
+							</div>
+						</div>
+						<div class="span7 decimal">
+							<div class="rowlabel">
+								<label for="date_acquisition"><small><fmt:message
+											key="capital.gain.date.acquisition" /> </small> </label>
+							</div>
+						</div>
+						<div class="span3 offset1">
+							<div>
+								<select id="date_acquisition" name="date_acquisition"
+									onchange="getautoindex()">
+									<option value="">-Select-</option>
+									<c:forEach items="${inflationindexValues}" var="fs">
+										<c:if test="${fs != 'UNKNOWN'}">
+											<option value='<c:out value="${fs.xmlCode}"/>'>
+												<c:out value="${fs.displayString}" />
+											</option>
+										</c:if>
+										<c:out value="${childBean.dateAcquisition}" />
+									</c:forEach>
+								</select>
+							</div>
+						</div>
+					</div>
+
+					<div class="row-fluid show-grid">
+						<div class="span1 decimal">
+							<div class="rowlabel">
+								<small>d.</small>
+							</div>
+						</div>
+						<div class="span7 decimal">
 							<div class="rowlabel">
 								<label for="inflation_acquisition"><small><fmt:message
 											key="capital.gain.cost.inflationp" /> </small> </label>
 							</div>
-							<div class="rowlabel">
+						</div>
+						<div class="span3 offset1">
+							<diV>
 								<input id="inflation_acquisition" name="inflation_acquisition"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.costIndexAcquisition}"/></c:if>"
 									type="text">
-
+							</diV>
+						</div>
+					</div>
+					<div class="row-fluid show-grid">
+						<div class="span1 decimal">
+							<div class="rowlabel">
+								<small>e.</small>
 							</div>
 						</div>
-						<div class="span4">
+						<div class="span7 decimal">
 							<div class="rowlabel">
 								<label for="cost_acquisition"><small><fmt:message
 											key="capital.gain.cost.acquisition" /> </small> </label>
 							</div>
-							<div class="rowlabel">
+						</div>
+						<div class="span3 offset1">
+							<diV>
 								<input id="cost_acquisition" name="cost_acquisition" type="text"
+									style="background-color: #DFDFDF"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.costAcquisition}"/></c:if>"
 									maxlength="14" class="decimal"
 									title="Please fill only Numeric value"
 									placeholder=" Cost Price" />
 							</div>
 						</div>
-						<div class="span4">
+					</diV>
+					<div class="row-fluid show-grid">
+						<div class="span1 decimal">
+							<div class="rowlabel">
+								<small>f.</small>
+							</div>
+						</div>
+						<div class="span7 decimal">
 							<div class="rowlabel">
 								<label for="cost_improvement"><small><fmt:message
 											key="capital.gain.cost.improvement" /> </small> </label>
 							</div>
-							<div class="rowlabel">
+						</div>
+						<div class="span3 offset1">
+							<diV>
 								<input id="cost_improvement" name="cost_improvement" type="text"
+									style="background-color: #DFDFDF"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.costImprovement}"/></c:if>"
 									maxlength="14" class="decimal"
 									title="Please fill only Numeric value"
@@ -155,12 +207,19 @@ pageContext.setAttribute("inflationindexValues", InflationIndex.values());
 						</div>
 					</div>
 					<div class="row-fluid show-grid">
-						<div class="span4">
+						<div class="span1 decimal">
+							<div class="rowlabel">
+								<small>g.</small>
+							</div>
+						</div>
+						<div class="span7 decimal">
 							<div class="rowlabel">
 								<label for="date_sale"><small><fmt:message
 											key="capital.gain.date.sale" /> </small> </label>
 							</div>
-							<div class="rowlabel">
+						</div>
+						<div class="span3 offset1">
+							<diV>
 								<select id="date_sale" name="date_sale"
 									onchange="getautoindex1()">
 									<option value="">-Select-</option>
@@ -174,14 +233,21 @@ pageContext.setAttribute("inflationindexValues", InflationIndex.values());
 								</select>
 							</div>
 						</div>
-
-
-						<div class="span4">
+					</div>
+					<div class="row-fluid show-grid">
+						<div class="span1 decimal">
+							<div class="rowlabel">
+								<small>h.</small>
+							</div>
+						</div>
+						<div class="span7 decimal">
 							<div class="rowlabel">
 								<label for="inflation_consideration"><small> <fmt:message
 											key="capital.gain.cost.inflations" /> </small> </label>
 							</div>
-							<div class="rowlabel">
+						</div>
+						<div class="span3 offset1">
+							<diV>
 								<input id="inflation_consideration"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.costIndexConsideration}"/></c:if>"
 									name="inflation_consideration" type="text">
@@ -189,15 +255,24 @@ pageContext.setAttribute("inflationindexValues", InflationIndex.values());
 							</div>
 						</div>
 
+					</div>
 
-						<div class="span4">
+					<div class="row-fluid show-grid">
+						<div class="span1 decimal">
+							<div class="rowlabel">
+								<small>i.</small>
+							</div>
+						</div>
+						<div class="span7 decimal">
 							<div class="rowlabel">
 								<label for="sale_consideration"><small><fmt:message
 											key="capital.gain.sale.consideration" /> </small> </label>
 							</div>
-							<div class="rowlabel">
+						</div>
+						<div class="span3 offset1">
+							<diV>
 								<input type="text" name="sale_consideration"
-									id="sale_consideration"
+									id="sale_consideration" style="background-color: #DFDFDF"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.saleConsideration}"/></c:if>"
 									class="decimal" placeholder="Cost at the time of Sale"
 									title="Please fill only Numeric value" />
@@ -206,12 +281,19 @@ pageContext.setAttribute("inflationindexValues", InflationIndex.values());
 						</div>
 					</div>
 					<div class="row-fluid show-grid">
-						<div class="span4">
+						<div class="span1 decimal">
+							<div class="rowlabel">
+								<small>j.</small>
+							</div>
+						</div>
+						<div class="span7 decimal">
 							<div class="rowlabel">
 								<label for="indexed_price"><small>Indexed
 										Purchase Price </small> </label>
 							</div>
-							<div class="rowlabel">
+						</div>
+						<div class="span3 offset1">
+							<diV>
 								<input id="indexed_price" name="indexed_price" class="decimal"
 									type="text"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
@@ -222,12 +304,20 @@ pageContext.setAttribute("inflationindexValues", InflationIndex.values());
 							</div>
 						</div>
 
-
-						<div class="span4">
+					</div>
+					<div class="row-fluid show-grid">
+						<div class="span1 decimal">
+							<div class="rowlabel">
+								<small>k.</small>
+							</div>
+						</div>
+						<div class="span7 decimal">
 							<div class="rowlabel">
 								<label for="capital_gain"><small>Capital Gain </small> </label>
 							</div>
-							<div class="rowlabel">
+						</div>
+						<div class="span3 offset1">
+							<div>
 								<input type="text" name="capital_gain" id="capital_gain"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
 									<fmt:formatNumber type="number" 
@@ -237,24 +327,34 @@ pageContext.setAttribute("inflationindexValues", InflationIndex.values());
 
 							</div>
 						</div>
+					</div>
 
-
-						<div class="span4">
+					<div class="row-fluid show-grid">
+						<div class="span1 decimal">
+							<div class="rowlabel">
+								<small>l.</small>
+							</div>
+						</div>
+						<div class="span7 decimal">
 							<div class="rowlabel">
 								<label for="sst_charge"><small>Whether SST
 										Charged </small> </label>
 							</div>
-							<div class="rowlabel">
+						</div>
+						<div class="span3 offset1">
+							<div>
 								<select id="sst_charge" name="sst_charge">
 									<option value="">-Select-</option>
-									<option value="Y" <c:if test="${not empty childBean.sstCharge && childBean.sstCharge =='Y'}">selected</c:if>>YES</option>
-									<option value="N" <c:if test="${not empty childBean.sstCharge && childBean.sstCharge =='N'}">selected</c:if>>NO</option>
+									<option value="Y"
+										<c:if test="${not empty childBean.sstCharge && childBean.sstCharge =='Y'}">selected</c:if>>YES</option>
+									<option value="N"
+										<c:if test="${not empty childBean.sstCharge && childBean.sstCharge =='N'}">selected</c:if>>NO</option>
 								</select>
 							</div>
 						</div>
 					</div>
 					<div class="row-fluid show-grid">
-						<div class="span2 offset10">
+						<div class="span3 offset10">
 							<a href="${redirectURLToSamePage}" class="button olive">Cancel</a>
 							<input type="submit" value="Save" style="color: orange"
 								id="myModalHrefcapitalast">
@@ -268,41 +368,34 @@ pageContext.setAttribute("inflationindexValues", InflationIndex.values());
 				<tr align="center">
 
 
-					<th><b>Type of Asset
-					</b>
-					</th>
+					<th><b>Type of Asset </b></th>
 					<th><b><fmt:message key="capital.gain.cost.acquisition" />
-					</b>
-					</th>
+					</b></th>
 					<th><b><fmt:message key="capital.gain.sale.consideration" />
-					</b>
-					</th>
-					<th><b><fmt:message key="capital.gain" /> </b>
-					</th>
-					<th><b>Actions</b>
-					</th>
+					</b></th>
+					<th><b><fmt:message key="capital.gain" /> </b></th>
+					<th><b>Actions</b></th>
 
 				</tr>
 				<c:if test="${not empty parentBean}">
 					<c:forEach items="${parentBean.capitalAssetDetailList}"
 						var="capitalassetdetail">
 						<tr>
-							<td align="right"><c:out value="${capitalassetdetail.assetType}" />
-							</td>
-							<td align="right"><c:out value="${capitalassetdetail.costAcquisition}" />
-							</td>
-							<td align="right"><c:out value="${capitalassetdetail.saleConsideration}" />
-							</td>
-							<td align="right"><fmt:formatNumber type="number" maxIntegerDigits="14"
-									value="${capitalassetdetail.capitalGain}" />
+							<td align="right"><c:out
+									value="${capitalassetdetail.assetType}" /></td>
+							<td align="right"><c:out
+									value="${capitalassetdetail.costAcquisition}" /></td>
+							<td align="right"><c:out
+									value="${capitalassetdetail.saleConsideration}" /></td>
+							<td align="right"><fmt:formatNumber type="number"
+									maxIntegerDigits="14" value="${capitalassetdetail.capitalGain}" />
 							</td>
 
 							<td><a
 								href="${scriptName}/<c:out value="${capitalassetdetail.canonicalUUID}"/>/edit"><small>Edit</small>
 							</a>&nbsp;&nbsp;<a
 								href="${scriptName}/<c:out value="${capitalassetdetail.canonicalUUID}"/>/delete"
-								onclick="return checkdelete()"> <small>Delete</small> </a>
-							</td>
+								onclick="return checkdelete()"> <small>Delete</small> </a></td>
 						</tr>
 					</c:forEach>
 				</c:if>
