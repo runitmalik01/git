@@ -61,7 +61,7 @@
 				<fieldset>
 					<legend>Enter Details</legend>
 					<div align="center" style="color: red">Please enter your
-						details in shaded portion</div>
+						details in shaded portion of the form</div>
 					<br />
 					<div class="row-fluid show-grid">
 						<div class="span1 decimal">
@@ -97,13 +97,13 @@
 						</div>
 						<div class="span7 decimal">
 							<div class="rowlabel">
-								<label for="name_asset"><small><fmt:message
+								<label for="nameasset"><small><fmt:message
 											key="capital.gain.name.asset" /> </small> </label>
 							</div>
 						</div>
 						<div class="span3 offset1">
 							<div>
-								<input id="name_asset" name="name_asset"
+								<input id="nameasset" name="nameasset"
 									style="background-color: #DFDFDF"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.nameAsset}"/></c:if>"
 									type="text">
@@ -156,7 +156,7 @@
 							<diV>
 								<input id="inflation_acquisition" name="inflation_acquisition"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.costIndexAcquisition}"/></c:if>"
-									type="text">
+									type="text" class="decimal">
 							</diV>
 						</div>
 					</div>
@@ -178,8 +178,7 @@
 									style="background-color: #DFDFDF"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.costAcquisition}"/></c:if>"
 									maxlength="14" class="decimal"
-									title="Please fill only Numeric value"
-									placeholder=" Cost Price" />
+									title="Please fill only Numeric value" />
 							</div>
 						</div>
 					</diV>
@@ -201,8 +200,7 @@
 									style="background-color: #DFDFDF"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.costImprovement}"/></c:if>"
 									maxlength="14" class="decimal"
-									title="Please fill only Numeric value"
-									placeholder=" Cost Price" />
+									title="Please fill only Numeric value" />
 							</div>
 						</div>
 					</div>
@@ -250,7 +248,7 @@
 							<diV>
 								<input id="inflation_consideration"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.costIndexConsideration}"/></c:if>"
-									name="inflation_consideration" type="text">
+									name="inflation_consideration" type="text" class="decimal">
 
 							</div>
 						</div>
@@ -274,8 +272,7 @@
 								<input type="text" name="sale_consideration"
 									id="sale_consideration" style="background-color: #DFDFDF"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.saleConsideration}"/></c:if>"
-									class="decimal" placeholder="Cost at the time of Sale"
-									title="Please fill only Numeric value" />
+									class="decimal" title="Please fill only Numeric value" />
 
 							</div>
 						</div>
@@ -298,8 +295,7 @@
 									type="text"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
 									<fmt:formatNumber type="number" 
-            maxIntegerDigits="14" value="${childBean.indexedprice}"/></c:if>"
-									placeholder="Indexed Purchase Price">
+            maxIntegerDigits="14" value="${childBean.indexedprice}"/></c:if>">
 
 							</div>
 						</div>
@@ -322,8 +318,7 @@
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
 									<fmt:formatNumber type="number" 
             maxIntegerDigits="14" value="${childBean.capitalGain}"/></c:if>"
-									class="decimal" title="Please fill only Numeric value"
-									placeholder="Please fill only Numeric value" />
+									class="decimal" title="Please fill only Numeric value" />
 
 							</div>
 						</div>
@@ -345,7 +340,7 @@
 							<div>
 								<select id="sst_charge" name="sst_charge">
 									<option value="">-Select-</option>
-									<option value="Y"
+									<option value="Y" style="border-right: olive;"
 										<c:if test="${not empty childBean.sstCharge && childBean.sstCharge =='Y'}">selected</c:if>>YES</option>
 									<option value="N"
 										<c:if test="${not empty childBean.sstCharge && childBean.sstCharge =='N'}">selected</c:if>>NO</option>
@@ -356,7 +351,7 @@
 					<div class="row-fluid show-grid">
 						<div class="span3 offset10">
 							<a href="${redirectURLToSamePage}" class="button olive">Cancel</a>
-							<input type="submit" value="Save" style="color: orange"
+							<input type="button" value="Save" style="color: orange;"
 								id="myModalHrefcapitalast">
 						</div>
 					</div>
@@ -368,13 +363,18 @@
 				<tr align="center">
 
 
-					<th><b>Type of Asset </b></th>
-					<th><b><fmt:message key="capital.gain.cost.acquisition" />
-					</b></th>
-					<th><b><fmt:message key="capital.gain.sale.consideration" />
-					</b></th>
-					<th><b><fmt:message key="capital.gain" /> </b></th>
-					<th><b>Actions</b></th>
+					<th><b style="color:olive; ">Type of Asset </b>
+					</th>
+					<th><b style="color:olive; "><fmt:message key="capital.gain.cost.acquisition" />
+					</b>
+					</th>
+					<th><b style="color:olive; "><fmt:message key="capital.gain.sale.consideration" />
+					</b>
+					</th>
+					<th><b style="color:olive; "><fmt:message key="capital.gain" /> </b>
+					</th>
+					<th><b style="color:olive; ">Actions</b>
+					</th>
 
 				</tr>
 				<c:if test="${not empty parentBean}">
@@ -382,11 +382,14 @@
 						var="capitalassetdetail">
 						<tr>
 							<td align="right"><c:out
-									value="${capitalassetdetail.assetType}" /></td>
+									value="${capitalassetdetail.assetType}" />
+							</td>
 							<td align="right"><c:out
-									value="${capitalassetdetail.costAcquisition}" /></td>
+									value="${capitalassetdetail.costAcquisition}" />
+							</td>
 							<td align="right"><c:out
-									value="${capitalassetdetail.saleConsideration}" /></td>
+									value="${capitalassetdetail.saleConsideration}" />
+							</td>
 							<td align="right"><fmt:formatNumber type="number"
 									maxIntegerDigits="14" value="${capitalassetdetail.capitalGain}" />
 							</td>
@@ -395,7 +398,8 @@
 								href="${scriptName}/<c:out value="${capitalassetdetail.canonicalUUID}"/>/edit"><small>Edit</small>
 							</a>&nbsp;&nbsp;<a
 								href="${scriptName}/<c:out value="${capitalassetdetail.canonicalUUID}"/>/delete"
-								onclick="return checkdelete()"> <small>Delete</small> </a></td>
+								onclick="return checkdelete()"> <small>Delete</small> </a>
+							</td>
 						</tr>
 					</c:forEach>
 				</c:if>
