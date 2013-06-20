@@ -221,7 +221,7 @@ public class SignupDetail extends BaseComponent {
 				contextMap.put("membershipSignupDocument", publishedSignUpDocument);
 				//contextMap.put("member", member);
 				StringBuffer sbHostName = new StringBuffer();
-				sbHostName.append(request.getServerName()).append(":").append(request.getServerPort());
+				sbHostName.append(request.getScheme() + "://" +  request.getServerName()).append(":").append(request.getServerPort());
 				
 				contextMap.put("memberHostName", sbHostName.toString());
 				String pathToNewNode = wpm.createAndReturn(memberFolderPath +"/emails", EmailMessage.NAMESPACE, "activation_link", true);

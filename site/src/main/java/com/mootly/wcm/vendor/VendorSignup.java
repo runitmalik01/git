@@ -233,7 +233,7 @@ public class VendorSignup extends BaseComponent {
 				contextMap.put("vendorshipSignupDocument", publishedSignUpDocument);
 				//contextMap.put("member", member);
 				StringBuffer sbHostName = new StringBuffer();
-				sbHostName.append(request.getServerName()).append(":").append(request.getServerPort());
+				sbHostName.append(request.getScheme() + "://" +  request.getServerName()).append(":").append(request.getServerPort());
 
 				contextMap.put("vendorHostName", sbHostName.toString());
 				String pathToNewNode = wpm.createAndReturn(vendorFolderPath +"/emails", EmailMessage.NAMESPACE, "activation_link", true);

@@ -99,7 +99,7 @@
 &lt;p&gt; Thanks for registering with Wealth4India. To confirm your account we need to validate your email address.&lt;/p&gt;
 
 &lt;p&gt;
-http://${memberHostName}/site/activation/${membershipSignupDocument.canonicalUUID} 
+${memberHostName}/site/activation/${membershipSignupDocument.canonicalUUID} 
 &lt;/p&gt;
 
 
@@ -516,7 +516,7 @@ diligence.&lt;/p&gt;
 validate your email address.&lt;/p&gt;
 
 &lt;p&gt;
-http://${vendorHostName}/site/activation/${vendorshipSignupDocument.canonicalUUID}
+${vendorHostName}/site/activation/${vendorshipSignupDocument.canonicalUUID}
 &lt;/p&gt;
 
 &lt;p&gt;Please click the link above to finish your registration.&lt;/p&gt;
