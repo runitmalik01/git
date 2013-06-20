@@ -16,7 +16,7 @@ Its a tool in discounted cash flow (DCF) analysis and is a standard method for u
  NPV>0,  investment would add value to firm. </br>
  NPV<0,  investment would subtract value from firm. </br>
  NPV=0,  investment would neither gain nor lose value for the firm. </br>
- 
+
 
 <%
 	if (request.getQueryString() != null) {
@@ -73,7 +73,23 @@ Its a tool in discounted cash flow (DCF) analysis and is a standard method for u
 				key="tax_button" /> </a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a
 			href="javascript:back()" class="button orange"><fmt:message
 				key="npv1_button" />
+				<input type="button" value="rstttttt" onclick="back()"/>
 		</a>
 	</div>
 </c:if>
+
+<script>
+
+function no_of_year() {
+	var year = $("#no_of_year").val();
+	if (year != null) {
+		window.location.href="${scriptName}?year="+year ;
+	}
+};// End Of function no_of_year.
+
+function back(){
+	window.location.href="${scriptName}" ;
+	};// End Of function back.
+
+</script>
 
