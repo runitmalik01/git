@@ -512,7 +512,8 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 						<tr>
 							<td><a
 								href="${scriptName}/<c:out value="${houseincomedetail.canonicalUUID}"/>/houseincomeedit"><c:out
-										value="${houseincomedetail.letOut}" /> </a>
+										value="<c:choose><c:when test="${houseincomedetail.letOut=='S'}"><c:out value="Self Occupied"/></c:when>
+										<c:otherwise></c:otherwise><c:out value="Letout"/></c:choose>" /> </a>
 							</td>
 							<td><c:out value="${houseincomedetail.address}" />
 							</td>
