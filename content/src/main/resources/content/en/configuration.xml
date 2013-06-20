@@ -2422,7 +2422,7 @@ format&lt;/p&gt;
           <sv:value>hippotranslation:translated</sv:value>
         </sv:property>
         <sv:property sv:name="jcr:uuid" sv:type="String">
-          <sv:value>5504ba9f-94c7-4f2e-a1c9-5d89aa5ab0fe</sv:value>
+          <sv:value>d823e131-b23e-4501-b047-6d72341966aa</sv:value>
         </sv:property>
         <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
           <sv:value>live</sv:value>
@@ -2447,13 +2447,13 @@ format&lt;/p&gt;
           <sv:value>2013-04-26T15:19:36.702+05:30</sv:value>
         </sv:property>
         <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-          <sv:value>2013-04-29T13:13:08.455+05:30</sv:value>
+          <sv:value>2013-06-20T16:41:19.373+05:30</sv:value>
         </sv:property>
         <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
           <sv:value>admin</sv:value>
         </sv:property>
         <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-          <sv:value>2013-04-29T13:13:14.654+05:30</sv:value>
+          <sv:value>2013-06-20T16:41:23.999+05:30</sv:value>
         </sv:property>
         <sv:property sv:name="hippotranslation:id" sv:type="String">
           <sv:value>37e6c3a3-1916-4deb-af05-b9ff303a8671</sv:value>
@@ -2565,7 +2565,7 @@ format&lt;/p&gt;
             <sv:value>mootlywcm:screenfieldconfig</sv:value>
           </sv:property>
           <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
-            <sv:value>indiandate</sv:value>
+            <sv:value>indiandateLosses</sv:value>
           </sv:property>
           <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
             <sv:value>DateOfFilingYear</sv:value>
