@@ -1,6 +1,11 @@
 package com.mootly.wcm.member;
 
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.commons.lang.StringUtils;
 import org.hippoecm.hst.core.component.HstComponentException;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
@@ -18,6 +23,7 @@ import com.mootly.wcm.beans.AdvanceTaxDocument;
 import com.mootly.wcm.beans.MemberPersonalInformation;
 import com.mootly.wcm.beans.compound.AdvanceTaxDetail;
 import com.mootly.wcm.components.ITReturnComponent;
+import com.mootly.wcm.utils.GoGreenUtil;
 
 /*
  * Author:Pankaj Singh
@@ -26,6 +32,7 @@ import com.mootly.wcm.components.ITReturnComponent;
  */
 @PrimaryBean(primaryBeanClass=AdvanceTaxDocument.class)
 @ChildBean(childBeanClass=AdvanceTaxDetail.class)
+
 
 @FormFields(fieldNames={"bsr_codeadv","date_creditadv","Serial_challanadv","amountadv"})
 
@@ -36,16 +43,20 @@ public class AdvanceTax extends ITReturnComponent {
 	public void doBeforeRender(HstRequest request, HstResponse response) {
 		// TODO Auto-generated method stub
 		super.doBeforeRender(request, response);
-		System.out.println("this is do before render of self assesment tax");
+		if(log.isInfoEnabled()){
+		log.info("this is do before render of advance  tax");
+		}
+		
 	}
 	@Override
 	public void doAction(HstRequest request, HstResponse response)
 			throws HstComponentException {
 		// TODO Auto-generated method stub
 		super.doAction(request, response);
-		System.out.println("this is do Action of self assesment tax");
+		if(log.isInfoEnabled()){
+			log.info("this is do Action of advance  tax");
+			}
 	} 
-	
 }
 
 
