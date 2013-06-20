@@ -116,7 +116,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 		<fieldset>
 			<legend>Filing Status</legend>
 			<div class="row-fluid show-grid">
-				<div class="span6">
+				<div class="span4">
 					<div class="rowlabel">
 						<label><small><fmt:message
 									key="member.employe.category" /><span style="color: red">*</span>
@@ -129,26 +129,6 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 									<option value="PSU"<c:if test="${not empty parentBean.employe_category && parentBean.employe_category =='PSU'}">selected</c:if>>PSU</option>
 									<option value="OTH" <c:if test="${not empty parentBean.employe_category && parentBean.employe_category =='OTH'}">selected</c:if>>OTHERS.</option>
 								</select>
-					<%-- <c:if test="${not empty parentBean.employe_category}">
-						<c:choose>
-							<c:when test="${parentBean.employe_category == 'GOV'}">
-								<c:set var="gov" value="checked=checked" />
-							</c:when>
-							<c:when test="${parentBean.employe_category == 'PSU'}">
-								<c:set var="psu" value="checked=checked" />
-							</c:when>
-							<c:when test="${parentBean.employe_category == 'OTH'}">
-								<c:set var="oth" value="checked=checked" />
-							</c:when>
-						</c:choose>
-					</c:if>
-					<div class="rowlabel">
-						<input type="radio" <c:out value="${gov}"/>
-							name="Employe_category" value="GOV" />Government <input
-							type="radio" <c:out value="${psu}"/> name="Employe_category"
-							value="PSU" />PSU <input type="radio" <c:out value="${oth}"/>
-							name="Employe_category" value="OTH" />Others
-					</div>--%>
 				</div>
 				<div class="span5">
 					<div class="rowlabel">
