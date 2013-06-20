@@ -95,7 +95,6 @@ public class ITR1XmlGeneratorService {
 
 	public static void generateITR1(HstRequest request,HstResponse response) throws Exception {
 		// TODO Auto-generated method stub
-		log.info("itr1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111");
 
 		FinancialYear financialYear =  (FinancialYear) request.getAttribute("financialYear");
 
