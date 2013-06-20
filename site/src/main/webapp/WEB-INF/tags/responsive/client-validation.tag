@@ -38,14 +38,14 @@
 		String screenConfigDocumentJSON = ScreenConfigService.generateJSON( siteContentBaseBean, screenConfigurationDocumentName);
 		request.setAttribute("screenConfigDocumentJSON",screenConfigDocumentJSON);
 	}
-%>	
+%>
 <hst:componentRenderingURL var="ajaxLinkToComponent"></hst:componentRenderingURL>
 <c:if test="${not empty siteContentBaseBean && not empty screenConfigDocumentJSON}">
 	<hst:element var="uiCustom" name="script">
 		<hst:attribute name="type">text/javascript</hst:attribute>
 		var flagforPanAndTan=true;
 		var d = new Date();
-		yrRange="1900:"+d.getFullYear();		
+		yrRange="1900:"+d.getFullYear();
 		var validationRules = new Object();
 			validationRules.rules = new Object();
 			$(document).ready(function() {
@@ -57,12 +57,12 @@
 						if (fObj.length ==0) continue;
 					}
 					if (fObj.length ==0) continue;
-					
-					fObj.each( function(indx) {									
+
+					fObj.each( function(indx) {
 							validationRules.rules[fieldConfig[fn].fieldId] = new Object();
 						}
 					)
-					
+
 					switch (fieldConfig[fn].fieldFormat) {
 						case "indiandate":
 						case "date":
@@ -72,7 +72,7 @@
                                     showAnim: "fadeIn",
                                     minDate: "01/01/1900",
                                     yearRange: yrRange
-								}).addClass("indiandate");	
+								}).addClass("indiandate");
 								 fObj.keypress(function(e) {
            								 e.preventDefault();
     									});
@@ -82,7 +82,7 @@
 									changeMonth : true,
 									changeYear : true,
                                     showAnim: "fadeIn",
-                                  
+
 								}).addClass("indiandateAdvance");
 								 fObj.keypress(function(e) {
            								 e.preventDefault();
@@ -92,12 +92,22 @@
 									changeMonth : true,
 									changeYear : true,
                                     showAnim: "fadeIn",
-                                  
+
 								}).addClass("indiandateSelfAssesment");
 								 fObj.keypress(function(e) {
            								 e.preventDefault();
     									});
-						default:				
+    					case "indiandateLosses":
+								fObj.datepicker({
+									changeMonth : true,
+									changeYear : true,
+                                    showAnim: "fadeIn",
+
+								}).addClass("indiandateLosses");
+								 fObj.keypress(function(e) {
+           								 e.preventDefault();
+    									});
+						default:
 							if (fieldConfig[fn].fieldFormat != null && fieldConfig[fn].fieldFormat != '') {
 								fObj.addClass(fieldConfig[fn].fieldFormat);
 								validationRules.rules[fieldConfig[fn].fieldId][fieldConfig[fn].fieldFormat]=true;
@@ -123,10 +133,10 @@
 					}
 				}
 				<c:if test="${not empty validationType}">
-				
-				
+
+
                     $('#<c:out value="${fieldOneID}"/>,#<c:out value="${fieldTwoID}"/>').blur(function(){
-                  
+
                         var ConvertFormToJSON=function(){
 						     var array = jQuery('form').serializeArray();
 						     var json = {};
@@ -151,30 +161,30 @@
 							             		 flagforPanAndTan=true;
 							             		 }
 					              }
-					          });	
+					          });
 					   });</c:if>
 				$('#<c:out value="${formId}"/> input').keydown(function(e) {
 				    if (e.keyCode == 13) {
 				   		e.preventDefault();
-				
+
 				        $('#<c:out value="${formId}"/>').submit();
-				      
+
 				    }
 				});
 				$('#<c:out value="${formId}"/>').validate({
-					rules: validationRules.rules					
+					rules: validationRules.rules
 				});
-				
+
 				<c:if test="${not empty formSubmitButtonId}">
 					$('#<c:out value="${formSubmitButtonId}"/>').click(function() {
 					if(flagforPanAndTan){
 		 				 $('#<c:out value="${formId}"/>').submit();
 		 				 }
 					});
-                 </c:if>	
-				$('.tan').attr("style","text-transform: uppercase;");		
-			});   
-			 
+                 </c:if>
+				$('.tan').attr("style","text-transform: uppercase;");
+			});
+
   $('#Stateslry').change(function(){
 			if($('#Stateslry').val()=='99'){
 			      $('#Pinslry').val('999999');
@@ -190,5 +200,5 @@
 	          else return false;
                     }
    </hst:element>
-	<hst:headContribution element="${uiCustom}" category="jsInternal"/>	
+	<hst:headContribution element="${uiCustom}" category="jsInternal"/>
 </c:if>
