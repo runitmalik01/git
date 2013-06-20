@@ -50,7 +50,7 @@ request.setAttribute("objHashMapBoolean", objHashMapBoolean);
 				<div class="row-fluid show-grid" >
 				     <div class="span6">
 					 <div class="rowlabel"><label for="AssessmentYear"><small><fmt:message key="member.adjustment.losses.year"></fmt:message></small></label></div>
-					 <div class="rowlabel"><select name="AssessmentYear" id="AssessmentYear">
+					 <div class="rowlabel"><select name="AssessmentYear" id="AssessmentYear" onblur="setYear()">
 						  <option value="">-Select Year-</option>
 						  <c:forEach var="booleanCombo" items="${objHashMapAssessmentYear}">
 						  <option <c:if test="${pageAction == 'EDIT_CHILD' && childBean.assessmentYear == booleanCombo.value}">selected</c:if> value="${booleanCombo.value}">${booleanCombo.value}</option>
@@ -85,7 +85,7 @@ request.setAttribute("objHashMapBoolean", objHashMapBoolean);
 				</div>
 				<div class="span3">
 					 <div class="rowlabel"><label for="DateOfFilingYear"><small><fmt:message key="member.adjustment.losses.date"></fmt:message></small></label></div>
-					 <div class="rowlabel"><input type="text" id="DateOfFilingYear" name="DateOfFilingYear" value="${childBean.DOBStr}"/></div>
+					 <div class="rowlabel"><input type="text" id="DateOfFilingYear" name="DateOfFilingYear" value="${childBean.DOBStr}" /></div>
 				</div>
 				<div class="span3">
 					 <div class="rowlabel"><label for="Amount"><small><fmt:message key="member.adjustment.losses.amount" /></small></label></div>
@@ -107,8 +107,8 @@ request.setAttribute("objHashMapBoolean", objHashMapBoolean);
 					<tr align="center">
 						<th><b>Name Of Head</b></th>
 						<th><b>Assessment Year</b></th>
-						<th><b>Amount</b></th>
 						<th><b>Date Of Filing year</b></th>
+						<th><b>Amount</b></th>
 						<th><b>Actions</b></th>
 					</tr>
 					<c:if test="${not empty parentBean}">
@@ -117,14 +117,14 @@ request.setAttribute("objHashMapBoolean", objHashMapBoolean);
 							<tr>
 								<td><c:out value="${adjustmentOfLosses.nameOfHead}"/></td>
 								<td><c:out value="${adjustmentOfLosses.assessmentYear}"/></td>
-								<td><c:out value="${adjustmentOfLosses.amount}"/></td>
 								<td><c:out value="${adjustmentOfLosses.DOBStr}"/></td>
+								<td><c:out value="${adjustmentOfLosses.amount}"/></td>
 								<td><a href="${scriptName}/<c:out value="${adjustmentOfLosses.canonicalUUID}"/>/edit"><small>Edit</small></a>&nbsp;&nbsp;<a href="${scriptName}/<c:out value="${adjustmentOfLosses.canonicalUUID}"/>/delete"><small>Delete</small></a></td>
 					        </tr>
 
 						</c:forEach>
 						<tr>
-					       <td><fmt:message key="tds.amount.total" /></td>
+					       <td colspan="3"><fmt:message key="tds.amount.total" /></td>
 					       <td><input type="text" class="decimal" name="total_value" maxlength="14" readonly value="${parentBean.totalAmount}"></td>
 					    </tr>
 					</c:if>
@@ -134,3 +134,19 @@ request.setAttribute("objHashMapBoolean", objHashMapBoolean);
 	</c:otherwise>
 	</c:choose>
 <res:client-validation formId="frmdataLosses" screenConfigurationDocumentName="adjustmentoflosses" formSubmitButtonId="myModalHref"/>
+
+<hst:element var="uiCustom" name="script">
+    <hst:attribute name="type">text/javascript</hst:attribute>
+function setYear(){
+
+var assessmentyear=document.getElementById("AssessmentYear").value;
+var minyear=assessmentyear.slice(0,4);
+var maxyear=assessmentyear.slice(5,9);
+
+itrFinYrMax="31/12/"+maxyear;
+	itrFinYrMin="01/01/"+minyear;
+			$( ".indiandateLosses" ).datepicker( "option", "minDate", itrFinYrMin );
+			$( ".indiandateLosses" ).datepicker( "option", "maxDate", itrFinYrMax );
+}
+</hst:element>
+<hst:headContribution element="${uiCustom}" category="jsInternal"/>
