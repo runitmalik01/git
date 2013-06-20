@@ -63,8 +63,11 @@ if (!noMenu) {
 		propertyToCheck = itrForm + ".enabled";
 	}
 }
-boolean hasDIY = itrForm.getHasDIY();
-request.setAttribute("hasDIY", itrForm.getHasDIY());
+boolean hasDIY = false;
+if (itrForm != null) {
+	hasDIY = itrForm.getHasDIY();
+}	
+request.setAttribute("hasDIY", hasDIY);
 if (itrForm != null) {
 	request.setAttribute("hasDIY",String.valueOf(itrForm.getHasDIY()));
 }
