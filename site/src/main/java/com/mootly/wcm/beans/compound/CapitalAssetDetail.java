@@ -259,8 +259,8 @@ public class CapitalAssetDetail extends HippoItem implements FormMapFiller {
 			setDateAcquisition(formMap.getField("date_acquisition").getValue());
 		if (formMap.getField("sst_charge") != null)
 			setSstCharge(formMap.getField("sst_charge").getValue());
-		if (formMap.getField("name_asset") != null)
-			setNameAsset(formMap.getField("name_asset").getValue());
+		if (formMap.getField("nameasset") != null)
+			setNameAsset(formMap.getField("nameasset").getValue());
 		if (formMap.getField("asset_type") != null)
 			setAssetType(formMap.getField("asset_type").getValue());
 		if (formMap.getField("cost_acquisition") != null) {
