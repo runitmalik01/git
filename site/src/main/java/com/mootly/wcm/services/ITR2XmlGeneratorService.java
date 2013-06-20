@@ -103,7 +103,6 @@ public class ITR2XmlGeneratorService  {
 	public static void generateITR2(HstRequest request,HstResponse response) throws Exception {
 		// TODO Auto-generated method stub
 
-		log.info("itrrrrrrrrrrrrrrrrrrrrrrrrr2222222222222222222222222222222222222222222222222222222222222222222");
 		FinancialYear financialYear =  (FinancialYear) request.getAttribute("financialYear");
 
 		MemberPersonalInformation memberPersonalInformation = (MemberPersonalInformation) request.getAttribute(MemberPersonalInformation.class.getSimpleName().toLowerCase());
