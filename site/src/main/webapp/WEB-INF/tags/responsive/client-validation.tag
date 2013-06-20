@@ -73,6 +73,9 @@
                                     minDate: "01/01/1900",
                                     yearRange: yrRange
 								}).addClass("indiandate");	
+								 fObj.keypress(function(e) {
+           								 e.preventDefault();
+    									});
 							break;
 					case "indiandateAdvance":
 								fObj.datepicker({
@@ -81,6 +84,9 @@
                                     showAnim: "fadeIn",
                                   
 								}).addClass("indiandateAdvance");
+								 fObj.keypress(function(e) {
+           								 e.preventDefault();
+    									});
 						case "indiandateSelfAssesment":
 								fObj.datepicker({
 									changeMonth : true,
@@ -88,6 +94,9 @@
                                     showAnim: "fadeIn",
                                   
 								}).addClass("indiandateSelfAssesment");
+								 fObj.keypress(function(e) {
+           								 e.preventDefault();
+    									});
 						default:				
 							if (fieldConfig[fn].fieldFormat != null && fieldConfig[fn].fieldFormat != '') {
 								fObj.addClass(fieldConfig[fn].fieldFormat);
