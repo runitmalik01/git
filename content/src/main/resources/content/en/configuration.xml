@@ -2777,7 +2777,7 @@ format&lt;/p&gt;
           <sv:value>hippotranslation:translated</sv:value>
         </sv:property>
         <sv:property sv:name="jcr:uuid" sv:type="String">
-          <sv:value>ca4137fc-6a10-4025-8f1c-afde075718e0</sv:value>
+          <sv:value>f2b5bd94-8725-4146-9fb0-5d85ecc108db</sv:value>
         </sv:property>
         <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
           <sv:value>live</sv:value>
@@ -2802,13 +2802,13 @@ format&lt;/p&gt;
           <sv:value>2013-05-02T03:53:31.540+05:30</sv:value>
         </sv:property>
         <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-          <sv:value>2013-06-13T03:57:56.548+05:30</sv:value>
+          <sv:value>2013-06-20T12:52:34.625+05:30</sv:value>
         </sv:property>
         <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
           <sv:value>admin</sv:value>
         </sv:property>
         <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-          <sv:value>2013-06-13T03:58:03.393+05:30</sv:value>
+          <sv:value>2013-06-20T12:52:40.469+05:30</sv:value>
         </sv:property>
         <sv:property sv:name="hippotranslation:id" sv:type="String">
           <sv:value>548dcb42-edfa-49e4-925c-32c9f4acabd0</sv:value>
@@ -3166,7 +3166,7 @@ format&lt;/p&gt;
             <sv:value>Name of Bank</sv:value>
           </sv:property>
           <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
-            <sv:value>true</sv:value>
+            <sv:value>false</sv:value>
           </sv:property>
           <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
             <sv:value/>
@@ -3323,7 +3323,7 @@ format&lt;/p&gt;
             <sv:value>Name of Bank's Branch</sv:value>
           </sv:property>
           <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
-            <sv:value>true</sv:value>
+            <sv:value>false</sv:value>
           </sv:property>
           <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
             <sv:value/>
