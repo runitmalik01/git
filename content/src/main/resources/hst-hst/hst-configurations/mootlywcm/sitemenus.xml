@@ -327,6 +327,27 @@
 	  <sv:property sv:name="jcr:uuid" sv:type="String">
 	    <sv:value>419a09fa-76de-4e0b-93eb-c172fc718bb0</sv:value>
 	  </sv:property>
+	  <sv:node sv:name="PAN">
+	    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	      <sv:value>hst:sitemenuitem</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="jcr:uuid" sv:type="String">
+	      <sv:value>b8606e16-5a54-4766-b4e3-733ae6844eb1</sv:value>
+	    </sv:property>
+	    <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+	      <sv:value>theURL</sv:value>
+	      <sv:value>weight</sv:value>
+	      <sv:value>nonDIY</sv:value>
+	    </sv:property>
+	    <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+	      <sv:value>/../servicerequest-itr.html</sv:value>
+	      <sv:value>0</sv:value>
+	      <sv:value>true</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="hst:referencesitemapitem" sv:type="String">
+	      <sv:value/>
+	    </sv:property>
+	  </sv:node>
 	  <sv:node sv:name="Summary">
 	    <sv:property sv:name="jcr:primaryType" sv:type="Name">
 	      <sv:value>hst:sitemenuitem</sv:value>
@@ -337,10 +358,12 @@
 	    <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
 	      <sv:value>theURL</sv:value>
 	      <sv:value>weight</sv:value>
+	      <sv:value>nonDIY</sv:value>
 	    </sv:property>
 	    <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
 	      <sv:value>/../xmlgenerator.html</sv:value>
 	      <sv:value>0</sv:value>
+	      <sv:value>true</sv:value>
 	    </sv:property>
 	    <sv:property sv:name="hst:referencesitemapitem" sv:type="String">
 	      <sv:value>news</sv:value>
@@ -425,10 +448,12 @@
 	      <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
 	        <sv:value>theURL</sv:value>
 	        <sv:value>weight</sv:value>
+	        <sv:value>ITR2.enabled</sv:value>
 	      </sv:property>
 	      <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
-	        <sv:value>/../houseincome.html</sv:value>
+	        <sv:value>/../singlehouseincome.html</sv:value>
 	        <sv:value>3</sv:value>
+	        <sv:value>false</sv:value>
 	      </sv:property>
 	    </sv:node>
 	    <sv:node sv:name="Other Income">
@@ -458,11 +483,13 @@
 	        <sv:value>isPackage</sv:value>
 	        <sv:value>weight</sv:value>
 	        <sv:value>price</sv:value>
+	        <sv:value>ITR1.enabled</sv:value>
 	      </sv:property>
 	      <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
 	        <sv:value>true</sv:value>
 	        <sv:value>5</sv:value>
 	        <sv:value>100</sv:value>
+	        <sv:value>false</sv:value>
 	      </sv:property>
 	    </sv:node>
 	    <sv:node sv:name="Multiple Properties">
@@ -475,10 +502,12 @@
 	      <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
 	        <sv:value>theURL</sv:value>
 	        <sv:value>weight</sv:value>
+	        <sv:value>ITR1.enabled</sv:value>
 	      </sv:property>
 	      <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
 	        <sv:value>/../houseincome.html</sv:value>
 	        <sv:value>6</sv:value>
+	        <sv:value>false</sv:value>
 	      </sv:property>
 	    </sv:node>
 	    <sv:node sv:name="Capital Gains">
@@ -491,10 +520,12 @@
 	      <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
 	        <sv:value>theURL</sv:value>
 	        <sv:value>weight</sv:value>
+	        <sv:value>ITR1.enabled</sv:value>
 	      </sv:property>
 	      <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
 	        <sv:value>/../houseincome.html</sv:value>
 	        <sv:value>7</sv:value>
+	        <sv:value>false</sv:value>
 	      </sv:property>
 	    </sv:node>
 	    <sv:node sv:name="Adjustment of Losses">
@@ -507,44 +538,12 @@
 	      <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
 	        <sv:value>theURL</sv:value>
 	        <sv:value>weight</sv:value>
+	        <sv:value>ITR1.enabled</sv:value>
 	      </sv:property>
 	      <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
 	        <sv:value>/../houseincome.html</sv:value>
 	        <sv:value>8</sv:value>
-	      </sv:property>
-	    </sv:node>
-	    <sv:node sv:name="Foreign">
-	      <sv:property sv:name="jcr:primaryType" sv:type="Name">
-	        <sv:value>hst:sitemenuitem</sv:value>
-	      </sv:property>
-	      <sv:property sv:name="jcr:uuid" sv:type="String">
-	        <sv:value>078111d9-24e3-400c-9d38-b145efc4e330</sv:value>
-	      </sv:property>
-	      <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
-	        <sv:value>isPackage</sv:value>
-	        <sv:value>weight</sv:value>
-	        <sv:value>price</sv:value>
-	      </sv:property>
-	      <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
-	        <sv:value>true</sv:value>
-	        <sv:value>9</sv:value>
-	        <sv:value>100</sv:value>
-	      </sv:property>
-	    </sv:node>
-	    <sv:node sv:name="Income &amp; Rebates">
-	      <sv:property sv:name="jcr:primaryType" sv:type="Name">
-	        <sv:value>hst:sitemenuitem</sv:value>
-	      </sv:property>
-	      <sv:property sv:name="jcr:uuid" sv:type="String">
-	        <sv:value>2351116f-c6e0-447f-a531-fa8610f44864</sv:value>
-	      </sv:property>
-	      <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
-	        <sv:value>theURL</sv:value>
-	        <sv:value>weight</sv:value>
-	      </sv:property>
-	      <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
-	        <sv:value>/../houseincome.html</sv:value>
-	        <sv:value>10</sv:value>
+	        <sv:value>false</sv:value>
 	      </sv:property>
 	    </sv:node>
 	  </sv:node>
@@ -652,10 +651,12 @@
 	    <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
 	      <sv:value>theURL</sv:value>
 	      <sv:value>weight</sv:value>
+	      <sv:value>nonDIY</sv:value>
 	    </sv:property>
 	    <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
 	      <sv:value>/../attachdoc.html</sv:value>
 	      <sv:value>5</sv:value>
+	      <sv:value>true</sv:value>
 	    </sv:property>
 	    <sv:property sv:name="hst:referencesitemapitem" sv:type="String">
 	      <sv:value/>

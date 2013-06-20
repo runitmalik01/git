@@ -559,6 +559,35 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 				</c:otherwise>
 			</c:choose>
 		</fieldset>
+		<fieldset>
+			<legend>ITR form selection</legend>
+			<div class="row-fluid show-grid">
+			    <div class="span2">
+			    	<div class="rowlabel"><label for="flex_string_ITRForm"><small>Select the ITR Form</small></label></div>
+			    </div>
+				<div class="span5">
+					<div class="rowlabel"><label for="whoCan"><small>Who can file this form</small></label></div>
+				</div>
+				<div class="span5">
+					<div class="rowlabel"><label for="whoCannot"><small>Who cannot file this form</small></label></div>
+				</div>
+			</div>			
+			<div class="row-fluid show-grid">
+				<div class="span2">
+					<select id="flex_string_ITRForm" name="flex_string_ITRForm">
+						<c:forEach items="${filingStatus.possibleITRForms}" var="itrForm">
+							<option <c:if test="${parentBean.selectedITRForm == itrForm}">selected</c:if> value="${itrForm}">${itrForm.displayName}</option>
+						</c:forEach>
+					</select>
+				</div>
+				<div class="span5">
+					<div style="font-size:small" id="whoCan"></div>
+				</div>
+				<div class="span5">
+					<div style="font-size:small" id="whoCannot"></div>
+				</div>
+			</div>
+		</fieldset>
 		<c:choose>
 			<c:when
 				test="${not empty parentBean && not empty parentBean.financialYear}">
@@ -724,7 +753,6 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 		</div>
 		<div class="row-fluid show-grid">
 			<div class="span4 offset8 decimal">
-
 				<a id="hrefLogin" role="button" class="btn orange">Save</a>
 			</div>
 		</div>
@@ -735,6 +763,13 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 	formId="frmPersonalInfo" formSubmitButtonId="hrefLogin"></res:client-validation>
 <hst:element var="uiCustom" name="script">
 	<hst:attribute name="type">text/javascript</hst:attribute>
+		var mapOfItrFormWhoCanAndWhoCan = {};
+		var mapOfItrFormWhoCanAndWhoCannot = {};
+		<c:forEach items="${filingStatus.possibleITRForms}" var="itrForm">
+			mapOfItrFormWhoCanAndWhoCan['${itrForm}']=  "<fmt:message key="${itrForm}.whoCan"></fmt:message>";
+			mapOfItrFormWhoCanAndWhoCannot['${itrForm}']=  "<fmt:message key="${itrForm}.whoCannot"></fmt:message>"; 
+		</c:forEach>
+	
 		var solrField = 'text';
 		var solrExtra = '';
 		ifsc = {};
@@ -743,9 +778,10 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 			solrFieldFacet = solrField + '_s';
 			solrExtra = '';
 			doneFunc = function(data)  {
+				var aLength = data.facet_counts.facet_fields[solrFieldFacet].length;
 			    retArr = new Array();
-			    for ( var i=0;i<data.facet_counts.facet_fields [solrFieldFacet].length;i++) {				
-				if ( (i % 2) == 0 ) retArr[retArr.length] =data.facet_counts.facet_fields[solrFieldFacet][i];
+			    for ( var i=0;i < aLength ;i++) {				
+				if ( (i % 2) == 0 ) retArr[retArr.length] = data.facet_counts.facet_fields[solrFieldFacet][i];
 			    }
 			    process(retArr);
 			}			
@@ -758,8 +794,9 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 			solrExtra = "%20%2BBANK:" + $("#bnk_name_solr").val();
 			doneFunc = function(data)  {
 			    retArr = new Array();
-			    for ( var i=0;i<data.response.docs.length;i++) {
-				//if ( (i % 2) == 0 ) retArr[retArr.length] =data.facet_counts.facet_fields[solrFieldFacet][i];
+			    aLength = data.response.docs.length; 
+			    for ( var i=0;i < aLength ;i++) {
+				//if ( (i % 2) == 0 ) retArr[retArr.length] = data.facet_counts.facet_fields[solrFieldFacet][i];
 				if ( (i % 2) == 0 ) {
 					retArr[retArr.length] = data.response.docs[i][solrFieldFacet];
 					ifsc[data.response.docs[i][solrFieldFacet]] = data.response.docs[i]['ID']
@@ -796,6 +833,16 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 		}
 
 		$(document).ready(function() {
+			$("#flex_string_ITRForm").change(function (aval) {
+					var sele = this.options[this.selectedIndex].value;
+					$("#whoCan").html(mapOfItrFormWhoCanAndWhoCan[sele]);
+					$("#whoCannot").html(mapOfItrFormWhoCanAndWhoCannot[sele]);
+			});
+			
+			$("#whoCan").html(mapOfItrFormWhoCanAndWhoCan[$("#flex_string_ITRForm").val()]);
+			$("#whoCannot").html(mapOfItrFormWhoCanAndWhoCannot[$("#flex_string_ITRForm").val()]);
+			
+		
 			var options={source:callSolr_bd_bank_name,updater:bankSelected}
 			$("#bd_bank_name").attr('autocomplete','off');
 			$("#bd_bank_name").typeahead(options);

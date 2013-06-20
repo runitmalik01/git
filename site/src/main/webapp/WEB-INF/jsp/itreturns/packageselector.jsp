@@ -2,10 +2,13 @@
 <%@include file="../includes/tags.jspf"%>
 <hst:actionURL var="actionURL" />
 <div class="page">
-	<h4>
-		Welcome to Income Tax Return Preparation for Financial Year:
-		<c:out value="${financialYear.displayName}" />
-	</h4>
+	<h2>
+		Customizing Wealth4India to suit your needs 
+	</h2>
+	<h5>
+		In order to provide you an out of the world experience, we must ask you few questions related to your sources of income.
+		This helps us find the correct IT Return Form and ensures that you get the maximum refund and the chances of a Income Tax rejection are minimal.
+	</h5>
 	<p>
 		List of available packages for Filing Status <b><c:out
 				value="${filingStatus.name}" /> </b>

@@ -123,6 +123,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 	HippoBean childBean;
 
 	String uuid;
+	String maxChildrenAllowed = null;
 
 	//MemberPersonalInformation memberPersonalInformation = null;
 	//Screen Specific
@@ -162,6 +163,12 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		if (getPAN() != null && (filingStatus == null || filingStatus.equals(FilingStatus.UNKNOWN))) {
 			log.error("Unknown Filing status for PAN:" + getPAN());
 			response.setRenderPath("jsp/security/invalidpan.jsp");
+			return;
+		}
+		
+		if (pageAction == PAGE_ACTION.NEW_CHILD && request.getAttribute("NEW_CHILD_DISABLED") != null) {
+			log.error("User attempting to over ride the maxAllowedChildren parameter");
+			response.setRenderPath("jsp/security/invalidoperation.jsp");
 			return;
 		}
 
@@ -595,6 +602,23 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		redirectURLToSamePage = getScriptName();// getRedirectURL(request,response,FormSaveResult.FAILURE);
 
 		nextScreenSiteMapItemRefId = request.getRequestContext().getResolvedSiteMapItem().getParameter("nextScreen");
+		maxChildrenAllowed = request.getRequestContext().getResolvedSiteMapItem().getParameter("maxChildrenAllowed");
+		if (maxChildrenAllowed != null) {
+			int totalOfCurrentChildren = getTotalChildren();
+			if (totalOfCurrentChildren > 0) {
+				try {
+					int intMaxAllow = Integer.valueOf(maxChildrenAllowed);
+					if (intMaxAllow >= totalOfCurrentChildren) {
+						request.setAttribute("NEW_CHILD_DISABLED", "true");
+					}
+				}catch (NumberFormatException nex) {
+					
+				}
+			}
+			if (log.isInfoEnabled()) {
+				log.info("maxChildrenAllowed not null :" + maxChildrenAllowed);
+			}
+		}
 
 		//we must make sure itReturnType and PAN are not empty as well as they are valid
 		if (!StringUtils.isEmpty(pan) && !DataTypeValidationHelper.isOfType(pan, DataTypeValidationType.PAN)) {
@@ -703,6 +727,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 
 		//loading Additional Beans
 		AdditionalBeans additionalBeans = this.getClass().getAnnotation(AdditionalBeans.class);
+		boolean memberPersonalInfoLoaded = false;
 		if (additionalBeans != null && additionalBeans.additionalBeansToLoad() != null && additionalBeans.additionalBeansToLoad().length > 0 ) {
 			for (Class<? extends HippoBean> additionalBean:additionalBeans.additionalBeansToLoad()) {
 				String additionalBeanPathToLoad = baseAbsolutePathToReturnDocuments + "/" + additionalBean.getSimpleName().toLowerCase();
@@ -712,10 +737,22 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 				try {
 					Object o = getObjectBeanManager(request).getObject(additionalBeanPathToLoad);
 					request.setAttribute(additionalBean.getSimpleName().toLowerCase(),o);
+					if (o instanceof MemberPersonalInformation) {
+						memberPersonalInfoLoaded = true;
+					}
 				} catch (ObjectBeanManagerException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}					
+			}
+		}
+		if (!memberPersonalInfoLoaded) {
+			try {
+				String additionalBeanPathToLoad = baseAbsolutePathToReturnDocuments + "/" + MemberPersonalInformation.class.getSimpleName().toLowerCase();
+				Object o = getObjectBeanManager(request).getObject(additionalBeanPathToLoad);
+				request.setAttribute( MemberPersonalInformation.class.getSimpleName().toLowerCase(),o);
+			}catch (Exception ex) {
+				log.warn("Trying to load member personal info failed ...",ex);
 			}
 		}
 
@@ -945,6 +982,14 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 				}
 			}
 		}
+		if (maxChildrenAllowed != null && pageAction == PAGE_ACTION.NEW_CHILD) {
+			int maxChildAllowed = Integer.valueOf(maxChildrenAllowed);
+			int totalChildren = getTotalChildren();
+			if (totalChildren >= maxChildAllowed) {
+				formMap.addMessage("generic","An error has occurred");
+			}
+		}
+		
 		if(filingStatus.getXmlCode()=="I"){
 			StartApplicationValidationService startappvalidserv=new StartApplicationValidationService();
 			startappvalidserv.validResidential(formMap, assessmentYear);
@@ -956,6 +1001,20 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		else {
 			return true;
 		}
+	}
+	
+	protected int getTotalChildren() {
+		if (this.getClass().isAnnotationPresent(ChildBean.class) && parentBean != null) {
+			try {
+				List<? extends HippoBean> listOfBeans = this.parentBean.getChildBeans(this.getClass().getAnnotation(ChildBean.class).childBeanClass());
+				return (listOfBeans != null ? listOfBeans.size() : 0 );
+			}
+			catch (Exception ex) {
+				log.error("An error occurred",ex);
+				return -1;
+			}
+		}
+		return 0;
 	}
 
 	protected void loadParentBean(HstRequest request) {

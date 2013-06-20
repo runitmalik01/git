@@ -532,8 +532,9 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 
 				</c:if>
 			</table>
-			<a href="${scriptName}/houseincomenew" class="button orange">Add
-				New</a>
+			<c:if test="${empty NEW_CHILD_DISABLED}">
+				<a href="${scriptName}/houseincomenew" class="button orange">Add New</a>
+			</c:if>
 		</c:otherwise>
 	</c:choose>
 </div>

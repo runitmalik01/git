@@ -86,6 +86,7 @@ import org.hippoecm.hst.content.beans.Node;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 
 import com.mootly.wcm.beans.standard.FlexibleDocument;
+import com.mootly.wcm.model.ITRForm;
 
 /**
  * User: vivek
@@ -163,7 +164,20 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 	private String residentCategory;
 	private String PIUUID;
 
-
+	public ITRForm getSelectedITRForm() {
+		String retValueString = getFlexField("flex_string_ITRForm",null);
+		if (retValueString != null) {
+			try {
+				ITRForm itrForm = ITRForm.valueOf(retValueString);
+				return itrForm;
+			}catch (IllegalArgumentException e) {
+				log.warn("There was an error parsing the value",e);
+				return null;
+			}
+		}
+		return null;
+	}
+	
 	public String getTaxStatus() {
 		if (taxStatus == null) taxStatus = getProperty(PROP_PI_TAX_STATUS);
 		return taxStatus;

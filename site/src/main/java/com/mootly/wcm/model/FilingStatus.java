@@ -1,5 +1,7 @@
 package com.mootly.wcm.model;
 
+import com.mootly.wcm.member.ResidentialStatus;
+
 public enum FilingStatus {
 	COMPANY('c',"Company","C"),
 	PERSON('p',"Individual","I"),
@@ -52,6 +54,28 @@ public enum FilingStatus {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public ITRForm[] getPossibleITRForms() {
+		if (this == FilingStatus.PERSON) {
+			ITRForm[] arr = new ITRForm[] {ITRForm.ITR1,ITRForm.ITR2,ITRForm.ITR3,ITRForm.ITR4,ITRForm.ITR4S,ITRForm.ITR7};
+			return arr;
+		}
+		else if (this == FilingStatus.HUF) {
+			ITRForm[] arr = new ITRForm[] {ITRForm.ITR2,ITRForm.ITR3,ITRForm.ITR4,ITRForm.ITR4S};
+			return arr;
+		}
+		else if (this == FilingStatus.FIRM || this == FilingStatus.AOP || this == FilingStatus.BOI) {
+			ITRForm[] arr = new ITRForm[] {ITRForm.ITR5};
+			return arr;
+		}
+		else if (this == COMPANY) {
+			ITRForm[] arr = new ITRForm[] {ITRForm.ITR6,ITRForm.ITR7};
+			return arr;
+		}
+		else {
+			return null;
+		}
 	}
 
 	public static FilingStatus getEnumByFourthChar(char fourthCharInPAN) {

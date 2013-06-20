@@ -1,3 +1,8 @@
+<%@tag import="org.hippoecm.hst.util.HstResponseUtils"%>
+<%@tag import="org.hippoecm.hst.core.component.HstResponse"%>
+<%@tag import="org.hippoecm.hst.configuration.site.HstSite"%>
+<%@tag import="com.mootly.wcm.model.ITRForm"%>
+<%@tag import="com.mootly.wcm.beans.MemberPersonalInformation"%>
 <%@tag import="org.hippoecm.hst.content.beans.standard.HippoBean"%>
 <%@tag import="org.hippoecm.hst.core.sitemenu.HstSiteMenuItem"%>
 <%@tag import="org.hippoecm.hst.core.sitemenu.HstSiteMenu"%>
@@ -26,28 +31,67 @@ if (actionInSiteMap != null && actionInSiteMap.contains("_")) {
  tabName = actionInSiteMap.substring(0,actionInSiteMap.indexOf("_"));
 }
 
+MemberPersonalInformation memberPersonalInformation = null;
+boolean noMenu = false;
+request.setAttribute("nomenu", "false");
+
+String theResolvedPathInfo = resolvedMapItem.getPathInfo();
+String[] theFileNameParts = theResolvedPathInfo.split("[/]");
+String theResolvedPathInfoFileName = theFileNameParts[theFileNameParts.length - 1];
+//theResolvedPathInfo must be a member of the itr menu otherwise it means some one is trying to mess
+//for now lets kick the user out
+boolean didWeFindTheResolvedMapItemInMenu = false;
+if ( resolvedMapItem.getHstComponentConfiguration().getId().equals("hst:pages/member-start-application")) {
+	request.setAttribute("nomenu", "true");
+	noMenu = true;
+	memberPersonalInformation = (MemberPersonalInformation) request.getAttribute("parentBean");
+	if (memberPersonalInformation != null) {
+		if (memberPersonalInformation.getNode() != null) {
+			request.setAttribute("nomenu", "false");
+			noMenu = false;
+		}
+	}
+}
+String propertyToCheck = null;
+ITRForm itrForm = null;
+if (!noMenu) {
+	if (memberPersonalInformation == null) memberPersonalInformation = (MemberPersonalInformation) request.getAttribute(MemberPersonalInformation.class.getSimpleName().toLowerCase());
+	if (memberPersonalInformation != null) {
+		//every menu must have a property which starts with the formname and .enabled = true
+		//e.g. ITR1.enabled = true if not we won't display it and then we must have to find out if DIY or Assisted
+		itrForm = memberPersonalInformation.getSelectedITRForm();
+		propertyToCheck = itrForm + ".enabled";
+	}
+}
+boolean hasDIY = itrForm.getHasDIY();
+request.setAttribute("hasDIY", itrForm.getHasDIY());
+if (itrForm != null) {
+	request.setAttribute("hasDIY",String.valueOf(itrForm.getHasDIY()));
+}
+//out.println(noMenu);
+//out.println(propertyToCheck);
+
 HstSiteMenusImpl itrSiteMenuImpl = new HstSiteMenusImpl(hstRequest.getRequestContext());
 HstSiteMenu itrSiteMenu = itrSiteMenuImpl.getSiteMenu("itrmenu");
-if (itrSiteMenu != null && itrSiteMenu.getSiteMenuItems() != null) {
+if (itrSiteMenu != null && itrSiteMenu.getSiteMenuItems() != null && propertyToCheck != null) {
 	List<HstSiteMenuItem> listOfSiteItems = itrSiteMenu.getSiteMenuItems();
+	List<HstSiteMenuItem> onlyEnabledForThisITRForm = new ArrayList<HstSiteMenuItem>();
+	
 	if (listOfSiteItems != null && listOfSiteItems.size() > 0 ) {
-		Collections.sort(listOfSiteItems,new MenuComparator());
-		request.setAttribute("listOfSiteItems", listOfSiteItems);
+		for (HstSiteMenuItem anItem:listOfSiteItems) {
+			if (anItem.getParameter(propertyToCheck) == null || (anItem.getParameter(propertyToCheck) != null && anItem.getParameter(propertyToCheck).equals("true"))) {
+				if (hasDIY || ( !hasDIY && anItem.getParameter("nonDIY") != null )) {					
+					onlyEnabledForThisITRForm.add(anItem);
+				}
+			}
+		}		
+		Collections.sort(onlyEnabledForThisITRForm,new MenuComparator());
+		request.setAttribute("listOfSiteItems", onlyEnabledForThisITRForm);
 	}
 }
 for (HstSiteMenuItem siteMenuItem : itrSiteMenu.getSiteMenuItems() ){
 
 }
-request.setAttribute("nomenu", "false");
-//out.println( resolvedMapItem.getHstComponentConfiguration().getId() );
-if ( resolvedMapItem.getHstComponentConfiguration().getId().equals("hst:pages/member-start-application")) {
-	request.setAttribute("nomenu", "true");
-	HippoBean memberPersonalInformation = (HippoBean) request.getAttribute("parentBean");
-	if (memberPersonalInformation != null) {
-		if (memberPersonalInformation.getNode() != null) request.setAttribute("nomenu", "false");
-	}
-}
-
 //How is the page designed, lets define a structure for this page using simple linkedhashmap and arraylist
 %>
 <div class="navbar">
@@ -77,10 +121,18 @@ if ( resolvedMapItem.getHstComponentConfiguration().getId().equals("hst:pages/me
 	                				<%-- bad luck the child menus r not SORTED it sucks so lets sort it for now based on weight  --%>
 	                				<%
 	                					HstSiteMenuItem itrSiteMenuItem = (HstSiteMenuItem) request.getAttribute("itrSiteMenuItem");
-	                					if (itrSiteMenuItem != null && itrSiteMenuItem.getChildMenuItems() != null) {
+	                					if (itrSiteMenuItem != null && itrSiteMenuItem.getChildMenuItems() != null && propertyToCheck != null) {
 		                					List<HstSiteMenuItem> listOfChildMenuItems = itrSiteMenuItem.getChildMenuItems();
-		                					Collections.sort(listOfChildMenuItems,new MenuComparator());
-		                					request.setAttribute("listOfChildMenuItems", listOfChildMenuItems);	
+		                					List<HstSiteMenuItem> onlyEnabledForThisITRForm = new ArrayList<HstSiteMenuItem>();
+		                					for (HstSiteMenuItem anItem:listOfChildMenuItems) {
+		                						if (anItem.getParameter(propertyToCheck) == null || (anItem.getParameter(propertyToCheck) != null && anItem.getParameter(propertyToCheck).equals("true"))) {
+		                							if (hasDIY || ( !hasDIY && anItem.getParameter("nonDIY") != null )) {	
+		                								onlyEnabledForThisITRForm.add(anItem);
+		                							}
+		                						}
+		                					}	
+		                					Collections.sort(onlyEnabledForThisITRForm,new MenuComparator());
+		                					request.setAttribute("listOfChildMenuItems", onlyEnabledForThisITRForm);	
 	                					}
 	                				%>
 	                				<c:forEach items="${listOfChildMenuItems}" var="childMenuItem">
@@ -115,6 +167,7 @@ if ( resolvedMapItem.getHstComponentConfiguration().getId().equals("hst:pages/me
 	                					 	//String theURL = anItem.getHstLink().toUrlForm(hstRequest.getRequestContext(), true);
 	                	 				 	if (theURL != null) {
 	                	 				 		request.setAttribute("theURL",theURL);
+	                	 				 		if (theURL.contains(theResolvedPathInfoFileName)) didWeFindTheResolvedMapItemInMenu= true;
 	                	 				 	}
 	                	 				 	else {
 	                	 				 		request.setAttribute("theURL", "#");
@@ -145,6 +198,7 @@ if ( resolvedMapItem.getHstComponentConfiguration().getId().equals("hst:pages/me
 			    					//String theURL = anItem.getHstLink().toUrlForm(hstRequest.getRequestContext(), true);
 			    	 				if (theURL != null) {
 										request.setAttribute("theURLParent",theURL);
+										if (theURL.contains(theResolvedPathInfoFileName)) didWeFindTheResolvedMapItemInMenu= true;
 										String[] parts = theURL.split("[/]");
 										if (parts != null && parts.length > 0) currentScriptHTMLName = parts[parts.length-1];
 									}
@@ -161,7 +215,9 @@ if ( resolvedMapItem.getHstComponentConfiguration().getId().equals("hst:pages/me
 			    				}
 	
 			        		%>
-	               			<li <c:if test='${not empty isActive && isActive == "true"}'>class="active"</c:if>><a href="${scriptName}${theURLParent}">${itrSiteMenuItem.name}</a></li>
+			        		<c:if test="${itrSiteMenuItem.name != 'PAN'}">
+	               				<li <c:if test='${not empty isActive && isActive == "true"}'>class="active"</c:if>><a href="${scriptName}${theURLParent}">${itrSiteMenuItem.name}</a></li>
+	               			</c:if>
 	               		</c:otherwise>
 	               	</c:choose>
 	               </c:forEach>
@@ -175,12 +231,14 @@ if ( resolvedMapItem.getHstComponentConfiguration().getId().equals("hst:pages/me
 	               <!-- <li><a href="#">Link</a></li> -->
 	               <li class="divider-vertical"></li>
 	               <li class="dropdown">
-	                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">My Return<b class="caret"></b></a>
+	                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%=(itrForm != null?itrForm.getDisplayName():"My Return")%><b class="caret"></b></a>
 	                  <ul class="dropdown-menu">
-	                  <li><a href="xmlgenerator.html?show=summary">View Summary</a></li>
-	                     <li><a href="xmlgenerator.html?show=xml">View XML</a></li>
-	                     <li><a href="#">Download XML</a></li>
-	                     <li class="divider"></li>
+	                  	 <c:if test="${hasDIY =='true'}">
+		                  	 <li><a href="xmlgenerator.html?show=summary">View Summary</a></li>
+		                     <li><a href="xmlgenerator.html?show=xml">View XML</a></li>
+		                     <li><a href="#">Download XML</a></li>
+		                     <li class="divider"></li>
+	                     </c:if>
 	                     <li><a href="#">Download Return</a></li>
 	                  </ul>
 	               </li>
@@ -192,6 +250,17 @@ if ( resolvedMapItem.getHstComponentConfiguration().getId().equals("hst:pages/me
    </div>
    <!-- /navbar-inner -->
 </div>
+<%-- you kidding me?? can't escape  --%>
+<%-- this is not working as the response has already been sent to the browser --%>
+<%-- //todo we need to more this entire damn logic into a java component --%>
+<% 
+if (!didWeFindTheResolvedMapItemInMenu && !hasDIY) { %>
+<% 	
+	//HstResponse hstResponse = (HstResponse) response;
+	//HstResponseUtils.sendRedirect(hstRequest,hstResponse,"root");
+	//return;
+}  
+%>
 <%!
 class MenuComparator implements Comparator<HstSiteMenuItem> {
     public int compare(HstSiteMenuItem o1, HstSiteMenuItem o2)

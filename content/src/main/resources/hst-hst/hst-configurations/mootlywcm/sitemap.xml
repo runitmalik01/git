@@ -2993,6 +2993,98 @@
     				<sv:value>memberdrive</sv:value>
   				</sv:property>
 			</sv:node>
+			<sv:node sv:name="singlehouseincome.html" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+			  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+			    <sv:value>hst:sitemapitem</sv:value>
+			  </sv:property>
+			  <sv:property sv:name="jcr:uuid" sv:type="String">
+			    <sv:value>6081ce95-bf1c-4fdd-8f3c-20eb630b05b2</sv:value>
+			  </sv:property>
+			  <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+			    <sv:value>hst:pages/houseincome</sv:value>
+			  </sv:property>
+			  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+			    <sv:value>mainSiteMapItemRefId</sv:value>
+			    <sv:value>nextScreen</sv:value>
+			    <sv:value>maxChildrenAllowed</sv:value>
+			  </sv:property>
+			  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+			    <sv:value>member-house-income</sv:value>
+			    <sv:value>member-house-income</sv:value>
+			    <sv:value>1</sv:value>
+			  </sv:property>
+			  <sv:property sv:name="hst:refId" sv:type="String">
+			    <sv:value>single-member-house-income</sv:value>
+			  </sv:property>
+			  <sv:property sv:name="hst:relativecontentpath" sv:type="String">
+			    <sv:value>members</sv:value>
+			  </sv:property>
+			  <sv:node sv:name="_default_">
+			    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+			      <sv:value>hst:sitemapitem</sv:value>
+			    </sv:property>
+			    <sv:property sv:name="jcr:uuid" sv:type="String">
+			      <sv:value>f8629a1a-0445-4a1f-b972-3dfb52e33489</sv:value>
+			    </sv:property>
+			    <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+			      <sv:value>uuid</sv:value>
+			    </sv:property>
+			    <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+			      <sv:value>${4}</sv:value>
+			    </sv:property>
+			    <sv:node sv:name="houseincomeedit">
+			      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+			        <sv:value>hst:sitemapitem</sv:value>
+			      </sv:property>
+			      <sv:property sv:name="jcr:uuid" sv:type="String">
+			        <sv:value>23e36c93-0232-47fa-a02b-59634aafcacd</sv:value>
+			      </sv:property>
+			      <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+			        <sv:value>hst:pages/houseincome</sv:value>
+			      </sv:property>
+			      <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+			        <sv:value>action</sv:value>
+			      </sv:property>
+			      <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+			        <sv:value>EDIT_CHILD</sv:value>
+			      </sv:property>
+			    </sv:node>
+			    <sv:node sv:name="houseincomedelete">
+			      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+			        <sv:value>hst:sitemapitem</sv:value>
+			      </sv:property>
+			      <sv:property sv:name="jcr:uuid" sv:type="String">
+			        <sv:value>6f34f904-8971-4855-ac6d-aa4ffecbe3f7</sv:value>
+			      </sv:property>
+			      <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+			        <sv:value>hst:pages/houseincome</sv:value>
+			      </sv:property>
+			      <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+			        <sv:value>action</sv:value>
+			      </sv:property>
+			      <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+			        <sv:value>DELETE_CHILD</sv:value>
+			      </sv:property>
+			    </sv:node>
+			  </sv:node>
+			  <sv:node sv:name="houseincomenew">
+			    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+			      <sv:value>hst:sitemapitem</sv:value>
+			    </sv:property>
+			    <sv:property sv:name="jcr:uuid" sv:type="String">
+			      <sv:value>188a1a5f-bb3e-46da-ad6a-f93ea5f6b037</sv:value>
+			    </sv:property>
+			    <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+			      <sv:value>hst:pages/houseincome</sv:value>
+			    </sv:property>
+			    <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+			      <sv:value>action</sv:value>
+			    </sv:property>
+			    <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+			      <sv:value>NEW_CHILD</sv:value>
+			    </sv:property>
+			  </sv:node>
+			</sv:node>
           </sv:node>
         </sv:node>
       </sv:node>

@@ -28,10 +28,10 @@
         <div class="grid col-540">
 			        <ul id="menu-foot" class="footer-menu">
 			        	<hst:link var="contactUs" siteMapItemRefId="contactus"/>
-			        	<hst:link var="tos" path="/privacy"/>
-			        	<hst:link var="pp" path="/terms"/>
-			        	<li id="menu-item-715" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-715"><a href="<hst:link siteMapItemRefId="about"/>">Privacy Policy</a></li>
-						<li id="menu-item-716" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-716"><a href="<hst:link siteMapItemRefId="about"/>">Terms of Use</a></li>
+			        	<hst:link var="tos" path="/terms"/>
+			        	<hst:link var="pp" path="/privacy"/>
+			        	<li id="menu-item-715" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-715"><a href="${pp}">Privacy Policy</a></li>
+						<li id="menu-item-716" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-716"><a href="${tos}">Terms of Use</a></li>
 						<li id="menu-item-717" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-717"><a href="<hst:link siteMapItemRefId="about"/>">About Us</a></li>
 						<li id="menu-item-718" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-717"><a href="${contactUs}">Contact Us</a></li>
 						<li id="menu-item-717" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-717"><a href="<hst:link siteMapItemRefId="faq"/>">FAQ</a></li>
