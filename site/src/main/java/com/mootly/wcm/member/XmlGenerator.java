@@ -72,6 +72,9 @@ public class XmlGenerator extends ITReturnComponent {
 	public void doBeforeRender(HstRequest request, HstResponse response) {
 		// TODO Auto-generated method stub
 		super.doBeforeRender(request, response);
+		MemberPersonalInformation memberPersonalInformation = (MemberPersonalInformation) request.getAttribute(MemberPersonalInformation.class.getSimpleName().toLowerCase());
+		String ITR = memberPersonalInformation.getFlexField("flex_string_ITRForm", "");
+		request.setAttribute("ITR", ITR);
 
 		if (getPublicRequestParameter(request, "show") != null) request.setAttribute("show",getPublicRequestParameter(request, "show"));
 
@@ -80,7 +83,7 @@ public class XmlGenerator extends ITReturnComponent {
 		if (whichITRForm.equals(ITRForm.UNKNOWN)) {
 			whichITRForm = ITRForm.ITR1;
 		}
-		//time to hand over 
+		//time to hand over
 		if (itrXmlGeneratorServiceFactory != null) {
 			XmlGeneratorService xmlGeneratorService = itrXmlGeneratorServiceFactory.getInstance(getFinancialYear());
 			if (xmlGeneratorService != null) {
