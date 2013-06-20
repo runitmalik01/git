@@ -14,10 +14,10 @@ ValueListService  objValueListService = ValueListServiceImpl.getInstance();
 
 TreeMap<String ,String>  objTreeMapResidentialStatus =  (TreeMap<String ,String>) objValueListService.getResidentialStatus();
 TreeMap<String ,String>  objTreeMapBoolean = (TreeMap<String ,String>) objValueListService.getBoolean();
-TreeMap<String ,String>  objTreeMapStates = (TreeMap<String ,String>) objValueListService.getStates();
+SortedSet<Map.Entry<String,String>>  objTreeMapStates = ( SortedSet<Map.Entry<String,String>>) objValueListService.getStates();
 TreeMap<String ,String>  objTreeMapForeignStates = (TreeMap<String ,String>) objValueListService.getForeignState();
 TreeMap<String ,String>  objTreeMapUnionTerritory = (TreeMap<String ,String>) objValueListService.getUnionTerritory();
-TreeMap<String ,String>  objTreeMapCountry = (TreeMap<String ,String>) objValueListService.getCountry();
+SortedSet<Map.Entry<String,String>>  objTreeMapCountry = ( SortedSet<Map.Entry<String,String>>) objValueListService.getCountry();
 TreeMap<String ,String>  objTreeMapSchedule80CDropdown = (TreeMap<String ,String>) objValueListService.getSchedule80CDropdown();
 TreeMap<String ,String>  objTreeMapAssessmentYear = (TreeMap<String ,String>) objValueListService.getAssessmentYear();
 TreeMap<String ,String>  objTreeMapNameOfHead = (TreeMap<String ,String>) objValueListService.getNameOfHead();
