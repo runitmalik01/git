@@ -44,7 +44,7 @@
 					<div class="row-fluid show-grid">
 						<div class="span3">
 							<div class="rowlabel">
-								<label><fmt:message key="member.employe.category" /> </label>
+								<label for ="Employe_category"><fmt:message key="member.employe.category" /> </label>
 							</div>
 							<select id="Employe_category" name="Employe_category">
 							<option value="">-Select-</option>
