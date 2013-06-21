@@ -53,12 +53,21 @@
 			               <label for="description"><small>Description</small></label>
 			         </div>
 			         <div class="rowlabel">
-			                 <select name="description" id="description" class="span8 hide_Others_sel">
-			                       <option value="Income">Income Document</option>
-			                       <option value="Insurance">Insurance Document</option>
-			                       <option value="Others">Write Your Own</option>
+			                 <select name="description" id="description" class="span8">
+			                       <option value="Form 16">Form 16</option>
+			                       <option value="Form 26AS">Form 26AS</option>
+			                       <option value="Income Document">Income Document</option>
+			                       <option value="Insurance Document">Insurance Document</option>
+			                       <option value="Investment Document">Investment Document</option>
+			                       <option value="TAX Deducted Document">TAX Deducted Document</option>
+			                       <option value="Capital Gain Document">Capital Gain Document</option>
+			                       <option value="Donation Statement">Donation Statement</option>
+			                       <option value="Loan Document">Loan Document</option>
+			                       <option value="Property Document">Property Document</option>
+			                       <option value="Stock Trading Statement">Stock Trading Statement</option>
+			                       <option value="Disabilities Document">Disabilities Document</option>
+			                       <option value="Other">Other</option>
 			                 </select>
-			                 <!--  <input type="text" name="description" id="description" class="hide_Others_inp span7 btn" style="display: none;" data-provide="typeahead"/>-->
 			          </div>				    				   		
 			    </div>
 			    <div class="span4">
