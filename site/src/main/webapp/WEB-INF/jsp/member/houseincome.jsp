@@ -80,7 +80,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 							<div class="rowlabel">
 								<label for="states"><small>State</small> </label>
 							</div>
-							<select id="pi_state" name="pi_state" class="uprcase">
+							<select id="states" name="states" class="uprcase">
 								<option value="">-Select-</option>
 								<c:forEach var="booleanCombo" items="${objHashMapstates}">
 									<option
@@ -511,9 +511,9 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 						var="houseincomedetail">
 						<tr>
 							<td><a
-								href="${scriptName}/<c:out value="${houseincomedetail.canonicalUUID}"/>/houseincomeedit"><c:out
-										value="<c:choose><c:when test="${houseincomedetail.letOut=='S'}"><c:out value="Self Occupied"/></c:when>
-										<c:otherwise></c:otherwise><c:out value="Letout"/></c:choose>" /> </a>
+								href="${scriptName}/<c:out value="${houseincomedetail.canonicalUUID}"/>/houseincomeedit">
+								<c:choose><c:when test="${houseincomedetail.letOut=='S'}"><c:out value="Self Occupied"/></c:when>
+										<c:otherwise><c:out value="Letout"/></c:otherwise></c:choose></a>
 							</td>
 							<td><c:out value="${houseincomedetail.address}" />
 							</td>
