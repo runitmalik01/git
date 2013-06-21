@@ -58,6 +58,11 @@
 					Uploaded File in Member Drive.</div>
 			</div>
 		</c:if>
+		<c:if test="${not empty delete}">
+			<div class="row-fluid show-grid">
+				<div class="alert alert-info">File has been deleted from Member Drive</div>
+			</div>
+		</c:if>
 		<div class="row-fluid show-grid">
 			   <div class="span6">
 					<div class="rowlabel">			            
@@ -80,7 +85,7 @@
 			                       <option value="Insurance">Insurance Document</option>
 			                       <option value="Others">Write Your Own</option>
 			                 </select>
-			                 <input type="text" name="description" id="description" class="hide_Others_inp span7 btn" style="display: none;" data-provide="typeahead"/>
+			                 <!--  <input type="text" name="description" id="description" class="hide_Others_inp span7 btn" style="display: none;" data-provide="typeahead"/>-->
 			          </div>				    				   		
 			    </div>
 			</div>
@@ -108,7 +113,7 @@
                                   <td><span class="add-on"><i class="icon-file"></i></span></td>
                         	     <hst:link var="assetLink" hippobean="${file.memberFileResource}"/>
                                   <td><c:out value="${file.name}"/></td> 
-                                  <td></td>
+                                  <td>${file.description}</td>
                                   <td>
                                       <a href="#" class="btn btn-info">View</a>
                                       <a href="${assetLink}" class="btn btn-primary">Download</a>
