@@ -23,6 +23,7 @@ import com.mootly.wcm.annotations.AdditionalBeans;
 import com.mootly.wcm.annotations.ChildBean;
 import com.mootly.wcm.annotations.FormFields;
 import com.mootly.wcm.annotations.PrimaryBean;
+import com.mootly.wcm.annotations.RequiredFields;
 import com.mootly.wcm.beans.FormSixteenDocument;
 import com.mootly.wcm.beans.MemberPersonalInformation;
 import com.mootly.wcm.beans.compound.FormSixteenDetail;
@@ -40,6 +41,7 @@ import com.mootly.wcm.components.ITReturnComponent;
 		"aggregate","total_income_1","total_income_2","tax_total_income_1","tax_total_income_2","surcharge_1","surcharge_2",
 		"education_cess","tax_payable","relief_1","relief_2","tax_payable1","tax_payable_1","tax_payable_2","ded_ent1","ded_ent2",
 		"ded_ent3","ded_ent4","relief_11","relief_12","uuidform16"})
+@RequiredFields(fieldNames={"Employe_category","employer","employee","tan_deductor"})
 
 public class FormSixteen extends ITReturnComponent {
 
