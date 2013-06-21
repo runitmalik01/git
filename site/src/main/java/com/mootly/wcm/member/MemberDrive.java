@@ -11,12 +11,10 @@ package com.mootly.wcm.member;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import javax.jcr.Node;
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 import javax.jcr.SimpleCredentials;
@@ -37,10 +35,7 @@ import org.hippoecm.hst.content.beans.standard.HippoFolder;
 import org.hippoecm.hst.core.component.HstComponentException;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
-import org.hippoecm.repository.api.Workflow;
-import org.hippoecm.repository.api.WorkflowException;
 import org.hippoecm.repository.reviewedactions.FullReviewedActionsWorkflow;
-import org.hippoecm.repository.standardworkflow.DefaultWorkflow;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -64,17 +59,14 @@ public class MemberDrive extends ITReturnComponent {
 	public void doBeforeRender(HstRequest request, HstResponse response) {
 		// TODO Auto-generated method stub
 		super.doBeforeRender(request, response);
-		if(log.isInfoEnabled()){
-			log.info("This is member Drive page");
+		String fileuuid=getPublicRequestParameter(request, "delete");
+		if(DeleteMemberDriveFile(request, response, fileuuid)){
+			request.setAttribute("delete", "Success");
 		}
 		if(getMemberDriveFileResource(request, response)!=null){
 			request.setAttribute("memberFiles", getMemberDriveFileResource(request, response));
 		}
 		request.setAttribute("msg", request.getParameter("FileUpload"));
-		String fileuuid=getPublicRequestParameter(request, "delete");
-		if(DeleteMemberDriveFile(request, response, fileuuid)){
-			request.setAttribute("delete", "Success");
-		}
 	}
 
 	@Override
@@ -87,24 +79,16 @@ public class MemberDrive extends ITReturnComponent {
 		FileItemStream fileItemStream=null;
 		boolean isMultipart = ServletFileUpload.isMultipartContent(request);
 		if (isMultipart) {
-			log.info("get it");
 			ServletFileUpload servletFileUpload = new ServletFileUpload();
-			log.info("get it");
 			long maxsize=Long.parseLong(request.getRequestContext().getResolvedSiteMapItem().getParameter("maxsize"));
 			servletFileUpload.setFileSizeMax(MEMBER_FILE_SIZE * maxsize);
 			try {
-				log.info("get it");
 				FileItemIterator iter = servletFileUpload.getItemIterator(request);
-				log.info("get it");
 				while (iter.hasNext()){
-					log.info("get it");
 					fileItemStream = iter.next();
-					log.info("get it");
 					if (!fileItemStream.isFormField()) {
-						log.info("get it"+fileItemStream.getFieldName());
 						FormField formField = formMap.getField(fileItemStream.getFieldName());
 						if (formField != null) {
-							log.info("get it");
 							InputStream inputStream = fileItemStream.openStream();							
 							byte[] data = IOUtils.toByteArray(inputStream);
 							files.put(fileItemStream.getName(), data);								
@@ -233,11 +217,11 @@ public class MemberDrive extends ITReturnComponent {
 			persistableSession=getPersistableSession(request,new SimpleCredentials("admin", "admin".toCharArray()));
 			persistableSession.save();
 			wpm=getWorkflowPersistenceManager(persistableSession);
-			wpm.setWorkflowCallbackHandler(new FullDeleteWorkflowCallbackHandler());
+			//wpm.setWorkflowCallbackHandler(new FullDeleteWorkflowCallbackHandler());
 			for(MemberDriveDocument o:getMemberDriveFileResource(request, response)){
 				if(o.getCanonicalUUID().equals(fileuuid)){
-				    log.info("get it");
-					wpm.update(o);
+					wpm.remove(o);
+					wpm.save();
 					delete=true;
 					break;
 				}
