@@ -17,6 +17,7 @@
 package com.mootly.wcm.beans;
 
 import java.io.InputStream;
+import java.util.Calendar;
 
 import javax.jcr.Binary;
 import javax.jcr.RepositoryException;
@@ -45,7 +46,9 @@ public class MemberDriveDocument extends BaseDocument implements ContentNodeBind
 
 	private InputStream memberFileResource;
 	private String contentType;
+	private String description;
 	private String MEMBER_DOCS="mootlywcm:memberDocs";
+	private String DESCRIPTION="mootlywcm:description";
 	/**
 	 * @return the memberFileResource
 	 */
@@ -74,6 +77,21 @@ public class MemberDriveDocument extends BaseDocument implements ContentNodeBind
 	public void setContentType(String contentType) {
 		this.contentType = contentType;
 	}
+
+	/**
+	 * @return the description
+	 */
+	public String getDescription() {
+		if(description==null)
+			description=getProperty(DESCRIPTION);
+		return description;
+	}
+	/**
+	 * @param description the description to set
+	 */
+	public void setDescription(String description) {
+		this.description = description;
+	}
 	@Override
 	public boolean bind(Object content, javax.jcr.Node node) throws ContentNodeBindingException {
 		MemberDriveDocument bean = (MemberDriveDocument) content;        
@@ -91,8 +109,10 @@ public class MemberDriveDocument extends BaseDocument implements ContentNodeBind
 					Binary binaryValue = vf.createBinary(bean.getMemberFile());
 					resourceNode.setProperty(JcrConstants.JCR_DATA,binaryValue);
 					resourceNode.setProperty(JcrConstants.JCR_MIMETYPE, bean.getContentType());
+					resourceNode.setProperty(JcrConstants.JCR_LASTMODIFIED, Calendar.getInstance());
 				}
 			}
+			node.setProperty(DESCRIPTION, bean.getDescription());
 		} 
 		catch (RepositoryException e) {
 			log.error("Repository Exception",e);
