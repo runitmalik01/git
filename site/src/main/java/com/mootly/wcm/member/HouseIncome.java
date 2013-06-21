@@ -23,6 +23,7 @@ import com.mootly.wcm.annotations.DataTypeValidationFields;
 import com.mootly.wcm.annotations.DataTypeValidationType;
 import com.mootly.wcm.annotations.FormFields;
 import com.mootly.wcm.annotations.PrimaryBean;
+import com.mootly.wcm.annotations.RequiredFields;
 import com.mootly.wcm.beans.HouseProperty;
 import com.mootly.wcm.beans.ScreenCalculation;
 import com.mootly.wcm.beans.compound.HouseIncomeDetail;
@@ -35,6 +36,7 @@ import com.mootly.wcm.services.ScreenCalculatorService;
 		"coownername2","share3","coownerpan3","coownername3","share4","coownerpan4","coownername4","share5","coownerpan5","coownername5",
 		"City","states","Coowned","letout","Letable_value","Unrealised_rent","Local_tax","Total","Balance","Interest_borrowed","Income_hproperty","Property_share"})
 //@RequiredFields(fieldNames={"Gross_Annual_Income","Unrealised_Rent","Local_Taxes","Interest_Borrowed2","Interest_Borrowed1"})
+@RequiredFields(fieldNames={"Pin","Address","City","states","letout"})
 @DataTypeValidationFields(fieldNames={
 		  "Letable_value",
 		  "Unrealised_rent",
