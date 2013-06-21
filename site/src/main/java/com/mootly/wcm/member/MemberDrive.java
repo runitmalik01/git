@@ -11,10 +11,12 @@ package com.mootly.wcm.member;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.jcr.Node;
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 import javax.jcr.SimpleCredentials;
@@ -35,18 +37,24 @@ import org.hippoecm.hst.content.beans.standard.HippoFolder;
 import org.hippoecm.hst.core.component.HstComponentException;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
+import org.hippoecm.repository.api.Workflow;
+import org.hippoecm.repository.api.WorkflowException;
 import org.hippoecm.repository.reviewedactions.FullReviewedActionsWorkflow;
+import org.hippoecm.repository.standardworkflow.DefaultWorkflow;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.mootly.wcm.annotations.AdditionalBeans;
+import com.mootly.wcm.annotations.FormFields;
 import com.mootly.wcm.annotations.RequiredBeans;
 import com.mootly.wcm.beans.MemberDriveDocument;
 import com.mootly.wcm.beans.MemberPersonalInformation;
 import com.mootly.wcm.components.ITReturnComponent;
 
+
 @RequiredBeans(requiredBeans=MemberPersonalInformation.class)
 @AdditionalBeans(additionalBeansToLoad={MemberPersonalInformation.class})
+@FormFields(fieldNames={"member_file","description"})
 public class MemberDrive extends ITReturnComponent {
 
 	private static final Logger log = LoggerFactory.getLogger(MemberDrive.class);
@@ -67,55 +75,56 @@ public class MemberDrive extends ITReturnComponent {
 		if(DeleteMemberDriveFile(request, response, fileuuid)){
 			request.setAttribute("delete", "Success");
 		}
-		String o=MemberPersonalInformation.class.getSimpleName().toLowerCase();
-		request.setAttribute(o, request.getAttribute(o));
 	}
 
 	@Override
 	public void doAction(HstRequest request, HstResponse response)
 			throws HstComponentException {
 		// TODO Auto-generated method stub
-		FormMap formMap=new FormMap(request, new String[]{"member_file"});
+		FormFields formFields=this.getClass().getAnnotation(FormFields.class);		
+		FormMap formMap=new FormMap(request, formFields.fieldNames());
 		HashMap<String, byte[]> files = new HashMap<String, byte[]>();
 		FileItemStream fileItemStream=null;
 		boolean isMultipart = ServletFileUpload.isMultipartContent(request);
 		if (isMultipart) {
+			log.info("get it");
 			ServletFileUpload servletFileUpload = new ServletFileUpload();
+			log.info("get it");
 			long maxsize=Long.parseLong(request.getRequestContext().getResolvedSiteMapItem().getParameter("maxsize"));
 			servletFileUpload.setFileSizeMax(MEMBER_FILE_SIZE * maxsize);
 			try {
+				log.info("get it");
 				FileItemIterator iter = servletFileUpload.getItemIterator(request);
-				try {
-					while (iter.hasNext()) {
-						fileItemStream = iter.next();
-						if(formMap.getField(fileItemStream.getFieldName())!=null){
-							FormField formField = formMap.getField(fileItemStream.getFieldName());
-							if (formField != null) {
-								InputStream inputStream = fileItemStream.openStream();
-								/*if (fileItemStream.isFormField()) {
-									StringWriter writer = new StringWriter();
-									IOUtils.copy(fileItemStream.openStream(), writer, "UTF-8");
-									formField.addValue(writer.toString());
-								} else {*/
-								byte[] data = IOUtils.toByteArray(inputStream);
-								files.put(fileItemStream.getName(), data);
-								//}
-								inputStream.close();
-							}
+				log.info("get it");
+				while (iter.hasNext()){
+					log.info("get it");
+					fileItemStream = iter.next();
+					log.info("get it");
+					if (!fileItemStream.isFormField()) {
+						log.info("get it"+fileItemStream.getFieldName());
+						FormField formField = formMap.getField(fileItemStream.getFieldName());
+						if (formField != null) {
+							log.info("get it");
+							InputStream inputStream = fileItemStream.openStream();							
+							byte[] data = IOUtils.toByteArray(inputStream);
+							files.put(fileItemStream.getName(), data);								
+							inputStream.close();
+							break;
 						}
 					}
-				} catch(FileUploadBase.FileUploadIOException e) {
-					log.error("File size exceeded", e);
 				}
+			} catch(FileUploadBase.FileUploadIOException e) {
+				log.error("File size exceeded", e);
 			} catch(FileUploadException e) {
 				log.error("A file upload error occurred", e);
 			} catch (IOException e) {
 				log.error("An error occurred while processing multipart form data", e);
-			}
+			} 
 		}
 		MemberDriveDocument memberDrive=new MemberDriveDocument();
 		memberDrive.setMemberFile(new ByteArrayInputStream(files.get(fileItemStream.getName())));
 		memberDrive.setContentType(fileItemStream.getContentType());
+		memberDrive.setDescription(formMap.getField("description").getValue());
 		MemberDriveDocument returnMemberDriveDoc=createMemberDrive(request, response, memberDrive, fileItemStream.getName());
 		if(returnMemberDriveDoc!=null){
 			response.setRenderParameter("FileUpload", "Success");
@@ -147,6 +156,7 @@ public class MemberDrive extends ITReturnComponent {
 			if(memberDriveDoc!=null){
 				memberDriveDoc.setMemberFile(memberDrive.getMemberFile());
 				memberDriveDoc.setContentType(memberDrive.getContentType());
+				memberDriveDoc.setDescription(memberDrive.getDescription());
 				wpm.update(memberDriveDoc);
 				return memberDriveDoc;
 			}
@@ -221,16 +231,17 @@ public class MemberDrive extends ITReturnComponent {
 		boolean delete=false;
 		try {
 			persistableSession=getPersistableSession(request,new SimpleCredentials("admin", "admin".toCharArray()));
+			persistableSession.save();
 			wpm=getWorkflowPersistenceManager(persistableSession);
 			wpm.setWorkflowCallbackHandler(new FullDeleteWorkflowCallbackHandler());
 			for(MemberDriveDocument o:getMemberDriveFileResource(request, response)){
 				if(o.getCanonicalUUID().equals(fileuuid)){
+				    log.info("get it");
 					wpm.update(o);
 					delete=true;
 					break;
 				}
 			}
-			return delete;
 		} catch (RepositoryException e) {
 			// TODO Auto-generated catch block
 			log.error("Error to get the PersistableSession From JCR Repository!!"+e);
@@ -244,6 +255,7 @@ public class MemberDrive extends ITReturnComponent {
 				persistableSession.logout();
 			}
 		}
+		return delete;
 	}
 	public static class FullDeleteWorkflowCallbackHandler implements WorkflowCallbackHandler<FullReviewedActionsWorkflow> {
 		public void processWorkflow(FullReviewedActionsWorkflow wf) throws Exception {
