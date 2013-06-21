@@ -167,10 +167,14 @@ public class MemberDrive extends ITReturnComponent {
 	 * @return String Path for Document
 	 * */
 	public static String getMemberDriveDocPath(HstRequest request) {
+		String returnType=request.getRequestContext().getResolvedSiteMapItem().getParameter("itReturnType");
+		String financialYear=request.getRequestContext().getResolvedSiteMapItem().getParameter("financialYear");
+		String pan=request.getRequestContext().getResolvedSiteMapItem().getParameter("pan");
 		StringBuilder builder = new StringBuilder();
 		builder.append(request.getRequestContext().getResolvedMount().getMount().getCanonicalContentPath());
 		builder.append('/');
 		builder.append(MEMBER_DRIVE_FOLDER_NAME).append("/").append(request.getUserPrincipal().getName().replaceAll("@","-at-")).append("/").append("Drive");
+		builder.append("/").append(pan).append("/").append(financialYear).append("/").append(returnType);
 		return builder.toString();
 	}
 	public static class FullReviewedWorkflowCallbackHandler implements WorkflowCallbackHandler<FullReviewedActionsWorkflow> {
