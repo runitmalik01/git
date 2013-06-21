@@ -106,7 +106,7 @@
 					</div>
 					<div class="rowlabel">
 						<input id="amounttdsoth" name="amounttdsoth" type="text"
-							maxlength="14" readonly required="required" class="decimal"
+							maxlength="14" readonly  class="decimal"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.p_Amount}"/></c:if>" />
 					</div>
 				</div>
