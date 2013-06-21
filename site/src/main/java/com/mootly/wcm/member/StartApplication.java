@@ -66,7 +66,7 @@ import com.mootly.wcm.utils.UrlUtility;
 @RequiredFields(fieldNames={
 		"pi_last_name","pi_dob","gender",
         "pi_flat_door_building","pi_email","pi_pin_code","pi_town_city_district","pi_state","pi_area_locality","pi_mobile",
-        "rsstatus_q","bd_bank_name","bd_Branch_name","bd_account_type","bd_account_no","bd_ecs"})
+        "rsstatus_q","bd_account_type","bd_account_no","bd_ecs"})
 
 public class StartApplication extends ITReturnComponent {
 	private static final Logger log = LoggerFactory.getLogger(StartApplication.class);
