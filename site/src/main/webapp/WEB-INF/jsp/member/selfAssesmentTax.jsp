@@ -8,6 +8,7 @@
 <c:set var="tds2">
 	<fmt:message key="member.advancetax.title" />
 </c:set>
+<w4india:itrmenu></w4india:itrmenu>
 <c:if test="${not empty formMap}">
 	<c:forEach items="${formMap.message}" var="item">
 		<div class="alert alert-error">
@@ -18,7 +19,7 @@
 <hippo-gogreen:title title="${tds2}" />
 
 <hst:actionURL var="actionUrl" />
-<w4india:itrmenu></w4india:itrmenu>
+
 <h4>
 	<fmt:message key="member.tds.selfassesment.tax" />
 </h4>
