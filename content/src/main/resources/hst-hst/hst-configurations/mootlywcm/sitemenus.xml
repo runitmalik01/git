@@ -320,7 +320,7 @@
       </sv:property>
     </sv:node>
   </sv:node>
-  <sv:node sv:name="itrmenu" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+  <sv:node sv:name="itrmenu" >
 	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
 	    <sv:value>hst:sitemenu</sv:value>
 	  </sv:property>
@@ -625,6 +625,7 @@
 	      </sv:property>
 	    </sv:node>
 	  </sv:node>
+	  <!-- 
 	  <sv:node sv:name="Rebates">
 	    <sv:property sv:name="jcr:primaryType" sv:type="Name">
 	      <sv:value>hst:sitemenuitem</sv:value>
@@ -641,6 +642,7 @@
 	      <sv:value>4</sv:value>
 	    </sv:property>
 	  </sv:node>
+	   -->
 	  <sv:node sv:name="Upload Document">
 	    <sv:property sv:name="jcr:primaryType" sv:type="Name">
 	      <sv:value>hst:sitemenuitem</sv:value>
