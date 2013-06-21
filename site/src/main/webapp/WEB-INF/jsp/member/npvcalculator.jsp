@@ -79,7 +79,7 @@ Its a tool in discounted cash flow (DCF) analysis and is a standard method for u
 					});
 
 					$("#rst").click(function(){
-						window.location.href="npvcalculator" ;
+						window.location.href="${scriptName}?show=" ;
 					});
 
 		</hst:element>
