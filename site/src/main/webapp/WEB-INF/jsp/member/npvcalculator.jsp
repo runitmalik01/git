@@ -32,10 +32,7 @@ Its a tool in discounted cash flow (DCF) analysis and is a standard method for u
 			</label> <input required type="text" name="no_of_year" id="no_of_year"
 				value="" title="Please fill this field" placeholder="In Years" onkeypress="return isNumberKey(event)" />
 		</p>
-
-		<button class="button orange" name="Submit" onclick="no_of_year()">
-			<fmt:message key="npv_button" />
-		</button>
+		<a id="nxt" role="button" class="btn orange"><fmt:message key="npv_button" /></a>
 	</div>
 </c:if>
 
@@ -67,29 +64,23 @@ Its a tool in discounted cash flow (DCF) analysis and is a standard method for u
 				readonly="readonly" />
 		</p>
 
-
-
-		<a href="javascript:call()" class="button orange"><fmt:message
-				key="tax_button" /> </a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a
-			href="javascript:back()" class="button orange"><fmt:message
-				key="npv1_button" />
-				<input type="button" value="rstttttt" onclick="back()"/>
-		</a>
+		<a href="javascript:call()" role="button" class="btn orange"><fmt:message key="tax_button" /></a>
+        &nbsp;&nbsp;&nbsp;
+		<a id="rst" role="button" class="btn orange"><fmt:message key="npv1_button" /></a>
 	</div>
 </c:if>
 
-<script>
 
-function no_of_year() {
-	var year = $("#no_of_year").val();
-	if (year != null) {
-		window.location.href="${scriptName}?year="+year ;
-	}
-};// End Of function no_of_year.
+		<hst:element var="uiCustom" name="script">
+			<hst:attribute name="type">text/javascript</hst:attribute>
 
-function back(){
-	window.location.href="${scriptName}" ;
-	};// End Of function back.
+					$("#nxt").click(function(){
+						window.location.href="${scriptName}?show=" + $("#no_of_year").val() ;
+					});
 
-</script>
+					$("#rst").click(function(){
+						window.location.href="npvcalculator" ;
+					});
 
+		</hst:element>
+		<hst:headContribution element="${uiCustom}" category="jsInternal" />
