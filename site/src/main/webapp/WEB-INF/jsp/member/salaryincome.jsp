@@ -9,10 +9,11 @@
 <c:set var="salaryincometitle">
 	<fmt:message key="member.salary.title" />
 </c:set>
+<w4india:itrmenu/>
 <hippo-gogreen:title title="${salaryincometitle}" />
 <hst:actionURL var="actionUrl"></hst:actionURL>
 <div class="page type-page">
-	<w4india:itrmenu/>
+	
 <div class="page">
 	<h3 id="respond1">
 		<c:choose>
@@ -45,7 +46,7 @@
 							<div class="rowlabel">
 								<label><fmt:message key="member.employe.category" /> </label>
 							</div>
-							<select id= "Employe_category" name="Employe_category">
+							<select id="Employe_category" name="Employe_category">
 							<option value="">-Select-</option>
 									<option value="GOV" <c:if test="${not empty childBean.employe_category && childBean.employe_category =='GOV'}">selected</c:if>>GOVT.</option>
 									<option value="PSU"<c:if test="${not empty childBean.employe_category && childBean.employe_category =='PSU'}">selected</c:if>>PSU</option>
