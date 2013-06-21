@@ -1,3 +1,4 @@
+<%@page import="java.net.URLEncoder"%>
 <%@include file="../includes/tags.jspf"%>
 <hst:link var="memberDriveComp" siteMapItemRefId="docattach"></hst:link>
 <hippo-gogreen:title title="Member Drive" />
@@ -123,8 +124,8 @@ pageContext.setAttribute("hostname", builder.toString());
                         	     <hst:link var="assetLink" hippobean="${file.memberFileResource}"/>
                                   <td><c:out value="${file.name}"/></td> 
                                   <td>${file.description}</td>
-                                  <td>
-                                      <a href="https://www.docs.google.com/viewer?url=${hostname}${assetLink}" class="btn btn-info"> 
+                                  <td><c:set value="${hostname}${assetLink}" var="doc_url" scope="page"/>                                      
+                                      <a href="https://www.docs.google.com/viewer?url=<%=URLEncoder.encode((String)pageContext.getAttribute("doc_url"),"UTF-8")%>" class="btn btn-info"> 
                                       <i class="icon-eye-open icon-white"></i><span>View</span></a>
                                       <a href="${assetLink}" class="btn btn-primary">
                                       <i class="icon-download-alt icon-white"></i><span>Download</span></a>
