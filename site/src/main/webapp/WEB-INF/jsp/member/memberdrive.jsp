@@ -8,6 +8,10 @@
 		</div>
 	</c:forEach>
 </c:if>
+<%StringBuilder builder=new StringBuilder();
+builder.append(request.getScheme() + "://" +  request.getServerName()).append(":").append(request.getServerPort()); 
+pageContext.setAttribute("hostname", builder.toString());
+%>
 <hst:actionURL var="actionUrl"></hst:actionURL>
 <hst:componentRenderingURL var="ajaxLinkToComponent"></hst:componentRenderingURL>
 <w4india:itrmenu/>
@@ -120,15 +124,14 @@
                                   <td><c:out value="${file.name}"/></td> 
                                   <td>${file.description}</td>
                                   <td>
-                                      <a href="#" class="btn btn-info"> 
+                                      <a href="https://www.docs.google.com/viewer?url=${hostname}${assetLink}" class="btn btn-info"> 
                                       <i class="icon-eye-open icon-white"></i><span>View</span></a>
                                       <a href="${assetLink}" class="btn btn-primary">
                                       <i class="icon-download-alt icon-white"></i><span>Download</span></a>
                                       <a href="${scriptName}?delete=${file.canonicalUUID}" id="deletefile" class="btn btn-danger">
                                       <i class="icon-trash icon-white"></i><span>Delete</span></a>                                   
                                   </td>
-                                   <!--  <a href="https://www.docs.google.com/viewer?url=www.wealth4india.com${assetLink}">View</a> :--> 
-                                   <td><fmt:formatDate value="${file.memberFileResource.lastModified.time}" type="date" pattern="MMM d, yyyy"/></td>
+                                  <td><fmt:formatDate value="${file.memberFileResource.lastModified.time}" type="date" pattern="MMM d, yyyy"/></td>
                                </tr>
                               </c:forEach>
                             </tbody>
