@@ -610,7 +610,7 @@
 	        <sv:value>/../selfassesmenttax.html</sv:value>
 	      </sv:property>
 	    </sv:node>
-	    <sv:node sv:name="Tds From Others Sources">
+	    <sv:node sv:name="Tds From Others">
 	      <sv:property sv:name="jcr:primaryType" sv:type="Name">
 	        <sv:value>hst:sitemenuitem</sv:value>
 	      </sv:property>
