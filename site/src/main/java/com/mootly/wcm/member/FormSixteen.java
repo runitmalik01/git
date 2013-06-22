@@ -21,6 +21,8 @@ import org.slf4j.LoggerFactory;
 
 import com.mootly.wcm.annotations.AdditionalBeans;
 import com.mootly.wcm.annotations.ChildBean;
+import com.mootly.wcm.annotations.DataTypeValidationFields;
+import com.mootly.wcm.annotations.DataTypeValidationType;
 import com.mootly.wcm.annotations.FormFields;
 import com.mootly.wcm.annotations.PrimaryBean;
 import com.mootly.wcm.annotations.RequiredFields;
@@ -42,6 +44,46 @@ import com.mootly.wcm.components.ITReturnComponent;
 		"education_cess","tax_payable","relief_1","relief_2","tax_payable1","tax_payable_1","tax_payable_2","ded_ent1","ded_ent2",
 		"ded_ent3","ded_ent4","relief_11","relief_12","uuidform16"})
 @RequiredFields(fieldNames={"Employe_category","employer","employee","tan_deductor"})
+@DataTypeValidationFields(fieldNames={
+             		"pan_deductor",
+             		"tan_deductor",
+             		"pan_employee",
+             		"gross_a",
+             		"gross_b",
+             		"gross_c",
+             		"gross_total",
+             		"less_total_2",
+             		"balance",
+             		"deductions_entertainment",
+             		"deductions_tax",
+             		"deductions_total",
+             		"income_chargable_total",
+             		"relief_2",
+             		"ded_ent1",
+             		"ded_ent3",
+             		"ded_ent4"
+    },
+    dataTypes={
+		DataTypeValidationType.PAN,
+		DataTypeValidationType.TAN,
+		DataTypeValidationType.PAN,
+		DataTypeValidationType.DECIMAL,
+		DataTypeValidationType.DECIMAL,
+		DataTypeValidationType.DECIMAL,
+		DataTypeValidationType.DECIMAL,
+		DataTypeValidationType.DECIMAL,
+		DataTypeValidationType.DECIMAL,
+		DataTypeValidationType.DECIMAL,
+		DataTypeValidationType.DECIMAL,
+		DataTypeValidationType.DECIMAL,
+		DataTypeValidationType.DECIMAL,
+		DataTypeValidationType.DECIMAL,
+		DataTypeValidationType.DECIMAL,
+		DataTypeValidationType.DECIMAL,
+		DataTypeValidationType.DECIMAL
+		
+}
+)
 
 public class FormSixteen extends ITReturnComponent {
 
