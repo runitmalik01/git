@@ -7,6 +7,13 @@
 <hst:actionURL var="actionUrl"></hst:actionURL>
 <div class="page type-page">
 	<w4india:itrmenu/>
+	<c:if test="${not empty formMap}">
+		<c:forEach items="${formMap.message}" var="item">
+			<div class="alert alert-error">
+				<fmt:message key="${item.value}" />
+			</div>
+		</c:forEach>
+	</c:if>
 	<h3 id="respond1">
 		<c:choose>
 			<c:when
@@ -170,7 +177,7 @@
 		</div>
 
 		<div class="row-fluid show-grid">
-			<div class="span4">
+		<!-- 	<div class="span4">
 				<div class="rowlabel">
 					<label for="Income_rent_machine"><fmt:message
 							key="member.income.maintain" /> </label>
@@ -180,8 +187,8 @@
 						value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.income_maintain}"/>" class=" decimal"
 						id="Income_maintain" onchange="cal2()" maxlength="14" />
 				</div>
-			</div>
-			<div class="span3">
+			</div> -->
+			<div class="span4">
 				<div class="rowlabel">
 					<label for="Income_other "><fmt:message
 							key="member.income.other" /> </label>
@@ -193,7 +200,7 @@
 				</div>
 			</div>
 
-			<div class="span3">
+			<div class="span4">
 				<div class="rowlabel">
 					<label for="Deduction_57 "><fmt:message key="member.income.deduct" /> </label>
 				</div>
@@ -203,7 +210,7 @@
 						id="Deduction_57" onchange="cal2()" maxlength="14" />
 				</div>
 			</div>
-			<div class="span2">
+			<div class="span4">
 				<div class="rowlabel">
 					<label for="TotalOther_income "><fmt:message
 							key="member.income.totalother" /> </label>
