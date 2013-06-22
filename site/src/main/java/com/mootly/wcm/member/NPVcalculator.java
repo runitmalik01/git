@@ -19,26 +19,18 @@ import com.mootly.wcm.beans.MemberPersonalInformation;
 import com.mootly.wcm.beans.compound.AdvanceTaxDetail;
 import com.mootly.wcm.components.ITReturnComponent;
 
-/*
- * Author:Pankaj Singh
- * Date:13/3/2013
- * Description:It will take value from Tdsfromsalary.jsp and pass it to bean
- */
-
 public class NPVcalculator extends ITReturnComponent {
 
 	private static final Logger log = LoggerFactory.getLogger(NPVcalculator.class);
 	public void doBeforeRender(HstRequest request, HstResponse response) {
 		// TODO Auto-generated method stub
 		super.doBeforeRender(request, response);
-		System.out.println("this is do before render of self assesment tax");
 	}
 	@Override
 	public void doAction(HstRequest request, HstResponse response)
 			throws HstComponentException {
 		// TODO Auto-generated method stub
 		super.doAction(request, response);
-		System.out.println("this is do Action of self assesment tax");
 	}
 
 }
