@@ -15,6 +15,7 @@ import org.slf4j.LoggerFactory;
 import com.mootly.wcm.annotations.ChildBean;
 import com.mootly.wcm.annotations.DataTypeValidationFields;
 import com.mootly.wcm.annotations.DataTypeValidationHelper;
+import com.mootly.wcm.annotations.DataTypeValidationType;
 import com.mootly.wcm.annotations.FormFields;
 import com.mootly.wcm.annotations.PrimaryBean;
 import com.mootly.wcm.annotations.RequiredBeans;
@@ -32,13 +33,21 @@ import com.mootly.wcm.utils.GoGreenUtil;
  */
 @PrimaryBean(primaryBeanClass=AdvanceTaxDocument.class)
 @ChildBean(childBeanClass=AdvanceTaxDetail.class)
-
-
 @FormFields(fieldNames={"bsr_codeadv","date_creditadv","Serial_challanadv","amountadv"})
-
-
+@RequiredFields(fieldNames={"bsr_codeadv","date_creditadv","Serial_challanadv","amountadv"})
+@DataTypeValidationFields(fieldNames={
+		"bsr_codeadv",
+		"Serial_challanadv",
+		"amountadv",
+		"date_creditadv"
+		},
+		dataTypes={
+		DataTypeValidationType.BSR,
+		DataTypeValidationType.CHALLANNO,
+		DataTypeValidationType.DECIMAL,	
+		DataTypeValidationType.INDIANDATE
+})
 public class AdvanceTax extends ITReturnComponent {
-
 	private static final Logger log = LoggerFactory.getLogger(TdsFromSalary.class);
 	public void doBeforeRender(HstRequest request, HstResponse response) {
 		// TODO Auto-generated method stub
@@ -46,7 +55,6 @@ public class AdvanceTax extends ITReturnComponent {
 		if(log.isInfoEnabled()){
 		log.info("this is do before render of advance  tax");
 		}
-		
 	}
 	@Override
 	public void doAction(HstRequest request, HstResponse response)
