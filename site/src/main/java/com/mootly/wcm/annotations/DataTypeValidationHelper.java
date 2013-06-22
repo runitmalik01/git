@@ -63,6 +63,13 @@ public  final class DataTypeValidationHelper {
 			else {
 				return false;
 			}
+		case DECIMAL:
+			if (inStr != null && inStr.matches("^[0-9]+\\.?[0-9]{0,2}?$")) {
+				return true;
+			}
+			else {
+				return false;
+			}
 		case ITR:
 			if (inStr.matches("-select-")) {
 				return false;
