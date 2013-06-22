@@ -25,26 +25,42 @@ import com.mootly.wcm.components.ITReturnComponent;
  */
 @PrimaryBean(primaryBeanClass=SelfAssesmetTaxDocument.class)
 @ChildBean(childBeanClass=SelfAssesmentTaxDetail.class)
-
 @FormFields(fieldNames={"bsr_codeself","date_creditself","Serial_challanself","amountself"})
-
+@RequiredFields(fieldNames={"bsr_codeself","date_creditself","Serial_challanself","amountself"})
+@DataTypeValidationFields(fieldNames={
+		"bsr_codeself",
+		"Serial_challanself",
+		"amountself",
+		"date_creditself"
+		},
+		dataTypes={
+		DataTypeValidationType.BSR,
+		DataTypeValidationType.CHALLANNO,
+		DataTypeValidationType.DECIMAL,	
+		DataTypeValidationType.INDIANDATE
+})
 public class SelfAssesmentTax extends ITReturnComponent {
-	
+
 	private static final Logger log = LoggerFactory.getLogger(TdsFromSalary.class);
 	public void doBeforeRender(HstRequest request, HstResponse response) {
 		// TODO Auto-generated method stub
 		super.doBeforeRender(request, response);
-		System.out.println("this is do before render of self assesment tax");
+		if(log.isInfoEnabled()){
+			log.info("this is do before render of self assesment tax");
+		}
 	}
 	@Override
 	public void doAction(HstRequest request, HstResponse response)
 			throws HstComponentException {
-		
+
 		// TODO Auto-generated method stub
 		super.doAction(request, response);
-		System.out.println("this is do Action of self assesment tax");
-	} }
-	
-	
-	
+		if(log.isInfoEnabled()){
+		log.info("this is do Action of self assesment tax");
+		}
+	} 
+}
+
+
+
 
