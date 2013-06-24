@@ -65,7 +65,7 @@
 							</div>
 							<div class="rowlabel">
 								<input id="Name_employer" type="text" name="Name_employer"
-									maxlength="25"
+									maxlength="25" class="uprcase"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.name_employer}"/></c:if>" />
 
 							</div>
@@ -78,7 +78,7 @@
 							</div>
 							<div class="rowlabel">
 								<input id="Name_employee" type="text" name="Name_employee"
-									maxlength="25"
+									maxlength="25" class="uprcase"
 									value="<c:choose><c:when test="${pageAction == 'EDIT_CHILD'}"><c:out value="${childBean.name_employee}"/></c:when><c:otherwise><c:out value="${memberpersonalinformation.name}"/></c:otherwise></c:choose>"
 									readonly="readonly" />
 							</div>
@@ -89,7 +89,7 @@
 										key="member.info.pan.employee" /> </label>
 							</div>
 							<div class="rowlabel">
-								<input id="Pan_employee" type="text" name="Pan_employee"
+								<input id="Pan_employee" type="text" name="Pan_employee" class="uprcase"
 									value="<c:choose><c:when test="${pageAction == 'EDIT_CHILD'}"><c:out value="${childBean.pan_employee}"/></c:when><c:otherwise><c:out value="${memberpersonalinformation.PAN}"/></c:otherwise></c:choose>"
 									readonly="readonly" />
 							</div>
@@ -102,7 +102,7 @@
 										key="member.info.pan" /> </label>
 							</div>
 							<div class="rowlabel">
-								<input id="Pan_employer" type="text" name="Pan_employer"
+								<input id="Pan_employer" type="text" name="Pan_employer" class="uprcase"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.pan_employer}"/></c:if>" />
 							</div>
 						</div>
@@ -112,7 +112,7 @@
 										key="member.info.tan" /> </label>
 							</div>
 							<div class="rowlabel">
-								<input id="Tan_employer" type="text" name="Tan_employer"
+								<input id="Tan_employer" type="text" name="Tan_employer" class="uprcase"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.tan_employer}"/></c:if>">
 							</div>
 						</div>
@@ -128,7 +128,7 @@
 										key="member.address.info" /> </label>
 							</div>
 							<div class="rowlabel">
-								<input id="Addressslry" type="text" name="Addressslry"
+								<input id="Addressslry" type="text" name="Addressslry" class="uprcase"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.address}"/></c:if>" />
 							</div>
 						</div>
@@ -138,7 +138,7 @@
 										key="member.city.info" /> </label>
 							</div>
 							<div class="rowlabel">
-								<input id="Cityslry" type="text" name="Cityslry"
+								<input id="Cityslry" type="text" name="Cityslry" class="uprcase"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.city}"/></c:if>" />
 							</div>
 						</div>
