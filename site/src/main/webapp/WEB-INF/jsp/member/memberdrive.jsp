@@ -193,6 +193,7 @@ pageContext.setAttribute("hostname", builder.toString());
                 $('.bar').css({"width" :i+'%'});
                  i=i+10;
                }else{
+                  clearInterval(myVar);
                   $('#memberdrive').submit();
                  } 
              },200);
