@@ -36,7 +36,7 @@
 					<div class="rowlabel">
 						<input id="name_person" name="name_person" 
 							type="text" maxlength="125"
-							value=" " />
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.name_Person}"/></c:if> " />
 					</div>
 				</div>
 				<div class="span4">
@@ -47,7 +47,7 @@
 					<div class="rowlabel">
 						<input id="pan_person" name="pan_person"
 							type="text" maxlength="10" 
-							value="" />
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.pan_person}"/></c:if>" />
 					</div>
 				</div>
 				<div class="span4">
@@ -58,7 +58,7 @@
 					<div class="rowlabel">
 						<input id="relationship" name="relationship"
 							type="text" maxlength="125" 
-							value=" " />
+							value=" <c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.relationship}"/></c:if>" />
 					</div>
 				</div>
 			</div>
@@ -72,7 +72,7 @@
 					</div>
 					<div class="rowlabel">
 						<input id="nature_income" name="nature_income"
-							type="text" value=" " />
+							type="text" value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.nature_income}"/></c:if> " />
 					</div>
 				</div>
 				<div class="span4">
@@ -83,7 +83,7 @@
 					<div class="rowlabel">
 						<input id="amountclub" name="amountclub" type="text"
 							maxlength="14"   class="decimal"
-							value=" " />
+							value=" <c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.amountclub}"/></c:if>" />
 					</div>
 				</div>
 				</div>
@@ -100,25 +100,29 @@
 	<c:otherwise>
 		<table>
 			<tr align="center">
-				<th><b><fmt:message key="tds.tan.deductor" /> </b>
+				<th><b><fmt:message key="name.person.itr2" /> </b>
 				</th>
-				<th><b><fmt:message key="tds.name.deductor" /> </b>
+				<th><b><fmt:message key="pan.person.itr2" /> </b>
 				</th>
-				<th><b><fmt:message key="tds.total.tax.deducted" /> </b></th>
-				<th><b><fmt:message key="tds.amount.claimed" /> </b></th>
+				<th><b><fmt:message key="relationship.clubincome" /> </b></th>
+				<th><b><fmt:message key="nature.income.itr2" /> </b>
+				</th>
+				<th><b><fmt:message key="amount.clubincome.itr2" /> </b></th>
 				<th><b>Actions</b></th>
 			</tr>
 			<c:if test="${not empty parentBean}">
 				<c:forEach items="${parentBean.clubIncomeDetailList}"
 					var="clubincomedetail">
 					<tr>
-						<td><c:out value="" />
+						<td><c:out value="${clubincomedetail.name_Person}" />
 						</td>
-						<td><c:out value="" />
+						<td><c:out value="${clubincomedetail.pan_person}" />
 						</td>
-						<td><w4india:inr value="" />
+						<td><c:out value="${clubincomedetail.relationship}" />
 						</td>
-						<td><w4india:inr value="" />
+						<td><c:out value="${clubincomedetail.nature_income}" />
+						</td>
+						<td><w4india:inr value="${clubincomedetail.amountclub}" />
 						</td>
 						<td><a
 							href="${scriptName}/<c:out value="${clubincomedetail.canonicalUUID}"/>/clubincomeedit"><small>Edit</small> &nbsp;&nbsp;
