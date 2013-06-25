@@ -8,7 +8,6 @@
 package com.mootly.wcm.member;
 
 
-import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -69,7 +68,6 @@ import com.mootly.wcm.beans.compound.SelfAssesmentTaxDetail;
 import com.mootly.wcm.beans.compound.TdsFromSalaryDetail;
 import com.mootly.wcm.components.ITReturnComponent;
 import com.mootly.wcm.model.ITRForm;
-import com.mootly.wcm.services.DeductionListService;
 import com.mootly.wcm.services.ITRXmlGeneratorServiceFactory;
 import com.mootly.wcm.services.XmlGeneratorService;
 
@@ -85,11 +83,11 @@ public class XmlGenerator extends ITReturnComponent {
 	ITRXmlGeneratorServiceFactory itrXmlGeneratorServiceFactory = null;
 	String servletPath = null;
 	String xsltPath = null;
-	
+
 	@Override
 	public void init(ServletContext servletContext,
 			ComponentConfiguration componentConfig)
-			throws HstComponentException {
+					throws HstComponentException {
 		// TODO Auto-generated method stub
 		super.init(servletContext, componentConfig);
 		ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(servletContext);
@@ -151,8 +149,8 @@ public class XmlGenerator extends ITReturnComponent {
 				StreamResult sResult = new StreamResult(sw);
 				transformer.transform(sSource,sResult);
 				fi.close();
-				
-				
+
+
 				String theHTML = sw.toString();
 				if (log.isInfoEnabled()) {
 					log.info(theHTML);
@@ -168,8 +166,8 @@ public class XmlGenerator extends ITReturnComponent {
 				XMLWorkerHelper.getInstance().parseXHtml(writer, document,new StringReader(theHTML));
 				document.close();
 				writer.close();
-				
-				
+
+
 				if (isDownload) {
 					request.setAttribute("fileName", "itReturnSummary.pdf");
 					response.setRenderPath("jsp/member/downloadfile.jsp");
@@ -178,28 +176,36 @@ public class XmlGenerator extends ITReturnComponent {
 				//laterz
 			} catch (ParserConfigurationException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+
+				log.error("Error during parsing configuration"+e);
 			} catch (FactoryConfigurationError e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();				
+
+				log.error("Error factory configuration"+e);
 			} catch (SAXException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+
+				log.error("Error from sax exceptions"+e);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+
+				log.error("Error from IO exceptions"+e);
 			} catch (TransformerConfigurationException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+
+				log.error("Transforming  exceptions"+e);
 			} catch (TransformerFactoryConfigurationError e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+
+				log.error("Transforming factory exceptions"+e);
 			} catch (TransformerException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+
+				log.error("Transformer exceptions"+e);
 			} catch (DocumentException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+
+				log.error("Document  exceptions"+e);
 			}
 		}
 		else if (isDownload && whtToDownload != null && whtToDownload.equals("xml")) {
