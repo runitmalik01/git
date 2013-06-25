@@ -63,6 +63,10 @@
 				<td>Total Income</td>
 				<td><xsl:value-of select="t:GrossTotIncome"/></td>
 			</tr>
+			<tr>
+				<td>Section 89</td>
+				<td><xsl:value-of select="t:Section89"/></td>
+			</tr>
 		</table>
 		<xsl:apply-templates select="t:DeductUndChapVIA"/>
 	</xsl:template>

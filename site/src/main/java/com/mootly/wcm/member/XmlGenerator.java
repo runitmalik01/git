@@ -181,7 +181,7 @@ public class XmlGenerator extends ITReturnComponent {
 				e.printStackTrace();
 			} catch (FactoryConfigurationError e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				e.printStackTrace();				
 			} catch (SAXException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

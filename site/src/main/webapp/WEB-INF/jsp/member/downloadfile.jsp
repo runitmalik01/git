@@ -16,19 +16,27 @@ String fileName = (String) request.getAttribute("fileName");
 response.setContentType("application/x-download"); 
 response.setHeader("Content-Disposition", "attachment; filename=" + fileName);
 String filePath = (String) request.getAttribute("filePath");
-
-File file = new File(filePath);
-FileInputStream fileIn = new FileInputStream(file);
-ServletOutputStream outstream = response.getOutputStream();
-
-byte[] outputByte = new byte[40096];
-
-while(fileIn.read(outputByte, 0, 40096) != -1)
-{
-    outstream.write(outputByte, 0, 40096);
+if (filePath != null) {
+	File file = new File(filePath);
+	FileInputStream fileIn = new FileInputStream(file);
+	ServletOutputStream outstream = response.getOutputStream();
+	
+	byte[] outputByte = new byte[40096];
+	
+	while(fileIn.read(outputByte, 0, 40096) != -1)
+	{
+	    outstream.write(outputByte, 0, 40096);
+	}
+	fileIn.close();
+	outstream.flush();
+	outstream.close();
 }
-fileIn.close();
-outstream.flush();
-outstream.close();
+else {
+	String whtToDownload = (String) request.getAttribute("xml");
+	ServletOutputStream outstream = response.getOutputStream();
+	outstream.write( whtToDownload.getBytes("UTF-8"));
+	outstream.flush();
+	outstream.close();
+}
 
 %>
