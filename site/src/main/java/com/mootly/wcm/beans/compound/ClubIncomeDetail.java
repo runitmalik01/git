@@ -17,7 +17,11 @@
 package com.mootly.wcm.beans.compound;
 
 import java.util.Calendar;
-import static com.mootly.wcm.utils.Constants.amountClub;
+import static com.mootly.wcm.utils.Constants.AMOUNTCLUB;
+import static com.mootly.wcm.utils.Constants.NAMEPERSON;
+import static com.mootly.wcm.utils.Constants.RELATIONSHIP;
+import static com.mootly.wcm.utils.Constants.NATUREINCOME;
+import static com.mootly.wcm.utils.Constants.PANPERSON;
 import javax.jcr.RepositoryException;
 import static com.mootly.wcm.utils.Constants.NT_PERSONAL_INFO_LINK;
 import org.hippoecm.hst.component.support.forms.FormMap;
@@ -57,24 +61,24 @@ public class ClubIncomeDetail extends HippoItem implements FormMapFiller {
 		this.markedForDeletion = markedForDeletion;
 	}
     public String getName_Person() {
-    	if (name_Person == null) name_Person = getProperty(name_Person);
+    	if (name_Person == null) name_Person = getProperty(NAMEPERSON);
     	return name_Person;
     }
  public String getPan_person() {
-    	if (pan_person == null) pan_person = getProperty(pan_person);
+    	if (pan_person == null) pan_person = getProperty(PANPERSON);
     	return pan_person;
     }
 
     public String getRelationship() {
-    	if (relationship == null) relationship = getProperty(relationship);
+    	if (relationship == null) relationship = getProperty(RELATIONSHIP);
     	return relationship;
     }
     public String getNature_income() {
-    	if (nature_income == null) nature_income = getProperty(nature_income);
+    	if (nature_income == null) nature_income = getProperty(NATUREINCOME);
     	return nature_income;
     }
     public Double getAmountclub() {
-    	if (amountclub == null) amountclub = getProperty(amountClub);
+    	if (amountclub == null) amountclub = getProperty(AMOUNTCLUB);
     	return amountclub;
     }
    
@@ -127,11 +131,11 @@ public class ClubIncomeDetail extends HippoItem implements FormMapFiller {
 		try {
 			
 			
-			node.setProperty(name_Person, getName_Person());
-			node.setProperty(pan_person,getPan_person());
-			node.setProperty(relationship,getRelationship());
-			node.setProperty(nature_income,getNature_income());
-			node.setProperty(amountClub,getAmountclub());
+			node.setProperty(NAMEPERSON, getName_Person());
+			node.setProperty(PANPERSON,getPan_person());
+			node.setProperty(RELATIONSHIP,getRelationship());
+			node.setProperty(NATUREINCOME,getNature_income());
+			node.setProperty(AMOUNTCLUB,getAmountclub());
 			} catch (RepositoryException rex) {
 			log.error("Repository Exception while binding",rex);
 		}
