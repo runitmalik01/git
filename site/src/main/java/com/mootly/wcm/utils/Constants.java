@@ -177,6 +177,12 @@ public interface Constants {
 	String tds_certificate="mootlywcm:tdscertificate";
 	String deducted_year="mootlywcm:deductedyear";
 	String PROP_FORM_16_LINK="mootlywcm:formsixteenlink";
+	
+	String name_Person="mootlywcm:name_Person";
+	String pan_person="mootlywcm:pan_Person";
+	String relationship="mootlywcm:relationship";
+	String nature_income="mootlywcm:nature_income";
+	String amountClub="mootlywcm:amount";
 
 
 
