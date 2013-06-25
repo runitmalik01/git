@@ -359,3 +359,7 @@ orderable
 
 
 [mootlywcm:memberdrivedocument] > hippostd:relaxed, mootlywcm:basedocument orderable
+
+[mootlywcm:clubincomedocument] > hippostd:relaxed, mootlywcm:basedocument orderable
+
+[mootlywcm:clubincomedetail] > hippo:compound, hippostd:relaxed orderable
