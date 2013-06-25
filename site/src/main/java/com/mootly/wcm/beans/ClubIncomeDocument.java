@@ -118,33 +118,28 @@ public class ClubIncomeDocument extends BaseDocument implements ContentNodeBinde
 		try {
 			ClubIncomeDocument clubincome = (ClubIncomeDocument) content;
 			NodeIterator nodeIterator = node.getNodes(PROP_DETAIL_BEAN);
-			log.info("GGGGGGGGGGGGGFFFFFFFFFFFFFFFFFF"+nodeIterator);
-        	if (nodeIterator != null) {
+			if (nodeIterator != null) {
 	        	while (nodeIterator.hasNext()) {
 	        		javax.jcr.Node aNode = nodeIterator.nextNode();
 	        		aNode.remove();
 	        	}
         	}
         	 double sum=0.0;
-        	 String strSum="";
+        	 double amount=0.0d;
+        	// String strSum="";
         	if ( clubincome.getClubIncomeDetailList() != null &&  clubincome.getClubIncomeDetailList().size() > 0 ){ 
         		log.info("checking size in salary income bean:::"+ clubincome.getClubIncomeDetailList().size());
-        		
         		for (ClubIncomeDetail objClubIncome:clubincome.getClubIncomeDetailList()) {
-        		    
-        			if (!objClubIncome.isMarkedForDeletion()) {
-        				double amount=objClubIncome.getAmountclub();
-            		    log.info("value of amount after fetching from compound bean"+amount);
+        		    if (!objClubIncome.isMarkedForDeletion()) {
+        				 amount=objClubIncome.getAmountclub();
             		     sum=sum+ amount;
             		    // Double sum1= (double) sum;
             		   //  strSum= BigDecimal.valueOf(sum1).toPlainString();
 		                javax.jcr.Node html = node.addNode(PROP_DETAIL_BEAN, PROP_DETAIL_BEAN);
-		                log.info("BBBBBBBBBBBBGGGGGGGGGGGGGGGCCCCCCCCCCCC"+html);
 		                objClubIncome.bindToNode(html); 
         			}
         		}
         		setTotal_Amount(sum);
-        		
         	}
         	node.setProperty("mootlywcm:totalamount", getTotal_Amount());
         	/*
