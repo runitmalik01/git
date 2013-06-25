@@ -1176,6 +1176,24 @@
 	    <sv:value>knowledgearticles.leftnav</sv:value>
 	  </sv:property>
 	</sv:node>
+	
+	<sv:node sv:name="clubincome" >
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:component</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>7289060f-0e80-471f-89d8-4eb3ff15cb52</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:componentclassname" sv:type="String">
+    <sv:value>com.mootly.wcm.member.ClubIncome</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String"/>
+  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String"/>
+  <sv:property sv:name="hst:template" sv:type="String">
+    <sv:value>clubincome</sv:value>
+  </sv:property>
+</sv:node>
+	
 	<sv:node sv:name="suggestknowledgearticle" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
 	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
 	    <sv:value>hst:component</sv:value>
