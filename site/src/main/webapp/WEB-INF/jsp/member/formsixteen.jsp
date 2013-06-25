@@ -12,20 +12,6 @@
 </c:set>
 <hippo-gogreen:title title="${formsixteentitle}" />
 <hst:actionURL var="actionUrl"></hst:actionURL>
-<%--
-	ValueListService objValueListService = ValueListServiceImpl
-			.getInstance();
-	TreeMap objHashMapDeduction = (TreeMap) objValueListService
-			.getDeduction();
-	request.setAttribute("objHashMapDeduction", objHashMapDeduction);
-
-	TreeMap objHashMapDeduction6a = (TreeMap) objValueListService
-			.getDeduction6a();
-	request.setAttribute("objHashMapDeduction6a", objHashMapDeduction6a);
-	TreeMap objHashMapquarter = (TreeMap) objValueListService
-			.getQuarter();
-	request.setAttribute("objHashMapquarter", objHashMapquarter);
---%>
 <w4india:itrmenu></w4india:itrmenu>
 <h3 id="respond1">
 	<c:choose>
@@ -56,32 +42,16 @@
 				<legend style="color: black">Employer Details</legend>
 				<div class="row-fluid show-grid">
 					<div class="span3">
-						<div class="rowlabel">
-							<label><fmt:message key="member.employe.category" /><span
-								style="color: red">*</span> </label>
+							<div class="rowlabel">
+								<label for="Employe_category"><fmt:message key="member.employe.category" /> </label>
+							</div>
+							<select id= "Employe_category" name="Employe_category">
+							<option value="">-Select-</option>
+									<option value="GOV" <c:if test="${not empty childBean.employe_category && childBean.employe_category =='GOV'}">selected</c:if>>GOVT.</option>
+									<option value="PSU"<c:if test="${not empty childBean.employe_category && childBean.employe_category =='PSU'}">selected</c:if>>PSU</option>
+									<option value="OTH" <c:if test="${not empty childBean.employe_category && childBean.employe_category =='OTH'}">selected</c:if>>OTHERS.</option>
+								</select>
 						</div>
-						<c:if
-							test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
-							<c:choose>
-								<c:when test="${childBean.employe_category == 'GOV'}">
-									<c:set var="gov" value="checked=checked" />
-								</c:when>
-								<c:when test="${childBean.employe_category == 'PSU'}">
-									<c:set var="psu" value="checked=checked" />
-								</c:when>
-								<c:when test="${childBean.employe_category == 'OTH'}">
-									<c:set var="oth" value="checked=checked" />
-								</c:when>
-							</c:choose>
-						</c:if>
-						<div class="rowlabel">
-							<input type="radio" <c:out value="${gov}"/>
-								name="Employe_category" value="GOV" />Government <input
-								type="radio" <c:out value="${psu}"/> name="Employe_category"
-								value="PSU" />PSU <input type="radio" <c:out value="${oth}"/>
-								name="Employe_category" value="OTH" />Others
-						</div>
-					</div>
 				</div>
 				<br />
 				<div class="row-fluid show-grid">
