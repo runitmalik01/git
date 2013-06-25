@@ -1,5 +1,7 @@
 <%@page import="com.mootly.wcm.model.ITRTab"%>
 <%@include file="../includes/tags.jspf"%>
+<hst:componentRenderingURL var="xmlGeneratorURL"/>
+<c:set var="reqParamXmlGeneratorURL" value="${xmlGeneratorURL}" scope="request"/>
 <w4india:itrmenu></w4india:itrmenu>
 <c:choose>
 	<c:when test="${not empty hasDIY && hasDIY == 'true'}">

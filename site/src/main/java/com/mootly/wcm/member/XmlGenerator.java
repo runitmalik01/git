@@ -8,7 +8,26 @@
 package com.mootly.wcm.member;
 
 
+import java.io.ByteArrayOutputStream;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.StringReader;
+import java.io.StringWriter;
+import java.util.UUID;
+
 import javax.servlet.ServletContext;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.FactoryConfigurationError;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerConfigurationException;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.TransformerFactoryConfigurationError;
+import javax.xml.transform.stream.StreamResult;
+import javax.xml.transform.stream.StreamSource;
 
 import org.hippoecm.hst.core.component.HstComponentException;
 import org.hippoecm.hst.core.component.HstRequest;
@@ -18,7 +37,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
+import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
 
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.pdf.PdfWriter;
+import com.itextpdf.tool.xml.XMLWorkerHelper;
 import com.mootly.wcm.annotations.AdditionalBeans;
 import com.mootly.wcm.annotations.RequiredBeans;
 import com.mootly.wcm.annotations.ValueListBeans;
@@ -58,6 +83,9 @@ accessKey={"deduction_sections","deduction_section_heads","deduction_section_max
 public class XmlGenerator extends ITReturnComponent {
 	private static final Logger log = LoggerFactory.getLogger(XmlGenerator.class);
 	ITRXmlGeneratorServiceFactory itrXmlGeneratorServiceFactory = null;
+	String servletPath = null;
+	String xsltPath = null;
+	
 	@Override
 	public void init(ServletContext servletContext,
 			ComponentConfiguration componentConfig)
@@ -66,18 +94,23 @@ public class XmlGenerator extends ITReturnComponent {
 		super.init(servletContext, componentConfig);
 		ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(servletContext);
 		itrXmlGeneratorServiceFactory = context.getBean(com.mootly.wcm.services.ITRXmlGeneratorServiceFactory.class);
+		xsltPath = servletContext.getRealPath("/xslt/ITRSummary.xsl");
 	}
 	//DecimalFormat decimalFormat=new DecimalFormat("#.#");
 	@Override
 	public void doBeforeRender(HstRequest request, HstResponse response) {
 		// TODO Auto-generated method stub
+		boolean isDownload = false;
 		super.doBeforeRender(request, response);
 		MemberPersonalInformation memberPersonalInformation = (MemberPersonalInformation) request.getAttribute(MemberPersonalInformation.class.getSimpleName().toLowerCase());
 		String ITR = memberPersonalInformation.getFlexField("flex_string_ITRForm", "");
 		request.setAttribute("ITR", ITR);
 
 		if (getPublicRequestParameter(request, "show") != null) request.setAttribute("show",getPublicRequestParameter(request, "show"));
-
+		if (getPublicRequestParameter(request, "download") != null) {
+			request.setAttribute("download",getPublicRequestParameter(request, "download"));
+			isDownload = true;
+		}
 		//simple test
 		ITRForm whichITRForm = ITRForm.getEnumByDisplayName(getLocalParameter("formName", request));
 		if (whichITRForm.equals(ITRForm.UNKNOWN)) {
@@ -95,6 +128,74 @@ public class XmlGenerator extends ITReturnComponent {
 				}
 			}
 		}
+		//now lets check if we have theForm
+		//lets attempt a PDF
+		try {
+			String xml = (String) request.getAttribute("xml");
+			DocumentBuilder db = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+			InputSource is = new InputSource(new StringReader(xml));
+			org.w3c.dom.Document aDom = db.parse(is);
+			FileInputStream fi = new FileInputStream(xsltPath);
+			StreamSource stylesource = new StreamSource(fi); 
+			Transformer transformer = TransformerFactory.newInstance().newTransformer(stylesource);
+			StringWriter sw = new StringWriter();
+			StreamSource sSource = new StreamSource(new StringReader(xml));
+			StreamResult sResult = new StreamResult(sw);
+			transformer.transform(sSource,sResult);
+			fi.close();
+			
+			
+			String theHTML = sw.toString();
+			if (log.isInfoEnabled()) {
+				log.info(theHTML);
+			}
+			Document document = new Document();
+			String tmpDir = System.getProperty("java.io.tmpdir");
+			String uuid = UUID.randomUUID().toString();
+			String filePath = tmpDir + "/" + uuid + ".pdf";
+			request.setAttribute("filePath", filePath);
+			PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(filePath));
+			writer.setInitialLeading(12.5f);
+			document.open();
+			XMLWorkerHelper.getInstance().parseXHtml(writer, document,new StringReader(theHTML));
+			document.close();
+			writer.close();
+			
+			
+			if (isDownload) {
+				request.setAttribute("fileName", "itReturnSummary.pdf");
+				response.setRenderPath("jsp/member/downloadfile.jsp");
+			}
+			//now we have the BYTES, this can be used, but we need to be careful the SERVER may get overload, we can use tmp file for this
+			//laterz
+		} catch (ParserConfigurationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (FactoryConfigurationError e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SAXException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (TransformerConfigurationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (TransformerFactoryConfigurationError e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (TransformerException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (DocumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		//Object theForm = request.getAttribute("theForm");
+		
 	}
 
 	@Override

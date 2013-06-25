@@ -21,7 +21,6 @@
 
 <%@ tag import="com.mootly.wcm.utils.*" %>
 <%@ tag import="java.util.*" %>
-
 <%
 HstRequest hstRequest = (HstRequest) request;
 ResolvedSiteMapItem resolvedMapItem = hstRequest.getRequestContext().getResolvedSiteMapItem();
@@ -242,7 +241,7 @@ for (HstSiteMenuItem siteMenuItem : itrSiteMenu.getSiteMenuItems() ){
 		                     <li><a href="#">Download XML</a></li>
 		                     <li class="divider"></li>
 	                     </c:if>
-	                     <li><a href="#">Download Return</a></li>
+	                     <li><a href="<c:out value="${reqParamXmlGeneratorURL}"/>?download=true">Download Summary</a></li>
 	                  </ul>
 	               </li>
 	            </ul>
