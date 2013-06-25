@@ -178,11 +178,11 @@ public interface Constants {
 	String deducted_year="mootlywcm:deductedyear";
 	String PROP_FORM_16_LINK="mootlywcm:formsixteenlink";
 	
-	String name_Person="mootlywcm:name_Person";
-	String pan_person="mootlywcm:pan_Person";
-	String relationship="mootlywcm:relationship";
-	String nature_income="mootlywcm:nature_income";
-	String amountClub="mootlywcm:amount";
+	String NAMEPERSON="mootlywcm:name_Person";
+	String PANPERSON="mootlywcm:pan_Person";
+	String RELATIONSHIP="mootlywcm:relationship";
+	String NATUREINCOME="mootlywcm:nature_income";
+	String AMOUNTCLUB="mootlywcm:amount";
 
 
 
