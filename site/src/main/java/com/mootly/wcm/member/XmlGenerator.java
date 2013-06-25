@@ -101,6 +101,7 @@ public class XmlGenerator extends ITReturnComponent {
 	public void doBeforeRender(HstRequest request, HstResponse response) {
 		// TODO Auto-generated method stub
 		boolean isDownload = false;
+		String whtToDownload = null; //I HATE IT use ENUM
 		super.doBeforeRender(request, response);
 		MemberPersonalInformation memberPersonalInformation = (MemberPersonalInformation) request.getAttribute(MemberPersonalInformation.class.getSimpleName().toLowerCase());
 		String ITR = memberPersonalInformation.getFlexField("flex_string_ITRForm", "");
@@ -110,6 +111,12 @@ public class XmlGenerator extends ITReturnComponent {
 		if (getPublicRequestParameter(request, "download") != null) {
 			request.setAttribute("download",getPublicRequestParameter(request, "download"));
 			isDownload = true;
+			if (getPublicRequestParameter(request, "xml") != null) {
+				whtToDownload = "xml";
+			}
+			else {
+				whtToDownload = "pdf";
+			}
 		}
 		//simple test
 		ITRForm whichITRForm = ITRForm.getEnumByDisplayName(getLocalParameter("formName", request));
@@ -130,72 +137,78 @@ public class XmlGenerator extends ITReturnComponent {
 		}
 		//now lets check if we have theForm
 		//lets attempt a PDF
-		try {
-			String xml = (String) request.getAttribute("xml");
-			DocumentBuilder db = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-			InputSource is = new InputSource(new StringReader(xml));
-			org.w3c.dom.Document aDom = db.parse(is);
-			FileInputStream fi = new FileInputStream(xsltPath);
-			StreamSource stylesource = new StreamSource(fi); 
-			Transformer transformer = TransformerFactory.newInstance().newTransformer(stylesource);
-			StringWriter sw = new StringWriter();
-			StreamSource sSource = new StreamSource(new StringReader(xml));
-			StreamResult sResult = new StreamResult(sw);
-			transformer.transform(sSource,sResult);
-			fi.close();
-			
-			
-			String theHTML = sw.toString();
-			if (log.isInfoEnabled()) {
-				log.info(theHTML);
+		if (isDownload && whtToDownload != null && whtToDownload.equals("pdf")) {
+			try {
+				String xml = (String) request.getAttribute("xml");
+				DocumentBuilder db = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+				InputSource is = new InputSource(new StringReader(xml));
+				org.w3c.dom.Document aDom = db.parse(is);
+				FileInputStream fi = new FileInputStream(xsltPath);
+				StreamSource stylesource = new StreamSource(fi); 
+				Transformer transformer = TransformerFactory.newInstance().newTransformer(stylesource);
+				StringWriter sw = new StringWriter();
+				StreamSource sSource = new StreamSource(new StringReader(xml));
+				StreamResult sResult = new StreamResult(sw);
+				transformer.transform(sSource,sResult);
+				fi.close();
+				
+				
+				String theHTML = sw.toString();
+				if (log.isInfoEnabled()) {
+					log.info(theHTML);
+				}
+				Document document = new Document();
+				String tmpDir = System.getProperty("java.io.tmpdir");
+				String uuid = UUID.randomUUID().toString();
+				String filePath = tmpDir + "/" + uuid + ".pdf";
+				request.setAttribute("filePath", filePath);
+				PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(filePath));
+				writer.setInitialLeading(12.5f);
+				document.open();
+				XMLWorkerHelper.getInstance().parseXHtml(writer, document,new StringReader(theHTML));
+				document.close();
+				writer.close();
+				
+				
+				if (isDownload) {
+					request.setAttribute("fileName", "itReturnSummary.pdf");
+					response.setRenderPath("jsp/member/downloadfile.jsp");
+				}
+				//now we have the BYTES, this can be used, but we need to be careful the SERVER may get overload, we can use tmp file for this
+				//laterz
+			} catch (ParserConfigurationException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (FactoryConfigurationError e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SAXException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (TransformerConfigurationException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (TransformerFactoryConfigurationError e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (TransformerException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (DocumentException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-			Document document = new Document();
-			String tmpDir = System.getProperty("java.io.tmpdir");
-			String uuid = UUID.randomUUID().toString();
-			String filePath = tmpDir + "/" + uuid + ".pdf";
-			request.setAttribute("filePath", filePath);
-			PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(filePath));
-			writer.setInitialLeading(12.5f);
-			document.open();
-			XMLWorkerHelper.getInstance().parseXHtml(writer, document,new StringReader(theHTML));
-			document.close();
-			writer.close();
-			
-			
-			if (isDownload) {
-				request.setAttribute("fileName", "itReturnSummary.pdf");
-				response.setRenderPath("jsp/member/downloadfile.jsp");
-			}
-			//now we have the BYTES, this can be used, but we need to be careful the SERVER may get overload, we can use tmp file for this
-			//laterz
-		} catch (ParserConfigurationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (FactoryConfigurationError e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SAXException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (TransformerConfigurationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (TransformerFactoryConfigurationError e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (TransformerException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (DocumentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
-		
+		else if (isDownload && whtToDownload != null && whtToDownload.equals("xml")) {
+			if (isDownload) {
+				request.setAttribute("fileName", "itReturnXML.xml");
+				response.setRenderPath("jsp/member/downloadfile.jsp");				
+			}			
+		}
 		//Object theForm = request.getAttribute("theForm");
-		
 	}
 
 	@Override

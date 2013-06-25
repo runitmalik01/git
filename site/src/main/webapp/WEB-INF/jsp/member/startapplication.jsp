@@ -546,7 +546,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 			</c:choose>
 		</fieldset>
 		<fieldset>
-			<legend>ITR form selection</legend>
+			<legend>ITR Form selection</legend>
 			<div class="row-fluid show-grid">
 			    <div class="span2">
 			    	<div class="rowlabel"><label for="flex_string_ITRForm"><small>Select the ITR Form</small></label></div>
@@ -737,6 +737,42 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 				value="<c:choose><c:when test="${not empty parentBean.filingStatus}"><c:out value="${parentBean.filingStatus}"/></c:when><c:otherwise><c:out value="${filingStatus.xmlCode}"/></c:otherwise></c:choose>"
 				type="hidden" />
 		</div>
+		<!--  Service Selection -->
+		<fieldset>
+			<legend>Choose the service you want</legend>
+			<div class="row-fluid show-grid">
+			    <div class="span2">
+			    	<div class="rowlabel"><label for="flex_string_ITRForm" style="text-decoration: underline;" ><small>Service Type</small></label></div>
+			    </div>
+				<div class="span5">
+					<div class="rowlabel"><label for="whoCan" style="text-decoration: underline;" ><small>What do you get?</small></label></div>
+				</div>
+				<div class="span2">
+					<div class="rowlabel"><label for="whoCannot" style="text-decoration: underline;" ><small>How much does it cost?</small></label></div>
+				</div>
+				<div class="span3">
+					<div class="rowlabel"><label for="whoCannot1" style="text-decoration: underline;" ><small><abbr title="You can name your own price for this service">Name your price</abbr></small></label></div>
+				</div>				
+			</div>					
+			<div class="row-fluid show-grid">
+				<div class="span2">
+					<select id="flex_string_ITRForm" name="flex_string_ITRForm">
+						<c:forEach items="${filingStatus.possibleITRForms}" var="itrForm">
+							<option <c:if test="${parentBean.selectedITRForm == itrForm}">selected</c:if> value="${itrForm}">${itrForm.displayName}</option>
+						</c:forEach>
+					</select>
+				</div>
+				<div class="span5">
+					<div style="font-size:small" id="whoCan"></div>
+				</div>
+				<div class="span2">
+					<div style="font-size:small" id="whoCannot"></div>
+				</div>
+				<div class="span2">
+					<input type="text" value=""/>
+				</div>
+			</div>
+		</fieldset>
 		<div class="row-fluid show-grid">
 			<div class="span4 offset8 decimal">
 				<a id="hrefLogin" role="button" class="btn orange">Save</a>

@@ -238,10 +238,14 @@ for (HstSiteMenuItem siteMenuItem : itrSiteMenu.getSiteMenuItems() ){
 	                  	 <c:if test="${hasDIY =='true'}">
 		                  	 <li><a href="xmlgenerator.html?show=summary">View Summary</a></li>
 		                     <li><a href="xmlgenerator.html?show=xml">View XML</a></li>
-		                     <li><a href="#">Download XML</a></li>
+		                     <c:if test="${not empty reqParamXmlGeneratorURL}">
+		                     	<li><a href="${reqParamXmlGeneratorURL}?download=true&xml=true">Download XML</a></li>
+		                     </c:if>
 		                     <li class="divider"></li>
 	                     </c:if>
-	                     <li><a href="<c:out value="${reqParamXmlGeneratorURL}"/>?download=true">Download Summary</a></li>
+	                     <c:if test="${not empty reqParamXmlGeneratorURL}">
+	                     	<li><a href="${reqParamXmlGeneratorURL}?download=true&summary=true">Download Summary</a></li>
+	                     </c:if>
 	                  </ul>
 	               </li>
 	            </ul>
