@@ -2886,7 +2886,7 @@
 	    <sv:value>jsp/knowledgearticles/facetnav.jsp</sv:value>
 	  </sv:property>
 	</sv:node>
-	<sv:node sv:name="knowledgearticles.overview" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+	<sv:node sv:name="knowledgearticles.overview" >
 	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
 	    <sv:value>hst:template</sv:value>
 	  </sv:property>
@@ -2897,7 +2897,20 @@
 	    <sv:value>jsp/knowledgearticles/overview.jsp</sv:value>
 	  </sv:property>
 	</sv:node>
-	<sv:node sv:name="knowledgearticles.main" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+	
+	<sv:node sv:name="clubincome" >
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:template</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>2c6d80f1-f9e1-462e-942f-f8760920bfac</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:renderpath" sv:type="String">
+    <sv:value>jsp/member/clubincome.jsp</sv:value>
+  </sv:property>
+</sv:node>
+	
+	<sv:node sv:name="knowledgearticles.main" >
 	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
 	    <sv:value>hst:template</sv:value>
 	  </sv:property>
