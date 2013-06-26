@@ -118,14 +118,17 @@ request.setAttribute("objHashMapBoolean", objHashMapBoolean);
 								<td><c:out value="${adjustmentOfLosses.nameOfHead}"/></td>
 								<td><c:out value="${adjustmentOfLosses.assessmentYear}"/></td>
 								<td><c:out value="${adjustmentOfLosses.DOBStr}"/></td>
-								<td><c:out value="${adjustmentOfLosses.amount}"/></td>
-								<td><a href="${scriptName}/<c:out value="${adjustmentOfLosses.canonicalUUID}"/>/edit"><small>Edit</small></a>&nbsp;&nbsp;<a href="${scriptName}/<c:out value="${adjustmentOfLosses.canonicalUUID}"/>/delete"><small>Delete</small></a></td>
+								<td><w4india:inr value="${adjustmentOfLosses.amount}" /></td>
+								<td><a href="${scriptName}/<c:out value="${adjustmentOfLosses.canonicalUUID}"/>/edit"><small><i class="icon-pencil"></i>Edit</small>
+								</a>&nbsp;&nbsp;
+								<a href="${scriptName}/<c:out value="${adjustmentOfLosses.canonicalUUID}"/>/delete" data-confirm="">
+								<small><i class="icon-trash"></i>Delete</small></a></td>
 					        </tr>
 
 						</c:forEach>
 						<tr>
 					       <td colspan="3"><fmt:message key="tds.amount.total" /></td>
-					       <td><input type="text" class="decimal" name="total_value" maxlength="14" readonly value="${parentBean.totalAmount}"></td>
+					       <td><w4india:inr value="${parentBean.totalAmount}" />
 					    </tr>
 					</c:if>
 
