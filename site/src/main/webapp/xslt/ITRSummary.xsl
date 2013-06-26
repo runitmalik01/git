@@ -8,7 +8,7 @@
 		<html>
 			<body>
 				<img width="226px" height="49px"
-					src="http://www.wealth4india.com/site/binaries/content/gallery/logos/w4ilogo.png"></img>
+					src="http://localhost:8080/site/binaries/content/gallery/logos/w4ilogo.png"></img>
 				<h1>
 					<xsl:value-of select="//t:FormName" />
 				</h1>
