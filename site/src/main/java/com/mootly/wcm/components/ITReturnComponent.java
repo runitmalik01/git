@@ -911,7 +911,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 						formMap.addMessage(aRequiredField, "err.required." + aRequiredField);
 						continue;
 					}
-					if (StringUtils.isEmpty( formMap.getField(aRequiredField).getValue() ) ) {
+					if (StringUtils.isEmpty( formMap.getField(aRequiredField).getValue().trim() ) ) {
 						formMap.getField(aRequiredField).addMessage("err.required." + aRequiredField);
 						continue;
 					}
