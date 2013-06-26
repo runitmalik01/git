@@ -11,26 +11,30 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.mootly.wcm.annotations.ChildBean;
-
+import com.mootly.wcm.annotations.DataTypeValidationFields;
+import com.mootly.wcm.annotations.DataTypeValidationType;
 import com.mootly.wcm.annotations.FormFields;
 import com.mootly.wcm.annotations.PrimaryBean;
-
+import com.mootly.wcm.annotations.RequiredFields;
 import com.mootly.wcm.beans.ClubIncomeDocument;
 import com.mootly.wcm.beans.compound.ClubIncomeDetail;
-
 import com.mootly.wcm.components.ITReturnComponent;
 
 
 /*
  * Author:Pankaj Singh
- * Date:13/3/2013
- * Description:It will taje value from Tdsfromsalary.jsp and pass it to bean
+ * Date:24/06/2013
+ * Description:It is component for clubbing of income
  */
 @PrimaryBean(primaryBeanClass=ClubIncomeDocument.class)
 @ChildBean(childBeanClass=ClubIncomeDetail.class)
 @FormFields(fieldNames={"name_person","pan_person","relationship","nature_income","amountclub"})
-//@RequiredFields(fieldNames={"tan_deductortdsoth","name_deductortdsoth","total_taxdeductedtdsoth","amounttdsoth"})
-
+@RequiredFields(fieldNames={"name_person","relationship","nature_income","amountclub"})
+@DataTypeValidationFields(fieldNames={
+		"pan_person"
+},
+dataTypes={DataTypeValidationType.PAN
+		})
 public class ClubIncome extends ITReturnComponent {
 
 	private static final Logger log = LoggerFactory.getLogger(TdsFromSalary.class);
