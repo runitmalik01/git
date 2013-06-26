@@ -130,6 +130,8 @@ public interface ValueListService {
 
 
 	TreeMap<String,String> getDtaaCountries();
+	
+	TreeMap<String,String> getRelationship();
 	/**
 	 * This Method is used to get the Key set of State in sorted order
 	 * 
