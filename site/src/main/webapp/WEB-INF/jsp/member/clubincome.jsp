@@ -17,6 +17,11 @@
 		</div>
 	</c:forEach>
 </c:if>
+<% 
+ValueListService objValueListservice=ValueListServiceImpl.getInstance();
+TreeMap objTreeMapRelation=objValueListservice.getRelationship();
+request.setAttribute("objTreeMapRelation", objTreeMapRelation);
+%>
 <h4>
 	<fmt:message key="member.clubincome.itr2" />
 </h4>
@@ -56,9 +61,16 @@
 									key="relationship.clubincome" /> </small> </label>
 					</div>
 					<div class="rowlabel">
-						<input id="relationship" name="relationship"
-							type="text" maxlength="125" 
-							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.relationship}"/></c:if>" />
+							<select name="relationship" id="relationship"
+									style="text-transform: uppercase;">
+									<option value="">-Select-</option>
+									<c:forEach var="relation" items="${objTreeMapRelation}">
+										<option
+											<c:if test="${pageAction == 'EDIT_CHILD' && childBean.relationship== relation.value}">selected</c:if>
+											value="${relation.value}">${relation.value}</option>
+
+									</c:forEach>
+								</select>
 					</div>
 				</div>
 			</div>
