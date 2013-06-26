@@ -142,9 +142,8 @@
 						</td>
 						<td><w4india:inr value="${tdsfromothersdetail.p_Amount}" />
 						</td>
-						<td><a
-							href="${scriptName}/<c:out value="${tdsfromothersdetail.canonicalUUID}"/>/tdsfromothersedit"><small>Edit</small> &nbsp;&nbsp;
-						</a>&nbsp;<a href="${scriptName}/<c:out value="${tdsfromothersdetail.canonicalUUID}"/>/tdsfromothersdelete" id="delete" onclick="return checkdelete()"><small>Delete</small> </a>
+						<td><a href="${scriptName}/<c:out value="${tdsfromothersdetail.canonicalUUID}"/>/tdsfromothersedit"><small><i class="icon-pencil"></i>Edit</small>&nbsp;&nbsp;
+						</a>&nbsp;<a href="${scriptName}/<c:out value="${tdsfromothersdetail.canonicalUUID}"/>/tdsfromothersdelete" id="delete" data-confirm=""><small><i class="icon-trash"></i>Delete</small> </a>
 							</td>
 						</tr>
 					</tr>
