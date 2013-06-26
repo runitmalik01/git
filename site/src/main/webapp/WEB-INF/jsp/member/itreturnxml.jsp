@@ -3,6 +3,16 @@
 <hst:componentRenderingURL var="xmlGeneratorURL"/>
 <c:set var="reqParamXmlGeneratorURL" value="${xmlGeneratorURL}" scope="request"/>
 <w4india:itrmenu></w4india:itrmenu>
+<c:if test="${not empty emailMe}">
+	<c:choose>
+		<c:when test="${emailMeStatus == 'success'}">
+			<h5>Your Income Tax summary was successfully e-mailed to you.</h5>
+		</c:when>
+		<c:otherwise>
+			<h5>There was an error e-mailing your documents. Please try again later.</h5>
+		</c:otherwise>
+	</c:choose>
+</c:if>
 <c:choose>
 	<c:when test="${not empty hasDIY && hasDIY == 'true'}">
 		<label class="radio inline"> <input type="radio"
@@ -69,6 +79,5 @@
 	<c:otherwise>
 		<h1>Welcome to eZ-Filing</h1>
 		<h5>Please upload all your tax documents. A Tax consultant from wealth4india will shortly get in touch with you.</h5>
-		<h6>Its always an Obligation Quote!!</h6>
 	</c:otherwise>
 </c:choose>

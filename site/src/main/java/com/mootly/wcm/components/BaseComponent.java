@@ -17,14 +17,24 @@
 package com.mootly.wcm.components;
 
 import java.io.IOException;
+import java.util.Map;
+
+import javax.jcr.Session;
 
 import org.hippoecm.hst.component.support.bean.BaseHstComponent;
+import org.hippoecm.hst.content.beans.manager.workflow.WorkflowCallbackHandler;
+import org.hippoecm.hst.content.beans.manager.workflow.WorkflowPersistenceManager;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.core.component.HstComponentException;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
+import org.hippoecm.repository.api.Workflow;
+import org.hippoecm.repository.reviewedactions.FullReviewedActionsWorkflow;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.mootly.wcm.beans.EmailMessage;
+import com.mootly.wcm.components.ITReturnComponent.FullReviewedWorkflowCallbackHandler;
 
 public class BaseComponent extends BaseHstComponent {
 	private static final Logger log = LoggerFactory.getLogger(BaseComponent.class);
@@ -75,6 +85,63 @@ public class BaseComponent extends BaseHstComponent {
     	}
     	else {
     		return null;
+    	}
+    }
+    
+    /**
+     * 
+     * @param request
+     * @param to
+     * @param cc
+     * @param bcc
+     * @param subject
+     * @param attachmentList
+     * @param defaultMessage Use it when templateKey parsing fails and/or is not available.
+     * @param templateKey
+     * @param velocityContext
+     */
+    protected void sendEmail(HstRequest request, String[] to,String[] cc,String[] bcc,String subject,String attachmentList,String defaultMessage,String templateKey,Map<String,String> velocityContext) {
+    	try {
+    		
+    		//here we do the VEOCITY MAGIC
+    		//todo - megha
+    		if (subject == null) return;
+    		Session persistableSession = null;
+    		WorkflowPersistenceManager wpm;
+    		String basePathToSiteContentBean =  request.getRequestContext().getResolvedMount().getMount().getCanonicalContentPath();
+    		persistableSession = getPersistableSession(request);
+    		wpm = getWorkflowPersistenceManager(persistableSession);
+    		
+    		wpm.setWorkflowCallbackHandler(new WorkflowCallbackHandler<FullReviewedActionsWorkflow>() {
+
+				@Override
+				public void processWorkflow(FullReviewedActionsWorkflow workflow)
+						throws Exception {
+					// TODO Auto-generated method stub
+					workflow.publish();
+				}
+
+			});
+    		String pathToEmail = "";
+    		if (getNormalizedUserName(request) == null) {
+    			pathToEmail = basePathToSiteContentBean + "/members/emails";
+    		}
+    		else {
+    			pathToEmail = basePathToSiteContentBean + "/members/" + getNormalizedUserName(request) + "/emails";
+    		}
+    		final String pathToParentBean = wpm.createAndReturn(pathToEmail,"mootlywcm:emailmessage",templateKey, true);
+    		EmailMessage emailMessage = (EmailMessage) wpm.getObject(pathToParentBean);
+    		emailMessage.setTo(to);
+    		if (cc != null) emailMessage.setCc(cc);
+    		if (bcc != null) emailMessage.setBcc(bcc);
+    		emailMessage.setSubject(subject);
+    		emailMessage.setAttachmentList(attachmentList);
+    		emailMessage.setTemplateKey(templateKey);
+    		emailMessage.setHtmlBody(defaultMessage);
+			wpm.update(emailMessage);
+    	}
+    	catch (Exception ex) {
+    		log.error("Error in sending email",ex);
     	}
     }
 

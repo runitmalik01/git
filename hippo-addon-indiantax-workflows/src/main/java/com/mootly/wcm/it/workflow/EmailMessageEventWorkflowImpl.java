@@ -59,6 +59,9 @@ public class EmailMessageEventWorkflowImpl extends WorkflowImpl implements Workf
 	@Persistent(column="mootlywcm:delivered")
 	Boolean delivered;
 	
+	@Persistent(column="flex_string_attachment_files")
+	String flex_string_attachment_files;
+	
     public EmailMessageEventWorkflowImpl() throws RemoteException {
     }
 
@@ -69,7 +72,7 @@ public class EmailMessageEventWorkflowImpl extends WorkflowImpl implements Workf
     		try {    			
     			//EmailService.sendEmail(to,cc,bcc,subject,htmlBody,plainBody);
     			EmailTask emailTask = new EmailTask();
-    			emailTask.addMessage(emailAddress, emailAddress, "info@wealth4india.com", "info@wealth4india.com", subject, plainBody, htmlBody);
+    			emailTask.addMessage(emailAddress, emailAddress, "info@wealth4india.com", "info@wealth4india.com", subject, plainBody, htmlBody,flex_string_attachment_files);
     			emailTask.run();
     			delivered = true;
     		}catch (Exception ex) {

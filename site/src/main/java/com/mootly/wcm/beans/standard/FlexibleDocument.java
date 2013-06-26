@@ -88,8 +88,8 @@ public class FlexibleDocument extends BaseDocument implements FormMapFiller {
 		String dataTypeAndOrd = fieldName.substring(ordOfTheField);
 		String[] splittingParts = dataTypeAndOrd.split("[_]");
 		if (splittingParts.length !=  2) {
-			log.warn(dataTypeAndOrd + " is not in the format of flex_field_string_0. Skipping..");
-			return null;
+			//log.warn(dataTypeAndOrd + " is not in the format of flex_field_string_0. Skipping..");
+			//return null;
 		}
 		String fieldDataType = splittingParts[0].toLowerCase();
 		return fieldDataType;

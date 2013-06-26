@@ -10,15 +10,21 @@
 
 package com.mootly.wcm.it.workflow.util;
 
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
+import javax.activation.DataHandler;
+import javax.activation.DataSource;
+import javax.activation.FileDataSource;
 import javax.mail.Address;
 import javax.mail.Message;
 import javax.mail.MessagingException;
+import javax.mail.Multipart;
 import javax.mail.Part;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
@@ -28,6 +34,8 @@ import javax.mail.internet.MimeUtility;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.mootly.wcm.it.workflow.Attachment;
 /**
  * A task to send email.<p>
  *
@@ -123,7 +131,7 @@ public class EmailTask implements Runnable {
     private String username = "info@wealth4india.com";
     private String password = "mootly007";
     private String ssl      = "false";
-    private String debug    = "true";
+    private String debug    = "false";
 
     // The total number of simultaneous connections allowed to the SMTP server
     private static final long MAX_SMTP_CONNECTIONS = 5;
@@ -212,7 +220,7 @@ public class EmailTask implements Runnable {
      *      is not null.
      */
     public void addMessage(String toName, String toEmail, String fromName,
-            String fromEmail, String subject, String textBody, String htmlBody)
+            String fromEmail, String subject, String textBody, String htmlBody,String attachmentFileList)
     {
         // Check for errors in the given fields:
         if (toEmail==null || fromEmail==null || subject==null ||
@@ -271,6 +279,7 @@ public class EmailTask implements Runnable {
                     // Add multipart to message.
                     message.setContent(content);
                     message.setDisposition(Part.INLINE);
+                    dealWithAttachments(attachmentFileList, content);
                     addMessage(message);
                 }
                 else if (textBody != null) {
@@ -281,25 +290,55 @@ public class EmailTask implements Runnable {
                     mPart.addBodyPart(bPart);
                     message.setContent(mPart);
                     message.setDisposition(Part.INLINE);
+                    
+                    dealWithAttachments(attachmentFileList, mPart);
+                    
                     // Add the message to the send list
                     addMessage(message);
                 }
                 else if (htmlBody != null) {
+                	
                     MimeBodyPart bPart = new MimeBodyPart();
                     bPart.setContent(htmlBody, "text/html");
                     bPart.setDisposition(Part.INLINE);
                     MimeMultipart mPart = new MimeMultipart();
+                    
                     mPart.addBodyPart(bPart);
                     message.setContent(mPart);
                     message.setDisposition(Part.INLINE);
+                    
+                    dealWithAttachments(attachmentFileList, mPart);
                     // Add the message to the send list
                     addMessage(message);
-                }
+                }             
             }
             catch (Exception e) {
                 log.error("Error",e);
             }
         }
+    }
+    
+    /**
+     * This list will be separated by comma
+     * @param attachmentFileList
+     */
+    protected void dealWithAttachments(String attachmentFileList,Multipart multiPart) {
+    	if (attachmentFileList == null || "".equals(attachmentFileList.trim())){
+    		return;
+    	}
+    	String[] attachmentParts = attachmentFileList.split("[,]");
+    	for (String aFile:attachmentParts) {
+    		try {
+    			File theFile = new File(aFile);
+    			MimeBodyPart messageBodyPart = new MimeBodyPart();
+                DataSource source = new FileDataSource(aFile);
+                messageBodyPart.setDataHandler(new DataHandler(source));
+                messageBodyPart.setFileName(theFile.getName());
+                multiPart.addBodyPart(messageBodyPart);
+    		}catch (Exception ex) {
+    			ex.printStackTrace();
+    		}
+    	}
     }
 
     /**
@@ -315,7 +354,7 @@ public class EmailTask implements Runnable {
     
     public static void main(String[] args) {
 		EmailTask emailTask = new EmailTask();
-		emailTask.addMessage("Amit Patkar", "amitpatkar@gmail.com", "info@wealth4india.com", "info@wealth4india.com", "test", "test", "test");
+		emailTask.addMessage("Amit Patkar", "amitpatkar@gmail.com", "info@wealth4india.com", "info@wealth4india.com", "test", "test", "test",null);
 		emailTask.run();
 	}
 }

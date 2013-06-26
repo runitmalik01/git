@@ -246,6 +246,9 @@ for (HstSiteMenuItem siteMenuItem : itrSiteMenu.getSiteMenuItems() ){
 	                     <c:if test="${not empty reqParamXmlGeneratorURL}">
 	                     	<li><a href="${reqParamXmlGeneratorURL}?download=true&summary=true">Download Summary</a></li>
 	                     </c:if>
+	                     <c:if test="${not empty reqParamXmlGeneratorURL}">
+	                     	<li><a href="xmlgenerator.html?emailMe=true">Email to <small>(<%=request.getUserPrincipal().getName()%>)</small></a></li>
+	                     </c:if>
 	                  </ul>
 	               </li>
 	            </ul>

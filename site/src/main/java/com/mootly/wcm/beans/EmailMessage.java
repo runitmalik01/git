@@ -16,11 +16,15 @@
 
 package com.mootly.wcm.beans;
 
+import java.text.ParseException;
+
 import javax.jcr.RepositoryException;
 
 import org.hippoecm.hst.content.beans.ContentNodeBinder;
 import org.hippoecm.hst.content.beans.ContentNodeBindingException;
 import org.hippoecm.hst.content.beans.Node;
+
+import com.mootly.wcm.beans.standard.FlexibleDocument;
 
 /**
  * User: abhishek
@@ -29,7 +33,7 @@ import org.hippoecm.hst.content.beans.Node;
  */
 
 @Node(jcrType = "mootlywcm:emailmessage")
-public class EmailMessage extends BaseDocument implements ContentNodeBinder {
+public class EmailMessage extends FlexibleDocument implements ContentNodeBinder {
 	static final public String NAMESPACE = "mootlywcm:emailmessage";
 	static final public String NODE_NAME="emailmessage";
 	String email;
@@ -40,10 +44,16 @@ public class EmailMessage extends BaseDocument implements ContentNodeBinder {
 	String subject;
 	String htmlBody;
 	String plainBody;
+	String flex_string_attachment_files;
+	
 	
 	public final String getEmail() {
 		if (email == null) email = getProperty("mootlywcm:email");
 		return email;
+	}
+	
+	public final String getAttachmentList() {
+		return getFlexField("flex_string_attachment_files", "");
 	}
 	
 	public final String[] getTo() {
@@ -107,6 +117,17 @@ public class EmailMessage extends BaseDocument implements ContentNodeBinder {
 		this.plainBody  = plainBody;
 	}
 	
+	public void setAttachmentList(String attachmentList) {
+		try {
+			String fieldDataType = FlexibleDocument.getDataTypeFromFieldName("flex_string_attachment_files");
+			setFlexField("flex_string_attachment_files",FlexibleDocument.getValueFromDataType(fieldDataType, attachmentList));
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
+	}
+
+	
 	
 	@Override
 	public boolean bind(Object content, javax.jcr.Node node)
@@ -114,6 +135,7 @@ public class EmailMessage extends BaseDocument implements ContentNodeBinder {
 		// TODO Auto-generated method stub
 		try {
 			EmailMessage emailMessage = (EmailMessage) content;
+			super.bindToNode(node);
 			node.setProperty("mootlywcm:to", emailMessage.getTo());
 			if (emailMessage.getCc() != null) node.setProperty("mootlywcm:cc", emailMessage.getCc());
 			if (emailMessage.getBcc() != null) node.setProperty("mootlywcm:bcc", emailMessage.getBcc());

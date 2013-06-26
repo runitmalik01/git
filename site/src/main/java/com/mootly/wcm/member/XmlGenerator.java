@@ -8,8 +8,11 @@
 package com.mootly.wcm.member;
 
 
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.StringReader;
 import java.io.StringWriter;
@@ -100,6 +103,7 @@ public class XmlGenerator extends ITReturnComponent {
 		// TODO Auto-generated method stub
 		boolean isDownload = false;
 		String whtToDownload = null; //I HATE IT use ENUM
+		boolean emailMe = false;
 		super.doBeforeRender(request, response);
 		MemberPersonalInformation memberPersonalInformation = (MemberPersonalInformation) request.getAttribute(MemberPersonalInformation.class.getSimpleName().toLowerCase());
 		String ITR = memberPersonalInformation.getFlexField("flex_string_ITRForm", "");
@@ -116,6 +120,12 @@ public class XmlGenerator extends ITReturnComponent {
 				whtToDownload = "pdf";
 			}
 		}
+		
+		if (getPublicRequestParameter(request, "emailMe") != null) {
+			request.setAttribute("emailMe",getPublicRequestParameter(request, "emailMe"));
+			emailMe = true;			
+		}
+		
 		//simple test
 		ITRForm whichITRForm = ITRForm.getEnumByDisplayName(getLocalParameter("formName", request));
 		if (whichITRForm.equals(ITRForm.UNKNOWN)) {
@@ -133,9 +143,11 @@ public class XmlGenerator extends ITReturnComponent {
 				}
 			}
 		}
+		String temporaryPathToPDF = null;
+		String temporaryPathToXML = null;
 		//now lets check if we have theForm
 		//lets attempt a PDF
-		if (isDownload && whtToDownload != null && whtToDownload.equals("pdf")) {
+		if ( emailMe || ( isDownload && whtToDownload != null && whtToDownload.equals("pdf") ) ) {
 			try {
 				String xml = (String) request.getAttribute("xml");
 				DocumentBuilder db = DocumentBuilderFactory.newInstance().newDocumentBuilder();
@@ -158,9 +170,12 @@ public class XmlGenerator extends ITReturnComponent {
 				Document document = new Document();
 				String tmpDir = System.getProperty("java.io.tmpdir");
 				String uuid = UUID.randomUUID().toString();
-				String filePath = tmpDir + "/" + uuid + ".pdf";
-				request.setAttribute("filePath", filePath);
-				PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(filePath));
+				//create the dir 
+				new File(tmpDir + "/" + uuid).mkdir();
+				String pdfFileName = "itreturnsummary-AY-" + getFinancialYear().getDisplayAssessmentYear() + ".pdf";
+				temporaryPathToPDF = tmpDir + "/" + uuid + "/" + pdfFileName;
+				request.setAttribute("filePath", temporaryPathToPDF);
+				PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(temporaryPathToPDF));
 				writer.setInitialLeading(12.5f);
 				document.open();
 				XMLWorkerHelper.getInstance().parseXHtml(writer, document,new StringReader(theHTML));
@@ -169,8 +184,9 @@ public class XmlGenerator extends ITReturnComponent {
 
 
 				if (isDownload) {
-					request.setAttribute("fileName", "itReturnSummary.pdf");
+					request.setAttribute("fileName", pdfFileName);
 					response.setRenderPath("jsp/member/downloadfile.jsp");
+					//sendEmail(request,to,null,"info@wealth4india.com",)					
 				}
 				//now we have the BYTES, this can be used, but we need to be careful the SERVER may get overload, we can use tmp file for this
 				//laterz
@@ -208,11 +224,28 @@ public class XmlGenerator extends ITReturnComponent {
 				log.error("Document  exceptions"+e);
 			}
 		}
-		else if (isDownload && whtToDownload != null && whtToDownload.equals("xml")) {
+		
+		if ( emailMe || ( isDownload && whtToDownload != null && whtToDownload.equals("xml")) ) {
 			if (isDownload) {
-				request.setAttribute("fileName", "itReturnXML.xml");
+				String xmlFileName = "itreturn-AY-" +getFinancialYear().getDisplayAssessmentYear() + ".xml";
+				request.setAttribute("fileName", xmlFileName);
 				response.setRenderPath("jsp/member/downloadfile.jsp");				
 			}			
+			if (emailMe) {
+				temporaryPathToXML = saveXmlToTemporaryFile((String)request.getAttribute("xml")); 
+			}
+		}
+		
+		
+		if (emailMe) {
+			if (temporaryPathToPDF != null && temporaryPathToXML != null) {
+				String[] to = new String[]{ getUserName() };
+				sendEmail(request, to, null, new String[] {"info@wealth4india.com"}, "Your IT Return", temporaryPathToPDF + "," + temporaryPathToXML, "Your IT Return Summary", "itreturnSummaryAndXml", null);
+				request.setAttribute("emailMeStatus", "success");
+			}
+			else {
+				request.setAttribute("emailMeStatus", "failure");
+			}
 		}
 		//Object theForm = request.getAttribute("theForm");
 	}
@@ -222,4 +255,40 @@ public class XmlGenerator extends ITReturnComponent {
 		// TODO Auto-generated method stub
 		super.doAction(request, response);
 	}
+	
+	protected String saveXmlToTemporaryFile(String xml) {
+		BufferedWriter writer = null;
+		try
+		{
+			String tmpDir = System.getProperty("java.io.tmpdir");
+			String uuid = UUID.randomUUID().toString();
+			new File(tmpDir + "/" + uuid).mkdir();
+			String filePath = tmpDir + "/" + uuid + "/" + "itreturn-AY-" +getFinancialYear().getDisplayAssessmentYear() + ".xml";
+			
+			writer = new BufferedWriter(new FileWriter(filePath));
+			writer.write(xml);
+			
+			return filePath;
+		}
+		catch ( IOException e)
+		{
+			log.error("Error saving XML as temporary file",e);
+			return null;
+		}
+		finally
+		{
+			try
+			{
+				if ( writer != null)
+					writer.close( );
+			}
+			catch ( IOException e)
+			{
+			}
+	     }
+	}
+	
+	
+	
+	
 }
