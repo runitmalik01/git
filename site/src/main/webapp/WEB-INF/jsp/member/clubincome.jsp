@@ -58,7 +58,7 @@
 					<div class="rowlabel">
 						<input id="relationship" name="relationship"
 							type="text" maxlength="125" 
-							value=" <c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.relationship}"/></c:if>" />
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.relationship}"/></c:if>" />
 					</div>
 				</div>
 			</div>
@@ -83,18 +83,18 @@
 					<div class="rowlabel">
 						<input id="amountclub" name="amountclub" type="text"
 							maxlength="14"   class="decimal"
-							value=" <c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.amountclub}"/></c:if>" />
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.amountclub}"/></c:if>" />
 					</div>
 				</div>
 				</div>
 			</div>
-		<!-- 	<div class="row-fluid show-grid">
+		 	<div class="row-fluid show-grid">
 				<div class="span4 offset8 decimal">
 					<a href="${scriptName}" class="button olive">Cancel</a>&nbsp;
-					<a id="myModalHrefTdsOther" role="button" class="btn orange">Save</a>
+					<a id="myModalHrefClubIncome" role="button" class="btn orange">Save</a>
 				</div>
-			</div> -->
-			<input type="submit" name="save">
+			</div> 
+			
 		</form>
 	</c:when>
 	<c:otherwise>
@@ -144,5 +144,7 @@
 </div>
 
 
-
+<res:client-validation formId="frmClubIncome"
+	screenConfigurationDocumentName="clubincome"
+	formSubmitButtonId="myModalHrefClubIncome" />
 
