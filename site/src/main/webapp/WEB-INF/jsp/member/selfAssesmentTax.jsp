@@ -115,8 +115,8 @@
 						<td><w4india:inr value="${selfassesmentdetail.p_Amount}" />
 						</td>
 						<td><a
-							href="${scriptName}/<c:out value="${selfassesmentdetail.canonicalUUID}"/>/selfassesmenttaxedit"><small>Edit</small> &nbsp;&nbsp;
-						</a>&nbsp;&nbsp;<a href="${scriptName}/<c:out value="${selfassesmentdetail.canonicalUUID}"/>/selfassesmenttaxdelete" id="delete" onclick="return checkdelete()"><small>Delete</small> </a>
+							href="${scriptName}/<c:out value="${selfassesmentdetail.canonicalUUID}"/>/selfassesmenttaxedit"><small><i class="icon-pencil"></i>Edit</small> &nbsp;&nbsp;
+						</a>&nbsp;&nbsp;<a href="${scriptName}/<c:out value="${selfassesmentdetail.canonicalUUID}"/>/selfassesmenttaxdelete" id="delete" data-confirm=""><small><i class="icon-trash"></i>Delete</small> </a>
 							</td>
 					</tr>
 			</c:forEach>
@@ -135,13 +135,13 @@
 	<hst:element var="uiCustom" name="script">
     <hst:attribute name="type">text/javascript</hst:attribute>
     $(document).ready(function() {
-   
+
     var AY='<c:out value="${assessmentYear}"/>'.split("-", 4);
 	itrFinYrMax="31/03/"+AY[1];
 	itrFinYrMin="01/04/"+AY[0];
 	$( ".indiandateSelfAssesment" ).datepicker( "option", "minDate", itrFinYrMin );
 			$( ".indiandateSelfAssesment" ).datepicker( "option", "maxDate", itrFinYrMax );
 			});
-  
+
 </hst:element>
 <hst:headContribution element="${uiCustom}" category="jsInternal"/>
