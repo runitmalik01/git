@@ -898,7 +898,7 @@
 							</td>
 
 							<td><input id="ded_ent4" name="ded_ent4" class=" decimal"
-								placeholder="Rs." readonly="readonly" 
+								placeholder="Rs." readonly="readonly"
 								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.ded_ent_4}"/></c:if>">
 							</td>
 						</tr>
@@ -944,10 +944,10 @@
 									value="${salaryItemDetail.employer}" /> </a></td>
 						<td><c:out value="${salaryItemDetail.employee}" /></td>
 						<td><a
-							href="${scriptName}/<c:out value="${salaryItemDetail.canonicalUUID}"/>/formsixteenedit"><small>Edit</small>
+							href="${scriptName}/<c:out value="${salaryItemDetail.canonicalUUID}"/>/formsixteenedit"><small><i class="icon-pencil"></i>Edit</small>
 						</a>&nbsp;&nbsp;<a
 							href="${scriptName}/<c:out value="${salaryItemDetail.canonicalUUID}"/>/formsixteendelete"
-							onclick="return checkdelete()"> <small>Delete</small> </a>
+							data-confirm=""><small><i class="icon-trash"></i>Delete</small> </a>
 						</td>
 					</tr>
 				</c:forEach>
