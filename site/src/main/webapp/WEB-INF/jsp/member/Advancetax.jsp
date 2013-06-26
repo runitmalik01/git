@@ -126,10 +126,10 @@
 						<td><c:out value="${advancetaxdetail.p_Serial}" /></td>
 						<td><w4india:inr value="${advancetaxdetail.p_Amount}" /></td>
 						<td><a
-							href="${scriptName}/<c:out value="${advancetaxdetail.canonicalUUID}"/>/advancetaxedit"><small>Edit</small>
+							href="${scriptName}/<c:out value="${advancetaxdetail.canonicalUUID}"/>/advancetaxedit"><small><i class="icon-pencil"></i>Edit</small>
 						</a>&nbsp;&nbsp; <a
 							href="${scriptName}/<c:out value="${advancetaxdetail.canonicalUUID}"/>/advancetaxdelete"
-							onclick="return checkdelete()"><small>Delete</small>
+							data-confirm=""><small><i class="icon-trash"></i>Delete</small>
 						</a></td>
 					</tr>
 
@@ -145,7 +145,7 @@
 		<a href="${scriptName}/advancetaxnew" class="button orange">Add
 			New</a>
 
-		<!-- 
+		<!--
 		<table>
 			<tr align="center">
 				<th><b>Date of Installment</b>
@@ -191,15 +191,15 @@
 <hst:element var="uiCustom" name="script">
 	<hst:attribute name="type">text/javascript</hst:attribute>
     $(document).ready(function() {
-   
+
 	var fY='<c:out value="${financialYear}" />'.split("-", 4);
 	itrFinYrMax="31/03/"+fY[1];
 	itrFinYrMin="01/04/"+fY[0];
 			$( ".indiandateAdvance" ).datepicker( "option", "minDate", itrFinYrMin );
 			$( ".indiandateAdvance" ).datepicker( "option", "maxDate", itrFinYrMax );
 			});
-	
-  
+
+
 </hst:element>
 <hst:headContribution element="${uiCustom}" category="jsInternal" />
 
