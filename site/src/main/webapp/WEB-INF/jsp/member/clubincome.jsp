@@ -126,7 +126,7 @@
 						</td>
 						<td><a
 							href="${scriptName}/<c:out value="${clubincomedetail.canonicalUUID}"/>/clubincomeedit"><small>Edit</small> &nbsp;&nbsp;
-						</a>&nbsp;<a href="${scriptName}/<c:out value="${clubincomedetail.canonicalUUID}"/>/clubincomesdelete" id="delete" onclick="return checkdelete()"><small>Delete</small> </a>
+						</a>&nbsp;<a href="${scriptName}/<c:out value="${clubincomedetail.canonicalUUID}"/>/clubincomedelete" id="delete" onclick="return checkdelete()"><small>Delete</small> </a>
 							</td>
 						</tr>
 					</tr>
