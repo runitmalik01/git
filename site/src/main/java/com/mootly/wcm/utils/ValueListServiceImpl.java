@@ -50,6 +50,7 @@ public final class ValueListServiceImpl implements ValueListService{
 	private ResourceBundle objValueListDeductedYear = null;
 	private ResourceBundle objValueListDtaaCountries = null;
 	private ResourceBundle objvalueListReturnFile=null;
+	private ResourceBundle objvalueListRelationship=null;
 
 	private static final ValueListServiceImpl objValueListServiceImpl = new ValueListServiceImpl(); 
 	private static final Logger log = LoggerFactory.getLogger(ValueListServiceImpl.class);
@@ -77,6 +78,7 @@ public final class ValueListServiceImpl implements ValueListService{
 		objValueListDeduction6aBundle=ResourceBundle.getBundle("valueList_deduction6a");
 		objValueListQuarterBundle    = ResourceBundle.getBundle("valueList_quarter");
 		objvalueListReturnFile = ResourceBundle.getBundle("valueList_returnFile");
+		objvalueListRelationship= ResourceBundle.getBundle("valueList_relationship");
 		
 		//initialization
 		initCountries();
@@ -598,6 +600,19 @@ public final class ValueListServiceImpl implements ValueListService{
 		TreeReturnType.put("6", objvalueListReturnFile.getString("valueList.section.153C"));
 		TreeReturnType.put("7", objvalueListReturnFile.getString("valueList.section.139"));
 		TreeReturnType.put("8", objvalueListReturnFile.getString("valueList.section.139(9)"));
+		return  TreeReturnType;
+	}
+	
+	public TreeMap<String, String> getRelationship() {
+		// TODO Auto-generated method stub
+		TreeMap<String, String> TreeReturnType =new TreeMap<String, String>();
+		TreeReturnType.put("1", objvalueListRelationship.getString("valueList.Spouse"));
+		TreeReturnType.put("2", objvalueListRelationship.getString("valueList.Minor"));
+		TreeReturnType.put("3", objvalueListRelationship.getString("valueList.Son'sWife"));
+		TreeReturnType.put("4", objvalueListRelationship.getString("valueList.MemberofHUF"));
+		TreeReturnType.put("5", objvalueListRelationship.getString("valueList.Other"));
+		
+		
 		return  TreeReturnType;
 	}
 	
