@@ -13,7 +13,7 @@
 <hippo-gogreen:title title="${salaryincometitle}" />
 <hst:actionURL var="actionUrl"></hst:actionURL>
 <div class="page type-page">
-	
+
 <div class="page">
 	<h3 id="respond1">
 		<c:choose>
@@ -269,7 +269,7 @@
 							<div class="rowlabel">
 								<input type="text" name="Taxable_earning" id="Taxable_earning"
 									class="decimal" readonly="readonly"
-									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number" 
+									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"
             maxIntegerDigits="14" value="${childBean.taxable_earning}" /></c:if>" />
 							</div>
 						</div>
@@ -305,10 +305,10 @@
 							<td align="right"><w4india:inr
 									value="${salaryItemDetail.taxable_earning}" /></td>
 							<td><a
-								href="${scriptName}/<c:out value="${salaryItemDetail.canonicalUUID}"/>/salaryincomeedit"><small>Edit</small>
+								href="${scriptName}/<c:out value="${salaryItemDetail.canonicalUUID}"/>/salaryincomeedit"><small><i class="icon-pencil"></i>Edit</small>
 							</a>&nbsp;&nbsp;<a
 								href="${scriptName}/<c:out value="${salaryItemDetail.canonicalUUID}"/>/salaryincomedelete"
-								onclick="return checkdelete()"> <small>Delete</small> </a>
+								data-confirm=""><small><i class="icon-trash"></i>Delete</small> </a>
 							</td>
 
 						</tr>
