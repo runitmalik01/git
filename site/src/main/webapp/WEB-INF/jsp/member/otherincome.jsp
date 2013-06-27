@@ -384,8 +384,8 @@
 	<div class="row-fluid show-grid">
 		<div class="span4 offset8 decimal">
 
-			<a href="${scriptName}" class="button olive">Cancel</a>&nbsp;<input
-				type="submit" value="Save" style="color: orange">
+			<a href="${scriptName}" class="button olive">Cancel</a>&nbsp;<a id="myModalHrefothrInc"
+						role="button" class="btn orange">Save</a>
 
 		</div>
 	</div>
@@ -406,6 +406,6 @@
 </hst:element>
 <hst:headContribution element="${uiCustom}" category="jsInternal" />
 <res:calc screenCalc="otherincome" formId="frmIncomeinfo"></res:calc>
-<res:client-validation formId="frmdataSlryInc"
-	screenConfigurationDocumentName="salaryincome"
-	formSubmitButtonId="myModalHrefSlryInc" />
+<res:client-validation formId="frmIncomeinfo"
+	screenConfigurationDocumentName="otherincome"
+	formSubmitButtonId="myModalHrefothrInc" />
