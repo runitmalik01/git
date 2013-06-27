@@ -84,7 +84,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 								<option value="">-Select-</option>
 								<c:forEach var="booleanCombo" items="${objHashMapstates}">
 									<option
-										<c:if test="${pageAction == 'EDIT_CHILD' || childBean.state == booleanCombo.key}">selected</c:if>
+										<c:if test="${pageAction == 'EDIT_CHILD' || childBean.states == booleanCombo.key}">selected</c:if>
 										value="${booleanCombo.key}">${booleanCombo.value}</option>
 								</c:forEach>
 							</select>
@@ -330,7 +330,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 				</fieldset>
 				<fieldset>
 					<legend>Property Income Details</legend>
-					<div class="row-fluid show-grid letout_Yes_v letout_No_h"
+					<div class="row-fluid show-grid letout_L_v letout_S_h"
 						style="dispaly: none;">
 						<div class="span1 decimal">
 							<div class="rowlabel">
@@ -346,12 +346,12 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 						<div class="span2 offset1">
 							<div>
 								<input id="Letable_value" name="Letable_value" placeholder="Rs."
-									class="letout_Yes_inv letout_No_inh" type="text" maxlength="14"
+									class="letout_L_inv letout_S_inh" type="text" maxlength="14"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.letable_value}"/></c:if>">
 							</div>
 						</div>
 					</div>
-					<div class="row-fluid show-grid letout_Yes_v letout_No_h"
+					<div class="row-fluid show-grid letout_L_v letout_S_h"
 						style="dispaly: none;">
 						<div class="span1 decimal">
 							<div class="rowlabel">
@@ -367,13 +367,13 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 						<div class="span2 offset1">
 							<div>
 								<input id="Unrealised_rent" name="Unrealised_rent"
-									class="letout_Yes_inv letout_No_inh" placeholder="Rs."
+									class="letout_L_inv letout_S_inh" placeholder="Rs."
 									type="text" maxlength="14"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.unrealised_rent}"/></c:if>">
 							</div>
 						</div>
 					</div>
-					<div class="row-fluid show-grid letout_Yes_v letout_No_h"
+					<div class="row-fluid show-grid letout_L_v letout_S_h"
 						style="dispaly: none;">
 						<div class="span1 decimal">
 							<div class="rowlabel">
@@ -389,7 +389,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 						<div class="span2 offset1">
 							<div>
 								<input id="Local_tax" name="Local_tax" placeholder="Rs."
-									class="letout_Yes_inv letout_No_inh" type="text" maxlength="14"
+									class="letout_L_inv letout_S_inh" type="text" maxlength="14"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.local_tax}"/></c:if>">
 							</div>
 						</div>
@@ -409,13 +409,13 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 						<div class="span2 offset1">
 							<div>
 								<input id="Interest_borrowed" name="Interest_borrowed"
-									class="letout_Yes_inv letout_No_inh" placeholder="Rs."
+									class="letout_L_inv letout_S_inh" placeholder="Rs."
 									type="text"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.interest_borrowed}"/></c:if>">
 							</div>
 						</div>
 					</div>
-					<div class="row-fluid show-grid letout_Yes_v letout_No_h"
+					<div class="row-fluid show-grid letout_L_v letout_S_h"
 						style="dispaly: none;">
 						<div class="span1 decimal">
 							<div class="rowlabel">
@@ -430,13 +430,13 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 						<div class="span2 offset1">
 							<div>
 								<input id="Total" name="Total" placeholder="Rs." type="text"
-									class="letout_Yes_inv letout_No_inh"
+									class="letout_L_inv letout_S_inh"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.total}"/></c:if>"
 									readonly="readonly" />
 							</div>
 						</div>
 					</div>
-					<div class="row-fluid show-grid letout_Yes_v letout_No_h"
+					<div class="row-fluid show-grid letout_L_v letout_S_h"
 						style="dispaly: none;">
 						<div class="span1 decimal">
 							<div class="rowlabel">
@@ -451,7 +451,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 						<div class="span2 offset1">
 							<div>
 								<input id="Balance" name="Balance" placeholder="Rs." type="text"
-									class="letout_Yes_inv letout_No_inh"
+									class="letout_L_inv letout_S_inh"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.balance}"/></c:if>"
 									readonly="readonly" />
 							</div>
@@ -473,7 +473,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 						<div class="span2 offset1">
 							<div>
 								<input id="Income_hproperty" name="Income_hproperty"
-									class="letout_Yes_inv letout_No_inh" placeholder="Rs."
+									class="letout_L_inv letout_S_inh" placeholder="Rs."
 									type="text"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.income_hproperty}"/></c:if>"
 									readonly="readonly" />
@@ -554,13 +554,14 @@ request.setAttribute("objHashMapstates", objHashMapstates);
                             }
 			});
 	$('#letout').change(function(){
-		$('.letout_' + $(this).val() + '_v').show();
+	$('.letout_' + $(this).val() + '_v').show();
 		$('.letout_' + $(this).val() + '_h').hide();
 	});
 
 <c:if test="${not empty childBean.letOut}">
 	var letout='<c:out value="${childBean.letOut}" />';
 	if(letout!=''){
+	
 		$('.letout_' + letout + '_v').show();
 		$('.letout_' + letout + '_h').hide();
 	}</c:if>
