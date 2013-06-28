@@ -1210,7 +1210,22 @@
     <sv:value>foreignincome</sv:value>
   </sv:property>
 </sv:node>
-
+<sv:node sv:name="trdetails" >
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:component</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>e520486f-04c9-4a5b-9a8f-9f11688e6805</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:componentclassname" sv:type="String">
+    <sv:value>com.mootly.wcm.member.TaxRelief</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String"/>
+  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String"/>
+  <sv:property sv:name="hst:template" sv:type="String">
+    <sv:value>trdetails</sv:value>
+  </sv:property>
+</sv:node>
 	
 	<sv:node sv:name="suggestknowledgearticle" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
 	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
