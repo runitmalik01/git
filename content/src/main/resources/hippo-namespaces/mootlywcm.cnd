@@ -363,3 +363,7 @@ orderable
 [mootlywcm:clubincomedocument] > hippostd:relaxed, mootlywcm:basedocument orderable
 
 [mootlywcm:clubincomedetail] > hippo:compound, hippostd:relaxed orderable
+
+[mootlywcm:foreignincomedetail] > hippo:compound, hippostd:relaxed orderable
+
+[mootlywcm:foreignincomedocument] > hippostd:relaxed, mootlywcm:basedocument orderable
