@@ -39,28 +39,31 @@ request.setAttribute("objHashMapBoolean", objHashMapBoolean);
 </h4>
 	<c:if test="${not empty formMap}">
 		<c:forEach items="${formMap.message}" var="item">
-			<div class="alert alert-error"><c:out value="${item.key}"/> - <c:out value="${item.value}"/> </div>
+			<div class="alert alert-error">
+			<c:choose>
+			<c:when test="${item.key == 'checkentry'}">
+			<c:out value="${item.value}"/>
+			</c:when>
+			<c:otherwise>
+			<c:out value="${item.key}"/> - <c:out value="${item.value}"/>
+			</c:otherwise>
+			</c:choose>
+			</div>
 		</c:forEach>
 	</c:if>
+<!--
+<div class="alert alert-error hide" id="chkentry">
+</div>
+ -->
 	<c:choose>
 	<c:when test="${pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD'}">
 		<form id="frmdataLosses" action="${actionUrl}" name="adjustmentoflosses" method="post">
 			<fieldset>
 				<legend>Detail Of Losses</legend>
 				<div class="row-fluid show-grid" >
-				     <div class="span6">
-					 <div class="rowlabel"><label for="AssessmentYear"><small><fmt:message key="member.adjustment.losses.year"></fmt:message></small></label></div>
-					 <div class="rowlabel"><select name="AssessmentYear" id="AssessmentYear" onblur="setYear()">
-						  <option value="">-Select Year-</option>
-						  <c:forEach var="booleanCombo" items="${objHashMapAssessmentYear}">
-						  <option <c:if test="${pageAction == 'EDIT_CHILD' && childBean.assessmentYear == booleanCombo.value}">selected</c:if> value="${booleanCombo.value}">${booleanCombo.value}</option>
-						  </c:forEach>
-					</select>
-					</div>
-					</div>
                     <div class="span6">
 					<div class="rowlabel"><label for="NameOfHead"><small><fmt:message key="member.adjustment.losses.name"></fmt:message></small></label></div>
-					<div class="rowlabel"><select name="NameOfHead" id="NameOfHead">
+					<div class="rowlabel"><select name="NameOfHead" id="NameOfHead" onchange="checkentry()">
 					             <option value="">-Select Head-</option>
 					             <c:forEach var="booleanCombo" items="${objHashMapNameOfHead}">
 
@@ -71,6 +74,16 @@ request.setAttribute("objHashMapBoolean", objHashMapBoolean);
 					      </select>
 					      </div>
 					      </div>
+					 <div class="span6">
+					 <div class="rowlabel"><label for="AssessmentYear"><small><fmt:message key="member.adjustment.losses.year"></fmt:message></small></label></div>
+					 <div class="rowlabel"><select name="AssessmentYear" id="AssessmentYear" onblur="setYear()" onchange="checkentry()">
+						  <option value="">-Select Year-</option>
+						  <c:forEach var="booleanCombo" items="${objHashMapAssessmentYear}">
+						  <option <c:if test="${pageAction == 'EDIT_CHILD' && childBean.assessmentYear == booleanCombo.value}">selected</c:if> value="${booleanCombo.value}">${booleanCombo.value}</option>
+						  </c:forEach>
+					</select>
+					</div>
+					</div>
 					</div>
 				<div class="row-fluid show-grid" >
 				 <div class="span6">
@@ -105,7 +118,7 @@ request.setAttribute("objHashMapBoolean", objHashMapBoolean);
 	<c:otherwise>
 				<table>
 					<tr align="center">
-						<th><b>Name Of Head</b></th>
+						<th width="180px"><b>Name Of Head</b></th>
 						<th><b>Assessment Year</b></th>
 						<th><b>Date Of Filing year</b></th>
 						<th><b>Amount</b></th>
@@ -128,7 +141,7 @@ request.setAttribute("objHashMapBoolean", objHashMapBoolean);
 						</c:forEach>
 						<tr>
 					       <td colspan="3"><fmt:message key="tds.amount.total" /></td>
-					       <td><w4india:inr value="${parentBean.totalAmount}" />
+					       <td><w4india:inr value="${parentBean.totalAmount}" /></td>
 					    </tr>
 					</c:if>
 
@@ -151,5 +164,28 @@ itrFinYrMax="31/12/"+maxyear;
 			$( ".indiandateLosses" ).datepicker( "option", "minDate", itrFinYrMin );
 			$( ".indiandateLosses" ).datepicker( "option", "maxDate", itrFinYrMax );
 }
+<!--
+function checkentry(){
+    var checkout=false;
+	var currhead = document.getElementById("NameOfHead").value;
+	var curryear = document.getElementById("AssessmentYear").value;
+<c:if test="${not empty parentBean}">
+<c:forEach items="${parentBean.adjustmentOfLossesList}" var="adjustmentOfLosses">
+<c:set value="${adjustmentOfLosses.nameOfHead}" var="head"/>
+<c:set value="${adjustmentOfLosses.assessmentYear}" var="assessmentyear"/>
+if(currhead == '<c:out value="${head}"/>' && curryear == '<c:out value="${assessmentyear}"/>'){
+checkout=true;
+$("#chkentry").text("Warning! You have already selected "+currhead+" for "+curryear);;
+}
+</c:forEach>
+</c:if>
+if(checkout){
+$("#chkentry").show();
+$("#myModalHref").attr('id','abc');
+}else{
+$("#chkentry").hide();
+}
+}
+ -->
 </hst:element>
 <hst:headContribution element="${uiCustom}" category="jsInternal"/>
