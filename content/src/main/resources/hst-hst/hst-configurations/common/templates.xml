@@ -2921,7 +2921,17 @@
     <sv:value>jsp/member/foreignincome.jsp</sv:value>
   </sv:property>
 </sv:node>
-
+<sv:node sv:name="trdetails">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:template</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>3c47bb1d-e448-445e-83f2-2209e0e951a8</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:renderpath" sv:type="String">
+    <sv:value>jsp/member/trdetails.jsp</sv:value>
+  </sv:property>
+</sv:node>
 
 	
 	<sv:node sv:name="knowledgearticles.main" >
