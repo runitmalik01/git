@@ -15,12 +15,15 @@ import in.gov.incometaxindiaefiling.y2012_2013.ITR1IncomeDeductions;
 import in.gov.incometaxindiaefiling.y2012_2013.ITR1TaxComputation;
 import in.gov.incometaxindiaefiling.y2012_2013.ITR2;
 import in.gov.incometaxindiaefiling.y2012_2013.IntrstPay;
+import in.gov.incometaxindiaefiling.y2012_2013.LossSummaryDetail;
 import in.gov.incometaxindiaefiling.y2012_2013.ObjectFactory;
 import in.gov.incometaxindiaefiling.y2012_2013.PartAGEN1;
 import in.gov.incometaxindiaefiling.y2012_2013.PartBTTI;
 import in.gov.incometaxindiaefiling.y2012_2013.PersonalInfo;
 import in.gov.incometaxindiaefiling.y2012_2013.Refund;
 import in.gov.incometaxindiaefiling.y2012_2013.Schedule80G;
+import in.gov.incometaxindiaefiling.y2012_2013.ScheduleCFL;
+import in.gov.incometaxindiaefiling.y2012_2013.ScheduleCFL.TotalLossCFSummary;
 import in.gov.incometaxindiaefiling.y2012_2013.ScheduleTDS1;
 import in.gov.incometaxindiaefiling.y2012_2013.ScheduleTDS2;
 import in.gov.incometaxindiaefiling.y2012_2013.ScheduleVIA;
@@ -67,6 +70,7 @@ import org.hippoecm.hst.core.component.HstResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.mootly.wcm.beans.AdjustmentOfLossesDoc;
 import com.mootly.wcm.beans.AdvanceTaxDocument;
 import com.mootly.wcm.beans.DeductionDocument;
 import com.mootly.wcm.beans.FormSixteenDocument;
@@ -79,6 +83,7 @@ import com.mootly.wcm.beans.SalaryIncomeDocument;
 import com.mootly.wcm.beans.SelfAssesmetTaxDocument;
 import com.mootly.wcm.beans.TdsFromSalaryDocument;
 import com.mootly.wcm.beans.TdsFromothersDocument;
+import com.mootly.wcm.beans.compound.AdjustmentOfLossesCom;
 import com.mootly.wcm.beans.compound.AdvanceTaxDetail;
 import com.mootly.wcm.beans.compound.DeductionDocumentDetail;
 import com.mootly.wcm.beans.compound.FormSixteenDetail;
@@ -117,6 +122,7 @@ public class ITR2XmlGeneratorService  {
 		InterestDoc interestDoc = (InterestDoc) request.getAttribute(InterestDoc.class.getSimpleName().toLowerCase());
 		FormSixteenDocument formSixteenDocument = (FormSixteenDocument) request.getAttribute(FormSixteenDocument.class.getSimpleName().toLowerCase());
 		RebateSec90Document rebateSec90Document = (RebateSec90Document) request.getAttribute(RebateSec90Document.class.getSimpleName().toLowerCase());
+		AdjustmentOfLossesDoc adjustmentOfLossesDoc = (AdjustmentOfLossesDoc) request.getAttribute(AdjustmentOfLossesDoc.class.getSimpleName().toLowerCase());
 
 		ITR2 itr2 = new ObjectFactory().createITR2();
 		CreationInfo creationInfo = new CreationInfo();
@@ -627,6 +633,41 @@ public class ITR2XmlGeneratorService  {
 				itr2.setScheduleTDS2(scheduleTDS2);
 			}
 		}
+
+		//Ajustment Of Losses begins
+		ScheduleCFL scheduleCFL = new ScheduleCFL();
+		TotalLossCFSummary totalLossCFSummary = new TotalLossCFSummary();
+		LossSummaryDetail lossSummaryDetail = new LossSummaryDetail();
+
+		Double HPLoss = 0d;
+		Double totalHPLoss = 0d;
+		if(adjustmentOfLossesDoc != null){
+			List<AdjustmentOfLossesCom> listofAdjustmentOfLossesCom = adjustmentOfLossesDoc.getAdjustmentOfLossesList() ;
+			if ( listofAdjustmentOfLossesCom != null && listofAdjustmentOfLossesCom.size() > 0 ){
+				for(AdjustmentOfLossesCom adjustmentOfLossesCom:listofAdjustmentOfLossesCom){
+					if(adjustmentOfLossesCom.getNameOfHead().equals("House Property Loss")){
+						HPLoss = adjustmentOfLossesCom.getAmount();
+						totalHPLoss = totalHPLoss + HPLoss;
+					}
+				}
+			}
+		}
+		Map<String,Object> totalMapForLosses = new HashMap<String, Object>();
+		totalMapForLosses.put("houseIncome",houseIncomeTotal);
+		totalMapForLosses.put("houseIncomeLoss", totalHPLoss);
+
+		Map<String,Object> resultMapLosses = ScreenCalculatorService.getScreenCalculations("lossesCalculation.js", request.getParameterMap(), totalMapForLosses);
+		indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMapLosses.get("houseIncomeLossCF").toString()));
+		lossSummaryDetail.setHPLossCF(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMapLosses.get("houseIncomeLossCF").toString())));
+		lossSummaryDetail.setBusLossOthThanSpecLossCF(new BigInteger("0"));
+		lossSummaryDetail.setLossFrmSpecBusCF(new BigInteger("0"));
+		lossSummaryDetail.setLossFrmSpecifiedBusCF(new BigInteger("0"));
+		lossSummaryDetail.setLTCGLossCF(new BigInteger("0"));
+		lossSummaryDetail.setOthSrcLossRaceHorseCF(new BigInteger("0"));
+		lossSummaryDetail.setSTCGLossCF(new BigInteger("0"));
+		totalLossCFSummary.setLossSummaryDetail(lossSummaryDetail);
+		scheduleCFL.setTotalLossCFSummary(totalLossCFSummary);
+		itr2.setScheduleCFL(scheduleCFL);
 
 		//Verification
 		Declaration declaration = new Declaration();
