@@ -1193,6 +1193,24 @@
     <sv:value>clubincome</sv:value>
   </sv:property>
 </sv:node>
+
+<sv:node sv:name="foreignincome">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:component</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>f268140c-7974-46a6-8c04-af0592a4a1b9</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:componentclassname" sv:type="String">
+    <sv:value>com.mootly.wcm.member.ForeignIncome</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String"/>
+  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String"/>
+  <sv:property sv:name="hst:template" sv:type="String">
+    <sv:value>foreignincome</sv:value>
+  </sv:property>
+</sv:node>
+
 	
 	<sv:node sv:name="suggestknowledgearticle" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
 	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
