@@ -64,11 +64,13 @@ if(total_80tta>maxAllowed_80TTA){
 } else  out_total_80tta=(total_80tta>grosstotal) ? grosstotal : total_80tta;
 
 //80GGA- Interest on Bank Saving Accounts
-//var fiftyPerCcg=(total_80ccg)*.5;
-out_total_80ccg=(total_80ccg > grosstotal) ? grosstotal : total_80ccg;
-//if(fiftyPerCcg>maxAllowed_80CCG){
-	//out_total_80ccg=(grosstotal>maxAllowed_80CCG) ? maxAllowed_80CCG : grosstotal;
-//} else out_total_80ccg=(fiftyPerCcg>maxAllowed_80CCG) ? maxAllowed_80CCG : fiftyPerCcg;
+if(grosstotal<1000000){
+var fiftyPerCcg=(total_80ccg)*.5;
+//out_total_80ccg=(total_80ccg > grosstotal) ? grosstotal : fiftyPerCcg;
+if(fiftyPerCcg>maxAllowed_80CCG){
+	out_total_80ccg=(grosstotal>maxAllowed_80CCG) ? maxAllowed_80CCG : grosstotal;
+} else out_total_80ccg=(fiftyPerCcg>maxAllowed_80CCG) ? maxAllowed_80CCG : fiftyPerCcg;
+} else out_total_80ccg=0;
 
 //--this one is 80CCF this upper limit it 20000
 /*out_total_80ccf=0;
