@@ -367,3 +367,7 @@ orderable
 [mootlywcm:foreignincomedetail] > hippo:compound, hippostd:relaxed orderable
 
 [mootlywcm:foreignincomedocument] > hippostd:relaxed, mootlywcm:basedocument orderable
+
+[mootlywcm:taxreliefdetail] > hippo:compound, hippostd:relaxed orderable
+
+[mootlywcm:taxreliefdocument] > hippostd:relaxed, mootlywcm:basedocument orderable
