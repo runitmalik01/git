@@ -2909,6 +2909,20 @@
     <sv:value>jsp/member/clubincome.jsp</sv:value>
   </sv:property>
 </sv:node>
+
+<sv:node sv:name="foreignincome" >
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:template</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>2ccf4c90-a876-41c2-9cf0-5a461b789fc5</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:renderpath" sv:type="String">
+    <sv:value>jsp/member/foreignincome.jsp</sv:value>
+  </sv:property>
+</sv:node>
+
+
 	
 	<sv:node sv:name="knowledgearticles.main" >
 	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
