@@ -193,35 +193,35 @@ public class XmlGenerator extends ITReturnComponent {
 			} catch (ParserConfigurationException e) {
 				// TODO Auto-generated catch block
 
-				log.error("Error during parsing configuration"+e);
+				log.error("Error during parsing configuration",e);
 			} catch (FactoryConfigurationError e) {
 				// TODO Auto-generated catch block
 
-				log.error("Error factory configuration"+e);
+				log.error("Error factory configuration",e);
 			} catch (SAXException e) {
 				// TODO Auto-generated catch block
 
-				log.error("Error from sax exceptions"+e);
+				log.error("Error from sax exceptions",e);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 
-				log.error("Error from IO exceptions"+e);
+				log.error("Error from IO exceptions",e);
 			} catch (TransformerConfigurationException e) {
 				// TODO Auto-generated catch block
 
-				log.error("Transforming  exceptions"+e);
+				log.error("Transforming  exceptions",e);
 			} catch (TransformerFactoryConfigurationError e) {
 				// TODO Auto-generated catch block
 
-				log.error("Transforming factory exceptions"+e);
+				log.error("Transforming factory exceptions",e);
 			} catch (TransformerException e) {
 				// TODO Auto-generated catch block
 
-				log.error("Transformer exceptions"+e);
+				log.error("Transformer exceptions",e);
 			} catch (DocumentException e) {
 				// TODO Auto-generated catch block
 
-				log.error("Document  exceptions"+e);
+				log.error("Document  exceptions",e);
 			}
 		}
 		
