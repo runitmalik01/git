@@ -193,6 +193,13 @@ public interface Constants {
 	String INCOMESOURCES="mootlywcm:income_othersources";
 	String INCOMETOTAL="mootlywcm:income_total";
 	
+	String CODECOUNTRY="mootlywcm:country_code";
+	String TAXID="mootlywcm:tax_ID";
+	String ARTICLEDTAA="mootlywcm:article_dtaa";
+	String TOTALTAXFSI="mootlywcm:totaltax_fsi";
+	String RELIEF9091="mootlywcm:relief90_91";
+	String RELIEF91="mootlywcm:relief91";
+	
 
 
 
