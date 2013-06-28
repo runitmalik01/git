@@ -183,6 +183,16 @@ public interface Constants {
 	String RELATIONSHIP="mootlywcm:relationship";
 	String NATUREINCOME="mootlywcm:nature_income";
 	String AMOUNTCLUB="mootlywcm:amount";
+	
+	String COUNTRYCODE="mootlywcm:country_code";
+	String TAXPAYERID="mootlywcm:taxpayer_ID";
+	String INCOMESALARY="mootlywcm:income_salary";
+	String INCOMEHOUSE="mootlywcm:income_house";
+	String INCOMEBUSINESS="mootlywcm:income_business";
+	String INCOMECAPITALGAIN="mootlywcm:income_capitalgain";
+	String INCOMESOURCES="mootlywcm:income_othersources";
+	String INCOMETOTAL="mootlywcm:income_total";
+	
 
 
 
