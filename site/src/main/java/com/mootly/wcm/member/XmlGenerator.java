@@ -49,6 +49,7 @@ import com.itextpdf.tool.xml.XMLWorkerHelper;
 import com.mootly.wcm.annotations.AdditionalBeans;
 import com.mootly.wcm.annotations.RequiredBeans;
 import com.mootly.wcm.annotations.ValueListBeans;
+import com.mootly.wcm.beans.AdjustmentOfLossesDoc;
 import com.mootly.wcm.beans.AdvanceTaxDocument;
 import com.mootly.wcm.beans.DeductionDocument;
 import com.mootly.wcm.beans.FormSixteenDocument;
@@ -62,6 +63,7 @@ import com.mootly.wcm.beans.SalaryIncomeDocument;
 import com.mootly.wcm.beans.SelfAssesmetTaxDocument;
 import com.mootly.wcm.beans.TdsFromSalaryDocument;
 import com.mootly.wcm.beans.TdsFromothersDocument;
+import com.mootly.wcm.beans.compound.AdjustmentOfLossesCom;
 import com.mootly.wcm.beans.compound.AdvanceTaxDetail;
 import com.mootly.wcm.beans.compound.DeductionDocumentDetail;
 import com.mootly.wcm.beans.compound.FormSixteenDetail;
@@ -77,7 +79,8 @@ import com.mootly.wcm.services.XmlGeneratorService;
 @AdditionalBeans(additionalBeansToLoad={MemberPersonalInformation.class,MemberContactInformation.class,SalaryIncomeDocument.class,
 		HouseIncomeDetail.class,HouseProperty.class,OtherSourcesDocument.class,AdvanceTaxDocument.class,AdvanceTaxDetail.class,TdsFromSalaryDocument.class,
 		TdsFromSalaryDetail.class,TdsFromothersDocument.class,SelfAssesmetTaxDocument.class,SelfAssesmentTaxDetail.class,SalaryIncomeDetail.class,DeductionDocument.class,
-		DeductionDocumentDetail.class,InterestDoc.class,FormSixteenDocument.class,FormSixteenDetail.class,RebateSec90Document.class})
+		DeductionDocumentDetail.class,InterestDoc.class,FormSixteenDocument.class,FormSixteenDetail.class,RebateSec90Document.class,AdjustmentOfLossesCom.class,
+		AdjustmentOfLossesDoc.class})
 @RequiredBeans(requiredBeans={MemberPersonalInformation.class})
 @ValueListBeans(paths={"deduction-sections-${financialYear}","deduction-section-heads-${financialYear}","deduction-section-maxallowed-${financialYear}"},
 accessKey={"deduction_sections","deduction_section_heads","deduction_section_maxallowed"})
@@ -154,7 +157,7 @@ public class XmlGenerator extends ITReturnComponent {
 				InputSource is = new InputSource(new StringReader(xml));
 				org.w3c.dom.Document aDom = db.parse(is);
 				FileInputStream fi = new FileInputStream(xsltPath);
-				StreamSource stylesource = new StreamSource(fi); 
+				StreamSource stylesource = new StreamSource(fi);
 				Transformer transformer = TransformerFactory.newInstance().newTransformer(stylesource);
 				StringWriter sw = new StringWriter();
 				StreamSource sSource = new StreamSource(new StringReader(xml));
@@ -229,8 +232,8 @@ public class XmlGenerator extends ITReturnComponent {
 			if (isDownload) {
 				String xmlFileName = "itreturn-AY-" +getFinancialYear().getDisplayAssessmentYear() + ".xml";
 				request.setAttribute("fileName", xmlFileName);
-				response.setRenderPath("jsp/member/downloadfile.jsp");				
-			}			
+				response.setRenderPath("jsp/member/downloadfile.jsp");
+			}
 			if (emailMe) {
 				temporaryPathToXML = saveXmlToTemporaryFile((String)request.getAttribute("xml")); 
 			}
