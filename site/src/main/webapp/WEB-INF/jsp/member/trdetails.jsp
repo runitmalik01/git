@@ -105,7 +105,7 @@
 					<a href="${scriptName}" class="button olive">Cancel</a>&nbsp;
 					<a id="myModalHrefTaxrebate" role="button" class="btn orange">Save</a>
 				</div> 
-			
+			<div><input type="text" value="${taxreliefdetail}"/></div>
 			</div>
 		</form>
 	</c:when>
@@ -139,8 +139,8 @@
 						<td><w4india:inr value="${taxrelief.relief91}" />
 						</td>
 						<td><a
-							href="${scriptName}/<c:out value="${taxreliefdetail.canonicalUUID}"/>/trdetailsedit"><small>Edit</small> &nbsp;&nbsp;
-						</a>&nbsp;<a href="${scriptName}/<c:out value="${taxreliefdetail.canonicalUUID}"/>/trdetailssdelete" id="delete" onclick="return checkdelete()"><small>Delete</small> </a>
+							href="${scriptName}/<c:out value="${taxrelief.canonicalUUID}"/>/trdetailsedit"><small>Edit</small> &nbsp;&nbsp;
+						</a>&nbsp;<a href="${scriptName}/<c:out value="${taxrelief.canonicalUUID}"/>/trdetailsdelete" id="delete" onclick="return checkdelete()"><small>Delete</small> </a>
 							</td>
 						</tr>
 					</tr>
@@ -153,6 +153,7 @@
 					<td colspan="3"><fmt:message key="tds.amount.total" /></td>
 					<td><w4india:inr value="${parentBean.rebate90}" /></td>
 				</tr>
+				
 			</c:if>
 		</table>
 		<a href="${scriptName}/trdetailsnew"
