@@ -2974,6 +2974,42 @@
     <sv:value>jsp/member/trdetails.jsp</sv:value>
   </sv:property>
 </sv:node>	
+
+<sv:node sv:name="immovableproperty">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:template</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>b2f7b88e-6497-48db-8f0d-59c629475eb4</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:renderpath" sv:type="String">
+    <sv:value>jsp/member/immovableproperty.jsp</sv:value>
+  </sv:property>
+</sv:node>
+<sv:node sv:name="natureinvestment">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:template</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>03f2398c-b510-4ac7-b352-c89759ae3ddb</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:renderpath" sv:type="String">
+    <sv:value>jsp/member/natureinvestment.jsp</sv:value>
+  </sv:property>
+</sv:node>
+<sv:node sv:name="foreignbankdetail" >
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:template</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>0589e825-658c-4143-91d7-748b12915e92</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:renderpath" sv:type="String">
+    <sv:value>jsp/member/foreignbankdetail.jsp</sv:value>
+  </sv:property>
+</sv:node>
+
+
 	<sv:node sv:name="knowledgearticles.main" >
 	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
 	    <sv:value>hst:template</sv:value>
