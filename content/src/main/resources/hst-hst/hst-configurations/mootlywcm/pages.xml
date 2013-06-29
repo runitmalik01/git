@@ -3567,73 +3567,67 @@
       </sv:node>
     </sv:node>
   </sv:node>
-  <sv:node sv:name="my-services">
+<sv:node sv:name="my-services">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:component</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>f2f15ed8-0482-4f6d-9052-199e2a3ba31d</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:referencecomponent" sv:type="String">
+    <sv:value>hst:pages/standardpage.re</sv:value>
+  </sv:property>
+  <sv:node sv:name="main">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
       <sv:value>hst:component</sv:value>
     </sv:property>
     <sv:property sv:name="jcr:uuid" sv:type="String">
-      <sv:value>f2f15ed8-0482-4f6d-9052-199e2a3ba31d</sv:value>
+      <sv:value>5f595e73-2fd1-4709-8fcf-dad0dd7eab6d</sv:value>
     </sv:property>
     <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
-      <sv:value>bodyCssClass</sv:value>
+      <sv:value>contentCssClass</sv:value>
+      <sv:value>widgets1CssClass</sv:value>
     </sv:property>
     <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
-      <sv:value>page</sv:value>
+      <sv:value>grid-right col-940</sv:value>
+      <sv:value>grid-right col-300 rtl-fit</sv:value>
     </sv:property>
-    <sv:property sv:name="hst:referencecomponent" sv:type="String">
-      <sv:value>hst:pages/simplepage.re</sv:value>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>standard.main.re</sv:value>
     </sv:property>
-    <sv:node sv:name="main">
+    <sv:node sv:name="content">
       <sv:property sv:name="jcr:primaryType" sv:type="Name">
         <sv:value>hst:component</sv:value>
       </sv:property>
       <sv:property sv:name="jcr:uuid" sv:type="String">
-        <sv:value>5f595e73-2fd1-4709-8fcf-dad0dd7eab6d</sv:value>
+        <sv:value>a7de93f6-d21a-4ebe-b8b9-341645cc74f8</sv:value>
       </sv:property>
-      <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
-        <sv:value>contentCssClass</sv:value>
-        <sv:value>widgetsCssClass</sv:value>
+      <sv:property sv:name="hst:referencecomponent" sv:type="String">
+        <sv:value>hst:components/myservices</sv:value>
       </sv:property>
-      <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
-        <sv:value>grid col-620</sv:value>
-        <sv:value>grid col-300 fit</sv:value>
-      </sv:property>
-      <sv:property sv:name="hst:template" sv:type="String">
-        <sv:value>standard.main.re</sv:value>
-      </sv:property>
-      <sv:node sv:name="content">
+      <sv:node sv:name="facetnav">
         <sv:property sv:name="jcr:primaryType" sv:type="Name">
           <sv:value>hst:component</sv:value>
         </sv:property>
         <sv:property sv:name="jcr:uuid" sv:type="String">
-          <sv:value>a7de93f6-d21a-4ebe-b8b9-341645cc74f8</sv:value>
+          <sv:value>1b36dc3f-d29b-4acc-9cdc-f2728ab529ba</sv:value>
         </sv:property>
-        <sv:property sv:name="hst:referencecomponent" sv:type="String">
-          <sv:value>hst:components/myservices</sv:value>
+        <sv:property sv:name="hst:componentclassname" sv:type="String">
+          <sv:value>com.mootly.wcm.components.common.FacetNavigation</sv:value>
         </sv:property>
-        <sv:node sv:name="facetnav">
-          <sv:property sv:name="jcr:primaryType" sv:type="Name">
-            <sv:value>hst:component</sv:value>
-          </sv:property>
-          <sv:property sv:name="jcr:uuid" sv:type="String">
-            <sv:value>1b36dc3f-d29b-4acc-9cdc-f2728ab529ba</sv:value>
-          </sv:property>
-          <sv:property sv:name="hst:componentclassname" sv:type="String">
-            <sv:value>com.mootly.wcm.components.common.FacetNavigation</sv:value>
-          </sv:property>
-          <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
-            <sv:value>facetnav.location</sv:value>
-          </sv:property>
-          <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
-            <sv:value>services/facetedservices</sv:value>
-          </sv:property>
-          <sv:property sv:name="hst:template" sv:type="String">
-            <sv:value>myservices.facetnav</sv:value>
-          </sv:property>
-        </sv:node>
+        <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+          <sv:value>facetnav.location</sv:value>
+        </sv:property>
+        <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+          <sv:value>services/facetedservices</sv:value>
+        </sv:property>
+        <sv:property sv:name="hst:template" sv:type="String">
+          <sv:value>myservices.facetnav</sv:value>
+        </sv:property>
       </sv:node>
     </sv:node>
   </sv:node>
+</sv:node>
   <sv:node sv:name="member-contact-information">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
       <sv:value>hst:component</sv:value>
