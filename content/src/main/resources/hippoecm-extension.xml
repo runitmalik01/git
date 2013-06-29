@@ -3277,5 +3277,103 @@
 			<sv:value>11051.097</sv:value>
 		</sv:property>
 	</sv:node>
+        <sv:node sv:name="mootlywcm-type-Service-document">
+		<sv:property sv:name="jcr:primaryType" sv:type="Name">
+			<sv:value>hippo:initializeitem</sv:value>
+		</sv:property>
+		<sv:property sv:name="hippo:contentresource" sv:type="String">
+			<sv:value>hippo-namespaces/mootlywcm/Service.xml</sv:value>
+		</sv:property>
+		<sv:property sv:name="hippo:contentroot" sv:type="String">
+			<sv:value>/hippo:namespaces/mootlywcm</sv:value>
+		</sv:property>
+		<sv:property sv:name="hippo:sequence" sv:type="Double">
+			<sv:value>11051.110</sv:value>
+		</sv:property>
+	</sv:node>
+	<sv:node sv:name="mootlywcm-type-CostModel-document">
+		<sv:property sv:name="jcr:primaryType" sv:type="Name">
+			<sv:value>hippo:initializeitem</sv:value>
+		</sv:property>
+		<sv:property sv:name="hippo:contentresource" sv:type="String">
+			<sv:value>hippo-namespaces/mootlywcm/CostModel.xml</sv:value>
+		</sv:property>
+		<sv:property sv:name="hippo:contentroot" sv:type="String">
+			<sv:value>/hippo:namespaces/mootlywcm</sv:value>
+		</sv:property>
+		<sv:property sv:name="hippo:sequence" sv:type="Double">
+			<sv:value>11051.110</sv:value>
+		</sv:property>
+	</sv:node>
+	<sv:node sv:name="mootlywcm-en-Services">
+		<sv:property sv:name="jcr:primaryType" sv:type="Name">
+			<sv:value>hippo:initializeitem</sv:value>
+		</sv:property>
+		<sv:property sv:name="hippo:contentresource" sv:type="String">
+			<sv:value>content/en/Services.xml</sv:value>
+		</sv:property>
+		<sv:property sv:name="hippo:contentroot" sv:type="String">
+			<sv:value>/content/documents/mootlywcm</sv:value>
+		</sv:property>
+		<sv:property sv:name="hippo:sequence" sv:type="Double">
+			<sv:value>11404.2</sv:value>
+		</sv:property>
+	</sv:node>
+	<sv:node sv:name="mootlywcm-en-SRForms">
+		<sv:property sv:name="jcr:primaryType" sv:type="Name">
+			<sv:value>hippo:initializeitem</sv:value>
+		</sv:property>
+		<sv:property sv:name="hippo:contentresource" sv:type="String">
+			<sv:value>content/en/SRForms.xml</sv:value>
+		</sv:property>
+		<sv:property sv:name="hippo:contentroot" sv:type="String">
+			<sv:value>/content/documents/mootlywcm</sv:value>
+		</sv:property>
+		<sv:property sv:name="hippo:sequence" sv:type="Double">
+			<sv:value>11404.2</sv:value>
+		</sv:property>
+	</sv:node>
+	<sv:node sv:name="mootlywcm-type-ServiceRequestForm-document">
+		<sv:property sv:name="jcr:primaryType" sv:type="Name">
+			<sv:value>hippo:initializeitem</sv:value>
+		</sv:property>
+		<sv:property sv:name="hippo:contentresource" sv:type="String">
+			<sv:value>hippo-namespaces/mootlywcm/ServiceRequestForm.xml</sv:value>
+		</sv:property>
+		<sv:property sv:name="hippo:contentroot" sv:type="String">
+			<sv:value>/hippo:namespaces/mootlywcm</sv:value>
+		</sv:property>
+		<sv:property sv:name="hippo:sequence" sv:type="Double">
+			<sv:value>11051.110</sv:value>
+		</sv:property>
+	</sv:node>
+	<sv:node sv:name="mootlywcm-type-FormField-document">
+		<sv:property sv:name="jcr:primaryType" sv:type="Name">
+			<sv:value>hippo:initializeitem</sv:value>
+		</sv:property>
+		<sv:property sv:name="hippo:contentresource" sv:type="String">
+			<sv:value>hippo-namespaces/mootlywcm/FormField.xml</sv:value>
+		</sv:property>
+		<sv:property sv:name="hippo:contentroot" sv:type="String">
+			<sv:value>/hippo:namespaces/mootlywcm</sv:value>
+		</sv:property>
+		<sv:property sv:name="hippo:sequence" sv:type="Double">
+			<sv:value>11051.110</sv:value>
+		</sv:property>
+	</sv:node>
+	<sv:node sv:name="mootlywcm-type-ServiceRequestDocument-document">
+		<sv:property sv:name="jcr:primaryType" sv:type="Name">
+			<sv:value>hippo:initializeitem</sv:value>
+		</sv:property>
+		<sv:property sv:name="hippo:contentresource" sv:type="String">
+			<sv:value>hippo-namespaces/mootlywcm/ServiceRequestDocument.xml</sv:value>
+		</sv:property>
+		<sv:property sv:name="hippo:contentroot" sv:type="String">
+			<sv:value>/hippo:namespaces/mootlywcm</sv:value>
+		</sv:property>
+		<sv:property sv:name="hippo:sequence" sv:type="Double">
+			<sv:value>11051.110</sv:value>
+		</sv:property>
+	</sv:node>
 
 </sv:node>
