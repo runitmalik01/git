@@ -4,15 +4,15 @@
  
 <hst:link var="services" siteMapItemRefId="myservices" />
 <hippo-gogreen:title title="${document.name}"/>
-<div class="span9">
+
 <ul class="breadcrumb">
   <li><a href="#"><i class="icon-home"></i>Home</a> <span class="divider">/</span></li>
   <li><a href="${services}">Services</a> <span class="divider">/</span></li>
   <li class="active"><c:out value="${document.name}"/></li>
 </ul>
-</div>
+
 <!-- content -->
-<div class="span9">
+<div class="row-fluid show-grid">
     <div id="content">
         <h3 align="center"><c:out value="${document.name}"/></h3>
         <div>
