@@ -99,13 +99,13 @@
 					</div>
 				</div>
 			</div>
-			<!-- 
+		
 			<div class="row-fluid show-grid">
 				<div class="span4 offset8 decimal">
 					<a href="${scriptName}" class="button olive">Cancel</a>&nbsp;
-					<a id="myModalHrefTdsOther" role="button" class="btn orange">Save</a>
-				</div> -->
-				<input type="submit" value="save">
+					<a id="myModalHrefTaxrebate" role="button" class="btn orange">Save</a>
+				</div> 
+			
 			</div>
 		</form>
 	</c:when>
@@ -118,30 +118,40 @@
 				</th>
 				<th><b><fmt:message key="tds.total.tax.deducted" /> </b></th>
 				<th><b><fmt:message key="tds.amount.claimed" /> </b></th>
+				<th><b><fmt:message key="tds.total.tax.deducted" /> </b></th>
+				<th><b><fmt:message key="tds.amount.claimed" /> </b></th>
 				<th><b>Actions</b></th>
 			</tr>
 			<c:if test="${not empty parentBean}">
-				<c:forEach items="${parentBean.tdsSalaryDetailList}"
-					var="tdsfromothersdetail">
+				<c:forEach items="${parentBean.taxReliefDetailList}"
+					var="taxrelief">
 					<tr>
-						<td><c:out value="${tdsfromothersdetail.tan_Deductor}" />
+						<td><c:out value="${taxrelief.country_Code}" />
 						</td>
-						<td><c:out value="${tdsfromothersdetail.name_Deductor}" />
+						<td><c:out value="${taxrelief.tax_ID}" />
 						</td>
-						<td><w4india:inr value="${tdsfromothersdetail.total_TaxDeductor}" />
+						<td><c:out value="${taxrelief.article_dtaa}" />
 						</td>
-						<td><w4india:inr value="${tdsfromothersdetail.p_Amount}" />
+						<td><w4india:inr value="${taxrelief.totaltax_fsi}" />
+						</td>
+						<td><w4india:inr value="${taxrelief.relief90_91}" />
+						</td>
+						<td><w4india:inr value="${taxrelief.relief91}" />
 						</td>
 						<td><a
-							href="${scriptName}/<c:out value="${tdsfromothersdetail.canonicalUUID}"/>/trdetailsedit"><small>Edit</small> &nbsp;&nbsp;
-						</a>&nbsp;<a href="${scriptName}/<c:out value="${tdsfromothersdetail.canonicalUUID}"/>/trdetailssdelete" id="delete" onclick="return checkdelete()"><small>Delete</small> </a>
+							href="${scriptName}/<c:out value="${taxreliefdetail.canonicalUUID}"/>/trdetailsedit"><small>Edit</small> &nbsp;&nbsp;
+						</a>&nbsp;<a href="${scriptName}/<c:out value="${taxreliefdetail.canonicalUUID}"/>/trdetailssdelete" id="delete" onclick="return checkdelete()"><small>Delete</small> </a>
 							</td>
 						</tr>
 					</tr>
 				</c:forEach>
 				<tr>
 					<td colspan="3"><fmt:message key="tds.amount.total" /></td>
-					<td><w4india:inr value="${parentBean.total_Amount}" /></td>
+					<td><w4india:inr value="${parentBean.total_TaxFsi}" /></td>
+					<td colspan="3"><fmt:message key="tds.amount.total" /></td>
+					<td><w4india:inr value="${parentBean.rebate9091}" /></td>
+					<td colspan="3"><fmt:message key="tds.amount.total" /></td>
+					<td><w4india:inr value="${parentBean.rebate90}" /></td>
 				</tr>
 			</c:if>
 		</table>
@@ -152,6 +162,6 @@
 </div>
 
 
-<res:client-validation formId="frmdataTdsOther"
-	screenConfigurationDocumentName="tdsfromothers"
-	formSubmitButtonId="myModalHrefTdsOther" fieldOneID="tan_deductortdsoth" fieldTwoID="name_deductortdsoth" validationType="tan"/>
+<res:client-validation formId="frmtrdetails"
+	screenConfigurationDocumentName="taxrelief"
+	formSubmitButtonId="myModalHrefTaxrebate" />
