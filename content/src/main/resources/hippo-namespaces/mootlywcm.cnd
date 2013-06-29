@@ -359,15 +359,27 @@ orderable
 
 
 [mootlywcm:memberdrivedocument] > hippostd:relaxed, mootlywcm:basedocument orderable
+[mootlywcm:Service] > hippostd:relaxed, mootlywcm:basedocument orderable
+[mootlywcm:costmodel] > hippo:compound, hippostd:relaxed orderable
+[mootlywcm:formfield] > hippo:compound, hippostd:relaxed orderable
+[mootlywcm:servicerequestform] > hippostd:relaxed, mootlywcm:basedocument orderable
+[mootlywcm:servicerequestdocument] > hippostd:relaxed, mootlywcm:basedocument orderable
+[mootlywcm:memberdrivedocument] > hippostd:relaxed, mootlywcm:basedocument orderable
+
 
 [mootlywcm:clubincomedocument] > hippostd:relaxed, mootlywcm:basedocument orderable
 
+
 [mootlywcm:clubincomedetail] > hippo:compound, hippostd:relaxed orderable
+
 
 [mootlywcm:foreignincomedetail] > hippo:compound, hippostd:relaxed orderable
 
+
 [mootlywcm:foreignincomedocument] > hippostd:relaxed, mootlywcm:basedocument orderable
 
+
 [mootlywcm:taxreliefdetail] > hippo:compound, hippostd:relaxed orderable
+
 
 [mootlywcm:taxreliefdocument] > hippostd:relaxed, mootlywcm:basedocument orderable
