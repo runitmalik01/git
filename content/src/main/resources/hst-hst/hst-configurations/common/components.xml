@@ -1142,6 +1142,26 @@
       <sv:value>member.attachment</sv:value>
     </sv:property>
   </sv:node>
+  <sv:node sv:name="myservices">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>5aa492bf-684d-4dcc-8ca5-58810837db5a</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentclassname" sv:type="String">
+      <sv:value>com.mootly.wcm.member.service.Services</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+      <sv:value>pageSize</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+      <sv:value>5</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>myservices</sv:value>
+    </sv:property>
+  </sv:node>
 	<sv:node sv:name="knowledgearticlesoverview" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
 	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
 	    <sv:value>hst:component</sv:value>
@@ -1175,8 +1195,7 @@
 	  <sv:property sv:name="hst:template" sv:type="String">
 	    <sv:value>knowledgearticles.leftnav</sv:value>
 	  </sv:property>
-	</sv:node>
-	
+	</sv:node>	
 	<sv:node sv:name="clubincome" >
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hst:component</sv:value>
