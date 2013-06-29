@@ -2796,18 +2796,17 @@
       <sv:value>jsp/member/itreturnxml.jsp</sv:value>
     </sv:property>
   </sv:node>
-<sv:node sv:name="vendor.signup.detail">
-  <sv:property sv:name="jcr:primaryType" sv:type="Name">
-    <sv:value>hst:template</sv:value>
-  </sv:property>
-  <sv:property sv:name="jcr:uuid" sv:type="String">
-    <sv:value>4eed2ac5-0fa8-434d-ad1a-66ab753aa447</sv:value>
-  </sv:property>
-  <sv:property sv:name="hst:renderpath" sv:type="String">
-    <sv:value>jsp/vendor/vendorsignup.jsp</sv:value>
-  </sv:property>
-</sv:node>
-  
+  <sv:node sv:name="vendor.signup.detail">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>4eed2ac5-0fa8-434d-ad1a-66ab753aa447</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/vendor/vendorsignup.jsp</sv:value>
+    </sv:property>
+  </sv:node>
   <sv:node sv:name="reviews">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
       <sv:value>hst:template</sv:value>
@@ -2831,7 +2830,51 @@
       <sv:value>jsp/member/memberdrive.jsp</sv:value>
     </sv:property>
   </sv:node>
-	<sv:node sv:name="knowledgearticles.leftnav" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+  <sv:node sv:name="myservices">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>1d17d0c2-f560-4e1e-87ef-f877b8640512</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/service/memberservice.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="myservices.facetnav">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>4b9c3ee5-8dc4-4b38-8d55-d276fd22d1e4</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/service/facetnav.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="myservices.detail">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>dd1fa08e-6ac9-45a7-bb00-199dac85ecbf</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/service/detail.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="myservices.right">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>d6c9398d-1983-4cb2-b030-62f8eae31874</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/service/right.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+<sv:node sv:name="knowledgearticles.leftnav" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
 	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
 	    <sv:value>hst:template</sv:value>
 	  </sv:property>
@@ -2896,9 +2939,8 @@
 	  <sv:property sv:name="hst:renderpath" sv:type="String">
 	    <sv:value>jsp/knowledgearticles/overview.jsp</sv:value>
 	  </sv:property>
-	</sv:node>
-	
-	<sv:node sv:name="clubincome" >
+	</sv:node>	
+<sv:node sv:name="clubincome" >
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hst:template</sv:value>
   </sv:property>
@@ -2931,9 +2973,7 @@
   <sv:property sv:name="hst:renderpath" sv:type="String">
     <sv:value>jsp/member/trdetails.jsp</sv:value>
   </sv:property>
-</sv:node>
-
-	
+</sv:node>	
 	<sv:node sv:name="knowledgearticles.main" >
 	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
 	    <sv:value>hst:template</sv:value>
