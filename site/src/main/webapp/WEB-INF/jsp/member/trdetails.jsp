@@ -105,7 +105,7 @@
 					<a href="${scriptName}" class="button olive">Cancel</a>&nbsp;
 					<a id="myModalHrefTaxrebate" role="button" class="btn orange">Save</a>
 				</div> 
-			<div><input type="text" value="${taxreliefdetail}"/></div>
+			
 			</div>
 		</form>
 	</c:when>
