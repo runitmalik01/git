@@ -26,10 +26,11 @@
 <%@ attribute name="queryValue" required="false" type="java.lang.String" rtexprvalue="true" %>
 
 <c:if test="${not empty pageableResult.currentRange}">
-<ul id="page-nav">
+<div class="pagination" align="center">
+<ul>
   <c:choose>
     <c:when test="${pageableResult.previous}">
-      <li class="prev">
+      <li>
         <c:url var="prevLink" value="">
           <c:param name="${queryName}" value="${fn:escapeXml(queryValue)}"/>
           <c:param name="pageNumber" value="${pageableResult.previousPage}"/>
@@ -38,13 +39,13 @@
       </li>
     </c:when>
     <c:otherwise>
-      <li class="prev disabled"><fmt:message key="pagination.previous" /></li>
+      <li><a href="#" class="success"><fmt:message key="pagination.previous" /></a></li>
     </c:otherwise>
   </c:choose>
   <c:forEach var="page" begin="${pageableResult.startPage}" end="${pageableResult.endPage}">
     <c:choose>
       <c:when test="${page == pageableResult.currentPage}">
-        <li class="active"><c:out value="${page}"/></li>
+        <li><a href="#" class="success"><c:out value="${page}"/></a></li>
       </c:when>
       <c:otherwise>
         <li>
@@ -59,7 +60,7 @@
   </c:forEach>
   <c:choose>
     <c:when test="${pageableResult.next}">
-      <li class="next">
+      <li>
         <c:url var="nextLink" value="">
           <c:param name="${queryName}" value="${fn:escapeXml(queryValue)}"/>
           <c:param name="pageNumber" value="${pageableResult.nextPage}"/>
@@ -68,8 +69,9 @@
       </li>
     </c:when>
     <c:otherwise>
-      <li class="next disabled"><fmt:message key="pagination.next" /></li>
+      <li><a href="#" class="success"><fmt:message key="pagination.next"/></a></li>
     </c:otherwise>
   </c:choose>
 </ul>
+</div>
 </c:if>
