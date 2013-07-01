@@ -40,6 +40,18 @@ public class EmailTemplate extends BaseDocument implements ContentNodeBinder {
 	String subject;
 	String htmlBody;
 	String plainBody;
+	String[] bcc;
+	String[] cc;
+	
+	public final String[] getBcc() {
+		if (bcc == null) bcc = getProperty("mootlywcm:bcc").toString().split(",");
+		return bcc;
+	}
+	
+	public final String[] getCc() {
+		if (cc == null) cc = getProperty("mootlywcm:cc").toString().split(",");
+		return cc;
+	}
 	
 	public final String getEmail() {
 		if (email == null) email = getProperty("mootlywcm:email");
@@ -102,6 +114,14 @@ public class EmailTemplate extends BaseDocument implements ContentNodeBinder {
 	public void setPlainBody(String plainBody) {
 		this.plainBody = plainBody;
 	}
+	
+	public void setBcc(String[] bcc) {
+		this.bcc = bcc;
+	}
+	
+	public void setCc(String[] cc) {
+		this.cc = cc;
+	}
 
 	@Override
 	public boolean bind(Object content, javax.jcr.Node node)
@@ -117,6 +137,8 @@ public class EmailTemplate extends BaseDocument implements ContentNodeBinder {
 			node.setProperty("mootlywcm:firstName", memberSignup.getHtmlBody());
 			node.setProperty("mootlywcm:lastName", memberSignup.getPlainBody());
 			node.setProperty("mootlywcm:middleName", memberSignup.getPlainBody());
+			node.setProperty("mootlywcm:bcc", memberSignup.getBcc());
+			node.setProperty("mootlywcm:cc", memberSignup.getCc());
 		} catch (RepositoryException rex) {
 			log.error("Repository Exception while binding",rex);
 		}
