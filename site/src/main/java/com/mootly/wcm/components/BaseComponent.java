@@ -34,7 +34,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.mootly.wcm.beans.EmailMessage;
+import com.mootly.wcm.beans.EmailTemplate;
 import com.mootly.wcm.components.ITReturnComponent.FullReviewedWorkflowCallbackHandler;
+import com.mootly.wcm.utils.ContentStructure;
 
 public class BaseComponent extends BaseHstComponent {
 	private static final Logger log = LoggerFactory.getLogger(BaseComponent.class);
@@ -100,12 +102,14 @@ public class BaseComponent extends BaseHstComponent {
      * @param templateKey
      * @param velocityContext
      */
-    protected void sendEmail(HstRequest request, String[] to,String[] cc,String[] bcc,String subject,String attachmentList,String defaultMessage,String templateKey,Map<String,String> velocityContext) {
+    //protected void sendEmail(HstRequest request, String[] to,String[] cc,String[] bcc,String subject,String attachmentList,String defaultMessage,String templateKey,Map<String,String> velocityContext) {
+    	protected void sendEmail(HstRequest request, String[] to,String attachmentList,String defaultMessage,String templateKey,Map<String,String> velocityContext) {
     	try {
     		
     		//here we do the VEOCITY MAGIC
     		//todo - megha
-    		if (subject == null) return;
+    		//if (subject == null) return;
+    		if (templateKey == null) return;
     		Session persistableSession = null;
     		WorkflowPersistenceManager wpm;
     		String basePathToSiteContentBean =  request.getRequestContext().getResolvedMount().getMount().getCanonicalContentPath();
@@ -129,15 +133,18 @@ public class BaseComponent extends BaseHstComponent {
     		else {
     			pathToEmail = basePathToSiteContentBean + "/members/" + getNormalizedUserName(request) + "/emails";
     		}
+    		EmailTemplate emailTemplate = (EmailTemplate) wpm.getObject(ContentStructure.getEmailTemplatesPath(request) + "/"+templateKey);
     		final String pathToParentBean = wpm.createAndReturn(pathToEmail,"mootlywcm:emailmessage",templateKey, true);
     		EmailMessage emailMessage = (EmailMessage) wpm.getObject(pathToParentBean);
     		emailMessage.setTo(to);
-    		if (cc != null) emailMessage.setCc(cc);
-    		if (bcc != null) emailMessage.setBcc(bcc);
-    		emailMessage.setSubject(subject);
+    		/*if (cc != null) emailMessage.setCc(cc);
+    		if (bcc != null) emailMessage.setBcc(bcc);*/
+    		emailMessage.setCc(emailTemplate.getCc());
+    		emailMessage.setBcc(emailTemplate.getBcc());
+    		emailMessage.setSubject(emailTemplate.getSubject());
     		emailMessage.setAttachmentList(attachmentList);
     		emailMessage.setTemplateKey(templateKey);
-    		emailMessage.setHtmlBody(defaultMessage);
+    		emailMessage.setHtmlBody(emailTemplate.getHtmlBody());
 			wpm.update(emailMessage);
     	}
     	catch (Exception ex) {
