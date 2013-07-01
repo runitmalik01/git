@@ -243,7 +243,8 @@ public class XmlGenerator extends ITReturnComponent {
 		if (emailMe) {
 			if (temporaryPathToPDF != null && temporaryPathToXML != null) {
 				String[] to = new String[]{ getUserName() };
-				sendEmail(request, to, null, new String[] {"info@wealth4india.com"}, "Your IT Return", temporaryPathToPDF + "," + temporaryPathToXML, "Your IT Return Summary", "itreturnSummaryAndXml", null);
+				//sendEmail(request, to, null, new String[] {"info@wealth4india.com"}, "Your IT Return", temporaryPathToPDF + "," + temporaryPathToXML, "Your IT Return Summary", "itreturnSummaryAndXml", null);
+				sendEmail(request, to, temporaryPathToPDF + "," + temporaryPathToXML,"Your IT Return","w4i_email",null);
 				request.setAttribute("emailMeStatus", "success");
 			}
 			else {
