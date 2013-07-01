@@ -76,11 +76,11 @@
 	<c:otherwise>
 		<table>
 			<tr align="center">
-				<th><b><fmt:message key="tds.tan.deductor" /> </b>
+				<th><b><fmt:message key="foreign.country.code" /> </b>
 				</th>
-				<th><b><fmt:message key="tds.name.deductor" /> </b>
+				<th><b><fmt:message key="address.property.itr2" /> </b>
 				</th>
-				<th><b><fmt:message key="tds.total.tax.deducted" /> </b></th>
+				<th><b><fmt:message key="total.investmentitr2" /> </b></th>
 				
 				<th><b>Actions</b></th>
 			</tr>
