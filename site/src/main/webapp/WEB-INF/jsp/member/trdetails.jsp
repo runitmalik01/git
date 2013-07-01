@@ -90,7 +90,7 @@
 				<div class="span4">
 					<div class="rowlabel">
 						<label for="relief91"><small><fmt:message
-									key="relief.90.itr2" /> </small> </label>
+									key="relief.91.itr2" /> </small> </label>
 					</div>
 					<div class="rowlabel">
 						<input id="relief91" name="relief91" type="text"
@@ -112,14 +112,14 @@
 	<c:otherwise>
 		<table>
 			<tr align="center">
-				<th><b><fmt:message key="tds.tan.deductor" /> </b>
+				<th><b><fmt:message key="foreign.country.code" /> </b>
 				</th>
-				<th><b><fmt:message key="tds.name.deductor" /> </b>
+				<th><b><fmt:message key="tax.id.itr2" /> </b>
 				</th>
-				<th><b><fmt:message key="tds.total.tax.deducted" /> </b></th>
-				<th><b><fmt:message key="tds.amount.claimed" /> </b></th>
-				<th><b><fmt:message key="tds.total.tax.deducted" /> </b></th>
-				<th><b><fmt:message key="tds.amount.claimed" /> </b></th>
+				<th><b><fmt:message key="article.dtaa.itr2" /> </b></th>
+				<th><b><fmt:message key="total.tax.fsi.itr2" /> </b></th>
+				<th><b><fmt:message key="relief.90.91.itr2" /> </b></th>
+				<th><b><fmt:message key="relief.91.itr2" /> </b></th>
 				<th><b>Actions</b></th>
 			</tr>
 			<c:if test="${not empty parentBean}">
