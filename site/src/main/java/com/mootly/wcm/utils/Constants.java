@@ -200,7 +200,18 @@ public interface Constants {
 	String RELIEF9091="mootlywcm:relief90_91";
 	String RELIEF91="mootlywcm:relief91";
 	
-
+	String CODE_COUNTRY="mootlywcm:country_code";
+	String NAME_BANK="mootlywcm:name_bank";
+	String ADDRESS_BANK="mootlywcm:address_bank";
+	String NAME_ACCOUNT="mootlywcm:name_account";
+	String ACCOUNT_NO="mootlywcm:account_no";
+	String PEAK_BALANCE="mootlywcm:peak_balance";
+	
+	
+	String ADDRESS_PROPERTY="mootlywcm:address_property";
+	String TOTAL_INVESTMENT="mootlywcm:total_investment";
+	
+	String NATURE_ASSET="mootlywcm:nature_asset";
 
 
 }
