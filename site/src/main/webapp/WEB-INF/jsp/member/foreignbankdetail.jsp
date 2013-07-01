@@ -90,7 +90,7 @@
 				<div class="span4">
 					<div class="rowlabel">
 						<label for="peak_balance"><small><fmt:message
-									key="relief.90.itr2" /> </small> </label>
+									key="balance.itr2" /> </small> </label>
 					</div>
 					<div class="rowlabel">
 						<input id="peak_balance" name="peak_balance" type="text"
@@ -112,14 +112,14 @@
 	<c:otherwise>
 		<table>
 			<tr align="center">
-				<th><b><fmt:message key="tds.tan.deductor" /> </b>
+				<th><b><fmt:message key="foreign.country.code" /> </b>
 				</th>
-				<th><b><fmt:message key="tds.name.deductor" /> </b>
+				<th><b><fmt:message key="name.bank.itr2" /> </b>
 				</th>
-				<th><b><fmt:message key="tds.total.tax.deducted" /> </b></th>
-				<th><b><fmt:message key="tds.amount.claimed" /> </b></th>
-				<th><b><fmt:message key="tds.total.tax.deducted" /> </b></th>
-				<th><b><fmt:message key="tds.amount.claimed" /> </b></th>
+				<th><b><fmt:message key="address.bank.itr2" /> </b></th>
+				<th><b><fmt:message key="name.account.itr2" /> </b></th>
+				<th><b><fmt:message key="account.no.itr2" /> </b></th>
+				<th><b><fmt:message key="balance.itr2" /> </b></th>
 				<th><b>Actions</b></th>
 			</tr>
 			<c:if test="${not empty parentBean}">
