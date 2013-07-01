@@ -383,3 +383,15 @@ orderable
 
 
 [mootlywcm:taxreliefdocument] > hippostd:relaxed, mootlywcm:basedocument orderable
+
+[mootlywcm:immovablepropertydetail] > hippo:compound, hippostd:relaxed orderable
+
+[mootlywcm:immovablepropertydocument] > hippostd:relaxed, mootlywcm:basedocument orderable
+
+[mootlywcm:natureinvestmentdetail] > hippo:compound, hippostd:relaxed orderable
+
+[mootlywcm:natureinvestmentdocument] > hippostd:relaxed, mootlywcm:basedocument orderable
+
+[mootlywcm:foreignbankaccoundtetail] > hippo:compound, hippostd:relaxed orderable
+
+[mootlywcm:foreignbankaccountdocument] > hippostd:relaxed, mootlywcm:basedocument orderable
