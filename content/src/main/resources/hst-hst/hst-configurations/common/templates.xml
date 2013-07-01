@@ -3008,6 +3008,39 @@
     <sv:value>jsp/member/foreignbankdetail.jsp</sv:value>
   </sv:property>
 </sv:node>
+<sv:node sv:name="financialinterest">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:template</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>083d393e-ae4f-4745-b499-786b73498feb</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:renderpath" sv:type="String">
+    <sv:value>jsp/member/financialinterest.jsp</sv:value>
+  </sv:property>
+</sv:node>
+<sv:node sv:name="trustdetail" >
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:template</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>59c8dbcd-a8af-4089-a128-3c3f2d32208f</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:renderpath" sv:type="String">
+    <sv:value>jsp/member/trustdetail.jsp</sv:value>
+  </sv:property>
+</sv:node>
+<sv:node sv:name="signingauthorityaccounts">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:template</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>e96d1287-6c91-4e69-a3d7-1fbf268cb2f2</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:renderpath" sv:type="String">
+    <sv:value>jsp/member/signingauthorityaccounts.jsp</sv:value>
+  </sv:property>
+</sv:node>
 
 
 	<sv:node sv:name="knowledgearticles.main" >
