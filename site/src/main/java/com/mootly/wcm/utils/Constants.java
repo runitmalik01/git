@@ -212,6 +212,26 @@ public interface Constants {
 	String TOTAL_INVESTMENT="mootlywcm:total_investment";
 	
 	String NATURE_ASSET="mootlywcm:nature_asset";
-
+	
+	String NAME_ENTITY="mootlywcm:name_entity";
+	String NATURE_ENTITY="mootlywcm:nature_entity";
+	String ADDRESS_ENTITY="mootlywcm:address_entity";
+	
+	String NAME_TRUST="mootlywcm:name_trust";
+	String ADDRESS_TRUST="mootlywcm:address_trust";
+	String NAME_OTHERTRUST="mootlywcm:name_othertrust";
+	String ADDRESS_OTHERTRUST="mootlywcm:address_othertrust";
+	String NAME_SETTLOR="mootlywcm:name_settlor";
+	String ADDRESS_SETTLOR="mootlywcm:address_settlor";
+	String NAME_BENEFICIARIES="mootlywcm:name_beneficiaries";
+	String ADDRESS_BENEFICIARIES="mootlywcm:address_beneficiaries";
+	
+	String NAME_ISTITUTE="mootlywcm:name_institution";
+	String ADDRESS_INSTITUTE="mootlywcm:address_institution";
+	String NAME_ACHOLDER="mootlywcm:name_accountholder";
+	String ACCOUNT_NUMBER="mootlywcm:account_number";
+	
+	
+	
 
 }
