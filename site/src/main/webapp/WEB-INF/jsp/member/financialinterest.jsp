@@ -36,7 +36,7 @@
 					<div class="rowlabel">
 						<input id="country_code" name="country_code" 
 							type="text" 
-							value=" " />
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.country_Code}"/></c:if>" />
 					</div>
 				</div>
 				<div class="span4">
@@ -47,7 +47,7 @@
 					<div class="rowlabel">
 						<input id="nature_entity" name="nature_entity"
 							type="text" 
-							value=" " />
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.name_Entity}"/></c:if>" />
 					</div>
 				</div>
 				<div class="span4">
@@ -58,7 +58,7 @@
 					<div class="rowlabel">
 						<input id="name_entity" name="name_entity"
 							type="text" 
-							value=" " />
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.nature_Entity}"/></c:if>" />
 					</div>
 				</div>
 			</div>
@@ -73,7 +73,7 @@
 						<input id="address_entity" name="address_entity"
 							type="text"
 							 
-							value=" " />
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.address_Entity}"/></c:if>" />
 					</div>
 				</div>
 				
@@ -85,7 +85,7 @@
 					<div class="rowlabel">
 						<input id="total_investment" name="total_investment" type="text"
 							maxlength="14"   class="decimal"
-							value=" " />
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.total_Investment}"/></c:if>" />
 					</div>
 				</div>
 			</div>
@@ -102,32 +102,29 @@
 	<c:otherwise>
 		<table>
 			<tr align="center">
-				<th><b><fmt:message key="tds.tan.deductor" /> </b>
+				<th><b><fmt:message key="foreign.country.code" /> </b>
 				</th>
-				<th><b><fmt:message key="tds.name.deductor" /> </b>
-				</th>
-				<th><b><fmt:message key="tds.total.tax.deducted" /> </b></th>
-				<th><b><fmt:message key="tds.amount.claimed" /> </b></th>
-				<th><b><fmt:message key="tds.total.tax.deducted" /> </b></th>
-				<th><b><fmt:message key="tds.amount.claimed" /> </b></th>
+				<th><b><fmt:message key="nature.entity.itr2" /> </b></th>
+				<th><b><fmt:message key="name.entity.itr2" /> </b></th>
+				<th><b><fmt:message key="address.entity.itr2" /> </b></th>
+				<th><b><fmt:message key="total.investment.itr2" /> </b></th>
 				<th><b>Actions</b></th>
 			</tr>
 			<c:if test="${not empty parentBean}">
-				<c:forEach items="${parentBean.foreignAssetDetailList}"
+				<c:forEach items="${parentBean.financialInterestDetailList}"
 					var="foreignbank">
 					<tr>
 						<td><c:out value="${foreignbank.country_Code}" />
 						</td>
-						<td><c:out value="${foreignbank.name_Bank}" />
+						<td><c:out value="${foreignbank.name_Entity}" />
 						</td>
-						<td><c:out value="${foreignbank.address_Bank}" />
+						<td><c:out value="${foreignbank.nature_Entity}" />
 						</td>
-						<td><c:out value="${foreignbank.name_Account}" />
+						<td><c:out value="${foreignbank.address_Entity}" />
 						</td>
-						<td><c:out value="${foreignbank.account_No}" />
+						<td><c:out value="${foreignbank.total_Investment}" />
 						</td>
-						<td><w4india:inr value="${foreignbank.peak_Balance}" />
-						</td>
+						
 						<td><a
 							href="${scriptName}/<c:out value="${foreignbank.canonicalUUID}"/>/financialinterestedit"><small>Edit</small> &nbsp;&nbsp;
 						</a>&nbsp;<a href="${scriptName}/<c:out value="${foreignbank.canonicalUUID}"/>/financialinterestdelete" id="delete" onclick="return checkdelete()"><small>Delete</small> </a>
@@ -136,11 +133,9 @@
 					</tr>
 				</c:forEach>
 				<tr>
-					<td colspan="3"><fmt:message key="tds.amount.total" /></td>
-					<td><w4india:inr value="${parentBean.total_peakBalance}" /></td>
-					
+					<td colspan="4" align="center"><b>Total</b></td>
+					<td><w4india:inr value="${parentBean.investment_Total}" /></td>
 				</tr>
-				
 			</c:if>
 		</table>
 		<a href="${scriptName}/financialinterestnew"
