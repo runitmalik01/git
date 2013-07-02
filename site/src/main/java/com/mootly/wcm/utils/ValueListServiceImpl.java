@@ -4,7 +4,7 @@
  *
  * 07 Mar,2013
  *
- * 
+ *
  */
 
 package com.mootly.wcm.utils;
@@ -26,11 +26,11 @@ import org.slf4j.LoggerFactory;
 
 
 /**
- * This is a singleton class which helps in loading the properties 
+ * This is a singleton class which helps in loading the properties
  * files to populate combo boxes in jsp.
  * @author Komila
- *  
- * 
+ *
+ *
  */
 
 public final class ValueListServiceImpl implements ValueListService{
@@ -52,15 +52,15 @@ public final class ValueListServiceImpl implements ValueListService{
 	private ResourceBundle objvalueListReturnFile=null;
 	private ResourceBundle objvalueListRelationship=null;
 
-	private static final ValueListServiceImpl objValueListServiceImpl = new ValueListServiceImpl(); 
+	private static final ValueListServiceImpl objValueListServiceImpl = new ValueListServiceImpl();
 	private static final Logger log = LoggerFactory.getLogger(ValueListServiceImpl.class);
-	
+
 	private Map<String,SortedSet<Map.Entry<String,String>>> mapOfValueList = new HashMap<String, SortedSet<Map.Entry<String,String>>>();
-	
+
 	/**
 	 * Constructor of ValueListServiceImpl class
 	 */
-	private ValueListServiceImpl() 
+	private ValueListServiceImpl()
 	{
 		objValueListCountriesBundle    = ResourceBundle.getBundle("valueList_Countries");
 		objValueListStatesBundle    = ResourceBundle.getBundle("valueList_states");
@@ -79,24 +79,24 @@ public final class ValueListServiceImpl implements ValueListService{
 		objValueListQuarterBundle    = ResourceBundle.getBundle("valueList_quarter");
 		objvalueListReturnFile = ResourceBundle.getBundle("valueList_returnFile");
 		objvalueListRelationship= ResourceBundle.getBundle("valueList_relationship");
-		
+
 		//initialization
 		initCountries();
 		initStates();
 	}
 
 	/**
-	 * This method gives a single way to get ValueListServiceImpl instance 		 	
-	 * @param  
+	 * This method gives a single way to get ValueListServiceImpl instance
+	 * @param
 	 * @return ValueListServiceImpl  object
 	 */
 
-	public static ValueListServiceImpl getInstance() 
+	public static ValueListServiceImpl getInstance()
 	{
 		return objValueListServiceImpl;
 	}
-	
-	
+
+
 	protected void initCountries() {
 		TreeMap<String, String> TreeMapCountry =new TreeMap<String, String>();
 		//Map<String, String> TreeMapStates = new HashMap<String, String>();
@@ -106,7 +106,7 @@ public final class ValueListServiceImpl implements ValueListService{
 		TreeMapCountry.put("376", objValueListCountriesBundle.getString("valueList.4"));
 		TreeMapCountry.put("244", objValueListCountriesBundle.getString("valueList.5"));
 		TreeMapCountry.put("1268", objValueListCountriesBundle.getString("valueList.6"));
-		TreeMapCountry.put("54", objValueListCountriesBundle.getString("valueList.7"));	
+		TreeMapCountry.put("54", objValueListCountriesBundle.getString("valueList.7"));
 		TreeMapCountry.put("374", objValueListCountriesBundle.getString("valueList.8"));
 		TreeMapCountry.put("61", objValueListCountriesBundle.getString("valueList.9"));
 		TreeMapCountry.put("43", objValueListCountriesBundle.getString("valueList.10"));
@@ -126,7 +126,7 @@ public final class ValueListServiceImpl implements ValueListService{
 		TreeMapCountry.put("55", objValueListCountriesBundle.getString("valueList.24"));
 		TreeMapCountry.put("673", objValueListCountriesBundle.getString("valueList.25"));
 		TreeMapCountry.put("359", objValueListCountriesBundle.getString("valueList.26"));
-		TreeMapCountry.put("226", objValueListCountriesBundle.getString("valueList.27"));		
+		TreeMapCountry.put("226", objValueListCountriesBundle.getString("valueList.27"));
 		TreeMapCountry.put("257", objValueListCountriesBundle.getString("valueList.28"));
 		TreeMapCountry.put("855", objValueListCountriesBundle.getString("valueList.29"));
 		TreeMapCountry.put("237", objValueListCountriesBundle.getString("valueList.30"));
@@ -297,7 +297,7 @@ public final class ValueListServiceImpl implements ValueListService{
 		camelizeTreeMap(TreeMapCountry);
 		mapOfValueList.put("countries",entriesSortedByValues(TreeMapCountry));
 	}
-	
+
 	protected void initStates() {
 		TreeMap<String, String> TreeMapStates =new TreeMap<String, String>();
 		//Map<String, String> TreeMapStates = new HashMap<String, String>();
@@ -307,7 +307,7 @@ public final class ValueListServiceImpl implements ValueListService{
 		TreeMapStates.put("05", objValueListStatesBundle.getString("valueList.bihar"));
 		TreeMapStates.put("10", objValueListStatesBundle.getString("valueList.goa"));
 		TreeMapStates.put("11", objValueListStatesBundle.getString("valueList.gujarat"));
-		TreeMapStates.put("12", objValueListStatesBundle.getString("valueList.haryana"));	
+		TreeMapStates.put("12", objValueListStatesBundle.getString("valueList.haryana"));
 		TreeMapStates.put("13", objValueListStatesBundle.getString("valueList.himachalPradesh"));
 		TreeMapStates.put("14", objValueListStatesBundle.getString("valueList.jammuAndKashmir"));
 		TreeMapStates.put("15", objValueListStatesBundle.getString("valueList.karnataka"));
@@ -327,9 +327,9 @@ public final class ValueListServiceImpl implements ValueListService{
 		TreeMapStates.put("31", objValueListStatesBundle.getString("valueList.uttarPradesh"));
 		TreeMapStates.put("32", objValueListStatesBundle.getString("valueList.westBengal"));
 		TreeMapStates.put("33", objValueListStatesBundle.getString("valueList.chhattisgarh"));
-		TreeMapStates.put("34", objValueListStatesBundle.getString("valueList.uttaranchal"));		
+		TreeMapStates.put("34", objValueListStatesBundle.getString("valueList.uttaranchal"));
 		TreeMapStates.put("35", objValueListStatesBundle.getString("valueList.jharkhand"));
-		
+
 		TreeMapStates.put("01", objValueListStatesBundle.getString("valueList.andamanAndNicobarIslands"));
 		TreeMapStates.put("06", objValueListStatesBundle.getString("valueList.chandigarh"));
 		TreeMapStates.put("07", objValueListStatesBundle.getString("valueList.dadarAndNagarHaveli"));
@@ -337,21 +337,21 @@ public final class ValueListServiceImpl implements ValueListService{
 		TreeMapStates.put("09", objValueListStatesBundle.getString("valueList.delhi"));
 		TreeMapStates.put("17", objValueListStatesBundle.getString("valueList.lakshadeep"));
 		TreeMapStates.put("25", objValueListStatesBundle.getString("valueList.pondicherry"));
-		
+
 		camelizeTreeMap(TreeMapStates);
 		//SortedMap<String, String> m = Collections.synchronizedSortedMap(TreeMapStates);
 		mapOfValueList.put("states",entriesSortedByValues(TreeMapStates));
 	}
 	/**
-	 * This method fetches the information valueList_states.properties file	
-	 * 
+	 * This method fetches the information valueList_states.properties file
+	 *
 	 * @return TreeMap  object
 	 */
 
 	public SortedSet<Map.Entry<String,String>> getStates() {
 		return mapOfValueList.get("states");
 	}
-		
+
 	public SortedSet<Map.Entry<String,String>>  getCountry()
 	{
 		return mapOfValueList.get("countries");
@@ -379,7 +379,7 @@ public final class ValueListServiceImpl implements ValueListService{
 		TreeMapDeductionDropdown.put(objValueListDeductionBundle.getString("80d_4"), objValueListDeductionBundle.getString("80d_4"));
 		TreeMapDeductionDropdown.put(objValueListDeductionBundle.getString("80d_5"), objValueListDeductionBundle.getString("80d_5"));
 		return TreeMapDeductionDropdown;
-	}		 
+	}
 
 	public TreeMap<String, String> getDeduction6a()
 	{
@@ -400,11 +400,11 @@ public final class ValueListServiceImpl implements ValueListService{
 		TreeMapDeductionaDropdown.put(objValueListDeduction6aBundle.getString("80tta"), objValueListDeduction6aBundle.getString("80tta"));
 
 		return TreeMapDeductionaDropdown;
-	}		 
+	}
 
 	/**
-	 * This method fetches the information valueList_boolean.properties file	
-	 * 
+	 * This method fetches the information valueList_boolean.properties file
+	 *
 	 * @return TreeMap  object
 	 */
 
@@ -419,8 +419,8 @@ public final class ValueListServiceImpl implements ValueListService{
 
 
 	/**
-	 * This method fetches the information valueList_residentialStatus.properties file	
-	 * 
+	 * This method fetches the information valueList_residentialStatus.properties file
+	 *
 	 * @return TreeMap  object
 	 */
 
@@ -432,12 +432,12 @@ public final class ValueListServiceImpl implements ValueListService{
 		TreeMapResStatus.put("3", objValueListResStatusBundle.getString("valueList.notOrdinaryResident"));
 
 		return TreeMapResStatus;
-	}		 
+	}
 
 
 	/**
-	 * This method fetches the information valueList_quarter.properties file	
-	 * 
+	 * This method fetches the information valueList_quarter.properties file
+	 *
 	 * @return TreeMap  object
 	 */
 
@@ -450,7 +450,7 @@ public final class ValueListServiceImpl implements ValueListService{
 		TreeMapQuarter.put("4", objValueListQuarterBundle.getString("valueList.qtr4"));
 
 		return TreeMapQuarter;
-	}		 
+	}
 
 	public TreeMap<String, String> getInflationIndex(){
 		TreeMap<String, String> TreeMapYearInflation=new TreeMap<String, String>();
@@ -492,8 +492,8 @@ public final class ValueListServiceImpl implements ValueListService{
 	}
 
 	/**
-	 * This method fetches the information valueList_schedule80C_dropdown.properties file	
-	 * 
+	 * This method fetches the information valueList_schedule80C_dropdown.properties file
+	 *
 	 * @return TreeMap  object
 	 */
 	public TreeMap<String, String> getSchedule80CDropdown()
@@ -511,7 +511,7 @@ public final class ValueListServiceImpl implements ValueListService{
 		TreeMapSchedule80CDropdown.put(objValueListSchedule80CDropdownBundle.getString("valueList.others"), objValueListSchedule80CDropdownBundle.getString("valueList.others"));
 
 		return TreeMapSchedule80CDropdown;
-	}		 
+	}
 	@Override
 	public TreeMap<String, String> getAssessmentYear() {
 		// TODO Auto-generated method stub
@@ -521,7 +521,7 @@ public final class ValueListServiceImpl implements ValueListService{
 		TreeMapAssessmentYear.put(objValueListAssessmentYearBundle.getString("valueList.2011-2010"), objValueListAssessmentYearBundle.getString("valueList.2011-2010"));
 		TreeMapAssessmentYear.put(objValueListAssessmentYearBundle.getString("valueList.2010-2009"), objValueListAssessmentYearBundle.getString("valueList.2010-2009"));
 		TreeMapAssessmentYear.put(objValueListAssessmentYearBundle.getString("valueList.2009-2008"), objValueListAssessmentYearBundle.getString("valueList.2009-2008"));
-		TreeMapAssessmentYear.put(objValueListAssessmentYearBundle.getString("valueList.2008-2007"), objValueListAssessmentYearBundle.getString("valueList.2008-2007"));		
+		TreeMapAssessmentYear.put(objValueListAssessmentYearBundle.getString("valueList.2008-2007"), objValueListAssessmentYearBundle.getString("valueList.2008-2007"));
 		TreeMapAssessmentYear.put(objValueListAssessmentYearBundle.getString("valueList.2007-2006"), objValueListAssessmentYearBundle.getString("valueList.2007-2006"));
 		TreeMapAssessmentYear.put(objValueListAssessmentYearBundle.getString("valueList.2006-2005"), objValueListAssessmentYearBundle.getString("valueList.2006-2005"));
 
@@ -535,7 +535,7 @@ public final class ValueListServiceImpl implements ValueListService{
 		TreeMapNaturePayment.put("3", objValueListNaturePayment.getString("206CC"));
 		TreeMapNaturePayment.put("4", objValueListNaturePayment.getString("206CD"));
 		TreeMapNaturePayment.put("5", objValueListNaturePayment.getString("206CE"));
-		TreeMapNaturePayment.put("6", objValueListNaturePayment.getString("206CF"));		
+		TreeMapNaturePayment.put("6", objValueListNaturePayment.getString("206CF"));
 		TreeMapNaturePayment.put("7", objValueListNaturePayment.getString("206CG"));
 		TreeMapNaturePayment.put("8", objValueListNaturePayment.getString("206CH"));
 		TreeMapNaturePayment.put("9", objValueListNaturePayment.getString("206CI"));
@@ -549,17 +549,14 @@ public final class ValueListServiceImpl implements ValueListService{
 		TreeMap<String, String> TreeMapNameOfHead =new TreeMap<String, String>();
 		TreeMapNameOfHead.put("1", objValueListNameOfHeadBundle.getString("valueList.HousePropertyLoss"));
 		TreeMapNameOfHead.put("2", objValueListNameOfHeadBundle.getString("valueList.LongTermCapitalLoss"));
-		TreeMapNameOfHead.put("3", objValueListNameOfHeadBundle.getString("valueList.ShortTermCapitalLoss"));		
-		TreeMapNameOfHead.put("4", objValueListNameOfHeadBundle.getString("valueList.UnabsorbedCapitalExpenditureonFamilyPlanning"));
-		TreeMapNameOfHead.put("5", objValueListNameOfHeadBundle.getString("valueList.UnabsorbedCapitalExpenditureonScientificResearch"));
-		TreeMapNameOfHead.put("6", objValueListNameOfHeadBundle.getString("valueList.UnabsorbedDepreciation"));
-		TreeMapNameOfHead.put("7",objValueListNameOfHeadBundle.getString("valueList.OwningandMaintainingRaceHorses"));
+		TreeMapNameOfHead.put("3", objValueListNameOfHeadBundle.getString("valueList.ShortTermCapitalLoss"));
+		TreeMapNameOfHead.put("4",objValueListNameOfHeadBundle.getString("valueList.OwningandMaintainingRaceHorses"));
 
 		return TreeMapNameOfHead;
 	}
 	/**
-	 * This method fetches the information valueList_numbers.properties file	
-	 * 
+	 * This method fetches the information valueList_numbers.properties file
+	 *
 	 * @return TreeMap  object
 	 */
 	public TreeMap<String, String> getNumbersDropdown()
@@ -602,7 +599,7 @@ public final class ValueListServiceImpl implements ValueListService{
 		TreeReturnType.put("8", objvalueListReturnFile.getString("valueList.section.139(9)"));
 		return  TreeReturnType;
 	}
-	
+
 	public TreeMap<String, String> getRelationship() {
 		// TODO Auto-generated method stub
 		TreeMap<String, String> TreeReturnType =new TreeMap<String, String>();
@@ -611,11 +608,11 @@ public final class ValueListServiceImpl implements ValueListService{
 		TreeReturnType.put("3", objvalueListRelationship.getString("valueList.Son'sWife"));
 		TreeReturnType.put("4", objvalueListRelationship.getString("valueList.MemberofHUF"));
 		TreeReturnType.put("5", objvalueListRelationship.getString("valueList.Other"));
-		
-		
+
+
 		return  TreeReturnType;
 	}
-	
+
 	public TreeMap<String, String> getDtaaCountries(){
 		TreeMap<String, String> TreeDtaaCountries = new TreeMap<String, String>();
 		TreeDtaaCountries.put("1", objValueListDtaaCountries.getString("valueList.1"));
@@ -729,13 +726,13 @@ public final class ValueListServiceImpl implements ValueListService{
 		TreeMapForiegnStates.put("99", objValueListStatesBundle.getString("valueList.foreign"));
 		return TreeMapForiegnStates;
 	}
-	
+
 	@Override
 	public List<String> getStateKeySet(TreeMap<String,String> objTreeMap) {
 		// TODO Auto-generated method stub
-		List<String> keyList = new ArrayList<String>();	
+		List<String> keyList = new ArrayList<String>();
 		for (String aKey: objTreeMap.keySet() ) {
-			keyList.add(aKey);			
+			keyList.add(aKey);
 		}
 		Collections.sort(keyList);
 		for(String key:keyList){
@@ -755,13 +752,13 @@ public final class ValueListServiceImpl implements ValueListService{
 			ResourceBundle objValueListDeduction6aBundle) {
 		this.objValueListDeduction6aBundle = objValueListDeduction6aBundle;
 	}
-	
+
 	protected void camelizeTreeMap(Map<String, String> in) {
 		for (String key:in.keySet()) {
 			in.put(key, WordUtils.capitalizeFully(in.get(key)));
 		}
 	}
-	
+
 	static <K,V extends Comparable<? super V>>
 	SortedSet<Map.Entry<K,V>> entriesSortedByValues(Map<K,V> map) {
 	    SortedSet<Map.Entry<K,V>> sortedEntries = new TreeSet<Map.Entry<K,V>>(
