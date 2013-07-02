@@ -395,3 +395,15 @@ orderable
 [mootlywcm:foreignbankaccoundtetail] > hippo:compound, hippostd:relaxed orderable
 
 [mootlywcm:foreignbankaccountdocument] > hippostd:relaxed, mootlywcm:basedocument orderable
+
+[mootlywcm:signingauthorityaccountdetail] > hippo:compound, hippostd:relaxed orderable
+
+[mootlywcm:signingauthorityaccountdocument] > hippostd:relaxed, mootlywcm:basedocument orderable
+
+[mootlywcm:financialinterestdetail] > hippo:compound, hippostd:relaxed orderable
+
+[mootlywcm:financialinterestdocument] > hippostd:relaxed, mootlywcm:basedocument orderable
+
+[mootlywcm:detailoftrustdetail] > hippo:compound, hippostd:relaxed orderable
+
+[mootlywcm:detailoftrustdocument] > hippostd:relaxed, mootlywcm:basedocument orderable
