@@ -119,13 +119,13 @@
 					</div>
 				</div>
 			</div>
-		<!--  		<div class="row-fluid show-grid">
+				<div class="row-fluid show-grid">
 				<div class="span4 offset8 decimal">
 					<a href="${scriptName}" class="button olive">Cancel</a>&nbsp;
-					<a id="myModalHrefTdsOther" role="button" class="btn orange">Save</a>
-				</div>-->
+					<a id="myModalHrefforeignincome" role="button" class="btn orange">Save</a>
+				</div>
 			</div>
-			<div><input type="submit" name= "Save"></div>
+			
 		</form>
 	</c:when>
 	<c:otherwise>
@@ -135,7 +135,7 @@
 				</th>
 				<th><b><fmt:message key="foreign.taxpayer.id" /> </b>
 				</th>
-				<th><b><fmt:message key="tds.total.tax.deducted" /> </b></th>
+				
 				<th><b><fmt:message key="foreign.income.salary" /> </b></th>
 				<th><b><fmt:message key="foreign.income.house" /> </b>
 				</th>
@@ -143,6 +143,7 @@
 				</th>
 				<th><b><fmt:message key="foreign.income.capitalgain" /> </b></th>
 				<th><b><fmt:message key="foreign.income.othersources" /> </b></th>
+				<th><b><fmt:message key="foreign.income.itr2" /> </b></th>
 				<th><b>Actions</b></th>
 			</tr>
 			<c:if test="${not empty parentBean}">
@@ -165,10 +166,10 @@
 						</td>
 						<td><w4india:inr value="${foreignIncome.income_Total}" />
 						</td>
-						<td>
+					
 					<td><a
-							href="${scriptName}/<c:out value="${tdsfromothersdetail.canonicalUUID}"/>/tdsfromothersedit"><small>Edit</small> &nbsp;&nbsp;
-						</a>&nbsp;<a href="${scriptName}/<c:out value="${tdsfromothersdetail.canonicalUUID}"/>/tdsfromothersdelete" id="delete" onclick="return checkdelete()"><small>Delete</small> </a>
+							href="${scriptName}/<c:out value="${foreignincomedetail.canonicalUUID}"/>/foreignincomeedit"><small>Edit</small> &nbsp;&nbsp;
+						</a>&nbsp;<a href="${scriptName}/<c:out value="${foreignincomedetail.canonicalUUID}"/>/foreignincomedelete" id="delete" onclick="return checkdelete()"><small>Delete</small> </a>
 							</td>
 						</tr>
 					</tr>
@@ -184,14 +185,8 @@
 	</c:otherwise>
 </c:choose>
 </div>
-<script type="text/javascript">
-function calculate(){
-	var amt= document.getElementById("total_taxdeductedtdsoth").value;
-	document.getElementById("amounttdsoth").value = amt;
-}
-</script>
 
-
-<res:client-validation formId="frmdataTdsOther"
-	screenConfigurationDocumentName="tdsfromothers"
-	formSubmitButtonId="myModalHrefTdsOther" fieldOneID="tan_deductortdsoth" fieldTwoID="name_deductortdsoth" validationType="tan"/>
+<res:calc screenCalc="foreignincome" formId="frmforeignincome"></res:calc>
+<res:client-validation formId="frmforeignincome"
+	screenConfigurationDocumentName="foreignincome"
+	formSubmitButtonId="myModalHrefforeignincome" />
