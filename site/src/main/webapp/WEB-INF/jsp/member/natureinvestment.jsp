@@ -36,7 +36,7 @@
 					<div class="rowlabel">
 						<input id="country_code" name="country_code" 
 							type="text" 
-							value=" " />
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.country_Code}"/></c:if>" />
 					</div>
 				</div>
 				<div class="span4">
@@ -47,7 +47,7 @@
 					<div class="rowlabel">
 						<input id="nature_asset" name="nature_asset"
 							type="text" 
-							value=" " />
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.nature_Asset}"/></c:if>" />
 					</div>
 				</div>
 				<div class="span4">
@@ -58,7 +58,7 @@
 					<div class="rowlabel">
 						<input id="total_investment" name="total_investment"
 							type="text" 
-							value=" " />
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.total_Investment}"/></c:if>" />
 					</div>
 				</div>
 			</div>
@@ -76,11 +76,11 @@
 	<c:otherwise>
 		<table>
 			<tr align="center">
-				<th><b><fmt:message key="tds.tan.deductor" /> </b>
+				<th><b><fmt:message key="foreign.country.code" /> </b>
 				</th>
-				<th><b><fmt:message key="tds.name.deductor" /> </b>
+				<th><b><fmt:message key="nature.asset.itr2" /> </b>
 				</th>
-				<th><b><fmt:message key="tds.total.tax.deducted" /> </b></th>
+				<th><b><fmt:message key="total.investmentitr2" /> </b></th>
 				
 				<th><b>Actions</b></th>
 			</tr>
@@ -103,7 +103,7 @@
 					</tr>
 				</c:forEach>
 				<tr>
-					<td colspan="3"><fmt:message key="tds.amount.total" /></td>
+					<td colspan="2"><b>Total</b></td>
 					<td><w4india:inr value="${parentBean.investment_Total}" /></td>
 				
 				</tr>
