@@ -25,8 +25,6 @@
 		test="${pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD'}">
 		<form id="frmtrdetails" action="${actionUrl}" method="post"
 			name="frmtrdetails">
-			
-			<h2>Enter Details</h2>
 			<div class="row-fluid show-grid">
 				<div class="span4">
 					<div class="rowlabel">
@@ -36,7 +34,7 @@
 					<div class="rowlabel">
 						<input id="country_code" name="country_code" 
 							type="text" 
-							value=" " />
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.country_Code}"/></c:if> " />
 					</div>
 				</div>
 				<div class="span4">
@@ -47,7 +45,7 @@
 					<div class="rowlabel">
 						<input id="tax_ID" name="tax_ID"
 							type="text" 
-							value=" " />
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.tax_ID}"/></c:if> " />
 					</div>
 				</div>
 				<div class="span4">
@@ -58,7 +56,7 @@
 					<div class="rowlabel">
 						<input id="article_dtaa" name="article_dtaa"
 							type="text" 
-							value=" " />
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.article_dtaa}"/></c:if> " />
 					</div>
 				</div>
 			</div>
@@ -73,7 +71,7 @@
 						<input id="totaltax_fsi" name="totaltax_fsi"
 							type="text"
 							 class="decimal"
-							value=" " />
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.totaltax_fsi}"/></c:if> " />
 					</div>
 				</div>
 				<div class="span4">
@@ -84,7 +82,7 @@
 					<div class="rowlabel">
 						<input id="relief90_91" name="relief90_91" type="text"
 							maxlength="14"   class="decimal"
-							value=" " />
+							value=" <c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.relief90_91}"/></c:if>" />
 					</div>
 				</div>
 				<div class="span4">
@@ -95,7 +93,7 @@
 					<div class="rowlabel">
 						<input id="relief91" name="relief91" type="text"
 							maxlength="14"   class="decimal"
-							value=" " />
+							value=" <c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.relief91}"/></c:if>" />
 					</div>
 				</div>
 			</div>
@@ -146,11 +144,9 @@
 					</tr>
 				</c:forEach>
 				<tr>
-					<td colspan="3"><fmt:message key="tds.amount.total" /></td>
+					<td colspan="3" align="center"><b>Total</b></td>
 					<td><w4india:inr value="${parentBean.total_TaxFsi}" /></td>
-					<td colspan="3"><fmt:message key="tds.amount.total" /></td>
 					<td><w4india:inr value="${parentBean.rebate9091}" /></td>
-					<td colspan="3"><fmt:message key="tds.amount.total" /></td>
 					<td><w4india:inr value="${parentBean.rebate90}" /></td>
 				</tr>
 				
