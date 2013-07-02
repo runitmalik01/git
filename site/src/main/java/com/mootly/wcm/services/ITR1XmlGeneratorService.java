@@ -113,7 +113,7 @@ public class ITR1XmlGeneratorService {
 
 		ITR1 itr1 = new ObjectFactory().createITR1();
 		CreationInfo creationInfo = new CreationInfo();
-		creationInfo.setSWVersionNo(null);
+		creationInfo.setSWVersionNo("1.0");
 		creationInfo.setIntermediaryCity("Delhi");
 		creationInfo.setSWCreatedBy("Wealth4India");
 		creationInfo.setXMLCreatedBy("Wealth4India");
