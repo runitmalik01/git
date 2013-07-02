@@ -25,8 +25,6 @@
 		test="${pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD'}">
 		<form id="frmImmProp" action="${actionUrl}" method="post"
 			name="frmImmProp">
-			
-			<h2>Enter Details</h2>
 			<div class="row-fluid show-grid">
 				<div class="span4">
 					<div class="rowlabel">
@@ -63,13 +61,13 @@
 				</div>
 			</div>
 			
-		<!-- 
+		
 			<div class="row-fluid show-grid">
 				<div class="span4 offset8 decimal">
 					<a href="${scriptName}" class="button olive">Cancel</a>&nbsp;
-					<a id="myModalHrefTaxrebate" role="button" class="btn orange">Save</a>
-				</div>  -->
-			<div><input type="submit"></div>
+					<a id="myModalHreffrmImmProp" role="button" class="btn orange">Save</a>
+				</div>  
+			
 			</div>
 		</form>
 	</c:when>
@@ -114,6 +112,6 @@
 </div>
 
 
-<res:client-validation formId="frmtrdetails"
-	screenConfigurationDocumentName="taxrelief"
-	formSubmitButtonId="myModalHrefTaxrebate" />
+<res:client-validation formId="frmImmProp"
+	screenConfigurationDocumentName="immovableproperty"
+	formSubmitButtonId="myModalHreffrmImmProp" />
