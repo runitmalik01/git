@@ -63,7 +63,7 @@ request.setAttribute("objHashMapBoolean", objHashMapBoolean);
 				<div class="row-fluid show-grid" >
                     <div class="span6">
 					<div class="rowlabel"><label for="NameOfHead"><small><fmt:message key="member.adjustment.losses.name"></fmt:message></small></label></div>
-					<div class="rowlabel"><select name="NameOfHead" id="NameOfHead" onchange="checkentry()">
+					<div class="rowlabel"><select name="NameOfHead" id="NameOfHead">
 					             <option value="">-Select Head-</option>
 					             <c:forEach var="booleanCombo" items="${objHashMapNameOfHead}">
 
@@ -90,15 +90,22 @@ request.setAttribute("objHashMapBoolean", objHashMapBoolean);
 					<div class="rowlabel"><label for="DueDate"><small><fmt:message key="member.adjustment.losses.duedate"></fmt:message></small></label></div>
 					<div class="rowlabel"><select name="DueDate" id="DueDate">
 					            <option value="">-Select-</option>
-								<c:forEach var="booleanCombo" items="${objHashMapBoolean}">
-					             <option <c:if test="${pageAction == 'EDIT_CHILD' && childBean.dueDate == booleanCombo.value}">selected</c:if> value="${booleanCombo.value}">${booleanCombo.value}</option>
-						         </c:forEach>
+					            <option
+								<c:if test="${not empty childBean.dueDate && childBean.dueDate == 'Y'}">selected</c:if>
+								value="Y">
+								<fmt:message key="member.choice.yes" />
+							</option>
+							<option
+								<c:if test="${not empty childBean.dueDate && childBean.dueDate == 'N'}">selected</c:if>
+								value="N">
+								<fmt:message key="member.choice.no" />
+							</option>
 					      </select>
 					</div>
 				</div>
 				<div class="span3">
 					 <div class="rowlabel"><label for="DateOfFilingYear"><small><fmt:message key="member.adjustment.losses.date"></fmt:message></small></label></div>
-					 <div class="rowlabel"><input type="text" id="DateOfFilingYear" name="DateOfFilingYear" value="${childBean.DOBStr}" /></div>
+					 <div class="rowlabel"><input type="text" id="DateOfFilingYear" name="DateOfFilingYear" value="${childBean.dateStr}" /></div>
 				</div>
 				<div class="span3">
 					 <div class="rowlabel"><label for="Amount"><small><fmt:message key="member.adjustment.losses.amount" /></small></label></div>
@@ -130,7 +137,7 @@ request.setAttribute("objHashMapBoolean", objHashMapBoolean);
 							<tr>
 								<td><c:out value="${adjustmentOfLosses.nameOfHead}"/></td>
 								<td><c:out value="${adjustmentOfLosses.assessmentYear}"/></td>
-								<td><c:out value="${adjustmentOfLosses.DOBStr}"/></td>
+								<td><c:out value="${adjustmentOfLosses.dateStr}"/></td>
 								<td><w4india:inr value="${adjustmentOfLosses.amount}" /></td>
 								<td><a href="${scriptName}/<c:out value="${adjustmentOfLosses.canonicalUUID}"/>/edit"><small><i class="icon-pencil"></i>Edit</small>
 								</a>&nbsp;&nbsp;
@@ -159,8 +166,8 @@ var assessmentyear=document.getElementById("AssessmentYear").value;
 var minyear=assessmentyear.slice(0,4);
 var maxyear=assessmentyear.slice(5,9);
 
-itrFinYrMax="31/12/"+maxyear;
-	itrFinYrMin="01/01/"+minyear;
+itrFinYrMax="31/03/"+maxyear;
+	itrFinYrMin="01/04/"+minyear;
 			$( ".indiandateLosses" ).datepicker( "option", "minDate", itrFinYrMin );
 			$( ".indiandateLosses" ).datepicker( "option", "maxDate", itrFinYrMax );
 }
@@ -187,5 +194,6 @@ $("#chkentry").hide();
 }
 }
  -->
+
 </hst:element>
 <hst:headContribution element="${uiCustom}" category="jsInternal"/>
