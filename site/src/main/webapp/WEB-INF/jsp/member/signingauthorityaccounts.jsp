@@ -36,7 +36,7 @@
 					<div class="rowlabel">
 						<input id="name_institution" name="name_institution" 
 							type="text" 
-							value=" " />
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.name_Institution}"/></c:if>" />
 					</div>
 				</div>
 				<div class="span4">
@@ -47,7 +47,7 @@
 					<div class="rowlabel">
 						<input id="address_institution" name="address_institution"
 							type="text" 
-							value=" " />
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.address_Institution}"/></c:if>" />
 					</div>
 				</div>
 				<div class="span4">
@@ -58,7 +58,7 @@
 					<div class="rowlabel">
 						<input id="name_accountholder" name="name_accountholder"
 							type="text" 
-							value=" " />
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.name_Accountholder}"/></c:if>" />
 					</div>
 				</div>
 			</div>
@@ -72,7 +72,7 @@
 					<div class="rowlabel">
 						<input id="account_number" name="account_number" type="text"
 							
-							value=" " />
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.account_Number}"/></c:if>" />
 					</div>
 				</div>
 				<div class="span4">
@@ -83,7 +83,7 @@
 					<div class="rowlabel">
 						<input id="peak_balance" name="peak_balance" type="text"
 							maxlength="14" class="decimal"
-							value=" " />
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.peak_Balance}"/></c:if>" />
 					</div>
 				</div>
 			</div>
@@ -100,30 +100,29 @@
 	<c:otherwise>
 		<table>
 			<tr align="center">
-				<th><b><fmt:message key="tds.tan.deductor" /> </b>
+				<th><b><fmt:message key="name.institution.itr2" /> </b>
 				</th>
-				<th><b><fmt:message key="tds.name.deductor" /> </b>
+				<th><b><fmt:message key="address.institution.itr2" /> </b>
 				</th>
-				<th><b><fmt:message key="tds.total.tax.deducted" /> </b></th>
-				<th><b><fmt:message key="tds.amount.claimed" /> </b></th>
-				<th><b><fmt:message key="tds.total.tax.deducted" /> </b></th>
-				<th><b><fmt:message key="tds.amount.claimed" /> </b></th>
+				<th><b><fmt:message key="name.account.holder.itr2" /> </b></th>
+				<th><b><fmt:message key="account.number.itr2" /> </b></th>
+				<th><b><fmt:message key="peak.balance.itr2" /> </b></th>
+				
 				<th><b>Actions</b></th>
 			</tr>
 			<c:if test="${not empty parentBean}">
-				<c:forEach items="${parentBean.foreignAssetDetailList}"
+				<c:forEach items="${parentBean.signingAuthorityAccountsDetailList}"
 					var="foreignbank">
 					<tr>
-						<td><c:out value="${foreignbank.country_Code}" />
+						<td><c:out value="${foreignbank.name_Institution}" />
 						</td>
-						<td><c:out value="${foreignbank.name_Bank}" />
+						<td><c:out value="${foreignbank.address_Institution}" />
 						</td>
-						<td><c:out value="${foreignbank.address_Bank}" />
+						<td><c:out value="${foreignbank.name_Accountholder}" />
 						</td>
-						<td><c:out value="${foreignbank.name_Account}" />
+						<td><c:out value="${foreignbank.account_Number}" />
 						</td>
-						<td><c:out value="${foreignbank.account_No}" />
-						</td>
+						
 						<td><w4india:inr value="${foreignbank.peak_Balance}" />
 						</td>
 						<td><a
@@ -134,8 +133,8 @@
 					</tr>
 				</c:forEach>
 				<tr>
-					<td colspan="3"><fmt:message key="tds.amount.total" /></td>
-					<td><w4india:inr value="${parentBean.total_peakBalance}" /></td>
+					<td colspan="4" align="center"><b>Total</b></td>
+					<td><w4india:inr value="${parentBean.balance_Peak}" /></td>
 					
 				</tr>
 				
