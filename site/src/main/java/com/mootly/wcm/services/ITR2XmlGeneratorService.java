@@ -3,6 +3,7 @@ package com.mootly.wcm.services;
 import in.gov.incometaxindiaefiling.y2012_2013.Address;
 import in.gov.incometaxindiaefiling.y2012_2013.AddressDetail;
 import in.gov.incometaxindiaefiling.y2012_2013.AssesseeName;
+import in.gov.incometaxindiaefiling.y2012_2013.CarryFwdLossDetail;
 import in.gov.incometaxindiaefiling.y2012_2013.CreationInfo;
 import in.gov.incometaxindiaefiling.y2012_2013.DeductUndChapVIA;
 import in.gov.incometaxindiaefiling.y2012_2013.DoneeWithPan;
@@ -14,6 +15,8 @@ import in.gov.incometaxindiaefiling.y2012_2013.ITR1;
 import in.gov.incometaxindiaefiling.y2012_2013.ITR1IncomeDeductions;
 import in.gov.incometaxindiaefiling.y2012_2013.ITR1TaxComputation;
 import in.gov.incometaxindiaefiling.y2012_2013.ITR2;
+import in.gov.incometaxindiaefiling.y2012_2013.IncBFLA;
+import in.gov.incometaxindiaefiling.y2012_2013.IncCYLA;
 import in.gov.incometaxindiaefiling.y2012_2013.IntrstPay;
 import in.gov.incometaxindiaefiling.y2012_2013.LossSummaryDetail;
 import in.gov.incometaxindiaefiling.y2012_2013.ObjectFactory;
@@ -22,8 +25,26 @@ import in.gov.incometaxindiaefiling.y2012_2013.PartBTTI;
 import in.gov.incometaxindiaefiling.y2012_2013.PersonalInfo;
 import in.gov.incometaxindiaefiling.y2012_2013.Refund;
 import in.gov.incometaxindiaefiling.y2012_2013.Schedule80G;
+import in.gov.incometaxindiaefiling.y2012_2013.ScheduleBFLA;
+import in.gov.incometaxindiaefiling.y2012_2013.ScheduleBFLA.TotalBFLossSetOff;
 import in.gov.incometaxindiaefiling.y2012_2013.ScheduleCFL;
+import in.gov.incometaxindiaefiling.y2012_2013.ScheduleCFL.AdjTotBFLossInBFLA;
+import in.gov.incometaxindiaefiling.y2012_2013.ScheduleCFL.CurrentAYloss;
+import in.gov.incometaxindiaefiling.y2012_2013.ScheduleCFL.LossCFFromPrev2NdYearFromAY;
+import in.gov.incometaxindiaefiling.y2012_2013.ScheduleCFL.LossCFFromPrevYrToAY;
 import in.gov.incometaxindiaefiling.y2012_2013.ScheduleCFL.TotalLossCFSummary;
+import in.gov.incometaxindiaefiling.y2012_2013.ScheduleCFL.TotalOfBFLossesEarlierYrs;
+import in.gov.incometaxindiaefiling.y2012_2013.ScheduleCYLA;
+import in.gov.incometaxindiaefiling.y2012_2013.ScheduleCYLA.BusProfExclSpecProf;
+import in.gov.incometaxindiaefiling.y2012_2013.ScheduleCYLA.HP;
+import in.gov.incometaxindiaefiling.y2012_2013.ScheduleCYLA.LTCG;
+import in.gov.incometaxindiaefiling.y2012_2013.ScheduleCYLA.LossRemAftSetOff;
+import in.gov.incometaxindiaefiling.y2012_2013.ScheduleCYLA.OthSrcExclRaceHorse;
+import in.gov.incometaxindiaefiling.y2012_2013.ScheduleCYLA.OthSrcRaceHorse;
+import in.gov.incometaxindiaefiling.y2012_2013.ScheduleCYLA.STCG;
+import in.gov.incometaxindiaefiling.y2012_2013.ScheduleCYLA.Salary;
+import in.gov.incometaxindiaefiling.y2012_2013.ScheduleCYLA.TotalCurYr;
+import in.gov.incometaxindiaefiling.y2012_2013.ScheduleCYLA.TotalLossSetOff;
 import in.gov.incometaxindiaefiling.y2012_2013.ScheduleTDS1;
 import in.gov.incometaxindiaefiling.y2012_2013.ScheduleTDS2;
 import in.gov.incometaxindiaefiling.y2012_2013.ScheduleVIA;
@@ -126,7 +147,7 @@ public class ITR2XmlGeneratorService  {
 
 		ITR2 itr2 = new ObjectFactory().createITR2();
 		CreationInfo creationInfo = new CreationInfo();
-		creationInfo.setSWVersionNo(null);
+		creationInfo.setSWVersionNo("1.0");
 		creationInfo.setIntermediaryCity("Delhi");
 		creationInfo.setSWCreatedBy("Wealth4India");
 		creationInfo.setXMLCreatedBy("Wealth4India");
@@ -634,13 +655,17 @@ public class ITR2XmlGeneratorService  {
 			}
 		}
 
-		//Ajustment Of Losses begins
-		ScheduleCFL scheduleCFL = new ScheduleCFL();
-		TotalLossCFSummary totalLossCFSummary = new TotalLossCFSummary();
-		LossSummaryDetail lossSummaryDetail = new LossSummaryDetail();
+		//Ajustment Of Losses begins (CYLA, BFLA, CFL)
 
 		Double HPLoss = 0d;
 		Double totalHPLoss = 0d;
+		Double LTCLoss = 0d;
+		Double totalLTCLoss = 0d;
+		Double STCLoss = 0d;
+		Double totalSTCLoss = 0d;
+		Double MaintainingRaceHorseLoss = 0d;
+		Double totalMaintainingRaceHorseLoss = 0d;
+
 		if(adjustmentOfLossesDoc != null){
 			List<AdjustmentOfLossesCom> listofAdjustmentOfLossesCom = adjustmentOfLossesDoc.getAdjustmentOfLossesList() ;
 			if ( listofAdjustmentOfLossesCom != null && listofAdjustmentOfLossesCom.size() > 0 ){
@@ -649,23 +674,309 @@ public class ITR2XmlGeneratorService  {
 						HPLoss = adjustmentOfLossesCom.getAmount();
 						totalHPLoss = totalHPLoss + HPLoss;
 					}
+					if(adjustmentOfLossesCom.getNameOfHead().equals("Long Term Capital Loss")){
+						LTCLoss = adjustmentOfLossesCom.getAmount();
+						totalLTCLoss = totalLTCLoss + LTCLoss;
+					}
+					if(adjustmentOfLossesCom.getNameOfHead().equals("Short Term Capital Loss")){
+						STCLoss = adjustmentOfLossesCom.getAmount();
+						totalSTCLoss = totalSTCLoss + STCLoss;
+					}
+					if(adjustmentOfLossesCom.getNameOfHead().equals("Owning and Maintaining Race Horses")){
+						MaintainingRaceHorseLoss = adjustmentOfLossesCom.getAmount();
+						totalMaintainingRaceHorseLoss = totalMaintainingRaceHorseLoss + MaintainingRaceHorseLoss;
+					}
 				}
 			}
 		}
 		Map<String,Object> totalMapForLosses = new HashMap<String, Object>();
+		totalMapForLosses.put("salaryIncome",TotalSalaryIncome);
 		totalMapForLosses.put("houseIncome",houseIncomeTotal);
+		totalMapForLosses.put("otherIncome",OtherIncome);
+		totalMapForLosses.put("maintainingRaceHorseIncome",0);
+		totalMapForLosses.put("LTCGain",0);
+		totalMapForLosses.put("STCGain",0);
 		totalMapForLosses.put("houseIncomeLoss", totalHPLoss);
+		totalMapForLosses.put("LTCLoss", totalLTCLoss);
+		totalMapForLosses.put("STCLoss", totalSTCLoss);
+		totalMapForLosses.put("MaintainingRaceHorseLoss", totalMaintainingRaceHorseLoss);
 
 		Map<String,Object> resultMapLosses = ScreenCalculatorService.getScreenCalculations("lossesCalculation.js", request.getParameterMap(), totalMapForLosses);
-		indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMapLosses.get("houseIncomeLossCF").toString()));
-		lossSummaryDetail.setHPLossCF(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMapLosses.get("houseIncomeLossCF").toString())));
+
+		//Schedule CYLA Begins
+
+		ScheduleCYLA scheduleCYLA = new ScheduleCYLA();
+		Salary salary = new Salary();
+		IncCYLA incCYLA = new IncCYLA();
+		incCYLA.setIncOfCurYrUnderThatHead(TotalSalaryIncome);
+		incCYLA.setHPlossCurYrSetoff(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMapLosses.get("balancedHouseIncome").toString())));
+		incCYLA.setOthSrcLossNoRaceHorseSetoff(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMapLosses.get("balancedOtherIncome").toString())));
+		incCYLA.setIncOfCurYrAfterSetOff(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMapLosses.get("adjustedSalaryIncome").toString())));
+		salary.setIncCYLA(incCYLA);
+		scheduleCYLA.setSalary(salary);
+
+		HP hP = new HP();
+		IncCYLA inCCYLA = new IncCYLA();
+		if(houseIncomeTotal>0){
+			inCCYLA.setIncOfCurYrUnderThatHead(indianCurrencyHelper.longToBigInteger(houseIncomeTotal));
+		}else
+			inCCYLA.setIncOfCurYrUnderThatHead(new BigInteger("0"));
+		inCCYLA.setBusLossSetoff(new BigInteger("0"));
+		inCCYLA.setHPlossCurYrSetoff(new BigInteger("0"));
+		inCCYLA.setOthSrcLossNoRaceHorseSetoff(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMapLosses.get("balancedOtherIncomeAftHI").toString())));
+		inCCYLA.setIncOfCurYrAfterSetOff(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMapLosses.get("adjustedHouseIncome").toString())));
+		hP.setIncCYLA(inCCYLA);
+		scheduleCYLA.setHP(hP);
+
+		BusProfExclSpecProf busProfExclSpecProf = new BusProfExclSpecProf();
+		IncCYLA iNCCYLA = new IncCYLA();
+		iNCCYLA.setIncOfCurYrUnderThatHead(new BigInteger("0"));
+		iNCCYLA.setBusLossSetoff(new BigInteger("0"));
+		iNCCYLA.setHPlossCurYrSetoff(new BigInteger("0"));
+		iNCCYLA.setOthSrcLossNoRaceHorseSetoff(new BigInteger("0"));
+		iNCCYLA.setIncOfCurYrAfterSetOff(new BigInteger("0"));
+		busProfExclSpecProf.setIncCYLA(iNCCYLA);
+		scheduleCYLA.setBusProfExclSpecProf(busProfExclSpecProf);
+
+		STCG sTCG = new STCG();
+		IncCYLA incCYLAforSTCG = new IncCYLA();
+		long STCGain = 0; //initialize Short Term Cpital Gain because Capital Gain screen is not completed
+		if(STCGain>0){
+			incCYLAforSTCG.setIncOfCurYrUnderThatHead(indianCurrencyHelper.longToBigInteger(STCGain));
+		}else
+			incCYLAforSTCG.setIncOfCurYrUnderThatHead(new BigInteger("0"));
+		incCYLAforSTCG.setHPlossCurYrSetoff(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMapLosses.get("balancedHouseIncomeAftSTC").toString())));
+		incCYLAforSTCG.setBusLossSetoff(new BigInteger("0"));
+		incCYLAforSTCG.setOthSrcLossNoRaceHorseSetoff(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMapLosses.get("balancedOtherIncomeAftSTC").toString())));
+		incCYLAforSTCG.setIncOfCurYrAfterSetOff(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMapLosses.get("adjustedSTCGain").toString())));
+		sTCG.setIncCYLA(incCYLAforSTCG);
+		scheduleCYLA.setSTCG(sTCG);
+
+		LTCG lTCG = new LTCG();
+		IncCYLA incCYLAforLTCG = new IncCYLA();
+		long LTCGain = 0; //initialize Short Term Cpital Gain because Capital Gain screen is not completed
+		if(LTCGain>0){
+			incCYLAforLTCG.setIncOfCurYrUnderThatHead(indianCurrencyHelper.longToBigInteger(LTCGain));
+		}else
+			incCYLAforLTCG.setIncOfCurYrUnderThatHead(new BigInteger("0"));
+		incCYLAforLTCG.setBusLossSetoff(new BigInteger("0"));
+		incCYLAforLTCG.setHPlossCurYrSetoff(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMapLosses.get("balancedHouseIncomeAftLTC").toString())));
+		incCYLAforLTCG.setOthSrcLossNoRaceHorseSetoff(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMapLosses.get("balancedOtherIncomeAftLTC").toString())));
+		incCYLAforLTCG.setIncOfCurYrAfterSetOff(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMapLosses.get("adjustedLTCGain").toString())));
+		lTCG.setIncCYLA(incCYLAforLTCG);
+		scheduleCYLA.setLTCG(lTCG);
+
+		OthSrcExclRaceHorse othSrcExclRaceHorse = new OthSrcExclRaceHorse();
+		IncCYLA incCYLAforOtherRaceHorse = new IncCYLA();
+		if(OtherIncome.longValue()>0){
+			incCYLAforOtherRaceHorse.setIncOfCurYrUnderThatHead(OtherIncome);
+		}else
+			incCYLAforOtherRaceHorse.setIncOfCurYrUnderThatHead(new BigInteger("0"));
+		incCYLAforOtherRaceHorse.setBusLossSetoff(new BigInteger("0"));
+		incCYLAforOtherRaceHorse.setHPlossCurYrSetoff(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMapLosses.get("balancedHouseIncomeAftOI").toString())));
+		incCYLAforOtherRaceHorse.setOthSrcLossNoRaceHorseSetoff(new BigInteger("0"));
+		incCYLAforOtherRaceHorse.setIncOfCurYrAfterSetOff(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMapLosses.get("adjustedOtherIncome").toString())));
+		othSrcExclRaceHorse.setIncCYLA(incCYLAforOtherRaceHorse);
+		scheduleCYLA.setOthSrcExclRaceHorse(othSrcExclRaceHorse);
+
+		OthSrcRaceHorse othSrcRaceHorse = new OthSrcRaceHorse();
+		IncCYLA incCYLAforRaceHorse = new IncCYLA();
+		long SrcRaceHorse = 0;//initialize Maintaining Race Horse Income because it is not included in other sources screen
+		if(SrcRaceHorse>0){
+			incCYLAforRaceHorse.setIncOfCurYrUnderThatHead(indianCurrencyHelper.longToBigInteger(SrcRaceHorse));
+		}else
+			incCYLAforRaceHorse.setIncOfCurYrUnderThatHead(new BigInteger("0"));
+		incCYLAforRaceHorse.setBusLossSetoff(new BigInteger("0"));
+		incCYLAforRaceHorse.setHPlossCurYrSetoff(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMapLosses.get("balancedHouseIncomeAftRH").toString())));
+		incCYLAforRaceHorse.setOthSrcLossNoRaceHorseSetoff(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMapLosses.get("balancedOtherIncomeAftHR").toString())));
+		incCYLAforRaceHorse.setIncOfCurYrAfterSetOff(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMapLosses.get("adjustedmaintainingRaceHorseIncome").toString())));
+		othSrcRaceHorse.setIncCYLA(incCYLAforRaceHorse);
+		scheduleCYLA.setOthSrcRaceHorse(othSrcRaceHorse);
+
+		TotalCurYr totalCurYr = new TotalCurYr();
+		if(houseIncomeTotal<0){
+		totalCurYr.setTotHPlossCurYr(indianCurrencyHelper.longToBigInteger(houseIncomeTotal));
+		}else
+			totalCurYr.setTotHPlossCurYr(new BigInteger("0"));
+		totalCurYr.setTotBusLoss(new BigInteger("0"));
+		if(OtherIncome.longValue()<0){
+			totalCurYr.setTotOthSrcLossNoRaceHorse(OtherIncome.multiply(new BigInteger("-1")));
+		}else
+			totalCurYr.setTotOthSrcLossNoRaceHorse(new BigInteger("0"));
+		scheduleCYLA.setTotalCurYr(totalCurYr);
+
+		TotalLossSetOff totalLossSetOff = new TotalLossSetOff();
+		totalLossSetOff.setTotHPlossCurYrSetoff(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMapLosses.get("totalHPLossSetoff").toString())));
+		totalLossSetOff.setTotBusLossSetoff(new BigInteger("0"));
+		totalLossSetOff.setTotOthSrcLossNoRaceHorseSetoff(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMapLosses.get("totalOILossSetoff").toString())));
+		scheduleCYLA.setTotalLossSetOff(totalLossSetOff);
+
+		LossRemAftSetOff lossRemAftSetOff = new LossRemAftSetOff();
+		lossRemAftSetOff.setBalHPlossCurYrAftSetoff(totalCurYr.getTotHPlossCurYr().subtract(totalLossSetOff.getTotHPlossCurYrSetoff()));
+		lossRemAftSetOff.setBalBusLossAftSetoff(new BigInteger("0"));
+		lossRemAftSetOff.setBalOthSrcLossNoRaceHorseAftSetoff(totalCurYr.getTotOthSrcLossNoRaceHorse().subtract(totalLossSetOff.getTotOthSrcLossNoRaceHorseSetoff()));
+		scheduleCYLA.setLossRemAftSetOff(lossRemAftSetOff);
+
+		itr2.setScheduleCYLA(scheduleCYLA);
+
+		//Schedule BFLA Begins
+
+		ScheduleBFLA scheduleBFLA = new ScheduleBFLA();
+		in.gov.incometaxindiaefiling.y2012_2013.ScheduleBFLA.HP hPBFLA = new in.gov.incometaxindiaefiling.y2012_2013.ScheduleBFLA.HP();
+		IncBFLA incBFLA = new IncBFLA();
+		incBFLA.setIncOfCurYrUndHeadFromCYLA(inCCYLA.getIncOfCurYrAfterSetOff());
+		incBFLA.setBFlossPrevYrUndSameHeadSetoff(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMapLosses.get("balancedHouseLoss").toString())));
+		incBFLA.setBFUnabsorbedDeprSetoff(new BigInteger("0"));
+		incBFLA.setBFAllUs35Cl4Setoff(new BigInteger("0"));
+		incBFLA.setIncOfCurYrAfterSetOffBFLosses(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMapLosses.get("HouseIncomeAftBFLA").toString())));
+		hPBFLA.setIncBFLA(incBFLA);
+		scheduleBFLA.setHP(hPBFLA);
+
+		in.gov.incometaxindiaefiling.y2012_2013.ScheduleBFLA.BusProfExclSpecProf busProfExclSpecProfBFLA = new in.gov.incometaxindiaefiling.y2012_2013.ScheduleBFLA.BusProfExclSpecProf();
+		IncBFLA incBFLAForBusiness = new IncBFLA();
+		incBFLAForBusiness.setBFAllUs35Cl4Setoff(new BigInteger("0"));
+		incBFLAForBusiness.setBFlossPrevYrUndSameHeadSetoff(new BigInteger("0"));
+		incBFLAForBusiness.setBFUnabsorbedDeprSetoff(new BigInteger("0"));
+		incBFLAForBusiness.setIncOfCurYrAfterSetOffBFLosses(new BigInteger("0"));
+		incBFLAForBusiness.setIncOfCurYrUndHeadFromCYLA(new BigInteger("0"));
+		busProfExclSpecProfBFLA.setIncBFLA(incBFLAForBusiness);
+		scheduleBFLA.setBusProfExclSpecProf(busProfExclSpecProfBFLA);
+
+		in.gov.incometaxindiaefiling.y2012_2013.ScheduleBFLA.STCG sTCGBFLA = new in.gov.incometaxindiaefiling.y2012_2013.ScheduleBFLA.STCG();
+		IncBFLA incBFLAForSTCG = new IncBFLA();
+		incBFLAForSTCG.setIncOfCurYrUndHeadFromCYLA(incCYLAforSTCG.getIncOfCurYrAfterSetOff());
+		incBFLAForSTCG.setBFlossPrevYrUndSameHeadSetoff(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMapLosses.get("balancedSTCLoss").toString())));
+		incBFLAForSTCG.setBFAllUs35Cl4Setoff(new BigInteger("0"));
+		incBFLAForSTCG.setBFUnabsorbedDeprSetoff(new BigInteger("0"));
+		incBFLAForSTCG.setIncOfCurYrAfterSetOffBFLosses(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMapLosses.get("STCGainAftBFLA").toString())));
+		sTCGBFLA.setIncBFLA(incBFLAForSTCG);
+		scheduleBFLA.setSTCG(sTCGBFLA);
+
+		in.gov.incometaxindiaefiling.y2012_2013.ScheduleBFLA.LTCG lTCGBFLA = new in.gov.incometaxindiaefiling.y2012_2013.ScheduleBFLA.LTCG();
+		IncBFLA incBFLAForLTCG = new IncBFLA();
+		incBFLAForLTCG.setIncOfCurYrUndHeadFromCYLA(incCYLAforLTCG.getIncOfCurYrAfterSetOff());
+		incBFLAForLTCG.setBFlossPrevYrUndSameHeadSetoff(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMapLosses.get("balancedLTCLoss").toString())));
+		incBFLAForLTCG.setBFAllUs35Cl4Setoff(new BigInteger("0"));
+		incBFLAForLTCG.setBFUnabsorbedDeprSetoff(new BigInteger("0"));
+		incBFLAForLTCG.setIncOfCurYrAfterSetOffBFLosses(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMapLosses.get("LTCGainAftBFLA").toString())));
+		lTCGBFLA.setIncBFLA(incBFLAForLTCG);
+		scheduleBFLA.setLTCG(lTCGBFLA);
+
+		in.gov.incometaxindiaefiling.y2012_2013.ScheduleBFLA.OthSrcExclRaceHorse othSrcExclRaceHorseBFLA = new in.gov.incometaxindiaefiling.y2012_2013.ScheduleBFLA.OthSrcExclRaceHorse();
+		IncBFLA incBFLAForOthrSrc = new IncBFLA();
+		incBFLAForOthrSrc.setBFAllUs35Cl4Setoff(new BigInteger("0"));
+		incBFLAForOthrSrc.setBFlossPrevYrUndSameHeadSetoff(new BigInteger("0"));
+		incBFLAForOthrSrc.setBFUnabsorbedDeprSetoff(new BigInteger("0"));
+		incBFLAForOthrSrc.setIncOfCurYrAfterSetOffBFLosses(incCYLAforOtherRaceHorse.getIncOfCurYrAfterSetOff());
+		incBFLAForOthrSrc.setIncOfCurYrUndHeadFromCYLA(incCYLAforOtherRaceHorse.getIncOfCurYrAfterSetOff());
+		othSrcExclRaceHorseBFLA.setIncBFLA(incBFLAForOthrSrc);
+		scheduleBFLA.setOthSrcExclRaceHorse(othSrcExclRaceHorseBFLA);
+
+		in.gov.incometaxindiaefiling.y2012_2013.ScheduleBFLA.OthSrcRaceHorse othSrcRaceHorseBFLA = new in.gov.incometaxindiaefiling.y2012_2013.ScheduleBFLA.OthSrcRaceHorse();
+		IncBFLA incBFLAForRaceHorse = new IncBFLA();
+		incBFLAForRaceHorse.setBFAllUs35Cl4Setoff(new BigInteger("0"));
+		incBFLAForRaceHorse.setBFlossPrevYrUndSameHeadSetoff(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMapLosses.get("balancedRaceHorseLoss").toString())));
+		incBFLAForRaceHorse.setBFUnabsorbedDeprSetoff(new BigInteger("0"));
+		incBFLAForRaceHorse.setIncOfCurYrAfterSetOffBFLosses(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMapLosses.get("RaceHorseIncomeAftBFLA").toString())));
+		incBFLAForRaceHorse.setIncOfCurYrUndHeadFromCYLA(incCYLAforRaceHorse.getIncOfCurYrAfterSetOff());
+		othSrcRaceHorseBFLA.setIncBFLA(incBFLAForRaceHorse);
+		scheduleBFLA.setOthSrcRaceHorse(othSrcRaceHorseBFLA);
+
+		TotalBFLossSetOff totalBFLossSetOff = new TotalBFLossSetOff();
+		totalBFLossSetOff.setTotAllUs35Cl4Setoff(new BigInteger("0"));
+		totalBFLossSetOff.setTotBFLossSetoff(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMapLosses.get("totalBFLossSetOff").toString())));
+		totalBFLossSetOff.setTotUnabsorbedDeprSetoff(new BigInteger("0"));
+		scheduleBFLA.setTotalBFLossSetOff(totalBFLossSetOff);
+
+		scheduleBFLA.setIncomeOfCurrYrAftCYLABFLA(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMapLosses.get("totalIncomeAftBFLoss").toString())).add(incCYLA.getIncOfCurYrAfterSetOff()));
+		itr2.setScheduleBFLA(scheduleBFLA);
+
+		//Schedule CFL Begins
+
+		ScheduleCFL scheduleCFL = new ScheduleCFL();
+
+		if(adjustmentOfLossesDoc != null){
+			List<AdjustmentOfLossesCom> listofAdjustmentOfLossesCom = adjustmentOfLossesDoc.getAdjustmentOfLossesList() ;
+			if ( listofAdjustmentOfLossesCom != null && listofAdjustmentOfLossesCom.size() > 0 ){
+				LossCFFromPrevYrToAY lossCFFromPrevYrToAY = new LossCFFromPrevYrToAY();
+				LossCFFromPrev2NdYearFromAY lossCFFromPrev2NdYearFromAY = new LossCFFromPrev2NdYearFromAY();
+				for(AdjustmentOfLossesCom adjustmentOfLossesCom:listofAdjustmentOfLossesCom){
+					CarryFwdLossDetail carryFwdLossDetail = new CarryFwdLossDetail();
+					carryFwdLossDetail.setDateOfFiling(indianCurrencyHelper.gregorianCalendar(adjustmentOfLossesCom.getDateOfFilingYear()));
+					if(adjustmentOfLossesCom.getNameOfHead().equals("House Property Loss")){
+						carryFwdLossDetail.setHPLossCF(indianCurrencyHelper.bigIntegerRound(adjustmentOfLossesCom.getAmount()));
+					}else
+						carryFwdLossDetail.setHPLossCF(new BigInteger("0"));
+					if(adjustmentOfLossesCom.getNameOfHead().equals("Long Term Capital Loss")){
+						carryFwdLossDetail.setLTCGLossCF(indianCurrencyHelper.bigIntegerRound(adjustmentOfLossesCom.getAmount()));
+					}else
+						carryFwdLossDetail.setLTCGLossCF(new BigInteger("0"));
+					if(adjustmentOfLossesCom.getNameOfHead().equals("Short Term Capital Loss")){
+						carryFwdLossDetail.setSTCGLossCF(indianCurrencyHelper.bigIntegerRound(adjustmentOfLossesCom.getAmount()));
+					}else
+						carryFwdLossDetail.setSTCGLossCF(new BigInteger("0"));
+					if(adjustmentOfLossesCom.getNameOfHead().equals("Owning and Maintaining Race Horses")){
+						carryFwdLossDetail.setOthSrcLossRaceHorseCF(indianCurrencyHelper.bigIntegerRound(adjustmentOfLossesCom.getAmount()));
+					}else
+						carryFwdLossDetail.setOthSrcLossRaceHorseCF(new BigInteger("0"));
+					carryFwdLossDetail.setBusLossOthThanSpecLossCF(new BigInteger("0"));
+					carryFwdLossDetail.setLossFrmSpecBusCF(new BigInteger("0"));
+					int AssessmentYearDifference = indianCurrencyHelper.diffBtwAssessmentYear(request, adjustmentOfLossesCom.getAssessmentYear());
+					if(AssessmentYearDifference==1){
+						lossCFFromPrevYrToAY.setCarryFwdLossDetail(carryFwdLossDetail);
+						scheduleCFL.setLossCFFromPrevYrToAY(lossCFFromPrevYrToAY);
+					}
+					if(AssessmentYearDifference==2){
+						lossCFFromPrev2NdYearFromAY.setCarryFwdLossDetail(carryFwdLossDetail);
+						scheduleCFL.setLossCFFromPrev2NdYearFromAY(lossCFFromPrev2NdYearFromAY);
+					}
+				}
+			}
+		}
+
+		TotalOfBFLossesEarlierYrs totalOfBFLossesEarlierYrs = new TotalOfBFLossesEarlierYrs();
+		LossSummaryDetail lossSummaryDetail = new LossSummaryDetail();
 		lossSummaryDetail.setBusLossOthThanSpecLossCF(new BigInteger("0"));
+		lossSummaryDetail.setHPLossCF(indianCurrencyHelper.bigIntegerRound(totalHPLoss));
 		lossSummaryDetail.setLossFrmSpecBusCF(new BigInteger("0"));
-		lossSummaryDetail.setLossFrmSpecifiedBusCF(new BigInteger("0"));
-		lossSummaryDetail.setLTCGLossCF(new BigInteger("0"));
-		lossSummaryDetail.setOthSrcLossRaceHorseCF(new BigInteger("0"));
-		lossSummaryDetail.setSTCGLossCF(new BigInteger("0"));
-		totalLossCFSummary.setLossSummaryDetail(lossSummaryDetail);
+		lossSummaryDetail.setLTCGLossCF(indianCurrencyHelper.bigIntegerRound(totalLTCLoss));
+		lossSummaryDetail.setOthSrcLossRaceHorseCF(indianCurrencyHelper.bigIntegerRound(totalMaintainingRaceHorseLoss));
+		lossSummaryDetail.setSTCGLossCF(indianCurrencyHelper.bigIntegerRound(totalSTCLoss));
+		totalOfBFLossesEarlierYrs.setLossSummaryDetail(lossSummaryDetail);
+		scheduleCFL.setTotalOfBFLossesEarlierYrs(totalOfBFLossesEarlierYrs);
+
+		AdjTotBFLossInBFLA adjTotBFLossInBFLA = new AdjTotBFLossInBFLA();
+		LossSummaryDetail adjlossSummaryDetail = new LossSummaryDetail();
+		adjlossSummaryDetail.setBusLossOthThanSpecLossCF(new BigInteger("0"));
+		adjlossSummaryDetail.setHPLossCF(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMapLosses.get("balancedHouseLoss").toString())));
+		adjlossSummaryDetail.setLossFrmSpecBusCF(new BigInteger("0"));
+		adjlossSummaryDetail.setLTCGLossCF(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMapLosses.get("balancedLTCLoss").toString())));
+		adjlossSummaryDetail.setOthSrcLossRaceHorseCF(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMapLosses.get("balancedRaceHorseLoss").toString())));
+		adjlossSummaryDetail.setSTCGLossCF(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMapLosses.get("balancedSTCLoss").toString())));
+		adjTotBFLossInBFLA.setLossSummaryDetail(adjlossSummaryDetail);
+		scheduleCFL.setAdjTotBFLossInBFLA(adjTotBFLossInBFLA);
+
+		CurrentAYloss currentAYloss = new CurrentAYloss();
+		LossSummaryDetail currYrlossSummaryDetail = new LossSummaryDetail();
+		currYrlossSummaryDetail.setBusLossOthThanSpecLossCF(new BigInteger("0"));
+		currYrlossSummaryDetail.setHPLossCF(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMapLosses.get("currYearHouseIncomeLoss").toString())));
+		currYrlossSummaryDetail.setLossFrmSpecBusCF(new BigInteger("0"));
+		currYrlossSummaryDetail.setLTCGLossCF(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMapLosses.get("currYearLTCLoss").toString())));
+		currYrlossSummaryDetail.setOthSrcLossRaceHorseCF(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMapLosses.get("currYearRaceHorseLoss").toString())));
+		currYrlossSummaryDetail.setSTCGLossCF(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMapLosses.get("currYearSTCLoss").toString())));
+		currentAYloss.setLossSummaryDetail(currYrlossSummaryDetail);
+		scheduleCFL.setCurrentAYloss(currentAYloss);
+
+		TotalLossCFSummary totalLossCFSummary = new TotalLossCFSummary();
+		LossSummaryDetail toallossSummaryDetail = new LossSummaryDetail();
+
+		toallossSummaryDetail.setHPLossCF(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMapLosses.get("cryFwdHouseIncomeLoss").toString())));
+		toallossSummaryDetail.setBusLossOthThanSpecLossCF(new BigInteger("0"));
+		toallossSummaryDetail.setLossFrmSpecBusCF(new BigInteger("0"));
+		toallossSummaryDetail.setLTCGLossCF(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMapLosses.get("cryFwdLTCLoss").toString())));
+		toallossSummaryDetail.setOthSrcLossRaceHorseCF(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMapLosses.get("cryFwdRaceHorseLoss").toString())));
+		toallossSummaryDetail.setSTCGLossCF(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMapLosses.get("cryFwdSTCLoss").toString())));
+		totalLossCFSummary.setLossSummaryDetail(toallossSummaryDetail);
 		scheduleCFL.setTotalLossCFSummary(totalLossCFSummary);
 		itr2.setScheduleCFL(scheduleCFL);
 
