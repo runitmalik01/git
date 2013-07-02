@@ -34,7 +34,7 @@
 					<div class="rowlabel">
 						<input id="country_code" name="country_code" 
 							type="text" 
-							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.country_Code}"/></c:if> " />
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.country_Code}"/></c:if>" />
 					</div>
 				</div>
 				<div class="span4">
@@ -45,7 +45,7 @@
 					<div class="rowlabel">
 						<input id="tax_ID" name="tax_ID"
 							type="text" 
-							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.tax_ID}"/></c:if> " />
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.tax_ID}"/></c:if>" />
 					</div>
 				</div>
 				<div class="span4">
@@ -56,7 +56,7 @@
 					<div class="rowlabel">
 						<input id="article_dtaa" name="article_dtaa"
 							type="text" 
-							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.article_dtaa}"/></c:if> " />
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.article_dtaa}"/></c:if>" />
 					</div>
 				</div>
 			</div>
@@ -71,7 +71,7 @@
 						<input id="totaltax_fsi" name="totaltax_fsi"
 							type="text"
 							 class="decimal"
-							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.totaltax_fsi}"/></c:if> " />
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.totaltax_fsi}"/></c:if>" />
 					</div>
 				</div>
 				<div class="span4">
@@ -82,7 +82,7 @@
 					<div class="rowlabel">
 						<input id="relief90_91" name="relief90_91" type="text"
 							maxlength="14"   class="decimal"
-							value=" <c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.relief90_91}"/></c:if>" />
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.relief90_91}"/></c:if>"/>
 					</div>
 				</div>
 				<div class="span4">
@@ -93,7 +93,7 @@
 					<div class="rowlabel">
 						<input id="relief91" name="relief91" type="text"
 							maxlength="14"   class="decimal"
-							value=" <c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.relief91}"/></c:if>" />
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.relief91}"/></c:if>" />
 					</div>
 				</div>
 			</div>
