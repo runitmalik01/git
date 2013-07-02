@@ -16,8 +16,13 @@ import javax.xml.datatype.DatatypeConstants;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
+import org.hippoecm.hst.core.component.HstRequest;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public final class IndianCurrencyHelper {
 
+	private static Logger log = LoggerFactory.getLogger(ITR2XmlGeneratorService .class);
 
 	/**
 	 * This Method is used to Round the Decimal Values and convert it into BigIngteger
@@ -93,7 +98,11 @@ public final class IndianCurrencyHelper {
 		if(in!=0 && in>0){
 			bigStr = BigInteger.valueOf(in);
 			return bigStr;
-		}else
+		}else if(in!=0 && in<0){
+			in = in*(-1);
+			bigStr = BigInteger.valueOf(in);
+			return bigStr;
+		}
 			return null;
 	}
 
@@ -117,6 +126,26 @@ public final class IndianCurrencyHelper {
 			e.printStackTrace();
 		}
 		return date2;
+	}
+
+	/**
+	 * This Method is used to find difference between Assessment Year for Losses Calculation
+	 * @return String
+	 * @param Integer
+	 *
+	 * */
+	public Integer diffBtwAssessmentYear(HstRequest request ,String AssessmentYear){
+
+        String CurrAssessmentYear = ((String) request.getAttribute("assessmentYear")).trim();
+        String subStrCurrAssessmentYear = CurrAssessmentYear.substring(5,9);
+        int intCurrAssessmentYear = Integer.parseInt(subStrCurrAssessmentYear);
+
+        String subStrAssessmentYear = AssessmentYear.substring(5,9);
+        int intAssessmentYear = Integer.parseInt(subStrAssessmentYear);
+
+        int Difference = intCurrAssessmentYear - intAssessmentYear;
+
+		return Difference;
 	}
 
 }
