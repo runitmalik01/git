@@ -394,32 +394,11 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 							</div>
 						</div>
 					</div>
-					<div class="row-fluid show-grid">
-						<div class="span1 decimal">
-							<div class="rowlabel">
-								<small>d</small>
-							</div>
-						</div>
-						<div class="span7 decimal">
-							<div class="rowlabel">
-								<label for=""><small>Interest on Borrowed
-										Capital</small> </label>
-							</div>
-						</div>
-						<div class="span2 offset1">
-							<div>
-								<input id="Interest_borrowed" name="Interest_borrowed"
-									class="letout_L_inv letout_S_inh" placeholder="Rs."
-									type="text"
-									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.interest_borrowed}"/></c:if>">
-							</div>
-						</div>
-					</div>
 					<div class="row-fluid show-grid letout_L_v letout_S_h"
 						style="dispaly: none;">
 						<div class="span1 decimal">
 							<div class="rowlabel">
-								<small>e</small>
+								<small>d</small>
 							</div>
 						</div>
 						<div class="span7 decimal">
@@ -440,7 +419,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 						style="dispaly: none;">
 						<div class="span1 decimal">
 							<div class="rowlabel">
-								<small>f</small>
+								<small>e</small>
 							</div>
 						</div>
 						<div class="span7 decimal">
@@ -457,7 +436,27 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 							</div>
 						</div>
 					</div>
-
+					<div class="row-fluid show-grid">
+						<div class="span1 decimal">
+							<div class="rowlabel">
+								<small>f</small>
+							</div>
+						</div>
+						<div class="span7 decimal">
+							<div class="rowlabel">
+								<label for=""><small>Interest on Borrowed
+										Capital</small> </label>
+							</div>
+						</div>
+						<div class="span2 offset1">
+							<div>
+								<input id="Interest_borrowed" name="Interest_borrowed"
+									class="letout_L_inv letout_S_inh" placeholder="Rs."
+									type="text"
+									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.interest_borrowed}"/></c:if>">
+							</div>
+						</div>
+					</div>
 					<div class="row-fluid show-grid">
 						<div class="span1 decimal">
 							<div class="rowlabel">
