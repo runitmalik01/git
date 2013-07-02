@@ -36,7 +36,7 @@
 					<div class="rowlabel">
 						<input id="country_code" name="country_code" 
 							type="text" 
-							value=" " />
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.country_Code}"/></c:if>" />
 					</div>
 				</div>
 				<div class="span4">
@@ -47,7 +47,7 @@
 					<div class="rowlabel">
 						<input id="name_trust" name="name_trust"
 							type="text" 
-							value=" " />
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.name_Trust}"/></c:if>" />
 					</div>
 				</div>
 				<div class="span4">
@@ -58,7 +58,7 @@
 					<div class="rowlabel">
 						<input id="address_trust" name="address_trust"
 							type="text" 
-							value=" " />
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.address_Trust}"/></c:if>" />
 					</div>
 				</div>
 			</div>
@@ -73,7 +73,7 @@
 						<input id="name_othertrust" name="name_othertrust"
 							type="text"
 							 
-							value=" " />
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.name_Othertrust}"/></c:if>" />
 					</div>
 				</div>
 				<div class="span4">
@@ -84,7 +84,7 @@
 					<div class="rowlabel">
 						<input id="address_othertrust" name="address_othertrust" type="text"
 							
-							value=" " />
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.address_Othertrust}"/></c:if>" />
 					</div>
 				</div>
 				<div class="span4">
@@ -95,7 +95,7 @@
 					<div class="rowlabel">
 						<input id="name_settlor" name="name_settlor" type="text"
 						
-							value=" " />
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.name_Settlor}"/></c:if>" />
 					</div>
 				</div>
 			</div>
@@ -108,7 +108,7 @@
 					<div class="rowlabel">
 						<input id="address_settlor" name="address_settlor" type="text"
 						
-							value=" " />
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.address_Settlor}"/></c:if>" />
 					</div>
 				</div>
 				<div class="span4">
@@ -119,7 +119,7 @@
 					<div class="rowlabel">
 						<input id="name_beneficiaries" name="name_beneficiaries" type="text"
 						
-							value=" " />
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.name_Beneficiaries}"/></c:if>" />
 					</div>
 				</div>
 				<div class="span4">
@@ -130,7 +130,7 @@
 					<div class="rowlabel">
 						<input id="address_beneficiaries" name="address_beneficiaries" type="text"
 						
-							value=" " />
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.address_Beneficiaries}"/></c:if>" />
 					</div>
 				</div>
 				</div>
@@ -147,31 +147,40 @@
 	<c:otherwise>
 		<table>
 			<tr align="center">
-				<th><b><fmt:message key="tds.tan.deductor" /> </b>
+				<th><b><fmt:message key="foreign.country.code" /> </b>
 				</th>
-				<th><b><fmt:message key="tds.name.deductor" /> </b>
+				<th><b><fmt:message key="name.trust.itr2" /> </b>
 				</th>
-				<th><b><fmt:message key="tds.total.tax.deducted" /> </b></th>
-				<th><b><fmt:message key="tds.amount.claimed" /> </b></th>
-				<th><b><fmt:message key="tds.total.tax.deducted" /> </b></th>
-				<th><b><fmt:message key="tds.amount.claimed" /> </b></th>
+				<th><b><fmt:message key="address.trust.itr2" /> </b></th>
+				<th><b><fmt:message key="name.other.trust.itr2" /> </b></th>
+				<th><b><fmt:message key="address.other.trust.itr2" /> </b></th>
+				<th><b><fmt:message key="name.settlor.itr2" /> </b></th>
+				<th><b><fmt:message key="address.settlor.itr2" /> </b></th>
+				<th><b><fmt:message key="name.beneficiaries.itr2" /> </b></th>
+				<th><b><fmt:message key="address.beneficiaries.itr2" /> </b></th>
 				<th><b>Actions</b></th>
 			</tr>
 			<c:if test="${not empty parentBean}">
-				<c:forEach items="${parentBean.taxReliefDetailList}"
+				<c:forEach items="${parentBean.detailofTrustDetailList}"
 					var="taxrelief">
 					<tr>
 						<td><c:out value="${taxrelief.country_Code}" />
 						</td>
-						<td><c:out value="${taxrelief.tax_ID}" />
+						<td><c:out value="${taxrelief.name_Trust}" />
 						</td>
-						<td><c:out value="${taxrelief.article_dtaa}" />
+						<td><c:out value="${taxrelief.address_Trust}" />
 						</td>
-						<td><w4india:inr value="${taxrelief.totaltax_fsi}" />
+						<td><c:out value="${taxrelief.name_Othertrust}" />
 						</td>
-						<td><w4india:inr value="${taxrelief.relief90_91}" />
+						<td><c:out value="${taxrelief.address_Othertrust}" />
 						</td>
-						<td><w4india:inr value="${taxrelief.relief91}" />
+						<td><c:out value="${taxrelief.name_Settlor}" />
+						</td>
+						<td><c:out value="${taxrelief.address_Settlor}" />
+						</td>
+						<td><c:out value="${taxrelief.name_Beneficiaries}" />
+						</td>
+						<td><c:out value="${taxrelief.address_Beneficiaries}" />
 						</td>
 						<td><a
 							href="${scriptName}/<c:out value="${taxrelief.canonicalUUID}"/>/trustdetailedit"><small>Edit</small> &nbsp;&nbsp;
