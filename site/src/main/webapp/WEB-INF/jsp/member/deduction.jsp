@@ -15,6 +15,7 @@
 <fmt:setBundle basename="com.mootly.wcm.components.deduction-sections-${financialYear.displayName}" var="dSections"/>
 <div class="page">
 	<c:if test="${empty ischildofform16 || ischildofform16 !='true'}"><w4india:itrmenu/></c:if>
+	<h4 style="color: red">Note:Please fill your Income before Deductions</h4>
 	<h4>Deductions</h4>
 	<h5><small>List of deductions</small></h5>
 		<table class="table table-hover table-bordered">
