@@ -36,7 +36,7 @@
 					<div class="rowlabel">
 						<input id="country_code" name="country_code" 
 							type="text" 
-							value=" " />
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.country_Code}"/></c:if>" />
 					</div>
 				</div>
 				<div class="span4">
@@ -47,7 +47,7 @@
 					<div class="rowlabel">
 						<input id="address_property" name="address_property"
 							type="text" 
-							value=" " />
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.address_Property}"/></c:if>" />
 					</div>
 				</div>
 				<div class="span4">
@@ -58,7 +58,7 @@
 					<div class="rowlabel">
 						<input id="total_investment" name="total_investment"
 							type="text" 
-							value=" " />
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.total_Investment}"/></c:if>" />
 					</div>
 				</div>
 			</div>
@@ -94,20 +94,17 @@
 						</td>
 						<td><c:out value="${immProp.total_Investment}" />
 						</td>
-						
 						<td><a
 							href="${scriptName}/<c:out value="${immProp.canonicalUUID}"/>/immovablepropertyedit"><small>Edit</small> &nbsp;&nbsp;
 						</a>&nbsp;<a href="${scriptName}/<c:out value="${immProp.canonicalUUID}"/>/immovablepropertydelete" id="delete" onclick="return checkdelete()"><small>Delete</small> </a>
 							</td>
 						</tr>
-					</tr>
+				
 				</c:forEach>
 				<tr>
-					<td colspan="3"><fmt:message key="tds.amount.total" /></td>
+					<td colspan="2" align="center"><b>Total</b></td>
 					<td><w4india:inr value="${parentBean.investment_Total}" /></td>
-				
 				</tr>
-				
 			</c:if>
 		</table>
 		<a href="${scriptName}/immovablepropertynew"
