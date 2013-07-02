@@ -134,13 +134,13 @@
 					</div>
 				</div>
 				</div>
-				<!--  
+				
 			<div class="row-fluid show-grid">
 				<div class="span4 offset8 decimal">
 					<a href="${scriptName}" class="button olive">Cancel</a>&nbsp;
-					<a id="myModalHrefTaxrebate" role="button" class="btn orange">Save</a>
-				</div> -->
-			<div><input type="submit"></div>
+					<a id="myModalHrefTrustDetail" role="button" class="btn orange">Save</a>
+				</div> 
+			
 			</div>
 		</form>
 	</c:when>
@@ -200,6 +200,6 @@
 </div>
 
 
-<res:client-validation formId="frmtrdetails"
-	screenConfigurationDocumentName="taxrelief"
-	formSubmitButtonId="myModalHrefTaxrebate" />
+<res:client-validation formId="frmtrustdetails"
+	screenConfigurationDocumentName="trustdetail"
+	formSubmitButtonId="myModalHrefTrustDetail" />
