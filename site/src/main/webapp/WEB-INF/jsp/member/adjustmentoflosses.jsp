@@ -146,10 +146,12 @@ request.setAttribute("objHashMapBoolean", objHashMapBoolean);
 					        </tr>
 
 						</c:forEach>
+						<!--
 						<tr>
 					       <td colspan="3"><fmt:message key="tds.amount.total" /></td>
 					       <td><w4india:inr value="${parentBean.totalAmount}" /></td>
 					    </tr>
+					     -->
 					</c:if>
 
 				</table>
