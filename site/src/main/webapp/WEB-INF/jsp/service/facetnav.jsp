@@ -1,7 +1,7 @@
 <%@include file="../includes/tags.jspf"%>
 <div align="left" class="row-fluid show-grid">
-<ul class="thumbnails" id="filter">
-  <ul>
+<h4 class="text-success">Browse Service Categories</h4>
+<ul class="thumbnails nav nav-list bs-docs-sidenav">
     <c:forEach var="facet" items="${facetnav.folders}">
       <c:if test="${facet.count > 0}">
         <c:choose>
@@ -48,5 +48,4 @@
       </c:if>
     </c:forEach>
   </ul>
-</ul>
 </div>
