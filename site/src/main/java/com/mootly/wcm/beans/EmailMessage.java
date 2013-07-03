@@ -158,15 +158,17 @@ public class EmailMessage extends FlexibleDocument implements ContentNodeBinder 
 			node.setProperty("mootlywcm:htmlbody", emailMessage.getHtmlBody());
 
 			node.setProperty("mootlywcm:plainbody", emailMessage.getPlainBody());
-			
+
 			Map<String,Map<String,Object>> resultFileMap=dealWithAttachments(getAttachmentList());
-			for(int i=0;i<resultFileMap.size();i++){
-				Map<String,Object> fileDataMap=resultFileMap.get("file"+i);
-				javax.jcr.Node resourceNode=node.addNode(ATTACHMENTS, HIPPO_RESOURCE);
-				resourceNode.setProperty(JcrConstants.JCR_DATA,(Binary)fileDataMap.get("binaryData"));
-				resourceNode.setProperty(JcrConstants.JCR_MIMETYPE, (String)fileDataMap.get("mimeType"));
-				resourceNode.setProperty(JcrConstants.JCR_LASTMODIFIED,Calendar.getInstance());
-				resourceNode.setProperty(JcrConstants.JCR_ENCODING,"UTF-8");
+			if(resultFileMap!=null&& resultFileMap.size()>0){
+				for(int i=0;i<resultFileMap.size();i++){
+					Map<String,Object> fileDataMap=resultFileMap.get("file"+i);
+					javax.jcr.Node resourceNode=node.addNode(ATTACHMENTS, HIPPO_RESOURCE);
+					resourceNode.setProperty(JcrConstants.JCR_DATA,(Binary)fileDataMap.get("binaryData"));
+					resourceNode.setProperty(JcrConstants.JCR_MIMETYPE, (String)fileDataMap.get("mimeType"));
+					resourceNode.setProperty(JcrConstants.JCR_LASTMODIFIED,Calendar.getInstance());
+					resourceNode.setProperty(JcrConstants.JCR_ENCODING,"UTF-8");
+				}
 			}
 		} catch (RepositoryException rex) {
 			log.error("Repository Exception while binding",rex);
