@@ -92,7 +92,7 @@
 					<a href="${scriptName}" class="button olive">Cancel</a>&nbsp;
 					<a id="myModalHrefSignAccount" role="button" class="btn orange">Save</a>
 				</div>  
-			<input type="submit" value="save">
+			
 			</div>
 		</form>
 	</c:when>
