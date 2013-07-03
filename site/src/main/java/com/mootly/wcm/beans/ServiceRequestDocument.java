@@ -42,7 +42,7 @@ import org.hippoecm.hst.content.beans.Node;
  */
 @Node(jcrType = "mootlywcm:servicerequestdocument")
 public class ServiceRequestDocument extends BaseDocument implements ContentNodeBinder {
-	static final public String NAMESPACE = "mootlywcm:servicerequestdocument";
+	final public String NAMESPACE = "mootlywcm:servicerequestdocument";
 	static final public String NODE_NAME = "ServiceRequestDocument";
 
 	private String firstName;
