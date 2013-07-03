@@ -15,6 +15,7 @@
    
    --%>
 <%@include file="../../includes/tags.jspf" %>
+<%@page import="org.hippoecm.hst.content.beans.standard.HippoBean" %>
 <c:set var="hometitle">
    <fmt:message key="home.title"/>
 </c:set>
@@ -58,7 +59,15 @@
 	  <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
 	</div>
 </div>
-
+<div class="row-fluid show-grid">	        
+	<div class="span12" style="border-bottom:1px solid green;border-top:1px solid green">
+		<div class="row-fluid show-grid">
+		     <div class="span12">	
+			   <hst:include ref="services-itr"/>
+			</div>			
+		</div>		
+	</div>
+</div>
 <div class="row-fluid show-grid">	        
 	<div class="span6" style="border-bottom:1px solid green;border-top:1px solid green">
 		<h2 style="display:inline">eFile</h2>&nbsp;&nbsp;<a href="">Learn More..</a>
