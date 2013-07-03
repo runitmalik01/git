@@ -1,18 +1,7 @@
 <%@include file="../includes/tags.jspf"%>
-
-<ul class="box-general" id="filter">
-  <li class="text">
+<div align="left" class="row-fluid show-grid">
+<ul class="thumbnails" id="filter">
   <ul>
-    <hst:link var="searchLink" hippobean="${facetnav}"/>
-    <li class="filter-by"><fmt:message key="news.overview.facetnav.freetext"/>
-      <c:set var="formId"><hst:namespace/>facetnavsearch</c:set>
-      <form id="${formId}" method="get" action="${searchLink}" class="facetsearch" onsubmit="sanitizeRequestParam(document.forms['${formId}']['query'])">
-        <p>
-          <input type="text" value="${query}" name="query" class="facetsearch-field" />
-          <input type="submit" class="facetsearch-button" value="<fmt:message key="news.overview.facetnav.submit.label"/>" />
-        </p>
-      </form>
-    </li>
     <c:forEach var="facet" items="${facetnav.folders}">
       <c:if test="${facet.count > 0}">
         <c:choose>
@@ -26,7 +15,7 @@
           <c:when test="${facet.childCountsCombined eq 0}">
           </c:when>
           <c:otherwise>
-            <li class="filter-by"><c:out value="${facet.name}"/>:
+            <label><small><c:out value="${facet.name}"/>:</small></label>
               <c:if test="${not empty facet.folders}">
                 <ul class="bullet-points">
                   <c:forEach items="${facet.folders}" var="item">
@@ -54,11 +43,10 @@
                   </c:forEach>
                 </ul>
               </c:if>
-            </li>
           </c:otherwise>
         </c:choose>
       </c:if>
     </c:forEach>
   </ul>
-  </li>
 </ul>
+</div>
