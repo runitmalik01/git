@@ -51,17 +51,17 @@ import com.mootly.wcm.components.ITReturnComponent;
              		"gross_a",
              		"gross_b",
              		"gross_c",
-             		"gross_total",
+             		
              		"less_total_2",
-             		"balance",
+             		
              		"deductions_entertainment",
              		"deductions_tax",
-             		"deductions_total",
-             		"income_chargable_total",
+             		
+             		
              		"relief_2",
              		"ded_ent1",
-             		"ded_ent3",
-             		"ded_ent4"
+             		"ded_ent3"
+             		
     },
     dataTypes={
 		DataTypeValidationType.PAN,
@@ -75,11 +75,7 @@ import com.mootly.wcm.components.ITReturnComponent;
 		DataTypeValidationType.DECIMAL,
 		DataTypeValidationType.DECIMAL,
 		DataTypeValidationType.DECIMAL,
-		DataTypeValidationType.DECIMAL,
-		DataTypeValidationType.DECIMAL,
-		DataTypeValidationType.DECIMAL,
-		DataTypeValidationType.DECIMAL,
-		DataTypeValidationType.DECIMAL,
+		
 		DataTypeValidationType.DECIMAL
 		
 }
