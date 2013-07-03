@@ -1356,4 +1356,18 @@
 	    <sv:value>knowledgearticle.suggestform</sv:value>
 	  </sv:property>
 	</sv:node>
+	<sv:node sv:name="my-service-detail">
+       <sv:property sv:name="jcr:primaryType" sv:type="Name">
+         <sv:value>hst:component</sv:value>
+      </sv:property>
+      <sv:property sv:name="jcr:uuid" sv:type="String">
+        <sv:value>b3989622-a8f7-4d57-839d-ecd7ea297f4a</sv:value>
+     </sv:property>
+     <sv:property sv:name="hst:componentclassname" sv:type="String">
+       <sv:value>com.mootly.wcm.components.Detail</sv:value>
+     </sv:property>
+     <sv:property sv:name="hst:template" sv:type="String">
+       <sv:value>myservices.detail</sv:value>
+     </sv:property>
+   </sv:node>
 </sv:node>
