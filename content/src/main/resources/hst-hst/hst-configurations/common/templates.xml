@@ -3058,4 +3058,15 @@
 	    <sv:value>jsp/knowledgearticles/main.jsp</sv:value>
 	  </sv:property>
 	</sv:node>
+	<sv:node sv:name="homepage-myservices">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+       <sv:value>hst:template</sv:value>
+      </sv:property>
+     <sv:property sv:name="jcr:uuid" sv:type="String">
+       <sv:value>e3e17379-5a96-477e-bc2b-42a60f8e788b</sv:value>
+     </sv:property>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/home/responsive/services.jsp</sv:value>
+    </sv:property>
+   </sv:node>
 </sv:node>
