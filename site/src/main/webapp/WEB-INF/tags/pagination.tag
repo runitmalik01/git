@@ -35,11 +35,11 @@
           <c:param name="${queryName}" value="${fn:escapeXml(queryValue)}"/>
           <c:param name="pageNumber" value="${pageableResult.previousPage}"/>
         </c:url>
-        <a href="${fn:escapeXml(prevLink)}"><fmt:message key="pagination.previous" /></a>
+        <a href="${fn:escapeXml(prevLink)}">Prev</a>
       </li>
     </c:when>
     <c:otherwise>
-      <li><a href="#" class="success"><fmt:message key="pagination.previous" /></a></li>
+      <li><a href="#" class="success">Prev</a></li>
     </c:otherwise>
   </c:choose>
   <c:forEach var="page" begin="${pageableResult.startPage}" end="${pageableResult.endPage}">
