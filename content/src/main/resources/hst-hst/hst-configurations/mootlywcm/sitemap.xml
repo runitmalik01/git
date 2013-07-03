@@ -33,6 +33,9 @@
     <sv:property sv:name="hst:refId" sv:type="String">
       <sv:value>home</sv:value>
     </sv:property>
+    <sv:property sv:name="hst:relativecontentpath" sv:type="String">
+      <sv:value>services</sv:value>
+    </sv:property>
   </sv:node>
   <sv:node sv:name="contactus">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
