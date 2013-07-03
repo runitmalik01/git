@@ -3069,4 +3069,18 @@
       <sv:value>jsp/home/responsive/services.jsp</sv:value>
     </sv:property>
    </sv:node>
+   <sv:node sv:name="myservices.servicerequest">
+     <sv:property sv:name="jcr:primaryType" sv:type="Name">
+       <sv:value>hst:template</sv:value>
+     </sv:property>
+     <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>74a0059a-11d2-4683-9b4e-293e0e66e8dc</sv:value>
+     </sv:property>
+     <sv:property sv:multiple="true" sv:name="hst:containers" sv:type="String">
+       <sv:value>servicerequest-itr</sv:value>
+     </sv:property>
+     <sv:property sv:name="hst:renderpath" sv:type="String">
+       <sv:value>jsp/service/request/servicerequest.jsp</sv:value>
+     </sv:property>
+  </sv:node>
 </sv:node>
