@@ -23,8 +23,8 @@
 <c:choose>
 	<c:when
 		test="${pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD'}">
-		<form id="frmtForeignAset" action="${actionUrl}" method="post"
-			name="frmtForeignAset">
+		<form id="frmtForeignBankDetail" action="${actionUrl}" method="post"
+			name="frmtForeignBankDetail">
 			
 			<h2>Enter Details</h2>
 			<div class="row-fluid show-grid">
@@ -99,13 +99,13 @@
 					</div>
 				</div>
 			</div>
-		<!-- 
+		
 			<div class="row-fluid show-grid">
 				<div class="span4 offset8 decimal">
 					<a href="${scriptName}" class="button olive">Cancel</a>&nbsp;
-					<a id="myModalHrefTaxrebate" role="button" class="btn orange">Save</a>
-				</div>  -->
-			<input type="submit" value="save">
+					<a id="myModalHrefForeignBankDetail" role="button" class="btn orange">Save</a>
+				</div>  
+			
 			</div>
 		</form>
 	</c:when>
@@ -160,6 +160,6 @@ class="button orange">Add New</a>
 </div>
 
 
-<res:client-validation formId="frmtrdetails"
-	screenConfigurationDocumentName="taxrelief"
-	formSubmitButtonId="myModalHrefTaxrebate" />
+<res:client-validation formId="frmtForeignBankDetail"
+	screenConfigurationDocumentName="foreignbankdetail"
+	formSubmitButtonId="myModalHrefForeignBankDetail" />
