@@ -51,19 +51,19 @@ request.setAttribute("objHashMapBoolean", objHashMapBoolean);
 			</div>
 		</c:forEach>
 	</c:if>
-<!--
+
 <div class="alert alert-error hide" id="chkentry">
 </div>
- -->
+
 	<c:choose>
 	<c:when test="${pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD'}">
-		<form id="frmdataLosses" action="${actionUrl}" name="adjustmentoflosses" method="post">
+		<form id="frmdataLosses" action="${actionUrl}" name="adjustmentoflosses" method="post" class="frmlosses">
 			<fieldset>
 				<legend>Detail Of Losses</legend>
 				<div class="row-fluid show-grid" >
                     <div class="span6">
 					<div class="rowlabel"><label for="NameOfHead"><small><fmt:message key="member.adjustment.losses.name"></fmt:message></small></label></div>
-					<div class="rowlabel"><select name="NameOfHead" id="NameOfHead">
+					<div class="rowlabel"><select name="NameOfHead" id="NameOfHead" onchange="checkentry()">
 					             <option value="">-Select Head-</option>
 					             <c:forEach var="booleanCombo" items="${objHashMapNameOfHead}">
 
@@ -105,7 +105,7 @@ request.setAttribute("objHashMapBoolean", objHashMapBoolean);
 				</div>
 				<div class="span3">
 					 <div class="rowlabel"><label for="DateOfFilingYear"><small><fmt:message key="member.adjustment.losses.date"></fmt:message></small></label></div>
-					 <div class="rowlabel"><input type="text" id="DateOfFilingYear" name="DateOfFilingYear" value="${childBean.dateStr}" /></div>
+					 <div class="rowlabel"><input type="text" id="DateOfFilingYear" name="DateOfFilingYear" value="${childBean.dateStr}" class="filingdate" onchange="checkdate()"/></div>
 				</div>
 				<div class="span3">
 					 <div class="rowlabel"><label for="Amount"><small><fmt:message key="member.adjustment.losses.amount" /></small></label></div>
@@ -119,6 +119,7 @@ request.setAttribute("objHashMapBoolean", objHashMapBoolean);
 					          <a id="myModalHref" role="button" class="btn orange">Save</a>
 					     </div>
 					 </div>
+					 <input type="hidden" value="${uuid}" id="uuid"/>
 		</form>
 
 	</c:when>
@@ -162,8 +163,8 @@ request.setAttribute("objHashMapBoolean", objHashMapBoolean);
 
 <hst:element var="uiCustom" name="script">
     <hst:attribute name="type">text/javascript</hst:attribute>
-function setYear(){
 
+function setYear(){
 var assessmentyear=document.getElementById("AssessmentYear").value;
 var minyear=assessmentyear.slice(0,4);
 var maxyear=assessmentyear.slice(5,9);
@@ -173,29 +174,106 @@ itrFinYrMax="31/03/"+maxyear;
 			$( ".indiandateLosses" ).datepicker( "option", "minDate", itrFinYrMin );
 			$( ".indiandateLosses" ).datepicker( "option", "maxDate", itrFinYrMax );
 }
-<!--
+
 function checkentry(){
     var checkout=false;
 	var currhead = document.getElementById("NameOfHead").value;
 	var curryear = document.getElementById("AssessmentYear").value;
-<c:if test="${not empty parentBean}">
+	var curruuid = document.getElementById("uuid").value;
+<c:choose>
+<c:when test="${not empty parentBean && pageAction == 'NEW_CHILD'}">
 <c:forEach items="${parentBean.adjustmentOfLossesList}" var="adjustmentOfLosses">
 <c:set value="${adjustmentOfLosses.nameOfHead}" var="head"/>
 <c:set value="${adjustmentOfLosses.assessmentYear}" var="assessmentyear"/>
+<c:set value = "${adjustmentOfLosses.dateStr}" var="filingdate"/>
 if(currhead == '<c:out value="${head}"/>' && curryear == '<c:out value="${assessmentyear}"/>'){
 checkout=true;
-$("#chkentry").text("Warning! You have already selected "+currhead+" for "+curryear);;
+$("#chkentry").text("Warning! You have already selected "+currhead+" for "+curryear);
 }
 </c:forEach>
-</c:if>
 if(checkout){
 $("#chkentry").show();
-$("#myModalHref").attr('id','abc');
+$("#frmdataLosses").removeAttr('id');
 }else{
 $("#chkentry").hide();
+$(".frmlosses").attr('id','frmdataLosses');
+}
+</c:when>
+
+<c:when test="${not empty parentBean && pageAction == 'EDIT_CHILD'}">
+<c:forEach items="${parentBean.adjustmentOfLossesList}" var="adjustmentOfLosses">
+<c:set value="${adjustmentOfLosses.nameOfHead}" var="head"/>
+<c:set value="${adjustmentOfLosses.assessmentYear}" var="assessmentyear"/>
+<c:set value="${adjustmentOfLosses.canonicalUUID}" var="uuid"/>
+if(currhead == '<c:out value="${head}"/>' && curryear == '<c:out value="${assessmentyear}"/>' && curruuid != '<c:out value="${uuid}"/>'){
+checkout=true;
+$("#chkentry").text("Warning! You have already selected "+currhead+" for "+curryear);
+}
+</c:forEach>
+if(checkout){
+$("#chkentry").show();
+$("#frmdataLosses").removeAttr('id');
+}else{
+$("#chkentry").hide();
+$(".frmlosses").attr('id','frmdataLosses');
+}
+</c:when>
+<c:otherwise></c:otherwise>
+</c:choose>
+if(currhead=='Owning and Maintaining Race Horses' && (curryear=='2005-2006'||curryear=='2006-2007'||curryear=='2007-2008'||curryear=='2008-2009')){
+$("#chkentry").text("Warning! Please select Assessment Year from 2009-2010 to 2012-2013 in case of Owning and Maintaining Race Horses loss");
+$("#chkentry").show();
+$("#frmdataLosses").removeAttr('id');
 }
 }
- -->
+
+function checkdate(){
+var checkdate = false;
+var curryear = document.getElementById("AssessmentYear").value;
+var currdate = document.getElementById("DateOfFilingYear").value;
+var curruuid = document.getElementById("uuid").value;
+
+<c:choose>
+<c:when test="${not empty parentBean && pageAction == 'NEW_CHILD'}">
+<c:forEach items="${parentBean.adjustmentOfLossesList}" var="adjustmentOfLosses">
+<c:set value="${adjustmentOfLosses.assessmentYear}" var="assessmentyear"/>
+<c:set value = "${adjustmentOfLosses.dateStr}" var="filingdate"/>
+if(curryear == '<c:out value="${assessmentyear}"/>' && currdate != '<c:out value="${filingdate}"/>'){
+checkdate = true;
+$("#chkentry").text("Warning! You have already selected "+'<c:out value="${filingdate}"/>'+" for Assessment Year "+curryear+". Please select same date");
+}
+</c:forEach>
+if(checkdate){
+$("#chkentry").show();
+$("#frmdataLosses").removeAttr('id');
+}else{
+$("#chkentry").hide();
+$(".frmlosses").attr('id','frmdataLosses');
+}
+</c:when>
+<c:when test="${not empty parentBean && pageAction == 'EDIT_CHILD'}">
+<c:forEach items="${parentBean.adjustmentOfLossesList}" var="adjustmentOfLosses">
+<c:set value="${adjustmentOfLosses.assessmentYear}" var="assessmentyear"/>
+<c:set value = "${adjustmentOfLosses.dateStr}" var="filingdate"/>
+<c:set value="${adjustmentOfLosses.canonicalUUID}" var="uuid"/>
+if(curryear == '<c:out value="${assessmentyear}"/>' && currdate != '<c:out value="${filingdate}"/>'&& curruuid != '<c:out value="${uuid}"/>'){
+checkdate = true;
+$("#chkentry").text("Warning! You have already selected "+'<c:out value="${filingdate}"/>'+" for Assessment Year "+curryear+". Please select same date");
+}
+</c:forEach>
+if(checkdate){
+$("#chkentry").show();
+$("#frmdataLosses").removeAttr('id');
+}else{
+$("#chkentry").hide();
+$(".frmlosses").attr('id','frmdataLosses');
+}
+</c:when>
+<c:otherwise>
+</c:otherwise>
+</c:choose>
+
+}
 
 </hst:element>
 <hst:headContribution element="${uiCustom}" category="jsInternal"/>
