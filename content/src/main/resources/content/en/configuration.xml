@@ -8576,7 +8576,7 @@ var indianCurrencyHelper = new com.mootly.wcm.services.IndianCurrencyHelper();
 
 if(letout=='S'){
 //if(Unrealised_rent!=0 &amp;&amp; Local_tax!=0 &amp;&amp; Letable_value!=0 &amp;&amp; Interest_borrowed!=0){
-var total = Letable_value - Unrealised_rent - Local_tax;
+var total = Letable_value - Unrealised_rent + parseInt(Local_tax);
 var balance=(0.3 * total);
 var hous_income = total - balance - Interest_borrowed;
 out_Total=total;
