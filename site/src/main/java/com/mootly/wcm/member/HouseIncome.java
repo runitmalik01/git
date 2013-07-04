@@ -42,9 +42,7 @@ import com.mootly.wcm.services.ScreenCalculatorService;
 		  "Unrealised_rent",
 		  "Local_tax",
 		  "Total",
-		  "Balance",
-		  "Interest_borrowed",
-		  "Income_hproperty",
+		  
 		  "Tenant_pan"
 	},
 dataTypes= {
@@ -52,9 +50,7 @@ dataTypes= {
 		  DataTypeValidationType.DECIMAL,
 		  DataTypeValidationType.DECIMAL,
 		  DataTypeValidationType.DECIMAL,
-		  DataTypeValidationType.DECIMAL,
-		  DataTypeValidationType.DECIMAL,
-		  DataTypeValidationType.DECIMAL,
+		  
 		  DataTypeValidationType.PAN
 	 }
 )
