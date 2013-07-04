@@ -169,7 +169,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 						</div>
 
 						<div class="span6">
-							<div class="rowlabel">
+							<div class="rowlabel" id="percentageshare_label">
 								<label for=""><small>Your percentage share in
 										Property</small> </label>
 							</div>
@@ -424,7 +424,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 						</div>
 						<div class="span7 decimal">
 							<div class="rowlabel">
-								<label for=""><small>30% of e</small> </label>
+								<label for=""><small>30% of d</small> </label>
 							</div>
 						</div>
 						<div class="span2 offset1">
@@ -573,8 +573,13 @@ $(document).ready(function() {
 	 var OnLoadCoowned = $("#coowned").val();
 	 if(OnLoadCoowned=="Yes"){
 			$("#coOwner").show();
+			$("#Property_share").show();
+			$("#percentageshare_label").show();
 		} else{
 			$("#coOwner").hide();
+			$("#Property_share").hide();
+			$("#percentageshare_label").hide();
+			
 		}
 	 
 	
@@ -606,13 +611,17 @@ function hideTanPan(){
 					$("#idtenantpan").show();
 			}
 	}
-	function hidecoOwner(){
+	function hidecoOwner(){  
 		var d=document.getElementById("coowned");
 		var valuePropCoOwned = d.options[d.selectedIndex].value;
 		if(valuePropCoOwned=="Yes"){
 			$("#coOwner").show();
+			$("#Property_share").show();
+			$("#percentageshare_label").show();
 		} else{
 			$("#coOwner").hide();
+			$("#Property_share").hide();
+			$("#percentageshare_label").hide();
 		}
 	}
 	</script>
