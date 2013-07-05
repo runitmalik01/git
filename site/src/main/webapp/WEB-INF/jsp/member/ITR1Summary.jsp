@@ -415,7 +415,7 @@
 					<td colspan="1"><b>Tax Refundable</b>
 					<td  style="text-align:left">
 						<span class="decimal">
-								<w4india:inr value="${BalTaxPayable}"/>
+						<fmt:formatNumber value="${BalTaxPayable}" type="CURRENCY" currencySymbol="${currencySymbol}" maxFractionDigits="2" minFractionDigits="2" minIntegerDigits="1"></fmt:formatNumber>
 						</span>
 					</td>
 				</tr>
