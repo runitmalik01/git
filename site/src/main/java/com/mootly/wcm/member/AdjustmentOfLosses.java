@@ -9,15 +9,28 @@
 
 package com.mootly.wcm.member;
 
+import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.TimeZone;
 
+import javax.jcr.RepositoryException;
+import javax.jcr.Session;
+import javax.jcr.SimpleCredentials;
+
+import org.apache.commons.lang.StringUtils;
 import org.hippoecm.hst.component.support.forms.FormMap;
+import org.hippoecm.hst.content.beans.ObjectBeanManagerException;
+import org.hippoecm.hst.content.beans.ObjectBeanPersistenceException;
+import org.hippoecm.hst.content.beans.manager.workflow.WorkflowCallbackHandler;
+import org.hippoecm.hst.content.beans.manager.workflow.WorkflowPersistenceManager;
 import org.hippoecm.hst.core.component.HstComponentException;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
+import org.hippoecm.repository.api.WorkflowManager;
+import org.hippoecm.repository.reviewedactions.FullReviewedActionsWorkflow;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -31,10 +44,13 @@ import com.mootly.wcm.beans.compound.AdjustmentOfLossesCom;
 import com.mootly.wcm.beans.compound.FormSixteenDetail;
 import com.mootly.wcm.beans.compound.HouseIncomeDetail;
 import com.mootly.wcm.beans.AdjustmentOfLossesDoc;
+import com.mootly.wcm.beans.BaseDocument;
 import com.mootly.wcm.beans.HouseProperty;
 import com.mootly.wcm.beans.MemberPersonalInformation;
 import com.mootly.wcm.components.ITReturnComponent;
 import com.mootly.wcm.components.ITReturnScreen.PAGE_ACTION;
+import com.mootly.wcm.components.InvalidNavigationException;
+import com.mootly.wcm.services.IndianCurrencyHelper;
 
 @PrimaryBean(primaryBeanClass=AdjustmentOfLossesDoc.class)
 @ChildBean(childBeanClass=AdjustmentOfLossesCom.class)
@@ -60,48 +76,75 @@ public class AdjustmentOfLosses extends ITReturnComponent {
 		super.doAction(request, response);
 
 	}
-	/*
+
 	@Override
 	public boolean beforeSave(HstRequest request) {
 		// TODO Auto-generated method stub
 		super.beforeSave(request);
 		boolean check = true;
-		String uuid;
+		//String uuid;
 
-		AdjustmentOfLossesDoc adjustmentOfLossesDoc = (AdjustmentOfLossesDoc) request.getAttribute(AdjustmentOfLossesDoc.class.getSimpleName().toLowerCase());
-		String currAssessmentYear=getFormMap().getField("AssessmentYear").getValue();
-		String currNameofHead=getFormMap().getField("NameOfHead").getValue();
-		uuid = request.getRequestContext().getResolvedSiteMapItem().getParameter("uuid");
-
-		if (getPageAction().equals(PAGE_ACTION.NEW_CHILD)) {
-		if(adjustmentOfLossesDoc != null){
-			List<AdjustmentOfLossesCom> listofAdjustmentOfLossesCom = adjustmentOfLossesDoc.getAdjustmentOfLossesList() ;
-			if ( listofAdjustmentOfLossesCom != null && listofAdjustmentOfLossesCom.size() > 0 ){
-				for(AdjustmentOfLossesCom adjustmentOfLossesCom:listofAdjustmentOfLossesCom){
-					if(adjustmentOfLossesCom.getNameOfHead().equals(currNameofHead) && adjustmentOfLossesCom.getAssessmentYear().equals(currAssessmentYear)){
-                       getFormMap().addMessage("checkentry", "Warning! You have already selected "+adjustmentOfLossesCom.getNameOfHead()+" for "+adjustmentOfLossesCom.getAssessmentYear());
-                       check = false;
-					}
-				}
-			}
-		}
+		return check;
 	}
-		if(getPageAction().equals(PAGE_ACTION.EDIT_CHILD)){
-			if(adjustmentOfLossesDoc != null){
-				List<AdjustmentOfLossesCom> listofAdjustmentOfLossesCom = adjustmentOfLossesDoc.getAdjustmentOfLossesList() ;
-				if ( listofAdjustmentOfLossesCom != null && listofAdjustmentOfLossesCom.size() > 0 ){
-					for(AdjustmentOfLossesCom adjustmentOfLossesCom:listofAdjustmentOfLossesCom){
-						if(adjustmentOfLossesCom.getNameOfHead().equals(currNameofHead) && adjustmentOfLossesCom.getAssessmentYear().equals(currAssessmentYear) && uuid.equals(adjustmentOfLossesCom.getCanonicalUUID())){
-	                       getFormMap().addMessage("checkentry", "Warning! You have already selected "+adjustmentOfLossesCom.getNameOfHead()+" for "+adjustmentOfLossesCom.getAssessmentYear());
-	                       check = false;
+	public GregorianCalendar ConvDateStringToCalendar(String strDate){
+		Date date = null ;
+		DateFormat formatter = BaseDocument.getIndianDateFormatter();
+		GregorianCalendar cal=null;
+		if(StringUtils.isNotEmpty(strDate)){
+			cal=(GregorianCalendar) GregorianCalendar.getInstance();
+			try{
+				date = (Date)formatter.parse(strDate);
+				cal.setTime(date);
+			}
+			catch(Exception e){
+				log.error("calendar error"+e);
+			}
+			return cal;
+		}else return null;
+
+	}
+	@Override
+	public void afterSave(HstRequest request) {
+		// TODO Auto-generated method stub
+		super.afterSave(request);
+		Session persistenceSession;
+		List<AdjustmentOfLossesCom> listofAdjustmentOfLossesCom=null;
+		String path=null;
+		try {
+			persistenceSession = getPersistableSession(request);
+			WorkflowPersistenceManager wpm=getWorkflowPersistenceManager(persistenceSession);
+			wpm.setWorkflowCallbackHandler(new FullReviewedWorkflowCallbackHandler());
+			path=getAbsoluteBasePathToReturnDocuments()+"/"+AdjustmentOfLossesDoc.class.getSimpleName().toLowerCase();
+			AdjustmentOfLossesDoc adjustmentOfLossesDoc = (AdjustmentOfLossesDoc) wpm.getObject(path);
+			String currAssessmentYear=getFormMap().getField("AssessmentYear").getValue();
+			String currDate = getFormMap().getField("DateOfFilingYear").getValue();
+			if(getPageAction().equals(PAGE_ACTION.EDIT_CHILD)){
+				if(adjustmentOfLossesDoc != null){
+					listofAdjustmentOfLossesCom = adjustmentOfLossesDoc.getAdjustmentOfLossesList() ;
+					if ( listofAdjustmentOfLossesCom != null && listofAdjustmentOfLossesCom.size() > 0 ){
+						for(AdjustmentOfLossesCom adjustmentOfLossesCom:listofAdjustmentOfLossesCom){
+							if(adjustmentOfLossesCom.getAssessmentYear().equals(currAssessmentYear)){
+								adjustmentOfLossesCom.setDateOfFilingYear(ConvDateStringToCalendar(currDate));
+							}
 						}
 					}
 				}
+				adjustmentOfLossesDoc.setAdjustmentOfLossesList(listofAdjustmentOfLossesCom);
+				wpm.update(adjustmentOfLossesDoc);
 			}
+		} catch (RepositoryException e) {
+			// TODO Auto-generated catch block
+			log.error("Error while get Persistable Session of JCR Repository",e);
+		} catch (ObjectBeanPersistenceException e) {
+			// TODO Auto-generated catch block
+			log.error("Error while updating Document",e);
+		} catch (ObjectBeanManagerException e) {
+			// TODO Auto-generated catch block
+			log.error("Error while get the object at path"+path,e);
+		} catch (InvalidNavigationException e) {
+			// TODO Auto-generated catch block
+			log.error("Error in invalid navigation from Absolute path",e);
 		}
-		return check;
 	}
-	*/
-
-	}
+}
 
