@@ -88,7 +88,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 	private static final Logger log = LoggerFactory.getLogger(ITReturnComponent.class);
 
 	//local variables
-	boolean hasInitComplete = false; 
+	boolean hasInitComplete = false;
 	String redirectURLToSamePage=  null;
 
 	//User/Member Parameters
@@ -136,7 +136,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 	String clientSideValidationJSON;
 
 	///Name of the HTML File and the depth its in
-	String scriptName; 
+	String scriptName;
 
 	@Override
 	public void doBeforeRender(HstRequest request, HstResponse response) {
@@ -165,7 +165,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			response.setRenderPath("jsp/security/invalidpan.jsp");
 			return;
 		}
-		
+
 		if (pageAction == PAGE_ACTION.NEW_CHILD && request.getAttribute("NEW_CHILD_DISABLED") != null) {
 			log.error("User attempting to over ride the maxAllowedChildren parameter");
 			response.setRenderPath("jsp/security/invalidoperation.jsp");
@@ -221,13 +221,13 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 				request.setAttribute("error","true");
 			}
 
-			if (pageAction.equals(PAGE_ACTION.DELETE) || pageAction.equals(PAGE_ACTION.DELETE_CHILD)) {	
+			if (pageAction.equals(PAGE_ACTION.DELETE) || pageAction.equals(PAGE_ACTION.DELETE_CHILD)) {
 				save(request,formMap);
 				//initComponent(request);
 				try {
 					String urlToRedirect = getScriptName(); //getRedirectURL(request,response,FormSaveResult.SUCCESS);
 					if (log.isInfoEnabled()) {
-						log.info(urlToRedirect + ":" + urlToRedirect); 
+						log.info(urlToRedirect + ":" + urlToRedirect);
 					}
 					//if (request.getAttribute("selectedItrTab") != null) {
 					//response.setRenderParameter("selectedItrTab", ((ITRTab)request.getAttribute("selectedItrTab")).name());
@@ -286,7 +286,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			return;
 		}
 		sanitize(request,response,formMap);
-		if (pageAction.equals(PAGE_ACTION.EDIT) || pageAction.equals(PAGE_ACTION.EDIT_CHILD) || pageAction.equals(PAGE_ACTION.NEW_CHILD)) {	
+		if (pageAction.equals(PAGE_ACTION.EDIT) || pageAction.equals(PAGE_ACTION.EDIT_CHILD) || pageAction.equals(PAGE_ACTION.NEW_CHILD)) {
 			if (log.isInfoEnabled()) {
 				if (formMap != null) {
 					for (String aFieldName:formFields.fieldNames()) {
@@ -295,6 +295,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 				}
 			}
 			save(request,formMap);
+			afterSave(request);
 			try {
 				if (formMap.getMessage() != null && formMap.getMessage().size() > 0 ) {
 					String urlToRedirect = getScriptName(); //getRedirectURL(request,response,FormSaveResult.FAILURE) ;
@@ -411,7 +412,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 
 	@Override
 	public Class<? extends HippoBean> getParentBeanClass() {
-		// TODO Auto-generated method stub		
+		// TODO Auto-generated method stub
 		return parentBeanClass;
 	}
 
@@ -495,12 +496,12 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		return formMap;
 	}
 
-	public String getScriptName(HstRequest request,HstResponse response, FormSaveResult formSaveResult) {		
+	public String getScriptName(HstRequest request,HstResponse response, FormSaveResult formSaveResult) {
 		return scriptName;
 	}
 
 
-	public String getScriptName() {		
+	public String getScriptName() {
 		return scriptName;
 	}
 
@@ -535,7 +536,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			int depth = 1;
 			for (String aPart:parts) {
 				if (aPart.endsWith(".html")) {
-					scriptName= aPart;					
+					scriptName= aPart;
 					break;
 				}
 				else {
@@ -570,7 +571,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 				ITRTab itrTab = ITRTab.getByAka(strParts);
 				request.setAttribute("urlParts", urlParts);
 				if (itrTab != null) request.setAttribute("selectedItrTab", itrTab);
-			}			
+			}
 		}
 		if (request.getAttribute("selectedItrTab") == null && getPublicRequestParameter(request, "selectedItrTab") != null) {
 			ITRTab itrTab = null;
@@ -612,7 +613,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 						request.setAttribute("NEW_CHILD_DISABLED", "true");
 					}
 				}catch (NumberFormatException nex) {
-					
+
 				}
 			}
 			if (log.isInfoEnabled()) {
@@ -640,7 +641,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			}
 		}
 
-		//NOW find 
+		//NOW find
 		if (!StringUtils.isEmpty(pan)) {
 			char filingStatusChar = pan.charAt(3);
 			filingStatus = FilingStatus.getEnumByFourthChar(filingStatusChar);
@@ -654,7 +655,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			tabName = actionInSiteMap.substring(0,actionInSiteMap.indexOf("_"));
 		}
 
-		String strPageAction = request.getRequestContext().getResolvedSiteMapItem().getParameter("action");		
+		String strPageAction = request.getRequestContext().getResolvedSiteMapItem().getParameter("action");
 		//this is tricky lets allow components to override the configuration by passing it themselves
 		//this is useful for form16 -- deductions scenario where a parent is hosting a child
 		String strPageActionFromComponent = getParameter("action", request);
@@ -683,8 +684,8 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 						aPageAction = aPageAction.substring(indexOfFirstUnderScore+1);
 						//now lets try the value of AGAIN
 						if (log.isInfoEnabled()) {
-							log.info("strPageAction after substring=" + aPageAction);						
-						}	
+							log.info("strPageAction after substring=" + aPageAction);
+						}
 						pageAction = ITReturnScreen.PAGE_ACTION.valueOf(aPageAction);
 						break;
 					}
@@ -700,7 +701,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		hippoBeanMemberBase = siteContentBaseBean.getBean("members/" + getNormalizedMemberEmail());
 		if (hippoBeanMemberBase != null) {
 			memberRootFolderAbsolutePath = hippoBeanMemberBase.getPath();
-			//we need to get into pans sub folder 
+			//we need to get into pans sub folder
 			panFolder = hippoBeanMemberBase.getBean("pans", HippoFolder.class) ;// .getChildBeansByName("pans", HippoFolder.class);
 			//if (listOfFolders != null && listOfFolders.size() > 0 ){
 			//	panFolder = listOfFolders.get(0);
@@ -743,7 +744,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 				} catch (ObjectBeanManagerException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-				}					
+				}
 			}
 		}
 		if (!memberPersonalInfoLoaded) {
@@ -764,7 +765,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 				String accessKey =  valueListBeans.accessKey()[i];
 				//attemp to get the list from properties file instead
 				//I really don't know what is causing the behavior on zapto server
-				//It could be a memory issue, for now the implementation can be changed to ensure the 
+				//It could be a memory issue, for now the implementation can be changed to ensure the
 				String quotedPattern = Pattern.quote("${financialYear}");
 				String replacedValueListBeanPath = valueListBeanPath.replaceAll(quotedPattern, financialYear.getDisplayName());
 				Properties properties = null;
@@ -819,7 +820,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			//find the object by uuid
 			uuid = request.getRequestContext().getResolvedSiteMapItem().getParameter("uuid");
 			if (log.isInfoEnabled()) {
-				log.info("We will now be editing the object with UUID:" + uuid);				
+				log.info("We will now be editing the object with UUID:" + uuid);
 			}
 			if (parentBean != null) {
 				List<HippoBean> listOfChildBeans = parentBean.getChildBeans(HippoBean.class);
@@ -830,7 +831,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 							childBean = aBean;
 							request.setAttribute("childBean", childBean);
 							break;
-						} 
+						}
 					}
 				}
 			}
@@ -845,7 +846,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		if (screenConfigDocument != null) {
 			if (log.isInfoEnabled()){
 				log.info("screenConfigDocument:" + screenConfigDocument.toString());
-			}			
+			}
 			request.setAttribute("screenConfigDocument",screenConfigDocument);
 			String screenConfigDocumentJSON = ScreenConfigService.generateJSON(screenConfigDocument);
 			if (screenConfigDocumentJSON != null) {
@@ -885,13 +886,13 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 				//response.setContentType("application/json");
 				response.setRenderPath("jsp/common/calculation_response.jsp");
 			}
-		}		
+		}
 	}
 
 	protected void sanitize(HstRequest request,HstResponse response,FormMap formMap) {
 		//lets add the username into form map
 		FormField formFieldLoggedInUser = null;
-		if (formMap != null && request.getUserPrincipal() != null && request.getUserPrincipal().getName() != null) { 
+		if (formMap != null && request.getUserPrincipal() != null && request.getUserPrincipal().getName() != null) {
 			formFieldLoggedInUser = formMap.getField("formFieldLoggedInUser");
 			if (formFieldLoggedInUser ==null) {
 				formFieldLoggedInUser = new FormField("formFieldLoggedInUser");
@@ -931,7 +932,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 				}
 				if (whatToMatch != null) {
 					try {
-						Pattern p = Pattern.compile(regExPattern[i]);					
+						Pattern p = Pattern.compile(regExPattern[i]);
 						boolean isAMatch = p.matcher(whatToMatch).matches();
 						if (!isAMatch) {
 							formMap.getField(fieldNames[i]).addMessage("err.pattern." + fieldNames[i]);
@@ -989,7 +990,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 				formMap.addMessage("generic","An error has occurred");
 			}
 		}
-		
+
 		if(filingStatus.getXmlCode()=="I"){
 			StartApplicationValidationService startappvalidserv=new StartApplicationValidationService();
 			startappvalidserv.validResidential(formMap, assessmentYear);
@@ -1002,7 +1003,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			return true;
 		}
 	}
-	
+
 	protected int getTotalChildren() {
 		if (this.getClass().isAnnotationPresent(ChildBean.class) && parentBean != null) {
 			try {
@@ -1055,7 +1056,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			request.setAttribute("clientSideValidationJSON", clientSideValidationJSON);
 		}
 
-		if (scriptName != null) {			
+		if (scriptName != null) {
 			request.setAttribute("scriptName", scriptName);
 		}
 
@@ -1117,7 +1118,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 	 * The ultimate goal here is to save the parent bean and if it didn't exist then it should have been created in the first place
 	 * a child cannot exist without a parent
 	 */
-	protected void save(HstRequest request,FormMap formMap) {	
+	protected void save(HstRequest request,FormMap formMap) {
 		//what are we supposed to do??
 		if (pageAction.equals(PAGE_ACTION.EDIT_CHILD) && childBean != null) {
 			//we are updating a child node here
@@ -1189,7 +1190,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 					ChildBean childBeanLocal = getClass().getAnnotation(ChildBean.class);
 					//HippoBean newChildBeanInstance = null;
 					try {
-						childBean = childBeanLocal.childBeanClass().newInstance();					
+						childBean = childBeanLocal.childBeanClass().newInstance();
 						if (childBean instanceof FormMapFiller) {
 							FormMapFiller formMapFiller = (FormMapFiller) childBean;
 							formMapFiller.fill(formMap);
@@ -1284,7 +1285,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 					log.error("Error saving document",e);
 					e.printStackTrace();
 				}
-			}			
+			}
 		}
 		finally {
 			if (persistableSession != null) {
@@ -1306,7 +1307,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 	}
 
 	@Override
-	public void afterSave() {
+	public void afterSave(HstRequest request) {
 		// TODO Auto-generated method stub
 
 	}
