@@ -57,7 +57,7 @@
 				<div class="row-fluid show-grid">
 					<div class="span4">
 						<div class="rowlabel">
-							<label for="employer">Name and address of Employer</label>
+							<label for="employer">Name of Employer</label>
 						</div>
 						<div class="rowlabel">
 							<input type="text" name="employer" id="employer" class="uprcase"
@@ -76,7 +76,7 @@
 								readonly="readonly" />
 						</div>
 					</div>
-					<div class="span4">
+					<div class="span3">
 						<div class="rowlabel">
 							<label for="pan_deductor">PAN of Employer</label>
 						</div>
@@ -86,9 +86,10 @@
 								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.pan_deductor}"/></c:if>">
 						</div>
 					</div>
+					
 					</div>
 					<div class="row-fluid show-grid">
-					<div class="span6">
+					<div class="span3">
 						<div class="rowlabel">
 							<label for="tan_deductor">TAN of Employer</label>
 						</div>
@@ -97,13 +98,23 @@
 								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.tan_deductor}"/></c:if>">
 						</div>
 					</div>
-					<div class="span6">
+					<div class="span3">
 						<div class="rowlabel">
 							<label>PAN of Employee </label> <input type="text"
 								name="pan_employee" class="uprcase"
 								value="<c:choose><c:when test="${pageAction == 'EDIT_CHILD'}"><c:out value="${memberpersonalinformation.PAN}"/>
 								</c:when><c:otherwise><c:out value="${memberpersonalinformation.PAN}"/></c:otherwise></c:choose>"
 								readonly="readonly" />
+						</div>
+					</div>
+					<div class="span4">
+						<div class="rowlabel">
+							<label>Address of Employer</label>
+						</div>
+
+						<div class="rowlabel">
+							<input id="address" type="text" name="address" class="uprcase"
+								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.address}"/></c:if>">
 						</div>
 					</div>
 					</div>
