@@ -251,6 +251,7 @@ $("#chkentry").hide();
 $(".frmlosses").attr('id','frmdataLosses');
 }
 </c:when>
+<%--
 <c:when test="${not empty parentBean && pageAction == 'EDIT_CHILD'}">
 <c:forEach items="${parentBean.adjustmentOfLossesList}" var="adjustmentOfLosses">
 <c:set value="${adjustmentOfLosses.assessmentYear}" var="assessmentyear"/>
@@ -269,10 +270,10 @@ $("#chkentry").hide();
 $(".frmlosses").attr('id','frmdataLosses');
 }
 </c:when>
+ --%>
 <c:otherwise>
 </c:otherwise>
 </c:choose>
-
 }
 
 </hst:element>
