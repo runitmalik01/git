@@ -15,5 +15,5 @@
 	request.setAttribute("currencySymbol",currencySymbol);
 %>
 
-<fmt:formatNumber value="${value}" type="CURRENCY" currencySymbol="${currencySymbol}" maxFractionDigits="2" minFractionDigits="2" minIntegerDigits="1"></fmt:formatNumber>
+<fmt:formatNumber value="${value}" type="CURRENCY" currencySymbol="${currencySymbol}" pattern="¤ #,##0.00;¤ -#,##0.00" maxFractionDigits="2" minFractionDigits="2" minIntegerDigits="1"></fmt:formatNumber>
 
