@@ -29,6 +29,10 @@ public abstract class FormSixteenSectionB extends FormSixteenSectionA  implement
 			setEmploye_category(formMap.getField("Employe_category").getValue());
 
 		}
+		if (formMap.getField("address") != null){
+			setAddress(formMap.getField("address").getValue());
+
+		}
 		if (formMap.getField("employer") != null){
 			setEmployer(formMap.getField("employer").getValue());
 

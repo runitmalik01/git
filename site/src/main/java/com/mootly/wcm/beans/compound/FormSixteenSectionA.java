@@ -18,6 +18,7 @@ private final static Logger log = LoggerFactory.getLogger(FormSixteenSectionA.cl
     
     private String Employe_category;
 	private String employer;
+	private String address;
 	private String employee;
 	private String pan_deductor;
 	private String tan_deductor;
@@ -124,6 +125,10 @@ private final static Logger log = LoggerFactory.getLogger(FormSixteenSectionA.cl
 	public  String getEmployer() {
 		if (employer == null) employer = getProperty("mootlywcm:employer");
 		return employer;
+	}
+	public  String getAddress() {
+		if (address == null) address = getProperty("mootlywcm:address");
+		return address;
 	}
 	public  String getEmployee() {
 		if (employee == null) employee = getProperty("mootlywcm:employee");
@@ -513,6 +518,9 @@ private final static Logger log = LoggerFactory.getLogger(FormSixteenSectionA.cl
 	}
 	public final void  setEmployer(String employer) {
 		this.employer = employer;
+	}
+	public final void  setAddress(String address) {
+		this.address = address;
 	}
 	public final void setEmployee(String employee) {
 		this.employee = employee;
