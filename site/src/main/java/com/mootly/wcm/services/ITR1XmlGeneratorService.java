@@ -291,8 +291,14 @@ public class ITR1XmlGeneratorService {
 		//totalMapForJSDe.put("ageInYears",ageInYears);
 		totalMapForJSDe.put("isSeniorCitizen",financialYear.isSeniorCitizen(memberPersonalInformation.getDOB().getTime()));
 		totalMapForJSDe.put("salarypension",incomeDeductions.getIncomeFromSal());
-		totalMapForJSDe.put("othersources",incomeDeductions.getIncomeOthSrc());
-		totalMapForJSDe.put("houseproperty",incomeDeductions.getTotalIncomeOfHP());
+		if(incomeDeductions.getIncomeOthSrc().longValue()>0)
+			totalMapForJSDe.put("othersources",incomeDeductions.getIncomeOthSrc());
+		if(incomeDeductions.getIncomeOthSrc().longValue()<=0)
+			totalMapForJSDe.put("othersources",0);
+		if(incomeDeductions.getTotalIncomeOfHP()>0)
+			totalMapForJSDe.put("houseproperty",incomeDeductions.getTotalIncomeOfHP());
+		if(incomeDeductions.getTotalIncomeOfHP()<=0)
+			totalMapForJSDe.put("houseproperty",0);
 		Map<String,Object> resultMapDe = ScreenCalculatorService.getScreenCalculations("Chapter6Calc.js", request.getParameterMap(), totalMapForJSDe);
 		Double totaleligiblededuction=0D;
 		if(resultMapDe.containsKey("total_eligiblededuction")) {
@@ -333,7 +339,10 @@ public class ITR1XmlGeneratorService {
 		totalMapForJS.put("cbasstype", memberPersonalInformation.getFilingStatus());
 		//totalMapForJS.put("cbasstype", "I");
 		totalMapForJS.put("cbresistatus",memberPersonalInformation.getResidentCategory());
-		totalMapForJS.put("txtNetIncome",incomeDeductions.getTotalIncome());
+		if(incomeDeductions.getTotalIncome()>0)
+			totalMapForJS.put("txtNetIncome",incomeDeductions.getTotalIncome());
+		if(incomeDeductions.getTotalIncome()<=0)
+			totalMapForJS.put("txtNetIncome",0);
 		boolean isSeniorCitizen = financialYear.isSeniorCitizen(memberPersonalInformation.getDOB().getTime());
 		if(isSeniorCitizen){
 			boolean isSuperSeniorCitizen = financialYear.isSuperSeniorCitizen(memberPersonalInformation.getDOB().getTime());
