@@ -51,6 +51,7 @@ public final class ValueListServiceImpl implements ValueListService{
 	private ResourceBundle objValueListDtaaCountries = null;
 	private ResourceBundle objvalueListReturnFile=null;
 	private ResourceBundle objvalueListRelationship=null;
+	private ResourceBundle objvalueListNaureIncome=null; 
 
 	private static final ValueListServiceImpl objValueListServiceImpl = new ValueListServiceImpl();
 	private static final Logger log = LoggerFactory.getLogger(ValueListServiceImpl.class);
@@ -79,6 +80,7 @@ public final class ValueListServiceImpl implements ValueListService{
 		objValueListQuarterBundle    = ResourceBundle.getBundle("valueList_quarter");
 		objvalueListReturnFile = ResourceBundle.getBundle("valueList_returnFile");
 		objvalueListRelationship= ResourceBundle.getBundle("valueList_relationship");
+		objvalueListNaureIncome= ResourceBundle.getBundle("valueList_NatureIncome");
 
 		//initialization
 		initCountries();
@@ -725,6 +727,13 @@ public final class ValueListServiceImpl implements ValueListService{
 		TreeMap<String, String> TreeMapForiegnStates =new TreeMap<String, String>();
 		TreeMapForiegnStates.put("99", objValueListStatesBundle.getString("valueList.foreign"));
 		return TreeMapForiegnStates;
+	}
+	public TreeMap<String, String> getNatureIncome(){
+		TreeMap<String, String> treeMapNatureIncome= new TreeMap<String, String>();
+		treeMapNatureIncome.put("1", objvalueListNaureIncome.getString("valueList.hp"));
+		treeMapNatureIncome.put("2", objvalueListNaureIncome.getString("valueList.os"));
+		treeMapNatureIncome.put("3", objvalueListNaureIncome.getString("valueList.cg"));
+		return treeMapNatureIncome;
 	}
 
 	@Override
