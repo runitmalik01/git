@@ -96,7 +96,8 @@
 							value="" />
 					</div>
 				</div>
-					<div class="span4">
+				<div class="row-fluid show-grid">
+				<div class="span4">
 					<div class="rowlabel">
 						<label for="income_othersources"><small><fmt:message
 									key="foreign.income.othersources" /> </small> </label>
@@ -107,6 +108,7 @@
 							value="" />
 					</div>
 				</div>
+				
 					<div class="span4">
 					<div class="rowlabel">
 						<label for="income_total"><small><fmt:message
@@ -117,6 +119,7 @@
 							maxlength="14"  class="decimal"
 							value="" />
 					</div>
+				</div>
 				</div>
 			</div>
 				<div class="row-fluid show-grid">
@@ -168,14 +171,14 @@
 						</td>
 					
 					<td><a
-							href="${scriptName}/<c:out value="${foreignincomedetail.canonicalUUID}"/>/foreignincomeedit"><small>Edit</small> &nbsp;&nbsp;
-						</a>&nbsp;<a href="${scriptName}/<c:out value="${foreignincomedetail.canonicalUUID}"/>/foreignincomedelete" id="delete" onclick="return checkdelete()"><small>Delete</small> </a>
+							href="${scriptName}/<c:out value="${foreignIncome.canonicalUUID}"/>/foreignincomeedit"><small>Edit</small> &nbsp;&nbsp;
+						</a>&nbsp;<a href="${scriptName}/<c:out value="${foreignIncome.canonicalUUID}"/>/foreignincomedelete" id="delete" onclick="return checkdelete()"><small>Delete</small> </a>
 							</td>
 						</tr>
 					</tr>
 				</c:forEach>
 				<tr>
-					<td colspan="3"><fmt:message key="tds.amount.total" /></td>
+					<td colspan="7" align="center"><b>Total</b></td>
 					<td><w4india:inr value="${parentBean.total_Amount}" /></td>
 				</tr>
 			</c:if>
