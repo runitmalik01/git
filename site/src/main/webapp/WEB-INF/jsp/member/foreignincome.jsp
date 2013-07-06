@@ -35,7 +35,7 @@
 					<div class="rowlabel">
 						<input id="country_code" name="country_code" class="uprcase"
 							type="text" 
-							value="" />
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.country_Code}"/></c:if>" />
 					</div>
 				</div>
 				<div class="span4">
@@ -46,7 +46,7 @@
 					<div class="rowlabel">
 						<input id="taxpayer_ID" name="taxpayer_ID"
 							type="text" 
-							value="" />
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.taxpayer_ID}"/></c:if>" />
 					</div>
 				</div>
 				<div class="span4">
@@ -57,7 +57,7 @@
 					<div class="rowlabel">
 						<input id="income_salary" name="income_salary"
 							type="text" maxlength="14" 
-							value="" />
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.income_Salary}"/></c:if>" />
 					</div>
 				</div>
 			</div>
@@ -71,7 +71,7 @@
 						<input id="income_house" name="income_house"
 							type="text" maxlength="14"
 							 class="decimal"
-							value=" " />
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.income_House}"/></c:if>" />
 					</div>
 				</div>
 				<div class="span4">
@@ -82,7 +82,7 @@
 					<div class="rowlabel">
 						<input id="income_business" name="income_business" type="text"
 							maxlength="14"  class="decimal"
-							value="" />
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.income_Business}"/></c:if>" />
 					</div>
 				</div>
 				<div class="span4">
@@ -93,7 +93,7 @@
 					<div class="rowlabel">
 						<input id="income_capitalgain" name="income_capitalgain" type="text"
 							maxlength="14"  class="decimal"
-							value="" />
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.income_Capitalgain}"/></c:if>" />
 					</div>
 				</div>
 				<div class="row-fluid show-grid">
@@ -105,7 +105,7 @@
 					<div class="rowlabel">
 						<input id="income_othersources" name="income_othersources" type="text"
 							maxlength="14"  class="decimal"
-							value="" />
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.income_Othersources}"/></c:if>" />
 					</div>
 				</div>
 				
@@ -117,7 +117,7 @@
 					<div class="rowlabel">
 						<input id="income_total" name="income_total" type="text"
 							maxlength="14"  class="decimal"
-							value="" />
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.income_Total}"/></c:if>" />
 					</div>
 				</div>
 				</div>
