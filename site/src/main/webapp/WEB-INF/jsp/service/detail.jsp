@@ -5,6 +5,9 @@
 <hippo-gogreen:title title="${document.name}"/>
 <hst:link var="services" siteMapItemRefId="myservices"></hst:link>
 <hst:link var="home" siteMapItemRefId="home"></hst:link>
+<div class="row-fluid show-grid">
+	<div class="span9">
+	   <div class="rowlabel">
 <ul class="breadcrumb">
   <li><a href="${home}"><i class="icon-home"></i>Home</a> <span class="divider">/</span></li>
   <li><a href="${services}">Services</a> <span class="divider">/</span></li>
@@ -29,14 +32,29 @@
             <div>
             <c:forEach items="${document.costModel}" var="costmodel">
                      <div class="alert alert-info"><c:out value="${costmodel.costDetail }"/>|<w4india:inr value="${costmodel.cost}"></w4india:inr>|
-                     <a href="#myModal" id="<c:out value="${costmodel.offeringMode}"/>" class="btn btn-primary" data-toggle="modal"><i class="icon-briefcase icon-white"></i>&nbsp;<c:out value="${costmodel.offeringMode}"/></a></div>
+                       <div class="btn-group">
+                          <a class="btn dropdown-toggle btn-primary" data-toggle="dropdown" href="#"><i class="icon-briefcase icon-white"></i>&nbsp;<c:out value="${costmodel.offeringMode}"/>
+                             <span class="caret"></span>
+                          </a>
+                         <ul class="dropdown-menu">
+                           <li><a href="#myModal" id="<c:out value="${costmodel.offeringMode}"/>" data-toggle="modal">Apply</a></li>
+                         </ul>
+                       </div>
+                    </div>
             </c:forEach>
             </div>
         </div>
     </div>
 </div>
-
-    <hst:include ref="servicerequest-itr"/>
+        </div>
+   </div>
+   	<div class="span3">
+	   <div class="rowlabel">
+		   <hst:include ref="servicerequest-itr"/>
+		</div>
+	</div>
+</div>
+    
 
 <hst:element var="uiCustom" name="script">
 	<hst:attribute name="type">text/javascript</hst:attribute>
