@@ -104,7 +104,7 @@
 								<span class="caret"></span>
 							</button>
 							<ul class="dropdown-menu">
-								<li><a href="houseincome.html">
+								<li><a href="singlehouseincome.html">
 								<fmt:message key="income.house.itr1" /></a>
 								</li>
 							</ul>
