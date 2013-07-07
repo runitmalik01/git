@@ -44,7 +44,7 @@ public class SiteMenu extends BaseComponent {
         
         String siteMenuName = GoGreenUtil.getSiteMenuName(this, request);
         HstSiteMenu menu = request.getRequestContext().getHstSiteMenus().getSiteMenu(siteMenuName);
-        menu = new WrappedSiteMenu(menu, request.isUserInRole("reseller"));
+        menu = new WrappedSiteMenu(menu, request.isUserInRole("reseller"), isLoggedIn(request));
         request.setAttribute("menu", menu);
 
         HippoBean bean = getContentBean(request);
@@ -68,10 +68,12 @@ public class SiteMenu extends BaseComponent {
 
         private final HstSiteMenu siteMenu;
         private final boolean isReseller;
+        private final boolean isLoggedIn;
         
-        private WrappedSiteMenu(HstSiteMenu siteMenu, boolean isReseller) {
+        private WrappedSiteMenu(HstSiteMenu siteMenu, boolean isReseller,boolean isLoggedIn) {
             this.siteMenu = siteMenu;
             this.isReseller = isReseller;
+            this.isLoggedIn = isLoggedIn;
         }
         
         @Override
@@ -92,15 +94,16 @@ public class SiteMenu extends BaseComponent {
         @Override
         public List<HstSiteMenuItem> getSiteMenuItems() {
             List<HstSiteMenuItem> items = siteMenu.getSiteMenuItems();
-            if (!isReseller) {
+            if (isLoggedIn) {
                 Iterator<HstSiteMenuItem> iter = items.iterator();
                 while (iter.hasNext()) {
                     HstSiteMenuItem item = iter.next();
-                    if (item.getParameter("reselleronly") != null) {
+                    if (item.getParameter("isAnonymousOnly") != null) {
                         iter.remove();
                     }
                 }
             }
+            
             return items;
         }
 

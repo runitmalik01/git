@@ -65,7 +65,8 @@ public class ITReturnHomePage extends ITReturnComponent {
 							MemberPersonalInformation memberPersonalInformation = aItReturnType.getBean("memberpersonalinformation");
 							if (memberPersonalInformation != null) {
 								itReturnHomePageView.setLastOrOrgName(memberPersonalInformation.getLastName());
-							}
+								itReturnHomePageView.setITRForm(memberPersonalInformation.getSelectedITRForm());
+							}							
 						}
 					}
 					listOfITReturnHomePageView.add(itReturnHomePageView);

@@ -59,6 +59,7 @@ if (!noMenu) {
 		//every menu must have a property which starts with the formname and .enabled = true
 		//e.g. ITR1.enabled = true if not we won't display it and then we must have to find out if DIY or Assisted
 		itrForm = memberPersonalInformation.getSelectedITRForm();
+		request.setAttribute("itrForm",itrForm);
 		propertyToCheck = itrForm + ".enabled";
 	}
 }
@@ -233,7 +234,7 @@ for (HstSiteMenuItem siteMenuItem : itrSiteMenu.getSiteMenuItems() ){
 	               <!-- <li><a href="#">Link</a></li> -->
 	               <li class="divider-vertical"></li>
 	               <li class="dropdown">
-	                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%=(itrForm != null?itrForm.getDisplayName():"My Return")%><b class="caret"></b></a>
+	                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><fmt:message key="${itrForm}.packageName"/><b class="caret"></b></a>
 	                  <ul class="dropdown-menu">
 	                  	 <c:if test="${hasDIY =='true'}">
 		                  	 <li><a href="xmlgenerator.html?show=summary">View Summary</a></li>

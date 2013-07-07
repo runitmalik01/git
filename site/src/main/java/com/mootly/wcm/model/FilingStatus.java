@@ -58,7 +58,7 @@ public enum FilingStatus {
 	
 	public ITRForm[] getPossibleITRForms() {
 		if (this == FilingStatus.PERSON) {
-			ITRForm[] arr = new ITRForm[] {ITRForm.ITR1,ITRForm.ITR2,ITRForm.ITR3,ITRForm.ITR4,ITRForm.ITR4S,ITRForm.ITR7};
+			ITRForm[] arr = new ITRForm[] {ITRForm.ITR1,ITRForm.ITR2,ITRForm.ITR3,ITRForm.ITR4,ITRForm.ITR4S}; //,ITRForm.ITR7};
 			return arr;
 		}
 		else if (this == FilingStatus.HUF) {

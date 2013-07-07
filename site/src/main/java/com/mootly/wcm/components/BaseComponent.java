@@ -90,6 +90,10 @@ public class BaseComponent extends BaseHstComponent {
     	}
     }
     
+    public boolean isLoggedIn(HstRequest request) {
+    	 return ( request.getUserPrincipal() != null ? true : false);
+    }
+    
     /**
      * 
      * @param request

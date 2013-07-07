@@ -20,7 +20,7 @@ TreeMap objTreeMapSection = (TreeMap) objValueListService.getReturnFile();
 	pageContext.setAttribute("filingSectionValues", FilingSection.values());
 	 %>
 <div class="page">
-	<h4>Prepare Income Tax Return</h4>
+	<h4>Prepare Income Tax Return for Individuals and/or HUF</h4>
 	<hst:actionURL var="actionURL"/>
 	<form id="frmdata" method="post" action="${actionURL}">
      <div id="error" class="alert alert-error" style="display:none;">PAN's fifth alphabet should be first alphabet of Last Name</div>
@@ -56,7 +56,9 @@ TreeMap objTreeMapSection = (TreeMap) objValueListService.getReturnFile();
 		          </div>
 		          <div class="span2">
 		          	<div class="rowlabel"><label for="fy"><small>Financial Year</small></label></div>
-		          	<div class="rowlabel"><select id="fy" name="fy" style="text-transform: uppercase;"><option value="2012-2013">2012-2013(Current)</option><option value="2011-2012">2011-2012</option><option value="2011-2012">2010-2011</option></select></div>
+		          	<div class="rowlabel"><select id="fy" name="fy" style="text-transform: uppercase;"><option value="2012-2013">2012-2013(Current)</option>
+		          		<%--<option value="2011-2012">2011-2012</option><option value="2011-2012">2010-2011</option> --%>
+		          	</select></div>
 		          </div>
 		     </div>
 		     <div align="center" ><a id="myModalHref" class="btn orange">Click Here!! </a></div>
@@ -114,6 +116,7 @@ TreeMap objTreeMapSection = (TreeMap) objValueListService.getReturnFile();
 				<th>FY</th>
 				<th>Filing As</th>
 				<th>Return Type</th>
+				<th>Package</th>
 				<th>Actions</th>
 			</tr>
 			<c:forEach items="${listOfITReturnHomePageView}" var="anEntry">
@@ -127,6 +130,7 @@ TreeMap objTreeMapSection = (TreeMap) objValueListService.getReturnFile();
 					<td class="filingStatus decimal"><span><c:out value="${anEntry.financialYear}"/></span></td>
 					<td class="filingStatus decimal"><c:out value="${anEntry.filingStatus}"/></td>
 					<td class="filingStatus"  style="text-transform:capitalize;"><c:out value="${anEntry.itReturnType}"/></td>
+					<td><c:out value="${anEntry.selectedITRForm}"/></td>
 					<td>
 						<hst:link var="viewLink" path="/member/itreturn/${anEntry.financialYear.displayName}/${anEntry.itReturnType.displayName}/${anEntry.pan}/xmlgenerator.html"/>
 						<span style=""><a href="${viewLink}">Continue Filing</a></span>

@@ -59,6 +59,8 @@
 	  <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
 	</div>
 </div>
+<%-- comment out for now will work on it again --%>
+<%--
 <div class="row-fluid show-grid">	        
 	<div class="span12" style="border-bottom:1px solid green;border-top:1px solid green">
 		<div class="row-fluid show-grid">
@@ -68,6 +70,8 @@
 		</div>		
 	</div>
 </div>
+ --%>
+<%-- /end  --%>
 <div class="row-fluid show-grid">	        
 	<div class="span6" style="border-bottom:1px solid green;border-top:1px solid green">
 		<h2 style="display:inline">eFile</h2>&nbsp;&nbsp;<a href="">Learn More..</a>

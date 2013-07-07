@@ -546,23 +546,23 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 			</c:choose>
 		</fieldset>
 		<fieldset>
-			<legend>ITR Form selection</legend>
+			<legend>ITR Package selection</legend>
 			<div class="row-fluid show-grid">
 			    <div class="span2">
-			    	<div class="rowlabel"><label for="flex_string_ITRForm"><small>Select the ITR Form</small></label></div>
+			    	<div class="rowlabel"><label for="flex_string_ITRForm"><small>Select the ITR Package</small></label></div>
 			    </div>
 				<div class="span5">
-					<div class="rowlabel"><label for="whoCan"><small>Who can file this form</small></label></div>
+					<div class="rowlabel"><label for="whoCan"><small>Who can select this package</small></label></div>
 				</div>
 				<div class="span5">
-					<div class="rowlabel"><label for="whoCannot"><small>Who cannot file this form</small></label></div>
+					<div class="rowlabel"><label for="whoCannot"><small>Who should not select this package</small></label></div>
 				</div>
 			</div>			
 			<div class="row-fluid show-grid">
 				<div class="span2">
 					<select id="flex_string_ITRForm" name="flex_string_ITRForm">
 						<c:forEach items="${filingStatus.possibleITRForms}" var="itrForm">
-							<option <c:if test="${parentBean.selectedITRForm == itrForm}">selected</c:if> value="${itrForm}">${itrForm.displayName}</option>
+							<option <c:if test="${parentBean.selectedITRForm == itrForm}">selected</c:if> value="${itrForm}"><fmt:message key="${itrForm}.packageName"></fmt:message></option>
 						</c:forEach>
 					</select>
 				</div>
@@ -738,6 +738,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 				type="hidden" />
 		</div>
 		<!--  Service Selection -->
+		<%--
 		<fieldset>
 			<legend>Choose the service you want</legend>
 			<div class="row-fluid show-grid">
@@ -773,6 +774,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 				</div>
 			</div>
 		</fieldset>
+		  --%>
 		<div class="row-fluid show-grid">
 			<div class="span4 offset8 decimal">
 				<a id="hrefLogin" role="button" class="btn orange">Save</a>

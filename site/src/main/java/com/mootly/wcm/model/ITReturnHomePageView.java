@@ -5,6 +5,14 @@ public class ITReturnHomePageView {
 	public FinancialYear getFinancialYear() {
 		return financialYear;
 	}
+	
+	public ITRForm getITRForm() {
+		return itrForm;
+	}
+	
+	public void setITRForm(ITRForm itrForm) {
+		this.itrForm = itrForm;		
+	}
 
 	public void setFinancialYear(FinancialYear financialYear) {
 		this.financialYear = financialYear;
@@ -47,6 +55,7 @@ public class ITReturnHomePageView {
 	FinancialYear financialYear;
 	FilingStatus filingStatus;
 	ITReturnType itReturnType;
+	ITRForm itrForm;
 	
 	String lastOrOrgName;
 	
