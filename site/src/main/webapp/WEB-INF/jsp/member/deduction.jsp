@@ -234,6 +234,21 @@
 			$('#deductionSave').click(function() {
  				 $('#frmDeduction').submit();
 			});
+			
+			$("#deductionhead").change( function(o) {
+					changeD(this);
+				}
+			);			
+			changeD($("#deductionhead"));			
 		});
+		
+		function changeD(o) {
+			if ($(o).val() == 'others') {
+				$("#80cadditional").show();
+			}
+			else {					
+				$("#80cadditional").hide();
+			}
+		}
 </hst:element>
 <hst:headContribution element="${uiCustom}" category="jsInternal"/>

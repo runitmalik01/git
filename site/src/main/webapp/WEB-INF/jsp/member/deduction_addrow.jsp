@@ -13,7 +13,7 @@
 	        	<div class="rowlabel">
 	        		<c:choose>
 						<c:when test="${not empty deductionSection.listOfDeductionHead}">
-							<select name="head" width="100%">
+							<select id="deductionhead" name="head" width="100%">
 								<c:forEach items="${deductionSection.listOfDeductionHead}" var="deductionHead">	
 									<option <c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD') && not empty editingSection && editingSection.head == deductionHead.name}">selected="selected"</c:if> value="<c:out value="${deductionHead.name}"/>"><c:out value="${deductionHead.label}"/></option>
 								</c:forEach>
