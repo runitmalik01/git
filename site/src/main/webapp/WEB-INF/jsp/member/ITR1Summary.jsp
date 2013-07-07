@@ -31,8 +31,14 @@
 							</button>
 							<ul class="dropdown-menu">
 								<li>
-								<a href="formsixteen.html">
-								<fmt:message key="income.form.sixteen" /></a>
+								<c:choose>
+									<c:when test="${salaryincome eq'0'}">								
+										<a href="formsixteen.html/formsixteennew"><fmt:message key="income.form.sixteen" /></a>
+									</c:when>
+									<c:otherwise>
+										<a href="formsixteen.html"><fmt:message key="income.form.sixteen" /></a>
+									</c:otherwise>
+								</c:choose>
 								</li>
 							</ul>
 						</div>
@@ -60,8 +66,15 @@
 								<span class="caret"></span>
 							</button>
 							<ul class="dropdown-menu">
-								<li><a href="salaryincome.html">
-								<fmt:message key="income.salary.penson" /></a>
+								<li>
+								<c:choose>
+									<c:when test="${Penson eq'0'}">
+										<a href="salaryincome.html/salaryincomenew"><fmt:message key="income.salary.penson" /></a>
+									</c:when>
+									<c:otherwise>
+										<a href="salaryincome.html"><fmt:message key="income.salary.penson" /></a>
+									</c:otherwise>
+								</c:choose>
 								</li>
 							</ul>
 						</div>
