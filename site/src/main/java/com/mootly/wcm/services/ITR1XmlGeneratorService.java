@@ -9,6 +9,7 @@ import in.gov.incometaxindiaefiling.y2012_2013.DoneeWithPan;
 import in.gov.incometaxindiaefiling.y2012_2013.EmployerOrDeductorOrCollectDetl;
 import in.gov.incometaxindiaefiling.y2012_2013.FilingStatus;
 import in.gov.incometaxindiaefiling.y2012_2013.FormITR1;
+import in.gov.incometaxindiaefiling.y2012_2013.ITR;
 import in.gov.incometaxindiaefiling.y2012_2013.ITR1;
 import in.gov.incometaxindiaefiling.y2012_2013.ITR1IncomeDeductions;
 import in.gov.incometaxindiaefiling.y2012_2013.ITR1TaxComputation;
@@ -110,7 +111,8 @@ public class ITR1XmlGeneratorService {
 		InterestDoc interestDoc = (InterestDoc) request.getAttribute(InterestDoc.class.getSimpleName().toLowerCase());
 		FormSixteenDocument formSixteenDocument = (FormSixteenDocument) request.getAttribute(FormSixteenDocument.class.getSimpleName().toLowerCase());
 		RebateSec90Document rebateSec90Document = (RebateSec90Document) request.getAttribute(RebateSec90Document.class.getSimpleName().toLowerCase());
-
+		
+		
 		ITR1 itr1 = new ObjectFactory().createITR1();
 		CreationInfo creationInfo = new CreationInfo();
 		creationInfo.setSWVersionNo("1.0");
@@ -834,11 +836,15 @@ public class ITR1XmlGeneratorService {
 		/* This is where we generate XML */
 		StringWriter sw = new StringWriter();
 		try {
-			JAXBContext jaxbContext = JAXBContext.newInstance(ITR1.class);
+			JAXBContext jaxbContext = JAXBContext.newInstance(ITR.class);
 			Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
 			// output pretty printed
-			jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-			jaxbMarshaller.marshal(itr1, sw);
+			jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT,true);
+			jaxbMarshaller.setProperty(Marshaller.JAXB_ENCODING,"UTF-8");
+			jaxbMarshaller.setProperty(Marshaller.JAXB_SCHEMA_LOCATION, "http://incometaxindiaefiling.gov.in/main ITRMain13.xsd");
+			ITR itReturn = new ITR();
+			itReturn.getITR1().add(itr1);
+			jaxbMarshaller.marshal(itReturn, sw);
 			request.setAttribute("xml",sw.toString());
 		} catch (JAXBException e) {
 			// TODO Auto-generated catch block

@@ -11,6 +11,7 @@ import in.gov.incometaxindiaefiling.y2012_2013.EmployerOrDeductorOrCollectDetl;
 import in.gov.incometaxindiaefiling.y2012_2013.FilingStatus;
 import in.gov.incometaxindiaefiling.y2012_2013.FormITR1;
 import in.gov.incometaxindiaefiling.y2012_2013.FormITR2;
+import in.gov.incometaxindiaefiling.y2012_2013.ITR;
 import in.gov.incometaxindiaefiling.y2012_2013.ITR1;
 import in.gov.incometaxindiaefiling.y2012_2013.ITR1IncomeDeductions;
 import in.gov.incometaxindiaefiling.y2012_2013.ITR1TaxComputation;
@@ -1003,11 +1004,16 @@ public class ITR2XmlGeneratorService  {
 		/* This is where we generate XML */
 		StringWriter sw = new StringWriter();
 		try {
-			JAXBContext jaxbContext = JAXBContext.newInstance(ITR2.class);
+			
+			JAXBContext jaxbContext = JAXBContext.newInstance(ITR.class);
 			Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
 			// output pretty printed
-			jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-			jaxbMarshaller.marshal(itr2, sw);
+			jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT,true);
+			jaxbMarshaller.setProperty(Marshaller.JAXB_ENCODING,"UTF-8");
+			jaxbMarshaller.setProperty(Marshaller.JAXB_SCHEMA_LOCATION, "http://incometaxindiaefiling.gov.in/main ITRMain13.xsd");
+			ITR itReturn = new ITR();
+			itReturn.getITR2().add(itr2);
+			jaxbMarshaller.marshal(itReturn, sw);
 			request.setAttribute("xml",sw.toString());
 		} catch (JAXBException e) {
 			// TODO Auto-generated catch block

@@ -116,7 +116,7 @@ TreeMap objTreeMapSection = (TreeMap) objValueListService.getReturnFile();
 				<th>FY</th>
 				<th>Filing As</th>
 				<th>Return Type</th>
-				<th>Package</th>
+				<%--<th>Package</th> --%>
 				<th>Actions</th>
 			</tr>
 			<c:forEach items="${listOfITReturnHomePageView}" var="anEntry">
@@ -130,7 +130,7 @@ TreeMap objTreeMapSection = (TreeMap) objValueListService.getReturnFile();
 					<td class="filingStatus decimal"><span><c:out value="${anEntry.financialYear}"/></span></td>
 					<td class="filingStatus decimal"><c:out value="${anEntry.filingStatus}"/></td>
 					<td class="filingStatus"  style="text-transform:capitalize;"><c:out value="${anEntry.itReturnType}"/></td>
-					<td><c:out value="${anEntry.selectedITRForm}"/></td>
+					<%-- <td><c:out value="${anEntry.selectedITRForm}"/></td> --%>
 					<td>
 						<hst:link var="viewLink" path="/member/itreturn/${anEntry.financialYear.displayName}/${anEntry.itReturnType.displayName}/${anEntry.pan}/xmlgenerator.html"/>
 						<span style=""><a href="${viewLink}">Continue Filing</a></span>
