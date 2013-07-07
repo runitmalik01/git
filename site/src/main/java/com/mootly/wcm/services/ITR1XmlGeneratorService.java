@@ -90,6 +90,7 @@ import com.mootly.wcm.services.ScreenCalculatorService;
 import com.mootly.wcm.services.XmlGeneratorService;
 import com.mootly.wcm.services.y2012_2013.ITRXmlGeneratorService;
 import com.mootly.wcm.utils.XmlCalculation;
+import com.sun.xml.bind.marshaller.NamespacePrefixMapper;
 
 public class ITR1XmlGeneratorService {
 	private static Logger log = LoggerFactory.getLogger(ITRXmlGeneratorService.class);
@@ -839,6 +840,8 @@ public class ITR1XmlGeneratorService {
 			JAXBContext jaxbContext = JAXBContext.newInstance(ITR.class);
 			Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
 			// output pretty printed
+			NamespacePrefixMapper prefixMapper = new MyPrefixMapperImpl();
+			jaxbMarshaller.setProperty("com.sun.xml.bind.namespacePrefixMapper", prefixMapper);
 			jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT,true);
 			jaxbMarshaller.setProperty(Marshaller.JAXB_ENCODING,"UTF-8");
 			jaxbMarshaller.setProperty(Marshaller.JAXB_SCHEMA_LOCATION, "http://incometaxindiaefiling.gov.in/main ITRMain13.xsd");
@@ -852,6 +855,37 @@ public class ITR1XmlGeneratorService {
 		}
 
 	}
+}
 
+class MyPrefixMapperImpl extends com.sun.xml.bind.marshaller.NamespacePrefixMapper {
 
+	@Override
+	public String getPreferredPrefix(String namespaceUri,         
+		     String suggestion,         
+		     boolean requirePrefix) {
+		// TODO Auto-generated method stub
+		if (namespaceUri.equals("http://incometaxindiaefiling.gov.in/ITR1")) {
+			return "ITR1FORM";
+		}
+		else if (namespaceUri.equals("http://incometaxindiaefiling.gov.in/ITR2")) {
+			return "ITR2FORM";
+		}
+		else if (namespaceUri.equals("http://incometaxindiaefiling.gov.in/ITR3")) {
+			return "ITR3FORM";
+		}
+		else if (namespaceUri.equals("http://incometaxindiaefiling.gov.in/ITR4")) {
+			return "ITR4FORM";
+		}
+		else if (namespaceUri.equals("http://incometaxindiaefiling.gov.in/main")) {
+			return "ITRETURN";
+		}
+		else if (namespaceUri.equals("http://incometaxindiaefiling.gov.in/master")) {
+			return "ITRForm";
+		}
+		else if (namespaceUri.equals("") || !requirePrefix) {
+			return "ITRForm";
+		}
+		return null;
+	}
+	
 }
