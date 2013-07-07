@@ -14,7 +14,7 @@
 						<a href="${link}"><c:out value="${serviceitem.name}" /></a>
 					</div>
 					<div class="well text-center">
-						<c:out value="${serviceitem.serviceDescription}" />
+						<c:out value="${serviceitem.serviceDescription}"/><a href="${link}">Learn More..</a>
 					</div>
 				</c:if>
 			</c:forEach>
