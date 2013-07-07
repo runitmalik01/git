@@ -1,12 +1,13 @@
 <%@include file="../../includes/tags.jspf"%>
 <hst:actionURL var="actionUrl"></hst:actionURL>
   <form class="form" name="serviceRequest" action="${actionUrl}" method="post" id="serviceRequest">
-<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<%-- <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
     <h3 id="myModalLabel">Service Request</h3>
-  </div>
-  <div class="modal-body">
+  </div>--%>
+  <h3>Service Request</h3>
+  		<h5><small>Fill this service request form.Soon we will get back to you.</small></h5>
 <c:choose>
 	<c:when test="${success eq 'eventsuccess'}">
 		<fmt:message key="easyforms.formtemplate.thankyou.event" />
@@ -36,15 +37,11 @@
 					</c:when>
 					<%-- simple types layout--%>
 					<c:when test="${field.textField or field.password or field.textArea or field.dropdown or field.radioBox or field.checkBox}">
-					<div class="rowlabel">
-						<div class="span4">
 							<label><small><c:out value="${field.label}" /></small><span class="ef-req"><c:out value="${field.requiredMarker}" />
 							</span>
 							</label> 
-							<div class="span4">${field.html}</div> <span class="ef-hint"><c:out value="${field.hint}" />
+							${field.html} <span class="ef-hint"><c:out value="${field.hint}" />
 							</span>
-						</div>
-				    </div>
 					</c:when>
 					<c:when test="${field.radioGroup}">
 						<div class="ef-field clearfix">
@@ -116,12 +113,15 @@
 			</c:forEach>
 	</c:otherwise>
 </c:choose>
-  </div>
-  <div class="modal-footer">
+<br/><br/>
+<div class="rowlabel" align="center">
+<a href="#" id="apply" class="btn btn-primary">Apply</a>
+</div>
+ <%-- <div class="modal-footer">
     <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
     <button id="apply" class="btn btn-primary">Apply</button>
   </div>
-</div>
+</div>--%>
 </form>
 <hst:element var="uiCustom" name="script">
 	<hst:attribute name="type">text/javascript</hst:attribute>
