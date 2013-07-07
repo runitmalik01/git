@@ -76,8 +76,8 @@ public class ServiceRequest extends EasyFormComponent {
 			serviceDoc.setMiddleName(formMap.getField("flex_field_string_1").getValue());
 			serviceDoc.setLastName(formMap.getField("flex_field_string_2").getValue());
 			serviceDoc.setAddress(formMap.getField("flex_field_string_3").getValue());
-			serviceDoc.setEmail(formMap.getField("flex_field_string_4").getValue());
-			serviceDoc.setMobile(formMap.getField("flex_field_string_5").getValue());
+			serviceDoc.setMobile(formMap.getField("flex_field_string_4").getValue());
+			serviceDoc.setEmail(formMap.getField("flex_field_string_5").getValue());
 			ServiceRequestDocument  resServicedocument=createServiceRequestDocument(request, serviceDoc);
 			if(resServicedocument!=null){
 				response.setRenderParameter("Success", "Success");
@@ -93,6 +93,7 @@ public class ServiceRequest extends EasyFormComponent {
 	 * 
 	 * */
 	public boolean validate(FormMap formMap){
+		
 		return true;
 	}
 	public ServiceRequestDocument createServiceRequestDocument(HstRequest request,ServiceRequestDocument serviceDoc){
@@ -124,24 +125,14 @@ public class ServiceRequest extends EasyFormComponent {
 				contextMap.put("serviceDoc", publishedSignUpDocument);				
 				String pathToNewNode = wpm.createAndReturn(serviceRequsetpath +"emails", EmailMessage.NAMESPACE, "service_request", true);
 				EmailMessage emailMessage = (EmailMessage) wpm.getObject(pathToNewNode);
-				emailMessage.setTo(new String[]{"info@wealth4india.com"});
-				emailMessage.setTemplateKey("serviceRequest");
 				// here we are creating template for email.			
 				EmailTemplate emailTemplate = (EmailTemplate) wpm.getObject(ContentStructure.getEmailTemplatesPath(request) + "/service_request");
-				if (emailTemplate != null) {
-					log.error("Email template HTML BODY" + emailTemplate.getHtmlBody());
-					String htmlBody = VelocityUtils.parseVelocity(emailTemplate.getHtmlBody(), contextMap);
-					String plainBody = VelocityUtils.parseVelocity(emailTemplate.getPlainBody(), contextMap);
-					String subject = VelocityUtils.parseVelocity(emailTemplate.getSubject(), contextMap);
-					emailMessage.setSubject(subject);
-					emailMessage.setHtmlBody(htmlBody);
-					emailMessage.setPlainBody(plainBody);
-				}
-				else {
-					emailMessage.setSubject("This is TEST, Welcome to MOOTLY");
-					emailMessage.setHtmlBody("<B>COOL</B>");
-				}
-				wpm.update(emailMessage);
+				wpm.update(createEmailService(request, emailMessage, emailTemplate, contextMap, "info@wealth4india.com"));
+				String pathToNewNodeAck = wpm.createAndReturn(serviceRequsetpath +"emails", EmailMessage.NAMESPACE, "service_request_ack", true);
+				EmailMessage emailMessageAck = (EmailMessage) wpm.getObject(pathToNewNodeAck);
+				// here we are creating template for email.	
+				EmailTemplate emailTemplateAck = (EmailTemplate) wpm.getObject(ContentStructure.getEmailTemplatesPath(request) + "/service_request_ack");
+				wpm.update(createEmailService(request, emailMessageAck, emailTemplateAck, contextMap, publishedSignUpDocument.getEmail()));
 			}
 			return serviceRequestDocument;
 		} catch (RepositoryException e) {
@@ -152,6 +143,38 @@ public class ServiceRequest extends EasyFormComponent {
 			// TODO Auto-generated catch block
 			log.error("Error while getting the Object from Repository",e);
 			return null;
+		}
+	}
+	/**
+	 * This method is used to create the Email Message Document.
+	 * 
+	 * @param request HstRequest
+	 * @param emailTemplate this Object of EmailTemplate 
+	 * @param emailMessage this Object of EmailMessage Document
+	 * @param contextMap this is a Map<String,Object>
+	 * @param To this is String type
+	 * 
+	 * @return EmailMessage  
+	 * 
+	 * */
+	public EmailMessage createEmailService(HstRequest request,EmailMessage emailMessage,EmailTemplate emailTemplate,Map<String,Object> contextMap,String To){
+		emailMessage.setTo(new String[]{To});		
+		// here we are creating template for email.			
+		if (emailTemplate != null) {
+			log.error("Email template HTML BODY" + emailTemplate.getHtmlBody());
+			String htmlBody = VelocityUtils.parseVelocity(emailTemplate.getHtmlBody(), contextMap);
+			String plainBody = VelocityUtils.parseVelocity(emailTemplate.getPlainBody(), contextMap);
+			String subject = VelocityUtils.parseVelocity(emailTemplate.getSubject(), contextMap);
+			emailMessage.setTemplateKey(emailTemplate.getTemplateKey());
+			emailMessage.setSubject(subject);
+			emailMessage.setHtmlBody(htmlBody);
+			emailMessage.setPlainBody(plainBody);
+			return emailMessage;
+		}
+		else {
+			emailMessage.setSubject("This is TEST, Welcome to MOOTLY");
+			emailMessage.setHtmlBody("<B>COOL</B>");
+			return emailMessage;
 		}
 	}
 	/**

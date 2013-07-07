@@ -40,7 +40,7 @@ import com.mootly.wcm.utils.PageableCollection;
 
 public class Services extends BaseComponent {
 	private static final Logger log = LoggerFactory.getLogger(Services.class);
-	private static final int DEFAULT_PAGE_SIZE = 5;
+	private static final int DEFAULT_PAGE_SIZE = 3;
 	private static final String PARAM_CURRENT_PAGE = "pageNumber";
 	private static final int DEFAULT_CURRENT_PAGE = 1;
 
