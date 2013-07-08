@@ -14,7 +14,7 @@
 	</c:choose>
 </c:if>
 <c:choose>
-	<c:when test="${not empty hasDIY && hasDIY == 'true'}">
+	<c:when test="${not empty isDIY && isDIY == 'true'}">
 		<label class="radio inline"> <input type="radio"
 			name="optionsRadios" id="showSummary" value="summary"
 			<c:if test="${empty show || show == 'summary'}">checked</c:if>>

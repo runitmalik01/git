@@ -1,3 +1,5 @@
+<%@tag import="net.sf.ehcache.store.MemoryStoreEvictionPolicy.MemoryStoreEvictionPolicyEnum"%>
+<%@tag import="com.mootly.wcm.model.ITRServiceDelivery"%>
 <%@tag import="org.hippoecm.hst.util.HstResponseUtils"%>
 <%@tag import="org.hippoecm.hst.core.component.HstResponse"%>
 <%@tag import="org.hippoecm.hst.configuration.site.HstSite"%>
@@ -53,21 +55,31 @@ if ( resolvedMapItem.getHstComponentConfiguration().getId().equals("hst:pages/me
 }
 String propertyToCheck = null;
 ITRForm itrForm = null;
+ITRServiceDelivery itrServiceDelivery = null;
 if (!noMenu) {
 	if (memberPersonalInformation == null) memberPersonalInformation = (MemberPersonalInformation) request.getAttribute(MemberPersonalInformation.class.getSimpleName().toLowerCase());
 	if (memberPersonalInformation != null) {
 		//every menu must have a property which starts with the formname and .enabled = true
 		//e.g. ITR1.enabled = true if not we won't display it and then we must have to find out if DIY or Assisted
 		itrForm = memberPersonalInformation.getSelectedITRForm();
+		itrServiceDelivery = memberPersonalInformation.getSelectedServiceDeliveryOption();
 		request.setAttribute("itrForm",itrForm);
 		propertyToCheck = itrForm + ".enabled";
 	}
 }
 boolean hasDIY = false;
+boolean isDIY = false;
 if (itrForm != null) {
 	hasDIY = itrForm.getHasDIY();
 }	
+if (itrServiceDelivery != null && itrServiceDelivery == ITRServiceDelivery.DIY) {
+	isDIY = true;
+}
+else {
+	isDIY = false;
+}
 request.setAttribute("hasDIY", hasDIY);
+request.setAttribute("isDIY", isDIY);
 if (itrForm != null) {
 	request.setAttribute("hasDIY",String.valueOf(itrForm.getHasDIY()));
 }
