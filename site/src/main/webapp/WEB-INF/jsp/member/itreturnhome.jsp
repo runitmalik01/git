@@ -24,12 +24,13 @@ TreeMap objTreeMapSection = (TreeMap) objValueListService.getReturnFile();
 	<hst:actionURL var="actionURL"/>
 	<form id="frmdata" method="post" action="${actionURL}">
      <div id="error" class="alert alert-error" style="display:none;">PAN's fifth alphabet should be first alphabet of Last Name</div>
+     <div id="strictmsg" class="alert hide">Please enter PAN number for Individual or HUF</div>
 		<fieldset>
 			<legend><fmt:message key="member.homepage.fillform"/> </legend>
 			<div class="row-fluid show-grid">
 		          <div class="span2">
 		          	<div class="rowlabel"><label for="pan"><small>PAN</small></label></div>
-		          	<div class="rowlabel"><input id="pan" name="pan" placeholder="PAN" type="text" maxlength="10" class="uprcase"/></div>
+		          	<div class="rowlabel"><input id="pan" name="pan" placeholder="PAN" type="text" maxlength="10" class="uprcase strict"/></div>
 		          </div>
 		          <div class="span3">
 		          	<div class="rowlabel"><label for="pi_last_name"><small><fmt:message key="member.homepage.lastname"/></small></label></div>
