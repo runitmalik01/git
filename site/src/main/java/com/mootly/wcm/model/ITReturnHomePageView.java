@@ -41,6 +41,12 @@ public class ITReturnHomePageView {
 	public void setLastOrOrgName(String lastOrOrgName) {
 		this.lastOrOrgName = lastOrOrgName;
 	}
+	public void setITRFormMode(ITRServiceDelivery itrFormMode){
+		this.itrFormMode=itrFormMode;
+	}
+	public ITRServiceDelivery getITRFormMode() {
+		return itrFormMode;
+	}
 	
 	public String getPan() {
 		return pan;
@@ -56,6 +62,7 @@ public class ITReturnHomePageView {
 	FilingStatus filingStatus;
 	ITReturnType itReturnType;
 	ITRForm itrForm;
+	ITRServiceDelivery itrFormMode;
 	
 	String lastOrOrgName;
 	
