@@ -63,7 +63,7 @@
 
 		<hst:headContribution category="css">
 			<link rel="stylesheet" href='<hst:link path="/js/syntaxhighlighter_3.0.83/styles/shThemeDefault.css"/>' type="text/css" />
-		</hst:headContribution>
+		</hst:headContribution> 
 
 		<hst:element var="uiCustom" name="script">
 			<hst:attribute name="type">text/javascript</hst:attribute>
@@ -79,5 +79,7 @@
 	<c:otherwise>
 		<h1>Welcome to eZ-Filing</h1>
 		<h5>Please upload all your tax documents. A Tax consultant from wealth4india will shortly get in touch with you.</h5>
+		<hst:link var="memberDriveComp" siteMapItemRefId="docattach"></hst:link>
+		<div class="rowlabel text-center text-success"><h5>Click here to<a href="${fn:replace(scriptName,'xmlgenerator.html','attachdoc.html')}" class="btn btn-primary">Upload Documents</a></h5></div>
 	</c:otherwise>
 </c:choose>
