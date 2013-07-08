@@ -304,11 +304,11 @@
 									value="${salaryItemDetail.city}" /></td>
 							<td align="right"><w4india:inr
 									value="${salaryItemDetail.gross_salary}" /></td>
-							<td><a
-								href="${scriptName}/<c:out value="${salaryItemDetail.canonicalUUID}"/>/salaryincomeedit"><small><i class="icon-pencil"></i>Edit</small>
-							</a>&nbsp;&nbsp;<a
+							<td><a class="btn btn-primary"
+								href="${scriptName}/<c:out value="${salaryItemDetail.canonicalUUID}"/>/salaryincomeedit"><small><i class="icon-pencil icon-white"></i>Edit</small>
+							</a>&nbsp;&nbsp;<a class="btn btn-danger"
 								href="${scriptName}/<c:out value="${salaryItemDetail.canonicalUUID}"/>/salaryincomedelete"
-								data-confirm=""><small><i class="icon-trash"></i>Delete</small> </a>
+								data-confirm=""><small><i class="icon-trash icon-white"></i>Delete</small> </a>
 							</td>
 
 						</tr>
