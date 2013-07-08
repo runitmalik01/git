@@ -114,9 +114,9 @@
 						</td>
 						<td><w4india:inr value="${selfassesmentdetail.p_Amount}" />
 						</td>
-						<td><a
-							href="${scriptName}/<c:out value="${selfassesmentdetail.canonicalUUID}"/>/selfassesmenttaxedit"><small><i class="icon-pencil"></i>Edit</small> &nbsp;&nbsp;
-						</a>&nbsp;&nbsp;<a href="${scriptName}/<c:out value="${selfassesmentdetail.canonicalUUID}"/>/selfassesmenttaxdelete" id="delete" data-confirm=""><small><i class="icon-trash"></i>Delete</small> </a>
+						<td><a class="btn btn-primary"
+							href="${scriptName}/<c:out value="${selfassesmentdetail.canonicalUUID}"/>/selfassesmenttaxedit"><small><i class="icon-pencil icon-white"></i>Edit</small> &nbsp;&nbsp;
+						</a>&nbsp;&nbsp;<a class="btn btn-danger" href="${scriptName}/<c:out value="${selfassesmentdetail.canonicalUUID}"/>/selfassesmenttaxdelete" id="delete" data-confirm=""><small><i class="icon-trash icon-white"></i>Delete</small> </a>
 							</td>
 					</tr>
 			</c:forEach>
