@@ -520,11 +520,11 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 							</td>
 							<td><w4india:inr value="${houseincomedetail.income_hproperty}" />
 							</td>
-							<td><a
-								href="${scriptName}/<c:out value="${houseincomedetail.canonicalUUID}"/>/houseincomeedit"><small>Edit</small>
-							</a>&nbsp;&nbsp;<a
+							<td><a class="btn btn-primary"
+								href="${scriptName}/<c:out value="${houseincomedetail.canonicalUUID}"/>/houseincomeedit"><i class="icon-pencil icon-white"></i><small>Edit</small>
+							</a>&nbsp;&nbsp;<a class="btn btn-danger"
 								href="${scriptName}/<c:out value="${houseincomedetail.canonicalUUID}"/>/houseincomedelete"
-								onclick="return checkdelete()"><small>Delete</small> </a>
+								onclick="return checkdelete()"><i class="icon-trash icon-white"></i><small>Delete</small> </a>
 							</td>
 						</tr>
 
