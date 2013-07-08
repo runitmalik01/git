@@ -47,7 +47,7 @@
 								<label for ="Employe_category"><fmt:message key="member.employe.category" /> </label>
 							</div>
 							<select id="Employe_category" name="Employe_category">
-							<option value="">-Select-</option>
+							<option value="">-SELECT-</option>
 									<option value="GOV" <c:if test="${not empty childBean.employe_category && childBean.employe_category =='GOV'}">selected</c:if>>GOVT.</option>
 									<option value="PSU"<c:if test="${not empty childBean.employe_category && childBean.employe_category =='PSU'}">selected</c:if>>PSU</option>
 									<option value="OTH" <c:if test="${not empty childBean.employe_category && childBean.employe_category =='OTH'}">selected</c:if>>OTHERS.</option>
@@ -174,7 +174,7 @@
 
 					</div>
 				</fieldset>
-				<fieldset>
+			<%-- 	<fieldset>
 					<legend>
 						<fmt:message key="member.period.info" />
 					</legend>
@@ -200,7 +200,7 @@
 							</div>
 						</div>
 					</div>
-				</fieldset>
+				</fieldset>--%>
 				<fieldset>
 					<legend>Compensation and Taxation</legend>
 					<div class="row-fluid show-grid">
@@ -217,7 +217,7 @@
             value="${childBean.gross_salary}" /></c:if>" />
 							</div>
 						</div>
-						<div class="span4">
+					<%--	<div class="span4">
 							<div class="rowlabel">
 								<label>Allowance Not Exempt: </label>
 							</div>
@@ -272,7 +272,7 @@
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"
             maxIntegerDigits="14" value="${childBean.taxable_earning}" /></c:if>" />
 							</div>
-						</div>
+						</div> --%>
 					</div>
 				</fieldset>
 				<div class="row-fluid show-grid">
@@ -289,7 +289,7 @@
 			<table>
 				<tr align="center">
 					<th><b>Employer's Name</b></th>
-					<th><b>Employment Period</b></th>
+					<th><b>Address</b></th>
 					<th><b>Taxable Earning</b></th>
 					<th><b>Actions</b></th>
 				</tr>
@@ -300,10 +300,10 @@
 							<td><a
 								href="${scriptName}/<c:out value="${salaryItemDetail.canonicalUUID}"/>/salaryincomeedit"><c:out
 										value="${salaryItemDetail.name_employer}" /> </a></td>
-							<td><c:out value="${salaryItemDetail.from}" /> - <c:out
-									value="${salaryItemDetail.to}" /></td>
+							<td><c:out value="${salaryItemDetail.address}" /> , <c:out
+									value="${salaryItemDetail.city}" /></td>
 							<td align="right"><w4india:inr
-									value="${salaryItemDetail.taxable_earning}" /></td>
+									value="${salaryItemDetail.gross_salary}" /></td>
 							<td><a
 								href="${scriptName}/<c:out value="${salaryItemDetail.canonicalUUID}"/>/salaryincomeedit"><small><i class="icon-pencil"></i>Edit</small>
 							</a>&nbsp;&nbsp;<a
@@ -325,7 +325,6 @@
 	</c:choose>
 </div>
 </div>
-<res:calc screenCalc="salaryincome" formId="frmdataSlryInc"></res:calc>
 <res:client-validation formId="frmdataSlryInc"
 	screenConfigurationDocumentName="salaryincome"
 	formSubmitButtonId="myModalHrefSlryInc" />
