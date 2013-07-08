@@ -133,7 +133,7 @@ public class SalaryIncomeDocument extends BaseDocument implements ContentNodeBin
         		for (SalaryIncomeDetail salaryIncomeDetail:salaryincome.getSalaryIncomeDetailList()) {
         			
         			if (!salaryIncomeDetail.isMarkedForDeletion()) {
-        				double amount=salaryIncomeDetail.getTaxable_earning();
+        				double amount=salaryIncomeDetail.getGross_salary();
             			sum=sum+amount;
 		                javax.jcr.Node html = node.addNode(PROP_DETAIL_BEAN, PROP_DETAIL_BEAN);
 		                salaryIncomeDetail.bindToNode(html); 
