@@ -44,6 +44,7 @@
 	<hst:element var="uiCustom" name="script">
 		<hst:attribute name="type">text/javascript</hst:attribute>
 		var flagforPanAndTan=true;
+		var strictAddpan=true;
 		var d = new Date();
 		yrRange="1900:"+d.getFullYear();
 		var validationRules = new Object();
@@ -128,10 +129,10 @@
 					if (fieldConfig[fn].fieldTitle != '') {
 						fObj.watermark(fieldConfig[fn].fieldTitle);
 					}
-					if (fieldConfig[fn].fieldPopoverText != '') {
+        			if (fieldConfig[fn].fieldPopoverText != '') {
 						fObj.popover({"html":true,"trigger":"focus",content:fieldConfig[fn].fieldPopoverText});
 					}
-				}
+			 }
 				<c:if test="${not empty validationType}">
 
 
@@ -174,10 +175,21 @@
 				$('#<c:out value="${formId}"/>').validate({
 					rules: validationRules.rules
 				});
-
+				$('.strict').blur(function(){
+				   if($('.strict').val().length==10){
+				      var char4th=$('.strict').val().slice(3,4);
+				      if(!(char4th=='p'||char4th=='P'||char4th=='H'||char4th=='h')){
+				           strictAddpan=false;
+				           $('#strictmsg').show();   
+				         }else{
+				          strictAddpan=true;
+				          $('#strictmsg').hide();
+				          }
+				   }
+				});
 				<c:if test="${not empty formSubmitButtonId}">
 					$('#<c:out value="${formSubmitButtonId}"/>').click(function() {
-					if(flagforPanAndTan){
+					if(flagforPanAndTan && strictAddpan){
 		 				 $('#<c:out value="${formId}"/>').submit();
 		 				 }
 					});
