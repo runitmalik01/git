@@ -42,16 +42,21 @@
 				<legend style="color: black">Employer Details</legend>
 				<div class="row-fluid show-grid">
 					<div class="span3">
-							<div class="rowlabel">
-								<label for="Employe_category"><fmt:message key="member.employe.category" /> </label>
-							</div>
-							<select id= "Employe_category" name="Employe_category">
-							<option value="">-Select-</option>
-									<option value="GOV" <c:if test="${not empty childBean.employe_category && childBean.employe_category =='GOV'}">selected</c:if>>GOVT.</option>
-									<option value="PSU"<c:if test="${not empty childBean.employe_category && childBean.employe_category =='PSU'}">selected</c:if>>PSU</option>
-									<option value="OTH" <c:if test="${not empty childBean.employe_category && childBean.employe_category =='OTH'}">selected</c:if>>OTHERS.</option>
-								</select>
+						<div class="rowlabel">
+							<label for="Employe_category"><fmt:message
+									key="member.employe.category" /> </label>
 						</div>
+						<select id="Employe_category" name="Employe_category"
+							onchange="hideded()">
+							<option value="">-Select-</option>
+							<option value="GOV"
+								<c:if test="${not empty childBean.employe_category && childBean.employe_category =='GOV'}">selected</c:if>>GOVT.</option>
+							<option value="PSU"
+								<c:if test="${not empty childBean.employe_category && childBean.employe_category =='PSU'}">selected</c:if>>PSU</option>
+							<option value="OTH"
+								<c:if test="${not empty childBean.employe_category && childBean.employe_category =='OTH'}">selected</c:if>>OTHERS.</option>
+						</select>
+					</div>
 				</div>
 				<br />
 				<div class="row-fluid show-grid">
@@ -86,9 +91,9 @@
 								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.pan_deductor}"/></c:if>">
 						</div>
 					</div>
-					
-					</div>
-					<div class="row-fluid show-grid">
+
+				</div>
+				<div class="row-fluid show-grid">
 					<div class="span3">
 						<div class="rowlabel">
 							<label for="tan_deductor">TAN of Employer</label>
@@ -117,10 +122,9 @@
 								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.address}"/></c:if>">
 						</div>
 					</div>
-					</div>
+				</div>
 			</fieldset>
-				<fieldset>
-					<!--
+			<!--
 				<legend style="color: black">
 					Acknowledgement Nos. of all quarterly statements of TDS under
 					sub_section (3) of section 200 as<br /> provided by TIN
@@ -259,48 +263,51 @@
 					</tr>
 				</table>
   -->
-					<fieldset>
-						<legend style="color: black"> DETAILS OF SALARY PAID AND
-							ANY OTHER INCOME AND TAX DEDUCTED</legend>
-						<label><strong>1.</strong> </label> <label> Gross salary</label>
-						<table>
-							<tr>
-								<td>(a) Salary as per provisions contained in section 17(1)
-								</td>
-								<td><input id="gross_a" name="gross_a" class=" decimal"
-									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.gross_a}"/></c:if>"
-									placeholder="Rs." type="text" maxlength="14"/></td>
-							</tr>
-							<tr>
-								<td>(b) Value of perquisites u/s 17(2)</td>
-								<td><input id="gross_b" name="gross_b" class=" decimal"
-									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.gross_b}"/></c:if>"
-									placeholder="Rs." type="text" maxlength="14" /></td>
-							</tr>
-							<tr>
-								<td>(c) Profits in lieu of salary under section 17(3)</td>
-								<td><input id="gross_c" name="gross_c" class=" decimal"
-									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.gross_c}"/></c:if>"
-									placeholder="Rs." type="text" maxlength="14" /></td>
-							</tr>
-							<tr>
-								<td><label>TOTAL</label></td>
-								<td><input id="gross_total" name="gross_total"
-									readonly="readonly" class=" decimal"
-									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.gross_total}"/></c:if>"
-									placeholder="Rs." type="text" maxlength="14" /></td>
-							</tr>
-						</table>
-					</fieldset>
+			<fieldset>
+				<legend style="color: black"> DETAILS OF SALARY PAID AND
+					ANY OTHER INCOME AND TAX DEDUCTED</legend>
+				<label><strong>1.</strong> </label> <label> Gross salary</label>
+				<table>
+					<tr>
+						<td>(a) Salary as per provisions contained in section 17(1)</td>
+						<td><input id="gross_a" name="gross_a" class=" decimal"
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.gross_a}"/></c:if>"
+							placeholder="Rs." type="text" maxlength="14" /></td>
+					</tr>
+					<tr>
+						<td>(b) Value of perquisites u/s 17(2)</td>
+						<td><input id="gross_b" name="gross_b" class=" decimal"
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.gross_b}"/></c:if>"
+							placeholder="Rs." type="text" maxlength="14" /></td>
+					</tr>
+					<tr>
+						<td>(c) Profits in lieu of salary under section 17(3)</td>
+						<td><input id="gross_c" name="gross_c" class=" decimal"
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.gross_c}"/></c:if>"
+							placeholder="Rs." type="text" maxlength="14" /></td>
+					</tr>
+					<tr>
+						<td><label>TOTAL</label></td>
+						<td><input id="gross_total" name="gross_total"
+							readonly="readonly" class=" decimal"
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.gross_total}"/></c:if>"
+							placeholder="Rs." type="text" maxlength="14" /></td>
+					</tr>
+				</table>
+			</fieldset>
 
-					<fieldset>
-					<legend> <em>Less:</em>
-						Allowance to the extent exempt under section 10</legend>
+			<fieldset>
+				<legend>
+					<em>Less:</em> Allowance to the extent exempt under section 10
+				</legend>
 
-					<table>
-						<tr>
-							<td><label><strong>2.</strong> Total Allowance </label></td>
-							<!--
+				<div class="row-fluid show-grid">
+					<div class="span8">
+						<div class="rowlabel">
+							<label><strong>2.</strong> Total Allowance </label>
+						</div>
+					</div>
+					<!--
 						<th><label>Rs. </label>
 						</th>
 						<th><label>Total</label>
@@ -341,71 +348,93 @@
 							placeholder="Rs." type="text"/>
 						</td>
 -->
-							<td><input id="less_total_2" name="less_total_2"
-								class="decimal"
+					<div class="span4">
+						<div class="rowlabel">
+							<input id="less_total_2" name="less_total_2" class="decimal"
 								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.less_total_2}"/></c:if>"
-								placeholder="Rs." type="text" maxlength="14" /></td>
-						</tr>
-					</table>
-					</fieldset>
-					<table>
-						<tr>
-							<td><label><strong>3.</strong> </label> <label>
-									Balance(1-2)</label></td>
-							<td><input id="balance" name="balance" class=" decimal"
-								readonly="readonly"
-								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.balance}"/></c:if>"
-								placeholder="Rs." type="text" maxlength="14" /></td>
-						</tr>
-						<tr>
-					</table>
-					<fieldset>
-					<legend>Deductions</legend>
-					<div class="row-fluid show-grid">
-						<div class="span4">
-							<div class="rowlabel"><strong>4(a)</strong> Entertainment allowance</div>
-							<div class="rowlabel">
-								<input id="deductions_entertainment"
-									name="deductions_entertainment" class=" decimal"
-									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.deductions_entertainment}"/></c:if>"
-									placeholder="Rs." type="text" maxlength="14" />
-							</div>
-						</div>
-						<div class="span4">
-							<div class="rowlabel"><strong>4(b)</strong> Tax on Employment</div>
-							<div class="rowlabel">
-								<input id="deductions_tax" name="deductions_tax"
-									class=" decimal"
-									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.deductions_tax}"/></c:if>"
-									placeholder="Rs." type="text" maxlength="14" />
-							</div>
+								placeholder="Rs." type="text" maxlength="14" />
 						</div>
 					</div>
+				</div>
+				<br />
 
-
-					<table>
-						<tr>
-							<td><label><strong>5.</strong> </label> <label>Aggregate
-									of 4(a) & (b) </label></td>
-							<td><input id="deductions_total" name="deductions_total"
+				<div class="row-fluid show-grid">
+					<div class="span8">
+						<div class="rowlabel">
+							<label><strong>3.</strong> </label> <label> Balance(1-2)</label>
+						</div>
+					</div>
+					<div class="span4">
+						<div class="rowlabel">
+							<input id="balance" name="balance" class=" decimal"
+								readonly="readonly"
+								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.balance}"/></c:if>"
+								placeholder="Rs." type="text" maxlength="14" />
+						</div>
+					</div>
+				</div>
+			</fieldset>
+			<fieldset id="deductions">
+				<legend>Deductions</legend>
+				<div class="row-fluid show-grid">
+					<div class="span4">
+						<div class="rowlabel" id="ent">
+							<strong>4(a)</strong> Entertainment allowance
+						</div>
+						<div class="rowlabel">
+							<input id="deductions_entertainment"
+								name="deductions_entertainment" class=" decimal"
+								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.deductions_entertainment}"/></c:if>"
+								placeholder="Rs." type="text" maxlength="14" />
+						</div>
+					</div>
+					<div class="span4">
+						<div class="rowlabel" id="tax">
+							<strong>4(b)</strong> Tax on Employment
+						</div>
+						<div class="rowlabel">
+							<input id="deductions_tax" name="deductions_tax" class=" decimal"
+								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.deductions_tax}"/></c:if>"
+								placeholder="Rs." type="text" maxlength="14" />
+						</div>
+					</div>
+				</div>
+				<br />
+				<div class="row-fluid show-grid">
+					<div class="span8">
+						<div class="rowlabel" id="ent">
+							<label><strong>5.</strong> </label><label>Aggregate of
+								4(a) & (b) </label>
+						</div>
+					</div>
+					<div class="span4">
+						<div class="rowlabel">
+							<input id="deductions_total" name="deductions_total"
 								class="decimal" readonly="readonly"
 								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.deductions_total}"/></c:if>"
-								placeholder="Rs." type="text" maxlength="14"/></td>
-						</tr></table>
-						</fieldset>
-						<table>
-						<tr>
-							<td><label><strong>6.</strong>Income chargeable
-									under the head."Salaries"(3-5) </label></td>
-							<td><input id="income_chargable_total"
-								name="income_chargable_total" class=" decimal"
-								readonly="readonly"
-								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.income_chargable_tax}"/></c:if>"
 								placeholder="Rs." type="text" maxlength="14" />
-							</td>
-						</tr>
+						</div>
+					</div>
+				</div>
+			</fieldset>
+			<div class="row-fluid show-grid">
+				<div class="span8">
+					<div class="rowlabel">
+						&nbsp;&nbsp;&nbsp;<label><strong>6.</strong>Income
+							chargeable under the head."Salaries"(3-5) </label>
+					</div>
+				</div>
+				<div class="span4">
+					<div class="rowlabel">
+						<input id="income_chargable_total" name="income_chargable_total"
+							class=" decimal" readonly="readonly"
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.income_chargable_tax}"/></c:if>"
+							placeholder="Rs." type="text" maxlength="14" />
+					</div>
+				</div>
+			</div>
 
-					<%-- 	<tr>
+			<%-- 	<tr>
 							<td><label><strong>7.</strong> </label> <label><em>Add</em>:
 									Any other income reported by the employee </label></td>
 							<td><label>Rs. </label></td>
@@ -433,8 +462,7 @@
 								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.gross_income_total}"/></c:if>"
 								placeholder="Rs." type="text" /></td>
 						</tr>--%>
-					</table>
-						<!-- <table>
+			<!-- <table>
 						<tr>
 							<td><label><strong>9.</strong>Deductions under
 									Chapter VI-A </label></td>
@@ -753,8 +781,7 @@
 						</tr>
 
 					</table> -->
-					</fieldset>
-				<%-- 	<table>
+			<%-- 	<table>
 						<tr>
 							<td><label><strong>10.</strong> Aggregate of
 									deductible amount under Chapter VI-A</label>
@@ -836,26 +863,30 @@
 								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.tax_payable}"/></c:if>"
 								placeholder="Rs."></td>
 						</tr>--%>
-     					<table>
-						<tr>
-							<td><label><strong>7.</strong> </label> <label>Relief
-									under section 89 </label></td>
-
-							<td>
-								<!--  <input type="text" name="relief_1"
+			<!--  <input type="text" name="relief_1"
 							class="numberinput decimal"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.relief_1}"/></c:if>"
-							placeholder="Rs.">--></td>
-							<td></td>
+							placeholder="Rs.">-->
+			<fieldset>
+				<legend>Tax Head</legend>
+				<div class="row-fluid show-grid">
+				<div class="span8">
+					<div class="rowlabel">
+							<label><strong>7.</strong> </label> <label>Relief under
+								section 89 </label>
+						</div>
+					</div>
+					<div class="span4">
+					<div class="rowlabel">
+							<input id="relief_2" name="relief_2" class="decimal"
+								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
+							<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.relief_2}"/></c:if>"
+								placeholder="Rs.">
+						</div>
+					</div>
+				</div>
 
-							<td><input id="relief_2" name="relief_2"
-								class="numberinput decimal"
-								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.relief_2}"/></c:if>"
-								placeholder="Rs." maxlength="14"></td>
-
-						</tr>
-
-						<%-- <tr>
+				<%-- <tr>
 							<td><label><strong>16.</strong> </label> <label>Tax
 									payable (14-15)</label></td>
 
@@ -878,42 +909,57 @@
 								placeholder="Rs."></td>
 						</tr>--%>
 
-						<tr>
-							<td><label><strong>8.</strong> </label> <label>
-									Less : </label></td>
-						</tr>
+				<div class="row-fluid show-grid">
+					<div class="span8">
+						<div class="rowlabel">
+							<label><strong>8.</strong> </label> <label> Less : </label>
+						</div>
+					</div>
+				</div>
 
-						<tr>
-							<td>(a) Tax Deducted at Source u/s 192(1)</td>
-							<td></td>
-
-							<td><input id="ded_ent1" name="ded_ent1"
-								class="numberinput decimal" placeholder="Rs." maxlength="14"
+				<div class="row-fluid show-grid">
+					<div class="span8">
+						<div class="rowlabel">&nbsp;&nbsp;&nbsp;&nbsp;(a) Tax
+							Deducted at Source u/s 192(1)</div>
+					</div>
+					<div class="span4">
+						<div class="rowlabel">
+							<input id="ded_ent1" name="ded_ent1" class=" decimal"
+								placeholder="Rs." maxlength="14"
 								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.ded_ent_1}"/></c:if>">
-							</td><td></td>
-
-							<%-- <td><input id="ded_ent2" name="ded_ent2" class=" decimal"
+						</div>
+					</div>
+				</div>
+				<%-- <td><input id="ded_ent2" name="ded_ent2" class=" decimal"
 								placeholder="Rs." readonly="readonly"
 								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.ded_ent_2}"/></c:if>">
 							</td>--%>
-						</tr>
+				<div class="row-fluid show-grid">
+					<div class="span8">
+						<div class="rowlabel">&nbsp;&nbsp;&nbsp;&nbsp;(b) Tax paid
+							by the employer on behalf of the employee u/s 192(1A) on
+							perquisites u/s 8(2)</div>
+					</div>
 
-						<tr>
-							<td>(b) Tax paid by the employer on behalf of the employee
-								u/s 192(1A) on perquisites u/s 8(2)</td>
-							<td></td>
+					<div class="span4">
+						<div class="rowlabel">
+							<input id="ded_ent3" name="ded_ent3" class="numberinput decimal"
+								placeholder="Rs." maxlength="14"
+								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
+					<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.ded_ent_3}"/></c:if>">
 
-							<td><input id="ded_ent3" name="ded_ent3"
-								class="numberinput decimal" placeholder="Rs." maxlength="14"
-								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.ded_ent_3}"/></c:if>">
-							</td>
-
-							<td><input id="ded_ent4" name="ded_ent4" class=" decimal"
+						</div>
+						<br />
+						<div class="rowlabel">
+							<input id="ded_ent4" name="ded_ent4" class=" decimal"
 								placeholder="Rs." readonly="readonly"
 								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.ded_ent_4}"/></c:if>">
-							</td>
-						</tr>
-						<%-- <tr>
+						</div>
+					</div>
+				</div>
+				<br />
+			</fieldset>
+			<%-- <tr>
 							<td><label><strong>18.</strong> </label> <label>Tax
 									payable/refundable (16-17)</label></td>
 							<td></td>
@@ -929,7 +975,7 @@
 								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><w4india:inr value="${childBean.relief_12}"/></c:if>"
 								placeholder="Rs."></td>
 						</tr>--%>
-					</table>
+
 			<div class="row-fluid show-grid">
 				<div class="span4 offset8 decimal">
 					<a href="${scriptName}?selectedItrTab=<%=ITRTab.FORM16_SINGLE%>"
@@ -955,10 +1001,11 @@
 									value="${salaryItemDetail.employer}" /> </a></td>
 						<td><c:out value="${salaryItemDetail.employee}" /></td>
 						<td><a
-							href="${scriptName}/<c:out value="${salaryItemDetail.canonicalUUID}"/>/formsixteenedit"><small><i class="icon-pencil"></i>Edit</small>
-						</a>&nbsp;&nbsp;<a
+							href="${scriptName}/<c:out value="${salaryItemDetail.canonicalUUID}"/>/formsixteenedit"><small><i
+									class="icon-pencil"></i>Edit</small> </a>&nbsp;&nbsp;<a
 							href="${scriptName}/<c:out value="${salaryItemDetail.canonicalUUID}"/>/formsixteendelete"
-							data-confirm=""><small><i class="icon-trash"></i>Delete</small> </a>
+							data-confirm=""><small><i class="icon-trash"></i>Delete</small>
+						</a>
 						</td>
 					</tr>
 				</c:forEach>
@@ -969,16 +1016,31 @@
 	</c:otherwise>
 </c:choose>
 <%
-HstRequest hstRequest = (HstRequest) request;
-String formHTMLComplete = (String) hstRequest.getRequestContext().getAttribute("formHTMLComplete");
-//request.setAttribute("formHTMLComplete, arg1)
+	HstRequest hstRequest = (HstRequest) request;
+	String formHTMLComplete = (String) hstRequest.getRequestContext()
+			.getAttribute("formHTMLComplete");
+	//request.setAttribute("formHTMLComplete, arg1)
 %>
-<% if (formHTMLComplete != null) out.println(formHTMLComplete); %>
+<%
+	if (formHTMLComplete != null)
+		out.println(formHTMLComplete);
+%>
 <res:calc screenCalc="formsixteen" formId="frmdataFormSixteen"></res:calc>
 <res:client-validation formId="frmdataFormSixteen"
 	screenConfigurationDocumentName="formsixteen"
 	formSubmitButtonId="myModalHrefFormSixteen" />
 
 
+<script type="text/javascript">
+	function hideded() {
+		var d = document.getElementById("Employe_category");
+		var valuePropCoOwned = d.options[d.selectedIndex].value;
+		if (valuePropCoOwned == "GOV") {
 
+			$("#deductions").show();
+		} else {
+			$("#deductions").hide();
+		}
+	}
+</script>
 
