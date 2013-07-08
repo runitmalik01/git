@@ -1,20 +1,21 @@
 package com.mootly.wcm.model;
 
 public enum ITRForm {
-	ITR1("ITR-1",true),
-	ITR2("ITR-2"),
-	ITR3("ITR-3"),
-	ITR4("ITR-4"),
-	ITR4S("ITR-4S"),
-	ITR5("ITR-5"),
-	ITR6("ITR-6"),
-	ITR7("ITR-7"),
-	ITR8("ITR-8"),
+	ITR1("ITR-1",new ITRServiceDelivery[] {ITRServiceDelivery.DIY,ITRServiceDelivery.Assisted}),
+	ITR2("ITR-2",new ITRServiceDelivery[] {ITRServiceDelivery.Assisted}),
+	ITR3("ITR-3",new ITRServiceDelivery[] {ITRServiceDelivery.Assisted}),
+	ITR4("ITR-4",new ITRServiceDelivery[] {ITRServiceDelivery.Assisted}),
+	ITR4S("ITR-4S",new ITRServiceDelivery[] {ITRServiceDelivery.Assisted}),
+	ITR5("ITR-5",new ITRServiceDelivery[] {ITRServiceDelivery.Assisted}),
+	ITR6("ITR-6",new ITRServiceDelivery[] {ITRServiceDelivery.Assisted}),
+	ITR7("ITR-7",new ITRServiceDelivery[] {ITRServiceDelivery.Assisted}),
+	ITR8("ITR-8",new ITRServiceDelivery[] {ITRServiceDelivery.Assisted}),
 	UNKNOWN;
 	
 	String whoCanAndWhoCannot;
 	String displayName;
 	Boolean hasDIY = Boolean.FALSE;
+	ITRServiceDelivery[] serviceDeliveryOptions;
 	
 	public String getDisplayName() {
 		return displayName;
@@ -37,8 +38,25 @@ public enum ITRForm {
 		this.hasDIY = true;
 	}
 	
+	ITRForm(String displayName,ITRServiceDelivery[] serviceDeliveryOptions) {
+		this.displayName = displayName;
+		this.serviceDeliveryOptions = serviceDeliveryOptions;
+		this.hasDIY = false;
+		if (serviceDeliveryOptions != null && serviceDeliveryOptions.length >0) {
+			for (ITRServiceDelivery serviceDelivery:serviceDeliveryOptions) {
+				if (serviceDelivery == ITRServiceDelivery.DIY) {
+					this.hasDIY = true;
+				}
+			}
+		}
+	}
+	
 	public Boolean getHasDIY() {
 		return hasDIY;
+	}
+	
+	public ITRServiceDelivery[] getServiceDeliveryOptions() {
+		return this.serviceDeliveryOptions;
 	}
 	
 	public static ITRForm getEnumByDisplayName(String displayName) {

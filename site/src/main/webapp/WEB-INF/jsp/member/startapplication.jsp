@@ -551,26 +551,37 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 			    <div class="span2">
 			    	<div class="rowlabel"><label for="flex_string_ITRForm"><small>Select the ITR Package</small></label></div>
 			    </div>
-				<div class="span5">
+				<div class="span4">
 					<div class="rowlabel"><label for="whoCan"><small>Who can select this package</small></label></div>
 				</div>
-				<div class="span5">
+				<div class="span4">
 					<div class="rowlabel"><label for="whoCannot"><small>Who should not select this package</small></label></div>
+				</div>
+				<div class="span2">
+					<div class="rowlabel"><label for="filingMode"><small><abbr title="Choose eFile if you want to do it yourself. eZFile lets you upload documents to Wealth4India and then let Wealth4India prepare the tax return for you.">Mode</abbr>&nbsp;<a href='<hst:link siteMapItemRefId="serviceprice"/>'>Help</a></small></label></div>
 				</div>
 			</div>			
 			<div class="row-fluid show-grid">
-				<div class="span2">
+				<div class="span2">					
 					<select id="flex_string_ITRForm" name="flex_string_ITRForm">
 						<c:forEach items="${filingStatus.possibleITRForms}" var="itrForm">
 							<option <c:if test="${parentBean.selectedITRForm == itrForm}">selected</c:if> value="${itrForm}"><fmt:message key="${itrForm}.packageName"></fmt:message></option>
 						</c:forEach>
 					</select>
 				</div>
-				<div class="span5">
+				<div class="span4">
 					<div style="font-size:small" id="whoCan"></div>
 				</div>
-				<div class="span5">
+				<div class="span4">
 					<div style="font-size:small" id="whoCannot"></div>
+				</div>
+				<div class="span2">
+					<div style="font-size:small" id="filingMode">
+						<input type="hidden" id="hidden_flex_string_ITRServiceDelivery" name="hidden_flex_string_ITRServiceDelivery" value="${parentBean.selectedServiceDeliveryOption}">
+						<select name="flex_string_ITRServiceDelivery" id="flex_string_ITRServiceDelivery">
+							
+						</select>
+					</div>
 				</div>
 			</div>
 		</fieldset>
@@ -789,9 +800,11 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 	<hst:attribute name="type">text/javascript</hst:attribute>
 		var mapOfItrFormWhoCanAndWhoCan = {};
 		var mapOfItrFormWhoCanAndWhoCannot = {};
+		var mapOfFilingMode = {};
 		<c:forEach items="${filingStatus.possibleITRForms}" var="itrForm">
 			mapOfItrFormWhoCanAndWhoCan['${itrForm}']=  "<fmt:message key="${itrForm}.whoCan"></fmt:message>";
-			mapOfItrFormWhoCanAndWhoCannot['${itrForm}']=  "<fmt:message key="${itrForm}.whoCannot"></fmt:message>"; 
+			mapOfItrFormWhoCanAndWhoCannot['${itrForm}']=  "<fmt:message key="${itrForm}.whoCannot"></fmt:message>";
+			mapOfFilingMode['${itrForm}']=[<c:forEach varStatus="varStatus" var="filingOption" items="${itrForm.serviceDeliveryOptions}">{'key':'<c:out value="${filingOption}"/>', 'label':'<fmt:message key="ITRServiceDelivery.${filingOption}.displayName"/>'}<c:if test="${not varStatus.last}">,</c:if></c:forEach>]
 		</c:forEach>
 	
 		var solrField = 'text';
@@ -861,7 +874,30 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 					var sele = this.options[this.selectedIndex].value;
 					$("#whoCan").html(mapOfItrFormWhoCanAndWhoCan[sele]);
 					$("#whoCannot").html(mapOfItrFormWhoCanAndWhoCannot[sele]);
+					
+					//flex_string_ITRServiceDelivery
+					str = "";
+					for (var i=0;i < mapOfFilingMode[sele].length ; i++){
+						str += "<option value='" + mapOfFilingMode[sele][i].key + "'>" + mapOfFilingMode[sele][i].label + "</option>"; 
+					}
+					$("#flex_string_ITRServiceDelivery").html(str);
+					
 			});
+			
+			str = "";
+			v = $("#hidden_flex_string_ITRServiceDelivery").val();
+			//alert(v);
+			f = $("#flex_string_ITRForm").val();
+			//alert(f);
+			if (f != '' && typeof(mapOfFilingMode[f].length) != 'undefined') {
+				for (var i=0;i < mapOfFilingMode[f].length ; i++){
+					sel = '';
+					if (v != '' && v == mapOfFilingMode[f][i].key) sel ='selected';
+					str += "<option " + sel + " value='" + mapOfFilingMode[f][i].key + "'>" + mapOfFilingMode[f][i].label + "</option>"; 
+				}
+				$("#flex_string_ITRServiceDelivery").html(str);
+			}
+			
 			
 			$("#whoCan").html(mapOfItrFormWhoCanAndWhoCan[$("#flex_string_ITRForm").val()]);
 			$("#whoCannot").html(mapOfItrFormWhoCanAndWhoCannot[$("#flex_string_ITRForm").val()]);
