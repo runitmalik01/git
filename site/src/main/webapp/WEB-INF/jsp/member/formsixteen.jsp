@@ -1000,11 +1000,11 @@
 							href="${scriptName}/<c:out value="${salaryItemDetail.canonicalUUID}"/>/formsixteenedit"><c:out
 									value="${salaryItemDetail.employer}" /> </a></td>
 						<td><c:out value="${salaryItemDetail.employee}" /></td>
-						<td><a
+						<td><a class="btn btn-primary"
 							href="${scriptName}/<c:out value="${salaryItemDetail.canonicalUUID}"/>/formsixteenedit"><small><i
-									class="icon-pencil"></i>Edit</small> </a>&nbsp;&nbsp;<a
+									class="icon-pencil icon-white"></i>Edit</small> </a>&nbsp;&nbsp;<a class="btn btn-danger"
 							href="${scriptName}/<c:out value="${salaryItemDetail.canonicalUUID}"/>/formsixteendelete"
-							data-confirm=""><small><i class="icon-trash"></i>Delete</small>
+							data-confirm=""><small><i class="icon-trash icon-white"></i>Delete</small>
 						</a>
 						</td>
 					</tr>
