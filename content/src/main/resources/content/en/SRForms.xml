@@ -255,7 +255,7 @@
         <sv:value>hippotranslation:translated</sv:value>
       </sv:property>
       <sv:property sv:name="jcr:uuid" sv:type="String">
-        <sv:value>631a851d-8f8b-4472-832f-70e1eeadfb39</sv:value>
+        <sv:value>5f5b699c-2e4c-4f11-9fc6-38d671019b65</sv:value>
       </sv:property>
       <sv:property sv:name="ef:action" sv:type="String">
         <sv:value>mail</sv:value>
@@ -289,13 +289,13 @@
         <sv:value>2013-06-26T16:06:20.112+05:30</sv:value>
       </sv:property>
       <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-        <sv:value>2013-07-03T13:37:05.169+05:30</sv:value>
+        <sv:value>2013-07-09T15:35:01.953+05:30</sv:value>
       </sv:property>
       <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
         <sv:value>admin</sv:value>
       </sv:property>
       <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-        <sv:value>2013-07-03T13:37:10.098+05:30</sv:value>
+        <sv:value>2013-07-09T15:35:08.083+05:30</sv:value>
       </sv:property>
       <sv:property sv:name="hippotranslation:id" sv:type="String">
         <sv:value>0fc146bf-4705-4290-9ca0-fd586479b6bf</sv:value>
@@ -308,12 +308,38 @@
           <sv:value>hippotranslation:translations</sv:value>
         </sv:property>
       </sv:node>
+      <sv:node sv:name="field6">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>ef:textfield</sv:value>
+        </sv:property>
+        <sv:property sv:name="jcr:uuid" sv:type="String">
+          <sv:value>bd2ad266-2317-4aae-a8a5-66ed7823c27b</sv:value>
+        </sv:property>
+        <sv:property sv:name="ef:fieldname" sv:type="String">
+          <sv:value>flex_field_string_6</sv:value>
+        </sv:property>
+        <sv:property sv:name="ef:hint" sv:type="String">
+          <sv:value/>
+        </sv:property>
+        <sv:property sv:name="ef:label" sv:type="String">
+          <sv:value>Service Name</sv:value>
+        </sv:property>
+        <sv:property sv:name="ef:length" sv:type="Long">
+          <sv:value>40</sv:value>
+        </sv:property>
+        <sv:property sv:name="ef:mandatory" sv:type="Boolean">
+          <sv:value>false</sv:value>
+        </sv:property>
+        <sv:property sv:name="ef:validexpression" sv:type="String">
+          <sv:value/>
+        </sv:property>
+      </sv:node>
       <sv:node sv:name="field0">
         <sv:property sv:name="jcr:primaryType" sv:type="Name">
           <sv:value>ef:textfield</sv:value>
         </sv:property>
         <sv:property sv:name="jcr:uuid" sv:type="String">
-          <sv:value>70a972aa-274a-4ccc-aa55-53db4e885614</sv:value>
+          <sv:value>80e1ba66-d410-4a66-b1b9-edb36809d403</sv:value>
         </sv:property>
         <sv:property sv:name="ef:fieldname" sv:type="String">
           <sv:value>flex_field_string_0</sv:value>
@@ -339,7 +365,7 @@
           <sv:value>ef:textfield</sv:value>
         </sv:property>
         <sv:property sv:name="jcr:uuid" sv:type="String">
-          <sv:value>74046f1f-6e7e-453f-9c14-fd609123382f</sv:value>
+          <sv:value>e6a4c4dc-e26e-4965-acaf-aac652506aca</sv:value>
         </sv:property>
         <sv:property sv:name="ef:fieldname" sv:type="String">
           <sv:value>flex_field_string_1</sv:value>
@@ -365,7 +391,7 @@
           <sv:value>ef:textfield</sv:value>
         </sv:property>
         <sv:property sv:name="jcr:uuid" sv:type="String">
-          <sv:value>a2c34ed4-0c2c-4e1d-b750-be6d0124bb6f</sv:value>
+          <sv:value>b91d3a00-6a44-4fcb-a36e-8871c857d01b</sv:value>
         </sv:property>
         <sv:property sv:name="ef:fieldname" sv:type="String">
           <sv:value>flex_field_string_2</sv:value>
@@ -391,7 +417,7 @@
           <sv:value>ef:textfield</sv:value>
         </sv:property>
         <sv:property sv:name="jcr:uuid" sv:type="String">
-          <sv:value>4569408b-0eb8-495b-a613-88ad2d1a7417</sv:value>
+          <sv:value>99e22647-d3e3-40f6-ad51-b779f2d38c11</sv:value>
         </sv:property>
         <sv:property sv:name="ef:fieldname" sv:type="String">
           <sv:value>flex_field_string_3</sv:value>
@@ -417,7 +443,7 @@
           <sv:value>ef:textfield</sv:value>
         </sv:property>
         <sv:property sv:name="jcr:uuid" sv:type="String">
-          <sv:value>8629b2e8-6eef-416f-880d-e37dd8917e99</sv:value>
+          <sv:value>d2163826-93de-4251-b017-35e0e0bc9e3d</sv:value>
         </sv:property>
         <sv:property sv:name="ef:fieldname" sv:type="String">
           <sv:value>flex_field_string_4</sv:value>
@@ -443,7 +469,7 @@
           <sv:value>ef:textfield</sv:value>
         </sv:property>
         <sv:property sv:name="jcr:uuid" sv:type="String">
-          <sv:value>600cd97f-3cd6-410b-80ad-ebcf1dba1b8c</sv:value>
+          <sv:value>a33c436d-cddb-4be3-ae13-ea11cac1ae27</sv:value>
         </sv:property>
         <sv:property sv:name="ef:fieldname" sv:type="String">
           <sv:value>flex_field_string_5</sv:value>
