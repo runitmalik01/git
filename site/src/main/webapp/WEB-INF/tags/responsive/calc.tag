@@ -39,11 +39,21 @@
 						recalc
 					);							
 				//});    
-				function recalc() {
+				$(document).ready(function() {
+					$('#<c:out value="${formId}"/>').submit(
+						function(){
+							recalc(false);
+							return true;
+						}						
+					);
+				});
+				function recalc(isAsync) {
+					if (typeof(isAsync) == 'undefined') isAsync = true;
 					$.ajax({
 						url:'<c:out value="${ajaxLinkToComponent}"/>?command=calc&screen=<c:out value="${screenCalc}"/>',
 						data: $("#<c:out value="${formId}"/>").serialize(),
 						datatype:'json',
+						async:isAsync,
 						success: function(data,textStatus,jqXhr) {
 							for (key in data) {
 								//change the response
