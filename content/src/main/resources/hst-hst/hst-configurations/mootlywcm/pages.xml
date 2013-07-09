@@ -1647,7 +1647,7 @@
         <sv:value>pageSize</sv:value>
       </sv:property>
       <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
-        <sv:value>3</sv:value>
+        <sv:value>20</sv:value>
       </sv:property>
       <sv:property sv:name="hst:template" sv:type="String">
         <sv:value>homepage-myservices</sv:value>
