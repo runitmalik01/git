@@ -1,7 +1,8 @@
 <%@include file="../includes/tags.jspf" %>
-
+<%@page import="org.hippoecm.hst.core.component.HstRequest"%>
+<%@page import="com.mootly.wcm.beans.Service"%>
 <!-- NOTE: Switch on the following variable if you want to eanble Inline Editing feature in this page. -->
- 
+ <c:set value="${document.name}" var="serviceName" scope="request"></c:set>
 <hippo-gogreen:title title="${document.name}"/>
 <hst:link var="services" siteMapItemRefId="myservices"></hst:link>
 <hst:link var="home" siteMapItemRefId="home"></hst:link>
@@ -25,9 +26,19 @@
         <h3 align="center"><c:out value="${document.name}"/></h3>
         <div>
             <hst:cmseditlink hippobean="${document}"/>
-           <div class="well text-center"><c:out value="${document.serviceDescription}"/></div>
+           <div class="well text-cleft"><c:out value="${document.serviceDescription}"/></div>
             <c:if test="${not empty document.highlights }">
-            <div class="well"><c:out value="${document.highlights}"></c:out></div>
+            <div class="well"><c:forEach items="${document.highlights}" var="highlight" varStatus="status">
+                              <c:choose><c:when test="${status.first}">
+                                          <b><c:out value="${highlight}"></c:out></b>
+                                        </c:when>
+                                 <c:otherwise>
+                                    <c:out value="${highlight}"></c:out>
+                                 </c:otherwise>
+                              </c:choose>
+                              <br/>   
+                      </c:forEach>
+            </div>
             </c:if>
             <%--
             <div>
@@ -57,7 +68,6 @@
 	</div>
 </div>
     
-
 <hst:element var="uiCustom" name="script">
 	<hst:attribute name="type">text/javascript</hst:attribute>
 		$(document).ready(function(){
