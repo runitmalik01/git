@@ -41,7 +41,7 @@ import com.mootly.wcm.services.ScreenCalculatorService;
 		  "Letable_value",
 		  "Unrealised_rent",
 		  "Local_tax",
-		  "Total",
+		  "Interest_borrowed",
 		  
 		  "Tenant_pan"
 	},
