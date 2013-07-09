@@ -131,9 +131,9 @@ TreeMap objTreeMapSection = (TreeMap) objValueListService.getReturnFile();
 					<td class="pan"><b><c:out value="${anEntry.lastOrOrgName}"/></b></td>
 					<td class="filingStatus decimal"><span><c:out value="${anEntry.financialYear}"/></span></td>
 					<td class="filingStatus decimal"><c:out value="${anEntry.filingStatus}"/></td>
-					<td><c:out value="${anEntry.ITRForm}"/></td>
+					<td><fmt:message key="${anEntry.ITRForm}.packageName"/></td>
 					<td class="filingStatus"  style="text-transform:capitalize;"><c:out value="${anEntry.itReturnType}"/></td>
-					<td><c:out value="${anEntry.ITRFormMode}"/></td>
+					<td><fmt:message key="ITRServiceDelivery.${anEntry.ITRFormMode}.displayName"/></td>
 					<td>
 						<hst:link var="viewLink" path="/member/itreturn/${anEntry.financialYear.displayName}/${anEntry.itReturnType.displayName}/${anEntry.pan}/xmlgenerator.html"/>
 						<span style=""><a href="${viewLink}">Continue Filing</a></span>
