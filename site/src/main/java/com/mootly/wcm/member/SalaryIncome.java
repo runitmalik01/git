@@ -9,6 +9,11 @@
 
 package com.mootly.wcm.member;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 import org.hippoecm.hst.core.component.HstComponentException;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
@@ -27,11 +32,12 @@ import com.mootly.wcm.beans.MemberPersonalInformation;
 import com.mootly.wcm.beans.SalaryIncomeDocument;
 import com.mootly.wcm.beans.compound.SalaryIncomeDetail;
 import com.mootly.wcm.components.ITReturnComponent;
+import com.mootly.wcm.utils.ContentStructure;
 @PrimaryBean(primaryBeanClass=SalaryIncomeDocument.class)
 @ChildBean(childBeanClass=SalaryIncomeDetail.class)
 @AdditionalBeans(additionalBeansToLoad=MemberPersonalInformation.class)
 @RequiredBeans(requiredBeans={MemberPersonalInformation.class})
-@RequiredFields(fieldNames={"Name_employer","Employe_category","Tan_employer","Pan_employee","Name_employee","Cityslry","Stateslry","Addressslry","Pinslry","From","To","Gross_salary","Taxable_earning"})
+@RequiredFields(fieldNames={"Name_employer","Employe_category","Tan_employer","Pan_employee","Name_employee","Cityslry","Stateslry","Addressslry","Pinslry","Gross_salary"})
 @FormFields(fieldNames={"Employe_category","Name_employer","Name_employee","Pan_employer","Tan_employer","Pan_employee","Addressslry",
 		"Cityslry","Stateslry","Pinslry","From","To","Gross_salary","Allowance","Allowance1","Perquisite","profit","Taxable_earning"})
 @DataTypeValidationFields(fieldNames={
@@ -72,13 +78,17 @@ public class SalaryIncome extends ITReturnComponent {
 	public void doBeforeRender(HstRequest request, HstResponse response) {
 		// TODO Auto-generated method stub
 		super.doBeforeRender(request, response);	
-	}
+		
+		//String date1= ContentStructure.getMemberAssetDocPath(, filing_year, getUserName());
+		
+	} 
 
 	@Override
 	public void doAction(HstRequest request, HstResponse response)
 			throws HstComponentException {
 		// TODO Auto-generated method stub
 		super.doAction(request, response);
+		
 	}
 
 }
