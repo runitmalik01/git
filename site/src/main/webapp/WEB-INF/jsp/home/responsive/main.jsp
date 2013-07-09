@@ -104,12 +104,12 @@
    <div class="grid span4">
       <div class="widget-wrapper">
          <div class="widget-title-home">
-            <h3>Basic</h3>
+            <h3><fmt:message key="ITR1.packageName"></fmt:message></h3>
          </div>
          <div class="textwidget">
            <div><fmt:message key="ITR1.whoCan"></fmt:message></div>          
-           <button type="button" class="btn btn-success">e-File (<w4india:inr minFractionDigits="0" value="499"></w4india:inr>)</button>
-           <button type="button" class="btn btn-info">eZ-File</button>
+           <button type="button" class="btnfiling btn btn-success">e-File <small>(<w4india:inr minFractionDigits="0" value="199"></w4india:inr>)</small></button>
+           <button type="button" class="btnfiling btn btn-info">eZ-File <small>(<w4india:inr minFractionDigits="0" value="499"></w4india:inr>)</small></button>
          </div>
       </div>
       <!-- end of .widget-wrapper -->
@@ -118,12 +118,12 @@
    <div class="grid span4">
       <div class="widget-wrapper">
          <div class="widget-title-home">
-            <h3>Deluxe</h3>
+            <h3><fmt:message key="ITR2.packageName"></fmt:message></h3>
          </div>
          <div class="textwidget">
             <div><fmt:message key="ITR2.whoCan"></fmt:message></div>	
-            <button type="button" class="btn btn-success">e-File (<w4india:inr minFractionDigits="0" value="499"></w4india:inr>)</button>
-            <button type="button" class="btn btn-info">eZ-File</button>			
+            <%--<button type="button" class="btn btn-success">e-File (<w4india:inr minFractionDigits="0" value="299"></w4india:inr>)</button>--%>
+            <button type="button" class="btnfiling btn btn-info">eZ-File (<w4india:inr minFractionDigits="0" value="799"></w4india:inr>)</button>			
          </div>
       </div>
       <!-- end of .widget-wrapper -->
@@ -132,12 +132,12 @@
    <div class="grid span4">
       <div class="widget-wrapper">
          <div class="widget-title-home">
-            <h3>Premium</h3>
+            <h3><fmt:message key="ITR3.packageName"></fmt:message></h3>
          </div>
          <div class="textwidget">
             <div><fmt:message key="ITR3.whoCan"></fmt:message></div>	
-            <button type="button" class="btn btn-success">e-File (<w4india:inr minFractionDigits="0" value="499"></w4india:inr>)</button>
-            <button type="button" class="btn btn-info">eZ-File</button>			
+            <%--<button type="button" class="btn btn-success">e-File (<w4india:inr minFractionDigits="0" value="499"></w4india:inr>)</button>--%>
+            <button type="button" class="btnfiling btn btn-info">eZ-File (<w4india:inr minFractionDigits="0" value="1099"></w4india:inr>)</button>			
          </div>
       </div>
       <!-- end of .widget-wrapper -->
@@ -147,12 +147,12 @@
    <div class="grid span4">
       <div class="widget-wrapper">
          <div class="widget-title-home">
-            <h3>Platinum</h3>
+            <h3><fmt:message key="ITR4.packageName"></fmt:message></h3>
          </div>
          <div class="textwidget">
             <div><fmt:message key="ITR4.whoCan"></fmt:message></div>	
-            <button type="button" class="btn btn-success">e-File (<w4india:inr minFractionDigits="0" value="499"></w4india:inr>)</button>
-            <button type="button" class="btn btn-info">eZ-File</button>		
+            <%--<button type="button" class="btn btn-success">e-File (<w4india:inr minFractionDigits="0" value="999"></w4india:inr>)</button> --%>
+            <button type="button" class="btnfiling btn btn-info">eZ-File (<w4india:inr minFractionDigits="0" value="1499"></w4india:inr>)</button>		
          </div>
       </div>
       <!-- end of .widget-wrapper -->
@@ -161,12 +161,12 @@
    <div class="grid span4">
       <div class="widget-wrapper">
          <div class="widget-title-home">
-            <h3>Platinum+</h3>
+            <h3><fmt:message key="ITR4S.packageName"></fmt:message></h3>
          </div>
          <div class="textwidget">
             <div><fmt:message key="ITR5.whoCan"></fmt:message></div>	
-            <button type="button" class="btn btn-success">e-File (<w4india:inr minFractionDigits="0" value="499"></w4india:inr>)</button>
-            <button type="button" class="btn btn-info">eZ-File</button>				
+            <%--<button type="button" class="btn btn-success">e-File (<w4india:inr minFractionDigits="0" value="1499"></w4india:inr>)</button> --%>
+            <button type="button" class="btnfiling btn btn-info">eZ-File (<w4india:inr minFractionDigits="0" value="1499"></w4india:inr>)</button>				
          </div>
       </div>
       <!-- end of .widget-wrapper -->
@@ -374,3 +374,15 @@
    </script>
 </hst:headContribution>
  --%>
+ 
+ <hst:headContribution  category="jsInternal">
+   <script type="text/javascript">
+      jQuery(function($){
+      	$(window).load(function() {
+      		$(".btnfiling").click(function() {
+      			window.location.href="<hst:link siteMapItemRefId="itreturnhome"/>";
+      		});
+      })
+      });
+   </script>
+</hst:headContribution>
