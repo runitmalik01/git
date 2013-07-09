@@ -350,7 +350,7 @@
 <hst:headContribution  category="jsExternal">
    <script type='text/javascript' src='${nivoSlider}'></script>
 </hst:headContribution>
- --%>
+
 <hst:headContribution  category="jsInternal">
    <script type="text/javascript">
       jQuery(function($){
@@ -373,3 +373,4 @@
       });
    </script>
 </hst:headContribution>
+ --%>
