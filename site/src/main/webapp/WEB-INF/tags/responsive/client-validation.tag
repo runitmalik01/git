@@ -74,9 +74,7 @@
                                     minDate: "01/01/1900",
                                     yearRange: yrRange
 								}).addClass("indiandate");
-								 fObj.keypress(function(e) {
-           								 e.preventDefault();
-    									});
+								 
 							break;
 					case "indiandateAdvance":
 								fObj.datepicker({
