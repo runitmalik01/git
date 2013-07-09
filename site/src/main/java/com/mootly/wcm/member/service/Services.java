@@ -72,6 +72,8 @@ public class Services extends BaseComponent {
 		} catch (QueryException e) {
 			throw new HstComponentException("Query error while getting services: " + e.getMessage(), e);
 		}
+		log.info("service request"+request.getRequestContext().getAttribute("Success"));
+		request.setAttribute("Success", request.getRequestContext().getAttribute("Success"));
 	}
 
 	private PageableCollection<com.mootly.wcm.beans.Service> getServices(HstRequest request, HippoBean scope, int pageSize, int currentPage, String query) throws QueryException {

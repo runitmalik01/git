@@ -51,7 +51,9 @@ public class ServiceRequest extends EasyFormComponent {
     		throws HstComponentException {
     	// TODO Auto-generated method stub
     	super.doBeforeRender(request, response);
-    	request.setAttribute("Success", request.getParameter("Success"));
+    	request.getRequestContext().setAttribute("Success", request.getParameter("Success"));
+    	request.setAttribute("srdocument", request.getRequestContext().getAttribute("document"));
+    	log.info("this request context attribute"+request.getRequestContext().getAttribute("document").toString());
     }
 	@Override
 	public void doAction(HstRequest request, HstResponse response)
@@ -78,6 +80,7 @@ public class ServiceRequest extends EasyFormComponent {
 			serviceDoc.setAddress(formMap.getField("flex_field_string_3").getValue());
 			serviceDoc.setMobile(formMap.getField("flex_field_string_4").getValue());
 			serviceDoc.setEmail(formMap.getField("flex_field_string_5").getValue());
+			serviceDoc.setServiceCode(formMap.getField("flex_field_string_6").getValue());
 			ServiceRequestDocument  resServicedocument=createServiceRequestDocument(request, serviceDoc);
 			if(resServicedocument!=null){
 				response.setRenderParameter("Success", "Success");
@@ -104,7 +107,7 @@ public class ServiceRequest extends EasyFormComponent {
 			wpm=getWorkflowPersistenceManager(persistableSession);
 			wpm.setWorkflowCallbackHandler(new FullReviewWorkflowCallbackHandler());
 			final String serviceRequsetpath=getServiceRequestPath(request);
-			String objectpath=wpm.createAndReturn(serviceRequsetpath+"serviceRequest", serviceDoc.NAMESPACE, "Service", true);
+			String objectpath=wpm.createAndReturn(serviceRequsetpath+"serviceRequest", serviceDoc.NAMESPACE, serviceDoc.getServiceCode(), true);
 			ServiceRequestDocument serviceRequestDocument=(ServiceRequestDocument) wpm.getObject(objectpath);
 			if(serviceRequestDocument!=null){
 				serviceRequestDocument.setFirstName(serviceDoc.getFirstName());
@@ -113,6 +116,7 @@ public class ServiceRequest extends EasyFormComponent {
 				serviceRequestDocument.setAddress(serviceDoc.getAddress());
 				serviceRequestDocument.setEmail(serviceDoc.getEmail());
 				serviceRequestDocument.setMobile(serviceDoc.getMobile());
+				serviceRequestDocument.setServiceCode(serviceDoc.getServiceCode());
 				wpm.update(serviceRequestDocument);
 				ServiceRequestDocument publishedSignUpDocument = (ServiceRequestDocument) wpm.getObject(objectpath); 
 				if (publishedSignUpDocument == null) return null;//major screwup
@@ -122,12 +126,13 @@ public class ServiceRequest extends EasyFormComponent {
 				//first find the template membership_signup, this template is under emailtemplates folder
 				//SIMPLE WORKFLOW
 				Map<String,Object> contextMap = new HashMap<String, Object>();
-				contextMap.put("serviceDoc", publishedSignUpDocument);				
+				contextMap.put("serviceDoc", publishedSignUpDocument);
+				contextMap.put("serviceName", publishedSignUpDocument.getServiceCode());
 				String pathToNewNode = wpm.createAndReturn(serviceRequsetpath +"emails", EmailMessage.NAMESPACE, "service_request", true);
 				EmailMessage emailMessage = (EmailMessage) wpm.getObject(pathToNewNode);
 				// here we are creating template for email.			
 				EmailTemplate emailTemplate = (EmailTemplate) wpm.getObject(ContentStructure.getEmailTemplatesPath(request) + "/service_request");
-				wpm.update(createEmailService(request, emailMessage, emailTemplate, contextMap, "info@wealth4india.com"));
+				wpm.update(createEmailService(request, emailMessage, emailTemplate, contextMap, "sr@wealth4india.com"));
 				String pathToNewNodeAck = wpm.createAndReturn(serviceRequsetpath +"emails", EmailMessage.NAMESPACE, "service_request_ack", true);
 				EmailMessage emailMessageAck = (EmailMessage) wpm.getObject(pathToNewNodeAck);
 				// here we are creating template for email.	
