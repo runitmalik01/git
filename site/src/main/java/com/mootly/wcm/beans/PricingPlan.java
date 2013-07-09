@@ -30,12 +30,12 @@ public class PricingPlan extends BaseDocument {
 		return getProperty("mootlywcm:title");
 	}
 
-	public String getSubTitle() {
-		return getProperty("mootlywcm:subtitle");
+	public String getEfilePricing() {
+		return getProperty("mootlywcm:efilepricing");
 	}
 
-	public String getPricing() {
-		return getProperty("mootlywcm:pricing");
+	public String getEzfilePricing() {
+		return getProperty("mootlywcm:ezfilepricing");
 	}
 
 	public String getDescription() {
