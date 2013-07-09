@@ -57,7 +57,8 @@ public class Services extends BaseComponent {
 					resolvedSiteMapItem.getRelativeContentPath());
 			return;
 		}
-		int pageSize = GoGreenUtil.getIntConfigurationParameter(request, Constants.PAGE_SIZE, DEFAULT_PAGE_SIZE);
+		int defaultPageSize = Integer.valueOf(getParameter("pageSize", request));
+		int pageSize = GoGreenUtil.getIntConfigurationParameter(request, Constants.PAGE_SIZE, defaultPageSize);
 		String currentPageParam = getPublicRequestParameter(request, PARAM_CURRENT_PAGE);
 		int currentPage = ComponentUtil.parseIntParameter(PARAM_CURRENT_PAGE, currentPageParam, DEFAULT_CURRENT_PAGE, log);
 		String query = this.getPublicRequestParameter(request, "query");

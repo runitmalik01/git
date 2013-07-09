@@ -9,11 +9,15 @@
 
 <%@ attribute name="value" required="true" type="java.lang.String" %>
 <%@ attribute name="currencySymbol" required="false" type="java.lang.String" %>
+<%@ attribute name="minFractionDigits" required="false" type="java.lang.String" %>
 
 <%
 	if (currencySymbol == null)  currencySymbol = "&#8377;";
 	request.setAttribute("currencySymbol",currencySymbol);
+	if (minFractionDigits == null) {
+		request.setAttribute("minFractionDigits","2");
+	}
 %>
 
-<fmt:formatNumber value="${value}" type="CURRENCY" currencySymbol="${currencySymbol}" pattern="¤ #,##0.00;¤ -#,##0.00" maxFractionDigits="2" minFractionDigits="2" minIntegerDigits="1"></fmt:formatNumber>
+<fmt:formatNumber value="${value}" type="CURRENCY" currencySymbol="${currencySymbol}" pattern="¤ #,##0.00;¤ -#,##0.00" maxFractionDigits="2" minFractionDigits="${minFractionDigits}" minIntegerDigits="1"></fmt:formatNumber>
 

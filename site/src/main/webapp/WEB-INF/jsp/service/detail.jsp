@@ -29,6 +29,7 @@
             <c:if test="${not empty document.highlights }">
             <div class="well"><c:out value="${document.highlights}"></c:out></div>
             </c:if>
+            <%--
             <div>
             <c:forEach items="${document.costModel}" var="costmodel">
                      <div class="alert alert-info"><c:out value="${costmodel.costDetail }"/>|<w4india:inr value="${costmodel.cost}"></w4india:inr>|
@@ -43,6 +44,7 @@
                     </div>
             </c:forEach>
             </div>
+             --%>
         </div>
     </div>
 </div>

@@ -37,19 +37,17 @@
    <a href="#nogo" class="orange button">Free! Get Started!</a>
 </div>
  --%>
+<jsp:include page="cara.jsp"/>
+<%--
 <div class="slider-wrapper grid col-940 theme-default">
 	<div id="myCarousel" class="carousel slide">
 	  <ol class="carousel-indicators">
-	    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-	    <li data-target="#myCarousel" data-slide-to="1"></li>
+	    <li data-target="#myCarousel" data-slide-to="0"  class="active"></li>
 	    <li data-target="#myCarousel" data-slide-to="2"></li>
 	    <li data-target="#myCarousel" data-slide-to="3"></li>
-	    <li data-target="#myCarousel" data-slide-to="4"></li>
 	  </ol>
 	  <!-- Carousel items -->
 	  <div class="carousel-inner">
-	    <div class="active item"><img src="<hst:link path="/images/retirement.png"/>"/> </div>
-	    <div class="item"><img src="<hst:link path="/images/businessprotection.png"/>"/> </div>
 	    <div class="item"><img src="<hst:link path="/images/grow_income.jpg"/>"/> </div>
 	    <div class="item"><img src="<hst:link path="/images/slide08.jpg"/>"/> </div>
 	    <div class="item"><img src="<hst:link path="/images/taxation.jpg"/>"/> </div>
@@ -59,6 +57,7 @@
 	  <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
 	</div>
 </div>
+  --%>
 <%-- comment out for now will work on it again --%>
 <%--
 <div class="row-fluid show-grid">	        
@@ -72,6 +71,7 @@
 </div>
  --%>
 <%-- /end  --%>
+<!-- 
 <div class="row-fluid show-grid">	        
 	<div class="span6" style="border-bottom:1px solid green;border-top:1px solid green">
 		<h2 style="display:inline">eFile</h2>&nbsp;&nbsp;<a href="">Learn More..</a>
@@ -96,60 +96,94 @@
 		</div>			
 	</div>
 </div>
-<div id="widgets" class="home-widgets" style="margin-top:20px;">
-   <div class="grid col-220">
+-->
+<h3>File your Tax Return as easy as 1,2,3..</h3>
+<h4>Choose the package which suits your need</h4>
+<h5>Remember eZ File can make your life simple. Simply upload your documents and rest will be taken care by us.</h5>
+<div class="row-fluid show-grid">	 
+   <div class="grid span4">
       <div class="widget-wrapper">
          <div class="widget-title-home">
-            <h4>For Individuals</h4>
+            <h3>Basic</h3>
          </div>
          <div class="textwidget">
-           <ul>
-           		<li>Single Source Of Income</li>
-           		<li>Single Property Income</li>
-           		<li>No Loss or Gain to be carried forward</li>
-           </ul>
+           <div><fmt:message key="ITR1.whoCan"></fmt:message></div>          
+           <button type="button" class="btn btn-success">e-File (<w4india:inr minFractionDigits="0" value="499"></w4india:inr>)</button>
+           <button type="button" class="btn btn-info">eZ-File</button>
          </div>
       </div>
       <!-- end of .widget-wrapper -->
    </div>
    <!-- end of .col-300 -->
-   <div class="grid col-220">
+   <div class="grid span4">
       <div class="widget-wrapper">
          <div class="widget-title-home">
-            <h3>ITR1</h3>
+            <h3>Deluxe</h3>
          </div>
          <div class="textwidget">
-            Your wealth can have a massive impact beyond your lifetime. With foresight, you can ensure that impact is as positive as possible. We can help you prepare for tomorrow.				
+            <div><fmt:message key="ITR2.whoCan"></fmt:message></div>	
+            <button type="button" class="btn btn-success">e-File (<w4india:inr minFractionDigits="0" value="499"></w4india:inr>)</button>
+            <button type="button" class="btn btn-info">eZ-File</button>			
          </div>
       </div>
       <!-- end of .widget-wrapper -->
    </div>
    <!-- end of .col-300 -->
-   <div class="grid col-220">
+   <div class="grid span4">
       <div class="widget-wrapper">
          <div class="widget-title-home">
-            <h3>ITR2</h3>
+            <h3>Premium</h3>
          </div>
          <div class="textwidget">
-            We can help you prepare for a changing future by protecting your wealth now.
+            <div><fmt:message key="ITR3.whoCan"></fmt:message></div>	
+            <button type="button" class="btn btn-success">e-File (<w4india:inr minFractionDigits="0" value="499"></w4india:inr>)</button>
+            <button type="button" class="btn btn-info">eZ-File</button>			
+         </div>
+      </div>
+      <!-- end of .widget-wrapper -->
+   </div>
+</div>
+<div class="row-fluid show-grid">	 
+   <div class="grid span4">
+      <div class="widget-wrapper">
+         <div class="widget-title-home">
+            <h3>Platinum</h3>
+         </div>
+         <div class="textwidget">
+            <div><fmt:message key="ITR4.whoCan"></fmt:message></div>	
+            <button type="button" class="btn btn-success">e-File (<w4india:inr minFractionDigits="0" value="499"></w4india:inr>)</button>
+            <button type="button" class="btn btn-info">eZ-File</button>		
          </div>
       </div>
       <!-- end of .widget-wrapper -->
    </div>
    <!-- end of .col-300 -->
-   <div class="grid col-220 fit">
+   <div class="grid span4">
       <div class="widget-wrapper">
          <div class="widget-title-home">
-            <h3>Company Taxes</h3>
+            <h3>Platinum+</h3>
          </div>
          <div class="textwidget">
-            Lear More..
+            <div><fmt:message key="ITR5.whoCan"></fmt:message></div>	
+            <button type="button" class="btn btn-success">e-File (<w4india:inr minFractionDigits="0" value="499"></w4india:inr>)</button>
+            <button type="button" class="btn btn-info">eZ-File</button>				
          </div>
       </div>
       <!-- end of .widget-wrapper -->
    </div>
-   <!-- end of .col-300 fit -->
-</div>  	
+   <!-- end of .col-300 -->
+   <div class="grid span4">
+      <div class="widget-wrapper">
+         <div class="widget-title-home">
+            <h3>Other Services</h3>
+         </div>
+         <div class="textwidget">
+            <hst:include ref="services-itr"/>
+         </div>
+      </div>
+      <!-- end of .widget-wrapper -->
+   </div>
+</div>	
 
 <hst:headContribution keyHint="detectMobile" category="jsInternal">
    <script type="text/javascript">
@@ -237,6 +271,60 @@
       font-size: 12px;
       color: #666;
       }
+      
+       /* CUSTOMIZE THE CAROUSEL
+    -------------------------------------------------- */
+
+    /* Carousel base class */
+    .carousel {
+      margin-bottom: 10px;
+    }
+
+    .carousel .container {
+      position: relative;
+      z-index: 9;
+    }
+
+    .carousel-control {
+      height: 80px;
+      margin-top: 0;
+      font-size: 120px;
+      text-shadow: 0 1px 1px rgba(0,0,0,.4);
+      background-color: transparent;
+      border: 0;
+      z-index: 10;
+    }
+
+    .carousel .item {
+      height: 350px;
+    }
+    .carousel img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      min-width: 100%;
+      height: 350px;
+    }
+
+    .carousel-caption {
+      background-color: transparent;
+      position: static;
+      max-width: 550px;
+      padding: 0 20px;
+      margin-top: 200px;
+    }
+    .carousel-caption h1,
+    .carousel-caption .lead {
+      margin: 0;
+      line-height: 1.25;
+      color: #fff;
+      text-shadow: 0 1px 1px rgba(0,0,0,.4);
+    }
+    .carousel-caption .btn {
+      margin-top: 10px;
+    }
+    
+   .captionfull {max-width: 650px;margin-top:50px;margin-left:80px;}
    </style>
 </hst:headContribution>
 <%--

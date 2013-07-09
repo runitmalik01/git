@@ -1,11 +1,37 @@
 <%@include file="../../includes/tags.jspf"%>
-<div class="row-fluid">
-	<ul class="thumbnails">
+<style>
+ul.niceList { 
+  margin-left:0em; 
+  padding-left:0.2em; 
+  margin-bottom:1em; 
+}
+ul.niceList li { 
+  /*background:url(images/bullet.gif) 0em 0.5em no-repeat; *//* change background em accordingly */
+  padding-left: 0.8em; 
+  list-style: none; 
+}
+/*.niceList ul li { background-image:url(images/bullet_child.gif); }*/
+ 
+ol.niceList li, ul.niceList li { margin-bottom:0.5em; }
+ 
+ol.niceList { 
+  margin-left:1.5em; 
+  padding-left:0px; 
+}
+.niceList ol li { 
+  list-style:decimal; 
+  background-image:none; 
+  padding-left:0em; 
+}
+</style>
+	<ul class="niceList">
 		<c:forEach items="${services.items}" var="serviceitem" varStatus="status">
 			<c:if test="${serviceitem.enable eq 'true'}">
 				<hst:cmseditlink var="test" hippobean="${serviceitem}" />
 				<hst:link var="link" hippobean="${serviceitem}" />
-				<li class="span4">
+				<li>
+					<a href="${link }"><c:out value="${serviceitem.name}" /></a>
+					<%--
 					<div class="thumbnail">
 						<div class="caption">
 							<h4>
@@ -13,6 +39,7 @@
 							</h4>
 							<c:forEach var="category" items="${serviceitem.categories}">
 								<c:forEach items="${services.items}" var="subserviceitem">
+
 									<c:forEach var="campcategory"
 										items="${subserviceitem.categories}">
 										<c:choose>
@@ -22,16 +49,17 @@
 												<div><a href="${sublink}"><c:out value="${subserviceitem.name}" /></a></div>
 											</c:when>
 										</c:choose>
-									</c:forEach>
+									</c:forEach>									
 								</c:forEach>
 							</c:forEach>
 						</div>
 					</div>
+					 --%>
 				</li>
 			</c:if>
 		</c:forEach>
 	</ul>
-</div>
+<%--
 <div class="row-fluid">
 	<div class="span12">
 		<c:choose>
@@ -47,3 +75,4 @@
 		</c:choose>
 	</div>
 </div>
+ --%>

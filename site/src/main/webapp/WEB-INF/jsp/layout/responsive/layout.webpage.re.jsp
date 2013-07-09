@@ -42,6 +42,8 @@
     <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/themes/smoothness/jquery-ui.css" />
     <link rel="stylesheet" media="screen" type="text/css" href='<hst:link path="/css/bootstrap.css"></hst:link>'/>
 	<link rel="stylesheet" media="screen" type="text/css" href='<hst:link path="/css/bootstrap-responsive.css"></hst:link>'/>
+	<!-- <link rel="stylesheet" media="screen" type="text/css" href='<hst:link path="/css/bootplus.css"></hst:link>'/> -->
+	<!-- <link rel="stylesheet" media="screen" type="text/css" href='<hst:link path="/css/font-awesome-min.css"></hst:link>'/> -->
     <hst:headContributions categoryIncludes="css"/>
 </head>
 <body class="<c:choose><c:when test="${not empty bodyCssClass}"><c:out value="${bodyCssClass}"/></c:when><c:otherwise>page</c:otherwise></c:choose>">
