@@ -303,13 +303,13 @@ public class OtherSourcesDocument extends BaseDocument implements ContentNodeBin
 			if (getGov_income() != null) {
 				node.setProperty("mootlywcm:Gov_income", getGov_income());
 			}if(getKissan()!=null){
-				node.setProperty("mootlywcm:Kissan_patra", otherincome.getKissan());
+				node.setProperty("mootlywcm:Kissanpatra", otherincome.getKissan());
 			}if(getBank_detail_fdr()!=null){
 				node.setProperty("mootlywcm:Bank_detail_fdr", otherincome.getBank_detail_fdr());
 			}if(getBank_detail_saving()!=null){
 				node.setProperty("mootlywcm:Bank_detail_saving", otherincome.getBank_detail_saving());
 			}
-			node.setProperty("mootlywcm:Indira_patra", otherincome.getIndira());
+			node.setProperty("mootlywcm:Indirapatra", otherincome.getIndira());
 			node.setProperty("mootlywcm:Intnsc", otherincome.getIntnsc());
 			node.setProperty("mootlywcm:Other_interest", otherincome.getOtherint());
 			node.setProperty("mootlywcm:Total_interest", otherincome.getTotalint());
