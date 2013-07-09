@@ -1,4 +1,9 @@
 <%@include file="../../includes/tags.jspf"%>
+<%@page import="org.hippoecm.hst.core.component.HstRequest"%>
+<%if(request.getUserPrincipal()!=null){
+    pageContext.setAttribute("regemail", request.getUserPrincipal().getName()); 
+    }
+%>
 <hst:actionURL var="actionUrl"></hst:actionURL>
   <form class="form" name="serviceRequest" action="${actionUrl}" method="post" id="serviceRequest">
 <%-- <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -6,7 +11,7 @@
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
     <h3 id="myModalLabel">Service Request</h3>
   </div>--%>
-  <h3>Service Request</h3>
+  <h4><c:out value="${srdocument.name}"/> Request</h4>
   		<h5><small>Fill this service request form.Soon we will get back to you.</small></h5>
 <c:choose>
 	<c:when test="${success eq 'eventsuccess'}">
@@ -129,6 +134,12 @@
             $('#apply').click(function(){
                $('#serviceRequest').submit();
              });
+            var regemail='<c:out value = "${regemail}" />';
+	        if(regemail!='') {
+	           serviceRequest.flex_field_string_5.value= regemail ;
+	        }
+	        serviceRequest.flex_field_string_6.value='<c:out value="${srdocument.name}"/>';
+	        serviceRequest.flex_field_string_6.readOnly=true;
 		 });
 </hst:element>
 <hst:headContribution element="${uiCustom}" category="jsInternal" />
