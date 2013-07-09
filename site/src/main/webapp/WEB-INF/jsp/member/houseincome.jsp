@@ -75,21 +75,19 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 							</div>
 						</div>
 
-
-						<div class="span3">
-							<div class="rowlabel">
-								<label for="states"><small>State</small> </label>
-							</div>
-							<select id="states" name="states" class="uprcase">
-								<option value="">-Select-</option>
-								<c:forEach var="booleanCombo" items="${objHashMapstates}">
-									<option
-										<c:if test="${pageAction == 'EDIT_CHILD' || childBean.states == booleanCombo.key}">selected</c:if>
-										value="${booleanCombo.key}">${booleanCombo.value}</option>
-								</c:forEach>
-							</select>
-
-						</div>
+				<div class="span3">
+					<div class="rowlabel">
+						<label for="states"><small>State</small> </label>
+					</div>
+					<select id="states" name="states"  class="uprcase">
+						<option value="">-Select-</option>
+						<c:forEach var="booleanCombo" items="${objHashMapstates}">
+							<option
+								<c:if test="${pageAction == 'EDIT_CHILD' || childBean.states == booleanCombo.key}">selected</c:if>
+								value="${booleanCombo.key}">${booleanCombo.value}</option>
+						</c:forEach>
+					</select>
+				</div>
 						<div class="span3">
 							<div class="rowlabel">
 								<label for="Pin"><small>PIN Code</small> </label>
@@ -339,8 +337,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 						</div>
 						<div class="span7 decimal">
 							<div class="rowlabel">
-								<label for=""><small>Annuable letable value/rent
-										received or receivable</small> </label>
+								<label for=""><small>Lettable value</small> </label>
 							</div>
 						</div>
 						<div class="span2 offset1">
@@ -360,8 +357,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 						</div>
 						<div class="span7 decimal">
 							<div class="rowlabel">
-								<label for=""><small>The amount of rent which
-										cannot be realized</small> </label>
+								<label for=""><small>Unrealised Rent</small> </label>
 							</div>
 						</div>
 						<div class="span2 offset1">
@@ -382,8 +378,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 						</div>
 						<div class="span7 decimal">
 							<div class="rowlabel">
-								<label for=""><small>Tax paid to local
-										authorities</small> </label>
+								<label for=""><small>Local Taxes</small> </label>
 							</div>
 						</div>
 						<div class="span2 offset1">
@@ -444,8 +439,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 						</div>
 						<div class="span7 decimal">
 							<div class="rowlabel">
-								<label for=""><small>Interest on Borrowed
-										Capital</small> </label>
+								<label for=""><small>Interest Payable</small> </label>
 							</div>
 						</div>
 						<div class="span2 offset1">
