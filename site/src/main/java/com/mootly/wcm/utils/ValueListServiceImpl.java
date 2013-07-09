@@ -340,6 +340,8 @@ public final class ValueListServiceImpl implements ValueListService{
 		TreeMapStates.put("17", objValueListStatesBundle.getString("valueList.lakshadeep"));
 		TreeMapStates.put("25", objValueListStatesBundle.getString("valueList.pondicherry"));
 
+		TreeMapStates.put("99", objValueListStatesBundle.getString("valueList.foreign"));
+		
 		camelizeTreeMap(TreeMapStates);
 		//SortedMap<String, String> m = Collections.synchronizedSortedMap(TreeMapStates);
 		mapOfValueList.put("states",entriesSortedByValues(TreeMapStates));
@@ -591,14 +593,14 @@ public final class ValueListServiceImpl implements ValueListService{
 	public TreeMap<String, String> getReturnFile() {
 		// TODO Auto-generated method stub
 		TreeMap<String, String> TreeReturnType =new TreeMap<String, String>();
-		TreeReturnType.put("1", objvalueListReturnFile.getString("valueList.before.duedate"));
-		TreeReturnType.put("2", objvalueListReturnFile.getString("valueList.after.duedate"));
-		TreeReturnType.put("3", objvalueListReturnFile.getString("valueList.section.142"));
-		TreeReturnType.put("4", objvalueListReturnFile.getString("valueList.section.148"));
-		TreeReturnType.put("5", objvalueListReturnFile.getString("valueList.section.153"));
-		TreeReturnType.put("6", objvalueListReturnFile.getString("valueList.section.153C"));
-		TreeReturnType.put("7", objvalueListReturnFile.getString("valueList.section.139"));
-		TreeReturnType.put("8", objvalueListReturnFile.getString("valueList.section.139(9)"));
+		TreeReturnType.put("11", objvalueListReturnFile.getString("valueList.before.duedate"));
+		TreeReturnType.put("12", objvalueListReturnFile.getString("valueList.after.duedate"));
+		TreeReturnType.put("13", objvalueListReturnFile.getString("valueList.section.142"));
+		TreeReturnType.put("14", objvalueListReturnFile.getString("valueList.section.148"));
+		TreeReturnType.put("15", objvalueListReturnFile.getString("valueList.section.153"));
+		TreeReturnType.put("16", objvalueListReturnFile.getString("valueList.section.153C"));
+		TreeReturnType.put("17", objvalueListReturnFile.getString("valueList.section.139"));
+		TreeReturnType.put("18", objvalueListReturnFile.getString("valueList.section.139(9)"));
 		return  TreeReturnType;
 	}
 
@@ -725,7 +727,7 @@ public final class ValueListServiceImpl implements ValueListService{
 	public TreeMap<String, String> getForeignState() {
 		// TODO Auto-generated method stub
 		TreeMap<String, String> TreeMapForiegnStates =new TreeMap<String, String>();
-		TreeMapForiegnStates.put("99", objValueListStatesBundle.getString("valueList.foreign"));
+		
 		return TreeMapForiegnStates;
 	}
 	public TreeMap<String, String> getNatureIncome(){
