@@ -55,6 +55,7 @@ public class Detail extends BaseComponent {
             return;
         }
         request.setAttribute("document", document);
+        request.getRequestContext().setAttribute("document", document);
 
         HippoFolder commentsFolder = null;
         int commentCount = 0;
