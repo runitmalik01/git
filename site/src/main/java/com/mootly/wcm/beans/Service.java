@@ -17,6 +17,7 @@
 package com.mootly.wcm.beans;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hippoecm.hst.content.beans.Node;
@@ -24,6 +25,9 @@ import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.content.beans.standard.HippoMirror;
 
 import com.mootly.wcm.beans.compound.CostModel;
+import com.mootly.wcm.beans.compound.ImageSet;
+import com.mootly.wcm.beans.compound.ImageSetLink;
+import com.mootly.wcm.utils.Constants;
 
 
 /**
@@ -37,6 +41,33 @@ import com.mootly.wcm.beans.compound.CostModel;
 @Node(jcrType = "mootlywcm:Service")
 public class Service extends Document {
     
+    private List<ImageSet> images;
+    
+    public List<ImageSet> getImages() {
+        initImages();
+        return images;
+    }
+
+    public ImageSet getFirstImage() {
+        initImages();
+        return images.isEmpty() ? null : images.get(0);
+    }
+    
+    private void initImages() {
+        if (images == null) {
+            List<ImageSetLink> links = getChildBeans(Constants.PROP_IMAGELINK);
+
+            images = new ArrayList<ImageSet>(links.size());
+            
+            for (ImageSetLink link: links) {
+                HippoBean referenced = link.getReferencedBean();
+                if (referenced instanceof ImageSet) {
+                    ImageSet imageSet = (ImageSet)referenced;
+                    images.add(imageSet);
+                }
+            }
+        }
+    }
 	private String PROP_PI_PERSONALINFO_LINK="mootlywcm:srForm";
 	
     public String getID() {
@@ -71,8 +102,12 @@ public class Service extends Document {
         return getProperty("mootlywcm:description");
     }
     
-    public String getHighlights() {
+    public String[] getHighlights() {
         return getProperty("mootlywcm:highlights");
+    }
+    
+    public String[] getSubCategories() {
+        return getProperty("mootlywcm:subCategories");
     }
     
     public ServiceRequestForm getServiceRequestForm() {
