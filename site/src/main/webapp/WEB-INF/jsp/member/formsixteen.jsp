@@ -272,26 +272,31 @@
 						<td>(a) Salary as per provisions contained in section 17(1)</td>
 						<td><input id="gross_a" name="gross_a" class=" decimal"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.gross_a}"/></c:if>"
-							placeholder="Rs." type="text" maxlength="14" /></td>
+							placeholder="Rs." type="text" maxlength="14" />
+						</td>
 					</tr>
 					<tr>
 						<td>(b) Value of perquisites u/s 17(2)</td>
 						<td><input id="gross_b" name="gross_b" class=" decimal"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.gross_b}"/></c:if>"
-							placeholder="Rs." type="text" maxlength="14" /></td>
+							placeholder="Rs." type="text" maxlength="14" />
+						</td>
 					</tr>
 					<tr>
 						<td>(c) Profits in lieu of salary under section 17(3)</td>
 						<td><input id="gross_c" name="gross_c" class=" decimal"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.gross_c}"/></c:if>"
-							placeholder="Rs." type="text" maxlength="14" /></td>
+							placeholder="Rs." type="text" maxlength="14" />
+						</td>
 					</tr>
 					<tr>
-						<td><label>TOTAL</label></td>
+						<td><label>TOTAL</label>
+						</td>
 						<td><input id="gross_total" name="gross_total"
 							readonly="readonly" class=" decimal"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.gross_total}"/></c:if>"
-							placeholder="Rs." type="text" maxlength="14" /></td>
+							placeholder="Rs." type="text" maxlength="14" />
+						</td>
 					</tr>
 				</table>
 			</fieldset>
@@ -870,14 +875,14 @@
 			<fieldset>
 				<legend>Tax Head</legend>
 				<div class="row-fluid show-grid">
-				<div class="span8">
-					<div class="rowlabel">
+					<div class="span8">
+						<div class="rowlabel">
 							<label><strong>7.</strong> </label> <label>Relief under
 								section 89 </label>
 						</div>
 					</div>
 					<div class="span4">
-					<div class="rowlabel">
+						<div class="rowlabel">
 							<input id="relief_2" name="relief_2" class="decimal"
 								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
 							<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.relief_2}"/></c:if>"
@@ -949,7 +954,15 @@
 					<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.ded_ent_3}"/></c:if>">
 
 						</div>
-						<br />
+					</div>
+				</div>
+				<div class="row-fluid show-grid">
+					<div class="span8">
+						<div class="rowlabel">
+							<label>9. Net income under the head Salary</label>
+						</div>
+					</div>
+					<div class="span4">
 						<div class="rowlabel">
 							<input id="ded_ent4" name="ded_ent4" class=" decimal"
 								placeholder="Rs." readonly="readonly"
@@ -988,9 +1001,12 @@
 	<c:otherwise>
 		<table>
 			<tr align="center">
-				<th><b>Employer Name</b></th>
-				<th><b>Employee Name</b></th>
-				<th><b>Actions</b></th>
+				<th><b>Employer Name</b>
+				</th>
+				<th><b>Employee Name</b>
+				</th>
+				<th><b>Actions</b>
+				</th>
 			</tr>
 			<c:if test="${not empty parentBean}">
 				<c:forEach items="${parentBean.formSixteenDetailList}"
@@ -998,15 +1014,17 @@
 					<tr align="center">
 						<td><a
 							href="${scriptName}/<c:out value="${salaryItemDetail.canonicalUUID}"/>/formsixteenedit"><c:out
-									value="${salaryItemDetail.employer}" /> </a></td>
-						<td><c:out value="${salaryItemDetail.employee}" /></td>
+									value="${salaryItemDetail.employer}" /> </a>
+						</td>
+						<td><c:out value="${salaryItemDetail.employee}" />
+						</td>
 						<td><a class="btn btn-primary"
 							href="${scriptName}/<c:out value="${salaryItemDetail.canonicalUUID}"/>/formsixteenedit"><small><i
-									class="icon-pencil icon-white"></i>Edit</small> </a>&nbsp;&nbsp;<a class="btn btn-danger"
+									class="icon-pencil icon-white"></i>Edit</small> </a>&nbsp;&nbsp;<a
+							class="btn btn-danger"
 							href="${scriptName}/<c:out value="${salaryItemDetail.canonicalUUID}"/>/formsixteendelete"
-							data-confirm=""><small><i class="icon-trash icon-white"></i>Delete</small>
-						</a>
-						</td>
+							data-confirm=""><small><i
+									class="icon-trash icon-white"></i>Delete</small> </a></td>
 					</tr>
 				</c:forEach>
 			</c:if>
