@@ -29,7 +29,7 @@
         <sv:value>hippo:harddocument</sv:value>
       </sv:property>
       <sv:property sv:name="jcr:uuid" sv:type="String">
-        <sv:value>a6c97093-c860-4685-aa42-31f579db10a7</sv:value>
+        <sv:value>291cd433-3d59-4481-9a68-0193ad51b9de</sv:value>
       </sv:property>
       <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
       <sv:property sv:name="hipposysedit:node" sv:type="Boolean">
@@ -79,7 +79,7 @@
           <sv:value>false</sv:value>
         </sv:property>
         <sv:property sv:name="hipposysedit:path" sv:type="String">
-          <sv:value>mootlywcm:subtitle</sv:value>
+          <sv:value>mootlywcm:efilepricing</sv:value>
         </sv:property>
         <sv:property sv:name="hipposysedit:primary" sv:type="Boolean">
           <sv:value>false</sv:value>
@@ -102,7 +102,7 @@
           <sv:value>false</sv:value>
         </sv:property>
         <sv:property sv:name="hipposysedit:path" sv:type="String">
-          <sv:value>mootlywcm:pricing</sv:value>
+          <sv:value>mootlywcm:ezfilepricing</sv:value>
         </sv:property>
         <sv:property sv:name="hipposysedit:primary" sv:type="Boolean">
           <sv:value>false</sv:value>
@@ -287,7 +287,7 @@
         <sv:value>hippotranslation:translated</sv:value>
       </sv:property>
       <sv:property sv:name="jcr:uuid" sv:type="String">
-        <sv:value>42bb51fa-6e02-4318-a05c-16a3fa921d7c</sv:value>
+        <sv:value>484eb6f4-3301-426b-a8ab-6cbc1d6dab6e</sv:value>
       </sv:property>
       <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
       <sv:property sv:name="hippostd:holder" sv:type="String">
@@ -320,16 +320,16 @@
       <sv:property sv:name="mootlywcm:desciption" sv:type="String">
         <sv:value/>
       </sv:property>
+      <sv:property sv:name="mootlywcm:efilepricing" sv:type="String">
+        <sv:value/>
+      </sv:property>
       <sv:property sv:name="mootlywcm:efiling" sv:type="Boolean">
         <sv:value>false</sv:value>
       </sv:property>
+      <sv:property sv:name="mootlywcm:ezfilepricing" sv:type="String">
+        <sv:value/>
+      </sv:property>
       <sv:property sv:multiple="true" sv:name="mootlywcm:features" sv:type="String">
-        <sv:value/>
-      </sv:property>
-      <sv:property sv:name="mootlywcm:pricing" sv:type="String">
-        <sv:value/>
-      </sv:property>
-      <sv:property sv:name="mootlywcm:subtitle" sv:type="String">
         <sv:value/>
       </sv:property>
       <sv:property sv:name="mootlywcm:title" sv:type="String">
@@ -553,12 +553,12 @@
           </sv:property>
         </sv:node>
       </sv:node>
-      <sv:node sv:name="subtitle">
+      <sv:node sv:name="efilepricing">
         <sv:property sv:name="jcr:primaryType" sv:type="Name">
           <sv:value>frontend:plugin</sv:value>
         </sv:property>
         <sv:property sv:name="caption" sv:type="String">
-          <sv:value>Sub Title</sv:value>
+          <sv:value>E-File Pricing</sv:value>
         </sv:property>
         <sv:property sv:name="engine" sv:type="String">
           <sv:value>${engine}</sv:value>
@@ -590,12 +590,12 @@
           </sv:property>
         </sv:node>
       </sv:node>
-      <sv:node sv:name="pricing">
+      <sv:node sv:name="ezfilepricing">
         <sv:property sv:name="jcr:primaryType" sv:type="Name">
           <sv:value>frontend:plugin</sv:value>
         </sv:property>
         <sv:property sv:name="caption" sv:type="String">
-          <sv:value>Pricing</sv:value>
+          <sv:value>E-ZFile Pricing</sv:value>
         </sv:property>
         <sv:property sv:name="engine" sv:type="String">
           <sv:value>${engine}</sv:value>
