@@ -74,20 +74,23 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.city}"/></c:if>" />
 							</div>
 						</div>
-
-				<div class="span3">
-					<div class="rowlabel">
-						<label for="states"><small>State</small> </label>
-					</div>
-					<select id="states" name="states"  class="uprcase">
-						<option value="">-Select-</option>
-						<c:forEach var="booleanCombo" items="${objHashMapstates}">
-							<option
-								<c:if test="${pageAction == 'EDIT_CHILD' || childBean.states == booleanCombo.key}">selected</c:if>
-								value="${booleanCombo.key}">${booleanCombo.value}</option>
-						</c:forEach>
-					</select>
-				</div>
+						<div class="span3">
+							<div class="rowlabel">
+								<label for="Stateslry"><fmt:message
+										key="member.salary.state" /> </label>
+							</div>
+							<div class="rowlabel">
+								<c:set var="searchresultstitle">
+									<fmt:message key="member.contact_info.state.select" />
+								</c:set>
+								<c:set var="statesType">
+									<fmt:message key="dropdown.states" />
+								</c:set>
+								<w4india:dropdown dropDownSelectId="states"
+									optionSelectString="${searchresultstitle}"
+									dropDownType="${statesType}" fetchValue="${childBean.states}" />
+							</div>
+						</div>
 						<div class="span3">
 							<div class="rowlabel">
 								<label for="Pin"><small>PIN Code</small> </label>
@@ -363,8 +366,8 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 						<div class="span2 offset1">
 							<div>
 								<input id="Unrealised_rent" name="Unrealised_rent"
-									class="letout_L_inv letout_S_inh" placeholder="Rs."
-									type="text" maxlength="14"
+									class="letout_L_inv letout_S_inh" placeholder="Rs." type="text"
+									maxlength="14"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.unrealised_rent}"/></c:if>">
 							</div>
 						</div>
@@ -445,8 +448,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 						<div class="span2 offset1">
 							<div>
 								<input id="Interest_borrowed" name="Interest_borrowed"
-									class="letout_L_inv letout_S_inh" placeholder="Rs."
-									type="text"
+									class="letout_L_inv letout_S_inh" placeholder="Rs." type="text"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.interest_borrowed}"/></c:if>">
 							</div>
 						</div>
@@ -466,8 +468,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 						<div class="span2 offset1">
 							<div>
 								<input id="Income_hproperty" name="Income_hproperty"
-									class="letout_L_inv letout_S_inh" placeholder="Rs."
-									type="text"
+									class="letout_L_inv letout_S_inh" placeholder="Rs." type="text"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.income_hproperty}"/></c:if>"
 									readonly="readonly" />
 							</div>
@@ -488,16 +489,11 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 			<!--  show the table -->
 			<table>
 				<tr align="center">
-					<th><b>Property Let Out</b>
-					</th>
-					<th><b>Address</b>
-					</th>
-					<th><b>Ownership %</b>
-					</th>
-					<th><b>Income from House Property</b>
-					</th>
-					<th><b>Actions</b>
-					</th>
+					<th><b>Property Let Out</b></th>
+					<th><b>Address</b></th>
+					<th><b>Ownership %</b></th>
+					<th><b>Income from House Property</b></th>
+					<th><b>Actions</b></th>
 				</tr>
 				<c:if test="${not empty parentBean}">
 					<c:forEach items="${parentBean.houseIncomeDetailList}"
@@ -505,21 +501,26 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 						<tr>
 							<td><a
 								href="${scriptName}/<c:out value="${houseincomedetail.canonicalUUID}"/>/houseincomeedit">
-								<c:choose><c:when test="${houseincomedetail.letOut=='S'}"><c:out value="Self Occupied"/></c:when>
-										<c:otherwise><c:out value="Letout"/></c:otherwise></c:choose></a>
-							</td>
-							<td><c:out value="${houseincomedetail.address}" />
-							</td>
-							<td><c:out value="${houseincomedetail.property_share}" />
-							</td>
-							<td><w4india:inr value="${houseincomedetail.income_hproperty}" />
-							</td>
+									<c:choose>
+										<c:when test="${houseincomedetail.letOut=='S'}">
+											<c:out value="Self Occupied" />
+										</c:when>
+										<c:otherwise>
+											<c:out value="Letout" />
+										</c:otherwise>
+									</c:choose>
+							</a></td>
+							<td><c:out value="${houseincomedetail.address}" /></td>
+							<td><c:out value="${houseincomedetail.property_share}" /></td>
+							<td><w4india:inr
+									value="${houseincomedetail.income_hproperty}" /></td>
 							<td><a class="btn btn-primary"
-								href="${scriptName}/<c:out value="${houseincomedetail.canonicalUUID}"/>/houseincomeedit"><i class="icon-pencil icon-white"></i><small>Edit</small>
-							</a>&nbsp;&nbsp;<a class="btn btn-danger"
+								href="${scriptName}/<c:out value="${houseincomedetail.canonicalUUID}"/>/houseincomeedit"><i
+									class="icon-pencil icon-white"></i><small>Edit</small> </a>&nbsp;&nbsp;<a
+								class="btn btn-danger"
 								href="${scriptName}/<c:out value="${houseincomedetail.canonicalUUID}"/>/houseincomedelete"
-								onclick="return checkdelete()"><i class="icon-trash icon-white"></i><small>Delete</small> </a>
-							</td>
+								onclick="return checkdelete()"><i
+									class="icon-trash icon-white"></i><small>Delete</small> </a></td>
 						</tr>
 
 					</c:forEach>
@@ -527,7 +528,8 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 				</c:if>
 			</table>
 			<c:if test="${empty NEW_CHILD_DISABLED}">
-				<a href="${scriptName}/houseincomenew" class="button orange">Add New</a>
+				<a href="${scriptName}/houseincomenew" class="button orange">Add
+					New</a>
 			</c:if>
 		</c:otherwise>
 	</c:choose>
