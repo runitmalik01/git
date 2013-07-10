@@ -103,7 +103,7 @@ public class ITR1TaxComputation {
     @XmlElement(name = "TotalTaxPayable", required = true, defaultValue = "0")
     protected BigInteger totalTaxPayable;
     @XmlElement(name = "SurchargeOnTaxPayable", required = true)
-    protected Object surchargeOnTaxPayable;
+    protected BigInteger surchargeOnTaxPayable;
     @XmlElement(name = "EducationCess", required = true, defaultValue = "0")
     protected BigInteger educationCess;
     @XmlElement(name = "GrossTaxLiability", required = true, defaultValue = "0")
@@ -151,7 +151,7 @@ public class ITR1TaxComputation {
      *     {@link Object }
      *     
      */
-    public Object getSurchargeOnTaxPayable() {
+    public BigInteger getSurchargeOnTaxPayable() {
         return surchargeOnTaxPayable;
     }
 
@@ -163,7 +163,7 @@ public class ITR1TaxComputation {
      *     {@link Object }
      *     
      */
-    public void setSurchargeOnTaxPayable(Object value) {
+    public void setSurchargeOnTaxPayable(BigInteger value) {
         this.surchargeOnTaxPayable = value;
     }
 
