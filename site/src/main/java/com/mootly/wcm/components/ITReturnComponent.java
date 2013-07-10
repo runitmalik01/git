@@ -603,23 +603,6 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		redirectURLToSamePage = getScriptName();// getRedirectURL(request,response,FormSaveResult.FAILURE);
 
 		nextScreenSiteMapItemRefId = request.getRequestContext().getResolvedSiteMapItem().getParameter("nextScreen");
-		maxChildrenAllowed = request.getRequestContext().getResolvedSiteMapItem().getParameter("maxChildrenAllowed");
-		if (maxChildrenAllowed != null) {
-			int totalOfCurrentChildren = getTotalChildren();
-			if (totalOfCurrentChildren > 0) {
-				try {
-					int intMaxAllow = Integer.valueOf(maxChildrenAllowed);
-					if (intMaxAllow >= totalOfCurrentChildren) {
-						request.setAttribute("NEW_CHILD_DISABLED", "true");
-					}
-				}catch (NumberFormatException nex) {
-
-				}
-			}
-			if (log.isInfoEnabled()) {
-				log.info("maxChildrenAllowed not null :" + maxChildrenAllowed);
-			}
-		}
 
 		//we must make sure itReturnType and PAN are not empty as well as they are valid
 		if (!StringUtils.isEmpty(pan) && !DataTypeValidationHelper.isOfType(pan, DataTypeValidationType.PAN)) {
@@ -836,6 +819,24 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 				}
 			}
 			request.setAttribute("uuid", uuid);
+		}
+		
+		maxChildrenAllowed = request.getRequestContext().getResolvedSiteMapItem().getParameter("maxChildrenAllowed");
+		if (maxChildrenAllowed != null) {
+			int totalOfCurrentChildren = getTotalChildren();
+			if (totalOfCurrentChildren > 0) {
+				try {
+					int intMaxAllow = Integer.valueOf(maxChildrenAllowed);
+					if (intMaxAllow >= totalOfCurrentChildren) {
+						request.setAttribute("NEW_CHILD_DISABLED", "true");
+					}
+				}catch (NumberFormatException nex) {
+
+				}
+			}
+			if (log.isInfoEnabled()) {
+				log.info("maxChildrenAllowed not null :" + maxChildrenAllowed);
+			}
 		}
 
 		clientSideValidationJSON = ScreenConfigService.generateJSON(this.getClass());
