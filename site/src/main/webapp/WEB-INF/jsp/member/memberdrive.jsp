@@ -100,7 +100,7 @@ pageContext.setAttribute("hostname", builder.toString());
 			    </div>
 			    <div class="span4">
 			         <div class="rowlabel">
-			              <label for="description"><small>Click to Upload</small></label>
+			              <label for="startupload"><small>Click to Upload</small></label>
 			         </div>
 				    <div class="rowlabel">
 					 <a href="#" id="upload" class="btn btn-primary start">
@@ -109,7 +109,30 @@ pageContext.setAttribute("hostname", builder.toString());
 					 </div>
 				 </div>
 		   </div>
-		   <div class="row-fluid show-grid hide" id="file_process">
+		<div class="row-fluid show-grid">
+			<div class="span4">
+				<div class="rowlabel">
+				 <label for="protected"><small><abbr title="If Uploading Document is password protected then please provide password">Document Password</abbr></small></label>				 
+				</div>
+				<div class="rowlabel">
+				  <input id="protected" name="protected" type="password"/>
+				</div>
+			</div>
+			<c:if test="${memberpersonalinformation.selectedITRForm=='ITR2'}">
+			  <div class="span4">
+				 <div class="rowlabel">
+				    <label for="protected"><small><abbr title="Download this sample template and provide information for capital gain and other">Capital Gain Document Template</abbr></small></label>				 
+				 </div>
+				 <div class="rowlabel">
+				    <c:forEach items="${sampleDocList}" var="sampleDoc">
+				        <hst:link var="sampledoclink" hippobean="${sampleDoc.memberFileResource}"/>				    
+				        <a href="${sampledoclink}" class="btn btn-inverse"><i class="icon-download-alt icon-white"></i><span>Download</span></a>
+				    </c:forEach>
+				 </div>
+			  </div>
+			</c:if>			
+		</div>
+		<div class="row-fluid show-grid hide" id="file_process">
 		      <div class="well">
 		         <div class="span8">
 				     <div class="rowlabel">
@@ -271,6 +294,5 @@ pageContext.setAttribute("hostname", builder.toString());
 </hst:element>
 <hst:headContribution element="${uiCustom}" category="jsInternal" />
 <hst:headContribution keyHint="formCss" category="css">
-	<link rel="stylesheet" href="<hst:link path="/css/jquery.fileupload-ui.css"/>"
-		type="text/css" />
+	<link rel="stylesheet" href="<hst:link path="/css/jquery.fileupload-ui.css"/>" type="text/css" />
 </hst:headContribution>
