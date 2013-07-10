@@ -59,19 +59,42 @@ pageContext.setAttribute("hostname", builder.toString());
 			         </div>
 			         <div class="rowlabel">
 			                 <select name="description" id="description" class="span8">
-			                       <option value="Form 16">Form 16</option>
-			                       <option value="Form 26AS">Form 26AS</option>
-			                       <option value="Income Document">Income Document</option>
-			                       <option value="Insurance Document">Insurance Document</option>
-			                       <option value="Investment Document">Investment Document</option>
-			                       <option value="TAX Deducted Document">TAX Deducted Document</option>
-			                       <option value="Capital Gain Document">Capital Gain Document</option>
-			                       <option value="Donation Statement">Donation Statement</option>
-			                       <option value="Loan Document">Loan Document</option>
-			                       <option value="Property Document">Property Document</option>
-			                       <option value="Stock Trading Statement">Stock Trading Statement</option>
-			                       <option value="Disabilities Document">Disabilities Document</option>
-			                       <option value="Other">Other</option>
+			                      <option value="">-Select-</option>
+			                      <optgroup label="Income from Salary">
+			                      <c:forEach items="${valueList.valueListDocumentDetailList}" var="listItem" varStatus="status">
+			                         <c:if test="${fn:containsIgnoreCase(fn:trim(listItem.key),'Income from Salary')}">			                               
+			                                 <option value="<c:out value="${listItem.label}"/>"><c:out value="${listItem.label}"/></option>
+			                          </c:if>
+			                      </c:forEach>
+			                      </optgroup>
+			                      <optgroup label="Income From House Property">
+			                      <c:forEach items="${valueList.valueListDocumentDetailList}" var="listItem" varStatus="status">
+			                         <c:if test="${fn:containsIgnoreCase(fn:trim(listItem.key),'Income From House Property')}">			                               
+			                                 <option value="<c:out value="${listItem.label}"/>"><c:out value="${listItem.label}"/></option>
+			                          </c:if>
+			                      </c:forEach>
+			                      </optgroup>
+			                      <optgroup label="Other Sources Details">
+			                      <c:forEach items="${valueList.valueListDocumentDetailList}" var="listItem" varStatus="status">
+			                         <c:if test="${fn:containsIgnoreCase(fn:trim(listItem.key),'Other Sources Details')}">			                               
+			                                 <option value="<c:out value="${listItem.label}"/>"><c:out value="${listItem.label}"/></option>
+			                          </c:if>
+			                      </c:forEach>
+			                      </optgroup>
+			                      <optgroup label="Investment details">
+			                      <c:forEach items="${valueList.valueListDocumentDetailList}" var="listItem" varStatus="status">
+			                         <c:if test="${fn:containsIgnoreCase(fn:trim(listItem.key),'Investment details')}">			                               
+			                                 <option value="<c:out value="${listItem.label}"/>"><c:out value="${listItem.label}"/></option>
+			                          </c:if>
+			                      </c:forEach>
+			                      </optgroup>
+			                      <optgroup label="Others">
+			                      <c:forEach items="${valueList.valueListDocumentDetailList}" var="listItem" varStatus="status">
+			                         <c:if test="${fn:containsIgnoreCase(fn:trim(listItem.key),'Others')}">			                               
+			                                 <option value="<c:out value="${listItem.label}"/>"><c:out value="${listItem.label}"/></option>
+			                          </c:if>
+			                      </c:forEach>
+			                      </optgroup>
 			                 </select>
 			          </div>				    				   		
 			    </div>
@@ -147,6 +170,7 @@ pageContext.setAttribute("hostname", builder.toString());
 			</p>
 		</div>
 	</fieldset>
+	<res:client-validation formId="memberdrive" formSubmitButtonId="upload" screenConfigurationDocumentName="memberdrive"></res:client-validation>
 </form>
 <script type="text/javascript">
   $('#delete').click(function(){
