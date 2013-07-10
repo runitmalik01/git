@@ -14,6 +14,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.ResourceBundle;
 
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
@@ -44,6 +45,7 @@ import com.mootly.wcm.annotations.FormFields;
 import com.mootly.wcm.annotations.RequiredBeans;
 import com.mootly.wcm.beans.MemberDriveDocument;
 import com.mootly.wcm.beans.MemberPersonalInformation;
+import com.mootly.wcm.beans.ValueListDocument;
 import com.mootly.wcm.components.ITReturnComponent;
 
 
@@ -67,6 +69,32 @@ public class MemberDrive extends ITReturnComponent {
 			request.setAttribute("memberFiles", getMemberDriveFileResource(request, response));
 		}
 		request.setAttribute("msg", request.getParameter("FileUpload"));
+		List<ValueListDocument> uploadDocumentList=new ArrayList<ValueListDocument>();
+		try {
+			String listPath=request.getRequestContext().getResolvedMount().getMount().getCanonicalContentPath()+"/uploaddocumentlist";
+			HippoFolder valuelistFolder=(HippoFolder)getObjectBeanManager(request).getObject(listPath);
+			if(valuelistFolder!=null){
+				uploadDocumentList=valuelistFolder.getDocuments(ValueListDocument.class);
+				MemberPersonalInformation memberinfo=(MemberPersonalInformation)request.getAttribute(MemberPersonalInformation.class.getSimpleName().toLowerCase());
+				String itrForm=memberinfo.getFlexField("flex_string_ITRForm", "");
+				ResourceBundle rsbundle=ResourceBundle.getBundle("messages");
+				String packageName=rsbundle.getString(itrForm+".packageName");
+				if(uploadDocumentList!=null){
+					for(ValueListDocument valListDoc:uploadDocumentList){
+						if(valListDoc.getName().toString().equalsIgnoreCase(packageName)){
+							request.setAttribute("valueList", valListDoc);
+						}else{
+							if(valListDoc.getName().toString().equals("Basic")){
+								request.setAttribute("valueList", valListDoc);
+							}
+						}
+					}
+				}
+			}
+		} catch (ObjectBeanManagerException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -75,6 +103,7 @@ public class MemberDrive extends ITReturnComponent {
 		// TODO Auto-generated method stub
 		FormFields formFields=this.getClass().getAnnotation(FormFields.class);		
 		FormMap formMap=new FormMap(request, formFields.fieldNames());
+		log.info("get value of description"+formMap.getField("description").getValue());
 		HashMap<String, byte[]> files = new HashMap<String, byte[]>();
 		FileItemStream fileItemStream=null;
 		boolean isMultipart = ServletFileUpload.isMultipartContent(request);
