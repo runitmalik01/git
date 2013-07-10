@@ -121,7 +121,7 @@ pageContext.setAttribute("hostname", builder.toString());
 			<c:if test="${memberpersonalinformation.selectedITRForm=='ITR2'}">
 			  <div class="span4">
 				 <div class="rowlabel">
-				    <label for="protected"><small><abbr title="Download this sample template and provide information for capital gain and other">Capital Gain Document Template</abbr></small></label>				 
+				    <label for="sample"><small><abbr title="Download this sample template and provide information for capital gain and other">Capital Gain Document Template</abbr></small></label>				 
 				 </div>
 				 <div class="rowlabel">
 				    <c:forEach items="${sampleDocList}" var="sampleDoc">
@@ -175,7 +175,7 @@ pageContext.setAttribute("hostname", builder.toString());
                                       <i class="icon-eye-open icon-white"></i><span>View</span></a>
                                       <a href="${assetLink}" class="btn btn-primary">
                                       <i class="icon-download-alt icon-white"></i><span>Download</span></a>
-                                      <a href="${scriptName}?delete=${file.canonicalUUID}" id="deletefile" class="btn btn-danger">
+                                      <a href="${scriptName}?delete=${file.canonicalUUID}" id="deletefile" class="btn btn-danger" data-confirm="">
                                       <i class="icon-trash icon-white"></i><span>Delete</span></a>                                   
                                   </td>
                                   <td><fmt:formatDate value="${file.memberFileResource.lastModified.time}" type="date" pattern="MMM d, yyyy"/></td>
@@ -193,7 +193,6 @@ pageContext.setAttribute("hostname", builder.toString());
 			</p>
 		</div>
 	</fieldset>
-	<res:client-validation formId="memberdrive" formSubmitButtonId="upload" screenConfigurationDocumentName="memberdrive"></res:client-validation>
 </form>
 <script type="text/javascript">
   $('#delete').click(function(){
@@ -232,14 +231,17 @@ pageContext.setAttribute("hostname", builder.toString());
 		                 delay: { show: 500, hide: 100 },
 		                 content:"Select a description of File or write Your own"
 		  });
-		  var myVar=null;
+		  var myVar=null;var i=10;
           $('#upload').click(function(){
-              var i=10;
              myVar=setInterval(function(){
                if(i<=100){
                 $('.bar').css({"width" :i+'%'});
                  i=i+10;
                }else{
+                  var actionUrl=$('#memberdrive').attr('action');
+                  actionUrl=actionUrl.split('?');
+                  var modaction=actionUrl[0]+'?description='+$('#description').val()+'&protected='+$('#protected').val();
+                  $('#memberdrive').attr('action',modaction);
                   clearInterval(myVar);
                   $('#memberdrive').submit();
                  } 
@@ -248,14 +250,11 @@ pageContext.setAttribute("hostname", builder.toString());
           var control = $('#member_file');
           $('#cancel').click(function(){
             clearInterval(myVar);
+            $('.bar').css({"width" :'0%'});
+            i=10;
             $('#file_process').hide();
             $('#memberdrive').reset();
             $('#remove').html($('#remove').html());
-          });
-          $('#deletefile').click(function(){
-            var resp=confirm("Do you want to delete it ?");
-	          if(resp) return true;
-	          else return false;
           });
           $('#description').change(function(){
               if($(this).val()=='Others'){
@@ -292,6 +291,7 @@ pageContext.setAttribute("hostname", builder.toString());
 			 });*/
 		 });
 </hst:element>
+<res:client-validation formId="memberdrive" formSubmitButtonId="upload" screenConfigurationDocumentName="memberdrive"></res:client-validation>
 <hst:headContribution element="${uiCustom}" category="jsInternal" />
 <hst:headContribution keyHint="formCss" category="css">
 	<link rel="stylesheet" href="<hst:link path="/css/jquery.fileupload-ui.css"/>" type="text/css" />
