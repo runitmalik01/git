@@ -1,6 +1,7 @@
 package com.mootly.wcm.services;
 
 import in.gov.incometaxindiaefiling.y2012_2013.Address;
+import in.gov.incometaxindiaefiling.y2012_2013.Address.Phone;
 import in.gov.incometaxindiaefiling.y2012_2013.AddressDetail;
 import in.gov.incometaxindiaefiling.y2012_2013.AssesseeName;
 import in.gov.incometaxindiaefiling.y2012_2013.CreationInfo;
@@ -17,7 +18,12 @@ import in.gov.incometaxindiaefiling.y2012_2013.IntrstPay;
 import in.gov.incometaxindiaefiling.y2012_2013.ObjectFactory;
 import in.gov.incometaxindiaefiling.y2012_2013.PersonalInfo;
 import in.gov.incometaxindiaefiling.y2012_2013.Refund;
+import in.gov.incometaxindiaefiling.y2012_2013.Refund.DepositToBankAccount;
 import in.gov.incometaxindiaefiling.y2012_2013.Schedule80G;
+import in.gov.incometaxindiaefiling.y2012_2013.Schedule80G.Don100Percent;
+import in.gov.incometaxindiaefiling.y2012_2013.Schedule80G.Don100PercentApprReqd;
+import in.gov.incometaxindiaefiling.y2012_2013.Schedule80G.Don50PercentApprReqd;
+import in.gov.incometaxindiaefiling.y2012_2013.Schedule80G.Don50PercentNoApprReqd;
 import in.gov.incometaxindiaefiling.y2012_2013.TDSonOthThanSal;
 import in.gov.incometaxindiaefiling.y2012_2013.TDSonOthThanSals;
 import in.gov.incometaxindiaefiling.y2012_2013.TDSonSalaries;
@@ -28,16 +34,9 @@ import in.gov.incometaxindiaefiling.y2012_2013.TaxPayments;
 import in.gov.incometaxindiaefiling.y2012_2013.TaxesPaid;
 import in.gov.incometaxindiaefiling.y2012_2013.UsrDeductUndChapVIA;
 import in.gov.incometaxindiaefiling.y2012_2013.Verification;
-import in.gov.incometaxindiaefiling.y2012_2013.Address.Phone;
-import in.gov.incometaxindiaefiling.y2012_2013.Refund.DepositToBankAccount;
-import in.gov.incometaxindiaefiling.y2012_2013.Schedule80G.Don100Percent;
-import in.gov.incometaxindiaefiling.y2012_2013.Schedule80G.Don100PercentApprReqd;
-import in.gov.incometaxindiaefiling.y2012_2013.Schedule80G.Don50PercentApprReqd;
-import in.gov.incometaxindiaefiling.y2012_2013.Schedule80G.Don50PercentNoApprReqd;
 import in.gov.incometaxindiaefiling.y2012_2013.Verification.Declaration;
 
 import java.io.StringWriter;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.math.BigInteger;
 import java.util.Calendar;
@@ -80,14 +79,8 @@ import com.mootly.wcm.beans.compound.HouseIncomeDetail;
 import com.mootly.wcm.beans.compound.SelfAssesmentTaxDetail;
 import com.mootly.wcm.beans.compound.TdsOthersDetail;
 import com.mootly.wcm.model.FinancialYear;
-import com.mootly.wcm.model.ITRForm;
 import com.mootly.wcm.model.deduction.DeductionHead;
 import com.mootly.wcm.model.deduction.DeductionSection;
-import com.mootly.wcm.services.DeductionListService;
-import com.mootly.wcm.services.ITRXmlGeneratorServiceCommon;
-import com.mootly.wcm.services.IndianCurrencyHelper;
-import com.mootly.wcm.services.ScreenCalculatorService;
-import com.mootly.wcm.services.XmlGeneratorService;
 import com.mootly.wcm.services.y2012_2013.ITRXmlGeneratorService;
 import com.mootly.wcm.utils.XmlCalculation;
 import com.sun.xml.bind.marshaller.NamespacePrefixMapper;
@@ -158,8 +151,8 @@ public class ITR1XmlGeneratorService {
 
 		//Form_ITR1
 		formITR1.setFormName("ITR-1");
-		formITR1.setDescription("For Indls having Income from Salary, Pension, family pension and Interest");
-		formITR1.setAssessmentYear("2013");
+		formITR1.setDescription("For Individuals having Income from Salary, Pension, family pension and Interest");
+		formITR1.setAssessmentYear("2013-14");
 		formITR1.setSchemaVer("Ver1.0");
 		formITR1.setFormVer("Ver1.0");
 		itr1.setFormITR1(formITR1);
@@ -192,8 +185,12 @@ public class ITR1XmlGeneratorService {
 		if(memberPersonalInformation.getEmploye_category()!=null){
 			personalInfo.setEmployerCategory(memberPersonalInformation.getEmploye_category());
 		}
-
-		personalInfo.setGender(memberPersonalInformation.getSex());
+		if(memberPersonalInformation.getSex().equals("M")){
+		personalInfo.setGender(memberPersonalInformation.getSex().concat("ale"));
+		}
+		else{
+			personalInfo.setGender(memberPersonalInformation.getSex().concat("emale"));
+			}
 		personalInfo.setStatus(memberPersonalInformation.getFilingStatus());
 
 		itr1.setPersonalInfo(personalInfo);
@@ -555,14 +552,19 @@ public class ITR1XmlGeneratorService {
 			filingstatus.setDesigOfficerWardorCircle(memberPersonalInformation.getWard_circle());
 		}
 		filingstatus.setReturnFileSec(Long.parseLong(memberPersonalInformation.getReturnSection()));
-		filingstatus.setReturnType(memberPersonalInformation.getReturnType());
+		filingstatus.setReturnType(memberPersonalInformation.getReturnType().concat("riginal"));
 		filingstatus.setResidentialStatus(memberPersonalInformation.getResidentCategory());
-		filingstatus.setPortugeseCC5A(memberPersonalInformation.getPortugesecivil());
+		if(memberPersonalInformation.getPortugesecivil().equals("Y")){
+		filingstatus.setPortugeseCC5A(memberPersonalInformation.getPortugesecivil().concat("es"));}
+		else{
+			filingstatus.setPortugeseCC5A(memberPersonalInformation.getPortugesecivil().concat("o"));
+			
+		}
 		if (BalTaxPayable.compareTo(BigInteger.ZERO) > 0){
-			filingstatus.setTaxStatus("TP");
+			filingstatus.setTaxStatus("TaxPayble");
 		}else
 			if (BalTaxPayable.compareTo(BigInteger.ZERO) < 0){
-				filingstatus.setTaxStatus("TR");
+				filingstatus.setTaxStatus("TaxReturn");
 			}else
 				filingstatus.setTaxStatus("NT");
 
@@ -580,7 +582,6 @@ public class ITR1XmlGeneratorService {
 		}
 
 		itr1.setFilingStatus(filingstatus);
-
 		//Schedule80G
 
 		BigInteger Total100Appr = new BigInteger("0");
