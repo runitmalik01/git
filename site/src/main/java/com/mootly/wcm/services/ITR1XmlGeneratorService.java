@@ -360,7 +360,7 @@ public class ITR1XmlGeneratorService {
 		Map<String,Object> resultMap = ScreenCalculatorService.getScreenCalculations("xmlCalculation.js", request.getParameterMap(), totalMapForJS);
 		//ITR1 Tax Computation (without calculation) with null values
 		itr1TaxComputation.setTotalTaxPayable(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMap.get("txtTax").toString())));
-		itr1TaxComputation.setSurchargeOnTaxPayable(resultMap.get("txtsurcharge"));
+		itr1TaxComputation.setSurchargeOnTaxPayable(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMap.get("txtsurcharge").toString())));
 		BigInteger EduCess = indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMap.get("txtEduCess").toString()));
 		BigInteger HigherEduCess =indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMap.get("txtHEduCess").toString()));
 		BigInteger TotalEduCess = EduCess.add(HigherEduCess);
