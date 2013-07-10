@@ -4,13 +4,13 @@
 <div class="page">
 			<table class="table table-hover table-bordered">
 				<tr>
-					<th><fmt:message key="income.head"/></th>
+					<th style="font-weight:bold; color: black;"><fmt:message key="income.head"/></th>
 					<th><fmt:message key="total.amount"/></th>
 				</tr>
 				<!--  lets create a bookmark for each section -->
 				<tr>
-					<td colspan="1" >
-					<a href="formsixteen.html">
+					<td colspan="1" align="center" > &nbsp;&nbsp;&nbsp;&nbsp;
+					<a href="formsixteen.html"  style="color: blue">
 					<fmt:message key="salary.income"/>
 					</a>
 					</td>
@@ -45,8 +45,8 @@
 					</td>
 				</tr>
 				<tr>
-					<td colspan="1">
-					<a href="salaryincome.html">
+					<td colspan="1">&nbsp;&nbsp;&nbsp;&nbsp;
+					<a  href="salaryincome.html"  style="color: blue">
 					<fmt:message key="income.salary.penson"/>
 					</a>
 					</td>
@@ -81,8 +81,8 @@
 					</td>
 				</tr>
 				<tr>
-					<td colspan="1">
-					<a href="houseincome.html">
+					<td colspan="1">&nbsp;&nbsp;&nbsp;&nbsp;
+					<a href="houseincome.html"  style="color: blue">
 						<fmt:message key="income.house.itr1" />
 					</a>
 					</td>
@@ -112,8 +112,8 @@
 					</td>
 				</tr>
 				<tr>
-					<td colspan="1">
-					<a href="othersources.html">
+					<td colspan="1">&nbsp;&nbsp;&nbsp;&nbsp;
+					<a href="othersources.html"  style="color: blue">
 					<fmt:message key="income.other.sources" />
 					</a>
 					</td>
@@ -140,11 +140,10 @@
 					</td>
 				</tr>
 				<tr>
-					<td colspan="1">
-					<a style="font-weight:bold;">
-					<fmt:message key="gross.total.income"/></a>
+					<td colspan="1" style="font-weight:bold;">
+					<fmt:message key="gross.total.income"/>
 					</td>
-					<td  style="text-align:left">
+					<td  style="text-align:left; color: black" >
 						<span class="decimal">
 									<w4india:inr value="${theForm.ITR1IncomeDeductions.grossTotIncome}"/>
 						</span>
@@ -152,7 +151,7 @@
 				</tr>
 				<tr>
 					<td colspan="1">
-					<a href="chapterVIdeductions.html" style="font-weight:bold;">
+					<a href="chapterVIdeductions.html" style="font-weight:bold;color: black">
 					<fmt:message key="deduction.under.6a"/></a>
 					</td>
 					<td>
@@ -182,7 +181,7 @@
 					</td>
 				</tr>
 				<tr>
-					<td colspan="1"><a style="font-weight:bold;"><fmt:message key="taxable.income"/></a></td>
+					<td colspan="1" style="font-weight:bold; color: black"><fmt:message key="taxable.income"/></td>
 					<td  style="text-align:left">
 						<span class="decimal">
 									<w4india:inr value="${theForm.ITR1IncomeDeductions.totalIncome}"/>
@@ -190,23 +189,23 @@
 					</td>
 				</tr>
 				<tr>
-				<td colspan="1"><a><fmt:message key="income.tax"/></a></td>
-					<td  style="text-align:left">
+				<td colspan="1" style="font-weight:bold; color: black";><fmt:message key="income.tax"/></td>
+					<td  style="text-align:left;">
 						<span class="decimal">
 									<w4india:inr value="${theForm.ITR1TaxComputation.totalTaxPayable }"/>
 						</span>
 					</td>
 				</tr>
 				<tr>
-					<td colspan="1"><a><fmt:message key="surcharge.tax"/></a></td>
-					<td  style="text-align:left">
+					<td colspan="1" style="font-weight:bold;"><fmt:message key="surcharge.tax"/></td>
+					<td  style="text-align:left; color: black">
 						<span class="decimal">
 									<w4india:inr value="${theForm.ITR1TaxComputation.surchargeOnTaxPayable}"/>
 						</span>
 					</td>
 				</tr>
 				<tr>
-				<td colspan="1"><a><fmt:message key="education.cess"/></a></td>
+				<td colspan="1" style="font-weight:bold;"><fmt:message key="education.cess"/></td>
 					<td  style="text-align:left">
 						<span class="decimal">
 									<w4india:inr value="${theForm.ITR1TaxComputation.educationCess }"/>
@@ -214,7 +213,7 @@
 					</td>
 				</tr>
 				<tr>
-					<td colspan="1"><a style="font-weight:bold;"><fmt:message key="tax.education.surcharge"/></a></td>
+					<td colspan="1" style="font-weight:bold;"><fmt:message key="tax.education.surcharge"/></td>
 					<td  style="text-align:left">
 						<span class="decimal">
 									<w4india:inr value="${theForm.ITR1TaxComputation.grossTaxLiability }"/>
@@ -222,7 +221,7 @@
 					</td>
 				</tr>
                 <tr>
-					<td colspan="1"><a><fmt:message key="relief.section.89"/></a></td>
+					<td colspan="1" style="font-weight:bold;"><fmt:message key="relief.section.89"/></td>
 					<td  style="text-align:left">
 						<span class="decimal">
 								<w4india:inr value="${theForm.ITR1TaxComputation.section89}"/>
@@ -259,9 +258,9 @@
 				</tr>
 				 --%>
 				<tr>
-					<td colspan="1">
-					<a>
-					<fmt:message key="interest.under.section.234abc"/></a>
+					<td colspan="1" style="font-weight:bold;">
+					
+					<fmt:message key="interest.under.section.234abc"/>
 					</td>
 					<td  style="text-align:left">
 					<c:choose>
@@ -288,7 +287,7 @@
 					</td>
 				</tr>
 				<tr>
-					<td colspan="1"><a style="font-weight:bold;"><fmt:message key="total.tax.interest.payable"/></a></td>
+					<td colspan="1" style="font-weight:bold;"><fmt:message key="total.tax.interest.payable"/></td>
 					<td  style="text-align:left">
 						<span class="decimal">
 									<w4india:inr value="${theForm.ITR1TaxComputation.totTaxPlusIntrstPay}"/>
@@ -296,7 +295,7 @@
 					</td>
 				</tr>
 				<tr>
-					<td colspan="1"><a style="font-weight:bold;"><fmt:message key="less.prepaid.tax"/></a></td>
+					<td colspan="1" style="font-weight:bold;"><fmt:message key="less.prepaid.tax"/></td>
 					<td  style="text-align:left">
 						<span class="decimal">
 									<w4india:inr value="${theForm.taxPaid.taxesPaid.totalTaxesPaid}"/>
@@ -305,7 +304,7 @@
 				</tr>
 				<tr>
 					<td colspan="1">
-					<a href="advancetax.html">
+					<a href="advancetax.html" style="color: blue">&nbsp;&nbsp;&nbsp;&nbsp;
 					<fmt:message key="advance.tax.itr1" />
 					</a>
 					</td>
@@ -335,8 +334,8 @@
 					</td>
 				</tr>
 				<tr>
-					<td colspan="1">
-					<a href="selfassesmenttax.html">
+					<td colspan="1">&nbsp;&nbsp;&nbsp;&nbsp;
+					<a href="selfassesmenttax.html" style="color: blue">
 					<fmt:message key="advance.selfassesmenttax.itr1" />
 					</a>
 					</td>
@@ -367,7 +366,7 @@
 					</td>
 				</tr>
 			    <tr>
-					<td colspan="1"><a><fmt:message key="advance.tdssalary.itr1" /></a></td>
+					<td colspan="1" style="color: blue">&nbsp;&nbsp;&nbsp;&nbsp;<fmt:message key="advance.tdssalary.itr1" /></td>
 					<td  style="text-align:left">
 						<span class="decimal">
 									<w4india:inr value="${bigTotalTdsSalary}"/>
@@ -375,8 +374,8 @@
 					</td>
 				</tr>
 				<tr>
-					<td colspan="1">
-					<a href="tdsfromothers.html">
+					<td colspan="1">&nbsp;&nbsp;&nbsp;&nbsp;
+					<a href="tdsfromothers.html"  style="color: blue">
 					<fmt:message key="advance.tdsothers.itr1" />
 					</a>
 					</td>
