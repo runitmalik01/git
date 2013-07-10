@@ -51,9 +51,9 @@ public class ServiceRequest extends EasyFormComponent {
     		throws HstComponentException {
     	// TODO Auto-generated method stub
     	super.doBeforeRender(request, response);
+    	request.setAttribute("ReqSuccess", request.getParameter("Success"));
     	request.getRequestContext().setAttribute("Success", request.getParameter("Success"));
     	request.setAttribute("srdocument", request.getRequestContext().getAttribute("document"));
-    	log.info("this request context attribute"+request.getRequestContext().getAttribute("document").toString());
     }
 	@Override
 	public void doAction(HstRequest request, HstResponse response)
@@ -65,7 +65,6 @@ public class ServiceRequest extends EasyFormComponent {
 			return;
 		}
 		final Form form = parse(bean);
-		log.info("this form "+form.toString());
 		final FormMap formMap = new FormMap(request, form.getFieldNames());
 		if(formMap!=null){
 			for(String fields:formMap.getFieldNames()){
