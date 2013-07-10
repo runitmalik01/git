@@ -13,14 +13,15 @@
   </div>--%>
   <h4><c:out value="${srdocument.name}"/> Request</h4>
   		<h5><small>Fill this service request form.Soon we will get back to you.</small></h5>
+  		<c:if test="${not empty ReqSuccess}">
+  		  <div class="alert alert-success">
+  		     <button type="button" class="close" data-dismiss="alert">&times;</button>
+  		       <strong><c:out value="Successfully Applied"/></strong>
+  		  </div>
+  		</c:if>
 <c:choose>
-	<c:when test="${success eq 'eventsuccess'}">
+	<c:when test="${success eq 'success'}">
 		<fmt:message key="easyforms.formtemplate.thankyou.event" />
-	</c:when>
-	<c:when test="${success eq 'dummysuccess'}">
-		<div id="content">
-			<fmt:message key="easyforms.formtemplate1.thankyou.form" />
-		</div>
 	</c:when>
 	<c:otherwise>
 		<c:forEach items="${ef_errors}" var="error">
@@ -42,11 +43,16 @@
 					</c:when>
 					<%-- simple types layout--%>
 					<c:when test="${field.textField or field.password or field.textArea or field.dropdown or field.radioBox or field.checkBox}">
-							<label><small><c:out value="${field.label}" /></small><span class="ef-req"><c:out value="${field.requiredMarker}" />
+							<label for="<c:out value="${field.name}" />"><small><c:out value="${field.label}"/></small><span class="required"><c:out value="${field.requiredMarker}" />
 							</span>
-							</label> 
-							${field.html} <span class="ef-hint"><c:out value="${field.hint}" />
-							</span>
+							</label>
+							<c:choose>
+							  <c:when test="${field.textField}"> 
+							    <input type="text" name="${field.name}" id="${field.name}" maxlength="${field.length}">
+							  </c:when>
+							  <c:otherwise>${field.html}</c:otherwise>
+							</c:choose>
+							 <span class="ef-hint"><c:out value="${field.hint}" /></span>
 					</c:when>
 					<c:when test="${field.radioGroup}">
 						<div class="ef-field clearfix">
@@ -120,26 +126,54 @@
 </c:choose>
 <br/><br/>
 <div class="rowlabel" align="center">
-<a href="#" id="apply" class="btn btn-primary">Apply</a>
+<button value="Apply" id="apply" class="btn btn-info">Apply</button>
 </div>
- <%-- <div class="modal-footer">
-    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-    <button id="apply" class="btn btn-primary">Apply</button>
-  </div>
-</div>--%>
 </form>
 <hst:element var="uiCustom" name="script">
 	<hst:attribute name="type">text/javascript</hst:attribute>
 		$(document).ready(function(){
-            $('#apply').click(function(){
-               $('#serviceRequest').submit();
-             });
+		  $("#serviceRequest").validate({
+           rules: {
+               "flex_field_string_0": {
+                 required: true
+               },
+               "flex_field_string_2": {
+                 required: true
+               },
+               "flex_field_string_4": {
+                 required: true
+               },
+               "flex_field_string_5": {
+                 required: true
+               }
+            },
+            messages: {
+                "flex_field_string_0": {
+                   required: "Please enter first name"
+                },
+                "flex_field_string_2": {
+                   required: "Please enter last name"
+                },
+                "flex_field_string_4": {
+                   required: "Please enter mobile no."
+                },
+                "flex_field_string_5": {
+                   required: "Please enter email"
+                }            
+            },
+            submitHandler: function (form) { // for demo
+                $('#serviceRequest').submit();                
+                return true;
+             }
+            });
             var regemail='<c:out value = "${regemail}" />';
 	        if(regemail!='') {
 	           serviceRequest.flex_field_string_5.value= regemail ;
 	        }
+	        serviceRequest.flex_field_string_5.setAttribute('id','flex_field_string_5');
 	        serviceRequest.flex_field_string_6.value='<c:out value="${srdocument.name}"/>';
 	        serviceRequest.flex_field_string_6.readOnly=true;
 		 });
 </hst:element>
 <hst:headContribution element="${uiCustom}" category="jsInternal" />
+<%-- <res:client-validation formId="serviceRequest" formSubmitButtonId="apply" screenConfigurationDocumentName="servicerequest"></res:client-validation>--%>
