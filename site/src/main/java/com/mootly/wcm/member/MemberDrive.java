@@ -18,7 +18,6 @@ import java.util.ResourceBundle;
 
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
-import javax.jcr.SimpleCredentials;
 
 import org.apache.commons.fileupload.FileItemIterator;
 import org.apache.commons.fileupload.FileItemStream;
@@ -33,7 +32,6 @@ import org.hippoecm.hst.content.beans.ObjectBeanPersistenceException;
 import org.hippoecm.hst.content.beans.manager.workflow.WorkflowCallbackHandler;
 import org.hippoecm.hst.content.beans.manager.workflow.WorkflowPersistenceManager;
 import org.hippoecm.hst.content.beans.standard.HippoFolder;
-import org.hippoecm.hst.content.beans.standard.HippoFolderBean;
 import org.hippoecm.hst.core.component.HstComponentException;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
@@ -52,7 +50,7 @@ import com.mootly.wcm.components.ITReturnComponent;
 
 @RequiredBeans(requiredBeans=MemberPersonalInformation.class)
 @AdditionalBeans(additionalBeansToLoad={MemberPersonalInformation.class})
-@FormFields(fieldNames={"member_file","description"})
+@FormFields(fieldNames={"member_file","description","protected"})
 public class MemberDrive extends ITReturnComponent {
 
 	private static final Logger log = LoggerFactory.getLogger(MemberDrive.class);
@@ -109,6 +107,7 @@ public class MemberDrive extends ITReturnComponent {
 		log.info("get value of description"+formMap.getField("description").getValue());
 		HashMap<String, byte[]> files = new HashMap<String, byte[]>();
 		FileItemStream fileItemStream=null;
+		//FileItemStream simpleFormFieldItemStream=null;
 		boolean isMultipart = ServletFileUpload.isMultipartContent(request);
 		if (isMultipart) {
 			ServletFileUpload servletFileUpload = new ServletFileUpload();
@@ -129,6 +128,15 @@ public class MemberDrive extends ITReturnComponent {
 						}
 					}
 				}
+				/*while (iter.hasNext()){
+					simpleFormFieldItemStream =iter.next();
+					if (simpleFormFieldItemStream.isFormField()) {
+						FormField formField = formMap.getField(simpleFormFieldItemStream.getFieldName());
+						if (formField != null) {
+							formMap.getField(simpleFormFieldItemStream.getFieldName()).addValue(simpleFormFieldItemStream.toString());
+						}
+					}
+				}*/
 			} catch(FileUploadBase.FileUploadIOException e) {
 				log.error("File size exceeded", e);
 			} catch(FileUploadException e) {
@@ -141,6 +149,7 @@ public class MemberDrive extends ITReturnComponent {
 		memberDrive.setMemberFile(new ByteArrayInputStream(files.get(fileItemStream.getName())));
 		memberDrive.setContentType(fileItemStream.getContentType());
 		memberDrive.setDescription(formMap.getField("description").getValue());
+		memberDrive.setDocPassword(formMap.getField("protected").getValue());
 		MemberDriveDocument returnMemberDriveDoc=createMemberDrive(request, response, memberDrive, fileItemStream.getName());
 		if(returnMemberDriveDoc!=null){
 			response.setRenderParameter("FileUpload", "Success");
@@ -163,7 +172,7 @@ public class MemberDrive extends ITReturnComponent {
 		Session persistableSession=null;
 		String memberDriveDocPath=null; 
 		try{
-			persistableSession=getPersistableSession(request,new SimpleCredentials("admin", "admin".toCharArray()));
+			persistableSession=getPersistableSession(request);
 			wpm=getWorkflowPersistenceManager(persistableSession);
 			wpm.setWorkflowCallbackHandler(new FullReviewedWorkflowCallbackHandler());
 			String primaryPath=getMemberDriveDocPath(request);
@@ -173,6 +182,7 @@ public class MemberDrive extends ITReturnComponent {
 				memberDriveDoc.setMemberFile(memberDrive.getMemberFile());
 				memberDriveDoc.setContentType(memberDrive.getContentType());
 				memberDriveDoc.setDescription(memberDrive.getDescription());
+				memberDriveDoc.setDocPassword(memberDrive.getDocPassword());
 				wpm.update(memberDriveDoc);
 				return memberDriveDoc;
 			}
@@ -250,7 +260,7 @@ public class MemberDrive extends ITReturnComponent {
 		Session persistableSession=null;
 		boolean delete=false;
 		try {
-			persistableSession=getPersistableSession(request,new SimpleCredentials("admin", "admin".toCharArray()));
+			persistableSession=getPersistableSession(request);
 			persistableSession.save();
 			wpm=getWorkflowPersistenceManager(persistableSession);
 			//wpm.setWorkflowCallbackHandler(new FullDeleteWorkflowCallbackHandler());
