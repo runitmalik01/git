@@ -49,7 +49,7 @@
         <div class="grid col-300 fit powered">
             <a href='<hst:link path="/"/>' title="Wealth4India">Wealth4India</a>
             developed by <a href="http://www.mootly.com/" title="Mootly. Get IT Done Get IT Right">
-                    Mootly Pvt Ltd.</a>
+                    Mootly Software Pvt Ltd.</a>
         </div><!-- end .powered -->
         
     </div>
