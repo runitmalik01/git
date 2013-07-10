@@ -30,7 +30,7 @@
 			<c:when test="${loggedin}">
 				<li id="menu-item-723" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-724">
 				 <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#">My Account<b class="caret"></b></a>
+                <a class="dropdown-toggle btn btn-primary" data-toggle="dropdown" href="#" style="color: white"><i class="icon-user icon-white"></i> My Account<b></b></a>
                 <ul class="dropdown-menu">
                 	<hst:link var="changepass" siteMapItemRefId="changepass"></hst:link>
                   <li><a href="${changepass}">ChangePassword</a></li>
@@ -39,11 +39,11 @@
                 </ul>
               </li>
 				<!--  <a href="${myaccount}">My Account</a></li>-->
-				<li id="menu-item-724" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-724"><a href="${logout}">Logout</a></li>
+				<li id="menu-item-724" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-724"><a href="${logout}" class="btn btn-warning" style="color: white"><i class="icon-off icon-white"></i>Logout</a></li>
 			</c:when>
 			<c:otherwise>				
-				<li id="menu-item-724" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-724"><a href="${login}">Login</a></li>
-				<li id="menu-item-725" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-725"><a href="${signup}">Signup</a></li>				
+				<li id="menu-item-724" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-724"><a href="${login}" class="btn btn-info" style="color: white"><i class="icon-user icon-white "></i>Login</a></li>
+				<li id="menu-item-725" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-725"><a href="${signup}" class="btn btn-success" style="color: white"><i class="icon-globe icon-white"></i>Signup</a></li>				
 			</c:otherwise>
 		</c:choose>		
 </ul>
