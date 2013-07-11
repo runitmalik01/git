@@ -3547,6 +3547,7 @@
         </sv:node>
       </sv:node>
     </sv:node>
+    
     <sv:node sv:name="changepass.html">
       <sv:property sv:name="jcr:primaryType" sv:type="Name">
         <sv:value>hst:sitemapitem</sv:value>
@@ -3588,6 +3589,7 @@
       <sv:value>members</sv:value>
     </sv:property>
   </sv:node>
+  <!-- 
   <sv:node sv:name="changepass">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
       <sv:value>hst:sitemapitem</sv:value>
@@ -3604,7 +3606,7 @@
     <sv:property sv:name="hst:relativecontentpath" sv:type="String">
       <sv:value>members</sv:value>
     </sv:property>
-  </sv:node>
+  </sv:node>-->
   <sv:node sv:name="changeprofile">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
       <sv:value>hst:sitemapitem</sv:value>
@@ -3619,6 +3621,7 @@
       <sv:value>changeprofile</sv:value>
     </sv:property>
   </sv:node>  
+  <!-- 
   <sv:node sv:name="popup">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
       <sv:value>hst:sitemapitem</sv:value>
@@ -3632,7 +3635,7 @@
     <sv:property sv:name="hst:refId" sv:type="String">
       <sv:value>popup</sv:value>
     </sv:property>
-  </sv:node>
+  </sv:node> -->
   <sv:node sv:name="memberLogout">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
       <sv:value>hst:sitemapitem</sv:value>
@@ -3749,6 +3752,7 @@
       <sv:value>members</sv:value>
     </sv:property>
   </sv:node>
+  <!-- 
   <sv:node sv:name="rebatesection89">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
       <sv:value>hst:sitemapitem</sv:value>
@@ -3762,7 +3766,7 @@
     <sv:property sv:name="hst:refId" sv:type="String">
       <sv:value>rebatesection89</sv:value>
     </sv:property>
-  </sv:node>
+  </sv:node> -->
   <sv:node sv:name="serviceprice">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
       <sv:value>hst:sitemapitem</sv:value>
