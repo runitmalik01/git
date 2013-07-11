@@ -8887,7 +8887,7 @@ out_TotalOther_income=(Family_pension-0)+(Dividends-0)+(Income_rent_machine-0)+(
 out_Total_taxfree_income=(Dividends_uti-0)+(Interest_income-0)+(Dividends_mutualfund-0)+(Agriculture_income-0)+(Dividends_indian_companies-0)+(Otherincome-0);
 
 
-var deduction=indianCurrencyHelper.RoundTo2Decimals((Family_pension-0)*.333*100)/100;
+var deduction=indianCurrencyHelper.RoundTo2Decimals(((Family_pension-0)*.333*100)/100);
 if(deduction&lt;15000)
 {
 out_Familypension_deduction=(deduction);
