@@ -238,10 +238,10 @@ pageContext.setAttribute("hostname", builder.toString());
                 $('.bar').css({"width" :i+'%'});
                  i=i+10;
                }else{
-                  var actionUrl=$('#memberdrive').attr('action');
+                  /*var actionUrl=$('#memberdrive').attr('action');
                   actionUrl=actionUrl.split('?');
                   var modaction=actionUrl[0]+'?description='+$('#description').val()+'&protected='+$('#protected').val();
-                  $('#memberdrive').attr('action',modaction);
+                  $('#memberdrive').attr('action',modaction);*/
                   clearInterval(myVar);
                   $('#memberdrive').submit();
                  } 
