@@ -76,19 +76,19 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 						</div>
 						<div class="span3">
 							<div class="rowlabel">
-								<label for="Stateslry"><fmt:message
-										key="member.salary.state" /> </label>
+								<label for="states"><small><fmt:message
+										key="member.salary.state" /></small></label>
 							</div>
 							<div class="rowlabel">
-								<c:set var="searchresultstitle">
-									<fmt:message key="member.contact_info.state.select" />
-								</c:set>
-								<c:set var="statesType">
-									<fmt:message key="dropdown.states" />
-								</c:set>
-								<w4india:dropdown dropDownSelectId="states"
-									optionSelectString="${searchresultstitle}"
-									dropDownType="${statesType}" fetchValue="${childBean.states}" />
+					<select id="states" name="states" class="uprcase">
+						<option value="">-Select-</option>
+						<c:forEach var="booleanCombo" items="${objHashMapstates}">
+							<option
+								<c:if test="${childBean.states == booleanCombo.key}">selected</c:if>
+								value="${booleanCombo.key}">${booleanCombo.value}</option>
+						</c:forEach>
+						<option <c:if test="${childBean.states == '99'}">selected</c:if> value="99">FOREIGN</option>
+					</select>
 							</div>
 						</div>
 						<div class="span3">
