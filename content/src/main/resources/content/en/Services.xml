@@ -76,7 +76,7 @@
           <sv:value>hippotranslation:translated</sv:value>
         </sv:property>
         <sv:property sv:name="jcr:uuid" sv:type="String">
-          <sv:value>042c75c6-3099-4f94-9ef9-2b387d469787</sv:value>
+          <sv:value>e78730c6-e81c-4146-ab5d-f524d133b8e0</sv:value>
         </sv:property>
         <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
           <sv:value>live</sv:value>
@@ -101,13 +101,13 @@
           <sv:value>2013-07-11T23:13:26.547+05:30</sv:value>
         </sv:property>
         <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-          <sv:value>2013-07-11T23:34:42.455+05:30</sv:value>
+          <sv:value>2013-07-12T00:27:42.866+05:30</sv:value>
         </sv:property>
         <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
           <sv:value>admin</sv:value>
         </sv:property>
         <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-          <sv:value>2013-07-11T23:34:45.676+05:30</sv:value>
+          <sv:value>2013-07-12T00:27:46.238+05:30</sv:value>
         </sv:property>
         <sv:property sv:name="hippotranslation:id" sv:type="String">
           <sv:value>153d4682-5e59-4196-aeb7-0e971cdfb24a</sv:value>
@@ -122,14 +122,12 @@
           <sv:value>Additional Services</sv:value>
         </sv:property>
         <sv:property sv:name="mootlywcm:description" sv:type="String">
-          <sv:value/>
+          <sv:value>Tax planning encompasses many different aspects, including the timing of both income and purchases and other expenditures, selection of investments and types of retirement plans, as well as filing status and common deductions. However, while tax planning is an important element in any financial plan, it is important to not let the "tax" tail wag the financial "dog." This can ultimately be counterproductive, as virtually all courses of financial action will have some tax consequences, and they should not be avoided solely on this basis.</sv:value>
         </sv:property>
         <sv:property sv:name="mootlywcm:enable" sv:type="Boolean">
           <sv:value>true</sv:value>
         </sv:property>
-        <sv:property sv:multiple="true" sv:name="mootlywcm:highlights" sv:type="String">
-          <sv:value/>
-        </sv:property>
+        <sv:property sv:multiple="true" sv:name="mootlywcm:highlights" sv:type="String"/>
         <sv:property sv:name="mootlywcm:id" sv:type="String">
           <sv:value/>
         </sv:property>
@@ -155,7 +153,7 @@
             <sv:value>hippo:harddocument</sv:value>
           </sv:property>
           <sv:property sv:name="jcr:uuid" sv:type="String">
-            <sv:value>0260a4cf-a67a-4e82-a5c0-ef674be284b6</sv:value>
+            <sv:value>4649376f-8cdb-4ae5-ab29-df765b313d8e</sv:value>
           </sv:property>
           <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
           <sv:property sv:name="hippostd:state" sv:type="String">
@@ -219,7 +217,7 @@
           <sv:value>hippotranslation:translated</sv:value>
         </sv:property>
         <sv:property sv:name="jcr:uuid" sv:type="String">
-          <sv:value>7832f240-8240-4892-89fb-317d44e64486</sv:value>
+          <sv:value>62c669d0-f8cb-41c2-9cda-e2f29707aa1b</sv:value>
         </sv:property>
         <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
           <sv:value>live</sv:value>
@@ -244,13 +242,13 @@
           <sv:value>2013-07-11T23:02:59.829+05:30</sv:value>
         </sv:property>
         <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-          <sv:value>2013-07-11T23:34:14.734+05:30</sv:value>
+          <sv:value>2013-07-12T00:31:51.678+05:30</sv:value>
         </sv:property>
         <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
           <sv:value>admin</sv:value>
         </sv:property>
         <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-          <sv:value>2013-07-11T23:34:18.434+05:30</sv:value>
+          <sv:value>2013-07-12T00:31:54.468+05:30</sv:value>
         </sv:property>
         <sv:property sv:name="hippotranslation:id" sv:type="String">
           <sv:value>3c09d157-0073-4b8c-9b7e-b7294bce8645</sv:value>
@@ -265,14 +263,14 @@
           <sv:value>Additional Services</sv:value>
         </sv:property>
         <sv:property sv:name="mootlywcm:description" sv:type="String">
-          <sv:value/>
+          <sv:value>Worried you may have missed something in the Income Tax return! Want a second opinion? 
+Premium provides the option to get your Income Tax Return reviewed by Taxsmile's Tax Expert.
+Tax Expert may ask for more information or documents to ensure your return is complete.</sv:value>
         </sv:property>
         <sv:property sv:name="mootlywcm:enable" sv:type="Boolean">
           <sv:value>true</sv:value>
         </sv:property>
-        <sv:property sv:multiple="true" sv:name="mootlywcm:highlights" sv:type="String">
-          <sv:value/>
-        </sv:property>
+        <sv:property sv:multiple="true" sv:name="mootlywcm:highlights" sv:type="String"/>
         <sv:property sv:name="mootlywcm:id" sv:type="String">
           <sv:value/>
         </sv:property>
@@ -298,7 +296,7 @@
             <sv:value>hippo:harddocument</sv:value>
           </sv:property>
           <sv:property sv:name="jcr:uuid" sv:type="String">
-            <sv:value>2ea533c2-08a0-4a06-87ff-5beeeb78834b</sv:value>
+            <sv:value>908dc446-58c8-4cf1-bf63-2ad199d611ce</sv:value>
           </sv:property>
           <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
           <sv:property sv:name="hippostd:state" sv:type="String">
@@ -362,7 +360,7 @@
           <sv:value>hippotranslation:translated</sv:value>
         </sv:property>
         <sv:property sv:name="jcr:uuid" sv:type="String">
-          <sv:value>f1fa6251-e305-475c-bbb5-d6f3ac345342</sv:value>
+          <sv:value>6c00670e-1748-4d82-a052-5949f586914b</sv:value>
         </sv:property>
         <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
           <sv:value>live</sv:value>
@@ -387,13 +385,13 @@
           <sv:value>2013-07-11T23:08:11.589+05:30</sv:value>
         </sv:property>
         <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-          <sv:value>2013-07-11T23:23:50.710+05:30</sv:value>
+          <sv:value>2013-07-12T01:05:42.309+05:30</sv:value>
         </sv:property>
         <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
           <sv:value>admin</sv:value>
         </sv:property>
         <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-          <sv:value>2013-07-11T23:23:53.638+05:30</sv:value>
+          <sv:value>2013-07-12T01:05:45.868+05:30</sv:value>
         </sv:property>
         <sv:property sv:name="hippotranslation:id" sv:type="String">
           <sv:value>f142aed3-25a2-4a37-8bde-81c7d783b9a7</sv:value>
@@ -408,14 +406,12 @@
           <sv:value>Additional Services</sv:value>
         </sv:property>
         <sv:property sv:name="mootlywcm:description" sv:type="String">
-          <sv:value/>
+          <sv:value>If you receive any intimation (demand notice) from the Income-tax department after processing your Income-tax return, we handle the query and replies for you for at no extra cost. This does not include cost of visit to the Income-tax Department as it may not be required for handling replies and queries.</sv:value>
         </sv:property>
         <sv:property sv:name="mootlywcm:enable" sv:type="Boolean">
           <sv:value>true</sv:value>
         </sv:property>
-        <sv:property sv:multiple="true" sv:name="mootlywcm:highlights" sv:type="String">
-          <sv:value/>
-        </sv:property>
+        <sv:property sv:multiple="true" sv:name="mootlywcm:highlights" sv:type="String"/>
         <sv:property sv:name="mootlywcm:id" sv:type="String">
           <sv:value/>
         </sv:property>
@@ -441,7 +437,7 @@
             <sv:value>hippo:harddocument</sv:value>
           </sv:property>
           <sv:property sv:name="jcr:uuid" sv:type="String">
-            <sv:value>e2802d1e-562d-4534-9333-45b67c97cf38</sv:value>
+            <sv:value>1146081c-7dbc-424f-a42f-c3dc5186a657</sv:value>
           </sv:property>
           <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
           <sv:property sv:name="hippostd:state" sv:type="String">
@@ -505,7 +501,7 @@
           <sv:value>hippotranslation:translated</sv:value>
         </sv:property>
         <sv:property sv:name="jcr:uuid" sv:type="String">
-          <sv:value>4a07dc85-3303-4023-a6c0-e90c8b2404e9</sv:value>
+          <sv:value>527c353d-a0f6-4eb9-a0cd-df0b31bdf866</sv:value>
         </sv:property>
         <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
           <sv:value>live</sv:value>
@@ -530,13 +526,13 @@
           <sv:value>2013-07-11T23:08:55.350+05:30</sv:value>
         </sv:property>
         <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-          <sv:value>2013-07-11T23:24:08.234+05:30</sv:value>
+          <sv:value>2013-07-12T00:43:48.152+05:30</sv:value>
         </sv:property>
         <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
           <sv:value>admin</sv:value>
         </sv:property>
         <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-          <sv:value>2013-07-11T23:24:11.822+05:30</sv:value>
+          <sv:value>2013-07-12T00:43:52.444+05:30</sv:value>
         </sv:property>
         <sv:property sv:name="hippotranslation:id" sv:type="String">
           <sv:value>4bcecfa7-cebc-4234-af23-aa6d6e52c04e</sv:value>
@@ -551,14 +547,16 @@
           <sv:value>Additional Services</sv:value>
         </sv:property>
         <sv:property sv:name="mootlywcm:description" sv:type="String">
-          <sv:value/>
+          <sv:value>You need to send the acknowledgment (ITR-V) to the Income Tax Department if you have eFiled your return without a digital signature. Check our  step by step instruction on how to file your returns.
+Wealth4India can help submit your ITR-V to Income Tax Department's postal address. Just mail us your signed ITR-V (acknowledgment) alognwith these details and we will take care of submitting the same:
+1. Order no./ copy of the invoice
+2. Userid with Wealth4India (please donot mention your password)
+3. Email address where we can communicate</sv:value>
         </sv:property>
         <sv:property sv:name="mootlywcm:enable" sv:type="Boolean">
           <sv:value>true</sv:value>
         </sv:property>
-        <sv:property sv:multiple="true" sv:name="mootlywcm:highlights" sv:type="String">
-          <sv:value/>
-        </sv:property>
+        <sv:property sv:multiple="true" sv:name="mootlywcm:highlights" sv:type="String"/>
         <sv:property sv:name="mootlywcm:id" sv:type="String">
           <sv:value/>
         </sv:property>
@@ -584,7 +582,7 @@
             <sv:value>hippo:harddocument</sv:value>
           </sv:property>
           <sv:property sv:name="jcr:uuid" sv:type="String">
-            <sv:value>e7f060cf-1cd4-43f3-ab88-610b25b98ce0</sv:value>
+            <sv:value>3b71ba59-8129-423e-a6a3-2df2a927391d</sv:value>
           </sv:property>
           <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
           <sv:property sv:name="hippostd:state" sv:type="String">
@@ -648,7 +646,7 @@
           <sv:value>hippotranslation:translated</sv:value>
         </sv:property>
         <sv:property sv:name="jcr:uuid" sv:type="String">
-          <sv:value>9bf7bc96-9e10-4fef-97d5-0d29b23b7d30</sv:value>
+          <sv:value>ea62b08d-81c9-4a3a-a0a0-15470d3d27b1</sv:value>
         </sv:property>
         <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
           <sv:value>live</sv:value>
@@ -673,13 +671,13 @@
           <sv:value>2013-07-11T23:09:26.563+05:30</sv:value>
         </sv:property>
         <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-          <sv:value>2013-07-11T23:34:31.500+05:30</sv:value>
+          <sv:value>2013-07-12T00:52:28.900+05:30</sv:value>
         </sv:property>
         <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
           <sv:value>admin</sv:value>
         </sv:property>
         <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-          <sv:value>2013-07-11T23:34:34.805+05:30</sv:value>
+          <sv:value>2013-07-12T00:52:34.821+05:30</sv:value>
         </sv:property>
         <sv:property sv:name="hippotranslation:id" sv:type="String">
           <sv:value>842772a9-8166-4216-8b95-6c9b726b581a</sv:value>
@@ -694,14 +692,12 @@
           <sv:value>Additional Services</sv:value>
         </sv:property>
         <sv:property sv:name="mootlywcm:description" sv:type="String">
-          <sv:value/>
+          <sv:value>Have you filed your tax return and awaiting a refund? The good news is that you don’t have to be left in the dark in regards to the status of your refund. Touch with Wealth4India to track your refurnd.We will provide you each update of your income tax refund from Income Tax Department at your best communication Email-Id.</sv:value>
         </sv:property>
         <sv:property sv:name="mootlywcm:enable" sv:type="Boolean">
           <sv:value>true</sv:value>
         </sv:property>
-        <sv:property sv:multiple="true" sv:name="mootlywcm:highlights" sv:type="String">
-          <sv:value/>
-        </sv:property>
+        <sv:property sv:multiple="true" sv:name="mootlywcm:highlights" sv:type="String"/>
         <sv:property sv:name="mootlywcm:id" sv:type="String">
           <sv:value/>
         </sv:property>
@@ -727,7 +723,7 @@
             <sv:value>hippo:harddocument</sv:value>
           </sv:property>
           <sv:property sv:name="jcr:uuid" sv:type="String">
-            <sv:value>db1bd6c0-80a6-48bf-9519-74c62535671d</sv:value>
+            <sv:value>27edea8d-a10b-48a6-95b2-30ea0f03e35d</sv:value>
           </sv:property>
           <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
           <sv:property sv:name="hippostd:state" sv:type="String">
@@ -791,7 +787,7 @@
           <sv:value>hippotranslation:translated</sv:value>
         </sv:property>
         <sv:property sv:name="jcr:uuid" sv:type="String">
-          <sv:value>7f1ebc00-45ac-4152-94b6-0bec688f4840</sv:value>
+          <sv:value>a9b08719-877a-4de3-b8d4-d89b28fd0fee</sv:value>
         </sv:property>
         <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
           <sv:value>live</sv:value>
@@ -816,13 +812,13 @@
           <sv:value>2013-07-11T23:12:05.875+05:30</sv:value>
         </sv:property>
         <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-          <sv:value>2013-07-11T23:35:05.513+05:30</sv:value>
+          <sv:value>2013-07-12T01:05:00.307+05:30</sv:value>
         </sv:property>
         <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
           <sv:value>admin</sv:value>
         </sv:property>
         <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-          <sv:value>2013-07-11T23:35:08.709+05:30</sv:value>
+          <sv:value>2013-07-12T01:05:03.588+05:30</sv:value>
         </sv:property>
         <sv:property sv:name="hippotranslation:id" sv:type="String">
           <sv:value>c6ace475-d8d0-4736-bbf4-fe55e8c52479</sv:value>
@@ -837,14 +833,12 @@
           <sv:value>Additional Services</sv:value>
         </sv:property>
         <sv:property sv:name="mootlywcm:description" sv:type="String">
-          <sv:value/>
+          <sv:value>Mere posting your ITR-V does not mean that the ITR-V has been received by the Income-tax Department and accepted by them. Subscribe to this service to know your ITR-V receipt status from your login itself. This will tell you whether the Income-tax Department has received and accepted your signed Acknowledgement. If not you will need to send the ITR-V again. Until your ITR-V is not submitted to the Income-tax Department, your filing process is not complete.</sv:value>
         </sv:property>
         <sv:property sv:name="mootlywcm:enable" sv:type="Boolean">
           <sv:value>true</sv:value>
         </sv:property>
-        <sv:property sv:multiple="true" sv:name="mootlywcm:highlights" sv:type="String">
-          <sv:value/>
-        </sv:property>
+        <sv:property sv:multiple="true" sv:name="mootlywcm:highlights" sv:type="String"/>
         <sv:property sv:name="mootlywcm:id" sv:type="String">
           <sv:value/>
         </sv:property>
@@ -870,7 +864,7 @@
             <sv:value>hippo:harddocument</sv:value>
           </sv:property>
           <sv:property sv:name="jcr:uuid" sv:type="String">
-            <sv:value>6571a60b-c05d-4459-9b58-3ee820632a5f</sv:value>
+            <sv:value>18d44ff8-2176-4657-a90f-625e393c26cf</sv:value>
           </sv:property>
           <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
           <sv:property sv:name="hippostd:state" sv:type="String">
@@ -934,7 +928,7 @@
           <sv:value>hippotranslation:translated</sv:value>
         </sv:property>
         <sv:property sv:name="jcr:uuid" sv:type="String">
-          <sv:value>de70bbdf-0bc0-456c-9f00-005e7b33c978</sv:value>
+          <sv:value>ffc321c9-ef1b-44d0-9987-b2247865add8</sv:value>
         </sv:property>
         <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
           <sv:value>live</sv:value>
@@ -959,13 +953,13 @@
           <sv:value>2013-07-11T23:12:48.564+05:30</sv:value>
         </sv:property>
         <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-          <sv:value>2013-07-11T23:35:19.699+05:30</sv:value>
+          <sv:value>2013-07-12T01:02:05.882+05:30</sv:value>
         </sv:property>
         <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
           <sv:value>admin</sv:value>
         </sv:property>
         <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-          <sv:value>2013-07-11T23:35:22.935+05:30</sv:value>
+          <sv:value>2013-07-12T01:02:09.893+05:30</sv:value>
         </sv:property>
         <sv:property sv:name="hippotranslation:id" sv:type="String">
           <sv:value>698deb36-4799-4886-92c6-bd06c375694c</sv:value>
@@ -980,14 +974,13 @@
           <sv:value>Additional Services</sv:value>
         </sv:property>
         <sv:property sv:name="mootlywcm:description" sv:type="String">
-          <sv:value/>
+          <sv:value>Check Your Income Tax Refund Status,Return Processing Status.
+Wealth4India has provided the facility to the Assessee / tax Payer to  check status of Income Tax Return Filed online on its e-filing portal. We will mail you each update of Income Tax Return status at your's best communication email and get in touch with you until you have not received confirmation about you income tax return status.</sv:value>
         </sv:property>
         <sv:property sv:name="mootlywcm:enable" sv:type="Boolean">
           <sv:value>true</sv:value>
         </sv:property>
-        <sv:property sv:multiple="true" sv:name="mootlywcm:highlights" sv:type="String">
-          <sv:value/>
-        </sv:property>
+        <sv:property sv:multiple="true" sv:name="mootlywcm:highlights" sv:type="String"/>
         <sv:property sv:name="mootlywcm:id" sv:type="String">
           <sv:value/>
         </sv:property>
@@ -1013,7 +1006,7 @@
             <sv:value>hippo:harddocument</sv:value>
           </sv:property>
           <sv:property sv:name="jcr:uuid" sv:type="String">
-            <sv:value>e7ab160a-79b8-4d91-8dc9-1cd431302ae9</sv:value>
+            <sv:value>d55aeafa-c070-4b32-bb61-c924cf24b968</sv:value>
           </sv:property>
           <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
           <sv:property sv:name="hippostd:state" sv:type="String">
