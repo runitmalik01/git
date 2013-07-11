@@ -496,9 +496,9 @@ public class OtherSourcesDocument extends BaseDocument implements ContentNodeBin
 		}
 		else{
 			String strDividends_uti=formMap.getField("Dividends_uti").getValue();
-			log.info("GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG"+strDividends_uti);
+			
 			 dividend_uti= Double.parseDouble(strDividends_uti);
-			log.info("HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH"+dividend_uti);
+			
 			setDividends_uti(dividend_uti);
 		}
 		double mutualFund=0.0d;
