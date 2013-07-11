@@ -20,9 +20,13 @@ import com.mootly.wcm.annotations.DataTypeValidationFields;
 import com.mootly.wcm.annotations.DataTypeValidationType;
 import com.mootly.wcm.annotations.FormFields;
 import com.mootly.wcm.annotations.PrimaryBean;
+import com.mootly.wcm.annotations.RequiredBeans;
+import com.mootly.wcm.beans.MemberPersonalInformation;
 import com.mootly.wcm.beans.OtherSourcesDocument;
 import com.mootly.wcm.components.ITReturnComponent;
+
 @PrimaryBean(primaryBeanClass=OtherSourcesDocument.class)
+@RequiredBeans(requiredBeans=MemberPersonalInformation.class)
 @FormFields(fieldNames={"Gov_income","Kissan","Bank_detail_fdr","Bank_detail_saving","Indira","intnsc","Otherint",
 		"Totalint","Family_pension","Dividends","Income_rent_machine","Income_other","Deduction_57",
 		"TotalOther_income","Familypension_deduction","Otherdeduction","depreciation",
@@ -61,12 +65,12 @@ import com.mootly.wcm.components.ITReturnComponent;
 		DataTypeValidationType.DECIMAL,
 		DataTypeValidationType.DECIMAL,
 		DataTypeValidationType.DECIMAL
-	}
+}
 		)
 
 public class OtherIncome extends ITReturnComponent {
 	private static final Logger log = LoggerFactory.getLogger(OtherIncome.class);
-
+	private static String eRROR_MAX_ALLOWED=null; 
 	@Override
 	public void doBeforeRender(HstRequest request, HstResponse response) {
 		// TODO Auto-generated method stub
@@ -79,6 +83,7 @@ public class OtherIncome extends ITReturnComponent {
 		if(log.isInfoEnabled()){
 			log.info(hideHorseIncome+" do before render hideHorseIncome");
 		}
+		request.setAttribute("Max_allowed_ITR1", eRROR_MAX_ALLOWED);
 	}
 
 	@Override
@@ -88,5 +93,26 @@ public class OtherIncome extends ITReturnComponent {
 		if(log.isInfoEnabled()){
 			log.info("i am in do action of otherincome");
 		}
+	}
+	@Override
+	public boolean beforeSave(HstRequest request) {
+		// TODO Auto-generated method stub
+		boolean con_exempt=true;
+		String max_allowed_exempt=request.getRequestContext().getResolvedSiteMapItem().getParameter("max_allowed_exempt");
+		String total_taxfree_income=getFormMap().getField("Total_taxfree_income").getValue();
+		MemberPersonalInformation personalinfo=(MemberPersonalInformation)request.getAttribute(MemberPersonalInformation.class.getSimpleName().toLowerCase());
+		if(max_allowed_exempt!=null){
+			if(personalinfo.getSelectedITRForm().toString().equals("ITR1")){
+				if(Integer.parseInt(total_taxfree_income) > Integer.parseInt(max_allowed_exempt)){
+					log.info("Exceed Over Limit For ITR1");
+					eRROR_MAX_ALLOWED="err.maxallowed.exceed";
+					getFormMap().addMessage("Total_taxfree_income", "err.maxallowed.exceed");
+					con_exempt=false;
+				}else{
+					eRROR_MAX_ALLOWED=null;
+				}
+			}
+		}
+		return con_exempt;
 	}
 }
