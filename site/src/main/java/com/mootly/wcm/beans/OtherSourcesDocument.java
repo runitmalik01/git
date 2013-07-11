@@ -15,25 +15,6 @@ import java.util.Date;
 import javax.jcr.RepositoryException;
 import javax.jcr.Value;
 
-import static com.mootly.wcm.utils.Constants.PROP_PI_AREA_LOCALITY;
-import static com.mootly.wcm.utils.Constants.PROP_PI_EMPLOYER_CATEGORY;
-import static com.mootly.wcm.utils.Constants.PROP_PI_DOB;
-import static com.mootly.wcm.utils.Constants.PROP_PI_EMAIL;
-import static com.mootly.wcm.utils.Constants.PROP_PI_FATHER_NAME;
-import static com.mootly.wcm.utils.Constants.PROP_PI_FILING_STATUS;
-import static com.mootly.wcm.utils.Constants.PROP_PI_FIRST_NAME;
-import static com.mootly.wcm.utils.Constants.PROP_PI_FLAT_FLOOR_BUILDING;
-import static com.mootly.wcm.utils.Constants.PROP_PI_LAST_NAME;
-import static com.mootly.wcm.utils.Constants.PROP_PI_MIDDLE_NAME;
-import static com.mootly.wcm.utils.Constants.PROP_PI_MOBILE;
-import static com.mootly.wcm.utils.Constants.PROP_PI_PAN;
-import static com.mootly.wcm.utils.Constants.PROP_PI_PERSONALINFO_LINK;
-import static com.mootly.wcm.utils.Constants.PROP_PI_PHONE;
-import static com.mootly.wcm.utils.Constants.PROP_PI_RESIDENT_CATEGORY;
-import static com.mootly.wcm.utils.Constants.PROP_PI_ROAD_STREET;
-import static com.mootly.wcm.utils.Constants.PROP_PI_SEX;
-import static com.mootly.wcm.utils.Constants.PROP_PI_STD_CODE;
-
 import org.hippoecm.hst.component.support.forms.FormMap;
 import org.hippoecm.hst.content.beans.ContentNodeBinder;
 import org.hippoecm.hst.content.beans.ContentNodeBindingException;
@@ -325,7 +306,7 @@ public class OtherSourcesDocument extends BaseDocument implements ContentNodeBin
 			node.setProperty("mootlywcm:Other_deduction", otherincome.getOtherdeduction());
 			node.setProperty("mootlywcm:Depreciation", otherincome.getDepreciation());
 			node.setProperty("mootlywcm:Total_expenses", otherincome.getTotalexpense());
-			node.setProperty("mootlywcm:Divivends_uti", otherincome.getDividends_uti());
+			node.setProperty("mootlywcm:Dividends_uti", otherincome.getDividends_uti());
 			node.setProperty("mootlywcm:Interest_income", otherincome.getInterest_income());
 			node.setProperty("mootlywcm:Dividends_mutualfund", otherincome.getDividends_mutualfund());
 			node.setProperty("mootlywcm:Agriculture_income", otherincome.getAgriculture_income());
@@ -343,100 +324,137 @@ public class OtherSourcesDocument extends BaseDocument implements ContentNodeBin
 	public void fill(FormMap formMap) {
 		// TODO Auto-generated method stub
 		if (formMap == null) return;
-
-		if (formMap.getField("Gov_income").getValue().isEmpty()){}
+		double amtGovtInc=0.0d;
+		if (formMap.getField("Gov_income").getValue().isEmpty()){
+			setGov_income(amtGovtInc);
+		}
 		else{
 			String strGov_income=formMap.getField("Gov_income").getValue();
-			double amt= Double.parseDouble(strGov_income);
-
-			setGov_income(amt);
+			 amtGovtInc= Double.parseDouble(strGov_income);
+			setGov_income(amtGovtInc);
 		}
-		if (formMap.getField("Bank_detail_fdr").getValue().isEmpty()) {}
+		double bankdetailfdr=0.0d;
+		if (formMap.getField("Bank_detail_fdr").getValue().isEmpty()) {
+			setBank_detail_fdr(bankdetailfdr);
+		}
 		else{
 			String strBankdetail=formMap.getField("Bank_detail_fdr").getValue();
-			double amt= Double.parseDouble(strBankdetail);
-
-			setBank_detail_fdr(amt);
+			bankdetailfdr= Double.parseDouble(strBankdetail);
+			setBank_detail_fdr(bankdetailfdr);
 		}
-		if (formMap.getField("Bank_detail_saving").getValue().isEmpty()) {}
+		double bankdetailsaving=0.0d;
+		if (formMap.getField("Bank_detail_saving").getValue().isEmpty()) {
+			setBank_detail_saving(bankdetailsaving);
+		}
 		else{
 			String strBankdetail=formMap.getField("Bank_detail_saving").getValue();
-			double amt= Double.parseDouble(strBankdetail);
-			setBank_detail_saving(amt);
+			bankdetailsaving= Double.parseDouble(strBankdetail);
+			setBank_detail_saving(bankdetailsaving);
 		}
-		if (formMap.getField("Kissan").getValue().isEmpty()){}
+		double kissan=0.0d;
+		if (formMap.getField("Kissan").getValue().isEmpty()){
+			setKissan(kissan);
+		}
 		else{
 			String strKissanpatra=formMap.getField("Kissan").getValue();
-			double amt= Double.parseDouble(strKissanpatra);
+			 kissan= Double.parseDouble(strKissanpatra);
 
-			setKissan(amt);
+			setKissan(kissan);
 		}
-
-		if (formMap.getField("Indira").getValue().isEmpty()){}
+         double indira=0.0d;
+		if (formMap.getField("Indira").getValue().isEmpty()){
+			setIndira(indira);
+		}
 		else{
 			String strIndirapatra=formMap.getField("Indira").getValue();
-			double amt= Double.parseDouble(strIndirapatra);
+			indira= Double.parseDouble(strIndirapatra);
 
-			setIndira(amt);
+			setIndira(indira);
 		}
-
-		if (formMap.getField("intnsc").getValue().isEmpty()) {}
+          double intnsc=0.0d;
+		if (formMap.getField("intnsc").getValue().isEmpty()) {
+			setIntnsc(intnsc);
+		}
 		else{
 			String strInt_nsc=formMap.getField("intnsc").getValue();
-			double amt= Double.parseDouble(strInt_nsc);
+			 intnsc= Double.parseDouble(strInt_nsc);
 
-			setIntnsc(amt);
+			setIntnsc(intnsc);
 		}
-		if (formMap.getField("Otherint").getValue().isEmpty()){}
+		double otherint=0.0d;
+		if (formMap.getField("Otherint").getValue().isEmpty()){
+			setOtherint(otherint);
+		}
 		else{
 			String strOther_interest=formMap.getField("Otherint").getValue();
-			double amt= Double.parseDouble(strOther_interest);
-			setOtherint(amt);
+			 otherint= Double.parseDouble(strOther_interest);
+			setOtherint(otherint);
 		}
-		if (formMap.getField("Totalint").getValue().isEmpty()) {}
+		double totalInt=0.0d;
+		if (formMap.getField("Totalint").getValue().isEmpty()) {
+			setTotalint(totalInt);
+		}
 		else{
 			String strTotal_interest=formMap.getField("Totalint").getValue();
-			double amt= Double.parseDouble(strTotal_interest);
-			setTotalint(amt);
+			 totalInt= Double.parseDouble(strTotal_interest);
+			setTotalint(totalInt);
+		} 
+		double familyPension=0.0d; 
+		if (formMap.getField("Family_pension").getValue().isEmpty()){
+			setFamily_pension(familyPension);
 		}
-		if (formMap.getField("Family_pension").getValue().isEmpty()){}
 		else{
 			String strFamily_pension=formMap.getField("Family_pension").getValue();
-			double amt= Double.parseDouble(strFamily_pension);
-			setFamily_pension(amt);
+			 familyPension= Double.parseDouble(strFamily_pension);
+			setFamily_pension(familyPension);
 		}
-		if (formMap.getField("Dividends").getValue().isEmpty()) {}
+		double dividends=0.0d;
+		if (formMap.getField("Dividends").getValue().isEmpty()) {
+			setDividends(dividends);
+		}
 		else{
 			String strDividends=formMap.getField("Dividends").getValue();
-			double amt= Double.parseDouble(strDividends);
-			setDividends(amt);
+			 dividends= Double.parseDouble(strDividends);
+			setDividends(dividends);
 		}
-		if (formMap.getField("Deduction_57").getValue().isEmpty()){}
+		double ded57=0.0d;
+		if (formMap.getField("Deduction_57").getValue().isEmpty()){
+			setDeduction_57(ded57);
+		}
 		else{
 			String strDeduction_57=formMap.getField("Deduction_57").getValue();
-			double amt= Double.parseDouble(strDeduction_57);
-			setDeduction_57(amt);
+			 ded57= Double.parseDouble(strDeduction_57);
+			setDeduction_57(ded57);
 		}
-		if (formMap.getField("totalexpense").getValue().isEmpty()){}
+		double totalexpense=0.0d;
+		if (formMap.getField("totalexpense").getValue().isEmpty()){
+			setTotalexpense(totalexpense);
+		}
 		else{
 			String strTotal_expenses=formMap.getField("totalexpense").getValue();
-			double amt= Double.parseDouble(strTotal_expenses);
+			 totalexpense= Double.parseDouble(strTotal_expenses);
 
-			setTotalexpense(amt);
+			setTotalexpense(totalexpense);
 		}
-		if (formMap.getField("Familypension_deduction").getValue().isEmpty()){}
+		double familyPensionDed=0.0d;
+		if (formMap.getField("Familypension_deduction").getValue().isEmpty()){
+			setFamilypension_deduction(familyPensionDed);
+		}
 		else{
 			String strstrTotalOther_income=formMap.getField("Familypension_deduction").getValue();
-			double amt= Double.parseDouble(strstrTotalOther_income);
+			familyPensionDed= Double.parseDouble(strstrTotalOther_income);
 
-			setFamilypension_deduction(amt);
+			setFamilypension_deduction(familyPensionDed);
 		}
-		if (formMap.getField("TotalOther_income").getValue().isEmpty()) {}
+		double totalOtherIncome=0.0d;
+		if (formMap.getField("TotalOther_income").getValue().isEmpty()) {
+			setTotalOther_income(totalOtherIncome);
+		}
 		else{
 			String strTotalOther_income=formMap.getField("TotalOther_income").getValue();
-			double amt= Double.parseDouble(strTotalOther_income);
+			 totalOtherIncome= Double.parseDouble(strTotalOther_income);
 
-			setTotalOther_income(amt);
+			setTotalOther_income(totalOtherIncome);
 		}
 		/*if (formMap.getField("Lottery_horse_income").getValue().isEmpty()){}
 		else{
@@ -445,19 +463,25 @@ public class OtherSourcesDocument extends BaseDocument implements ContentNodeBin
 			log.info("expense is"+amt);
 			setLottery_horse_income(amt);
 		}*/
-		if (formMap.getField("depreciation").getValue().isEmpty()) {}
+		double depreciation=0.0d;
+		if (formMap.getField("depreciation").getValue().isEmpty()) {
+			setDepreciation(depreciation);
+		}
 		else{
 			String strDepreciation=formMap.getField("depreciation").getValue();
-			double amt= Double.parseDouble(strDepreciation);
+			 depreciation= Double.parseDouble(strDepreciation);
 
-			setDepreciation(amt);
+			setDepreciation(depreciation);
 		}
-		if (formMap.getField("Income_rent_machine").getValue().isEmpty()){}
+		double incomeRentMachine=0.0d;
+		if (formMap.getField("Income_rent_machine").getValue().isEmpty()){
+			setIncome_rent_machine(incomeRentMachine);
+		}
 		else{
 			String strIncome_rent_machine=formMap.getField("Income_rent_machine").getValue();
-			double amt= Double.parseDouble(strIncome_rent_machine);
+			 incomeRentMachine= Double.parseDouble(strIncome_rent_machine);
 
-			setIncome_rent_machine(amt);
+			setIncome_rent_machine(incomeRentMachine);
 		}
 	/*	if (formMap.getField("Income_maintain").getValue().isEmpty()){}
 		else{
@@ -466,75 +490,106 @@ public class OtherSourcesDocument extends BaseDocument implements ContentNodeBin
 
 			setIncome_maintain(amt);
 		}*/
-		if (formMap.getField("Dividends_uti").getValue().isEmpty()){}
+		double dividend_uti=0.0d;
+		if (formMap.getField("Dividends_uti").getValue().isEmpty()){
+			setDividends_uti(dividend_uti);
+		}
 		else{
 			String strDividends_uti=formMap.getField("Dividends_uti").getValue();
-			double amt= Double.parseDouble(strDividends_uti);
-
-			setDividends_uti(amt);
+			log.info("GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG"+strDividends_uti);
+			 dividend_uti= Double.parseDouble(strDividends_uti);
+			log.info("HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH"+dividend_uti);
+			setDividends_uti(dividend_uti);
 		}
-		if (formMap.getField("Dividends_mutualfund").getValue().isEmpty()) {}
+		double mutualFund=0.0d;
+		if (formMap.getField("Dividends_mutualfund").getValue().isEmpty()) {
+			setDividends_mutualfund(mutualFund);
+		}
 		else{
 			String strDividends_mutualfund=formMap.getField("Dividends_mutualfund").getValue();
-			double amt= Double.parseDouble(strDividends_mutualfund);
+			 mutualFund= Double.parseDouble(strDividends_mutualfund);
 
-			setDividends_mutualfund(amt);
+			setDividends_mutualfund(mutualFund);
 		}
-		if (formMap.getField("Dividends_indian_companies").getValue().isEmpty()) {}
+		double indiandividend=0.0d;
+		if (formMap.getField("Dividends_indian_companies").getValue().isEmpty()) {
+			setDividends_indian_companies(indiandividend);	
+		}
 		else{
 			String strDividends_indian_companies=formMap.getField("Dividends_indian_companies").getValue();
-			double amt= Double.parseDouble(strDividends_indian_companies);
+			 indiandividend= Double.parseDouble(strDividends_indian_companies);
 
-			setDividends_indian_companies(amt);
+			setDividends_indian_companies(indiandividend);
 		}
-		if (formMap.getField("Agriculture_income").getValue().isEmpty()) {}
+		double agricultureIncome=0.0d;
+		if (formMap.getField("Agriculture_income").getValue().isEmpty()) {
+			setAgriculture_income(agricultureIncome);
+		}
 		else{
 			String strAgriculture_income=formMap.getField("Agriculture_income").getValue();
-			double amt= Double.parseDouble(strAgriculture_income);
+			 agricultureIncome= Double.parseDouble(strAgriculture_income);
 
-			setAgriculture_income(amt);
+			setAgriculture_income(agricultureIncome);
 		}
-		if (formMap.getField("Otherincome").getValue().isEmpty()) {}
+		double OtherIncome=0.0d;
+		if (formMap.getField("Otherincome").getValue().isEmpty()) {
+			setOtherincome(OtherIncome);
+		}
 		else{
 			String strOther_income=formMap.getField("Otherincome").getValue();
-			double amt= Double.parseDouble(strOther_income);
+			 OtherIncome= Double.parseDouble(strOther_income);
 
-			setOtherincome(amt);
+			setOtherincome(OtherIncome);
 		}
-		if (formMap.getField("Income_other").getValue().isEmpty()) {}
+		double otherIncome=0.0d;
+		if (formMap.getField("Income_other").getValue().isEmpty()) {
+			setIncome_other(otherIncome);
+		}
 		else{
 			String strIncome_other=formMap.getField("Income_other").getValue();
-			double amt= Double.parseDouble(strIncome_other);
+			 otherIncome= Double.parseDouble(strIncome_other);
 
-			setIncome_other(amt);
+			setIncome_other(otherIncome);
 		}
-		if (formMap.getField("Total_taxfree_income").getValue().isEmpty()){}
+		double taxfreeincome=0.0d;
+		if (formMap.getField("Total_taxfree_income").getValue().isEmpty()){
+			setTotal_taxfree_income(taxfreeincome);
+		}
 		else{
 			String strTotal_taxfree_income=formMap.getField("Total_taxfree_income").getValue();
-			double amt= Double.parseDouble(strTotal_taxfree_income);
+			taxfreeincome= Double.parseDouble(strTotal_taxfree_income);
 
-			setTotal_taxfree_income(amt);
+			setTotal_taxfree_income(taxfreeincome);
 		}
-		if (formMap.getField("Interest_income").getValue().isEmpty()){}
+		double Interest_income=0.0d;
+		if (formMap.getField("Interest_income").getValue().isEmpty()){
+			setInterest_income(Interest_income);
+		}
 		else{
 			String strInterest_income=formMap.getField("Interest_income").getValue();
-			double amt= Double.parseDouble(strInterest_income);
+			 Interest_income= Double.parseDouble(strInterest_income);
 
-			setInterest_income(amt);
+			setInterest_income(Interest_income);
+		} 
+		double taxable_income=0.0d; 
+		if (formMap.getField("Taxable_income").getValue().isEmpty()){
+			setTaxable_income(taxable_income);
 		}
-		if (formMap.getField("Taxable_income").getValue().isEmpty()){}
 		else{
 			String strTaxable_income=formMap.getField("Taxable_income").getValue();
-			double amt= Double.parseDouble(strTaxable_income);
+			 taxable_income= Double.parseDouble(strTaxable_income);
 
-			setTaxable_income(amt);
+			setTaxable_income(taxable_income);
 		}
-		if (formMap.getField("Otherdeduction").getValue().isEmpty()){}
+		double otherDed=0.0d;
+		if (formMap.getField("Otherdeduction").getValue().isEmpty()){
+			setOtherdeduction(otherDed);
+		}
 		else{
 			String strTaxable_income=formMap.getField("Otherdeduction").getValue();
-			double amt= Double.parseDouble(strTaxable_income);
+			 otherDed= Double.parseDouble(strTaxable_income);
 
-			setOtherdeduction(amt);
+			setOtherdeduction(otherDed);
 		}
 	}
 	@Override
