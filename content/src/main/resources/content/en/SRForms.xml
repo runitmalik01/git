@@ -255,7 +255,7 @@
         <sv:value>hippotranslation:translated</sv:value>
       </sv:property>
       <sv:property sv:name="jcr:uuid" sv:type="String">
-        <sv:value>5f5b699c-2e4c-4f11-9fc6-38d671019b65</sv:value>
+        <sv:value>2a8d2671-3c35-46cf-81f7-9095aa8f1999</sv:value>
       </sv:property>
       <sv:property sv:name="ef:action" sv:type="String">
         <sv:value>mail</sv:value>
@@ -289,13 +289,13 @@
         <sv:value>2013-06-26T16:06:20.112+05:30</sv:value>
       </sv:property>
       <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-        <sv:value>2013-07-09T15:35:01.953+05:30</sv:value>
+        <sv:value>2013-07-10T22:24:25.809+05:30</sv:value>
       </sv:property>
       <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
         <sv:value>admin</sv:value>
       </sv:property>
       <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-        <sv:value>2013-07-09T15:35:08.083+05:30</sv:value>
+        <sv:value>2013-07-10T22:24:30.713+05:30</sv:value>
       </sv:property>
       <sv:property sv:name="hippotranslation:id" sv:type="String">
         <sv:value>0fc146bf-4705-4290-9ca0-fd586479b6bf</sv:value>
@@ -313,7 +313,7 @@
           <sv:value>ef:textfield</sv:value>
         </sv:property>
         <sv:property sv:name="jcr:uuid" sv:type="String">
-          <sv:value>bd2ad266-2317-4aae-a8a5-66ed7823c27b</sv:value>
+          <sv:value>39a6d458-5c58-4050-aeed-ff0108b3452b</sv:value>
         </sv:property>
         <sv:property sv:name="ef:fieldname" sv:type="String">
           <sv:value>flex_field_string_6</sv:value>
@@ -339,7 +339,7 @@
           <sv:value>ef:textfield</sv:value>
         </sv:property>
         <sv:property sv:name="jcr:uuid" sv:type="String">
-          <sv:value>80e1ba66-d410-4a66-b1b9-edb36809d403</sv:value>
+          <sv:value>8047dbf7-47e4-4608-990b-1045629cb0ae</sv:value>
         </sv:property>
         <sv:property sv:name="ef:fieldname" sv:type="String">
           <sv:value>flex_field_string_0</sv:value>
@@ -354,7 +354,7 @@
           <sv:value>40</sv:value>
         </sv:property>
         <sv:property sv:name="ef:mandatory" sv:type="Boolean">
-          <sv:value>false</sv:value>
+          <sv:value>true</sv:value>
         </sv:property>
         <sv:property sv:name="ef:validexpression" sv:type="String">
           <sv:value/>
@@ -365,7 +365,7 @@
           <sv:value>ef:textfield</sv:value>
         </sv:property>
         <sv:property sv:name="jcr:uuid" sv:type="String">
-          <sv:value>e6a4c4dc-e26e-4965-acaf-aac652506aca</sv:value>
+          <sv:value>a4f3e62c-61f7-4b16-8702-d6c09b6e0f76</sv:value>
         </sv:property>
         <sv:property sv:name="ef:fieldname" sv:type="String">
           <sv:value>flex_field_string_1</sv:value>
@@ -391,7 +391,7 @@
           <sv:value>ef:textfield</sv:value>
         </sv:property>
         <sv:property sv:name="jcr:uuid" sv:type="String">
-          <sv:value>b91d3a00-6a44-4fcb-a36e-8871c857d01b</sv:value>
+          <sv:value>37f8d9dc-0265-4302-866f-6582984d1e73</sv:value>
         </sv:property>
         <sv:property sv:name="ef:fieldname" sv:type="String">
           <sv:value>flex_field_string_2</sv:value>
@@ -406,7 +406,7 @@
           <sv:value>40</sv:value>
         </sv:property>
         <sv:property sv:name="ef:mandatory" sv:type="Boolean">
-          <sv:value>false</sv:value>
+          <sv:value>true</sv:value>
         </sv:property>
         <sv:property sv:name="ef:validexpression" sv:type="String">
           <sv:value/>
@@ -417,7 +417,7 @@
           <sv:value>ef:textfield</sv:value>
         </sv:property>
         <sv:property sv:name="jcr:uuid" sv:type="String">
-          <sv:value>99e22647-d3e3-40f6-ad51-b779f2d38c11</sv:value>
+          <sv:value>df145237-186d-4313-88ba-46bbeb92945c</sv:value>
         </sv:property>
         <sv:property sv:name="ef:fieldname" sv:type="String">
           <sv:value>flex_field_string_3</sv:value>
@@ -443,7 +443,7 @@
           <sv:value>ef:textfield</sv:value>
         </sv:property>
         <sv:property sv:name="jcr:uuid" sv:type="String">
-          <sv:value>d2163826-93de-4251-b017-35e0e0bc9e3d</sv:value>
+          <sv:value>a46f6f18-1340-4706-8ad7-54c239375fb9</sv:value>
         </sv:property>
         <sv:property sv:name="ef:fieldname" sv:type="String">
           <sv:value>flex_field_string_4</sv:value>
@@ -458,7 +458,7 @@
           <sv:value>40</sv:value>
         </sv:property>
         <sv:property sv:name="ef:mandatory" sv:type="Boolean">
-          <sv:value>false</sv:value>
+          <sv:value>true</sv:value>
         </sv:property>
         <sv:property sv:name="ef:validexpression" sv:type="String">
           <sv:value/>
@@ -469,7 +469,7 @@
           <sv:value>ef:textfield</sv:value>
         </sv:property>
         <sv:property sv:name="jcr:uuid" sv:type="String">
-          <sv:value>a33c436d-cddb-4be3-ae13-ea11cac1ae27</sv:value>
+          <sv:value>d29bac80-a733-45ef-8dd2-7a496722099f</sv:value>
         </sv:property>
         <sv:property sv:name="ef:fieldname" sv:type="String">
           <sv:value>flex_field_string_5</sv:value>
@@ -484,7 +484,7 @@
           <sv:value>40</sv:value>
         </sv:property>
         <sv:property sv:name="ef:mandatory" sv:type="Boolean">
-          <sv:value>false</sv:value>
+          <sv:value>true</sv:value>
         </sv:property>
         <sv:property sv:name="ef:validexpression" sv:type="String">
           <sv:value/>
