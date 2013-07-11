@@ -130,7 +130,7 @@ public class MemberDriveDocument extends BaseDocument implements ContentNodeBind
 				}
 			}
 			node.setProperty(DESCRIPTION, bean.getDescription());
-			node.setProperty(DOCUMENT_PASSWORD, bean.getDescription());
+			node.setProperty(DOCUMENT_PASSWORD, bean.getDocPassword());
 		} 
 		catch (RepositoryException e) {
 			log.error("Repository Exception",e);
