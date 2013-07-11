@@ -9,20 +9,27 @@
 package com.mootly.wcm.member;
 
 import java.io.ByteArrayInputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.UUID;
 
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
+import javax.servlet.ServletContext;
 
+import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileItemIterator;
 import org.apache.commons.fileupload.FileItemStream;
 import org.apache.commons.fileupload.FileUploadBase;
 import org.apache.commons.fileupload.FileUploadException;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.io.IOUtils;
 import org.hippoecm.hst.component.support.forms.FormField;
@@ -56,6 +63,9 @@ public class MemberDrive extends ITReturnComponent {
 	private static final Logger log = LoggerFactory.getLogger(MemberDrive.class);
 	private static final String MEMBER_DRIVE_FOLDER_NAME="Members";
 	private static final long MEMBER_FILE_SIZE= 1024 * 1024;
+	private static final String FILE_DATA="fileData";
+	private static final String CONTENT_TYPE="ContentType";
+	private static final String FILE_NAME="fileName";
 	@Override
 	public void doBeforeRender(HstRequest request, HstResponse response) {
 		// TODO Auto-generated method stub
@@ -104,53 +114,47 @@ public class MemberDrive extends ITReturnComponent {
 		// TODO Auto-generated method stub
 		FormFields formFields=this.getClass().getAnnotation(FormFields.class);		
 		FormMap formMap=new FormMap(request, formFields.fieldNames());
-		log.info("get value of description"+formMap.getField("description").getValue());
-		HashMap<String, byte[]> files = new HashMap<String, byte[]>();
-		FileItemStream fileItemStream=null;
-		//FileItemStream simpleFormFieldItemStream=null;
+		Map<String, byte[]> files = new HashMap<String, byte[]>();
+		Map<String,String> fileDetails= new HashMap<String, String>();
 		boolean isMultipart = ServletFileUpload.isMultipartContent(request);
 		if (isMultipart) {
-			ServletFileUpload servletFileUpload = new ServletFileUpload();
-			long maxsize=Long.parseLong(request.getRequestContext().getResolvedSiteMapItem().getParameter("maxsize"));
-			servletFileUpload.setFileSizeMax(MEMBER_FILE_SIZE * maxsize);
 			try {
-				FileItemIterator iter = servletFileUpload.getItemIterator(request);
-				while (iter.hasNext()){
-					fileItemStream = iter.next();
-					if (!fileItemStream.isFormField()) {
-						FormField formField = formMap.getField(fileItemStream.getFieldName());
-						if (formField != null) {
-							InputStream inputStream = fileItemStream.openStream();							
-							byte[] data = IOUtils.toByteArray(inputStream);
-							files.put(fileItemStream.getName(), data);								
-							inputStream.close();
-							break;
+				ServletFileUpload fileUpload = new ServletFileUpload(new DiskFileItemFactory());
+				String str_max_size=request.getRequestContext().getResolvedSiteMapItem().getParameter("maxsize");
+				if(str_max_size!=null){
+					long maxsize=Long.parseLong(request.getRequestContext().getResolvedSiteMapItem().getParameter("maxsize"));
+					fileUpload.setSizeMax(MEMBER_FILE_SIZE * maxsize);
+				}
+				List<FileItem> items=fileUpload.parseRequest(request);
+				Iterator<FileItem> iter = items.iterator();
+				while (iter.hasNext()) {
+					FileItem item = iter.next();
+					if (item.isFormField()) {
+						if(formMap.getField(item.getFieldName())!=null){
+							formMap.getField(item.getFieldName()).addValue(item.getString());
 						}
+					} else {
+						InputStream inputStream = item.getInputStream();							
+						byte[] data = IOUtils.toByteArray(inputStream);
+						files.put(FILE_DATA, data);
+						fileDetails.put(FILE_NAME, item.getName());
+						fileDetails.put(CONTENT_TYPE, item.getContentType());
 					}
 				}
-				/*while (iter.hasNext()){
-					simpleFormFieldItemStream =iter.next();
-					if (simpleFormFieldItemStream.isFormField()) {
-						FormField formField = formMap.getField(simpleFormFieldItemStream.getFieldName());
-						if (formField != null) {
-							formMap.getField(simpleFormFieldItemStream.getFieldName()).addValue(simpleFormFieldItemStream.toString());
-						}
-					}
-				}*/
-			} catch(FileUploadBase.FileUploadIOException e) {
-				log.error("File size exceeded", e);
-			} catch(FileUploadException e) {
-				log.error("A file upload error occurred", e);
+			} catch (FileUploadException e) {
+				// TODO Auto-generated catch block
+				log.error("Error while Parsing the request of MultiPart Type",e);
 			} catch (IOException e) {
-				log.error("An error occurred while processing multipart form data", e);
-			} 
+				// TODO Auto-generated catch block
+				log.error("Error while get input of File Item",e);
+			}
 		}
 		MemberDriveDocument memberDrive=new MemberDriveDocument();
-		memberDrive.setMemberFile(new ByteArrayInputStream(files.get(fileItemStream.getName())));
-		memberDrive.setContentType(fileItemStream.getContentType());
+		memberDrive.setMemberFile(new ByteArrayInputStream(files.get(FILE_DATA)));
+		memberDrive.setContentType(fileDetails.get(CONTENT_TYPE));
 		memberDrive.setDescription(formMap.getField("description").getValue());
 		memberDrive.setDocPassword(formMap.getField("protected").getValue());
-		MemberDriveDocument returnMemberDriveDoc=createMemberDrive(request, response, memberDrive, fileItemStream.getName());
+		MemberDriveDocument returnMemberDriveDoc=createMemberDrive(request, response, memberDrive, fileDetails.get(FILE_NAME));
 		if(returnMemberDriveDoc!=null){
 			response.setRenderParameter("FileUpload", "Success");
 		}
