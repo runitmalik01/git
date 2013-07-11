@@ -519,7 +519,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 									class="icon-pencil icon-white"></i><small>Edit</small> </a>&nbsp;&nbsp;<a
 								class="btn btn-danger"
 								href="${scriptName}/<c:out value="${houseincomedetail.canonicalUUID}"/>/houseincomedelete"
-								onclick="return checkdelete()"><i
+								data-confirm=""><i
 									class="icon-trash icon-white"></i><small>Delete</small> </a></td>
 						</tr>
 
