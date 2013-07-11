@@ -140,7 +140,7 @@
 		}, "Ack No is invalid");
 		$.validator.addMethod("indiandate", function(value, element) {
 		   	 return this.optional(element) || /^[0-9]{2}\/[0-9]{2}\/[0-9]{4}?$/i.test(value);
-		}, "Date of Birth is invalid");
+		}, "Date Format is invalid");
 		$.validator.addMethod("indiandateAdvance", function(value, element) {
 		   	 return this.optional(element) || /^[0-9]{2}\/[0-9]{2}\/[0-9]{4}?$/i.test(value);
 		}, "Date Format is invalid");
