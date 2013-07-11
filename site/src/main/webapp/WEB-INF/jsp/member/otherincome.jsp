@@ -14,6 +14,11 @@
 			</div>
 		</c:forEach>
 	</c:if>
+	<c:if test="${not empty Max_allowed_ITR1}">
+	   <div class="alert alert-error">
+	        <fmt:message key="${Max_allowed_ITR1}" />
+	   </div>
+	</c:if>
 	<h3 id="respond1">
 		<c:choose>
 			<c:when
