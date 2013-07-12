@@ -105,8 +105,8 @@ public class ITR1XmlGeneratorService {
 		InterestDoc interestDoc = (InterestDoc) request.getAttribute(InterestDoc.class.getSimpleName().toLowerCase());
 		FormSixteenDocument formSixteenDocument = (FormSixteenDocument) request.getAttribute(FormSixteenDocument.class.getSimpleName().toLowerCase());
 		RebateSec90Document rebateSec90Document = (RebateSec90Document) request.getAttribute(RebateSec90Document.class.getSimpleName().toLowerCase());
-		
-		
+
+
 		ITR1 itr1 = new ObjectFactory().createITR1();
 		CreationInfo creationInfo = new CreationInfo();
 		creationInfo.setSWVersionNo("1.0");
@@ -171,12 +171,12 @@ public class ITR1XmlGeneratorService {
 		address.setCountryCode(memberPersonalInformation.getCountry().toUpperCase());
 		address.setPinCode(indianCurrencyHelper.bigIntegerRoundStr(memberPersonalInformation.getPinCode()));
 		if(!(memberPersonalInformation.getStdCode().isEmpty()) || !(memberPersonalInformation.getPhone().isEmpty())){
-		Phone phone = new Phone();
-		phone.setSTDcode(indianCurrencyHelper.bigIntegerRoundStr(memberPersonalInformation.getStdCode()));
-		phone.setPhoneNo(indianCurrencyHelper.bigIntegerRoundStr(memberPersonalInformation.getPhone()));
-		address.setPhone(phone);
+			Phone phone = new Phone();
+			phone.setSTDcode(indianCurrencyHelper.bigIntegerRoundStr(memberPersonalInformation.getStdCode()));
+			phone.setPhoneNo(indianCurrencyHelper.bigIntegerRoundStr(memberPersonalInformation.getPhone()));
+			address.setPhone(phone);
 		}
-		
+
 		address.setMobileNo(indianCurrencyHelper.bigIntegerRoundStr(memberPersonalInformation.getMobile()));
 		address.setMobileNoSec(indianCurrencyHelper.bigIntegerRoundStr(memberPersonalInformation.getMobile1()));
 		address.setEmailAddress(memberPersonalInformation.getEmail());
@@ -186,11 +186,11 @@ public class ITR1XmlGeneratorService {
 			personalInfo.setEmployerCategory(memberPersonalInformation.getEmploye_category());
 		}
 		if(memberPersonalInformation.getSex().equals("M")){
-		personalInfo.setGender(memberPersonalInformation.getSex().concat("ale"));
+			personalInfo.setGender(memberPersonalInformation.getSex().concat("ale"));
 		}
 		else{
 			personalInfo.setGender(memberPersonalInformation.getSex().concat("emale"));
-			}
+		}
 		personalInfo.setStatus(memberPersonalInformation.getFilingStatus());
 
 		itr1.setPersonalInfo(personalInfo);
@@ -388,14 +388,21 @@ public class ITR1XmlGeneratorService {
 
 		BigInteger bigTdsSlry=new BigInteger ("0");
 		BigInteger bigTotalTdsSlry=new BigInteger ("0");
+		Double tdsSalary = 0d;
 		if( formSixteenDocument!=null){
 			List<FormSixteenDetail> listOfFormSixteenDetail = formSixteenDocument.getFormSixteenDetailList();
 			if ( listOfFormSixteenDetail != null && listOfFormSixteenDetail.size() > 0 ){
 				for(FormSixteenDetail formSixteenDetail:listOfFormSixteenDetail){
-					if(formSixteenDetail.getDed_ent_4()!=null){
-						bigTdsSlry=indianCurrencyHelper.bigIntegerRound(formSixteenDetail.getDed_ent_4());
-						bigTotalTdsSlry= bigTotalTdsSlry.add(bigTdsSlry);
-					}
+					Double tds1 = 0d;
+					Double tds2 = 0d;
+					if(formSixteenDetail.getDed_ent_1()!=null)
+						tds1 = formSixteenDetail.getDed_ent_1();
+					if(formSixteenDetail.getDed_ent_3()!=null)
+						tds2 = formSixteenDetail.getDed_ent_3();
+					tdsSalary =tds1 + tds2;
+					bigTdsSlry=indianCurrencyHelper.bigIntegerRound(tdsSalary);
+					bigTotalTdsSlry= bigTotalTdsSlry.add(bigTdsSlry);
+
 				}
 			}
 		}
@@ -490,14 +497,20 @@ public class ITR1XmlGeneratorService {
 
 		BigInteger bigTdsSalary=new BigInteger ("0");
 		BigInteger bigTotalTdsSalary=new BigInteger ("0");
+		Double TDSSalary = 0d;
 		if( formSixteenDocument!=null){
 			List<FormSixteenDetail> listOfFormSixteenDetail = formSixteenDocument.getFormSixteenDetailList();
 			if ( listOfFormSixteenDetail != null && listOfFormSixteenDetail.size() > 0 ){
 				for(FormSixteenDetail formSixteenDetail:listOfFormSixteenDetail){
-					if(formSixteenDetail.getDed_ent_4()!=null){
-						bigTdsSalary=indianCurrencyHelper.bigIntegerRound(formSixteenDetail.getDed_ent_4());
-						bigTotalTdsSalary= bigTotalTdsSalary.add(bigTdsSalary);
-					}
+					Double tds1 = 0d;
+					Double tds2 = 0d;
+					if(formSixteenDetail.getDed_ent_1()!=null)
+						tds1 = formSixteenDetail.getDed_ent_1();
+					if(formSixteenDetail.getDed_ent_3()!=null)
+						tds2 = formSixteenDetail.getDed_ent_3();
+					TDSSalary =tds1 + tds2;
+					bigTdsSalary=indianCurrencyHelper.bigIntegerRound(TDSSalary);
+					bigTotalTdsSalary= bigTotalTdsSalary.add(bigTdsSalary);
 				}
 			}
 		}
@@ -555,10 +568,10 @@ public class ITR1XmlGeneratorService {
 		filingstatus.setReturnType(memberPersonalInformation.getReturnType().concat("riginal"));
 		filingstatus.setResidentialStatus(memberPersonalInformation.getResidentCategory());
 		if(memberPersonalInformation.getPortugesecivil().equals("Y")){
-		filingstatus.setPortugeseCC5A(memberPersonalInformation.getPortugesecivil().concat("es"));}
+			filingstatus.setPortugeseCC5A(memberPersonalInformation.getPortugesecivil().concat("es"));}
 		else{
 			filingstatus.setPortugeseCC5A(memberPersonalInformation.getPortugesecivil().concat("o"));
-			
+
 		}
 		if (BalTaxPayable.compareTo(BigInteger.ZERO) > 0){
 			filingstatus.setTaxStatus("TaxPayble");
@@ -703,6 +716,7 @@ public class ITR1XmlGeneratorService {
 		}
 
 		//TDSonSalaries
+
 		if( formSixteenDocument!=null){
 			List<FormSixteenDetail> listOfFormSixteenDetail = formSixteenDocument.getFormSixteenDetailList();
 			if ( listOfFormSixteenDetail != null && listOfFormSixteenDetail.size() > 0 ){
@@ -710,7 +724,15 @@ public class ITR1XmlGeneratorService {
 				for(FormSixteenDetail formSixteenDetail:listOfFormSixteenDetail){
 					TDSonSalary tdsonSalary = new TDSonSalary();
 					EmployerOrDeductorOrCollectDetl employerOrDeductorOrCollectDetl = new EmployerOrDeductorOrCollectDetl();
-					if(formSixteenDetail.getDed_ent_4()!=null && formSixteenDetail.getDed_ent_4()!=0.0){
+					Double tds1 = 0d;
+					Double tds2 = 0d;
+					Double TdsSalary = 0d;
+					if(formSixteenDetail.getDed_ent_1()!=null)
+						tds1 = formSixteenDetail.getDed_ent_1();
+					if(formSixteenDetail.getDed_ent_3()!=null)
+						tds2 = formSixteenDetail.getDed_ent_3();
+					TdsSalary =tds1 + tds2;
+					if(TdsSalary!=0){
 						if(formSixteenDetail.getTan_deductor()!=null){
 							employerOrDeductorOrCollectDetl.setTAN(formSixteenDetail.getTan_deductor().toUpperCase());
 						}
@@ -721,9 +743,7 @@ public class ITR1XmlGeneratorService {
 						if(formSixteenDetail.getIncome_chargable_tax()!=null){
 							tdsonSalary.setIncChrgSal(indianCurrencyHelper.bigIntegerRound(formSixteenDetail.getIncome_chargable_tax()));
 						}
-						if(formSixteenDetail.getDed_ent_4()!=null){
-							tdsonSalary.setTotalTDSSal(indianCurrencyHelper.bigIntegerRound(formSixteenDetail.getDed_ent_4()));
-						}
+						tdsonSalary.setTotalTDSSal(indianCurrencyHelper.bigIntegerRound(TdsSalary));
 						tdsonSalaries.getTDSonSalary().add(tdsonSalary);
 						itr1.setTDSonSalaries(tdsonSalaries);
 					}
@@ -864,9 +884,9 @@ public class ITR1XmlGeneratorService {
 class MyPrefixMapperImpl extends com.sun.xml.bind.marshaller.NamespacePrefixMapper {
 
 	@Override
-	public String getPreferredPrefix(String namespaceUri,         
-		     String suggestion,         
-		     boolean requirePrefix) {
+	public String getPreferredPrefix(String namespaceUri,
+			String suggestion,
+			boolean requirePrefix) {
 		// TODO Auto-generated method stub
 		if (namespaceUri.equals("http://incometaxindiaefiling.gov.in/ITR1")) {
 			return "ITR1FORM";
@@ -891,5 +911,5 @@ class MyPrefixMapperImpl extends com.sun.xml.bind.marshaller.NamespacePrefixMapp
 		}
 		return null;
 	}
-	
+
 }
