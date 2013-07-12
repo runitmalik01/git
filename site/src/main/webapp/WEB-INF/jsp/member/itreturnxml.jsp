@@ -1,5 +1,9 @@
 <%@page import="com.mootly.wcm.model.ITRTab"%>
 <%@include file="../includes/tags.jspf"%>
+<c:set var="summary">
+	<fmt:message key="itr1.summary.xml" />
+</c:set>
+<hippo-gogreen:title title="${summary}" />
 <hst:componentRenderingURL var="xmlGeneratorURL"/>
 <c:set var="reqParamXmlGeneratorURL" value="${xmlGeneratorURL}" scope="request"/>
 <w4india:itrmenu></w4india:itrmenu>
@@ -63,7 +67,7 @@
 
 		<hst:headContribution category="css">
 			<link rel="stylesheet" href='<hst:link path="/js/syntaxhighlighter_3.0.83/styles/shThemeDefault.css"/>' type="text/css" />
-		</hst:headContribution> 
+		</hst:headContribution>
 
 		<hst:element var="uiCustom" name="script">
 			<hst:attribute name="type">text/javascript</hst:attribute>
