@@ -601,6 +601,11 @@ public class ITR1XmlGeneratorService {
 		BigInteger Total100NoAppr = new BigInteger("0");
 		BigInteger Total50Appr = new BigInteger("0");
 		BigInteger Total50NoAppr = new BigInteger("0");
+		BigInteger DedExc80G = new BigInteger("0");
+		if(deductUndChapVIA.getSection80G()!=null){
+			DedExc80G =  deductUndChapVIA.getTotalChapVIADeductions().subtract(deductUndChapVIA.getSection80G());
+		}else
+			DedExc80G =  deductUndChapVIA.getTotalChapVIADeductions();
 		if(deductionDocument!=null){
 			List<DeductionDocumentDetail> listOfDeductionDocumentDetail = deductionDocument.getDeductionDocumentDetailList();
 			if (listOfDeductionDocumentDetail!= null && listOfDeductionDocumentDetail.size() > 0 ){
@@ -646,7 +651,7 @@ public class ITR1XmlGeneratorService {
 							don100PercentApprReqd.getDoneeWithPan().add(doneeWithPan);
 							BigInteger Investment = indianCurrencyHelper.bigIntegerRound(deductionDocumentDetail.getInvestment());
 							Total100Appr = Total100Appr.add(Investment);
-							long adjGrossTotal=grsstotal - totaleligiblededuction.longValue();
+							long adjGrossTotal=grsstotal - DedExc80G.longValue();
 							long NetQualifyLmt=(long) (adjGrossTotal*0.1);
 							if(Total100Appr.longValue()  > 0){
 								if(NetQualifyLmt>Total100Appr.longValue()){
@@ -693,27 +698,28 @@ public class ITR1XmlGeneratorService {
 							BigInteger Investment = indianCurrencyHelper.bigIntegerRound(deductionDocumentDetail.getInvestment());
 							Total50Appr = Total50Appr.add(Investment);
 							don50PercentApprReqd.setTotDon50PercentApprReqd(Total50Appr);
-							long adjGrossTotal=grsstotal - totaleligiblededuction.longValue();
+
+							long adjGrossTotal=grsstotal - DedExc80G.longValue();
 							long NetQualifyLmt=(long) (adjGrossTotal*0.1);
 							if(Total50Appr.longValue()  > 0){
-								if(NetQualifyLmt>Total50Appr.longValue()){
+								if(NetQualifyLmt>Total50Appr.longValue()/2){
 									don50PercentApprReqd.setTotEligibleDon50PercentApprReqd(Total50Appr.divide(new BigInteger("2")));
-								}else if(NetQualifyLmt<=Total50Appr.longValue() && NetQualifyLmt>0){
+								}else if(NetQualifyLmt<=Total50Appr.longValue()/2 && NetQualifyLmt>0){
 									don50PercentApprReqd.setTotEligibleDon50PercentApprReqd(indianCurrencyHelper.longToBigInteger(NetQualifyLmt));
-								}else if(NetQualifyLmt<Total100Appr.longValue() && NetQualifyLmt<=0){
+								}else if(NetQualifyLmt<Total100Appr.longValue()/2 && NetQualifyLmt<=0){
 									don50PercentApprReqd.setTotEligibleDon50PercentApprReqd(new BigInteger("0"));
 								}
 							}
-							don50PercentApprReqd.setTotEligibleDon50PercentApprReqd(Total50Appr.divide(new BigInteger("2")));
 							schedule80G.setDon50PercentApprReqd(don50PercentApprReqd);
 						}
 						schedule80G.setTotalDonationsUs80G(Total100NoAppr.add(Total100Appr).add(Total50NoAppr).add(Total50Appr));
 						schedule80G.setTotalEligibleDonationsUs80G(incomeDeductions.getDeductUndChapVIA().getSection80G());
 					}
 				}
-				itr1.setSchedule80G(schedule80G);
 			}
 		}
+		if(schedule80G!=null && schedule80G.getTotalEligibleDonationsUs80G().longValue()!=0 && schedule80G.getTotalEligibleDonationsUs80G()!=null)
+			itr1.setSchedule80G(schedule80G);
 
 		//TDSonSalaries
 
