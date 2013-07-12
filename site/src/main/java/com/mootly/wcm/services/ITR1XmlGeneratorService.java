@@ -602,6 +602,7 @@ public class ITR1XmlGeneratorService {
 		BigInteger Total50Appr = new BigInteger("0");
 		BigInteger Total50NoAppr = new BigInteger("0");
 		BigInteger DedExc80G = new BigInteger("0");
+		boolean flag = false;
 		if(deductUndChapVIA.getSection80G()!=null){
 			DedExc80G =  deductUndChapVIA.getTotalChapVIADeductions().subtract(deductUndChapVIA.getSection80G());
 		}else
@@ -620,6 +621,7 @@ public class ITR1XmlGeneratorService {
 						DoneeWithPan doneeWithPan = new DoneeWithPan();
 						AddressDetail addressDetail = new AddressDetail();
 						if(deductionDocumentDetail.getHead()!=null && deductionDocumentDetail.getHead().equals("NoAppr100")){
+							flag = true;
 							doneeWithPan.setDoneeWithPanName(doneewithPan.getDoneeName().toUpperCase());
 							doneeWithPan.setDoneePAN(doneewithPan.getDoneePAN().toUpperCase());
 							addressDetail.setAddrDetail(doneewithPan.getDoneeAreaLocality().toUpperCase());
@@ -641,6 +643,7 @@ public class ITR1XmlGeneratorService {
 							schedule80G.setDon100Percent(don100Percent);
 						}
 						if(deductionDocumentDetail.getHead()!=null && deductionDocumentDetail.getHead().equals("Appr100")){
+							flag = true;
 							doneeWithPan.setDoneeWithPanName(doneewithPan.getDoneeName().toUpperCase());
 							doneeWithPan.setDoneePAN(doneewithPan.getDoneePAN().toUpperCase());
 							addressDetail.setAddrDetail(doneewithPan.getDoneeAreaLocality().toUpperCase());
@@ -666,6 +669,7 @@ public class ITR1XmlGeneratorService {
 							schedule80G.setDon100PercentApprReqd(don100PercentApprReqd);
 						}
 						if(deductionDocumentDetail.getHead()!=null && deductionDocumentDetail.getHead().equals("NoAppr50")){
+							flag = true;
 							doneeWithPan.setDoneeWithPanName(doneewithPan.getDoneeName().toUpperCase());
 							doneeWithPan.setDoneePAN(doneewithPan.getDoneePAN().toUpperCase());
 							addressDetail.setAddrDetail(doneewithPan.getDoneeAreaLocality().toUpperCase());
@@ -687,6 +691,7 @@ public class ITR1XmlGeneratorService {
 							schedule80G.setDon50PercentNoApprReqd(don50PercentNoApprReqd);
 						}
 						if(deductionDocumentDetail.getHead()!=null && deductionDocumentDetail.getHead().equals("Appr50")){
+							flag = true;
 							doneeWithPan.setDoneeWithPanName(doneewithPan.getDoneeName().toUpperCase());
 							doneeWithPan.setDoneePAN(doneewithPan.getDoneePAN().toUpperCase());
 							addressDetail.setAddrDetail(doneewithPan.getDoneeAreaLocality().toUpperCase());
@@ -718,7 +723,7 @@ public class ITR1XmlGeneratorService {
 				}
 			}
 		}
-		if(schedule80G!=null && schedule80G.getTotalEligibleDonationsUs80G().longValue()!=0 && schedule80G.getTotalEligibleDonationsUs80G()!=null)
+		if(flag==true)
 			itr1.setSchedule80G(schedule80G);
 
 		//TDSonSalaries
