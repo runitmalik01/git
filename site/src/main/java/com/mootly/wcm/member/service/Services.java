@@ -80,10 +80,14 @@ public class Services extends BaseComponent {
 
 		final HstQuery hstQuery = getQueryManager(request).createQuery(scope);
 		final BaseFilter filter = new PrimaryNodeTypeFilterImpl("mootlywcm:Service");
-		hstQuery.setFilter(filter);
+		final Filter enable = hstQuery.createFilter();
+		enable.addEqualTo("mootlywcm:enable", true);
+		enable.addAndFilter(filter);
+		hstQuery.setFilter(enable);
 		hstQuery.addOrderByAscending("mootlywcm:serviceCode");
 
 		if (!StringUtils.isEmpty(query)) {
+			log.info("query"+query);
 			final Filter f = hstQuery.createFilter();
 			final Filter f1 = hstQuery.createFilter();
 			f1.addContains(".", query);
