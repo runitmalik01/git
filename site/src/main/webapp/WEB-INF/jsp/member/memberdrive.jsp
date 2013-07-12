@@ -30,8 +30,8 @@ pageContext.setAttribute("hostname", builder.toString());
 		    </div>-->
 		<c:if test="${not empty msg}">
 			<div class="row-fluid show-grid">
-				<div class="alert alert-success">Your have Successfully
-					Uploaded File in Member Drive.</div>
+				<div class="alert alert-success">Your have successfully
+					uploaded file in Member Drive.</div>
 			</div>
 		</c:if>
 		<c:if test="${not empty delete}">
