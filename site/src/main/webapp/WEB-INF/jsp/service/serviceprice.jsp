@@ -8,22 +8,24 @@ For Mootly ITR Pricing Plans
 	<fmt:message key="service.price" />
 </c:set>
 <hippo-gogreen:title title="${servicepricetitle}" />
-<h3 class="title">
+<h3 class="title text-center text-success">
 	<fmt:message key="service.price.title" />
 </h3>
+
 <form>
-	<table class="table" width="100%">
+	<table class="table table-bordered table-hover table-striped"
+		width="100%">
 		<thead class='header'>
 			<tr>
-				<th width="15%" bgcolor="Gainsboro"><fmt:message
+				<th width="15%" class=success ><fmt:message
 						key="service.price.title1" /></th>
 				<c:forEach items="${documents}" var="document">
 					<c:choose>
 						<c:when test="${document.title eq 'DELUXE'}">
-							<td bgcolor="YellowGreen " />
+							<td  class=success />
 						</c:when>
 						<c:otherwise>
-							<td bgcolor="SlateBlue" />
+							<td  class=success />
 						</c:otherwise>
 					</c:choose>
 					<c:out value="${document.title}" />
@@ -74,10 +76,19 @@ For Mootly ITR Pricing Plans
 					</h5> <c:forEach items="${document.features}" var="features">
 						<c:out value="${features}" />
 						<br>
-					</c:forEach> <br /> <%-- <a href='<hst:link path="/memberLogin"/>' class="btn orange">Start</a> --%>
+					</c:forEach> <%-- <br /> <a href='<hst:link path="/memberLogin"/>' class="btn orange">Start</a> --%>
 					<%-- <a	id="hrefSubmit<c:out value="${fn:toLowerCase(document.title)}"/>"
 					class="btn orange">Start</a> --%></td>
 			</c:forEach>
+		</tr>
+		<tr>
+		<th width="15%"><fmt:message key="service.price.cannot" /></th>
+		<c:forEach items="${documents}" var="document">
+			<td width="5%">
+				   <fmt:message key="${whoCannot[document.title]}"/>
+				</td>
+		</c:forEach>
+		<tr>
 		</tr>
 	</table>
 	<div id="income" align="center">
@@ -85,7 +96,8 @@ For Mootly ITR Pricing Plans
 			<fmt:message key="service.price.income" />
 		</h4>
 	</div>
-	<table class="table" width="100%">
+	<table class="table table-bordered table-hover table-striped"
+		width="100%">
 		<tr>
 			<th width="15%"><fmt:message key="service.price.salary" /></th>
 			<c:forEach items="${documents}" var="document">
@@ -269,7 +281,8 @@ For Mootly ITR Pricing Plans
 			<fmt:message key="service.price.deductions" />
 		</h4>
 	</div>
-	<table id="deduction" width="100%" class="table">
+	<table id="deduction " width="100%"
+		class="table table-bordered table-hover table-striped">
 		<tr>
 			<th width="15%"><fmt:message key="service.price.deductions" />
 			</th>
@@ -346,7 +359,8 @@ For Mootly ITR Pricing Plans
 			<fmt:message key="service.price.taxes" />
 		</h4>
 	</div>
-	<table width="100%" class="table">
+	<table width="100%"
+		class="table table-bordered table-hover table-striped">
 		<tr>
 			<th width="15%"><fmt:message key="service.price.tdssalary" /></th>
 			<c:forEach items="${documents}" var="document">
@@ -434,7 +448,8 @@ For Mootly ITR Pricing Plans
 			</c:forEach>
 		</tr>
 	</table>
-	<table id="e-filing" width="100%" class="table">
+	<table id="e-filing" width="100%"
+		class="table table-bordered table-hover table-striped">
 		<tr>
 			<th width="15%"><fmt:message key="service.price.efiling" /></th>
 			<c:forEach items="${documents}" var="document">
@@ -457,7 +472,8 @@ For Mootly ITR Pricing Plans
 			<fmt:message key="service.price.additional" />
 		</h4>
 	</div>
-	<table width="100%" class="table ">
+	<table width="100%"
+		class="table table-bordered table-hover table-striped">
 		<tr>
 			<th width="15%"><fmt:message key="service.price.taxplanning" />
 			</th>
