@@ -25,6 +25,9 @@
 <hst:link var="logout" path="/j_spring_security_logout"/>
 <hst:link var="signup" path="/signup"/>
 <hst:link var="myaccount" path="/member"/>
+<span class="simpleCart_quantity"></span> items - <span class="simpleCart_total"></span>
+<a href="javascript:;" class="simpleCart_checkout">Checkout</a>
+
 <ul id="menu-top" class="top-menu">
 		<c:choose>
 			<c:when test="${loggedin}">

@@ -905,7 +905,7 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 		GregorianCalendar cal=null;
 		if(StringUtils.isNotEmpty(strDate)){
 			cal=(GregorianCalendar) GregorianCalendar.getInstance();
-			try{
+			try{ 
 				date = (Date)formatter.parse(strDate);
 				cal.setTime(date);
 			}
@@ -915,6 +915,13 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 			return cal;
 		}else return null;
 		
+	}
+	/**
+	 * This method will check if the service has been paid in full
+	 * @return
+	 */
+	public boolean isPaidInFull() {
+		return true;
 	}
 	@Override
 	public <T extends HippoBean> void cloneBean(T sourceBean) {

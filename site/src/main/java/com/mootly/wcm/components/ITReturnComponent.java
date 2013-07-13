@@ -16,8 +16,15 @@
 
 package com.mootly.wcm.components;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.StringReader;
+import java.io.StringWriter;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -31,6 +38,18 @@ import java.util.regex.PatternSyntaxException;
 
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
+import javax.servlet.ServletContext;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.FactoryConfigurationError;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerConfigurationException;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.TransformerFactoryConfigurationError;
+import javax.xml.transform.stream.StreamResult;
+import javax.xml.transform.stream.StreamSource;
 
 import org.apache.commons.lang.StringUtils;
 import org.hippoecm.hst.component.support.forms.FormField;
@@ -46,12 +65,21 @@ import org.hippoecm.hst.core.component.HstComponentException;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
 import org.hippoecm.hst.core.linking.HstLink;
+import org.hippoecm.hst.core.request.ComponentConfiguration;
 import org.hippoecm.hst.core.request.ResolvedSiteMapItem;
 import org.hippoecm.repository.reviewedactions.FullReviewedActionsWorkflow;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
+import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
 
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.pdf.PdfWriter;
+import com.itextpdf.tool.xml.XMLWorkerHelper;
 import com.mootly.wcm.annotations.AdditionalBeans;
 import com.mootly.wcm.annotations.ChildBean;
 import com.mootly.wcm.annotations.DataTypeValidationFields;
@@ -73,20 +101,27 @@ import com.mootly.wcm.beans.ScreenConfigDocument;
 import com.mootly.wcm.beans.ValueListDocument;
 import com.mootly.wcm.beans.compound.FormSixteenDetail;
 import com.mootly.wcm.member.Member;
+import com.mootly.wcm.member.XmlGenerator;
 import com.mootly.wcm.model.FilingStatus;
 import com.mootly.wcm.model.FinancialYear;
+import com.mootly.wcm.model.ITRForm;
 import com.mootly.wcm.model.ITRTab;
 import com.mootly.wcm.model.ITReturnPackage;
 import com.mootly.wcm.model.ITReturnType;
+import com.mootly.wcm.services.ITRXmlGeneratorServiceFactory;
 import com.mootly.wcm.services.ScreenCalculatorService;
 import com.mootly.wcm.services.ScreenConfigService;
 import com.mootly.wcm.services.StartApplicationValidationService;
+import com.mootly.wcm.services.XmlGeneratorService;
 import com.mootly.wcm.utils.GoGreenUtil;
 import com.mootly.wcm.utils.XmlCalculation;
 
 public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 	private static final Logger log = LoggerFactory.getLogger(ITReturnComponent.class);
-
+	ITRXmlGeneratorServiceFactory itrXmlGeneratorServiceFactory = null;
+	String servletPath = null;
+	String xsltPath = null;
+	
 	//local variables
 	boolean hasInitComplete = false;
 	String redirectURLToSamePage=  null;
@@ -138,6 +173,17 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 	///Name of the HTML File and the depth its in
 	String scriptName;
 
+	@Override
+	public void init(ServletContext servletContext,
+			ComponentConfiguration componentConfig)
+					throws HstComponentException {
+		// TODO Auto-generated method stub
+		super.init(servletContext, componentConfig);
+		ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(servletContext);
+		itrXmlGeneratorServiceFactory = context.getBean(com.mootly.wcm.services.ITRXmlGeneratorServiceFactory.class);
+		xsltPath = servletContext.getRealPath("/xslt/ITRSummary.xsl");
+	}
+	
 	@Override
 	public void doBeforeRender(HstRequest request, HstResponse response) {
 		super.doBeforeRender(request, response);
@@ -255,7 +301,9 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 				}
 			}
 		}
-
+		if (pageAction != null && (pageAction.equals(PAGE_ACTION.SHOW_ITR_SUMMARY) || pageAction.equals(PAGE_ACTION.DOWNLOAD_ITR_SUMMARY) || pageAction.equals(PAGE_ACTION.DOWNLOAD_ITR_XML) || pageAction.equals(PAGE_ACTION.EMAIL_ITR_XML_AND_SUMMARY)) ) {
+			handleITRSummary(request,response);
+		}
 	}
 
 	@Override
@@ -711,6 +759,9 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 
 		//loading Additional Beans
 		AdditionalBeans additionalBeans = this.getClass().getAnnotation(AdditionalBeans.class);
+		if (pageAction != null && (pageAction.equals(PAGE_ACTION.SHOW_ITR_SUMMARY) || pageAction.equals(PAGE_ACTION.DOWNLOAD_ITR_SUMMARY) || pageAction.equals(PAGE_ACTION.DOWNLOAD_ITR_XML) || pageAction.equals(PAGE_ACTION.EMAIL_ITR_XML_AND_SUMMARY)) ) {
+			additionalBeans = XmlGenerator.class.getAnnotation(AdditionalBeans.class);
+		}
 		boolean memberPersonalInfoLoaded = false;
 		if (additionalBeans != null && additionalBeans.additionalBeansToLoad() != null && additionalBeans.additionalBeansToLoad().length > 0 ) {
 			for (Class<? extends HippoBean> additionalBean:additionalBeans.additionalBeansToLoad()) {
@@ -1312,5 +1363,192 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		// TODO Auto-generated method stub
 
 	}
+	
+	//DecimalFormat decimalFormat=new DecimalFormat("#.#");
+	public void handleITRSummary(HstRequest request, HstResponse response) {
+		// TODO Auto-generated method stub
+		boolean isDownload = false;
+		String whtToDownload = null; //I HATE IT use ENUM
+		boolean emailMe = false;
+		super.doBeforeRender(request, response);
+		MemberPersonalInformation memberPersonalInformation = (MemberPersonalInformation) request.getAttribute(MemberPersonalInformation.class.getSimpleName().toLowerCase());
+		String ITR = memberPersonalInformation.getFlexField("flex_string_ITRForm", "");
+		request.setAttribute("ITR", ITR);
+
+		if (getPublicRequestParameter(request, "show") != null) request.setAttribute("show",getPublicRequestParameter(request, "show"));
+		
+		if (pageAction == PAGE_ACTION.DOWNLOAD_ITR_SUMMARY || pageAction == PAGE_ACTION.DOWNLOAD_ITR_XML) {
+			request.setAttribute("download","true");
+			isDownload = true;
+			if (pageAction == PAGE_ACTION.DOWNLOAD_ITR_XML) {
+				whtToDownload = "xml";
+			}
+			else {
+				whtToDownload = "pdf";
+			}
+		}
+		
+		if (pageAction == PAGE_ACTION.EMAIL_ITR_XML_AND_SUMMARY) {
+			request.setAttribute("emailMe","true");
+			emailMe = true;			
+		}
+		
+		//simple test
+		ITRForm whichITRForm = ITRForm.getEnumByDisplayName(getLocalParameter("formName", request));
+		if (whichITRForm.equals(ITRForm.UNKNOWN)) {
+			whichITRForm = ITRForm.ITR1;
+		}
+		//time to hand over
+		if (itrXmlGeneratorServiceFactory != null) {
+			XmlGeneratorService xmlGeneratorService = itrXmlGeneratorServiceFactory.getInstance(getFinancialYear());
+			if (xmlGeneratorService != null) {
+				try {
+					xmlGeneratorService.generateXml(request, response);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					log.error("Error in generating XML",e);
+				}
+			}
+		}
+		String temporaryPathToPDF = null;
+		String temporaryPathToXML = null;
+		//now lets check if we have theForm
+		//lets attempt a PDF
+		if ( emailMe || ( isDownload && whtToDownload != null && whtToDownload.equals("pdf") ) ) {
+			try {
+				String xml = (String) request.getAttribute("xml");
+				DocumentBuilder db = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+				InputSource is = new InputSource(new StringReader(xml));
+				org.w3c.dom.Document aDom = db.parse(is);
+				FileInputStream fi = new FileInputStream(xsltPath);
+				StreamSource stylesource = new StreamSource(fi);
+				Transformer transformer = TransformerFactory.newInstance().newTransformer(stylesource);
+				StringWriter sw = new StringWriter();
+				StreamSource sSource = new StreamSource(new StringReader(xml));
+				StreamResult sResult = new StreamResult(sw);
+				transformer.transform(sSource,sResult);
+				fi.close();
+
+
+				String theHTML = sw.toString();
+				if (log.isInfoEnabled()) {
+					log.info(theHTML);
+				}
+				Document document = new Document();
+				String tmpDir = System.getProperty("java.io.tmpdir");
+				String uuid = UUID.randomUUID().toString();
+				//create the dir 
+				new File(tmpDir + "/" + uuid).mkdir();
+				String pdfFileName = "itreturnsummary-AY-" + getFinancialYear().getDisplayAssessmentYear() + ".pdf";
+				temporaryPathToPDF = tmpDir + "/" + uuid + "/" + pdfFileName;
+				request.setAttribute("filePath", temporaryPathToPDF);
+				PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(temporaryPathToPDF));
+				writer.setInitialLeading(12.5f);
+				document.open();
+				XMLWorkerHelper.getInstance().parseXHtml(writer, document,new StringReader(theHTML));
+				document.close();
+				writer.close();
+
+
+				if (isDownload) {
+					request.setAttribute("fileName", pdfFileName);
+					response.setRenderPath("jsp/member/downloadfile.jsp");
+					//sendEmail(request,to,null,"info@wealth4india.com",)					
+				}
+				//now we have the BYTES, this can be used, but we need to be careful the SERVER may get overload, we can use tmp file for this
+				//laterz
+			} catch (ParserConfigurationException e) {
+				// TODO Auto-generated catch block
+
+				log.error("Error during parsing configuration",e);
+			} catch (FactoryConfigurationError e) {
+				// TODO Auto-generated catch block
+
+				log.error("Error factory configuration",e);
+			} catch (SAXException e) {
+				// TODO Auto-generated catch block
+
+				log.error("Error from sax exceptions",e);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+
+				log.error("Error from IO exceptions",e);
+			} catch (TransformerConfigurationException e) {
+				// TODO Auto-generated catch block
+
+				log.error("Transforming  exceptions",e);
+			} catch (TransformerFactoryConfigurationError e) {
+				// TODO Auto-generated catch block
+
+				log.error("Transforming factory exceptions",e);
+			} catch (TransformerException e) {
+				// TODO Auto-generated catch block
+
+				log.error("Transformer exceptions",e);
+			} catch (DocumentException e) {
+				// TODO Auto-generated catch block
+
+				log.error("Document  exceptions",e);
+			}
+		}
+		
+		if ( emailMe || ( isDownload && whtToDownload != null && whtToDownload.equals("xml")) ) {
+			if (isDownload) {
+				String xmlFileName = "itreturn-AY-" +getFinancialYear().getDisplayAssessmentYear() + ".xml";
+				request.setAttribute("fileName", xmlFileName);
+				response.setRenderPath("jsp/member/downloadfile.jsp");
+			}
+			if (emailMe) {
+				temporaryPathToXML = saveXmlToTemporaryFile((String)request.getAttribute("xml")); 
+			}
+		}
+		
+		
+		if (emailMe) {
+			if (temporaryPathToPDF != null && temporaryPathToXML != null) {
+				String[] to = new String[]{ getUserName() };
+				//sendEmail(request, to, null, new String[] {"info@wealth4india.com"}, "Your IT Return", temporaryPathToPDF + "," + temporaryPathToXML, "Your IT Return Summary", "itreturnSummaryAndXml", null);
+				sendEmail(request, to, temporaryPathToPDF + "," + temporaryPathToXML,"Your IT Return","w4i_email",null);
+				request.setAttribute("emailMeStatus", "success");
+			}
+			else {
+				request.setAttribute("emailMeStatus", "failure");
+			}
+		}
+		//Object theForm = request.getAttribute("theForm");
+	}
+	
+	protected String saveXmlToTemporaryFile(String xml) {
+		BufferedWriter writer = null;
+		try
+		{
+			String tmpDir = System.getProperty("java.io.tmpdir");
+			String uuid = UUID.randomUUID().toString();
+			new File(tmpDir + "/" + uuid).mkdir();
+			String filePath = tmpDir + "/" + uuid + "/" + "itreturn-AY-" +getFinancialYear().getDisplayAssessmentYear() + ".xml";
+			
+			writer = new BufferedWriter(new FileWriter(filePath));
+			writer.write(xml);
+			
+			return filePath;
+		}
+		catch ( IOException e)
+		{
+			log.error("Error saving XML as temporary file",e);
+			return null;
+		}
+		finally
+		{
+			try
+			{
+				if ( writer != null)
+					writer.close( );
+			}
+			catch ( IOException e)
+			{
+			}
+	     }
+	}
+	
 
 }

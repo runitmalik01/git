@@ -1,3 +1,5 @@
+<%@tag import="com.mootly.wcm.model.ITReturnType"%>
+<%@tag import="com.mootly.wcm.model.FinancialYear"%>
 <%@tag import="net.sf.ehcache.store.MemoryStoreEvictionPolicy.MemoryStoreEvictionPolicyEnum"%>
 <%@tag import="com.mootly.wcm.model.ITRServiceDelivery"%>
 <%@tag import="org.hippoecm.hst.util.HstResponseUtils"%>
@@ -56,6 +58,7 @@ if ( resolvedMapItem.getHstComponentConfiguration().getId().equals("hst:pages/me
 String propertyToCheck = null;
 ITRForm itrForm = null;
 ITRServiceDelivery itrServiceDelivery = null;
+String serviceItemKey= null;
 if (!noMenu) {
 	if (memberPersonalInformation == null) memberPersonalInformation = (MemberPersonalInformation) request.getAttribute(MemberPersonalInformation.class.getSimpleName().toLowerCase());
 	if (memberPersonalInformation != null) {
@@ -65,6 +68,11 @@ if (!noMenu) {
 		itrServiceDelivery = memberPersonalInformation.getSelectedServiceDeliveryOption();
 		request.setAttribute("itrForm",itrForm);
 		propertyToCheck = itrForm + ".enabled";
+		FinancialYear financialYear = (FinancialYear) request.getAttribute("financialYear");
+		ITReturnType itReturnType = (ITReturnType) request.getAttribute("itReturnType");
+		
+		serviceItemKey = memberPersonalInformation.getPAN() + "-" + financialYear.getDisplayAssessmentYear() + "-" + itrForm + "-" + itReturnType +	"-" + itrServiceDelivery;
+		if (serviceItemKey != null) request.setAttribute("serviceItemKey", serviceItemKey);
 	}
 }
 boolean hasDIY = false;
@@ -241,9 +249,19 @@ for (HstSiteMenuItem siteMenuItem : itrSiteMenu.getSiteMenuItems() ){
 	                <form class="navbar-search pull-left" action="">
 	                  <input type="text" class="search-query span2" placeholder="Search">
 	                </form>
-	                 -->
+	                 -->	    
+	                     
+	            <div id="addToCart" style="display:none" class="pull-right simpleCart_shelfItem">
+	            	<h2 class="item_name" style="display:none;"><c:out value="${serviceItemKey}"/></h2>
+	            	<span class="item_price" style="display:none;"><w4india:inr value="199"></w4india:inr></span>  
+	            	<input type="hidden" value="1" class="item_Quantity">	            	
+	            	<a class="item_add dropdown-toggle btn btn-primary" data-toggle="dropdown" href="javascript:;" style="color: white"><i class="icon-shopping-cart icon-white"></i>Add to cart</a>
+	            </div>	
+	             <div id="removeFromCart" style="display:none" class="pull-right">
+	            	<a id="removeCartLink" class="dropdown-toggle btn btn-primary" data-toggle="dropdown" href="javascript:;" style="color: white"><i class="icon-shopping-cart icon-white"></i>Remove from cart</a>
+	            </div>	             
+	            <%--     
 	            <ul class="nav pull-right">
-	               <!-- <li><a href="#">Link</a></li> -->
 	               <li class="divider-vertical"></li>
 	               <li class="dropdown">
 	                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><fmt:message key="${itrForm}.packageName"/><b class="caret"></b></a>
@@ -265,6 +283,7 @@ for (HstSiteMenuItem siteMenuItem : itrSiteMenu.getSiteMenuItems() ){
 	                  </ul>
 	               </li>
 	            </ul>
+	             --%>
 	         </div>
          </c:if>
          <!-- /.nav-collapse -->
@@ -307,3 +326,50 @@ class MenuComparator implements Comparator<HstSiteMenuItem> {
 }
 
 %>
+<hst:element var="uiCustom" name="script">
+    <hst:attribute name="type">text/javascript</hst:attribute>
+    var theO = {'name':'<c:out value="${serviceItemKey}"/>','price':199};
+    var myItem = new simpleCart.Item(theO);
+	var itemInCart=null;
+    simpleCart.ready( function(){
+  		console.log( "simpleCart total: " + simpleCart.toCurrency( simpleCart.total() ) ); 
+  		var h = simpleCart.has(myItem);
+  		if (h) {
+  			res = simpleCart.find(theO);
+  			itemInCart= res[0];
+  			$("#removeFromCart").show();
+  			$("#addToCart").hide();
+  		}
+  		else {
+  			//alert('not');
+  			$("#removeFromCart").hide();
+  			$("#addToCart").show();
+  		}
+	});
+	
+	simpleCart.bind( 'afterAdd' , function(item){
+		itemInCart = item;
+    	togg();	
+	});
+	
+	// simple callback example
+	simpleCart.bind( 'beforeCheckout' , function( data ){
+	  	//data.invoiceNumber = "ABC-123456789";
+	  	alert('WE NEED TO CALL ITR COMPONENT HERE TO GENERATE THE INVOICE');
+	});
+	
+	$("#removeCartLink").click( function () {
+			if (simpleCart.has(myItem)) {
+				itemInCart.remove();
+				togg();
+			}
+		}
+	);
+	
+	function togg() {
+		$("#addToCart").toggle();
+		$("#removeFromCart").toggle();
+	}
+    
+</hst:element>
+<hst:headContribution element="${uiCustom}" category="jsInternal"/>

@@ -84,6 +84,6 @@
 		<h1>Welcome to eZ-Filing</h1>
 		<h5>Please upload all your tax documents. A Tax consultant from wealth4india will shortly get in touch with you.</h5>
 		<hst:link var="memberDriveComp" siteMapItemRefId="docattach"></hst:link>
-		<div class="rowlabel text-center text-success"><h5>Click here to<a href="${fn:replace(scriptName,'xmlgenerator.html','attachdoc.html')}" class="btn btn-primary">Upload Documents</a></h5></div>
+		<div class="rowlabel text-center text-success"><h5>Click here to<a href="${fn:replace(scriptName,'servicerequest-itr-summary.html','attachdoc.html')}" class="btn btn-primary">Upload Documents</a></h5></div>
 	</c:otherwise>
 </c:choose>

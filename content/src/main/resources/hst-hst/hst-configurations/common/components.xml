@@ -1370,4 +1370,65 @@
        <sv:value>myservices.detail</sv:value>
      </sv:property>
    </sv:node>
+	<sv:node sv:name="servicerequest-itr-summary" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hst:component</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>262937a5-7ed5-4fd1-bfbe-bcb2c5b6e54b</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:componentclassname" sv:type="String">
+	    <sv:value>com.mootly.wcm.components.ITReturnComponent</sv:value>
+	  </sv:property>
+	  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String"/>
+	  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String"/>
+	  <sv:property sv:name="hst:template" sv:type="String">
+	    <sv:value>xml-generator</sv:value>
+	  </sv:property>
+	</sv:node>  
+	<sv:node sv:name="servicerequest-itr-download-xml" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hst:component</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>71e44594-a84f-4316-9579-a1ff806c215c</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:componentclassname" sv:type="String">
+	    <sv:value>com.mootly.wcm.components.ITReturnComponent</sv:value>
+	  </sv:property>
+	  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String"/>
+	  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String"/>
+	</sv:node> 
+	<sv:node sv:name="servicerequest-itr-download-summary" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hst:component</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>e46bd87b-2bec-486e-9798-80b4c6381c09</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:componentclassname" sv:type="String">
+	    <sv:value>com.mootly.wcm.components.ITReturnComponent</sv:value>
+	  </sv:property>
+	  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String"/>
+	  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String"/>
+	  <sv:property sv:name="hst:template" sv:type="String">
+	    <sv:value>xml-generator</sv:value>
+	  </sv:property>
+	</sv:node>	
+	<sv:node sv:name="servicerequest-itr-email-xml-summary" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hst:component</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>39037cd7-c4b2-4584-b827-c774ab576ec1</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:componentclassname" sv:type="String">
+	    <sv:value>com.mootly.wcm.components.ITReturnComponent</sv:value>
+	  </sv:property>
+	  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String"/>
+	  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String"/>
+	  <sv:property sv:name="hst:template" sv:type="String">
+	    <sv:value>xml-generator</sv:value>
+	  </sv:property>
+	</sv:node>	
 </sv:node>

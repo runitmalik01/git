@@ -63,6 +63,23 @@
 
 	<script type='text/javascript' src='<hst:link path="/js/bootstrap.min.js"></hst:link>'></script>
 	<script src="<hst:link path="/js/bootstrap-typeahead.js"></hst:link>"></script>
+	
+	<script src="<hst:link path="/js/simpleCart.min.js"></hst:link>"></script>
+	<script>
+			simpleCart.currency({
+			    code: "INR" ,
+			    name: "Indian Rupees" ,
+			    symbol: "&#8377;" ,
+			    accuracy: 2
+			});
+		  simpleCart({
+		    checkout: {
+		      type: "PayPal",
+		      email: "you@yours.com"
+		    },
+		    currency: "INR"
+		  });
+	</script>
 	<div id="container" class="hfeed">
 		<hst:include ref="header"/>
 		<div id="wrapper" class="clearfix">
@@ -156,9 +173,11 @@
 	       })
 	       .change(function(){
 	          this.value = this.value.toUpperCase();
-	       });
+	       });		
+		
+		
 
-	</script>
+	</script>	
 	<script type="text/javascript">
 	 	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
