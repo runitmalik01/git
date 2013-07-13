@@ -250,7 +250,7 @@ for (HstSiteMenuItem siteMenuItem : itrSiteMenu.getSiteMenuItems() ){
 	                  <input type="text" class="search-query span2" placeholder="Search">
 	                </form>
 	                 -->	    
-	                     
+	             <%--  
 	            <div id="addToCart" style="display:none" class="pull-right simpleCart_shelfItem">
 	            	<h2 class="item_name" style="display:none;"><c:out value="${serviceItemKey}"/></h2>
 	            	<span class="item_price" style="display:none;"><w4india:inr value="199"></w4india:inr></span>  
@@ -259,31 +259,25 @@ for (HstSiteMenuItem siteMenuItem : itrSiteMenu.getSiteMenuItems() ){
 	            </div>	
 	             <div id="removeFromCart" style="display:none" class="pull-right">
 	            	<a id="removeCartLink" class="dropdown-toggle btn btn-primary" data-toggle="dropdown" href="javascript:;" style="color: white"><i class="icon-shopping-cart icon-white"></i>Remove from cart</a>
-	            </div>	             
-	            <%--     
-	            <ul class="nav pull-right">
-	               <li class="divider-vertical"></li>
-	               <li class="dropdown">
-	                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><fmt:message key="${itrForm}.packageName"/><b class="caret"></b></a>
-	                  <ul class="dropdown-menu">
-	                  	 <c:if test="${hasDIY =='true'}">
-		                  	 <li><a href="xmlgenerator.html?show=summary">View Summary</a></li>
-		                     <li><a href="xmlgenerator.html?show=xml">View XML</a></li>
-		                     <c:if test="${not empty reqParamXmlGeneratorURL}">
-		                     	<li><a href="${reqParamXmlGeneratorURL}?download=true&xml=true">Download XML</a></li>
-		                     </c:if>
-		                     <li class="divider"></li>
-	                     </c:if>
-	                     <c:if test="${not empty reqParamXmlGeneratorURL}">
-	                     	<li><a href="${reqParamXmlGeneratorURL}?download=true&summary=true">Download Summary</a></li>
-	                     </c:if>
-	                     <c:if test="${not empty reqParamXmlGeneratorURL}">
-	                     	<li><a href="xmlgenerator.html?emailMe=true">Email to <small>(<%=request.getUserPrincipal().getName()%>)</small></a></li>
-	                     </c:if>
-	                  </ul>
-	               </li>
-	            </ul>
-	             --%>
+	            </div>	      
+	             --%>           
+	            <c:if test="${hasDIY =='true'}">
+		            <ul class="nav pull-right">
+		               <li class="divider-vertical"></li>
+		               <li class="dropdown">
+		                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Actions<b class="caret"></b></a>
+		                  <ul class="dropdown-menu">
+		                  	 
+			                  	 <li><a href="servicerequest-itr-summary.html">View Summary</a></li>
+			                     <li><a href="servicerequest-itr-summary.html?show=xml">View XML</a></li>		                     	
+			                     <li class="divider"></li>
+			                     <li><a href="servicerequest-itr-download-xml.html">Download XML</a></li>
+		                     	<li><a href="servicerequest-itr-download-summary.html">Download Summary</a></li>
+		                     	<li><a href="servicerequest-itr-email-xml-summary.html">Email to <small>(<%=request.getUserPrincipal().getName()%>)</small></a></li>
+		                  </ul>
+		               </li>
+		            </ul>
+	            </c:if>
 	         </div>
          </c:if>
          <!-- /.nav-collapse -->
@@ -326,6 +320,8 @@ class MenuComparator implements Comparator<HstSiteMenuItem> {
 }
 
 %>
+<%-- no need for a shopping cart for now --%>
+<%--
 <hst:element var="uiCustom" name="script">
     <hst:attribute name="type">text/javascript</hst:attribute>
     var theO = {'name':'<c:out value="${serviceItemKey}"/>','price':199};
@@ -373,3 +369,4 @@ class MenuComparator implements Comparator<HstSiteMenuItem> {
     
 </hst:element>
 <hst:headContribution element="${uiCustom}" category="jsInternal"/>
+ --%>

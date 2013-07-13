@@ -18,9 +18,26 @@ pageContext.setAttribute("hostname", builder.toString());
 <w4india:itrmenu/>
 	<h4>Member Drive</h4>
 	<form id="memberdrive" action="${actionUrl}" method="post" name="memberdrive" enctype="multipart/form-data">
+	<c:if test="${memberpersonalinformation.selectedITRForm=='ITR2'}">
+		<fieldset>
+			<legend>Need help on what to upload? Download these sample templates to help you report your Income Tax Data</legend>
+			<div class="row-fluid show-grid">
+				<div class="span12">
+					 <div class="rowlabel">
+					    <label for="sample"><small><abbr title="Download this sample template and provide information for capital gain and other">Capital Gain Document Template</abbr></small></label>				 
+					 </div>
+					 <div class="rowlabel">
+					    <c:forEach items="${sampleDocList}" var="sampleDoc">
+					        <hst:link var="sampledoclink" hippobean="${sampleDoc.memberFileResource}"/>				    
+					        <a href="${sampledoclink}" class="btn btn-inverse"><i class="icon-download-alt icon-white"></i><span>Download</span></a>
+					    </c:forEach>
+					 </div>
+			 	 </div>
+			</div>
+		</fieldset>
+	</c:if>
 	<fieldset>
-		<legend>Upload Your Document to File Income Tax Return
-			${memberpersonalinformation.financialYear}</legend>
+		<legend>Upload your Income Tax documents for FY:${memberpersonalinformation.financialYear}</legend>
 		   <!--  <div class="row-fluid show-grid">
 		       <div class="span6">
 					<div class="rowlabel">
@@ -40,22 +57,9 @@ pageContext.setAttribute("hostname", builder.toString());
 			</div>
 		</c:if>
 		<div class="row-fluid show-grid">
-			   <div class="span4">
-					<div class="rowlabel">			            
-			                  <label for="member_file"><small>Select Document To Upload</small></label>
-			        </div>
-			        <div class="rowlabel">
-			                  <span class="btn btn-success fileinput-button" id="remove">
-                                <i class="icon-plus icon-white"></i>
-                                <span>Add files...</span>
-                                  <input type="file" id="member_file" name="member_file"/>
-                             </span>
-			             <div id="member_file_name"></div>
-			        </div>
-			    </div>
-			    <div class="span4">			                     
+			    <div class="span3">			                     
 			         <div class="rowlabel">
-			               <label for="description"><small>Description</small></label>
+			               <label for="description"><small>Type</small></label>
 			         </div>
 			         <div class="rowlabel">
 			                 <select name="description" id="description" class="span8">
@@ -97,41 +101,40 @@ pageContext.setAttribute("hostname", builder.toString());
 			                      </optgroup>
 			                 </select>
 			          </div>				    				   		
+			   </div>		
+			   <div class="span2">
+					<div class="rowlabel">			            
+			                  <label for="member_file"><small></small></label>
+			        </div>
+			        <div class="rowlabel">
+			                  <span class="btn btn-success fileinput-button" id="remove">
+                                <i class="icon-plus icon-white"></i>
+                                <span>Attach a File</span>
+                                <input type="file" id="member_file" name="member_file"/>
+                             </span>
+			             <div id="member_file_name"></div>
+			        </div>
 			    </div>
-			    <div class="span4">
-			         <div class="rowlabel">
-			              <label for="startupload"><small>Click to Upload</small></label>
-			         </div>
-				    <div class="rowlabel">
-					 <a href="#" id="upload" class="btn btn-primary start">
-					    <i class="icon-upload icon-white"></i>
-                        <span>Start upload</span></a>
-					 </div>
-				 </div>
-		   </div>
-		<div class="row-fluid show-grid">
-			<div class="span4">
-				<div class="rowlabel">
-				 <label for="protected"><small><abbr title="If Uploading Document is password protected then please provide password">Document Password</abbr></small></label>				 
+				<div class="span3">
+					<div class="rowlabel">
+					 <label for="protected"><small><abbr title="If Uploading Document is password protected then please provide password">Document Password</abbr></small></label>				 
+					</div>
+					<div class="rowlabel">
+					  <input id="protected" name="protected" type="password"/>
+					</div>
 				</div>
-				<div class="rowlabel">
-				  <input id="protected" name="protected" type="password"/>
+				<div class="span4">
+					<div class="rowlabel">
+					 <label for="protected"><small><abbr title="If you want to share any additional notes">Additional Notes</abbr></small></label>				 
+					</div>
+					<div class="rowlabel">
+					  <textarea id="additionalnotes" name="additionalnotes"></textarea>
+					</div>
 				</div>
-			</div>
-			<c:if test="${memberpersonalinformation.selectedITRForm=='ITR2'}">
-			  <div class="span4">
-				 <div class="rowlabel">
-				    <label for="sample"><small><abbr title="Download this sample template and provide information for capital gain and other">Capital Gain Document Template</abbr></small></label>				 
-				 </div>
-				 <div class="rowlabel">
-				    <c:forEach items="${sampleDocList}" var="sampleDoc">
-				        <hst:link var="sampledoclink" hippobean="${sampleDoc.memberFileResource}"/>				    
-				        <a href="${sampledoclink}" class="btn btn-inverse"><i class="icon-download-alt icon-white"></i><span>Download</span></a>
-				    </c:forEach>
-				 </div>
-			  </div>
-			</c:if>			
 		</div>
+	</fieldset>
+	<fieldset>
+		<legend>Your documents for Financial Year:${memberpersonalinformation.financialYear}</legend>
 		<div class="row-fluid show-grid hide" id="file_process">
 		      <div class="well">
 		         <div class="span8">
@@ -220,6 +223,7 @@ pageContext.setAttribute("hostname", builder.toString());
 		$('#member_file').bind('change', function(){
 		    $('#member_file_name').text(this.files[0].name);
 		    $('#file_process').show();
+		    uploadDoc();
           });
 		$('#member_file').popover({"html":true,
 		                 "trigger":"hover",
@@ -232,21 +236,8 @@ pageContext.setAttribute("hostname", builder.toString());
 		                 content:"Select a description of File or write Your own"
 		  });
 		  var myVar=null;var i=10;
-          $('#upload').click(function(){
-             myVar=setInterval(function(){
-               if(i<=100){
-                $('.bar').css({"width" :i+'%'});
-                 i=i+10;
-               }else{
-                  /*var actionUrl=$('#memberdrive').attr('action');
-                  actionUrl=actionUrl.split('?');
-                  var modaction=actionUrl[0]+'?description='+$('#description').val()+'&protected='+$('#protected').val();
-                  $('#memberdrive').attr('action',modaction);*/
-                  clearInterval(myVar);
-                  $('#memberdrive').submit();
-                 } 
-             },200);
-          });
+		  
+          $('#upload').click(uploadDoc);
           var control = $('#member_file');
           $('#cancel').click(function(){
             clearInterval(myVar);
@@ -290,6 +281,21 @@ pageContext.setAttribute("hostname", builder.toString());
 			       });
 			 });*/
 		 });
+		 
+		 function uploadDoc(){
+		    $('#memberdrive').submit();
+		    /*
+             myVar=setInterval(function(){
+               if(i<=100){
+                $('.bar').css({"width" :i+'%'});
+                 i=i+10;
+               }else{
+                  clearInterval(myVar);
+                  $('#memberdrive').submit();
+                 } 
+             },200);
+             */
+          }
 </hst:element>
 <res:client-validation formId="memberdrive" formSubmitButtonId="upload" screenConfigurationDocumentName="memberdrive"></res:client-validation>
 <hst:headContribution element="${uiCustom}" category="jsInternal" />

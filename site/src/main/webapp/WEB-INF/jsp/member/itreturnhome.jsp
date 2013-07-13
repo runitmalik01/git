@@ -141,10 +141,12 @@ TreeMap objTreeMapSection = (TreeMap) objValueListService.getReturnFile();
 			                <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Action <span class="caret"></span></button>
 			                <ul class="dropdown-menu">
 			                  <li><a href="${viewLink}">Continue Filing</a></li>
-			                  <li class="divider"></li>
-			                  <li><a href="<hst:link path="/member/itreturn/${anEntry.financialYear.displayName}/${anEntry.itReturnType.displayName}/${anEntry.pan}/servicerequest-itr-download-summary.html"/>">Download Summary</a></li>
-			                  <li><a href="<hst:link  path="/member/itreturn/${anEntry.financialYear.displayName}/${anEntry.itReturnType.displayName}/${anEntry.pan}/servicerequest-itr-download-xml.html" />">Download XML</a></li>
-			                  <li><a href="<hst:link  path="/member/itreturn/${anEntry.financialYear.displayName}/${anEntry.itReturnType.displayName}/${anEntry.pan}/servicerequest-itr-email-xml-summary.html" />">Email Summary and XML</a></li>
+			                  <c:if test="${anEntry.ITRFormMode == 'DIY'}">
+				                  <li class="divider"></li>
+				                  <li><a href="<hst:link path="/member/itreturn/${anEntry.financialYear.displayName}/${anEntry.itReturnType.displayName}/${anEntry.pan}/servicerequest-itr-download-summary.html"/>">Download Summary</a></li>
+				                  <li><a href="<hst:link  path="/member/itreturn/${anEntry.financialYear.displayName}/${anEntry.itReturnType.displayName}/${anEntry.pan}/servicerequest-itr-download-xml.html" />">Download XML</a></li>
+				                  <li><a href="<hst:link  path="/member/itreturn/${anEntry.financialYear.displayName}/${anEntry.itReturnType.displayName}/${anEntry.pan}/servicerequest-itr-email-xml-summary.html" />">Email Summary and XML</a></li>
+				              </c:if>
 			                </ul>
 			             </div>
 					</td>

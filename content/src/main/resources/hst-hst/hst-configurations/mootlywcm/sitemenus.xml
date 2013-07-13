@@ -368,7 +368,7 @@
 	      <sv:value>nonDIY</sv:value>
 	    </sv:property>
 	    <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
-	      <sv:value>/../xmlgenerator.html</sv:value>
+	      <sv:value>/../servicerequest-itr-summary.html</sv:value>
 	      <sv:value>0</sv:value>
 	      <sv:value>true</sv:value>
 	    </sv:property>

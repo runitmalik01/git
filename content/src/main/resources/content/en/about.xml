@@ -215,6 +215,7 @@ communities which we operate.&lt;/strong&gt;&lt;/p&gt;
         <sv:value>Quick facts</sv:value>
       </sv:property>
     </sv:node>
+    <!-- 
     <sv:node sv:name="quick-facts-about-hippo">
       <sv:property sv:name="jcr:primaryType" sv:type="Name">
         <sv:value>hippo:handle</sv:value>
@@ -333,6 +334,7 @@ communities which we operate.&lt;/strong&gt;&lt;/p&gt;
       </sv:property>
     </sv:node>
   </sv:node>
+   -->
   <sv:node sv:name="terms--conditions">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
       <sv:value>hippostd:folder</sv:value>

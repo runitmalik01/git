@@ -1768,6 +1768,7 @@
                 </sv:property>
               </sv:node>
             </sv:node>
+            <!-- 
             <sv:node sv:name="packageselector-NOTBEINGUSED.html">
               <sv:property sv:name="jcr:primaryType" sv:type="Name">
                 <sv:value>hst:sitemapitem</sv:value>
@@ -1794,7 +1795,7 @@
               <sv:property sv:name="hst:relativecontentpath" sv:type="String">
                 <sv:value>mootlypricingplan</sv:value>
               </sv:property>
-            </sv:node>
+            </sv:node> --><!--comment-->
             <sv:node sv:name="formsixteen.html">
               <sv:property sv:name="jcr:primaryType" sv:type="Name">
                 <sv:value>hst:sitemapitem</sv:value>
@@ -3684,6 +3685,7 @@
       </sv:property>
     </sv:node>
   </sv:node>
+  <!-- 
   <sv:node sv:name="message">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
       <sv:value>hst:sitemapitem</sv:value>
@@ -3701,6 +3703,7 @@
       <sv:value>members</sv:value>
     </sv:property>
   </sv:node>
+   -->
   <!-- 
   <sv:node sv:name="changepass">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
@@ -3913,6 +3916,7 @@
       <sv:value>vendors</sv:value>
     </sv:property>
   </sv:node>
+  <!--
   <sv:node sv:name="knowledgeportal">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
       <sv:value>hst:sitemapitem</sv:value>
@@ -3962,6 +3966,7 @@
       </sv:property>
     </sv:node>
   </sv:node>
+  -->
   <sv:node sv:name="services">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
       <sv:value>hst:sitemapitem</sv:value>

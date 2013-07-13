@@ -25,9 +25,10 @@
 <hst:link var="logout" path="/j_spring_security_logout"/>
 <hst:link var="signup" path="/signup"/>
 <hst:link var="myaccount" path="/member"/>
+<%--
 <span class="simpleCart_quantity"></span> items - <span class="simpleCart_total"></span>
 <a href="javascript:;" class="simpleCart_checkout">Checkout</a>
-
+ --%>
 <ul id="menu-top" class="top-menu">
 		<c:choose>
 			<c:when test="${loggedin}">
@@ -37,11 +38,8 @@
                 <ul class="dropdown-menu">
                 	<hst:link var="changepass" siteMapItemRefId="changepass"></hst:link>
                   <li><a href="${changepass}">ChangePassword</a></li>
-                 <!--   <li><a href="#">Another action</a></li>
-                  <li><a href="#">Something else here</a></li>-->
                 </ul>
               </li>
-				<!--  <a href="${myaccount}">My Account</a></li>-->
 				<li id="menu-item-724" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-724"><a href="${logout}" class="btn btn-warning" style="color: white"><i class="icon-off icon-white"></i>Logout</a></li>
 			</c:when>
 			<c:otherwise>				
