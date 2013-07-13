@@ -144,7 +144,7 @@ TreeMap objTreeMapSection = (TreeMap) objValueListService.getReturnFile();
 			                  <li class="divider"></li>
 			                  <li><a href="<hst:link path="/member/itreturn/${anEntry.financialYear.displayName}/${anEntry.itReturnType.displayName}/${anEntry.pan}/servicerequest-itr-download-summary.html"/>">Download Summary</a></li>
 			                  <li><a href="<hst:link  path="/member/itreturn/${anEntry.financialYear.displayName}/${anEntry.itReturnType.displayName}/${anEntry.pan}/servicerequest-itr-download-xml.html" />">Download XML</a></li>
-			                  <li><a href="<hst:link  path="/member/itreturn/${anEntry.financialYear.displayName}/${anEntry.itReturnType.displayName}/${anEntry.pan}/servicerequest-itr-email-summary-xml.html" />">Email Summary and XML</a></li>
+			                  <li><a href="<hst:link  path="/member/itreturn/${anEntry.financialYear.displayName}/${anEntry.itReturnType.displayName}/${anEntry.pan}/servicerequest-itr-email-xml-summary.html" />">Email Summary and XML</a></li>
 			                </ul>
 			             </div>
 					</td>
