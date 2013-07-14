@@ -32,6 +32,7 @@
 				<c:set var="deductionAdditionalScreen" value="${deductionSectionMapEntry.value.additionalProperties['additionalScreen']}"/>
 				<c:set var="appliesToFilingStatus" value="${deductionSectionMapEntry.value.additionalProperties['filingStatus']}"/>
 				<c:set var="appliesToResidentStatus" value="${deductionSectionMapEntry.value.additionalProperties['residentStatus']}"/>
+				<c:set var="isDerived" value="${deductionSectionMapEntry.value.additionalProperties['isDerived']}"/>
 				<c:choose>
 					<c:when test="${empty ischildofform16 || ischildofform16 !='true'}">
 						<c:set var="addURL" value="${scriptName}/newc6deduction/${deductionSectionName}"/>
@@ -59,7 +60,16 @@
 							<div class="btn-group">
 								<button class="btn btn-small dropdown-toggle" data-toggle="dropdown"><c:out value="${deductionSectionLabel}"/><span class="caret"></span></button>
 								<ul class="dropdown-menu">
-					            	<li><a href="${addURL}">Add</a></li>
+					            	<li>
+										<c:choose>
+											<c:when test="${deductionSectionName == '80tta'}">
+												<li><a href="./othersources.html">Add</a></li>
+											</c:when>
+											<c:otherwise>
+												<a href="${addURL}">Add</a>	
+											</c:otherwise>
+					            		</c:choose>
+					            	</li>
 									<%-- commented out --%>
 									<%--
 									<c:if test="${not empty savedData && not empty savedData[deductionSectionName]}">
@@ -79,25 +89,26 @@
 									<div class="btn-group">
 										<button class="btn btn-small dropdown-toggle" data-toggle="dropdown"><w4india:inr value="${totalOfSavedData[deductionSectionName]}"></w4india:inr><span class="caret"></span></button>
 										<ul class="dropdown-menu">
-											<li class="divider"></li>
-							            	<%-- commented out --%>
-							            	<%--
-							            	<li><a href="<c:out value="${scriptName}"/>/newc6deduction/<c:out value="${deductionSectionName}"/>">Add</a></li>
-							            	 --%>
-											<c:if test="${not empty savedData && not empty savedData[deductionSectionName]}">
-												<c:forEach items="${savedData[deductionSectionName]}" var="aSectionHead">
-													<c:choose>
-														<c:when test="${empty ischildofform16 || ischildofform16 !='true'}">
-															<c:set var="editURL" value="${scriptName}/${aSectionHead.canonicalUUID}/editc6deduction"/>
-														</c:when>
-														<c:otherwise>
-															<c:set var="editURL" value="./formsixteenedit/${aSectionHead.canonicalUUID}/editc6deduction"/>
-															<c:set var="successURL" value="./formsixteenedit"/>
-														</c:otherwise>
-													</c:choose>
-													<li><a href="${editURL}"><fmt:message var="label" bundle="${dSectionHeads}" key="sectionhead.${aSectionHead.head}.label"></fmt:message><res:displaylabel label="${label}"></res:displaylabel> |<c:out value="${aSectionHead.investment}"/>|</a></li>
-												</c:forEach>
-											</c:if>
+											<!-- <li class="divider"></li> -->	
+											<c:choose>
+												<c:when test="${deductionSectionName == '80tta'}">
+													<li><a href="./othersources.html">Edit</a></li>
+												</c:when>
+												<c:when test="${not empty savedData && not empty savedData[deductionSectionName] && (empty isDerived || isDerived == 'false')}">
+													<c:forEach items="${savedData[deductionSectionName]}" var="aSectionHead">
+														<c:choose>
+															<c:when test="${empty ischildofform16 || ischildofform16 !='true'}">
+																<c:set var="editURL" value="${scriptName}/${aSectionHead.canonicalUUID}/editc6deduction"/>
+															</c:when>
+															<c:otherwise>
+																<c:set var="editURL" value="./formsixteenedit/${aSectionHead.canonicalUUID}/editc6deduction"/>
+																<c:set var="successURL" value="./formsixteenedit"/>
+															</c:otherwise>
+														</c:choose>
+														<li><a href="${editURL}"><fmt:message var="label" bundle="${dSectionHeads}" key="sectionhead.${aSectionHead.head}.label"></fmt:message><res:displaylabel label="${label}"></res:displaylabel> |<c:out value="${aSectionHead.investment}"/>|</a></li>
+													</c:forEach>
+												</c:when>											
+											</c:choose>							            	
 										</ul>
 									</div>
 								</c:when>

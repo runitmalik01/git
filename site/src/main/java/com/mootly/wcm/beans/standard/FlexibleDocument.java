@@ -172,8 +172,8 @@ public class FlexibleDocument extends BaseDocument implements FormMapFiller {
 		T returnValue = null;
 		try {
 			//find the dataType
-			if (!getValueOfFlexFields().containsKey(fieldName)) {
-				getValueOfFlexFields().put(fieldName, node.getProperty(fieldName).getValue());				
+			if (!getValueOfFlexFields().containsKey(fieldName) && node != null) {
+				if (node.hasProperty(fieldName)) getValueOfFlexFields().put(fieldName, node.getProperty(fieldName).getValue());				
 			}
 			if (getValueOfFlexFields().containsKey(fieldName)) {
 				Value v = getValueOfFlexFields().get(fieldName);

@@ -173,6 +173,18 @@
 				$('#<c:out value="${formId}"/>').validate({
 					rules: validationRules.rules
 				});
+				<c:if test="${not empty screenConfigDocument}">
+					$('#<c:out value="${formId}"/>').submit(
+						function(){
+							if ( $('#<c:out value="${formId}"/>').valid() ) { //no point checking if the form is already bad
+								<c:out value="${screenConfigDocument.onSubmitHandler}" escapeXml="false"/>
+							}
+						}						
+					);
+					<c:if test="${not empty screenConfigDocument.additionalScript}">
+							<c:out value="${screenConfigDocument.additionalScript}" escapeXml="false"/>
+					</c:if>
+				</c:if>
 				$('.strict').blur(function(){
 				   if($('.strict').val().length==10){
 				      var char4th=$('.strict').val().slice(3,4);

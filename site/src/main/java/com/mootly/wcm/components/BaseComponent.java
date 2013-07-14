@@ -37,6 +37,7 @@ import com.mootly.wcm.beans.EmailMessage;
 import com.mootly.wcm.beans.EmailTemplate;
 import com.mootly.wcm.components.ITReturnComponent.FullReviewedWorkflowCallbackHandler;
 import com.mootly.wcm.utils.ContentStructure;
+import com.mootly.wcm.utils.VelocityUtils;
 
 public class BaseComponent extends BaseHstComponent {
 	private static final Logger log = LoggerFactory.getLogger(BaseComponent.class);
@@ -107,7 +108,7 @@ public class BaseComponent extends BaseHstComponent {
      * @param velocityContext
      */
     //protected void sendEmail(HstRequest request, String[] to,String[] cc,String[] bcc,String subject,String attachmentList,String defaultMessage,String templateKey,Map<String,String> velocityContext) {
-    	protected void sendEmail(HstRequest request, String[] to,String attachmentList,String defaultMessage,String templateKey,Map<String,String> velocityContext) {
+    	protected void sendEmail(HstRequest request, String[] to,String attachmentList,String defaultMessage,String templateKey,Map<String,Object> velocityContext) {
     	try {
     		
     		//here we do the VEOCITY MAGIC
@@ -143,12 +144,21 @@ public class BaseComponent extends BaseHstComponent {
     		emailMessage.setTo(to);
     		/*if (cc != null) emailMessage.setCc(cc);
     		if (bcc != null) emailMessage.setBcc(bcc);*/
+    		StringBuffer sbHostName = new StringBuffer();
+			sbHostName.append(request.getScheme() + "://" +  request.getServerName()).append(":").append(request.getServerPort());
+			
+			velocityContext.put("memberHostName", sbHostName.toString());
+    		
+    		String htmlBody = VelocityUtils.parseVelocity(emailTemplate.getHtmlBody(), velocityContext);
+			//String plainBody = VelocityUtils.parseVelocity(emailTemplate.getPlainBody(), velocityContext);
+			String subject = VelocityUtils.parseVelocity(emailTemplate.getSubject(), velocityContext);
+			
     		emailMessage.setCc(emailTemplate.getCc());
     		emailMessage.setBcc(emailTemplate.getBcc());
-    		emailMessage.setSubject(emailTemplate.getSubject());
+    		emailMessage.setSubject(subject);
     		emailMessage.setAttachmentList(attachmentList);
     		emailMessage.setTemplateKey(templateKey);
-    		emailMessage.setHtmlBody(emailTemplate.getHtmlBody());
+    		emailMessage.setHtmlBody(htmlBody);
 			wpm.update(emailMessage);
     	}
     	catch (Exception ex) {

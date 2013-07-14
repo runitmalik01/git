@@ -61,6 +61,8 @@ public class ScreenConfigDocument extends BaseDocument {
 	private String screenHeading;
 	private String screenSubHeading;
 	private String screenHelp;
+	private String onSubmitHandler;
+	private String additionalScript;
 	
 	public String getScreenHeading() {
 		if (screenHeading == null) screenHeading = getProperty("mootlywcm:screenHeading");
@@ -75,6 +77,16 @@ public class ScreenConfigDocument extends BaseDocument {
 	public String getScreenHelp() {
 		if (screenHelp == null) screenHelp = getProperty("mootlywcm:screenHelp");
 		return screenHelp;
+	}
+	
+	public String getOnSubmitHandler() {
+		if (onSubmitHandler == null) onSubmitHandler = getProperty("mootlywcm:onSubmitHandler");
+		return onSubmitHandler;
+	}
+	
+	public String getAdditionalScript() {
+		if (additionalScript == null) additionalScript = getProperty("mootlywcm:additionalScript");
+		return additionalScript;
 	}
 
 	public final List<ScreenFieldConfig> getScreenFieldConfigList() {

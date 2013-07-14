@@ -204,13 +204,14 @@ else out_total_80g=(total_NoAppr50)*.5 + total_NoAppr100;
 		out_total_eligiblededuction=grosstotal;
 
   if(total_80gg>0){
-	var adjuestedGrossTotal=grosstotal - (out_total_eligiblededuction);
-	var adjuestedGross10per=adjuestedGrossTotal * 0.1;
-	var	adjuestedGross25per=adjuestedGrossTotal * 0.25;
-	var excessRentPaid=total_80gg-adjuestedGross10per;
+	//var adjuestedGrossTotal=grosstotal - (out_total_eligiblededuction); //commented by AP 07/13/2013
+	//var adjuestedGross10per=adjuestedGrossTotal * 0.1; //commented by AP 07/13/2013
+	//var	adjuestedGross25per=adjuestedGrossTotal * 0.25; //commented by AP 07/13/2013
+	//var excessRentPaid=total_80gg-adjuestedGross10per; //commented by AP 07/13/2013
 	var rent2000permnth=24000;
 	//out_total_80gg=adjuestedGross10per;
-	out_total_80gg=Math.min(rent2000permnth,adjuestedGross25per,excessRentPaid);
+	//out_total_80gg=Math.min(rent2000permnth,adjuestedGross25per,excessRentPaid); //commented by AP 07/13/2013
+	out_total_80gg=Math.min(rent2000permnth,total_80gg); //Added by AP 07/13/2013
 	if(out_total_80gg<0)
 		out_total_80gg=0;
 	

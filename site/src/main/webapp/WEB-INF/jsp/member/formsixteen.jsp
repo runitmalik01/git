@@ -46,8 +46,7 @@
 							<label for="Employe_category"><fmt:message
 									key="member.employe.category" /> </label>
 						</div>
-						<select id="Employe_category" name="Employe_category"
-							onchange="hideded()">
+						<select id="Employe_category" name="Employe_category">
 							<option value="">-Select-</option>
 							<option value="GOV"
 								<c:if test="${not empty childBean.employe_category && childBean.employe_category =='GOV'}">selected</c:if>>GOVT.</option>
@@ -395,7 +394,7 @@
 					</div>
 					<div class="span4">
 						<div class="rowlabel" id="tax">
-							<strong>4(b)</strong> Tax on Employment
+							<strong>4(b)</strong> Tax on Employment/ Professional Tax
 						</div>
 						<div class="rowlabel">
 							<input id="deductions_tax" name="deductions_tax" class=" decimal"

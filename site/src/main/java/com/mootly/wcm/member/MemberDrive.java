@@ -57,7 +57,7 @@ import com.mootly.wcm.components.ITReturnComponent;
 
 @RequiredBeans(requiredBeans=MemberPersonalInformation.class)
 @AdditionalBeans(additionalBeansToLoad={MemberPersonalInformation.class})
-@FormFields(fieldNames={"member_file","description","protected"})
+@FormFields(fieldNames={"member_file","description","protected","additionalnotes"})
 public class MemberDrive extends ITReturnComponent {
 
 	private static final Logger log = LoggerFactory.getLogger(MemberDrive.class);
@@ -154,6 +154,7 @@ public class MemberDrive extends ITReturnComponent {
 		memberDrive.setContentType(fileDetails.get(CONTENT_TYPE));
 		memberDrive.setDescription(formMap.getField("description").getValue());
 		memberDrive.setDocPassword(formMap.getField("protected").getValue());
+		memberDrive.setDocAdditionalNotes(formMap.getField("additionalnotes").getValue());
 		MemberDriveDocument returnMemberDriveDoc=createMemberDrive(request, response, memberDrive, fileDetails.get(FILE_NAME));
 		if(returnMemberDriveDoc!=null){
 			response.setRenderParameter("FileUpload", "Success");

@@ -28,7 +28,7 @@
           <sv:value>2280fd90-89cc-47c9-a164-02c206654e97</sv:value>
         </sv:property>
         <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
-          <sv:value>hst:components/forge-sitemap-feed</sv:value>
+          <sv:value>hst:components/forge-sitemap-based-on-hst-configuration-feed</sv:value>
         </sv:property>
       </sv:node>
     </sv:node>

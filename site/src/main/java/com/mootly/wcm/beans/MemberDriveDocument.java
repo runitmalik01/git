@@ -49,9 +49,11 @@ public class MemberDriveDocument extends BaseDocument implements ContentNodeBind
 	private String contentType;
 	private String description;
 	private String docPassword;
+	private String docAdditionalNotes;
 	private String MEMBER_DOCS="mootlywcm:memberDocs";
 	private String DESCRIPTION="mootlywcm:description";
 	private String DOCUMENT_PASSWORD="mootlywcm:docPassword";
+	private String DOCUMENT_ADDITIONAL_NOTES ="mootlywcm:additionalNotes";
 	/**
 	 * @return the memberFileResource
 	 */
@@ -103,12 +105,23 @@ public class MemberDriveDocument extends BaseDocument implements ContentNodeBind
 			docPassword=getProperty(DOCUMENT_PASSWORD);
 		return docPassword;
 	}
+		
 	/**
 	 * @param docPassword the docPassword to set
 	 */
 	public void setDocPassword(String docPassword) {
 		this.docPassword = docPassword;
 	}
+	
+	public String getDocAdditionalNotes() {
+		if (docAdditionalNotes == null) docAdditionalNotes = getProperty(DOCUMENT_ADDITIONAL_NOTES);
+		return docAdditionalNotes;
+	}
+	
+	public void setDocAdditionalNotes(String docAdditionalNotes) {
+		this.docAdditionalNotes = docAdditionalNotes;
+	}
+	
 	@Override
 	public boolean bind(Object content, javax.jcr.Node node) throws ContentNodeBindingException {
 		MemberDriveDocument bean = (MemberDriveDocument) content;        
@@ -131,6 +144,7 @@ public class MemberDriveDocument extends BaseDocument implements ContentNodeBind
 			}
 			node.setProperty(DESCRIPTION, bean.getDescription());
 			node.setProperty(DOCUMENT_PASSWORD, bean.getDocPassword());
+			node.setProperty(DOCUMENT_ADDITIONAL_NOTES, bean.getDocPassword());
 		} 
 		catch (RepositoryException e) {
 			log.error("Repository Exception",e);

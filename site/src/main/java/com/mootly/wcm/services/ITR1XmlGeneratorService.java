@@ -39,6 +39,7 @@ import in.gov.incometaxindiaefiling.y2012_2013.Verification.Declaration;
 import java.io.StringWriter;
 import java.lang.reflect.Method;
 import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -81,6 +82,7 @@ import com.mootly.wcm.beans.compound.TdsOthersDetail;
 import com.mootly.wcm.model.FinancialYear;
 import com.mootly.wcm.model.deduction.DeductionHead;
 import com.mootly.wcm.model.deduction.DeductionSection;
+import com.mootly.wcm.services.y2012_2013.ITRPrefixMapper;
 import com.mootly.wcm.services.y2012_2013.ITRXmlGeneratorService;
 import com.mootly.wcm.utils.XmlCalculation;
 import com.sun.xml.bind.marshaller.NamespacePrefixMapper;
@@ -249,15 +251,17 @@ public class ITR1XmlGeneratorService {
 		Map<String,Object> totalMapForJSDe = new HashMap<String, Object>();
 		DeductionListService deductionListService=new DeductionListService();
 		Map<String,DeductionSection> deductionSectionMap=deductionListService.getDeductionSectionMap().get(financialYear);
-		if(deductionDocument!=null){
-			if (deductionDocument.getDeductionDocumentDetailList() != null && deductionDocument.getDeductionDocumentDetailList().size() > 0 ){
+		//This is tricky deductionDocument can be null but othersource income could have section 80tta data?
+		List<DeductionDocumentDetail> listOfDeductionDocumentDetail = getDeductionDocumentList(deductionDocument,otherSourcesDocument);		
+		if(listOfDeductionDocumentDetail != null){
+			if (listOfDeductionDocumentDetail != null && listOfDeductionDocumentDetail.size() > 0 ){
 				for(String key:deductionSectionMap.keySet()){
 					Double sumSection=0D;
 					DeductionSection deductionsec=deductionSectionMap.get(key);
 					if(deductionsec.getListOfDeductionHead().size()!=0){
 						for(DeductionHead head:deductionsec.getListOfDeductionHead()){
 							Double sumHead=0D;
-							for(DeductionDocumentDetail deductionDocumentDetail:deductionDocument.getDeductionDocumentDetailList()){
+							for(DeductionDocumentDetail deductionDocumentDetail:listOfDeductionDocumentDetail){
 								if(deductionDocumentDetail.getHead().equals(head.getName().replaceAll("-", "_"))){
 									sumHead=sumHead+deductionDocumentDetail.getInvestment();
 								}
@@ -266,7 +270,7 @@ public class ITR1XmlGeneratorService {
 							totalMapForJSDe.put(sanitizedKey, sumHead);
 						}
 					}
-					for(DeductionDocumentDetail deductionDocumentDetail:deductionDocument.getDeductionDocumentDetailList()){
+					for(DeductionDocumentDetail deductionDocumentDetail:listOfDeductionDocumentDetail){
 						if(deductionDocumentDetail.getSection().equals(key)){
 							sumSection=sumSection+deductionDocumentDetail.getInvestment();
 						}
@@ -607,8 +611,9 @@ public class ITR1XmlGeneratorService {
 			DedExc80G =  deductUndChapVIA.getTotalChapVIADeductions().subtract(deductUndChapVIA.getSection80G());
 		}else
 			DedExc80G =  deductUndChapVIA.getTotalChapVIADeductions();
-		if(deductionDocument!=null){
-			List<DeductionDocumentDetail> listOfDeductionDocumentDetail = deductionDocument.getDeductionDocumentDetailList();
+		//List<DeductionDocumentDetail> listOfDeductionDocumentDetail = get
+		if(listOfDeductionDocumentDetail != null && listOfDeductionDocumentDetail.size() > 0){
+			//List<DeductionDocumentDetail> listOfDeductionDocumentDetail = deductionDocument.getDeductionDocumentDetailList();
 			if (listOfDeductionDocumentDetail!= null && listOfDeductionDocumentDetail.size() > 0 ){
 				Don100Percent don100Percent = new Don100Percent();
 				Don100PercentApprReqd don100PercentApprReqd = new Don100PercentApprReqd();
@@ -875,7 +880,7 @@ public class ITR1XmlGeneratorService {
 			JAXBContext jaxbContext = JAXBContext.newInstance(ITR.class);
 			Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
 			// output pretty printed
-			NamespacePrefixMapper prefixMapper = new MyPrefixMapperImpl();
+			NamespacePrefixMapper prefixMapper = new ITRPrefixMapper();
 			jaxbMarshaller.setProperty("com.sun.xml.bind.namespacePrefixMapper", prefixMapper);
 			jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT,true);
 			jaxbMarshaller.setProperty(Marshaller.JAXB_ENCODING,"UTF-8");
@@ -890,37 +895,28 @@ public class ITR1XmlGeneratorService {
 		}
 
 	}
-}
-
-class MyPrefixMapperImpl extends com.sun.xml.bind.marshaller.NamespacePrefixMapper {
-
-	@Override
-	public String getPreferredPrefix(String namespaceUri,
-			String suggestion,
-			boolean requirePrefix) {
-		// TODO Auto-generated method stub
-		if (namespaceUri.equals("http://incometaxindiaefiling.gov.in/ITR1")) {
-			return "ITR1FORM";
+	/**
+	 * New Helper function to deal with complications about 80tta
+	 * @param deductionDocument
+	 * @param otherSourcesDocument
+	 * @return
+	 */
+	public static List<DeductionDocumentDetail> getDeductionDocumentList(DeductionDocument deductionDocument,OtherSourcesDocument otherSourcesDocument) {
+		List<DeductionDocumentDetail> listOfDeductionDocumentDetail = null;
+		if(deductionDocument!=null){
+			if (deductionDocument.getDeductionDocumentDetailList() != null && deductionDocument.getDeductionDocumentDetailList().size() > 0 ){
+				listOfDeductionDocumentDetail = new ArrayList<DeductionDocumentDetail>();
+				listOfDeductionDocumentDetail.addAll(deductionDocument.getDeductionDocumentDetailList());
+			}
 		}
-		else if (namespaceUri.equals("http://incometaxindiaefiling.gov.in/ITR2")) {
-			return "ITR2FORM";
+		if (otherSourcesDocument != null && otherSourcesDocument.getBank_detail_saving() != null && otherSourcesDocument.getBank_detail_saving() > 0D) {
+			if (listOfDeductionDocumentDetail == null) listOfDeductionDocumentDetail = new ArrayList<DeductionDocumentDetail>();
+			DeductionDocumentDetail bankSavingDetail = new DeductionDocumentDetail();
+			bankSavingDetail.setSection("80tta");
+			bankSavingDetail.setHead("80tta");
+			bankSavingDetail.setInvestment(otherSourcesDocument.getBank_detail_saving());
+			listOfDeductionDocumentDetail.add(bankSavingDetail);
 		}
-		else if (namespaceUri.equals("http://incometaxindiaefiling.gov.in/ITR3")) {
-			return "ITR3FORM";
-		}
-		else if (namespaceUri.equals("http://incometaxindiaefiling.gov.in/ITR4")) {
-			return "ITR4FORM";
-		}
-		else if (namespaceUri.equals("http://incometaxindiaefiling.gov.in/main")) {
-			return "ITRETURN";
-		}
-		else if (namespaceUri.equals("http://incometaxindiaefiling.gov.in/master")) {
-			return "ITRForm";
-		}
-		else if (namespaceUri.equals("") || !requirePrefix) {
-			return "ITRForm";
-		}
-		return null;
+		return listOfDeductionDocumentDetail;
 	}
-
 }

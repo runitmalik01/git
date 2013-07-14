@@ -21,7 +21,14 @@
 						</c:when>
 						<c:otherwise>
 							<span>Enter investment under <c:out value="${deductionSection.label}"/></span>
-							<input type="hidden" name="head" value="<c:out value="${deductionSection.name}"/>"/>
+							<c:choose>
+								<c:when test="${pageAction == 'EDIT_CHILD'}">
+									<input type="hidden" name="head" value="<c:out value="${childBean.section}"/>"/>
+								</c:when>
+								<c:otherwise>
+									<input type="hidden" name="head" value="<c:out value="${deductionSection.name}"/>"/>
+								</c:otherwise>
+							</c:choose>							
 						</c:otherwise>
 					</c:choose>	
 	        	</div>

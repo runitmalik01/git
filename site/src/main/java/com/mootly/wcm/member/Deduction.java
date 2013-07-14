@@ -112,6 +112,7 @@ public class Deduction extends ITReturnComponent {
 		Map<String, Double> totalOfSavedDataPerHead = new HashMap<String, Double>();
 		super.doBeforeRender(request, response);
 		MemberPersonalInformation memberPersonalInformation = (MemberPersonalInformation) request.getAttribute(MemberPersonalInformation.class.getSimpleName().toLowerCase());
+		OtherSourcesDocument othersourcesdoc=(OtherSourcesDocument)request.getAttribute(OtherSourcesDocument.class.getSimpleName().toLowerCase());
 		//String a = getComponentConfiguration().getParameter("ischildofform16", request.getRequestContext().getResolvedSiteMapItem());
 		//String ischildofform16 = getLocalParameter("ischildofform16", request);
 		//getParameter("ischildofform16", request)
@@ -132,9 +133,32 @@ public class Deduction extends ITReturnComponent {
 			request.setAttribute("deductionSectionMap", deductionSectionMap);
 		}
 
-		if (getParentBean()!= null) {
+		//Amit Patkar Hack for Section 80tta which is a derived section and NOT a REAL deduction
+		List<DeductionDocumentDetail> listOfDerivedDeductionDocuments = new ArrayList<DeductionDocumentDetail>();
+		if (othersourcesdoc != null && othersourcesdoc.getBank_detail_saving() != null) {
+			DeductionDocumentDetail bankSavingDetail = new DeductionDocumentDetail();
+			bankSavingDetail.setSection("80tta");
+			bankSavingDetail.setInvestment(othersourcesdoc.getBank_detail_saving());
+			listOfDerivedDeductionDocuments.add(bankSavingDetail);
+			//bankSavingDetail.se
+		}
+		//Amit Patkar Hack for Section 80tta which is a derived section and NOT a REAL deduction
+		if (getParentBean()!= null || listOfDerivedDeductionDocuments.size() > 0) {
 			DeductionDocument deductionDocument = (DeductionDocument) getParentBean();
-			List<DeductionDocumentDetail> deductionDocumentDetailList = deductionDocument.getDeductionDocumentDetailList();
+			List<DeductionDocumentDetail> deductionDocumentDetailList = null;
+			if (deductionDocument != null) {
+				deductionDocumentDetailList = deductionDocument.getDeductionDocumentDetailList();
+			}
+			
+			if (listOfDerivedDeductionDocuments != null && listOfDerivedDeductionDocuments.size() > 0) {
+				if (deductionDocumentDetailList == null) {
+					deductionDocumentDetailList = listOfDerivedDeductionDocuments;
+				}
+				else {
+					deductionDocumentDetailList.addAll (listOfDerivedDeductionDocuments);
+				}
+			}
+			
 			Double grandTotal = 0D;
 			if (deductionDocumentDetailList != null && deductionDocumentDetailList.size() > 0){
 				Map<String, List<DeductionDocumentDetail>> savedData = new HashMap<String, List<DeductionDocumentDetail>>();
@@ -196,7 +220,7 @@ public class Deduction extends ITReturnComponent {
 		}
 
 		//time to calculate
-		if (getParentBean() != null) {
+		if (getParentBean() != null  || listOfDerivedDeductionDocuments.size() > 0 ) {
 			//hashmap for javascript
 			Map<String,Object> totalMapForJS = new HashMap<String, Object>();			
 			for (String deductionSectionKey:deductionSectionMap.keySet()){
@@ -253,7 +277,7 @@ public class Deduction extends ITReturnComponent {
 					salarypension=salaryincome.getTotal();				
 			}
 			totalMapForJS.put("salarypension", salarypension);
-			OtherSourcesDocument othersourcesdoc=(OtherSourcesDocument)request.getAttribute(OtherSourcesDocument.class.getSimpleName().toLowerCase());
+			
 			if(othersourcesdoc!=null)
 				othersources=othersourcesdoc.getTaxable_income();
 			totalMapForJS.put("othersources", othersources);
@@ -271,7 +295,6 @@ public class Deduction extends ITReturnComponent {
 				request.setAttribute("totalMapForJS", totalMapForJS);
 				request.setAttribute("finaltotalEligibleDeduction",resultMap.get("total_eligiblededuction").toString());
 				request.getSession().setAttribute("dedTotalOnForm16", resultMap.get("total_eligiblededuction").toString());
-				log.info("HHHHJJJJJKKKKLLLL"+resultMap.get("total_eligiblededuction").toString());
 			}
 		}
 	}

@@ -271,8 +271,9 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 	public String getName() {
 		StringBuffer sb = new StringBuffer();
 		if (getFirstName() != null) sb.append(firstName).append(" ");
+		if (getMiddleName() != null) sb.append(getMiddleName()).append(" ");
 		if (getLastName() != null) sb.append(lastName);
-		return sb.toString();
+		return sb.toString().trim();
 	}
 	//for personal information
 	public String getFirstName() {

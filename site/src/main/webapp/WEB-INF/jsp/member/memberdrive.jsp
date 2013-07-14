@@ -59,7 +59,7 @@ pageContext.setAttribute("hostname", builder.toString());
 		<div class="row-fluid show-grid">
 			    <div class="span3">			                     
 			         <div class="rowlabel">
-			               <label for="description"><small>Type</small></label>
+			               <label for="description"><small>Type (Optional)</small></label>
 			         </div>
 			         <div class="rowlabel">
 			                 <select name="description" id="description" class="span8">
@@ -104,12 +104,12 @@ pageContext.setAttribute("hostname", builder.toString());
 			   </div>		
 			   <div class="span2">
 					<div class="rowlabel">			            
-			                  <label for="member_file"><small></small></label>
+			                  <label for="member_file"><small>File (required)</small></label>
 			        </div>
 			        <div class="rowlabel">
 			                  <span class="btn btn-success fileinput-button" id="remove">
                                 <i class="icon-plus icon-white"></i>
-                                <span>Attach a File</span>
+                                <span>Attach</span>
                                 <input type="file" id="member_file" name="member_file"/>
                              </span>
 			             <div id="member_file_name"></div>
@@ -123,7 +123,7 @@ pageContext.setAttribute("hostname", builder.toString());
 					  <input id="protected" name="protected" type="password"/>
 					</div>
 				</div>
-				<div class="span4">
+				<div class="span2">
 					<div class="rowlabel">
 					 <label for="protected"><small><abbr title="If you want to share any additional notes">Additional Notes</abbr></small></label>				 
 					</div>
@@ -131,6 +131,16 @@ pageContext.setAttribute("hostname", builder.toString());
 					  <textarea id="additionalnotes" name="additionalnotes"></textarea>
 					</div>
 				</div>
+				<div class="span2">
+			         <div class="rowlabel">
+			              <label for="startupload"><small>Click</small></label>
+			         </div>
+				    <div class="rowlabel">
+					 <a href="#" id="upload" class="btn btn-primary start">
+					    <i class="icon-upload icon-white"></i>
+                        <span>Upload</span></a>
+					 </div>
+				 </div>
 		</div>
 	</fieldset>
 	<fieldset>
@@ -161,7 +171,7 @@ pageContext.setAttribute("hostname", builder.toString());
                                <tr>
                                   <th>#</th>
                                   <th>Document Name</th>
-                                  <th>Description</th>
+                                  <th>Type</th>
                                   <th align="center">Action</th>
                                   <th>Last Uploaded</th>
                                </tr>
@@ -222,8 +232,7 @@ pageContext.setAttribute("hostname", builder.toString());
 		$(document).ready(function(){
 		$('#member_file').bind('change', function(){
 		    $('#member_file_name').text(this.files[0].name);
-		    $('#file_process').show();
-		    uploadDoc();
+		    $('#file_process').show();		    
           });
 		$('#member_file').popover({"html":true,
 		                 "trigger":"hover",

@@ -5,6 +5,9 @@
 </c:set>
 <hippo-gogreen:title title="${otherincometitle}" />
 <hst:actionURL var="actionUrl"></hst:actionURL>
+<style>
+	label{font-size:smaller;9px}
+</style>
 <div class="page type-page">
 	<w4india:itrmenu/>
 	<c:if test="${not empty formMap}">
@@ -393,7 +396,7 @@
 						role="button" class="btn orange">Save</a>
 
 		</div>
-	</div>
+	</div>	
 </form>
 </div>
 <res:client-validation formId="frmIncomeinfo" screenConfigurationDocumentName="otherincome" formSubmitButtonId="myModalHrefFormSixteen" />
