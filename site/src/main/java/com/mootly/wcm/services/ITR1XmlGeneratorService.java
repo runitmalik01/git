@@ -252,7 +252,7 @@ public class ITR1XmlGeneratorService {
 		DeductionListService deductionListService=new DeductionListService();
 		Map<String,DeductionSection> deductionSectionMap=deductionListService.getDeductionSectionMap().get(financialYear);
 		//This is tricky deductionDocument can be null but othersource income could have section 80tta data?
-		List<DeductionDocumentDetail> listOfDeductionDocumentDetail = getDeductionDocumentList(deductionDocument,otherSourcesDocument);		
+		List<DeductionDocumentDetail> listOfDeductionDocumentDetail = getDeductionDocumentList(deductionDocument,otherSourcesDocument);
 		if(listOfDeductionDocumentDetail != null){
 			if (listOfDeductionDocumentDetail != null && listOfDeductionDocumentDetail.size() > 0 ){
 				for(String key:deductionSectionMap.keySet()){
@@ -852,6 +852,12 @@ public class ITR1XmlGeneratorService {
 			itr1.setTaxPayments(taxPayments);
 		}
 		//TaxExmpIntInc
+		if(otherSourcesDocument!=null){
+			if(otherSourcesDocument.getTotal_taxfree_income()!=null){
+				itr1.setTaxExmpIntInc(otherSourcesDocument.getTotal_taxfree_income().intValue());
+			}else
+				itr1.setTaxExmpIntInc(0);
+		}else
 		itr1.setTaxExmpIntInc(0);
 
 		//Verification
