@@ -68,7 +68,17 @@ For Mootly ITR Pricing Plans
 			</c:forEach>
 		</tr>
 		<tr>
-			<th width="15%"><fmt:message key="service.price.features" /></th>
+		<th width="15%"><fmt:message key="service.price.can" /></th>
+		<c:forEach items="${documents}" var="document">
+			<td width="5%">
+			<h5>
+						<small> Recommended if you:</small>
+					</h5>
+				   <fmt:message key="${whoCan[document.title]}"/>
+				</td>
+		</c:forEach>
+		
+		<%-- 	<th width="15%"><fmt:message key="service.price.features" /></th>
 			<c:forEach items="${documents}" var="document">
 				<td width="5%">
 					<h5>
@@ -78,8 +88,9 @@ For Mootly ITR Pricing Plans
 						<br>
 					</c:forEach> <%-- <br /> <a href='<hst:link path="/memberLogin"/>' class="btn orange">Start</a> --%>
 					<%-- <a	id="hrefSubmit<c:out value="${fn:toLowerCase(document.title)}"/>"
-					class="btn orange">Start</a> --%></td>
-			</c:forEach>
+					class="btn orange">Start</a> 
+					</td>
+			</c:forEach> --%>
 		</tr>
 		<tr>
 		<th width="15%"><fmt:message key="service.price.cannot" /></th>
@@ -88,7 +99,6 @@ For Mootly ITR Pricing Plans
 				   <fmt:message key="${whoCannot[document.title]}"/>
 				</td>
 		</c:forEach>
-		<tr>
 		</tr>
 	</table>
 	<div id="income" align="center">
