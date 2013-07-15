@@ -54,13 +54,9 @@ public class ServicePrice extends BaseComponent {
 		} else {
 			throw new BeanTypeException("Cannot create document list: " + bean.getPath() + " is not a folder");
 		}
+		
+		//"who can not" choose package
 		Map<String,String> WhoCanNot = new HashMap<String, String>();
-		/**
-		 * 
-		 * 
-		 * To take value of "Who Can not File given ITRs" from message.properties  (not form CMS)
-		 * 
-		 * */
 		ResourceBundle rsbundle=ResourceBundle.getBundle("messages");
 		for(ITRForm itr:ITRForm.values()){
 			if(itr!=ITRForm.UNKNOWN){
@@ -72,6 +68,19 @@ public class ServicePrice extends BaseComponent {
 			}
 		}
 		request.setAttribute("whoCannot", WhoCanNot);
+		//"who can" choose package 
+		Map<String,String> WhoCan = new HashMap<String, String>();
+		for(ITRForm itr:ITRForm.values()){
+			if(itr!=ITRForm.UNKNOWN){
+				String packNameKey=itr.getDisplayName().replaceAll("-", "")+".packageName";  
+				String whoCanKey=itr.getDisplayName().replaceAll("-", "")+".whoCan";   
+				if(rsbundle.containsKey(packNameKey) && rsbundle.containsKey(whoCanKey)){
+					WhoCan.put(rsbundle.getString(packNameKey).toUpperCase(),whoCanKey);
+				}
+			}
+		}
+		request.setAttribute("whoCan", WhoCan);
+	} 
+		
 	} 
 
-}
