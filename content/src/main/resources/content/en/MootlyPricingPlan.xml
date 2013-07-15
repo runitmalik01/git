@@ -890,7 +890,7 @@
         <sv:value>hippotranslation:translated</sv:value>
       </sv:property>
       <sv:property sv:name="jcr:uuid" sv:type="String">
-        <sv:value>0dae0a65-fd06-4aef-bead-dd4762dd8aa7</sv:value>
+        <sv:value>da2c9ead-fd6d-4f02-b2d4-7350b74db7e7</sv:value>
       </sv:property>
       <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
         <sv:value>live</sv:value>
@@ -915,13 +915,13 @@
         <sv:value>2013-04-24T17:08:14.421+05:30</sv:value>
       </sv:property>
       <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-        <sv:value>2013-07-08T19:30:23.255+05:30</sv:value>
+        <sv:value>2013-07-15T13:11:04.285+05:30</sv:value>
       </sv:property>
       <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
         <sv:value>admin</sv:value>
       </sv:property>
       <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-        <sv:value>2013-07-08T19:30:27.514+05:30</sv:value>
+        <sv:value>2013-07-15T13:11:08.442+05:30</sv:value>
       </sv:property>
       <sv:property sv:name="hippotranslation:id" sv:type="String">
         <sv:value>32b17d3f-94be-4748-985d-511ec7ac7ea3</sv:value>
@@ -953,7 +953,7 @@
         <sv:value>FOREIGN</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:title" sv:type="String">
-        <sv:value>PLATINUM +</sv:value>
+        <sv:value>PLATINUM+</sv:value>
       </sv:property>
       <sv:node sv:name="hippotranslation:translations">
         <sv:property sv:name="jcr:primaryType" sv:type="Name">
