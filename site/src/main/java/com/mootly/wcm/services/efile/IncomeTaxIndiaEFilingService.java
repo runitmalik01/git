@@ -33,10 +33,10 @@ public class IncomeTaxIndiaEFilingService implements EFileService{
 		wc.getClientProperties().setAcceptCookies(true);
 		wc.getClientProperties().setAcceptGzip(true);
 		
-		CookieProperties cookieProperties = new CookieProperties();
-		cookieProperties.setDomainMatchingStrict(false);
-		cookieProperties.setPathMatchingStrict(false);
-		cookieProperties.addCookieListener(new MyCookieListener());
+		//CookieProperties cookieProperties = new CookieProperties();
+		CookieProperties.setDomainMatchingStrict(false);
+		CookieProperties.setPathMatchingStrict(false);
+		CookieProperties.addCookieListener(new MyCookieListener());
 		//HttpUnitOptions.
 		
 	}
@@ -51,7 +51,7 @@ public class IncomeTaxIndiaEFilingService implements EFileService{
 			String loginRequestId = getLoginRequestId();
 			//now we need to bundle all and get to the main screen
 			WebResponse eFileHomePage = getHomeScreenForUpload(userName,password,dob,pan,financialYear,filePath,loginRequestId);
-			saveFile(eFileHomePage);
+			saveFile(eFileHomePage,"amit.html");
 		}catch (Exception ex) {
 			log.error("Error in uploading IT Return", ex);
 			throw new UnknownException();
@@ -91,6 +91,7 @@ public class IncomeTaxIndiaEFilingService implements EFileService{
 		//SubmitButton[] submitButtons = theLoginForm.getSubmitButtons();
 		
 		WebResponse theFormResponse = theLoginForm.submit();
+		saveFile(theFormResponse,"theFormResponse.html");
 		WebResponse currentResponse = wc.getCurrentPage();
 		//theFormResponse.getResponseCode()
 		//postMethodRequest.setHeaderField("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/27.0.1453.116 Safari/537.36");
@@ -126,7 +127,7 @@ public class IncomeTaxIndiaEFilingService implements EFileService{
 		return loginRequestId;
 	}
 	
-	protected void saveFile(WebResponse wr) {
+	protected void saveFile(WebResponse wr,String fileName) {
 		InputStream inputStream = null;
 		OutputStream outputStream = null;
 	 
@@ -135,7 +136,7 @@ public class IncomeTaxIndiaEFilingService implements EFileService{
 	 
 			// write the inputStream to a FileOutputStream
 			outputStream = 
-	                    new FileOutputStream(new File("c:\\temp\\aa\\amit.html"));
+	                    new FileOutputStream(new File("c:\\temp\\aa\\" + fileName));
 	 
 			int read = 0;
 			byte[] bytes = new byte[1024];
