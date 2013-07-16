@@ -15,7 +15,9 @@
 <fmt:setBundle basename="com.mootly.wcm.components.deduction-sections-${financialYear.displayName}" var="dSections"/>
 <div class="page">
 	<c:if test="${empty ischildofform16 || ischildofform16 !='true'}"><w4india:itrmenu/></c:if>
-	<h4 style="color: red">Note:Please fill your Income before Deductions</h4>
+	<div class="alert alert-error" id="chkentry">
+	Note:Please fill your Income before Deductions
+</div>
 	<h4>Deductions</h4>
 	<h5><small>List of deductions</small></h5>
 		<table class="table table-hover table-bordered">
@@ -66,7 +68,7 @@
 												<li><a href="./othersources.html">Add</a></li>
 											</c:when>
 											<c:otherwise>
-												<a href="${addURL}">Add</a>	
+												<a href="${addURL}">Add</a>
 											</c:otherwise>
 					            		</c:choose>
 					            	</li>
@@ -89,7 +91,7 @@
 									<div class="btn-group">
 										<button class="btn btn-small dropdown-toggle" data-toggle="dropdown"><w4india:inr value="${totalOfSavedData[deductionSectionName]}"></w4india:inr><span class="caret"></span></button>
 										<ul class="dropdown-menu">
-											<!-- <li class="divider"></li> -->	
+											<!-- <li class="divider"></li> -->
 											<c:choose>
 												<c:when test="${deductionSectionName == '80tta'}">
 													<li><a href="./othersources.html">Edit</a></li>
@@ -107,8 +109,8 @@
 														</c:choose>
 														<li><a href="${editURL}"><fmt:message var="label" bundle="${dSectionHeads}" key="sectionhead.${aSectionHead.head}.label"></fmt:message><res:displaylabel label="${label}"></res:displaylabel> |<c:out value="${aSectionHead.investment}"/>|</a></li>
 													</c:forEach>
-												</c:when>											
-											</c:choose>							            	
+												</c:when>
+											</c:choose>
 										</ul>
 									</div>
 								</c:when>
@@ -245,19 +247,19 @@
 			$('#deductionSave').click(function() {
  				 $('#frmDeduction').submit();
 			});
-			
+
 			$("#deductionhead").change( function(o) {
 					changeD(this);
 				}
-			);			
-			changeD($("#deductionhead"));			
+			);
+			changeD($("#deductionhead"));
 		});
-		
+
 		function changeD(o) {
 			if ($(o).val() == 'others') {
 				$("#80cadditional").show();
 			}
-			else {					
+			else {
 				$("#80cadditional").hide();
 			}
 		}
