@@ -2447,7 +2447,7 @@ format&lt;/p&gt;
       <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
         <sv:value/>
       </sv:property>
-      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+       <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
         <sv:value>pi_return_type</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
@@ -2457,22 +2457,7 @@ format&lt;/p&gt;
         <sv:value>&lt;html&gt;
 &lt;body&gt;
 
-&lt;p&gt;a) Under section 139(1) - Within the “due date” prescribed by the law; &lt;br/&gt;
-b) Under section 139(4) - After the expiry of the “due date” but before the
-expiry of one year from the end of the relevant assessment year. &lt;br/&gt;
-c) Under section 139(5)- A return already filed, can be revised by filing a
-fresh return within one year from the end of the relevant assessment year or
-before the completion of assessment, whichever is earlier; &lt;br/&gt;
-d) Under Section 139(9) - Defective/invalid returns can be filed afresh after
-curing the defects; &lt;br/&gt;
-e) Under section 142(1) - Pursuant to a statutory notice calling for the return;
-&lt;br/&gt;
-f) Under section 148 - Pursuant to a statutory notice u/s 149 for assessing or
-reassessing total income that has been either not assessed or under-assessed
-earlier; &lt;br/&gt;
-g) Under section 153A - Pursuant to a statutory notice calling for return in
-case of search; &lt;br/&gt;
-h) Under section 153C - Pursuant to a statutory notice calling for return.&lt;/p&gt;
+&lt;p&gt; &lt;/p&gt;
 
 &lt;/body&gt;
 &lt;/html&gt;</sv:value>
@@ -2480,47 +2465,78 @@ h) Under section 153C - Pursuant to a statutory notice calling for return.&lt;/p
       <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
         <sv:value>Return Type</sv:value>
       </sv:property>
-          <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
-            <sv:value>true</sv:value>
-          </sv:property>
-          <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
-            <sv:value/>
-          </sv:property>
-          <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
-            <sv:value/>
-          </sv:property>
-        </sv:node>
-        <sv:node sv:name="mootlywcm:screenfieldconfig">
-          <sv:property sv:name="jcr:primaryType" sv:type="Name">
-            <sv:value>mootlywcm:screenfieldconfig</sv:value>
-          </sv:property>
-          <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
-            <sv:value/>
-          </sv:property>
-          <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
-            <sv:value>ReturnSection</sv:value>
-          </sv:property>
-          <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
-            <sv:value>ReturnSection</sv:value>
-          </sv:property>
-          <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
-            <sv:value/>
-          </sv:property>
-          <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
-            <sv:value/>
-          </sv:property>
-          <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
-            <sv:value>true</sv:value>
-          </sv:property>
-          <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
-            <sv:value/>
-          </sv:property>
-          <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
-            <sv:value/>
-          </sv:property>
-        </sv:node>
-      </sv:node>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>true</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
     </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>ReturnSection</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>ReturnSection</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value>&lt;html&gt;
+&lt;body&gt;
+
+&lt;p&gt;a) Under section 139(1) - Within the “due date” prescribed by the law; &lt;/p&gt;
+
+&lt;p&gt;b) Under section 139(4) - After the expiry of the “due date” but before the
+expiry of one year from the end of the relevant assessment year. &lt;/p&gt;
+
+&lt;p&gt;c)Under section 139(5)- A return already filed, can be revised by filing a
+fresh return within one year from the end of the relevant assessment year or
+before the completion of assessment, whichever is earlier; &lt;/p&gt;
+
+&lt;p&gt;d) Under Section 139(9) - Defective/invalid returns can be filed afresh after
+curing the defects; &lt;/p&gt;
+
+&lt;p&gt;e) Under section 142(1) - Pursuant to a statutory notice calling for the
+return; &lt;/p&gt;
+
+&lt;p&gt;f) Under section 148 - Pursuant to a statutory notice u/s 149 for assessing
+or reassessing total income that has been either not assessed or under-assessed
+earlier; &lt;/p&gt;
+
+&lt;p&gt;g) Under section 153A - Pursuant to a statutory notice calling for return in
+case of search; &lt;/p&gt;
+
+&lt;p&gt;h) Under section 153C - Pursuant to a statutory notice calling for return.
+&lt;/p&gt;
+&lt;br/&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>true</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+  </sv:node>
+</sv:node>
+
     <sv:node sv:name="adjustmentoflosses">
       <sv:property sv:name="jcr:primaryType" sv:type="Name">
         <sv:value>hippo:handle</sv:value>
