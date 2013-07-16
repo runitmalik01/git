@@ -62,3 +62,14 @@ request.setAttribute("objHashMapstates", objHashMapstates);
           </div>
 	 </div>
 </fieldset>
+<script>
+$('#flex_string_doneeState').change(function(){
+	if($('#flex_string_doneeState').val()=='99'){
+	      $('#flex_string_doneePostalCode').val('999999');
+	      $('#flex_string_doneePostalCode').attr('readonly','readonly');
+	   }else{
+             $('#flex_string_doneePostalCode').val('');
+             $('#flex_string_doneePostalCode').removeAttr('readonly');
+            }
+	});
+</script>
