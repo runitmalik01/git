@@ -570,10 +570,10 @@ public class ITR1XmlGeneratorService {
 		filingstatus.setPortugeseCC5A(memberPersonalInformation.getPortugesecivil());
 
 		if (BalTaxPayable.compareTo(BigInteger.ZERO) > 0){
-			filingstatus.setTaxStatus("TaxPayble");
+			filingstatus.setTaxStatus("TP");
 		}else
 			if (BalTaxPayable.compareTo(BigInteger.ZERO) < 0){
-				filingstatus.setTaxStatus("TaxReturn");
+				filingstatus.setTaxStatus("TR");
 			}else
 				filingstatus.setTaxStatus("NT");
 
