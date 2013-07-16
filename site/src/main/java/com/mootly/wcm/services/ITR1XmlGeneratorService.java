@@ -154,7 +154,7 @@ public class ITR1XmlGeneratorService {
 		//Form_ITR1
 		formITR1.setFormName("ITR-1");
 		formITR1.setDescription("For Individuals having Income from Salary, Pension, family pension and Interest");
-		formITR1.setAssessmentYear("2013-14");
+		formITR1.setAssessmentYear("2013");
 		formITR1.setSchemaVer("Ver1.0");
 		formITR1.setFormVer("Ver1.0");
 		itr1.setFormITR1(formITR1);
@@ -187,12 +187,8 @@ public class ITR1XmlGeneratorService {
 		if(memberPersonalInformation.getEmploye_category()!=null){
 			personalInfo.setEmployerCategory(memberPersonalInformation.getEmploye_category());
 		}
-		if(memberPersonalInformation.getSex().equals("M")){
-			personalInfo.setGender(memberPersonalInformation.getSex().concat("ale"));
-		}
-		else{
-			personalInfo.setGender(memberPersonalInformation.getSex().concat("emale"));
-		}
+
+		personalInfo.setGender(memberPersonalInformation.getSex());
 		personalInfo.setStatus(memberPersonalInformation.getFilingStatus());
 
 		itr1.setPersonalInfo(personalInfo);
@@ -569,14 +565,10 @@ public class ITR1XmlGeneratorService {
 			filingstatus.setDesigOfficerWardorCircle(memberPersonalInformation.getWard_circle());
 		}
 		filingstatus.setReturnFileSec(Long.parseLong(memberPersonalInformation.getReturnSection()));
-		filingstatus.setReturnType(memberPersonalInformation.getReturnType().concat("riginal"));
+		filingstatus.setReturnType(memberPersonalInformation.getReturnType());
 		filingstatus.setResidentialStatus(memberPersonalInformation.getResidentCategory());
-		if(memberPersonalInformation.getPortugesecivil().equals("Y")){
-			filingstatus.setPortugeseCC5A(memberPersonalInformation.getPortugesecivil().concat("es"));}
-		else{
-			filingstatus.setPortugeseCC5A(memberPersonalInformation.getPortugesecivil().concat("o"));
+		filingstatus.setPortugeseCC5A(memberPersonalInformation.getPortugesecivil());
 
-		}
 		if (BalTaxPayable.compareTo(BigInteger.ZERO) > 0){
 			filingstatus.setTaxStatus("TaxPayble");
 		}else
