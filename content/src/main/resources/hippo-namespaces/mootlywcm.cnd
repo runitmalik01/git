@@ -407,3 +407,4 @@ orderable
 [mootlywcm:detailoftrustdetail] > hippo:compound, hippostd:relaxed orderable
 
 [mootlywcm:detailoftrustdocument] > hippostd:relaxed, mootlywcm:basedocument orderable
+[mootlywcm:payment] > hippostd:relaxed, mootlywcm:basedocument orderable
