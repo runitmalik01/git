@@ -643,7 +643,7 @@
               <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
                 <sv:value>servicerequest-itr</sv:value>
                 <sv:value>EDIT</sv:value>
-                <sv:value>xmlgenerator</sv:value>
+                <sv:value>servicerequest-itr-summary</sv:value>
               </sv:property>
               <sv:property sv:name="hst:refId" sv:type="String">
                 <sv:value>servicerequest-itr</sv:value>
@@ -3565,7 +3565,7 @@
 			  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
 			    <sv:value>servicerequest-itr-summary</sv:value>
 			    <sv:value>SHOW_ITR_SUMMARY</sv:value>
-			    <sv:value>xmlgenerator</sv:value>
+			    <sv:value>servicerequest-itr-summary</sv:value>
 			  </sv:property>
 			  <sv:property sv:name="hst:refId" sv:type="String">
 			    <sv:value>servicerequest-itr-summary</sv:value>
@@ -3592,7 +3592,7 @@
 			  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
 			    <sv:value>servicerequest-itr-summary</sv:value>
 			    <sv:value>DOWNLOAD_ITR_SUMMARY</sv:value>
-			    <sv:value>xmlgenerator</sv:value>
+			    <sv:value>servicerequest-itr-summary</sv:value>
 			  </sv:property>
 			  <sv:property sv:name="hst:refId" sv:type="String">
 			    <sv:value>servicerequest-itr-download-summary</sv:value>
@@ -3619,7 +3619,7 @@
 			  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
 			    <sv:value>servicerequest-itr-summary</sv:value>
 			    <sv:value>DOWNLOAD_ITR_XML</sv:value>
-			    <sv:value>xmlgenerator</sv:value>
+			    <sv:value>servicerequest-itr-summary</sv:value>
 			  </sv:property>
 			  <sv:property sv:name="hst:refId" sv:type="String">
 			    <sv:value>servicerequest-itr-download-xml</sv:value>
@@ -3646,7 +3646,7 @@
 			  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
 			    <sv:value>servicerequest-itr-summary</sv:value>
 			    <sv:value>EMAIL_ITR_XML_AND_SUMMARY</sv:value>
-			    <sv:value>xmlgenerator</sv:value>
+			    <sv:value>servicerequest-itr-summary</sv:value>
 			  </sv:property>
 			  <sv:property sv:name="hst:refId" sv:type="String">
 			    <sv:value>servicerequest-itr-email-xml-summary</sv:value>
@@ -3782,23 +3782,25 @@
       <sv:value>notification</sv:value>
     </sv:property>
   </sv:node>
-  <sv:node sv:name="terms">
-    <sv:property sv:name="jcr:primaryType" sv:type="Name">
-      <sv:value>hst:sitemapitem</sv:value>
-    </sv:property>
-    <sv:property sv:name="jcr:uuid" sv:type="String">
-      <sv:value>ff48940d-d0d4-496a-a75f-4c780c1fdaa6</sv:value>
-    </sv:property>
-    <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
-      <sv:value>hst:pages/terms</sv:value>
-    </sv:property>
-    <sv:property sv:name="hst:refId" sv:type="String">
-      <sv:value>terms</sv:value>
-    </sv:property>
-    <sv:property sv:name="hst:relativecontentpath" sv:type="String">
-      <sv:value>members</sv:value>
-    </sv:property>
+  <!--  Amit Patkar 07/16/2013 -->
+  <sv:node sv:name="terms" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hst:sitemapitem</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>ff48940d-d0d4-496a-a75f-4c780c1fdaa6</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+	    <sv:value>hst:pages/simplepage.re</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:refId" sv:type="String">
+	    <sv:value>terms</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:relativecontentpath" sv:type="String">
+	    <sv:value>about/quick-facts/terms--conditions/terms--conditions</sv:value>
+	  </sv:property>
   </sv:node>
+  <!--  /Amit Patkar 07/16/2013 -->
   <sv:node sv:name="emicalculator">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
       <sv:value>hst:sitemapitem</sv:value>
@@ -3850,23 +3852,25 @@
       <sv:value>members</sv:value>
     </sv:property>
   </sv:node>
-  <sv:node sv:name="privacy">
-    <sv:property sv:name="jcr:primaryType" sv:type="Name">
-      <sv:value>hst:sitemapitem</sv:value>
-    </sv:property>
-    <sv:property sv:name="jcr:uuid" sv:type="String">
-      <sv:value>9b1ae2b9-2391-4944-b39c-2aa4c995ea80</sv:value>
-    </sv:property>
-    <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
-      <sv:value>hst:pages/privacy</sv:value>
-    </sv:property>
-    <sv:property sv:name="hst:refId" sv:type="String">
-      <sv:value>privacy</sv:value>
-    </sv:property>
-    <sv:property sv:name="hst:relativecontentpath" sv:type="String">
-      <sv:value>members</sv:value>
-    </sv:property>
-  </sv:node>
+  <!--  Amit Patkar 07/16/2013 -->
+	<sv:node sv:name="privacy" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hst:sitemapitem</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>9b1ae2b9-2391-4944-b39c-2aa4c995ea80</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+	    <sv:value>hst:pages/simplepage.re</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:refId" sv:type="String">
+	    <sv:value>privacy</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:relativecontentpath" sv:type="String">
+	    <sv:value>about/quick-facts/terms--conditions/privacy-policy</sv:value>
+	  </sv:property>
+	</sv:node>
+  <!--  /Amit Patkar 07/16/2013 -->
   <!-- 
   <sv:node sv:name="rebatesection89">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
@@ -4025,5 +4029,34 @@
         <sv:value>${parent}/${1}</sv:value>
       </sv:property>
     </sv:node>
+    <!--  Amit Patkar 07/16/2013 -->
+    <sv:node sv:name="itr-validate-xml.html" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hst:sitemapitem</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>8b3aacb1-3ee3-4782-a537-bc2133179fbe</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+	    <sv:value>hst:pages/itr-validate-xml</sv:value>
+	  </sv:property>
+	  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+	    <sv:value>mainSiteMapItemRefId</sv:value>
+	    <sv:value>action</sv:value>
+	    <sv:value>nextScreen</sv:value>
+	  </sv:property>
+	  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+	    <sv:value>servicerequest-itr-summary</sv:value>
+	    <sv:value>ITR_VALIDATE_XML</sv:value>
+	    <sv:value>xmlgenerator</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:refId" sv:type="String">
+	    <sv:value>itr-validate-xml</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:relativecontentpath" sv:type="String">
+	    <sv:value>members</sv:value>
+	  </sv:property>
+	</sv:node>    
+    <!--  Amit Patkar 07/16/2013 -->
   </sv:node>
 </sv:node>

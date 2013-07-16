@@ -1403,7 +1403,7 @@ serving since beginning then select first day of financial year.&lt;/p&gt;
 	      <sv:value>hippotranslation:translated</sv:value>
 	    </sv:property>
 	    <sv:property sv:name="jcr:uuid" sv:type="String">
-	      <sv:value>9b3e34ef-709c-4eac-8776-d2b846d4dcaf</sv:value>
+	      <sv:value>300641b1-e319-47be-b6b3-54b80d227ee6</sv:value>
 	    </sv:property>
 	    <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
 	      <sv:value>live</sv:value>
@@ -1428,13 +1428,13 @@ serving since beginning then select first day of financial year.&lt;/p&gt;
 	      <sv:value>2013-04-23T19:56:03.045-07:00</sv:value>
 	    </sv:property>
 	    <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-	      <sv:value>2013-07-13T18:41:24.869-07:00</sv:value>
+	      <sv:value>2013-07-15T01:26:42.434-07:00</sv:value>
 	    </sv:property>
 	    <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
 	      <sv:value>admin</sv:value>
 	    </sv:property>
 	    <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-	      <sv:value>2013-07-13T18:41:29.681-07:00</sv:value>
+	      <sv:value>2013-07-15T01:27:06.541-07:00</sv:value>
 	    </sv:property>
 	    <sv:property sv:name="hippotranslation:id" sv:type="String">
 	      <sv:value>386270cb-4cae-407d-9d3c-315a42b4fb08</sv:value>
@@ -1447,35 +1447,42 @@ serving since beginning then select first day of financial year.&lt;/p&gt;
 	    </sv:property>
 	    <sv:property sv:name="mootlywcm:onSubmitHandler" sv:type="String">
 	      <sv:value>var lv = $("#Letable_value").val();
-	var tp = $("#Tenant_pan").val();
-	var pp = $("#letout").val();
-	
-	if ( pp === 'L' &amp;&amp; lv &gt; 18000 &amp;&amp; tp === '' ) {
-	       alert('Owner PAN must be filled if the Lettable value exceeds 18000');
-	       return false;
-	}
-	isC= ( $("#coowned").val() == 'Yes' ? true : false);
-	if (isC) {
-	    if ( $("#coownername1").val().trim() == '')  { alert("Co-owner detail must be filled  in"); return false; }
-	    if ( $("#coownerpan1").val().trim() == '')  { alert("Co-owner detail must be filled  in"); return false; }
-	    if ( $("#share1").val().trim() == '')  { alert("Co-owner detail must be filled  in"); return false; }
-	    if ( parseInt( $("#share1").val() ) &gt;= 100 )  { alert("Co-owner share  must be less than 100"); return false; }
-	}
-	
-	
-	return true;</sv:value>
+		var tp = $("#Tenant_pan").val();
+		var pp = $("#letout").val();
+		
+		if ( pp === 'L' &amp;&amp; lv &gt; 180000 &amp;&amp; tp === '' ) {
+	               //var ret = confirm ( "Tenant PAN should be entered if Lettable value exceeds 180000. Please click on Yes if you want to continue anyways");
+	              ret = true;
+	                if (!ret) {
+	                   return false;
+	               }
+		       //alert('Tenant PAN must be filled if the Lettable value exceeds 180000');
+		       return true;
+		}
+		isC= ( $("#coowned").val() == 'Yes' ? true : false);
+		if (isC) {
+	            var ps= $("#Property_share").val();
+	            if  ( ps.trim() == '' || (isNaN(ps)  || parseInt(ps) &gt;= 100  )  )   { alert("Your percentage share must be less than 100%"); return false; }
+		    if ( $("#coownername1").val().trim() == '')  { alert("Co-owner detail must be filled  in"); return false; }
+		    //if ( $("#coownerpan1").val().trim() == '')  { alert("Co-owner detail must be filled  in"); return false; }
+		    //if ( $("#share1").val().trim() == '')  { alert("Co-owner detail must be filled  in"); return false; }
+		    //if ( parseInt( $("#share1").val() ) &gt;= 100 )  { alert("Co-owner share  must be less than 100"); return false; }
+		}
+		
+		
+		return true;</sv:value>
 	    </sv:property>
 	    <sv:property sv:name="mootlywcm:screenHeading" sv:type="String">
 	      <sv:value/>
 	    </sv:property>
 	    <sv:property sv:name="mootlywcm:screenHelp" sv:type="String">
 	      <sv:value>&lt;html&gt;
-	&lt;body&gt;
-	
-	&lt;p&gt;this is not good&lt;/p&gt;
-	
-	&lt;/body&gt;
-	&lt;/html&gt;</sv:value>
+		&lt;body&gt;
+		
+		&lt;p&gt;this is not good&lt;/p&gt;
+		
+		&lt;/body&gt;
+		&lt;/html&gt;</sv:value>
 	    </sv:property>
 	    <sv:property sv:name="mootlywcm:screenSubHeading" sv:type="String">
 	      <sv:value/>
@@ -1500,12 +1507,12 @@ serving since beginning then select first day of financial year.&lt;/p&gt;
 	      </sv:property>
 	      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
 	        <sv:value>&lt;html&gt;
-	&lt;body&gt;
-	
-	&lt;p&gt;Enter the PAN of Tenant.&lt;/p&gt;
-	
-	&lt;/body&gt;
-	&lt;/html&gt;</sv:value>
+		&lt;body&gt;
+		
+		&lt;p&gt;Enter the PAN of Tenant.&lt;/p&gt;
+		
+		&lt;/body&gt;
+		&lt;/html&gt;</sv:value>
 	      </sv:property>
 	      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
 	        <sv:value>AAAAA1111A</sv:value>
@@ -1535,12 +1542,12 @@ serving since beginning then select first day of financial year.&lt;/p&gt;
 	      </sv:property>
 	      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
 	        <sv:value>&lt;html&gt;
-	&lt;body&gt;
-	
-	&lt;p&gt;Enter the area PIN code.&lt;/p&gt;
-	
-	&lt;/body&gt;
-	&lt;/html&gt;</sv:value>
+		&lt;body&gt;
+		
+		&lt;p&gt;Enter the area PIN code.&lt;/p&gt;
+		
+		&lt;/body&gt;
+		&lt;/html&gt;</sv:value>
 	      </sv:property>
 	      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
 	        <sv:value>PIN Code</sv:value>
@@ -1918,12 +1925,12 @@ serving since beginning then select first day of financial year.&lt;/p&gt;
 	      </sv:property>
 	      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
 	        <sv:value>&lt;html&gt;
-	&lt;body&gt;
-	
-	&lt;p&gt;Enter the Name of Tenant residing in your property.&lt;/p&gt;
-	
-	&lt;/body&gt;
-	&lt;/html&gt;</sv:value>
+		&lt;body&gt;
+		
+		&lt;p&gt;Enter the Name of Tenant residing in your property.&lt;/p&gt;
+		
+		&lt;/body&gt;
+		&lt;/html&gt;</sv:value>
 	      </sv:property>
 	      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
 	        <sv:value>Tenant Name</sv:value>
@@ -1951,12 +1958,12 @@ serving since beginning then select first day of financial year.&lt;/p&gt;
 	      </sv:property>
 	      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
 	        <sv:value>&lt;html&gt;
-	&lt;body&gt;
-	
-	&lt;p&gt;Enter the address of your house property.&lt;/p&gt;
-	
-	&lt;/body&gt;
-	&lt;/html&gt;</sv:value>
+		&lt;body&gt;
+		
+		&lt;p&gt;Enter the address of your house property.&lt;/p&gt;
+		
+		&lt;/body&gt;
+		&lt;/html&gt;</sv:value>
 	      </sv:property>
 	      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
 	        <sv:value>Address</sv:value>
@@ -1986,12 +1993,12 @@ serving since beginning then select first day of financial year.&lt;/p&gt;
 	      </sv:property>
 	      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
 	        <sv:value>&lt;html&gt;
-	&lt;body&gt;
-	
-	&lt;p&gt;Enter the City in which given house property is situated.&lt;/p&gt;
-	
-	&lt;/body&gt;
-	&lt;/html&gt;</sv:value>
+		&lt;body&gt;
+		
+		&lt;p&gt;Enter the City in which given house property is situated.&lt;/p&gt;
+		
+		&lt;/body&gt;
+		&lt;/html&gt;</sv:value>
 	      </sv:property>
 	      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
 	        <sv:value>Town/City/District</sv:value>
@@ -2021,12 +2028,12 @@ serving since beginning then select first day of financial year.&lt;/p&gt;
 	      </sv:property>
 	      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
 	        <sv:value>&lt;html&gt;
-	&lt;body&gt;
-	
-	&lt;p&gt;Select the state in which this house is located.&lt;/p&gt;
-	
-	&lt;/body&gt;
-	&lt;/html&gt;</sv:value>
+		&lt;body&gt;
+		
+		&lt;p&gt;Select the state in which this house is located.&lt;/p&gt;
+		
+		&lt;/body&gt;
+		&lt;/html&gt;</sv:value>
 	      </sv:property>
 	      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
 	        <sv:value>State</sv:value>
@@ -2056,12 +2063,12 @@ serving since beginning then select first day of financial year.&lt;/p&gt;
 	      </sv:property>
 	      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
 	        <sv:value>&lt;html&gt;
-	&lt;body&gt;
-	
-	&lt;p&gt;Enter the % share own by you in given property&lt;/p&gt;
-	
-	&lt;/body&gt;
-	&lt;/html&gt;</sv:value>
+		&lt;body&gt;
+		
+		&lt;p&gt;Enter the % share own by you in given property&lt;/p&gt;
+		
+		&lt;/body&gt;
+		&lt;/html&gt;</sv:value>
 	      </sv:property>
 	      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
 	        <sv:value/>
@@ -2091,12 +2098,12 @@ serving since beginning then select first day of financial year.&lt;/p&gt;
 	      </sv:property>
 	      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
 	        <sv:value>&lt;html&gt;
-	&lt;body&gt;
-	
-	&lt;p&gt;Please select the type of property from given list&lt;/p&gt;
-	
-	&lt;/body&gt;
-	&lt;/html&gt;</sv:value>
+		&lt;body&gt;
+		
+		&lt;p&gt;Please select the type of property from given list&lt;/p&gt;
+		
+		&lt;/body&gt;
+		&lt;/html&gt;</sv:value>
 	      </sv:property>
 	      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
 	        <sv:value/>
@@ -2258,10 +2265,7 @@ serving since beginning then select first day of financial year.&lt;/p&gt;
 	    </sv:node>
 	  </sv:node>
 	</sv:node>
-	
-	
 	<!-- /house income -->
-
 <sv:node sv:name="itreturnhomepage">
       <sv:property sv:name="jcr:primaryType" sv:type="Name">
         <sv:value>hippo:handle</sv:value>

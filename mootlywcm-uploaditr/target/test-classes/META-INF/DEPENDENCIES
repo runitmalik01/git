@@ -1,0 +1,21 @@
+// ------------------------------------------------------------------
+// Transitive dependencies of this project determined from the
+// maven pom organized by organization.
+// ------------------------------------------------------------------
+
+mootlywcm-uploaditr
+
+
+From: 'an unknown organization'
+  - xercesImpl  xerces:xercesImpl:jar:2.9.1
+
+
+From: 'Hippo' (http://www.onehippo.com/)
+  - Mootly WCM CMS (http://www.onehippo.org/cms7/hippo-cms7-release/mootlywcm/mootlywcm-cms/) com.mootly.wcm:mootlywcm-cms:war:1.01.00-SNAPSHOT
+    License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+  - Mootly WCM Site (http://www.onehippo.org/cms7/hippo-cms7-release/mootlywcm/mootlywcm-site/) com.mootly.wcm:mootlywcm-site:war:1.01.00-SNAPSHOT
+    License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+
+
+
+

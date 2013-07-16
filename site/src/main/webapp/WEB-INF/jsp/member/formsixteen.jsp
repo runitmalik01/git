@@ -955,7 +955,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="row-fluid show-grid">
+				<div class="row-fluid show-grid" style="display:none;">
 					<div class="span8">
 						<div class="rowlabel">
 							<label>9. Net income under the head Salary</label>
@@ -969,7 +969,6 @@
 						</div>
 					</div>
 				</div>
-				<br />
 			</fieldset>
 			<%-- <tr>
 							<td><label><strong>18.</strong> </label> <label>Tax

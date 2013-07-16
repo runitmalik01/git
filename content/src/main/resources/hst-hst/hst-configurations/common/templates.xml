@@ -3083,4 +3083,28 @@
        <sv:value>jsp/service/request/servicerequest.jsp</sv:value>
      </sv:property>
   </sv:node>
+	<sv:node sv:name="simplepage.main.re" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hst:template</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>3c4407e1-6be1-4e53-a607-8074d401f376</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:renderpath" sv:type="String">
+	    <sv:value>jsp/simple/main.re.jsp</sv:value>
+	  </sv:property>
+	</sv:node>  
+	<!--  Amit Patkar 07/16/2013 -->
+	<sv:node sv:name="itr.validate.xml" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hst:template</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>496a07bb-bdf8-4e96-af8a-00f0fcf04428</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:renderpath" sv:type="String">
+	    <sv:value>jsp/itreturns/xmlvalidator.jsp</sv:value>
+	  </sv:property>
+	</sv:node>
+	<!--  /Amit Patkar 07/16/2013 -->
 </sv:node>

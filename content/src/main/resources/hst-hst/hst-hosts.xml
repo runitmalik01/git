@@ -31,6 +31,7 @@
     <sv:value>/login/</sv:value>
     <sv:value>/repository</sv:value>
     <sv:value>/javascript/yui</sv:value>
+    <sv:value>/BingSiteAuth</sv:value>
   </sv:property>
   <sv:property sv:name="hst:scheme" sv:type="String">
     <sv:value>http</sv:value>

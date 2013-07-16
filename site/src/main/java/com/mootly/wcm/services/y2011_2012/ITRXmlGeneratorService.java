@@ -75,6 +75,7 @@ import com.mootly.wcm.beans.compound.SelfAssesmentTaxDetail;
 import com.mootly.wcm.beans.compound.TdsOthersDetail;
 import com.mootly.wcm.model.FinancialYear;
 import com.mootly.wcm.model.ITRForm;
+import com.mootly.wcm.model.ValidationResponse;
 import com.mootly.wcm.model.deduction.DeductionHead;
 import com.mootly.wcm.model.deduction.DeductionSection;
 import com.mootly.wcm.services.DeductionListService;
@@ -782,6 +783,12 @@ public class ITRXmlGeneratorService implements XmlGeneratorService {
 			e.printStackTrace();
 		}
 		
+	}
+
+	@Override
+	public ValidationResponse validateXml(String xml) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

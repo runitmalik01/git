@@ -431,4 +431,7 @@
 
   </profiles>
 
+  <modules>
+  	<module>mootlywcm-uploaditr</module>
+  </modules>
 </project>
