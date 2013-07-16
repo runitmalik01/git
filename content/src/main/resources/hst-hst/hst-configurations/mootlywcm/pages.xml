@@ -5891,6 +5891,28 @@
 	    <sv:property sv:name="jcr:uuid" sv:type="String">
 	      <sv:value>7a211d1d-1917-4b40-87f0-92eacf7cb2c4</sv:value>
 	    </sv:property>
+	    <sv:property sv:name="hst:template" sv:type="String">
+	      <sv:value>simplepage.main.re</sv:value>
+	    </sv:property>
+	  </sv:node>
+  </sv:node>
+  <sv:node sv:name="simpledocumentpage.re" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hst:component</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>016e8bfe-3d09-4adf-986b-c58b679dc142</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:referencecomponent" sv:type="String">
+	    <sv:value>hst:pages/standardpage.re</sv:value>
+	  </sv:property>
+	  <sv:node sv:name="main">
+	    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	      <sv:value>hst:component</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="jcr:uuid" sv:type="String">
+	      <sv:value>0281ff34-19f8-4ea5-8672-8d911a6ec684</sv:value>
+	    </sv:property>
 	    <sv:property sv:name="hst:componentclassname" sv:type="String">
 	      <sv:value>com.mootly.wcm.components.Detail</sv:value>
 	    </sv:property>

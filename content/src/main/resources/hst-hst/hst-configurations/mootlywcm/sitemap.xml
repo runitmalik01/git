@@ -3791,7 +3791,7 @@
 	    <sv:value>ff48940d-d0d4-496a-a75f-4c780c1fdaa6</sv:value>
 	  </sv:property>
 	  <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
-	    <sv:value>hst:pages/simplepage.re</sv:value>
+	    <sv:value>hst:pages/simpledocumentpage.re</sv:value>
 	  </sv:property>
 	  <sv:property sv:name="hst:refId" sv:type="String">
 	    <sv:value>terms</sv:value>
@@ -3861,7 +3861,7 @@
 	    <sv:value>9b1ae2b9-2391-4944-b39c-2aa4c995ea80</sv:value>
 	  </sv:property>
 	  <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
-	    <sv:value>hst:pages/simplepage.re</sv:value>
+	    <sv:value>hst:pages/simpledocumentpage.re</sv:value>
 	  </sv:property>
 	  <sv:property sv:name="hst:refId" sv:type="String">
 	    <sv:value>privacy</sv:value>
