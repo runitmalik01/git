@@ -314,12 +314,16 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 				ValidationResponse validationResponse = invalidXml.getValidationResponse();
 				formFieldXml.addValue(validationResponse.getXml());
 				formFieldFinancialYear.addValue(getFinancialYear().getDisplayName());
+				
+				formMap.addFormField(formFieldXml);
+				formMap.addFormField(formFieldFinancialYear);
 				StoreFormResult sfr = new StoreFormResult();	
 				FormUtils.persistFormMap(request, response, formMap, null);
 				try {
 					response.sendRedirect(request.getContextPath() + "/services/itr-validate-xml.html?uuid=" + sfr.getUuid());
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
+					log.error("Error in validating XML",e);
 					e.printStackTrace();
 				}
 				return;
