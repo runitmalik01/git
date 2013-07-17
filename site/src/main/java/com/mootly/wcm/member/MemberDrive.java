@@ -188,6 +188,7 @@ public class MemberDrive extends ITReturnComponent {
 				memberDriveDoc.setContentType(memberDrive.getContentType());
 				memberDriveDoc.setDescription(memberDrive.getDescription());
 				memberDriveDoc.setDocPassword(memberDrive.getDocPassword());
+				memberDriveDoc.setDocAdditionalNotes(memberDrive.getDocAdditionalNotes());
 				wpm.update(memberDriveDoc);
 				return memberDriveDoc;
 			}
