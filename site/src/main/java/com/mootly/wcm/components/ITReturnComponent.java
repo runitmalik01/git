@@ -55,6 +55,7 @@ import org.apache.commons.lang.StringUtils;
 import org.hippoecm.hst.component.support.forms.FormField;
 import org.hippoecm.hst.component.support.forms.FormMap;
 import org.hippoecm.hst.component.support.forms.FormUtils;
+import org.hippoecm.hst.component.support.forms.StoreFormResult;
 import org.hippoecm.hst.content.beans.ObjectBeanManagerException;
 import org.hippoecm.hst.content.beans.ObjectBeanPersistenceException;
 import org.hippoecm.hst.content.beans.manager.workflow.WorkflowCallbackHandler;
@@ -313,10 +314,10 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 				ValidationResponse validationResponse = invalidXml.getValidationResponse();
 				formFieldXml.addValue(validationResponse.getXml());
 				formFieldFinancialYear.addValue(getFinancialYear().getDisplayName());
-				
+				StoreFormResult sfr = new StoreFormResult();	
 				FormUtils.persistFormMap(request, response, formMap, null);
 				try {
-					response.sendRedirect("/services/itr-validate-xml.html");
+					response.sendRedirect(request.getContextPath() + "/services/itr-validate-xml.html?uuid=" + sfr.getUuid());
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
