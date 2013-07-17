@@ -21,7 +21,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.onehippo.org/jsp/google-analytics" prefix="ga" %>
 <%@include file="../../../includes/tags.jspf" %>
-<hst:link var="logopath" path="/binaries/content/gallery/logos/w4ilogo.png"/>
+<hst:link var="logopath" path="/img/w4ilogo.png"/>
 <hst:link var="logopathtext" path="/images/w4indiatxt.png"/>
 <hst:link var="home" path="/"/>
 <div id="logo">

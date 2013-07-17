@@ -1030,7 +1030,7 @@ serving since beginning then select first day of financial year.&lt;/p&gt;
 	    <sv:property sv:name="mootlywcm:onSubmitHandler" sv:type="String">
 	      <sv:value>totalTDS = getTotalTDS();
 	if ( totalTDS &gt; 0 ){
-	   if ( $("#tan_deductor").val().trim() === '') { alert("TAN of Employer is required, as you are reporting a total TDS of " + totalTDS + " on this form 16"); return false; }
+	   if ( $("#tan_deductor").val().trim() === '') { alert("Please enter TAN number of your employer"); return false; }
 	}
 	        fa = $("#deductions_entertainment").val();
 		fb = $("#deductions_tax").val();
