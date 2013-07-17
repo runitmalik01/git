@@ -1,10 +1,10 @@
 /*
  * In this class we are creating a document for storing value of Deduction details of user
  * according to form 16.
- * @author 
+ * @author
  * 04/03/2013
- * 
- * 
+ *
+ *
  */
 package com.mootly.wcm.member;
 
@@ -106,7 +106,7 @@ public class Deduction extends ITReturnComponent {
 	@Override
 	public void doBeforeRender(HstRequest request, HstResponse response) {
 		// TODO Auto-generated method stub
-		ResidentStatus residentStatus = null; 
+		ResidentStatus residentStatus = null;
 		Map<String,DeductionSection> deductionSectionMap = null; //listOfDeductionSections = null;
 		Map<String, Double> totalOfSavedData = new HashMap<String, Double>();
 		Map<String, Double> totalOfSavedDataPerHead = new HashMap<String, Double>();
@@ -149,7 +149,7 @@ public class Deduction extends ITReturnComponent {
 			if (deductionDocument != null) {
 				deductionDocumentDetailList = deductionDocument.getDeductionDocumentDetailList();
 			}
-			
+
 			if (listOfDerivedDeductionDocuments != null && listOfDerivedDeductionDocuments.size() > 0) {
 				if (deductionDocumentDetailList == null) {
 					deductionDocumentDetailList = listOfDerivedDeductionDocuments;
@@ -158,7 +158,7 @@ public class Deduction extends ITReturnComponent {
 					deductionDocumentDetailList.addAll (listOfDerivedDeductionDocuments);
 				}
 			}
-			
+
 			Double grandTotal = 0D;
 			if (deductionDocumentDetailList != null && deductionDocumentDetailList.size() > 0){
 				Map<String, List<DeductionDocumentDetail>> savedData = new HashMap<String, List<DeductionDocumentDetail>>();
@@ -222,7 +222,7 @@ public class Deduction extends ITReturnComponent {
 		//time to calculate
 		if (getParentBean() != null  || listOfDerivedDeductionDocuments.size() > 0 ) {
 			//hashmap for javascript
-			Map<String,Object> totalMapForJS = new HashMap<String, Object>();			
+			Map<String,Object> totalMapForJS = new HashMap<String, Object>();
 			for (String deductionSectionKey:deductionSectionMap.keySet()){
 				String sanitizedKey =  "total_" +  deductionSectionKey.replaceAll("-", "_");
 				DeductionSection deductionSection = deductionSectionMap.get(deductionSectionKey);
@@ -234,7 +234,7 @@ public class Deduction extends ITReturnComponent {
 						}
 						else {
 							totalMapForJS.put(sanitizedKey2,0D);
-						}	
+						}
 					}
 				}
 				if (totalOfSavedData != null && totalOfSavedData.containsKey(deductionSectionKey)) {
@@ -242,50 +242,50 @@ public class Deduction extends ITReturnComponent {
 				}
 				else {
 					totalMapForJS.put(sanitizedKey,0D);
-				}				
-			}	
+				}
+			}
 			/*
 			for (String savedDataPerHead:totalOfSavedDataPerHead.keySet()){
 				String sanitizedKey =  "total_" +  savedDataPerHead.replaceAll("-", "_");
 				Double totalForSectionHead = totalOfSavedDataPerHead.get(savedDataPerHead);
 				totalMapForJS.put(sanitizedKey,totalForSectionHead);
 			}
-			 */	
+			 */
 			//ALSO WE NEED to have the following variables for calculation
 			// AGI == Adjusted Gross Income
-			// totalSalaryIncome 
+			// totalSalaryIncome
 			// totalIncomeFromProperty
 			// totaIncomeFromOtherSourcesIncludingTaxFreeIncome
 			// totalIncomeFromOtherSourcesExcludingTaxFreeIncome
 
 			if (memberPersonalInformation != null) {
-				int ageInYears = getFinancialYear().getAgeInYears(memberPersonalInformation.getDOB().getTime()); 
+				int ageInYears = getFinancialYear().getAgeInYears(memberPersonalInformation.getDOB().getTime());
 				boolean isSeniorCitizen = getFinancialYear().isSeniorCitizen(memberPersonalInformation.getDOB().getTime());
 				totalMapForJS.put("ageInYears",ageInYears);
 				totalMapForJS.put("isSeniorCitizen",isSeniorCitizen);
-				residentStatus = ResidentStatus.valueOf(memberPersonalInformation.getResidentCategory()); 
+				residentStatus = ResidentStatus.valueOf(memberPersonalInformation.getResidentCategory());
 			}
 			double salarypension=0D;double othersources=0D;double houseproperty=0D;
 			SalaryIncomeDocument salaryincome=(SalaryIncomeDocument)request.getAttribute(SalaryIncomeDocument.class.getSimpleName().toLowerCase());
 			FormSixteenDocument objFormSixteen=(FormSixteenDocument)request.getAttribute(FormSixteenDocument.class.getSimpleName().toLowerCase());
 			if(objFormSixteen != null && objFormSixteen.getFormSixteenDetailList() != null && objFormSixteen.getFormSixteenDetailList().size() >0){
 				for(FormSixteenDetail formsixteendetail:objFormSixteen.getFormSixteenDetailList()){
-					salarypension=salarypension+formsixteendetail.getGross_a();
+					salarypension=salarypension+formsixteendetail.getIncome_chargable_tax();
 				}
 			}else{
 				if(salaryincome!=null)
-					salarypension=salaryincome.getTotal();				
+					salarypension=salaryincome.getTotal();
 			}
 			totalMapForJS.put("salarypension", salarypension);
-			
+
 			if(othersourcesdoc!=null)
 				othersources=othersourcesdoc.getTaxable_income();
 			totalMapForJS.put("othersources", othersources);
 			HouseProperty housprop=(HouseProperty)request.getAttribute(HouseProperty.class.getSimpleName().toLowerCase());
-			if (housprop != null && housprop.getHouseIncomeDetailList() != null && housprop.getHouseIncomeDetailList().size() > 0 ){ 
+			if (housprop != null && housprop.getHouseIncomeDetailList() != null && housprop.getHouseIncomeDetailList().size() > 0 ){
 				for (HouseIncomeDetail houseincomeDetail:housprop.getHouseIncomeDetailList()) {
-					houseproperty=houseproperty+houseincomeDetail.getIncome_hproperty(); 
-				}	
+					houseproperty=houseproperty+houseincomeDetail.getIncome_hproperty();
+				}
 			}
 			totalMapForJS.put("houseproperty", houseproperty);
 			//totalMapForJS.put("total_eligiblededuction", 0D);
@@ -318,7 +318,7 @@ public class Deduction extends ITReturnComponent {
 		String deduction_section = request.getRequestContext().getResolvedSiteMapItem().getParameter("deduction_section");
 		if (getPageAction().equals(PAGE_ACTION.NEW_CHILD) && deduction_section != null) {
 			if (getChildBean() != null) {
-				DeductionDocumentDetail dd = (DeductionDocumentDetail) getChildBean();				
+				DeductionDocumentDetail dd = (DeductionDocumentDetail) getChildBean();
 				dd.setSection(deduction_section);
 				String uuidform_16 = request.getRequestContext().getResolvedSiteMapItem().getParameter("uuidform_16");
 				//String form16UniqueUUID = (String) request.getRequestContext().getAttribute("form16UniqueUUID");
@@ -348,7 +348,7 @@ public class Deduction extends ITReturnComponent {
 				}
 			}
 		}
-		String uuidform16=request.getRequestContext().getResolvedSiteMapItem().getParameter("uuidform-16");		
+		String uuidform16=request.getRequestContext().getResolvedSiteMapItem().getParameter("uuidform-16");
 		return true;
 	}
 
@@ -491,7 +491,7 @@ public class Deduction extends ITReturnComponent {
 	/**
 	 * Method to Save all entries of Deduction page
 	 * @param HstRequest
-	 * @throws 
+	 * @throws
 	 * @author Priyank
 	 */
 	public void callofDeduction(HstRequest request){
@@ -551,8 +551,8 @@ public class Deduction extends ITReturnComponent {
 	 * @param HstRequest
 	 * @param String
 	 * @return String returns the form to create method.
-	 * @throws 
-	 * @author 
+	 * @throws
+	 * @author
 	 */
 	public MemberDeductionScheduleVIA createMemberDeductionScheduleVIA(HstRequest request,MemberDeductionScheduleVIA schvia){
 
@@ -611,7 +611,7 @@ public class Deduction extends ITReturnComponent {
 					personalInformation.setScheduleIAB(schvia.getScheduleIAB());
 					personalInformation.setScheduleCCF(schvia.getScheduleCCF());
 					personalInformation.setTotal(schvia.getTotal());
-					// update now  
+					// update now
 					wpm.update(personalInformation);
 					return personalInformation;
 				} else {
