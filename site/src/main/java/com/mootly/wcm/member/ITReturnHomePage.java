@@ -67,6 +67,7 @@ public class ITReturnHomePage extends ITReturnComponent {
 								itReturnHomePageView.setLastOrOrgName(memberPersonalInformation.getLastName());
 								itReturnHomePageView.setITRForm(memberPersonalInformation.getSelectedITRForm());
 								itReturnHomePageView.setITRFormMode(memberPersonalInformation.getSelectedServiceDeliveryOption());
+								itReturnHomePageView.setEmail(memberPersonalInformation.getEmail());
 							}							
 						}
 					}

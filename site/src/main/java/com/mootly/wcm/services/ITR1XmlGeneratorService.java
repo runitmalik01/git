@@ -729,6 +729,7 @@ public class ITR1XmlGeneratorService {
 			List<FormSixteenDetail> listOfFormSixteenDetail = formSixteenDocument.getFormSixteenDetailList();
 			if ( listOfFormSixteenDetail != null && listOfFormSixteenDetail.size() > 0 ){
 				TDSonSalaries tdsonSalaries = new TDSonSalaries();
+				boolean hasAValidTDSOnSalary = false;
 				for(FormSixteenDetail formSixteenDetail:listOfFormSixteenDetail){
 					TDSonSalary tdsonSalary = new TDSonSalary();
 					EmployerOrDeductorOrCollectDetl employerOrDeductorOrCollectDetl = new EmployerOrDeductorOrCollectDetl();
@@ -740,7 +741,7 @@ public class ITR1XmlGeneratorService {
 					if(formSixteenDetail.getDed_ent_3()!=null)
 						tds2 = formSixteenDetail.getDed_ent_3();
 					TdsSalary =tds1 + tds2;
-					if(TdsSalary!=0){
+					if(TdsSalary !=0 ){
 						if(formSixteenDetail.getTan_deductor()!=null){
 							employerOrDeductorOrCollectDetl.setTAN(formSixteenDetail.getTan_deductor().toUpperCase());
 						}
@@ -748,14 +749,16 @@ public class ITR1XmlGeneratorService {
 							employerOrDeductorOrCollectDetl.setEmployerOrDeductorOrCollecterName(formSixteenDetail.getEmployer().toUpperCase());
 						}
 						tdsonSalary.setEmployerOrDeductorOrCollectDetl(employerOrDeductorOrCollectDetl);
+						
 						if(formSixteenDetail.getIncome_chargable_tax()!=null){
 							tdsonSalary.setIncChrgSal(indianCurrencyHelper.bigIntegerRound(formSixteenDetail.getIncome_chargable_tax()));
 						}
 						tdsonSalary.setTotalTDSSal(indianCurrencyHelper.bigIntegerRound(TdsSalary));
-						tdsonSalaries.getTDSonSalary().add(tdsonSalary);
-						itr1.setTDSonSalaries(tdsonSalaries);
+						tdsonSalaries.getTDSonSalary().add(tdsonSalary);	
+						if (!hasAValidTDSOnSalary) hasAValidTDSOnSalary = true; //just set this so that it says we have a good candidate
 					}
 				}
+				if (hasAValidTDSOnSalary) itr1.setTDSonSalaries(tdsonSalaries);
 			}
 		}
 

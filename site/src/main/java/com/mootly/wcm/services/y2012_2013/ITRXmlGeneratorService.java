@@ -59,13 +59,7 @@ public class ITRXmlGeneratorService extends ITRXmlGeneratorServiceCommon  implem
 		}
 	}
 	
-	public void validateXmlCommon(String xml) throws Exception {
-		
-	}
-	
-	@Override
-	public ValidationResponse validateXml(String xml) throws Exception {
-		ValidationResponse vr = new ValidationResponse();
+	public Unmarshaller validateXmlGetUnmarshaller() throws Exception {
 		SchemaFactory sf = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
 		sf.setResourceResolver(new ClasspathResourceResolver());
 		InputStream inputStream1= this.getClass().getClassLoader().getResourceAsStream("in/gov/incometaxindiaefiling/y2012_2013/ITRMain13.xsd");
@@ -77,21 +71,44 @@ public class ITRXmlGeneratorService extends ITRXmlGeneratorServiceCommon  implem
  
         Unmarshaller unmarshaller = jc.createUnmarshaller();
         unmarshaller.setSchema(schema);
-        MyValidationEventHandler myValidationHandler = new MyValidationEventHandler();
-        unmarshaller.setEventHandler(myValidationHandler);
         
-        ITR theObject = (ITR) unmarshaller.unmarshal(new StringReader(xml));
-        
-        vr.setValid(!myValidationHandler.hasError());
+        return unmarshaller;
+      
+	}
+	
+	public ValidationEventHandler validateXmlSetValidationEventHandler(Unmarshaller unmarshaller) throws Exception {
+		MyValidationEventHandler myValidationHandler = new MyValidationEventHandler();
+	    unmarshaller.setEventHandler(myValidationHandler);
+	    return myValidationHandler;
+	}
+	
+	public ValidationResponse validateXmlGetErrors(Unmarshaller unmarshaller) throws Exception {
+		MyValidationEventHandler myValidationHandler = (MyValidationEventHandler) unmarshaller.getEventHandler();
+		ValidationResponse vr = new ValidationResponse();
+	    vr.setValid(!myValidationHandler.hasError());
         vr.setErrors(myValidationHandler.getAllErrors());
         
-        //if (myValidationHandler != null && myValidationHandler.hasError()) {
-        //	System.out.println(myValidationHandler.getAllErrors());
-        //}
-        //System.out.println("STOP");
-        
         return vr;
-		
+	}
+	
+	@Override
+	public ValidationResponse validateXml(InputStream inputStream)
+			throws Exception {
+		// TODO Auto-generated method stub
+		Unmarshaller unmarshaller = validateXmlGetUnmarshaller();		
+		validateXmlSetValidationEventHandler(unmarshaller);
+		ITR itr = (ITR) unmarshaller.unmarshal(inputStream);
+		ValidationResponse validationResponse = validateXmlGetErrors(unmarshaller);
+		return validationResponse;
+	}
+	
+	@Override
+	public ValidationResponse validateXml(String xml) throws Exception {			
+		Unmarshaller unmarshaller = validateXmlGetUnmarshaller();		
+		validateXmlSetValidationEventHandler(unmarshaller);
+		ITR itr = (ITR) unmarshaller.unmarshal(new StringReader(xml));
+		ValidationResponse validationResponse = validateXmlGetErrors(unmarshaller);
+		return validationResponse;
 	}
 	
 	

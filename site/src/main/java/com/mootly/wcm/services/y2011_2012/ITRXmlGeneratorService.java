@@ -32,6 +32,7 @@ import in.gov.incometaxindiaefiling.y2011_2012.Schedule80G.Don50PercentApprReqd;
 import in.gov.incometaxindiaefiling.y2011_2012.Schedule80G.Don50PercentNoApprReqd;
 import in.gov.incometaxindiaefiling.y2011_2012.Verification.Declaration;
 
+import java.io.InputStream;
 import java.io.StringWriter;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -787,6 +788,13 @@ public class ITRXmlGeneratorService implements XmlGeneratorService {
 
 	@Override
 	public ValidationResponse validateXml(String xml) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ValidationResponse validateXml(InputStream inputStream)
+			throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}

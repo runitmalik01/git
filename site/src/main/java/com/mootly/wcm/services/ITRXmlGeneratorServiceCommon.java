@@ -1,6 +1,7 @@
 package com.mootly.wcm.services;
 
 import java.io.File;
+import java.io.InputStream;
 
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
@@ -18,6 +19,13 @@ public class ITRXmlGeneratorServiceCommon implements XmlGeneratorService {
 	
 	@Override
 	public ValidationResponse validateXml(String xml) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ValidationResponse validateXml(InputStream inputStream)
+			throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}

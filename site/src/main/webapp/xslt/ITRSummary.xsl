@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-
 <xsl:stylesheet version="1.0"
-
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	ns7:schemaLocation="http://incometaxindiaefiling.gov.in/main ITRMain13.xsd" 
 	xmlns:ITR1FORM="http://incometaxindiaefiling.gov.in/ITR1" 
@@ -14,26 +12,239 @@
 	exclude-result-prefixes="ITR1FORM ITR2FORM ITRETURN ITRForm ITR3FORM ns5 ns7">
 
 	<xsl:output method="xml"></xsl:output>
+	<xsl:param name="showLogo"></xsl:param>
 	<xsl:template match="/ITRETURN:ITR">
 		<html>
+			<head>			
+			</head>
 			<body>
-				<img width="226px" height="49px"
-					src="http://localhosITRForm:8080/site/binaries/content/gallery/logos/w4ilogo.png"></img>
+				<xsl:if test="$showLogo = 'true'">
+					<img width="226px" height="49px" src="http://localhosITRForm:8080/site/binaries/content/gallery/logos/w4ilogo.png"></img>
+				</xsl:if>
+				<span style="font-size:20.0pt;line-height:115%;font-family:Algerian">COMPUTATION OF TOTAL INCOME &amp; TAX THEREON</span>
+				<!--
 				<h1>
 					<xsl:value-of select="//ITRForm:FormName" />
 				</h1>
 				<h2>
 					<xsl:value-of select="//ITRForm:Description" />
 				</h2>
+				  -->
 				<xsl:apply-templates />
 			</body>
 		</html>
 	</xsl:template>
-        <xsl:template match="ITR1FORM:ITR1">
+	
+    <xsl:template match="ITR1FORM:ITR1">
              <xsl:apply-templates />
-       </xsl:template>
+    </xsl:template>
 
 	<xsl:template match="ITRForm:PersonalInfo">
+	
+	<table class="MsoTableLightShading" border="1" cellspacing="0" cellpadding="0" style="border-collapse:collapse;border:none;mso-border-top-alt:solid black 1.0pt;
+	   mso-border-top-themecolor:text1;mso-border-bottom-alt:solid black 1.0pt;
+	   mso-border-bottom-themecolor:text1;mso-yfti-tbllook:1184;mso-padding-alt:0in 5.4pt 0in 5.4pt">
+	   <tbody>
+	      <tr style="mso-yfti-irow:-1;mso-yfti-firstrow:yes;height:13.25pt">
+	         <td width="324" valign="top" style="width:242.7pt;border-top:solid black 1.0pt;
+	            mso-border-top-themecolor:text1;border-left:none;border-bottom:solid black 1.0pt;
+	            mso-border-bottom-themecolor:text1;border-right:none;padding:0in 5.4pt 0in 5.4pt;
+	            height:13.25pt">
+	            <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+	               normal;mso-yfti-cnfc:5"><b><span style="font-size:12.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;
+	               color:black;mso-themecolor:text1;mso-themeshade:191">Name of the
+	               Assessee<span style="mso-spacerun:yes"></span></span></b>
+	            </p>
+	         </td>
+	         <td width="324" valign="top" style="width:242.7pt;border-top:solid black 1.0pt;
+	            mso-border-top-themecolor:text1;border-left:none;border-bottom:solid black 1.0pt;
+	            mso-border-bottom-themecolor:text1;border-right:none;padding:0in 5.4pt 0in 5.4pt;
+	            height:13.25pt">
+	            <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+	               normal;mso-yfti-cnfc:1"><b><span style="font-size:12.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;
+	               color:black;mso-themecolor:text1;mso-themeshade:191"><xsl:value-of select="ITRForm:AssesseeName" /></span></b></p>
+	         </td>
+	      </tr>
+	      <tr style="mso-yfti-irow:0;height:13.25pt">
+	         <td width="324" valign="top" style="width:242.7pt;border:none;background:silver;
+	            mso-background-themecolor:text1;mso-background-themetint:63;padding:0in 5.4pt 0in 5.4pt;
+	            height:13.25pt">
+	            <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+	               normal;mso-yfti-cnfc:68"><b><span style="font-size:12.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;
+	               color:black;mso-themecolor:text1;mso-themeshade:191">Father’s Name</span></b></p>
+	         </td>
+	         <td width="324" valign="top" style="width:242.7pt;border:none;background:silver;
+	            mso-background-themecolor:text1;mso-background-themetint:63;padding:0in 5.4pt 0in 5.4pt;
+	            height:13.25pt">
+	            <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+	               normal;mso-yfti-cnfc:64"><span style="font-size:12.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;
+	               color:black;mso-themecolor:text1;mso-themeshade:191"><xsl:value-of select="//ITRForm:FatherName" /></span></p>
+	         </td>
+	      </tr>
+	      <tr style="mso-yfti-irow:1;height:13.25pt">
+	         <td width="324" valign="top" style="width:242.7pt;border:none;padding:0in 5.4pt 0in 5.4pt;
+	            height:13.25pt">
+	            <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+	               normal;mso-yfti-cnfc:4"><b><span style="font-size:12.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;
+	               color:black;mso-themecolor:text1;mso-themeshade:191">Date of Birth</span></b></p>
+	         </td>
+	         <td width="324" valign="top" style="width:242.7pt;border:none;padding:0in 5.4pt 0in 5.4pt;
+	            height:13.25pt">
+	            <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+	               normal"><span style="font-size:12.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;
+	               color:black;mso-themecolor:text1;mso-themeshade:191"><xsl:value-of select="//ITRForm:DOB" /> </span></p>
+	         </td>
+	      </tr>
+	      <tr style="mso-yfti-irow:2;height:13.25pt">
+	         <td width="324" valign="top" style="width:242.7pt;border:none;background:silver;
+	            mso-background-themecolor:text1;mso-background-themetint:63;padding:0in 5.4pt 0in 5.4pt;
+	            height:13.25pt">
+	            <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+	               normal;mso-yfti-cnfc:68"><b><span style="font-size:12.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;
+	               color:black;mso-themecolor:text1;mso-themeshade:191">Address</span></b></p>
+	         </td>
+	         <td width="324" valign="top" style="width:242.7pt;border:none;background:silver;
+	            mso-background-themecolor:text1;mso-background-themetint:63;padding:0in 5.4pt 0in 5.4pt;
+	            height:13.25pt">
+	            <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+	               normal;mso-yfti-cnfc:64"><span style="font-size:12.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;
+	               color:black;mso-themecolor:text1;mso-themeshade:191">
+	               <xsl:value-of select="//ITRForm:Address/ITRForm:ResidenceNo" /> 
+	               <xsl:value-of select="//ITRForm:Address/ITRForm:ResidenceName" /> 
+	               <xsl:value-of select="//ITRForm:Address/ITRForm:LocalityOrArea" /> 
+	               <xsl:value-of select="//ITRForm:Address/ITRForm:CityOrTownOrDistrict" />
+	               <xsl:value-of select="//ITRForm:Address/ITRForm:CountryCode" /> 
+	               <xsl:value-of select="//ITRForm:Address/ITRForm:PinCode" /> 
+	               </span></p>
+	         </td>
+	      </tr>
+	      <tr style="mso-yfti-irow:3;height:13.25pt">
+	         <td width="324" valign="top" style="width:242.7pt;border:none;padding:0in 5.4pt 0in 5.4pt;
+	            height:13.25pt">
+	            <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+	               normal;mso-yfti-cnfc:4"><b><span style="font-size:12.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;
+	               color:black;mso-themecolor:text1;mso-themeshade:191"></span></b></p>
+	         </td>
+	         <td width="324" valign="top" style="width:242.7pt;border:none;padding:0in 5.4pt 0in 5.4pt;
+	            height:13.25pt">
+	            <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+	               normal"><span style="font-size:12.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;
+	               color:black;mso-themecolor:text1;mso-themeshade:191"></span></p>
+	         </td>
+	      </tr>
+	      <tr style="mso-yfti-irow:4;height:13.25pt">
+	         <td width="324" valign="top" style="width:242.7pt;border:none;background:silver;
+	            mso-background-themecolor:text1;mso-background-themetint:63;padding:0in 5.4pt 0in 5.4pt;
+	            height:13.25pt">
+	            <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+	               normal;mso-yfti-cnfc:68"><b><span style="font-size:12.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;
+	               color:black;mso-themecolor:text1;mso-themeshade:191">Phone No. (Landline no.
+	               or Mobile No.)</span></b>
+	            </p>
+	         </td>
+	         <td width="324" valign="top" style="width:242.7pt;border:none;background:silver;
+	            mso-background-themecolor:text1;mso-background-themetint:63;padding:0in 5.4pt 0in 5.4pt;
+	            height:13.25pt">
+	            <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+	               normal;mso-yfti-cnfc:64"><span style="font-size:12.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;
+	               color:black;mso-themecolor:text1;mso-themeshade:191"> <xsl:value-of select="//ITRForm:Address/ITRForm:MobileNo" /></span></p>
+	         </td>
+	      </tr>
+	      <tr style="mso-yfti-irow:5;height:13.25pt">
+	         <td width="324" valign="top" style="width:242.7pt;border:none;padding:0in 5.4pt 0in 5.4pt;
+	            height:13.25pt">
+	            <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+	               normal;mso-yfti-cnfc:4"><b><span style="font-size:12.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;
+	               color:black;mso-themecolor:text1;mso-themeshade:191">Male/Female</span></b></p>
+	         </td>
+	         <td width="324" valign="top" style="width:242.7pt;border:none;padding:0in 5.4pt 0in 5.4pt;
+	            height:13.25pt">
+	            <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+	               normal"><span style="font-size:12.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;
+	               color:black;mso-themecolor:text1;mso-themeshade:191"><xsl:value-of select="//ITRForm:Gender" /></span></p>
+	         </td>
+	      </tr>
+	      <tr style="mso-yfti-irow:6;height:13.25pt">
+	         <td width="324" valign="top" style="width:242.7pt;border:none;background:silver;
+	            mso-background-themecolor:text1;mso-background-themetint:63;padding:0in 5.4pt 0in 5.4pt;
+	            height:13.25pt">
+	            <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+	               normal;mso-yfti-cnfc:68"><b><span style="font-size:12.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;
+	               color:black;mso-themecolor:text1;mso-themeshade:191">Residential Status</span></b></p>
+	         </td>
+	         <td width="324" valign="top" style="width:242.7pt;border:none;background:silver;
+	            mso-background-themecolor:text1;mso-background-themetint:63;padding:0in 5.4pt 0in 5.4pt;
+	            height:13.25pt">
+	            <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+	               normal;mso-yfti-cnfc:64"><span style="font-size:12.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;
+	               color:black;mso-themecolor:text1;mso-themeshade:191"><xsl:value-of select="//ITRForm:ResidentialStatus" /></span></p>
+	         </td>
+	      </tr>
+	      <tr style="mso-yfti-irow:7;height:13.25pt">
+	         <td width="324" valign="top" style="width:242.7pt;border:none;padding:0in 5.4pt 0in 5.4pt;
+	            height:13.25pt">
+	            <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+	               normal;mso-yfti-cnfc:4"><b><span style="font-size:12.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;
+	               color:black;mso-themecolor:text1;mso-themeshade:191">Assessment Year</span></b></p>
+	         </td>
+	         <td width="324" valign="top" style="width:242.7pt;border:none;padding:0in 5.4pt 0in 5.4pt;
+	            height:13.25pt">
+	            <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+	               normal"><span style="font-size:12.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;
+	               color:black;mso-themecolor:text1;mso-themeshade:191"><xsl:value-of select="//ITRForm:AssessmentYear" /></span></p>
+	         </td>
+	      </tr>
+	      <!-- 
+	      <tr style="mso-yfti-irow:8;height:13.25pt">
+	         <td width="324" valign="top" style="width:242.7pt;border:none;background:silver;
+	            mso-background-themecolor:text1;mso-background-themetint:63;padding:0in 5.4pt 0in 5.4pt;
+	            height:13.25pt">
+	            <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+	               normal;mso-yfti-cnfc:68"><b><span style="font-size:12.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;
+	               color:black;mso-themecolor:text1;mso-themeshade:191">Previous Year</span></b></p>
+	         </td>
+	         <td width="324" valign="top" style="width:242.7pt;border:none;background:silver;
+	            mso-background-themecolor:text1;mso-background-themetint:63;padding:0in 5.4pt 0in 5.4pt;
+	            height:13.25pt">
+	            <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+	               normal;mso-yfti-cnfc:64"><span style="font-size:12.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;
+	               color:black;mso-themecolor:text1;mso-themeshade:191"></span></p>
+	         </td>
+	      </tr>
+	       -->
+	      <tr style="mso-yfti-irow:9;height:13.25pt">
+	         <td width="324" valign="top" style="width:242.7pt;border:none;padding:0in 5.4pt 0in 5.4pt;
+	            height:13.25pt">
+	            <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+	               normal;mso-yfti-cnfc:4"><b><span style="font-size:12.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;
+	               color:black;mso-themecolor:text1;mso-themeshade:191">PAN No.</span></b></p>
+	         </td>
+	         <td width="324" valign="top" style="width:242.7pt;border:none;padding:0in 5.4pt 0in 5.4pt;
+	            height:13.25pt">
+	            <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+	               normal"><span style="font-size:12.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;
+	               color:black;mso-themecolor:text1;mso-themeshade:191"><xsl:value-of select="//ITRForm:PAN" /></span></p>
+	         </td>
+	      </tr>
+	      <tr style="mso-yfti-irow:10;mso-yfti-lastrow:yes;height:13.95pt">
+	         <td width="324" valign="top" style="width:242.7pt;border:none;border-bottom:solid black 1.0pt;
+	            mso-border-bottom-themecolor:text1;background:silver;mso-background-themecolor:
+	            text1;mso-background-themetint:63;padding:0in 5.4pt 0in 5.4pt;height:13.95pt">
+	            <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+	               normal;mso-yfti-cnfc:68"><b><span style="font-size:12.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;
+	               color:black;mso-themecolor:text1;mso-themeshade:191">Ward Circle</span></b></p>
+	         </td>
+	         <td width="324" valign="top" style="width:242.7pt;border:none;border-bottom:solid black 1.0pt;
+	            mso-border-bottom-themecolor:text1;background:silver;mso-background-themecolor:
+	            text1;mso-background-themetint:63;padding:0in 5.4pt 0in 5.4pt;height:13.95pt">
+	            <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+	               normal;mso-yfti-cnfc:64"><span style="font-size:12.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;
+	               color:black;mso-themecolor:text1;mso-themeshade:191"><xsl:value-of select="//ITRForm:DesigOfficerWardorCircle" /></span></p>
+	         </td>
+	      </tr>
+	   </tbody>
+	</table>
+	<!-- 
 		Assessment Year:-
 		<span style="color:#ff0000">
 			<xsl:value-of select="//ITRForm:AssessmentYear" />
@@ -95,50 +306,54 @@
 			<xsl:value-of select="ITRForm:Address/ITRForm:EmailAddress" />
 		</span>
 		<br />
+		 -->
 	</xsl:template>
 	<xsl:template match="ITRForm:ITR1_IncomeDeductions">
+	<span style="font-size:16.0pt;line-height:115%;font-family:Algerian">Computation of Total taxable Income</span>
 		<table width="100%" border="1" class="odd"
 			style="background-color: #d5e9d7;">
 			<tr>
-				<th colspan="3">Income Information</th>
+				<th colspan="3">Taxable Income</th>
 			</tr>
+			<xsl:if test="ITRForm:IncomeFromSal/text() != '0'">
+				<tr>
+					<td>Income from Salary</td>
+					<td align="right">
+						<xsl:value-of select="ITRForm:IncomeFromSal" />
+					</td>
+				</tr>
+			</xsl:if>
+			<xsl:if test="ITRForm:TotalIncomeOfHP/text() != '0'">
+				<tr>
+					<td>Income from House Property</td>
+					<td align="right">
+						<xsl:value-of select="ITRForm:TotalIncomeOfHP" />
+					</td>
+				</tr>
+			</xsl:if>
+			<xsl:if test="ITRForm:IncomeOthSrc/text() != '' and ITRForm:IncomeOthSrc/text() != '0'">
+				<tr>
+					<td>Income from Other Sources</td>
+					<td align="right">
+						<xsl:value-of select="ITRForm:IncomeOthSrc" />
+					</td>
+				</tr>
+			</xsl:if>
 			<tr>
-				<td>A</td>
-				<td>Income from Salary</td>
-				<td align="right">
-					<xsl:value-of select="ITRForm:IncomeFromSal" />
-				</td>
-			</tr>
-			<tr>
-				<td>B</td>
-				<td>Income from House Property</td>
-				<td align="right">
-					<xsl:value-of select="ITRForm:TotalIncomeOfHP" />
-				</td>
-			</tr>
-			<tr>
-				<td>C</td>
-				<td>Income from Other Sources</td>
-				<td align="right">
-					<xsl:value-of select="ITRForm:IncomeOthSrc" />
-				</td>
-			</tr>
-			<tr>
-				<td>D</td>
 				<td> Gross Total Income</td>
 				<td align="right">
 					<xsl:value-of select="ITRForm:GrossTotIncome" />
 				</td>
 			</tr>
+			<xsl:if test="ITRForm:IncomeOthSrc/text() != '' and ITRForm:IncomeOthSrc/text() != '0'">
+				<tr>
+					<td>Section 89</td>
+					<td align="right">
+						<xsl:value-of select="ITRForm:itr1TaxComputation/ITRForm:Section89" />
+					</td>
+				</tr>
+			</xsl:if>
 			<tr>
-				<td>E</td>
-				<td>Section 89</td>
-				<td align="right">
-					<xsl:value-of select="ITRForm:itr1TaxComputation/ITRForm:Section89" />
-				</td>
-			</tr>
-			<tr>
-				<td>F</td>
 				<td>Taxable Income</td>
 				<td align="right">
 					<xsl:value-of select="ITRForm:TotalIncome" />
@@ -186,18 +401,20 @@
 		</table>
 	</xsl:template>
 	<!-- this is a common template called by apply-templates -->
+	
 	<xsl:template match="ITRForm:FilingStatus">
+		<!-- Commented out -->
+		<!-- 
 		<xsl:for-each select="./*">
 				<xsl:variable name="myName" select="name(.)" />
 				<xsl:value-of select="name(.)" />:-
 			<span style="color:#ff0000">
 				<xsl:value-of select="." />
 			</span>
-			<br />
-
 		</xsl:for-each>
-
+		 -->
 	</xsl:template>
+	
 	<xsl:template match="ITRForm:DeductUndChapVIA">
 
 		<table width="100%" border="1" class="odd"
@@ -210,19 +427,26 @@
 				<th align="right">Eligible</th>
 				<th align="right">Total</th>
 			</tr>
-			<xsl:for-each select="./*">
-				<tr>
-					<xsl:variable name="myName" select="name(.)" />
-					<td>
-						<xsl:value-of select="name(.)" />
-					</td>
-					<td align="right">
-						<xsl:value-of select="." />
-					</td>
-					<td align="right">
-						<xsl:value-of select="../../ITRForm:UsrDeductUndChapVIA/*[name()=$myName]" />
-					</td>
-				</tr>
+			<xsl:for-each select="./*[text() != '0']">
+					<tr>
+						<xsl:variable name="myName" select="name(.)" />
+						<td>
+							<xsl:choose>
+								<xsl:when test="contains(name(.),':')">
+									<xsl:value-of select="substring-after(name(),':')" />
+								</xsl:when>
+								<xsl:otherwise>
+									<xsl:value-of select="name(.)" />
+								</xsl:otherwise>
+							</xsl:choose>
+						</td>
+						<td align="right">
+							<xsl:value-of select="." />
+						</td>
+						<td align="right">
+							<xsl:value-of select="../../ITRForm:UsrDeductUndChapVIA/*[name()=$myName]" />
+						</td>
+					</tr>
 			</xsl:for-each>
 		</table>
 	</xsl:template>

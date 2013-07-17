@@ -95,10 +95,10 @@
 				<div class="row-fluid show-grid">
 					<div class="span3">
 						<div class="rowlabel">
-							<label for="tan_deductor">TAN of Employer</label>
+							<label for="tan_deductor">TAN of Employer <small><w4india:knowyourtan companyNameId="employer"/></small></label>
 						</div>
 						<div class="rowlabel">
-							<input type="text" name="tan_deductor" class="uprcase"
+							<input type="text" id="tan_deductor" name="tan_deductor" class="uprcase"
 								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.tan_deductor}"/></c:if>">
 						</div>
 					</div>
@@ -1048,6 +1048,32 @@
 
 
 <script type="text/javascript">
+	<%--
+	updateTANRules = function (isReq) {
+		ded_ent1 = $("#ded_ent1").val().trim();
+		ded_ent3 = $("#ded_ent3").val().trim();
+		var ided_ent1 =0;
+		var ided_ent3 =0;
+		
+		if (ded_ent1 != '' && !isNaN(ded_ent1) ) ided_ent1 = parseInt(ded_ent1);
+		if (ded_ent3 != '' && !isNaN(ded_ent3) ) ided_ent3 = parseInt(ded_ent3);
+		
+		if ( (ided_ent1 + ided_ent3) > 0) {
+			//ensure TAN is required and must
+			$("#tan_deductor").rules("add",{
+				'required':'true'
+			});
+		}
+		else {
+			//$("#tan_deductor").rules("remove","required");
+		}
+	};
+	$("#frmdataFormSixteen").submit (function() {
+		updateTANRules();
+		return false;
+	});
+	
+	--%>
 	function hideded() {
 		var d = document.getElementById("Employe_category");
 		var valuePropCoOwned = d.options[d.selectedIndex].value;

@@ -59,6 +59,7 @@ String propertyToCheck = null;
 ITRForm itrForm = null;
 ITRServiceDelivery itrServiceDelivery = null;
 String serviceItemKey= null;
+String deliveryEmail = request.getUserPrincipal().getName();
 if (!noMenu) {
 	if (memberPersonalInformation == null) memberPersonalInformation = (MemberPersonalInformation) request.getAttribute(MemberPersonalInformation.class.getSimpleName().toLowerCase());
 	if (memberPersonalInformation != null) {
@@ -73,6 +74,7 @@ if (!noMenu) {
 		
 		serviceItemKey = memberPersonalInformation.getPAN() + "-" + financialYear.getDisplayAssessmentYear() + "-" + itrForm + "-" + itReturnType +	"-" + itrServiceDelivery;
 		if (serviceItemKey != null) request.setAttribute("serviceItemKey", serviceItemKey);
+		if (memberPersonalInformation.getEmail() != null && !"".equals(memberPersonalInformation.getEmail().trim())) deliveryEmail = memberPersonalInformation.getEmail();
 	}
 }
 boolean hasDIY = false;
@@ -267,13 +269,15 @@ for (HstSiteMenuItem siteMenuItem : itrSiteMenu.getSiteMenuItems() ){
 		               <li class="dropdown">
 		                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Actions<b class="caret"></b></a>
 		                  <ul class="dropdown-menu">
-		                  	 
+		                  	 	 <%-- hide Show XML only for developers --%>
+		                  	 	 <%--
 			                  	 <li><a href="servicerequest-itr-summary.html">View Summary</a></li>
 			                     <li><a href="servicerequest-itr-summary.html?show=xml">View XML</a></li>		                     	
 			                     <li class="divider"></li>
+			                      --%>
 			                     <li><a href="servicerequest-itr-download-xml.html">Download XML</a></li>
 		                     	<li><a href="servicerequest-itr-download-summary.html">Download Summary</a></li>
-		                     	<li><a href="servicerequest-itr-email-xml-summary.html">Email to <small>(<%=request.getUserPrincipal().getName()%>)</small></a></li>
+		                     	<li><a href="servicerequest-itr-email-xml-summary.html?email=<%=deliveryEmail%>">Email to <small>(<%=deliveryEmail%>)</small></a></li>
 		                  </ul>
 		               </li>
 		            </ul>

@@ -108,7 +108,9 @@ import com.mootly.wcm.model.ITRForm;
 import com.mootly.wcm.model.ITRTab;
 import com.mootly.wcm.model.ITReturnPackage;
 import com.mootly.wcm.model.ITReturnType;
+import com.mootly.wcm.model.ValidationResponse;
 import com.mootly.wcm.services.ITRXmlGeneratorServiceFactory;
+import com.mootly.wcm.services.InvalidXMLException;
 import com.mootly.wcm.services.ScreenCalculatorService;
 import com.mootly.wcm.services.ScreenConfigService;
 import com.mootly.wcm.services.StartApplicationValidationService;
@@ -302,7 +304,26 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			}
 		}
 		if (pageAction != null && (pageAction.equals(PAGE_ACTION.SHOW_ITR_SUMMARY) || pageAction.equals(PAGE_ACTION.DOWNLOAD_ITR_SUMMARY) || pageAction.equals(PAGE_ACTION.DOWNLOAD_ITR_XML) || pageAction.equals(PAGE_ACTION.EMAIL_ITR_XML_AND_SUMMARY)) ) {
-			handleITRSummary(request,response);
+			try {
+				handleITRSummary(request,response);
+			}catch (InvalidXMLException invalidXml) {		
+				FormMap formMap = new FormMap();//(request,new String[] {"xml","isValid","errors","financialYear"});
+				FormField formFieldXml = new FormField("xml");
+				FormField formFieldFinancialYear = new FormField("financialYear");
+				ValidationResponse validationResponse = invalidXml.getValidationResponse();
+				formFieldXml.addValue(validationResponse.getXml());
+				formFieldFinancialYear.addValue(getFinancialYear().getDisplayName());
+				
+				FormUtils.persistFormMap(request, response, formMap, null);
+				try {
+					response.sendRedirect("/services/itr-validate-xml.html");
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				return;
+				//response.setRenderPath("jsp/member/invalidxml.jsp");
+			}
 		}
 	}
 
@@ -1365,8 +1386,9 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 	}
 	
 	//DecimalFormat decimalFormat=new DecimalFormat("#.#");
-	public void handleITRSummary(HstRequest request, HstResponse response) {
+	public void handleITRSummary(HstRequest request, HstResponse response) throws InvalidXMLException{
 		// TODO Auto-generated method stub
+
 		boolean isDownload = false;
 		String whtToDownload = null; //I HATE IT use ENUM
 		boolean emailMe = false;
@@ -1399,24 +1421,40 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			whichITRForm = ITRForm.ITR1;
 		}
 		//time to hand over
+		XmlGeneratorService xmlGeneratorService = itrXmlGeneratorServiceFactory.getInstance(getFinancialYear());
 		if (itrXmlGeneratorServiceFactory != null) {
-			XmlGeneratorService xmlGeneratorService = itrXmlGeneratorServiceFactory.getInstance(getFinancialYear());
 			if (xmlGeneratorService != null) {
 				try {
-					xmlGeneratorService.generateXml(request, response);
-				} catch (Exception e) {
+					xmlGeneratorService.generateXml(request, response);									
+				} 				
+				catch (Exception e) {
 					// TODO Auto-generated catch block
 					log.error("Error in generating XML",e);
 				}
 			}
 		}
+		
+		
 		String temporaryPathToPDF = null;
 		String temporaryPathToXML = null;
 		//now lets check if we have theForm
 		//lets attempt a PDF
 		if ( emailMe || ( isDownload && whtToDownload != null && whtToDownload.equals("pdf") ) ) {
 			try {
+				//now this is the most important part if the XML is invalid then send the user to a page stating that
 				String xml = (String) request.getAttribute("xml");
+				ValidationResponse validationResponse = null;
+				try {
+					validationResponse = xmlGeneratorService.validateXml(xml);
+					if (validationResponse == null || !validationResponse.isValid()) {
+						throw new InvalidXMLException(validationResponse);
+					}
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();	
+					throw new InvalidXMLException(validationResponse);
+				}
+								
 				DocumentBuilder db = DocumentBuilderFactory.newInstance().newDocumentBuilder();
 				InputSource is = new InputSource(new StringReader(xml));
 				org.w3c.dom.Document aDom = db.parse(is);
@@ -1439,7 +1477,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 				String uuid = UUID.randomUUID().toString();
 				//create the dir 
 				new File(tmpDir + "/" + uuid).mkdir();
-				String pdfFileName = "itreturnsummary-AY-" + getFinancialYear().getDisplayAssessmentYear() + ".pdf";
+				String pdfFileName = "itreturnsummary-" + getPAN() +"-AY-" + getFinancialYear().getDisplayAssessmentYear() + ".pdf";
 				temporaryPathToPDF = tmpDir + "/" + uuid + "/" + pdfFileName;
 				request.setAttribute("filePath", temporaryPathToPDF);
 				PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(temporaryPathToPDF));
@@ -1494,7 +1532,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		
 		if ( emailMe || ( isDownload && whtToDownload != null && whtToDownload.equals("xml")) ) {
 			if (isDownload) {
-				String xmlFileName = "itreturn-AY-" +getFinancialYear().getDisplayAssessmentYear() + ".xml";
+				String xmlFileName = "itreturn-"+ getPAN() + "-AY-" +getFinancialYear().getDisplayAssessmentYear() + ".xml";
 				request.setAttribute("fileName", xmlFileName);
 				response.setRenderPath("jsp/member/downloadfile.jsp");
 			}
@@ -1506,9 +1544,20 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		
 		if (emailMe) {
 			if (temporaryPathToPDF != null && temporaryPathToXML != null) {
-				String[] to = new String[]{ getUserName() };
+				String deliveryEmail = getPublicRequestParameter(request, "email");
+				String[] to = null;
+				if (deliveryEmail != null && !"".equals(deliveryEmail.trim())) {
+					to = new String[]{ getUserName(), deliveryEmail };
+				}
+				else {
+					to = new String[]{ getUserName()};
+				}
+				
 				//sendEmail(request, to, null, new String[] {"info@wealth4india.com"}, "Your IT Return", temporaryPathToPDF + "," + temporaryPathToXML, "Your IT Return Summary", "itreturnSummaryAndXml", null);
-				sendEmail(request, to, temporaryPathToPDF + "," + temporaryPathToXML,"Your IT Return","w4i_email",null);
+				Map<String,Object> vC = new HashMap<String, Object>();
+				vC.put("financialYearDisplay", getFinancialYear().getDisplayName());
+				vC.put("financialYear", getFinancialYear());
+				sendEmail(request, to, temporaryPathToPDF + "," + temporaryPathToXML,"Your Income Tax Return for Financial Year " + getFinancialYear().getDisplayName(),"w4i_email",vC);
 				request.setAttribute("emailMeStatus", "success");
 			}
 			else {

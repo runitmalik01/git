@@ -17,6 +17,7 @@
 package com.mootly.wcm.components;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.jcr.Session;
@@ -146,7 +147,7 @@ public class BaseComponent extends BaseHstComponent {
     		if (bcc != null) emailMessage.setBcc(bcc);*/
     		StringBuffer sbHostName = new StringBuffer();
 			sbHostName.append(request.getScheme() + "://" +  request.getServerName()).append(":").append(request.getServerPort());
-			
+			if (velocityContext == null) velocityContext = new HashMap<String, Object>(1);
 			velocityContext.put("memberHostName", sbHostName.toString());
     		
     		String htmlBody = VelocityUtils.parseVelocity(emailTemplate.getHtmlBody(), velocityContext);

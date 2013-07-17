@@ -30,7 +30,7 @@
 <%@page import="com.mootly.wcm.beans.MemberPersonalInformation"%>
 <c:set var="lang" value="${pageContext.request.locale.language}"/>
 <head>
-    <hst:headContributions categoryExcludes="css,jsInternal,jsExternal" />
+    <hst:headContributions categoryExcludes="css,jsInternal,jsExternal"  />
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
 	<meta name='robots' content='noindex,nofollow' />

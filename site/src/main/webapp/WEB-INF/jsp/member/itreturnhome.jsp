@@ -18,6 +18,8 @@ ValueListService objValueListService = ValueListServiceImpl
 TreeMap objTreeMapSection = (TreeMap) objValueListService.getReturnFile();
 	request.setAttribute("objTreeMapSection", objTreeMapSection);
 	pageContext.setAttribute("filingSectionValues", FilingSection.values());
+	String serviceItemKey= null;
+	String deliveryEmail = request.getUserPrincipal().getName();
 	 %>
 <div class="page">
 	<h4>Prepare Income Tax Return for Individuals and/or HUF</h4>
@@ -145,7 +147,7 @@ TreeMap objTreeMapSection = (TreeMap) objValueListService.getReturnFile();
 				                  <li class="divider"></li>
 				                  <li><a href="<hst:link path="/member/itreturn/${anEntry.financialYear.displayName}/${anEntry.itReturnType.displayName}/${anEntry.pan}/servicerequest-itr-download-summary.html"/>">Download Summary</a></li>
 				                  <li><a href="<hst:link  path="/member/itreturn/${anEntry.financialYear.displayName}/${anEntry.itReturnType.displayName}/${anEntry.pan}/servicerequest-itr-download-xml.html" />">Download XML</a></li>
-				                  <li><a href="<hst:link  path="/member/itreturn/${anEntry.financialYear.displayName}/${anEntry.itReturnType.displayName}/${anEntry.pan}/servicerequest-itr-email-xml-summary.html" />">Email Summary and XML</a></li>
+				                  <li><a href="<hst:link  path="/member/itreturn/${anEntry.financialYear.displayName}/${anEntry.itReturnType.displayName}/${anEntry.pan}/servicerequest-itr-email-xml-summary.html"/>?email=${anEntry.email}">Email Summary and XML</a></li>
 				              </c:if>
 			                </ul>
 			             </div>

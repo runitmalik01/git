@@ -1,6 +1,7 @@
 package com.mootly.wcm.services;
 
 import java.io.File;
+import java.io.InputStream;
 
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
@@ -12,4 +13,5 @@ public interface XmlGeneratorService {
 	
 	//void validateXml(File file) throws Exception;
 	ValidationResponse validateXml(String xml) throws Exception;
+	ValidationResponse validateXml(InputStream inputStream) throws Exception;
 }

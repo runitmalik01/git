@@ -19,9 +19,12 @@
 <%@page import="com.mootly.wcm.model.FinancialYear"%>
 <%@include file="../includes/tags.jspf" %>
 <hst:actionURL var="actionURL"></hst:actionURL>
+<hippo-gogreen:title title="Validate your Indian Income Tax Return"/>
 <div class="page">
-	<h4>Validate your Income Tax Return XML</h4>
-	<form method="post" action="${actionURL}">
+	<h4>Validate your Indian Income Tax Return</h4>
+	<form method="post" action="${actionURL}" enctype="multipart/form-data">
+		<input type="hidden" name="errors"/>
+		<input type="hidden" name="isValid"/>	
 		<fieldset id="ul_revised" class="revised_v original_h">
 			<legend>Your Return</legend>
 			<div class="row-fluid show-grid" id="ul_revised_input">
@@ -31,7 +34,7 @@
 						</div>
 						<div class="rowlabel">
 							<select id="financialYear" name="financialYear">
-								<option value="<%=FinancialYear.TwentyTweleve%>"><%=FinancialYear.TwentyTweleve.getDisplayName()%></option>
+								<option value="<%=FinancialYear.TwentyTweleve%>"><%=FinancialYear.TwentyTweleve.getDisplayName()%> (AY:<%=FinancialYear.TwentyTweleve.getDisplayAssessmentYear()%>)</option>
 							</select>
 						</div>
 					</div>
@@ -39,7 +42,17 @@
 			<div class="row-fluid show-grid">
 				<div class="span12">
 						<div class="rowlabel">
-							<label for="xml"><small>Option 1 (Copy and Paste the XML here)</small> </label>
+							<label for="xml"><small>Option 1 (Upload your return)</small> </label>
+						</div>
+						<div class="rowlabel">
+							<input type="file" name="itrxml"/>
+						</div>
+				</div>
+			</div>
+			<div class="row-fluid show-grid">
+				<div class="span12">
+						<div class="rowlabel">
+							<label for="xml"><small>Option 2 (Copy and Paste the XML here)</small> </label>
 						</div>
 						<div class="rowlabel">
 							<textarea id="xml" name="xml" rows="10" cols="80" name="xml">${xml}</textarea>
@@ -47,8 +60,8 @@
 				</div>
 			</div>
 			<div class="row-fluid show-grid">
-				<div class="span2 offset10">
-					<input type="submit" value="Submit"/>	
+				<div class="span2 offset8">
+					<input type="submit" value="Click to begin validation"/>	
 				</div>
 			</div>
 		</fieldset>
@@ -76,8 +89,12 @@
 				</div>
 			</div>
 		</fieldset>
-		<input type="hidden" name="errors"/>
-		<input type="hidden" name="isValid"/>		
-	</form>
+		<fieldset>
+			<legend>ITR Computation Summary</legend>
+			<div id="computationSumary">
+				<c:out value="${theComputationSummary}" escapeXml="false"/>
+			</div>
+		</fieldset>
+	</form>	
 </div>
 

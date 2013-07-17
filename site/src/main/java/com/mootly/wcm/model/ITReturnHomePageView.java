@@ -56,6 +56,16 @@ public class ITReturnHomePageView {
 		this.pan = pan;
 		if (pan != null && pan.length() >= 4) setFilingStatus(FilingStatus.getEnumByFourthChar(pan.charAt(3)));
 	}
+	
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+
 
 	String pan;
 	FinancialYear financialYear;
@@ -65,6 +75,7 @@ public class ITReturnHomePageView {
 	ITRServiceDelivery itrFormMode;
 	
 	String lastOrOrgName;
+	String email;
 	
 	
 }

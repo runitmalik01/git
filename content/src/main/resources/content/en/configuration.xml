@@ -990,49 +990,70 @@ serving since beginning then select first day of financial year.&lt;/p&gt;
 	      <sv:value>en</sv:value>
 	    </sv:property>
 	    <sv:property sv:name="mootlywcm:additionalScript" sv:type="String">
-	      <sv:value>jQuery(document).ready(function($) {
-	  // Code using $ as usual goes here.
-	  ecf();
-	  $("#Employe_category").click ( ecf );
-	});
-	
-	var ecf = function() {
-	   ec = $("#Employe_category").val();  
-	   if (ec == 'GOV') gg(); else gg2();
-	}
-	
-	var gg = function () {
-	     //$("#deductions_tax").attr("readonly","true");$("#deductions_tax").val('');
-	     $("#deductions_entertainment").removeAttr("readonly"); 
-	}
-	var gg2 = function () {
-	     $("#deductions_entertainment").attr("readonly","true");$("#deductions_entertainment").val('');
-	     $("#deductions_tax").removeAttr("readonly"); 
-	}</sv:value>
+	      <sv:value>getTotalTDS = function () {
+			ded_ent1 = $("#ded_ent1").val().trim();
+			ded_ent3 = $("#ded_ent3").val().trim();
+			var ided_ent1 =0;
+			var ided_ent3 =0;
+			
+			if (ded_ent1 != '' &amp;&amp; !isNaN(ded_ent1) ) ided_ent1 = parseFloat(ded_ent1,2);
+			if (ded_ent3 != '' &amp;&amp; !isNaN(ded_ent3) ) ided_ent3 = parseFloat(ded_ent3,2);
+			
+			if ( (ided_ent1 + ided_ent3) &gt; 0) {
+				return (ided_ent1 + ided_ent3);
+			}
+			else {
+				//$("#tan_deductor").rules("remove","required");
+	 			return 0;
+			}
+		};
+	jQuery(document).ready(function($) {
+		  // Code using $ as usual goes here.
+		  ecf();
+		  $("#Employe_category").click ( ecf );
+		});
+		
+		var ecf = function() {
+		   ec = $("#Employe_category").val();  
+		   if (ec == 'GOV') gg(); else gg2();
+		}
+		
+		var gg = function () {
+		     //$("#deductions_tax").attr("readonly","true");$("#deductions_tax").val('');
+		     $("#deductions_entertainment").removeAttr("readonly"); 
+		}
+		var gg2 = function () {
+		     $("#deductions_entertainment").attr("readonly","true");$("#deductions_entertainment").val('');
+		     $("#deductions_tax").removeAttr("readonly"); 
+		}</sv:value>
 	    </sv:property>
 	    <sv:property sv:name="mootlywcm:onSubmitHandler" sv:type="String">
-	      <sv:value>fa = $("#deductions_entertainment").val();
-	fb = $("#deductions_tax").val();
-	ec = $("#Employe_category").val();  
-	
-	   if (fa.trim() !== '') fan = parseInt(fa); else fan=0;
-	   if (fb.trim() !== '') fbn = parseInt(fb); else fbn = 0;
-	   if (ec == 'GOV' &amp;&amp; (fan + fbn) &gt; 7500) { alert("Total of 4a and 4b must not exceed 7500/-"); return false; }
-	   if ( fan &gt; 5000)  { alert('Entertainment Allowance cannot exceed 5000. It will be set to the maximum limit of 5000'); $("#deductions_entertainment").val('5000'); }
-	   if ( fbn &gt; 2500)  { alert('Tax on Employment/ Professional Tax cannot exceed 2500. It will be set to the maximum limit of 2500'); $("#deductions_tax").val('2500');  }
-	return true;</sv:value>
+	      <sv:value>totalTDS = getTotalTDS();
+	if ( totalTDS &gt; 0 ){
+	   if ( $("#tan_deductor").val().trim() === '') { alert("TAN of Employer is required, as you are reporting a total TDS of " + totalTDS + " on this form 16"); return false; }
+	}
+	        fa = $("#deductions_entertainment").val();
+		fb = $("#deductions_tax").val();
+		ec = $("#Employe_category").val();  
+		
+		   if (fa.trim() !== '') fan = parseInt(fa); else fan=0;
+		   if (fb.trim() !== '') fbn = parseInt(fb); else fbn = 0;
+		   if (ec == 'GOV' &amp;&amp; (fan + fbn) &gt; 7500) { alert("Total of 4a and 4b must not exceed 7500/-"); return false; }
+		   if ( fan &gt; 5000)  { alert('Entertainment Allowance cannot exceed 5000. It will be set to the maximum limit of 5000'); $("#deductions_entertainment").val('5000'); }
+		   if ( fbn &gt; 2500)  { alert('Tax on Employment/ Professional Tax cannot exceed 2500. It will be set to the maximum limit of 2500'); $("#deductions_tax").val('2500');  }
+		return true;</sv:value>
 	    </sv:property>
 	    <sv:property sv:name="mootlywcm:screenHeading" sv:type="String">
 	      <sv:value/>
 	    </sv:property>
 	    <sv:property sv:name="mootlywcm:screenHelp" sv:type="String">
 	      <sv:value>&lt;html&gt;
-	&lt;body&gt;
-	
-	&lt;p&gt; &lt;/p&gt;
-	
-	&lt;/body&gt;
-	&lt;/html&gt;</sv:value>
+		&lt;body&gt;
+		
+		&lt;p&gt; &lt;/p&gt;
+		
+		&lt;/body&gt;
+		&lt;/html&gt;</sv:value>
 	    </sv:property>
 	    <sv:property sv:name="mootlywcm:screenSubHeading" sv:type="String">
 	      <sv:value/>
@@ -1149,7 +1170,7 @@ serving since beginning then select first day of financial year.&lt;/p&gt;
 	        <sv:value>AAAA11111A</sv:value>
 	      </sv:property>
 	      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
-	        <sv:value>true</sv:value>
+	        <sv:value>false</sv:value>
 	      </sv:property>
 	      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
 	        <sv:value/>
@@ -1318,13 +1339,13 @@ serving since beginning then select first day of financial year.&lt;/p&gt;
 	      </sv:property>
 	      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
 	        <sv:value>&lt;html&gt;
-	&lt;body&gt;
-	
-	&lt;p&gt;Calculate relief u/s 89 as per IT Act in case of reciept of arrears of salary
-	or advances of salary recieved during the year&lt;/p&gt;
-	
-	&lt;/body&gt;
-	&lt;/html&gt;</sv:value>
+		&lt;body&gt;
+		
+		&lt;p&gt;Calculate relief u/s 89 as per IT Act in case of reciept of arrears of salary
+		or advances of salary recieved during the year&lt;/p&gt;
+		
+		&lt;/body&gt;
+		&lt;/html&gt;</sv:value>
 	      </sv:property>
 	      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
 	        <sv:value>Rs.</sv:value>

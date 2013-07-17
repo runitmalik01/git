@@ -19,6 +19,8 @@
 </c:if>
 <c:choose>
 	<c:when test="${not empty isDIY && isDIY == 'true'}">
+		<%-- hide the radio buttons but the feature is still available --%>
+		<%--
 		<label class="radio inline"> <input type="radio"
 			name="optionsRadios" id="showSummary" value="summary"
 			<c:if test="${empty show || show == 'summary'}">checked</c:if>>
@@ -26,6 +28,7 @@
 		<label class="radio inline"> <input type="radio"
 			name="optionsRadios" id="showXml" value="xml"
 			<c:if test="${show == 'xml'}">checked</c:if>> Show XML </label>
+		 --%>
 		<c:choose>
 			<c:when test="${empty show || show == 'summary'}">
 				<c:if test="${ITR eq 'ITR1'}">

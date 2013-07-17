@@ -637,7 +637,7 @@ that you have received your Computation Summary and XML generated copy.&lt;/p&g
       <sv:value/>
     </sv:property>
     <sv:property sv:name="mootlywcm:subject" sv:type="String">
-      <sv:value>Summary detail</sv:value>
+      <sv:value>Your Income Tax Return for Financial Year $financialYearDisplay</sv:value>
     </sv:property>
     <sv:property sv:name="mootlywcm:templateKey" sv:type="String">
       <sv:value>w4i_email</sv:value>
