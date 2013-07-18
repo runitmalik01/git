@@ -21,7 +21,10 @@ out_total_eligiblededuction=0;
 //isSeniorCitizen=true;
 /** - END Configuration */
 //80E-It depends on gross total income
+if(salarypension <=0) salarypension=0;
 var grosstotal= salarypension + othersources + houseproperty;
+if(grosstotal <=0) grosstotal=0;
+
 //--- This concludes 80c,80ccc,80D Employee's Contribution
 out_grosstotal=grosstotal;
 //-- This is specially for total_80ccd_er (employer's this is dependent on total of salary income, houseincome and other sources)
