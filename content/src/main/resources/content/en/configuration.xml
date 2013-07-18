@@ -9421,7 +9421,8 @@ out_txttotaltax = (taxPaidForeignCountry -0);
         </sv:property>
       </sv:node>
     </sv:node>
-    <sv:node sv:name="formsixteen">
+  
+<sv:node sv:name="formsixteen">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hippo:handle</sv:value>
   </sv:property>
@@ -9451,7 +9452,7 @@ out_txttotaltax = (taxPaidForeignCountry -0);
       <sv:value>hippo:harddocument</sv:value>
     </sv:property>
     <sv:property sv:name="jcr:uuid" sv:type="String">
-      <sv:value>0d9ee6bd-4524-401c-95b9-a395ef464243</sv:value>
+      <sv:value>3a780544-1fdf-48e9-bc6f-e9eacdfa1223</sv:value>
     </sv:property>
     <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
       <sv:value>live</sv:value>
@@ -9476,13 +9477,13 @@ out_txttotaltax = (taxPaidForeignCountry -0);
       <sv:value>2013-05-24T01:55:56.242+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-      <sv:value>2013-07-05T12:07:37.944+05:30</sv:value>
+      <sv:value>2013-07-18T16:40:48.101+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
       <sv:value>admin</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-      <sv:value>2013-07-05T12:07:40.496+05:30</sv:value>
+      <sv:value>2013-07-18T16:40:53.844+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="mootlywcm:additionalScript" sv:type="String">
       <sv:value/>
@@ -9519,7 +9520,9 @@ var e=0;
 var f=0;
 var ded=0;
 out_gross_total=(gross_a -0)+(gross_b -0)+(gross_c -0);
-out_balance=(out_gross_total )-(less_total_2 - 0);
+var balanc=(out_gross_total )-(less_total_2 - 0);
+if(balanc &lt;=0) balanc=0;
+out_balance=balanc;
 if(Employe_category !="GOV")
 {
 var e= 2500;
@@ -9532,7 +9535,7 @@ ded=f;
 }
 
 out_deductions_total=(deductions_entertainment -0)+(ded -0);
-out_income_chargable_total=(out_balance)-(out_deductions_total);
+out_income_chargable_total=((out_balance-out_deductions_total)&gt;0) ? (out_balance-out_deductions_total) : 0;
 out_ded_ent4= (out_income_chargable_total) - ((relief_2 -0)+(ded_ent1 -0)+(ded_ent3 -0));
 var add=(additional_1 -0)+(additional_2 -0);
 out_gross_income_total=(out_income_chargable_total)+(add);
@@ -9573,7 +9576,7 @@ ded=f;
 var d=c;
 }
 out_deductions_total=(d -0)+(ded -0);
-out_income_chargable_total=(out_balance)-(out_deductions_total);
+out_income_chargable_total=((out_balance-out_deductions_total)&gt;0) ? (out_balance-out_deductions_total) : 0;
 out_ded_ent4= (out_income_chargable_total) - ((relief_2 -0)+(ded_ent1 -0)+(ded_ent3 -0));
 var add=(additional_1 -0)+(additional_2 -0);
 out_gross_income_total=(out_income_chargable_total)+(add);
@@ -9733,6 +9736,7 @@ var avgRateTax=(D*100)/txtNetIncome ;
     </sv:property>
   </sv:node>
 </sv:node>
+  
     <sv:node sv:name="capitalasset">
       <sv:property sv:name="jcr:primaryType" sv:type="Name">
         <sv:value>hippo:handle</sv:value>
