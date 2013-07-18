@@ -34,6 +34,9 @@ public class MootlyHippoUserDetailsServiceImpl implements HippoUserDetailsServic
 	 private final static String SELECT_PASSWORD_QUERY = "SELECT * FROM mootlywcm:membersignupdocument WHERE mootlywcm:password='pwd'";
 	  //private static final String DEFAULT_USER_QUERY = "//hippo:configuration/hippo:users/{0}";
 	  private static final String DEFAULT_USER_QUERY = "//{0}/membersignupdocument/membersignupdocument";
+	  
+	  private static final String DEFAULT_VENDOR_USER_QUERY = "//element(*,mootlywcm:vendorsignupdocument)[@mootlywcm:members=''{0}'']";
+	  
 	  /*
 	  private static final String DEFAULT_GROUPS_OF_USER_QUERY =
 	      "//element(*, hipposys:group)[(@hipposys:members = ''{0}'' or @hipposys:members = ''*'') and @hipposys:securityprovider = ''internal'']";
@@ -172,7 +175,7 @@ public class MootlyHippoUserDetailsServiceImpl implements HippoUserDetailsServic
 	      Node userNode = (nodeIt.hasNext() ? userNode = nodeIt.nextNode() : null);
 	      if (userNode == null) {
 	    	  if (log.isInfoEnabled()) {
-	    		  log.info("User node not found");
+	    		  log.info("User node not found");	
 	    	  }
 	    	  throw new UsernameNotFoundException("user.not.found");
 	      }
@@ -197,10 +200,30 @@ public class MootlyHippoUserDetailsServiceImpl implements HippoUserDetailsServic
 	      else {
 	    	  throw new UsernameNotFoundException("user.account.inactive");
 	      }
+	      
+
+	      
+	      boolean isVendor = false;
+	      try {
+		      Node theParentHardDoc = userNode.getParent();
+		      //find if there is a vendor signup for this uuid
+		      String parentHardDocUUID = theParentHardDoc.getIdentifier();
+		      String statementForVendor = MessageFormat.format(DEFAULT_VENDOR_USER_QUERY, parentHardDocUUID);
+		      Query qVendor = session.getWorkspace().getQueryManager().createQuery(statementForVendor, getQueryLanguage());
+		      QueryResult resultVendor = qVendor.execute();
+		      NodeIterator nodeItVendor = resultVendor.getNodes();
+		      Node vendorNode = (nodeItVendor.hasNext() ? vendorNode = nodeItVendor.nextNode() : null);
+		      if (vendorNode != null) {
+		    	  isVendor = true;
+		      }
+	      }catch (Exception ex) {
+	    	  ex.printStackTrace();
+	      }
+	      
 	      boolean accountNonExpired = true;
 	      boolean credentialsNonExpired = true;
 	      boolean accountNonLocked = true;
-	      Collection<? extends GrantedAuthority> authorities = getGrantedAuthoritiesOfUser(username);
+	      Collection<? extends GrantedAuthority> authorities = getGrantedAuthoritiesOfUser(username,isVendor);
 
 	      user = new User(username, password != null ? password : passwordProp, enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, authorities);
 	    } catch (RepositoryException e) {
@@ -217,13 +240,14 @@ public class MootlyHippoUserDetailsServiceImpl implements HippoUserDetailsServic
 	    return user;
 	  }
 
-	  protected Collection<? extends GrantedAuthority> getGrantedAuthoritiesOfUser(String username) throws LoginException, RepositoryException {
+	  protected Collection<? extends GrantedAuthority> getGrantedAuthoritiesOfUser(String username,boolean isVendor) throws LoginException, RepositoryException {
 	    Set<GrantedAuthority> authorities = new HashSet<GrantedAuthority>();
 	    Session session = null;
 	    //Amit Patkar for now lets give member and everybody to all logged in users
-	    
+	    //lets check if this user 	    
 	    authorities.add(new GrantedAuthorityImpl("ROLE_everybody"));
 	    authorities.add(new GrantedAuthorityImpl("ROLE_member"));
+	    if (isVendor)authorities.add(new GrantedAuthorityImpl("ROLE_vendor")); 
 	    /*
 	    try {
 	      if (getSystemCredentials() != null) {
@@ -279,7 +303,7 @@ public class MootlyHippoUserDetailsServiceImpl implements HippoUserDetailsServic
 	        }
 	      }
 	    }
-		*/
+	    */
 	    return authorities;
 	  }
 	  

@@ -64,8 +64,14 @@ public class ITReturnHomePageView {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
+	public String getCanonicalUUID() {
+		return canonicalUUID;
+	}
 
-
+	public void setCanonicalUUID(String canonicalUUID) {
+		this.canonicalUUID = canonicalUUID;
+	}
 
 	String pan;
 	FinancialYear financialYear;
@@ -73,6 +79,7 @@ public class ITReturnHomePageView {
 	ITReturnType itReturnType;
 	ITRForm itrForm;
 	ITRServiceDelivery itrFormMode;
+	String canonicalUUID;
 	
 	String lastOrOrgName;
 	String email;

@@ -19,6 +19,7 @@
     <intercept-url pattern="/memberLogin*" filters="none"/>
     <!-- <intercept-url pattern="/**" access="ROLE_everybody"/> -->
 	<intercept-url pattern="/member/**" access="ROLE_member"/>
+	<intercept-url pattern="/vendor/**" access="ROLE_vendor"/>
     <custom-filter position="LOGOUT_FILTER" ref="customLogoutFilter"/>
     <custom-filter position="REMEMBER_ME_FILTER" ref="customRememberMeFilter"/>
     <custom-filter position="FORM_LOGIN_FILTER" ref="customUsernamePasswordAuthenticationFilter"/>

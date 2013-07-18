@@ -18,6 +18,7 @@ import com.mootly.wcm.beans.FormSixteenDocument;
 import com.mootly.wcm.beans.HouseProperty;
 import com.mootly.wcm.beans.InterestDoc;
 import com.mootly.wcm.beans.MemberContactInformation;
+import com.mootly.wcm.beans.MemberPayment;
 import com.mootly.wcm.beans.MemberPersonalInformation;
 import com.mootly.wcm.beans.OtherSourcesDocument;
 import com.mootly.wcm.beans.RebateSec90Document;
@@ -45,7 +46,7 @@ import com.mootly.wcm.components.ITReturnComponent;
 		HouseIncomeDetail.class,HouseProperty.class,OtherSourcesDocument.class,AdvanceTaxDocument.class,AdvanceTaxDetail.class,TdsFromSalaryDocument.class,
 		TdsFromSalaryDetail.class,TdsFromothersDocument.class,SelfAssesmetTaxDocument.class,SelfAssesmentTaxDetail.class,SalaryIncomeDetail.class,DeductionDocument.class,
 		DeductionDocumentDetail.class,InterestDoc.class,FormSixteenDocument.class,FormSixteenDetail.class,RebateSec90Document.class,AdjustmentOfLossesCom.class,
-		AdjustmentOfLossesDoc.class})
+		AdjustmentOfLossesDoc.class,MemberPayment.class})
 @RequiredBeans(requiredBeans={MemberPersonalInformation.class})
 @ValueListBeans(paths={"deduction-sections-${financialYear}","deduction-section-heads-${financialYear}","deduction-section-maxallowed-${financialYear}"},
 accessKey={"deduction_sections","deduction_section_heads","deduction_section_maxallowed"})

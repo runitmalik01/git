@@ -25,5 +25,5 @@
 <hst:link var="logopathtext" path="/images/w4indiatxt.png"/>
 <hst:link var="home" path="/"/>
 <div id="logo">
-        <a href="${home}"><img class="logo" width="290" height="40" src="${logopath}">&nbsp;</a>
+        <a href="${home}"><img class="logo" width="290" height="40" src="${logopath}?123">&nbsp;</a>
 </div>

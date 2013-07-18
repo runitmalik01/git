@@ -95,6 +95,7 @@ import com.mootly.wcm.annotations.ValueListBeans;
 import com.mootly.wcm.beans.CompoundChildUpdate;
 import com.mootly.wcm.beans.FormMapFiller;
 import com.mootly.wcm.beans.FormSixteenDocument;
+import com.mootly.wcm.beans.MemberPayment;
 import com.mootly.wcm.beans.MemberPersonalInformation;
 
 import com.mootly.wcm.beans.ScreenCalculation;
@@ -109,6 +110,7 @@ import com.mootly.wcm.model.ITRForm;
 import com.mootly.wcm.model.ITRTab;
 import com.mootly.wcm.model.ITReturnPackage;
 import com.mootly.wcm.model.ITReturnType;
+import com.mootly.wcm.model.PaymentVerificationStatus;
 import com.mootly.wcm.model.ValidationResponse;
 import com.mootly.wcm.services.ITRXmlGeneratorServiceFactory;
 import com.mootly.wcm.services.InvalidXMLException;
@@ -175,6 +177,8 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 
 	///Name of the HTML File and the depth its in
 	String scriptName;
+	
+	boolean isVendor;
 
 	@Override
 	public void init(ServletContext servletContext,
@@ -190,6 +194,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 	@Override
 	public void doBeforeRender(HstRequest request, HstResponse response) {
 		super.doBeforeRender(request, response);
+		
 		if (!hasInitComplete) {
 			try {
 				initComponent(request,response);
@@ -660,6 +665,10 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 
 	protected void initComponent(HstRequest request,HstResponse response) throws InvalidNavigationException,InvalidPANException{
 		ResolvedSiteMapItem resolvedMapItem = request.getRequestContext().getResolvedSiteMapItem();
+		
+		String strIsVendor = request.getRequestContext().getResolvedSiteMapItem().getParameter("isVendor");
+		if (strIsVendor != null) isVendor = Boolean.valueOf(strIsVendor);
+		
 		if (request.getSession() != null && request.getSession().getAttribute("user") != null) {
 			member = (Member)request.getSession().getAttribute("user");
 		}
@@ -789,6 +798,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			additionalBeans = XmlGenerator.class.getAnnotation(AdditionalBeans.class);
 		}
 		boolean memberPersonalInfoLoaded = false;
+		boolean paymentLoaded = false;
 		if (additionalBeans != null && additionalBeans.additionalBeansToLoad() != null && additionalBeans.additionalBeansToLoad().length > 0 ) {
 			for (Class<? extends HippoBean> additionalBean:additionalBeans.additionalBeansToLoad()) {
 				String additionalBeanPathToLoad = baseAbsolutePathToReturnDocuments + "/" + additionalBean.getSimpleName().toLowerCase();
@@ -801,6 +811,9 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 					if (o instanceof MemberPersonalInformation) {
 						memberPersonalInfoLoaded = true;
 					}
+					if (o instanceof MemberPayment) {
+						paymentLoaded = true;
+					}
 				} catch (ObjectBeanManagerException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -812,6 +825,16 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 				String additionalBeanPathToLoad = baseAbsolutePathToReturnDocuments + "/" + MemberPersonalInformation.class.getSimpleName().toLowerCase();
 				Object o = getObjectBeanManager(request).getObject(additionalBeanPathToLoad);
 				request.setAttribute( MemberPersonalInformation.class.getSimpleName().toLowerCase(),o);
+			}catch (Exception ex) {
+				log.warn("Trying to load member personal info failed ...",ex);
+			}
+		}
+		
+		if (!paymentLoaded) {
+			try {
+				String additionalBeanPathToLoad = baseAbsolutePathToReturnDocuments + "/" + MemberPayment.class.getSimpleName().toLowerCase();
+				Object o = getObjectBeanManager(request).getObject(additionalBeanPathToLoad);
+				request.setAttribute( MemberPayment.class.getSimpleName().toLowerCase(),o);
 			}catch (Exception ex) {
 				log.warn("Trying to load member personal info failed ...",ex);
 			}
@@ -1393,6 +1416,27 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 	//DecimalFormat decimalFormat=new DecimalFormat("#.#");
 	public void handleITRSummary(HstRequest request, HstResponse response) throws InvalidXMLException{
 		// TODO Auto-generated method stub
+		boolean isPaid = false;
+		if (request.getAttribute("memberpayment") != null) {
+			try {
+				MemberPayment memberPayment = (MemberPayment) request.getAttribute("memberpayment");
+				if (memberPayment != null && memberPayment.getPaymentVerificationStatus() != null &&  memberPayment.getPaymentVerificationStatus() == PaymentVerificationStatus.VERIFIED)
+				isPaid = true;
+			}catch (Exception ex) {
+				log.error("Error in checking payment status",ex);
+			}
+		}
+		
+		if (!isPaid) {
+			String redirectTo = getRedirectURLForSiteMapItem(request, response, null, "servicerequest-itr-payment", getFinancialYear(), getITReturnType(), getPAN());
+			try {
+				response.sendRedirect(redirectTo);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return;
+		}
 
 		boolean isDownload = false;
 		String whtToDownload = null; //I HATE IT use ENUM

@@ -96,4 +96,13 @@ public enum FilingStatus {
 		return UNKNOWN;
 	}
 	
+	public static FilingStatus getByXmlCode(String xmlCode) {
+		for (FilingStatus aStatus:FilingStatus.values()) {
+			if (xmlCode.equals(aStatus.getXmlCode())) {
+				return aStatus;
+			}
+		}
+		return UNKNOWN;
+	}
+	
 }

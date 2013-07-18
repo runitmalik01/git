@@ -900,23 +900,7 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 		if(key.matches("ans_Non Resident")) return "NRI";
 		else return null;
 	}
-	private GregorianCalendar ConvDateStringToCalendar(String strDate){
-		Date date = null ;
-		DateFormat formatter = getIndianDateFormatter();
-		GregorianCalendar cal=null;
-		if(StringUtils.isNotEmpty(strDate)){
-			cal=(GregorianCalendar) GregorianCalendar.getInstance();
-			try{ 
-				date = (Date)formatter.parse(strDate);
-				cal.setTime(date);
-			}
-			catch(Exception e){
-				log.error("calendar error"+e);
-			}
-			return cal;
-		}else return null;
-		
-	}
+	
 	/**
 	 * This method will check if the service has been paid in full
 	 * @return

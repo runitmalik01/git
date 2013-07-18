@@ -16,11 +16,15 @@
 
 package com.mootly.wcm.beans;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
 import javax.jcr.RepositoryException;
 
+import org.apache.commons.lang.StringUtils;
 import org.hippoecm.hst.content.beans.Node;
 import org.hippoecm.hst.content.beans.standard.HippoDocument;
 import org.hippoecm.repository.api.HippoNode;
@@ -70,5 +74,49 @@ public class BaseDocument extends HippoDocument {
     public static final SimpleDateFormat getIndianDateFormatter() {
     	return new SimpleDateFormat("dd/MM/yyyy");
     }
+    
+    public GregorianCalendar ConvDateStringToCalendar(String strDate){
+		Date date = null ;
+		DateFormat formatter = getIndianDateFormatter();
+		GregorianCalendar cal=null;
+		if(StringUtils.isNotEmpty(strDate)){
+			cal=(GregorianCalendar) GregorianCalendar.getInstance();
+			try{ 
+				date = (Date)formatter.parse(strDate);
+				cal.setTime(date);
+			}
+			catch(Exception e){
+				log.error("calendar error"+e);
+			}
+			return cal;
+		}else return null;
+		
+	}
+    
+    public String ConvCalendarToDateString(Calendar theDate){
+		DateFormat formatter = getIndianDateFormatter();
+		if (theDate == null) return null;
+		try {
+			return formatter.format(theDate);
+		}catch (Exception ex) {
+			return null;
+		}
+		
+	}
+    
+    
+    public Double ConvStringToDouble(String strDouble){
+		if (strDouble != null) {
+			try {
+				return Double.valueOf(strDouble);
+			}catch (Exception ex) {
+				return 0.0D;
+			}
+		}
+		else {
+			return 0.0D;
+		}
+		
+	}
     
 }
