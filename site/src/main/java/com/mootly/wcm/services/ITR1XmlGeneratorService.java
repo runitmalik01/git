@@ -294,14 +294,8 @@ public class ITR1XmlGeneratorService {
 		//totalMapForJSDe.put("ageInYears",ageInYears);
 		totalMapForJSDe.put("isSeniorCitizen",financialYear.isSeniorCitizen(memberPersonalInformation.getDOB().getTime()));
 		totalMapForJSDe.put("salarypension",incomeDeductions.getIncomeFromSal());
-		if(incomeDeductions.getIncomeOthSrc().longValue()>0)
-			totalMapForJSDe.put("othersources",incomeDeductions.getIncomeOthSrc());
-		if(incomeDeductions.getIncomeOthSrc().longValue()<=0)
-			totalMapForJSDe.put("othersources",0);
-		if(incomeDeductions.getTotalIncomeOfHP()>0)
-			totalMapForJSDe.put("houseproperty",incomeDeductions.getTotalIncomeOfHP());
-		if(incomeDeductions.getTotalIncomeOfHP()<=0)
-			totalMapForJSDe.put("houseproperty",0);
+		totalMapForJSDe.put("othersources",incomeDeductions.getIncomeOthSrc());
+		totalMapForJSDe.put("houseproperty",incomeDeductions.getTotalIncomeOfHP());
 		Map<String,Object> resultMapDe = ScreenCalculatorService.getScreenCalculations("Chapter6Calc.js", request.getParameterMap(), totalMapForJSDe);
 		Double totaleligiblededuction=0D;
 		if(resultMapDe.containsKey("total_eligiblededuction")) {
@@ -749,12 +743,12 @@ public class ITR1XmlGeneratorService {
 							employerOrDeductorOrCollectDetl.setEmployerOrDeductorOrCollecterName(formSixteenDetail.getEmployer().toUpperCase());
 						}
 						tdsonSalary.setEmployerOrDeductorOrCollectDetl(employerOrDeductorOrCollectDetl);
-						
+
 						if(formSixteenDetail.getIncome_chargable_tax()!=null){
 							tdsonSalary.setIncChrgSal(indianCurrencyHelper.bigIntegerRound(formSixteenDetail.getIncome_chargable_tax()));
 						}
 						tdsonSalary.setTotalTDSSal(indianCurrencyHelper.bigIntegerRound(TdsSalary));
-						tdsonSalaries.getTDSonSalary().add(tdsonSalary);	
+						tdsonSalaries.getTDSonSalary().add(tdsonSalary);
 						if (!hasAValidTDSOnSalary) hasAValidTDSOnSalary = true; //just set this so that it says we have a good candidate
 					}
 				}
@@ -853,7 +847,7 @@ public class ITR1XmlGeneratorService {
 			}else
 				itr1.setTaxExmpIntInc(0);
 		}else
-		itr1.setTaxExmpIntInc(0);
+			itr1.setTaxExmpIntInc(0);
 
 		//Verification
 		Declaration declaration = new Declaration();
