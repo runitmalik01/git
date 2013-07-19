@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 /**
- * 
+ *
  * User: abhishek
  * Date: march 04, 2013
  * Time: 11:26:35 AM
- * 
+ *
  */
 
 package com.mootly.wcm.beans.compound;
@@ -47,7 +47,7 @@ import com.mootly.wcm.beans.SalaryIncomeDocument;
 public class SalaryIncomeDetail extends HippoItem implements FormMapFiller {
 	static final public String NAMESPACE = "mootlywcm:salaryincomedetail";
 	static final public String NODE_NAME = SalaryIncomeDetail.class.getName().toLowerCase();
-	private final static Logger log = LoggerFactory.getLogger(SalaryIncomeDocument.class); 
+	private final static Logger log = LoggerFactory.getLogger(SalaryIncomeDocument.class);
 	private String Name_employer;
 	private String Name_employee;
 	private String Pan_employer;
@@ -69,6 +69,7 @@ public class SalaryIncomeDetail extends HippoItem implements FormMapFiller {
 	private String state;
 	private String Pin;
 	private String personalInfoUuid;
+	private Double Tds_Pension;
 
 	private boolean markedForDeletion;
 
@@ -152,6 +153,10 @@ public class SalaryIncomeDetail extends HippoItem implements FormMapFiller {
 		if (Employe_category== null) Employe_category = getProperty("mootlywcm:Employe_category");
 		return Employe_category;
 	}
+	public final Double getTdsPension() {
+		if (Tds_Pension== null) Tds_Pension = getProperty("mootlywcm:tdspension");
+		return Tds_Pension;
+	}
 
 
 	public final void setName_employer(String Name_employer) {
@@ -207,6 +212,9 @@ public class SalaryIncomeDetail extends HippoItem implements FormMapFiller {
 	}
 	public void setTaxable_earning(Double Taxable_earning) {
 		this.Taxable_earning = Taxable_earning;
+	}
+	public void setTdsPension(Double Tds_Pension) {
+		this.Tds_Pension = Tds_Pension;
 	}
 
 	//for personal information
@@ -272,7 +280,9 @@ public class SalaryIncomeDetail extends HippoItem implements FormMapFiller {
 			if(getAllowance1()!=null){
 				node.setProperty("mootlywcm:Allowance1", getAllowance1());
 			}
-
+            if(getTdsPension()!=null){
+            	node.setProperty("mootlywcm:tdspension", getTdsPension());
+            }
 		} catch (RepositoryException rex) {
 			log.error("Repository Exception while binding",rex);
 		}
@@ -282,7 +292,7 @@ public class SalaryIncomeDetail extends HippoItem implements FormMapFiller {
 	public void fill(FormMap formMap) {
 		// TODO Auto-generated method stub
 		if (log.isInfoEnabled()) {
-			log.info("Into the fill method");			
+			log.info("Into the fill method");
 		}
 		if (formMap == null) return;
 
@@ -348,8 +358,6 @@ public class SalaryIncomeDetail extends HippoItem implements FormMapFiller {
 			setAllowance(amtAll);
 		}
 		double amtAll1=0.0d;
-		log.info("JJJJJJJJJBBBBBBBBBBBBbHHHHHHHHHHHHHGGGGGGGGGGGgFFFFFFFFFF"+formMap.getField("Allowance1").getValue());
-		log.info("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"+formMap.getField("Allowance1"));
 		if ( formMap.getField("Allowance1").getValue().isEmpty()) {
 			setAllowance1(amtAll1);
 		}
@@ -376,6 +384,13 @@ public class SalaryIncomeDetail extends HippoItem implements FormMapFiller {
 			amtProfit = Double.parseDouble(strProfit);
 			setProfit(amtProfit);
 		}
+		double tds = 0.0d;
+		if ( formMap.getField("tdspension").getValue().isEmpty()) {
+			setProfit(tds);
+		}else{
+			double tdspen = Double.parseDouble(formMap.getField("tdspension").getValue());
+			setTdsPension(tdspen);
+		}
 	}
 
 	public <T extends HippoBean> void cloneBean(T sourceBean) {
@@ -398,5 +413,6 @@ public class SalaryIncomeDetail extends HippoItem implements FormMapFiller {
 		setPerquisite(salaryIncomeDetail.getPerquisite());
 		setProfit(salaryIncomeDetail.getProfit());
 		setTaxable_earning(salaryIncomeDetail.getTaxable_earning());
+		setTdsPension(salaryIncomeDetail.getTdsPension());
 	};
 }
