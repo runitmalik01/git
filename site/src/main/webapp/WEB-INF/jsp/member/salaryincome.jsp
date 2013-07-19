@@ -204,6 +204,15 @@
 				<fieldset>
 					<legend>Compensation and Taxation</legend>
 					<div class="row-fluid show-grid">
+					    <div class="span4">
+					         <div class = "rowlabel">
+					              <label for="tdspension"><fmt:message key="itr.tds.pension"/></label>
+					         </div>
+					         <div class="rowlabel">
+					              <input type="text" name="tdspension" id="tdspension" class="decimal" value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
+					              <fmt:formatNumber type="number"  groupingUsed="false" value="${childBean.tdsPension}" /></c:if>"/>
+					         </div>
+					   </div>
 						<div class="span4">
 							<div class="rowlabel">
 								<label for="Gross_salary"><fmt:message
@@ -213,8 +222,7 @@
 								<input type="text" name="Gross_salary" maxlength="14"
 									id="Gross_salary" class="decimal"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
-						<fmt:formatNumber type="number"  groupingUsed="false"
-            value="${childBean.gross_salary}" /></c:if>" />
+									<fmt:formatNumber type="number"  groupingUsed="false" value="${childBean.gross_salary}" /></c:if>" />
 							</div>
 						</div>
 					<%--	<div class="span4">
