@@ -995,7 +995,7 @@ that you have received your Computation Summary and XML generated copy.&lt;/p&g
 	      <sv:value>memberuploadedadoc</sv:value>
 	    </sv:property>
 	    <sv:property sv:name="mootlywcm:to" sv:type="String">
-	      <sv:value/>
+	      <sv:value>amit@mootly.com,info@mootly.com</sv:value>
 	    </sv:property>
 	    <sv:node sv:name="hippotranslation:translations">
 	      <sv:property sv:name="jcr:primaryType" sv:type="Name">

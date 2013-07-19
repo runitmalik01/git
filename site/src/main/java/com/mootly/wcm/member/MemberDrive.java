@@ -159,7 +159,7 @@ public class MemberDrive extends ITReturnComponent {
 		if(returnMemberDriveDoc!=null){
 			response.setRenderParameter("FileUpload", "Success");
 			//send an email right here to our administrators and tell them about an availability
-			String[] to = new String[] {"info@wealth4india.com","amit@mootly.com"};
+			//String[] to = new String[] {"info@wealth4india.com","amit@mootly.com"};
 			Map<String,Object> velocityContext = new HashMap<String, Object>();
 			velocityContext.put("userName",getUserName());
 			velocityContext.put("userNameNormalized",getUserNameNormalized());
@@ -177,7 +177,7 @@ public class MemberDrive extends ITReturnComponent {
 				velocityContext.put("memberPersonalInformation",memberPersonalInformation);
 			}
 			
-			sendEmail(request, to, null, null, "memberuploadedadoc", velocityContext);
+			sendEmail(request, null, null, null, "memberuploadedadoc", velocityContext);
 		}
 	}
 	/**

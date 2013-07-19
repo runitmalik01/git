@@ -42,6 +42,12 @@ public class EmailTemplate extends BaseDocument implements ContentNodeBinder {
 	String plainBody;
 	String[] bcc;
 	String[] cc;
+	String[] to;
+	
+	public final String[] getTo() {
+		if (to == null) to = getProperty("mootlywcm:to").toString().split(",");
+		return to;
+	}
 	
 	public final String[] getBcc() {
 		if (bcc == null) bcc = getProperty("mootlywcm:bcc").toString().split(",");
@@ -131,7 +137,7 @@ public class EmailTemplate extends BaseDocument implements ContentNodeBinder {
 			EmailTemplate memberSignup = (EmailTemplate) content;
 			node.setProperty("mootlywcm:templateKey", memberSignup.getTemplateKey());
 			node.setProperty("mootlywcm:password", memberSignup.getFrom());
-			node.setProperty("mootlywcm:email", memberSignup.getFromName());
+			node.setProperty("mootlywcm:fromName", memberSignup.getFromName());
 			node.setProperty("mootlywcm:email", memberSignup.getEmail());
 			node.setProperty("mootlywcm:subject", memberSignup.getSubject());
 			node.setProperty("mootlywcm:firstName", memberSignup.getHtmlBody());

@@ -30,6 +30,7 @@ import com.mootly.wcm.beans.ScreenConfigDocument;
 public class StartApplicationValidationService {
 
 	private static final Logger log = LoggerFactory.getLogger(StartApplicationValidationService.class);
+	MasterConfigService masterConfigService = MasterConfigService.getInstance();
 	/***
 	 * This Method is Used to Validate The Start Application Screen
 	 * 
@@ -191,8 +192,9 @@ public class StartApplicationValidationService {
 	 * @return null
 	 * */
 	protected void validLastName(FormMap formMap){
-		String check=MasterConfigServiceImpl.shouldValidate5thChar();
-		if(check!=null){
+		Boolean check=masterConfigService.shouldValidate5thChar();
+		
+		if(check != null && check){
 			if(formMap.getField("pi_last_name")!=null&& formMap.getField("pan")!=null){
 				char pan5thChar=formMap.getField("pan").getValue().toLowerCase().charAt(4);
 				char lastName1stChar=formMap.getField("pi_last_name").getValue().toLowerCase().charAt(0);
@@ -217,8 +219,8 @@ public class StartApplicationValidationService {
 	 * */
 	@SuppressWarnings("deprecation")
 	protected void validDateofBirth(FormMap formMap){
-		String check=MasterConfigServiceImpl.shouldValidateDate();
-		if(check!=null){
+		Boolean check=masterConfigService.shouldValidateDate();
+		if(check != null && check){
 			if(formMap.getField("pi_dob")!=null){
 				Date date=new Date();
 				String validDate="01/04/"+date.getYear();
