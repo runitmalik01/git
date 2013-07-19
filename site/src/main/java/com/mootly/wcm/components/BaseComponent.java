@@ -20,6 +20,10 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.jcr.ItemNotFoundException;
+import javax.jcr.LoginException;
+import javax.jcr.Node;
+import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 
 import org.hippoecm.hst.component.support.bean.BaseHstComponent;
@@ -29,6 +33,7 @@ import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.core.component.HstComponentException;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
+import org.hippoecm.hst.core.request.ResolvedSiteMapItem;
 import org.hippoecm.repository.api.Workflow;
 import org.hippoecm.repository.reviewedactions.FullReviewedActionsWorkflow;
 import org.slf4j.Logger;
@@ -42,6 +47,11 @@ import com.mootly.wcm.utils.VelocityUtils;
 
 public class BaseComponent extends BaseHstComponent {
 	private static final Logger log = LoggerFactory.getLogger(BaseComponent.class);
+	
+	String strIsOnVendorPortal;
+	String memberhandleuuid;
+	String memberFolderPath;
+	
     @Override
     public void doBeforeRender(HstRequest request, HstResponse response) {
         super.doBeforeRender(request, response);
@@ -72,7 +82,30 @@ public class BaseComponent extends BaseHstComponent {
         if (template != null) request.setAttribute("template", template);
         if (bodyCssClass != null) request.setAttribute("bodyCssClass", bodyCssClass);
         if (contentCssClass != null) request.setAttribute("contentCssClass", contentCssClass);
-        if (widgetsCssClass != null) request.setAttribute("widgetsCssClass", widgetsCssClass);        
+        if (widgetsCssClass != null) request.setAttribute("widgetsCssClass", widgetsCssClass);      
+        
+        ResolvedSiteMapItem resolvedSiteMapItem = request.getRequestContext().getResolvedSiteMapItem();
+        strIsOnVendorPortal = resolvedSiteMapItem.getParameter("isOnVendorPortal");
+        if (strIsOnVendorPortal != null) request.setAttribute("strIsOnVendorPortal", strIsOnVendorPortal);
+        
+        boolean isVendor = ( ( request.getUserPrincipal() != null && request.isUserInRole("ROLE_vendor") ) ? true : false);
+        request.setAttribute("isVendor", isVendor);
+        
+        memberhandleuuid = resolvedSiteMapItem.getParameter("memberhandleuuid");
+         try {
+			Node theMemberHandle = request.getRequestContext().getSession().getNodeByIdentifier(memberhandleuuid);
+			if (theMemberHandle != null) memberFolderPath = theMemberHandle.getPath();
+		} catch (ItemNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (LoginException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (RepositoryException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        
     }
     
     protected void redirectToNotFoundPage(HstResponse response) {
@@ -96,7 +129,24 @@ public class BaseComponent extends BaseHstComponent {
     	 return ( request.getUserPrincipal() != null ? true : false);
     }
     
-    /**
+    public boolean isVendor(HstRequest request) {
+   	 return ( ( request.getUserPrincipal() != null && request.isUserInRole("ROLE_vendor") ) ? true : false);
+   }
+   
+    
+    public boolean isOnVendorPortal() {
+    	return ( (strIsOnVendorPortal == null || strIsOnVendorPortal.equals("false")) ? false :  true); 
+    }
+    
+    public String getVendorPortalMemberFolderPath() {
+    	return memberhandleuuid;
+    }
+    
+    public String getMemberFolderPath() {
+		return memberFolderPath;
+	}
+
+	/**
      * 
      * @param request
      * @param to

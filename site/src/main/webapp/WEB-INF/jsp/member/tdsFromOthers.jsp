@@ -79,7 +79,7 @@
 							<option value="${nine}">${nine}</option>
 							<option value="${ten}">${ten}</option>
 							<option value="${eleven}">${eleven}</option>
-							<option value="${nine}">${twelve}</option>
+							<option value="${twelve}">${twelve}</option>
 							<option value="${thirteen}">${thirteen}</option>
 							<option value="${forteen}">${forteen}</option>
 							<option value="${fifteen}">${fifteen}</option>

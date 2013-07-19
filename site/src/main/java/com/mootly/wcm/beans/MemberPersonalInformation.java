@@ -901,25 +901,6 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 		else return null;
 	}
 	
-	
-	@Override
-	public String toString() {
-		// TODO Auto-generated method stub
-		String ls= System.getProperty("line.separator");
-		StringBuilder sb = new StringBuilder();
-		sb.append("Name:").append(getName()).append(ls);
-		sb.append("Flat/Floor/Building:").append(getFlatDoorBuilding()).append(ls);
-		sb.append("Road/Street:").append(getRoadStreet()).append(ls);
-		sb.append("Area/Locality:").append(getAreaLocality()).append(ls);
-		sb.append("City/Town/District:").append(getTownCityDistrict()).append(ls);
-		//sb.append("City/Town/District:").append(getTownCityDistrict()).append(ls);
-		
-		sb.append("Mobile:").append(getMobile()).append(ls);
-		sb.append("Mobile1:").append(getMobile1());
-		
-		return sb.toString();
-	}
-	
 	/**
 	 * This method will check if the service has been paid in full
 	 * @return
