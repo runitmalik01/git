@@ -77,6 +77,7 @@ import com.mootly.wcm.beans.compound.AdvanceTaxDetail;
 import com.mootly.wcm.beans.compound.DeductionDocumentDetail;
 import com.mootly.wcm.beans.compound.FormSixteenDetail;
 import com.mootly.wcm.beans.compound.HouseIncomeDetail;
+import com.mootly.wcm.beans.compound.SalaryIncomeDetail;
 import com.mootly.wcm.beans.compound.SelfAssesmentTaxDetail;
 import com.mootly.wcm.beans.compound.TdsOthersDetail;
 import com.mootly.wcm.model.FinancialYear;
@@ -400,12 +401,25 @@ public class ITR1XmlGeneratorService {
 				}
 			}
 		}
+		BigInteger bigTdsPension = new BigInteger("0");
+		BigInteger bigTotalTdsPension = new BigInteger("0");
+		if( salaryIncomeDocument!=null){
+			List<SalaryIncomeDetail> listOfSalaryIncomeDetail = salaryIncomeDocument.getSalaryIncomeDetailList();
+			if ( listOfSalaryIncomeDetail != null && listOfSalaryIncomeDetail.size() > 0 ){
+				for(SalaryIncomeDetail salaryIncomeDetail:listOfSalaryIncomeDetail){
+					if(salaryIncomeDetail.getTdsPension()!=null){
+						bigTdsPension=indianCurrencyHelper.bigIntegerRound(salaryIncomeDetail.getTdsPension());
+						bigTotalTdsPension= bigTotalTdsPension.add(bigTdsPension);
+					}
+				}
+			}
+		}
 		BigInteger bigTdsOther=new BigInteger ("0");
 		if(tdsFromothersDocument!=null){
 			bigTdsOther=indianCurrencyHelper.bigIntegerRound(tdsFromothersDocument.getTotal_Amount());
 		}
 		BigInteger TDS = new BigInteger("0");
-		TDS = bigTotalTdsSlry.add(bigTdsOther);
+		TDS = bigTotalTdsSlry.add(bigTdsOther).add(bigTotalTdsPension);
 		BigInteger TaxLiability= new BigInteger("0");
 		TaxLiability = itr1TaxComputation.getNetTaxLiability().subtract(TDS);
 		//current date
@@ -508,10 +522,23 @@ public class ITR1XmlGeneratorService {
 				}
 			}
 		}
+		BigInteger TdsPension = new BigInteger("0");
+		BigInteger TotalTdsPension = new BigInteger("0");
+		if( salaryIncomeDocument!=null){
+			List<SalaryIncomeDetail> listOfSalaryIncomeDetail = salaryIncomeDocument.getSalaryIncomeDetailList();
+			if ( listOfSalaryIncomeDetail != null && listOfSalaryIncomeDetail.size() > 0 ){
+				for(SalaryIncomeDetail salaryIncomeDetail:listOfSalaryIncomeDetail){
+					if(salaryIncomeDetail.getTdsPension()!=null){
+						TdsPension=indianCurrencyHelper.bigIntegerRound(salaryIncomeDetail.getTdsPension());
+						TotalTdsPension= TotalTdsPension.add(TdsPension);
+					}
+				}
+			}
+		}
 		//if(tdsFromSalaryDocument!=null){
 		//bigTotalTdsSalary= indianCurrencyHelper.bigIntegerRound(tdsFromSalaryDocument.getTotal_Amount());
 		//}
-		request.setAttribute("bigTotalTdsSalary", bigTotalTdsSalary);
+		request.setAttribute("bigTotalTdsSalary", bigTotalTdsSalary.add(TotalTdsPension));
 
 		BigInteger bigTotalTdsOther=new BigInteger ("0");
 		if(tdsFromothersDocument!=null){
@@ -519,7 +546,7 @@ public class ITR1XmlGeneratorService {
 		}
 		request.setAttribute("bigTotalTdsOther", bigTotalTdsOther);
 
-		BigInteger bigTotalTds=bigTotalTdsSalary.add(bigTotalTdsOther);
+		BigInteger bigTotalTds=bigTotalTdsSalary.add(bigTotalTdsOther).add(TotalTdsPension);
 		taxesPaid.setTDS(bigTotalTds);
 
 		BigInteger selfassessmenttax = new BigInteger("0");
@@ -719,11 +746,11 @@ public class ITR1XmlGeneratorService {
 
 		//TDSonSalaries
 
+		boolean hasAValidTDSOnSalary = false;
+		TDSonSalaries tdsonSalaries = new TDSonSalaries();
 		if( formSixteenDocument!=null){
 			List<FormSixteenDetail> listOfFormSixteenDetail = formSixteenDocument.getFormSixteenDetailList();
 			if ( listOfFormSixteenDetail != null && listOfFormSixteenDetail.size() > 0 ){
-				TDSonSalaries tdsonSalaries = new TDSonSalaries();
-				boolean hasAValidTDSOnSalary = false;
 				for(FormSixteenDetail formSixteenDetail:listOfFormSixteenDetail){
 					TDSonSalary tdsonSalary = new TDSonSalary();
 					EmployerOrDeductorOrCollectDetl employerOrDeductorOrCollectDetl = new EmployerOrDeductorOrCollectDetl();
@@ -752,9 +779,36 @@ public class ITR1XmlGeneratorService {
 						if (!hasAValidTDSOnSalary) hasAValidTDSOnSalary = true; //just set this so that it says we have a good candidate
 					}
 				}
-				if (hasAValidTDSOnSalary) itr1.setTDSonSalaries(tdsonSalaries);
 			}
 		}
+
+
+		if( salaryIncomeDocument!=null){
+			List<SalaryIncomeDetail> listOfSalaryIncomeDetail = salaryIncomeDocument.getSalaryIncomeDetailList();
+			if ( listOfSalaryIncomeDetail != null && listOfSalaryIncomeDetail.size() > 0 ){
+				for(SalaryIncomeDetail salaryIncomeDetail:listOfSalaryIncomeDetail){
+					TDSonSalary tdsonSalary = new TDSonSalary();
+					EmployerOrDeductorOrCollectDetl employerOrDeductorOrCollectDetl = new EmployerOrDeductorOrCollectDetl();
+					if(salaryIncomeDetail.getTdsPension()!=null){
+						if(salaryIncomeDetail.getTan_employer()!=null){
+							employerOrDeductorOrCollectDetl.setTAN(salaryIncomeDetail.getTan_employer().toUpperCase());
+						}
+						if(salaryIncomeDetail.getName_employer()!=null){
+							employerOrDeductorOrCollectDetl.setEmployerOrDeductorOrCollecterName(salaryIncomeDetail.getName_employer().toUpperCase());
+						}
+						tdsonSalary.setEmployerOrDeductorOrCollectDetl(employerOrDeductorOrCollectDetl);
+						if(salaryIncomeDetail.getGross_salary()!=null){
+							tdsonSalary.setIncChrgSal(indianCurrencyHelper.bigIntegerRound(salaryIncomeDetail.getGross_salary()));
+						}
+						tdsonSalary.setTotalTDSSal(indianCurrencyHelper.bigIntegerRound(salaryIncomeDetail.getTdsPension()));
+						tdsonSalaries.getTDSonSalary().add(tdsonSalary);
+						if (!hasAValidTDSOnSalary) hasAValidTDSOnSalary = true;
+					}
+				}
+			}
+		}
+
+		if (hasAValidTDSOnSalary) itr1.setTDSonSalaries(tdsonSalaries);
 
 		/**
 
