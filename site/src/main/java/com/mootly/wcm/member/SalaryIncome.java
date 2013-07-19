@@ -3,8 +3,8 @@
  * according to form 16.
  * @author abhishek
  * 04/03/2013
- * 
- * 
+ *
+ *
  */
 
 package com.mootly.wcm.member;
@@ -37,9 +37,9 @@ import com.mootly.wcm.utils.ContentStructure;
 @ChildBean(childBeanClass=SalaryIncomeDetail.class)
 @AdditionalBeans(additionalBeansToLoad=MemberPersonalInformation.class)
 @RequiredBeans(requiredBeans={MemberPersonalInformation.class})
-@RequiredFields(fieldNames={"Name_employer","Employe_category","Tan_employer","Pan_employee","Name_employee","Cityslry","Stateslry","Addressslry","Pinslry","Gross_salary"})
+@RequiredFields(fieldNames={"Name_employer","Employe_category","Pan_employee","Name_employee","Cityslry","Stateslry","Addressslry","Pinslry","Gross_salary"})
 @FormFields(fieldNames={"Employe_category","Name_employer","Name_employee","Pan_employer","Tan_employer","Pan_employee","Addressslry",
-		"Cityslry","Stateslry","Pinslry","From","To","Gross_salary","Allowance","Allowance1","Perquisite","profit","Taxable_earning"})
+		"Cityslry","Stateslry","Pinslry","From","To","Gross_salary","Allowance","Allowance1","Perquisite","profit","Taxable_earning","tdspension"})
 @DataTypeValidationFields(fieldNames={
 		"Gross_salary",
 		"Allowance",
@@ -77,18 +77,18 @@ public class SalaryIncome extends ITReturnComponent {
 	@Override
 	public void doBeforeRender(HstRequest request, HstResponse response) {
 		// TODO Auto-generated method stub
-		super.doBeforeRender(request, response);	
-		
+		super.doBeforeRender(request, response);
+
 		//String date1= ContentStructure.getMemberAssetDocPath(, filing_year, getUserName());
-		
-	} 
+
+	}
 
 	@Override
 	public void doAction(HstRequest request, HstResponse response)
 			throws HstComponentException {
 		// TODO Auto-generated method stub
 		super.doAction(request, response);
-		
+
 	}
 
 }
