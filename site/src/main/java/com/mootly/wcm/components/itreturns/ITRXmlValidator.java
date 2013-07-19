@@ -50,6 +50,7 @@ import com.mootly.wcm.model.FinancialYear;
 import com.mootly.wcm.model.ValidationResponse;
 import com.mootly.wcm.services.ITRXmlGeneratorServiceFactory;
 import com.mootly.wcm.services.XmlGeneratorService;
+import com.mootly.wcm.utils.MootlyFormUtils;
 
 
 public class ITRXmlValidator extends BaseComponent {
@@ -78,13 +79,34 @@ public class ITRXmlValidator extends BaseComponent {
 	public void doBeforeRender(HstRequest request, HstResponse response) {
 		// TODO Auto-generated method stub
 		super.doBeforeRender(request, response);
-		FormMap formMap = new FormMap(request,new String[] {"xml","isValid","errors","financialYear"});
-		FormUtils.populate(request, formMap);
+		FormMap formMap = new FormMap(request,new String[] {"xml","isValid","errors","financialYear","itReturnType","reason","PAN"});
+		String publicParameterUUID = getPublicRequestParameter(request, "uuid");
+		if(publicParameterUUID==null){
+			publicParameterUUID=(String)request.getSession().getAttribute("uuid");
+		}
+		if (publicParameterUUID != null) {
+			try {
+				FormUtils.validateId(publicParameterUUID);
+				MootlyFormUtils.populate(request, publicParameterUUID, formMap);
+				if (formMap != null) {
+					request.setAttribute("savedValuesFormMap", formMap);
+				}
+			}catch (IllegalArgumentException ie) {
+				publicParameterUUID = null;
+			}
+		}
+		else {
+			FormUtils.populate(request, formMap);
+		}
 		if (formMap != null) {
 			if (formMap.getField("xml") != null) request.setAttribute("xml", formMap.getField("xml").getValue());
 			if (formMap.getField("isValid") != null) request.setAttribute("isValid", formMap.getField("isValid").getValue());
 			if (formMap.getField("errors") != null) request.setAttribute("errors", formMap.getField("errors").getValue());
 			if (formMap.getField("financialYear") != null) request.setAttribute("financialYear", formMap.getField("financialYear").getValue());
+			
+			if (formMap.getField("reason") != null) request.setAttribute("reason", formMap.getField("reason").getValue());
+			if (formMap.getField("PAN") != null) request.setAttribute("PAN", formMap.getField("PAN").getValue());
+			if (formMap.getField("itReturnType") != null) request.setAttribute("itReturnType", formMap.getField("itReturnType").getValue());
 		}
 		request.setAttribute("formMap", formMap);
 		//now lets check if there is XML and XSL lets parse and create a summary

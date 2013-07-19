@@ -3106,5 +3106,27 @@
 	    <sv:value>jsp/itreturns/xmlvalidator.jsp</sv:value>
 	  </sv:property>
 	</sv:node>
+	<sv:node sv:name="vendor.itreturn.homepage" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hst:template</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>0f3fb0dd-3ead-4f11-9792-92899208413b</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:renderpath" sv:type="String">
+	    <sv:value>jsp/vendor/itreturnhome.jsp</sv:value>
+	  </sv:property>
+	</sv:node>	
+	<sv:node sv:name="servicerequest-itr-payment" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hst:template</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>28edeb43-770b-43e3-87a9-7266b1e9db8b</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:renderpath" sv:type="String">
+	    <sv:value>jsp/member/servicerequest-itr-payment.jsp</sv:value>
+	  </sv:property>
+	</sv:node>	
 	<!--  /Amit Patkar 07/16/2013 -->
 </sv:node>

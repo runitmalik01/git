@@ -3625,6 +3625,170 @@
         </sv:node>
       </sv:node>
     </sv:node>
+    <!-- Amit -->
+	<sv:node sv:name="payment-type-list" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hippo:handle</sv:value>
+	  </sv:property>
+	  <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+	    <sv:value>hippo:hardhandle</sv:value>
+	    <sv:value>hippo:translated</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>1c0def8d-0a68-4771-b7f7-9a746363566e</sv:value>
+	  </sv:property>
+	  <sv:node sv:name="payment-type-list">
+	    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	      <sv:value>selection:valuelist</sv:value>
+	    </sv:property>
+	    <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+	      <sv:value>hippo:harddocument</sv:value>
+	      <sv:value>hippotranslation:translated</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="jcr:uuid" sv:type="String">
+	      <sv:value>37b89b8f-ecd7-48df-8e7f-3667fa7e2545</sv:value>
+	    </sv:property>
+	    <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String"/>
+	    <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
+	    <sv:property sv:name="hippotranslation:id" sv:type="String">
+	      <sv:value>e6d87fec-215e-417c-a404-937e5c5160f7</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="hippotranslation:locale" sv:type="String">
+	      <sv:value>inherited - from query</sv:value>
+	    </sv:property>
+	    <sv:node sv:name="hippotranslation:translations">
+	      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	        <sv:value>hippotranslation:translations</sv:value>
+	      </sv:property>
+	    </sv:node>
+	    <sv:node sv:name="selection:listitem">
+	      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	        <sv:value>selection:listitem</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="selection:key" sv:type="String">
+	        <sv:value>CHECK</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="selection:label" sv:type="String">
+	        <sv:value>Cheque</sv:value>
+	      </sv:property>
+	    </sv:node>
+	    <sv:node sv:name="selection:listitem">
+	      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	        <sv:value>selection:listitem</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="selection:key" sv:type="String">
+	        <sv:value>CREDITCARD</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="selection:label" sv:type="String">
+	        <sv:value>Credit Card</sv:value>
+	      </sv:property>
+	    </sv:node>
+	    <sv:node sv:name="selection:listitem">
+	      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	        <sv:value>selection:listitem</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="selection:key" sv:type="String">
+	        <sv:value>RTGS</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="selection:label" sv:type="String">
+	        <sv:value>RTGS</sv:value>
+	      </sv:property>
+	    </sv:node>
+	    <sv:node sv:name="selection:listitem">
+	      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	        <sv:value>selection:listitem</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="selection:key" sv:type="String">
+	        <sv:value>CASH</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="selection:label" sv:type="String">
+	        <sv:value>Cash</sv:value>
+	      </sv:property>
+	    </sv:node>
+	  </sv:node>
+	  <sv:node sv:name="hippo:translation">
+	    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	      <sv:value>hippo:translation</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="hippo:language" sv:type="String">
+	      <sv:value/>
+	    </sv:property>
+	    <sv:property sv:name="hippo:message" sv:type="String">
+	      <sv:value>Payment Type List</sv:value>
+	    </sv:property>
+	  </sv:node>
+	</sv:node>    
+	<sv:node sv:name="payment-status-list" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hippo:handle</sv:value>
+	  </sv:property>
+	  <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+	    <sv:value>hippo:hardhandle</sv:value>
+	    <sv:value>hippo:translated</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>6ce4ac57-fd4a-4c52-81da-dd993cfddcd8</sv:value>
+	  </sv:property>
+	  <sv:node sv:name="payment-status-list">
+	    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	      <sv:value>selection:valuelist</sv:value>
+	    </sv:property>
+	    <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+	      <sv:value>hippo:harddocument</sv:value>
+	      <sv:value>hippotranslation:translated</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="jcr:uuid" sv:type="String">
+	      <sv:value>4a315dd4-0c46-4ba8-8a13-01e766bd1299</sv:value>
+	    </sv:property>
+	    <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String"/>
+	    <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
+	    <sv:property sv:name="hippotranslation:id" sv:type="String">
+	      <sv:value>984851be-0100-471f-baea-8e74a4d81b60</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="hippotranslation:locale" sv:type="String">
+	      <sv:value>inherited - from query</sv:value>
+	    </sv:property>
+	    <sv:node sv:name="hippotranslation:translations">
+	      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	        <sv:value>hippotranslation:translations</sv:value>
+	      </sv:property>
+	    </sv:node>
+	    <sv:node sv:name="selection:listitem">
+	      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	        <sv:value>selection:listitem</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="selection:key" sv:type="String">
+	        <sv:value>UNVERIFIED</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="selection:label" sv:type="String">
+	        <sv:value>Unverified</sv:value>
+	      </sv:property>
+	    </sv:node>
+	    <sv:node sv:name="selection:listitem">
+	      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	        <sv:value>selection:listitem</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="selection:key" sv:type="String">
+	        <sv:value>VERIFIED</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="selection:label" sv:type="String">
+	        <sv:value>Verified</sv:value>
+	      </sv:property>
+	    </sv:node>
+	  </sv:node>
+	  <sv:node sv:name="hippo:translation">
+	    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	      <sv:value>hippo:translation</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="hippo:language" sv:type="String">
+	      <sv:value/>
+	    </sv:property>
+	    <sv:property sv:name="hippo:message" sv:type="String">
+	      <sv:value>Payment Status List</sv:value>
+	    </sv:property>
+	  </sv:node>
+	</sv:node>	
+    <!-- /Amit -->
   </sv:node>
   <sv:node sv:name="simpledocuments">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">

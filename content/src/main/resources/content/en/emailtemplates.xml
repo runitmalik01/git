@@ -649,224 +649,360 @@ that you have received your Computation Summary and XML generated copy.&lt;/p&g
     </sv:node>
   </sv:node>
 </sv:node>
-  <sv:node sv:name="service_request" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
-  <sv:property sv:name="jcr:primaryType" sv:type="Name">
-    <sv:value>hippo:handle</sv:value>
-  </sv:property>
-  <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
-    <sv:value>hippo:hardhandle</sv:value>
-  </sv:property>
-  <sv:property sv:name="jcr:uuid" sv:type="String">
-    <sv:value>be44171b-1b37-459a-aa6e-9bd1501d0224</sv:value>
-  </sv:property>
-  <sv:node sv:name="service_request">
-    <sv:property sv:name="jcr:primaryType" sv:type="Name">
-      <sv:value>mootlywcm:emailtemplate</sv:value>
-    </sv:property>
-    <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
-      <sv:value>hippo:harddocument</sv:value>
-      <sv:value>hippotranslation:translated</sv:value>
-    </sv:property>
-    <sv:property sv:name="jcr:uuid" sv:type="String">
-      <sv:value>88cb2be6-59ef-492a-8ebf-774da24c69f3</sv:value>
-    </sv:property>
-    <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
-      <sv:value>live</sv:value>
-      <sv:value>preview</sv:value>
-    </sv:property>
-    <sv:property sv:name="hippo:related___pathreference" sv:type="String">
-      <sv:value>service_request</sv:value>
-    </sv:property>
-    <sv:property sv:name="hippostd:holder" sv:type="String">
-      <sv:value>admin</sv:value>
-    </sv:property>
-    <sv:property sv:name="hippostd:state" sv:type="String">
-      <sv:value>published</sv:value>
-    </sv:property>
-    <sv:property sv:name="hippostd:stateSummary" sv:type="String">
-      <sv:value>live</sv:value>
-    </sv:property>
-    <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
-      <sv:value>admin</sv:value>
-    </sv:property>
-    <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
-      <sv:value>2013-07-03T13:38:04.521+05:30</sv:value>
-    </sv:property>
-    <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-      <sv:value>2013-07-03T13:44:25.150+05:30</sv:value>
-    </sv:property>
-    <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
-      <sv:value>admin</sv:value>
-    </sv:property>
-    <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-      <sv:value>2013-07-03T13:44:30.954+05:30</sv:value>
-    </sv:property>
-    <sv:property sv:name="hippotranslation:id" sv:type="String">
-      <sv:value>0b2bc941-b99d-4554-bb7b-053b0903bd94</sv:value>
-    </sv:property>
-    <sv:property sv:name="hippotranslation:locale" sv:type="String">
-      <sv:value>en</sv:value>
-    </sv:property>
-    <sv:property sv:name="mootlywcm:From" sv:type="String">
-      <sv:value>info@wealth4india.com</sv:value>
-    </sv:property>
-    <sv:property sv:name="mootlywcm:bcc" sv:type="String">
-      <sv:value/>
-    </sv:property>
-    <sv:property sv:name="mootlywcm:cc" sv:type="String">
-      <sv:value/>
-    </sv:property>
-    <sv:property sv:name="mootlywcm:fromName" sv:type="String">
-      <sv:value/>
-    </sv:property>
-    <sv:property sv:name="mootlywcm:htmlBody" sv:type="String">
-      <sv:value>&lt;html&gt;
-&lt;body&gt;
-
-&lt;p&gt;Dear Vendor,&lt;/p&gt;
-
-&lt;p&gt;                  You have got new ${serviceName} request .Please assist.
-&lt;/p&gt;
-
-&lt;p&gt;   Details of Service Requester as-&lt;/p&gt;
-
-&lt;p&gt;                                                           Name-
-${serviceDoc.firstName} ${serviceDoc.lastName}&lt;/p&gt;
-
-&lt;p&gt;                                                           Email-
-${serviceDoc.email} &lt;/p&gt;
-
-&lt;p&gt;                                                           Mobile-
-${serviceDoc.mobile} &lt;/p&gt;
-
-&lt;p&gt; &lt;/p&gt;
-
-&lt;p&gt;Thanks &lt;/p&gt;
-
-&lt;/body&gt;
-&lt;/html&gt;</sv:value>
-    </sv:property>
-    <sv:property sv:name="mootlywcm:plainBody" sv:type="String">
-      <sv:value/>
-    </sv:property>
-    <sv:property sv:name="mootlywcm:subject" sv:type="String">
-      <sv:value>Service Request</sv:value>
-    </sv:property>
-    <sv:property sv:name="mootlywcm:templateKey" sv:type="String">
-      <sv:value>service_request</sv:value>
-    </sv:property>
-    <sv:node sv:name="hippotranslation:translations">
-      <sv:property sv:name="jcr:primaryType" sv:type="Name">
-        <sv:value>hippotranslation:translations</sv:value>
-      </sv:property>
-    </sv:node>
-  </sv:node>
-</sv:node>
-<sv:node sv:name="service_request_ack">
-  <sv:property sv:name="jcr:primaryType" sv:type="Name">
-    <sv:value>hippo:handle</sv:value>
-  </sv:property>
-  <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
-    <sv:value>hippo:hardhandle</sv:value>
-  </sv:property>
-  <sv:property sv:name="jcr:uuid" sv:type="String">
-    <sv:value>fc480aa9-1c84-411b-ab3c-0450799e06d8</sv:value>
-  </sv:property>
-  <sv:node sv:name="service_request_ack">
-    <sv:property sv:name="jcr:primaryType" sv:type="Name">
-      <sv:value>mootlywcm:emailtemplate</sv:value>
-    </sv:property>
-    <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
-      <sv:value>hippo:harddocument</sv:value>
-      <sv:value>hippotranslation:translated</sv:value>
-    </sv:property>
-    <sv:property sv:name="jcr:uuid" sv:type="String">
-      <sv:value>3119d6bb-89f2-4363-9a1b-4daf16c99b54</sv:value>
-    </sv:property>
-    <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
-      <sv:value>live</sv:value>
-      <sv:value>preview</sv:value>
-    </sv:property>
-    <sv:property sv:name="hippo:related___pathreference" sv:type="String">
-      <sv:value>service_request_ack</sv:value>
-    </sv:property>
-    <sv:property sv:name="hippostd:holder" sv:type="String">
-      <sv:value>admin</sv:value>
-    </sv:property>
-    <sv:property sv:name="hippostd:state" sv:type="String">
-      <sv:value>published</sv:value>
-    </sv:property>
-    <sv:property sv:name="hippostd:stateSummary" sv:type="String">
-      <sv:value>live</sv:value>
-    </sv:property>
-    <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
-      <sv:value>admin</sv:value>
-    </sv:property>
-    <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
-      <sv:value>2013-07-04T12:28:22.730+05:30</sv:value>
-    </sv:property>
-    <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-      <sv:value>2013-07-09T16:57:33.064+05:30</sv:value>
-    </sv:property>
-    <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
-      <sv:value>admin</sv:value>
-    </sv:property>
-    <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-      <sv:value>2013-07-09T16:57:36.726+05:30</sv:value>
-    </sv:property>
-    <sv:property sv:name="hippotranslation:id" sv:type="String">
-      <sv:value>6aa38223-a612-4d32-8f2f-93f3d5125260</sv:value>
-    </sv:property>
-    <sv:property sv:name="hippotranslation:locale" sv:type="String">
-      <sv:value>en</sv:value>
-    </sv:property>
-    <sv:property sv:name="mootlywcm:From" sv:type="String">
-      <sv:value/>
-    </sv:property>
-    <sv:property sv:name="mootlywcm:bcc" sv:type="String">
-      <sv:value/>
-    </sv:property>
-    <sv:property sv:name="mootlywcm:cc" sv:type="String">
-      <sv:value/>
-    </sv:property>
-    <sv:property sv:name="mootlywcm:fromName" sv:type="String">
-      <sv:value/>
-    </sv:property>
-    <sv:property sv:name="mootlywcm:htmlBody" sv:type="String">
-      <sv:value>&lt;html&gt;
-&lt;body&gt;
-
-&lt;p&gt;Dear ${serviceDoc.firstName} ${serviceDoc.lastName},&lt;/p&gt;
-
-&lt;p&gt;Thank you for your interest in Wealth4India.&lt;/p&gt;
-
-&lt;p&gt;We have received your request regarding ${serviceName}.&lt;/p&gt;
-
-&lt;p&gt;A wealth4India agent will contact you as soon as possible and work with you
-on the next steps. &lt;br/&gt;
-Once again thank you for your interest. &lt;br/&gt;
-Wealth4India Team.&lt;/p&gt;
-
-&lt;/body&gt;
-&lt;/html&gt;</sv:value>
-    </sv:property>
-    <sv:property sv:name="mootlywcm:plainBody" sv:type="String">
-      <sv:value/>
-    </sv:property>
-    <sv:property sv:name="mootlywcm:subject" sv:type="String">
-      <sv:value>Your request for ${serviceName} has been received</sv:value>
-    </sv:property>
-    <sv:property sv:name="mootlywcm:templateKey" sv:type="String">
-      <sv:value>service_request_ack</sv:value>
-    </sv:property>
-    <sv:property sv:name="mootlywcm:to" sv:type="String">
-      <sv:value/>
-    </sv:property>
-    <sv:node sv:name="hippotranslation:translations">
-      <sv:property sv:name="jcr:primaryType" sv:type="Name">
-        <sv:value>hippotranslation:translations</sv:value>
-      </sv:property>
-    </sv:node>
-  </sv:node>
-</sv:node>
+	<sv:node sv:name="service_request" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hippo:handle</sv:value>
+	  </sv:property>
+	  <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+	    <sv:value>hippo:hardhandle</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>be44171b-1b37-459a-aa6e-9bd1501d0224</sv:value>
+	  </sv:property>
+	  <sv:node sv:name="service_request">
+	    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	      <sv:value>mootlywcm:emailtemplate</sv:value>
+	    </sv:property>
+	    <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+	      <sv:value>hippo:harddocument</sv:value>
+	      <sv:value>hippotranslation:translated</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="jcr:uuid" sv:type="String">
+	      <sv:value>88cb2be6-59ef-492a-8ebf-774da24c69f3</sv:value>
+	    </sv:property>
+	    <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
+	      <sv:value>live</sv:value>
+	      <sv:value>preview</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="hippo:related___pathreference" sv:type="String">
+	      <sv:value>service_request</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="hippostd:holder" sv:type="String">
+	      <sv:value>admin</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="hippostd:state" sv:type="String">
+	      <sv:value>published</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="hippostd:stateSummary" sv:type="String">
+	      <sv:value>live</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
+	      <sv:value>admin</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
+	      <sv:value>2013-07-03T13:38:04.521+05:30</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
+	      <sv:value>2013-07-03T13:44:25.150+05:30</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
+	      <sv:value>admin</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
+	      <sv:value>2013-07-03T13:44:30.954+05:30</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="hippotranslation:id" sv:type="String">
+	      <sv:value>0b2bc941-b99d-4554-bb7b-053b0903bd94</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="hippotranslation:locale" sv:type="String">
+	      <sv:value>en</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="mootlywcm:From" sv:type="String">
+	      <sv:value>info@wealth4india.com</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="mootlywcm:bcc" sv:type="String">
+	      <sv:value/>
+	    </sv:property>
+	    <sv:property sv:name="mootlywcm:cc" sv:type="String">
+	      <sv:value/>
+	    </sv:property>
+	    <sv:property sv:name="mootlywcm:fromName" sv:type="String">
+	      <sv:value/>
+	    </sv:property>
+	    <sv:property sv:name="mootlywcm:htmlBody" sv:type="String">
+	      <sv:value>&lt;html&gt;
+	&lt;body&gt;
+	
+	&lt;p&gt;Dear Vendor,&lt;/p&gt;
+	
+	&lt;p&gt;                  You have got new ${serviceName} request .Please assist.
+	&lt;/p&gt;
+	
+	&lt;p&gt;   Details of Service Requester as-&lt;/p&gt;
+	
+	&lt;p&gt;                                                           Name-
+	${serviceDoc.firstName} ${serviceDoc.lastName}&lt;/p&gt;
+	
+	&lt;p&gt;                                                           Email-
+	${serviceDoc.email} &lt;/p&gt;
+	
+	&lt;p&gt;                                                           Mobile-
+	${serviceDoc.mobile} &lt;/p&gt;
+	
+	&lt;p&gt; &lt;/p&gt;
+	
+	&lt;p&gt;Thanks &lt;/p&gt;
+	
+	&lt;/body&gt;
+	&lt;/html&gt;</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="mootlywcm:plainBody" sv:type="String">
+	      <sv:value/>
+	    </sv:property>
+	    <sv:property sv:name="mootlywcm:subject" sv:type="String">
+	      <sv:value>Service Request</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="mootlywcm:templateKey" sv:type="String">
+	      <sv:value>service_request</sv:value>
+	    </sv:property>
+	    <sv:node sv:name="hippotranslation:translations">
+	      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	        <sv:value>hippotranslation:translations</sv:value>
+	      </sv:property>
+	    </sv:node>
+	  </sv:node>
+	</sv:node>
+	<sv:node sv:name="service_request_ack">
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hippo:handle</sv:value>
+	  </sv:property>
+	  <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+	    <sv:value>hippo:hardhandle</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>fc480aa9-1c84-411b-ab3c-0450799e06d8</sv:value>
+	  </sv:property>
+	  <sv:node sv:name="service_request_ack">
+	    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	      <sv:value>mootlywcm:emailtemplate</sv:value>
+	    </sv:property>
+	    <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+	      <sv:value>hippo:harddocument</sv:value>
+	      <sv:value>hippotranslation:translated</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="jcr:uuid" sv:type="String">
+	      <sv:value>3119d6bb-89f2-4363-9a1b-4daf16c99b54</sv:value>
+	    </sv:property>
+	    <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
+	      <sv:value>live</sv:value>
+	      <sv:value>preview</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="hippo:related___pathreference" sv:type="String">
+	      <sv:value>service_request_ack</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="hippostd:holder" sv:type="String">
+	      <sv:value>admin</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="hippostd:state" sv:type="String">
+	      <sv:value>published</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="hippostd:stateSummary" sv:type="String">
+	      <sv:value>live</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
+	      <sv:value>admin</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
+	      <sv:value>2013-07-04T12:28:22.730+05:30</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
+	      <sv:value>2013-07-09T16:57:33.064+05:30</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
+	      <sv:value>admin</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
+	      <sv:value>2013-07-09T16:57:36.726+05:30</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="hippotranslation:id" sv:type="String">
+	      <sv:value>6aa38223-a612-4d32-8f2f-93f3d5125260</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="hippotranslation:locale" sv:type="String">
+	      <sv:value>en</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="mootlywcm:From" sv:type="String">
+	      <sv:value/>
+	    </sv:property>
+	    <sv:property sv:name="mootlywcm:bcc" sv:type="String">
+	      <sv:value/>
+	    </sv:property>
+	    <sv:property sv:name="mootlywcm:cc" sv:type="String">
+	      <sv:value/>
+	    </sv:property>
+	    <sv:property sv:name="mootlywcm:fromName" sv:type="String">
+	      <sv:value/>
+	    </sv:property>
+	    <sv:property sv:name="mootlywcm:htmlBody" sv:type="String">
+	      <sv:value>&lt;html&gt;
+	&lt;body&gt;
+	
+	&lt;p&gt;Dear ${serviceDoc.firstName} ${serviceDoc.lastName},&lt;/p&gt;
+	
+	&lt;p&gt;Thank you for your interest in Wealth4India.&lt;/p&gt;
+	
+	&lt;p&gt;We have received your request regarding ${serviceName}.&lt;/p&gt;
+	
+	&lt;p&gt;A wealth4India agent will contact you as soon as possible and work with you
+	on the next steps. &lt;br/&gt;
+	Once again thank you for your interest. &lt;br/&gt;
+	Wealth4India Team.&lt;/p&gt;
+	
+	&lt;/body&gt;
+	&lt;/html&gt;</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="mootlywcm:plainBody" sv:type="String">
+	      <sv:value/>
+	    </sv:property>
+	    <sv:property sv:name="mootlywcm:subject" sv:type="String">
+	      <sv:value>Your request for ${serviceName} has been received</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="mootlywcm:templateKey" sv:type="String">
+	      <sv:value>service_request_ack</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="mootlywcm:to" sv:type="String">
+	      <sv:value/>
+	    </sv:property>
+	    <sv:node sv:name="hippotranslation:translations">
+	      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	        <sv:value>hippotranslation:translations</sv:value>
+	      </sv:property>
+	    </sv:node>
+	  </sv:node>
+	</sv:node>
+<!-- Amit -->
+	<sv:node sv:name="memberuploadedadoc" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hippo:handle</sv:value>
+	  </sv:property>
+	  <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+	    <sv:value>hippo:hardhandle</sv:value>
+	    <sv:value>hippo:translated</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>9a528287-a4e0-4d0d-acb0-29776512e360</sv:value>
+	  </sv:property>
+	  <sv:node sv:name="hippo:translation">
+	    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	      <sv:value>hippo:translation</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="hippo:language" sv:type="String">
+	      <sv:value/>
+	    </sv:property>
+	    <sv:property sv:name="hippo:message" sv:type="String">
+	      <sv:value>memberUploadedADoc</sv:value>
+	    </sv:property>
+	  </sv:node>
+	  <sv:node sv:name="memberuploadedadoc">
+	    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	      <sv:value>mootlywcm:emailtemplate</sv:value>
+	    </sv:property>
+	    <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+	      <sv:value>hippo:harddocument</sv:value>
+	      <sv:value>hippotranslation:translated</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="jcr:uuid" sv:type="String">
+	      <sv:value>a624aee6-a7c0-44fb-982b-473ddfa7bdf7</sv:value>
+	    </sv:property>
+	    <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
+	      <sv:value>live</sv:value>
+	      <sv:value>preview</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="hippo:related___pathreference" sv:type="String">
+	      <sv:value>memberuploadedadoc</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="hippostd:holder" sv:type="String">
+	      <sv:value>admin</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="hippostd:state" sv:type="String">
+	      <sv:value>published</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="hippostd:stateSummary" sv:type="String">
+	      <sv:value>live</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
+	      <sv:value>admin</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
+	      <sv:value>2013-07-18T17:15:34.533-07:00</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
+	      <sv:value>2013-07-18T17:34:23.596-07:00</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
+	      <sv:value>admin</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
+	      <sv:value>2013-07-18T17:34:29.980-07:00</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="hippotranslation:id" sv:type="String">
+	      <sv:value>cbacf999-7a79-4a9f-90b5-7c787ff49f77</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="hippotranslation:locale" sv:type="String">
+	      <sv:value>en</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="mootlywcm:From" sv:type="String">
+	      <sv:value>info@mootly.com</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="mootlywcm:bcc" sv:type="String">
+	      <sv:value/>
+	    </sv:property>
+	    <sv:property sv:name="mootlywcm:cc" sv:type="String">
+	      <sv:value/>
+	    </sv:property>
+	    <sv:property sv:name="mootlywcm:fromName" sv:type="String">
+	      <sv:value/>
+	    </sv:property>
+	    <sv:property sv:name="mootlywcm:htmlBody" sv:type="String">
+	      <sv:value>&lt;html&gt;
+	&lt;body&gt;
+	
+	&lt;p&gt;Dear Administrator,&lt;/p&gt;
+	
+	&lt;p&gt;${userName} has just uploaded a document on his/her member drive.&lt;/p&gt;
+	
+	&lt;p&gt;Please check it out.&lt;/p&gt;
+	
+	&lt;p&gt;Here are the details&lt;/p&gt;
+	
+	&lt;p&gt;FileName : ${fileName}&lt;/p&gt;
+	
+	&lt;p&gt;File Type: ${contentType}&lt;/p&gt;
+	
+	&lt;p&gt;Directory: ${userNameNormalized}&lt;/p&gt;
+	
+	&lt;p&gt;Financial Year: ${financialYear}&lt;/p&gt;
+	
+	&lt;p&gt;IT Return Type : ${itReturnType}&lt;/p&gt;
+	
+	&lt;p&gt; &lt;/p&gt;
+	
+	&lt;p&gt;Thanks &lt;/p&gt;
+	
+	&lt;p&gt; &lt;/p&gt;
+	
+	&lt;p&gt; &lt;/p&gt;
+	
+	&lt;/body&gt;
+	&lt;/html&gt;</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="mootlywcm:plainBody" sv:type="String">
+	      <sv:value/>
+	    </sv:property>
+	    <sv:property sv:name="mootlywcm:subject" sv:type="String">
+	      <sv:value>[Member Doc Upload] - $userName uploaded a doc for PAN $PAN</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="mootlywcm:templateKey" sv:type="String">
+	      <sv:value>memberuploadedadoc</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="mootlywcm:to" sv:type="String">
+	      <sv:value/>
+	    </sv:property>
+	    <sv:node sv:name="hippotranslation:translations">
+	      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	        <sv:value>hippotranslation:translations</sv:value>
+	      </sv:property>
+	    </sv:node>
+	  </sv:node>
+	</sv:node>
+<!-- /amit -->
 </sv:node>

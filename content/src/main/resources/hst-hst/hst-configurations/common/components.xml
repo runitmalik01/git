@@ -1431,4 +1431,20 @@
 	    <sv:value>xml-generator</sv:value>
 	  </sv:property>
 	</sv:node>	
+	<sv:node sv:name="servicerequest-itr-payment" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hst:component</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>de130c13-e0ce-4914-8934-d69a6f17d5a3</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:componentclassname" sv:type="String">
+	    <sv:value>com.mootly.wcm.member.ITRPayment</sv:value>
+	  </sv:property>
+	  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String"/>
+	  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String"/>
+	  <sv:property sv:name="hst:template" sv:type="String">
+	    <sv:value>servicerequest-itr-payment</sv:value>
+	  </sv:property>
+	</sv:node>	
 </sv:node>

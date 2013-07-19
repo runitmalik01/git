@@ -67,6 +67,7 @@ public class MemberPayment extends FlexibleDocument implements ContentNodeBinder
 	private Calendar rtgsDate;
 	private Double rtgsAmount;
 	private String rtgsTime;
+	private String rtgsTransNumber;
 	
 	Calendar paymentDate;
 	
@@ -214,7 +215,10 @@ public class MemberPayment extends FlexibleDocument implements ContentNodeBinder
 		return paymentMemo;
 	}
 	
-    public List<MemberPersonalInformation> getMemberPersonalInfoLinks() {
+    public String getRtgsTransNumber() {
+		return rtgsTransNumber;
+	}
+	public List<MemberPersonalInformation> getMemberPersonalInfoLinks() {
     	HippoBean[] beans = getBean(PROP_PI_PERSONALINFO_LINK);
     	if (!(beans instanceof HippoMirror[])) {
     		return null;
@@ -317,6 +321,10 @@ public class MemberPayment extends FlexibleDocument implements ContentNodeBinder
 		this.paymentVerificationStatus = paymentVerificationStatus;
 	}
 	
+	public void setRtgsTransNumber(String rtgsTransNumber) {
+		this.rtgsTransNumber = rtgsTransNumber;
+	}
+	
 	@Override
 	public void fill(FormMap formMap) {
 		// TODO Auto-generated method stub
@@ -340,8 +348,9 @@ public class MemberPayment extends FlexibleDocument implements ContentNodeBinder
 		if (formMap.getField("rtgsDate") != null) setRtgsDate( ConvDateStringToCalendar( formMap.getField("cashAddress").getValue() ) ) ;
 		if (formMap.getField("rtgsAmount") != null) setRtgsAmount( ConvStringToDouble ( formMap.getField("rtgsAmount").getValue() ));
 		if (formMap.getField("rtgsTime") != null) setRtgsTime( formMap.getField("rtgsTime").getValue());
+		if (formMap.getField("rtgsTransNumber") != null) setRtgsTransNumber( formMap.getField("rtgsTransNumber").getValue());
 		
-		if (formMap.getField("paymentDate") != null) setPaymentDate( ConvDateStringToCalendar ( formMap.getField("paymentDate").getValue()) );
+		if (formMap.getField("rtgsTransNumber") != null) setPaymentDate( ConvDateStringToCalendar ( formMap.getField("paymentDate").getValue()) );
 		//if (formMap.getField("paymentVerificationStatus") != null) setPaymentVerificationStatus( PaymentVerificationStatus.valueOf( formMap.getField("paymentVerificationStatus").getValue() ));
 	}
 	

@@ -158,6 +158,26 @@ public class MemberDrive extends ITReturnComponent {
 		MemberDriveDocument returnMemberDriveDoc=createMemberDrive(request, response, memberDrive, fileDetails.get(FILE_NAME));
 		if(returnMemberDriveDoc!=null){
 			response.setRenderParameter("FileUpload", "Success");
+			//send an email right here to our administrators and tell them about an availability
+			String[] to = new String[] {"info@wealth4india.com","amit@mootly.com"};
+			Map<String,Object> velocityContext = new HashMap<String, Object>();
+			velocityContext.put("userName",getUserName());
+			velocityContext.put("userNameNormalized",getUserNameNormalized());
+			//now lets put the document detail
+			velocityContext.put("fileName",fileDetails.get(FILE_NAME));
+			if (fileDetails.get(CONTENT_TYPE) != null) {
+				velocityContext.put("contentType",fileDetails.get(CONTENT_TYPE));
+			}
+			velocityContext.put("PAN",getPAN());
+			velocityContext.put("financialYear",getFinancialYear().getDisplayName());
+			velocityContext.put("itReturnType",getITReturnType().getDisplayName());
+			
+			if (request.getAttribute(MemberPersonalInformation.class.getSimpleName().toLowerCase()) != null ) {
+				MemberPersonalInformation memberPersonalInformation = (MemberPersonalInformation) request.getAttribute(MemberPersonalInformation.class.getSimpleName().toLowerCase());
+				velocityContext.put("memberPersonalInformation",memberPersonalInformation);
+			}
+			
+			sendEmail(request, to, null, null, "memberuploadedadoc", velocityContext);
 		}
 	}
 	/**

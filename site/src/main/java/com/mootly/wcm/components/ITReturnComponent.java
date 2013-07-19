@@ -316,14 +316,27 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 				FormMap formMap = new FormMap();//(request,new String[] {"xml","isValid","errors","financialYear"});
 				FormField formFieldXml = new FormField("xml");
 				FormField formFieldFinancialYear = new FormField("financialYear");
+				
+				FormField formFieldPan = new FormField("PAN");
+				formFieldPan.addValue(getPAN());
+				FormField formFieldFilingStatus = new FormField("itReturnType");
+				formFieldFilingStatus.addValue(getITReturnType().name());
+				
+				FormField formFieldReason = new FormField("reason");
+				formFieldReason.addValue("Invalid Return");
+				
 				ValidationResponse validationResponse = invalidXml.getValidationResponse();
 				formFieldXml.addValue(validationResponse.getXml());
 				formFieldFinancialYear.addValue(getFinancialYear().getDisplayName());
 				
 				formMap.addFormField(formFieldXml);
 				formMap.addFormField(formFieldFinancialYear);
+				
+				
+				
+				
 				StoreFormResult sfr = new StoreFormResult();	
-				FormUtils.persistFormMap(request, response, formMap, null);
+				FormUtils.persistFormMap(request, response, formMap, sfr);
 				try {
 					response.sendRedirect(request.getContextPath() + "/services/itr-validate-xml.html?uuid=" + sfr.getUuid());
 				} catch (IOException e) {
@@ -1415,29 +1428,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 	
 	//DecimalFormat decimalFormat=new DecimalFormat("#.#");
 	public void handleITRSummary(HstRequest request, HstResponse response) throws InvalidXMLException{
-		// TODO Auto-generated method stub
-		boolean isPaid = false;
-		if (request.getAttribute("memberpayment") != null) {
-			try {
-				MemberPayment memberPayment = (MemberPayment) request.getAttribute("memberpayment");
-				if (memberPayment != null && memberPayment.getPaymentVerificationStatus() != null &&  memberPayment.getPaymentVerificationStatus() == PaymentVerificationStatus.VERIFIED)
-				isPaid = true;
-			}catch (Exception ex) {
-				log.error("Error in checking payment status",ex);
-			}
-		}
 		
-		if (!isPaid) {
-			String redirectTo = getRedirectURLForSiteMapItem(request, response, null, "servicerequest-itr-payment", getFinancialYear(), getITReturnType(), getPAN());
-			try {
-				response.sendRedirect(redirectTo);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			return;
-		}
-
 		boolean isDownload = false;
 		String whtToDownload = null; //I HATE IT use ENUM
 		boolean emailMe = false;
@@ -1445,6 +1436,9 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		MemberPersonalInformation memberPersonalInformation = (MemberPersonalInformation) request.getAttribute(MemberPersonalInformation.class.getSimpleName().toLowerCase());
 		String ITR = memberPersonalInformation.getFlexField("flex_string_ITRForm", "");
 		request.setAttribute("ITR", ITR);
+		
+		boolean isPaid = false;
+		boolean isValidXml = false;
 
 		if (getPublicRequestParameter(request, "show") != null) request.setAttribute("show",getPublicRequestParameter(request, "show"));
 		
@@ -1490,11 +1484,34 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		//lets attempt a PDF
 		if ( emailMe || ( isDownload && whtToDownload != null && whtToDownload.equals("pdf") ) ) {
 			try {
+				// TODO Auto-generated method stub
+				if (request.getAttribute("memberpayment") != null) {
+					try {
+						MemberPayment memberPayment = (MemberPayment) request.getAttribute("memberpayment");
+						if (memberPayment != null && memberPayment.getPaymentVerificationStatus() != null &&  memberPayment.getPaymentVerificationStatus() == PaymentVerificationStatus.VERIFIED)
+						isPaid = true;
+					}catch (Exception ex) {
+						log.error("Error in checking payment status",ex);
+					}
+				}
+				
+				if (!isPaid) {
+					String redirectTo = getRedirectURLForSiteMapItem(request, response, null, "servicerequest-itr-payment", getFinancialYear(), getITReturnType(), getPAN());
+					try {
+						response.sendRedirect(redirectTo);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					return;
+				}
+
 				//now this is the most important part if the XML is invalid then send the user to a page stating that
 				String xml = (String) request.getAttribute("xml");
 				ValidationResponse validationResponse = null;
 				try {
 					validationResponse = xmlGeneratorService.validateXml(xml);
+					validationResponse.setXml(xml);
 					if (validationResponse == null || !validationResponse.isValid()) {
 						throw new InvalidXMLException(validationResponse);
 					}
@@ -1580,7 +1597,42 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		}
 		
 		if ( emailMe || ( isDownload && whtToDownload != null && whtToDownload.equals("xml")) ) {
+			if (request.getAttribute("memberpayment") != null) {
+				try {
+					MemberPayment memberPayment = (MemberPayment) request.getAttribute("memberpayment");
+					if (memberPayment != null && memberPayment.getPaymentVerificationStatus() != null &&  memberPayment.getPaymentVerificationStatus() == PaymentVerificationStatus.VERIFIED)
+					isPaid = true;
+				}catch (Exception ex) {
+					log.error("Error in checking payment status",ex);
+				}
+			}
+			
+			if (!isPaid) {
+				String redirectTo = getRedirectURLForSiteMapItem(request, response, null, "servicerequest-itr-payment", getFinancialYear(), getITReturnType(), getPAN());
+				try {
+					response.sendRedirect(redirectTo);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				return;
+			}
+
 			if (isDownload) {
+				//now this is the most important part if the XML is invalid then send the user to a page stating that
+				String xml = (String) request.getAttribute("xml");
+				ValidationResponse validationResponse = null;
+				try {
+					validationResponse = xmlGeneratorService.validateXml(xml);
+					validationResponse.setXml(xml);
+					if (validationResponse == null || !validationResponse.isValid()) {
+						throw new InvalidXMLException(validationResponse);
+					}
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();	
+					throw new InvalidXMLException(validationResponse);
+				}
 				String xmlFileName = "itreturn-"+ getPAN() + "-AY-" +getFinancialYear().getDisplayAssessmentYear() + ".xml";
 				request.setAttribute("fileName", xmlFileName);
 				response.setRenderPath("jsp/member/downloadfile.jsp");

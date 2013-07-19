@@ -191,7 +191,7 @@ public class StartApplicationValidationService {
 	 * @return null
 	 * */
 	protected void validLastName(FormMap formMap){
-		String check=MasterConfigService.shouldValidate5thChar();
+		String check=MasterConfigServiceImpl.shouldValidate5thChar();
 		if(check!=null){
 			if(formMap.getField("pi_last_name")!=null&& formMap.getField("pan")!=null){
 				char pan5thChar=formMap.getField("pan").getValue().toLowerCase().charAt(4);
@@ -217,7 +217,7 @@ public class StartApplicationValidationService {
 	 * */
 	@SuppressWarnings("deprecation")
 	protected void validDateofBirth(FormMap formMap){
-		String check=MasterConfigService.shouldValidateDate();
+		String check=MasterConfigServiceImpl.shouldValidateDate();
 		if(check!=null){
 			if(formMap.getField("pi_dob")!=null){
 				Date date=new Date();

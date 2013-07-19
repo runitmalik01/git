@@ -8199,4 +8199,89 @@
 	  </sv:node>
 	</sv:node>	
 	<!--  /Amit Patkar 07/16/2013 -->
+	<!--  Amit PAtkar -->
+	<sv:node sv:name="vendor-itreturn" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hst:component</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>5397c59c-1ac8-4c6f-8977-4e96e0698af6</sv:value>
+	  </sv:property>
+	  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+	    <sv:value>bodyCssClass</sv:value>
+	  </sv:property>
+	  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+	    <sv:value>page-vendor</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:referencecomponent" sv:type="String">
+	    <sv:value>hst:pages/simplepage.re</sv:value>
+	  </sv:property>
+	  <sv:node sv:name="main">
+	    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	      <sv:value>hst:component</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="jcr:uuid" sv:type="String">
+	      <sv:value>092fb5ba-a0d1-491c-a47c-bbf65dced889</sv:value>
+	    </sv:property>
+	    <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+	      <sv:value>contentCssClass</sv:value>
+	      <sv:value>widgets1CssClass</sv:value>
+	    </sv:property>
+	    <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+	      <sv:value>grid col-940</sv:value>
+	      <sv:value>grid col-300 fit</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="hst:template" sv:type="String">
+	      <sv:value>standard.main.re</sv:value>
+	    </sv:property>
+	    <sv:node sv:name="content">
+	      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	        <sv:value>hst:component</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="jcr:uuid" sv:type="String">
+	        <sv:value>5b71b83f-030e-40ee-8555-9b4d47f2274f</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="hst:componentclassname" sv:type="String">
+	        <sv:value>com.mootly.wcm.components.vendor.ITReturnHomePage</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="hst:template" sv:type="String">
+	        <sv:value>vendor.itreturn.homepage</sv:value>
+	      </sv:property>
+	    </sv:node>
+	  </sv:node>
+	</sv:node>	
+	<sv:node sv:name="servicerequest-itr-payment" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hst:component</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>265541d0-10b7-48fe-aed8-e195b5619c7c</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:referencecomponent" sv:type="String">
+	    <sv:value>hst:pages/simplepage.re</sv:value>
+	  </sv:property>
+	  <sv:node sv:name="main">
+	    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	      <sv:value>hst:component</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="jcr:uuid" sv:type="String">
+	      <sv:value>e0deed65-60fb-4a76-83e8-266cf5c42fbd</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="hst:template" sv:type="String">
+	      <sv:value>standard.main.re</sv:value>
+	    </sv:property>
+	    <sv:node sv:name="content">
+	      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	        <sv:value>hst:component</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="jcr:uuid" sv:type="String">
+	        <sv:value>208c7b20-4119-4402-b8a6-be78b32818c8</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="hst:referencecomponent" sv:type="String">
+	        <sv:value>hst:components/servicerequest-itr-payment</sv:value>
+	      </sv:property>
+	    </sv:node>
+	  </sv:node>
+	</sv:node>	
+	<!-- /Amit PAtkar -->
 </sv:node>

@@ -50,7 +50,7 @@
 			<div class="row-fluid show-grid">
 				<div class="span6">
 					<div class="rowlabel">
-						<label for="ack_no"><small>By Check</small> </label>
+						<label for="ack_no"><small>By Cheque</small> </label>
 					</div>
 					<div class="rowlabel">
 						 Bank Name: <br/>
@@ -173,7 +173,7 @@
 							<label for="checkDate"><small>Best Time</small> </label>
 						</div>
 						<div class="rowlabel">
-							<textarea name="cashBestTime" id="cashBestTime"  value="${parentBean.cashBestTime}"  <c:out value="${allReadOnly}"/>></textarea>
+							<input type="text" name="cashBestTime" id="cashBestTime"  value="${parentBean.cashBestTime}"  <c:out value="${allReadOnly}"/>/>
 					 	</div>
 				</div>							
 			</div>
@@ -181,6 +181,14 @@
 		<fieldset class="CHECK_NOT_ONLY CASH_NOT_ONLY RTGS_ONLY" style="display:none">
 			<legend>RTGS Details</legend>
 			<div class="row-fluid show-grid">
+			  <div class="span3">
+						<div class="rowlabel">
+							<label for="checkNo"><small>Transation/UTR Number</small> </label>
+						</div>
+						<div class="rowlabel">
+							<input type="text" id="rtgsTransNumber" name="rtgsTransNumber" value="${parentBean.rtgsTransNumber}"  <c:out value="${allReadOnly}"/>/>
+					 	</div>
+				</div>
 				<div class="span3">
 						<div class="rowlabel">
 							<label for="checkNo"><small>Date</small> </label>
@@ -197,7 +205,7 @@
 							<input type="text" id="rtgsAmount" name="rtgsAmount" value="${parentBean.rtgsAmount}"  <c:out value="${allReadOnly}"/>/>							
 					 	</div>
 				</div>
-				<div class="span2">
+				<div class="span3">
 						<div class="rowlabel">
 							<label for="checkDate"><small>Time</small> </label>
 						</div>
@@ -219,14 +227,22 @@
 	<hst:attribute name="type">text/javascript</hst:attribute>
 	jQuery(document).ready ( function($) {
 		$("#paymentType").change( function () {
-			d($(this));
+			d($(this).val());
 		});
+		<c:choose>
+			<c:when test="${empty allReadOnly}">
+				if ( $("#paymentType").val().trim() != '') { d($("#paymentType")) }
+			</c:when>
+			<c:otherwise>
+				 d('<c:out value="${parentBean.paymentType}"/>');
+			</c:otherwise>		
+		</c:choose>
 		
-		if ( $("#paymentType").val().trim() != '') { d($("#paymentType")) }
+		
 		
 		function d(v) {
-			$("." + v.val() + "_ONLY").show();
-			$("." + v.val() + "_NOT_ONLY").hide();
+			$("." + v + "_ONLY").show();
+			$("." + v + "_NOT_ONLY").hide();
 		}
 	
 	}); 

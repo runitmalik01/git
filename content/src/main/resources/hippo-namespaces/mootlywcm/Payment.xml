@@ -6,6 +6,7 @@
   <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
     <sv:value>mix:referenceable</sv:value>
     <sv:value>editor:editable</sv:value>
+    <sv:value>hippo:translated</sv:value>
   </sv:property>
   <sv:property sv:name="jcr:uuid" sv:type="String">
     <sv:value>a4710c4d-07e5-4a07-ba31-b5a69d167218</sv:value>
@@ -29,7 +30,7 @@
         <sv:value>hippo:harddocument</sv:value>
       </sv:property>
       <sv:property sv:name="jcr:uuid" sv:type="String">
-        <sv:value>93cdd819-1263-49e1-ae0d-d6eec4cb3758</sv:value>
+        <sv:value>0708e00f-5a21-4ceb-b6f8-997dd1f750b7</sv:value>
       </sv:property>
       <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
       <sv:property sv:name="hipposysedit:node" sv:type="Boolean">
@@ -387,6 +388,52 @@
           <sv:value>Double</sv:value>
         </sv:property>
       </sv:node>
+      <sv:node sv:name="rtgsTransNumber">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hipposysedit:field</sv:value>
+        </sv:property>
+        <sv:property sv:name="hipposysedit:mandatory" sv:type="Boolean">
+          <sv:value>false</sv:value>
+        </sv:property>
+        <sv:property sv:name="hipposysedit:multiple" sv:type="Boolean">
+          <sv:value>false</sv:value>
+        </sv:property>
+        <sv:property sv:name="hipposysedit:ordered" sv:type="Boolean">
+          <sv:value>false</sv:value>
+        </sv:property>
+        <sv:property sv:name="hipposysedit:path" sv:type="String">
+          <sv:value>mootlywcm:rtgsTransNumber</sv:value>
+        </sv:property>
+        <sv:property sv:name="hipposysedit:primary" sv:type="Boolean">
+          <sv:value>false</sv:value>
+        </sv:property>
+        <sv:property sv:name="hipposysedit:type" sv:type="String">
+          <sv:value>String</sv:value>
+        </sv:property>
+      </sv:node>
+      <sv:node sv:name="dynamicdropdown">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hipposysedit:field</sv:value>
+        </sv:property>
+        <sv:property sv:name="hipposysedit:mandatory" sv:type="Boolean">
+          <sv:value>false</sv:value>
+        </sv:property>
+        <sv:property sv:name="hipposysedit:multiple" sv:type="Boolean">
+          <sv:value>false</sv:value>
+        </sv:property>
+        <sv:property sv:name="hipposysedit:ordered" sv:type="Boolean">
+          <sv:value>false</sv:value>
+        </sv:property>
+        <sv:property sv:name="hipposysedit:path" sv:type="String">
+          <sv:value>mootlywcm:paymentVerificationStatus</sv:value>
+        </sv:property>
+        <sv:property sv:name="hipposysedit:primary" sv:type="Boolean">
+          <sv:value>false</sv:value>
+        </sv:property>
+        <sv:property sv:name="hipposysedit:type" sv:type="String">
+          <sv:value>DynamicDropdown</sv:value>
+        </sv:property>
+      </sv:node>
     </sv:node>
   </sv:node>
   <sv:node sv:name="hipposysedit:prototypes">
@@ -401,7 +448,7 @@
         <sv:value>hippo:harddocument</sv:value>
       </sv:property>
       <sv:property sv:name="jcr:uuid" sv:type="String">
-        <sv:value>290f6110-5dc3-4c99-8bde-076d22e6a68d</sv:value>
+        <sv:value>62a85e7b-9638-4da1-93bb-6abef1aa13d5</sv:value>
       </sv:property>
       <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
       <sv:property sv:name="hippostd:state" sv:type="String">
@@ -449,10 +496,16 @@
       <sv:property sv:name="mootlywcm:paymentType" sv:type="String">
         <sv:value/>
       </sv:property>
+      <sv:property sv:name="mootlywcm:paymentVerificationStatus" sv:type="String">
+        <sv:value/>
+      </sv:property>
       <sv:property sv:name="mootlywcm:rtgsAmount" sv:type="Double">
         <sv:value>0.0</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:rtgsTime" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:rtgsTransNumber" sv:type="String">
         <sv:value/>
       </sv:property>
     </sv:node>
@@ -586,6 +639,9 @@
         <sv:property sv:name="model.compareTo" sv:type="String">
           <sv:value>${model.compareTo}</sv:value>
         </sv:property>
+        <sv:property sv:name="multiselect.type" sv:type="String">
+          <sv:value>dropdown</sv:value>
+        </sv:property>
         <sv:property sv:name="plugin.class" sv:type="String">
           <sv:value>org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin</sv:value>
         </sv:property>
@@ -598,9 +654,29 @@
         <sv:property sv:name="wicket.model" sv:type="String">
           <sv:value>${wicket.model}</sv:value>
         </sv:property>
+        <sv:node sv:name="valuelist.options">
+          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+            <sv:value>frontend:pluginconfig</sv:value>
+          </sv:property>
+          <sv:property sv:name="source" sv:type="String">
+            <sv:value>paymentTypeList</sv:value>
+          </sv:property>
+        </sv:node>
         <sv:node sv:name="cluster.options">
           <sv:property sv:name="jcr:primaryType" sv:type="Name">
             <sv:value>frontend:pluginconfig</sv:value>
+          </sv:property>
+          <sv:property sv:name="sortBy" sv:type="String">
+            <sv:value>label</sv:value>
+          </sv:property>
+          <sv:property sv:name="sortComparator" sv:type="String">
+            <sv:value>org.onehippo.forge.selection.frontend.plugin.sorting.DefaultListItemComparator</sv:value>
+          </sv:property>
+          <sv:property sv:name="sortOrder" sv:type="String">
+            <sv:value>ascending</sv:value>
+          </sv:property>
+          <sv:property sv:name="source" sv:type="String">
+            <sv:value>/content/documents/mootlywcm/common/valuelists/payment-type-list</sv:value>
           </sv:property>
         </sv:node>
       </sv:node>
@@ -1085,6 +1161,168 @@
           </sv:property>
         </sv:node>
       </sv:node>
+      <sv:node sv:name="rtgsTransNumber">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>frontend:plugin</sv:value>
+        </sv:property>
+        <sv:property sv:name="caption" sv:type="String">
+          <sv:value>Transation/UTR Number</sv:value>
+        </sv:property>
+        <sv:property sv:name="engine" sv:type="String">
+          <sv:value>${engine}</sv:value>
+        </sv:property>
+        <sv:property sv:name="field" sv:type="String">
+          <sv:value>rtgsTransNumber</sv:value>
+        </sv:property>
+        <sv:property sv:name="mode" sv:type="String">
+          <sv:value>${mode}</sv:value>
+        </sv:property>
+        <sv:property sv:name="model.compareTo" sv:type="String">
+          <sv:value>${model.compareTo}</sv:value>
+        </sv:property>
+        <sv:property sv:name="plugin.class" sv:type="String">
+          <sv:value>org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin</sv:value>
+        </sv:property>
+        <sv:property sv:name="validator.id" sv:type="String">
+          <sv:value>${validator.id}</sv:value>
+        </sv:property>
+        <sv:property sv:name="wicket.id" sv:type="String">
+          <sv:value>${cluster.id}.left.item</sv:value>
+        </sv:property>
+        <sv:property sv:name="wicket.model" sv:type="String">
+          <sv:value>${wicket.model}</sv:value>
+        </sv:property>
+        <sv:node sv:name="cluster.options">
+          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+            <sv:value>frontend:pluginconfig</sv:value>
+          </sv:property>
+        </sv:node>
+      </sv:node>
+      <sv:node sv:name="paymentVerificationStatus">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>frontend:plugin</sv:value>
+        </sv:property>
+        <sv:property sv:name="caption" sv:type="String">
+          <sv:value>Payment Status</sv:value>
+        </sv:property>
+        <sv:property sv:name="engine" sv:type="String">
+          <sv:value>${engine}</sv:value>
+        </sv:property>
+        <sv:property sv:name="field" sv:type="String">
+          <sv:value>dynamicdropdown</sv:value>
+        </sv:property>
+        <sv:property sv:name="mode" sv:type="String">
+          <sv:value>${mode}</sv:value>
+        </sv:property>
+        <sv:property sv:name="model.compareTo" sv:type="String">
+          <sv:value>${model.compareTo}</sv:value>
+        </sv:property>
+        <sv:property sv:name="plugin.class" sv:type="String">
+          <sv:value>org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin</sv:value>
+        </sv:property>
+        <sv:property sv:name="validator.id" sv:type="String">
+          <sv:value>${validator.id}</sv:value>
+        </sv:property>
+        <sv:property sv:name="wicket.id" sv:type="String">
+          <sv:value>${cluster.id}.left.item</sv:value>
+        </sv:property>
+        <sv:property sv:name="wicket.model" sv:type="String">
+          <sv:value>${wicket.model}</sv:value>
+        </sv:property>
+        <sv:node sv:name="valuelist.options">
+          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+            <sv:value>frontend:pluginconfig</sv:value>
+          </sv:property>
+          <sv:property sv:name="source" sv:type="String">
+            <sv:value>paymentStatusList</sv:value>
+          </sv:property>
+        </sv:node>
+        <sv:node sv:name="cluster.options">
+          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+            <sv:value>frontend:pluginconfig</sv:value>
+          </sv:property>
+          <sv:property sv:name="sortBy" sv:type="String">
+            <sv:value>label</sv:value>
+          </sv:property>
+          <sv:property sv:name="sortComparator" sv:type="String">
+            <sv:value>org.onehippo.forge.selection.frontend.plugin.sorting.DefaultListItemComparator</sv:value>
+          </sv:property>
+          <sv:property sv:name="source" sv:type="String">
+            <sv:value>/content/documents/mootlywcm/common/valuelists/payment-status-list</sv:value>
+          </sv:property>
+        </sv:node>
+      </sv:node>
+      <sv:node sv:name="localizingValuelistProvider">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>frontend:plugin</sv:value>
+        </sv:property>
+        <sv:property sv:name="plugin.class" sv:type="String">
+          <sv:value>com.mootly.wcm.selection.LocalizingValueListProvider</sv:value>
+        </sv:property>
+        <sv:property sv:name="valuelist.provider" sv:type="String">
+          <sv:value>${cluster.id}.valuelist</sv:value>
+        </sv:property>
+        <sv:property sv:name="valuelist.provider.original" sv:type="String">
+          <sv:value>service.valuelist.default</sv:value>
+        </sv:property>
+        <sv:property sv:name="wicket.model" sv:type="String">
+          <sv:value>${wicket.model}</sv:value>
+        </sv:property>
+        <sv:node sv:name="locale.nl">
+          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+            <sv:value>frontend:pluginconfig</sv:value>
+          </sv:property>
+          <sv:property sv:name="categories" sv:type="String">
+            <sv:value>/content/documents/hippogagroen/common/valuelists/categories</sv:value>
+          </sv:property>
+        </sv:node>
+        <sv:node sv:name="locale.en">
+          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+            <sv:value>frontend:pluginconfig</sv:value>
+          </sv:property>
+          <sv:property sv:name="paymentStatusList" sv:type="String">
+            <sv:value>/content/documents/mootlywcm/common/valuelists/payment-status-list</sv:value>
+          </sv:property>
+          <sv:property sv:name="paymentTypeList" sv:type="String">
+            <sv:value>/content/documents/mootlywcm/common/valuelists/payment-type-list</sv:value>
+          </sv:property>
+        </sv:node>
+        <sv:node sv:name="locale.fr">
+          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+            <sv:value>frontend:pluginconfig</sv:value>
+          </sv:property>
+          <sv:property sv:name="categories" sv:type="String">
+            <sv:value>/content/documents/hippomiseauvert/common/valuelists/categories</sv:value>
+          </sv:property>
+        </sv:node>
+        <sv:node sv:name="locale.ru">
+          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+            <sv:value>frontend:pluginconfig</sv:value>
+          </sv:property>
+          <sv:property sv:name="categories" sv:type="String">
+            <sv:value>/content/documents/хиппо-идите-зелёный/общий/valuelists/categories</sv:value>
+          </sv:property>
+        </sv:node>
+        <sv:node sv:name="locale.es">
+          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+            <sv:value>frontend:pluginconfig</sv:value>
+          </sv:property>
+          <sv:property sv:name="categories" sv:type="String">
+            <sv:value>/content/documents/hipopotamo-ir-verde/common/listas-valorales/categorias</sv:value>
+          </sv:property>
+        </sv:node>
+      </sv:node>
     </sv:node>
+  </sv:node>
+  <sv:node sv:name="hippo:translation">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hippo:translation</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippo:language" sv:type="String">
+      <sv:value>en</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippo:message" sv:type="String">
+      <sv:value>Payment</sv:value>
+    </sv:property>
   </sv:node>
 </sv:node>
