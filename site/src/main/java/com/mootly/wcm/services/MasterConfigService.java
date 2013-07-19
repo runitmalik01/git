@@ -11,7 +11,7 @@ import org.apache.commons.lang.StringUtils;
  * @author BEN-10
  *
  */
-public class MasterConfigServiceImpl {
+public class MasterConfigService {
 
 	static ResourceBundle mstrRb=ResourceBundle.getBundle("master_config");
 	
