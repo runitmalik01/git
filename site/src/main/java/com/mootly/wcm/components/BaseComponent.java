@@ -143,7 +143,7 @@ public class BaseComponent extends BaseHstComponent {
     		
     		if (to == null) {
     			to = emailTemplate.getTo();
-    			if (to == null) to = new String[]{"info@mootly.com"}; //stupid logic what the hack
+    			if (to == null) to = new String[]{"info@wealth4india.com"}; //stupid logic what the hack
     		}	
     		final String pathToParentBean = wpm.createAndReturn(pathToEmail,"mootlywcm:emailmessage",templateKey, true);
     		EmailMessage emailMessage = (EmailMessage) wpm.getObject(pathToParentBean);

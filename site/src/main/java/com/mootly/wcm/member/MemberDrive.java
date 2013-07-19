@@ -112,6 +112,7 @@ public class MemberDrive extends ITReturnComponent {
 	public void doAction(HstRequest request, HstResponse response)
 			throws HstComponentException {
 		// TODO Auto-generated method stub
+		super.doAction(request, response);//
 		FormFields formFields=this.getClass().getAnnotation(FormFields.class);		
 		FormMap formMap=new FormMap(request, formFields.fieldNames());
 		Map<String, byte[]> files = new HashMap<String, byte[]>();
@@ -165,6 +166,9 @@ public class MemberDrive extends ITReturnComponent {
 			velocityContext.put("userNameNormalized",getUserNameNormalized());
 			//now lets put the document detail
 			velocityContext.put("fileName",fileDetails.get(FILE_NAME));
+			velocityContext.put("protected",formMap.getField("protected").getValue());
+			velocityContext.put("additionalnotes",formMap.getField("additionalnotes").getValue());
+			
 			if (fileDetails.get(CONTENT_TYPE) != null) {
 				velocityContext.put("contentType",fileDetails.get(CONTENT_TYPE));
 			}
@@ -175,6 +179,7 @@ public class MemberDrive extends ITReturnComponent {
 			if (request.getAttribute(MemberPersonalInformation.class.getSimpleName().toLowerCase()) != null ) {
 				MemberPersonalInformation memberPersonalInformation = (MemberPersonalInformation) request.getAttribute(MemberPersonalInformation.class.getSimpleName().toLowerCase());
 				velocityContext.put("memberPersonalInformation",memberPersonalInformation);
+				velocityContext.put("memberPersonalInformationString",memberPersonalInformation.toString());
 			}
 			
 			sendEmail(request, null, null, null, "memberuploadedadoc", velocityContext);
