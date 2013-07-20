@@ -990,8 +990,8 @@
 			<div class="row-fluid show-grid">
 				<div class="span4 offset8 decimal">
 					<a href="${scriptName}?selectedItrTab=<%=ITRTab.FORM16_SINGLE%>"
-						class="button olive">Cancel</a>&nbsp; <a
-						id="myModalHrefFormSixteen" role="button" class="btn orange">Save</a>
+						class="btn btn-danger" style="color: black">Cancel</a>&nbsp; <a
+						id="myModalHrefFormSixteen" role="button" class="btn btn-success" style="color: black">Save</a>
 				</div>
 			</div>
 		</form>
@@ -1027,7 +1027,7 @@
 				</c:forEach>
 			</c:if>
 		</table>
-		<a href="${scriptName}/formsixteennew" class="button orange">Add
+		<a href="${scriptName}/formsixteennew" class="btn btn-info" style="color: black">Add
 			New</a>
 	</c:otherwise>
 </c:choose>
