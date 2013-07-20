@@ -9,14 +9,18 @@ import in.gov.incometaxindiaefiling.y2012_2013.Salaries.Salarys;
 import java.util.List;
 
 import com.mootly.wcm.beans.FormSixteenDocument;
+import com.mootly.wcm.beans.SalaryIncomeDocument;
 import com.mootly.wcm.beans.compound.FormSixteenDetail;
 import com.mootly.wcm.services.IndianCurrencyHelper;
 
 public class Form16DocumentSchedules {
 	
-	FormSixteenDocument document = null;
-	public Form16DocumentSchedules(FormSixteenDocument document) {
-		this.document = document;
+	FormSixteenDocument formSixteenDocument = null;
+	SalaryIncomeDocument salaryIncomeDocument = null;
+	
+	public Form16DocumentSchedules(FormSixteenDocument formSixteenDocument,SalaryIncomeDocument salaryIncomeDocument) {
+		this.formSixteenDocument = formSixteenDocument;
+		this.salaryIncomeDocument = salaryIncomeDocument;
 	}
 
 	/**
@@ -27,7 +31,7 @@ public class Form16DocumentSchedules {
 	public ScheduleS getScheduleS(ITR itr) {
 		IndianCurrencyHelper indianCurrencyHelper = new IndianCurrencyHelper();
 		ScheduleS scheduleS = new ScheduleS();
-		List<FormSixteenDetail> formSixteenDetails = document.getFormSixteenDetailList();
+		List<FormSixteenDetail> formSixteenDetails = formSixteenDocument.getFormSixteenDetailList();
 		for (FormSixteenDetail formSixteenDetail:formSixteenDetails)  {
 			Salaries salaries = new Salaries();
 			
