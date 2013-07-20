@@ -230,10 +230,10 @@
 		});
 		<c:choose>
 			<c:when test="${empty allReadOnly}">
-				if ( $("#paymentType").val().trim() != '') { d($("#paymentType")) }
+				 d('<c:out value="${parentBean.paymentType}"/>');
 			</c:when>
 			<c:otherwise>
-				 d('<c:out value="${parentBean.paymentType}"/>');
+				if ( $("#paymentType").val().trim() != '') { d($("#paymentType")) }
 			</c:otherwise>		
 		</c:choose>
 		

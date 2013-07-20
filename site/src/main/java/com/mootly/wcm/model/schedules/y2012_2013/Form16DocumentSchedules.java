@@ -1,4 +1,4 @@
-package com.mootly.wcm.model.schedules;
+package com.mootly.wcm.model.schedules.y2012_2013;
 
 import in.gov.incometaxindiaefiling.y2012_2013.AddressDetail;
 import in.gov.incometaxindiaefiling.y2012_2013.ITR;

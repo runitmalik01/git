@@ -35,8 +35,8 @@ public interface ITReturnScreen {
 	 boolean hasPrevScreen();
 	 boolean isLastScreen();
 
-	 boolean beforeSave(HstRequest request);
-	 void afterSave(HstRequest request);
+	 //boolean beforeSave(HstRequest request);
+	 //void afterSave(HstRequest request);
 
 	 ScreenAction getScreenAction();
 	 //dateFormatter

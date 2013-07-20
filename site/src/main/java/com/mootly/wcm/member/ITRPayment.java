@@ -10,6 +10,10 @@
 package com.mootly.wcm.member;
 
 
+import java.util.HashMap;
+import java.util.Map;
+
+import org.hippoecm.hst.component.support.forms.FormMap;
 import org.hippoecm.hst.core.component.HstComponentException;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
@@ -32,6 +36,7 @@ import com.mootly.wcm.components.ITReturnComponent;
 
 public class ITRPayment extends ITReturnComponent {
 	private static final Logger log = LoggerFactory.getLogger(ITRPayment.class);
+	
 	@Override
 	public void doBeforeRender(HstRequest request, HstResponse response) {
 		super.doBeforeRender(request, response);
@@ -41,7 +46,39 @@ public class ITRPayment extends ITReturnComponent {
 	public void doAction(HstRequest request, HstResponse response) throws HstComponentException {
 		// TODO Auto-generated method stub
 		super.doAction(request, response);
+		//send email bad way we will create a EMAIL BUS		
 	}
+	
+	@Override
+	public void afterSave(HstRequest request,FormMap formMap) {
+		// TODO Auto-generated method stub
+		//send an email 
+		//send an email right here to our administrators and tell them about an availability
+		//String[] to = new String[] {"info@wealth4india.com","amit@mootly.com"};
+		super.afterSave(request,formMap);
+		Map<String,Object> velocityContext = new HashMap<String, Object>();
+		velocityContext.put("userName",getUserName());
+		velocityContext.put("userNameNormalized",getUserNameNormalized());
+		//now lets put the document detail
+		velocityContext.put("PAN",getPAN());
+		velocityContext.put("financialYear",getFinancialYear().getDisplayName());
+		velocityContext.put("itReturnType",getITReturnType().getDisplayName());
+		
+		if (request.getAttribute(MemberPersonalInformation.class.getSimpleName().toLowerCase()) != null ) {
+			MemberPersonalInformation memberPersonalInformation = (MemberPersonalInformation) request.getAttribute(MemberPersonalInformation.class.getSimpleName().toLowerCase());
+			velocityContext.put("memberPersonalInformation",memberPersonalInformation);
+			velocityContext.put("memberPersonalInformationString",memberPersonalInformation.toString());
+		}
+		
+		if (formMap != null) {
+			FormFields formFields = this.getClass().getAnnotation(FormFields.class);
+			for (String aFieldName : formFields.fieldNames()) {
+				if (formMap.getField(aFieldName) != null) velocityContext.put(aFieldName, formMap.getField(aFieldName).getValue());
+			}
+		}		
+		sendEmail(request, null, null, null, "memberpaymentupdate", velocityContext);
+	}
+	
 	@Override
 	public boolean beforeSave(HstRequest request) {
 		return true;

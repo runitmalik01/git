@@ -414,7 +414,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 				}
 			}
 			save(request,formMap);
-			afterSave(request);
+			afterSave(request,formMap);
 			try {
 				if (formMap.getMessage() != null && formMap.getMessage().size() > 0 ) {
 					String urlToRedirect = getScriptName(); //getRedirectURL(request,response,FormSaveResult.FAILURE) ;
@@ -1469,16 +1469,14 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		}
 	}
 
-	@Override
 	public boolean beforeSave(HstRequest request) {
 		// TODO Auto-generated method stub
 		return true;
 	}
 
-	@Override
-	public void afterSave(HstRequest request) {
+	public void afterSave(HstRequest request,FormMap map) {
 		// TODO Auto-generated method stub
-
+		
 	}
 	
 	//DecimalFormat decimalFormat=new DecimalFormat("#.#");
