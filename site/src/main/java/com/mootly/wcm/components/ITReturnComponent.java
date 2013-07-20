@@ -1533,23 +1533,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 				throw new InvalidXMLException(validationResponse);
 			}
 		}
-		
-		boolean isPaymentRequired = false;
-		if (! pageAction.equals(PAGE_ACTION.SHOW_ITR_SUMMARY)) isPaymentRequired = true;
-		if (isPaymentRequired && request.getAttribute("memberpayment") != null) {
-			try {
-				MemberPayment memberPayment = (MemberPayment) request.getAttribute("memberpayment");
-				if (memberPayment != null && memberPayment.getPaymentVerificationStatus() != null &&  memberPayment.getPaymentVerificationStatus() == PaymentVerificationStatus.VERIFIED)
-				isPaid = true;
-			}catch (Exception ex) {
-				throw new PaymentRequiredException(ex);
-			}
-		}	
-		//bug when ispayment required and not paid
-		if (isPaymentRequired && !isPaid) {
-			throw new PaymentRequiredException("Payment is required"); 
-		}
-		
+				
 		//we can generate the HTML Summary here
 		generatedHtmlSummary = getReturnSummary(request,response,generatedXml);
 		
@@ -1618,6 +1602,24 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			dc.setHtmlSummary(generatedHtmlSummary);
 			throw dc;			
 		}
+		
+		boolean isPaymentRequired = false;
+		if (! pageAction.equals(PAGE_ACTION.SHOW_ITR_SUMMARY)) isPaymentRequired = true;
+		if (isPaymentRequired && request.getAttribute("memberpayment") != null) {
+			try {
+				MemberPayment memberPayment = (MemberPayment) request.getAttribute("memberpayment");
+				if (memberPayment != null && memberPayment.getPaymentVerificationStatus() != null &&  memberPayment.getPaymentVerificationStatus() == PaymentVerificationStatus.VERIFIED)
+				isPaid = true;
+			}catch (Exception ex) {
+				throw new PaymentRequiredException(ex);
+			}
+		}	
+		//bug when ispayment required and not paid
+		if (isPaymentRequired && !isPaid) {
+			throw new PaymentRequiredException("Payment is required"); 
+		}
+		
+		
 		
 		if (getPublicRequestParameter(request, "show") != null) request.setAttribute("show",getPublicRequestParameter(request, "show"));
 		
