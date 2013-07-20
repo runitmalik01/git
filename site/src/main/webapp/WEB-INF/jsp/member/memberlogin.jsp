@@ -92,7 +92,7 @@ try {
 				       <c:if test="${not empty login_error_key &&  (login_error_key == 'login.error' || login_error_key == 'login.error.passwordMismatch')}"><label for="password" generated="true" class="error" style=""><fmt:message key="${login_error_key}"/></label></c:if>
 				   </p>
 				   <p>
-				   		<a href="javascript:void(0)" id="hrefLogin" class="orange button">Login</a>
+				   		<a href="javascript:void(0)" id="hrefLogin" class="btn btn-success" style="color: black"">Login</a>
 				   </p>
 				   <hst:link var="memberhome" path="/member"/>
 				   <input type="hidden" name="destination" value="${memberhome}"/> 
