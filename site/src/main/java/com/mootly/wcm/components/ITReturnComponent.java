@@ -414,7 +414,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 				}
 			}
 			save(request,formMap);
-			afterSave(request,formMap);
+			afterSave(request,formMap,pageAction);
 			try {
 				if (formMap.getMessage() != null && formMap.getMessage().size() > 0 ) {
 					String urlToRedirect = getScriptName(); //getRedirectURL(request,response,FormSaveResult.FAILURE) ;
@@ -1474,7 +1474,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		return true;
 	}
 
-	public void afterSave(HstRequest request,FormMap map) {
+	public void afterSave(HstRequest request,FormMap map, PAGE_ACTION pageAction) {
 		// TODO Auto-generated method stub
 		
 	}

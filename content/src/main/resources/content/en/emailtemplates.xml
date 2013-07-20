@@ -1435,5 +1435,179 @@ that you have received your Computation Summary and XML generated copy.&lt;/p&g
 	    </sv:node>
 	  </sv:node>
 	</sv:node>	
+	<sv:node sv:name="memberitrsrupdate" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hippo:handle</sv:value>
+	  </sv:property>
+	  <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+	    <sv:value>hippo:hardhandle</sv:value>
+	    <sv:value>hippo:translated</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>af50d77e-86cd-42a3-b6c7-1729f2562f14</sv:value>
+	  </sv:property>
+	  <sv:node sv:name="hippo:translation">
+	    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	      <sv:value>hippo:translation</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="hippo:language" sv:type="String">
+	      <sv:value/>
+	    </sv:property>
+	    <sv:property sv:name="hippo:message" sv:type="String">
+	      <sv:value>memberitrsrupdate</sv:value>
+	    </sv:property>
+	  </sv:node>
+	  <sv:node sv:name="memberitrsrupdate">
+	    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	      <sv:value>mootlywcm:emailtemplate</sv:value>
+	    </sv:property>
+	    <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+	      <sv:value>hippo:harddocument</sv:value>
+	      <sv:value>hippotranslation:translated</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="jcr:uuid" sv:type="String">
+	      <sv:value>1a51ac97-4c0f-46db-a39d-d2bcfc63b89b</sv:value>
+	    </sv:property>
+	    <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
+	      <sv:value>live</sv:value>
+	      <sv:value>preview</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="hippo:related___pathreference" sv:type="String">
+	      <sv:value>memberitrsrupdate</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="hippostd:holder" sv:type="String">
+	      <sv:value>admin</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="hippostd:state" sv:type="String">
+	      <sv:value>published</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="hippostd:stateSummary" sv:type="String">
+	      <sv:value>live</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
+	      <sv:value>admin</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
+	      <sv:value>2013-07-18T17:15:34.533-07:00</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
+	      <sv:value>2013-07-20T00:30:34.478-07:00</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
+	      <sv:value>admin</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
+	      <sv:value>2013-07-20T00:30:38.712-07:00</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="hippotranslation:id" sv:type="String">
+	      <sv:value>397ccb44-b43a-4160-b4c4-ee8edf0c82a5</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="hippotranslation:locale" sv:type="String">
+	      <sv:value>en</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="mootlywcm:From" sv:type="String">
+	      <sv:value>info@mootly.com</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="mootlywcm:bcc" sv:type="String">
+	      <sv:value/>
+	    </sv:property>
+	    <sv:property sv:name="mootlywcm:cc" sv:type="String">
+	      <sv:value/>
+	    </sv:property>
+	    <sv:property sv:name="mootlywcm:fromName" sv:type="String">
+	      <sv:value/>
+	    </sv:property>
+	    <sv:property sv:name="mootlywcm:htmlBody" sv:type="String">
+	      <sv:value>&lt;html&gt;
+	   &lt;body&gt;
+	      &lt;p&gt;Dear Administrator,&lt;/p&gt;
+	      &lt;p&gt;${userName} has just updated his/her payment information.&lt;/p&gt;
+	      &lt;p&gt;Please check it out.&lt;/p&gt;
+	      &lt;h2&gt;Income Tax Details &lt;/h2&gt;
+	      &lt;table width="100%"&gt;
+	         &lt;tbody&gt;
+	            &lt;tr&gt;
+	               &lt;td width="25%"&gt;PAN&lt;/td&gt;
+	               &lt;td width="75%"&gt;$!{PAN}&lt;/td&gt;
+	            &lt;/tr&gt;
+	            &lt;tr&gt;
+	               &lt;td width="25%"&gt;Financial Year&lt;/td&gt;
+	               &lt;td width="75%"&gt;$!{financialYear}&lt;/td&gt;
+	            &lt;/tr&gt;
+	            &lt;tr&gt;
+	               &lt;td width="25%"&gt;Return Type&lt;/td&gt;
+	               &lt;td width="75%"&gt;$!{itReturnType}&lt;/td&gt;
+	            &lt;/tr&gt;
+	            &lt;tr&gt;
+	               &lt;td width="25%"&gt;Selected ITR Form&lt;/td&gt;
+	               &lt;td width="75%"&gt;$!{flex_string_ITRForm}&lt;/td&gt;
+	            &lt;/tr&gt;
+	            &lt;tr&gt;
+	               &lt;td width="25%"&gt;Delivery Option&lt;/td&gt;
+	               &lt;td width="75%"&gt;$!{flex_string_ITRServiceDelivery}&lt;/td&gt;
+	            &lt;/tr&gt;
+	         &lt;/tbody&gt;
+	      &lt;/table&gt;
+	    
+	      &lt;h2&gt;Personal Information &lt;/h2&gt;
+	      &lt;table width="100%"&gt;
+	         &lt;tbody&gt;
+	            &lt;tr&gt;
+	               &lt;td width="25%"&gt;Name&lt;/td&gt;
+	               &lt;td width="75%"&gt;$!{pi_last_name}&lt;/td&gt;
+	            &lt;/tr&gt;
+	            &lt;tr&gt;
+	               &lt;td width="25%"&gt;DOB&lt;/td&gt;
+	               &lt;td width="75%"&gt;$!{pi_dob}&lt;/td&gt;
+	            &lt;/tr&gt;
+	            &lt;tr&gt;
+	               &lt;td width="25%"&gt;Flat/Floor/Building&lt;/td&gt;
+	               &lt;td width="75%"&gt;$!{pi_flat_door_building}&lt;/td&gt;
+	            &lt;/tr&gt;
+	            &lt;tr&gt;
+	               &lt;td width="25%"&gt;Road/Street&lt;/td&gt;
+	               &lt;td width="75%"&gt;$!{pi_area_locality}&lt;/td&gt;
+	            &lt;/tr&gt;
+	            &lt;tr&gt;
+	               &lt;td width="25%"&gt;City/Town/District&lt;/td&gt;
+	               &lt;td width="75%"&gt;$!{pi_town_city_district}&lt;/td&gt;
+	            &lt;/tr&gt;
+	            &lt;tr&gt;
+	               &lt;td width="25%"&gt;Mobile/Mobile1&lt;/td&gt;
+	               &lt;td width="75%"&gt;$!{pi_mobile} /
+	                  $!{pi_mobile1}
+	               &lt;/td&gt;
+	            &lt;/tr&gt;
+	            &lt;tr&gt;
+	               &lt;td width="25%"&gt;Email&lt;/td&gt;
+	               &lt;td width="75%"&gt;$!{pi_email}&lt;/td&gt;
+	            &lt;/tr&gt;
+	         &lt;/tbody&gt;
+	      &lt;/table&gt;
+	      &lt;pre&gt;Thanks &lt;/pre&gt;
+	      &lt;p&gt; &lt;/p&gt;
+	      &lt;p&gt; &lt;/p&gt;
+	   &lt;/body&gt;
+	&lt;/html&gt;</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="mootlywcm:plainBody" sv:type="String">
+	      <sv:value/>
+	    </sv:property>
+	    <sv:property sv:name="mootlywcm:subject" sv:type="String">
+	      <sv:value>[Member Application] - $userName updated Application for PAN $PAN</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="mootlywcm:templateKey" sv:type="String">
+	      <sv:value>memberitrsrupdate</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="mootlywcm:to" sv:type="String">
+	      <sv:value>amit@mootly.com,info@mootly.com</sv:value>
+	    </sv:property>
+	    <sv:node sv:name="hippotranslation:translations">
+	      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	        <sv:value>hippotranslation:translations</sv:value>
+	      </sv:property>
+	    </sv:node>
+	  </sv:node>
+	</sv:node>
 <!-- /amit -->
 </sv:node>

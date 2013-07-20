@@ -905,12 +905,12 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 			
 		
 			var options={source:callSolr_bd_bank_name,updater:bankSelected}
-			$("#bd_bank_name").attr('autocomplete','off');
-			$("#bd_bank_name").typeahead(options);
+			//$("#bd_bank_name").attr('autocomplete','off');  //07/20 Amit
+			//$("#bd_bank_name").typeahead(options); //07/20 Amit
 
 			options={source:callSolr_bd_Branch_name,updater:branchSelected}
-			$("#bd_Branch_name").attr('autocomplete','off');
-			$("#bd_Branch_name").typeahead(options);
+			//$("#bd_Branch_name").attr('autocomplete','off');  //07/20 Amit
+			//$("#bd_Branch_name").typeahead(options);  //07/20 Amit
 			$('#defective').change(function(){
 				$('.defective_' + $(this).val() + '_v').show();
 				$('.defective_' + $(this).val() + '_h').hide();

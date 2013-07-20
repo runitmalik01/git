@@ -104,9 +104,9 @@ public class AdjustmentOfLosses extends ITReturnComponent {
 
 	}
 	@Override
-	public void afterSave(HstRequest request,FormMap formMap) {
+	public void afterSave(HstRequest request,FormMap formMap,PAGE_ACTION pageAction) {
 		// TODO Auto-generated method stub
-		super.afterSave(request,formMap);
+		super.afterSave(request,formMap,pageAction);
 		Session persistenceSession;
 		List<AdjustmentOfLossesCom> listofAdjustmentOfLossesCom=null;
 		String path=null;

@@ -18,6 +18,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -176,6 +177,43 @@ public class StartApplication extends ITReturnComponent {
 		request.setAttribute("jsonObject", jsonObject);
 		request.setAttribute("map", map);
 
+	}
+	
+	@Override
+	public void afterSave(HstRequest request, FormMap map,PAGE_ACTION pageAction) {
+		// TODO Auto-generated method stub
+		//"flex_string_ITRForm","flex_string_ITRServiceDelivery",
+		super.afterSave(request, map,pageAction);
+		if (pageAction != null && ( pageAction == PAGE_ACTION.NEW || pageAction == PAGE_ACTION.EDIT ) ) {
+			/*
+			if (pageAction  == PAGE_ACTION.EDIT) {
+				if (getParentBean() != null) {
+					MemberPersonalInformation mi = (MemberPersonalInformation) getParentBean();
+					if (mi != null && mi.getSelectedITRForm().equals(other) )
+				}
+			}
+			*/
+			Map<String,Object> velocityContext = new HashMap<String, Object>();
+			velocityContext.put("userName",getUserName());
+			velocityContext.put("userNameNormalized",getUserNameNormalized());
+			//now lets put the document detail
+			velocityContext.put("PAN",getPAN());
+			velocityContext.put("financialYear",getFinancialYear().getDisplayName());
+			velocityContext.put("itReturnType",getITReturnType().getDisplayName());
+			
+			if (request.getAttribute(MemberPersonalInformation.class.getSimpleName().toLowerCase()) != null ) {
+				MemberPersonalInformation memberPersonalInformation = (MemberPersonalInformation) request.getAttribute(MemberPersonalInformation.class.getSimpleName().toLowerCase());
+				velocityContext.put("memberPersonalInformation",memberPersonalInformation);
+			}
+			
+			if (map != null) {
+				FormFields formFields = this.getClass().getAnnotation(FormFields.class);
+				for (String aFieldName : formFields.fieldNames()) {
+					if (map.getField(aFieldName) != null) velocityContext.put(aFieldName, map.getField(aFieldName).getValue());
+				}
+			}		
+			sendEmail(request, null, null, null, "memberitrsrupdate", velocityContext);
+		}
 	}
 
 	@Override
