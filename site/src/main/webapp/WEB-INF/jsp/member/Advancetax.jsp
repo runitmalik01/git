@@ -99,8 +99,8 @@
 			<div class="row-fluid show-grid">
 				<div class="span4 offset8 decimal">
 					<a href="${scriptName}?selectedItrTab=<%=ITRTab.TAX_ADVANCE%>"
-						class="button olive">Cancel</a>&nbsp; <a id="myModalHrefAdvTax"
-						role="button" class="btn orange">Save</a>
+						class="btn btn-danger" style="color: black">Cancel</a>&nbsp; <a id="myModalHrefAdvTax"
+						role="button" class="btn btn-success" style="color: black">Save</a>
 				</div>
 			</div>
 
@@ -142,7 +142,7 @@
 			</c:if>
 
 		</table>
-		<a href="${scriptName}/advancetaxnew" class="button orange">Add
+		<a href="${scriptName}/advancetaxnew" class="btn btn-info" style="color: black">Add
 			New</a>
 
 		<!--
