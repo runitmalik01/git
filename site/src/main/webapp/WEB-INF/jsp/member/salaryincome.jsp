@@ -287,8 +287,8 @@
 					<div class="span4 offset8 decimal">
 						<a
 							href="${scriptName}?selectedItrTab=<%=ITRTab.INCOME_SALARY_PENSION%>"
-							class="button olive">Cancel</a>&nbsp; <a id="myModalHrefSlryInc"
-							role="button" class="btn orange">Save</a>
+							class="btn btn-danger" style="color: black">Cancel</a>&nbsp; <a id="myModalHrefSlryInc"
+							role="button" class="btn btn-success" style="color: black">Save</a>
 					</div>
 				</div>
 			</form>
@@ -327,7 +327,7 @@
 									value="${parentBean.total}" /></td>
 				</c:if>
 			</table>
-			<a href="${scriptName}/salaryincomenew" class="button orange">Add
+			<a href="${scriptName}/salaryincomenew" class="btn btn-info" style="color: black">Add
 				New</a>
 		</c:otherwise>
 	</c:choose>
