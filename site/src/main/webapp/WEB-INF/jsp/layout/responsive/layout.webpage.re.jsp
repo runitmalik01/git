@@ -167,6 +167,12 @@
 		$.validator.addMethod("indiandateLosses", function(value, element) {
 		   	 return this.optional(element) || /^[0-9]{2}\/[0-9]{2}\/[0-9]{4}?$/i.test(value);
 		}, "Date Format is invalid");
+		$.validator.addMethod("chequeNo", function(value, element) {
+		   	 return this.optional(element) || /^[0-9]{6}?$/i.test(value);
+		}, "Cheque Number is invalid");
+		$.validator.addMethod("TrabsitionNo", function(value, element) {
+		   	 return this.optional(element) || /^[a-zA-Z0-9]{0,20}?$/i.test(value);
+		}, "Transition/UTR Number is invalid");
 
 		$(".uprcase").each(function(){
 	          this.style.textTransform = 'uppercase';
