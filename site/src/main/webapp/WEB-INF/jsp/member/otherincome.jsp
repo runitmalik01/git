@@ -392,8 +392,8 @@
 	<div class="row-fluid show-grid">
 		<div class="span4 offset8 decimal">
 
-			<a href="${scriptName}" class="button olive">Cancel</a>&nbsp;<a id="myModalHrefothrInc"
-						role="button" class="btn orange">Save</a>
+			<a href="${scriptName}" class="btn btn-danger" style="color: black">Cancel</a>&nbsp;<a id="myModalHrefothrInc"
+						role="button" class="btn btn-success" style="color: black">Save</a>
 
 		</div>
 	</div>	
