@@ -26,7 +26,8 @@
 		<form id="frmdataTdsOther" action="${actionUrl}" method="post"
 			name="tdsfromothers">
 			<div id="error" class="alert alert-error" style="display:none;">TAN's fourth alphabet should be first alphabet of Name of Deductor</div>
-			<h2>Enter Details</h2>
+		<fieldset>
+			<legend>Enter Details</legend>
 			<div class="row-fluid show-grid">
 				<div class="span4">
 					<div class="rowlabel">
@@ -110,7 +111,7 @@
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.p_Amount}"/></c:if>" />
 					</div>
 				</div>
-			</div>
+			</div></fieldset>
 			<div class="row-fluid show-grid">
 				<div class="span4 offset8 decimal">
 					<a href="${scriptName}?selectedItrTab=<%=ITRTab.TAX_TDS_OTHERS%>" class="btn btn-danger" style="color: black">Cancel</a>&nbsp;
