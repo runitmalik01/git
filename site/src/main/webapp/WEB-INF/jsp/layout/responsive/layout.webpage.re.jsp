@@ -46,7 +46,7 @@
 	<!-- <link rel="stylesheet" media="screen" type="text/css" href='<hst:link path="/css/font-awesome-min.css"></hst:link>'/> -->
     <hst:headContributions categoryIncludes="css"/>
 </head>
-<body class="<c:choose><c:when test="${not empty bodyCssClass}"><c:out value="${bodyCssClass}"/></c:when><c:otherwise>page</c:otherwise></c:choose>">
+<body class="<c:choose><c:when test="${not empty strIsOnVendorPortal}">page-vendor</c:when><c:when test="${not empty bodyCssClass}"><c:out value="${bodyCssClass}"/></c:when><c:otherwise>page</c:otherwise></c:choose>">
     <hst:link var="modernizr" path="/js/modernizr.custom.39581.js"/>
 	<script type='text/javascript' src='${modernizr}'></script>
 

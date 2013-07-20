@@ -127,7 +127,7 @@ public class ITR2XmlGeneratorService  {
 
 	private static Logger log = LoggerFactory.getLogger(ITR2XmlGeneratorService .class);
 
-	public static void generateITR2(HstRequest request,HstResponse response) throws Exception {
+	public static String generateITR2(HstRequest request,HstResponse response) throws Exception {
 		// TODO Auto-generated method stub
 
 		FinancialYear financialYear =  (FinancialYear) request.getAttribute("financialYear");
@@ -1015,11 +1015,12 @@ public class ITR2XmlGeneratorService  {
 			itReturn.getITR2().add(itr2);
 			jaxbMarshaller.marshal(itReturn, sw);
 			request.setAttribute("xml",sw.toString());
+			return sw.toString();
 		} catch (JAXBException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+		return null;
 	}
 
 }

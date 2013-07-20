@@ -27,6 +27,7 @@ import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.content.beans.standard.HippoDocumentIterator;
 import org.hippoecm.hst.content.beans.standard.HippoFacetChildNavigationBean;
 import org.hippoecm.hst.content.beans.standard.HippoFacetNavigationBean;
+import org.hippoecm.hst.content.beans.standard.HippoFolder;
 import org.hippoecm.hst.content.beans.standard.HippoFolderBean;
 import org.hippoecm.hst.content.beans.standard.HippoResultSetBean;
 import org.hippoecm.hst.content.beans.standard.facetnavigation.HippoFacetNavigation;
@@ -65,7 +66,7 @@ import com.mootly.wcm.utils.PageableCollection;
 public class ITReturnHomePage extends ITReturnComponent {
 
 	private static final String PARAM_PAGE_SIZE = "pageSize";
-	private static final int DEFAULT_PAGE_SIZE = 5;
+	private static final int DEFAULT_PAGE_SIZE = 25;
 	private static final String PARAM_CURRENT_PAGE = "pageNumber";
 	private static final int DEFAULT_CURRENT_PAGE = 1;
 	private static final int DEFAULT_SHOW_MORE = 25;	
@@ -171,7 +172,10 @@ public class ITReturnHomePage extends ITReturnComponent {
 				for (Object o:pages.getItems()) {
 					try {
 						MemberPersonalInformation m = (MemberPersonalInformation) o;
-						HippoBean theMemberFolderBean = m.getParentBean().getParentBean().getParentBean().getParentBean().getParentBean().getParentBean();
+						String thePath = m.getNode().getPath();
+						log.info(thePath);
+						HippoFolder theMemberFolderBean = (HippoFolder) m.getParentBean().getParentBean().getParentBean().getParentBean().getParentBean();
+						log.info(theMemberFolderBean.getNode().getPath());
 						
 						ITReturnHomePageView itReturnHomePageView = new ITReturnHomePageView();
 						itReturnHomePageView.setPan(m.getPAN());
@@ -186,7 +190,8 @@ public class ITReturnHomePage extends ITReturnComponent {
 						itReturnHomePageView.setITRForm(m.getSelectedITRForm());
 						itReturnHomePageView.setITRFormMode(m.getSelectedServiceDeliveryOption());
 						itReturnHomePageView.setEmail(m.getEmail());
-						itReturnHomePageView.setCanonicalUUID(theMemberFolderBean.getCanonicalUUID());
+						String stringUUID= theMemberFolderBean.getCanonicalUUID();
+						itReturnHomePageView.setCanonicalUUID(stringUUID);
 						
 						listOfITReturnHomePageView.add(itReturnHomePageView);
 						
@@ -243,7 +248,7 @@ public class ITReturnHomePage extends ITReturnComponent {
 		StoreFormResult sfr = new StoreFormResult();				
 		FormUtils.persistFormMap(request, response, map, sfr);
 		//FormUtils.persistFormMap(request, response, getFormMap(), sfr);
-		String returnURL =  request.getContextPath() +"/member/itreturn/" + financialYear.getDisplayName() + "/" + itReturnType.getDisplayName() + "/" + pan.toLowerCase() + "/servicerequest-itr.html?uuid=" +  sfr.getUuid(); //getRedirectURL(request, response, FormSaveResult.SUCCESS,"packageselector",financialYear,itReturnType,pan);
+		String returnURL =  request.getContextPath() +"/vendor/itreturn/" + financialYear.getDisplayName() + "/" + itReturnType.getDisplayName() + "/" + pan.toLowerCase() + "/servicerequest-itr.html?uuid=" +  sfr.getUuid(); //getRedirectURL(request, response, FormSaveResult.SUCCESS,"packageselector",financialYear,itReturnType,pan);
 		//returnURL +="?uuid=" + 
 		try {
 			response.sendRedirect(returnURL);

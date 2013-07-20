@@ -94,7 +94,7 @@ public class BaseComponent extends BaseHstComponent {
         memberhandleuuid = resolvedSiteMapItem.getParameter("memberhandleuuid");
          try {
 			Node theMemberHandle = request.getRequestContext().getSession().getNodeByIdentifier(memberhandleuuid);
-			if (theMemberHandle != null) memberFolderPath = theMemberHandle.getPath();
+			if (theMemberHandle != null) memberFolderPath = theMemberHandle.getName();
 		} catch (ItemNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -138,12 +138,21 @@ public class BaseComponent extends BaseHstComponent {
     	return ( (strIsOnVendorPortal == null || strIsOnVendorPortal.equals("false")) ? false :  true); 
     }
     
-    public String getVendorPortalMemberFolderPath() {
-    	return memberhandleuuid;
-    }
-    
-    public String getMemberFolderPath() {
-		return memberFolderPath;
+    public String getMemberhandleuuid() {
+		return memberhandleuuid;
+	}
+
+	public void setMemberhandleuuid(String memberhandleuuid) {
+		this.memberhandleuuid = memberhandleuuid;
+	}
+
+	public String getMemberFolderPath(HstRequest request) {    	
+    	if (isOnVendorPortal() && isVendor(request)) {
+			return memberFolderPath;
+		}
+    	else {
+    		return getNormalizedUserName(request);
+    	}
 	}
 
 	/**

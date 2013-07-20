@@ -47,16 +47,18 @@ public class ITRXmlGeneratorService extends ITRXmlGeneratorServiceCommon  implem
 	
 	private static Logger log = LoggerFactory.getLogger(ITRXmlGeneratorService.class);
 	@Override
-	public void generateXml(HstRequest request,HstResponse response) throws Exception {
+	public String generateXml(HstRequest request,HstResponse response) throws Exception {
 		// TODO Auto-generated method stub
 		super.generateXml(request, response);
 		MemberPersonalInformation memberPersonalInformation = (MemberPersonalInformation) request.getAttribute(MemberPersonalInformation.class.getSimpleName().toLowerCase());
 		if(memberPersonalInformation.getFlexField("flex_string_ITRForm", "").equals("ITR1")){
-			ITR1XmlGeneratorService.generateITR1(request, response);
+			return ITR1XmlGeneratorService.generateITR1(request, response);
 		}
 		if(memberPersonalInformation.getFlexField("flex_string_ITRForm", "").equals("ITR2")){
-			ITR2XmlGeneratorService.generateITR2(request, response);
+			return ITR2XmlGeneratorService.generateITR2(request, response);
 		}
+		
+		return null;
 	}
 	
 	public Unmarshaller validateXmlGetUnmarshaller() throws Exception {

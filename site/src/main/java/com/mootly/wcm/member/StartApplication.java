@@ -188,6 +188,7 @@ public class StartApplication extends ITReturnComponent {
 	/**
 	 * This will be used to ensure the page redirects properly 
 	 */
+	/*
 	@Override
 	public String getScriptName(HstRequest request,HstResponse response, FormSaveResult formSaveResult) {
 		// TODO Auto-generated method stub
@@ -202,6 +203,7 @@ public class StartApplication extends ITReturnComponent {
 			return getRedirectURLForSiteMapItem(request,response,formSaveResult);
 		}
 	}
+	*/
 
 	class SortyByDepth implements Comparator<String> {
 		@Override

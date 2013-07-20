@@ -3681,7 +3681,35 @@
 			  <sv:property sv:name="hst:relativecontentpath" sv:type="String">
 			    <sv:value>members</sv:value>
 			  </sv:property>
-			</sv:node>							
+			</sv:node>		
+			<!-- new  -->
+			<sv:node sv:name="servicerequest-itr-tos-confirmation.html" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+			  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+			    <sv:value>hst:sitemapitem</sv:value>
+			  </sv:property>
+			  <sv:property sv:name="jcr:uuid" sv:type="String">
+			    <sv:value>c715383a-8319-4ffa-a323-120d8608577a</sv:value>
+			  </sv:property>
+			  <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+			    <sv:value>hst:pages/servicerequest-itr-tos-confirmation</sv:value>
+			  </sv:property>
+			  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+			    <sv:value>mainSiteMapItemRefId</sv:value>
+			    <sv:value>action</sv:value>
+			    <sv:value>nextScreen</sv:value>
+			  </sv:property>
+			  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+			    <sv:value>memberpersonalinformation</sv:value>
+			    <sv:value>EDIT</sv:value>
+			    <sv:value>servicerequest-itr-summary</sv:value>
+			  </sv:property>
+			  <sv:property sv:name="hst:refId" sv:type="String">
+			    <sv:value>servicerequest-itr-tos-confirmation</sv:value>
+			  </sv:property>
+			  <sv:property sv:name="hst:relativecontentpath" sv:type="String">
+			    <sv:value>members</sv:value>
+			  </sv:property>
+			</sv:node>					
 			<!--  /new  -->
         </sv:node>
         </sv:node>
@@ -4097,7 +4125,7 @@
 	    <sv:value>hst:pages/member-itreturn</sv:value>
 	  </sv:property>
 	  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
-	    <sv:value>isVendor</sv:value>
+	    <sv:value>isOnVendorPortal</sv:value>
 	  </sv:property>
 	  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
 	    <sv:value>true</sv:value>

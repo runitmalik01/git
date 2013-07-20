@@ -427,7 +427,10 @@
 					<td colspan="1"><b>Tax Refundable</b>
 					<td  style="text-align:left">
 						<span class="decimal">
-						<fmt:formatNumber value="${BalTaxPayable}" type="CURRENCY" currencySymbol="${currencySymbol}" maxFractionDigits="2" minFractionDigits="2" minIntegerDigits="1"></fmt:formatNumber>
+							<fmt:formatNumber value="${BalTaxPayable}" type="CURRENCY" currencySymbol="${currencySymbol}" maxFractionDigits="2" minFractionDigits="2" minIntegerDigits="1"></fmt:formatNumber>
+							<c:if test="${BalTaxPayable < 0}">
+								<span style="padding-left:20px"><a href="https://onlineservices.tin.egov-nsdl.com/etaxnew/tdsnontds.jsp">Pay Tax Now</a></span>
+							</c:if>
 						</span>
 					</td>
 				</tr>

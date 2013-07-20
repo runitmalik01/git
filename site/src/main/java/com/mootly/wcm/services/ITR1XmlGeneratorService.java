@@ -91,7 +91,7 @@ import com.sun.xml.bind.marshaller.NamespacePrefixMapper;
 public class ITR1XmlGeneratorService {
 	private static Logger log = LoggerFactory.getLogger(ITRXmlGeneratorService.class);
 
-	public static void generateITR1(HstRequest request,HstResponse response) throws Exception {
+	public static String generateITR1(HstRequest request,HstResponse response) throws Exception {
 		// TODO Auto-generated method stub
 
 		FinancialYear financialYear =  (FinancialYear) request.getAttribute("financialYear");
@@ -938,11 +938,12 @@ public class ITR1XmlGeneratorService {
 			itReturn.getITR1().add(itr1);
 			jaxbMarshaller.marshal(itReturn, sw);
 			request.setAttribute("xml",sw.toString());
+			return sw.toString();
 		} catch (JAXBException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+		return null;
 	}
 	/**
 	 * New Helper function to deal with complications about 80tta

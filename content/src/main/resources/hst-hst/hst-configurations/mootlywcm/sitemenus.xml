@@ -327,7 +327,7 @@
       </sv:property>
     </sv:node>
   </sv:node>
-  <sv:node sv:name="itrmenu" >
+  <sv:node sv:name="itrmenu" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
 	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
 	    <sv:value>hst:sitemenu</sv:value>
 	  </sv:property>
@@ -632,25 +632,7 @@
 	      </sv:property>
 	    </sv:node>
 	  </sv:node>
-	  <!-- 
-	  <sv:node sv:name="Rebates">
-	    <sv:property sv:name="jcr:primaryType" sv:type="Name">
-	      <sv:value>hst:sitemenuitem</sv:value>
-	    </sv:property>
-	    <sv:property sv:name="jcr:uuid" sv:type="String">
-	      <sv:value>cf31990c-6993-496b-a0c1-6ec687fb453d</sv:value>
-	    </sv:property>
-	    <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
-	      <sv:value>theURL</sv:value>
-	      <sv:value>weight</sv:value>
-	    </sv:property>
-	    <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
-	      <sv:value>/../rebates.html</sv:value>
-	      <sv:value>4</sv:value>
-	    </sv:property>
-	  </sv:node>
-	   -->
-	  <sv:node sv:name="Upload Document">
+	  <sv:node sv:name="Upload Documents">
 	    <sv:property sv:name="jcr:primaryType" sv:type="Name">
 	      <sv:value>hst:sitemenuitem</sv:value>
 	    </sv:property>
@@ -665,6 +647,27 @@
 	    <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
 	      <sv:value>/../attachdoc.html</sv:value>
 	      <sv:value>5</sv:value>
+	      <sv:value>true</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="hst:referencesitemapitem" sv:type="String">
+	      <sv:value/>
+	    </sv:property>
+	  </sv:node>
+	  <sv:node sv:name="Payment">
+	    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	      <sv:value>hst:sitemenuitem</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="jcr:uuid" sv:type="String">
+	      <sv:value>f31fe310-525b-4cd3-a702-d7e8eb2ba885</sv:value>
+	    </sv:property>
+	    <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+	      <sv:value>theURL</sv:value>
+	      <sv:value>weight</sv:value>
+	      <sv:value>nonDIY</sv:value>
+	    </sv:property>
+	    <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+	      <sv:value>/../servicerequest-itr-payment.html</sv:value>
+	      <sv:value>6</sv:value>
 	      <sv:value>true</sv:value>
 	    </sv:property>
 	    <sv:property sv:name="hst:referencesitemapitem" sv:type="String">

@@ -1447,4 +1447,20 @@
 	    <sv:value>servicerequest-itr-payment</sv:value>
 	  </sv:property>
 	</sv:node>	
+	<sv:node sv:name="servicerequest-itr-tos-confirmation" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hst:component</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>b2c43989-ffae-454f-81d8-4227e9f43a3d</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:componentclassname" sv:type="String">
+	    <sv:value>com.mootly.wcm.member.ITRTOSConfirmation</sv:value>
+	  </sv:property>
+	  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String"/>
+	  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String"/>
+	  <sv:property sv:name="hst:template" sv:type="String">
+	    <sv:value>servicerequest-itr-tos-confirmation</sv:value>
+	  </sv:property>
+	</sv:node>
 </sv:node>

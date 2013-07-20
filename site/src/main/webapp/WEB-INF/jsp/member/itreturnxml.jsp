@@ -84,9 +84,31 @@
 		<hst:headContribution element="${uiCustom}" category="jsInternal" />
 	</c:when>
 	<c:otherwise>
-		<h1>Welcome to eZ-Filing</h1>
-		<h5>Please upload all your tax documents. A Tax consultant from wealth4india will shortly get in touch with you.</h5>
-		<hst:link var="memberDriveComp" siteMapItemRefId="docattach"></hst:link>
-		<div class="rowlabel text-center text-success"><h5>Click here to<a href="${fn:replace(scriptName,'servicerequest-itr-summary.html','attachdoc.html')}" class="btn btn-primary">Upload Documents</a></h5></div>
+		<h4>eZ-Filing your Tax Return</h4>
+		<h5>You have made the right choice. eZ-Filing your Tax Return is the guaranteed way to get the best out of your return.</h5>
+			<form>
+			<fieldset>
+				<legend>What is eZ-Filing?</legend>
+				<p>
+					eZ-File (pronounced as <i>easy</i> Filing), lets you upload all your relevant tax documents.
+					Wealth4India professionals will download your documents and work on your case.
+					You will be notified via email/phone when your tax is ready.					
+				</p>
+			</fieldset>
+			<fieldset>
+				<legend>When to pay?</legend>
+				<p>
+					Once you are done uploading your documents. You can click on Proceed button on the Upload Documents Screen.					
+				</p>
+			</fieldset>
+			<fieldset>
+				<legend>I love it !! What's Next??</legend>
+				<p>
+					
+					<hst:link var="memberDriveComp" siteMapItemRefId="docattach"></hst:link>	
+					Click on Upload Documents <a href="${fn:replace(scriptName,'servicerequest-itr-summary.html','attachdoc.html')}" class="btn btn-primary">Upload Documents</a> to get started.	 				
+				</p>
+			</fieldset>
+		</form>
 	</c:otherwise>
 </c:choose>

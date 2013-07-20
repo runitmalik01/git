@@ -11,10 +11,10 @@ import com.mootly.wcm.model.ValidationResponse;
 public class ITRXmlGeneratorServiceCommon implements XmlGeneratorService {
 
 	@Override
-	public void generateXml(HstRequest request, HstResponse response)
+	public String generateXml(HstRequest request, HstResponse response)
 			throws Exception {
 		// TODO Auto-generated method stub
-		
+		return null;
 	}
 	
 	@Override

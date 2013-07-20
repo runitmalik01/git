@@ -25,7 +25,6 @@
 		</div>
 	</c:forEach>
 </c:if>
-<hst:actionURL var="actionUrl"></hst:actionURL>
 <div class="page">
 	<w4india:itrmenu />
 	<h4>Payment for Package <fmt:message key="${itrForm}.packageName.${itrServiceDelivery}.cost" var="totalCost"/> <w4india:inr value="${totalCost}"></w4india:inr> </h4>
@@ -53,11 +52,11 @@
 						<label for="ack_no"><small>By Cheque</small> </label>
 					</div>
 					<div class="rowlabel">
-						 Bank Name: <br/>
-						 Payee Name: <br/>
-						 Account Number: <br/>
-						 Branch: <br/>
-						 RTGS/NEFT/IFSC CODE: 
+						 Bank Name: <b>ICICI Bank Ltd.,</b> <br/>
+						 Payee Name: <b>Mootly Software Pvt. Ltd.</b><br/>
+						 Account Number: <b>114305000059 </b><br/>
+						 Branch: <b>Office Number 11, Times Tower, M.G Road, Gurgaon - 122001, Haryana.</b><br/>
+						 RTGS/NEFT/IFSC CODE: <b>ICIC0001143</b>
 				 	</div>
 				 </div>
 				 <div class="span6">
@@ -65,7 +64,7 @@
 						<label for="ack_no"><small>NEFT/RTGS</small> </label>
 					</div>
 					<div class="rowlabel">						
-						 RTGS/NEFT/IFSC CODE: 
+						 RTGS/NEFT/IFSC CODE: <b> ICIC0001143</b>
 				 	</div>
 				 </div>
 			</div>			

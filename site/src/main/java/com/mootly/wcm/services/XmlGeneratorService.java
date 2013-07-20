@@ -9,7 +9,7 @@ import org.hippoecm.hst.core.component.HstResponse;
 import com.mootly.wcm.model.ValidationResponse;
 
 public interface XmlGeneratorService {
-	void generateXml(HstRequest request,HstResponse response) throws Exception;
+	String generateXml(HstRequest request,HstResponse response) throws Exception;
 	
 	//void validateXml(File file) throws Exception;
 	ValidationResponse validateXml(String xml) throws Exception;

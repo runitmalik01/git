@@ -29,6 +29,7 @@ import com.mootly.wcm.annotations.RequiredFields;
 import com.mootly.wcm.beans.FormSixteenDocument;
 import com.mootly.wcm.beans.MemberPersonalInformation;
 import com.mootly.wcm.beans.compound.FormSixteenDetail;
+import com.mootly.wcm.components.FormSaveResult;
 import com.mootly.wcm.components.ITReturnComponent;
 @PrimaryBean(primaryBeanClass=FormSixteenDocument.class)
 @ChildBean(childBeanClass=FormSixteenDetail.class)
@@ -95,12 +96,12 @@ public class FormSixteen extends ITReturnComponent {
 		}
 	
 		if (log.isInfoEnabled()) {
-		log.info("This is do before render form sixteen");}
-		if(null!=request.getSession().getAttribute("dedTotalOnForm16").toString())
-		{
-		request.setAttribute("totalDeductions",request.getSession().getAttribute("dedTotalOnForm16").toString());
+			log.info("This is do before render form sixteen");
 		}
-		else{
+		if(request.getSession() != null && request.getSession().getAttribute("dedTotalOnForm16") != null) {
+			request.setAttribute("totalDeductions",request.getSession().getAttribute("dedTotalOnForm16").toString());
+		}
+		else {
 			request.setAttribute("totalDeductions","0.0");
 		}
 		
@@ -120,6 +121,25 @@ public class FormSixteen extends ITReturnComponent {
 			}
 		}
 	}
+	
+	/**
+	 * This will be used to ensure the page redirects properly 
+	 */
+	@Override
+	public String getScriptName(HstRequest request,HstResponse response, FormSaveResult formSaveResult) {
+		// TODO Auto-generated method stub
+		if (formSaveResult == null || formSaveResult != FormSaveResult.SUCCESS) {
+			return super.getScriptName();
+		}
+		else {
+			String redirectURL = getRedirectURLForSiteMapItem(request,response,formSaveResult);
+			if (log.isInfoEnabled()) {
+				log.info("Will now redirect to:"+ redirectURL);
+			}
+			return getRedirectURLForSiteMapItem(request,response,formSaveResult);
+		}
+	}
+
 	
 	@Override
 	public boolean beforeSave(HstRequest request) {

@@ -206,6 +206,13 @@ pageContext.setAttribute("hostname", builder.toString());
 			</p>
 		</div>
 	</fieldset>
+	<c:if test="${fn:length(memberFiles) > 0}">
+		<div class="row-fluid show-grid">
+			<div class="span3 offset9">
+				 <a href="servicerequest-itr-payment.html" id="upload" class="btn btn-inverse start"><i class="icon-arrow-right icon-white"></i><span>Proceed</span></a>
+			</div>
+		</div>
+	</c:if>
 </form>
 <script type="text/javascript">
   $('#delete').click(function(){

@@ -19,6 +19,7 @@ package com.mootly.wcm.components;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -73,6 +74,7 @@ import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
+import org.springframework.security.authentication.dao.SystemWideSaltSource;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
@@ -112,13 +114,16 @@ import com.mootly.wcm.model.ITReturnPackage;
 import com.mootly.wcm.model.ITReturnType;
 import com.mootly.wcm.model.PaymentVerificationStatus;
 import com.mootly.wcm.model.ValidationResponse;
+import com.mootly.wcm.services.DownloadConfirmationRequiredException;
 import com.mootly.wcm.services.ITRXmlGeneratorServiceFactory;
 import com.mootly.wcm.services.InvalidXMLException;
+import com.mootly.wcm.services.PaymentRequiredException;
 import com.mootly.wcm.services.ScreenCalculatorService;
 import com.mootly.wcm.services.ScreenConfigService;
 import com.mootly.wcm.services.StartApplicationValidationService;
 import com.mootly.wcm.services.XmlGeneratorService;
 import com.mootly.wcm.utils.GoGreenUtil;
+import com.mootly.wcm.utils.MootlyFormUtils;
 import com.mootly.wcm.utils.XmlCalculation;
 
 public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
@@ -309,6 +314,9 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 				}
 			}
 		}
+		
+		String redirectToIfPaymentNotFound = getRedirectURLForSiteMapItem(request, response, null, "servicerequest-itr-payment", getFinancialYear(), getITReturnType(), getPAN());
+		String redirectToIfConfirmationNotFound = getRedirectURLForSiteMapItem(request, response, null, "servicerequest-itr-tos-confirmation", getFinancialYear(), getITReturnType(), getPAN());
 		if (pageAction != null && (pageAction.equals(PAGE_ACTION.SHOW_ITR_SUMMARY) || pageAction.equals(PAGE_ACTION.DOWNLOAD_ITR_SUMMARY) || pageAction.equals(PAGE_ACTION.DOWNLOAD_ITR_XML) || pageAction.equals(PAGE_ACTION.EMAIL_ITR_XML_AND_SUMMARY)) ) {
 			try {
 				handleITRSummary(request,response);
@@ -332,9 +340,6 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 				formMap.addFormField(formFieldXml);
 				formMap.addFormField(formFieldFinancialYear);
 				
-				
-				
-				
 				StoreFormResult sfr = new StoreFormResult();	
 				FormUtils.persistFormMap(request, response, formMap, sfr);
 				try {
@@ -346,6 +351,28 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 				}
 				return;
 				//response.setRenderPath("jsp/member/invalidxml.jsp");
+			} catch (PaymentRequiredException e) {
+				// TODO Auto-generated catch block
+				try {
+					response.sendRedirect(redirectToIfPaymentNotFound);
+				} catch (IOException ex) {
+					// TODO Auto-generated catch block
+					log.error("Error in validating XML",ex);
+					ex.printStackTrace();
+				}
+				return;
+			} catch (DownloadConfirmationRequiredException e) {
+				// TODO Auto-generated catch block
+				//e.printStackTrace();
+				String uuidOfSavedForm = e.getUuidOfSavedForm();
+				try {
+					response.sendRedirect(redirectToIfConfirmationNotFound + "?uuid=" + uuidOfSavedForm);
+				} catch (IOException ex) {
+					// TODO Auto-generated catch block
+					log.error("Error in validating XML",ex);
+					ex.printStackTrace();
+				}
+				return;
 			}
 		}
 	}
@@ -589,7 +616,26 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 	}
 
 	public String getScriptName(HstRequest request,HstResponse response, FormSaveResult formSaveResult) {
-		return scriptName;
+		// TODO Auto-generated method stub
+		String strShouldPostToSelf = request.getRequestContext().getResolvedSiteMapItem().getParameter("shouldPostToSelf");
+		if (strShouldPostToSelf != null && strShouldPostToSelf.equals("true")) {
+			return scriptName;						
+		}
+		else {
+			if (formSaveResult == null || formSaveResult != FormSaveResult.SUCCESS) {
+				return scriptName;
+			}
+			else {
+				String redirectURL = null;
+				if (isVendor(request) && isOnVendorPortal()) {
+					redirectURL = getRedirectURLForSiteMapItem(request,response,formSaveResult,"vendor-servicerequest-itr-summary",getFinancialYear(),getITReturnType(),getPAN());
+				}
+				else {
+					redirectURL = getRedirectURLForSiteMapItem(request,response,formSaveResult,"servicerequest-itr-summary",getFinancialYear(),getITReturnType(),getPAN());
+				}
+				return redirectURL;
+			}	
+		}
 	}
 
 
@@ -777,7 +823,8 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		userNameNormalized = request.getUserPrincipal() != null ? request.getUserPrincipal().getName().replaceAll("@", "-at-") : null;
 
 		siteContentBaseBean = getSiteContentBaseBean(request);
-		hippoBeanMemberBase = siteContentBaseBean.getBean("members/" + getNormalizedMemberEmail());
+		String memberFolderName= getMemberFolderPath(request);
+		hippoBeanMemberBase = siteContentBaseBean.getBean("members/" + memberFolderName);
 		if (hippoBeanMemberBase != null) {
 			memberRootFolderAbsolutePath = hippoBeanMemberBase.getPath();
 			//we need to get into pans sub folder
@@ -787,7 +834,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			//}
 		}
 
-		baseRelPathToReturnDocuments = "members/" + getNormalizedMemberEmail() + "/pans/" + getPAN() + "/" + getFinancialYear() + "/" + getITReturnType();
+		baseRelPathToReturnDocuments = "members/" + getMemberFolderPath(request) + "/pans/" + getPAN() + "/" + getFinancialYear() + "/" + getITReturnType();
 		hippoBeanBaseITReturnDocuments = siteContentBaseBean.getBean(baseRelPathToReturnDocuments);
 		baseAbsolutePathToReturnDocuments = request.getRequestContext().getResolvedMount().getMount().getCanonicalContentPath() + "/" + baseRelPathToReturnDocuments;
 		//if (hippoBeanBaseITReturnDocuments != null) {
@@ -1182,6 +1229,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			response.setRenderParameter("error", "invalid.pan");
 			hstRequest.setAttribute("error", "invalid.pan");
 			String forwardTo = "/member/itreturn";
+			if (isOnVendorPortal() && isVendor(hstRequest)) forwardTo = "/vendor/itreturn"; 
 			if (getFinancialYear() != null) {
 				forwardTo += "/" + getFinancialYear();
 			}
@@ -1217,7 +1265,14 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		if (itReturnType == null || itReturnType.equals(ITReturnType.UNKNOWN)) return null;
 		HstLink link = request.getRequestContext().getHstLinkCreator().createByRefId(siteMapReferenceId, request.getRequestContext().getResolvedMount().getMount());
 		if (link != null) {
-			String strFirstRep = link.toUrlForm(request.getRequestContext(), true).replaceFirst("_default_", financialYear.toString());
+			String strFirstRep = null;
+			if (isOnVendorPortal() && isVendor) {
+				strFirstRep = link.toUrlForm(request.getRequestContext(), true).replaceFirst("_default_", getMemberhandleuuid());
+				strFirstRep = link.toUrlForm(request.getRequestContext(), true).replaceFirst("_default_", financialYear.toString());
+			}
+			else {
+				strFirstRep = link.toUrlForm(request.getRequestContext(), true).replaceFirst("_default_", financialYear.toString());
+			}
 			strFirstRep = strFirstRep.replaceFirst("_default_",itReturnType.toString());
 			strFirstRep = strFirstRep.replaceFirst("_default_",pan);
 			return strFirstRep;
@@ -1427,247 +1482,202 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 	}
 	
 	//DecimalFormat decimalFormat=new DecimalFormat("#.#");
-	public void handleITRSummary(HstRequest request, HstResponse response) throws InvalidXMLException{
+	public void handleITRSummary(HstRequest request, HstResponse response) throws InvalidXMLException, PaymentRequiredException, DownloadConfirmationRequiredException{
 		
-		boolean isDownload = false;
-		String whtToDownload = null; //I HATE IT use ENUM
-		boolean emailMe = false;
-		super.doBeforeRender(request, response);
+		String generatedXml = null;
+		String generatedHtmlSummary = null;
+		String generatedPathToPDF = null;
+		String generatedPathToXML = null;
+		
+		String downloadBaseFileName = "return-"+ getPAN() +"-AY-" + getFinancialYear().getDisplayAssessmentYear() + "-" + getITReturnType();
+		String downloadPDFFileName = downloadBaseFileName  + ".pdf";
+		String downloadXMLFileName = downloadBaseFileName  + ".xml";
+		
+		boolean isPaid = false;
+		
 		MemberPersonalInformation memberPersonalInformation = (MemberPersonalInformation) request.getAttribute(MemberPersonalInformation.class.getSimpleName().toLowerCase());
 		String ITR = memberPersonalInformation.getFlexField("flex_string_ITRForm", "");
 		request.setAttribute("ITR", ITR);
 		
-		boolean isPaid = false;
-		boolean isValidXml = false;
-
-		if (getPublicRequestParameter(request, "show") != null) request.setAttribute("show",getPublicRequestParameter(request, "show"));
-		
-		if (pageAction == PAGE_ACTION.DOWNLOAD_ITR_SUMMARY || pageAction == PAGE_ACTION.DOWNLOAD_ITR_XML) {
-			request.setAttribute("download","true");
-			isDownload = true;
-			if (pageAction == PAGE_ACTION.DOWNLOAD_ITR_XML) {
-				whtToDownload = "xml";
-			}
-			else {
-				whtToDownload = "pdf";
-			}
-		}
-		
-		if (pageAction == PAGE_ACTION.EMAIL_ITR_XML_AND_SUMMARY) {
-			request.setAttribute("emailMe","true");
-			emailMe = true;			
-		}
-		
-		//simple test
-		ITRForm whichITRForm = ITRForm.getEnumByDisplayName(getLocalParameter("formName", request));
-		if (whichITRForm.equals(ITRForm.UNKNOWN)) {
-			whichITRForm = ITRForm.ITR1;
-		}
 		//time to hand over
 		XmlGeneratorService xmlGeneratorService = itrXmlGeneratorServiceFactory.getInstance(getFinancialYear());
 		if (itrXmlGeneratorServiceFactory != null) {
 			if (xmlGeneratorService != null) {
 				try {
-					xmlGeneratorService.generateXml(request, response);									
+					generatedXml = xmlGeneratorService.generateXml(request, response);									
 				} 				
 				catch (Exception e) {
 					// TODO Auto-generated catch block
 					log.error("Error in generating XML",e);
+					throw new InvalidXMLException(e);
 				}
 			}
 		}
 		
+		if (pageAction.equals(PAGE_ACTION.SHOW_ITR_SUMMARY)) return; //no need to go forward at all
 		
-		String temporaryPathToPDF = null;
-		String temporaryPathToXML = null;
-		//now lets check if we have theForm
-		//lets attempt a PDF
-		if ( emailMe || ( isDownload && whtToDownload != null && whtToDownload.equals("pdf") ) ) {
+		boolean isValidationRequired = false;
+		if (! pageAction.equals(PAGE_ACTION.SHOW_ITR_SUMMARY)) isValidationRequired = true;
+		if (log.isInfoEnabled()) {
+			log.info("Validation of XML is required for this action");
+		}
+		if (isValidationRequired) {
+			ValidationResponse validationResponse = null;
 			try {
-				// TODO Auto-generated method stub
-				if (request.getAttribute("memberpayment") != null) {
-					try {
-						MemberPayment memberPayment = (MemberPayment) request.getAttribute("memberpayment");
-						if (memberPayment != null && memberPayment.getPaymentVerificationStatus() != null &&  memberPayment.getPaymentVerificationStatus() == PaymentVerificationStatus.VERIFIED)
-						isPaid = true;
-					}catch (Exception ex) {
-						log.error("Error in checking payment status",ex);
-					}
-				}
-				
-				if (!isPaid) {
-					String redirectTo = getRedirectURLForSiteMapItem(request, response, null, "servicerequest-itr-payment", getFinancialYear(), getITReturnType(), getPAN());
-					try {
-						response.sendRedirect(redirectTo);
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-					return;
-				}
-
-				//now this is the most important part if the XML is invalid then send the user to a page stating that
-				String xml = (String) request.getAttribute("xml");
-				ValidationResponse validationResponse = null;
-				try {
-					validationResponse = xmlGeneratorService.validateXml(xml);
-					validationResponse.setXml(xml);
-					if (validationResponse == null || !validationResponse.isValid()) {
-						throw new InvalidXMLException(validationResponse);
-					}
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();	
+				validationResponse = xmlGeneratorService.validateXml(generatedXml);
+				validationResponse.setXml(generatedXml);
+				if (validationResponse == null || !validationResponse.isValid()) {
 					throw new InvalidXMLException(validationResponse);
 				}
-								
-				DocumentBuilder db = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-				InputSource is = new InputSource(new StringReader(xml));
-				org.w3c.dom.Document aDom = db.parse(is);
-				FileInputStream fi = new FileInputStream(xsltPath);
-				StreamSource stylesource = new StreamSource(fi);
-				Transformer transformer = TransformerFactory.newInstance().newTransformer(stylesource);
-				StringWriter sw = new StringWriter();
-				StreamSource sSource = new StreamSource(new StringReader(xml));
-				StreamResult sResult = new StreamResult(sw);
-				transformer.transform(sSource,sResult);
-				fi.close();
-
-
-				String theHTML = sw.toString();
-				if (log.isInfoEnabled()) {
-					log.info(theHTML);
-				}
-				Document document = new Document();
-				String tmpDir = System.getProperty("java.io.tmpdir");
-				String uuid = UUID.randomUUID().toString();
-				//create the dir 
-				new File(tmpDir + "/" + uuid).mkdir();
-				String pdfFileName = "itreturnsummary-" + getPAN() +"-AY-" + getFinancialYear().getDisplayAssessmentYear() + ".pdf";
-				temporaryPathToPDF = tmpDir + "/" + uuid + "/" + pdfFileName;
-				request.setAttribute("filePath", temporaryPathToPDF);
-				PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(temporaryPathToPDF));
-				writer.setInitialLeading(12.5f);
-				document.open();
-				XMLWorkerHelper.getInstance().parseXHtml(writer, document,new StringReader(theHTML));
-				document.close();
-				writer.close();
-
-
-				if (isDownload) {
-					request.setAttribute("fileName", pdfFileName);
-					response.setRenderPath("jsp/member/downloadfile.jsp");
-					//sendEmail(request,to,null,"info@wealth4india.com",)					
-				}
-				//now we have the BYTES, this can be used, but we need to be careful the SERVER may get overload, we can use tmp file for this
-				//laterz
-			} catch (ParserConfigurationException e) {
+			} catch (Exception e) {
 				// TODO Auto-generated catch block
-
-				log.error("Error during parsing configuration",e);
-			} catch (FactoryConfigurationError e) {
-				// TODO Auto-generated catch block
-
-				log.error("Error factory configuration",e);
-			} catch (SAXException e) {
-				// TODO Auto-generated catch block
-
-				log.error("Error from sax exceptions",e);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-
-				log.error("Error from IO exceptions",e);
-			} catch (TransformerConfigurationException e) {
-				// TODO Auto-generated catch block
-
-				log.error("Transforming  exceptions",e);
-			} catch (TransformerFactoryConfigurationError e) {
-				// TODO Auto-generated catch block
-
-				log.error("Transforming factory exceptions",e);
-			} catch (TransformerException e) {
-				// TODO Auto-generated catch block
-
-				log.error("Transformer exceptions",e);
-			} catch (DocumentException e) {
-				// TODO Auto-generated catch block
-
-				log.error("Document  exceptions",e);
+				e.printStackTrace();	
+				throw new InvalidXMLException(validationResponse);
 			}
 		}
 		
-		if ( emailMe || ( isDownload && whtToDownload != null && whtToDownload.equals("xml")) ) {
-			if (request.getAttribute("memberpayment") != null) {
-				try {
-					MemberPayment memberPayment = (MemberPayment) request.getAttribute("memberpayment");
-					if (memberPayment != null && memberPayment.getPaymentVerificationStatus() != null &&  memberPayment.getPaymentVerificationStatus() == PaymentVerificationStatus.VERIFIED)
-					isPaid = true;
-				}catch (Exception ex) {
-					log.error("Error in checking payment status",ex);
+		boolean isPaymentRequired = false;
+		if (! pageAction.equals(PAGE_ACTION.SHOW_ITR_SUMMARY)) isPaymentRequired = true;
+		if (isPaymentRequired && request.getAttribute("memberpayment") != null) {
+			try {
+				MemberPayment memberPayment = (MemberPayment) request.getAttribute("memberpayment");
+				if (memberPayment != null && memberPayment.getPaymentVerificationStatus() != null &&  memberPayment.getPaymentVerificationStatus() == PaymentVerificationStatus.VERIFIED)
+				isPaid = true;
+			}catch (Exception ex) {
+				throw new PaymentRequiredException(ex);
+			}
+		}	
+		
+		//we can generate the HTML Summary here
+		generatedHtmlSummary = getReturnSummary(request,response,generatedXml);
+		
+		//Now the check if user accepted terms and conditions
+		boolean doesASavedFormExists = false;
+		FormMap savedValuesFormMap=null;	
+		String publicParameterUUID = getPublicRequestParameter(request, "uuid");
+		if(publicParameterUUID==null){
+			publicParameterUUID=(String)request.getSession().getAttribute("uuid");
+		}
+		if (publicParameterUUID != null) {
+			try {
+				FormUtils.validateId(publicParameterUUID);
+				savedValuesFormMap = new FormMap(request,new String[]{"PAN","financialYear","itReturnType","userName"});
+				
+				/*
+				savedValuesFormMap.getField("PAN").addValue(getPAN());
+				savedValuesFormMap.getField("financialYear").addValue(getFinancialYear().name());
+				savedValuesFormMap.getField("itReturnType").addValue(getITReturnType().name());
+				savedValuesFormMap.getField("userName").addValue(getUserName());
+				*/
+				
+				MootlyFormUtils.populate(request, publicParameterUUID, savedValuesFormMap);
+				if (savedValuesFormMap != null) {
+					boolean panMatched = ( (savedValuesFormMap.getField("PAN") != null && savedValuesFormMap.getField("PAN").getValue().equals(getPAN())) ? true : false);
+					boolean financialYearMatched = ( (savedValuesFormMap.getField("financialYear") != null && savedValuesFormMap.getField("financialYear").getValue().equals(getFinancialYear().name())) ? true : false );
+					boolean itReturnTypeMatched = ( (savedValuesFormMap.getField("itReturnType") != null && savedValuesFormMap.getField("itReturnType").getValue().equals(getITReturnType().name())) ? true : false);
+					boolean userNameMatched = ( (savedValuesFormMap.getField("userName") != null && savedValuesFormMap.getField("userName").getValue().equals(getUserName())) ? true : false );
+					
+					if (panMatched && financialYearMatched && itReturnTypeMatched && userNameMatched) {
+						doesASavedFormExists = true;
+					}
 				}
+			}catch (IllegalArgumentException ie) {
+				publicParameterUUID = null;	
+				doesASavedFormExists = false;
+			}
+			catch (Exception ex) {
+				doesASavedFormExists = false;
+			}
+		}
+		
+		if (!doesASavedFormExists) {
+			FormMap toBeSavedValuesFormMap = new FormMap(request,new String[]{"redirectToOriginalPage","PAN","financialYear","itReturnType","userName","generatedHtmlSummary","originalPageAction"});
+			
+			
+			toBeSavedValuesFormMap.getField("PAN").addValue(getPAN());
+			toBeSavedValuesFormMap.getField("financialYear").addValue(getFinancialYear().name());
+			toBeSavedValuesFormMap.getField("itReturnType").addValue(getITReturnType().name());
+			toBeSavedValuesFormMap.getField("userName").addValue(getUserName());
+			toBeSavedValuesFormMap.getField("generatedHtmlSummary").addValue(generatedHtmlSummary);
+			toBeSavedValuesFormMap.getField("originalPageAction").addValue(pageAction.name());
+			
+			String refId = request.getRequestContext().getResolvedSiteMapItem().getHstSiteMapItem().getRefId();
+			if (refId != null) {
+				String redirectToOriginalPage = getRedirectURLForSiteMapItem(request, response, FormSaveResult.SUCCESS, refId, getFinancialYear(), getITReturnType(), getPAN());
+				toBeSavedValuesFormMap.getField("redirectToOriginalPage").addValue(redirectToOriginalPage);
 			}
 			
-			if (!isPaid) {
-				String redirectTo = getRedirectURLForSiteMapItem(request, response, null, "servicerequest-itr-payment", getFinancialYear(), getITReturnType(), getPAN());
-				try {
-					response.sendRedirect(redirectTo);
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				return;
-			}
-
-			if (isDownload) {
-				//now this is the most important part if the XML is invalid then send the user to a page stating that
-				String xml = (String) request.getAttribute("xml");
-				ValidationResponse validationResponse = null;
-				try {
-					validationResponse = xmlGeneratorService.validateXml(xml);
-					validationResponse.setXml(xml);
-					if (validationResponse == null || !validationResponse.isValid()) {
-						throw new InvalidXMLException(validationResponse);
-					}
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();	
-					throw new InvalidXMLException(validationResponse);
-				}
-				String xmlFileName = "itreturn-"+ getPAN() + "-AY-" +getFinancialYear().getDisplayAssessmentYear() + ".xml";
-				request.setAttribute("fileName", xmlFileName);
-				response.setRenderPath("jsp/member/downloadfile.jsp");
-			}
-			if (emailMe) {
-				temporaryPathToXML = saveXmlToTemporaryFile((String)request.getAttribute("xml")); 
+			
+			StoreFormResult sf = new StoreFormResult();
+			FormUtils.persistFormMap(request, response, toBeSavedValuesFormMap,sf);
+			
+			DownloadConfirmationRequiredException dc = new DownloadConfirmationRequiredException();
+			dc.setUuidOfSavedForm(sf.getUuid());
+			dc.setHtmlSummary(generatedHtmlSummary);
+			throw dc;			
+		}
+		
+		if (getPublicRequestParameter(request, "show") != null) request.setAttribute("show",getPublicRequestParameter(request, "show"));
+		
+		if (generatedHtmlSummary != null &&( pageAction == PAGE_ACTION.DOWNLOAD_ITR_SUMMARY || pageAction == PAGE_ACTION.EMAIL_ITR_XML_AND_SUMMARY )) {
+			//time to generate the PDF
+			try {
+				generatedPathToPDF = generatePDF(request, response, generatedHtmlSummary);
+			} catch (DocumentException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				generatedPathToPDF = null;
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				generatedPathToPDF = null;
 			}
 		}
 		
+		if (pageAction == PAGE_ACTION.EMAIL_ITR_XML_AND_SUMMARY) { //time to save the XML in temporary path
+			generatedPathToXML = saveXmlToTemporaryFile(generatedXml);
+		}
 		
-		if (emailMe) {
-			if (temporaryPathToPDF != null && temporaryPathToXML != null) {
-				String deliveryEmail = getPublicRequestParameter(request, "email");
-				String[] to = null;
-				if (deliveryEmail != null && !"".equals(deliveryEmail.trim())) {
-					to = new String[]{ getUserName(), deliveryEmail };
+		switch (pageAction) {
+			case DOWNLOAD_ITR_XML:
+				request.setAttribute("fileName", downloadXMLFileName);
+				response.setRenderPath("jsp/member/downloadfile.jsp");
+				break;
+			case DOWNLOAD_ITR_SUMMARY:
+				request.setAttribute("fileName", downloadPDFFileName);
+				request.setAttribute("filePath", generatedPathToPDF);
+				response.setRenderPath("jsp/member/downloadfile.jsp");
+				break;
+			case EMAIL_ITR_XML_AND_SUMMARY:
+				if (generatedPathToXML != null && generatedPathToPDF != null) {
+					String deliveryEmail = getPublicRequestParameter(request, "email");
+					String[] to = null;
+					if (deliveryEmail != null && !"".equals(deliveryEmail.trim())) {
+						to = new String[]{ getUserName(), deliveryEmail };
+					}
+					else {
+						to = new String[]{ getUserName()};
+					}
+					
+					//sendEmail(request, to, null, new String[] {"info@wealth4india.com"}, "Your IT Return", temporaryPathToPDF + "," + temporaryPathToXML, "Your IT Return Summary", "itreturnSummaryAndXml", null);
+					Map<String,Object> vC = new HashMap<String, Object>();
+					vC.put("financialYearDisplay", getFinancialYear().getDisplayName());
+					vC.put("financialYear", getFinancialYear());
+					sendEmail(request, to, generatedPathToXML + "," + generatedPathToPDF,"Your Income Tax Return for Financial Year " + getFinancialYear().getDisplayName(),"w4i_email",vC);
+					request.setAttribute("emailMeStatus", "success");
 				}
 				else {
-					to = new String[]{ getUserName()};
+					request.setAttribute("emailMeStatus", "failure");
 				}
-				
-				//sendEmail(request, to, null, new String[] {"info@wealth4india.com"}, "Your IT Return", temporaryPathToPDF + "," + temporaryPathToXML, "Your IT Return Summary", "itreturnSummaryAndXml", null);
-				Map<String,Object> vC = new HashMap<String, Object>();
-				vC.put("financialYearDisplay", getFinancialYear().getDisplayName());
-				vC.put("financialYear", getFinancialYear());
-				sendEmail(request, to, temporaryPathToPDF + "," + temporaryPathToXML,"Your Income Tax Return for Financial Year " + getFinancialYear().getDisplayName(),"w4i_email",vC);
-				request.setAttribute("emailMeStatus", "success");
-			}
-			else {
-				request.setAttribute("emailMeStatus", "failure");
-			}
 		}
 		//Object theForm = request.getAttribute("theForm");
 	}
 	
+	/**
+	 * This will save the XML to a temporary location
+	 * @param xml
+	 * @return
+	 */
 	protected String saveXmlToTemporaryFile(String xml) {
 		BufferedWriter writer = null;
 		try
@@ -1700,5 +1710,120 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 	     }
 	}
 	
+	/**
+	 * This method will parse the XML using XSLT and get the output
+	 * @param xml
+	 * @param xslt
+	 * @return
+	 * @throws ParserConfigurationException
+	 * @throws FactoryConfigurationError
+	 * @throws TransformerException
+	 * @throws SAXException
+	 * @throws IOException
+	 */
+	protected String getReturnSummary(HstRequest request,HstResponse response, String xml) {
+		try {			
+			DocumentBuilder db = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+			InputSource is = new InputSource(new StringReader(xml));
+			org.w3c.dom.Document aDom = db.parse(is);
+			FileInputStream fi = new FileInputStream(xsltPath);
+			StreamSource stylesource = new StreamSource(fi);
+			Transformer transformer = TransformerFactory.newInstance().newTransformer(stylesource);
+			StringWriter sw = new StringWriter();
+			StreamSource sSource = new StreamSource(new StringReader(xml));
+			StreamResult sResult = new StreamResult(sw);
+			transformer.transform(sSource,sResult);
+			fi.close();
+			String theHTML = sw.toString();
+			if (log.isInfoEnabled()) {
+				log.info(theHTML);
+			}
+			return theHTML;
+		}catch (ParserConfigurationException pe) {
+			return null;
+		} catch (SAXException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		} catch (TransformerConfigurationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		} catch (TransformerFactoryConfigurationError e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		} catch (TransformerException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	/**
+	 * Return path to PDF file
+	 * @param theHTML
+	 * @return
+	 * @throws DocumentException
+	 * @throws IOException
+	 */
+	protected String generatePDF(HstRequest request,HstResponse response, String theHTML) throws DocumentException, IOException {
+		Document document = new Document();
+		String tmpDir = System.getProperty("java.io.tmpdir");
+		String uuid = UUID.randomUUID().toString();
+		//create the dir 
+		new File(tmpDir + "/" + uuid).mkdir();
+		String pdfFileName = "itreturnsummary-" + getPAN() +"-AY-" + getFinancialYear().getDisplayAssessmentYear() + ".pdf";
+		String temporaryPathToPDF = tmpDir + "/" + uuid + "/" + pdfFileName;		
+		PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(temporaryPathToPDF));
+		writer.setInitialLeading(12.5f);
+		document.open();
+		XMLWorkerHelper.getInstance().parseXHtml(writer, document,new StringReader(theHTML));
+		document.close();
+		writer.close();
+		
+		return temporaryPathToPDF;
+	}
+	
+	/**
+	 * 
+	 * @param request
+	 * @param response
+	 * @param temporaryPathToPDF
+	 * @param temporaryPathToXML
+	 * @return
+	 */
+	protected boolean emailSummaryAndReturn(HstRequest request,HstResponse response, String temporaryPathToPDF,String temporaryPathToXML) {
+		if (temporaryPathToPDF != null && temporaryPathToXML != null) {
+			String deliveryEmail = getPublicRequestParameter(request, "email");
+			String[] to = null;
+			if (deliveryEmail != null && !"".equals(deliveryEmail.trim())) {
+				to = new String[]{ getUserName(), deliveryEmail };
+			}
+			else {
+				to = new String[]{ getUserName()};
+			}
+			
+			//sendEmail(request, to, null, new String[] {"info@wealth4india.com"}, "Your IT Return", temporaryPathToPDF + "," + temporaryPathToXML, "Your IT Return Summary", "itreturnSummaryAndXml", null);
+			Map<String,Object> vC = new HashMap<String, Object>();
+			vC.put("financialYearDisplay", getFinancialYear().getDisplayName());
+			vC.put("financialYear", getFinancialYear());
+			boolean ret = false;
+			try {
+				sendEmail(request, to, temporaryPathToPDF + "," + temporaryPathToXML,"Your Income Tax Return for Financial Year " + getFinancialYear().getDisplayName(),"w4i_email",vC);
+				ret = true;
+			}catch (Exception ex) {
+				ret = false;
+			}
+			return ret;
+		}
+		else {
+			return false;
+		}
+	}
 
 }

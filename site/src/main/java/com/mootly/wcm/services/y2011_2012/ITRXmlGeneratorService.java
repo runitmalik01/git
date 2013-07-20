@@ -88,7 +88,7 @@ import com.mootly.wcm.utils.XmlCalculation;
 public class ITRXmlGeneratorService implements XmlGeneratorService {
 
 	@Override
-	public void generateXml(HstRequest request,HstResponse response) throws Exception {
+	public String generateXml(HstRequest request,HstResponse response) throws Exception {
 		// TODO Auto-generated method stub
 		FinancialYear financialYear =  (FinancialYear) request.getAttribute("financialYear");
 
@@ -779,11 +779,13 @@ public class ITRXmlGeneratorService implements XmlGeneratorService {
 			jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 			jaxbMarshaller.marshal(itr1, sw);
 			request.setAttribute("xml",sw.toString());
+			return sw.toString();
 		} catch (JAXBException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
+		return null;
 	}
 
 	@Override
