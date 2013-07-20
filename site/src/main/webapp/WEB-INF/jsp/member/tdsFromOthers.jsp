@@ -113,8 +113,8 @@
 			</div>
 			<div class="row-fluid show-grid">
 				<div class="span4 offset8 decimal">
-					<a href="${scriptName}?selectedItrTab=<%=ITRTab.TAX_TDS_OTHERS%>" class="button olive">Cancel</a>&nbsp;
-					<a id="myModalHrefTdsOther" role="button" class="btn orange">Save</a>
+					<a href="${scriptName}?selectedItrTab=<%=ITRTab.TAX_TDS_OTHERS%>" class="btn btn-danger" style="color: black">Cancel</a>&nbsp;
+					<a id="myModalHrefTdsOther" role="button" class="btn btn-success" style="color: black">Save</a>
 				</div>
 			</div>
 		</form>
@@ -155,7 +155,7 @@
 			</c:if>
 		</table>
 		<a href="${scriptName}/tdsfromothersnew"
-			class="button orange">Add New</a>
+			class="btn btn-info" style="color: black">Add New</a>
 	</c:otherwise>
 </c:choose>
 </div>
