@@ -122,25 +122,6 @@ public class FormSixteen extends ITReturnComponent {
 		}
 	}
 	
-	/**
-	 * This will be used to ensure the page redirects properly 
-	 */
-	@Override
-	public String getScriptName(HstRequest request,HstResponse response, FormSaveResult formSaveResult) {
-		// TODO Auto-generated method stub
-		if (formSaveResult == null || formSaveResult != FormSaveResult.SUCCESS) {
-			return super.getScriptName();
-		}
-		else {
-			String redirectURL = getRedirectURLForSiteMapItem(request,response,formSaveResult);
-			if (log.isInfoEnabled()) {
-				log.info("Will now redirect to:"+ redirectURL);
-			}
-			return getRedirectURLForSiteMapItem(request,response,formSaveResult);
-		}
-	}
-
-	
 	@Override
 	public boolean beforeSave(HstRequest request) {
 		// TODO Auto-generated method stub
