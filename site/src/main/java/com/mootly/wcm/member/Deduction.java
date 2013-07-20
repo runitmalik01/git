@@ -294,7 +294,8 @@ public class Deduction extends ITReturnComponent {
 				totalMapForJS.putAll(resultMap);
 				request.setAttribute("totalMapForJS", totalMapForJS);
 				request.setAttribute("finaltotalEligibleDeduction",resultMap.get("total_eligiblededuction").toString());
-				request.getSession().setAttribute("dedTotalOnForm16", resultMap.get("total_eligiblededuction").toString());
+				// remove session
+				//request.getSession().setAttribute("dedTotalOnForm16", resultMap.get("total_eligiblededuction").toString());
 			}
 		}
 	}
