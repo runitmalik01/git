@@ -70,7 +70,7 @@
 
 
 		<p  align="center">
-			<a id="hrefLogin" class="orange button"> <fmt:message
+			<a id="hrefLogin" class="btn btn-success" style="color: black"> <fmt:message
 					key="member.start.cpsubmit.label" />
 			</a>
 		</p>
