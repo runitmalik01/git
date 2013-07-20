@@ -98,12 +98,14 @@ public class FormSixteen extends ITReturnComponent {
 		if (log.isInfoEnabled()) {
 			log.info("This is do before render form sixteen");
 		}
+		// it is bad code due to session...
+		/*
 		if(request.getSession() != null && request.getSession().getAttribute("dedTotalOnForm16") != null) {
 			request.setAttribute("totalDeductions",request.getSession().getAttribute("dedTotalOnForm16").toString());
 		}
 		else {
 			request.setAttribute("totalDeductions","0.0");
-		}
+		}*/
 		
 		//request.getRequestContext().getResolvedSiteMapItem().getHstSiteMapItem().toString();
 		// this code is check to open the partial submit form with check that action is what
