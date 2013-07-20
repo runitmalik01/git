@@ -82,8 +82,8 @@
 			</fieldset>
 			<div class="row-fluid show-grid">
 				<div class="span4 offset8 decimal">
-					<a href="${scriptName}?selectedItrTab=<%=ITRTab.TAX_SELF_ASSESSMENT%>" class="button olive">Cancel</a>&nbsp;
-					<a id="myModalHrefSelfTax" role="button" class="btn orange">Save</a>
+					<a href="${scriptName}?selectedItrTab=<%=ITRTab.TAX_SELF_ASSESSMENT%>" class="btn btn-danger" style="color: black">Cancel</a>&nbsp;
+					<a id="myModalHrefSelfTax" role="button" class="btn btn-success" style="color: black">Save</a>
 				</div>
 			</div>
 		</form>
@@ -125,7 +125,7 @@
 					<td ><w4india:inr value="${parentBean.total_Amount}" /></td>
 			</c:if>
 		</table>
-		<a href="${scriptName}/selfassesmenttaxnew" class="button orange">Add New</a>
+		<a href="${scriptName}/selfassesmenttaxnew" class="btn btn-info" style="color: black">Add New</a>
 	</c:otherwise>
 </c:choose>
 
