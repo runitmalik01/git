@@ -54,6 +54,8 @@
       <sv:value>common/Contact-Us</sv:value>
     </sv:property>
   </sv:node>
+  <!-- Comment Out -->
+  <!-- 
   <sv:node sv:name="search">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
       <sv:value>hst:sitemapitem</sv:value>
@@ -122,6 +124,7 @@
       </sv:node>
     </sv:node>
   </sv:node>
+  -->
   <sv:node sv:name="faq">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
       <sv:value>hst:sitemapitem</sv:value>
@@ -3845,7 +3848,7 @@
 	    <sv:value>ff48940d-d0d4-496a-a75f-4c780c1fdaa6</sv:value>
 	  </sv:property>
 	  <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
-	    <sv:value>hst:pages/simpledocumentpage.re</sv:value>
+	    <sv:value>hst:pages/terms</sv:value>
 	  </sv:property>
 	  <sv:property sv:name="hst:refId" sv:type="String">
 	    <sv:value>terms</sv:value>
@@ -3915,7 +3918,7 @@
 	    <sv:value>9b1ae2b9-2391-4944-b39c-2aa4c995ea80</sv:value>
 	  </sv:property>
 	  <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
-	    <sv:value>hst:pages/simpledocumentpage.re</sv:value>
+	    <sv:value>hst:pages/privacy</sv:value>
 	  </sv:property>
 	  <sv:property sv:name="hst:refId" sv:type="String">
 	    <sv:value>privacy</sv:value>
@@ -7433,6 +7436,62 @@
 	                <sv:value>members</sv:value>
 	              </sv:property>
 	            </sv:node>
+	            <!--  new  -->
+				<sv:node sv:name="servicerequest-itr-tos-confirmation.html" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+					  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+					    <sv:value>hst:sitemapitem</sv:value>
+					  </sv:property>
+					  <sv:property sv:name="jcr:uuid" sv:type="String">
+					    <sv:value>b9002748-15f2-416a-b3f4-d1ddcc2dbc03</sv:value>
+					  </sv:property>
+					  <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+					    <sv:value>hst:pages/servicerequest-itr-tos-confirmation</sv:value>
+					  </sv:property>
+					  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+					    <sv:value>mainSiteMapItemRefId</sv:value>
+					    <sv:value>action</sv:value>
+					    <sv:value>nextScreen</sv:value>
+					  </sv:property>
+					  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+					    <sv:value>memberpersonalinformation</sv:value>
+					    <sv:value>EDIT</sv:value>
+					    <sv:value>vendor-servicerequest-itr-tos-confirmation</sv:value>
+					  </sv:property>
+					  <sv:property sv:name="hst:refId" sv:type="String">
+					    <sv:value>vendor-servicerequest-itr-tos-confirmation</sv:value>
+					  </sv:property>
+					  <sv:property sv:name="hst:relativecontentpath" sv:type="String">
+					    <sv:value>members</sv:value>
+					  </sv:property>
+				</sv:node>	        
+				<sv:node sv:name="servicerequest-itr-payment.html" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+					  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+					    <sv:value>hst:sitemapitem</sv:value>
+					  </sv:property>
+					  <sv:property sv:name="jcr:uuid" sv:type="String">
+					    <sv:value>14a312ed-3c68-4f9d-b448-98b033ef4728</sv:value>
+					  </sv:property>
+					  <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+					    <sv:value>hst:pages/servicerequest-itr-payment</sv:value>
+					  </sv:property>
+					  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+					    <sv:value>mainSiteMapItemRefId</sv:value>
+					    <sv:value>action</sv:value>
+					    <sv:value>nextScreen</sv:value>
+					  </sv:property>
+					  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+					    <sv:value>memberpersonalinformation</sv:value>
+					    <sv:value>EDIT</sv:value>
+					    <sv:value>vendor-servicerequest-itr-summary</sv:value>
+					  </sv:property>
+					  <sv:property sv:name="hst:refId" sv:type="String">
+					    <sv:value>vendor-servicerequest-itr-payment</sv:value>
+					  </sv:property>
+					  <sv:property sv:name="hst:relativecontentpath" sv:type="String">
+					    <sv:value>members</sv:value>
+					  </sv:property>
+					</sv:node>
+	            <!-- /new -->
 	          </sv:node>
 	        </sv:node>
 	      </sv:node>

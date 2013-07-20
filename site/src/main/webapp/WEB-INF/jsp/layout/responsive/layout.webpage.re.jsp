@@ -33,7 +33,7 @@
     <hst:headContributions categoryExcludes="css,jsInternal,jsExternal"  />
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
-	<meta name='robots' content='noindex,nofollow' />
+	<%--<meta name='robots' content='noindex,nofollow' /> --%>
 	<link rel="stylesheet" media="screen" type="text/css" href="<hst:link path="/css/author.css"></hst:link>"/>
 	<hst:link var="stylecss" path="/css/style.css"/>
     <link rel="stylesheet" media="screen" type="text/css" href="${stylecss}"/>

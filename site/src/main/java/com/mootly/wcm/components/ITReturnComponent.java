@@ -1545,6 +1545,10 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 				throw new PaymentRequiredException(ex);
 			}
 		}	
+		//bug when ispayment required and not paid
+		if (isPaymentRequired && !isPaid) {
+			throw new PaymentRequiredException("Payment is required"); 
+		}
 		
 		//we can generate the HTML Summary here
 		generatedHtmlSummary = getReturnSummary(request,response,generatedXml);
