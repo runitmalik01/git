@@ -113,7 +113,7 @@ TreeMap objTreeMapSection = (TreeMap) objValueListService.getReturnFile();
                    <c:if test="${not empty anEntry.lastOrOrgName}">
 				<tr>
 					<td class="pan">
-						<hst:link var="viewLink" path="/vendor/itreturn/${anEntry.canonicalUUID}/${anEntry.financialYear.displayName}/${anEntry.itReturnType.displayName}/${fn:toLowerCase(anEntry.pan)}/vendor-servicerequest-itr.html"/>
+						<hst:link var="viewLink" path="/vendor/itreturn/${anEntry.canonicalUUID}/${anEntry.financialYear.displayName}/${anEntry.itReturnType.displayName}/${fn:toLowerCase(anEntry.pan)}/servicerequest-itr.html"/>
 						<span style="text-transform:uppercase;"><a href="${viewLink}"><c:out value="${anEntry.pan}"/></a></span>
 					</td>
 					<td class="pan"><b><c:out value="${anEntry.lastOrOrgName}"/></b></td>
@@ -123,7 +123,7 @@ TreeMap objTreeMapSection = (TreeMap) objValueListService.getReturnFile();
 					<td class="filingStatus"  style="text-transform:capitalize;"><c:out value="${anEntry.itReturnType}"/></td>
 					<td><fmt:message key="ITRServiceDelivery.${anEntry.ITRFormMode}.displayName"/></td>
 					<td>
-						<hst:link var="viewLink" path="/vendor/itreturn/${anEntry.canonicalUUID}/${anEntry.financialYear.displayName}/${anEntry.itReturnType.displayName}/${fn:toLowerCase(anEntry.pan)}/vendor-servicerequest-itr-summary.html"/>
+						<hst:link var="viewLink" path="/vendor/itreturn/${anEntry.canonicalUUID}/${anEntry.financialYear.displayName}/${anEntry.itReturnType.displayName}/${fn:toLowerCase(anEntry.pan)}/servicerequest-itr-summary.html"/>
 						<%--<span style=""><a href="${viewLink}">Continue Filing</a></span>--%>
 						<div class="btn-group">
 			                <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Action <span class="caret"></span></button>
