@@ -38,8 +38,8 @@ public class HouseIncomeDocumentSchedules {
 		ScheduleHP scheduleHP = new ScheduleHP();
 
 		List<HouseIncomeDetail> houseIncomeDetails = document.getHouseIncomeDetailList();
+		int i=1;
 		for (HouseIncomeDetail houseIncomeDetail:houseIncomeDetails)  {
-			int i=1;
 			PropertyDetails propertyDetails = new PropertyDetails();
 			propertyDetails.setHPSNo(i);
 
