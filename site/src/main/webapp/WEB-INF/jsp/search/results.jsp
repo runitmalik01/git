@@ -25,6 +25,12 @@
     <c:set var="searched" value="'${fn:escapeXml(tag != null ? tag.label : query)}'"/>
 	<c:choose>
 		<c:when test="${empty firstBean}">
+			<hst:element var="robotsContent"  name="meta">
+				<hst:defineObjects/>
+				<hst:attribute name="name">robots</hst:attribute>
+				<hst:attribute name="content">noindex, follow</hst:attribute>
+			</hst:element>
+			<hst:headContribution category="meta" element="${robotsContent}"></hst:headContribution>
 		    <%-- Do titles --%>
 		    <c:choose>
 		      <%-- When page is not found --%>
@@ -76,6 +82,12 @@
 		   
 		    <c:choose>
 		      <c:when test="${isFound}">
+		      	<hst:element var="robotsContent"  name="meta">
+					<hst:defineObjects/>
+					<hst:attribute name="name">robots</hst:attribute>
+					<hst:attribute name="content">noindex, follow</hst:attribute>
+				</hst:element>
+				<hst:headContribution category="meta" element="${robotsContent}"></hst:headContribution>
 		        <div id="search-results">
 		          <c:forEach items="${searchResult.items}" var="hit">
 		            <hst:link var="link" hippobean="${hit}"/>
@@ -92,7 +104,7 @@
 		                  <li class="title"><a href="${fn:escapeXml(link)}"><c:out value="${hit.name}"/></a></li>
 		                </c:when>	
 		                <c:when test="${hitClassName eq 'SimpleDocument'}">
-		                  <li class="title"><a href="${fn:escapeXml(link)}/../${hit.name}"><c:out value="${hit.name}"/></a></li>
+		                  <li class="title"><a href="${fn:escapeXml(link)}/../${hit.name}"><c:out value="${hit.title}"/></a></li>
 		                </c:when>		                
 		                <c:otherwise>
 		                  <hst:link var="link" hippobean="${hit}"/>
@@ -106,8 +118,7 @@
 		      </c:when>
 		      <c:otherwise>
 		      </c:otherwise>
-		    </c:choose>
-		
+		    </c:choose>		
 		    <%-- Show bottom pagination if it is a proper search, if it comes from pagenotfound, dont show it --%>
 		    <c:choose>
 		      <c:when test="${not pagenotfound}">
@@ -119,22 +130,32 @@
 		</c:when>
 		<c:otherwise>
 			 <c:set var="hitClassName" value="${firstBean.getClass().simpleName}"/>
+			 <hst:element var="robotsContent"  name="meta">
+				<hst:defineObjects/>
+				<hst:attribute name="name">robots</hst:attribute>
+				<hst:attribute name="content">index, follow</hst:attribute>
+			</hst:element>
+			<hst:headContribution category="meta" element="${robotsContent}"></hst:headContribution>
 			 <c:choose>
                <c:when test="${hitClassName eq 'HippoAsset'}">
                  	<h4><c:out value="${firstBean.name}"/></h4>
+                 	<hippo-gogreen:title title="${firstBean.name}"></hippo-gogreen:title>
                </c:when>
                <c:when test="${hitClassName eq 'Faq'}">
                 	<h4><c:out value="${firstBean.question}"/></h4>
                 	<div><c:out value="${firstBean.answer.content}" escapeXml="false"/></div>
+                	<hippo-gogreen:title title="${firstBean.question}"></hippo-gogreen:title>
                </c:when>
 				<c:when test="${hitClassName eq 'Service'}">
                  	<h4><c:out value="${firstBean.name}"/></h4>
                  	<div><c:out value="${firstBean.serviceDescription.content}" escapeXml="false"/></div>
+                 	<hippo-gogreen:title title="${firstBean.name}"></hippo-gogreen:title>
                </c:when>	
                <c:when test="${hitClassName eq 'SimpleDocument'}">
-                	<h4><c:out value="${firstBean.name}"/></h4>
+                	<h4><c:out value="${firstBean.title}"/></h4>
                 	<div>
                 		<c:out value="${firstBean.description.content}" escapeXml="false"/>
+                		<hippo-gogreen:title title="${firstBean.title}"></hippo-gogreen:title>
                 	</div>
                </c:when>		                
              </c:choose>
