@@ -55,7 +55,6 @@
     </sv:property>
   </sv:node>
   <!-- Comment Out -->
-  <!-- 
   <sv:node sv:name="search">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
       <sv:value>hst:sitemapitem</sv:value>
@@ -124,7 +123,6 @@
       </sv:node>
     </sv:node>
   </sv:node>
-  -->
   <sv:node sv:name="faq">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
       <sv:value>hst:sitemapitem</sv:value>

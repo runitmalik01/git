@@ -19,7 +19,7 @@
 <%@include file="../includes/tags.jspf" %>
 
 <!-- right -->
-<div id="right" class="yui-b">
+<div>
   <hst:include ref="facetnav"/>
   <!-- components container -->
   <hst:include ref="boxes-right"/>

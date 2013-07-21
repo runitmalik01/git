@@ -29,7 +29,8 @@ public class ErrorSearchComponent extends AbstractSearchComponent {
         super.doBeforeRender(request, response);
 
         // set 404 status
-        response.setStatus(HstResponse.SC_NOT_FOUND);
+        //lets defer the status until we are sure if there were no docs
+       
 
         // find url that exists in the sitemap
         String workingPath = getWorkingUrl(request);
@@ -45,8 +46,13 @@ public class ErrorSearchComponent extends AbstractSearchComponent {
 
         }
         searchDocuments(request, query);
+        
+        if (request.getAttribute("firstBean") == null) {
+        	 response.setStatus(HstResponse.SC_NOT_FOUND);
+        	 request.setAttribute("pagenotfound", true);
+        }
 
-        request.setAttribute("pagenotfound", true);
+        
         request.setAttribute("parentpage", workingPath);
     }
 

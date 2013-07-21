@@ -38,6 +38,7 @@ import org.hippoecm.hst.util.SearchInputParsingUtils;
 import org.hippoecm.hst.utils.BeanUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeanInstantiationException;
 
 import com.mootly.wcm.beans.Document;
 import com.mootly.wcm.beans.EventDocument;
@@ -90,7 +91,7 @@ public class AbstractSearchComponent extends TagComponent {
             // mootlywcm:documents once the tagcloud plugin supports this.
             List<HippoBean> taggedDocuments = new ArrayList<HippoBean>();
             for (HippoBean bean : taggedBeans) {
-                if (bean instanceof Document) {
+                if (bean instanceof Document || bean instanceof SimpleDocument) {
                     taggedDocuments.add(bean);
                 }
             }
@@ -154,7 +155,7 @@ public class AbstractSearchComponent extends TagComponent {
             int currentPage = getCurrentPage(request);
 
             PageableCollection<HippoBean> results = new PageableCollection<HippoBean>(beans, pageSize, currentPage);
-            if (results != null) {
+            if (results != null && results.getItems() != null && results.getItems().size() > 0) {
             	HippoBean firstBean = results.getItems().get(0);
             	request.setAttribute("firstBean", firstBean);
             }
