@@ -1615,8 +1615,17 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			}
 		}	
 		//bug when ispayment required and not paid
+		request.setAttribute("isPaymentRequired", isPaymentRequired);
+		request.setAttribute("isPaid", isPaid);
 		if (isPaymentRequired && !isPaid) {
-			throw new PaymentRequiredException("Payment is required"); 
+			if (isOnVendorPortal() && isVendor(request)) {
+				if (log.isInfoEnabled()) {
+					log.info("Vendor can skip the payment and get the XML right away");					
+				}
+			}
+			else { //normal user must pay
+				throw new PaymentRequiredException("Payment is required");
+			}				
 		}
 		
 		

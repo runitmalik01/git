@@ -601,13 +601,14 @@ public class ITR1XmlGeneratorService {
 		//filingstatus.setPortugeseCC5A(memberPersonalInformation.getPortugesecivil());
 
 		if (memberPersonalInformation.getReturnType().equals("R")) {
-			filingstatus.setAckNoOriginalReturn(memberPersonalInformation.getOriginalAckNo());
+			filingstatus.setReceiptNo(memberPersonalInformation.getOriginalAckNo()); //added on 07/20/2013
+			//filingstatus.setAckNoOriginalReturn(memberPersonalInformation.getOriginalAckNo()); //removed on 07/20/2013 added above line
 			filingstatus.setOrigRetFiledDate(indianCurrencyHelper.gregorianCalendar(memberPersonalInformation.getOriginalAckDate()));
 
 			if(memberPersonalInformation.getDefective().equals("Y")){
 				filingstatus.setNoticeNo(memberPersonalInformation.getNoticeNo());
 				filingstatus.setNoticeDate(indianCurrencyHelper.gregorianCalendar(memberPersonalInformation.getNoticeDate()));
-				filingstatus.setReceiptNo(memberPersonalInformation.getReceiptNo());
+				filingstatus.setAckNoOriginalReturn(memberPersonalInformation.getReceiptNo());
 			}
 		}
 

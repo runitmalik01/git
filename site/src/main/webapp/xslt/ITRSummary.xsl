@@ -398,6 +398,23 @@
 					<xsl:value-of select="ITRForm:TotTaxPlusIntrstPay" />
 				</td>
 			</tr>
+			<tr>
+				<td>Tax Status (
+					<xsl:choose>
+						<xsl:when test="//ITRForm:TaxStatus[text() = 'TR']"><b>Tax Refund</b></xsl:when>
+						<xsl:when test="//ITRForm:TaxStatus[text() = 'TP']"><b>Tax Payable</b></xsl:when>
+						<xsl:when test="//ITRForm:TaxStatus[text() = 'NT']"><b>No Tax </b></xsl:when>						
+					</xsl:choose>
+					)					
+				</td>
+				<td align="right">
+					<xsl:choose>
+						<xsl:when test="//ITRForm:TaxStatus[text() = 'TR']"><xsl:value-of select="//ITRForm:RefundDue"/></xsl:when>
+						<xsl:when test="//ITRForm:TaxStatus[text() = 'TP']"><xsl:value-of select="//ITRForm:BalTaxPayable"/></xsl:when>
+						<xsl:when test="//ITRForm:TaxStatus[text() = 'NT']"><b>0</b></xsl:when>						
+					</xsl:choose>
+				</td>
+			</tr>
 		</table>
 	</xsl:template>
 	<!-- this is a common template called by apply-templates -->
