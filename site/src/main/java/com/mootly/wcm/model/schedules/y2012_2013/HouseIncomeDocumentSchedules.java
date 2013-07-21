@@ -55,14 +55,14 @@ public class HouseIncomeDocumentSchedules {
 			}
 			if(propertyDetails.getPropCoOwnedFlg().equals("YES")){
 				propertyDetails.setAsseseeShareProperty(Double.parseDouble(houseIncomeDetail.getProperty_share()));
-				//Detail of Co-Owner is incomplete need to put some logic to make it short
 				for(int j=1; j<6; j++){
 					CoOwners coOwners = new CoOwners();
-					if(houseIncomeDetail.getCoownername1()!=null){
+					String replaceNumericValue = ""+j;
+					if(houseIncomeDetail.getCoownername1().replaceAll("1", replaceNumericValue)!=null){
 						coOwners.setCoOwnersSNo(j);
-						coOwners.setNameCoOwner(houseIncomeDetail.getCoownername1());
-						coOwners.setPANCoOwner(houseIncomeDetail.getCoownerpan1());
-						coOwners.setPercentShareProperty(Double.parseDouble(houseIncomeDetail.getShare1()));
+						coOwners.setNameCoOwner(houseIncomeDetail.getCoownername1().replaceAll("1", replaceNumericValue));
+						coOwners.setPANCoOwner(houseIncomeDetail.getCoownerpan1().replaceAll("1", replaceNumericValue));
+						coOwners.setPercentShareProperty(Double.parseDouble(houseIncomeDetail.getShare1().replaceAll("1", replaceNumericValue)));
 					}
 					propertyDetails.getCoOwners().add(coOwners);
 				}
