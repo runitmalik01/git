@@ -16,6 +16,29 @@
 	<xsl:template match="/ITRETURN:ITR">
 		<html>
 			<head>			
+				<style type="text/css">
+					#c6, #taxi, #taxc {
+						font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+						font-size: 12px;
+						background: #fff;
+						width: 100%;
+						border-collapse: collapse;
+						text-align: left;					
+					}				
+					#c6 th, #taxi th, #taxc th {
+						font-size: 14px;
+						font-weight: normal;
+						color: #039;
+						border-bottom: 2px solid #6678b1;
+						padding: 10px 8px;
+					}					
+					
+					#c6 td, #taxi td, #taxc td {
+						border-bottom: 1px solid #ccc;
+						color: #669;
+						padding: 6px 8px;
+					}			
+				</style>
 			</head>
 			<body>
 				<xsl:if test="$showLogo = 'true'">
@@ -310,10 +333,9 @@
 	</xsl:template>
 	<xsl:template match="ITRForm:ITR1_IncomeDeductions">
 	<span style="font-size:16.0pt;line-height:115%;font-family:Algerian">Computation of Total taxable Income</span>
-		<table width="100%" border="1" class="odd"
-			style="background-color: #d5e9d7;">
+		<table width="100%" border="1" id="taxi">
 			<tr>
-				<th colspan="3">Taxable Income</th>
+				<th colspan="2">Taxable Income</th>
 			</tr>
 			<xsl:if test="ITRForm:IncomeFromSal/text() != '0'">
 				<tr>
@@ -363,8 +385,7 @@
 		<xsl:apply-templates select="ITRForm:DeductUndChapVIA" />
 	</xsl:template>
 	<xsl:template match="ITRForm:ITR1_TaxComputation">
-		<table width="100%" border="1" class="odd"
-			style="background-color: #d5e9d7;">
+		<table width="100%" border="1" id="taxc">
 			<tr>
 				<th colspan="2">Tax Information</th>
 			</tr>
@@ -432,20 +453,25 @@
 		 -->
 	</xsl:template>
 	
-	<xsl:template match="ITRForm:DeductUndChapVIA">
-
-		<table width="100%" border="1" class="odd"
-			style="background-color: #d5e9d7;">
+	<xsl:template match="ITRForm:DeductUndChapVIA">		
+		<table width="100%" border="1"  id="c6">
 			<tr>
 				<th colspan="3">Deductions under Chapter VI</th>
 			</tr>
 			<tr>
 				<th>Section</th>
-				<th align="right">Eligible</th>
 				<th align="right">Total</th>
+				<th align="right">Eligible</th>
 			</tr>
 			<xsl:for-each select="./*[text() != '0']">
+				<xsl:variable name="css-class">
+				    <xsl:choose>
+				      <xsl:when test="position() mod 2 = 0">even</xsl:when>
+				      <xsl:otherwise>odd</xsl:otherwise>
+				    </xsl:choose>
+			 	   </xsl:variable>
 					<tr>
+						<xsl:attribute name="class"><xsl:value-of select="$css-class"/></xsl:attribute>
 						<xsl:variable name="myName" select="name(.)" />
 						<td>
 							<xsl:choose>
@@ -458,10 +484,10 @@
 							</xsl:choose>
 						</td>
 						<td align="right">
-							<xsl:value-of select="." />
-						</td>
-						<td align="right">
 							<xsl:value-of select="../../ITRForm:UsrDeductUndChapVIA/*[name()=$myName]" />
+						</td>						
+						<td align="right">
+							<xsl:value-of select="." />
 						</td>
 					</tr>
 			</xsl:for-each>

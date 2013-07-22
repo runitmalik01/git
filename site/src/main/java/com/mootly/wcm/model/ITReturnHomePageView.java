@@ -10,6 +10,18 @@ public class ITReturnHomePageView {
 		return itrForm;
 	}
 	
+	public FilingSection getFilingSection() {
+		return filingSection;
+	}
+
+	public ITRForm getItrForm() {
+		return itrForm;
+	}
+
+	public ITRServiceDelivery getItrFormMode() {
+		return itrFormMode;
+	}
+
 	public void setITRForm(ITRForm itrForm) {
 		this.itrForm = itrForm;		
 	}
@@ -32,6 +44,18 @@ public class ITReturnHomePageView {
 
 	public void setItReturnType(ITReturnType itReturnType) {
 		this.itReturnType = itReturnType;
+	}
+	
+	public void setFilingSection(FilingSection filingSection) {
+		this.filingSection = filingSection;
+	}
+
+	public void setItrForm(ITRForm itrForm) {
+		this.itrForm = itrForm;
+	}
+
+	public void setItrFormMode(ITRServiceDelivery itrFormMode) {
+		this.itrFormMode = itrFormMode;
 	}
 
 	public String getLastOrOrgName() {
@@ -77,6 +101,7 @@ public class ITReturnHomePageView {
 	FinancialYear financialYear;
 	FilingStatus filingStatus;
 	ITReturnType itReturnType;
+	FilingSection filingSection;
 	ITRForm itrForm;
 	ITRServiceDelivery itrFormMode;
 	String canonicalUUID;

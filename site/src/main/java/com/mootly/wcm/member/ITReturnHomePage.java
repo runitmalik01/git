@@ -8,19 +8,35 @@
  */
 
 package com.mootly.wcm.member;
-
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
+import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.commons.lang.StringUtils;
 import org.hippoecm.hst.component.support.forms.FormMap;
 import org.hippoecm.hst.component.support.forms.FormUtils;
 import org.hippoecm.hst.component.support.forms.StoreFormResult;
+import org.hippoecm.hst.content.beans.query.HstQuery;
+import org.hippoecm.hst.content.beans.query.HstQueryResult;
+import org.hippoecm.hst.content.beans.query.exceptions.QueryException;
+import org.hippoecm.hst.content.beans.query.filter.Filter;
+import org.hippoecm.hst.content.beans.standard.HippoBean;
+import org.hippoecm.hst.content.beans.standard.HippoDocumentIterator;
+import org.hippoecm.hst.content.beans.standard.HippoFacetChildNavigationBean;
+import org.hippoecm.hst.content.beans.standard.HippoFacetNavigationBean;
+import org.hippoecm.hst.content.beans.standard.HippoFolder;
 import org.hippoecm.hst.content.beans.standard.HippoFolderBean;
+import org.hippoecm.hst.content.beans.standard.HippoResultSetBean;
+import org.hippoecm.hst.content.beans.standard.facetnavigation.HippoFacetNavigation;
+import org.hippoecm.hst.content.beans.standard.facetnavigation.HippoFacetsAvailableNavigation;
 import org.hippoecm.hst.core.component.HstComponentException;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
+import org.hippoecm.hst.core.parameters.ParametersInfo;
+import org.hippoecm.hst.util.SearchInputParsingUtils;
+import org.hippoecm.hst.utils.BeanUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.slf4j.Logger;
@@ -31,86 +47,180 @@ import com.mootly.wcm.annotations.DataTypeValidationType;
 import com.mootly.wcm.annotations.FormFields;
 import com.mootly.wcm.annotations.RequiredFields;
 import com.mootly.wcm.beans.MemberPersonalInformation;
+import com.mootly.wcm.beans.Product;
+import com.mootly.wcm.components.ComponentUtil;
 import com.mootly.wcm.components.ITReturnComponent;
+import com.mootly.wcm.components.products.OverviewParamInfo;
+import com.mootly.wcm.model.FilingSection;
+import com.mootly.wcm.model.FilingStatus;
 import com.mootly.wcm.model.FinancialYear;
 import com.mootly.wcm.model.ITReturnHomePageView;
 import com.mootly.wcm.model.ITReturnType;
+import com.mootly.wcm.utils.Constants;
+import com.mootly.wcm.utils.GoGreenUtil;
+import com.mootly.wcm.utils.PageableCollection;
 //@PrimaryBean(primaryBeanClass=MemberPersonalInformation.class)
 @FormFields(fieldNames={"pan","pi_last_name","pi_dob","pi_return_type","fy","ReturnSection"})
 @RequiredFields(fieldNames={"pan","pi_last_name","pi_dob","pi_return_type","fy","ReturnSection"})
 public class ITReturnHomePage extends ITReturnComponent {
+
+	private static final String PARAM_PAGE_SIZE = "pageSize";
+	private static final int DEFAULT_PAGE_SIZE = 25;
+	private static final String PARAM_CURRENT_PAGE = "pageNumber";
+	private static final int DEFAULT_CURRENT_PAGE = 1;
+	private static final int DEFAULT_SHOW_MORE = 25;	
+	private static final String PARAM_ORDER_BY = "orderBy";
+	private static final String DEFAULT_ORDER_BY = "hippostdpubwf:lastModificationDate";
+
 
 	private static final Logger log = LoggerFactory.getLogger(ITReturnHomePage.class);
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public void doBeforeRender(HstRequest request, HstResponse response) {
+
 		super.doBeforeRender(request, response);			
-		if (getPanFolder()!= null) {
-			//get all PANs for this member
-			List<ITReturnHomePageView> listOfITReturnHomePageView = new ArrayList<ITReturnHomePageView>();
-			List<HippoFolderBean> pansForMember = getPanFolder().getFolders(); //.compareTo(hippoBean).getChildBeans(HippoFolder.class);
-			if (pansForMember != null) {
-				for (HippoFolderBean hippoFolderBean:pansForMember) {
-					ITReturnHomePageView itReturnHomePageView = new ITReturnHomePageView();
-					itReturnHomePageView.setPan(hippoFolderBean.getName());
-					List<HippoFolderBean> listOfFY = hippoFolderBean.getChildBeans(HippoFolderBean.class);
-					for (HippoFolderBean aFYBean:listOfFY) {
-						FinancialYear fy = FinancialYear.getByDisplayName(aFYBean.getName());
-						itReturnHomePageView.setFinancialYear(fy);
-						List<HippoFolderBean> listOfItReturnTypes = aFYBean.getChildBeans(HippoFolderBean.class);
-						for (HippoFolderBean aItReturnType:listOfItReturnTypes){
-							ITReturnType itReturnType = ITReturnType.getByDisplayName(aItReturnType.getName());
-							itReturnHomePageView.setItReturnType(itReturnType);
-							MemberPersonalInformation memberPersonalInformation = aItReturnType.getBean("memberpersonalinformation");
-							if (memberPersonalInformation != null) {
-								itReturnHomePageView.setLastOrOrgName(memberPersonalInformation.getLastName());
-								itReturnHomePageView.setITRForm(memberPersonalInformation.getSelectedITRForm());
-								itReturnHomePageView.setITRFormMode(memberPersonalInformation.getSelectedServiceDeliveryOption());
-								itReturnHomePageView.setEmail(memberPersonalInformation.getEmail());
-							}							
-						}
+		List<HippoFolderBean> pansForMember = getPanFolder().getFolders(); 
+		HippoBean currentBean = pansForMember.get(0); //this.getContentBean(request);
+		if (currentBean == null) {
+			return;
+		}
+		request.setAttribute("defaultShowMore", DEFAULT_SHOW_MORE);
+
+		String pageSizeParam = getPublicRequestParameter(request, PARAM_PAGE_SIZE);
+		if (pageSizeParam == null || "".equals(pageSizeParam)) {
+			pageSizeParam = getParameter(PARAM_PAGE_SIZE, request);
+		}
+		int pageSize = ComponentUtil.parseIntParameter(PARAM_PAGE_SIZE, pageSizeParam, DEFAULT_PAGE_SIZE, log);
+		request.setAttribute("pageSize", pageSize);
+
+		String currentPageParam = getPublicRequestParameter(request, PARAM_CURRENT_PAGE);
+		int currentPage = ComponentUtil.parseIntParameter(PARAM_CURRENT_PAGE, currentPageParam, DEFAULT_CURRENT_PAGE, log);
+
+		String orderBy = getParameter(PARAM_ORDER_BY, request);
+		if (orderBy == null || "".equals(orderBy)) {
+			orderBy = DEFAULT_ORDER_BY;
+		}
+
+		String query = this.getPublicRequestParameter(request, "query");
+		query = SearchInputParsingUtils.parse(query, false);
+		request.setAttribute("query", StringEscapeUtils.escapeHtml(query));
+
+		String order = this.getPublicRequestParameter(request, "order");
+		request.setAttribute("order", StringEscapeUtils.escapeHtml(order));
+
+		String from = this.getPublicRequestParameter(request, "from");
+		String jsEnabled = getPublicRequestParameter(request, "jsEnabled");
+
+		try {
+			HstQuery hstQuery = this.getQueryManager(request).createQuery(getPanFolder(), MemberPersonalInformation.class);
+			if (!StringUtils.isEmpty(query)) {
+				Filter f = hstQuery.createFilter();
+				Filter f1 = hstQuery.createFilter();
+				f1.addContains(".", query);
+				Filter f2 = hstQuery.createFilter();
+				f2.addContains("mootlywcm:title", query);
+				f.addOrFilter(f1);
+				f.addOrFilter(f2);
+				hstQuery.setFilter(f);
+			} else {
+				if (!StringUtils.isEmpty(order) && !"relevance".equals(order)) {
+					if ("-lastModificationDate".equals(order)) {
+						hstQuery.addOrderByDescending("hippostdpubwf:lastModificationDate");
+					} else if (order.startsWith("-")) {
+						hstQuery.addOrderByDescending("mootlywcm:" + order.substring(1));
+					} else {
+						hstQuery.addOrderByAscending("mootlywcm:" + order);
 					}
-					listOfITReturnHomePageView.add(itReturnHomePageView);
+				} else {
+					hstQuery.addOrderByDescending(orderBy);
 				}
-				request.setAttribute("listOfITReturnHomePageView", listOfITReturnHomePageView);			
 			}
-		}
-		String reqFormJson=getPublicRequestParameter(request, "data");
-		String validation=getPublicRequestParameter(request, "validation");
-		if(reqFormJson!=null&&validation!=null){
-			try {
-				JSONObject formJson=new JSONObject(reqFormJson);
-					if(formJson.getString("pan").length()!=0&&formJson.getString("pi_last_name").length()!=0){
-						char pan5thChar=formJson.getString("pan").toLowerCase().charAt(4);
-						char lastName1stChar=formJson.getString("pi_last_name").toLowerCase().charAt(0);
-						if(pan5thChar!=lastName1stChar){
-							response.setHeader("myHeader", "error");
-						}else{
-							response.setHeader("myHeader", "success");
-						}
+			if (from != null && Boolean.parseBoolean(jsEnabled)) {
+				hstQuery.setOffset(Integer.valueOf(from));
+			}
+
+			PageableCollection pages;
+			long resultCount = 0;
+
+			if (!(currentBean instanceof HippoFacetChildNavigationBean || currentBean instanceof HippoFacetNavigation)) {
+				final HstQueryResult result = hstQuery.execute();
+				pages = new PageableCollection<HippoBean>(result.getHippoBeans(), pageSize, currentPage);
+				resultCount = result.getSize();
+			} else {
+				final HippoFacetNavigationBean facNavBean = BeanUtils.getFacetNavigationBean(request, hstQuery, objectConverter);
+
+				if (facNavBean == null) {
+					final List<HippoBean> noResults = Collections.emptyList();
+					pages = new PageableCollection(0, noResults);
+					resultCount = 0;
+				} else {
+					final HippoResultSetBean result = facNavBean.getResultSet();
+					final HippoDocumentIterator<Product> beans = result.getDocumentIterator(Product.class);
+					if (hstQuery.getOffset() > 0) {
+						beans.skip(hstQuery.getOffset());
 					}
-					/*char tanpanChar=' ';
-					Iterator<String> itr= formJson.keys();
-					List<String> fieldlist=new ArrayList<String>();
-					while(itr.hasNext()) fieldlist.add(itr.next());
-					if(fieldlist.size()==2){
-						if(formJson.getString(fieldlist.get(0))!=null&&formJson.getString(fieldlist.get(1))!=null){
-							if(validation.matches("pan")) tanpanChar =formJson.getString(fieldlist.get(0)).toLowerCase().charAt(4);
-							else tanpanChar =formJson.getString(fieldlist.get(0)).toLowerCase().charAt(3);
-							char name1stChar=formJson.getString(fieldlist.get(1)).toLowerCase().charAt(0);
-							if(tanpanChar!=name1stChar){
-								response.setHeader("myHeader", "error");
-							}else{
-								response.setHeader("myHeader","success");
-							}
-						}						
-					}**/
-			}catch (JSONException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+					pages = new PageableCollection(beans, facNavBean.getCount().intValue(), GoGreenUtil.getIntConfigurationParameter(request,
+							Constants.PAGE_SIZE, pageSize), currentPage);
+					resultCount = result.getCount();
+				}
 			}
+			request.setAttribute("docs", pages);
+			List<ITReturnHomePageView> listOfITReturnHomePageView = new ArrayList<ITReturnHomePageView>();
+			if (pages != null) {
+				for (Object o:pages.getItems()) {
+					try {
+						MemberPersonalInformation m = (MemberPersonalInformation) o;
+						String thePath = m.getNode().getPath();
+						log.info(thePath);
+						HippoFolder theMemberFolderBean = (HippoFolder) m.getParentBean().getParentBean().getParentBean().getParentBean().getParentBean();
+						log.info(theMemberFolderBean.getNode().getPath());
+						
+						ITReturnHomePageView itReturnHomePageView = new ITReturnHomePageView();
+						itReturnHomePageView.setPan(m.getPAN());
+						FinancialYear fy = FinancialYear.getByDisplayName(m.getFinancialYear());
+						itReturnHomePageView.setFinancialYear(fy);
+						
+						FilingSection filingSection = FilingSection.getByXmlCode(m.getReturnSection());
+						itReturnHomePageView.setFilingSection(filingSection);
+						
+						ITReturnType itReturnType = ITReturnType.getByXmlStatus(m.getReturnType());
+						itReturnHomePageView.setItReturnType(itReturnType);
+						
+						FilingStatus filingStatus = FilingStatus.getByXmlCode( m.getFilingStatus() );
+						itReturnHomePageView.setFilingStatus(filingStatus);
+						itReturnHomePageView.setLastOrOrgName(m.getLastName());
+						itReturnHomePageView.setITRForm(m.getSelectedITRForm());
+						itReturnHomePageView.setITRFormMode(m.getSelectedServiceDeliveryOption());
+						itReturnHomePageView.setEmail(m.getEmail());
+						String stringUUID= theMemberFolderBean.getCanonicalUUID();
+						itReturnHomePageView.setCanonicalUUID(stringUUID);
+						
+						listOfITReturnHomePageView.add(itReturnHomePageView);
+						
+						
+					}catch (Exception ex) {
+						log.warn("Error",ex);
+					}
+				}
+				request.setAttribute("listOfITReturnHomePageView", listOfITReturnHomePageView);		
+			}
+			String facetLocation= "vendors/faceteditreturns";
+			HippoBean vendorFolder = getSiteContentBaseBean(request).getBean("vendors");
+			HippoBean theFacet = vendorFolder.getBean("itreturnsfacetnav");
+			HippoFacetsAvailableNavigation facetNavigation = getSiteContentBaseBean(request).getBean(facetLocation, HippoFacetsAvailableNavigation.class);
+	        if (facetNavigation != null) {
+	            request.setAttribute("facets", facetNavigation.getFolders());
+	        }
+			
+			request.setAttribute("count", resultCount);
+			Boolean isReseller = request.isUserInRole("reseller");
+			request.setAttribute("reseller", isReseller);
 		}
+		catch (QueryException qe) {
+			log.error("Error while getting the documents " + qe.getMessage(), qe);
+		}
+	
 	}
 	@Override
 	public void doAction(HstRequest request, HstResponse response)
@@ -141,7 +251,7 @@ public class ITReturnHomePage extends ITReturnComponent {
 		StoreFormResult sfr = new StoreFormResult();				
 		FormUtils.persistFormMap(request, response, map, sfr);
 		//FormUtils.persistFormMap(request, response, getFormMap(), sfr);
-		String returnURL =  request.getContextPath() +"/member/itreturn/" + financialYear.getDisplayName() + "/" + itReturnType.getDisplayName() + "/" + pan.toLowerCase() + "/servicerequest-itr.html?uuid=" +  sfr.getUuid(); //getRedirectURL(request, response, FormSaveResult.SUCCESS,"packageselector",financialYear,itReturnType,pan);
+		String returnURL =  request.getContextPath() +"/vendor/itreturn/" + financialYear.getDisplayName() + "/" + itReturnType.getDisplayName() + "/" + pan.toLowerCase() + "/servicerequest-itr.html?uuid=" +  sfr.getUuid(); //getRedirectURL(request, response, FormSaveResult.SUCCESS,"packageselector",financialYear,itReturnType,pan);
 		//returnURL +="?uuid=" + 
 		try {
 			response.sendRedirect(returnURL);
