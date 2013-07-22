@@ -31,7 +31,7 @@ import com.mootly.wcm.components.ITReturnComponent;
 
 @PrimaryBean(primaryBeanClass=MemberPayment.class)
 @RequiredBeans(requiredBeans=MemberPersonalInformation.class)
-@FormFields(fieldNames={"paymentMemo","paymentType","authCode","preAuthCode","checkNo","checkDate","checkBank","checkBranch","cashAddress","cashContactNumber","cashBestTime","rtgsTransNumber","rtgsDate","rtgsAmount","rtgsTime","paymentDate"})
+@FormFields(fieldNames={"paymentMemo","paymentType","authCode","preAuthCode","checkNo","checkDate","checkBank","checkBranch","checkLocation","cashAddress","cashContactNumber","cashBestTime","rtgsTransNumber","rtgsDate","rtgsAmount","rtgsTime","paymentDate"})
 @RequiredFields(fieldNames={"paymentType"})
 
 public class ITRPayment extends ITReturnComponent {
