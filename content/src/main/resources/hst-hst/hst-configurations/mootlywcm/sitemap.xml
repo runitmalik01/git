@@ -3975,6 +3975,24 @@
       <sv:value>vendors</sv:value>
     </sv:property>
   </sv:node>
+<sv:node sv:name="feedback">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:sitemapitem</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>cd9da95b-58db-4c3f-8f17-8e034427fe59</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+    <sv:value>hst:pages/feedback-page</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:refId" sv:type="String">
+    <sv:value>feedback</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:relativecontentpath" sv:type="String">
+    <sv:value>common/Contact-Us</sv:value>
+  </sv:property>
+</sv:node>
+  
   <!--
   <sv:node sv:name="knowledgeportal">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
@@ -7489,7 +7507,7 @@
 					    <sv:value>members</sv:value>
 					  </sv:property>
 					</sv:node>
-	            <!-- /new -->
+	            <!-- /new -->	            
 	          </sv:node>
 	        </sv:node>
 	      </sv:node>
