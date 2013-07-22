@@ -62,22 +62,7 @@
       <sv:value>incometaxformselection</sv:value>
     </sv:property>
   </sv:node>
-  <sv:node sv:name="sourceofincome">
-    <sv:property sv:name="jcr:primaryType" sv:type="Name">
-      <sv:value>hst:component</sv:value>
-    </sv:property>
-    <sv:property sv:name="jcr:uuid" sv:type="String">
-      <sv:value>5b6b0871-4a57-4ad3-9e7e-21a5c778ad42</sv:value>
-    </sv:property>
-    <sv:property sv:name="hst:componentclassname" sv:type="String">
-      <sv:value>com.mootly.wcm.member.SourceOfIncome</sv:value>
-    </sv:property>
-    <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String"/>
-    <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String"/>
-    <sv:property sv:name="hst:template" sv:type="String">
-      <sv:value>sourceofincome</sv:value>
-    </sv:property>
-  </sv:node>
+
   <sv:node sv:name="rebate">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
       <sv:value>hst:component</sv:value>
@@ -1463,4 +1448,22 @@
 	    <sv:value>servicerequest-itr-tos-confirmation</sv:value>
 	  </sv:property>
 	</sv:node>
+
+<sv:node sv:name="contactus" >
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:component</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>3c8b36cc-20ab-4316-a6ba-fd87c28d45d2</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:componentclassname" sv:type="String">
+    <sv:value>com.mootly.wcm.member.ContactUs</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String"/>
+  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String"/>
+  <sv:property sv:name="hst:template" sv:type="String">
+    <sv:value>contactus</sv:value>
+  </sv:property>
+</sv:node>
+	
 </sv:node>
