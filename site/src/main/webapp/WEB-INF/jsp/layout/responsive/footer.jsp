@@ -25,18 +25,20 @@
 <div id="footer" class="clearfix">
    <div id="footer-wrapper">
         <div class="grid col-940">
-        <div class="grid col-540">
+        <div class="grid col-700">
 			        <ul id="menu-foot" class="footer-menu">
 			        	<hst:link var="contactUs" siteMapItemRefId="contactus"/>
 			        	<hst:link var="tos" path="/terms"/>
 			        	<hst:link var="pp" path="/privacy"/>
+			        	<hst:link var="feedback" path="/feedback"/>
 			        	<li id="menu-item-715" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-715"><a href="${pp}">Privacy Policy</a></li>
 						<li id="menu-item-716" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-716"><a href="${tos}">Terms of Use</a></li>
 						<li id="menu-item-717" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-717"><a href="<hst:link siteMapItemRefId="about"/>">About Us</a></li>
-						<li id="menu-item-718" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-717"><a href="${contactUs}">Contact Us</a></li>						
-						<li id="menu-item-719" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-717"><a href="<hst:link siteMapItemRefId="faq"/>">FAQ</a></li>
-						<li id="menu-item-720" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-717"><a href="<hst:link siteMapItemRefId="serviceprice"/>">Pricing</a></li>
-						<li id="menu-item-721" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-717"><a href="<hst:link siteMapItemRefId="itr-validate-xml"/>">IT Return XML Validator</a></li>
+						<li id="menu-item-718" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-717"><a href="${contactUs}">Contact Us</a></li>	
+						<li id="menu-item-719" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-717"><a href="${feedback}">Feedback</a></li>					
+						<li id="menu-item-720" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-717"><a href="<hst:link siteMapItemRefId="faq"/>">FAQ</a></li>
+						<li id="menu-item-721" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-717"><a href="<hst:link siteMapItemRefId="serviceprice"/>">Pricing</a></li>
+						<li id="menu-item-722" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-717"><a href="<hst:link siteMapItemRefId="itr-validate-xml"/>">IT Return XML Validator</a></li>
 					</ul>                  
 		</div><!-- end of col-540 -->
         <div class="grid col-380 fit">
