@@ -57,6 +57,7 @@ public class MemberPayment extends FlexibleDocument implements ContentNodeBinder
 	private Calendar checkDate;
 	private String checkBank;
 	private String checkBranch;
+	private String checkLocation;
 	
 	//cash fields
 	private String cashAddress;
@@ -85,6 +86,7 @@ public class MemberPayment extends FlexibleDocument implements ContentNodeBinder
 	final String PROP_CHECK_DATE = "mootlywcm:checkDate";
 	final String PROP_CHECK_BANK = "mootlywcm:checkBank";
 	final String PROP_CHECK_BRANCH = "mootlywcm:checkBranch";
+	final String PROP_CHECK_LOCATION = "mootlywcm:checkLocation";
 	final String PROP_CASH_ADDRESS = "mootlywcm:cashAddress";
 	final String PROP_CASH_CONTACT_NUMBER = "mootlywcm:cashContactNumber";
 	final String PROP_CASH_BEST_TIME = "mootlywcm:cashBestTime";
@@ -153,6 +155,13 @@ public class MemberPayment extends FlexibleDocument implements ContentNodeBinder
 	}
 	public void setCheckBranch(String checkBranch) {
 		this.checkBranch = checkBranch;
+	}
+	public String getCheckLocation() {
+		if (checkLocation == null) checkLocation = getProperty(PROP_CHECK_LOCATION);
+		return checkLocation;
+	}
+	public void setCheckLocation(String checkLocation) {
+		this.checkLocation = checkLocation;
 	}
 	public String getCashAddress() {
 		if (cashAddress == null) cashAddress = getProperty(PROP_CASH_ADDRESS);
@@ -252,6 +261,7 @@ public class MemberPayment extends FlexibleDocument implements ContentNodeBinder
 	    	node.setProperty(PROP_CHECK_DATE, memberPayment.getCheckDate());
 	    	node.setProperty(PROP_CHECK_BANK, memberPayment.getCheckBank());
 	    	node.setProperty(PROP_CHECK_BRANCH, memberPayment.getCheckBranch());
+	    	node.setProperty(PROP_CHECK_LOCATION, memberPayment.getCheckLocation());
 	    	
 	    	//CASH
 	    	node.setProperty(PROP_CASH_ADDRESS, memberPayment.getCashAddress());
@@ -338,6 +348,7 @@ public class MemberPayment extends FlexibleDocument implements ContentNodeBinder
 		if (formMap.getField("checkDate") != null) setCheckDate( ConvDateStringToCalendar ( formMap.getField("checkDate").getValue() ) ) ;
 		if (formMap.getField("checkBank") != null) setCheckBank(formMap.getField("checkBank").getValue());
 		if (formMap.getField("checkBranch") != null) setCheckBranch(formMap.getField("checkBranch").getValue());
+		if (formMap.getField("checkLocation") != null) setCheckLocation(formMap.getField("checkLocation").getValue());
 		
 		//CASH
 		if (formMap.getField("cashAddress") != null) setCashAddress( formMap.getField("cashAddress").getValue() ) ;
