@@ -129,12 +129,15 @@
 				<sv:property sv:name="mootlywcm:additionalScript"
 					sv:type="String">
 					<sv:value>getTDS = function () {
-						tds = $("#tdspension").val().trim();
+						tds =
+						$("#tdspension").val().trim();
 						var ided_tds =0;
 
-						if (tds != '' &amp;&amp; !isNaN(tds) ) ided_tds = parseFloat(tds,2);
+						if (tds != ''
+						&amp;&amp; !isNaN(tds) ) ided_tds = parseFloat(tds,2);
 
-						if ( (ided_tds) &gt; 0) {
+						if (
+						(ided_tds) &gt; 0) {
 						return (ided_tds);
 						}
 						else {
@@ -148,8 +151,10 @@
 					sv:type="String">
 					<sv:value>totalTDS = getTDS();
 						if ( totalTDS &gt; 0 ){
-						if ( $("#Tan_employer").val().trim() === '') { alert("Please enter
-						TAN number of your employer"); return false; }
+						if (
+						$("#Tan_employer").val().trim() === '') { alert("Please enter
+						TAN
+						number of your employer"); return false; }
 						}
 					</sv:value>
 				</sv:property>
@@ -192,9 +197,11 @@
 						<sv:value>&lt;html&gt;
 							&lt;body&gt;
 
-							&lt;p&gt;Please enter your Employer’s PAN. You can find this on your Form 16
+							&lt;p&gt;Please enter your
+							Employer’s PAN. You can find this on your Form 16
 							under
-							“Name and Address of Employer” Top Left. Example AAACA1111A.&lt;/p&gt;
+							“Name and
+							Address of Employer” Top Left. Example AAACA1111A.&lt;/p&gt;
 
 							&lt;/body&gt;
 							&lt;/html&gt;</sv:value>
@@ -231,9 +238,11 @@
 						<sv:value>&lt;html&gt;
 							&lt;body&gt;
 
-							&lt;p&gt;Please enter your Employer’s TAN. You can find this on your Form 16
+							&lt;p&gt;Please enter your
+							Employer’s TAN. You can find this on your Form 16
 							under
-							“Name and Address of Employer” Top Left. Example MUML00124A.&lt;/p&gt;
+							“Name and
+							Address of Employer” Top Left. Example MUML00124A.&lt;/p&gt;
 
 							&lt;/body&gt;
 							&lt;/html&gt;</sv:value>
@@ -271,12 +280,14 @@
 						<sv:value>&lt;html&gt;
 							&lt;body&gt;
 
-							&lt;p&gt;Enter PIN Code of Employer as provided in Form 16 under “Name and
+							&lt;p&gt;Enter PIN Code of
+							Employer as provided in Form 16 under “Name and
 							Address of
 							Employer” Top Left.&lt;/p&gt;
 
 							&lt;/body&gt;
-							&lt;/html&gt;</sv:value>
+							&lt;/html&gt;
+						</sv:value>
 					</sv:property>
 					<sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
 						<sv:value>PIN CODE</sv:value>
@@ -343,8 +354,10 @@
 						<sv:value>&lt;html&gt;
 							&lt;body&gt;
 
-							&lt;p&gt;Select The Period w.e.f. which you were employed with this employer, if
-							serving since beginning then select first day of financial
+							&lt;p&gt;Select The Period
+							w.e.f. which you were employed with this employer, if
+							serving
+							since beginning then select first day of financial
 							year.&lt;/p&gt;
 
 							&lt;/body&gt;
@@ -1158,17 +1171,22 @@
 				<sv:property sv:name="mootlywcm:additionalScript"
 					sv:type="String">
 					<sv:value>getTotalTDS = function () {
-						ded_ent1 = $("#ded_ent1").val().trim();
-						ded_ent3 = $("#ded_ent3").val().trim();
+						ded_ent1 =
+						$("#ded_ent1").val().trim();
+						ded_ent3 =
+						$("#ded_ent3").val().trim();
 						var ided_ent1 =0;
 						var ided_ent3 =0;
 
-						if (ded_ent1 != '' &amp;&amp; !isNaN(ded_ent1) ) ided_ent1 =
+						if
+						(ded_ent1 != '' &amp;&amp; !isNaN(ded_ent1) ) ided_ent1 =
 						parseFloat(ded_ent1,2);
-						if (ded_ent3 != '' &amp;&amp; !isNaN(ded_ent3) ) ided_ent3 =
+						if (ded_ent3 != '' &amp;&amp;
+						!isNaN(ded_ent3) ) ided_ent3 =
 						parseFloat(ded_ent3,2);
 
-						if ( (ided_ent1 + ided_ent3) &gt; 0) {
+						if (
+						(ided_ent1 + ided_ent3) &gt; 0) {
 						return (ided_ent1 + ided_ent3);
 						}
 						else {
@@ -1177,21 +1195,25 @@
 						}
 						};
 						jQuery(document).ready(function($) {
-						// Code using $ as usual goes here.
+						// Code using $ as usual
+						goes here.
 						ecf();
 						$("#Employe_category").click ( ecf );
 						});
 
-						var ecf = function() {
+						var ecf =
+						function() {
 						ec = $("#Employe_category").val();
-						if (ec == 'GOV') gg(); else gg2();
+						if (ec == 'GOV')
+						gg(); else gg2();
 						}
 
 						var gg = function () {
 						//$("#deductions_tax").attr("readonly","true");$("#deductions_tax").val('');
 						$("#deductions_entertainment").removeAttr("readonly");
 						}
-						var gg2 = function () {
+						var gg2 =
+						function () {
 						$("#deductions_entertainment").attr("readonly","true");$("#deductions_entertainment").val('');
 						$("#deductions_tax").removeAttr("readonly");
 						}
@@ -1201,22 +1223,34 @@
 					sv:type="String">
 					<sv:value>totalTDS = getTotalTDS();
 						if ( totalTDS &gt; 0 ){
-						if ( $("#tan_deductor").val().trim() === '') { alert("Please enter
-						TAN number of your employer"); return false; }
+						if (
+						$("#tan_deductor").val().trim() === '') { alert("Please enter
+						TAN
+						number of your employer"); return false; }
 						}
-						fa = $("#deductions_entertainment").val();
-						fb = $("#deductions_tax").val();
+						fa =
+						$("#deductions_entertainment").val();
+						fb =
+						$("#deductions_tax").val();
 						ec = $("#Employe_category").val();
 
-						if (fa.trim() !== '') fan = parseInt(fa); else fan=0;
-						if (fb.trim() !== '') fbn = parseInt(fb); else fbn = 0;
-						if (ec == 'GOV' &amp;&amp; (fan + fbn) &gt; 7500) { alert("Total of
-						4a and 4b must not exceed 7500/-"); return false; }
-						if ( fan &gt; 5000) { alert('Entertainment Allowance cannot exceed
-						5000. It will be set to the maximum limit of 5000');
+						if
+						(fa.trim() !== '') fan = parseInt(fa); else fan=0;
+						if (fb.trim()
+						!== '') fbn = parseInt(fb); else fbn = 0;
+						if (ec == 'GOV'
+						&amp;&amp; (fan + fbn) &gt; 7500) { alert("Total of
+						4a and 4b must
+						not exceed 7500/-"); return false; }
+						if ( fan &gt; 5000) {
+						alert('Entertainment Allowance cannot exceed
+						5000. It will be set
+						to the maximum limit of 5000');
 						$("#deductions_entertainment").val('5000'); }
-						if ( fbn &gt; 2500) { alert('Tax on Employment/ Professional Tax
-						cannot exceed 2500. It will be set to the maximum limit of 2500');
+						if ( fbn &gt; 2500) {
+						alert('Tax on Employment/ Professional Tax
+						cannot exceed 2500. It
+						will be set to the maximum limit of 2500');
 						$("#deductions_tax").val('2500'); }
 						return true;
 					</sv:value>
@@ -1547,9 +1581,11 @@
 						<sv:value>&lt;html&gt;
 							&lt;body&gt;
 
-							&lt;p&gt;Calculate relief u/s 89 as per IT Act in case of reciept of arrears of
+							&lt;p&gt;Calculate relief u/s 89
+							as per IT Act in case of reciept of arrears of
 							salary
-							or advances of salary recieved during the year&lt;/p&gt;
+							or advances
+							of salary recieved during the year&lt;/p&gt;
 
 							&lt;/body&gt;
 							&lt;/html&gt;</sv:value>
@@ -1690,34 +1726,50 @@
 				<sv:property sv:name="mootlywcm:onSubmitHandler"
 					sv:type="String">
 					<sv:value>var lv = $("#Letable_value").val();
-						var tp = $("#Tenant_pan").val();
+						var tp =
+						$("#Tenant_pan").val();
 						var pp = $("#letout").val();
 
-						if ( pp === 'L' &amp;&amp; lv &gt; 180000 &amp;&amp; tp === '' ) {
-						//var ret = confirm ( "Tenant PAN should be entered if Lettable
-						value exceeds 180000. Please click on Yes if you want to continue
+						if ( pp === 'L'
+						&amp;&amp; lv &gt; 180000 &amp;&amp; tp === '' ) {
+						//var ret =
+						confirm ( "Tenant PAN should be entered if Lettable
+						value exceeds
+						180000. Please click on Yes if you want to continue
 						anyways");
-						ret = true;
+						ret =
+						true;
 						if (!ret) {
 						return false;
 						}
-						//alert('Tenant PAN must be filled if the Lettable value exceeds 180000');
+						//alert('Tenant PAN must be filled
+						if the Lettable value exceeds 180000');
 						return true;
 						}
-						isC= ( $("#coowned").val() == 'Yes' ? true : false);
+						isC= (
+						$("#coowned").val() == 'Yes' ? true : false);
 						if (isC) {
-						var ps= $("#Property_share").val();
-						if ( ps.trim() == '' || (isNaN(ps) || parseInt(ps) &gt;= 100 ) ) {
-						alert("Your percentage share must be less than 100%"); return
+						var ps=
+						$("#Property_share").val();
+						if ( ps.trim() == '' || (isNaN(ps) ||
+						parseInt(ps) &gt;= 100 ) ) {
+						alert("Your percentage share must be
+						less than 100%"); return
 						false; }
-						if ( $("#coownername1").val().trim() == '') { alert("Co-owner detail
+						if (
+						$("#coownername1").val().trim() == '') { alert("Co-owner detail
 						must be filled in"); return false; }
-						//if ( $("#coownerpan1").val().trim() == '') { alert("Co-owner detail
+						//if (
+						$("#coownerpan1").val().trim() == '') { alert("Co-owner detail
 						must be filled in"); return false; }
-						//if ( $("#share1").val().trim() == '') { alert("Co-owner detail must
-						be filled in"); return false; }
-						//if ( parseInt( $("#share1").val() ) &gt;= 100 ) { alert("Co-owner
-						share must be less than 100"); return false; }
+						//if (
+						$("#share1").val().trim() == '') { alert("Co-owner detail must
+						be
+						filled in"); return false; }
+						//if ( parseInt( $("#share1").val() )
+						&gt;= 100 ) { alert("Co-owner
+						share must be less than 100"); return
+						false; }
 						}
 
 
@@ -1731,7 +1783,8 @@
 					<sv:value>&lt;html&gt;
 						&lt;body&gt;
 
-						&lt;p&gt;this is not good&lt;/p&gt;
+						&lt;p&gt;this is not
+						good&lt;/p&gt;
 
 						&lt;/body&gt;
 						&lt;/html&gt;</sv:value>
@@ -1763,7 +1816,8 @@
 						<sv:value>&lt;html&gt;
 							&lt;body&gt;
 
-							&lt;p&gt;Enter the PAN of Tenant.&lt;/p&gt;
+							&lt;p&gt;Enter the PAN of
+							Tenant.&lt;/p&gt;
 
 							&lt;/body&gt;
 							&lt;/html&gt;</sv:value>
@@ -1800,7 +1854,8 @@
 						<sv:value>&lt;html&gt;
 							&lt;body&gt;
 
-							&lt;p&gt;Enter the area PIN code.&lt;/p&gt;
+							&lt;p&gt;Enter the area PIN
+							code.&lt;/p&gt;
 
 							&lt;/body&gt;
 							&lt;/html&gt;</sv:value>
@@ -2222,7 +2277,8 @@
 						<sv:value>&lt;html&gt;
 							&lt;body&gt;
 
-							&lt;p&gt;Enter the Name of Tenant residing in your property.&lt;/p&gt;
+							&lt;p&gt;Enter the Name of
+							Tenant residing in your property.&lt;/p&gt;
 
 							&lt;/body&gt;
 							&lt;/html&gt;</sv:value>
@@ -2258,10 +2314,12 @@
 						<sv:value>&lt;html&gt;
 							&lt;body&gt;
 
-							&lt;p&gt;Enter the address of your house property.&lt;/p&gt;
+							&lt;p&gt;Enter the address of
+							your house property.&lt;/p&gt;
 
 							&lt;/body&gt;
-							&lt;/html&gt;</sv:value>
+							&lt;/html&gt;
+						</sv:value>
 					</sv:property>
 					<sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
 						<sv:value>Address</sv:value>
@@ -2296,7 +2354,8 @@
 						<sv:value>&lt;html&gt;
 							&lt;body&gt;
 
-							&lt;p&gt;Enter the City in which given house property is situated.&lt;/p&gt;
+							&lt;p&gt;Enter the City in which
+							given house property is situated.&lt;/p&gt;
 
 							&lt;/body&gt;
 							&lt;/html&gt;</sv:value>
@@ -2334,10 +2393,12 @@
 						<sv:value>&lt;html&gt;
 							&lt;body&gt;
 
-							&lt;p&gt;Select the state in which this house is located.&lt;/p&gt;
+							&lt;p&gt;Select the state in
+							which this house is located.&lt;/p&gt;
 
 							&lt;/body&gt;
-							&lt;/html&gt;</sv:value>
+							&lt;/html&gt;
+						</sv:value>
 					</sv:property>
 					<sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
 						<sv:value>State</sv:value>
@@ -2372,10 +2433,12 @@
 						<sv:value>&lt;html&gt;
 							&lt;body&gt;
 
-							&lt;p&gt;Enter the % share own by you in given property&lt;/p&gt;
+							&lt;p&gt;Enter the % share own
+							by you in given property&lt;/p&gt;
 
 							&lt;/body&gt;
-							&lt;/html&gt;</sv:value>
+							&lt;/html&gt;
+						</sv:value>
 					</sv:property>
 					<sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
 						<sv:value />
@@ -2410,10 +2473,12 @@
 						<sv:value>&lt;html&gt;
 							&lt;body&gt;
 
-							&lt;p&gt;Please select the type of property from given list&lt;/p&gt;
+							&lt;p&gt;Please select the type
+							of property from given list&lt;/p&gt;
 
 							&lt;/body&gt;
-							&lt;/html&gt;</sv:value>
+							&lt;/html&gt;
+						</sv:value>
 					</sv:property>
 					<sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
 						<sv:value />
@@ -2692,14 +2757,16 @@
 						<sv:value>&lt;html&gt;
 							&lt;body&gt;
 
-							&lt;p&gt;Please enter PAN no. printed on your PAN card which is 10 digit
+							&lt;p&gt;Please enter PAN no.
+							printed on your PAN card which is 10 digit
 							alphanumeric
 							format&lt;/p&gt;
 
 							&lt;p&gt; &lt;/p&gt;
 
 							&lt;/body&gt;
-							&lt;/html&gt;</sv:value>
+							&lt;/html&gt;
+						</sv:value>
 					</sv:property>
 					<sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
 						<sv:value>AAAAA1111A</sv:value>
@@ -2733,7 +2800,8 @@
 						<sv:value>&lt;html&gt;
 							&lt;body&gt;
 
-							&lt;p&gt;Please enter your surname, if no then please enter your name
+							&lt;p&gt;Please enter your
+							surname, if no then please enter your name
 							here.&lt;/p&gt;
 
 							&lt;/body&gt;
@@ -2842,39 +2910,53 @@
 						<sv:value>&lt;html&gt;
 							&lt;body&gt;
 
-							&lt;p&gt;a) Under section 139(1) - Within the “due date” prescribed by the
+							&lt;p&gt;a) Under section 139(1)
+							- Within the “due date” prescribed by the
 							law; &lt;/p&gt;
 
-							&lt;p&gt;b) Under section 139(4) - After the expiry of the “due date” but
+							&lt;p&gt;b) Under section 139(4) - After the expiry of the “due
+							date” but
 							before the
-							expiry of one year from the end of the relevant assessment
+							expiry of one year from the end of the
+							relevant assessment
 							year. &lt;/p&gt;
 
-							&lt;p&gt;c)Under section 139(5)- A return already filed, can be revised by filing
+							&lt;p&gt;c)Under section
+							139(5)- A return already filed, can be revised by filing
 							a
-							fresh return within one year from the end of the relevant assessment
+							fresh
+							return within one year from the end of the relevant assessment
 							year or
-							before the completion of assessment, whichever is earlier; &lt;/p&gt;
+							before the completion of assessment, whichever is
+							earlier; &lt;/p&gt;
 
-							&lt;p&gt;d) Under Section 139(9) - Defective/invalid returns can
+							&lt;p&gt;d) Under Section 139(9) -
+							Defective/invalid returns can
 							be filed afresh after
-							curing the defects; &lt;/p&gt;
+							curing the
+							defects; &lt;/p&gt;
 
-							&lt;p&gt;e) Under section 142(1) - Pursuant to a statutory notice calling
+							&lt;p&gt;e) Under section 142(1) - Pursuant to
+							a statutory notice calling
 							for the
 							return; &lt;/p&gt;
 
-							&lt;p&gt;f) Under section 148 - Pursuant to a statutory notice u/s 149 for
+							&lt;p&gt;f)
+							Under section 148 - Pursuant to a statutory notice u/s 149 for
 							assessing
-							or reassessing total income that has been either not assessed or
+							or reassessing total income that has been either not
+							assessed or
 							under-assessed
 							earlier; &lt;/p&gt;
 
-							&lt;p&gt;g) Under section 153A - Pursuant to a statutory notice calling for
-							return in
+							&lt;p&gt;g) Under
+							section 153A - Pursuant to a statutory notice calling for
+							return
+							in
 							case of search; &lt;/p&gt;
 
-							&lt;p&gt;h) Under section 153C - Pursuant to a statutory notice calling for
+							&lt;p&gt;h) Under section 153C -
+							Pursuant to a statutory notice calling for
 							return.
 							&lt;/p&gt;
 							&lt;br/&gt;
@@ -3270,7 +3352,8 @@
 						<sv:value>&lt;html&gt;
 							&lt;body&gt;
 
-							&lt;p&gt;Enter your password (case-sensitive)&lt;/p&gt;
+							&lt;p&gt;Enter your password
+							(case-sensitive)&lt;/p&gt;
 
 							&lt;/body&gt;
 							&lt;/html&gt;</sv:value>
@@ -3582,7 +3665,8 @@
 						<sv:value>&lt;html&gt;
 							&lt;body&gt;
 
-							&lt;p&gt;Select your state&lt;/p&gt;
+							&lt;p&gt;Select your
+							state&lt;/p&gt;
 
 							&lt;/body&gt;
 							&lt;/html&gt;</sv:value>
@@ -3620,10 +3704,12 @@
 						<sv:value>&lt;html&gt;
 							&lt;body&gt;
 
-							&lt;p&gt;Enter six digit pin code (NRI can enter 999999)&lt;/p&gt;
+							&lt;p&gt;Enter six digit pin
+							code (NRI can enter 999999)&lt;/p&gt;
 
 							&lt;/body&gt;
-							&lt;/html&gt;</sv:value>
+							&lt;/html&gt;
+						</sv:value>
 					</sv:property>
 					<sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
 						<sv:value>PIN Code</sv:value>
@@ -3657,7 +3743,8 @@
 						sv:type="String">
 						<sv:value>&lt;html&gt;
 							&lt;body&gt;
-							&lt;strong&gt;Mobile Number: &lt;/strong&gt;
+							&lt;strong&gt;Mobile Number:
+							&lt;/strong&gt;
 							&lt;p&gt;Must be 10 digit&lt;/p&gt;
 
 							&lt;/body&gt;
@@ -3696,7 +3783,8 @@
 						<sv:value>&lt;html&gt;
 							&lt;body&gt;
 
-							&lt;p&gt;Enter your best communicable Email Address here&lt;/p&gt;
+							&lt;p&gt;Enter your best
+							communicable Email Address here&lt;/p&gt;
 
 							&lt;/body&gt;
 							&lt;/html&gt;</sv:value>
@@ -3734,7 +3822,8 @@
 						<sv:value>&lt;html&gt;
 							&lt;body&gt;
 
-							&lt;p&gt;Enter the Name of bank &lt;/p&gt;
+							&lt;p&gt;Enter the Name of
+							bank &lt;/p&gt;
 
 							&lt;/body&gt;
 							&lt;/html&gt;</sv:value>
@@ -3772,7 +3861,8 @@
 						<sv:value>&lt;html&gt;
 							&lt;body&gt;
 
-							&lt;p&gt;For Example : For SBI Account the IFSC Code will be as
+							&lt;p&gt;For Example : For SBI
+							Account the IFSC Code will be as
 							SBIN0123456&lt;/p&gt;
 
 							&lt;/body&gt;
@@ -3811,10 +3901,12 @@
 						<sv:value>&lt;html&gt;
 							&lt;body&gt;
 
-							&lt;p&gt;Select appropriate nature of the account&lt;/p&gt;
+							&lt;p&gt;Select appropriate
+							nature of the account&lt;/p&gt;
 
 							&lt;/body&gt;
-							&lt;/html&gt;</sv:value>
+							&lt;/html&gt;
+						</sv:value>
 					</sv:property>
 					<sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
 						<sv:value />
@@ -4264,7 +4356,8 @@
 						sv:type="String">
 						<sv:value>&lt;html&gt;
 							&lt;body&gt;
-							&lt;strong&gt;Alternate Mobile Number: &lt;/strong&gt;
+							&lt;strong&gt;Alternate Mobile
+							Number: &lt;/strong&gt;
 							&lt;p&gt;Must be 10 digits&lt;/p&gt;
 
 							&lt;/body&gt;
@@ -4303,12 +4396,15 @@
 						<sv:value>&lt;html&gt;
 							&lt;body&gt;
 
-							&lt;p&gt;Portugese Civil Code is in force in states of Goa, Union Territories of
+							&lt;p&gt;Portugese Civil Code is
+							in force in states of Goa, Union Territories of
 							Dadra
-							and Nagar Haveli and Daman and Diu&lt;/p&gt;
+							and Nagar
+							Haveli and Daman and Diu&lt;/p&gt;
 
 							&lt;/body&gt;
-							&lt;/html&gt;</sv:value>
+							&lt;/html&gt;
+						</sv:value>
 					</sv:property>
 					<sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
 						<sv:value />
@@ -4375,20 +4471,27 @@
 						<sv:value>&lt;html&gt;
 							&lt;body&gt;
 
-							&lt;p&gt;&lt;strong&gt;PSU: &lt;/strong&gt;Organization which are Government-owned
+							&lt;p&gt;&lt;strong&gt;PSU:
+							&lt;/strong&gt;Organization which are Government-owned
 							corporation
-							(with 51%) which are &lt;strong&gt;“not privatized” &lt;/strong&gt;Eg.
+							(with 51%) which are &lt;strong&gt;“not privatized”
+							&lt;/strong&gt;Eg.
 							ONGC, BHEL, NTPC,
 							SAIL, SBI.&lt;/p&gt;
 
-							&lt;p&gt; &lt;/p&gt;
+							&lt;p&gt;
+							&lt;/p&gt;
 
-							&lt;p&gt;&lt;strong&gt;GOVT: &lt;/strong&gt;Public enterprise incorporated under the Indian
-							Companies Act, 1956 and owned and managed by the central or the
+							&lt;p&gt;&lt;strong&gt;GOVT: &lt;/strong&gt;Public
+							enterprise incorporated under the Indian
+							Companies Act, 1956 and
+							owned and managed by the central or the
 							state government
-							or by both. Eg. Bharat Petroleum, Air India&lt;/p&gt;
+							or by
+							both. Eg. Bharat Petroleum, Air India&lt;/p&gt;
 
-							&lt;p&gt; &lt;/p&gt;
+							&lt;p&gt;
+							&lt;/p&gt;
 
 							&lt;/body&gt;
 							&lt;/html&gt;</sv:value>
@@ -4426,10 +4529,12 @@
 						<sv:value>&lt;html&gt;
 							&lt;body&gt;
 
-							&lt;p&gt;Enter the jurisdiction of Assessing Officer&lt;/p&gt;
+							&lt;p&gt;Enter the jurisdiction
+							of Assessing Officer&lt;/p&gt;
 
 							&lt;/body&gt;
-							&lt;/html&gt;</sv:value>
+							&lt;/html&gt;
+						</sv:value>
 					</sv:property>
 					<sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
 						<sv:value>Ward/Circle</sv:value>
@@ -4496,7 +4601,8 @@
 						<sv:value>&lt;html&gt;
 							&lt;body&gt;
 
-							&lt;p&gt;For Example : For SBI Account the IFSC Code will be as
+							&lt;p&gt;For Example : For SBI
+							Account the IFSC Code will be as
 							SBIN0123456&lt;/p&gt;
 
 							&lt;/body&gt;
@@ -4681,8 +4787,10 @@
 						<sv:value>&lt;html&gt;
 							&lt;body&gt;
 
-							&lt;p&gt;The TDS certificate No is 6 digits, please prefix 2 zeros.
-							Also, the TDS No. should be 8 characters &lt;/p&gt;
+							&lt;p&gt;The TDS certificate No
+							is 6 digits, please prefix 2 zeros.
+							Also, the TDS No. should be 8
+							characters &lt;/p&gt;
 
 							&lt;/body&gt;
 							&lt;/html&gt;</sv:value>
@@ -4899,7 +5007,8 @@
 						<sv:value>&lt;html&gt;
 							&lt;body&gt;
 
-							&lt;p&gt;Enter the BSR code of the bank, as mentioned in your challan or on
+							&lt;p&gt;Enter the BSR code of
+							the bank, as mentioned in your challan or on
 							e-payment
 							acknowledgement&lt;/p&gt;
 
@@ -4938,7 +5047,8 @@
 						<sv:value>&lt;html&gt;
 							&lt;body&gt;
 
-							&lt;p&gt;Enter the date mentioned in your Challan or Epayment acknowledgemnt
+							&lt;p&gt;Enter the date
+							mentioned in your Challan or Epayment acknowledgemnt
 							no.&lt;/p&gt;
 
 							&lt;/body&gt;
@@ -4977,7 +5087,8 @@
 						<sv:value>&lt;html&gt;
 							&lt;body&gt;
 
-							&lt;p&gt;Enter the Challan no, as mentioned in your challan or on e-payment
+							&lt;p&gt;Enter the Challan no,
+							as mentioned in your challan or on e-payment
 							acknowledgement&lt;/p&gt;
 
 							&lt;/body&gt;
@@ -5016,7 +5127,8 @@
 						<sv:value>&lt;html&gt;
 							&lt;body&gt;
 
-							&lt;p&gt;Enter the amount of Advance tax paid&lt;/p&gt;
+							&lt;p&gt;Enter the amount of
+							Advance tax paid&lt;/p&gt;
 
 							&lt;/body&gt;
 							&lt;/html&gt;</sv:value>
@@ -5169,7 +5281,8 @@
 						<sv:value>&lt;html&gt;
 							&lt;body&gt;
 
-							&lt;p&gt;If you do not have PAN, then please use PAN as "GGGGG0000G"
+							&lt;p&gt;If you do not have PAN,
+							then please use PAN as "GGGGG0000G"
 							&lt;/p&gt;
 
 							&lt;/body&gt;
@@ -5726,7 +5839,8 @@
 						<sv:value>&lt;html&gt;
 							&lt;body&gt;
 
-							&lt;p&gt;Enter the BSR code of the bank, as mentioned in your challan or on
+							&lt;p&gt;Enter the BSR code of
+							the bank, as mentioned in your challan or on
 							e-payment
 							acknowledgement&lt;/p&gt;
 
@@ -5765,7 +5879,8 @@
 						<sv:value>&lt;html&gt;
 							&lt;body&gt;
 
-							&lt;p&gt;Enter the date mentioned in your Challan or Epayment acknowledgemnt
+							&lt;p&gt;Enter the date
+							mentioned in your Challan or Epayment acknowledgemnt
 							no.&lt;/p&gt;
 
 							&lt;/body&gt;
@@ -5804,7 +5919,8 @@
 						<sv:value>&lt;html&gt;
 							&lt;body&gt;
 
-							&lt;p&gt;Enter the Challan no, as mentioned in your challan or on e-payment
+							&lt;p&gt;Enter the Challan no,
+							as mentioned in your challan or on e-payment
 							acknowledgement&lt;/p&gt;
 
 							&lt;/body&gt;
@@ -5843,10 +5959,12 @@
 						<sv:value>&lt;html&gt;
 							&lt;body&gt;
 
-							&lt;p&gt;ENter the amount of Self Assessment tax paid&lt;/p&gt;
+							&lt;p&gt;ENter the amount of
+							Self Assessment tax paid&lt;/p&gt;
 
 							&lt;/body&gt;
-							&lt;/html&gt;</sv:value>
+							&lt;/html&gt;
+						</sv:value>
 					</sv:property>
 					<sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
 						<sv:value>Enter amount</sv:value>
@@ -9492,7 +9610,8 @@
 						<sv:value>&lt;html&gt;
 							&lt;body&gt;
 
-							&lt;p&gt;Click on add files or drag a file here&lt;/p&gt;
+							&lt;p&gt;Click on add files or
+							drag a file here&lt;/p&gt;
 
 							&lt;/body&gt;
 							&lt;/html&gt;</sv:value>
@@ -9529,7 +9648,8 @@
 						<sv:value>&lt;html&gt;
 							&lt;body&gt;
 
-							&lt;p&gt;Select description for uploaded Document&lt;/p&gt;
+							&lt;p&gt;Select description for
+							uploaded Document&lt;/p&gt;
 
 							&lt;/body&gt;
 							&lt;/html&gt;</sv:value>
@@ -9617,7 +9737,7 @@
 					<sv:value>hippotranslation:translated</sv:value>
 				</sv:property>
 				<sv:property sv:name="jcr:uuid" sv:type="String">
-					<sv:value>32d74675-655d-4e1b-8945-802c7a836bc1</sv:value>
+					<sv:value>737a3ff2-d406-4663-a660-7dabdbe466ec</sv:value>
 				</sv:property>
 				<sv:property sv:multiple="true" sv:name="hippo:availability"
 					sv:type="String">
@@ -9646,7 +9766,7 @@
 				</sv:property>
 				<sv:property sv:name="hippostdpubwf:lastModificationDate"
 					sv:type="Date">
-					<sv:value>2013-07-20T11:12:24.690+05:30</sv:value>
+					<sv:value>2013-07-22T16:24:58.373+05:30</sv:value>
 				</sv:property>
 				<sv:property sv:name="hippostdpubwf:lastModifiedBy"
 					sv:type="String">
@@ -9654,7 +9774,7 @@
 				</sv:property>
 				<sv:property sv:name="hippostdpubwf:publicationDate"
 					sv:type="Date">
-					<sv:value>2013-07-20T11:12:28.918+05:30</sv:value>
+					<sv:value>2013-07-22T16:25:03.085+05:30</sv:value>
 				</sv:property>
 				<sv:property sv:name="hippotranslation:id" sv:type="String">
 					<sv:value>10918ca9-305b-4d1b-88a4-01d0c230ad7c</sv:value>
@@ -9677,7 +9797,8 @@
 					<sv:value>&lt;html&gt;
 						&lt;body&gt;
 
-						&lt;p&gt;this is not good&lt;/p&gt;
+						&lt;p&gt;this is not
+						good&lt;/p&gt;
 
 						&lt;/body&gt;
 						&lt;/html&gt;</sv:value>
@@ -10075,9 +10196,40 @@
 						<sv:value />
 					</sv:property>
 				</sv:node>
+				<sv:node sv:name="mootlywcm:screenfieldconfig">
+					<sv:property sv:name="jcr:primaryType" sv:type="Name">
+						<sv:value>mootlywcm:screenfieldconfig</sv:value>
+					</sv:property>
+					<sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+						<sv:value />
+					</sv:property>
+					<sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+						<sv:value>checkLocation</sv:value>
+					</sv:property>
+					<sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+						<sv:value>checkLocation</sv:value>
+					</sv:property>
+					<sv:property sv:name="mootlywcm:fieldPopoverText"
+						sv:type="String">
+						<sv:value />
+					</sv:property>
+					<sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+						<sv:value />
+					</sv:property>
+					<sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+						<sv:value>false</sv:value>
+					</sv:property>
+					<sv:property sv:name="mootlywcm:validatorArguments"
+						sv:type="String">
+						<sv:value />
+					</sv:property>
+					<sv:property sv:multiple="true" sv:name="mootlywcm:validators"
+						sv:type="String">
+						<sv:value />
+					</sv:property>
+				</sv:node>
 			</sv:node>
 		</sv:node>
-
 		<!-- Amit -->
 	</sv:node>
 	<sv:node sv:name="screencalculation">
@@ -10289,7 +10441,8 @@
 				</sv:property>
 				<sv:property sv:name="mootlywcm:script" sv:type="String">
 					<sv:value>/***
-						* This File is being used to calculate total income in foreign
+						* This File is being used to calculate total income
+						in foreign
 						countries from all sources
 						*
 						*
@@ -10384,31 +10537,39 @@
 					<sv:value>/**
 						* This File is being used to calculate House Income
 						*
-						* **/
+						*
+						**/
 						//Define Helper Classes
 						var indianCurrencyHelper = new
 						com.mootly.wcm.services.IndianCurrencyHelper();
 
 						if(letout=='L'){
-						//if(Unrealised_rent!=0 &amp;&amp; Local_tax!=0 &amp;&amp; Letable_value!=0 &amp;&amp;
+						//if(Unrealised_rent!=0 &amp;&amp; Local_tax!=0 &amp;&amp;
+						Letable_value!=0 &amp;&amp;
 						Interest_borrowed!=0){
-						var total = parseInt(Letable_value-0) -( parseInt(Unrealised_rent-0)
-						+ parseInt(Local_tax-0));
+						var total =
+						parseInt(Letable_value-0) -( parseInt(Unrealised_rent-0)
+						+
+						parseInt(Local_tax-0));
 
 						out_Total=total;
-						var balance=(0.3 * parseInt(total));
+						var balance=(0.3 *
+						parseInt(total));
 						if(balance &lt;0)
 						balance=0;
 
-						var hous_income = parseInt(total - balance) -parseInt(
+						var hous_income =
+						parseInt(total - balance) -parseInt(
 						Interest_borrowed-0);
 
 						out_Balance=indianCurrencyHelper.RoundTo2Decimals(balance*100)/100;
 						out_Income_hproperty=indianCurrencyHelper.RoundTo2Decimals(hous_income*100)/100;
 						//}
 						}else if(letout=='S'){
-						//if(Interest_borrowed&lt;=150000 || Interest_borrowed!=0){
-						out_Income_hproperty=(Interest_borrowed-0 &gt;= 150000) ?
+						//if(Interest_borrowed&lt;=150000 ||
+						Interest_borrowed!=0){
+						out_Income_hproperty=(Interest_borrowed-0
+						&gt;= 150000) ?
 						(-150000) : (-Interest_borrowed -0);
 
 						}
@@ -10646,77 +10807,105 @@
 						//var indianCurrencyHelper = new
 						com.mootly.wcm.services.IndianCurrencyHelper();
 						var A = 0;
-						var B = 0;
+						var B =
+						0;
 						var C = 0;
 						var D = 0;
 
 
-						var txtNetIncome=txtNetIndianIncome+(incomeForeignCountry-0);
+						var
+						txtNetIncome=txtNetIndianIncome+(incomeForeignCountry-0);
 
-						var condition_1=(cbasscategory == "M" &amp;&amp; cbasstype == "I"
+						var
+						condition_1=(cbasscategory == "M" &amp;&amp; cbasstype == "I"
 						&amp;&amp; (cbresistatus == "RES"|| cbresistatus == "NOR") ) ?
 						true : false;
-						var condition_2=(cbasscategory == "F" &amp;&amp; cbasstype == "I"
-						&amp;&amp; (cbresistatus == "RES"|| cbresistatus == "NOR") ) ?
+						var condition_2=(cbasscategory == "F" &amp;&amp;
+						cbasstype == "I"
+						&amp;&amp; (cbresistatus == "RES"|| cbresistatus
+						== "NOR") ) ?
 						true : false;
-						var condition_3=(cbasscategory == "Senior Citizen" &amp;&amp;
-						cbasstype == "I" &amp;&amp; (cbresistatus == "RES" || cbresistatus
+						var condition_3=(cbasscategory ==
+						"Senior Citizen" &amp;&amp;
+						cbasstype == "I" &amp;&amp;
+						(cbresistatus == "RES" || cbresistatus
 						== "NOR")) ? true :false;
 
 
-						if (cbassyear == "2013-2014") {
+						if
+						(cbassyear == "2013-2014") {
 
 						if(condition_1 || condition_2){
 
-						if (txtNetIncome &lt;= 200000 &amp;&amp; txtNetIncome != 0) {
+						if
+						(txtNetIncome &lt;= 200000 &amp;&amp; txtNetIncome != 0) {
 
 						}
-						else if (txtNetIncome &gt; 200001 &amp;&amp; txtNetIncome &lt;=
+						else if
+						(txtNetIncome &gt; 200001 &amp;&amp; txtNetIncome &lt;=
 						500000) {
-						A = (txtNetIncome - 200000) * 0.1;
+						A
+						= (txtNetIncome - 200000) * 0.1;
 
 						}
-						else if (txtNetIncome &gt;= 500001 &amp;&amp; txtNetIncome &lt;=
+						else if (txtNetIncome &gt;=
+						500001 &amp;&amp; txtNetIncome &lt;=
 						1000000) {
-						A = ((txtNetIncome - 500000) * 0.2) + 30000;
+						A = ((txtNetIncome -
+						500000) * 0.2) + 30000;
 
 						}
 						else if (txtNetIncome &gt; 1000000) {
-						A = ((txtNetIncome - 1000000) * 0.3) + 130000;
+						A =
+						((txtNetIncome - 1000000) * 0.3) + 130000;
 
 						}
-						}// 2013-2014-- Male &amp; Female
+						}// 2013-2014-- Male
+						&amp; Female
 						else if(condition_3){
-						if (txtNetIncome &lt;= 250000 &amp;&amp; txtNetIncome != 0) {
+						if (txtNetIncome &lt;= 250000
+						&amp;&amp; txtNetIncome != 0) {
 						}
-						else if (txtNetIncome &gt;= 250001 &amp;&amp; txtNetIncome &lt;=
+						else if (txtNetIncome &gt;= 250001
+						&amp;&amp; txtNetIncome &lt;=
 						500000) {
-						A = (txtNetIncome - 250000) * 0.1;
+						A = (txtNetIncome - 250000)
+						* 0.1;
 						}
-						else if (txtNetIncome &gt;= 500001 &amp;&amp; txtNetIncome &lt;=
+						else if (txtNetIncome &gt;= 500001 &amp;&amp; txtNetIncome
+						&lt;=
 						1000000) {
 						A = ((txtNetIncome - 500000) * 0.2) + 25000;
 						}
-						else if (txtNetIncome &gt; 1000000) {
-						((txtNetIncome - 1000000) * 0.3) + 125000;
+						else
+						if (txtNetIncome &gt; 1000000) {
+						((txtNetIncome - 1000000) * 0.3) +
+						125000;
 						}
 						}// Senior Citizen as Resident
 
 						}// 2013-2014
-						else if (cbassyear == "2012-2013") {
+						else if
+						(cbassyear == "2012-2013") {
 						if(condition_1){
-						if (txtNetIncome &lt;= 180000 &amp;&amp; txtNetIncome != 0) {
+						if (txtNetIncome &lt;=
+						180000 &amp;&amp; txtNetIncome != 0) {
 						}
-						else if (txtNetIncome &gt; 180001 &amp;&amp; txtNetIncome &lt;=
+						else if (txtNetIncome &gt;
+						180001 &amp;&amp; txtNetIncome &lt;=
 						500000) {
-						A = ((txtNetIncome - 180000) * 0.1);
+						A = ((txtNetIncome -
+						180000) * 0.1);
 						}
-						else if (txtNetIncome &gt; 500001 &amp;&amp; txtNetIncome &lt;=
+						else if (txtNetIncome &gt; 500001 &amp;&amp;
+						txtNetIncome &lt;=
 						800000) {
-						A = ((txtNetIncome - 500000) * 0.2) + 32000;
+						A = ((txtNetIncome - 500000) * 0.2) +
+						32000;
 						}
 						else if (txtNetIncome &gt; 800000) {
-						A = ((txtNetIncome - 800000) * 0.3) + 92000;
+						A = ((txtNetIncome -
+						800000) * 0.3) + 92000;
 						}
 						}//2012-2013-- Male
 						else if(condition_2){
@@ -10726,27 +10915,37 @@
 						500000) {
 						A = ((txtNetIncome - 190000) * 0.1);
 						}
-						else if (txtNetIncome &gt; 500001 &amp;&amp; txtNetIncome &lt;=
+						else if
+						(txtNetIncome &gt; 500001 &amp;&amp; txtNetIncome &lt;=
 						800000) {
-						A = ((txtNetIncome - 500000) * 0.2) + 31000;
+						A
+						= ((txtNetIncome - 500000) * 0.2) + 31000;
 						}
-						else if (txtNetIncome &gt; 800000) {
+						else if (txtNetIncome
+						&gt; 800000) {
 						A = ((txtNetIncome - 800000) * 0.3) + 91000;
 						}
-						}// 2012-2013 --Female
+						}//
+						2012-2013 --Female
 						else if(condition_3){
-						if (txtNetIncome &lt;= 250000 &amp;&amp; txtNetIncome != 0) {
+						if (txtNetIncome &lt;=
+						250000 &amp;&amp; txtNetIncome != 0) {
 						}
-						else if (txtNetIncome &gt; 250001 &amp;&amp; txtNetIncome &lt;=
+						else if (txtNetIncome &gt;
+						250001 &amp;&amp; txtNetIncome &lt;=
 						500000) {
-						A = ((txtNetIncome - 250000) * 0.1);
+						A = ((txtNetIncome -
+						250000) * 0.1);
 						}
-						else if (txtNetIncome &gt; 500001 &amp;&amp; txtNetIncome &lt;=
+						else if (txtNetIncome &gt; 500001 &amp;&amp;
+						txtNetIncome &lt;=
 						800000) {
-						A = ((txtNetIncome - 500000) * 0.2) + 25000;
+						A = ((txtNetIncome - 500000) * 0.2) +
+						25000;
 						}
 						else if (txtNetIncome &gt; 800000) {
-						A = ((txtNetIncome - 800000) * 0.3) + 85000;
+						A = ((txtNetIncome -
+						800000) * 0.3) + 85000;
 						}
 						}// 2012-2013 --Senior Citizen as Resident
 
@@ -10759,41 +10958,54 @@
 						500000) {
 						A = ((txtNetIncome - 160000) * 0.1);
 						}
-						else if (txtNetIncome &gt; 500001 &amp;&amp; txtNetIncome &lt;=
+						else if
+						(txtNetIncome &gt; 500001 &amp;&amp; txtNetIncome &lt;=
 						800000) {
-						A = ((txtNetIncome - 500000) * 0.2) + 34000;
+						A
+						= ((txtNetIncome - 500000) * 0.2) + 34000;
 						}
-						else if (txtNetIncome &gt; 800000) {
+						else if (txtNetIncome
+						&gt; 800000) {
 						A = ((txtNetIncome - 800000) * 0.3) + 94000;
 						}
 						}//2011-2012-- Male
 						else if(condition_2){
-						if (txtNetIncome &lt;= 190000 &amp;&amp; txtNetIncome != 0) {
+						if (txtNetIncome &lt;=
+						190000 &amp;&amp; txtNetIncome != 0) {
 						}
-						else if (txtNetIncome &gt; 190001 &amp;&amp; txtNetIncome &lt;=
+						else if (txtNetIncome &gt;
+						190001 &amp;&amp; txtNetIncome &lt;=
 						500000) {
-						A = ((txtNetIncome - 190000) * 0.1);
+						A = ((txtNetIncome -
+						190000) * 0.1);
 						}
-						else if (txtNetIncome &gt; 500001 &amp;&amp; txtNetIncome &lt;=
+						else if (txtNetIncome &gt; 500001 &amp;&amp;
+						txtNetIncome &lt;=
 						800000) {
-						A = ((txtNetIncome - 500000) * 0.2) + 26000;
+						A = ((txtNetIncome - 500000) * 0.2) +
+						26000;
 						}
 						else if (txtNetIncome &gt; 800000) {
-						A = ((txtNetIncome - 800000) * 0.3) + 86000;
+						A = ((txtNetIncome -
+						800000) * 0.3) + 86000;
 						}
 						}//2011-2012-- Female
-						else if(condition_3 ){
+						else if(condition_3
+						){
 						if (txtNetIncome &lt;= 240000 &amp;&amp; txtNetIncome != 0) {
 						}
 						else if (txtNetIncome &gt; 240001 &amp;&amp; txtNetIncome &lt;=
 						500000) {
 						A = ((txtNetIncome - 240000) * 0.1);
 						}
-						else if (txtNetIncome &gt; 500001 &amp;&amp; txtNetIncome &lt;=
+						else if
+						(txtNetIncome &gt; 500001 &amp;&amp; txtNetIncome &lt;=
 						800000) {
-						A = ((txtNetIncome - 500000) * 0.2) + 26000;
+						A
+						= ((txtNetIncome - 500000) * 0.2) + 26000;
 						}
-						else if (txtNetIncome &gt; 800000) {
+						else if (txtNetIncome
+						&gt; 800000) {
 						A = ((txtNetIncome - 800000) * 0.3) + 86000;
 						}
 						}//2011-2012-- Senior Citizen and Super Senior Citizen
@@ -10802,15 +11014,18 @@
 
 						B = (A ) * 0.02;
 						C = (A ) * 0.01;
-						D = Math.round((A + B + C )) ;
+						D = Math.round((A + B
+						+ C )) ;
 						var avgRateTax=(D*100)/txtNetIncome ;
-						var avgTaxForeignIncome=(incomeForeignCountry*avgRateTax)
+						var
+						avgTaxForeignIncome=(incomeForeignCountry*avgRateTax)
 
 						if(taxPaidForeignCountry &gt; avgTaxForeignIncome){
 						out_txttotaltax = (avgTaxForeignIncome-0);
 
 						} else {
-						out_txttotaltax = (taxPaidForeignCountry -0);
+						out_txttotaltax
+						= (taxPaidForeignCountry -0);
 
 						}
 					</sv:value>
@@ -10932,11 +11147,13 @@
 						var ded=0;
 						out_gross_total=(gross_a -0)+(gross_b -0)+(gross_c -0);
 						var balanc=(out_gross_total )-(less_total_2 - 0);
-						if(balanc &lt;=0) balanc=0;
+						if(balanc &lt;=0)
+						balanc=0;
 						out_balance=balanc;
 						if(Employe_category !="GOV")
 						{
-						var e= 2500;
+						var e=
+						2500;
 						var f= deductions_tax;
 						if(e&lt;f){
 						ded=e;
@@ -10948,7 +11165,8 @@
 						out_deductions_total=(deductions_entertainment -0)+(ded -0);
 						out_income_chargable_total=((out_balance-out_deductions_total)&gt;0)
 						? (out_balance-out_deductions_total) : 0;
-						out_ded_ent4= (out_income_chargable_total) - ((relief_2 -0)+(ded_ent1
+						out_ded_ent4=
+						(out_income_chargable_total) - ((relief_2 -0)+(ded_ent1
 						-0)+(ded_ent3 -0));
 						var add=(additional_1 -0)+(additional_2 -0);
 						out_gross_income_total=(out_income_chargable_total)+(add);
@@ -10963,10 +11181,12 @@
 						var e=0;
 						var f=0;
 						var ded=0;
-						var a=(out_balance)/5;
+						var
+						a=(out_balance)/5;
 						var b=5000;
 						var c= deductions_entertainment;
-						var e= 2500;
+						var
+						e= 2500;
 						var f= deductions_tax;
 						if( a&gt; b){
 						if(b&lt;c){
@@ -10991,7 +11211,8 @@
 						out_deductions_total=(d -0)+(ded -0);
 						out_income_chargable_total=((out_balance-out_deductions_total)&gt;0)
 						? (out_balance-out_deductions_total) : 0;
-						out_ded_ent4= (out_income_chargable_total) - ((relief_2 -0)+(ded_ent1
+						out_ded_ent4=
+						(out_income_chargable_total) - ((relief_2 -0)+(ded_ent1
 						-0)+(ded_ent3 -0));
 						var add=(additional_1 -0)+(additional_2 -0);
 						out_gross_income_total=(out_income_chargable_total)+(add);
@@ -11003,77 +11224,104 @@
 						//var indianCurrencyHelper = new
 						com.mootly.wcm.services.IndianCurrencyHelper();
 						/*var A = 0;
-						var B = 0;
+						var B =
+						0;
 						var C = 0;
 						var D = 0;
 
 
 						var txtNetIncome=(out_total_income_2);
 
-						var condition_1=(cbasscategory == "M" &amp;&amp; cbasstype == "I"
+						var
+						condition_1=(cbasscategory == "M" &amp;&amp; cbasstype == "I"
 						&amp;&amp; (cbresistatus == "RES"|| cbresistatus == "NOR") ) ?
 						true : false;
-						var condition_2=(cbasscategory == "F" &amp;&amp; cbasstype == "I"
-						&amp;&amp; (cbresistatus == "RES"|| cbresistatus == "NOR") ) ?
+						var condition_2=(cbasscategory == "F" &amp;&amp;
+						cbasstype == "I"
+						&amp;&amp; (cbresistatus == "RES"|| cbresistatus
+						== "NOR") ) ?
 						true : false;
-						var condition_3=(cbasscategory == "Senior Citizen" &amp;&amp;
-						cbasstype == "I" &amp;&amp; (cbresistatus == "RES" || cbresistatus
+						var condition_3=(cbasscategory ==
+						"Senior Citizen" &amp;&amp;
+						cbasstype == "I" &amp;&amp;
+						(cbresistatus == "RES" || cbresistatus
 						== "NOR")) ? true :false;
 
 
-						if (cbassyear == "2013-2014") {
+						if
+						(cbassyear == "2013-2014") {
 
 						if(condition_1 || condition_2){
 
-						if (txtNetIncome &lt;= 200000 &amp;&amp; txtNetIncome != 0) {
+						if
+						(txtNetIncome &lt;= 200000 &amp;&amp; txtNetIncome != 0) {
 
 						}
-						else if (txtNetIncome &gt; 200001 &amp;&amp; txtNetIncome &lt;=
+						else if
+						(txtNetIncome &gt; 200001 &amp;&amp; txtNetIncome &lt;=
 						500000) {
-						A = (txtNetIncome - 200000) * 0.1;
+						A
+						= (txtNetIncome - 200000) * 0.1;
 
 						}
-						else if (txtNetIncome &gt;= 500001 &amp;&amp; txtNetIncome &lt;=
+						else if (txtNetIncome &gt;=
+						500001 &amp;&amp; txtNetIncome &lt;=
 						1000000) {
-						A = ((txtNetIncome - 500000) * 0.2) + 30000;
+						A = ((txtNetIncome -
+						500000) * 0.2) + 30000;
 
 						}
 						else if (txtNetIncome &gt; 1000000) {
-						A = ((txtNetIncome - 1000000) * 0.3) + 130000;
+						A =
+						((txtNetIncome - 1000000) * 0.3) + 130000;
 
 						}
-						}// 2013-2014-- Male &amp; Female
+						}// 2013-2014-- Male
+						&amp; Female
 						else if(condition_3){
-						if (txtNetIncome &lt;= 250000 &amp;&amp; txtNetIncome != 0) {
+						if (txtNetIncome &lt;= 250000
+						&amp;&amp; txtNetIncome != 0) {
 						}
-						else if (txtNetIncome &gt;= 250001 &amp;&amp; txtNetIncome &lt;=
+						else if (txtNetIncome &gt;= 250001
+						&amp;&amp; txtNetIncome &lt;=
 						500000) {
-						A = (txtNetIncome - 250000) * 0.1;
+						A = (txtNetIncome - 250000)
+						* 0.1;
 						}
-						else if (txtNetIncome &gt;= 500001 &amp;&amp; txtNetIncome &lt;=
+						else if (txtNetIncome &gt;= 500001 &amp;&amp; txtNetIncome
+						&lt;=
 						1000000) {
 						A = ((txtNetIncome - 500000) * 0.2) + 25000;
 						}
-						else if (txtNetIncome &gt; 1000000) {
-						((txtNetIncome - 1000000) * 0.3) + 125000;
+						else
+						if (txtNetIncome &gt; 1000000) {
+						((txtNetIncome - 1000000) * 0.3) +
+						125000;
 						}
 						}// Senior Citizen as Resident
 
 						}// 2013-2014
-						else if (cbassyear == "2012-2013") {
+						else if
+						(cbassyear == "2012-2013") {
 						if(condition_1){
-						if (txtNetIncome &lt;= 180000 &amp;&amp; txtNetIncome != 0) {
+						if (txtNetIncome &lt;=
+						180000 &amp;&amp; txtNetIncome != 0) {
 						}
-						else if (txtNetIncome &gt; 180001 &amp;&amp; txtNetIncome &lt;=
+						else if (txtNetIncome &gt;
+						180001 &amp;&amp; txtNetIncome &lt;=
 						500000) {
-						A = ((txtNetIncome - 180000) * 0.1);
+						A = ((txtNetIncome -
+						180000) * 0.1);
 						}
-						else if (txtNetIncome &gt; 500001 &amp;&amp; txtNetIncome &lt;=
+						else if (txtNetIncome &gt; 500001 &amp;&amp;
+						txtNetIncome &lt;=
 						800000) {
-						A = ((txtNetIncome - 500000) * 0.2) + 32000;
+						A = ((txtNetIncome - 500000) * 0.2) +
+						32000;
 						}
 						else if (txtNetIncome &gt; 800000) {
-						A = ((txtNetIncome - 800000) * 0.3) + 92000;
+						A = ((txtNetIncome -
+						800000) * 0.3) + 92000;
 						}
 						}//2012-2013-- Male
 						else if(condition_2){
@@ -11083,27 +11331,37 @@
 						500000) {
 						A = ((txtNetIncome - 190000) * 0.1);
 						}
-						else if (txtNetIncome &gt; 500001 &amp;&amp; txtNetIncome &lt;=
+						else if
+						(txtNetIncome &gt; 500001 &amp;&amp; txtNetIncome &lt;=
 						800000) {
-						A = ((txtNetIncome - 500000) * 0.2) + 31000;
+						A
+						= ((txtNetIncome - 500000) * 0.2) + 31000;
 						}
-						else if (txtNetIncome &gt; 800000) {
+						else if (txtNetIncome
+						&gt; 800000) {
 						A = ((txtNetIncome - 800000) * 0.3) + 91000;
 						}
-						}// 2012-2013 --Female
+						}//
+						2012-2013 --Female
 						else if(condition_3){
-						if (txtNetIncome &lt;= 250000 &amp;&amp; txtNetIncome != 0) {
+						if (txtNetIncome &lt;=
+						250000 &amp;&amp; txtNetIncome != 0) {
 						}
-						else if (txtNetIncome &gt; 250001 &amp;&amp; txtNetIncome &lt;=
+						else if (txtNetIncome &gt;
+						250001 &amp;&amp; txtNetIncome &lt;=
 						500000) {
-						A = ((txtNetIncome - 250000) * 0.1);
+						A = ((txtNetIncome -
+						250000) * 0.1);
 						}
-						else if (txtNetIncome &gt; 500001 &amp;&amp; txtNetIncome &lt;=
+						else if (txtNetIncome &gt; 500001 &amp;&amp;
+						txtNetIncome &lt;=
 						800000) {
-						A = ((txtNetIncome - 500000) * 0.2) + 25000;
+						A = ((txtNetIncome - 500000) * 0.2) +
+						25000;
 						}
 						else if (txtNetIncome &gt; 800000) {
-						A = ((txtNetIncome - 800000) * 0.3) + 85000;
+						A = ((txtNetIncome -
+						800000) * 0.3) + 85000;
 						}
 						}// 2012-2013 --Senior Citizen as Resident
 
@@ -11116,41 +11374,54 @@
 						500000) {
 						A = ((txtNetIncome - 160000) * 0.1);
 						}
-						else if (txtNetIncome &gt; 500001 &amp;&amp; txtNetIncome &lt;=
+						else if
+						(txtNetIncome &gt; 500001 &amp;&amp; txtNetIncome &lt;=
 						800000) {
-						A = ((txtNetIncome - 500000) * 0.2) + 34000;
+						A
+						= ((txtNetIncome - 500000) * 0.2) + 34000;
 						}
-						else if (txtNetIncome &gt; 800000) {
+						else if (txtNetIncome
+						&gt; 800000) {
 						A = ((txtNetIncome - 800000) * 0.3) + 94000;
 						}
 						}//2011-2012-- Male
 						else if(condition_2){
-						if (txtNetIncome &lt;= 190000 &amp;&amp; txtNetIncome != 0) {
+						if (txtNetIncome &lt;=
+						190000 &amp;&amp; txtNetIncome != 0) {
 						}
-						else if (txtNetIncome &gt; 190001 &amp;&amp; txtNetIncome &lt;=
+						else if (txtNetIncome &gt;
+						190001 &amp;&amp; txtNetIncome &lt;=
 						500000) {
-						A = ((txtNetIncome - 190000) * 0.1);
+						A = ((txtNetIncome -
+						190000) * 0.1);
 						}
-						else if (txtNetIncome &gt; 500001 &amp;&amp; txtNetIncome &lt;=
+						else if (txtNetIncome &gt; 500001 &amp;&amp;
+						txtNetIncome &lt;=
 						800000) {
-						A = ((txtNetIncome - 500000) * 0.2) + 26000;
+						A = ((txtNetIncome - 500000) * 0.2) +
+						26000;
 						}
 						else if (txtNetIncome &gt; 800000) {
-						A = ((txtNetIncome - 800000) * 0.3) + 86000;
+						A = ((txtNetIncome -
+						800000) * 0.3) + 86000;
 						}
 						}//2011-2012-- Female
-						else if(condition_3 ){
+						else if(condition_3
+						){
 						if (txtNetIncome &lt;= 240000 &amp;&amp; txtNetIncome != 0) {
 						}
 						else if (txtNetIncome &gt; 240001 &amp;&amp; txtNetIncome &lt;=
 						500000) {
 						A = ((txtNetIncome - 240000) * 0.1);
 						}
-						else if (txtNetIncome &gt; 500001 &amp;&amp; txtNetIncome &lt;=
+						else if
+						(txtNetIncome &gt; 500001 &amp;&amp; txtNetIncome &lt;=
 						800000) {
-						A = ((txtNetIncome - 500000) * 0.2) + 26000;
+						A
+						= ((txtNetIncome - 500000) * 0.2) + 26000;
 						}
-						else if (txtNetIncome &gt; 800000) {
+						else if (txtNetIncome
+						&gt; 800000) {
 						A = ((txtNetIncome - 800000) * 0.3) + 86000;
 						}
 						}//2011-2012-- Senior Citizen and Super Senior Citizen
@@ -11160,7 +11431,8 @@
 						C = (A ) * 0.01;
 						D = Math.round((A + C )) ;
 						var avgRateTax=(D*100)/txtNetIncome ;
-						//var avgTaxForeignIncome=(incomeForeignCountry*avgRateTax)
+						//var
+						avgTaxForeignIncome=(incomeForeignCountry*avgRateTax)
 
 						//if(taxPaidForeignCountry &gt; avgTaxForeignIncome){
 						//out_tax_total_income_2= (D-0);
@@ -11270,7 +11542,8 @@
 						*
 						*
 						* **/
-						out_indexed_price=(cost_acquisition -0)*((inflation_consideration-0)/(inflation_acquisition-0));
+						out_indexed_price=(cost_acquisition
+						-0)*((inflation_consideration-0)/(inflation_acquisition-0));
 						out_capital_gain=(sale_consideration) - (out_indexed_price);
 					</sv:value>
 				</sv:property>
