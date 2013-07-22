@@ -28,7 +28,7 @@
 <div class="page">
 	<w4india:itrmenu />
 	<h4>Payment for Package <fmt:message key="${itrForm}.packageName.${itrServiceDelivery}.cost" var="totalCost"/> <w4india:inr value="${totalCost}"></w4india:inr> </h4>
-	<h5>Your Income Tax return will be available for email/download, once Wealth4India receives and successfully verifies your payment.</h5>	
+	<h5 style="color: maroon;">Your Income Tax return will be available for email/download, once Wealth4India receives and successfully verifies your payment.</h5>	
 	<c:if test="${not empty parentBean}">
 		<c:choose>
 			<c:when test="${not empty parentBean.paymentVerificationStatus && parentBean.paymentVerificationStatus == 'VERIFIED'}">
@@ -44,7 +44,7 @@
 		<fieldset>
 			<legend>Payment Options. You can choose one of the following methods of payment</legend>
 			<div class="row-fluid show-grid">
-				<div class="span12 info"><b>Please mention the PAN Number in the Memo Section of the payment</b></div>
+				<div class="span12 info"><b style="color:teal;">Please mention the PAN Number in the Memo Section of the payment</b></div>
 			</div>			
 			<div class="row-fluid show-grid">
 				<div class="span6">
@@ -56,7 +56,7 @@
 						 Payee Name: <b>Mootly Software Pvt. Ltd.</b><br/>
 						 Account Number: <b>114305000059 </b><br/>
 						 Branch: <b>Office Number 11, Times Tower, M.G Road, Gurgaon - 122001, Haryana.</b><br/>
-						 RTGS/NEFT/IFSC CODE: <b>ICIC0001143</b>
+						 RTGS/NEFT/IFSC CODE: <b style="color: teal;">ICIC0001143</b>
 				 	</div>
 				 </div>
 				 <div class="span6">
@@ -64,7 +64,7 @@
 						<label for="ack_no"><small>NEFT/RTGS</small> </label>
 					</div>
 					<div class="rowlabel">						
-						 RTGS/NEFT/IFSC CODE: <b> ICIC0001143</b>
+						 RTGS/NEFT/IFSC CODE: <b style="color: teal;"> ICIC0001143</b>
 				 	</div>
 				 </div>
 			</div>			
