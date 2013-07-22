@@ -104,7 +104,7 @@
 		                  <li class="title"><a href="${fn:escapeXml(link)}"><c:out value="${hit.name}"/></a></li>
 		                </c:when>	
 		                <c:when test="${hitClassName eq 'SimpleDocument'}">
-		                  <li class="title"><a href="${fn:escapeXml(link)}/../${hit.name}"><c:out value="${hit.title}"/></a></li>
+		                  <li class="title"><a href="${fn:escapeXml(link)}"><c:out value="${hit.title}"/></a></li>
 		                </c:when>		                
 		                <c:otherwise>
 		                  <hst:link var="link" hippobean="${hit}"/>
@@ -133,7 +133,7 @@
 			 <hst:element var="robotsContent"  name="meta">
 				<hst:defineObjects/>
 				<hst:attribute name="name">robots</hst:attribute>
-				<hst:attribute name="content">index, follow</hst:attribute>
+				<hst:attribute name="content">noindex, follow</hst:attribute>
 			</hst:element>
 			<hst:headContribution category="meta" element="${robotsContent}"></hst:headContribution>
 			 <c:choose>

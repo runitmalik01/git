@@ -31,7 +31,16 @@
 <c:set var="lang" value="${pageContext.request.locale.language}"/>
 <head>
     <hst:headContributions categoryExcludes="css,jsInternal,jsExternal"  />
-	<meta charset="UTF-8" />
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+    <link rel="schema.DCTERMS" href="http://purl.org/dc/terms/" />
+    <meta name="DC.keywords" content="<fmt:message key="layout.webpage.metadckeywords"/>" />
+    <meta name="description" content="<fmt:message key="layout.webpage.metadescription"/>" />
+    <meta name="DC.type" content="webpagina" scheme="THC.type" />
+    <meta name="DCTERMS.issued" content="2009-07-09T10:31" scheme="DCTERMS.W3CDTF" />
+    <meta name="DCTERMS.available" content="2009-07-09T10:31" scheme="DCTERMS.W3CDTF" />
+    <meta name="DC.title" content="<fmt:message key="layout.webpage.metadctitle"/>" />
+    <meta name="DC.language" content="en" scheme="DCTERMS.RFC3066" />
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
 	<%-- <meta name='robots' content='noindex,nofollow' /> --%>
 	<link rel="stylesheet" media="screen" type="text/css" href="<hst:link path="/css/author.css"></hst:link>"/>

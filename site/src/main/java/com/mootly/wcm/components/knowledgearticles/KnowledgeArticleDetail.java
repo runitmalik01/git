@@ -45,6 +45,7 @@ import org.slf4j.LoggerFactory;
 import com.mootly.wcm.beans.KnowledgeArticle;
 import com.mootly.wcm.beans.Product;
 import com.mootly.wcm.beans.Review;
+import com.mootly.wcm.beans.SimpleDocument;
 import com.mootly.wcm.components.BaseComponent;
 import com.mootly.wcm.utils.Constants;
 import com.mootly.wcm.utils.GoGreenUtil;
@@ -68,7 +69,8 @@ public class KnowledgeArticleDetail extends BaseComponent {
         KnowledgeArticleDetailParamInfo paramInfo = getParametersInfo(request);
         String reviewsFolderName = paramInfo.getReviewsFolder();
 
-        KnowledgeArticle document = (KnowledgeArticle) getContentBean(request);
+        HippoBean document = (HippoBean) getContentBean(request);
+        
 
         if (document == null) {
             redirectToNotFoundPage(response);
@@ -78,6 +80,7 @@ public class KnowledgeArticleDetail extends BaseComponent {
 
         HippoBean siteContentBase = getSiteContentBaseBean(request);
         HippoFolder reviewsFolder = siteContentBase.getBean(reviewsFolderName);
+        /*
         if (reviewsFolder == null) {
             log.warn("Product reviews folder not found: '{}/{}'. No product reviews will be shown.", siteContentBase.getPath(), reviewsFolderName);
         } else {
@@ -99,6 +102,7 @@ public class KnowledgeArticleDetail extends BaseComponent {
                 log.error("Unable to execute query to get the reviews :" + e.getMessage(), e);
             }
         }
+        */
         request.setAttribute(ERRORS, request.getParameterValues(ERRORS));
         request.setAttribute(COMMENT, request.getParameter(COMMENT));
         request.setAttribute(NAME, request.getParameter(NAME));
