@@ -139,17 +139,7 @@
       <sv:value>jsp/member/schedule80GG.jsp</sv:value>
     </sv:property>
   </sv:node>
-  <sv:node sv:name="sourceofincome">
-    <sv:property sv:name="jcr:primaryType" sv:type="Name">
-      <sv:value>hst:template</sv:value>
-    </sv:property>
-    <sv:property sv:name="jcr:uuid" sv:type="String">
-      <sv:value>161e2329-0ee4-4a71-ba6a-79aa6b7cd2a5</sv:value>
-    </sv:property>
-    <sv:property sv:name="hst:renderpath" sv:type="String">
-      <sv:value>jsp/member/sourceofincome.jsp</sv:value>
-    </sv:property>
-  </sv:node>
+
   <sv:node sv:name="member.salaryincome">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
       <sv:value>hst:template</sv:value>
@@ -3139,5 +3129,17 @@
 	    <sv:value>jsp/member/servicerequest-itr-tos-confirmation.jsp</sv:value>
 	  </sv:property>
 	</sv:node>
-	<!--  /Amit Patkar 07/16/2013 -->
+	<!--  /Amit Patkar 07/16/2013 -->	
+<sv:node sv:name="contactus">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:template</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>96ade76a-1d29-4592-8c93-65700dbee929</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:renderpath" sv:type="String">
+    <sv:value>jsp/member/contactus.jsp</sv:value>
+  </sv:property>
+</sv:node>
+	
 </sv:node>
