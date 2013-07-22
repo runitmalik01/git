@@ -43,7 +43,7 @@ striped">
 <div>
 	<strong>Telephone No:</strong><span>+91-11-45067102,&nbsp;+91-
 
-		9136265229,&nbps;+91-9971538064,&nbps;+91-8459024905,&nbps;
+		9136265229,&nbsp;+91-9971538064,&nbsp;+91-8459024905,&nbsp;
 
 		+1-408-475-2035</span>
 </div>
