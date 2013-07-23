@@ -1,0 +1,1238 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<sv:node sv:name="about" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hippostd:folder</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+    <sv:value>hippo:harddocument</sv:value>
+    <sv:value>hippotranslation:translated</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>0cf38dbe-aa81-4219-b04f-5fba8b63a0cb</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
+    <sv:value>live</sv:value>
+    <sv:value>preview</sv:value>
+  </sv:property>
+  <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
+  <sv:property sv:multiple="true" sv:name="hippostd:foldertype" sv:type="String">
+    <sv:value>new-translated-folder</sv:value>
+    <sv:value>new-document</sv:value>
+  </sv:property>
+  <sv:property sv:name="hippotranslation:id" sv:type="String">
+    <sv:value>4c798917-eea5-4a36-904f-399c36e9e1ea</sv:value>
+  </sv:property>
+  <sv:property sv:name="hippotranslation:locale" sv:type="String">
+    <sv:value>en</sv:value>
+  </sv:property>
+  <sv:node sv:name="about">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hippo:handle</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+      <sv:value>hippo:hardhandle</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>c9f06d11-8a4f-44d7-a517-fa0ace60c147</sv:value>
+    </sv:property>
+    <sv:node sv:name="about">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:simpledocument</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+        <sv:value>hippo:harddocument</sv:value>
+        <sv:value>hippotranslation:translated</sv:value>
+      </sv:property>
+      <sv:property sv:name="jcr:uuid" sv:type="String">
+        <sv:value>bc54b341-873f-4392-9bd3-4cfdd30550d3</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
+        <sv:value>live</sv:value>
+        <sv:value>preview</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippo:related___pathreference" sv:type="String">
+        <sv:value>about/about</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostd:holder" sv:type="String">
+        <sv:value>admin</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostd:state" sv:type="String">
+        <sv:value>published</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostd:stateSummary" sv:type="String">
+        <sv:value>live</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="hippostd:tags" sv:type="String">
+        <sv:value>Hippo</sv:value>
+        <sv:value>Hippo CMS</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
+        <sv:value>vkumar</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
+        <sv:value>2010-07-23T22:34:04.534+05:30</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
+        <sv:value>2013-03-16T12:29:35.737+05:30</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
+        <sv:value>admin</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
+        <sv:value>2013-03-16T12:29:48.697+05:30</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippotranslation:id" sv:type="String">
+        <sv:value>63b829c1-3386-4fd6-9824-8b870db3aeee</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippotranslation:locale" sv:type="String">
+        <sv:value>en</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:summary" sv:type="String">
+        <sv:value>About Us</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:title" sv:type="String">
+        <sv:value>About Wealth4India</sv:value>
+      </sv:property>
+      <sv:node sv:name="hippotranslation:translations">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hippotranslation:translations</sv:value>
+        </sv:property>
+      </sv:node>
+      <sv:node sv:name="mootlywcm:description">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hippostd:html</sv:value>
+        </sv:property>
+        <sv:property sv:name="hippostd:content" sv:type="String">
+          <sv:value>&lt;html&gt;
+&lt;body&gt;
+
+&lt;p&gt; &lt;strong&gt;Wealth&lt;/strong&gt;&lt;strong&gt;4&lt;/strong&gt;&lt;strong&gt;India&lt;/strong&gt; Group with
+its talent advantage is making its clients comfortably feel that W4I Group is
+obviously different from others indeed.&lt;/p&gt;
+
+&lt;p&gt; &lt;strong&gt;Wealth&lt;/strong&gt;&lt;strong&gt;4&lt;/strong&gt;&lt;strong&gt;India&lt;/strong&gt; is committed
+to advancing accountability, integrity and transparency. In our own operations
+too we aim to be an example of good governance, ethical practice and openness to
+greater transparency. Accountability is both an integral part of our work and
+one of our client’s wider objectives.&lt;/p&gt;
+
+&lt;p&gt; &lt;strong&gt;Responsiveness: -&lt;/strong&gt; We are sensitive, prompt, fair and
+objective in our dealings with our clients, fostering mutual trust. We are keen
+to learn from others and acknowledge mistakes.&lt;/p&gt;
+
+&lt;p&gt; &lt;strong&gt;Professionalism: -&lt;/strong&gt; We strive for improving performance and
+competence with a focus on achieving excellence. &lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;u&gt;Vision&lt;/u&gt;  : -&lt;/strong&gt; To help customers achieve lifetime
+financial solutions.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;u&gt;Mission&lt;/u&gt;: - &lt;/strong&gt;To be a leading company in wealth
+planning.&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt; &lt;strong&gt;&lt;u&gt;Company Core Values&lt;/u&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Integrity&lt;/strong&gt;&lt;strong&gt; :- W4I Committed for highest standard of
+business ethics and greater transparency.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Engagement&lt;/strong&gt;&lt;strong&gt; : - W4I value our Employees, talented
+workforce and motivate, Encourage and reward them in contributing to the full
+extent for their potential. &lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Customer Focus&lt;/strong&gt;&lt;strong&gt; :- We provide sound financial
+solutions for our customers. We are sensitive, prompt, fair and objective in our
+dealings with our customers.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Excellence&lt;/strong&gt;&lt;strong&gt; : - W4I Provide operational excellence
+through our expert and dedicated panel, our quality products and
+services.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Value &lt;/strong&gt;&lt;strong&gt;: - W4I Deliver value to the clients and
+communities which we operate.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+&lt;u&gt; &lt;/u&gt;
+&lt;p&gt; &lt;/p&gt;
+&lt;u&gt; &lt;/u&gt;
+&lt;/body&gt;
+&lt;/html&gt;</sv:value>
+        </sv:property>
+      </sv:node>
+      <sv:node sv:name="mootlywcm:form">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hippo:mirror</sv:value>
+        </sv:property>
+        <sv:property sv:name="hippo:docbase" sv:type="String">
+          <sv:value>cafebabe-cafe-babe-cafe-babecafebabe</sv:value>
+        </sv:property>
+      </sv:node>
+    </sv:node>
+  </sv:node>  
+  <sv:node sv:name="terms--conditions">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hippostd:folder</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+      <sv:value>hippo:harddocument</sv:value>
+      <sv:value>hippotranslation:translated</sv:value>
+      <sv:value>hippo:translated</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>bc4cabbd-1268-44f9-a8ee-172111bad749</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
+      <sv:value>live</sv:value>
+      <sv:value>preview</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
+    <sv:property sv:multiple="true" sv:name="hippostd:foldertype" sv:type="String">
+      <sv:value>new-translated-folder</sv:value>
+      <sv:value>new-document</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippotranslation:id" sv:type="String">
+      <sv:value>f83d8be1-5cc7-4f1f-82ba-2ceacd2faed1</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippotranslation:locale" sv:type="String">
+      <sv:value>en</sv:value>
+    </sv:property>
+    <sv:node sv:name="hippo:translation">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>hippo:translation</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippo:language" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="hippo:message" sv:type="String">
+        <sv:value>Terms &amp; Conditions</sv:value>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="terms--conditions">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>hippo:handle</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+        <sv:value>hippo:hardhandle</sv:value>
+        <sv:value>hippo:translated</sv:value>
+      </sv:property>
+      <sv:property sv:name="jcr:uuid" sv:type="String">
+        <sv:value>26f8649b-480a-445d-9992-4fb054bf68c3</sv:value>
+      </sv:property>
+      <sv:node sv:name="hippo:translation">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hippo:translation</sv:value>
+        </sv:property>
+        <sv:property sv:name="hippo:language" sv:type="String">
+          <sv:value/>
+        </sv:property>
+        <sv:property sv:name="hippo:message" sv:type="String">
+          <sv:value>Terms &amp; Conditions</sv:value>
+        </sv:property>
+      </sv:node>
+      <sv:node sv:name="terms--conditions">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>mootlywcm:simpledocument</sv:value>
+        </sv:property>
+        <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+          <sv:value>hippo:harddocument</sv:value>
+          <sv:value>hippotranslation:translated</sv:value>
+        </sv:property>
+        <sv:property sv:name="jcr:uuid" sv:type="String">
+          <sv:value>bbe460cc-2fed-44d6-a55c-bd367ca561cc</sv:value>
+        </sv:property>
+        <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
+          <sv:value>live</sv:value>
+          <sv:value>preview</sv:value>
+        </sv:property>
+        <sv:property sv:name="hippo:related___pathreference" sv:type="String">
+          <sv:value>about/terms--conditions/terms--conditions</sv:value>
+        </sv:property>
+        <sv:property sv:name="hippostd:holder" sv:type="String">
+          <sv:value>admin</sv:value>
+        </sv:property>
+        <sv:property sv:name="hippostd:state" sv:type="String">
+          <sv:value>published</sv:value>
+        </sv:property>
+        <sv:property sv:name="hippostd:stateSummary" sv:type="String">
+          <sv:value>live</sv:value>
+        </sv:property>
+        <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
+          <sv:value>tbrenninkmeijer</sv:value>
+        </sv:property>
+        <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
+          <sv:value>2010-07-23T22:43:58.130+05:30</sv:value>
+        </sv:property>
+        <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
+          <sv:value>2013-03-29T15:50:33.323+05:30</sv:value>
+        </sv:property>
+        <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
+          <sv:value>admin</sv:value>
+        </sv:property>
+        <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
+          <sv:value>2013-03-29T15:50:38.757+05:30</sv:value>
+        </sv:property>
+        <sv:property sv:name="hippotranslation:id" sv:type="String">
+          <sv:value>d195edba-cacd-477a-97b5-c87bbc9c2d97</sv:value>
+        </sv:property>
+        <sv:property sv:name="hippotranslation:locale" sv:type="String">
+          <sv:value>en</sv:value>
+        </sv:property>
+        <sv:property sv:name="mootlywcm:summary" sv:type="String">
+          <sv:value>Wealth4India Terms &amp; Conditions</sv:value>
+        </sv:property>
+        <sv:property sv:name="mootlywcm:title" sv:type="String">
+          <sv:value>Terms &amp; Conditions</sv:value>
+        </sv:property>
+        <sv:node sv:name="hippotranslation:translations">
+          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+            <sv:value>hippotranslation:translations</sv:value>
+          </sv:property>
+        </sv:node>
+        <sv:node sv:name="mootlywcm:description">
+          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+            <sv:value>hippostd:html</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostd:content" sv:type="String">
+            <sv:value>&lt;html&gt;
+&lt;body&gt;
+
+&lt;p&gt;Wealth4India Terms of Use &lt;br/&gt;
+1. ACCEPTANCE OF TERMS &lt;br/&gt;
+Wealth4India provides a collection of online resources, including classified
+&lt;br/&gt;
+ads, forums, and various email services, (referred to hereafter as "the &lt;br/&gt;
+Service") subject to the following Terms of Use. By using the Service  &lt;br/&gt;
+in any way, you are agreeing to comply with the Terms of Use. In addition, when
+using  &lt;br/&gt;
+particular Wealth4India services, you agree to abide by any applicable posted 
+&lt;br/&gt;
+guidelines for all Wealth4India services, which may change from time to time.  
+&lt;br/&gt;
+Should you object to any term or condition of the Terms of Use, any guidelines, 
+&lt;br/&gt;
+or any subsequent modifications thereto or become dissatisfied with Wealth4India
+&lt;br/&gt;
+in any way, your only recourse is to immediately discontinue use of
+Wealth4India. &lt;br/&gt;
+2. MODIFICATIONS TO THIS AGREEMENT &lt;br/&gt;
+We reserve the right, at our sole discretion, to change, modify or otherwise 
+&lt;br/&gt;
+alter these terms and conditions at any time.  Such modifications shall become 
+&lt;br/&gt;
+effective immediately upon the posting thereof. You must review this agreement 
+&lt;br/&gt;
+on a regular basis to keep yourself apprised of any changes. You can find the 
+&lt;br/&gt;
+most recent version of the Terms of Use at: &lt;br/&gt;
+http://www.Wealth4India.com/termsofuse &lt;br/&gt;
+3. CONTENT &lt;br/&gt;
+You understand that all postings, messages, text, files, images, photos, &lt;br/&gt;
+video, sounds, or other materials ("Content") posted on, transmitted &lt;br/&gt;
+through, or linked from the Service, are the sole responsibility of the &lt;br/&gt;
+person from whom such Content originated. More specifically, you are &lt;br/&gt;
+entirely responsible for each individual item ("Item") of Content that you 
+&lt;br/&gt;
+post, email or otherwise make available via the Service. You understand that 
+&lt;br/&gt;
+Wealth4India does not control, and is not responsible for Content made
+available  &lt;br/&gt;
+through the Service, and that by using the Service, you may be exposed to 
+&lt;br/&gt;
+Content that is offensive, indecent, inaccurate, misleading, or otherwise 
+&lt;br/&gt;
+objectionable. Furthermore, the Wealth4India site and Content available through 
+&lt;br/&gt;
+the Service may contain links to other websites, which are completely  &lt;br/&gt;
+independent of Wealth4India. Wealth4India makes no representation or warranty
+as  &lt;br/&gt;
+to the accuracy, completeness or authenticity of the information contained 
+&lt;br/&gt;
+in any such site. Your linking to any other webites is at your own risk.  &lt;br/&gt;
+You agree that you must evaluate, and bear all risks associated with, the 
+&lt;br/&gt;
+use of any Content, that you may not rely on said Content, and that under no 
+&lt;br/&gt;
+circumstances will Wealth4India be liable in any way for any Content or for 
+&lt;br/&gt;
+any loss or damage of any kind incurred as a result of the use of any Content 
+&lt;br/&gt;
+posted, emailed or otherwise made available via the Service. You acknowledge 
+&lt;br/&gt;
+that Wealth4India does not pre-screen or approve Content, but that Wealth4India 
+&lt;br/&gt;
+shall have the right (but not the obligation) in its sole discretion to  &lt;br/&gt;
+refuse, delete or move any Content that is available via the Service, for 
+&lt;br/&gt;
+violating the letter or spirit of the Terms of Use or for any other reason.
+&lt;br/&gt;
+4. THIRD PARTY CONTENT, SITES, AND SERVICES &lt;br/&gt;
+The Wealth4India site and Content available through the Service may contain 
+&lt;br/&gt;
+features and functionalities that may link you or provide you with access 
+&lt;br/&gt;
+to third party content which is completely independent of Wealth4India,  &lt;br/&gt;
+including web sites, directories, servers, networks, systems, information 
+&lt;br/&gt;
+and databases, applications, software, programs, products or services,  &lt;br/&gt;
+and the Internet as a whole.   &lt;br/&gt;
+Your interactions with organizations and/or individuals found on or through 
+&lt;br/&gt;
+the Service, including payment and delivery of goods or services, and any 
+&lt;br/&gt;
+other terms, conditions, warranties or representations associated with such 
+&lt;br/&gt;
+dealings, are solely between you and such organizations and/or individuals. 
+&lt;br/&gt;
+You should make whatever investigation you feel necessary or appropriate  &lt;br/&gt;
+before proceeding with any online or offline transaction with any of these 
+&lt;br/&gt;
+third parties.   &lt;br/&gt;
+You agree that Wealth4India shall not be responsible or liable for any loss or 
+&lt;br/&gt;
+damage of any sort incurred as the result of any such dealings. If there is 
+&lt;br/&gt;
+a dispute between participants on this site, or between users and any third 
+&lt;br/&gt;
+party, you understand and agree that Wealth4India is under no obligation to 
+&lt;br/&gt;
+become involved. In the event that you have a dispute with one or more other 
+&lt;br/&gt;
+users, you hereby release Wealth4India, its officers, employees, agents and 
+&lt;br/&gt;
+successors in rights from claims, demands and damages (actual and  &lt;br/&gt;
+consequential) of every kind or nature, known or unknown, suspected and  &lt;br/&gt;
+unsuspected, disclosed and undisclosed, arising out of or in any way related 
+&lt;br/&gt;
+to such disputes and / or our service. If you are a California resident, you 
+&lt;br/&gt;
+waive California Civil Code Section 1542, which says: "A general release does 
+&lt;br/&gt;
+not extend to claims which the creditor does not know or suspect to exist in 
+&lt;br/&gt;
+his favor at the time of executing the release, which, if known by him must 
+&lt;br/&gt;
+have materially affected his settlement with the debtor."   &lt;br/&gt;
+5.  NOTIFICATION OF CLAIMS OF INFRINGEMENT &lt;br/&gt;
+If you believe that your work has been copied in a way that constitutes &lt;br/&gt;
+copyright infringement, or your intellectual property rights have been &lt;br/&gt;
+otherwise violated, please notify Wealth4India's agent for notice of claims of
+&lt;br/&gt;
+copyright or other intellectual property infringement ("Agent"), at &lt;br/&gt;
+abuse@Wealth4India.com &lt;br/&gt;
+or: &lt;br/&gt;
+Copyright Agent &lt;br/&gt;
+Wealth4India &lt;br/&gt;
+4800 Great America Pkwy, Suite 310 &lt;br/&gt;
+Santa Clara, CA 95054 &lt;br/&gt;
+Please provide our Agent with the following Notice: &lt;br/&gt;
+a) Identify the material on the Wealth4India site that you claim is &lt;br/&gt;
+infringing, with enough detail so that we may locate it on the website; &lt;br/&gt;
+b) A statement by you that you have a good faith belief that the disputed &lt;br/&gt;
+use is not authorized by the copyright owner, its agent, or the law; &lt;br/&gt;
+c) A statement by you declaring under penalty of perjury that (1) the above
+&lt;br/&gt;
+information in your Notice is accurate, and (2) that you are the owner of &lt;br/&gt;
+the copyright interest involved or that you are authorized to act on behalf
+&lt;br/&gt;
+of that owner; &lt;br/&gt;
+d) Your address, telephone number, and email address; and &lt;br/&gt;
+e) Your physical or electronic signature. &lt;br/&gt;
+Wealth4India will remove the infringing posting(s), subject to the the
+procedures &lt;br/&gt;
+outlined in the Digital Millenium Copyright Act (DMCA). &lt;br/&gt;
+6. PRIVACY AND INFORMATION DISCLOSURE &lt;br/&gt;
+Wealth4India has established a Privacy Policy to explain to users how their
+&lt;br/&gt;
+information is collected and used, which is located at the following web  &lt;br/&gt;
+address:  http://www.Wealth4India.com/privacypolicy &lt;br/&gt;
+Your use of the Wealth4India website or the Service signifies acknowledgement
+of  &lt;br/&gt;
+and agreement to our Privacy Policy. You further acknowledge and agree that 
+&lt;br/&gt;
+Wealth4India may, in its sole discretion, preserve or disclose your Content, 
+&lt;br/&gt;
+as well as your information, such as email addresses, IP addresses, timestamps, 
+&lt;br/&gt;
+and other user information, if required to do so by law or in the good faith
+&lt;br/&gt;
+belief that such preservation or disclosure is reasonably necessary to: &lt;br/&gt;
+comply with legal process; enforce the Terms of Use; respond to claims that any
+&lt;br/&gt;
+Content violates the rights of third-parties; respond to claims that contact 
+&lt;br/&gt;
+information (e.g. phone number, street address) of a third-party has been 
+&lt;br/&gt;
+posted or transmitted without their consent or as a form of harassment;  &lt;br/&gt;
+protect the rights, property, or personal safety of Wealth4India, its users or 
+&lt;br/&gt;
+the general public.                 &lt;br/&gt;
+7. CONDUCT &lt;br/&gt;
+You agree not to post, email, or otherwise make available Content: &lt;br/&gt;
+a) that is unlawful, harmful, threatening, abusive, harassing, defamatory,
+&lt;br/&gt;
+libelous, invasive of another's privacy, or is harmful to minors in any way;
+&lt;br/&gt;
+b) that is pornographic or depicts a human being engaged in actual sexual
+conduct &lt;br/&gt;
+including but not limited to (i) sexual intercourse, including genital-genital, 
+&lt;br/&gt;
+oral-genital, anal-genital, or oral-anal, whether between persons of the same or
+&lt;br/&gt;
+opposite sex, or (ii) bestiality, or (iii) masturbation, or (iv) sadistic or 
+&lt;br/&gt;
+masochistic abuse, or (v) lascivious exhibition of the genitals or pubic area 
+&lt;br/&gt;
+of any person; &lt;br/&gt;
+c) that harasses, degrades, intimidates or is hateful toward an individual or
+&lt;br/&gt;
+group of individuals on the basis of religion, gender, sexual orientation,
+&lt;br/&gt;
+race, ethnicity, age, or disability; &lt;br/&gt;
+d) that violates the Fair Housing Act by stating, in any notice or ad for the 
+&lt;br/&gt;
+sale or rental of any dwelling, a discriminatory preference based on race, 
+&lt;br/&gt;
+color, national origin, religion, sex, familial status or handicap (or  &lt;br/&gt;
+violates any state or local law prohibiting discrimination on the basis of 
+&lt;br/&gt;
+these or other characteristics);  &lt;br/&gt;
+e) that violates federal, state, or local equal employment opportunity &lt;br/&gt;
+laws, including but not limited to, stating in any advertisement for &lt;br/&gt;
+employment a preference or requirement based on race, color, religion, &lt;br/&gt;
+sex, national origin, age, or disability. &lt;br/&gt;
+f) with respect to employers that employ four or more employees, that &lt;br/&gt;
+violates the anti-discrimination provision of the Immigration and &lt;br/&gt;
+Nationality Act, including requiring U.S. citizenship or lawful &lt;br/&gt;
+permanent residency (green card status) as a condition for employment, &lt;br/&gt;
+unless otherwise required in order to comply with law, regulation, &lt;br/&gt;
+executive order, or federal, state, or local government contract. &lt;br/&gt;
+g) that impersonates any person or entity, including, but not limited to, a
+&lt;br/&gt;
+Wealth4India employee, or falsely states or otherwise misrepresents your &lt;br/&gt;
+affiliation with a person or entity (this provision does not apply to Content 
+&lt;br/&gt;
+that constitutes lawful non-deceptive parody of public figures.); &lt;br/&gt;
+h) that includes personal or identifying information about another person &lt;br/&gt;
+without that person's explicit consent; &lt;br/&gt;
+i) that is false, deceptive, misleading, deceitful, misinformative, or &lt;br/&gt;
+constitutes "bait and switch"; &lt;br/&gt;
+j) that infringes any patent, trademark, trade secret, copyright or other &lt;br/&gt;
+proprietary rights of any party, or Content that you do not have a right to
+&lt;br/&gt;
+make available under any law or under contractual or fiduciary &lt;br/&gt;
+relationships; &lt;br/&gt;
+k) that constitutes or contains  "affiliate marketing," "link referral code," 
+&lt;br/&gt;
+"junk mail," "spam," "chain letters," "pyramid schemes," or unsolicited  &lt;br/&gt;
+commercial advertisement; &lt;br/&gt;
+l) that constitutes or contains any form of advertising or solicitation if:
+&lt;br/&gt;
+posted in areas of the Wealth4India sites which are not designated for such 
+&lt;br/&gt;
+purposes; or emailed to Wealth4India users who have not indicated in writing
+that  &lt;br/&gt;
+it is ok to contact them about other services, products or commercial interests.
+&lt;br/&gt;
+m) that includes links to commercial services or web sites, except as allowed
+&lt;br/&gt;
+in "services"; &lt;br/&gt;
+n) that advertises any illegal service or the sale of any items the sale of
+&lt;br/&gt;
+which is prohibited or restricted by any applicable law, including without
+&lt;br/&gt;
+limitation items the sale of which is prohibited or regulated by California 
+&lt;br/&gt;
+law. A partial list of prohibited items for sale and prohibited services  &lt;br/&gt;
+offered is provided at the following web address for your  &lt;br/&gt;
+convenience: http://www.Wealth4India.com/prohibiteditems &lt;br/&gt;
+o) that contains software viruses or any other computer code, files or &lt;br/&gt;
+programs designed to interrupt, destroy or limit the functionality of any &lt;br/&gt;
+computer software or hardware or telecommunications equipment; &lt;br/&gt;
+p) that disrupts the normal flow of dialogue with an excessive amount of  &lt;br/&gt;
+Content (flooding attack) to the Service, or that otherwise negatively &lt;br/&gt;
+affects other users' ability to use the Service; or &lt;br/&gt;
+q) that employs misleading email addresses, or forged headers or otherwise
+&lt;br/&gt;
+manipulated identifiers in order to disguise the origin of Content &lt;br/&gt;
+transmitted through the Service. &lt;br/&gt;
+Additionally, you agree not to: &lt;br/&gt;
+r) contact anyone who has asked not to be contacted; &lt;br/&gt;
+s) "stalk" or otherwise harass anyone; &lt;br/&gt;
+t) collect personal data about other users for commercial or unlawful &lt;br/&gt;
+purposes; &lt;br/&gt;
+u) use automated means, including spiders, robots, crawlers, data mining &lt;br/&gt;
+tools, or the like to download data from the Service - unless expressly &lt;br/&gt;
+permitted by Wealth4India; &lt;br/&gt;
+v) post irrelevant Content, repeatedly post the &lt;br/&gt;
+same or similar Content or otherwise impose an unreasonable or &lt;br/&gt;
+disproportionately large load on our infrastructure; &lt;br/&gt;
+w) post the same item or service in more than one classified category or &lt;br/&gt;
+forum, or in more than one area; &lt;br/&gt;
+x) attempt to gain unauthorized access to Wealth4India's computer systems or
+&lt;br/&gt;
+engage in any activity that disrupts, diminishes the quality of, interferes
+&lt;br/&gt;
+with the performance of, or impairs the functionality of, the Service or the
+&lt;br/&gt;
+Wealth4India website; or &lt;br/&gt;
+y) use any form of automated device or computer program that enables the  &lt;br/&gt;
+submission of postings on Wealth4India without each posting being manually 
+&lt;br/&gt;
+entered by the author thereof (an "automated posting device"), including &lt;br/&gt;
+without limitation, the use of any such automated posting device to submit
+&lt;br/&gt;
+postings in bulk, or for automatic submission of postings at regular intervals.
+&lt;br/&gt;
+8. POSTING AGENTS &lt;br/&gt;
+A "Posting Agent" is a third-party agent, service, or intermediary  &lt;br/&gt;
+that offers to post Content to the Service on behalf of others. To  &lt;br/&gt;
+moderate demands on Wealth4India's resources, you may not use a Posting  &lt;br/&gt;
+Agent to post Content to the Service without express permission or  &lt;br/&gt;
+license from Wealth4India.  Correspondingly, Posting Agents are not  &lt;br/&gt;
+permitted to post Content on behalf of others, to cause Content to  &lt;br/&gt;
+be so posted, or otherwise access the Service to facilitate posting  &lt;br/&gt;
+Content on behalf of others, except with express permission or  &lt;br/&gt;
+license from Wealth4India. &lt;br/&gt;
+9. NO SPAM POLICY &lt;br/&gt;
+You understand and agree that sending unsolicited email advertisements to &lt;br/&gt;
+Wealth4India email addresses or through Wealth4India computer systems, which is
+&lt;br/&gt;
+expressly prohibited by these Terms of Use, will use or cause to be used servers
+&lt;br/&gt;
+located in California.  Any unauthorized use of Wealth4India computer systems
+&lt;br/&gt;
+is a violation of the Terms of Use and certain federal and state laws, including
+&lt;br/&gt;
+without limitation the Computer Fraud and Abuse Act (18 U.S.C. § 1030 et &lt;br/&gt;
+seq.), Section 502 of the California Penal Code and Section 17538.45 of the
+&lt;br/&gt;
+California Business and Professions Code.  Such violations may subject the
+&lt;br/&gt;
+sender and his or her agents to civil and criminal penalties. &lt;br/&gt;
+10. PAID POSTINGS &lt;br/&gt;
+We may charge a fee to post Content in some areas of the Service. The fee &lt;br/&gt;
+is an access fee permitting Content to be posted in a designated area. &lt;br/&gt;
+Each party posting Content to the Service is responsible for said Content &lt;br/&gt;
+and compliance with the Terms of Use. All fees paid will be non-refundable in
+the &lt;br/&gt;
+event that Content is removed from the Service for violating the Terms of Use.
+&lt;br/&gt;
+11. LIMITATIONS ON SERVICE &lt;br/&gt;
+You acknowledge that Wealth4India may establish limits concerning use of the
+&lt;br/&gt;
+Service, including the maximum number of days that Content will be retained
+&lt;br/&gt;
+by the Service, the maximum number and size of postings, email messages, or
+&lt;br/&gt;
+other Content that may be transmitted or stored by the Service, and the &lt;br/&gt;
+frequency with which you may access the Service. You agree that Wealth4India
+&lt;br/&gt;
+has no responsibility or liability for the deletion or failure to store any
+&lt;br/&gt;
+Content maintained or transmitted by the Service. You acknowledge that &lt;br/&gt;
+Wealth4India reserves the right at any time to modify or discontinue the &lt;br/&gt;
+Service (or any part thereof) with or without notice, and that Wealth4India
+&lt;br/&gt;
+shall not be liable to you or to any third party for any modification, &lt;br/&gt;
+suspension or discontinuance of the Service. &lt;br/&gt;
+12. ACCESS TO THE SERVICE &lt;br/&gt;
+Wealth4India grants you a limited, revocable, nonexclusive license to access 
+&lt;br/&gt;
+the Service for your own personal use. This license does not include: &lt;br/&gt;
+(a) access to the Service by Posting Agents; or (b) any collection,  &lt;br/&gt;
+aggregation, copying, duplication, display or derivative use of the Service 
+&lt;br/&gt;
+nor any use of data mining, robots, spiders, or similar data gathering and 
+&lt;br/&gt;
+extraction tools for any purpose unless expressly permitted by Wealth4India. 
+&lt;br/&gt;
+A limited exception to (b) is provided to general purpose internet search 
+&lt;br/&gt;
+engines and non-commercial public archives that use such tools to gather  &lt;br/&gt;
+information for the sole purpose of displaying hyperlinks to the Service, 
+&lt;br/&gt;
+provided they each do so from a stable IP address or range of IP addresses 
+&lt;br/&gt;
+using an easily identifiable agent and comply with our robots.txt file.  &lt;br/&gt;
+"General purpose internet search engine" does not include a website or  &lt;br/&gt;
+search engine or other service that specializes in classified listings  &lt;br/&gt;
+or in any subset of classifieds listings such as jobs, housing, for sale, 
+&lt;br/&gt;
+services, or personals, or which is in the business of providing classified 
+&lt;br/&gt;
+ad listing services. &lt;br/&gt;
+Wealth4India permits you to display on your website, or create a hyperlink
+&lt;br/&gt;
+on your website to, individual postings on the Service so long as such use
+&lt;br/&gt;
+is for noncommercial and/or news reporting purposes only (e.g., for use in
+&lt;br/&gt;
+personal web blogs or personal online media).  If the total number of such
+&lt;br/&gt;
+postings displayed or linked to on your website exceeds one hundred (100) &lt;br/&gt;
+postings, your use will be presumed to be in violation of the Terms of Use,
+&lt;br/&gt;
+absent express permission granted by Wealth4India to do so.  You may also &lt;br/&gt;
+create a hyperlink to the home page of Wealth4India sites so long as the &lt;br/&gt;
+link does not portray Wealth4India, its employees, or its affiliates in a &lt;br/&gt;
+false, misleading, derogatory, or otherwise offensive manner. &lt;br/&gt;
+Wealth4India offers various parts of the Service in RSS format so that users
+&lt;br/&gt;
+can embed individual feeds into a personal website or blog, or view postings
+&lt;br/&gt;
+through third party software news aggregators.  Wealth4India permits you to
+&lt;br/&gt;
+display, excerpt from, and link to the RSS feeds on your personal website &lt;br/&gt;
+or personal web blog, provided that (a) your use of the RSS feed is for &lt;br/&gt;
+personal, non-commercial purposes only, (b) each title is correctly linked
+&lt;br/&gt;
+back to the original post on the Service and redirects the user to the &lt;br/&gt;
+post when the user clicks on it, (c) you provide, adjacent to the RSS &lt;br/&gt;
+feed, proper attribution to 'Wealth4India' as the source, (d) your use or &lt;br/&gt;
+display does not suggest that Wealth4India promotes or endorses any third &lt;br/&gt;
+party causes, ideas, web sites, products or services, (e) you do not &lt;br/&gt;
+redistribute the RSS feed, and (f) your use does not overburden &lt;br/&gt;
+Wealth4India's systems.  Wealth4India reserves all rights in the content of
+&lt;br/&gt;
+the RSS feeds and may terminate any RSS feed at any time. &lt;br/&gt;
+Use of the Service beyond the scope of authorized access granted to you by
+&lt;br/&gt;
+Wealth4India immediately terminates said permission or license.  In order to
+&lt;br/&gt;
+collect, aggregate, copy, duplicate, display or make derivative use of the
+&lt;br/&gt;
+the Service or any Content made available via the Service for other &lt;br/&gt;
+purposes (including commercial purposes) not stated herein, you must first
+&lt;br/&gt;
+obtain a license from Wealth4India. &lt;br/&gt;
+13. TERMINATION OF SERVICE &lt;br/&gt;
+You agree that Wealth4India, in its sole discretion, has the right (but not
+&lt;br/&gt;
+the obligation) to delete or deactivate your account, block your email or IP
+&lt;br/&gt;
+address, or otherwise terminate your access to or use of the Service (or any
+&lt;br/&gt;
+part thereof), immediately and without notice, and remove and discard any &lt;br/&gt;
+Content within the Service, for any reason, including, without limitation,
+&lt;br/&gt;
+if Wealth4India believes that you have acted inconsistently with the letter or
+&lt;br/&gt;
+spirit of the Terms of Use. Further, you agree that Wealth4India shall not be
+liable &lt;br/&gt;
+to you or any third-party for any termination of your access to the Service.
+&lt;br/&gt;
+Further, you agree not to attempt to use the Service after said termination.
+&lt;br/&gt;
+Sections 2, 4, 6 and 12-18 shall survive termination of the Terms of Use. &lt;br/&gt;
+14. PROPRIETARY RIGHTS &lt;br/&gt;
+The Service is protected to the maximum extent permitted by copyright laws
+&lt;br/&gt;
+and international treaties. Content displayed on or through the Service is
+&lt;br/&gt;
+protected by copyright as a collective work and/or compilation, pursuant to
+&lt;br/&gt;
+copyrights laws, and international conventions. Any reproduction, &lt;br/&gt;
+modification, creation of derivative works from or redistribution of the &lt;br/&gt;
+site or the collective work, and/or copying or reproducing the sites &lt;br/&gt;
+or any portion thereof to any other server or location for further &lt;br/&gt;
+reproduction or redistribution is prohibited without the express &lt;br/&gt;
+written consent of Wealth4India. You further agree not to reproduce,  &lt;br/&gt;
+duplicate or copy Content from the Service without the express written  &lt;br/&gt;
+consent of Wealth4India, and agree to abide by any and all copyright notices 
+&lt;br/&gt;
+displayed on the Service. You may not decompile or disassemble, reverse  &lt;br/&gt;
+engineer or otherwise attempt to discover any source code contained in the 
+&lt;br/&gt;
+Service. Without limiting the foregoing, you agree not to reproduce,  &lt;br/&gt;
+duplicate, copy, sell, resell or exploit for any commercial purposes, any 
+&lt;br/&gt;
+aspect of the Service. Wealth4India is a registered mark in the U.S. Patent 
+&lt;br/&gt;
+and Trademark Office. &lt;br/&gt;
+Although Wealth4India does not claim ownership of content that its users post,
+&lt;br/&gt;
+by posting Content to any public area of the Service, you automatically &lt;br/&gt;
+grant, and you represent and warrant that you have the right to grant, to &lt;br/&gt;
+Wealth4India an irrevocable, perpetual, non-exclusive, fully paid, worldwide
+&lt;br/&gt;
+license to use, copy, perform, display, and distribute said Content and to
+&lt;br/&gt;
+prepare derivative works of, or incorporate into other works, said Content,
+&lt;br/&gt;
+and to grant and authorize sublicenses (through multiple tiers) of the &lt;br/&gt;
+foregoing. Furthermore, by posting Content to any public area of the Service, 
+&lt;br/&gt;
+you automatically grant Wealth4India all rights necessary to prohibit any 
+&lt;br/&gt;
+subsequent aggregation, display, copying, duplication, reproduction, or  &lt;br/&gt;
+exploitation of the Content on the Service by any party for any purpose. &lt;br/&gt;
+15. DISCLAIMER OF WARRANTIES &lt;br/&gt;
+YOU AGREE THAT USE OF THE Wealth4India SITE AND THE SERVICE IS ENTIRELY AT
+&lt;br/&gt;
+YOUR OWN RISK. THE Wealth4India SITE AND THE SERVICE ARE PROVIDED ON AN "AS
+&lt;br/&gt;
+IS" OR "AS AVAILABLE" BASIS, WITHOUT ANY WARRANTIES OF ANY KIND.  ALL &lt;br/&gt;
+EXPRESS AND IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE &lt;br/&gt;
+WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND &lt;br/&gt;
+NON-INFRINGEMENT OF PROPRIETARY RIGHTS ARE EXPRESSLY DISCLAIMED TO THE &lt;br/&gt;
+FULLEST EXTENT PERMITTED BY LAW.  TO THE FULLEST EXTENT PERMITTED BY LAW, &lt;br/&gt;
+Wealth4India DISCLAIMS ANY WARRANTIES FOR THE SECURITY, RELIABILITY, &lt;br/&gt;
+TIMELINESS, ACCURACY, AND PERFORMANCE OF THE Wealth4India SITE AND THE &lt;br/&gt;
+SERVICE.  TO THE FULLEST EXTENT PERMITTED BY LAW, Wealth4India DISCLAIMS ANY
+&lt;br/&gt;
+WARRANTIES FOR OTHER SERVICES OR GOODS RECEIVED THROUGH OR ADVERTISED ON THE
+&lt;br/&gt;
+Wealth4India SITE OR THE SITES OR SERVICE, OR ACCESSED THROUGH ANY LINKS ON
+&lt;br/&gt;
+THE Wealth4India SITE.  TO THE FULLEST EXTENT PERMITTED BY LAW, Wealth4India
+&lt;br/&gt;
+DISCLAIMS ANY WARRANTIES FOR VIRUSES OR OTHER HARMFUL COMPONENTS IN &lt;br/&gt;
+CONNECTION WITH THE Wealth4India SITE OR THE SERVICE.  Some jurisdictions do
+&lt;br/&gt;
+not allow the disclaimer of implied warranties.  In such jurisdictions, some
+&lt;br/&gt;
+of the foregoing disclaimers may not apply to you insofar as they relate to
+&lt;br/&gt;
+implied warranties. &lt;br/&gt;
+16. LIMITATIONS OF LIABILITY &lt;br/&gt;
+UNDER NO CIRCUMSTANCES SHALL Wealth4India BE LIABLE FOR DIRECT, INDIRECT, &lt;br/&gt;
+INCIDENTAL, SPECIAL, CONSEQUENTIAL OR EXEMPLARY DAMAGES (EVEN IF Wealth4India
+&lt;br/&gt;
+HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES), RESULTING FROM ANY &lt;br/&gt;
+ASPECT OF YOUR USE OF THE Wealth4India SITE OR THE SERVICE, WHETHER THE &lt;br/&gt;
+DAMAGES ARISE FROM USE OR MISUSE OF THE Wealth4India SITE OR THE SERVICE, FROM
+&lt;br/&gt;
+INABILITY TO USE THE Wealth4India SITE OR THE SERVICE, OR THE INTERRUPTION,
+&lt;br/&gt;
+SUSPENSION, MODIFICATION, ALTERATION, OR TERMINATION OF THE Wealth4India SITE
+&lt;br/&gt;
+OR THE SERVICE.  SUCH LIMITATION SHALL ALSO APPLY WITH RESPECT TO DAMAGES &lt;br/&gt;
+INCURRED BY REASON OF OTHER SERVICES OR PRODUCTS RECEIVED THROUGH OR &lt;br/&gt;
+ADVERTISED IN CONNECTION WITH THE Wealth4India SITE OR THE SERVICE OR ANY &lt;br/&gt;
+LINKS ON THE Wealth4India SITE, AS WELL AS BY REASON OF ANY INFORMATION OR
+&lt;br/&gt;
+ADVICE RECEIVED THROUGH OR ADVERTISED IN CONNECTION WITH THE Wealth4India SITE
+&lt;br/&gt;
+OR THE SERVICE OR ANY LINKS ON THE Wealth4India SITE.  THESE LIMITATIONS SHALL
+&lt;br/&gt;
+APPLY TO THE FULLEST EXTENT PERMITTED BY LAW. In some jurisdictions, &lt;br/&gt;
+limitations of liability are not permitted.  In such jurisdictions, some of
+&lt;br/&gt;
+the foregoing limitation may not apply to you. &lt;br/&gt;
+17. INDEMNITY &lt;br/&gt;
+You agree to indemnify and hold Wealth4India, its officers, subsidiaries, &lt;br/&gt;
+affiliates, successors, assigns, directors, officers, agents, service &lt;br/&gt;
+providers, suppliers and employees, harmless from any claim or demand, &lt;br/&gt;
+including reasonable attorney fees and court costs, made by any third party
+&lt;br/&gt;
+due to or arising out of Content you submit, post or make available through
+&lt;br/&gt;
+the Service, your use of the Service, your violation of the Terms of Use, your
+&lt;br/&gt;
+breach of any of the representations and warranties herein, or your &lt;br/&gt;
+violation of any rights of another. &lt;br/&gt;
+18. GENERAL INFORMATION &lt;br/&gt;
+The Terms of Use constitute the entire agreement between you and Wealth4India
+and &lt;br/&gt;
+govern your use of the Service, superseding any prior agreements between you
+&lt;br/&gt;
+and Wealth4India. The Terms of Use and the relationship between you and
+Wealth4India &lt;br/&gt;
+shall be governed by the laws of the State of California without regard to
+&lt;br/&gt;
+its conflict of law provisions. You and Wealth4India agree to submit to the
+&lt;br/&gt;
+personal and exclusive jurisdiction of the courts located within the county
+&lt;br/&gt;
+of San Francisco, California. The failure of Wealth4India to exercise or &lt;br/&gt;
+enforce any right or provision of the Terms of Use shall not constitute a waiver
+of &lt;br/&gt;
+such right or provision. If any provision of the Terms of Use is found by a
+court &lt;br/&gt;
+of competent jurisdiction to be invalid, the parties nevertheless agree that
+&lt;br/&gt;
+the court should endeavor to give effect to the parties' intentions as &lt;br/&gt;
+reflected in the provision, and the other provisions of the Terms of Use remain
+in &lt;br/&gt;
+full force and effect. You agree that regardless of any statute or law to &lt;br/&gt;
+the contrary, any claim or cause of action arising out of or related to use
+&lt;br/&gt;
+of the Service or the Terms of Use must be filed within one (1) year after such
+&lt;br/&gt;
+claim or cause of action arose or be forever barred. &lt;br/&gt;
+19. VIOLATION OF TERMS AND LIQUIDATED DAMAGES &lt;br/&gt;
+Please report any violations of the Terms of Use, by flagging the posting(s) for
+&lt;br/&gt;
+review, or by emailing to: &lt;br/&gt;
+abuse@Wealth4India.com &lt;br/&gt;
+Our failure to act with respect to a breach by you or others does not waive our 
+&lt;br/&gt;
+right to act with respect to subsequent or similar breaches. &lt;br/&gt;
+You understand and agree that, because damages are often difficult to quantify, 
+&lt;br/&gt;
+if it becomes necessary for Wealth4India to pursue legal action to enforce the 
+&lt;br/&gt;
+Terms of Use, you will be liable to pay Wealth4India the following amounts as
+liquidated  &lt;br/&gt;
+damages, which you accept as reasonable estimates of Wealth4Indias' damages for 
+&lt;br/&gt;
+the specified breaches of the Terms of Use: &lt;br/&gt;
+a. If you post a message that (1) impersonates any person or entity; (2) &lt;br/&gt;
+falsely states or otherwise misrepresents your affiliation with a person or
+&lt;br/&gt;
+entity; or (3) that includes personal or identifying information about &lt;br/&gt;
+another person without that person's explicit consent, you agree to pay &lt;br/&gt;
+Wealth4India one thousand dollars ($1,000) for each such message. &lt;br/&gt;
+This provision does not apply to messages that are lawful non-deceptive &lt;br/&gt;
+parodies of public figures. &lt;br/&gt;
+b. If Wealth4India establishes limits on the frequency with which you may &lt;br/&gt;
+access the Service, or terminates your access to or use of the Service, you
+&lt;br/&gt;
+agree to pay Wealth4India one hundred dollars ($100) for each message posted
+&lt;br/&gt;
+in excess of such limits or for each day on which you access Wealth4India in
+&lt;br/&gt;
+excess of such limits, whichever is higher. &lt;br/&gt;
+c. If you send unsolicited email advertisements to Wealth4India email &lt;br/&gt;
+addresses or through Wealth4India computer systems, you agree to pay &lt;br/&gt;
+Wealth4India twenty five dollars ($25) for each such email. &lt;br/&gt;
+d. If you post Content in violation of the Terms of Use, other than as
+described  &lt;br/&gt;
+above, you agree to pay Wealth4India one hundred dollars ($100) for each  &lt;br/&gt;
+Item of Content posted.  In its sole discretion, Wealth4India may elect  &lt;br/&gt;
+to issue a warning before assessing damages. &lt;br/&gt;
+e. If you are a Posting Agent that uses the Service in violation of the &lt;br/&gt;
+Terms of Use, in addition to any liquidated damages under clause (d), you agree
+to &lt;br/&gt;
+pay Wealth4India one hundred dollars ($100) for each and every Item of Conent
+&lt;br/&gt;
+posted in violation of the Terms of Use.  A Posting Agent will also be deemed an
+agent  &lt;br/&gt;
+of the party engaging the Posting Agent to access the Service (the &lt;br/&gt;
+"Principal"), and the Principal (by engaging the Posting Agent in &lt;br/&gt;
+violation of the Terms of Use) agrees to pay Wealth4India an additional one
+hundred &lt;br/&gt;
+dollars ($100) for each Item of Conent posted by the Posting Agent on  &lt;br/&gt;
+behalf of the principal in violation of the Terms of Use. &lt;br/&gt;
+f. If you aggregate, display, copy, duplicate, reproduce, or otherwise  &lt;br/&gt;
+exploit for any purpose any Content (except for your own Content) in  &lt;br/&gt;
+violation of the Terms of Use without Wealth4India's express written
+permission,  &lt;br/&gt;
+you agree to pay Wealth4India three thousand dollars ($3,000) for each day 
+&lt;br/&gt;
+on which you engage in such conduct. &lt;br/&gt;
+Otherwise, you agree to pay Wealth4India's actual damages, to the extent such
+&lt;br/&gt;
+actual damages can be reasonably calculated. Notwithstanding any other  &lt;br/&gt;
+provision of the Terms of Use, Wealth4India retains the right to seek the
+remedy  &lt;br/&gt;
+of specific performance of any term contained in the Terms of Use, or a
+preliminary  &lt;br/&gt;
+or permanent injunction against the breach of any such term or in aid of the 
+&lt;br/&gt;
+exercise of any power granted in the Terms of Use, or any combination thereof.
+&lt;br/&gt;
+20. SUBMISSIONS &lt;br/&gt;
+You acknowledge and agree that any questions, comments, suggestions, ideas,
+feedback  &lt;br/&gt;
+or other information about the Site or the Service ("Submissions"), provided by
+you to  &lt;br/&gt;
+Company are non-confidential and shall become the sole property of Company. 
+&lt;br/&gt;
+Company shall own exclusive rights, including all intellectual property rights,
+and shall  &lt;br/&gt;
+be entitled to the unrestricted use and dissemination of these Submissions for
+any purpose,  &lt;br/&gt;
+commercial or otherwise, without acknowledgment or compensation to you.&lt;/p&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</sv:value>
+          </sv:property>
+        </sv:node>
+        <sv:node sv:name="mootlywcm:form">
+          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+            <sv:value>hippo:mirror</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippo:docbase" sv:type="String">
+            <sv:value>cafebabe-cafe-babe-cafe-babecafebabe</sv:value>
+          </sv:property>
+        </sv:node>
+      </sv:node>
+    </sv:node>    
+    <sv:node sv:name="hippotranslation:translations">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>hippotranslation:translations</sv:value>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="privacy-policy">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>hippo:handle</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+        <sv:value>hippo:hardhandle</sv:value>
+        <sv:value>hippo:translated</sv:value>
+      </sv:property>
+      <sv:property sv:name="jcr:uuid" sv:type="String">
+        <sv:value>4788ff8e-e760-4475-b042-f9e2b373c300</sv:value>
+      </sv:property>
+      <sv:node sv:name="privacy-policy">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>mootlywcm:simpledocument</sv:value>
+        </sv:property>
+        <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+          <sv:value>hippo:harddocument</sv:value>
+          <sv:value>hippotranslation:translated</sv:value>
+        </sv:property>
+        <sv:property sv:name="jcr:uuid" sv:type="String">
+          <sv:value>c41e03a8-0873-4e6e-9747-e0aaff7032b0</sv:value>
+        </sv:property>
+        <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
+          <sv:value>live</sv:value>
+          <sv:value>preview</sv:value>
+        </sv:property>
+        <sv:property sv:name="hippo:related___pathreference" sv:type="String">
+          <sv:value>about/terms--conditions/privacy-policy</sv:value>
+        </sv:property>
+        <sv:property sv:name="hippostd:holder" sv:type="String">
+          <sv:value>admin</sv:value>
+        </sv:property>
+        <sv:property sv:name="hippostd:state" sv:type="String">
+          <sv:value>published</sv:value>
+        </sv:property>
+        <sv:property sv:name="hippostd:stateSummary" sv:type="String">
+          <sv:value>live</sv:value>
+        </sv:property>
+        <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
+          <sv:value>tbrenninkmeijer</sv:value>
+        </sv:property>
+        <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
+          <sv:value>2010-07-23T22:47:46.042+05:30</sv:value>
+        </sv:property>
+        <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
+          <sv:value>2013-03-29T15:47:14.439+05:30</sv:value>
+        </sv:property>
+        <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
+          <sv:value>admin</sv:value>
+        </sv:property>
+        <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
+          <sv:value>2013-03-29T15:51:36.308+05:30</sv:value>
+        </sv:property>
+        <sv:property sv:name="hippotranslation:id" sv:type="String">
+          <sv:value>84ef2d83-a597-4900-a16a-5b5c9133b308</sv:value>
+        </sv:property>
+        <sv:property sv:name="hippotranslation:locale" sv:type="String">
+          <sv:value>en</sv:value>
+        </sv:property>
+        <sv:property sv:name="mootlywcm:summary" sv:type="String">
+          <sv:value>Wealth4India Privacy Policy</sv:value>
+        </sv:property>
+        <sv:property sv:name="mootlywcm:title" sv:type="String">
+          <sv:value>Privacy Policy</sv:value>
+        </sv:property>
+        <sv:node sv:name="hippotranslation:translations">
+          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+            <sv:value>hippotranslation:translations</sv:value>
+          </sv:property>
+        </sv:node>
+        <sv:node sv:name="mootlywcm:description">
+          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+            <sv:value>hippostd:html</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippostd:content" sv:type="String">
+            <sv:value>&lt;html&gt;
+&lt;body&gt;
+
+&lt;pre&gt;This policy tells you about how we use and protect your personal information. To see a summary of this policy, and for more information to answer your privacy concerns, please go to our Privacy Central page.
+
+Contents
+
+    * Scope
+    * Collection
+    * Marketing
+    * Use
+    * Our Disclosure of Your Information
+    * Activity Associated with User IDs
+    * Using Information from Wealth4India
+    * Cookies
+    * No Spam, Spyware or Spoofing
+    * Account Protection
+    * Accessing, Reviewing and Changing Your Personal Information
+    * Security
+    * Third Parties
+    * General
+
+Scope
+
+This Privacy Policy describes how we handle your personal information for our services on the Wealth4India websites. It applies generally to the Wealth4India.com website and other related websites where this policy appears in the footer of the page. Some Wealth4India-branded websites or websites we operate may be governed by separate privacy policies. The policy that applies on any of our domains or subdomains is always the policy that appears in the footer of each website.
+
+Our subsidiaries’ and joint ventures’ privacy practices are similar to those described in this Privacy Policy. Subject to the requirements of applicable law, we strive to provide a consistent set of privacy practices throughout the global Wealth4India community. By accepting the Privacy Policy and the User Agreement in registration, you expressly consent to our collection, storage, use and disclosure of your personal information as described in this Privacy Policy. This Privacy Policy is effective upon acceptance for new users and is otherwise effective on April 1, 2008.
+
+
+Collection
+
+You can browse our sites without telling us who you are or revealing any personal information about yourself. Once you give us your personal information, you are not anonymous to us. If you choose to provide us with personal information, you consent to the transfer and storage of that information on our servers located in the United States.
+
+We may collect and store the following personal information:
+
+    * email address, physical contact information, and (depending on the service used) sometimes financial information, such as credit card or bank account numbers;
+    * transactional information based on your activities on the sites (such as  buying, selling, item and content you generate or that relates to your account);
+    * community discussions, chats, dispute resolution, correspondence through our sites, and correspondence sent to us;
+    * other information from your interaction with our sites, services, content and advertising, including computer and connection information, statistics on page views, traffic to and from the sites, ad data, IP address and standard web log information;
+    * information from other companies, such as demographic and traffic data; and
+
+
+Marketing
+
+We don't sell or rent your personal information to third parties for their marketing purposes without your explicit consent. We may combine your information with information we collect from other companies and use it to improve and personalize our services, content and advertising. If you don't wish to receive marketing communications from us or participate in our ad-customization programs, simply indicate your preference once you sign-on in My Account (or similar account status page) or by following the directions provided in an email or from a link on the advertisement.
+
+
+Use
+
+Our primary purpose in collecting personal information is to provide you with a safe, smooth, efficient, and customized experience. You agree that we may use your personal information to:
+
+    * provide the services and customer support you request;
+    * resolve disputes, collect fees, and troubleshoot problems;
+    * prevent potentially prohibited or illegal activities, and enforce our User Agreement;
+    * customize, measure and improve our services, content and advertising;
+    * tell you about targeted marketing, service updates, and promotional offers based on your communication preferences; and
+    * compare information for accuracy, and verify it with third parties.
+
+
+Our Disclosure of Your Information
+
+We may disclose personal information to respond to legal requirements, enforce our policies, respond to claims that a listing or other content violates the rights of others, or protect anyone's rights, property, or safety.
+
+We may also share your personal information with:
+
+    * Members of our corporate family to help detect and prevent potentially illegal acts and provide joint content and services (for example, registration, transactions and customer support). Our corporate affiliates will send marketing communications only to users who request these services.
+    * Service providers under contract who help with our business operations (such as fraud investigations, bill collection, affiliate and rewards programs and co-branded credit cards).
+    * Other third parties to whom you explicitly ask us to send your information (or about whom you are otherwise explicitly notified and consent to when using a specific service).
+    * Law enforcement or other governmental officials, in response to a verified request relating to a criminal investigation or alleged illegal activity. In such events, we will disclose information relevant to the investigation, such as name, city, state, zip code, telephone number, email address, User ID history, IP address, fraud complaints, and listing history.
+    * Other business entities, should we plan to merge with or be acquired by that business entity. (Should such a combination occur, we will require that the new combined entity follow this privacy policy with respect to your personal information. If your personal information will be used contrary to this policy, you will receive prior notice.)
+
+Without limiting the above, in an effort to respect your privacy and our ability to keep the community free from bad actors, we will not otherwise disclose your personal information to law enforcement, other government officials, or other third parties without a subpoena, court order or substantially similar legal procedure, except when we believe in good faith that the disclosure of information is necessary to prevent imminent physical harm or financial loss or to report suspected illegal activity.
+
+
+Activity Associated with User IDs
+
+Your User ID is displayed throughout Wealth4India and is therefore available to the public. All of your activity on our sites is traceable to your User ID. Other people can see your items that you have purchased in the past, items for sale, feedback, ratings and associated comments, and so on.
+
+
+Using Information from Wealth4India
+
+Wealth4India enables you to share personal and financial information to complete transactions. We encourage you to disclose your privacy practices and respect the privacy of other users. We cannot guarantee the privacy or security of your information and therefore we encourage you to evaluate the privacy and security policies of your trading partner before entering into a transaction and choosing to share your information. To help protect your privacy, we allow only limited access to other users' contact, shipping and financial information to facilitate your transactions. When users are involved in a transaction, they may have access to each other's name, User ID, email address and other contact and shipping information. In all cases, you must give other users a chance to remove themselves from your database and a chance to review what information you have collected about them.
+
+You agree to use user information only for:
+
+    * Wealth4India transaction-related purposes that are not unsolicited commercial messages;
+    * using services offered through Wealth4India (e.g. shipping and fraud complaints), or
+    * other purposes that a user expressly chooses.
+
+
+Cookies
+
+"Cookies" are small files placed on the hard drive of your computer. We use "cookies" (small files placed on your hard drive) on certain of our pages to help analyze our web page flow; customize our services, content and advertising; measure promotional effectiveness, and promote trust and safety. Wealth4India uses cookies, web beacons, and related tools provided by third parties to provide you with services that make the Wealth4India site more efficient for your buying and selling activities. Wealth4India limits the use of these tools to protect your privacy. Most cookies are "session cookies," meaning that they are automatically deleted from your hard drive once you end your session (log out or close your browser).
+
+A few important things you should know about cookies are that:
+
+    * We offer certain features that are available only through the use of cookies.
+    * We use cookies to help identify you and maintain your signed-in status.
+    * Most cookies are "session cookies," meaning that they are automatically deleted from your hard drive at the end of a session.
+    * You are always free to decline our cookies if your browser permits, although doing so may interfere with your use of some of our sites or services.
+    * You may encounter cookies from third parties on certain pages of the sites that we do not control. (For example, if you view a web page created by another user, there may be a cookie placed by that web page.)
+
+Wealth4India uses cookies on certain pages of the website to:
+
+    * Allow you to enter your password less frequently during a session.
+    * Provide information that is targeted to your interests.
+    * Promote and enforce trust and safety.
+    * Offer certain features that are only available through the use of cookies.
+    * Measure promotional effectiveness.
+    * Analyze our web page flow.
+
+Cookies on Wealth4India's discussion boards use session cookies to facilitate conversation threads and overall service functions.
+
+Your choices about cookies – We offer certain features that are only available through the use of a cookie. You are always free to decline cookies if your browser permits. However, if you decline cookies, you may not be able to use certain features on the website, and you may be required to reenter your password more frequently during a session. Learn how to set your browser to accept cookies.
+
+Web beacons
+
+A web beacon is an electronic image placed in the web page code that can serve many of the same purposes as cookies. Web beacons are used to track the traffic patterns of users from one page to another in order to maximize web traffic flow.
+
+How Wealth4India protects your privacy with third parties
+
+    * Wealth4India may work with other companies who place cookies or web beacons on our websites. These companies help operate our websites and provide you with additional products and services. They are subject to confidentiality agreements with Wealth4India and other legal restrictions. Wealth4India does not permit any of these companies to collect personal information using cookies or web beacons on our websites.
+    * Some of these companies like DoubleClick and MediaPlex — maybe our service providers who place cookies that help us serve our own content and compile anonymous site metrics and analytics. We require these companies to use the information they collect only to provide us with these services under contract.
+    * Wealth4India may participate in cookie-based ad networks operated by Yahoo and Tacoda. This means that these companies may use some anonymous information about you (based on a cookie on your computer) to display ads. We do not permit these companies to collect any personal information about you. Tacoda collects anonymous information using cookies to tailor the advertising you see on the Wealth4India sites or elsewhere on the web. Yahoo uses some anonymous information we send them (like age range and gender) to display ads on the Wealth4India sites. Yahoo may also use anonymous information about its own users to select ads to serve on our pages. Click these links to learn more about Yahoo’s{http://info.yahoo.com/privacy/us/yahoo/opt_out/targeting/details.html} and Tacoda’s{http://www.tacoda.com/notice/privacy_policy.html} ad-serving business practices and privacy policies, including how to decline participation in these programs.
+    * Wealth4India does not permit third-party content on Wealth4India (such as an item listing) to include cookies or web beacons, although this may still happen from time to time. If you believe a listing may be collecting personal information or using cookies, please report it to spam@Wealth4India.com.
+
+
+No Spam, Spyware or Spoofing
+
+We and our users do not tolerate spam. Make sure to set your Wealth4India notification preferences so we communicate to you as you prefer. You are not licensed to add other Wealth4India users, even a user who has purchased an item from you, to your mailing list (email or physical mail) without their express consent. To report Wealth4India-related spam or spoof emails to Wealth4India, please forward the email to spam@Wealth4India.com or spoof@Wealth4India.com. You may not use our communication tools to send spam or otherwise send content that would violate our User Agreement. We occasionally scan and may manually filter messages to check for spam, viruses, phishing attacks and other malicious activity or illegal or prohibited content, but we do not permanently store messages sent through these tools. If you send an email to an email address that is not registered in our community (via Refer-a-Friend or other tools), we do not permanently store that email or use that email address for any marketing purpose. We do not rent or sell these email addresses.
+
+
+Account Protection
+
+Your password is the key to your account. Use unique numbers, letters and special characters, and do not disclose your Wealth4India password to anyone. If you do share your password or your personal information with others, remember that you are responsible for all actions taken in the name of your account. If you lose control of your password, you may lose substantial control over your personal information and may be subject to legally binding actions taken on your behalf. Therefore, if your password has been compromised for any reason, you should immediately notify Wealth4India and change your password.
+
+
+Accessing, Reviewing and Changing Your Personal Information
+
+You can see, review and change most of your personal information by signing on to Wealth4India. Generally, we will not manually modify your personal information because it is very difficult to verify your identity remotely. You must promptly update your personal information if it changes or is inaccurate. Once you make a public posting, you may not be able to change or remove it. Upon your request, we will close your account and remove your personal information from view as soon as reasonably possible, based on your account activity and in accordance with applicable law. We do retain personal information from closed accounts to comply with law, prevent fraud, collect any fees owed, resolve disputes, troubleshoot problems, assist with any investigations, enforce our Wealth4India User Agreement, and take other actions otherwise permitted by law.
+
+
+Security
+
+Your information is stored on our servers located in the United States. We treat data as an asset that must be protected and use lots of tools (encryption, passwords, physical security, etc.) to protect your personal information against unauthorized access and disclosure. However, as you probably know, third parties may unlawfully intercept or access transmissions or private communications, and other users may abuse or misuse your personal information that they collect from the site. Therefore, although we work very hard to protect your privacy, we do not promise, and you should not expect, that your personal information or private communications will always remain private.
+
+
+Third Parties
+
+Except as otherwise expressly included in this Privacy Policy, this document addresses only the use and disclosure of information we collect from you. If you disclose your information to others, whether they are buyers or sellers on our sites or other sites throughout the internet, different rules may apply to their use or disclosure of the information you disclose to them. Wealth4India does not control the privacy policies of third parties, and you are subject to the privacy policies of those third parties where applicable. We encourage you to ask questions before you disclose your personal information to others.
+
+
+General
+
+We may amend this Privacy Policy at any time by posting the amended terms on this site. All amended terms automatically take effect 30 days after they are initially posted on the Site.
+&lt;/pre&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</sv:value>
+          </sv:property>
+        </sv:node>
+        <sv:node sv:name="mootlywcm:form">
+          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+            <sv:value>hippo:mirror</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippo:docbase" sv:type="String">
+            <sv:value>cafebabe-cafe-babe-cafe-babecafebabe</sv:value>
+          </sv:property>
+        </sv:node>
+      </sv:node>
+      <sv:node sv:name="hippo:translation">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hippo:translation</sv:value>
+        </sv:property>
+        <sv:property sv:name="hippo:language" sv:type="String">
+          <sv:value/>
+        </sv:property>
+        <sv:property sv:name="hippo:message" sv:type="String">
+          <sv:value>Privacy Policy</sv:value>
+        </sv:property>
+      </sv:node>
+    </sv:node>
+  </sv:node>
+  <sv:node sv:name="hippotranslation:translations">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hippotranslation:translations</sv:value>
+    </sv:property>
+  </sv:node>
+</sv:node>

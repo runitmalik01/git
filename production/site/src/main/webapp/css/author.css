@@ -1,0 +1,16 @@
+.border-all {border: 1px solid #999;}
+.border-left {border-left: 1px solid #999;}
+.border-right {border-right: 1px solid #999;padding-bottom: 2px;}
+.border-top {border-top: 1px solid #999;}
+.border-bottom {border-bottom: 1px solid #999;}
+.border-thick-top {border-top: 3px solid #999;}
+.border-thick-bottom {border-bottom: 3px solid #999;}
+.border-thick-right {border-right: 3px solid #999;}
+
+label {padding: 3px; vertical-align: text-bottom;}
+input {margin: 0 0 0 0; padding: 0 0 0 0;}
+
+.username {text-transform:lowercase;}
+#pi_country {font-size: 15px}
+
+.page-vendor{background-color: #E0CAD1;}

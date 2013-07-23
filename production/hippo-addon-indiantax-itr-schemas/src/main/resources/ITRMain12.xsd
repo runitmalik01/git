@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2007 sp2 (http://www.altova.com) by Hewlett Packard Globalsoft Ltd. (Hewlett Packard Globalsoft Ltd.) -->
+<!-- (c) 2010, Income Tax department.  Property of Income Tax department, Govt. of India -->
+<!-- Created on: 24-FEB-2011 -->
+<!-- Version 1.0 -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ITR1FORM="http://incometaxindiaefiling.gov.in/ITR1" xmlns:ITR2FORM="http://incometaxindiaefiling.gov.in/ITR2" xmlns:ITR3FORM="http://incometaxindiaefiling.gov.in/ITR3" xmlns:ITR4FORM="http://incometaxindiaefiling.gov.in/ITR4" xmlns:ITR4SFORM="http://incometaxindiaefiling.gov.in/ITR4S" xmlns:ITRETURN="http://incometaxindiaefiling.gov.in/main" targetNamespace="http://incometaxindiaefiling.gov.in/main" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://incometaxindiaefiling.gov.in/ITR1" schemaLocation="ITR1s12.xsd"/>
+	<xs:import namespace="http://incometaxindiaefiling.gov.in/ITR2" schemaLocation="ITR2s12.xsd"/>
+	<xs:import namespace="http://incometaxindiaefiling.gov.in/ITR3" schemaLocation="ITR3s12.xsd"/>
+	<xs:import namespace="http://incometaxindiaefiling.gov.in/ITR4" schemaLocation="ITR4s12.xsd"/>
+	<xs:import namespace="http://incometaxindiaefiling.gov.in/ITR4S" schemaLocation="ITR4Ss12.xsd"/>
+	<xs:element name="ITR">
+		<xs:annotation>
+			<xs:documentation>This is root node. Child nodes ITR1,2,3,4,4S are all optional. Irrespective of Individual or bulk IT returns filed, ITMain.xsd will form the starting point and base struture for all returns xml generation. </xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ITR1FORM:ITR1" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="ITR2FORM:ITR2" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="ITR3FORM:ITR3" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="ITR4FORM:ITR4" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="ITR4SFORM:ITR4S" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

@@ -1,0 +1,15 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Suite" parallel="false" >
+  <parameter value="https://incometaxindiaefiling.gov.in/" name="driver.url"></parameter>
+  <test name="Test">
+    <classes>
+      <class name="com.mootly.wcm.indiantax.HomePage"/>
+      <!-- 
+      <class name="com.mootly.wcm.Newspage"/>
+      <class name="com.mootly.wcm.Jobspage"/>
+      <class name="com.mootly.wcm.ProductsPage"/>
+      <class name="com.mootly.wcm.About"/>
+       -->
+   </classes>
+  </test>
+</suite>

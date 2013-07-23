@@ -1,0 +1,1466 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sv:node sv:name="hst:components" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:components</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>a6a72f91-47db-4580-aebe-7c34b6b847ed</sv:value>
+  </sv:property>
+  <sv:node sv:name="header">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>a475c624-c590-4265-9e30-7363af8e224c</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentclassname" sv:type="String">
+      <sv:value>com.mootly.wcm.components.common.WebsiteLogo</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>standard.header.ftl</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="member.otherincome">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>233b840b-b691-48f2-9eca-aad72e7a6523</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentclassname" sv:type="String">
+      <sv:value>com.mootly.wcm.member.OtherIncome</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>otherincome</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="member.calculation">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>c29da3a8-9f5d-47ff-a310-0512f1742bf1</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentclassname" sv:type="String">
+      <sv:value>com.mootly.wcm.member.Calculations</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>member.calculation</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="IncomeTaxFormSelection">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>3bdebbc1-362d-4e93-9241-2c505fc8c4d5</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentclassname" sv:type="String">
+      <sv:value>com.mootly.wcm.member.IncomeTaxFormSelection</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>incometaxformselection</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="sourceofincome">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>5b6b0871-4a57-4ad3-9e7e-21a5c778ad42</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentclassname" sv:type="String">
+      <sv:value>com.mootly.wcm.member.SourceOfIncome</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String"/>
+    <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String"/>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>sourceofincome</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="rebate">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>8aac122f-92f1-4eaa-b670-6f230dea4343</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentclassname" sv:type="String">
+      <sv:value>com.mootly.wcm.member.Rebate</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String"/>
+    <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String"/>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>rebate</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="interest">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>02c6b740-a888-48a7-a111-7cc156f2a690</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentclassname" sv:type="String">
+      <sv:value>com.mootly.wcm.member.Interest</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String"/>
+    <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String"/>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>interest</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="home">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>4d2e1cdd-2a82-44b9-9d7b-708742756a26</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentclassname" sv:type="String">
+      <sv:value>com.mootly.wcm.components.BaseComponent</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>home.main</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="productsoverview">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>e071eed0-0229-4540-8d20-44a05bd8a086</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentclassname" sv:type="String">
+      <sv:value>com.mootly.wcm.components.products.Overview</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>products.overview</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="jobs-overview-main">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>1de19b0b-6d1a-4f96-96d9-ca1df20e0b34</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentclassname" sv:type="String">
+      <sv:value>com.mootly.wcm.components.jobs.Overview</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>jobs-overview-main</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="productleftnav">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>5a1ab01d-1a32-43e5-9ca8-b5b5f4cd7ec9</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentclassname" sv:type="String">
+      <sv:value>com.mootly.wcm.components.products.LeftNavigation</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+      <sv:value>facet.location</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+      <sv:value>products/facetedproducts/Product Category</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>products.leftnav</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="relateddocuments">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>2d50f4aa-97d8-48c4-b527-f9ae108bd687</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentclassname" sv:type="String">
+      <sv:value>com.mootly.wcm.components.RelatedDocuments</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>common.relateddocuments</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="easyform">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>3fc76736-a50c-4518-bf40-04daaf18f945</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentclassname" sv:type="String">
+      <sv:value>com.mootly.wcm.components.common.DummyForm</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+      <sv:value>ef-mailsession</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+      <sv:value>mail/Session</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>easyform</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="tagcloud">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>0d8ba97a-8c31-474a-aead-661515d69888</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentclassname" sv:type="String">
+      <sv:value>org.onehippo.forge.tcmp.hst.TagCloudComponent</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>common.tagcloud</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="suggestproduct">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>a7587ae9-2128-4982-8a9f-1bca96404a06</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentclassname" sv:type="String">
+      <sv:value>com.mootly.wcm.components.products.SuggestProduct</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>product.suggestform</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="comments">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>6361d7e3-577c-42ce-8fd5-62e198bd5979</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentclassname" sv:type="String">
+      <sv:value>com.mootly.wcm.components.common.Comments</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>common.comments</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="eventregistration">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>0dd6814a-1464-43a2-ae05-8d5d9442dd8c</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentclassname" sv:type="String">
+      <sv:value>com.mootly.wcm.components.events.EventRegistration</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+      <sv:value>ef-mailsession</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+      <sv:value>mail/Session</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>easyform</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="footermenu">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>cbfe90f3-b3f5-4f0e-8b9c-49eebc99a9e7</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentclassname" sv:type="String">
+      <sv:value>com.mootly.wcm.components.common.SiteMenu</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>standard.footer.menu</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="rss-news">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>27c4e7c4-772f-4d6f-98c9-7df91e6a71a4</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentclassname" sv:type="String">
+      <sv:value>com.mootly.wcm.components.common.LatestItems</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+      <sv:value>scope</sv:value>
+      <sv:value>limit</sv:value>
+      <sv:value>orderBy</sv:value>
+      <sv:value>sortOrder</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+      <sv:value>news</sv:value>
+      <sv:value>10</sv:value>
+      <sv:value>mootlywcm:date</sv:value>
+      <sv:value>descending</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>rss.news</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="sitemap-menu">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>e2c70eb2-7b28-4930-aa9a-5f29704e02c6</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentclassname" sv:type="String">
+      <sv:value>com.mootly.wcm.components.common.SiteMenu</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>sitemap.menu</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="member.home">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>33565a5b-f684-4fe4-8d78-3f1aebbe6238</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentclassname" sv:type="String">
+      <sv:value>com.mootly.wcm.member.Home</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>member.home</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="member.home.rightnav">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>915259d6-6eba-4463-b025-263f55ad54d6</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentclassname" sv:type="String">
+      <sv:value>com.mootly.wcm.member.HomeRightNav</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>member.rightnav</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="member.startapplication">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>a916e490-2e60-459a-a313-ec6dd34af407</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentclassname" sv:type="String">
+      <sv:value>com.mootly.wcm.member.StartApplication</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>member.startapplication</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="member.startapplication.rightnav">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>8aba2dab-24a3-4056-a84e-97af1693cde7</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentclassname" sv:type="String">
+      <sv:value>com.mootly.wcm.member.StartApplicationRightNav</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>member.rightnav</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="member.processapplication">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>ef674323-286a-4542-a7b1-c67707520805</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentclassname" sv:type="String">
+      <sv:value>com.mootly.wcm.member.ProcessApplication</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>member.processapplication</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="member.processapplication.rightnav">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>2e65dd2a-3d60-41f7-8c89-1000a81d2939</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentclassname" sv:type="String">
+      <sv:value>com.mootly.wcm.member.ProcessApplicationRightNav</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>member.rightnav</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="membersignupdetail">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>6e4f4dd0-b4df-40ce-aed5-aa4d7e20208c</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentclassname" sv:type="String">
+      <sv:value>com.mootly.wcm.member.SignupDetail</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>member.signup.detail</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="tax-estimation">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>c11a8590-de11-4137-b75e-f25b4562788f</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentclassname" sv:type="String">
+      <sv:value>com.mootly.wcm.member.TaxEstimation</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>taxestimation-template</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="member-login">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>87f12885-5c8a-4e17-9934-494de9fe0ab5</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentclassname" sv:type="String">
+      <sv:value>com.mootly.wcm.member.MemberLogin</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String"/>
+    <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String"/>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>member.login</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="member.incomesource">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>c4aceb2c-dc1a-4160-bb94-9f61ffe83ad3</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentclassname" sv:type="String">
+      <sv:value>com.mootly.wcm.member.IncomeSource</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>member.incomesource</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="member.contactinformation">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>a1a43555-16ad-40da-96f9-a3c66be0eda0</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentclassname" sv:type="String">
+      <sv:value>com.mootly.wcm.member.ContactInformation</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>member.contact.information</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="member.contactinformation.rightnav">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>377b5977-0025-4db5-9623-c6bc9876fe0f</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentclassname" sv:type="String">
+      <sv:value>com.mootly.wcm.member.ContactInformationRightNav</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>member.contact.information.rightnav</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="member.incomesource.rightnav">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>9a4418ee-7432-49eb-b96c-086a8ff6de71</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentclassname" sv:type="String">
+      <sv:value>com.mootly.wcm.member.IncomeSourceRightNav</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>member.incomesource.rightnav</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="member.salarydetail">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>75ddcf66-e71d-443f-826d-5f48e703b25b</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentclassname" sv:type="String">
+      <sv:value>com.mootly.wcm.member.SalaryDetail</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>member.salarydetail</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="member.salarydetail.rightnav">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>24aeb5b8-de39-44c6-b9af-3929106afb44</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentclassname" sv:type="String">
+      <sv:value>com.mootly.wcm.member.SalaryDetailRightNav</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>member.salarydetail.rightnav</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="member-activation">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>423f5f27-0433-4d07-b285-adb82ed5fb33</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentclassname" sv:type="String">
+      <sv:value>com.mootly.wcm.member.Activation</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>member.activaion</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="activationcode">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>b05493ab-5302-429a-b5e5-f6cd2b0edd1f</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentclassname" sv:type="String">
+      <sv:value>com.mootly.wcm.member.ActivationCode</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>activationcode</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="forgotpass">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>f9ab2a45-794c-4259-a59a-a3f67110468d</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentclassname" sv:type="String">
+      <sv:value>com.mootly.wcm.member.ForgotPass</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String"/>
+    <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String"/>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>forgotpass</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="member-message">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>50d12f7d-3988-4796-b323-8b50e33d427f</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentclassname" sv:type="String">
+      <sv:value>com.mootly.wcm.member.Message</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String"/>
+    <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String"/>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>member.message</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="coming_soon">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>2181300c-46c6-48db-b053-0f499ade5f0d</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentclassname" sv:type="String">
+      <sv:value>com.mootly.wcm.components.common.Coming</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String"/>
+    <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String"/>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>coming.soon</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="changeprofile">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>aceb70dc-7be4-45a4-84f7-e1ecc063169e</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentclassname" sv:type="String">
+      <sv:value>com.mootly.wcm.member.ChangeProfile</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String"/>
+    <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String"/>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>changeprofile</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="changeemail">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>6eddba20-2ca2-4b59-b783-6151cc7285b5</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentclassname" sv:type="String">
+      <sv:value>com.mootly.wcm.member.ChangeEmail</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String"/>
+    <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String"/>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>changeemail</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="changepass">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>72af0330-c2d3-4fba-9d2c-fef9df7591a4</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentclassname" sv:type="String">
+      <sv:value>com.mootly.wcm.member.ChangePass</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String"/>
+    <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String"/>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>changepass</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="emicalculator">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>7e2a4f10-2583-42c4-b734-c9d619accc89</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentclassname" sv:type="String">
+      <sv:value>com.mootly.wcm.member.EMIcalculator</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String"/>
+    <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String"/>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>emicalculator</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="member.salaryincome">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>8cc4233a-987e-491c-af06-76449686c0e2</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentclassname" sv:type="String">
+      <sv:value>com.mootly.wcm.member.SalaryIncome</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>member.salaryincome</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="memberpopup">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>2a48d015-c1ec-48d8-ab85-470e22922766</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentclassname" sv:type="String">
+      <sv:value>com.mootly.wcm.member.Popup</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>member.popup</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="member-logout">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>5f401236-de25-423f-b156-f99f5b7a21d0</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentclassname" sv:type="String">
+      <sv:value>com.mootly.wcm.member.MemberLogout</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>member.logout</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="member-frontpage">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>9ccbb12b-4035-49ca-8145-ded220d29143</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentclassname" sv:type="String">
+      <sv:value>com.mootly.wcm.member.Notification</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+      <sv:value>pageSize</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+      <sv:value>4</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>member.frontpage</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="npvcalculator">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>65430707-af44-40c3-ad8a-72b15965edd5</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentclassname" sv:type="String">
+      <sv:value>com.mootly.wcm.member.NPVcalculator</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String"/>
+    <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String"/>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>npvcalculator</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="taxcalculator">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>52ae082d-52af-4882-b46e-58f4134093f4</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentclassname" sv:type="String">
+      <sv:value>com.mootly.wcm.member.Taxcalculator</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String"/>
+    <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String"/>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>taxcalculator</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="rebatesec90">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>eb48302c-271c-43a1-8b5c-1e8c50d9334a</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentclassname" sv:type="String">
+      <sv:value>com.mootly.wcm.member.RebateSec90</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String"/>
+    <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String"/>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>rebatesec90</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="tcs">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>0bf119e9-c703-4819-9c75-8edfc4aad026</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentclassname" sv:type="String">
+      <sv:value>com.mootly.wcm.member.Tcs</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String"/>
+    <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String"/>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>tcs</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="capitalasset">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>546e3973-1510-48b3-87c3-8fccd700328e</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentclassname" sv:type="String">
+      <sv:value>com.mootly.wcm.member.CapitalAsset</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String"/>
+    <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String"/>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>capitalasset</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="Securities">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>3c1b5ddc-02b3-4f8f-8f05-61c6ca3fbbc5</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentclassname" sv:type="String">
+      <sv:value>com.mootly.wcm.member.Securities</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String"/>
+    <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String"/>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>Securities</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="advancetaxgrid">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>cf86d3ed-2b25-4adc-b759-abaf1aa93942</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentclassname" sv:type="String">
+      <sv:value>com.mootly.wcm.member.AdvanceTax</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String"/>
+    <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String"/>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>advancetaxgrid</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="tdsfromsalary">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>a802822d-f826-44b6-a76e-0786a6850e50</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentclassname" sv:type="String">
+      <sv:value>com.mootly.wcm.member.TdsFromSalary</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String"/>
+    <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String"/>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>tdsfromsalary</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="tdsfromothers">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>c40fd440-7abc-45c6-9365-63ea74239cf8</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentclassname" sv:type="String">
+      <sv:value>com.mootly.wcm.member.TdsFromOthers</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String"/>
+    <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String"/>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>tdsfromothers</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="houseincome">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>380319d2-b996-41e0-be9c-a56edd01689f</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentclassname" sv:type="String">
+      <sv:value>com.mootly.wcm.member.HouseIncome</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String"/>
+    <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String"/>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>houseincome</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="member.bankdetail">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>8d62972d-20c7-43f1-b19e-5801bb36b9c0</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentclassname" sv:type="String">
+      <sv:value>com.mootly.wcm.member.BankDetail</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>member.bank.detail</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="member.bankdetail.rightnav">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>02328893-9e7f-41c8-b8dd-efc4b372daf3</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentclassname" sv:type="String">
+      <sv:value>com.mootly.wcm.member.BankDetailRightNav</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>member.bank.detail.rightnav</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="member.residentialstatus">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>dba031c3-6e1e-4ad1-b2a8-297d309198db</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentclassname" sv:type="String">
+      <sv:value>com.mootly.wcm.member.ResidentialStatus</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>member.residential.status</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="member.residentialstatus.rightnav">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>c490e02b-8fb1-4bc1-a166-94fab3d254e1</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentclassname" sv:type="String">
+      <sv:value>com.mootly.wcm.member.ResidentialStatusRightNav</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>member.residential.status.rightnav</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="member.deduction">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>e708fd78-c7d4-4e8d-a8d2-03a65e08d645</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentclassname" sv:type="String">
+      <sv:value>com.mootly.wcm.member.Deduction</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>member.deduction</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="member.deduction.rightnav">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>cd7cdacc-dd5d-4205-8787-38dea41ddae1</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentclassname" sv:type="String">
+      <sv:value>com.mootly.wcm.member.DeductionRightNav</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>member.deduction.rightnav</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="header.re">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>09a1e01e-0d2b-4767-a264-9df4ba215441</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentclassname" sv:type="String">
+      <sv:value>com.mootly.wcm.components.common.WebsiteLogo</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>standard.header.re</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="adjustment-of-losses">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>559fba14-aab1-4a9a-bc29-ce6d9635fb2c</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentclassname" sv:type="String">
+      <sv:value>com.mootly.wcm.member.AdjustmentOfLosses</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>adjustment.of.losses</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="member.rebate.section89">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>a16bf98e-3a1e-438c-b9cb-62c24c47fe97</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentclassname" sv:type="String">
+      <sv:value>com.mootly.wcm.member.RebateSection89</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>member.rebate.section89</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="selfassesmenttax">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>6a5375cc-b35c-4aab-ad54-40817a6941be</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentclassname" sv:type="String">
+      <sv:value>com.mootly.wcm.member.SelfAssesmentTax</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String"/>
+    <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String"/>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>selfassesmenttax</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="serviceprice">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>9bca3b6a-9a79-4ac6-9ab4-53d991ed0421</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentclassname" sv:type="String">
+      <sv:value>com.mootly.wcm.components.common.ServicePrice</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>serviceprice</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="package-selector">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>56185f9e-c24d-4232-bc69-bf0d2607910a</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentclassname" sv:type="String">
+      <sv:value>com.mootly.wcm.components.itreturns.PackageSelector</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String"/>
+    <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String"/>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>package-selector</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="itreturn-ITR1">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>9db16713-da14-41c2-b45c-af8729af1024</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentclassname" sv:type="String">
+      <sv:value>com.mootly.wcm.member.ItreturnItr1</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String"/>
+    <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String"/>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>itreturn-ITR1</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="member.formsixteen">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>74b9249d-217d-45b5-977b-2b30c87711d8</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentclassname" sv:type="String">
+      <sv:value>com.mootly.wcm.member.FormSixteen</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>formsixteen</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="xml-generator">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>8c7d7e52-c9fd-4e9d-bf45-fdbe14a3d695</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentclassname" sv:type="String">
+      <sv:value>com.mootly.wcm.member.XmlGenerator</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String"/>
+    <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String"/>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>xml-generator</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="reviews">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>d46343be-be4f-4f09-a084-4e15de0f57a8</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentclassname" sv:type="String">
+      <sv:value>com.mootly.wcm.member.Reviews</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>reviews</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="Attachments">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>c13698e0-39e8-449d-8d09-27af8757e3f4</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentclassname" sv:type="String">
+      <sv:value>com.mootly.wcm.member.MemberDrive</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>member.attachment</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="myservices">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>5aa492bf-684d-4dcc-8ca5-58810837db5a</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentclassname" sv:type="String">
+      <sv:value>com.mootly.wcm.member.service.Services</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+      <sv:value>pageSize</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+      <sv:value>5</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>myservices</sv:value>
+    </sv:property>
+  </sv:node>
+	<sv:node sv:name="knowledgearticlesoverview" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hst:component</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>336313f4-efc0-476e-bde2-a6ef43494611</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:componentclassname" sv:type="String">
+	    <sv:value>com.mootly.wcm.components.knowledgearticles.Overview</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:template" sv:type="String">
+	    <sv:value>knowledgearticles.overview</sv:value>
+	  </sv:property>
+	</sv:node>
+    <sv:node sv:name="knowledgearticleleftnav" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hst:component</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>e6194ff2-6223-4de4-8c60-b2765104bba8</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:componentclassname" sv:type="String">
+	    <sv:value>com.mootly.wcm.components.knowledgearticles.LeftNavigation</sv:value>
+	  </sv:property>
+	  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+	    <sv:value>facet.location</sv:value>
+	  </sv:property>
+	  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+	    <sv:value>knowledgearticles/facetedknowledgearticles/KnowledgeArticle Category</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:template" sv:type="String">
+	    <sv:value>knowledgearticles.leftnav</sv:value>
+	  </sv:property>
+	</sv:node>	
+	<sv:node sv:name="clubincome" >
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:component</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>7289060f-0e80-471f-89d8-4eb3ff15cb52</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:componentclassname" sv:type="String">
+    <sv:value>com.mootly.wcm.member.ClubIncome</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String"/>
+  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String"/>
+  <sv:property sv:name="hst:template" sv:type="String">
+    <sv:value>clubincome</sv:value>
+  </sv:property>
+</sv:node>
+
+<sv:node sv:name="foreignincome">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:component</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>f268140c-7974-46a6-8c04-af0592a4a1b9</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:componentclassname" sv:type="String">
+    <sv:value>com.mootly.wcm.member.ForeignIncome</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String"/>
+  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String"/>
+  <sv:property sv:name="hst:template" sv:type="String">
+    <sv:value>foreignincome</sv:value>
+  </sv:property>
+</sv:node>
+<sv:node sv:name="trdetails" >
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:component</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>e520486f-04c9-4a5b-9a8f-9f11688e6805</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:componentclassname" sv:type="String">
+    <sv:value>com.mootly.wcm.member.TaxRelief</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String"/>
+  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String"/>
+  <sv:property sv:name="hst:template" sv:type="String">
+    <sv:value>trdetails</sv:value>
+  </sv:property>
+</sv:node>
+<sv:node sv:name="immovableproperty">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:component</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>0d95b088-1194-47e1-ad27-994266de26b1</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:componentclassname" sv:type="String">
+    <sv:value>com.mootly.wcm.member.ImmovableProperty</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String"/>
+  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String"/>
+  <sv:property sv:name="hst:template" sv:type="String">
+    <sv:value>immovableproperty</sv:value>
+  </sv:property>
+</sv:node>
+
+<sv:node sv:name="natureinvestment">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:component</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>46acb6db-a517-47f4-b3a1-1907b835f23b</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:componentclassname" sv:type="String">
+    <sv:value>com.mootly.wcm.member.NatureInvestment</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String"/>
+  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String"/>
+  <sv:property sv:name="hst:template" sv:type="String">
+    <sv:value>natureinvestment</sv:value>
+  </sv:property>
+</sv:node>
+<sv:node sv:name="foreignbankdetail">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:component</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>4b198f35-f7d9-4c3f-a574-e8e9765c9557</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:componentclassname" sv:type="String">
+    <sv:value>com.mootly.wcm.member.ForeignBankDetail</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String"/>
+  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String"/>
+  <sv:property sv:name="hst:template" sv:type="String">
+    <sv:value>foreignbankdetail</sv:value>
+  </sv:property>
+</sv:node>
+	<sv:node sv:name="financialinterest">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:component</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>5c0fe810-07f9-41b4-ae65-f4b2ba58389a</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:componentclassname" sv:type="String">
+    <sv:value>com.mootly.wcm.member.FinancialInterest</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String"/>
+  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String"/>
+  <sv:property sv:name="hst:template" sv:type="String">
+    <sv:value>financialinterest</sv:value>
+  </sv:property>
+</sv:node>
+<sv:node sv:name="trustdetail">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:component</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>146b31bd-b12a-4f3b-8c57-6fbd507737e3</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:componentclassname" sv:type="String">
+    <sv:value>com.mootly.wcm.member.TrustDetail</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String"/>
+  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String"/>
+  <sv:property sv:name="hst:template" sv:type="String">
+    <sv:value>trustdetail</sv:value>
+  </sv:property>
+</sv:node>
+<sv:node sv:name="signingauthorityaccounts">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:component</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>2d664c4f-11e0-42f2-9087-220272aff88c</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:componentclassname" sv:type="String">
+    <sv:value>com.mootly.wcm.member.SigningAuthorityAccounts</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String"/>
+  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String"/>
+  <sv:property sv:name="hst:template" sv:type="String">
+    <sv:value>signingauthorityaccounts</sv:value>
+  </sv:property>
+</sv:node>
+	<sv:node sv:name="suggestknowledgearticle" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hst:component</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>9b8880a4-213f-47e8-8452-5cf2e6c5b183</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:componentclassname" sv:type="String">
+	    <sv:value>com.mootly.wcm.components.knowledgearticles.SuggestKnowledgeArticle</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:template" sv:type="String">
+	    <sv:value>knowledgearticle.suggestform</sv:value>
+	  </sv:property>
+	</sv:node>
+	<sv:node sv:name="my-service-detail">
+       <sv:property sv:name="jcr:primaryType" sv:type="Name">
+         <sv:value>hst:component</sv:value>
+      </sv:property>
+      <sv:property sv:name="jcr:uuid" sv:type="String">
+        <sv:value>b3989622-a8f7-4d57-839d-ecd7ea297f4a</sv:value>
+     </sv:property>
+     <sv:property sv:name="hst:componentclassname" sv:type="String">
+       <sv:value>com.mootly.wcm.components.Detail</sv:value>
+     </sv:property>
+     <sv:property sv:name="hst:template" sv:type="String">
+       <sv:value>myservices.detail</sv:value>
+     </sv:property>
+   </sv:node>
+	<sv:node sv:name="servicerequest-itr-summary" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hst:component</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>262937a5-7ed5-4fd1-bfbe-bcb2c5b6e54b</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:componentclassname" sv:type="String">
+	    <sv:value>com.mootly.wcm.components.ITReturnComponent</sv:value>
+	  </sv:property>
+	  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String"/>
+	  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String"/>
+	  <sv:property sv:name="hst:template" sv:type="String">
+	    <sv:value>xml-generator</sv:value>
+	  </sv:property>
+	</sv:node>  
+	<sv:node sv:name="servicerequest-itr-download-xml" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hst:component</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>71e44594-a84f-4316-9579-a1ff806c215c</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:componentclassname" sv:type="String">
+	    <sv:value>com.mootly.wcm.components.ITReturnComponent</sv:value>
+	  </sv:property>
+	  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String"/>
+	  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String"/>
+	</sv:node> 
+	<sv:node sv:name="servicerequest-itr-download-summary" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hst:component</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>e46bd87b-2bec-486e-9798-80b4c6381c09</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:componentclassname" sv:type="String">
+	    <sv:value>com.mootly.wcm.components.ITReturnComponent</sv:value>
+	  </sv:property>
+	  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String"/>
+	  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String"/>
+	  <sv:property sv:name="hst:template" sv:type="String">
+	    <sv:value>xml-generator</sv:value>
+	  </sv:property>
+	</sv:node>	
+	<sv:node sv:name="servicerequest-itr-email-xml-summary" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hst:component</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>39037cd7-c4b2-4584-b827-c774ab576ec1</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:componentclassname" sv:type="String">
+	    <sv:value>com.mootly.wcm.components.ITReturnComponent</sv:value>
+	  </sv:property>
+	  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String"/>
+	  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String"/>
+	  <sv:property sv:name="hst:template" sv:type="String">
+	    <sv:value>xml-generator</sv:value>
+	  </sv:property>
+	</sv:node>	
+	<sv:node sv:name="servicerequest-itr-payment" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hst:component</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>de130c13-e0ce-4914-8934-d69a6f17d5a3</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:componentclassname" sv:type="String">
+	    <sv:value>com.mootly.wcm.member.ITRPayment</sv:value>
+	  </sv:property>
+	  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String"/>
+	  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String"/>
+	  <sv:property sv:name="hst:template" sv:type="String">
+	    <sv:value>servicerequest-itr-payment</sv:value>
+	  </sv:property>
+	</sv:node>	
+	<sv:node sv:name="servicerequest-itr-tos-confirmation" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hst:component</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>b2c43989-ffae-454f-81d8-4227e9f43a3d</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:componentclassname" sv:type="String">
+	    <sv:value>com.mootly.wcm.member.ITRTOSConfirmation</sv:value>
+	  </sv:property>
+	  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String"/>
+	  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String"/>
+	  <sv:property sv:name="hst:template" sv:type="String">
+	    <sv:value>servicerequest-itr-tos-confirmation</sv:value>
+	  </sv:property>
+	</sv:node>
+</sv:node>
