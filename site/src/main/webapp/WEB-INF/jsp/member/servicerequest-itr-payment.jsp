@@ -152,31 +152,34 @@
 					</div>
 				</div>
 			</div>
-			<div class="span2">
-				<div class="rowlabel">Drawn On</div>
-			</div>
-			<div class="span2">
-				<div class="rowlabel">
-					<input type="text" id="checkBank" name="checkBank"
-						value="${parentBean.checkBank}" <c:out value="${allReadOnly}"/> />
+			<div class="row-fluid show-grid">
+				<div class="span3">
+					<div class="rowlabel"><label for="checkBank"><small>Drawn On Bank</small> </label></div>				
+					<div class="rowlabel">
+						<input type="text" id="checkBank" name="checkBank"
+							value="${parentBean.checkBank}" <c:out value="${allReadOnly}"/> />
+					</div>				
+				</div>			
+				<div class="span2">
+					<div class="rowlabel"><label><small>Deposited At</small> </label></div>	
+					<div class="rowlabel">ICICI Bank Limited</div>
 				</div>
+				<div class="span3">
+					<div class="rowlabel"><label for="checkBranch"><small>Branch</small> </label></div>		
+					<div class="rowlabel">
+						<input type="text" id="checkBranch" name="checkBranch"
+							value="${parentBean.checkBranch}" <c:out value="${allReadOnly}"/> />
+					</div>
+				</div>			
+				<div class="span4">
+					<div class="rowlabel"><label for="checkLocation"><small>Location</small> </label></div>		
+					<div class="rowlabel">
+						<input type="text" id="checkLocation" name="checkLocation"
+							value="${parentBean.checkLocation}"
+							<c:out value="${allReadOnly}"/> />
+					</div>					
+				</div>			
 			</div>
-			<div>Bank, deposited at ICICI Bank Limited,</div>
-			<div class="span2">
-				<div class="rowlabel">
-					<input type="text" id="checkBranch" name="checkBranch"
-						value="${parentBean.checkBranch}" <c:out value="${allReadOnly}"/> />
-				</div>
-			</div>
-			<div>Branch,</div>
-			<div class="span2">
-				<div class="rowlabel">
-					<input type="text" id="checkLocation" name="checkLocation"
-						value="${parentBean.checkLocation}"
-						<c:out value="${allReadOnly}"/> />
-				</div>
-			</div>
-			Location
 		</fieldset>
 		<fieldset class="CASH_ONLY CHECK_NOT_ONLY RTGS_NOT_ONLY"
 			style="display: none">

@@ -975,6 +975,9 @@
 			<sv:value>11051.2</sv:value>
 		</sv:property>
 	</sv:node>
+	<!-- No need for these documents -->
+	<!-- 07/21/2013 Amit Patkar -->
+	<!--
 	<sv:node sv:name="mootlywcm-type-restapi">
 		<sv:property sv:name="jcr:primaryType" sv:type="Name">
 			<sv:value>hippo:initializeitem</sv:value>
@@ -989,6 +992,7 @@
 			<sv:value>11051.07</sv:value>
 		</sv:property>
 	</sv:node>
+	-->
 	<sv:node sv:name="mootlywcm-type-tdssalary">
 		<sv:property sv:name="jcr:primaryType" sv:type="Name">
 			<sv:value>hippo:initializeitem</sv:value>

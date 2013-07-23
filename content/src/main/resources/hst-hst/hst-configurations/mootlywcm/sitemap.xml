@@ -7514,4 +7514,27 @@
 	    </sv:node>
 	  </sv:node>
 	</sv:node>  
+	<!--  knowledgearticles -->
+	<sv:node sv:name="knowledgearticles" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hst:sitemapitem</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>6ca513a7-caf7-46ec-9d9f-5cdf30ff5a1b</sv:value>
+	  </sv:property>
+	  <sv:node sv:name="_any_.html">
+	    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	      <sv:value>hst:sitemapitem</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="jcr:uuid" sv:type="String">
+	      <sv:value>08c34fb3-83a0-4d9c-8aab-d7545f64590c</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+	      <sv:value>hst:pages/knowledgearticle-detail</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="hst:relativecontentpath" sv:type="String">
+	      <sv:value>articles/${1}</sv:value>
+	    </sv:property>
+	  </sv:node>
+	</sv:node>
 </sv:node>
