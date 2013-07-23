@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<solr persistent="true">
-  <cores defaultCoreName="collection1" host="${host:}" adminPath="/admin/cores" zkClientTimeout="${zkClientTimeout:15000}" hostPort="${jetty.port:8983}" hostContext="${hostContext:solr}">
-    <core loadOnStartup="true" instanceDir="collection1\/" transient="false" name="collection1" collection="collection1"/>
-    <core loadOnStartup="true" instanceDir="bankdata\" transient="false" name="bankdata" collection="bankdata"/>
-  </cores>
-</solr>
