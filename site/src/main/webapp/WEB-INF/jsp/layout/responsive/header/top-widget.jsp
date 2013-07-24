@@ -22,12 +22,16 @@
 <%@ taglib uri="http://www.onehippo.org/jsp/google-analytics" prefix="ga" %>
 <%@include file="../../../includes/tags.jspf" %>
 <hst:link var="myitreturns" path="/member/itreturn"/>
+<hst:link var="contactus" path="/contactus"/>
 <div id="top-widget" class="top-widget">
   <div id="text-8" class="widget_text">
-    <div class="textwidget">      
-      <a href="${myitreturns}" class="button orange">
+    <div class="textwidget" align="center">      
+      <!--  <a href="${myitreturns}" class="button orange">
       		My Income Tax Returns
-      </a>
+      </a>-->
+          <a href="${contactus}" class="button blue" style="text-decoration: none;"><strong>Contact Us</strong></a><br>
+          <abbr title="Phone">P:</abbr> <strong>+91 11 45067102, +91 11 25074341, +91 9136265229</strong><br/> 
+          <strong>+91 8459024905</strong> &nbsp;&nbsp;<abbr title="Timing">T:</abbr> <strong>9.30 am to 9.30 pm</strong>
     </div>
   </div>
 </div><!-- end of #top-widget -->
