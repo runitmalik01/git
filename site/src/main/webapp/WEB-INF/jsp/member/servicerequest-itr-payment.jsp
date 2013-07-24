@@ -126,7 +126,7 @@
 			<div class="row-fluid show-grid">
 				<div class="span3">
 					<div class="rowlabel">
-						<label for="checkNo"><small>Check No.</small> </label>
+						<label for="checkNo"><small>Cheque No.</small> </label>
 					</div>
 					<div class="rowlabel">
 						<input type="text" id="checkNo" name="checkNo"
