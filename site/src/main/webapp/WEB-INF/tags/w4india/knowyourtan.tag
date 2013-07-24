@@ -27,7 +27,7 @@
 <%@ tag import="java.util.*" %>
 
 <%@ attribute name="companyNameId" required="false" type="java.lang.String" %>
-<span><a id="findTanLink" href="">Find TAN</a></span>
+<span><a target="_new" id="findTanLink1" href="https://incometaxindiaefiling.gov.in/e-Filing/Services/KnowYourTanLink.html">Find TAN</a></span>
 
 <hst:element var="uiCustom" name="script">
     <hst:attribute name="type">text/javascript</hst:attribute>
