@@ -197,7 +197,7 @@
 		   		 return false;
 		   	 }else return true;
 			}else return false;
-		}, "Date of birth is invalid");
+		}, "Date is invalid");
 		function process(date){
 			var parts = date.split("/");
 			var date = new Date(parts[1] + "/" + parts[0] + "/" + parts[2]);
