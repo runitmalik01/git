@@ -96,6 +96,39 @@ public class ITReturnHomePageView {
 	public void setCanonicalUUID(String canonicalUUID) {
 		this.canonicalUUID = canonicalUUID;
 	}
+	
+	public String getDownloadSummaryURL() {
+		return downloadSummaryURL;
+	}
+
+	public void setDownloadSummaryURL(String downloadSummaryURL) {
+		this.downloadSummaryURL = downloadSummaryURL;
+	}
+
+	public String getDownloadXMLURL() {
+		return downloadXMLURL;
+	}
+
+	public void setDownloadXMLURL(String downloadXMLURL) {
+		this.downloadXMLURL = downloadXMLURL;
+	}
+
+	public String getEmailSummaryAndXMLURL() {
+		return emailSummaryAndXMLURL;
+	}
+
+	public void setEmailSummaryAndXMLURL(String emailSummaryAndXMLURL) {
+		this.emailSummaryAndXMLURL = emailSummaryAndXMLURL;
+	}
+
+	public String getViewReturnURL() {
+		return viewReturnURL;
+	}
+
+	public void setViewReturnURL(String viewReturnURL) {
+		this.viewReturnURL = viewReturnURL;
+	}
+
 
 	String pan;
 	FinancialYear financialYear;
@@ -105,6 +138,16 @@ public class ITReturnHomePageView {
 	ITRForm itrForm;
 	ITRServiceDelivery itrFormMode;
 	String canonicalUUID;
+	
+	/*
+	 * <li><a href="<hst:link path="/${basePath}/itreturn/${anEntry.financialYear.displayName}/${anEntry.filingSection.folderName}/${fn:toLowerCase(anEntry.pan)}/servicerequest-itr-download-summary.html"/>">Download Summary</a></li>
+				                  <li><a href="<hst:link  path="/${basePath}/itreturn/${anEntry.financialYear.displayName}/${anEntry.filingSection.folderName}/${fn:toLowerCase(anEntry.pan)}/servicerequest-itr-download-xml.html" />">Download XML</a></li>
+				                  <li><a href="<hst:link  path="/${basePath}/itreturn/${anEntry.financialYear.displayName}/${anEntry.filingSection.folderName}/${fn:toLowerCase(anEntry.pan)}/servicerequest-itr-email-xml-summary.html"/>?email=${anEntry.email}">Email Summary and XML</a></li>
+	 */
+	String downloadSummaryURL;
+	String downloadXMLURL;
+	String emailSummaryAndXMLURL;
+	String viewReturnURL;
 	
 	String lastOrOrgName;
 	String email;

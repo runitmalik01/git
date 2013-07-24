@@ -108,6 +108,19 @@
 	      <sv:value>itreturnhome</sv:value>
 	    </sv:property>
 	  </sv:node>
+	  <!-- Amit Patkar 07/23/2013 An Extra FAQ was added -->
+  	  <sv:node sv:name="FAQ" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+		  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+		    <sv:value>hst:sitemenuitem</sv:value>
+		  </sv:property>
+		  <sv:property sv:name="jcr:uuid" sv:type="String">
+		    <sv:value>d2946af0-29d1-42af-b2ac-78d84865c329</sv:value>
+		  </sv:property>
+		  <sv:property sv:name="hst:referencesitemapitem" sv:type="String">
+		    <sv:value>faq</sv:value>
+		  </sv:property>
+	  </sv:node>
+ 	  <!-- /Amit Patkar 07/23/2013 --> 
 	</sv:node>  
   <sv:node sv:name="aboutmenu">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">

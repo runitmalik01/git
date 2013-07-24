@@ -173,7 +173,7 @@ public class ITR1XmlGeneratorService {
 		address.setStateCode(memberPersonalInformation.getState().toUpperCase());
 		address.setCountryCode(memberPersonalInformation.getCountry().toUpperCase());
 		address.setPinCode(indianCurrencyHelper.bigIntegerRoundStr(memberPersonalInformation.getPinCode()));
-		if(!(memberPersonalInformation.getStdCode().isEmpty()) || !(memberPersonalInformation.getPhone().isEmpty())){
+		if(!(memberPersonalInformation.getStdCode().isEmpty()) && !(memberPersonalInformation.getPhone().isEmpty())){ 
 			Phone phone = new Phone();
 			phone.setSTDcode(indianCurrencyHelper.bigIntegerRoundStr(memberPersonalInformation.getStdCode()));
 			phone.setPhoneNo(indianCurrencyHelper.bigIntegerRoundStr(memberPersonalInformation.getPhone()));

@@ -793,12 +793,34 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 			</div>
 		</div>
 	</form>
+	<c:if test="${not empty isDuplicate && isDuplicate == 'true'}">
+		<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		  <div class="modal-header">
+		    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+		    <h3 id="myModalLabel">Application in Progress</h3>
+		  </div>
+		  <div class="modal-body">
+		    <p>An application is already in progress</p>
+		  </div>
+		  <div class="modal-footer">
+		    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+		    <button class="btn btn-primary">Continue</button>
+		  </div>
+		</div>
+	</c:if>
 </div>
 <res:client-validation
 	screenConfigurationDocumentName="startapplication"
 	formId="frmPersonalInfo" formSubmitButtonId="hrefLogin"></res:client-validation>
 <hst:element var="uiCustom" name="script">
 	<hst:attribute name="type">text/javascript</hst:attribute>
+		<%--
+	   <c:if test="${not empty isDuplicate && isDuplicate == 'true'}">
+        	$(document).ready( function() {
+        		$("#myModal").modal({'show':true});
+        	});
+        </c:if>
+         --%>
 		var mapOfItrFormWhoCanAndWhoCan = {};
 		var mapOfItrFormWhoCanAndWhoCannot = {};
 		var mapOfFilingMode = {};
@@ -989,6 +1011,6 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 	         }else{
               	$("#pi_country").val("");
               	 }
-              	  }
+              	  }       
 </hst:element>
 <hst:headContribution element="${uiCustom}" category="jsInternal" />

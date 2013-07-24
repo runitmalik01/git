@@ -11,71 +11,74 @@
     License for the specific language governing permissions and
     limitations under the License.
   -->
-<sv:node sv:name="search" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
-    <sv:property sv:name="jcr:primaryType" sv:type="Name">
-      <sv:value>hst:sitemapitem</sv:value>
-    </sv:property>
-    <sv:property sv:name="jcr:uuid" sv:type="String">
-      <sv:value>8950df76-a2a8-4d2a-beb1-193c94923528</sv:value>
-    </sv:property>
-    <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
-      <sv:value>hst:pages/search</sv:value>
-    </sv:property>
-    <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
-    </sv:property>
-    <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
-    </sv:property>
-    <sv:property sv:name="hst:refId" sv:type="String">
-      <sv:value>search</sv:value>
-    </sv:property>
-    <sv:node sv:name="tags">
-      <sv:property sv:name="jcr:primaryType" sv:type="Name">
-        <sv:value>hst:sitemapitem</sv:value>
-      </sv:property>
-      <sv:property sv:name="jcr:uuid" sv:type="String">
-        <sv:value>21d5761a-90b3-4abb-b214-e3570a0350ec</sv:value>
-      </sv:property>
-      <sv:property sv:name="hst:relativecontentpath" sv:type="String">
-        <sv:value>tagclouds/searchtags</sv:value>
-      </sv:property>
-      <sv:node sv:name="_any_">
-        <sv:property sv:name="jcr:primaryType" sv:type="Name">
-          <sv:value>hst:sitemapitem</sv:value>
-        </sv:property>
-        <sv:property sv:name="jcr:uuid" sv:type="String">
-          <sv:value>36e78113-992e-4d03-83a9-3ae070e1b2b7</sv:value>
-        </sv:property>
-        <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
-          <sv:value>hst:pages/search</sv:value>
-        </sv:property>
-        <sv:property sv:name="hst:relativecontentpath" sv:type="String">
-          <sv:value>${parent}/searchtags/${1}</sv:value>
-        </sv:property>
-      </sv:node>
-    </sv:node>
-    <sv:node sv:name="faceted">
-      <sv:property sv:name="jcr:primaryType" sv:type="Name">
-        <sv:value>hst:sitemapitem</sv:value>
-      </sv:property>
-      <sv:property sv:name="jcr:uuid" sv:type="String">
-        <sv:value>94acc667-5849-46d9-8c65-71982ca68c08</sv:value>
-      </sv:property>
-      <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
-        <sv:value>hst:pages/search</sv:value>
-      </sv:property>
-      <sv:node sv:name="_any_">
-        <sv:property sv:name="jcr:primaryType" sv:type="Name">
-          <sv:value>hst:sitemapitem</sv:value>
-        </sv:property>
-        <sv:property sv:name="jcr:uuid" sv:type="String">
-          <sv:value>1d9d9c26-43e4-4c49-9a8f-ba34e44733d4</sv:value>
-        </sv:property>
-        <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
-          <sv:value>hst:pages/search</sv:value>
-        </sv:property>
-        <sv:property sv:name="hst:relativecontentpath" sv:type="String">
-          <sv:value>searchfacets/${1}</sv:value>
-        </sv:property>
-      </sv:node>
-    </sv:node>
- </sv:node>
+<sv:node sv:name="searchfacets" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hippofacnav:facetnavigation</sv:value>
+  </sv:property>
+  <sv:property sv:name="hippo:count" sv:type="Long">
+    <sv:value>75</sv:value>
+  </sv:property>
+  <sv:property sv:name="hippo:docbase" sv:type="String">
+    <sv:value>996bcac5-86cf-49b5-a7a3-16a74863e814</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="hippofacnav:facetnodenames" sv:type="String">
+    <sv:value>Period</sv:value>
+    <sv:value>Document type</sv:value>
+    <sv:value>Category${sortby:'facetvalue', sortorder:'ascending'}</sv:value>
+    <sv:value>Date${sortby:'facetvalue', sortorder:'descending'}</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="hippofacnav:facets" sv:type="String">
+    <sv:value>mootlywcm:date$[{name:'This month', resolution:'month', begin:0, end:1},{name:'Last month', resolution:'month', begin:-1, end:0}, {name:'This year', resolution:'year', begin:0, end:1}]
+    </sv:value>
+    <sv:value>jcr:primaryType</sv:value>
+    <sv:value>mootlywcm:categories</sv:value>
+    <sv:value>mootlywcm:date$year</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="hippofacnav:filters" sv:type="String">
+    <sv:value>not(jcr:primaryType=ef:form)</sv:value>
+    <sv:value>not(jcr:primaryType=mootlywcm:banner)</sv:value>
+    <sv:value>not(jcr:primaryType=mootlywcm:comment)</sv:value>
+    <sv:value>not(jcr:primaryType=mootlywcm:restapi)</sv:value>
+    <sv:value>not(jcr:primaryType=mootlywcm:review)</sv:value>
+    <sv:value>not(jcr:primaryType=hippostd:directory)</sv:value>
+    <sv:value>not(jcr:primaryType=hippostd:folder)</sv:value>
+    <sv:value>not(jcr:primaryType=poll:polldocument)</sv:value>
+    <sv:value>not(jcr:primaryType=selection:valuelist)</sv:value>
+    <sv:value>not(jcr:primaryType=tcmp:tagcloud)</sv:value>
+    <sv:value>not(jcr:primaryType=mootlywcm:emailmessage)</sv:value>
+    <sv:value>not(jcr:primaryType=mootlywcm:MemberPersonalInformation)</sv:value>
+    <sv:value>not(jcr:primaryType=mootlywcm:product)</sv:value>
+    <sv:value>not(jcr:primaryType=mootlywcm:costmodel)</sv:value>
+    <sv:value>not(jcr:primaryType=mootlywcm:membersignupdocument)</sv:value>
+    <sv:value>not(jcr:primaryType=mootlywcm:event)</sv:value>
+    <sv:value>not(jcr:primaryType=mootlywcm:formsixteendocument)</sv:value>
+    <sv:value>not(jcr:primaryType=mootlywcm:screenconfig)</sv:value>
+    <sv:value>not(jcr:primaryType=mootlywcm:memberdrivedocument)</sv:value>
+    <sv:value>not(jcr:primaryType=mootlywcm:job)</sv:value>
+    <sv:value>not(jcr:primaryType=mootlywcm:othersourcesdocument)</sv:value>
+    <sv:value>not(jcr:primaryType=mootlywcm:payment)</sv:value>
+    <sv:value>not(jcr:primaryType=mootlywcm:deductiondocument)</sv:value>
+    <sv:value>not(jcr:primaryType=mootlywcm:houseproperty)</sv:value>
+    <sv:value>not(jcr:primaryType=mootlywcm:newsitem)</sv:value>
+    <sv:value>not(jcr:primaryType=mootlywcm:emailtemplate)</sv:value>
+    <sv:value>not(jcr:primaryType=mootlywcm:screencalculation)</sv:value>
+    <sv:value>not(jcr:primaryType=mootlywcm:PricingPlan)</sv:value>
+    <sv:value>not(jcr:primaryType=mootlywcm:salaryincomedocument)</sv:value>
+    <sv:value>not(jcr:primaryType=mootlywcm:tdsfromothersdocument)</sv:value>
+    <sv:value>not(jcr:primaryType=mootlywcm:selfassesmenttaxdocument)</sv:value>
+    <sv:value>not(jcr:primaryType=mootlywcm:ChangePasswordRequest)</sv:value>
+    <sv:value>not(jcr:primaryType=mootlywcm:advancetaxdocument)</sv:value>
+    <sv:value>not(jcr:primaryType=mootlywcm:servicerequestdocument)</sv:value>
+    <sv:value>not(jcr:primaryType=mootlywcm:notificationitems)</sv:value>
+    <sv:value>not(jcr:primaryType=mootlywcm:servicerequestform)</sv:value>
+    <sv:value>not(jcr:primaryType=mootlywcm:vendorsignupdocument)</sv:value>
+    <sv:value>not(jcr:primaryType=mootlywcm:ContactUs)</sv:value>
+    <sv:value>not(jcr:primaryType=mootlywcm:MemberRebateSectionEightyNine)</sv:value>
+  </sv:property>
+  <sv:property sv:name="hippofacnav:limit" sv:type="Long">
+    <sv:value>1000</sv:value>
+  </sv:property>
+  <sv:property sv:name="hippofacnav:skipresultsetfacetsavailable" sv:type="Boolean">
+    <sv:value>true</sv:value>
+  </sv:property>
+</sv:node>

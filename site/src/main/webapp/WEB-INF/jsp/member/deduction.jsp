@@ -15,9 +15,7 @@
 <fmt:setBundle basename="com.mootly.wcm.components.deduction-sections-${financialYear.displayName}" var="dSections"/>
 <div class="page">
 	<c:if test="${empty ischildofform16 || ischildofform16 !='true'}"><w4india:itrmenu/></c:if>
-	<div class="alert alert-error" id="chkentry">
-	Note:Please fill your Income before Deductions
-</div>
+	<div class="alert alert-info" id="chkentry">As some of the deductions are based on your income. Please ensure to fill all your total income before filling up deductions for an accurate summary of your return.</div>
 	<h4>Deductions</h4>
 	<h5><small>List of deductions</small></h5>
 		<table class="table table-hover table-bordered">
@@ -184,18 +182,20 @@
 				</c:forEach>
 			</c:if>
 		  	<hst:actionURL var="submitDeduction"></hst:actionURL>
-		    <form id="frmDeduction" method="post" name="frmDeduction" action="${submitDeduction}">
+		    <form id="<c:choose><c:when test="${pageAction == 'EDIT_CHILD'}">frmDeduction</c:when><c:otherwise>row_0</c:otherwise></c:choose>" method="post" name="frmDeduction" action="${submitDeduction}" class="frmDeduction">
 		    	<c:out value="${formHTML}" escapeXml="false"/>
 		    	<c:if test="${not empty successURL && not empty uuidform_16}"><input type="hidden" name="successURL" value="${scriptName}/${uuidform_16}/formsixteenedit"/></c:if>
 		    	<c:if test="${(pageAction == 'EDIT_CHILD' && not empty editingSection)}"><input type="hidden" name="decuuidform16" value="${childBean.form16Uuid}"/></c:if>
 		    	<c:if test="${not empty additionalScreenHTML}"><c:out value="${additionalScreenHTML}" escapeXml="false"/></c:if>
-
 		    </form>
 		  </div>
 		  <div class="modal-footer">
+		  
+		    <a href="#" class="btn btn-inverse" id="addNewBtn" style="display:none">Add New</a>
+		    
 		    <a href="<c:choose><c:when test="${not empty modUrlToredirect}"><c:out value="${modUrlToredirect}"/></c:when><c:otherwise><c:out value="${scriptName}?selectedItrTab="/><%=ITRTab.DEDUCTIONS%></c:otherwise></c:choose>" class="btn" data-dismiss="">Close</a>
 		    <c:if test="${pageAction =='EDIT_CHILD'}"><button class="btn btn-danger" onclick="$('#frmDeduction').attr('action','<c:out value="${scriptName}"/><c:out value="/${editingSection.canonicalUUID}"/>/deletec6deduction');$('#frmDeduction').attr('method','get');$('#frmDeduction').submit()">Delete</button></c:if>
-		    <a href="#" id="deductionSave" class="btn btn-primary">Save changes</a>
+		    <a href="#" id="<c:choose><c:when test="${pageAction =='NEW_CHILD'}">deductionSaveAJAX</c:when><c:otherwise>deductionSave</c:otherwise></c:choose>" class="btn btn-primary">Save changes</a>
 		  </div>
 		</div>
 	</c:if>
@@ -221,7 +221,7 @@
     <hst:attribute name="type">text/javascript</hst:attribute>
 		$(document).ready(function() {
 			if ($("#myModal").length >0) $("#myModal").modal();
-			$('#frmdata input').keydown(function(e) {
+			$('#frmdata input,.frmDeduction input').keydown(function(e) {
 			    if (e.keyCode == 13) {
 			   		e.preventDefault();
 			        $('#frmdata').submit();
@@ -248,20 +248,43 @@
  				 $('#frmDeduction').submit();
 			});
 
-			$("#deductionhead").change( function(o) {
+			$(".head").change( function(o) {
 					changeD(this);
 				}
 			);
-			changeD($("#deductionhead"));
+			changeD($(".head"));
 		});
 
 		function changeD(o) {
 			if ($(o).val() == 'others') {
-				$("#80cadditional").show();
+				$(o).parents('.frmDeduction').find(".80cadditional").show();
 			}
 			else {
-				$("#80cadditional").hide();
+				$(o).parents('.frmDeduction').find(".80cadditional").hide();
 			}
+		}
+		
+		$("#deductionSaveAJAX").click (ajaxSubmit);
+		
+		function ajaxSubmit() {
+			allForms = $(".frmDeduction");
+			$(".progress").show();
+			$(".progress").addClass('active');
+			$("#theProgressBar").css('width:0%');
+			var stepsIncrement = 100/allForms.length;
+			for (var i=0;i< allForms.length; i++ ) {
+				theData = $(allForms[i]).serialize();
+				$.ajax('<hst:actionURL></hst:actionURL>',
+						{
+						'data': theData,
+						'method':'POST',
+						'async':false											
+					}).done (function () {
+						$(".bar").css('width' , (stepsIncrement * (i +1)) + '%');
+					}) ;					
+			}
+			$(".progress").removeClass('active');
+			window.location.href = '../../chapterVIdeductions.html';
 		}
 </hst:element>
 <hst:headContribution element="${uiCustom}" category="jsInternal"/>

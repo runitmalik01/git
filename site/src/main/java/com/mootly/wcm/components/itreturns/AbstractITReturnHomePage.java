@@ -236,7 +236,7 @@ abstract public class AbstractITReturnHomePage extends ITReturnComponent {
 		ITReturnType itReturnType = ITReturnType.getByDisplayName(strItReturnType);
 		String strFinancialYear =  map.getField("fy").getValue();
 		FinancialYear financialYear = FinancialYear.getByDisplayName(strFinancialYear);
-		FilingSection filingSection =  FilingSection.valueOf(map.getField("ReturnSection").getValue());
+		FilingSection filingSection =  FilingSection.getByXmlCode(map.getField("ReturnSection").getValue());
 
 		if (StringUtils.isEmpty(pan) || StringUtils.isEmpty(strItReturnType) || StringUtils.isEmpty(strFinancialYear)){
 			return;
@@ -257,7 +257,7 @@ abstract public class AbstractITReturnHomePage extends ITReturnComponent {
 		StoreFormResult sfr = new StoreFormResult();				
 		FormUtils.persistFormMap(request, response, map, sfr);
 		//FormUtils.persistFormMap(request, response, getFormMap(), sfr);
-		String returnURL =  request.getContextPath() +"/member/itreturn/" + financialYear.getDisplayName() + "/" + itReturnType.getDisplayName() + "/" + pan.toLowerCase() + "/servicerequest-itr.html?uuid=" +  sfr.getUuid(); //getRedirectURL(request, response, FormSaveResult.SUCCESS,"packageselector",financialYear,itReturnType,pan);
+		String returnURL =  request.getContextPath() +"/member/itreturn/" + financialYear.getDisplayName() + "/" + filingSection.getFolderName() + "/" + pan.toLowerCase() + "/servicerequest-itr.html?uuid=" +  sfr.getUuid(); //getRedirectURL(request, response, FormSaveResult.SUCCESS,"packageselector",financialYear,itReturnType,pan);
 		//returnURL +="?uuid=" + 
 		try {
 			response.sendRedirect(returnURL);

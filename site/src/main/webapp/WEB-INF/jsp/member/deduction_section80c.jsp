@@ -12,12 +12,12 @@ ValueListService objValueListService = ValueListServiceImpl.getInstance();
 SortedSet<Map.Entry<String,String>> objHashMapstates = objValueListService.getStates();
 request.setAttribute("objHashMapstates", objHashMapstates);
 %>
-<fieldset id="80cadditional">
+<fieldset class="80cadditional" style="display:none">
 	<legend>Description</legend>
 	<div class="row-fluid show-grid">
 	      <div class="span8">
 	      	<div class="rowlabel"><label for="flex_string_doneeName"><small></small></label></div>
-	      	<div class="rowlabel"><textarea id="flex_string_doneeName" name="flex_string_doneeName" placeholder="Description" rows="5" cols="120">${doneeWithPAN.doneeName}</textarea></div>
+	      	<div class="rowlabel"><textarea name="flex_string_doneeName" placeholder="Description" rows="5" cols="120">${doneeWithPAN.doneeName}</textarea></div>
 	      </div>
 	</div>
 </fieldset>

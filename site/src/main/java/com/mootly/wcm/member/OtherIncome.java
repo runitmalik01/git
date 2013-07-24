@@ -10,6 +10,7 @@
 package com.mootly.wcm.member;
 
 
+import org.hippoecm.hst.component.support.forms.FormMap;
 import org.hippoecm.hst.core.component.HstComponentException;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
@@ -94,25 +95,36 @@ public class OtherIncome extends ITReturnComponent {
 			log.info("i am in do action of otherincome");
 		}
 	}
+	//Change by Amit Patkar 07/23/2013 Replace doBeforeSave by validate
+	/**
+	 * 
+	 */
 	@Override
-	public boolean beforeSave(HstRequest request) {
+	protected boolean validate(HstRequest request, HstResponse response,
+			FormMap formMap) {
 		// TODO Auto-generated method stub
-		boolean con_exempt=true;
-		String max_allowed_exempt=request.getRequestContext().getResolvedSiteMapItem().getParameter("max_allowed_exempt");
-		String total_taxfree_income=getFormMap().getField("Total_taxfree_income").getValue();
-		MemberPersonalInformation personalinfo=(MemberPersonalInformation)request.getAttribute(MemberPersonalInformation.class.getSimpleName().toLowerCase());
-		if(max_allowed_exempt!=null){
-			if(personalinfo.getSelectedITRForm().toString().equals("ITR1")){
-				if(Integer.parseInt(total_taxfree_income) > Integer.parseInt(max_allowed_exempt)){
-					log.info("Exceed Over Limit For ITR1");
-					eRROR_MAX_ALLOWED="err.maxallowed.exceed";
-					getFormMap().addMessage("Total_taxfree_income", "err.maxallowed.exceed");
-					con_exempt=false;
-				}else{
-					eRROR_MAX_ALLOWED=null;
+		boolean ret = super.validate(request, response, formMap);		
+		if (ret) {
+			boolean con_exempt=true;
+			String max_allowed_exempt=request.getRequestContext().getResolvedSiteMapItem().getParameter("max_allowed_exempt");
+			String total_taxfree_income=getFormMap().getField("Total_taxfree_income").getValue();
+			MemberPersonalInformation personalinfo=(MemberPersonalInformation)request.getAttribute(MemberPersonalInformation.class.getSimpleName().toLowerCase());
+			if(max_allowed_exempt!=null){
+				if(personalinfo.getSelectedITRForm().toString().equals("ITR1")){
+					if(Integer.parseInt(total_taxfree_income) > Integer.parseInt(max_allowed_exempt)){
+						log.info("Exceed Over Limit For ITR1");
+						eRROR_MAX_ALLOWED="err.maxallowed.exceed";
+						getFormMap().addMessage("Total_taxfree_income", "err.maxallowed.exceed");
+						con_exempt=false;
+					}else{
+						eRROR_MAX_ALLOWED=null;
+					}
 				}
 			}
+			return con_exempt;
 		}
-		return con_exempt;
-	}
+		else {
+			return ret;
+		}		
+	}	
 }

@@ -1,3 +1,4 @@
+<%@tag import="com.mootly.wcm.model.FilingSection"%>
 <%@tag import="com.mootly.wcm.model.ITReturnType"%>
 <%@tag import="com.mootly.wcm.model.FinancialYear"%>
 <%@tag import="net.sf.ehcache.store.MemoryStoreEvictionPolicy.MemoryStoreEvictionPolicyEnum"%>
@@ -71,6 +72,11 @@ if (!noMenu) {
 		propertyToCheck = itrForm + ".enabled";
 		FinancialYear financialYear = (FinancialYear) request.getAttribute("financialYear");
 		ITReturnType itReturnType = (ITReturnType) request.getAttribute("itReturnType");
+		String strReturnSection = memberPersonalInformation.getReturnSection();
+		if (strReturnSection != null) {
+			FilingSection filingSection = FilingSection.getByXmlCode(strReturnSection);
+			request.setAttribute("filingSection", filingSection);
+		}
 		
 		serviceItemKey = memberPersonalInformation.getPAN() + "-" + financialYear.getDisplayAssessmentYear() + "-" + itrForm + "-" + itReturnType +	"-" + itrServiceDelivery;
 		if (serviceItemKey != null) request.setAttribute("serviceItemKey", serviceItemKey);
@@ -295,7 +301,8 @@ for (HstSiteMenuItem siteMenuItem : itrSiteMenu.getSiteMenuItems() ){
 <% 
 if (!didWeFindTheResolvedMapItemInMenu && !hasDIY) { %>
 <% 	
-	//HstResponse hstResponse = (HstResponse) response;
+	
+//HstResponse hstResponse = (HstResponse) response;
 	//HstResponseUtils.sendRedirect(hstRequest,hstResponse,"root");
 	//return;
 }  

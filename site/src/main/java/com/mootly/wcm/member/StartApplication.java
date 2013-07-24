@@ -90,6 +90,15 @@ public class StartApplication extends ITReturnComponent {
 		// TODO Auto-generated method stub
 		super.doBeforeRender(request, response);
 		parentBean=(MemberPersonalInformation)request.getAttribute("parentBean");
+		
+		String checkForDuplicate = request.getRequestContext().getResolvedSiteMapItem().getParameter("checkForDuplicate");
+		if (checkForDuplicate != null && checkForDuplicate.trim().equals("true")) {
+			if (parentBean != null) {
+				//duplicate information
+				request.setAttribute("isDuplicate", "true");
+			}
+		}
+		
 		String publicParameterUUID = getPublicRequestParameter(request, "uuid");
 		if(publicParameterUUID==null){
 			publicParameterUUID=(String)request.getSession().getAttribute("uuid");

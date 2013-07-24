@@ -348,6 +348,15 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 				formMap.addFormField(formFieldXml);
 				formMap.addFormField(formFieldFinancialYear);
 				
+				//07/23/2013
+				FormField formFieldIsValid = new FormField("isValid");
+				formFieldIsValid.addValue(String.valueOf(validationResponse.isValid()));
+				FormField formFieldErrors = new FormField("errors");
+				formFieldErrors.addValue(String.valueOf(validationResponse.getErrors()));
+				formMap.addFormField(formFieldIsValid);
+				formMap.addFormField(formFieldErrors);
+				//end changes 
+				
 				StoreFormResult sfr = new StoreFormResult();	
 				FormUtils.persistFormMap(request, response, formMap, sfr);
 				try {

@@ -82,7 +82,7 @@
 				</tr>
 				<tr>
 					<td colspan="1">&nbsp;&nbsp;&nbsp;&nbsp;
-					<a href="houseincome.html"  style="color: blue">
+					<a href="singlehouseincome.html"  style="color: blue">
 						<fmt:message key="income.house.itr1" />
 					</a>
 					</td>
