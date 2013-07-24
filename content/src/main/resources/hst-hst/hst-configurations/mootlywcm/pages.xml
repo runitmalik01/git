@@ -247,6 +247,17 @@
           <sv:value>standard.header.re.menu-main</sv:value>
         </sv:property>
       </sv:node>
+      <sv:node sv:name="top-widget">
+          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+            <sv:value>hst:component</sv:value>
+          </sv:property>
+          <sv:property sv:name="jcr:uuid" sv:type="String">
+              <sv:value>181b7f3b-87f2-4da6-ad05-d242208d67c4</sv:value>
+          </sv:property>
+          <sv:property sv:name="hst:template" sv:type="String">
+             <sv:value>standard.header.re.top-widget</sv:value>
+          </sv:property>
+    </sv:node>
     </sv:node>
     <sv:node sv:name="main">
       <sv:property sv:name="jcr:primaryType" sv:type="Name">
