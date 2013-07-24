@@ -115,8 +115,6 @@
 		  /*buttonText: "Calendar",*/
 	      dateFormat: "dd/mm/yy"
 		});
-		var d = new Date();
-		var maxDate="01/04/"+d.getFullYear();
 		$.datepicker.setDefaults( $.datepicker.regional[ "fr" ] );
 		$.validator.addMethod("pan", function(value, element) {
 		   	 return this.optional(element) || /^[a-zA-Z]{3}[p|P|c|C|h|H|f|F|a|A|t|T|b|B|l|L|j|J|g|G][a-zA-Z]\d{4}[a-zA-Z]{1}?$/i.test(value);
@@ -191,18 +189,9 @@
 	       .change(function(){
 	          this.value = this.value.toUpperCase();
 	       });		
-		$.validator.addMethod("indiandate", function(value, element) {
-			if(/^[0-9]{2}\/[0-9]{2}\/[0-9]{4}?$/i.test(value)){
-		   	 if(process(value)>process(maxDate)){
-		   		 return false;
-		   	 }else return true;
-			}else return false;
-		}, "Date is invalid");
-		function process(date){
-			var parts = date.split("/");
-			var date = new Date(parts[1] + "/" + parts[0] + "/" + parts[2]);
-			return date.getTime();
-		};
+		
+		
+
 	</script>	
 	<script type="text/javascript">
 	 	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
