@@ -173,7 +173,7 @@ public class ITR1XmlGeneratorService {
 		address.setStateCode(memberPersonalInformation.getState().toUpperCase());
 		address.setCountryCode(memberPersonalInformation.getCountry().toUpperCase());
 		address.setPinCode(indianCurrencyHelper.bigIntegerRoundStr(memberPersonalInformation.getPinCode()));
-		if(!(memberPersonalInformation.getStdCode().isEmpty()) && !(memberPersonalInformation.getPhone().isEmpty())){ 
+		if(!(memberPersonalInformation.getStdCode().isEmpty()) && !(memberPersonalInformation.getPhone().isEmpty())){
 			Phone phone = new Phone();
 			phone.setSTDcode(indianCurrencyHelper.bigIntegerRoundStr(memberPersonalInformation.getStdCode()));
 			phone.setPhoneNo(indianCurrencyHelper.bigIntegerRoundStr(memberPersonalInformation.getPhone()));
@@ -375,9 +375,14 @@ public class ITR1XmlGeneratorService {
 				}
 			}
 		}
-
+        // added on 24/07/2013 by Dhananjay to compare the value of relief89 with gross tax liability
 		itr1TaxComputation.setSection89(Relief89Total);
-		itr1TaxComputation.setNetTaxLiability(itr1TaxComputation.getGrossTaxLiability().subtract(Relief89Total));
+		if(Relief89Total.longValue()>itr1TaxComputation.getGrossTaxLiability().longValue()){
+			itr1TaxComputation.setNetTaxLiability(new BigInteger("0"));
+		}else{
+			itr1TaxComputation.setNetTaxLiability(itr1TaxComputation.getGrossTaxLiability().subtract(Relief89Total));
+		}
+		//end fixing
 
 		//interest calculation
 
@@ -492,8 +497,8 @@ public class ITR1XmlGeneratorService {
 		intrstPay.setIntrstPayUs234C(Interest234C);
 		intrstPay.setTotalIntrstPay(TotalInterest);
 		itr1TaxComputation.setIntrstPay(intrstPay);
-		itr1TaxComputation.setTotTaxPlusIntrstPay(itr1TaxComputation.getNetTaxLiability().add(itr1TaxComputation.getTotalIntrstPay()));
 
+		itr1TaxComputation.setTotTaxPlusIntrstPay(itr1TaxComputation.getNetTaxLiability().add(itr1TaxComputation.getTotalIntrstPay()));
 		itr1.setITR1TaxComputation(itr1TaxComputation);
 
 		BigInteger advancetax =new BigInteger ("0");
