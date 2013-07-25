@@ -1,5 +1,8 @@
 package com.mootly.wcm.model;
 
+import com.mootly.wcm.beans.MemberPersonalInformation;
+import com.mootly.wcm.member.StartApplication;
+
 public class ITReturnHomePageView {
 	
 	public FinancialYear getFinancialYear() {
@@ -65,6 +68,19 @@ public class ITReturnHomePageView {
 	public void setLastOrOrgName(String lastOrOrgName) {
 		this.lastOrOrgName = lastOrOrgName;
 	}
+  public void setFullName(String fullname){
+	  this.fullname=fullname;
+  }
+	public String getFullName(){
+		return fullname;
+	}
+	public void setDOB(String dob){
+		this.dob=dob;
+	}
+	public String getDOB(){
+		return dob;
+	}
+	
 	public void setITRFormMode(ITRServiceDelivery itrFormMode){
 		this.itrFormMode=itrFormMode;
 	}
@@ -151,6 +167,7 @@ public class ITReturnHomePageView {
 	
 	String lastOrOrgName;
 	String email;
-	
+	String dob;
+	String fullname;
 	
 }
