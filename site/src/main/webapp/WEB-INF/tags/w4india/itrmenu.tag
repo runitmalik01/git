@@ -281,9 +281,9 @@ for (HstSiteMenuItem siteMenuItem : itrSiteMenu.getSiteMenuItems() ){
 			                     <li><a href="servicerequest-itr-summary.html?show=xml">View XML</a></li>		                     	
 			                     <li class="divider"></li>
 			                      --%>
-			                     <li><a href="servicerequest-itr-download-xml.html">Download XML</a></li>
-		                     	<li><a href="servicerequest-itr-download-summary.html">Download Summary</a></li>
-		                     	<li><a href="servicerequest-itr-email-xml-summary.html?email=<%=deliveryEmail%>">Email to <small>(<%=deliveryEmail%>)</small></a></li>
+			                     <li><a href="${scriptName}/../servicerequest-itr-download-xml.html">Download XML</a></li>
+		                     	<li><a href="${scriptName}/../servicerequest-itr-download-summary.html">Download Summary</a></li>
+		                     	<li><a href="${scriptName}/../servicerequest-itr-email-xml-summary.html?email=<%=deliveryEmail%>">Email to <small>(<%=deliveryEmail%>)</small></a></li>
 		                  </ul>
 		               </li>
 		            </ul>
@@ -295,6 +295,31 @@ for (HstSiteMenuItem siteMenuItem : itrSiteMenu.getSiteMenuItems() ){
    </div>
    <!-- /navbar-inner -->
 </div>
+<%--ITR1.packageName.DIY.package --%>
+<c:if test="${not empty memberpersonalinformation}">
+	<div style="font-size:10px; border: 1px dashed #ccc;padding:5px;">
+		<span>ITR Prepared for: <b><u><c:out value="${memberpersonalinformation.name}"/></u></b></span> | 
+		<span>DOB: <b><u><c:out value="${memberpersonalinformation.DOBStr}"/></u></b></span> |
+		<span>AY: <b><u><c:out value="${financialYear.displayAssessmentYear}"/></u></b></span> |
+		<span>FY: <b><u><c:out value="${financialYear.displayName}"/></u></b></span> |
+		<span>Section : <b><u><c:out value="${filingSection.desc}"/></u></b></span> |
+		<span>Package : <b><u><fmt:message key="${itrForm}.packageName.${memberpersonalinformation.selectedServiceDeliveryOption}.package"/></u></b></span> |
+		<span>Payment : <b><u> 
+			<c:choose>
+				<c:when
+					test="${not empty memberpayment.paymentVerificationStatus && memberpayment.paymentVerificationStatus == 'VERIFIED'}">
+					<a href="${scriptName}/../servicerequest-itr-payment.html">Verified</a>
+				</c:when>
+				<c:when test="${not empty memberpayment && ( empty memberpayment.paymentVerificationStatus || memberpayment.paymentVerificationStatus != 'VERIFIED' )}">
+					<a href="${scriptName}/../servicerequest-itr-payment.html">Under Review</a>					   
+				</c:when>
+				<c:otherwise>
+					<a href="${scriptName}/../servicerequest-itr-payment.html"><fmt:message key="${itrForm}.packageName.${memberpersonalinformation.selectedServiceDeliveryOption}.cost" var="totalCost" />Due (<w4india:inr value="${totalCost}"/>)</a>
+				</c:otherwise>
+			</c:choose>
+		</u></b></span>
+	</div>
+</c:if>
 <%-- you kidding me?? can't escape  --%>
 <%-- this is not working as the response has already been sent to the browser --%>
 <%-- //todo we need to more this entire damn logic into a java component --%>
@@ -331,6 +356,14 @@ class MenuComparator implements Comparator<HstSiteMenuItem> {
 }
 
 %>
+
+<hst:element var="uiCustom" name="style">
+    <hst:attribute name="type">text/css</hst:attribute>
+    .navbar {
+		margin-bottom: 5px;
+	}    
+</hst:element>
+<hst:headContribution element="${uiCustom}" category="jsInternal"/>
 <%-- no need for a shopping cart for now --%>
 <%--
 <hst:element var="uiCustom" name="script">
