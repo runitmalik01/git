@@ -631,7 +631,7 @@ public class ITR1XmlGeneratorService {
 		}else
 			DedExc80G =  deductUndChapVIA.getTotalChapVIADeductions();
 		//List<DeductionDocumentDetail> listOfDeductionDocumentDetail = get
-		if(listOfDeductionDocumentDetail != null && listOfDeductionDocumentDetail.size() > 0){
+		//if(listOfDeductionDocumentDetail != null && listOfDeductionDocumentDetail.size() > 0){
 			//List<DeductionDocumentDetail> listOfDeductionDocumentDetail = deductionDocument.getDeductionDocumentDetailList();
 			if (listOfDeductionDocumentDetail!= null && listOfDeductionDocumentDetail.size() > 0 ){
 				Don100Percent don100Percent = new Don100Percent();
@@ -683,19 +683,28 @@ public class ITR1XmlGeneratorService {
 							Total100Appr = Total100Appr.add(Investment);
 							long adjGrossTotal=grsstotal - DedExc80G.longValue();
 							long NetQualifyLmt=(long) (adjGrossTotal*0.1);
+							//loop to show total eligible deduction amount
 							if(Total100Appr.longValue()  > 0){
 								if(NetQualifyLmt>Total100Appr.longValue()){
 									don100PercentApprReqd.setTotEligibleDon100PercentApprReqd(Total100Appr);
-									doneeWithPan.setEligibleDonationAmt(indianCurrencyHelper.bigIntegerRound(deductionDocumentDetail.getInvestment()));
-
 								}else if(NetQualifyLmt<=Total100Appr.longValue() && NetQualifyLmt>0){
 									don100PercentApprReqd.setTotEligibleDon100PercentApprReqd(indianCurrencyHelper.longToBigInteger(NetQualifyLmt));
-									doneeWithPan.setEligibleDonationAmt(indianCurrencyHelper.longToBigInteger(NetQualifyLmt));
 
 								}else if(NetQualifyLmt<Total100Appr.longValue() && NetQualifyLmt<=0){
 									don100PercentApprReqd.setTotEligibleDon100PercentApprReqd(new BigInteger("0"));
-									doneeWithPan.setEligibleDonationAmt(new BigInteger("0"));
 
+								}
+							}
+							//loop to show Eligible Donation amount for each entry
+							if(deductionDocumentDetail.getInvestment().longValue()  > 0){
+								if(NetQualifyLmt>deductionDocumentDetail.getInvestment().longValue()){
+									doneeWithPan.setEligibleDonationAmt(indianCurrencyHelper.bigIntegerRound(deductionDocumentDetail.getInvestment()));
+
+								}else if(NetQualifyLmt<=deductionDocumentDetail.getInvestment().longValue() && NetQualifyLmt>0){
+									doneeWithPan.setEligibleDonationAmt(indianCurrencyHelper.longToBigInteger(NetQualifyLmt));
+
+								}else if(NetQualifyLmt<deductionDocumentDetail.getInvestment().longValue() && NetQualifyLmt<=0){
+									doneeWithPan.setEligibleDonationAmt(new BigInteger("0"));
 								}
 							}
 							don100PercentApprReqd.getDoneeWithPan().add(doneeWithPan);
@@ -743,6 +752,7 @@ public class ITR1XmlGeneratorService {
 
 							long adjGrossTotal=grsstotal - DedExc80G.longValue();
 							long NetQualifyLmt=(long) (adjGrossTotal*0.1);
+							// loop to show  total eligible deduction under this head
 							if(Total50Appr.longValue()  > 0){
 								if(NetQualifyLmt>Total50Appr.longValue()/2){
 									don50PercentApprReqd.setTotEligibleDon50PercentApprReqd(Total50Appr.divide(new BigInteger("2")));
@@ -755,6 +765,16 @@ public class ITR1XmlGeneratorService {
 									doneeWithPan.setEligibleDonationAmt(new BigInteger("0"));
 								}
 							}
+							// loop to show eligible donation amount for each entry
+							if(deductionDocumentDetail.getInvestment().longValue()  > 0){
+								if(NetQualifyLmt>deductionDocumentDetail.getInvestment().longValue()/2){
+									doneeWithPan.setEligibleDonationAmt(indianCurrencyHelper.bigIntegerRound(deductionDocumentDetail.getInvestment()).divide(new BigInteger("2")));
+								}else if(NetQualifyLmt<=deductionDocumentDetail.getInvestment().longValue()/2 && NetQualifyLmt>0){
+									doneeWithPan.setEligibleDonationAmt(indianCurrencyHelper.longToBigInteger(NetQualifyLmt));
+								}else if(NetQualifyLmt<deductionDocumentDetail.getInvestment().longValue()/2 && NetQualifyLmt<=0){
+									doneeWithPan.setEligibleDonationAmt(new BigInteger("0"));
+								}
+							}
 							don50PercentApprReqd.getDoneeWithPan().add(doneeWithPan);
 							schedule80G.setDon50PercentApprReqd(don50PercentApprReqd);
 						}
@@ -763,7 +783,7 @@ public class ITR1XmlGeneratorService {
 					}
 				}
 			}
-		}
+
 		if(flag==true)
 			itr1.setSchedule80G(schedule80G);
 		//end fixing
