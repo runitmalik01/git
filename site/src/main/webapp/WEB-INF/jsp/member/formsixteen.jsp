@@ -80,7 +80,7 @@
 								readonly="readonly" />
 						</div>
 					</div>
-					<div class="span3">
+					<div class="span4">
 						<div class="rowlabel">
 							<label for="pan_deductor">PAN of Employer</label>
 						</div>
@@ -93,7 +93,7 @@
 
 				</div>
 				<div class="row-fluid show-grid">
-					<div class="span3">
+					<div class="span4">
 						<div class="rowlabel">
 							<label for="tan_deductor">TAN of Employer <small><w4india:knowyourtan companyNameId="employer"/></small></label>
 						</div>
@@ -102,7 +102,7 @@
 								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.tan_deductor}"/></c:if>">
 						</div>
 					</div>
-					<div class="span3">
+					<div class="span4">
 						<div class="rowlabel">
 							<label>PAN of Employee </label> <input type="text"
 								name="pan_employee" class="uprcase"
