@@ -306,14 +306,14 @@
       </build>
     </profile>
   </profiles>
-
+	<!-- 
   <repositories>
     <repository>
       <id>openqa</id>
       <url>http://nexus.openqa.org/content/repositories/releases</url>
     </repository>
   </repositories>
-
+ -->
   <pluginRepositories>    	
     <pluginRepository>
       <id>codehaus.snapshots</id>

@@ -324,7 +324,7 @@
 		<module>hippo-addon-indiantax-itr-schemas</module>
         <module>cms</module>
         <module>site</module>
-        <module>integration-tests</module>
+        <!--<module>integration-tests</module>-->
         <module>server-config</module>
       </modules>
     </profile>
@@ -430,8 +430,4 @@
     </profile>
 
   </profiles>
-
-  <modules>
-  	<module>mootlywcm-uploaditr</module>
-  </modules>
 </project>
