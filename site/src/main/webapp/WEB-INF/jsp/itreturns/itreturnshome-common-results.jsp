@@ -16,7 +16,8 @@ HstRequest hstRequest = (HstRequest) request;
 		<table class="table table-striped table-hover">
 			<tr>
 				<th>PAN</th>
-				<th><fmt:message key="member.homepage.lastname"/></th>
+				<th>Name</th>
+				<th>Date of Birth</th>
 				<th>FY</th>
 				<th>Filing As</th>
 				<th>Package</th> 
@@ -37,7 +38,9 @@ HstRequest hstRequest = (HstRequest) request;
 						<hst:link var="viewLink" path="/${basePath}/itreturn${additionalParam}/${anEntry.financialYear.displayName}/${anEntry.filingSection.folderName}/${fn:toLowerCase(anEntry.pan)}/servicerequest-itr.html"/>
 						<span style="text-transform:uppercase;"><a href="${viewLink}"><c:out value="${anEntry.pan}"/></a></span>
 					</td>
-					<td class="pan"><b><c:out value="${anEntry.lastOrOrgName}"/></b></td>
+					<!-- <td class="pan"><b><c:out value="${anEntry.lastOrOrgName}"/></b></td> -->
+					<td><c:out value="${anEntry.fullName}"/></td>
+					<td><c:out value="${anEntry.DOB}"/></td>
 					<td class="filingStatus decimal"><span><c:out value="${anEntry.financialYear}"/></span></td>
 					<td class="filingStatus decimal"><c:out value="${anEntry.filingStatus}"/></td>
 					<td><fmt:message key="${anEntry.ITRForm}.packageName"/></td>
