@@ -193,6 +193,8 @@ abstract public class AbstractITReturnHomePage extends ITReturnComponent {
 						itReturnHomePageView.setITRForm(m.getSelectedITRForm());
 						itReturnHomePageView.setITRFormMode(m.getSelectedServiceDeliveryOption());
 						itReturnHomePageView.setEmail(m.getEmail());
+						itReturnHomePageView.setDOB(m.getDOBStr());
+						itReturnHomePageView.setFullName(m.getName());
 						String stringUUID= theMemberFolderBean.getCanonicalUUID();
 						itReturnHomePageView.setCanonicalUUID(stringUUID);
 						
