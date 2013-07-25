@@ -619,7 +619,7 @@ public class ITR1XmlGeneratorService {
 
 		itr1.setFilingStatus(filingstatus);
 		//Schedule80G
-
+        //Changes made in Donation80g on 25/07/2013 by Dhananjay to add two new fields(Donation Amount And Eligible Donation Amount)under each head
 		BigInteger Total100Appr = new BigInteger("0");
 		BigInteger Total100NoAppr = new BigInteger("0");
 		BigInteger Total50Appr = new BigInteger("0");
@@ -653,6 +653,8 @@ public class ITR1XmlGeneratorService {
 							addressDetail.setStateCode(doneewithPan.getDoneeState());
 							addressDetail.setPinCode(indianCurrencyHelper.bigIntegerRoundStr(doneewithPan.getDoneePostalCode()));
 							doneeWithPan.setAddressDetail(addressDetail);
+							doneeWithPan.setDonationAmt(indianCurrencyHelper.bigIntegerRound(deductionDocumentDetail.getInvestment()));
+							doneeWithPan.setEligibleDonationAmt(indianCurrencyHelper.bigIntegerRound(deductionDocumentDetail.getInvestment()));
 							don100Percent.getDoneeWithPan().add(doneeWithPan);
 							BigInteger Investment = indianCurrencyHelper.bigIntegerRound(deductionDocumentDetail.getInvestment());
 							Total100NoAppr = Total100NoAppr.add(Investment);
@@ -675,7 +677,8 @@ public class ITR1XmlGeneratorService {
 							addressDetail.setStateCode(doneewithPan.getDoneeState());
 							addressDetail.setPinCode(indianCurrencyHelper.bigIntegerRoundStr(doneewithPan.getDoneePostalCode()));
 							doneeWithPan.setAddressDetail(addressDetail);
-							don100PercentApprReqd.getDoneeWithPan().add(doneeWithPan);
+							doneeWithPan.setDonationAmt(indianCurrencyHelper.bigIntegerRound(deductionDocumentDetail.getInvestment()));
+
 							BigInteger Investment = indianCurrencyHelper.bigIntegerRound(deductionDocumentDetail.getInvestment());
 							Total100Appr = Total100Appr.add(Investment);
 							long adjGrossTotal=grsstotal - DedExc80G.longValue();
@@ -683,12 +686,19 @@ public class ITR1XmlGeneratorService {
 							if(Total100Appr.longValue()  > 0){
 								if(NetQualifyLmt>Total100Appr.longValue()){
 									don100PercentApprReqd.setTotEligibleDon100PercentApprReqd(Total100Appr);
+									doneeWithPan.setEligibleDonationAmt(indianCurrencyHelper.bigIntegerRound(deductionDocumentDetail.getInvestment()));
+
 								}else if(NetQualifyLmt<=Total100Appr.longValue() && NetQualifyLmt>0){
 									don100PercentApprReqd.setTotEligibleDon100PercentApprReqd(indianCurrencyHelper.longToBigInteger(NetQualifyLmt));
+									doneeWithPan.setEligibleDonationAmt(indianCurrencyHelper.longToBigInteger(NetQualifyLmt));
+
 								}else if(NetQualifyLmt<Total100Appr.longValue() && NetQualifyLmt<=0){
 									don100PercentApprReqd.setTotEligibleDon100PercentApprReqd(new BigInteger("0"));
+									doneeWithPan.setEligibleDonationAmt(new BigInteger("0"));
+
 								}
 							}
+							don100PercentApprReqd.getDoneeWithPan().add(doneeWithPan);
 							don100PercentApprReqd.setTotDon100PercentApprReqd(Total100Appr);
 							schedule80G.setDon100PercentApprReqd(don100PercentApprReqd);
 						}
@@ -701,6 +711,8 @@ public class ITR1XmlGeneratorService {
 							addressDetail.setStateCode(doneewithPan.getDoneeState());
 							addressDetail.setPinCode(indianCurrencyHelper.bigIntegerRoundStr(doneewithPan.getDoneePostalCode()));
 							doneeWithPan.setAddressDetail(addressDetail);
+							doneeWithPan.setDonationAmt(indianCurrencyHelper.bigIntegerRound(deductionDocumentDetail.getInvestment()));
+							doneeWithPan.setEligibleDonationAmt(indianCurrencyHelper.bigIntegerRound(deductionDocumentDetail.getInvestment()).divide(new BigInteger("2")));
 							don50PercentNoApprReqd.getDoneeWithPan().add(doneeWithPan);
 							BigInteger Investment = indianCurrencyHelper.bigIntegerRound(deductionDocumentDetail.getInvestment());
 							Total50NoAppr = Total50NoAppr.add(Investment);
@@ -723,7 +735,8 @@ public class ITR1XmlGeneratorService {
 							addressDetail.setStateCode(doneewithPan.getDoneeState());
 							addressDetail.setPinCode(indianCurrencyHelper.bigIntegerRoundStr(doneewithPan.getDoneePostalCode()));
 							doneeWithPan.setAddressDetail(addressDetail);
-							don50PercentApprReqd.getDoneeWithPan().add(doneeWithPan);
+							doneeWithPan.setDonationAmt(indianCurrencyHelper.bigIntegerRound(deductionDocumentDetail.getInvestment()));
+
 							BigInteger Investment = indianCurrencyHelper.bigIntegerRound(deductionDocumentDetail.getInvestment());
 							Total50Appr = Total50Appr.add(Investment);
 							don50PercentApprReqd.setTotDon50PercentApprReqd(Total50Appr);
@@ -733,12 +746,16 @@ public class ITR1XmlGeneratorService {
 							if(Total50Appr.longValue()  > 0){
 								if(NetQualifyLmt>Total50Appr.longValue()/2){
 									don50PercentApprReqd.setTotEligibleDon50PercentApprReqd(Total50Appr.divide(new BigInteger("2")));
+									doneeWithPan.setEligibleDonationAmt(indianCurrencyHelper.bigIntegerRound(deductionDocumentDetail.getInvestment()).divide(new BigInteger("2")));
 								}else if(NetQualifyLmt<=Total50Appr.longValue()/2 && NetQualifyLmt>0){
 									don50PercentApprReqd.setTotEligibleDon50PercentApprReqd(indianCurrencyHelper.longToBigInteger(NetQualifyLmt));
+									doneeWithPan.setEligibleDonationAmt(indianCurrencyHelper.longToBigInteger(NetQualifyLmt));
 								}else if(NetQualifyLmt<Total100Appr.longValue()/2 && NetQualifyLmt<=0){
 									don50PercentApprReqd.setTotEligibleDon50PercentApprReqd(new BigInteger("0"));
+									doneeWithPan.setEligibleDonationAmt(new BigInteger("0"));
 								}
 							}
+							don50PercentApprReqd.getDoneeWithPan().add(doneeWithPan);
 							schedule80G.setDon50PercentApprReqd(don50PercentApprReqd);
 						}
 						schedule80G.setTotalDonationsUs80G(Total100NoAppr.add(Total100Appr).add(Total50NoAppr).add(Total50Appr));
@@ -749,6 +766,7 @@ public class ITR1XmlGeneratorService {
 		}
 		if(flag==true)
 			itr1.setSchedule80G(schedule80G);
+		//end fixing
 
 		//TDSonSalaries
 
