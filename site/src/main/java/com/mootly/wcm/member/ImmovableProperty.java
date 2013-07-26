@@ -33,7 +33,7 @@ import com.mootly.wcm.model.FinancialYear;
  */
 @PrimaryBean(primaryBeanClass=ImmovablePropertyDocument.class)
 @ChildBean(childBeanClass=ImmovablePropertyDetail.class)
-@FormFields(fieldNames={"country_code","address_property","total_investment"})
+@FormFields(fieldNames={"country_code","address_property","total_investment","country_name"})
 
 
 
