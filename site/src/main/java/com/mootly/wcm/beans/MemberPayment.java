@@ -362,7 +362,17 @@ public class MemberPayment extends FlexibleDocument implements ContentNodeBinder
 		if (formMap.getField("rtgsTransNumber") != null) setRtgsTransNumber( formMap.getField("rtgsTransNumber").getValue());
 		
 		if (formMap.getField("rtgsTransNumber") != null) setPaymentDate( ConvDateStringToCalendar ( formMap.getField("paymentDate").getValue()) );
-		//if (formMap.getField("paymentVerificationStatus") != null) setPaymentVerificationStatus( PaymentVerificationStatus.valueOf( formMap.getField("paymentVerificationStatus").getValue() ));
+		
+		if (formMap.getField("paymentVerificationStatus") != null) {
+			String memberPaymentStatus = formMap.getField("paymentVerificationStatus").getValue();
+			if (memberPaymentStatus != null && !memberPaymentStatus.trim().equals("")) {
+				try {
+					setPaymentVerificationStatus( PaymentVerificationStatus.valueOf( memberPaymentStatus ));
+				}catch (IllegalArgumentException ile) {
+					log.warn("Error parsing",ile);
+				}
+			}
+		}
 	}
 	
 	@Override
