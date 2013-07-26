@@ -35,7 +35,7 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 				<div class="span4">
 					<div class="rowlabel">
 						<label for="country_code"><small><fmt:message
-									key="foreign.country.code" /> </small> </label>
+									key="foreign.country.name" /> </small> </label>
 					</div>
 					
 					<select id="country_code" name="country_code" class="uprcase" onchange="getCountryName()">
