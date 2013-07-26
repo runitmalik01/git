@@ -14,6 +14,7 @@ import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.commons.lang.StringUtils;
@@ -281,6 +282,10 @@ abstract public class AbstractITReturnHomePage extends ITReturnComponent {
 		FormUtils.persistFormMap(request, response, map, sfr);
 		//FormUtils.persistFormMap(request, response, getFormMap(), sfr);
 		Long nextId = getSequenceGenerator().getNextId(SequenceGenerator.SEQUENCE_FOLDER_NAME);
+		if (nextId == 0) {
+			response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+			return;
+		}
 		String returnURL =  request.getContextPath() +"/member/itreturn/" + financialYear.getDisplayName() + "/" + strItReturnType + "_f_"  + nextId  + "/" + pan.toLowerCase() + "/servicerequest-itr.html?uuid=" +  sfr.getUuid(); //getRedirectURL(request, response, FormSaveResult.SUCCESS,"packageselector",financialYear,itReturnType,pan);
 		//returnURL +="?uuid=" + 
 		try {
