@@ -28,6 +28,7 @@ import static com.mootly.wcm.utils.Constants.ARTICLEDTAA;
 import static com.mootly.wcm.utils.Constants.TOTALTAXFSI;
 import static com.mootly.wcm.utils.Constants.RELIEF9091;
 import static com.mootly.wcm.utils.Constants.RELIEF91;
+import static com.mootly.wcm.utils.Constants.COUNTRYNAME;
 
 import org.hippoecm.hst.component.support.forms.FormMap;
 import org.hippoecm.hst.content.beans.ContentNodeBinder;
@@ -61,6 +62,7 @@ public class TaxReliefDetail extends HippoItem implements FormMapFiller {
 	private Double totaltax_fsi;
 	private Double relief90_91;
 	private Double relief91;
+	private String country_name;
 	private String personalInfoUuid;
 	private boolean markedForDeletion;
    
@@ -97,9 +99,14 @@ public class TaxReliefDetail extends HippoItem implements FormMapFiller {
     	return relief91;
     }
    
- 
+    public String getCountry_Name(){
+    	if(country_name == null) country_name= getProperty(COUNTRYNAME);
+    	return country_name;
+    }
    
-   
+   public final void setCountry_Name(String country_name){
+	   this.country_name=country_name;
+   }
     public final void setCountry_Code(String country_Code) {
 		this.country_Code = country_Code;
 	}
@@ -151,6 +158,7 @@ public class TaxReliefDetail extends HippoItem implements FormMapFiller {
 			node.setProperty(TOTALTAXFSI,getTotaltax_fsi());
 			node.setProperty(RELIEF9091,getRelief90_91());
 			node.setProperty(RELIEF91,getRelief91());
+			node.setProperty(COUNTRYNAME,getCountry_Name());
 		} catch (RepositoryException rex) {
 			log.error("Repository Exception while binding",rex);
 		}
@@ -188,20 +196,23 @@ public class TaxReliefDetail extends HippoItem implements FormMapFiller {
 			double Relief90=Double.parseDouble(strRelief90);
 			setRelief91(Relief90);
 		}
-		
+		if(formMap.getField("country_name") != null){
+			setCountry_Name(formMap.getField("country_name").getValue());
+		}
 		
 		
 	}
 
 	public <T extends HippoBean> void cloneBean(T sourceBean) {
 		// TODO Auto-generated method stub
-		TaxReliefDetail objTdsfromothers = (TaxReliefDetail) sourceBean;
-		setCountry_Code(objTdsfromothers.getCountry_Code());
-		setTax_ID(objTdsfromothers.getTax_ID());
-		setArticle_dtaa(objTdsfromothers.getArticle_dtaa());
-		setTotaltax_fsi(objTdsfromothers.getTotaltax_fsi());
-		setRelief90_91(objTdsfromothers.getRelief90_91());
-		setRelief91(objTdsfromothers.getRelief91());
+		TaxReliefDetail objTaxRelief = (TaxReliefDetail) sourceBean;
+		setCountry_Code(objTaxRelief.getCountry_Code());
+		setTax_ID(objTaxRelief.getTax_ID());
+		setArticle_dtaa(objTaxRelief.getArticle_dtaa());
+		setTotaltax_fsi(objTaxRelief.getTotaltax_fsi());
+		setRelief90_91(objTaxRelief.getRelief90_91());
+		setRelief91(objTaxRelief.getRelief91());
+		setCountry_Name(objTaxRelief.getCountry_Name());
 		
 		
 	}
