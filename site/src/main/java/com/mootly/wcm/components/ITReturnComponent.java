@@ -182,7 +182,6 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 	///Name of the HTML File and the depth its in
 	String scriptName;
 	
-	boolean isVendor;
 	SequenceGenerator sequenceGenerator = null;
 	
 	@Override
@@ -753,9 +752,6 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 	protected void initComponent(HstRequest request,HstResponse response) throws InvalidNavigationException,InvalidPANException{
 		ResolvedSiteMapItem resolvedMapItem = request.getRequestContext().getResolvedSiteMapItem();
 		
-		String strIsVendor = request.getRequestContext().getResolvedSiteMapItem().getParameter("isVendor");
-		if (strIsVendor != null) isVendor = Boolean.valueOf(strIsVendor);
-		
 		if (request.getSession() != null && request.getSession().getAttribute("user") != null) {
 			member = (Member)request.getSession().getAttribute("user");
 		}
@@ -1309,9 +1305,9 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		HstLink link = request.getRequestContext().getHstLinkCreator().createByRefId(siteMapReferenceId, request.getRequestContext().getResolvedMount().getMount());
 		if (link != null) {
 			String strFirstRep = null;
-			if (isOnVendorPortal() && isVendor) {
+			if (isOnVendorPortal() && isVendor(request)) {
 				strFirstRep = link.toUrlForm(request.getRequestContext(), true).replaceFirst("_default_", getMemberhandleuuid());
-				strFirstRep = link.toUrlForm(request.getRequestContext(), true).replaceFirst("_default_", financialYear.toString());
+				strFirstRep = strFirstRep.replaceFirst("_default_", financialYear.toString());
 			}
 			else {
 				strFirstRep = link.toUrlForm(request.getRequestContext(), true).replaceFirst("_default_", financialYear.toString());

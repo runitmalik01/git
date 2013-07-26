@@ -26,13 +26,18 @@ HstRequest hstRequest = (HstRequest) request;
 				<th>Actions</th>
 			</tr>
 			<c:forEach items="${listOfITReturnHomePageView}" var="anEntry">
-				<hst:link var="baseFolderLink" path="/${basePath}/itreturn${additionalParam}/${anEntry.financialYear.displayName}/${anEntry.itReturnType.displayName}${anEntry.itrFolderSuffix}/${fn:toLowerCase(anEntry.pan)}"/>
                 <c:if test="${not empty anEntry.lastOrOrgName}">
 					<c:choose>
 						<c:when test="${basePath == 'vendor'}">
 							<c:set var="additionalParam" value="/${anEntry.canonicalUUID}"/>
+							<hst:link var="baseFolderLink" path="/${basePath}/itreturn${additionalParam}/${anEntry.financialYear.displayName}/${anEntry.itReturnType.displayName}${anEntry.itrFolderSuffix}/${fn:toLowerCase(anEntry.pan)}"/>
 						</c:when>
+						<c:otherwise>
+							<c:set var="additionalParam" value=""/>
+						</c:otherwise>
 					</c:choose>
+					
+					
 				<tr>
 					<td class="pan">
 						<span style="text-transform:uppercase;"><a href="${baseFolderLink}/servicerequest-itr.html"><c:out value="${anEntry.pan}"/></a></span>
