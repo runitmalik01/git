@@ -23,7 +23,7 @@
 <%@include file="../../../includes/tags.jspf" %>
 <hst:link var="myitreturns" path="/member/itreturn"/>
 <hst:link var="contactus" path="/contactus"/>
-<div id="top-widget" class="top-widget" style="font-size:12px; border: 1px groove #ccc;padding:2px;margin-top:10px;">
+<div id="top-widget" class="top-widget" style="font-size:12px; border: 1px dotted #ccc;padding:2px;margin-top:10px;">
   	<div class="row-fluid show-grid">
 	    <div class="span12">      
 	        Call Us: <a href="callto:+91-11-45067102">+91-11-45067102</a>,
