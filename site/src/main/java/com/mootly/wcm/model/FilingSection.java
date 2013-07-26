@@ -54,28 +54,6 @@ public enum FilingSection {
 		return itReturnType;
 	}
 
-	public static String getByFolderSuffix(String folderName) {
-		String strToRet = "";
-		if (folderName.contains("_f_")) {
-			int indx = folderName.indexOf("_f_");
-			strToRet = folderName.substring(indx);
-		}
-		return strToRet;
-	}
-	
-	public static FilingSection getByFolderName(String folderName) {
-		String toCompare = folderName;
-		if (folderName.contains("_f_")) {
-			int indx = folderName.indexOf("_f_");
-			toCompare = folderName.substring(0,indx);
-		}
-		for (FilingSection aFilingSection:FilingSection.values()) {
-			if (toCompare.equalsIgnoreCase(aFilingSection.getFolderName())) {
-				return aFilingSection;
-			}
-		}
-		return UNKNOWN;
-	}
 	
 	/**
 	 * Fetch the FilingSection by Xml Code

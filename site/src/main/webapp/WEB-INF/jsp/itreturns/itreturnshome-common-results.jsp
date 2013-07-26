@@ -26,7 +26,7 @@ HstRequest hstRequest = (HstRequest) request;
 				<th>Actions</th>
 			</tr>
 			<c:forEach items="${listOfITReturnHomePageView}" var="anEntry">
-				<hst:link var="baseFolderLink" path="/${basePath}/itreturn${additionalParam}/${anEntry.financialYear.displayName}/${anEntry.filingSection.folderName}${anEntry.itrFolderSuffix}/${fn:toLowerCase(anEntry.pan)}"/>
+				<hst:link var="baseFolderLink" path="/${basePath}/itreturn${additionalParam}/${anEntry.financialYear.displayName}/${anEntry.itReturnType.displayName}${anEntry.itrFolderSuffix}/${fn:toLowerCase(anEntry.pan)}"/>
                 <c:if test="${not empty anEntry.lastOrOrgName}">
 					<c:choose>
 						<c:when test="${basePath == 'vendor'}">

@@ -150,7 +150,6 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 	String assessmentYear;
 	FinancialYear financialYear;
 	ITReturnType itReturnType = ITReturnType.ORIGINAL;
-	FilingSection filingSection ;
 	String itrFolderSuffix = null;
 	String pan = null;
 	FilingStatus filingStatus;
@@ -326,8 +325,8 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			}
 		}
 		
-		String redirectToIfPaymentNotFound = getRedirectURLForSiteMapItem(request, response, null, "servicerequest-itr-payment", getFinancialYear(), getITReturnType(), getFilingSection(), getItrFolderSuffix(), getPAN());
-		String redirectToIfConfirmationNotFound = getRedirectURLForSiteMapItem(request, response, null, "servicerequest-itr-tos-confirmation", getFinancialYear(), getITReturnType(),  getFilingSection(), getItrFolderSuffix(), getPAN());
+		String redirectToIfPaymentNotFound = getRedirectURLForSiteMapItem(request, response, null, "servicerequest-itr-payment", getFinancialYear(), getITReturnType(), getItrFolderSuffix(), getPAN());
+		String redirectToIfConfirmationNotFound = getRedirectURLForSiteMapItem(request, response, null, "servicerequest-itr-tos-confirmation", getFinancialYear(), getITReturnType(), getItrFolderSuffix(), getPAN());
 		if (pageAction != null && (pageAction.equals(PAGE_ACTION.SHOW_ITR_SUMMARY) || pageAction.equals(PAGE_ACTION.DOWNLOAD_ITR_SUMMARY) || pageAction.equals(PAGE_ACTION.DOWNLOAD_ITR_XML) || pageAction.equals(PAGE_ACTION.EMAIL_ITR_XML_AND_SUMMARY)) ) {
 			try {
 				handleITRSummary(request,response);
@@ -522,10 +521,6 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		return itReturnType;
 	}
 	
-	public FilingSection getFilingSection () {
-		return filingSection;
-	}
-	
 	@Override
 	public String getMemberUserName() {
 		// TODO Auto-generated method stub
@@ -661,10 +656,10 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			else {
 				String redirectURL = null;
 				if (isVendor(request) && isOnVendorPortal()) {
-					redirectURL = getRedirectURLForSiteMapItem(request,response,formSaveResult,"vendor-servicerequest-itr-summary",getFinancialYear(),getITReturnType(), getFilingSection(), getItrFolderSuffix(), getPAN());
+					redirectURL = getRedirectURLForSiteMapItem(request,response,formSaveResult,"vendor-servicerequest-itr-summary",getFinancialYear(),getITReturnType(),getItrFolderSuffix(), getPAN());
 				}
 				else {
-					redirectURL = getRedirectURLForSiteMapItem(request,response,formSaveResult,"servicerequest-itr-summary",getFinancialYear(),getITReturnType(), getFilingSection(), getItrFolderSuffix(), getPAN());
+					redirectURL = getRedirectURLForSiteMapItem(request,response,formSaveResult,"servicerequest-itr-summary",getFinancialYear(),getITReturnType(), getItrFolderSuffix(), getPAN());
 				}
 				return redirectURL;
 			}	
@@ -772,16 +767,15 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			assessmentYear = financialYear.getDisplayAssessmentYear();
 		}
 		String strItReturnType = request.getRequestContext().getResolvedSiteMapItem().getParameter("itReturnType");
+		
 		if ( strItReturnType == null) {
-			filingSection = null;
+			itReturnType  = null;
 		}
 		else {
-			filingSection = FilingSection.getByFolderName( strItReturnType ); //original versus amend
-			itrFolderSuffix = FilingSection.getByFolderSuffix( strItReturnType ); 
-			itReturnType = filingSection.getItReturnType(); 
+			//original versus amend
+			itrFolderSuffix = ITReturnType.getByFolderSuffix( strItReturnType ); 
+			itReturnType = ITReturnType.getByFolderName(strItReturnType);
 		}
-		
-		
 		
 		//ITReturnType.getByDisplayName(request.getRequestContext().getResolvedSiteMapItem().getParameter("itReturnType")); //original versus amend
 		pan = request.getRequestContext().getResolvedSiteMapItem().getParameter("pan"); //original versus amend
@@ -795,9 +789,8 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		if (!StringUtils.isEmpty(pan) && !DataTypeValidationHelper.isOfType(pan, DataTypeValidationType.PAN)) {
 			throw new InvalidPANException("INVALID PAN NUMBER");
 		}
-		if (filingSection != null && filingSection.equals(FilingSection.UNKNOWN)) {
-			throw new InvalidNavigationException("INVALID Filing Section");
-		}
+		
+		
 		if (itReturnType != null && itReturnType.equals(ITReturnType.UNKNOWN)) {
 			throw new InvalidNavigationException("INVALID ITRETURUN TYPE");
 		}
@@ -882,7 +875,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			//}
 		}
 
-		baseRelPathToReturnDocuments = "members/" + getMemberFolderPath(request) + "/pans/" + getPAN() + "/" + getFinancialYear() + "/" + ( getFilingSection() ==  null ? "" : getFilingSection().getFolderName() + getItrFolderSuffix() ); // getITReturnType();
+		baseRelPathToReturnDocuments = "members/" + getMemberFolderPath(request) + "/pans/" + getPAN() + "/" + getFinancialYear() + "/" + ( getITReturnType()==  null ? "" : getITReturnType().getDisplayName() + getItrFolderSuffix() ); // getITReturnType();
 		hippoBeanBaseITReturnDocuments = siteContentBaseBean.getBean(baseRelPathToReturnDocuments);
 		baseAbsolutePathToReturnDocuments = request.getRequestContext().getResolvedMount().getMount().getCanonicalContentPath() + "/" + baseRelPathToReturnDocuments;
 		//if (hippoBeanBaseITReturnDocuments != null) {
@@ -1242,7 +1235,6 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		request.setAttribute("assessmentYear",getAssessmentYear());
 		request.setAttribute("financialYear",getFinancialYear());
 		request.setAttribute("itReturnType",getITReturnType());
-		request.setAttribute("filingSection",getFilingSection());
 		request.setAttribute("pan",getPAN());
 
 		request.setAttribute("filingStatus",filingStatus);
@@ -1299,21 +1291,20 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 
 	protected String getRedirectURLForSiteMapItem(HstRequest request,HstResponse response,FormSaveResult formSaveResult) {
 		if (formSaveResult.equals(FormSaveResult.FAILURE)) {
-			return getRedirectURLForSiteMapItem(request, response, formSaveResult,mainSiteMapItemRefId,getFinancialYear(), getITReturnType(), getFilingSection(), getItrFolderSuffix(), getPAN());
+			return getRedirectURLForSiteMapItem(request, response, formSaveResult,mainSiteMapItemRefId,getFinancialYear(), getITReturnType(), getItrFolderSuffix(), getPAN());
 		}
 		else if (formSaveResult.equals(FormSaveResult.SUCCESS) && nextScreenSiteMapItemRefId != null) {
-			return getRedirectURLForSiteMapItem(request, response, formSaveResult,nextScreenSiteMapItemRefId,getFinancialYear(), getITReturnType(),  getFilingSection(),  getItrFolderSuffix(), getPAN());
+			return getRedirectURLForSiteMapItem(request, response, formSaveResult,nextScreenSiteMapItemRefId,getFinancialYear(), getITReturnType(),  getItrFolderSuffix(), getPAN());
 		}
 		else {
-			return getRedirectURLForSiteMapItem(request, response, formSaveResult,mainSiteMapItemRefId,getFinancialYear(),getITReturnType(),  getFilingSection(),  getItrFolderSuffix(), getPAN());
+			return getRedirectURLForSiteMapItem(request, response, formSaveResult,mainSiteMapItemRefId,getFinancialYear(),getITReturnType(), getItrFolderSuffix(), getPAN());
 		}
 	}
 
-	public String getRedirectURLForSiteMapItem(HstRequest request,HstResponse response,FormSaveResult formSaveResult,String siteMapReferenceId,FinancialYear financialYear, ITReturnType itReturnType, FilingSection filingSection, String itrFolderSuffix, String pan) {
+	public String getRedirectURLForSiteMapItem(HstRequest request,HstResponse response,FormSaveResult formSaveResult,String siteMapReferenceId,FinancialYear financialYear, ITReturnType itReturnType,String itrFolderSuffix, String pan) {
 		if (siteMapReferenceId == null) return null;
 		if (financialYear == null || financialYear.equals(FinancialYear.UNKNOWN)) return null;
 		if (itReturnType == null || itReturnType.equals(ITReturnType.UNKNOWN)) return null;
-		if (filingSection == null || filingSection.equals(FilingSection.UNKNOWN)) return null;
 		if (itrFolderSuffix == null ) return null;
 		HstLink link = request.getRequestContext().getHstLinkCreator().createByRefId(siteMapReferenceId, request.getRequestContext().getResolvedMount().getMount());
 		if (link != null) {
@@ -1326,7 +1317,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 				strFirstRep = link.toUrlForm(request.getRequestContext(), true).replaceFirst("_default_", financialYear.toString());
 			}
 			//strFirstRep = strFirstRep.replaceFirst("_default_",itReturnType.toString());
-			strFirstRep = strFirstRep.replaceFirst("_default_",filingSection.getFolderName().toString() + itrFolderSuffix);
+			strFirstRep = strFirstRep.replaceFirst("_default_",itReturnType.getDisplayName() + itrFolderSuffix);
 			strFirstRep = strFirstRep.replaceFirst("_default_",pan);
 			return strFirstRep;
 		}
@@ -1642,7 +1633,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			
 			String refId = request.getRequestContext().getResolvedSiteMapItem().getHstSiteMapItem().getRefId();
 			if (refId != null) {
-				String redirectToOriginalPage = getRedirectURLForSiteMapItem(request, response, FormSaveResult.SUCCESS, refId, getFinancialYear(), getITReturnType(),  getFilingSection(),  getItrFolderSuffix(), getPAN());
+				String redirectToOriginalPage = getRedirectURLForSiteMapItem(request, response, FormSaveResult.SUCCESS, refId, getFinancialYear(), getITReturnType(),  getItrFolderSuffix(), getPAN());
 				toBeSavedValuesFormMap.getField("redirectToOriginalPage").addValue(redirectToOriginalPage);
 			}
 			
