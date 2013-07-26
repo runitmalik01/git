@@ -31,7 +31,7 @@ import com.mootly.wcm.model.FinancialYear;
  */
 @PrimaryBean(primaryBeanClass=ForeignIncomeDocument.class)
 @ChildBean(childBeanClass=ForeignIncomeDetail.class)
-@FormFields(fieldNames={"country_code","taxpayer_ID","income_salary","income_house","income_business","income_capitalgain","income_othersources","income_total"})
+@FormFields(fieldNames={"country_code","taxpayer_ID","income_salary","income_house","income_business","income_capitalgain","income_othersources","income_total","country_name"})
 //@RequiredFields(fieldNames={"tan_deductortdsoth","name_deductortdsoth","total_taxdeductedtdsoth","amounttdsoth"})
 /*
 @DataTypeValidationFields(fieldNames={
