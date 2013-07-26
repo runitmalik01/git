@@ -76,6 +76,7 @@ public class SequenceGeneratorImpl implements SequenceGenerator {
 			
 			sequenceNode.setProperty("mootlywcm:nextId", nextId  );
 			session.save();
+			return nextId;
 		} catch (RepositoryException e) {
 			log.warn("Failed to load user.", e);
 		} finally {

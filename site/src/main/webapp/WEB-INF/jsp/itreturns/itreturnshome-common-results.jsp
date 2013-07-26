@@ -33,6 +33,7 @@ HstRequest hstRequest = (HstRequest) request;
 							<hst:link var="baseFolderLink" path="/${basePath}/itreturn${additionalParam}/${anEntry.financialYear.displayName}/${anEntry.itReturnType.displayName}${anEntry.itrFolderSuffix}/${fn:toLowerCase(anEntry.pan)}"/>
 						</c:when>
 						<c:otherwise>
+							<hst:link var="baseFolderLink" path="/${basePath}/itreturn${additionalParam}/${anEntry.financialYear.displayName}/${anEntry.itReturnType.displayName}${anEntry.itrFolderSuffix}/${fn:toLowerCase(anEntry.pan)}"/>
 							<c:set var="additionalParam" value=""/>
 						</c:otherwise>
 					</c:choose>

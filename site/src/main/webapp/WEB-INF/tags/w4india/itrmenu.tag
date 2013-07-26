@@ -314,7 +314,9 @@ for (HstSiteMenuItem siteMenuItem : itrSiteMenu.getSiteMenuItems() ){
 					<a href="${scriptName}/../servicerequest-itr-payment.html">Under Review</a>					   
 				</c:when>
 				<c:otherwise>
-					<a href="${scriptName}/../servicerequest-itr-payment.html"><fmt:message key="${itrForm}.packageName.${memberpersonalinformation.selectedServiceDeliveryOption}.cost" var="totalCost" />Due (<w4india:inr value="${totalCost}"/>)</a>
+					<c:if test="${not empty itrForm && not empty  memberpersonalinformation.selectedServiceDeliveryOption}">
+						<a href="${scriptName}/../servicerequest-itr-payment.html"><fmt:message key="${itrForm}.packageName.${memberpersonalinformation.selectedServiceDeliveryOption}.cost" var="totalCost" />Due (<w4india:inr value="${totalCost}"/>)</a>
+					</c:if>
 				</c:otherwise>
 			</c:choose>
 		</u></b></span>
