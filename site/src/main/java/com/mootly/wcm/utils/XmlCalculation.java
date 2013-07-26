@@ -1,51 +1,15 @@
 package com.mootly.wcm.utils;
 
 
-import java.io.StringWriter;
 import java.math.BigInteger;
-import java.text.DecimalFormat;
-import java.util.GregorianCalendar;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
-import javax.xml.datatype.DatatypeConfigurationException;
-import javax.xml.datatype.DatatypeFactory;
-import javax.xml.datatype.XMLGregorianCalendar;
-
-import in.gov.incometaxindiaefiling.y2012_2013.ITR1;
-import in.gov.incometaxindiaefiling.y2012_2013.ObjectFactory;
-import in.gov.incometaxindiaefiling.y2012_2013.Address.Phone;
-import in.gov.incometaxindiaefiling.y2012_2013.AssesseeName;
-import in.gov.incometaxindiaefiling.y2012_2013.CreationInfo;
-import in.gov.incometaxindiaefiling.y2012_2013.EmployerOrDeductorOrCollectDetl;
-import in.gov.incometaxindiaefiling.y2012_2013.ITR1TaxComputation;
-import in.gov.incometaxindiaefiling.y2012_2013.PersonalInfo;
-import in.gov.incometaxindiaefiling.y2012_2013.Address;
-import in.gov.incometaxindiaefiling.y2012_2013.FilingStatus;
-import in.gov.incometaxindiaefiling.y2012_2013.ITR1IncomeDeductions;
-import in.gov.incometaxindiaefiling.y2012_2013.DeductUndChapVIA;
-import in.gov.incometaxindiaefiling.y2012_2013.Refund;
-import in.gov.incometaxindiaefiling.y2012_2013.Refund.DepositToBankAccount;
-import in.gov.incometaxindiaefiling.y2012_2013.TDSonOthThanSal;
-import in.gov.incometaxindiaefiling.y2012_2013.TDSonOthThanSals;
-import in.gov.incometaxindiaefiling.y2012_2013.TDSonSalaries;
-import in.gov.incometaxindiaefiling.y2012_2013.TDSonSalary;
-import in.gov.incometaxindiaefiling.y2012_2013.TaxPaid;
-import in.gov.incometaxindiaefiling.y2012_2013.TaxPayment;
-import in.gov.incometaxindiaefiling.y2012_2013.TaxPayments;
-import in.gov.incometaxindiaefiling.y2012_2013.TaxesPaid;
-import in.gov.incometaxindiaefiling.y2012_2013.Verification;
-import in.gov.incometaxindiaefiling.y2012_2013.Verification.Declaration;
-
-import org.hippoecm.hst.core.component.HstComponentException;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.mootly.wcm.annotations.AdditionalBeans;
-import com.mootly.wcm.annotations.RequiredBeans;
+import com.mootly.wcm.beans.AdjustmentOfLossesDoc;
 import com.mootly.wcm.beans.AdvanceTaxDocument;
 import com.mootly.wcm.beans.FormSixteenDocument;
 import com.mootly.wcm.beans.HouseProperty;
@@ -56,23 +20,46 @@ import com.mootly.wcm.beans.SalaryIncomeDocument;
 import com.mootly.wcm.beans.SelfAssesmetTaxDocument;
 import com.mootly.wcm.beans.TdsFromSalaryDocument;
 import com.mootly.wcm.beans.TdsFromothersDocument;
+import com.mootly.wcm.beans.compound.AdjustmentOfLossesCom;
 import com.mootly.wcm.beans.compound.FormSixteenDetail;
 import com.mootly.wcm.beans.compound.HouseIncomeDetail;
 import com.mootly.wcm.beans.compound.TdsFromSalaryDetail;
-import com.mootly.wcm.beans.compound.TdsOthersDetail;
 import com.mootly.wcm.beans.compound.AdvanceTaxDetail;
-import com.mootly.wcm.components.ITReturnComponent;
-import com.mootly.wcm.model.ITRForm;
 import com.mootly.wcm.services.IndianCurrencyHelper;
+import com.mootly.wcm.services.ScreenCalculatorService;
 
 
 @AdditionalBeans(additionalBeansToLoad={MemberPersonalInformation.class,MemberContactInformation.class,SalaryIncomeDocument.class,
 		HouseIncomeDetail.class,HouseProperty.class,OtherSourcesDocument.class,AdvanceTaxDocument.class,AdvanceTaxDetail.class,TdsFromSalaryDocument.class,
-		TdsFromSalaryDetail.class,TdsFromothersDocument.class,SelfAssesmetTaxDocument.class,FormSixteenDocument.class,FormSixteenDetail.class})
+		TdsFromSalaryDetail.class,TdsFromothersDocument.class,SelfAssesmetTaxDocument.class,FormSixteenDocument.class,FormSixteenDetail.class,
+		AdjustmentOfLossesDoc.class,AdjustmentOfLossesCom.class})
 
-public class XmlCalculation {
+public class XmlCalculation implements XmlCalculationImplement {
 
-	//method to calculate gross total
+	//Declare global variables to use them in various Schedules
+	public long longsalarytotal=0;
+	public long houseIncome=0;
+	public long houseIncomeTotal=0;
+	public long grosstotal=0;
+	public long otherincome=0;
+
+	public Double HPLoss = 0d;
+	public Double totalHPLoss = 0d;
+	public Double LTCLoss = 0d;
+	public Double totalLTCLoss = 0d;
+	public Double STCLoss = 0d;
+	public Double totalSTCLoss = 0d;
+	public Double MaintainingRaceHorseLoss = 0d;
+	public Double totalMaintainingRaceHorseLoss = 0d;
+
+	/**
+	 * This Method is used to return Gross Total(SalaryIncome+HouseIncome+OtherIncome)
+	 * @return long
+	 * @param request, response
+	 *
+	 * */
+
+	@Override
 	public long grossTotal(HstRequest request,HstResponse response){
 		SalaryIncomeDocument salaryIncomeDocument = (SalaryIncomeDocument) request.getAttribute(SalaryIncomeDocument.class.getSimpleName().toLowerCase());
 		//HouseIncomeDetail houseIncomeDetail = (HouseIncomeDetail) request.getAttribute(HouseIncomeDetail.class.getSimpleName().toLowerCase());
@@ -82,11 +69,6 @@ public class XmlCalculation {
 		IndianCurrencyHelper indianCurrencyHelper = new IndianCurrencyHelper();
 
 		//BigInteger salarytotal=new BigInteger("0");
-		long longsalarytotal=0;
-		long houseIncome=0;
-		long houseIncomeTotal=0;
-		long grosstotal=0;
-		long otherincome=0;
 		BigInteger GrossIncome=new BigInteger("0");
 		BigInteger GrossIncomeTotal=new BigInteger("0");
 
@@ -94,8 +76,8 @@ public class XmlCalculation {
 			if ( formSixteenDocument.getFormSixteenDetailList() != null && formSixteenDocument.getFormSixteenDetailList().size() > 0 ){
 				for(FormSixteenDetail formSixteenDetail:formSixteenDocument.getFormSixteenDetailList()){
 					if(formSixteenDetail.getIncome_chargable_tax()!=null){
-					GrossIncome=indianCurrencyHelper.bigIntegerRound(formSixteenDetail.getIncome_chargable_tax());
-					GrossIncomeTotal=GrossIncomeTotal.add(GrossIncome);
+						GrossIncome=indianCurrencyHelper.bigIntegerRound(formSixteenDetail.getIncome_chargable_tax());
+						GrossIncomeTotal=GrossIncomeTotal.add(GrossIncome);
 					}
 				}
 			}
@@ -123,6 +105,58 @@ public class XmlCalculation {
 		grosstotal = longsalarytotal+houseIncomeTotal+otherincome;
 
 		return grosstotal;
+	}
+
+	/**
+	 * This Method is used for Losses Calculation
+	 * @return void
+	 * @param request, response
+	 * Added on 26/07/2013 by Dhananjay
+	 * */
+
+	public Map<String,Object> lossesCalc(HstRequest request,HstResponse response){
+
+		AdjustmentOfLossesDoc adjustmentOfLossesDoc = (AdjustmentOfLossesDoc) request.getAttribute(AdjustmentOfLossesDoc.class.getSimpleName().toLowerCase());
+		grossTotal(request, response);
+
+		if(adjustmentOfLossesDoc != null){
+			List<AdjustmentOfLossesCom> listofAdjustmentOfLossesCom = adjustmentOfLossesDoc.getAdjustmentOfLossesList() ;
+			if ( listofAdjustmentOfLossesCom != null && listofAdjustmentOfLossesCom.size() > 0 ){
+				for(AdjustmentOfLossesCom adjustmentOfLossesCom:listofAdjustmentOfLossesCom){
+					if(adjustmentOfLossesCom.getNameOfHead().equals("House Property Loss")){
+						HPLoss = adjustmentOfLossesCom.getAmount();
+						totalHPLoss = totalHPLoss + HPLoss;
+					}
+					if(adjustmentOfLossesCom.getNameOfHead().equals("Long Term Capital Loss")){
+						LTCLoss = adjustmentOfLossesCom.getAmount();
+						totalLTCLoss = totalLTCLoss + LTCLoss;
+					}
+					if(adjustmentOfLossesCom.getNameOfHead().equals("Short Term Capital Loss")){
+						STCLoss = adjustmentOfLossesCom.getAmount();
+						totalSTCLoss = totalSTCLoss + STCLoss;
+					}
+					if(adjustmentOfLossesCom.getNameOfHead().equals("Owning and Maintaining Race Horses")){
+						MaintainingRaceHorseLoss = adjustmentOfLossesCom.getAmount();
+						totalMaintainingRaceHorseLoss = totalMaintainingRaceHorseLoss + MaintainingRaceHorseLoss;
+					}
+				}
+			}
+		}
+		Map<String,Object> totalMapForLosses = new HashMap<String, Object>();
+		totalMapForLosses.put("salaryIncome",longsalarytotal);
+		totalMapForLosses.put("houseIncome",houseIncomeTotal);
+		totalMapForLosses.put("otherIncome",otherincome);
+		totalMapForLosses.put("maintainingRaceHorseIncome",0);
+		totalMapForLosses.put("LTCGain",0);
+		totalMapForLosses.put("STCGain",0);
+		totalMapForLosses.put("houseIncomeLoss", totalHPLoss);
+		totalMapForLosses.put("LTCLoss", totalLTCLoss);
+		totalMapForLosses.put("STCLoss", totalSTCLoss);
+		totalMapForLosses.put("MaintainingRaceHorseLoss", totalMaintainingRaceHorseLoss);
+
+		Map<String,Object> resultMapLosses = ScreenCalculatorService.getScreenCalculations("lossesCalculation.js", request.getParameterMap(), totalMapForLosses);
+
+		return resultMapLosses;
 	}
 
 }
