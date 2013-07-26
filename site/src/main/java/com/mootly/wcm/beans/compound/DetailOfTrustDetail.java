@@ -29,6 +29,7 @@ import static com.mootly.wcm.utils.Constants.NAME_BENEFICIARIES;
 import static com.mootly.wcm.utils.Constants.ADDRESS_BENEFICIARIES;
 import static com.mootly.wcm.utils.Constants.NAME_SETTLOR;
 import static com.mootly.wcm.utils.Constants.ADDRESS_SETTLOR;
+import static com.mootly.wcm.utils.Constants.COUNTRYNAME;
 
 import org.hippoecm.hst.component.support.forms.FormMap;
 import org.hippoecm.hst.content.beans.ContentNodeBinder;
@@ -56,7 +57,7 @@ public class DetailOfTrustDetail extends HippoItem implements FormMapFiller {
 
 	private String country_Code ;
 	private String name_trust ;
-	
+	private String country_name;
 	private String address_trust;
 	private String name_othertrust;
 	private String address_othertrust;
@@ -112,6 +113,13 @@ public class DetailOfTrustDetail extends HippoItem implements FormMapFiller {
     public String getAddress_Beneficiaries() {
     	if (address_beneficiaries == null) address_beneficiaries = getProperty(ADDRESS_BENEFICIARIES);
     	return address_beneficiaries;
+    }
+    public String getCountry_Name(){
+    	if(country_name == null ) country_name = getProperty(COUNTRYNAME);
+    	return country_name;
+    }
+    public final void setCountry_Name(String country_name){
+    	this.country_name=country_name;
     }
     public final void setCountry_Code(String country_Code) {
 		this.country_Code = country_Code;
@@ -176,6 +184,7 @@ public class DetailOfTrustDetail extends HippoItem implements FormMapFiller {
 			node.setProperty(ADDRESS_SETTLOR,getAddress_Settlor());
 			node.setProperty(NAME_BENEFICIARIES,getName_Beneficiaries());
 			node.setProperty(ADDRESS_BENEFICIARIES,getAddress_Beneficiaries());
+			node.setProperty(COUNTRYNAME, getCountry_Name());
 		} catch (RepositoryException rex) {
 			log.error("Repository Exception while binding",rex);
 		}
@@ -216,7 +225,9 @@ public class DetailOfTrustDetail extends HippoItem implements FormMapFiller {
 		if ( formMap.getField("address_beneficiaries") != null) {
 			setAddress_Beneficiaries(formMap.getField("address_beneficiaries").getValue());
 		}
-		
+		if(formMap.getField("country_name") != null){
+			setCountry_Name(formMap.getField("country_name").getValue());
+		}
 		
 		
 		
@@ -233,6 +244,7 @@ public class DetailOfTrustDetail extends HippoItem implements FormMapFiller {
 		setName_Beneficiaries(objDetailTrust.getName_Beneficiaries());
 		setAddress_Beneficiaries(objDetailTrust.getAddress_Beneficiaries());
 		setName_Othertrust(objDetailTrust.getName_Othertrust());
+		setCountry_Name(objDetailTrust.getCountry_Name());
 		
 		
 	}
