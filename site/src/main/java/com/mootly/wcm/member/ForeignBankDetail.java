@@ -33,7 +33,7 @@ import com.mootly.wcm.model.FinancialYear;
  */
 @PrimaryBean(primaryBeanClass=ForeignBankAccountDocument.class)
 @ChildBean(childBeanClass=ForeignBankAccountDetail.class)
-@FormFields(fieldNames={"country_code","name_bank","address_bank","name_account","account_no","peak_balance"})
+@FormFields(fieldNames={"country_code","name_bank","address_bank","name_account","account_no","peak_balance","country_name"})
 
 
 
