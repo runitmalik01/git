@@ -25,6 +25,7 @@ import static com.mootly.wcm.utils.Constants.INCOMEBUSINESS;
 import static com.mootly.wcm.utils.Constants.INCOMECAPITALGAIN;
 import static com.mootly.wcm.utils.Constants.INCOMESOURCES;
 import static com.mootly.wcm.utils.Constants.INCOMETOTAL;
+import static com.mootly.wcm.utils.Constants.COUNTRYNAME;
 
 import javax.jcr.RepositoryException;
 
@@ -50,6 +51,7 @@ public class ForeignIncomeDetail extends HippoItem implements FormMapFiller {
 	private final static Logger log = LoggerFactory.getLogger(ForeignIncomeDetail.class); 
 	
 	private String country_Code ;
+	private String country_name;
 	private String taxpayer_ID ;
 	private Double income_Salary;
 	private Double income_House;
@@ -100,9 +102,14 @@ public class ForeignIncomeDetail extends HippoItem implements FormMapFiller {
     public Double getIncome_Total() {
  	   if (income_Total == null) income_Total = getProperty(INCOMETOTAL);
  	    	return income_Total;
- }
-   
-   
+    }
+   public String getCountry_Name(){
+	   if(country_name == null) country_name = getProperty(COUNTRYNAME);
+	   return country_name;
+   }
+   public final void setCountry_Name(String country_name){
+	   this.country_name=country_name;
+   }
     public final void setCountry_Code(String country_Code) {
 		this.country_Code = country_Code;
 	}
@@ -165,7 +172,7 @@ public class ForeignIncomeDetail extends HippoItem implements FormMapFiller {
 			node.setProperty(INCOMECAPITALGAIN,getIncome_Capitalgain());
 			node.setProperty(INCOMESOURCES,getIncome_Othersources());
 			node.setProperty(INCOMETOTAL,getIncome_Total());
-			
+			node.setProperty(COUNTRYNAME, getCountry_Name());
 	    	
 
 		} catch (RepositoryException rex) {
@@ -220,7 +227,9 @@ public class ForeignIncomeDetail extends HippoItem implements FormMapFiller {
 			double IncomeTotal=Double.parseDouble(strIncomeTotal);
 			setincome_Total(IncomeTotal);
 		}
-		
+		if(formMap.getField("country_name") != null){
+			setCountry_Name(formMap.getField("country_name").getValue());
+		}
 		
 		
 		
@@ -236,6 +245,6 @@ public class ForeignIncomeDetail extends HippoItem implements FormMapFiller {
 		setIncome_Capitalgain(objForeignIncome.getIncome_Capitalgain());
 		setIncome_Othersources(objForeignIncome.getIncome_Othersources());
 		setincome_Total(objForeignIncome.getIncome_Total());
-		
+		setCountry_Name(objForeignIncome.getCountry_Name());
 	}
 }
