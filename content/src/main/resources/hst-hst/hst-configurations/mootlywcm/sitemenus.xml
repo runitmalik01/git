@@ -68,6 +68,19 @@
 	        <sv:value>npvcalculator</sv:value>
 	      </sv:property>
 	    </sv:node>
+	    
+<sv:node sv:name="HRA Calculator" >
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:sitemenuitem</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>ba1623cf-6e15-49ca-9e39-4a720282b1ad</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:referencesitemapitem" sv:type="String">
+    <sv:value>hracalculator</sv:value>
+  </sv:property>
+</sv:node>
+	    
 	    <sv:node sv:name="EMI Calculator">
 	      <sv:property sv:name="jcr:primaryType" sv:type="Name">
 	        <sv:value>hst:sitemenuitem</sv:value>
