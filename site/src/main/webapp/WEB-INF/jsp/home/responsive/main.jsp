@@ -110,7 +110,8 @@
            <div><fmt:message key="ITR1.whoCan"></fmt:message></div>          
            <button type="button" class="btnfiling btn btn-success">e-File <small>(<w4india:inr minFractionDigits="0" value="199"></w4india:inr>)</small></button>
            <button type="button" class="btnfiling btn btn-info">eZ-File <small>(<w4india:inr minFractionDigits="0" value="499"></w4india:inr>)</small></button>
-         </div>
+         </div><br/>
+         <div align="center"><a href="#modal" data-toggle="modal" id="itr1" class="btn yellow"><i class="icon-info-sign"></i><strong>Help</strong></a></div>
       </div>
       <!-- end of .widget-wrapper -->
    </div>
@@ -124,7 +125,8 @@
             <div><fmt:message key="ITR2.whoCan"></fmt:message></div>	
             <%--<button type="button" class="btn btn-success">e-File (<w4india:inr minFractionDigits="0" value="299"></w4india:inr>)</button>--%>
             <button type="button" class="btnfiling btn btn-info">eZ-File (<w4india:inr minFractionDigits="0" value="799"></w4india:inr>)</button>			
-         </div>
+         </div><br/>
+         <div align="center"><a href="#modal" data-toggle="modal" id="itr2" class="btn yellow"><i class="icon-info-sign"></i><strong>Help</strong></a></div>
       </div>
       <!-- end of .widget-wrapper -->
    </div>
@@ -138,7 +140,8 @@
             <div><fmt:message key="ITR3.whoCan"></fmt:message></div>	
             <%--<button type="button" class="btn btn-success">e-File (<w4india:inr minFractionDigits="0" value="499"></w4india:inr>)</button>--%>
             <button type="button" class="btnfiling btn btn-info">eZ-File (<w4india:inr minFractionDigits="0" value="1099"></w4india:inr>)</button>			
-         </div>
+         </div><br/>
+         <div align="center"><a href="#modal" data-toggle="modal" id="itr3" class="btn yellow"><i class="icon-info-sign"></i><strong>Help</strong></a></div>
       </div>
       <!-- end of .widget-wrapper -->
    </div>
@@ -153,7 +156,8 @@
             <div><fmt:message key="ITR4.whoCan"></fmt:message></div>	
             <%--<button type="button" class="btn btn-success">e-File (<w4india:inr minFractionDigits="0" value="999"></w4india:inr>)</button> --%>
             <button type="button" class="btnfiling btn btn-info">eZ-File (<w4india:inr minFractionDigits="0" value="1499"></w4india:inr>)</button>		
-         </div>
+         </div><br/>
+         <div align="center"><a href="#modal" data-toggle="modal" id="itr4" class="btn yellow"><i class="icon-info-sign"></i><strong>Help</strong></a></div>
       </div>
       <!-- end of .widget-wrapper -->
    </div>
@@ -167,7 +171,8 @@
             <div><fmt:message key="ITR5.whoCan"></fmt:message></div>	
             <%--<button type="button" class="btn btn-success">e-File (<w4india:inr minFractionDigits="0" value="1499"></w4india:inr>)</button> --%>
             <button type="button" class="btnfiling btn btn-info">eZ-File (<w4india:inr minFractionDigits="0" value="1499"></w4india:inr>)</button>				
-         </div>
+         </div><br/>
+         <div align="center"><a href="#modal" data-toggle="modal" id="itr5" class="btn yellow"><i class="icon-info-sign"></i><strong>Help</strong></a></div>
       </div>
       <!-- end of .widget-wrapper -->
    </div>
@@ -184,7 +189,8 @@
       <!-- end of .widget-wrapper -->
    </div>
 </div>	
-
+<!--this File is reponsible to add modal with respective youtube videos  -->
+<jsp:include page="../../home/responsive/modal-tutorial.jsp"/>
 <hst:headContribution keyHint="detectMobile" category="jsInternal">
    <script type="text/javascript">
       $(document).ready(function(){
