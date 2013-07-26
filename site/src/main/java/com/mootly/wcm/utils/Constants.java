@@ -199,6 +199,7 @@ public interface Constants {
 	String TOTALTAXFSI="mootlywcm:totaltax_fsi";
 	String RELIEF9091="mootlywcm:relief90_91";
 	String RELIEF91="mootlywcm:relief91";
+	String COUNTRYNAME="mootlywcm:country_name";
 	
 	String CODE_COUNTRY="mootlywcm:country_code";
 	String NAME_BANK="mootlywcm:name_bank";
