@@ -408,3 +408,7 @@ orderable
 
 [mootlywcm:detailoftrustdocument] > hippostd:relaxed, mootlywcm:basedocument orderable
 [mootlywcm:payment] > hippostd:relaxed, mootlywcm:basedocument orderable
+
+[mootlywcm:sequence]
+  mixin
+  - mootlywcm:nextId (long) mandatory
