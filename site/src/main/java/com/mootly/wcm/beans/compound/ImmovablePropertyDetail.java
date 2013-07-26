@@ -23,6 +23,7 @@ import static com.mootly.wcm.utils.Constants.CODECOUNTRY;
 import static com.mootly.wcm.utils.Constants.ADDRESS_PROPERTY;
 import static com.mootly.wcm.utils.Constants.NT_PERSONAL_INFO_LINK;
 import static com.mootly.wcm.utils.Constants.TOTAL_INVESTMENT;
+import static com.mootly.wcm.utils.Constants.COUNTRYNAME;
 
 
 import org.hippoecm.hst.component.support.forms.FormMap;
@@ -52,8 +53,8 @@ public class ImmovablePropertyDetail extends HippoItem implements FormMapFiller 
 	
 	private String country_Code ;
 	private String address_property ;
+	private String country_name;
 	private Double total_investment;
-	
 	private String personalInfoUuid;
 	private boolean markedForDeletion;
    
@@ -75,10 +76,16 @@ public class ImmovablePropertyDetail extends HippoItem implements FormMapFiller 
     	if (total_investment == null) total_investment = getProperty(TOTAL_INVESTMENT);
     	return total_investment;
     }
-   
+    
+    public String getCountry_Name() {
+    	if (country_name == null) country_name = getProperty(COUNTRYNAME);
+    	return country_name;
+    }
    
  
-   
+   public final void setCountry_Name(String country_name){
+	   this.country_name=country_name;
+   }
    
     public final void setCountry_Code(String country_Code) {
 		this.country_Code = country_Code;
@@ -119,6 +126,7 @@ public class ImmovablePropertyDetail extends HippoItem implements FormMapFiller 
 		try {
 			node.setProperty(CODECOUNTRY, getCountry_Code());
 			node.setProperty(ADDRESS_PROPERTY,getAddress_Property());
+			node.setProperty(COUNTRYNAME,getCountry_Name());
 			node.setProperty(TOTAL_INVESTMENT,getTotal_Investment());
 			
 		} catch (RepositoryException rex) {
@@ -140,7 +148,9 @@ public class ImmovablePropertyDetail extends HippoItem implements FormMapFiller 
 		if ( formMap.getField("address_property") != null) {
 			setAddress_Property(formMap.getField("address_property").getValue());
 		}
-		
+		if ( formMap.getField("country_name") != null) {
+			setCountry_Name(formMap.getField("country_name").getValue());
+		}
 		if ( formMap.getField("total_investment") != null) {
 			 String strInvestment=formMap.getField("total_investment").getValue();
 			double Investment=Double.parseDouble(strInvestment);
@@ -154,6 +164,7 @@ public class ImmovablePropertyDetail extends HippoItem implements FormMapFiller 
 		setCountry_Code(objImmProp.getCountry_Code());
 		setAddress_Property(objImmProp.getAddress_Property());
 		setTotal_Investment(objImmProp.getTotal_Investment());
+		setCountry_Name(objImmProp.getCountry_Name());
 		
 		
 		
