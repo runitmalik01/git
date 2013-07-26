@@ -10,6 +10,11 @@
 <div class="page type-page">
 	<w4india:itrmenu/>
 <hst:link var="mainSiteMapRefId" />
+<%
+ValueListService ObjValueListService = ValueListServiceImpl.getInstance();
+SortedSet<Map.Entry<String,String>> objHashMapcountry = ObjValueListService.getCountry();
+request.setAttribute("objHashMapcountry", objHashMapcountry);
+%>
 <c:if test="${not empty formMap}">
 	<c:forEach items="${formMap.message}" var="item">
 		<div class="alert alert-error">
@@ -26,18 +31,24 @@
 		<form id="frmtrdetails" action="${actionUrl}" method="post"
 			name="frmtrdetails">
 			<div class="row-fluid show-grid">
+				
 				<div class="span4">
 					<div class="rowlabel">
 						<label for="country_code"><small><fmt:message
 									key="foreign.country.code" /> </small> </label>
 					</div>
-					<div class="rowlabel">
-						<input id="country_code" name="country_code" 
-							type="text" 
-							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.country_Code}"/></c:if>" />
-					</div>
+					
+					<select id="country_code" name="country_code" class="uprcase" onchange="getCountryName()">
+						<option value="">-Select-</option>
+						<c:forEach var="countryList" items="${objHashMapcountry}">
+							<option
+								<c:if test="${childBean.country_Code == countryList.key}">selected</c:if>
+								value="${countryList.key}">${countryList.value}</option>
+						</c:forEach>
+					</select>
 				</div>
-				<div class="span4">
+			
+			<div class="span4">
 					<div class="rowlabel">
 						<label for="tax_ID"><small><fmt:message
 									key="tax.id.itr2" /> </small> </label>
@@ -48,6 +59,7 @@
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.tax_ID}"/></c:if>" />
 					</div>
 				</div>
+				
 				<div class="span4">
 					<div class="rowlabel">
 						<label for="article_dtaa"><small><fmt:message
@@ -97,7 +109,7 @@
 					</div>
 				</div>
 			</div>
-		
+		<input type="hidden" id="country_name" name="country_name">
 			<div class="row-fluid show-grid">
 				<div class="span4 offset8 decimal">
 					<a href="${scriptName}" class="button olive">Cancel</a>&nbsp;
@@ -110,7 +122,7 @@
 	<c:otherwise>
 		<table>
 			<tr align="center">
-				<th><b><fmt:message key="foreign.country.code" /> </b>
+				<th><b><fmt:message key="foreign.country.name" /> </b>
 				</th>
 				<th><b><fmt:message key="tax.id.itr2" /> </b>
 				</th>
@@ -124,7 +136,7 @@
 				<c:forEach items="${parentBean.taxReliefDetailList}"
 					var="taxrelief">
 					<tr>
-						<td><c:out value="${taxrelief.country_Code}" />
+						<td><c:out value="${taxrelief.country_Name}" />
 						</td>
 						<td><c:out value="${taxrelief.tax_ID}" />
 						</td>
@@ -158,6 +170,19 @@
 </c:choose>
 </div>
 
+<script type="text/javascript">
+$("#country_code").change(function(){
+	if($("#country_code").val()!=null){
+	<c:forEach var="countryList" items="${objHashMapcountry}">
+	  if($("#country_code").val()=='<c:out value="${countryList.key}"/>'){
+		  $("#country_name").val('<c:out value="${countryList.value}"/>');
+	  }
+    </c:forEach>
+
+	}
+});
+
+</script>
 
 <res:client-validation formId="frmtrdetails"
 	screenConfigurationDocumentName="taxrelief"
