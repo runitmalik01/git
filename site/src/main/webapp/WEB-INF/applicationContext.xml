@@ -10,6 +10,7 @@
                            http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
 
   <!-- You may add any beans here. -->  
+  <bean class="com.mootly.wcm.services.SequenceGeneratorImpl" id="sequenceGenerator"></bean>
   <bean class="com.mootly.wcm.services.DeductionListService" id="deductionListService"></bean>
   <bean class="com.mootly.wcm.services.ITRXmlGeneratorServiceFactory" id="ITRXmlGeneratorServiceFactory">
       	<constructor-arg index="0">

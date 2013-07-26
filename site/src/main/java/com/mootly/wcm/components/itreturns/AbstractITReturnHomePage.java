@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import javax.servlet.ServletContext;
+
 import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.commons.lang.StringUtils;
 import org.hippoecm.hst.component.support.forms.FormMap;
@@ -35,12 +37,15 @@ import org.hippoecm.hst.core.component.HstComponentException;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
 import org.hippoecm.hst.core.parameters.ParametersInfo;
+import org.hippoecm.hst.core.request.ComponentConfiguration;
 import org.hippoecm.hst.util.SearchInputParsingUtils;
 import org.hippoecm.hst.utils.BeanUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import com.mootly.wcm.annotations.DataTypeValidationHelper;
 import com.mootly.wcm.annotations.DataTypeValidationType;
@@ -56,6 +61,8 @@ import com.mootly.wcm.model.FilingStatus;
 import com.mootly.wcm.model.FinancialYear;
 import com.mootly.wcm.model.ITReturnHomePageView;
 import com.mootly.wcm.model.ITReturnType;
+import com.mootly.wcm.services.SequenceGenerator;
+import com.mootly.wcm.services.SequenceGeneratorImpl;
 import com.mootly.wcm.utils.Constants;
 import com.mootly.wcm.utils.GoGreenUtil;
 import com.mootly.wcm.utils.PageableCollection;
@@ -74,6 +81,14 @@ abstract public class AbstractITReturnHomePage extends ITReturnComponent {
 
 
 	private static final Logger log = LoggerFactory.getLogger(AbstractITReturnHomePage.class);
+	
+	@Override
+	public void init(ServletContext servletContext,
+			ComponentConfiguration componentConfig)
+			throws HstComponentException {
+		// TODO Auto-generated method stub
+		super.init(servletContext, componentConfig);
+	}
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -172,17 +187,23 @@ abstract public class AbstractITReturnHomePage extends ITReturnComponent {
 					try {
 						MemberPersonalInformation m = (MemberPersonalInformation) o;
 						String thePath = m.getNode().getPath();
+						String theParentFolder = m.getParentBean().getName();
+						
 						log.info(thePath);
 						HippoFolder theMemberFolderBean = (HippoFolder) m.getParentBean().getParentBean().getParentBean().getParentBean().getParentBean();
 						log.info(theMemberFolderBean.getNode().getPath());
 						
 						ITReturnHomePageView itReturnHomePageView = new ITReturnHomePageView();
+
 						itReturnHomePageView.setPan(m.getPAN());
 						FinancialYear fy = FinancialYear.getByDisplayName(m.getFinancialYear());
 						itReturnHomePageView.setFinancialYear(fy);
 						
 						FilingSection filingSection = FilingSection.getByXmlCode(m.getReturnSection());
 						itReturnHomePageView.setFilingSection(filingSection);
+						
+						String itrFolderSuffix = FilingSection.getByFolderSuffix(theParentFolder);
+						itReturnHomePageView.setItrFolderSuffix(itrFolderSuffix);
 						
 						ITReturnType itReturnType = ITReturnType.getByXmlStatus(m.getReturnType());
 						itReturnHomePageView.setItReturnType(itReturnType);
@@ -259,7 +280,8 @@ abstract public class AbstractITReturnHomePage extends ITReturnComponent {
 		StoreFormResult sfr = new StoreFormResult();				
 		FormUtils.persistFormMap(request, response, map, sfr);
 		//FormUtils.persistFormMap(request, response, getFormMap(), sfr);
-		String returnURL =  request.getContextPath() +"/member/itreturn/" + financialYear.getDisplayName() + "/" + filingSection.getFolderName() + "/" + pan.toLowerCase() + "/servicerequest-itr.html?uuid=" +  sfr.getUuid(); //getRedirectURL(request, response, FormSaveResult.SUCCESS,"packageselector",financialYear,itReturnType,pan);
+		Long nextId = getSequenceGenerator().getNextId(SequenceGenerator.SEQUENCE_FOLDER_NAME);
+		String returnURL =  request.getContextPath() +"/member/itreturn/" + financialYear.getDisplayName() + "/" + filingSection.getFolderName() + "_f_"  + nextId  + "/" + pan.toLowerCase() + "/servicerequest-itr.html?uuid=" +  sfr.getUuid(); //getRedirectURL(request, response, FormSaveResult.SUCCESS,"packageselector",financialYear,itReturnType,pan);
 		//returnURL +="?uuid=" + 
 		try {
 			response.sendRedirect(returnURL);

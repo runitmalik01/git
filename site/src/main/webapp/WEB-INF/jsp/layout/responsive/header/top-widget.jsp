@@ -23,15 +23,14 @@
 <%@include file="../../../includes/tags.jspf" %>
 <hst:link var="myitreturns" path="/member/itreturn"/>
 <hst:link var="contactus" path="/contactus"/>
-<div id="top-widget" class="top-widget">
-  <div id="text-8" class="widget_text">
-    <div class="textwidget" align="center">      
-      <!--  <a href="${myitreturns}" class="button orange">
-      		My Income Tax Returns
-      </a>-->
-          <a href="${contactus}" class="button blue" style="text-decoration: none;"><strong>Contact Us</strong></a><br>
-          <abbr title="Phone">P:</abbr> <strong>+91-(11)-45067102, +91-(11)-25074341, +91-9136265229</strong><br/> 
-          <strong>+91-8459024905</strong> &nbsp;&nbsp;&nbsp;<abbr title="Timing">T:</abbr> <strong>9.30 AM To 9.30 PM</strong>
-    </div>
+<div id="top-widget" class="top-widget" style="font-size:12px; border: 1px groove #ccc;padding:2px;margin-top:10px;">
+  	<div class="row-fluid show-grid">
+	    <div class="span12">      
+	        Call Us: <a href="callto:+91-11-45067102">+91-11-45067102</a>,
+	        <a href="callto:+91-11-25074341">+91-11-25074341</a>,
+	        <a href="callto:+91-9136265229">+91-9136265229</a>
+	        <br/>
+	        <a href='<hst:link siteMapItemRefId="contactus"/>'>Our India Offices</a> are open from 9:30 am - 9:30 pm IST
+	    </div>
+	 </div>
   </div>
-</div><!-- end of #top-widget -->

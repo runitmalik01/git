@@ -8,17 +8,24 @@
  */
 
 package com.mootly.wcm.member;
+import javax.servlet.ServletContext;
+
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.core.component.HstComponentException;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
+import org.hippoecm.hst.core.request.ComponentConfiguration;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import com.mootly.wcm.components.itreturns.AbstractITReturnHomePage;
+import com.mootly.wcm.services.SequenceGenerator;
+import com.mootly.wcm.services.SequenceGeneratorImpl;
 
 public class ITReturnHomePage extends AbstractITReturnHomePage {
-
+	
 	@Override
 	public void doBeforeRender(HstRequest request, HstResponse response) {
 		super.doBeforeRender(request, response);
@@ -27,7 +34,7 @@ public class ITReturnHomePage extends AbstractITReturnHomePage {
 		if(reqFormJson!=null&&validation!=null){
 			try {
 				JSONObject formJson=new JSONObject(reqFormJson);
-					if(formJson.getString("pan").length()!=0&&formJson.getString("pi_last_name").length()!=0){
+					if( formJson.getString("pan").length()!=0 && formJson.getString("pi_last_name").length()!=0 ){
 						char pan5thChar=formJson.getString("pan").toLowerCase().charAt(4);
 						char lastName1stChar=formJson.getString("pi_last_name").toLowerCase().charAt(0);
 						if(pan5thChar!=lastName1stChar){

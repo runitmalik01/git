@@ -46,20 +46,19 @@ striped">
 					    <span itemprop="addressRegion" style="font-size:smaller">Gurgaon,Haryana</span> 
 					    <span itemprop="postalCode"  style="font-size:smaller">122103</span>
 					</div>
-					<span itemprop="telephone"  style="font-size:smaller">91-9971538064</span>
 					<div><small><a href="https://www.wealth4india.com"  itemprop="url">https://www.wealth4india.com</a></small></div>
 				</div>
-		    </td>
+		       </td>
 			<td width="30%">
 				<div itemscope itemtype="http://schema.org/AccountingService">
 					<div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
 						<div itemprop="streetAddress" style="font-size:smaller">830, Stewart Drive Suite 109</div>
-					    <div itemprop="addressLocality" style="font-size:smaller">Sunnyvale</div>
+					    <span itemprop="addressLocality" style="font-size:smaller">Sunnyvale</span>,
 					    <span itemprop="addressRegion" style="font-size:smaller">CA</span> 
 					    <span itemprop="postalCode"  style="font-size:smaller">94085</span>
 					</div>
 					<span itemprop="telephone"  style="font-size:smaller">+1-408-475-2035</span>
-					<div><small><a href="http://www.mootly.com"  itemprop="url">http://www.mootly.com</a></small></div>
+					<div><small><a href="https://www.wealth4india.com"  itemprop="url">https://www.wealth4india.com</a></small></div>
 				</div>
 			</td>
 		</tr>
@@ -75,9 +74,5 @@ striped">
 	</span>
 </div>
 <div>
-	<strong>Telephone No:</strong><span itemprop="telephone">&nbsp;+91-11-45067102,&nbsp;+91-
-
-		9136265229,&nbsp;+91-9971538064,&nbsp;+91-8459024905,&nbsp;
-
-		+1-408-475-2035</span>
+	<strong>Telephone No:</strong><span itemprop="telephone">+91-(11)-45067102, +91-(11)-25074341, +91-9136265229, +1-408-475-2035</span>
 </div>

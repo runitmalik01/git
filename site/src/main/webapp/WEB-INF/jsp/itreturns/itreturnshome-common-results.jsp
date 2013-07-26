@@ -26,7 +26,7 @@ HstRequest hstRequest = (HstRequest) request;
 				<th>Actions</th>
 			</tr>
 			<c:forEach items="${listOfITReturnHomePageView}" var="anEntry">
-	
+				<hst:link var="baseFolderLink" path="/${basePath}/itreturn${additionalParam}/${anEntry.financialYear.displayName}/${anEntry.filingSection.folderName}${anEntry.itrFolderSuffix}/${fn:toLowerCase(anEntry.pan)}"/>
                 <c:if test="${not empty anEntry.lastOrOrgName}">
 					<c:choose>
 						<c:when test="${basePath == 'vendor'}">
@@ -35,8 +35,7 @@ HstRequest hstRequest = (HstRequest) request;
 					</c:choose>
 				<tr>
 					<td class="pan">
-						<hst:link var="viewLink" path="/${basePath}/itreturn${additionalParam}/${anEntry.financialYear.displayName}/${anEntry.filingSection.folderName}/${fn:toLowerCase(anEntry.pan)}/servicerequest-itr.html"/>
-						<span style="text-transform:uppercase;"><a href="${viewLink}"><c:out value="${anEntry.pan}"/></a></span>
+						<span style="text-transform:uppercase;"><a href="${baseFolderLink}/servicerequest-itr.html"><c:out value="${anEntry.pan}"/></a></span>
 					</td>
 					<!-- <td class="pan"><b><c:out value="${anEntry.lastOrOrgName}"/></b></td> -->
 					<td><c:out value="${anEntry.fullName}"/></td>
@@ -47,17 +46,15 @@ HstRequest hstRequest = (HstRequest) request;
 					<td class="filingStatus"  style="text-transform:capitalize;"><c:out value="${anEntry.itReturnType}"/>/<c:out value="${anEntry.filingSection.desc}"/></td>
 					<td><fmt:message key="ITRServiceDelivery.${anEntry.ITRFormMode}.displayName"/></td>
 					<td>
-						<hst:link var="viewLink" path="/${basePath}/itreturn${additionalParam}/${anEntry.financialYear.displayName}/${anEntry.filingSection.folderName}/${fn:toLowerCase(anEntry.pan)}/servicerequest-itr-summary.html"/>
-						<%--<span style=""><a href="${viewLink}">Continue Filing</a></span>--%>
 						<div class="btn-group">
 			                <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Action <span class="caret"></span></button>
 			                <ul class="dropdown-menu">
 			                  <li><a href="${viewLink}">Continue Filing</a></li>
 			                  <c:if test="${anEntry.ITRFormMode == 'DIY'}">
 				                  <li class="divider"></li>
-				                  <li><a href="<hst:link path="/${basePath}/itreturn${additionalParam}/${anEntry.financialYear.displayName}/${anEntry.filingSection.folderName}/${fn:toLowerCase(anEntry.pan)}/servicerequest-itr-download-summary.html"/>">Download Summary</a></li>
-				                  <li><a href="<hst:link  path="/${basePath}/itreturn${additionalParam}/${anEntry.financialYear.displayName}/${anEntry.filingSection.folderName}/${fn:toLowerCase(anEntry.pan)}/servicerequest-itr-download-xml.html" />">Download XML</a></li>
-				                  <li><a href="<hst:link  path="/${basePath}/itreturn${additionalParam}/${anEntry.financialYear.displayName}/${anEntry.filingSection.folderName}/${fn:toLowerCase(anEntry.pan)}/servicerequest-itr-email-xml-summary.html"/>?email=${anEntry.email}">Email Summary and XML</a></li>
+				                  <li><a href="${baseFolderLink}/servicerequest-itr-download-summary.html">Download Summary</a></li>
+				                  <li><a href="${baseFolderLink}/servicerequest-itr-download-xml.html">Download XML</a></li>
+				                  <li><a href="${baseFolderLink}/servicerequest-itr-email-xml-summary.html?email=${anEntry.email}">Email Summary and XML</a></li>
 				              </c:if>
 			                </ul>
 			             </div>

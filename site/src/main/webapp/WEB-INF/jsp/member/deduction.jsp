@@ -190,7 +190,6 @@
 		    </form>
 		  </div>
 		  <div class="modal-footer">
-		  
 		    <a href="#" class="btn btn-inverse" id="addNewBtn" style="display:none">Add New</a>
 		    
 		    <a href="<c:choose><c:when test="${not empty modUrlToredirect}"><c:out value="${modUrlToredirect}"/></c:when><c:otherwise><c:out value="${scriptName}?selectedItrTab="/><%=ITRTab.DEDUCTIONS%></c:otherwise></c:choose>" class="btn" data-dismiss="">Close</a>
@@ -214,7 +213,7 @@
 	</c:otherwise>
 </c:choose>
 <%-- <a href="${scriptName}?selectedItrTab=<%=ITRTab.FORM16_SINGLE%>" id="test" role="button" class="btn" data-toggle="" ><fmt:message key="back.to.formsixteen" /></a>--%>
-<res:client-validation formId="frmDeduction" screenConfigurationDocumentName="doneedetails" formSubmitButtonId="deductionSave" />
+<res:client-validation formId="frmDeduction" formName="frmDeduction" screenConfigurationDocumentName="doneedetails" formSubmitButtonId="deductionSave" />
 
 
 <hst:element var="uiCustom" name="script">
@@ -245,7 +244,7 @@
 			});
 
 			$('#deductionSave').click(function() {
- 				 $('#frmDeduction').submit();
+				$('#frmDeduction').submit();
 			});
 
 			$(".head").change( function(o) {
@@ -268,6 +267,13 @@
 		
 		function ajaxSubmit() {
 			allForms = $(".frmDeduction");
+			//allForms.validate();
+			allForms.each ( function(index,value) {
+				$(value).validate();
+				if (!$(value).valid()) {
+					return false;
+				}
+			});
 			$(".progress").show();
 			$(".progress").addClass('active');
 			$("#theProgressBar").css('width:0%');
@@ -286,5 +292,76 @@
 			$(".progress").removeClass('active');
 			window.location.href = '../../chapterVIdeductions.html';
 		}
+		
+<c:if test="${pageAction == 'NEW_CHILD' && not empty deductionSection.listOfDeductionHead && deductionSection.name != '80g'}">
+			
+			jQuery(document).ready(function($) {
+				$("#addNewBtn").click( handleBlur );			
+				$("#addNewBtn").show();	
+				$(".head").rules('add',{'required':true});
+			});
+			
+			function handleBlur() {
+				
+				arrClass = $(this).parent('.modal-footer').siblings('.modal-body');
+				theForm = $(this).parent('.modal-footer').siblings('.modal-body').find('.frmDeduction').last();
+				var theId  = theForm.attr('id');
+				if (theId.indexOf("row_") != -1) {
+					theindx = theId.split("_")[1];
+					//check if row_1 exists
+					var eDiv =  $("#row_" + theindx);
+					eDiv.validate();
+					if (!eDiv.valid()) return;
+					
+					var theNewDiv =  $("#row_" + (parseInt(theindx) + 1));
+					if (theNewDiv.length == 0) {
+						//insertDiv
+						html = eDiv.html();
+						//<div class="row-fluid show-grid" id="row_0">
+						//<form id="<c:choose><c:when test="${pageAction == 'EDIT_CHILD'}">frmDeduction</c:when><c:otherwise>row_0</c:otherwise></c:choose>" method="post" name="frmDeduction" action="${submitDeduction}" class="frmDeduction">
+						var newdiv1 = $('<form class="frmDeduction" name="frmDeduction"  id="row_' +  (parseInt(theindx) + 1)  + '"/>');
+						//alert(html);
+						newdiv1.append(html);
+						
+						$(".modal-body").append(newdiv1);
+						
+						newdiv1.find(".span4").hide();
+						
+						//$(".theamount").blur( handleBlur );	
+						$(".head").change(headChangeHandler);
+						
+						$(".head").change( function(o) {
+							changeD(this);
+							}
+						);
+						
+						
+						$('.frmDeduction input').keydown(function(e) {
+						    if (e.keyCode == 13) {
+						   		e.preventDefault();
+						        //$('#frmdata').submit();
+						    }
+						});
+						//alert(html);
+					}
+				}
+			}
+			
+			$(".head").change(headChangeHandler);
+			
+			function headChangeHandler() {
+				var o = $(this).val();	
+				if (o.trim() == '') {
+					//hide and remove the corresponding amount button
+					$(this).parents(".row-fluid").find(".span4").hide();
+					$('label[for="investment"]').hide();
+				}
+				else {
+					$(this).parents(".row-fluid").find(".span4").show();
+					$('label[for="investment"]').show();
+				}
+			}
+			
+		</c:if>		
 </hst:element>
-<hst:headContribution element="${uiCustom}" category="jsInternal"/>
+<hst:headContribution element="${uiCustom}" category="jsInternal"/>    

@@ -144,6 +144,16 @@ public class ITReturnHomePageView {
 	public void setViewReturnURL(String viewReturnURL) {
 		this.viewReturnURL = viewReturnURL;
 	}
+	
+	public String getItrFolderSuffix() {
+		return itrFolderSuffix;
+	}
+
+	public void setItrFolderSuffix(String itrFolderSuffix) {
+		this.itrFolderSuffix = itrFolderSuffix;
+	}
+
+
 
 
 	String pan;
@@ -151,6 +161,7 @@ public class ITReturnHomePageView {
 	FilingStatus filingStatus;
 	ITReturnType itReturnType;
 	FilingSection filingSection;
+	String itrFolderSuffix;
 	ITRForm itrForm;
 	ITRServiceDelivery itrFormMode;
 	String canonicalUUID;

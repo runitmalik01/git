@@ -28,6 +28,7 @@
 <%@ tag import="java.util.*" %>
 <%@ attribute name="screenConfigurationDocumentName" type="java.lang.String" rtexprvalue="true" required="true"%>
 <%@ attribute name="formId" type="java.lang.String" rtexprvalue="true" required="true"%>
+<%@ attribute name="formName" type="java.lang.String" rtexprvalue="true" required="false"%>
 <%@ attribute name="formSubmitButtonId" type="java.lang.String" rtexprvalue="true" required="false"%>
 <%@ attribute name="validationType" type="java.lang.String" description="Enter the Name of validation for 5th char like Pan:pan & Tan:tan" required="false" %>
 <%@ attribute name="fieldOneID" description="Id of Field PAN/TAN" type="java.lang.String" required="false"%>
@@ -162,7 +163,7 @@
 					              }
 					          });
 					   });</c:if>
-				$('#<c:out value="${formId}"/> input').keydown(function(e) {
+				$('#<c:out value="${formId}"/> input<c:if test="${not empty formName}">,.<c:out value="${formName}"/></c:if>').keydown(function(e) {
 				    if (e.keyCode == 13) {
 				   		e.preventDefault();
 
@@ -170,13 +171,13 @@
 
 				    }
 				});
-				$('#<c:out value="${formId}"/>').validate({
+				$('#<c:out value="${formId}"/><c:if test="${not empty formName}">,.<c:out value="${formName}"/></c:if>').validate({
 					rules: validationRules.rules
 				});
 				<c:if test="${not empty screenConfigDocument}">
-					$('#<c:out value="${formId}"/>').submit(
+					$('#<c:out value="${formId}"/><c:if test="${not empty formName}">,.<c:out value="${formName}"/></c:if>').submit(
 						function(){
-							if ( $('#<c:out value="${formId}"/>').valid() ) { //no point checking if the form is already bad
+							if ( $('#<c:out value="${formId}"/><c:if test="${not empty formName}">,.<c:out value="${formName}"/></c:if>').valid() ) { //no point checking if the form is already bad
 								<c:out value="${screenConfigDocument.onSubmitHandler}" escapeXml="false"/>
 							}
 						}						
