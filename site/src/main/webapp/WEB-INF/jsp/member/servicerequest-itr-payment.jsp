@@ -1,3 +1,4 @@
+<%@page import="com.mootly.wcm.model.PaymentVerificationStatus"%>
 <%@page import="com.mootly.wcm.model.ITRServiceDelivery"%>
 <%@page import="com.mootly.wcm.model.ITRForm"%>
 <%@page import="com.mootly.wcm.beans.MemberPersonalInformation"%>
@@ -50,7 +51,8 @@
 			</c:when>
 			<c:otherwise>
 				<span class="label label-important">Your payment information
-					is still being reviewed.</span>
+					is still being reviewed.
+			   </span>
 			</c:otherwise>
 		</c:choose>
 	</c:if>
@@ -260,11 +262,31 @@
 				</div>
 			</div>
 		</fieldset>
-		<div class="row-fluid show-grid">
-			<div class="span4 offset8 decimal">
-				<a id="hrefLogin" role="button" class="btn orange">Save</a>
+		<c:if test="${empty allReadOnly && not empty strIsOnVendorPortal && strIsOnVendorPortal =='true' && isVendor =='true'}">
+			<div class="row-fluid show-grid">
+					<div class="span4 offset8">
+						<fieldset>
+							<legend>Vendor - Payment Verification</legend>
+					   		<select name="paymentVerificationStatus">
+					   			<option value="">Select Payment Verification</option>
+					   			<%for (PaymentVerificationStatus aPaymentStatus : PaymentVerificationStatus.values()) {%>
+					   				<%
+					   					pageContext.setAttribute("aPaymentStatus",aPaymentStatus);
+					   				%>
+					   				<option <c:if test="${aPaymentStatus == 'VERIFIED' && not empty parentBean.paymentVerificationStatus && parentBean.paymentVerificationStatus == 'VERIFIED'}">selected</c:if> value="<%=aPaymentStatus.name()%>"><%=aPaymentStatus.name()%></option>
+					   			<%} %>
+					   		</select>
+					   	</fieldset>
+				   	</div>
 			</div>
-		</div>
+		</c:if>
+		<c:if test="${empty allReadOnly}">
+			<div class="row-fluid show-grid">
+				<div class="span4 offset8 decimal">
+					<a id="hrefLogin" role="button" class="btn orange">Save</a>
+				</div>
+			</div>
+		</c:if>
 	</form>
 </div>
 <res:client-validation screenConfigurationDocumentName="payment"

@@ -239,7 +239,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			FormFields formFields = this.getClass().getAnnotation(FormFields.class);
 			String[] vendorFields = formFields.fieldNamesVendorOnly();
 			String[] theFieldsArray = formFields.fieldNames(); 
-			if (vendorFields != null && vendorFields.length > 0){
+			if (isVendor(request) && vendorFields != null && vendorFields.length > 0){
 				theFieldsArray = (String[]) ArrayUtils.addAll(theFieldsArray, vendorFields);
 			}
 			FormMap formMap = new FormMap(request,theFieldsArray);
@@ -324,8 +324,8 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			}
 		}
 		
-		String redirectToIfPaymentNotFound = getRedirectURLForSiteMapItem(request, response, null, "servicerequest-itr-payment", getFinancialYear(), getITReturnType(), getItrFolderSuffix(), getPAN());
-		String redirectToIfConfirmationNotFound = getRedirectURLForSiteMapItem(request, response, null, "servicerequest-itr-tos-confirmation", getFinancialYear(), getITReturnType(), getItrFolderSuffix(), getPAN());
+		String redirectToIfPaymentNotFound = getRedirectURLForSiteMapItem(request, response, null,(  (isVendor(request) && isOnVendorPortal()) ? "vendor-servicerequest-itr-payment" : "servicerequest-itr-payment"), getFinancialYear(), getITReturnType(), getItrFolderSuffix(), getPAN());
+		String redirectToIfConfirmationNotFound = getRedirectURLForSiteMapItem(request, response, null, (  (isVendor(request) && isOnVendorPortal()) ? "vendor-servicerequest-itr-tos-confirmation" : "servicerequest-itr-tos-confirmation"), getFinancialYear(), getITReturnType(), getItrFolderSuffix(), getPAN());
 		if (pageAction != null && (pageAction.equals(PAGE_ACTION.SHOW_ITR_SUMMARY) || pageAction.equals(PAGE_ACTION.DOWNLOAD_ITR_SUMMARY) || pageAction.equals(PAGE_ACTION.DOWNLOAD_ITR_XML) || pageAction.equals(PAGE_ACTION.EMAIL_ITR_XML_AND_SUMMARY)) ) {
 			try {
 				handleITRSummary(request,response);
@@ -417,7 +417,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		FormFields formFields = this.getClass().getAnnotation(FormFields.class);
 		String[] vendorFields = formFields.fieldNamesVendorOnly();
 		String[] theFieldsArray = formFields.fieldNames(); 
-		if (vendorFields != null && vendorFields.length > 0){
+		if (isVendor(request) && vendorFields != null && vendorFields.length > 0){
 			theFieldsArray = (String[]) ArrayUtils.addAll(theFieldsArray, vendorFields);
 		}
 		formMap = new FormMap(request,theFieldsArray);
@@ -1658,14 +1658,17 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		request.setAttribute("isPaymentRequired", isPaymentRequired);
 		request.setAttribute("isPaid", isPaid);
 		if (isPaymentRequired && !isPaid) {
+			throw new PaymentRequiredException("Payment is required");
+			/*
 			if (isOnVendorPortal() && isVendor(request)) {
 				if (log.isInfoEnabled()) {
 					log.info("Vendor can skip the payment and get the XML right away");					
 				}
 			}
 			else { //normal user must pay
-				throw new PaymentRequiredException("Payment is required");
-			}				
+				
+			}			
+			*/	
 		}
 		
 		

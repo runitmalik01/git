@@ -91,6 +91,15 @@ import com.sun.xml.bind.marshaller.NamespacePrefixMapper;
 public class ITR1XmlGeneratorService {
 	private static Logger log = LoggerFactory.getLogger(ITRXmlGeneratorService.class);
 
+	public static String generateITR1(MemberPersonalInformation memberPersonalInformation,SalaryIncomeDocument salaryIncomeDocument,HouseProperty houseProperty
+			,OtherSourcesDocument otherSourcesDocument,AdvanceTaxDocument advanceTaxDocument,TdsFromSalaryDocument tdsFromSalaryDocument
+			,TdsFromothersDocument tdsFromothersDocument,SelfAssesmetTaxDocument selfAssesmetTaxDocument,DeductionDocument deductionDocument,InterestDoc interestDoc,
+			FormSixteenDocument formSixteenDocument,RebateSec90Document rebateSec90Document ) throws Exception {
+		
+		
+		return null;
+		
+	}
 	public static String generateITR1(HstRequest request,HstResponse response) throws Exception {
 		// TODO Auto-generated method stub
 
