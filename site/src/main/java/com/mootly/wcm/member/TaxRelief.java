@@ -31,7 +31,7 @@ import com.mootly.wcm.model.FinancialYear;
  */
 @PrimaryBean(primaryBeanClass=TaxReliefDocument.class)
 @ChildBean(childBeanClass=TaxReliefDetail.class)
-@FormFields(fieldNames={"country_code","tax_ID","article_dtaa","totaltax_fsi","relief90_91","relief91"})
+@FormFields(fieldNames={"country_code","tax_ID","article_dtaa","totaltax_fsi","relief90_91","relief91","country_name"})
 
 
 
