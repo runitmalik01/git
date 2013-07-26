@@ -55,7 +55,7 @@ HstRequest hstRequest = (HstRequest) request;
 						<div class="btn-group">
 			                <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Action <span class="caret"></span></button>
 			                <ul class="dropdown-menu">
-			                  <li><a href="${viewLink}">Continue Filing</a></li>
+			                  <li><a href="${baseFolderLink}/servicerequest-itr.html">Continue Filing</a></li>
 			                  <c:if test="${anEntry.ITRFormMode == 'DIY'}">
 				                  <li class="divider"></li>
 				                  <li><a href="${baseFolderLink}/servicerequest-itr-download-summary.html">Download Summary</a></li>
