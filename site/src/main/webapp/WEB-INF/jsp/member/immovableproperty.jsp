@@ -7,6 +7,12 @@
 </c:set>
 <hippo-gogreen:title title="${trdetails}" />
 <hst:actionURL var="actionUrl" />
+<%
+ValueListService ObjValueListService = ValueListServiceImpl.getInstance();
+SortedSet<Map.Entry<String,String>> objHashMapcountry = ObjValueListService.getCountry();
+request.setAttribute("objHashMapcountry", objHashMapcountry);
+%>
+
 <div class="page type-page">
 	<w4india:itrmenu/>
 <hst:link var="mainSiteMapRefId" />
@@ -29,12 +35,17 @@
 				<div class="span4">
 					<div class="rowlabel">
 						<label for="country_code"><small><fmt:message
-									key="foreign.country.code" /> </small> </label>
+									key="foreign.country.name" /> </small> </label>
 					</div>
 					<div class="rowlabel">
-						<input id="country_code" name="country_code" 
-							type="text" 
-							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.country_Code}"/></c:if>" />
+						<select id="country_code" name="country_code" class="uprcase" onchange="getCountryName()">
+						<option value="">-Select-</option>
+						<c:forEach var="countryList" items="${objHashMapcountry}">
+							<option
+								<c:if test="${childBean.country_Code == countryList.key}">selected</c:if>
+								value="${countryList.key}">${countryList.value}</option>
+						</c:forEach>
+					</select>
 					</div>
 				</div>
 				<div class="span4">
@@ -60,7 +71,7 @@
 					</div>
 				</div>
 			</div>
-			
+			<input type="hidden" id="country_name" name="country_name">
 		
 			<div class="row-fluid show-grid">
 				<div class="span4 offset8 decimal">
@@ -74,7 +85,7 @@
 	<c:otherwise>
 		<table>
 			<tr align="center">
-				<th><b><fmt:message key="foreign.country.code" /> </b>
+				<th><b><fmt:message key="foreign.country.name" /> </b>
 				</th>
 				<th><b><fmt:message key="address.property.itr2" /> </b>
 				</th>
@@ -110,8 +121,19 @@
 	</c:otherwise>
 </c:choose>
 </div>
+<script type="text/javascript">
+$("#country_code").change(function(){
+	if($("#country_code").val()!=null){
+	<c:forEach var="countryList" items="${objHashMapcountry}">
+	  if($("#country_code").val()=='<c:out value="${countryList.key}"/>'){
+		  $("#country_name").val('<c:out value="${countryList.value}"/>');
+	  }
+    </c:forEach>
 
+	}
+});
 
+</script>
 <res:client-validation formId="frmImmProp"
 	screenConfigurationDocumentName="immovableproperty"
 	formSubmitButtonId="myModalHreffrmImmProp" />
