@@ -57,7 +57,7 @@ import com.mootly.wcm.beans.compound.TdsOthersDetail;
 public class ForeignBankAccountDocument extends BaseDocument implements ContentNodeBinder,FormMapFiller,CompoundChildUpdate {
 	static final public String NAMESPACE = "mootlywcm:foreignbankaccountdocument";
 	static final public String NODE_NAME = "foreignbankaccountdocument";
-	final String PROP_DETAIL_BEAN="mootlywcm:foreignbankaccoundtetail";
+	final String PROP_DETAIL_BEAN="mootlywcm:foreignbankaccountdetail";
 	private String itFolderUuid;
 	
 	public String getGross_salary() {
@@ -70,7 +70,7 @@ public class ForeignBankAccountDocument extends BaseDocument implements ContentN
 
 	private List<ForeignBankAccountDetail> foreignassetDetailList;
 
-	public final List<ForeignBankAccountDetail> getForeignAssetDetailList() {
+	public final List<ForeignBankAccountDetail> getForeignBankAccountDetailList() {
 		if (foreignassetDetailList == null) foreignassetDetailList= getChildBeans(PROP_DETAIL_BEAN);
 		return foreignassetDetailList;
 	}
@@ -80,7 +80,7 @@ public class ForeignBankAccountDocument extends BaseDocument implements ContentN
 	}
 	
 	public final void addForeignAssetDetail(ForeignBankAccountDetail foreignassetdetail) {
-		getForeignAssetDetailList();
+		getForeignBankAccountDetailList();
 		if (foreignassetDetailList == null) foreignassetDetailList = new ArrayList<ForeignBankAccountDetail>();
 		foreignassetDetailList.add(foreignassetdetail);
 	}
@@ -131,10 +131,10 @@ public class ForeignBankAccountDocument extends BaseDocument implements ContentN
         	 double sumrebate9091=0.0;
         	 double sumrebate91=0.0;
         	 String strSum="";
-        	if ( foreignasset.getForeignAssetDetailList() != null &&  foreignasset.getForeignAssetDetailList().size() > 0 ){ 
-        		log.info("checking size in salary income bean:::"+ foreignasset.getForeignAssetDetailList().size());
+        	if ( foreignasset.getForeignBankAccountDetailList() != null &&  foreignasset.getForeignBankAccountDetailList().size() > 0 ){ 
+        		log.info("checking size in salary income bean:::"+ foreignasset.getForeignBankAccountDetailList().size());
         		
-        		for (ForeignBankAccountDetail objforeignasset:foreignasset.getForeignAssetDetailList()) {
+        		for (ForeignBankAccountDetail objforeignasset:foreignasset.getForeignBankAccountDetailList()) {
         		    
         			if (!objforeignasset.isMarkedForDeletion()) {
         				double peak_balance=objforeignasset.getPeak_Balance();
@@ -188,7 +188,7 @@ public class ForeignBankAccountDocument extends BaseDocument implements ContentN
 			addForeignAssetDetail(source);
 		}
 		boolean found = false;
-		List<ForeignBankAccountDetail> listOfChildren = getForeignAssetDetailList();
+		List<ForeignBankAccountDetail> listOfChildren = getForeignBankAccountDetailList();
 		for (HippoBean o:listOfChildren) {
 			log.info( o.getCanonicalUUID() );
 			if (child.getCanonicalUUID() != null && child.getCanonicalUUID().equals(o.getCanonicalUUID())) {
@@ -216,7 +216,7 @@ public class ForeignBankAccountDocument extends BaseDocument implements ContentN
 		// TODO Auto-generated method stub
 		//check for available children
 		boolean found = false;
-		List<ForeignBankAccountDetail> listOfChildren = getForeignAssetDetailList();
+		List<ForeignBankAccountDetail> listOfChildren = getForeignBankAccountDetailList();
 		for (HippoBean o:listOfChildren) {
 			log.info( o.getCanonicalUUID() );
 			if (child.getCanonicalUUID() != null && child.getCanonicalUUID().equals(o.getCanonicalUUID())) {
