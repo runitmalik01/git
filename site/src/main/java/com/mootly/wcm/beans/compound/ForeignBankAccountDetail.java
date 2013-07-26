@@ -28,6 +28,7 @@ import static com.mootly.wcm.utils.Constants.ADDRESS_BANK;
 import static com.mootly.wcm.utils.Constants.NAME_ACCOUNT;
 import static com.mootly.wcm.utils.Constants.NAME_BANK;
 import static com.mootly.wcm.utils.Constants.PEAK_BALANCE;
+import static com.mootly.wcm.utils.Constants.COUNTRYNAME;
 
 import org.hippoecm.hst.component.support.forms.FormMap;
 import org.hippoecm.hst.content.beans.ContentNodeBinder;
@@ -45,9 +46,9 @@ import com.mootly.wcm.beans.FormMapFiller;
 
 // this bean is used for processapplication.jsp
 
-@Node(jcrType = "mootlywcm:foreignbankaccoundtetail")
+@Node(jcrType = "mootlywcm:foreignbankaccountdetail")
 public class ForeignBankAccountDetail extends HippoItem implements FormMapFiller {
-	static final public String NAMESPACE = "mootlywcm:foreignbankaccoundtetail";   
+	static final public String NAMESPACE = "mootlywcm:foreignbankaccountdetail";   
 	static final public String NODE_NAME = ForeignBankAccountDetail.class.getName().toLowerCase();
 	private final static Logger log = LoggerFactory.getLogger(ForeignBankAccountDetail.class); 
 	
@@ -60,6 +61,7 @@ public class ForeignBankAccountDetail extends HippoItem implements FormMapFiller
 	private String name_account;
 	private String account_no;
 	private Double peak_balance;
+	private String country_name;
 	private String personalInfoUuid;
 	private boolean markedForDeletion;
    
@@ -96,7 +98,10 @@ public class ForeignBankAccountDetail extends HippoItem implements FormMapFiller
     	return peak_balance;
     }
    
- 
+    public String getCountry_Name(){
+    	if(country_name == null) country_name= getProperty(COUNTRYNAME);
+    	return country_name;
+    }
    
    
     public final void setCountry_Code(String country_Code) {
@@ -117,7 +122,9 @@ public class ForeignBankAccountDetail extends HippoItem implements FormMapFiller
 	public final void setPeak_Balance(Double peak_balance) {
 		this.peak_balance = peak_balance;
 	}
-	
+	public final void setCountry_Name(String country_name){
+		this.country_name=country_name;
+	}
 		public final String getPersonalInfoUuid() {
 			return personalInfoUuid;
 		}
@@ -150,6 +157,7 @@ public class ForeignBankAccountDetail extends HippoItem implements FormMapFiller
 			node.setProperty(NAME_ACCOUNT,getName_Account());
 			node.setProperty(ACCOUNT_NO,getAccount_No());
 			node.setProperty(PEAK_BALANCE,getPeak_Balance());
+			node.setProperty(COUNTRYNAME,getCountry_Name());
 		} catch (RepositoryException rex) {
 			log.error("Repository Exception while binding",rex);
 		}
@@ -183,7 +191,9 @@ public class ForeignBankAccountDetail extends HippoItem implements FormMapFiller
 			double PeakBalance=Double.parseDouble(strPeakBalance);
 			setPeak_Balance(PeakBalance);
 		}
-		
+		if(formMap.getField("country_name") != null){
+			setCountry_Name(formMap.getField("country_name").getValue());
+		}
 		
 		
 	}
@@ -197,6 +207,7 @@ public class ForeignBankAccountDetail extends HippoItem implements FormMapFiller
 		setAccount_No(objForeignAsset.getAccount_No());
 		setName_Bank(objForeignAsset.getName_Bank());
 		setPeak_Balance(objForeignAsset.getPeak_Balance());
+		setCountry_Name(objForeignAsset.getCountry_Name());
 		
 		
 	}
