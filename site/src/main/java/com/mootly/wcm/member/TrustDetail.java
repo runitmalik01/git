@@ -36,7 +36,7 @@ import com.mootly.wcm.model.FinancialYear;
  */
 @PrimaryBean(primaryBeanClass=DetailOfTrustDocument.class)
 @ChildBean(childBeanClass=DetailOfTrustDetail.class)
-@FormFields(fieldNames={"country_code","name_trust","address_trust","name_othertrust","address_othertrust","name_settlor","address_settlor","name_beneficiaries","address_beneficiaries"})
+@FormFields(fieldNames={"country_code","name_trust","address_trust","name_othertrust","address_othertrust","name_settlor","address_settlor","name_beneficiaries","address_beneficiaries","country_name"})
 
 
 
