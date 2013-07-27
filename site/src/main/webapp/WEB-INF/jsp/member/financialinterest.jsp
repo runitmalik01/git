@@ -123,7 +123,7 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 				<c:forEach items="${parentBean.financialInterestDetailList}"
 					var="foreignbank">
 					<tr>
-						<td><c:out value="${foreignbank.country_Code}" />
+						<td><c:out value="${foreignbank.country_Name}" />
 						</td>
 						<td><c:out value="${foreignbank.name_Entity}" />
 						</td>
