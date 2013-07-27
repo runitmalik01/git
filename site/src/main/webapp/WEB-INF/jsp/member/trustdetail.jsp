@@ -5,6 +5,11 @@
 <c:set var="trustdetails">
 	<fmt:message key="trustdetails" />
 </c:set>
+<%
+ValueListService ObjValueListService = ValueListServiceImpl.getInstance();
+SortedSet<Map.Entry<String,String>> objHashMapcountry = ObjValueListService.getCountry();
+request.setAttribute("objHashMapcountry", objHashMapcountry);
+%>
 <hippo-gogreen:title title="${trdetails}" />
 <hst:actionURL var="actionUrl" />
 <div class="page type-page">
@@ -34,9 +39,14 @@
 									key="foreign.country.code" /> </small> </label>
 					</div>
 					<div class="rowlabel">
-						<input id="country_code" name="country_code" 
-							type="text" 
-							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.country_Code}"/></c:if>" />
+						<select id="country_code" name="country_code" class="uprcase" onchange="getCountryName()">
+						<option value="">-Select-</option>
+						<c:forEach var="countryList" items="${objHashMapcountry}">
+							<option
+								<c:if test="${childBean.country_Code == countryList.key}">selected</c:if>
+								value="${countryList.key}">${countryList.value}</option>
+						</c:forEach>
+					</select>
 					</div>
 				</div>
 				<div class="span4">
@@ -134,7 +144,7 @@
 					</div>
 				</div>
 				</div>
-				
+				<input type="hidden" id="country_name" name="country_name">
 			<div class="row-fluid show-grid">
 				<div class="span4 offset8 decimal">
 					<a href="${scriptName}" class="button olive">Cancel</a>&nbsp;
@@ -198,7 +208,31 @@
 	</c:otherwise>
 </c:choose>
 </div>
+<script type="text/javascript">
+$("#country_code").ready(function(){
+	
+	if($("#country_code").val()!=null){
+	<c:forEach var="countryList" items="${objHashMapcountry}">
+	  if($("#country_code").val()=='<c:out value="${countryList.key}"/>'){
+		  $("#country_name").val('<c:out value="${countryList.value}"/>');
+	  }
+    </c:forEach>
 
+	}
+});
+$("#country_code").change(function(){
+	
+	if($("#country_code").val()!=null){
+	<c:forEach var="countryList" items="${objHashMapcountry}">
+	  if($("#country_code").val()=='<c:out value="${countryList.key}"/>'){
+		  $("#country_name").val('<c:out value="${countryList.value}"/>');
+	  }
+    </c:forEach>
+
+	}
+});
+
+</script>
 
 <res:client-validation formId="frmtrustdetails"
 	screenConfigurationDocumentName="trustdetail"
