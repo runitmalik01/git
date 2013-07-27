@@ -20,7 +20,7 @@ HstRequest hstRequest = (HstRequest) request;
 				<th>Date of Birth</th>
 				<th>FY</th>
 				<th>Filing As</th>
-				<th>Package</th> 
+				<th>Package</th>
 				<th>Return Type/Filing Section</th>
 				<th>Mode</th>
 				<th>Actions</th>
@@ -37,8 +37,8 @@ HstRequest hstRequest = (HstRequest) request;
 							<c:set var="additionalParam" value=""/>
 						</c:otherwise>
 					</c:choose>
-					
-					
+
+
 				<tr>
 					<td class="pan">
 						<span style="text-transform:uppercase;"><a href="${baseFolderLink}/servicerequest-itr.html"><c:out value="${anEntry.pan}"/></a></span>
@@ -55,7 +55,7 @@ HstRequest hstRequest = (HstRequest) request;
 						<div class="btn-group">
 			                <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Action <span class="caret"></span></button>
 			                <ul class="dropdown-menu">
-			                  <li><a href="${baseFolderLink}/servicerequest-itr.html">Continue Filing</a></li>
+			                  <li><a href="${baseFolderLink}/servicerequest-itr-summary.html">Continue Filing</a></li>
 			                  <c:if test="${anEntry.ITRFormMode == 'DIY'}">
 				                  <li class="divider"></li>
 				                  <li><a href="${baseFolderLink}/servicerequest-itr-download-summary.html">Download Summary</a></li>
@@ -68,7 +68,7 @@ HstRequest hstRequest = (HstRequest) request;
 				</tr></c:if>
 			</c:forEach>
 		</table>
-		
+
 		<c:choose>
 		  <c:when test="${docs.total eq 0}">
 		    <p id="results"><fmt:message key="search.results.noresults"/> '${query}'</p>
