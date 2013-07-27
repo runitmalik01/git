@@ -3670,11 +3670,13 @@
 			    <sv:value>mainSiteMapItemRefId</sv:value>
 			    <sv:value>action</sv:value>
 			    <sv:value>nextScreen</sv:value>
+			    <sv:value>shouldPostToSelf</sv:value>
 			  </sv:property>
 			  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
 			    <sv:value>memberpersonalinformation</sv:value>
 			    <sv:value>EDIT</sv:value>
 			    <sv:value>servicerequest-itr-summary</sv:value>
+			    <sv:value>true</sv:value>			    
 			  </sv:property>
 			  <sv:property sv:name="hst:refId" sv:type="String">
 			    <sv:value>servicerequest-itr-payment</sv:value>
@@ -7494,11 +7496,13 @@
 					    <sv:value>mainSiteMapItemRefId</sv:value>
 					    <sv:value>action</sv:value>
 					    <sv:value>nextScreen</sv:value>
+					    <sv:value>shouldPostToSelf</sv:value>
 					  </sv:property>
 					  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
 					    <sv:value>memberpersonalinformation</sv:value>
 					    <sv:value>EDIT</sv:value>
 					    <sv:value>vendor-servicerequest-itr-summary</sv:value>
+					    <sv:value>shouldPostToSelf</sv:value>
 					  </sv:property>
 					  <sv:property sv:name="hst:refId" sv:type="String">
 					    <sv:value>vendor-servicerequest-itr-payment</sv:value>

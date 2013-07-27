@@ -542,113 +542,143 @@ ${vendorHostName}/site/activation/${vendorshipSignupDocument.canonicalUUID}
       </sv:node>
     </sv:node>
   </sv:node>
-<sv:node sv:name="w4i_email">
-  <sv:property sv:name="jcr:primaryType" sv:type="Name">
-    <sv:value>hippo:handle</sv:value>
-  </sv:property>
-  <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
-    <sv:value>hippo:hardhandle</sv:value>
-  </sv:property>
-  <sv:property sv:name="jcr:uuid" sv:type="String">
-    <sv:value>6298b44c-eaf0-4be5-8e90-0d0927db1e0d</sv:value>
-  </sv:property>
-  <sv:node sv:name="w4i_email">
-    <sv:property sv:name="jcr:primaryType" sv:type="Name">
-      <sv:value>mootlywcm:emailtemplate</sv:value>
-    </sv:property>
-    <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
-      <sv:value>hippo:harddocument</sv:value>
-      <sv:value>hippotranslation:translated</sv:value>
-    </sv:property>
-    <sv:property sv:name="jcr:uuid" sv:type="String">
-      <sv:value>8d94ac6b-68d7-4f4a-acc0-68cc32547298</sv:value>
-    </sv:property>
-    <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
-      <sv:value>live</sv:value>
-      <sv:value>preview</sv:value>
-    </sv:property>
-    <sv:property sv:name="hippo:related___pathreference" sv:type="String">
-      <sv:value>w4i_email</sv:value>
-    </sv:property>
-    <sv:property sv:name="hippostd:holder" sv:type="String">
-      <sv:value>admin</sv:value>
-    </sv:property>
-    <sv:property sv:name="hippostd:state" sv:type="String">
-      <sv:value>published</sv:value>
-    </sv:property>
-    <sv:property sv:name="hippostd:stateSummary" sv:type="String">
-      <sv:value>live</sv:value>
-    </sv:property>
-    <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
-      <sv:value>admin</sv:value>
-    </sv:property>
-    <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
-      <sv:value>2013-06-28T17:17:51.506+05:30</sv:value>
-    </sv:property>
-    <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-      <sv:value>2013-07-02T15:51:41.700+05:30</sv:value>
-    </sv:property>
-    <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
-      <sv:value>admin</sv:value>
-    </sv:property>
-    <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-      <sv:value>2013-07-02T15:51:48.829+05:30</sv:value>
-    </sv:property>
-    <sv:property sv:name="hippotranslation:id" sv:type="String">
-      <sv:value>d4086c2d-e85e-4e46-be7c-430296d0fab5</sv:value>
-    </sv:property>
-    <sv:property sv:name="hippotranslation:locale" sv:type="String">
-      <sv:value>en</sv:value>
-    </sv:property>
-    <sv:property sv:name="mootlywcm:From" sv:type="String">
-      <sv:value>info@mootly.com</sv:value>
-    </sv:property>
-    <sv:property sv:name="mootlywcm:bcc" sv:type="String">
-      <sv:value>pgupta@mootly.com</sv:value>
-    </sv:property>
-    <sv:property sv:name="mootlywcm:cc" sv:type="String">
-      <sv:value>pgupta@mootly.com</sv:value>
-    </sv:property>
-    <sv:property sv:name="mootlywcm:fromName" sv:type="String">
-      <sv:value>Mootly Information</sv:value>
-    </sv:property>
-    <sv:property sv:name="mootlywcm:htmlBody" sv:type="String">
-      <sv:value>&lt;html&gt;
-&lt;body&gt;
-
-&lt;p&gt;Dear User&lt;/p&gt;
-
-&lt;p&gt;We would like to thank you for choosing our services on
-https://www.wealth4india.com/&lt;/p&gt;
-
-&lt;p&gt;With reference to your wealth4india  account, we would like to inform you
-that you have received your Computation Summary and XML generated copy.&lt;/p&gt;
-
-&lt;p&gt;Please find attachment. &lt;/p&gt;
-
-&lt;p&gt;Regards,&lt;/p&gt;
-
-&lt;p&gt;Wealth4India Team &lt;/p&gt;
-
-&lt;/body&gt;
-&lt;/html&gt;</sv:value>
-    </sv:property>
-    <sv:property sv:name="mootlywcm:plainBody" sv:type="String">
-      <sv:value/>
-    </sv:property>
-    <sv:property sv:name="mootlywcm:subject" sv:type="String">
-      <sv:value>Your Income Tax Return for Financial Year $financialYearDisplay</sv:value>
-    </sv:property>
-    <sv:property sv:name="mootlywcm:templateKey" sv:type="String">
-      <sv:value>w4i_email</sv:value>
-    </sv:property>
-    <sv:node sv:name="hippotranslation:translations">
-      <sv:property sv:name="jcr:primaryType" sv:type="Name">
-        <sv:value>hippotranslation:translations</sv:value>
-      </sv:property>
-    </sv:node>
-  </sv:node>
-</sv:node>
+<!-- new i amit 07/27-->
+	<sv:node sv:name="w4i_email" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hippo:handle</sv:value>
+	  </sv:property>
+	  <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+	    <sv:value>hippo:hardhandle</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>6298b44c-eaf0-4be5-8e90-0d0927db1e0d</sv:value>
+	  </sv:property>
+	  <sv:node sv:name="w4i_email">
+	    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	      <sv:value>mootlywcm:emailtemplate</sv:value>
+	    </sv:property>
+	    <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+	      <sv:value>hippo:harddocument</sv:value>
+	      <sv:value>hippotranslation:translated</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="jcr:uuid" sv:type="String">
+	      <sv:value>8d94ac6b-68d7-4f4a-acc0-68cc32547298</sv:value>
+	    </sv:property>
+	    <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
+	      <sv:value>live</sv:value>
+	      <sv:value>preview</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="hippo:related___pathreference" sv:type="String">
+	      <sv:value>w4i_email</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="hippostd:holder" sv:type="String">
+	      <sv:value>admin</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="hippostd:state" sv:type="String">
+	      <sv:value>published</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="hippostd:stateSummary" sv:type="String">
+	      <sv:value>live</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
+	      <sv:value>admin</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
+	      <sv:value>2013-06-28T17:17:51.506+05:30</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
+	      <sv:value>2013-07-02T15:51:41.700+05:30</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
+	      <sv:value>admin</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
+	      <sv:value>2013-07-02T15:51:48.829+05:30</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="hippotranslation:id" sv:type="String">
+	      <sv:value>d4086c2d-e85e-4e46-be7c-430296d0fab5</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="hippotranslation:locale" sv:type="String">
+	      <sv:value>en</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="mootlywcm:From" sv:type="String">
+	      <sv:value>info@mootly.com</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="mootlywcm:bcc" sv:type="String">
+	      <sv:value>pgupta@mootly.com</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="mootlywcm:cc" sv:type="String">
+	      <sv:value>pgupta@mootly.com</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="mootlywcm:fromName" sv:type="String">
+	      <sv:value>Mootly Information</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="mootlywcm:htmlBody" sv:type="String">
+	      <sv:value>&lt;html&gt;
+		&lt;head&gt;
+			&lt;title&gt;Your Income Tax Return&lt;/title&gt;
+		&lt;/head&gt;
+		&lt;body&gt;
+			&lt;p&gt;
+				&lt;span style="font-family:arial,helvetica,sans-serif;"&gt;&lt;span style="color:#4b0082;"&gt;&lt;strong&gt;&lt;span style="font-size:14px;"&gt;Thank You for choosing Wealth4India..!!&amp;nbsp;&lt;/span&gt;&lt;/strong&gt;&lt;/span&gt;&lt;br /&gt;
+				&lt;br /&gt;
+				We have received your payment of Rs.$!{paymentAmount}/- and we have enclosed the xml and summary of the ITR&amp;nbsp;return to be filed for the AY &lt;/span&gt;$!{financialYear.displayAssessmentYear}. (FY $!{financialYearDisplay}).&lt;/p&gt;
+			&lt;p&gt;
+				&lt;span style="font-family:arial,helvetica,sans-serif;"&gt;For your ease link has been provided to upload your return and step by step guide to help you file your ITR on&amp;nbsp;your own.&lt;br /&gt;
+				&lt;br /&gt;
+				&lt;strong&gt;&lt;span style="color:#a52a2a;"&gt;&lt;u&gt;How to File your ITR&lt;/u&gt;&lt;/span&gt;&lt;/strong&gt;&lt;br /&gt;
+				&lt;br /&gt;
+				&lt;strong&gt;&lt;span style="font-size:12px;"&gt;Step - 1&lt;/span&gt;&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;ul&gt;
+				&lt;li&gt;
+					&lt;span style="font-family:arial,helvetica,sans-serif;"&gt;&lt;span style="font-size:12px;"&gt;Login to &lt;a href="https://incometaxindiaefiling.gov.in/e-Filing/UserLogin/LoginHome.html?nextPage=efile"&gt;https://incometaxindiaefiling.gov.in/e-Filing/UserLogin/LoginHome.html?nextPage=efile&amp;nbsp;&lt;/a&gt;&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
+				&lt;li&gt;
+					&lt;span style="font-family:arial,helvetica,sans-serif;"&gt;&lt;span style="font-size:12px;"&gt;Your Login ID (i.e. PAN No.), Password and Date of Birth.&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
+			&lt;/ul&gt;
+			&lt;p&gt;
+				&lt;span style="font-family:arial,helvetica,sans-serif;"&gt;&lt;strong&gt;&lt;span style="font-size:12px;"&gt;Step - 2&lt;/span&gt;&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;ul&gt;
+				&lt;li&gt;
+					&lt;span style="font-family:arial,helvetica,sans-serif;"&gt;&lt;span style="font-size:12px;"&gt;Select your ITR form (ITR1), Assessment Year (2013-14), Choose the xml File attached in this email (do not choose the summary)&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
+			&lt;/ul&gt;
+			&lt;p&gt;
+				&lt;span style="font-family:arial,helvetica,sans-serif;"&gt;&lt;strong&gt;&lt;span style="font-size:12px;"&gt;Step - 3&lt;/span&gt;&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;ul&gt;
+				&lt;li&gt;
+					&lt;span style="font-family:arial,helvetica,sans-serif;"&gt;&lt;span style="font-size:12px;"&gt;Download the ITR V and please take printout of the same. It&amp;rsquo;s a password protected file Password is&amp;nbsp;PAN no. in lower case followed by DOB without any space. (E.g. abcpd1234e01021990)&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
+			&lt;/ul&gt;
+			&lt;p&gt;
+				&lt;span style="font-family:arial,helvetica,sans-serif;"&gt;&lt;strong&gt;&lt;span style="font-size:12px;"&gt;Step - 4&lt;/span&gt;&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;ul&gt;
+				&lt;li&gt;
+					&lt;span style="font-family:arial,helvetica,sans-serif;"&gt;&lt;span style="font-size:12px;"&gt;Post to &amp;ldquo;Income Tax Department - CPC, Post Bag No - 1, Electronic City Post Office, Bengaluru -&amp;nbsp;560100, Karnataka&amp;rdquo;, by ORDINARY POST OR SPEED POST ONLY.&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
+			&lt;/ul&gt;
+			&lt;p&gt;
+				&lt;span style="font-family:arial,helvetica,sans-serif;"&gt;&lt;span style="font-size:12px;"&gt;For any query you can reach us.&amp;nbsp;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;
+				&lt;span style="font-family:arial,helvetica,sans-serif;"&gt;&lt;span style="font-size:12px;"&gt;Thanks &amp;amp; Regards&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;
+				&lt;span style="font-family:arial,helvetica,sans-serif;"&gt;&lt;span style="font-size:12px;"&gt;Wealth4India Team&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+		&lt;/body&gt;
+	&lt;/html&gt;</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="mootlywcm:plainBody" sv:type="String">
+	      <sv:value/>
+	    </sv:property>
+	    <sv:property sv:name="mootlywcm:subject" sv:type="String">
+	      <sv:value>Your Income Tax Return for Financial Year $financialYearDisplay</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="mootlywcm:templateKey" sv:type="String">
+	      <sv:value>w4i_email</sv:value>
+	    </sv:property>
+	    <sv:node sv:name="hippotranslation:translations">
+	      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	        <sv:value>hippotranslation:translations</sv:value>
+	      </sv:property>
+	    </sv:node>
+	  </sv:node>
+	</sv:node>
+<!-- /new i -->
 	<sv:node sv:name="service_request" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
 	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
 	    <sv:value>hippo:handle</sv:value>
@@ -1732,5 +1762,231 @@ that you have received your Computation Summary and XML generated copy.&lt;/p&g
 	    </sv:node>
 	  </sv:node>
 	</sv:node>	
+	<!-- PAyment Verified -->
+	<sv:node sv:name="memberpaymentverified" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hippo:handle</sv:value>
+	  </sv:property>
+	  <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+	    <sv:value>hippo:hardhandle</sv:value>
+	    <sv:value>hippo:translated</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>65965168-00a4-400c-9de7-83ab399e47a5</sv:value>
+	  </sv:property>
+	  <sv:node sv:name="hippo:translation">
+	    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	      <sv:value>hippo:translation</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="hippo:language" sv:type="String">
+	      <sv:value/>
+	    </sv:property>
+	    <sv:property sv:name="hippo:message" sv:type="String">
+	      <sv:value>memberpaymentverified</sv:value>
+	    </sv:property>
+	  </sv:node>
+	  <sv:node sv:name="memberpaymentverified">
+	    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	      <sv:value>mootlywcm:emailtemplate</sv:value>
+	    </sv:property>
+	    <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+	      <sv:value>hippo:harddocument</sv:value>
+	      <sv:value>hippotranslation:translated</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="jcr:uuid" sv:type="String">
+	      <sv:value>e60910c8-722c-463d-9bc4-b2dbf3312953</sv:value>
+	    </sv:property>
+	    <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
+	      <sv:value>live</sv:value>
+	      <sv:value>preview</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="hippo:related___pathreference" sv:type="String">
+	      <sv:value>memberpaymentverified</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="hippostd:holder" sv:type="String">
+	      <sv:value>admin</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="hippostd:state" sv:type="String">
+	      <sv:value>published</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="hippostd:stateSummary" sv:type="String">
+	      <sv:value>live</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
+	      <sv:value>admin</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
+	      <sv:value>2013-07-18T17:15:34.533-07:00</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
+	      <sv:value>2013-07-26T17:30:40.221-07:00</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
+	      <sv:value>admin</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
+	      <sv:value>2013-07-26T17:30:43.768-07:00</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="hippotranslation:id" sv:type="String">
+	      <sv:value>084d91b2-7ce2-4cb5-94ec-b467e9e01b92</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="hippotranslation:locale" sv:type="String">
+	      <sv:value>en</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="mootlywcm:From" sv:type="String">
+	      <sv:value>info@mootly.com</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="mootlywcm:bcc" sv:type="String">
+	      <sv:value/>
+	    </sv:property>
+	    <sv:property sv:name="mootlywcm:cc" sv:type="String">
+	      <sv:value/>
+	    </sv:property>
+	    <sv:property sv:name="mootlywcm:fromName" sv:type="String">
+	      <sv:value/>
+	    </sv:property>
+	    <sv:property sv:name="mootlywcm:htmlBody" sv:type="String">
+	      <sv:value>&lt;html&gt;
+		&lt;head&gt;
+			&lt;title&gt;&lt;/title&gt;
+		&lt;/head&gt;
+		&lt;body&gt;
+			&lt;div&gt;
+				&lt;span style="font-family:arial,helvetica,sans-serif;"&gt;&lt;span style="font-size:12px;"&gt;&lt;strong&gt;Greetings from Wealth4India..!!&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+			&lt;div&gt;
+				&amp;nbsp;&lt;/div&gt;
+			&lt;div&gt;
+				&lt;span style="font-family:arial,helvetica,sans-serif;"&gt;&lt;span style="font-size:12px;"&gt;Your payment has been verified.&amp;nbsp;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+			&lt;div&gt;
+				&amp;nbsp;&lt;/div&gt;
+			&lt;div&gt;
+				&lt;span style="font-family:arial,helvetica,sans-serif;"&gt;&lt;span style="font-size:12px;"&gt;&lt;u&gt;Details of your Payment&amp;nbsp;&lt;/u&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+			&lt;div&gt;   Payment Mode: $!{paymentType}&amp;nbsp;&lt;/div&gt;
+			
+			#if ($!{paymentType} == "CHECK")		
+				&lt;table border="1" cellpadding="1" cellspacing="1" style="width: 500px;"&gt;
+					&lt;tbody&gt;
+						&lt;tr&gt;
+							&lt;td&gt;
+								&lt;span style="font-family:arial,helvetica,sans-serif;"&gt;&lt;span style="font-size:12px;"&gt;Payment Type&lt;span class="Apple-tab-span" style="white-space: pre;"&gt; &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/td&gt;
+							&lt;td&gt;
+								&lt;span style="font-family:arial,helvetica,sans-serif;"&gt;&lt;span style="font-size:12px;"&gt;$!{paymentType}&lt;/span&gt;&lt;/span&gt;&lt;/td&gt;
+						&lt;/tr&gt;
+						&lt;tr&gt;
+							&lt;td&gt;
+								&lt;span style="font-family:arial,helvetica,sans-serif;"&gt;&lt;span style="font-size:12px;"&gt;Cheque No&lt;/span&gt;&lt;/span&gt;&lt;/td&gt;
+							&lt;td&gt;
+								&lt;span style="font-family:arial,helvetica,sans-serif;"&gt;&lt;span style="font-size:12px;"&gt;$!{checkNo}&lt;/span&gt;&lt;/span&gt;&lt;/td&gt;
+						&lt;/tr&gt;
+						&lt;tr&gt;
+							&lt;td&gt;
+								&lt;span style="font-family:arial,helvetica,sans-serif;"&gt;&lt;span style="font-size:12px;"&gt;Bank&lt;span class="Apple-tab-span" style="white-space: pre;"&gt; &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/td&gt;
+							&lt;td&gt;
+								&lt;span style="font-family:arial,helvetica,sans-serif;"&gt;&lt;span style="font-size:12px;"&gt;$!{checkBank}&lt;/span&gt;&lt;/span&gt;&lt;/td&gt;
+						&lt;/tr&gt;
+						&lt;tr&gt;
+							&lt;td&gt;
+								&lt;span style="font-family:arial,helvetica,sans-serif;"&gt;&lt;span style="font-size:12px;"&gt;Branch&lt;/span&gt;&lt;/span&gt;&lt;/td&gt;
+							&lt;td&gt;
+								&lt;span style="font-family:arial,helvetica,sans-serif;"&gt;&lt;span style="font-size:12px;"&gt;$!{checkBranch}&lt;/span&gt;&lt;/span&gt;&lt;/td&gt;
+						&lt;/tr&gt;
+					&lt;/tbody&gt;
+				&lt;/table&gt;
+			#elseif ($!{paymentType} == "CASH")
+				&lt;table border="1" cellpadding="1" cellspacing="1" style="width: 500px;"&gt;
+					&lt;tbody&gt;
+						&lt;tr&gt;
+							&lt;td&gt;
+								&lt;span style="font-family:arial,helvetica,sans-serif;"&gt;&lt;span style="font-size:12px;"&gt;Cash Address&lt;/span&gt;&lt;/span&gt;&lt;/td&gt;
+							&lt;td&gt;
+								&lt;span style="font-family:arial,helvetica,sans-serif;"&gt;&lt;span style="font-size:12px;"&gt;$!{cashAddress}&lt;/span&gt;&lt;/span&gt;&lt;/td&gt;
+						&lt;/tr&gt;
+						&lt;tr&gt;
+							&lt;td&gt;
+								&lt;span style="font-family:arial,helvetica,sans-serif;"&gt;&lt;span style="font-size:12px;"&gt;Contact Number&lt;/span&gt;&lt;/span&gt;&lt;/td&gt;
+							&lt;td&gt;
+								&lt;span style="font-family:arial,helvetica,sans-serif;"&gt;&lt;span style="font-size:12px;"&gt;$!{cashContactNumber}&lt;/span&gt;&lt;/span&gt;&lt;/td&gt;
+						&lt;/tr&gt;
+						&lt;tr&gt;
+							&lt;td&gt;
+								&lt;span style="font-family:arial,helvetica,sans-serif;"&gt;&lt;span style="font-size:12px;"&gt;Payment Best Time&lt;/span&gt;&lt;/span&gt;&lt;/td&gt;
+							&lt;td&gt;
+								&lt;span style="font-family:arial,helvetica,sans-serif;"&gt;&lt;span style="font-size:12px;"&gt;$!{cashBestTime}&lt;/span&gt;&lt;/span&gt;&lt;/td&gt;
+						&lt;/tr&gt;
+					&lt;/tbody&gt;
+				&lt;/table&gt;		
+			#elseif ($!{paymentType} == "RTGS")		
+				&lt;table border="1" cellpadding="1" cellspacing="1" style="width: 500px;"&gt;
+					&lt;tbody&gt;
+						&lt;tr&gt;
+							&lt;td&gt;
+								&lt;span style="font-family:arial,helvetica,sans-serif;"&gt;&lt;span style="font-size:12px;"&gt;RTGS Date&lt;/span&gt;&lt;/span&gt;&lt;/td&gt;
+							&lt;td&gt;
+								&lt;span style="font-family:arial,helvetica,sans-serif;"&gt;&lt;span style="font-size:12px;"&gt;$!{rtgsDateStr}&lt;/span&gt;&lt;/span&gt;&lt;/td&gt;
+						&lt;/tr&gt;
+						&lt;tr&gt;
+							&lt;td&gt;
+								&lt;span style="font-family:arial,helvetica,sans-serif;"&gt;&lt;span style="font-size:12px;"&gt;RTGS Amount&lt;/span&gt;&lt;/span&gt;&lt;/td&gt;
+							&lt;td&gt;
+								&lt;span style="font-family:arial,helvetica,sans-serif;"&gt;&lt;span style="font-size:12px;"&gt;$!{rtgsAmount}&lt;/span&gt;&lt;/span&gt;&lt;/td&gt;
+						&lt;/tr&gt;
+						&lt;tr&gt;
+							&lt;td&gt;
+								&lt;span style="font-family:arial,helvetica,sans-serif;"&gt;&lt;span style="font-size:12px;"&gt;RTGS Time&lt;/span&gt;&lt;/span&gt;&lt;/td&gt;
+							&lt;td&gt;
+								&lt;span style="font-family:arial,helvetica,sans-serif;"&gt;&lt;span style="font-size:12px;"&gt;$!{rtgsTime}&lt;/span&gt;&lt;/span&gt;&lt;/td&gt;
+						&lt;/tr&gt;
+						&lt;tr&gt;
+							&lt;td&gt;
+								&lt;span style="font-family:arial,helvetica,sans-serif;"&gt;&lt;span style="font-size:12px;"&gt;RTGS Trans Number&lt;/span&gt;&lt;/span&gt;&lt;/td&gt;
+							&lt;td&gt;
+								&lt;span style="font-family:arial,helvetica,sans-serif;"&gt;&lt;span style="font-size:12px;"&gt;$!{rtgsTransNumber}&lt;/span&gt;&lt;/span&gt;&lt;/td&gt;
+						&lt;/tr&gt;
+					&lt;/tbody&gt;
+				&lt;/table&gt;
+			#end
+			
+			&lt;div&gt;
+				&amp;nbsp;&lt;/div&gt;
+			&lt;div&gt;
+				&lt;span style="font-family:arial,helvetica,sans-serif;"&gt;&lt;span style="font-size:12px;"&gt;You may login to &lt;a href="https://www.wealth4india.com"&gt;www.wealth4india.com&lt;/a&gt; &amp;nbsp;to download your xml and summary or you can even mail to your&amp;nbsp;&lt;/span&gt;&lt;/span&gt;&lt;span style="font-family: arial, helvetica, sans-serif; font-size: 12px;"&gt;registered E-mail ID.&amp;nbsp;&lt;/span&gt;&lt;/div&gt;
+			&lt;div&gt;
+				&amp;nbsp;&lt;/div&gt;
+			&lt;div&gt;
+				&lt;span style="font-family:arial,helvetica,sans-serif;"&gt;&lt;span style="font-size:12px;"&gt;Please read how to File ITR for a step by step guidance to file your ITR on your own.&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+			&lt;div&gt;
+				&amp;nbsp;&lt;/div&gt;
+			&lt;div&gt;
+				&lt;span style="font-family:arial,helvetica,sans-serif;"&gt;&lt;span style="font-size:12px;"&gt;For any assistance please be free to call us.&amp;nbsp;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+			&lt;div&gt;
+				&amp;nbsp;&lt;/div&gt;
+			&lt;div&gt;
+				&lt;span style="font-family:arial,helvetica,sans-serif;"&gt;&lt;span style="font-size:12px;"&gt;Thanks,&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+			&lt;div&gt;
+				&amp;nbsp;&lt;/div&gt;
+			&lt;div&gt;
+				&lt;span style="font-family:arial,helvetica,sans-serif;"&gt;&lt;span style="font-size:12px;"&gt;Wealth4 India Team&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/body&gt;
+	&lt;/html&gt;</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="mootlywcm:plainBody" sv:type="String">
+	      <sv:value/>
+	    </sv:property>
+	    <sv:property sv:name="mootlywcm:subject" sv:type="String">
+	      <sv:value>Congratulations!! - Your payment has been verified</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="mootlywcm:templateKey" sv:type="String">
+	      <sv:value>memberpaymentverified</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="mootlywcm:to" sv:type="String">
+	      <sv:value>${memberEmail},info@wealth4india.com</sv:value>
+	    </sv:property>
+	    <sv:node sv:name="hippotranslation:translations">
+	      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	        <sv:value>hippotranslation:translations</sv:value>
+	      </sv:property>
+	    </sv:node>
+	  </sv:node>
+	</sv:node>
+	<!-- /Payment Verified -->
 <!-- /amit -->
 </sv:node>
