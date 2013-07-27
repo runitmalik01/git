@@ -24,6 +24,7 @@ import static com.mootly.wcm.utils.Constants.NAME_ENTITY;
 import static com.mootly.wcm.utils.Constants.NT_PERSONAL_INFO_LINK;
 import static com.mootly.wcm.utils.Constants.NATURE_ENTITY;
 import static com.mootly.wcm.utils.Constants.ADDRESS_ENTITY;
+import static com.mootly.wcm.utils.Constants.COUNTRYNAME;
 
 import static com.mootly.wcm.utils.Constants.TOTAL_INVESTMENT;
 
@@ -53,6 +54,7 @@ public class FinancialInterestDetail extends HippoItem implements FormMapFiller 
 
 	
 	private String country_Code ;
+	private String country_name;
 	private String nature_entity ;
 	private String name_entity;
 	private String address_entity;
@@ -87,9 +89,15 @@ public class FinancialInterestDetail extends HippoItem implements FormMapFiller 
     	if (total_investment == null) total_investment = getProperty(TOTAL_INVESTMENT);
     	return total_investment;
     }
-   
+   public String getCountry_Name(){
+	   if(country_name == null) country_name = getProperty(COUNTRYNAME);
+	   return country_name;
+   }
  
-   
+   public final void setCountry_Name(String country_name){
+	   this.country_name=country_name;
+	   
+   }
    
     public final void setCountry_Code(String country_Code) {
 		this.country_Code = country_Code;
@@ -139,6 +147,7 @@ public class FinancialInterestDetail extends HippoItem implements FormMapFiller 
 			node.setProperty(NATURE_ENTITY,getNature_Entity());
 			node.setProperty(ADDRESS_ENTITY,getAddress_Entity());
 			node.setProperty(TOTAL_INVESTMENT,getTotal_Investment());
+			node.setProperty(COUNTRYNAME, getCountry_Name());
 		} catch (RepositoryException rex) {
 			log.error("Repository Exception while binding",rex);
 		}
@@ -154,6 +163,9 @@ public class FinancialInterestDetail extends HippoItem implements FormMapFiller 
 		
 		if ( formMap.getField("country_code") != null) {
 			setCountry_Code(formMap.getField("country_code").getValue());
+		}
+		if(formMap.getField("country_name") != null){
+			setCountry_Name(formMap.getField("country_name").getValue());
 		}
 		if ( formMap.getField("nature_entity") != null) {
 			setNature_Entity(formMap.getField("nature_entity").getValue());
@@ -183,6 +195,7 @@ public class FinancialInterestDetail extends HippoItem implements FormMapFiller 
 		setName_Entity(objFinancialInterest.getName_Entity());
 		setAddress_Entity(objFinancialInterest.getAddress_Entity());
 		setTotal_Investment(objFinancialInterest.getTotal_Investment());
+		setCountry_Name(objFinancialInterest.getCountry_Name());
 		
 		
 	}
