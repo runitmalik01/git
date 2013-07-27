@@ -37,7 +37,7 @@ import com.mootly.wcm.model.FinancialYear;
  */
 @PrimaryBean(primaryBeanClass=NatureInvestmentDocument.class)
 @ChildBean(childBeanClass=NatureInvestmentDetail.class)
-@FormFields(fieldNames={"country_code","nature_asset","total_investment"})
+@FormFields(fieldNames={"country_code","nature_asset","total_investment","country_name"})
 
 
 
