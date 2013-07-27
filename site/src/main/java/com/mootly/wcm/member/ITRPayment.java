@@ -20,6 +20,8 @@ import org.hippoecm.hst.core.component.HstResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.mootly.wcm.annotations.DataTypeValidationFields;
+import com.mootly.wcm.annotations.DataTypeValidationType;
 import com.mootly.wcm.annotations.FormFields;
 import com.mootly.wcm.annotations.PrimaryBean;
 import com.mootly.wcm.annotations.RequiredBeans;
@@ -28,12 +30,14 @@ import com.mootly.wcm.beans.MemberPayment;
 import com.mootly.wcm.beans.MemberPersonalInformation;
 import com.mootly.wcm.components.FormSaveResult;
 import com.mootly.wcm.components.ITReturnComponent;
+import com.mootly.wcm.model.PaymentVerificationStatus;
 
 @PrimaryBean(primaryBeanClass=MemberPayment.class)
 @RequiredBeans(requiredBeans=MemberPersonalInformation.class)
 @FormFields(fieldNames={"paymentMemo","paymentType","authCode","preAuthCode","checkNo","checkDate","checkBank","checkBranch","checkLocation","cashAddress","cashContactNumber","cashBestTime","rtgsTransNumber","rtgsDate","rtgsAmount","rtgsTime","paymentDate"},
 			fieldNamesVendorOnly={"paymentVerificationStatus"})
 @RequiredFields(fieldNames={"paymentType"})
+@DataTypeValidationFields(fieldNames={"rtgsDate"},dataTypes={DataTypeValidationType.INDIANDATE})
 
 public class ITRPayment extends ITReturnComponent {
 	private static final Logger log = LoggerFactory.getLogger(ITRPayment.class);
@@ -41,6 +45,13 @@ public class ITRPayment extends ITReturnComponent {
 	@Override
 	public void doBeforeRender(HstRequest request, HstResponse response) {
 		super.doBeforeRender(request, response);
+		MemberPayment memberPayment = (MemberPayment) getParentBean();
+		if (memberPayment != null) {
+			String theSuccess = getPublicRequestParameter(request, "success");
+			if ( theSuccess != null && "true".equals(theSuccess)) {
+				request.setAttribute("success","true");
+			}
+		}
 	}
 
 	@Override
@@ -68,6 +79,7 @@ public class ITRPayment extends ITReturnComponent {
 		if (request.getAttribute(MemberPersonalInformation.class.getSimpleName().toLowerCase()) != null ) {
 			MemberPersonalInformation memberPersonalInformation = (MemberPersonalInformation) request.getAttribute(MemberPersonalInformation.class.getSimpleName().toLowerCase());
 			velocityContext.put("memberPersonalInformation",memberPersonalInformation);
+			velocityContext.put("memberEmail",memberPersonalInformation.getEmail());
 			velocityContext.put("memberPersonalInformationString",memberPersonalInformation.toString());
 		}
 		
@@ -77,29 +89,32 @@ public class ITRPayment extends ITReturnComponent {
 				if (formMap.getField(aFieldName) != null) velocityContext.put(aFieldName, formMap.getField(aFieldName).getValue());
 			}
 		}		
-		sendEmail(request, null, null, null, "memberpaymentupdate", velocityContext);
+		//if this is the vendor and on vendor portal and the payment was set to verified then send an email back to the member
+		boolean verificationEmailSent = false;
+		if (isVendor(request) && isOnVendorPortal()) {
+			if (formMap != null && formMap.getField("paymentVerificationStatus") != null ) {
+				String paymentVerificationStatus = formMap.getField("paymentVerificationStatus").getValue();
+				if (paymentVerificationStatus != null && !"".equals(paymentVerificationStatus)) {
+					try {
+						PaymentVerificationStatus ps = PaymentVerificationStatus.valueOf(paymentVerificationStatus);
+						if (ps == PaymentVerificationStatus.VERIFIED) {
+							sendEmail(request, null, null, null, "memberpaymentverified", velocityContext);
+							verificationEmailSent = true;
+						}
+					}catch (IllegalArgumentException ie) {
+						log.warn("Illegal Arguments",ie);
+					}
+				}
+			}
+		}
+		if (!verificationEmailSent) {
+			sendEmail(request, null, null, null, "memberpaymentupdate", velocityContext);
+		}
+		
 	}
 	
 	@Override
 	public boolean beforeSave(HstRequest request) {
 		return true;
-	}
-	
-	/**
-	 * This will be used to ensure the page redirects properly 
-	 */
-	@Override
-	public String getScriptName(HstRequest request,HstResponse response, FormSaveResult formSaveResult) {
-		// TODO Auto-generated method stub
-		if (formSaveResult == null || formSaveResult != FormSaveResult.SUCCESS) {
-			return super.getScriptName();
-		}
-		else {
-			String redirectURL = getRedirectURLForSiteMapItem(request,response,formSaveResult);
-			if (log.isInfoEnabled()) {
-				log.info("Will now redirect to:"+ redirectURL);
-			}
-			return getRedirectURLForSiteMapItem(request,response,formSaveResult);
-		}
 	}
 }

@@ -91,7 +91,8 @@ public class MemberPayment extends FlexibleDocument implements ContentNodeBinder
 	final String PROP_CASH_CONTACT_NUMBER = "mootlywcm:cashContactNumber";
 	final String PROP_CASH_BEST_TIME = "mootlywcm:cashBestTime";
 	
-	final String PROP_RTGS_DATE = "mootlywcm:rtgsDete";
+	final String PROP_RTGS_TRANSNUMBER = "mootlywcm:rtgsTransNumber";
+	final String PROP_RTGS_DATE = "mootlywcm:rtgsDate";
 	final String PROP_RTGS_AMOUNT = "mootlywcm:rtgsAmount";
 	final String PROP_RTGS_TIME = "mootlywcm:crtgsTime";
 	
@@ -225,6 +226,7 @@ public class MemberPayment extends FlexibleDocument implements ContentNodeBinder
 	}
 	
     public String getRtgsTransNumber() {
+    	if (rtgsTransNumber == null) rtgsTransNumber = getProperty(PROP_RTGS_TRANSNUMBER);
 		return rtgsTransNumber;
 	}
 	public List<MemberPersonalInformation> getMemberPersonalInfoLinks() {
@@ -269,6 +271,7 @@ public class MemberPayment extends FlexibleDocument implements ContentNodeBinder
 	    	node.setProperty(PROP_CASH_CONTACT_NUMBER, memberPayment.getCashContactNumber());
 	    	
 	    	//RTGS
+	    	node.setProperty(PROP_RTGS_TRANSNUMBER, memberPayment.getRtgsTransNumber());
 	    	node.setProperty(PROP_RTGS_AMOUNT, memberPayment.getRtgsAmount());
 	    	node.setProperty(PROP_RTGS_DATE, memberPayment.getRtgsDate());
 	    	node.setProperty(PROP_RTGS_TIME, memberPayment.getRtgsTime());
@@ -356,12 +359,12 @@ public class MemberPayment extends FlexibleDocument implements ContentNodeBinder
 		if (formMap.getField("cashBestTime") != null) setCashBestTime(formMap.getField("cashBestTime").getValue());
 		
 		//RTGS
-		if (formMap.getField("rtgsDate") != null) setRtgsDate( ConvDateStringToCalendar( formMap.getField("cashAddress").getValue() ) ) ;
+		if (formMap.getField("rtgsDate") != null) setRtgsDate( ConvDateStringToCalendar( formMap.getField("rtgsDate").getValue() ) ) ;
 		if (formMap.getField("rtgsAmount") != null) setRtgsAmount( ConvStringToDouble ( formMap.getField("rtgsAmount").getValue() ));
 		if (formMap.getField("rtgsTime") != null) setRtgsTime( formMap.getField("rtgsTime").getValue());
 		if (formMap.getField("rtgsTransNumber") != null) setRtgsTransNumber( formMap.getField("rtgsTransNumber").getValue());
 		
-		if (formMap.getField("rtgsTransNumber") != null) setPaymentDate( ConvDateStringToCalendar ( formMap.getField("paymentDate").getValue()) );
+		//if (formMap.getField("rtgsTransNumber") != null) setPaymentDate( ConvDateStringToCalendar ( formMap.getField("paymentDate").getValue()) );
 		
 		if (formMap.getField("paymentVerificationStatus") != null) {
 			String memberPaymentStatus = formMap.getField("paymentVerificationStatus").getValue();

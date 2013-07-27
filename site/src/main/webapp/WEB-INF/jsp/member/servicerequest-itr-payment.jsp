@@ -38,6 +38,11 @@
 			var="totalCost" />
 		<w4india:inr value="${totalCost}"></w4india:inr>
 	</h4>
+	<c:if test="${not empty success}">
+		<div class="alert alert-success">
+ 			<fmt:message key="itrpayment.success"/>
+		</div>
+	</c:if>
 	<h5 style="color: maroon;">Your Income Tax return will be
 		available for email/download, once Wealth4India receives and
 		successfully verifies your payment.</h5>
@@ -235,7 +240,7 @@
 				</div>
 				<div class="span3">
 					<div class="rowlabel">
-						<label for="checkNo"><small>Date</small> </label>
+						<label for="checkNo"><small>Date (dd/mm/yyyy)</small> </label>
 					</div>
 					<div class="rowlabel">
 						<input type="text" id="rtgsDate" name="rtgsDate"
@@ -262,23 +267,25 @@
 				</div>
 			</div>
 		</fieldset>
-		<c:if test="${empty allReadOnly && not empty strIsOnVendorPortal && strIsOnVendorPortal =='true' && isVendor =='true'}">
-			<div class="row-fluid show-grid">
-					<div class="span4 offset8">
-						<fieldset>
-							<legend>Vendor - Payment Verification</legend>
-					   		<select name="paymentVerificationStatus">
-					   			<option value="">Select Payment Verification</option>
-					   			<%for (PaymentVerificationStatus aPaymentStatus : PaymentVerificationStatus.values()) {%>
-					   				<%
-					   					pageContext.setAttribute("aPaymentStatus",aPaymentStatus);
-					   				%>
-					   				<option <c:if test="${aPaymentStatus == 'VERIFIED' && not empty parentBean.paymentVerificationStatus && parentBean.paymentVerificationStatus == 'VERIFIED'}">selected</c:if> value="<%=aPaymentStatus.name()%>"><%=aPaymentStatus.name()%></option>
-					   			<%} %>
-					   		</select>
-					   	</fieldset>
-				   	</div>
-			</div>
+		<c:if test="${not empty parentBean}">
+			<c:if test="${empty allReadOnly && not empty strIsOnVendorPortal && strIsOnVendorPortal =='true' && isVendor =='true'}">
+				<div class="row-fluid show-grid">
+						<div class="span4 offset8">
+							<fieldset>
+								<legend>Vendor - Payment Verification</legend>
+						   		<select name="paymentVerificationStatus">
+						   			<option value="">Select Payment Verification</option>
+						   			<%for (PaymentVerificationStatus aPaymentStatus : PaymentVerificationStatus.values()) {%>
+						   				<%
+						   					pageContext.setAttribute("aPaymentStatus",aPaymentStatus);
+						   				%>
+						   				<option <c:if test="${aPaymentStatus == 'VERIFIED' && not empty parentBean.paymentVerificationStatus && parentBean.paymentVerificationStatus == 'VERIFIED'}">selected</c:if> value="<%=aPaymentStatus.name()%>"><%=aPaymentStatus.name()%></option>
+						   			<%} %>
+						   		</select>
+						   	</fieldset>
+					   	</div>
+				</div>
+			</c:if>
 		</c:if>
 		<c:if test="${empty allReadOnly}">
 			<div class="row-fluid show-grid">

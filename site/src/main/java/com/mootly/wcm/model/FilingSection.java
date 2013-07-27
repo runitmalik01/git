@@ -53,7 +53,6 @@ public enum FilingSection {
 	public ITReturnType getItReturnType() {
 		return itReturnType;
 	}
-
 	
 	/**
 	 * Fetch the FilingSection by Xml Code

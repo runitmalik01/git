@@ -206,6 +206,12 @@ public class BaseComponent extends BaseHstComponent {
     		}	
     		final String pathToParentBean = wpm.createAndReturn(pathToEmail,"mootlywcm:emailmessage",templateKey, true);
     		EmailMessage emailMessage = (EmailMessage) wpm.getObject(pathToParentBean);
+    		
+    		for (int i=0;i < to.length;i++) {
+    			String theParseTo = VelocityUtils.parseVelocity(to[i], velocityContext);
+    			to[i] = theParseTo;
+    		}
+    		
     		emailMessage.setTo(to);
     		/*if (cc != null) emailMessage.setCc(cc);
     		if (bcc != null) emailMessage.setBcc(bcc);*/

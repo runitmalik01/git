@@ -1,3 +1,4 @@
+<%@page import="com.mootly.wcm.model.FilingSection"%>
 <%@page import="java.util.Map"%>
 <%@page import="java.util.SortedSet"%>
 <%@page import="com.mootly.wcm.utils.ValueListServiceImpl"%>
@@ -24,6 +25,7 @@ else {
 }
 %>--%>
 <%
+pageContext.setAttribute("filingSections", FilingSection.values());
 ValueListService objValueListService = ValueListServiceImpl.getInstance();
 TreeMap objHashMapBoolean = (TreeMap) objValueListService.getBoolean();
 request.setAttribute("objHashMapBoolean", objHashMapBoolean);
@@ -48,6 +50,75 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 	</h4>
 	<form id="frmPersonalInfo" action="${actionUrl}" method="post"
 		name="pi">
+		<fieldset>
+			<legend>Filing Status</legend>
+			<div class="row-fluid show-grid">
+				<div class="span3">
+					<div class="rowlabel">
+						<label><small>Filing Section<span style="color: red">*</span>
+						</small>
+						</label>
+					</div>
+					<div>
+						<c:choose>
+							<c:when test="${not empty parentBean && not empty parentBean.returnSection}">
+								<c:set var="returnSection" value="${parentBean.returnSection}"/>
+							</c:when>
+							<c:otherwise>
+								<c:if test="${not empty savedValuesFormMap && not empty savedValuesFormMap.value['ReturnSection']}">
+									<c:set var="returnSection" value="${savedValuesFormMap.value['ReturnSection'].value}"/>
+								</c:if>
+							</c:otherwise>
+						</c:choose>
+						<select id="ReturnSection" name="ReturnSection">
+							<c:forEach items="${filingSections}" var="filingSection">
+								<c:if test="${filingSection.itReturnType.xmlStatus == itReturnType.xmlStatus}">
+									<option  <c:if test="${not empty returnSection && filingSection.xmlCode == returnSection}">selected</c:if> value="${filingSection.xmlCode}">${fn:toUpperCase(filingSection.displayString)}</option>
+								</c:if>
+							</c:forEach>	
+						</select>
+					</div>
+				</div>			
+				<div class="span4">
+					<div class="rowlabel">
+						<label><small><fmt:message
+									key="member.employe.category" /><span style="color: red">*</span>
+						</small>
+						</label>
+					</div>
+					<select id= "Employe_category" name="Employe_category">
+							<option value="">-Select-</option>
+									<option value="GOV" <c:if test="${not empty parentBean.employe_category && parentBean.employe_category =='GOV'}">selected</c:if>>GOVT.</option>
+									<option value="PSU"<c:if test="${not empty parentBean.employe_category && parentBean.employe_category =='PSU'}">selected</c:if>>PSU</option>
+									<option value="OTH" <c:if test="${not empty parentBean.employe_category && parentBean.employe_category =='OTH'}">selected</c:if>>OTHERS.</option>
+								</select>
+				</div>
+				<div class="span5">
+					<div class="rowlabel">
+						<label><small><fmt:message
+									key="member.portugese.civil" /><span style="color: red">*</span>
+						</small> </label>
+					</div>
+					<div>
+					<select id="portugesecivil" name="portugesecivil" class="uprcase">
+							<option value="">Select</option>
+							<option
+								<c:if test="${not empty parentBean.portugesecivil && parentBean.portugesecivil == 'Y'}">selected</c:if>
+								value="Y">
+								<fmt:message key="member.choice.yes" />
+							</option>
+							<option
+								<c:if test="${not empty parentBean.portugesecivil && parentBean.portugesecivil == 'N'}">selected</c:if>
+								value="N">
+								<fmt:message key="member.choice.no" />
+							</option>
+
+						</select>
+					</div>
+
+				</div>
+			</div>
+		</fieldset>
 		<c:if test="${itReturnType.displayName == 'revised'}">
 			<fieldset id="ul_revised" class="revised_v original_h">
 				<legend>Revised Return Details</legend>
@@ -113,49 +184,6 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 				</div>
 			</fieldset>
 		</c:if>
-		<fieldset>
-			<legend>Filing Status</legend>
-			<div class="row-fluid show-grid">
-				<div class="span4">
-					<div class="rowlabel">
-						<label><small><fmt:message
-									key="member.employe.category" /><span style="color: red">*</span>
-						</small>
-						</label>
-					</div>
-					<select id= "Employe_category" name="Employe_category">
-							<option value="">-Select-</option>
-									<option value="GOV" <c:if test="${not empty parentBean.employe_category && parentBean.employe_category =='GOV'}">selected</c:if>>GOVT.</option>
-									<option value="PSU"<c:if test="${not empty parentBean.employe_category && parentBean.employe_category =='PSU'}">selected</c:if>>PSU</option>
-									<option value="OTH" <c:if test="${not empty parentBean.employe_category && parentBean.employe_category =='OTH'}">selected</c:if>>OTHERS.</option>
-								</select>
-				</div>
-				<div class="span5">
-					<div class="rowlabel">
-						<label><small><fmt:message
-									key="member.portugese.civil" /><span style="color: red">*</span>
-						</small> </label>
-					</div>
-					<div>
-					<select id="portugesecivil" name="portugesecivil" class="uprcase">
-							<option value="">Select</option>
-							<option
-								<c:if test="${not empty parentBean.portugesecivil && parentBean.portugesecivil == 'Y'}">selected</c:if>
-								value="Y">
-								<fmt:message key="member.choice.yes" />
-							</option>
-							<option
-								<c:if test="${not empty parentBean.portugesecivil && parentBean.portugesecivil == 'N'}">selected</c:if>
-								value="N">
-								<fmt:message key="member.choice.no" />
-							</option>
-
-						</select>
-					</div>
-
-				</div>
-			</div>
-		</fieldset>
 		<fieldset>
 			<legend>
 				<c:out value="${filingStatus}" />
@@ -733,9 +761,14 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 		<div id="itreturnHomepage" style="display: none; visiblity: hidden">
 			<input id="pan" name="pan"
 				value="<c:choose><c:when test="${not empty parentBean && not empty parentBean.PAN}"><c:out value="${parentBean.PAN}"/></c:when><c:otherwise><c:if test="${not empty savedValuesFormMap && not empty savedValuesFormMap.value['pan']}"><c:out value="${savedValuesFormMap.value['pan'].value}"/></c:if></c:otherwise></c:choose>"
-				type="hidden" /> <input id="ReturnSection" name="ReturnSection"
+				type="hidden" /> 
+				<%-- comment out and let user change it --%>
+				<%--
+				<input id="ReturnSection" name="ReturnSection"
 				value="<c:choose><c:when test="${not empty parentBean && not empty parentBean.returnSection}"><c:out value="${parentBean.returnSection}"/></c:when><c:otherwise><c:if test="${not empty savedValuesFormMap && not empty savedValuesFormMap.value['ReturnSection']}"><c:out value="${savedValuesFormMap.value['ReturnSection'].value}"/></c:if></c:otherwise></c:choose>"
-				type="hidden" /> <input id="pi_return_type" name="pi_return_type"
+				type="hidden" /> 
+				--%>
+				<input id="pi_return_type" name="pi_return_type"
 				value="<c:choose><c:when test="${not empty parentBean && not empty parentBean.returnType}"><c:out value="${parentBean.returnType}"/></c:when><c:otherwise><c:out value="${itReturnType.xmlStatus}"/></c:otherwise></c:choose>"
 				type="hidden" /> <input id="fy" name="fy"
 				value="<c:choose><c:when test="${not empty parentBean && not empty parentBean.financialYear}"><c:out value="${parentBean.financialYear}"/></c:when><c:otherwise><c:if test="${not empty savedValuesFormMap && not empty savedValuesFormMap.value['fy']}"><c:out value="${savedValuesFormMap.value['fy'].value}"/></c:if></c:otherwise></c:choose>"

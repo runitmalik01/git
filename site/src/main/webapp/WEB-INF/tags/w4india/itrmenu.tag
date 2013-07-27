@@ -302,7 +302,7 @@ for (HstSiteMenuItem siteMenuItem : itrSiteMenu.getSiteMenuItems() ){
 		<span>DOB: <b><u><c:out value="${memberpersonalinformation.DOBStr}"/></u></b></span> |
 		<span>AY: <b><u><c:out value="${financialYear.displayAssessmentYear}"/></u></b></span> |
 		<span>FY: <b><u><c:out value="${financialYear.displayName}"/></u></b></span> |
-		<span>Section : <b><u><c:out value="${filingSection.desc}"/></u></b></span> |
+		<span>Section : <b><u><c:out value="${memberpersonalinformation.filingSection.desc}"/></u></b></span> |
 		<span>Package : <b><u><fmt:message key="${itrForm}.packageName.${memberpersonalinformation.selectedServiceDeliveryOption}.package"/></u></b></span> |
 		<span>Payment : <b><u> 
 			<c:choose>

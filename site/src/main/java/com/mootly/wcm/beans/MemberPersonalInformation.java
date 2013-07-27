@@ -86,6 +86,7 @@ import org.hippoecm.hst.content.beans.Node;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 
 import com.mootly.wcm.beans.standard.FlexibleDocument;
+import com.mootly.wcm.model.FilingSection;
 import com.mootly.wcm.model.ITRForm;
 import com.mootly.wcm.model.ITRServiceDelivery;
 
@@ -164,6 +165,14 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 	private String rsstatus_q_no_yes_yes_yes;
 	private String residentCategory;
 	private String PIUUID;
+	
+	ResourceBundle messagesResourceBundle = ResourceBundle.getBundle("messages");
+	
+	//ITR1.packageName.DIY.cost
+	public String getPrice () {
+		String retValue = messagesResourceBundle.getString( getSelectedITRForm().name() + ".packageName." + getSelectedServiceDeliveryOption().name() + ".cost");
+		return retValue;		
+	}
 
 	public ITRForm getSelectedITRForm() {
 		String retValueString = getFlexField("flex_string_ITRForm",null);
@@ -229,6 +238,19 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 		if (ReturnSection == null) ReturnSection = getProperty(PROP_PI_RETURN_SECTION);
 		return ReturnSection;
 	}
+	
+	public FilingSection getFilingSection() {
+		String strReturnSection = getReturnSection();
+		try {
+			FilingSection filingSection = FilingSection.getByXmlCode(strReturnSection);
+			return filingSection;
+		}
+		catch (IllegalArgumentException ie) {
+			return FilingSection.UNKNOWN;			
+		}		
+	}
+	
+	
 	public String getOriginalAckNo() {
 		if (originalAckNo == null) originalAckNo = getProperty(PROP_PI_ORIGINAL_ACK_NO);
 		return originalAckNo;

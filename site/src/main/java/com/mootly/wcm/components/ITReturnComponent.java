@@ -32,6 +32,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
+import java.util.ResourceBundle;
 import java.util.UUID;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
@@ -455,6 +456,15 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 					//if the page passes a URL as a parameter take that into consideration
 					if (request.getParameter("successURL") != null) {
 						urlToRedirect  = request.getParameter("successURL");
+					}
+					if (urlToRedirect != null) {
+						if (urlToRedirect.contains("?")) {
+							urlToRedirect = urlToRedirect + "&success=true";
+						}
+						else {
+							urlToRedirect = urlToRedirect + "?success=true";
+						}
+						
 					}
 					log.info("URLToRedirect:"+ urlToRedirect);
 					//	if (request.getAttribute("selectedItrTab") != null){
@@ -1719,7 +1729,17 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 					Map<String,Object> vC = new HashMap<String, Object>();
 					vC.put("financialYearDisplay", getFinancialYear().getDisplayName());
 					vC.put("financialYear", getFinancialYear());
-					sendEmail(request, to, generatedPathToXML + "," + generatedPathToPDF,"Your Income Tax Return for Financial Year " + getFinancialYear().getDisplayName(),"w4i_email",vC);
+					
+					try {
+						MemberPersonalInformation mi = (MemberPersonalInformation) request.getAttribute(MemberPersonalInformation.class.getSimpleName().toLowerCase());						
+						if (mi != null) {
+							vC.put ("paymentAmount",mi.getPrice());
+						}
+					}catch (Exception ex) {
+						
+					}
+					
+					sendEmail(request, to, generatedPathToXML + "," + generatedPathToPDF,"Attached is your Income Tax Return for Financial Year " + getFinancialYear().getDisplayName(),"w4i_email",vC);
 					request.setAttribute("emailMeStatus", "success");
 				}
 				else {

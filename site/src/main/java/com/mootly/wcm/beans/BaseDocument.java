@@ -97,7 +97,7 @@ public class BaseDocument extends HippoDocument {
 		DateFormat formatter = getIndianDateFormatter();
 		if (theDate == null) return null;
 		try {
-			return formatter.format(theDate);
+			return formatter.format(theDate.getTime());
 		}catch (Exception ex) {
 			return null;
 		}
