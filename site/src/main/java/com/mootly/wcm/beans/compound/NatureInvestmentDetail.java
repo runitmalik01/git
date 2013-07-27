@@ -23,6 +23,7 @@ import static com.mootly.wcm.utils.Constants.CODECOUNTRY;
 import static com.mootly.wcm.utils.Constants.NATURE_ASSET;
 import static com.mootly.wcm.utils.Constants.NT_PERSONAL_INFO_LINK;
 import static com.mootly.wcm.utils.Constants.TOTAL_INVESTMENT;
+import static com.mootly.wcm.utils.Constants.COUNTRYNAME;
 
 
 import org.hippoecm.hst.component.support.forms.FormMap;
@@ -51,6 +52,7 @@ public class NatureInvestmentDetail extends HippoItem implements FormMapFiller {
 
 	
 	private String country_Code ;
+	private String country_name;
 	private String nature_asset ;
 	private Double total_investment;
 	
@@ -75,7 +77,13 @@ public class NatureInvestmentDetail extends HippoItem implements FormMapFiller {
     	if (total_investment == null) total_investment = getProperty(TOTAL_INVESTMENT);
     	return total_investment;
     }
-    
+    public String getCountry_Name(){
+    	if(country_name == null) country_name = getProperty(COUNTRYNAME);
+    	return country_name;
+    }
+    public final void setCountry_Name(String country_name){
+    	this.country_name = country_name;
+    }
     public final void setCountry_Code(String country_Code) {
 		this.country_Code = country_Code;
 	}
@@ -114,6 +122,7 @@ public class NatureInvestmentDetail extends HippoItem implements FormMapFiller {
 		// TODO Auto-generated method stub
 		try {
 			node.setProperty(CODECOUNTRY, getCountry_Code());
+			node.setProperty(COUNTRYNAME, getCountry_Name());
 			node.setProperty(NATURE_ASSET,getNature_Asset());
 			node.setProperty(TOTAL_INVESTMENT,getTotal_Investment());
 			
@@ -133,6 +142,9 @@ public class NatureInvestmentDetail extends HippoItem implements FormMapFiller {
 		if ( formMap.getField("country_code") != null) {
 			setCountry_Code(formMap.getField("country_code").getValue());
 		}
+		if(formMap.getField("country_name") != null){
+			setCountry_Name(formMap.getField("country_name").getValue());
+		}
 		if ( formMap.getField("nature_asset") != null) {
 			setNature_Asset(formMap.getField("nature_asset").getValue());
 		}
@@ -150,6 +162,7 @@ public class NatureInvestmentDetail extends HippoItem implements FormMapFiller {
 		setCountry_Code(objNatureInvest.getCountry_Code());
 		setNature_Asset(objNatureInvest.getNature_Asset());
 		setTotal_Investment(objNatureInvest.getTotal_Investment());
+		setCountry_Name(objNatureInvest.getCountry_Name());
 		
 		
 		
