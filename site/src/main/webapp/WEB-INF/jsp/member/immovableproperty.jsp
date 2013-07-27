@@ -97,7 +97,7 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 				<c:forEach items="${parentBean.immovablePropertyDetailList}"
 					var="immProp">
 					<tr>
-						<td><c:out value="${immProp.country_Code}" />
+						<td><c:out value="${immProp.country_Name}" />
 						</td>
 						<td><c:out value="${immProp.address_Property}" />
 						</td>
@@ -122,6 +122,17 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 </c:choose>
 </div>
 <script type="text/javascript">
+$("#country_code").ready(function(){
+	if($("#country_code").val()!=null){
+	<c:forEach var="countryList" items="${objHashMapcountry}">
+	  if($("#country_code").val()=='<c:out value="${countryList.key}"/>'){
+		  $("#country_name").val('<c:out value="${countryList.value}"/>');
+	  }
+    </c:forEach>
+
+	}
+});
+
 $("#country_code").change(function(){
 	if($("#country_code").val()!=null){
 	<c:forEach var="countryList" items="${objHashMapcountry}">
