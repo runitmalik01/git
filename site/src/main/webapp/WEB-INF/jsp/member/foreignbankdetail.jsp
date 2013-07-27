@@ -7,6 +7,11 @@
 </c:set>
 <hippo-gogreen:title title="${trdetails}" />
 <hst:actionURL var="actionUrl" />
+<%
+ValueListService ObjValueListService = ValueListServiceImpl.getInstance();
+SortedSet<Map.Entry<String,String>> objHashMapcountry = ObjValueListService.getCountry();
+request.setAttribute("objHashMapcountry", objHashMapcountry);
+%>
 <div class="page type-page">
 	<w4india:itrmenu/>
 <hst:link var="mainSiteMapRefId" />
@@ -31,12 +36,17 @@
 				<div class="span4">
 					<div class="rowlabel">
 						<label for="country_code"><small><fmt:message
-									key="foreign.country.code" /> </small> </label>
+									key="foreign.country.name" /> </small> </label>
 					</div>
 					<div class="rowlabel">
-						<input id="country_code" name="country_code" 
-							type="text" 
-							value=" " />
+						<select id="country_code" name="country_code" class="uprcase" onchange="getCountryName()">
+						<option value="">-Select-</option>
+						<c:forEach var="countryList" items="${objHashMapcountry}">
+							<option
+								<c:if test="${childBean.country_Code == countryList.key}">selected</c:if>
+								value="${countryList.key}">${countryList.value}</option>
+						</c:forEach>
+					</select>
 					</div>
 				</div>
 				<div class="span4">
@@ -47,7 +57,7 @@
 					<div class="rowlabel">
 						<input id="name_bank" name="name_bank"
 							type="text" 
-							value=" " />
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.name_Bank}"/></c:if>" />
 					</div>
 				</div>
 				<div class="span4">
@@ -58,7 +68,7 @@
 					<div class="rowlabel">
 						<input id="address_bank" name="address_bank"
 							type="text" 
-							value=" " />
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.address_Bank}"/></c:if>" />
 					</div>
 				</div>
 			</div>
@@ -73,7 +83,7 @@
 						<input id="name_account" name="name_account"
 							type="text"
 							 class="decimal"
-							value=" " />
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.name_Account}"/></c:if>" />
 					</div>
 				</div>
 				<div class="span4">
@@ -84,7 +94,7 @@
 					<div class="rowlabel">
 						<input id="account_no" name="account_no" type="text"
 							  
-							value=" " />
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.account_No}"/></c:if>" />
 					</div>
 				</div>
 				<div class="span4">
@@ -95,11 +105,11 @@
 					<div class="rowlabel">
 						<input id="peak_balance" name="peak_balance" type="text"
 							maxlength="14"   class="decimal"
-							value=" " />
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.peak_Balance}"/></c:if>" />
 					</div>
 				</div>
 			</div>
-		
+		<input type="hidden" id="country_name" name="country_name">
 			<div class="row-fluid show-grid">
 				<div class="span4 offset8 decimal">
 					<a href="${scriptName}" class="button olive">Cancel</a>&nbsp;
@@ -112,7 +122,7 @@
 	<c:otherwise>
 		<table>
 			<tr align="center">
-				<th><b><fmt:message key="foreign.country.code" /> </b>
+				<th><b><fmt:message key="foreign.country.name" /> </b>
 				</th>
 				<th><b><fmt:message key="name.bank.itr2" /> </b>
 				</th>
@@ -123,10 +133,10 @@
 				<th><b>Actions</b></th>
 			</tr>
 			<c:if test="${not empty parentBean}">
-				<c:forEach items="${parentBean.foreignAssetDetailList}"
+				<c:forEach items="${parentBean.foreignBankAccountDetailList}"
 					var="foreignbank">
 					<tr>
-						<td><c:out value="${foreignbank.country_Code}" />
+						<td><c:out value="${foreignbank.country_Name}" />
 						</td>
 						<td><c:out value="${foreignbank.name_Bank}" />
 						</td>
@@ -146,7 +156,7 @@
 					</tr>
 				</c:forEach>
 				<tr>
-					<td colspan="3"><fmt:message key="tds.amount.total" /></td>
+					<td colspan="5" align="center"></<b><fmt:message key="tds.amount.total" /></b></td>
 					<td><w4india:inr value="${parentBean.total_peakBalance}" /></td>
 					
 				</tr>
@@ -158,6 +168,29 @@ class="button orange">Add New</a>
 	</c:otherwise>
 </c:choose>
 </div>
+<script type="text/javascript">
+$("#country_code").ready(function(){
+	if($("#country_code").val()!=null){
+	<c:forEach var="countryList" items="${objHashMapcountry}">
+	  if($("#country_code").val()=='<c:out value="${countryList.key}"/>'){
+		  $("#country_name").val('<c:out value="${countryList.value}"/>');
+	  }
+    </c:forEach>
+
+	}
+});
+$("#country_code").change(function(){
+	if($("#country_code").val()!=null){
+	<c:forEach var="countryList" items="${objHashMapcountry}">
+	  if($("#country_code").val()=='<c:out value="${countryList.key}"/>'){
+		  $("#country_name").val('<c:out value="${countryList.value}"/>');
+	  }
+    </c:forEach>
+
+	}
+});
+
+</script>
 
 
 <res:client-validation formId="frmtForeignBankDetail"
