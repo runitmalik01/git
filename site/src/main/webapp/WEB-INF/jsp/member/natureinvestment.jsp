@@ -17,6 +17,11 @@
 		</div>
 	</c:forEach>
 </c:if>
+<%
+ValueListService ObjValueListService = ValueListServiceImpl.getInstance();
+SortedSet<Map.Entry<String,String>> objHashMapcountry = ObjValueListService.getCountry();
+request.setAttribute("objHashMapcountry", objHashMapcountry);
+%>
 <h4>
 	<fmt:message key="nature.investment.itr2" />
 </h4>
@@ -26,7 +31,8 @@
 		<form id="frmNatureInvest" action="${actionUrl}" method="post"
 			name="frmNatureInvest">
 			
-			<h2>Enter Details</h2>
+			<fieldset>
+			<legend>Enter Details</legend>
 			<div class="row-fluid show-grid">
 				<div class="span4">
 					<div class="rowlabel">
@@ -34,9 +40,14 @@
 									key="foreign.country.code" /> </small> </label>
 					</div>
 					<div class="rowlabel">
-						<input id="country_code" name="country_code" 
-							type="text" 
-							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.country_Code}"/></c:if>" />
+						<select id="country_code" name="country_code" class="uprcase" onchange="getCountryName()">
+						<option value="">-Select-</option>
+						<c:forEach var="countryList" items="${objHashMapcountry}">
+							<option
+								<c:if test="${childBean.country_Code == countryList.key}">selected</c:if>
+								value="${countryList.key}">${countryList.value}</option>
+						</c:forEach>
+					</select>
 					</div>
 				</div>
 				<div class="span4">
@@ -69,8 +80,9 @@
 					<a href="${scriptName}" class="button olive">Cancel</a>&nbsp;
 					<a id="myModalHrefNatureInvst" role="button" class="btn orange">Save</a>
 				</div>  
-			
+			<input type="hidden" id="country_name" name="country_name">
 			</div>
+			</fieldset>
 		</form>
 	</c:when>
 	<c:otherwise>
@@ -88,7 +100,7 @@
 				<c:forEach items="${parentBean.natureInvestmentDetailList}"
 					var="natureInvest">
 					<tr>
-						<td><c:out value="${natureInvest.country_Code}" />
+						<td><c:out value="${natureInvest.country_Name}" />
 						</td>
 						<td><c:out value="${natureInvest.nature_Asset}" />
 						</td>
@@ -115,8 +127,29 @@
 	</c:otherwise>
 </c:choose>
 </div>
+<script type="text/javascript">
+$("#country_code").ready(function(){
+	if($("#country_code").val()!=null){
+	<c:forEach var="countryList" items="${objHashMapcountry}">
+	  if($("#country_code").val()=='<c:out value="${countryList.key}"/>'){
+		  $("#country_name").val('<c:out value="${countryList.value}"/>');
+	  }
+    </c:forEach>
 
+	}
+});
+$("#country_code").change(function(){
+	if($("#country_code").val()!=null){
+	<c:forEach var="countryList" items="${objHashMapcountry}">
+	  if($("#country_code").val()=='<c:out value="${countryList.key}"/>'){
+		  $("#country_name").val('<c:out value="${countryList.value}"/>');
+	  }
+    </c:forEach>
 
+	}
+});
+
+</script>
 <res:client-validation formId="frmNatureInvest"
 	screenConfigurationDocumentName="natureinvestment"
 	formSubmitButtonId="myModalHrefNatureInvst" />
