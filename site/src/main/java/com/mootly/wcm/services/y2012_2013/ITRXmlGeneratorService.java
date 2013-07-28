@@ -1,13 +1,19 @@
 package com.mootly.wcm.services.y2012_2013;
 
 import in.gov.incometaxindiaefiling.y2012_2013.ITR;
+import in.gov.incometaxindiaefiling.y2012_2013.ITR1;
 
 import java.io.File;
 import java.io.InputStream;
 import java.io.StringReader;
+import java.io.StringWriter;
+import java.util.List;
+import java.util.Map;
 
 import javax.xml.XMLConstants;
 import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import javax.xml.bind.ValidationEvent;
 import javax.xml.bind.ValidationEventHandler;
@@ -20,6 +26,11 @@ import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 import javax.xml.validation.Validator;
 
+import org.apache.commons.lang.StringUtils;
+import org.hippoecm.hst.content.beans.query.HstQuery;
+import org.hippoecm.hst.content.beans.query.HstQueryManager;
+import org.hippoecm.hst.content.beans.query.filter.Filter;
+import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
 import org.slf4j.Logger;
@@ -33,11 +44,13 @@ import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
 import com.mootly.wcm.beans.MemberPersonalInformation;
+import com.mootly.wcm.model.FinancialYear;
 import com.mootly.wcm.model.ValidationResponse;
 import com.mootly.wcm.services.ITR1XmlGeneratorService;
 import com.mootly.wcm.services.ITR2XmlGeneratorService;
 import com.mootly.wcm.services.ITRXmlGeneratorServiceCommon;
 import com.mootly.wcm.services.XmlGeneratorService;
+import com.sun.xml.bind.marshaller.NamespacePrefixMapper;
 
 public class ITRXmlGeneratorService extends ITRXmlGeneratorServiceCommon  implements XmlGeneratorService {
 	DocumentBuilder parser = null;
@@ -46,6 +59,7 @@ public class ITRXmlGeneratorService extends ITRXmlGeneratorServiceCommon  implem
 	Validator validator = null;
 	
 	private static Logger log = LoggerFactory.getLogger(ITRXmlGeneratorService.class);
+	
 	@Override
 	public String generateXml(HstRequest request,HstResponse response) throws Exception {
 		// TODO Auto-generated method stub
@@ -61,6 +75,53 @@ public class ITRXmlGeneratorService extends ITRXmlGeneratorServiceCommon  implem
 		return null;
 	}
 	
+	@Override
+	public Map<String,Object> generateXml(FinancialYear financialYear,
+			Map<String, HippoBean> inputBeans) throws Exception {
+		// TODO Auto-generated method stub
+		Map<String,Object> returnMap = null;
+		super.generateXml(financialYear, inputBeans);
+		MemberPersonalInformation memberPersonalInformation = (MemberPersonalInformation) inputBeans.get(MemberPersonalInformation.class.getSimpleName().toLowerCase());
+		if(memberPersonalInformation.getFlexField("flex_string_ITRForm", "").equals("ITR1")){
+			returnMap = ITR1XmlGeneratorService.generateITR1(financialYear, inputBeans);
+		}
+		if(memberPersonalInformation.getFlexField("flex_string_ITRForm", "").equals("ITR2")){
+			returnMap = ITR2XmlGeneratorService.generateITR2(financialYear, inputBeans);
+		}
+		
+		return returnMap;
+	}
+	
+	@Override
+	public String getConsolidateReturnsToBulk(List<Object> listOfItrForms) {
+		// TODO Auto-generated method stub
+		StringWriter sw = new StringWriter();
+		try {
+			JAXBContext jaxbContext = JAXBContext.newInstance(ITR.class);
+			Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
+			// output pretty printed
+			NamespacePrefixMapper prefixMapper = new ITRPrefixMapper();
+			jaxbMarshaller.setProperty("com.sun.xml.bind.namespacePrefixMapper", prefixMapper);
+			jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT,true);
+			jaxbMarshaller.setProperty(Marshaller.JAXB_ENCODING,"UTF-8");
+			jaxbMarshaller.setProperty(Marshaller.JAXB_SCHEMA_LOCATION, "http://incometaxindiaefiling.gov.in/main ITRMain13.xsd");
+			ITR itReturn = new ITR();
+			for (Object anObj:listOfItrForms) {
+				if (anObj instanceof ITR1) {
+					itReturn.getITR1().add((ITR1)anObj);
+				}
+			}
+			jaxbMarshaller.marshal(itReturn, sw);
+			//request.setAttribute("xml",sw.toString());
+			return sw.toString();
+		} catch (JAXBException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
+		return null;
+		
+	}
+		
 	public Unmarshaller validateXmlGetUnmarshaller() throws Exception {
 		SchemaFactory sf = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
 		sf.setResourceResolver(new ClasspathResourceResolver());

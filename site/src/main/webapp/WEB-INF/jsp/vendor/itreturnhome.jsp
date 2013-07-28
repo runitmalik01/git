@@ -23,6 +23,17 @@ TreeMap objTreeMapSection = (TreeMap) objValueListService.getReturnFile();
 	 %>
 <div class="page">
 	<h4>Vendor IT Return Home</h4>
+	 <c:if test="${not empty strIsOnVendorPortal && strIsOnVendorPortal =='true' && isVendor =='true'}">
+	 	<c:if test="${not empty  bulk_download_xml_paths}">
+	 		<h5>Selected for Bulk XML download</h5>
+	 		<ul>
+	    	<c:forEach items="${bulk_download_xml_paths}" var="aPath">
+	    		<li><c:out value="${aPath}"/></li>
+	    	</c:forEach>
+	    	</ul>
+	    	<a href="itreturn/servicerequest-itr-bulk-xml-download.html">Download Bulk XML Returns</a>
+    	</c:if>
+    </c:if>
 	<form id="frmSearch" method="GET">
 		<input type="hidden" name="pageNumber" value="${params.pageNumber}"/>
 		<fieldset>

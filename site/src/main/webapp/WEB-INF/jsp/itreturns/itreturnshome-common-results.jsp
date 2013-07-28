@@ -61,6 +61,10 @@ HstRequest hstRequest = (HstRequest) request;
 				                  <li><a href="${baseFolderLink}/servicerequest-itr-download-summary.html">Download Summary</a></li>
 				                  <li><a href="${baseFolderLink}/servicerequest-itr-download-xml.html">Download XML</a></li>
 				                  <li><a href="${baseFolderLink}/servicerequest-itr-email-xml-summary.html?email=${anEntry.email}">Email Summary and XML</a></li>
+								  <c:if test="${not empty strIsOnVendorPortal && strIsOnVendorPortal =='true' && isVendor =='true'}">
+				                  	<li><a href="${baseFolderLink}/servicerequest-itr-summary.html/addpathtobulk">Add To Bulk</a></li>
+				                  	<li class="divider"></li>			                  	
+				                  </c:if>
 				              </c:if>
 			                </ul>
 			             </div>

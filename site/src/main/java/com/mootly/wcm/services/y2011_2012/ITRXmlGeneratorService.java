@@ -53,6 +53,7 @@ import javax.xml.datatype.DatatypeConstants;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
+import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
 
@@ -797,6 +798,19 @@ public class ITRXmlGeneratorService implements XmlGeneratorService {
 	@Override
 	public ValidationResponse validateXml(InputStream inputStream)
 			throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Map<String,Object> generateXml(FinancialYear financialYear,
+			Map<String, HippoBean> inputBeans) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getConsolidateReturnsToBulk(List<Object> listOfItrForms) {
 		// TODO Auto-generated method stub
 		return null;
 	}

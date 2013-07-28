@@ -14,6 +14,7 @@ public class DefaultPageComponent extends BaseComponent {
     public void doBeforeRender(HstRequest request, HstResponse response) {
         super.doBeforeRender(request, response);
         Map<String, String> pageParams = getParameters(request);
+        /*
         if (pageParams != null) {
         	Iterator<String> it = pageParams.keySet().iterator();
         	while (it.hasNext()) {
@@ -21,5 +22,6 @@ public class DefaultPageComponent extends BaseComponent {
         		log.info(key + ":" + pageParams.get(key));
         	}
         }
+        */
     }
 }

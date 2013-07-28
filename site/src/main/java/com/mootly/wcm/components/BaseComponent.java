@@ -92,19 +92,21 @@ public class BaseComponent extends BaseHstComponent {
         request.setAttribute("isVendor", isVendor);
         
         memberhandleuuid = resolvedSiteMapItem.getParameter("memberhandleuuid");
-         try {
-			Node theMemberHandle = request.getRequestContext().getSession().getNodeByIdentifier(memberhandleuuid);
-			if (theMemberHandle != null) memberFolderPath = theMemberHandle.getName();
-		} catch (ItemNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (LoginException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (RepositoryException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+        if (memberhandleuuid != null && !"".equals(memberhandleuuid.trim())) {
+	        try {
+				Node theMemberHandle = request.getRequestContext().getSession().getNodeByIdentifier(memberhandleuuid);
+				if (theMemberHandle != null) memberFolderPath = theMemberHandle.getName();
+			} catch (ItemNotFoundException e) {
+				// TODO Auto-generated catch block
+				//e.printStackTrace();
+			} catch (LoginException e) {
+				// TODO Auto-generated catch block
+				//e.printStackTrace();
+			} catch (RepositoryException e) {
+				// TODO Auto-generated catch block
+				//e.printStackTrace();
+			}
+        }
         
     }
     

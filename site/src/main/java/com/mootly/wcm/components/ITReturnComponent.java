@@ -40,6 +40,7 @@ import java.util.regex.PatternSyntaxException;
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSession;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.FactoryConfigurationError;
@@ -62,7 +63,13 @@ import org.hippoecm.hst.content.beans.ObjectBeanManagerException;
 import org.hippoecm.hst.content.beans.ObjectBeanPersistenceException;
 import org.hippoecm.hst.content.beans.manager.workflow.WorkflowCallbackHandler;
 import org.hippoecm.hst.content.beans.manager.workflow.WorkflowPersistenceManager;
+import org.hippoecm.hst.content.beans.query.HstQuery;
+import org.hippoecm.hst.content.beans.query.HstQueryManager;
+import org.hippoecm.hst.content.beans.query.HstQueryResult;
+import org.hippoecm.hst.content.beans.query.filter.Filter;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
+import org.hippoecm.hst.content.beans.standard.HippoBeanIterator;
+import org.hippoecm.hst.content.beans.standard.HippoDocumentBean;
 import org.hippoecm.hst.content.beans.standard.HippoFolder;
 import org.hippoecm.hst.core.component.HstComponentException;
 import org.hippoecm.hst.core.component.HstRequest;
@@ -112,6 +119,8 @@ import com.mootly.wcm.model.ITReturnType;
 import com.mootly.wcm.model.PaymentVerificationStatus;
 import com.mootly.wcm.model.ValidationResponse;
 import com.mootly.wcm.services.DownloadConfirmationRequiredException;
+import com.mootly.wcm.services.ITR1XmlGeneratorService;
+import com.mootly.wcm.services.ITR2XmlGeneratorService;
 import com.mootly.wcm.services.ITRXmlGeneratorServiceFactory;
 import com.mootly.wcm.services.InvalidXMLException;
 import com.mootly.wcm.services.PaymentRequiredException;
@@ -393,6 +402,39 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 				}
 				return;
 			}
+		}
+		//new code for bulk 
+		if (pageAction != null && pageAction == PAGE_ACTION.DOWNLOAD_ITR_XML_BULK_ADD_TO_SESSION) {
+			//add and then redirect back to the page
+			HttpSession session = request.getSession(true);
+			List<String> listOfPaths = (List<String>) session.getAttribute("bulk_download_xml_paths");
+			if (listOfPaths == null) {
+				listOfPaths = new ArrayList<String>();				
+			}
+			listOfPaths.add(baseRelPathToReturnDocuments);
+			session.setAttribute("bulk_download_xml_paths", listOfPaths);
+			String referer = request.getHeader("REFERER");
+			if (referer != null) {
+				try {
+					response.sendRedirect(referer);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			return;
+		}
+		if (pageAction != null && pageAction == PAGE_ACTION.DOWNLOAD_ITR_XML_BULK) {
+			List<String> listOfPath = (List<String>) request.getSession().getAttribute("bulk_download_xml_paths");
+			String[] theNewArray =listOfPath.toArray(new String[listOfPath.size()]);
+			try {
+				generateBulkXml(request, response, theNewArray);
+				
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			request.getSession().removeAttribute("bulk_download_xml_paths");
 		}
 	}
 
@@ -1528,6 +1570,68 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		// TODO Auto-generated method stub
 		
 	}
+	
+	public String generateBulkXml(HstRequest request,HstResponse response, String[] pathToITR) throws Exception {
+		// TODO Auto-generated method stub
+		//for each path get all beans under that, then check memberpersonalinformation
+		//based on memberpersonalinformation run the respective code
+		try {
+			Map<FinancialYear,List<Object>> listOfITRForms = new HashMap<FinancialYear, List<Object>>();
+			for (String aPath:pathToITR) {
+				@SuppressWarnings("unchecked")
+				HippoBean hippoBean = getSiteContentBaseBean(request).getBean(aPath);
+				HstQuery hstQuery = this.getQueryManager(request).createQuery(hippoBean);
+				final HstQueryResult result = hstQuery.execute();
+				Map<String,HippoBean> inputMap = new HashMap<String, HippoBean>();
+				HippoBeanIterator resultIterator = result.getHippoBeans();
+				MemberPersonalInformation memberPersonalInformation = null;
+				for (;resultIterator.hasNext();) {
+					HippoBean theBean = resultIterator.next();
+					inputMap.put(theBean.getClass().getSimpleName().toLowerCase(),theBean);
+					if (theBean instanceof MemberPersonalInformation) {
+						memberPersonalInformation =  (MemberPersonalInformation) theBean;
+					}
+				}
+				if (memberPersonalInformation == null) continue;
+				FinancialYear financialYear = FinancialYear.getByDisplayName(memberPersonalInformation.getFinancialYear());
+				XmlGeneratorService xmlGeneratorService = itrXmlGeneratorServiceFactory.getInstance(financialYear);				
+				if (itrXmlGeneratorServiceFactory != null) {
+					if (xmlGeneratorService != null) {
+						try {
+							Map<String,Object> outputMap = xmlGeneratorService.generateXml(financialYear,inputMap);	
+							if (!listOfITRForms.containsKey(financialYear)) {
+								listOfITRForms.put(financialYear, new ArrayList<Object>());
+							}
+							listOfITRForms.get(financialYear).add(outputMap.get("theForm"));
+							if (log.isInfoEnabled()) {
+								log.info("outputMap",outputMap);
+							}
+						} 				
+						catch (Exception e) {
+							// TODO Auto-generated catch block
+							log.error("Error in generating XML",e);
+							throw new InvalidXMLException(e);
+						}
+					}
+				}
+			}
+			if (listOfITRForms != null && listOfITRForms.size() > 0) {
+				for (FinancialYear aFinancialYear:listOfITRForms.keySet()) {
+					List<Object> listOfForms = listOfITRForms.get(aFinancialYear);
+					XmlGeneratorService xmlGeneratorService = itrXmlGeneratorServiceFactory.getInstance(aFinancialYear);	
+					String consolidatedXml = xmlGeneratorService.getConsolidateReturnsToBulk(listOfForms);
+					log.info(consolidatedXml);
+					request.setAttribute("xml", consolidatedXml);
+					request.setAttribute("fileName", "consolidated-returns.xml");
+					response.setRenderPath("jsp/member/downloadfile.jsp");					
+				}
+			}
+		} catch (Exception ex) {
+			log.error("Error in search",ex);
+		}
+		return null;
+	}
+	
 	
 	//DecimalFormat decimalFormat=new DecimalFormat("#.#");
 	public void handleITRSummary(HstRequest request, HstResponse response) throws InvalidXMLException, PaymentRequiredException, DownloadConfirmationRequiredException{

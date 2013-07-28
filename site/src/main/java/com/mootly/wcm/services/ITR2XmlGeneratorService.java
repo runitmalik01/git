@@ -87,6 +87,7 @@ import javax.xml.datatype.DatatypeConstants;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
+import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
 import org.slf4j.Logger;
@@ -127,6 +128,9 @@ public class ITR2XmlGeneratorService  {
 
 	private static Logger log = LoggerFactory.getLogger(ITR2XmlGeneratorService .class);
 
+	public static Map<String,Object> generateITR2(FinancialYear financialYear,Map<String, HippoBean> inputBeans) throws Exception {
+		return null;
+	}
 	public static String generateITR2(HstRequest request,HstResponse response) throws Exception {
 		// TODO Auto-generated method stub
 
