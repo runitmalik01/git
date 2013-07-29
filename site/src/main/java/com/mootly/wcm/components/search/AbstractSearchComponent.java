@@ -47,6 +47,7 @@ import com.mootly.wcm.beans.JobsDocument;
 import com.mootly.wcm.beans.KnowledgeArticle;
 import com.mootly.wcm.beans.NewsItem;
 import com.mootly.wcm.beans.Product;
+import com.mootly.wcm.beans.Service;
 import com.mootly.wcm.beans.SimpleDocument;
 import com.mootly.wcm.components.ComponentUtil;
 import com.mootly.wcm.components.TagComponent;
@@ -123,7 +124,7 @@ public class AbstractSearchComponent extends TagComponent {
             HstQueryManager manager = getQueryManager(request);
 
             @SuppressWarnings("unchecked")
-            HstQuery hstQuery = manager.createQuery(scope, KnowledgeArticle.class, Faq.class);
+            HstQuery hstQuery = manager.createQuery(scope, KnowledgeArticle.class, Faq.class,Service.class);
 
             HippoBean assetScope = getAssetBaseBean(request);
             hstQuery.addScopes(Collections.singletonList(assetScope));

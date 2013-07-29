@@ -24,7 +24,7 @@
     <c:set var="isFound" value="${tags != null or searchResult.total > 0}"/>
     <c:set var="searched" value="'${fn:escapeXml(tag != null ? tag.label : query)}'"/>
 	<c:choose>
-		<c:when test="${empty firstBean}">
+		<c:when test="${empty firstBean || isFound}">
 			<hst:element var="robotsContent"  name="meta">
 				<hst:defineObjects/>
 				<hst:attribute name="name">robots</hst:attribute>

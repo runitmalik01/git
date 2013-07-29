@@ -23,7 +23,7 @@
 <div class="yui-main">
   <div id="content" class="yui-b left-and-right">
 
-    <ul id="breadcrumbs">
+    <ul class="breadcrumb">
       <li><fmt:message key="service.faqdetail.location.label"/></li>
       <hst:link var="homelink" siteMapItemRefId="home" />
       <li><a href="${homelink}"><fmt:message key="service.faqdetail.location.home"/></a> &gt;</li>
