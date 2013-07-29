@@ -65,7 +65,8 @@ public class ForeignIncomeDocument extends BaseDocument implements ContentNodeBi
 	}
 	private Double total_amount;
 	private Double IncomeApplDtaa;
-	private Double defDouble=0d;
+	private Double IncomeNotApplDtaa;
+	private Double defDouble=0.0d;
 	private final static Logger log = LoggerFactory.getLogger(ForeignIncomeDocument.class); 
 
 	private List<ForeignIncomeDetail> foreignincomeDetailList;
@@ -99,6 +100,14 @@ public class ForeignIncomeDocument extends BaseDocument implements ContentNodeBi
 	   public final void setIncomeApplDtaa(Double IncomeApplDtaa){
 		   this.IncomeApplDtaa=IncomeApplDtaa;
 	   }
+	   public Double getIncomeNotApplDtaa(){
+		   if(IncomeNotApplDtaa == null) IncomeNotApplDtaa=getProperty("mootlywcm:IncomeNotApplDtaa");
+		   return IncomeNotApplDtaa;
+	   }
+	   public final void setIncomeNotApplDtaa(Double IncomeNotApplDtaa){
+		   this.IncomeNotApplDtaa=IncomeNotApplDtaa;
+	   }
+	   
 	public final String getItFolderUuid() {
 		return itFolderUuid;
 	}
@@ -150,10 +159,19 @@ public class ForeignIncomeDocument extends BaseDocument implements ContentNodeBi
         			}
         		}
         		setTotal_Amount(sum);
+        		if(getTotal_Amount()<getIncomeApplDtaa()){
+        			defDouble=0.0d;
+        			log.info("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"+defDouble);
+        		}
+        		else {
+        			defDouble= (getTotal_Amount()-getIncomeApplDtaa());
+        			log.info("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"+defDouble);
+        		}
+        		setIncomeNotApplDtaa(defDouble);
         	}
         	node.setProperty("mootlywcm:totalamount", getTotal_Amount());
         	node.setProperty("mootlywcm:IncomeApplDtaa",getIncomeApplDtaa());
-        	node.setProperty("mootlywcm:IncomeNotApplDtaa", (getTotal_Amount()<getIncomeApplDtaa()) ? defDouble :(getTotal_Amount()-getIncomeApplDtaa()));
+        	node.setProperty("mootlywcm:IncomeNotApplDtaa", getIncomeNotApplDtaa());
         	/*
 			javax.jcr.Node prdLinkNode;
 			if (node.hasNode(NT_PERSONAL_INFO_LINK)) {
@@ -177,9 +195,7 @@ public class ForeignIncomeDocument extends BaseDocument implements ContentNodeBi
 		if (formMap != null) {
 			if(formMap.getField("IncomeApplDtaa") != null){
 				setIncomeApplDtaa(Double.parseDouble(formMap.getField("IncomeApplDtaa").getValue()));
-				
-				//setTest(formMap.getField("test").getValue());
-			} 
+						} 
 			}
 	}
 	
