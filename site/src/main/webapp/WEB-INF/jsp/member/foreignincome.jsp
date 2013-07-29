@@ -13,190 +13,210 @@ SortedSet<Map.Entry<String,String>> objHashMapcountry = ObjValueListService.getC
 request.setAttribute("objHashMapcountry", objHashMapcountry);
 %>
 <div class="page type-page">
-	<w4india:itrmenu/>
-<hst:link var="mainSiteMapRefId" />
-<c:if test="${not empty formMap}">
-	<c:forEach items="${formMap.message}" var="item">
-		<div class="alert alert-error">
-			<fmt:message key="${item.value}" />
-		</div>
-	</c:forEach>
-</c:if>
-<h4>
-	<fmt:message key="foreign.income.itr2" />
-</h4>
-<c:choose>
-	<c:when
-		test="${pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD'}">
-		<form id="frmforeignincome" action="${actionUrl}" method="post"
-			name="frmforeignincome">
-			
-			<div class="row-fluid show-grid">
-				<div class="span4">
-					<div class="rowlabel">
-						<label for="country_code"><small><fmt:message
-									key="foreign.country.name" /> </small> </label>
-					</div>
-					<div class="rowlabel">
-						<select id="country_code" name="country_code" class="uprcase" onchange="getCountryName()">
-						<option value="">-Select-</option>
-						<c:forEach var="countryList" items="${objHashMapcountry}">
-							<option
-								<c:if test="${childBean.country_Code == countryList.key}">selected</c:if>
-								value="${countryList.key}">${countryList.value}</option>
-						</c:forEach>
-					</select>
-					</div>
-				</div>
-				<div class="span4">
-					<div class="rowlabel">
-						<label for="taxpayer_ID"><small><fmt:message
-									key="foreign.taxpayer.id" /> </small> </label>
-					</div>
-					<div class="rowlabel">
-						<input id="taxpayer_ID" name="taxpayer_ID"
-							type="text" 
-							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.taxpayer_ID}"/></c:if>" />
-					</div>
-				</div>
-				<div class="span4">
-					<div class="rowlabel">
-						<label for="income_salary"><small><fmt:message
-									key="foreign.income.salary" /> </small> </label>
-					</div>
-					<div class="rowlabel">
-						<input id="income_salary" name="income_salary"
-							type="text" maxlength="14" 
-							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.income_Salary}"/></c:if>" />
-					</div>
-				</div>
+	<w4india:itrmenu />
+	<hst:link var="mainSiteMapRefId" />
+	<c:if test="${not empty formMap}">
+		<c:forEach items="${formMap.message}" var="item">
+			<div class="alert alert-error">
+				<fmt:message key="${item.value}" />
 			</div>
-			<div class="row-fluid show-grid">
-				<div class="span4">
-					<div class="rowlabel">
-						<label for="income_house"><small><fmt:message
-									key="foreign.income.house" /> </small> </label>
-					</div>
-					<div class="rowlabel">
-						<input id="income_house" name="income_house"
-							type="text" maxlength="14"
-							 class="decimal"
-							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.income_House}"/></c:if>" />
-					</div>
-				</div>
-				<div class="span4">
-					<div class="rowlabel">
-						<label for="income_business"><small><fmt:message
-									key="foreign.income.business" /> </small> </label>
-					</div>
-					<div class="rowlabel">
-						<input id="income_business" name="income_business" type="text"
-							maxlength="14"  class="decimal"
-							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.income_Business}"/></c:if>" />
-					</div>
-				</div>
-				<div class="span4">
-					<div class="rowlabel">
-						<label for="income_capitalgain"><small><fmt:message
-									key="foreign.income.capitalgain" /> </small> </label>
-					</div>
-					<div class="rowlabel">
-						<input id="income_capitalgain" name="income_capitalgain" type="text"
-							maxlength="14"  class="decimal"
-							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.income_Capitalgain}"/></c:if>" />
-					</div>
-				</div>
+		</c:forEach>
+	</c:if>
+	<h4>
+		<fmt:message key="foreign.income.itr2" />
+	</h4>
+	<c:choose>
+		<c:when
+			test="${pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD'}">
+			<form id="frmforeignincome" action="${actionUrl}" method="post"
+				name="frmforeignincome">
+
 				<div class="row-fluid show-grid">
-				<div class="span4">
-					<div class="rowlabel">
-						<label for="income_othersources"><small><fmt:message
-									key="foreign.income.othersources" /> </small> </label>
-					</div>
-					<div class="rowlabel">
-						<input id="income_othersources" name="income_othersources" type="text"
-							maxlength="14"  class="decimal"
-							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.income_Othersources}"/></c:if>" />
-					</div>
-				</div>
-				
 					<div class="span4">
-					<div class="rowlabel">
-						<label for="income_total"><small><fmt:message
-									key="foreign.income.total" /> </small> </label>
+						<div class="rowlabel">
+							<label for="country_code"><small><fmt:message
+										key="foreign.country.name" /> </small> </label>
+						</div>
+						<div class="rowlabel">
+							<select id="country_code" name="country_code" class="uprcase"
+								onchange="getCountryName()">
+								<option value="">-Select-</option>
+								<c:forEach var="countryList" items="${objHashMapcountry}">
+									<option
+										<c:if test="${childBean.country_Code == countryList.key}">selected</c:if>
+										value="${countryList.key}">${countryList.value}</option>
+								</c:forEach>
+							</select>
+						</div>
 					</div>
-					<div class="rowlabel">
-						<input id="income_total" name="income_total" type="text"
-							maxlength="14"  class="decimal"
-							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.income_Total}"/></c:if>" />
+					<div class="span4">
+						<div class="rowlabel">
+							<label for="taxpayer_ID"><small><fmt:message
+										key="foreign.taxpayer.id" /> </small> </label>
+						</div>
+						<div class="rowlabel">
+							<input id="taxpayer_ID" name="taxpayer_ID" type="text"
+								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.taxpayer_ID}"/></c:if>" />
+						</div>
+					</div>
+					<div class="span4">
+						<div class="rowlabel">
+							<label for="income_salary"><small><fmt:message
+										key="foreign.income.salary" /> </small> </label>
+						</div>
+						<div class="rowlabel">
+							<input id="income_salary" name="income_salary" type="text"
+								maxlength="14"
+								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.income_Salary}"/></c:if>" />
+						</div>
 					</div>
 				</div>
-				</div>
-			</div>
-			<input type="hidden" id="country_name" name="country_name">
 				<div class="row-fluid show-grid">
-				<div class="span4 offset8 decimal">
-					<a href="${scriptName}" class="button olive">Cancel</a>&nbsp;
-					<a id="myModalHrefforeignincome" role="button" class="btn orange">Save</a>
+					<div class="span4">
+						<div class="rowlabel">
+							<label for="income_house"><small><fmt:message
+										key="foreign.income.house" /> </small> </label>
+						</div>
+						<div class="rowlabel">
+							<input id="income_house" name="income_house" type="text"
+								maxlength="14" class="decimal"
+								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.income_House}"/></c:if>" />
+						</div>
+					</div>
+					<div class="span4">
+						<div class="rowlabel">
+							<label for="income_business"><small><fmt:message
+										key="foreign.income.business" /> </small> </label>
+						</div>
+						<div class="rowlabel">
+							<input id="income_business" name="income_business" type="text"
+								maxlength="14" class="decimal"
+								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.income_Business}"/></c:if>" />
+						</div>
+					</div>
+					<div class="span4">
+						<div class="rowlabel">
+							<label for="income_capitalgain"><small><fmt:message
+										key="foreign.income.capitalgain" /> </small> </label>
+						</div>
+						<div class="rowlabel">
+							<input id="income_capitalgain" name="income_capitalgain"
+								type="text" maxlength="14" class="decimal"
+								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.income_Capitalgain}"/></c:if>" />
+						</div>
+					</div>
+					<div class="row-fluid show-grid">
+						<div class="span4">
+							<div class="rowlabel">
+								<label for="income_othersources"><small><fmt:message
+											key="foreign.income.othersources" /> </small> </label>
+							</div>
+							<div class="rowlabel">
+								<input id="income_othersources" name="income_othersources"
+									type="text" maxlength="14" class="decimal"
+									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.income_Othersources}"/></c:if>" />
+							</div>
+						</div>
+
+						<div class="span4">
+							<div class="rowlabel">
+								<label for="income_total"><small><fmt:message
+											key="foreign.income.total" /> </small> </label>
+							</div>
+							<div class="rowlabel">
+								<input id="income_total" name="income_total" type="text"
+									maxlength="14" class="decimal"
+									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.income_Total}"/></c:if>" />
+							</div>
+						</div>
+					</div>
 				</div>
-			</div>
-			
-		</form>
-	</c:when>
-	<c:otherwise>
-		<table>
-			<tr align="center">
-				<th><b><fmt:message key="foreign.country.name" /> </b>
-				</th>
-				<th><b><fmt:message key="foreign.taxpayer.id" /> </b>
-				</th>
-				
-				<th><b><fmt:message key="foreign.income.salary" /> </b></th>
-				<th><b><fmt:message key="foreign.income.house" /> </b>
-				</th>
-				<th><b><fmt:message key="foreign.income.business" /> </b>
-				</th>
-				<th><b><fmt:message key="foreign.income.capitalgain" /> </b></th>
-				<th><b><fmt:message key="foreign.income.othersources" /> </b></th>
-				<th><b><fmt:message key="foreign.income.itr2" /> </b></th>
-				<th><b>Actions</b></th>
-			</tr>
-			<c:if test="${not empty parentBean}">
-				<c:forEach items="${parentBean.foreignIncomeDetailList}"
-					var="foreignIncome">
-					<tr>
-						<td><c:out value="${foreignIncome.country_Name}" />
-						</td>
-						<td><c:out value="${foreignIncome.taxpayer_ID}" />
-						</td>
-						<td><w4india:inr value="${foreignIncome.income_Salary}" />
-						</td>
-						<td><w4india:inr value="${foreignIncome.income_House}" />
-						</td>
-						<td><c:out value="${foreignIncome.income_Business}" />
-						</td>
-						<td><c:out value="${foreignIncome.income_Capitalgain}" />
-						</td>
-						<td><w4india:inr value="${foreignIncome.income_Othersources}" />
-						</td>
-						<td><w4india:inr value="${foreignIncome.income_Total}" />
-						</td>
-					
-					<td><a
-							href="${scriptName}/<c:out value="${foreignIncome.canonicalUUID}"/>/foreignincomeedit"><small>Edit</small> &nbsp;&nbsp;
-						</a>&nbsp;<a href="${scriptName}/<c:out value="${foreignIncome.canonicalUUID}"/>/foreignincomedelete" id="delete" onclick="return checkdelete()"><small>Delete</small> </a>
-							</td>
-						</tr>
-					</tr>
-				</c:forEach>
-				<tr>
-					<td colspan="7" align="center"><b>Total</b></td>
-					<td><w4india:inr value="${parentBean.total_Amount}" /></td>
+				<input type="hidden" id="country_name" name="country_name">
+				<div class="row-fluid show-grid">
+					<div class="span4 offset8 decimal">
+						<a href="${scriptName}" class="button olive">Cancel</a>&nbsp; <a
+							id="myModalHrefforeignincome" role="button" class="btn orange">Save</a>
+					</div>
+				</div>
+
+			</form>
+		</c:when>
+		<c:otherwise>
+			<table>
+				<tr align="center">
+					<th><b><fmt:message key="foreign.country.name" /> </b></th>
+					<th><b><fmt:message key="foreign.taxpayer.id" /> </b></th>
+
+					<th><b><fmt:message key="foreign.income.salary" /> </b>
+					</th>
+					<th><b><fmt:message key="foreign.income.house" /> </b></th>
+					<th><b><fmt:message key="foreign.income.business" /> </b></th>
+					<th><b><fmt:message key="foreign.income.capitalgain" /> </b>
+					</th>
+					<th><b><fmt:message key="foreign.income.othersources" />
+					</b>
+					</th>
+					<th><b><fmt:message key="foreign.income.itr2" /> </b>
+					</th>
+					<th><b>Actions</b>
+					</th>
 				</tr>
-			</c:if>
-		</table>
-		<a href="${scriptName}/foreignincomenew"
-			class="button orange">Add New</a>
-	</c:otherwise>
+				<c:if test="${not empty parentBean}">
+					<c:forEach items="${parentBean.foreignIncomeDetailList}"
+						var="foreignIncome">
+						<tr>
+							<td><c:out value="${foreignIncome.country_Name}" /></td>
+							<td><c:out value="${foreignIncome.taxpayer_ID}" /></td>
+							<td><w4india:inr value="${foreignIncome.income_Salary}" />
+							</td>
+							<td><w4india:inr value="${foreignIncome.income_House}" /></td>
+							<td><c:out value="${foreignIncome.income_Business}" /></td>
+							<td><c:out value="${foreignIncome.income_Capitalgain}" /></td>
+							<td><w4india:inr
+									value="${foreignIncome.income_Othersources}" /></td>
+							<td><w4india:inr value="${foreignIncome.income_Total}" /></td>
+
+							<td><a
+								href="${scriptName}/<c:out value="${foreignIncome.canonicalUUID}"/>/foreignincomeedit"><small>Edit</small>
+									&nbsp;&nbsp; </a>&nbsp;<a
+								href="${scriptName}/<c:out value="${foreignIncome.canonicalUUID}"/>/foreignincomedelete"
+								id="delete" onclick="return checkdelete()"><small>Delete</small>
+							</a></td>
+						</tr>
+						</tr>
+					</c:forEach>
+
+					<tr>
+						<td colspan="7" align="center"><b><fmt:message key="foreign.totalincome.outside" /></b>
+						</td>
+						<td><w4india:inr value="${parentBean.total_Amount}" />
+						</td>
+						
+					</tr>
+				</c:if>
+			</table>
+			<table>
+			<tr><td><fmt:message key="foreign.income.dtaa.applicable" /> </td>
+			<form action="${actionUrl}">
+				<div class="input-append">
+				
+				<td align="right">
+					<input class="span2" id="appendedInputButton" name="IncomeApplDtaa"
+						type="text"> <input class="btn green" id="test"
+						value="Save" type="submit" />
+						</td>
+				</div>
+			</form></tr>
+			
+			<tr><td><fmt:message key="foreign.income.dtaa.not.applicable" /></td>
+			<td align="right"><w4india:inr value="${parentBean.incomeNotApplDtaa}"/></td>
+			</tr>
+			
+			</table>
+</div>
+<a href="${scriptName}/foreignincomenew" class="button orange">Add
+	New</a>
+</c:otherwise>
 </c:choose>
 </div>
 <script type="text/javascript">
