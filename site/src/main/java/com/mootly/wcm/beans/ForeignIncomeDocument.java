@@ -161,11 +161,9 @@ public class ForeignIncomeDocument extends BaseDocument implements ContentNodeBi
         		setTotal_Amount(sum);
         		if(getTotal_Amount()<getIncomeApplDtaa()){
         			defDouble=0.0d;
-        			log.info("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"+defDouble);
         		}
         		else {
         			defDouble= (getTotal_Amount()-getIncomeApplDtaa());
-        			log.info("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"+defDouble);
         		}
         		setIncomeNotApplDtaa(defDouble);
         	}
