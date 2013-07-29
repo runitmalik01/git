@@ -45,6 +45,7 @@ import org.hippoecm.hst.content.beans.standard.HippoMirror;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.itextpdf.text.pdf.PdfStructTreeController.returnType;
 import com.mootly.wcm.annotations.TagAsTaxDataProvider;
 import com.mootly.wcm.annotations.TagAsTaxDataProvider.TaxDataProviderType;
 import com.mootly.wcm.beans.compound.PersonalInformation;
@@ -67,6 +68,9 @@ public class TaxReliefDocument extends BaseDocument implements ContentNodeBinder
 	private Double total_taxFsi;
 	private Double rebate9091;
 	private Double rebate90;
+	private Double taxPaidDtaa;
+	private Double taxPaidNoDtaa;
+	private Double defTaxpaid=0.0d;
 	private final static Logger log = LoggerFactory.getLogger(TaxReliefDocument.class); 
 
 	private List<TaxReliefDetail> taxreliefDetailList;
@@ -89,7 +93,20 @@ public class TaxReliefDocument extends BaseDocument implements ContentNodeBinder
 	    	if (total_taxFsi == null) total_taxFsi = getProperty("mootlywcm:total_taxFsi");
 	    	return total_taxFsi;
 	 }
-	   
+	   public Double getTaxPaidDtaa(){
+		   if(taxPaidDtaa == null) taxPaidDtaa= getProperty("mootlywcm:taxPaidDtaa");
+		   return taxPaidDtaa;
+	   }
+	   public Double getTaxPaidNoDtaa(){
+		   if(taxPaidNoDtaa == null) taxPaidNoDtaa= getProperty("mootlywcm:taxPaidNoDtaa");
+		   return taxPaidNoDtaa;
+	   }
+	   public final void setTaxPaidDtaa(Double taxPaidDtaa){
+		   this.taxPaidDtaa=taxPaidDtaa;
+	   }
+	   public final void setTaxPaidNoDtaa(Double taxPaidNoDtaa){
+		   this.taxPaidNoDtaa=taxPaidNoDtaa;
+	   }
 	   public final void setTotal_TaxFsi(Double total_taxFsi) {
 			this.total_taxFsi = total_taxFsi;
 		}
@@ -168,10 +185,19 @@ public class TaxReliefDocument extends BaseDocument implements ContentNodeBinder
         		setTotal_TaxFsi(sumTaxFsi);
                 setRebate9091(sumrebate9091);
                 setRebate90(sumrebate91);
+                setTaxPaidDtaa(taxPaidDtaa);
+               if(getTotal_TaxFsi() < getTaxPaidDtaa()){
+            	   defTaxpaid=0.0d;
+               } else {
+            	   defTaxpaid=(getTotal_TaxFsi()-getTaxPaidDtaa());
+               }
+               setTaxPaidNoDtaa(defTaxpaid);
         	}
         	node.setProperty("mootlywcm:total_taxFsi", getTotal_TaxFsi());
         	node.setProperty("mootlywcm:rebate9091", getRebate9091());
         	node.setProperty("mootlywcm:rebate90", getRebate90());
+        	node.setProperty("mootlywcm:taxPaidDtaa", getTaxPaidDtaa());
+        	node.setProperty("mootlywcm:taxPaidNoDtaa", getTaxPaidNoDtaa());
         	/*
 			javax.jcr.Node prdLinkNode;
 			if (node.hasNode(NT_PERSONAL_INFO_LINK)) {
@@ -192,7 +218,9 @@ public class TaxReliefDocument extends BaseDocument implements ContentNodeBinder
 	public void fill(FormMap formMap) {
 		// TODO Auto-generated method stub
 		if (formMap != null) {
-			
+			if(formMap.getField("taxPaidDtaa") != null){
+			setTaxPaidDtaa(Double.parseDouble(formMap.getField("taxPaidDtaa").getValue()));	
+			}
 		}
 	}
 	
