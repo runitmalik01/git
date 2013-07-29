@@ -164,6 +164,28 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 				
 			</c:if>
 		</table>
+		<table>
+			<tr><td><fmt:message key="tr.taxpaid.outside.itr2" /></td>
+			<td align="right"><w4india:inr value="${parentBean.total_TaxFsi}"/></td>
+			</tr>
+			<tr>
+			<td><fmt:message key="tr.taxpaid.outside.dtaa.itr2" /> </td>
+			<form action="${actionUrl}">
+				<div class="input-append">
+				
+				<td align="right">
+					<input class="span2" id="appendedInputButton" name="taxPaidDtaa"
+						type="text"> <input class="btn green" id="test"
+						value="Save" type="submit" />
+						</td>
+				</div>
+			</form></tr>
+			
+			<tr><td><fmt:message key="tr.taxpaid.outside.Notdtaa.itr2" /></td>
+			<td align="right"><w4india:inr value="${parentBean.taxPaidNoDtaa}"/></td>
+			</tr>
+			
+			</table>
 		<a href="${scriptName}/trdetailsnew"
 			class="button orange">Add New</a>
 	</c:otherwise>
