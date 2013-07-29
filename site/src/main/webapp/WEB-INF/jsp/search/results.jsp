@@ -109,7 +109,9 @@
 		                <c:otherwise>
 		                  <hst:link var="link" hippobean="${hit}"/>
 		                  <li class="title"><a href="${fn:escapeXml(link)}"><c:out value="${hit.title}"/></a></li>
-		                  <li class="text"><c:out value="${hit.summary}"/></li>
+		                  <c:if test="${not empty hit.summary && hit.summary != ''}">
+		                 	 <li class="text"><c:out value="${hit.summary}"/></li>
+		                  </c:if>
 		                </c:otherwise>
 		              </c:choose>
 		            </ul>
@@ -162,3 +164,12 @@
 		</c:otherwise>
 	</c:choose>
 </div>
+<hst:element var="cssCustom" name="style">
+    <hst:attribute name="type">text/css</hst:attribute>
+    .page #results { margin: 15px 0; }
+	.page #search-results .search-result { border-top: 1px solid #cccccc; padding: 0 5px; }
+	.page #search-results .search-result .title { display: block; font-size: 108%; margin-top: 7px; }
+	.page #search-results .search-result .text { display: block; margin-top: 5px; }
+	.page #search-results .search-result .path { display: block; color: #009900; font-size: 85%; margin: 3px 0 10px; }
+</hst:element>
+<hst:headContribution element="${cssCustom}" category="css"/>

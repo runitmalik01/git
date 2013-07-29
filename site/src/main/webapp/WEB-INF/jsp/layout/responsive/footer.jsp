@@ -39,7 +39,7 @@
 						<li id="menu-item-720" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-717"><a href="<hst:link siteMapItemRefId="faq"/>">FAQ</a></li>
 						<li id="menu-item-721" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-717"><a href="<hst:link siteMapItemRefId="serviceprice"/>">Pricing</a></li>
 						<li id="menu-item-722" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-717"><a href="<hst:link siteMapItemRefId="itr-validate-xml"/>">IT Return XML Validator</a></li>
-						<li id="menu-item-723" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-717"><a href="<hst:link siteMapItemRefId="search"/>">Search</a></li>
+						<li id="menu-item-723" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-717"><a href="<hst:link siteMapItemRefId="knowledgeportal"/>">Knowledge Portal</a></li>
 					</ul>                  
 		</div><!-- end of col-540 -->
         <div class="grid col-380 fit">
