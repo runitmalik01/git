@@ -4,14 +4,18 @@ var aysfall = aytaxd-aytaxp;
 if(aysfall<0){
 	aysfall = 0;
 }
-if(ddate==7 && aytaxmp>7){
-	var dateA = aytaxmp-7;
+if(ddate==7 && aytaxmp>7){  // Due date is 31 july after that interest will be calculated for Section 234A
+	var dateA = aytaxmp-7;   //For salary earners and other non corporate assessees whose accounts are not required to be audited
 }else
-	if(ddate==9 && aytaxmp>9){
+	if(ddate==9 && aytaxmp>9){ // Due Date is 31 September for non corporate assessees whose accounts are required to be audited
 		var dateA = aytaxmp-9;
-	}else {
-		var dateA = 0;
-	}
+	}else
+		if(ddate==10 && aytaxmp>10){  //added new condition for uttarakhand
+			var dateA = aytaxmp-10;   //(Due Date is 31oct after that interest will be calculated for section 234A)
+		}
+		else {
+			var dateA = 0;
+		}
 var dateB = aytaxmp-3;
 if( dateB<0){
 	dateB = 0 ;
