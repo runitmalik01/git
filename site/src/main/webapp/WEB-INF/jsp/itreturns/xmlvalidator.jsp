@@ -22,6 +22,10 @@
 <hippo-gogreen:title title="Validate your Indian Income Tax Return"/>
 <div class="page">
 	<h4>Validate your Indian Income Tax Return</h4>
+	<h5>
+		This utility can be used to validate your Indian Income Tax XML. The XML can contain multiple assessee. 
+		This utility will test the XML against the Schema published by the Income Tax website.	
+	</h5>
 	<form method="post" action="${actionURL}" enctype="multipart/form-data">
 		<input type="hidden" name="errors"/>
 		<input type="hidden" name="isValid"/>	

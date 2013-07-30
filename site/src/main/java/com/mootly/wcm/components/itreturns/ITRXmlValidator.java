@@ -170,7 +170,7 @@ public class ITRXmlValidator extends BaseComponent {
 			InputStream inputStreamToValidate = null;
 			if (items != null && items.size() > 0 ){
 				for (FileItem anItem:items) {
-					if (!anItem.isFormField()) {						
+					if (!anItem.isFormField() && anItem.getName() != null && !"".equals(anItem.getName())) {						
 						inputStreamToValidate = anItem.getInputStream();
 						xml = IOUtils.toString(inputStreamToValidate);
 						Map<String,String> xmlMap = new HashMap<String, String>(1);
@@ -180,7 +180,7 @@ public class ITRXmlValidator extends BaseComponent {
 				}				
 				for (FileItem anItem:items) {
 					if (anItem.isFormField()) {
-						if(formMap.getField(anItem.getFieldName()) !=null ){							
+						if(formMap.getField(anItem.getFieldName()) != null ){							
 							if (anItem.getFieldName().equals("xml")) {
 								if (inputStreamToValidate == null) {
 									xml = anItem.getString();
@@ -195,7 +195,7 @@ public class ITRXmlValidator extends BaseComponent {
 							else {
 								formMap.getField(anItem.getFieldName()).addValue(anItem.getString());
 							}
-						}						
+						}
 					}					
 				}
 				
@@ -208,7 +208,7 @@ public class ITRXmlValidator extends BaseComponent {
 				//else 
 				if (formMap.getField("xml") != null && formMap.getField("xml").getValue() != null) {
 					//xml = formMap.getField("xml").getValue(); 
-					vr = xmlGeneratorService.validateXml( xml );
+					vr = xmlGeneratorService.validateXml( formMap.getField("xml").getValue() );
 				}
 			}			
 			if (vr != null) {
