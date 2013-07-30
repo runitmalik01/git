@@ -152,9 +152,14 @@ public class ITReturnHomePageView {
 	public void setItrFolderSuffix(String itrFolderSuffix) {
 		this.itrFolderSuffix = itrFolderSuffix;
 	}
+	
+	public String getPathToItr() {
+		return pathToItr;
+	}
 
-
-
+	public void setPathToItr(String pathToItr) {
+		this.pathToItr = pathToItr;
+	}
 
 	String pan;
 	FinancialYear financialYear;
@@ -165,6 +170,8 @@ public class ITReturnHomePageView {
 	ITRForm itrForm;
 	ITRServiceDelivery itrFormMode;
 	String canonicalUUID;
+	
+	String userName; //the person who filed it
 	
 	/*
 	 * <li><a href="<hst:link path="/${basePath}/itreturn/${anEntry.financialYear.displayName}/${anEntry.filingSection.folderName}/${fn:toLowerCase(anEntry.pan)}/servicerequest-itr-download-summary.html"/>">Download Summary</a></li>
@@ -180,5 +187,7 @@ public class ITReturnHomePageView {
 	String email;
 	String dob;
 	String fullname;
+	
+	String pathToItr;
 	
 }

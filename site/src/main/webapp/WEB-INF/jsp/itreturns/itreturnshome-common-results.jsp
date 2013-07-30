@@ -41,7 +41,11 @@ HstRequest hstRequest = (HstRequest) request;
 
 				<tr>
 					<td class="pan">
-						<span style="text-transform:uppercase;"><a href="${baseFolderLink}/servicerequest-itr.html"><c:out value="${anEntry.pan}"/></a></span>
+						<span style="text-transform:uppercase;">
+						<a <c:if test="${not empty strIsOnVendorPortal && strIsOnVendorPortal =='true' && isVendor =='true'}">title="${anEntry.pathToItr}"</c:if> href="${baseFolderLink}/servicerequest-itr.html">
+							<c:out value="${anEntry.pan}"/>
+						</a>
+						</span>
 					</td>
 					<!-- <td class="pan"><b><c:out value="${anEntry.lastOrOrgName}"/></b></td> -->
 					<td><c:out value="${anEntry.fullName}"/></td>

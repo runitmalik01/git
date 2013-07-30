@@ -1,9 +1,15 @@
 package com.mootly.wcm.services;
 
-import java.io.File;
 import java.io.InputStream;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Map;
+import java.util.TimeZone;
 
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.core.component.HstRequest;
@@ -46,5 +52,66 @@ public class ITRXmlGeneratorServiceCommon implements XmlGeneratorService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	/**
+	 * creationInfo.setIntermediaryCity("New Delhi");
+		creationInfo.setSWCreatedBy("Wealth4India");
+		creationInfo.setXMLCreatedBy("Wealth4India");
+	 */
+	public static String getIntermediaryCity() {
+		return "New Delhi";
+	}
 	
+	public static String getSWCreatedBy() {
+		return "Shri CA ALOK KUMAR";
+	}
+
+	public static String getXMLCreatedBy() {
+		return "Wealth4India";
+	}
+	
+	
+	public static String getCurrentDateInIndiaAsString() {
+		Calendar currentdate = Calendar.getInstance();
+        String strdate = null;
+        DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        strdate = formatter.format(currentdate.getTime());
+        System.out.println("strdate=>" + strdate);
+        TimeZone obj = TimeZone.getTimeZone("GMT + 5:30");
+
+        formatter.setTimeZone(obj);
+        String strDate = formatter.format(currentdate.getTime());
+        return strDate;
+	}
+	
+	public static GregorianCalendar getCurrentDateInIndiaAsDate() {
+		Calendar currentdate =  GregorianCalendar.getInstance();
+        String strdate = null;
+        DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        strdate = formatter.format(currentdate.getTime());
+        System.out.println("strdate=>" + strdate);
+        TimeZone obj = TimeZone.getTimeZone("GMT+5:30");
+
+        formatter.setTimeZone(obj);
+        String strDate = formatter.format(currentdate.getTime());
+        try {
+			Date theResult = formatter.parse(strDate);
+			GregorianCalendar theNewOne = new GregorianCalendar();
+			theNewOne.setTimeZone(obj);
+			theNewOne.setTime(theResult);
+			return theNewOne;
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			GregorianCalendar theNewOne = new GregorianCalendar();
+			theNewOne.setTimeZone(obj);
+			theNewOne.setTime(currentdate.getTime());
+			return theNewOne;
+		}        
+	}
+	
+	public static void main(String[] args) {
+		ITRXmlGeneratorServiceCommon c = new ITRXmlGeneratorServiceCommon();
+		String theString = c.getCurrentDateInIndiaAsString();
+		System.out.println(theString);
+	}
 }

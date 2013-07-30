@@ -220,6 +220,10 @@ abstract public class AbstractITReturnHomePage extends ITReturnComponent {
 						String stringUUID= theMemberFolderBean.getCanonicalUUID();
 						itReturnHomePageView.setCanonicalUUID(stringUUID);
 						
+						itReturnHomePageView.setPathToItr(theMemberFolderBean.getPath()); //the Path
+						//can we find the member name who filed it?
+						
+						
 						listOfITReturnHomePageView.add(itReturnHomePageView);
 						
 						
