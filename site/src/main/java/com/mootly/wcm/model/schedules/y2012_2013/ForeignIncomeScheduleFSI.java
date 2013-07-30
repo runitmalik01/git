@@ -32,9 +32,12 @@ public class ForeignIncomeScheduleFSI {
 			scheduleFSI.setIncCapGain(indianCurrencyHelper.bigIntegerRound(foreignIncomedet.getIncome_Capitalgain()));
 			scheduleFSI.setIncOthSrc(indianCurrencyHelper.bigIntegerRound(foreignIncomedet.getIncome_Othersources()));
 			scheduleFSI.setTotalCountryWise(indianCurrencyHelper.bigIntegerRound(foreignIncomedet.getIncome_Total()));
+	
 			
 			iTRScheduleFSI.getScheduleFSI().add(scheduleFSI);
 			iTRScheduleFSI.setTotalIncomeOutIndia(indianCurrencyHelper.bigIntegerRound(foreignIncomeDoc.getTotal_Amount()));
+			iTRScheduleFSI.setTotalIncomeOutIndiaDTAA(indianCurrencyHelper.bigIntegerRound(foreignIncomeDoc.getIncomeApplDtaa()));
+			iTRScheduleFSI.setTotalIncomeOutIndiaWoDTAA(indianCurrencyHelper.bigIntegerRound(foreignIncomeDoc.getIncomeNotApplDtaa()));
 		}
 		
 		return iTRScheduleFSI;
