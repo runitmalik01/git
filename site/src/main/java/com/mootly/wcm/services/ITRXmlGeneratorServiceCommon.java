@@ -62,7 +62,7 @@ public class ITRXmlGeneratorServiceCommon implements XmlGeneratorService {
 	}
 	
 	public static String getSWCreatedBy() {
-		return "Shri CA ALOK KUMAR";
+		return "Wealth4India";
 	}
 
 	public static String getXMLCreatedBy() {
