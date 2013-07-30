@@ -36,6 +36,8 @@ public class TRDetailsSchedule {
 			scheduleTR.setTotTaxreliefClaimed(totTaxreliefClaimed);
 			
 			scheduleTR1.getScheduleTR().add(scheduleTR);
+			scheduleTR1.setTaxPaidOutsideIndiaDTAA(indianCurrencyHelper.bigIntegerRound(taxReliefDocument.getTaxPaidDtaa()));
+			scheduleTR1.setTaxPaidOutsideIndiaNotDTAA(indianCurrencyHelper.bigIntegerRound(taxReliefDocument.getTaxPaidNoDtaa()));
 		}
 		return scheduleTR1;
 	}
