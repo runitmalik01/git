@@ -141,7 +141,7 @@
 		   	 return this.optional(element) || /^([\.a-zA-Z0-9_\-])+@([a-zA-Z0-9_\-])+(([a-zA-Z0-9_\-])*\.([a-zA-Z0-9_\-])+)+?$/i.test(value);
 		}, "Email-ID is invalid");
 		$.validator.addMethod("accountno", function(value, element) {
-		   	 return this.optional(element) || /^[0-9A-Za-z]{11,}$/i.test(value);
+		   	 return this.optional(element) || /^[0-9A-Za-z]{10,}$/i.test(value);
 		}, "Account No is invalid");
 		$.validator.addMethod("micr", function(value, element) {
 		   	 return this.optional(element) || /^[0-9]{9}?$/i.test(value);
