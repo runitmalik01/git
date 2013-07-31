@@ -29,8 +29,8 @@
                     <span class="month"><fmt:formatDate value="${event.date.time}" pattern="MMM"/></span>
                     <span class="day"><fmt:formatDate value="${event.date.time}" pattern="dd"/></span>
                 </li>
-                <c:url var="linkUrl" value="http://maps.google.com/?q=${event.location.street} ${event.location.number}, ${event.location.city} ${event.location.postalCode} ${event.location.province}"/>
-                <c:url var="imageUrl" value="http://maps.google.com/maps/api/staticmap?zoom=10&amp;size=150x100&amp;maptype=roadmap&amp;markers=color:green|${event.location.street} ${event.location.number}, ${event.location.city} ${event.location.postalCode} ${event.location.province}&amp;sensor=true"/>
+                <c:url var="linkUrl" value="//maps.google.com/?q=${event.location.street} ${event.location.number}, ${event.location.city} ${event.location.postalCode} ${event.location.province}"/>
+                <c:url var="imageUrl" value="//maps.google.com/maps/api/staticmap?zoom=10&amp;size=150x100&amp;maptype=roadmap&amp;markers=color:green|${event.location.street} ${event.location.number}, ${event.location.city} ${event.location.postalCode} ${event.location.province}&amp;sensor=true"/>
                 <li class="gmaps"><a href="${fn:escapeXml(linkUrl)}">
                     <img src="${fn:escapeXml(imageUrl)}" alt="Google Maps" />
                 </a></li>

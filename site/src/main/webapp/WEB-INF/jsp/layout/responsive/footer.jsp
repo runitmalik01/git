@@ -25,7 +25,7 @@
 <div id="footer" class="clearfix">
    <div id="footer-wrapper">
         <div class="grid col-940">
-        <div class="grid col-700">
+        <div class="grid col-920">
 			        <ul id="menu-foot" class="footer-menu">
 			        	<hst:link var="contactUs" siteMapItemRefId="contactus"/>
 			        	<hst:link var="tos" path="/terms"/>
@@ -40,6 +40,8 @@
 						<li id="menu-item-721" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-717"><a href="<hst:link siteMapItemRefId="serviceprice"/>">Pricing</a></li>
 						<li id="menu-item-722" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-717"><a href="<hst:link siteMapItemRefId="itr-validate-xml"/>">IT Return XML Validator</a></li>
 						<li id="menu-item-723" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-717"><a href="<hst:link siteMapItemRefId="knowledgeportal"/>">Knowledge Portal</a></li>
+						<li id="menu-item-723" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-717"><a href="<hst:link siteMapItemRefId="news"/>">News</a></li>
+						<li id="menu-item-723" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-717"><a href="<hst:link siteMapItemRefId="events"/>">Events</a></li>
 					</ul>                  
 		</div><!-- end of col-540 -->
         <div class="grid col-380 fit">

@@ -2,7 +2,7 @@
 
 <hst:element var="googleMapsApiSensor" name="script">
   <hst:attribute name="type">text/javascript</hst:attribute>
-  <hst:attribute name="src">http://maps.google.com/maps/api/js?sensor=true</hst:attribute>
+  <hst:attribute name="src">//maps.google.com/maps/api/js?sensor=true</hst:attribute>
 </hst:element>
 <hst:element var="googleMaps" name="script">
   <hst:attribute name="type">text/javascript</hst:attribute>
