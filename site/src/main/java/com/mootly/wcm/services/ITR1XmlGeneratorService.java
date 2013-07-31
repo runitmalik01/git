@@ -57,6 +57,7 @@ import javax.xml.datatype.DatatypeConstants;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
+import org.apache.velocity.runtime.parser.node.MathUtils;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
@@ -342,8 +343,10 @@ public class ITR1XmlGeneratorService {
 		usrDeductUndChapVIA.setTotalChapVIADeductions(indianCurrencyHelper.bigIntegerRound(grossInvestment));
 		incomeDeductions.setDeductUndChapVIA(deductUndChapVIA);
 		incomeDeductions.setUsrDeductUndChapVIA(usrDeductUndChapVIA);
-		incomeDeductions.setTotalIncome(grsstotal-indianCurrencyHelper.longRound(totaleligiblededuction)); //calculation needed(GrossTotIncome-TotalChapVIADeductions(HARDCODDED 0))
-
+		// following three line code is to round off the code upto ten after deduction
+		Long IncomeTotal=(grsstotal-indianCurrencyHelper.longRound(totaleligiblededuction));
+		Long RoundedTotalIncome=IncomeTotal%10 >5 ? ((IncomeTotal/10)*10)+10 : (IncomeTotal/10)*10;
+		incomeDeductions.setTotalIncome(RoundedTotalIncome); //calculation needed(GrossTotIncome-TotalChapVIADeductions(HARDCODDED 0))
 		itr1.setITR1IncomeDeductions(incomeDeductions);
 
 		Map<String,Object> totalMapForJS = new HashMap<String, Object>();
@@ -458,7 +461,7 @@ public class ITR1XmlGeneratorService {
 		}else{
 			DueDate = 7;
 		}
-        //end of due date selection
+		//end of due date selection
 
 		if(year==2012){
 			currentdatemonth =currentdate.getMonth()+1;
@@ -592,7 +595,12 @@ public class ITR1XmlGeneratorService {
 		taxesPaid.setTotalTaxesPaid(bigTotalTds.add(advancetax).add(selfassessmenttax));
 		taxPaid.setTaxesPaid(taxesPaid);
 		BigInteger BalTaxPayable = new BigInteger("0");
-		BalTaxPayable = itr1TaxComputation.getTotTaxPlusIntrstPay().subtract(taxesPaid.getTotalTaxesPaid());
+
+
+		// following three line code is to round off the code finally at the end
+		Long PayTax=(itr1TaxComputation.getTotTaxPlusIntrstPay().subtract(taxesPaid.getTotalTaxesPaid())).longValue();
+		Long RoundedPayTax=PayTax%10 >5 ? ((PayTax/10)*10)+10 : (PayTax/10)*10;
+		BalTaxPayable = indianCurrencyHelper.longToBigInteger(RoundedPayTax);
 		//request.setAttribute("BalTaxPayable",BalTaxPayable);
 		outputMap.put("BalTaxPayable", BalTaxPayable);
 		if (BalTaxPayable.compareTo(BigInteger.ZERO) > 0){
