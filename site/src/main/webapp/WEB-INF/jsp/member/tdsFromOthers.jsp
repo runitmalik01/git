@@ -70,20 +70,16 @@
 									key="tds.financial.year" /> </small> </label>
 					</div>
 					<div class="rowlabel">
-						<select id="financial_yeartdsoth" name="financial_yeartdsoth" class="uprcase"
-							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.financial_Year}"/></c:if>">
-							<c:if test="${empty childBean.financial_Year}">
-								<option value="">Select</option>
-							</c:if>
-							<option value="${eight}"
-								<c:if test="${not empty childBean.financial_Year && childBean.financial_Year =='eight'}">selected</c:if>>${eight}</option>
-							<option value="${nine}">${nine}</option>
-							<option value="${ten}">${ten}</option>
-							<option value="${eleven}">${eleven}</option>
-							<option value="${twelve}">${twelve}</option>
-							<option value="${thirteen}">${thirteen}</option>
-							<option value="${forteen}">${forteen}</option>
-							<option value="${fifteen}">${fifteen}</option>
+						<select id="financial_yeartdsoth" name="financial_yeartdsoth" class="uprcase">
+						    <option value="">Select</option>
+							<option value="${eight}" <c:if test="${childBean.financial_Year ==eight}">selected</c:if>>${eight}</option>
+							<option value="${nine}" <c:if test="${childBean.financial_Year ==nine}">selected</c:if>>${nine}</option>
+							<option value="${ten}" <c:if test="${childBean.financial_Year ==ten}">selected</c:if>>${ten}</option>
+							<option value="${eleven}" <c:if test="${childBean.financial_Year ==eleven}">selected</c:if>>${eleven}</option>
+							<option value="${twelve}" <c:if test="${childBean.financial_Year ==twelve}">selected</c:if>>${twelve}</option>
+							<option value="${thirteen}" <c:if test="${childBean.financial_Year ==thirteen}">selected</c:if>>${thirteen}</option>
+							<option value="${forteen}" <c:if test="${childBean.financial_Year ==forteen}">selected</c:if>>${forteen}</option>
+							<option value="${fifteen}" <c:if test="${childBean.financial_Year ==fifteen}">selected</c:if>>${fifteen}</option>
 
 						</select>
 					</div>
