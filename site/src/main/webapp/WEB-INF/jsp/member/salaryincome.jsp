@@ -65,7 +65,7 @@
 							</div>
 							<div class="rowlabel">
 								<input id="Name_employer" type="text" name="Name_employer"
-									maxlength="25" class="uprcase"
+									maxlength="125" class="uprcase"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.name_employer}"/></c:if>" />
 
 							</div>
