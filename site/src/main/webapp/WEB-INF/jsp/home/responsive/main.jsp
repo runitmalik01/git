@@ -37,6 +37,9 @@
    <a href="#nogo" class="orange button">Free! Get Started!</a>
 </div>
  --%>
+<div class="alert alert-error">
+	<b>Last day for Filing Income Tax has been extended to August 5th 2013. For Uttarakhand assesses the last day is October 31st 2013</b>
+</div>
 <jsp:include page="cara.jsp"/>
 <%--
 <div class="slider-wrapper grid col-940 theme-default">
