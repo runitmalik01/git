@@ -78,7 +78,7 @@
 						<label for="ack_no"><small>By Cheque</small> </label>
 					</div>
 					<div class="rowlabel">
-						Bank Name: <b>ICICI Bank Ltd.,</b> <br /> Payee Name: <b>Wealth 4 India Pvt. Ltd.</b><br /> Account Number: <b>114305000075 </b><br />
+						Bank Name: <b>ICICI Bank Ltd.,</b> <br /> Payee Name: <b>Wealth 4 India Private Limited</b><br /> Account Number: <b>114305000075 </b><br />
 						Branch: <b>Office Number 11, Times Tower, M.G Road, Gurgaon -
 							122001, Haryana.</b><br /> RTGS/NEFT/IFSC CODE: ICIC0001143
 					</div>
