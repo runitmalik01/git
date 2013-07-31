@@ -21,7 +21,11 @@ if( dateB<0){
 	dateB = 0 ;
 }
 out_intA = Math.round(aysfall * dateA/100);
-out_intB = Math.round(aysfall * dateB/100);
+if(aytaxd>=10000){    // Added on 31/07/2013 for interest Section234B
+	out_intB = Math.round(aysfall * dateB/100);
+}else
+	out_intB = 0;
+
 var atdq2 = Math.round(aytaxd*30/100);
 var atsfq2 = atdq2-atlq2-atpq2;
 if(atsfq2 < 0){
