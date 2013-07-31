@@ -22,18 +22,16 @@
 <hippo-gogreen:title title="${newsoverviewtitle}"/>
 
 <!-- content -->
-<div class="yui-main">
-    <div id="content" class="yui-b left-and-right">
-        <c:if test="${news.total gt 0}">
-          <!-- TODO use breadcrumbs plugin -->
-          <ol id="breadcrumbs">
-              <li><fmt:message key="news.overview.content.location.label"/></li>
-              <li><a href="<hst:link siteMapItemRefId="home" />"><fmt:message key="news.overview.content.location.home"/></a> &gt; </li>
-          </ol>
+<c:if test="${news.total gt 0}">
+  <!-- TODO use breadcrumbs plugin -->
+  <ol class="breadcrumb">
+      <li><fmt:message key="news.overview.content.location.label"/></li>
+      <li><a href="<hst:link siteMapItemRefId="home" />"><fmt:message key="news.overview.content.location.home"/></a> &gt; </li>
+  </ol>
 
-          <h2><fmt:message key="news.overview.content.title"/></h2>
-        </c:if>
-        <div id="news">
+  <h2><fmt:message key="news.overview.content.title"/></h2>
+</c:if>
+<div class="page news">
             <%--@elvariable id="news" type="java.util.List<com.mootly.wcm.beans.NewsItem>"--%>
             <c:forEach items="${news.items}" var="newsitem" varStatus="status">
                 <ul class="news-item <c:if test="${preview}">editable</c:if>">
@@ -64,7 +62,6 @@
                     <li class="description"><c:out value="${newsitem.summary}"/></li>
                 </ul>
             </c:forEach>
-        </div>
         <c:choose>
           <c:when test="${news.total eq 0}">
             <p id="results"><fmt:message key="search.results.noresults"/> '${query}'</p>
@@ -73,5 +70,4 @@
             <hippo-gogreen:pagination pageableResult="${news}" queryName="query" queryValue="${query}"/>
           </c:otherwise>
         </c:choose>
-    </div>
 </div>

@@ -32,7 +32,24 @@
 	System.out.println("template:"+ request.getAttribute("template"));
 --%>
 <div id="content" class="<c:out value="${contentCssClass}"/>">
-	<hst:include ref="content"/>
+	<c:choose>
+		<c:when test="${not empty hasGrid && hasGrid == 'true'}">
+			<div class="row-fluid show-grid">
+				<c:forEach items="${gridParams}" var="par">
+					<c:if test="${fn:startsWith(par.key,'span')}">
+						<c:set value="class${par.key}" var="spanClass"/>
+						<c:set var="extraClass" value="${requestScope[spanClass]}"/>
+						<span class="<c:out value="${par.key} ${extraClass}"/>">
+			        		<hst:include ref="${par.value}"/>		        			
+			        	</span>
+		        	</c:if>
+				</c:forEach>
+			</div>
+		</c:when>
+		<c:otherwise>
+			<hst:include ref="content"/>
+		</c:otherwise>
+	</c:choose>	
 </div>
 <c:if test="${not empty widgetsCssClass}">
 	<div id="widgets" class="<c:out value="${widgetsCssClass}"/>">

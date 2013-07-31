@@ -29,10 +29,10 @@
 
 <hippo-gogreen:title title="${document.title}"/>
 
-<div class="yui-main">
+<div class="page" id="events">
     <div id="content" class="yui-b left-and-right <c:if test="${preview}"> editable</c:if>">
 
-        <ol id="breadcrumbs">
+        <ol class="breadcrumb">
             <li><fmt:message key="events.overview.location.label"/></li>
             <li>
                 <hst:link var="home" siteMapItemRefId="home" />
@@ -48,12 +48,18 @@
         
         <div id="article" class="event">
             <hst:cmseditlink hippobean="${document}" />
+             <c:if test="${fn:length(document.images) > 0}">
+		          <hippo-gogreen:image-gallery/>
+		          <hippo-gogreen:imagecopyright image="${document.images[0]}"/>
+      		</c:if>
+            <%--
             <c:set var="image" value="${document.firstImage}"/>
             <c:if test="${image != null}">
                 <hst:link var="src" hippobean="${image.largeThumbnail}"/>
                 <img class="image" src="${src}" alt="${fn:escapeXml(image.alt)}"/>
                 <hippo-gogreen:imagecopyright image="${image}"/>
             </c:if>
+             --%>
             <span class="date">
               <fmt:formatDate value="${document.date.time}" pattern="MMM dd, yyyy"/>&nbsp;-&nbsp;
               <fmt:formatDate value="${document.endDate.time}" pattern="MMM dd, yyyy"/>

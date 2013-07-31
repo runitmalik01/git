@@ -30,11 +30,9 @@
 <hippo-gogreen:title title="${document.title}"/>
 
 <!-- content -->
-<div class="yui-main">
-    <div id="content" class="yui-b left-and-right <c:if test="${preview}">editable</c:if>">
-
+<div class="page">
         <!-- TODO use breadcrumbs plugin -->
-        <ol id="breadcrumbs">
+        <ol class="breadcrumb">
             <li><fmt:message key="news.detail.content.location.label"/></li>
             <li>
               <hst:link var="home" siteMapItemRefId="home" />
@@ -79,9 +77,7 @@
         </div>
 
         <hst:include ref="comments"/>
-
     </div>
-</div>
 
 <c:if test="${preview && inlineEditingEnabled}">
     <jsp:include page="../../inc/inline-editing-editor-form.jsp"/>

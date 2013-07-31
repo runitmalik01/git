@@ -18,6 +18,7 @@ package com.mootly.wcm.components;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import javax.jcr.ItemNotFoundException;
@@ -71,6 +72,7 @@ public class BaseComponent extends BaseHstComponent {
         String bodyCssClass = getParameter("bodyCssClass",request);
         String contentCssClass = getParameter("contentCssClass",request);
         String widgetsCssClass = getParameter("widgetsCssClass",request);
+        String hasGrid = getParameter("hasGrid",request);
 //        if (log.isInfoEnabled()) {
 //        	log.info("theme:" + theme);
 //        	log.info("template:" + template);
@@ -82,7 +84,27 @@ public class BaseComponent extends BaseHstComponent {
         if (template != null) request.setAttribute("template", template);
         if (bodyCssClass != null) request.setAttribute("bodyCssClass", bodyCssClass);
         if (contentCssClass != null) request.setAttribute("contentCssClass", contentCssClass);
-        if (widgetsCssClass != null) request.setAttribute("widgetsCssClass", widgetsCssClass);      
+        if (widgetsCssClass != null) request.setAttribute("widgetsCssClass", widgetsCssClass);   
+        if (hasGrid != null) request.setAttribute("hasGrid", hasGrid);   
+        
+        Map<String, String> params = getParameters(request);
+        
+        Map<String, String> gridParams = new LinkedHashMap<String, String>(2);
+        String spanOrder = getParameter("spanOrder", request);
+        if (params != null && spanOrder != null) {
+        	String[] spanOrderParts = spanOrder.split("[,]");
+        	for (String aPart:spanOrderParts) {
+        		String getPartParam = getParameter(aPart, request);
+        		if (getPartParam != null) gridParams.put(aPart, getPartParam);
+        	}
+        	request.setAttribute("gridParams", gridParams);   
+        }
+        
+        if (params != null) {
+        	for (String aParam:params.keySet()) {
+        		request.setAttribute(aParam, params.get(aParam));
+        	}
+        }
         
         ResolvedSiteMapItem resolvedSiteMapItem = request.getRequestContext().getResolvedSiteMapItem();
         strIsOnVendorPortal = resolvedSiteMapItem.getParameter("isOnVendorPortal");

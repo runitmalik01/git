@@ -28,7 +28,7 @@
 </hst:headContribution>
 
 <hst:headContribution keyHint="jqueryGalleryView" category="jsInternal">
-    <hst:link path="/js/galleryview-2.1.1/jquery.galleryview-2.1.1-pack.js" var="jqGalleryViewJs"/>
+    <hst:link path="/js/galleryview-2.1.1/jquery.galleryview-3.0-dev.js" var="jqGalleryViewJs"/>
     <script type="text/javascript" src="${jqGalleryViewJs}"></script>
 </hst:headContribution>
 
@@ -38,7 +38,7 @@
 </hst:headContribution>
 
 <hst:headContribution keyHint="galleryViewCss" category="css">
-    <hst:link var="galleryViewCss" path="/js/galleryview-2.1.1/galleryview.css"/>
+    <hst:link var="galleryViewCss" path="/js/galleryview-2.1.1/jquery.galleryview-3.0-dev.css"/>
     <link rel="stylesheet" media="screen" type="text/css" href="${galleryViewCss}"/>
 </hst:headContribution>
 

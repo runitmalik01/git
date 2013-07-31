@@ -419,6 +419,12 @@
 					<xsl:value-of select="ITRForm:TotTaxPlusIntrstPay" />
 				</td>
 			</tr>
+ 			<tr>
+                 <td>Total Tax Paid</td>                                                        
+                 <td align="right">
+                         <xsl:value-of select="ITRForm:TotalTaxesPaid" />                       
+                 </td>
+			</tr>
 			<tr>
 				<td>Tax Status (
 					<xsl:choose>
