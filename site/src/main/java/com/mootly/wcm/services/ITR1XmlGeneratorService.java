@@ -344,8 +344,8 @@ public class ITR1XmlGeneratorService {
 		incomeDeductions.setDeductUndChapVIA(deductUndChapVIA);
 		incomeDeductions.setUsrDeductUndChapVIA(usrDeductUndChapVIA);
 		// following three line code is to round off the code upto ten after deduction
-		Long IncomeTotal=(grsstotal-indianCurrencyHelper.longRound(totaleligiblededuction));
-		Long RoundedTotalIncome=IncomeTotal%10 >5 ? ((IncomeTotal/10)*10)+10 : (IncomeTotal/10)*10;
+		Long IncomeTotal = (grsstotal-indianCurrencyHelper.longRound(totaleligiblededuction));
+		Long RoundedTotalIncome = IncomeTotal%10 >= 5 ? ((IncomeTotal/10)*10)+10 : (IncomeTotal/10)*10;
 		incomeDeductions.setTotalIncome(RoundedTotalIncome); //calculation needed(GrossTotIncome-TotalChapVIADeductions(HARDCODDED 0))
 		itr1.setITR1IncomeDeductions(incomeDeductions);
 
@@ -598,8 +598,8 @@ public class ITR1XmlGeneratorService {
 
 
 		// following three line code is to round off the code finally at the end
-		Long PayTax=(itr1TaxComputation.getTotTaxPlusIntrstPay().subtract(taxesPaid.getTotalTaxesPaid())).longValue();
-		Long RoundedPayTax=PayTax%10 >5 ? ((PayTax/10)*10)+10 : (PayTax/10)*10;
+		Long PayTax = (itr1TaxComputation.getTotTaxPlusIntrstPay().subtract(taxesPaid.getTotalTaxesPaid())).longValue();
+		Long RoundedPayTax = PayTax%10 >= 5 ? ((PayTax/10)*10)+10 : (PayTax/10)*10;
 		BalTaxPayable = indianCurrencyHelper.longToBigInteger(RoundedPayTax);
 		//request.setAttribute("BalTaxPayable",BalTaxPayable);
 		outputMap.put("BalTaxPayable", BalTaxPayable);
