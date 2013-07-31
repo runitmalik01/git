@@ -600,7 +600,7 @@ public class ITR1XmlGeneratorService {
 		// following three line code is to round off the code finally at the end
 		Long PayTax = (itr1TaxComputation.getTotTaxPlusIntrstPay().subtract(taxesPaid.getTotalTaxesPaid())).longValue();
 		Long RoundedPayTax = PayTax%10 >= 5 ? ((PayTax/10)*10)+10 : (PayTax/10)*10;
-		BalTaxPayable = indianCurrencyHelper.longToBigInteger(RoundedPayTax);
+		BalTaxPayable = BigInteger.valueOf(RoundedPayTax);
 		//request.setAttribute("BalTaxPayable",BalTaxPayable);
 		outputMap.put("BalTaxPayable", BalTaxPayable);
 		if (BalTaxPayable.compareTo(BigInteger.ZERO) > 0){
