@@ -105,6 +105,8 @@ public class ITR1XmlGeneratorService {
 		Map<String,Object> outputMap = new HashMap<String, Object>();
 		Map<String,String[]> requestParameterMap = new HashMap<String, String[]>(); //not being used any where
 		GregorianCalendar globalIndianGregorianCalendar = ITRXmlGeneratorServiceCommon.getCurrentDateInIndiaAsDate();
+		boolean isDueDate = ITRXmlGeneratorServiceCommon.getDueDate();
+		String CurrentDate = ITRXmlGeneratorServiceCommon.getCurrentDateInIndiaAsString();
 
 		MemberPersonalInformation memberPersonalInformation = (MemberPersonalInformation) inputBeans.get(MemberPersonalInformation.class.getSimpleName().toLowerCase());
 		SalaryIncomeDocument salaryIncomeDocument = (SalaryIncomeDocument) inputBeans.get(SalaryIncomeDocument.class.getSimpleName().toLowerCase());
@@ -454,13 +456,16 @@ public class ITR1XmlGeneratorService {
 		int year=currentdate.getYear()+1900-1;
 		int currentdatemonth = 0;
 
-		//Added due date(31 oct) for Uttarakhand on 30/07/2013 by Dhananjay
+		//Added on 31/07/2013 for Checking Conditions for Due Date
 		long DueDate = 0;
-		if(memberPersonalInformation.getState().equals("34")){
-			DueDate = 10;
-		}else{
-			DueDate = 7;
-		}
+		if(isDueDate){
+			DueDate = 0;
+		}else
+			if(memberPersonalInformation.getState().equals("34")){
+				DueDate = 10;
+			}else{
+				DueDate = 7;
+			}
 		//end of due date selection
 
 		if(year==2012){
