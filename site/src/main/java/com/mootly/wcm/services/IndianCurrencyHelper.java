@@ -102,7 +102,11 @@ public final class IndianCurrencyHelper {
 			in = in*(-1);
 			bigStr = BigInteger.valueOf(in);
 			return bigStr;
-		}
+		}else
+			if(in==0){
+				bigStr = new BigInteger("0");
+				return bigStr;
+			}
 			return null;
 	}
 
