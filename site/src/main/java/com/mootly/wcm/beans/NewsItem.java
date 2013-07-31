@@ -21,7 +21,11 @@ import java.util.Calendar;
 import java.util.List;
 
 import org.hippoecm.hst.content.beans.Node;
+import org.hippoecm.hst.content.beans.standard.HippoAsset;
+import org.hippoecm.hst.content.beans.standard.HippoAssetBean;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
+import org.hippoecm.hst.content.beans.standard.HippoMirror;
+import org.hippoecm.hst.content.beans.standard.HippoMirrorBean;
 
 import com.mootly.wcm.beans.compound.ImageSet;
 import com.mootly.wcm.beans.compound.ImageSetLink;
@@ -31,10 +35,16 @@ import com.mootly.wcm.utils.Constants;
 public class NewsItem extends Document{
     
     private List<ImageSet> images;
+    private List<HippoAssetBean> attachments;
     
     public List<ImageSet> getImages() {
         initImages();
         return images;
+    }
+    
+    public List<HippoAssetBean> getAttachments() {
+        initAttachments();
+        return attachments;
     }
 
     public ImageSet getFirstImage() {
@@ -53,6 +63,21 @@ public class NewsItem extends Document{
                 if (referenced instanceof ImageSet) {
                     ImageSet imageSet = (ImageSet)referenced;
                     images.add(imageSet);
+                }
+            }
+        }
+    }
+    
+    private void initAttachments() {
+        if (attachments == null) {
+            List<HippoMirrorBean> links = getChildBeansByName("mootlywcm:attachments");
+            attachments = new ArrayList<HippoAssetBean>(links.size());
+            
+            for (HippoMirrorBean link: links) {            	
+                HippoBean referenced = link.getReferencedBean();
+                if (referenced instanceof HippoAssetBean) {
+                	HippoAssetBean hippoMirrorBean = (HippoAssetBean)referenced;                	
+                    attachments.add(hippoMirrorBean);
                 }
             }
         }

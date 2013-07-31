@@ -1,6 +1,5 @@
 package com.mootly.wcm.components;
 
-import java.util.Iterator;
 import java.util.Map;
 
 import org.hippoecm.hst.core.component.HstRequest;

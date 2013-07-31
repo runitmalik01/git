@@ -35,20 +35,6 @@ ol#selected-filters { margin: 0 0 13px; }
 ol#selected-filters li { display: inline; color: #808080; }
 
 
-.page .box-bottom {display: block; background-color: #fafaf4; border: 1px solid #e0e3c9; padding: 10px 10px 0 10px; }
-.page .field { padding-left: 100px; margin: 2px; clear: left; }
-.page label { float: left; margin-left: -105px; width: 100px; text-align: right;}
-.page .captcha { border: 1px solid #666; margin-top: 3px; }
-.page .fieldr {margin-left: 5px; margin-bottom: 3px; margin-right: 4px;}
-.page .box-bottom textarea { width: 290px; }
-.page .box-bottom li.title { display: block; padding: 0 0 7px; font-weight: bold; color: #666666;  }
-.page .box-bottom li.subtitle { display: block; padding: 0 0 7px; font-weight: bold; color: #007aa6; }
-.page .box-bottom li.content { padding-bottom: 10px; color: #333333; }
-.page .box-bottom li.more { text-align: right; }
-.page .box-bottom li.link { padding: 0 0 7px; display: block; color: #666666; }
-
-
-
 /* Body - General - Article */
 
 #article-footer { margin: 20px 0 0; }
@@ -83,6 +69,13 @@ ol#selected-filters li { display: inline; color: #808080; }
 }
 .news .news-item li.title { position: relative; }
 /* Body - News - Overview*/
+ #document-actions {
+	height: 30px;
+	text-align: right;
+	background: url(../images/bg-border.png) repeat-x;
+	border-top: 1px solid #cccccc;
+	padding-right: 10px;
+}
 .news li, #document-actions li , #article-footer li {list-style: none;}
 .news .news-item .date, .news .news-item .comments { display: inline; }
 .news .news-item .date, .news .news-item .date a { color: #808080; margin-right: 3px; }
@@ -120,7 +113,9 @@ ol#selected-filters li { display: inline; color: #808080; }
 .left #page-actions .bookmark a { background: url(../images/icon-actions.png) no-repeat 0 -36px; }
 .left #page-actions .share a { background: url(../images/icon-share.png) no-repeat; width: 120px; }
 
+h1{font-size:16px;}
 h2{font-size:14px;}
+h3{font-size:12px;}
 
 .event-item { position: relative; background: url(../images/bg-calendar.png) no-repeat 15px 10px; min-height: 68px; padding-left: 80px; border-top: 1px solid #cccccc; }
 .event-item .title a { display: block; padding: 8px 0; font-size: 108%; }

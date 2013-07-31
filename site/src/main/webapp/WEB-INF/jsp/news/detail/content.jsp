@@ -70,12 +70,20 @@
                     <hippo-gogreen:copyright document="${document}"/>
                 </div>
             </div>
-            
+            <c:if test="${not empty document.attachments && fn:length(document.attachments) > 0 }">
+				<h5>Attachments</h5>
+				<ul>
+					<c:forEach items="${document.attachments}" var="asset">
+						<li>
+							<a href="<hst:link hippobean="${asset}"/>"><c:out value="${asset.name}"/></a>
+						</li>
+					</c:forEach>
+				</ul>
+			</c:if>
             <ul id="document-actions">
                 <li><a class="comment" href="#comment"><fmt:message key="news.detail.content.comment"/></a></li>
             </ul>
         </div>
-
         <hst:include ref="comments"/>
     </div>
 
