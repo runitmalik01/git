@@ -130,7 +130,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 						<div class="rowlabel">
 							<input id="ack_no" name="ack_no"
 								value="${parentBean.originalAckNo}"
-								placeholder="Enter Original Ack No" type="text" />
+								placeholder="Enter Original Ack No" type="text" maxlength="15"/>
 						</div>
 					</div>
 					<div class="span2">
@@ -166,7 +166,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 						<div class="rowlabel">
 							<input id="notice_no" name="notice_no"
 								value="${parentBean.noticeNo}" placeholder="Enter Notice No"
-								type="text" />
+								type="text" maxlength="30"/>
 						</div>
 					</div>
 					<div class="span2 defective_Y_v defective_N_h"
@@ -201,7 +201,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 							<div class="rowlabel">
 								<input id="pi_first_name" name="pi_first_name" class="uprcase"
 									placeholder="First Name" type="text"
-									value="<c:if test="${not empty parentBean.firstName}"><c:out value="${parentBean.firstName}"/></c:if>" />
+									value="<c:if test="${not empty parentBean.firstName}"><c:out value="${parentBean.firstName}"/></c:if>" maxlength="25"/>
 							</div>
 						</div>
 						<div class="span4">
@@ -211,7 +211,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 							<div class="rowlabel">
 								<input id="pi_middle_name" name="pi_middle_name" class="uprcase"
 									placeholder="Middle Name" type="text"
-									value="<c:if test="${not empty parentBean.middleName}"><c:out value="${parentBean.middleName}"/></c:if>" />
+									value="<c:if test="${not empty parentBean.middleName}"><c:out value="${parentBean.middleName}"/></c:if>" maxlength="25"/>
 							</div>
 						</div>
 						<div class="span4">
@@ -222,7 +222,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 								<input id="pi_last_name" name="pi_last_name" class="uprcase"
 									placeholder="Last Name" type="text"
 									value="<c:choose><c:when test="${not empty parentBean.lastName}"><c:out value="${parentBean.lastName}"/></c:when><c:when test="${not empty savedValuesFormMap && not empty savedValuesFormMap.value['pi_last_name']}"><c:out value="${savedValuesFormMap.value['pi_last_name'].value}"/></c:when></c:choose>"
-									readonly="readonly" />
+									readonly="readonly" maxlength="75"/>
 							</div>
 						</div>
 					</c:when>
@@ -236,7 +236,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 							<div class="rowlabel">
 								<input id="pi_last_name" name="pi_last_name"
 									placeholder="Organization Name" type="text" class="uprcase"
-									value="<c:choose><c:when test="${not empty parentBean.lastName}"><c:out value="${parentBean.lastName}"/></c:when><c:when test="${not empty savedValuesFormMap && not empty savedValuesFormMap.value['pi_last_name']}"><c:out value="${savedValuesFormMap.value['pi_last_name'].value}"/></c:when></c:choose>" />
+									value="<c:choose><c:when test="${not empty parentBean.lastName}"><c:out value="${parentBean.lastName}"/></c:when><c:when test="${not empty savedValuesFormMap && not empty savedValuesFormMap.value['pi_last_name']}"><c:out value="${savedValuesFormMap.value['pi_last_name'].value}"/></c:when></c:choose>" maxlength="75"/>
 							</div>
 							<input type="hidden" id="pi_first_name" name="pi_first_name" class="uprcase"
 								value="-" /> <input type="hidden" id="pi_last_name" class="uprcase"
@@ -282,7 +282,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 							<div class="rowlabel">
 								<input id="pi_father_name" name="pi_father_name"
 									placeholder="Father Name" type="text" class="uprcase"
-									value="<c:if test="${not empty parentBean.fatherName}"><c:out value="${parentBean.fatherName}"/></c:if>" />
+									value="<c:if test="${not empty parentBean.fatherName}"><c:out value="${parentBean.fatherName}"/></c:if>" maxlength="125"/>
 							</div>
 						</div>
 					</div>
@@ -304,7 +304,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 							value="${parentBean.flatDoorBuilding}"
 							name="pi_flat_door_building" placeholder="Flat/Door/Building"
 							type="text"
-							value="<c:if test="${not empty parentBean.flatDoorBuilding}"><c:out value="${parentBean.flatDoorBuilding}"/></c:if>" />
+							value="<c:if test="${not empty parentBean.flatDoorBuilding}"><c:out value="${parentBean.flatDoorBuilding}"/></c:if>" maxlength="50"/>
 					</div>
 				</div>
 				<div class="span6">
@@ -313,7 +313,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 					</div>
 					<div class="rowlabel">
 						<input id="pi_road_street" value="${parentBean.roadStreet}" class="uprcase"
-							name="pi_road_street" placeholder="Road/Street" type="text" />
+							name="pi_road_street" placeholder="Road/Street" type="text" maxlength="50"/>
 					</div>
 				</div>
 			</div>
@@ -324,7 +324,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 						</label>
 					</div>
 					<input id="pi_area_locality" value="${parentBean.areaLocality}" class="uprcase"
-						name="pi_area_locality" placeholder="Area/Locality" type="text" />
+						name="pi_area_locality" placeholder="Area/Locality" type="text" maxlength="50"/>
 				</div>
 				<div class="span3">
 					<div class="rowlabel">
@@ -335,7 +335,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 						<input id="pi_town_city_district" class="uprcase"
 							value="${parentBean.townCityDistrict }"
 							name="pi_town_city_district" placeholder="Town/City/District"
-							type="text" />
+							type="text" maxlength="50"/>
 					</div>
 				</div>
 				<div class="span3">
@@ -425,7 +425,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 					</div>
 					<div class="rowlabel">
 						<input id="ward_circle" value="${parentBean.ward_circle}" class="uprcase"
-							name="ward_circle" placeholder=" Ward/Circle" type="text" />
+							name="ward_circle" placeholder=" Ward/Circle" type="text" maxlength="50"/>
 					</div>
 				</div>
 				<div class="span7">
@@ -436,7 +436,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 						<span class="add-on"><i class="icon-envelope"></i> </span> <input
 							id="pi_email" style="width: 200px"
 							value="<c:choose><c:when test="${empty parentBean || empty parentBean.email}"><%=request.getUserPrincipal().getName()%><c:out value="${request.userPrincipal.name}"/></c:when><c:otherwise>${parentBean.email}</c:otherwise></c:choose>"
-							name="pi_email" placeholder="Email Address" type="text"/>
+							name="pi_email" placeholder="Email Address" type="text" maxlength="125"/>
 					</div>
 
 				</div>
