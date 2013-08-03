@@ -1,15 +1,17 @@
 package com.mootly.wcm.validation;
 
-public class HippoBeanValidationWarning extends Exception {
-	String[] messageArgs = null;
+public class HippoBeanValidationWarning {
 	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-
+	String[] messageArgs = null;
+	String message;
+	
 	public HippoBeanValidationWarning() {
 		// TODO Auto-generated constructor stub
+	}
+	
+	public HippoBeanValidationWarning(String message) {
+		// TODO Auto-generated constructor stub
+		this.message = message;
 	}
 	
 	public String[] getMessageArgs() {
@@ -20,25 +22,12 @@ public class HippoBeanValidationWarning extends Exception {
 		this.messageArgs = messageArgs;
 	}
 
-	public HippoBeanValidationWarning(String message) {
-		super(message);
-		// TODO Auto-generated constructor stub
+	public String getMessage() {
+		return message;
 	}
 
-	public HippoBeanValidationWarning(Throwable cause) {
-		super(cause);
-		// TODO Auto-generated constructor stub
+	public void setMessage(String message) {
+		this.message = message;
 	}
-
-	public HippoBeanValidationWarning(String message, Throwable cause) {
-		super(message, cause);
-		// TODO Auto-generated constructor stub
-	}
-
-	public HippoBeanValidationWarning(String message, Throwable cause,
-			boolean enableSuppression, boolean writableStackTrace) {
-		super(message, cause, enableSuppression, writableStackTrace);
-		// TODO Auto-generated constructor stub
-	}
-
+	
 }
