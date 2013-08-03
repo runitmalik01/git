@@ -19,6 +19,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.math.BigInteger;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -47,11 +48,18 @@ import com.mootly.wcm.beans.compound.FormSixteenDetail;
 import com.mootly.wcm.beans.compound.HouseIncomeDetail;
 import com.mootly.wcm.member.HouseIncome;
 import com.mootly.wcm.model.FinancialYear;
+import com.mootly.wcm.model.IndianGregorianCalendar;
 import com.mootly.wcm.model.schedules.y2012_2013.Form16DocumentSchedules;
 import com.mootly.wcm.services.ITR1XmlGeneratorService;
+import com.mootly.wcm.services.IndianCurrencyHelper;
 import com.mootly.wcm.services.XmlGeneratorService;
 import com.mootly.wcm.services.y2012_2013.ITRXmlGeneratorService;
 
+/**
+ * Senior, Super Senior, YOUNG/KIDS
+ * @author admin
+ *
+ */
 public class TestITR1 {
 
 	private MockServletContext servletContext;
@@ -63,36 +71,58 @@ public class TestITR1 {
 		servletContext = new MockServletContext();
 		filter = new HstConcurrentLoginFilter();        
 	}
-
+	
+	public void initMemberInfo() {
+		memberPersonalInformation = new MemberPersonalInformation();
+		memberPersonalInformation.setFirstName("Amit");
+		memberPersonalInformation.setMiddleName("");
+		memberPersonalInformation.setLastName("PATKAR");
+		memberPersonalInformation.setPAN("ABNPP1234G");
+		memberPersonalInformation.setFlexField("flex_string_ITRForm", vf.createValue("ITR1"));
+		GregorianCalendar gc = IndianGregorianCalendar.getIndianInstance();
+		gc.set(1930, 03, 31, 12, 00);
+		memberPersonalInformation.setDOB(gc);
+		
+	}
+	
+	void makeSuperSenior() {
+		
+	}
+	
 	@Test
 	public void testTaxRefundSingleSalary() {
 		try {
+			//
+			initMemberInfo();
+			
+			BigInteger expectedRefund = new BigInteger("100");
+			
 			Map<String,HippoBean> mapOfBeans = new HashMap<String, HippoBean>();
 
+			/** -- house income --*/
 			HouseProperty hp = new HouseProperty();
 			HouseIncomeDetail houseIncomeDetail = new HouseIncomeDetail();    	
 			houseIncomeDetail.setLetOut("L");
 			houseIncomeDetail.setBalance(34000D);
-
 			mapOfBeans.put(HouseProperty.class.getSimpleName().toLowerCase(),hp);
 
+			/** -- Form Sixteen --*/
 			FormSixteenDocument formSixteenDocument = new FormSixteenDocument();
 			FormSixteenDetail formSixteenDetail = new FormSixteenDetail();
+			formSixteenDetail.setEmploye_category("PSU");
+			formSixteenDetail.setGross_a(9000D);			
 			mapOfBeans.put(FormSixteenDocument.class.getSimpleName().toLowerCase(),formSixteenDocument);
-
-			XmlGeneratorService xmlGeneratorService = new ITRXmlGeneratorService();
-
-			memberPersonalInformation = new MemberPersonalInformation();
-			memberPersonalInformation.setLastName("PATKAR");
-			memberPersonalInformation.setPAN("ABNPP1234G");
-			memberPersonalInformation.setFlexField("flex_string_ITRForm", vf.createValue("ITR1"));
 			
+			
+			XmlGeneratorService xmlGeneratorService = new ITRXmlGeneratorService();			
 			mapOfBeans.put(MemberPersonalInformation.class.getSimpleName().toLowerCase(),memberPersonalInformation);
 			
 			
 			Map<String,Object> returnMap = ITR1XmlGeneratorService.generateITR1(FinancialYear.TwentyTweleve, mapOfBeans);
+			
+			
 			//get the value from the returnMap analyze the code and then you should be able to assert and check
-			BigInteger salaryIncome = (BigInteger) returnMap.get("salaryincome");
+			BigInteger salaryIncome = (BigInteger) returnMap.get("salaryincome");			
 			assertTrue("Failed Salary Income", (salaryIncome.equals(1000))); 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
