@@ -23,7 +23,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.jcr.Node;
+import javax.jcr.ValueFactory;
+
 import org.apache.commons.jexl.junit.Asserter;
+import org.apache.jackrabbit.commons.JcrUtils;
+import org.apache.jackrabbit.value.ValueFactoryImpl;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.security.TransientUser;
 import org.junit.Before;
@@ -37,44 +42,55 @@ import org.springframework.mock.web.MockServletContext;
 
 import com.mootly.wcm.beans.FormSixteenDocument;
 import com.mootly.wcm.beans.HouseProperty;
+import com.mootly.wcm.beans.MemberPersonalInformation;
 import com.mootly.wcm.beans.compound.FormSixteenDetail;
 import com.mootly.wcm.beans.compound.HouseIncomeDetail;
 import com.mootly.wcm.member.HouseIncome;
 import com.mootly.wcm.model.FinancialYear;
 import com.mootly.wcm.model.schedules.y2012_2013.Form16DocumentSchedules;
+import com.mootly.wcm.services.ITR1XmlGeneratorService;
 import com.mootly.wcm.services.XmlGeneratorService;
 import com.mootly.wcm.services.y2012_2013.ITRXmlGeneratorService;
 
 public class TestITR1 {
-    
-    private MockServletContext servletContext;
-    private HstConcurrentLoginFilter filter;
-    
-    @Before
-    public void setUp() throws Exception {
-        servletContext = new MockServletContext();
-        filter = new HstConcurrentLoginFilter();
-    }
-    
-    @Test
-    public void testTaxRefundSingleSalary() {
-    	System.out.println("TESTSET");
-    	Map<String,HippoBean> mapOfBeans = new HashMap<String, HippoBean>();
-    	
-    	HouseProperty hp = new HouseProperty();
-    	HouseIncomeDetail houseIncomeDetail = new HouseIncomeDetail();    	
-    	houseIncomeDetail.setLetOut("L");
-    	houseIncomeDetail.setBalance(34000D);
-    	
-    	mapOfBeans.put(HouseProperty.class.getSimpleName().toLowerCase(),hp);
-    	
-    	FormSixteenDocument formSixteenDocument = new FormSixteenDocument();
-    	FormSixteenDetail formSixteenDetail = new FormSixteenDetail();
-    	mapOfBeans.put(FormSixteenDocument.class.getSimpleName().toLowerCase(),formSixteenDocument);
-    	
-    	XmlGeneratorService xmlGeneratorService = new ITRXmlGeneratorService();
-    	 try {
-			Map<String,Object> returnMap =xmlGeneratorService.generateXml(FinancialYear.TwentyTweleve, mapOfBeans);
+
+	private MockServletContext servletContext;
+	private HstConcurrentLoginFilter filter;
+	MemberPersonalInformation memberPersonalInformation = null;
+	ValueFactory vf = ValueFactoryImpl.getInstance();
+	@Before
+	public void setUp() throws Exception {
+		servletContext = new MockServletContext();
+		filter = new HstConcurrentLoginFilter();        
+	}
+
+	@Test
+	public void testTaxRefundSingleSalary() {
+		try {
+			Map<String,HippoBean> mapOfBeans = new HashMap<String, HippoBean>();
+
+			HouseProperty hp = new HouseProperty();
+			HouseIncomeDetail houseIncomeDetail = new HouseIncomeDetail();    	
+			houseIncomeDetail.setLetOut("L");
+			houseIncomeDetail.setBalance(34000D);
+
+			mapOfBeans.put(HouseProperty.class.getSimpleName().toLowerCase(),hp);
+
+			FormSixteenDocument formSixteenDocument = new FormSixteenDocument();
+			FormSixteenDetail formSixteenDetail = new FormSixteenDetail();
+			mapOfBeans.put(FormSixteenDocument.class.getSimpleName().toLowerCase(),formSixteenDocument);
+
+			XmlGeneratorService xmlGeneratorService = new ITRXmlGeneratorService();
+
+			memberPersonalInformation = new MemberPersonalInformation();
+			memberPersonalInformation.setLastName("PATKAR");
+			memberPersonalInformation.setPAN("ABNPP1234G");
+			memberPersonalInformation.setFlexField("flex_string_ITRForm", vf.createValue("ITR1"));
+			
+			mapOfBeans.put(MemberPersonalInformation.class.getSimpleName().toLowerCase(),memberPersonalInformation);
+			
+			
+			Map<String,Object> returnMap = ITR1XmlGeneratorService.generateITR1(FinancialYear.TwentyTweleve, mapOfBeans);
 			//get the value from the returnMap analyze the code and then you should be able to assert and check
 			BigInteger salaryIncome = (BigInteger) returnMap.get("salaryincome");
 			assertTrue("Failed Salary Income", (salaryIncome.equals(1000))); 
@@ -84,7 +100,7 @@ public class TestITR1 {
 			assertFalse("Exception " + e.getMessage(), e != null);
 			throw new AssertionError(e);
 		}
-    	
-    }
-    
+
+	}
+
 }
