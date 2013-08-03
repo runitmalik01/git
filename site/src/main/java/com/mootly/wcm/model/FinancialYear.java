@@ -4,6 +4,9 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Locale;
+import java.util.TimeZone;
+
+import com.mootly.wcm.beans.MemberPersonalInformation;
 
 public enum FinancialYear {
 	TwentyEight(2008,false),
@@ -30,7 +33,8 @@ public enum FinancialYear {
 
 	boolean isActive = true;
 	boolean isPastDue = false;
-
+	
+	TimeZone indianTimeZone = TimeZone.getTimeZone("UTC+5:30");
 
 	FinancialYear() {
 	}
@@ -48,9 +52,12 @@ public enum FinancialYear {
 		this.displayAssessmentYear = this.startAssessmentYear + "-" + this.endAssessmentYear;
 		this.javaPackageName = "y" + displayName.replace("-", "_");
 
-		this.dateStartFinancialYear = new GregorianCalendar(startYear, 03, 01);
-		this.dateEndFinancialYear = new GregorianCalendar(endYear, 04, 30);
-
+		this.dateStartFinancialYear = IndianGregorianCalendar.getIndianInstance();
+		this.dateStartFinancialYear.set(startYear, 03, 01);
+		
+		this.dateEndFinancialYear = IndianGregorianCalendar.getIndianInstance();
+		this.dateEndFinancialYear.set(endYear, 04, 30);
+		
 		this.assessmentYear = endYear;
 
 	}
@@ -61,7 +68,7 @@ public enum FinancialYear {
 
 
 	public int getAgeInYears(Date dateOfBirth) {
-	    Calendar dob = Calendar.getInstance();
+	    Calendar dob = IndianGregorianCalendar.getIndianInstance();
 
 	    dob.setTime(dateOfBirth);
 
@@ -81,7 +88,7 @@ public enum FinancialYear {
 	}
 
 	public boolean isSeniorCitizen(Date dateOfBirth) {
-	    Calendar dob = Calendar.getInstance();
+	    Calendar dob = IndianGregorianCalendar.getIndianInstance();
 
 	    dob.setTime(dateOfBirth);
 
@@ -101,7 +108,7 @@ public enum FinancialYear {
 	}
 
 	public boolean isSuperSeniorCitizen(Date dateOfBirth) {
-	    Calendar dob = Calendar.getInstance();
+	    Calendar dob = IndianGregorianCalendar.getIndianInstance();
 
 	    dob.setTime(dateOfBirth);
 
@@ -120,18 +127,21 @@ public enum FinancialYear {
 	    return (age >=80 ? true : false);
 	}
 
-	public GregorianCalendar getDueDate(ITRForm itrForm) {
+	public GregorianCalendar getDueDate(ITRForm itrForm,String stateCode) {
 		GregorianCalendar gc = null;
-		switch (itrForm) {
-			case ITR1:
-				gc = new GregorianCalendar(dateEndFinancialYear.get(GregorianCalendar.YEAR),07,31);
-				break;
+		if (stateCode != null && !"".equals(stateCode.trim()) && stateCode.equals("34") ) {
+				gc = IndianGregorianCalendar.getIndianInstance();
+				gc.set(dateEndFinancialYear.get(GregorianCalendar.YEAR),9,31,23,59,59);				
+		}
+		else {
+			gc = IndianGregorianCalendar.getIndianInstance();
+			gc.set(dateEndFinancialYear.get(GregorianCalendar.YEAR),7,05,23,59,59);
 		}
 		return gc;
 	}
 
-	public boolean isPastDue(ITRForm itrForm, GregorianCalendar filingDate) {
-		GregorianCalendar dueDate = getDueDate(itrForm);
+	public boolean isPastDue(ITRForm itrForm, GregorianCalendar filingDate,String stateCode) {
+		GregorianCalendar dueDate = getDueDate(itrForm,stateCode);
 		if (dueDate == null) return false;
 		if (filingDate.after(dueDate)) {
 			return true;
@@ -141,14 +151,34 @@ public enum FinancialYear {
 		}
 	}
 
-	public boolean isPastDue(ITRForm itrForm) {
-		GregorianCalendar dueDate = new GregorianCalendar();
-		return isPastDue(itrForm,dueDate);
+	public boolean isPastDue(ITRForm itrForm,String stateCode) {
+		GregorianCalendar currentDate = IndianGregorianCalendar.getIndianInstance();//new GregorianCalendar();
+		return isPastDue(itrForm,currentDate,stateCode);
+	}
+	
+	public boolean isIncomeTaxPastDue(ITRForm itrForm,String stateCode) {
+		if (stateCode != null) {
+			return isPastDue(itrForm, stateCode);
+		}
+		else {
+			return false;
+		}
+	}
+	
+	public boolean isIncomeTaxPastDue(MemberPersonalInformation memberPersonalInformation) {
+		if (memberPersonalInformation != null && memberPersonalInformation.getState() != null) {
+			String theStateCode = memberPersonalInformation.getState();
+			return isPastDue(memberPersonalInformation.getSelectedITRForm(), theStateCode);
+		}
+		else {
+			return false;
+		}
 	}
 
-	public FilingSection getFilingSection (ITRForm itrForm,ITReturnType itReturnType) {
-		GregorianCalendar dueDate = new GregorianCalendar();
-		boolean isPastDue = isPastDue(itrForm,dueDate);
+	
+	public FilingSection getFilingSection (ITRForm itrForm,ITReturnType itReturnType,String stateCode) {
+		GregorianCalendar dueDate = IndianGregorianCalendar.getIndianInstance();//new GregorianCalendar();
+		boolean isPastDue = isPastDue(itrForm,dueDate,stateCode);
 		if (itReturnType.equals(ITReturnType.ORIGINAL)) {
 			if (!isPastDue) {
 				return FilingSection.BeforeDueDate_139_1;

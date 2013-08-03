@@ -103,4 +103,15 @@ try {
 	</c:otherwise>
 </c:choose>
 
+<hst:element var="uiCustom" name="script">
+	<hst:attribute name="type">text/javascript</hst:attribute>
+	$(document).ready(function() {
+		$("#loginForm").submit (function() {
+			$("#username").val($("#username").val().toLowerCase());
+			return true;
+		});
+	});
+</hst:element>
+<hst:headContribution element="${uiCustom}" category="jsInternal" />
+
 

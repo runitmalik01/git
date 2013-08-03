@@ -1,3 +1,4 @@
+<%@tag import="com.mootly.wcm.model.IndianGregorianCalendar"%>
 <%@tag import="com.mootly.wcm.model.FilingSection"%>
 <%@tag import="com.mootly.wcm.model.ITReturnType"%>
 <%@tag import="com.mootly.wcm.model.FinancialYear"%>
@@ -296,13 +297,41 @@ for (HstSiteMenuItem siteMenuItem : itrSiteMenu.getSiteMenuItems() ){
    <!-- /navbar-inner -->
 </div>
 <%--ITR1.packageName.DIY.package --%>
-<c:if test="${not empty memberpersonalinformation}">
-	<div style="font-size:10px; border: 1px dashed #ccc;padding:5px;">
-		<span>ITR Prepared for: <b><u><c:out value="${memberpersonalinformation.name}"/></u></b></span> | 
+<c:set var="now" value="<%=new java.util.Date()%>" />
+<c:set var="indianLocalDateFormStr" value="<%=IndianGregorianCalendar.indianDateTimeFormStr%>" />
+<c:if test="${not empty memberpersonalinformation}">	
+	<c:if test="${not empty hippoBeanValidationResponse && ( fn:length(hippoBeanValidationResponse.errors) > 0 || fn:length(hippoBeanValidationResponse.warnings) > 0) }">
+		<div style="font-weight:bold;font-size:10px; border: 1px dashed #FF0000;padding:5px;text-align:center">
+			<ul>
+				<c:forEach items="${hippoBeanValidationResponse.errors}" var="error">
+					<li style="list-style:none">
+						<fmt:message key="${error.message}">
+							<c:forEach items="${error.messageArgs}" var="aParam">
+								<fmt:param value="${aParam}"/>
+							</c:forEach>										
+						</fmt:message> 
+					</li>
+				</c:forEach>
+				<c:forEach items="${hippoBeanValidationResponse.warnings}" var="warning">
+					<li style="list-style:none">
+						<fmt:message key="${warning.message}">
+							<c:forEach items="${warning.messageArgs}" var="aParam">
+								<fmt:param value="${aParam}"/>
+							</c:forEach>										
+						</fmt:message> 
+					</li>
+				</c:forEach>				
+			</ul>
+		</div>
+	</c:if>
+	<div style="font-size:9px; font-family:arial;border: 1px dashed #ccc;padding:5px;">
+		<span>Local Time: <b><u><fmt:formatDate type="both" pattern="${indianLocalDateFormStr}" timeZone="GMT+5:30" dateStyle="short" timeStyle="short" value="${now}" /></u></b></span> |  
+		<span>For: <b><u><c:out value="${memberpersonalinformation.name}"/></u></b></span> | 
 		<span>DOB: <b><u><c:out value="${memberpersonalinformation.DOBStr}"/></u></b></span> |
 		<span>AY: <b><u><c:out value="${financialYear.displayAssessmentYear}"/></u></b></span> |
 		<span>FY: <b><u><c:out value="${financialYear.displayName}"/></u></b></span> |
 		<span>Section : <b><u><c:out value="${memberpersonalinformation.filingSection.desc}"/></u></b></span> |
+		<span>Due Date : <b><u><c:out value="${thePastDueDateStr}"/></u></b></span> |
 		<span>Package : <b><u><fmt:message key="${itrForm}.packageName.${memberpersonalinformation.selectedServiceDeliveryOption}.package"/></u></b></span> |
 		<span>Payment : <b><u> 
 			<c:choose>

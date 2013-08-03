@@ -100,81 +100,64 @@
 	</div>
 </div>
 -->
-<h3>File your Tax Return as easy as 1,2,3..</h3>
-<h4>Choose the package which suits your need</h4>
-<h5>Remember eZ File can make your life simple. Simply upload your documents and rest will be taken care by us.</h5>
-<div class="row-fluid show-grid">	 
-   <div class="grid span4">
+<!--<div>File your Tax Return as easy as 1,2,3..</div>-->
+<div><b>Choose the package which suits your need</b></div>
+<div><b>Each package gives you a choice to eZ File. eZ File can help you get the maximum out of your return.</b></div>
+<div class="row-fluid show-grid homepackage">	 
+   <div class="grid span3">
       <div class="widget-wrapper">
          <div class="widget-title-home">
-            <h3><fmt:message key="ITR1.packageName"></fmt:message>&nbsp;&nbsp;<a href="#modal" data-toggle="modal" id="itr1" class="btn yellow"><i class="icon-info-sign"></i></a></h3>
+            <h3><fmt:message key="ITR1.packageName"/>&nbsp;&nbsp;<a href="#modal" data-toggle="modal" id="itr1"><i class="icon-facetime-video"></i></a></h3>
          </div>
          <div class="textwidget">
-           <div><fmt:message key="ITR1.whoCan"></fmt:message></div>          
-           <button type="button" class="btnfiling btn btn-success">e-File <small>(<w4india:inr minFractionDigits="0" value="199"></w4india:inr>)</small></button>
-           <button type="button" class="btnfiling btn btn-info">eZ-File <small>(<w4india:inr minFractionDigits="0" value="499"></w4india:inr>)</small></button>
+           <div><fmt:message key="ITR1.whoCan"/></div>          
+           <button type="button" class="btnfiling btn btn-success">Pricing from  <small>(<w4india:inr minFractionDigits="0" value="199"></w4india:inr>)</small></button>
+           <%--<button type="button" class="btnfiling btn btn-info">eZ-File <small>(<w4india:inr minFractionDigits="0" value="499"></w4india:inr>)</small></button> --%>
          </div>         
       </div>
       <!-- end of .widget-wrapper -->
    </div>
    <!-- end of .col-300 -->
-   <div class="grid span4">
+   <div class="grid span3">
       <div class="widget-wrapper">
          <div class="widget-title-home">
-            <h3><fmt:message key="ITR2.packageName"></fmt:message>&nbsp;&nbsp;<a href="#modal" data-toggle="modal" id="itr2" class="btn yellow"><i class="icon-info-sign"></i></a></h3>
+            <h3><fmt:message key="ITR2.packageName"/>&nbsp;&nbsp;<a href="#modal" data-toggle="modal" id="itr2"><i class="icon-facetime-video"></i></a></h3>
          </div>
          <div class="textwidget">
             <div><fmt:message key="ITR2.whoCan"></fmt:message></div>	
             <%--<button type="button" class="btn btn-success">e-File (<w4india:inr minFractionDigits="0" value="299"></w4india:inr>)</button>--%>
-            <button type="button" class="btnfiling btn btn-info">eZ-File (<w4india:inr minFractionDigits="0" value="799"></w4india:inr>)</button>			
+            <button type="button" class="btnfiling btn btn-info">Pricing from (<w4india:inr minFractionDigits="0" value="799"></w4india:inr>)</button>			
          </div>         
       </div>
       <!-- end of .widget-wrapper -->
    </div>
    <!-- end of .col-300 -->
-   <div class="grid span4">
+   <div class="grid span3">
       <div class="widget-wrapper">
          <div class="widget-title-home">
-            <h3><fmt:message key="ITR3.packageName"></fmt:message>&nbsp;&nbsp;<a href="#modal" data-toggle="modal" id="itr3" class="btn yellow"><i class="icon-info-sign"></i></a></h3>
+            <h3><fmt:message key="ITR3.packageName"/>&nbsp;&nbsp;<a href="#modal" data-toggle="modal" id="itr3"><i class="icon-facetime-video"></i></a></h3>
          </div>
          <div class="textwidget">
             <div><fmt:message key="ITR3.whoCan" var="text"/><c:out value="${fn:substringBefore(text,' Income from Multiple')}" escapeXml="false"/><a href="serviceprice"> learn more..</a></div>	
             <%--<button type="button" class="btn btn-success">e-File (<w4india:inr minFractionDigits="0" value="499"></w4india:inr>)</button>--%>
-            <button type="button" class="btnfiling btn btn-info">eZ-File (<w4india:inr minFractionDigits="0" value="1099"></w4india:inr>)</button>			
+            <button type="button" class="btnfiling btn btn-info">Pricing from (<w4india:inr minFractionDigits="0" value="1099"></w4india:inr>)</button>			
          </div>         
       </div>
       <!-- end of .widget-wrapper -->
    </div>
-</div>
-<div class="row-fluid show-grid">	 
-   <div class="grid span4">
+   <div class="grid span3">
       <div class="widget-wrapper">
          <div class="widget-title-home">
-            <h3><fmt:message key="ITR4.packageName"></fmt:message>&nbsp;&nbsp;<a href="#modal" data-toggle="modal" id="itr4" class="btn yellow"><i class="icon-info-sign"></i></a></h3>
+            <h3><fmt:message key="ITR4.packageName"/> &amp; <fmt:message key="ITR4S.packageName"/> &nbsp;&nbsp;<a href="#modal" data-toggle="modal" id="itr4"><i class="icon-facetime-video"></i></a></h3>
          </div>
          <div class="textwidget">
             <div><fmt:message key="ITR4.whoCan"></fmt:message></div>	
             <%--<button type="button" class="btn btn-success">e-File (<w4india:inr minFractionDigits="0" value="999"></w4india:inr>)</button> --%>
-            <button type="button" class="btnfiling btn btn-info">eZ-File (<w4india:inr minFractionDigits="0" value="1499"></w4india:inr>)</button>		
+            <button type="button" class="btnpricing btn btn-info">Pricing from (<w4india:inr minFractionDigits="0" value="1499"></w4india:inr>)</button>		
          </div>         
-      </div>
-      <!-- end of .widget-wrapper -->
+      </div>        
    </div>
-   <!-- end of .col-300 -->
-   <div class="grid span4">
-      <div class="widget-wrapper">
-         <div class="widget-title-home">
-            <h3><fmt:message key="ITR4S.packageName"></fmt:message>&nbsp;&nbsp;<a href="#modal" data-toggle="modal" id="itr5" class="btn yellow"><i class="icon-info-sign"></i></a></h3>
-         </div>
-         <div class="textwidget">
-            <div><fmt:message key="ITR5.whoCan"></fmt:message></div>	
-            <%--<button type="button" class="btn btn-success">e-File (<w4india:inr minFractionDigits="0" value="1499"></w4india:inr>)</button> --%>
-            <button type="button" class="btnfiling btn btn-info">eZ-File (<w4india:inr minFractionDigits="0" value="1499"></w4india:inr>)</button>				
-         </div><br/>         
-      </div>
-      <!-- end of .widget-wrapper -->
-   </div>
-   <!-- end of .col-300 -->
+   <%--
    <div class="grid span4">
       <div class="widget-wrapper">
          <div class="widget-title-home">
@@ -184,8 +167,8 @@
             <hst:include ref="services-itr"/>
          </div>
       </div>
-      <!-- end of .widget-wrapper -->
    </div>
+    --%>
 </div>	
 <!--this File is reponsible to add modal with respective youtube videos  -->
 <jsp:include page="../../home/responsive/modal-tutorial.jsp"/>
@@ -386,6 +369,10 @@
       		$(".btnfiling").click(function() {
       			window.location.href="<hst:link siteMapItemRefId="itreturnhome"/>";
       		});
+      		$(".btnpricing").click(function() {
+      			window.location.href="serviceprice";
+      		});
+      		
       })
       });
    </script>

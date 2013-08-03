@@ -17,6 +17,7 @@ import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
 
 import com.mootly.wcm.model.FinancialYear;
+import com.mootly.wcm.model.IndianGregorianCalendar;
 import com.mootly.wcm.model.ValidationResponse;
 
 public class ITRXmlGeneratorServiceCommon implements XmlGeneratorService {
@@ -70,6 +71,18 @@ public class ITRXmlGeneratorServiceCommon implements XmlGeneratorService {
 		return "Wealth4India";
 	}
 
+	public static String getCurrentDateTimeInIndiaAsString1() {
+		Calendar currentdate = IndianGregorianCalendar.getIndianInstance();
+		String strdate = null;
+		DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm a");
+		strdate = formatter.format(currentdate);
+		System.out.println("strdate=>" + strdate);
+		//TimeZone obj = TimeZone.getTimeZone("GMT + 5:30");
+
+		//formatter.setTimeZone(obj);
+		String strDate = formatter.format(currentdate.getTime());
+		return strDate;
+	}
 
 	public static String getCurrentDateInIndiaAsString() {
 		Calendar currentdate = Calendar.getInstance();

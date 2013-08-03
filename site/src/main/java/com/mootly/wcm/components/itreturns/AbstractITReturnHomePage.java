@@ -264,7 +264,7 @@ abstract public class AbstractITReturnHomePage extends ITReturnComponent {
 		ITReturnType itReturnType = ITReturnType.getByDisplayName(strItReturnType);
 		String strFinancialYear =  map.getField("fy").getValue();
 		FinancialYear financialYear = FinancialYear.getByDisplayName(strFinancialYear);
-		FilingSection filingSection =  FilingSection.getByXmlCode(map.getField("ReturnSection").getValue());
+		//FilingSection filingSection =  FilingSection.getByXmlCode(map.getField("ReturnSection").getValue());
 
 		if (StringUtils.isEmpty(pan) || StringUtils.isEmpty(strItReturnType) || StringUtils.isEmpty(strFinancialYear)){
 			return;
@@ -273,10 +273,11 @@ abstract public class AbstractITReturnHomePage extends ITReturnComponent {
 		if (itReturnType == null || itReturnType.equals(ITReturnType.UNKNOWN) || financialYear == null || financialYear.equals(FinancialYear.UNKNOWN)){
 			return;
 		}
-		
+		/*
 		if (filingSection == null || filingSection == FilingSection.UNKNOWN) {
 			return;
 		}
+		*/
 		
 		if (!DataTypeValidationHelper.isOfType(pan, DataTypeValidationType.PAN)) {
 			return;

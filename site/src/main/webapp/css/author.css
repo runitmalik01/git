@@ -76,7 +76,7 @@ ol#selected-filters li { display: inline; color: #808080; }
 	border-top: 1px solid #cccccc;
 	padding-right: 10px;
 }
-.news li, #document-actions li , #article-footer li {list-style: none;}
+.news li, #document-actions li , #article-footer li,#comments li {list-style: none;}
 .news .news-item .date, .news .news-item .comments { display: inline; }
 .news .news-item .date, .news .news-item .date a { color: #808080; margin-right: 3px; }
 .news .news-item .comments a  { color: #808080; background: url(../images/icon-general.png) no-repeat 0 -100px; padding-left: 20px; }
@@ -159,3 +159,19 @@ h3{font-size:12px;}
 #bd #content #article .month { position: absolute; top: 19px; left: 4px; width: 40px; text-align: center; font-size: 85%; font-weight: bold; color: white; }
 #bd #content #article .day { position: absolute; top: 33px; left: 4px; width: 40px; text-align: center; font-size: 138.5%; font-weight: bold; color: white; }
 #bd #content #article.event .date { display: block; }
+
+#comments { margin: 10px 0 0; }
+#comments .comment-item { width: 398px; margin-bottom: 10px; }
+#comments .comment-item .name, #bd #content #comments .comment-item .date { display: inline; font-size: 93%; }
+#comments .comment-item .seperator { margin: 0 3px 0 2px; vertical-align: text-bottom; }
+#comments .comment-item .date { color: #808080; }
+#comments .comment-item .text { margin-left: 12px; padding: 10px 10px 5px; width: 378px; background: url(../images/bg-comment.png) no-repeat; min-height: 16px; }
+#comments .comment-item .bg-bottom { width: 398px; margin-left: 12px; margin-top: -2px; background: url(../images/bg-comment.png) no-repeat 0 -598px; height: 2px; }
+#comments .score { display:inline; }
+#comments .rating { top: 2px; right: 20px; }
+#comments .review { margin: 7px 0 3px; }
+
+.homepackage h3 {font-size:12px}
+.homepackage .textwidget div {height:300px;}
+.homepackage button {font-size:11px}
+.homepackage {font-size:12px}

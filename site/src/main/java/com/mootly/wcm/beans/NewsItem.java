@@ -76,7 +76,7 @@ public class NewsItem extends Document{
             for (HippoMirrorBean link: links) {            	
                 HippoBean referenced = link.getReferencedBean();
                 if (referenced instanceof HippoAssetBean) {
-                	HippoAssetBean hippoMirrorBean = (HippoAssetBean)referenced;                	
+                	HippoAssetBean hippoMirrorBean = (HippoAssetBean)referenced;    
                     attachments.add(hippoMirrorBean);
                 }
             }

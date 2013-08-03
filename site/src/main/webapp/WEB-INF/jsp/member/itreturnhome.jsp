@@ -38,7 +38,8 @@ TreeMap objTreeMapSection = (TreeMap) objValueListService.getReturnFile();
 		          	<div class="rowlabel"><label for="pi_last_name"><small><fmt:message key="member.homepage.lastname"/></small></label></div>
 		          	<div class="rowlabel"><input id="pi_last_name" name="pi_last_name" placeholder="Last Name" type="text" class="uprcase"/></div>
 		          </div>
-		           <div class="span3">
+		          <%--
+		          <div class="span3">
 		            <div class="rowlabel"><label for="ReturnSection"><small>Return filed under section</small><c:out value="${parentBean.returnSection}"/></label></div>
 		          	<div class="rowlabel">
 		          	<select id="ReturnSection" name="ReturnSection" onChange="getSection()" class="uprcase">
@@ -50,11 +51,12 @@ TreeMap objTreeMapSection = (TreeMap) objValueListService.getReturnFile();
 			        </c:forEach>
 		          	</select></div>
 		          </div>
+		          --%>
 		          <div class="span2">
 		            <div class="rowlabel"><label for="pi_return_type"><small>Return Type</small></label></div>
 		          	<div class="rowlabel">
-		          <!-- 	<select id="pi_return_type" readonly="readonly" name="pi_return_type" style="text-transform: uppercase;"><option value="">Select Type</option><option value="original">Original</option><option value="revised">Revised</option></select>
-		           --><input type="text" id="pi_return_type" readonly="readonly" name="pi_return_type" class="uprcase">
+		            <select id="pi_return_type" name="pi_return_type" style="text-transform: uppercase;"><option value="">Select Type</option><option value="original">Original</option><option value="revised">Revised</option></select>
+		            <%--<input type="text" id="pi_return_type" readonly="readonly" name="pi_return_type" class="uprcase"> --%>
 		           </div>
 		          </div>
 		          <div class="span2">
@@ -159,6 +161,7 @@ TreeMap objTreeMapSection = (TreeMap) objValueListService.getReturnFile();
 		});
 
 	});
+	<%--
 	function getSection(){
 		var option=document.getElementById("ReturnSection");
 		var sectionName = option.options[option.selectedIndex].value;
@@ -168,6 +171,7 @@ TreeMap objTreeMapSection = (TreeMap) objValueListService.getReturnFile();
 		$("#pi_return_type").val("original");
 		}
 		}
+	 --%>
 </hst:element>
 <hst:headContribution element="${uiCustom}" category="jsInternal"/>
 

@@ -4,6 +4,45 @@
 
 <div class="page">
 	<w4india:itrmenu />
+	<!--  lets check for warnings and errors and let the user know -->
+	<c:if test="${not empty hippoBeanValidationResponse && ( fn:length(hippoBeanValidationResponse.errors) > 0 || fn:length(hippoBeanValidationResponse.warnings) > 0) }">
+		<div id="myModalErrors" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			  <div class="modal-header">
+			    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			    <h3>We have found the following errors/warnings in your return.</h3>
+			    <h5>Please understand, if you upload your return without fixing these, your income tax may get rejected.</h5>
+			  </div>
+			  <div class="modal-body">
+					<div style="font-size:10px; border: 1px dashed #FF0000;padding:5px;text-align:left">
+						<ul>
+							<c:forEach items="${hippoBeanValidationResponse.errors}" var="error">
+								<li style="list-style:circle;">
+									<fmt:message key="${error.message}">
+										<c:forEach items="${error.messageArgs}" var="aParam">
+											<fmt:param value="${aParam}"/>
+										</c:forEach>										
+									</fmt:message> 
+								</li>
+							</c:forEach>
+							<c:forEach items="${hippoBeanValidationResponse.warnings}" var="warning">
+								<li style="list-style:circle;">
+									<fmt:message key="${warning.message}">
+										<c:forEach items="${warning.messageArgs}" var="aParam">
+											<fmt:param value="${aParam}"/>
+										</c:forEach>										
+									</fmt:message> 
+								</li>
+							</c:forEach>				
+						</ul>
+					</div>
+			  </div>
+			  <div class="modal-footer">
+			    <button class="btn btn-info" data-dismiss="modal" aria-hidden="true">Cancel</button>
+			    <a href="${redirectToOriginalPage}?uuid=${publicParameterUUID}" class="btn btn-warning">Continue with <fmt:message key="${originalPageAction}.label"/></a>
+			  </div>
+		</div>
+	</c:if>
+	<!--  /lets check for warnings and errors and let the user know -->
 	<h4>Please review your return</h4>
 	<form id="frmPayment" action="${actionUrl}" method="post" name="frmConfirmation">
 		<fieldset>
@@ -35,7 +74,11 @@
 <%--<res:client-validation screenConfigurationDocumentName="payment" formId="frmPayment" formSubmitButtonId="hrefLogin"></res:client-validation> --%>
 <hst:element var="uiCustom" name="script">
 	<hst:attribute name="type">text/javascript</hst:attribute>
-	
+	jQuery(document).ready(function($) {		
+		if ( $("#myModalErrors").length > 0 ) {
+			$('#myModalErrors').modal({'backdrop':true,'show':true});
+		}
+	});
 	
 </hst:element>
 <hst:headContribution element="${uiCustom}" category="jsInternal" />

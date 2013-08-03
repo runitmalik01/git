@@ -28,6 +28,9 @@ import java.io.StringWriter;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -113,14 +116,17 @@ import com.mootly.wcm.member.XmlGenerator;
 import com.mootly.wcm.model.FilingSection;
 import com.mootly.wcm.model.FilingStatus;
 import com.mootly.wcm.model.FinancialYear;
+import com.mootly.wcm.model.ITRForm;
 import com.mootly.wcm.model.ITRTab;
 import com.mootly.wcm.model.ITReturnPackage;
 import com.mootly.wcm.model.ITReturnType;
+import com.mootly.wcm.model.IndianGregorianCalendar;
 import com.mootly.wcm.model.PaymentVerificationStatus;
 import com.mootly.wcm.model.ValidationResponse;
 import com.mootly.wcm.services.DownloadConfirmationRequiredException;
 import com.mootly.wcm.services.ITR1XmlGeneratorService;
 import com.mootly.wcm.services.ITR2XmlGeneratorService;
+import com.mootly.wcm.services.ITRXmlGeneratorServiceCommon;
 import com.mootly.wcm.services.ITRXmlGeneratorServiceFactory;
 import com.mootly.wcm.services.InvalidXMLException;
 import com.mootly.wcm.services.PaymentRequiredException;
@@ -133,10 +139,13 @@ import com.mootly.wcm.services.XmlGeneratorService;
 import com.mootly.wcm.utils.GoGreenUtil;
 import com.mootly.wcm.utils.MootlyFormUtils;
 import com.mootly.wcm.utils.XmlCalculation;
+import com.mootly.wcm.validation.HippoBeanValidationResponse;
+import com.mootly.wcm.validation.impl.itr.ITRValidatorChain;
 
 public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 	private static final Logger log = LoggerFactory.getLogger(ITReturnComponent.class);
 	ITRXmlGeneratorServiceFactory itrXmlGeneratorServiceFactory = null;
+	ITRValidatorChain itrValidationChain = null;
 	String servletPath = null;
 	String xsltPath = null;
 	
@@ -204,6 +213,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		itrXmlGeneratorServiceFactory = context.getBean(com.mootly.wcm.services.ITRXmlGeneratorServiceFactory.class);
 		sequenceGenerator = context.getBean(SequenceGeneratorImpl.class);
 		xsltPath = servletContext.getRealPath("/xslt/ITRSummary.xsl");
+		itrValidationChain =  context.getBean(ITRValidatorChain.class);
 	}
 	
 	public SequenceGenerator getSequenceGenerator() {
@@ -217,6 +227,8 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		if (!hasInitComplete) {
 			try {
 				initComponent(request,response);
+				fillDueDate(request,response); //this will fill the due date 
+				executeValidationChain(request,response);
 			}
 			catch (InvalidPANException inpe) {
 				redirectToMemberHome(request,response);
@@ -1287,7 +1299,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 
 		request.setAttribute("filingStatus",filingStatus);
 		request.setAttribute("itrFolderSuffix",itrFolderSuffix);
-
+	
 		//TO DO we need to get this based on some parameter other wise it is causing issue
 		try {
 			//HippoBean siteContentBaseBean = getSiteContentBaseBean(request);
@@ -1312,6 +1324,54 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		}
 
 		if (redirectURLToSamePage != null) request.setAttribute("redirectURLToSamePage", redirectURLToSamePage);
+	}
+	
+	protected void fillDueDate(HstRequest request,HstResponse response) {
+		//
+		try {			
+			String indianDateTimeAsString = IndianGregorianCalendar.getCurrentDateInIndiaAsLocalString();
+			request.setAttribute("indianDateTimeAsString", indianDateTimeAsString);
+			
+			MemberPersonalInformation memberPersonalInformation = (MemberPersonalInformation) request.getAttribute(MemberPersonalInformation.class.getSimpleName().toLowerCase());
+			if (memberPersonalInformation != null) {
+				String stateCode = memberPersonalInformation.getState();
+				ITRForm itrForm = memberPersonalInformation.getSelectedITRForm();
+				FinancialYear currentFinancialYear = getFinancialYear();
+				boolean isPastDue = currentFinancialYear.isIncomeTaxPastDue(itrForm, stateCode);
+				Calendar theDueDate = currentFinancialYear.getDueDate(itrForm, stateCode);
+				String thePastDueDateStr =  IndianGregorianCalendar.formatDateAsString(theDueDate, IndianGregorianCalendar.indianDateTimeFormStr);
+				FilingSection filingSection =  memberPersonalInformation.getFilingSection();
+				if (filingSection == FilingSection.BeforeDueDate_139_1 && isPastDue) {
+					request.setAttribute("inCorrectSection",true);
+				}
+				else if (filingSection == FilingSection.AfterDueDate_139_4 && !isPastDue) {
+					request.setAttribute("inCorrectSection",true);
+				}
+				request.setAttribute("isPastDue",isPastDue);
+				request.setAttribute("thePastDueDateStr",thePastDueDateStr);
+				request.setAttribute("theDueDate",theDueDate);
+			}
+			
+		}catch (Exception ex) {
+			log.warn("WARN",ex);
+		}
+	}
+	
+	protected void executeValidationChain(HstRequest request,HstResponse response) {
+		//
+		Map<String,HippoBean> mapOfBeans = new HashMap<String, HippoBean>();
+		Enumeration<String> enmAttrNames = request.getAttributeNames();
+		while (enmAttrNames.hasMoreElements()) {
+			String attrName = enmAttrNames.nextElement();
+			Object anObj = request.getAttribute(attrName);
+			if (anObj instanceof HippoBean) {
+				mapOfBeans.put(anObj.getClass().getSimpleName().toLowerCase(), (HippoBean) anObj);
+			}
+		}
+		
+		HippoBeanValidationResponse hippoBeanValidationResponse = itrValidationChain.execute(mapOfBeans);
+		if (hippoBeanValidationResponse != null) request.setAttribute("hippoBeanValidationResponse", hippoBeanValidationResponse);
+		
 	}
 
 	protected void redirectToMemberHome(HstRequest hstRequest, HstResponse response) {

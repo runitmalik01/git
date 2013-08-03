@@ -1,17 +1,22 @@
 package com.mootly.wcm.member;
 
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.mootly.wcm.model.IndianGregorianCalendar;
 import com.mootly.wcm.services.ScreenCalculatorService;
 
 public class TestChapter6 {
 	
 	public static void main(String[] args) {
-		ScreenCalculatorService screenCalculatorService = new ScreenCalculatorService();
+		GregorianCalendar gc = new GregorianCalendar();
 		
-		Map<String,String[]> requestMap = new HashMap<String, String[]>();
+		GregorianCalendar gcByTimeZone = new GregorianCalendar(IndianGregorianCalendar.indianTimeZone);
 		
+		System.out.println(gc);
+		System.out.println(gcByTimeZone);
+		//System.out.println(IndianGregorianCalendar.indianInstance);
 		//screenCalculatorService.getScreenCalculations("Chapter6Calc.js", requestParameterMap, additionalBindings)
 	}
 }

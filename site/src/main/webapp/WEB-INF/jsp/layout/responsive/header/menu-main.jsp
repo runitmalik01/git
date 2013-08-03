@@ -73,7 +73,16 @@
 	                           		<c:forEach items="${item.childMenuItems}"  var="childItem">
 	                           			<c:set var="childItemLink" value="${childItem.hstLink}" />
 	                           			<hst:link var="childLink" link="${childItemLink}"/>
-										<li  class="menu-item menu-item-type-post_type menu-item-object-page menu-item-776"><a href="${fn:escapeXml(childLink)}"><c:out value="${childItem.name}"/></a></li>
+										<li  class="menu-item menu-item-type-post_type menu-item-object-page menu-item-776"><a href="${fn:escapeXml(childLink)}"><c:out value="${childItem.name}"/></a>
+											 <ul class="sub-menu">
+											 	<c:forEach items="${item.childMenuItems}"  var="childItem2">
+				                           			<c:set var="childItemLink2" value="${childItem2.hstLink}" />
+				                           			<hst:link var="childLink2" link="${childItemLink2}"/>
+													<li  class="menu-item menu-item-type-post_type menu-item-object-page menu-item-776"><a href="${fn:escapeXml(childLink2)}"><c:out value="${childItem2.name}"/></a>													
+													</li>
+												</c:forEach>
+											 </ul>										
+										</li>
 									</c:forEach>
 								</ul>
 							</c:if>                           
