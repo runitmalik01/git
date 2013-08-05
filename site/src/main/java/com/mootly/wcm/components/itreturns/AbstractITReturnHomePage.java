@@ -267,8 +267,8 @@ abstract public class AbstractITReturnHomePage extends ITReturnComponent {
 		//FormUtils.persistFormMap(request, response, getFormMap(), null);
 		//try {
 		String pan =map.getField("pan").getValue().toLowerCase();
-		String strItReturnType =  map.getField("pi_return_type").getValue();
-		ITReturnType itReturnType = ITReturnType.getByDisplayName(strItReturnType);
+		//String strItReturnType =  map.getField("pi_return_type").getValue();
+		//ITReturnType itReturnType = ITReturnType.getByDisplayName(strItReturnType);
 		String strFinancialYear =  map.getField("fy").getValue();
 		FinancialYear financialYear = FinancialYear.getByDisplayName(strFinancialYear);
 		//FilingSection filingSection =  FilingSection.getByXmlCode(map.getField("ReturnSection").getValue());
@@ -298,7 +298,7 @@ abstract public class AbstractITReturnHomePage extends ITReturnComponent {
 			response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 			return;
 		}
-		String returnURL =  request.getContextPath() +"/member/itreturn/" + financialYear.getDisplayName() + "/" + strItReturnType + "_f_"  + nextId  + "/" + pan.toLowerCase() + "/servicerequest-itr.html?uuid=" +  sfr.getUuid(); //getRedirectURL(request, response, FormSaveResult.SUCCESS,"packageselector",financialYear,itReturnType,pan);
+		String returnURL =  request.getContextPath() +"/member/itreturn/" + financialYear.getDisplayName() + "/" + pan.toLowerCase() + "_f_"  + nextId  + "/" + pan.toLowerCase() + "/servicerequest-itr.html?uuid=" +  sfr.getUuid(); //getRedirectURL(request, response, FormSaveResult.SUCCESS,"packageselector",financialYear,itReturnType,pan);
 		//returnURL +="?uuid=" + 
 		try {
 			response.sendRedirect(returnURL);
