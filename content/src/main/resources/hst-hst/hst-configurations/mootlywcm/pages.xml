@@ -8510,6 +8510,61 @@
 	    </sv:node>
 	  </sv:node>
 	</sv:node>
+	
+	<!-- New pages added for schedule5a by Pankaj Singh -->
+
+	<sv:node sv:name="schedule5a">
+		<sv:property sv:name="jcr:primaryType" sv:type="Name">
+			<sv:value>hst:component</sv:value>
+		</sv:property>
+		<sv:property sv:name="jcr:uuid" sv:type="String">
+			<sv:value>79357a48-29ef-46a7-96d9-4e9536077f71</sv:value>
+		</sv:property>
+		<sv:property sv:multiple="true" sv:name="hst:parameternames"
+			sv:type="String">
+			<sv:value>bodyCss</sv:value>
+		</sv:property>
+		<sv:property sv:multiple="true" sv:name="hst:parametervalues"
+			sv:type="String">
+			<sv:value>bodyCssClass</sv:value>
+		</sv:property>
+		<sv:property sv:name="hst:referencecomponent" sv:type="String">
+			<sv:value>hst:pages/simplepage.re</sv:value>
+		</sv:property>
+		<sv:node sv:name="main">
+			<sv:property sv:name="jcr:primaryType" sv:type="Name">
+				<sv:value>hst:component</sv:value>
+			</sv:property>
+			<sv:property sv:name="jcr:uuid" sv:type="String">
+				<sv:value>2ffb5a40-6939-4211-807d-445b7e869030</sv:value>
+			</sv:property>
+			<sv:property sv:multiple="true" sv:name="hst:parameternames"
+				sv:type="String">
+				<sv:value>contentCssClass</sv:value>
+			</sv:property>
+			<sv:property sv:multiple="true" sv:name="hst:parametervalues"
+				sv:type="String">
+				<sv:value>grid-right col-940</sv:value>
+			</sv:property>
+			<sv:property sv:name="hst:template" sv:type="String">
+				<sv:value>standard.main.re</sv:value>
+			</sv:property>
+			<sv:node sv:name="content">
+				<sv:property sv:name="jcr:primaryType" sv:type="Name">
+					<sv:value>hst:component</sv:value>
+				</sv:property>
+				<sv:property sv:name="jcr:uuid" sv:type="String">
+					<sv:value>216012a3-7db3-470a-800b-45f6182fa0f5</sv:value>
+				</sv:property>
+				<sv:property sv:name="hst:referencecomponent" sv:type="String">
+					<sv:value>hst:components/schedule5a</sv:value>
+				</sv:property>
+			</sv:node>
+		</sv:node>
+	</sv:node>
+
+	<!--end schedule5a -->
+	
 	<!--  new Site map -->
 	<sv:node sv:name="servicerequest-itr-copy-or-move" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
 	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
