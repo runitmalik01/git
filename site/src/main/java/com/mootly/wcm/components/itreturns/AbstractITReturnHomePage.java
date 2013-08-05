@@ -11,7 +11,9 @@ package com.mootly.wcm.components.itreturns;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletResponse;
@@ -68,7 +70,7 @@ import com.mootly.wcm.utils.Constants;
 import com.mootly.wcm.utils.GoGreenUtil;
 import com.mootly.wcm.utils.PageableCollection;
 //@PrimaryBean(primaryBeanClass=MemberPersonalInformation.class)
-@FormFields(fieldNames={"pan","pi_last_name","pi_dob","pi_return_type","fy","ReturnSection"})
+@FormFields(fieldNames={"pan","pi_last_name","pi_dob","pi_return_type","fy","ReturnSection","StartApp_Mobile"})
 @RequiredFields(fieldNames={"pan","pi_last_name","pi_dob","pi_return_type","fy","ReturnSection"})
 abstract public class AbstractITReturnHomePage extends ITReturnComponent {
 
@@ -263,7 +265,7 @@ abstract public class AbstractITReturnHomePage extends ITReturnComponent {
 		// TODO Auto-generated method stub
 		//super.doAction(request, response);
 		//FormMap map = new FormMap(request,new String[]{"pan","pi_last_name","pi_dob","pi_return_type","fy","ack_no","ack_date","defective","notice_no","notice_date"});
-		FormMap map = new FormMap(request,new String[]{"pan","pi_last_name","pi_dob","pi_return_type","fy","ReturnSection"});
+		FormMap map = new FormMap(request,new String[]{"pan","pi_last_name","pi_dob","pi_return_type","fy","ReturnSection","StartApp_Mobile"});
 		//FormUtils.persistFormMap(request, response, getFormMap(), null);
 		//try {
 		String pan =map.getField("pan").getValue().toLowerCase();
@@ -298,6 +300,14 @@ abstract public class AbstractITReturnHomePage extends ITReturnComponent {
 			response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 			return;
 		}
+		// sending email to admin of wealth4india :- by Pankaj Singh
+		
+		String StartApp_Mobile = map.getField("StartApp_Mobile").getValue();
+		Map<String,Object> velocityContext = new HashMap<String, Object>();
+		velocityContext.put("userName",getUserName());
+		velocityContext.put("StartApp_Mobile", StartApp_Mobile);
+		sendEmail(request, null, null, null, "memberstartapptemplate", velocityContext);
+		// end of code for sending email
 		String returnURL =  request.getContextPath() +"/member/itreturn/" + financialYear.getDisplayName() + "/" + pan.toLowerCase() + "_f_"  + nextId  + "/" + pan.toLowerCase() + "/servicerequest-itr.html?uuid=" +  sfr.getUuid(); //getRedirectURL(request, response, FormSaveResult.SUCCESS,"packageselector",financialYear,itReturnType,pan);
 		//returnURL +="?uuid=" + 
 		try {
