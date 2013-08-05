@@ -3153,6 +3153,21 @@
     <sv:value>jsp/member/hracalculator.jsp</sv:value>
   </sv:property>
 </sv:node>
+<!-- added template for schedule5a -->
+<sv:node sv:name="schedule5a">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:template</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>11a8b9fc-fd50-4387-a32a-0f9dd2e9cab9</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:renderpath" sv:type="String">
+    <sv:value>jsp/member/schedule5A.jsp</sv:value>
+  </sv:property>
+</sv:node>
+
+<!-- end template schedule5a -->
+
 	<!-- duplication -->
 	<sv:node sv:name="servicerequest-itr-copy-or-move" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
 	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
