@@ -71,7 +71,7 @@ import com.mootly.wcm.utils.GoGreenUtil;
 import com.mootly.wcm.utils.PageableCollection;
 //@PrimaryBean(primaryBeanClass=MemberPersonalInformation.class)
 @FormFields(fieldNames={"pan","pi_last_name","pi_dob","pi_return_type","fy","ReturnSection","StartApp_Mobile"})
-@RequiredFields(fieldNames={"pan","pi_last_name","pi_dob","pi_return_type","fy","ReturnSection"})
+@RequiredFields(fieldNames={"pan","pi_last_name","pi_dob","pi_return_type","fy","ReturnSection","StartApp_Mobile"})
 abstract public class AbstractITReturnHomePage extends ITReturnComponent {
 
 	private static final String PARAM_PAGE_SIZE = "pageSize";
