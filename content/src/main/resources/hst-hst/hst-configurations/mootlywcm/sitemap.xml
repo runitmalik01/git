@@ -3739,6 +3739,43 @@
 			  </sv:property>
 			</sv:node>
 			<!-- /another one -->
+			
+
+
+<!-- new sitemap for schedule 5a by Pankaj singh -->
+
+						<sv:node sv:name="schedule5a.html">
+							<sv:property sv:name="jcr:primaryType" sv:type="Name">
+								<sv:value>hst:sitemapitem</sv:value>
+							</sv:property>
+							<sv:property sv:name="jcr:uuid" sv:type="String">
+								<sv:value>70bbcb5f-9647-4014-98cc-3c87fe15f99c</sv:value>
+							</sv:property>
+							<sv:property sv:name="hst:componentconfigurationid"
+								sv:type="String">
+								<sv:value>hst:pages/schedule5a</sv:value>
+							</sv:property>
+							<sv:property sv:multiple="true" sv:name="hst:parameternames"
+								sv:type="String">
+								<sv:value>mainSiteMapItemRefId</sv:value>
+								<sv:value>action</sv:value>
+							</sv:property>
+							<sv:property sv:multiple="true" sv:name="hst:parametervalues"
+								sv:type="String">
+								<sv:value>schedule5a</sv:value>
+								<sv:value>EDIT</sv:value>
+							</sv:property>
+							<sv:property sv:name="hst:refId" sv:type="String">
+								<sv:value>memberschedule5a</sv:value>
+							</sv:property>
+							<sv:property sv:name="hst:relativecontentpath"
+								sv:type="String">
+								<sv:value>members</sv:value>
+							</sv:property>
+						</sv:node>
+
+						<!-- end schedule5a -->
+			
         </sv:node>
         </sv:node>
       </sv:node>
