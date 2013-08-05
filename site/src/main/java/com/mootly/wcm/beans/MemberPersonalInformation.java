@@ -781,7 +781,25 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 		if ( formMap.getField("receipt_no") != null) setReceiptNo(formMap.getField("receipt_no").getValue());
 		if ( formMap.getField("tax_ward") != null) setIncomeTaxWard(formMap.getField("tax_ward").getValue());
 		if ( formMap.getField("portugesecivil") != null) setPortugesecivil(formMap.getField("portugesecivil").getValue());
-		if ( formMap.getField("pi_return_type") != null) setReturnType(formMap.getField("pi_return_type").getValue());
+		//new change
+		String returnTypeChoice = formMap.getField("returnTypeChoice").getValue();
+		String revisingWithNoticeSection = formMap.getField("revisingWithNoticeSection").getValue();
+		//revisingWithNoticeSection")
+		FilingSection filingSection = FilingSection.BeforeDueDate_139_1;
+		if (returnTypeChoice != null && ("revisingNoNotice".equals(returnTypeChoice) || "revisingWithNotice".equals(returnTypeChoice))) {
+			setReturnType("R");
+			filingSection = FilingSection.getByXmlCode(revisingWithNoticeSection);
+		}
+		else {
+			setReturnType("O");			
+		}
+		if (filingSection != null && filingSection == FilingSection.Revised_139_9) {
+			setDefective("Y");
+		}
+		else {
+			setDefective("N");
+		}
+		//if ( formMap.getField("pi_return_type") != null) setReturnType(formMap.getField("pi_return_type").getValue());
 		if ( formMap.getField("fy") != null) {
 			setFinancialYear(formMap.getField("fy").getValue());
 			if(StringUtils.isNotEmpty(formMap.getField("fy").getValue())){
@@ -795,7 +813,7 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 			setOriginalAckDate(ConvDateStringToCalendar(strDate));
 		}
 		if ( formMap.getField("ack_no") != null) setOriginalAckNo(formMap.getField("ack_no").getValue());
-		if ( formMap.getField("defective") != null) setDefective(formMap.getField("defective").getValue());
+		//if ( formMap.getField("defective") != null) setDefective(formMap.getField("defective").getValue()); this is again based on the section
 		if ( formMap.getField("notice_no") != null) setNoticeNo(formMap.getField("notice_no").getValue());
 		if ( formMap.getField("notice_date") != null){
 			String strDate = formMap.getField("notice_date").getValue();
@@ -806,7 +824,11 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 		if ( formMap.getField("Employe_category") != null) setEmploye_category(formMap.getField("Employe_category").getValue());
 		if ( formMap.getField("pi_first_name") != null) setFirstName(formMap.getField("pi_first_name").getValue());
 		if ( formMap.getField("pi_last_name") != null) setLastName(formMap.getField("pi_last_name").getValue());
-		if	(formMap.getField("ReturnSection") != null) setReturnSection(formMap.getField("ReturnSection").getValue());
+		//if	(formMap.getField("ReturnSection") != null) {
+			//setReturnSection(formMap.getField("ReturnSection").getValue());
+			setReturnSection(filingSection.getXmlCode());
+			setReturnFileSection (Long.valueOf(filingSection.getXmlCode())); 
+		//}
 		if ( formMap.getField("pi_middle_name") != null) setMiddleName(formMap.getField("pi_middle_name").getValue());
 		if ( formMap.getField("pi_father_name") != null) setFatherName(formMap.getField("pi_father_name").getValue());
 		if ( formMap.getField("gender") != null) setSex(formMap.getField("gender").getValue());

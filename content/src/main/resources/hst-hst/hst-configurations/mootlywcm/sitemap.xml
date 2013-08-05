@@ -3714,6 +3714,31 @@
 			  </sv:property>
 			</sv:node>					
 			<!--  /new  -->
+			<!-- another one -->
+			<sv:node sv:name="servicerequest-itr-copy-or-move.html" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+			  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+			    <sv:value>hst:sitemapitem</sv:value>
+			  </sv:property>
+			  <sv:property sv:name="jcr:uuid" sv:type="String">
+			    <sv:value>3a5362a3-114c-41fa-9e27-c19c2f19099c</sv:value>
+			  </sv:property>
+			  <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+			    <sv:value>hst:pages/servicerequest-itr-copy-or-move</sv:value>
+			  </sv:property>
+			  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+			    <sv:value>action</sv:value>
+			  </sv:property>
+			  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+			    <sv:value>COPY_ORIGINAL_TO_REVISED</sv:value>
+			  </sv:property>
+			  <sv:property sv:name="hst:refId" sv:type="String">
+			    <sv:value>servicerequest-itr-copy-or-move</sv:value>
+			  </sv:property>
+			  <sv:property sv:name="hst:relativecontentpath" sv:type="String">
+			    <sv:value>members</sv:value>
+			  </sv:property>
+			</sv:node>
+			<!-- /another one -->
         </sv:node>
         </sv:node>
       </sv:node>
@@ -7525,7 +7550,32 @@
 					    <sv:value>members</sv:value>
 					  </sv:property>
 					</sv:node>
-	            <!-- /new -->	            
+	            <!-- /new -->
+	            <!-- new sitemap -->
+	            <sv:node sv:name="servicerequest-itr-copy-or-move.html" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+				  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+				    <sv:value>hst:sitemapitem</sv:value>
+				  </sv:property>
+				  <sv:property sv:name="jcr:uuid" sv:type="String">
+				    <sv:value>3a5362a3-114c-41fa-9e27-c19c2f19099c</sv:value>
+				  </sv:property>
+				  <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+				    <sv:value>hst:pages/servicerequest-itr-copy-or-move</sv:value>
+				  </sv:property>
+				  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+				    <sv:value>action</sv:value>
+				  </sv:property>
+				  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+				    <sv:value>COPY_ORIGINAL_TO_REVISED</sv:value>
+				  </sv:property>
+				  <sv:property sv:name="hst:refId" sv:type="String">
+				    <sv:value>vendor-servicerequest-itr-copy-or-move</sv:value>
+				  </sv:property>
+				  <sv:property sv:name="hst:relativecontentpath" sv:type="String">
+				    <sv:value>members</sv:value>
+				  </sv:property>
+				</sv:node>
+	            <!-- /newsitemap -->	            
 	          </sv:node>
 	        </sv:node>
 	      </sv:node>

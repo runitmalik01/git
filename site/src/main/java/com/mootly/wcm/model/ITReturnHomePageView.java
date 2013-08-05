@@ -160,6 +160,40 @@ public class ITReturnHomePageView {
 	public void setPathToItr(String pathToItr) {
 		this.pathToItr = pathToItr;
 	}
+	
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public String getDob() {
+		return dob;
+	}
+
+	public void setDob(String dob) {
+		this.dob = dob;
+	}
+
+	public String getFullname() {
+		return fullname;
+	}
+
+	public void setFullname(String fullname) {
+		this.fullname = fullname;
+	}
+
+	public String getTheParentFolder() {
+		return theParentFolder;
+	}
+
+	public void setTheParentFolder(String theParentFolder) {
+		this.theParentFolder = theParentFolder;
+	}
+
+
 
 	String pan;
 	FinancialYear financialYear;
@@ -189,5 +223,6 @@ public class ITReturnHomePageView {
 	String fullname;
 	
 	String pathToItr;
+	String theParentFolder;
 	
 }

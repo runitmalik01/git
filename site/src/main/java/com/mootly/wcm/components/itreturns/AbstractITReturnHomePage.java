@@ -129,7 +129,11 @@ abstract public class AbstractITReturnHomePage extends ITReturnComponent {
 		String jsEnabled = getPublicRequestParameter(request, "jsEnabled");
 
 		try {
-			HstQuery hstQuery = this.getQueryManager(request).createQuery(getScope(request), MemberPersonalInformation.class);
+			HippoBean theScopeBean = getScope(request);
+			if (log.isInfoEnabled()) {
+				log.info("theScopeBean:" + theScopeBean.getName());
+			}
+			HstQuery hstQuery = this.getQueryManager(request).createQuery(theScopeBean, MemberPersonalInformation.class);
 			if (!StringUtils.isEmpty(query)) {
 				Filter f = hstQuery.createFilter();
 				Filter f1 = hstQuery.createFilter();
@@ -195,6 +199,8 @@ abstract public class AbstractITReturnHomePage extends ITReturnComponent {
 						log.info(theMemberFolderBean.getNode().getPath());
 						
 						ITReturnHomePageView itReturnHomePageView = new ITReturnHomePageView();
+						
+						itReturnHomePageView.setTheParentFolder(theParentFolder);
 
 						itReturnHomePageView.setPan(m.getPAN());
 						FinancialYear fy = FinancialYear.getByDisplayName(m.getFinancialYear());
@@ -217,6 +223,7 @@ abstract public class AbstractITReturnHomePage extends ITReturnComponent {
 						itReturnHomePageView.setEmail(m.getEmail());
 						itReturnHomePageView.setDOB(m.getDOBStr());
 						itReturnHomePageView.setFullName(m.getName());
+						
 						String stringUUID= theMemberFolderBean.getCanonicalUUID();
 						itReturnHomePageView.setCanonicalUUID(stringUUID);
 						
@@ -266,11 +273,11 @@ abstract public class AbstractITReturnHomePage extends ITReturnComponent {
 		FinancialYear financialYear = FinancialYear.getByDisplayName(strFinancialYear);
 		//FilingSection filingSection =  FilingSection.getByXmlCode(map.getField("ReturnSection").getValue());
 
-		if (StringUtils.isEmpty(pan) || StringUtils.isEmpty(strItReturnType) || StringUtils.isEmpty(strFinancialYear)){
+		if (StringUtils.isEmpty(pan) || StringUtils.isEmpty(strFinancialYear)){
 			return;
 		}
 
-		if (itReturnType == null || itReturnType.equals(ITReturnType.UNKNOWN) || financialYear == null || financialYear.equals(FinancialYear.UNKNOWN)){
+		if (financialYear == null || financialYear.equals(FinancialYear.UNKNOWN)){
 			return;
 		}
 		/*

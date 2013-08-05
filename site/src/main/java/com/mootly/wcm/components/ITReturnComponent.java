@@ -29,13 +29,12 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.Enumeration;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
-import java.util.ResourceBundle;
 import java.util.UUID;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
@@ -67,13 +66,13 @@ import org.hippoecm.hst.content.beans.ObjectBeanPersistenceException;
 import org.hippoecm.hst.content.beans.manager.workflow.WorkflowCallbackHandler;
 import org.hippoecm.hst.content.beans.manager.workflow.WorkflowPersistenceManager;
 import org.hippoecm.hst.content.beans.query.HstQuery;
-import org.hippoecm.hst.content.beans.query.HstQueryManager;
 import org.hippoecm.hst.content.beans.query.HstQueryResult;
-import org.hippoecm.hst.content.beans.query.filter.Filter;
+import org.hippoecm.hst.content.beans.query.exceptions.QueryException;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.content.beans.standard.HippoBeanIterator;
 import org.hippoecm.hst.content.beans.standard.HippoDocumentBean;
 import org.hippoecm.hst.content.beans.standard.HippoFolder;
+import org.hippoecm.hst.content.beans.standard.HippoFolderBean;
 import org.hippoecm.hst.core.component.HstComponentException;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
@@ -124,9 +123,6 @@ import com.mootly.wcm.model.IndianGregorianCalendar;
 import com.mootly.wcm.model.PaymentVerificationStatus;
 import com.mootly.wcm.model.ValidationResponse;
 import com.mootly.wcm.services.DownloadConfirmationRequiredException;
-import com.mootly.wcm.services.ITR1XmlGeneratorService;
-import com.mootly.wcm.services.ITR2XmlGeneratorService;
-import com.mootly.wcm.services.ITRXmlGeneratorServiceCommon;
 import com.mootly.wcm.services.ITRXmlGeneratorServiceFactory;
 import com.mootly.wcm.services.InvalidXMLException;
 import com.mootly.wcm.services.PaymentRequiredException;
@@ -169,6 +165,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 	String assessmentYear;
 	FinancialYear financialYear;
 	ITReturnType itReturnType = ITReturnType.ORIGINAL;
+	String theFolderContainingITRDocuments = null;
 	String itrFolderSuffix = null;
 	String pan = null;
 	FilingStatus filingStatus;
@@ -202,6 +199,8 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 	String scriptName;
 	
 	SequenceGenerator sequenceGenerator = null;
+	
+	Map<String,HippoBean> mapOfAllBeans = new HashMap<String, HippoBean>();
 	
 	@Override
 	public void init(ServletContext servletContext,
@@ -826,8 +825,10 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		if (financialYear != null && !financialYear.equals(FinancialYear.UNKNOWN)) {
 			assessmentYear = financialYear.getDisplayAssessmentYear();
 		}
-		String strItReturnType = request.getRequestContext().getResolvedSiteMapItem().getParameter("itReturnType");
 		
+		String theFolderContainingITRDocuments = request.getRequestContext().getResolvedSiteMapItem().getParameter("itReturnType");
+		
+		/*
 		if ( strItReturnType == null) {
 			itReturnType  = null;
 		}
@@ -835,6 +836,10 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			//original versus amend
 			itrFolderSuffix = ITReturnType.getByFolderSuffix( strItReturnType ); 
 			itReturnType = ITReturnType.getByFolderName(strItReturnType);
+		}
+		*/
+		if ( theFolderContainingITRDocuments != null) {
+			itrFolderSuffix = ITReturnType.getByFolderSuffix( theFolderContainingITRDocuments );
 		}
 		
 		//ITReturnType.getByDisplayName(request.getRequestContext().getResolvedSiteMapItem().getParameter("itReturnType")); //original versus amend
@@ -850,10 +855,11 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			throw new InvalidPANException("INVALID PAN NUMBER");
 		}
 		
-		
+		/*
 		if (itReturnType != null && itReturnType.equals(ITReturnType.UNKNOWN)) {
 			throw new InvalidNavigationException("INVALID ITRETURUN TYPE");
 		}
+		*/
 
 		String strItReturnPackage = request.getRequestContext().getResolvedSiteMapItem().getParameter("itReturnPackage");
 		if (strItReturnPackage == null)
@@ -935,7 +941,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			//}
 		}
 
-		baseRelPathToReturnDocuments = "members/" + getMemberFolderPath(request) + "/pans/" + getPAN() + "/" + getFinancialYear() + "/" + ( getITReturnType()==  null ? "" : getITReturnType().getDisplayName() + getItrFolderSuffix() ); // getITReturnType();
+		baseRelPathToReturnDocuments = "members/" + getMemberFolderPath(request) + "/pans/" + getPAN() + "/" + getFinancialYear() + "/" + theFolderContainingITRDocuments; // getITReturnType();
 		hippoBeanBaseITReturnDocuments = siteContentBaseBean.getBean(baseRelPathToReturnDocuments);
 		baseAbsolutePathToReturnDocuments = request.getRequestContext().getResolvedMount().getMount().getCanonicalContentPath() + "/" + baseRelPathToReturnDocuments;
 		//if (hippoBeanBaseITReturnDocuments != null) {
@@ -954,53 +960,14 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		screenMode = GoGreenUtil.getEscapedParameter(request, "screenMode");
 
 		//loading Additional Beans
-		AdditionalBeans additionalBeans = this.getClass().getAnnotation(AdditionalBeans.class);
-		if (pageAction != null && (pageAction.equals(PAGE_ACTION.SHOW_ITR_SUMMARY) || pageAction.equals(PAGE_ACTION.DOWNLOAD_ITR_SUMMARY) || pageAction.equals(PAGE_ACTION.DOWNLOAD_ITR_XML) || pageAction.equals(PAGE_ACTION.EMAIL_ITR_XML_AND_SUMMARY)) ) {
-			additionalBeans = XmlGenerator.class.getAnnotation(AdditionalBeans.class);
-		}
-		boolean memberPersonalInfoLoaded = false;
-		boolean paymentLoaded = false;
-		if (additionalBeans != null && additionalBeans.additionalBeansToLoad() != null && additionalBeans.additionalBeansToLoad().length > 0 ) {
-			for (Class<? extends HippoBean> additionalBean:additionalBeans.additionalBeansToLoad()) {
-				String additionalBeanPathToLoad = baseAbsolutePathToReturnDocuments + "/" + additionalBean.getSimpleName().toLowerCase();
-				if (log.isInfoEnabled()) {
-					log.info("additionalBeanPathToLoad:" + additionalBeanPathToLoad);
-				}
-				try {
-					Object o = getObjectBeanManager(request).getObject(additionalBeanPathToLoad);
-					request.setAttribute(additionalBean.getSimpleName().toLowerCase(),o);
-					if (o instanceof MemberPersonalInformation) {
-						memberPersonalInfoLoaded = true;
-					}
-					if (o instanceof MemberPayment) {
-						paymentLoaded = true;
-					}
-				} catch (ObjectBeanManagerException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-		}
-		if (!memberPersonalInfoLoaded) {
-			try {
-				String additionalBeanPathToLoad = baseAbsolutePathToReturnDocuments + "/" + MemberPersonalInformation.class.getSimpleName().toLowerCase();
-				Object o = getObjectBeanManager(request).getObject(additionalBeanPathToLoad);
-				request.setAttribute( MemberPersonalInformation.class.getSimpleName().toLowerCase(),o);
-			}catch (Exception ex) {
-				log.warn("Trying to load member personal info failed ...",ex);
-			}
+		loadAllBeansUnderTheMemberPanFolder(request, response);
+		//time has come to reset the ITReturnType and other variables
+		String keyToMemberPersonalInformation = MemberPersonalInformation.class.getSimpleName().toLowerCase(); 
+		if (mapOfAllBeans != null && mapOfAllBeans.containsKey(keyToMemberPersonalInformation)) {
+			MemberPersonalInformation memberPersonalInformation = (MemberPersonalInformation) mapOfAllBeans.get(keyToMemberPersonalInformation);
+			itReturnType = ITReturnType.getByXmlStatus(memberPersonalInformation.getReturnType()); //this will determine original or revised			
 		}
 		
-		if (!paymentLoaded) {
-			try {
-				String additionalBeanPathToLoad = baseAbsolutePathToReturnDocuments + "/" + MemberPayment.class.getSimpleName().toLowerCase();
-				Object o = getObjectBeanManager(request).getObject(additionalBeanPathToLoad);
-				request.setAttribute( MemberPayment.class.getSimpleName().toLowerCase(),o);
-			}catch (Exception ex) {
-				log.warn("Trying to load member personal info failed ...",ex);
-			}
-		}
-
 		//lets load ValueList Beans
 		ValueListBeans valueListBeans = this.getClass().getAnnotation(ValueListBeans.class);
 		if (valueListBeans != null && valueListBeans.paths() != null && valueListBeans.paths().length > 0 ) {
@@ -2064,6 +2031,35 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		else {
 			return false;
 		}
+	}
+	
+	/**
+	 * 
+	 * @param request
+	 * @param response
+	 * @param pathToTheItReturn
+	 */
+	protected void loadAllBeansUnderTheMemberPanFolder(HstRequest request,HstResponse response) {
+		HippoBean scopeForAllBeans =  getSiteContentBaseBean(request).getBean(baseRelPathToReturnDocuments);
+		HstQuery hstQuery;
+		try {
+			hstQuery = getQueryManager(request).createQuery( scopeForAllBeans );
+			final HstQueryResult result = hstQuery.execute();
+			Iterator<HippoBean> itResults = result.getHippoBeans();
+			if (log.isInfoEnabled()) {
+				log.info("Now will look into all HippoDocuments under the same folder and make a copy of each");
+			}
+			for (;itResults.hasNext();) {
+				HippoBean hippoBean = itResults.next();
+				if (hippoBean instanceof HippoDocumentBean) {
+					mapOfAllBeans.put(hippoBean.getClass().getSimpleName().toLowerCase(), hippoBean);
+					request.setAttribute(hippoBean.getClass().getSimpleName().toLowerCase(), hippoBean);
+				}
+			}
+		} catch (QueryException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
 	}
 
 }

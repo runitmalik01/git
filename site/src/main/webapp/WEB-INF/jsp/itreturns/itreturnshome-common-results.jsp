@@ -13,6 +13,7 @@
 HstRequest hstRequest = (HstRequest) request;
 %>
 	<c:if test="${not empty listOfITReturnHomePageView}">
+		<div class="alert alert-info">Click on Actions->Duplicate if you want to Revise an existing return or make a copy of it</div>
 		<table class="table table-striped table-hover">
 			<tr>
 				<th>PAN</th>
@@ -30,10 +31,10 @@ HstRequest hstRequest = (HstRequest) request;
 					<c:choose>
 						<c:when test="${basePath == 'vendor'}">
 							<c:set var="additionalParam" value="/${anEntry.canonicalUUID}"/>
-							<hst:link var="baseFolderLink" path="/${basePath}/itreturn${additionalParam}/${anEntry.financialYear.displayName}/${anEntry.itReturnType.displayName}${anEntry.itrFolderSuffix}/${fn:toLowerCase(anEntry.pan)}"/>
+							<hst:link var="baseFolderLink" path="/${basePath}/itreturn${additionalParam}/${anEntry.financialYear.displayName}/${anEntry.theParentFolder}/${fn:toLowerCase(anEntry.pan)}"/>
 						</c:when>
 						<c:otherwise>
-							<hst:link var="baseFolderLink" path="/${basePath}/itreturn${additionalParam}/${anEntry.financialYear.displayName}/${anEntry.itReturnType.displayName}${anEntry.itrFolderSuffix}/${fn:toLowerCase(anEntry.pan)}"/>
+							<hst:link var="baseFolderLink" path="/${basePath}/itreturn${additionalParam}/${anEntry.financialYear.displayName}/${anEntry.theParentFolder}/${fn:toLowerCase(anEntry.pan)}"/>
 							<c:set var="additionalParam" value=""/>
 						</c:otherwise>
 					</c:choose>
@@ -60,6 +61,8 @@ HstRequest hstRequest = (HstRequest) request;
 			                <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Action <span class="caret"></span></button>
 			                <ul class="dropdown-menu">
 			                  <li><a href="${baseFolderLink}/servicerequest-itr-summary.html">Continue Filing</a></li>
+			                  <li class="divider"></li>
+			                  <li><a href="${baseFolderLink}/servicerequest-itr-copy-or-move.html">Duplicate</a></li>
 			                  <c:if test="${anEntry.ITRFormMode == 'DIY'}">
 				                  <li class="divider"></li>
 				                  <li><a href="${baseFolderLink}/servicerequest-itr-download-summary.html">Download Summary</a></li>
@@ -67,7 +70,6 @@ HstRequest hstRequest = (HstRequest) request;
 				                  <li><a href="${baseFolderLink}/servicerequest-itr-email-xml-summary.html?email=${anEntry.email}">Email Summary and XML</a></li>
 								  <c:if test="${not empty strIsOnVendorPortal && strIsOnVendorPortal =='true' && isVendor =='true'}">
 				                  	<li><a href="${baseFolderLink}/servicerequest-itr-summary.html/addpathtobulk">Add To Bulk</a></li>
-				                  	<li class="divider"></li>			                  	
 				                  </c:if>
 				              </c:if>
 			                </ul>
@@ -76,7 +78,6 @@ HstRequest hstRequest = (HstRequest) request;
 				</tr></c:if>
 			</c:forEach>
 		</table>
-
 		<c:choose>
 		  <c:when test="${docs.total eq 0}">
 		    <p id="results"><fmt:message key="search.results.noresults"/> '${query}'</p>
@@ -86,3 +87,12 @@ HstRequest hstRequest = (HstRequest) request;
 		  </c:otherwise>
 		</c:choose>
 	</c:if>
+<form method="POST" action="">
+</form>	
+<hst:element var="uiCustom" name="script">
+    <hst:attribute name="type">text/javascript</hst:attribute>
+	function s(act) {
+		$("#")
+	}
+</hst:element>
+<hst:headContribution element="${uiCustom}" category="jsInternal"/>

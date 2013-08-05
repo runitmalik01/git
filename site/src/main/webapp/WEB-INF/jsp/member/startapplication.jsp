@@ -50,9 +50,34 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 	</h4>
 	<form id="frmPersonalInfo" action="${actionUrl}" method="post"
 		name="pi">
+			<div class="row-fluid show-grid" style="font-family: arial;font-size: 11px;border: 1px dashed #ccc;">
+				<div class="span12">
+					<input type="radio" <c:if test="${not empty memberpersonalinformation && memberpersonalinformation.filingSection.xmlCode == '17'}">checked</c:if> value="revisingNoNotice" id="revisingNoNotice" name="returnTypeChoice">I am revising my return for AY ${financialYear.displayAssessmentYear} and I have already submitted my original return.
+				</div>				
+			</div>
+			<div class="row-fluid show-grid" style="font-family: arial;font-size: 11px;border: 1px dashed #ccc;">
+				<div class="span8">
+					<input type="radio" <c:if test="${not empty memberpersonalinformation && memberpersonalinformation.returnType == 'R' && not empty memberpersonalinformation.filingSection.requiresNotice}">checked</c:if> value="revisingWithNotice" id="revisingWithNotice" name="returnTypeChoice">I am revising my return in response to a notice received from the Income Tax Department and Section is 									
+				</div>								
+				<div class="span4">
+					<select name="revisingWithNoticeSection">
+						<c:forEach items="${filingSections}" var="filingSection">
+							<c:if test="${filingSection.requiresNotice}">
+								<option <c:if test="${not empty memberpersonalinformation && memberpersonalinformation.returnType == 'R' && not empty memberpersonalinformation.filingSection && memberpersonalinformation.filingSection.xmlCode == filingSection.xmlCode}">selected</c:if> value="${filingSection.xmlCode}">${fn:toUpperCase(filingSection.desc)}</option>
+							</c:if>							
+						</c:forEach>
+					</select>		
+				</div>
+			</div>			
+			<div class="row-fluid show-grid" style="font-family: arial;font-size: 11px;border: 1px dashed #ccc;">
+				<div class="span8">
+					<input  <c:if test="${empty memberpersonalinformation || memberpersonalinformation.returnType == 'O'}">checked</c:if> type="radio" value="originalReturn" id="originalReturn" name="returnTypeChoice">None of the above (This is my first return for assessment year ${financialYear.displayAssessmentYear} )
+				</div>							
+			</div>
 		<fieldset>
 			<legend>Filing Status</legend>
 			<div class="row-fluid show-grid">
+				<%--
 				<div class="span3">
 					<div class="rowlabel">
 						<label><small>Filing Section<span style="color: red">*</span>
@@ -78,7 +103,8 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 							</c:forEach>	
 						</select>
 					</div>
-				</div>			
+				</div>		
+				 --%>	
 				<div class="span4">
 					<div class="rowlabel">
 						<label><small><fmt:message
@@ -118,72 +144,72 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 
 				</div>
 			</div>
-		</fieldset>
-		<c:if test="${itReturnType.displayName == 'revised'}">
-			<fieldset id="ul_revised" class="revised_v original_h">
-				<legend>Revised Return Details</legend>
-				<div class="row-fluid show-grid" id="ul_revised_input">
-					<div class="span3">
-						<div class="rowlabel">
-							<label for="ack_no"><small>Original Ack No</small> </label>
-						</div>
-						<div class="rowlabel">
-							<input id="ack_no" name="ack_no"
-								value="${parentBean.originalAckNo}"
-								placeholder="Enter Original Ack No" type="text" maxlength="15"/>
-						</div>
+		</fieldset>		
+		<fieldset id="ul_revised" class="revised_v original_h" style="<c:if test="${empty memberpersonalinformation || memberpersonalinformation.returnType == 'O'}">display: none;</c:if>">
+			<legend>Revised Return Details</legend>
+			<div class="row-fluid show-grid" id="ul_revised_input">
+				<div class="span3">
+					<div class="rowlabel">
+						<label for="ack_no"><small>Original Ack No</small> </label>
 					</div>
-					<div class="span2">
-						<div class="rowlabel" id="ack_date_label">
-							<label for="ack_date"><small>Original Ack Date</small> </label>
-						</div>
-						<div class="rowlabel">
-							<input id="ack_date" name="ack_date" placeholder="Enter Ack Date"
-								type="text" maxlength="10"
-								value="<c:if test="${not empty parentBean.ackDateStr}"><c:out value="${parentBean.ackDateStr}"/></c:if>" />
-						</div>
-					</div>
-					<div class="span2">
-						<div class="rowlabel">
-							<label for="defective"><small><abbr
-									title="Defective Return (U/s-139)">Defective?</abbr> </small> </label>
-						</div>
-						<div class="rowlabel">
-							<select id="defective" name="defective" class="uprcase"><option value="">Select</option>
-								<option value="N"
-									<c:if test="${not empty parentBean.defective && parentBean.defective =='N'}">selected</c:if>>No</option>
-								<option value="Y"
-									<c:if test="${not empty parentBean.defective && parentBean.defective =='Y'}">selected</c:if>>Yes</option>
-							</select>
-						</div>
-					</div>
-					<div class="span3 defective_Y_v defective_N_h"
-						style="display: none">
-						<div class="rowlabel">
-							<label for="notice_no"><small>Notice No(U/s-139)</small>
-							</label>
-						</div>
-						<div class="rowlabel">
-							<input id="notice_no" name="notice_no"
-								value="${parentBean.noticeNo}" placeholder="Enter Notice No"
-								type="text" maxlength="30"/>
-						</div>
-					</div>
-					<div class="span2 defective_Y_v defective_N_h"
-						style="display: none">
-						<div class="rowlabel">
-							<label for="notice_date"><small>Notice
-									Date(U/s-139)</small> </label>
-						</div>
-						<div class="rowlabel">
-							<input id="notice_date" name="notice_date"
-								value="${parentBean.noticeDateStr}" maxlength="10"
-								placeholder="Enter Notice Date" type="text" />
-						</div>
+					<div class="rowlabel">
+						<input id="ack_no" name="ack_no"
+							value="${parentBean.originalAckNo}"
+							placeholder="Enter Original Ack No" type="text" maxlength="15"/>
 					</div>
 				</div>
-			</fieldset>
-		</c:if>
+				<div class="span2">
+					<div class="rowlabel" id="ack_date_label">
+						<label for="ack_date"><small>Original Ack Date</small> </label>
+					</div>
+					<div class="rowlabel">
+						<input id="ack_date" name="ack_date" placeholder="Enter Ack Date"
+							type="text" maxlength="10"
+							value="<c:if test="${not empty parentBean.ackDateStr}"><c:out value="${parentBean.ackDateStr}"/></c:if>" />
+					</div>
+				</div>
+				<%--
+				<div class="span2">
+					<div class="rowlabel">
+						<label for="defective"><small><abbr
+								title="Defective Return (U/s-139)">Defective?</abbr> </small> </label>
+					</div>
+					<div class="rowlabel">
+						<select id="defective" name="defective" class="uprcase"><option value="">Select</option>
+							<option value="N"
+								<c:if test="${not empty parentBean.defective && parentBean.defective =='N'}">selected</c:if>>No</option>
+							<option value="Y"
+								<c:if test="${not empty parentBean.defective && parentBean.defective =='Y'}">selected</c:if>>Yes</option>
+						</select>
+					</div>
+				</div>
+				 --%>
+				<div class="span3 defective_Y_v defective_N_h"
+					style="display: none">
+					<div class="rowlabel">
+						<label for="notice_no"><small>Notice No(U/s-139)</small>
+						</label>
+					</div>
+					<div class="rowlabel">
+						<input id="notice_no" name="notice_no"
+							value="${parentBean.noticeNo}" placeholder="Enter Notice No"
+							type="text" maxlength="30"/>
+					</div>
+				</div>
+				<div class="span2 defective_Y_v defective_N_h"
+					style="display: none">
+					<div class="rowlabel">
+						<label for="notice_date"><small>Notice
+								Date(U/s-139)</small> </label>
+					</div>
+					<div class="rowlabel">
+						<input id="notice_date" name="notice_date"
+							value="${parentBean.noticeDateStr}" maxlength="10"
+							placeholder="Enter Notice Date" type="text" />
+					</div>
+				</div>
+			</div>
+		</fieldset>
 		<fieldset>
 			<legend>
 				<c:out value="${filingStatus}" />
@@ -768,9 +794,13 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 				value="<c:choose><c:when test="${not empty parentBean && not empty parentBean.returnSection}"><c:out value="${parentBean.returnSection}"/></c:when><c:otherwise><c:if test="${not empty savedValuesFormMap && not empty savedValuesFormMap.value['ReturnSection']}"><c:out value="${savedValuesFormMap.value['ReturnSection'].value}"/></c:if></c:otherwise></c:choose>"
 				type="hidden" /> 
 				--%>
+				<%-- comment out --%>
+				<%--
 				<input id="pi_return_type" name="pi_return_type"
 				value="<c:choose><c:when test="${not empty parentBean && not empty parentBean.returnType}"><c:out value="${parentBean.returnType}"/></c:when><c:otherwise><c:out value="${itReturnType.xmlStatus}"/></c:otherwise></c:choose>"
-				type="hidden" /> <input id="fy" name="fy"
+				type="hidden" /> 
+				 --%>
+				<input id="fy" name="fy"
 				value="<c:choose><c:when test="${not empty parentBean && not empty parentBean.financialYear}"><c:out value="${parentBean.financialYear}"/></c:when><c:otherwise><c:if test="${not empty savedValuesFormMap && not empty savedValuesFormMap.value['fy']}"><c:out value="${savedValuesFormMap.value['fy'].value}"/></c:if></c:otherwise></c:choose>"
 				type="hidden" />
 			<%-- <input id="ack_no" name="ack_no" value="<c:choose><c:when test="${not empty parentBean&&parentBean.originalAckNo}"><c:out value="${parentBean.originalAckNo}"/></c:when><c:when test="${not empty savedValuesFormMap && not empty savedValuesFormMap.value['ack_no']}"><c:out value="${savedValuesFormMap.value['ack_no'].value}"/></c:when></c:choose>" type="hidden"/>
@@ -845,15 +875,27 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 <res:client-validation
 	screenConfigurationDocumentName="startapplication"
 	formId="frmPersonalInfo" formSubmitButtonId="hrefLogin"></res:client-validation>
-<hst:element var="uiCustom" name="script">
+	<hst:element var="uiCustom" name="script">
 	<hst:attribute name="type">text/javascript</hst:attribute>
-		<%--
-	   <c:if test="${not empty isDuplicate && isDuplicate == 'true'}">
         	$(document).ready( function() {
-        		$("#myModal").modal({'show':true});
+        		$("#revisingNoNotice,#revisingWithNotice,#originalReturn").click ( function() {
+        			var v= ($(this).val());
+        			if (v.indexOf("revis") == 0) {
+        				$("#ul_revised").show();
+        				if (v == 'revisingWithNotice' ) {
+        					$('.defective_Y_v').show();
+							$('.defective_Y_h').hide();
+						}
+						else {						
+							$('.defective_N_h').hide();
+							$('.defective_N_v').show();
+						}
+        			}
+        			else {
+        				$("#ul_revised").hide();        				
+        			}
+        		});
         	});
-        </c:if>
-         --%>
 		var mapOfItrFormWhoCanAndWhoCan = {};
 		var mapOfItrFormWhoCanAndWhoCannot = {};
 		var mapOfFilingMode = {};
@@ -1022,7 +1064,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 			  var str = "";
 			  $("ul option:selected").each(function () {
 			            str += $(this).text() + " ";
-			  });
+			  });			  
 			});
 			$('#pi_state').change(function(){
 			if($('#pi_state').val()=='99'){
@@ -1034,7 +1076,8 @@ request.setAttribute("objHashMapstates", objHashMapstates);
                     }
 			});
 			$('#bd_bank_name').tooltip('data-toggle');
-				$("#pi_first_name").popover({'trigger':'focus'});
+			$("#pi_first_name").popover({'trigger':'focus'});
+			
 		});
 	    function getautoState(){
 	        var option=document.getElementById("pi_state");
@@ -1044,6 +1087,6 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 	         }else{
               	$("#pi_country").val("");
               	 }
-              	  }       
+        }           
 </hst:element>
 <hst:headContribution element="${uiCustom}" category="jsInternal" />

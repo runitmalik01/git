@@ -83,6 +83,7 @@ import com.mootly.wcm.beans.compound.HouseIncomeDetail;
 import com.mootly.wcm.beans.compound.SalaryIncomeDetail;
 import com.mootly.wcm.beans.compound.SelfAssesmentTaxDetail;
 import com.mootly.wcm.beans.compound.TdsOthersDetail;
+import com.mootly.wcm.model.FilingSection;
 import com.mootly.wcm.model.FinancialYear;
 import com.mootly.wcm.model.deduction.DeductionHead;
 import com.mootly.wcm.model.deduction.DeductionSection;
@@ -632,8 +633,23 @@ public class ITR1XmlGeneratorService {
 		if(memberPersonalInformation.getWard_circle()!=null){
 			filingstatus.setDesigOfficerWardorCircle(memberPersonalInformation.getWard_circle());
 		}
-		filingstatus.setReturnFileSec(Long.parseLong(memberPersonalInformation.getReturnSection()));
+		//This is very tricky and based on return type and the due date
+		//filingstatus.setReturnFileSec(Long.parseLong(memberPersonalInformation.getReturnSection()));
+		//Change Amit P -- Make the entire code now independent of the URL itReturType and dynamically calculate
 		filingstatus.setReturnType(memberPersonalInformation.getReturnType());
+		if (memberPersonalInformation.getReturnType().equalsIgnoreCase("O")) { //original return the section will be dcided of the due is not
+			boolean isPastDue = financialYear.isPastDue(memberPersonalInformation.getSelectedITRForm(), memberPersonalInformation.getState());
+			if (isPastDue) {
+				filingstatus.setReturnFileSec(Long.valueOf( FilingSection.AfterDueDate_139_4.getXmlCode() ));
+			}
+			else {
+				filingstatus.setReturnFileSec(Long.valueOf( FilingSection.BeforeDueDate_139_1.getXmlCode() ));
+			}
+		}
+		else {
+			filingstatus.setReturnFileSec(Long.parseLong(memberPersonalInformation.getReturnSection()));
+		}
+		//the tricky changes end
 		filingstatus.setResidentialStatus(memberPersonalInformation.getResidentCategory());
 		filingstatus.setPortugeseCC5A(memberPersonalInformation.getPortugesecivil());
 

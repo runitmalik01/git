@@ -39,7 +39,8 @@
   <bean id="itrValidationChain" class="com.mootly.wcm.validation.impl.itr.ITRValidatorChain">
       <constructor-arg>
                 <list>
-                    <ref bean="itrValidationForSectionAndDueDate"/>                    
+                    <!-- commented out a major change no need for now for this -->
+                   <!--  <ref bean="itrValidationForSectionAndDueDate"/>  -->                    
                 </list>
       </constructor-arg>
   </bean>
