@@ -27,6 +27,7 @@ import static com.mootly.wcm.utils.Constants.PAN_SPOUSE;
 import static com.mootly.wcm.utils.Constants.CAPITAL_GAINS;
 import static com.mootly.wcm.utils.Constants.HOUSE_PROPERTY;
 import static com.mootly.wcm.utils.Constants.OTHER_SOURCES;
+import static com.mootly.wcm.utils.Constants.INCOMETOTAL;
 
 import org.hippoecm.hst.component.support.forms.FormMap;
 import org.hippoecm.hst.content.beans.ContentNodeBinder;
@@ -56,6 +57,7 @@ public class ScheduleFiveADocument extends BaseDocument implements ContentNodeBi
 	private Double house_property;
 	private Double capital_gains ;
 	private Double other_sources;
+	private Double total;
 	
 	private String personalInfoUuid;
 	private boolean markedForDeletion;
@@ -89,7 +91,10 @@ public class ScheduleFiveADocument extends BaseDocument implements ContentNodeBi
     	if (other_sources == null) other_sources = getProperty(OTHER_SOURCES);
     	return other_sources;
     }
-   
+    public Double getTotal() {
+    	if (total == null) total = getProperty(INCOMETOTAL);
+    	return total;
+    }
  
 	public final void setName_Spouse(String name_spouse) {
 		this.name_spouse = name_spouse;
@@ -107,7 +112,9 @@ public class ScheduleFiveADocument extends BaseDocument implements ContentNodeBi
 	public final void setOther_Sources(Double other_sources) {
 		this.other_sources = other_sources;
 	}
-	
+	public final void setTotal(Double total) {
+		this.total = total;
+	}
 		public final String getPersonalInfoUuid() {
 			return personalInfoUuid;
 		}
@@ -127,7 +134,7 @@ public class ScheduleFiveADocument extends BaseDocument implements ContentNodeBi
 			node.setProperty(HOUSE_PROPERTY,scheduleFiveADocument.getHouse_Property());
 			node.setProperty(CAPITAL_GAINS,scheduleFiveADocument.getCapital_Gains());
 			node.setProperty(OTHER_SOURCES,scheduleFiveADocument.getOther_Sources());
-			
+			node.setProperty(INCOMETOTAL, scheduleFiveADocument.getTotal());
 			
 	    	
 
@@ -165,7 +172,11 @@ public class ScheduleFiveADocument extends BaseDocument implements ContentNodeBi
 			double otherSources=Double.parseDouble(strOs);
 			setOther_Sources(otherSources);
 		}
-		
+		if ( formMap.getField("total") != null) {
+			String strTotal=formMap.getField("total").getValue();
+			double Total=Double.parseDouble(strTotal);
+			setTotal(Total);
+		}
 		
 		
 		
