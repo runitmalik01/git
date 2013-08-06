@@ -26,7 +26,7 @@
 									key="schedule5a.name.spouse.itr2" /> </small> </label>
 					</div>
 					<div class="rowlabel">
-						<input id="name_spouse" name="name_spouse" type="text" value="" />
+						<input id="name_spouse" name="name_spouse" type="text" value="${parentBean.name_Spouse}" />
 					</div>
 				</div>
 				<div class="span4">
@@ -36,7 +36,7 @@
 					</div>
 					<div class="rowlabel">
 						<input id="pan_spouse" name="pan_spouse" type="text"
-							maxlength="10" class="uprcase" value="" />
+							maxlength="10" class="uprcase" value="${parentBean.pan_Spouse}" />
 					</div>
 				</div>
 				<div class="span4">
@@ -46,7 +46,7 @@
 					</div>
 					<div class="rowlabel">
 						<input id="house_property" name="house_property" type="text"
-							maxlength="14" class="decimal" value="" />
+							maxlength="14" class="decimal" value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.house_Property}" />" />
 					</div>
 				</div>
 			</div>
@@ -59,7 +59,7 @@
 					</div>
 					<div class="rowlabel">
 						<input id="capital_gains" name="capital_gains" type="text"
-							maxlength="14" class="decimal" value="" />
+							maxlength="14" class="decimal" value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.capital_Gains}" />" />
 					</div>
 				</div>
 				<div class="span4">
@@ -69,20 +69,19 @@
 					</div>
 					<div class="rowlabel">
 						<input id="other_sources" name="other_sources" type="text"
-							maxlength="14" class="decimal" value="" />
+							maxlength="14" class="decimal" value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.other_Sources}" />" />
 					</div>
 				</div>
 			</div>
 		</fieldset>
 		<div class="row-fluid show-grid">
 			<div class="span4 offset8 decimal">
-				<a href="${scriptName}"
-					class="btn btn-danger" style="color: black">Cancel</a>&nbsp; <a
-					id="myModalHrefTdsOther" role="button" class="btn btn-success"
+				<a href="${scriptName}" class="btn btn-danger" style="color: black">Cancel</a>&nbsp;
+				<a id="myModalHrefschedule5a" role="button" class="btn btn-success"
 					style="color: black">Save</a>
 			</div>
 		</div>
-		<input type="submit">
+
 	</form>
 </div>
 
@@ -90,6 +89,6 @@
 
 <res:client-validation formId="frmschedule5a"
 	screenConfigurationDocumentName="schedule5a"
-	formSubmitButtonId="myModalHrefschedule5a"/>
-	
-	
+	formSubmitButtonId="myModalHrefschedule5a" />
+
+
