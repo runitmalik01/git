@@ -412,3 +412,6 @@ orderable
 [mootlywcm:sequence]
   mixin
   - mootlywcm:nextId (long) mandatory
+
+[mootlywcm:schedulefiveadocument] > hippostd:relaxed, mootlywcm:basedocument
+  orderable
