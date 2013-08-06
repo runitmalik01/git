@@ -18,7 +18,7 @@ import com.mootly.wcm.components.ITReturnComponent;
  * Description:It will taje value from Tdsfromsalary.jsp and pass it to bean
  */
 @PrimaryBean(primaryBeanClass=ScheduleFiveADocument.class)
-@FormFields(fieldNames={"name_spouse","pan_spouse","capital_gains","other_sources","house_property"})
+@FormFields(fieldNames={"name_spouse","pan_spouse","capital_gains","other_sources","house_property","total"})
 public class Schedule5A extends ITReturnComponent {
 
 	private static final Logger log = LoggerFactory.getLogger(TdsFromSalary.class);
