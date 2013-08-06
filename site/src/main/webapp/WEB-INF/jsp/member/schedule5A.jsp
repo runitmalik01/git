@@ -71,6 +71,18 @@
 						<input id="other_sources" name="other_sources" type="text"
 							maxlength="14" class="decimal" value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.other_Sources}" />" />
 					</div>
+					
+				</div>
+				<div class="span4">
+					<div class="rowlabel">
+						<label for="total"><small><fmt:message
+									key="schedule5a.total.itr2" /> </small> </label>
+					</div>
+					<div class="rowlabel">
+						<input id="total" name="total" type="text"
+							maxlength="14" class="decimal" value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.total}" />" />
+					</div>
+					
 				</div>
 			</div>
 		</fieldset>
@@ -86,7 +98,7 @@
 </div>
 
 
-
+<res:calc screenCalc="schedulefivea" formId="frmschedule5a"></res:calc>
 <res:client-validation formId="frmschedule5a"
 	screenConfigurationDocumentName="schedule5a"
 	formSubmitButtonId="myModalHrefschedule5a" />
