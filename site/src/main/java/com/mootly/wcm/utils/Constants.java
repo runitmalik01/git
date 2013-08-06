@@ -232,6 +232,11 @@ public interface Constants {
 	String NAME_ACHOLDER="mootlywcm:name_accountholder";
 	String ACCOUNT_NUMBER="mootlywcm:account_number";
 	
+	String NAME_SPOUSE="mootlywcm:name_spouse";
+	String PAN_SPOUSE="mootlywcm:pan_spouse";
+	String HOUSE_PROPERTY="mootlywcm:house_property";
+	String CAPITAL_GAINS="mootlywcm:capital_gains";
+	String OTHER_SOURCES="mootlywcm:other_sources";
 	
 	
 
