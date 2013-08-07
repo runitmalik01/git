@@ -1493,7 +1493,7 @@
     <sv:value>5cd272a8-ee4b-4240-9a80-69cb5d275875</sv:value>
   </sv:property>
   <sv:property sv:name="hst:componentclassname" sv:type="String">
-    <sv:value>com.mootly.wcm.member.Schedule5A</sv:value>
+    <sv:value>com.mootly.wcm.member.Sch5A</sv:value>
   </sv:property>
   <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String"/>
   <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String"/>
