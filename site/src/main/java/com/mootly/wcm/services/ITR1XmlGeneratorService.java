@@ -107,7 +107,7 @@ public class ITR1XmlGeneratorService {
 		Map<String,String[]> requestParameterMap = new HashMap<String, String[]>(); //not being used any where
 		GregorianCalendar globalIndianGregorianCalendar = ITRXmlGeneratorServiceCommon.getCurrentDateInIndiaAsDate();
 		boolean isDueDate = ITRXmlGeneratorServiceCommon.getDueDate();
-		String CurrentDate = ITRXmlGeneratorServiceCommon.getCurrentDateInIndiaAsString();
+		String currentDate = ITRXmlGeneratorServiceCommon.getCurrentDateInIndiaAsString();
 
 		MemberPersonalInformation memberPersonalInformation = (MemberPersonalInformation) inputBeans.get(MemberPersonalInformation.class.getSimpleName().toLowerCase());
 		SalaryIncomeDocument salaryIncomeDocument = (SalaryIncomeDocument) inputBeans.get(SalaryIncomeDocument.class.getSimpleName().toLowerCase());
