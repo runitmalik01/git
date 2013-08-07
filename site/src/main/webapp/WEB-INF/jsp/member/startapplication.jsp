@@ -878,23 +878,15 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 	<hst:element var="uiCustom" name="script">
 	<hst:attribute name="type">text/javascript</hst:attribute>
         	$(document).ready( function() {
-        	    $("#NoticeSection").hide();
-        	    <c:if test="${not empty memberpersonalinformation && memberpersonalinformation.returnType == 'O' &&
-        	    not empty memberpersonalinformation.filingSection && memberpersonalinformation.filingSection.xmlCode != '11'
-        	    && memberpersonalinformation.filingSection.xmlCode != '12'}">
-        	     $("#NoticeSection").show();
-        	     </c:if>
         		$("#revisingNoNotice,#revisingWithNotice,#originalReturn").click ( function() {
         			var v= ($(this).val());
         			$("#ul_revised").hide();
         			if(v == 'revisingNoNotice') {
-        			        $("#NoticeSection").hide();
 						    $("#ul_revised").show();
 							$('.defective_N_h').hide();
 							$('.defective_N_v').show();
 							$("#ackdate").show();
         			}else if(v == 'revisingWithNotice'){
-        			          $("#NoticeSection").show();
         			          $("#revisingWithNoticeSection").change(function(){
         			          if($("#revisingWithNoticeSection").val() == '18'){
         			               $("#ul_revised").show();
@@ -915,7 +907,6 @@ request.setAttribute("objHashMapstates", objHashMapstates);
         			            }
         			}else {
         				$("#ul_revised").hide();
-        				$("#NoticeSection").hide();
         			}
         		});
         	});
