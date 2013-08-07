@@ -53,26 +53,26 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 			<div class="row-fluid show-grid" style="font-family: arial;font-size: 11px;border: 1px dashed #ccc;">
 				<div class="span12">
 					<input type="radio" <c:if test="${not empty memberpersonalinformation && memberpersonalinformation.filingSection.xmlCode == '17'}">checked</c:if> value="revisingNoNotice" id="revisingNoNotice" name="returnTypeChoice">I am revising my return for AY ${financialYear.displayAssessmentYear} and I have already submitted my original return.
-				</div>				
+				</div>
 			</div>
 			<div class="row-fluid show-grid" style="font-family: arial;font-size: 11px;border: 1px dashed #ccc;">
 				<div class="span8">
-					<input type="radio" <c:if test="${not empty memberpersonalinformation && memberpersonalinformation.returnType == 'R' && not empty memberpersonalinformation.filingSection.requiresNotice}">checked</c:if> value="revisingWithNotice" id="revisingWithNotice" name="returnTypeChoice">I am revising my return in response to a notice received from the Income Tax Department and Section is 									
-				</div>								
-				<div class="span4">
-					<select name="revisingWithNoticeSection">
+					<input type="radio" <c:if test="${not empty memberpersonalinformation && memberpersonalinformation.returnType == 'O' && not empty memberpersonalinformation.filingSection.requiresNotice}">checked</c:if> value="revisingWithNotice" id="revisingWithNotice" name="returnTypeChoice">I am revising my return in response to a notice received from the Income Tax Department and Section is
+				</div>
+				<div class="span4" id="NoticeSection">
+					<select name="revisingWithNoticeSection" id="revisingWithNoticeSection">
 						<c:forEach items="${filingSections}" var="filingSection">
 							<c:if test="${filingSection.requiresNotice}">
-								<option <c:if test="${not empty memberpersonalinformation && memberpersonalinformation.returnType == 'R' && not empty memberpersonalinformation.filingSection && memberpersonalinformation.filingSection.xmlCode == filingSection.xmlCode}">selected</c:if> value="${filingSection.xmlCode}">${fn:toUpperCase(filingSection.desc)}</option>
-							</c:if>							
+								<option <c:if test="${not empty memberpersonalinformation && memberpersonalinformation.returnType == 'O' && not empty memberpersonalinformation.filingSection && memberpersonalinformation.filingSection.xmlCode == filingSection.xmlCode}">selected</c:if> value="${filingSection.xmlCode}">${fn:toUpperCase(filingSection.desc)}</option>
+							</c:if>
 						</c:forEach>
-					</select>		
+					</select>
 				</div>
-			</div>			
+			</div>
 			<div class="row-fluid show-grid" style="font-family: arial;font-size: 11px;border: 1px dashed #ccc;">
 				<div class="span8">
-					<input  <c:if test="${empty memberpersonalinformation || memberpersonalinformation.returnType == 'O'}">checked</c:if> type="radio" value="originalReturn" id="originalReturn" name="returnTypeChoice">None of the above (This is my first return for assessment year ${financialYear.displayAssessmentYear} )
-				</div>							
+					<input  <c:if test="${empty memberpersonalinformation || memberpersonalinformation.returnType == 'O' && not empty memberpersonalinformation.filingSection && memberpersonalinformation.filingSection.xmlCode == '11' ||  memberpersonalinformation.filingSection.xmlCode == '12'}">checked</c:if> type="radio" value="originalReturn" id="originalReturn" name="returnTypeChoice">None of the above (This is my first return for assessment year ${financialYear.displayAssessmentYear} )
+				</div>
 			</div>
 		<fieldset>
 			<legend>Filing Status</legend>
@@ -100,11 +100,11 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 								<c:if test="${filingSection.itReturnType.xmlStatus == itReturnType.xmlStatus}">
 									<option  <c:if test="${not empty returnSection && filingSection.xmlCode == returnSection}">selected</c:if> value="${filingSection.xmlCode}">${fn:toUpperCase(filingSection.displayString)}</option>
 								</c:if>
-							</c:forEach>	
+							</c:forEach>
 						</select>
 					</div>
-				</div>		
-				 --%>	
+				</div>
+				 --%>
 				<div class="span4">
 					<div class="rowlabel">
 						<label><small><fmt:message
@@ -144,11 +144,11 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 
 				</div>
 			</div>
-		</fieldset>		
+		</fieldset>
 		<fieldset id="ul_revised" class="revised_v original_h" style="<c:if test="${empty memberpersonalinformation || memberpersonalinformation.returnType == 'O'}">display: none;</c:if>">
 			<legend>Revised Return Details</legend>
 			<div class="row-fluid show-grid" id="ul_revised_input">
-				<div class="span3">
+				<div class="span3" id="ackNo">
 					<div class="rowlabel">
 						<label for="ack_no"><small>Original Ack No</small> </label>
 					</div>
@@ -158,7 +158,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 							placeholder="Enter Original Ack No" type="text" maxlength="15"/>
 					</div>
 				</div>
-				<div class="span2">
+				<div class="span2" id="ackdate">
 					<div class="rowlabel" id="ack_date_label">
 						<label for="ack_date"><small>Original Ack Date</small> </label>
 					</div>
@@ -184,7 +184,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 					</div>
 				</div>
 				 --%>
-				<div class="span3 defective_Y_v defective_N_h"
+				<div class="span3 defective_Y_v defective_N_h" id="noticeNo"
 					style="display: none">
 					<div class="rowlabel">
 						<label for="notice_no"><small>Notice No(U/s-139)</small>
@@ -196,7 +196,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 							type="text" maxlength="30"/>
 					</div>
 				</div>
-				<div class="span2 defective_Y_v defective_N_h"
+				<div class="span2 defective_Y_v defective_N_h" id="noticeDate"
 					style="display: none">
 					<div class="rowlabel">
 						<label for="notice_date"><small>Notice
@@ -615,9 +615,9 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 				<div class="span2">
 					<div class="rowlabel"><label for="filingMode"><small><abbr title="Choose eFile if you want to do it yourself. eZFile lets you upload documents to Wealth4India and then let Wealth4India prepare the tax return for you.">Mode</abbr>&nbsp;<a href='<hst:link siteMapItemRefId="serviceprice"/>'>Help</a></small></label></div>
 				</div>
-			</div>			
+			</div>
 			<div class="row-fluid show-grid">
-				<div class="span2">					
+				<div class="span2">
 					<select id="flex_string_ITRForm" name="flex_string_ITRForm">
 						<c:forEach items="${filingStatus.possibleITRForms}" var="itrForm">
 							<option <c:if test="${parentBean.selectedITRForm == itrForm}">selected</c:if> value="${itrForm}"><fmt:message key="${itrForm}.packageName"></fmt:message></option>
@@ -634,7 +634,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 					<div style="font-size:small" id="filingMode">
 						<input type="hidden" id="hidden_flex_string_ITRServiceDelivery" name="hidden_flex_string_ITRServiceDelivery" value="${parentBean.selectedServiceDeliveryOption}">
 						<select name="flex_string_ITRServiceDelivery" id="flex_string_ITRServiceDelivery">
-							
+
 						</select>
 					</div>
 				</div>
@@ -787,18 +787,18 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 		<div id="itreturnHomepage" style="display: none; visiblity: hidden">
 			<input id="pan" name="pan"
 				value="<c:choose><c:when test="${not empty parentBean && not empty parentBean.PAN}"><c:out value="${parentBean.PAN}"/></c:when><c:otherwise><c:if test="${not empty savedValuesFormMap && not empty savedValuesFormMap.value['pan']}"><c:out value="${savedValuesFormMap.value['pan'].value}"/></c:if></c:otherwise></c:choose>"
-				type="hidden" /> 
+				type="hidden" />
 				<%-- comment out and let user change it --%>
 				<%--
 				<input id="ReturnSection" name="ReturnSection"
 				value="<c:choose><c:when test="${not empty parentBean && not empty parentBean.returnSection}"><c:out value="${parentBean.returnSection}"/></c:when><c:otherwise><c:if test="${not empty savedValuesFormMap && not empty savedValuesFormMap.value['ReturnSection']}"><c:out value="${savedValuesFormMap.value['ReturnSection'].value}"/></c:if></c:otherwise></c:choose>"
-				type="hidden" /> 
+				type="hidden" />
 				--%>
 				<%-- comment out --%>
 				<%--
 				<input id="pi_return_type" name="pi_return_type"
 				value="<c:choose><c:when test="${not empty parentBean && not empty parentBean.returnType}"><c:out value="${parentBean.returnType}"/></c:when><c:otherwise><c:out value="${itReturnType.xmlStatus}"/></c:otherwise></c:choose>"
-				type="hidden" /> 
+				type="hidden" />
 				 --%>
 				<input id="fy" name="fy"
 				value="<c:choose><c:when test="${not empty parentBean && not empty parentBean.financialYear}"><c:out value="${parentBean.financialYear}"/></c:when><c:otherwise><c:if test="${not empty savedValuesFormMap && not empty savedValuesFormMap.value['fy']}"><c:out value="${savedValuesFormMap.value['fy'].value}"/></c:if></c:otherwise></c:choose>"
@@ -828,8 +828,8 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 				</div>
 				<div class="span3">
 					<div class="rowlabel"><label for="whoCannot1" style="text-decoration: underline;" ><small><abbr title="You can name your own price for this service">Name your price</abbr></small></label></div>
-				</div>				
-			</div>					
+				</div>
+			</div>
 			<div class="row-fluid show-grid">
 				<div class="span2">
 					<select id="flex_string_ITRForm" name="flex_string_ITRForm">
@@ -878,24 +878,48 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 	<hst:element var="uiCustom" name="script">
 	<hst:attribute name="type">text/javascript</hst:attribute>
         	$(document).ready( function() {
+        	    $("#NoticeSection").hide();
+        	    <c:if test="${not empty memberpersonalinformation && memberpersonalinformation.returnType == 'O' &&
+        	    not empty memberpersonalinformation.filingSection && memberpersonalinformation.filingSection.xmlCode != '11'
+        	    && memberpersonalinformation.filingSection.xmlCode != '12'}">
+        	     $("#NoticeSection").show();
+        	     </c:if>
         		$("#revisingNoNotice,#revisingWithNotice,#originalReturn").click ( function() {
         			var v= ($(this).val());
-        			if (v.indexOf("revis") == 0) {
-        				$("#ul_revised").show();
-        				if (v == 'revisingWithNotice' ) {
-        					$('.defective_Y_v').show();
-							$('.defective_Y_h').hide();
-						}
-						else {						
+        			$("#ul_revised").hide();
+        			if(v == 'revisingNoNotice') {
+        			        $("#NoticeSection").hide();
+						    $("#ul_revised").show();
 							$('.defective_N_h').hide();
 							$('.defective_N_v').show();
-						}
-        			}
-        			else {
-        				$("#ul_revised").hide();        				
+							$("#ackdate").show();
+        			}else if(v == 'revisingWithNotice'){
+        			          $("#NoticeSection").show();
+        			          $("#revisingWithNoticeSection").change(function(){
+        			          if($("#revisingWithNoticeSection").val() == '18'){
+        			               $("#ul_revised").show();
+        					       $('.defective_Y_v').show();
+						           $('.defective_Y_h').hide();
+							       $("#ackdate").hide();
+        			          }else{
+        			              $("#ul_revised").hide();
+        			            }
+        			          });
+        			          if($("#revisingWithNoticeSection").val() == '18'){
+        			               $("#ul_revised").show();
+        					       $('.defective_Y_v').show();
+						           $('.defective_Y_h').hide();
+							       $("#ackdate").hide();
+        			          }else{
+        			              $("#ul_revised").hide();
+        			            }
+        			}else {
+        				$("#ul_revised").hide();
+        				$("#NoticeSection").hide();
         			}
         		});
         	});
+
 		var mapOfItrFormWhoCanAndWhoCan = {};
 		var mapOfItrFormWhoCanAndWhoCannot = {};
 		var mapOfFilingMode = {};
@@ -904,7 +928,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 			mapOfItrFormWhoCanAndWhoCannot['${itrForm}']=  "<fmt:message key="${itrForm}.whoCannot"></fmt:message>";
 			mapOfFilingMode['${itrForm}']=[<c:forEach varStatus="varStatus" var="filingOption" items="${itrForm.serviceDeliveryOptions}">{'key':'<c:out value="${filingOption}"/>', 'label':'<fmt:message key="ITRServiceDelivery.${filingOption}.displayName"/>'}<c:if test="${not varStatus.last}">,</c:if></c:forEach>]
 		</c:forEach>
-	
+
 		var solrField = 'text';
 		var solrExtra = '';
 		ifsc = {};
@@ -915,11 +939,11 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 			doneFunc = function(data)  {
 				var aLength = data.facet_counts.facet_fields[solrFieldFacet].length;
 			    retArr = new Array();
-			    for ( var i=0;i < aLength ;i++) {				
+			    for ( var i=0;i < aLength ;i++) {
 				if ( (i % 2) == 0 ) retArr[retArr.length] = data.facet_counts.facet_fields[solrFieldFacet][i];
 			    }
 			    process(retArr);
-			}			
+			}
 			callSolr(q,process,doneFunc);
 		}
 
@@ -929,7 +953,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 			solrExtra = "%20%2BBANK:" + $("#bnk_name_solr").val();
 			doneFunc = function(data)  {
 			    retArr = new Array();
-			    aLength = data.response.docs.length; 
+			    aLength = data.response.docs.length;
 			    for ( var i=0;i < aLength ;i++) {
 				//if ( (i % 2) == 0 ) retArr[retArr.length] = data.facet_counts.facet_fields[solrFieldFacet][i];
 				if ( (i % 2) == 0 ) {
@@ -959,7 +983,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 			else {
 				return item;
 			}
-		}	
+		}
 		function branchSelected(item) {
 			if (ifsc != null && typeof(ifsc[item]) != 'undefined') {
 				$("#flex_string_IFSCCode").val(ifsc[item]);
@@ -972,16 +996,16 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 					var sele = this.options[this.selectedIndex].value;
 					$("#whoCan").html(mapOfItrFormWhoCanAndWhoCan[sele]);
 					$("#whoCannot").html(mapOfItrFormWhoCanAndWhoCannot[sele]);
-					
+
 					//flex_string_ITRServiceDelivery
 					str = "";
 					for (var i=0;i < mapOfFilingMode[sele].length ; i++){
-						str += "<option value='" + mapOfFilingMode[sele][i].key + "'>" + mapOfFilingMode[sele][i].label + "</option>"; 
+						str += "<option value='" + mapOfFilingMode[sele][i].key + "'>" + mapOfFilingMode[sele][i].label + "</option>";
 					}
 					$("#flex_string_ITRServiceDelivery").html(str);
-					
+
 			});
-			
+
 			str = "";
 			v = $("#hidden_flex_string_ITRServiceDelivery").val();
 			//alert(v);
@@ -991,16 +1015,16 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 				for (var i=0;i < mapOfFilingMode[f].length ; i++){
 					sel = '';
 					if (v != '' && v == mapOfFilingMode[f][i].key) sel ='selected';
-					str += "<option " + sel + " value='" + mapOfFilingMode[f][i].key + "'>" + mapOfFilingMode[f][i].label + "</option>"; 
+					str += "<option " + sel + " value='" + mapOfFilingMode[f][i].key + "'>" + mapOfFilingMode[f][i].label + "</option>";
 				}
 				$("#flex_string_ITRServiceDelivery").html(str);
 			}
-			
-			
+
+
 			$("#whoCan").html(mapOfItrFormWhoCanAndWhoCan[$("#flex_string_ITRForm").val()]);
 			$("#whoCannot").html(mapOfItrFormWhoCanAndWhoCannot[$("#flex_string_ITRForm").val()]);
-			
-		
+
+
 			var options={source:callSolr_bd_bank_name,updater:bankSelected}
 			//$("#bd_bank_name").attr('autocomplete','off');  //07/20 Amit
 			//$("#bd_bank_name").typeahead(options); //07/20 Amit
@@ -1064,7 +1088,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 			  var str = "";
 			  $("ul option:selected").each(function () {
 			            str += $(this).text() + " ";
-			  });			  
+			  });
 			});
 			$('#pi_state').change(function(){
 			if($('#pi_state').val()=='99'){
@@ -1077,7 +1101,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 			});
 			$('#bd_bank_name').tooltip('data-toggle');
 			$("#pi_first_name").popover({'trigger':'focus'});
-			
+
 		});
 	    function getautoState(){
 	        var option=document.getElementById("pi_state");
@@ -1087,6 +1111,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 	         }else{
               	$("#pi_country").val("");
               	 }
-        }           
+        }
+
 </hst:element>
 <hst:headContribution element="${uiCustom}" category="jsInternal" />
