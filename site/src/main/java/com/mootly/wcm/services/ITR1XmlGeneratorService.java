@@ -457,16 +457,20 @@ public class ITR1XmlGeneratorService {
 		int year=currentdate.getYear()+1900-1;
 		int currentdatemonth = 0;
 
-		//Added on 31/07/2013 for Checking Conditions for Due Date
+		//Added on 06/08/2013 for Checking Conditions for Due Date
 		long DueDate = 0;
-		if(isDueDate){
-			DueDate = 0;
-		}else
+		boolean isPastDue = financialYear.isPastDue(memberPersonalInformation.getSelectedITRForm(), memberPersonalInformation.getState());
+		if (isPastDue) {
 			if(memberPersonalInformation.getState().equals("34")){
 				DueDate = 10;
 			}else{
 				DueDate = 7;
 			}
+		}
+		else {
+			DueDate = 0;
+		}
+
 		//end of due date selection
 
 		if(year==2012){
@@ -630,26 +634,12 @@ public class ITR1XmlGeneratorService {
 		itr1.setRefund(refund);
 
 		//Filing Status
+		// changes made on 06/08/2013 for Return Section and Return Type
 		if(memberPersonalInformation.getWard_circle()!=null){
 			filingstatus.setDesigOfficerWardorCircle(memberPersonalInformation.getWard_circle());
 		}
-		//This is very tricky and based on return type and the due date
-		//filingstatus.setReturnFileSec(Long.parseLong(memberPersonalInformation.getReturnSection()));
-		//Change Amit P -- Make the entire code now independent of the URL itReturType and dynamically calculate
 		filingstatus.setReturnType(memberPersonalInformation.getReturnType());
-		if (memberPersonalInformation.getReturnType().equalsIgnoreCase("O")) { //original return the section will be dcided of the due is not
-			boolean isPastDue = financialYear.isPastDue(memberPersonalInformation.getSelectedITRForm(), memberPersonalInformation.getState());
-			if (isPastDue) {
-				filingstatus.setReturnFileSec(Long.valueOf( FilingSection.AfterDueDate_139_4.getXmlCode() ));
-			}
-			else {
-				filingstatus.setReturnFileSec(Long.valueOf( FilingSection.BeforeDueDate_139_1.getXmlCode() ));
-			}
-		}
-		else {
-			filingstatus.setReturnFileSec(Long.parseLong(memberPersonalInformation.getReturnSection()));
-		}
-		//the tricky changes end
+		filingstatus.setReturnFileSec(Long.parseLong(memberPersonalInformation.getReturnSection()));
 		filingstatus.setResidentialStatus(memberPersonalInformation.getResidentCategory());
 		filingstatus.setPortugeseCC5A(memberPersonalInformation.getPortugesecivil());
 
@@ -661,20 +651,16 @@ public class ITR1XmlGeneratorService {
 			}else
 				filingstatus.setTaxStatus("NT");
 
-		//filingstatus.setPortugeseCC5A(memberPersonalInformation.getPortugesecivil());
-
 		if (memberPersonalInformation.getReturnType().equals("R")) {
-			filingstatus.setReceiptNo(memberPersonalInformation.getOriginalAckNo()); //added on 07/20/2013
-			//filingstatus.setAckNoOriginalReturn(memberPersonalInformation.getOriginalAckNo()); //removed on 07/20/2013 added above line
+			filingstatus.setReceiptNo(memberPersonalInformation.getOriginalAckNo());
 			filingstatus.setOrigRetFiledDate(indianCurrencyHelper.gregorianCalendar(memberPersonalInformation.getOriginalAckDate()));
-
-			if(memberPersonalInformation.getDefective().equals("Y")){
-				filingstatus.setNoticeNo(memberPersonalInformation.getNoticeNo());
-				filingstatus.setNoticeDate(indianCurrencyHelper.gregorianCalendar(memberPersonalInformation.getNoticeDate()));
-				filingstatus.setAckNoOriginalReturn(memberPersonalInformation.getReceiptNo());
-			}
 		}
-
+		if(memberPersonalInformation.getDefective().equals("Y")){
+			filingstatus.setNoticeNo(memberPersonalInformation.getNoticeNo());
+			filingstatus.setNoticeDate(indianCurrencyHelper.gregorianCalendar(memberPersonalInformation.getNoticeDate()));
+			filingstatus.setAckNoOriginalReturn(memberPersonalInformation.getOriginalAckNo());
+		}
+		// end fixing
 		itr1.setFilingStatus(filingstatus);
 		//Schedule80G
 		//Changes made in Donation80g on 25/07/2013 by Dhananjay to add two new fields(Donation Amount And Eligible Donation Amount)under each head
