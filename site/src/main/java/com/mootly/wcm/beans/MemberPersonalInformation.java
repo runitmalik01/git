@@ -68,7 +68,7 @@ import static com.mootly.wcm.utils.Constants.Rsstatus_q_no_yes_yes_yes;
 import static com.mootly.wcm.utils.Constants.Rsstatus_q_yes;
 import static com.mootly.wcm.utils.Constants.Rsstatus_q_yes_yes;
 import static com.mootly.wcm.utils.Constants.PROP_PI_WARD_CIRCLE;
-import static com.mootly.wcm.utils.Constants.PROP_PI_MOBILE1; 
+import static com.mootly.wcm.utils.Constants.PROP_PI_MOBILE1;
 import static com.mootly.wcm.utils.Constants.PROP_PI_PORTUGESE_CIVIL;
 
 import java.text.DateFormat;
@@ -87,6 +87,7 @@ import org.hippoecm.hst.content.beans.standard.HippoBean;
 
 import com.mootly.wcm.beans.standard.FlexibleDocument;
 import com.mootly.wcm.model.FilingSection;
+import com.mootly.wcm.model.FinancialYear;
 import com.mootly.wcm.model.ITRForm;
 import com.mootly.wcm.model.ITRServiceDelivery;
 
@@ -101,10 +102,10 @@ import com.mootly.wcm.model.ITRServiceDelivery;
 public class MemberPersonalInformation extends FlexibleDocument implements ContentNodeBinder,FormMapFiller {
 	static final public String NAMESPACE = "mootlywcm:MemberPersonalInformation";
 	static final public String NODE_NAME = "PersonalInformation";
-	
+
 	private String rbfilename="rstatus_";
 	private String choice="";
-	
+
 	private String employerCategory;
 	private String portugesecivil;
 	private Long returnFileSection;
@@ -165,13 +166,13 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 	private String rsstatus_q_no_yes_yes_yes;
 	private String residentCategory;
 	private String PIUUID;
-	
+
 	ResourceBundle messagesResourceBundle = ResourceBundle.getBundle("messages");
-	
+
 	//ITR1.packageName.DIY.cost
 	public String getPrice () {
 		String retValue = messagesResourceBundle.getString( getSelectedITRForm().name() + ".packageName." + getSelectedServiceDeliveryOption().name() + ".cost");
-		return retValue;		
+		return retValue;
 	}
 
 	public ITRForm getSelectedITRForm() {
@@ -187,7 +188,7 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 		}
 		return null;
 	}
-	
+
 	public ITRServiceDelivery getSelectedServiceDeliveryOption() {
 		String retValueString = getFlexField("flex_string_ITRServiceDelivery",null);
 		if (retValueString != null) {
@@ -201,7 +202,7 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 		}
 		return null;
 	}
-	
+
 	public String getTaxStatus() {
 		if (taxStatus == null) taxStatus = getProperty(PROP_PI_TAX_STATUS);
 		return taxStatus;
@@ -238,7 +239,7 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 		if (ReturnSection == null) ReturnSection = getProperty(PROP_PI_RETURN_SECTION);
 		return ReturnSection;
 	}
-	
+
 	public FilingSection getFilingSection() {
 		String strReturnSection = getReturnSection();
 		try {
@@ -246,11 +247,11 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 			return filingSection;
 		}
 		catch (IllegalArgumentException ie) {
-			return FilingSection.UNKNOWN;			
-		}		
+			return FilingSection.UNKNOWN;
+		}
 	}
-	
-	
+
+
 	public String getOriginalAckNo() {
 		if (originalAckNo == null) originalAckNo = getProperty(PROP_PI_ORIGINAL_ACK_NO);
 		return originalAckNo;
@@ -781,17 +782,31 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 		if ( formMap.getField("receipt_no") != null) setReceiptNo(formMap.getField("receipt_no").getValue());
 		if ( formMap.getField("tax_ward") != null) setIncomeTaxWard(formMap.getField("tax_ward").getValue());
 		if ( formMap.getField("portugesecivil") != null) setPortugesecivil(formMap.getField("portugesecivil").getValue());
-		//new change
+		//new changes for Return Filed under section on 06/08/2013
 		String returnTypeChoice = formMap.getField("returnTypeChoice").getValue();
 		String revisingWithNoticeSection = formMap.getField("revisingWithNoticeSection").getValue();
+		FinancialYear financialYear = FinancialYear.TwentyTweleve;
+		FilingSection filingSection;
 		//revisingWithNoticeSection")
-		FilingSection filingSection = FilingSection.BeforeDueDate_139_1;
-		if (returnTypeChoice != null && ("revisingNoNotice".equals(returnTypeChoice) || "revisingWithNotice".equals(returnTypeChoice))) {
-			setReturnType("R");
-			filingSection = FilingSection.getByXmlCode(revisingWithNoticeSection);
+		boolean isPastDue = financialYear.isPastDue(getSelectedITRForm(), formMap.getField("pi_state").getValue());
+		if (isPastDue) {
+			filingSection = FilingSection.AfterDueDate_139_4;
 		}
 		else {
-			setReturnType("O");			
+			filingSection = FilingSection.BeforeDueDate_139_1;
+		}
+
+		if (returnTypeChoice != null && ("revisingNoNotice".equals(returnTypeChoice))) {
+			setReturnType("R");
+			filingSection = FilingSection.Revised_139_5;
+
+		}else if(returnTypeChoice != null && "revisingWithNotice".equals(returnTypeChoice)){
+			setReturnType("O");
+			filingSection = FilingSection.getByXmlCode(revisingWithNoticeSection);
+
+		}
+		else {
+			setReturnType("O");
 		}
 		if (filingSection != null && filingSection == FilingSection.Revised_139_9) {
 			setDefective("Y");
@@ -825,9 +840,9 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 		if ( formMap.getField("pi_first_name") != null) setFirstName(formMap.getField("pi_first_name").getValue());
 		if ( formMap.getField("pi_last_name") != null) setLastName(formMap.getField("pi_last_name").getValue());
 		//if	(formMap.getField("ReturnSection") != null) {
-			//setReturnSection(formMap.getField("ReturnSection").getValue());
-			setReturnSection(filingSection.getXmlCode());
-			setReturnFileSection (Long.valueOf(filingSection.getXmlCode())); 
+		//setReturnSection(formMap.getField("ReturnSection").getValue());
+		setReturnSection(filingSection.getXmlCode());
+		setReturnFileSection (Long.valueOf(filingSection.getXmlCode()));
 		//}
 		if ( formMap.getField("pi_middle_name") != null) setMiddleName(formMap.getField("pi_middle_name").getValue());
 		if ( formMap.getField("pi_father_name") != null) setFatherName(formMap.getField("pi_father_name").getValue());
@@ -944,7 +959,7 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 		if(key.matches("ans_Non Resident")) return "NRI";
 		else return null;
 	}
-	
+
 	/**
 	 * This method will check if the service has been paid in full
 	 * @return
