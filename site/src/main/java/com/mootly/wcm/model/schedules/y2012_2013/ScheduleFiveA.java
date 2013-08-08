@@ -13,6 +13,7 @@ public class ScheduleFiveA {
 		this.objScheduleFiveADocument=schedule5a;
 		
 	}
+	
 	public Schedule5A scheduleFiveA(ITR itr){
 		IndianCurrencyHelper indianCurrencyHelper = new IndianCurrencyHelper();
 		Schedule5A schedule5A = new Schedule5A();
@@ -22,6 +23,7 @@ public class ScheduleFiveA {
 		schedule5A.setCapGainHeadIncome(indianCurrencyHelper.longRound(objScheduleFiveADocument.getCapital_Gains()));
 		schedule5A.setOtherSourcesHeadIncome(indianCurrencyHelper.longRound(objScheduleFiveADocument.getOther_Sources()));
 		schedule5A.setTotalHeadIncome(indianCurrencyHelper.longRound(objScheduleFiveADocument.getTotal()));
+		schedule5A.setBusHeadIncome(0);
 		return schedule5A;
 		
 		
