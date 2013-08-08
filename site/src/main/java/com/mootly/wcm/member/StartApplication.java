@@ -47,8 +47,10 @@ import com.mootly.wcm.annotations.PrimaryBean;
 import com.mootly.wcm.annotations.RequiredFields;
 import com.mootly.wcm.beans.MemberPersonalInformation;
 import com.mootly.wcm.beans.MemberSignupDocument;
+import com.mootly.wcm.beans.ScheduleFiveADocument;
 import com.mootly.wcm.components.FormSaveResult;
 import com.mootly.wcm.components.ITReturnComponent;
+import com.mootly.wcm.components.InvalidNavigationException;
 import com.mootly.wcm.model.FilingStatus;
 import com.mootly.wcm.utils.ContentStructure;
 import com.mootly.wcm.utils.GoGreenUtil;
@@ -224,6 +226,34 @@ public class StartApplication extends ITReturnComponent {
 			}		
 			sendEmail(request, null, null, null, "memberitrsrupdate", velocityContext);
 		}
+		// this is code which delete the document of schedule5adocument if portugese civil code is "No":- By Pankaj SIngh
+		String IsPortuges= getFormMap().getField("portugesecivil").getValue();
+		if(IsPortuges.equals("N")){
+			Session persistableSession= null;
+			WorkflowPersistenceManager objWorkflowPersistenceManager= null;
+			try {
+				persistableSession=getPersistableSession(request);
+				objWorkflowPersistenceManager= getWorkflowPersistenceManager(persistableSession);
+				objWorkflowPersistenceManager.setWorkflowCallbackHandler(new FullReviewedWorkflowCallbackHandler());
+				
+				String getPathSchedule5a=getAbsoluteBasePathToReturnDocuments()+"/"+ScheduleFiveADocument.class.getSimpleName().toLowerCase();
+				ScheduleFiveADocument objScheduleFiveADocument= (ScheduleFiveADocument)objWorkflowPersistenceManager.getObject(getPathSchedule5a);
+				if(objScheduleFiveADocument != null){
+					objWorkflowPersistenceManager.remove(objScheduleFiveADocument);
+				}
+			} catch (RepositoryException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (InvalidNavigationException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (ObjectBeanManagerException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
+		// end code here
 	}
 
 	@Override
