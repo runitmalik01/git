@@ -118,6 +118,9 @@ import com.mootly.wcm.model.FinancialYear;
 import com.mootly.wcm.model.ITRForm;
 import com.mootly.wcm.model.deduction.DeductionHead;
 import com.mootly.wcm.model.deduction.DeductionSection;
+import com.mootly.wcm.model.schedules.y2012_2013.CreationInformation;
+import com.mootly.wcm.model.schedules.y2012_2013.Form_ITR2;
+import com.mootly.wcm.model.schedules.y2012_2013.PartA_Gen1;
 import com.mootly.wcm.services.DeductionListService;
 import com.mootly.wcm.services.ITRXmlGeneratorServiceCommon;
 import com.mootly.wcm.services.IndianCurrencyHelper;
@@ -142,7 +145,32 @@ public class ITR2XmlGeneratorService  {
 		Map<String,Object> outputMap = new HashMap<String, Object>();
 		Map<String,String[]> requestParameterMap = new HashMap<String, String[]>(); //not being used any where
 
+		MemberPersonalInformation memberPersonalInformation = (MemberPersonalInformation) inputBeans.get(MemberPersonalInformation.class.getSimpleName().toLowerCase());
+		SalaryIncomeDocument salaryIncomeDocument = (SalaryIncomeDocument) inputBeans.get(SalaryIncomeDocument.class.getSimpleName().toLowerCase());
+		HouseProperty houseProperty = (HouseProperty) inputBeans.get(HouseProperty.class.getSimpleName().toLowerCase());
+		OtherSourcesDocument otherSourcesDocument = (OtherSourcesDocument) inputBeans.get(OtherSourcesDocument.class.getSimpleName().toLowerCase());
+		AdvanceTaxDocument advanceTaxDocument = (AdvanceTaxDocument) inputBeans.get(AdvanceTaxDocument.class.getSimpleName().toLowerCase());
+		TdsFromSalaryDocument tdsFromSalaryDocument = (TdsFromSalaryDocument) inputBeans.get(TdsFromSalaryDocument.class.getSimpleName().toLowerCase());
+		TdsFromothersDocument tdsFromothersDocument = (TdsFromothersDocument) inputBeans.get(TdsFromothersDocument.class.getSimpleName().toLowerCase());
+		SelfAssesmetTaxDocument selfAssesmetTaxDocument = (SelfAssesmetTaxDocument) inputBeans.get(SelfAssesmetTaxDocument.class.getSimpleName().toLowerCase());
+		DeductionDocument deductionDocument = (DeductionDocument) inputBeans.get(DeductionDocument.class.getSimpleName().toLowerCase());
+		InterestDoc interestDoc = (InterestDoc) inputBeans.get(InterestDoc.class.getSimpleName().toLowerCase());
+		FormSixteenDocument formSixteenDocument = (FormSixteenDocument) inputBeans.get(FormSixteenDocument.class.getSimpleName().toLowerCase());
+		RebateSec90Document rebateSec90Document = (RebateSec90Document) inputBeans.get(RebateSec90Document.class.getSimpleName().toLowerCase());
+
 		ITR2 itr2 = new ObjectFactory().createITR2();
+		ITR itr = new ITR();
+
+		CreationInformation creationInformation = new CreationInformation();
+		itr2.setCreationInfo(creationInformation.getCreationInfo(itr));
+
+		Form_ITR2 form_ITR2 = new Form_ITR2();
+		itr2.setFormITR2(form_ITR2.getFormITR2(itr));
+
+		PartA_Gen1 partA_Gen1 = new PartA_Gen1(memberPersonalInformation);
+		itr2.setPartAGEN1(partA_Gen1.getPartAGEN1(itr));
+
+
 
 
 		outputMap.put("theForm", itr2);
