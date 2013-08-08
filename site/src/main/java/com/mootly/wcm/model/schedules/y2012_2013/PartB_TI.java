@@ -34,7 +34,7 @@ public class PartB_TI {
 		this.otherSourcesDocument = otherSourcesDocument;
 	}
 
-	public PartBTI getPartBTI(ITR itr){
+	public PartBTI getPartBTI(ITR itr, FinancialYear financialYear,Map<String,HippoBean> inputBeans){
 
 		IndianCurrencyHelper indianCurrencyHelper = new IndianCurrencyHelper();
 		PartBTI partBTI = new PartBTI();
@@ -111,8 +111,6 @@ public class PartB_TI {
 		partBTI.setAggregateIncome(partBTI.getTotalIncome().subtract(partBTI.getIncChargeTaxSplRate111A112()).add(partBTI.getNetAgricultureIncomeOrOtherIncomeForRate()));
 
 		XmlCalculation xmlCalculation = new XmlCalculation();
-		FinancialYear financialYear = FinancialYear.TwentyTweleve;
-		Map<String,HippoBean> inputBeans = new HashMap<String, HippoBean>();
 		Map<String,Object> resultMapLosses = xmlCalculation.lossesCalc(financialYear, inputBeans);
 		Double currYrHILoss = Double.parseDouble(resultMapLosses.get("currYearHouseIncomeLoss").toString());
 		Double currYrLTCLoss = Double.parseDouble(resultMapLosses.get("currYearLTCLoss").toString());
