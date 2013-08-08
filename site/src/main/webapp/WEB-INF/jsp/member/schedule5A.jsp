@@ -14,6 +14,13 @@
 	<h4>
 		<fmt:message key="member.schedule5a.itr2" />
 	</h4>
+	
+	<hst:link var="gotoPersonalInfo" siteMapItemRefId="servicerequest-itr"> </hst:link>
+	<fmt:message key="schedule5a.isportugese.civil.itr2"/>&nbsp;&nbsp; <a href="${fn:replace(scriptName,'schedule5a.html','servicerequest-itr.html')}">${isPortugese}</a>
+
+	
+	
+	<c:if test="${isPortugese eq 'Yes'}">
 	<form id="frmschedule5a" action="${actionUrl}" method="post"
 		name="frmschedule5a">
 
@@ -96,8 +103,12 @@
 
 	</form>
 </div>
+</c:if>
+</br></br></br></br>
+<c:if test="${isPortugese eq 'No'}">
 
-
+<fmt:message key="schedule5a.noteligible.itr2" />
+</c:if>
 <res:calc screenCalc="schedulefivea" formId="frmschedule5a"></res:calc>
 <res:client-validation formId="frmschedule5a"
 	screenConfigurationDocumentName="schedule5a"
