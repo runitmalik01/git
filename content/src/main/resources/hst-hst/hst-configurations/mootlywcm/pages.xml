@@ -7415,7 +7415,8 @@
     </sv:node>
   </sv:node>
 </sv:node>
-  <sv:node sv:name="foreignincome" >
+ <!--  change made to add child component of foreignincome:- By pankaj Singh -->
+<sv:node sv:name="foreignincome" >
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hst:component</sv:value>
   </sv:property>
@@ -7457,9 +7458,26 @@
       <sv:property sv:name="hst:referencecomponent" sv:type="String">
         <sv:value>hst:components/foreignincome</sv:value>
       </sv:property>
+      <sv:node sv:name="foreignincome_add">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hst:component</sv:value>
+        </sv:property>
+        <sv:property sv:name="jcr:uuid" sv:type="String">
+          <sv:value>0d6de4ee-566b-47fb-b069-5e23951eac9d</sv:value>
+        </sv:property>
+        <sv:property sv:name="hst:componentclassname" sv:type="String">
+          <sv:value>com.mootly.wcm.member.ForeignIncome_add</sv:value>
+        </sv:property>
+        <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String"/>
+        <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String"/>
+        <sv:property sv:name="hst:template" sv:type="String">
+          <sv:value>foreignincome_add</sv:value>
+        </sv:property>
+      </sv:node>
     </sv:node>
   </sv:node>
 </sv:node>
+ 
 
 <sv:node sv:name="trdetails">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
