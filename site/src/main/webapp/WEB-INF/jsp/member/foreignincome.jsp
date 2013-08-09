@@ -196,29 +196,17 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 				</c:if>
 			</table>
 			<table>
-			<tr><td><fmt:message key="foreign.income.dtaa.applicable" /> </td>
-			<form action="${actionUrl}">
-				<div class="input-append">
-				
-				<td align="right">
-					<input class="span2" id="appendedInputButton" name="IncomeApplDtaa"
-						type="text"> <input class="btn green" id="test"
-						value="Save" type="submit" />
-						</td>
-				</div>
-			</form></tr>
-			
-			<tr><td><fmt:message key="foreign.income.dtaa.not.applicable" /></td>
-			<td align="right"><w4india:inr value="${parentBean.incomeNotApplDtaa}"/></td>
-			</tr>
-			
-			</table>
-</div>
+			</div>
 <a href="${scriptName}/foreignincomenew" class="button orange">Add
 	New</a>
+			
+			
+			</table>
+<hst:include ref="foreignincome_add"/>
 </c:otherwise>
 </c:choose>
 </div>
+
 <script type="text/javascript">
 
 $("#country_code").ready(function(){
