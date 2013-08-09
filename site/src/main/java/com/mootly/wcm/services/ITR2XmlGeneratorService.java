@@ -119,7 +119,11 @@ import com.mootly.wcm.model.ITRForm;
 import com.mootly.wcm.model.deduction.DeductionHead;
 import com.mootly.wcm.model.deduction.DeductionSection;
 import com.mootly.wcm.model.schedules.y2012_2013.CreationInformation;
+import com.mootly.wcm.model.schedules.y2012_2013.DeductionVIASchedules;
+import com.mootly.wcm.model.schedules.y2012_2013.Donation80gSchedules;
+import com.mootly.wcm.model.schedules.y2012_2013.Form16DocumentSchedules;
 import com.mootly.wcm.model.schedules.y2012_2013.Form_ITR2;
+import com.mootly.wcm.model.schedules.y2012_2013.HouseIncomeDocumentSchedules;
 import com.mootly.wcm.model.schedules.y2012_2013.PartA_Gen1;
 import com.mootly.wcm.services.DeductionListService;
 import com.mootly.wcm.services.ITRXmlGeneratorServiceCommon;
@@ -170,7 +174,17 @@ public class ITR2XmlGeneratorService  {
 		PartA_Gen1 partA_Gen1 = new PartA_Gen1(memberPersonalInformation);
 		itr2.setPartAGEN1(partA_Gen1.getPartAGEN1(itr));
 
+		Form16DocumentSchedules form16DocumentSchedules = new Form16DocumentSchedules(formSixteenDocument, salaryIncomeDocument);
+		itr2.setScheduleS(form16DocumentSchedules.getScheduleS(itr));
 
+		HouseIncomeDocumentSchedules houseIncomeDocumentSchedules = new HouseIncomeDocumentSchedules(houseProperty);
+		itr2.setScheduleHP(houseIncomeDocumentSchedules.getScheduleHP(itr));
+
+		DeductionVIASchedules deductionVIASchedules = new DeductionVIASchedules(deductionDocument,memberPersonalInformation,otherSourcesDocument);
+		itr2.setScheduleVIA(deductionVIASchedules.getScheduleVIA(itr, financialYear, inputBeans));
+
+		Donation80gSchedules donation80gSchedules = new Donation80gSchedules(deductionDocument,memberPersonalInformation);
+		itr2.setSchedule80G(donation80gSchedules.getSchedule80G(itr, financialYear, inputBeans));
 
 
 		outputMap.put("theForm", itr2);
