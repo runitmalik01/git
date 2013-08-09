@@ -48,10 +48,12 @@ public class PartA_Gen1 {
 		address.setStateCode(document.getState().toUpperCase());
 		address.setCountryCode(document.getCountry().toUpperCase());
 		address.setPinCode(indianCurrencyHelper.bigIntegerRoundStr(document.getPinCode()));
-		Phone phone = new Phone();
-		phone.setSTDcode(indianCurrencyHelper.bigIntegerRoundStr(document.getStdCode()));
-		phone.setPhoneNo(indianCurrencyHelper.bigIntegerRoundStr(document.getPhone()));
-		address.setPhone(phone);
+		if(!(document.getStdCode().isEmpty()) && !(document.getPhone().isEmpty())){
+			Phone phone = new Phone();
+			phone.setSTDcode(indianCurrencyHelper.bigIntegerRoundStr(document.getStdCode()));
+			phone.setPhoneNo(indianCurrencyHelper.bigIntegerRoundStr(document.getPhone()));
+			address.setPhone(phone);
+		}
 		address.setMobileNo(indianCurrencyHelper.bigIntegerRoundStr(document.getMobile()));
 		address.setMobileNoSec(indianCurrencyHelper.bigIntegerRoundStr(document.getMobile1()));
 		address.setEmailAddress(document.getEmail());
