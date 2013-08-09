@@ -13,6 +13,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
 import org.slf4j.Logger;
@@ -50,13 +51,14 @@ public class DeductionVIASchedules extends XmlCalculation {
 	 * @return
 	 */
 
-	public ScheduleVIA getScheduleVIA(ITR itr, HstRequest request,HstResponse response){
+	public ScheduleVIA getScheduleVIA(ITR itr, FinancialYear financialYear,Map<String,HippoBean> inputBeans){
 
+		Map<String,String[]> requestParameterMap = new HashMap<String, String[]>();//not being used anywhere
 		IndianCurrencyHelper indianCurrencyHelper = new IndianCurrencyHelper();
 		ScheduleVIA scheduleVIA = new ScheduleVIA();
 		DeductUndChapVIA deductUndChapVIA = new DeductUndChapVIA();
 		UsrDeductUndChapVIA usrDeductUndChapVIA = new UsrDeductUndChapVIA();
-		FinancialYear financialYear =  (FinancialYear) request.getAttribute("financialYear");
+		//FinancialYear financialYear =  (FinancialYear) request.getAttribute("financialYear");
 
 		Double grossInvestment = 0D;
 		Map<String,Object> totalMapForJSDe = new HashMap<String, Object>();
@@ -108,12 +110,12 @@ public class DeductionVIASchedules extends XmlCalculation {
 			}
 		}
 		//totalMapForJSDe.put("ageInYears",ageInYears);
-		grossTotal(request, response);
+		grossTotal(financialYear, inputBeans);
 		totalMapForJSDe.put("isSeniorCitizen",financialYear.isSeniorCitizen(memberPersonalInformation.getDOB().getTime()));
 		totalMapForJSDe.put("salarypension",longsalarytotal);
 		totalMapForJSDe.put("othersources",otherincome);
 		totalMapForJSDe.put("houseproperty",houseIncomeTotal);
-		Map<String,Object> resultMapDe = ScreenCalculatorService.getScreenCalculations("Chapter6Calc.js", request.getParameterMap(), totalMapForJSDe);
+		Map<String,Object> resultMapDe = ScreenCalculatorService.getScreenCalculations("Chapter6Calc.js", requestParameterMap, totalMapForJSDe);
 		Double totaleligiblededuction=0D;
 		if(resultMapDe.containsKey("total_eligiblededuction")) {
 			totaleligiblededuction=Double.parseDouble(resultMapDe.get("total_eligiblededuction").toString());
