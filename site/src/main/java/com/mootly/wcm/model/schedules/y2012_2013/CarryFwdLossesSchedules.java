@@ -15,6 +15,7 @@ import java.math.BigInteger;
 import java.util.List;
 import java.util.Map;
 
+import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
 import org.slf4j.Logger;
@@ -22,6 +23,7 @@ import org.slf4j.LoggerFactory;
 
 import com.mootly.wcm.beans.AdjustmentOfLossesDoc;
 import com.mootly.wcm.beans.compound.AdjustmentOfLossesCom;
+import com.mootly.wcm.model.FinancialYear;
 import com.mootly.wcm.services.IndianCurrencyHelper;
 import com.mootly.wcm.utils.XmlCalculation;
 
@@ -41,12 +43,13 @@ public class CarryFwdLossesSchedules extends XmlCalculation {
 	 * @return
 	 */
 
-	public ScheduleCFL getScheduleCFL(ITR itr, HstRequest request,HstResponse response){
+	public ScheduleCFL getScheduleCFL(ITR itr, FinancialYear financialYear,Map<String,HippoBean> inputBeans){
 
 		IndianCurrencyHelper indianCurrencyHelper = new IndianCurrencyHelper();
-		Map<String,Object> resultMapLosses = lossesCalc(request, response);
+		Map<String,Object> resultMapLosses = lossesCalc(financialYear,inputBeans);
 
 		ScheduleCFL scheduleCFL = new ScheduleCFL();
+		/*
 		List<AdjustmentOfLossesCom> lossesDetails = document.getAdjustmentOfLossesList();
 
 		// incomplete need to put some logic to make it short
@@ -73,6 +76,7 @@ public class CarryFwdLossesSchedules extends XmlCalculation {
 				carryFwdLossDetail.setOthSrcLossRaceHorseCF(new BigInteger("0"));
 			carryFwdLossDetail.setBusLossOthThanSpecLossCF(new BigInteger("0"));
 			carryFwdLossDetail.setLossFrmSpecBusCF(new BigInteger("0"));
+
 			int AssessmentYearDifference = indianCurrencyHelper.diffBtwAssessmentYear(request, adjustmentOfLossesCom.getAssessmentYear());
 			if(AssessmentYearDifference==1){
 				lossCFFromPrevYrToAY.setCarryFwdLossDetail(carryFwdLossDetail);
@@ -82,9 +86,10 @@ public class CarryFwdLossesSchedules extends XmlCalculation {
 				lossCFFromPrev2NdYearFromAY.setCarryFwdLossDetail(carryFwdLossDetail);
 				scheduleCFL.setLossCFFromPrev2NdYearFromAY(lossCFFromPrev2NdYearFromAY);
 			}
+
 		}
 		//end
-
+		 */
 		TotalOfBFLossesEarlierYrs totalOfBFLossesEarlierYrs = new TotalOfBFLossesEarlierYrs();
 		LossSummaryDetail lossSummaryDetail = new LossSummaryDetail();
 		lossSummaryDetail.setBusLossOthThanSpecLossCF(new BigInteger("0"));
