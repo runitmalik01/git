@@ -43,28 +43,28 @@ import com.mootly.wcm.components.ITReturnComponent;
 		"c_section_2","c_section_3","d_section","d_section_1","d_section_2","d_section_3","e_section","e_section_1","e_section_2","e_section_3",
 		"aggregate","total_income_1","total_income_2","tax_total_income_1","tax_total_income_2","surcharge_1","surcharge_2",
 		"education_cess","tax_payable","relief_1","relief_2","tax_payable1","tax_payable_1","tax_payable_2","ded_ent1","ded_ent2",
-		"ded_ent3","ded_ent4","relief_11","relief_12","uuidform16","address"})
+		"ded_ent3","ded_ent4","relief_11","relief_12","uuidform16","address","addressdetail","city","state","pin"})
 @RequiredFields(fieldNames={"Employe_category","employer","employee"}) //commented by AP 07/16/2013 "tan_deductor"}) I don't like this to be dependent on JAVA SCRIPT but let it go for now.
 @DataTypeValidationFields(fieldNames={
-             		"pan_deductor",
-             		"tan_deductor",
-             		"pan_employee",
-             		"gross_a",
-             		"gross_b",
-             		"gross_c",
-             		
-             		"less_total_2",
-             		
-             		"deductions_entertainment",
-             		"deductions_tax",
-             		
-             		
-             		"relief_2",
-             		"ded_ent1",
-             		"ded_ent3"
-             		
-    },
-    dataTypes={
+		"pan_deductor",
+		"tan_deductor",
+		"pan_employee",
+		"gross_a",
+		"gross_b",
+		"gross_c",
+
+		"less_total_2",
+
+		"deductions_entertainment",
+		"deductions_tax",
+
+
+		"relief_2",
+		"ded_ent1",
+		"ded_ent3"
+
+},
+dataTypes={
 		DataTypeValidationType.PAN,
 		DataTypeValidationType.TAN,
 		DataTypeValidationType.PAN,
@@ -77,9 +77,9 @@ import com.mootly.wcm.components.ITReturnComponent;
 		DataTypeValidationType.DECIMAL,
 		DataTypeValidationType.DECIMAL,
 		DataTypeValidationType.DECIMAL
-		
+
 }
-)
+		)
 
 public class FormSixteen extends ITReturnComponent {
 
@@ -94,10 +94,23 @@ public class FormSixteen extends ITReturnComponent {
 			request.getRequestContext().setAttribute("form16InEditMode",Boolean.TRUE);
 			request.getRequestContext().setAttribute("form16UniqueUUID",form16Detail.getForm16Uuid());
 		}
-	
+
 		if (log.isInfoEnabled()) {
 			log.info("This is do before render form sixteen");
 		}
+		
+		// here we are checking for itr2
+		String itr_version=request.getRequestContext().getResolvedSiteMapItem().getParameter("ITR_version");
+		if(null!=itr_version)
+		{
+			if(itr_version.equalsIgnoreCase("ITR2")){
+
+
+				log.info("we have"+request.getRequestContext().getResolvedSiteMapItem().getParameter("ITR_version"));
+				request.setAttribute("itr2", itr_version);
+			}	
+			}
+
 		// it is bad code due to session...
 		/*
 		if(request.getSession() != null && request.getSession().getAttribute("dedTotalOnForm16") != null) {
@@ -106,7 +119,7 @@ public class FormSixteen extends ITReturnComponent {
 		else {
 			request.setAttribute("totalDeductions","0.0");
 		}*/
-		
+
 		//request.getRequestContext().getResolvedSiteMapItem().getHstSiteMapItem().toString();
 		// this code is check to open the partial submit form with check that action is what
 		if(request.getParameter("partialSubmit")!=null){
@@ -123,7 +136,7 @@ public class FormSixteen extends ITReturnComponent {
 			}
 		}
 	}
-	
+
 	@Override
 	public boolean beforeSave(HstRequest request) {
 		// TODO Auto-generated method stub
