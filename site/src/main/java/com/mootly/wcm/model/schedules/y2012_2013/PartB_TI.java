@@ -74,10 +74,10 @@ public class PartB_TI {
 		partBTI.setCapGain(capGain);
 		//Other Income
 		IncFromOS incFromOS = new IncFromOS();
-		incFromOS.setOtherSrcThanOwnRaceHorse(indianCurrencyHelper.bigIntegerRound(otherSourcesDocument.getTaxable_income()));
+		incFromOS.setOtherSrcThanOwnRaceHorse(otherSourcesDocument.getTaxable_income().longValue());
 		incFromOS.setWinLotteriesRacesGambling(new BigInteger("0"));//waiting for input from otherincome screen
 		incFromOS.setFromOwnRaceHorse(new BigInteger("0"));//waiting for input from otherincome screen
-		BigInteger totalOtherIncome = incFromOS.getOtherSrcThanOwnRaceHorse().add(incFromOS.getFromOwnRaceHorse().add(incFromOS.getWinLotteriesRacesGambling()));
+		BigInteger totalOtherIncome = BigInteger.valueOf(incFromOS.getOtherSrcThanOwnRaceHorse()).add(incFromOS.getFromOwnRaceHorse().add(incFromOS.getWinLotteriesRacesGambling()));
 		if(totalOtherIncome.compareTo(BigInteger.ZERO)>0){
 		incFromOS.setTotIncFromOS(totalOtherIncome);
 		}else
