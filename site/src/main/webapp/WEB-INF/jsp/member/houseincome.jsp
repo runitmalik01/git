@@ -475,12 +475,15 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 						</div>
 					</div>
 				</fieldset>
+				<c:if test="${ not empty ITR2}">
+				<jsp:include page="houseIncome_add.jsp"/>
+				</c:if>
 				<div class="row-fluid show-grid">
 					<div class="span4 offset8 decimal">
 						<a
 							href="${scriptName}?selectedItrTab=<%=ITRTab.INCOME_HOUSE_PROPERTY_SINGLE%>"
-							class="button olive">Cancel</a>&nbsp; <a
-							id="myModalHrefHouseIncome" role="button" class="btn orange">Save</a>
+							class="btn btn-danger" style="color: black">Cancel</a>&nbsp; <a
+							id="myModalHrefHouseIncome" role="button" class="btn btn-success" style="color: black">Save</a>
 					</div>
 				</div>
 			</form>
@@ -522,17 +525,19 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 								data-confirm=""><i
 									class="icon-trash icon-white"></i><small>Delete</small> </a></td>
 						</tr>
-
-					</c:forEach>
-
-				</c:if>
+				</c:forEach>
+	</c:if>
 			</table>
 			<c:if test="${empty NEW_CHILD_DISABLED}">
-				<a href="${scriptName}/houseincomenew" class="button orange">Add
+				<a href="${scriptName}/houseincomenew" class="btn btn-info" style="color: black">Add
 					New</a>
 			</c:if>
+			
+			
+			
 		</c:otherwise>
 	</c:choose>
+	
 </div>
 <res:client-validation formId="frmdataHouseIncome"
 	screenConfigurationDocumentName="houseincome"
