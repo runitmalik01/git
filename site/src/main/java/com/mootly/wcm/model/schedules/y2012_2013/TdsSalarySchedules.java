@@ -30,37 +30,42 @@ public class TdsSalarySchedules {
 	public ScheduleTDS1 getScheduleTDS1(ITR itr) {
 		IndianCurrencyHelper indianCurrencyHelper = new IndianCurrencyHelper();
 		ScheduleTDS1 scheduleTDS1 = new ScheduleTDS1();
-		List<FormSixteenDetail> formSixteenDetails = formSixteenDocument.getFormSixteenDetailList();
-		List<SalaryIncomeDetail> salaryIncomeDetails = salaryIncomeDocument.getSalaryIncomeDetailList();
+		boolean hasAValidTDS = false;
 		/*
 		 * this loop will take care of Form Sixteen Screen
 		 * and related details
 		 */
-		for (FormSixteenDetail formSixteenDetail:formSixteenDetails)  {
-			TDSonSalary tdsonSalary = new TDSonSalary();
-			EmployerOrDeductorOrCollectDetl employerOrDeductorOrCollectDetl = new EmployerOrDeductorOrCollectDetl();
-			Double tds1 = 0d;
-			Double tds2 = 0d;
-			Double TdsSalary = 0d;
-			if(formSixteenDetail.getDed_ent_1()!=null)
-				tds1 = formSixteenDetail.getDed_ent_1();
-			if(formSixteenDetail.getDed_ent_3()!=null)
-				tds2 = formSixteenDetail.getDed_ent_3();
-			TdsSalary =tds1 + tds2;
-			if(TdsSalary !=0 ){
-				if(formSixteenDetail.getTan_deductor()!=null){
-					employerOrDeductorOrCollectDetl.setTAN(formSixteenDetail.getTan_deductor().toUpperCase());
-				}
-				if(formSixteenDetail.getEmployer()!=null){
-					employerOrDeductorOrCollectDetl.setEmployerOrDeductorOrCollecterName(formSixteenDetail.getEmployer().toUpperCase());
-				}
-				tdsonSalary.setEmployerOrDeductorOrCollectDetl(employerOrDeductorOrCollectDetl);
+		if(formSixteenDocument!=null){
+			List<FormSixteenDetail> formSixteenDetails = formSixteenDocument.getFormSixteenDetailList();
+			if ( formSixteenDetails != null && formSixteenDetails.size() > 0 ){
+				for (FormSixteenDetail formSixteenDetail:formSixteenDetails)  {
+					TDSonSalary tdsonSalary = new TDSonSalary();
+					EmployerOrDeductorOrCollectDetl employerOrDeductorOrCollectDetl = new EmployerOrDeductorOrCollectDetl();
+					Double tds1 = 0d;
+					Double tds2 = 0d;
+					Double TdsSalary = 0d;
+					if(formSixteenDetail.getDed_ent_1()!=null)
+						tds1 = formSixteenDetail.getDed_ent_1();
+					if(formSixteenDetail.getDed_ent_3()!=null)
+						tds2 = formSixteenDetail.getDed_ent_3();
+					TdsSalary =tds1 + tds2;
+					if(TdsSalary !=0 ){
+						if(formSixteenDetail.getTan_deductor()!=null){
+							employerOrDeductorOrCollectDetl.setTAN(formSixteenDetail.getTan_deductor().toUpperCase());
+						}
+						if(formSixteenDetail.getEmployer()!=null){
+							employerOrDeductorOrCollectDetl.setEmployerOrDeductorOrCollecterName(formSixteenDetail.getEmployer().toUpperCase());
+						}
+						tdsonSalary.setEmployerOrDeductorOrCollectDetl(employerOrDeductorOrCollectDetl);
 
-				if(formSixteenDetail.getIncome_chargable_tax()!=null){
-					tdsonSalary.setIncChrgSal(indianCurrencyHelper.bigIntegerRound(formSixteenDetail.getIncome_chargable_tax()));
+						if(formSixteenDetail.getIncome_chargable_tax()!=null){
+							tdsonSalary.setIncChrgSal(indianCurrencyHelper.bigIntegerRound(formSixteenDetail.getIncome_chargable_tax()));
+						}
+						tdsonSalary.setTotalTDSSal(indianCurrencyHelper.bigIntegerRound(TdsSalary));
+						scheduleTDS1.getTDSonSalary().add(tdsonSalary);
+						if(!hasAValidTDS) hasAValidTDS = true;
+					}
 				}
-				tdsonSalary.setTotalTDSSal(indianCurrencyHelper.bigIntegerRound(TdsSalary));
-				scheduleTDS1.getTDSonSalary().add(tdsonSalary);
 			}
 		}
 
@@ -68,24 +73,33 @@ public class TdsSalarySchedules {
 		 * this loop will take care of pension income
 		 * and related details
 		 */
-		for (SalaryIncomeDetail salaryIncomeDetail:salaryIncomeDetails)  {
-			TDSonSalary tdsonSalary = new TDSonSalary();
-			EmployerOrDeductorOrCollectDetl employerOrDeductorOrCollectDetl = new EmployerOrDeductorOrCollectDetl();
-			if(salaryIncomeDetail.getTdsPension()!=null){
-				if(salaryIncomeDetail.getTan_employer()!=null){
-					employerOrDeductorOrCollectDetl.setTAN(salaryIncomeDetail.getTan_employer().toUpperCase());
+		if(salaryIncomeDocument!=null){
+			List<SalaryIncomeDetail> salaryIncomeDetails = salaryIncomeDocument.getSalaryIncomeDetailList();
+			if ( salaryIncomeDetails != null && salaryIncomeDetails.size() > 0 ){
+				for (SalaryIncomeDetail salaryIncomeDetail:salaryIncomeDetails)  {
+					TDSonSalary tdsonSalary = new TDSonSalary();
+					EmployerOrDeductorOrCollectDetl employerOrDeductorOrCollectDetl = new EmployerOrDeductorOrCollectDetl();
+					if(salaryIncomeDetail.getTdsPension()!=null){
+						if(salaryIncomeDetail.getTan_employer()!=null){
+							employerOrDeductorOrCollectDetl.setTAN(salaryIncomeDetail.getTan_employer().toUpperCase());
+						}
+						if(salaryIncomeDetail.getName_employer()!=null){
+							employerOrDeductorOrCollectDetl.setEmployerOrDeductorOrCollecterName(salaryIncomeDetail.getName_employer().toUpperCase());
+						}
+						tdsonSalary.setEmployerOrDeductorOrCollectDetl(employerOrDeductorOrCollectDetl);
+						if(salaryIncomeDetail.getGross_salary()!=null){
+							tdsonSalary.setIncChrgSal(indianCurrencyHelper.bigIntegerRound(salaryIncomeDetail.getGross_salary()));
+						}
+						tdsonSalary.setTotalTDSSal(indianCurrencyHelper.bigIntegerRound(salaryIncomeDetail.getTdsPension()));
+						scheduleTDS1.getTDSonSalary().add(tdsonSalary);
+						if(!hasAValidTDS) hasAValidTDS = true;
+					}
 				}
-				if(salaryIncomeDetail.getName_employer()!=null){
-					employerOrDeductorOrCollectDetl.setEmployerOrDeductorOrCollecterName(salaryIncomeDetail.getName_employer().toUpperCase());
-				}
-				tdsonSalary.setEmployerOrDeductorOrCollectDetl(employerOrDeductorOrCollectDetl);
-				if(salaryIncomeDetail.getGross_salary()!=null){
-					tdsonSalary.setIncChrgSal(indianCurrencyHelper.bigIntegerRound(salaryIncomeDetail.getGross_salary()));
-				}
-				tdsonSalary.setTotalTDSSal(indianCurrencyHelper.bigIntegerRound(salaryIncomeDetail.getTdsPension()));
-				scheduleTDS1.getTDSonSalary().add(tdsonSalary);
 			}
 		}
-		return scheduleTDS1;
+		if(hasAValidTDS){
+			return scheduleTDS1;
+		}else
+			return null;
 	}
 }
