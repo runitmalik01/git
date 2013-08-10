@@ -7,11 +7,14 @@ import in.gov.incometaxindiaefiling.y2012_2013.ScheduleBFLA.TotalBFLossSetOff;
 
 import java.math.BigInteger;
 import java.util.Map;
+
+import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.mootly.wcm.model.FinancialYear;
 import com.mootly.wcm.services.IndianCurrencyHelper;
 import com.mootly.wcm.utils.XmlCalculation;
 
@@ -25,11 +28,11 @@ public class BroughtFwdLossesSchedules extends XmlCalculation{
 	 * @return
 	 */
 
-	public ScheduleBFLA getScheduleBFLA(ITR itr, HstRequest request,HstResponse response){
+	public ScheduleBFLA getScheduleBFLA(ITR itr, FinancialYear financialYear,Map<String,HippoBean> inputBeans){
 
 		IndianCurrencyHelper indianCurrencyHelper = new IndianCurrencyHelper();
 
-		Map<String,Object> resultMapLosses = lossesCalc(request, response);
+		Map<String,Object> resultMapLosses = lossesCalc(financialYear,inputBeans);
 
 		ScheduleBFLA scheduleBFLA = new ScheduleBFLA();
 		in.gov.incometaxindiaefiling.y2012_2013.ScheduleBFLA.HP hPBFLA = new in.gov.incometaxindiaefiling.y2012_2013.ScheduleBFLA.HP();
