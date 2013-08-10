@@ -58,17 +58,46 @@ public class HouseIncomeDocumentSchedules {
 				}
 				if(propertyDetails.getPropCoOwnedFlg().equals("YES")){
 					propertyDetails.setAsseseeShareProperty(Double.parseDouble(houseIncomeDetail.getProperty_share()));
-					for(int j=1; j<6; j++){
-						CoOwners coOwners = new CoOwners();
-						String replaceNumericValue = ""+j;
-						if(houseIncomeDetail.getCoownername1()!=null){
-							coOwners.setCoOwnersSNo(j);
-							coOwners.setNameCoOwner(houseIncomeDetail.getCoownername1().replaceAll("1", replaceNumericValue));
-							coOwners.setPANCoOwner(houseIncomeDetail.getCoownerpan1().replaceAll("1", replaceNumericValue));
-							coOwners.setPercentShareProperty(Double.parseDouble(houseIncomeDetail.getShare1().replaceAll("1", replaceNumericValue)));
+						if(!(houseIncomeDetail.getCoownername1().isEmpty())){
+							CoOwners coOwners = new CoOwners();
+							coOwners.setCoOwnersSNo(1);
+							coOwners.setNameCoOwner(houseIncomeDetail.getCoownername1());
+							coOwners.setPANCoOwner(houseIncomeDetail.getCoownerpan1());
+							coOwners.setPercentShareProperty(Double.parseDouble(houseIncomeDetail.getShare1()));
+							propertyDetails.getCoOwners().add(coOwners);
 						}
-						propertyDetails.getCoOwners().add(coOwners);
-					}
+						if(!(houseIncomeDetail.getCoownername2().isEmpty())){
+							CoOwners coOwners = new CoOwners();
+							coOwners.setCoOwnersSNo(2);
+							coOwners.setNameCoOwner(houseIncomeDetail.getCoownername2());
+							coOwners.setPANCoOwner(houseIncomeDetail.getCoownerpan2());
+							coOwners.setPercentShareProperty(Double.parseDouble(houseIncomeDetail.getShare2()));
+							propertyDetails.getCoOwners().add(coOwners);
+						}
+						if(!(houseIncomeDetail.getCoownername3().isEmpty())){
+							CoOwners coOwners = new CoOwners();
+							coOwners.setCoOwnersSNo(3);
+							coOwners.setNameCoOwner(houseIncomeDetail.getCoownername3());
+							coOwners.setPANCoOwner(houseIncomeDetail.getCoownerpan3());
+							coOwners.setPercentShareProperty(Double.parseDouble(houseIncomeDetail.getShare3()));
+							propertyDetails.getCoOwners().add(coOwners);
+						}
+						if(!(houseIncomeDetail.getCoownername4().isEmpty())){
+							CoOwners coOwners = new CoOwners();
+							coOwners.setCoOwnersSNo(4);
+							coOwners.setNameCoOwner(houseIncomeDetail.getCoownername4());
+							coOwners.setPANCoOwner(houseIncomeDetail.getCoownerpan4());
+							coOwners.setPercentShareProperty(Double.parseDouble(houseIncomeDetail.getShare4()));
+							propertyDetails.getCoOwners().add(coOwners);
+						}
+						if(!(houseIncomeDetail.getCoownername5().isEmpty())){
+							CoOwners coOwners = new CoOwners();
+							coOwners.setCoOwnersSNo(5);
+							coOwners.setNameCoOwner(houseIncomeDetail.getCoownername5());
+							coOwners.setPANCoOwner(houseIncomeDetail.getCoownerpan5());
+							coOwners.setPercentShareProperty(Double.parseDouble(houseIncomeDetail.getShare5()));
+							propertyDetails.getCoOwners().add(coOwners);
+						}
 				}
 				//If the House Property is LETOUT
 				if(houseIncomeDetail.getLetOut().equals("L")){
