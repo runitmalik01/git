@@ -16,10 +16,14 @@ import in.gov.incometaxindiaefiling.y2012_2013.ScheduleCYLA.TotalLossSetOff;
 
 import java.math.BigInteger;
 import java.util.Map;
+
+import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.mootly.wcm.model.FinancialYear;
 import com.mootly.wcm.services.IndianCurrencyHelper;
 import com.mootly.wcm.utils.XmlCalculation;
 
@@ -33,11 +37,11 @@ public class CurrentYearLossesSchedules extends XmlCalculation{
 	 * @return
 	 */
 
-	public ScheduleCYLA getScheduleCYLA(ITR itr, HstRequest request,HstResponse response){
+	public ScheduleCYLA getScheduleCYLA(ITR itr, FinancialYear financialYear,Map<String,HippoBean> inputBeans){
 
 		IndianCurrencyHelper indianCurrencyHelper = new IndianCurrencyHelper();
 
-		Map<String,Object> resultMapLosses = lossesCalc(request, response);
+		Map<String,Object> resultMapLosses = lossesCalc(financialYear,inputBeans);
 
 		ScheduleCYLA scheduleCYLA = new ScheduleCYLA();
 		Salary salary = new Salary();
