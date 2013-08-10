@@ -76,6 +76,7 @@ public class Donation80gSchedules extends XmlCalculation{
 		BigInteger DedExc80G = new BigInteger("0");
 		DedExc80G = indianCurrencyHelper.bigIntegerRound(totaleligiblededuction).subtract(indianCurrencyHelper.bigIntegerRound(deduction80g));
 
+		boolean hasAValidDonation = false;
 		if(deductionDocument != null){
 			List<DeductionDocumentDetail> listOfDeductionDocumentDetail = deductionDocument.getDeductionDocumentDetailList();
 			if (listOfDeductionDocumentDetail!= null && listOfDeductionDocumentDetail.size() > 0 ){
@@ -111,6 +112,7 @@ public class Donation80gSchedules extends XmlCalculation{
 								don100Percent.setTotEligibleDon100Percent(new BigInteger("0"));
 							}
 							schedule80G.setDon100Percent(don100Percent);
+							if(!hasAValidDonation) hasAValidDonation = true;
 						}
 						if(deductionDocumentDetail.getHead()!=null && deductionDocumentDetail.getHead().equals("Appr100")){
 							doneeWithPan.setDoneeWithPanName(doneewithPan.getDoneeName().toUpperCase());
@@ -153,6 +155,7 @@ public class Donation80gSchedules extends XmlCalculation{
 							don100PercentApprReqd.getDoneeWithPan().add(doneeWithPan);
 							don100PercentApprReqd.setTotDon100PercentApprReqd(Total100Appr);
 							schedule80G.setDon100PercentApprReqd(don100PercentApprReqd);
+							if(!hasAValidDonation) hasAValidDonation = true;
 						}
 						if(deductionDocumentDetail.getHead()!=null && deductionDocumentDetail.getHead().equals("NoAppr50")){
 							doneeWithPan.setDoneeWithPanName(doneewithPan.getDoneeName().toUpperCase());
@@ -176,6 +179,7 @@ public class Donation80gSchedules extends XmlCalculation{
 								don50PercentNoApprReqd.setTotEligibleDon50Percent(new BigInteger("0"));
 							}
 							schedule80G.setDon50PercentNoApprReqd(don50PercentNoApprReqd);
+							if(!hasAValidDonation) hasAValidDonation = true;
 						}
 						if(deductionDocumentDetail.getHead()!=null && deductionDocumentDetail.getHead().equals("Appr50")){
 							doneeWithPan.setDoneeWithPanName(doneewithPan.getDoneeName().toUpperCase());
@@ -218,12 +222,15 @@ public class Donation80gSchedules extends XmlCalculation{
 							}
 							don50PercentApprReqd.getDoneeWithPan().add(doneeWithPan);
 							schedule80G.setDon50PercentApprReqd(don50PercentApprReqd);
+							if(!hasAValidDonation) hasAValidDonation = true;
 						}
 						schedule80G.setTotalDonationsUs80G(Total100NoAppr.add(Total100Appr).add(Total50NoAppr).add(Total50Appr));
 						schedule80G.setTotalEligibleDonationsUs80G(indianCurrencyHelper.bigIntegerRound(deduction80g));
 					}
 				}
 			}
+		}
+		if(hasAValidDonation){
 			return schedule80G;
 		}else
 			return null;
