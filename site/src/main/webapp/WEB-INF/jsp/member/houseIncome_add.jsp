@@ -16,10 +16,10 @@
 						<div class="rowlabel">
 							<input id="rentSec25A" name="rentSec25A" type="text"
 								maxlength="14" class="decimal"
-								value="" />
+								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.rentSec25A}"/></c:if>" />
 						</div></td>
 					<tr><td>
-					<div class="span4">
+					
 						<div class="rowlabel">
 							<label for="arrearRentSec25B"><small><fmt:message
 										key="foreign.income.house.arrearRentSec25B" /> </small> </label>
@@ -28,9 +28,19 @@
 						<div class="rowlabel">
 							<input id="arrearRentSec25B" name="arrearRentSec25B" type="text"
 								maxlength="14" class="decimal"
-								value="" />
+								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.arrearRentSec25B}"/></c:if>" />
 						</div></td></tr>
-					</div>
+					<tr><td>
+					
+						<div class="rowlabel">
+							<label for="total_houseIncome">Total </label>
+						</div></td>
+						<td>
+						<div class="rowlabel">
+							<input id="total_houseIncome" name="total_houseIncome" type="text"
+								maxlength="14" class="decimal"
+								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.total_houseIncome}"/></c:if>" />
+						</div></td></tr>
 				
 					
 			</table>		
