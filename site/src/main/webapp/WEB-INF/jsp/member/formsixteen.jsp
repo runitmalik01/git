@@ -34,12 +34,12 @@
 		test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
 		<form id="frmdataFormSixteen" action="${actionUrl}" name="formsixteen"
 			method="post">
-			<h3>Form 16</h3>
+			<h2 style="color: black;">Form 16</h2>
 			<p>Certificate under section 203 of the Income_tax Act, 1961 for
 				tax deducted at source from income chargeable under the head
 				"Salaries".</p>
 			<fieldset>
-				<legend style="color: black">Employer Details</legend>
+				<legend style="font-style: italic;color: blue;">Employer Details</legend>
 				<div class="row-fluid show-grid">
 					<div class="span3">
 						<div class="rowlabel">
@@ -49,11 +49,11 @@
 						<select id="Employe_category" name="Employe_category">
 							<option value="">-Select-</option>
 							<option value="GOV"
-								<c:if test="${not empty childBean.employe_category && childBean.employe_category =='GOV'}">selected</c:if>>GOVT.</option>
+								<c:if test="${not empty memberpersonalinformation.employe_category && memberpersonalinformation.employe_category =='GOV'}">selected</c:if>>GOVT.</option>
 							<option value="PSU"
-								<c:if test="${not empty childBean.employe_category && childBean.employe_category =='PSU'}">selected</c:if>>PSU</option>
+								<c:if test="${not empty memberpersonalinformation.employe_category && memberpersonalinformation.employe_category =='PSU'}">selected</c:if>>PSU</option>
 							<option value="OTH"
-								<c:if test="${not empty childBean.employe_category && childBean.employe_category =='OTH'}">selected</c:if>>OTHERS.</option>
+								<c:if test="${not empty memberpersonalinformation.employe_category && memberpersonalinformation.employe_category =='OTH'}">selected</c:if>>OTHERS.</option>
 						</select>
 					</div>
 				</div>
@@ -111,18 +111,30 @@
 								readonly="readonly" />
 						</div>
 					</div>
-					<div class="span4">
+					
+					<div class="span4 <c:if test="${not empty itr2}">hide</c:if>">
 						<div class="rowlabel">
-							<label>Address of Employer</label>
+							<label class="">Address of Employer</label>
 						</div>
 
 						<div class="rowlabel">
+						
 							<input id="address" type="text" name="address" class="uprcase"
 								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.address}"/></c:if>">
 						</div>
 					</div>
 				</div>
 			</fieldset>
+			<c:if test="${not empty itr2}">
+		<!-- 	<%@include file="../member/formsixteen_adv1.jsp" %> -->
+			<jsp:include page="formsixteen_adv1.jsp"/>
+			
+			</c:if>
+			
+			
+			
+			
+			
 			<!--
 				<legend style="color: black">
 					Acknowledgement Nos. of all quarterly statements of TDS under
@@ -263,8 +275,8 @@
 				</table>
   -->
 			<fieldset>
-				<legend style="color: black"> DETAILS OF SALARY PAID AND
-					ANY OTHER INCOME AND TAX DEDUCTED</legend>
+				<legend style="font-style: italic;color: blue;"> Detaisl of salary paid and
+					any other income and tax deducted</legend>
 				<label><strong>1.</strong> </label> <label> Gross salary</label>
 				<table>
 					<tr>
@@ -301,8 +313,8 @@
 			</fieldset>
 
 			<fieldset>
-				<legend>
-					<em>Less:</em> Allowance to the extent exempt under section 10
+				<legend style="font-style: italic;color: blue;">
+					<em>Less:</em> Allowance to the exempt under section 10
 				</legend>
 
 				<div class="row-fluid show-grid">
@@ -379,7 +391,7 @@
 				</div>
 			</fieldset>
 			<fieldset id="deductions">
-				<legend>Deductions</legend>
+				<legend style="font-style: italic;color: blue;">Deductions U/S 16</legend>
 				<div class="row-fluid show-grid">
 					<div class="span4">
 						<div class="rowlabel" id="ent">
@@ -872,7 +884,7 @@
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.relief_1}"/></c:if>"
 							placeholder="Rs.">-->
 			<fieldset>
-				<legend>Tax Head</legend>
+				<legend style="font-style: italic;color: blue;">Tax Head</legend>
 				<div class="row-fluid show-grid">
 					<div class="span8">
 						<div class="rowlabel">
