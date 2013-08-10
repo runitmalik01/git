@@ -83,6 +83,8 @@ public class HouseIncomeDetail extends HippoItem implements FormMapFiller {
 	private Double Income_hproperty;
 	private String personalInfoUuid;
 	private String Property_share;
+	private Double rentSec25A;
+	private Double arrearRentSec25B;
 
 	private boolean markedForDeletion;
 
@@ -214,7 +216,14 @@ public class HouseIncomeDetail extends HippoItem implements FormMapFiller {
 		if (Property_share == null) Property_share = getProperty("mootlywcm:Property_share");
 		return Property_share;
 	}
-
+	public final Double getRentSec25A() {
+		if (rentSec25A == null) rentSec25A = getProperty("mootlywcm:rentSec25A");
+		return rentSec25A;
+	}
+	public final Double getArrearRentSec25B() {
+		if (arrearRentSec25B == null) arrearRentSec25B = getProperty("mootlywcm:arrearRentSec25B");
+		return arrearRentSec25B;
+	}
 
 	public final void setAddress(String  Address) {
 		this.Address =  Address;
@@ -309,7 +318,12 @@ public class HouseIncomeDetail extends HippoItem implements FormMapFiller {
 	public final void setProperty_share(String Property_share) {
 		this.Property_share = Property_share;
 	}
-
+	public final void setRentSec25A(Double rentSec25A) {
+		this.rentSec25A = rentSec25A;
+	}
+	public final void setArrearRentSec25B(Double arrearRentSec25B) {
+		this.arrearRentSec25B = arrearRentSec25B;
+	}
 	public final String getLetOut() {
 		if (letout == null) letout = getProperty("mootlywcm:letout");
 		return letout;
@@ -381,6 +395,8 @@ public class HouseIncomeDetail extends HippoItem implements FormMapFiller {
 			node.setProperty("mootlywcm:Interest_borrowed", getInterest_borrowed());
 			node.setProperty("mootlywcm:Income_hproperty", getIncome_hproperty());	
 			node.setProperty("mootlywcm:Property_share", getProperty_share());	
+			node.setProperty("mootlywcm:rentSec25A", getRentSec25A());
+			node.setProperty("mootlywcm:arrearRentSec25B", getArrearRentSec25B());
 
 		}catch (RepositoryException re) {
 			log.error("Binding Node Error",re);
@@ -399,6 +415,8 @@ public class HouseIncomeDetail extends HippoItem implements FormMapFiller {
 		Double amt4=0.0;
 		Double amt5=0.0;
 		Double amt6=0.0;
+		Double RentSec25A=0.0;
+		Double ArrearRentSec25B = 0.0;
 		if (formMap.getField("Address") != null){
 			setAddress(formMap.getField("Address").getValue());
 			log.info("valuye of add"+formMap.getField("Address").getValue());
@@ -569,6 +587,26 @@ public class HouseIncomeDetail extends HippoItem implements FormMapFiller {
 			log.info("value"+formMap.getField("letout").getValue());
 			setLetOut(formMap.getField("letout").getValue());
 		}
+		if (formMap.getField("rentSec25A")!= null) {
+			String strRentSec25A=(formMap.getField("rentSec25A").getValue());
+			if(!(strRentSec25A.isEmpty())){
+				RentSec25A=Double.parseDouble(strRentSec25A);
+				
+			}else {
+				RentSec25A=0.0;
+			}
+			setRentSec25A(RentSec25A);
+		} 
+		if (formMap.getField("arrearRentSec25B")!= null) {
+			String strArrearRentSec25B=(formMap.getField("arrearRentSec25B").getValue());
+			if(!(strArrearRentSec25B.isEmpty())){
+				ArrearRentSec25B=Double.parseDouble(strArrearRentSec25B);
+				
+			}else {
+				ArrearRentSec25B=0.0;
+			}
+			setArrearRentSec25B(ArrearRentSec25B);
+		} 
 	}
 
 
@@ -606,6 +644,8 @@ public class HouseIncomeDetail extends HippoItem implements FormMapFiller {
 		setInterest_borrowed(objhouseIncomeDetail.getInterest_borrowed());
 		setIncome_hproperty(objhouseIncomeDetail.getIncome_hproperty());
 		setProperty_share(objhouseIncomeDetail.getProperty_share());
+		setRentSec25A(objhouseIncomeDetail.getRentSec25A());
+		setArrearRentSec25B(objhouseIncomeDetail.getArrearRentSec25B());
 		
 	};
 }
