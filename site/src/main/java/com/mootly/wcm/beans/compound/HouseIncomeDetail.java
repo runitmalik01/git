@@ -85,6 +85,7 @@ public class HouseIncomeDetail extends HippoItem implements FormMapFiller {
 	private String Property_share;
 	private Double rentSec25A;
 	private Double arrearRentSec25B;
+	private Double total_houseIncome;
 
 	private boolean markedForDeletion;
 
@@ -224,6 +225,10 @@ public class HouseIncomeDetail extends HippoItem implements FormMapFiller {
 		if (arrearRentSec25B == null) arrearRentSec25B = getProperty("mootlywcm:arrearRentSec25B");
 		return arrearRentSec25B;
 	}
+	public final Double getTotal_houseIncome() {
+		if (total_houseIncome == null) total_houseIncome = getProperty("mootlywcm:total_houseIncome");
+		return total_houseIncome;
+	}
 
 	public final void setAddress(String  Address) {
 		this.Address =  Address;
@@ -323,6 +328,9 @@ public class HouseIncomeDetail extends HippoItem implements FormMapFiller {
 	}
 	public final void setArrearRentSec25B(Double arrearRentSec25B) {
 		this.arrearRentSec25B = arrearRentSec25B;
+	}  
+	public final void setTotal_houseIncome(Double total_houseIncome) {
+		this.total_houseIncome = total_houseIncome;
 	}
 	public final String getLetOut() {
 		if (letout == null) letout = getProperty("mootlywcm:letout");
@@ -397,6 +405,7 @@ public class HouseIncomeDetail extends HippoItem implements FormMapFiller {
 			node.setProperty("mootlywcm:Property_share", getProperty_share());	
 			node.setProperty("mootlywcm:rentSec25A", getRentSec25A());
 			node.setProperty("mootlywcm:arrearRentSec25B", getArrearRentSec25B());
+			node.setProperty("mootlywcm:total_houseIncome", getTotal_houseIncome());
 
 		}catch (RepositoryException re) {
 			log.error("Binding Node Error",re);
@@ -417,6 +426,7 @@ public class HouseIncomeDetail extends HippoItem implements FormMapFiller {
 		Double amt6=0.0;
 		Double RentSec25A=0.0;
 		Double ArrearRentSec25B = 0.0;
+		Double total_houseIncome=0.0;
 		if (formMap.getField("Address") != null){
 			setAddress(formMap.getField("Address").getValue());
 			log.info("valuye of add"+formMap.getField("Address").getValue());
@@ -509,7 +519,7 @@ public class HouseIncomeDetail extends HippoItem implements FormMapFiller {
 		}
 		if (formMap.getField("Unrealised_rent") != null) {
 			String strunreal_rent=(formMap.getField("Unrealised_rent").getValue());
-			if(!(strunreal_rent.isEmpty())){
+			if(!(strunreal_rent.isEmpty())){                                               
 				amt1=Double.parseDouble(strunreal_rent);
 				log.info("value of amt1 is"+amt1);
 			}
@@ -519,7 +529,7 @@ public class HouseIncomeDetail extends HippoItem implements FormMapFiller {
 
 			}setUnrealised_rent(amt1);
 		}
-
+		
 
 		if (formMap.getField("Local_tax")!= null) {
 			String strloc_tax=(formMap.getField("Local_tax").getValue());
@@ -607,6 +617,16 @@ public class HouseIncomeDetail extends HippoItem implements FormMapFiller {
 			}
 			setArrearRentSec25B(ArrearRentSec25B);
 		} 
+		if (formMap.getField("total_houseIncome") != null) {
+			String strtotal_houseIncome=(formMap.getField("total_houseIncome").getValue());
+			if(!(strtotal_houseIncome.isEmpty())){                                             
+				total_houseIncome=Double.parseDouble(strtotal_houseIncome);
+			}
+			else {
+				total_houseIncome=0.0;
+			}setTotal_houseIncome(total_houseIncome);
+		}
+
 	}
 
 
@@ -646,6 +666,7 @@ public class HouseIncomeDetail extends HippoItem implements FormMapFiller {
 		setProperty_share(objhouseIncomeDetail.getProperty_share());
 		setRentSec25A(objhouseIncomeDetail.getRentSec25A());
 		setArrearRentSec25B(objhouseIncomeDetail.getArrearRentSec25B());
+		setTotal_houseIncome(objhouseIncomeDetail.getTotal_houseIncome());
 		
 	};
 }
