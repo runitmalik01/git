@@ -61,7 +61,6 @@ public class HouseIncome extends ITReturnComponent {
 		// TODO Auto-generated method stub
 		super.doBeforeRender(request, response);
 		String whichItrForm=request.getRequestContext().getResolvedSiteMapItem().getParameter("whichITRForm");
-		log.info("YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY"+whichItrForm);
 		if(whichItrForm != null){
 			request.setAttribute("ITR2", whichItrForm);
 		}
