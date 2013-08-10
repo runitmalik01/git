@@ -37,8 +37,8 @@
 						</div></td>
 						<td>
 						<div class="rowlabel">
-							<input id="total_houseIncome" name="total_houseIncome" type="text"
-								maxlength="14" class="decimal"
+							<input id="total_houseIncome" name="total_houseIncome" type="text" 
+								maxlength="14" readonly="readonly" class="decimal"
 								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.total_houseIncome}"/></c:if>" />
 						</div></td></tr>
 				
