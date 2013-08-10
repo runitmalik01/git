@@ -118,13 +118,19 @@ import com.mootly.wcm.model.FinancialYear;
 import com.mootly.wcm.model.ITRForm;
 import com.mootly.wcm.model.deduction.DeductionHead;
 import com.mootly.wcm.model.deduction.DeductionSection;
+import com.mootly.wcm.model.schedules.y2012_2013.BroughtFwdLossesSchedules;
+import com.mootly.wcm.model.schedules.y2012_2013.CarryFwdLossesSchedules;
 import com.mootly.wcm.model.schedules.y2012_2013.CreationInformation;
+import com.mootly.wcm.model.schedules.y2012_2013.CurrentYearLossesSchedules;
 import com.mootly.wcm.model.schedules.y2012_2013.DeductionVIASchedules;
 import com.mootly.wcm.model.schedules.y2012_2013.Donation80gSchedules;
 import com.mootly.wcm.model.schedules.y2012_2013.Form16DocumentSchedules;
 import com.mootly.wcm.model.schedules.y2012_2013.Form_ITR2;
 import com.mootly.wcm.model.schedules.y2012_2013.HouseIncomeDocumentSchedules;
 import com.mootly.wcm.model.schedules.y2012_2013.PartA_Gen1;
+import com.mootly.wcm.model.schedules.y2012_2013.TaxesDocumentScheduleIT;
+import com.mootly.wcm.model.schedules.y2012_2013.TdsOthersSchedules;
+import com.mootly.wcm.model.schedules.y2012_2013.TdsSalarySchedules;
 import com.mootly.wcm.services.DeductionListService;
 import com.mootly.wcm.services.ITRXmlGeneratorServiceCommon;
 import com.mootly.wcm.services.IndianCurrencyHelper;
@@ -161,6 +167,7 @@ public class ITR2XmlGeneratorService  {
 		InterestDoc interestDoc = (InterestDoc) inputBeans.get(InterestDoc.class.getSimpleName().toLowerCase());
 		FormSixteenDocument formSixteenDocument = (FormSixteenDocument) inputBeans.get(FormSixteenDocument.class.getSimpleName().toLowerCase());
 		RebateSec90Document rebateSec90Document = (RebateSec90Document) inputBeans.get(RebateSec90Document.class.getSimpleName().toLowerCase());
+		AdjustmentOfLossesDoc adjustmentOfLossesDoc = (AdjustmentOfLossesDoc) inputBeans.get(AdjustmentOfLossesDoc.class.getSimpleName().toLowerCase());
 
 		ITR2 itr2 = new ObjectFactory().createITR2();
 		ITR itr = new ITR();
@@ -185,6 +192,24 @@ public class ITR2XmlGeneratorService  {
 
 		Donation80gSchedules donation80gSchedules = new Donation80gSchedules(deductionDocument,memberPersonalInformation);
 		itr2.setSchedule80G(donation80gSchedules.getSchedule80G(itr, financialYear, inputBeans));
+
+		TaxesDocumentScheduleIT taxesDocumentScheduleIT = new TaxesDocumentScheduleIT(advanceTaxDocument, selfAssesmetTaxDocument);
+		itr2.setScheduleIT(taxesDocumentScheduleIT.getScheduleIT(itr));
+
+		TdsSalarySchedules tdsSalarySchedules = new TdsSalarySchedules(formSixteenDocument, salaryIncomeDocument);
+		itr2.setScheduleTDS1(tdsSalarySchedules.getScheduleTDS1(itr));
+
+		TdsOthersSchedules tdsOthersSchedules = new TdsOthersSchedules(tdsFromothersDocument);
+		itr2.setScheduleTDS2(tdsOthersSchedules.getScheduleTDS2(itr));
+
+		BroughtFwdLossesSchedules broughtFwdLossesSchedules = new BroughtFwdLossesSchedules();
+		itr2.setScheduleBFLA(broughtFwdLossesSchedules.getScheduleBFLA(itr, financialYear, inputBeans));
+
+		CurrentYearLossesSchedules currentYearLossesSchedules = new CurrentYearLossesSchedules();
+		itr2.setScheduleCYLA(currentYearLossesSchedules.getScheduleCYLA(itr, financialYear, inputBeans));
+
+		CarryFwdLossesSchedules carryFwdLossesSchedules = new CarryFwdLossesSchedules(adjustmentOfLossesDoc);
+		itr2.setScheduleCFL(carryFwdLossesSchedules.getScheduleCFL(itr, financialYear, inputBeans));
 
 
 		outputMap.put("theForm", itr2);
