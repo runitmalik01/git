@@ -115,6 +115,10 @@ private final static Logger log = LoggerFactory.getLogger(FormSixteenSectionA.cl
 	private Double relief_11;
 	private Double relief_12;
 	private String form16uuid;
+	private String addressdetail;
+	private String city;
+	private String pin;
+	private String state;
 
 
 	//for personal information
@@ -511,6 +515,22 @@ private final static Logger log = LoggerFactory.getLogger(FormSixteenSectionA.cl
 		if (relief_12 == null) relief_12 = getProperty("mootlywcm:relief1.2");
 		return relief_12;
 	}
+	public  String getAddressdetail() {
+		if (addressdetail == null) addressdetail = getProperty("mootlywcm:addrs");
+		return addressdetail;
+	}
+	public  String getCity() {
+		if (city == null) city = getProperty("mootlywcm:city");
+		return city;
+	}
+	public  String getState() {
+		if (state == null) state = getProperty("mootlywcm:state");
+		return state;
+	}
+	public  String getPin() {
+		if (pin == null) pin = getProperty("mootlywcm:pin");
+		return pin;
+	}
 
 	// for setter method
 	public final void  setEmploye_category(String Employe_category) {
@@ -815,4 +835,16 @@ private final static Logger log = LoggerFactory.getLogger(FormSixteenSectionA.cl
     public void setForm16Uuid(String form16uuid) {
         this.form16uuid = form16uuid;
     }
+    public final void  setAddressdetail(String addressdetail) {
+		this.addressdetail = addressdetail;
+	}
+    public final void  setCity(String city) {
+		this.city = city;
+	}
+    public final void  setState(String state) {
+		this.state = state;
+	}
+    public final void  setPin(String pin) {
+		this.pin = pin;
+	}
 }

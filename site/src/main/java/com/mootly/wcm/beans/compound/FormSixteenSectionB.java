@@ -33,6 +33,22 @@ public abstract class FormSixteenSectionB extends FormSixteenSectionA  implement
 			setAddress(formMap.getField("address").getValue());
 
 		}
+		if (formMap.getField("addressdetail") != null){
+			setAddressdetail(formMap.getField("addressdetail").getValue());
+
+		}
+		if (formMap.getField("city") != null){
+			setCity(formMap.getField("city").getValue());
+
+		}
+		if (formMap.getField("state") != null){
+			setState(formMap.getField("state").getValue());
+
+		}
+		if (formMap.getField("pin") != null){
+			setPin(formMap.getField("pin").getValue());
+
+		}
 		if (formMap.getField("employer") != null){
 			setEmployer(formMap.getField("employer").getValue());
 

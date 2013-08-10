@@ -93,6 +93,10 @@ public class FormSixteenDetail extends FormSixteenSectionB{
 			}
 			node.setProperty("mootlywcm:empcat", getEmploye_category());
 			node.setProperty("mootlywcm:employer", getEmployer());
+			node.setProperty("mootlywcm:addrs", getAddressdetail());
+			node.setProperty("mootlywcm:state", getState());
+			node.setProperty("mootlywcm:city", getCity());
+			node.setProperty("mootlywcm:pin", getPin());
 			node.setProperty("mootlywcm:address", getAddress());
 			node.setProperty("mootlywcm:employee", getEmployee());
 			node.setProperty("mootlywcm:pandeductor", getPan_deductor());
@@ -372,6 +376,10 @@ public class FormSixteenDetail extends FormSixteenSectionB{
 		setDed_ent2(objFormSixteen.getDed_ent_2());
 		setDed_ent3(objFormSixteen.getDed_ent_3());
 		setDed_ent4(objFormSixteen.getDed_ent_4());	
+		setAddressdetail(objFormSixteen.getAddressdetail());
+		setCity(objFormSixteen.getCity());
+		setState(objFormSixteen.getState());
+		setPin(objFormSixteen.getPin());	
 		setForm16Uuid(objFormSixteen.getForm16Uuid());
 	}
 
