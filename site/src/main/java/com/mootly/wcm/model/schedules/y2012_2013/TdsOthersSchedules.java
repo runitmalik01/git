@@ -37,19 +37,27 @@ public class TdsOthersSchedules {
 
 		IndianCurrencyHelper indianCurrencyHelper = new IndianCurrencyHelper();
 		ScheduleTDS2 scheduleTDS2 = new ScheduleTDS2();
-
-		List<TdsOthersDetail> tdsOthersDetails = document.getTdsSalaryDetailList();
-		for (TdsOthersDetail tdsOthersDetail:tdsOthersDetails)  {
-			TDSonOthThanSal tdsonOthThanSal = new TDSonOthThanSal();
-			EmployerOrDeductorOrCollectDetl employerOrDeductorOrCollectDetl = new EmployerOrDeductorOrCollectDetl();
-			employerOrDeductorOrCollectDetl.setTAN(tdsOthersDetail.getTan_Deductor().toUpperCase());
-			employerOrDeductorOrCollectDetl.setEmployerOrDeductorOrCollecterName(tdsOthersDetail.getName_Deductor().toUpperCase());
-			tdsonOthThanSal.setEmployerOrDeductorOrCollectDetl(employerOrDeductorOrCollectDetl);
-			tdsonOthThanSal.setTotTDSOnAmtPaid(indianCurrencyHelper.bigIntegerRound(tdsOthersDetail.getTotal_TaxDeductor()));
-			tdsonOthThanSal.setClaimOutOfTotTDSOnAmtPaid(indianCurrencyHelper.bigIntegerRound(tdsOthersDetail.getP_Amount()));
-			scheduleTDS2.getTDSonOthThanSal().add(tdsonOthThanSal);
+		boolean hasAValidTDS = false;
+		if(document!=null){
+			List<TdsOthersDetail> tdsOthersDetails = document.getTdsSalaryDetailList();
+			if (tdsOthersDetails != null && tdsOthersDetails.size() > 0 ){
+				for (TdsOthersDetail tdsOthersDetail:tdsOthersDetails)  {
+					TDSonOthThanSal tdsonOthThanSal = new TDSonOthThanSal();
+					EmployerOrDeductorOrCollectDetl employerOrDeductorOrCollectDetl = new EmployerOrDeductorOrCollectDetl();
+					employerOrDeductorOrCollectDetl.setTAN(tdsOthersDetail.getTan_Deductor().toUpperCase());
+					employerOrDeductorOrCollectDetl.setEmployerOrDeductorOrCollecterName(tdsOthersDetail.getName_Deductor().toUpperCase());
+					tdsonOthThanSal.setEmployerOrDeductorOrCollectDetl(employerOrDeductorOrCollectDetl);
+					tdsonOthThanSal.setTotTDSOnAmtPaid(indianCurrencyHelper.bigIntegerRound(tdsOthersDetail.getTotal_TaxDeductor()));
+					tdsonOthThanSal.setClaimOutOfTotTDSOnAmtPaid(indianCurrencyHelper.bigIntegerRound(tdsOthersDetail.getP_Amount()));
+					scheduleTDS2.getTDSonOthThanSal().add(tdsonOthThanSal);
+					if(!hasAValidTDS) hasAValidTDS = true;
+				}
+			}
 		}
-		return scheduleTDS2;
+		if(hasAValidTDS){
+			return scheduleTDS2;
+		}else
+			return null;
 
 	}
 
