@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:lang="http://www.springframework.org/schema/lang"
+       xsi:schemaLocation="
+                http://www.springframework.org/schema/beans
+                http://www.springframework.org/schema/beans/spring-beans.xsd
+                http://www.springframework.org/schema/context
+                http://www.springframework.org/schema/context/spring-context.xsd
+                http://www.springframework.org/schema/aop
+                http://www.springframework.org/schema/aop/spring-aop.xsd
+                http://www.springframework.org/schema/util 
+                http://www.springframework.org/schema/util/spring-util-2.0.xsd
+                http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang-2.5.xsd">
+    <aop:aspectj-autoproxy /> 
+    <context:annotation-config>
+		<context:component-scan base-package="com.mootly.wcm"></context:component-scan>		
+	</context:annotation-config>
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+	    <property name="locations">
+	    	<list>
+	    		<value>classpath:DITConnectorContext.properties</value>
+	    	</list>	        	        
+	    </property>
+	</bean>
+	
+	<bean id="SOAPNameSpaceContext" class="com.mootly.wcm.services.ditws.soap.SOAPNameSpaceContext">
+		<constructor-arg index="0">
+			<map>
+				<entry key="v" value="http://incometaxindiaefiling.gov.in/ditws/ITRVStatus/v_1_0"/>
+			</map>
+		</constructor-arg>
+		<constructor-arg index="1">
+			<map>
+				<entry value="v" key="http://incometaxindiaefiling.gov.in/ditws/ITRVStatus/v_1_0"/>
+			</map>
+		</constructor-arg>
+	</bean>
+	
+	
+	<bean id="xPathFactory" class="javax.xml.xpath.XPathFactory" factory-method="newInstance"/>
+	<bean id="xPath" class="javax.xml.xpath.XPath" factory-bean="xPathFactory" factory-method="newXPath">
+		<property name="namespaceContext" ref="SOAPNameSpaceContext"/>
+	</bean>
+	
+    <bean id="soapConnectionFactory" class="javax.xml.soap.SOAPConnectionFactory" factory-method="newInstance"/>
+    <bean id="soapFactory" class="javax.xml.soap.SOAPFactory" factory-method="newInstance"/>
+    <bean id="messageFactory" class="javax.xml.soap.MessageFactory"  factory-method="newInstance"/>
+    <bean id="soapConnection" class="javax.xml.soap.SOAPConnection" factory-method="createConnection" factory-bean="soapConnectionFactory"/>
+    
+    <bean id="soapService" class="com.mootly.wcm.services.ditws.soap.SOAPService"> 
+    	<property name="logFileLocationBaseDir" value="${soap_service_log_base_dir}"/>   
+    </bean>
+    
+    <bean id="endPointURL_RetrieveITRVStatus" class="java.net.URL">
+    	<constructor-arg value="${endPointURL_RetrieveITRVStatus}"/>
+    </bean>
+    
+    <bean id="endPointURL_RetrieveITRVByAckNo" class="java.net.URL">
+    	<constructor-arg value="${endPointURL_RetrieveITRVByAckNo}"/>
+    </bean>
+    <bean id="endPointURL_RetrieveITRVByTokenNo" class="java.net.URL">
+    	<constructor-arg value="${endPointURL_RetrieveITRVByTokenNo}"/>
+    </bean>
+    <import resource="RetrieveITRV.xml"/>
+    
+   <!-- 
+   <import resource="CaseGetWorkLogService.xml"/>  
+   <import resource="KnovaInputQueryService.xml"/>
+   <import resource="KnovaInputCreateService.xml"/>   
+   <import resource="GetCaseByCriteria.xml"/>
+    -->
+</beans>

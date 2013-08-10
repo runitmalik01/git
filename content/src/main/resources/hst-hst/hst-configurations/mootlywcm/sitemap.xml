@@ -3744,43 +3744,62 @@
 			  </sv:property>
 			</sv:node>
 			<!-- /another one -->
-			
-
-
-<!-- new sitemap for schedule 5a by Pankaj singh -->
-
-						<sv:node sv:name="schedule5a.html">
-							<sv:property sv:name="jcr:primaryType" sv:type="Name">
-								<sv:value>hst:sitemapitem</sv:value>
-							</sv:property>
-							<sv:property sv:name="jcr:uuid" sv:type="String">
-								<sv:value>70bbcb5f-9647-4014-98cc-3c87fe15f99c</sv:value>
-							</sv:property>
-							<sv:property sv:name="hst:componentconfigurationid"
-								sv:type="String">
-								<sv:value>hst:pages/schedule5a</sv:value>
-							</sv:property>
-							<sv:property sv:multiple="true" sv:name="hst:parameternames"
-								sv:type="String">
-								<sv:value>mainSiteMapItemRefId</sv:value>
-								<sv:value>action</sv:value>
-							</sv:property>
-							<sv:property sv:multiple="true" sv:name="hst:parametervalues"
-								sv:type="String">
-								<sv:value>schedule5a</sv:value>
-								<sv:value>EDIT</sv:value>
-							</sv:property>
-							<sv:property sv:name="hst:refId" sv:type="String">
-								<sv:value>memberschedule5a</sv:value>
-							</sv:property>
-							<sv:property sv:name="hst:relativecontentpath"
-								sv:type="String">
-								<sv:value>members</sv:value>
-							</sv:property>
-						</sv:node>
-
-						<!-- end schedule5a -->
-			
+			<!-- New Site Map Item for ITRV Check Status -->
+			<sv:node sv:name="servicerequest-itr-v-status.html" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+			  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+			    <sv:value>hst:sitemapitem</sv:value>
+			  </sv:property>
+			  <sv:property sv:name="jcr:uuid" sv:type="String">
+			    <sv:value>4c2d3541-998e-4575-ab37-7a1daab6a5ea</sv:value>
+			  </sv:property>
+			  <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+			    <sv:value>hst:pages/servicerequest-itr-v-status</sv:value>
+			  </sv:property>
+			  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+			    <sv:value>action</sv:value>
+			  </sv:property>
+			  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+			    <sv:value>RETRIEVE_ITRV_STATUS</sv:value>
+			  </sv:property>
+			  <sv:property sv:name="hst:refId" sv:type="String">
+			    <sv:value>vendor-servicerequest-itr-v-status</sv:value>
+			  </sv:property>
+			  <sv:property sv:name="hst:relativecontentpath" sv:type="String">
+			    <sv:value>members</sv:value>
+			  </sv:property>
+			</sv:node>
+			<!-- / New Site Map Item for ITRV Check Status -->
+			<!-- new sitemap for schedule 5a by Pankaj singh -->
+			<sv:node sv:name="schedule5a.html">
+				<sv:property sv:name="jcr:primaryType" sv:type="Name">
+					<sv:value>hst:sitemapitem</sv:value>
+				</sv:property>
+				<sv:property sv:name="jcr:uuid" sv:type="String">
+					<sv:value>70bbcb5f-9647-4014-98cc-3c87fe15f99c</sv:value>
+				</sv:property>
+				<sv:property sv:name="hst:componentconfigurationid"
+					sv:type="String">
+					<sv:value>hst:pages/schedule5a</sv:value>
+				</sv:property>
+				<sv:property sv:multiple="true" sv:name="hst:parameternames"
+					sv:type="String">
+					<sv:value>mainSiteMapItemRefId</sv:value>
+					<sv:value>action</sv:value>
+				</sv:property>
+				<sv:property sv:multiple="true" sv:name="hst:parametervalues"
+					sv:type="String">
+					<sv:value>schedule5a</sv:value>
+					<sv:value>EDIT</sv:value>
+				</sv:property>
+				<sv:property sv:name="hst:refId" sv:type="String">
+					<sv:value>memberschedule5a</sv:value>
+				</sv:property>
+				<sv:property sv:name="hst:relativecontentpath"
+					sv:type="String">
+					<sv:value>members</sv:value>
+				</sv:property>
+			</sv:node>
+			<!-- end schedule5a -->
         </sv:node>
         </sv:node>
       </sv:node>
@@ -4259,6 +4278,35 @@
 	    <sv:property sv:name="hst:refId" sv:type="String">
 	      <sv:value>vendoritreturnhome</sv:value>
 	    </sv:property>
+	    <!--  additional node at the same level allow downloads of bulk XML -->
+		<sv:node xmlns:sv="http://www.jcp.org/jcr/sv/1.0" sv:name="servicerequest-itr-bulk-xml-download.html">
+		  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+		    <sv:value>hst:sitemapitem</sv:value>
+		  </sv:property>
+		  <sv:property sv:name="jcr:uuid" sv:type="String">
+		    <sv:value>80c243f5-ec90-447f-a265-0efb15c580bc</sv:value>
+		  </sv:property>
+		  <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+		    <sv:value>hst:components/servicerequest-itr-download-xml-bulk</sv:value>
+		  </sv:property>
+		  <sv:property sv:name="hst:parameternames" sv:type="String" sv:multiple="true">
+		    <sv:value>mainSiteMapItemRefId</sv:value>
+		    <sv:value>action</sv:value>
+		    <sv:value>nextScreen</sv:value>
+		  </sv:property>
+		  <sv:property sv:name="hst:parametervalues" sv:type="String" sv:multiple="true">
+		    <sv:value>servicerequest-itr-summary</sv:value>
+		    <sv:value>DOWNLOAD_ITR_XML_BULK</sv:value>
+		    <sv:value>servicerequest-itr-summary</sv:value>
+		  </sv:property>
+		  <sv:property sv:name="hst:refId" sv:type="String">
+		    <sv:value>vendor-servicerequest-itr-bulk-download-xml</sv:value>
+		  </sv:property>
+		  <sv:property sv:name="hst:relativecontentpath" sv:type="String">
+		    <sv:value>members</sv:value>
+		  </sv:property>
+		</sv:node>
+	    <!--  /additional node at the same level allow downloads of bulk XML -->
 	    <sv:node sv:name="_default_">
 	      <sv:property sv:name="jcr:primaryType" sv:type="Name">
 	        <sv:value>hst:sitemapitem</sv:value>
@@ -7427,33 +7475,52 @@
 	                </sv:property>
 	              </sv:node>
 	            </sv:node>
-	            <sv:node sv:name="servicerequest-itr-summary.html">
-	              <sv:property sv:name="jcr:primaryType" sv:type="Name">
-	                <sv:value>hst:sitemapitem</sv:value>
-	              </sv:property>
-	              <sv:property sv:name="jcr:uuid" sv:type="String">
-	                <sv:value>2e09b8b3-bde5-477a-bfd4-7abcf6d60d1d</sv:value>
-	              </sv:property>
-	              <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
-	                <sv:value>hst:pages/servicerequest-itr-summary</sv:value>
-	              </sv:property>
-	              <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
-	                <sv:value>mainSiteMapItemRefId</sv:value>
-	                <sv:value>action</sv:value>
-	                <sv:value>nextScreen</sv:value>
-	              </sv:property>
-	              <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
-	                <sv:value>servicerequest-itr-summary</sv:value>
-	                <sv:value>SHOW_ITR_SUMMARY</sv:value>
-	                <sv:value>servicerequest-itr-summary</sv:value>
-	              </sv:property>
-	              <sv:property sv:name="hst:refId" sv:type="String">
-	                <sv:value>vendor-servicerequest-itr-summary</sv:value>
-	              </sv:property>
-	              <sv:property sv:name="hst:relativecontentpath" sv:type="String">
-	                <sv:value>members</sv:value>
-	              </sv:property>
-	            </sv:node>
+	            <!--  update -->
+	            <sv:node xmlns:sv="http://www.jcp.org/jcr/sv/1.0" sv:name="servicerequest-itr-summary.html">
+				  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+				    <sv:value>hst:sitemapitem</sv:value>
+				  </sv:property>
+				  <sv:property sv:name="jcr:uuid" sv:type="String">
+				    <sv:value>2e09b8b3-bde5-477a-bfd4-7abcf6d60d1d</sv:value>
+				  </sv:property>
+				  <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+				    <sv:value>hst:pages/servicerequest-itr-summary</sv:value>
+				  </sv:property>
+				  <sv:property sv:name="hst:parameternames" sv:type="String" sv:multiple="true">
+				    <sv:value>mainSiteMapItemRefId</sv:value>
+				    <sv:value>action</sv:value>
+				    <sv:value>nextScreen</sv:value>
+				  </sv:property>
+				  <sv:property sv:name="hst:parametervalues" sv:type="String" sv:multiple="true">
+				    <sv:value>servicerequest-itr-summary</sv:value>
+				    <sv:value>SHOW_ITR_SUMMARY</sv:value>
+				    <sv:value>servicerequest-itr-summary</sv:value>
+				  </sv:property>
+				  <sv:property sv:name="hst:refId" sv:type="String">
+				    <sv:value>vendor-servicerequest-itr-summary</sv:value>
+				  </sv:property>
+				  <sv:property sv:name="hst:relativecontentpath" sv:type="String">
+				    <sv:value>members</sv:value>
+				  </sv:property>
+				  <sv:node sv:name="addpathtobulk">
+				    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+				      <sv:value>hst:sitemapitem</sv:value>
+				    </sv:property>
+				    <sv:property sv:name="jcr:uuid" sv:type="String">
+				      <sv:value>50e2a0be-2b15-4316-81ca-25d730935afa</sv:value>
+				    </sv:property>
+				    <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+				      <sv:value>hst:components/servicerequest-itr-download-xml-bulk-addpath</sv:value>
+				    </sv:property>
+				    <sv:property sv:name="hst:parameternames" sv:type="String" sv:multiple="true">
+				      <sv:value>action</sv:value>
+				    </sv:property>
+				    <sv:property sv:name="hst:parametervalues" sv:type="String" sv:multiple="true">
+				      <sv:value>DOWNLOAD_ITR_XML_BULK_ADD_TO_SESSION</sv:value>
+				    </sv:property>
+				  </sv:node>
+				</sv:node>
+	            <!-- /update -->
 	            <sv:node sv:name="servicerequest-itr-download-summary.html">
 	              <sv:property sv:name="jcr:primaryType" sv:type="Name">
 	                <sv:value>hst:sitemapitem</sv:value>

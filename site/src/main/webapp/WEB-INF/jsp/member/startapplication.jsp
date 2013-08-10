@@ -427,7 +427,8 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 						<label for="pi_mobile"><small>Mobile</small> </label>
 					</div>
 					<div class="rowlabel">
-						<input id="pi_mobile" value="${parentBean.mobile}"
+						<input id="pi_mobile"
+							value="<c:choose><c:when test="${not empty parentBean.mobile}"><c:out value="${parentBean.mobile}"/></c:when><c:when test="${not empty savedValuesFormMap && not empty savedValuesFormMap.value['pi_mobile']}"><c:out value="${savedValuesFormMap.value['pi_mobile'].value}"/></c:when></c:choose>"
 							name="pi_mobile" placeholder="Mobile Number" type="text"
 							maxlength="10" />
 					</div>

@@ -23,6 +23,7 @@ public enum FinancialYear {
 	int endYear;
 	String displayName;
 	String displayAssessmentYear;
+	String assessmentYearForDITSOAPCall;
 	int startAssessmentYear;
 	int endAssessmentYear;
 	GregorianCalendar dateStartFinancialYear;
@@ -50,6 +51,7 @@ public enum FinancialYear {
 
 		this.displayName = this.startYear + "-" + endYear;
 		this.displayAssessmentYear = this.startAssessmentYear + "-" + this.endAssessmentYear;
+		this.assessmentYearForDITSOAPCall = this.startAssessmentYear + "-" + String.valueOf(this.endAssessmentYear).substring(2); // t should be 2013-14 for SOAP Calls
 		this.javaPackageName = "y" + displayName.replace("-", "_");
 
 		this.dateStartFinancialYear = IndianGregorianCalendar.getIndianInstance();
@@ -232,6 +234,10 @@ public enum FinancialYear {
 
 	public String getDisplayAssessmentYear() {
 		return displayAssessmentYear;
+	}
+	
+	public String getAssessmentYearForDITSOAPCall() {
+		return assessmentYearForDITSOAPCall;
 	}
 
 	public int getStartAssessmentYear() {

@@ -44,4 +44,7 @@
                 </list>
       </constructor-arg>
   </bean>
+  
+  <!-- DIT SOAP Integration define the services  -->
+  <import resource="DITConnectorContext.xml"/>
 </beans>

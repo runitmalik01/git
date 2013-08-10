@@ -12,6 +12,7 @@ package com.mootly.wcm.member;
 import java.rmi.RemoteException;
 import java.util.Iterator;
 
+import javax.jcr.Node;
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 
@@ -30,6 +31,7 @@ import org.hippoecm.hst.content.beans.standard.HippoFolderBean;
 import org.hippoecm.hst.core.component.HstComponentException;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
+import org.hippoecm.hst.util.NodeUtils;
 import org.hippoecm.repository.api.WorkflowException;
 import org.hippoecm.repository.reviewedactions.FullReviewedActionsWorkflow;
 import org.slf4j.Logger;
@@ -74,11 +76,11 @@ public class ITReturnCopyOrMove extends ITReturnComponent {
 				if (log.isInfoEnabled()) {
 					log.info("New Folder was created and the pathToTheBean now is " + pathToParentBean);
 				}
-				HippoFolder theNewFolder = (HippoFolder) wpm.getObject(pathToParentBean);
+				//HippoFolder theNewFolder = (HippoFolder) wpm.getObject(pathToParentBean);
 				HstQuery hstQuery = this.getQueryManager(request).createQuery( memberPersonalInformation.getParentBean() );
 				final HstQueryResult result = hstQuery.execute();
 				Iterator<HippoBean> itResults = result.getHippoBeans();
-				HippoFolderBean folder = (HippoFolderBean) wpm.getObject(newFolderPath);
+				HippoFolderBean folder = (HippoFolderBean) wpm.getObject(pathToParentBean);
 				if (log.isInfoEnabled()) {
 					log.info("Now will look into all HippoDocuments under the same folder and make a copy of each");
 				}
@@ -87,17 +89,23 @@ public class ITReturnCopyOrMove extends ITReturnComponent {
 					if (hippoBean instanceof HippoDocumentBean) {
 						//we cannot copy payment document
 						if (hippoBean.getClass().getSimpleName().toLowerCase().equalsIgnoreCase(MemberPayment.class.getSimpleName())) {
+							if (log.isInfoEnabled()) {
+								log.info("Found payment document. Skipping..");
+							}
 							continue;
 						}
-						HippoDocument theDocument = (HippoDocument) wpm.getObject(hippoBean.getPath());
+						String pathToNode = NodeUtils.getCanonicalNode(hippoBean.getNode()).getPath();
+						Node theNodeW = persistableSession.getNode(pathToNode);
+						//HippoDocument theDocument = (HippoDocument) wpm.getObject(hippoBean.getPath());
+						//Node theNodeToGetWorkflowOn = persistableSession.getNode(hippoBean.getPath());
 						if (log.isInfoEnabled()) {
-							log.info("Now will copy the following document " + theDocument.getClass().getSimpleName().toLowerCase());
+							log.info("Now will copy the following document " + hippoBean.getClass().getSimpleName().toLowerCase());
 						}
-						FullReviewedActionsWorkflow fullReviewedActionsWorkflow = (FullReviewedActionsWorkflow) wpm.getWorkflow("default", theDocument.getNode());
+						FullReviewedActionsWorkflow fullReviewedActionsWorkflow = (FullReviewedActionsWorkflow) wpm.getWorkflow("default",theNodeW);
 						org.hippoecm.repository.api.Document document = new org.hippoecm.repository.api.Document(folder.getNode().getIdentifier());
 						fullReviewedActionsWorkflow.copy(document,hippoBean.getClass().getSimpleName().toLowerCase());
 						Object theNewObject = wpm.getObject(folder.getPath() + "/" + hippoBean.getClass().getSimpleName().toLowerCase() );
-						
+						//fullReviewedActionsWorkflow.publish();						
 						wpm.setWorkflowCallbackHandler(new WorkflowCallbackHandler<FullReviewedActionsWorkflow>() {
 							@Override
 							public void processWorkflow(FullReviewedActionsWorkflow workflow)
@@ -109,11 +117,10 @@ public class ITReturnCopyOrMove extends ITReturnComponent {
 						});
 						wpm.update(theNewObject);
 						if (log.isInfoEnabled()) {
-							log.info("Published");
+							log.info("Successfully copied "+ hippoBean.getPath() + " to " + newFolderPath);
 						}
 					}
-				}		
-				
+				}						
 				response.setRenderParameter("newFolderName", newFolderName);
 				isSuccess = true;
 				//this means the path is now read lets start copying 

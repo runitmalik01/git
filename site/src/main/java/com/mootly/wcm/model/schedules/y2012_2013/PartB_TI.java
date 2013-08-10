@@ -74,14 +74,18 @@ public class PartB_TI {
 		partBTI.setCapGain(capGain);
 		//Other Income
 		IncFromOS incFromOS = new IncFromOS();
-		incFromOS.setOtherSrcThanOwnRaceHorse(otherSourcesDocument.getTaxable_income().longValue());
+		incFromOS.setOtherSrcThanOwnRaceHorse(indianCurrencyHelper.bigIntegerRound(otherSourcesDocument.getTaxable_income()).longValue());
 		incFromOS.setWinLotteriesRacesGambling(new BigInteger("0"));//waiting for input from otherincome screen
 		incFromOS.setFromOwnRaceHorse(new BigInteger("0"));//waiting for input from otherincome screen
-		BigInteger totalOtherIncome = BigInteger.valueOf(incFromOS.getOtherSrcThanOwnRaceHorse()).add(incFromOS.getFromOwnRaceHorse().add(incFromOS.getWinLotteriesRacesGambling()));
-		if(totalOtherIncome.compareTo(BigInteger.ZERO)>0){
-		incFromOS.setTotIncFromOS(totalOtherIncome);
-		}else
+		BigInteger winLotteriesRacesGambling = incFromOS.getWinLotteriesRacesGambling();
+		BigInteger fromOwnRaceHorse = incFromOS.getFromOwnRaceHorse();
+		Long longOtherSrcThanOwnRaceHorse = incFromOS.getOtherSrcThanOwnRaceHorse();
+		long totalOtherIncome = longOtherSrcThanOwnRaceHorse + ( fromOwnRaceHorse.add(winLotteriesRacesGambling)).longValue();
+		if(totalOtherIncome > 0L){
+			incFromOS.setTotIncFromOS( new BigInteger(String.valueOf(totalOtherIncome)) );
+		}else {
 			incFromOS.setTotIncFromOS(new BigInteger("0"));
+		}
 		partBTI.setIncFromOS(incFromOS);
 
 		//total of SalaryIncome+HouseIncome+CapitalGain+OtherIncome

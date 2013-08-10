@@ -71,6 +71,9 @@ HstRequest hstRequest = (HstRequest) request;
 								  <c:if test="${not empty strIsOnVendorPortal && strIsOnVendorPortal =='true' && isVendor =='true'}">
 				                  	<li><a href="${baseFolderLink}/servicerequest-itr-summary.html/addpathtobulk">Add To Bulk</a></li>
 				                  </c:if>
+				                  <c:if test="${not empty strIsOnVendorPortal && strIsOnVendorPortal =='true' && isVendor =='true'}">
+				                  	<li><a href="${baseFolderLink}/servicerequest-itr-v-status.html">ITR-V Status</a></li>
+				                  </c:if>
 				              </c:if>
 			                </ul>
 			             </div>

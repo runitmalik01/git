@@ -70,8 +70,8 @@ import com.mootly.wcm.utils.Constants;
 import com.mootly.wcm.utils.GoGreenUtil;
 import com.mootly.wcm.utils.PageableCollection;
 //@PrimaryBean(primaryBeanClass=MemberPersonalInformation.class)
-@FormFields(fieldNames={"pan","pi_last_name","pi_dob","pi_return_type","fy","ReturnSection","StartApp_Mobile"})
-@RequiredFields(fieldNames={"pan","pi_last_name","pi_dob","pi_return_type","fy","ReturnSection","StartApp_Mobile"})
+@FormFields(fieldNames={"pan","pi_last_name","pi_dob","pi_return_type","fy","ReturnSection","pi_mobile"})
+@RequiredFields(fieldNames={"pan","pi_last_name","pi_dob","pi_return_type","fy","ReturnSection","pi_mobile"})
 abstract public class AbstractITReturnHomePage extends ITReturnComponent {
 
 	private static final String PARAM_PAGE_SIZE = "pageSize";
@@ -265,7 +265,7 @@ abstract public class AbstractITReturnHomePage extends ITReturnComponent {
 		// TODO Auto-generated method stub
 		//super.doAction(request, response);
 		//FormMap map = new FormMap(request,new String[]{"pan","pi_last_name","pi_dob","pi_return_type","fy","ack_no","ack_date","defective","notice_no","notice_date"});
-		FormMap map = new FormMap(request,new String[]{"pan","pi_last_name","pi_dob","pi_return_type","fy","ReturnSection","StartApp_Mobile"});
+		FormMap map = new FormMap(request,new String[]{"pan","pi_last_name","pi_dob","pi_return_type","fy","ReturnSection","pi_mobile"});
 		//FormUtils.persistFormMap(request, response, getFormMap(), null);
 		//try {
 		String pan =map.getField("pan").getValue().toLowerCase();
@@ -302,9 +302,10 @@ abstract public class AbstractITReturnHomePage extends ITReturnComponent {
 		}
 		// sending email to admin of wealth4india :- by Pankaj Singh
 		
-		String StartApp_Mobile = map.getField("StartApp_Mobile").getValue();
+		String StartApp_Mobile = map.getField("pi_mobile").getValue();
 		Map<String,Object> velocityContext = new HashMap<String, Object>();
 		velocityContext.put("userName",getUserName());
+		velocityContext.put("pi_mobile", StartApp_Mobile);
 		velocityContext.put("StartApp_Mobile", StartApp_Mobile);
 		sendEmail(request, null, null, null, "memberstartapptemplate", velocityContext);
 		// end of code for sending email

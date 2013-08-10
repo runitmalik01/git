@@ -72,7 +72,6 @@ import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.content.beans.standard.HippoBeanIterator;
 import org.hippoecm.hst.content.beans.standard.HippoDocumentBean;
 import org.hippoecm.hst.content.beans.standard.HippoFolder;
-import org.hippoecm.hst.content.beans.standard.HippoFolderBean;
 import org.hippoecm.hst.core.component.HstComponentException;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
@@ -92,7 +91,6 @@ import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.tool.xml.XMLWorkerHelper;
-import com.mootly.wcm.annotations.AdditionalBeans;
 import com.mootly.wcm.annotations.ChildBean;
 import com.mootly.wcm.annotations.DataTypeValidationFields;
 import com.mootly.wcm.annotations.DataTypeValidationHelper;
@@ -111,7 +109,6 @@ import com.mootly.wcm.beans.ScreenCalculation;
 import com.mootly.wcm.beans.ScreenConfigDocument;
 import com.mootly.wcm.beans.ValueListDocument;
 import com.mootly.wcm.member.Member;
-import com.mootly.wcm.member.XmlGenerator;
 import com.mootly.wcm.model.FilingSection;
 import com.mootly.wcm.model.FilingStatus;
 import com.mootly.wcm.model.FinancialYear;
@@ -132,6 +129,12 @@ import com.mootly.wcm.services.SequenceGenerator;
 import com.mootly.wcm.services.SequenceGeneratorImpl;
 import com.mootly.wcm.services.StartApplicationValidationService;
 import com.mootly.wcm.services.XmlGeneratorService;
+import com.mootly.wcm.services.ditws.ITRVStatus;
+import com.mootly.wcm.services.ditws.RetrieveITRV;
+import com.mootly.wcm.services.ditws.exception.DataMismatchException;
+import com.mootly.wcm.services.ditws.exception.InvalidFormatException;
+import com.mootly.wcm.services.ditws.exception.MissingInformationException;
+import com.mootly.wcm.services.ditws.impl.RetrieveITRVImpl;
 import com.mootly.wcm.utils.GoGreenUtil;
 import com.mootly.wcm.utils.MootlyFormUtils;
 import com.mootly.wcm.utils.XmlCalculation;
@@ -142,6 +145,8 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 	private static final Logger log = LoggerFactory.getLogger(ITReturnComponent.class);
 	ITRXmlGeneratorServiceFactory itrXmlGeneratorServiceFactory = null;
 	ITRValidatorChain itrValidationChain = null;
+	RetrieveITRV retrieveITRVService = null;
+	
 	String servletPath = null;
 	String xsltPath = null;
 	
@@ -187,6 +192,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 
 	//MemberPersonalInformation memberPersonalInformation = null;
 	//Screen Specific
+	PAGE_OUTPUT_FORMAT pageOutputFormat;
 	PAGE_ACTION pageAction;
 	String screenMode;
 	String nextScreenSiteMapItemRefId;
@@ -213,8 +219,15 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		sequenceGenerator = context.getBean(SequenceGeneratorImpl.class);
 		xsltPath = servletContext.getRealPath("/xslt/ITRSummary.xsl");
 		itrValidationChain =  context.getBean(ITRValidatorChain.class);
+		retrieveITRVService = context.getBean(RetrieveITRV.class);
 	}
 	
+	public RetrieveITRV getRetrieveITRVService() {
+		return retrieveITRVService;
+	}
+
+
+
 	public SequenceGenerator getSequenceGenerator() {
 		return sequenceGenerator;
 	}
@@ -446,6 +459,33 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 				e.printStackTrace();
 			}
 			request.getSession().removeAttribute("bulk_download_xml_paths");
+		}
+		//new functionality test connectivity with DIT this one doesn't need username password
+		if (pageAction != null && pageAction == PAGE_ACTION.RETRIEVE_ITRV_STATUS) {
+			if (retrieveITRVService != null) {
+				try {
+					ITRVStatus itrvStatus = retrieveITRVService.retrieveITRVStatus(getPAN(), getFinancialYear().getAssessmentYearForDITSOAPCall());
+					request.setAttribute("itrvStatus", itrvStatus);								
+				} catch (MissingInformationException e) {
+					// TODO Auto-generated catch block
+					log.error("Error in RetrieveITRVStatus-MissingInformationException",e);
+					request.setAttribute("isError", "true");
+				} catch (DataMismatchException e) {
+					// TODO Auto-generated catch block
+					log.error("Error in RetrieveITRVStatus-DataMismatchException",e);
+					request.setAttribute("isError", "true");
+				} catch (InvalidFormatException e) {
+					// TODO Auto-generated catch block
+					log.error("Error in RetrieveITRVStatus-InvalidFormatException",e);
+					request.setAttribute("isError", "true");
+				}
+			}
+			else {
+				request.setAttribute("isError", "true");
+			}			
+			if (getPageOutputFormat() != null && getPageOutputFormat() == PAGE_OUTPUT_FORMAT.JSON) {
+				response.setRenderPath("jsp/common/json_output.jsp");
+			}	
 		}
 	}
 
@@ -886,7 +926,19 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		if (actionInSiteMap != null && actionInSiteMap.contains("_")) {
 			tabName = actionInSiteMap.substring(0,actionInSiteMap.indexOf("_"));
 		}
-
+		
+		String strPageOutputFormat = request.getRequestContext().getResolvedSiteMapItem().getParameter("outputFormat");
+		pageOutputFormat = PAGE_OUTPUT_FORMAT.HTML;
+		if (strPageOutputFormat != null) {
+			try {
+				pageOutputFormat = PAGE_OUTPUT_FORMAT.valueOf(strPageOutputFormat);
+			}catch(IllegalArgumentException ie) {
+				log.warn("Resetting Page output to default");
+				pageOutputFormat = PAGE_OUTPUT_FORMAT.HTML;
+			}
+		}
+		
+		
 		String strPageAction = request.getRequestContext().getResolvedSiteMapItem().getParameter("action");
 		//this is tricky lets allow components to override the configuration by passing it themselves
 		//this is useful for form16 -- deductions scenario where a parent is hosting a child
@@ -2043,6 +2095,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		HippoBean scopeForAllBeans =  getSiteContentBaseBean(request).getBean(baseRelPathToReturnDocuments);
 		HstQuery hstQuery;
 		try {
+			if (scopeForAllBeans == null) return;
 			hstQuery = getQueryManager(request).createQuery( scopeForAllBeans );
 			final HstQueryResult result = hstQuery.execute();
 			Iterator<HippoBean> itResults = result.getHippoBeans();
@@ -2060,6 +2113,12 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}		
+	}
+
+	@Override
+	public PAGE_OUTPUT_FORMAT getPageOutputFormat() {
+		// TODO Auto-generated method stub
+		return pageOutputFormat;
 	}
 
 }

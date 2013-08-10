@@ -108,7 +108,7 @@ public class StartApplication extends ITReturnComponent {
 		if (publicParameterUUID != null) {
 			try {
 				FormUtils.validateId(publicParameterUUID);
-				savedValuesFormMap = new FormMap(request,new String[]{"pan","pi_last_name","pi_dob","pi_return_type","fy","ReturnSection"});
+				savedValuesFormMap = new FormMap(request,new String[]{"pan","pi_last_name","pi_dob","pi_return_type","fy","ReturnSection","pi_mobile"});
 				MootlyFormUtils.populate(request, publicParameterUUID, savedValuesFormMap);
 				if (savedValuesFormMap != null) {
 					request.setAttribute("savedValuesFormMap", savedValuesFormMap);

@@ -2617,10 +2617,10 @@ case of search; &lt;/p&gt;
         <sv:value>mobile</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
-        <sv:value>StartApp_Mobile</sv:value>
+        <sv:value>pi_mobile</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
-        <sv:value>StartApp_Mobile</sv:value>
+        <sv:value>pi_mobile</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
         <sv:value/>

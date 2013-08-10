@@ -9,7 +9,8 @@ import com.mootly.wcm.member.Member;
 
 public interface ITReturnScreen {
 
-	 public enum PAGE_ACTION {DEFAULT,NEW,EDIT,DELETE,SAVE,NEW_CHILD,EDIT_CHILD,SAVE_CHILD,DELETE_CHILD,SHOW_ITR_SUMMARY,DOWNLOAD_ITR_XML,DOWNLOAD_ITR_SUMMARY,EMAIL_ITR_XML_AND_SUMMARY,DOWNLOAD_ITR_XML_BULK_ADD_TO_SESSION,DOWNLOAD_ITR_XML_BULK,COPY_ORIGINAL_TO_REVISED};
+	 public enum PAGE_ACTION {DEFAULT,NEW,EDIT,DELETE,SAVE,NEW_CHILD,EDIT_CHILD,SAVE_CHILD,DELETE_CHILD,SHOW_ITR_SUMMARY,DOWNLOAD_ITR_XML,DOWNLOAD_ITR_SUMMARY,EMAIL_ITR_XML_AND_SUMMARY,DOWNLOAD_ITR_XML_BULK_ADD_TO_SESSION,DOWNLOAD_ITR_XML_BULK,COPY_ORIGINAL_TO_REVISED,RETRIEVE_ITRV_STATUS,RETRIEVE_ITRV_BY_ACKNO,RETRIEVE_ITRV_BY_TOKENNO};
+	 public enum PAGE_OUTPUT_FORMAT {HTML,XML,JSON};
 
 	 String getAssessmentYear() throws InvalidNavigationException; ;
 	 String getMemberUserName() throws InvalidNavigationException; ; //this should simply return the username which is the email address
@@ -31,6 +32,7 @@ public interface ITReturnScreen {
 	 String getPrevScreenSiteMapItemRefId();
 
 	 PAGE_ACTION getPageAction();
+	 PAGE_OUTPUT_FORMAT getPageOutputFormat();
 	 boolean hasNextScreen();
 	 boolean hasPrevScreen();
 	 boolean isLastScreen();

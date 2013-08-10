@@ -1521,4 +1521,46 @@
 	    <sv:value>servicerequest-itr-copy-or-move</sv:value>
 	  </sv:property>
 	</sv:node>	
+	<!--  new component for bulk download 08/10/2013 -->
+	<sv:node xmlns:sv="http://www.jcp.org/jcr/sv/1.0" sv:name="servicerequest-itr-download-xml-bulk-addpath">
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hst:component</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>cd661587-2f0e-4c25-88f6-96ca687d4486</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:componentclassname" sv:type="String">
+	    <sv:value>com.mootly.wcm.components.ITReturnComponent</sv:value>
+	  </sv:property>
+	</sv:node>	
+	<sv:node xmlns:sv="http://www.jcp.org/jcr/sv/1.0" sv:name="servicerequest-itr-download-xml-bulk">
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hst:component</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>e0b04f4d-75e1-4ecd-b9e7-5e567dec9a3d</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:componentclassname" sv:type="String">
+	    <sv:value>com.mootly.wcm.components.ITReturnComponent</sv:value>
+	  </sv:property>
+	</sv:node>	
+	<!--  / new component for bulk download -->
+	<!--  new component for ITRV Status Check -->
+	<sv:node sv:name="servicerequest-itr-v-status" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hst:component</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>0b097bb1-3b99-41b4-a7b7-1673e9fa5ec7</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:componentclassname" sv:type="String">
+	    <sv:value>com.mootly.wcm.components.ITReturnComponent</sv:value>
+	  </sv:property>
+	  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String"/>
+	  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String"/>
+	  <sv:property sv:name="hst:template" sv:type="String">
+	    <sv:value>servicerequest-itr-v-status</sv:value>
+	  </sv:property>
+	</sv:node>
+	<!--  / new component for ITRV Status Check -->
 </sv:node>
