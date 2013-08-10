@@ -33,33 +33,45 @@ public class TaxesDocumentScheduleIT {
 
 		ScheduleIT scheduleIT = new ScheduleIT();
 		IndianCurrencyHelper indianCurrencyHelper = new IndianCurrencyHelper();
-
-		List<AdvanceTaxDetail> advanceTaxDetails = advanceTaxDocument.getAdvanceTaxDetailList();
-		List<SelfAssesmentTaxDetail> selfAssesmentTaxDetails = selfAssesmetTaxDocument.getSelfAssesmentDetailList();
-		/*
-		 * this loop will take care of AdvanceTax Screen
-		 */
-		for (AdvanceTaxDetail advanceTaxDetail:advanceTaxDetails) {
-			TaxPayment taxPayment = new TaxPayment();
-			taxPayment.setBSRCode(advanceTaxDetail.getP_BSR());
-			taxPayment.setDateDep(indianCurrencyHelper.gregorianCalendar(advanceTaxDetail.getP_Date()));
-			taxPayment.setSrlNoOfChaln(indianCurrencyHelper.bigIntegerRoundStr(advanceTaxDetail.getP_Serial()));
-			taxPayment.setAmt(indianCurrencyHelper.bigIntegerRound(advanceTaxDetail.getP_Amount()));
-			scheduleIT.getTaxPayment().add(taxPayment);
+		boolean hasAValidTax = false;
+		if(advanceTaxDocument!=null){
+			List<AdvanceTaxDetail> advanceTaxDetails = advanceTaxDocument.getAdvanceTaxDetailList();
+			if (advanceTaxDetails != null && advanceTaxDetails.size() > 0 ){
+				/*
+				 * this loop will take care of AdvanceTax Screen
+				 */
+				for (AdvanceTaxDetail advanceTaxDetail:advanceTaxDetails) {
+					TaxPayment taxPayment = new TaxPayment();
+					taxPayment.setBSRCode(advanceTaxDetail.getP_BSR());
+					taxPayment.setDateDep(indianCurrencyHelper.gregorianCalendar(advanceTaxDetail.getP_Date()));
+					taxPayment.setSrlNoOfChaln(indianCurrencyHelper.bigIntegerRoundStr(advanceTaxDetail.getP_Serial()));
+					taxPayment.setAmt(indianCurrencyHelper.bigIntegerRound(advanceTaxDetail.getP_Amount()));
+					scheduleIT.getTaxPayment().add(taxPayment);
+					if(!hasAValidTax) hasAValidTax = true;
+				}
+			}
 		}
 		/*
 		 * this loop will take care of SelfAssessment Screen
 		 */
-		for (SelfAssesmentTaxDetail selfAssesmentTaxDetail:selfAssesmentTaxDetails) {
-			TaxPayment taxPayment = new TaxPayment();
-			taxPayment.setBSRCode(selfAssesmentTaxDetail.getP_BSR());
-			taxPayment.setDateDep(indianCurrencyHelper.gregorianCalendar(selfAssesmentTaxDetail.getP_Date()));
-			taxPayment.setSrlNoOfChaln(indianCurrencyHelper.bigIntegerRoundStr(selfAssesmentTaxDetail.getP_Serial()));
-			taxPayment.setAmt(indianCurrencyHelper.bigIntegerRound(selfAssesmentTaxDetail.getP_Amount()));
-			scheduleIT.getTaxPayment().add(taxPayment);
+		if(selfAssesmetTaxDocument!=null){
+			List<SelfAssesmentTaxDetail> selfAssesmentTaxDetails = selfAssesmetTaxDocument.getSelfAssesmentDetailList();
+			if (selfAssesmentTaxDetails != null && selfAssesmentTaxDetails.size() > 0 ){
+				for (SelfAssesmentTaxDetail selfAssesmentTaxDetail:selfAssesmentTaxDetails) {
+					TaxPayment taxPayment = new TaxPayment();
+					taxPayment.setBSRCode(selfAssesmentTaxDetail.getP_BSR());
+					taxPayment.setDateDep(indianCurrencyHelper.gregorianCalendar(selfAssesmentTaxDetail.getP_Date()));
+					taxPayment.setSrlNoOfChaln(indianCurrencyHelper.bigIntegerRoundStr(selfAssesmentTaxDetail.getP_Serial()));
+					taxPayment.setAmt(indianCurrencyHelper.bigIntegerRound(selfAssesmentTaxDetail.getP_Amount()));
+					scheduleIT.getTaxPayment().add(taxPayment);
+					if(!hasAValidTax) hasAValidTax = true;
+				}
+			}
 		}
-		return scheduleIT;
-
+		if(hasAValidTax){
+			return scheduleIT;
+		}else
+			return null;
 	}
 
 }
