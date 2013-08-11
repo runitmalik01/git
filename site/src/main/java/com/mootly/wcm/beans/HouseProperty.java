@@ -53,10 +53,14 @@ import com.mootly.wcm.beans.compound.HouseIncomeDetail;
 public class HouseProperty extends BaseDocument implements ContentNodeBinder,FormMapFiller,CompoundChildUpdate {
 	static final public String NAMESPACE = "mootlywcm:houseproperty";
 	static final public String NODE_NAME = "houseproperty";
+	
 	final String PROP_DETAIL_BEAN="mootlywcm:houseincomedetail";
 	private String itFolderUuid;
-
-
+	
+	private Double rentSec25A;
+	private Double arrearRentSec25B;
+	private Double total_houseIncome;
+	
 	private final static Logger log = LoggerFactory.getLogger(HouseProperty.class); 
 
 	private List<HouseIncomeDetail> houseincomeDetailList;
@@ -77,8 +81,27 @@ public class HouseProperty extends BaseDocument implements ContentNodeBinder,For
 		if (houseincomeDetailList == null) houseincomeDetailList = new ArrayList<HouseIncomeDetail>();
 		houseincomeDetailList.add(houseincomeDetail);
 	}
-
-
+	 public Double getRentSec25A() {
+	    	if (rentSec25A == null) rentSec25A = getProperty("mootlywcm:rentSec25A");
+	    	return rentSec25A;
+	 }
+	 public Double getArrearRentSec25B() {
+	    	if (arrearRentSec25B == null) arrearRentSec25B = getProperty("mootlywcm:arrearRentSec25B");
+	    	return arrearRentSec25B;
+	 }
+	 public Double getTotal_HouseIncome() {
+	    	if (total_houseIncome == null) total_houseIncome = getProperty("mootlywcm:total_houseIncome");
+	    	return total_houseIncome;
+	 }
+	 public final void setRentSec25A(Double rentSec25A) {
+			this.rentSec25A = rentSec25A;
+		}
+	 public final void setArrearRentSec25B(Double arrearRentSec25B) {
+			this.arrearRentSec25B = arrearRentSec25B;
+		}
+	 public final void setTotal_HouseIncome(Double total_houseIncome) {
+			this.total_houseIncome = total_houseIncome;
+		}
 	public final String getItFolderUuid() {
 		return itFolderUuid;
 	}
@@ -114,15 +137,32 @@ public class HouseProperty extends BaseDocument implements ContentNodeBinder,For
 					aNode.remove();
 				}
 			}
+			double sum_rentSec25A=0.0d;
+			double sum_arrearRentSec25B=0.0d;
+			double sum_total_houseIncome=0.0d;
 			if (houseincome.getHouseIncomeDetailList() != null && houseincome.getHouseIncomeDetailList().size() > 0 ){ 
 				for (HouseIncomeDetail houseincomeDetail:houseincome.getHouseIncomeDetailList()) {
 					if (!houseincomeDetail.isMarkedForDeletion()) {
+						double value_rentSec25A=houseincomeDetail.getRentSec25A();
+						
+						double value_arrearRentSec25B=houseincomeDetail.getArrearRentSec25B();
+						double value_total_houseIncome=houseincomeDetail.getTotal_houseIncome();
+						
+						sum_rentSec25A = sum_rentSec25A+value_rentSec25A;
+						sum_arrearRentSec25B = sum_arrearRentSec25B+value_arrearRentSec25B;
+						sum_total_houseIncome = sum_total_houseIncome+value_total_houseIncome;
+						
 						javax.jcr.Node html = node.addNode(PROP_DETAIL_BEAN, PROP_DETAIL_BEAN);
 						houseincomeDetail.bindToNode(html); 
 					}
 				}
+				setRentSec25A(sum_rentSec25A);
+				setArrearRentSec25B(sum_arrearRentSec25B);
+				setTotal_HouseIncome(sum_total_houseIncome);
 			}
-
+			node.setProperty("mootlywcm:rentSec25A", getRentSec25A());
+			node.setProperty("mootlywcm:arrearRentSec25B", getArrearRentSec25B());
+			node.setProperty("mootlywcm:total_houseIncome", getTotal_HouseIncome());
 
 		} catch (RepositoryException rex) {
 			log.error("Repository Exception while binding",rex);
