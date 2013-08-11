@@ -146,9 +146,9 @@ public class HouseIncomeDocumentSchedules {
 
 				i++;
 			}
-			scheduleHP.setRentArearsSec25BAfter30PcDeduct(new BigInteger("0"));// need to consult with Alok Sir Team
-			scheduleHP.setRentOfEarlierYrSec25AandAA(new BigInteger("0"));// need to consult with Alok Sir Team
-			scheduleHP.setTotalIncomeChargeableUnHP(totalHP+scheduleHP.getRentArearsSec25BAfter30PcDeduct().longValue()+scheduleHP.getRentOfEarlierYrSec25AandAA().longValue());
+			scheduleHP.setRentArearsSec25BAfter30PcDeduct(indianCurrencyHelper.bigIntegerRound(document.getRentSec25A()));
+			scheduleHP.setRentOfEarlierYrSec25AandAA(indianCurrencyHelper.bigIntegerRound(document.getArrearRentSec25B()));
+			scheduleHP.setTotalIncomeChargeableUnHP(indianCurrencyHelper.longRound(document.getTotal_HouseIncome()));
 
 			return scheduleHP;
 			}else
