@@ -32,7 +32,7 @@ import com.mootly.wcm.components.ITReturnComponent;
 		"Totalint","Family_pension","Dividends","Income_rent_machine","Income_other","Deduction_57",
 		"TotalOther_income","Familypension_deduction","Otherdeduction","depreciation",
 		"totalexpense","Dividends_uti","Interest_income","Dividends_mutualfund","Agriculture_income",
-		"Dividends_indian_companies","Otherincome","Total_taxfree_income","Taxable_income"})
+		"Dividends_indian_companies","Otherincome","Total_taxfree_income","Taxable_income","Receipts","dedus57","balance","LotteryOrhorse_income"})
 @DataTypeValidationFields(fieldNames={
 		"Gov_income","Kissan","Bank_detail_fdr","Bank_detail_saving","Indira","intnsc","Otherint",
 		"Totalint","Family_pension","Dividends","Income_rent_machine","Income_other","Deduction_57",
@@ -79,12 +79,16 @@ public class OtherIncome extends ITReturnComponent {
 			log.info("This is Other Income page");
 		}
 		super.doBeforeRender(request, response);	
-		String hideHorseIncome = getParameter("hidehorseincome", request);
-		request.setAttribute("hideHorseIncome", "hideHorseIncome");
+		String whichITRForm=request.getRequestContext().getResolvedSiteMapItem().getParameter("whichITRForm");
+		if(whichITRForm != null){
+			request.setAttribute("ITR2", whichITRForm);
+		}
+		
 		if(log.isInfoEnabled()){
-			log.info(hideHorseIncome+" do before render hideHorseIncome");
+			log.info(whichITRForm+" do before render whichITRForm");
 		}
 		request.setAttribute("Max_allowed_ITR1", eRROR_MAX_ALLOWED);
+		
 	}
 
 	@Override
