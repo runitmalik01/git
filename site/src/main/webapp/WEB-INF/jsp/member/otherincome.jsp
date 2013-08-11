@@ -160,16 +160,19 @@
 				</div>
 			</div>
 
+		<!--  
 
-			<%--<c:if test="${empty hideHorseIncome }">
+			<c:if test="${not empty  ITR2}">
 					<td><label for="Lottery_horse_income"><fmt:message
 								key="member.income.lottery" /> </label>
 					</td>
-					<td><input type="hidden" name="Lottery_horse_income"
+					<td><input type="text" name="Lottery_horse_income"
 						value="${parentBean.lottery_horse_income}" maxlength="14"
 						class="" id="a3" onchange="cal2()" />
 					</td>
-				</c:if> --%>
+				</c:if>
+				 -->
+				
 			<div class="span4">
 				<div class="rowlabel">
 					<label for="Income_rent_machine"><fmt:message
@@ -185,7 +188,9 @@
 		</div>
 
 		<div class="row-fluid show-grid">
-		<!-- 	<div class="span4">
+		<!-- only for itr2 -->
+		<c:if test="${not empty  ITR2}">
+		 	<div class="span4">
 				<div class="rowlabel">
 					<label for="Income_rent_machine"><fmt:message
 							key="member.income.maintain" /> </label>
@@ -195,7 +200,8 @@
 						value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.income_maintain}"/>" class=" decimal"
 						id="Income_maintain" onchange="cal2()" maxlength="14" />
 				</div>
-			</div> -->
+			</div> 
+			</c:if>
 			<div class="span4">
 				<div class="rowlabel">
 					<label for="Income_other "><fmt:message
@@ -375,6 +381,10 @@
 			</div>
 		</div>
 	</fieldset>
+	<!-- this jsp is added for only -->
+	<c:if test="${not empty  ITR2}">
+	<jsp:include page="otherIncome_add.jsp"></jsp:include>
+	</c:if>
 	<div class="row-fluid show-grid">
 		<div class="span4">
 			<div class="rowlabel">
