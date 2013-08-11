@@ -57,7 +57,11 @@ public class OtherSourcesDocument extends BaseDocument implements ContentNodeBin
 	private Double Dividends_indian_companies;
 	private Double Total_taxfree_income;
 	private Double Taxable_income;
-
+	private Double Receipts;
+	private Double dedus57;
+	private Double balance;
+	private Double LotteryOrhorse_income;
+	
 	//for personal information
 	public  Double getGov_income() {
 		if (Gov_income == null) Gov_income = getProperty("mootlywcm:Gov_income");
@@ -172,6 +176,22 @@ public class OtherSourcesDocument extends BaseDocument implements ContentNodeBin
 		if (Total_taxfree_income== null) Total_taxfree_income = getProperty("mootlywcm:Total_taxfree_income");
 		return Total_taxfree_income;
 	}
+	public  Double getReceipts() {
+		if (Receipts== null) Receipts = getProperty("mootlywcm:Receipts");
+		return Receipts;
+	}
+	public  Double getDedus57() {
+		if (dedus57== null) dedus57 = getProperty("mootlywcm:dedus57");
+		return dedus57;
+	}
+	public  Double getBalance() {
+		if (balance== null) balance = getProperty("mootlywcm:balance");
+		return balance;
+	}
+	public  Double getLotteryOrhorse_income() {
+		if (LotteryOrhorse_income== null) LotteryOrhorse_income = getProperty("mootlywcm:LotteryOrhorse_income");
+		return LotteryOrhorse_income;
+	}
 
 	// set method for otherincome document
 
@@ -259,6 +279,18 @@ public class OtherSourcesDocument extends BaseDocument implements ContentNodeBin
 	public void setTotal_taxfree_income(Double Total_taxfree_income) {
 		this.Total_taxfree_income = Total_taxfree_income;
 	}
+	public void setReceipts(Double Receipts) {
+		this.Receipts = Receipts;
+	}
+	public void setDedus57(Double dedus57) {
+		this.dedus57 = dedus57;
+	}
+	public void setBalance(Double balance) {
+		this.balance = balance;
+	}
+	public void setLotteryOrhorse_income(Double LotteryOrhorse_income) {
+		this.LotteryOrhorse_income = LotteryOrhorse_income;
+	}
 
 	/* public MemberPersonalInformation getMemberPersoanlInformation() {
 	    	HippoBean bean = getBean(PROP_PI_PERSONALINFO_LINK);
@@ -314,6 +346,10 @@ public class OtherSourcesDocument extends BaseDocument implements ContentNodeBin
 			node.setProperty("mootlywcm:Other_income", otherincome.getOtherincome());
 			node.setProperty("mootlywcm:Total_taxfree_income", otherincome.getTotal_taxfree_income());
 			node.setProperty("mootlywcm:Taxable_income", otherincome.getTaxable_income());
+			node.setProperty("mootlywcm:Receipts", otherincome.getReceipts());
+			node.setProperty("mootlywcm:dedus57", otherincome.getDedus57());
+			node.setProperty("mootlywcm:balance", otherincome.getBalance());
+			node.setProperty("mootlywcm:LotteryOrhorse_income", otherincome.getLotteryOrhorse_income());
 
 
 		} catch (RepositoryException rex) {
@@ -591,6 +627,46 @@ public class OtherSourcesDocument extends BaseDocument implements ContentNodeBin
 
 			setOtherdeduction(otherDed);
 		}
+		double value_Receipts=0.0d;
+		if (formMap.getField("Receipts").getValue().isEmpty()){
+			setReceipts(value_Receipts);
+		}
+		else{
+			String strReceipts=formMap.getField("Receipts").getValue();
+			value_Receipts= Double.parseDouble(strReceipts);
+
+			setReceipts(value_Receipts);
+		}
+		double value_dedus57=0.0d;
+		if (formMap.getField("dedus57").getValue().isEmpty()){
+			setDedus57(value_dedus57);
+		}
+		else{
+			String strdedus57=formMap.getField("dedus57").getValue();
+			value_dedus57= Double.parseDouble(strdedus57);
+
+			setDedus57(value_dedus57);
+		}
+		double value_balance=0.0d;
+		if (formMap.getField("balance").getValue().isEmpty()){
+			setBalance(value_balance);
+		}
+		else{
+			String strbalance=formMap.getField("balance").getValue();
+			value_balance= Double.parseDouble(strbalance);
+
+			setBalance(value_balance);
+		}
+		double value_LotteryOrhorse_income=0.0d;
+		if (formMap.getField("LotteryOrhorse_income").getValue().isEmpty()){
+			setLotteryOrhorse_income(value_LotteryOrhorse_income);
+		}
+		else{
+			String strLotteryOrhorse_income=formMap.getField("LotteryOrhorse_income").getValue();
+			value_LotteryOrhorse_income= Double.parseDouble(strLotteryOrhorse_income);
+			setLotteryOrhorse_income(value_LotteryOrhorse_income);
+		}
+		
 	}
 	@Override
 	public <T extends HippoBean> void cloneBean(T sourceBean) {
