@@ -3894,6 +3894,38 @@
 				</sv:property>
 			</sv:node>
 			<!-- end schedule5a -->
+			<!--  url of otherincome for itr2: by Pankaj singh -->
+			
+			
+<sv:node sv:name="othersourcesITR2.html">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:sitemapitem</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>e11b6705-355c-4608-9fd9-534e6c5ca40a</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+    <sv:value>hst:pages/otherincome</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+    <sv:value>mainSiteMapItemRefId</sv:value>
+    <sv:value>action</sv:value>
+    <sv:value>whichITRForm</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+    <sv:value>memberpersonalinformation</sv:value>
+    <sv:value>EDIT</sv:value>
+    <sv:value>ITR2</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:refId" sv:type="String">
+    <sv:value>memberpersonalinformation</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:relativecontentpath" sv:type="String">
+    <sv:value>members</sv:value>
+  </sv:property>
+</sv:node>
+			
+			<!--  end url of itr2 -->
         </sv:node>
         </sv:node>
       </sv:node>
