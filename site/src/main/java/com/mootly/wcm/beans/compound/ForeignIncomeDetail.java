@@ -58,6 +58,9 @@ public class ForeignIncomeDetail extends HippoItem implements FormMapFiller {
 	private Double income_Business;
 	private Double income_Capitalgain;
 	private Double income_Othersources;
+	private String isDtaaCountry;
+	private Double dtaa_CountryIncome;
+	private Double Nodtaa_CountryIncome;
 	private Double income_Total;
 	
 	private String personalInfoUuid;
@@ -99,10 +102,22 @@ public class ForeignIncomeDetail extends HippoItem implements FormMapFiller {
  	   if (income_Othersources == null) income_Othersources = getProperty(INCOMESOURCES);
  	    	return income_Othersources;
     }
+    public String getIsDtaaCountry() {
+  	   if (isDtaaCountry == null) isDtaaCountry = getProperty("mootlywcm:isDtaaCountry");
+  	    	return isDtaaCountry;
+     }
+    public Double getDtaa_CountryIncome() {
+  	   if (dtaa_CountryIncome == null) dtaa_CountryIncome = getProperty("mootlywcm:dtaa_CountryIncome");
+  	    	return dtaa_CountryIncome;
+     }
     public Double getIncome_Total() {
  	   if (income_Total == null) income_Total = getProperty(INCOMETOTAL);
  	    	return income_Total;
     }
+    public Double getNodtaa_CountryIncome() {
+  	   if (Nodtaa_CountryIncome == null) Nodtaa_CountryIncome = getProperty("mootlywcm:Nodtaa_CountryIncome");
+  	    	return Nodtaa_CountryIncome;
+     }
    public String getCountry_Name(){
 	   if(country_name == null) country_name = getProperty(COUNTRYNAME);
 	   return country_name;
@@ -132,8 +147,17 @@ public class ForeignIncomeDetail extends HippoItem implements FormMapFiller {
 	public final void setIncome_Othersources(Double income_Othersources) {
 		this.income_Othersources = income_Othersources;
 	}
+	public final void setIsDtaaCountry(String isDtaaCountry) {
+		this.isDtaaCountry = isDtaaCountry;
+	}
+	public final void setDtaa_CountryIncome(Double dtaa_CountryIncome) {
+		this.dtaa_CountryIncome = dtaa_CountryIncome;
+	}
 	public final void setincome_Total(Double income_Total) {
 		this.income_Total = income_Total;
+	}
+	public final void setNodtaa_CountryIncome(Double Nodtaa_CountryIncome) {
+		this.Nodtaa_CountryIncome = Nodtaa_CountryIncome;
 	}
 	
 		public final String getPersonalInfoUuid() {
@@ -173,6 +197,9 @@ public class ForeignIncomeDetail extends HippoItem implements FormMapFiller {
 			node.setProperty(INCOMESOURCES,getIncome_Othersources());
 			node.setProperty(INCOMETOTAL,getIncome_Total());
 			node.setProperty(COUNTRYNAME, getCountry_Name());
+			node.setProperty("mootlywcm:isDtaaCountry", getIsDtaaCountry());
+			node.setProperty("mootlywcm:dtaa_CountryIncome", getDtaa_CountryIncome());
+			node.setProperty("mootlywcm:Nodtaa_CountryIncome", getNodtaa_CountryIncome());
 	    	
 
 		} catch (RepositoryException rex) {
@@ -230,8 +257,19 @@ public class ForeignIncomeDetail extends HippoItem implements FormMapFiller {
 		if(formMap.getField("country_name") != null){
 			setCountry_Name(formMap.getField("country_name").getValue());
 		}
-		
-		
+		if(formMap.getField("isDtaaCountry") != null){
+			setIsDtaaCountry(formMap.getField("isDtaaCountry").getValue());
+		}
+		if ( formMap.getField("dtaa_CountryIncome") != null) {
+			String strdtaa_CountryIncome=formMap.getField("dtaa_CountryIncome").getValue();
+			double Dtaa_CountryIncome=Double.parseDouble(strdtaa_CountryIncome);
+			setDtaa_CountryIncome(Dtaa_CountryIncome);
+		}
+		if ( formMap.getField("Nodtaa_CountryIncome") != null) {
+			String strNodtaa_CountryIncome=formMap.getField("Nodtaa_CountryIncome").getValue();
+			double Nodtaa_CountryIncome=Double.parseDouble(strNodtaa_CountryIncome);
+			setNodtaa_CountryIncome(Nodtaa_CountryIncome);
+		}
 		
 	}
 
@@ -246,5 +284,8 @@ public class ForeignIncomeDetail extends HippoItem implements FormMapFiller {
 		setIncome_Othersources(objForeignIncome.getIncome_Othersources());
 		setincome_Total(objForeignIncome.getIncome_Total());
 		setCountry_Name(objForeignIncome.getCountry_Name());
+		setIsDtaaCountry(objForeignIncome.getIsDtaaCountry());
+		setDtaa_CountryIncome(objForeignIncome.getDtaa_CountryIncome());
+		setNodtaa_CountryIncome(objForeignIncome.getNodtaa_CountryIncome());
 	}
 }
