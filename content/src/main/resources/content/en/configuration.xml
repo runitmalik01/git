@@ -9796,95 +9796,97 @@ out_txttotaltax = (taxPaidForeignCountry -0);
         </sv:property>
       </sv:node>
     </sv:node>
-    <sv:node sv:name="formsixteen">
-      <sv:property sv:name="jcr:primaryType" sv:type="Name">
-        <sv:value>hippo:handle</sv:value>
-      </sv:property>
-      <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
-        <sv:value>hippo:hardhandle</sv:value>
-        <sv:value>hippo:translated</sv:value>
-      </sv:property>
-      <sv:property sv:name="jcr:uuid" sv:type="String">
-        <sv:value>41da26c1-b1e3-4ad5-b02b-b5b19aa9a6b7</sv:value>
-      </sv:property>
-      <sv:node sv:name="hippo:translation">
-        <sv:property sv:name="jcr:primaryType" sv:type="Name">
-          <sv:value>hippo:translation</sv:value>
-        </sv:property>
-        <sv:property sv:name="hippo:language" sv:type="String">
-          <sv:value/>
-        </sv:property>
-        <sv:property sv:name="hippo:message" sv:type="String">
-          <sv:value>formsixteen</sv:value>
-        </sv:property>
-      </sv:node>
-      <sv:node sv:name="formsixteen">
-        <sv:property sv:name="jcr:primaryType" sv:type="Name">
-          <sv:value>mootlywcm:screencalculation</sv:value>
-        </sv:property>
-        <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
-          <sv:value>hippo:harddocument</sv:value>
-        </sv:property>
-        <sv:property sv:name="jcr:uuid" sv:type="String">
-          <sv:value>3a780544-1fdf-48e9-bc6f-e9eacdfa1223</sv:value>
-        </sv:property>
-        <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
-          <sv:value>live</sv:value>
-          <sv:value>preview</sv:value>
-        </sv:property>
-        <sv:property sv:name="hippo:related___pathreference" sv:type="String">
-          <sv:value>configuration/screencalculation/formsixteen</sv:value>
-        </sv:property>
-        <sv:property sv:name="hippostd:holder" sv:type="String">
-          <sv:value>admin</sv:value>
-        </sv:property>
-        <sv:property sv:name="hippostd:state" sv:type="String">
-          <sv:value>published</sv:value>
-        </sv:property>
-        <sv:property sv:name="hippostd:stateSummary" sv:type="String">
-          <sv:value>live</sv:value>
-        </sv:property>
-        <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
-          <sv:value>admin</sv:value>
-        </sv:property>
-        <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
-          <sv:value>2013-05-24T01:55:56.242+05:30</sv:value>
-        </sv:property>
-        <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-          <sv:value>2013-07-18T16:40:48.101+05:30</sv:value>
-        </sv:property>
-        <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
-          <sv:value>admin</sv:value>
-        </sv:property>
-        <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-          <sv:value>2013-07-18T16:40:53.844+05:30</sv:value>
-        </sv:property>
-        <sv:property sv:name="mootlywcm:additionalScript" sv:type="String">
-          <sv:value/>
-        </sv:property>
-        <sv:property sv:multiple="true" sv:name="mootlywcm:dropRadio" sv:type="String">
-          <sv:value/>
-          <sv:value/>
-        </sv:property>
-        <sv:property sv:multiple="true" sv:name="mootlywcm:input" sv:type="String">
-          <sv:value>gross_a</sv:value>
-          <sv:value>gross_b</sv:value>
-          <sv:value>gross_c</sv:value>
-          <sv:value>deductions_entertainment</sv:value>
-          <sv:value>deductions_tax</sv:value>
-          <sv:value>additional_1</sv:value>
-          <sv:value>additional_2</sv:value>
-          <sv:value>aggregate</sv:value>
-          <sv:value>tax_total_income_2</sv:value>
-          <sv:value>surcharge_2</sv:value>
-          <sv:value>education_cess</sv:value>
-          <sv:value>relief_2</sv:value>
-          <sv:value>ded_ent1</sv:value>
-          <sv:value>ded_ent3</sv:value>
-          <sv:value>less_total_2</sv:value>
-        </sv:property>
-        <sv:property sv:name="mootlywcm:script" sv:type="String">
-          <sv:value>/***
+  
+<sv:node sv:name="formsixteen">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hippo:handle</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+    <sv:value>hippo:hardhandle</sv:value>
+    <sv:value>hippo:translated</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>41da26c1-b1e3-4ad5-b02b-b5b19aa9a6b7</sv:value>
+  </sv:property>
+  <sv:node sv:name="hippo:translation">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hippo:translation</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippo:language" sv:type="String">
+      <sv:value/>
+    </sv:property>
+    <sv:property sv:name="hippo:message" sv:type="String">
+      <sv:value>formsixteen</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="formsixteen">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>mootlywcm:screencalculation</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+      <sv:value>hippo:harddocument</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>434b411f-6908-48be-a62e-90ffc1c2c79d</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
+      <sv:value>live</sv:value>
+      <sv:value>preview</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippo:related___pathreference" sv:type="String">
+      <sv:value>formsixteen</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostd:holder" sv:type="String">
+      <sv:value>admin</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostd:state" sv:type="String">
+      <sv:value>published</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostd:stateSummary" sv:type="String">
+      <sv:value>live</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
+      <sv:value>admin</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
+      <sv:value>2013-05-24T01:55:56.242+05:30</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
+      <sv:value>2013-08-12T23:20:33.099+05:30</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
+      <sv:value>admin</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
+      <sv:value>2013-08-12T23:20:38.158+05:30</sv:value>
+    </sv:property>
+    <sv:property sv:name="mootlywcm:additionalScript" sv:type="String">
+      <sv:value/>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="mootlywcm:dropRadio" sv:type="String">
+      <sv:value/>
+      <sv:value/>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="mootlywcm:input" sv:type="String">
+      <sv:value>gross_a</sv:value>
+      <sv:value>gross_b</sv:value>
+      <sv:value>gross_c</sv:value>
+      <sv:value>deductions_entertainment</sv:value>
+      <sv:value>deductions_tax</sv:value>
+      <sv:value>additional_1</sv:value>
+      <sv:value>additional_2</sv:value>
+      <sv:value>aggregate</sv:value>
+      <sv:value>tax_total_income_2</sv:value>
+      <sv:value>surcharge_2</sv:value>
+      <sv:value>education_cess</sv:value>
+      <sv:value>relief_2</sv:value>
+      <sv:value>ded_ent1</sv:value>
+      <sv:value>ded_ent3</sv:value>
+      <sv:value>less_total_2</sv:value>
+      <sv:value>allowNotExempt</sv:value>
+    </sv:property>
+    <sv:property sv:name="mootlywcm:script" sv:type="String">
+      <sv:value>/***
 * This File is being used to calculate formsixteen
 *
 *
@@ -9893,7 +9895,7 @@ var indianCurrencyHelper = new com.mootly.wcm.services.IndianCurrencyHelper();
 var e=0;
 var f=0;
 var ded=0;
-out_gross_total=(gross_a -0)+(gross_b -0)+(gross_c -0);
+out_gross_total=(gross_a -0)+(gross_b -0)+(gross_c -0)+(allowNotExempt-0);
 var balanc=(out_gross_total )-(less_total_2 - 0);
 if(balanc &lt;=0) balanc=0;
 out_balance=balanc;
@@ -10104,12 +10106,13 @@ var avgRateTax=(D*100)/txtNetIncome ;
 //out_tax_payable=(out_tax_total_income_2)+(out_education_cess );
 //out_tax_payable_2=(out_tax_payable)-(relief_2 -0);
 */</sv:value>
-        </sv:property>
-        <sv:property sv:name="mootlywcm:title" sv:type="String">
-          <sv:value>Calculation of FormSixteen Screen</sv:value>
-        </sv:property>
-      </sv:node>
-    </sv:node>
+    </sv:property>
+    <sv:property sv:name="mootlywcm:title" sv:type="String">
+      <sv:value>Calculation of FormSixteen Screen</sv:value>
+    </sv:property>
+  </sv:node>
+</sv:node>
+  
     <sv:node sv:name="capitalasset">
       <sv:property sv:name="jcr:primaryType" sv:type="Name">
         <sv:value>hippo:handle</sv:value>
