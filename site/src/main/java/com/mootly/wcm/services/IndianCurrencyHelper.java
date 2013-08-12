@@ -152,4 +152,14 @@ public final class IndianCurrencyHelper {
 		return Difference;
 	}
 
+	/**
+	 * This method is used to Round Off the value 
+	 * 
+	 * @param o {@link Object}
+	 * @return 
+	 * */
+	public Object roundOff(Object o){
+		DecimalFormat df2 = new DecimalFormat("###");
+		return df2.format(o);
+	}
 }
