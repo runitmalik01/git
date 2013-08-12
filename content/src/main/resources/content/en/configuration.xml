@@ -9439,88 +9439,92 @@ out_total_houseIncome=(out_Income_hproperty-0)+(rentSec25A-0)+(arrearRentSec25B-
   </sv:node>
 </sv:node>
  
-    <sv:node sv:name="otherincome">
-      <sv:property sv:name="jcr:primaryType" sv:type="Name">
-        <sv:value>hippo:handle</sv:value>
-      </sv:property>
-      <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
-        <sv:value>hippo:hardhandle</sv:value>
-      </sv:property>
-      <sv:property sv:name="jcr:uuid" sv:type="String">
-        <sv:value>2ba6ebe0-848e-44eb-86db-a9d4623d9d42</sv:value>
-      </sv:property>
-      <sv:node sv:name="otherincome">
-        <sv:property sv:name="jcr:primaryType" sv:type="Name">
-          <sv:value>mootlywcm:screencalculation</sv:value>
-        </sv:property>
-        <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
-          <sv:value>hippo:harddocument</sv:value>
-        </sv:property>
-        <sv:property sv:name="jcr:uuid" sv:type="String">
-          <sv:value>994f7d37-9ab7-462f-a5f4-acbe75bc5c05</sv:value>
-        </sv:property>
-        <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
-          <sv:value>live</sv:value>
-          <sv:value>preview</sv:value>
-        </sv:property>
-        <sv:property sv:name="hippo:related___pathreference" sv:type="String">
-          <sv:value>configuration/screencalculation/otherincome</sv:value>
-        </sv:property>
-        <sv:property sv:name="hippostd:holder" sv:type="String">
-          <sv:value>admin</sv:value>
-        </sv:property>
-        <sv:property sv:name="hippostd:state" sv:type="String">
-          <sv:value>published</sv:value>
-        </sv:property>
-        <sv:property sv:name="hippostd:stateSummary" sv:type="String">
-          <sv:value>live</sv:value>
-        </sv:property>
-        <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
-          <sv:value>admin</sv:value>
-        </sv:property>
-        <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
-          <sv:value>2013-05-24T02:01:44.056+05:30</sv:value>
-        </sv:property>
-        <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-          <sv:value>2013-06-27T13:27:07.988+05:30</sv:value>
-        </sv:property>
-        <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
-          <sv:value>admin</sv:value>
-        </sv:property>
-        <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-          <sv:value>2013-06-27T13:27:14.075+05:30</sv:value>
-        </sv:property>
-        <sv:property sv:name="mootlywcm:additionalScript" sv:type="String">
-          <sv:value/>
-        </sv:property>
-        <sv:property sv:multiple="true" sv:name="mootlywcm:dropRadio" sv:type="String">
-          <sv:value/>
-        </sv:property>
-        <sv:property sv:multiple="true" sv:name="mootlywcm:input" sv:type="String">
-          <sv:value>Gov_income</sv:value>
-          <sv:value>Kissan</sv:value>
-          <sv:value>Bank_detail_fdr</sv:value>
-          <sv:value>Bank_detail_saving</sv:value>
-          <sv:value>Indira</sv:value>
-          <sv:value>intnsc</sv:value>
-          <sv:value>Otherint</sv:value>
-          <sv:value>Family_pension</sv:value>
-          <sv:value>Dividends</sv:value>
-          <sv:value>Income_rent_machine</sv:value>
-          <sv:value>Income_maintain</sv:value>
-          <sv:value>Income_other</sv:value>
-          <sv:value>Deduction_57</sv:value>
-          <sv:value>Otherdeduction</sv:value>
-          <sv:value>depreciation</sv:value>
-          <sv:value>Dividends_uti</sv:value>
-          <sv:value>Interest_income</sv:value>
-          <sv:value>Dividends_mutualfund</sv:value>
-          <sv:value>Agriculture_income</sv:value>
-          <sv:value>Dividends_indian_companies</sv:value>
-          <sv:value>Otherincome</sv:value>
-        </sv:property>
-        <sv:property sv:name="mootlywcm:script" sv:type="String">
-          <sv:value>/**
+  
+<sv:node sv:name="otherincome" >
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hippo:handle</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+    <sv:value>hippo:hardhandle</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>2ba6ebe0-848e-44eb-86db-a9d4623d9d42</sv:value>
+  </sv:property>
+  <sv:node sv:name="otherincome">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>mootlywcm:screencalculation</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+      <sv:value>hippo:harddocument</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>851111e7-886a-465e-bad1-fbd224fc2f80</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
+      <sv:value>live</sv:value>
+      <sv:value>preview</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippo:related___pathreference" sv:type="String">
+      <sv:value>otherincome</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostd:holder" sv:type="String">
+      <sv:value>admin</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostd:state" sv:type="String">
+      <sv:value>published</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostd:stateSummary" sv:type="String">
+      <sv:value>live</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
+      <sv:value>admin</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
+      <sv:value>2013-05-24T02:01:44.056+05:30</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
+      <sv:value>2013-08-12T16:12:35.476+05:30</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
+      <sv:value>admin</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
+      <sv:value>2013-08-12T16:12:37.833+05:30</sv:value>
+    </sv:property>
+    <sv:property sv:name="mootlywcm:additionalScript" sv:type="String">
+      <sv:value/>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="mootlywcm:dropRadio" sv:type="String">
+      <sv:value/>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="mootlywcm:input" sv:type="String">
+      <sv:value>Gov_income</sv:value>
+      <sv:value>Kissan</sv:value>
+      <sv:value>Bank_detail_fdr</sv:value>
+      <sv:value>Bank_detail_saving</sv:value>
+      <sv:value>Indira</sv:value>
+      <sv:value>intnsc</sv:value>
+      <sv:value>Otherint</sv:value>
+      <sv:value>Family_pension</sv:value>
+      <sv:value>Dividends</sv:value>
+      <sv:value>Income_rent_machine</sv:value>
+      <sv:value>Income_maintain</sv:value>
+      <sv:value>Income_other</sv:value>
+      <sv:value>Deduction_57</sv:value>
+      <sv:value>Otherdeduction</sv:value>
+      <sv:value>depreciation</sv:value>
+      <sv:value>Dividends_uti</sv:value>
+      <sv:value>Interest_income</sv:value>
+      <sv:value>Dividends_mutualfund</sv:value>
+      <sv:value>Agriculture_income</sv:value>
+      <sv:value>Dividends_indian_companies</sv:value>
+      <sv:value>Otherincome</sv:value>
+      <sv:value>Receipts</sv:value>
+      <sv:value>dedus57</sv:value>
+      <sv:value>LotteryOrhorse_income</sv:value>
+    </sv:property>
+    <sv:property sv:name="mootlywcm:script" sv:type="String">
+      <sv:value>/**
 *
 * This File is being used to calculate Other Income
 *
@@ -9552,13 +9556,17 @@ out_Familypension_deduction= 15000;
 out_totalexpense=(out_Familypension_deduction)+(Otherdeduction-0)+(depreciation-0);
 
 
-out_Taxable_income=((out_Totalint)+(out_TotalOther_income))-out_totalexpense;</sv:value>
-        </sv:property>
-        <sv:property sv:name="mootlywcm:title" sv:type="String">
-          <sv:value>this is Screen calculation for otherincome</sv:value>
-        </sv:property>
-      </sv:node>
-    </sv:node>
+out_Taxable_income=((out_Totalint)+(out_TotalOther_income))-out_totalexpense;
+
+out_balance=(Receipts-0)-(dedus57-0);
+out_Taxable_income=(out_Taxable_income)+(LotteryOrhorse_income-0)+(out_balance-0);</sv:value>
+    </sv:property>
+    <sv:property sv:name="mootlywcm:title" sv:type="String">
+      <sv:value>this is Screen calculation for otherincome</sv:value>
+    </sv:property>
+  </sv:node>
+</sv:node>
+  
     <sv:node sv:name="rebatescalculation">
       <sv:property sv:name="jcr:primaryType" sv:type="Name">
         <sv:value>hippo:handle</sv:value>
