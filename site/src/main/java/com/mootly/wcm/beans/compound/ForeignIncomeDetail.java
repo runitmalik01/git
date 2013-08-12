@@ -257,8 +257,9 @@ public class ForeignIncomeDetail extends HippoItem implements FormMapFiller {
 		if(formMap.getField("country_name") != null){
 			setCountry_Name(formMap.getField("country_name").getValue());
 		}
-		if(formMap.getField("isDtaaCountry") != null){
-			setIsDtaaCountry(formMap.getField("isDtaaCountry").getValue());
+		if(formMap.getField("isDtaa") != null){
+			log.info("GGGGGGGGGGGGGGGGGGGGGGGGG"+formMap.getField("isDtaa").getValue());
+			setIsDtaaCountry(formMap.getField("isDtaa").getValue());
 		}
 		if ( formMap.getField("dtaa_CountryIncome") != null) {
 			String strdtaa_CountryIncome=formMap.getField("dtaa_CountryIncome").getValue();
