@@ -163,35 +163,41 @@ public class TaxReliefDocument extends BaseDocument implements ContentNodeBinder
         	 double sumTaxFsi=0.0;
         	 double sumrebate9091=0.0;
         	 double sumrebate91=0.0;
+        	 double sum_taxPaidNoDtaa=0.0d;
+        	 double sum_taxPaidDtaa=0.0d;
         	 String strSum="";
         	if ( tdssalary.getTaxReliefDetailList() != null &&  tdssalary.getTaxReliefDetailList().size() > 0 ){ 
         		log.info("checking size in salary income bean:::"+ tdssalary.getTaxReliefDetailList().size());
         		
-        		for (TaxReliefDetail objtdsfromothers:tdssalary.getTaxReliefDetailList()) {
+        		for (TaxReliefDetail objtaxRelief:tdssalary.getTaxReliefDetailList()) {
         		    
-        			if (!objtdsfromothers.isMarkedForDeletion()) {
-        				double tax_fsi=objtdsfromothers.getTotaltax_fsi();
-        				double rebate9091=objtdsfromothers.getRelief90_91();
-        				double rebate90=objtdsfromothers.getRelief91();
+        			if (!objtaxRelief.isMarkedForDeletion()) {
+        				double tax_fsi=objtaxRelief.getTotaltax_fsi();
+        				double rebate9091=objtaxRelief.getRelief90_91();
+        				double rebate90=objtaxRelief.getRelief91();
         				 sumTaxFsi=sumTaxFsi+ tax_fsi;
             		    sumrebate9091=sumrebate9091+rebate9091;
             		    sumrebate91=sumrebate91+rebate90;
+            		    double value_taxPaidDtaa=objtaxRelief.getDtaa_CountryTax();
+            		    double value_taxPaidNoDtaa=objtaxRelief.getNodtaa_CountryTax();
+            		    sum_taxPaidDtaa=sum_taxPaidDtaa+value_taxPaidDtaa;
+            		    sum_taxPaidNoDtaa=sum_taxPaidNoDtaa+value_taxPaidNoDtaa;
             		    // Double sum1= (double) sum;
             		   //  strSum= BigDecimal.valueOf(sum1).toPlainString();
 		                javax.jcr.Node html = node.addNode(PROP_DETAIL_BEAN, PROP_DETAIL_BEAN);
-		                objtdsfromothers.bindToNode(html); 
+            		    objtaxRelief.bindToNode(html); 
         			}
         		}
         		setTotal_TaxFsi(sumTaxFsi);
                 setRebate9091(sumrebate9091);
                 setRebate90(sumrebate91);
-                setTaxPaidDtaa(taxPaidDtaa);
-               if(getTotal_TaxFsi() < getTaxPaidDtaa()){
-            	   defTaxpaid=0.0d;
-               } else {
-            	   defTaxpaid=(getTotal_TaxFsi()-getTaxPaidDtaa());
-               }
-               setTaxPaidNoDtaa(defTaxpaid);
+                setTaxPaidDtaa(sum_taxPaidDtaa);
+             //  if(getTotal_TaxFsi() < getTaxPaidDtaa()){
+            	//   defTaxpaid=0.0d;
+              // } else {
+            	//   defTaxpaid=(getTotal_TaxFsi()-getTaxPaidDtaa());
+               //}
+               setTaxPaidNoDtaa(sum_taxPaidNoDtaa);
         	}
         	node.setProperty("mootlywcm:total_taxFsi", getTotal_TaxFsi());
         	node.setProperty("mootlywcm:rebate9091", getRebate9091());
@@ -217,11 +223,11 @@ public class TaxReliefDocument extends BaseDocument implements ContentNodeBinder
 	@Override
 	public void fill(FormMap formMap) {
 		// TODO Auto-generated method stub
-		if (formMap != null) {
-			if(formMap.getField("taxPaidDtaa") != null){
-			setTaxPaidDtaa(Double.parseDouble(formMap.getField("taxPaidDtaa").getValue()));	
-			}
-		}
+	//	if (formMap != null) {
+	//		if(formMap.getField("taxPaidDtaa") != null){
+	//		setTaxPaidDtaa(Double.parseDouble(formMap.getField("taxPaidDtaa").getValue()));	
+	//		}
+	//	}
 	}
 	
 	public <T extends HippoBean> void cloneBean(T sourceBean) {
