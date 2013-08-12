@@ -7835,6 +7835,97 @@
 				    <sv:value>members</sv:value>
 				  </sv:property>
 				</sv:node>
+				<!-- schdule si -->
+				<sv:node sv:name="itr-schedule-si.html" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+                       <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                          <sv:value>hst:sitemapitem</sv:value>
+                       </sv:property>
+                       <sv:property sv:name="jcr:uuid" sv:type="String">
+                          <sv:value>2e1e8acd-721a-4d55-8eda-de81f56e2963</sv:value>
+                       </sv:property>
+                      <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+                          <sv:value>hst:pages/itr-schedule-si</sv:value>
+                       </sv:property>
+                    <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+                        <sv:value>mainSiteMapItemRefId</sv:value>
+                        <sv:value>nextScreen</sv:value>
+                    </sv:property>
+                   <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+                       <sv:value>itr-schedule-si</sv:value>
+                       <sv:value>itr-schedule-si</sv:value>
+                   </sv:property>
+                  <sv:property sv:name="hst:refId" sv:type="String">
+                      <sv:value>itr-schedule-si</sv:value>
+                 </sv:property>
+                 <sv:property sv:name="hst:relativecontentpath" sv:type="String">
+                    <sv:value>members</sv:value>
+                 </sv:property>
+              <sv:node sv:name="_default_">
+                  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                       <sv:value>hst:sitemapitem</sv:value>
+                  </sv:property>
+                 <sv:property sv:name="jcr:uuid" sv:type="String">
+                     <sv:value>10c56643-350a-49c8-8666-b4b423701ab9</sv:value>
+                </sv:property>
+               <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+                    <sv:value>uuid</sv:value>
+               </sv:property>
+               <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+                 <sv:value>${4}</sv:value>
+               </sv:property>
+             <sv:node sv:name="itrschedulesiedit">
+                <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                  <sv:value>hst:sitemapitem</sv:value>
+               </sv:property>
+              <sv:property sv:name="jcr:uuid" sv:type="String">
+                  <sv:value>1260b435-3b0e-435a-8129-2131e20c8146</sv:value>
+              </sv:property>
+              <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+                   <sv:value>hst:pages/itr-schedule-si</sv:value>
+              </sv:property>
+             <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+                  <sv:value>action</sv:value>
+             </sv:property>
+               <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+                   <sv:value>EDIT_CHILD</sv:value>
+             </sv:property>
+          </sv:node>
+          <sv:node sv:name="itrschedulesidelete">
+               <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                  <sv:value>hst:sitemapitem</sv:value>
+               </sv:property>
+               <sv:property sv:name="jcr:uuid" sv:type="String">
+                  <sv:value>a82b0b1e-ecca-4c72-9022-ab49a77ec49b</sv:value>
+               </sv:property>
+               <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+                  <sv:value>hst:pages/itr-schedule-si</sv:value>
+              </sv:property>
+              <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+                  <sv:value>action</sv:value>
+              </sv:property>
+              <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+                    <sv:value>DELETE_CHILD</sv:value>
+              </sv:property>
+           </sv:node>
+        </sv:node>
+          <sv:node sv:name="itrschedulesinew">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>hst:sitemapitem</sv:value>
+            </sv:property>
+            <sv:property sv:name="jcr:uuid" sv:type="String">
+              <sv:value>344865e9-157a-4937-a988-c8fe70819a27</sv:value>
+            </sv:property>
+              <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+             <sv:value>hst:pages/itr-schedule-si</sv:value>
+            </sv:property>
+              <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+                <sv:value>action</sv:value>
+              </sv:property>
+             <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+                  <sv:value>NEW_CHILD</sv:value>
+               </sv:property>
+           </sv:node>
+              </sv:node>
 	            <!-- new sitemap for ITRV Status -->            
 	          </sv:node>
 	        </sv:node>
