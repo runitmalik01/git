@@ -138,7 +138,7 @@ public class CurrentYearLossesSchedules extends XmlCalculation{
 			totalCurYr.setTotHPlossCurYr(new BigInteger("0"));
 		totalCurYr.setTotBusLoss(new BigInteger("0"));
 		if(otherincome<0){
-			totalCurYr.setTotOthSrcLossNoRaceHorse(indianCurrencyHelper.longToBigInteger(otherincome).multiply(new BigInteger("-1")));
+			totalCurYr.setTotOthSrcLossNoRaceHorse(indianCurrencyHelper.longToBigInteger(otherincome));
 		}else
 			totalCurYr.setTotOthSrcLossNoRaceHorse(new BigInteger("0"));
 		scheduleCYLA.setTotalCurYr(totalCurYr);
