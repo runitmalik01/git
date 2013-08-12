@@ -108,6 +108,45 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.relief91}"/></c:if>" />
 					</div>
 				</div>
+				</div>
+				<div class="row-fluid show-grid">
+					<div class="span4">
+							<div class="rowlabel">
+								<label for="isDtaa"><small><fmt:message
+											key="foreign.is.dtaa.applicable" /> </small> </label>
+							</div>
+							<div class="rowlabel">
+								<select id="isDtaaCountry" name="isDtaaCountry">
+								<option value="">-Select-</option>
+								<option value="Yes"<c:if test="${not empty childBean.isDtaaCountry && childBean.isDtaaCountry =='Yes'}">selected</c:if>>Yes</option></option>
+								<option value="No"<c:if test="${not empty childBean.isDtaaCountry && childBean.isDtaaCountry =='No'}">selected</c:if>>No</option></option>
+								</select>
+							</div>
+						</div>
+						
+						<div class="span4">
+							<div class="rowlabel">
+								<label for="dtaa_CountryTax"><small><fmt:message
+											key="foreign.dtaa.totaltax" /> </small> </label>
+							</div>
+							<div class="rowlabel">
+								<input id="dtaa_CountryTax" name="dtaa_CountryTax" type="text"  readonly="readonly"
+									maxlength="14" class="decimal"
+									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.dtaa_CountryTax}"/></c:if>" />
+							</div>
+						</div>
+						<div class="span4">
+							<div class="rowlabel">
+								<label for="Nodtaa_CountryTax"><small><fmt:message    
+											key="foreign.Nodtaa.totaltax" /> </small> </label>
+							</div>
+							<div class="rowlabel">
+								<input id="Nodtaa_CountryTax" name="Nodtaa_CountryTax" type="text" readonly="readonly"
+									maxlength="14" class="decimal"
+									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.nodtaa_CountryTax}"/></c:if>" />
+							</div>
+						
+					</div>
 			</div>
 		<input type="hidden" id="country_name" name="country_name">
 			<div class="row-fluid show-grid">
@@ -164,28 +203,7 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 				
 			</c:if>
 		</table>
-		<table>
-			<tr><td><fmt:message key="tr.taxpaid.outside.itr2" /></td>
-			<td align="right"><w4india:inr value="${parentBean.total_TaxFsi}"/></td>
-			</tr>
-			<tr>
-			<td><fmt:message key="tr.taxpaid.outside.dtaa.itr2" /> </td>
-			<form action="${actionUrl}">
-				<div class="input-append">
-				
-				<td align="right">
-					<input class="span2" id="appendedInputButton" name="taxPaidDtaa"
-						type="text"> <input class="btn green" id="test"
-						value="Save" type="submit" />
-						</td>
-				</div>
-			</form></tr>
-			
-			<tr><td><fmt:message key="tr.taxpaid.outside.Notdtaa.itr2" /></td>
-			<td align="right"><w4india:inr value="${parentBean.taxPaidNoDtaa}"/></td>
-			</tr>
-			
-			</table>
+		
 		<a href="${scriptName}/trdetailsnew"
 			class="button orange">Add New</a>
 	</c:otherwise>
@@ -205,7 +223,7 @@ $("#country_code").change(function(){
 });
 
 </script>
-
+<res:calc screenCalc="taxrelief" formId="frmtrdetails"></res:calc>
 <res:client-validation formId="frmtrdetails"
 	screenConfigurationDocumentName="taxrelief"
 	formSubmitButtonId="myModalHrefTaxrebate" />
