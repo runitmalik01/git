@@ -63,6 +63,10 @@ public class TaxReliefDetail extends HippoItem implements FormMapFiller {
 	private Double relief90_91;
 	private Double relief91;
 	private String country_name;
+	private String isDtaaCountry;
+	private Double dtaa_CountryTax;
+	private Double Nodtaa_CountryTax;
+	
 	private String personalInfoUuid;
 	private boolean markedForDeletion;
    
@@ -98,12 +102,25 @@ public class TaxReliefDetail extends HippoItem implements FormMapFiller {
     	if (relief91 == null) relief91 = getProperty(RELIEF91);
     	return relief91;
     }
-   
     public String getCountry_Name(){
     	if(country_name == null) country_name= getProperty(COUNTRYNAME);
     	return country_name;
     }
-   
+    public Double getDtaa_CountryTax(){
+    	if(dtaa_CountryTax == null) dtaa_CountryTax= getProperty("mootlywcm:dtaa_CountryTax");
+    	return dtaa_CountryTax;
+    }
+    public String getIsDtaaCountry(){
+    	if(isDtaaCountry == null) isDtaaCountry= getProperty("mootlywcm:isDtaaCountry");
+    	return isDtaaCountry;
+    }
+    
+  
+    public Double getNodtaa_CountryTax(){
+    	if(Nodtaa_CountryTax == null) Nodtaa_CountryTax= getProperty("mootlywcm:Nodtaa_CountryTax");
+    	return Nodtaa_CountryTax;
+    }
+    
    public final void setCountry_Name(String country_name){
 	   this.country_name=country_name;
    }
@@ -124,6 +141,15 @@ public class TaxReliefDetail extends HippoItem implements FormMapFiller {
 	}
 	public final void setRelief91(Double relief91) {
 		this.relief91 = relief91;
+	}
+	public final void setIsDtaaCountry(String isDtaaCountry) {
+		this.isDtaaCountry = isDtaaCountry;
+	}
+	public final void setNodtaa_CountryTax(Double Nodtaa_CountryTax) {
+		this.Nodtaa_CountryTax = Nodtaa_CountryTax;
+	}
+	public final void setDtaa_CountryTax(Double dtaa_CountryTax) {
+		this.dtaa_CountryTax = dtaa_CountryTax;
 	}
 	
 		public final String getPersonalInfoUuid() {
@@ -159,6 +185,10 @@ public class TaxReliefDetail extends HippoItem implements FormMapFiller {
 			node.setProperty(RELIEF9091,getRelief90_91());
 			node.setProperty(RELIEF91,getRelief91());
 			node.setProperty(COUNTRYNAME,getCountry_Name());
+			node.setProperty("mootlywcm:isDtaaCountry",getIsDtaaCountry());
+			node.setProperty("mootlywcm:dtaa_CountryTax",getDtaa_CountryTax());
+			node.setProperty("mootlywcm:Nodtaa_CountryTax",getNodtaa_CountryTax());
+			
 		} catch (RepositoryException rex) {
 			log.error("Repository Exception while binding",rex);
 		}
@@ -199,7 +229,19 @@ public class TaxReliefDetail extends HippoItem implements FormMapFiller {
 		if(formMap.getField("country_name") != null){
 			setCountry_Name(formMap.getField("country_name").getValue());
 		}
-		
+		if(formMap.getField("isDtaaCountry") != null){
+			setIsDtaaCountry(formMap.getField("isDtaaCountry").getValue());
+		}
+		if ( formMap.getField("dtaa_CountryTax") != null) {
+			String strdtaa_CountryTax=formMap.getField("dtaa_CountryTax").getValue();
+			double dtaa_CountryTax=Double.parseDouble(strdtaa_CountryTax);
+			setDtaa_CountryTax(dtaa_CountryTax);
+		}
+		if ( formMap.getField("Nodtaa_CountryTax") != null) {
+			String strNodtaa_CountryTax=formMap.getField("Nodtaa_CountryTax").getValue();
+			double Nodtaa_CountryTax=Double.parseDouble(strNodtaa_CountryTax);
+			setNodtaa_CountryTax(Nodtaa_CountryTax);
+		}
 		
 	}
 
@@ -213,7 +255,9 @@ public class TaxReliefDetail extends HippoItem implements FormMapFiller {
 		setRelief90_91(objTaxRelief.getRelief90_91());
 		setRelief91(objTaxRelief.getRelief91());
 		setCountry_Name(objTaxRelief.getCountry_Name());
-		
+		setIsDtaaCountry(objTaxRelief.getIsDtaaCountry());
+		setDtaa_CountryTax(objTaxRelief.getDtaa_CountryTax());
+		setNodtaa_CountryTax(objTaxRelief.getNodtaa_CountryTax());
 		
 	}
 }
