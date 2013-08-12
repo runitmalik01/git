@@ -603,6 +603,10 @@ public abstract class FormSixteenSectionB extends FormSixteenSectionA  implement
 			log.info("this is uuid of form"+formMap.getField("uuidform16").getValue());
 			setForm16Uuid(formMap.getField("uuidform16").getValue());
 		}
+		if ( formMap.getField("allowNotExempt") != null) {
+			Double Double_AllowNotExempt= Double.parseDouble(formMap.getField("allowNotExempt").getValue());
+			setAllowNotExempt(Double_AllowNotExempt);
+		}
 	}
 
 
