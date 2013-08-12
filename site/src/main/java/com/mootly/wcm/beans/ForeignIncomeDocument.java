@@ -142,30 +142,28 @@ public class ForeignIncomeDocument extends BaseDocument implements ContentNodeBi
 	        	}
         	}
         	 double sum=0.0;
-        	 String strSum="";
+        	 double sum_IncomeApplDtaa=0.0d;
+        	 double sum_IncomeNotApplDtaa=0.0d;
+        	 
         	if ( foreignincome.getForeignIncomeDetailList() != null &&  foreignincome.getForeignIncomeDetailList().size() > 0 ){ 
         		log.info("checking size in salary income bean:::"+ foreignincome.getForeignIncomeDetailList().size());
         		
-        		for (ForeignIncomeDetail objtdsfromothers:foreignincome.getForeignIncomeDetailList()) {
-        		    
-        			if (!objtdsfromothers.isMarkedForDeletion()) {
-        				double amount=objtdsfromothers.getIncome_Total();
+        		for (ForeignIncomeDetail objforeignIncome:foreignincome.getForeignIncomeDetailList()) {
+        		    if (!objforeignIncome.isMarkedForDeletion()) {
+        				double amount=objforeignIncome.getIncome_Total();
             		    log.info("value of amount after fetching from compound bean"+amount);
+            		    double value_IncomeApplDtaa = objforeignIncome.getDtaa_CountryIncome();
+            		    double value_IncomeNotApplDtaa = objforeignIncome.getNodtaa_CountryIncome();
+            		    sum_IncomeApplDtaa=sum_IncomeApplDtaa +value_IncomeApplDtaa;
+            		    sum_IncomeNotApplDtaa=sum_IncomeNotApplDtaa+value_IncomeNotApplDtaa;
             		     sum=sum+ amount;
-            		    // Double sum1= (double) sum;
-            		   //  strSum= BigDecimal.valueOf(sum1).toPlainString();
-		                javax.jcr.Node html = node.addNode(PROP_DETAIL_BEAN, PROP_DETAIL_BEAN);
-		                objtdsfromothers.bindToNode(html); 
+            		     javax.jcr.Node html = node.addNode(PROP_DETAIL_BEAN, PROP_DETAIL_BEAN);
+		                objforeignIncome.bindToNode(html); 
         			}
         		}
         		setTotal_Amount(sum);
-        		if(getTotal_Amount()<getIncomeApplDtaa()){
-        			defDouble=0.0d;
-        		}
-        		else {
-        			defDouble= (getTotal_Amount()-getIncomeApplDtaa());
-        		}
-        		setIncomeNotApplDtaa(defDouble);
+        		setIncomeApplDtaa(sum_IncomeApplDtaa);
+        		setIncomeNotApplDtaa(sum_IncomeNotApplDtaa);
         	}
         	node.setProperty("mootlywcm:totalamount", getTotal_Amount());
         	node.setProperty("mootlywcm:IncomeApplDtaa",getIncomeApplDtaa());
@@ -190,11 +188,6 @@ public class ForeignIncomeDocument extends BaseDocument implements ContentNodeBi
 	public void fill(FormMap formMap) {
 		// TODO Auto-generated method stub
 		
-		if (formMap != null) {
-			if(formMap.getField("IncomeApplDtaa") != null){
-				setIncomeApplDtaa(Double.parseDouble(formMap.getField("IncomeApplDtaa").getValue()));
-						} 
-			}
 	}
 	
 	public <T extends HippoBean> void cloneBean(T sourceBean) {
