@@ -124,9 +124,45 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 											key="foreign.income.total" /> </small> </label>
 							</div>
 							<div class="rowlabel">
-								<input id="income_total" name="income_total" type="text"
+								<input id="income_total" name="income_total" type="text" readonly="readonly"
 									maxlength="14" class="decimal"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.income_Total}"/></c:if>" />
+							</div>
+						</div>
+						<div class="span4">
+							<div class="rowlabel">
+								<label for="isDtaa"><small><fmt:message
+											key="foreign.is.dtaa.applicable" /> </small> </label>
+							</div>
+							<div class="rowlabel">
+								<select id="isDtaa" name="isDtaa">
+								<option value="">-Select-</option>
+								<option value="Yes"<c:if test="${not empty childBean.isDtaaCountry && childBean.isDtaaCountry =='Yes'}">selected</c:if>>Yes</option></option>
+								<option value="No"<c:if test="${not empty childBean.isDtaaCountry && childBean.isDtaaCountry =='No'}">selected</c:if>>No</option></option>
+								</select>
+							</div>
+						</div></div>
+						<div class="row-fluid show-grid">
+						<div class="span4">
+							<div class="rowlabel">
+								<label for="dtaa_CountryIncome"><small><fmt:message
+											key="foreign.inc.total" /> </small> </label>
+							</div>
+							<div class="rowlabel">
+								<input id="dtaa_CountryIncome" name="dtaa_CountryIncome" type="text" readonly="readonly"
+									maxlength="14" class="decimal"
+									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.dtaa_CountryIncome}"/></c:if>" />
+							</div>
+						</div>
+						<div class="span4">
+							<div class="rowlabel">
+								<label for="Nodtaa_CountryIncome"><small><fmt:message    
+											key="foreign.c.total" /> </small> </label>
+							</div>
+							<div class="rowlabel">
+								<input id="Nodtaa_CountryIncome" name="Nodtaa_CountryIncome" type="text" readonly="readonly"
+									maxlength="14" class="decimal"
+									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.nodtaa_CountryIncome}"/></c:if>" />
 							</div>
 						</div>
 					</div>
@@ -202,7 +238,7 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 			
 			
 			</table>
-<hst:include ref="foreignincome_add"/>
+
 </c:otherwise>
 </c:choose>
 </div>
