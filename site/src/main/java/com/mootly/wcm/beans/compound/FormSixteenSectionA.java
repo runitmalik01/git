@@ -119,7 +119,7 @@ private final static Logger log = LoggerFactory.getLogger(FormSixteenSectionA.cl
 	private String city;
 	private String pin;
 	private String state;
-
+	private Double allowNotExempt;
 
 	//for personal information
 	public  String getEmploye_category() {
@@ -531,6 +531,10 @@ private final static Logger log = LoggerFactory.getLogger(FormSixteenSectionA.cl
 		if (pin == null) pin = getProperty("mootlywcm:pin");
 		return pin;
 	}
+	public  Double getAllowNotExempt() {
+		if (allowNotExempt == null) allowNotExempt = getProperty("mootlywcm:allowNotExempt");
+		return allowNotExempt;
+	}
 
 	// for setter method
 	public final void  setEmploye_category(String Employe_category) {
@@ -846,5 +850,8 @@ private final static Logger log = LoggerFactory.getLogger(FormSixteenSectionA.cl
 	}
     public final void  setPin(String pin) {
 		this.pin = pin;
+	}
+    public final void  setAllowNotExempt(Double allowNotExempt) {
+		this.allowNotExempt = allowNotExempt;
 	}
 }
