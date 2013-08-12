@@ -275,7 +275,7 @@
 				</table>
   -->
 			<fieldset>
-				<legend style="font-style: italic;color: blue;"> Detaisl of salary paid and
+				<legend style="font-style: italic;color: blue;"> Details of salary paid and
 					any other income and tax deducted</legend>
 				<label><strong>1.</strong> </label> <label> Gross salary</label>
 				<table>
@@ -297,6 +297,13 @@
 						<td>(c) Profits in lieu of salary under section 17(3)</td>
 						<td><input id="gross_c" name="gross_c" class=" decimal"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.gross_c}"/></c:if>"
+							placeholder="Rs." type="text" maxlength="14" />
+						</td>
+					</tr>
+					<tr>
+						<td>Allowances not exempt </td>
+						<td><input id="allowNotExempt" name="allowNotExempt" class=" decimal"
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.allowNotExempt}"/></c:if>"
 							placeholder="Rs." type="text" maxlength="14" />
 						</td>
 					</tr>
