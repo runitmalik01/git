@@ -43,7 +43,7 @@ import com.mootly.wcm.components.ITReturnComponent;
 		"c_section_2","c_section_3","d_section","d_section_1","d_section_2","d_section_3","e_section","e_section_1","e_section_2","e_section_3",
 		"aggregate","total_income_1","total_income_2","tax_total_income_1","tax_total_income_2","surcharge_1","surcharge_2",
 		"education_cess","tax_payable","relief_1","relief_2","tax_payable1","tax_payable_1","tax_payable_2","ded_ent1","ded_ent2",
-		"ded_ent3","ded_ent4","relief_11","relief_12","uuidform16","address","addressdetail","city","state","pin"})
+		"ded_ent3","ded_ent4","relief_11","relief_12","uuidform16","address","addressdetail","city","state","pin","allowNotExempt"})
 @RequiredFields(fieldNames={"Employe_category","employer","employee"}) //commented by AP 07/16/2013 "tan_deductor"}) I don't like this to be dependent on JAVA SCRIPT but let it go for now.
 @DataTypeValidationFields(fieldNames={
 		"pan_deductor",
