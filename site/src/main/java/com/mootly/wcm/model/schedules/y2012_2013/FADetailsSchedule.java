@@ -3,8 +3,8 @@ package com.mootly.wcm.model.schedules.y2012_2013;
 import java.util.List;
 
 
-import in.gov.incometaxindiaefiling.y2011_2012.DetailsFinancialInterest;
-import in.gov.incometaxindiaefiling.y2011_2012.DetailsImmovableProperty;
+import in.gov.incometaxindiaefiling.y2012_2013.DetailsFinancialInterest;
+import in.gov.incometaxindiaefiling.y2012_2013.DetailsImmovableProperty;
 import in.gov.incometaxindiaefiling.y2012_2013.DetailsForiegnBank;
 import in.gov.incometaxindiaefiling.y2012_2013.DetailsOfAccntsHvngSigningAuth;
 import in.gov.incometaxindiaefiling.y2012_2013.DetailsOfTrustOutIndiaTrustee;
@@ -68,6 +68,7 @@ public class FADetailsSchedule {
 					detailsForiegnBank.setNameAsInAccount(foreignBankAccountDetail.getName_Account());
 					detailsForiegnBank.setPeakBalanceDuringYear(indianCurrencyHelper.bigIntegerRound(foreignBankAccountDetail.getPeak_Balance()));
 					detailsForiegnBank.setForeignAccountNumber(foreignBankAccountDetail.getAccount_No());
+					scheduleFA.getDetailsForiegnBank().add(detailsForiegnBank);
 					if(!hasValidFA) hasValidFA = true;
 				}
 			}
@@ -83,6 +84,7 @@ public class FADetailsSchedule {
 					detailsFinancialInterest.setNameOfEntity(financialInterestDetail.getName_Entity());
 					detailsFinancialInterest.setAddressOfEntity(financialInterestDetail.getAddress_Entity());
 					detailsFinancialInterest.setTotalInvestment(indianCurrencyHelper.bigIntegerRound(financialInterestDetail.getTotal_Investment()));
+					scheduleFA.getDetailsFinancialInterest().add(detailsFinancialInterest);
 					if(!hasValidFA) hasValidFA = true;
 				}
 			}
@@ -96,6 +98,7 @@ public class FADetailsSchedule {
 					detailsImmovableProperty.setCountryName(ImmovablePropertyDetail.getCountry_Name());
 					detailsImmovableProperty.setAddressOfProperty(ImmovablePropertyDetail.getAddress_Property());
 					detailsImmovableProperty.setTotalInvestment(indianCurrencyHelper.bigIntegerRound(ImmovablePropertyDetail.getTotal_Investment()));
+					scheduleFA.getDetailsImmovableProperty().add(detailsImmovableProperty);
 					if(!hasValidFA) hasValidFA = true;
 				}
 			}
@@ -109,6 +112,7 @@ public class FADetailsSchedule {
 					detailsOthAssets.setCountryName(natureInvestmentDetail.getCountry_Name());
 					detailsOthAssets.setNatureOfAsset(natureInvestmentDetail.getNature_Asset());
 					detailsOthAssets.setTotalInvestment(indianCurrencyHelper.bigIntegerRound(natureInvestmentDetail.getTotal_Investment()));
+					scheduleFA.getDetailsOthAssets().add(detailsOthAssets);
 					if(!hasValidFA) hasValidFA = true;
 				}
 			}
@@ -123,6 +127,7 @@ public class FADetailsSchedule {
 					detailsOfAccntsHvngSigningAuth.setInstitutionAccountNumber(signingAuthorityAccountsDetail.getAccount_Number());
 					detailsOfAccntsHvngSigningAuth.setNameMentionedInAccnt(signingAuthorityAccountsDetail.getName_Accountholder());
 					detailsOfAccntsHvngSigningAuth.setPeakBalanceOrInvestment(indianCurrencyHelper.bigIntegerRound(signingAuthorityAccountsDetail.getPeak_Balance()));
+					scheduleFA.getDetailsOfAccntsHvngSigningAuth().add(detailsOfAccntsHvngSigningAuth);
 					if(!hasValidFA) hasValidFA = true;
 				}
 			}
@@ -142,6 +147,7 @@ public class FADetailsSchedule {
 					detailsOfTrustOutIndiaTrustee.setAddressOfSettlor(detailOfTrustDetail.getAddress_Settlor());
 					detailsOfTrustOutIndiaTrustee.setNameOfBeneficiaries(detailOfTrustDetail.getName_Beneficiaries());
 					detailsOfTrustOutIndiaTrustee.setAddressOfBeneficiaries(detailOfTrustDetail.getAddress_Beneficiaries());
+					scheduleFA.getDetailsOfTrustOutIndiaTrustee().add(detailsOfTrustOutIndiaTrustee);
 					if(!hasValidFA) hasValidFA = true;
 				}
 			}
