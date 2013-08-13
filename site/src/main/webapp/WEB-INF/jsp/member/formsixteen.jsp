@@ -54,6 +54,9 @@
 								<c:if test="${not empty memberpersonalinformation.employe_category && memberpersonalinformation.employe_category =='PSU'}">selected</c:if>>PSU</option>
 							<option value="OTH"
 								<c:if test="${not empty memberpersonalinformation.employe_category && memberpersonalinformation.employe_category =='OTH'}">selected</c:if>>OTHERS.</option>
+						    <option value="NA"
+								<c:if test="${not empty memberpersonalinformation.employe_category && memberpersonalinformation.employe_category =='NA'}">selected</c:if>>NA</option>
+
 						</select>
 					</div>
 				</div>
@@ -111,14 +114,14 @@
 								readonly="readonly" />
 						</div>
 					</div>
-					
+
 					<div class="span4 <c:if test="${not empty itr2}">hide</c:if>">
 						<div class="rowlabel">
 							<label class="">Address of Employer</label>
 						</div>
 
 						<div class="rowlabel">
-						
+
 							<input id="address" type="text" name="address" class="uprcase"
 								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.address}"/></c:if>">
 						</div>
@@ -128,13 +131,13 @@
 			<c:if test="${not empty itr2}">
 		<!-- 	<%@include file="../member/formsixteen_adv1.jsp" %> -->
 			<jsp:include page="formsixteen_adv1.jsp"/>
-			
+
 			</c:if>
-			
-			
-			
-			
-			
+
+
+
+
+
 			<!--
 				<legend style="color: black">
 					Acknowledgement Nos. of all quarterly statements of TDS under
@@ -1073,10 +1076,10 @@
 		ded_ent3 = $("#ded_ent3").val().trim();
 		var ided_ent1 =0;
 		var ided_ent3 =0;
-		
+
 		if (ded_ent1 != '' && !isNaN(ded_ent1) ) ided_ent1 = parseInt(ded_ent1);
 		if (ded_ent3 != '' && !isNaN(ded_ent3) ) ided_ent3 = parseInt(ded_ent3);
-		
+
 		if ( (ided_ent1 + ided_ent3) > 0) {
 			//ensure TAN is required and must
 			$("#tan_deductor").rules("add",{
@@ -1091,7 +1094,7 @@
 		updateTANRules();
 		return false;
 	});
-	
+
 	--%>
 	function hideded() {
 		var d = document.getElementById("Employe_category");
