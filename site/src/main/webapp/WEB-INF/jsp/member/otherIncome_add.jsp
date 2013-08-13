@@ -20,7 +20,7 @@
 			</div>
 			<div class="span4">
 				<div class="rowlabel">
-					<label for="dedus57 ">Deduction under section 57</label>                   
+					<label for="dedus57 ">Deduction under section 57</label>
 				</div>
 				<div class="rowlabel">
 					<input type="text" name="dedus57" maxlength="14"
@@ -29,11 +29,11 @@
 				</div>
 			</div>
 			<div class="span4">
-				<div class="rowlabel">               
+				<div class="rowlabel">
 			<label for="balance">Balance</label>
 				</div>
 				<div class="rowlabel">
-					<input type="text" name="balance" maxlength="14"
+					<input type="text" name="balance" maxlength="14" readonly="readonly"
 						value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.balance}"/>" class=" decimal"
 						id="balance" onchange="cal3()" />
 				</div>
@@ -57,4 +57,3 @@
 	</fieldset>
 	<fieldset>
 
-	
