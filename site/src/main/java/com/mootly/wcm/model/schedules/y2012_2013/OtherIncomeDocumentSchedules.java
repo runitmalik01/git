@@ -51,7 +51,7 @@ public class OtherIncomeDocumentSchedules {
 			incOthThanOwnRaceHorse.setDividendGross(indianCurrencyHelper.bigIntegerRound(OSdocument.getDividends()));
 			incOthThanOwnRaceHorse.setInterestGross(indianCurrencyHelper.bigIntegerRound(OSdocument.getTotalint()));
 			incOthThanOwnRaceHorse.setRentFromMachPlantBldgs(indianCurrencyHelper.bigIntegerRound(OSdocument.getIncome_rent_machine()));
-System.out.println("value of familypension"+OSdocument.getFamily_pension());
+
 			if(OSdocument.getFamily_pension() != 0){
 				OthersGrossDtls othersGrossDtls = new OthersGrossDtls();
 				othersGrossDtls.setSourceDescription("Family Pension");
