@@ -34,7 +34,7 @@ import com.mootly.wcm.services.ScreenCalculatorService;
 @ChildBean(childBeanClass=HouseIncomeDetail.class)
 @FormFields(fieldNames={"Address","Tenant_pan","Pin","Tenant_name","share1","coownerpan1","coownername1","share2","coownerpan2",
 		"coownername2","share3","coownerpan3","coownername3","share4","coownerpan4","coownername4","share5","coownerpan5","coownername5",
-		"City","states","Coowned","letout","Letable_value","Unrealised_rent","Local_tax","Total","Balance","Interest_borrowed","Income_hproperty","Property_share","rentSec25A","arrearRentSec25B","total_houseIncome"})
+		"City","states","coowned","letout","Letable_value","Unrealised_rent","Local_tax","Total","Balance","Interest_borrowed","Income_hproperty","Property_share","rentSec25A","arrearRentSec25B","total_houseIncome"})
 //@RequiredFields(fieldNames={"Gross_Annual_Income","Unrealised_Rent","Local_Taxes","Interest_Borrowed2","Interest_Borrowed1"})
 @RequiredFields(fieldNames={"Pin","Address","City","states","letout"})
 @DataTypeValidationFields(fieldNames={
