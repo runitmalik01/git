@@ -181,7 +181,7 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 						</td>
 						<td><a class="btn btn-primary"
 							href="${scriptName}/<c:out value="${taxrelief.canonicalUUID}"/>/trustdetailedit"><small><i class=" icon-pencil icon-white"></i>Edit</small> &nbsp;&nbsp;
-						</a>&nbsp;<a class="btn btn-danger" href="${scriptName}/<c:out value="${taxrelief.canonicalUUID}"/>/trustdetaildelete" ><small><i class="icon-trash icon-white"></i>Delete</small> </a>
+						</a>&nbsp;<a class="btn btn-danger" href="${scriptName}/<c:out value="${taxrelief.canonicalUUID}"/>/trustdetaildelete" data-confirm=""><small><i class="icon-trash icon-white"></i>Delete</small> </a>
 							</td>
 						</tr>
 					</tr>
