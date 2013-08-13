@@ -46,7 +46,7 @@
 					<input type="text" name="Gov_income"
 						title="Enter income from Govt." class="decimal" maxlength="14"
 						value= "<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.gov_income}"/>" id="Gov_income" onchange="cal1()" />
-						 
+
 				</div>
 			</div>
 			<div class="span3">
@@ -160,7 +160,7 @@
 				</div>
 			</div>
 
-		<!--  
+		<!--
 
 			<c:if test="${not empty  ITR2}">
 					<td><label for="Lottery_horse_income"><fmt:message
@@ -172,14 +172,14 @@
 					</td>
 				</c:if>
 				 -->
-				
+
 			<div class="span4">
 				<div class="rowlabel">
 					<label for="Income_rent_machine"><fmt:message
 							key="member.income.rental" /> </label>
 				</div>
 				<div class="rowlabel">
-					<input type="text" name="Income_rent_machine" 
+					<input type="text" name="Income_rent_machine"
 						value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.income_rent_machine}"/>"
 						class=" decimal" id="Income_rent_machine" onchange="cal2()"
 						maxlength="14" />
@@ -188,20 +188,7 @@
 		</div>
 
 		<div class="row-fluid show-grid">
-		<!-- only for itr2 -->
-		<c:if test="${not empty  ITR2}">
-		 	<div class="span4">
-				<div class="rowlabel">
-					<label for="Income_rent_machine"><fmt:message
-							key="member.income.maintain" /> </label>
-				</div>
-				<div class="rowlabel">
-					<input type="text" name="Income_maintain"
-						value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.income_maintain}"/>" class=" decimal"
-						id="Income_maintain" onchange="cal2()" maxlength="14" />
-				</div>
-			</div> 
-			</c:if>
+
 			<div class="span4">
 				<div class="rowlabel">
 					<label for="Income_other "><fmt:message
@@ -342,7 +329,7 @@
 				</div>
 			</div>
 		</div>
-		
+
 		<div class="row-fluid show-grid">
 			<div class="span4">
 				<div class="rowlabel">
@@ -351,7 +338,7 @@
 				</div>
 				<div class="rowlabel">
 					<input type="text" name="Dividends_indian_companies"
-						value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.dividends_indian_companies }"/>" class=" decimal" 
+						value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.dividends_indian_companies }"/>" class=" decimal"
 						id="Dividends_indian_companies" onchange="cal4()"
 						maxlength="14" />
 				</div>
@@ -406,7 +393,7 @@
 						role="button" class="btn btn-success" style="color: black">Save</a>
 
 		</div>
-	</div>	
+	</div>
 </form>
 </div>
 <res:client-validation formId="frmIncomeinfo" screenConfigurationDocumentName="otherincome" formSubmitButtonId="myModalHrefFormSixteen" />
@@ -414,13 +401,13 @@
 	<hst:attribute name="type">text/javascript</hst:attribute>
 
 		$(document).ready(function() {
-		
+
                  var statekey=$("#statekey").val();
                 if(statekey!=null){
                  $("#pi_state").val(statekey);
                   };
-                  
-		});    
+
+		});
 </hst:element>
 <hst:headContribution element="${uiCustom}" category="jsInternal" />
 <res:calc screenCalc="otherincome" formId="frmIncomeinfo"></res:calc>
