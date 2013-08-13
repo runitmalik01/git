@@ -153,10 +153,10 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 					<div class="row-fluid show-grid">
 						<div class="span6">
 							<div class="rowlabel">
-								<label for=""><small>Is the property co-owned?</small> </label>
+								<label for="coowned"><small>Is the property co-owned?</small> </label>
 							</div>
 							<div>
-								<select name="Coowned" id="coowned" onChange="hidecoOwner()"
+								<select name="coowned" id="coowned" onChange="hidecoOwner()"
 									style="text-transform: uppercase;">
 									<option value="">-Select-</option>
 									<c:forEach var="booleanCombo" items="${objHashMapBoolean}">
