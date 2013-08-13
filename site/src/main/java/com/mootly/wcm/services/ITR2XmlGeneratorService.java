@@ -138,6 +138,7 @@ import com.mootly.wcm.model.schedules.y2012_2013.Form16DocumentSchedules;
 import com.mootly.wcm.model.schedules.y2012_2013.Form_ITR2;
 import com.mootly.wcm.model.schedules.y2012_2013.HouseIncomeDocumentSchedules;
 import com.mootly.wcm.model.schedules.y2012_2013.MemberVerification;
+import com.mootly.wcm.model.schedules.y2012_2013.OtherIncomeDocumentSchedules;
 import com.mootly.wcm.model.schedules.y2012_2013.PartA_Gen1;
 import com.mootly.wcm.model.schedules.y2012_2013.PartB_TI;
 import com.mootly.wcm.model.schedules.y2012_2013.TRDetailsSchedule;
@@ -207,6 +208,9 @@ public class ITR2XmlGeneratorService  {
 
 		HouseIncomeDocumentSchedules houseIncomeDocumentSchedules = new HouseIncomeDocumentSchedules(houseProperty);
 		itr2.setScheduleHP(houseIncomeDocumentSchedules.getScheduleHP(itr));
+
+		OtherIncomeDocumentSchedules otherIncomeDocumentSchedules = new OtherIncomeDocumentSchedules(otherSourcesDocument);
+		itr2.setScheduleOS(otherIncomeDocumentSchedules.getScheduleOS(itr));
 
 		DeductionVIASchedules deductionVIASchedules = new DeductionVIASchedules(deductionDocument,memberPersonalInformation,otherSourcesDocument);
 		itr2.setScheduleVIA(deductionVIASchedules.getScheduleVIA(itr, financialYear, inputBeans));
