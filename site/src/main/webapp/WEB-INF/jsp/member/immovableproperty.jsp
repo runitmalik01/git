@@ -75,8 +75,8 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 		
 			<div class="row-fluid show-grid">
 				<div class="span4 offset8 decimal">
-					<a href="${scriptName}" class="button olive">Cancel</a>&nbsp;
-					<a id="myModalHreffrmImmProp" role="button" class="btn orange">Save</a>
+					<a href="${scriptName}" class="btn btn-danger">Cancel</a>&nbsp;
+					<a id="myModalHreffrmImmProp" role="button" class="btn btn-success">Save</a>
 				</div>  
 			
 			</div>
@@ -103,9 +103,9 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 						</td>
 						<td><c:out value="${immProp.total_Investment}" />
 						</td>
-						<td><a
-							href="${scriptName}/<c:out value="${immProp.canonicalUUID}"/>/immovablepropertyedit"><small>Edit</small> &nbsp;&nbsp;
-						</a>&nbsp;<a href="${scriptName}/<c:out value="${immProp.canonicalUUID}"/>/immovablepropertydelete" id="delete" onclick="return checkdelete()"><small>Delete</small> </a>
+						<td><a class="btn btn-danger"
+							href="${scriptName}/<c:out value="${immProp.canonicalUUID}"/>/immovablepropertyedit"><small><i class="icon-pencil icon-white"></i>Edit</small> &nbsp;&nbsp;
+						</a>&nbsp;<a class="btn btn-primary" href="${scriptName}/<c:out value="${immProp.canonicalUUID}"/>/immovablepropertydelete" data-confirm=""><small><i class="icon-trash icon-white"></i>Delete</small> </a>
 							</td>
 						</tr>
 				
@@ -117,7 +117,7 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 			</c:if>
 		</table>
 		<a href="${scriptName}/immovablepropertynew"
-			class="button orange">Add New</a>
+			class="btn btn-info">Add New</a>
 	</c:otherwise>
 </c:choose>
 </div>
