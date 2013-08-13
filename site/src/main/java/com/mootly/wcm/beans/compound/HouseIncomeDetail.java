@@ -501,9 +501,9 @@ public class HouseIncomeDetail extends HippoItem implements FormMapFiller {
 			setStates(formMap.getField("states").getValue());
 			log.info("valuye of state"+formMap.getField("states").getValue());
 		}
-		if (formMap.getField("Coowned") != null) {
-			setCoowned(formMap.getField("Coowned").getValue());
-			log.info("valuye of coown"+formMap.getField("Coowned").getValue());
+		if (formMap.getField("coowned") != null) {
+			setCoowned(formMap.getField("coowned").getValue());
+			log.info("valuye of coown"+formMap.getField("coowned").getValue());
 		}
 		if (formMap.getField("Letable_value") != null) {
 			String strlet_val= formMap.getField("Letable_value").getValue();
