@@ -6,6 +6,7 @@ import in.gov.incometaxindiaefiling.y2012_2013.Salaries;
 import in.gov.incometaxindiaefiling.y2012_2013.ScheduleS;
 import in.gov.incometaxindiaefiling.y2012_2013.Salaries.Salarys;
 
+import java.math.BigInteger;
 import java.util.List;
 
 import com.mootly.wcm.beans.FormSixteenDocument;
@@ -32,6 +33,7 @@ public class Form16DocumentSchedules {
 	public ScheduleS getScheduleS(ITR itr) {
 		IndianCurrencyHelper indianCurrencyHelper = new IndianCurrencyHelper();
 		ScheduleS scheduleS = new ScheduleS();
+		BigInteger totalSalary = new BigInteger("0");
 		boolean hasAValidSalary = false;
 		if(formSixteenDocument != null){
 			List<FormSixteenDetail> formSixteenDetails = formSixteenDocument.getFormSixteenDetailList();
@@ -40,20 +42,26 @@ public class Form16DocumentSchedules {
 					Salaries salaries = new Salaries();
 
 					AddressDetail addressDetail = new AddressDetail();
-					addressDetail.setAddrDetail(formSixteenDetail.getAddress());
-					addressDetail.setAddrDetail(formSixteenDetail.getEmploye_category());
-					addressDetail.setAddrDetail(formSixteenDetail.getEmployee());
+					addressDetail.setAddrDetail(formSixteenDetail.getAddressdetail());
+					addressDetail.setCityOrTownOrDistrict(formSixteenDetail.getCity());
+					addressDetail.setPinCode(indianCurrencyHelper.bigIntegerRoundStr(formSixteenDetail.getPin()));
+					addressDetail.setStateCode(formSixteenDetail.getState());
 					salaries.setAddressDetail(addressDetail);
 					salaries.setNameOfEmployer(formSixteenDetail.getEmployer());
-					salaries.setPANofEmployer(formSixteenDetail.getPan_deductor());
+					if(!(formSixteenDetail.getPan_deductor().isEmpty()))
+						salaries.setPANofEmployer(formSixteenDetail.getPan_deductor());
 					Salarys salarys = new Salarys();
-					salarys.setSalary(indianCurrencyHelper.bigIntegerRound( formSixteenDetail.getGross_a() ));
-					salarys.setValueOfPerquisites(indianCurrencyHelper.bigIntegerRound( formSixteenDetail.getGross_b()) );
-					salarys.setProfitsinLieuOfSalary(indianCurrencyHelper.bigIntegerRound( formSixteenDetail.getGross_c()) );
-					salarys.setAllowancesNotExempt( indianCurrencyHelper.bigIntegerRound( formSixteenDetail.getDeductions_total() ) );
-					salarys.setSalary(indianCurrencyHelper.bigIntegerRound( formSixteenDetail.getIncome_chargable_tax()));
+					salarys.setSalary(indianCurrencyHelper.bigIntegerRound(formSixteenDetail.getGross_a()).subtract(indianCurrencyHelper.bigIntegerRound(formSixteenDetail.getLess_total_2())));
+					salarys.setAllowancesExemptUSection10(indianCurrencyHelper.bigIntegerRound(formSixteenDetail.getLess_total_2()));
+					salarys.setValueOfPerquisites(indianCurrencyHelper.bigIntegerRound(formSixteenDetail.getGross_b()));
+					salarys.setProfitsinLieuOfSalary(indianCurrencyHelper.bigIntegerRound(formSixteenDetail.getGross_c()));
+					salarys.setDeductionUnderSection16(indianCurrencyHelper.bigIntegerRound(formSixteenDetail.getDeductions_total()));
+					salarys.setAllowancesNotExempt( indianCurrencyHelper.bigIntegerRound(formSixteenDetail.getAllowNotExempt()));
+					salarys.setIncomeFromSalary((salarys.getSalary().add(salarys.getAllowancesNotExempt()).add(salarys.getProfitsinLieuOfSalary()).add(salarys.getValueOfPerquisites())).subtract(salarys.getDeductionUnderSection16()));
+					totalSalary = totalSalary.add(salarys.getSalary().add(salarys.getAllowancesNotExempt()).add(salarys.getProfitsinLieuOfSalary()).add(salarys.getValueOfPerquisites())).subtract(salarys.getDeductionUnderSection16());
 					salaries.setSalarys(salarys);
 					scheduleS.getSalaries().add(salaries);
+					scheduleS.setTotIncUnderHeadSalaries(totalSalary);
 					if(!hasAValidSalary) hasAValidSalary = true;
 				}
 			}
@@ -71,18 +79,25 @@ public class Form16DocumentSchedules {
 
 					AddressDetail addressDetail = new AddressDetail();
 					addressDetail.setAddrDetail(salaryIncomeDetail.getAddress());
-					addressDetail.setAddrDetail(salaryIncomeDetail.getEmploye_category());
-					addressDetail.setAddrDetail(salaryIncomeDetail.getCity());
-					addressDetail.setAddrDetail(salaryIncomeDetail.getState());
-					addressDetail.setAddrDetail(salaryIncomeDetail.getPin());
+					addressDetail.setCityOrTownOrDistrict(salaryIncomeDetail.getCity());
+					addressDetail.setPinCode(indianCurrencyHelper.bigIntegerRoundStr(salaryIncomeDetail.getPin()));
+					addressDetail.setStateCode(salaryIncomeDetail.getState());
 					salaries.setAddressDetail(addressDetail);
 					salaries.setNameOfEmployer(salaryIncomeDetail.getName_employer());
-					salaries.setPANofEmployer(salaryIncomeDetail.getPan_employer());
+					if(!(salaryIncomeDetail.getPan_employer().isEmpty()))
+						salaries.setPANofEmployer(salaryIncomeDetail.getPan_employer());
 					Salarys salarys = new Salarys();
-					salarys.setSalary(indianCurrencyHelper.bigIntegerRound( salaryIncomeDetail.getGross_salary() ));
-					salarys.setValueOfPerquisites(indianCurrencyHelper.bigIntegerRound( salaryIncomeDetail.getTdsPension()));
+					salarys.setSalary(indianCurrencyHelper.bigIntegerRound(salaryIncomeDetail.getGross_salary()));
+					salarys.setAllowancesExemptUSection10(new BigInteger("0"));
+					salarys.setValueOfPerquisites(new BigInteger("0"));
+					salarys.setProfitsinLieuOfSalary(new BigInteger("0"));
+					salarys.setDeductionUnderSection16(new BigInteger("0"));
+					salarys.setAllowancesNotExempt(new BigInteger("0"));
+					salarys.setIncomeFromSalary((salarys.getSalary().add(salarys.getAllowancesNotExempt()).add(salarys.getProfitsinLieuOfSalary()).add(salarys.getValueOfPerquisites())).subtract(salarys.getDeductionUnderSection16()));
+					totalSalary = totalSalary.add(salarys.getSalary().add(salarys.getAllowancesNotExempt()).add(salarys.getProfitsinLieuOfSalary()).add(salarys.getValueOfPerquisites())).subtract(salarys.getDeductionUnderSection16());
 					salaries.setSalarys(salarys);
 					scheduleS.getSalaries().add(salaries);
+					scheduleS.setTotIncUnderHeadSalaries(totalSalary);
 					if(!hasAValidSalary) hasAValidSalary = true;
 				}
 			}
