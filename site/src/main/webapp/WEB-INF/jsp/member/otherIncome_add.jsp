@@ -51,9 +51,8 @@
 				<div class="rowlabel">
 					<input type="text" name="LotteryOrhorse_income" id="LotteryOrhorse_income"
 						value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.lotteryOrhorse_income}"/>" maxlength="14"
-						class=""  />
+						class=" decimal"  />
 				</div>
 			</div>
 	</fieldset>
-	<fieldset>
 
