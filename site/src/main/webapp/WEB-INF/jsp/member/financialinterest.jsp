@@ -101,8 +101,8 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 	
 			<div class="row-fluid show-grid">
 				<div class="span4 offset8 decimal">
-					<a href="${scriptName}" class="button olive">Cancel</a>&nbsp;
-					<a id="myModalHrefFinInterest" role="button" class="btn orange">Save</a>
+					<a href="${scriptName}" class="btn btn-danger" style="color: black">Cancel</a>&nbsp;
+					<a id="myModalHrefFinInterest" role="button" class="btn btn-success" style="color: black">Save</a>
 				</div>  
 			<input type="hidden" id="country_name" name="country_name">
 			</div>
@@ -134,9 +134,9 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 						<td><c:out value="${foreignbank.total_Investment}" />
 						</td>
 						
-						<td><a
-							href="${scriptName}/<c:out value="${foreignbank.canonicalUUID}"/>/financialinterestedit"><small>Edit</small> &nbsp;&nbsp;
-						</a>&nbsp;<a href="${scriptName}/<c:out value="${foreignbank.canonicalUUID}"/>/financialinterestdelete" id="delete" onclick="return checkdelete()"><small>Delete</small> </a>
+						<td><a class="btn btn-primary"
+							href="${scriptName}/<c:out value="${foreignbank.canonicalUUID}"/>/financialinterestedit"><small><i class="icon-pencil icon-white"></i>Edit</small>&nbsp;
+						</a>&nbsp;<a class="btn btn-danger" href="${scriptName}/<c:out value="${foreignbank.canonicalUUID}"/>/financialinterestdelete" ><small><i class="icon-trash icon-white"></i>Delete</small> </a>
 							</td>
 						</tr>
 					</tr>
@@ -148,7 +148,7 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 			</c:if>
 		</table>
 		<a href="${scriptName}/financialinterestnew"
-class="button orange">Add New</a>
+class="btn btn-info" style="color: black">Add New</a>
 	</c:otherwise>
 </c:choose>
 </div>
