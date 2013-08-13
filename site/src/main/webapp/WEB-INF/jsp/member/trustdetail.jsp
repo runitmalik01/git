@@ -147,8 +147,8 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 				<input type="hidden" id="country_name" name="country_name">
 			<div class="row-fluid show-grid">
 				<div class="span4 offset8 decimal">
-					<a href="${scriptName}" class="button olive">Cancel</a>&nbsp;
-					<a id="myModalHrefTrustDetail" role="button" class="btn orange">Save</a>
+					<a  href="${scriptName}" class="btn btn-danger" style="color: black">Cancel</a>&nbsp;
+					<a id="myModalHrefTrustDetail" role="button" class="btn btn-success" style="color: black">Save</a>
 				</div> 
 			
 			</div>
@@ -157,44 +157,31 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 	<c:otherwise>
 		<table>
 			<tr align="center">
-				<th><b><fmt:message key="foreign.country.code" /> </b>
+				<th><b><fmt:message key="foreign.country.name" /> </b>
 				</th>
-				<th><b><fmt:message key="name.trust.itr2" /> </b>
-				</th>
-				<th><b><fmt:message key="address.trust.itr2" /> </b></th>
-				<th><b><fmt:message key="name.other.trust.itr2" /> </b></th>
-				<th><b><fmt:message key="address.other.trust.itr2" /> </b></th>
+				<th><b><fmt:message key="name.trust.itr2" /> </b></th>
+				<th><b>Name of Other Trust</b></th>
 				<th><b><fmt:message key="name.settlor.itr2" /> </b></th>
-				<th><b><fmt:message key="address.settlor.itr2" /> </b></th>
 				<th><b><fmt:message key="name.beneficiaries.itr2" /> </b></th>
-				<th><b><fmt:message key="address.beneficiaries.itr2" /> </b></th>
 				<th><b>Actions</b></th>
 			</tr>
 			<c:if test="${not empty parentBean}">
 				<c:forEach items="${parentBean.detailofTrustDetailList}"
 					var="taxrelief">
 					<tr>
-						<td><c:out value="${taxrelief.country_Code}" />
+						<td><c:out value="${taxrelief.country_Name}" />
 						</td>
 						<td><c:out value="${taxrelief.name_Trust}" />
 						</td>
-						<td><c:out value="${taxrelief.address_Trust}" />
-						</td>
 						<td><c:out value="${taxrelief.name_Othertrust}" />
-						</td>
-						<td><c:out value="${taxrelief.address_Othertrust}" />
 						</td>
 						<td><c:out value="${taxrelief.name_Settlor}" />
 						</td>
-						<td><c:out value="${taxrelief.address_Settlor}" />
-						</td>
 						<td><c:out value="${taxrelief.name_Beneficiaries}" />
 						</td>
-						<td><c:out value="${taxrelief.address_Beneficiaries}" />
-						</td>
-						<td><a
-							href="${scriptName}/<c:out value="${taxrelief.canonicalUUID}"/>/trustdetailedit"><small>Edit</small> &nbsp;&nbsp;
-						</a>&nbsp;<a href="${scriptName}/<c:out value="${taxrelief.canonicalUUID}"/>/trustdetaildelete" id="delete" onclick="return checkdelete()"><small>Delete</small> </a>
+						<td><a class="btn btn-primary"
+							href="${scriptName}/<c:out value="${taxrelief.canonicalUUID}"/>/trustdetailedit"><small><i class=" icon-pencil icon-white"></i>Edit</small> &nbsp;&nbsp;
+						</a>&nbsp;<a class="btn btn-danger" href="${scriptName}/<c:out value="${taxrelief.canonicalUUID}"/>/trustdetaildelete" ><small><i class="icon-trash icon-white"></i>Delete</small> </a>
 							</td>
 						</tr>
 					</tr>
@@ -204,7 +191,7 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 			</c:if>
 		</table>
 		<a href="${scriptName}/trustdetailnew"
-			class="button orange">Add New</a>
+			class="btn btn-info" style="color: black">Add New</a>
 	</c:otherwise>
 </c:choose>
 </div>
