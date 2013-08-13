@@ -117,6 +117,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 									<option value="GOV" <c:if test="${not empty parentBean.employe_category && parentBean.employe_category =='GOV'}">selected</c:if>>GOVT.</option>
 									<option value="PSU"<c:if test="${not empty parentBean.employe_category && parentBean.employe_category =='PSU'}">selected</c:if>>PSU</option>
 									<option value="OTH" <c:if test="${not empty parentBean.employe_category && parentBean.employe_category =='OTH'}">selected</c:if>>OTHERS.</option>
+									<option value="NA" <c:if test="${not empty parentBean.employe_category && parentBean.employe_category =='NA'}">selected</c:if>>NA</option>
 								</select>
 				</div>
 				<div class="span5">
