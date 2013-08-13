@@ -146,7 +146,7 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 						<div class="span4">
 							<div class="rowlabel">
 								<label for="dtaa_CountryIncome"><small><fmt:message
-											key="foreign.inc.total" /> </small> </label>
+											key="foreign.income.dtaa" /> </small> </label>
 							</div>
 							<div class="rowlabel">
 								<input id="dtaa_CountryIncome" name="dtaa_CountryIncome" type="text" readonly="readonly"
@@ -157,7 +157,7 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 						<div class="span4">
 							<div class="rowlabel">
 								<label for="Nodtaa_CountryIncome"><small><fmt:message    
-											key="foreign.c.total" /> </small> </label>
+											key="foreign.income.Nodtaa" /> </small> </label>
 							</div>
 							<div class="rowlabel">
 								<input id="Nodtaa_CountryIncome" name="Nodtaa_CountryIncome" type="text" readonly="readonly"
@@ -170,8 +170,8 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 				<input type="hidden" id="country_name" name="country_name">
 				<div class="row-fluid show-grid">
 					<div class="span4 offset8 decimal">
-						<a href="${scriptName}" class="button olive">Cancel</a>&nbsp; <a
-							id="myModalHrefforeignincome" role="button" class="btn orange">Save</a>
+						<a href="${scriptName}" class="btn btn-danger">Cancel</a>&nbsp; <a
+							id="myModalHrefforeignincome" role="button" class="btn btn-success">Save</a>
 					</div>
 				</div>
 
@@ -183,15 +183,7 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 					<th><b><fmt:message key="foreign.country.name" /> </b></th>
 					<th><b><fmt:message key="foreign.taxpayer.id" /> </b></th>
 
-					<th><b><fmt:message key="foreign.income.salary" /> </b>
-					</th>
-					<th><b><fmt:message key="foreign.income.house" /> </b></th>
-					<th><b><fmt:message key="foreign.income.business" /> </b></th>
-					<th><b><fmt:message key="foreign.income.capitalgain" /> </b>
-					</th>
-					<th><b><fmt:message key="foreign.income.othersources" />
-					</b>
-					</th>
+					
 					<th><b><fmt:message key="foreign.income.itr2" /> </b>
 					</th>
 					<th><b>Actions</b>
@@ -203,27 +195,21 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 						<tr>
 							<td><c:out value="${foreignIncome.country_Name}" /></td>
 							<td><c:out value="${foreignIncome.taxpayer_ID}" /></td>
-							<td><w4india:inr value="${foreignIncome.income_Salary}" />
-							</td>
-							<td><w4india:inr value="${foreignIncome.income_House}" /></td>
-							<td><c:out value="${foreignIncome.income_Business}" /></td>
-							<td><c:out value="${foreignIncome.income_Capitalgain}" /></td>
-							<td><w4india:inr
-									value="${foreignIncome.income_Othersources}" /></td>
+							
 							<td><w4india:inr value="${foreignIncome.income_Total}" /></td>
 
-							<td><a
-								href="${scriptName}/<c:out value="${foreignIncome.canonicalUUID}"/>/foreignincomeedit"><small>Edit</small>
-									&nbsp;&nbsp; </a>&nbsp;<a
-								href="${scriptName}/<c:out value="${foreignIncome.canonicalUUID}"/>/foreignincomedelete"
-								id="delete" onclick="return checkdelete()"><small>Delete</small>
+							<td><a class="btn btn-danger" style="color: black"
+								href="${scriptName}/<c:out value="${foreignIncome.canonicalUUID}"/>/foreignincomeedit"><small><i class="icon-pencil icon-white"></i>Edit</small>
+									&nbsp;&nbsp; </a>&nbsp;<a class="btn btn-primary" style="color: black"
+								href="${scriptName}/<c:out value="${foreignIncome.canonicalUUID}"/>/foreignincomedelete" data-confirm=""
+								><small><i class="icon-trash icon-white"></i>Delete</small>
 							</a></td>
 						</tr>
 						</tr>
 					</c:forEach>
 
 					<tr>
-						<td colspan="7" align="center"><b><fmt:message key="foreign.totalincome.outside" /></b>
+						<td colspan="2" align="center"><b><fmt:message key="foreign.totalincome.outside" /></b>
 						</td>
 						<td><w4india:inr value="${parentBean.total_Amount}" />
 						</td>
@@ -233,7 +219,7 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 			</table>
 			<table>
 			</div>
-<a href="${scriptName}/foreignincomenew" class="button orange">Add
+<a href="${scriptName}/foreignincomenew" class="btn btn-info" style="color: black">Add
 	New</a>
 			
 			
