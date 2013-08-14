@@ -108,14 +108,14 @@ public class XmlCalculation implements XmlCalculationImplement {
 
 		return grosstotal;
 	}
-	
+
 	public long grossTotal(FinancialYear financialYear,Map<String,HippoBean> inputBeans){
 		SalaryIncomeDocument salaryIncomeDocument = (SalaryIncomeDocument) inputBeans.get(SalaryIncomeDocument.class.getSimpleName().toLowerCase());
 		//HouseIncomeDetail houseIncomeDetail = (HouseIncomeDetail) inputBeans.get(HouseIncomeDetail.class.getSimpleName().toLowerCase());
 		FormSixteenDocument formSixteenDocument = (FormSixteenDocument) inputBeans.get(FormSixteenDocument.class.getSimpleName().toLowerCase());
 		HouseProperty houseProperty = (HouseProperty) inputBeans.get(HouseProperty.class.getSimpleName().toLowerCase());
 		OtherSourcesDocument otherSourcesDocument = (OtherSourcesDocument) inputBeans.get(OtherSourcesDocument.class.getSimpleName().toLowerCase());
-		
+
 		IndianCurrencyHelper indianCurrencyHelper = new IndianCurrencyHelper();
 
 		//BigInteger salarytotal=new BigInteger("0");
@@ -208,10 +208,12 @@ public class XmlCalculation implements XmlCalculationImplement {
 
 		return resultMapLosses;
 	}
-	
+
 	public Map<String,Object> lossesCalc(FinancialYear financialYear,Map<String,HippoBean> inputBeans){
 
 		AdjustmentOfLossesDoc adjustmentOfLossesDoc = (AdjustmentOfLossesDoc) inputBeans.get(AdjustmentOfLossesDoc.class.getSimpleName().toLowerCase());
+		OtherSourcesDocument otherSourcesDocument = (OtherSourcesDocument) inputBeans.get(OtherSourcesDocument.class.getSimpleName().toLowerCase());
+		HouseProperty houseProperty = (HouseProperty) inputBeans.get(HouseProperty.class.getSimpleName().toLowerCase());
 		grossTotal(financialYear, inputBeans);
 
 		if(adjustmentOfLossesDoc != null){
@@ -237,11 +239,21 @@ public class XmlCalculation implements XmlCalculationImplement {
 				}
 			}
 		}
+		double incomeOtherThanRaceHorse = 0;
+		double incomeFromRaceHorse = 0;
+		if(otherSourcesDocument != null){
+			incomeOtherThanRaceHorse = otherSourcesDocument.getTotalint() + otherSourcesDocument.getTotalOther_income() - otherSourcesDocument.getTotalexpense();
+			incomeFromRaceHorse =  otherSourcesDocument.getBalance();
+		}
+		double incomeHouseProperty = 0;
+		if(houseProperty != null){
+			incomeHouseProperty = houseProperty.getTotal_HouseIncome();
+		}
 		Map<String,Object> totalMapForLosses = new HashMap<String, Object>();
 		totalMapForLosses.put("salaryIncome",longsalarytotal);
-		totalMapForLosses.put("houseIncome",houseIncomeTotal);
-		totalMapForLosses.put("otherIncome",otherincome);
-		totalMapForLosses.put("maintainingRaceHorseIncome",0);
+		totalMapForLosses.put("houseIncome",incomeHouseProperty);
+		totalMapForLosses.put("otherIncome",incomeOtherThanRaceHorse);
+		totalMapForLosses.put("maintainingRaceHorseIncome",incomeFromRaceHorse);
 		totalMapForLosses.put("LTCGain",0);
 		totalMapForLosses.put("STCGain",0);
 		totalMapForLosses.put("houseIncomeLoss", totalHPLoss);
@@ -253,5 +265,4 @@ public class XmlCalculation implements XmlCalculationImplement {
 
 		return resultMapLosses;
 	}
-
 }
