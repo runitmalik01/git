@@ -8,7 +8,7 @@
     <sv:value>editor:editable</sv:value>
   </sv:property>
   <sv:property sv:name="jcr:uuid" sv:type="String">
-    <sv:value>dc20e1bb-fe4c-484e-aa0c-a7ebe0b23ec3</sv:value>
+    <sv:value>74757be1-695a-4365-9b7a-471a106834e8</sv:value>
   </sv:property>
   <sv:node sv:name="hipposysedit:nodetype">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
@@ -18,7 +18,7 @@
       <sv:value>hippo:hardhandle</sv:value>
     </sv:property>
     <sv:property sv:name="jcr:uuid" sv:type="String">
-      <sv:value>23651037-1c72-4f3c-bcd5-0b9e796a7f2d</sv:value>
+      <sv:value>6ef0b4e2-d8de-4a07-a9de-cb17d9f2d457</sv:value>
     </sv:property>
     <sv:node sv:name="hipposysedit:nodetype">
       <sv:property sv:name="jcr:primaryType" sv:type="Name">
@@ -29,7 +29,7 @@
         <sv:value>hippo:harddocument</sv:value>
       </sv:property>
       <sv:property sv:name="jcr:uuid" sv:type="String">
-        <sv:value>4bee2445-816c-4cfd-ae8d-61b07e4554f4</sv:value>
+        <sv:value>0d505a91-bf7b-41bb-b4b7-41bbec1d9640</sv:value>
       </sv:property>
       <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
       <sv:property sv:name="hipposysedit:node" sv:type="Boolean">
@@ -103,7 +103,7 @@
         <sv:value>hippotranslation:translated</sv:value>
       </sv:property>
       <sv:property sv:name="jcr:uuid" sv:type="String">
-        <sv:value>c659a831-cfe6-4cec-9691-6437f9944e02</sv:value>
+        <sv:value>5f4f98db-6f00-4d67-9105-a523f62380fa</sv:value>
       </sv:property>
       <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
       <sv:property sv:name="hippostd:holder" sv:type="String">
@@ -119,10 +119,10 @@
         <sv:value/>
       </sv:property>
       <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
-        <sv:value>2013-07-01T12:10:50.944+05:30</sv:value>
+        <sv:value>2013-08-14T11:13:03.813+05:30</sv:value>
       </sv:property>
       <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-        <sv:value>2013-07-01T12:10:50.944+05:30</sv:value>
+        <sv:value>2013-08-14T11:13:03.812+05:30</sv:value>
       </sv:property>
       <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
         <sv:value/>
