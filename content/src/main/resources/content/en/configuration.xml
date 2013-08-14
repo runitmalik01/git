@@ -10560,97 +10560,154 @@ var avgRateTax=(D*100)/txtNetIncome ;
   </sv:node>
 </sv:node>
   
-    <sv:node sv:name="capitalasset">
-      <sv:property sv:name="jcr:primaryType" sv:type="Name">
-        <sv:value>hippo:handle</sv:value>
-      </sv:property>
-      <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
-        <sv:value>hippo:hardhandle</sv:value>
-        <sv:value>hippo:translated</sv:value>
-      </sv:property>
-      <sv:property sv:name="jcr:uuid" sv:type="String">
-        <sv:value>d580ff13-86f3-4c97-a3af-da7a804980b5</sv:value>
-      </sv:property>
-      <sv:node sv:name="hippo:translation">
-        <sv:property sv:name="jcr:primaryType" sv:type="Name">
-          <sv:value>hippo:translation</sv:value>
-        </sv:property>
-        <sv:property sv:name="hippo:language" sv:type="String">
-          <sv:value/>
-        </sv:property>
-        <sv:property sv:name="hippo:message" sv:type="String">
-          <sv:value>capitalasset</sv:value>
-        </sv:property>
-      </sv:node>
-      <sv:node sv:name="capitalasset">
-        <sv:property sv:name="jcr:primaryType" sv:type="Name">
-          <sv:value>mootlywcm:screencalculation</sv:value>
-        </sv:property>
-        <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
-          <sv:value>hippo:harddocument</sv:value>
-        </sv:property>
-        <sv:property sv:name="jcr:uuid" sv:type="String">
-          <sv:value>1803b628-d1ec-4db4-a29b-d625d07a110a</sv:value>
-        </sv:property>
-        <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
-          <sv:value>live</sv:value>
-          <sv:value>preview</sv:value>
-        </sv:property>
-        <sv:property sv:name="hippo:related___pathreference" sv:type="String">
-          <sv:value>configuration/screencalculation/capitalasset</sv:value>
-        </sv:property>
-        <sv:property sv:name="hippostd:holder" sv:type="String">
-          <sv:value>admin</sv:value>
-        </sv:property>
-        <sv:property sv:name="hippostd:state" sv:type="String">
-          <sv:value>published</sv:value>
-        </sv:property>
-        <sv:property sv:name="hippostd:stateSummary" sv:type="String">
-          <sv:value>live</sv:value>
-        </sv:property>
-        <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
-          <sv:value>admin</sv:value>
-        </sv:property>
-        <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
-          <sv:value>2013-05-24T01:55:56.242+05:30</sv:value>
-        </sv:property>
-        <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-          <sv:value>2013-06-18T17:41:36.237+05:30</sv:value>
-        </sv:property>
-        <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
-          <sv:value>admin</sv:value>
-        </sv:property>
-        <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-          <sv:value>2013-06-18T17:41:39.590+05:30</sv:value>
-        </sv:property>
-        <sv:property sv:name="mootlywcm:additionalScript" sv:type="String">
-          <sv:value/>
-        </sv:property>
-        <sv:property sv:multiple="true" sv:name="mootlywcm:dropRadio" sv:type="String">
-          <sv:value/>
-          <sv:value/>
-        </sv:property>
-        <sv:property sv:multiple="true" sv:name="mootlywcm:input" sv:type="String">
-          <sv:value>sale_consideration</sv:value>
-          <sv:value>cost_acquisition</sv:value>
-          <sv:value>inflation_acquisition</sv:value>
-          <sv:value>inflation_consideration</sv:value>
-          <sv:value>cost_improvement</sv:value>
-        </sv:property>
-        <sv:property sv:name="mootlywcm:script" sv:type="String">
-          <sv:value>/***
-* This File is being used to calculate CapitalAsset
-*
-*
-* **/
-out_indexed_price=(cost_acquisition -0)*((inflation_consideration-0)/(inflation_acquisition-0));
-out_capital_gain=(sale_consideration) - (out_indexed_price);</sv:value>
-        </sv:property>
-        <sv:property sv:name="mootlywcm:title" sv:type="String">
-          <sv:value>Calculation of capitalasset Screen</sv:value>
-        </sv:property>
-      </sv:node>
-    </sv:node>
+    
+<sv:node sv:name="capitalasset">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hippo:handle</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+    <sv:value>hippo:hardhandle</sv:value>
+    <sv:value>hippo:translated</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>d580ff13-86f3-4c97-a3af-da7a804980b5</sv:value>
+  </sv:property>
+  <sv:node sv:name="hippo:translation">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hippo:translation</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippo:language" sv:type="String">
+      <sv:value/>
+    </sv:property>
+    <sv:property sv:name="hippo:message" sv:type="String">
+      <sv:value>capitalasset</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="capitalasset">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>mootlywcm:screencalculation</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+      <sv:value>hippo:harddocument</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>10a545cb-61c6-4221-b230-1667c92268ce</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
+      <sv:value>live</sv:value>
+      <sv:value>preview</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippo:related___pathreference" sv:type="String">
+      <sv:value>capitalasset</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostd:holder" sv:type="String">
+      <sv:value>admin</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostd:state" sv:type="String">
+      <sv:value>published</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostd:stateSummary" sv:type="String">
+      <sv:value>live</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
+      <sv:value>admin</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
+      <sv:value>2013-05-24T01:55:56.242+05:30</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
+      <sv:value>2013-08-14T17:47:26.419+05:30</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
+      <sv:value>admin</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
+      <sv:value>2013-08-14T17:47:28.992+05:30</sv:value>
+    </sv:property>
+    <sv:property sv:name="mootlywcm:additionalScript" sv:type="String">
+      <sv:value/>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="mootlywcm:dropRadio" sv:type="String">
+      <sv:value>asset_type</sv:value>
+      <sv:value>index</sv:value>
+      <sv:value>sst_charge</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="mootlywcm:input" sv:type="String">
+      <sv:value>saleconsideration</sv:value>
+      <sv:value>costacquisition</sv:value>
+      <sv:value>costimprovement</sv:value>
+      <sv:value>date_acquisition</sv:value>
+      <sv:value>costtrnsfr</sv:value>
+      <sv:value>date_sale</sv:value>
+      <sv:value>months</sv:value>
+      <sv:value>dedsec54</sv:value>
+      <sv:value>amtdeemed</sv:value>
+      <sv:value>balanc</sv:value>
+      <sv:value>losssec94</sv:value>
+      <sv:value>assetnt111</sv:value>
+      <sv:value>asset111</sv:value>
+      <sv:value>unlstdsecurity</sv:value>
+      <sv:value>section48</sv:value>
+    </sv:property>
+    <sv:property sv:name="mootlywcm:script" sv:type="String">
+      <sv:value>var indianCurrencyHelper = new com.mootly.wcm.services.IndianCurrencyHelper();
+
+var period=0;
+var total=0;
+var bal=0;
+var cpgain=0;
+if(asset_type=='SHARES'){
+	period= 365;
+} else{
+	period=365*3;
+};
+var month = (months-0);
+if(month &lt; period){
+	var sale=(saleconsideration-0);
+	total =(costacquisition-0)+(costimprovement-0)+(costtrnsfr-0);
+	//bal= ( (sale -total) &gt; 0 ) ? (sale -total) : 0; 
+	bal= (sale - total); 
+	var loss = (losssec94-0);
+	cpgain= bal+loss+(asset111-0)+(assetnt111-0)+(amtdeemed-0)-(dedsec54-0);
+}else{
+	// long terms
+	if(index=='N'){
+		var sale=(saleconsideration-0);
+		total =(costacquisition-0)+(costimprovement-0)+(costtrnsfr-0);
+		//bal= ( (sale -total) &gt; 0 ) ? (sale - total) : 0; 
+		bal= (sale - total); 
+		cpgain=bal+(amtdeemed-0)-(dedsec54-0)+(section48-0)+(unlstdsecurity-0);
+	}else{
+		var pur_data = (date_acquisition-0);
+		var arr = pur_data.split('/');
+		var pur_year=arr[2];
+		var pur_index =1;
+		var sal_data = (date_sale-0);
+		var arr1 = sal_data.split('/');
+		var sal_year=arr1[2];
+		var sal_index =0;
+			//pur_index = indianCurrencyHelper.getYearIndexValue(pur_year);
+			//sal_index = indianCurrencyHelper.getYearIndexValue(sal_year);
+		
+		var cost_acq= indianCurrencyHelper.RoundTo2Decimals((costacquisition-0)*(sal_index/pur_index));
+		var cost_imp= indianCurrencyHelper.RoundTo2Decimals((costimprovement-0)*(sal_index/pur_index));
+		total= cost_acq+ (cost_imp-0)+ (costtrnsfr-0);
+		bal= (saleconsideration-0)-total;
+		cpgain = bal-(dedsec54-0)+( section48-0)+(unlstdsecurity-0)+(amtdeemed-0);
+
+	};
+
+};
+
+out_capitalgain= cpgain;
+out_balanc= bal;</sv:value>
+    </sv:property>
+    <sv:property sv:name="mootlywcm:title" sv:type="String">
+      <sv:value>Calculation of capitalasset Screen</sv:value>
+    </sv:property>
+  </sv:node>
+</sv:node>
+
     <!-- Added calculation for schedule 5a : by Pankaj Singh  -->
     
 <sv:node sv:name="schedulefivea">
