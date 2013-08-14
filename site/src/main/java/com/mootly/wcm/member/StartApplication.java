@@ -66,7 +66,7 @@ import com.mootly.wcm.utils.UrlUtility;
 		"rsstatus_q","rsstatus_q_yes","rsstatus_q_yes_yes","rsstatus_q_no","rsstatus_q_no_yes","rsstatus_q_no_yes_yes",
 		"rsstatus_q_no_no","rsstatus_q_no_no_yes","rsstatus_q_no_no_yes_yes","rsstatus_q_no_yes_yes_yes",
 		"bd_bank_name","bd_micr_code","bd_Branch_name","bd_account_type","bd_account_no","bd_ecs","flex_string_IFSCCode","flex_string_ITRForm","flex_string_ITRServiceDelivery",
-		"pi_return_type","fy","ack_no","ack_date","defective","notice_no","notice_date","ward_circle","Employe_category","returnTypeChoice","revisingWithNoticeSection"})
+		"pi_return_type","fy","ack_no","ack_date","defective","notice_no","notice_date","ward_circle","Employe_category","returnTypeChoice","revisingWithNoticeSection","isRepresentative","name_Representative","pan_Representative","address_Representative"})
 @RequiredFields(fieldNames={
 		"pi_last_name","pi_dob","gender",
 		"pi_flat_door_building","pi_email","pi_pin_code","pi_town_city_district","pi_state","pi_area_locality","pi_mobile",
