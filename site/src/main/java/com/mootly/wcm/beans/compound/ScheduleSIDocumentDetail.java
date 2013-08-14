@@ -67,13 +67,13 @@ public class ScheduleSIDocumentDetail extends FlexibleDocument implements FormMa
 	private Double specialRate;
 	private String schedulesiSection;
 	private Double calcRateIncome;
-	private Double maxAllowed;
+	private Double minChargTaxIncome;
 	private Map<String,List<Value>> valueOfFlexFields = null; //new HashMap<String, List<Value>>();
 
 	private final String prop_specialRate ="mootlywcm:specialRate";
 	private final String prop_schedulesiSection ="mootlywcm:schedulesiSection";
 	private final String prop_calcRateIncome ="mootlywcm:calcRateIncome";
-	private final String prop_maxAllowed ="mootlywcm:maxallowed";
+	private final String prop_minChargTaxIncome ="mootlywcm:minChargTaxIncome";
 
 	private final String prop_flex_string ="mootlywcm:flex_field_string";
 	private final String prop_flex_long ="mootlywcm:flex_field_long";
@@ -107,10 +107,10 @@ public class ScheduleSIDocumentDetail extends FlexibleDocument implements FormMa
 		if (calcRateIncome == null) calcRateIncome = 0D;
 		return calcRateIncome;
 	}
-	public final Double getMaxAllowed() {
-		if (maxAllowed == null) maxAllowed = getProperty(prop_maxAllowed);
-		if (maxAllowed == null) maxAllowed =0D;
-		return maxAllowed;
+	public final Double getMinChargTaxIncome() {
+		if (minChargTaxIncome == null) minChargTaxIncome = getProperty(prop_minChargTaxIncome);
+		if (minChargTaxIncome == null) minChargTaxIncome =0D;
+		return minChargTaxIncome;
 	}
 
 	public final void setSpecialRate(Double specialRate) {
@@ -125,8 +125,8 @@ public class ScheduleSIDocumentDetail extends FlexibleDocument implements FormMa
 		this.calcRateIncome = calcRateIncome;
 	}
 
-	public final void setMaxAllowed(Double maxAllowed) {
-		this.maxAllowed = maxAllowed;
+	public final void setMinChargTaxIncome(Double minChargTaxIncome) {
+		this.minChargTaxIncome = minChargTaxIncome;
 	}
 
 	public Double getAmount() {
@@ -146,7 +146,7 @@ public class ScheduleSIDocumentDetail extends FlexibleDocument implements FormMa
 			node.setProperty(prop_specialRate, getSpecialRate());
 			node.setProperty(prop_schedulesiSection, getSchedulesiSection());
 			node.setProperty(prop_calcRateIncome, getCalcRateIncome());
-			//node.setProperty(prop_maxAllowed, getMaxAllowed());
+			node.setProperty(prop_minChargTaxIncome, getMinChargTaxIncome());
 			node.setProperty(prop_amount, getAmount());
 		} catch (RepositoryException rex) {
 			log.error("Repository Exception while binding",rex);
@@ -161,6 +161,7 @@ public class ScheduleSIDocumentDetail extends FlexibleDocument implements FormMa
 			log.info("Into the fill method");			
 		}
 		if (formMap == null) return;
+		IndianCurrencyHelper indianCurrencyHelper = new IndianCurrencyHelper();
 		if ( formMap.getField("amount") != null) {
 			log.info("this is uuid of form"+formMap.getField("amount").getValue());
 			if(formMap.getField("amount").getValue()!=null)
@@ -169,11 +170,19 @@ public class ScheduleSIDocumentDetail extends FlexibleDocument implements FormMa
 		if ( formMap.getField("schedulesiSection") != null) {
 			setSchedulesiSection(formMap.getField("schedulesiSection").getValue());
 			ITRScheduleSISections si=ITRScheduleSISections.getScheduleSISection(getSchedulesiSection());
-			setSpecialRate(si.getPercentRate());
-			IndianCurrencyHelper indianCurrencyHelper = new IndianCurrencyHelper();
-			Double amount = Double.parseDouble(formMap.getField("amount").getValue());
-			Double cal = (amount * si.getPercentRate())/100;
-			setCalcRateIncome(Double.parseDouble(indianCurrencyHelper.roundOff(cal).toString()));
+			if(si.getPercentRate().length == 1){
+				setSpecialRate(si.getPercentRate()[si.getPercentRate().length-1]);
+				Double amount = Double.parseDouble(formMap.getField("amount").getValue());
+				Double cal = (amount * si.getPercentRate()[si.getPercentRate().length-1])/100;
+				setCalcRateIncome(Double.parseDouble(indianCurrencyHelper.roundOff(cal).toString()));
+			}else{
+				if(formMap.getField("specialRate") != null) {
+					setSpecialRate(Double.parseDouble(formMap.getField("specialRate").getValue()));
+					Double amount = Double.parseDouble(formMap.getField("amount").getValue());
+					Double cal = (amount * Double.parseDouble(formMap.getField("specialRate").getValue()))/100;
+					setCalcRateIncome(Double.parseDouble(indianCurrencyHelper.roundOff(cal).toString()));
+				}
+			}
 		}
 	}
 
@@ -183,7 +192,7 @@ public class ScheduleSIDocumentDetail extends FlexibleDocument implements FormMa
 		setSpecialRate(scheduleSIDocumentDetail.getSpecialRate());
 		setSchedulesiSection(scheduleSIDocumentDetail.getSchedulesiSection());
 		setCalcRateIncome(scheduleSIDocumentDetail.getCalcRateIncome());
-		//setMaxAllowed(scheduleSIDocumentDetail.getMaxAllowed());
+		setMinChargTaxIncome(scheduleSIDocumentDetail.getMinChargTaxIncome());
 		setAmount(scheduleSIDocumentDetail.getAmount());
 	}
 }
