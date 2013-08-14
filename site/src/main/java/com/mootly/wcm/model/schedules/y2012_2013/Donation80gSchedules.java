@@ -4,6 +4,7 @@ import in.gov.incometaxindiaefiling.y2012_2013.AddressDetail;
 import in.gov.incometaxindiaefiling.y2012_2013.DoneeWithPan;
 import in.gov.incometaxindiaefiling.y2012_2013.ITR;
 import in.gov.incometaxindiaefiling.y2012_2013.Schedule80G;
+import in.gov.incometaxindiaefiling.y2012_2013.ScheduleVIA;
 import in.gov.incometaxindiaefiling.y2012_2013.Schedule80G.Don100Percent;
 import in.gov.incometaxindiaefiling.y2012_2013.Schedule80G.Don100PercentApprReqd;
 import in.gov.incometaxindiaefiling.y2012_2013.Schedule80G.Don50PercentApprReqd;
@@ -20,6 +21,7 @@ import org.hippoecm.hst.core.component.HstResponse;
 
 import com.mootly.wcm.beans.DeductionDocument;
 import com.mootly.wcm.beans.MemberPersonalInformation;
+import com.mootly.wcm.beans.OtherSourcesDocument;
 import com.mootly.wcm.beans.compound.DeductionDocumentDetail;
 import com.mootly.wcm.model.FinancialYear;
 import com.mootly.wcm.services.IndianCurrencyHelper;
@@ -30,10 +32,12 @@ public class Donation80gSchedules extends XmlCalculation{
 
 	DeductionDocument deductionDocument = null;
 	MemberPersonalInformation memberPersonalInformation = null;
+	OtherSourcesDocument otherSourcesDocument = null;
 
-	public Donation80gSchedules(DeductionDocument deductionDocument, MemberPersonalInformation memberPersonalInformation) {
+	public Donation80gSchedules(DeductionDocument deductionDocument, MemberPersonalInformation memberPersonalInformation, OtherSourcesDocument otherSourcesDocument) {
 		this.deductionDocument = deductionDocument;
 		this.memberPersonalInformation = memberPersonalInformation;
+		this.otherSourcesDocument = otherSourcesDocument;
 	}
 
 	/**
@@ -49,32 +53,21 @@ public class Donation80gSchedules extends XmlCalculation{
 		IndianCurrencyHelper indianCurrencyHelper = new IndianCurrencyHelper();
 		//FinancialYear financialYear =  (FinancialYear) request.getAttribute("financialYear");
 
-		Map<String,Object> totalMapForJSDe = new HashMap<String, Object>();
-
-		//totalMapForJSDe.put("ageInYears",ageInYears);
+		DeductionVIASchedules deductionVIASchedules = new DeductionVIASchedules(deductionDocument, memberPersonalInformation,otherSourcesDocument);
+		ScheduleVIA scheduleVIA = deductionVIASchedules.getScheduleVIA(itr, financialYear, inputBeans);
+		BigInteger totEligibleDeduction = new BigInteger("0");
+		totEligibleDeduction = scheduleVIA.getDeductUndChapVIA().getTotalChapVIADeductions();
+		BigInteger donation = new BigInteger("0");
+		donation = scheduleVIA.getDeductUndChapVIA().getSection80G();
 
 		long grsstotal = grossTotal(financialYear,inputBeans);
-		totalMapForJSDe.put("isSeniorCitizen",financialYear.isSeniorCitizen(memberPersonalInformation.getDOB().getTime()));
-		totalMapForJSDe.put("salarypension",longsalarytotal);
-		totalMapForJSDe.put("othersources",otherincome);
-		totalMapForJSDe.put("houseproperty",houseIncomeTotal);
-
-		Map<String,Object> resultMapDe = ScreenCalculatorService.getScreenCalculations("Chapter6Calc.js", requestParameterMap, totalMapForJSDe);
-		Double totaleligiblededuction=0D;
-		Double deduction80g = 0D;
-		if(resultMapDe.containsKey("total_eligiblededuction")) {
-			totaleligiblededuction=Double.parseDouble(resultMapDe.get("total_eligiblededuction").toString());
-		}
-		if(resultMapDe.containsKey("total_80g")) {
-			deduction80g=Double.parseDouble(resultMapDe.get("total_80g").toString());
-		}
 
 		BigInteger Total100Appr = new BigInteger("0");
 		BigInteger Total100NoAppr = new BigInteger("0");
 		BigInteger Total50Appr = new BigInteger("0");
 		BigInteger Total50NoAppr = new BigInteger("0");
 		BigInteger DedExc80G = new BigInteger("0");
-		DedExc80G = indianCurrencyHelper.bigIntegerRound(totaleligiblededuction).subtract(indianCurrencyHelper.bigIntegerRound(deduction80g));
+		DedExc80G =totEligibleDeduction.subtract(donation);
 
 		boolean hasAValidDonation = false;
 		if(deductionDocument != null){
@@ -225,7 +218,7 @@ public class Donation80gSchedules extends XmlCalculation{
 							if(!hasAValidDonation) hasAValidDonation = true;
 						}
 						schedule80G.setTotalDonationsUs80G(Total100NoAppr.add(Total100Appr).add(Total50NoAppr).add(Total50Appr));
-						schedule80G.setTotalEligibleDonationsUs80G(indianCurrencyHelper.bigIntegerRound(deduction80g));
+						schedule80G.setTotalEligibleDonationsUs80G(donation);
 					}
 				}
 			}
