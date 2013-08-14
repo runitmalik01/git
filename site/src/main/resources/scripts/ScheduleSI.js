@@ -8,15 +8,15 @@
 var indianCurrencyHelper = new com.mootly.wcm.services.IndianCurrencyHelper();
 
 var minCharTaxIn = 0;var calTaxOnIncome = 0;var cal= 0; var taxOnIncome =0; var minCharIncome=0; var SISectionAmount = 0;
-
-if(scheduleSiDocument.getScheduleSiDetailList() != null &&  scheduleSiDocument.getScheduleSiDetailList().size() > 0 ){         		
-	for (var i=0;i<scheduleSiDocument.getScheduleSiDetailList().size();i++) {
-		minCharTaxIn = minCharTaxIn + (scheduleSiDocument.getScheduleSiDetailList().get(i).getMinChargTaxIncome()-0);
-		calTaxOnIncome = calTaxOnIncome + (scheduleSiDocument.getScheduleSiDetailList().get(i).getCalcRateIncome()-0);
+if(scheduleSiDocument!=null){
+	if(scheduleSiDocument.getScheduleSiDetailList() != null &&  scheduleSiDocument.getScheduleSiDetailList().size() > 0 ){         		
+		for (var i=0;i<scheduleSiDocument.getScheduleSiDetailList().size();i++) {
+			minCharTaxIn = minCharTaxIn + (scheduleSiDocument.getScheduleSiDetailList().get(i).getMinChargTaxIncome()-0);
+			calTaxOnIncome = calTaxOnIncome + (scheduleSiDocument.getScheduleSiDetailList().get(i).getCalcRateIncome()-0);
+		}
 	}
+	out_total_minCharTaxIn = minCharTaxIn; out_total_calTaxOnIncome = calTaxOnIncome;
 }
-out_total_minCharTaxIn = minCharTaxIn; out_total_calTaxOnIncome = calTaxOnIncome;
-
 if(capDoc==null){
 	if(userAmount!=null && spRate!=null){
 		SISectionAmount = userAmount;
