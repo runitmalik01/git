@@ -8,26 +8,25 @@ import com.mootly.wcm.services.IndianCurrencyHelper;
 
 public class ScheduleFiveA {
 	ScheduleFiveADocument objScheduleFiveADocument=null;
-	
+
 	public ScheduleFiveA (ScheduleFiveADocument schedule5a){
 		this.objScheduleFiveADocument=schedule5a;
-		
+
 	}
-	
-	public Schedule5A scheduleFiveA(ITR itr){
+
+	public Schedule5A getScheduleFiveA(ITR itr){
 		IndianCurrencyHelper indianCurrencyHelper = new IndianCurrencyHelper();
 		Schedule5A schedule5A = new Schedule5A();
-		schedule5A.setNameOfSpouse(objScheduleFiveADocument.getName_Spouse());
-		schedule5A.setPANOfSpouse(objScheduleFiveADocument.getPan_Spouse());
-		schedule5A.setHPHeadIncome(indianCurrencyHelper.longRound(objScheduleFiveADocument.getHouse_Property()));
-		schedule5A.setCapGainHeadIncome(indianCurrencyHelper.longRound(objScheduleFiveADocument.getCapital_Gains()));
-		schedule5A.setOtherSourcesHeadIncome(indianCurrencyHelper.longRound(objScheduleFiveADocument.getOther_Sources()));
-		schedule5A.setTotalHeadIncome(indianCurrencyHelper.longRound(objScheduleFiveADocument.getTotal()));
-		schedule5A.setBusHeadIncome(0);
-		return schedule5A;
-		
-		
-	
+		if(objScheduleFiveADocument!=null){
+			schedule5A.setNameOfSpouse(objScheduleFiveADocument.getName_Spouse());
+			schedule5A.setPANOfSpouse(objScheduleFiveADocument.getPan_Spouse());
+			schedule5A.setHPHeadIncome(indianCurrencyHelper.longRound(objScheduleFiveADocument.getHouse_Property()));
+			schedule5A.setCapGainHeadIncome(indianCurrencyHelper.longRound(objScheduleFiveADocument.getCapital_Gains()));
+			schedule5A.setOtherSourcesHeadIncome(indianCurrencyHelper.longRound(objScheduleFiveADocument.getOther_Sources()));
+			schedule5A.setTotalHeadIncome(indianCurrencyHelper.longRound(objScheduleFiveADocument.getTotal()));
+			schedule5A.setBusHeadIncome(0);
+			return schedule5A;
+		}else
+			return null;
 	}
-    
 }
