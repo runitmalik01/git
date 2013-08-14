@@ -110,6 +110,7 @@ import com.mootly.wcm.beans.NatureInvestmentDocument;
 import com.mootly.wcm.beans.OtherSourcesDocument;
 import com.mootly.wcm.beans.RebateSec90Document;
 import com.mootly.wcm.beans.SalaryIncomeDocument;
+import com.mootly.wcm.beans.ScheduleFiveADocument;
 import com.mootly.wcm.beans.SelfAssesmetTaxDocument;
 import com.mootly.wcm.beans.SigningAuthorityAccountsDocument;
 import com.mootly.wcm.beans.TaxReliefDocument;
@@ -141,6 +142,7 @@ import com.mootly.wcm.model.schedules.y2012_2013.MemberVerification;
 import com.mootly.wcm.model.schedules.y2012_2013.OtherIncomeDocumentSchedules;
 import com.mootly.wcm.model.schedules.y2012_2013.PartA_Gen1;
 import com.mootly.wcm.model.schedules.y2012_2013.PartB_TI;
+import com.mootly.wcm.model.schedules.y2012_2013.ScheduleFiveA;
 import com.mootly.wcm.model.schedules.y2012_2013.TRDetailsSchedule;
 import com.mootly.wcm.model.schedules.y2012_2013.TaxesDocumentScheduleIT;
 import com.mootly.wcm.model.schedules.y2012_2013.TdsOthersSchedules;
@@ -190,6 +192,7 @@ public class ITR2XmlGeneratorService  {
 		DetailOfTrustDocument detailOfTrustDocument = (DetailOfTrustDocument) inputBeans.get(DetailOfTrustDocument.class.getSimpleName().toLowerCase());
 		ForeignBankAccountDocument foreignBankAccountDocument = (ForeignBankAccountDocument) inputBeans.get(ForeignBankAccountDocument.class.getSimpleName().toLowerCase());
 		FinancialInterestDocument financialInterestDocument = (FinancialInterestDocument) inputBeans.get(FinancialInterestDocument.class.getSimpleName().toLowerCase());
+		ScheduleFiveADocument scheduleFiveADocument = (ScheduleFiveADocument) inputBeans.get(ScheduleFiveADocument.class.getSimpleName().toLowerCase());
 
 		ITR2 itr2 = new ObjectFactory().createITR2();
 		ITR itr = new ITR();
@@ -215,7 +218,7 @@ public class ITR2XmlGeneratorService  {
 		DeductionVIASchedules deductionVIASchedules = new DeductionVIASchedules(deductionDocument,memberPersonalInformation,otherSourcesDocument);
 		itr2.setScheduleVIA(deductionVIASchedules.getScheduleVIA(itr, financialYear, inputBeans));
 
-		Donation80gSchedules donation80gSchedules = new Donation80gSchedules(deductionDocument,memberPersonalInformation);
+		Donation80gSchedules donation80gSchedules = new Donation80gSchedules(deductionDocument,memberPersonalInformation,otherSourcesDocument);
 		itr2.setSchedule80G(donation80gSchedules.getSchedule80G(itr, financialYear, inputBeans));
 
 		TaxesDocumentScheduleIT taxesDocumentScheduleIT = new TaxesDocumentScheduleIT(advanceTaxDocument, selfAssesmetTaxDocument);
@@ -236,8 +239,8 @@ public class ITR2XmlGeneratorService  {
 		CarryFwdLossesSchedules carryFwdLossesSchedules = new CarryFwdLossesSchedules(adjustmentOfLossesDoc);
 		itr2.setScheduleCFL(carryFwdLossesSchedules.getScheduleCFL(itr, financialYear, inputBeans));
 
-		//PartB_TI partB_TI = new PartB_TI(otherSourcesDocument);
-		//itr2.setPartBTI(partB_TI.getPartBTI(itr, financialYear, inputBeans));
+		PartB_TI partB_TI = new PartB_TI(formSixteenDocument, salaryIncomeDocument, houseProperty, otherSourcesDocument, deductionDocument, memberPersonalInformation);
+		itr2.setPartBTI(partB_TI.getPartBTI(itr, financialYear, inputBeans));
 
 		ForeignIncomeScheduleFSI foreignIncomeScheduleFSI = new ForeignIncomeScheduleFSI(foreignIncomeDocument);
 		itr2.setITRScheduleFSI(foreignIncomeScheduleFSI.getITRScheduleFSI(itr));
@@ -247,6 +250,9 @@ public class ITR2XmlGeneratorService  {
 
 		FADetailsSchedule fADetailsSchedule = new FADetailsSchedule(immovablePropertyDocument,natureInvestmentDocument,signingAuthorityAccountsDocument,detailOfTrustDocument,foreignBankAccountDocument,financialInterestDocument);
 		itr2.setScheduleFA(fADetailsSchedule.getScheduleFA(itr));
+
+		ScheduleFiveA scheduleFiveA = new ScheduleFiveA(scheduleFiveADocument);
+		itr2.setSchedule5A(scheduleFiveA.getScheduleFiveA(itr));
 
 		MemberVerification memberVerification = new MemberVerification(memberPersonalInformation);
 		itr2.setVerification(memberVerification.getVerification(itr));
