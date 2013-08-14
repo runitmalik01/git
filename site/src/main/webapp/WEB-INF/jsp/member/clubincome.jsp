@@ -102,8 +102,8 @@ request.setAttribute("objTreeMapRelation", objTreeMapRelation);
 			</div>
 		 	<div class="row-fluid show-grid">
 				<div class="span4 offset8 decimal">
-					<a href="${scriptName}" class="button olive">Cancel</a>&nbsp;
-					<a id="myModalHrefClubIncome" role="button" class="btn orange">Save</a>
+					<a href="${scriptName}" class="btn btn-danger" style="color: black">Cancel</a>&nbsp;
+					<a id="myModalHrefClubIncome" role="button" class="btn btn-success" style="color: black">Save</a>
 				</div>
 			</div> 
 			
@@ -136,9 +136,9 @@ request.setAttribute("objTreeMapRelation", objTreeMapRelation);
 						</td>
 						<td><w4india:inr value="${clubincomedetail.amountclub}" />
 						</td>
-						<td><a
-							href="${scriptName}/<c:out value="${clubincomedetail.canonicalUUID}"/>/clubincomeedit"><small>Edit</small> &nbsp;&nbsp;
-						</a>&nbsp;<a href="${scriptName}/<c:out value="${clubincomedetail.canonicalUUID}"/>/clubincomedelete" id="delete" onclick="return checkdelete()"><small>Delete</small> </a>
+						<td><a class="btn btn-primary" style="color: black"
+							href="${scriptName}/<c:out value="${clubincomedetail.canonicalUUID}"/>/clubincomeedit"><small><i class="icon-pencil icon-white"></i>Edit</small> &nbsp;&nbsp;
+						</a>&nbsp;<a class="btn btn-danger" style="color: black" href="${scriptName}/<c:out value="${clubincomedetail.canonicalUUID}"/>/clubincomedelete" data-confirm=""><small><i class="icon-trash icon-white"></i>Delete</small> </a>
 							</td>
 						</tr>
 					</tr>
@@ -150,7 +150,7 @@ request.setAttribute("objTreeMapRelation", objTreeMapRelation);
 			</c:if>
 		</table>
 		<a href="${scriptName}/clubincomenew"
-			class="button orange">Add New</a>
+			class="btn btn-info" style="color: black">Add New</a>
 	</c:otherwise>
 </c:choose>
 </div>
