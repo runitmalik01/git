@@ -1,15 +1,12 @@
 package com.mootly.wcm.services;
 
-import static com.mootly.wcm.utils.Constants.DATE;
-import static com.mootly.wcm.utils.Constants.SERIAL;
-
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.ResourceBundle;
 
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeConstants;
@@ -162,4 +159,12 @@ public final class IndianCurrencyHelper {
 		DecimalFormat df2 = new DecimalFormat("###");
 		return df2.format(o);
 	}
+	 public double getYearIndexValue(String year){
+		  ResourceBundle rb = ResourceBundle.getBundle("valueList_InflationIndex");
+		  if(rb.containsKey("valueList."+year+".cii")){
+		   log.info("it contains");
+		   return Double.parseDouble(rb.getString("valueList."+year+".cii"));
+		  }
+		  return Double.parseDouble(rb.getString("valueList.1990.cii"));//try to send default value so that no NullPointer Exception
+		 }
 }
