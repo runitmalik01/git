@@ -41,7 +41,7 @@
 				<th><abbr title="Rates described by Income Tax Department">Special Rate (%)</abbr></th>
 				<th>Gross Income</th>
 				<th><abbr title="Gross Amount after apply rates.">Eligible Amount</abbr></th>
-				<th align="center"><div class="span2">Action</div></th>
+				<th align="center"><div class="span1">Action</div></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -58,10 +58,10 @@
 						<td><c:out value="${scheduleSiDetail.specialRate}" /></td>
 						<td><w4india:inr value="${scheduleSiDetail.amount}"/></td>
 						<td><w4india:inr value="${scheduleSiDetail.calcRateIncome}" /></td>
-						<td><div class="span2"><a href="${scriptName}/${scheduleSiDetail.canonicalUUID}/itrschedulesiedit"
+						<td align="center"><div class="span1"><a href="${scriptName}/${scheduleSiDetail.canonicalUUID}/itrschedulesiedit"
 							class="btn btn-primary"><i class="icon-edit icon-white"></i><span><strong>Edit</strong></span></a>&nbsp;
-							<a href="${scriptName}/${scheduleSiDetail.canonicalUUID}/itrschedulesidelete" data-confirm=""
-							class="btn btn-danger"><i class="icon-trash icon-white"></i><span><strong>Delete</strong></span></a>
+							<%-- <a href="${scriptName}/${scheduleSiDetail.canonicalUUID}/itrschedulesidelete" data-confirm=""
+							class="btn btn-danger"><i class="icon-trash icon-white"></i><span><strong>Delete</strong></span></a>--%>
 							</div>
 						</td>
 					</tr>
@@ -98,14 +98,14 @@
 					<c:if test="${pageAction == 'EDIT_CHILD'}">
 						<c:forEach items="${parentBean.scheduleSiDetailList}" var="scheduleSiDetail">
 							<c:if test="${scheduleSiDetail.canonicalUUID == uuid}">
-								<c:set value="selected" var="editscheduleSI" />
+								<c:set value="${scheduleSiDetail.schedulesiSection}" var="editscheduleSI" />
 							</c:if>
 						</c:forEach>
 					</c:if>
 					<select name="schedulesiSection" class="select-drop head" id="schedulesiSection">
 						<option value="">-Select-</option>
 						<c:forEach var="si" items="${scheduleSIList}">
-							<option value="${si.xmlCode}" ${editscheduleSI}>
+							<option value="${si.xmlCode}" <c:if test="${pageAction == 'EDIT_CHILD' && si.xmlCode == editscheduleSI}">selected</c:if>>
 								<c:out value="${si.displayName}" />
 							</option>
 						</c:forEach>
@@ -114,7 +114,7 @@
 			</div>
 			<div class="span4">
 				<div class="rowlabel">
-					<label for="amount"><abbr title="Gross Amount">Amount</abbr></label>
+					<label for="amount"><small>Gross Amount</small></label>
 				</div>
 				<div class="rowlabel">
 					<c:if test="${pageAction == 'EDIT_CHILD'}">
@@ -125,6 +125,35 @@
 						</c:forEach>
 					</c:if>
 					<input id="amount" name="amount" class="<c:if test="${pageAction == 'NEW_CHILD'}">hide</c:if>" placeholder="Gross Amount" value="${editAmount}" type="text" />
+				</div>
+			</div>
+		</div>
+		<div class="row-fluid show-grid hide" id="spRates">
+			<div class="span6">
+				<div class="rowlabel">
+					<label for="specialRate"><abbr
+						title="Rates described by Income Tax Department"><small>Special
+								Rate (%)</small></abbr></label>
+				</div>
+				<div class="rowlabel">
+					<c:if test="${pageAction == 'EDIT_CHILD'}">
+						<c:forEach items="${parentBean.scheduleSiDetailList}" var="scheduleSiDetail">
+							<c:if test="${scheduleSiDetail.canonicalUUID == uuid && scheduleSiDetail.schedulesiSection == '1'}">
+								<c:set value="${scheduleSiDetail.specialRate}" var="spRate" />
+							</c:if>
+						</c:forEach>
+					</c:if>
+					<select name="specialRate" id="specialRate">
+						<c:forEach var="si" items="${scheduleSIList}">
+							<c:if test="${si.xmlCode eq '1'}">
+								<c:forEach var="rt" items="${si.percentRate}">
+									<option value="${rt}" <c:if test="${pageAction == 'EDIT_CHILD' && spRate eq rt}">selected</c:if>>
+										<c:out value="${rt}" />
+									</option>
+								</c:forEach>
+							</c:if>
+						</c:forEach>
+					</select>
 				</div>
 			</div>
 		</div>
@@ -188,6 +217,15 @@
 	     if($(this).val()!=null){
 		     $('#amount').show();
 	     } 
+      });
+      $('#schedulesiSection').on('change', function(){
+        if($('#schedulesiSection').val()== '1'){
+            $('#spRates').show();
+            $('#addnew').hide();
+         }else{
+            $('#spRates').hide();
+            $('#addnew').show();      
+         }
       });
       $('#ajaxsubmit').on('click',function(){
       allForms=$('.scheduleSIForm');
