@@ -166,6 +166,10 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 	private String rsstatus_q_no_yes_yes_yes;
 	private String residentCategory;
 	private String PIUUID;
+	private String isRepresentative;
+	private String name_Representative;
+	private String address_Representative;
+	private String pan_Representative;
 
 	ResourceBundle messagesResourceBundle = ResourceBundle.getBundle("messages");
 
@@ -414,6 +418,26 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 		if (phone == null) phone = getProperty(PROP_PI_PHONE);
 		return phone;
 	}
+	public String getIsRepresentative() {
+		if (isRepresentative == null) isRepresentative = getProperty("mootlywcm:isRepresentative");
+		return isRepresentative;
+	}
+
+	public String getName_Representative() {
+		if (name_Representative == null) name_Representative = getProperty("mootlywcm:name_Representative");
+		return name_Representative;
+	}
+
+	public String getAddress_Representative() {
+		if (address_Representative == null) address_Representative = getProperty("mootlywcm:address_Representative");
+		return address_Representative;
+	}
+
+	public String getPan_Representative() {
+		if (pan_Representative == null) pan_Representative = getProperty("mootlywcm:pan_Representative");
+		return pan_Representative;
+	}
+
 
 	public String getPersonalInfoUuid() {
 		return PIUUID;
@@ -541,6 +565,18 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 
 	public final void setPhone(String phone) {
 		this.phone = phone;
+	}
+	public final void setIsRepresentative(String isRepresentative) {
+		this.isRepresentative = isRepresentative;
+	}
+	public final void setName_Representative(String name_Representative) {
+		this.name_Representative = name_Representative;
+	}
+	public final void setAddress_Representative(String address_Representative) {
+		this.address_Representative = address_Representative;
+	}
+	public final void setPan_Representative(String pan_Representative) {
+		this.pan_Representative = pan_Representative;
 	}
 	// Member Bank Detail
 	public Boolean getBankDetailStatus(){
@@ -685,7 +721,7 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 	public void setPersonalInforUuid(String piuuid) {
 		this.PIUUID = piuuid;
 	}
-
+	
 	//for personal information
 
 
@@ -761,6 +797,10 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 			node.setProperty(Rsstatus_q_no_no_yes_yes, mpi.getRsstatusQNoNoYesYes());
 			node.setProperty(Rsstatus_q_no_yes_yes_yes, mpi.getRsstatusQNoYesYesYes());
 			node.setProperty(PROP_PI_RESIDENT_CATEGORY, mpi.getResidentCategory());
+			node.setProperty("mootlywcm:isRepresentative", mpi.getIsRepresentative());
+			node.setProperty("mootlywcm:name_Representative", mpi.getName_Representative());
+			node.setProperty("mootlywcm:address_Representative", mpi.getAddress_Representative());
+			node.setProperty("mootlywcm:pan_Representative", mpi.getPan_Representative());
 		}catch (RepositoryException re) {
 			log.error("Binding Node Error",re);
 
@@ -863,6 +903,12 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 		if (formMap.getField("pi_area_locality") != null) setAreaLocality(formMap.getField("pi_area_locality").getValue());
 		if (formMap.getField("pi_town_city_district") != null) setTownCityDistrict(formMap.getField("pi_town_city_district").getValue());
 		if (formMap.getField("pi_country") != null) setCountry(formMap.getField("pi_country").getValue());
+		// for if user is having a representative in itr2
+		if (formMap.getField("isRepresentative") != null) setIsRepresentative(formMap.getField("isRepresentative").getValue());
+		if (formMap.getField("name_Representative") != null) setName_Representative(formMap.getField("name_Representative").getValue());
+		if (formMap.getField("address_Representative") != null) setAddress_Representative(formMap.getField("address_Representative").getValue());
+		if (formMap.getField("pan_Representative") != null) setPan_Representative(formMap.getField("pan_Representative").getValue());
+		
 		if (formMap.getField("pi_state") != null) {
 			setState(formMap.getField("pi_state").getValue());
 			if (formMap.getField("pi_pin_code") != null) {
