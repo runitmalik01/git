@@ -6,7 +6,8 @@
 
 <hst:actionURL var="actionUrl" />
 <fieldset id="represenative_detail">
-	<div class="span6">
+<div class="row-fluid show-grid">
+	<div class="span9">
 				<div class="rowlabel" >
 					<label for="isRepresentative"><small><fmt:message
 								key="wheather.using.representative.itr2" /> </small> </label>
@@ -21,7 +22,7 @@
 						
 					</select>
 				</div>
-		</div>
+		</div></div>
 		<div class="row-fluid show-grid">
 			<div class="span4" id="name_represent">
 				<div class="rowlabel">
