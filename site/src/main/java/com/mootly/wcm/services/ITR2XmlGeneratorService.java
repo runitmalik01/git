@@ -142,6 +142,7 @@ import com.mootly.wcm.model.schedules.y2012_2013.MemberVerification;
 import com.mootly.wcm.model.schedules.y2012_2013.OtherIncomeDocumentSchedules;
 import com.mootly.wcm.model.schedules.y2012_2013.PartA_Gen1;
 import com.mootly.wcm.model.schedules.y2012_2013.PartB_TI;
+import com.mootly.wcm.model.schedules.y2012_2013.PartB_TTI;
 import com.mootly.wcm.model.schedules.y2012_2013.ScheduleFiveA;
 import com.mootly.wcm.model.schedules.y2012_2013.TRDetailsSchedule;
 import com.mootly.wcm.model.schedules.y2012_2013.TaxesDocumentScheduleIT;
@@ -241,6 +242,9 @@ public class ITR2XmlGeneratorService  {
 
 		PartB_TI partB_TI = new PartB_TI(formSixteenDocument, salaryIncomeDocument, houseProperty, otherSourcesDocument, deductionDocument, memberPersonalInformation);
 		itr2.setPartBTI(partB_TI.getPartBTI(itr, financialYear, inputBeans));
+
+		PartB_TTI partB_TTI = new PartB_TTI(formSixteenDocument, salaryIncomeDocument, houseProperty, otherSourcesDocument, deductionDocument, memberPersonalInformation, taxReliefDocument, advanceTaxDocument, selfAssesmetTaxDocument, tdsFromothersDocument );
+        itr2.setPartBTTI(partB_TTI.getPartBTTI(itr, financialYear, inputBeans));
 
 		ForeignIncomeScheduleFSI foreignIncomeScheduleFSI = new ForeignIncomeScheduleFSI(foreignIncomeDocument);
 		itr2.setITRScheduleFSI(foreignIncomeScheduleFSI.getITRScheduleFSI(itr));
