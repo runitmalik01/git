@@ -82,6 +82,21 @@ public class SOAPService {
 	 * @return SOAPBody representation 
 	 * @throws Exception
 	 */
+	public Map<String, Object> executeSOAPCall(SOAPCallWrapper soapCallWrapper,List<Map<String,String>> initialParamValues,SOAPMessage soapMessage) throws MalformedURLException,XPathExpressionException, SOAPException{
+		//SOAPMessage soapMessage = SOAPCallWrapperHelper.createSOAPMessage(soapCallWrapper, initialParamValues);
+		SOAPMessage soapResponse = callWebService(soapCallWrapper.getOperation(),soapMessage,soapCallWrapper.getSoapConnection(),soapCallWrapper.getEndPointURL());
+		Map<String, Object> outputMapLocal= SOAPCallWrapperHelper.parseSOAPResponse(soapResponse, soapCallWrapper);		
+		return outputMapLocal;
+	}
+	
+	/**
+	 * 
+	 * @param async Is the transaction synchronous
+	 * @param endPoint Web Service End Point
+	 * @param soapCallWrapper
+	 * @return SOAPBody representation 
+	 * @throws Exception
+	 */
 	public Map<String, Object> executeSOAPCall(SOAPCallWrapper soapCallWrapper,List<Map<String,String>> initialParamValues) throws MalformedURLException,XPathExpressionException, SOAPException{
 		SOAPMessage soapMessage = SOAPCallWrapperHelper.createSOAPMessage(soapCallWrapper, initialParamValues);
 		SOAPMessage soapResponse = callWebService(soapCallWrapper.getOperation(),soapMessage,soapCallWrapper.getSoapConnection(),soapCallWrapper.getEndPointURL());

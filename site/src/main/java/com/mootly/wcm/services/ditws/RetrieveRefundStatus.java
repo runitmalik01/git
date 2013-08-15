@@ -1,8 +1,10 @@
 package com.mootly.wcm.services.ditws;
 
-import java.util.Hashtable;
+import com.mootly.wcm.services.ditws.exception.DataMismatchException;
+import com.mootly.wcm.services.ditws.exception.InvalidFormatException;
+import com.mootly.wcm.services.ditws.exception.MissingInformationException;
 
 
 public interface RetrieveRefundStatus {	
-	public Hashtable getCase(String caseId) throws DITException;
+	public String retrieveRefundStatusRAW(String PAN,String assessmentYear) throws MissingInformationException,DataMismatchException,InvalidFormatException;
 }

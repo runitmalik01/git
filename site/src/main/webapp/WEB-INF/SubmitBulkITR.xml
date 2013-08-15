@@ -17,13 +17,13 @@
                 http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang-2.5.xsd"> 
 
     <!--  SOAP Call Wrapper for GetRequest_ById -->
-    <bean id="soapCallWrapperRetrieveITRVGetStatus" class="com.mootly.wcm.services.ditws.soap.SOAPCallWrapper">
-    	<constructor-arg index="0" name="operation" value="getITRVStatus"/>
+    <bean id="soapCallWrapperSubmitBulkITR" class="com.mootly.wcm.services.ditws.soap.SOAPCallWrapper">
+    	<constructor-arg index="0" name="operation" value="submitITR"/>
     	<property name="xPath" ref="xPath"/>
     	<property name="soapConnectionFactory" ref="soapConnectionFactory"/>
     	<property name="soapFactory" ref="soapFactory"/>
     	<property name="messageFactory" ref="messageFactory"/>
-    	<property name="endPointURL" ref="endPointURL_RetrieveITRVStatus"/>
+    	<property name="endPointURL" ref="endPointURL_SubmitBulkITR"/>
     	<property name="soapConnection" ref="soapConnection"/>
     	<property name="detachHeader"><value>false</value></property>
     	<!-- 
@@ -38,13 +38,20 @@
     	 -->
     	<property name="inputElementMap">
     		<map>
-    		    <entry key="PAN" value="#PAN.toUpperCase()"></entry>
-    			<entry key="AssessmentYear" value="#assessmentYear"></entry>
+    		    <entry key="userID" value="#userName"></entry>
+    			<entry key="password" value="#password"></entry>
+    			<entry key="certChain" value="#certChain"></entry>
+    			<entry key="signature" value="#signature"></entry>
     		</map>
     	</property>
     	<property name="outputElementMap">
     		<map>
-				<entry key="result" value="//result"></entry>
+				<entry key="PAN" value="//pan"></entry>
+				<entry key="fatherFullName" value="//ffullname"></entry>
+				<entry key="address" value="//address"></entry>
+				<entry key="DOB" value="//dob"></entry>
+				<entry key="fullName" value="//fullname"></entry>
+				<entry key="error" value="//error"></entry>
 		</map>
     	</property>
     	<!--  no head is required for this call -->
@@ -78,9 +85,9 @@
     	<property name="soapBodyElement">
     		<bean class="com.mootly.wcm.services.ditws.soap.SOAPCallElement">
     				<constructor-arg index="0" name="soapCallElementType" value="TEXT_ELEMENT"/>
-    				<constructor-arg index="1" name="name" value="getITRVStatusRequest"/>
+    				<constructor-arg index="1" name="name" value="DITWSAuthInfoEle"/>
     				<constructor-arg index="2" name="nsPrefix" value="${nsPrefix}"/>
-    				<constructor-arg index="3" name="ns" value="${ns_getITRVStatusRequest}"/>
+    				<constructor-arg index="3" name="ns" value="${ns_submitITR}"/>
     				<constructor-arg index="4" name="value"><null/></constructor-arg>
     		</bean>
     	</property>
@@ -88,19 +95,37 @@
     		<list>    			
     			<bean class="com.mootly.wcm.services.ditws.soap.SOAPCallElement">
     				<constructor-arg index="0" name="soapCallElementType" value="TEXT_ELEMENT"/>
-    				<constructor-arg index="1" name="name" value="PAN"/>
-    				<constructor-arg index="2" name="value" value=""></constructor-arg>
+    				<constructor-arg index="1" name="name" value="userID"/>
+    				<constructor-arg index="2" name="nsPrefix" value="v"/>
+    				<constructor-arg index="3" name="ns" value="${ns_submitITR}"/>
+    				<constructor-arg index="4" name="value" value="userName"></constructor-arg>
     			</bean>    		
 				<bean class="com.mootly.wcm.services.ditws.soap.SOAPCallElement">
     				<constructor-arg index="0" name="soapCallElementType" value="TEXT_ELEMENT"/>
-    				<constructor-arg index="1" name="name" value="AssessmentYear"/>
-    				<constructor-arg index="2" name="value" value=""></constructor-arg>
-    			</bean>    		    				
+    				<constructor-arg index="1" name="name" value="password"/>
+					<constructor-arg index="2" name="nsPrefix" value="v"/>
+    				<constructor-arg index="3" name="ns" value="${ns_submitITR}"/>
+    				<constructor-arg index="4" name="value" value="password"></constructor-arg>
+    			</bean>    		    	
+    			<bean class="com.mootly.wcm.services.ditws.soap.SOAPCallElement">
+    				<constructor-arg index="0" name="soapCallElementType" value="TEXT_ELEMENT"/>
+    				<constructor-arg index="1" name="name" value="certChain"/>
+    				<constructor-arg index="2" name="nsPrefix" value="v"/>
+    				<constructor-arg index="3" name="ns" value="${ns_submitITR}"/>    				
+    				<constructor-arg index="4" name="value" value="PAN"></constructor-arg>
+    			</bean>    	
+				<bean class="com.mootly.wcm.services.ditws.soap.SOAPCallElement">
+    				<constructor-arg index="0" name="soapCallElementType" value="TEXT_ELEMENT"/>
+    				<constructor-arg index="1" name="name" value="signature"/>
+    				<constructor-arg index="2" name="nsPrefix" value="v"/>
+    				<constructor-arg index="3" name="ns" value="${ns_submitITR}"/>    				
+    				<constructor-arg index="4" name="value" value="DOB"></constructor-arg>
+    			</bean> 
     		</list>
     	</property>    
     </bean>
     
-    <bean id="retrieveITRV" class="com.mootly.wcm.services.ditws.impl.RetrieveITRVImpl" parent="ditSOAPServiceImpl">		
-		<property name="soapCallWrapperRetrieveITRVGetStatus" ref="soapCallWrapperRetrieveITRVGetStatus"/>
+    <bean id="submitBulkITR" class="com.mootly.wcm.services.ditws.impl.SubmitBulkITRImpl" parent="ditSOAPServiceImpl">		
+		<property name="soapCallWrapperSubmitBulkITR" ref="soapCallWrapperSubmitBulkITR"/>
 	</bean>
  </beans>
