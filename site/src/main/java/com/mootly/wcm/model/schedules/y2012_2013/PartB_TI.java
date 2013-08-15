@@ -76,7 +76,6 @@ public class PartB_TI {
 			incomeSalaries = incomeSalaries.add(indianCurrencyHelper.bigIntegerRound(salaryIncomeDocument.getTotal()));
 		}
 		partBTI.setSalaries(incomeSalaries);
-		System.out.println("value of salary"+incomeSalaries);
 
 		//Getting value of Total House Income
 		BigInteger incomeHP = new BigInteger("0");
@@ -87,7 +86,6 @@ public class PartB_TI {
 			partBTI.setIncomeFromHP(incomeHP);
 		}else
 			partBTI.setIncomeFromHP(new BigInteger("0"));
-		System.out.println("value of HouseProperty"+incomeHP);
 
 		//ProfBusGain not required in ITR2
 		ProfBusGain profBusGain = new ProfBusGain();
