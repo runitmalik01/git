@@ -160,9 +160,9 @@ public class HouseProperty extends BaseDocument implements ContentNodeBinder,For
 				setArrearRentSec25B(sum_arrearRentSec25B);
 				setTotal_HouseIncome(sum_total_houseIncome);
 			}
-			node.setProperty("mootlywcm:rentSec25A", getRentSec25A());
-			node.setProperty("mootlywcm:arrearRentSec25B", getArrearRentSec25B());
-			node.setProperty("mootlywcm:total_houseIncome", getTotal_HouseIncome());
+			if (getRentSec25A() != null) node.setProperty("mootlywcm:rentSec25A", getRentSec25A());
+			if (getArrearRentSec25B() != null)  node.setProperty("mootlywcm:arrearRentSec25B", getArrearRentSec25B());
+			if (getTotal_HouseIncome() != null)  node.setProperty("mootlywcm:total_houseIncome", getTotal_HouseIncome());
 
 		} catch (RepositoryException rex) {
 			log.error("Repository Exception while binding",rex);
