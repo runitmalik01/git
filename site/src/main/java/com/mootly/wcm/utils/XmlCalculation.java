@@ -2,9 +2,12 @@ package com.mootly.wcm.utils;
 
 
 import java.math.BigInteger;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TimeZone;
 
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.core.component.HstRequest;
@@ -265,4 +268,86 @@ public class XmlCalculation implements XmlCalculationImplement {
 
 		return resultMapLosses;
 	}
+
+	/**
+	 * This Method is used for Interest Calculation
+	 * @return Map
+	 * @param Finincial Year, Input Beans, BigInteger
+	 * Added on 15/08/2013 by Dhananjay
+	 * */
+
+	public Map<String,Object> interestCalc(FinancialYear financialYear,Map<String,HippoBean> inputBeans, BigInteger netTaxLiability){
+
+		MemberPersonalInformation memberPersonalInformation = (MemberPersonalInformation) inputBeans.get(MemberPersonalInformation.class.getSimpleName().toLowerCase());
+		AdvanceTaxDocument advanceTaxDocument = (AdvanceTaxDocument) inputBeans.get(AdvanceTaxDocument.class.getSimpleName().toLowerCase());
+
+		//current date
+		final Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("GMT"));
+		final Date currentdate=cal.getTime();
+		//conversion of date into string
+		String strDate=new Date().toString();
+		//current month
+		@SuppressWarnings("deprecation")
+		int year=currentdate.getYear()+1900-1;
+		int currentdatemonth = 0;
+
+		//Added on 06/08/2013 for Checking Conditions for Due Date
+		long DueDate = 0;
+		boolean isPastDue = financialYear.isPastDue(memberPersonalInformation.getSelectedITRForm(), memberPersonalInformation.getState());
+		if (isPastDue) {
+			if(memberPersonalInformation.getState().equals("34")){
+				DueDate = 10;
+			}else{
+				DueDate = 7;
+			}
+		}
+		else {
+			DueDate = 0;
+		}
+
+		//end of due date selection
+
+		if(year==2012){
+			currentdatemonth =currentdate.getMonth()+1;
+		}else
+			if(year==2013){
+				currentdatemonth =currentdate.getMonth()+1+12;
+			}
+
+		double dtotalamount=0.0d;
+		double dsum1=0.0d;
+		double dsum2=0.0d;
+		double dsum3=0.0d;
+		double dsum4=0.0d;
+		double dsum5=0.0d;
+		double dsum12=0.0d;
+
+		if(advanceTaxDocument!= null){
+
+			dtotalamount = advanceTaxDocument.getTotal_Amount();
+			dsum1=advanceTaxDocument.getTotal_Sum1();
+			dsum2=advanceTaxDocument.getTotal_Sum2();
+			dsum3=advanceTaxDocument.getTotal_Sum3();
+			dsum4=advanceTaxDocument.getTotal_Sum4();
+			dsum5=advanceTaxDocument.getTotal_Sum5();
+			dsum12=dsum1+dsum2;
+
+		}
+		Map<String,Object> totalMapForINTREST = new HashMap<String, Object>();
+		totalMapForINTREST.put("aytaxmp",currentdatemonth);
+		totalMapForINTREST.put("ddate", DueDate);
+		totalMapForINTREST.put("aytaxd", netTaxLiability.longValue());
+		totalMapForINTREST.put("aytaxp", dtotalamount);
+		totalMapForINTREST.put("atpq2", dsum12);
+		totalMapForINTREST.put("atpq3", dsum3+dsum12);
+		totalMapForINTREST.put("atpq4", dsum4+dsum3+dsum12);
+		totalMapForINTREST.put("atlq2", 0);
+		totalMapForINTREST.put("atlq3", 0);
+		totalMapForINTREST.put("atlq4", 0);
+		Map<String,String[]> paramMap = new HashMap<String, String[]>();
+		Map<String,Object> resultMapINTEREST = ScreenCalculatorService.getScreenCalculations("interestCalculation.js", paramMap, totalMapForINTREST);
+
+		return resultMapINTEREST;
+	}
+
 }
