@@ -784,6 +784,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 					</div>
 				</div>
 			</div>
+			<jsp:include page="personalinfo_add_itr2.jsp"></jsp:include>
 			<input type="hidden" name="bnk_name_solr" id="bnk_name_solr"/>
 		</fieldset>
 		<div id="itreturnHomepage" style="display: none; visiblity: hidden">
@@ -985,6 +986,21 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 		}
 
 		$(document).ready(function() {
+		// the following code is used to show representative details for only ITR2
+		var package = $('#flex_string_ITRForm').val();
+		if(package == 'ITR1') $('#represenative_detail').hide();
+		var yesRepresentative = $('#isRepresentative').val();
+		if((yesRepresentative == 'No') || (yesRepresentative == '')) {
+		$('#name_represent').hide();
+  	 	 $('#add_represent').hide();
+   	 	$('#pan_represent').hide();
+   		 } else{
+   	  $('#name_represent').show();
+   	 $('#add_represent').show();
+   	 $('#pan_represent').show();
+   		 }
+		// end code
+		
 			$("#flex_string_ITRForm").change(function (aval) {
 					var sele = this.options[this.selectedIndex].value;
 					$("#whoCan").html(mapOfItrFormWhoCanAndWhoCan[sele]);
@@ -1105,6 +1121,29 @@ request.setAttribute("objHashMapstates", objHashMapstates);
               	$("#pi_country").val("");
               	 }
         }
+    $('#flex_string_ITRForm').change(function(){
+    var packageName = $('#flex_string_ITRForm').val();
+    if(packageName == 'ITR2') {
+    $('#represenative_detail').show();
+    }
+    else{
+    $('#represenative_detail').hide();
+    }
+    })
+    $('#isRepresentative').change(function(){
+    var yesRepresenative = $('#isRepresentative').val();
+    if((yesRepresenative == 'No') || (yesRepresenative == '')){
+    $('#name_represent').hide();
+    $('#add_represent').hide();
+    $('#pan_represent').hide();
+    } else{
+     $('#name_represent').show();
+    $('#add_represent').show();
+    $('#pan_represent').show();
+    }
+    })
+    
+    
 
 </hst:element>
 <hst:headContribution element="${uiCustom}" category="jsInternal" />
