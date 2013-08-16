@@ -350,4 +350,38 @@ public class XmlCalculation implements XmlCalculationImplement {
 		return resultMapINTEREST;
 	}
 
+	/**
+	 * This Method is used for Tax Calculation
+	 * @return Map
+	 * @param Finincial Year, Input Beans, long
+	 * Added on 16/08/2013 by Dhananjay
+	 * */
+
+	public Map<String,Object> taxCalc(FinancialYear financialYear,Map<String,HippoBean> inputBeans, long taxableIncome){
+
+		MemberPersonalInformation memberPersonalInformation = (MemberPersonalInformation) inputBeans.get(MemberPersonalInformation.class.getSimpleName().toLowerCase());
+
+		Map<String,Object> totalMapForJS = new HashMap<String, Object>();
+		Map<String,String[]> requestParameterMap = new HashMap<String, String[]>(); //not being used any where
+
+		totalMapForJS.put("cbassyear",financialYear.getDisplayAssessmentYear());
+		totalMapForJS.put("cbasstype", memberPersonalInformation.getFilingStatus());
+		totalMapForJS.put("cbresistatus",memberPersonalInformation.getResidentCategory());
+		totalMapForJS.put("txtNetIncome",taxableIncome);
+		boolean SeniorCitizen = financialYear.isSeniorCitizen(memberPersonalInformation.getDOB().getTime());
+		if(SeniorCitizen){
+			boolean SuperSeniorCitizen = financialYear.isSuperSeniorCitizen(memberPersonalInformation.getDOB().getTime());
+			if(SuperSeniorCitizen){
+				totalMapForJS.put("cbasscategory","Super Senior Citizen");
+			}else
+				totalMapForJS.put("cbasscategory","Senior Citizen");
+		}
+		else
+			totalMapForJS.put("cbasscategory",memberPersonalInformation.getSex());
+
+		Map<String,Object> resultMap = ScreenCalculatorService.getScreenCalculations("xmlCalculation.js", requestParameterMap, totalMapForJS);
+
+		return resultMap;
+	}
+
 }
