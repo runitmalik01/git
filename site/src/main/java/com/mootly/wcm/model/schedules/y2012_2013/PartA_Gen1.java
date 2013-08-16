@@ -2,23 +2,50 @@ package com.mootly.wcm.model.schedules.y2012_2013;
 
 import in.gov.incometaxindiaefiling.y2012_2013.Address;
 import in.gov.incometaxindiaefiling.y2012_2013.AssesseeName;
+import in.gov.incometaxindiaefiling.y2012_2013.AssesseeRep;
 import in.gov.incometaxindiaefiling.y2012_2013.FilingStatus;
 import in.gov.incometaxindiaefiling.y2012_2013.ITR;
 import in.gov.incometaxindiaefiling.y2012_2013.PartAGEN1;
+import in.gov.incometaxindiaefiling.y2012_2013.PartBTTI;
 import in.gov.incometaxindiaefiling.y2012_2013.PersonalInfo;
 import in.gov.incometaxindiaefiling.y2012_2013.Address.Phone;
 
 import java.math.BigInteger;
 import java.util.List;
+import java.util.Map;
 
+import org.hippoecm.hst.content.beans.standard.HippoBean;
+
+import com.mootly.wcm.beans.AdvanceTaxDocument;
+import com.mootly.wcm.beans.DeductionDocument;
+import com.mootly.wcm.beans.FormSixteenDocument;
+import com.mootly.wcm.beans.HouseProperty;
 import com.mootly.wcm.beans.MemberPersonalInformation;
+import com.mootly.wcm.beans.OtherSourcesDocument;
+import com.mootly.wcm.beans.SalaryIncomeDocument;
+import com.mootly.wcm.beans.SelfAssesmetTaxDocument;
+import com.mootly.wcm.beans.TaxReliefDocument;
+import com.mootly.wcm.beans.TdsFromothersDocument;
+import com.mootly.wcm.model.FinancialYear;
 import com.mootly.wcm.services.IndianCurrencyHelper;
 
 public class PartA_Gen1 {
-	MemberPersonalInformation document = null;
+	FormSixteenDocument formSixteenDocument = null;
+	SalaryIncomeDocument salaryIncomeDocument = null;
+	HouseProperty housePropertyDocument = null;
+	OtherSourcesDocument otherSourcesDocument = null;
+	DeductionDocument deductionDocument = null;
+	MemberPersonalInformation memberPersonalInformation = null;
+	TaxReliefDocument taxReliefDocument = null;
+	AdvanceTaxDocument advanceTaxDocument = null;
+	SelfAssesmetTaxDocument selfAssesmetTaxDocument = null;
+	TdsFromothersDocument tdsFromothersDocument = null;
 
-	public PartA_Gen1(MemberPersonalInformation document) {
-		this.document = document;
+	public PartA_Gen1(FormSixteenDocument formSixteenDocument, SalaryIncomeDocument salaryIncomeDocument, HouseProperty housePropertyDocument ,
+			OtherSourcesDocument otherSourcesDocument, DeductionDocument deductionDocument, MemberPersonalInformation memberPersonalInformation,
+			TaxReliefDocument taxReliefDocument, AdvanceTaxDocument advanceTaxDocument, SelfAssesmetTaxDocument selfAssesmetTaxDocument,
+			TdsFromothersDocument tdsFromothersDocument) {
+		this.memberPersonalInformation = memberPersonalInformation;
 	}
 
 	/**
@@ -27,7 +54,7 @@ public class PartA_Gen1 {
 	 * @return
 	 */
 
-	public PartAGEN1 getPartAGEN1(ITR itr){
+	public PartAGEN1 getPartAGEN1(ITR itr, FinancialYear financialYear, Map<String,HippoBean> inputBeans){
 
 		IndianCurrencyHelper indianCurrencyHelper = new IndianCurrencyHelper();
 		PartAGEN1 partAGEN1 = new PartAGEN1();
@@ -36,66 +63,77 @@ public class PartA_Gen1 {
 		Address address= new Address();
 		FilingStatus filingstatus = new FilingStatus();
 
-		assesseeName.setFirstName(document.getFirstName().toUpperCase());
-		assesseeName.setSurNameOrOrgName(document.getLastName().toUpperCase());
-		assesseeName.setMiddleName(document.getMiddleName().toUpperCase());
+		PartB_TTI partB_TTI = new PartB_TTI(formSixteenDocument, salaryIncomeDocument, housePropertyDocument, otherSourcesDocument, deductionDocument, memberPersonalInformation, taxReliefDocument, advanceTaxDocument, selfAssesmetTaxDocument, tdsFromothersDocument );
+		PartBTTI partBTTI = partB_TTI.getPartBTTI(itr, financialYear, inputBeans);
+
+		assesseeName.setFirstName(memberPersonalInformation.getFirstName().toUpperCase());
+		assesseeName.setSurNameOrOrgName(memberPersonalInformation.getLastName().toUpperCase());
+		assesseeName.setMiddleName(memberPersonalInformation.getMiddleName().toUpperCase());
 		personalInfo.setAssesseeName(assesseeName);
-		personalInfo.setPAN(document.getPAN().toUpperCase());
-		address.setResidenceNo(document.getFlatDoorBuilding().toUpperCase());
-		address.setRoadOrStreet(document.getRoadStreet().toUpperCase());
-		address.setLocalityOrArea(document.getAreaLocality().toUpperCase());
-		address.setCityOrTownOrDistrict(document.getTownCityDistrict().toUpperCase());
-		address.setStateCode(document.getState().toUpperCase());
-		address.setCountryCode(document.getCountry().toUpperCase());
-		address.setPinCode(indianCurrencyHelper.bigIntegerRoundStr(document.getPinCode()));
-		if(!(document.getStdCode().isEmpty()) && !(document.getPhone().isEmpty())){
+		personalInfo.setPAN(memberPersonalInformation.getPAN().toUpperCase());
+		address.setResidenceNo(memberPersonalInformation.getFlatDoorBuilding().toUpperCase());
+		address.setRoadOrStreet(memberPersonalInformation.getRoadStreet().toUpperCase());
+		address.setLocalityOrArea(memberPersonalInformation.getAreaLocality().toUpperCase());
+		address.setCityOrTownOrDistrict(memberPersonalInformation.getTownCityDistrict().toUpperCase());
+		address.setStateCode(memberPersonalInformation.getState().toUpperCase());
+		address.setCountryCode(memberPersonalInformation.getCountry().toUpperCase());
+		address.setPinCode(indianCurrencyHelper.bigIntegerRoundStr(memberPersonalInformation.getPinCode()));
+		if(!(memberPersonalInformation.getStdCode().isEmpty()) && !(memberPersonalInformation.getPhone().isEmpty())){
 			Phone phone = new Phone();
-			phone.setSTDcode(indianCurrencyHelper.bigIntegerRoundStr(document.getStdCode()));
-			phone.setPhoneNo(indianCurrencyHelper.bigIntegerRoundStr(document.getPhone()));
+			phone.setSTDcode(indianCurrencyHelper.bigIntegerRoundStr(memberPersonalInformation.getStdCode()));
+			phone.setPhoneNo(indianCurrencyHelper.bigIntegerRoundStr(memberPersonalInformation.getPhone()));
 			address.setPhone(phone);
 		}
-		address.setMobileNo(indianCurrencyHelper.bigIntegerRoundStr(document.getMobile()));
-		address.setMobileNoSec(indianCurrencyHelper.bigIntegerRoundStr(document.getMobile1()));
-		address.setEmailAddress(document.getEmail());
+		address.setMobileNo(indianCurrencyHelper.bigIntegerRoundStr(memberPersonalInformation.getMobile()));
+		address.setMobileNoSec(indianCurrencyHelper.bigIntegerRoundStr(memberPersonalInformation.getMobile1()));
+		address.setEmailAddress(memberPersonalInformation.getEmail());
 		personalInfo.setAddress(address);
-		personalInfo.setDOB(indianCurrencyHelper.gregorianCalendar(document.getDOB()));
-		if(document.getEmploye_category()!=null){
-			personalInfo.setEmployerCategory(document.getEmploye_category());
+		personalInfo.setDOB(indianCurrencyHelper.gregorianCalendar(memberPersonalInformation.getDOB()));
+		if(memberPersonalInformation.getEmploye_category()!=null){
+			personalInfo.setEmployerCategory(memberPersonalInformation.getEmploye_category());
 		}
 
-		personalInfo.setGender(document.getSex());
-		personalInfo.setStatus(document.getFilingStatus());
+		personalInfo.setGender(memberPersonalInformation.getSex());
+		personalInfo.setStatus(memberPersonalInformation.getFilingStatus());
 		partAGEN1.setPersonalInfo(personalInfo);
 
-		if(document.getWard_circle()!=null){
-			filingstatus.setDesigOfficerWardorCircle(document.getWard_circle());
+		if(memberPersonalInformation.getWard_circle()!=null){
+			filingstatus.setDesigOfficerWardorCircle(memberPersonalInformation.getWard_circle());
 		}
-		filingstatus.setReturnFileSec(Long.parseLong(document.getReturnSection()));
-		filingstatus.setReturnType(document.getReturnType());
-		filingstatus.setResidentialStatus(document.getResidentCategory());
-		filingstatus.setPortugeseCC5A(document.getPortugesecivil());
-		//Commented because calculation is not completed
-		/*
-		if (BalTaxPayable.compareTo(BigInteger.ZERO) > 0){
+		filingstatus.setReturnFileSec(Long.parseLong(memberPersonalInformation.getReturnSection()));
+		filingstatus.setReturnType(memberPersonalInformation.getReturnType());
+		filingstatus.setResidentialStatus(memberPersonalInformation.getResidentCategory());
+		filingstatus.setPortugeseCC5A(memberPersonalInformation.getPortugesecivil());
+
+        BigInteger balTaxPayable = partBTTI.getTaxPaid().getBalTaxPayable();
+
+		if (balTaxPayable.compareTo(BigInteger.ZERO) > 0){
 			filingstatus.setTaxStatus("TP");
 		}else
-			if (BalTaxPayable.compareTo(BigInteger.ZERO) < 0){
+			if (partBTTI.getRefund().getRefundDue().compareTo(BigInteger.ZERO) > 0){
 				filingstatus.setTaxStatus("TR");
 			}else
 				filingstatus.setTaxStatus("NT");
-       */
-		//filingstatus.setPortugeseCC5A(memberPersonalInformation.getPortugesecivil());
 
-		if (document.getReturnType().equals("R")) {
-			filingstatus.setAckNoOriginalReturn(document.getOriginalAckNo());
-			filingstatus.setOrigRetFiledDate(indianCurrencyHelper.gregorianCalendar(document.getOriginalAckDate()));
+		if (memberPersonalInformation.getReturnType().equals("R")) {
+			filingstatus.setAckNoOriginalReturn(memberPersonalInformation.getOriginalAckNo());
+			filingstatus.setOrigRetFiledDate(indianCurrencyHelper.gregorianCalendar(memberPersonalInformation.getOriginalAckDate()));
 
-			if(document.getDefective().equals("Y")){
-				filingstatus.setNoticeNo(document.getNoticeNo());
-				filingstatus.setNoticeDate(indianCurrencyHelper.gregorianCalendar(document.getNoticeDate()));
-				filingstatus.setReceiptNo(document.getReceiptNo());
+			if(memberPersonalInformation.getDefective().equals("Y")){
+				filingstatus.setNoticeNo(memberPersonalInformation.getNoticeNo());
+				filingstatus.setNoticeDate(indianCurrencyHelper.gregorianCalendar(memberPersonalInformation.getNoticeDate()));
+				filingstatus.setReceiptNo(memberPersonalInformation.getReceiptNo());
 			}
 		}
+		filingstatus.setAsseseeRepFlg(memberPersonalInformation.getIsRepresentative());
+		if(memberPersonalInformation.getIsRepresentative().equals("Y")){
+			AssesseeRep assesseeRep = new AssesseeRep();
+			assesseeRep.setRepName(memberPersonalInformation.getName_Representative());
+			assesseeRep.setRepAddress(memberPersonalInformation.getAddress_Representative());
+			assesseeRep.setRepPAN(memberPersonalInformation.getPan_Representative());
+			filingstatus.setAssesseeRep(assesseeRep);
+		}
+
 
 		partAGEN1.setFilingStatus(filingstatus);
 		return partAGEN1;
