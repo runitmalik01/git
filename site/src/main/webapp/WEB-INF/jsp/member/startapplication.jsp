@@ -990,7 +990,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 		var package = $('#flex_string_ITRForm').val();
 		if(package == 'ITR1') $('#represenative_detail').hide();
 		var yesRepresentative = $('#isRepresentative').val();
-		if((yesRepresentative == 'No') || (yesRepresentative == '')) {
+		if((yesRepresentative == 'N') || (yesRepresentative == '')) {
 		$('#name_represent').hide();
   	 	 $('#add_represent').hide();
    	 	$('#pan_represent').hide();
@@ -1000,7 +1000,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
    	 $('#pan_represent').show();
    		 }
 		// end code
-		
+
 			$("#flex_string_ITRForm").change(function (aval) {
 					var sele = this.options[this.selectedIndex].value;
 					$("#whoCan").html(mapOfItrFormWhoCanAndWhoCan[sele]);
@@ -1132,7 +1132,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
     })
     $('#isRepresentative').change(function(){
     var yesRepresenative = $('#isRepresentative').val();
-    if((yesRepresenative == 'No') || (yesRepresenative == '')){
+    if((yesRepresenative == 'N') || (yesRepresenative == '')){
     $('#name_represent').hide();
     $('#add_represent').hide();
     $('#pan_represent').hide();
@@ -1142,8 +1142,8 @@ request.setAttribute("objHashMapstates", objHashMapstates);
     $('#pan_represent').show();
     }
     })
-    
-    
+
+
 
 </hst:element>
 <hst:headContribution element="${uiCustom}" category="jsInternal" />
