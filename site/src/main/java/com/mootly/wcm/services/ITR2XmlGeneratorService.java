@@ -204,9 +204,6 @@ public class ITR2XmlGeneratorService  {
 		Form_ITR2 form_ITR2 = new Form_ITR2();
 		itr2.setFormITR2(form_ITR2.getFormITR2(itr));
 
-		PartA_Gen1 partA_Gen1 = new PartA_Gen1(memberPersonalInformation);
-		itr2.setPartAGEN1(partA_Gen1.getPartAGEN1(itr));
-
 		Form16DocumentSchedules form16DocumentSchedules = new Form16DocumentSchedules(formSixteenDocument, salaryIncomeDocument);
 		itr2.setScheduleS(form16DocumentSchedules.getScheduleS(itr));
 
@@ -244,7 +241,10 @@ public class ITR2XmlGeneratorService  {
 		itr2.setPartBTI(partB_TI.getPartBTI(itr, financialYear, inputBeans));
 
 		PartB_TTI partB_TTI = new PartB_TTI(formSixteenDocument, salaryIncomeDocument, houseProperty, otherSourcesDocument, deductionDocument, memberPersonalInformation, taxReliefDocument, advanceTaxDocument, selfAssesmetTaxDocument, tdsFromothersDocument );
-        itr2.setPartBTTI(partB_TTI.getPartBTTI(itr, financialYear, inputBeans));
+		itr2.setPartBTTI(partB_TTI.getPartBTTI(itr, financialYear, inputBeans));
+
+		PartA_Gen1 partA_Gen1 = new PartA_Gen1(formSixteenDocument, salaryIncomeDocument, houseProperty, otherSourcesDocument, deductionDocument, memberPersonalInformation, taxReliefDocument, advanceTaxDocument, selfAssesmetTaxDocument, tdsFromothersDocument );
+		itr2.setPartAGEN1(partA_Gen1.getPartAGEN1(itr, financialYear, inputBeans));
 
 		ForeignIncomeScheduleFSI foreignIncomeScheduleFSI = new ForeignIncomeScheduleFSI(foreignIncomeDocument);
 		itr2.setITRScheduleFSI(foreignIncomeScheduleFSI.getITRScheduleFSI(itr));
