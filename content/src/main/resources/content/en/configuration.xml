@@ -10561,6 +10561,7 @@ var avgRateTax=(D*100)/txtNetIncome ;
 </sv:node>
   
     
+
 <sv:node sv:name="capitalasset">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hippo:handle</sv:value>
@@ -10591,7 +10592,7 @@ var avgRateTax=(D*100)/txtNetIncome ;
       <sv:value>hippo:harddocument</sv:value>
     </sv:property>
     <sv:property sv:name="jcr:uuid" sv:type="String">
-      <sv:value>10a545cb-61c6-4221-b230-1667c92268ce</sv:value>
+      <sv:value>c21223e8-c367-4f38-a9c0-339e5cad0a48</sv:value>
     </sv:property>
     <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
       <sv:value>live</sv:value>
@@ -10616,13 +10617,13 @@ var avgRateTax=(D*100)/txtNetIncome ;
       <sv:value>2013-05-24T01:55:56.242+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-      <sv:value>2013-08-14T17:47:26.419+05:30</sv:value>
+      <sv:value>2013-08-16T14:56:56.535+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
       <sv:value>admin</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-      <sv:value>2013-08-14T17:47:28.992+05:30</sv:value>
+      <sv:value>2013-08-16T14:56:59.396+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="mootlywcm:additionalScript" sv:type="String">
       <sv:value/>
@@ -10678,22 +10679,22 @@ if(month &lt; period){
 		bal= (sale - total); 
 		cpgain=bal+(amtdeemed-0)-(dedsec54-0)+(section48-0)+(unlstdsecurity-0);
 	}else{
-		var pur_data = (date_acquisition-0);
-		var arr = pur_data.split('/');
+		var pur_data = date_acquisition;
+		var arr = (pur_data).split('/');
 		var pur_year=arr[2];
 		var pur_index =1;
-		var sal_data = (date_sale-0);
+		var sal_data = date_sale;
 		var arr1 = sal_data.split('/');
 		var sal_year=arr1[2];
 		var sal_index =0;
-			//pur_index = indianCurrencyHelper.getYearIndexValue(pur_year);
-			//sal_index = indianCurrencyHelper.getYearIndexValue(sal_year);
+			pur_index = indianCurrencyHelper.getYearIndexValue(pur_year);
+			sal_index = indianCurrencyHelper.getYearIndexValue(sal_year);
 		
-		var cost_acq= indianCurrencyHelper.RoundTo2Decimals((costacquisition-0)*(sal_index/pur_index));
-		var cost_imp= indianCurrencyHelper.RoundTo2Decimals((costimprovement-0)*(sal_index/pur_index));
-		total= cost_acq+ (cost_imp-0)+ (costtrnsfr-0);
+		var cost_acq= indianCurrencyHelper.RoundTo2Decimals((costacquisition-0)*((sal_index-0)/(pur_index-0)));
+		var cost_imp= indianCurrencyHelper.RoundTo2Decimals((costimprovement-0)*((sal_index-0)/(pur_index-0)));
+		total= (cost_acq-0)+ (cost_imp-0)+ (costtrnsfr-0);
 		bal= (saleconsideration-0)-total;
-		cpgain = bal-(dedsec54-0)+( section48-0)+(unlstdsecurity-0)+(amtdeemed-0);
+		cpgain = bal- (dedsec54-0)+( section48-0)+(unlstdsecurity-0)+(amtdeemed-0);
 
 	};
 
