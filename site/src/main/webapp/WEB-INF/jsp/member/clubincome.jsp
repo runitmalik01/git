@@ -17,7 +17,7 @@
 		</div>
 	</c:forEach>
 </c:if>
-<% 
+<%
 ValueListService objValueListservice=ValueListServiceImpl.getInstance();
 TreeMap objTreeMapRelation=objValueListservice.getRelationship();
 request.setAttribute("objTreeMapRelation", objTreeMapRelation);
@@ -30,7 +30,7 @@ request.setAttribute("objTreeMapRelation", objTreeMapRelation);
 		test="${pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD'}">
 		<form id="frmClubIncome" action="${actionUrl}" method="post"
 			name="frmClubIncome">
-			
+
 			<h2>Enter Details</h2>
 			<div class="row-fluid show-grid">
 				<div class="span4">
@@ -39,8 +39,8 @@ request.setAttribute("objTreeMapRelation", objTreeMapRelation);
 									key="name.person.itr2" /> </small> </label>
 					</div>
 					<div class="rowlabel">
-						<input id="name_person" name="name_person" 
-							type="text" maxlength="125"
+						<input id="name_person" name="name_person"
+							type="text" maxlength="125" class="uprcase"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.name_Person}"/></c:if> " />
 					</div>
 				</div>
@@ -51,7 +51,7 @@ request.setAttribute("objTreeMapRelation", objTreeMapRelation);
 					</div>
 					<div class="rowlabel">
 						<input id="pan_person" name="pan_person"
-							type="text" maxlength="10" 
+							type="text" maxlength="10"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.pan_person}"/></c:if>" />
 					</div>
 				</div>
@@ -61,7 +61,7 @@ request.setAttribute("objTreeMapRelation", objTreeMapRelation);
 									key="relationship.clubincome" /> </small> </label>
 					</div>
 					<div class="rowlabel">
-							<select name="relationship" id="relationship"
+							<select name="relationship" id="relationship" class="uprcase"
 									style="text-transform: uppercase;">
 									<option value="">-Select-</option>
 									<c:forEach var="relation" items="${objTreeMapRelation}">
@@ -75,15 +75,15 @@ request.setAttribute("objTreeMapRelation", objTreeMapRelation);
 				</div>
 			</div>
 			<div class="row-fluid show-grid">
-				
-				
+
+
 				<div class="span4">
 					<div class="rowlabel">
 						<label for="nature_income"><small><fmt:message
 									key="nature.income.itr2" /> </small> </label>
 					</div>
 					<div class="rowlabel">
-						<input id="nature_income" name="nature_income"
+						<input id="nature_income" name="nature_income" class="uprcase"
 							type="text" value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.nature_income}"/></c:if> " />
 					</div>
 				</div>
@@ -105,8 +105,8 @@ request.setAttribute("objTreeMapRelation", objTreeMapRelation);
 					<a href="${scriptName}" class="btn btn-danger" style="color: black">Cancel</a>&nbsp;
 					<a id="myModalHrefClubIncome" role="button" class="btn btn-success" style="color: black">Save</a>
 				</div>
-			</div> 
-			
+			</div>
+
 		</form>
 	</c:when>
 	<c:otherwise>
