@@ -45,7 +45,16 @@ public class PartA_Gen1 {
 			OtherSourcesDocument otherSourcesDocument, DeductionDocument deductionDocument, MemberPersonalInformation memberPersonalInformation,
 			TaxReliefDocument taxReliefDocument, AdvanceTaxDocument advanceTaxDocument, SelfAssesmetTaxDocument selfAssesmetTaxDocument,
 			TdsFromothersDocument tdsFromothersDocument) {
+		this.formSixteenDocument = formSixteenDocument;
+		this.salaryIncomeDocument = salaryIncomeDocument;
+		this.housePropertyDocument = housePropertyDocument;
+		this.otherSourcesDocument = otherSourcesDocument;
+		this.deductionDocument = deductionDocument;
 		this.memberPersonalInformation = memberPersonalInformation;
+		this.taxReliefDocument = taxReliefDocument;
+		this.advanceTaxDocument = advanceTaxDocument;
+		this.selfAssesmetTaxDocument = selfAssesmetTaxDocument;
+		this.tdsFromothersDocument = tdsFromothersDocument;
 	}
 
 	/**
@@ -66,9 +75,11 @@ public class PartA_Gen1 {
 		PartB_TTI partB_TTI = new PartB_TTI(formSixteenDocument, salaryIncomeDocument, housePropertyDocument, otherSourcesDocument, deductionDocument, memberPersonalInformation, taxReliefDocument, advanceTaxDocument, selfAssesmetTaxDocument, tdsFromothersDocument );
 		PartBTTI partBTTI = partB_TTI.getPartBTTI(itr, financialYear, inputBeans);
 
-		assesseeName.setFirstName(memberPersonalInformation.getFirstName().toUpperCase());
+		if(!(memberPersonalInformation.getFirstName().isEmpty()))
+			assesseeName.setFirstName(memberPersonalInformation.getFirstName().toUpperCase());
 		assesseeName.setSurNameOrOrgName(memberPersonalInformation.getLastName().toUpperCase());
-		assesseeName.setMiddleName(memberPersonalInformation.getMiddleName().toUpperCase());
+		if(!(memberPersonalInformation.getMiddleName().isEmpty()))
+			assesseeName.setMiddleName(memberPersonalInformation.getMiddleName().toUpperCase());
 		personalInfo.setAssesseeName(assesseeName);
 		personalInfo.setPAN(memberPersonalInformation.getPAN().toUpperCase());
 		address.setResidenceNo(memberPersonalInformation.getFlatDoorBuilding().toUpperCase());
@@ -97,7 +108,7 @@ public class PartA_Gen1 {
 		personalInfo.setStatus(memberPersonalInformation.getFilingStatus());
 		partAGEN1.setPersonalInfo(personalInfo);
 
-		if(memberPersonalInformation.getWard_circle()!=null){
+		if(!(memberPersonalInformation.getWard_circle().isEmpty())){
 			filingstatus.setDesigOfficerWardorCircle(memberPersonalInformation.getWard_circle());
 		}
 		filingstatus.setReturnFileSec(Long.parseLong(memberPersonalInformation.getReturnSection()));
@@ -105,9 +116,7 @@ public class PartA_Gen1 {
 		filingstatus.setResidentialStatus(memberPersonalInformation.getResidentCategory());
 		filingstatus.setPortugeseCC5A(memberPersonalInformation.getPortugesecivil());
 
-        BigInteger balTaxPayable = partBTTI.getTaxPaid().getBalTaxPayable();
-
-		if (balTaxPayable.compareTo(BigInteger.ZERO) > 0){
+		if (partBTTI.getTaxPaid().getBalTaxPayable().compareTo(BigInteger.ZERO) > 0){
 			filingstatus.setTaxStatus("TP");
 		}else
 			if (partBTTI.getRefund().getRefundDue().compareTo(BigInteger.ZERO) > 0){
