@@ -31,7 +31,9 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.jcr.NodeIterator;
 import javax.jcr.RepositoryException;
@@ -50,6 +52,7 @@ import com.mootly.wcm.annotations.TagAsTaxDataProvider.TaxDataProviderType;
 import com.mootly.wcm.beans.compound.PersonalInformation;
 import com.mootly.wcm.beans.compound.ScheduleSIDocumentDetail;
 import com.mootly.wcm.beans.compound.TdsOthersDetail;
+import com.mootly.wcm.services.ScreenCalculatorService;
 
 @SuppressWarnings("unused")
 @Node(jcrType = "mootlywcm:schedulesidocument")
@@ -60,11 +63,12 @@ public class ScheduleSIDocument extends BaseDocument implements ContentNodeBinde
 	final String PROP_DETAIL_BEAN="mootlywcm:schedulesidocumentdetail";
 	private String itFolderUuid;
 	
-	public String getGross_salary() {
+	public String getGrossTaxIncome() {
 		return "0";
 	}
 	//private Double total_amount;
-	private Double investment_total;
+	private Double totalCalTaxOnInc;
+	private Double totalIncome;
 	
 	private final static Logger log = LoggerFactory.getLogger(ScheduleSIDocument.class); 
 
@@ -84,13 +88,13 @@ public class ScheduleSIDocument extends BaseDocument implements ContentNodeBinde
 		if (scheduleSiDetailList == null) scheduleSiDetailList = new ArrayList<ScheduleSIDocumentDetail>();
 		scheduleSiDetailList.add(financialInterestdetail);
 	}
-	   public Double getInvestment_Total() {
-	    	if (investment_total == null) investment_total = getProperty("mootlywcm:investment_total");
-	    	return investment_total;
+	   public Double getTotalCalTaxOnInc() {
+	    	if (totalCalTaxOnInc == null) totalCalTaxOnInc = getProperty("mootlywcm:totalCalTaxOnInc");
+	    	return totalCalTaxOnInc;
 	 }
 	   
-	   public final void setInvestment_Total(Double investment_total) {
-			this.investment_total = investment_total;
+	   public final void setTotalCalTaxOnInc(Double totalCalTaxOnInc) {
+			this.totalCalTaxOnInc = totalCalTaxOnInc;
 		}
 	  
 
@@ -114,6 +118,21 @@ public class ScheduleSIDocument extends BaseDocument implements ContentNodeBinde
 		return prdBean;
 	}
 
+	/**
+	 * @return the totalIncome
+	 */
+	public Double getTotalIncome() {
+		if(totalIncome==null) totalIncome = getProperty("mootlywcm:totalIncome");
+		return totalIncome;
+	}
+
+	/**
+	 * @param totalIncome the totalIncome to set
+	 */
+	public void setTotalIncome(Double totalIncome) {
+		this.totalIncome = totalIncome;
+	}
+
 	@Override
 	public boolean bind(Object content, javax.jcr.Node node)
 			throws ContentNodeBindingException {
@@ -127,8 +146,6 @@ public class ScheduleSIDocument extends BaseDocument implements ContentNodeBinde
 	        		aNode.remove();
 	        	}
         	}
-        	 double sumTotalInvst=0.0;
-        	
         	if ( scheduleSiDocument.getScheduleSiDetailList() != null &&  scheduleSiDocument.getScheduleSiDetailList().size() > 0 ){ 
         		log.info("checking size in schedule si bean:::"+ scheduleSiDocument.getScheduleSiDetailList().size());
         		
@@ -138,10 +155,22 @@ public class ScheduleSIDocument extends BaseDocument implements ContentNodeBinde
             		    javax.jcr.Node html = node.addNode(PROP_DETAIL_BEAN, PROP_DETAIL_BEAN);
             		    objfinancialinterest.bindToNode(html); 
         			}
-        		}
-               
+        		}      
         	}
-        	//node.setProperty("mootlywcm:investment_total", getInvestment_Total());
+     		Map<String,Object> totalMapForJS = new HashMap<String, Object>();
+    		Map<String,String[]> requestParameterMap=new HashMap<String,String[]>();
+    		totalMapForJS.put("scheduleSiDocument", scheduleSiDocument);
+    		totalMapForJS.put("spRate", null);
+    		totalMapForJS.put("userAmount", null);
+    		totalMapForJS.put("CapDoc", "CapDoc");
+    		totalMapForJS.put("grossTotal", 0d);
+    		totalMapForJS.put("slabValue", 0d);
+    		totalMapForJS.put("xmlCode", "");
+    		Map<String, Object> resultMap = ScreenCalculatorService.getScreenCalculations("ScheduleSI.js", requestParameterMap, totalMapForJS);
+    		setTotalCalTaxOnInc(Double.parseDouble(resultMap.get("total_calTaxOnIncome").toString()));
+    		setTotalIncome(Double.parseDouble(resultMap.get("total_income").toString()));
+        	node.setProperty("mootlywcm:totalCalTaxOnInc", getTotalCalTaxOnInc());
+        	node.setProperty("mootlywcm:totalIncome", getTotalIncome());
         	
         	/*
 			javax.jcr.Node prdLinkNode;
