@@ -77,34 +77,31 @@ public class PartB_TTI {
 		PartBTI partBTI = partB_TI.getPartBTI(itr, financialYear, inputBeans);
 		Map<String,String[]> requestParameterMap = new HashMap<String, String[]>(); //not being used any where
 
+		XmlCalculation xmlCalculation   = new XmlCalculation();
+
 		long aggregateIncome = 0;
 		aggregateIncome = partBTI.getAggregateIncome().longValue();
-
-		Map<String,Object> totalMapForJS = new HashMap<String, Object>();
-
-		totalMapForJS.put("cbassyear",financialYear.getDisplayAssessmentYear());
-		totalMapForJS.put("cbasstype", memberPersonalInformation.getFilingStatus());
-		totalMapForJS.put("cbresistatus",memberPersonalInformation.getResidentCategory());
-
-		if(aggregateIncome>0)
-			totalMapForJS.put("txtNetIncome",aggregateIncome);
 		if(aggregateIncome<=0)
-			totalMapForJS.put("txtNetIncome",0);
-		boolean isSeniorCitizen = financialYear.isSeniorCitizen(memberPersonalInformation.getDOB().getTime());
-		if(isSeniorCitizen){
-			boolean isSuperSeniorCitizen = financialYear.isSuperSeniorCitizen(memberPersonalInformation.getDOB().getTime());
-			if(isSuperSeniorCitizen){
-				totalMapForJS.put("cbasscategory","Super Senior Citizen");
-			}else
-				totalMapForJS.put("cbasscategory","Senior Citizen");
+			aggregateIncome =0;
+		long totalIncome = partBTI.getTotalIncome().longValue();
+		long incomeTaxSplRate = partBTI.getIncChargeTaxSplRate111A112().longValue();
+		long totIncSubSplRate = totalIncome - incomeTaxSplRate;
+
+		Map<String,Object> resultMap = xmlCalculation.taxCalc(financialYear, inputBeans, aggregateIncome);
+
+		Double slabRate = Double.parseDouble(resultMap.get("slabRate").toString());
+
+		boolean hasTaxableInc = false;
+		if(totIncSubSplRate > indianCurrencyHelper.longRound(slabRate)){
+			hasTaxableInc = true;
 		}
-		else
-			totalMapForJS.put("cbasscategory",memberPersonalInformation.getSex());
-
-		Map<String,Object> resultMap = ScreenCalculatorService.getScreenCalculations("xmlCalculation.js", requestParameterMap, totalMapForJS);
-		//itr1TaxComputation.setTotalTaxPayable(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMap.get("txtTax").toString())));
-
-
+		double agricultureIncome = 0;
+		if(otherSourcesDocument!=null){
+			if(otherSourcesDocument.getAgriculture_income() > 5000){
+				agricultureIncome = otherSourcesDocument.getAgriculture_income();
+			}else
+				agricultureIncome = 0;
+		}
 		ComputationOfTaxLiability computationOfTaxLiability = new ComputationOfTaxLiability();
 
 		TaxPayableOnDeemedTI taxPayableOnDeemedTI = new TaxPayableOnDeemedTI();
@@ -116,8 +113,16 @@ public class PartB_TTI {
 		TaxPayableOnTI taxPayableOnTI = new TaxPayableOnTI();
 		taxPayableOnTI.setTaxAtNormalRatesOnAggrInc(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMap.get("txtTax").toString())));
 		taxPayableOnTI.setTaxAtSpecialRates(new BigInteger("0"));//waiting for input from ScheduleSI
-		taxPayableOnTI.setTaxOnAggregateInc(new BigInteger("0"));//Don't know need to consult
-		taxPayableOnTI.setRebateOnAgriInc(new BigInteger("0"));//Need to be calculated
+		taxPayableOnTI.setTaxOnAggregateInc(new BigInteger("0"));//Don't know need to consult(i think this is for ITR4)
+		if(agricultureIncome > 5000){
+			if(hasTaxableInc){
+				double salbRateAddAggInc = slabRate + agricultureIncome;
+				Map<String,Object> resultMapForAggInc = xmlCalculation.taxCalc(financialYear, inputBeans, indianCurrencyHelper.longRound(salbRateAddAggInc));
+				taxPayableOnTI.setRebateOnAgriInc(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMapForAggInc.get("txtTax").toString())));
+			}else
+				taxPayableOnTI.setRebateOnAgriInc(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMap.get("txtTax").toString())));
+		}else
+			taxPayableOnTI.setRebateOnAgriInc(new BigInteger("0"));
 		taxPayableOnTI.setTaxPayableOnTotInc((taxPayableOnTI.getTaxAtNormalRatesOnAggrInc().add(taxPayableOnTI.getTaxAtSpecialRates())).subtract(taxPayableOnTI.getRebateOnAgriInc()));
 		computationOfTaxLiability.setTaxPayableOnTI(taxPayableOnTI);
 
@@ -221,7 +226,6 @@ public class PartB_TTI {
 		BigInteger netTaxLiabilitySubTDS = new BigInteger("0");
 		netTaxLiabilitySubTDS = computationOfTaxLiability.getNetTaxLiability().subtract(bigTotalTds);
 
-		XmlCalculation xmlCalculation = new XmlCalculation();
 		Map<String,Object> resultMapINTEREST = xmlCalculation.interestCalc(financialYear, inputBeans, netTaxLiabilitySubTDS);
 
 		IntrstPay intrstPay = new IntrstPay();
@@ -253,7 +257,7 @@ public class PartB_TTI {
 
 		Refund refund = new Refund();
 		if(taxPayORRef.compareTo(BigInteger.ZERO) < 0){
-			refund.setRefundDue(taxPayORRef);
+			refund.setRefundDue(taxPayORRef.multiply(new BigInteger("-1")));
 		}else
 			refund.setRefundDue(new BigInteger("0"));
 		refund.setBankAccountNumber(memberPersonalInformation.getBD_ACC_NUMBER().toUpperCase());
