@@ -33,59 +33,62 @@
 	</div>&nbsp;<strong>to add new Schedule SI section!!</strong>
 </fieldset>
 <table class="table table-hover table-striped table-bordered">
-	  <caption><strong>Detailed of Schedule SI sections</strong></caption>
-		<thead>
-			<tr>
-				<th>#</th>
-				<th>Schedule SI Section Name</th>
-				<th><abbr title="Rates described by Income Tax Department">Special Rate (%)</abbr></th>
-				<th>Gross Income</th>
-				<th><abbr title="Gross Amount after apply rates.">Eligible Amount</abbr></th>
-				<th align="center"><div class="span1">Action</div></th>
-			</tr>
-		</thead>
-		<tbody>
-			<c:if test="${not empty parentBean.scheduleSiDetailList}">
-				<c:forEach items="${parentBean.scheduleSiDetailList}" var="scheduleSiDetail" varStatus="ct">
-					<tr class="warning">
-						<td><c:out value="${ct.count}"/></td>
-						<td><c:forEach var="si" items="${scheduleSIList}">
-								<c:if test="${scheduleSiDetail.schedulesiSection == si.xmlCode}">
-									<c:out value="${si.displayName}" />
-								</c:if>
-							</c:forEach>
-						</td>
-						<td><c:out value="${scheduleSiDetail.specialRate}" /></td>
-						<td><w4india:inr value="${scheduleSiDetail.amount}"/></td>
-						<td><w4india:inr value="${scheduleSiDetail.calcRateIncome}" /></td>
-						<td align="center"><div class="span1"><a href="${scriptName}/${scheduleSiDetail.canonicalUUID}/itrschedulesiedit"
-							class="btn btn-primary"><i class="icon-edit icon-white"></i><span><strong>Edit</strong></span></a>&nbsp;
-							<%-- <a href="${scriptName}/${scheduleSiDetail.canonicalUUID}/itrschedulesidelete" data-confirm=""
+	<caption>
+		<strong>Detailed of Schedule SI sections</strong>
+	</caption>
+	<thead>
+		<tr>
+			<th>#</th>
+			<th>Schedule SI Section Name</th>
+			<th><abbr title="Rates described by Income Tax Department">Special Rate (%)</abbr></th>
+			<th>Gross Income</th>
+			<th><abbr title="Gross Amount after apply rates.">Eligible Amount</abbr></th>
+			<th align="center"><div class="span1">Action</div></th>
+		</tr>
+	</thead>
+	<tbody>
+		<c:if test="${not empty parentBean.scheduleSiDetailList}">
+			<c:forEach items="${parentBean.scheduleSiDetailList}" var="scheduleSiDetail" varStatus="ct">
+				<c:forEach var="si" items="${scheduleSIList}">
+					<c:if test="${scheduleSiDetail.schedulesiSection ==  si.xmlCode}">
+						<tr class="warning">
+							<td><c:out value="${ct.count}" /></td>
+							<td><c:out value="${si.displayName}" /></td>
+							<td><c:out value="${scheduleSiDetail.specialRate}" /></td>
+							<td><w4india:inr value="${scheduleSiDetail.amount}" /></td>
+							<td><w4india:inr value="${scheduleSiDetail.calcRateIncome}" /></td>
+							<td align="center"><div class="span1">
+									<a href="${scriptName}/${scheduleSiDetail.canonicalUUID}/itrschedulesiedit"
+										class="btn btn-primary"><i class="icon-edit icon-white"></i><span><strong>Edit</strong></span></a>&nbsp;
+									<%-- <a href="${scriptName}/${scheduleSiDetail.canonicalUUID}/itrschedulesidelete" data-confirm=""
 							class="btn btn-danger"><i class="icon-trash icon-white"></i><span><strong>Delete</strong></span></a>--%>
-							</div>
-						</td>
-					</tr>
+								</div></td>
+						</tr>
+					</c:if>
 				</c:forEach>
-			</c:if>
-			<tr class="success">
-			   <td colspan="3"><b>Total</b></td>
-			   
-			   <td align="right" style="text-align:right"><c:if test="${not empty parentBean.scheduleSiDetailList}">
-			   <c:set value="sumGross" var="0"/>
-				<c:forEach items="${parentBean.scheduleSiDetailList}" var="scheduleSiDetail">
-				  <c:set value="${sumGross + scheduleSiDetail.amount}" var="sumGross"/>
-				</c:forEach></c:if><b><w4india:inr value="${sumGross}"/></b></td>
-				
-			   <td align="right" style="text-align:right"><c:if test="${not empty parentBean.scheduleSiDetailList}">
-			   <c:set value="eligSum" var="0"/>
-				<c:forEach items="${parentBean.scheduleSiDetailList}" var="scheduleSiDetail">
-				  <c:set value="${eligSum + scheduleSiDetail.calcRateIncome}" var="eligSum"/>
-				</c:forEach></c:if><b><w4india:inr value="${eligSum}"/></b></td>
-				
-				<td></td>
-			</tr>
-		</tbody>
-	</table>
+			</c:forEach>
+		</c:if>
+		<tr class="success">
+			<td colspan="3"><b>Total</b></td>
+
+			<td><c:if test="${not empty parentBean.scheduleSiDetailList}">
+					<c:set value="sumGross" var="0" />
+					<c:forEach items="${parentBean.scheduleSiDetailList}" var="scheduleSiDetail">
+						<c:set value="${sumGross + scheduleSiDetail.amount}" var="sumGross" />
+					</c:forEach>
+				</c:if><b><w4india:inr value="${sumGross}" /></b></td>
+
+			<td><c:if test="${not empty parentBean.scheduleSiDetailList}">
+					<c:set value="eligSum" var="0" />
+					<c:forEach items="${parentBean.scheduleSiDetailList}" var="scheduleSiDetail">
+						<c:set value="${eligSum + scheduleSiDetail.calcRateIncome}" var="eligSum" />
+					</c:forEach>
+				</c:if><b><w4india:inr value="${eligSum}" /></b></td>
+
+			<td></td>
+		</tr>
+	</tbody>
+</table>
 <c:set var="sectionData">
 	<fieldset>
 		<legend>Schedule SI</legend>
