@@ -92,42 +92,50 @@ public class ITRScheduleSI extends ITReturnComponent {
 			PAGE_ACTION pageAction) {
 		// TODO Auto-generated method stub
 		super.afterSave(request, map, pageAction);
+		//Schedule SI section depends upon Capital Gain and Other Sources if some one not does not Request for this section doc then we can create SI doc by call method
+		log.info("create schedule SI Document");
+		createInActiveScheduleSISection(request, map); 
+	}
+	/**
+	 * This method is used to create all inactive schedule SI sections.
+	 * 
+	 * @param request {@link HstRequest}
+	 * @param formMap {@link FormMap}
+	 * 
+	 * @return void
+	 * */
+	public void createInActiveScheduleSISection(HstRequest request, FormMap formMap){
 		try {
-			if(getParentBean()!=null){
-				Session persistableSession = getPersistableSession(request);
-				WorkflowPersistenceManager wpm = getWorkflowPersistenceManager(persistableSession);
-				ScheduleSIDocument siDoc = (ScheduleSIDocument) wpm.getObject(getAbsoluteBasePathToReturnDocuments()+"/"+ScheduleSIDocument.class.getSimpleName().toLowerCase());
-				List<ITRScheduleSISections> scheduleSIList = createInActiveScheduleSIList(request);
-				if(!scheduleSIList.isEmpty()){
-					for(ITRScheduleSISections siSection:scheduleSIList){
-						Map<String, Object> resultMap = updateScheduleSI(request, siSection);
-						if(StringUtils.isNotBlank(findPresentOfScheduleSI(request, getParentBean(), siSection))){
-							log.info("i have found");
-							String uuid = findPresentOfScheduleSI(request, getParentBean(), siSection);
-							ScheduleSIDocumentDetail siDetailUp = (ScheduleSIDocumentDetail) wpm.getObjectByUuid(uuid);
-							siDetailUp.setAmount(Double.parseDouble(resultMap.get("userAmount").toString()));
-							siDetailUp.setSchedulesiSection(siSection.getXmlCode());
-							siDetailUp.setSpecialRate(siSection.getPercentRate()[siSection.getPercentRate().length-1]);
-							siDetailUp.setCalcRateIncome(Double.parseDouble(resultMap.get("taxOnIncome").toString()));
-							siDetailUp.setMinChargTaxIncome(Double.parseDouble(resultMap.get("minChargIncome").toString()));
-							siDoc.update(siDetailUp);
-						}else{
-							log.info("i have found");
-							//updateScheduleSI(request,siSection);							
-							ScheduleSIDocumentDetail childDoc = new ScheduleSIDocumentDetail();
-							childDoc.setSchedulesiSection(siSection.getXmlCode());
-							childDoc.setAmount(Double.parseDouble(resultMap.get("userAmount").toString()));
-							childDoc.setSpecialRate(siSection.getPercentRate()[siSection.getPercentRate().length-1]);
-							childDoc.setCalcRateIncome(Double.parseDouble(resultMap.get("taxOnIncome").toString()));
-							childDoc.setMinChargTaxIncome(Double.parseDouble(resultMap.get("minChargIncome").toString()));
-							siDoc.add(childDoc);
-						} 
-						wpm.update(siDoc);
-					}
-				}
-			}else{
-				log.info("Not able to update all auto populate SI");
+			Session persistableSession = getPersistableSession(request);
+			WorkflowPersistenceManager wpm = getWorkflowPersistenceManager(persistableSession);
+			wpm.setWorkflowCallbackHandler(new FullReviewedWorkflowCallbackHandler());
+			ScheduleSIDocument siDoc = (ScheduleSIDocument) wpm.getObject(getAbsoluteBasePathToReturnDocuments()+"/"+ScheduleSIDocument.class.getSimpleName().toLowerCase());
+			if(siDoc==null){
+				log.info("Dont have Schedule SI Document:Creating it");
+				String createdDocPath = wpm.createAndReturn(getAbsoluteBasePathToReturnDocuments(), ScheduleSIDocument.NAMESPACE, ScheduleSIDocument.NODE_NAME, true);
+				siDoc = (ScheduleSIDocument) wpm.getObject(createdDocPath);
 			}
+			List<ITRScheduleSISections> scheduleSIList = createInActiveScheduleSIList(request);
+			if(!scheduleSIList.isEmpty()){
+				for(ITRScheduleSISections siSection:scheduleSIList){
+					log.info("create si section");
+					Map<String, Object> resultMap = updateScheduleSI(request, siSection);
+					String sectionChildUUID = findPresentOfScheduleSI(request, siDoc, siSection);
+					if(StringUtils.isNotBlank(sectionChildUUID)){
+						log.info("create si section:update child");
+						ScheduleSIDocumentDetail siDetailUp = (ScheduleSIDocumentDetail) wpm.getObjectByUuid(sectionChildUUID);
+						invokeScheduleSIDetailDocMeth(siDetailUp, siSection, resultMap);
+						siDoc.update(siDetailUp);
+					}else{					
+						log.info("create si section:add child");
+						ScheduleSIDocumentDetail childDoc = new ScheduleSIDocumentDetail();
+						invokeScheduleSIDetailDocMeth(childDoc, siSection, resultMap);
+						siDoc.add(childDoc);
+					} 
+				}
+				wpm.update(siDoc);
+			}
+
 		} catch (RepositoryException e) {
 			// TODO Auto-generated catch block
 			log.error("Error while get JCR Repository Session",e);
@@ -139,7 +147,6 @@ public class ITRScheduleSI extends ITReturnComponent {
 			log.error("Error while create base path to get document",e);
 		}
 	}
-
 	/**
 	 * This method is used to find child of {@link ScheduleSIDocument} by their xmlCode.
 	 * 
@@ -151,7 +158,6 @@ public class ITRScheduleSI extends ITReturnComponent {
 	 * 
 	 * */
 	public static String findPresentOfScheduleSI(HstRequest request,HippoBean parentBean,ITRScheduleSISections siSection){
-		log.info("i have found");
 		ScheduleSIDocument siDocument = (ScheduleSIDocument) parentBean;
 		if(!siDocument.getScheduleSiDetailList().isEmpty()){
 			for(ScheduleSIDocumentDetail siDetail:siDocument.getScheduleSiDetailList()){
@@ -195,7 +201,7 @@ public class ITRScheduleSI extends ITReturnComponent {
 	 * 
 	 * */
 	public static Map<String, Object> updateScheduleSI(HstRequest request,ITRScheduleSISections siSection){
-		log.info("i have found");
+		log.info("create si section:start");
 		OtherSourcesDocument Osd=(OtherSourcesDocument)request.getAttribute(OtherSourcesDocument.class.getSimpleName().toLowerCase());
 		CapitalAssetDocument CapDoc = (CapitalAssetDocument) request.getAttribute(CapitalAssetDocument.class.getSimpleName().toLowerCase());
 		Map<String, HippoBean> inputBean = new HashMap<String, HippoBean>();
@@ -206,25 +212,33 @@ public class ITRScheduleSI extends ITReturnComponent {
 		Map<String,Object> totalMapForJS = new HashMap<String, Object>();
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		totalMapForJS.put("spRate", siSection.getPercentRate()[siSection.getPercentRate().length-1]);
+		totalMapForJS.put("scheduleSiDocument",null);
+		totalMapForJS.put("enable", "enable");
 		if(siSection.getXmlCode().equalsIgnoreCase("5BB")){
 			if(Osd!=null){
 				totalMapForJS.put("userAmount", Osd.getLotteryOrhorse_income());	
 			}else{
 				totalMapForJS.put("userAmount", 0d);
 			}
+			totalMapForJS.put("CapDoc", "CapDoc");
 		}else{
+			log.info("create si section:set para");
 			if(CapDoc!=null){
 				totalMapForJS.put("CapDoc", CapDoc);
-				XmlCalculation xmlCal = new XmlCalculation();
-				long grossTotal = xmlCal.grossTotal((FinancialYear)request.getAttribute("financialYear"), inputBean);
-				Double slabValue = findSlabOfGrossIncome(request, grossTotal);
-				totalMapForJS.put("slabValue", slabValue);
-				totalMapForJS.put("xmlCode", siSection.getXmlCode());
+			}else{
+				log.info("create si section:capDoc null");
+				totalMapForJS.put("CapDoc", "CapDoc");
 			}
+			totalMapForJS.put("userAmount", null);
+			XmlCalculation xmlCal = new XmlCalculation();
+			long grossTotal = xmlCal.grossTotal((FinancialYear)request.getAttribute("financialYear"), inputBean);
+			log.info("create si section:call slab");
+			Double slabValue = findSlabOfGrossIncome(request, grossTotal);
+			totalMapForJS.put("grossTotal", grossTotal);
+			totalMapForJS.put("slabValue", slabValue);
+			totalMapForJS.put("xmlCode", siSection.getXmlCode());
 		}
-		log.info("i have found");
 		resultMap = ScreenCalculatorService.getScreenCalculations("ScheduleSI.js", request.getParameterMap(), totalMapForJS);
-		log.info("i have found");
 		return resultMap;
 	}
 	/**
@@ -236,7 +250,7 @@ public class ITRScheduleSI extends ITReturnComponent {
 	 * @return {@link Double} Value of Slab Rate.
 	 * */
 	public static Double findSlabOfGrossIncome(HstRequest request, long grossTotal){
-		log.info("i have found");
+		log.info("create si section:find slab");
 		MemberPersonalInformation o = (MemberPersonalInformation) request.getAttribute(MemberPersonalInformation.class.getSimpleName().toLowerCase());
 		FinancialYear fy=(FinancialYear)request.getAttribute("financialYear");
 		Map<String,Object> totalMapForJS = new HashMap<String, Object>();
@@ -254,17 +268,28 @@ public class ITRScheduleSI extends ITReturnComponent {
 		}else{
 			totalMapForJS.put("cbasscategory",o.getSex());
 		}
-		log.info("i have found");
 		Map<String,Object> resultMap = ScreenCalculatorService.getScreenCalculations("xmlCalculation.js", request.getParameterMap(), totalMapForJS);
-		log.info("i have found");
 		if(Double.parseDouble(resultMap.get("txtTax").toString())==0d){
 			return Double.parseDouble(resultMap.get("slabRate").toString());
 		}
 		return 0d;
 	}
-	/*public static Map<String , String> createInActiveScheduleSISection(HstRequest request ,List<ITRScheduleSISections> scheduleSIList){
-		Map<String , String > InActiveschesuleSI = new HashMap<String, String>();
-
-	}*/
-
+	
+	/**
+	 * This method is used to invoke the method of {@link ScheduleSIDocument} to save {@link ITRScheduleSISections}.
+	 * 
+	 * @param siDetailUp {@link ScheduleSIDocumentDetail} 
+	 * @param siSection {@link ITRScheduleSISections}
+	 * @param resultMap {@link Map}
+	 * 
+	 * @return {@link Void}
+	 * 
+	 * */
+	public static void invokeScheduleSIDetailDocMeth(ScheduleSIDocumentDetail siDetailUp,ITRScheduleSISections siSection,Map<String ,Object> resultMap){
+		siDetailUp.setAmount(Double.parseDouble(resultMap.get("userAmount").toString()));
+		siDetailUp.setSchedulesiSection(siSection.getXmlCode());
+		siDetailUp.setSpecialRate(siSection.getPercentRate()[siSection.getPercentRate().length-1]);
+		siDetailUp.setCalcRateIncome(Double.parseDouble(resultMap.get("taxOnIncome").toString()));
+		siDetailUp.setMinChargTaxIncome(Double.parseDouble(resultMap.get("minChargIncome").toString()));
+	}
 }
