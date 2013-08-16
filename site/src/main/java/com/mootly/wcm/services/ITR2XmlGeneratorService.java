@@ -96,6 +96,8 @@ import org.slf4j.LoggerFactory;
 
 import com.mootly.wcm.beans.AdjustmentOfLossesDoc;
 import com.mootly.wcm.beans.AdvanceTaxDocument;
+import com.mootly.wcm.beans.CapitalAssetDocument;
+import com.mootly.wcm.beans.ClubIncomeDocument;
 import com.mootly.wcm.beans.DeductionDocument;
 import com.mootly.wcm.beans.DetailOfTrustDocument;
 import com.mootly.wcm.beans.FinancialInterestDocument;
@@ -129,10 +131,12 @@ import com.mootly.wcm.model.deduction.DeductionHead;
 import com.mootly.wcm.model.deduction.DeductionSection;
 import com.mootly.wcm.model.schedules.y2012_2013.BroughtFwdLossesSchedules;
 import com.mootly.wcm.model.schedules.y2012_2013.CarryFwdLossesSchedules;
+import com.mootly.wcm.model.schedules.y2012_2013.ClubbingOfIncome;
 import com.mootly.wcm.model.schedules.y2012_2013.CreationInformation;
 import com.mootly.wcm.model.schedules.y2012_2013.CurrentYearLossesSchedules;
 import com.mootly.wcm.model.schedules.y2012_2013.DeductionVIASchedules;
 import com.mootly.wcm.model.schedules.y2012_2013.Donation80gSchedules;
+import com.mootly.wcm.model.schedules.y2012_2013.ExemptIncomeSchedule;
 import com.mootly.wcm.model.schedules.y2012_2013.FADetailsSchedule;
 import com.mootly.wcm.model.schedules.y2012_2013.ForeignIncomeScheduleFSI;
 import com.mootly.wcm.model.schedules.y2012_2013.Form16DocumentSchedules;
@@ -194,6 +198,8 @@ public class ITR2XmlGeneratorService  {
 		ForeignBankAccountDocument foreignBankAccountDocument = (ForeignBankAccountDocument) inputBeans.get(ForeignBankAccountDocument.class.getSimpleName().toLowerCase());
 		FinancialInterestDocument financialInterestDocument = (FinancialInterestDocument) inputBeans.get(FinancialInterestDocument.class.getSimpleName().toLowerCase());
 		ScheduleFiveADocument scheduleFiveADocument = (ScheduleFiveADocument) inputBeans.get(ScheduleFiveADocument.class.getSimpleName().toLowerCase());
+		CapitalAssetDocument capitalAssetDocument = (CapitalAssetDocument) inputBeans.get(CapitalAssetDocument.class.getSimpleName().toLowerCase());
+		ClubIncomeDocument clubIncomeDocument = (ClubIncomeDocument) inputBeans.get(ClubIncomeDocument.class.getSimpleName().toLowerCase());
 
 		ITR2 itr2 = new ObjectFactory().createITR2();
 		ITR itr = new ITR();
@@ -257,6 +263,12 @@ public class ITR2XmlGeneratorService  {
 
 		ScheduleFiveA scheduleFiveA = new ScheduleFiveA(scheduleFiveADocument);
 		itr2.setSchedule5A(scheduleFiveA.getScheduleFiveA(itr));
+
+		ExemptIncomeSchedule exemptIncomeSchedule = new ExemptIncomeSchedule(otherSourcesDocument, capitalAssetDocument);
+		itr2.setScheduleEI(exemptIncomeSchedule.getScheduleEI(itr));
+
+		ClubbingOfIncome clubbingOfIncome = new ClubbingOfIncome(clubIncomeDocument);
+		itr2.setScheduleSPI(clubbingOfIncome.getScheduleSPI(itr));
 
 		MemberVerification memberVerification = new MemberVerification(memberPersonalInformation);
 		itr2.setVerification(memberVerification.getVerification(itr));
