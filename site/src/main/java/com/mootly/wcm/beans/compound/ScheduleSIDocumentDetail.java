@@ -164,10 +164,10 @@ public class ScheduleSIDocumentDetail extends FlexibleDocument implements FormMa
 		IndianCurrencyHelper indianCurrencyHelper = new IndianCurrencyHelper();
 		if ( formMap.getField("amount") != null) {
 			log.info("this is uuid of form"+formMap.getField("amount").getValue());
-			if(formMap.getField("amount").getValue()!=null)
-				setAmount(Double.parseDouble(formMap.getField("amount").getValue()));
+			setAmount(Double.parseDouble(formMap.getField("amount").getValue()));
+			setMinChargTaxIncome(Double.parseDouble(formMap.getField("amount").getValue()));
 		}
-		if ( formMap.getField("schedulesiSection") != null) {
+		if (formMap.getField("schedulesiSection") != null) {
 			setSchedulesiSection(formMap.getField("schedulesiSection").getValue());
 			ITRScheduleSISections si=ITRScheduleSISections.getScheduleSISection(getSchedulesiSection());
 			if(si.getPercentRate().length == 1){
