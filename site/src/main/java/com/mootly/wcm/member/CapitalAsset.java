@@ -11,12 +11,12 @@
 
 package com.mootly.wcm.member;
 
-import java.util.Calendar;
 import org.hippoecm.hst.core.component.HstComponentException;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import com.mootly.wcm.annotations.AdditionalBeans;
 import com.mootly.wcm.annotations.ChildBean;
 import com.mootly.wcm.annotations.FormFields;
@@ -32,15 +32,14 @@ import com.mootly.wcm.components.ITReturnComponent;
 @PrimaryBean(primaryBeanClass=CapitalAssetDocument.class)
 @AdditionalBeans(additionalBeansToLoad={MemberPersonalInformation.class})
 @ChildBean(childBeanClass=CapitalAssetDetail.class)
-@FormFields(fieldNames={"date_acquisition","saleconsideration","costacquisition","date_sale","capitalgain",
-		"nameasset","costimprovement","sst_charge","asset_type","months","costtrnsfr","asset111","assetnt111","amtdeemed","balanc","losssec94","dedsec54",
-		"section48","unlstdsecurity"})
+@FormFields(fieldNames={"date_acquisition","saleconsideration","costacquisition","date_sale","capitalgain","nameasset","costimprovement","sst_charge",
+		"asset_type","months","costtrnsfr","asset111","assetnt111","amtdeemed","balanc","losssec94","dedsec54","section48","unlstdsecurity" ,"upto15st","upto15oth",
+		"upto16st","upto16oth","upto16decst","upto16decoth","upto31st","upto31oth","upto15Lt","upto15np","upto16Lt","upto16np","upto16decLt","uptodecnp",
+		"upto31Lt","upto31np","index","accural_info"})
 public class CapitalAsset extends ITReturnComponent {
 
 	private static final Logger log = LoggerFactory.getLogger(CapitalAsset.class);
 	CapitalAssetDetail childBean=null;
-	Calendar dt1=null;
-	Calendar dt2=null;
 	MemberPersonalInformation requiredBean=null;
 	public void doBeforeRender(HstRequest request, HstResponse response) {
 		// TODO Auto-generated method stub
