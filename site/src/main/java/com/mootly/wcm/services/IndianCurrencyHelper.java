@@ -6,6 +6,7 @@ import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 import javax.xml.datatype.DatatypeConfigurationException;
@@ -13,9 +14,12 @@ import javax.xml.datatype.DatatypeConstants;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
+import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.mootly.wcm.model.FinancialYear;
 
 public final class IndianCurrencyHelper {
 
@@ -104,7 +108,7 @@ public final class IndianCurrencyHelper {
 				bigStr = new BigInteger("0");
 				return bigStr;
 			}
-			return null;
+		return null;
 	}
 
 
@@ -130,41 +134,41 @@ public final class IndianCurrencyHelper {
 	}
 
 	/**
-	 * This Method is used to find difference between Assessment Year for Losses Calculation
-	 * @return String
+	 * This Method is used to find difference between Assessment Years for Losses Calculation
+	 * @return Financial Year, String
 	 * @param Integer
-	 *
+	 * Added by Dhananjay on 17-08-2013
 	 * */
-	public Integer diffBtwAssessmentYear(HstRequest request ,String AssessmentYear){
+	public int diffBtwAssessmentYear(FinancialYear financialYear,String AssessmentYear){
 
-        String CurrAssessmentYear = ((String) request.getAttribute("assessmentYear")).trim();
-        String subStrCurrAssessmentYear = CurrAssessmentYear.substring(5,9);
-        int intCurrAssessmentYear = Integer.parseInt(subStrCurrAssessmentYear);
+		String CurrAssessmentYear = financialYear.getDisplayAssessmentYear();
+		String subStrCurrAssessmentYear = CurrAssessmentYear.substring(5,9);
+		int intCurrAssessmentYear = Integer.parseInt(subStrCurrAssessmentYear);
 
-        String subStrAssessmentYear = AssessmentYear.substring(5,9);
-        int intAssessmentYear = Integer.parseInt(subStrAssessmentYear);
+		String subStrAssessmentYear = AssessmentYear.substring(5,9);
+		int intAssessmentYear = Integer.parseInt(subStrAssessmentYear);
 
-        int Difference = intCurrAssessmentYear - intAssessmentYear;
+		int Difference = intCurrAssessmentYear - intAssessmentYear;
 
 		return Difference;
 	}
 
 	/**
-	 * This method is used to Round Off the value 
-	 * 
+	 * This method is used to Round Off the value
+	 *
 	 * @param o {@link Object}
-	 * @return 
+	 * @return
 	 * */
 	public Object roundOff(Object o){
 		DecimalFormat df2 = new DecimalFormat("###");
 		return df2.format(o);
 	}
-	 public double getYearIndexValue(String year){
-		  ResourceBundle rb = ResourceBundle.getBundle("valueList_InflationIndex");
-		  if(rb.containsKey("valueList."+year+".cii")){
-		   log.info("it contains");
-		   return Double.parseDouble(rb.getString("valueList."+year+".cii"));
-		  }
-		  return Double.parseDouble(rb.getString("valueList.1990.cii"));//try to send default value so that no NullPointer Exception
-		 }
+	public double getYearIndexValue(String year){
+		ResourceBundle rb = ResourceBundle.getBundle("valueList_InflationIndex");
+		if(rb.containsKey("valueList."+year+".cii")){
+			log.info("it contains");
+			return Double.parseDouble(rb.getString("valueList."+year+".cii"));
+		}
+		return Double.parseDouble(rb.getString("valueList.1990.cii"));//try to send default value so that no NullPointer Exception
+	}
 }
