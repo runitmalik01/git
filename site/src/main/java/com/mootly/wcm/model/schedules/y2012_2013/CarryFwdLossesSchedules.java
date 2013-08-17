@@ -7,13 +7,19 @@ import in.gov.incometaxindiaefiling.y2012_2013.ScheduleCFL;
 import in.gov.incometaxindiaefiling.y2012_2013.ScheduleCFL.AdjTotBFLossInBFLA;
 import in.gov.incometaxindiaefiling.y2012_2013.ScheduleCFL.CurrentAYloss;
 import in.gov.incometaxindiaefiling.y2012_2013.ScheduleCFL.LossCFFromPrev2NdYearFromAY;
+import in.gov.incometaxindiaefiling.y2012_2013.ScheduleCFL.LossCFFromPrev3RdYearFromAY;
 import in.gov.incometaxindiaefiling.y2012_2013.ScheduleCFL.LossCFFromPrevYrToAY;
 import in.gov.incometaxindiaefiling.y2012_2013.ScheduleCFL.TotalLossCFSummary;
 import in.gov.incometaxindiaefiling.y2012_2013.ScheduleCFL.TotalOfBFLossesEarlierYrs;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.math.BigInteger;
 import java.util.List;
 import java.util.Map;
+
+import javax.xml.bind.annotation.XmlType;
 
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.core.component.HstRequest;
@@ -21,19 +27,22 @@ import org.hippoecm.hst.core.component.HstResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.ctc.wstx.util.StringUtil;
 import com.mootly.wcm.beans.AdjustmentOfLossesDoc;
 import com.mootly.wcm.beans.compound.AdjustmentOfLossesCom;
+import com.mootly.wcm.beans.compound.FormSixteenDetail;
 import com.mootly.wcm.model.FinancialYear;
 import com.mootly.wcm.services.IndianCurrencyHelper;
 import com.mootly.wcm.utils.XmlCalculation;
 
 public class CarryFwdLossesSchedules extends XmlCalculation {
 	private static Logger log = LoggerFactory.getLogger(DeductionVIASchedules .class);
+	private static Class classToCFL =null;
 
-	AdjustmentOfLossesDoc document = null;
+	AdjustmentOfLossesDoc adjustmentOfLossesDoc = null;
 
-	public CarryFwdLossesSchedules(AdjustmentOfLossesDoc document) {
-		this.document = document;
+	public CarryFwdLossesSchedules(AdjustmentOfLossesDoc adjustmentOfLossesDoc) {
+		this.adjustmentOfLossesDoc = adjustmentOfLossesDoc;
 	}
 
 
@@ -41,55 +50,96 @@ public class CarryFwdLossesSchedules extends XmlCalculation {
 	 * 2012-2013 Financial Year,HstResponse,HstRequest
 	 * @param itr
 	 * @return
+	 * @throws IllegalAccessException
+	 * @throws InstantiationException
+	 * @throws NoSuchMethodException
+	 * @throws SecurityException
+	 * @throws InvocationTargetException
+	 * @throws IllegalArgumentException
 	 */
 
-	public ScheduleCFL getScheduleCFL(ITR itr, FinancialYear financialYear,Map<String,HippoBean> inputBeans){
+	public ScheduleCFL getScheduleCFL(ITR itr, FinancialYear financialYear,Map<String,HippoBean> inputBeans) {
 
 		IndianCurrencyHelper indianCurrencyHelper = new IndianCurrencyHelper();
 		Map<String,Object> resultMapLosses = lossesCalc(financialYear,inputBeans);
 
 		ScheduleCFL scheduleCFL = new ScheduleCFL();
-		/*
-		List<AdjustmentOfLossesCom> lossesDetails = document.getAdjustmentOfLossesList();
-
-		// incomplete need to put some logic to make it short
-		LossCFFromPrevYrToAY lossCFFromPrevYrToAY = new LossCFFromPrevYrToAY();
-		LossCFFromPrev2NdYearFromAY lossCFFromPrev2NdYearFromAY = new LossCFFromPrev2NdYearFromAY();
-		for (AdjustmentOfLossesCom adjustmentOfLossesCom:lossesDetails)  {
-			CarryFwdLossDetail carryFwdLossDetail = new CarryFwdLossDetail();
-			carryFwdLossDetail.setDateOfFiling(indianCurrencyHelper.gregorianCalendar(adjustmentOfLossesCom.getDateOfFilingYear()));
-			if(adjustmentOfLossesCom.getNameOfHead().equals("House Property Loss")){
-				carryFwdLossDetail.setHPLossCF(indianCurrencyHelper.bigIntegerRound(adjustmentOfLossesCom.getAmount()));
-			}else
-				carryFwdLossDetail.setHPLossCF(new BigInteger("0"));
-			if(adjustmentOfLossesCom.getNameOfHead().equals("Long Term Capital Loss")){
-				carryFwdLossDetail.setLTCGLossCF(indianCurrencyHelper.bigIntegerRound(adjustmentOfLossesCom.getAmount()));
-			}else
-				carryFwdLossDetail.setLTCGLossCF(new BigInteger("0"));
-			if(adjustmentOfLossesCom.getNameOfHead().equals("Short Term Capital Loss")){
-				carryFwdLossDetail.setSTCGLossCF(indianCurrencyHelper.bigIntegerRound(adjustmentOfLossesCom.getAmount()));
-			}else
-				carryFwdLossDetail.setSTCGLossCF(new BigInteger("0"));
-			if(adjustmentOfLossesCom.getNameOfHead().equals("Owning and Maintaining Race Horses")){
-				carryFwdLossDetail.setOthSrcLossRaceHorseCF(indianCurrencyHelper.bigIntegerRound(adjustmentOfLossesCom.getAmount()));
-			}else
-				carryFwdLossDetail.setOthSrcLossRaceHorseCF(new BigInteger("0"));
-			carryFwdLossDetail.setBusLossOthThanSpecLossCF(new BigInteger("0"));
-			carryFwdLossDetail.setLossFrmSpecBusCF(new BigInteger("0"));
-
-			int AssessmentYearDifference = indianCurrencyHelper.diffBtwAssessmentYear(request, adjustmentOfLossesCom.getAssessmentYear());
-			if(AssessmentYearDifference==1){
-				lossCFFromPrevYrToAY.setCarryFwdLossDetail(carryFwdLossDetail);
-				scheduleCFL.setLossCFFromPrevYrToAY(lossCFFromPrevYrToAY);
+		if(adjustmentOfLossesDoc != null){
+			List<AdjustmentOfLossesCom> lossesDetails = adjustmentOfLossesDoc.getAdjustmentOfLossesList();
+			if ( lossesDetails != null && lossesDetails.size() > 0 ){
+				Map<String,List<AdjustmentOfLossesCom>> resultChildMap = lossesCFLChilds(financialYear, inputBeans);
+				for(String key : resultChildMap.keySet()){
+					CarryFwdLossDetail carryFwdLossDetail = invokeCarryFwdLossDetail(resultChildMap.get(key));
+					Class[] classesCFL = ScheduleCFL.class.getDeclaredClasses();
+					XmlType xmlType = ScheduleCFL.class.getAnnotation(XmlType.class);
+					String fields[] = xmlType.propOrder();
+					Class[] partypes = new Class[]{CarryFwdLossDetail.class};
+					try{
+						for(String field:fields){
+							if(field.equals("lossCFFromPrevYrToAY") && key.equals("1")){
+								for(Class cl:classesCFL){
+									if(cl.getSimpleName().equalsIgnoreCase(field)){
+										classToCFL = cl;
+									}
+								}
+								if(classToCFL==null){
+									classToCFL = Class.forName(field.replaceFirst("l", "L"));
+								}
+								Object o = classToCFL.newInstance();
+								Method meth = classToCFL.getMethod("setCarryFwdLossDetail", partypes);
+								Object[] parm = new Object[]{carryFwdLossDetail};
+								meth.invoke(o, parm);
+								Class[] partypesCFL = new Class[]{classToCFL};
+								Object[] parmCFL = new Object[]{o};
+								Method finMeth = ScheduleCFL.class.getMethod("set"+classToCFL.getSimpleName(), partypesCFL);
+								finMeth.invoke(scheduleCFL, parmCFL);
+							}
+							if(field.contains("lossCFFromPrev"+key)){
+								for(Class cl:classesCFL){
+									if(cl.getSimpleName().equalsIgnoreCase(field)){
+										classToCFL = cl;
+									}
+								}
+								if(classToCFL==null){
+									classToCFL = Class.forName(field.replaceFirst("l", "L"));
+								}
+								Object o = classToCFL.newInstance();
+								Method meth = classToCFL.getMethod("setCarryFwdLossDetail", partypes);
+								Object[] parm = new Object[]{carryFwdLossDetail};
+								meth.invoke(o, parm);
+								Class[] partypesCFL = new Class[]{classToCFL};
+								Object[] parmCFL = new Object[]{o};
+								Method finMeth = ScheduleCFL.class.getMethod("set"+classToCFL.getSimpleName(), partypesCFL);
+								finMeth.invoke(scheduleCFL, parmCFL);
+							}
+						}
+					}
+					catch (InstantiationException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (IllegalAccessException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (SecurityException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (NoSuchMethodException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (IllegalArgumentException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (InvocationTargetException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
 			}
-			if(AssessmentYearDifference==2){
-				lossCFFromPrev2NdYearFromAY.setCarryFwdLossDetail(carryFwdLossDetail);
-				scheduleCFL.setLossCFFromPrev2NdYearFromAY(lossCFFromPrev2NdYearFromAY);
-			}
-
 		}
-		//end
-		 */
+
 		TotalOfBFLossesEarlierYrs totalOfBFLossesEarlierYrs = new TotalOfBFLossesEarlierYrs();
 		LossSummaryDetail lossSummaryDetail = new LossSummaryDetail();
 		lossSummaryDetail.setBusLossOthThanSpecLossCF(new BigInteger("0"));
@@ -138,4 +188,32 @@ public class CarryFwdLossesSchedules extends XmlCalculation {
 		return scheduleCFL;
 	}
 
+	public CarryFwdLossDetail invokeCarryFwdLossDetail(List<AdjustmentOfLossesCom> childBean){
+		IndianCurrencyHelper indianCurrencyHelper = new IndianCurrencyHelper();
+		CarryFwdLossDetail carryFwdLossDetail = new CarryFwdLossDetail();
+
+		carryFwdLossDetail.setHPLossCF(new BigInteger("0"));
+		carryFwdLossDetail.setLTCGLossCF(new BigInteger("0"));
+		carryFwdLossDetail.setSTCGLossCF(new BigInteger("0"));
+		carryFwdLossDetail.setOthSrcLossRaceHorseCF(new BigInteger("0"));
+
+		for(AdjustmentOfLossesCom adjustmentOfLossesCom:childBean){
+			carryFwdLossDetail.setDateOfFiling(indianCurrencyHelper.gregorianCalendar(adjustmentOfLossesCom.getDateOfFilingYear()));
+			if(adjustmentOfLossesCom.getNameOfHead().equals("House Property Loss")){
+				carryFwdLossDetail.setHPLossCF(indianCurrencyHelper.bigIntegerRound(adjustmentOfLossesCom.getAmount()));
+			}
+			if(adjustmentOfLossesCom.getNameOfHead().equals("Long Term Capital Loss")){
+				carryFwdLossDetail.setLTCGLossCF(indianCurrencyHelper.bigIntegerRound(adjustmentOfLossesCom.getAmount()));
+			}
+			if(adjustmentOfLossesCom.getNameOfHead().equals("Short Term Capital Loss")){
+				carryFwdLossDetail.setSTCGLossCF(indianCurrencyHelper.bigIntegerRound(adjustmentOfLossesCom.getAmount()));
+			}
+			if(adjustmentOfLossesCom.getNameOfHead().equals("Owning and Maintaining Race Horses")){
+				carryFwdLossDetail.setOthSrcLossRaceHorseCF(indianCurrencyHelper.bigIntegerRound(adjustmentOfLossesCom.getAmount()));
+			}
+			carryFwdLossDetail.setBusLossOthThanSpecLossCF(new BigInteger("0"));
+			carryFwdLossDetail.setLossFrmSpecBusCF(new BigInteger("0"));
+		}
+		return carryFwdLossDetail;
+	}
 }
