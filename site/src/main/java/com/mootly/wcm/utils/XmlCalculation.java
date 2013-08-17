@@ -2,6 +2,7 @@ package com.mootly.wcm.utils;
 
 
 import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -12,6 +13,10 @@ import java.util.TimeZone;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+
 import com.mootly.wcm.annotations.AdditionalBeans;
 import com.mootly.wcm.beans.AdjustmentOfLossesDoc;
 import com.mootly.wcm.beans.AdvanceTaxDocument;
@@ -41,6 +46,7 @@ import com.mootly.wcm.services.ScreenCalculatorService;
 
 public class XmlCalculation implements XmlCalculationImplement {
 
+	private static final Logger log = LoggerFactory.getLogger(XmlCalculation.class);
 	//Declare global variables to use them in various Schedules
 	public long longsalarytotal=0;
 	public long houseIncome=0;
@@ -384,4 +390,34 @@ public class XmlCalculation implements XmlCalculationImplement {
 		return resultMap;
 	}
 
+	/**
+	 * This Method is used to put losses details in xml
+	 * @return Map
+	 * @param Finincial Year, Input Beans
+	 * Added on 17/08/2013 by Dhananjay
+	 * */
+
+	public Map<String,List<AdjustmentOfLossesCom>> lossesCFLChilds(FinancialYear financialYear,Map<String,HippoBean> inputBeans){
+
+		IndianCurrencyHelper indianCurrencyHelper = new IndianCurrencyHelper();
+		AdjustmentOfLossesDoc adjustmentOfLossesDoc = (AdjustmentOfLossesDoc) inputBeans.get(AdjustmentOfLossesDoc.class.getSimpleName().toLowerCase());
+		Map<String,List<AdjustmentOfLossesCom>> totalMapForJS = new HashMap<String, List<AdjustmentOfLossesCom>>();
+
+		List<AdjustmentOfLossesCom> lossesDetails = adjustmentOfLossesDoc.getAdjustmentOfLossesList();
+		if ( lossesDetails != null && lossesDetails.size() > 0 ){
+			for(AdjustmentOfLossesCom adjustmentOfLossesCom:lossesDetails){
+				List<AdjustmentOfLossesCom> childBean = new ArrayList<AdjustmentOfLossesCom>();
+				int diff = indianCurrencyHelper.diffBtwAssessmentYear(financialYear,adjustmentOfLossesCom.getAssessmentYear());
+				if(totalMapForJS.containsKey(String.valueOf(diff))&& (!totalMapForJS.isEmpty())){
+					childBean =  totalMapForJS.get(String.valueOf(diff));
+					childBean.add(adjustmentOfLossesCom);
+					totalMapForJS.put(String.valueOf(diff), childBean);
+				}else{
+					childBean.add(adjustmentOfLossesCom);
+					totalMapForJS.put(String.valueOf(diff), childBean);
+				}
+			}
+		}
+		return totalMapForJS;
+	}
 }
