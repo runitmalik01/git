@@ -14,6 +14,7 @@ import com.mootly.wcm.beans.HouseProperty;
 import com.mootly.wcm.beans.MemberPersonalInformation;
 import com.mootly.wcm.beans.OtherSourcesDocument;
 import com.mootly.wcm.beans.SalaryIncomeDocument;
+import com.mootly.wcm.beans.ScheduleSIDocument;
 import com.mootly.wcm.beans.SelfAssesmetTaxDocument;
 import com.mootly.wcm.beans.TaxReliefDocument;
 import com.mootly.wcm.beans.TdsFromothersDocument;
@@ -52,11 +53,12 @@ public class PartB_TTI {
 	AdvanceTaxDocument advanceTaxDocument = null;
 	SelfAssesmetTaxDocument selfAssesmetTaxDocument = null;
 	TdsFromothersDocument tdsFromothersDocument = null;
+	ScheduleSIDocument scheduleSIDocument= null;
 
 	public PartB_TTI(FormSixteenDocument formSixteenDocument, SalaryIncomeDocument salaryIncomeDocument, HouseProperty housePropertyDocument ,
 			OtherSourcesDocument otherSourcesDocument, DeductionDocument deductionDocument, MemberPersonalInformation memberPersonalInformation,
 			TaxReliefDocument taxReliefDocument, AdvanceTaxDocument advanceTaxDocument, SelfAssesmetTaxDocument selfAssesmetTaxDocument,
-			TdsFromothersDocument tdsFromothersDocument){
+			TdsFromothersDocument tdsFromothersDocument, ScheduleSIDocument scheduleSIDocument){
 		this.formSixteenDocument = formSixteenDocument;
 		this.salaryIncomeDocument = salaryIncomeDocument;
 		this.housePropertyDocument = housePropertyDocument;
@@ -67,13 +69,14 @@ public class PartB_TTI {
 		this.advanceTaxDocument = advanceTaxDocument;
 		this.selfAssesmetTaxDocument = selfAssesmetTaxDocument;
 		this.tdsFromothersDocument = tdsFromothersDocument;
+		this.scheduleSIDocument = scheduleSIDocument;
 	}
 
 	public PartBTTI getPartBTTI(ITR itr, FinancialYear financialYear, Map<String,HippoBean> inputBeans){
 
 		IndianCurrencyHelper indianCurrencyHelper = new IndianCurrencyHelper();
 		PartBTTI partBTTI = new PartBTTI();
-		PartB_TI partB_TI = new PartB_TI(formSixteenDocument, salaryIncomeDocument, housePropertyDocument, otherSourcesDocument, deductionDocument, memberPersonalInformation);
+		PartB_TI partB_TI = new PartB_TI(formSixteenDocument, salaryIncomeDocument, housePropertyDocument, otherSourcesDocument, deductionDocument, memberPersonalInformation, scheduleSIDocument);
 		PartBTI partBTI = partB_TI.getPartBTI(itr, financialYear, inputBeans);
 		Map<String,String[]> requestParameterMap = new HashMap<String, String[]>(); //not being used any where
 
@@ -112,7 +115,11 @@ public class PartB_TTI {
 
 		TaxPayableOnTI taxPayableOnTI = new TaxPayableOnTI();
 		taxPayableOnTI.setTaxAtNormalRatesOnAggrInc(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMap.get("txtTax").toString())));
-		taxPayableOnTI.setTaxAtSpecialRates(new BigInteger("0"));//waiting for input from ScheduleSI
+		if(scheduleSIDocument != null){
+			taxPayableOnTI.setTaxAtSpecialRates(indianCurrencyHelper.bigIntegerRound(scheduleSIDocument.getTotalCalTaxOnInc()));
+		}else
+			taxPayableOnTI.setTaxAtSpecialRates(new BigInteger("0"));
+
 		taxPayableOnTI.setTaxOnAggregateInc(new BigInteger("0"));//Don't know need to consult(i think this is for ITR4)
 		if(agricultureIncome > 5000){
 			if(hasTaxableInc){
