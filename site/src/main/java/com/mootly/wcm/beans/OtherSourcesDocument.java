@@ -9,8 +9,12 @@
 
 
 package com.mootly.wcm.beans;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.jcr.RepositoryException;
 import javax.jcr.Value;
@@ -23,10 +27,14 @@ import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.content.beans.standard.HippoMirror;
 
 import com.mootly.wcm.components.ITReturnComponent;
+import com.mootly.wcm.member.ITRScheduleSI;
+import com.mootly.wcm.model.FinancialYear;
+import com.mootly.wcm.model.ITRScheduleSISections;
+import com.mootly.wcm.services.ITRAdditionalScheduleService;
 
 @SuppressWarnings("unused")
 @Node(jcrType = "mootlywcm:othersourcesdocument")
-public class OtherSourcesDocument extends BaseDocument implements ContentNodeBinder, FormMapFiller {
+public class OtherSourcesDocument extends BaseDocument implements ContentNodeBinder, FormMapFiller,ITRAdditionalScheduleService {
 	static final public String NAMESPACE = "mootlywcm:othersourcesdocument";
 	static final public String NODE_NAME = "othersources";
 	private Double Gov_income;
@@ -672,5 +680,28 @@ public class OtherSourcesDocument extends BaseDocument implements ContentNodeBin
 	public <T extends HippoBean> void cloneBean(T sourceBean) {
 		// TODO Auto-generated method stub
 
+	}
+	/**
+	 * @return {@link Map} returning Map will have all section with their xmlCode as key and values of section will be in {@link Map} have 
+	 * 
+	 *  <br><b>"useAmount"</b> Income of user ,<br/> <b>"taxOnIncome"</b> calculated tax on income according to special Rate, 
+	 *  
+	 *  <br/><b>"minChargIncome"</b> minimum charge Income,
+	 * 
+	 * 
+	 *  
+	 * */
+	@Override
+	public Map<String, Map<String, Object>> getScheduleSIService(
+			FinancialYear financialYear, Map<String, HippoBean> inputBean) {
+		// TODO Auto-generated method stub
+		Map<String, Map<String, Object>> resultScheduleSISection = new HashMap<String, Map<String, Object>>();
+		List<ITRScheduleSISections> scheduleSISection = new ArrayList<ITRScheduleSISections>();
+		scheduleSISection = ITRScheduleSISections.getListOfSISection(OtherSourcesDocument.class.getSimpleName());
+		for(ITRScheduleSISections si:scheduleSISection){
+			Map<String, Object> resultMap = ITRScheduleSI.updateScheduleSI(financialYear, si, inputBean);
+			resultScheduleSISection.put(si.getXmlCode(), resultMap);
+		}
+		return resultScheduleSISection;
 	}
 }
