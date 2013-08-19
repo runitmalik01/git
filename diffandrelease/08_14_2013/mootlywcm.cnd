@@ -1,0 +1,422 @@
+<'hippo'='http://www.onehippo.org/jcr/hippo/nt/2.0.4'>
+<'hippostd'='http://www.onehippo.org/jcr/hippostd/nt/2.0'>
+<'hippostdpubwf'='http://www.onehippo.org/jcr/hippostdpubwf/nt/1.0'>
+<'hippotaxonomy'='http://www.hippoecm.org/hippotaxonomy/nt/1.2'>
+<'mootlywcm'='http://www.onehippo.org/jcr/mootlywcm/2.0'>
+<'relateddocs'='http://forge.onehippo.org/relateddocs/nt/1.1'>
+
+[mootlywcm:basedocument] > hippo:document, hippostd:publishableSummary, hippostd:taggable, hippostdpubwf:document
+  orderable
+
+[mootlywcm:ChangePasswordRequest] > hippostd:relaxed, mootlywcm:basedocument
+  orderable
+
+[mootlywcm:CompBankDetail] > hippo:compound, hippostd:relaxed
+  orderable
+
+[mootlywcm:CompTdsOthers] > hippo:compound, hippostd:relaxed
+  orderable
+
+[mootlywcm:ContactUs] > hippostd:relaxed, mootlywcm:basedocument
+  orderable
+
+[mootlywcm:DeductionScheduleGTableA] > hippo:compound, hippostd:relaxed
+  orderable
+
+[mootlywcm:DeductionScheduleGTableB] > hippo:compound, hippostd:relaxed
+  orderable
+
+[mootlywcm:DeductionScheduleGTableC] > hippo:compound, hippostd:relaxed
+  orderable
+
+[mootlywcm:ITReturnHome] > hippostd:relaxed, mootlywcm:basedocument
+  orderable
+
+[mootlywcm:ListTdsFromOthers] > hippostd:relaxed, mootlywcm:basedocument
+  orderable
+
+[mootlywcm:MemberBankDetail] > hippostd:relaxed, mootlywcm:basedocument
+  orderable
+
+[mootlywcm:MemberContactInformation] > hippostd:relaxed, mootlywcm:basedocument
+  orderable
+
+[mootlywcm:MemberDeductionScheduleC] > hippostd:relaxed, mootlywcm:basedocument
+  orderable
+
+[mootlywcm:MemberDeductionScheduleG] > hippostd:relaxed, mootlywcm:basedocument
+  orderable
+
+[mootlywcm:MemberDeductionScheduleGG] > hippostd:relaxed, mootlywcm:basedocument
+  orderable
+
+[mootlywcm:MemberDeductionScheduleIA] > hippostd:relaxed, mootlywcm:basedocument
+  orderable
+
+[mootlywcm:MemberDeductionScheduleIB] > hippostd:relaxed, mootlywcm:basedocument
+  orderable
+
+[mootlywcm:MemberDeductionScheduleIC] > hippostd:relaxed, mootlywcm:basedocument
+  orderable
+
+[mootlywcm:MemberDeductionScheduleVIA] > hippostd:relaxed, mootlywcm:basedocument
+  orderable
+
+[mootlywcm:MemberPersonalInformation] > hippostd:relaxed, mootlywcm:basedocument
+  orderable
+
+[mootlywcm:MemberRebateSectionEightyNine] > hippostd:relaxed, mootlywcm:basedocument
+  orderable
+
+[mootlywcm:MemberResidentialStatus] > hippostd:relaxed, mootlywcm:basedocument
+  orderable
+
+[mootlywcm:OtherSourceIncome] > hippostd:relaxed, mootlywcm:basedocument
+  orderable
+
+[mootlywcm:PackageSelectorDetails] > hippostd:relaxed, mootlywcm:basedocument
+  orderable
+
+[mootlywcm:PreviousYearsSalaryInfo] > hippo:compound, hippostd:relaxed
+  orderable
+
+[mootlywcm:PricingPlan] > hippostd:relaxed, mootlywcm:basedocument
+  orderable
+
+[mootlywcm:PricingPlanAdditionalServices] > hippo:compound, hippostd:relaxed
+  orderable
+
+[mootlywcm:PricingPlanDeductions] > hippo:compound, hippostd:relaxed
+  orderable
+
+[mootlywcm:PricingPlanIncome] > hippo:compound, hippostd:relaxed
+  orderable
+
+[mootlywcm:PricingPlanTaxes] > hippo:compound, hippostd:relaxed
+  orderable
+
+[mootlywcm:Service] > hippostd:relaxed, mootlywcm:basedocument
+  orderable
+
+[mootlywcm:SourceOfIncomeDocument] > hippostd:relaxed, mootlywcm:basedocument
+  orderable
+
+[mootlywcm:address] > hippo:compound, hippostd:relaxed
+
+[mootlywcm:adjustmentoflosses] > hippostd:relaxed, mootlywcm:basedocument
+  orderable
+
+[mootlywcm:adjustmentoflossescom] > hippo:compound, hippostd:relaxed
+  orderable
+
+[mootlywcm:adjustmentoflossesdoc] > hippostd:relaxed, mootlywcm:basedocument
+  orderable
+
+[mootlywcm:advancetaxdetail] > hippo:compound, hippostd:relaxed
+  orderable
+
+[mootlywcm:advancetaxdocument] > hippostd:relaxed, mootlywcm:basedocument
+  orderable
+
+[mootlywcm:advancetaxinfo] > hippo:compound, hippostd:relaxed
+  orderable
+
+[mootlywcm:advancetaxinformation] > hippostd:relaxed, mootlywcm:basedocument
+  orderable
+
+[mootlywcm:banner] > hippostd:relaxed, mootlywcm:basedocument
+  orderable
+
+[mootlywcm:capitalasset] > hippostd:relaxed, mootlywcm:basedocument
+  orderable
+
+[mootlywcm:capitalassetdetail] > hippo:compound, hippostd:relaxed
+  orderable
+
+[mootlywcm:capitalassetdocument] > hippostd:relaxed, mootlywcm:basedocument
+  orderable
+
+[mootlywcm:clubincomedetail] > hippo:compound, hippostd:relaxed
+  orderable
+
+[mootlywcm:clubincomedocument] > hippostd:relaxed, mootlywcm:basedocument
+  orderable
+
+[mootlywcm:comment] > hippostd:relaxed, mootlywcm:basedocument
+  orderable
+
+[mootlywcm:config] > hippo:document
+
+[mootlywcm:copyright] > hippo:compound, hippostd:relaxed
+
+[mootlywcm:costmodel] > hippo:compound, hippostd:relaxed
+  orderable
+
+[mootlywcm:deductiondocument] > hippostd:relaxed, mootlywcm:basedocument
+  orderable
+
+[mootlywcm:deductiondocumentdetail] > hippo:compound, hippostd:relaxed
+  orderable
+
+[mootlywcm:detailoftrustdetail] > hippo:compound, hippostd:relaxed
+  orderable
+
+[mootlywcm:detailoftrustdocument] > hippostd:relaxed, mootlywcm:basedocument
+  orderable
+
+[mootlywcm:document] > hippostd:relaxed, mootlywcm:basedocument
+  orderable
+
+[mootlywcm:emailconfig]
+  mixin
+  - mootlywcm:protocol (string)
+  - mootlywcm:username (string)
+  - mootlywcm:port (string)
+  - mootlywcm:password (string)
+  - mootlywcm:smtp (string)
+  - mootlywcm:ssl (boolean)
+
+[mootlywcm:emailmessage] > relateddocs:relatabledocs, mootlywcm:document
+  orderable
+
+[mootlywcm:emailtemplate] > relateddocs:relatabledocs, mootlywcm:document
+  orderable
+
+[mootlywcm:event] > relateddocs:relatabledocs, mootlywcm:document
+  orderable
+
+[mootlywcm:faq] > hippotaxonomy:classifiable, hippostd:relaxed, mootlywcm:basedocument
+  orderable
+
+[mootlywcm:filingstatus] > hippo:compound, hippostd:relaxed
+  orderable
+
+[mootlywcm:financialinterestdetail] > hippo:compound, hippostd:relaxed
+  orderable
+
+[mootlywcm:financialinterestdocument] > hippostd:relaxed, mootlywcm:basedocument
+  orderable
+
+[mootlywcm:foreignbankaccoundtetail] > hippo:compound, hippostd:relaxed
+  orderable
+
+[mootlywcm:foreignbankaccountdocument] > hippostd:relaxed, mootlywcm:basedocument
+  orderable
+
+[mootlywcm:foreignincomedetail] > hippo:compound, hippostd:relaxed
+  orderable
+
+[mootlywcm:foreignincomedocument] > hippostd:relaxed, mootlywcm:basedocument
+  orderable
+
+[mootlywcm:formfield] > hippo:compound, hippostd:relaxed
+  orderable
+
+[mootlywcm:formsixteen] > hippostd:relaxed, mootlywcm:basedocument
+  orderable
+
+[mootlywcm:formsixteendetail] > hippo:compound, hippostd:relaxed
+  orderable
+
+[mootlywcm:formsixteendocument] > hippostd:relaxed, mootlywcm:basedocument
+  orderable
+
+[mootlywcm:houseincome] > hippostd:relaxed, mootlywcm:basedocument
+  orderable
+
+[mootlywcm:houseincomedetail] > hippo:compound, hippostd:relaxed
+  orderable
+
+[mootlywcm:houseproperty] > hippostd:relaxed, mootlywcm:basedocument
+  orderable
+
+[mootlywcm:immovablepropertydetail] > hippo:compound, hippostd:relaxed
+  orderable
+
+[mootlywcm:immovablepropertydocument] > hippostd:relaxed, mootlywcm:basedocument
+  orderable
+
+[mootlywcm:incometaxformselectiondocument] > hippostd:relaxed, mootlywcm:basedocument
+  orderable
+
+[mootlywcm:incometaxreturn] > hippostd:relaxed, mootlywcm:basedocument
+  orderable
+
+[mootlywcm:interestdoc] > hippostd:relaxed, mootlywcm:basedocument
+  orderable
+
+[mootlywcm:interestdocument] > hippostd:relaxed, mootlywcm:basedocument
+  orderable
+
+[mootlywcm:onlinetaxreturn]
+  mixin
+  - mootlywcm:applicationstatus (string) = 'new' mandatory
+  - mootlywcm:submissiontime (date)
+  - mootlywcm:submissionstatus (string) = 'initial' mandatory
+
+[mootlywcm:itrone] > hippostd:relaxed, mootlywcm:basedocument, mootlywcm:onlinetaxreturn
+  orderable
+
+[mootlywcm:itrthree] > hippostd:relaxed, mootlywcm:basedocument, mootlywcm:onlinetaxreturn
+  orderable
+
+[mootlywcm:itrtwo] > hippostd:relaxed, mootlywcm:basedocument, mootlywcm:onlinetaxreturn
+  orderable
+
+[mootlywcm:job] > mootlywcm:document
+  orderable
+
+[mootlywcm:knowledgearticle] > relateddocs:relatabledocs, mootlywcm:document
+  orderable
+
+[mootlywcm:listAdvanceAndSelfAssesment] > hippostd:relaxed, mootlywcm:basedocument
+  orderable
+
+[mootlywcm:listtdsfromothers] > hippostd:relaxed, mootlywcm:basedocument
+  orderable
+
+[mootlywcm:memberdrivedocument] > hippostd:relaxed, mootlywcm:basedocument
+  orderable
+
+[mootlywcm:membersignupdocument] > hippostd:relaxed, mootlywcm:basedocument
+  orderable
+
+[mootlywcm:natureinvestmentdetail] > hippo:compound, hippostd:relaxed
+  orderable
+
+[mootlywcm:natureinvestmentdocument] > hippostd:relaxed, mootlywcm:basedocument
+  orderable
+
+[mootlywcm:newsitem] > relateddocs:relatabledocs, mootlywcm:document
+  orderable
+
+[mootlywcm:notificationitems] > hippostd:relaxed, mootlywcm:basedocument
+  orderable
+
+[mootlywcm:otherincomedocument] > hippostd:relaxed, mootlywcm:basedocument
+  orderable
+
+[mootlywcm:othersourcesdocument] > hippostd:relaxed, mootlywcm:basedocument
+  orderable
+
+[mootlywcm:payment] > hippostd:relaxed, mootlywcm:basedocument
+  orderable
+
+[mootlywcm:personalinformation] > hippo:compound, hippostd:relaxed
+  orderable
+
+[mootlywcm:product] > relateddocs:relatabledocs, mootlywcm:document
+  orderable
+
+[mootlywcm:rebatedocument] > hippostd:relaxed, mootlywcm:basedocument
+  orderable
+
+[mootlywcm:rebatedocumentninety] > hippostd:relaxed, mootlywcm:basedocument
+  orderable
+
+[mootlywcm:restapi] > hippostd:relaxed, mootlywcm:basedocument
+  orderable
+
+[mootlywcm:review] > hippostd:relaxed, mootlywcm:basedocument
+  orderable
+
+[mootlywcm:salaryincomedetail] > hippo:compound, hippostd:relaxed
+  orderable
+
+[mootlywcm:salaryincomedocument] > hippostd:relaxed, mootlywcm:basedocument
+  orderable
+
+[mootlywcm:screencalculation] > hippostd:relaxed, mootlywcm:basedocument
+  orderable
+
+[mootlywcm:screenconfig] > hippostd:relaxed, mootlywcm:basedocument
+  orderable
+
+[mootlywcm:screenfieldconfig] > hippo:compound, hippostd:relaxed
+  orderable
+
+[mootlywcm:securities] > hippostd:relaxed, mootlywcm:basedocument
+  orderable
+
+[mootlywcm:securitiescomp] > hippo:compound, hippostd:relaxed
+  orderable
+
+[mootlywcm:securitiesdetail] > hippo:compound, hippostd:relaxed
+  orderable
+
+[mootlywcm:securitiesdoc] > hippostd:relaxed, mootlywcm:basedocument
+  orderable
+
+[mootlywcm:securitiesdocument] > hippostd:relaxed, mootlywcm:basedocument
+  orderable
+
+[mootlywcm:selfassesmentinfo] > hippo:compound, hippostd:relaxed
+  orderable
+
+[mootlywcm:selfassesmenttaxdetail] > hippo:compound, hippostd:relaxed
+  orderable
+
+[mootlywcm:selfassesmenttaxdocument] > hippostd:relaxed, mootlywcm:basedocument
+  orderable
+
+[mootlywcm:sequence]
+  mixin
+  - mootlywcm:nextId (long) mandatory
+
+[mootlywcm:servicerequestdocument] > hippostd:relaxed, mootlywcm:basedocument
+  orderable
+
+[mootlywcm:servicerequestform] > hippostd:relaxed, mootlywcm:basedocument
+  orderable
+
+[mootlywcm:signingauthorityaccountdetail] > hippo:compound, hippostd:relaxed
+  orderable
+
+[mootlywcm:signingauthorityaccountdocument] > hippostd:relaxed, mootlywcm:basedocument
+  orderable
+
+[mootlywcm:simpledocument] > hippostd:relaxed, mootlywcm:basedocument
+  orderable
+
+[mootlywcm:taxreliefdetail] > hippo:compound, hippostd:relaxed
+  orderable
+
+[mootlywcm:taxreliefdocument] > hippostd:relaxed, mootlywcm:basedocument
+  orderable
+
+[mootlywcm:tcsdocument] > hippostd:relaxed, mootlywcm:basedocument
+  orderable
+
+[mootlywcm:tds] > hippostd:relaxed, mootlywcm:basedocument
+  orderable
+
+[mootlywcm:tdsfromothersdetail] > hippo:compound, hippostd:relaxed
+  orderable
+
+[mootlywcm:tdsfromothersdocument] > hippostd:relaxed, mootlywcm:basedocument
+  orderable
+
+[mootlywcm:tdsfromothersinfo] > hippostd:relaxed, mootlywcm:basedocument
+  orderable
+
+[mootlywcm:tdsfromsalarydetail] > hippo:compound, hippostd:relaxed
+  orderable
+
+[mootlywcm:tdsfromsalarydocument] > hippostd:relaxed, mootlywcm:basedocument
+  orderable
+
+[mootlywcm:tdsfromsalaryinformation] > hippostd:relaxed, mootlywcm:basedocument
+  orderable
+
+[mootlywcm:tdsothersdetail] > hippo:compound, hippostd:relaxed
+  orderable
+
+[mootlywcm:tdssalary] > hippo:compound, hippostd:relaxed
+  orderable
+
+[mootlywcm:testTdsothers] > hippostd:relaxed, mootlywcm:basedocument
+  orderable
+
+[mootlywcm:vendorsignupdocument] > hippostd:relaxed, mootlywcm:basedocument
+  orderable
+
