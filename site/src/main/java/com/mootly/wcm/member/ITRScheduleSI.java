@@ -60,6 +60,7 @@ import com.mootly.wcm.utils.XmlCalculation;
 public class ITRScheduleSI extends ITReturnComponent {
 
 	private static final Logger log = LoggerFactory.getLogger(ITRScheduleSI.class);
+	public static Map<String,String[]> requestParameterMap=new HashMap<String,String[]>();
 
 	@Override
 	public void doBeforeRender(HstRequest request, HstResponse response) {
@@ -92,42 +93,56 @@ public class ITRScheduleSI extends ITReturnComponent {
 			PAGE_ACTION pageAction) {
 		// TODO Auto-generated method stub
 		super.afterSave(request, map, pageAction);
+		Session persistableSession = null;
+		FinancialYear fy=(FinancialYear)request.getAttribute("financialYear");
+		Map<String, HippoBean> inputBean = new HashMap<String, HippoBean>();
+		inputBean.put(MemberPersonalInformation.class.getSimpleName().toLowerCase(), (HippoBean)request.getAttribute(MemberPersonalInformation.class.getSimpleName().toLowerCase()));
+		inputBean.put(OtherSourcesDocument.class.getSimpleName().toLowerCase(), (HippoBean)request.getAttribute(OtherSourcesDocument.class.getSimpleName().toLowerCase()));
+		inputBean.put(SalaryIncomeDocument.class.getSimpleName().toLowerCase(), (HippoBean)request.getAttribute(SalaryIncomeDocument.class.getSimpleName().toLowerCase()));
+		inputBean.put(FormSixteenDocument.class.getSimpleName().toLowerCase(), (HippoBean)request.getAttribute(FormSixteenDocument.class.getSimpleName().toLowerCase()));
+		inputBean.put(HouseProperty.class.getSimpleName().toLowerCase(), (HippoBean)request.getAttribute(HouseProperty.class.getSimpleName().toLowerCase()));
+		inputBean.put(CapitalAssetDocument.class.getSimpleName().toLowerCase(), (HippoBean)request.getAttribute(CapitalAssetDocument.class.getSimpleName().toLowerCase()));
+		
+		try {
+			persistableSession = getPersistableSession(request);
+		} catch (RepositoryException e) {
+			// TODO Auto-generated catch block
+			log.error("Error while get JCR Repository Session",e);
+		}
 		//Schedule SI section depends upon Capital Gain and Other Sources if some one not does not Request for this section doc then we can create SI doc by call method
-		log.info("create schedule SI Document");
-		createInActiveScheduleSISection(request, map); 
+		log.info("Create schedule SI Document:");
+		
+		createInActiveScheduleSISection(persistableSession, inputBean, fy); 
 	}
+	
 	/**
 	 * This method is used to create all inactive schedule SI sections.
 	 * 
-	 * @param request {@link HstRequest}
-	 * @param formMap {@link FormMap}
+	 * @param persistableSession {@link Session} JCR Session to get WorkFlow.
+	 * @param inputBean {@link Map} Map contain all necessary Document Beans.
+	 * @param fy {@link FinancialYear} Current Active Financial Year.
 	 * 
 	 * @return void
 	 * */
-	public void createInActiveScheduleSISection(HstRequest request, FormMap formMap){
+	public void createInActiveScheduleSISection(Session persistableSession,Map<String, HippoBean> inputBean,FinancialYear fy){
 		try {
-			Session persistableSession = getPersistableSession(request);
 			WorkflowPersistenceManager wpm = getWorkflowPersistenceManager(persistableSession);
 			wpm.setWorkflowCallbackHandler(new FullReviewedWorkflowCallbackHandler());
 			ScheduleSIDocument siDoc = (ScheduleSIDocument) wpm.getObject(getAbsoluteBasePathToReturnDocuments()+"/"+ScheduleSIDocument.class.getSimpleName().toLowerCase());
 			if(siDoc==null){
-				log.info("Dont have Schedule SI Document:Creating it");
 				String createdDocPath = wpm.createAndReturn(getAbsoluteBasePathToReturnDocuments(), ScheduleSIDocument.NAMESPACE, ScheduleSIDocument.NODE_NAME, true);
 				siDoc = (ScheduleSIDocument) wpm.getObject(createdDocPath);
 			}
-			List<ITRScheduleSISections> scheduleSIList = createInActiveScheduleSIList(request);
+			List<ITRScheduleSISections> scheduleSIList = ITRScheduleSISections.createInActiveScheduleSIList(inputBean);
 			if(!scheduleSIList.isEmpty()){
 				for(ITRScheduleSISections siSection:scheduleSIList){
-					log.info("create si section");
-					Map<String, Object> resultMap = updateScheduleSI(request, siSection);
-					String sectionChildUUID = findPresentOfScheduleSI(request, siDoc, siSection);
+					Map<String, Object> resultMap = updateScheduleSI(fy, siSection, inputBean);
+					String sectionChildUUID = findPresentOfScheduleSI(siDoc, siSection);
 					if(StringUtils.isNotBlank(sectionChildUUID)){
-						log.info("create si section:update child");
 						ScheduleSIDocumentDetail siDetailUp = (ScheduleSIDocumentDetail) wpm.getObjectByUuid(sectionChildUUID);
 						invokeScheduleSIDetailDocMeth(siDetailUp, siSection, resultMap);
 						siDoc.update(siDetailUp);
 					}else{					
-						log.info("create si section:add child");
 						ScheduleSIDocumentDetail childDoc = new ScheduleSIDocumentDetail();
 						invokeScheduleSIDetailDocMeth(childDoc, siSection, resultMap);
 						siDoc.add(childDoc);
@@ -136,9 +151,6 @@ public class ITRScheduleSI extends ITReturnComponent {
 				wpm.update(siDoc);
 			}
 
-		} catch (RepositoryException e) {
-			// TODO Auto-generated catch block
-			log.error("Error while get JCR Repository Session",e);
 		} catch (ObjectBeanManagerException e) {
 			// TODO Auto-generated catch block
 			log.error("Error while get Object at specified path",e);
@@ -147,17 +159,17 @@ public class ITRScheduleSI extends ITReturnComponent {
 			log.error("Error while create base path to get document",e);
 		}
 	}
+	
 	/**
 	 * This method is used to find child of {@link ScheduleSIDocument} by their xmlCode.
 	 * 
-	 * @param request {@link HstRequest}
 	 * @param parentBean {@link HippoBean} Bean document of {@link ScheduleSIDocument}
 	 * @param siSection {@link ITRScheduleSISections} InActive Schedule SI Section
 	 * 
 	 * @return {@link String} return UUID of child Doc to update.
 	 * 
 	 * */
-	public static String findPresentOfScheduleSI(HstRequest request,HippoBean parentBean,ITRScheduleSISections siSection){
+	public static String findPresentOfScheduleSI(HippoBean parentBean,ITRScheduleSISections siSection){
 		ScheduleSIDocument siDocument = (ScheduleSIDocument) parentBean;
 		if(!siDocument.getScheduleSiDetailList().isEmpty()){
 			for(ScheduleSIDocumentDetail siDetail:siDocument.getScheduleSiDetailList()){
@@ -168,47 +180,20 @@ public class ITRScheduleSI extends ITReturnComponent {
 		}
 		return null;
 	}
-
-	/**
-	 * This method is used to create List of all inactive Schedule SI Section.
-	 * 
-	 * @param request {@link HstRequest}
-	 * 
-	 * @return {@link List} List<ITRScheduleSISection> of all schedule SI section 
-	 * 
-	 * */
-	public static List<ITRScheduleSISections> createInActiveScheduleSIList(HstRequest request){
-		MemberPersonalInformation o = (MemberPersonalInformation) request.getAttribute(MemberPersonalInformation.class.getSimpleName().toLowerCase());
-		List<ITRScheduleSISections> scheduleSIList = new ArrayList<ITRScheduleSISections>();
-		for(ITRScheduleSISections schSISection:ITRScheduleSISections.values()){
-			if(!schSISection.isActive() && schSISection != ITRScheduleSISections.UNKNOWN){
-				for(ResidentStatus rs:schSISection.getResidentialStatus()){
-					if(rs.toString().equalsIgnoreCase(o.getResidentCategory())){
-						scheduleSIList.add(schSISection);
-					}
-				}							
-			}
-		}
-		return scheduleSIList;
-	}
+	
 	/**
 	 * This method is used to create Schedule SI section.
 	 * 
-	 * @param request {@link HstRequest}
+	 * @param fy {@link FinancialYear} Current Active Financial Year.
 	 * @param siSection {@link ITRScheduleSISections}
+	 * @param inputBean {@link Map} Map contain all necessary Document Beans.
 	 * 
 	 * @return {@link Map} Result Map having values for schedule SI section.
 	 * 
 	 * */
-	public static Map<String, Object> updateScheduleSI(HstRequest request,ITRScheduleSISections siSection){
-		log.info("create si section:start");
-		OtherSourcesDocument Osd=(OtherSourcesDocument)request.getAttribute(OtherSourcesDocument.class.getSimpleName().toLowerCase());
-		CapitalAssetDocument CapDoc = (CapitalAssetDocument) request.getAttribute(CapitalAssetDocument.class.getSimpleName().toLowerCase());
-		Map<String, HippoBean> inputBean = new HashMap<String, HippoBean>();
-		inputBean.put(OtherSourcesDocument.class.getSimpleName().toLowerCase(), (HippoBean)request.getAttribute(OtherSourcesDocument.class.getSimpleName().toLowerCase()));
-		inputBean.put(SalaryIncomeDocument.class.getSimpleName().toLowerCase(), (HippoBean)request.getAttribute(SalaryIncomeDocument.class.getSimpleName().toLowerCase()));
-		inputBean.put(FormSixteenDocument.class.getSimpleName().toLowerCase(), (HippoBean)request.getAttribute(FormSixteenDocument.class.getSimpleName().toLowerCase()));
-		inputBean.put(HouseProperty.class.getSimpleName().toLowerCase(), (HippoBean)request.getAttribute(HouseProperty.class.getSimpleName().toLowerCase()));
+	public static Map<String, Object> updateScheduleSI(FinancialYear fy,ITRScheduleSISections siSection,Map<String, HippoBean> inputBean){
+		OtherSourcesDocument Osd=(OtherSourcesDocument)inputBean.get(OtherSourcesDocument.class.getSimpleName().toLowerCase());
+		CapitalAssetDocument CapDoc = (CapitalAssetDocument) inputBean.get(CapitalAssetDocument.class.getSimpleName().toLowerCase());
 		Map<String,Object> totalMapForJS = new HashMap<String, Object>();
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		totalMapForJS.put("spRate", siSection.getPercentRate()[siSection.getPercentRate().length-1]);
@@ -222,37 +207,33 @@ public class ITRScheduleSI extends ITReturnComponent {
 			}
 			totalMapForJS.put("CapDoc", "CapDoc");
 		}else{
-			log.info("create si section:set para");
 			if(CapDoc!=null){
 				totalMapForJS.put("CapDoc", CapDoc);
 			}else{
-				log.info("create si section:capDoc null");
 				totalMapForJS.put("CapDoc", "CapDoc");
 			}
 			totalMapForJS.put("userAmount", null);
 			XmlCalculation xmlCal = new XmlCalculation();
-			long grossTotal = xmlCal.grossTotal((FinancialYear)request.getAttribute("financialYear"), inputBean);
-			log.info("create si section:call slab");
-			Double slabValue = findSlabOfGrossIncome(request, grossTotal);
+			long grossTotal = xmlCal.grossTotal(fy, inputBean);
+			Double slabValue = findSlabOfGrossIncome(fy, inputBean, grossTotal);
 			totalMapForJS.put("grossTotal", grossTotal);
 			totalMapForJS.put("slabValue", slabValue);
 			totalMapForJS.put("xmlCode", siSection.getXmlCode());
 		}
-		resultMap = ScreenCalculatorService.getScreenCalculations("ScheduleSI.js", request.getParameterMap(), totalMapForJS);
+		resultMap = ScreenCalculatorService.getScreenCalculations("ScheduleSI.js", requestParameterMap, totalMapForJS);
 		return resultMap;
 	}
 	/**
 	 * This method is used to Find slab Rate if there is no tax on Gross Income.
 	 * 
-	 * @param request {@link HstRequest}
+	 * @param fy {@link FinancialYear} Current Active Financial Year.
+	 * @param inputBean {@link Map} Map contain all necessary Document Beans.
 	 * @param grossTotal {@link Long}
 	 * 
-	 * @return {@link Double} Value of Slab Rate.
+	 * @return {@link Double} Value of Slab Amount.
 	 * */
-	public static Double findSlabOfGrossIncome(HstRequest request, long grossTotal){
-		log.info("create si section:find slab");
-		MemberPersonalInformation o = (MemberPersonalInformation) request.getAttribute(MemberPersonalInformation.class.getSimpleName().toLowerCase());
-		FinancialYear fy=(FinancialYear)request.getAttribute("financialYear");
+	public static Double findSlabOfGrossIncome(FinancialYear fy,Map<String, HippoBean> inputBean, long grossTotal){
+		MemberPersonalInformation o = (MemberPersonalInformation) inputBean.get(MemberPersonalInformation.class.getSimpleName().toLowerCase());
 		Map<String,Object> totalMapForJS = new HashMap<String, Object>();
 		totalMapForJS.put("cbassyear",fy.getDisplayAssessmentYear());
 		totalMapForJS.put("cbasstype", o.getFilingStatus());
@@ -268,8 +249,9 @@ public class ITRScheduleSI extends ITReturnComponent {
 		}else{
 			totalMapForJS.put("cbasscategory",o.getSex());
 		}
-		Map<String,Object> resultMap = ScreenCalculatorService.getScreenCalculations("xmlCalculation.js", request.getParameterMap(), totalMapForJS);
-		if(Double.parseDouble(resultMap.get("txtTax").toString())==0d){
+		Map<String,Object> resultMap = ScreenCalculatorService.getScreenCalculations("xmlCalculation.js", requestParameterMap, totalMapForJS);
+		//If Except than RES then there will no adjustment in Income of User.
+		if(Double.parseDouble(resultMap.get("txtTax").toString())==0d && o.getResidentCategory().equalsIgnoreCase(ResidentStatus.RES.toString())){
 			return Double.parseDouble(resultMap.get("slabRate").toString());
 		}
 		return 0d;
