@@ -216,6 +216,10 @@
     $('document').ready(function(){
       if ($("#myModal").length >0) $("#myModal").modal();
       
+      $('#siSave').on('click',function(){
+         $('#scheduleSI').submit();
+      });
+      
       $('.select-drop').on('change',function(){
 	     if($(this).val()!=null){
 		     $('#amount').show();
