@@ -30,7 +30,9 @@ import static com.mootly.wcm.utils.Constants.NT_PERSONAL_INFO_LINK;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.TreeMap;
 
@@ -51,13 +53,17 @@ import com.mootly.wcm.annotations.TagAsTaxDataProvider.TaxDataProviderType;
 import com.mootly.wcm.beans.compound.FormSixteenDetail;
 import com.mootly.wcm.beans.compound.PersonalInformation;
 import com.mootly.wcm.beans.compound.CapitalAssetDetail;
+import com.mootly.wcm.member.ITRScheduleSI;
+import com.mootly.wcm.model.FinancialYear;
+import com.mootly.wcm.model.ITRScheduleSISections;
+import com.mootly.wcm.services.ITRAdditionalScheduleService;
 import com.mootly.wcm.utils.ValueListService;
 import com.mootly.wcm.utils.ValueListServiceImpl;
 
 @SuppressWarnings("unused")
 @Node(jcrType = "mootlywcm:capitalassetdocument")
 @TagAsTaxDataProvider(type=TaxDataProviderType.INCOME)
-public class CapitalAssetDocument extends BaseDocument implements ContentNodeBinder,FormMapFiller,CompoundChildUpdate {
+public class CapitalAssetDocument extends BaseDocument implements ContentNodeBinder,FormMapFiller,CompoundChildUpdate,ITRAdditionalScheduleService {
 	static final public String NAMESPACE = "mootlywcm:capitalassetdocument";
 	static final public String NODE_NAME = "capitalassetdocument";
 	final String PROP_DETAIL_BEAN="mootlywcm:capitalassetdetail";
@@ -218,5 +224,18 @@ public class CapitalAssetDocument extends BaseDocument implements ContentNodeBin
 			CapitalAssetDetail source =(CapitalAssetDetail) child;
 			addCapitalAssetDetail(source);
 		}		
+	}
+
+	@Override
+	public Map<String, Map<String, Object>> getScheduleSIService(FinancialYear financialYear, Map<String ,HippoBean> inputBean) {
+		// TODO Auto-generated method stub
+		Map<String, Map<String, Object>> resultScheduleSISection = new HashMap<String, Map<String, Object>>();
+		List<ITRScheduleSISections> scheduleSISection = new ArrayList<ITRScheduleSISections>();
+		scheduleSISection = ITRScheduleSISections.getListOfSISection(CapitalAssetDocument.class.getSimpleName());
+		for(ITRScheduleSISections si:scheduleSISection){
+			Map<String, Object> resultMap = ITRScheduleSI.updateScheduleSI(financialYear, si, inputBean);
+			resultScheduleSISection.put(si.getXmlCode(), resultMap);
+		}
+		return resultScheduleSISection;
 	}
 }
