@@ -395,6 +395,21 @@
 						</div>
 					</div>
 					<div class="row-fluid show-grid">
+						<div class="span9 lt" >
+							<div class="rowlabel">
+								<label for="panifded"><small>In case of
+										deduction u/s 54GB, furnish PAN of the company </small> </label>
+							</div>
+						</div>
+						<div class="span3 lt">
+							<div class="rowlabel">
+								<input type="text" name="panifded" id="panifded"
+									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
+									<c:out value="${childBean.pan}"/></c:if>" />
+							</div>
+						</div>
+					</div>
+					<div class="row-fluid show-grid">
 						<div class="span9">
 							<div class="rowlabel">
 								<label for="capitalgain"><small>Capital Gain </small> </label>
@@ -638,25 +653,23 @@
 								<td><input type="text" name="upto15st" id="upto15st"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
 									<c:out value="${childBean.upto15St}"/></c:if>"
-									class="decimal" maxlength="15">
-								</td>
+									class="decimal" maxlength="15"></td>
 								<td><input type="text" name="upto15oth" id="upto15oth"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
 									<c:out value="${childBean.upto15Oth}"/></c:if>"
-									class="decimal" maxlength="15">
-								</td>
-							<tr>
+									class="decimal" maxlength="15"></td>
+								<tr>
 								<td>ii- 16/9 to 15/12(ii)</td>
 								<td><input type="text" name="upto16st" id="upto16st"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
 									<c:out value="${childBean.upto16St}"/></c:if>"
-									class="decimal" maxlength="15">
-								</td>
+									class="decimal" maxlength="15"></td>
 								<td><input type="text" name="upto16oth" id="upto16oth"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
 									<c:out value="${childBean.upto16Oth}"/></c:if>"
 									class="decimal" maxlength="15">
 								</td>
+							
 							<tr>
 
 								<td>iii- 16/12 to 15/3(iii)</td>
@@ -670,6 +683,7 @@
 									<c:out value="${childBean.upto16DecOth}"/></c:if>"
 									class="decimal" id="upto16decoth" maxlength="15">
 								</td>
+							
 							<tr>
 								<td>iv- 16/3 to 31/3(iv)</td>
 								<td><input type="text" name="upto31st" id="upto31st"
@@ -700,6 +714,7 @@
 									<c:out value="${childBean.upto15Np}"/></c:if>"
 									class="decimal" maxlength="15">
 								</td>
+							
 							<tr>
 								<td>ii- 16/9 to 15/12(ii)</td>
 								<td><input type="text" name="upto16Lt" id="upto16Lt"
@@ -712,6 +727,7 @@
 									<c:out value="${childBean.upto16Np}"/></c:if>"
 									class="decimal" maxlength="15">
 								</td>
+							
 							<tr>
 								<td>iii- 16/12 to 15/3(iii)</td>
 								<td><input type="text" name="upto16decLt" id="upto16decLt"
@@ -724,6 +740,7 @@
 								<c:out value="${childBean.uptodecNp}"/></c:if>"
 									class="decimal" maxlength="15">
 								</td>
+							
 							<tr>
 								<td>iv- 16/3 to 31/3(iv)</td>
 								<td><input type="text" name="upto31Lt" id="upto31Lt"
@@ -873,6 +890,7 @@
 				$('#fd_set_gain').show();
 				$(".st").hide();
 				$(".lt").show();
+
 			}
 		}
 		function dstrToUTC(ds) {
