@@ -13,9 +13,12 @@ import com.mootly.wcm.beans.HouseProperty;
 import com.mootly.wcm.beans.MemberPersonalInformation;
 import com.mootly.wcm.beans.OtherSourcesDocument;
 import com.mootly.wcm.beans.SalaryIncomeDocument;
+import com.mootly.wcm.beans.ScheduleSIDocument;
 import com.mootly.wcm.beans.compound.FormSixteenDetail;
 import com.mootly.wcm.beans.compound.SalaryIncomeDetail;
+import com.mootly.wcm.beans.compound.ScheduleSIDocumentDetail;
 import com.mootly.wcm.model.FinancialYear;
+import com.mootly.wcm.model.ITRScheduleSISections;
 import com.mootly.wcm.services.IndianCurrencyHelper;
 import com.mootly.wcm.utils.XmlCalculation;
 
@@ -43,15 +46,18 @@ public class PartB_TI {
 	OtherSourcesDocument otherSourcesDocument = null;
 	DeductionDocument deductionDocument = null;
 	MemberPersonalInformation memberPersonalInformation = null;
+	ScheduleSIDocument scheduleSIDocument= null;
 
 	public PartB_TI(FormSixteenDocument formSixteenDocument, SalaryIncomeDocument salaryIncomeDocument, HouseProperty housePropertyDocument ,
-			OtherSourcesDocument otherSourcesDocument, DeductionDocument deductionDocument, MemberPersonalInformation memberPersonalInformation){
+			OtherSourcesDocument otherSourcesDocument, DeductionDocument deductionDocument, MemberPersonalInformation memberPersonalInformation,
+			ScheduleSIDocument scheduleSIDocument){
 		this.formSixteenDocument = formSixteenDocument;
 		this.salaryIncomeDocument = salaryIncomeDocument;
 		this.housePropertyDocument = housePropertyDocument;
 		this.otherSourcesDocument = otherSourcesDocument;
 		this.deductionDocument = deductionDocument;
 		this.memberPersonalInformation = memberPersonalInformation;
+		this.scheduleSIDocument = scheduleSIDocument;
 	}
 
 	public PartBTI getPartBTI(ITR itr, FinancialYear financialYear,Map<String,HippoBean> inputBeans){
@@ -166,7 +172,8 @@ public class PartB_TI {
 		//GrossTotalIncome - Deduction
 		partBTI.setTotalIncome(partBTI.getGrossTotalIncome().subtract(partBTI.getDeductionsUnderScheduleVIA()));
 
-		partBTI.setIncChargeTaxSplRate111A112(new BigInteger("0"));//Waiting for Schedule SI
+		Double incChargeTaxSplRate111A112 = getSumOfScheduleSIisInActiveSection(inputBeans);
+		partBTI.setIncChargeTaxSplRate111A112(indianCurrencyHelper.bigIntegerRound(incChargeTaxSplRate111A112));//Waiting for Schedule SI
 
 		//Agriculture Income taking from Other Income Screen
 		partBTI.setNetAgricultureIncomeOrOtherIncomeForRate(indianCurrencyHelper.bigIntegerRound(agricultureIncome));
@@ -182,5 +189,23 @@ public class PartB_TI {
 		partBTI.setLossesOfCurrentYearCarriedFwd(indianCurrencyHelper.bigIntegerRound(totalCurrYrLoss));
 
 		return partBTI;
+	}
+
+	public static Double getSumOfScheduleSIisInActiveSection(Map<String , HippoBean> inputBean){
+		Double sumInActiveSection = 0d;
+		ScheduleSIDocument siDoc = (ScheduleSIDocument) inputBean.get(ScheduleSIDocument.class.getSimpleName().toLowerCase());
+		List<ITRScheduleSISections> scheduleSIList = ITRScheduleSISections.createInActiveScheduleSIList(inputBean);
+		if(siDoc!=null){
+			if(siDoc.getScheduleSiDetailList() != null && siDoc.getScheduleSiDetailList().size() !=0){
+				for(ScheduleSIDocumentDetail siDetail:siDoc.getScheduleSiDetailList()){
+					for(ITRScheduleSISections siSection:scheduleSIList){
+						if(siSection.getXmlCode().equals(siDetail.getSchedulesiSection())){
+							sumInActiveSection = sumInActiveSection + siDetail.getAmount();
+						}
+					}
+				}
+			}
+		}
+		return sumInActiveSection;
 	}
 }
