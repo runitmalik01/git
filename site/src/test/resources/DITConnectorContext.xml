@@ -30,16 +30,20 @@
 	<bean id="SOAPNameSpaceContext" class="com.mootly.wcm.services.ditws.soap.SOAPNameSpaceContext">
 		<constructor-arg index="0">
 			<map>
+			    <entry key="soapenv" value="http://schemas.xmlsoap.org/soap/envelope/"/>
 				<entry key="v" value="http://incometaxindiaefiling.gov.in/ditws/ITRVStatus/v_1_0"/>
 				<entry key="pan" value="http://panws.dit.tcs.com/"/>
 				<entry key="typ" value="http://panws.dit.tcs.com/types/"/>
+				<entry key="mas" value="http://incometaxindiaefiling.gov.in/master"/>
 			</map>
 		</constructor-arg>
 		<constructor-arg index="1">
 			<map>
+			    <entry value="soapenv" key="http://schemas.xmlsoap.org/soap/envelope/"/>
 				<entry value="v" key="http://incometaxindiaefiling.gov.in/ditws/ITRVStatus/v_1_0"/>
 				<entry value="pan" key="http://panws.dit.tcs.com/"/>
 				<entry value="typ" key="http://panws.dit.tcs.com/types/"/>
+				<entry value="mas" key="http://incometaxindiaefiling.gov.in/master"/>
 			</map>
 		</constructor-arg>
 	</bean>

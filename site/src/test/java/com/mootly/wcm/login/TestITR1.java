@@ -50,9 +50,9 @@ import com.mootly.wcm.member.HouseIncome;
 import com.mootly.wcm.model.FinancialYear;
 import com.mootly.wcm.model.IndianGregorianCalendar;
 import com.mootly.wcm.model.schedules.y2012_2013.Form16DocumentSchedules;
-import com.mootly.wcm.services.ITR1XmlGeneratorService;
 import com.mootly.wcm.services.IndianCurrencyHelper;
 import com.mootly.wcm.services.XmlGeneratorService;
+import com.mootly.wcm.services.y2012_2013.ITR1XmlGeneratorService;
 import com.mootly.wcm.services.y2012_2013.ITRXmlGeneratorService;
 
 /**

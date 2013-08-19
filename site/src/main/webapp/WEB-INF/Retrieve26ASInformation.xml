@@ -26,6 +26,17 @@
     	<property name="endPointURL" ref="endPointURL_Retrieve26ASInformation"/>
     	<property name="soapConnection" ref="soapConnection"/>
     	<property name="detachHeader"><value>false</value></property>
+    	<property name="createEmptyElementsInOutputWhenXPathNotFound"><value>false</value></property>
+    	<property name="responseRepeatingMultipleTimes"><value>true</value></property> <!--  new property to deal with typical scenario -->
+    	<property name="hasMultipleChildRootInResponse"><value>true</value></property> <!--  new property to deal with typical scenario -->
+    	<property name="rootChildrenInResponse">
+    	   <list>
+    	       <value>TDSonSalaries</value>
+    	       <value>TDSonOthThanSals</value>
+    	       <value>ScheduleTCS</value>
+    	       <value>TaxPayments</value>
+    	   </list>
+    	</property> <!--  new property to deal with typical scenario -->
     	<!-- 
     	<property name="mimeHeaders">
     		<list>
@@ -47,12 +58,22 @@
     	</property>
     	<property name="outputElementMap">
     		<map>
-				<entry key="PAN" value="//pan"></entry>
-				<entry key="fatherFullName" value="//ffullname"></entry>
-				<entry key="address" value="//address"></entry>
-				<entry key="DOB" value="//dob"></entry>
-				<entry key="fullName" value="//fullname"></entry>
-				<entry key="error" value="//error"></entry>
+				<entry key="TAN" value=".//mas:TAN"></entry>
+				<entry key="EmployerOrDeductorOrCollecterName" value=".//mas:EmployerOrDeductorOrCollecterName"></entry>
+				<entry key="IncChrgSal" value=".//mas:IncChrgSal"></entry>
+				<entry key="TotalTDSSal" value=".//mas:TotalTDSSal"></entry>
+				<entry key="UniqueTDSCerNo" value=".//mas:UniqueTDSCerNo"></entry>
+				<entry key="DeductedYr" value=".//mas:DeductedYr"></entry>
+				<entry key="TotTDSOnAmtPaid" value=".//mas:TotTDSOnAmtPaid"></entry>
+				<entry key="ClaimOutOfTotTDSOnAmtPaid" value=".//mas:ClaimOutOfTotTDSOnAmtPaid"></entry>
+				
+				<entry key="TotalTCS" value=".//mas:TotalTCS"></entry>
+				<entry key="AmtTCSClaimedThisYear" value=".//mas:AmtTCSClaimedThisYear"></entry>
+				
+				<entry key="BSRCode" value=".//mas:BSRCode"></entry>
+				<entry key="DateDep" value=".//mas:DateDep"></entry>
+				<entry key="SrlNoOfChaln" value=".//mas:SrlNoOfChaln"></entry>
+				<entry key="Amt" value=".//mas:Amt"></entry>
 		</map>
     	</property>
     	<!--  no head is required for this call -->

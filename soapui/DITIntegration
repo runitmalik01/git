@@ -9355,7 +9355,176 @@
          </RefundInput>
       </v:getRefundStatusRequest>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://incometaxindiaefiling.gov.in/ditws/ITRVStatus/v_1_0/refundstatusPort/getRefundStatusRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:mockService port="8088" path="/mockGetPanInfoSoapHttp" host="mootly-pc-004" name="GetPanInfoSoapHttp MockService"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.mock.WsdlMockService@require-soap-action">false</con:setting></con:settings><con:mockOperation name="getPanInfo" interface="GetPanInfoSoapHttp" operation="getPanInfo"><con:settings/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:defaultResponse>Response 1</con:defaultResponse><con:response name="Response 1" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:pan="http://panws.dit.tcs.com/" xmlns:typ="http://panws.dit.tcs.com/types/">
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://incometaxindiaefiling.gov.in/ditws/ITRVStatus/v_1_0/refundstatusPort/getRefundStatusRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="ITRServiceSoapBinding" type="wsdl" bindingName="{http://incometaxindiaefiling.gov.in/itrservice/v_1_0}ITRServiceSoapBinding" soapVersion="1_1" anonymous="optional" definition="https://incometaxindiaefiling.gov.in/e-FilingWS/ditws/submitITR.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="https://incometaxindiaefiling.gov.in/e-FilingWS/ditws/submitITR.wsdl"><con:part><con:url>https://incometaxindiaefiling.gov.in/e-FilingWS/ditws/submitITR.wsdl</con:url><con:content><![CDATA[<definitions targetNamespace="http://incometaxindiaefiling.gov.in/itrservice/v_1_0" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://incometaxindiaefiling.gov.in/itrservice/v_1_0" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:itrcmns="http://incometaxindiaefiling.gov.in/ws/ds/common/v_1_0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <types>
+    <xs:schema targetNamespace="http://incometaxindiaefiling.gov.in/itrservice/v_1_0" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns:itrException="http://incometaxindiaefiling.gov.in/ws/ds/ex/v_1_0" xmlns:authInfo="http://incometaxindiaefiling.gov.in/ws/ds/common/v_1_0">
+      <xs:import namespace="http://incometaxindiaefiling.gov.in/ws/ds/common/v_1_0" schemaLocation="../xsd/DITWSCommon.xsd"/>
+      <xs:import namespace="http://incometaxindiaefiling.gov.in/ws/ds/ex/v_1_0" schemaLocation="../xsd/DITWSITRException.xsd"/>
+      <xs:element name="ITRInvalidDocFaultException" type="itrException:ITRInvalidDocFaultException"/>
+      <xs:element name="ITRCredentialFaultException" type="itrException:ITRCredentialFaultException"/>
+      <xs:element name="ITRInvalidCertificateFaultException" type="itrException:ITRInvalidCertificateFaultException"/>
+      <xs:element name="ITRServiceFaultException" type="itrException:ITRServiceFaultException"/>
+      <xs:element name="ITRBusinessServiceFaultException" type="itrException:ITRBusinessServiceFaultException"/>
+      <xs:element name="ITRFaultException" type="itrException:ITRFaultException"/>
+    </xs:schema>
+  </types>
+  <message name="SubmitITRRequest">
+    <part name="authInfo" element="itrcmns:DITWSAuthInfoEle"/>
+    <part name="itrXMLFile" type="xs:hexBinary"/>
+  </message>
+  <message name="SubmitITRResponse">
+    <part name="itrStatus" element="itrcmns:DITWSResponseEle"/>
+  </message>
+  <message name="ITRInvalidCertificateFaultException">
+    <part name="itrInvalidCertificateFaultExcep" element="tns:ITRInvalidCertificateFaultException"/>
+  </message>
+  <message name="ITRCredentialFaultException">
+    <part name="itrCredentialFaultExcep" element="tns:ITRCredentialFaultException"/>
+  </message>
+  <message name="ITRBusinessServiceFaultException">
+    <part name="itrBusinessServiceFaultExcep" element="tns:ITRBusinessServiceFaultException"/>
+  </message>
+  <message name="ITRFaultException">
+    <part name="itrFaultExcep" element="tns:ITRFaultException"/>
+  </message>
+  <message name="ITRInvalidDocFaultException">
+    <part name="itrInvalidDocFaultExcep" element="tns:ITRInvalidDocFaultException"/>
+  </message>
+  <message name="ITRServiceFaultException">
+    <part name="ITRServiceFaultExcep" element="tns:ITRServiceFaultException"/>
+  </message>
+  <portType name="ITRServicePort">
+    <operation name="submitITR">
+      <input message="tns:SubmitITRRequest"/>
+      <output message="tns:SubmitITRResponse"/>
+      <fault name="ITRInvalidCertificateFaultException" message="tns:ITRInvalidCertificateFaultException"/>
+      <fault name="ITRCredentialFaultException" message="tns:ITRCredentialFaultException"/>
+      <fault name="ITRBusinessServiceFaultException" message="tns:ITRBusinessServiceFaultException"/>
+      <fault name="ITRFaultException" message="tns:ITRFaultException"/>
+      <fault name="ITRInvalidDocFaultException" message="tns:ITRInvalidDocFaultException"/>
+      <fault name="ITRServiceFaultException" message="tns:ITRServiceFaultException"/>
+    </operation>
+  </portType>
+  <binding name="ITRServiceSoapBinding" type="tns:ITRServicePort">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="submitITR">
+      <soap:operation soapAction="http://incometaxindiaefiling.gov.in/submitITReturn"/>
+      <input>
+        <mime:multipartRelated>
+          <mime:part>
+            <soap:body use="literal" parts="authInfo"/>
+          </mime:part>
+          <mime:part>
+            <mime:content part="itrXMLFile" type="application/octet-stream"/>
+          </mime:part>
+        </mime:multipartRelated>
+      </input>
+      <output>
+        <mime:multipartRelated>
+          <mime:part>
+            <soap:body use="literal" parts="itrStatus"/>
+          </mime:part>
+        </mime:multipartRelated>
+      </output>
+      <fault name="ITRInvalidCertificateFaultException">
+        <soap:fault name="ITRInvalidCertificateFaultException" use="literal"/>
+      </fault>
+      <fault name="ITRCredentialFaultException">
+        <soap:fault name="ITRCredentialFaultException" use="literal"/>
+      </fault>
+      <fault name="ITRBusinessServiceFaultException">
+        <soap:fault name="ITRBusinessServiceFaultException" use="literal"/>
+      </fault>
+      <fault name="ITRFaultException">
+        <soap:fault name="ITRFaultException" use="literal"/>
+      </fault>
+      <fault name="ITRInvalidDocFaultException">
+        <soap:fault name="ITRInvalidDocFaultException" use="literal"/>
+      </fault>
+      <fault name="ITRServiceFaultException">
+        <soap:fault name="ITRServiceFaultException" use="literal"/>
+      </fault>
+    </operation>
+  </binding>
+  <service name="ITRService">
+    <port name="ITRServiceSoapHttpPort" binding="tns:ITRServiceSoapBinding">
+      <soap:address location="https://incometaxindiaefiling.gov.in/e-FilingWS/ditws"/>
+    </port>
+  </service>
+</definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>https://incometaxindiaefiling.gov.in/e-FilingWS/xsd/DITWSCommon.xsd</con:url><con:content><![CDATA[<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://incometaxindiaefiling.gov.in/ws/ds/common/v_1_0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://incometaxindiaefiling.gov.in/ws/ds/common/v_1_0">
+  <xs:element name="DITWSAuthInfoEle" type="DITWSAuthInfo"/>
+  <xs:complexType name="DITWSAuthInfo">
+    <xs:sequence>
+      <xs:element name="userID" type="xs:string"/>
+      <xs:element name="password" type="xs:string"/>
+      <xs:element name="certChain" type="xs:string"/>
+      <xs:element name="signature" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DITWSResponseEle" type="DITWSResponse"/>
+  <xs:complexType name="DITWSResponse">
+    <xs:sequence>
+      <xs:element name="result" nillable="true" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>https://incometaxindiaefiling.gov.in/e-FilingWS/xsd/DITWSITRException.xsd</con:url><con:content><![CDATA[<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://incometaxindiaefiling.gov.in/ws/ds/ex/v_1_0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:itrException="http://incometaxindiaefiling.gov.in/ws/ds/ex/v_1_0">
+  <xs:complexType name="ITRInvalidDocFaultException">
+    <xs:sequence>
+      <xs:element name="errorCode" nillable="true" type="xs:unsignedShort"/>
+      <xs:element name="errorDesc" nillable="true" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ITRCredentialFaultException">
+    <xs:sequence>
+      <xs:element name="errorCode" nillable="true" type="xs:unsignedShort"/>
+      <xs:element name="errorDesc" nillable="true" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ITRInvalidCertificateFaultException">
+    <xs:sequence>
+      <xs:element name="errorCode" nillable="true" type="xs:unsignedShort"/>
+      <xs:element name="errorDesc" nillable="true" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ITRServiceFaultException">
+    <xs:sequence>
+      <xs:element name="errorCode" nillable="true" type="xs:unsignedShort"/>
+      <xs:element name="errorDesc" nillable="true" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ITRBusinessServiceFaultException">
+    <xs:sequence>
+      <xs:element name="errorCode" nillable="true" type="xs:unsignedShort"/>
+      <xs:element name="errorDesc" nillable="true" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ITRFaultException">
+    <xs:sequence>
+      <xs:element name="errorCode" nillable="true" type="xs:unsignedShort"/>
+      <xs:element name="errorDesc" nillable="true" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>https://incometaxindiaefiling.gov.in/e-FilingWS/ditws</con:endpoint><con:endpoint>http://mootly-pc-004:8088/mockITRServiceSoapBinding</con:endpoint></con:endpoints><con:operation isOneWay="false" action="http://incometaxindiaefiling.gov.in/submitITReturn" name="submitITR" bindingOperationName="submitITR" type="Request-Response" inputName="" receivesAttachments="true" sendsAttachments="true" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>https://incometaxindiaefiling.gov.in/e-FilingWS/ditws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:v="http://incometaxindiaefiling.gov.in/ws/ds/common/v_1_0">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <v:DITWSAuthInfoEle>
+         <v:userID>?</v:userID>
+         <v:password>?</v:password>
+         <v:certChain>?</v:certChain>
+         <v:signature>?</v:signature>
+      </v:DITWSAuthInfoEle>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://incometaxindiaefiling.gov.in/submitITReturn"/></con:call><con:call name="Copy of Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://incometaxindiaefiling.gov.in/e-FilingWS/ditws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:v="http://incometaxindiaefiling.gov.in/ws/ds/common/v_1_0">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <v:DITWSAuthInfoEle>
+         <v:userID>?</v:userID>
+         <v:password>?</v:password>
+         <v:certChain>?</v:certChain>
+         <v:signature>?</v:signature>
+      </v:DITWSAuthInfoEle>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:attachment><con:name>consolidated-returns-try9.xml</con:name><con:contentType>text/xml</con:contentType><con:contentId>consolidated-returns-try9.xml</con:contentId><con:url>C:/Users/admin/Projects/Mootly/code/wcm/hippo/solutions/indianonlinetax/branches/indiateam/filetriedfore/consolidated-returns-try9.xml</con:url><con:id>22e9fe44-1afa-430c-b358-2489fc61ca98</con:id></con:attachment><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://incometaxindiaefiling.gov.in/submitITReturn"/><con:wsrmConfig version="1.2"/></con:call><con:requestParts><con:part name="itrXMLFile"><con:contentType>application/octet-stream</con:contentType></con:part></con:requestParts></con:operation></con:interface><con:mockService port="8088" path="/mockGetPanInfoSoapHttp" host="mootly-pc-004" name="GetPanInfoSoapHttp MockService"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.mock.WsdlMockService@require-soap-action">false</con:setting></con:settings><con:mockOperation name="getPanInfo" interface="GetPanInfoSoapHttp" operation="getPanInfo"><con:settings/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:defaultResponse>Response 1</con:defaultResponse><con:response name="Response 1" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:pan="http://panws.dit.tcs.com/" xmlns:typ="http://panws.dit.tcs.com/types/">
    <soapenv:Header/>
    <soapenv:Body>
       <pan:getPanInfoResponse>
@@ -9450,4 +9619,11 @@
          <result>?</result>
       </v:getRefundStatusResponse>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://incometaxindiaefiling.gov.in/ditws/ITRVStatus/v_1_0/refundstatusPort/getRefundStatusResponse"/></con:response><con:dispatchConfig/></con:mockOperation><con:properties/></con:mockService><con:properties/><con:wssContainer/><con:sensitiveInformation/></con:soapui-project>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://incometaxindiaefiling.gov.in/ditws/ITRVStatus/v_1_0/refundstatusPort/getRefundStatusResponse"/></con:response><con:dispatchConfig/></con:mockOperation><con:properties/></con:mockService><con:mockService port="8088" path="/mockITRServiceSoapBinding" host="mootly-pc-004" name="ITRServiceSoapBinding MockService"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.mock.WsdlMockService@require-soap-action">false</con:setting></con:settings><con:mockOperation name="submitITR" interface="ITRServiceSoapBinding" operation="submitITR"><con:settings/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:defaultResponse>Response 1</con:defaultResponse><con:response name="Response 1" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:v="http://incometaxindiaefiling.gov.in/ws/ds/common/v_1_0">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <v:DITWSResponseEle>
+         <v:result>?</v:result>
+      </v:DITWSResponseEle>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://incometaxindiaefiling.gov.in/submitITReturn"/></con:response><con:dispatchConfig/></con:mockOperation><con:properties/></con:mockService><con:properties/><con:wssContainer/><con:sensitiveInformation/></con:soapui-project>

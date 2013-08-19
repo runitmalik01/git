@@ -44,6 +44,11 @@ public class SOAPCallWrapper implements Serializable{
 	Map<String,String> outputElementMap;
 	boolean isResponseRepeatingMultipleTimes;
 	
+	boolean hasMultipleChildRootInResponse;
+	List<String> rootChildrenInResponse;
+	
+	boolean createEmptyElementsInOutputWhenXPathNotFound = true;
+	
 	XPath xPath;
 	
 	Logger logger = LoggerFactory.getLogger(SOAPCallWrapper.class);
@@ -205,5 +210,30 @@ public class SOAPCallWrapper implements Serializable{
 		this.xPath = xPath;
 	}
 
-	
+	public boolean isHasMultipleChildRootInResponse() {
+		return hasMultipleChildRootInResponse;
+	}
+
+	public void setHasMultipleChildRootInResponse(
+			boolean hasMultipleChildRootInResponse) {
+		this.hasMultipleChildRootInResponse = hasMultipleChildRootInResponse;
+	}
+
+	public List<String> getRootChildrenInResponse() {
+		return rootChildrenInResponse;
+	}
+
+	public void setRootChildrenInResponse(List<String> rootChildrenInResponse) {
+		this.rootChildrenInResponse = rootChildrenInResponse;
+	}
+
+	public boolean isCreateEmptyElementsInOutputWhenXPathNotFound() {
+		return createEmptyElementsInOutputWhenXPathNotFound;
+	}
+
+	public void setCreateEmptyElementsInOutputWhenXPathNotFound(
+			boolean createEmptyElementsInOutputWhenXPathNotFound) {
+		this.createEmptyElementsInOutputWhenXPathNotFound = createEmptyElementsInOutputWhenXPathNotFound;
+	}
+
 }

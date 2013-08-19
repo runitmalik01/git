@@ -10,5 +10,7 @@ public enum DataTypeValidationType {
 	MAXLENGTH,
 	CHALLANNO,
 	TDSCERTIFICATE,
-	ITR
+	ITR,
+	EMPTYSTRING,
+	PERCENTAGE,
 }

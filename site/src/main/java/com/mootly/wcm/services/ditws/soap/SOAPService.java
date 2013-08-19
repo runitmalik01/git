@@ -12,6 +12,7 @@ import java.security.SecureRandom;
 import java.security.Security;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -21,6 +22,7 @@ import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLSession;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
+import javax.xml.soap.SOAPBody;
 import javax.xml.soap.SOAPConnection;
 import javax.xml.soap.SOAPException;
 import javax.xml.soap.SOAPFault;
@@ -29,6 +31,7 @@ import javax.xml.xpath.XPathExpressionException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 
 
 
@@ -82,9 +85,50 @@ public class SOAPService {
 	 * @return SOAPBody representation 
 	 * @throws Exception
 	 */
-	public Map<String, Object> executeSOAPCall(SOAPCallWrapper soapCallWrapper,List<Map<String,String>> initialParamValues,SOAPMessage soapMessage) throws MalformedURLException,XPathExpressionException, SOAPException{
-		//SOAPMessage soapMessage = SOAPCallWrapperHelper.createSOAPMessage(soapCallWrapper, initialParamValues);
+	public SOAPMessage executeSOAPCallRAW(SOAPCallWrapper soapCallWrapper,List<Map<String,String>> initialParamValues,SOAPMessage soapMessage) throws MalformedURLException,XPathExpressionException, SOAPException{
+		if (soapMessage == null) {
+			soapMessage = SOAPCallWrapperHelper.createSOAPMessage(soapCallWrapper, initialParamValues);
+		}
 		SOAPMessage soapResponse = callWebService(soapCallWrapper.getOperation(),soapMessage,soapCallWrapper.getSoapConnection(),soapCallWrapper.getEndPointURL());
+		if (logger.isDebugEnabled()) {
+			SOAPBody theSOAPBody = soapResponse.getSOAPBody();
+			Iterator it = theSOAPBody.getChildElements();
+			for (;it.hasNext();) {
+				Object o = it.next();
+				logger.debug(o.toString() + ":" + o.getClass().getName());
+			}
+		}
+		return soapResponse;
+		//Map<String, Object> outputMapLocal= SOAPCallWrapperHelper.parseSOAPResponse(soapResponse, soapCallWrapper);		
+		//return outputMapLocal;
+	}
+	/**
+	 * 
+	 * @param async Is the transaction synchronous
+	 * @param endPoint Web Service End Point
+	 * @param soapCallWrapper
+	 * @return SOAPBody representation 
+	 * @throws Exception
+	 */
+	public SOAPMessage executeSOAPCallRAW(SOAPCallWrapper soapCallWrapper,List<Map<String,String>> initialParamValues) throws MalformedURLException,XPathExpressionException, SOAPException{
+		SOAPMessage soapResponse = executeSOAPCallRAW(soapCallWrapper, initialParamValues,null);
+		return soapResponse;
+		//Map<String, Object> outputMapLocal= SOAPCallWrapperHelper.parseSOAPResponse(soapResponse, soapCallWrapper);		
+		//return outputMapLocal;
+	}
+	
+	/**
+	 * 
+	 * @param async Is the transaction synchronous
+	 * @param endPoint Web Service End Point
+	 * @param soapCallWrapper
+	 * @return SOAPBody representation 
+	 * @throws Exception
+	 */
+	public Map<String, Object> executeSOAPCall(SOAPCallWrapper soapCallWrapper,List<Map<String,String>> initialParamValues,SOAPMessage soapMessage) throws MalformedURLException,XPathExpressionException, SOAPException{
+		SOAPMessage soapResponse = executeSOAPCallRAW(soapCallWrapper, initialParamValues,soapMessage);
+		//SOAPMessage soapMessage = SOAPCallWrapperHelper.createSOAPMessage(soapCallWrapper, initialParamValues);
+		//SOAPMessage soapResponse = callWebService(soapCallWrapper.getOperation(),soapMessage,soapCallWrapper.getSoapConnection(),soapCallWrapper.getEndPointURL());
 		Map<String, Object> outputMapLocal= SOAPCallWrapperHelper.parseSOAPResponse(soapResponse, soapCallWrapper);		
 		return outputMapLocal;
 	}
@@ -98,9 +142,10 @@ public class SOAPService {
 	 * @throws Exception
 	 */
 	public Map<String, Object> executeSOAPCall(SOAPCallWrapper soapCallWrapper,List<Map<String,String>> initialParamValues) throws MalformedURLException,XPathExpressionException, SOAPException{
-		SOAPMessage soapMessage = SOAPCallWrapperHelper.createSOAPMessage(soapCallWrapper, initialParamValues);
-		SOAPMessage soapResponse = callWebService(soapCallWrapper.getOperation(),soapMessage,soapCallWrapper.getSoapConnection(),soapCallWrapper.getEndPointURL());
-		Map<String, Object> outputMapLocal= SOAPCallWrapperHelper.parseSOAPResponse(soapResponse, soapCallWrapper);		
+		//SOAPMessage soapResponse = executeSOAPCallRAW(soapCallWrapper, initialParamValues,null);
+		//SOAPMessage soapMessage = SOAPCallWrapperHelper.createSOAPMessage(soapCallWrapper, initialParamValues);
+		//SOAPMessage soapResponse = callWebService(soapCallWrapper.getOperation(),soapMessage,soapCallWrapper.getSoapConnection(),soapCallWrapper.getEndPointURL());
+		Map<String, Object> outputMapLocal= executeSOAPCall(soapCallWrapper,initialParamValues,null); //SOAPCallWrapperHelper.parseSOAPResponse(soapResponse, soapCallWrapper);		
 		return outputMapLocal;
 	}
 	/**

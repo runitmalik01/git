@@ -130,6 +130,7 @@ import com.mootly.wcm.services.SequenceGeneratorImpl;
 import com.mootly.wcm.services.StartApplicationValidationService;
 import com.mootly.wcm.services.XmlGeneratorService;
 import com.mootly.wcm.services.ditws.ITRVStatus;
+import com.mootly.wcm.services.ditws.Retrieve26ASInformation;
 import com.mootly.wcm.services.ditws.RetrieveITRV;
 import com.mootly.wcm.services.ditws.exception.DataMismatchException;
 import com.mootly.wcm.services.ditws.exception.InvalidFormatException;
@@ -146,6 +147,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 	ITRXmlGeneratorServiceFactory itrXmlGeneratorServiceFactory = null;
 	ITRValidatorChain itrValidationChain = null;
 	RetrieveITRV retrieveITRVService = null;
+	Retrieve26ASInformation retrieve26ASService = null;
 	
 	String servletPath = null;
 	String xsltPath = null;
@@ -220,12 +222,19 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		xsltPath = servletContext.getRealPath("/xslt/ITRSummary.xsl");
 		itrValidationChain =  context.getBean(ITRValidatorChain.class);
 		retrieveITRVService = context.getBean(RetrieveITRV.class);
+		retrieve26ASService = context.getBean(Retrieve26ASInformation.class);
 	}
 	
+	
+	public final Retrieve26ASInformation getRetrieve26ASService() {
+		return retrieve26ASService;
+	}
+
 	public RetrieveITRV getRetrieveITRVService() {
 		return retrieveITRVService;
 	}
 
+	
 
 
 	public SequenceGenerator getSequenceGenerator() {

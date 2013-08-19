@@ -52,7 +52,7 @@
 				<entry key="DOB" value="//dob"></entry>
 				<entry key="fullName" value="//fullname"></entry>
 				<entry key="error" value="//error"></entry>
-		</map>
+			</map>
     	</property>
     	<!--  no head is required for this call -->
     	<!-- 

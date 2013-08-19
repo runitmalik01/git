@@ -139,12 +139,50 @@ public final class SOAPCallWrapperHelper {
 		//	AttachmentPart attachmentPart = (AttachmentPart) it.next();
 		//	logger.debug( "ATTACHMENT:" + attachmentPart.getContent() );
 		//}
+		if (logger.isDebugEnabled()) {
+			SOAPBody theSOAPBody = soapResponse.getSOAPBody();
+			Iterator it = theSOAPBody.getChildElements();
+			for (;it.hasNext();) {
+				Object o = it.next();
+				logger.debug(o.toString() + ":" + o.getClass().getName());
+			}
+		}
+		if (soapCallWrapper.isHasMultipleChildRootInResponse() && soapCallWrapper.getRootChildrenInResponse() != null) {			
+			for (String aChildResponseKey:soapCallWrapper.getRootChildrenInResponse()) {
+				NodeList theNodeList = soapResponse.getSOAPBody().getElementsByTagNameNS(soapCallWrapper.getSoapBodyElement().getNs(), aChildResponseKey);
+				Node parentNode = null;// (Node) xPathExpression.evaluate(soapResponse.getSOAPBody() ,XPathConstants.NODE);
+				for (int i=0;i<theNodeList.getLength();i++) {
+					if (logger.isDebugEnabled()) {
+						logger.debug(theNodeList.item(i).getLocalName());
+					}
+					if (theNodeList.item(i).getLocalName().equalsIgnoreCase(aChildResponseKey)) {
+						parentNode = theNodeList.item(i);
+						break;
+					}
+				}
+				if (parentNode != null) {
+					Map<String,Object> theLocalMap = parseSOAPResponseWithOutputKeys(soapResponse,soapCallWrapper,parentNode);
+					outputMap.put(aChildResponseKey,theLocalMap);
+				}
+			}				
+		}
+		else {
+			outputMap = parseSOAPResponseWithOutputKeys(soapResponse,soapCallWrapper,null);
+		}
+		return outputMap;
+	}
+	
+	public static Map<String,Object> parseSOAPResponseWithOutputKeys(SOAPMessage soapResponse,SOAPCallWrapper soapCallWrapper,Object xPathScope) throws XPathExpressionException,SOAPException {
+		Map<String,Object> outputMap = new HashMap<String, Object>();
+		if (xPathScope == null) {
+			xPathScope = soapResponse.getSOAPBody();
+		}
 		for (String mapKey:soapCallWrapper.getOutputElementMap().keySet()) {
 			//this means we need to generate hashtable with value as list not as string
-			if (soapCallWrapper.isResponseRepeatingMultipleTimes() && soapCallWrapper.getOutputParentElement() != null) {
-				Node parentNode = (Node) soapCallWrapper.getxPath().evaluate(soapCallWrapper.getOutputElementMap().get(mapKey), soapResponse.getSOAPBody(),XPathConstants.NODE);
-				NodeList nodeList = (NodeList) soapCallWrapper.getxPath().evaluate(soapCallWrapper.getOutputElementMap().get(mapKey), soapResponse.getSOAPBody(),XPathConstants.NODESET);
-				if (nodeList != null) {
+			if (soapCallWrapper.isResponseRepeatingMultipleTimes()) {
+				//Node parentNode = (Node) soapCallWrapper.getxPath().evaluate(soapCallWrapper.getOutputElementMap().get(mapKey), soapResponse.getSOAPBody(),XPathConstants.NODE);
+				NodeList nodeList = (NodeList) soapCallWrapper.getxPath().evaluate(soapCallWrapper.getOutputElementMap().get(mapKey), xPathScope ,XPathConstants.NODESET);
+				if (nodeList != null && nodeList.getLength() > 0) {
 					List<String> linkedList = new LinkedList<String>();
 					for (int i=0;i<nodeList.getLength();i++) {
 						Element anElement = (Element) nodeList.item(i);
@@ -152,15 +190,17 @@ public final class SOAPCallWrapperHelper {
 					}
 					outputMap.put(mapKey, linkedList);
 				}
-			}
+			}			
 			else {
-				String value = soapCallWrapper.getxPath().evaluate(soapCallWrapper.getOutputElementMap().get(mapKey), soapResponse.getSOAPBody());
+				String value = soapCallWrapper.getxPath().evaluate(soapCallWrapper.getOutputElementMap().get(mapKey), xPathScope );
 				outputMap.put(mapKey, value);
 			}			
 		}
 		//final check if any value is missing just put a blank space
-		for (String mapKey:soapCallWrapper.getOutputElementMap().keySet()) {
-			if (outputMap != null && !outputMap.containsKey(mapKey)) outputMap.put(mapKey, "");
+		if (soapCallWrapper.isCreateEmptyElementsInOutputWhenXPathNotFound()) {
+			for (String mapKey:soapCallWrapper.getOutputElementMap().keySet()) {
+				if (outputMap != null && !outputMap.containsKey(mapKey)) outputMap.put(mapKey, "");
+			}
 		}
 		return outputMap;
 	}

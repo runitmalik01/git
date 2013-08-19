@@ -2,6 +2,7 @@ package com.mootly.wcm.services.ditws.impl;
 
 import java.net.MalformedURLException;
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,14 +10,17 @@ import java.util.Map;
 import javax.xml.soap.SOAPException;
 import javax.xml.xpath.XPathExpressionException;
 
+import org.apache.commons.lang.time.DateUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.mootly.wcm.model.IndianGregorianCalendar;
 import com.mootly.wcm.services.ditws.Retrieve26ASInformation;
 import com.mootly.wcm.services.ditws.exception.DataMismatchException;
 import com.mootly.wcm.services.ditws.exception.InvalidFormatException;
 import com.mootly.wcm.services.ditws.exception.MissingInformationException;
 import com.mootly.wcm.services.ditws.helper.SpringExpressionParser;
+import com.mootly.wcm.services.ditws.model.Twenty26ASResponse;
 import com.mootly.wcm.services.ditws.soap.SOAPCallWrapper;
 import com.mootly.wcm.services.ditws.soap.SOAPService;
 
@@ -43,15 +47,16 @@ public class Retrieve26ASInformationImpl extends DITSOAPServiceImpl implements R
 	}
 	
 	@Override
-	public Map<String, Object> retrieve26ASInformation(String PAN,
-			String DOB, String assessmentYear)
+	public Twenty26ASResponse retrieve26ASInformation(String PAN,
+			GregorianCalendar DOB, String assessmentYear)
 			throws MissingInformationException, DataMismatchException,
 			InvalidFormatException {
 		// TODO Auto-generated method stub
 		// TODO Auto-generated method stub
 		Map<String,String> inputParamValues = new HashMap<String,String>(1);
-		inputParamValues.put(PARAM_PAN, PAN);		
-		inputParamValues.put(PARAM_DOB, DOB);		
+		inputParamValues.put(PARAM_PAN, PAN);	
+		String theFormatForSOAP = IndianGregorianCalendar.formatDateAsString(DOB, "YYYY-MM-DD");
+		inputParamValues.put(PARAM_DOB, theFormatForSOAP);		
 		inputParamValues.put(PARAM_ASSESSMENT_YEAR, assessmentYear);		
 		
 		updateInputParamValues (inputParamValues); //update username password 
@@ -68,7 +73,8 @@ public class Retrieve26ASInformationImpl extends DITSOAPServiceImpl implements R
 		
 		try {
 			Map<String,Object> outputMap = soapService.executeSOAPCall(soapCallWrapperRetrieve26ASInformation,inputParams);
-			return outputMap;
+			Twenty26ASResponse twentyASResponse = Twenty26ASResponse.createFromSOAPResponse(outputMap);
+			return twentyASResponse;
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			logger.error("Malformed URL",e);

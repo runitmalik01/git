@@ -1,40 +1,40 @@
-package com.mootly.wcm.services;
+package com.mootly.wcm.services.y2011_2012;
 
-import in.gov.incometaxindiaefiling.y2012_2013.Address;
-import in.gov.incometaxindiaefiling.y2012_2013.Address.Phone;
-import in.gov.incometaxindiaefiling.y2012_2013.AddressDetail;
-import in.gov.incometaxindiaefiling.y2012_2013.AssesseeName;
-import in.gov.incometaxindiaefiling.y2012_2013.CreationInfo;
-import in.gov.incometaxindiaefiling.y2012_2013.DeductUndChapVIA;
-import in.gov.incometaxindiaefiling.y2012_2013.DoneeWithPan;
-import in.gov.incometaxindiaefiling.y2012_2013.EmployerOrDeductorOrCollectDetl;
-import in.gov.incometaxindiaefiling.y2012_2013.FilingStatus;
-import in.gov.incometaxindiaefiling.y2012_2013.FormITR1;
-import in.gov.incometaxindiaefiling.y2012_2013.ITR;
-import in.gov.incometaxindiaefiling.y2012_2013.ITR1;
-import in.gov.incometaxindiaefiling.y2012_2013.ITR1IncomeDeductions;
-import in.gov.incometaxindiaefiling.y2012_2013.ITR1TaxComputation;
-import in.gov.incometaxindiaefiling.y2012_2013.IntrstPay;
-import in.gov.incometaxindiaefiling.y2012_2013.ObjectFactory;
-import in.gov.incometaxindiaefiling.y2012_2013.PersonalInfo;
-import in.gov.incometaxindiaefiling.y2012_2013.Refund;
-import in.gov.incometaxindiaefiling.y2012_2013.Refund.DepositToBankAccount;
-import in.gov.incometaxindiaefiling.y2012_2013.Schedule80G;
-import in.gov.incometaxindiaefiling.y2012_2013.Schedule80G.Don100Percent;
-import in.gov.incometaxindiaefiling.y2012_2013.Schedule80G.Don100PercentApprReqd;
-import in.gov.incometaxindiaefiling.y2012_2013.Schedule80G.Don50PercentApprReqd;
-import in.gov.incometaxindiaefiling.y2012_2013.Schedule80G.Don50PercentNoApprReqd;
-import in.gov.incometaxindiaefiling.y2012_2013.TDSonOthThanSal;
-import in.gov.incometaxindiaefiling.y2012_2013.TDSonOthThanSals;
-import in.gov.incometaxindiaefiling.y2012_2013.TDSonSalaries;
-import in.gov.incometaxindiaefiling.y2012_2013.TDSonSalary;
-import in.gov.incometaxindiaefiling.y2012_2013.TaxPaid;
-import in.gov.incometaxindiaefiling.y2012_2013.TaxPayment;
-import in.gov.incometaxindiaefiling.y2012_2013.TaxPayments;
-import in.gov.incometaxindiaefiling.y2012_2013.TaxesPaid;
-import in.gov.incometaxindiaefiling.y2012_2013.UsrDeductUndChapVIA;
-import in.gov.incometaxindiaefiling.y2012_2013.Verification;
-import in.gov.incometaxindiaefiling.y2012_2013.Verification.Declaration;
+import in.gov.incometaxindiaefiling.y2011_2012.Address;
+import in.gov.incometaxindiaefiling.y2011_2012.Address.Phone;
+import in.gov.incometaxindiaefiling.y2011_2012.AddressDetail;
+import in.gov.incometaxindiaefiling.y2011_2012.AssesseeName;
+import in.gov.incometaxindiaefiling.y2011_2012.CreationInfo;
+import in.gov.incometaxindiaefiling.y2011_2012.DeductUndChapVIA;
+import in.gov.incometaxindiaefiling.y2011_2012.DoneeWithPan;
+import in.gov.incometaxindiaefiling.y2011_2012.EmployerOrDeductorOrCollectDetl;
+import in.gov.incometaxindiaefiling.y2011_2012.FilingStatus;
+import in.gov.incometaxindiaefiling.y2011_2012.FormITR1;
+import in.gov.incometaxindiaefiling.y2011_2012.ITR;
+import in.gov.incometaxindiaefiling.y2011_2012.ITR1;
+import in.gov.incometaxindiaefiling.y2011_2012.ITR1IncomeDeductions;
+import in.gov.incometaxindiaefiling.y2011_2012.ITR1TaxComputation;
+import in.gov.incometaxindiaefiling.y2011_2012.IntrstPay;
+import in.gov.incometaxindiaefiling.y2011_2012.ObjectFactory;
+import in.gov.incometaxindiaefiling.y2011_2012.PersonalInfo;
+import in.gov.incometaxindiaefiling.y2011_2012.Refund;
+import in.gov.incometaxindiaefiling.y2011_2012.Refund.DepositToBankAccount;
+import in.gov.incometaxindiaefiling.y2011_2012.Schedule80G;
+import in.gov.incometaxindiaefiling.y2011_2012.Schedule80G.Don100Percent;
+import in.gov.incometaxindiaefiling.y2011_2012.Schedule80G.Don100PercentApprReqd;
+import in.gov.incometaxindiaefiling.y2011_2012.Schedule80G.Don50PercentApprReqd;
+import in.gov.incometaxindiaefiling.y2011_2012.Schedule80G.Don50PercentNoApprReqd;
+import in.gov.incometaxindiaefiling.y2011_2012.TDSonOthThanSal;
+import in.gov.incometaxindiaefiling.y2011_2012.TDSonOthThanSals;
+import in.gov.incometaxindiaefiling.y2011_2012.TDSonSalaries;
+import in.gov.incometaxindiaefiling.y2011_2012.TDSonSalary;
+import in.gov.incometaxindiaefiling.y2011_2012.TaxPaid;
+import in.gov.incometaxindiaefiling.y2011_2012.TaxPayment;
+import in.gov.incometaxindiaefiling.y2011_2012.TaxPayments;
+import in.gov.incometaxindiaefiling.y2011_2012.TaxesPaid;
+import in.gov.incometaxindiaefiling.y2011_2012.DeductUndChapVIA;
+import in.gov.incometaxindiaefiling.y2011_2012.Verification;
+import in.gov.incometaxindiaefiling.y2011_2012.Verification.Declaration;
 
 import java.io.StringWriter;
 import java.lang.reflect.Method;
@@ -87,8 +87,10 @@ import com.mootly.wcm.model.FilingSection;
 import com.mootly.wcm.model.FinancialYear;
 import com.mootly.wcm.model.deduction.DeductionHead;
 import com.mootly.wcm.model.deduction.DeductionSection;
-import com.mootly.wcm.services.y2012_2013.ITRPrefixMapper;
-import com.mootly.wcm.services.y2012_2013.ITRXmlGeneratorService;
+import com.mootly.wcm.services.DeductionListService;
+import com.mootly.wcm.services.ITRXmlGeneratorServiceCommon;
+import com.mootly.wcm.services.IndianCurrencyHelper;
+import com.mootly.wcm.services.ScreenCalculatorService;
 import com.mootly.wcm.utils.XmlCalculation;
 import com.sun.xml.bind.marshaller.NamespacePrefixMapper;
 
@@ -163,7 +165,7 @@ public class ITR1XmlGeneratorService {
 		IndianCurrencyHelper indianCurrencyHelper = new IndianCurrencyHelper();
 		Schedule80G schedule80G = new Schedule80G();
 		FormITR1 formITR1 = new FormITR1();
-		UsrDeductUndChapVIA usrDeductUndChapVIA = new UsrDeductUndChapVIA();
+		DeductUndChapVIA usrDeductUndChapVIA = new DeductUndChapVIA();
 
 		//Form_ITR1
 		formITR1.setFormName("ITR-1");
@@ -184,7 +186,7 @@ public class ITR1XmlGeneratorService {
 		address.setLocalityOrArea(memberPersonalInformation.getAreaLocality().toUpperCase());
 		address.setCityOrTownOrDistrict(memberPersonalInformation.getTownCityDistrict().toUpperCase());
 		address.setStateCode(memberPersonalInformation.getState().toUpperCase());
-		address.setCountryCode(memberPersonalInformation.getCountry().toUpperCase());
+		//address.setCountryCode(memberPersonalInformation.getCountry().toUpperCase());
 		address.setPinCode(indianCurrencyHelper.bigIntegerRoundStr(memberPersonalInformation.getPinCode()));
 		if(!(memberPersonalInformation.getStdCode().isEmpty()) && !(memberPersonalInformation.getPhone().isEmpty())){
 			Phone phone = new Phone();
@@ -194,7 +196,7 @@ public class ITR1XmlGeneratorService {
 		}
 
 		address.setMobileNo(indianCurrencyHelper.bigIntegerRoundStr(memberPersonalInformation.getMobile()));
-		address.setMobileNoSec(indianCurrencyHelper.bigIntegerRoundStr(memberPersonalInformation.getMobile1()));
+		//address.setMobileNoSec(indianCurrencyHelper.bigIntegerRoundStr(memberPersonalInformation.getMobile1()));
 		address.setEmailAddress(memberPersonalInformation.getEmail());
 		personalInfo.setAddress(address);
 		personalInfo.setDOB(indianCurrencyHelper.gregorianCalendar(memberPersonalInformation.getDOB()));
@@ -241,7 +243,7 @@ public class ITR1XmlGeneratorService {
 			if (listOfHouseIncomeDetail!= null && listOfHouseIncomeDetail.size() > 0 ){
 				for(HouseIncomeDetail houseIncomeDetail: listOfHouseIncomeDetail){
 					if(houseIncomeDetail.getLetOut()!=null){
-						incomeDeductions.setTypeOfHP(houseIncomeDetail.getLetOut());
+						//incomeDeductions.setTypeOfHP(houseIncomeDetail.getLetOut());
 					}
 					houseIncome = indianCurrencyHelper.longRound(houseIncomeDetail.getIncome_hproperty());
 					houseIncomeTotal = houseIncomeTotal+houseIncome;
@@ -254,7 +256,7 @@ public class ITR1XmlGeneratorService {
 		if(otherSourcesDocument!=null){
 			OtherIncome = indianCurrencyHelper.bigIntegerRound(otherSourcesDocument.getTaxable_income());
 		}
-		incomeDeductions.setIncomeOthSrc(OtherIncome);
+		incomeDeductions.setIncomeOthSrc( otherSourcesDocument.getTaxable_income().longValue() );
 
 		//long grsstotal = xmlCalculation.grossTotal(request, response);
 		long grsstotal = xmlCalculation.grossTotal(financialYear,inputBeans);
@@ -332,7 +334,7 @@ public class ITR1XmlGeneratorService {
 			if(resultMapDe.containsKey(eligbleSection)){
 				try {
 					Method meth = DeductUndChapVIA.class.getMethod(methodname, partypes);
-					Method methusr = UsrDeductUndChapVIA.class.getMethod(methodname, partypes);
+					Method methusr = DeductUndChapVIA.class.getMethod(methodname, partypes);
 					Object[] args = new Object[]{new BigInteger(String.valueOf(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMapDe.get(eligbleSection).toString()))))};
 					Object[] argsusr=new Object[]{new BigInteger(String.valueOf(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(totalMapForJSDe.get(eligbleSection).toString()))))};
 					meth.invoke(deductUndChapVIA, args);
@@ -345,7 +347,7 @@ public class ITR1XmlGeneratorService {
 		deductUndChapVIA.setTotalChapVIADeductions(indianCurrencyHelper.bigIntegerRound(totaleligiblededuction));
 		usrDeductUndChapVIA.setTotalChapVIADeductions(indianCurrencyHelper.bigIntegerRound(grossInvestment));
 		incomeDeductions.setDeductUndChapVIA(deductUndChapVIA);
-		incomeDeductions.setUsrDeductUndChapVIA(usrDeductUndChapVIA);
+		//incomeDeductions.setUsrDeductUndChapVIA(usrDeductUndChapVIA);
 		// following three line code is to round off the code upto ten after deduction
 		Long IncomeTotal = (grsstotal-indianCurrencyHelper.longRound(totaleligiblededuction));
 		Long RoundedTotalIncome = IncomeTotal%10 >= 5 ? ((IncomeTotal/10)*10)+10 : (IncomeTotal/10)*10;
@@ -535,7 +537,7 @@ public class ITR1XmlGeneratorService {
 		intrstPay.setIntrstPayUs234B(Interest234B);
 		intrstPay.setIntrstPayUs234C(Interest234C);
 		intrstPay.setTotalIntrstPay(TotalInterest);
-		itr1TaxComputation.setIntrstPay(intrstPay);
+		//itr1TaxComputation.setIntrstPay(intrstPay);
 
 		itr1TaxComputation.setTotTaxPlusIntrstPay(itr1TaxComputation.getNetTaxLiability().add(itr1TaxComputation.getTotalIntrstPay()));
 		itr1.setITR1TaxComputation(itr1TaxComputation);
@@ -628,7 +630,7 @@ public class ITR1XmlGeneratorService {
 		refund.setBankAccountNumber(memberPersonalInformation.getBD_ACC_NUMBER().toUpperCase());
 		refund.setEcsRequired(memberPersonalInformation.getBD_ECS());
 		DepositToBankAccount depositToBankAccount = new DepositToBankAccount();
-		depositToBankAccount.setIFSCCode(memberPersonalInformation.getFlexField("flex_string_IFSCCode", "").toUpperCase());
+		depositToBankAccount.setMICRCode(memberPersonalInformation.getFlexField("flex_string_IFSCCode", "").toUpperCase());
 		depositToBankAccount.setBankAccountType(memberPersonalInformation.getBD_TYPE_ACC().toUpperCase());
 		refund.setDepositToBankAccount(depositToBankAccount);
 		itr1.setRefund(refund);
@@ -641,7 +643,7 @@ public class ITR1XmlGeneratorService {
 		filingstatus.setReturnType(memberPersonalInformation.getReturnType());
 		filingstatus.setReturnFileSec(Long.parseLong(memberPersonalInformation.getReturnSection()));
 		filingstatus.setResidentialStatus(memberPersonalInformation.getResidentCategory());
-		filingstatus.setPortugeseCC5A(memberPersonalInformation.getPortugesecivil());
+		//filingstatus.setPortugeseCC5A(memberPersonalInformation.getPortugesecivil());
 
 		if (BalTaxPayable.compareTo(BigInteger.ZERO) > 0){
 			filingstatus.setTaxStatus("TP");
@@ -985,11 +987,11 @@ public class ITR1XmlGeneratorService {
 		//TaxExmpIntInc
 		if(otherSourcesDocument!=null){
 			if(otherSourcesDocument.getTotal_taxfree_income()!=null){
-				itr1.setTaxExmpIntInc(otherSourcesDocument.getTotal_taxfree_income().intValue());
+				itr1.setTaxExmpIntInc(indianCurrencyHelper.bigIntegerRound( otherSourcesDocument.getTotal_taxfree_income() ));
 			}else
-				itr1.setTaxExmpIntInc(0);
+				itr1.setTaxExmpIntInc(indianCurrencyHelper.bigIntegerRound( 0D ));
 		}else
-			itr1.setTaxExmpIntInc(0);
+			itr1.setTaxExmpIntInc(indianCurrencyHelper.bigIntegerRound( 0D ));
 
 		//Verification
 		Declaration declaration = new Declaration();

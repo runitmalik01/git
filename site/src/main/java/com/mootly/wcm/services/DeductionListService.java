@@ -47,7 +47,7 @@ public class DeductionListService {
 			}
 			//now sort the list of 
 		}
-		System.out.println("END");
+		//System.out.println("END");
 	}
 
 	public Map<FinancialYear, Map<String, DeductionSection>> getDeductionSectionMap() {
