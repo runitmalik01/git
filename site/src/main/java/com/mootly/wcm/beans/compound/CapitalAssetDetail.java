@@ -48,14 +48,14 @@ public class CapitalAssetDetail extends CapitalAssetDetailA implements FormMapFi
 	private final static Logger log = LoggerFactory.getLogger(CapitalAssetDetail.class); 
 
 	// in this class we are inherit the capitalssetdetailA class for setter and getter method
-	
+
 	public boolean bindToNode(javax.jcr.Node node)
 			throws ContentNodeBindingException {
 		// TODO Auto-generated method stub
 
 		try {
 			if(log.isInfoEnabled()){
-				log.warn("this is Contact bean");
+				log.warn("this is capitalasset bean");
 			}
 
 			// new fields for accural
@@ -119,6 +119,9 @@ public class CapitalAssetDetail extends CapitalAssetDetailA implements FormMapFi
 			}
 			if(getIndex()!=null){
 				node.setProperty("mootlywcm:index", getIndex());
+			}
+			if(getPan()!=null){
+				node.setProperty("mootlywcm:pan", getPan());
 			}
 			if(getAccural()!=null){
 				node.setProperty("mootlywcm:accural", getAccural());
@@ -263,6 +266,10 @@ public class CapitalAssetDetail extends CapitalAssetDetailA implements FormMapFi
 		if (formMap.getField("asset_type") != null)
 		{
 			setAssetType(formMap.getField("asset_type").getValue());
+		}
+		if (formMap.getField("panifded") != null)
+		{
+			setPan(formMap.getField("panifded").getValue());
 		}
 		if (formMap.getField("costacquisition").getValue().isEmpty()) {
 			setCostAcquisition(amtA);}
@@ -519,6 +526,7 @@ public class CapitalAssetDetail extends CapitalAssetDetailA implements FormMapFi
 		setCostIndexConsideration(objCapitalAssetdetail.getCostIndexConsideration());
 		setCapitalGain(objCapitalAssetdetail.getCapitalGain());
 		setIndex(objCapitalAssetdetail.getIndex());
+		setPan(objCapitalAssetdetail.getPan());
 		setAccural(objCapitalAssetdetail.getAccural());
 		setCapitalGainTaxLT(objCapitalAssetdetail.getCapitalGainTaxLT());
 		setCapitalGainTaxST(objCapitalAssetdetail.getCapitalGainTaxST());

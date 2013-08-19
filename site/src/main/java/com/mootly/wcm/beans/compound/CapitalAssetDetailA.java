@@ -46,6 +46,7 @@ public abstract class CapitalAssetDetailA extends HippoItem implements FormMapFi
 	private String assetType;
 	private String accural;
 	private String index;
+	private String pan;
 	private String months;
 	private Double costImprovement;
 	private String sstCharge;
@@ -116,6 +117,10 @@ public abstract class CapitalAssetDetailA extends HippoItem implements FormMapFi
 	public String getIndex() {
 		if (index == null) index = getProperty("mootlywcm:index");
 		return index;
+	}
+	public String getPan() {
+		if (pan == null) pan = getProperty("mootlywcm:pan");
+		return pan;
 	}
 	public String getAccural() {
 		if (accural == null) accural = getProperty("mootlywcm:accural");
@@ -309,6 +314,9 @@ public abstract class CapitalAssetDetailA extends HippoItem implements FormMapFi
 	}
 	public final void setIndex(String index) {
 		this.index = index;
+	}
+	public final void setPan(String pan) {
+		this.pan = pan;
 	}
 	public final void setAccural(String accural) {
 		this.accural = accural;
