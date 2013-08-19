@@ -23,6 +23,7 @@ import com.mootly.wcm.beans.HouseProperty;
 import com.mootly.wcm.beans.MemberPersonalInformation;
 import com.mootly.wcm.beans.OtherSourcesDocument;
 import com.mootly.wcm.beans.SalaryIncomeDocument;
+import com.mootly.wcm.beans.ScheduleSIDocument;
 import com.mootly.wcm.beans.SelfAssesmetTaxDocument;
 import com.mootly.wcm.beans.TaxReliefDocument;
 import com.mootly.wcm.beans.TdsFromothersDocument;
@@ -40,11 +41,12 @@ public class PartA_Gen1 {
 	AdvanceTaxDocument advanceTaxDocument = null;
 	SelfAssesmetTaxDocument selfAssesmetTaxDocument = null;
 	TdsFromothersDocument tdsFromothersDocument = null;
+	ScheduleSIDocument scheduleSIDocument = null;
 
 	public PartA_Gen1(FormSixteenDocument formSixteenDocument, SalaryIncomeDocument salaryIncomeDocument, HouseProperty housePropertyDocument ,
 			OtherSourcesDocument otherSourcesDocument, DeductionDocument deductionDocument, MemberPersonalInformation memberPersonalInformation,
 			TaxReliefDocument taxReliefDocument, AdvanceTaxDocument advanceTaxDocument, SelfAssesmetTaxDocument selfAssesmetTaxDocument,
-			TdsFromothersDocument tdsFromothersDocument) {
+			TdsFromothersDocument tdsFromothersDocument, ScheduleSIDocument scheduleSIDocument) {
 		this.formSixteenDocument = formSixteenDocument;
 		this.salaryIncomeDocument = salaryIncomeDocument;
 		this.housePropertyDocument = housePropertyDocument;
@@ -55,6 +57,7 @@ public class PartA_Gen1 {
 		this.advanceTaxDocument = advanceTaxDocument;
 		this.selfAssesmetTaxDocument = selfAssesmetTaxDocument;
 		this.tdsFromothersDocument = tdsFromothersDocument;
+		this.scheduleSIDocument = scheduleSIDocument;
 	}
 
 	/**
@@ -72,7 +75,7 @@ public class PartA_Gen1 {
 		Address address= new Address();
 		FilingStatus filingstatus = new FilingStatus();
 
-		PartB_TTI partB_TTI = new PartB_TTI(formSixteenDocument, salaryIncomeDocument, housePropertyDocument, otherSourcesDocument, deductionDocument, memberPersonalInformation, taxReliefDocument, advanceTaxDocument, selfAssesmetTaxDocument, tdsFromothersDocument );
+		PartB_TTI partB_TTI = new PartB_TTI(formSixteenDocument, salaryIncomeDocument, housePropertyDocument, otherSourcesDocument, deductionDocument, memberPersonalInformation, taxReliefDocument, advanceTaxDocument, selfAssesmetTaxDocument, tdsFromothersDocument, scheduleSIDocument );
 		PartBTTI partBTTI = partB_TTI.getPartBTTI(itr, financialYear, inputBeans);
 
 		if(!(memberPersonalInformation.getFirstName().isEmpty()))
