@@ -166,10 +166,23 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 	private String rsstatus_q_no_yes_yes_yes;
 	private String residentCategory;
 	private String PIUUID;
+	// added for itr2
 	private String isRepresentative;
 	private String name_Representative;
 	private String address_Representative;
 	private String pan_Representative;
+	
+	// added for itr4
+	private String isLiable_ManageAcc;
+	private String isLiable_ForAudit;
+	private GregorianCalendar date_FurnishAuditReport;
+	private String name_AuditorSign_Report;
+	private String membershipNo_auditor;
+	private String name_auditorFirm;
+	private String pan_Firm;
+	private GregorianCalendar date_AuditReport;
+	private String isLiable_FurnishSec92E;
+
 
 	ResourceBundle messagesResourceBundle = ResourceBundle.getBundle("messages");
 
@@ -418,6 +431,7 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 		if (phone == null) phone = getProperty(PROP_PI_PHONE);
 		return phone;
 	}
+	// the following 4 methods are for itr2
 	public String getIsRepresentative() {
 		if (isRepresentative == null) isRepresentative = getProperty("mootlywcm:isRepresentative");
 		return isRepresentative;
@@ -437,8 +451,66 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 		if (pan_Representative == null) pan_Representative = getProperty("mootlywcm:pan_Representative");
 		return pan_Representative;
 	}
+	// the following  9 to 10 methods are for itr4
+	
+	public String getIsLiable_ManageAcc() {
+		if (isLiable_ManageAcc == null) isLiable_ManageAcc = getProperty("mootlywcm:isLiable_ManageAcc");
+		return isLiable_ManageAcc;
+	}
+	public String getIsLiable_ForAudit() {
+		if (isLiable_ForAudit == null) isLiable_ForAudit = getProperty("mootlywcm:isLiable_ForAudit");
+		return isLiable_ForAudit;
+	}
+	public GregorianCalendar getDate_FurnishAuditReport() {
+		if (date_FurnishAuditReport == null) date_FurnishAuditReport = getProperty("mootlywcm:date_FurnishAuditReport");
+		return date_FurnishAuditReport;
+	}
 
+	public String getDate_FurnishAuditReportStr() {
+		if (date_FurnishAuditReport == null) date_FurnishAuditReport = getProperty("mootlywcm:date_FurnishAuditReport");
+		if (date_FurnishAuditReport != null) {
+			String date_FurnishAuditReportStr = getIndianDateFormatter().format(date_FurnishAuditReport.getTime());
+			return date_FurnishAuditReportStr;
+		}
+		return null;
+	}
+	
+	
+	public String getName_AuditorSign_Report() {
+		if (name_AuditorSign_Report == null) name_AuditorSign_Report = getProperty("mootlywcm:name_AuditorSign_Report");
+		return name_AuditorSign_Report;
+	}
+	public String getMembershipNo_auditor() {
+		if (membershipNo_auditor == null) membershipNo_auditor = getProperty("mootlywcm:membershipNo_auditor");
+		return membershipNo_auditor;
+	}
+	public String getName_auditorFirm() {
+		if (name_auditorFirm == null) name_auditorFirm = getProperty("mootlywcm:name_auditorFirm");
+		return name_auditorFirm;
+	}
+	public String getPan_Firm() {
+		if (pan_Firm == null) pan_Firm = getProperty("mootlywcm:pan_Firm");
+		return pan_Firm;
+	}
+	public GregorianCalendar getDate_AuditReport() {
+		if (date_AuditReport == null) date_AuditReport = getProperty("mootlywcm:date_AuditReport");
+		return date_AuditReport;
+	}
 
+	public String getDate_AuditReportStr() {
+		if (date_AuditReport == null) date_AuditReport = getProperty("mootlywcm:date_AuditReport");
+		if (date_AuditReport != null) {
+			String date_AuditReportStr = getIndianDateFormatter().format(date_AuditReport.getTime());
+			return date_AuditReportStr;
+		}
+		return null;
+	}
+	public String getIsLiable_FurnishSec92E() {
+		if (isLiable_FurnishSec92E == null) isLiable_FurnishSec92E = getProperty("mootlywcm:isLiable_FurnishSecNinetyTwoE");
+		return isLiable_FurnishSec92E;
+	}
+	
+	
 	public String getPersonalInfoUuid() {
 		return PIUUID;
 	}
@@ -566,18 +638,7 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 	public final void setPhone(String phone) {
 		this.phone = phone;
 	}
-	public final void setIsRepresentative(String isRepresentative) {
-		this.isRepresentative = isRepresentative;
-	}
-	public final void setName_Representative(String name_Representative) {
-		this.name_Representative = name_Representative;
-	}
-	public final void setAddress_Representative(String address_Representative) {
-		this.address_Representative = address_Representative;
-	}
-	public final void setPan_Representative(String pan_Representative) {
-		this.pan_Representative = pan_Representative;
-	}
+	
 	// Member Bank Detail
 	public Boolean getBankDetailStatus(){
 		if (bankDetailStatus == null) bankDetailStatus = getProperty(BD_STATUS);
@@ -722,7 +783,50 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 		this.PIUUID = piuuid;
 	}
 	
-	//for personal information
+	// next 4 methods are added for itr2
+		public final void setIsRepresentative(String isRepresentative) {
+			this.isRepresentative = isRepresentative;
+		}
+		public final void setName_Representative(String name_Representative) {
+			this.name_Representative = name_Representative;
+		}
+		public final void setAddress_Representative(String address_Representative) {
+			this.address_Representative = address_Representative;
+		}
+		public final void setPan_Representative(String pan_Representative) {
+			this.pan_Representative = pan_Representative;
+		}
+		
+	// next 9 to 10 methods are added for itr4
+		public final void setIsLiable_ManageAcc(String isLiable_ManageAcc) {
+			this.isLiable_ManageAcc = isLiable_ManageAcc;
+		}
+		public final void setIsLiable_ForAudit(String isLiable_ForAudit) {
+			this.isLiable_ForAudit = isLiable_ForAudit;
+		}
+		public final void setDate_FurnishAuditReport(GregorianCalendar date_FurnishAuditReport) {
+			this.date_FurnishAuditReport = date_FurnishAuditReport;
+		}
+		public final void setName_AuditorSign_Report(String name_AuditorSign_Report) {
+			this.name_AuditorSign_Report = name_AuditorSign_Report;
+		}
+		public final void setMembershipNo_auditor(String membershipNo_auditor) {
+			this.membershipNo_auditor = membershipNo_auditor;
+		}
+		public final void setName_auditorFirm(String name_auditorFirm) {
+			this.name_auditorFirm = name_auditorFirm;
+		}
+		public final void setPan_Firm(String pan_Firm) {
+			this.pan_Firm = pan_Firm;
+		}
+		public final void setDate_AuditReport(GregorianCalendar date_AuditReport) {
+			this.date_AuditReport = date_AuditReport;
+		}
+		public final void setIsLiable_FurnishSec92E(String isLiable_FurnishSec92E) {
+			this.isLiable_FurnishSec92E = isLiable_FurnishSec92E;
+		}
+		
+		
 
 
 	@Override
@@ -797,10 +901,21 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 			node.setProperty(Rsstatus_q_no_no_yes_yes, mpi.getRsstatusQNoNoYesYes());
 			node.setProperty(Rsstatus_q_no_yes_yes_yes, mpi.getRsstatusQNoYesYesYes());
 			node.setProperty(PROP_PI_RESIDENT_CATEGORY, mpi.getResidentCategory());
+			// added for itr2
 			node.setProperty("mootlywcm:isRepresentative", mpi.getIsRepresentative());
 			node.setProperty("mootlywcm:name_Representative", mpi.getName_Representative());
 			node.setProperty("mootlywcm:address_Representative", mpi.getAddress_Representative());
 			node.setProperty("mootlywcm:pan_Representative", mpi.getPan_Representative());
+			// added for itr4
+			node.setProperty("mootlywcm:isLiable_ManageAcc", mpi.getIsLiable_ManageAcc());
+			node.setProperty("mootlywcm:isLiable_ForAudit", mpi.getIsLiable_ForAudit());
+			node.setProperty("mootlywcm:date_FurnishAuditReport", mpi.getDate_FurnishAuditReportStr());
+			node.setProperty("mootlywcm:name_AuditorSign_Report", mpi.getName_AuditorSign_Report());
+			node.setProperty("mootlywcm:membershipNo_auditor", mpi.getMembershipNo_auditor());
+			node.setProperty("mootlywcm:name_auditorFirm", mpi.getName_auditorFirm());
+			node.setProperty("mootlywcm:pan_Firm", mpi.getPan_Firm());
+			node.setProperty("mootlywcm:date_AuditReport", mpi.getDate_AuditReport());
+			node.setProperty("mootlywcm:isLiable_FurnishSecNinetyTwoE", mpi.getIsLiable_FurnishSec92E());
 		}catch (RepositoryException re) {
 			log.error("Binding Node Error",re);
 
@@ -907,6 +1022,23 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 		if (formMap.getField("isRepresentative") != null) setIsRepresentative(formMap.getField("isRepresentative").getValue());
 		if (formMap.getField("name_Representative") != null) setName_Representative(formMap.getField("name_Representative").getValue());
 		if (formMap.getField("address_Representative") != null) setAddress_Representative(formMap.getField("address_Representative").getValue());
+		if (formMap.getField("pan_Representative") != null) setPan_Representative(formMap.getField("pan_Representative").getValue());
+		// for itr4
+		if (formMap.getField("isLiable_ManageAcc") != null) setIsLiable_ManageAcc(formMap.getField("isLiable_ManageAcc").getValue());
+		if (formMap.getField("isLiable_ForAudit") != null) setIsLiable_ForAudit(formMap.getField("isLiable_ForAudit").getValue());
+		if (formMap.getField("date_FurnishAuditReport") != null) {
+			String strdate_furnishAuditReport = formMap.getField("date_FurnishAuditReport").getValue();
+			setDate_FurnishAuditReport(ConvDateStringToCalendar(strdate_furnishAuditReport));
+		}
+			
+		if (formMap.getField("name_AuditorSign_Report") != null) setName_AuditorSign_Report(formMap.getField("name_AuditorSign_Report").getValue());
+		if (formMap.getField("membershipNo_auditor") != null) setMembershipNo_auditor(formMap.getField("membershipNo_auditor").getValue());
+		if (formMap.getField("name_auditorFirm") != null) setName_auditorFirm(formMap.getField("name_auditorFirm").getValue());
+		if (formMap.getField("pan_Firm") != null) setPan_Firm(formMap.getField("pan_Firm").getValue());
+		if (formMap.getField("date_AuditReport") != null){
+			String strdate_AuditReport= formMap.getField("date_AuditReport").getValue();
+			setDate_AuditReport(ConvDateStringToCalendar(strdate_AuditReport));
+		}
 		if (formMap.getField("pan_Representative") != null) setPan_Representative(formMap.getField("pan_Representative").getValue());
 		
 		if (formMap.getField("pi_state") != null) {
