@@ -785,6 +785,8 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 				</div>
 			</div>
 			<jsp:include page="personalinfo_add_itr2.jsp"></jsp:include>
+			<jsp:include page="personalinfo_add_itr4.jsp"></jsp:include>
+			
 			<input type="hidden" name="bnk_name_solr" id="bnk_name_solr"/>
 		</fieldset>
 		<div id="itreturnHomepage" style="display: none; visiblity: hidden">
@@ -986,7 +988,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 		}
 
 		$(document).ready(function() {
-		// the following code is used to show representative details for only ITR2
+		// The following code is used to show representative details for only ITR2
 		var package = $('#flex_string_ITRForm').val();
 		if(package == 'ITR1') $('#represenative_detail').hide();
 		var yesRepresentative = $('#isRepresentative').val();
@@ -999,7 +1001,25 @@ request.setAttribute("objHashMapstates", objHashMapstates);
    	 $('#add_represent').show();
    	 $('#pan_represent').show();
    		 }
-		// end code
+		// end code for itr2
+		
+		// The following lines are for itr4
+		var isITR4 = $('#flex_string_ITRForm').val();
+		if(isITR4 == 'ITR4') {
+		$('#firstField_itr4').show();
+		$('#secondField_itr4').show();
+		} else{
+		$('#firstField_itr4').hide();
+		$('#secondField_itr4').hide();
+		}
+		var yesLiable_ForAudit = $('#isLiable_ForAudit').val();
+		if((yesLiable_ForAudit == 'N' || (yesLiable_ForAudit == '')) ){
+		$('#date_name_membership').hide();
+		$('#name_pan_dateofAudit').hide();
+		$('#sec92E').hide();
+		} else{
+		$('#fieldsfor_ITR4').show();
+		}
 
 			$("#flex_string_ITRForm").change(function (aval) {
 					var sele = this.options[this.selectedIndex].value;
@@ -1121,6 +1141,8 @@ request.setAttribute("objHashMapstates", objHashMapstates);
               	$("#pi_country").val("");
               	 }
         }
+        
+        // The following logic is for itr2 and itr4 both
     $('#flex_string_ITRForm').change(function(){
     var packageName = $('#flex_string_ITRForm').val();
     if(packageName == 'ITR2') {
@@ -1142,8 +1164,31 @@ request.setAttribute("objHashMapstates", objHashMapstates);
     $('#pan_represent').show();
     }
     })
-
-
+ // And This logic is for itr4 
+	$('#flex_string_ITRForm').change(function(){
+	var packageName = $('#flex_string_ITRForm').val();
+	alert("packageName"+packageName);
+	if(packageName == 'ITR4') {
+	$('#firstField_itr4').show();
+	$('#secondField_itr4').show();
+	} else{
+	$('#firstField_itr4').hide();
+	$('#secondField_itr4').hide();
+	}
+	})
+	$('#isLiable_ForAudit').change(function(){
+	var yesLiable_ForAudit = $('#isLiable_ForAudit').val();
+	alert("yesLiable_ForAudit"+yesLiable_ForAudit); 
+	if((yesLiable_ForAudit == 'N' || (yesLiable_ForAudit == '')) ){
+	$('#date_name_membership').hide();
+	$('#name_pan_dateofAudit').hide();
+	$('#sec92E').hide();
+	} else{
+	$('#date_name_membership').show();
+	$('#name_pan_dateofAudit').show();
+	$('#sec92E').show();
+	}
+	})
 
 </hst:element>
 <hst:headContribution element="${uiCustom}" category="jsInternal" />
