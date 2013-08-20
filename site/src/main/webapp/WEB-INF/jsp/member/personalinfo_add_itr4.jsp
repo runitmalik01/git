@@ -16,8 +16,8 @@
 				<div class="rowlabel">
 					<select id="isLiable_ManageAcc" name="isLiable_ManageAcc">
 					<option value="">-SELECT-</option>
-					<option	value="Y"<c:if test="${not empty parentBean.isLiable_ManageAcc && parentBean.isLiable_ManageAcc =='Y'}">selected</c:if>>YES</option></option>
-					<option value="N"<c:if test="${not empty parentBean.isLiable_ManageAcc && parentBean.isLiable_ManageAcc =='N'}">selected</c:if>>NO</option></option>
+					<option	value="Y"<c:if test="${not empty parentBean.isLiable_ManageAcc && parentBean.isLiable_ManageAcc =='Y'}">selected</c:if>>YES</option>
+					<option value="N"<c:if test="${not empty parentBean.isLiable_ManageAcc && parentBean.isLiable_ManageAcc =='N'}">selected</c:if>>NO</option>
 					</select>
 				</div>
 		</div></div>
@@ -55,7 +55,7 @@
 				</div>
 				<div class="rowlabel">
 					<input id="name_AuditorSign_Report" name="name_AuditorSign_Report"  class="uprcase"
-						type="text" value="" />
+						type="text" value="${parentBean.name_AuditorSign_Report}" />
 				</div>
 			</div>
 
@@ -66,7 +66,7 @@
 				</div>
 				<div class="rowlabel">
 					<input id="membershipNo_auditor" name="membershipNo_auditor" class="uprcase strict"
-						type="text" value="" />
+						type="text" value="${parentBean.membershipNo_auditor}" />
 				</div>
 			</div>
 		</div>
@@ -98,7 +98,7 @@
 				</div>
 				<div class="rowlabel">
 					<input id="date_AuditReport" name="date_AuditReport" class="uprcase"
-						type="text" value="${parentBean.date_AuditReport}" />
+						type="text" value="${parentBean.date_AuditReportStr}" />
 				</div>
 			</div>
 		</div>
@@ -112,10 +112,11 @@
 				<div class="rowlabel">
 					<select id="isLiable_FurnishSec92E" name="isLiable_FurnishSec92E">
 					<option value="">-SELECT-</option>
-					<option	value="Y"<c:if test="${not empty parentBean.isLiable_FurnishSec92E && parentBean.isLiable_FurnishSec92E =='Y'}">selected</c:if>>YES</option></option>
-					<option value="N"<c:if test="${not empty parentBean.isLiable_FurnishSec92E && parentBean.isLiable_FurnishSec92E =='N'}">selected</c:if>>NO</option></option>
+					<option	value="Y"<c:if test="${not empty parentBean.isLiable_FurnishSec92E && parentBean.isLiable_FurnishSec92E =='Y'}">selected</c:if>>YES</option>
+					<option value="N"<c:if test="${not empty parentBean.isLiable_FurnishSec92E && parentBean.isLiable_FurnishSec92E =='N'}">selected</c:if>>NO</option>
 					</select>
 				</div>
 		</div>
 		</div>
+		
 </fieldset>
