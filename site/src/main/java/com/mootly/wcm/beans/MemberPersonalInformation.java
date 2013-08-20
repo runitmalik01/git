@@ -362,6 +362,8 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 		}
 		return null;
 	}
+	
+	
 
 	public String getSex() {
 		if (sex == null) sex = getProperty(PROP_PI_SEX);
@@ -461,19 +463,7 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 		if (isLiable_ForAudit == null) isLiable_ForAudit = getProperty("mootlywcm:isLiable_ForAudit");
 		return isLiable_ForAudit;
 	}
-	public GregorianCalendar getDate_FurnishAuditReport() {
-		if (date_FurnishAuditReport == null) date_FurnishAuditReport = getProperty("mootlywcm:date_FurnishAuditReport");
-		return date_FurnishAuditReport;
-	}
 
-	public String getDate_FurnishAuditReportStr() {
-		if (date_FurnishAuditReport == null) date_FurnishAuditReport = getProperty("mootlywcm:date_FurnishAuditReport");
-		if (date_FurnishAuditReport != null) {
-			String date_FurnishAuditReportStr = getIndianDateFormatter().format(date_FurnishAuditReport.getTime());
-			return date_FurnishAuditReportStr;
-		}
-		return null;
-	}
 	
 	
 	public String getName_AuditorSign_Report() {
@@ -492,11 +482,11 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 		if (pan_Firm == null) pan_Firm = getProperty("mootlywcm:pan_Firm");
 		return pan_Firm;
 	}
+	
 	public GregorianCalendar getDate_AuditReport() {
 		if (date_AuditReport == null) date_AuditReport = getProperty("mootlywcm:date_AuditReport");
 		return date_AuditReport;
 	}
-
 	public String getDate_AuditReportStr() {
 		if (date_AuditReport == null) date_AuditReport = getProperty("mootlywcm:date_AuditReport");
 		if (date_AuditReport != null) {
@@ -505,6 +495,22 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 		}
 		return null;
 	}
+
+	
+	public GregorianCalendar getDate_FurnishAuditReport() {
+		if (date_FurnishAuditReport == null) date_FurnishAuditReport = getProperty("mootlywcm:date_FurnishAuditReport");
+		return date_FurnishAuditReport;
+	}
+	public String getDate_FurnishAuditReportStr() {
+		if (date_FurnishAuditReport == null) date_FurnishAuditReport = getProperty("mootlywcm:date_FurnishAuditReport");
+		if (date_FurnishAuditReport != null) {
+			String date_FurnishAuditReportStr = getIndianDateFormatter().format(date_FurnishAuditReport.getTime());
+			return date_FurnishAuditReportStr;
+		}
+		return null;
+	}
+
+	
 	public String getIsLiable_FurnishSec92E() {
 		if (isLiable_FurnishSec92E == null) isLiable_FurnishSec92E = getProperty("mootlywcm:isLiable_FurnishSecNinetyTwoE");
 		return isLiable_FurnishSec92E;
@@ -804,6 +810,8 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 		public final void setIsLiable_ForAudit(String isLiable_ForAudit) {
 			this.isLiable_ForAudit = isLiable_ForAudit;
 		}
+		
+		
 		public final void setDate_FurnishAuditReport(GregorianCalendar date_FurnishAuditReport) {
 			this.date_FurnishAuditReport = date_FurnishAuditReport;
 		}
@@ -822,6 +830,8 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 		public final void setDate_AuditReport(GregorianCalendar date_AuditReport) {
 			this.date_AuditReport = date_AuditReport;
 		}
+		 
+		
 		public final void setIsLiable_FurnishSec92E(String isLiable_FurnishSec92E) {
 			this.isLiable_FurnishSec92E = isLiable_FurnishSec92E;
 		}
@@ -909,7 +919,8 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 			// added for itr4
 			node.setProperty("mootlywcm:isLiable_ManageAcc", mpi.getIsLiable_ManageAcc());
 			node.setProperty("mootlywcm:isLiable_ForAudit", mpi.getIsLiable_ForAudit());
-			node.setProperty("mootlywcm:date_FurnishAuditReport", mpi.getDate_FurnishAuditReportStr());
+			
+			node.setProperty("mootlywcm:date_FurnishAuditReport", mpi.getDate_FurnishAuditReport());
 			node.setProperty("mootlywcm:name_AuditorSign_Report", mpi.getName_AuditorSign_Report());
 			node.setProperty("mootlywcm:membershipNo_auditor", mpi.getMembershipNo_auditor());
 			node.setProperty("mootlywcm:name_auditorFirm", mpi.getName_auditorFirm());
@@ -1026,19 +1037,25 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 		// for itr4
 		if (formMap.getField("isLiable_ManageAcc") != null) setIsLiable_ManageAcc(formMap.getField("isLiable_ManageAcc").getValue());
 		if (formMap.getField("isLiable_ForAudit") != null) setIsLiable_ForAudit(formMap.getField("isLiable_ForAudit").getValue());
-		if (formMap.getField("date_FurnishAuditReport") != null) {
-			String strdate_furnishAuditReport = formMap.getField("date_FurnishAuditReport").getValue();
-			setDate_FurnishAuditReport(ConvDateStringToCalendar(strdate_furnishAuditReport));
-		}
+		
 			
 		if (formMap.getField("name_AuditorSign_Report") != null) setName_AuditorSign_Report(formMap.getField("name_AuditorSign_Report").getValue());
 		if (formMap.getField("membershipNo_auditor") != null) setMembershipNo_auditor(formMap.getField("membershipNo_auditor").getValue());
 		if (formMap.getField("name_auditorFirm") != null) setName_auditorFirm(formMap.getField("name_auditorFirm").getValue());
 		if (formMap.getField("pan_Firm") != null) setPan_Firm(formMap.getField("pan_Firm").getValue());
+		
+		if (formMap.getField("date_FurnishAuditReport") != null){
+			String strdate_FurnishAuditReport= formMap.getField("date_FurnishAuditReport").getValue();
+			setDate_FurnishAuditReport(ConvDateStringToCalendar(strdate_FurnishAuditReport));
+		}
 		if (formMap.getField("date_AuditReport") != null){
 			String strdate_AuditReport= formMap.getField("date_AuditReport").getValue();
 			setDate_AuditReport(ConvDateStringToCalendar(strdate_AuditReport));
 		}
+		 
+		
+		
+		if (formMap.getField("isLiable_FurnishSec92E") != null) setIsLiable_FurnishSec92E(formMap.getField("isLiable_FurnishSec92E").getValue());
 		if (formMap.getField("pan_Representative") != null) setPan_Representative(formMap.getField("pan_Representative").getValue());
 		
 		if (formMap.getField("pi_state") != null) {
