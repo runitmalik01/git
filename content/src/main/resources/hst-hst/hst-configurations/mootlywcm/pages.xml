@@ -8578,51 +8578,86 @@
 	<!--  /new page for ITRV Status -->
 	<!-- shedule si -->
 	<sv:node sv:name="itr-schedule-si" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
-  <sv:property sv:name="jcr:primaryType" sv:type="Name">
-    <sv:value>hst:component</sv:value>
-  </sv:property>
-  <sv:property sv:name="jcr:uuid" sv:type="String">
-    <sv:value>a97e6e22-d002-45be-8787-533400b83a62</sv:value>
-  </sv:property>
-  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
-    <sv:value>bodyCssClass</sv:value>
-  </sv:property>
-  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
-    <sv:value>page</sv:value>
-  </sv:property>
-  <sv:property sv:name="hst:referencecomponent" sv:type="String">
-    <sv:value>hst:pages/simplepage.re</sv:value>
-  </sv:property>
-  <sv:node sv:name="main">
-    <sv:property sv:name="jcr:primaryType" sv:type="Name">
-      <sv:value>hst:component</sv:value>
-    </sv:property>
-    <sv:property sv:name="jcr:uuid" sv:type="String">
-      <sv:value>4d48768c-7e81-4855-9b12-ce4dcb4c969d</sv:value>
-    </sv:property>
-    <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
-      <sv:value>contentCssClass</sv:value>
-      <sv:value>widgets1CssClass</sv:value>
-    </sv:property>
-    <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
-      <sv:value>grid-right col-940</sv:value>
-      <sv:value>grid-right col-300 rtl-fit</sv:value>
-    </sv:property>
-    <sv:property sv:name="hst:template" sv:type="String">
-      <sv:value>standard.main.re</sv:value>
-    </sv:property>
-    <sv:node sv:name="content">
-      <sv:property sv:name="jcr:primaryType" sv:type="Name">
-        <sv:value>hst:component</sv:value>
-      </sv:property>
-      <sv:property sv:name="jcr:uuid" sv:type="String">
-        <sv:value>b1a95991-3d86-47a9-8cbf-692278d0b6fe</sv:value>
-      </sv:property>
-      <sv:property sv:name="hst:referencecomponent" sv:type="String">
-        <sv:value>hst:components/itr-schedule-si</sv:value>
-      </sv:property>
-    </sv:node>
-  </sv:node>
-</sv:node>
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hst:component</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>a97e6e22-d002-45be-8787-533400b83a62</sv:value>
+	  </sv:property>
+	  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+	    <sv:value>bodyCssClass</sv:value>
+	  </sv:property>
+	  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+	    <sv:value>page</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:referencecomponent" sv:type="String">
+	    <sv:value>hst:pages/simplepage.re</sv:value>
+	  </sv:property>
+	  <sv:node sv:name="main">
+	    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	      <sv:value>hst:component</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="jcr:uuid" sv:type="String">
+	      <sv:value>4d48768c-7e81-4855-9b12-ce4dcb4c969d</sv:value>
+	    </sv:property>
+	    <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+	      <sv:value>contentCssClass</sv:value>
+	      <sv:value>widgets1CssClass</sv:value>
+	    </sv:property>
+	    <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+	      <sv:value>grid-right col-940</sv:value>
+	      <sv:value>grid-right col-300 rtl-fit</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="hst:template" sv:type="String">
+	      <sv:value>standard.main.re</sv:value>
+	    </sv:property>
+	    <sv:node sv:name="content">
+	      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	        <sv:value>hst:component</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="jcr:uuid" sv:type="String">
+	        <sv:value>b1a95991-3d86-47a9-8cbf-692278d0b6fe</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="hst:referencecomponent" sv:type="String">
+	        <sv:value>hst:components/itr-schedule-si</sv:value>
+	      </sv:property>
+	    </sv:node>
+	  </sv:node>
+	</sv:node>
 <!-- shedule si -->
+	<!-- new node -->
+	<sv:node sv:name="servicerequest-itr-sync-tds-from-dit" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hst:component</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>b81fe1f3-3530-4392-b0c7-9012d46cc0ed</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:referencecomponent" sv:type="String">
+	    <sv:value>hst:pages/simplepage.re</sv:value>
+	  </sv:property>
+	  <sv:node sv:name="main">
+	    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	      <sv:value>hst:component</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="jcr:uuid" sv:type="String">
+	      <sv:value>e0a77c8a-866a-4c91-8870-987ddbc9c761</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="hst:template" sv:type="String">
+	      <sv:value>standard.main.re</sv:value>
+	    </sv:property>
+	    <sv:node sv:name="content">
+	      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	        <sv:value>hst:component</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="jcr:uuid" sv:type="String">
+	        <sv:value>303b906e-7600-4448-a25d-9fa67e2e0867</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="hst:referencecomponent" sv:type="String">
+	        <sv:value>hst:components/servicerequest-itr-sync-tds-from-dit</sv:value>
+	      </sv:property>
+	    </sv:node>
+	  </sv:node>
+	</sv:node>
+	<!-- /new node -->
 </sv:node>

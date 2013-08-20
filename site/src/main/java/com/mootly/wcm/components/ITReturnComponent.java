@@ -1745,7 +1745,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		boolean isPaid = false;
 		
 		MemberPersonalInformation memberPersonalInformation = (MemberPersonalInformation) request.getAttribute(MemberPersonalInformation.class.getSimpleName().toLowerCase());
-		log.info("AAAAAAAAAAAAAAAAAAAAAAAAAAAAFFFFFFFFFFFFFFFFFFFFFFFFFFF"+memberPersonalInformation);
+		//log.info("AAAAAAAAAAAAAAAAAAAAAAAAAAAAFFFFFFFFFFFFFFFFFFFFFFFFFFF"+memberPersonalInformation);
 		String ITR = memberPersonalInformation.getFlexField("flex_string_ITRForm", "");
 		request.setAttribute("ITR", ITR);
 		

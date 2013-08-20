@@ -38,6 +38,7 @@
 						</div>
 						<div class="rowlabel">
 							<select id="financialYear" name="financialYear">
+								<option value="<%=FinancialYear.TwentyEleven%>"><%=FinancialYear.TwentyEleven.getDisplayName()%> (AY:<%=FinancialYear.TwentyEleven.getDisplayAssessmentYear()%>)</option>
 								<option value="<%=FinancialYear.TwentyTweleve%>"><%=FinancialYear.TwentyTweleve.getDisplayName()%> (AY:<%=FinancialYear.TwentyTweleve.getDisplayAssessmentYear()%>)</option>
 							</select>
 						</div>

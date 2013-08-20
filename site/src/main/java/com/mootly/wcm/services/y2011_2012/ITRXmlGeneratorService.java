@@ -123,7 +123,7 @@ public class ITRXmlGeneratorService extends ITRXmlGeneratorServiceCommon  implem
 	public Unmarshaller validateXmlGetUnmarshaller() throws Exception {
 		SchemaFactory sf = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
 		sf.setResourceResolver(new ClasspathResourceResolver());
-		InputStream inputStream1= this.getClass().getClassLoader().getResourceAsStream("in/gov/incometaxindiaefiling/y2011_2012/ITRMain13.xsd");
+		InputStream inputStream1= this.getClass().getClassLoader().getResourceAsStream("in/gov/incometaxindiaefiling/y2011_2012/ITRMain12.xsd");
 		
 		Source streamSource = new StreamSource(inputStream1);
         Schema schema = sf.newSchema(streamSource); 

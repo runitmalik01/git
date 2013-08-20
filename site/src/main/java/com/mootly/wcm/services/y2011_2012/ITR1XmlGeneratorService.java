@@ -170,7 +170,7 @@ public class ITR1XmlGeneratorService {
 		//Form_ITR1
 		formITR1.setFormName("ITR-1");
 		formITR1.setDescription("For Indls having Income from Salary, Pension, family pension and Interest");
-		formITR1.setAssessmentYear("2013");
+		formITR1.setAssessmentYear("2012");
 		formITR1.setSchemaVer("Ver1.0");
 		formITR1.setFormVer("Ver1.0");
 		itr1.setFormITR1(formITR1);
@@ -255,8 +255,12 @@ public class ITR1XmlGeneratorService {
 		BigInteger OtherIncome = new BigInteger("0");
 		if(otherSourcesDocument!=null){
 			OtherIncome = indianCurrencyHelper.bigIntegerRound(otherSourcesDocument.getTaxable_income());
+			incomeDeductions.setIncomeOthSrc( otherSourcesDocument.getTaxable_income().longValue() );
 		}
-		incomeDeductions.setIncomeOthSrc( otherSourcesDocument.getTaxable_income().longValue() );
+		else {
+			incomeDeductions.setIncomeOthSrc( 0L );
+		}
+		//incomeDeductions.setIncomeOthSrc( otherSourcesDocument.getTaxable_income().longValue() );
 
 		//long grsstotal = xmlCalculation.grossTotal(request, response);
 		long grsstotal = xmlCalculation.grossTotal(financialYear,inputBeans);
@@ -377,7 +381,8 @@ public class ITR1XmlGeneratorService {
 		Map<String,Object> resultMap = ScreenCalculatorService.getScreenCalculations("xmlCalculation.js", requestParameterMap, totalMapForJS);
 		//ITR1 Tax Computation (without calculation) with null values
 		itr1TaxComputation.setTotalTaxPayable(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMap.get("txtTax").toString())));
-		itr1TaxComputation.setSurchargeOnTaxPayable(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMap.get("txtsurcharge").toString())));
+		//itr1TaxComputation.setSurchargeOnTaxPayable(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMap.get("txtsurcharge").toString())));
+		itr1TaxComputation.setSurchargeOnTaxPayable("0");
 		BigInteger EduCess = indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMap.get("txtEduCess").toString()));
 		BigInteger HigherEduCess =indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMap.get("txtHEduCess").toString()));
 		BigInteger TotalEduCess = EduCess.add(HigherEduCess);
@@ -630,7 +635,8 @@ public class ITR1XmlGeneratorService {
 		refund.setBankAccountNumber(memberPersonalInformation.getBD_ACC_NUMBER().toUpperCase());
 		refund.setEcsRequired(memberPersonalInformation.getBD_ECS());
 		DepositToBankAccount depositToBankAccount = new DepositToBankAccount();
-		depositToBankAccount.setMICRCode(memberPersonalInformation.getFlexField("flex_string_IFSCCode", "").toUpperCase());
+		//depositToBankAccount.setMICRCode(memberPersonalInformation.getFlexField("flex_string_IFSCCode", "").toUpperCase());
+		depositToBankAccount.setMICRCode("999999999");
 		depositToBankAccount.setBankAccountType(memberPersonalInformation.getBD_TYPE_ACC().toUpperCase());
 		refund.setDepositToBankAccount(depositToBankAccount);
 		itr1.setRefund(refund);
@@ -1024,7 +1030,7 @@ public class ITR1XmlGeneratorService {
 			jaxbMarshaller.setProperty("com.sun.xml.bind.namespacePrefixMapper", prefixMapper);
 			jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT,true);
 			jaxbMarshaller.setProperty(Marshaller.JAXB_ENCODING,"UTF-8");
-			jaxbMarshaller.setProperty(Marshaller.JAXB_SCHEMA_LOCATION, "http://incometaxindiaefiling.gov.in/main ITRMain13.xsd");
+			jaxbMarshaller.setProperty(Marshaller.JAXB_SCHEMA_LOCATION, "http://incometaxindiaefiling.gov.in/main ITRMain12.xsd");
 			ITR itReturn = new ITR();
 			itReturn.getITR1().add(itr1);
 			jaxbMarshaller.marshal(itReturn, sw);

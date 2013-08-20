@@ -3217,4 +3217,15 @@
         <sv:value>jsp/member/itr-schedule-si.jsp</sv:value>
      </sv:property>
     </sv:node>	
+	<sv:node sv:name="servicerequest-itr-sync-tds-from-dit" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hst:template</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>2966d953-abd7-4e58-91d2-d4f7dca3739e</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:renderpath" sv:type="String">
+	    <sv:value>jsp/member/syncTDSFromDIT.jsp</sv:value>
+	  </sv:property>
+	</sv:node>
 </sv:node>

@@ -1,5 +1,5 @@
 /**
- * @author  abhishek bhardwaj
+  * @author  abhishek bhardwaj
  * @since 08/07/2013
  * Description: This is bean file which save data of capital asset form
  */
@@ -38,7 +38,7 @@ import com.mootly.wcm.member.MonthCalculate;
 
 
 @SuppressWarnings("unused")
-@Node(jcrType = "mootlywcm:capitalassetdetail")
+@Node(jcrType = "mootlywcm:capitalassetdetail") 
 
 @TagAsTaxDataProvider(type=TaxDataProviderType.INCOME)
 public class CapitalAssetDetail extends CapitalAssetDetailA implements FormMapFiller {

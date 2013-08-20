@@ -6,7 +6,6 @@ import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import java.util.Map;
 import java.util.ResourceBundle;
 
 import javax.xml.datatype.DatatypeConfigurationException;
@@ -14,8 +13,6 @@ import javax.xml.datatype.DatatypeConstants;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
-import org.hippoecm.hst.content.beans.standard.HippoBean;
-import org.hippoecm.hst.core.component.HstRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,7 +20,7 @@ import com.mootly.wcm.model.FinancialYear;
 
 public final class IndianCurrencyHelper {
 
-	private static Logger log = LoggerFactory.getLogger(ITR2XmlGeneratorService .class);
+	private static Logger log = LoggerFactory.getLogger(IndianCurrencyHelper.class);
 
 	/**
 	 * This Method is used to Round the Decimal Values and convert it into BigIngteger

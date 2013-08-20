@@ -1578,4 +1578,22 @@
       </sv:property>
     </sv:node>
 	<!--  / new component for ITRV Status Check -->
+	<!-- DIT  -->
+	<sv:node sv:name="servicerequest-itr-sync-tds-from-dit" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hst:component</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>2f2867c7-04a5-4c89-b3bf-3eabbaba563d</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:componentclassname" sv:type="String">
+	    <sv:value>com.mootly.wcm.member.SyncTDSFromDIT</sv:value>
+	  </sv:property>
+	  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String"/>
+	  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String"/>
+	  <sv:property sv:name="hst:template" sv:type="String">
+	    <sv:value>servicerequest-itr-sync-tds-from-dit</sv:value>
+	  </sv:property>
+	</sv:node>	
+	<!-- / DIT  -->
 </sv:node>
