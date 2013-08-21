@@ -24,6 +24,8 @@ import org.springframework.security.core.authority.GrantedAuthorityImpl;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+
+import com.mootly.wcm.services.SecureHashGeneration;
 /**
  * https://forge.onehippo.org/svn/hst-springsec/hst-springsec/trunk/src/main/java/org/onehippo/forge/security/support/springsecurity/authentication/HippoUserDetailsServiceImpl.java
  * @author admin
@@ -64,6 +66,8 @@ public class MootlyHippoUserDetailsServiceImpl implements HippoUserDetailsServic
 	  private String defaultRoleName = "everybody";
 
 	  private String rolePrefix = "ROLE_";
+	  
+	  private String PASS_PREFIX="$SHA-256$";
 
 	  public MootlyHippoUserDetailsServiceImpl() {
 	  }
@@ -180,10 +184,19 @@ public class MootlyHippoUserDetailsServiceImpl implements HippoUserDetailsServic
 	    	  throw new UsernameNotFoundException("user.not.found");
 	      }
 	      String passwordProp = null;
+	      //changes by priyank
+	      //check for both type of Password in SHA-256 or String 
 	      if (userNode.hasProperty("mootlywcm:password")) {
 		      passwordProp = userNode.getProperty("mootlywcm:password").getString();
 		      if (!password.equals(passwordProp)) {
-		    	  throw new UsernameNotFoundException("password.mismatch");
+		    	  if(passwordProp.contains(PASS_PREFIX)){
+		    		  String newPrefixSHA=SecureHashGeneration.passSHAdigest(password);
+		    		  if(!newPrefixSHA.equalsIgnoreCase(passwordProp)){
+		    			  throw new UsernameNotFoundException("password.mismatch");
+		    		  }
+		    	  }else{
+		    		  throw new UsernameNotFoundException("password.mismatch");  
+		    	  }
 		      }
 	      }
 	      else {
