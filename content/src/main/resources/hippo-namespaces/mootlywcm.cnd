@@ -419,3 +419,7 @@ orderable
   orderable
 [mootlywcm:schedulesidocumentdetail] > hippo:compound, hippostd:relaxed orderable
 
+[mootlywcm:naturebusinessdocument] > hippostd:relaxed, mootlywcm:basedocument
+  orderable
+[mootlywcm:naturebusinessdetail] > hippo:compound, hippostd:relaxed orderable
+
