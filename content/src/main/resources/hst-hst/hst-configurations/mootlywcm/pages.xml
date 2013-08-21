@@ -8577,7 +8577,7 @@
 	</sv:node>
 	<!--  /new page for ITRV Status -->
 	<!-- shedule si -->
-	<sv:node sv:name="itr-schedule-si" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+	<sv:node sv:name="itr-schedule-si">
 	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
 	    <sv:value>hst:component</sv:value>
 	  </sv:property>
@@ -8660,4 +8660,55 @@
 	  </sv:node>
 	</sv:node>
 	<!-- /new node -->
+	<!--  nodes for itr4 -->
+	<!--  for nature of business -->
+	
+<sv:node sv:name="businessnature" >
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:component</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>005fcff8-8115-409a-b9e5-18fb428a0213</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+    <sv:value>bodyCss</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+    <sv:value>bodyCssClass</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:referencecomponent" sv:type="String">
+    <sv:value>hst:pages/simplepage.re</sv:value>
+  </sv:property>
+  <sv:node sv:name="main">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>d2a8ca90-1bd6-43a0-ac5f-0f424302885a</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+      <sv:value>contentCssClass</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+      <sv:value>grid-right col-940</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>standard.main.re</sv:value>
+    </sv:property>
+    <sv:node sv:name="content">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>hst:component</sv:value>
+      </sv:property>
+      <sv:property sv:name="jcr:uuid" sv:type="String">
+        <sv:value>d8d6b4a7-d2fe-4e43-956f-f8351651ab3e</sv:value>
+      </sv:property>
+      <sv:property sv:name="hst:referencecomponent" sv:type="String">
+        <sv:value>hst:components/businessnature</sv:value>
+      </sv:property>
+    </sv:node>
+  </sv:node>
+</sv:node>
+	
+	
+	<!--  end nature of business -->
 </sv:node>
