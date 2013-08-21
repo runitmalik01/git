@@ -3228,4 +3228,20 @@
 	    <sv:value>jsp/member/syncTDSFromDIT.jsp</sv:value>
 	  </sv:property>
 	</sv:node>
+	<!-- nodes for itr4 -->
+	<!--  node for nature business -->
+	
+<sv:node sv:name="businessnature" >
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:template</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>c9fc5cc5-82d8-431b-a7e9-735778e0b34d</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:renderpath" sv:type="String">
+    <sv:value>jsp/member/nature_business.jsp</sv:value>
+  </sv:property>
+</sv:node>
+	
+	<!-- /naturebusiness -->
 </sv:node>
