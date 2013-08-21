@@ -37,10 +37,10 @@ public class MemberLogin extends BaseComponent {
 		String cpmsg=getPublicRequestParameter(request, "SUCCESS");
 		if(cpmsg!=null){
 			if (cpmsg.equals(EMAIL)){
-				request.setAttribute("errormsg", " Password has been sent to your registered email id ");
+				request.setAttribute("errormsg", "Wealth4India mail you at registered email id to recover password.");
 			}
 			if(cpmsg.equals(CHANGE)){
-				request.setAttribute("errormsg", " Password has been changed successfully ");	
+				request.setAttribute("errormsg", " Password has been changed successfully.");	
 			}		
 		}
 		try {
@@ -56,6 +56,7 @@ public class MemberLogin extends BaseComponent {
 		// TODO Auto-generated method stub
 		super.doAction(request, response);
 		//Any submission will go here
+		log.info("this is Member Login Class");
 		String userName = GoGreenUtil.getEscapedParameter(request, "username");
 		String password = GoGreenUtil.getEscapedParameter(request, "password");
 

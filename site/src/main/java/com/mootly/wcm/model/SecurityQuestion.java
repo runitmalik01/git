@@ -3,6 +3,9 @@
  */
 package com.mootly.wcm.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author BEN-10
  *
@@ -15,12 +18,8 @@ public enum SecurityQuestion {
 
 	String displayName;//name of question 
 	String key;//key name from which we find message property in resource bundle
-	int size;//No of Question to be shown on Question DropDown
+	int size;//No of Question to be shown on Question DropDown.Also make sure that question should be in "security_question.properties".
 	boolean isActive;//Question should be shown or not
-
-	SecurityQuestion(){
-
-	}
 	
 	SecurityQuestion(String displayName,String key,int size,boolean isActive) {
 		this.displayName= displayName;
@@ -43,5 +42,15 @@ public enum SecurityQuestion {
 	
 	public String getDisplayName() {
 		return displayName;
+	}
+	
+	public static List<SecurityQuestion> getActiveQuestions(){
+		List<SecurityQuestion> secQuestion = new ArrayList<SecurityQuestion>();
+		for(SecurityQuestion sq:SecurityQuestion.values()){
+			if(sq.isActive()){
+				secQuestion.add(sq);
+			}
+		}
+		return secQuestion;
 	}
 }

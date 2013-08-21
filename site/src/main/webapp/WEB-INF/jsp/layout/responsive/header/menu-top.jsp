@@ -29,6 +29,7 @@
 <span class="simpleCart_quantity"></span> items - <span class="simpleCart_total"></span>
 <a href="javascript:;" class="simpleCart_checkout">Checkout</a>
  --%>
+ <hst:link var="securelink" siteMapItemRefId="secure-connection"></hst:link>
 <ul id="menu-top" class="top-menu">
 		<c:choose>
 			<c:when test="${loggedin}">			
@@ -38,12 +39,12 @@
 	                <a class="dropdown-toggle btn btn-primary" data-toggle="dropdown" href="#" style="color: white"><i class="icon-user icon-white"></i><%=request.getUserPrincipal().getName()%><b></b></a>
 	                <ul class="dropdown-menu">
 	                	<hst:link var="changepass" siteMapItemRefId="memberchangepass"></hst:link>
-	                    <li><a href="${changepass}">ChangePassword</a></li>
-	                    
+	                    <li><a href="${changepass}"><i class="icon-edit"></i>ChangePassword</a></li>
+	                    <li><a href="${securelink}?security=true"><i class="icon-wrench"></i>Security Setting</a></li>
 	                    <%
 	                    	if (request.isUserInRole("ROLE_vendor")) {	                    		
 	                    %>
-	                    	<li><a href="<hst:link path="/vendor/itreturn"/>">Vendor Home</a></li>
+	                    	<li><a href="<hst:link path="/vendor/itreturn"/>"><i class="icon-home"></i>Vendor Home</a></li>
 	                    <% } %>
 	                </ul>
               	</li>

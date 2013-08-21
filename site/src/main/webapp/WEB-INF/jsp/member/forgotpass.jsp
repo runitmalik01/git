@@ -1,86 +1,110 @@
-<%--
-
-    Copyright (C) 2010 Hippo B.V.
-
-    Licensed under the Apache License, Version 2.0 (the "License");
-    you may not use this file except in compliance with the License.
-    You may obtain a copy of the License at
-
-            http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing, software
-    distributed under the License is distributed on an "AS IS" BASIS,
-    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-    See the License for the specific language governing permissions and
-    limitations under the License.
-
---%>
-<%--@elvariable id="document" type="com.mootly.wcm.beans.Product"--%>
-
 <%@include file="../includes/tags.jspf"%>
 <hst:actionURL var="forgotpassaction"></hst:actionURL>
-<script type="text/javascript"
-	src="http://yui.yahooapis.com/2.9.0/build/datatable/datatable-min.js"></script>
-<link rel="stylesheet" type="text/css"
-	href="http://yui.yahooapis.com/2.9.0/build/datatable/assets/skins/sam/datatable.css" />
 <c:set var="forgotpass">
- <fmt:message key="member.forgot.title" />
+	<fmt:message key="member.forgot.title" />
 </c:set>
 <hippo-gogreen:title title="${forgotpass}" />
-		<form action="${forgotpassaction}" method="post">
+<form action="${forgotpassaction}" method="post" id="forgotpassForm">
+	<c:if test="${empty memberSignup}">
 		<fieldset>
-		<legend>Enter your email address</legend>
-				<h5>
-					<fmt:message key="signup.forgotpass.message" />
-				</h5>
-				<table>	
-					<tr>
-						<td><label for="email"><fmt:message key="signup.email.required" /></label>
-						</td>
-						<td class="input"><input type="text" name="email"
-							value="${fn:escapeXml(email)}" class="input_data" /> <c:if
-								test="${not empty errors}">
-								<c:forEach items="${errors}" var="error">
-									<c:if test="${error eq 'signup.email.error.required'}">
-										<span class="form-error"><fmt:message
-												key="signup.email.error.required" /> </span>
-										<br />
-									</c:if>
-								</c:forEach>
-							</c:if></td>
-					</tr>
-					<c:if test="${not empty email_error}">
-						<span class="form-error"> <c:out
-								value="Your Email is not registered" /> </span>
-					</c:if>
-					<tr height="40px">
-						<td colspan="3" align="center"><input type="submit"
-							value="<fmt:message key="member.start.submit.label"/>"
-							class="yui3-button" />
-						</td>
-					</tr>
-				</table>
-				</fieldset>
-		</form>
-<hst:headContribution keyHint="tablecss">
-	<link type="text/css" rel="stylesheet"
-		href='<hst:link path="/css/Newstyle.css"/>' />
-</hst:headContribution>
-<hst:headContribution keyHint="ExternalCSS">
-	<link rel="stylesheet"
-		href='<hst:link path="http://yui.yahooapis.com/3.8.0/build/cssbutton/cssbutton.css"/>'
-		type="text/css" />
-</hst:headContribution>
-<hst:headContribution keyHint="formcss">
-	<link rel="stylesheet"
-		href='<hst:link path="/css/animation/animation.css"/>' type="text/css" />
-</hst:headContribution>
-<hst:headContribution keyHint="formcss">
-	<link type="text/css" rel="stylesheet"
-		href='<hst:link path="/css/adornment.css"/>' />
-</hst:headContribution>
-<hst:headContribution keyHint="ExternalCSS">
-	<link rel="stylesheet"
-		href='<hst:link path="http://yui.yahooapis.com/3.8.0/build/cssbutton/cssbutton.css"/>'
-		type="text/css" />
-</hst:headContribution>
+			<legend>Enter your email address</legend>
+			<h5>
+				<fmt:message key="signup.forgotpass.message" />
+			</h5>
+			<table class="table table-hover table-bordered">
+				<tr>
+					<td><label for="recoverType"><small>Recovery Type</small><span class="required">*</span></label></td>
+					<td><select id="recoverType" name="recoverType">
+							<option value="">-Select-</option>
+							<option value="via-Email">Email</option>
+							<c:if test="${enableSecurityQuestion eq true}">
+								<option value="via-question">Answer Security Question</option>
+							</c:if>
+					</select> 
+					<c:forEach items="${errors}" var="error">
+							<c:if test="${error eq 'recovery.option.required'}">
+								<br/><span class="label label-important">This is required.</span>
+							</c:if>
+				     </c:forEach></td>
+				</tr>
+				<tr>
+					<td><label for="email"><small><fmt:message key="signup.email.required" /></small><span class="required">*</span></label></td>
+					<td class="input"><input type="text" name="email" value="${fn:escapeXml(email)}" class="input_data" />
+						<c:if test="${not empty errors}">
+							<c:forEach items="${errors}" var="error">
+								<c:if test="${error eq 'signup.email.error.required'}">
+									<br/><span class="label label-important">This is required.</span>
+								</c:if>
+							</c:forEach>
+						</c:if></td>
+				</tr>
+				<c:if test="${not empty email_error}">
+					<span class="label label-warning"> <c:out value="Your Email is not registered"/>
+					</span>
+				</c:if>
+				<tr>
+				    <td></td>
+					<td  align="justify"><div class="rowlabel offset3"><button type="submit" class="btn btn-primary"><fmt:message key="member.start.submit.label"/></button></div></td>
+				</tr>
+			</table>
+			<input name="pageAction" id="pageAction" value="forgotPassHandle" type="hidden"/>
+		</fieldset>
+	</c:if>
+	<c:if test="${not empty memberSignup}">
+		<c:forEach items="${chError}" var="error">
+			<c:if test="${error eq 'answer.wrong'}">
+				<div class="alert alert-error">Please give correct answer of selected question.Try again.</div>
+			</c:if>
+		</c:forEach>
+	<div class="well">
+	<div class=""><strong>Please answer one of following questions and you will be able to access your account.</strong></div>
+		<div class="show-grid row-fluid">
+			<div class="span8">
+				<div class="rowlabel">
+					<label for="slquestion"><small>Select a question to answer</small><span class="required">*</span></label>
+				</div>
+				<div class="rowlabel">
+					<select id="slquestion" name="slquestion">
+						<option value="">-Select-</option>
+						<c:forEach items="${memberSignup.securityQuestionAnswerValueListList}" var="sqQuesList">
+							<option value="${sqQuesList.question}">${sqQuesList.question}</option>
+						</c:forEach>
+					</select>
+				</div>
+				<div class="rowlabel">
+					<c:forEach items="${chError}" var="error">
+						<c:if test="${error eq 'question.required'}">
+							<span class="label label-important">This is required.</span>
+						</c:if>
+					</c:forEach>
+				</div>
+			</div>
+			<div class="span4">
+				<div class="rowlabel">
+					<label for="slquestion"><small><abbr title="Answer of selected Question">Answer</abbr></small><span class="required">*</span></label>
+				</div>
+				<div class="rowlabel">
+					<input id="slanswer" name="slanswer" type="text">
+				</div>
+				<div class="rowlabel">
+					<c:forEach items="${chError}" var="error">
+						<c:if test="${error eq 'answer.required'}">
+							<span class="label label-important">This is required.</span>
+						</c:if>
+					</c:forEach>
+				</div>
+			</div>
+		</div>
+		<input name="userName" id="userName" value="${memberSignup.userName}" type="hidden"/>
+		<input name="pageAction" id="pageAction" value="changePassHandle" type="hidden"/>
+		<br/>
+		<div class="row">
+		  <div class="span6 offset4">
+			<button type="submit" class="btn btn-success">
+				<i class="icon-lock icon-white"></i>Answered
+			</button>
+			</div>
+	   </div>
+		</div>
+	</c:if>
+</form>

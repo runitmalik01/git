@@ -165,20 +165,41 @@ public class ITReturnHomePageView {
 		return userName;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	/**
+	 * @return the paymentStatus
+	 */
+	public String getPaymentStatus() {
+		return paymentStatus;
 	}
 
 	public String getDob() {
 		return dob;
 	}
+	/**
+	 * @param paymentStatus the paymentStatus to set
+	 */
+	public void setPaymentStatus(String paymentStatus) {
+		this.paymentStatus = paymentStatus;
+	}
 
 	public void setDob(String dob) {
 		this.dob = dob;
 	}
+	/**
+	 * @return the paymentType
+	 */
+	public String getPaymentType() {
+		return paymentType;
+	}
 
 	public String getFullname() {
 		return fullname;
+	}
+	/**
+	 * @param paymentType the paymentType to set
+	 */
+	public void setPaymentType(String paymentType) {
+		this.paymentType = paymentType;
 	}
 
 	public void setFullname(String fullname) {
@@ -224,5 +245,8 @@ public class ITReturnHomePageView {
 	
 	String pathToItr;
 	String theParentFolder;
+	
+	private String paymentStatus;
+	private String paymentType;
 	
 }

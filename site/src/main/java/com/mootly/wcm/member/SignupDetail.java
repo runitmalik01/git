@@ -1,5 +1,7 @@
 package com.mootly.wcm.member;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -23,6 +25,7 @@ import com.mootly.wcm.beans.EmailMessage;
 import com.mootly.wcm.beans.EmailTemplate;
 import com.mootly.wcm.beans.MemberSignupDocument;
 import com.mootly.wcm.components.BaseComponent;
+import com.mootly.wcm.services.SecureHashGeneration;
 import com.mootly.wcm.utils.ContentStructure;
 import com.mootly.wcm.utils.GoGreenUtil;
 import com.mootly.wcm.utils.VelocityUtils;
@@ -36,7 +39,7 @@ public class SignupDetail extends BaseComponent {
     private static final String PASSWORD = "password";
     private static final String CONFIRM_PASSWORD = "confirmPassword";
     private static final String SIGNUP_TERMS = "signupTerms";
-    
+    private static final String PASS_PREFIX="$SHA-256$";
     private static final String SUCCESS = "success";
     private static final String ERRORS = "errors";
     
@@ -203,7 +206,8 @@ public class SignupDetail extends BaseComponent {
 			// update content properties
 			if (membershipSignupDocument != null) {
 				membershipSignupDocument.setUserName(signupDocument.getUserName());
-				membershipSignupDocument.setPassword(signupDocument.getPassword());
+				
+				membershipSignupDocument.setPassword(SecureHashGeneration.passSHAdigest(signupDocument.getPassword()));
 				membershipSignupDocument.setEmail(signupDocument.getEmail());
 				membershipSignupDocument.setRoles(new String[]{"unverifiedmember"});
 				membershipSignupDocument.setActivationCode(UUID.randomUUID().toString());
