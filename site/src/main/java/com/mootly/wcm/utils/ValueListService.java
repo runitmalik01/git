@@ -135,6 +135,8 @@ public interface ValueListService {
 	
 	TreeMap<String, String> getNatureIncome();
 	
+	TreeMap<String, String> getBusinessCode();
+	
 	/**
 	 * This Method is used to get the Key set of State in sorted order
 	 * 
