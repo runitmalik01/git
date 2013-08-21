@@ -1596,4 +1596,25 @@
 	  </sv:property>
 	</sv:node>	
 	<!-- / DIT  -->
+	<!--  nodes for itr4 -->
+	<!--  for nature business -->
+	
+<sv:node sv:name="businessnature" >
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:component</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>1768d2da-d78a-4c7b-9bb4-9357373ae8c0</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:componentclassname" sv:type="String">
+    <sv:value>com.mootly.wcm.member.NatureBusiness</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String"/>
+  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String"/>
+  <sv:property sv:name="hst:template" sv:type="String">
+    <sv:value>businessnature</sv:value>
+  </sv:property>
+</sv:node>
+	
+	<!-- /nature business -->
 </sv:node>
