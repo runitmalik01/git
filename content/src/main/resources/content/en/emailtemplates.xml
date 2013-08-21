@@ -334,102 +334,121 @@ diligence.&lt;/p&gt;
       </sv:node>
     </sv:node>
   </sv:node>
+  <!-- Start of Modified template for forgotPass template  -->
+<sv:node sv:name="forgotpass">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hippo:handle</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+    <sv:value>hippo:hardhandle</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>73afb1dc-699a-4a0a-b0aa-5edeefa679bf</sv:value>
+  </sv:property>
   <sv:node sv:name="forgotpass">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
-      <sv:value>hippo:handle</sv:value>
+      <sv:value>mootlywcm:emailtemplate</sv:value>
     </sv:property>
     <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
-      <sv:value>hippo:hardhandle</sv:value>
+      <sv:value>hippo:harddocument</sv:value>
+      <sv:value>hippotranslation:translated</sv:value>
     </sv:property>
     <sv:property sv:name="jcr:uuid" sv:type="String">
-      <sv:value>73afb1dc-699a-4a0a-b0aa-5edeefa679bf</sv:value>
+      <sv:value>441dda72-65a7-4fa8-825d-50008ef304cb</sv:value>
     </sv:property>
-    <sv:node sv:name="forgotpass">
-      <sv:property sv:name="jcr:primaryType" sv:type="Name">
-        <sv:value>mootlywcm:emailtemplate</sv:value>
-      </sv:property>
-      <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
-        <sv:value>hippo:harddocument</sv:value>
-        <sv:value>hippotranslation:translated</sv:value>
-      </sv:property>
-      <sv:property sv:name="jcr:uuid" sv:type="String">
-        <sv:value>e538745c-f6c1-4e8c-9f67-b3801e766740</sv:value>
-      </sv:property>
-      <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
-        <sv:value>live</sv:value>
-        <sv:value>preview</sv:value>
-      </sv:property>
-      <sv:property sv:name="hippo:related___pathreference" sv:type="String">
-        <sv:value>emailtemplates/forgotpass</sv:value>
-      </sv:property>
-      <sv:property sv:name="hippostd:holder" sv:type="String">
-        <sv:value>admin</sv:value>
-      </sv:property>
-      <sv:property sv:name="hippostd:state" sv:type="String">
-        <sv:value>published</sv:value>
-      </sv:property>
-      <sv:property sv:name="hippostd:stateSummary" sv:type="String">
-        <sv:value>live</sv:value>
-      </sv:property>
-      <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
-        <sv:value>admin</sv:value>
-      </sv:property>
-      <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
-        <sv:value>2013-03-08T14:41:53.740+05:30</sv:value>
-      </sv:property>
-      <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-        <sv:value>2013-03-08T15:03:15.977+05:30</sv:value>
-      </sv:property>
-      <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
-        <sv:value>admin</sv:value>
-      </sv:property>
-      <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-        <sv:value>2013-03-08T15:03:20.787+05:30</sv:value>
-      </sv:property>
-      <sv:property sv:name="hippotranslation:id" sv:type="String">
-        <sv:value>74aa537f-3b39-44c8-bab0-939f6f017c1c</sv:value>
-      </sv:property>
-      <sv:property sv:name="hippotranslation:locale" sv:type="String">
-        <sv:value>en</sv:value>
-      </sv:property>
-      <sv:property sv:name="mootlywcm:From" sv:type="String">
-        <sv:value>info@mootly.com</sv:value>
-      </sv:property>
-      <sv:property sv:name="mootlywcm:fromName" sv:type="String">
-        <sv:value>Mootly Information</sv:value>
-      </sv:property>
-      <sv:property sv:name="mootlywcm:htmlBody" sv:type="String">
-        <sv:value>&lt;html&gt;
+    <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
+      <sv:value>live</sv:value>
+      <sv:value>preview</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippo:related___pathreference" sv:type="String">
+      <sv:value>forgotpass</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostd:holder" sv:type="String">
+      <sv:value>admin</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostd:state" sv:type="String">
+      <sv:value>published</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostd:stateSummary" sv:type="String">
+      <sv:value>live</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
+      <sv:value>admin</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
+      <sv:value>2013-03-08T14:41:53.740+05:30</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
+      <sv:value>2013-08-21T00:36:34.953+05:30</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
+      <sv:value>admin</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
+      <sv:value>2013-08-21T00:36:40.822+05:30</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippotranslation:id" sv:type="String">
+      <sv:value>74aa537f-3b39-44c8-bab0-939f6f017c1c</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippotranslation:locale" sv:type="String">
+      <sv:value>en</sv:value>
+    </sv:property>
+    <sv:property sv:name="mootlywcm:From" sv:type="String">
+      <sv:value>info@mootly.com</sv:value>
+    </sv:property>
+    <sv:property sv:name="mootlywcm:bcc" sv:type="String">
+      <sv:value/>
+    </sv:property>
+    <sv:property sv:name="mootlywcm:cc" sv:type="String">
+      <sv:value/>
+    </sv:property>
+    <sv:property sv:name="mootlywcm:fromName" sv:type="String">
+      <sv:value>Mootly Information</sv:value>
+    </sv:property>
+    <sv:property sv:name="mootlywcm:htmlBody" sv:type="String">
+      <sv:value>&lt;html&gt;
 &lt;body&gt;
 
-&lt;p&gt;&lt;strong&gt;Dear User&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Dear User,&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;You seem to have requested your password&lt;/p&gt;
+&lt;p&gt;You seem to have requested your password.&lt;/p&gt;
 
-&lt;p&gt;Your password is  ${member.password}&lt;/p&gt;
+&lt;p&gt;Click on below link and you will be able to access your account &lt;/p&gt;
+
+&lt;p&gt;
+${memberHostName}/site/changepass.html?ch=${member.activationCode}&amp;amp;member=${encyptUserName}
+&lt;/p&gt;
+
+&lt;p&gt;For more security and safety of your confidential data use security
+Questions. &lt;/p&gt;
 
 &lt;p&gt;Regards&lt;/p&gt;
-&lt;p&gt;Wealth4India Team &lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Wealth4India Team &lt;/strong&gt;&lt;/p&gt;
 
 &lt;/body&gt;
 &lt;/html&gt;</sv:value>
+    </sv:property>
+    <sv:property sv:name="mootlywcm:plainBody" sv:type="String">
+      <sv:value>Welcome ${member.firstName}</sv:value>
+    </sv:property>
+    <sv:property sv:name="mootlywcm:subject" sv:type="String">
+      <sv:value>[Member Application]-Forgot Your Password</sv:value>
+    </sv:property>
+    <sv:property sv:name="mootlywcm:templateKey" sv:type="String">
+      <sv:value>forgotpass</sv:value>
+    </sv:property>
+    <sv:property sv:name="mootlywcm:to" sv:type="String">
+      <sv:value/>
+    </sv:property>
+    <sv:node sv:name="hippotranslation:translations">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>hippotranslation:translations</sv:value>
       </sv:property>
-      <sv:property sv:name="mootlywcm:plainBody" sv:type="String">
-        <sv:value>Welcome ${member.firstName}</sv:value>
-      </sv:property>
-      <sv:property sv:name="mootlywcm:subject" sv:type="String">
-        <sv:value>Forgot Your Password</sv:value>
-      </sv:property>
-      <sv:property sv:name="mootlywcm:templateKey" sv:type="String">
-        <sv:value>forgotpass</sv:value>
-      </sv:property>
-      <sv:node sv:name="hippotranslation:translations">
-        <sv:property sv:name="jcr:primaryType" sv:type="Name">
-          <sv:value>hippotranslation:translations</sv:value>
-        </sv:property>
-      </sv:node>
     </sv:node>
   </sv:node>
+</sv:node>
+<!-- end of Modified template for forgotPass template  by Priyank -->
   <sv:node sv:name="vendor_signup">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
       <sv:value>hippo:handle</sv:value>
@@ -2112,4 +2131,115 @@ tax .&lt;/p&gt;
 	
 	<!--  end of memberstartapptempalte-->
 <!-- /amit -->
+<sv:node sv:name="changepass_ack">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hippo:handle</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+    <sv:value>hippo:hardhandle</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>6b2e9a65-a4a9-4919-a34c-da21c1e231ed</sv:value>
+  </sv:property>
+  <sv:node sv:name="changepass_ack">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>mootlywcm:emailtemplate</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+      <sv:value>hippo:harddocument</sv:value>
+      <sv:value>hippotranslation:translated</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>a4db493a-083f-4508-8f4f-c25d4e88810c</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
+      <sv:value>live</sv:value>
+      <sv:value>preview</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippo:related___pathreference" sv:type="String">
+      <sv:value>changepass_ack</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostd:holder" sv:type="String">
+      <sv:value>admin</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostd:state" sv:type="String">
+      <sv:value>published</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostd:stateSummary" sv:type="String">
+      <sv:value>live</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
+      <sv:value>admin</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
+      <sv:value>2013-08-05T13:29:31.065+05:30</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
+      <sv:value>2013-08-05T13:35:33.014+05:30</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
+      <sv:value>admin</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
+      <sv:value>2013-08-05T13:35:37.674+05:30</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippotranslation:id" sv:type="String">
+      <sv:value>1c36e840-ddbb-4ce0-8041-41fa83705757</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippotranslation:locale" sv:type="String">
+      <sv:value>en</sv:value>
+    </sv:property>
+    <sv:property sv:name="mootlywcm:From" sv:type="String">
+      <sv:value/>
+    </sv:property>
+    <sv:property sv:name="mootlywcm:bcc" sv:type="String">
+      <sv:value/>
+    </sv:property>
+    <sv:property sv:name="mootlywcm:cc" sv:type="String">
+      <sv:value/>
+    </sv:property>
+    <sv:property sv:name="mootlywcm:fromName" sv:type="String">
+      <sv:value/>
+    </sv:property>
+    <sv:property sv:name="mootlywcm:htmlBody" sv:type="String">
+      <sv:value>&lt;html&gt;
+&lt;body&gt;
+
+&lt;p&gt;Dear User,&lt;/p&gt;
+
+&lt;p&gt; Wealth4India have found some activity on your account. It seems that you
+have change your Password on ${date}. &lt;/p&gt;
+
+&lt;p&gt;Wealth4India understand the safety of your confidential data.&lt;/p&gt;
+
+&lt;p&gt; &lt;strong&gt;Note-If you have not change your password then you can contact us at
+info@wealth4india.com.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Thanks&lt;/p&gt;
+
+&lt;p&gt;Wealth4India &lt;/p&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</sv:value>
+    </sv:property>
+    <sv:property sv:name="mootlywcm:plainBody" sv:type="String">
+      <sv:value/>
+    </sv:property>
+    <sv:property sv:name="mootlywcm:subject" sv:type="String">
+      <sv:value>[Member Application] Change Password Acknowledgement</sv:value>
+    </sv:property>
+    <sv:property sv:name="mootlywcm:templateKey" sv:type="String">
+      <sv:value>changepass_ack</sv:value>
+    </sv:property>
+    <sv:property sv:name="mootlywcm:to" sv:type="String">
+      <sv:value/>
+    </sv:property>
+    <sv:node sv:name="hippotranslation:translations">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>hippotranslation:translations</sv:value>
+      </sv:property>
+    </sv:node>
+  </sv:node>
+</sv:node>
+<!-- change Password Acknowledgement template  -->
 </sv:node>

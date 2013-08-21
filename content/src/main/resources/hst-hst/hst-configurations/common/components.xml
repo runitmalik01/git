@@ -1596,6 +1596,21 @@
 	  </sv:property>
 	</sv:node>	
 	<!-- / DIT  -->
+	<!-- member security question component -->
+	<sv:node sv:name="member-secure-connection">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>hst:component</sv:value>
+      </sv:property>
+      <sv:property sv:name="jcr:uuid" sv:type="String">
+        <sv:value>740a3ad0-b607-43be-9c0b-b2b0b84a6876</sv:value>
+      </sv:property>
+      <sv:property sv:name="hst:componentclassname" sv:type="String">
+        <sv:value>com.mootly.wcm.member.MemberSecurity</sv:value>
+      </sv:property>
+      <sv:property sv:name="hst:template" sv:type="String">
+        <sv:value>member.secure.connection</sv:value>
+      </sv:property>
+    </sv:node>
 	<!--  nodes for itr4 -->
 	<!--  for nature business -->
 	

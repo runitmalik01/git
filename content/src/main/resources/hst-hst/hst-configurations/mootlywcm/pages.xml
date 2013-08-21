@@ -8660,6 +8660,49 @@
 	  </sv:node>
 	</sv:node>
 	<!-- /new node -->
+	<!-- added pages to have security questions -->
+<sv:node sv:name="member-secure-connection">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:component</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>f0e66c73-6dbc-4bf8-a6f9-9763c4e7dbc6</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:referencecomponent" sv:type="String">
+    <sv:value>hst:pages/standardpage.re</sv:value>
+  </sv:property>
+  <sv:node sv:name="main">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>7cc6cef2-ec59-48de-b91d-34e0e3d3202b</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+      <sv:value>contentCssClass</sv:value>
+      <sv:value>widgets1CssClass</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+      <sv:value>grid-right col-940</sv:value>
+      <sv:value>grid-right col-300 rtl-fit</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>standard.main.re</sv:value>
+    </sv:property>
+    <sv:node sv:name="content">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>hst:component</sv:value>
+      </sv:property>
+      <sv:property sv:name="jcr:uuid" sv:type="String">
+        <sv:value>37db1ad1-5842-400f-a4e1-3358d459cd5d</sv:value>
+      </sv:property>
+      <sv:property sv:name="hst:referencecomponent" sv:type="String">
+        <sv:value>hst:components/member-secure-connection</sv:value>
+      </sv:property>
+    </sv:node>
+  </sv:node>
+</sv:node>
+<!-- end -->
 	<!--  nodes for itr4 -->
 	<!--  for nature of business -->
 	

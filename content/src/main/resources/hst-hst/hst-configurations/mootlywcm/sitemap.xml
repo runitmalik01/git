@@ -300,23 +300,29 @@
       </sv:property>
     </sv:node>
   </sv:node>
-  <sv:node sv:name="forgotpass">
-    <sv:property sv:name="jcr:primaryType" sv:type="Name">
-      <sv:value>hst:sitemapitem</sv:value>
-    </sv:property>
-    <sv:property sv:name="jcr:uuid" sv:type="String">
-      <sv:value>ad90aa3f-0486-48da-8aa2-5b948978c873</sv:value>
-    </sv:property>
-    <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
-      <sv:value>hst:pages/forgotpass</sv:value>
-    </sv:property>
-    <sv:property sv:name="hst:refId" sv:type="String">
-      <sv:value>forgotpass</sv:value>
-    </sv:property>
-    <sv:property sv:name="hst:relativecontentpath" sv:type="String">
-      <sv:value>members</sv:value>
-    </sv:property>
-  </sv:node>
+<sv:node sv:name="forgotpass">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:sitemapitem</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>ad90aa3f-0486-48da-8aa2-5b948978c873</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+    <sv:value>hst:pages/forgotpass</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+    <sv:value>enableSecurityQuestion</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+    <sv:value>true</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:refId" sv:type="String">
+    <sv:value>forgotpass</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:relativecontentpath" sv:type="String">
+    <sv:value>members</sv:value>
+  </sv:property>
+</sv:node>
   <sv:node sv:name="member">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
       <sv:value>hst:sitemapitem</sv:value>
@@ -4138,30 +4144,106 @@
         </sv:node>
         </sv:node>
       </sv:node>
-    </sv:node>    
-    <sv:node sv:name="changepass.html">
+      <!-- added url to ask security question from member -->
+     <sv:node sv:name="member-security.html">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:sitemapitem</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>d4c53356-5008-4857-b0e0-62dc187c35be</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+    <sv:value>hst:pages/member-secure-connection</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+    <sv:value>enableSecurityQuestion</sv:value>
+    <sv:value>mainSiteMapItemRefId</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+    <sv:value>true</sv:value>
+    <sv:value>secure-connection</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:refId" sv:type="String">
+    <sv:value>secure-connection</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:relativecontentpath" sv:type="String">
+    <sv:value>members</sv:value>
+  </sv:property>
+  <sv:node sv:name="membersecuritynew">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:sitemapitem</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>8cdb5485-6f16-4ce5-bf51-b1959086a4b1</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+      <sv:value>hst:pages/member-secure-connection</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+      <sv:value>action</sv:value>
+      <sv:value>security</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+      <sv:value>NEW_CHILD</sv:value>
+      <sv:value>true</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="_default_">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:sitemapitem</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>c6cd5376-8ba1-48e0-9daf-2a0cc40d0e59</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+      <sv:value>uuid</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+      <sv:value>${1}</sv:value>
+    </sv:property>
+    <sv:node sv:name="membersecurityedit">
       <sv:property sv:name="jcr:primaryType" sv:type="Name">
         <sv:value>hst:sitemapitem</sv:value>
       </sv:property>
       <sv:property sv:name="jcr:uuid" sv:type="String">
-        <sv:value>7ca5436f-9225-4d38-a449-fce361195584</sv:value>
+        <sv:value>40886763-4e59-4e1f-95c6-1a5c241830cd</sv:value>
       </sv:property>
       <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
-        <sv:value>hst:pages/member-changepass</sv:value>
+        <sv:value>hst:pages/member-secure-connection</sv:value>
       </sv:property>
       <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
-        <sv:value>...</sv:value>
+        <sv:value>action</sv:value>
+        <sv:value>security</sv:value>
       </sv:property>
       <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
-        <sv:value>...</sv:value>
-      </sv:property>
-      <sv:property sv:name="hst:refId" sv:type="String">
-        <sv:value>memberchangepass</sv:value>
-      </sv:property>
-      <sv:property sv:name="hst:relativecontentpath" sv:type="String">
-        <sv:value>members</sv:value>
+        <sv:value>EDIT_CHILD</sv:value>
+        <sv:value>true</sv:value>
       </sv:property>
     </sv:node>
+    <sv:node sv:name="membersecuritydelete">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>hst:sitemapitem</sv:value>
+      </sv:property>
+      <sv:property sv:name="jcr:uuid" sv:type="String">
+        <sv:value>ca51442f-abde-4dd2-a07b-ac337b668ba5</sv:value>
+      </sv:property>
+      <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+        <sv:value>hst:pages/member-secure-connection</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+        <sv:value>action</sv:value>
+        <sv:value>security</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+        <sv:value>DELETE_CHILD</sv:value>
+        <sv:value>true</sv:value>
+      </sv:property>
+    </sv:node>
+  </sv:node>
+</sv:node>
+<!-- end of sitemapitem -->
+    </sv:node>    
+    <!-- moving changepass.html sitemapitem out of member -->
   </sv:node>
   <!-- 
   <sv:node sv:name="message">
@@ -8113,4 +8195,29 @@
 	    <sv:value>members</sv:value>
 	  </sv:property>
 	</sv:node>
+	<!-- moving changePass.html sitemap from member -->
+	 <sv:node sv:name="changepass.html">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>hst:sitemapitem</sv:value>
+      </sv:property>
+      <sv:property sv:name="jcr:uuid" sv:type="String">
+        <sv:value>7ca5436f-9225-4d38-a449-fce361195584</sv:value>
+      </sv:property>
+      <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+        <sv:value>hst:pages/member-changepass</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+        <sv:value>...</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+        <sv:value>...</sv:value>
+      </sv:property>
+      <sv:property sv:name="hst:refId" sv:type="String">
+        <sv:value>memberchangepass</sv:value>
+      </sv:property>
+      <sv:property sv:name="hst:relativecontentpath" sv:type="String">
+        <sv:value>members</sv:value>
+      </sv:property>
+    </sv:node>
+    <!-- end of url -->
 </sv:node>
