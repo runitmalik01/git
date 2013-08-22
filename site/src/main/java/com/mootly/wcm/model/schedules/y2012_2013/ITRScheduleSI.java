@@ -59,7 +59,7 @@ public class ITRScheduleSI {
 		inputBean.put(HouseProperty.class.getSimpleName().toLowerCase(), housePropertyDocument);
 
 		ScheduleSI scheduleSI = new ScheduleSI();
-		
+
 		List<SplCodeRateTax> finalSplCodeRateTax = new ArrayList<ScheduleSI.SplCodeRateTax>();
 
 		//list of all section which are compulsory for Xml 
@@ -67,22 +67,30 @@ public class ITRScheduleSI {
 		for(ITRScheduleSISections siSection:xmlSISectionsList){
 			//fetch all section from CapitalAssetsDocument
 			if(siSection.getDisplayName().equals(CapitalAssetDocument.class.getSimpleName())){
-				Map<String, Map<String,Object>> resultMap = capitalAssetDocument.getScheduleSIService(financialYear, inputBean);
-				List<SplCodeRateTax> returnSplCodeRateTaxList = invokeITRAdditionScreenResults(resultMap);
-				if(returnSplCodeRateTaxList !=null){
-					for(SplCodeRateTax splCodeTax:returnSplCodeRateTaxList){
-						finalSplCodeRateTax.add(splCodeTax);	
+				if(capitalAssetDocument != null){
+					Map<String, Map<String,Object>> resultMap = capitalAssetDocument.getScheduleSIService(financialYear, inputBean);
+					List<SplCodeRateTax> returnSplCodeRateTaxList = invokeITRAdditionScreenResults(resultMap);
+					if(returnSplCodeRateTaxList !=null){
+						for(SplCodeRateTax splCodeTax:returnSplCodeRateTaxList){
+							finalSplCodeRateTax.add(splCodeTax);	
+						}
 					}
+				}else{
+					finalSplCodeRateTax.add(dummyInvokeScheduleSI(siSection));
 				}
 			}
 			//fetch all section from OtherSourceDocument
 			if(siSection.getDisplayName().equals(OtherSourcesDocument.class.getSimpleName())){
-				Map<String, Map<String,Object>> resultMap = otherSourcesDocument.getScheduleSIService(financialYear, inputBean);
-				List<SplCodeRateTax> returnSplCodeRateTaxList = invokeITRAdditionScreenResults(resultMap);
-				if(returnSplCodeRateTaxList !=null){
-					for(SplCodeRateTax splCodeTax:returnSplCodeRateTaxList){
-						finalSplCodeRateTax.add(splCodeTax);	
+				if(otherSourcesDocument != null){
+					Map<String, Map<String,Object>> resultMap = otherSourcesDocument.getScheduleSIService(financialYear, inputBean);
+					List<SplCodeRateTax> returnSplCodeRateTaxList = invokeITRAdditionScreenResults(resultMap);
+					if(returnSplCodeRateTaxList !=null){
+						for(SplCodeRateTax splCodeTax:returnSplCodeRateTaxList){
+							finalSplCodeRateTax.add(splCodeTax);	
+						}
 					}
+				}else{
+					finalSplCodeRateTax.add(dummyInvokeScheduleSI(siSection));
 				}
 			}
 			//fetch all section from SchedulSIDocument
