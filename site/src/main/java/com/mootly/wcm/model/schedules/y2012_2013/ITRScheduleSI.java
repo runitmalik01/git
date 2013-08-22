@@ -11,6 +11,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.hippoecm.hst.content.beans.standard.HippoBean;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.mootly.wcm.beans.CapitalAssetDocument;
 import com.mootly.wcm.beans.FormSixteenDocument;
@@ -29,11 +31,13 @@ public class ITRScheduleSI {
 
 	ScheduleSIDocument scheduleSIDocument = null;
 	CapitalAssetDocument capitalAssetDocument = null;
-	OtherSourcesDocument otherSourcesDocument = null; 
+	OtherSourcesDocument otherSourcesDocument = null;
 	MemberPersonalInformation memberPersonalInformation = null;
 	FormSixteenDocument formSixteenDocument = null;
 	SalaryIncomeDocument salaryIncomeDocument = null;
 	HouseProperty housePropertyDocument = null;
+
+	public static final Logger log = LoggerFactory.getLogger(ITRScheduleSI.class);
 
 	public ITRScheduleSI(ScheduleSIDocument scheduleSIDocument, CapitalAssetDocument capitalAssetDocument, OtherSourcesDocument otherSourcesDocument,
 			FormSixteenDocument formSixteenDocument, SalaryIncomeDocument salaryIncomeDocument, HouseProperty housePropertyDocument, MemberPersonalInformation memberPersonalInformation){
@@ -60,19 +64,19 @@ public class ITRScheduleSI {
 
 		ScheduleSI scheduleSI = new ScheduleSI();
 
-		List<SplCodeRateTax> finalSplCodeRateTax = new ArrayList<ScheduleSI.SplCodeRateTax>();
+		List<SplCodeRateTax> finalSplCodeRateTax = new ArrayList<SplCodeRateTax>();
 
-		//list of all section which are compulsory for Xml 
-		List<ITRScheduleSISections> xmlSISectionsList = ITRScheduleSISections.createXmlActiveListOfSI();		
+		//list of all section which are compulsory for Xml
+		List<ITRScheduleSISections> xmlSISectionsList = ITRScheduleSISections.createXmlActiveListOfSI();
 		for(ITRScheduleSISections siSection:xmlSISectionsList){
 			//fetch all section from CapitalAssetsDocument
-			if(siSection.getDisplayName().equals(CapitalAssetDocument.class.getSimpleName())){
+			if(siSection.getDocumentName().equals(CapitalAssetDocument.class.getSimpleName())){
 				if(capitalAssetDocument != null){
 					Map<String, Map<String,Object>> resultMap = capitalAssetDocument.getScheduleSIService(financialYear, inputBean);
 					List<SplCodeRateTax> returnSplCodeRateTaxList = invokeITRAdditionScreenResults(resultMap);
 					if(returnSplCodeRateTaxList !=null){
 						for(SplCodeRateTax splCodeTax:returnSplCodeRateTaxList){
-							finalSplCodeRateTax.add(splCodeTax);	
+							finalSplCodeRateTax.add(splCodeTax);
 						}
 					}
 				}else{
@@ -80,13 +84,13 @@ public class ITRScheduleSI {
 				}
 			}
 			//fetch all section from OtherSourceDocument
-			if(siSection.getDisplayName().equals(OtherSourcesDocument.class.getSimpleName())){
+			if(siSection.getDocumentName().equals(OtherSourcesDocument.class.getSimpleName())){
 				if(otherSourcesDocument != null){
 					Map<String, Map<String,Object>> resultMap = otherSourcesDocument.getScheduleSIService(financialYear, inputBean);
 					List<SplCodeRateTax> returnSplCodeRateTaxList = invokeITRAdditionScreenResults(resultMap);
 					if(returnSplCodeRateTaxList !=null){
 						for(SplCodeRateTax splCodeTax:returnSplCodeRateTaxList){
-							finalSplCodeRateTax.add(splCodeTax);	
+							finalSplCodeRateTax.add(splCodeTax);
 						}
 					}
 				}else{
@@ -94,7 +98,7 @@ public class ITRScheduleSI {
 				}
 			}
 			//fetch all section from SchedulSIDocument
-			if(siSection.getDisplayName().equals(ScheduleSIDocument.class.getSimpleName())){
+			if(siSection.getDocumentName().equals(ScheduleSIDocument.class.getSimpleName())){
 				if(scheduleSIDocument !=null){
 					if(scheduleSIDocument.getScheduleSiDetailList().size()!=0 && scheduleSIDocument.getScheduleSiDetailList() != null){
 						for(ScheduleSIDocumentDetail siDetail:scheduleSIDocument.getScheduleSiDetailList()){
@@ -103,7 +107,7 @@ public class ITRScheduleSI {
 							}
 						}
 					}else{
-						finalSplCodeRateTax.add(dummyInvokeScheduleSI(siSection));	
+						finalSplCodeRateTax.add(dummyInvokeScheduleSI(siSection));
 					}
 				}else{
 					finalSplCodeRateTax.add(dummyInvokeScheduleSI(siSection));
@@ -113,8 +117,10 @@ public class ITRScheduleSI {
 		//create all list of those ScheduleSISections which are not compulsory for Xml generation
 		List<ITRScheduleSISections> xmlreverseSISectionsList = new ArrayList<ITRScheduleSISections>();
 		for(ITRScheduleSISections siSection:ITRScheduleSISections.values()){
-			if(!siSection.isXmlActive()){
-				xmlreverseSISectionsList.add(siSection);
+			if(siSection != ITRScheduleSISections.UNKNOWN){
+				if(!siSection.isXmlActive()){
+					xmlreverseSISectionsList.add(siSection);
+				}
 			}
 		}
 		for(ITRScheduleSISections xmlRevSiSection:xmlreverseSISectionsList){
@@ -133,18 +139,19 @@ public class ITRScheduleSI {
 		}else{
 			scheduleSI.setTotSplRateIncTax(new BigInteger("0"));
 		}
+		System.out.println("finalSplCodeRateTax"+finalSplCodeRateTax.size());
 		if(finalSplCodeRateTax !=null){
 			for(SplCodeRateTax splCodeRateTax:finalSplCodeRateTax){
-				scheduleSI.getSplCodeRateTax().add(splCodeRateTax);	
+				scheduleSI.getSplCodeRateTax().add(splCodeRateTax);
 			}
 		}
 		return scheduleSI;
 	}
 	/**
 	 * This method is used to invoke method of {@link SplCodeRateTax} using {@link Map} of type Map<String, Map<String,Object>> from {@link ITRAdditionalScheduleService}
-	 * 
+	 *
 	 * @param resultMap {@link Map}
-	 * 
+	 *
 	 * @return {@link List} of type {@link SplCodeRateTax}
 	 * */
 	public List<SplCodeRateTax> invokeITRAdditionScreenResults(Map<String, Map<String,Object>> resultMap){
@@ -153,19 +160,19 @@ public class ITRScheduleSI {
 			SplCodeRateTax splCodeRateTax = new SplCodeRateTax();
 			splCodeRateTax.setSecCode(key);
 			splCodeRateTax.setSplRatePercent(ITRScheduleSISections.getScheduleSISection(key).getPercentRate()[ITRScheduleSISections.getScheduleSISection(key).getPercentRate().length-1]);
-			splCodeRateTax.setSplRateInc(indianCurrencyHelper.bigIntegerRoundStr(resultMap.get(key).get("userAmount").toString()));
-			splCodeRateTax.setSplRateIncTax(indianCurrencyHelper.bigIntegerRoundStr(resultMap.get(key).get("taxOnIncome").toString()));
+			splCodeRateTax.setSplRateInc(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMap.get(key).get("userAmount").toString())));
+			splCodeRateTax.setSplRateIncTax(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMap.get(key).get("taxOnIncome").toString())));
 			splCodeRateTaxList.add(splCodeRateTax);
-		}	
+		}
 		return splCodeRateTaxList;
 	}
 	/**
 	 * This method is used to invoke method of {@link SplCodeRateTax} if there is no documents.
-	 * 
+	 *
 	 * @param siSection Schedule SI Section
-	 * 
+	 *
 	 * @return {@link SplCodeRateTax}
-	 * 
+	 *
 	 * */
 	public SplCodeRateTax dummyInvokeScheduleSI(ITRScheduleSISections siSection){
 		SplCodeRateTax splCodeRateTax = new SplCodeRateTax();
@@ -177,11 +184,11 @@ public class ITRScheduleSI {
 	}
 	/**
 	 * This method is being used to invoke method of {@link SplCodeRateTax} from {@link ScheduleSIDocumentDetail}
-	 * 
+	 *
 	 * @param siDetail {@link ScheduleSIDocumentDetail}
-	 * 
+	 *
 	 * @return {@link SplCodeRateTax}
-	 * 
+	 *
 	 * */
 	public SplCodeRateTax invokeFromScheduleSIDetail(ScheduleSIDocumentDetail siDetail){
 		SplCodeRateTax splCodeRateTax = new SplCodeRateTax();
@@ -190,5 +197,5 @@ public class ITRScheduleSI {
 		splCodeRateTax.setSplRateIncTax(indianCurrencyHelper.bigIntegerRound(siDetail.getCalcRateIncome()));
 		splCodeRateTax.setSplRatePercent(siDetail.getSpecialRate());
 		return splCodeRateTax;
-	} 
+	}
 }
