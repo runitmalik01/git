@@ -13,7 +13,7 @@ import com.mootly.wcm.beans.OtherSourcesDocument;
 import com.mootly.wcm.beans.ScheduleSIDocument;
 
 public enum ITRScheduleSISections {
-	
+
 	SI_111A("111A - STCG on shares where STT paid","1A", new Double[]{15d}, false, ResidentStatus.values(), true, CapitalAssetDocument.class.getSimpleName()),
 	SI_112_LTGC("112 - LTCG on listed securities/ units without indexation","22", new Double[]{10d}, false , ResidentStatus.values(), true, CapitalAssetDocument.class.getSimpleName()),
 	SI_112_1_c_iii("112(1)(c)(iii) - LTCG on unlisted securities in case of non-residents","21ciii", new Double[]{10d}, false , new ResidentStatus[]{ResidentStatus.NRI}, true, CapitalAssetDocument.class.getSimpleName()),
@@ -42,18 +42,18 @@ public enum ITRScheduleSISections {
 	SI_115E_a("115E(a) - Investment income","5Ea", new Double[]{20d}, true, ResidentStatus.values(), false, ScheduleSIDocument.class.getSimpleName()),
 	SI_115E_b("115E(b) - Income by way of long term capital gains","5Eb", new Double[]{10d}, true, ResidentStatus.values(), false, ScheduleSIDocument.class.getSimpleName()),
 	UNKNOWN;
-	
+
 	String displayName;//name of schedule SI section i.e. display on screen
 	String xmlCode; // Xml code of schedule SI section i.e save in repository
 	Double[] percentRate; // Percentage Rate of schedule SI section i.e. applied to amount provided
 	boolean isActive; // section will shown on screen or not
 	ResidentStatus[] residentialStatus; // sections depends on residential status of users
-	boolean isXmlActive;// some schedule SI sections nodes are compulsory to create in Xml creation no matter they have or 've not corresponding Income. 
+	boolean isXmlActive;// some schedule SI sections nodes are compulsory to create in Xml creation no matter they have or 've not corresponding Income.
 	String documentName;// name of screen on which this value depend and in that screen use ITRAdditionalScheduleSrevice
 	private ITRScheduleSISections() {
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	private ITRScheduleSISections(String displayName,String xmlCode,Double[] percentRate,boolean isActive,ResidentStatus[] residentialStatus,boolean isXmlActive,String documentName){
 		this.displayName = displayName;
 		this.xmlCode = xmlCode;
@@ -63,35 +63,35 @@ public enum ITRScheduleSISections {
 		this.isXmlActive = isXmlActive;
 		this.documentName = documentName;
 	}
-	
+
 	public String getDisplayName() {
 		return displayName;
 	}
-	
+
 	public Double[] getPercentRate() {
 		return percentRate;
 	}
-	
+
 	public boolean isActive() {
 		return isActive;
 	}
-	
+
 	public String getXmlCode() {
 		return xmlCode;
 	}
-	
+
 	public ResidentStatus[] getResidentialStatus() {
 		return residentialStatus;
 	}
-	
+
 	public boolean isXmlActive() {
 		return isXmlActive;
 	}
-	
+
 	public String getDocumentName() {
 		return documentName;
 	}
-	
+
 	public static ITRScheduleSISections getScheduleSISection(String xmlCode){
 		if(StringUtils.isNotBlank(xmlCode)){
 			for(ITRScheduleSISections si:ITRScheduleSISections.values()){
@@ -102,56 +102,62 @@ public enum ITRScheduleSISections {
 		}
 		return ITRScheduleSISections.UNKNOWN;
 	}
- 	/**
- 	 * This method is used to create the list of all inActive Schedule SI sections which are not being shown to user.
- 	 * 
- 	 *  @param inputBean {@link Map} this map list of all {@link HippoBean} Documents.
- 	 *  
- 	 *  @return List of all inActive Schedule SI Section.
- 	 *  
- 	 * */
+	/**
+	 * This method is used to create the list of all inActive Schedule SI sections which are not being shown to user.
+	 *
+	 *  @param inputBean {@link Map} this map list of all {@link HippoBean} Documents.
+	 *
+	 *  @return List of all inActive Schedule SI Section.
+	 *
+	 * */
 	public static List<ITRScheduleSISections> createInActiveScheduleSIList(Map<String, HippoBean> inputBean){
 		MemberPersonalInformation o = (MemberPersonalInformation) inputBean.get(MemberPersonalInformation.class.getSimpleName().toLowerCase());
 		List<ITRScheduleSISections> scheduleSIList = new ArrayList<ITRScheduleSISections>();
 		for(ITRScheduleSISections schSISection:ITRScheduleSISections.values()){
-			if(!schSISection.isActive() && schSISection != ITRScheduleSISections.UNKNOWN){
-				for(ResidentStatus rs:schSISection.getResidentialStatus()){
-					if(rs.toString().equalsIgnoreCase(o.getResidentCategory())){
-						scheduleSIList.add(schSISection);
+			if(schSISection != ITRScheduleSISections.UNKNOWN){
+				if(!schSISection.isActive()){
+					for(ResidentStatus rs:schSISection.getResidentialStatus()){
+						if(rs.toString().equalsIgnoreCase(o.getResidentCategory())){
+							scheduleSIList.add(schSISection);
+						}
 					}
-				}							
+				}
 			}
 		}
 		return scheduleSIList;
 	}
 	/**
 	 * This method is used to create list of all sections in ITR2 Xml that must have these section nodes rather {@link ScheduleSIDocument} is present or not.
-	 * 
+	 *
 	 * @return List all schedule SI Sections.
-	 * 
+	 *
 	 * */
 	public static List<ITRScheduleSISections> createXmlActiveListOfSI(){
 		List<ITRScheduleSISections> scheduleSIList = new ArrayList<ITRScheduleSISections>();
 		for(ITRScheduleSISections si:ITRScheduleSISections.values()){
-			if(si.isXmlActive() && si != ITRScheduleSISections.UNKNOWN){
-				scheduleSIList.add(si);
+			if(si != ITRScheduleSISections.UNKNOWN){
+				if(si.isXmlActive()){
+					scheduleSIList.add(si);
+				}
 			}
 		}
 		return scheduleSIList;
 	}
 	/**
 	 * This method is used to return the all Schedule SI section which are depend any other HippoBean Documents.
-	 * 
+	 *
 	 * @param documentName {@link String} name of document Bean of Document Type.
-	 * 
+	 *
 	 * @return List all schedule SI Sections.
-	 * 
+	 *
 	 * */
 	public static List<ITRScheduleSISections> getListOfSISection(String documentName){
 		List<ITRScheduleSISections> scheduleSIList = new ArrayList<ITRScheduleSISections>();
 		for(ITRScheduleSISections si:ITRScheduleSISections.values()){
-			if(si.getDocumentName().equals(documentName) && si != ITRScheduleSISections.UNKNOWN){
-				scheduleSIList.add(si);
+			if(si != ITRScheduleSISections.UNKNOWN){
+				if(si.getDocumentName().equals(documentName)){
+					scheduleSIList.add(si);
+				}
 			}
 		}
 		return scheduleSIList;
