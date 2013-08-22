@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 /**
- * 
+ *
  * User: Pankaj
  * Date: march 04, 2013
  * Time: 11:26:35 AM
- * 
+ *
  */
 
 
@@ -73,7 +73,7 @@ public class CapitalAssetDocument extends BaseDocument implements ContentNodeBin
 		return "0";
 	}
 
-	private final static Logger log = LoggerFactory.getLogger(CapitalAssetDocument.class); 
+	private final static Logger log = LoggerFactory.getLogger(CapitalAssetDocument.class);
 
 	private List<CapitalAssetDetail> capitalassetDetailList;
 	String capital_gain;
@@ -126,13 +126,13 @@ public class CapitalAssetDocument extends BaseDocument implements ContentNodeBin
 					aNode.remove();
 				}
 			}
-			if (capitalasset.getCapitalAssetDetailList() != null && capitalasset.getCapitalAssetDetailList().size() > 0 ){ 
+			if (capitalasset.getCapitalAssetDetailList() != null && capitalasset.getCapitalAssetDetailList().size() > 0 ){
 			for (CapitalAssetDetail capitalAssetDetail:capitalasset.getCapitalAssetDetailList()) {
 				if (!capitalAssetDetail.isMarkedForDeletion()) {
 					javax.jcr.Node html = node.addNode(PROP_DETAIL_BEAN, PROP_DETAIL_BEAN);
-					capitalAssetDetail.bindToNode(html); 
+					capitalAssetDetail.bindToNode(html);
 				}
-				
+
 			}
 		}
 
@@ -190,7 +190,7 @@ public class CapitalAssetDocument extends BaseDocument implements ContentNodeBin
 				found = true;
 				break;
 			}
-		}		
+		}
 	}
 
 	@Override
@@ -198,7 +198,7 @@ public class CapitalAssetDocument extends BaseDocument implements ContentNodeBin
 		// TODO Auto-generated method stub
 		//check for available children
 		CapitalAssetDetail source =(CapitalAssetDetail) child;
-		addCapitalAssetDetail(source);		
+		addCapitalAssetDetail(source);
 	}
 
 	@Override
@@ -223,7 +223,7 @@ public class CapitalAssetDocument extends BaseDocument implements ContentNodeBin
 			//its a new node lets add it
 			CapitalAssetDetail source =(CapitalAssetDetail) child;
 			addCapitalAssetDetail(source);
-		}		
+		}
 	}
 
 	@Override
