@@ -24,11 +24,13 @@ public class ExemptIncomeSchedule {
 	public ScheduleEI getScheduleEI(ITR itr){
 		IndianCurrencyHelper indianCurrencyHelper = new IndianCurrencyHelper();
 		ScheduleEI scheduleEI = new ScheduleEI();
+		boolean hasValidEI = false;
 		if(otherSourcesDocument != null){
 			scheduleEI.setInterestInc(indianCurrencyHelper.bigIntegerRound(otherSourcesDocument.getBank_detail_fdr()));
 			scheduleEI.setDividendInc(indianCurrencyHelper.bigIntegerRound(otherSourcesDocument.getDividends()));
 			scheduleEI.setNetAgriIncOrOthrIncRule7(indianCurrencyHelper.bigIntegerRound(otherSourcesDocument.getAgriculture_income()));
 			scheduleEI.setOthers(indianCurrencyHelper.bigIntegerRound(otherSourcesDocument.getOtherincome()));
+	if(!hasValidEI) hasValidEI = true;
 		}else{
 			scheduleEI.setInterestInc(new BigInteger("0"));
 			scheduleEI.setDividendInc(new BigInteger("0"));
@@ -44,12 +46,14 @@ public class ExemptIncomeSchedule {
 				scheduleEI.setLTCGWhereSTTPaid(indianCurrencyHelper.bigIntegerRoundStr(capitalAssetDetail.getCapitalGainTaxLT()));
 			}
 			 */
+			scheduleEI.setLTCGWhereSTTPaid(new BigInteger("0"));// need to discuss
+			if(!hasValidEI) hasValidEI = true;
 		}else{
-			scheduleEI.setLTCGWhereSTTPaid(indianCurrencyHelper.bigIntegerRound(0d));
+			scheduleEI.setLTCGWhereSTTPaid(new BigInteger("0"));
 		}
 		scheduleEI.setTotalExemptInc(scheduleEI.getInterestInc().add(scheduleEI.getDividendInc()).add(scheduleEI.getNetAgriIncOrOthrIncRule7())
 				.add(scheduleEI.getOthers()).add(scheduleEI.getLTCGWhereSTTPaid()));
-		if(scheduleEI.getTotalExemptInc() != null && scheduleEI.getTotalExemptInc().longValue() != 0){
+		if( hasValidEI && scheduleEI.getTotalExemptInc().longValue() > 0 ){
 			return scheduleEI;
 		}else
 			return null;
