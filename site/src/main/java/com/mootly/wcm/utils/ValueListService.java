@@ -137,6 +137,8 @@ public interface ValueListService {
 	
 	TreeMap<String, String> getBusinessCode();
 	
+	TreeMap<String, String> getQuantitativeCode();
+	
 	/**
 	 * This Method is used to get the Key set of State in sorted order
 	 * 
