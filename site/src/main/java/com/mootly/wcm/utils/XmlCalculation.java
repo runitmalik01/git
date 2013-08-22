@@ -20,6 +20,7 @@ import org.slf4j.LoggerFactory;
 import com.mootly.wcm.annotations.AdditionalBeans;
 import com.mootly.wcm.beans.AdjustmentOfLossesDoc;
 import com.mootly.wcm.beans.AdvanceTaxDocument;
+import com.mootly.wcm.beans.CapitalAssetDocument;
 import com.mootly.wcm.beans.FormSixteenDocument;
 import com.mootly.wcm.beans.HouseProperty;
 import com.mootly.wcm.beans.MemberContactInformation;
@@ -67,6 +68,7 @@ public class XmlCalculation implements XmlCalculationImplement {
 	 * This Method is used to return Gross Total(SalaryIncome+HouseIncome+OtherIncome)
 	 * @return long
 	 * @param request, response
+	 * @author Dhananjay
 	 *
 	 * */
 
@@ -170,7 +172,8 @@ public class XmlCalculation implements XmlCalculationImplement {
 	 * This Method is used for Losses Calculation
 	 * @return void
 	 * @param request, response
-	 * Added on 26/07/2013 by Dhananjay
+	 * Added on 26/07/2013
+	 * @author Dhananjay
 	 * */
 
 	public Map<String,Object> lossesCalc(HstRequest request,HstResponse response){
@@ -279,7 +282,8 @@ public class XmlCalculation implements XmlCalculationImplement {
 	 * This Method is used for Interest Calculation
 	 * @return Map
 	 * @param Finincial Year, Input Beans, BigInteger
-	 * Added on 15/08/2013 by Dhananjay
+	 * Added on 15/08/2013
+	 * @author Dhananjay
 	 * */
 
 	public Map<String,Object> interestCalc(FinancialYear financialYear,Map<String,HippoBean> inputBeans, BigInteger netTaxLiability){
@@ -360,7 +364,8 @@ public class XmlCalculation implements XmlCalculationImplement {
 	 * This Method is used for Tax Calculation
 	 * @return Map
 	 * @param Finincial Year, Input Beans, long
-	 * Added on 16/08/2013 by Dhananjay
+	 * Added on 16/08/2013
+	 * @author Dhananjay
 	 * */
 
 	public Map<String,Object> taxCalc(FinancialYear financialYear,Map<String,HippoBean> inputBeans, long taxableIncome){
@@ -394,7 +399,8 @@ public class XmlCalculation implements XmlCalculationImplement {
 	 * This Method is used to put losses details in xml
 	 * @return Map
 	 * @param Finincial Year, Input Beans
-	 * Added on 17/08/2013 by Dhananjay
+	 * Added on 17/08/2013
+	 * @author Dhananjay
 	 * */
 
 	public Map<String,List<AdjustmentOfLossesCom>> lossesCFLChilds(FinancialYear financialYear,Map<String,HippoBean> inputBeans){
@@ -419,5 +425,46 @@ public class XmlCalculation implements XmlCalculationImplement {
 			}
 		}
 		return totalMapForJS;
+	}
+
+	/**
+	 * This Method is used to get total of SI
+	 * @return Map
+	 * @param Finincial Year, Input Beans
+	 * Added on 22/08/2013
+	 * @author Dhananjay
+	 * */
+
+	public Map<String,Double> getSumOfScheduleSIisInActiveSection(FinancialYear financialYear, Map<String , HippoBean> inputBean){
+
+		Map<String,Double> resultMap = new HashMap<String, Double>();
+		Double sumInActiveSection = 0d;
+		Double totalCalTax = 0d;
+		Double minChargeIncome = 0d;
+		//ScheduleSIDocument siDoc = (ScheduleSIDocument) inputBean.get(ScheduleSIDocument.class.getSimpleName().toLowerCase());
+		OtherSourcesDocument otherSourcesDocument = (OtherSourcesDocument) inputBean.get(OtherSourcesDocument.class.getSimpleName().toLowerCase());
+		CapitalAssetDocument capitalAssetDocument = (CapitalAssetDocument) inputBean.get(CapitalAssetDocument.class.getSimpleName().toLowerCase());
+
+		if(capitalAssetDocument != null){
+			Map<String, Map<String, Object>> resultScheduleSISection = capitalAssetDocument.getScheduleSIService(financialYear, inputBean);
+			for(String key : resultScheduleSISection.keySet()){
+				sumInActiveSection = sumInActiveSection + Double.parseDouble(resultScheduleSISection.get(key).get("userAmount").toString());
+				totalCalTax = totalCalTax + Double.parseDouble(resultScheduleSISection.get(key).get("taxOnIncome").toString());
+				minChargeIncome = totalCalTax + Double.parseDouble(resultScheduleSISection.get(key).get("minChargIncome").toString());
+			}
+		}
+		if(otherSourcesDocument != null){
+			Map<String, Map<String, Object>> resultScheduleSISection = otherSourcesDocument.getScheduleSIService(financialYear, inputBean);
+			for(String key : resultScheduleSISection.keySet()){
+				sumInActiveSection = sumInActiveSection + Double.parseDouble(resultScheduleSISection.get(key).get("userAmount").toString());
+				totalCalTax = totalCalTax + Double.parseDouble(resultScheduleSISection.get(key).get("taxOnIncome").toString());
+				minChargeIncome = totalCalTax + Double.parseDouble(resultScheduleSISection.get(key).get("minChargIncome").toString());
+			}
+		}
+		resultMap.put("sumInActiveSection", sumInActiveSection);
+		resultMap.put("totalCalTax", totalCalTax);
+		resultMap.put("minChargeIncome", minChargeIncome);
+
+		return resultMap;
 	}
 }
