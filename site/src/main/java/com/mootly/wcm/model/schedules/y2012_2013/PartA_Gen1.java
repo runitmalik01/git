@@ -17,14 +17,21 @@ import java.util.Map;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 
 import com.mootly.wcm.beans.AdvanceTaxDocument;
+import com.mootly.wcm.beans.CapitalAssetDocument;
 import com.mootly.wcm.beans.DeductionDocument;
+import com.mootly.wcm.beans.DetailOfTrustDocument;
+import com.mootly.wcm.beans.FinancialInterestDocument;
+import com.mootly.wcm.beans.ForeignBankAccountDocument;
 import com.mootly.wcm.beans.FormSixteenDocument;
 import com.mootly.wcm.beans.HouseProperty;
+import com.mootly.wcm.beans.ImmovablePropertyDocument;
 import com.mootly.wcm.beans.MemberPersonalInformation;
+import com.mootly.wcm.beans.NatureInvestmentDocument;
 import com.mootly.wcm.beans.OtherSourcesDocument;
 import com.mootly.wcm.beans.SalaryIncomeDocument;
 import com.mootly.wcm.beans.ScheduleSIDocument;
 import com.mootly.wcm.beans.SelfAssesmetTaxDocument;
+import com.mootly.wcm.beans.SigningAuthorityAccountsDocument;
 import com.mootly.wcm.beans.TaxReliefDocument;
 import com.mootly.wcm.beans.TdsFromothersDocument;
 import com.mootly.wcm.model.FinancialYear;
@@ -42,11 +49,20 @@ public class PartA_Gen1 {
 	SelfAssesmetTaxDocument selfAssesmetTaxDocument = null;
 	TdsFromothersDocument tdsFromothersDocument = null;
 	ScheduleSIDocument scheduleSIDocument = null;
+	CapitalAssetDocument capitalAssetDocument = null;
+	ImmovablePropertyDocument immovablePropertyDocument = null;
+	NatureInvestmentDocument natureInvestmentDocument= null;
+	SigningAuthorityAccountsDocument signingAuthorityAccountsDocument = null;
+	DetailOfTrustDocument detailOfTrustDocument = null;
+	ForeignBankAccountDocument foreignBankAccountDocument = null;
+	FinancialInterestDocument financialInterestDocument = null;
 
 	public PartA_Gen1(FormSixteenDocument formSixteenDocument, SalaryIncomeDocument salaryIncomeDocument, HouseProperty housePropertyDocument ,
 			OtherSourcesDocument otherSourcesDocument, DeductionDocument deductionDocument, MemberPersonalInformation memberPersonalInformation,
 			TaxReliefDocument taxReliefDocument, AdvanceTaxDocument advanceTaxDocument, SelfAssesmetTaxDocument selfAssesmetTaxDocument,
-			TdsFromothersDocument tdsFromothersDocument, ScheduleSIDocument scheduleSIDocument) {
+			TdsFromothersDocument tdsFromothersDocument, ScheduleSIDocument scheduleSIDocument, CapitalAssetDocument capitalAssetDocument,
+			ImmovablePropertyDocument immovablePropertyDocument, NatureInvestmentDocument natureInvestmentDocument, SigningAuthorityAccountsDocument signingAuthorityAccountsDocument,
+			DetailOfTrustDocument detailOfTrustDocument, ForeignBankAccountDocument foreignBankAccountDocument, FinancialInterestDocument financialInterestDocument) {
 		this.formSixteenDocument = formSixteenDocument;
 		this.salaryIncomeDocument = salaryIncomeDocument;
 		this.housePropertyDocument = housePropertyDocument;
@@ -58,6 +74,13 @@ public class PartA_Gen1 {
 		this.selfAssesmetTaxDocument = selfAssesmetTaxDocument;
 		this.tdsFromothersDocument = tdsFromothersDocument;
 		this.scheduleSIDocument = scheduleSIDocument;
+		this.capitalAssetDocument = capitalAssetDocument;
+		this.immovablePropertyDocument = immovablePropertyDocument;
+		this.natureInvestmentDocument = natureInvestmentDocument;
+		this.signingAuthorityAccountsDocument = signingAuthorityAccountsDocument;
+		this.detailOfTrustDocument = detailOfTrustDocument;
+		this.foreignBankAccountDocument = foreignBankAccountDocument;
+		this.financialInterestDocument = financialInterestDocument;
 	}
 
 	/**
@@ -75,7 +98,10 @@ public class PartA_Gen1 {
 		Address address= new Address();
 		FilingStatus filingstatus = new FilingStatus();
 
-		PartB_TTI partB_TTI = new PartB_TTI(formSixteenDocument, salaryIncomeDocument, housePropertyDocument, otherSourcesDocument, deductionDocument, memberPersonalInformation, taxReliefDocument, advanceTaxDocument, selfAssesmetTaxDocument, tdsFromothersDocument, scheduleSIDocument );
+		PartB_TTI partB_TTI = new PartB_TTI(formSixteenDocument, salaryIncomeDocument, housePropertyDocument, otherSourcesDocument,
+				deductionDocument, memberPersonalInformation, taxReliefDocument, advanceTaxDocument, selfAssesmetTaxDocument,
+				tdsFromothersDocument, scheduleSIDocument, capitalAssetDocument, immovablePropertyDocument, natureInvestmentDocument,
+				signingAuthorityAccountsDocument, detailOfTrustDocument, foreignBankAccountDocument, financialInterestDocument);
 		PartBTTI partBTTI = partB_TTI.getPartBTTI(itr, financialYear, inputBeans);
 
 		if(!(memberPersonalInformation.getFirstName().isEmpty()))
