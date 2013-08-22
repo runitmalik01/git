@@ -53,6 +53,7 @@ public final class ValueListServiceImpl implements ValueListService{
 	private ResourceBundle objvalueListRelationship=null;
 	private ResourceBundle objvalueListNaureIncome=null; 
 	private ResourceBundle objvalueListBusinessCode=null;
+	private ResourceBundle objvalueListQuantitativeCode=null;
 
 	private static final ValueListServiceImpl objValueListServiceImpl = new ValueListServiceImpl();
 	private static final Logger log = LoggerFactory.getLogger(ValueListServiceImpl.class);
@@ -83,6 +84,7 @@ public final class ValueListServiceImpl implements ValueListService{
 		objvalueListRelationship= ResourceBundle.getBundle("valueList_relationship");
 		objvalueListNaureIncome= ResourceBundle.getBundle("valueList_NatureIncome");
 		objvalueListBusinessCode= ResourceBundle.getBundle("valueList_BusinessCode");
+		objvalueListQuantitativeCode = ResourceBundle.getBundle("valueList_QuantitativeCode");
 
 		//initialization
 		initCountries();
@@ -730,7 +732,39 @@ public final class ValueListServiceImpl implements ValueListService{
 		treeMapBusinessCode.put("0114", objvalueListBusinessCode.getString("valueList.0114"));
 		treeMapBusinessCode.put("0115", objvalueListBusinessCode.getString("valueList.0115"));
 		treeMapBusinessCode.put("0116", objvalueListBusinessCode.getString("valueList.0116"));
+		
+		treeMapBusinessCode.put("0117", objvalueListBusinessCode.getString("valueList.0117"));
+		treeMapBusinessCode.put("0118", objvalueListBusinessCode.getString("valueList.0118"));
+		treeMapBusinessCode.put("0119", objvalueListBusinessCode.getString("valueList.0119"));
+		treeMapBusinessCode.put("0120", objvalueListBusinessCode.getString("valueList.0120"));
+		
+		treeMapBusinessCode.put("0121", objvalueListBusinessCode.getString("valueList.0121"));
+		treeMapBusinessCode.put("0122", objvalueListBusinessCode.getString("valueList.0122"));
+		treeMapBusinessCode.put("0123", objvalueListBusinessCode.getString("valueList.0123"));
+		treeMapBusinessCode.put("0124", objvalueListBusinessCode.getString("valueList.0124"));
+		
+		treeMapBusinessCode.put("0201", objvalueListBusinessCode.getString("valueList.0201"));
+		treeMapBusinessCode.put("0202", objvalueListBusinessCode.getString("valueList.0202"));
+		treeMapBusinessCode.put("0203", objvalueListBusinessCode.getString("valueList.0203"));
+		treeMapBusinessCode.put("0204", objvalueListBusinessCode.getString("valueList.0204"));
+		treeMapBusinessCode.put("0401", objvalueListBusinessCode.getString("valueList.0401"));
+		
+		treeMapBusinessCode.put("0402", objvalueListBusinessCode.getString("valueList.0402"));
+		treeMapBusinessCode.put("0403", objvalueListBusinessCode.getString("valueList.0403"));
+		treeMapBusinessCode.put("0404", objvalueListBusinessCode.getString("valueList.0404"));
+		treeMapBusinessCode.put("0501", objvalueListBusinessCode.getString("valueList.0501"));
+		treeMapBusinessCode.put("0502", objvalueListBusinessCode.getString("valueList.0502"));
+		treeMapBusinessCode.put("0503", objvalueListBusinessCode.getString("valueList.0503"));
+		treeMapBusinessCode.put("0504", objvalueListBusinessCode.getString("valueList.0504"));
+		treeMapBusinessCode.put("0505", objvalueListBusinessCode.getString("valueList.0505"));
 		return treeMapBusinessCode;
+	}
+	
+	public TreeMap<String, String> getQuantitativeCode(){
+		TreeMap<String, String> objTreeMapQuantCode = new TreeMap<String, String>();
+		objTreeMapQuantCode.put("101", objvalueListQuantitativeCode.getString("valueList.101"));
+		objTreeMapQuantCode.put("102", objvalueListQuantitativeCode.getString("valueList.102"));
+		return objTreeMapQuantCode;
 	}
 	
 	@Override
