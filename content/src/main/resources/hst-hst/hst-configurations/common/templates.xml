@@ -3255,4 +3255,41 @@
 </sv:node>
 	
 	<!-- /naturebusiness -->
+	
+<sv:node sv:name="quantitativedetails">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:template</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>3f19bd4f-835b-46e5-8c74-a6730186c03c</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:renderpath" sv:type="String">
+    <sv:value>jsp/member/quantitative_details.jsp</sv:value>
+  </sv:property>
+</sv:node>
+	
+<sv:node sv:name="manufacture_rawmaterials" >
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:template</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>1ccf8f84-c2fb-4f52-a51a-bca3b40c299f</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:renderpath" sv:type="String">
+    <sv:value>jsp/member/manufacture_rawmaterials.jsp</sv:value>
+  </sv:property>
+</sv:node>
+	
+<sv:node sv:name="manufacture_finishedgoods">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:template</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>8e167b8b-b998-4654-a96a-95b422509f5b</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:renderpath" sv:type="String">
+    <sv:value>jsp/member/manufacture_finishedgoods.jsp</sv:value>
+  </sv:property>
+</sv:node>
+	
 </sv:node>
