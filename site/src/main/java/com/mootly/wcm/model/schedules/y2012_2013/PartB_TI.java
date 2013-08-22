@@ -7,6 +7,7 @@ import java.util.Map;
 
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 
+import com.mootly.wcm.beans.CapitalAssetDocument;
 import com.mootly.wcm.beans.DeductionDocument;
 import com.mootly.wcm.beans.FormSixteenDocument;
 import com.mootly.wcm.beans.HouseProperty;
@@ -47,10 +48,11 @@ public class PartB_TI {
 	DeductionDocument deductionDocument = null;
 	MemberPersonalInformation memberPersonalInformation = null;
 	ScheduleSIDocument scheduleSIDocument= null;
+	CapitalAssetDocument capitalAssetDocument = null;
 
 	public PartB_TI(FormSixteenDocument formSixteenDocument, SalaryIncomeDocument salaryIncomeDocument, HouseProperty housePropertyDocument ,
 			OtherSourcesDocument otherSourcesDocument, DeductionDocument deductionDocument, MemberPersonalInformation memberPersonalInformation,
-			ScheduleSIDocument scheduleSIDocument){
+			ScheduleSIDocument scheduleSIDocument, CapitalAssetDocument capitalAssetDocument){
 		this.formSixteenDocument = formSixteenDocument;
 		this.salaryIncomeDocument = salaryIncomeDocument;
 		this.housePropertyDocument = housePropertyDocument;
@@ -58,6 +60,7 @@ public class PartB_TI {
 		this.deductionDocument = deductionDocument;
 		this.memberPersonalInformation = memberPersonalInformation;
 		this.scheduleSIDocument = scheduleSIDocument;
+		this.capitalAssetDocument = capitalAssetDocument;
 	}
 
 	public PartBTI getPartBTI(ITR itr, FinancialYear financialYear,Map<String,HippoBean> inputBeans){
@@ -155,7 +158,10 @@ public class PartB_TI {
 		//BalanceAfterSetoffLosses - BroughtFrwdLossesSetoff
 		partBTI.setGrossTotalIncome(partBTI.getBalanceAfterSetoffLosses().subtract(partBTI.getBroughtFwdLossesSetoff()));
 
-		partBTI.setIncChargeableTaxSplRates(new BigInteger("0"));//Waiting for Schedule SI
+		Map<String,Double> resultMap = xmlCalculation.getSumOfScheduleSIisInActiveSection(financialYear, inputBeans);
+		Double incChargeTaxSplRate111A112 = resultMap.get("sumInActiveSection");
+		Double minChargeIncome = resultMap.get("minChargeIncome");
+		partBTI.setIncChargeableTaxSplRates(indianCurrencyHelper.bigIntegerRound(incChargeTaxSplRate111A112));
 
 		//Total Deduction (Should not be greater than GrossTotalIncome - IncChargableTaxSplRates)
 		DeductionVIASchedules deductionVIASchedules = new DeductionVIASchedules(deductionDocument, memberPersonalInformation,otherSourcesDocument);
@@ -172,8 +178,7 @@ public class PartB_TI {
 		//GrossTotalIncome - Deduction
 		partBTI.setTotalIncome(partBTI.getGrossTotalIncome().subtract(partBTI.getDeductionsUnderScheduleVIA()));
 
-		Double incChargeTaxSplRate111A112 = getSumOfScheduleSIisInActiveSection(inputBeans);
-		partBTI.setIncChargeTaxSplRate111A112(indianCurrencyHelper.bigIntegerRound(incChargeTaxSplRate111A112));//Waiting for Schedule SI
+		partBTI.setIncChargeTaxSplRate111A112(indianCurrencyHelper.bigIntegerRound(minChargeIncome));
 
 		//Agriculture Income taking from Other Income Screen
 		partBTI.setNetAgricultureIncomeOrOtherIncomeForRate(indianCurrencyHelper.bigIntegerRound(agricultureIncome));
@@ -189,23 +194,5 @@ public class PartB_TI {
 		partBTI.setLossesOfCurrentYearCarriedFwd(indianCurrencyHelper.bigIntegerRound(totalCurrYrLoss));
 
 		return partBTI;
-	}
-
-	public static Double getSumOfScheduleSIisInActiveSection(Map<String , HippoBean> inputBean){
-		Double sumInActiveSection = 0d;
-		ScheduleSIDocument siDoc = (ScheduleSIDocument) inputBean.get(ScheduleSIDocument.class.getSimpleName().toLowerCase());
-		List<ITRScheduleSISections> scheduleSIList = ITRScheduleSISections.createInActiveScheduleSIList(inputBean);
-		if(siDoc!=null){
-			if(siDoc.getScheduleSiDetailList() != null && siDoc.getScheduleSiDetailList().size() !=0){
-				for(ScheduleSIDocumentDetail siDetail:siDoc.getScheduleSiDetailList()){
-					for(ITRScheduleSISections siSection:scheduleSIList){
-						if(siSection.getXmlCode().equals(siDetail.getSchedulesiSection())){
-							sumInActiveSection = sumInActiveSection + siDetail.getAmount();
-						}
-					}
-				}
-			}
-		}
-		return sumInActiveSection;
 	}
 }
