@@ -8,14 +8,21 @@ import java.util.Map;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 
 import com.mootly.wcm.beans.AdvanceTaxDocument;
+import com.mootly.wcm.beans.CapitalAssetDocument;
 import com.mootly.wcm.beans.DeductionDocument;
+import com.mootly.wcm.beans.DetailOfTrustDocument;
+import com.mootly.wcm.beans.FinancialInterestDocument;
+import com.mootly.wcm.beans.ForeignBankAccountDocument;
 import com.mootly.wcm.beans.FormSixteenDocument;
 import com.mootly.wcm.beans.HouseProperty;
+import com.mootly.wcm.beans.ImmovablePropertyDocument;
 import com.mootly.wcm.beans.MemberPersonalInformation;
+import com.mootly.wcm.beans.NatureInvestmentDocument;
 import com.mootly.wcm.beans.OtherSourcesDocument;
 import com.mootly.wcm.beans.SalaryIncomeDocument;
 import com.mootly.wcm.beans.ScheduleSIDocument;
 import com.mootly.wcm.beans.SelfAssesmetTaxDocument;
+import com.mootly.wcm.beans.SigningAuthorityAccountsDocument;
 import com.mootly.wcm.beans.TaxReliefDocument;
 import com.mootly.wcm.beans.TdsFromothersDocument;
 import com.mootly.wcm.beans.compound.FormSixteenDetail;
@@ -35,6 +42,7 @@ import in.gov.incometaxindiaefiling.y2012_2013.ScheduleTR.TotTaxreliefClaimed;
 import in.gov.incometaxindiaefiling.y2012_2013.ITR;
 import in.gov.incometaxindiaefiling.y2012_2013.PartBTI;
 import in.gov.incometaxindiaefiling.y2012_2013.PartBTTI;
+import in.gov.incometaxindiaefiling.y2012_2013.ScheduleFA;
 import in.gov.incometaxindiaefiling.y2012_2013.ScheduleTR;
 import in.gov.incometaxindiaefiling.y2012_2013.TaxPaid;
 import in.gov.incometaxindiaefiling.y2012_2013.TaxPayableOnTI;
@@ -54,11 +62,20 @@ public class PartB_TTI {
 	SelfAssesmetTaxDocument selfAssesmetTaxDocument = null;
 	TdsFromothersDocument tdsFromothersDocument = null;
 	ScheduleSIDocument scheduleSIDocument= null;
+	CapitalAssetDocument capitalAssetDocument = null;
+	ImmovablePropertyDocument immovablePropertyDocument = null;
+	NatureInvestmentDocument natureInvestmentDocument= null;
+	SigningAuthorityAccountsDocument signingAuthorityAccountsDocument = null;
+	DetailOfTrustDocument detailOfTrustDocument = null;
+	ForeignBankAccountDocument foreignBankAccountDocument = null;
+	FinancialInterestDocument financialInterestDocument = null;
 
 	public PartB_TTI(FormSixteenDocument formSixteenDocument, SalaryIncomeDocument salaryIncomeDocument, HouseProperty housePropertyDocument ,
 			OtherSourcesDocument otherSourcesDocument, DeductionDocument deductionDocument, MemberPersonalInformation memberPersonalInformation,
 			TaxReliefDocument taxReliefDocument, AdvanceTaxDocument advanceTaxDocument, SelfAssesmetTaxDocument selfAssesmetTaxDocument,
-			TdsFromothersDocument tdsFromothersDocument, ScheduleSIDocument scheduleSIDocument){
+			TdsFromothersDocument tdsFromothersDocument, ScheduleSIDocument scheduleSIDocument, CapitalAssetDocument capitalAssetDocument,
+			ImmovablePropertyDocument immovablePropertyDocument, NatureInvestmentDocument natureInvestmentDocument, SigningAuthorityAccountsDocument signingAuthorityAccountsDocument,
+			DetailOfTrustDocument detailOfTrustDocument, ForeignBankAccountDocument foreignBankAccountDocument, FinancialInterestDocument financialInterestDocument){
 		this.formSixteenDocument = formSixteenDocument;
 		this.salaryIncomeDocument = salaryIncomeDocument;
 		this.housePropertyDocument = housePropertyDocument;
@@ -70,13 +87,21 @@ public class PartB_TTI {
 		this.selfAssesmetTaxDocument = selfAssesmetTaxDocument;
 		this.tdsFromothersDocument = tdsFromothersDocument;
 		this.scheduleSIDocument = scheduleSIDocument;
+		this.capitalAssetDocument = capitalAssetDocument;
+		this.immovablePropertyDocument = immovablePropertyDocument;
+		this.natureInvestmentDocument = natureInvestmentDocument;
+		this.signingAuthorityAccountsDocument = signingAuthorityAccountsDocument;
+		this.detailOfTrustDocument = detailOfTrustDocument;
+		this.foreignBankAccountDocument = foreignBankAccountDocument;
+		this.financialInterestDocument = financialInterestDocument;
+
 	}
 
 	public PartBTTI getPartBTTI(ITR itr, FinancialYear financialYear, Map<String,HippoBean> inputBeans){
 
 		IndianCurrencyHelper indianCurrencyHelper = new IndianCurrencyHelper();
 		PartBTTI partBTTI = new PartBTTI();
-		PartB_TI partB_TI = new PartB_TI(formSixteenDocument, salaryIncomeDocument, housePropertyDocument, otherSourcesDocument, deductionDocument, memberPersonalInformation, scheduleSIDocument);
+		PartB_TI partB_TI = new PartB_TI(formSixteenDocument, salaryIncomeDocument, housePropertyDocument, otherSourcesDocument, deductionDocument, memberPersonalInformation, scheduleSIDocument, capitalAssetDocument);
 		PartBTI partBTI = partB_TI.getPartBTI(itr, financialYear, inputBeans);
 		Map<String,String[]> requestParameterMap = new HashMap<String, String[]>(); //not being used any where
 
@@ -117,8 +142,11 @@ public class PartB_TTI {
 		taxPayableOnTI.setTaxAtNormalRatesOnAggrInc(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMap.get("txtTax").toString())));
 		if(scheduleSIDocument != null){
 			taxPayableOnTI.setTaxAtSpecialRates(indianCurrencyHelper.bigIntegerRound(scheduleSIDocument.getTotalCalTaxOnInc()));
-		}else
-			taxPayableOnTI.setTaxAtSpecialRates(new BigInteger("0"));
+		}else{
+			Map<String,Double> resultMapSI = xmlCalculation.getSumOfScheduleSIisInActiveSection(financialYear, inputBeans);
+			Double totalCalTax = resultMapSI.get("totalCalTax");
+			taxPayableOnTI.setTaxAtSpecialRates(indianCurrencyHelper.bigIntegerRound(totalCalTax));
+		}
 
 		taxPayableOnTI.setTaxOnAggregateInc(new BigInteger("0"));//Don't know need to consult(i think this is for ITR4)
 		if(agricultureIncome > 5000){
@@ -275,7 +303,13 @@ public class PartB_TTI {
 		refund.setDepositToBankAccount(depositToBankAccount);
 		partBTTI.setRefund(refund);
 
-		partBTTI.setAssetOutIndiaFlag("NO");//Need to discuss
+		FADetailsSchedule fADetailsSchedule = new FADetailsSchedule(immovablePropertyDocument, natureInvestmentDocument, signingAuthorityAccountsDocument,
+				detailOfTrustDocument, foreignBankAccountDocument, financialInterestDocument);
+		ScheduleFA scheduleFA = fADetailsSchedule.getScheduleFA(itr);
+		if(scheduleFA != null){
+			partBTTI.setAssetOutIndiaFlag("YES");
+		}else
+			partBTTI.setAssetOutIndiaFlag("NO");
 
 		return partBTTI;
 	}
