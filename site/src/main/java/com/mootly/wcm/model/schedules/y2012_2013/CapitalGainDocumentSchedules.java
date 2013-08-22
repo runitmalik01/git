@@ -11,8 +11,9 @@ import in.gov.incometaxindiaefiling.y2012_2013.LongTermCapGain23;
 import in.gov.incometaxindiaefiling.y2012_2013.NRIAssetSec48Dtl;
 import in.gov.incometaxindiaefiling.y2012_2013.OtherAsset;
 import in.gov.incometaxindiaefiling.y2012_2013.OtherAsset111AApplicable;
+import in.gov.incometaxindiaefiling.y2012_2013.OtherAsset111AApplicable.DeductSec48;
+import in.gov.incometaxindiaefiling.y2012_2013.OtherAssetNoProviso112;
 import in.gov.incometaxindiaefiling.y2012_2013.OtherAssetProviso112;
-import in.gov.incometaxindiaefiling.y2012_2013.OtherAssetProviso112.DeductSec48;
 import in.gov.incometaxindiaefiling.y2012_2013.ScheduleCGFor23;
 import in.gov.incometaxindiaefiling.y2012_2013.ScheduleCGFor4;
 import in.gov.incometaxindiaefiling.y2012_2013.ShortTermCapGainFor23;
@@ -21,6 +22,7 @@ import java.util.List;
 
 import com.mootly.wcm.beans.CapitalAssetDocument;
 import com.mootly.wcm.beans.compound.CapitalAssetDetail;
+import com.mootly.wcm.beans.compound.FormSixteenDetail;
 import com.mootly.wcm.services.IndianCurrencyHelper;
 
 public class CapitalGainDocumentSchedules {
@@ -38,114 +40,100 @@ public class CapitalGainDocumentSchedules {
 	 * @return
 	 */
 	public ScheduleCGFor23 getSchedulecCgFor23(ITR itr) {
+
 		IndianCurrencyHelper indianCurrencyHelper = new IndianCurrencyHelper();
-		List<CapitalAssetDetail> capitalAssetDetails = capitalAssetDocument.getCapitalAssetDetailList();
-		ScheduleCGFor23 scheduleCG =new ScheduleCGFor23();
-		ScheduleCGFor4 scheduleCG4 = new ScheduleCGFor4();
+		ScheduleCGFor23 scheduleCGFor23 =new ScheduleCGFor23();
 
-		for (CapitalAssetDetail capitalAssetDetail:capitalAssetDetails)  {
+		if(capitalAssetDocument != null){
+			List<CapitalAssetDetail> capitalAssetDetails = capitalAssetDocument.getCapitalAssetDetailList();
+			if ( capitalAssetDetails != null && capitalAssetDetails.size() > 0 ){
+				for (CapitalAssetDetail capitalAssetDetail : capitalAssetDetails)  {
+					if(capitalAssetDetail.getCapitalGainTaxST() != null){
+						ShortTermCapGainFor23 shortTermCapGainFor23 = new ShortTermCapGainFor23();
 
-			OtherAssetProviso112 otherAssetProviso112 = new OtherAssetProviso112();
-			DeductSec48  deductSec48 = new DeductSec48();
-			LongTermCapGain23 longTermCapGain23 =new LongTermCapGain23();
-			longTermCapGain23.setAmtDeemedCGSec54(indianCurrencyHelper.bigIntegerRound(capitalAssetDetail.getAmtdeemed()));
-			longTermCapGain23.setNRIAssetSec48(indianCurrencyHelper.longRound(capitalAssetDetail.getSection48()));
-			longTermCapGain23.setOtherAssetProviso112(otherAssetProviso112);
-			otherAssetProviso112.setBalanceCG(indianCurrencyHelper.longRound(capitalAssetDetail.getBalance()));
-			otherAssetProviso112.setBalLTCG112(indianCurrencyHelper.longRound(capitalAssetDetail.getBalance()));
-			otherAssetProviso112.setDeductSec48(deductSec48);
-			if(capitalAssetDetail.getIndex().equals("N")){
-				deductSec48.setAquisitCostNoIndex(indianCurrencyHelper.bigIntegerRound(capitalAssetDetail.getCostAcquisition()));
-				deductSec48.setExpOnTrans(indianCurrencyHelper.bigIntegerRound(capitalAssetDetail.getCostTransfer()));
-				deductSec48.setImproveCostNoIndex(indianCurrencyHelper.bigIntegerRound(capitalAssetDetail.getCostImprovement()));
-				deductSec48.setTotalDedn (indianCurrencyHelper.bigIntegerRound(capitalAssetDetail.getCostAcquisition()+capitalAssetDetail.getCostTransfer()
-						+capitalAssetDetail.getCostImprovement()));
+						NRIAssetSec48Dtl nRIAssetSec48Dtl = new NRIAssetSec48Dtl();
+						nRIAssetSec48Dtl.setNRI111AApplicable(capitalAssetDetail.getAsset_111().longValue());
+						nRIAssetSec48Dtl.setNRI111ANotApplicable(capitalAssetDetail.getAssetnt111().longValue());
+						shortTermCapGainFor23.setNRIAssetSec48Dtl(nRIAssetSec48Dtl);
+
+						OtherAsset111AApplicable otherAsset111AApplicable = new OtherAsset111AApplicable();
+						otherAsset111AApplicable.setFullConsideration(indianCurrencyHelper.bigIntegerRound(capitalAssetDetail.getSaleConsideration()));
+						DeductSec48 deductSec48 = new DeductSec48();
+						deductSec48.setAquisitCost(indianCurrencyHelper.bigIntegerRound(capitalAssetDetail.getCostAcquisition()));
+						deductSec48.setExpOnTrans(indianCurrencyHelper.bigIntegerRound(capitalAssetDetail.getCostTransfer()));
+						deductSec48.setImproveCost(indianCurrencyHelper.bigIntegerRound(capitalAssetDetail.getCostImprovement()));
+						deductSec48.setTotalDedn(deductSec48.getAquisitCost().add(deductSec48.getExpOnTrans()).add(deductSec48.getImproveCost()));
+						otherAsset111AApplicable.setDeductSec48(deductSec48);
+						otherAsset111AApplicable.setBalanceCG(capitalAssetDetail.getBalance().longValue());
+						otherAsset111AApplicable.setLossSec94Of7Or94Of8(indianCurrencyHelper.bigIntegerRound(capitalAssetDetail.getLoss_sec94()));
+						otherAsset111AApplicable.setBalCG(otherAsset111AApplicable.getBalanceCG() + otherAsset111AApplicable.getLossSec94Of7Or94Of8().longValue());
+						shortTermCapGainFor23.setOtherAsset111AApplicable(otherAsset111AApplicable);
+
+						OtherAsset otherAsset = new OtherAsset();
+						otherAsset.setFullConsideration(indianCurrencyHelper.bigIntegerRound(capitalAssetDetail.getSaleConsideration()));
+						OtherAsset.DeductSec48 deductSec48OtherAsset = new OtherAsset.DeductSec48();
+						deductSec48OtherAsset.setAquisitCost(indianCurrencyHelper.bigIntegerRound(capitalAssetDetail.getCostAcquisition()));
+						deductSec48OtherAsset.setExpOnTrans(indianCurrencyHelper.bigIntegerRound(capitalAssetDetail.getCostTransfer()));
+						deductSec48OtherAsset.setImproveCost(indianCurrencyHelper.bigIntegerRound(capitalAssetDetail.getCostImprovement()));
+						deductSec48OtherAsset.setTotalDedn(deductSec48OtherAsset.getAquisitCost().add(deductSec48OtherAsset.getExpOnTrans()).add(deductSec48OtherAsset.getImproveCost()));
+						otherAsset.setDeductSec48(deductSec48OtherAsset);
+						otherAsset.setBalanceCG(capitalAssetDetail.getBalance().longValue());
+						otherAsset.setLossSec94Of7Or94Of8(indianCurrencyHelper.bigIntegerRound(capitalAssetDetail.getLoss_sec94()));
+						otherAsset.setExemptionOrDednUs54S(indianCurrencyHelper.bigIntegerRound(capitalAssetDetail.getDed_sec54()));
+						otherAsset.setBalCG(otherAsset.getBalanceCG() + otherAsset.getLossSec94Of7Or94Of8().longValue() - otherAsset.getExemptionOrDednUs54S().longValue());
+						shortTermCapGainFor23.setOtherAsset(otherAsset);
+
+						shortTermCapGainFor23.setAmtDeemedCGSec54(indianCurrencyHelper.bigIntegerRound(capitalAssetDetail.getAmtdeemed()));
+						shortTermCapGainFor23.setTotalSTCG(capitalAssetDetail.getCapitalGainTaxST().longValue());
+						scheduleCGFor23.setShortTermCapGainFor23(shortTermCapGainFor23);
+					}
+
+					if(capitalAssetDetail.getCapitalGainTaxLT() != null){
+						LongTermCapGain23 longTermCapGain23 = new LongTermCapGain23();
+						longTermCapGain23.setNRIAssetSec48(capitalAssetDetail.getSection48().longValue());
+
+						OtherAssetNoProviso112 otherAssetNoProviso112 = new OtherAssetNoProviso112();
+						otherAssetNoProviso112.setFullConsideration(indianCurrencyHelper.bigIntegerRound(capitalAssetDetail.getSaleConsideration()));
+						OtherAssetNoProviso112.DeductSec48 deductSec48ForNoProviso = new OtherAssetNoProviso112.DeductSec48();
+						deductSec48ForNoProviso.setAquisitCostIndexed(indianCurrencyHelper.bigIntegerRound(capitalAssetDetail.getCostAcquisition()));
+						deductSec48ForNoProviso.setImproveCostIndexed(indianCurrencyHelper.bigIntegerRound(capitalAssetDetail.getCostImprovement()));
+						deductSec48ForNoProviso.setExpOnTrans(indianCurrencyHelper.bigIntegerRound(capitalAssetDetail.getCostTransfer()));
+						deductSec48ForNoProviso.setTotalDedn(deductSec48ForNoProviso.getAquisitCostIndexed().add(deductSec48ForNoProviso.getExpOnTrans()).add(deductSec48ForNoProviso.getImproveCostIndexed()));
+						otherAssetNoProviso112.setDeductSec48(deductSec48ForNoProviso);
+						otherAssetNoProviso112.setBalanceCG(capitalAssetDetail.getBalance().longValue());
+						otherAssetNoProviso112.setExemptionOrDednUs54S(indianCurrencyHelper.bigIntegerRound(capitalAssetDetail.getDed_sec54()));
+						otherAssetNoProviso112.setBalLTCGNo112(otherAssetNoProviso112.getBalanceCG() - otherAssetNoProviso112.getExemptionOrDednUs54S().longValue());
+						longTermCapGain23.setOtherAssetNoProviso112(otherAssetNoProviso112);
+
+						OtherAssetProviso112 otherAssetProviso112 = new OtherAssetProviso112();
+						otherAssetProviso112.setFullConsideration(indianCurrencyHelper.bigIntegerRound(capitalAssetDetail.getSaleConsideration()));
+						OtherAssetProviso112.DeductSec48 deductSec48ForProviso = new OtherAssetProviso112.DeductSec48();
+						deductSec48ForProviso.setAquisitCostNoIndex(indianCurrencyHelper.bigIntegerRound(capitalAssetDetail.getCostAcquisition()));
+						deductSec48ForProviso.setExpOnTrans(indianCurrencyHelper.bigIntegerRound(capitalAssetDetail.getCostTransfer()));
+						deductSec48ForProviso.setImproveCostNoIndex(indianCurrencyHelper.bigIntegerRound(capitalAssetDetail.getCostImprovement()));
+						deductSec48ForProviso.setTotalDedn(deductSec48ForProviso.getAquisitCostNoIndex().add(deductSec48ForProviso.getExpOnTrans()).add(deductSec48ForProviso.getImproveCostNoIndex()));
+						otherAssetProviso112.setDeductSec48(deductSec48ForProviso);
+						otherAssetProviso112.setBalanceCG(capitalAssetDetail.getBalance().longValue());
+						otherAssetProviso112.setExemptionOrDednUs54S(indianCurrencyHelper.bigIntegerRound(capitalAssetDetail.getDed_sec54()));
+						otherAssetProviso112.setBalLTCG112(otherAssetProviso112.getBalanceCG() - otherAssetProviso112.getExemptionOrDednUs54S().longValue());
+
+						longTermCapGain23.setUnlistedSecurities(indianCurrencyHelper.bigIntegerRound(capitalAssetDetail.getUnlstdSecurity()));
+						longTermCapGain23.setAmtDeemedCGSec54(indianCurrencyHelper.bigIntegerRound(capitalAssetDetail.getAmtdeemed()));
+						longTermCapGain23.setTotalLTCG(capitalAssetDetail.getCapitalGainTaxLT().longValue());
+						longTermCapGain23.setOtherAssetProviso112(otherAssetProviso112);
+						if(!(capitalAssetDetail.getPan().isEmpty()))
+							longTermCapGain23.setPANIfDeduction54GB(capitalAssetDetail.getPan());
+						scheduleCGFor23.setLongTermCapGain23(longTermCapGain23);
+
+						//scheduleCGFor23.setTotScheduleCGFor23(value);
+
+
+					}
+				}
 			}
-			otherAssetProviso112.setExemptionOrDednUs54S(indianCurrencyHelper.bigIntegerRound(capitalAssetDetail.getDed_sec54()));
-			otherAssetProviso112.setFullConsideration(indianCurrencyHelper.bigIntegerRound(capitalAssetDetail.getSaleConsideration()));
-			longTermCapGain23.setPANIfDeduction54GB(capitalAssetDetail.getPan());
-			longTermCapGain23.setTotalLTCG(indianCurrencyHelper.longRound(capitalAssetDetail.getCapitalGainTaxLT()));
-			longTermCapGain23.setUnlistedSecurities(indianCurrencyHelper.bigIntegerRound(capitalAssetDetail.getUnlstdSecurity()));
-			scheduleCG.setLongTermCapGain23(longTermCapGain23);
-			ShortTermCapGainFor23 shortTermCapGainFor23 = new ShortTermCapGainFor23();
-			scheduleCG.setShortTermCapGainFor23(shortTermCapGainFor23);
-			shortTermCapGainFor23.setAmtDeemedCGSec54(indianCurrencyHelper.bigIntegerRound(capitalAssetDetail.getAmtdeemed()));
-			NRIAssetSec48Dtl nRIAssetSec48Dtl = new NRIAssetSec48Dtl();
-			shortTermCapGainFor23.setNRIAssetSec48Dtl(nRIAssetSec48Dtl);
-			nRIAssetSec48Dtl.setNRI111AApplicable(indianCurrencyHelper.longRound((capitalAssetDetail.getAsset_111())));
-			nRIAssetSec48Dtl.setNRI111ANotApplicable(indianCurrencyHelper.longRound(capitalAssetDetail.getAsset_111()));
-			OtherAsset otherAsset = new OtherAsset();
-			shortTermCapGainFor23.setOtherAsset(otherAsset);
-			otherAsset.setBalanceCG(indianCurrencyHelper.longRound((capitalAssetDetail.getBalance())));
-			otherAsset.setBalCG(indianCurrencyHelper.longRound((capitalAssetDetail.getBalance())));
-			if(capitalAssetDetail.getAssetType().equals("OTH"))
-			{
-				OtherAsset.DeductSec48 othassetdeduct48 = new  OtherAsset.DeductSec48();
-				otherAsset.setDeductSec48(othassetdeduct48);
-				othassetdeduct48.setAquisitCost(indianCurrencyHelper.bigIntegerRound(capitalAssetDetail.getCostAcquisition()));
-				othassetdeduct48.setExpOnTrans(indianCurrencyHelper.bigIntegerRound(capitalAssetDetail.getCostTransfer()));
-				othassetdeduct48.setImproveCost(indianCurrencyHelper.bigIntegerRound(capitalAssetDetail.getCostImprovement()));
-				othassetdeduct48.setTotalDedn(indianCurrencyHelper.bigIntegerRound(capitalAssetDetail.getCostAcquisition()+
-						capitalAssetDetail.getCostImprovement()+capitalAssetDetail.getCostTransfer()));
-				otherAsset.setExemptionOrDednUs54S(indianCurrencyHelper.bigIntegerRound((capitalAssetDetail.getDed_sec54())));
-				otherAsset.setFullConsideration(indianCurrencyHelper.bigIntegerRound(capitalAssetDetail.getSaleConsideration()));
-				otherAsset.setLossSec94Of7Or94Of8(indianCurrencyHelper.bigIntegerRound(capitalAssetDetail.getLoss_sec94()));
-			}
-			OtherAsset111AApplicable otherAsset111AApplicable = new OtherAsset111AApplicable();
-			shortTermCapGainFor23.setOtherAsset111AApplicable(otherAsset111AApplicable);
-			otherAsset111AApplicable.setBalanceCG(indianCurrencyHelper.longRound(capitalAssetDetail.getBalance()));
-			otherAsset111AApplicable.setBalCG(indianCurrencyHelper.longRound(capitalAssetDetail.getBalance()));
-			OtherAsset111AApplicable.DeductSec48 otherassetdedcut48 = new OtherAsset111AApplicable.DeductSec48();
-			otherAsset111AApplicable.setDeductSec48(otherassetdedcut48);
-			otherassetdedcut48.setAquisitCost(indianCurrencyHelper.bigIntegerRound(capitalAssetDetail.getCostAcquisition()));
-			otherassetdedcut48.setExpOnTrans(indianCurrencyHelper.bigIntegerRound(capitalAssetDetail.getCostTransfer()));
-			otherassetdedcut48.setImproveCost(indianCurrencyHelper.bigIntegerRound(capitalAssetDetail.getCostImprovement()));
-			otherassetdedcut48.setTotalDedn(indianCurrencyHelper.bigIntegerRound(capitalAssetDetail.getCostAcquisition()+
-					capitalAssetDetail.getCostImprovement()+capitalAssetDetail.getCostTransfer()));
-			otherAsset111AApplicable.setFullConsideration(indianCurrencyHelper.bigIntegerRound(capitalAssetDetail.getSaleConsideration()));
-			otherAsset111AApplicable.setLossSec94Of7Or94Of8(indianCurrencyHelper.bigIntegerRound(capitalAssetDetail.getLoss_sec94()));
-			shortTermCapGainFor23.setTotalSTCG(indianCurrencyHelper.longRound(capitalAssetDetail.getCapitalGainTaxST()));
-			scheduleCG.setTotScheduleCGFor23(indianCurrencyHelper.longRound(capitalAssetDetail.getCapitalGainTaxST()));
-			AccruOrRecOfCG accruOrRecOfCG = new AccruOrRecOfCG();
-			scheduleCG.setAccruOrRecOfCG(accruOrRecOfCG);
-			LongTerm accrOfcgLT =  new LongTerm();
-			accruOrRecOfCG.setLongTerm(accrOfcgLT);
-			DateRange  dateRange = new DateRange();
-			accrOfcgLT.setDateRange(dateRange);
-			// these are special case for accrual income of the user for long term where 112 is not applicable
-			dateRange.setUp16Of12To15Of3(indianCurrencyHelper.bigIntegerRound(capitalAssetDetail.getUpto16DecOth()));
-			dateRange.setUp16Of3To31Of3(indianCurrencyHelper.bigIntegerRound(capitalAssetDetail.getUpto31Oth()));
-			dateRange.setUp16Of9To15Of12(indianCurrencyHelper.bigIntegerRound(capitalAssetDetail.getUpto16Oth()));
-			dateRange.setUpto15Of9(indianCurrencyHelper.bigIntegerRound(capitalAssetDetail.getUpto15Oth()));
-			LongTerm1121Applicable longTerm1121Applicable = new LongTerm1121Applicable();
-			accruOrRecOfCG.setLongTerm1121Applicable(longTerm1121Applicable);
-			longTerm1121Applicable.setDateRange(dateRange);
-			// these are special case for accrual income of the user for long term where 112 is applicable
-			dateRange.setUp16Of12To15Of3(indianCurrencyHelper.bigIntegerRound(capitalAssetDetail.getUpto16DecLt()));
-			dateRange.setUp16Of3To31Of3(indianCurrencyHelper.bigIntegerRound(capitalAssetDetail.getUpto31Lt()));
-			dateRange.setUp16Of9To15Of12(indianCurrencyHelper.bigIntegerRound(capitalAssetDetail.getUpto16Lt()));
-			dateRange.setUpto15Of9(indianCurrencyHelper.bigIntegerRound(capitalAssetDetail.getUpto15Lt()));
-			ShortTerm  shortTerm = new ShortTerm();
-			accruOrRecOfCG.setShortTerm(shortTerm);
-			shortTerm.setDateRange(dateRange);
-			// these are special case for accrual income of the user for short term where 111 is not applicable
-			dateRange.setUp16Of12To15Of3(indianCurrencyHelper.bigIntegerRound(capitalAssetDetail.getUpto16Oth()));
-			dateRange.setUp16Of3To31Of3(indianCurrencyHelper.bigIntegerRound(capitalAssetDetail.getUpto16DecOth()));
-			dateRange.setUp16Of9To15Of12(indianCurrencyHelper.bigIntegerRound(capitalAssetDetail.getUpto16DecOth()));
-			dateRange.setUpto15Of9(indianCurrencyHelper.bigIntegerRound(capitalAssetDetail.getUpto15Oth()));
-			ShortTermUnder111A shortTermUnder111A = new ShortTermUnder111A();
-			accruOrRecOfCG.setShortTermUnder111A(shortTermUnder111A);
-			shortTermUnder111A.setDateRange(dateRange);
-			// these are special case for accrual income of the user for short term where 111 is not applicable
-			dateRange.setUp16Of12To15Of3(indianCurrencyHelper.bigIntegerRound(capitalAssetDetail.getUpto16decSt()));
-			dateRange.setUp16Of3To31Of3(indianCurrencyHelper.bigIntegerRound(capitalAssetDetail.getUpto31St()));
-			dateRange.setUp16Of9To15Of12(indianCurrencyHelper.bigIntegerRound(capitalAssetDetail.getUpto16St()));
-			dateRange.setUpto15Of9(indianCurrencyHelper.bigIntegerRound(capitalAssetDetail.getUpto15St()));
-		}return null;
+		}
 
-
-
-
+		return scheduleCGFor23;
 	}
 }
 
