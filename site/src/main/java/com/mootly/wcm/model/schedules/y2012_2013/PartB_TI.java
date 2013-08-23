@@ -30,6 +30,7 @@ import in.gov.incometaxindiaefiling.y2012_2013.IncFromOS;
 import in.gov.incometaxindiaefiling.y2012_2013.LongTerm;
 import in.gov.incometaxindiaefiling.y2012_2013.LossSummaryDetail;
 import in.gov.incometaxindiaefiling.y2012_2013.PartBTI;
+import in.gov.incometaxindiaefiling.y2012_2013.ScheduleCGFor23;
 import in.gov.incometaxindiaefiling.y2012_2013.PartBTI.ProfBusGain;
 import in.gov.incometaxindiaefiling.y2012_2013.ScheduleBFLA.TotalBFLossSetOff;
 import in.gov.incometaxindiaefiling.y2012_2013.ScheduleCFL.CurrentAYloss;
@@ -104,19 +105,40 @@ public class PartB_TI {
 		profBusGain.setTotProfBusGain(new BigInteger("0"));
 		partBTI.setProfBusGain(profBusGain);
 
-		//Capital Gain HardCoded Values because CapitalGain Screen is not completed
+		//Capital Gain
+		CapitalGainDocumentSchedules capitalGainDocumentSchedules = new CapitalGainDocumentSchedules(capitalAssetDocument);
+		ScheduleCGFor23 scheduleCGFor23 = capitalGainDocumentSchedules.getSchedulecCgFor23(itr, financialYear, inputBeans);
 		CapGain capGain = new CapGain();
+
 		ShortTerm shortTerm = new ShortTerm();
-		shortTerm.setShortTermOther(0);
-		shortTerm.setShortTermUs111A(0);
-		shortTerm.setTotalShortTerm(0);
+		shortTerm.setShortTermUs111A(scheduleCGFor23.getShortTermCapGainFor23().getNRIAssetSec48Dtl().getNRI111AApplicable()
+				+ scheduleCGFor23.getShortTermCapGainFor23().getOtherAsset111AApplicable().getBalCG());
+		shortTerm.setShortTermOther(scheduleCGFor23.getShortTermCapGainFor23().getTotalSTCG() - shortTerm.getShortTermUs111A());
+		shortTerm.setTotalShortTerm(shortTerm.getShortTermOther() + shortTerm.getShortTermUs111A());
 		capGain.setShortTerm(shortTerm);
+
 		LongTerm longTerm = new LongTerm();
-		longTerm.setLongTermIndexation(0);
-		longTerm.setLongTermWOIndexation(0);
-		longTerm.setTotalLongTerm(new BigInteger("0"));
+		longTerm.setLongTermIndexation(scheduleCGFor23.getLongTermCapGain23().getTotalLTCG()
+				- scheduleCGFor23.getLongTermCapGain23().getOtherAssetProviso112().getBalLTCG112()
+				- scheduleCGFor23.getLongTermCapGain23().getUnlistedSecurities().longValue());
+		longTerm.setLongTermWOIndexation( scheduleCGFor23.getLongTermCapGain23().getOtherAssetProviso112().getBalLTCG112()
+				+ scheduleCGFor23.getLongTermCapGain23().getUnlistedSecurities().longValue());
+
+		long longTermIndex = longTerm.getLongTermIndexation();
+		long longTermWOIndex = longTerm.getLongTermWOIndexation();
+		long longterm = longTermIndex + longTermWOIndex;
+
+		if(longterm > 0){
+			longTerm.setTotalLongTerm(BigInteger.valueOf(longterm));
+		}else
+			longTerm.setTotalLongTerm(new BigInteger("0"));
 		capGain.setLongTerm(longTerm);
-		capGain.setTotalCapGains(new BigInteger("0"));
+
+		long totalCapitalGain = shortTerm.getTotalShortTerm() + longTerm.getTotalLongTerm().longValue();
+		if(totalCapitalGain > 0){
+			capGain.setTotalCapGains(BigInteger.valueOf(totalCapitalGain));
+		}else
+			capGain.setTotalCapGains(new BigInteger("0"));
 		partBTI.setCapGain(capGain);
 
 		//Getting values of other income
