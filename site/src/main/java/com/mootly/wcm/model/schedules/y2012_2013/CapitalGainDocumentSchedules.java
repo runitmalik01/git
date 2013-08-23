@@ -132,7 +132,7 @@ public class CapitalGainDocumentSchedules {
 			if ( capitalAssetDetails != null && capitalAssetDetails.size() > 0 ){
 				for (CapitalAssetDetail capitalAssetDetail : capitalAssetDetails)  {
 					if(!(capitalAssetDetail.getPan().isEmpty()))
-						longTermCapGain23.setPANIfDeduction54GB(capitalAssetDetail.getPan());
+						longTermCapGain23.setPANIfDeduction54GB(capitalAssetDetail.getPan().toUpperCase());
 				}
 			}
 		}
