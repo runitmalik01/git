@@ -144,6 +144,47 @@ public class CapitalGainDocumentSchedules {
 		}
 		scheduleCGFor23.setTotScheduleCGFor23(shortTermGain + longTermGain);
 
+		Map<String,Object> resultAccruralMap = xmlCalculation.getAccruralOfCG(financialYear, inputBeans);
+		AccruOrRecOfCG accruOrRecOfCG = new AccruOrRecOfCG();
+
+		LongTerm1121Applicable longTerm1121Applicable = new LongTerm1121Applicable();
+		DateRange dateRangeLT1121A = new DateRange();
+		dateRangeLT1121A.setUpto15Of9(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultAccruralMap.get("upto15lt").toString())));
+		dateRangeLT1121A.setUp16Of9To15Of12(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultAccruralMap.get("upto16lt").toString())));
+		dateRangeLT1121A.setUp16Of12To15Of3(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultAccruralMap.get("upto16declt").toString())));
+		dateRangeLT1121A.setUp16Of3To31Of3(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultAccruralMap.get("upto31lt").toString())));
+		longTerm1121Applicable.setDateRange(dateRangeLT1121A);
+		accruOrRecOfCG.setLongTerm1121Applicable(longTerm1121Applicable);
+
+		LongTerm longTerm = new LongTerm();
+		DateRange dateRangeLT = new DateRange();
+		dateRangeLT.setUpto15Of9(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultAccruralMap.get("upto15np").toString())));
+		dateRangeLT.setUp16Of9To15Of12(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultAccruralMap.get("upto16np").toString())));
+		dateRangeLT.setUp16Of12To15Of3(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultAccruralMap.get("uptodecnp").toString())));
+		dateRangeLT.setUp16Of3To31Of3(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultAccruralMap.get("upto31np").toString())));
+		longTerm.setDateRange(dateRangeLT);
+		accruOrRecOfCG.setLongTerm(longTerm);
+
+		ShortTermUnder111A shortTermUnder111A = new ShortTermUnder111A();
+		DateRange dateRangeST111A = new DateRange();
+		dateRangeST111A.setUpto15Of9(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultAccruralMap.get("upto15St").toString())));
+		dateRangeST111A.setUp16Of9To15Of12(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultAccruralMap.get("upto16st").toString())));
+		dateRangeST111A.setUp16Of12To15Of3(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultAccruralMap.get("upto16decst").toString())));
+		dateRangeST111A.setUp16Of3To31Of3(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultAccruralMap.get("upto31st").toString())));
+		shortTermUnder111A.setDateRange(dateRangeST111A);
+		accruOrRecOfCG.setShortTermUnder111A(shortTermUnder111A);
+
+		ShortTerm shortTerm = new ShortTerm();
+		DateRange dateRangeST = new DateRange();
+		dateRangeST.setUpto15Of9(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultAccruralMap.get("upto15oth").toString())));
+		dateRangeST.setUp16Of9To15Of12(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultAccruralMap.get("upto16oth").toString())));
+		dateRangeST.setUp16Of12To15Of3(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultAccruralMap.get("upto16decoth").toString())));
+		dateRangeST.setUp16Of3To31Of3(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultAccruralMap.get("upto31oth").toString())));
+		shortTerm.setDateRange(dateRangeST);
+		accruOrRecOfCG.setShortTerm(shortTerm);
+
+		scheduleCGFor23.setAccruOrRecOfCG(accruOrRecOfCG);
+
 		return scheduleCGFor23;
 	}
 }
