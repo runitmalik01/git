@@ -11,8 +11,11 @@
 				<!--  lets create a bookmark for each section -->
 				<tr>
 					<td colspan="1" align="center" > &nbsp;&nbsp;&nbsp;&nbsp;
-					<a  style="color: blue">
-					Salary/Pension
+					<a href="formsixteenschedule.html" style="color: blue">
+					Salary
+					</a>
+					<a href="salaryincome.html" style="color: blue">
+					/ Pension
 					</a>
 					</td>
 					<td>
@@ -103,6 +106,33 @@
 							<ul class="dropdown-menu">
 								<li><a href="othersourcesITR2.html">
 								<fmt:message key="income.other.sources" /></a></li>
+							</ul>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="1">&nbsp;&nbsp;&nbsp;&nbsp;
+					   <a href="capitalgains.html"  style="color: blue">
+					     Capital Gain
+					   </a>
+					</td>
+					<td>
+						<div class="btn-group" class="decimal">
+							<button class="btn btn-small dropdown-toggle"
+								data-toggle="dropdown">
+								<c:choose>
+									<c:when test="${theForm.partBTI.capGain.totalCapGains eq '0'}">
+										<c:out value="Fill Now" />
+									</c:when>
+									<c:otherwise>
+										<w4india:inr value="${theForm.partBTI.capGain.totalCapGains}"/>
+									</c:otherwise>
+								</c:choose>
+								<span class="caret"></span>
+							</button>
+							<ul class="dropdown-menu">
+								<li><a href="capitalgains.html">
+								Capital Gain</a></li>
 							</ul>
 						</div>
 					</td>
