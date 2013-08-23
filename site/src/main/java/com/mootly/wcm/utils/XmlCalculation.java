@@ -222,6 +222,14 @@ public class XmlCalculation implements XmlCalculationImplement {
 		return resultMapLosses;
 	}
 
+	/**
+	 * This Method is used for Losses Calculation
+	 * @return Map
+	 * @param FinancialYear, inputBeans
+	 * Added on 26/07/2013
+	 * @author Dhananjay
+	 * */
+
 	public Map<String,Object> lossesCalc(FinancialYear financialYear,Map<String,HippoBean> inputBeans){
 
 		AdjustmentOfLossesDoc adjustmentOfLossesDoc = (AdjustmentOfLossesDoc) inputBeans.get(AdjustmentOfLossesDoc.class.getSimpleName().toLowerCase());
@@ -229,7 +237,11 @@ public class XmlCalculation implements XmlCalculationImplement {
 		HouseProperty houseProperty = (HouseProperty) inputBeans.get(HouseProperty.class.getSimpleName().toLowerCase());
 		grossTotal(financialYear, inputBeans);
 
-		if(adjustmentOfLossesDoc != null){
+		Map<String,Map<String, Object>> resultMap = capitalGainChilds(financialYear, inputBeans);
+		Double shortTermCG = Double.parseDouble(resultMap.get("STCGSST").get("totCG").toString()) + Double.parseDouble(resultMap.get("STCGNSST").get("totCG").toString());
+        Double longTermCG = Double.parseDouble(resultMap.get("LTCGINDEX").get("totCG").toString()) + Double.parseDouble(resultMap.get("LTCGNINDEX").get("totCG").toString());
+
+        if(adjustmentOfLossesDoc != null){
 			List<AdjustmentOfLossesCom> listofAdjustmentOfLossesCom = adjustmentOfLossesDoc.getAdjustmentOfLossesList() ;
 			if ( listofAdjustmentOfLossesCom != null && listofAdjustmentOfLossesCom.size() > 0 ){
 				for(AdjustmentOfLossesCom adjustmentOfLossesCom:listofAdjustmentOfLossesCom){
@@ -267,8 +279,8 @@ public class XmlCalculation implements XmlCalculationImplement {
 		totalMapForLosses.put("houseIncome",incomeHouseProperty);
 		totalMapForLosses.put("otherIncome",incomeOtherThanRaceHorse);
 		totalMapForLosses.put("maintainingRaceHorseIncome",incomeFromRaceHorse);
-		totalMapForLosses.put("LTCGain",0);
-		totalMapForLosses.put("STCGain",0);
+		totalMapForLosses.put("LTCGain",longTermCG);
+		totalMapForLosses.put("STCGain",shortTermCG);
 		totalMapForLosses.put("houseIncomeLoss", totalHPLoss);
 		totalMapForLosses.put("LTCLoss", totalLTCLoss);
 		totalMapForLosses.put("STCLoss", totalSTCLoss);
@@ -592,6 +604,29 @@ public class XmlCalculation implements XmlCalculationImplement {
 			}
 		}
 		return ScreenCalculatorService.getScreenCalculations("scheduleCG.js", requestParameterMap, resultMapST);
+	}
+
+	/**
+	 * This Method is used to get Accrural of Capital Gain
+	 * @return Map
+	 * @param Finincial Year, Input Beans
+	 * Added on 23/08/2013
+	 * @author Dhananjay
+	 * */
+
+	public Map<String, Object> getAccruralOfCG(FinancialYear financialYear,Map<String,HippoBean> inputBeans){
+
+		Map<String, Object> resultMapST = new HashMap<String, Object>();
+		Map<String,String[]> requestParameterMap = new HashMap<String, String[]>(); //not being used any where
+		resultMapST.put("capitalGainDetails", null);
+		CapitalAssetDocument capitalAssetDocument = (CapitalAssetDocument) inputBeans.get(CapitalAssetDocument.class.getSimpleName().toLowerCase());
+		if(capitalAssetDocument != null){
+			List<CapitalAssetDetail> capitalGainDetails = capitalAssetDocument.getCapitalAssetDetailList();
+			if ( capitalGainDetails != null && capitalGainDetails.size() > 0 ){
+				resultMapST.put("capitalGainDetails", capitalGainDetails);
+			}
+		}
+		return ScreenCalculatorService.getScreenCalculations("accruralOfCG.js", requestParameterMap, resultMapST);
 	}
 
 }
