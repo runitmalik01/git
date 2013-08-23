@@ -450,7 +450,7 @@ public class XmlCalculation implements XmlCalculationImplement {
 			for(String key : resultScheduleSISection.keySet()){
 				sumInActiveSection = sumInActiveSection + Double.parseDouble(resultScheduleSISection.get(key).get("userAmount").toString());
 				totalCalTax = totalCalTax + Double.parseDouble(resultScheduleSISection.get(key).get("taxOnIncome").toString());
-				minChargeIncome = totalCalTax + Double.parseDouble(resultScheduleSISection.get(key).get("minChargIncome").toString());
+				minChargeIncome = minChargeIncome + Double.parseDouble(resultScheduleSISection.get(key).get("minChargIncome").toString());
 			}
 		}
 		if(otherSourcesDocument != null){
@@ -458,7 +458,7 @@ public class XmlCalculation implements XmlCalculationImplement {
 			for(String key : resultScheduleSISection.keySet()){
 				sumInActiveSection = sumInActiveSection + Double.parseDouble(resultScheduleSISection.get(key).get("userAmount").toString());
 				totalCalTax = totalCalTax + Double.parseDouble(resultScheduleSISection.get(key).get("taxOnIncome").toString());
-				minChargeIncome = totalCalTax + Double.parseDouble(resultScheduleSISection.get(key).get("minChargIncome").toString());
+				minChargeIncome = minChargeIncome + Double.parseDouble(resultScheduleSISection.get(key).get("minChargIncome").toString());
 			}
 		}
 		resultMap.put("sumInActiveSection", sumInActiveSection);
