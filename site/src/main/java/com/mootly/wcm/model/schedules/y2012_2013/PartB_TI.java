@@ -170,11 +170,15 @@ public class PartB_TI {
 		totEligibleDeduction = scheduleVIA.getDeductUndChapVIA().getTotalChapVIADeductions();
 		BigInteger diffGrossIncNIncChargeable = new BigInteger("0");
 		diffGrossIncNIncChargeable = partBTI.getGrossTotalIncome().subtract(partBTI.getIncChargeableTaxSplRates());
-		if(diffGrossIncNIncChargeable.longValue() > totEligibleDeduction.longValue()){
-			partBTI.setDeductionsUnderScheduleVIA(totEligibleDeduction);
+		if(totEligibleDeduction.compareTo(BigInteger.ZERO) > 0){
+			if(diffGrossIncNIncChargeable.longValue() > totEligibleDeduction.longValue() && totEligibleDeduction.longValue() > 0){
+				partBTI.setDeductionsUnderScheduleVIA(totEligibleDeduction);
+			}else if(diffGrossIncNIncChargeable.longValue() < totEligibleDeduction.longValue() && totEligibleDeduction.longValue() > 0){
+				partBTI.setDeductionsUnderScheduleVIA(diffGrossIncNIncChargeable);
+			}else
+				partBTI.setDeductionsUnderScheduleVIA(new BigInteger("0"));
 		}else
-			partBTI.setDeductionsUnderScheduleVIA(diffGrossIncNIncChargeable);
-
+			partBTI.setDeductionsUnderScheduleVIA(new BigInteger("0"));
 		//GrossTotalIncome - Deduction
 		partBTI.setTotalIncome(partBTI.getGrossTotalIncome().subtract(partBTI.getDeductionsUnderScheduleVIA()));
 
