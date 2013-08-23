@@ -39,7 +39,7 @@ import com.mootly.wcm.beans.FormMapFiller;
 public abstract class CapitalAssetDetailA extends HippoItem implements FormMapFiller {
 	static final public String NODE_NAME = CapitalAssetDetailA.class.getName().toLowerCase();
 
-	private final static Logger log = LoggerFactory.getLogger(CapitalAssetDetailA.class); 
+	private final static Logger log = LoggerFactory.getLogger(CapitalAssetDetailA.class);
 
 	private GregorianCalendar dateAcquisition;
 	private String nameAsset;
@@ -189,7 +189,7 @@ public abstract class CapitalAssetDetailA extends HippoItem implements FormMapFi
 		return amtdeemed;
 	}
 	public Double getUnlstdSecurity() {
-		if (unlstdSecurity == null) unlstdSecurity = getProperty("mootlywcm:unlstdsecutry");
+		if (unlstdSecurity == null) unlstdSecurity = getProperty("mootlywcm:ulsecurty");
 		return unlstdSecurity;
 	}
 	public Double getBalance() {
