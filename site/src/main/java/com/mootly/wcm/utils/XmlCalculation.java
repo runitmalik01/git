@@ -31,6 +31,7 @@ import com.mootly.wcm.beans.SelfAssesmetTaxDocument;
 import com.mootly.wcm.beans.TdsFromSalaryDocument;
 import com.mootly.wcm.beans.TdsFromothersDocument;
 import com.mootly.wcm.beans.compound.AdjustmentOfLossesCom;
+import com.mootly.wcm.beans.compound.CapitalAssetDetail;
 import com.mootly.wcm.beans.compound.FormSixteenDetail;
 import com.mootly.wcm.beans.compound.HouseIncomeDetail;
 import com.mootly.wcm.beans.compound.TdsFromSalaryDetail;
@@ -467,4 +468,130 @@ public class XmlCalculation implements XmlCalculationImplement {
 
 		return resultMap;
 	}
+
+	/**
+	 * This Method is used to get details of Capital Gain
+	 * @return Map
+	 * @param Finincial Year, Input Beans
+	 * Added on 23/08/2013
+	 * @author Dhananjay
+	 * */
+
+	public Map<String,Map<String, Object>> capitalGainChilds(FinancialYear financialYear,Map<String,HippoBean> inputBeans){
+
+		CapitalAssetDocument capitalAssetDocument = (CapitalAssetDocument) inputBeans.get(CapitalAssetDocument.class.getSimpleName().toLowerCase());
+		Map<String,List<CapitalAssetDetail>> totalMapForJS = new HashMap<String, List<CapitalAssetDetail>>();
+		Map<String,Map<String, Object>> resultMap = new HashMap<String,Map<String, Object>>();
+		Map<String, Object> resultMapSTCGSST = new HashMap<String, Object>();
+		Map<String, Object> resultMapSTCGNSST = new HashMap<String, Object>();
+		Map<String, Object> resultMapLTCGNINDEX = new HashMap<String, Object>();
+		Map<String, Object> resultMapLTCGINDEX = new HashMap<String, Object>();
+
+		totalMapForJS.put("STCGSST", new ArrayList<CapitalAssetDetail>());
+		totalMapForJS.put("STCGNSST", new ArrayList<CapitalAssetDetail>());
+		totalMapForJS.put("LTCGNINDEX", new ArrayList<CapitalAssetDetail>());
+		totalMapForJS.put("LTCGINDEX", new ArrayList<CapitalAssetDetail>());
+		if(capitalAssetDocument != null){
+			List<CapitalAssetDetail> capitalGainDetails = capitalAssetDocument.getCapitalAssetDetailList();
+			if ( capitalGainDetails != null && capitalGainDetails.size() > 0 ){
+				for(CapitalAssetDetail capitalAssetDetail:capitalGainDetails){
+					List<CapitalAssetDetail> shortTermChildBean = new ArrayList<CapitalAssetDetail>();
+					List<CapitalAssetDetail> longTermChildBean = new ArrayList<CapitalAssetDetail>();
+
+					if(capitalAssetDetail.getCapitalGainTaxST() != null && capitalAssetDetail.getSstCharge().equals("Y")){
+						if(totalMapForJS.containsKey("STCGSST")&& (!totalMapForJS.isEmpty())){
+							shortTermChildBean =  totalMapForJS.get("STCGSST");
+							shortTermChildBean.add(capitalAssetDetail);
+							totalMapForJS.put("STCGSST", shortTermChildBean);
+						}else{
+							shortTermChildBean.add(capitalAssetDetail);
+							totalMapForJS.put("STCGSST", shortTermChildBean);
+						}
+					}else if(capitalAssetDetail.getCapitalGainTaxST() != null && capitalAssetDetail.getSstCharge().equals("N")){
+						if(totalMapForJS.containsKey("STCGNSST")&& (!totalMapForJS.isEmpty())){
+							shortTermChildBean =  totalMapForJS.get("STCGNSST");
+							shortTermChildBean.add(capitalAssetDetail);
+							totalMapForJS.put("STCGNSST", shortTermChildBean);
+						}else{
+							shortTermChildBean.add(capitalAssetDetail);
+							totalMapForJS.put("STCGNSST", shortTermChildBean);
+						}
+					}else if(capitalAssetDetail.getCapitalGainTaxLT() != null && capitalAssetDetail.getIndex().equals("N")){
+						if(totalMapForJS.containsKey("LTCGNINDEX")&& (!totalMapForJS.isEmpty())){
+							longTermChildBean = totalMapForJS.get("LTCGNINDEX");
+							longTermChildBean.add(capitalAssetDetail);
+							totalMapForJS.put("LTCGNINDEX", longTermChildBean);
+						}else{
+							longTermChildBean.add(capitalAssetDetail);
+							totalMapForJS.put("LTCGNINDEX", longTermChildBean);
+						}
+					}else if(capitalAssetDetail.getCapitalGainTaxLT() != null && capitalAssetDetail.getIndex().equals("Y")){
+						if(totalMapForJS.containsKey("LTCGINDEX")&& (!totalMapForJS.isEmpty())){
+							longTermChildBean = totalMapForJS.get("LTCGINDEX");
+							longTermChildBean.add(capitalAssetDetail);
+							totalMapForJS.put("LTCGINDEX", longTermChildBean);
+						}else{
+							longTermChildBean.add(capitalAssetDetail);
+							totalMapForJS.put("LTCGINDEX", longTermChildBean);
+						}
+					}
+				}
+			}
+		}
+
+		resultMapSTCGSST = getCapitalGainCalc(totalMapForJS.get("STCGSST"));
+		resultMapSTCGNSST = getCapitalGainCalc(totalMapForJS.get("STCGNSST"));
+		resultMapLTCGNINDEX = getCapitalGainCalc(totalMapForJS.get("LTCGNINDEX"));
+		resultMapLTCGINDEX = getCapitalGainCalc(totalMapForJS.get("LTCGINDEX"));
+
+		resultMap.put("STCGSST", resultMapSTCGSST );
+		resultMap.put("STCGNSST", resultMapSTCGNSST );
+		resultMap.put("LTCGNINDEX", resultMapLTCGNINDEX );
+		resultMap.put("LTCGINDEX", resultMapLTCGINDEX );
+
+		return resultMap;
+	}
+
+	/**
+	 * This Method is used to calculate capital gains
+	 * @return Map
+	 * @param Finincial Year, Input Beans
+	 * Added on 23/08/2013
+	 * @author Dhananjay
+	 * */
+
+	public Map<String, Object> getCapitalGainCalc(List<CapitalAssetDetail> childBean){
+
+		Map<String, Object> resultMapST = new HashMap<String, Object>();
+		Map<String,String[]> requestParameterMap = new HashMap<String, String[]>(); //not being used any where
+		resultMapST.put("fullConsi", 0);
+		resultMapST.put("aquis", 0);
+		resultMapST.put("improv", 0);
+		resultMapST.put("expend", 0);
+		resultMapST.put("loss", 0);
+		resultMapST.put("dedn", 0);
+		resultMapST.put("nri111A", 0);
+		resultMapST.put("nri111AN", 0);
+		resultMapST.put("deemedAmt", 0);
+		resultMapST.put("nri48A", 0);
+		resultMapST.put("unlstsec", 0);
+
+		if(childBean != null && childBean.size() > 0){
+			for(CapitalAssetDetail capitalAssetDetail : childBean){
+				resultMapST.put("fullConsi", capitalAssetDetail.getSaleConsideration() + Double.parseDouble(resultMapST.get("fullConsi").toString()));
+				resultMapST.put("aquis", capitalAssetDetail.getCostAcquisition() + Double.parseDouble(resultMapST.get("aquis").toString()));
+				resultMapST.put("improv", capitalAssetDetail.getCostImprovement() + Double.parseDouble(resultMapST.get("improv").toString()));
+				resultMapST.put("expend", capitalAssetDetail.getCostTransfer() + Double.parseDouble(resultMapST.get("expend").toString()));
+				resultMapST.put("loss", capitalAssetDetail.getLoss_sec94() + Double.parseDouble(resultMapST.get("loss").toString()));
+				resultMapST.put("dedn", capitalAssetDetail.getDed_sec54() + Double.parseDouble(resultMapST.get("dedn").toString()));
+				resultMapST.put("nri111A", capitalAssetDetail.getAsset_111() + Double.parseDouble(resultMapST.get("nri111A").toString()));
+				resultMapST.put("nri111AN", capitalAssetDetail.getAssetnt111() + Double.parseDouble(resultMapST.get("nri111AN").toString()));
+				resultMapST.put("deemedAmt", capitalAssetDetail.getAssetnt111() + Double.parseDouble(resultMapST.get("deemedAmt").toString()));
+				resultMapST.put("nri48A", capitalAssetDetail.getSection48() + Double.parseDouble(resultMapST.get("nri48A").toString()));
+				resultMapST.put("unlstsec", capitalAssetDetail.getUnlstdSecurity() + Double.parseDouble(resultMapST.get("unlstsec").toString()));
+			}
+		}
+		return ScreenCalculatorService.getScreenCalculations("scheduleCG.js", requestParameterMap, resultMapST);
+	}
+
 }
