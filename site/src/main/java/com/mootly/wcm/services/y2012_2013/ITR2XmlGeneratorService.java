@@ -43,6 +43,7 @@ import com.mootly.wcm.beans.TaxReliefDocument;
 import com.mootly.wcm.beans.TdsFromothersDocument;
 import com.mootly.wcm.model.FinancialYear;
 import com.mootly.wcm.model.schedules.y2012_2013.BroughtFwdLossesSchedules;
+import com.mootly.wcm.model.schedules.y2012_2013.CapitalGainDocumentSchedules;
 import com.mootly.wcm.model.schedules.y2012_2013.CarryFwdLossesSchedules;
 import com.mootly.wcm.model.schedules.y2012_2013.ClubbingOfIncome;
 import com.mootly.wcm.model.schedules.y2012_2013.CreationInformation;
@@ -162,6 +163,9 @@ public class ITR2XmlGeneratorService  {
 				tdsFromothersDocument, scheduleSIDocument, capitalAssetDocument, immovablePropertyDocument,natureInvestmentDocument,
 				signingAuthorityAccountsDocument,detailOfTrustDocument,foreignBankAccountDocument,financialInterestDocument);
 		itr2.setPartAGEN1(partA_Gen1.getPartAGEN1(itr, financialYear, inputBeans));
+
+		CapitalGainDocumentSchedules capitalGainDocumentSchedules = new CapitalGainDocumentSchedules(capitalAssetDocument);
+		itr2.setScheduleCGFor23(capitalGainDocumentSchedules.getSchedulecCgFor23(itr, financialYear, inputBeans));
 
 		ITRScheduleSI iTRScheduleSI = new ITRScheduleSI(scheduleSIDocument, capitalAssetDocument, otherSourcesDocument,
 				formSixteenDocument, salaryIncomeDocument, houseProperty, memberPersonalInformation);
