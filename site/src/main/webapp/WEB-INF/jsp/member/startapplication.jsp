@@ -44,6 +44,11 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 <hst:actionURL var="actionUrl"></hst:actionURL>
 <div class="page">
 	<w4india:itrmenu />
+		<c:if test="${not empty ITR1_FORM_SELECTION}">
+	   <div class="alert alert-error">
+	        <fmt:message key="${ITR1_FORM_SELECTION}" />
+	   </div>
+	</c:if>
 	<h4>
 		<c:out value="${filingStatus}" />
 		Information
@@ -786,7 +791,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 			</div>
 			<jsp:include page="personalinfo_add_itr2.jsp"></jsp:include>
 			<jsp:include page="personalinfo_add_itr4.jsp"></jsp:include>
-			
+
 			<input type="hidden" name="bnk_name_solr" id="bnk_name_solr"/>
 		</fieldset>
 		<div id="itreturnHomepage" style="display: none; visiblity: hidden">
@@ -1002,7 +1007,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
    	 $('#pan_represent').show();
    		 }
 		// end code for itr2
-		
+
 		// The following lines are for itr4
 		var isITR4 = $('#flex_string_ITRForm').val();
 		if(isITR4 == 'ITR4') {
@@ -1141,7 +1146,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
               	$("#pi_country").val("");
               	 }
         }
-        
+
         // The following logic is for itr2 and itr4 both
     $('#flex_string_ITRForm').change(function(){
     var packageName = $('#flex_string_ITRForm').val();
@@ -1164,10 +1169,9 @@ request.setAttribute("objHashMapstates", objHashMapstates);
     $('#pan_represent').show();
     }
     })
- // And This logic is for itr4 
+ // And This logic is for itr4
 	$('#flex_string_ITRForm').change(function(){
 	var packageName = $('#flex_string_ITRForm').val();
-	alert("packageName"+packageName);
 	if(packageName == 'ITR4') {
 	$('#firstField_itr4').show();
 	$('#secondField_itr4').show();
@@ -1178,7 +1182,6 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 	})
 	$('#isLiable_ForAudit').change(function(){
 	var yesLiable_ForAudit = $('#isLiable_ForAudit').val();
-	alert("yesLiable_ForAudit"+yesLiable_ForAudit); 
 	if((yesLiable_ForAudit == 'N' || (yesLiable_ForAudit == '')) ){
 	$('#date_name_membership').hide();
 	$('#name_pan_dateofAudit').hide();
