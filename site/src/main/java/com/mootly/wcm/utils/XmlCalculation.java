@@ -580,6 +580,7 @@ public class XmlCalculation implements XmlCalculationImplement {
 		resultMapST.put("aquis", 0);
 		resultMapST.put("improv", 0);
 		resultMapST.put("expend", 0);
+		resultMapST.put("balance", 0);
 		resultMapST.put("loss", 0);
 		resultMapST.put("dedn", 0);
 		resultMapST.put("nri111A", 0);
@@ -594,11 +595,12 @@ public class XmlCalculation implements XmlCalculationImplement {
 				resultMapST.put("aquis", capitalAssetDetail.getCostAcquisition() + Double.parseDouble(resultMapST.get("aquis").toString()));
 				resultMapST.put("improv", capitalAssetDetail.getCostImprovement() + Double.parseDouble(resultMapST.get("improv").toString()));
 				resultMapST.put("expend", capitalAssetDetail.getCostTransfer() + Double.parseDouble(resultMapST.get("expend").toString()));
+				resultMapST.put("balance", capitalAssetDetail.getBalance() + Double.parseDouble(resultMapST.get("balance").toString()));
 				resultMapST.put("loss", capitalAssetDetail.getLoss_sec94() + Double.parseDouble(resultMapST.get("loss").toString()));
 				resultMapST.put("dedn", capitalAssetDetail.getDed_sec54() + Double.parseDouble(resultMapST.get("dedn").toString()));
 				resultMapST.put("nri111A", capitalAssetDetail.getAsset_111() + Double.parseDouble(resultMapST.get("nri111A").toString()));
 				resultMapST.put("nri111AN", capitalAssetDetail.getAssetnt111() + Double.parseDouble(resultMapST.get("nri111AN").toString()));
-				resultMapST.put("deemedAmt", capitalAssetDetail.getAssetnt111() + Double.parseDouble(resultMapST.get("deemedAmt").toString()));
+				resultMapST.put("deemedAmt", capitalAssetDetail.getAmtdeemed() + Double.parseDouble(resultMapST.get("deemedAmt").toString()));
 				resultMapST.put("nri48A", capitalAssetDetail.getSection48() + Double.parseDouble(resultMapST.get("nri48A").toString()));
 				resultMapST.put("unlstsec", capitalAssetDetail.getUnlstdSecurity() + Double.parseDouble(resultMapST.get("unlstsec").toString()));
 			}
