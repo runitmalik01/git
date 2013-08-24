@@ -1,10 +1,10 @@
 /*
  * In this class we are creating a document for storing value of Personal Information details of user
  * according to form 16.
- * @author 
+ * @author
  * 04/03/2013
- * 
- * 
+ *
+ *
  */
 package com.mootly.wcm.member;
 
@@ -34,6 +34,8 @@ import org.hippoecm.hst.content.beans.ObjectBeanManagerException;
 import org.hippoecm.hst.content.beans.ObjectBeanPersistenceException;
 import org.hippoecm.hst.content.beans.manager.workflow.WorkflowCallbackHandler;
 import org.hippoecm.hst.content.beans.manager.workflow.WorkflowPersistenceManager;
+import org.hippoecm.hst.content.beans.standard.HippoBean;
+import org.hippoecm.hst.content.beans.standard.HippoFolder;
 import org.hippoecm.hst.core.component.HstComponentException;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
@@ -52,6 +54,7 @@ import com.mootly.wcm.components.FormSaveResult;
 import com.mootly.wcm.components.ITReturnComponent;
 import com.mootly.wcm.components.InvalidNavigationException;
 import com.mootly.wcm.model.FilingStatus;
+import com.mootly.wcm.model.ITRForm;
 import com.mootly.wcm.utils.ContentStructure;
 import com.mootly.wcm.utils.GoGreenUtil;
 import com.mootly.wcm.utils.MootlyFormUtils;
@@ -85,7 +88,8 @@ public class StartApplication extends ITReturnComponent {
 	private static final String SECTION= "ReturnSection";
 	private static final String ERRORS = "errors";
 	private static final String DOB = "pi_dob";
-	FormMap savedValuesFormMap=null;	
+
+	FormMap savedValuesFormMap=null;
 	String memberName = null;
 	MemberPersonalInformation parentBean=null;
 	@Override
@@ -93,7 +97,7 @@ public class StartApplication extends ITReturnComponent {
 		// TODO Auto-generated method stub
 		super.doBeforeRender(request, response);
 		parentBean=(MemberPersonalInformation)request.getAttribute("parentBean");
-		
+
 		String checkForDuplicate = request.getRequestContext().getResolvedSiteMapItem().getParameter("checkForDuplicate");
 		if (checkForDuplicate != null && checkForDuplicate.trim().equals("true")) {
 			if (parentBean != null) {
@@ -101,7 +105,7 @@ public class StartApplication extends ITReturnComponent {
 				request.setAttribute("isDuplicate", "true");
 			}
 		}
-		
+
 		String publicParameterUUID = getPublicRequestParameter(request, "uuid");
 		if(publicParameterUUID==null){
 			publicParameterUUID=(String)request.getSession().getAttribute("uuid");
@@ -121,12 +125,12 @@ public class StartApplication extends ITReturnComponent {
 		String assessmentYear = getAssessmentYear() == null ? "2012-2013"  : getAssessmentYear();
 		ResourceBundle rb = ResourceBundle.getBundle("rstatus_"+assessmentYear);
 
-		List<String> keyList = new ArrayList<String>();		
+		List<String> keyList = new ArrayList<String>();
 		for (String aKey: rb.keySet() ) {
-			keyList.add(aKey);			
-		}	
+			keyList.add(aKey);
+		}
 		if(parentBean!=null){
-			memberName=parentBean.getLastName();				
+			memberName=parentBean.getLastName();
 		}else {
 			if (savedValuesFormMap != null) {
 				memberName=savedValuesFormMap.getField("pi_last_name").getValue();
@@ -162,36 +166,37 @@ public class StartApplication extends ITReturnComponent {
 		}
 		Map<String, String> fetchmap = new LinkedHashMap<String, String>();
 		if (getParentBean() != null) {
-			MemberPersonalInformation memberresi = (MemberPersonalInformation) getParentBean();			
+			MemberPersonalInformation memberresi = (MemberPersonalInformation) getParentBean();
 
-			fetchmap.put("rsstatus_q",memberresi.getRsstatusQ());			
+			fetchmap.put("rsstatus_q",memberresi.getRsstatusQ());
 			if(!(memberresi.getRsstatusQYes().matches("Select")))
-				fetchmap.put("rsstatus_q_yes",memberresi.getRsstatusQYes());			
+				fetchmap.put("rsstatus_q_yes",memberresi.getRsstatusQYes());
 			if(!(memberresi.getRsstatusQYesYes().matches("Select")))
-				fetchmap.put("rsstatus_q_yes_yes",memberresi.getRsstatusQYesYes());									
+				fetchmap.put("rsstatus_q_yes_yes",memberresi.getRsstatusQYesYes());
 			if(!(memberresi.getRsstatusQNo().matches("Select")))
-				fetchmap.put("rsstatus_q_no",memberresi.getRsstatusQNo());			
+				fetchmap.put("rsstatus_q_no",memberresi.getRsstatusQNo());
 			if(!(memberresi.getRsstatusQNoYes().matches("Select")))
-				fetchmap.put("rsstatus_q_no_yes",memberresi.getRsstatusQNoYes());					
+				fetchmap.put("rsstatus_q_no_yes",memberresi.getRsstatusQNoYes());
 			if(!(memberresi.getRsstatusQNoYesYes().matches("Select")))
-				fetchmap.put("rsstatus_q_no_yes_yes",memberresi.getRsstatusQNoYesYes());			
+				fetchmap.put("rsstatus_q_no_yes_yes",memberresi.getRsstatusQNoYesYes());
 			if(!(memberresi.getRsstatusQNoNo().matches("Select")))
-				fetchmap.put("rsstatus_q_no_no",memberresi.getRsstatusQNoNo());						
+				fetchmap.put("rsstatus_q_no_no",memberresi.getRsstatusQNoNo());
 			if(!(memberresi.getRsstatusQNoNoYes().matches("Select")))
-				fetchmap.put("rsstatus_q_no_no_yes",memberresi.getRsstatusQNoNoYes());			
+				fetchmap.put("rsstatus_q_no_no_yes",memberresi.getRsstatusQNoNoYes());
 			if(!(memberresi.getRsstatusQNoNoYesYes().matches("Select")))
-				fetchmap.put("rsstatus_q_no_no_yes_yes",memberresi.getRsstatusQNoNoYesYes());						
+				fetchmap.put("rsstatus_q_no_no_yes_yes",memberresi.getRsstatusQNoNoYesYes());
 			if(!(memberresi.getRsstatusQNoYesYesYes().matches("Select")))
-				fetchmap.put("rsstatus_q_no_yes_yes_yes",memberresi.getRsstatusQNoYesYesYes());			
+				fetchmap.put("rsstatus_q_no_yes_yes_yes",memberresi.getRsstatusQNoYesYesYes());
 
 			request.setAttribute("fetchmap", fetchmap);
 		}
 		JSONObject jsonObject = new JSONObject(map);
 		request.setAttribute("jsonObject", jsonObject);
 		request.setAttribute("map", map);
+		request.setAttribute("ITR1_FORM_SELECTION",request.getParameter("ITR1_FORM_SELECTION"));
 
 	}
-	
+
 	@Override
 	public void afterSave(HstRequest request, FormMap map,PAGE_ACTION pageAction) {
 		// TODO Auto-generated method stub
@@ -213,18 +218,18 @@ public class StartApplication extends ITReturnComponent {
 			velocityContext.put("PAN",getPAN());
 			velocityContext.put("financialYear",getFinancialYear().getDisplayName());
 			velocityContext.put("itReturnType",getITReturnType().getDisplayName());
-			
+
 			if (request.getAttribute(MemberPersonalInformation.class.getSimpleName().toLowerCase()) != null ) {
 				MemberPersonalInformation memberPersonalInformation = (MemberPersonalInformation) request.getAttribute(MemberPersonalInformation.class.getSimpleName().toLowerCase());
 				velocityContext.put("memberPersonalInformation",memberPersonalInformation);
 			}
-			
+
 			if (map != null) {
 				FormFields formFields = this.getClass().getAnnotation(FormFields.class);
 				for (String aFieldName : formFields.fieldNames()) {
 					if (map.getField(aFieldName) != null) velocityContext.put(aFieldName, map.getField(aFieldName).getValue());
 				}
-			}		
+			}
 			sendEmail(request, null, null, null, "memberitrsrupdate", velocityContext);
 		}
 		// this is code which delete the document of schedule5adocument if portugese civil code is "No":- By Pankaj SIngh
@@ -236,7 +241,7 @@ public class StartApplication extends ITReturnComponent {
 				persistableSession=getPersistableSession(request);
 				objWorkflowPersistenceManager= getWorkflowPersistenceManager(persistableSession);
 				objWorkflowPersistenceManager.setWorkflowCallbackHandler(new FullReviewedWorkflowCallbackHandler());
-				
+
 				String getPathSchedule5a=getAbsoluteBasePathToReturnDocuments()+"/"+ScheduleFiveADocument.class.getSimpleName().toLowerCase();
 				ScheduleFiveADocument objScheduleFiveADocument= (ScheduleFiveADocument)objWorkflowPersistenceManager.getObject(getPathSchedule5a);
 				if(objScheduleFiveADocument != null){
@@ -252,7 +257,7 @@ public class StartApplication extends ITReturnComponent {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
+
 		}
 		// end code here
 	}
@@ -261,11 +266,11 @@ public class StartApplication extends ITReturnComponent {
 	public void doAction(HstRequest request, HstResponse response)
 			throws HstComponentException {
 		// TODO Auto-generated method stub
-		super.doAction(request, response);		
+		super.doAction(request, response);
 	}
 
 	/**
-	 * This will be used to ensure the page redirects properly 
+	 * This will be used to ensure the page redirects properly
 	 */
 	/*
 	@Override
@@ -296,16 +301,55 @@ public class StartApplication extends ITReturnComponent {
 			else if (leftArray.length == rightArray.length) {
 				return 0;
 			}
-			else 
+			else
 				return 1;
-		}		
+		}
+	}
+
+	/**
+	 * Method to compare packages
+	 * @param HstRequest, HstResponse, FormMap
+	 * @return boolean
+	 * @throws
+	 * @author Dhananjay
+	 */
+
+	@Override
+	public boolean validate(HstRequest request, HstResponse response,
+			FormMap formMap) {
+		// TODO Auto-generated method stub
+		super.validate(request, response, formMap);
+
+		boolean hasAValidSelection = true;
+		MemberPersonalInformation memberPersonalInformation = (MemberPersonalInformation) getParentBean();
+
+		if(memberPersonalInformation != null){
+			ITRForm saveditrForm = memberPersonalInformation.getSelectedITRForm();
+			int savedITRPriority = saveditrForm.getPriority();
+			String selecteditrForm= formMap.getField("flex_string_ITRForm").getValue();
+			ITRForm selectedITR = ITRForm.valueOf(selecteditrForm);
+			int selectedITRPriority = selectedITR.getPriority();
+
+			if(savedITRPriority > selectedITRPriority){
+				HippoFolder hippoFolder = (HippoFolder) memberPersonalInformation.getParentBean();
+
+				long size = hippoFolder.getDocumentSize();
+				if(size > 1){
+					formMap.addMessage("flex_string_ITRForm", "error.itr.selection");
+					response.setRenderParameter("ITR1_FORM_SELECTION", "error.itr.selection");
+					hasAValidSelection = false;
+				}
+			}
+		}
+
+		return hasAValidSelection;
 	}
 
 	public void doBeforeRenderOld(HstRequest request, HstResponse response) {
 		// TODO Auto-generated method stub
 		super.doBeforeRender(request, response);
 		log.info("This is Start Application Page");
-		String pan=getPublicRequestParameter(request, "pan");	
+		String pan=getPublicRequestParameter(request, "pan");
 		Member member=(Member)request.getSession().getAttribute("user");
 		String username=member.getUserName().trim();
 		String modusername=username.replaceAll("@", "-at-").trim();
@@ -313,9 +357,9 @@ public class StartApplication extends ITReturnComponent {
 		String urlnew=getPublicRequestParameter(request, "new");
 		if(urlnew==null){
 			try {
-				if(pan!=null){		
+				if(pan!=null){
 					String path=ContentStructure.getPersonalDocumentPath(pan,filing_year,modusername);
-					MemberPersonalInformation objdocument=(MemberPersonalInformation)getObjectBeanManager(request).getObject(path);				
+					MemberPersonalInformation objdocument=(MemberPersonalInformation)getObjectBeanManager(request).getObject(path);
 					Calendar dob=objdocument.getDOB();
 
 					Date date =dob.getTime();
@@ -351,7 +395,7 @@ public class StartApplication extends ITReturnComponent {
 				e.printStackTrace();
 			}
 		}
-		request.setAttribute("pageName", "startApplication");	
+		request.setAttribute("pageName", "startApplication");
 		request.setAttribute(ERRORS, request.getParameterValues(ERRORS));
 		request.setAttribute(DOB, request.getParameter(DOB));
 		request.setAttribute(PAN , request.getParameter(PAN));
@@ -374,7 +418,7 @@ public class StartApplication extends ITReturnComponent {
 		String pan=GoGreenUtil.getEscapedParameter(request, PAN).toUpperCase();
 		String lname=GoGreenUtil.getEscapedParameter(request, LNAME);
 		String mname=GoGreenUtil.getEscapedParameter(request, MNAME);
-		String fathername=GoGreenUtil.getEscapedParameter(request, FA_NAME);		
+		String fathername=GoGreenUtil.getEscapedParameter(request, FA_NAME);
 		String gender=GoGreenUtil.getEscapedParameter(request, GENDER);
 		String status=GoGreenUtil.getEscapedParameter(request, STATUS);
 
@@ -387,11 +431,11 @@ public class StartApplication extends ITReturnComponent {
 		 * */
 		log.info(dob);
 		Date date = null ;
-		DateFormat formatter ; 
+		DateFormat formatter ;
 		formatter = new SimpleDateFormat("yyyy-mm-dd");
 		GregorianCalendar cal=(GregorianCalendar) GregorianCalendar.getInstance();
 		try{
-			date = (Date)formatter.parse(dob); 
+			date = (Date)formatter.parse(dob);
 			log.info("date"+date);
 			cal.setTime(date);
 		}
@@ -399,20 +443,20 @@ public class StartApplication extends ITReturnComponent {
 			log.info("calendar error"+e);
 		}
 		/*
-		 * If Filing Status will HUF then Gender will be "X" 
+		 * If Filing Status will HUF then Gender will be "X"
 		 */
 		if(status.matches("H")){
 			gender="X";
 		}
-		/*Next line 
-		 * Regular Expression to validate the PAN Number  
+		/*Next line
+		 * Regular Expression to validate the PAN Number
 		 * */
 		String reg_pan="^[A-Z]{5}\\d{4}[A-Z]$";
 		/*get the Member object
 		 * To fetch the Login User details
-		 * */ 
+		 * */
 		Member member=(Member)request.getSession().getAttribute("user");
-		if(member!=null){	
+		if(member!=null){
 			//check for validation
 			List<String> errors = new ArrayList<String>();
 			if(StringUtils.isEmpty(pan) || !pan.matches(reg_pan) || pan.toLowerCase().charAt(4)!=lname.toLowerCase().charAt(0)){
@@ -430,7 +474,7 @@ public class StartApplication extends ITReturnComponent {
 			if (errors.size()!=0){
 				response.setRenderParameter(ERRORS, errors.toArray(new String[errors.size()]));
 				response.setRenderParameter(PAN, pan);
-				response.setRenderParameter(FNAME, fname);    
+				response.setRenderParameter(FNAME, fname);
 				response.setRenderParameter(LNAME, lname);
 				response.setRenderParameter(MNAME, mname);
 				response.setRenderParameter(STATUS, status);
@@ -468,7 +512,7 @@ public class StartApplication extends ITReturnComponent {
 	 * @param HstRequest
 	 * @param String
 	 * @return String returns the form to create method.
-	 * @throws 
+	 * @throws
 	 * @author Priyank
 	 */
 	private MemberPersonalInformation createMemberPersoanlInformation(HstRequest request,MemberPersonalInformation personal_info) {
@@ -505,7 +549,7 @@ public class StartApplication extends ITReturnComponent {
 					}
 				}
 			}
-				 */	
+				 */
 				/*MemberPersoanlInformation
 				 *getObject method get the object at passed path in Repository.
 				 * */
@@ -523,7 +567,7 @@ public class StartApplication extends ITReturnComponent {
 					objpersonalInformation.setDOB((GregorianCalendar) personal_info.getDOB());
 					objpersonalInformation.setFilingStatus(personal_info.getFilingStatus());
 					objpersonalInformation.setFilingStatus(personal_info.getFilingStatus());
-					// update now  
+					// update now
 					wpm.update(objpersonalInformation);
 					//Member Signup Document
 					String signUpPath=ContentStructure.getSignUpDocumentPath(modusername);
@@ -539,7 +583,7 @@ public class StartApplication extends ITReturnComponent {
 						oldpan.add(personal_info.getPAN());
 						String[] newpan=(String[])oldpan.toArray(new String[0]);
 						docupdate.setPAN(newpan);
-						wpm.update(docupdate);					
+						wpm.update(docupdate);
 					}
 					return objpersonalInformation;
 				} else {
@@ -558,7 +602,7 @@ public class StartApplication extends ITReturnComponent {
 				objupdateobjpersonalInformation.setFilingStatus(personal_info.getFilingStatus());
 				wpm.update(objupdateobjpersonalInformation);
 				String signUpPath=ContentStructure.getSignUpDocumentPath(modusername);
-				MemberSignupDocument docupdate=(MemberSignupDocument) wpm.getObject(signUpPath);				
+				MemberSignupDocument docupdate=(MemberSignupDocument) wpm.getObject(signUpPath);
 				/*Next 4 lines
 				 * get the Previous entries of PAN saved in doc
 				 * add new entry
@@ -574,9 +618,9 @@ public class StartApplication extends ITReturnComponent {
 						oldpan.add(personal_info.getPAN());
 						String[] newpan=(String[])oldpan.toArray(new String[0]);
 						docupdate.setPAN(newpan);
-						wpm.update(docupdate);					
+						wpm.update(docupdate);
 					}
-				}						
+				}
 				return objupdateobjpersonalInformation;
 			}
 		} catch (ObjectBeanPersistenceException e) {
@@ -606,4 +650,5 @@ public class StartApplication extends ITReturnComponent {
 			wf.publish();
 		}
 	}
+
 }
