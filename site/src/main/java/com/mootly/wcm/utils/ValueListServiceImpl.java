@@ -764,6 +764,27 @@ public final class ValueListServiceImpl implements ValueListService{
 		TreeMap<String, String> objTreeMapQuantCode = new TreeMap<String, String>();
 		objTreeMapQuantCode.put("101", objvalueListQuantitativeCode.getString("valueList.101"));
 		objTreeMapQuantCode.put("102", objvalueListQuantitativeCode.getString("valueList.102"));
+		objTreeMapQuantCode.put("103", objvalueListQuantitativeCode.getString("valueList.103"));
+		objTreeMapQuantCode.put("104", objvalueListQuantitativeCode.getString("valueList.104"));
+		objTreeMapQuantCode.put("105", objvalueListQuantitativeCode.getString("valueList.105"));
+		objTreeMapQuantCode.put("106", objvalueListQuantitativeCode.getString("valueList.106"));
+		objTreeMapQuantCode.put("107", objvalueListQuantitativeCode.getString("valueList.107"));
+		objTreeMapQuantCode.put("108", objvalueListQuantitativeCode.getString("valueList.108"));
+		objTreeMapQuantCode.put("109", objvalueListQuantitativeCode.getString("valueList.109"));
+		objTreeMapQuantCode.put("110", objvalueListQuantitativeCode.getString("valueList.110"));
+		objTreeMapQuantCode.put("111", objvalueListQuantitativeCode.getString("valueList.111"));
+		objTreeMapQuantCode.put("112", objvalueListQuantitativeCode.getString("valueList.112"));
+		objTreeMapQuantCode.put("113", objvalueListQuantitativeCode.getString("valueList.113"));
+		objTreeMapQuantCode.put("114", objvalueListQuantitativeCode.getString("valueList.114"));
+		objTreeMapQuantCode.put("115", objvalueListQuantitativeCode.getString("valueList.115"));
+		objTreeMapQuantCode.put("116", objvalueListQuantitativeCode.getString("valueList.116"));
+		objTreeMapQuantCode.put("117", objvalueListQuantitativeCode.getString("valueList.117"));
+		objTreeMapQuantCode.put("118", objvalueListQuantitativeCode.getString("valueList.118"));
+		objTreeMapQuantCode.put("119", objvalueListQuantitativeCode.getString("valueList.119"));
+		objTreeMapQuantCode.put("120", objvalueListQuantitativeCode.getString("valueList.120"));
+		objTreeMapQuantCode.put("121", objvalueListQuantitativeCode.getString("valueList.121"));
+		objTreeMapQuantCode.put("122", objvalueListQuantitativeCode.getString("valueList.122"));
+		objTreeMapQuantCode.put("999", objvalueListQuantitativeCode.getString("valueList.999"));
 		return objTreeMapQuantCode;
 	}
 	
