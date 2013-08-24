@@ -58,7 +58,29 @@ public class ScreenFieldConfig extends HippoItem  {
 	private String fieldFormat;
 	private String[] validators;
 	private String[] validatorArguments;
+	private String formFieldType;
+	private String inputFormFieldType;
+	private String fieldLabel;
+	private String fieldValue;
+	private String fieldClass;
+	private String rowLabel;
+	private String fieldSpan;
+	private String fieldMaxLength;
+	private String href;
+	private String dropDownListName;
+	private Boolean readOnly;
 	
+	private final String Pop_mootlywcm_formFieldType="mootlywcm:formFieldType";
+	private final String Pop_mootlywcm_inputFormFieldType="mootlywcm:inputFormFieldType";
+	private final String Pop_mootlywcm_fieldLabel="mootlywcm:fieldLabel";
+	private final String Pop_mootlywcm_fieldValue="mootlywcm:fieldValue";
+	private final String Pop_mootlywcm_fieldClass="mootlywcm:fieldClass";
+	private final String Pop_mootlywcm_fieldSpan="mootlywcm:fieldSpan";
+	private final String Pop_mootlywcm_fieldMaxLength="mootlywcm:fieldMaxLength";
+	private final String Pop_mootlywcm_href="mootlywcm:href";
+	private final String Pop_mootlywcm_dropDownListName="mootlywcm:dropDownListName";
+	private final String Pop_mootlywcm_readOnly="mootlywcm:readOnly";
+	private final String Pop_mootlywcm_rowLabel="mootlywcm:rowLabel";
 	private final String prop_mootlywcm_fieldId ="mootlywcm:fieldId";
 	private final String prop_mootlywcm_fieldName ="mootlywcm:fieldName";
 	private final String prop_mootlywcm_fieldTitle ="mootlywcm:fieldTitle";
@@ -135,7 +157,73 @@ public class ScreenFieldConfig extends HippoItem  {
 		
 		return mapForJSON;
 	}
+	public String getFormFieldType() {
+		if(formFieldType == null) formFieldType = getProperty(Pop_mootlywcm_formFieldType);
+		return formFieldType;
+	}
+
+	public String getInputFormFieldType() {
+		if(inputFormFieldType == null) inputFormFieldType = getProperty(Pop_mootlywcm_inputFormFieldType);
+		return inputFormFieldType;
+	}
+
+	public String getFieldLabel() {
+		if(fieldLabel == null) fieldLabel = getProperty(Pop_mootlywcm_fieldLabel);
+		return fieldLabel;
+	}
+
+	public String getFieldValue() {
+		if(fieldValue == null) fieldValue = getProperty(Pop_mootlywcm_fieldValue);
+		return fieldValue;
+	}
+
+	public String getFieldClass() {
+		if(fieldClass == null) fieldClass = getProperty(Pop_mootlywcm_fieldClass);
+		return fieldClass;
+	}
+
+	public String getFieldSpan() {
+		if(fieldSpan == null) fieldSpan = getProperty(Pop_mootlywcm_fieldSpan);
+		return fieldSpan;
+	}
+
+	public String getFieldMaxLength() {
+		if(fieldMaxLength == null) fieldMaxLength = getProperty(Pop_mootlywcm_fieldMaxLength);
+		return fieldMaxLength;
+	}
+
+	public String getHref() {
+		if(href == null) href = getProperty(Pop_mootlywcm_href);
+		return href;
+	}
 	
+	public String getRowLabel() {
+		if(rowLabel == null) rowLabel = getProperty(Pop_mootlywcm_rowLabel);
+		return rowLabel;
+	}
+	public String getDropDownListName() {
+		if(dropDownListName == null) dropDownListName = getProperty(Pop_mootlywcm_dropDownListName);
+		return dropDownListName;
+	}
+
+	public Boolean getReadOnly() {
+		if(readOnly == null) readOnly = getProperty(Pop_mootlywcm_readOnly);
+		return readOnly;
+	}
 	
-	
+	public Map<String,Object> getFormFieldMapJSON() {
+		Map<String,Object> mapForJSON = new HashMap<String, Object>();
+		mapForJSON.put("fieldId",getFieldId());
+		mapForJSON.put("fieldName",getFieldName());
+		mapForJSON.put("fieldLabel", getFieldLabel());
+		mapForJSON.put("formFieldType", getFormFieldType());
+		mapForJSON.put("inputFormFieldType", getInputFormFieldType());
+		mapForJSON.put("fieldValue", getFieldValue());
+		mapForJSON.put("fieldSpan", getFieldSpan());
+		mapForJSON.put("fieldMaxLength", getFieldMaxLength());
+		mapForJSON.put("rowLabel", getRowLabel());
+		return mapForJSON;
+	}
+
+
 }
