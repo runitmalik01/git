@@ -427,3 +427,6 @@ orderable
 [mootlywcm:quantitativeunitdocument] > hippostd:relaxed, mootlywcm:basedocument
   orderable
 [mootlywcm:quantitativeunitdetail] > hippo:compound, hippostd:relaxed orderable
+
+[mootlywcm:ScreenFieldSet] > hippo:compound, hippostd:relaxed orderable
+[mootlywcm:ScreenFieldSetDocument] > hippostd:relaxed, mootlywcm:basedocument orderable

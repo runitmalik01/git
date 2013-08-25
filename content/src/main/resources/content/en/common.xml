@@ -1644,156 +1644,211 @@
         </sv:node>
       </sv:node>
     </sv:node>
-    <sv:node sv:name="formfields">
+    <sv:node sv:name="formfields" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hippo:handle</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+    <sv:value>hippo:hardhandle</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>e100d016-19c0-4787-89e1-4458c69b3ef8</sv:value>
+  </sv:property>
+  <sv:node sv:name="formfields">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>selection:valuelist</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+      <sv:value>hippo:harddocument</sv:value>
+      <sv:value>hippotranslation:translated</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>cc84f446-1a42-4ab7-a417-657befe22cdc</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String"/>
+    <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
+    <sv:property sv:name="hippotranslation:id" sv:type="String">
+      <sv:value>8e408d14-e57a-41b9-90fc-adf3863d5124</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippotranslation:locale" sv:type="String">
+      <sv:value>en</sv:value>
+    </sv:property>
+    <sv:node sv:name="hippotranslation:translations">
       <sv:property sv:name="jcr:primaryType" sv:type="Name">
-        <sv:value>hippo:handle</sv:value>
+        <sv:value>hippotranslation:translations</sv:value>
       </sv:property>
-      <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
-        <sv:value>hippo:hardhandle</sv:value>
-      </sv:property>
-      <sv:property sv:name="jcr:uuid" sv:type="String">
-        <sv:value>e100d016-19c0-4787-89e1-4458c69b3ef8</sv:value>
-      </sv:property>
-      <sv:node sv:name="formfields">
-        <sv:property sv:name="jcr:primaryType" sv:type="Name">
-          <sv:value>selection:valuelist</sv:value>
-        </sv:property>
-        <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
-          <sv:value>hippo:harddocument</sv:value>
-          <sv:value>hippotranslation:translated</sv:value>
-        </sv:property>
-        <sv:property sv:name="jcr:uuid" sv:type="String">
-          <sv:value>cc84f446-1a42-4ab7-a417-657befe22cdc</sv:value>
-        </sv:property>
-        <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String"/>
-        <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
-        <sv:property sv:name="hippotranslation:id" sv:type="String">
-          <sv:value>8e408d14-e57a-41b9-90fc-adf3863d5124</sv:value>
-        </sv:property>
-        <sv:property sv:name="hippotranslation:locale" sv:type="String">
-          <sv:value>en</sv:value>
-        </sv:property>
-        <sv:node sv:name="hippotranslation:translations">
-          <sv:property sv:name="jcr:primaryType" sv:type="Name">
-            <sv:value>hippotranslation:translations</sv:value>
-          </sv:property>
-        </sv:node>
-        <sv:node sv:name="selection:listitem">
-          <sv:property sv:name="jcr:primaryType" sv:type="Name">
-            <sv:value>selection:listitem</sv:value>
-          </sv:property>
-          <sv:property sv:name="selection:key" sv:type="String">
-            <sv:value>input</sv:value>
-          </sv:property>
-          <sv:property sv:name="selection:label" sv:type="String">
-            <sv:value>Input</sv:value>
-          </sv:property>
-        </sv:node>
-        <sv:node sv:name="selection:listitem">
-          <sv:property sv:name="jcr:primaryType" sv:type="Name">
-            <sv:value>selection:listitem</sv:value>
-          </sv:property>
-          <sv:property sv:name="selection:key" sv:type="String">
-            <sv:value>dropdown</sv:value>
-          </sv:property>
-          <sv:property sv:name="selection:label" sv:type="String">
-            <sv:value>Dropdown</sv:value>
-          </sv:property>
-        </sv:node>
-      </sv:node>
     </sv:node>
-    <sv:node sv:name="input-type">
+    <sv:node sv:name="selection:listitem">
       <sv:property sv:name="jcr:primaryType" sv:type="Name">
-        <sv:value>hippo:handle</sv:value>
+        <sv:value>selection:listitem</sv:value>
       </sv:property>
-      <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
-        <sv:value>hippo:hardhandle</sv:value>
-        <sv:value>hippo:translated</sv:value>
+      <sv:property sv:name="selection:key" sv:type="String">
+        <sv:value>input</sv:value>
       </sv:property>
-      <sv:property sv:name="jcr:uuid" sv:type="String">
-        <sv:value>6b94f994-c840-42cd-81df-51f9fa5cbc2b</sv:value>
+      <sv:property sv:name="selection:label" sv:type="String">
+        <sv:value>Input</sv:value>
       </sv:property>
-      <sv:node sv:name="input-type">
-        <sv:property sv:name="jcr:primaryType" sv:type="Name">
-          <sv:value>selection:valuelist</sv:value>
-        </sv:property>
-        <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
-          <sv:value>hippo:harddocument</sv:value>
-          <sv:value>hippotranslation:translated</sv:value>
-        </sv:property>
-        <sv:property sv:name="jcr:uuid" sv:type="String">
-          <sv:value>3095bfc6-593c-40ff-9a0b-28832c05e4ca</sv:value>
-        </sv:property>
-        <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String"/>
-        <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
-        <sv:property sv:name="hippotranslation:id" sv:type="String">
-          <sv:value>004df4ab-dddf-4c8c-91dc-f1d4ff5afd85</sv:value>
-        </sv:property>
-        <sv:property sv:name="hippotranslation:locale" sv:type="String">
-          <sv:value>en</sv:value>
-        </sv:property>
-        <sv:node sv:name="hippotranslation:translations">
-          <sv:property sv:name="jcr:primaryType" sv:type="Name">
-            <sv:value>hippotranslation:translations</sv:value>
-          </sv:property>
-        </sv:node>
-        <sv:node sv:name="selection:listitem">
-          <sv:property sv:name="jcr:primaryType" sv:type="Name">
-            <sv:value>selection:listitem</sv:value>
-          </sv:property>
-          <sv:property sv:name="selection:key" sv:type="String">
-            <sv:value>text</sv:value>
-          </sv:property>
-          <sv:property sv:name="selection:label" sv:type="String">
-            <sv:value>Text</sv:value>
-          </sv:property>
-        </sv:node>
-        <sv:node sv:name="selection:listitem">
-          <sv:property sv:name="jcr:primaryType" sv:type="Name">
-            <sv:value>selection:listitem</sv:value>
-          </sv:property>
-          <sv:property sv:name="selection:key" sv:type="String">
-            <sv:value>checkbox</sv:value>
-          </sv:property>
-          <sv:property sv:name="selection:label" sv:type="String">
-            <sv:value>Checkbox</sv:value>
-          </sv:property>
-        </sv:node>
-        <sv:node sv:name="selection:listitem">
-          <sv:property sv:name="jcr:primaryType" sv:type="Name">
-            <sv:value>selection:listitem</sv:value>
-          </sv:property>
-          <sv:property sv:name="selection:key" sv:type="String">
-            <sv:value>radio</sv:value>
-          </sv:property>
-          <sv:property sv:name="selection:label" sv:type="String">
-            <sv:value>Radio</sv:value>
-          </sv:property>
-        </sv:node>
-        <sv:node sv:name="selection:listitem">
-          <sv:property sv:name="jcr:primaryType" sv:type="Name">
-            <sv:value>selection:listitem</sv:value>
-          </sv:property>
-          <sv:property sv:name="selection:key" sv:type="String">
-            <sv:value>image</sv:value>
-          </sv:property>
-          <sv:property sv:name="selection:label" sv:type="String">
-            <sv:value>Image</sv:value>
-          </sv:property>
-        </sv:node>
-      </sv:node>
-      <sv:node sv:name="hippo:translation">
-        <sv:property sv:name="jcr:primaryType" sv:type="Name">
-          <sv:value>hippo:translation</sv:value>
-        </sv:property>
-        <sv:property sv:name="hippo:language" sv:type="String">
-          <sv:value/>
-        </sv:property>
-        <sv:property sv:name="hippo:message" sv:type="String">
-          <sv:value>input type</sv:value>
-        </sv:property>
-      </sv:node>
     </sv:node>
+    <sv:node sv:name="selection:listitem">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>selection:listitem</sv:value>
+      </sv:property>
+      <sv:property sv:name="selection:key" sv:type="String">
+        <sv:value>dropdown</sv:value>
+      </sv:property>
+      <sv:property sv:name="selection:label" sv:type="String">
+        <sv:value>Dropdown</sv:value>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="selection:listitem">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>selection:listitem</sv:value>
+      </sv:property>
+      <sv:property sv:name="selection:key" sv:type="String">
+        <sv:value>anchor</sv:value>
+      </sv:property>
+      <sv:property sv:name="selection:label" sv:type="String">
+        <sv:value>Anchor</sv:value>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="selection:listitem">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>selection:listitem</sv:value>
+      </sv:property>
+      <sv:property sv:name="selection:key" sv:type="String">
+        <sv:value>button</sv:value>
+      </sv:property>
+      <sv:property sv:name="selection:label" sv:type="String">
+        <sv:value>Button</sv:value>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="selection:listitem">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>selection:listitem</sv:value>
+      </sv:property>
+      <sv:property sv:name="selection:key" sv:type="String">
+        <sv:value>radiogroup</sv:value>
+      </sv:property>
+      <sv:property sv:name="selection:label" sv:type="String">
+        <sv:value>Radio Group</sv:value>
+      </sv:property>
+    </sv:node>
+  </sv:node>
+</sv:node>
+    <sv:node sv:name="input-type" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hippo:handle</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+    <sv:value>hippo:hardhandle</sv:value>
+    <sv:value>hippo:translated</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>6b94f994-c840-42cd-81df-51f9fa5cbc2b</sv:value>
+  </sv:property>
+  <sv:node sv:name="input-type">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>selection:valuelist</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+      <sv:value>hippo:harddocument</sv:value>
+      <sv:value>hippotranslation:translated</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>3095bfc6-593c-40ff-9a0b-28832c05e4ca</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String"/>
+    <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
+    <sv:property sv:name="hippotranslation:id" sv:type="String">
+      <sv:value>004df4ab-dddf-4c8c-91dc-f1d4ff5afd85</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippotranslation:locale" sv:type="String">
+      <sv:value>en</sv:value>
+    </sv:property>
+    <sv:node sv:name="hippotranslation:translations">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>hippotranslation:translations</sv:value>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="selection:listitem">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>selection:listitem</sv:value>
+      </sv:property>
+      <sv:property sv:name="selection:key" sv:type="String">
+        <sv:value>text</sv:value>
+      </sv:property>
+      <sv:property sv:name="selection:label" sv:type="String">
+        <sv:value>Text</sv:value>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="selection:listitem">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>selection:listitem</sv:value>
+      </sv:property>
+      <sv:property sv:name="selection:key" sv:type="String">
+        <sv:value>checkbox</sv:value>
+      </sv:property>
+      <sv:property sv:name="selection:label" sv:type="String">
+        <sv:value>Checkbox</sv:value>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="selection:listitem">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>selection:listitem</sv:value>
+      </sv:property>
+      <sv:property sv:name="selection:key" sv:type="String">
+        <sv:value>radio</sv:value>
+      </sv:property>
+      <sv:property sv:name="selection:label" sv:type="String">
+        <sv:value>Radio</sv:value>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="selection:listitem">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>selection:listitem</sv:value>
+      </sv:property>
+      <sv:property sv:name="selection:key" sv:type="String">
+        <sv:value>password</sv:value>
+      </sv:property>
+      <sv:property sv:name="selection:label" sv:type="String">
+        <sv:value>Password</sv:value>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="selection:listitem">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>selection:listitem</sv:value>
+      </sv:property>
+      <sv:property sv:name="selection:key" sv:type="String">
+        <sv:value>hidden</sv:value>
+      </sv:property>
+      <sv:property sv:name="selection:label" sv:type="String">
+        <sv:value>Hidden</sv:value>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="selection:listitem">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>selection:listitem</sv:value>
+      </sv:property>
+      <sv:property sv:name="selection:key" sv:type="String">
+        <sv:value>image</sv:value>
+      </sv:property>
+      <sv:property sv:name="selection:label" sv:type="String">
+        <sv:value>Image</sv:value>
+      </sv:property>
+    </sv:node>
+  </sv:node>
+  <sv:node sv:name="hippo:translation">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hippo:translation</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippo:language" sv:type="String">
+      <sv:value/>
+    </sv:property>
+    <sv:property sv:name="hippo:message" sv:type="String">
+      <sv:value>input type</sv:value>
+    </sv:property>
+  </sv:node>
+</sv:node>
     <sv:node sv:name="subcategories">
       <sv:property sv:name="jcr:primaryType" sv:type="Name">
         <sv:value>hippo:handle</sv:value>
@@ -2082,6 +2137,323 @@
 	  </sv:node>
 	</sv:node>	
     <!-- /Amit -->
+    <sv:node sv:name="selectionvaluelist" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hippo:handle</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+    <sv:value>hippo:hardhandle</sv:value>
+    <sv:value>hippo:translated</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>e15b30d9-7847-4bcb-87d2-b8a428b221ff</sv:value>
+  </sv:property>
+  <sv:node sv:name="selectionvaluelist">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>selection:valuelist</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+      <sv:value>hippo:harddocument</sv:value>
+      <sv:value>hippotranslation:translated</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>d5a8c6fa-d7e8-455f-8d09-47b1e0d38e1a</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String"/>
+    <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
+    <sv:property sv:name="hippotranslation:id" sv:type="String">
+      <sv:value>b0e41a4e-bb2a-4743-a6cd-8dab17a07f7a</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippotranslation:locale" sv:type="String">
+      <sv:value>inherited - from query</sv:value>
+    </sv:property>
+    <sv:node sv:name="hippotranslation:translations">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>hippotranslation:translations</sv:value>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="selection:listitem">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>selection:listitem</sv:value>
+      </sv:property>
+      <sv:property sv:name="selection:key" sv:type="String">
+        <sv:value>Y</sv:value>
+      </sv:property>
+      <sv:property sv:name="selection:label" sv:type="String">
+        <sv:value>Yes</sv:value>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="selection:listitem">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>selection:listitem</sv:value>
+      </sv:property>
+      <sv:property sv:name="selection:key" sv:type="String">
+        <sv:value>N</sv:value>
+      </sv:property>
+      <sv:property sv:name="selection:label" sv:type="String">
+        <sv:value>No</sv:value>
+      </sv:property>
+    </sv:node>
+  </sv:node>
+  <sv:node sv:name="hippo:translation">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hippo:translation</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippo:language" sv:type="String">
+      <sv:value/>
+    </sv:property>
+    <sv:property sv:name="hippo:message" sv:type="String">
+      <sv:value>SelectionValueList</sv:value>
+    </sv:property>
+  </sv:node>
+</sv:node>
+<!--Selection Value List End -->
+<sv:node sv:name="numbervaluelist" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hippo:handle</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+    <sv:value>hippo:hardhandle</sv:value>
+    <sv:value>hippo:translated</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>d44ffb9c-d998-4c4d-8fc9-acadf02be7b4</sv:value>
+  </sv:property>
+  <sv:node sv:name="numbervaluelist">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>selection:valuelist</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+      <sv:value>hippo:harddocument</sv:value>
+      <sv:value>hippotranslation:translated</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>99fac997-9700-4d89-ac59-f0cd419605c6</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String"/>
+    <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
+    <sv:property sv:name="hippotranslation:id" sv:type="String">
+      <sv:value>3bf4fbb5-da7f-49d8-9fad-4b5181bd52d8</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippotranslation:locale" sv:type="String">
+      <sv:value>inherited - from query</sv:value>
+    </sv:property>
+    <sv:node sv:name="hippotranslation:translations">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>hippotranslation:translations</sv:value>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="selection:listitem">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>selection:listitem</sv:value>
+      </sv:property>
+      <sv:property sv:name="selection:key" sv:type="String">
+        <sv:value>1</sv:value>
+      </sv:property>
+      <sv:property sv:name="selection:label" sv:type="String">
+        <sv:value>1</sv:value>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="selection:listitem">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>selection:listitem</sv:value>
+      </sv:property>
+      <sv:property sv:name="selection:key" sv:type="String">
+        <sv:value>2</sv:value>
+      </sv:property>
+      <sv:property sv:name="selection:label" sv:type="String">
+        <sv:value>2</sv:value>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="selection:listitem">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>selection:listitem</sv:value>
+      </sv:property>
+      <sv:property sv:name="selection:key" sv:type="String">
+        <sv:value>3</sv:value>
+      </sv:property>
+      <sv:property sv:name="selection:label" sv:type="String">
+        <sv:value>3</sv:value>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="selection:listitem">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>selection:listitem</sv:value>
+      </sv:property>
+      <sv:property sv:name="selection:key" sv:type="String">
+        <sv:value>4</sv:value>
+      </sv:property>
+      <sv:property sv:name="selection:label" sv:type="String">
+        <sv:value>4</sv:value>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="selection:listitem">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>selection:listitem</sv:value>
+      </sv:property>
+      <sv:property sv:name="selection:key" sv:type="String">
+        <sv:value>5</sv:value>
+      </sv:property>
+      <sv:property sv:name="selection:label" sv:type="String">
+        <sv:value>5</sv:value>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="selection:listitem">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>selection:listitem</sv:value>
+      </sv:property>
+      <sv:property sv:name="selection:key" sv:type="String">
+        <sv:value>6</sv:value>
+      </sv:property>
+      <sv:property sv:name="selection:label" sv:type="String">
+        <sv:value>6</sv:value>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="selection:listitem">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>selection:listitem</sv:value>
+      </sv:property>
+      <sv:property sv:name="selection:key" sv:type="String">
+        <sv:value>14</sv:value>
+      </sv:property>
+      <sv:property sv:name="selection:label" sv:type="String">
+        <sv:value>14</sv:value>
+      </sv:property>
+    </sv:node>
+  </sv:node>
+  <sv:node sv:name="hippo:translation">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hippo:translation</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippo:language" sv:type="String">
+      <sv:value/>
+    </sv:property>
+    <sv:property sv:name="hippo:message" sv:type="String">
+      <sv:value>NumberValueList</sv:value>
+    </sv:property>
+  </sv:node>
+</sv:node>
+<!-- number value list end -->
+<sv:node sv:name="fieldclassesvaluelist" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hippo:handle</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+    <sv:value>hippo:hardhandle</sv:value>
+    <sv:value>hippo:translated</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>e81911ed-a7a0-4f0a-9f20-a0c9a0902709</sv:value>
+  </sv:property>
+  <sv:node sv:name="fieldclassesvaluelist">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>selection:valuelist</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+      <sv:value>hippo:harddocument</sv:value>
+      <sv:value>hippotranslation:translated</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>9f22012f-2d03-4b8e-b870-d9469e0554d5</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String"/>
+    <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
+    <sv:property sv:name="hippotranslation:id" sv:type="String">
+      <sv:value>ccb5a5a5-f7c0-41d7-8213-eb71dbb8f09e</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippotranslation:locale" sv:type="String">
+      <sv:value>inherited - from query</sv:value>
+    </sv:property>
+    <sv:node sv:name="hippotranslation:translations">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>hippotranslation:translations</sv:value>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="selection:listitem">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>selection:listitem</sv:value>
+      </sv:property>
+      <sv:property sv:name="selection:key" sv:type="String">
+        <sv:value>decimal</sv:value>
+      </sv:property>
+      <sv:property sv:name="selection:label" sv:type="String">
+        <sv:value>Decimal Class</sv:value>
+      </sv:property>
+    </sv:node>
+  </sv:node>
+  <sv:node sv:name="hippo:translation">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hippo:translation</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippo:language" sv:type="String">
+      <sv:value/>
+    </sv:property>
+    <sv:property sv:name="hippo:message" sv:type="String">
+      <sv:value>FieldClassesValueList</sv:value>
+    </sv:property>
+  </sv:node>
+</sv:node>
+<!-- Classes Value List End -->
+<sv:node sv:name="dropdownvaluelistname" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hippo:handle</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+    <sv:value>hippo:hardhandle</sv:value>
+    <sv:value>hippo:translated</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>551b0c88-6558-4e76-a3eb-ec2a1ecea0c9</sv:value>
+  </sv:property>
+  <sv:node sv:name="hippo:translation">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hippo:translation</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippo:language" sv:type="String">
+      <sv:value/>
+    </sv:property>
+    <sv:property sv:name="hippo:message" sv:type="String">
+      <sv:value>DropDownValueListName</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="dropdownvaluelistname">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>selection:valuelist</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+      <sv:value>hippo:harddocument</sv:value>
+      <sv:value>hippotranslation:translated</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>4f70f3eb-8609-4735-8d8f-7d58db317f4d</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String"/>
+    <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
+    <sv:property sv:name="hippotranslation:id" sv:type="String">
+      <sv:value>af82d5af-3fec-4240-86ca-4b1a843e734c</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippotranslation:locale" sv:type="String">
+      <sv:value>inherited - from query</sv:value>
+    </sv:property>
+    <sv:node sv:name="hippotranslation:translations">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>hippotranslation:translations</sv:value>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="selection:listitem">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>selection:listitem</sv:value>
+      </sv:property>
+      <sv:property sv:name="selection:key" sv:type="String">
+        <sv:value>SelectionValueList</sv:value>
+      </sv:property>
+      <sv:property sv:name="selection:label" sv:type="String">
+        <sv:value>SelectionValueList</sv:value>
+      </sv:property>
+    </sv:node>
+  </sv:node>
+</sv:node>
+<!-- DropDown Value List End -->
   </sv:node>
   <sv:node sv:name="simpledocuments">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">

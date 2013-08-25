@@ -4416,6 +4416,32 @@
 </sv:node>
 
 <!-- /finished goods -->
+<sv:node sv:name="balancesheet.html" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:sitemapitem</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>2ddd96c8-92c6-494f-babd-f542d3f708b8</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+    <sv:value>hst:pages/itr-schedule-balance-sheet</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+    <sv:value>mainSiteMapItemRefId</sv:value>
+    <sv:value>action</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+    <sv:value>balancesheet</sv:value>
+    <sv:value>EDIT</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:refId" sv:type="String">
+    <sv:value>balancesheet</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:relativecontentpath" sv:type="String">
+    <sv:value>configuration</sv:value>
+  </sv:property>
+</sv:node>
+<!-- end of balance sheet for itr4 -->
         </sv:node>
         </sv:node>
       </sv:node>

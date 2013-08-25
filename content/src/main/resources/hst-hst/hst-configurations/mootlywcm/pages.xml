@@ -8893,5 +8893,51 @@
     </sv:node>
   </sv:node>
 </sv:node>
+<sv:node sv:name="itr-schedule-balance-sheet" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:component</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>3b0fc0d7-1a53-4f8c-8a59-e0b54c83e04b</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+    <sv:value>bodyCss</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+    <sv:value>bodyCssClass</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:referencecomponent" sv:type="String">
+    <sv:value>hst:pages/simplepage.re</sv:value>
+  </sv:property>
+  <sv:node sv:name="main">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>b701dfea-4550-43ba-877e-02cf6faee813</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+      <sv:value>contentCssClass</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+      <sv:value>grid-right col-940</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>standard.main.re</sv:value>
+    </sv:property>
+    <sv:node sv:name="content">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>hst:component</sv:value>
+      </sv:property>
+      <sv:property sv:name="jcr:uuid" sv:type="String">
+        <sv:value>519ef015-8bca-4165-ad52-39204f1f0b98</sv:value>
+      </sv:property>
+      <sv:property sv:name="hst:referencecomponent" sv:type="String">
+        <sv:value>hst:components/itr-schedule-balance-sheet</sv:value>
+      </sv:property>
+    </sv:node>
+  </sv:node>
+</sv:node>
+<!--end of balance sheet  -->
 	
 </sv:node>

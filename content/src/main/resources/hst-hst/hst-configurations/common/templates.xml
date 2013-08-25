@@ -3291,5 +3291,16 @@
     <sv:value>jsp/member/manufacture_finishedgoods.jsp</sv:value>
   </sv:property>
 </sv:node>
-	
+<sv:node sv:name="balancesheet" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:template</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>54a2292b-126a-4f68-aca4-9f65cb59448e</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:renderpath" sv:type="String">
+    <sv:value>jsp/member/schedulebalancesheet.jsp</sv:value>
+  </sv:property>
+</sv:node>
+<!-- end of balanece sheet template -->	
 </sv:node>

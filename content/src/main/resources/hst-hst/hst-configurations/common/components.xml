@@ -1683,7 +1683,21 @@
     <sv:value>manufacture_finishedgoods</sv:value>
   </sv:property>
 </sv:node>
-
+<sv:node sv:name="itr-schedule-balance-sheet" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:component</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>4ab7a7d1-ffa4-4f72-9fb1-2d53bb5044cf</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:componentclassname" sv:type="String">
+    <sv:value>com.mootly.wcm.member.ITRBalanceSheet</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:template" sv:type="String">
+    <sv:value>balancesheet</sv:value>
+  </sv:property>
+</sv:node>
+<!-- end of itrBalanceSheet Component -->
 
 	
 </sv:node>
