@@ -12,9 +12,13 @@
 <%
 HstRequest hstRequest = (HstRequest) request;
 %>
+    <c:if test="${strIsOnVendorPortal eq true && empty listOfITReturnHomePageView}">
+        <hst:link var="back" path="/${basePath}/itreturn"></hst:link>
+      <div align="center" class="row"><a class="btn green" href="${back}">Back</a></div>
+    </c:if>
 	<c:if test="${not empty listOfITReturnHomePageView}">
 		<div class="alert alert-info">Click on Actions->Duplicate if you want to Revise an existing return or make a copy of it</div>
-		<table class="table table-striped table-hover">
+		<table class="table table-striped table-hover table-bordered">
 			<tr>
 				<th>PAN</th>
 				<th>Name</th>
