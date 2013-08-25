@@ -13,8 +13,7 @@
 </c:set>
 <hippo-gogreen:title title="${startapplication}" />
 <%
-ValueListService objValueListService = ValueListServiceImpl
-.getInstance();
+ValueListService objValueListService = ValueListServiceImpl.getInstance();
 TreeMap objTreeMapSection = (TreeMap) objValueListService.getReturnFile();
 	request.setAttribute("objTreeMapSection", objTreeMapSection);
 	pageContext.setAttribute("filingSectionValues", FilingSection.values());
@@ -34,20 +33,48 @@ TreeMap objTreeMapSection = (TreeMap) objValueListService.getReturnFile();
 	    	<a href="itreturn/servicerequest-itr-bulk-xml-download.html">Download Bulk XML Returns</a>
     	</c:if>
     </c:if>
-	<form id="frmSearch" method="GET">
+	<form id="frmSearch" method="GET" class="form-search">
 		<input type="hidden" name="pageNumber" value="${params.pageNumber}"/>
 		<fieldset>
 			<legend><fmt:message key="member.homepage.fillform"/> </legend>
 			<div class="row-fluid show-grid">
-				 <div class="span9">		          	
-		          	<div class="rowlabel"><input id="query" name="query" placeholder="Search String" type="text" maxlength="50"  value="${params.query}"/></div>
-		          </div>
-		           <div class="span3">
-		          	 	<a id="myModalHref" class="btn orange">Search</a>
-		           </div>
+			  <div class="rowlabel">
+		           <div class="input-append span9">
+                     <input id="query" class="span9" name="query" placeholder="Search String" type="text" maxlength="50" value="${params.query}"/>
+                     <button type="submit" class="btn btn-primary"><i class="icon-search icon-white"></i>Search</button>
+                   </div>
+               </div>
 		    </div>
-		 </fieldset>		 
-	 </form>
+		    <div class="row-fluid show-grid">
+		      <div class="rowlabel">
+		      <div class="btn-group" data-toggle="buttons-checkbox">
+		         <button class="btn btn-warning" id="due">Due</button>
+		         <button class="btn btn-warning popular-search" id="verified">Verified</button>
+		         <button class="btn btn-warning" id="unverified">Unverified</button>
+		         <button class="btn btn-warning" id="diy">eFile</button>
+		         <button class="btn btn-warning" id="assisted">eZFile</button>
+		         <button class="btn btn-warning" id="itr1">ITR1</button>
+		         <button class="btn btn-warning" id="itr2">ITR2</button>
+		         <button class="btn btn-warning" id="itr3">ITR3</button>
+		         <button class="btn btn-warning" id="itr4">ITR4</button>
+		         <button class="btn btn-warning" id="all">All</button>
+		         </div>
+		      </div>
+		    </div>
+		 </fieldset>
+		<c:choose>
+			<c:when test="${not empty docs && not empty listOfITReturnHomePageView}">
+				<c:if test="${not empty query}">
+					<div class="alert alert-success" align="center">
+						<strong>Showing Search Results for all members having <c:out value="${fn:toUpperCase(query)}" />.</strong>
+					</div>
+				</c:if>
+			</c:when>
+			<c:otherwise>
+				<div class="alert alert-error" align="center"><strong>No search Result has been found.</strong></div>
+			</c:otherwise>
+		</c:choose>
+	</form>
 	 <%--
      <div id="error" class="alert alert-error" style="display:none;">PAN's fifth alphabet should be first alphabet of Last Name</div>
      <div id="strictmsg" class="alert hide">Please enter PAN number for Individual or HUF</div>
@@ -119,7 +146,25 @@ TreeMap objTreeMapSection = (TreeMap) objValueListService.getReturnFile();
 	$(document).ready(function() {
 		$("#myModalHref").click( function () {			
 			$("#frmSearch").submit();
-		});		
+		});	
+		url_query = '<c:out value="${query}"/>';
+		if(url_query != ''){
+		  $('#'+url_query).removeClass('btn-warning');
+		  $('#'+url_query).addClass('btn-success');
+		}else{
+		  if($('#'+url_query).find('.btn-success')){
+		    $('#'+url_query).removeClass('btn-success');
+		    $('#'+url_query).addClass('btn-warning');
+		  }
+		}
+		$('#due,#verified,#unverified,#diy,#assisted,#itr1,#itr2,#itr3,#itr4').on('click',function(){
+		   $('#query').val($(this).attr('id'));
+		   $("#frmSearch").submit();
+		});
+		$('#all').on('click',function(){
+		   $('#query').val('');
+		   $("#frmSearch").submit();
+		});
 	});
 </hst:element>
 <hst:headContribution element="${uiCustom}" category="jsInternal"/>
