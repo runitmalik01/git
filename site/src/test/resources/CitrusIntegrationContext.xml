@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:lang="http://www.springframework.org/schema/lang"
+       xsi:schemaLocation="
+                http://www.springframework.org/schema/beans
+                http://www.springframework.org/schema/beans/spring-beans.xsd
+                http://www.springframework.org/schema/context
+                http://www.springframework.org/schema/context/spring-context.xsd
+                http://www.springframework.org/schema/aop
+                http://www.springframework.org/schema/aop/spring-aop.xsd
+                http://www.springframework.org/schema/util 
+                http://www.springframework.org/schema/util/spring-util-2.0.xsd
+                http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang-2.5.xsd">
+    <aop:aspectj-autoproxy /> 
+    <context:annotation-config>
+		<context:component-scan base-package="com.mootly.wcm"></context:component-scan>		
+	</context:annotation-config>
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+	    <property name="locations">
+	    	<list>
+	    		<value>classpath:CitrusIntegrationContext.properties</value>
+	    	</list>	        	        
+	    </property>
+	</bean>
+	<!--  mock  -->
+	<bean class="com.mootly.wcm.citruspay.MockSequenceGenerator" id="sequenceGenerator"></bean>
+	
+	<!--  REAL  -->
+    <!--  Citrus Payment Integration Common Services -->
+    <bean id="httpConnectionService" class="com.mootly.wcm.services.http.HTTPConnectionServiceImpl"/>
+    <bean id="httpConnectionFactory" class="com.mootly.wcm.services.http.HTTPConnectionFactory"/>
+    <!--  the parent service for all payment  -->
+    <bean id="paymentServiceGeneric" class="com.mootly.wcm.services.citruspay.impl.PaymentServiceGeneric" abstract="true">
+        <property name="sequenceGenerator" ref="sequenceGenerator"/>      
+        <property name="accessKey"><value>${accessKey}</value></property>
+        <property name="secretKey"><value>${secretKey}</value></property>
+    </bean>
+    <bean id="paymentServiceXML" parent="paymentServiceGeneric" class="com.mootly.wcm.services.citruspay.impl.PaymentServiceXML" abstract="true"/>
+    
+    <!--  Transaction  -->
+    <bean id="endPointURL_Transaction" class="java.net.URL">
+    	<constructor-arg value="${endPointURL_Transaction}"/>
+    </bean>	
+    <!--  we need an instance of this bean every time so we are making it prototype scope -->
+    <bean scope="prototype" id="transactionServiceHTTPConnection" class="java.net.HttpURLConnection"  factory-bean="endPointURL_Transaction" factory-method="openConnection">
+        <property name="requestMethod"><value>POST</value></property>
+        <property name="doInput"><value>true</value></property>
+        <property name="doOutput"><value>true</value></property>
+        <property name="useCaches"><value>false</value></property>
+        <property name="allowUserInteraction"><value>false</value></property>
+	</bean>
+    <bean id="transactionService" class="com.mootly.wcm.services.citruspay.impl.TransactionServiceImpl" parent="paymentServiceXML">
+        	<property name="httpConnectionService" ref="httpConnectionService"/>     
+    </bean>
+    <!--  /Transaction  -->
+    
+    <!--  Enquiry -->
+     <bean scope="prototype" id="enquiryServiceHTTPConnection" class="java.net.HttpURLConnection"  factory-bean="httpConnectionFactory" factory-method="getURLConnectionByPath">
+        <property name="requestMethod"><value>GET</value></property>
+        <property name="doInput"><value>true</value></property>
+        <property name="doOutput"><value>true</value></property>
+        <property name="useCaches"><value>false</value></property>
+        <property name="allowUserInteraction"><value>false</value></property>
+	</bean>
+    <bean id="enquiryService" class="com.mootly.wcm.services.citruspay.impl.EnquiryImpl" parent="paymentServiceXML">
+        <property name="httpConnectionService" ref="httpConnectionService"/>
+        <property name="endPointURL_Enquiry"><value>${endPointURL_Enquiry}</value></property>     
+    </bean>
+</beans>

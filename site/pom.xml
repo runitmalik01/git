@@ -336,7 +336,15 @@
 		<artifactId>commons-validator</artifactId>
 		<version>1.4.0</version>
 	</dependency>
-            
+	
+	<!--  Citrus HMAC Genenerator -->
+	<dependency>
+		<groupId>HMACGenerator</groupId>
+		<artifactId>HMACGenerator</artifactId>
+		<version>1.0</version>
+		<scope>system</scope>
+		<systemPath>${basedir}/../3rdparty/citruspay/HMACGenerator-1.0.jar</systemPath>
+	</dependency>
   </dependencies>
 
   <build>
