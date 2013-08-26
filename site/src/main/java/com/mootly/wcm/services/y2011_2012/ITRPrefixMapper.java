@@ -21,6 +21,12 @@ public class ITRPrefixMapper extends com.sun.xml.bind.marshaller.NamespacePrefix
 		else if (namespaceUri.equals("http://incometaxindiaefiling.gov.in/ITR4S")) {
 			return "ITR4SFORM";
 		}
+		else if (namespaceUri.equals("http://incometaxindiaefiling.gov.in/ITR5")) {
+			return "ITR5FORM";
+		}
+		else if (namespaceUri.equals("http://incometaxindiaefiling.gov.in/ITR6")) {
+			return "ITR6FORM";
+		}
 		else if (namespaceUri.equals("http://incometaxindiaefiling.gov.in/main")) {
 			return "ITRETURN";
 		}
