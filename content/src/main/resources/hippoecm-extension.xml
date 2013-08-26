@@ -3815,6 +3815,36 @@
 		</sv:property>
 	</sv:node>
 <!-- /ManufactureFinishedProducts -->
+<!--  firm partner -->
+<sv:node sv:name="mootlywcm-type-firmspartnerdocument">
+		<sv:property sv:name="jcr:primaryType" sv:type="Name">
+			<sv:value>hippo:initializeitem</sv:value>
+		</sv:property>
+		<sv:property sv:name="hippo:contentresource" sv:type="String">
+			<sv:value>hippo-namespaces/mootlywcm/firmspartnerdocument.xml</sv:value>
+		</sv:property>
+		<sv:property sv:name="hippo:contentroot" sv:type="String">
+			<sv:value>/hippo:namespaces/mootlywcm</sv:value>
+		</sv:property>
+		<sv:property sv:name="hippo:sequence" sv:type="Double">
+			<sv:value>11051.082</sv:value>
+		</sv:property>
+	</sv:node>
+	<sv:node sv:name="mootlywcm-type-firmspartnerdetail">
+		<sv:property sv:name="jcr:primaryType" sv:type="Name">
+			<sv:value>hippo:initializeitem</sv:value>
+		</sv:property>
+		<sv:property sv:name="hippo:contentresource" sv:type="String">
+			<sv:value>hippo-namespaces/mootlywcm/firmspartnerdetail.xml</sv:value>
+		</sv:property>
+		<sv:property sv:name="hippo:contentroot" sv:type="String">
+			<sv:value>/hippo:namespaces/mootlywcm</sv:value>
+		</sv:property>
+		<sv:property sv:name="hippo:sequence" sv:type="Double">
+			<sv:value>11051.083</sv:value>
+		</sv:property>
+	</sv:node>
+<!-- /firm partner -->
 	<sv:node sv:name="mootlywcm-type-ScreenFieldSet-Document">
 		<sv:property sv:name="jcr:primaryType" sv:type="Name">
 			<sv:value>hippo:initializeitem</sv:value>
