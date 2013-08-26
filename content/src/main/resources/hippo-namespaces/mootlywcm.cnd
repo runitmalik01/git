@@ -430,3 +430,11 @@ orderable
 
 [mootlywcm:ScreenFieldSet] > hippo:compound, hippostd:relaxed orderable
 [mootlywcm:ScreenFieldSetDocument] > hippostd:relaxed, mootlywcm:basedocument orderable
+
+[mootlywcm:manufacturerawmatdocument] > hippostd:relaxed, mootlywcm:basedocument
+  orderable
+[mootlywcm:manufacturerawmatdetail] > hippo:compound, hippostd:relaxed orderable
+
+[mootlywcm:manufacturefinishedproductsdocument] > hippostd:relaxed, mootlywcm:basedocument
+  orderable
+[mootlywcm:manufacturefinishedgoodsdetail] > hippo:compound, hippostd:relaxed orderable
