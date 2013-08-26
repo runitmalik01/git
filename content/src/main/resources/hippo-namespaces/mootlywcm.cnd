@@ -438,3 +438,7 @@ orderable
 [mootlywcm:manufacturefinishedproductsdocument] > hippostd:relaxed, mootlywcm:basedocument
   orderable
 [mootlywcm:manufacturefinishedgoodsdetail] > hippo:compound, hippostd:relaxed orderable
+
+[mootlywcm:firmspartnerdocument] > hippostd:relaxed, mootlywcm:basedocument
+  orderable
+[mootlywcm:firmspartnerdetail] > hippo:compound, hippostd:relaxed orderable
