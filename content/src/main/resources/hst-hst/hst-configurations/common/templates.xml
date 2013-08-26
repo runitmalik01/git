@@ -3291,6 +3291,19 @@
     <sv:value>jsp/member/manufacture_finishedgoods.jsp</sv:value>
   </sv:property>
 </sv:node>
+
+<sv:node sv:name="firmspartner">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:template</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>6d09bbc5-50fb-49e7-a155-0540b48920c3</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:renderpath" sv:type="String">
+    <sv:value>jsp/member/firms_partner.jsp</sv:value>
+  </sv:property>
+</sv:node>
+
 <sv:node sv:name="balancesheet" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hst:template</sv:value>
