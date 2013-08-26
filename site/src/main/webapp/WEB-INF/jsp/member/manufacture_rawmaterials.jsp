@@ -20,7 +20,7 @@ request.setAttribute("objHashMapQuantUnitCode", objHashMapQuantUnitCode);
 <h4>
 	<fmt:message key="quantitative.details.itr4" />
 </h4>
-<h2><fmt:message key= "quantitative.details.itr4.A"/></h2>
+<h2><fmt:message key= "quantitative.details.itr4.B"/></h2>
 <c:choose>
 	<c:when
 		test="${pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD'}">
@@ -160,7 +160,6 @@ request.setAttribute("objHashMapQuantUnitCode", objHashMapQuantUnitCode);
 					<a id="myModalQuantitativeDetails" role="button" class="btn btn-success">Save</a>
 				</div>  
 			</div>
-			<div><input type="submit"></div>
 		</form>
 	</c:when>
 	<c:otherwise>
@@ -173,16 +172,16 @@ request.setAttribute("objHashMapQuantUnitCode", objHashMapQuantUnitCode);
 				<th><b>Actions</b></th>
 			</tr>
 			<c:if test="${not empty parentBean}">
-				<c:forEach items="${parentBean.quantitativeUnitDetailList}"
-					var="QuantitativeDetails">
+				<c:forEach items="${parentBean.manufacture_RawMatDetailList}"
+					var="rawMaterials">
 					<tr>
-						<td><c:out value="${QuantitativeDetails.item_Name}" />
+						<td><c:out value="${rawMaterials.item_Name}" />
 						</td>
-						<td><c:out value="${QuantitativeDetails.itemUnit_Name}" />
+						<td><c:out value="${rawMaterials.itemUnit_Name}" />
 						</td>
 						<td><a class="btn btn-danger"
-							href="${scriptName}/<c:out value="${QuantitativeDetails.canonicalUUID}"/>/manufacture_rawmaterialsedit"><small><i class="icon-pencil icon-white"></i>Edit</small> &nbsp;&nbsp;
-						</a>&nbsp;<a class="btn btn-primary" href="${scriptName}/<c:out value="${QuantitativeDetails.canonicalUUID}"/>/manufacture_rawmaterialsdelete" data-confirm=""><small><i class="icon-trash icon-white"></i>Delete</small> </a>
+							href="${scriptName}/<c:out value="${rawMaterials.canonicalUUID}"/>/manufacture_rawmaterialsedit"><small><i class="icon-pencil icon-white"></i>Edit</small> &nbsp;&nbsp;
+						</a>&nbsp;<a class="btn btn-primary" href="${scriptName}/<c:out value="${rawMaterials.canonicalUUID}"/>/manufacture_rawmaterialsdelete" data-confirm=""><small><i class="icon-trash icon-white"></i>Delete</small> </a>
 							</td>
 						</tr>
 				
