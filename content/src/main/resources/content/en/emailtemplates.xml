@@ -2207,17 +2207,17 @@ tax .&lt;/p&gt;
 
 &lt;p&gt;Dear User,&lt;/p&gt;
 
-&lt;p&gt; Wealth4India have found some activity on your account. It seems that you
-have change your Password on ${date}. &lt;/p&gt;
+&lt;p&gt;Wealth4India have found some activity on your account. It seems that you
+have change your Password on ${date}.&lt;/p&gt;
 
 &lt;p&gt;Wealth4India understand the safety of your confidential data.&lt;/p&gt;
 
-&lt;p&gt; &lt;strong&gt;Note-If you have not change your password then you can contact us at
+&lt;p&gt;&lt;strong&gt;Note-If you have not change your password then you can contact us at
 info@wealth4india.com.&lt;/strong&gt;&lt;/p&gt;
 
 &lt;p&gt;Thanks&lt;/p&gt;
 
-&lt;p&gt;Wealth4India &lt;/p&gt;
+&lt;p&gt;Wealth4India&lt;/p&gt;
 
 &lt;/body&gt;
 &lt;/html&gt;</sv:value>
