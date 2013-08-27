@@ -9,6 +9,7 @@
 <c:set var="capitalasset">
 	<fmt:message key="member.capital.title" />
 </c:set>
+<w4india:itrmenu></w4india:itrmenu>
 <hippo-gogreen:title title="${capitalasset}" />
 <hst:link var="Securities" siteMapItemRefId="Securities"></hst:link>
 <hst:actionURL var="actionUrl"></hst:actionURL>
@@ -16,26 +17,6 @@
 	pageContext.setAttribute("inflationindexValues",
 			InflationIndex.values());
 %>
-<%-- 
-<script type="text/javascript">
-	//var $m = jQuery.noConflict(true);
-	function getautoindex() {
-		var option = document.getElementById("year_purchase");
-		var stateName = option.options[option.selectedIndex].value;
-		if (stateName != null) {
-			var a = stateName;
-			$("#inflation_acquisition").val(a);
-		}
-	}
-	function getautoindex1() {
-		var option = document.getElementById("year_sale");
-		var stateName = option.options[option.selectedIndex].value;
-		if (stateName != null) {
-			var a = stateName;
-			$("#inflation_consideration").val(a);
-		}
-	}
-</script>--%>
 <div class="page">
 	<h3 id="respond1">
 		<c:choose>
@@ -107,6 +88,8 @@
 								<c:out value="${childBean.dateAcquisitionStr}"/></c:if>">
 							</div>
 						</div>
+
+
 						<div class="span3">
 							<div class="rowlabel">
 								<label for="date_sale"><small><fmt:message
@@ -395,7 +378,7 @@
 						</div>
 					</div>
 					<div class="row-fluid show-grid">
-						<div class="span9 lt" >
+						<div class="span9 lt">
 							<div class="rowlabel">
 								<label for="panifded"><small>In case of
 										deduction u/s 54GB, furnish PAN of the company </small> </label>
@@ -427,198 +410,6 @@
 						</div>
 					</div>
 				</fieldset>
-
-				<%--here we are coding for long terms capital gain 
-				<fieldset id="longterms">
-					<legend style="font-style: italic; color: blue;">Computation
-						(Long Term Gain)</legend>
-
-					<c:if test="${status == 'RES'}">
-						<div class="row-fluid show-grid">
-							<div class="span9">
-								<div class="rowlabel">
-									<label for="section48"><small>In case of
-											NON-RESIDENT to which first proviso to section 48 is
-											applicable </small> </label>
-								</div>
-							</div>
-							<div class="span3">
-								<div class="rowlabel">
-									<input id="section48" name="section48"
-										style="background-color: #DFDFDF" class="decimal"
-										value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.nameAsset}"/></c:if>"
-										type="text">
-								</div>
-							</div>
-						</div>
-						<div class="row-fluid show-grid">
-							<div class="span9">
-								<div class="rowlabel">
-									<label for="unlstdsecurity"><small>From
-											unlisted securities in case of non-resident as per section
-											112(1)(c)(iii) </small> </label>
-								</div>
-							</div>
-							<div class="span3">
-								<div class="rowlabel">
-									<input id="unlstdsecurity" name="unlstdsecurity"
-										style="background-color: #DFDFDF" class="decimal"
-										value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.nameAsset}"/></c:if>"
-										type="text">
-								</div>
-							</div>
-						</div>
-					</c:if>
-					<div class="row-fluid show-grid">
-						<div class="span9">
-							<div class="rowlabel">
-								<label for="index"><small>Do you want indexation
-								</small> </label>
-							</div>
-						</div>
-						<div class="span3">
-							<div class="rowlabel">
-								<select id="index" name="index" onchange="hidesstoptions()">
-									<option value="">-Select-</option>
-									<option value="Y" style="border-right: olive;"
-										<c:if test="${not empty childBean.sstCharge && childBean.sstCharge =='Y'}">selected</c:if>>YES</option>
-									<option value="N"
-										<c:if test="${not empty childBean.sstCharge && childBean.sstCharge =='N'}">selected</c:if>>NO</option>
-								</select>
-							</div>
-						</div>
-					</div>
-					<div class="row-fluid show-grid">
-						<div class="span9">
-							<div class="rowlabel ">
-								<label for="sale_consideration"><fmt:message
-										key="capital.gain.sale.consider" /> </label>
-
-							</div>
-
-						</div>
-						<div class="span3">
-							<div class="rowlabel">
-								<input type="text" name="sale_consideration"
-									id="sale_consideration" style="background-color: #DFDFDF"
-									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.saleConsideration}"/></c:if>"
-									class="decimal" title="Please fill only Numeric value" />
-
-							</div>
-						</div>
-					</div>
-					<div class="row-fluid show-grid">
-						<div class="span9">
-							<div class="rowlabel without_Y_index without_N_index ">
-								<label for="cost_acquisition"><small><fmt:message
-											key="capital.gain.cost.acquisition" /> </small> </label>
-							</div>
-							<div class="rowlabel hide with_Y_index with_N_index ">
-								<label for="cost_acquisition"><small>cost of
-										acquisition with indexation </small> </label>
-							</div>
-						</div>
-						<div class="span3 ">
-							<div class="rowlabel">
-								<input id="cost_acquisition" name="cost_acquisition" type="text"
-									style="background-color: #DFDFDF"
-									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.costAcquisition}"/></c:if>"
-									maxlength="14" class="decimal"
-									title="Please fill only Numeric value" />
-							</div>
-						</div>
-					</diV>
-					<div class="row-fluid show-grid">
-						<div class="span9">
-							<div class="rowlabel without_Y_index without_N_index">
-								<label for="cost_improvement"><small><fmt:message
-											key="capital.gain.cost.improvement" /> </small> </label>
-							</div>
-							<div class="rowlabel hide with_Y_index with_N_index ">
-								<label for="sale_consideration">Cost of improvement with
-									indexation</label>
-
-							</div>
-						</div>
-						<div class="span3">
-							<div class="rowlabel">
-								<input id="cost_improvement" name="cost_improvement" type="text"
-									style="background-color: #DFDFDF"
-									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.costImprovement}"/></c:if>"
-									maxlength="14" class="decimal"
-									title="Please fill only Numeric value" />
-							</div>
-						</div>
-					</div>
-					<div class="row-fluid show-grid">
-						<div class="span9">
-							<div class="rowlabel">
-								<label for="cost_trnsfr"><small>Expenditure on
-										Transfer </small> </label>
-							</div>
-						</div>
-						<div class="span3">
-							<div class="rowlabel">
-								<input id="cost_trnsfr" name="cost_trnsfr" type="text"
-									style="background-color: #DFDFDF"
-									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.costTransfer}"/></c:if>"
-									maxlength="14" class="decimal"
-									title="Please fill only Numeric value" />
-							</div>
-						</div>
-					</div>
-					<div class="row-fluid show-grid">
-						<div class="span9">
-							<div class="rowlabel">
-								<label for="balance">Balance </label>
-							</div>
-						</div>
-						<div class="span3">
-							<div class="rowlabel">
-								<input type="text" name="balance" id="balance"
-									style="background-color: #DFDFDF"
-									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value=""/></c:if>"
-									class="decimal" title="Please fill only Numeric value" />
-
-							</div>
-						</div>
-					</div>
-					<div class="row-fluid show-grid">
-						<div class="span9">
-							<div class="rowlabel" id="ded">
-								<label for="ded_sec54">Deduction under section 54B/54D </label>
-							</div>
-						</div>
-						<div class="span3">
-							<div class="rowlabel">
-								<input type="text" name="ded_sec54" id="ded_sec54"
-									style="background-color: #DFDFDF"
-									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value=""/></c:if>"
-									class="decimal" title="Please fill only Numeric value" />
-
-							</div>
-						</div>
-					</div>
-
-					<div class="row-fluid show-grid">
-						<div class="span9">
-							<div class="rowlabel">
-
-								<label for="capital_gain"><small>Capital Gain </small> </label>
-							</div>
-						</div>
-						<div class="span3">
-							<div class="rowlabel">
-								<input type="text" name="capital_gain" id="capital_gain"
-									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
-									<fmt:formatNumber type="number" 
-            maxIntegerDigits="14" value="${childBean.capitalGain}"/></c:if>"
-									class="decimal" title="Please fill only Numeric value" />
-
-							</div>
-						</div>
-					</div>
-				</fieldset>--%>
 				<fieldset>
 					<legend style="font-style: italic; color: blue;">Information
 						about accrual/Receipt of Capital Gain</legend>
@@ -653,49 +444,45 @@
 								<td><input type="text" name="upto15st" id="upto15st"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
 									<c:out value="${childBean.upto15St}"/></c:if>"
-									class="decimal" maxlength="15"></td>
+									class="decimal" maxlength="15">
+								</td>
 								<td><input type="text" name="upto15oth" id="upto15oth"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
 									<c:out value="${childBean.upto15Oth}"/></c:if>"
-									class="decimal" maxlength="15"></td>
-								<tr>
+									class="decimal" maxlength="15">
+								</td>
+							<tr>
 								<td>ii- 16/9 to 15/12(ii)</td>
 								<td><input type="text" name="upto16st" id="upto16st"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
 									<c:out value="${childBean.upto16St}"/></c:if>"
-									class="decimal" maxlength="15"></td>
+									class="decimal" maxlength="15">
+								</td>
 								<td><input type="text" name="upto16oth" id="upto16oth"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
 									<c:out value="${childBean.upto16Oth}"/></c:if>"
-									class="decimal" maxlength="15">
-								</td>
-							
+									class="decimal" maxlength="15"></td>
 							<tr>
 
 								<td>iii- 16/12 to 15/3(iii)</td>
 								<td><input type="text" name="upto16decst" id="upto16decst"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
 									<c:out value="${childBean.upto16decSt}"/></c:if>"
-									class="decimal" maxlength="15">
-								</td>
+									class="decimal" maxlength="15"></td>
 								<td><input type="text" name="upto16decoth"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
 									<c:out value="${childBean.upto16DecOth}"/></c:if>"
-									class="decimal" id="upto16decoth" maxlength="15">
-								</td>
-							
+									class="decimal" id="upto16decoth" maxlength="15"></td>
 							<tr>
 								<td>iv- 16/3 to 31/3(iv)</td>
 								<td><input type="text" name="upto31st" id="upto31st"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
 									<c:out value="${childBean.upto31St}"/></c:if>"
-									class="decimal" maxlength="15">
-								</td>
+									class="decimal" maxlength="15"></td>
 								<td><input type="text" name="upto31oth" id="upto31oth"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
 									<c:out value="${childBean.upto31Oth}"/></c:if>"
-									class="decimal" maxlength="15">
-								</td>
+									class="decimal" maxlength="15"></td>
 							</tr>
 							<tr>
 								<th width="50%" style="color: black;">Dates:</th>
@@ -707,52 +494,41 @@
 								<td><input type="text" name="upto15Lt" id="upto15Lt"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
 									<c:out value="${childBean.upto15Lt}"/></c:if>"
-									class="decimal" maxlength="15">
-								</td>
+									class="decimal" maxlength="15"></td>
 								<td><input type="text" name="upto15np" id="upto15np"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
 									<c:out value="${childBean.upto15Np}"/></c:if>"
-									class="decimal" maxlength="15">
-								</td>
-							
+									class="decimal" maxlength="15"></td>
 							<tr>
 								<td>ii- 16/9 to 15/12(ii)</td>
 								<td><input type="text" name="upto16Lt" id="upto16Lt"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
 									<c:out value="${childBean.upto16Lt}"/></c:if>"
-									class="decimal" maxlength="15">
-								</td>
+									class="decimal" maxlength="15"></td>
 								<td><input type="text" name="upto16np" id="upto16np"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
 									<c:out value="${childBean.upto16Np}"/></c:if>"
-									class="decimal" maxlength="15">
-								</td>
-							
+									class="decimal" maxlength="15"></td>
 							<tr>
 								<td>iii- 16/12 to 15/3(iii)</td>
 								<td><input type="text" name="upto16decLt" id="upto16decLt"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
 								<c:out value="${childBean.upto16DecLt}"/></c:if>"
-									class="decimal" maxlength="15">
-								</td>
+									class="decimal" maxlength="15"></td>
 								<td><input type="text" name="uptodecnp" id="uptodecnp"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
 								<c:out value="${childBean.uptodecNp}"/></c:if>"
-									class="decimal" maxlength="15">
-								</td>
-							
+									class="decimal" maxlength="15"></td>
 							<tr>
 								<td>iv- 16/3 to 31/3(iv)</td>
 								<td><input type="text" name="upto31Lt" id="upto31Lt"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
 								<c:out value="${childBean.upto31Lt}"/></c:if>"
-									class="decimal" maxlength="15">
-								</td>
+									class="decimal" maxlength="15"></td>
 								<td><input type="text" name="upto31np" id="upto31np"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
 								<c:out value="${childBean.upto31Np}"/></c:if>"
-									class="decimal" maxlength="15">
-								</td>
+									class="decimal" maxlength="15"></td>
 							</tr>
 						</table>
 					</div>
@@ -769,49 +545,37 @@
 		<c:otherwise>
 			<table>
 				<tr align="center">
-					<th><b style="color: olive;">Type of Asset </b>
-					</th>
+					<th><b style="color: olive;">Type of Asset </b></th>
 					<th><b style="color: olive;"><fmt:message
-								key="capital.gain.cost.acquisition" /> </b>
-					</th>
+								key="capital.gain.cost.acquisition" /> </b></th>
 					<th><b style="color: olive;"><fmt:message
-								key="capital.gain.sale.consideration" /> </b>
-					</th>
-					<th><b style="color: olive;">Long Term Gain </b>
-					</th>
-					<th><b style="color: olive;">Short Term Gain </b>
-					</th>
-					<th><b style="color: olive;">Actions</b>
-					</th>
+								key="capital.gain.sale.consideration" /> </b></th>
+					<th><b style="color: olive;">Long Term Gain </b></th>
+					<th><b style="color: olive;">Short Term Gain </b></th>
+					<th><b style="color: olive;">Actions</b></th>
 				</tr>
 				<c:if test="${not empty parentBean}">
 					<c:forEach items="${parentBean.capitalAssetDetailList}"
 						var="capitalassetdetail">
 						<tr>
 							<td align="right"><c:out
-									value="${capitalassetdetail.assetType}" />
-							</td>
+									value="${capitalassetdetail.assetType}" /></td>
 							<td align="right"><c:out
-									value="${capitalassetdetail.costAcquisition}" />
-							</td>
+									value="${capitalassetdetail.costAcquisition}" /></td>
 							<td align="right"><c:out
-									value="${capitalassetdetail.saleConsideration}" />
-							</td>
+									value="${capitalassetdetail.saleConsideration}" /></td>
 							<td align="right"><fmt:formatNumber type="number"
 									maxIntegerDigits="14"
-									value="${capitalassetdetail.capitalGainTaxLT}" />
-							</td>
+									value="${capitalassetdetail.capitalGainTaxLT}" /></td>
 							<td align="right"><fmt:formatNumber type="number"
 									maxIntegerDigits="14"
-									value="${capitalassetdetail.capitalGainTaxST}" />
-							</td>
+									value="${capitalassetdetail.capitalGainTaxST}" /></td>
 							<td><a
 								href="${scriptName}/<c:out value="${capitalassetdetail.canonicalUUID}"/>/edit"><small><i
 										class="icon-pencil"></i>Edit</small> </a>&nbsp;&nbsp;<a
 								href="${scriptName}/<c:out value="${capitalassetdetail.canonicalUUID}"/>/delete"
 								onclick="return checkdelete()"> <small><i
-										class="icon-trash"></i>Delete</small> </a>
-							</td>
+										class="icon-trash"></i>Delete</small> </a></td>
 						</tr>
 					</c:forEach>
 				</c:if>
@@ -874,8 +638,10 @@
 		document.getElementById("shortterms").value = decidegaintype();
 		function decidegaintype() {
 			var c = document.getElementById("months").value;
-			//alert("" + c);
-			if (c <= 365) {
+			var m = document.getElementById("asset_type").value;
+			alert(""+m);
+			if(m=="SHARES"){
+			if(c<=365){
 				//$("#shortterms").show();
 				//$("#longterms").hide();
 				$('#fd_set_gain').show();
@@ -891,6 +657,22 @@
 				$(".st").hide();
 				$(".lt").show();
 
+			}}
+			else{
+				if(c<=1096){
+					$('#fd_set_gain').show();
+					$(".st").show();
+					$(".with_Y_index").hide();
+					$(".without_N_index").show();
+					$(".lt").hide();
+				} else {
+					//$("#shortterms").show();
+					//$("#longterms").show();
+					$(".with_Y_index").hide();
+					$('#fd_set_gain').show();
+					$(".st").hide();
+					$(".lt").show();	
+				}
 			}
 		}
 		function dstrToUTC(ds) {
