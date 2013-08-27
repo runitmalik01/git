@@ -1,5 +1,5 @@
 /**
-  * @author  abhishek bhardwaj
+ * @author  abhishek bhardwaj
  * @since 08/07/2013
  * Description: This is bean file which save data of capital asset form
  */
@@ -184,46 +184,49 @@ public class CapitalAssetDetail extends CapitalAssetDetailA implements FormMapFi
 			}
 			if(getCapitalGain()!=null)
 			{
-				if(getAssetType().equals("SHARES")){
+				log.info("inside gainjjjjjj"+getCapitalGain());
+				node.setProperty("mootlywcm:capital_gain",getCapitalGain());
+			}
 
-					String mnths=getMonths();
-					double d=Double.parseDouble(mnths);
-					if(d>365){
-						if(log.isInfoEnabled()){
-							log.info("would b longterm gain ");
-						}
-						Double ltgain=getCapitalGain();
-						setCapitalGainTaxLT(ltgain);
-						node.setProperty("mootlywcm:lgain",getCapitalGainTaxLT());
+			if(getAssetType().equals("SHARES")){
+				String mnths=getMonths();
+				log.info("months are"+mnths);
+				double d=Double.parseDouble(mnths);
+				if(d>365){
+					if(log.isInfoEnabled()){
+						log.info("would b longterm gain ");
 					}
-					else
-					{
-						if(log.isInfoEnabled()){
-							log.info("would b shortterm gain ");
-						}
-						Double sgain=getCapitalGain();
-						setCapitalGainTaxST(sgain);
-						node.setProperty("mootlywcm:sgain",getCapitalGainTaxST());
-					}	
+					Double ltgain=getCapitalGain();
+					setCapitalGainTaxLT(ltgain);
+					node.setProperty("mootlywcm:lgain",getCapitalGain());
 				}
 				else
 				{
 					if(log.isInfoEnabled()){
-						String mnths=getMonths();
-						double d=Double.parseDouble(mnths);
-						if(d>(365*3)){
-							log.info("we ar in long tems gain"+d);
-							Double ltgain=getCapitalGain();
-							setCapitalGainTaxLT(ltgain);
-							node.setProperty("mootlywcm:lgain",getCapitalGainTaxLT());
-						}else{
-							Double sgain=getCapitalGain();
-							setCapitalGainTaxST(sgain);
-							node.setProperty("mootlywcm:sgain",getCapitalGainTaxST());
-
-						}
-
+						log.info("would b shortterm gain ");
 					}
+					Double sgain=getCapitalGain();
+					setCapitalGainTaxST(sgain);
+					node.setProperty("mootlywcm:sgain",getCapitalGain());
+				}	
+			}
+			else
+			{
+				if(log.isInfoEnabled()){
+					log.info("inside else");
+				}
+
+				String mnths=getMonths();
+				double d=Double.parseDouble(mnths);
+				if(d>(365*3)){
+					log.info("we ar in long tems gain"+d);
+					Double ltgain=getCapitalGain();
+					setCapitalGainTaxLT(ltgain);
+					node.setProperty("mootlywcm:lgain",getCapitalGain());
+				}else{
+					Double sgain=getCapitalGain();
+					setCapitalGainTaxST(sgain);
+					node.setProperty("mootlywcm:sgain",getCapitalGain());
 
 				}
 
@@ -314,7 +317,11 @@ public class CapitalAssetDetail extends CapitalAssetDetailA implements FormMapFi
 		if (formMap.getField("accural_info") != null) {
 			setIndex(formMap.getField("accural_info").getValue());
 		}
-		if (formMap.getField("dedsec54") != null) {
+		if (formMap.getField("dedsec54").getValue().isEmpty()) {
+			setDed_sec54(amtA);
+
+		}
+		else{
 			Double strdate = Double.parseDouble(formMap.getField("dedsec54").getValue());
 			setDed_sec54(strdate);
 		}
@@ -526,7 +533,8 @@ public class CapitalAssetDetail extends CapitalAssetDetailA implements FormMapFi
 		setCostIndexConsideration(objCapitalAssetdetail.getCostIndexConsideration());
 		setCapitalGain(objCapitalAssetdetail.getCapitalGain());
 		setIndex(objCapitalAssetdetail.getIndex());
-		setPan(objCapitalAssetdetail.getPan());
+		setPan(objCapitalAssetdetail.getPan()
+				);
 		setAccural(objCapitalAssetdetail.getAccural());
 		setCapitalGainTaxLT(objCapitalAssetdetail.getCapitalGainTaxLT());
 		setCapitalGainTaxST(objCapitalAssetdetail.getCapitalGainTaxST());
