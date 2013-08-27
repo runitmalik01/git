@@ -442,3 +442,5 @@ orderable
 [mootlywcm:firmspartnerdocument] > hippostd:relaxed, mootlywcm:basedocument
   orderable
 [mootlywcm:firmspartnerdetail] > hippo:compound, hippostd:relaxed orderable
+[mootlywcm:balancesheetdocument] > hippostd:relaxed, mootlywcm:basedocument
+  orderable
