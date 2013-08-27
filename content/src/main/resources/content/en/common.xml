@@ -2494,29 +2494,7 @@
         <sv:value>selection:listitem</sv:value>
       </sv:property>
       <sv:property sv:name="selection:key" sv:type="String">
-        <sv:value>VERIFIED</sv:value>
-      </sv:property>
-      <sv:property sv:name="selection:label" sv:type="String">
-        <sv:value>VERIFIED</sv:value>
-      </sv:property>
-    </sv:node>
-    <sv:node sv:name="selection:listitem">
-      <sv:property sv:name="jcr:primaryType" sv:type="Name">
-        <sv:value>selection:listitem</sv:value>
-      </sv:property>
-      <sv:property sv:name="selection:key" sv:type="String">
-        <sv:value>UNVERIFIED</sv:value>
-      </sv:property>
-      <sv:property sv:name="selection:label" sv:type="String">
-        <sv:value>UNVERIFIED</sv:value>
-      </sv:property>
-    </sv:node>
-    <sv:node sv:name="selection:listitem">
-      <sv:property sv:name="jcr:primaryType" sv:type="Name">
-        <sv:value>selection:listitem</sv:value>
-      </sv:property>
-      <sv:property sv:name="selection:key" sv:type="String">
-        <sv:value>DUE</sv:value>
+        <sv:value>due</sv:value>
       </sv:property>
       <sv:property sv:name="selection:label" sv:type="String">
         <sv:value>DUE</sv:value>
@@ -2527,10 +2505,87 @@
         <sv:value>selection:listitem</sv:value>
       </sv:property>
       <sv:property sv:name="selection:key" sv:type="String">
-        <sv:value>UNREVIEW</sv:value>
+        <sv:value>verified</sv:value>
       </sv:property>
       <sv:property sv:name="selection:label" sv:type="String">
-        <sv:value>UNREVIEW</sv:value>
+        <sv:value>VERIFIED</sv:value>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="selection:listitem">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>selection:listitem</sv:value>
+      </sv:property>
+      <sv:property sv:name="selection:key" sv:type="String">
+        <sv:value>unverified</sv:value>
+      </sv:property>
+      <sv:property sv:name="selection:label" sv:type="String">
+        <sv:value>UNVERIFIED</sv:value>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="selection:listitem">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>selection:listitem</sv:value>
+      </sv:property>
+      <sv:property sv:name="selection:key" sv:type="String">
+        <sv:value>diy</sv:value>
+      </sv:property>
+      <sv:property sv:name="selection:label" sv:type="String">
+        <sv:value>eFile</sv:value>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="selection:listitem">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>selection:listitem</sv:value>
+      </sv:property>
+      <sv:property sv:name="selection:key" sv:type="String">
+        <sv:value>assisted</sv:value>
+      </sv:property>
+      <sv:property sv:name="selection:label" sv:type="String">
+        <sv:value>eZFile</sv:value>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="selection:listitem">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>selection:listitem</sv:value>
+      </sv:property>
+      <sv:property sv:name="selection:key" sv:type="String">
+        <sv:value>itr1</sv:value>
+      </sv:property>
+      <sv:property sv:name="selection:label" sv:type="String">
+        <sv:value>ITR2</sv:value>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="selection:listitem">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>selection:listitem</sv:value>
+      </sv:property>
+      <sv:property sv:name="selection:key" sv:type="String">
+        <sv:value>itr2</sv:value>
+      </sv:property>
+      <sv:property sv:name="selection:label" sv:type="String">
+        <sv:value>ITR2</sv:value>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="selection:listitem">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>selection:listitem</sv:value>
+      </sv:property>
+      <sv:property sv:name="selection:key" sv:type="String">
+        <sv:value>itr3</sv:value>
+      </sv:property>
+      <sv:property sv:name="selection:label" sv:type="String">
+        <sv:value>all</sv:value>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="selection:listitem">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>selection:listitem</sv:value>
+      </sv:property>
+      <sv:property sv:name="selection:key" sv:type="String">
+        <sv:value>itr4</sv:value>
+      </sv:property>
+      <sv:property sv:name="selection:label" sv:type="String">
+        <sv:value>ITR4</sv:value>
       </sv:property>
     </sv:node>
   </sv:node>
