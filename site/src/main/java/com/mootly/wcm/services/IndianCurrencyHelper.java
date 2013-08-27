@@ -134,7 +134,8 @@ public final class IndianCurrencyHelper {
 	 * This Method is used to find difference between Assessment Years for Losses Calculation
 	 * @return Financial Year, String
 	 * @param Integer
-	 * Added by Dhananjay on 17-08-2013
+	 * Added on 17-08-2013
+	 * @author Dhananjay
 	 * */
 	public int diffBtwAssessmentYear(FinancialYear financialYear,String AssessmentYear){
 
@@ -168,4 +169,27 @@ public final class IndianCurrencyHelper {
 		}
 		return Double.parseDouble(rb.getString("valueList.1990.cii"));//try to send default value so that no NullPointer Exception
 	}
+
+	/**
+	 * This Method is used to round off to its nearest tenth
+	 * @return Double
+	 * @param Double
+	 * Added on 27-08-2013
+	 * @author Dhananjay
+	 * */
+
+	public long roundOffNearestTenth(long in){
+
+		if(in < 0){
+			in = in * (-1);
+			long roundedValue = in%10 >= 5 ? ((in/10)*10)+10 : (in/10)*10;
+			return roundedValue*(-1);
+		}else if(in > 0){
+		 long roundedValue = in%10 >= 5 ? ((in/10)*10)+10 : (in/10)*10;
+		 return roundedValue;
+		}else
+			return 0;
+
+	}
+
 }
