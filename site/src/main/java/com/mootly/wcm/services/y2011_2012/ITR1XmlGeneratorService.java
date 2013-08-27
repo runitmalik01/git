@@ -32,7 +32,6 @@ import in.gov.incometaxindiaefiling.y2011_2012.TaxPaid;
 import in.gov.incometaxindiaefiling.y2011_2012.TaxPayment;
 import in.gov.incometaxindiaefiling.y2011_2012.TaxPayments;
 import in.gov.incometaxindiaefiling.y2011_2012.TaxesPaid;
-import in.gov.incometaxindiaefiling.y2011_2012.DeductUndChapVIA;
 import in.gov.incometaxindiaefiling.y2011_2012.Verification;
 import in.gov.incometaxindiaefiling.y2011_2012.Verification.Declaration;
 
@@ -57,7 +56,6 @@ import javax.xml.datatype.DatatypeConstants;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
-import org.apache.velocity.runtime.parser.node.MathUtils;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
@@ -83,7 +81,6 @@ import com.mootly.wcm.beans.compound.HouseIncomeDetail;
 import com.mootly.wcm.beans.compound.SalaryIncomeDetail;
 import com.mootly.wcm.beans.compound.SelfAssesmentTaxDetail;
 import com.mootly.wcm.beans.compound.TdsOthersDetail;
-import com.mootly.wcm.model.FilingSection;
 import com.mootly.wcm.model.FinancialYear;
 import com.mootly.wcm.model.deduction.DeductionHead;
 import com.mootly.wcm.model.deduction.DeductionSection;

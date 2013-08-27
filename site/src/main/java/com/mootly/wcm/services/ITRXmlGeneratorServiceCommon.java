@@ -41,6 +41,19 @@ public class ITRXmlGeneratorServiceCommon implements XmlGeneratorService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	@Override
+	public ValidationResponse validateXmlCorp(InputStream inputStream)
+			throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	@Override
+	public ValidationResponse validateXmlCorp(String xml) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 	@Override
 	public Map<String,Object> generateXml(FinancialYear financialYear,

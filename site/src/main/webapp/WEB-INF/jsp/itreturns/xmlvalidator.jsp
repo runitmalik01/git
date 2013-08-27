@@ -45,6 +45,19 @@
 					</div>
 			</div>
 			<div class="row-fluid show-grid">
+					<div class="span12">
+						<div class="rowlabel">
+							<label for="financialYear"><small>Return Type</small> </label>
+						</div>
+						<div class="rowlabel">
+							<select id="isCorp" name="isCorp">
+								<option value="FALSE">Individual/HUF</option>
+								<option value="TRUE">Corporate</option>								
+							</select>
+						</div>
+					</div>
+			</div>
+			<div class="row-fluid show-grid">
 				<div class="span12">
 						<div class="rowlabel">
 							<label for="xml"><small>Option 1 (Upload your return)</small> </label>

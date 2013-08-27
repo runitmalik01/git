@@ -3,7 +3,6 @@ package com.mootly.wcm.services.y2011_2012;
 import in.gov.incometaxindiaefiling.y2011_2012.ITR;
 import in.gov.incometaxindiaefiling.y2011_2012.ITR1;
 
-import java.io.File;
 import java.io.InputStream;
 import java.io.StringReader;
 import java.io.StringWriter;
@@ -18,30 +17,21 @@ import javax.xml.bind.Unmarshaller;
 import javax.xml.bind.ValidationEvent;
 import javax.xml.bind.ValidationEventHandler;
 import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.transform.Source;
-import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamSource;
 import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 import javax.xml.validation.Validator;
 
-import org.apache.commons.lang.StringUtils;
-import org.hippoecm.hst.content.beans.query.HstQuery;
-import org.hippoecm.hst.content.beans.query.HstQueryManager;
-import org.hippoecm.hst.content.beans.query.filter.Filter;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.w3c.dom.Document;
 import org.w3c.dom.bootstrap.DOMImplementationRegistry;
 import org.w3c.dom.ls.DOMImplementationLS;
 import org.w3c.dom.ls.LSInput;
 import org.w3c.dom.ls.LSResourceResolver;
-import org.xml.sax.InputSource;
-import org.xml.sax.SAXException;
 
 import com.mootly.wcm.beans.MemberPersonalInformation;
 import com.mootly.wcm.model.FinancialYear;
@@ -137,6 +127,23 @@ public class ITRXmlGeneratorService extends ITRXmlGeneratorServiceCommon  implem
       
 	}
 	
+	public Unmarshaller validateXmlGetUnmarshallerCorp() throws Exception {
+		SchemaFactory sf = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+		sf.setResourceResolver(new ClasspathResourceResolver());
+		InputStream inputStream1= this.getClass().getClassLoader().getResourceAsStream("in/gov/incometaxindiaefiling/y2011_2012/CorpITRMain12.xsd");
+		
+		Source streamSource = new StreamSource(inputStream1);
+        Schema schema = sf.newSchema(streamSource); 
+ 
+        JAXBContext jc = JAXBContext.newInstance(in.gov.incometaxindiaefiling.y2011_2012.corp.ITR.class);
+ 
+        Unmarshaller unmarshaller = jc.createUnmarshaller();
+        unmarshaller.setSchema(schema);
+        
+        return unmarshaller;
+      
+	}
+	
 	public ValidationEventHandler validateXmlSetValidationEventHandler(Unmarshaller unmarshaller) throws Exception {
 		MyValidationEventHandler myValidationHandler = new MyValidationEventHandler();
 	    unmarshaller.setEventHandler(myValidationHandler);
@@ -173,6 +180,24 @@ public class ITRXmlGeneratorService extends ITRXmlGeneratorServiceCommon  implem
 	}
 	
 	
+	public ValidationResponse validateXmlCorp(InputStream inputStream)
+			throws Exception {
+		// TODO Auto-generated method stub
+		Unmarshaller unmarshaller = validateXmlGetUnmarshallerCorp();		
+		validateXmlSetValidationEventHandler(unmarshaller);
+		in.gov.incometaxindiaefiling.y2011_2012.corp.ITR itr = (in.gov.incometaxindiaefiling.y2011_2012.corp.ITR) unmarshaller.unmarshal(inputStream);
+		ValidationResponse validationResponse = validateXmlGetErrors(unmarshaller);
+		return validationResponse;
+	}
+	
+	public ValidationResponse validateXmlCorp(String xml) throws Exception {			
+		Unmarshaller unmarshaller = validateXmlGetUnmarshallerCorp();		
+		validateXmlSetValidationEventHandler(unmarshaller);
+		in.gov.incometaxindiaefiling.y2011_2012.corp.ITR itr = (in.gov.incometaxindiaefiling.y2011_2012.corp.ITR) unmarshaller.unmarshal(new StringReader(xml));
+		ValidationResponse validationResponse = validateXmlGetErrors(unmarshaller);
+		return validationResponse;
+	}
+	
 	/**
 	* This is an implementation of LSResourceResolver that can resolve XML schemas from the classpath
 	*/
@@ -196,9 +221,10 @@ public class ITRXmlGeneratorService extends ITRXmlGeneratorServiceCommon  implem
 			String whatToSearch = systemId;
 			//if ( systemId != null && systemId.startsWith("./")) whatToSearch = systemId.substring(2);
 			if ( systemId != null && systemId.startsWith("./")) whatToSearch = systemId.substring(2);
-			InputStream is = this.getClass().getClassLoader().getResourceAsStream("in/gov/incometaxindiaefiling/y2011_2012/" + whatToSearch);//getClass().getResourceAsStream("/" + systemId);
+			String fullClassPath = "in/gov/incometaxindiaefiling/y2011_2012/" + whatToSearch;
+			InputStream is = this.getClass().getClassLoader().getResourceAsStream(fullClassPath);//getClass().getResourceAsStream("/" + systemId);
 			if (is == null) {
-				System.out.println("STOP");
+				System.out.println("STOP " + fullClassPath);
 			}
 			else {
 				lsInput.setByteStream(is);

@@ -20,4 +20,7 @@ public interface XmlGeneratorService {
 	//void validateXml(File file) throws Exception;
 	ValidationResponse validateXml(String xml) throws Exception;
 	ValidationResponse validateXml(InputStream inputStream) throws Exception;
+	
+	ValidationResponse validateXmlCorp(String xml) throws Exception;
+	ValidationResponse validateXmlCorp(InputStream inputStream) throws Exception;
 }

@@ -79,7 +79,7 @@ public class ITRXmlValidator extends BaseComponent {
 	public void doBeforeRender(HstRequest request, HstResponse response) {
 		// TODO Auto-generated method stub
 		super.doBeforeRender(request, response);
-		FormMap formMap = new FormMap(request,new String[] {"xml","isValid","errors","financialYear","itReturnType","reason","PAN"});
+		FormMap formMap = new FormMap(request,new String[] {"xml","isValid","errors","financialYear","itReturnType","reason","PAN","isCorp"});
 		String publicParameterUUID = getPublicRequestParameter(request, "uuid");
 		if(publicParameterUUID==null){
 			publicParameterUUID=(String)request.getSession().getAttribute("uuid");
@@ -150,7 +150,7 @@ public class ITRXmlValidator extends BaseComponent {
 			throws HstComponentException {
 		// TODO Auto-generated method stub		
 		super.doAction(request, response);
-		FormMap formMap = new FormMap(request,new String[] {"xml","isValid","errors","financialYear"});
+		FormMap formMap = new FormMap(request,new String[] {"xml","isValid","errors","financialYear","isCorp"});
 		String xml = null;
 		try {
 			boolean isMultipart =  ServletFileUpload.isMultipartContent(request);
@@ -206,9 +206,17 @@ public class ITRXmlValidator extends BaseComponent {
 				//	vr = xmlGeneratorService.validateXml( inputStreamToValidate );
 				//}
 				//else 
+				boolean isCorp = false;
+				if (formMap.getField("isCorp") != null && formMap.getField("isCorp").getValue() != null && formMap.getField("isCorp").getValue().equalsIgnoreCase("TRUE")) {
+					isCorp = true;
+				}
 				if (formMap.getField("xml") != null && formMap.getField("xml").getValue() != null) {
-					//xml = formMap.getField("xml").getValue(); 
-					vr = xmlGeneratorService.validateXml( formMap.getField("xml").getValue() );
+					if (isCorp) {
+						vr = xmlGeneratorService.validateXmlCorp( formMap.getField("xml").getValue() );
+					}
+					else {
+						vr = xmlGeneratorService.validateXml( formMap.getField("xml").getValue() );
+					}
 				}
 			}			
 			if (vr != null) {
