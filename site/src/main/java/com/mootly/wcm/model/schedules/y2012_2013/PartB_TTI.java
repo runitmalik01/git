@@ -283,16 +283,17 @@ public class PartB_TTI {
 
 		BigInteger taxPayORRef = new BigInteger("0");
 		taxPayORRef = computationOfTaxLiability.getAggregateTaxInterestLiability().subtract(taxesPaid.getTotalTaxesPaid());
-		if(taxPayORRef.compareTo(BigInteger.ZERO) > 0){
-			taxPaid.setBalTaxPayable(taxPayORRef);
+		long roundOfftaxPayORRef = indianCurrencyHelper.roundOffNearestTenth(taxPayORRef.longValue());
+		if(BigInteger.valueOf(roundOfftaxPayORRef).compareTo(BigInteger.ZERO) > 0){
+			taxPaid.setBalTaxPayable(BigInteger.valueOf(roundOfftaxPayORRef));
 		}else
 			taxPaid.setBalTaxPayable(new BigInteger("0"));
 
 		partBTTI.setTaxPaid(taxPaid);
 
 		Refund refund = new Refund();
-		if(taxPayORRef.compareTo(BigInteger.ZERO) < 0){
-			refund.setRefundDue(taxPayORRef.multiply(new BigInteger("-1")));
+		if(BigInteger.valueOf(roundOfftaxPayORRef).compareTo(BigInteger.ZERO) < 0){
+			refund.setRefundDue(BigInteger.valueOf(roundOfftaxPayORRef).multiply(new BigInteger("-1")));
 		}else
 			refund.setRefundDue(new BigInteger("0"));
 		refund.setBankAccountNumber(memberPersonalInformation.getBD_ACC_NUMBER().toUpperCase());
