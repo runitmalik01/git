@@ -26,7 +26,7 @@ public final class IndianCurrencyHelper {
 	 * This Method is used to Round the Decimal Values and convert it into BigIngteger
 	 * @return BigInteger
 	 * @param double
-	 *
+	 * @author Dhananjay
 	 * */
 	public BigInteger bigIntegerRound(Double in) {
 		if(in!=null){
@@ -60,7 +60,7 @@ public final class IndianCurrencyHelper {
 	 * This Method is used to Round the Decimal Values and convert it into Long
 	 * @return Long
 	 * @param double
-	 *
+	 * @author Dhananjay
 	 * */
 	public Long longRound(Double in){
 		BigDecimal bd = new BigDecimal(in).setScale(0, RoundingMode.HALF_EVEN);
@@ -71,7 +71,7 @@ public final class IndianCurrencyHelper {
 	 * This Method is used to convert String into BigIngteger
 	 * @return BigInteger
 	 * @param String
-	 *
+	 * @author Dhananjay
 	 * */
 	public BigInteger bigIntegerRoundStr(String in){
 
@@ -87,7 +87,7 @@ public final class IndianCurrencyHelper {
 	 * This Method is used to convert long into BigInteger
 	 * @return BigInteger
 	 * @param Long
-	 *
+	 * @author Dhananjay
 	 * */
 
 	public BigInteger longToBigInteger(long in){
@@ -113,7 +113,7 @@ public final class IndianCurrencyHelper {
 	 * This Method is used to convert GregorianCalend into XMLGregorianCalendar
 	 * @return GregorianCalendar
 	 * @param Calendar
-	 *
+	 * @author Dhananjay
 	 * */
 
 	public XMLGregorianCalendar gregorianCalendar(GregorianCalendar val_Date){
@@ -185,8 +185,8 @@ public final class IndianCurrencyHelper {
 			long roundedValue = in%10 >= 5 ? ((in/10)*10)+10 : (in/10)*10;
 			return roundedValue*(-1);
 		}else if(in > 0){
-		 long roundedValue = in%10 >= 5 ? ((in/10)*10)+10 : (in/10)*10;
-		 return roundedValue;
+			long roundedValue = in%10 >= 5 ? ((in/10)*10)+10 : (in/10)*10;
+			return roundedValue;
 		}else
 			return 0;
 
