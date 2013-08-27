@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ITRETURN:ITR xsi:schemaLocation="http://incometaxindiaefiling.gov.in/main ITRMain12.xsd" xmlns:ITR1FORM="http://incometaxindiaefiling.gov.in/ITR1" xmlns:ITR2FORM="http://incometaxindiaefiling.gov.in/ITR2" xmlns:ITR3FORM="http://incometaxindiaefiling.gov.in/ITR3" xmlns:ITR4FORM="http://incometaxindiaefiling.gov.in/ITR4" xmlns:ITR4SFORM="http://incometaxindiaefiling.gov.in/ITR4S" xmlns:ITRETURN="http://incometaxindiaefiling.gov.in/main" xmlns:ITRForm="http://incometaxindiaefiling.gov.in/master" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><ITR4SFORM:ITR4S><ITRForm:CreationInfo>
+<ITRForm:SWVersionNo>1.0</ITRForm:SWVersionNo>
+<ITRForm:SWCreatedBy>Webtel Electrosoft P Ltd</ITRForm:SWCreatedBy>
+<ITRForm:XMLCreatedBy>WEB-e-TAX</ITRForm:XMLCreatedBy>
+<ITRForm:XMLCreationDate>2013-08-23</ITRForm:XMLCreationDate>
+<ITRForm:IntermediaryCity>NEW DELHI</ITRForm:IntermediaryCity>
+</ITRForm:CreationInfo>
+<ITRForm:Form_ITR4S>
+<ITRForm:FormName>ITR-4S</ITRForm:FormName>
+<ITRForm:Description>For Indl having Income From Presemptive Business</ITRForm:Description>
+<ITRForm:AssessmentYear>2012</ITRForm:AssessmentYear>
+<ITRForm:SchemaVer>Ver1.0</ITRForm:SchemaVer>
+<ITRForm:FormVer>Ver1.0</ITRForm:FormVer>
+</ITRForm:Form_ITR4S>
+<ITRForm:PersonalInfo>
+<ITRForm:AssesseeName>
+<ITRForm:SurNameOrOrgName>ARUN KUMAR HUF</ITRForm:SurNameOrOrgName>
+</ITRForm:AssesseeName>
+<ITRForm:PAN>AAKHA1568D</ITRForm:PAN>
+<ITRForm:Address>
+<ITRForm:ResidenceNo>FLAT NO 356 ATULYA APPARTMENTS</ITRForm:ResidenceNo>
+<ITRForm:ResidenceName/>
+<ITRForm:RoadOrStreet>SECTOR-18B</ITRForm:RoadOrStreet>
+<ITRForm:LocalityOrArea>DWARKA</ITRForm:LocalityOrArea>
+<ITRForm:CityOrTownOrDistrict>NEW DELHI</ITRForm:CityOrTownOrDistrict>
+<ITRForm:StateCode>09</ITRForm:StateCode>
+<ITRForm:PinCode>110075</ITRForm:PinCode>
+<ITRForm:MobileNo>9818167102</ITRForm:MobileNo>
+<ITRForm:EmailAddress>WEALTH4INDIA@GMAIL.COM</ITRForm:EmailAddress>
+</ITRForm:Address>
+<ITRForm:DOB>2008-12-30 </ITRForm:DOB>
+<ITRForm:EmployerCategory>NA</ITRForm:EmployerCategory>
+<ITRForm:Gender>X</ITRForm:Gender>
+<ITRForm:Status>H</ITRForm:Status>
+</ITRForm:PersonalInfo>
+<ITRForm:FilingStatus>
+<ITRForm:ReturnFileSec>11</ITRForm:ReturnFileSec>
+<ITRForm:ReturnType>O</ITRForm:ReturnType>
+<ITRForm:ResidentialStatus>RES</ITRForm:ResidentialStatus>
+<ITRForm:TaxStatus>NT</ITRForm:TaxStatus>
+</ITRForm:FilingStatus>
+<ITRForm:ITR4S_IncomeDeductions>
+<ITRForm:IncomeFromBusinessProf>200000</ITRForm:IncomeFromBusinessProf>
+<ITRForm:IncomeFromSal>0</ITRForm:IncomeFromSal>
+<ITRForm:TotalIncomeOfHP>0</ITRForm:TotalIncomeOfHP>
+<ITRForm:IncomeOthSrc>0</ITRForm:IncomeOthSrc>
+<ITRForm:GrossTotIncome>200000</ITRForm:GrossTotIncome>
+<ITRForm:DeductUndChapVIA>
+</ITRForm:DeductUndChapVIA>
+<ITRForm:TotalIncome>200000</ITRForm:TotalIncome>
+</ITRForm:ITR4S_IncomeDeductions>
+<ITRForm:ITR4S_TaxComputation>
+<ITRForm:TotalTaxPayable>0</ITRForm:TotalTaxPayable>
+<ITRForm:EducationCess>0</ITRForm:EducationCess>
+<ITRForm:GrossTaxLiability>0</ITRForm:GrossTaxLiability>
+<ITRForm:Section89>0</ITRForm:Section89>
+<ITRForm:NetTaxLiability>0</ITRForm:NetTaxLiability>
+<ITRForm:TotalIntrstPay>0</ITRForm:TotalIntrstPay>
+<ITRForm:TotTaxPlusIntrstPay>0</ITRForm:TotTaxPlusIntrstPay>
+</ITRForm:ITR4S_TaxComputation>
+<ITRForm:TaxPaid>
+<ITRForm:TaxesPaid>
+<ITRForm:AdvanceTax>0</ITRForm:AdvanceTax>
+<ITRForm:TDS>0</ITRForm:TDS>
+<ITRForm:TCS>0</ITRForm:TCS>
+<ITRForm:SelfAssessmentTax>0</ITRForm:SelfAssessmentTax>
+<ITRForm:TotalTaxesPaid>0</ITRForm:TotalTaxesPaid>
+</ITRForm:TaxesPaid>
+<ITRForm:BalTaxPayable>0</ITRForm:BalTaxPayable>
+</ITRForm:TaxPaid>
+<ITRForm:Refund>
+<ITRForm:RefundDue>0</ITRForm:RefundDue>
+<ITRForm:BankAccountNumber>000000000000000</ITRForm:BankAccountNumber>
+<ITRForm:EcsRequired>Y</ITRForm:EcsRequired>
+<ITRForm:DepositToBankAccount>
+<ITRForm:MICRCode>999999999</ITRForm:MICRCode>
+<ITRForm:BankAccountType>CUR</ITRForm:BankAccountType>
+</ITRForm:DepositToBankAccount>
+</ITRForm:Refund>
+<ITR4SFORM:TaxExmpIntInc>0</ITR4SFORM:TaxExmpIntInc><ITRForm:Verification>
+<ITRForm:Declaration>
+<ITRForm:AssesseeVerName>ARUN KUMAR</ITRForm:AssesseeVerName>
+<ITRForm:FatherName>Shyam Nandan Singh</ITRForm:FatherName>
+<ITRForm:AssesseeVerPAN>ALRPK6234E</ITRForm:AssesseeVerPAN>
+</ITRForm:Declaration>
+<ITRForm:Place>NEW DELHI</ITRForm:Place>
+<ITRForm:Date>2013-08-23</ITRForm:Date>
+</ITRForm:Verification>
+<ITRForm:NatOfBus>
+<ITRForm:Business>
+<ITRForm:Code>0204</ITRForm:Code>
+<ITRForm:Trade>
+<ITRForm:TradeName>FABRICS</ITRForm:TradeName>
+</ITRForm:Trade>
+</ITRForm:Business>
+</ITRForm:NatOfBus>
+<ITRForm:ScheduleBPForITR4S>
+<ITRForm:PersumptiveInc44AD>
+<ITRForm:GrsTrnOverOrReceipt>2500000</ITRForm:GrsTrnOverOrReceipt>
+<ITRForm:TotPersumptiveInc44AD>200000</ITRForm:TotPersumptiveInc44AD>
+</ITRForm:PersumptiveInc44AD>
+<ITRForm:PersumptiveInc44AE>
+<ITRForm:PersumptiveIncHeavyVehicle>0</ITRForm:PersumptiveIncHeavyVehicle>
+<ITRForm:PersumptiveIncOtherVehicle>0</ITRForm:PersumptiveIncOtherVehicle>
+<ITRForm:TotPersumInc44AE>0</ITRForm:TotPersumInc44AE>
+</ITRForm:PersumptiveInc44AE>
+<ITRForm:IncChargeableUnderBus>200000</ITRForm:IncChargeableUnderBus>
+<ITRForm:NoBooksOfAccBS>
+<ITRForm:TotSundryDbtAmt>0</ITRForm:TotSundryDbtAmt>
+<ITRForm:TotSundryCrdAmt>0</ITRForm:TotSundryCrdAmt>
+<ITRForm:TotStkInTradAmt>0</ITRForm:TotStkInTradAmt>
+<ITRForm:CashBalAmt>0</ITRForm:CashBalAmt>
+</ITRForm:NoBooksOfAccBS>
+</ITRForm:ScheduleBPForITR4S>
+</ITR4SFORM:ITR4S></ITRETURN:ITR>
