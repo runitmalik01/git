@@ -8,6 +8,7 @@
  */
 
 package com.mootly.wcm.components.itreturns;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -23,6 +24,7 @@ import org.apache.commons.lang.StringUtils;
 import org.hippoecm.hst.component.support.forms.FormMap;
 import org.hippoecm.hst.component.support.forms.FormUtils;
 import org.hippoecm.hst.component.support.forms.StoreFormResult;
+import org.hippoecm.hst.content.beans.ObjectBeanManagerException;
 import org.hippoecm.hst.content.beans.query.HstQuery;
 import org.hippoecm.hst.content.beans.query.HstQueryResult;
 import org.hippoecm.hst.content.beans.query.exceptions.QueryException;
@@ -39,33 +41,30 @@ import org.hippoecm.hst.content.beans.standard.facetnavigation.HippoFacetsAvaila
 import org.hippoecm.hst.core.component.HstComponentException;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
-import org.hippoecm.hst.core.parameters.ParametersInfo;
 import org.hippoecm.hst.core.request.ComponentConfiguration;
 import org.hippoecm.hst.util.SearchInputParsingUtils;
 import org.hippoecm.hst.utils.BeanUtils;
-import org.json.JSONException;
-import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.context.ApplicationContext;
-import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import com.mootly.wcm.annotations.DataTypeValidationHelper;
 import com.mootly.wcm.annotations.DataTypeValidationType;
 import com.mootly.wcm.annotations.FormFields;
 import com.mootly.wcm.annotations.RequiredFields;
+import com.mootly.wcm.beans.MemberPayment;
 import com.mootly.wcm.beans.MemberPersonalInformation;
 import com.mootly.wcm.beans.Product;
+import com.mootly.wcm.beans.ValueListDocument;
 import com.mootly.wcm.components.ComponentUtil;
 import com.mootly.wcm.components.ITReturnComponent;
-import com.mootly.wcm.components.products.OverviewParamInfo;
 import com.mootly.wcm.model.FilingSection;
 import com.mootly.wcm.model.FilingStatus;
 import com.mootly.wcm.model.FinancialYear;
 import com.mootly.wcm.model.ITReturnHomePageView;
 import com.mootly.wcm.model.ITReturnType;
+import com.mootly.wcm.model.PaymentVerificationStatus;
+import com.mootly.wcm.services.FreeTextSearchSreviceImpl;
 import com.mootly.wcm.services.SequenceGenerator;
-import com.mootly.wcm.services.SequenceGeneratorImpl;
 import com.mootly.wcm.utils.Constants;
 import com.mootly.wcm.utils.GoGreenUtil;
 import com.mootly.wcm.utils.PageableCollection;
@@ -82,21 +81,18 @@ abstract public class AbstractITReturnHomePage extends ITReturnComponent {
 	private static final String PARAM_ORDER_BY = "orderBy";
 	private static final String DEFAULT_ORDER_BY = "hippostdpubwf:lastModificationDate";
 
-
 	private static final Logger log = LoggerFactory.getLogger(AbstractITReturnHomePage.class);
-	
+
 	@Override
 	public void init(ServletContext servletContext,
 			ComponentConfiguration componentConfig)
-			throws HstComponentException {
+					throws HstComponentException {
 		// TODO Auto-generated method stub
 		super.init(servletContext, componentConfig);
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public void doBeforeRender(HstRequest request, HstResponse response) {
-
 		super.doBeforeRender(request, response);			
 		List<HippoFolderBean> pansForMember = getPanFolder().getFolders(); 
 		HippoBean currentBean = pansForMember.get(0); //this.getContentBean(request);
@@ -129,135 +125,78 @@ abstract public class AbstractITReturnHomePage extends ITReturnComponent {
 
 		String from = this.getPublicRequestParameter(request, "from");
 		String jsEnabled = getPublicRequestParameter(request, "jsEnabled");
+		try{
+			String createValueListPath = request.getRequestContext().getResolvedMount().getMount().getCanonicalContentPath()+"/common/valuelists/";
+			ValueListDocument valueListDocument = (ValueListDocument) getObjectBeanManager(request).getObject(createValueListPath+"freetextsearchvaluelist");
+			request.setAttribute("valueListDocument", valueListDocument);
+		} catch (ObjectBeanManagerException e) {
+			// TODO Auto-generated catch block
+			log.error("Error While get the Object at path in repository",e);
+		}
+		//hack on search.not use query search.empty query so that we have all page collection which have PersonalInformation(serviceRequest)
+		String PAYMENT_QUERY = null;
+		if(StringUtils.isNotBlank(query) && isOnVendorPortal()){ 
+			PAYMENT_QUERY=query;
+			query="";
+		}
 
-		try {
-			HippoBean theScopeBean = getScope(request);
-			if (log.isInfoEnabled()) {
-				log.info("theScopeBean:" + theScopeBean.getName());
-			}
-			HstQuery hstQuery = this.getQueryManager(request).createQuery(theScopeBean, MemberPersonalInformation.class);
-			if (!StringUtils.isEmpty(query)) {
-				Filter f = hstQuery.createFilter();
-				Filter f1 = hstQuery.createFilter();
-				f1.addContains(".", query);
-				Filter f2 = hstQuery.createFilter();
-				f2.addContains("mootlywcm:title", query);
-				f.addOrFilter(f1);
-				f.addOrFilter(f2);
-				hstQuery.setFilter(f);
-			} else {
-				if (!StringUtils.isEmpty(order) && !"relevance".equals(order)) {
-					if ("-lastModificationDate".equals(order)) {
-						hstQuery.addOrderByDescending("hippostdpubwf:lastModificationDate");
-					} else if (order.startsWith("-")) {
-						hstQuery.addOrderByDescending("mootlywcm:" + order.substring(1));
-					} else {
-						hstQuery.addOrderByAscending("mootlywcm:" + order);
+		HstQuery hstQuery = createMemberHomePageHstQuery(request, query, order, orderBy, from, jsEnabled);
+
+		Map<String, Object> hstQueryResulSettMap = generatePageCollectionResultOfHstQuery(request, currentBean, hstQuery, pageSize, currentPage);
+
+		PageableCollection pages=(PageableCollection) hstQueryResulSettMap.get("pages");
+		long resultCount = (Long) hstQueryResulSettMap.get("resultCount");
+
+		request.setAttribute("docs", pages);
+		List<ITReturnHomePageView> listOfITReturnHomePageView = new ArrayList<ITReturnHomePageView>();
+		if (pages != null) {
+			for (Object o:pages.getItems()) {
+				try {
+					MemberPersonalInformation m = (MemberPersonalInformation) o;
+					HippoFolder theParentofPersonalInfo=(HippoFolder) m.getParentBean();
+					MemberPayment memberPaymentDocs = theParentofPersonalInfo.getBean("memberpayment", MemberPayment.class);
+					if(PAYMENT_QUERY!=null && isOnVendorPortal()){
+						FreeTextSearchSreviceImpl freeTextSearchSreviceImpl = new FreeTextSearchSreviceImpl();
+						if(freeTextSearchSreviceImpl.getFreeTextResultOnMember(m, PAYMENT_QUERY, memberPaymentDocs)){
+							listOfITReturnHomePageView.add(createITReturnPageView(m, request));
+						}
+					}else{
+						listOfITReturnHomePageView.add(createITReturnPageView(m, request));
 					}
-				} else {
-					hstQuery.addOrderByDescending(orderBy);
+				}catch (Exception ex) {
+					log.warn("Error",ex);
 				}
 			}
-			if (from != null && Boolean.parseBoolean(jsEnabled)) {
-				hstQuery.setOffset(Integer.valueOf(from));
-			}
-
-			PageableCollection pages;
-			long resultCount = 0;
-
-			if (!(currentBean instanceof HippoFacetChildNavigationBean || currentBean instanceof HippoFacetNavigation)) {
-				final HstQueryResult result = hstQuery.execute();
-				pages = new PageableCollection<HippoBean>(result.getHippoBeans(), pageSize, currentPage);
-				resultCount = result.getSize();
-			} else {
-				final HippoFacetNavigationBean facNavBean = BeanUtils.getFacetNavigationBean(request, hstQuery, objectConverter);
-
-				if (facNavBean == null) {
-					final List<HippoBean> noResults = Collections.emptyList();
-					pages = new PageableCollection(0, noResults);
-					resultCount = 0;
-				} else {
-					final HippoResultSetBean result = facNavBean.getResultSet();
-					final HippoDocumentIterator<Product> beans = result.getDocumentIterator(Product.class);
-					if (hstQuery.getOffset() > 0) {
-						beans.skip(hstQuery.getOffset());
-					}
-					pages = new PageableCollection(beans, facNavBean.getCount().intValue(), GoGreenUtil.getIntConfigurationParameter(request,
-							Constants.PAGE_SIZE, pageSize), currentPage);
-					resultCount = result.getCount();
-				}
-			}
-			request.setAttribute("docs", pages);
-			List<ITReturnHomePageView> listOfITReturnHomePageView = new ArrayList<ITReturnHomePageView>();
-			if (pages != null) {
-				for (Object o:pages.getItems()) {
-					try {
+			//at above we have only 25 element due to limit page size so not some time not have in query 
+			//to overcome this we will regenrate page collection and now find query in this.
+			if(listOfITReturnHomePageView.isEmpty() && isOnVendorPortal()){
+				Long RepageSize = pages.getTotal();
+				Map<String, Object> RehstQueryResulSettMap = generatePageCollectionResultOfHstQuery(request, currentBean, hstQuery, RepageSize.intValue(), currentPage);
+				PageableCollection Repages=(PageableCollection) RehstQueryResulSettMap.get("pages");
+				if(Repages!=null){
+					for (Object o:Repages.getItems()) {
 						MemberPersonalInformation m = (MemberPersonalInformation) o;
-						String thePath = m.getNode().getPath();
-						String theParentFolder = m.getParentBean().getName();
-						
-						log.info(thePath);
-						HippoFolder theMemberFolderBean = (HippoFolder) m.getParentBean().getParentBean().getParentBean().getParentBean().getParentBean();
-						log.info(theMemberFolderBean.getNode().getPath());
-						
-						ITReturnHomePageView itReturnHomePageView = new ITReturnHomePageView();
-						
-						itReturnHomePageView.setTheParentFolder(theParentFolder);
-
-						itReturnHomePageView.setPan(m.getPAN());
-						FinancialYear fy = FinancialYear.getByDisplayName(m.getFinancialYear());
-						itReturnHomePageView.setFinancialYear(fy);
-						
-						FilingSection filingSection = FilingSection.getByXmlCode(m.getReturnSection());
-						itReturnHomePageView.setFilingSection(filingSection);
-						
-						String itrFolderSuffix = ITReturnType.getByFolderSuffix(theParentFolder);
-						itReturnHomePageView.setItrFolderSuffix(itrFolderSuffix);
-						
-						ITReturnType itReturnType = ITReturnType.getByXmlStatus(m.getReturnType());
-						itReturnHomePageView.setItReturnType(itReturnType);
-						
-						FilingStatus filingStatus = FilingStatus.getByXmlCode( m.getFilingStatus() );
-						itReturnHomePageView.setFilingStatus(filingStatus);
-						itReturnHomePageView.setLastOrOrgName(m.getLastName());
-						itReturnHomePageView.setITRForm(m.getSelectedITRForm());
-						itReturnHomePageView.setITRFormMode(m.getSelectedServiceDeliveryOption());
-						itReturnHomePageView.setEmail(m.getEmail());
-						itReturnHomePageView.setDOB(m.getDOBStr());
-						itReturnHomePageView.setFullName(m.getName());
-						
-						String stringUUID= theMemberFolderBean.getCanonicalUUID();
-						itReturnHomePageView.setCanonicalUUID(stringUUID);
-						
-						itReturnHomePageView.setPathToItr(theMemberFolderBean.getPath()); //the Path
-						//can we find the member name who filed it?
-						
-						
-						listOfITReturnHomePageView.add(itReturnHomePageView);
-						
-						
-					}catch (Exception ex) {
-						log.warn("Error",ex);
+						FreeTextSearchSreviceImpl freeTextSearchSreviceImpl = new FreeTextSearchSreviceImpl();
+						if(freeTextSearchSreviceImpl.getFreeTextResultOnMember(m, PAYMENT_QUERY, m)){
+							listOfITReturnHomePageView.add(createITReturnPageView(m, request));
+						}
 					}
 				}
-				request.setAttribute("listOfITReturnHomePageView", listOfITReturnHomePageView);		
 			}
-			String facetLocation= "vendors/faceteditreturns";
-			HippoBean vendorFolder = getSiteContentBaseBean(request).getBean("vendors");
-			HippoBean theFacet = vendorFolder.getBean("itreturnsfacetnav");
-			HippoFacetsAvailableNavigation facetNavigation = getSiteContentBaseBean(request).getBean(facetLocation, HippoFacetsAvailableNavigation.class);
-	        if (facetNavigation != null) {
-	            request.setAttribute("facets", facetNavigation.getFolders());
-	        }
-			
-			request.setAttribute("count", resultCount);
-			Boolean isReseller = request.isUserInRole("reseller");
-			request.setAttribute("reseller", isReseller);
+			request.setAttribute("listOfITReturnHomePageView", listOfITReturnHomePageView);		
 		}
-		catch (QueryException qe) {
-			log.error("Error while getting the documents " + qe.getMessage(), qe);
+		String facetLocation= "vendors/faceteditreturns";
+		HippoBean vendorFolder = getSiteContentBaseBean(request).getBean("vendors");
+		HippoBean theFacet = vendorFolder.getBean("itreturnsfacetnav");
+		HippoFacetsAvailableNavigation facetNavigation = getSiteContentBaseBean(request).getBean(facetLocation, HippoFacetsAvailableNavigation.class);
+		if (facetNavigation != null) {
+			request.setAttribute("facets", facetNavigation.getFolders());
 		}
-	
+
+		request.setAttribute("count", resultCount);
+		Boolean isReseller = request.isUserInRole("reseller");
+		request.setAttribute("reseller", isReseller);
+
 	}
 	@Override
 	public void doAction(HstRequest request, HstResponse response)
@@ -286,8 +225,8 @@ abstract public class AbstractITReturnHomePage extends ITReturnComponent {
 		if (filingSection == null || filingSection == FilingSection.UNKNOWN) {
 			return;
 		}
-		*/
-		
+		 */
+
 		if (!DataTypeValidationHelper.isOfType(pan, DataTypeValidationType.PAN)) {
 			return;
 		}
@@ -301,7 +240,7 @@ abstract public class AbstractITReturnHomePage extends ITReturnComponent {
 			return;
 		}
 		// sending email to admin of wealth4india :- by Pankaj Singh
-		
+
 		String StartApp_Mobile = map.getField("pi_mobile").getValue();
 		Map<String,Object> velocityContext = new HashMap<String, Object>();
 		velocityContext.put("userName",getUserName());
@@ -328,7 +267,166 @@ abstract public class AbstractITReturnHomePage extends ITReturnComponent {
 		// TODO Auto-generated method stub
 		return false;
 	}
-	
+
 	abstract public HippoBean getScope(HstRequest request);
-	
+
+	public static ITReturnHomePageView createITReturnPageView(MemberPersonalInformation m,HstRequest request){
+		String paymentStatus = "";String paymentType = "None";
+
+		String theParentFolder = m.getParentBean().getName();
+		HippoFolder theMemberFolderBean = (HippoFolder) m.getParentBean().getParentBean().getParentBean().getParentBean().getParentBean();
+
+		ITReturnHomePageView itReturnHomePageView = new ITReturnHomePageView();
+
+		itReturnHomePageView.setPan(m.getPAN());
+		FinancialYear fy = FinancialYear.getByDisplayName(m.getFinancialYear());
+		itReturnHomePageView.setFinancialYear(fy);
+
+		FilingSection filingSection = FilingSection.getByXmlCode(m.getReturnSection());
+		itReturnHomePageView.setFilingSection(filingSection);
+
+		String itrFolderSuffix = ITReturnType.getByFolderSuffix(theParentFolder);
+		itReturnHomePageView.setItrFolderSuffix(itrFolderSuffix);
+
+		ITReturnType itReturnType = ITReturnType.getByXmlStatus(m.getReturnType());
+		itReturnHomePageView.setItReturnType(itReturnType);
+
+		FilingStatus filingStatus = FilingStatus.getByXmlCode( m.getFilingStatus() );
+		itReturnHomePageView.setFilingStatus(filingStatus);
+		itReturnHomePageView.setLastOrOrgName(m.getLastName());
+		itReturnHomePageView.setITRForm(m.getSelectedITRForm());
+		itReturnHomePageView.setITRFormMode(m.getSelectedServiceDeliveryOption());
+		itReturnHomePageView.setEmail(m.getEmail());
+		itReturnHomePageView.setDOB(m.getDOBStr());
+		itReturnHomePageView.setFullName(m.getName());
+		String stringUUID= theMemberFolderBean.getCanonicalUUID();
+		itReturnHomePageView.setCanonicalUUID(stringUUID);
+		itReturnHomePageView.setPathToItr(theMemberFolderBean.getPath()); //the Path can we find the member name who filed it?
+		//logic for Payment Status
+		List<MemberPayment> listOfMemberPaymentDocs = new ArrayList<MemberPayment>();
+		HippoFolder theParentofPersonalInfo=(HippoFolder) m.getParentBean();
+		listOfMemberPaymentDocs=theParentofPersonalInfo.getChildBeans(MemberPayment.class);
+		if(listOfMemberPaymentDocs.size()>0){
+			for(MemberPayment py:listOfMemberPaymentDocs){
+				if(py.getPaymentVerificationStatus()!=null){
+					if(py.getPaymentVerificationStatus().equals(PaymentVerificationStatus.VERIFIED)){
+						paymentStatus ="VERIFIED";
+						paymentType = py.getPaymentType().name();
+					}
+					if(py.getPaymentVerificationStatus().equals(PaymentVerificationStatus.UNVERIFIED)){
+						paymentStatus="UNVERIFIED";
+						paymentType = py.getPaymentType().name();
+					}
+				}
+			}
+		}else{
+			paymentStatus="DUE";
+		}
+		itReturnHomePageView.setPaymentStatus(paymentStatus);
+		itReturnHomePageView.setPaymentType(paymentType);
+		return itReturnHomePageView;
+	}
+	/**
+	 * This method is used to create the HST Query.
+	 * 
+	 * @param request {@link HstRequest}
+	 * @param query {@link String} Query issued by user as free text search
+	 * @param order {@link String} Order of result in Asc/Desc
+	 * @param orderBy {@link String} OrderBy from which property respect Order content
+	 * @param from {@link String}
+	 * @param jsEnabled {@link String}
+	 * 
+	 * @return {@link HstQuery} Created Query to get Results
+	 * 
+	 * */
+	@SuppressWarnings("unchecked")
+	public HstQuery createMemberHomePageHstQuery(HstRequest request,String query,String order,String orderBy,String from,String jsEnabled){
+		HstQuery hstQuery=null;
+		try {
+			HippoBean theScopeBean = getScope(request);
+			if (log.isInfoEnabled()) {
+				log.info("theScopeBean:" + theScopeBean.getName());
+			}
+			hstQuery = getQueryManager(request).createQuery(theScopeBean, MemberPersonalInformation.class);
+			if (!StringUtils.isEmpty(query)) {
+				//BaseFilter baseFilter=new PrimaryNodeTypeFilterImpl(new String[]{"mootlywcm:MemberPersonalInformation","mootlywcm:payment"});
+				Filter f = hstQuery.createFilter();
+				Filter f1 = hstQuery.createFilter();
+				f1.addContains(".", query);
+				Filter f2 = hstQuery.createFilter();
+				f2.addContains("mootlywcm:title", query);
+				f.addOrFilter(f1);
+				f.addOrFilter(f2);
+				hstQuery.setFilter(f);
+				hstQuery.addOrderByDescending("hippostdpubwf:lastModificationDate");
+			} else {
+				if (!StringUtils.isEmpty(order) && !"relevance".equals(order)) {
+					if ("-lastModificationDate".equals(order)) {
+						hstQuery.addOrderByDescending("hippostdpubwf:lastModificationDate");
+					} else if (order.startsWith("-")) {
+						hstQuery.addOrderByDescending("mootlywcm:" + order.substring(1));
+					} else {
+						hstQuery.addOrderByAscending("mootlywcm:" + order);
+					}
+				} else {
+					hstQuery.addOrderByDescending(orderBy);
+				}
+			}
+			if (from != null && Boolean.parseBoolean(jsEnabled)) {
+				hstQuery.setOffset(Integer.valueOf(from));
+			}
+		} catch (QueryException e) {
+			// TODO Auto-generated catch block
+			log.error("Error while creating HSTQuery",e);
+		}			
+		return hstQuery;
+	}
+	/**
+	 * This method is used to create {@link PageableCollection} based on requested {@link HstQuery}
+	 * 
+	 * @param request {@link HstRequest}
+	 * @param currentBean {@link HippoBean}
+	 * @param hstQuery {@link HstQuery} requested hstQuery 
+	 * @param pageSize size of page 
+	 * @param currentPage Page Number of requested Page.
+	 * 
+	 * @return {@link PageableCollection} result of {@link HstQuery} 
+	 * 
+	 * */
+	@SuppressWarnings("unchecked")
+	public Map<String ,Object> generatePageCollectionResultOfHstQuery(HstRequest request,HippoBean currentBean,HstQuery hstQuery,int pageSize,int currentPage){
+		Map<String ,Object> resultOFHstQuery = new HashMap<String, Object>();
+		PageableCollection pages=null;
+		long resultCount = 0;
+		if (!(currentBean instanceof HippoFacetChildNavigationBean || currentBean instanceof HippoFacetNavigation)) {
+			HstQueryResult result;
+			try {
+				result = hstQuery.execute();
+				pages = new PageableCollection<HippoBean>(result.getHippoBeans(), pageSize, currentPage);
+				resultCount = result.getSize();
+			} catch (QueryException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else {
+			final HippoFacetNavigationBean facNavBean = BeanUtils.getFacetNavigationBean(request, hstQuery, objectConverter);
+			if (facNavBean == null) {
+				final List<HippoBean> noResults = Collections.emptyList();
+				pages = new PageableCollection(0, noResults);
+				resultCount = 0;
+			} else {
+				final HippoResultSetBean result = facNavBean.getResultSet();
+				final HippoDocumentIterator<Product> beans = result.getDocumentIterator(Product.class);
+				if (hstQuery.getOffset() > 0) {
+					beans.skip(hstQuery.getOffset());
+				}
+				pages = new PageableCollection(beans, facNavBean.getCount().intValue(), GoGreenUtil.getIntConfigurationParameter(request,
+						Constants.PAGE_SIZE, pageSize), currentPage);
+				resultCount = result.getCount();
+			}
+		}
+		resultOFHstQuery.put("pages", pages);
+		resultOFHstQuery.put("resultCount", resultCount);
+		return resultOFHstQuery;
+	}
 }

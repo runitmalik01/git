@@ -16,6 +16,13 @@ import org.hippoecm.hst.core.component.HstResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.mootly.wcm.annotations.DataTypeValidationFields;
+import com.mootly.wcm.annotations.DataTypeValidationType;
+import com.mootly.wcm.annotations.FormFields;
+import com.mootly.wcm.annotations.PrimaryBean;
+import com.mootly.wcm.annotations.RequiredBeans;
+import com.mootly.wcm.beans.BalanceSheetDocument;
+import com.mootly.wcm.beans.MemberPersonalInformation;
 import com.mootly.wcm.beans.ScreenConfigDocument;
 import com.mootly.wcm.beans.ScreenFiedSetDocument;
 import com.mootly.wcm.beans.ValueListDocument;
@@ -28,6 +35,33 @@ import com.mootly.wcm.components.ITReturnComponent;
  * @author BEN-10
  *
  */
+@PrimaryBean(primaryBeanClass=BalanceSheetDocument.class)
+@RequiredBeans(requiredBeans=MemberPersonalInformation.class)
+@FormFields(fieldNames={"propCapital","reavReserve", "capReserve", "statReserve", "otherReserve","forgnCurrLoan", "rupLoanBank", "rupLoanOther", "unsecLoanBank",
+		"defTaxLiability", "sourcOfFund", "grossBlock", "depreciation", "capWorkProgrss", "grossFixedAsset", "ltInvestQuot", "ltInvestUnquot", "stInvestEquity",
+		"stInvestPrefShare", "stInvestDebent", "grossInvest", "storesConsum", "rawMaterial", "stockProcess", "finishGoods", "sundryDebtor", "cashInHand",
+		"balanceBank", "otherCurrAsset", "grossCurrAssets", "advancRecover", "loanAdvanCorpOthr", "balWthRevenAuth","grossLoanFund",
+		"grossCurrAssLoanAdvan", "sundryCreditor", "laibLeaseAsset", "unpaidDividnd", "unpaidMatdebntur", "unpaidCallMoney", "interestAcuurOnabove",
+		"interestAcuurNtLoan", "grossCurrLiability", "incometaxProvis", "wealthTaxProvis", "leaveProvis","grossProprietFund","unsecLoanOther",
+		"otherProvis", "grossProvision", "grossCurrLaibilProvison", "netCurrAssets", "miscellanExpend", "deftaxAssets", "profLoassAccn", "grossAppliFund"})
+@DataTypeValidationFields(dataTypes={DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,
+		DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,
+		DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,
+		DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,
+		DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,
+		DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,
+		DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,
+		DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,
+		DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,
+		DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,
+		DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL},
+fieldNames={"propCapital","reavReserve", "capReserve", "statReserve", "otherReserve","forgnCurrLoan", "rupLoanBank", "rupLoanOther", "unsecLoanBank",
+		"defTaxLiability", "sourcOfFund", "grossBlock", "depreciation", "capWorkProgrss", "grossFixedAsset", "ltInvestQuot", "ltInvestUnquot", "stInvestEquity",
+		"stInvestPrefShare", "stInvestDebent", "grossInvest", "storesConsum", "rawMaterial", "stockProcess", "finishGoods", "sundryDebtor", "cashInHand",
+		"balanceBank", "otherCurrAsset", "grossCurrAssets", "advancRecover", "loanAdvanCorpOthr", "balWthRevenAuth",
+		"grossCurrAssLoanAdvan", "sundryCreditor", "laibLeaseAsset", "unpaidDividnd", "unpaidMatdebntur", "unpaidCallMoney", "interestAcuurOnabove",
+		"interestAcuurNtLoan", "grossCurrLiability", "incometaxProvis", "wealthTaxProvis", "leaveProvis","unsecLoanOther",
+		"otherProvis", "grossProvision", "grossCurrLaibilProvison", "netCurrAssets", "miscellanExpend", "deftaxAssets", "profLoassAccn", "grossAppliFund"})
 public class ITRBalanceSheet extends ITReturnComponent {
 
 	private static final Logger log = LoggerFactory.getLogger(ITRBalanceSheet.class);

@@ -33,34 +33,39 @@ TreeMap objTreeMapSection = (TreeMap) objValueListService.getReturnFile();
 	    	<a href="itreturn/servicerequest-itr-bulk-xml-download.html">Download Bulk XML Returns</a>
     	</c:if>
     </c:if>
-	<form id="frmSearch" method="GET" class="form-search">
+	<form id="frmSearch" method="GET" class="">
 		<input type="hidden" name="pageNumber" value="${params.pageNumber}"/>
 		<fieldset>
 			<legend><fmt:message key="member.homepage.fillform"/> </legend>
 			<div class="row-fluid show-grid">
 			  <div class="rowlabel">
-		           <div class="input-append span9">
-                     <input id="query" class="span9" name="query" placeholder="Search String" type="text" maxlength="50" value="${params.query}"/>
+		           <div class="input-append span10">
+                     <input id="query" class="span10" name="query" placeholder="Search String" type="text" maxlength="50" value="${params.query}"/>
                      <button type="submit" class="btn btn-primary"><i class="icon-search icon-white"></i>Search</button>
+                     <!--<div class="btn-group">
+                      <button class="btn btn-primary" id="filter-name" type="button" data-toggle="dropdown">Filter<span class="caret"></span></button>
+                        <ul class="dropdown-menu">
+                          <li><a href="#" id="SalaryIncome" class="search-doc-filter">SalaryIncome</a></li>
+                          <li><a href="#" id="Deduction" class="search-doc-filter">Deduction</a></li>
+                          <li><a href="#" id="FormSixteen" class="search-doc-filter">FormSixteen</a></li>
+                          <li><a href="#" id="None" class="search-doc-filter">None</a></li>
+                        </ul>
+                      </div>
+                       <input name="search-filter" id="search-filter" value="${search-filter}" class="span2 hide" type="hidden"/>  -->
                    </div>
                </div>
 		    </div>
+		   <c:if test="${not empty valueListDocument}">
 		    <div class="row-fluid show-grid">
 		      <div class="rowlabel">
-		      <div class="btn-group" data-toggle="buttons-checkbox">
-		         <button class="btn btn-warning" id="due">Due</button>
-		         <button class="btn btn-warning popular-search" id="verified">Verified</button>
-		         <button class="btn btn-warning" id="unverified">Unverified</button>
-		         <button class="btn btn-warning" id="diy">eFile</button>
-		         <button class="btn btn-warning" id="assisted">eZFile</button>
-		         <button class="btn btn-warning" id="itr1">ITR1</button>
-		         <button class="btn btn-warning" id="itr2">ITR2</button>
-		         <button class="btn btn-warning" id="itr3">ITR3</button>
-		         <button class="btn btn-warning" id="itr4">ITR4</button>
+		       <div class="btn-group" data-toggle="buttons-checkbox">
+		        <c:forEach items="${valueListDocument.valueListDocumentDetailList}" var="valueListDetail">
+		         <button class="btn btn-warning" id="${valueListDetail.key}">${valueListDetail.label}</button>
+		        </c:forEach>
 		         <button class="btn btn-warning" id="all">All</button>
 		         </div>
 		      </div>
-		    </div>
+		    </div></c:if>
 		 </fieldset>
 		<c:choose>
 			<c:when test="${not empty docs && not empty listOfITReturnHomePageView}">
@@ -157,15 +162,28 @@ TreeMap objTreeMapSection = (TreeMap) objValueListService.getReturnFile();
 		    $('#'+url_query).addClass('btn-warning');
 		  }
 		}
-		$('#due,#verified,#unverified,#diy,#assisted,#itr1,#itr2,#itr3,#itr4').on('click',function(){
+		<c:forEach items="${valueListDocument.valueListDocumentDetailList}" var="valueListDetail">
+		   var freeText = '<c:out value="${valueListDetail.key}"/>'
+		   $('#'+freeText).on('click',function(){
+		      $('#query').val($(this).attr('id'));
+		      $("#frmSearch").submit();
+		   });
+		</c:forEach>
+		/*$('#due,#verified,#unverified,#diy,#assisted,#itr1,#itr2,#itr3,#itr4').on('click',function(){
 		   $('#query').val($(this).attr('id'));
 		   $("#frmSearch").submit();
-		});
+		});*/
 		$('#all').on('click',function(){
 		   $('#query').val('');
 		   $("#frmSearch").submit();
 		});
+		$('.search-doc-filter').on('click',function(){
+		  $('#search-filter').val($(this).attr('id'));
+		  $('#filter-name').html($(this).attr('id')+"<span class=\"caret\"></span>");
+		});
 	});
 </hst:element>
 <hst:headContribution element="${uiCustom}" category="jsInternal"/>
-
+<hst:headContribution keyHint="formCss" category="css">
+	<link rel="stylesheet" href="<hst:link path="/css/switch-On-Off.css"/>" type="text/css" />
+</hst:headContribution>
