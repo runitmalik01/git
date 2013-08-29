@@ -139,7 +139,7 @@
 						(Short Term Gain)</legend>
 					<legend class="hide lt" style="font-style: italic; color: blue;">Computation
 						(Long Term Gain)</legend>
-					<c:if test="${status == 'RES'}">
+					<c:if test="${status != 'RES'}">
 						<div class="st">
 							<h2>In case of NON-RESIDENT to which first provisio to
 								section 48 is applicable</h2>
@@ -639,7 +639,6 @@
 		function decidegaintype() {
 			var c = document.getElementById("months").value;
 			var m = document.getElementById("asset_type").value;
-			alert(""+m);
 			if(m=="SHARES"){
 			if(c<=365){
 				//$("#shortterms").show();
