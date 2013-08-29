@@ -2166,9 +2166,17 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		return false;
 	}
 	
-	protected RetrievePANResponse retrievePANInformation() throws MissingInformationException, DataMismatchException, InvalidFormatException {
+	protected RetrievePANResponse retrievePANInformation() throws MissingInformationException, DataMismatchException, InvalidFormatException {		
+		return retrievePANInformation(getPAN());
+	}
+	
+	protected RetrievePANResponse retrievePANInformation(String PAN) throws MissingInformationException, DataMismatchException, InvalidFormatException {
 		if (retrievePANResponse == null) {
-			retrievePANResponse = retrievePANInformation.retrievePANInformation(getPAN());
+			String argument = PAN;
+			if (PAN == null) {
+				argument = getPAN();
+			}
+			retrievePANResponse = retrievePANInformation.retrievePANInformation(argument);
 		}		
 		return retrievePANResponse;
 	}
