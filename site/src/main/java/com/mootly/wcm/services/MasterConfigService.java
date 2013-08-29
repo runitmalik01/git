@@ -92,5 +92,11 @@ public class MasterConfigService implements ConfigService {
 		String retVal = getString(propertyKey);
 		return Integer.valueOf(retVal);
 	}
+
+	@Override
+	public <T> T getValue(String propertyKey, T propertyType) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }

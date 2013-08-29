@@ -13,6 +13,7 @@ import com.mootly.wcm.services.ditws.RetrievePANInformation;
 import com.mootly.wcm.services.ditws.exception.DataMismatchException;
 import com.mootly.wcm.services.ditws.exception.InvalidFormatException;
 import com.mootly.wcm.services.ditws.exception.MissingInformationException;
+import com.mootly.wcm.services.ditws.model.RetrievePANResponse;
 
 public class TestPANInformation  {
 	ApplicationContext ac = null;
@@ -33,8 +34,8 @@ public class TestPANInformation  {
 	public void testPANInformation() {
 		RetrievePANInformation retrievePANInformation =	ac.getBean(RetrievePANInformation.class);
 		try {
-			Map<String, Object> output = retrievePANInformation.retrievePANInformation("ABNPP1234G");
-			System.out.println(output);
+			RetrievePANResponse retrievePANResponse = retrievePANInformation.retrievePANInformation("ABNPP1234G");
+			System.out.println(retrievePANResponse);
 		} catch (MissingInformationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

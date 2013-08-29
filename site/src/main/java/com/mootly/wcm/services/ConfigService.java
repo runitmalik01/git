@@ -11,4 +11,6 @@ public interface ConfigService {
 
 	
 	Integer getInteger(String propertyKey);
+	
+	<T> T getValue(String propertyKey,T propertyType);
 }

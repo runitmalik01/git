@@ -1,5 +1,6 @@
 package com.mootly.wcm.services.ditws.soap;
 
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -22,8 +23,11 @@ import javax.xml.soap.SOAPMessage;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpressionException;
 
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.DirectFieldAccessor;
+import org.springframework.beans.NotWritablePropertyException;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -203,5 +207,78 @@ public final class SOAPCallWrapperHelper {
 			}
 		}
 		return outputMap;
+	}
+	
+	public final static <T> List<T> getInstanceFromSOAPMap(Class<T> inClass,Map<String,List<String>> theMap) throws InstantiationException, IllegalAccessException {			
+		if (theMap == null || theMap.size() == 0) return null;
+		
+		List<T> listOfReturnObjects = new ArrayList<T>();
+		@SuppressWarnings("unchecked")
+		String theFirstKeyToCheck = (String) theMap.keySet().toArray()[0];
+		List<String> theFirstListToCheck = (List<String>) theMap.get(theFirstKeyToCheck);
+				
+		int total = theFirstListToCheck.size();
+		
+		for (int i=0;i<total;i++) {
+			T theInstance = inClass.newInstance();
+			for (String theProperty:theMap.keySet()) {
+				if (logger.isInfoEnabled()) {
+					logger.info("The KEY is:" + theProperty);				
+				}
+				String theMethodToFind =  "set" + StringUtils.capitalize(theProperty);
+				try {
+					List<String> theValues = theMap.get(theProperty);
+					String theValueToSet = theValues.get(i);
+					Method theSetter = theInstance.getClass().getMethod(theMethodToFind,String.class);
+					if (logger.isInfoEnabled()) {
+						logger.info("Found the setter :" + theSetter);
+					}					
+					DirectFieldAccessor directFieldAccessor = new DirectFieldAccessor(theInstance);
+					directFieldAccessor.setPropertyValue(theProperty, theValueToSet);					
+				}catch (NoSuchMethodException nfe) {
+					logger.warn(theMethodToFind + " does not exist in the bean check it out");
+					logger.error("Error in nfe",nfe);
+				} catch (NotWritablePropertyException npe) {
+					logger.error("Error in NPE",npe);
+				}
+			}
+			listOfReturnObjects.add(theInstance);
+		}
+		return listOfReturnObjects;
+	}
+	
+	/**
+	 * When there is just one instance 
+	 * @param inClass
+	 * @param theMap
+	 * @return
+	 * @throws InstantiationException
+	 * @throws IllegalAccessException
+	 */
+	public final static <T> T getInstanceFromSOAPMapSingleInstance(Class<T> inClass,Map<String,Object> theMap) throws InstantiationException, IllegalAccessException {			
+		if (theMap == null || theMap.size() == 0) return null;
+		
+		T theInstance = inClass.newInstance();
+		for (String theProperty:theMap.keySet()) {
+			if (logger.isInfoEnabled()) {
+				logger.info("The KEY is:" + theProperty);				
+			}
+			String theMethodToFind =  "set" + StringUtils.capitalize(theProperty);
+			try {
+				String theValueToSet = (String) theMap.get(theProperty);
+				Method theSetter = theInstance.getClass().getMethod(theMethodToFind,String.class);
+				if (logger.isInfoEnabled()) {
+					logger.info("Found the setter :" + theSetter);
+				}					
+				DirectFieldAccessor directFieldAccessor = new DirectFieldAccessor(theInstance);
+				directFieldAccessor.setPropertyValue(theProperty, theValueToSet);					
+			}catch (NoSuchMethodException nfe) {
+				logger.warn(theMethodToFind + " does not exist in the bean check it out");
+				logger.error("Error in nfe",nfe);
+			} catch (NotWritablePropertyException npe) {
+				logger.error("Error in NPE",npe);
+			}
+		}
+		return theInstance;
 	}
 }

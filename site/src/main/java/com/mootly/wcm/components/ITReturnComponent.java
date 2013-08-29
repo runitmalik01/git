@@ -132,10 +132,12 @@ import com.mootly.wcm.services.XmlGeneratorService;
 import com.mootly.wcm.services.ditws.ITRVStatus;
 import com.mootly.wcm.services.ditws.Retrieve26ASInformation;
 import com.mootly.wcm.services.ditws.RetrieveITRV;
+import com.mootly.wcm.services.ditws.RetrievePANInformation;
+import com.mootly.wcm.services.ditws.RetrievePANInformation.VALIDATION_RESULT;
 import com.mootly.wcm.services.ditws.exception.DataMismatchException;
 import com.mootly.wcm.services.ditws.exception.InvalidFormatException;
 import com.mootly.wcm.services.ditws.exception.MissingInformationException;
-import com.mootly.wcm.services.ditws.impl.RetrieveITRVImpl;
+import com.mootly.wcm.services.ditws.model.RetrievePANResponse;
 import com.mootly.wcm.utils.GoGreenUtil;
 import com.mootly.wcm.utils.MootlyFormUtils;
 import com.mootly.wcm.utils.XmlCalculation;
@@ -148,6 +150,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 	ITRValidatorChain itrValidationChain = null;
 	RetrieveITRV retrieveITRVService = null;
 	Retrieve26ASInformation retrieve26ASService = null;
+	RetrievePANInformation retrievePANInformation = null;
 	
 	String servletPath = null;
 	String xsltPath = null;
@@ -210,6 +213,12 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 	
 	Map<String,HippoBean> mapOfAllBeans = new HashMap<String, HippoBean>();
 	
+	
+	MemberPersonalInformation memberPersonalInformation;
+	boolean shouldRetrievePANInformation = false;
+	RetrievePANInformation.VALIDATION_RESULT retrievePANInformationValidationResult = VALIDATION_RESULT.NOT_INITIATED; 
+	RetrievePANResponse retrievePANResponse = null;
+	
 	@Override
 	public void init(ServletContext servletContext,
 			ComponentConfiguration componentConfig)
@@ -221,6 +230,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		sequenceGenerator = context.getBean(SequenceGeneratorImpl.class);
 		xsltPath = servletContext.getRealPath("/xslt/ITRSummary.xsl");
 		itrValidationChain =  context.getBean(ITRValidatorChain.class);
+		retrievePANInformation = context.getBean(RetrievePANInformation.class);
 		retrieveITRVService = context.getBean(RetrieveITRV.class);
 		retrieve26ASService = context.getBean(Retrieve26ASInformation.class);
 	}
@@ -1185,7 +1195,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 				//response.setContentType("application/json");
 				response.setRenderPath("jsp/common/calculation_response.jsp");
 			}
-		}
+		}			
 	}
 
 	protected void sanitize(HstRequest request,HstResponse response,FormMap formMap) {
@@ -2127,6 +2137,9 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 				if (hippoBean instanceof HippoDocumentBean) {
 					mapOfAllBeans.put(hippoBean.getClass().getSimpleName().toLowerCase(), hippoBean);
 					request.setAttribute(hippoBean.getClass().getSimpleName().toLowerCase(), hippoBean);
+					if (hippoBean instanceof MemberPersonalInformation) {
+						memberPersonalInformation = (MemberPersonalInformation) hippoBean;
+					}
 				}
 			}
 		} catch (QueryException e) {
@@ -2139,6 +2152,29 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 	public PAGE_OUTPUT_FORMAT getPageOutputFormat() {
 		// TODO Auto-generated method stub
 		return pageOutputFormat;
+	}
+	
+	protected MemberPersonalInformation getMemberPersonalInformation() {
+		return memberPersonalInformation;
+	}
+	
+	protected boolean shouldValidatePANWithDIT() {
+		return false;
+	}
+	
+	protected boolean shouldRetrievePANInformation() {
+		return false;
+	}
+	
+	protected RetrievePANResponse retrievePANInformation() throws MissingInformationException, DataMismatchException, InvalidFormatException {
+		if (retrievePANResponse == null) {
+			retrievePANResponse = retrievePANInformation.retrievePANInformation(getPAN());
+		}		
+		return retrievePANResponse;
+	}
+	
+	protected RetrievePANInformation.VALIDATION_RESULT getRetrievePANInformationValidationResult() {
+		return retrievePANInformationValidationResult;
 	}
 
 }

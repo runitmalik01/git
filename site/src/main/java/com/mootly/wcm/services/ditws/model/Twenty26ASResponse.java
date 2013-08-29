@@ -11,6 +11,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.DirectFieldAccessor;
 import org.springframework.beans.NotWritablePropertyException;
 
+import com.mootly.wcm.services.ditws.soap.SOAPCallWrapperHelper;
+
 public class Twenty26ASResponse {
 	public final static String MAP_KEY_TDSonSalaries = "TDSonSalaries";
 	public final static String MAP_KEY_TDSonOthThanSals = "TDSonOthThanSals";
@@ -80,10 +82,10 @@ public class Twenty26ASResponse {
 		Map<String,List<String>> taxPayments = (Map<String,List<String>>) soapResponseMap.get(MAP_KEY_TaxPayments);
 		
 		try {
-			ret.setTwenty26astdsOnSalaries( getInstanceFromSOAPMap(Twenty26ASTDSOnSalary.class,tdsOnSals) );
-			ret.setTwenty26astdsOtherThanSalaries( getInstanceFromSOAPMap(Twenty26ASTDSOtherThanSalary.class,tdsOnOthThanSals) );
-			ret.setTwenty26astcs( getInstanceFromSOAPMap(Twenty26ASTCS.class,scheduleTCSMap) );
-			ret.setTwenty26asTaxPayments(getInstanceFromSOAPMap(Twenty26ASTaxPayment.class,taxPayments) );					
+			ret.setTwenty26astdsOnSalaries( SOAPCallWrapperHelper.getInstanceFromSOAPMap(Twenty26ASTDSOnSalary.class,tdsOnSals) );
+			ret.setTwenty26astdsOtherThanSalaries( SOAPCallWrapperHelper.getInstanceFromSOAPMap(Twenty26ASTDSOtherThanSalary.class,tdsOnOthThanSals) );
+			ret.setTwenty26astcs(  SOAPCallWrapperHelper.getInstanceFromSOAPMap(Twenty26ASTCS.class,scheduleTCSMap) );
+			ret.setTwenty26asTaxPayments( SOAPCallWrapperHelper.getInstanceFromSOAPMap(Twenty26ASTaxPayment.class,taxPayments) );					
 		} catch (InstantiationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -95,43 +97,6 @@ public class Twenty26ASResponse {
 		return ret;
 		
 	}
-	
-	public final static <T> List<T> getInstanceFromSOAPMap(Class<T> inClass,Map<String,List<String>> theMap) throws InstantiationException, IllegalAccessException {			
-		if (theMap == null || theMap.size() == 0) return null;
 		
-		List<T> listOfReturnObjects = new ArrayList<T>();
-		@SuppressWarnings("unchecked")
-		String theFirstKeyToCheck = (String) theMap.keySet().toArray()[0];
-		List<String> theFirstListToCheck = (List<String>) theMap.get(theFirstKeyToCheck);
-				
-		int total = theFirstListToCheck.size();
-		
-		for (int i=0;i<total;i++) {
-			T theInstance = inClass.newInstance();
-			for (String theProperty:theMap.keySet()) {
-				if (logger.isInfoEnabled()) {
-					logger.info("The KEY is:" + theProperty);				
-				}
-				String theMethodToFind =  "set" + StringUtils.capitalize(theProperty);
-				try {
-					List<String> theValues = theMap.get(theProperty);
-					String theValueToSet = theValues.get(i);
-					Method theSetter = theInstance.getClass().getMethod(theMethodToFind,String.class);
-					if (logger.isInfoEnabled()) {
-						logger.info("Found the setter :" + theSetter);
-					}					
-					DirectFieldAccessor directFieldAccessor = new DirectFieldAccessor(theInstance);
-					directFieldAccessor.setPropertyValue(theProperty, theValueToSet);					
-				}catch (NoSuchMethodException nfe) {
-					logger.warn(theMethodToFind + " does not exist in the bean check it out");
-					logger.error("Error in nfe",nfe);
-				} catch (NotWritablePropertyException npe) {
-					logger.error("Error in NPE",npe);
-				}
-			}
-			listOfReturnObjects.add(theInstance);
-		}
-		return listOfReturnObjects;
-	}
 	
 }

@@ -17,7 +17,9 @@ import com.mootly.wcm.services.ditws.exception.DataMismatchException;
 import com.mootly.wcm.services.ditws.exception.InvalidFormatException;
 import com.mootly.wcm.services.ditws.exception.MissingInformationException;
 import com.mootly.wcm.services.ditws.helper.SpringExpressionParser;
+import com.mootly.wcm.services.ditws.model.RetrievePANResponse;
 import com.mootly.wcm.services.ditws.soap.SOAPCallWrapper;
+import com.mootly.wcm.services.ditws.soap.SOAPCallWrapperHelper;
 import com.mootly.wcm.services.ditws.soap.SOAPService;
 
 
@@ -43,7 +45,7 @@ public class RetrievePANInformationImpl extends DITSOAPServiceImpl implements Re
 	}
 	
 	@Override
-	public Map<String, Object> retrievePANInformation(String PAN)
+	public RetrievePANResponse retrievePANInformation(String PAN)
 			throws MissingInformationException, DataMismatchException,
 			InvalidFormatException {
 		// TODO Auto-generated method stub
@@ -63,7 +65,8 @@ public class RetrievePANInformationImpl extends DITSOAPServiceImpl implements Re
 		
 		try {
 			Map<String,Object> outputMap = soapService.executeSOAPCall(soapCallWrapperRetrievePANInfo,inputParams);
-			return outputMap;
+			RetrievePANResponse retrievePANResponse = SOAPCallWrapperHelper.getInstanceFromSOAPMapSingleInstance(RetrievePANResponse.class, outputMap);
+			return retrievePANResponse;
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			logger.error("Malformed URL",e);
@@ -74,8 +77,13 @@ public class RetrievePANInformationImpl extends DITSOAPServiceImpl implements Re
 		} catch (SOAPException e) {
 			// TODO Auto-generated catch block
 			logger.error("SOAPException",e);
+		} catch (InstantiationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		
 		return null;
 	}
 	
