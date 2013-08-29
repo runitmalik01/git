@@ -302,6 +302,7 @@ abstract public class AbstractITReturnHomePage extends ITReturnComponent {
 		String stringUUID= theMemberFolderBean.getCanonicalUUID();
 		itReturnHomePageView.setCanonicalUUID(stringUUID);
 		itReturnHomePageView.setPathToItr(theMemberFolderBean.getPath()); //the Path can we find the member name who filed it?
+		itReturnHomePageView.setTheParentFolder(itReturnHomePageView.getPan().toLowerCase()+itReturnHomePageView.getItrFolderSuffix());
 		//logic for Payment Status
 		List<MemberPayment> listOfMemberPaymentDocs = new ArrayList<MemberPayment>();
 		HippoFolder theParentofPersonalInfo=(HippoFolder) m.getParentBean();
