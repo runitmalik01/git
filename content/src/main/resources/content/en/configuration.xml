@@ -14496,6 +14496,2788 @@ acknowledgement&lt;/p&gt;
   </sv:node>
 </sv:node>
 <!-- end of Balance Sheet Schedule -->
+<!-- profit and loss itr4 -->
+
+
+<sv:node sv:name="profitandloss">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hippo:handle</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+    <sv:value>hippo:hardhandle</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>b25f9a3f-db1c-48b2-8fd6-7af60f1582bd</sv:value>
+  </sv:property>
+  <sv:node sv:name="profitandloss">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>mootlywcm:screenconfig</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+      <sv:value>hippo:harddocument</sv:value>
+      <sv:value>hippotranslation:translated</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>4ffd51a4-8425-4a56-960d-600056d2ffd7</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
+      <sv:value>live</sv:value>
+      <sv:value>preview</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippo:related___pathreference" sv:type="String">
+      <sv:value>profitandloss</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostd:holder" sv:type="String">
+      <sv:value>admin</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostd:state" sv:type="String">
+      <sv:value>published</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostd:stateSummary" sv:type="String">
+      <sv:value>live</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
+      <sv:value>admin</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
+      <sv:value>2013-08-30T14:58:38.040+05:30</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
+      <sv:value>2013-08-30T17:56:35.483+05:30</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
+      <sv:value>admin</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
+      <sv:value>2013-08-30T17:56:50.434+05:30</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippotranslation:id" sv:type="String">
+      <sv:value>bb7c2f1c-9add-4914-971c-9bfcdf8d16ed</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippotranslation:locale" sv:type="String">
+      <sv:value>en</sv:value>
+    </sv:property>
+    <sv:property sv:name="mootlywcm:additionalScript" sv:type="String">
+      <sv:value/>
+    </sv:property>
+    <sv:property sv:name="mootlywcm:onSubmitHandler" sv:type="String">
+      <sv:value/>
+    </sv:property>
+    <sv:property sv:name="mootlywcm:screenHeading" sv:type="String">
+      <sv:value/>
+    </sv:property>
+    <sv:property sv:name="mootlywcm:screenHelp" sv:type="String">
+      <sv:value/>
+    </sv:property>
+    <sv:property sv:name="mootlywcm:screenSubHeading" sv:type="String">
+      <sv:value/>
+    </sv:property>
+    <sv:node sv:name="hippotranslation:translations">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>hippotranslation:translations</sv:value>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>amount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>sales_GrossBusiness</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>sales_GrossBusiness</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>amount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>union_ExciseDuties</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>union_ExciseDuties</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>amount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>service_Tax</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>service_Tax</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>amount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>vat_SalesTax</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>vat_SalesTax</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>amount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>any_OtherTax</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>any_OtherTax</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>amount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>total_DutyTaxCess</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>total_DutyTaxCess</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>amount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>rent</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>rent</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>amount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>commission</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>commission</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>amount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>dividend</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>dividend</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>amount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>interest</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>interest</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>amount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>profit_FixedAsset</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>profit_FixedAsset</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>amount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>profit_InvestmentSTT</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>profit_InvestmentSTT</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>amount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>profit_OtherInvestment</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>profit_OtherInvestment</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>amount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>profit_CurrencyFluctuation</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>profit_CurrencyFluctuation</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>amount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>agricultural_Income</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>agricultural_Income</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>amount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>any_OtherIncome</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>any_OtherIncome</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>amount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>total_OtherIncome</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>total_OtherIncome</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>amount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>closing_Stocks</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>closing_Stocks</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>amount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>total_CreditAccount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>total_CreditAccount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>amount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>opening_Stocks</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>opening_Stocks</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>amount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>purchases</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>purchases</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>amount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>custom_Duty</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>custom_Duty</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>amount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>counter_vailingDuty</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>counter_vailingDuty</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>amount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>special_addtionalDuty</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>special_addtionalDuty</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>amount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>union_ExciseDuty</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>union_ExciseDuty</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>amount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>service_TaxPL</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>service_TaxPL</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>amount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>anyOther_TaxPaid</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>anyOther_TaxPaid</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>amount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>total</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>total</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>amount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>freight</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>freight</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>amount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>consumption_Stores</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>consumption_Stores</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>amount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>power_Fuels</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>power_Fuels</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>amount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>rents_PL</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>rents_PL</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>amount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>repairs_Buildings</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>repairs_Buildings</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>amount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>repairs_Machinery</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>repairs_Machinery</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>amount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>salaries_Wages</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>salaries_Wages</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>amount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>bonus_PL</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>bonus_PL</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>amount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>reimbursement_MedicalExpenses</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>reimbursement_MedicalExpenses</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>amount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>leave_Encasement</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>leave_Encasement</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>amount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>leave_TravelBenefits</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>leave_TravelBenefits</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>amount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>approved_SuperannuationFund</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>approved_SuperannuationFund</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>amount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>recog_ProvidendFund</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>recog_ProvidendFund</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>amount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>recog_GratuityFund</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>recog_GratuityFund</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>amount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>any_OtherFund</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>any_OtherFund</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>amount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>any_otherBenefit</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>any_otherBenefit</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>amount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>total_Compensation</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>total_Compensation</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>amount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>medical_Insurance</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>medical_Insurance</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>amount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>life_Insurance</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>life_Insurance</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>amount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>keyman_Insurance</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>keyman_Insurance</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>amount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>other_Insurance</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>other_Insurance</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>amount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>totalExpense_Insurance</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>totalExpense_Insurance</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>amount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>staff_WelfareExpense</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>staff_WelfareExpense</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>amount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>entertainment_PL</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>entertainment_PL</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>amount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>hospitality_PL</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>hospitality_PL</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>amount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>conference_PL</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>conference_PL</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>amount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>sales_Promotion</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>sales_Promotion</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>amount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>advertisement_PL</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>advertisement_PL</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>amount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>commission_PL</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>commission_PL</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>amount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>boarding_Lodging</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>boarding_Lodging</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>amount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>travelling_Expenses</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>travelling_Expenses</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>amount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>conveyance_Expenses</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>conveyance_Expenses</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>amount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>telephone_Expenses</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>telephone_Expenses</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>amount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>guestHouse_Expenses</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>guestHouse_Expenses</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>amount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>club_Expenses</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>club_Expenses</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>amount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>festivalCeleb_Expenses</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>festivalCeleb_Expenses</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>amount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>scholarship_PL</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>scholarship_PL</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>amount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>gifts_PL</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>gifts_PL</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>amount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>donation_PL</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>donation_PL</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>amount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>union_ExciseDuty2</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>union_ExciseDuty2</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>amount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>service_Tax2</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>service_Tax2</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>amount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>vat_Salestax2</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>vat_Salestax2</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>amount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>cess_PL</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>cess_PL</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>amount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>anyOther_RateInclSTT</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>anyOther_RateInclSTT</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>amount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>totalRates_TaxesPaid</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>totalRates_TaxesPaid</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>amount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>audit_Fee</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>audit_Fee</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>amount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>other_Expenses</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>other_Expenses</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>amount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>bad_Debts</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>bad_Debts</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>amount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>bad_DoubtfulDebts</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>bad_DoubtfulDebts</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>amount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>other_Provisions</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>other_Provisions</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>amount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>profitBefore_InterestTaxes</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>profitBefore_InterestTaxes</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>amount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>interest_PL</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>interest_PL</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>amount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>depreciation_PL</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>depreciation_PL</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>amount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>profit_BeforeTaxes</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>profit_BeforeTaxes</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>amount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>prov_CurrentTax</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>prov_CurrentTax</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>amount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>prov_DeferredTax</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>prov_DeferredTax</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>amount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>profit_AfterTax</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>profit_AfterTax</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>amount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>balance_PreviousYear</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>balance_PreviousYear</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>amount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>amount_Appropriation</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>amount_Appropriation</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>amount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>transReserves_Surplus</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>transReserves_Surplus</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>amount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>balanceCarried_BalanceSheet</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>balanceCarried_BalanceSheet</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>amount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>gross_Profit</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>gross_Profit</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>amount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>gross_Recepients</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>gross_Recepients</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>amount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>expenses_NoAccount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>expenses_NoAccount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>amount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>expenses_NoAccount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>expenses_NoAccount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+  </sv:node>
+</sv:node>
+
+<!-- profit and loss itr4 -->
 
 <!-- Start of New ScreenPresentaiton Hippo Folder -->
 <sv:node sv:name="screenpresentation" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
