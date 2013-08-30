@@ -69,6 +69,18 @@ public abstract class ProfitAndLossVariables extends BaseDocument implements Con
 	private Double staff_WelfareExpense;
 	private Double entertainment_PL;
 	private Double hospitality_PL;
+	
+	private Double conference_PL;
+	private Double sales_Promotion;
+	private Double advertisement_PL;
+	private Double commission_PL;
+	private Double boarding_Lodging;
+	private Double travelling_Expenses;
+	private Double conveyance_Expenses;
+	private Double telephone_Expenses;
+	private Double guestHouse_Expenses;
+	
+	
 	private Double club_Expenses;
 	private Double festivalCeleb_Expenses;
 	private Double scholarship_PL;
@@ -318,6 +330,49 @@ public abstract class ProfitAndLossVariables extends BaseDocument implements Con
 		if (hospitality_PL == null) hospitality_PL = getProperty("mootlywcm:hospitality_PL");
 		return hospitality_PL;
 	}
+	
+	public  Double getConference_PL() {
+		if (conference_PL== null) conference_PL = getProperty("mootlywcm:conference_PL");
+		return conference_PL;
+	}
+	public  Double getSales_Promotion() {
+		if (sales_Promotion== null) sales_Promotion = getProperty("mootlywcm:sales_Promotion");
+		return sales_Promotion;
+	}
+	public  Double getAdvertisement_PL() {
+		if (advertisement_PL== null) advertisement_PL = getProperty("mootlywcm:advertisement_PL");
+		return advertisement_PL;
+	}
+	public  Double getCommission_PL() {
+		if (commission_PL== null) commission_PL = getProperty("mootlywcm:commission_PL");
+		return commission_PL;
+	}
+	public  Double getBoarding_Lodging() {
+		if (boarding_Lodging== null) boarding_Lodging = getProperty("mootlywcm:boarding_Lodging");
+		return boarding_Lodging;
+	}
+	public  Double getTravelling_Expenses() {
+		if (travelling_Expenses== null) travelling_Expenses = getProperty("mootlywcm:travelling_Expenses");
+		return travelling_Expenses;
+	}
+	public  Double getConveyance_Expenses() {
+		if (conveyance_Expenses== null) conveyance_Expenses = getProperty("mootlywcm:conveyance_Expenses");
+		return conveyance_Expenses;
+	}
+	public  Double getTelephone_Expenses() {
+		if (telephone_Expenses== null) telephone_Expenses = getProperty("mootlywcm:telephone_Expenses");
+		return telephone_Expenses;
+	}
+	public  Double getGuestHouse_Expenses() {
+		if (guestHouse_Expenses== null) guestHouse_Expenses = getProperty("mootlywcm:guestHouse_Expenses");
+		return guestHouse_Expenses;
+	}
+	public  Double getOther_Expenses() {
+		if (other_Expenses== null) other_Expenses = getProperty("mootlywcm:other_Expenses");
+		return other_Expenses;
+	}
+	
+	
 	public  Double getClub_Expenses() {
 		if (club_Expenses == null) club_Expenses = getProperty("mootlywcm:club_Expenses");
 		return club_Expenses;
@@ -354,6 +409,7 @@ public abstract class ProfitAndLossVariables extends BaseDocument implements Con
 		if (cess_PL== null) cess_PL = getProperty("mootlywcm:cess_PL");
 		return cess_PL;
 	}
+
 
 	public  Double getAnyOther_RateInclSTT() {
 		if (anyOther_RateInclSTT== null) anyOther_RateInclSTT = getProperty("mootlywcm:anyOther_RateInclSTT");
@@ -603,6 +659,37 @@ public abstract class ProfitAndLossVariables extends BaseDocument implements Con
 	public final void setHospitality_PL(Double hospitality_PL) {
 		this.hospitality_PL = hospitality_PL;
 	}
+	
+	public void setConference_PL(Double conference_PL) {
+		this.conference_PL = conference_PL;
+	}
+	public void setSales_Promotion(Double sales_Promotion) {
+		this.sales_Promotion = sales_Promotion;
+	}
+	public void setAdvertisement_PL(Double advertisement_PL) {
+		this.advertisement_PL = advertisement_PL;
+	}
+	public void setCommission_PL(Double commission_PL) {
+		this.commission_PL = commission_PL;
+	}
+	public void setBoarding_Lodging(Double boarding_Lodging) {
+		this.boarding_Lodging = boarding_Lodging;
+	}
+	public void setTravelling_Expenses(Double travelling_Expenses) {
+		this.travelling_Expenses = travelling_Expenses;
+	}
+	public void setConveyance_Expenses(Double conveyance_Expenses) {
+		this.conveyance_Expenses = conveyance_Expenses;
+	}
+	public void setGuestHouse_Expenses(Double guestHouse_Expenses) {
+		this.guestHouse_Expenses = guestHouse_Expenses;
+	}
+	
+	public void setTelephone_Expenses(Double telephone_Expenses) {
+		this.telephone_Expenses = telephone_Expenses;
+	}
+
+	
 	public final void setClub_Expenses(Double club_Expenses) {
 		this.club_Expenses = club_Expenses;
 	}
@@ -762,9 +849,21 @@ public abstract class ProfitAndLossVariables extends BaseDocument implements Con
 		node.setProperty("mootlywcm:staff_WelfareExpense", objProfitAndLossDocument.getStaff_WelfareExpense());
 		node.setProperty("mootlywcm:entertainment_PL", objProfitAndLossDocument.getEntertainment_PL());
 		node.setProperty("mootlywcm:hospitality_PL", objProfitAndLossDocument.getHospitality_PL());
+		
+		node.setProperty("mootlywcm:conference_PL", objProfitAndLossDocument.getConference_PL());
+		node.setProperty("mootlywcm:sales_Promotion", objProfitAndLossDocument.getSales_Promotion());
+		node.setProperty("mootlywcm:advertisement_PL", objProfitAndLossDocument.getAdvertisement_PL());
+		node.setProperty("mootlywcm:commission_PL", objProfitAndLossDocument.getCommission());
+		node.setProperty("mootlywcm:boarding_Lodging", objProfitAndLossDocument.getBoarding_Lodging());
+		node.setProperty("mootlywcm:travelling_Expenses", objProfitAndLossDocument.getTravelling_Expenses());
+		node.setProperty("mootlywcm:conveyance_Expenses", objProfitAndLossDocument.getConveyance_Expenses());
+		node.setProperty("mootlywcm:telephone_Expenses", objProfitAndLossDocument.getTelephone_Expenses());
+		node.setProperty("mootlywcm:guestHouse_Expenses", objProfitAndLossDocument.getGuestHouse_Expenses());
+		
 		node.setProperty("mootlywcm:club_Expenses", objProfitAndLossDocument.getClub_Expenses());
 		node.setProperty("mootlywcm:festivalCeleb_Expenses", objProfitAndLossDocument.getFestivalCeleb_Expenses());
 		node.setProperty("mootlywcm:scholarship_PL", objProfitAndLossDocument.getScholarship_PL());
+		node.setProperty("mootlywcm:other_Expenses", objProfitAndLossDocument.getOther_Expenses());//jj
 		
 		node.setProperty("mootlywcm:gifts_PL",objProfitAndLossDocument.getGifts_PL());
 		node.setProperty("mootlywcm:donation_PL", objProfitAndLossDocument.getDonation_PL());
@@ -788,8 +887,7 @@ public abstract class ProfitAndLossVariables extends BaseDocument implements Con
 		node.setProperty("mootlywcm:prov_DeferredTax", objProfitAndLossDocument.getProv_DeferredTax());
 		node.setProperty("mootlywcm:profit_AfterTax", objProfitAndLossDocument.getProfit_AfterTax());
 		node.setProperty("mootlywcm:balance_PreviousYear", objProfitAndLossDocument.getBalance_PreviousYear());
-		log.info("HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH"+objProfitAndLossDocument.getBalance_PreviousYear());
-		// it is alrady there abobalance_PreviousYear
+		
 		node.setProperty("mootlywcm:amount_Appropriation", objProfitAndLossDocument.getAmount_Appropriation());
 		node.setProperty("mootlywcm:transReserves_Surplus", objProfitAndLossDocument.getTransReserves_Surplus());
 		node.setProperty("mootlywcm:balanceCarried_BalanceSheet", objProfitAndLossDocument.getBalanceCarried_BalanceSheet());

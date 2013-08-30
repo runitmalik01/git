@@ -522,6 +522,92 @@ public class ProfitAndLossDocument extends ProfitAndLossVariables{
 			val_hospitality_PL= Double.parseDouble(hospitality_PLStr);
 			setHospitality_PL(val_hospitality_PL);
 		}
+		
+		
+		double val_conference_PL=0.0d;
+		if (formMap.getField("conference_PL").getValue().isEmpty()){
+			setConference_PL(val_conference_PL);
+		}
+		else{
+			String conference_PLStr=formMap.getField("conference_PL").getValue();
+			val_conference_PL= Double.parseDouble(conference_PLStr);
+			setConference_PL(val_conference_PL);
+		}
+		double val_sales_Promotion=0.0d;
+		if (formMap.getField("sales_Promotion").getValue().isEmpty()){
+			setSales_Promotion(val_sales_Promotion);
+		}
+		else{
+			String sales_PromotionStr=formMap.getField("sales_Promotion").getValue();
+			val_sales_Promotion= Double.parseDouble(sales_PromotionStr);
+			setSales_Promotion(val_sales_Promotion);
+		}
+		double val_advertisement_PL=0.0d;
+		if (formMap.getField("advertisement_PL").getValue().isEmpty()){
+			setAdvertisement_PL(val_advertisement_PL);
+		}
+		else{
+			String advertisement_PLStr=formMap.getField("advertisement_PL").getValue();
+			val_advertisement_PL= Double.parseDouble(advertisement_PLStr);
+			setAdvertisement_PL(val_advertisement_PL);
+		}
+		double val_commission_PL=0.0d;
+		if (formMap.getField("commission_PL").getValue().isEmpty()){
+			setCommission_PL(val_commission_PL);
+		}
+		else{
+			String commission_PLStr=formMap.getField("commission_PL").getValue();
+			val_commission_PL= Double.parseDouble(commission_PLStr);
+			setCommission_PL(val_commission_PL);
+		}
+		double val_boarding_Lodging=0.0d;
+		if (formMap.getField("boarding_Lodging").getValue().isEmpty()){
+			setBoarding_Lodging(val_boarding_Lodging);
+		}
+		else{
+			String boarding_LodgingStr=formMap.getField("boarding_Lodging").getValue();
+			val_boarding_Lodging= Double.parseDouble(boarding_LodgingStr);
+			setBoarding_Lodging(val_boarding_Lodging);
+		}
+		double val_travelling_Expenses=0.0d;
+		if (formMap.getField("travelling_Expenses").getValue().isEmpty()){
+			setTravelling_Expenses(val_travelling_Expenses);
+		}
+		else{
+			String travelling_ExpensesStr=formMap.getField("travelling_Expenses").getValue();
+			val_travelling_Expenses= Double.parseDouble(travelling_ExpensesStr);
+			setTravelling_Expenses(val_travelling_Expenses);
+		}
+		double val_conveyance_Expenses=0.0d;
+		if (formMap.getField("conveyance_Expenses").getValue().isEmpty()){
+			setConveyance_Expenses(val_conveyance_Expenses);
+		}
+		else{
+			String conveyance_ExpensesStr=formMap.getField("conveyance_Expenses").getValue();
+			val_conveyance_Expenses= Double.parseDouble(conveyance_ExpensesStr);
+			setConveyance_Expenses(val_conveyance_Expenses);
+		}
+		double val_telephone_Expenses=0.0d;
+		if (formMap.getField("telephone_Expenses").getValue().isEmpty()) {
+			setTelephone_Expenses(val_telephone_Expenses);
+		}
+		else{
+			String telephone_ExpensesStr=formMap.getField("telephone_Expenses").getValue();
+			val_telephone_Expenses= Double.parseDouble(telephone_ExpensesStr);
+			setTelephone_Expenses(val_telephone_Expenses);
+		}
+		double val_guestHouse_Expenses=0.0d;
+		if (formMap.getField("guestHouse_Expenses").getValue().isEmpty()) {
+			setGuestHouse_Expenses(val_guestHouse_Expenses);
+		}
+		else{
+			String guestHouse_ExpensesStr=formMap.getField("guestHouse_Expenses").getValue();
+			val_guestHouse_Expenses= Double.parseDouble(guestHouse_ExpensesStr);
+			setGuestHouse_Expenses(val_guestHouse_Expenses);
+		}
+		
+		
+		
 		double val_club_Expenses=0.0d;
 		if (formMap.getField("club_Expenses").getValue().isEmpty()) {
 			setClub_Expenses(val_club_Expenses);
@@ -549,6 +635,8 @@ public class ProfitAndLossDocument extends ProfitAndLossVariables{
 			val_scholarship_PL= Double.parseDouble(scholarship_PLStr);
 			setScholarship_PL(val_scholarship_PL);
 		}
+		
+	
 		double val_gifts_PL=0.0d;
 		if (formMap.getField("gifts_PL").getValue().isEmpty()){
 			setGifts_PL(val_gifts_PL);
