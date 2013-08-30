@@ -1701,6 +1701,26 @@
   </sv:property>
 </sv:node>
 
+<!-- profit and loss itr4 -->
+
+<sv:node sv:name="profitandloss">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:component</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>be659a06-7b44-46b1-a9a7-8878251efad5</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:componentclassname" sv:type="String">
+    <sv:value>com.mootly.wcm.member.ProfitAndLoss</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String"/>
+  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String"/>
+  <sv:property sv:name="hst:template" sv:type="String">
+    <sv:value>profitandloss</sv:value>
+  </sv:property>
+</sv:node>
+
+<!-- profit and loss itr4 -->
 <sv:node sv:name="itr-schedule-balance-sheet" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hst:component</sv:value>
