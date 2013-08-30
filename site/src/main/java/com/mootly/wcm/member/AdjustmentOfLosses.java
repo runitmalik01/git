@@ -10,10 +10,12 @@
 package com.mootly.wcm.member;
 
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.Map;
 import java.util.TimeZone;
 
 import javax.jcr.RepositoryException;
@@ -50,6 +52,10 @@ import com.mootly.wcm.beans.MemberPersonalInformation;
 import com.mootly.wcm.components.ITReturnComponent;
 import com.mootly.wcm.components.ITReturnScreen.PAGE_ACTION;
 import com.mootly.wcm.components.InvalidNavigationException;
+import com.mootly.wcm.model.FinancialYear;
+import com.mootly.wcm.model.ITRScheduleCFLSections;
+import com.mootly.wcm.model.ITRScheduleSISections;
+import com.mootly.wcm.model.ResidentStatus;
 import com.mootly.wcm.services.IndianCurrencyHelper;
 
 @PrimaryBean(primaryBeanClass=AdjustmentOfLossesDoc.class)
@@ -67,6 +73,10 @@ public class AdjustmentOfLosses extends ITReturnComponent {
 	public void doBeforeRender(HstRequest request, HstResponse response) {
 		super.doBeforeRender(request, response);
 
+		MemberPersonalInformation memberPersonalInformation = (MemberPersonalInformation) request.getAttribute(MemberPersonalInformation.class.getSimpleName().toLowerCase());
+		FinancialYear financialYear =  (FinancialYear) request.getAttribute("financialYear");
+		Map<String, List<String>> resultMapOfCFL = ITRScheduleCFLSections.getDetailListOfSections(financialYear, memberPersonalInformation.getSelectedITRForm());
+		request.setAttribute("resultMapOfCFL", resultMapOfCFL);
 	}
 
 	@Override
