@@ -65,7 +65,9 @@ request.setAttribute("objHashMapBoolean", objHashMapBoolean);
 				<div class="row-fluid show-grid" >
                     <div class="span4">
 					<div class="rowlabel"><label for="NameOfHead"><small><fmt:message key="member.adjustment.losses.name"></fmt:message></small></label></div>
-					<div class="rowlabel"><select name="NameOfHead" id="NameOfHead" onchange="checkentry()">
+					<div class="rowlabel">
+					   <!--
+					   <select name="NameOfHead" id="NameOfHead" onchange="checkentry()">
 					             <option value="">-Select Head-</option>
 					             <c:forEach var="booleanCombo" items="${objHashMapNameOfHead}">
 
@@ -74,16 +76,38 @@ request.setAttribute("objHashMapBoolean", objHashMapBoolean);
 
 						         </c:forEach>
 					      </select>
+					      -->
+					      <select name="NameOfHead" onchange="checkentry()" id="NameOfHead">
+						         <option value="">-Select Head-</option>
+						                <c:forEach var="map" items="${resultMapOfCFL}">
+							            <option value="${map.key}" <c:if test="${pageAction == 'EDIT_CHILD' && map.key == childBean.nameOfHead}">selected</c:if>>
+							           	<c:out value="${map.key}" />
+							    </option>
+						</c:forEach>
+					</select>
 					      </div>
 					      </div>
 					 <div class="span4">
 					 <div class="rowlabel"><label for="AssessmentYear"><small><fmt:message key="member.adjustment.losses.year"></fmt:message></small></label></div>
-					 <div class="rowlabel"><select name="AssessmentYear" id="AssessmentYear" onblur="setYear()" onchange="checkentry()">
+					 <div class="rowlabel">
+					 <!--
+					 <select name="AssessmentYear" id="AssessmentYear" onblur="setYear()" onchange="checkentry()">
 						  <option value="">-Select Year-</option>
 						  <c:forEach var="booleanCombo" items="${objHashMapAssessmentYear}">
 						  <option <c:if test="${pageAction == 'EDIT_CHILD' && childBean.assessmentYear == booleanCombo.value}">selected</c:if> value="${booleanCombo.value}">${booleanCombo.value}</option>
 						  </c:forEach>
 					</select>
+					 -->
+
+					  <select name="AssessmentYear" id="AssessmentYear" onblur="setYear()" onchange="checkentry()">
+						  <option value="">-Select Year-</option>
+						  <c:forEach var="resultMap" items="${resultMapOfCFL}">
+						  <c:forEach items="${resultMap.value}" var="cflYear">
+						  <option class="${fn:replace(resultMap.key,' ','')} hide" <c:if test="${pageAction == 'EDIT_CHILD' && childBean.assessmentYear == cflYear}">selected</c:if> value="${cflYear}">${cflYear}</option>
+						  </c:forEach>
+						  </c:forEach>
+					</select>
+
 					</div>
 					</div>
 					</div>
@@ -179,11 +203,22 @@ itrFinYrMax="31/03/"+maxyear;
 			$( ".indiandateLosses" ).datepicker( "option", "maxDate", itrFinYrMax );
 }
 
+$('#NameOfHead').change(function(){
+$('#AssessmentYear').val("");
+});
+
 function checkentry(){
     var checkout=false;
 	var currhead = document.getElementById("NameOfHead").value;
 	var curryear = document.getElementById("AssessmentYear").value;
 	var curruuid = document.getElementById("uuid").value;
+
+<c:forEach items="${resultMapOfCFL}" var="resultMap">
+$('.<c:out value="${fn:replace(resultMap.key,' ','')}"></c:out>').hide();
+</c:forEach>
+$('.'+currhead.replace(/\s/g, '')).show();
+
+
 <c:choose>
 <c:when test="${not empty parentBean && pageAction == 'NEW_CHILD'}">
 <c:forEach items="${parentBean.adjustmentOfLossesList}" var="adjustmentOfLosses">
@@ -224,11 +259,13 @@ $(".frmlosses").attr('id','frmdataLosses');
 </c:when>
 <c:otherwise></c:otherwise>
 </c:choose>
+<%--
 if(currhead=='Owning and Maintaining Race Horses' && (curryear=='2005-2006'||curryear=='2006-2007'||curryear=='2007-2008'||curryear=='2008-2009')){
 $("#chkentry").text("Warning! Please select Assessment Year from 2009-2010 to 2012-2013 in case of Owning and Maintaining Race Horses loss");
 $("#chkentry").show();
 $("#frmdataLosses").removeAttr('id');
 }
+ --%>
 }
 
 function checkdate(){
@@ -279,6 +316,20 @@ $(".frmlosses").attr('id','frmdataLosses');
 </c:otherwise>
 </c:choose>
 }
+var curruuid = document.getElementById("uuid").value;
+<c:choose>
+<c:when test="${not empty parentBean && pageAction == 'EDIT_CHILD'}">
+<c:forEach items="${parentBean.adjustmentOfLossesList}" var="adjustmentOfLosses">
+<c:set value="${adjustmentOfLosses.nameOfHead}" var="head"/>
+<c:set value="${adjustmentOfLosses.canonicalUUID}" var="uuid"/>
+if(curruuid == '<c:out value="${uuid}"/>'){
+$('.<c:out value="${fn:replace(head,' ','')}"></c:out>').show();
+}
+
+</c:forEach>
+</c:when>
+<c:otherwise></c:otherwise>
+</c:choose>
 
 </hst:element>
 <hst:headContribution element="${uiCustom}" category="jsInternal"/>
