@@ -14499,6 +14499,7 @@ acknowledgement&lt;/p&gt;
 <!-- profit and loss itr4 -->
 
 
+
 <sv:node sv:name="profitandloss">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hippo:handle</sv:value>
@@ -14518,7 +14519,7 @@ acknowledgement&lt;/p&gt;
       <sv:value>hippotranslation:translated</sv:value>
     </sv:property>
     <sv:property sv:name="jcr:uuid" sv:type="String">
-      <sv:value>4ffd51a4-8425-4a56-960d-600056d2ffd7</sv:value>
+      <sv:value>31c987bc-4af9-4566-9d4e-7a5a85b4ce2f</sv:value>
     </sv:property>
     <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
       <sv:value>live</sv:value>
@@ -14543,13 +14544,13 @@ acknowledgement&lt;/p&gt;
       <sv:value>2013-08-30T14:58:38.040+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-      <sv:value>2013-08-30T17:56:35.483+05:30</sv:value>
+      <sv:value>2013-08-31T16:38:27.386+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
       <sv:value>admin</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-      <sv:value>2013-08-30T17:56:50.434+05:30</sv:value>
+      <sv:value>2013-08-31T16:38:38.321+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippotranslation:id" sv:type="String">
       <sv:value>bb7c2f1c-9add-4914-971c-9bfcdf8d16ed</sv:value>
@@ -17274,8 +17275,38 @@ acknowledgement&lt;/p&gt;
         <sv:value/>
       </sv:property>
     </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>isAccountMaintain</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>isAccountMaintain</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>true</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
   </sv:node>
 </sv:node>
+
 
 <!-- profit and loss itr4 -->
 
@@ -18878,6 +18909,193 @@ out_Nodtaa_CountryTax=(totaltax_fsi-0);
     </sv:property>
   </sv:node>
 </sv:node>
+<!--  calculation schedule PL in ITR4 -->
+
+<sv:node sv:name="profitandloss">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hippo:handle</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+    <sv:value>hippo:hardhandle</sv:value>
+    <sv:value>hippo:translated</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>ff71b34d-9437-4fed-a028-b6114661a98d</sv:value>
+  </sv:property>
+  <sv:node sv:name="hippo:translation">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hippo:translation</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippo:language" sv:type="String">
+      <sv:value/>
+    </sv:property>
+    <sv:property sv:name="hippo:message" sv:type="String">
+      <sv:value>profitandloss</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="profitandloss">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>mootlywcm:screencalculation</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+      <sv:value>hippo:harddocument</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>f633f4d7-fc64-4317-a417-53c2d0c5c52c</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
+      <sv:value>live</sv:value>
+      <sv:value>preview</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippo:related___pathreference" sv:type="String">
+      <sv:value>profitandloss</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostd:holder" sv:type="String">
+      <sv:value>admin</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostd:state" sv:type="String">
+      <sv:value>published</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostd:stateSummary" sv:type="String">
+      <sv:value>live</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
+      <sv:value>admin</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
+      <sv:value>2013-05-24T01:58:54.710+05:30</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
+      <sv:value>2013-08-31T15:53:36.240+05:30</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
+      <sv:value>admin</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
+      <sv:value>2013-08-31T15:53:39.841+05:30</sv:value>
+    </sv:property>
+    <sv:property sv:name="mootlywcm:additionalScript" sv:type="String">
+      <sv:value/>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="mootlywcm:dropRadio" sv:type="String">
+      <sv:value>letout</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="mootlywcm:input" sv:type="String">
+      <sv:value>service_Tax</sv:value>
+      <sv:value>vat_SalesTax</sv:value>
+      <sv:value>any_OtherTax</sv:value>
+      <sv:value>union_ExciseDuties</sv:value>
+      <sv:value>rent</sv:value>
+      <sv:value>commission</sv:value>
+      <sv:value>dividend</sv:value>
+      <sv:value>interest</sv:value>
+      <sv:value>profit_FixedAsset</sv:value>
+      <sv:value>profit_InvestmentSTT</sv:value>
+      <sv:value>profit_OtherInvestment</sv:value>
+      <sv:value>profit_CurrencyFluctuation</sv:value>
+      <sv:value>agricultural_Income</sv:value>
+      <sv:value>any_OtherIncome</sv:value>
+      <sv:value>closing_Stocks</sv:value>
+      <sv:value>sales_GrossBusiness</sv:value>
+      <sv:value>custom_Duty</sv:value>
+      <sv:value>counter_vailingDuty</sv:value>
+      <sv:value>special_addtionalDuty</sv:value>
+      <sv:value>union_ExciseDuty</sv:value>
+      <sv:value>service_TaxPL</sv:value>
+      <sv:value>vat_SalesTaxPL</sv:value>
+      <sv:value>anyOther_TaxPaid</sv:value>
+      <sv:value>salaries_Wages</sv:value>
+      <sv:value>bonus_PL</sv:value>
+      <sv:value>reimbursement_MedicalExpenses</sv:value>
+      <sv:value>leave_Encasement</sv:value>
+      <sv:value>leave_TravelBenefits</sv:value>
+      <sv:value>approved_SuperannuationFund</sv:value>
+      <sv:value>recog_ProvidendFund</sv:value>
+      <sv:value>recog_GratuityFund</sv:value>
+      <sv:value>any_OtherFund</sv:value>
+      <sv:value>any_otherBenefit</sv:value>
+      <sv:value>medical_Insurance</sv:value>
+      <sv:value>life_Insurance</sv:value>
+      <sv:value>keyman_Insurance</sv:value>
+      <sv:value>other_Insurance</sv:value>
+      <sv:value>union_ExciseDuty2</sv:value>
+      <sv:value>service_Tax2</sv:value>
+      <sv:value>vat_Salestax2</sv:value>
+      <sv:value>cess_PL</sv:value>
+      <sv:value>anyOther_RateInclSTT</sv:value>
+      <sv:value>opening_Stocks</sv:value>
+      <sv:value>purchases</sv:value>
+      <sv:value>freight</sv:value>
+      <sv:value>consumption_Stores</sv:value>
+      <sv:value>power_Fuels</sv:value>
+      <sv:value>rents_PL</sv:value>
+      <sv:value>repairs_Buildings</sv:value>
+      <sv:value>repairs_Machinery</sv:value>
+      <sv:value>staff_WelfareExpense</sv:value>
+      <sv:value>entertainment_PL</sv:value>
+      <sv:value>hospitality_PL</sv:value>
+      <sv:value>conference_PL</sv:value>
+      <sv:value>sales_Promotion</sv:value>
+      <sv:value>advertisement_PL</sv:value>
+      <sv:value>commission_PL</sv:value>
+      <sv:value>boarding_Lodging</sv:value>
+      <sv:value>travelling_Expenses</sv:value>
+      <sv:value>conveyance_Expenses</sv:value>
+      <sv:value>telephone_Expenses</sv:value>
+      <sv:value>guestHouse_Expenses</sv:value>
+      <sv:value>club_Expenses</sv:value>
+      <sv:value>festivalCeleb_Expenses</sv:value>
+      <sv:value>scholarship_PL</sv:value>
+      <sv:value>gifts_PL</sv:value>
+      <sv:value>donation_PL</sv:value>
+      <sv:value>audit_Fee</sv:value>
+      <sv:value>other_Expenses</sv:value>
+      <sv:value>bad_DoubtfulDebts</sv:value>
+      <sv:value>other_Provisions</sv:value>
+      <sv:value>bad_Debts</sv:value>
+      <sv:value>interest_PL</sv:value>
+      <sv:value>depreciation_PL</sv:value>
+      <sv:value>prov_CurrentTax</sv:value>
+      <sv:value>prov_DeferredTax</sv:value>
+      <sv:value>balance_PreviousYear</sv:value>
+      <sv:value>transReserves_Surplus</sv:value>
+    </sv:property>
+    <sv:property sv:name="mootlywcm:script" sv:type="String">
+      <sv:value>/**
+* This File is being used to calculate House Income
+*
+* **/
+//Define Helper Classes
+var indianCurrencyHelper = new com.mootly.wcm.services.IndianCurrencyHelper();
+out_total_DutyTaxCess=parseInt(service_Tax-0)+parseInt(vat_SalesTax-0)+parseInt(any_OtherTax-0)+parseInt(union_ExciseDuties-0);
+
+out_total_OtherIncome=parseInt(rent-0)+parseInt(commission-0)+parseInt(dividend-0)+parseInt(interest-0)+parseInt(profit_FixedAsset-0)+parseInt(profit_InvestmentSTT-0)+parseInt(profit_OtherInvestment-0)+parseInt(profit_CurrencyFluctuation-0)+parseInt(agricultural_Income-0)+parseInt(any_OtherIncome-0);
+
+out_total_CreditAccount=parseInt(sales_GrossBusiness-0)+(out_total_DutyTaxCess-0)+(out_total_OtherIncome-0)+parseInt(closing_Stocks-0);
+
+out_total = parseInt(custom_Duty-0)+parseInt(counter_vailingDuty-0)+parseInt(special_addtionalDuty-0)+parseInt(union_ExciseDuty-0)+parseInt(service_TaxPL-0)+parseInt(vat_SalesTaxPL-0)+parseInt(anyOther_TaxPaid-0);
+
+out_total_Compensation = parseInt(salaries_Wages-0)+parseInt(bonus_PL-0)+parseInt(reimbursement_MedicalExpenses-0)+parseInt(leave_Encasement-0)+parseInt(leave_TravelBenefits-0)+parseInt(approved_SuperannuationFund-0)+parseInt(recog_ProvidendFund-0)+parseInt(recog_GratuityFund-0)+parseInt(any_OtherFund-0)+parseInt(any_otherBenefit-0);
+
+out_totalExpense_Insurance = parseInt(medical_Insurance-0)+parseInt(life_Insurance-0)+parseInt(keyman_Insurance-0)+parseInt(other_Insurance-0);
+
+out_totalRates_TaxesPaid = parseInt(union_ExciseDuty2-0)+parseInt(service_Tax2-0)+parseInt(vat_Salestax2-0)+parseInt(cess_PL-0)+parseInt(anyOther_RateInclSTT-0);
+
+var netProfitBefireInt = parseInt(opening_Stocks-0)+parseInt(purchases-0)+parseInt(out_total-0)+parseInt(freight-0)+parseInt(consumption_Stores-0)  + parseInt(power_Fuels-0)+parseInt(rents_PL-0)+parseInt(repairs_Buildings-0)+parseInt(repairs_Machinery-0) + out_total_Compensation + out_totalExpense_Insurance+ parseInt(staff_WelfareExpense-0)+parseInt(entertainment_PL-0)+parseInt(hospitality_PL-0)+parseInt(conference_PL-0)+parseInt(boarding_Lodging-0)  + parseInt(sales_Promotion-0)+parseInt(advertisement_PL-0)+parseInt(commission_PL-0)+ parseInt(travelling_Expenses-0)+parseInt(conveyance_Expenses-0)+parseInt(telephone_Expenses-0) + parseInt(guestHouse_Expenses-0)+parseInt(club_Expenses-0)+parseInt(festivalCeleb_Expenses-0)+parseInt(scholarship_PL-0)+parseInt(gifts_PL-0)  + parseInt(donation_PL-0) + out_totalRates_TaxesPaid + parseInt(audit_Fee-0)+ parseInt(other_Expenses-0) +parseInt(bad_DoubtfulDebts-0) + parseInt(other_Provisions-0)+parseInt(bad_Debts-0);
+
+ out_profitBefore_InterestTaxes =  out_total_CreditAccount - netProfitBefireInt ;
+out_profit_BeforeTaxes =(out_profitBefore_InterestTaxes )-(parseInt(interest_PL-0) + parseInt(depreciation_PL-0)) ;
+out_profit_AfterTax =(out_profit_BeforeTaxes )-(parseInt(prov_CurrentTax-0) + parseInt(prov_DeferredTax-0)); 
+out_amount_Appropriation = out_profit_AfterTax  + parseInt(balance_PreviousYear-0)  ;
+out_balanceCarried_BalanceSheet = out_amount_Appropriation - transReserves_Surplus;</sv:value>
+    </sv:property>
+    <sv:property sv:name="mootlywcm:title" sv:type="String">
+      <sv:value>Screen Calculation for profit and loss (Schedule5a)</sv:value>
+    </sv:property>
+  </sv:node>
+</sv:node>
+
+<!-- schedule PL -->
     
   </sv:node>
 </sv:node>
