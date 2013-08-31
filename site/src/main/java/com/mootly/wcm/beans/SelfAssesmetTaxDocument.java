@@ -42,7 +42,6 @@ import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.content.beans.standard.HippoMirror;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import com.mootly.wcm.annotations.TagAsTaxDataProvider;
 import com.mootly.wcm.annotations.TagAsTaxDataProvider.TaxDataProviderType;
 import com.mootly.wcm.beans.compound.PersonalInformation;
@@ -54,7 +53,7 @@ import com.mootly.wcm.services.ScreenCalculatorService;
 @TagAsTaxDataProvider(type=TaxDataProviderType.INCOME)
 public class SelfAssesmetTaxDocument extends BaseDocument implements ContentNodeBinder,FormMapFiller,CompoundChildUpdate {
 	static final public String NAMESPACE = "mootlywcm:selfassesmenttaxdocument";
-	static final public String NODE_NAME = "selfassesmenttaxdocument";
+	static final public String NODE_NAME = "selfassesmettaxdocument";
 	final String PROP_DETAIL_BEAN="mootlywcm:selfassesmenttaxdetail";
 	private String itFolderUuid;
 	
