@@ -17,7 +17,10 @@
 	</c:choose>
 </h3>
 <c:if test="${not empty message}">
-	<h3 style="font-style: italic;color: maroon;"><c:out value="Your details has been successfully imported into your return"></c:out></h3>
+	<h4 style="font-style: italic; color: maroon;">
+		<c:out
+			value="Your details has been successfully imported into your return"></c:out>
+	</h4>
 	<c:forEach items="${formMap.message}" var="item">
 		<div class="alert alert-error">
 			<fmt:message key="${item.value}" />
@@ -35,10 +38,10 @@
 			<h4 style="font-style: italic; color: blue;">TDS Salaries</h4>
 			<table class="table table-striped">
 				<tr>
-					<th>Employer/Deductor/Collector Name</th>
-					<th>TAN</th>
-					<th>IncChrgSal</th>
-					<th>Total TDSSal</th>
+					<th>Deductor Name</th>
+					<th>TAN of Deductor</th>
+					<th>Income Chrgable on Salary</th>
+					<th>Total TDS on Salary</th>
 				</tr>
 				<c:choose>
 					<c:when
@@ -47,12 +50,9 @@
 							items="${twenty26asResponse.twenty26astdsOnSalaries}">
 							<tr>
 								<td><c:out
-										value="${anItem.employerOrDeductorOrCollecterName}" />
-								</td>
-								<td><c:out value="${anItem.TAN}" />
-								</td>
-								<td align="right"><c:out value="${anItem.incChrgSal}" />
-								</td>
+										value="${anItem.employerOrDeductorOrCollecterName}" /></td>
+								<td><c:out value="${anItem.TAN}" /></td>
+								<td align="right"><c:out value="${anItem.incChrgSal}" /></td>
 								<td align="right"><c:out value="${anItem.totalTDSSal}" />
 								</td>
 							</tr>
@@ -78,12 +78,12 @@
 			<table class="table table-striped">
 				<thead>
 					<tr>
-						<th>Employer/Deductor/Collector Name</th>
-						<th>TAN</th>
+						<th>Deductor Name</th>
+						<th>TAN of Deductor</th>
 						<th>Deducted Year</th>
-						<th>UniqueTDSCerNo</th>
-						<th>Total TDSOnAmtPaid</th>
-						<th>ClaimOutOfTotTDSOnAmtPaid</th>
+						<th>TDS Certificate No.</th>
+						<th>Total TDS On Amount Paid</th>
+						<th>Claim Out Of Total TDS On Amount Paid</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -94,18 +94,15 @@
 								items="${twenty26asResponse.twenty26astdsOtherThanSalaries}">
 								<tr>
 									<td><c:out
-											value="${anItem.employerOrDeductorOrCollecterName}" />
-									</td>
-									<td><c:out value="${anItem.TAN}" />
-									</td>
-									<td><c:out value="${anItem.deductedYr}" />
-									</td>
-									<td><c:out value="${anItem.uniqueTDSCerNo}" />
-									</td>
+											value="${anItem.employerOrDeductorOrCollecterName}" /></td>
+									<td><c:out value="${anItem.TAN}" /></td>
+									<td><c:out value="${anItem.deductedYr}" /></td>
+									<td><c:out value="${anItem.uniqueTDSCerNo}" /></td>
 									<td align="right"><c:out value="${anItem.totTDSOnAmtPaid}" />
 									</td>
 									<td align="right"><c:out
-											value="${anItem.claimOutOfTotTDSOnAmtPaid}" /></td>
+											value="${anItem.claimOutOfTotTDSOnAmtPaid}" />
+									</td>
 								</tr>
 							</c:forEach>
 						</c:when>
@@ -124,14 +121,15 @@
 	String TAN;
 	String TotalTCS;
 	 --%>
-			<h4 style="font-style: italic; color: blue;">TCS</h4>
+			<h4 style="font-style: italic; color: blue;">Tax Collected form
+				Source</h4>
 			<table class="table table-striped">
 				<thead>
 					<tr>
-						<th>Employer/Deductor/Collector Name</th>
-						<th>TAN</th>
+						<th>Collector Name</th>
+						<th>TAN of Collector</th>
 						<th>Total TCS</th>
-						<th>AmtTCSClaimedThisYear</th>
+						<th>Amount TCS Claimed This Year</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -142,15 +140,11 @@
 								items="${twenty26asResponse.twenty26astcs}">
 								<tr>
 									<td><c:out
-											value="${anItem.employerOrDeductorOrCollecterName}" />
-									</td>
-									<td><c:out value="${anItem.TAN}" />
-									</td>
-									<td align="right"><c:out value="${anItem.totalTCS}" />
-									</td>
+											value="${anItem.employerOrDeductorOrCollecterName}" /></td>
+									<td><c:out value="${anItem.TAN}" /></td>
+									<td align="right"><c:out value="${anItem.totalTCS}" /></td>
 									<td align="right"><c:out
-											value="${anItem.amtTCSClaimedThisYear}" />
-									</td>
+											value="${anItem.amtTCSClaimedThisYear}" /></td>
 								</tr>
 							</c:forEach>
 						</c:when>
@@ -169,6 +163,37 @@
 	String DateDep;
 	 --%>
 			<h4 style="font-style: italic; color: blue;">Tax Payments</h4>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>BSR Code</th>
+						<th>Srl No Of Challan</th>
+						<th>Date Deposite</th>
+						<th>Amount</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:choose>
+						<c:when
+							test="${not empty  twenty26asResponse.twenty26asTaxPayments && fn:length(twenty26asResponse.twenty26asTaxPayments) > 0}">
+							<c:forEach var="anItem"
+								items="${twenty26asResponse.twenty26asTaxPayments}">
+								<tr>
+									<td><c:out value="${anItem.BSRCode}" /></td>
+									<td><c:out value="${anItem.srlNoOfChaln}" /></td>
+									<td><c:out value="${anItem.dateDep}" /></td>
+									<td align="right"><c:out value="${anItem.amt}" /></td>
+								</tr>
+							</c:forEach>
+						</c:when>
+						<c:otherwise>
+							<h5 style="font-style: italic; color: blue;">No data for Tax
+								Payments</h5>
+						</c:otherwise>
+					</c:choose>
+				</tbody>
+			</table>
+			<h4 style="font-style: italic; color: blue;">Advance Tax</h4>
 			<table class="table table-striped">
 				<thead>
 					<tr>
@@ -197,8 +222,8 @@
 							</c:forEach>
 						</c:when>
 						<c:otherwise>
-							<h5 style="font-style: italic; color: blue;">No data for Tax
-								Payments</h5>
+							<h5 style="font-style: italic; color: blue;">No data for Advance
+								Tax</h5>
 						</c:otherwise>
 					</c:choose>
 				</tbody>
