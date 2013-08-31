@@ -16,23 +16,36 @@
 </h4>
 		<form id="frmProfitAndLoss" action="${actionUrl}" method="post"
 			name="frmProfitAndLoss">
-			
-		<fieldset>
-			<legend>Enter Details</legend>
 			<div class="row-fluid show-grid">
-				<div class="span9">
+				<div class="span8">
+							<div class="rowlabel">
+								<label for="isAccountMaintain"><small><fmt:message
+											key="foreign.is.dtaa.applicable" /> </small> </label>
+							</div></div>
+							<div class="span3">
+							<div class="rowlabel">
+								<select id="isAccountMaintain" name="isAccountMaintain">
+								<option value="">-Select-</option>
+								<option value="Yes">Yes</option>
+								<option value="No">No</option>
+								</select>
+							</div>
+						</div></div>
+			<div id="Account_Maintain">
+		<div class="row-fluid show-grid">
+				<div class="span8">
 					<div class="rowlabel">
 						<label for="sales_GrossBusiness"><small><fmt:message
 									key="sales.Gross.Business.itr4" /> </small> </label>
 					</div></div>
-					<div class="span2">
+					<div class="span3">
 					<div class="rowlabel">
 						<input id="sales_GrossBusiness" name="sales_GrossBusiness" 
 							type="text" maxlength="14"
 							value="" />
 					</div>
 				</div>
-				</div></fieldset>
+				</div>
 				<fieldset>
 				<legend><fmt:message key="profitLoss.fieldset.two.itr4"/></legend>
 				<div class="row-fluid show-grid">
@@ -89,7 +102,7 @@
 									key="total.Duty.Tax.Cess.pl.itr4" /> </small> </label>
 					</div>
 					<div class="rowlabel">
-						<input id="total_DutyTaxCess" name="total_DutyTaxCess"
+						<input id="total_DutyTaxCess" name="total_DutyTaxCess" readonly="readonly"
 							type="text" maxlength="14" 
 							value="" />
 					</div>
@@ -220,7 +233,7 @@
 									key="total.OtherIncome.pl.itr4" /> </small> </label>
 					</div>
 					<div class="rowlabel">
-						<input id="total_OtherIncome" name="total_OtherIncome"
+						<input id="total_OtherIncome" name="total_OtherIncome"  readonly="readonly"
 							type="text" maxlength="14" 
 							value="" />
 					</div>
@@ -246,7 +259,7 @@
 									key="total.CreditAccount.pl.itr4" /> </small> </label>
 					</div>
 					<div class="rowlabel">
-						<input id="total_CreditAccount" name="total_CreditAccount"
+						<input id="total_CreditAccount" name="total_CreditAccount" readonly="readonly"
 							type="text" maxlength="14" 
 							value="" />
 					</div>
@@ -497,7 +510,7 @@
 					<div class="span4">
 					<div class="rowlabel">
 						<label for="leave_TravelBenefits"><small><fmt:message
-									key="bonus.pl.itr4" /> </small> </label>
+									key="leave.TravelBenefits.pl.itr4" /> </small> </label>
 					</div>
 					<div class="rowlabel">
 						<input id="leave_TravelBenefits" name="leave_TravelBenefits"
@@ -572,7 +585,7 @@
 									key="total.Compensation.pl.itr4" /> </small> </label>
 					</div>
 					<div class="rowlabel">
-						<input id="total_Compensation" name="total_Compensation"
+						<input id="total_Compensation" name="total_Compensation" readonly="readonly"
 							type="text" maxlength="14" 
 							value="${parentBean.total_Compensation}" />
 					</div>
@@ -611,7 +624,7 @@
 									key="keyman_Insurance.pl.itr4" /> </small> </label>
 					</div>
 					<div class="rowlabel">
-						<input id="keyman.Insurance" name="keyman_Insurance"
+						<input id="keyman_Insurance" name="keyman_Insurance"
 							type="text" maxlength="14" 
 							value="${parentBean.keyman_Insurance}" />
 					</div>
@@ -635,7 +648,7 @@
 									key="totalExpense.Insurance.pl.itr4" /> </small> </label>
 					</div>
 					<div class="rowlabel">
-						<input id="totalExpense_Insurance" name="totalExpense_Insurance"
+						<input id="totalExpense_Insurance" name="totalExpense_Insurance" readonly="readonly"
 							type="text" maxlength="14" 
 							value="${parentBean.totalExpense_Insurance}" />
 					</div>
@@ -686,7 +699,7 @@
 					<div class="rowlabel">
 						<input id="conference_PL" name="conference_PL"
 							type="text" maxlength="14" 
-							value="${parentBean.conference_PL}" />
+							value="" />
 					</div>
 				</div>
 					<div class="span4">
@@ -908,7 +921,7 @@
 									key="totalRates_TaxesPaid.pl.itr4" /> </small> </label>
 					</div>
 					<div class="rowlabel">
-						<input id="totalRates_TaxesPaid" name="totalRates_TaxesPaid"
+						<input id="totalRates_TaxesPaid" name="totalRates_TaxesPaid" readonly="readonly"
 							type="text" maxlength="14" 
 							value="${parentBean.totalRates_TaxesPaid}" />
 					</div>
@@ -979,7 +992,7 @@
 									key="profitBefore.InterestTaxes.pl.itr4" /> </small> </label>
 					</div>
 					<div class="rowlabel">
-						<input id="profitBefore_InterestTaxes" name="profitBefore_InterestTaxes"
+						<input id="profitBefore_InterestTaxes" name="profitBefore_InterestTaxes" readonly="readonly"
 							type="text" maxlength="14" 
 							value="${parentBean.profitBefore_InterestTaxes}" />
 					</div>
@@ -1014,7 +1027,7 @@
 									key="profit_BeforeTaxes.pl.itr4" /> </small> </label>
 					</div>
 					<div class="rowlabel">
-						<input id="profit_BeforeTaxes" name="profit_BeforeTaxes"
+						<input id="profit_BeforeTaxes" name="profit_BeforeTaxes" readonly="readonly"
 							type="text" maxlength="14" 
 							value="${parentBean.profit_BeforeTaxes}" />
 					</div>
@@ -1049,7 +1062,7 @@
 									key="profit.AfterTax.pl.itr4" /> </small> </label>
 					</div>
 					<div class="rowlabel">
-						<input id="profit_AfterTax" name="profit_AfterTax"
+						<input id="profit_AfterTax" name="profit_AfterTax" readonly="readonly"
 							type="text" maxlength="14" 
 							value="${parentBean.profit_AfterTax}" />
 					</div>
@@ -1073,7 +1086,7 @@
 									key="amount_Appropriation.pl.itr4" /> </small> </label>
 					</div>
 					<div class="rowlabel">
-						<input id="amount_Appropriation" name="amount_Appropriation"
+						<input id="amount_Appropriation" name="amount_Appropriation" readonly="readonly"
 							type="text" maxlength="14" 
 							value="${parentBean.amount_Appropriation}" />
 					</div>
@@ -1090,22 +1103,25 @@
 					</div>
 				</div>
 				</div>
-				<div class="span4 offset8 decimal">
+				<div class="row-fluid show-grid">
 				<div class="span4">
 					<div class="rowlabel">
 						<label for="balanceCarried_BalanceSheet"><small><fmt:message
 									key="balanceCarried_BalanceSheet.pl.itr4" /> </small> </label>
 					</div>
 					<div class="rowlabel">
-						<input id="balanceCarried_BalanceSheet" name="balanceCarried_BalanceSheet"
+						<input id="balanceCarried_BalanceSheet" name="balanceCarried_BalanceSheet" readonly="readonly"
 							type="text" maxlength="14" 
 							value="${parentBean.balanceCarried_BalanceSheet}" />
 					</div>
 				</div>
 				</div>
+				</div>
+				<div id="NoAccount_Maintain">
 				<fieldset>
 				<legend><fmt:message key ="noAccounts.PL.itr4"></fmt:message> </legend>
-				<div class="span4">
+				<div class="row-fluid show-grid">
+				<div class="span5">
 					<div class="rowlabel">
 						<label for="gross_Recepients"><small><fmt:message
 									key="gross.Recepients.pl.itr4" /> </small> </label>
@@ -1116,7 +1132,7 @@
 							value="${parentBean.gross_Recepients}" />
 					</div>
 				</div>
-				<div class="span4">
+				<div class="span5">
 					<div class="rowlabel">
 						<label for="gross_Profit"><small><fmt:message
 									key="gross.Profit.pl.itr4" /> </small> </label>
@@ -1127,7 +1143,10 @@
 							value="${parentBean.gross_Profit}" />
 					</div>
 				</div>
-				<div class="span4">
+				</div>
+				
+				<div class="row-fluid show-grid">
+				<div class="span5">
 					<div class="rowlabel">
 						<label for="expenses_NoAccount"><small><fmt:message
 									key="expenses.NoAccount.pl.itr4" /> </small> </label>
@@ -1138,9 +1157,9 @@
 							value="${parentBean.expenses_NoAccount}" />
 					</div>
 				</div>
-				</fieldset>
-				<div class="row-fluid show-grid">
-				<div class="span4">
+				
+				
+				<div class="span5">
 					<div class="rowlabel">
 						<label for="net_Profit"><small><fmt:message
 									key="Net_Profit.NoAccount.pl.itr4" /> </small> </label>
@@ -1152,18 +1171,35 @@
 					</div>
 				</div>
 				</div>
+				</fieldset>
+				</div>
 			<div class="row-fluid show-grid">
 				<div class="span4 offset8 decimal">
-					<a href="${scriptName}?selectedItrTab=<%=ITRTab.TAX_TDS_OTHERS%>" class="btn btn-danger" style="color: black">Cancel</a>&nbsp;
-					<a id="myModalHrefTdsOther" role="button" class="btn btn-success" style="color: black">Save</a>
+					<a href="${scriptName}" class="btn btn-danger" style="color: black">Cancel</a>&nbsp;
+					<a id="myModalProfitAndLoss" role="button" class="btn btn-success" style="color: black">Save</a>
 				</div>
 			</div>
-			<div><input type="submit"></div>
 		</form>
 	
 		
 </div>
 
+<script type="text/javascript">
+$('#isAccountMaintain').change(function(){
+	var val_Accountmaintain = $('#isAccountMaintain').val();
+	if (val_Accountmaintain == "Yes"){
+		$('#Account_Maintain').show();
+		$('#NoAccount_Maintain').hide();
+	}
+	if (val_Accountmaintain == "No"){
+		$('#NoAccount_Maintain').show();
+		$('#Account_Maintain').hide();
+	}
+	
+})
+</script>
+<res:calc screenCalc="profitandloss" formId="frmProfitAndLoss"></res:calc>
 <res:client-validation formId="frmProfitAndLoss"
-	screenConfigurationDocumentName="tdsfromothers"
-	formSubmitButtonId="myModalHrefTdsOther" fieldOneID="tan_deductortdsoth" fieldTwoID="name_deductortdsoth" validationType="tan"/>
+	screenConfigurationDocumentName="profitandloss"
+	formSubmitButtonId="myModalProfitAndLoss" />
+	
