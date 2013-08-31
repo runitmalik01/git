@@ -24,7 +24,6 @@ import static com.mootly.wcm.utils.Constants.SERIAL;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
@@ -39,6 +38,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.mootly.wcm.beans.FormMapFiller;
+import com.mootly.wcm.model.Isimported;
 
 /**
  * author: Pankaj Singh
@@ -62,12 +62,22 @@ public class SelfAssesmentTaxDetail extends HippoItem implements FormMapFiller {
 	
 	private String personalInfoUuid;
 	private boolean markedForDeletion;
+    Boolean isImported;
+	private boolean isReviewed;
 	
 	public final boolean isMarkedForDeletion() {
 		return markedForDeletion;
 	}
 	public final void setMarkedForDeletion(boolean markedForDeletion) {
 		this.markedForDeletion = markedForDeletion;
+	}
+	
+	public Boolean getIsImported() {
+		if (isImported == null) isImported = getProperty("mootlywcm:isimport");
+		return isImported;
+	}
+	public void setIsImported(Boolean isImported) {
+		this.isImported = isImported;
 	}
 	
 	public String getP_BSR() {
@@ -85,6 +95,7 @@ public class SelfAssesmentTaxDetail extends HippoItem implements FormMapFiller {
     	if (val_amount == null) val_amount = getProperty(AMOUNT);
     	return val_amount;
     }
+
     public GregorianCalendar getP_Date() {
     	if (val_Date == null) val_Date = getProperty(DATE);
     	return val_Date;
@@ -123,6 +134,10 @@ public class SelfAssesmentTaxDetail extends HippoItem implements FormMapFiller {
 	    	try {
 	    		log.warn("Bind to Node for TdsSalary Called");
 	    		node.setProperty(BSR,getP_BSR());
+	    		//log.info("val is"+getIsImported());
+	    		//if(getIsImported().equals(true)){
+	    		//node.setProperty("mootlywcm:isimport",getIsImported());
+	    		//}
 				node.setProperty(SERIAL, getP_Serial());
 				node.setProperty(DATE, getP_Date());
 				node.setProperty(AMOUNT,getP_Amount());
@@ -187,7 +202,27 @@ public class SelfAssesmentTaxDetail extends HippoItem implements FormMapFiller {
 			}
 		}	
 	}
-	 public static final SimpleDateFormat getIndianDateFormatter() {
+	
+	
+	
+	public Isimported getIsimportedData() {
+		String retValueString = getFlexField("flex_string_Isimported",null);
+		if (retValueString != null) {
+			try {
+				Isimported itrForm = Isimported.valueOf(retValueString);
+				return itrForm;
+			}catch (IllegalArgumentException e) {
+				log.warn("There was an error parsing the value",e);
+				return null;
+			}
+		}
+		return null;
+	}
+	private String getFlexField(String string, Object object) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	public static final SimpleDateFormat getIndianDateFormatter() {
 	      return new SimpleDateFormat("dd/MM/yyyy");
 	     }
 	@Override
@@ -198,7 +233,7 @@ public class SelfAssesmentTaxDetail extends HippoItem implements FormMapFiller {
 		setP_Serial(objSelfAssesment.getP_Serial());
 		setP_Amount(objSelfAssesment.getP_Amount());
 		setP_Date(objSelfAssesment.getP_Date());
-		
+		setIsImported(objSelfAssesment.getIsImported());
 		
 	}
 	
