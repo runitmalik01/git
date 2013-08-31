@@ -1732,7 +1732,7 @@
           <sv:value>frontend:plugin</sv:value>
         </sv:property>
         <sv:property sv:name="caption" sv:type="String">
-          <sv:value>Proprietor’s capital</sv:value>
+          <sv:value>Proprietor's capital</sv:value>
         </sv:property>
         <sv:property sv:name="engine" sv:type="String">
           <sv:value>${engine}</sv:value>
@@ -2361,7 +2361,7 @@
           <sv:value>frontend:plugin</sv:value>
         </sv:property>
         <sv:property sv:name="caption" sv:type="String">
-          <sv:value>Long-term investments Government and other Securities – Unquoted</sv:value>
+          <sv:value>Long-term investments Government and other Securities ï¿½ Unquoted</sv:value>
         </sv:property>
         <sv:property sv:name="engine" sv:type="String">
           <sv:value>${engine}</sv:value>
