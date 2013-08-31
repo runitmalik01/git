@@ -28,7 +28,7 @@ import com.mootly.wcm.model.FinancialYear;
  * Description
  */
 @PrimaryBean(primaryBeanClass=ProfitAndLossDocument.class)
-@FormFields(fieldNames={"sales_GrossBusiness","union_ExciseDuties","service_Tax","vat_SalesTax","any_OtherTax","total_DutyTaxCess",
+@FormFields(fieldNames={"isAccountMaintain","sales_GrossBusiness","union_ExciseDuties","service_Tax","vat_SalesTax","any_OtherTax","total_DutyTaxCess",
 		"rent","commission","dividend","interest","profit_FixedAsset","profit_InvestmentSTT","profit_OtherInvestment","profit_CurrencyFluctuation","agricultural_Income","any_OtherIncome",
 		"total_OtherIncome","closing_Stocks","total_CreditAccount","opening_Stocks","purchases","custom_Duty","counter_vailingDuty","special_addtionalDuty","union_ExciseDuty","service_TaxPL",
 		"vat_SalesTaxPL","anyOther_TaxPaid","total","freight","consumption_Stores","power_Fuels","rents_PL","repairs_Buildings","repairs_Machinery","salaries_Wages","bonus_PL",
