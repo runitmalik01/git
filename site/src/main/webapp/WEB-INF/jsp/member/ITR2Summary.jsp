@@ -401,7 +401,7 @@
 						<span class="decimal">
 								<w4india:inr value="${theForm.partBTTI.taxPaid.balTaxPayable}"/>
 								<c:if test="${theForm.partBTTI.taxPaid.balTaxPayable > 0}">
-								<span style="padding-left:20px"><a href="https://incometaxindiaefiling.gov.in/e-Filing/Services/KnowYourTanLink.html">Pay Tax Now</a></span>
+								<span style="padding-left:20px"><a href="https://onlineservices.tin.egov-nsdl.com/etaxnew/tdsnontds.jsp">Pay Tax Now</a></span>
 							</c:if>
 						</span>
 					</td>
