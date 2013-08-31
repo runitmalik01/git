@@ -78,7 +78,7 @@ if (!noMenu) {
 			FilingSection filingSection = FilingSection.getByXmlCode(strReturnSection);
 			request.setAttribute("filingSection", filingSection);
 		}
-		
+
 		serviceItemKey = memberPersonalInformation.getPAN() + "-" + financialYear.getDisplayAssessmentYear() + "-" + itrForm + "-" + itReturnType +	"-" + itrServiceDelivery;
 		if (serviceItemKey != null) request.setAttribute("serviceItemKey", serviceItemKey);
 		if (memberPersonalInformation.getEmail() != null && !"".equals(memberPersonalInformation.getEmail().trim())) deliveryEmail = memberPersonalInformation.getEmail();
@@ -88,7 +88,7 @@ boolean hasDIY = false;
 boolean isDIY = false;
 if (itrForm != null) {
 	hasDIY = itrForm.getHasDIY();
-}	
+}
 if (itrServiceDelivery != null && itrServiceDelivery == ITRServiceDelivery.DIY) {
 	isDIY = true;
 }
@@ -108,15 +108,15 @@ HstSiteMenu itrSiteMenu = itrSiteMenuImpl.getSiteMenu("itrmenu");
 if (itrSiteMenu != null && itrSiteMenu.getSiteMenuItems() != null && propertyToCheck != null) {
 	List<HstSiteMenuItem> listOfSiteItems = itrSiteMenu.getSiteMenuItems();
 	List<HstSiteMenuItem> onlyEnabledForThisITRForm = new ArrayList<HstSiteMenuItem>();
-	
+
 	if (listOfSiteItems != null && listOfSiteItems.size() > 0 ) {
 		for (HstSiteMenuItem anItem:listOfSiteItems) {
 			if (anItem.getParameter(propertyToCheck) == null || (anItem.getParameter(propertyToCheck) != null && anItem.getParameter(propertyToCheck).equals("true"))) {
-				if (hasDIY || ( !hasDIY && anItem.getParameter("nonDIY") != null )) {					
+				if (hasDIY || ( !hasDIY && anItem.getParameter("nonDIY") != null )) {
 					onlyEnabledForThisITRForm.add(anItem);
 				}
 			}
-		}		
+		}
 		Collections.sort(onlyEnabledForThisITRForm,new MenuComparator());
 		request.setAttribute("listOfSiteItems", onlyEnabledForThisITRForm);
 	}
@@ -134,7 +134,7 @@ for (HstSiteMenuItem siteMenuItem : itrSiteMenu.getSiteMenuItems() ){
 	         <span class="icon-bar"></span>
 	         <span class="icon-bar"></span>
          </a>
-         <a class="brand" href="${fn:substringBefore(scriptName,pan)}${pan}/servicerequest-itr.html">
+         <a class="brand" href="${fn:substringBefore(scriptName,pan)}${pan}${itrFolderSuffix}/${pan}/servicerequest-itr.html">
             <span class="pan">
                <c:out value="${pan}"/>
             </span>
@@ -158,13 +158,13 @@ for (HstSiteMenuItem siteMenuItem : itrSiteMenu.getSiteMenuItems() ){
 		                					List<HstSiteMenuItem> onlyEnabledForThisITRForm = new ArrayList<HstSiteMenuItem>();
 		                					for (HstSiteMenuItem anItem:listOfChildMenuItems) {
 		                						if (anItem.getParameter(propertyToCheck) == null || (anItem.getParameter(propertyToCheck) != null && anItem.getParameter(propertyToCheck).equals("true"))) {
-		                							if (hasDIY || ( !hasDIY && anItem.getParameter("nonDIY") != null )) {	
+		                							if (hasDIY || ( !hasDIY && anItem.getParameter("nonDIY") != null )) {
 		                								onlyEnabledForThisITRForm.add(anItem);
 		                							}
 		                						}
-		                					}	
+		                					}
 		                					Collections.sort(onlyEnabledForThisITRForm,new MenuComparator());
-		                					request.setAttribute("listOfChildMenuItems", onlyEnabledForThisITRForm);	
+		                					request.setAttribute("listOfChildMenuItems", onlyEnabledForThisITRForm);
 	                					}
 	                				%>
 	                				<c:forEach items="${listOfChildMenuItems}" var="childMenuItem">
@@ -245,7 +245,7 @@ for (HstSiteMenuItem siteMenuItem : itrSiteMenu.getSiteMenuItems() ){
 				    					request.removeAttribute("isActive");
 				    				}
 			    				}
-	
+
 			        		%>
 			        		<c:if test="${itrSiteMenuItem.name != 'PAN'}">
 	               				<li <c:if test='${not empty isActive && isActive == "true"}'>class="active"</c:if>><a href="${scriptName}${theURLParent}">${itrSiteMenuItem.name}</a></li>
@@ -258,18 +258,18 @@ for (HstSiteMenuItem siteMenuItem : itrSiteMenu.getSiteMenuItems() ){
 	                <form class="navbar-search pull-left" action="">
 	                  <input type="text" class="search-query span2" placeholder="Search">
 	                </form>
-	                 -->	    
-	             <%--  
+	                 -->
+	             <%--
 	            <div id="addToCart" style="display:none" class="pull-right simpleCart_shelfItem">
 	            	<h2 class="item_name" style="display:none;"><c:out value="${serviceItemKey}"/></h2>
-	            	<span class="item_price" style="display:none;"><w4india:inr value="199"></w4india:inr></span>  
-	            	<input type="hidden" value="1" class="item_Quantity">	            	
+	            	<span class="item_price" style="display:none;"><w4india:inr value="199"></w4india:inr></span>
+	            	<input type="hidden" value="1" class="item_Quantity">
 	            	<a class="item_add dropdown-toggle btn btn-primary" data-toggle="dropdown" href="javascript:;" style="color: white"><i class="icon-shopping-cart icon-white"></i>Add to cart</a>
-	            </div>	
+	            </div>
 	             <div id="removeFromCart" style="display:none" class="pull-right">
 	            	<a id="removeCartLink" class="dropdown-toggle btn btn-primary" data-toggle="dropdown" href="javascript:;" style="color: white"><i class="icon-shopping-cart icon-white"></i>Remove from cart</a>
-	            </div>	      
-	             --%>           
+	            </div>
+	             --%>
 	            <c:if test="${hasDIY =='true'}">
 		            <ul class="nav pull-right">
 		               <li class="divider-vertical"></li>
@@ -279,7 +279,7 @@ for (HstSiteMenuItem siteMenuItem : itrSiteMenu.getSiteMenuItems() ){
 		                  	 	 <%-- hide Show XML only for developers --%>
 		                  	 	 <%--
 			                  	 <li><a href="servicerequest-itr-summary.html">View Summary</a></li>
-			                     <li><a href="servicerequest-itr-summary.html?show=xml">View XML</a></li>		                     	
+			                     <li><a href="servicerequest-itr-summary.html?show=xml">View XML</a></li>
 			                     <li class="divider"></li>
 			                      --%>
 			                     <li><a href="${scriptName}/../servicerequest-itr-download-xml.html">Download XML</a></li>
@@ -299,7 +299,7 @@ for (HstSiteMenuItem siteMenuItem : itrSiteMenu.getSiteMenuItems() ){
 <%--ITR1.packageName.DIY.package --%>
 <c:set var="now" value="<%=new java.util.Date()%>" />
 <c:set var="indianLocalDateFormStr" value="<%=IndianGregorianCalendar.indianDateTimeFormStr%>" />
-<c:if test="${not empty memberpersonalinformation}">	
+<c:if test="${not empty memberpersonalinformation}">
 	<c:if test="${not empty hippoBeanValidationResponse && ( fn:length(hippoBeanValidationResponse.errors) > 0 || fn:length(hippoBeanValidationResponse.warnings) > 0) }">
 		<div style="font-weight:bold;font-size:10px; border: 1px dashed #FF0000;padding:5px;text-align:center">
 			<ul>
@@ -308,8 +308,8 @@ for (HstSiteMenuItem siteMenuItem : itrSiteMenu.getSiteMenuItems() ){
 						<fmt:message key="${error.message}">
 							<c:forEach items="${error.messageArgs}" var="aParam">
 								<fmt:param value="${aParam}"/>
-							</c:forEach>										
-						</fmt:message> 
+							</c:forEach>
+						</fmt:message>
 					</li>
 				</c:forEach>
 				<c:forEach items="${hippoBeanValidationResponse.warnings}" var="warning">
@@ -317,30 +317,30 @@ for (HstSiteMenuItem siteMenuItem : itrSiteMenu.getSiteMenuItems() ){
 						<fmt:message key="${warning.message}">
 							<c:forEach items="${warning.messageArgs}" var="aParam">
 								<fmt:param value="${aParam}"/>
-							</c:forEach>										
-						</fmt:message> 
+							</c:forEach>
+						</fmt:message>
 					</li>
-				</c:forEach>				
+				</c:forEach>
 			</ul>
 		</div>
 	</c:if>
 	<div style="font-size:9px; font-family:arial;border: 1px dashed #ccc;padding:5px;">
-		<span>Local Time: <b><u><fmt:formatDate type="both" pattern="${indianLocalDateFormStr}" timeZone="GMT+5:30" dateStyle="short" timeStyle="short" value="${now}" /></u></b></span> |  
-		<span>For: <b><u><c:out value="${memberpersonalinformation.name}"/></u></b></span> | 
+		<span>Local Time: <b><u><fmt:formatDate type="both" pattern="${indianLocalDateFormStr}" timeZone="GMT+5:30" dateStyle="short" timeStyle="short" value="${now}" /></u></b></span> |
+		<span>For: <b><u><c:out value="${memberpersonalinformation.name}"/></u></b></span> |
 		<span>DOB: <b><u><c:out value="${memberpersonalinformation.DOBStr}"/></u></b></span> |
 		<span>AY: <b><u><c:out value="${financialYear.displayAssessmentYear}"/></u></b></span> |
 		<span>FY: <b><u><c:out value="${financialYear.displayName}"/></u></b></span> |
 		<span>Section : <b><u><c:out value="${memberpersonalinformation.filingSection.desc}"/></u></b></span> |
 		<span>Due Date : <b><u><c:out value="${thePastDueDateStr}"/></u></b></span> |
 		<span>Package : <b><u><fmt:message key="${itrForm}.packageName.${memberpersonalinformation.selectedServiceDeliveryOption}.package"/></u></b></span> |
-		<span>Payment : <b><u> 
+		<span>Payment : <b><u>
 			<c:choose>
 				<c:when
 					test="${not empty memberpayment.paymentVerificationStatus && memberpayment.paymentVerificationStatus == 'VERIFIED'}">
 					<a href="${scriptName}/../servicerequest-itr-payment.html">Verified</a>
 				</c:when>
 				<c:when test="${not empty memberpayment && ( empty memberpayment.paymentVerificationStatus || memberpayment.paymentVerificationStatus != 'VERIFIED' )}">
-					<a href="${scriptName}/../servicerequest-itr-payment.html">Under Review</a>					   
+					<a href="${scriptName}/../servicerequest-itr-payment.html">Under Review</a>
 				</c:when>
 				<c:otherwise>
 					<c:if test="${not empty itrForm && not empty  memberpersonalinformation.selectedServiceDeliveryOption}">
@@ -354,14 +354,14 @@ for (HstSiteMenuItem siteMenuItem : itrSiteMenu.getSiteMenuItems() ){
 <%-- you kidding me?? can't escape  --%>
 <%-- this is not working as the response has already been sent to the browser --%>
 <%-- //todo we need to more this entire damn logic into a java component --%>
-<% 
+<%
 if (!didWeFindTheResolvedMapItemInMenu && !hasDIY) { %>
-<% 	
-	
+<%
+
 //HstResponse hstResponse = (HstResponse) response;
 	//HstResponseUtils.sendRedirect(hstRequest,hstResponse,"root");
 	//return;
-}  
+}
 %>
 <%!
 class MenuComparator implements Comparator<HstSiteMenuItem> {
@@ -383,7 +383,7 @@ class MenuComparator implements Comparator<HstSiteMenuItem> {
        	else {
     		return o1.getName().compareTo(o2.getName()); // Compare by name, for example
        	}
-    }    
+    }
 }
 
 %>
@@ -392,7 +392,7 @@ class MenuComparator implements Comparator<HstSiteMenuItem> {
     <hst:attribute name="type">text/css</hst:attribute>
     .navbar {
 		margin-bottom: 5px;
-	}    
+	}
 </hst:element>
 <hst:headContribution element="${uiCustom}" category="jsInternal"/>
 <%-- no need for a shopping cart for now --%>
@@ -403,7 +403,7 @@ class MenuComparator implements Comparator<HstSiteMenuItem> {
     var myItem = new simpleCart.Item(theO);
 	var itemInCart=null;
     simpleCart.ready( function(){
-  		console.log( "simpleCart total: " + simpleCart.toCurrency( simpleCart.total() ) ); 
+  		console.log( "simpleCart total: " + simpleCart.toCurrency( simpleCart.total() ) );
   		var h = simpleCart.has(myItem);
   		if (h) {
   			res = simpleCart.find(theO);
@@ -417,18 +417,18 @@ class MenuComparator implements Comparator<HstSiteMenuItem> {
   			$("#addToCart").show();
   		}
 	});
-	
+
 	simpleCart.bind( 'afterAdd' , function(item){
 		itemInCart = item;
-    	togg();	
+    	togg();
 	});
-	
+
 	// simple callback example
 	simpleCart.bind( 'beforeCheckout' , function( data ){
 	  	//data.invoiceNumber = "ABC-123456789";
 	  	alert('WE NEED TO CALL ITR COMPONENT HERE TO GENERATE THE INVOICE');
 	});
-	
+
 	$("#removeCartLink").click( function () {
 			if (simpleCart.has(myItem)) {
 				itemInCart.remove();
@@ -436,12 +436,12 @@ class MenuComparator implements Comparator<HstSiteMenuItem> {
 			}
 		}
 	);
-	
+
 	function togg() {
 		$("#addToCart").toggle();
 		$("#removeFromCart").toggle();
 	}
-    
+
 </hst:element>
 <hst:headContribution element="${uiCustom}" category="jsInternal"/>
  --%>
