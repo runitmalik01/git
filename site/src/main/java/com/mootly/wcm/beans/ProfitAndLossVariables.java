@@ -15,6 +15,7 @@ import org.hippoecm.hst.content.beans.ContentNodeBindingException;
 
 public abstract class ProfitAndLossVariables extends BaseDocument implements ContentNodeBinder, FormMapFiller{
 	
+	private String isAccountMaintain;
 	private Double sales_GrossBusiness;
 	private Double union_ExciseDuties;
 	private Double service_Tax;
@@ -116,7 +117,12 @@ public abstract class ProfitAndLossVariables extends BaseDocument implements Con
 	
 	
 	
-	//for personal information
+	//getter methods
+	public String getIsAccountMaintain() {
+		if(isAccountMaintain == null) isAccountMaintain = getProperty("mootlywcm:isAccountMaintain");
+		return isAccountMaintain;
+	}
+	
 	public  Double getSales_GrossBusiness() {
 		if (sales_GrossBusiness == null) sales_GrossBusiness = getProperty("mootlywcm:sales_GrossBusiness");
 		return sales_GrossBusiness;
@@ -496,7 +502,11 @@ public abstract class ProfitAndLossVariables extends BaseDocument implements Con
 		return net_Profit;
 	}
 	
-	// set method for otherincome document
+	// set method 
+	
+	public final void setIsAccountMaintain(String isAccountMaintain){
+		this.isAccountMaintain = isAccountMaintain;
+	}
 
 	public final void  setSales_GrossBusiness(Double sales_GrossBusiness) {
 		this.sales_GrossBusiness = sales_GrossBusiness;
@@ -793,8 +803,10 @@ public abstract class ProfitAndLossVariables extends BaseDocument implements Con
 	public boolean bind(Object content, javax.jcr.Node node)
 			throws ContentNodeBindingException {
 		// TODO Auto-generated method stub   
-		try{
+		try{ 
+			
 		ProfitAndLossDocument objProfitAndLossDocument= (ProfitAndLossDocument) content;
+		node.setProperty("mootlywcm:isAccountMaintain",objProfitAndLossDocument.getIsAccountMaintain());
 		node.setProperty("mootlywcm:sales_GrossBusiness",objProfitAndLossDocument.getSales_GrossBusiness());
 		node.setProperty("mootlywcm:union_ExciseDuties", objProfitAndLossDocument.getUnion_ExciseDuties());
 		node.setProperty("mootlywcm:service_Tax", objProfitAndLossDocument.getservice_Tax());

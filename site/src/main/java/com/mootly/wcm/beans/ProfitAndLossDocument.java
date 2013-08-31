@@ -41,6 +41,10 @@ public class ProfitAndLossDocument extends ProfitAndLossVariables{
 	public void fill(FormMap formMap) {
 		// TODO Auto-generated method stub
 		if (formMap == null) return;
+		if (!(formMap.getField("isAccountMaintain").getValue().isEmpty())){
+			setIsAccountMaintain(formMap.getField("isAccountMaintain").getValue());
+		}
+		
 		double val_Sales_GrossBusiness=0.0d;
 		if (formMap.getField("sales_GrossBusiness").getValue().isEmpty()){
 			setSales_GrossBusiness(val_Sales_GrossBusiness);
