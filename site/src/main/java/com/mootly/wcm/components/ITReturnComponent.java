@@ -152,10 +152,10 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 	Retrieve26ASInformation retrieve26ASService = null;
 	RetrievePANInformation retrievePANInformation = null;
 	ITReturnComponentHelper itReturnComponentHelper = null;
-	
+
 	String servletPath = null;
 	String xsltPath = null;
-	
+
 	//local variables
 	boolean hasInitComplete = false;
 	String redirectURLToSamePage=  null;
@@ -209,17 +209,17 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 
 	///Name of the HTML File and the depth its in
 	String scriptName;
-	
+
 	SequenceGenerator sequenceGenerator = null;
-	
+
 	Map<String,HippoBean> mapOfAllBeans = new HashMap<String, HippoBean>();
-	
-	
+
+
 	MemberPersonalInformation memberPersonalInformation;
 	boolean shouldRetrievePANInformation = false;
-	RetrievePANInformation.VALIDATION_RESULT retrievePANInformationValidationResult = VALIDATION_RESULT.NOT_INITIATED; 
+	RetrievePANInformation.VALIDATION_RESULT retrievePANInformationValidationResult = VALIDATION_RESULT.NOT_INITIATED;
 	RetrievePANResponse retrievePANResponse = null;
-	
+
 	@Override
 	public void init(ServletContext servletContext,
 			ComponentConfiguration componentConfig)
@@ -234,11 +234,11 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		retrievePANInformation = context.getBean(RetrievePANInformation.class);
 		retrieveITRVService = context.getBean(RetrieveITRV.class);
 		retrieve26ASService = context.getBean(Retrieve26ASInformation.class);
-		
+
 		itReturnComponentHelper = context.getBean( ITReturnComponentHelper.class );
 	}
-	
-	
+
+
 	public final Retrieve26ASInformation getRetrieve26ASService() {
 		return retrieve26ASService;
 	}
@@ -250,7 +250,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 	public ITReturnComponentHelper getITReturnComponentHelper() {
 		return itReturnComponentHelper;
 	}
-	
+
 	public RetrievePANInformation getRetrievePANInformationService() {
 		return retrievePANInformation;
 	}
@@ -262,11 +262,11 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 	@Override
 	public void doBeforeRender(HstRequest request, HstResponse response) {
 		super.doBeforeRender(request, response);
-		
+
 		if (!hasInitComplete) {
 			try {
 				initComponent(request,response);
-				fillDueDate(request,response); //this will fill the due date 
+				fillDueDate(request,response); //this will fill the due date
 				executeValidationChain(request,response);
 			}
 			catch (InvalidPANException inpe) {
@@ -299,7 +299,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		if (getClass().isAnnotationPresent(FormFields.class)) {
 			FormFields formFields = this.getClass().getAnnotation(FormFields.class);
 			String[] vendorFields = formFields.fieldNamesVendorOnly();
-			String[] theFieldsArray = formFields.fieldNames(); 
+			String[] theFieldsArray = formFields.fieldNames();
 			if (isVendor(request) && vendorFields != null && vendorFields.length > 0){
 				theFieldsArray = (String[]) ArrayUtils.addAll(theFieldsArray, vendorFields);
 			}
@@ -384,37 +384,37 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 				}
 			}
 		}
-		
+
 		String redirectToIfPaymentNotFound = getRedirectURLForSiteMapItem(request, response, null,(  (isVendor(request) && isOnVendorPortal()) ? "vendor-servicerequest-itr-payment" : "servicerequest-itr-payment"), getFinancialYear(), getTheFolderContainingITRDocuments(), getPAN());
 		String redirectToIfConfirmationNotFound = getRedirectURLForSiteMapItem(request, response, null, (  (isVendor(request) && isOnVendorPortal()) ? "vendor-servicerequest-itr-tos-confirmation" : "servicerequest-itr-tos-confirmation"), getFinancialYear(), getTheFolderContainingITRDocuments(), getPAN());
 		if (pageAction != null && (pageAction.equals(PAGE_ACTION.SHOW_ITR_SUMMARY) || pageAction.equals(PAGE_ACTION.DOWNLOAD_ITR_SUMMARY) || pageAction.equals(PAGE_ACTION.DOWNLOAD_ITR_XML) || pageAction.equals(PAGE_ACTION.EMAIL_ITR_XML_AND_SUMMARY)) ) {
 			try {
 				handleITRSummary(request,response);
-			}catch (InvalidXMLException invalidXml) {		
+			}catch (InvalidXMLException invalidXml) {
 				FormMap formMap = new FormMap();//(request,new String[] {"xml","isValid","errors","financialYear"});
 				FormField formFieldXml = new FormField("xml");
 				FormField formFieldFinancialYear = new FormField("financialYear");
-				
+
 				FormField formFieldPan = new FormField("PAN");
 				formFieldPan.addValue(getPAN());
 				FormField formFieldFilingStatus = new FormField("itReturnType");
 				formFieldFilingStatus.addValue(getITReturnType().name());
-				
+
 				FormField formFieldTheFolderContainingITRDocuments = new FormField("theFolderContainingITRDocuments");
 				formFieldFilingStatus.addValue(getTheFolderContainingITRDocuments());
-				
-				
+
+
 				FormField formFieldReason = new FormField("reason");
 				formFieldReason.addValue("Invalid Return");
-				
+
 				ValidationResponse validationResponse = invalidXml.getValidationResponse();
 				formFieldXml.addValue(validationResponse.getXml());
 				formFieldFinancialYear.addValue(getFinancialYear().getDisplayName());
-				
+
 				formMap.addFormField(formFieldXml);
 				formMap.addFormField(formFieldFinancialYear);
 				formMap.addFormField(formFieldTheFolderContainingITRDocuments);
-				
+
 				//07/23/2013
 				FormField formFieldIsValid = new FormField("isValid");
 				formFieldIsValid.addValue(String.valueOf(validationResponse.isValid()));
@@ -422,9 +422,9 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 				formFieldErrors.addValue(String.valueOf(validationResponse.getErrors()));
 				formMap.addFormField(formFieldIsValid);
 				formMap.addFormField(formFieldErrors);
-				//end changes 
-				
-				StoreFormResult sfr = new StoreFormResult();	
+				//end changes
+
+				StoreFormResult sfr = new StoreFormResult();
 				FormUtils.persistFormMap(request, response, formMap, sfr);
 				try {
 					response.sendRedirect(request.getContextPath() + "/services/itr-validate-xml.html?uuid=" + sfr.getUuid());
@@ -459,13 +459,13 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 				return;
 			}
 		}
-		//new code for bulk 
+		//new code for bulk
 		if (pageAction != null && pageAction == PAGE_ACTION.DOWNLOAD_ITR_XML_BULK_ADD_TO_SESSION) {
 			//add and then redirect back to the page
 			HttpSession session = request.getSession(true);
 			List<String> listOfPaths = (List<String>) session.getAttribute("bulk_download_xml_paths");
 			if (listOfPaths == null) {
-				listOfPaths = new ArrayList<String>();				
+				listOfPaths = new ArrayList<String>();
 			}
 			listOfPaths.add(baseRelPathToReturnDocuments);
 			session.setAttribute("bulk_download_xml_paths", listOfPaths);
@@ -485,7 +485,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			String[] theNewArray =listOfPath.toArray(new String[listOfPath.size()]);
 			try {
 				generateBulkXml(request, response, theNewArray);
-				
+
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -497,7 +497,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			if (retrieveITRVService != null) {
 				try {
 					ITRVStatus itrvStatus = retrieveITRVService.retrieveITRVStatus(getPAN(), getFinancialYear().getAssessmentYearForDITSOAPCall());
-					request.setAttribute("itrvStatus", itrvStatus);								
+					request.setAttribute("itrvStatus", itrvStatus);
 				} catch (MissingInformationException e) {
 					// TODO Auto-generated catch block
 					log.error("Error in RetrieveITRVStatus-MissingInformationException",e);
@@ -514,10 +514,10 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			}
 			else {
 				request.setAttribute("isError", "true");
-			}			
+			}
 			if (getPageOutputFormat() != null && getPageOutputFormat() == PAGE_OUTPUT_FORMAT.JSON) {
 				response.setRenderPath("jsp/common/json_output.jsp");
-			}	
+			}
 		}
 	}
 
@@ -542,7 +542,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		}
 		FormFields formFields = this.getClass().getAnnotation(FormFields.class);
 		String[] vendorFields = formFields.fieldNamesVendorOnly();
-		String[] theFieldsArray = formFields.fieldNames(); 
+		String[] theFieldsArray = formFields.fieldNames();
 		if (isVendor(request) && vendorFields != null && vendorFields.length > 0){
 			theFieldsArray = (String[]) ArrayUtils.addAll(theFieldsArray, vendorFields);
 		}
@@ -589,7 +589,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 						else {
 							urlToRedirect = urlToRedirect + "?success=true";
 						}
-						
+
 					}
 					log.info("URLToRedirect:"+ urlToRedirect);
 					//	if (request.getAttribute("selectedItrTab") != null){
@@ -654,7 +654,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 	public ITReturnType getITReturnType () {
 		return itReturnType;
 	}
-	
+
 	public String getTheFolderContainingITRDocuments() {
 		return theFolderContainingITRDocuments;
 	}
@@ -785,7 +785,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		// TODO Auto-generated method stub
 		String strShouldPostToSelf = request.getRequestContext().getResolvedSiteMapItem().getParameter("shouldPostToSelf");
 		if (strShouldPostToSelf != null && strShouldPostToSelf.equals("true")) {
-			return scriptName;						
+			return scriptName;
 		}
 		else {
 			if (formSaveResult == null || formSaveResult != FormSaveResult.SUCCESS) {
@@ -800,7 +800,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 					redirectURL = getRedirectURLForSiteMapItem(request,response,formSaveResult,"servicerequest-itr-summary",getFinancialYear(),getTheFolderContainingITRDocuments(), getPAN());
 				}
 				return redirectURL;
-			}	
+			}
 		}
 	}
 
@@ -834,7 +834,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 
 	protected void initComponent(HstRequest request,HstResponse response) throws InvalidNavigationException,InvalidPANException{
 		ResolvedSiteMapItem resolvedMapItem = request.getRequestContext().getResolvedSiteMapItem();
-		
+
 		member = itReturnComponentHelper.getMember(request);
 		scriptName = itReturnComponentHelper.getScriptName(request, (String) request.getAttribute("selectedItrTab"), getPublicRequestParameter(request, "selectedItrTab"));
 		String strFinancialYear = itReturnComponentHelper.getStrFinancialYear(request, response);  //request.getRequestContext().getResolvedSiteMapItem().getParameter("financialYear");
@@ -850,13 +850,13 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		if (!StringUtils.isEmpty(pan) && !DataTypeValidationHelper.isOfType(pan, DataTypeValidationType.PAN)) {
 			throw new InvalidPANException("INVALID PAN NUMBER");
 		}
-		itReturnPackage = itReturnComponentHelper.getITReturnPackage(request);	
-		filingStatus = itReturnComponentHelper.getFilingStatus(getPAN());		
+		itReturnPackage = itReturnComponentHelper.getITReturnPackage(request);
+		filingStatus = itReturnComponentHelper.getFilingStatus(getPAN());
 		//how to find the scriptName and the depth
 		//one assumption that the scriptName is always .html file and nothing else
 		pageOutputFormat = itReturnComponentHelper.getPageOutputFormat(request);
-		
-		
+
+
 		String strPageAction = request.getRequestContext().getResolvedSiteMapItem().getParameter("action");
 		//this is tricky lets allow components to override the configuration by passing it themselves
 		//this is useful for form16 -- deductions scenario where a parent is hosting a child
@@ -932,12 +932,12 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		//loading Additional Beans
 		loadAllBeansUnderTheMemberPanFolder(request, response);
 		//time has come to reset the ITReturnType and other variables
-		String keyToMemberPersonalInformation = MemberPersonalInformation.class.getSimpleName().toLowerCase(); 
+		String keyToMemberPersonalInformation = MemberPersonalInformation.class.getSimpleName().toLowerCase();
 		if (mapOfAllBeans != null && mapOfAllBeans.containsKey(keyToMemberPersonalInformation)) {
 			MemberPersonalInformation memberPersonalInformation = (MemberPersonalInformation) mapOfAllBeans.get(keyToMemberPersonalInformation);
-			itReturnType = ITReturnType.getByXmlStatus(memberPersonalInformation.getReturnType()); //this will determine original or revised			
+			itReturnType = ITReturnType.getByXmlStatus(memberPersonalInformation.getReturnType()); //this will determine original or revised
 		}
-		
+
 		//lets load ValueList Beans
 		ValueListBeans valueListBeans = this.getClass().getAnnotation(ValueListBeans.class);
 		if (valueListBeans != null && valueListBeans.paths() != null && valueListBeans.paths().length > 0 ) {
@@ -1018,14 +1018,14 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			}
 			request.setAttribute("uuid", uuid);
 		}
-		
+
 		maxChildrenAllowed = request.getRequestContext().getResolvedSiteMapItem().getParameter("maxChildrenAllowed");
 		if (maxChildrenAllowed != null) {
 			int totalOfCurrentChildren = getTotalChildren();
 			if (totalOfCurrentChildren > 0) {
 				try {
 					int intMaxAllow = Integer.valueOf(maxChildrenAllowed);
-					if (intMaxAllow >= totalOfCurrentChildren) {
+					if (totalOfCurrentChildren >= intMaxAllow) {
 						request.setAttribute("NEW_CHILD_DISABLED", "true");
 					}
 				}catch (NumberFormatException nex) {
@@ -1085,7 +1085,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 				//response.setContentType("application/json");
 				response.setRenderPath("jsp/common/calculation_response.jsp");
 			}
-		}			
+		}
 	}
 
 	protected void sanitize(HstRequest request,HstResponse response,FormMap formMap) {
@@ -1237,7 +1237,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 
 		request.setAttribute("filingStatus",filingStatus);
 		request.setAttribute("itrFolderSuffix",itrFolderSuffix);
-	
+
 		//TO DO we need to get this based on some parameter other wise it is causing issue
 		try {
 			//HippoBean siteContentBaseBean = getSiteContentBaseBean(request);
@@ -1263,13 +1263,13 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 
 		if (redirectURLToSamePage != null) request.setAttribute("redirectURLToSamePage", redirectURLToSamePage);
 	}
-	
+
 	protected void fillDueDate(HstRequest request,HstResponse response) {
 		//
-		try {			
+		try {
 			String indianDateTimeAsString = IndianGregorianCalendar.getCurrentDateInIndiaAsLocalString();
 			request.setAttribute("indianDateTimeAsString", indianDateTimeAsString);
-			
+
 			MemberPersonalInformation memberPersonalInformation = (MemberPersonalInformation) request.getAttribute(MemberPersonalInformation.class.getSimpleName().toLowerCase());
 			if (memberPersonalInformation != null) {
 				String stateCode = memberPersonalInformation.getState();
@@ -1289,12 +1289,12 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 				request.setAttribute("thePastDueDateStr",thePastDueDateStr);
 				request.setAttribute("theDueDate",theDueDate);
 			}
-			
+
 		}catch (Exception ex) {
 			log.warn("WARN",ex);
 		}
 	}
-	
+
 	protected void executeValidationChain(HstRequest request,HstResponse response) {
 		//
 		Map<String,HippoBean> mapOfBeans = new HashMap<String, HippoBean>();
@@ -1306,10 +1306,10 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 				mapOfBeans.put(anObj.getClass().getSimpleName().toLowerCase(), (HippoBean) anObj);
 			}
 		}
-		
+
 		HippoBeanValidationResponse hippoBeanValidationResponse = itrValidationChain.execute(mapOfBeans);
 		if (hippoBeanValidationResponse != null) request.setAttribute("hippoBeanValidationResponse", hippoBeanValidationResponse);
-		
+
 	}
 
 	protected void redirectToMemberHome(HstRequest hstRequest, HstResponse response) {
@@ -1317,7 +1317,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			response.setRenderParameter("error", "invalid.pan");
 			hstRequest.setAttribute("error", "invalid.pan");
 			String forwardTo = "/member/itreturn";
-			if (isOnVendorPortal() && isVendor(hstRequest)) forwardTo = "/vendor/itreturn"; 
+			if (isOnVendorPortal() && isVendor(hstRequest)) forwardTo = "/vendor/itreturn";
 			if (getFinancialYear() != null) {
 				forwardTo += "/" + getFinancialYear();
 			}
@@ -1565,9 +1565,9 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 
 	public void afterSave(HstRequest request,FormMap map, PAGE_ACTION pageAction) {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
+
 	public String generateBulkXml(HstRequest request,HstResponse response, String[] pathToITR) throws Exception {
 		// TODO Auto-generated method stub
 		//for each path get all beans under that, then check memberpersonalinformation
@@ -1591,11 +1591,11 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 				}
 				if (memberPersonalInformation == null) continue;
 				FinancialYear financialYear = FinancialYear.getByDisplayName(memberPersonalInformation.getFinancialYear());
-				XmlGeneratorService xmlGeneratorService = itrXmlGeneratorServiceFactory.getInstance(financialYear);				
+				XmlGeneratorService xmlGeneratorService = itrXmlGeneratorServiceFactory.getInstance(financialYear);
 				if (itrXmlGeneratorServiceFactory != null) {
 					if (xmlGeneratorService != null) {
 						try {
-							Map<String,Object> outputMap = xmlGeneratorService.generateXml(financialYear,inputMap);	
+							Map<String,Object> outputMap = xmlGeneratorService.generateXml(financialYear,inputMap);
 							if (!listOfITRForms.containsKey(financialYear)) {
 								listOfITRForms.put(financialYear, new ArrayList<Object>());
 							}
@@ -1603,7 +1603,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 							if (log.isInfoEnabled()) {
 								log.info("outputMap",outputMap);
 							}
-						} 				
+						}
 						catch (Exception e) {
 							// TODO Auto-generated catch block
 							log.error("Error in generating XML",e);
@@ -1615,12 +1615,12 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			if (listOfITRForms != null && listOfITRForms.size() > 0) {
 				for (FinancialYear aFinancialYear:listOfITRForms.keySet()) {
 					List<Object> listOfForms = listOfITRForms.get(aFinancialYear);
-					XmlGeneratorService xmlGeneratorService = itrXmlGeneratorServiceFactory.getInstance(aFinancialYear);	
+					XmlGeneratorService xmlGeneratorService = itrXmlGeneratorServiceFactory.getInstance(aFinancialYear);
 					String consolidatedXml = xmlGeneratorService.getConsolidateReturnsToBulk(listOfForms);
 					log.info(consolidatedXml);
 					request.setAttribute("xml", consolidatedXml);
 					request.setAttribute("fileName", "consolidated-returns.xml");
-					response.setRenderPath("jsp/member/downloadfile.jsp");					
+					response.setRenderPath("jsp/member/downloadfile.jsp");
 				}
 			}
 		} catch (Exception ex) {
@@ -1628,34 +1628,34 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		}
 		return null;
 	}
-	
-	
+
+
 	//DecimalFormat decimalFormat=new DecimalFormat("#.#");
 	public void handleITRSummary(HstRequest request, HstResponse response) throws InvalidXMLException, PaymentRequiredException, DownloadConfirmationRequiredException{
-		
+
 		String generatedXml = null;
 		String generatedHtmlSummary = null;
 		String generatedPathToPDF = null;
 		String generatedPathToXML = null;
-		
+
 		String downloadBaseFileName = "return-"+ getPAN() +"-AY-" + getFinancialYear().getDisplayAssessmentYear() + "-" + getITReturnType();
 		String downloadPDFFileName = downloadBaseFileName  + ".pdf";
 		String downloadXMLFileName = downloadBaseFileName  + ".xml";
-		
+
 		boolean isPaid = false;
-		
+
 		MemberPersonalInformation memberPersonalInformation = (MemberPersonalInformation) request.getAttribute(MemberPersonalInformation.class.getSimpleName().toLowerCase());
 		//log.info("AAAAAAAAAAAAAAAAAAAAAAAAAAAAFFFFFFFFFFFFFFFFFFFFFFFFFFF"+memberPersonalInformation);
 		String ITR = memberPersonalInformation.getFlexField("flex_string_ITRForm", "");
 		request.setAttribute("ITR", ITR);
-		
+
 		//time to hand over
 		XmlGeneratorService xmlGeneratorService = itrXmlGeneratorServiceFactory.getInstance(getFinancialYear());
 		if (itrXmlGeneratorServiceFactory != null) {
 			if (xmlGeneratorService != null) {
 				try {
-					generatedXml = xmlGeneratorService.generateXml(request, response);									
-				} 				
+					generatedXml = xmlGeneratorService.generateXml(request, response);
+				}
 				catch (Exception e) {
 					// TODO Auto-generated catch block
 					log.error("Error in generating XML",e);
@@ -1663,9 +1663,9 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 				}
 			}
 		}
-		
+
 		if (pageAction.equals(PAGE_ACTION.SHOW_ITR_SUMMARY)) return; //no need to go forward at all
-		
+
 		boolean isValidationRequired = false;
 		if (! pageAction.equals(PAGE_ACTION.SHOW_ITR_SUMMARY)) isValidationRequired = true;
 		if (log.isInfoEnabled()) {
@@ -1681,17 +1681,17 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 				}
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();	
+				e.printStackTrace();
 				throw new InvalidXMLException(validationResponse);
 			}
 		}
-				
+
 		//we can generate the HTML Summary here
 		generatedHtmlSummary = getReturnSummary(request,response,generatedXml);
-		
+
 		//Now the check if user accepted terms and conditions
 		boolean doesASavedFormExists = false;
-		FormMap savedValuesFormMap=null;	
+		FormMap savedValuesFormMap=null;
 		String publicParameterUUID = getPublicRequestParameter(request, "uuid");
 		if(publicParameterUUID==null){
 			publicParameterUUID=(String)request.getSession().getAttribute("uuid");
@@ -1700,38 +1700,38 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			try {
 				FormUtils.validateId(publicParameterUUID);
 				savedValuesFormMap = new FormMap(request,new String[]{"PAN","financialYear","itReturnType","userName"});
-				
+
 				/*
 				savedValuesFormMap.getField("PAN").addValue(getPAN());
 				savedValuesFormMap.getField("financialYear").addValue(getFinancialYear().name());
 				savedValuesFormMap.getField("itReturnType").addValue(getITReturnType().name());
 				savedValuesFormMap.getField("userName").addValue(getUserName());
 				*/
-				
+
 				MootlyFormUtils.populate(request, publicParameterUUID, savedValuesFormMap);
 				if (savedValuesFormMap != null) {
 					boolean panMatched = ( (savedValuesFormMap.getField("PAN") != null && savedValuesFormMap.getField("PAN").getValue().equals(getPAN())) ? true : false);
 					boolean financialYearMatched = ( (savedValuesFormMap.getField("financialYear") != null && savedValuesFormMap.getField("financialYear").getValue().equals(getFinancialYear().name())) ? true : false );
 					boolean theFolderContainingITRDocumentsMatched = ( (savedValuesFormMap.getField("theFolderContainingITRDocuments") != null && savedValuesFormMap.getField("theFolderContainingITRDocuments").getValue().equals(getTheFolderContainingITRDocuments())) ? true : false);
 					boolean userNameMatched = ( (savedValuesFormMap.getField("userName") != null && savedValuesFormMap.getField("userName").getValue().equals(getUserName())) ? true : false );
-					
+
 					if (panMatched && financialYearMatched && theFolderContainingITRDocumentsMatched && userNameMatched) {
 						doesASavedFormExists = true;
 					}
 				}
 			}catch (IllegalArgumentException ie) {
-				publicParameterUUID = null;	
+				publicParameterUUID = null;
 				doesASavedFormExists = false;
 			}
 			catch (Exception ex) {
 				doesASavedFormExists = false;
 			}
 		}
-		
+
 		if (!doesASavedFormExists) {
 			FormMap toBeSavedValuesFormMap = new FormMap(request,new String[]{"redirectToOriginalPage","PAN","financialYear","itReturnType","userName","generatedHtmlSummary","originalPageAction","theFolderContainingITRDocuments"});
-			
-			
+
+
 			toBeSavedValuesFormMap.getField("PAN").addValue(getPAN());
 			toBeSavedValuesFormMap.getField("financialYear").addValue(getFinancialYear().name());
 			toBeSavedValuesFormMap.getField("itReturnType").addValue(getITReturnType().name());
@@ -1739,23 +1739,23 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			toBeSavedValuesFormMap.getField("userName").addValue(getUserName());
 			toBeSavedValuesFormMap.getField("generatedHtmlSummary").addValue(generatedHtmlSummary);
 			toBeSavedValuesFormMap.getField("originalPageAction").addValue(pageAction.name());
-			
+
 			String refId = request.getRequestContext().getResolvedSiteMapItem().getHstSiteMapItem().getRefId();
 			if (refId != null) {
 				String redirectToOriginalPage = getRedirectURLForSiteMapItem(request, response, FormSaveResult.SUCCESS, refId, getFinancialYear(), getTheFolderContainingITRDocuments(), getPAN());
 				toBeSavedValuesFormMap.getField("redirectToOriginalPage").addValue(redirectToOriginalPage);
 			}
-			
-			
+
+
 			StoreFormResult sf = new StoreFormResult();
 			FormUtils.persistFormMap(request, response, toBeSavedValuesFormMap,sf);
-			
+
 			DownloadConfirmationRequiredException dc = new DownloadConfirmationRequiredException();
 			dc.setUuidOfSavedForm(sf.getUuid());
 			dc.setHtmlSummary(generatedHtmlSummary);
-			throw dc;			
+			throw dc;
 		}
-		
+
 		boolean isPaymentRequired = false;
 		if (! pageAction.equals(PAGE_ACTION.SHOW_ITR_SUMMARY)) isPaymentRequired = true;
 		if (isPaymentRequired && request.getAttribute("memberpayment") != null) {
@@ -1766,7 +1766,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			}catch (Exception ex) {
 				throw new PaymentRequiredException(ex);
 			}
-		}	
+		}
 		//bug when ispayment required and not paid
 		request.setAttribute("isPaymentRequired", isPaymentRequired);
 		request.setAttribute("isPaid", isPaid);
@@ -1775,19 +1775,19 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			/*
 			if (isOnVendorPortal() && isVendor(request)) {
 				if (log.isInfoEnabled()) {
-					log.info("Vendor can skip the payment and get the XML right away");					
+					log.info("Vendor can skip the payment and get the XML right away");
 				}
 			}
 			else { //normal user must pay
-				
-			}			
-			*/	
+
+			}
+			*/
 		}
-		
-		
-		
+
+
+
 		if (getPublicRequestParameter(request, "show") != null) request.setAttribute("show",getPublicRequestParameter(request, "show"));
-		
+
 		if (generatedHtmlSummary != null &&( pageAction == PAGE_ACTION.DOWNLOAD_ITR_SUMMARY || pageAction == PAGE_ACTION.EMAIL_ITR_XML_AND_SUMMARY )) {
 			//time to generate the PDF
 			try {
@@ -1802,11 +1802,11 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 				generatedPathToPDF = null;
 			}
 		}
-		
+
 		if (pageAction == PAGE_ACTION.EMAIL_ITR_XML_AND_SUMMARY) { //time to save the XML in temporary path
 			generatedPathToXML = saveXmlToTemporaryFile(generatedXml);
 		}
-		
+
 		switch (pageAction) {
 			case DOWNLOAD_ITR_XML:
 				request.setAttribute("fileName", downloadXMLFileName);
@@ -1827,21 +1827,21 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 					else {
 						to = new String[]{ getUserName()};
 					}
-					
+
 					//sendEmail(request, to, null, new String[] {"info@wealth4india.com"}, "Your IT Return", temporaryPathToPDF + "," + temporaryPathToXML, "Your IT Return Summary", "itreturnSummaryAndXml", null);
 					Map<String,Object> vC = new HashMap<String, Object>();
 					vC.put("financialYearDisplay", getFinancialYear().getDisplayName());
 					vC.put("financialYear", getFinancialYear());
-					
+
 					try {
-						MemberPersonalInformation mi = (MemberPersonalInformation) request.getAttribute(MemberPersonalInformation.class.getSimpleName().toLowerCase());						
+						MemberPersonalInformation mi = (MemberPersonalInformation) request.getAttribute(MemberPersonalInformation.class.getSimpleName().toLowerCase());
 						if (mi != null) {
 							vC.put ("paymentAmount",mi.getPrice());
 						}
 					}catch (Exception ex) {
-						
+
 					}
-					
+
 					sendEmail(request, to, generatedPathToXML + "," + generatedPathToPDF,"Attached is your Income Tax Return for Financial Year " + getFinancialYear().getDisplayName(),"w4i_email",vC);
 					request.setAttribute("emailMeStatus", "success");
 				}
@@ -1851,7 +1851,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		}
 		//Object theForm = request.getAttribute("theForm");
 	}
-	
+
 	/**
 	 * This will save the XML to a temporary location
 	 * @param xml
@@ -1865,10 +1865,10 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			String uuid = UUID.randomUUID().toString();
 			new File(tmpDir + "/" + uuid).mkdir();
 			String filePath = tmpDir + "/" + uuid + "/" + "itreturn-AY-" +getFinancialYear().getDisplayAssessmentYear() + ".xml";
-			
+
 			writer = new BufferedWriter(new FileWriter(filePath));
 			writer.write(xml);
-			
+
 			return filePath;
 		}
 		catch ( IOException e)
@@ -1888,7 +1888,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			}
 	     }
 	}
-	
+
 	/**
 	 * This method will parse the XML using XSLT and get the output
 	 * @param xml
@@ -1901,7 +1901,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 	 * @throws IOException
 	 */
 	protected String getReturnSummary(HstRequest request,HstResponse response, String xml) {
-		try {			
+		try {
 			DocumentBuilder db = DocumentBuilderFactory.newInstance().newDocumentBuilder();
 			InputSource is = new InputSource(new StringReader(xml));
 			org.w3c.dom.Document aDom = db.parse(is);
@@ -1942,7 +1942,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			return null;
 		}
 	}
-	
+
 	/**
 	 * Return path to PDF file
 	 * @param theHTML
@@ -1954,22 +1954,22 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		Document document = new Document();
 		String tmpDir = System.getProperty("java.io.tmpdir");
 		String uuid = UUID.randomUUID().toString();
-		//create the dir 
+		//create the dir
 		new File(tmpDir + "/" + uuid).mkdir();
 		String pdfFileName = "itreturnsummary-" + getPAN() +"-AY-" + getFinancialYear().getDisplayAssessmentYear() + ".pdf";
-		String temporaryPathToPDF = tmpDir + "/" + uuid + "/" + pdfFileName;		
+		String temporaryPathToPDF = tmpDir + "/" + uuid + "/" + pdfFileName;
 		PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(temporaryPathToPDF));
 		writer.setInitialLeading(12.5f);
 		document.open();
 		XMLWorkerHelper.getInstance().parseXHtml(writer, document,new StringReader(theHTML));
 		document.close();
 		writer.close();
-		
+
 		return temporaryPathToPDF;
 	}
-	
+
 	/**
-	 * 
+	 *
 	 * @param request
 	 * @param response
 	 * @param temporaryPathToPDF
@@ -1986,7 +1986,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			else {
 				to = new String[]{ getUserName()};
 			}
-			
+
 			//sendEmail(request, to, null, new String[] {"info@wealth4india.com"}, "Your IT Return", temporaryPathToPDF + "," + temporaryPathToXML, "Your IT Return Summary", "itreturnSummaryAndXml", null);
 			Map<String,Object> vC = new HashMap<String, Object>();
 			vC.put("financialYearDisplay", getFinancialYear().getDisplayName());
@@ -2004,9 +2004,9 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			return false;
 		}
 	}
-	
+
 	/**
-	 * 
+	 *
 	 * @param request
 	 * @param response
 	 * @param pathToTheItReturn
@@ -2035,7 +2035,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		} catch (QueryException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}		
+		}
 	}
 
 	@Override
@@ -2043,23 +2043,23 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		// TODO Auto-generated method stub
 		return pageOutputFormat;
 	}
-	
+
 	protected MemberPersonalInformation getMemberPersonalInformation() {
 		return memberPersonalInformation;
 	}
-	
+
 	protected boolean shouldValidatePANWithDIT() {
 		return false;
 	}
-	
+
 	protected boolean shouldRetrievePANInformation() {
 		return false;
 	}
-	
-	protected RetrievePANResponse retrievePANInformation() throws MissingInformationException, DataMismatchException, InvalidFormatException {		
+
+	protected RetrievePANResponse retrievePANInformation() throws MissingInformationException, DataMismatchException, InvalidFormatException {
 		return retrievePANInformation(getPAN());
 	}
-	
+
 	protected RetrievePANResponse retrievePANInformation(String PAN) throws MissingInformationException, DataMismatchException, InvalidFormatException {
 		if (retrievePANResponse == null) {
 			String argument = PAN;
@@ -2067,10 +2067,10 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 				argument = getPAN();
 			}
 			retrievePANResponse = retrievePANInformation.retrievePANInformation(argument);
-		}		
+		}
 		return retrievePANResponse;
 	}
-	
+
 	protected RetrievePANInformation.VALIDATION_RESULT getRetrievePANInformationValidationResult() {
 		return retrievePANInformationValidationResult;
 	}
