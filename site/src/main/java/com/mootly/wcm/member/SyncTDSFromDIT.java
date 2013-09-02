@@ -6,11 +6,13 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.List;
 
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 
 import org.apache.commons.lang.StringUtils;
+import org.hippoecm.hst.component.support.forms.FormMap;
 import org.hippoecm.hst.content.beans.ObjectBeanManagerException;
 import org.hippoecm.hst.content.beans.ObjectBeanPersistenceException;
 import org.hippoecm.hst.content.beans.manager.workflow.WorkflowCallbackHandler;
@@ -35,7 +37,9 @@ import com.mootly.wcm.beans.compound.FormSixteenDetail;
 import com.mootly.wcm.beans.compound.SelfAssesmentTaxDetail;
 import com.mootly.wcm.beans.compound.TdsOthersDetail;
 import com.mootly.wcm.components.ITReturnComponent;
+import com.mootly.wcm.components.ITReturnComponentHelper;
 import com.mootly.wcm.components.InvalidNavigationException;
+import com.mootly.wcm.services.FormMapHelper;
 import com.mootly.wcm.services.ditws.Retrieve26ASInformation;
 import com.mootly.wcm.services.ditws.exception.DataMismatchException;
 import com.mootly.wcm.services.ditws.exception.InvalidFormatException;
@@ -85,7 +89,6 @@ public class SyncTDSFromDIT extends ITReturnComponent {
 
 	}
 
-	@SuppressWarnings("null")
 	@Override
 	public void doAction(HstRequest request, HstResponse response)
 			throws HstComponentException {
@@ -93,6 +96,7 @@ public class SyncTDSFromDIT extends ITReturnComponent {
 		super.doAction(request, response);
 		Session persistableSession = null;
 		Retrieve26ASInformation retrieve26asInformation = getRetrieve26ASService();
+		
 		try {
 			if(log.isInfoEnabled()){
 				log.info("inside try");
@@ -108,6 +112,12 @@ public class SyncTDSFromDIT extends ITReturnComponent {
 				e.printStackTrace();
 			}
 			WorkflowPersistenceManager wpm = getWorkflowPersistenceManager(persistableSession);
+			
+			saveElementsToRepository(twenty26asResponse.getTwenty26asTaxPayments(),SelfAssesmetTaxDocument.class,SelfAssesmentTaxDetail.class,persistableSession,wpm);
+			saveElementsToRepository(twenty26asResponse.getTwenty26astdsOtherThanSalaries(),TdsFromothersDocument.class,TdsOthersDetail.class,persistableSession,wpm);
+			saveElementsToRepository(twenty26asResponse.getTwenty26astdsOnSalaries(),FormSixteenDocument.class,FormSixteenDetail.class,persistableSession,wpm);
+			//List<Twenty26ASTDSOtherThanSalary> listTDSOtherThanSalary = 
+			/*
 			wpm.setWorkflowCallbackHandler(new FullReviewedWorkflowCallbackHandler());
 			//String pathSelfAssesment = getAbsoluteBasePathToReturnDocuments()+"/"+SelfAssesmentTaxDocument.class.getSimpleName().toLowerCase();
 			String pathSelfAssesment = getAbsoluteBasePathToReturnDocuments()+"/"+SelfAssesmetTaxDocument.class.getSimpleName().toLowerCase();
@@ -127,13 +137,9 @@ public class SyncTDSFromDIT extends ITReturnComponent {
 			updateOrAddFormSixteenDocument(formSixteenDocument, wpm ,twenty26asResponse,mpi);
 			//for auto create advanecTax from DIT Mock Services
 			updateOrAddAdvanceTaxDocument(advanceTaxDocument, wpm ,twenty26asResponse);
-
+			*/
 			response.setRenderParameter("Success", "Success");
 
-
-		} catch (ObjectBeanManagerException e) {
-			// TODO Auto-generated catch block
-			log.error("Error while get Object at specified path",e);
 		} catch (InvalidNavigationException e) {
 			// TODO Auto-generated catch block
 			log.error("Error while create base path to get document",e);
@@ -146,6 +152,22 @@ public class SyncTDSFromDIT extends ITReturnComponent {
 		} catch (InvalidFormatException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}
+	}
+	
+	protected void saveElementsToRepository(List<? extends Object> listOfObjects,Class<? extends HippoBean> parentBeanClass,Class<? extends HippoBean> childBeanClass,Session persistableSession, WorkflowPersistenceManager wpm) throws InvalidNavigationException {
+		ITReturnComponentHelper itReturnComponentHelper = getITReturnComponentHelper();
+		FormMapHelper formMapHelper = new FormMapHelper();
+		if (listOfObjects != null && listOfObjects.size() > 0) {
+			for (Object twenty26TaxPayment:listOfObjects) {
+				String baseAbsolutePathToReturnDocuments = getAbsoluteBasePathToReturnDocuments();
+				String parentBeanNodeName = itReturnComponentHelper.getParentBeanNodeName(parentBeanClass);
+				String parentBeanNameSpace = itReturnComponentHelper.getParentBeanNamespace(parentBeanClass);
+				String parentBeanAbsolutePath = itReturnComponentHelper.getParentBeanAbsolutePath(baseAbsolutePathToReturnDocuments, parentBeanNodeName);
+				//Class<? extends HippoBean> childBeanClass = SelfAssesmentTaxDetail.class;
+				FormMap formMap = formMapHelper.convertToFormMap(twenty26TaxPayment);
+				itReturnComponentHelper.saveAddNewChild(formMap, baseAbsolutePathToReturnDocuments, parentBeanAbsolutePath, parentBeanNameSpace, parentBeanNodeName, childBeanClass, persistableSession, wpm);
+			}
 		}
 	}
 

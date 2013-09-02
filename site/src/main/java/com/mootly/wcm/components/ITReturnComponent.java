@@ -151,6 +151,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 	RetrieveITRV retrieveITRVService = null;
 	Retrieve26ASInformation retrieve26ASService = null;
 	RetrievePANInformation retrievePANInformation = null;
+	ITReturnComponentHelper itReturnComponentHelper = null;
 	
 	String servletPath = null;
 	String xsltPath = null;
@@ -233,6 +234,8 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		retrievePANInformation = context.getBean(RetrievePANInformation.class);
 		retrieveITRVService = context.getBean(RetrieveITRV.class);
 		retrieve26ASService = context.getBean(Retrieve26ASInformation.class);
+		
+		itReturnComponentHelper = context.getBean( ITReturnComponentHelper.class );
 	}
 	
 	
@@ -244,8 +247,13 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		return retrieveITRVService;
 	}
 
+	public ITReturnComponentHelper getITReturnComponentHelper() {
+		return itReturnComponentHelper;
+	}
 	
-
+	public RetrievePANInformation getRetrievePANInformationService() {
+		return retrievePANInformation;
+	}
 
 	public SequenceGenerator getSequenceGenerator() {
 		return sequenceGenerator;
@@ -824,147 +832,29 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		return hippoBeanMemberBase;
 	}
 
-	protected void findScriptName(HstRequest request) {
-		String pathInfo = request.getRequestContext().getResolvedSiteMapItem().getPathInfo();
-		if (pathInfo != null && pathInfo.contains(".html")) {
-			String[] parts = pathInfo.split("[/]");
-			StringBuilder sb = new StringBuilder(request.getContextPath()).append("/");
-			int depth = 1;
-			for (String aPart:parts) {
-				if (aPart.endsWith(".html")) {
-					scriptName= aPart;
-					break;
-				}
-				else {
-					sb.append(aPart).append("/");
-				}
-				depth++;
-			}
-			sb.append(scriptName);
-			//int remainderOFDepth = parts.length - depth;
-			//String basePath = "./";
-			//for (int ctr =0;ctr<remainderOFDepth;ctr++) {
-			//	basePath += "../";
-			//}
-			//scriptName = basePath + scriptName;
-			scriptName = sb.toString();
-			if (scriptName.endsWith("/")) scriptName = scriptName.substring(0, scriptName.length()-2);
-
-			//one more loop just to capture the parts after the URL
-			List<String> urlParts = new ArrayList<String>();
-			boolean startCapturing = false;
-			for (String aPart:parts) {
-				if (startCapturing) {
-					urlParts.add(aPart);
-				}
-				if (aPart.endsWith(".html")) {
-					startCapturing = true;
-				}
-
-			}
-			if (urlParts != null && urlParts.size() > 0) {
-				String[] strParts = urlParts.toArray(new String[urlParts.size()]);
-				ITRTab itrTab = ITRTab.getByAka(strParts);
-				request.setAttribute("urlParts", urlParts);
-				if (itrTab != null) request.setAttribute("selectedItrTab", itrTab);
-			}
-		}
-		if (request.getAttribute("selectedItrTab") == null && getPublicRequestParameter(request, "selectedItrTab") != null) {
-			ITRTab itrTab = null;
-			try {
-				itrTab= ITRTab.valueOf(getPublicRequestParameter(request, "selectedItrTab"));
-				request.setAttribute("selectedItrTab", itrTab);
-			}catch (IllegalArgumentException ie) {
-
-			}
-		}
-	}
-
 	protected void initComponent(HstRequest request,HstResponse response) throws InvalidNavigationException,InvalidPANException{
 		ResolvedSiteMapItem resolvedMapItem = request.getRequestContext().getResolvedSiteMapItem();
 		
-		if (request.getSession() != null && request.getSession().getAttribute("user") != null) {
-			member = (Member)request.getSession().getAttribute("user");
-		}
-		findScriptName(request);
-		//assessmentYear = request.getRequestContext().getResolvedSiteMapItem().getParameter("assessmentYear");
-		String strFinancialYear = request.getRequestContext().getResolvedSiteMapItem().getParameter("financialYear");
-		financialYear =  FinancialYear.getByDisplayName(strFinancialYear);
-		if (financialYear != null && !financialYear.equals(FinancialYear.UNKNOWN)) {
-			assessmentYear = financialYear.getDisplayAssessmentYear();
-		}
-		
-		theFolderContainingITRDocuments = request.getRequestContext().getResolvedSiteMapItem().getParameter("itReturnType");
-		
-		/*
-		if ( strItReturnType == null) {
-			itReturnType  = null;
-		}
-		else {
-			//original versus amend
-			itrFolderSuffix = ITReturnType.getByFolderSuffix( strItReturnType ); 
-			itReturnType = ITReturnType.getByFolderName(strItReturnType);
-		}
-		*/
-		if ( theFolderContainingITRDocuments != null) {
-			itrFolderSuffix = ITReturnType.getByFolderSuffix( theFolderContainingITRDocuments );
-		}
-		
-		//ITReturnType.getByDisplayName(request.getRequestContext().getResolvedSiteMapItem().getParameter("itReturnType")); //original versus amend
-		pan = request.getRequestContext().getResolvedSiteMapItem().getParameter("pan"); //original versus amend
-
-		if (mainSiteMapItemRefId == null) mainSiteMapItemRefId = request.getRequestContext().getResolvedSiteMapItem().getParameter("mainSiteMapItemRefId");
+		member = itReturnComponentHelper.getMember(request);
+		scriptName = itReturnComponentHelper.getScriptName(request, (String) request.getAttribute("selectedItrTab"), getPublicRequestParameter(request, "selectedItrTab"));
+		String strFinancialYear = itReturnComponentHelper.getStrFinancialYear(request, response);  //request.getRequestContext().getResolvedSiteMapItem().getParameter("financialYear");
+		financialYear =  itReturnComponentHelper.getFinancialYear(strFinancialYear, request, response); //FinancialYear.getByDisplayName(strFinancialYear);
+		assessmentYear = itReturnComponentHelper.getAssessmentYear(financialYear);
+		theFolderContainingITRDocuments = itReturnComponentHelper.getTheFolderContainingITRDocuments(request, response); //request.getRequestContext().getResolvedSiteMapItem().getParameter("itReturnType");
+		itrFolderSuffix = itReturnComponentHelper.getITRFolderSuffix(theFolderContainingITRDocuments);
+		pan = itReturnComponentHelper.getPANFromRequestContext(request);// request.getRequestContext().getResolvedSiteMapItem().getParameter("pan"); //original versus amend
+		mainSiteMapItemRefId = itReturnComponentHelper.getParamValueFromRequestContext(request, "mainSiteMapItemRefId");// request.getRequestContext().getResolvedSiteMapItem().getParameter("");
 		redirectURLToSamePage = getScriptName();// getRedirectURL(request,response,FormSaveResult.FAILURE);
-
-		nextScreenSiteMapItemRefId = request.getRequestContext().getResolvedSiteMapItem().getParameter("nextScreen");
-
+		nextScreenSiteMapItemRefId = itReturnComponentHelper.getParamValueFromRequestContext(request, "nextScreen");// request.getRequestContext().getResolvedSiteMapItem().getParameter("nextScreen");
 		//we must make sure itReturnType and PAN are not empty as well as they are valid
 		if (!StringUtils.isEmpty(pan) && !DataTypeValidationHelper.isOfType(pan, DataTypeValidationType.PAN)) {
 			throw new InvalidPANException("INVALID PAN NUMBER");
 		}
-		
-		/*
-		if (itReturnType != null && itReturnType.equals(ITReturnType.UNKNOWN)) {
-			throw new InvalidNavigationException("INVALID ITRETURUN TYPE");
-		}
-		*/
-
-		String strItReturnPackage = request.getRequestContext().getResolvedSiteMapItem().getParameter("itReturnPackage");
-		if (strItReturnPackage == null)
-			itReturnPackage = ITReturnPackage.basic;
-		else {
-			try {
-				itReturnPackage = ITReturnPackage.valueOf(strItReturnPackage);
-			}catch (IllegalArgumentException ie) {
-				log.warn("Illegal Argument:" + strItReturnPackage);
-				itReturnPackage = ITReturnPackage.basic;
-			}
-		}
-
-		//NOW find
-		if (!StringUtils.isEmpty(pan)) {
-			char filingStatusChar = pan.charAt(3);
-			filingStatus = FilingStatus.getEnumByFourthChar(filingStatusChar);
-		}
-
+		itReturnPackage = itReturnComponentHelper.getITReturnPackage(request);	
+		filingStatus = itReturnComponentHelper.getFilingStatus(getPAN());		
 		//how to find the scriptName and the depth
 		//one assumption that the scriptName is always .html file and nothing else
-		String actionInSiteMap =  resolvedMapItem.getLocalParameter("action");
-		String tabName = "";
-		if (actionInSiteMap != null && actionInSiteMap.contains("_")) {
-			tabName = actionInSiteMap.substring(0,actionInSiteMap.indexOf("_"));
-		}
-		
-		String strPageOutputFormat = request.getRequestContext().getResolvedSiteMapItem().getParameter("outputFormat");
-		pageOutputFormat = PAGE_OUTPUT_FORMAT.HTML;
-		if (strPageOutputFormat != null) {
-			try {
-				pageOutputFormat = PAGE_OUTPUT_FORMAT.valueOf(strPageOutputFormat);
-			}catch(IllegalArgumentException ie) {
-				log.warn("Resetting Page output to default");
-				pageOutputFormat = PAGE_OUTPUT_FORMAT.HTML;
-			}
-		}
+		pageOutputFormat = itReturnComponentHelper.getPageOutputFormat(request);
 		
 		
 		String strPageAction = request.getRequestContext().getResolvedSiteMapItem().getParameter("action");
@@ -1021,9 +911,9 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			//}
 		}
 
-		baseRelPathToReturnDocuments = "members/" + getMemberFolderPath(request) + "/pans/" + getPAN() + "/" + getFinancialYear() + "/" + theFolderContainingITRDocuments; // getITReturnType();
+		baseRelPathToReturnDocuments = itReturnComponentHelper.getBaseRelPathToReturnDocuments(getMemberFolderPath(request), getPAN(), getFinancialYear(), theFolderContainingITRDocuments);  //"members/" + getMemberFolderPath(request) + "/pans/" + getPAN() + "/" + getFinancialYear() + "/" + theFolderContainingITRDocuments; // getITReturnType();
 		hippoBeanBaseITReturnDocuments = siteContentBaseBean.getBean(baseRelPathToReturnDocuments);
-		baseAbsolutePathToReturnDocuments = request.getRequestContext().getResolvedMount().getMount().getCanonicalContentPath() + "/" + baseRelPathToReturnDocuments;
+		baseAbsolutePathToReturnDocuments = itReturnComponentHelper.getBaseAbsolutePathToReturnDocuments(request, baseRelPathToReturnDocuments); //request.getRequestContext().getResolvedMount().getMount().getCanonicalContentPath() + "/" + baseRelPathToReturnDocuments;
 		//if (hippoBeanBaseITReturnDocuments != null) {
 		//	baseAbsolutePathToReturnDocuments = hippoBeanBaseITReturnDocuments.getPath();
 		//}

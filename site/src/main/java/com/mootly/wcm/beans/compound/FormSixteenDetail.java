@@ -91,37 +91,38 @@ public class FormSixteenDetail extends FormSixteenSectionB{
 			if (log.isInfoEnabled()) {
 				log.info("im in bind to node");
 			}
-			node.setProperty("mootlywcm:empcat", getEmploye_category());
-			node.setProperty("mootlywcm:employer", getEmployer());
-			node.setProperty("mootlywcm:addrs", getAddressdetail());
-			node.setProperty("mootlywcm:state", getState());
-			node.setProperty("mootlywcm:city", getCity());
-			node.setProperty("mootlywcm:pin", getPin());
-			node.setProperty("mootlywcm:address", getAddress());
-			node.setProperty("mootlywcm:employee", getEmployee());
-			node.setProperty("mootlywcm:pandeductor", getPan_deductor());
-			node.setProperty("mootlywcm:tandeductor", getTan_deductor());
-			node.setProperty("mootlywcm:panemployee", getPan_employee());
-			node.setProperty("mootlywcm:qtr1", getQuarter_1());
-			node.setProperty("mootlywcm:qtr2", getQuarter_2());
-			node.setProperty("mootlywcm:qtr3", getQuarter_3());
-			node.setProperty("mootlywcm:qtr4", getQuarter_4());
-			node.setProperty("mootlywcm:ack1", getAcknowledge_1());
-			node.setProperty("mootlywcm:ack2", getAcknowledge_2());
-			node.setProperty("mootlywcm:ack3", getAcknowledge_3());
-			node.setProperty("mootlywcm:ack4", getAcknowledge_4());
-			node.setProperty("mootlywcm:frm1", getFrom_1());
-			node.setProperty("mootlywcm:frm2", getFrom_2());
-			node.setProperty("mootlywcm:frm3", getFrom_3());
-			node.setProperty("mootlywcm:frm4", getFrom_4());
-			node.setProperty("mootlywcm:to1", getTo_1());
-			node.setProperty("mootlywcm:to2", getTo_2());
-			node.setProperty("mootlywcm:to3", getTo_3());
-			node.setProperty("mootlywcm:to4", getTo_4());
-			node.setProperty("mootlywcm:yr1", getYear1());
-			node.setProperty("mootlywcm:yr2", getYear2());
-			node.setProperty("mootlywcm:yr3", getYear3());
-			node.setProperty("mootlywcm:yr4", getYear4());
+			super.bindToNode(node);
+			if (getEmploye_category() != null) node.setProperty("mootlywcm:empcat", getEmploye_category());
+			if (getEmployer() != null) node.setProperty("mootlywcm:employer", getEmployer());
+			if (getEmployer() != null) node.setProperty("mootlywcm:addrs", getAddressdetail());
+			if (getState() != null) node.setProperty("mootlywcm:state", getState());
+			if (getCity() != null) node.setProperty("mootlywcm:city", getCity());
+			if (getPin() != null) node.setProperty("mootlywcm:pin", getPin());
+			if (getAddress() != null) node.setProperty("mootlywcm:address", getAddress());
+			if (getEmployee() != null) node.setProperty("mootlywcm:employee", getEmployee());
+			if (getPan_deductor() != null) node.setProperty("mootlywcm:pandeductor", getPan_deductor());
+			if (getTan_deductor() != null) node.setProperty("mootlywcm:tandeductor", getTan_deductor());
+			if (getPan_employee() != null) node.setProperty("mootlywcm:panemployee", getPan_employee());
+			if (getQuarter_1() != null) node.setProperty("mootlywcm:qtr1", getQuarter_1());
+			if (getQuarter_2() != null) node.setProperty("mootlywcm:qtr2", getQuarter_2());
+			if (getQuarter_3() != null) node.setProperty("mootlywcm:qtr3", getQuarter_3());
+			if (getQuarter_4() != null) node.setProperty("mootlywcm:qtr4", getQuarter_4());
+			if (getAcknowledge_1() != null) node.setProperty("mootlywcm:ack1", getAcknowledge_1());
+			if (getAcknowledge_2() != null) node.setProperty("mootlywcm:ack2", getAcknowledge_2());
+			if (getAcknowledge_3() != null) node.setProperty("mootlywcm:ack3", getAcknowledge_3());
+			if (getAcknowledge_4() != null) node.setProperty("mootlywcm:ack4", getAcknowledge_4());
+			if (getFrom_1() != null) node.setProperty("mootlywcm:frm1", getFrom_1());
+			if (getFrom_2() != null) node.setProperty("mootlywcm:frm2", getFrom_2());
+			if (getFrom_3() != null) node.setProperty("mootlywcm:frm3", getFrom_3());
+			if (getFrom_4() != null) node.setProperty("mootlywcm:frm4", getFrom_4());
+			if (getTo_1() != null) node.setProperty("mootlywcm:to1", getTo_1());
+			if (getTo_2() != null) node.setProperty("mootlywcm:to2", getTo_2());
+			if (getTo_3() != null) node.setProperty("mootlywcm:to3", getTo_3());
+			if (getTo_4() != null) node.setProperty("mootlywcm:to4", getTo_4());
+			if (getYear1() != null) node.setProperty("mootlywcm:yr1", getYear1());
+			if (getYear2() != null) node.setProperty("mootlywcm:yr2", getYear2());
+			if (getYear3() != null) node.setProperty("mootlywcm:yr3", getYear3());
+			if (getYear4() != null) node.setProperty("mootlywcm:yr4", getYear4());
 			if(getGross_a()!=null){
 				node.setProperty("mootlywcm:grossa", getGross_a());
 			}
@@ -282,6 +283,7 @@ public class FormSixteenDetail extends FormSixteenSectionB{
 		if (log.isInfoEnabled()) {
 			log.info("im in clone");}
 		FormSixteenDetail objFormSixteen = (FormSixteenDetail) sourceBean;
+		super.cloneBean(sourceBean);
 		setEmploye_category(objFormSixteen.getEmploye_category());
 		setEmployer(objFormSixteen.getEmployer());
 		setAddress(objFormSixteen.getAddress());

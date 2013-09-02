@@ -248,20 +248,28 @@ public class FlexibleDocument extends BaseDocument implements FormMapFiller {
 	public void fill(FormMap formMap) {
 		// TODO Auto-generated method stub
 		if (formMap == null) return;
-		
-		for (String fieldName:formMap.getFieldNames()){
-			if (log.isInfoEnabled()){
-				log.info("Flex Field check:" + fieldName);
+		String[] fieldNames = formMap.getFieldNames();		
+		if (fieldNames == null) {
+			if ( formMap.getFormMap() != null && formMap.getFormMap().size() > 0 ) {
+				fieldNames = formMap.getFormMap().keySet().toArray(new String[formMap.getFormMap().size()]);
 			}
-			//the format of the fieldname must be flex_field_string_0 flex_field_string_1 
-			if (!fieldName.startsWith(FLEX_FIELD_PRFIX)) continue;
-			String fieldValue = formMap.getField(fieldName).getValue();
-			try {
-				Value v = getValueFromFieldName(fieldName, fieldValue);
-				setFlexField(fieldName, v);
-			} catch (ParseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+		}
+		if ( fieldNames != null && fieldNames.length > 0 ) {
+			for (String fieldName:fieldNames){
+				if (log.isInfoEnabled()){
+					log.info("Flex Field check:" + fieldName);
+				}
+				//the format of the fieldname must be flex_field_string_0 flex_field_string_1 
+				if (!fieldName.startsWith(FLEX_FIELD_PRFIX)) continue;
+				String fieldValue = formMap.getField(fieldName).getValue();
+				try {
+					Value v = getValueFromFieldName(fieldName, fieldValue);
+					setFlexField(fieldName, v);
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					log.error("Parsing Exception " + fieldName,e);
+					//e.printStackTrace();
+				}
 			}
 		}
 	}

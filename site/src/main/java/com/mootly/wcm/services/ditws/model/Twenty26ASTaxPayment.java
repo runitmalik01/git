@@ -1,5 +1,7 @@
 package com.mootly.wcm.services.ditws.model;
 
+import com.mootly.wcm.annotations.FormField;
+
 public class Twenty26ASTaxPayment {
 	
 	//{ScheduleTCS={AmtTCSClaimedThisYear=[0], EmployerOrDeductorOrCollecterName=[?], TAN=[3000], TotalTCS=[0]}, 
@@ -11,30 +13,42 @@ public class Twenty26ASTaxPayment {
 	String SrlNoOfChaln;
 	String BSRCode;
 	String DateDep;
+	String isImported = "true";
 	
+	@FormField(name="amountself",propertyName="Amt", dataTypeValidationTypes={})
 	public final String getAmt() {
 		return Amt;
 	}
 	public final void setAmt(String amt) {
 		Amt = amt;
 	}
+	
+	@FormField(name="Serial_challanself",propertyName="SrlNoOfChaln",dataTypeValidationTypes={})
 	public final String getSrlNoOfChaln() {
 		return SrlNoOfChaln;
 	}
 	public final void setSrlNoOfChaln(String srlNoOfChaln) {
 		SrlNoOfChaln = srlNoOfChaln;
 	}
+	
+	@FormField(name="bsr_codeself",propertyName="BSRCode",dataTypeValidationTypes={})
 	public final String getBSRCode() {
 		return BSRCode;
 	}
 	public final void setBSRCode(String bSRCode) {
 		BSRCode = bSRCode;
 	}
+	@FormField(name="date_creditself",propertyName="DateDep", dataTypeValidationTypes={})
 	public final String getDateDep() {
 		return DateDep;
 	}
 	public final void setDateDep(String dateDep) {
 		DateDep = dateDep;
+	}
+	
+	@FormField(name="flex_string_isImported",propertyName="isImported",dataTypeValidationTypes={})
+	public String getIsImported() {
+		return isImported;
 	}
 	
 	

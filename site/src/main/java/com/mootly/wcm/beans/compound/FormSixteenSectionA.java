@@ -9,11 +9,12 @@
 
 package com.mootly.wcm.beans.compound;
 
-import org.hippoecm.hst.content.beans.standard.HippoItem;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public abstract class FormSixteenSectionA extends HippoItem {
+import com.mootly.wcm.beans.standard.FlexibleDocument;
+
+public abstract class FormSixteenSectionA extends FlexibleDocument {
 private final static Logger log = LoggerFactory.getLogger(FormSixteenSectionA.class); 
     
     private String Employe_category;

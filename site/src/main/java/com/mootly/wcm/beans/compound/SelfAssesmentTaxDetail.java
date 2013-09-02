@@ -28,8 +28,13 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 
 import javax.jcr.RepositoryException;
+import javax.jcr.ValueFormatException;
+import javax.jcr.lock.LockException;
+import javax.jcr.nodetype.ConstraintViolationException;
+import javax.jcr.version.VersionException;
 
 import org.hippoecm.hst.component.support.forms.FormMap;
+import org.hippoecm.hst.content.beans.ContentNodeBindingException;
 import org.hippoecm.hst.content.beans.Node;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.content.beans.standard.HippoItem;
@@ -38,7 +43,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.mootly.wcm.beans.FormMapFiller;
-import com.mootly.wcm.model.Isimported;
+import com.mootly.wcm.beans.standard.FlexibleDocument;
 
 /**
  * author: Pankaj Singh
@@ -49,7 +54,7 @@ import com.mootly.wcm.model.Isimported;
 // this bean is used for processapplication.jsp
 
 @Node(jcrType = "mootlywcm:selfassesmenttaxdetail")
-public class SelfAssesmentTaxDetail extends HippoItem implements FormMapFiller {
+public class SelfAssesmentTaxDetail extends FlexibleDocument implements FormMapFiller {
 	static final public String NAMESPACE = "mootlywcm:selfassesmenttaxdetail";   
 	static final public String NODE_NAME = SelfAssesmentTaxDetail.class.getName().toLowerCase();
 	private final static Logger log = LoggerFactory.getLogger(SelfAssesmentTaxDetail.class); 
@@ -130,23 +135,37 @@ public class SelfAssesmentTaxDetail extends HippoItem implements FormMapFiller {
         }
         return prdBean;
     }
-	public void bindToNode(javax.jcr.Node node) throws RepositoryException {
-	    	try {
-	    		log.warn("Bind to Node for TdsSalary Called");
-	    		node.setProperty(BSR,getP_BSR());
-	    		//log.info("val is"+getIsImported());
-	    		//if(getIsImported().equals(true)){
-	    		//node.setProperty("mootlywcm:isimport",getIsImported());
-	    		//}
-				node.setProperty(SERIAL, getP_Serial());
-				node.setProperty(DATE, getP_Date());
-				node.setProperty(AMOUNT,getP_Amount());
-	    	}catch (RepositoryException re) {
-	    		log.error("Binding Node Error",re);
-	    		throw re;
-	    	}
+	
+	@Override
+	public boolean bindToNode(javax.jcr.Node node) {
+    	try {
+    		super.bindToNode(node);
+    		log.warn("Bind to Node for TdsSalary Called");
+    		node.setProperty(BSR,getP_BSR());
+			node.setProperty(SERIAL, getP_Serial());
+			node.setProperty(DATE, getP_Date());
+			node.setProperty(AMOUNT,getP_Amount());
+    	}catch (ContentNodeBindingException re) {
+    		log.error("Binding Node Error",re);
+    	} catch (ValueFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (VersionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (LockException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ConstraintViolationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (RepositoryException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	return true;
 	    	
-	    }
+	}
 	public final void setP_BSR(String val_BSR) {
 		this.val_BSR = val_BSR;
 	}
@@ -155,7 +174,7 @@ public class SelfAssesmentTaxDetail extends HippoItem implements FormMapFiller {
  	
 	public final void setP_Date(GregorianCalendar val_Date) {
 	this.val_Date = val_Date;
-}
+	}
 	
 
 	public final void setP_Serial(String val_serial) {
@@ -172,6 +191,8 @@ public class SelfAssesmentTaxDetail extends HippoItem implements FormMapFiller {
 			log.info("Into the fill method");			
 		}
 		if (formMap == null) return;
+		
+		super.fill(formMap);
 		
 		if ( formMap.getField("bsr_codeself") != null) {
 			setP_BSR(formMap.getField("bsr_codeself").getValue());
@@ -203,32 +224,11 @@ public class SelfAssesmentTaxDetail extends HippoItem implements FormMapFiller {
 		}	
 	}
 	
-	
-	
-	public Isimported getIsimportedData() {
-		String retValueString = getFlexField("flex_string_Isimported",null);
-		if (retValueString != null) {
-			try {
-				Isimported itrForm = Isimported.valueOf(retValueString);
-				return itrForm;
-			}catch (IllegalArgumentException e) {
-				log.warn("There was an error parsing the value",e);
-				return null;
-			}
-		}
-		return null;
-	}
-	private String getFlexField(String string, Object object) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	public static final SimpleDateFormat getIndianDateFormatter() {
-	      return new SimpleDateFormat("dd/MM/yyyy");
-	     }
 	@Override
 	public <T extends HippoBean> void cloneBean(T sourceBean) {
 		// TODO Auto-generated method stub
 		SelfAssesmentTaxDetail objSelfAssesment = (SelfAssesmentTaxDetail) sourceBean;
+		super.cloneBean(sourceBean);
 		setP_BSR(objSelfAssesment.getP_BSR());
 		setP_Serial(objSelfAssesment.getP_Serial());
 		setP_Amount(objSelfAssesment.getP_Amount());
@@ -236,7 +236,6 @@ public class SelfAssesmentTaxDetail extends HippoItem implements FormMapFiller {
 		setIsImported(objSelfAssesment.getIsImported());
 		
 	}
-	
 
 	
 }

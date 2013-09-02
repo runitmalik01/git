@@ -43,13 +43,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.mootly.wcm.beans.FormMapFiller;
+import com.mootly.wcm.beans.standard.FlexibleDocument;
 
 
 
 // this bean is used for processapplication.jsp
 
 @Node(jcrType = "mootlywcm:tdsothersdetail")
-public class TdsOthersDetail extends HippoItem implements FormMapFiller {
+public class TdsOthersDetail extends FlexibleDocument implements FormMapFiller {
 	static final public String NAMESPACE = "mootlywcm:tdsothersdetail";   
 	static final public String NODE_NAME = TdsOthersDetail.class.getName().toLowerCase();
 	private final static Logger log = LoggerFactory.getLogger(TdsOthersDetail.class); 
@@ -151,15 +152,13 @@ public class TdsOthersDetail extends HippoItem implements FormMapFiller {
 		// TODO Auto-generated method stub
 		try {
 			
-			
+			super.bindToNode(node);
 			node.setProperty(tan_deductor, getTan_Deductor());
 			node.setProperty(total_taxdeducted,getTotal_TaxDeductor());
 			node.setProperty(name_deductor,getName_Deductor());
 			node.setProperty(amount,getP_Amount());
 			node.setProperty(tds_Certificate,getTds_Certificate());
 			node.setProperty(financial_Year,getFinancial_Year());
-			
-	    	
 
 		} catch (RepositoryException rex) {
 			log.error("Repository Exception while binding",rex);
@@ -173,6 +172,7 @@ public class TdsOthersDetail extends HippoItem implements FormMapFiller {
 			log.info("Into the fill method");			
 		}
 		if (formMap == null) return;
+		super.fill(formMap);
 		
 		if ( formMap.getField("tan_deductortdsoth") != null) {
 			setTan_Deductor(formMap.getField("tan_deductortdsoth").getValue());
@@ -204,6 +204,7 @@ public class TdsOthersDetail extends HippoItem implements FormMapFiller {
 	public <T extends HippoBean> void cloneBean(T sourceBean) {
 		// TODO Auto-generated method stub
 		TdsOthersDetail objTdsfromothers = (TdsOthersDetail) sourceBean;
+		super.cloneBean(sourceBean);
 		setTan_Deductor(objTdsfromothers.getTan_Deductor());
 		setName_Deductor(objTdsfromothers.getName_Deductor());
 		setTotal_TaxDeductor(objTdsfromothers.getTotal_TaxDeductor());
