@@ -29,7 +29,7 @@
         <sv:value>hippo:harddocument</sv:value>
       </sv:property>
       <sv:property sv:name="jcr:uuid" sv:type="String">
-        <sv:value>55135b61-b3e5-4441-a18e-815388e6a074</sv:value>
+        <sv:value>c34f82ef-1c1f-4499-b556-413f14ba2647</sv:value>
       </sv:property>
       <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
       <sv:property sv:name="hipposysedit:node" sv:type="Boolean">
@@ -42,7 +42,7 @@
       <sv:property sv:name="hipposysedit:uri" sv:type="String">
         <sv:value>http://www.onehippo.org/jcr/mootlywcm/2.0</sv:value>
       </sv:property>
-      <sv:node sv:name="naturepayment">
+      <sv:node sv:name="mootlywcm_tcsdetail">
         <sv:property sv:name="jcr:primaryType" sv:type="Name">
           <sv:value>hipposysedit:field</sv:value>
         </sv:property>
@@ -50,22 +50,22 @@
           <sv:value>false</sv:value>
         </sv:property>
         <sv:property sv:name="hipposysedit:multiple" sv:type="Boolean">
-          <sv:value>false</sv:value>
+          <sv:value>true</sv:value>
         </sv:property>
         <sv:property sv:name="hipposysedit:ordered" sv:type="Boolean">
           <sv:value>false</sv:value>
         </sv:property>
         <sv:property sv:name="hipposysedit:path" sv:type="String">
-          <sv:value>mootlywcm:naturepayment</sv:value>
+          <sv:value>mootlywcm:tcsdetail</sv:value>
         </sv:property>
         <sv:property sv:name="hipposysedit:primary" sv:type="Boolean">
           <sv:value>false</sv:value>
         </sv:property>
         <sv:property sv:name="hipposysedit:type" sv:type="String">
-          <sv:value>String</sv:value>
+          <sv:value>mootlywcm:tcsdetail</sv:value>
         </sv:property>
       </sv:node>
-      <sv:node sv:name="tan">
+      <sv:node sv:name="Total">
         <sv:property sv:name="jcr:primaryType" sv:type="Name">
           <sv:value>hipposysedit:field</sv:value>
         </sv:property>
@@ -79,105 +79,13 @@
           <sv:value>false</sv:value>
         </sv:property>
         <sv:property sv:name="hipposysedit:path" sv:type="String">
-          <sv:value>mootlywcm:tan</sv:value>
+          <sv:value>mootlywcm:Total</sv:value>
         </sv:property>
         <sv:property sv:name="hipposysedit:primary" sv:type="Boolean">
           <sv:value>false</sv:value>
         </sv:property>
         <sv:property sv:name="hipposysedit:type" sv:type="String">
-          <sv:value>String</sv:value>
-        </sv:property>
-      </sv:node>
-      <sv:node sv:name="name">
-        <sv:property sv:name="jcr:primaryType" sv:type="Name">
-          <sv:value>hipposysedit:field</sv:value>
-        </sv:property>
-        <sv:property sv:name="hipposysedit:mandatory" sv:type="Boolean">
-          <sv:value>false</sv:value>
-        </sv:property>
-        <sv:property sv:name="hipposysedit:multiple" sv:type="Boolean">
-          <sv:value>false</sv:value>
-        </sv:property>
-        <sv:property sv:name="hipposysedit:ordered" sv:type="Boolean">
-          <sv:value>false</sv:value>
-        </sv:property>
-        <sv:property sv:name="hipposysedit:path" sv:type="String">
-          <sv:value>mootlywcm:name</sv:value>
-        </sv:property>
-        <sv:property sv:name="hipposysedit:primary" sv:type="Boolean">
-          <sv:value>false</sv:value>
-        </sv:property>
-        <sv:property sv:name="hipposysedit:type" sv:type="String">
-          <sv:value>String</sv:value>
-        </sv:property>
-      </sv:node>
-      <sv:node sv:name="taxcalcamount">
-        <sv:property sv:name="jcr:primaryType" sv:type="Name">
-          <sv:value>hipposysedit:field</sv:value>
-        </sv:property>
-        <sv:property sv:name="hipposysedit:mandatory" sv:type="Boolean">
-          <sv:value>false</sv:value>
-        </sv:property>
-        <sv:property sv:name="hipposysedit:multiple" sv:type="Boolean">
-          <sv:value>false</sv:value>
-        </sv:property>
-        <sv:property sv:name="hipposysedit:ordered" sv:type="Boolean">
-          <sv:value>false</sv:value>
-        </sv:property>
-        <sv:property sv:name="hipposysedit:path" sv:type="String">
-          <sv:value>mootlywcm:taxcalcamount</sv:value>
-        </sv:property>
-        <sv:property sv:name="hipposysedit:primary" sv:type="Boolean">
-          <sv:value>false</sv:value>
-        </sv:property>
-        <sv:property sv:name="hipposysedit:type" sv:type="String">
-          <sv:value>String</sv:value>
-        </sv:property>
-      </sv:node>
-      <sv:node sv:name="taxcollected">
-        <sv:property sv:name="jcr:primaryType" sv:type="Name">
-          <sv:value>hipposysedit:field</sv:value>
-        </sv:property>
-        <sv:property sv:name="hipposysedit:mandatory" sv:type="Boolean">
-          <sv:value>false</sv:value>
-        </sv:property>
-        <sv:property sv:name="hipposysedit:multiple" sv:type="Boolean">
-          <sv:value>false</sv:value>
-        </sv:property>
-        <sv:property sv:name="hipposysedit:ordered" sv:type="Boolean">
-          <sv:value>false</sv:value>
-        </sv:property>
-        <sv:property sv:name="hipposysedit:path" sv:type="String">
-          <sv:value>mootlywcm:taxcollected</sv:value>
-        </sv:property>
-        <sv:property sv:name="hipposysedit:primary" sv:type="Boolean">
-          <sv:value>false</sv:value>
-        </sv:property>
-        <sv:property sv:name="hipposysedit:type" sv:type="String">
-          <sv:value>String</sv:value>
-        </sv:property>
-      </sv:node>
-      <sv:node sv:name="Amountclaimed">
-        <sv:property sv:name="jcr:primaryType" sv:type="Name">
-          <sv:value>hipposysedit:field</sv:value>
-        </sv:property>
-        <sv:property sv:name="hipposysedit:mandatory" sv:type="Boolean">
-          <sv:value>false</sv:value>
-        </sv:property>
-        <sv:property sv:name="hipposysedit:multiple" sv:type="Boolean">
-          <sv:value>false</sv:value>
-        </sv:property>
-        <sv:property sv:name="hipposysedit:ordered" sv:type="Boolean">
-          <sv:value>false</sv:value>
-        </sv:property>
-        <sv:property sv:name="hipposysedit:path" sv:type="String">
-          <sv:value>mootlywcm:Amountclaimed</sv:value>
-        </sv:property>
-        <sv:property sv:name="hipposysedit:primary" sv:type="Boolean">
-          <sv:value>false</sv:value>
-        </sv:property>
-        <sv:property sv:name="hipposysedit:type" sv:type="String">
-          <sv:value>String</sv:value>
+          <sv:value>Double</sv:value>
         </sv:property>
       </sv:node>
     </sv:node>
@@ -195,7 +103,7 @@
         <sv:value>hippotranslation:translated</sv:value>
       </sv:property>
       <sv:property sv:name="jcr:uuid" sv:type="String">
-        <sv:value>0142a5ea-0a21-494c-b422-4e1e1e610ec9</sv:value>
+        <sv:value>e23fed9b-6ed8-4a25-a3d1-79ca0367d521</sv:value>
       </sv:property>
       <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
       <sv:property sv:name="hippostd:holder" sv:type="String">
@@ -225,27 +133,29 @@
       <sv:property sv:name="hippotranslation:locale" sv:type="String">
         <sv:value>document-type-locale</sv:value>
       </sv:property>
-      <sv:property sv:name="mootlywcm:Amountclaimed" sv:type="String">
-        <sv:value/>
-      </sv:property>
-      <sv:property sv:name="mootlywcm:name" sv:type="String">
-        <sv:value/>
-      </sv:property>
-      <sv:property sv:name="mootlywcm:naturepayment" sv:type="String">
-        <sv:value/>
-      </sv:property>
-      <sv:property sv:name="mootlywcm:tan" sv:type="String">
-        <sv:value/>
-      </sv:property>
-      <sv:property sv:name="mootlywcm:taxcalcamount" sv:type="String">
-        <sv:value/>
-      </sv:property>
-      <sv:property sv:name="mootlywcm:taxcollected" sv:type="String">
-        <sv:value/>
+      <sv:property sv:name="mootlywcm:Total" sv:type="Double">
+        <sv:value>0.0</sv:value>
       </sv:property>
       <sv:node sv:name="hippotranslation:translations">
         <sv:property sv:name="jcr:primaryType" sv:type="Name">
           <sv:value>hippotranslation:translations</sv:value>
+        </sv:property>
+      </sv:node>
+      <sv:node sv:name="mootlywcm:tcsdetail">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>mootlywcm:tcsdetail</sv:value>
+        </sv:property>
+        <sv:property sv:name="mootlywcm:name" sv:type="String">
+          <sv:value/>
+        </sv:property>
+        <sv:property sv:name="mootlywcm:tan" sv:type="String">
+          <sv:value/>
+        </sv:property>
+        <sv:property sv:name="mootlywcm:taxcredit" sv:type="Double">
+          <sv:value>0.0</sv:value>
+        </sv:property>
+        <sv:property sv:name="mootlywcm:totaltax" sv:type="Double">
+          <sv:value>0.0</sv:value>
         </sv:property>
       </sv:node>
     </sv:node>
@@ -265,11 +175,9 @@
         <sv:value>wicket.model</sv:value>
         <sv:value>model.compareTo</sv:value>
         <sv:value>engine</sv:value>
-        <sv:value>validator.id</sv:value>
       </sv:property>
       <sv:property sv:multiple="true" sv:name="frontend:services" sv:type="String">
         <sv:value>wicket.id</sv:value>
-        <sv:value>validator.id</sv:value>
       </sv:property>
       <sv:property sv:name="type" sv:type="String">
         <sv:value>mootlywcm:tcsdocument</sv:value>
@@ -278,63 +186,28 @@
         <sv:property sv:name="jcr:primaryType" sv:type="Name">
           <sv:value>frontend:plugin</sv:value>
         </sv:property>
-        <sv:property sv:name="extension.left" sv:type="String">
-          <sv:value>${cluster.id}.left</sv:value>
-        </sv:property>
-        <sv:property sv:name="extension.right" sv:type="String">
-          <sv:value>${cluster.id}.right</sv:value>
+        <sv:property sv:name="item" sv:type="String">
+          <sv:value>${cluster.id}.field</sv:value>
         </sv:property>
         <sv:property sv:name="plugin.class" sv:type="String">
-          <sv:value>org.hippoecm.frontend.editor.layout.TwoColumn</sv:value>
-        </sv:property>
-        <sv:property sv:multiple="true" sv:name="wicket.extensions" sv:type="String">
-          <sv:value>extension.left</sv:value>
-          <sv:value>extension.right</sv:value>
+          <sv:value>org.hippoecm.frontend.service.render.ListViewPlugin</sv:value>
         </sv:property>
         <sv:property sv:name="wicket.id" sv:type="String">
           <sv:value>${wicket.id}</sv:value>
         </sv:property>
       </sv:node>
-      <sv:node sv:name="left">
-        <sv:property sv:name="jcr:primaryType" sv:type="Name">
-          <sv:value>frontend:plugin</sv:value>
-        </sv:property>
-        <sv:property sv:name="item" sv:type="String">
-          <sv:value>${cluster.id}.left.item</sv:value>
-        </sv:property>
-        <sv:property sv:name="plugin.class" sv:type="String">
-          <sv:value>org.hippoecm.frontend.service.render.ListViewPlugin</sv:value>
-        </sv:property>
-        <sv:property sv:name="wicket.id" sv:type="String">
-          <sv:value>${cluster.id}.left</sv:value>
-        </sv:property>
-      </sv:node>
-      <sv:node sv:name="right">
-        <sv:property sv:name="jcr:primaryType" sv:type="Name">
-          <sv:value>frontend:plugin</sv:value>
-        </sv:property>
-        <sv:property sv:name="item" sv:type="String">
-          <sv:value>${cluster.id}.right.item</sv:value>
-        </sv:property>
-        <sv:property sv:name="plugin.class" sv:type="String">
-          <sv:value>org.hippoecm.frontend.service.render.ListViewPlugin</sv:value>
-        </sv:property>
-        <sv:property sv:name="wicket.id" sv:type="String">
-          <sv:value>${cluster.id}.right</sv:value>
-        </sv:property>
-      </sv:node>
-      <sv:node sv:name="naturepayment">
+      <sv:node sv:name="tcsdetail">
         <sv:property sv:name="jcr:primaryType" sv:type="Name">
           <sv:value>frontend:plugin</sv:value>
         </sv:property>
         <sv:property sv:name="caption" sv:type="String">
-          <sv:value>naturepayment</sv:value>
+          <sv:value>mootlywcm:tcsdetail</sv:value>
         </sv:property>
         <sv:property sv:name="engine" sv:type="String">
           <sv:value>${engine}</sv:value>
         </sv:property>
         <sv:property sv:name="field" sv:type="String">
-          <sv:value>naturepayment</sv:value>
+          <sv:value>mootlywcm_tcsdetail</sv:value>
         </sv:property>
         <sv:property sv:name="mode" sv:type="String">
           <sv:value>${mode}</sv:value>
@@ -343,13 +216,13 @@
           <sv:value>${model.compareTo}</sv:value>
         </sv:property>
         <sv:property sv:name="plugin.class" sv:type="String">
-          <sv:value>org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin</sv:value>
+          <sv:value>org.hippoecm.frontend.editor.plugins.field.NodeFieldPlugin</sv:value>
         </sv:property>
         <sv:property sv:name="validator.id" sv:type="String">
           <sv:value>${validator.id}</sv:value>
         </sv:property>
         <sv:property sv:name="wicket.id" sv:type="String">
-          <sv:value>${cluster.id}.left.item</sv:value>
+          <sv:value>${cluster.id}.field</sv:value>
         </sv:property>
         <sv:property sv:name="wicket.model" sv:type="String">
           <sv:value>${wicket.model}</sv:value>
@@ -360,18 +233,18 @@
           </sv:property>
         </sv:node>
       </sv:node>
-      <sv:node sv:name="tan">
+      <sv:node sv:name="Total">
         <sv:property sv:name="jcr:primaryType" sv:type="Name">
           <sv:value>frontend:plugin</sv:value>
         </sv:property>
         <sv:property sv:name="caption" sv:type="String">
-          <sv:value>tan</sv:value>
+          <sv:value>Total Amount</sv:value>
         </sv:property>
         <sv:property sv:name="engine" sv:type="String">
           <sv:value>${engine}</sv:value>
         </sv:property>
         <sv:property sv:name="field" sv:type="String">
-          <sv:value>tan</sv:value>
+          <sv:value>Total</sv:value>
         </sv:property>
         <sv:property sv:name="mode" sv:type="String">
           <sv:value>${mode}</sv:value>
@@ -386,155 +259,7 @@
           <sv:value>${validator.id}</sv:value>
         </sv:property>
         <sv:property sv:name="wicket.id" sv:type="String">
-          <sv:value>${cluster.id}.left.item</sv:value>
-        </sv:property>
-        <sv:property sv:name="wicket.model" sv:type="String">
-          <sv:value>${wicket.model}</sv:value>
-        </sv:property>
-        <sv:node sv:name="cluster.options">
-          <sv:property sv:name="jcr:primaryType" sv:type="Name">
-            <sv:value>frontend:pluginconfig</sv:value>
-          </sv:property>
-        </sv:node>
-      </sv:node>
-      <sv:node sv:name="name">
-        <sv:property sv:name="jcr:primaryType" sv:type="Name">
-          <sv:value>frontend:plugin</sv:value>
-        </sv:property>
-        <sv:property sv:name="caption" sv:type="String">
-          <sv:value>name</sv:value>
-        </sv:property>
-        <sv:property sv:name="engine" sv:type="String">
-          <sv:value>${engine}</sv:value>
-        </sv:property>
-        <sv:property sv:name="field" sv:type="String">
-          <sv:value>name</sv:value>
-        </sv:property>
-        <sv:property sv:name="mode" sv:type="String">
-          <sv:value>${mode}</sv:value>
-        </sv:property>
-        <sv:property sv:name="model.compareTo" sv:type="String">
-          <sv:value>${model.compareTo}</sv:value>
-        </sv:property>
-        <sv:property sv:name="plugin.class" sv:type="String">
-          <sv:value>org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin</sv:value>
-        </sv:property>
-        <sv:property sv:name="validator.id" sv:type="String">
-          <sv:value>${validator.id}</sv:value>
-        </sv:property>
-        <sv:property sv:name="wicket.id" sv:type="String">
-          <sv:value>${cluster.id}.left.item</sv:value>
-        </sv:property>
-        <sv:property sv:name="wicket.model" sv:type="String">
-          <sv:value>${wicket.model}</sv:value>
-        </sv:property>
-        <sv:node sv:name="cluster.options">
-          <sv:property sv:name="jcr:primaryType" sv:type="Name">
-            <sv:value>frontend:pluginconfig</sv:value>
-          </sv:property>
-        </sv:node>
-      </sv:node>
-      <sv:node sv:name="taxcalcamount">
-        <sv:property sv:name="jcr:primaryType" sv:type="Name">
-          <sv:value>frontend:plugin</sv:value>
-        </sv:property>
-        <sv:property sv:name="caption" sv:type="String">
-          <sv:value>taxcalcamount</sv:value>
-        </sv:property>
-        <sv:property sv:name="engine" sv:type="String">
-          <sv:value>${engine}</sv:value>
-        </sv:property>
-        <sv:property sv:name="field" sv:type="String">
-          <sv:value>taxcalcamount</sv:value>
-        </sv:property>
-        <sv:property sv:name="mode" sv:type="String">
-          <sv:value>${mode}</sv:value>
-        </sv:property>
-        <sv:property sv:name="model.compareTo" sv:type="String">
-          <sv:value>${model.compareTo}</sv:value>
-        </sv:property>
-        <sv:property sv:name="plugin.class" sv:type="String">
-          <sv:value>org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin</sv:value>
-        </sv:property>
-        <sv:property sv:name="validator.id" sv:type="String">
-          <sv:value>${validator.id}</sv:value>
-        </sv:property>
-        <sv:property sv:name="wicket.id" sv:type="String">
-          <sv:value>${cluster.id}.left.item</sv:value>
-        </sv:property>
-        <sv:property sv:name="wicket.model" sv:type="String">
-          <sv:value>${wicket.model}</sv:value>
-        </sv:property>
-        <sv:node sv:name="cluster.options">
-          <sv:property sv:name="jcr:primaryType" sv:type="Name">
-            <sv:value>frontend:pluginconfig</sv:value>
-          </sv:property>
-        </sv:node>
-      </sv:node>
-      <sv:node sv:name="taxcollected">
-        <sv:property sv:name="jcr:primaryType" sv:type="Name">
-          <sv:value>frontend:plugin</sv:value>
-        </sv:property>
-        <sv:property sv:name="caption" sv:type="String">
-          <sv:value>taxcollected</sv:value>
-        </sv:property>
-        <sv:property sv:name="engine" sv:type="String">
-          <sv:value>${engine}</sv:value>
-        </sv:property>
-        <sv:property sv:name="field" sv:type="String">
-          <sv:value>taxcollected</sv:value>
-        </sv:property>
-        <sv:property sv:name="mode" sv:type="String">
-          <sv:value>${mode}</sv:value>
-        </sv:property>
-        <sv:property sv:name="model.compareTo" sv:type="String">
-          <sv:value>${model.compareTo}</sv:value>
-        </sv:property>
-        <sv:property sv:name="plugin.class" sv:type="String">
-          <sv:value>org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin</sv:value>
-        </sv:property>
-        <sv:property sv:name="validator.id" sv:type="String">
-          <sv:value>${validator.id}</sv:value>
-        </sv:property>
-        <sv:property sv:name="wicket.id" sv:type="String">
-          <sv:value>${cluster.id}.left.item</sv:value>
-        </sv:property>
-        <sv:property sv:name="wicket.model" sv:type="String">
-          <sv:value>${wicket.model}</sv:value>
-        </sv:property>
-        <sv:node sv:name="cluster.options">
-          <sv:property sv:name="jcr:primaryType" sv:type="Name">
-            <sv:value>frontend:pluginconfig</sv:value>
-          </sv:property>
-        </sv:node>
-      </sv:node>
-      <sv:node sv:name="Amountclaimed">
-        <sv:property sv:name="jcr:primaryType" sv:type="Name">
-          <sv:value>frontend:plugin</sv:value>
-        </sv:property>
-        <sv:property sv:name="caption" sv:type="String">
-          <sv:value>Amountclaimed</sv:value>
-        </sv:property>
-        <sv:property sv:name="engine" sv:type="String">
-          <sv:value>${engine}</sv:value>
-        </sv:property>
-        <sv:property sv:name="field" sv:type="String">
-          <sv:value>Amountclaimed</sv:value>
-        </sv:property>
-        <sv:property sv:name="mode" sv:type="String">
-          <sv:value>${mode}</sv:value>
-        </sv:property>
-        <sv:property sv:name="model.compareTo" sv:type="String">
-          <sv:value>${model.compareTo}</sv:value>
-        </sv:property>
-        <sv:property sv:name="plugin.class" sv:type="String">
-          <sv:value>org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin</sv:value>
-        </sv:property>
-        <sv:property sv:name="validator.id" sv:type="String">
-          <sv:value>${validator.id}</sv:value>
-        </sv:property>
-        <sv:property sv:name="wicket.id" sv:type="String">
-          <sv:value>${cluster.id}.left.item</sv:value>
+          <sv:value>${cluster.id}.field</sv:value>
         </sv:property>
         <sv:property sv:name="wicket.model" sv:type="String">
           <sv:value>${wicket.model}</sv:value>
