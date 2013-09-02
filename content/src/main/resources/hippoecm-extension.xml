@@ -3845,6 +3845,36 @@
 		</sv:property>
 	</sv:node>
 <!-- /firm partner -->
+<!-- schedule 44AE -->
+<sv:node sv:name="mootlywcm-type-schfourtyfouraedocument">
+		<sv:property sv:name="jcr:primaryType" sv:type="Name">
+			<sv:value>hippo:initializeitem</sv:value>
+		</sv:property>
+		<sv:property sv:name="hippo:contentresource" sv:type="String">
+			<sv:value>hippo-namespaces/mootlywcm/schfourtyfouraedocument.xml</sv:value>
+		</sv:property>
+		<sv:property sv:name="hippo:contentroot" sv:type="String">
+			<sv:value>/hippo:namespaces/mootlywcm</sv:value>
+		</sv:property>
+		<sv:property sv:name="hippo:sequence" sv:type="Double">
+			<sv:value>11051.082</sv:value>
+		</sv:property>
+	</sv:node>
+	<sv:node sv:name="mootlywcm-type-schfourtyfouraedetail">
+		<sv:property sv:name="jcr:primaryType" sv:type="Name">
+			<sv:value>hippo:initializeitem</sv:value>
+		</sv:property>
+		<sv:property sv:name="hippo:contentresource" sv:type="String">
+			<sv:value>hippo-namespaces/mootlywcm/schfourtyfouraedetail.xml</sv:value>
+		</sv:property>
+		<sv:property sv:name="hippo:contentroot" sv:type="String">
+			<sv:value>/hippo:namespaces/mootlywcm</sv:value>
+		</sv:property>
+		<sv:property sv:name="hippo:sequence" sv:type="Double">
+			<sv:value>11051.083</sv:value>
+		</sv:property>
+	</sv:node>
+<!-- /schedule44AE -->
 	<sv:node sv:name="mootlywcm-type-ScreenFieldSet-Document">
 		<sv:property sv:name="jcr:primaryType" sv:type="Name">
 			<sv:value>hippo:initializeitem</sv:value>
