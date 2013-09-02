@@ -1721,6 +1721,27 @@
 </sv:node>
 
 <!-- profit and loss itr4 -->
+<!-- schedule 44AE itr4s -->
+
+
+<sv:node sv:name="schedulefourtyfourAE">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:component</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>87368c71-452b-4c49-a570-f8867cfbce11</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:componentclassname" sv:type="String">
+    <sv:value>com.mootly.wcm.member.Schedule44AE</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String"/>
+  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String"/>
+  <sv:property sv:name="hst:template" sv:type="String">
+    <sv:value>schedulefourtyfourAE</sv:value>
+  </sv:property>
+</sv:node>
+
+<!-- /schedule 44AE itr4s -->
 <sv:node sv:name="itr-schedule-balance-sheet" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hst:component</sv:value>
