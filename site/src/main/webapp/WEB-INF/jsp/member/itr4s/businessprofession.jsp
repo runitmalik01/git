@@ -14,9 +14,12 @@
 <h4>
 	<b>ITR- Schedule Business Profession</b>
 </h4>
-<div class="alert alert-info"><strong>If income is less tha 8% of
-	Gross Receipts, it is mandatory to have a tax audit under 44AB and
-	Regular ITR 4 form has to be filled and not this form</strong></div>
+<c:if test="${not empty exceedErrorGrossTurnOver}">
+	<div class="alert alert-error">
+		<strong><fmt:message key="busi.prof.exceed.grosturnover.itr4" /></strong><a
+			href="./servicerequest-itr.html" class="btn btn-warning">Change Package</a>
+	</div>
+</c:if>
 <form name="schedBusinessProfess" id="schedBusinessProfess" action="${actionUrl}" method="post">
 	<h5 align="center">Presumptive Income</h5>
 	<fieldset>
