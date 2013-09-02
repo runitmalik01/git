@@ -19433,5 +19433,125 @@ out_incChargBusiness  = indianCurrencyHelper.RoundTo2Decimals(incChargBusiness);
   </sv:node>
 </sv:node>
     <!-- end of calculation for business profession -->
+    <sv:node sv:name="balancesheet" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hippo:handle</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+    <sv:value>hippo:hardhandle</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>0610a5ba-6f52-48e0-afce-9c04c4c00873</sv:value>
+  </sv:property>
+  <sv:node sv:name="balancesheet">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>mootlywcm:screencalculation</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+      <sv:value>hippo:harddocument</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>c4d1da37-4df8-4c98-8ae6-50a4658dd019</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
+      <sv:value>live</sv:value>
+      <sv:value>preview</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippo:related___pathreference" sv:type="String">
+      <sv:value>balancesheet</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostd:state" sv:type="String">
+      <sv:value>published</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostd:stateSummary" sv:type="String">
+      <sv:value>live</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
+      <sv:value>admin</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
+      <sv:value>2013-09-02T15:23:13.592+05:30</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
+      <sv:value>2013-09-02T15:38:10.679+05:30</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
+      <sv:value>admin</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
+      <sv:value>2013-09-02T15:38:15.460+05:30</sv:value>
+    </sv:property>
+    <sv:property sv:name="mootlywcm:additionalScript" sv:type="String">
+      <sv:value/>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="mootlywcm:dropRadio" sv:type="String">
+      <sv:value/>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="mootlywcm:input" sv:type="String">
+      <sv:value>propCapital</sv:value>
+      <sv:value>reavReserve</sv:value>
+      <sv:value>capReserve</sv:value>
+      <sv:value>statReserve</sv:value>
+      <sv:value>otherReserve</sv:value>
+      <sv:value>forgnCurrLoan</sv:value>
+      <sv:value>rupLoanBank</sv:value>
+      <sv:value>rupLoanOther</sv:value>
+      <sv:value>unsecLoanBank</sv:value>
+      <sv:value>defTaxLiability</sv:value>
+      <sv:value>sourcOfFund</sv:value>
+      <sv:value>grossBlock</sv:value>
+      <sv:value>depreciation</sv:value>
+      <sv:value>capWorkProgrss</sv:value>
+      <sv:value>grossFixedAsset</sv:value>
+      <sv:value>ltInvestQuot</sv:value>
+      <sv:value>ltInvestUnquot</sv:value>
+      <sv:value>stInvestEquity</sv:value>
+      <sv:value>stInvestPrefShare</sv:value>
+      <sv:value>stInvestDebent</sv:value>
+      <sv:value>grossInvest</sv:value>
+      <sv:value>storesConsum</sv:value>
+      <sv:value>rawMaterial</sv:value>
+      <sv:value>stockProcess</sv:value>
+      <sv:value>finishGoods</sv:value>
+      <sv:value>sundryDebtor</sv:value>
+      <sv:value>cashInHand</sv:value>
+      <sv:value>balanceBank</sv:value>
+      <sv:value>otherCurrAsset</sv:value>
+      <sv:value>grossCurrAssets</sv:value>
+      <sv:value>advancRecover</sv:value>
+      <sv:value>loanAdvanCorpOthr</sv:value>
+      <sv:value>balWthRevenAuth</sv:value>
+      <sv:value>grossLoanFund</sv:value>
+      <sv:value>grossCurrAssLoanAdvan</sv:value>
+      <sv:value>sundryCreditor</sv:value>
+      <sv:value>laibLeaseAsset</sv:value>
+      <sv:value>unpaidDividnd</sv:value>
+      <sv:value>unpaidMatdebntur</sv:value>
+      <sv:value>interestAcuurOnabove</sv:value>
+      <sv:value>interestAcuurNtLoan</sv:value>
+      <sv:value>grossCurrLiability</sv:value>
+      <sv:value>incometaxProvis</sv:value>
+      <sv:value>wealthTaxProvis</sv:value>
+      <sv:value>leaveProvis</sv:value>
+      <sv:value>grossProprietFund</sv:value>
+      <sv:value>unsecLoanOther</sv:value>
+      <sv:value>otherProvis</sv:value>
+      <sv:value>grossProvision</sv:value>
+      <sv:value>grossCurrLaibilProvison</sv:value>
+      <sv:value>netCurrAssets</sv:value>
+      <sv:value>miscellanExpend</sv:value>
+      <sv:value>deftaxAssets</sv:value>
+      <sv:value>profLoassAccn</sv:value>
+      <sv:value>grossAppliFund</sv:value>
+    </sv:property>
+    <sv:property sv:name="mootlywcm:script" sv:type="String">
+      <sv:value>var indianCurrencyHelper = new com.mootly.wcm.services.IndianCurrencyHelper();</sv:value>
+    </sv:property>
+    <sv:property sv:name="mootlywcm:title" sv:type="String">
+      <sv:value/>
+    </sv:property>
+  </sv:node>
+</sv:node>
+<!-- end of calculation document for balance sheet -->
   </sv:node>
 </sv:node>
