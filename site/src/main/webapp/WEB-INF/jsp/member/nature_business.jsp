@@ -26,14 +26,16 @@ request.setAttribute("objHashMapBusinessCode", objHashMapBusinessCode);
 			test="${pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD'}">
 			<form id="frmNature_business" action="${actionUrl}" method="post"
 				name="frmNature_business">
+				<fieldset>
+				<legend style="color: black">Enter Details</legend>
 				<div class="row-fluid show-grid">
 					<div class="span4">
 						<div class="rowlabel">
-							<label for="business_name"><small><fmt:message
+							<label for="business_code"><small><fmt:message
 										key="business.name.itr4" /> </small> </label>
 						</div>
 						<div class="rowlabel">
-							<select id="business_code" name="business_code">
+							<select id="business_code" name="business_code" class="uprcase">
 						<option value="">-Select-</option>
 						<c:forEach var="businessCode" items="${objHashMapBusinessCode}">
 							<option
@@ -49,22 +51,21 @@ request.setAttribute("objHashMapBusinessCode", objHashMapBusinessCode);
 										key="tradeName.Proprietorship.itr4" /> </small> </label>
 						</div>
 						<div class="rowlabel">
-							<input id="tradeName_Proprietorship"
+							<input id="tradeName_Proprietorship" class="uprcase"
 								name="tradeName_Proprietorship" type="text" value="${childBean.tradeName_Proprietorship}" />
 						</div>
 					</div>
-
 				</div>
-				<input type="text" id="business_name" name="business_name">
+     </fieldset>
 
 				<div class="row-fluid show-grid">
-					<div class="span4 offset8 decimal">
-						<a href="${scriptName}" class="btn btn-danger">Cancel</a>&nbsp; <a
-							id="myModalHrefBusinessNature" role="button"
-							class="btn btn-success">Save</a>
-					</div>
-
+				   <div class="span4 offset8 decimal">
+					  <a href="${scriptName}"
+						 class="btn btn-danger" style="color: black">Cancel</a>&nbsp; <a id="myModalHrefBusinessNature"
+						 role="button" class="btn btn-success" style="color: black">Save</a>
 				</div>
+			</div>
+
 			</form>
 		</c:when>
 		<c:otherwise>
@@ -83,7 +84,13 @@ request.setAttribute("objHashMapBusinessCode", objHashMapBusinessCode);
 					<c:forEach items="${parentBean.natureBusinessDetailList}"
 						var="businessDetail">
 						<tr>
-							<td><c:out value="${businessDetail.business_Name}" /></td>
+							<td class="uprcase">
+							<c:forEach items="${objHashMapBusinessCode}" var="businessmap">
+							<c:if test="${businessmap.key == businessDetail.business_Code}">
+							<c:out value="${businessmap.value}" />
+							</c:if>
+							</c:forEach>
+							</td>
 							<td><c:out
 									value="${businessDetail.tradeName_Proprietorship}" /></td>
 
@@ -100,8 +107,10 @@ request.setAttribute("objHashMapBusinessCode", objHashMapBusinessCode);
 
 				</c:if>
 			</table>
-			<a href="${scriptName}/businessnaturenew" class="btn btn-info">Add
+
+			<a href="${scriptName}/businessnaturenew" class="btn btn-info" style="color: black">Add
 				New</a>
+
 		</c:otherwise>
 	</c:choose>
 </div>
