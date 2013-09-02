@@ -134,7 +134,7 @@ for (HstSiteMenuItem siteMenuItem : itrSiteMenu.getSiteMenuItems() ){
 	         <span class="icon-bar"></span>
 	         <span class="icon-bar"></span>
          </a>
-         <a class="brand" href="${fn:substringBefore(scriptName,pan)}${pan}/servicerequest-itr.html">
+         <a class="brand" href="${fn:substringBefore(scriptName,pan)}${pan}${itrFolderSuffix}/${pan}/servicerequest-itr.html">
             <span class="pan">
                <c:out value="${pan}"/>
             </span>
