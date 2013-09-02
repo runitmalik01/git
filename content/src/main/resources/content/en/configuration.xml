@@ -19359,6 +19359,79 @@ out_balanceCarried_BalanceSheet = out_amount_Appropriation - transReserves_Surpl
 </sv:node>
 
 <!-- schedule PL -->
-    
+<sv:node sv:name="businessprofession" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hippo:handle</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+    <sv:value>hippo:hardhandle</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>5de7ea1e-09b0-4e09-9d3e-90d70963c5fa</sv:value>
+  </sv:property>
+  <sv:node sv:name="businessprofession">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>mootlywcm:screencalculation</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+      <sv:value>hippo:harddocument</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>5ba2da13-345b-40d7-9ae5-cad3643f3013</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
+      <sv:value>live</sv:value>
+      <sv:value>preview</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippo:related___pathreference" sv:type="String">
+      <sv:value>businessprofession</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostd:state" sv:type="String">
+      <sv:value>published</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostd:stateSummary" sv:type="String">
+      <sv:value>live</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
+      <sv:value>admin</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
+      <sv:value>2013-09-02T15:11:14.296+05:30</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
+      <sv:value>2013-09-02T15:18:26.301+05:30</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
+      <sv:value>admin</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
+      <sv:value>2013-09-02T15:18:40.464+05:30</sv:value>
+    </sv:property>
+    <sv:property sv:name="mootlywcm:additionalScript" sv:type="String">
+      <sv:value/>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="mootlywcm:dropRadio" sv:type="String">
+      <sv:value/>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="mootlywcm:input" sv:type="String">
+      <sv:value>grossTurnOver</sv:value>
+      <sv:value>grossPresumptIncome</sv:value>
+      <sv:value>presumHeavyVehi</sv:value>
+      <sv:value>presumOtherVehi</sv:value>
+    </sv:property>
+    <sv:property sv:name="mootlywcm:script" sv:type="String">
+      <sv:value>//Script is used to calculate the presumptive Income
+var indianCurrencyHelper = new com.mootly.wcm.services.IndianCurrencyHelper();
+var incChargBusiness  = 0;
+incChargBusiness = (grossTurnOver-0) + (grossPresumptIncome-0) + (presumHeavyVehi-0) + (presumOtherVehi-0);
+
+out_incChargBusiness  = indianCurrencyHelper.RoundTo2Decimals(incChargBusiness);</sv:value>
+    </sv:property>
+    <sv:property sv:name="mootlywcm:title" sv:type="String">
+      <sv:value>This script is used to calculate the value of Presumptive Income for Schedule Business Profession</sv:value>
+    </sv:property>
+  </sv:node>
+</sv:node>
+    <!-- end of calculation for business profession -->
   </sv:node>
 </sv:node>
