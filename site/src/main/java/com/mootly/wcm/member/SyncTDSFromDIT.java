@@ -159,14 +159,14 @@ public class SyncTDSFromDIT extends ITReturnComponent {
 		ITReturnComponentHelper itReturnComponentHelper = getITReturnComponentHelper();
 		FormMapHelper formMapHelper = new FormMapHelper();
 		if (listOfObjects != null && listOfObjects.size() > 0) {
-			for (Object twenty26TaxPayment:listOfObjects) {
+			for (Object anObject:listOfObjects) {
 				String baseAbsolutePathToReturnDocuments = getAbsoluteBasePathToReturnDocuments();
 				String parentBeanNodeName = itReturnComponentHelper.getParentBeanNodeName(parentBeanClass);
 				String parentBeanNameSpace = itReturnComponentHelper.getParentBeanNamespace(parentBeanClass);
 				String parentBeanAbsolutePath = itReturnComponentHelper.getParentBeanAbsolutePath(baseAbsolutePathToReturnDocuments, parentBeanNodeName);
 				//Class<? extends HippoBean> childBeanClass = SelfAssesmentTaxDetail.class;
-				FormMap formMap = formMapHelper.convertToFormMap(twenty26TaxPayment);
-				itReturnComponentHelper.saveAddNewChild(formMap, baseAbsolutePathToReturnDocuments, parentBeanAbsolutePath, parentBeanNameSpace, parentBeanNodeName, childBeanClass, persistableSession, wpm);
+				FormMap formMap = formMapHelper.convertToFormMap(anObject);
+				itReturnComponentHelper.saveAddNewChild(formMap,null, baseAbsolutePathToReturnDocuments, parentBeanAbsolutePath, parentBeanNameSpace, parentBeanNodeName, childBeanClass, persistableSession, wpm);
 			}
 		}
 	}

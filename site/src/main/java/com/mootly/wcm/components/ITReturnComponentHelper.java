@@ -421,7 +421,7 @@ public final class ITReturnComponentHelper {
 	 * @param persistableSession
 	 * @param wpm
 	 */
-	public void saveAddNewChild (FormMap formMap,String baseAbsolutePathToReturnDocuments, String parentBeanAbsolutePath, String parentBeanNameSpace,String parentBeanNodeName,  Class<? extends HippoBean> childBeanClass,Session persistableSession,WorkflowPersistenceManager wpm) {
+	public void saveAddNewChild (FormMap childBeanMap,FormMap parentBeanMap, String baseAbsolutePathToReturnDocuments, String parentBeanAbsolutePath, String parentBeanNameSpace,String parentBeanNodeName,  Class<? extends HippoBean> childBeanClass,Session persistableSession,WorkflowPersistenceManager wpm) {
 		try {
 			//Object parentBeanInSession = wpm.getObject(parentBean.getCanonicalUUID());
 			HippoBean parentBeanInSession = (HippoBean) wpm.getObject(parentBeanAbsolutePath);
@@ -433,6 +433,10 @@ public final class ITReturnComponentHelper {
 				//final String pathToParentBean = wpm.createAndReturn(baseAbsolutePathToReturnDocuments,getParentBeanNameSpace(),getParentBeanNodeName(), true);
 				final String pathToParentBean = wpm.createAndReturn(baseAbsolutePathToReturnDocuments,parentBeanNameSpace,parentBeanNodeName, true);
 				parentBeanInSession = (HippoBean) wpm .getObject(pathToParentBean);
+				if (parentBeanInSession instanceof FormMapFiller && parentBeanMap != null){
+					FormMapFiller formMapFiller = (FormMapFiller) parentBeanInSession;
+					formMapFiller.fill(parentBeanMap);
+				}
 			}
 			//now set the value we received from the form submission
 			//ChildBean childBeanLocal = getClass().getAnnotation(ChildBean.class);
@@ -441,7 +445,7 @@ public final class ITReturnComponentHelper {
 				HippoBean childBean = childBeanClass.newInstance();
 				if (childBean instanceof FormMapFiller) {
 					FormMapFiller formMapFiller = (FormMapFiller) childBean;
-					formMapFiller.fill(formMap);
+					formMapFiller.fill(childBeanMap);
 				}
 				if (parentBeanInSession instanceof CompoundChildUpdate) {
 					CompoundChildUpdate compoundChildUpdate = (CompoundChildUpdate) parentBeanInSession;

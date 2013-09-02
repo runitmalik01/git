@@ -446,3 +446,7 @@ orderable
   orderable
   [mootlywcm:profitandlossdocument] > hippostd:relaxed, mootlywcm:basedocument
   orderable
+  
+   
+[mootlywcm:invoicedocument] > hippostd:relaxed, mootlywcm:basedocument orderable
+[mootlywcm:invoicedocumentdetail] > hippo:compound, hippostd:relaxed orderable
