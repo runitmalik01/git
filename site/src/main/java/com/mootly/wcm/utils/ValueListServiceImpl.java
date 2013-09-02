@@ -51,7 +51,7 @@ public final class ValueListServiceImpl implements ValueListService{
 	private ResourceBundle objValueListDtaaCountries = null;
 	private ResourceBundle objvalueListReturnFile=null;
 	private ResourceBundle objvalueListRelationship=null;
-	private ResourceBundle objvalueListNaureIncome=null; 
+	private ResourceBundle objvalueListNaureIncome=null;
 	private ResourceBundle objvalueListBusinessCode=null;
 	private ResourceBundle objvalueListQuantitativeCode=null;
 
@@ -345,7 +345,7 @@ public final class ValueListServiceImpl implements ValueListService{
 		TreeMapStates.put("25", objValueListStatesBundle.getString("valueList.pondicherry"));
 
 		TreeMapStates.put("99", objValueListStatesBundle.getString("valueList.foreign"));
-		
+
 		camelizeTreeMap(TreeMapStates);
 		//SortedMap<String, String> m = Collections.synchronizedSortedMap(TreeMapStates);
 		mapOfValueList.put("states",entriesSortedByValues(TreeMapStates));
@@ -717,49 +717,88 @@ public final class ValueListServiceImpl implements ValueListService{
 		treeMapBusinessCode.put("0102", objvalueListBusinessCode.getString("valueList.0102"));
 		treeMapBusinessCode.put("0103", objvalueListBusinessCode.getString("valueList.0103"));
 		treeMapBusinessCode.put("0104", objvalueListBusinessCode.getString("valueList.0104"));
-		
 		treeMapBusinessCode.put("0105", objvalueListBusinessCode.getString("valueList.0105"));
 		treeMapBusinessCode.put("0106", objvalueListBusinessCode.getString("valueList.0106"));
 		treeMapBusinessCode.put("0107", objvalueListBusinessCode.getString("valueList.0107"));
 		treeMapBusinessCode.put("0108", objvalueListBusinessCode.getString("valueList.0108"));
-		
-		treeMapBusinessCode.put("0109", objvalueListBusinessCode.getString("valueList.0108"));
+		treeMapBusinessCode.put("0109", objvalueListBusinessCode.getString("valueList.0109"));
 		treeMapBusinessCode.put("0110", objvalueListBusinessCode.getString("valueList.0110"));
 		treeMapBusinessCode.put("0111", objvalueListBusinessCode.getString("valueList.0111"));
 		treeMapBusinessCode.put("0112", objvalueListBusinessCode.getString("valueList.0112"));
-		
 		treeMapBusinessCode.put("0113", objvalueListBusinessCode.getString("valueList.0113"));
 		treeMapBusinessCode.put("0114", objvalueListBusinessCode.getString("valueList.0114"));
 		treeMapBusinessCode.put("0115", objvalueListBusinessCode.getString("valueList.0115"));
 		treeMapBusinessCode.put("0116", objvalueListBusinessCode.getString("valueList.0116"));
-		
 		treeMapBusinessCode.put("0117", objvalueListBusinessCode.getString("valueList.0117"));
 		treeMapBusinessCode.put("0118", objvalueListBusinessCode.getString("valueList.0118"));
 		treeMapBusinessCode.put("0119", objvalueListBusinessCode.getString("valueList.0119"));
 		treeMapBusinessCode.put("0120", objvalueListBusinessCode.getString("valueList.0120"));
-		
 		treeMapBusinessCode.put("0121", objvalueListBusinessCode.getString("valueList.0121"));
 		treeMapBusinessCode.put("0122", objvalueListBusinessCode.getString("valueList.0122"));
 		treeMapBusinessCode.put("0123", objvalueListBusinessCode.getString("valueList.0123"));
 		treeMapBusinessCode.put("0124", objvalueListBusinessCode.getString("valueList.0124"));
-		
+
 		treeMapBusinessCode.put("0201", objvalueListBusinessCode.getString("valueList.0201"));
 		treeMapBusinessCode.put("0202", objvalueListBusinessCode.getString("valueList.0202"));
 		treeMapBusinessCode.put("0203", objvalueListBusinessCode.getString("valueList.0203"));
 		treeMapBusinessCode.put("0204", objvalueListBusinessCode.getString("valueList.0204"));
+
 		treeMapBusinessCode.put("0401", objvalueListBusinessCode.getString("valueList.0401"));
-		
 		treeMapBusinessCode.put("0402", objvalueListBusinessCode.getString("valueList.0402"));
 		treeMapBusinessCode.put("0403", objvalueListBusinessCode.getString("valueList.0403"));
 		treeMapBusinessCode.put("0404", objvalueListBusinessCode.getString("valueList.0404"));
+
 		treeMapBusinessCode.put("0501", objvalueListBusinessCode.getString("valueList.0501"));
 		treeMapBusinessCode.put("0502", objvalueListBusinessCode.getString("valueList.0502"));
 		treeMapBusinessCode.put("0503", objvalueListBusinessCode.getString("valueList.0503"));
 		treeMapBusinessCode.put("0504", objvalueListBusinessCode.getString("valueList.0504"));
 		treeMapBusinessCode.put("0505", objvalueListBusinessCode.getString("valueList.0505"));
+
+		treeMapBusinessCode.put("0601", objvalueListBusinessCode.getString("valueList.0601"));
+		treeMapBusinessCode.put("0602", objvalueListBusinessCode.getString("valueList.0602"));
+		treeMapBusinessCode.put("0603", objvalueListBusinessCode.getString("valueList.0603"));
+		treeMapBusinessCode.put("0604", objvalueListBusinessCode.getString("valueList.0604"));
+		treeMapBusinessCode.put("0605", objvalueListBusinessCode.getString("valueList.0605"));
+		treeMapBusinessCode.put("0606", objvalueListBusinessCode.getString("valueList.0606"));
+		treeMapBusinessCode.put("0607", objvalueListBusinessCode.getString("valueList.0607"));
+
+		treeMapBusinessCode.put("0701", objvalueListBusinessCode.getString("valueList.0701"));
+		treeMapBusinessCode.put("0702", objvalueListBusinessCode.getString("valueList.0702"));
+		treeMapBusinessCode.put("0703", objvalueListBusinessCode.getString("valueList.0703"));
+		treeMapBusinessCode.put("0704", objvalueListBusinessCode.getString("valueList.0704"));
+		treeMapBusinessCode.put("0705", objvalueListBusinessCode.getString("valueList.0705"));
+		treeMapBusinessCode.put("0706", objvalueListBusinessCode.getString("valueList.0706"));
+		treeMapBusinessCode.put("0707", objvalueListBusinessCode.getString("valueList.0707"));
+		treeMapBusinessCode.put("0708", objvalueListBusinessCode.getString("valueList.0708"));
+		treeMapBusinessCode.put("0709", objvalueListBusinessCode.getString("valueList.0709"));
+		treeMapBusinessCode.put("0710", objvalueListBusinessCode.getString("valueList.0710"));
+		treeMapBusinessCode.put("0711", objvalueListBusinessCode.getString("valueList.0711"));
+		treeMapBusinessCode.put("0712", objvalueListBusinessCode.getString("valueList.0712"));
+		treeMapBusinessCode.put("0713", objvalueListBusinessCode.getString("valueList.0713"));
+		treeMapBusinessCode.put("0714", objvalueListBusinessCode.getString("valueList.0714"));
+
+		treeMapBusinessCode.put("0801", objvalueListBusinessCode.getString("valueList.0801"));
+		treeMapBusinessCode.put("0802", objvalueListBusinessCode.getString("valueList.0802"));
+		treeMapBusinessCode.put("0803", objvalueListBusinessCode.getString("valueList.0803"));
+		treeMapBusinessCode.put("0804", objvalueListBusinessCode.getString("valueList.0804"));
+		treeMapBusinessCode.put("0805", objvalueListBusinessCode.getString("valueList.0805"));
+		treeMapBusinessCode.put("0806", objvalueListBusinessCode.getString("valueList.0806"));
+		treeMapBusinessCode.put("0807", objvalueListBusinessCode.getString("valueList.0807"));
+		treeMapBusinessCode.put("0808", objvalueListBusinessCode.getString("valueList.0808"));
+		treeMapBusinessCode.put("0809", objvalueListBusinessCode.getString("valueList.0809"));
+
+		treeMapBusinessCode.put("0901", objvalueListBusinessCode.getString("valueList.0901"));
+		treeMapBusinessCode.put("0902", objvalueListBusinessCode.getString("valueList.0902"));
+		treeMapBusinessCode.put("0903", objvalueListBusinessCode.getString("valueList.0903"));
+		treeMapBusinessCode.put("0904", objvalueListBusinessCode.getString("valueList.0904"));
+		treeMapBusinessCode.put("0905", objvalueListBusinessCode.getString("valueList.0905"));
+		treeMapBusinessCode.put("0906", objvalueListBusinessCode.getString("valueList.0906"));
+
+		treeMapBusinessCode.put("1001", objvalueListBusinessCode.getString("valueList.1001"));
+
 		return treeMapBusinessCode;
 	}
-	
+
 	public TreeMap<String, String> getQuantitativeCode(){
 		TreeMap<String, String> objTreeMapQuantCode = new TreeMap<String, String>();
 		objTreeMapQuantCode.put("101", objvalueListQuantitativeCode.getString("valueList.101"));
@@ -787,7 +826,7 @@ public final class ValueListServiceImpl implements ValueListService{
 		objTreeMapQuantCode.put("999", objvalueListQuantitativeCode.getString("valueList.999"));
 		return objTreeMapQuantCode;
 	}
-	
+
 	@Override
 	public TreeMap<String, String> getUnionTerritory() {
 		// TODO Auto-generated method stub
@@ -808,7 +847,7 @@ public final class ValueListServiceImpl implements ValueListService{
 	public TreeMap<String, String> getForeignState() {
 		// TODO Auto-generated method stub
 		TreeMap<String, String> TreeMapForiegnStates =new TreeMap<String, String>();
-		
+
 		return TreeMapForiegnStates;
 	}
 	public TreeMap<String, String> getNatureIncome(){
