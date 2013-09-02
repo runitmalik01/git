@@ -107,10 +107,10 @@ request.setAttribute("objHashMapBusinessCode", objHashMapBusinessCode);
 
 				</c:if>
 			</table>
-
+            <c:if test="${empty NEW_CHILD_DISABLED}">
 			<a href="${scriptName}/businessnaturenew" class="btn btn-info" style="color: black">Add
 				New</a>
-
+            </c:if>
 		</c:otherwise>
 	</c:choose>
 </div>
