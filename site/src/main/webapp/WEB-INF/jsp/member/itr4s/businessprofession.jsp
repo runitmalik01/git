@@ -12,97 +12,153 @@
 	</c:forEach>
 </c:if>
 <h4>
-	<b><c:out value="${screenConfigDocument.screenHeading}"/></b>
+	<b>ITR- Schedule Business Profession</b>
 </h4>
-<c:if test="${not empty screenConfigDocument.screenSubHeading}">
-	<div class="alert alert-info">
-		<c:out value="${screenConfigDocument.screenSubHeading}"/>
-	</div>
-</c:if>
+<div class="alert alert-info"><strong>If income is less tha 8% of
+	Gross Receipts, it is mandatory to have a tax audit under 44AB and
+	Regular ITR 4 form has to be filled and not this form</strong></div>
 <form name="schedBusinessProfess" id="schedBusinessProfess" action="${actionUrl}" method="post">
 	<h5 align="center">Presumptive Income</h5>
 	<fieldset>
 		<legend>Presumptive Income under 44AD</legend>
-		<div class="span3">
-			<div class="rowlabel">
-				<label for="reavReserve"> <small>GrossIncome or GrossTurnOver Receipts</small>
-				</label>
-			</div>
-			<div class="rowlabel">
-				<input id="reavReserve" name="reavReserve" type="text"
-					maxlength="14" class="decimal" value="${parentBean.reavReserve }" />
-			</div>
-		</div>
-		<div class="span3">
-			<div class="rowlabel">
-				<label for="capReserve"> <small>Total Presumptive Income u|s 44AD</small>
-				</label>
-			</div>
-			<div class="rowlabel">
-				<input id="capReserve" name="capReserve" type="text" maxlength="14"
-					class="decimal" value="${parentBean.capReserve }" />
-			</div>
-		</div>	
-	</fieldset>	
-		<fieldset>
-		<legend>Presumptive Income under 44AE</legend>
-		<div class="span3">
-			<div class="rowlabel">
-				<label for="reavReserve"> <small>Presumptive Income from Heavy Vehicles</small>
-				</label>
-			</div>
-			<div class="rowlabel">
-				<input id="reavReserve" name="reavReserve" type="text"
-					maxlength="14" class="decimal" value="${parentBean.reavReserve }" />
-			</div>
-		</div>
-		<div class="span3">
-			<div class="rowlabel">
-				<label for="capReserve"> <small>Presumptive Income from Other Vehicles</small>
-				</label>
-			</div>
-			<div class="rowlabel">
-				<input id="capReserve" name="capReserve" type="text" maxlength="14"
-					class="decimal" value="${parentBean.capReserve }" />
-			</div>
-		</div>
-		<div class="span3">
-			<div class="rowlabel">
-				<label for="statReserve"> <small>Gross Presumptive Income u|s 44AE </small>
-				</label>
-			</div>
-			<div class="rowlabel">
-				<input id="statReserve" name="statReserve" type="text"
-					maxlength="14" class="decimal" value="${parentBean.statReserve }" readonly="readonly" />
-			</div>
-		</div>		
-	</fieldset>
-	<div class="well">
-		<div class="row -fluid show-grid">
-			<div class="span3">
+		<div class="row-fluid show-grid">
+			<div class="span4">
 				<div class="rowlabel">
-					<label for="statReserve"> <small>Gross Business Profession Income</small>
+					<label for="grossTurnOver"> <small>GrossIncome or GrossTurnOver Receipts</small>
 					</label>
 				</div>
 				<div class="rowlabel">
-					<input id="statReserve" name="statReserve" type="text"
-						maxlength="14" class="decimal" value="${parentBean.statReserve }"
+					<input id="grossTurnOver" name="grossTurnOver" type="text"
+						maxlength="14" class="decimal" value="${parentBean.grossTurnOver }" />
+				</div>
+			</div>
+			<div class="span4">
+				<div class="rowlabel">
+					<label for="grossPresumptIncome"> <small>Total Presumptive Income u|s 44AD</small>
+					</label>
+				</div>
+				<div class="rowlabel">
+					<input id="grossPresumptIncome" name="grossPresumptIncome"
+						type="text" maxlength="14" class="decimal"
+						value="${parentBean.grossPresumptIncome}" />
+				</div>
+			</div>
+		</div>
+	</fieldset>
+	<fieldset>
+		<legend>Presumptive Income under 44AE</legend>
+		<div class="row-fluid show-grid">
+			<div class="span4">
+				<div class="rowlabel">
+					<label for="presumHeavyVehi"> <small>Presumptive Income from Heavy Vehicles</small>
+					</label>
+				</div>
+				<div class="rowlabel">
+					<input id="presumHeavyVehi" name="presumHeavyVehi" type="text"
+						maxlength="14" class="decimal"
+						value="${schFourtyFourAEDocument.reavReserve}" readonly="readonly" />
+				</div>
+			</div>
+			<div class="span4">
+				<div class="rowlabel">
+					<label for="presumOtherVehi"> <small>Presumptive Income from Other Vehicles</small>
+					</label>
+				</div>
+				<div class="rowlabel">
+					<input id="presumOtherVehi" name="presumOtherVehi" type="text"
+						maxlength="14" class="decimal"
+						value="${schFourtyFourAEDocument.capReserve}" readonly="readonly" />
+				</div>
+			</div>
+			<div class="span4">
+				<div class="rowlabel">
+					<label for="grossPresumInc44AE"> <small>Gross Presumptive Income u|s 44AE</small>
+					</label>
+				</div>
+				<div class="rowlabel">
+					<input id="grossPresumInc44AE" name="grossPresumInc44AE"
+						type="text" maxlength="14" class="decimal"
+						value="${schFourtyFourAEDocument.reavReserve + schFourtyFourAEDocument.capReserve}"
+						readonly="readonly" />
+				</div>
+			</div>
+		</div>
+	</fieldset>
+	<div class="well">
+		<div class="row -fluid show-grid">
+			<div class="span4">
+				<div class="rowlabel">
+					<label for="statReserve"><small>Gross Business or Profession Income</small>
+					</label>
+				</div>
+				<div class="rowlabel">
+					<input id="incChargBusiness" name="incChargBusiness" type="text"
+						maxlength="14" class="decimal" value="${parentBean.incChargBusiness}"
 						readonly="readonly" />
 				</div>
 			</div>
 		</div>
 	</div>
+	<fieldset>
+		<legend>Financial Particulars of Business</legend>
+		<div class="row-fluid show-grid">
+			<div class="span3">
+				<div class="rowlabel">
+					<label for="grossSundryDebt"> <small>Total Sundry Debtors</small>
+					</label>
+				</div>
+				<div class="rowlabel">
+					<input id="grossSundryDebt" name="grossSundryDebt" type="text"
+						maxlength="14" class="decimal"
+						value="${parentBean.grossSundryDebt}"/>
+				</div>
+			</div>
+			<div class="span3">
+				<div class="rowlabel">
+					<label for="grossSundryCredit"> <small>Total Sundry Creditors</small>
+					</label>
+				</div>
+				<div class="rowlabel">
+					<input id="grossSundryCredit" name="grossSundryCredit" type="text"
+						maxlength="14" class="decimal"
+						value="${parentBean.grossSundryCredit}"/>
+				</div>
+			</div>
+			<div class="span3">
+				<div class="rowlabel">
+					<label for="grossStockTrade"> <small>Total Stock In Trade</small>
+					</label>
+				</div>
+				<div class="rowlabel">
+					<input id="grossStockTrade" name="grossStockTrade" type="text"
+						maxlength="14" class="decimal"
+						value="${parentBean.grossStockTrade}"/>
+				</div>
+			</div>
+			<div class="span3">
+				<div class="rowlabel">
+					<label for="grossCashBalance"> <small>Total cash in Balance</small>
+					</label>
+				</div>
+				<div class="rowlabel">
+					<input id="grossCashBalance" name="grossCashBalance" type="text"
+						maxlength="14" class="decimal"
+						value="${parentBean.grossCashBalance}"/>
+				</div>
+			</div>
+		</div>
+	</fieldset>
 	<div class="row-fluid show-grid">
 		<div class="span4 offset8 decimal">
 			<!--<a href="${scriptName}"
 				class="btn btn-danger" style="color: black">Cancel</a>&nbsp;  --> <a
-				id="myModalScheduleBalSheet" role="button" class="btn btn-success"
+				id="myModalScheduleBusiProf" role="button" class="btn btn-success"
 				style="color: black">Save</a>
 		</div>
 	</div>
 </form>
 
 
-<res:client-validation screenConfigurationDocumentName="balancesheet" formId="schedBalanceSheet" formSubmitButtonId="myModalScheduleBalSheet"></res:client-validation>
+<res:client-validation screenConfigurationDocumentName="businessprofession" formId="schedBusinessProfess" formSubmitButtonId="myModalScheduleBusiProf"></res:client-validation>
 
-
+res<res:calc screenCalc="businessprofession" formId="schedBusinessProfess"></res:calc>
