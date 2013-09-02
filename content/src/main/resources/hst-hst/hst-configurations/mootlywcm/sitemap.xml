@@ -209,7 +209,7 @@
     <sv:property sv:name="hst:refId" sv:type="String">
       <sv:value>sitemap</sv:value>
     </sv:property>
-  </sv:node>      
+  </sv:node>
   <sv:node sv:name="signup">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
       <sv:value>hst:sitemapitem</sv:value>
@@ -493,7 +493,7 @@
               </sv:node>
             </sv:node>
            <!-- change make to pass a parameter for itr2 :- By Pankaj Singh -->
-           
+
 <sv:node sv:name="houseincome.html">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hst:sitemapitem</sv:value>
@@ -586,7 +586,7 @@
     </sv:property>
   </sv:node>
 </sv:node>
-           
+
             <sv:node sv:name="contactinformation.html">
               <sv:property sv:name="jcr:primaryType" sv:type="Name">
                 <sv:value>hst:sitemapitem</sv:value>
@@ -1780,7 +1780,7 @@
                 </sv:property>
               </sv:node>
             </sv:node>
-            <!-- 
+            <!--
             <sv:node sv:name="packageselector-NOTBEINGUSED.html">
               <sv:property sv:name="jcr:primaryType" sv:type="Name">
                 <sv:value>hst:sitemapitem</sv:value>
@@ -1996,9 +1996,9 @@
                 </sv:property>
               </sv:node>
             </sv:node>
-            
+
            <!--    for  form sixteen schedule with itr-->
-            
+
 <sv:node sv:name="formsixteenschedule.html">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hst:sitemapitem</sv:value>
@@ -3559,7 +3559,7 @@
 </sv:node>
 
 
-			
+
 			<sv:node sv:name="singlehouseincome.html" >
 			  <sv:property sv:name="jcr:primaryType" sv:type="Name">
 			    <sv:value>hst:sitemapitem</sv:value>
@@ -3679,7 +3679,7 @@
 			  <sv:property sv:name="hst:relativecontentpath" sv:type="String">
 			    <sv:value>members</sv:value>
 			  </sv:property>
-			</sv:node>		
+			</sv:node>
 			<sv:node sv:name="servicerequest-itr-download-summary.html" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
 			  <sv:property sv:name="jcr:primaryType" sv:type="Name">
 			    <sv:value>hst:sitemapitem</sv:value>
@@ -3706,7 +3706,7 @@
 			  <sv:property sv:name="hst:relativecontentpath" sv:type="String">
 			    <sv:value>members</sv:value>
 			  </sv:property>
-			</sv:node>		
+			</sv:node>
 			<sv:node sv:name="servicerequest-itr-download-xml.html" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
 			  <sv:property sv:name="jcr:primaryType" sv:type="Name">
 			    <sv:value>hst:sitemapitem</sv:value>
@@ -3733,7 +3733,7 @@
 			  <sv:property sv:name="hst:relativecontentpath" sv:type="String">
 			    <sv:value>members</sv:value>
 			  </sv:property>
-			</sv:node>		
+			</sv:node>
 			<sv:node sv:name="servicerequest-itr-email-xml-summary.html" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
 			  <sv:property sv:name="jcr:primaryType" sv:type="Name">
 			    <sv:value>hst:sitemapitem</sv:value>
@@ -3760,7 +3760,7 @@
 			  <sv:property sv:name="hst:relativecontentpath" sv:type="String">
 			    <sv:value>members</sv:value>
 			  </sv:property>
-			</sv:node>		
+			</sv:node>
 			<sv:node sv:name="servicerequest-itr-payment.html" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
 			  <sv:property sv:name="jcr:primaryType" sv:type="Name">
 			    <sv:value>hst:sitemapitem</sv:value>
@@ -3781,7 +3781,7 @@
 			    <sv:value>memberpersonalinformation</sv:value>
 			    <sv:value>EDIT</sv:value>
 			    <sv:value>servicerequest-itr-summary</sv:value>
-			    <sv:value>true</sv:value>			    
+			    <sv:value>true</sv:value>
 			  </sv:property>
 			  <sv:property sv:name="hst:refId" sv:type="String">
 			    <sv:value>servicerequest-itr-payment</sv:value>
@@ -3789,7 +3789,7 @@
 			  <sv:property sv:name="hst:relativecontentpath" sv:type="String">
 			    <sv:value>members</sv:value>
 			  </sv:property>
-			</sv:node>		
+			</sv:node>
 			<!-- new  -->
 			<sv:node sv:name="servicerequest-itr-tos-confirmation.html" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
 			  <sv:property sv:name="jcr:primaryType" sv:type="Name">
@@ -3817,7 +3817,7 @@
 			  <sv:property sv:name="hst:relativecontentpath" sv:type="String">
 			    <sv:value>members</sv:value>
 			  </sv:property>
-			</sv:node>					
+			</sv:node>
 			<!--  /new  -->
 			<!-- another one -->
 			<sv:node sv:name="servicerequest-itr-copy-or-move.html" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
@@ -3926,8 +3926,8 @@
 			</sv:node>
 			<!-- end schedule5a -->
 			<!--  url of otherincome for itr2: by Pankaj singh -->
-			
-			
+
+
 <sv:node sv:name="othersourcesITR2.html">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hst:sitemapitem</sv:value>
@@ -4046,11 +4046,11 @@
                </sv:property>
            </sv:node>
          </sv:node>
-			
+
 			<!--  end url of itr2 -->
 			<!--   start url for itr4 -->
 			<!-- - url name:businessnature.html : By Pankaj -->
-			
+
 <sv:node sv:name="businessnature.html">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hst:sitemapitem</sv:value>
@@ -4063,9 +4063,11 @@
   </sv:property>
   <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
     <sv:value>mainSiteMapItemRefId</sv:value>
+    <sv:value>maxChildrenAllowed</sv:value>
   </sv:property>
   <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
     <sv:value>memberbusinessnature</sv:value>
+    <sv:value>3</sv:value>
   </sv:property>
   <sv:property sv:name="hst:refId" sv:type="String">
     <sv:value>businessnature</sv:value>
@@ -4786,10 +4788,10 @@
   </sv:node>
 </sv:node>
 <!-- end of sitemapitem -->
-    </sv:node>    
+    </sv:node>
     <!-- moving changepass.html sitemapitem out of member -->
   </sv:node>
-  <!-- 
+  <!--
   <sv:node sv:name="message">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
       <sv:value>hst:sitemapitem</sv:value>
@@ -4808,7 +4810,7 @@
     </sv:property>
   </sv:node>
    -->
-  <!-- 
+  <!--
   <sv:node sv:name="changepass">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
       <sv:value>hst:sitemapitem</sv:value>
@@ -4839,8 +4841,8 @@
     <sv:property sv:name="hst:refId" sv:type="String">
       <sv:value>changeprofile</sv:value>
     </sv:property>
-  </sv:node>  
-  <!-- 
+  </sv:node>
+  <!--
   <sv:node sv:name="popup">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
       <sv:value>hst:sitemapitem</sv:value>
@@ -4975,7 +4977,7 @@
 	  </sv:property>
 	</sv:node>
   <!--  /Amit Patkar 07/16/2013 -->
-  <!-- 
+  <!--
   <sv:node sv:name="rebatesection89">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
       <sv:value>hst:sitemapitem</sv:value>
@@ -5192,7 +5194,7 @@
 	  <sv:property sv:name="hst:relativecontentpath" sv:type="String">
 	    <sv:value>members</sv:value>
 	  </sv:property>
-	</sv:node>    
+	</sv:node>
     <!--  Amit Patkar 07/16/2013 -->
   </sv:node>
   <!--  VENDOR  -->
@@ -8590,7 +8592,7 @@
 					  <sv:property sv:name="hst:relativecontentpath" sv:type="String">
 					    <sv:value>members</sv:value>
 					  </sv:property>
-				</sv:node>	        
+				</sv:node>
 				<sv:node sv:name="servicerequest-itr-payment.html" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
 					  <sv:property sv:name="jcr:primaryType" sv:type="Name">
 					    <sv:value>hst:sitemapitem</sv:value>
@@ -8645,7 +8647,7 @@
 				    <sv:value>members</sv:value>
 				  </sv:property>
 				</sv:node>
-	            <!-- /newsitemap -->	
+	            <!-- /newsitemap -->
 	            <!--  new sitemap for ITRV Status -->
 				<sv:node sv:name="servicerequest-itr-v-status.html" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
 				  <sv:property sv:name="jcr:primaryType" sv:type="Name">
@@ -8670,13 +8672,13 @@
 				    <sv:value>members</sv:value>
 				  </sv:property>
 				</sv:node>
-	            <!-- new sitemap for ITRV Status -->            
+	            <!-- new sitemap for ITRV Status -->
 	          </sv:node>
 	        </sv:node>
 	      </sv:node>
 	    </sv:node>
 	  </sv:node>
-	</sv:node>  
+	</sv:node>
 	<!--  knowledgearticles -->
 	<sv:node sv:name="knowledgearticles" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
 	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
