@@ -969,7 +969,7 @@ serving since beginning then select first day of financial year.&lt;/p&gt;
         </sv:node>
       </sv:node>
     </sv:node>
-  
+
 <sv:node sv:name="formsixteen">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hippo:handle</sv:value>
@@ -1558,8 +1558,8 @@ serving since beginning then select first day of financial year.&lt;/p&gt;
     </sv:node>
   </sv:node>
 </sv:node>
-  
-  
+
+
 
 <sv:node sv:name="houseincome">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
@@ -2542,7 +2542,7 @@ serving since beginning then select first day of financial year.&lt;/p&gt;
   </sv:node>
 </sv:node>
 
-  
+
 
 <sv:node sv:name="itreturnhomepage" >
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
@@ -6618,7 +6618,7 @@ acknowledgement&lt;/p&gt;
   </sv:node>
 </sv:node>
 
-   
+
 <sv:node sv:name="capitalasset">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hippo:handle</sv:value>
@@ -7599,7 +7599,7 @@ acknowledgement&lt;/p&gt;
   </sv:node>
 </sv:node>
 
- 
+
 <sv:node sv:name="taxrelief">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hippo:handle</sv:value>
@@ -7883,7 +7883,7 @@ acknowledgement&lt;/p&gt;
     </sv:node>
   </sv:node>
 </sv:node>
- 
+
     <sv:node sv:name="foreignbankdetail">
       <sv:property sv:name="jcr:primaryType" sv:type="Name">
         <sv:value>hippo:handle</sv:value>
@@ -9586,8 +9586,8 @@ acknowledgement&lt;/p&gt;
       </sv:node>
     </sv:node>
     <!-- added configuaration of schedule 5a : by pankaj singh -->
-    
-    
+
+
 <sv:node sv:name="schedule5a">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hippo:handle</sv:value>
@@ -9813,12 +9813,12 @@ acknowledgement&lt;/p&gt;
     </sv:node>
   </sv:node>
 </sv:node>
-    
+
     <!-- end for schedule5a -->
     <!--  screen configuaration for itr4 -->
     <!--  businessnature -->
-    
-<sv:node sv:name="businessnature" >
+
+<sv:node sv:name="businessnature">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hippo:handle</sv:value>
   </sv:property>
@@ -9849,7 +9849,7 @@ acknowledgement&lt;/p&gt;
       <sv:value>hippotranslation:translated</sv:value>
     </sv:property>
     <sv:property sv:name="jcr:uuid" sv:type="String">
-      <sv:value>4dfa65d4-9e89-4b6c-8ff2-dcfc695bf8da</sv:value>
+      <sv:value>db695f5c-5176-4344-acb6-b0c534575b3e</sv:value>
     </sv:property>
     <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
       <sv:value>live</sv:value>
@@ -9874,13 +9874,13 @@ acknowledgement&lt;/p&gt;
       <sv:value>2013-07-02T15:49:27.453+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-      <sv:value>2013-08-21T14:16:33.926+05:30</sv:value>
+      <sv:value>2013-09-02T16:51:19.125+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
       <sv:value>admin</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-      <sv:value>2013-08-21T14:16:36.744+05:30</sv:value>
+      <sv:value>2013-09-02T16:51:23.334+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippotranslation:id" sv:type="String">
       <sv:value>ef8d1da1-16ca-46fc-9d81-1247452d919f</sv:value>
@@ -9912,23 +9912,56 @@ acknowledgement&lt;/p&gt;
       <sv:property sv:name="jcr:primaryType" sv:type="Name">
         <sv:value>mootlywcm:screenfieldconfig</sv:value>
       </sv:property>
+      <sv:property sv:name="mootlywcm:dropDownListName" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldClass" sv:type="String">
+        <sv:value/>
+      </sv:property>
       <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
         <sv:value/>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
-        <sv:value>business_name</sv:value>
+        <sv:value>business_code</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldLabel" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldMaxLength" sv:type="String">
+        <sv:value/>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
-        <sv:value>business_name</sv:value>
+        <sv:value>business_code</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldSpan" sv:type="String">
         <sv:value/>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
         <sv:value/>
       </sv:property>
+      <sv:property sv:name="mootlywcm:fieldValue" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:formFieldType" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:href" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:inputFormFieldType" sv:type="String">
+        <sv:value/>
+      </sv:property>
       <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
         <sv:value>true</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:readOnly" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:rowLabel" sv:type="String">
+        <sv:value/>
       </sv:property>
       <sv:property sv:multiple="true" sv:name="mootlywcm:validatorArguments" sv:type="String">
         <sv:value/>
@@ -9941,11 +9974,23 @@ acknowledgement&lt;/p&gt;
       <sv:property sv:name="jcr:primaryType" sv:type="Name">
         <sv:value>mootlywcm:screenfieldconfig</sv:value>
       </sv:property>
+      <sv:property sv:name="mootlywcm:dropDownListName" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldClass" sv:type="String">
+        <sv:value/>
+      </sv:property>
       <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
         <sv:value/>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
         <sv:value>tradeName_Proprietorship</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldLabel" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldMaxLength" sv:type="String">
+        <sv:value/>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
         <sv:value>tradeName_Proprietorship</sv:value>
@@ -9953,11 +9998,32 @@ acknowledgement&lt;/p&gt;
       <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
         <sv:value/>
       </sv:property>
+      <sv:property sv:name="mootlywcm:fieldSpan" sv:type="String">
+        <sv:value/>
+      </sv:property>
       <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldValue" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:formFieldType" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:href" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:inputFormFieldType" sv:type="String">
         <sv:value/>
       </sv:property>
       <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
         <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:readOnly" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:rowLabel" sv:type="String">
+        <sv:value/>
       </sv:property>
       <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
         <sv:value/>
@@ -9968,10 +10034,10 @@ acknowledgement&lt;/p&gt;
     </sv:node>
   </sv:node>
 </sv:node>
-    
+
     <!-- /businessnature -->
     <!-- quantitative details for itr4 -->
-    
+
 <sv:node sv:name="quantitativedetails">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hippo:handle</sv:value>
@@ -10255,11 +10321,11 @@ acknowledgement&lt;/p&gt;
     </sv:node>
   </sv:node>
 </sv:node>
-    
+
     <!-- /quantitative details -->
-    
+
     <!-- firm partner -->
-    
+
 <sv:node sv:name="firmspartner">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hippo:handle</sv:value>
@@ -10485,7 +10551,7 @@ acknowledgement&lt;/p&gt;
     </sv:node>
   </sv:node>
 </sv:node>
-    
+
     <!-- /firm partner -->
     <sv:node sv:name="balancesheet" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
@@ -18393,7 +18459,7 @@ out_Taxable_earning=(Gross_salary-0)-(Allowance-0)+(Perquisite-0)+(profit-0);</s
         </sv:property>
       </sv:node>
     </sv:node>
-   
+
 <sv:node sv:name="foreignincome" >
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hippo:handle</sv:value>
@@ -18492,8 +18558,8 @@ out_Nodtaa_CountryIncome=(income_total-0);
     </sv:property>
   </sv:node>
 </sv:node>
-   
- 
+
+
 <sv:node sv:name="houseincome" >
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hippo:handle</sv:value>
@@ -18593,8 +18659,8 @@ out_total_houseIncome=(out_Income_hproperty-0)+(rentSec25A-0)+(arrearRentSec25B-
     </sv:property>
   </sv:node>
 </sv:node>
- 
-  
+
+
 <sv:node sv:name="otherincome" >
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hippo:handle</sv:value>
@@ -18726,7 +18792,7 @@ out_Taxable_income=(out_Taxable_income)+(LotteryOrhorse_income-0)+(out_balance -
     </sv:property>
   </sv:node>
 </sv:node>
-  
+
     <sv:node sv:name="rebatescalculation">
       <sv:property sv:name="jcr:primaryType" sv:type="Name">
         <sv:value>hippo:handle</sv:value>
@@ -18956,7 +19022,7 @@ out_txttotaltax = (taxPaidForeignCountry -0);
         </sv:property>
       </sv:node>
     </sv:node>
-  
+
 <sv:node sv:name="formsixteen">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hippo:handle</sv:value>
@@ -19272,8 +19338,8 @@ var avgRateTax=(D*100)/txtNetIncome ;
     </sv:property>
   </sv:node>
 </sv:node>
-  
-    
+
+
 
 <sv:node sv:name="capitalasset">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
@@ -19379,8 +19445,8 @@ var month = (months-0);
 if(month &lt; period){
 	var sale=(saleconsideration-0);
 	total =(costacquisition-0)+(costimprovement-0)+(costtrnsfr-0);
-	//bal= ( (sale -total) &gt; 0 ) ? (sale -total) : 0; 
-	bal= (sale - total); 
+	//bal= ( (sale -total) &gt; 0 ) ? (sale -total) : 0;
+	bal= (sale - total);
 	var loss = (losssec94-0);
 	cpgain= bal+loss+(asset111-0)+(assetnt111-0)+(amtdeemed-0)-(dedsec54-0);
 }else{
@@ -19388,8 +19454,8 @@ if(month &lt; period){
 	if(index=='N'){
 		var sale=(saleconsideration-0);
 		total =(costacquisition-0)+(costimprovement-0)+(costtrnsfr-0);
-		//bal= ( (sale -total) &gt; 0 ) ? (sale - total) : 0; 
-		bal= (sale - total); 
+		//bal= ( (sale -total) &gt; 0 ) ? (sale - total) : 0;
+		bal= (sale - total);
 		cpgain=bal+(amtdeemed-0)-(dedsec54-0)+(section48-0)+(unlstdsecurity-0);
 	}else{
 		var pur_data = date_acquisition;
@@ -19402,7 +19468,7 @@ if(month &lt; period){
 		var sal_index =0;
 			pur_index = indianCurrencyHelper.getYearIndexValue(pur_year);
 			sal_index = indianCurrencyHelper.getYearIndexValue(sal_year);
-		
+
 		var cost_acq= indianCurrencyHelper.RoundTo2Decimals((costacquisition-0)*((sal_index-0)/(pur_index-0)));
 		var cost_imp= indianCurrencyHelper.RoundTo2Decimals((costimprovement-0)*((sal_index-0)/(pur_index-0)));
 		total= (cost_acq-0)+ (cost_imp-0)+ (costtrnsfr-0);
@@ -19423,7 +19489,7 @@ out_balanc= bal;</sv:value>
 </sv:node>
 
     <!-- Added calculation for schedule 5a : by Pankaj Singh  -->
-    
+
 <sv:node sv:name="schedulefivea">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hippo:handle</sv:value>
@@ -19501,7 +19567,7 @@ out_balanc= bal;</sv:value>
     </sv:property>
     <sv:property sv:name="mootlywcm:script" sv:type="String">
       <sv:value>/***
-* This File is being used to calculate total income of spouse 
+* This File is being used to calculate total income of spouse
 *
 *
 * **/
@@ -19513,10 +19579,10 @@ out_total=(house_property-0)+(capital_gains-0)+(other_sources-0);</sv:value>
     </sv:property>
   </sv:node>
 </sv:node>
-    
+
     <!-- added new screen calculation for tax relief -->
-    
-    
+
+
 <sv:node sv:name="taxrelief" >
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hippo:handle</sv:value>
@@ -19786,7 +19852,7 @@ var netProfitBefireInt = parseInt(opening_Stocks-0)+parseInt(purchases-0)+parseI
 
  out_profitBefore_InterestTaxes =  out_total_CreditAccount - netProfitBefireInt ;
 out_profit_BeforeTaxes =(out_profitBefore_InterestTaxes )-(parseInt(interest_PL-0) + parseInt(depreciation_PL-0)) ;
-out_profit_AfterTax =(out_profit_BeforeTaxes )-(parseInt(prov_CurrentTax-0) + parseInt(prov_DeferredTax-0)); 
+out_profit_AfterTax =(out_profit_BeforeTaxes )-(parseInt(prov_CurrentTax-0) + parseInt(prov_DeferredTax-0));
 out_amount_Appropriation = out_profit_AfterTax  + parseInt(balance_PreviousYear-0)  ;
 out_balanceCarried_BalanceSheet = out_amount_Appropriation - transReserves_Surplus;</sv:value>
     </sv:property>
