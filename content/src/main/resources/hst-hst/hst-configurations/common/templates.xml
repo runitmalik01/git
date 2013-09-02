@@ -3349,7 +3349,7 @@
     <sv:value>640fcbf8-4803-40c2-a23a-5e3214e04d92</sv:value>
   </sv:property>
   <sv:property sv:name="hst:renderpath" sv:type="String">
-    <sv:value>jsp/member/businessprofession.jsp</sv:value>
+    <sv:value>jsp/member/itr4s/businessprofession.jsp</sv:value>
   </sv:property>
 </sv:node>	
 <!-- end of business profession template -->
