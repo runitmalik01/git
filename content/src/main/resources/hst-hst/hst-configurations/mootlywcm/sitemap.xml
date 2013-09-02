@@ -4565,6 +4565,33 @@
   </sv:property>
 </sv:node>
 <!-- end of balance sheet for itr4 -->
+<!-- itr4s sitemap items-->
+<sv:node sv:name="businessprofess.html" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:sitemapitem</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>1a01303c-d5d5-431f-8957-cbd15a9e1cc5</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+    <sv:value>hst:pages/schedule-business-profession</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+    <sv:value>action</sv:value>
+    <sv:value>mainSiteMapItemRefId</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+    <sv:value>EDIT</sv:value>
+    <sv:value>schedule-business-profession</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:refId" sv:type="String">
+    <sv:value>business-profession</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:relativecontentpath" sv:type="String">
+    <sv:value>members</sv:value>
+  </sv:property>
+</sv:node>
+<!--end of business-profession sitemap  -->
         </sv:node>
         </sv:node>
       </sv:node>

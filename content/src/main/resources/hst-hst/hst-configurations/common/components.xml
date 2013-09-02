@@ -1736,6 +1736,19 @@
   </sv:property>
 </sv:node>
 <!-- end of itrBalanceSheet Component -->
-
-	
+<sv:node sv:name="schedule-business-profession" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:component</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>0e63f277-9f34-455c-a421-b6487f47844f</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:componentclassname" sv:type="String">
+    <sv:value>com.mootly.wcm.member.BusinessProfession</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:template" sv:type="String">
+    <sv:value>schedule-business-profession</sv:value>
+  </sv:property>
+</sv:node>
+<!-- end of business profession Component -->	
 </sv:node>
