@@ -51,8 +51,10 @@ import com.mootly.wcm.beans.standard.FlexibleDocument;
 public class InvoiceDocumentDetail extends FlexibleDocument implements FormMapFiller {
 	static final public String NODE_NAME = InvoiceDocumentDetail.class.getName().toLowerCase();
 	private final static Logger log = LoggerFactory.getLogger(InvoiceDocumentDetail.class); 
-	
-	private Integer quantity;
+	private String services;
+	private String mode; 
+	private String amount;
+	private String quantity;
 	private boolean markedForDeletion;
 
 	public final boolean isMarkedForDeletion() {
@@ -62,21 +64,51 @@ public class InvoiceDocumentDetail extends FlexibleDocument implements FormMapFi
 		this.markedForDeletion = markedForDeletion;
 	}
 	
-	public final Integer getQuantity() {
+	public final String Amount() {
+		if (amount == null) amount = getProperty("mootlywcm:amount");
+		return amount;
+	}
+	
+	public final void setAmount(String amount) {
+		this.amount = amount;
+	}
+	public final String getQuantity() {
 		if (quantity == null) quantity = getProperty("mootlywcm:quantity");
 		return quantity;
 	}
 	
-	public final void setQuantity(Integer quantity) {
+	public final void setQuantity(String quantity) {
 		this.quantity = quantity;
 	}
+	
+	public final String getMode() {
+		if (mode == null) mode = getProperty("mootlywcm:mode");
+		return mode;
+	}
+	
+	public final String getServices() {
+		if (services == null) services = getProperty("mootlywcm:services");
+		return services;
+	}
+	
+	public final void setServices(String services) {
+		this.services = services;
+	}
+
+	public final void setMode(String mode) {
+		this.mode = mode;
+	}
+
+	
 	public boolean bindToNode(javax.jcr.Node node) throws ContentNodeBindingException {
 		// TODO Auto-generated method stub
 		try {
 			log.info("this is bean");
 			//HouseProperty memberSignup = (HouseProperty) ;
-			if (getQuantity() != null) node.setProperty("mootlywcm:quantity",getQuantity());
-			
+			 node.setProperty("mootlywcm:quantity",getQuantity());
+			// node.setProperty("mootlywcm:amount",getAmount());
+			 node.setProperty("mootlywcm:services",getServices());
+			 node.setProperty("mootlywcm:mode",getMode());
 		}catch (RepositoryException re) {
 			log.error("Binding Node Error",re);
 
@@ -88,13 +120,31 @@ public class InvoiceDocumentDetail extends FlexibleDocument implements FormMapFi
 		// TODO Auto-generated method stub
 		if (formMap == null) return;
 		
-
+		if (formMap.getField("mode") != null){
+			log.info("value"+formMap.getField("mode").getValue());
+			setMode(formMap.getField("mode").getValue());
+		}
+		if (formMap.getField("services") != null){
+			log.info("value"+formMap.getField("services").getValue());
+			setServices(formMap.getField("services").getValue());
+		}
+		if (formMap.getField("quantity") != null){
+			log.info("value"+formMap.getField("quantity").getValue());
+			setQuantity(formMap.getField("quantity").getValue());
+		}
+		if (formMap.getField("amount") != null){
+			log.info("value"+formMap.getField("amount").getValue());
+			setAmount(formMap.getField("amount").getValue());
+		}
 	}
 
 
 	public <T extends HippoBean> void cloneBean(T sourceBean) {
-		InvoiceDocumentDetail objhouseIncomeDetail = (InvoiceDocumentDetail) sourceBean;
-
+		InvoiceDocumentDetail objinvoiceDetail = (InvoiceDocumentDetail) sourceBean;
+		setQuantity(objinvoiceDetail.getQuantity());
+		//setAmount(objinvoiceDetail.getAmount());
+		setMode(objinvoiceDetail.getMode());
+		setServices(objinvoiceDetail.getServices());
 		
 	};
 }
