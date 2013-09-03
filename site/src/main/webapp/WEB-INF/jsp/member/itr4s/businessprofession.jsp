@@ -59,7 +59,7 @@
 				<div class="rowlabel">
 					<input id="presumHeavyVehi" name="presumHeavyVehi" type="text"
 						maxlength="14" class="decimal"
-						value="${schFourtyFourAEDocument.reavReserve}" readonly="readonly" />
+						value="${schFourtyFourAEDocument.total_deemedIncome_Heavy}" readonly="readonly" />
 				</div>
 			</div>
 			<div class="span4">
@@ -70,7 +70,7 @@
 				<div class="rowlabel">
 					<input id="presumOtherVehi" name="presumOtherVehi" type="text"
 						maxlength="14" class="decimal"
-						value="${schFourtyFourAEDocument.capReserve}" readonly="readonly" />
+						value="${schFourtyFourAEDocument.total_deemedIncome_Light}" readonly="readonly" />
 				</div>
 			</div>
 			<div class="span4">
@@ -81,7 +81,7 @@
 				<div class="rowlabel">
 					<input id="grossPresumInc44AE" name="grossPresumInc44AE"
 						type="text" maxlength="14" class="decimal"
-						value="${schFourtyFourAEDocument.reavReserve + schFourtyFourAEDocument.capReserve}"
+						value="${schFourtyFourAEDocument.total_deemedIncome_Light + schFourtyFourAEDocument.total_deemedIncome_Heavy}"
 						readonly="readonly" />
 				</div>
 			</div>
