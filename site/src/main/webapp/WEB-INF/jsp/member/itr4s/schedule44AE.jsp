@@ -140,7 +140,7 @@ $('#hold_Period').change(function(){
 	var no_Months = $('#hold_Period').val();
 	if(no_Months > "12"){
 		alert("Holding period can not be greater than 12 months");
-		$('#hold_Period').val("0");
+		$('#hold_Period').val("");
 	}
 });
 
