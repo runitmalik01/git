@@ -563,11 +563,15 @@ public class TestITR1 {
 				for(TdsOthersDetail tdsOthersDetail:listOfTdsFromOthers){
 					TDSonOthThanSal tdsonOthThanSal = new TDSonOthThanSal();
 					EmployerOrDeductorOrCollectDetl employerOrDeductorOrCollectDetl = new EmployerOrDeductorOrCollectDetl();
-					employerOrDeductorOrCollectDetl.setTAN(tdsOthersDetail.setTan_Deductor("AAAA1111A"));
-					employerOrDeductorOrCollectDetl.setEmployerOrDeductorOrCollecterName(tdsOthersDetail.setName_Deductor("QUATRRO GLOBAL SERVICES PRIVATE LIMITED"));
+					employerOrDeductorOrCollectDetl.setTAN("AAAA1111A");
+					tdsOthersDetail.setTan_Deductor("AAAA1111A");
+					tdsOthersDetail.setName_Deductor("QUATRRO GLOBAL SERVICES PRIVATE LIMITED");
+					tdsOthersDetail.setTotal_TaxDeductor(2800D);
+					tdsOthersDetail.setP_Amount(2800D);
+					employerOrDeductorOrCollectDetl.setEmployerOrDeductorOrCollecterName(tdsOthersDetail.getName_Deductor());
 					//tdsonOthThanSal.setEmployerOrDeductorOrCollectDetl(employerOrDeductorOrCollectDetl);	
-					tdsonOthThanSal.setTotTDSOnAmtPaid(indianCurrencyHelper.bigIntegerRound(tdsOthersDetail.setTotal_TaxDeductor(2800D)));
-					tdsonOthThanSal.setClaimOutOfTotTDSOnAmtPaid(indianCurrencyHelper.bigIntegerRound(tdsOthersDetail.setP_Amount(2800D)));	
+					tdsonOthThanSal.setTotTDSOnAmtPaid(indianCurrencyHelper.bigIntegerRound(tdsOthersDetail.getTotal_TaxDeductor()));
+					tdsonOthThanSal.setClaimOutOfTotTDSOnAmtPaid(indianCurrencyHelper.bigIntegerRound(tdsOthersDetail.getP_Amount()));	
 					Double tds1 = tdsOthersDetail.getP_Amount();
 					System.out.println("hghghghfgffghfghffgfhhf"+tds1);
 				}
