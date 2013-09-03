@@ -791,6 +791,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 			</div>
 			<jsp:include page="personalinfo_add_itr2.jsp"></jsp:include>
 			<jsp:include page="personalinfo_add_itr4.jsp"></jsp:include>
+			<jsp:include page="startapp_add_itr4s.jsp"></jsp:include>
 
 			<input type="hidden" name="bnk_name_solr" id="bnk_name_solr"/>
 		</fieldset>
@@ -869,7 +870,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 	<c:if test="${not empty isDuplicate && isDuplicate == 'true'}">
 		<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		  <div class="modal-header">
-		    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+		    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">Ã</button>
 		    <h3 id="myModalLabel">Application in Progress</h3>
 		  </div>
 		  <div class="modal-body">
@@ -996,6 +997,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 		// The following code is used to show representative details for only ITR2
 		var package = $('#flex_string_ITRForm').val();
 		if(package == 'ITR1') $('#represenative_detail').hide();
+		if(package != 'ITR4S') $('#trpdetails').hide();
 		var yesRepresentative = $('#isRepresentative').val();
 		if((yesRepresentative == 'N') || (yesRepresentative == '')) {
 		$('#name_represent').hide();
@@ -1152,6 +1154,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
     var packageName = $('#flex_string_ITRForm').val();
     if(packageName == 'ITR2') {
     $('#represenative_detail').show();
+     $('#represenative_detail').show();
     }
     else{
     $('#represenative_detail').hide();
@@ -1176,9 +1179,13 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 	$('#firstField_itr4').show();
 	$('#secondField_itr4').show();
 	} else{
+	
 	$('#firstField_itr4').hide();
 	$('#secondField_itr4').hide();
 	}
+	if(packageName == 'ITR4S'){
+	$('#trpdetails').show();
+	} else  $('#trpdetails').hide();
 	})
 	$('#isLiable_ForAudit').change(function(){
 	var yesLiable_ForAudit = $('#isLiable_ForAudit').val();
