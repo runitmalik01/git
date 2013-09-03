@@ -1,249 +1,117 @@
-
-<%--
-@author Pankaj Singh
-30/03/2013
- --%>
-
+<%@page import="com.mootly.wcm.model.ITRTab"%>
 <%@include file="../includes/tags.jspf"%>
-
-<%@ page language="java"%>
-<%@ page contentType="text/html; charset=UTF-8"%>
-<%@ page trimDirectiveWhitespaces="true"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/xml" prefix="x"%>
-<%@ taglib uri="http://www.hippoecm.org/jsp/hst/core" prefix='hst'%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
 <%@ page import="com.mootly.wcm.utils.*"%>
 <%@ page import="java.util.*"%>
-
-<%
-	ValueListService objValueListService = ValueListServiceImpl
-			.getInstance();
-	TreeMap TreeMapNaturePayment = (TreeMap) objValueListService
-			.getNatureOfPayment();
-	request.setAttribute("TreeMapNaturePayment", TreeMapNaturePayment);
-%>
-
-<script type="text/javascript"
-	src="http://yui.yahooapis.com/2.9.0/build/datatable/datatable-min.js"></script>
-<link rel="stylesheet" type="text/css"
-	href="http://yui.yahooapis.com/2.9.0/build/datatable/assets/skins/sam/datatable.css" />
-
-<script type="text/javascript">
-var $m=jQuery.noConflict(true);
-
-
-
-
-
-</script>
-
-<c:set var="tcs">
-	<fmt:message key="member.tcs.content.title" />
+<%@ page import="com.mootly.wcm.beans.*"%>
+<%@page import="com.mootly.wcm.services.ScreenConfigService"%>
+<c:set var="tcstitle">
+	<fmt:message key="member.tcs.title" />
 </c:set>
-<hippo-gogreen:title title="${tcs}" />
-
-<div class="yui3-bd" align="center">
-	<hst:actionURL var="actionUrl"></hst:actionURL>
-	<form id="frmRating" action="${actionUrl}" method="post">
-		<input type="hidden" id="fetchpaymentId"
-			value="${fetchtcs.naturepayment}" />
-		<div id="demo" class="yui3-module">
-			<div class="yui3-hd">
-				<h2>
-					<fmt:message key="member.tcs.tittle"></fmt:message>
-				</h2>
-			</div>
+<w4india:itrmenu></w4india:itrmenu>
+<hippo-gogreen:title title="${tcstitle}" />
+<hst:actionURL var="actionUrl"></hst:actionURL>
 
 
-			<div class="yui3-bd" align="center">
-				<table>
-					<tr height="30px">
-						<td id="label"><fmt:message key="member.tcs.nature.payment" />
-						</td>
-						<td><c:if test="${ not empty fetchtcs}">
-								<select name="naturepayment" id="naturepayment">
-									<option>-Select Nature of Payment-</option>
-									<c:forEach var="booleanpayment" items="${TreeMapNaturePayment}">
-										<option value="${booleanpayment.value}">${booleanpayment.value}</option>
-									</c:forEach>
-								</select>
-							</c:if> <c:if test="${ empty fetchtcs}">
-								<select name="naturepayment" id="name">
-									<option>-Select Nature of Payment-</option>
-									<c:forEach var="booleanpayment" items="${TreeMapNaturePayment}">
-										<option value="${booleanpayment.value}">${booleanpayment.value}</option>
-									</c:forEach>
-								</select>
-							</c:if> <c:if test="${not empty errors}">
-								<c:forEach items="${errors}" var="error">
-									<c:if test="${error eq 'invalid.naturepayment-label'}">
-										<span class="form-error"><fmt:message
-												key="member.nature.payment.error" /> </span>
-									</c:if>
-								</c:forEach>
-							</c:if></td>
-					</tr>
-					<tr height="30px">
-						<td id="label"><fmt:message
-								key="member.tcs.collector.details"></fmt:message></td>
-					</tr>
-					<tr height="30px">
-						<td id="label"><fmt:message key="member.tcs.tan" /></td>
-						<td><c:if test="${ not empty fetchtcs}">
-								<input type="text" name="tan" maxlength="10"
-									value="${fn:escapeXml(fetchtcs.tan)}" id="tan" required />
-							</c:if> <c:if test="${ empty fetchtcs}">
-								<input type="text" name="tan" maxlength="10" value="" id="tan"
-									required />
-							</c:if> <c:if test="${not empty errors}">
-								<c:forEach items="${errors}" var="error">
-									<c:if test="${error eq 'Enter a valid Tan'}">
-										<span class="form-error"><fmt:message
-												key="member.tan.error" /> </span>
-									</c:if>
-								</c:forEach>
-							</c:if>
-						</td>
-					</tr>
-					<tr height="30px">
-						<td id="label"><fmt:message key="member.tcs.name" /></td>
+<div class="page">
+	<h3 id="respond1">
+		<c:choose>
+			<c:when
+				test="${not empty screenConfigDocument && not empty screenConfigDocument.screenHeading}">
+				<c:out value="${screenConfigDocument.screenHeading}" />
+			</c:when>
+			<c:otherwise></c:otherwise>
+		</c:choose>
+	</h3>
+	<h4>Schedule TCS</h4>
 
-						<td><c:if test="${ not empty fetchtcs}">
-								<input type="text" name="name" maxlength="125"
-									value="${fn:escapeXml(fetchtcs.name)}" id="name" required />
-							</c:if> <c:if test="${empty fetchtcs}">
-								<input type="text" name="name" maxlength="125" value=""
-									id="name" required />
-							</c:if> <c:if test="${not empty errors}">
-								<c:forEach items="${errors}" var="error">
-									<c:if test="${error eq 'invalid.name-label'}">
-										<span class="form-error"><fmt:message
-												key="member.name.error" /> </span>
-									</c:if>
-								</c:forEach>
-							</c:if>
-						</td>
-					</tr>
-					<tr>
-						<td align="center"><b>&nbsp;&nbsp; <fmt:message
-									key="member.tcs.tax.details" />
-						</b>
-						</td>
+	<c:choose>
+		<c:when
+			test="${pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD'}">
 
-					</tr>
+			<form id="frmdatatcs" action="${actionUrl}" method="post"
+				name="frmdatatcs">
+				<fieldset>
+					<legend style="font-style: italic; color: blue;">Tax
+						Collected from Sources Details</legend>
+					<table>
+						<tr>
+							<th><b>TAN of Collector</b></th>
+							<th><b>Name of Collector</b></th>
+							<th><b>Total Tax Deducted</b></th>
+							<th><b>Amount to be allowed as credit during the year</b></th>
+						</tr>
+						<tr>
+							<td><input id="tan" name="tan"
+								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.tan}"/></c:if>"
+								type="text"></td>
+							<td><input id="name" name="name"
+								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.name}"/></c:if>"
+								type="text"></td>
+							<td><input id="totaltax" name="totaltax"
+								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.totaltax}"/></c:if>"
+								type="text"></td>
+							<td><input id="taxCredited" name="taxCredited"
+								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.taxCredited}"/></c:if>"
+								type="text"></td>
+						</tr>
+					</table>
 
-					<tr>
-						<td id="label"><fmt:message
-								key="member.tcs.amount.tax.calculate"></fmt:message>
-						</td>
-						<td><c:if test="${ not empty fetchtcs}">
-								<input type="text" name="taxcalamount" maxlength="14"
-									class="numberinput"
-									value="${fn:escapeXml(fetchtcs.taxCalcAmount)}"
-									id="taxcalamount" required />
-							</c:if> <c:if test="${empty fetchtcs}">
-								<input type="text" name="taxcalamount" maxlength="14"
-									class="numberinput" value="" id="taxcalamount" required />
-							</c:if> <c:if test="${not empty errors}">
-								<c:forEach items="${errors}" var="error">
-									<c:if test="${error eq 'invalid.taxcalculateAmount-label'}">
-										<span class="form-error"><fmt:message
-												key="member.taxcalculate.error" /> </span>
-									</c:if>
-								</c:forEach>
-							</c:if>
-						</td>
-					</tr>
-					<tr height="30px">
-						<td id="label"><fmt:message key="member.tcs.tax.collected" />
-						</td>
-						<td><c:if test="${ not empty fetchtcs}">
-								<input type="text" name="taxcollected" maxlength="14"
-									class="numberinput"
-									value="${fn:escapeXml(fetchtcs.taxCollected)}"
-									id="taxcollected" onchange="fillAmountclaimed()" required />
-							</c:if> <c:if test="${empty fetchtcs}">
-								<input type="text" name="taxcollected" maxlength="14"
-									class="numberinput" value="" id="taxcollected"
-									onchange="fillAmountclaimed()" required />
-							</c:if> <c:if test="${not empty errors}">
-								<c:forEach items="${errors}" var="error">
-									<c:if test="${error eq 'invalid.taxcollected-label'}">
-										<span class="form-error"><fmt:message
-												key="member.taxcollected.error" /> </span>
-									</c:if>
-								</c:forEach>
-							</c:if>
-						</td>
-					</tr>
+				</fieldset>
+				<div class="row-fluid show-grid">
+					<div class="span3 offset10">
+						<a href="${redirectURLToSamePage}" class="button olive">Cancel</a>
+						&nbsp; <a id="myModalHreftcs" role="button" class="btn orange">Save</a>
+					</div>
+				</div>
+			</form>
+		</c:when>
+		<c:otherwise>
+			<table>
+				<tr align="center">
+					<th><b style="color: olive;">Tan Collector</b>
+					</th>
+					<th><b style="color: olive;">Name of Collector </b>
+					</th>
+					<th><b style="color: olive;">Total Tax </b>
+					</th>
+					<th><b style="color: olive;">Tax Credited </b>
+					</th>
+					<th><b style="color: olive;">Actions</b>
+					</th>
+				</tr>
+				<c:if test="${not empty parentBean}">
+					<c:forEach items="${parentBean.tcsDetailList}" var="tdsdetail">
+						<tr>
+							<td align="right"><c:out value="${tdsdetail.tan}" />
+							</td>
+							<td align="right"><c:out value="${tdsdetail.name}" />
+							</td>
+							<td align="right"><c:out value="${tdsdetail.totaltax}" />
+							</td>
+							<td align="right"><c:out value="${tdsdetail.taxCredited}" />
+							</td>
+							<td><a class="btn btn-primary"
+								href="${scriptName}/<c:out value="${tdsdetail.canonicalUUID}"/>/tcsedit"><small><i
+										class="icon-pencil icon-white"></i>Edit</small> &nbsp;&nbsp; </a>&nbsp;&nbsp;<a
+								class="btn btn-danger"
+								href="${scriptName}/<c:out value="${tdsdetail.canonicalUUID}"/>/tcsdelete"
+								id="delete" data-confirm=""><small><i
+										class="icon-trash icon-white"></i>Delete</small> </a>
+							</td>
+						</tr>
 
-					<tr height="30px">
-						<td id="label"><fmt:message key="member.tcs.amount.claimed" />
+					</c:forEach>
+					<tr align="center">
+						<td colspan="2">Total Amount Claimed</td>
+						<td align="right"><w4india:inr value="${parentBean.total}" />
 						</td>
-						<td><c:if test="${ not empty fetchtcs}">
-								<input type="text" name="amountclaimed" maxlength="14"
-									value="${fn:escapeXml(fetchtcs.amountClaimed)}"
-									id="amountclaimed" readonly />
-							</c:if> <c:if test="${ empty fetchtcs}">
-								<input type="text" name="amountclaimed" maxlength="14" value=""
-									id="amountclaimed" readonly />
-							</c:if>
-						</td>
-					</tr>
-
-				</table><table><tr><td>
-				 <input type="submit" name="submit" value="Save" /> <br /></td>
-					<td><button>
-					<a href="/site/calculation">skip</a>
-						</button>				 
-					
-					</td></tr></table>
-			</div>
-		</div>
-	</form>
-
+				</c:if>
+			</table>
+			<a href="${redirectURLToSamePage}/tcsnew" class="button orange">Add
+				New</a>
+		</c:otherwise>
+	</c:choose>
 </div>
-
-<!--when user click on change button all values will be fetched from repository and will be shown 
- in their respective-->
-
-<script>
-function fillAmountclaimed(){
-	var i=document.getElementById("taxcollected").value;
-	document.getElementById("amountclaimed").value= i;
-}
-
-    var fetchpayment =$m("#fetchpaymentId").val();
-
-  if(fetchpayment!=null){
-   $m("#naturepayment").val(fetchpayment);
-   }
-  
-</script>
-<script type="text/javascript">
-
- $m(document).ready(function () {
-     $m('input.numberinput').bind('keypress', function (e) {
-         return (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57) && e.which != 46) ? false : true;
-     });
- });
- </script>
-
-<hst:headContribution keyHint="buttonCss" category="css">
-	<hst:link
-		path="http://yui.yahooapis.com/3.8.0/build/cssbutton/cssbutton.css"
-		var="homeSliderCss" />
-	<link rel="stylesheet" media="screen" type="text/css"
-		href="${homeSliderCss}" />
-</hst:headContribution>
-
-
-<hst:headContribution keyHint="seedFile" category="jsExternal">
-	<script src="http://yui.yahooapis.com/3.8.0/build/yui/yui-min.js"
-		type="text/javascript"></script>
-</hst:headContribution>
-
-
-
+<res:client-validation formId="frmdatatcs"
+	screenConfigurationDocumentName="tcs"
+	formSubmitButtonId="myModalHreftcs" />
