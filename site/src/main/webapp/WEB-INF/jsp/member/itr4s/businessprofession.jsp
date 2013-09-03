@@ -164,4 +164,4 @@
 
 <res:client-validation screenConfigurationDocumentName="businessprofession" formId="schedBusinessProfess" formSubmitButtonId="myModalScheduleBusiProf"></res:client-validation>
 
-res<res:calc screenCalc="businessprofession" formId="schedBusinessProfess"></res:calc>
+<res:calc screenCalc="businessprofession" formId="schedBusinessProfess"></res:calc>
