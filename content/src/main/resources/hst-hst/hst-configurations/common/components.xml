@@ -1649,6 +1649,23 @@
     <sv:value>quantitativedetails</sv:value>
   </sv:property>
 </sv:node>
+<!-- for invoice -->
+<sv:node sv:name="memberinvoice">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:component</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>48eb935a-02b5-4a6f-89ce-38eb5efcdc77</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:componentclassname" sv:type="String">
+    <sv:value>com.mootly.wcm.member.MemberInvoice</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String"/>
+  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String"/>
+  <sv:property sv:name="hst:template" sv:type="String">
+    <sv:value>memberinvoice</sv:value>
+  </sv:property>
+</sv:node>
 
 <sv:node sv:name="manufacture_rawmaterials">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
