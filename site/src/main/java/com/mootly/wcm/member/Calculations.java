@@ -318,7 +318,7 @@ public class Calculations extends ITReturnComponent {
 
 			request.setAttribute("fetchtcs", fetchtcs);
 			if(fetchtcs!= null){
-				fTcsDoc =  Double.parseDouble(fetchtcs.getAmountClaimed());
+				fTcsDoc =  fetchtcs.getTotal();
 
 				log.warn("security object is"+fetchtcs.getName());
 				log.info("fTcsDoc isssssssss"+fTcsDoc);
