@@ -1140,7 +1140,7 @@
 			<sv:value>hippo:initializeitem</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentresource" sv:type="String">
-			<sv:value>hippo-namespaces/mootlywcm/tcstdetail.xml</sv:value>
+			<sv:value>hippo-namespaces/mootlywcm/tcsdetail.xml</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentroot" sv:type="String">
 			<sv:value>/hippo:namespaces/mootlywcm</sv:value>
