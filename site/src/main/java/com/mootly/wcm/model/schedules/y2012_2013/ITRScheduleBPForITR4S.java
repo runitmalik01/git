@@ -3,7 +3,10 @@
  */
 package com.mootly.wcm.model.schedules.y2012_2013;
 
+import java.math.BigInteger;
+
 import in.gov.incometaxindiaefiling.y2011_2012.ITR4S;
+import in.gov.incometaxindiaefiling.y2012_2013.ITR;
 import in.gov.incometaxindiaefiling.y2012_2013.NoBooksOfAccBS;
 import in.gov.incometaxindiaefiling.y2012_2013.PersumptiveInc44AD;
 import in.gov.incometaxindiaefiling.y2012_2013.PersumptiveInc44AE;
@@ -33,7 +36,7 @@ public class ITRScheduleBPForITR4S {
 	 * 
 	 * @return {@link ScheduleBPForITR4S}
 	 * */
-	public ScheduleBPForITR4S getScheduleBPForITR4S(){
+	public ScheduleBPForITR4S getScheduleBPForITR4S(ITR itr){
 		Long incChargUnderBusiness = 0l;
 		IndianCurrencyHelper indianCurrencyHelper = new IndianCurrencyHelper();
 		ScheduleBPForITR4S scheduleBPForITR4S = new ScheduleBPForITR4S();
@@ -48,6 +51,12 @@ public class ITRScheduleBPForITR4S {
 			noBooksOfAccBS.setTotStkInTradAmt(indianCurrencyHelper.bigIntegerRound(businessProfessionDocument.getGrossStockTrade()));
 			noBooksOfAccBS.setTotSundryCrdAmt(indianCurrencyHelper.bigIntegerRound(businessProfessionDocument.getGrossSundryCredit()));
 			noBooksOfAccBS.setTotSundryDbtAmt(indianCurrencyHelper.bigIntegerRound(businessProfessionDocument.getGrossSundryDebt()));
+		}else{
+			persumptiveInc44AD.setGrsTrnOverOrReceipt(new BigInteger("0"));
+			persumptiveInc44AD.setTotPersumptiveInc44AD(new BigInteger("0"));
+			noBooksOfAccBS.setTotStkInTradAmt(new BigInteger("0"));
+			noBooksOfAccBS.setTotSundryCrdAmt(new BigInteger("0"));
+			noBooksOfAccBS.setTotSundryDbtAmt(new BigInteger("0"));
 		}
 		PersumptiveInc44AE persumptiveInc44AE = new PersumptiveInc44AE();
 		if(schFourtyFourAEDocument!=null){
@@ -55,6 +64,9 @@ public class ITRScheduleBPForITR4S {
 			persumptiveInc44AE.setPersumptiveIncHeavyVehicle(indianCurrencyHelper.bigIntegerRound(schFourtyFourAEDocument.getTotal_deemedIncome_Light()));
 			incChargUnderBusiness = incChargUnderBusiness + indianCurrencyHelper.longRound(schFourtyFourAEDocument.getTotal_deemedIncome_Heavy()) + 
 			               indianCurrencyHelper.longRound(schFourtyFourAEDocument.getTotal_deemedIncome_Light());
+		}else{
+			persumptiveInc44AE.setPersumptiveIncHeavyVehicle(new BigInteger("0"));
+			persumptiveInc44AE.setPersumptiveIncHeavyVehicle(new BigInteger("0"));
 		}
 	
 		scheduleBPForITR4S.setPersumptiveInc44AD(persumptiveInc44AD);
