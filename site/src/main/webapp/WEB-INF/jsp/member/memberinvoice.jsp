@@ -64,17 +64,17 @@
 						style="dispaly: none;">
 						<div class="span9">
 							<div class="rowlabel">
-								<label for="filingMode">Mode </label>
+								<label for="filingMode">Offering Mode </label>
 							</div>
 						</div>
 						<div class="span3">
 							<div class="rowlabel">
 								<select name="filingMode" id="filingMode">
 									<option value="">-Select-</option>
-									<option value="efile"
-										<c:if test="${not empty childBean.filingMode && childBean.filingMode =='efile'}">selected</c:if>>EFile</option>
-									<option value="ezfile"
-										<c:if test="${not empty childBean.filingMode && childBean.filingMode =='ezfile'}">selected</c:if>>EzFile</option>
+									<option value="e File"
+										<c:if test="${not empty childBean.filingMode && childBean.filingMode =='e File'}">selected</c:if>>EFile</option>
+									<option value="eZ File"
+										<c:if test="${not empty childBean.filingMode && childBean.filingMode =='eZ File'}">selected</c:if>>EzFile</option>
 								</select>
 							</div>
 						</div>
@@ -168,6 +168,24 @@
 		</c:otherwise>
 	</c:choose>
 </div>
+<hst:element var="uiCustom" name="script">
+<hst:attribute name="type">text/javascript</hst:attribute>
+     $('#filingMode,#services').change(function(){
+		  <c:forEach items="${serviceDocumentList}" var="serviceList">
+		    if('<c:out value="${serviceList.name}"/>' == $('#services').val()){
+		      <c:if test="${not empty serviceList.costModel}">
+		        <c:forEach items="${serviceList.costModel}" var="costModal">
+		           if('<c:out value="${costModal.offeringMode}"/>' == $('#filingMode').val()){
+ 		               $('#amount').val('<c:out value="${costModal.cost}"/>');	         
+		             }
+		         </c:forEach>
+		       </c:if>
+		       }
+		    </c:forEach> 
+	  });
+</hst:element>
+<hst:headContribution element="${uiCustom}" category="jsInternal" />
+
 <res:client-validation formId="frmdataInvoice"
 	screenConfigurationDocumentName="memberinvoice"
 	formSubmitButtonId="myModalHrefinvoice" />
