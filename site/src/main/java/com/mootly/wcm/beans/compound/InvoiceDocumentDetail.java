@@ -52,7 +52,7 @@ public class InvoiceDocumentDetail extends FlexibleDocument implements FormMapFi
 	static final public String NODE_NAME = InvoiceDocumentDetail.class.getName().toLowerCase();
 	private final static Logger log = LoggerFactory.getLogger(InvoiceDocumentDetail.class); 
 	private String services;
-	private String mode; 
+	private String filingMode; 
 	private String amount;
 	private String quantity;
 	private boolean markedForDeletion;
@@ -64,7 +64,7 @@ public class InvoiceDocumentDetail extends FlexibleDocument implements FormMapFi
 		this.markedForDeletion = markedForDeletion;
 	}
 	
-	public final String Amount() {
+	public final String getAmount() {
 		if (amount == null) amount = getProperty("mootlywcm:amount");
 		return amount;
 	}
@@ -81,9 +81,9 @@ public class InvoiceDocumentDetail extends FlexibleDocument implements FormMapFi
 		this.quantity = quantity;
 	}
 	
-	public final String getMode() {
-		if (mode == null) mode = getProperty("mootlywcm:mode");
-		return mode;
+	public final String getFilingMode() {
+		if (filingMode == null) filingMode = getProperty("mootlywcm:mode");
+		return filingMode;
 	}
 	
 	public final String getServices() {
@@ -95,8 +95,8 @@ public class InvoiceDocumentDetail extends FlexibleDocument implements FormMapFi
 		this.services = services;
 	}
 
-	public final void setMode(String mode) {
-		this.mode = mode;
+	public final void setFilingMode(String filingMode) {
+		this.filingMode = filingMode;
 	}
 
 	
@@ -106,9 +106,9 @@ public class InvoiceDocumentDetail extends FlexibleDocument implements FormMapFi
 			log.info("this is bean");
 			//HouseProperty memberSignup = (HouseProperty) ;
 			 node.setProperty("mootlywcm:quantity",getQuantity());
-			// node.setProperty("mootlywcm:amount",getAmount());
+			node.setProperty("mootlywcm:amount",getAmount());
 			 node.setProperty("mootlywcm:services",getServices());
-			 node.setProperty("mootlywcm:mode",getMode());
+			 node.setProperty("mootlywcm:mode",getFilingMode());
 		}catch (RepositoryException re) {
 			log.error("Binding Node Error",re);
 
@@ -120,9 +120,9 @@ public class InvoiceDocumentDetail extends FlexibleDocument implements FormMapFi
 		// TODO Auto-generated method stub
 		if (formMap == null) return;
 		
-		if (formMap.getField("mode") != null){
-			log.info("value"+formMap.getField("mode").getValue());
-			setMode(formMap.getField("mode").getValue());
+		if (formMap.getField("filingMode") != null){
+			log.info("value"+formMap.getField("filingMode").getValue());
+			setFilingMode(formMap.getField("filingMode").getValue());
 		}
 		if (formMap.getField("services") != null){
 			log.info("value"+formMap.getField("services").getValue());
@@ -142,8 +142,8 @@ public class InvoiceDocumentDetail extends FlexibleDocument implements FormMapFi
 	public <T extends HippoBean> void cloneBean(T sourceBean) {
 		InvoiceDocumentDetail objinvoiceDetail = (InvoiceDocumentDetail) sourceBean;
 		setQuantity(objinvoiceDetail.getQuantity());
-		//setAmount(objinvoiceDetail.getAmount());
-		setMode(objinvoiceDetail.getMode());
+		setAmount(objinvoiceDetail.getAmount());
+		setFilingMode(objinvoiceDetail.getFilingMode());
 		setServices(objinvoiceDetail.getServices());
 		
 	};
