@@ -3947,12 +3947,12 @@
 			<sv:value>11051.086</sv:value>
 		</sv:property>
 	</sv:node>
-	<sv:node sv:name="mootlywcm-type-interestdocumentdetail">
+	<sv:node sv:name="mootlywcm-type-invoicedocumentdetail">
 		<sv:property sv:name="jcr:primaryType" sv:type="Name">
 			<sv:value>hippo:initializeitem</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentresource" sv:type="String">
-			<sv:value>hippo-namespaces/mootlywcm/interestdocumentdetail.xml</sv:value>
+			<sv:value>hippo-namespaces/mootlywcm/invoicedocumentdetail.xml</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentroot" sv:type="String">
 			<sv:value>/hippo:namespaces/mootlywcm</sv:value>
