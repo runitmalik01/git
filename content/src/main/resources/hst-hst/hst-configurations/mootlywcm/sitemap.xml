@@ -1597,33 +1597,99 @@
                 <sv:value>members</sv:value>
               </sv:property>
             </sv:node>
-            <sv:node sv:name="tcs.html">
-              <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                <sv:value>hst:sitemapitem</sv:value>
-              </sv:property>
-              <sv:property sv:name="jcr:uuid" sv:type="String">
-                <sv:value>6665cd50-f7de-4261-b591-fa71c20ae506</sv:value>
-              </sv:property>
-              <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
-                <sv:value>hst:pages/tcs</sv:value>
-              </sv:property>
-              <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
-                <sv:value>pan</sv:value>
-                <sv:value>mainSiteMapItemRefId</sv:value>
-                <sv:value>action</sv:value>
-              </sv:property>
-              <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
-                <sv:value>${2}</sv:value>
-                <sv:value>memberpersonalinformation</sv:value>
-                <sv:value>EDIT</sv:value>
-              </sv:property>
-              <sv:property sv:name="hst:refId" sv:type="String">
-                <sv:value>memberpersonalinformation</sv:value>
-              </sv:property>
-              <sv:property sv:name="hst:relativecontentpath" sv:type="String">
-                <sv:value>members</sv:value>
-              </sv:property>
-            </sv:node>
+            
+<!--tcs details-->
+
+<sv:node sv:name="tcsdetail.html" >
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:sitemapitem</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>9331892a-17eb-4346-9d34-5ad8b0113584</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+    <sv:value>hst:pages/tcs</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+    <sv:value>mainSiteMapItemRefId</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+    <sv:value>membertcs</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:refId" sv:type="String">
+    <sv:value>membertcs</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:relativecontentpath" sv:type="String">
+    <sv:value>members</sv:value>
+  </sv:property>
+  <sv:node sv:name="_default_">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:sitemapitem</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>30d7a19a-b541-4a2d-91c8-15b9ceb62557</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+      <sv:value>uuid</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+      <sv:value>${4}</sv:value>
+    </sv:property>
+    <sv:node sv:name="tcsedit">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>hst:sitemapitem</sv:value>
+      </sv:property>
+      <sv:property sv:name="jcr:uuid" sv:type="String">
+        <sv:value>9daec7e7-8b1b-42d4-af25-a2731771f636</sv:value>
+      </sv:property>
+      <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+        <sv:value>hst:pages/tcs</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+        <sv:value>action</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+        <sv:value>EDIT_CHILD</sv:value>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="tcsdelete">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>hst:sitemapitem</sv:value>
+      </sv:property>
+      <sv:property sv:name="jcr:uuid" sv:type="String">
+        <sv:value>2fd39209-54ba-4709-8eb6-c1731a63099f</sv:value>
+      </sv:property>
+      <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+        <sv:value>hst:pages/tcs</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+        <sv:value>action</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+        <sv:value>DELETE_CHILD</sv:value>
+      </sv:property>
+    </sv:node>
+  </sv:node>
+  <sv:node sv:name="tcsnew">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:sitemapitem</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>ec51cd17-ffb4-453b-a8ff-1e717eba4c37</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+      <sv:value>hst:pages/tcs</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+      <sv:value>action</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+      <sv:value>NEW_CHILD</sv:value>
+    </sv:property>
+  </sv:node>
+</sv:node>
+
+        
             <sv:node sv:name="deductiontest.html">
               <sv:property sv:name="jcr:primaryType" sv:type="Name">
                 <sv:value>hst:sitemapitem</sv:value>
@@ -7917,6 +7983,99 @@
 	                </sv:property>
 	              </sv:node>
 	            </sv:node>
+	            <!-- new sitemap for UADepreciation-->
+	           
+
+<sv:node sv:name="scheduleUD.html">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:sitemapitem</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>4287bb5d-a4ff-4b5e-939f-4aa4b321332d</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+    <sv:value>hst:pages/schedule_UD</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+    <sv:value>mainSiteMapItemRefId</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+    <sv:value>memberscheduleud</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:refId" sv:type="String">
+    <sv:value>businessnature</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:relativecontentpath" sv:type="String">
+    <sv:value>members</sv:value>
+  </sv:property>
+  <sv:node sv:name="_default_">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:sitemapitem</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>462fa523-aceb-4b15-8a6d-f1a52b80e28f</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+      <sv:value>uuid</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+      <sv:value>${4}</sv:value>
+    </sv:property>
+    <sv:node sv:name="scheduleUDedit">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>hst:sitemapitem</sv:value>
+      </sv:property>
+      <sv:property sv:name="jcr:uuid" sv:type="String">
+        <sv:value>d78f230c-4e97-4560-8267-ce8dc48246ee</sv:value>
+      </sv:property>
+      <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+        <sv:value>hst:pages/schedule_UD</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+        <sv:value>action</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+        <sv:value>EDIT_CHILD</sv:value>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="scheduleUDdelete">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>hst:sitemapitem</sv:value>
+      </sv:property>
+      <sv:property sv:name="jcr:uuid" sv:type="String">
+        <sv:value>07ed159a-64a5-463d-970d-1eb09677e7ea</sv:value>
+      </sv:property>
+      <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+        <sv:value>hst:pages/schedule_UD</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+        <sv:value>action</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+        <sv:value>DELETE_CHILD</sv:value>
+      </sv:property>
+    </sv:node>
+  </sv:node>
+  <sv:node sv:name="scheduleUDnew">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:sitemapitem</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>759fa576-5c78-415a-b1c2-f2d005854fd2</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+      <sv:value>hst:pages/schedule_UD</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+      <sv:value>action</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+      <sv:value>NEW_CHILD</sv:value>
+    </sv:property>
+  </sv:node>
+</sv:node>
+
+
 	            <sv:node sv:name="immovableproperty.html">
 	              <sv:property sv:name="jcr:primaryType" sv:type="Name">
 	                <sv:value>hst:sitemapitem</sv:value>
