@@ -1132,7 +1132,6 @@ request.setAttribute("objHashMapstates", objHashMapstates);
     })
     $('#isRepresentative').change(function(){
     var yesRepresenative = $('#isRepresentative').val();
-    alert("yesRepresenative"+yesRepresenative);
     if((yesRepresenative == 'N') || (yesRepresenative == '')){
     $('#showRepresentDetail').hide();
     } else{
