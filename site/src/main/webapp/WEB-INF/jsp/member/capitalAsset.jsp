@@ -37,20 +37,17 @@
 
 			<form id="capitalassetfrm" action="${actionUrl}" method="post"
 				name="capitalasset">
-				<%-- <input type="hidden" name="hidDateAcquisition"
-					id="hidDateAcquisition" value=" " /> <input type="hidden"
-					name="hidDateSale" id="hidDateSale" value=" " />--%>
-
 				<fieldset>
 					<legend style="font-style: italic; color: blue;">Asset
 						Information</legend>
 					<div align="center" style="color: red">Please enter your
-						details in shaded portion of the form</div>
+						details </div>
 					<br />
 					<div class="row-fluid show-grid">
 						<div class="span3">
 							<div class="rowlabel">
-								<label for="asset_type"><small>Asset Type</small> </label>
+								<label for="asset_type"><small><fmt:message
+											key="capital.gain.type.asset" /> </small> </label>
 							</div>
 							<div class="rowlabel">
 								<select id="asset_type" name="asset_type" onChange="hidesst()">
@@ -71,7 +68,6 @@
 							</div>
 							<div class="rowlabel">
 								<input id="nameasset" name="nameasset"
-									style="background-color: #DFDFDF"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.nameAsset}"/></c:if>"
 									type="text">
 							</div>
@@ -106,7 +102,8 @@
 					<div class="row-fluid show-grid">
 						<div class="span4">
 							<div class="rowlabel">
-								<label for="months"><small>No. of Days</small> </label>
+								<label for="months"><small><fmt:message
+											key="capital.gain.days" /> </small> </label>
 							</div>
 							<div class="rowlabel">
 								<input type="text" name="months" id="months" class="decimal"
@@ -117,8 +114,8 @@
 						</div>
 						<div class="span4 st">
 							<div class="rowlabel" id="sst">
-								<label for="sst_charge"><small>Whether STT
-										Charged </small> </label>
+								<label for="sst_charge"><small><fmt:message
+											key="capital.gain.sst.charge" /> </small> </label>
 							</div>
 							<div class="rowlabel">
 								<select id="sst_charge" name="sst_charge"
@@ -135,25 +132,26 @@
 				</fieldset>
 				<fieldset id="fd_set_gain"
 					class="<c:if test="${pageAction == 'NEW_CHILD' }">hide</c:if>">
-					<legend class="hide st" style="font-style: italic; color: blue;">Computation
+					<legend class="hide st" id="sg"
+						style="font-style: italic; color: blue;">Computation
 						(Short Term Gain)</legend>
-					<legend class="hide lt" style="font-style: italic; color: blue;">Computation
-						(Long Term Gain)</legend>
+					<legend class="hide lt" style="font-style: italic; color: blue;"
+						id="lg">Computation (Long Term Gain)</legend>
 					<c:if test="${status != 'RES'}">
-						<div class="st">
-							<h2>In case of NON-RESIDENT to which first provisio to
-								section 48 is applicable</h2>
+						<div class="st" id="snri">
+							<h2>
+								<fmt:message key="capital.gain.nri.info" />
+							</h2>
 							<div class="row-fluid show-grid">
 								<div class="span9">
 									<div class="rowlabel">
-										<label for="asset111"><small>a-From assets
-												where section 111A is applicable </small> </label>
+										<label for="asset111"><small><fmt:message
+													key="capital.gain.nri.infoa" /> </small> </label>
 									</div>
 								</div>
 								<div class="span3">
 									<div class="rowlabel">
-										<input id="asset111" name="asset111"
-											style="background-color: #DFDFDF" class="decimal"
+										<input id="asset111" name="asset111" class="decimal"
 											value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.asset_111}"/></c:if>"
 											type="text">
 									</div>
@@ -162,15 +160,13 @@
 							<div class="row-fluid show-grid">
 								<div class="span9">
 									<div class="rowlabel">
-										<label for="assetnt111"><small>b-From
-												assets(Shares/Unit) in the case of others where section 111A
-												is applicable </small> </label>
+										<label for="assetnt111"><small><fmt:message
+													key="capital.gain.nri.infob" /> </small> </label>
 									</div>
 								</div>
 								<div class="span3">
 									<div class="rowlabel">
 										<input id="assetnt111" name="assetnt111" class="decimal"
-											style="background-color: #DFDFDF"
 											value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.assetnt111}"/></c:if>"
 											type="text">
 									</div>
@@ -179,19 +175,17 @@
 						</div>
 					</c:if>
 					<c:if test="${status == 'RES'}">
-						<div class="lt">
+						<div class="lt" id="lnri">
 							<div class="row-fluid show-grid">
 								<div class="span9">
 									<div class="rowlabel">
-										<label for="section48"><small>In case of
-												NON-RESIDENT to which first proviso to section 48 is
-												applicable </small> </label>
+										<label for="section48"><small><fmt:message
+													key="capital.gain.nri.infosection" /> </small> </label>
 									</div>
 								</div>
 								<div class="span3">
 									<div class="rowlabel">
-										<input id="section48" name="section48"
-											style="background-color: #DFDFDF" class="decimal"
+										<input id="section48" name="section48" class="decimal"
 											value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.section48}"/></c:if>"
 											type="text">
 									</div>
@@ -200,15 +194,14 @@
 							<div class="row-fluid show-grid">
 								<div class="span9">
 									<div class="rowlabel">
-										<label for="unlstdsecurity"><small>From
-												unlisted securities in case of non-resident as per section
-												112(1)(c)(iii) </small> </label>
+										<label for="unlstdsecurity"><small><fmt:message
+													key="capital.gain.nri.security" /> </small> </label>
 									</div>
 								</div>
 								<div class="span3">
 									<div class="rowlabel">
 										<input id="unlstdsecurity" name="unlstdsecurity"
-											style="background-color: #DFDFDF" class="decimal"
+											class="decimal"
 											value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.unlstdSecurity}"/></c:if>"
 											type="text">
 									</div>
@@ -216,11 +209,11 @@
 							</div>
 						</div>
 					</c:if>
-					<div class="row-fluid show-grid lt">
+					<div class="row-fluid show-grid lt" id="lindex">
 						<div class="span9">
 							<div class="rowlabel">
-								<label for="index"><small>Do you want indexation
-								</small> </label>
+								<label for="index"><small><fmt:message
+											key="capital.gain.index" /> </small> </label>
 							</div>
 						</div>
 						<div class="span3">
@@ -245,7 +238,7 @@
 						<div class="span3">
 							<div class="rowlabel">
 								<input type="text" name="saleconsideration"
-									id="saleconsideration" style="background-color: #DFDFDF"
+									id="saleconsideration"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.saleConsideration}"/></c:if>"
 									class="decimal" title="Please fill only Numeric value" />
 							</div>
@@ -258,14 +251,13 @@
 											key="capital.gain.cost.acquisition" /> </small> </label>
 							</div>
 							<div class="rowlabel hide with_Y_index with_N_index ">
-								<label for="costacquisition"><small>Cost of
-										Acquisition with Indexation </small> </label>
+								<label for="costacquisition"><small><fmt:message
+											key="capital.gain.cost.index" /> </small> </label>
 							</div>
 						</div>
 						<div class="span3 ">
 							<div class="rowlabel">
 								<input id="costacquisition" name="costacquisition" type="text"
-									style="background-color: #DFDFDF"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.costAcquisition}"/></c:if>"
 									maxlength="14" class="decimal"
 									title="Please fill only Numeric value" />
@@ -279,15 +271,14 @@
 											key="capital.gain.cost.improvement" /> </small> </label>
 							</div>
 							<div class="rowlabel hide with_Y_index with_N_index ">
-								<label for="costimprovement"><small>Cost of
-										Improvement with Indexation</small> </label>
+								<label for="costimprovement"><small><fmt:message
+											key="capital.gain.imprv.index" /> </small> </label>
 
 							</div>
 						</div>
 						<div class="span3">
 							<div class="rowlabel">
 								<input id="costimprovement" name="costimprovement" type="text"
-									style="background-color: #DFDFDF"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.costImprovement}"/></c:if>"
 									maxlength="14" class="decimal"
 									title="Please fill only Numeric value" />
@@ -297,14 +288,27 @@
 					<div class="row-fluid show-grid">
 						<div class="span9">
 							<div class="rowlabel">
-								<label for="costtrnsfr"><small>Expenditure on
-										Transfer </small> </label>
+								<label for="date_improve"><small><fmt:message
+											key="capital.gain.date.imprv" /> </small> </label>
+							</div>
+						</div>
+						<div class="span3">
+							<div class="rowlabel">
+								<input id="date_improve" name="date_improve" type="date"
+									title="Please fill date of improvement" />
+							</div>
+						</div>
+					</div>
+					<div class="row-fluid show-grid">
+						<div class="span9">
+							<div class="rowlabel">
+								<label for="costtrnsfr"><small><fmt:message
+											key="capital.gain.cost.trnsfr" /> </small> </label>
 							</div>
 						</div>
 						<div class="span3">
 							<div class="rowlabel">
 								<input id="costtrnsfr" name="costtrnsfr" type="text"
-									style="background-color: #DFDFDF"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.costTransfer}"/></c:if>"
 									maxlength="14" class="decimal"
 									title="Please fill only Numeric value" />
@@ -314,15 +318,15 @@
 					<div class="row-fluid show-grid">
 						<div class="span9">
 							<div class="rowlabel">
-								<label for="balanc">Balance </label>
+								<label for="balanc"><fmt:message
+										key="capital.gain.balance" /> </label>
 							</div>
 						</div>
 						<div class="span3">
 							<div class="rowlabel">
 								<input type="text" name="balanc" id="balanc"
-									style="background-color: #DFDFDF"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.balance}"/></c:if>"
-									class="decimal" title="Please fill only Numeric value" />
+									class="decimal" readonly="readonly" />
 
 							</div>
 						</div>
@@ -330,14 +334,13 @@
 					<div class="row-fluid show-grid st">
 						<div class="span9">
 							<div class="rowlabel">
-								<label for="losssec94">Loss, if any, to be ignored under
-									section 94(7) or 94(8) (Enter positive values only) </label>
+								<label for="losssec94"><small><fmt:message
+										key="capital.gain.loss" /></small> </label>
 							</div>
 						</div>
 						<div class="span3">
 							<div class="rowlabel">
 								<input type="text" name="losssec94" id="losssec94"
-									style="background-color: #DFDFDF"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.loss_sec94}"/></c:if>"
 									class="decimal" title="Please fill only Numeric value" />
 
@@ -347,13 +350,13 @@
 					<div class="row-fluid show-grid" id="ded">
 						<div class="span9">
 							<div class="rowlabel">
-								<label for="dedsec54">Deduction under section 54B/54D </label>
+								<label for="dedsec54"><fmt:message
+										key="capital.gain.deduction" /> </label>
 							</div>
 						</div>
 						<div class="span3">
 							<div class="rowlabel">
 								<input type="text" name="dedsec54" id="dedsec54"
-									style="background-color: #DFDFDF"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.ded_sec54}"/></c:if>"
 									class="decimal" title="Please fill only Numeric value" />
 
@@ -363,25 +366,23 @@
 					<div class="row-fluid show-grid">
 						<div class="span9">
 							<div class="rowlabel">
-								<label for="amtdeemed"><small>Amount deemed to
-										be short term capital gains under sections 54B/54D/54G/ 54GA </small>
-								</label>
+								<label for="amtdeemed"><small><fmt:message
+											key="capital.gain.amt.deemed" /> </small> </label>
 							</div>
 						</div>
 						<div class="span3">
 							<div class="rowlabel">
 								<input id="amtdeemed" name="amtdeemed"
-									style="background-color: #DFDFDF" class="decimal"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.amtdeemed}"/></c:if>"
-									type="text">
+									type="text" class="decimal" />
 							</div>
 						</div>
 					</div>
-					<div class="row-fluid show-grid">
+					<div class="row-fluid show-grid" id="pan">
 						<div class="span9 lt">
 							<div class="rowlabel">
-								<label for="panifded"><small>In case of
-										deduction u/s 54GB, furnish PAN of the company </small> </label>
+								<label for="panifded"><small><fmt:message
+											key="capital.gain.pan" /> </small> </label>
 							</div>
 						</div>
 						<div class="span3 lt">
@@ -395,7 +396,8 @@
 					<div class="row-fluid show-grid">
 						<div class="span9">
 							<div class="rowlabel">
-								<label for="capitalgain"><small>Capital Gain </small> </label>
+								<label for="capitalgain"><fmt:message
+											key="capital.gain.cpgain" /> </label>
 							</div>
 						</div>
 						<div class="span3">
@@ -405,7 +407,7 @@
 									<c:if test= "${childBean.index == 'Y' || 'N' }">
 									<fmt:formatNumber type="number"  maxIntegerDigits="14" value="${childBean.capitalGainTaxLT}"/></c:if>
 									<fmt:formatNumber type="number"  maxIntegerDigits="14" value="${childBean.capitalGain}"/></c:if>"
-									class="decimal" title="Please fill only Numeric value" />
+									class="decimal" readonly="readonly" />
 							</div>
 						</div>
 					</div>
@@ -444,24 +446,22 @@
 								<td><input type="text" name="upto15st" id="upto15st"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
 									<c:out value="${childBean.upto15St}"/></c:if>"
-									class="decimal" maxlength="15">
-								</td>
+									class="decimal" maxlength="15"></td>
 								<td><input type="text" name="upto15oth" id="upto15oth"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
 									<c:out value="${childBean.upto15Oth}"/></c:if>"
-									class="decimal" maxlength="15">
-								</td>
+									class="decimal" maxlength="15"></td>
 							<tr>
 								<td>ii- 16/9 to 15/12(ii)</td>
 								<td><input type="text" name="upto16st" id="upto16st"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
 									<c:out value="${childBean.upto16St}"/></c:if>"
-									class="decimal" maxlength="15">
-								</td>
+									class="decimal" maxlength="15"></td>
 								<td><input type="text" name="upto16oth" id="upto16oth"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
 									<c:out value="${childBean.upto16Oth}"/></c:if>"
-									class="decimal" maxlength="15"></td>
+									class="decimal" maxlength="15">
+								</td>
 							<tr>
 
 								<td>iii- 16/12 to 15/3(iii)</td>
@@ -570,12 +570,13 @@
 							<td align="right"><fmt:formatNumber type="number"
 									maxIntegerDigits="14"
 									value="${capitalassetdetail.capitalGainTaxST}" /></td>
-							<td><a
+							<td><a class="btn btn-primary"
 								href="${scriptName}/<c:out value="${capitalassetdetail.canonicalUUID}"/>/edit"><small><i
-										class="icon-pencil"></i>Edit</small> </a>&nbsp;&nbsp;<a
+										class="icon-pencil icon-white"></i>Edit</small> &nbsp;&nbsp; </a>&nbsp;&nbsp;<a
+								class="btn btn-danger"
 								href="${scriptName}/<c:out value="${capitalassetdetail.canonicalUUID}"/>/delete"
-								onclick="return checkdelete()"> <small><i
-										class="icon-trash"></i>Delete</small> </a></td>
+								id="delete" data-confirm=""><small><i
+										class="icon-trash icon-white"></i>Delete</small> </a></td>
 						</tr>
 					</c:forEach>
 				</c:if>
@@ -590,6 +591,42 @@
 	screenConfigurationDocumentName="capitalasset"
 	formSubmitButtonId="myModalHrefcapitalast" />
 <script type="text/javascript">
+	$(document).ready(function() {
+
+		var type = $('#asset_type').val();
+		if (type == 'SHARES') {
+			var day = $('#months').val();
+			var stt = $('#sst_charge').val();
+			if (stt == 'N') {
+				$("#ded").show();
+			} else {
+				$("#ded").hide();
+			}
+			if (day < 366) {
+				$("#lnri").hide();
+				$("#index").hide();
+				$("#sg").show();
+				$("#lindex").hide();
+				$("#pan").hide();
+				
+			} else {
+				$("#lg").show();
+				
+				$("#lnri").show();
+				$("#snri").hide();
+				$("#lindex").show();
+				$("#pan").show();
+				$("#index").show();
+				$("#sg").hide();
+			}
+			$("#sst").show();
+			$("#sst_charge").show();
+		} else {
+			$("#sst_charge").hide();
+			$("#sst").hide();
+		}
+	});
+
 	$('#asset_type').change(function() {
 		var d = $('#asset_type').val();
 		if (d == 'SHARES') {
@@ -639,26 +676,10 @@
 		function decidegaintype() {
 			var c = document.getElementById("months").value;
 			var m = document.getElementById("asset_type").value;
-			if(m=="SHARES"){
-			if(c<=365){
-				//$("#shortterms").show();
-				//$("#longterms").hide();
-				$('#fd_set_gain').show();
-				$(".st").show();
-				$(".with_Y_index").hide();
-				$(".without_N_index").show();
-				$(".lt").hide();
-			} else {
-				//$("#shortterms").show();
-				//$("#longterms").show();
-				$(".with_Y_index").hide();
-				$('#fd_set_gain').show();
-				$(".st").hide();
-				$(".lt").show();
-
-			}}
-			else{
-				if(c<=1096){
+			if (m == "SHARES") {
+				if (c <= 365) {
+					//$("#shortterms").show();
+					//$("#longterms").hide();
 					$('#fd_set_gain').show();
 					$(".st").show();
 					$(".with_Y_index").hide();
@@ -670,7 +691,23 @@
 					$(".with_Y_index").hide();
 					$('#fd_set_gain').show();
 					$(".st").hide();
-					$(".lt").show();	
+					$(".lt").show();
+
+				}
+			} else {
+				if (c <= 1096) {
+					$('#fd_set_gain').show();
+					$(".st").show();
+					$(".with_Y_index").hide();
+					$(".without_N_index").show();
+					$(".lt").hide();
+				} else {
+					//$("#shortterms").show();
+					//$("#longterms").show();
+					$(".with_Y_index").hide();
+					$('#fd_set_gain').show();
+					$(".st").hide();
+					$(".lt").show();
 				}
 			}
 		}
@@ -681,9 +718,9 @@
 			var yy = parseInt(dsarr[2], 10);
 			return Date.UTC(yy, mm - 1, dd, 0, 0, 0);
 		}
-		$(document).ready(function(){
+		$(document).ready(function() {
 			<c:if test="${pageAction == 'EDIT_CHILD'}">
-			  $('#fd_set_gain').show();
+			$('#fd_set_gain').show();
 			</c:if>
 		});
 		function datediff(ds1, ds2) {
@@ -693,11 +730,11 @@
 			return (d2 - d1) / oneday;
 		}
 	});
-	$("#accural_info").on('change',function(){
-		if($(this).val()=='Y'){
+	$("#accural_info").on('change', function() {
+		if ($(this).val() == 'Y') {
 			$('#accural_gain').show();
-		}else{
+		} else {
 			$('#accural_gain').hide();
-		}		
+		}
 	});
 </script>
