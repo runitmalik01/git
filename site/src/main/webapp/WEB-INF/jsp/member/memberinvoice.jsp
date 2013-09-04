@@ -49,13 +49,13 @@
 						<div class="span4">
 							<div class="rowlabel">
 								<select name="services" id="services">
-									<option value="">-Select-</option>
-									<c:forEach var="serviceList" items="${serviceDocumentList}">
-
-										<option value="<c:out value="${serviceList.name}"></c:out>">
-											<c:out value="${serviceList.name}"></c:out>
-										</option>
-									</c:forEach>
+											<option value="">-Select-</option>
+											<c:forEach var="serviceList" items="${serviceDocumentList}">
+												 <option value="${serviceList.name}" <c:if test="${pageAction == 'EDIT_CHILD' && serviceList.name == childBean.services}">selected</c:if>>
+                                                      <c:out value="${serviceList.name}" />
+                                               </option>
+											</c:forEach>
+											
 								</select>
 							</div>
 						</div>
@@ -72,9 +72,9 @@
 								<select name="filingMode" id="filingMode">
 									<option value="">-Select-</option>
 									<option value="efile"
-										<c:if test="${not empty childBean.filingMode && childBean.filingMode =='E'}">selected</c:if>>EFile</option>
+										<c:if test="${not empty childBean.filingMode && childBean.filingMode =='efile'}">selected</c:if>>EFile</option>
 									<option value="ezfile"
-										<c:if test="${not empty childBean.filingMode && childBean.filingMode =='Ez'}">selected</c:if>>EzFile</option>
+										<c:if test="${not empty childBean.filingMode && childBean.filingMode =='ezfile'}">selected</c:if>>EzFile</option>
 								</select>
 							</div>
 						</div>
@@ -125,27 +125,38 @@
 			<!--  show the table -->
 			<table>
 				<tr align="center">
-					<th><b>Services</b></th>
-					<th><b>Mode</b></th>
-					<th><b>Quantity</b></th>
-					<th><b>Amount</b></th>
-					<th><b>Actions</b></th>
+					<th><b>Services</b>
+					</th>
+					<th><b>Mode</b>
+					</th>
+					<th><b>Quantity</b>
+					</th>
+					<th><b>Amount</b>
+					</th>
+					<th><b>Actions</b>
+					</th>
 				</tr>
 				<c:if test="${not empty parentBean}">
 					<c:forEach items="${parentBean.invoiceDocumentDetailList}"
-						var="invoicedetail"><tr align="center">
+						var="invoicedetail">
+						<tr align="center">
 						<tr>
-							<td><c:out value="${invoicedetail.services}" /></td>
-							<td><c:out value="${invoicedetail.filingMode}" /></td>
-							<td><c:out value="${invoicedetail.quantity}" /></td>
-							<td><c:out value="${invoicedetail.amount}" /></td>
+							<td><c:out value="${invoicedetail.services}" />
+							</td>
+							<td><c:out value="${invoicedetail.filingMode}" />
+							</td>
+							<td><c:out value="${invoicedetail.quantity}" />
+							</td>
+							<td><c:out value="${invoicedetail.amount}" />
+							</td>
 							<td><a class="btn btn-primary"
 								href="${scriptName}/<c:out value="${invoicedetail.canonicalUUID}"/>/memberinvoiceedit"><small><i
-									class="icon-pencil icon-white"></i>Edit</small> </a>&nbsp;&nbsp;<a
+										class="icon-pencil icon-white"></i>Edit</small> </a>&nbsp;&nbsp;<a
 								class="btn btn-danger"
 								href="${scriptName}/<c:out value="${invoicedetail.canonicalUUID}"/>/memberinvoicedelete"
-								data-confirm=""><small><i class="icon-trash icon-white"></i>Delete</small>
-							</a></td>
+								data-confirm=""><small><i
+										class="icon-trash icon-white"></i>Delete</small> </a>
+							</td>
 						</tr>
 					</c:forEach>
 				</c:if>
