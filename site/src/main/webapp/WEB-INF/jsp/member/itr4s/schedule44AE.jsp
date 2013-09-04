@@ -138,11 +138,40 @@
 <script type="text/javascript">
 $('#hold_Period').change(function(){
 	var no_Months = $('#hold_Period').val();
-	if(no_Months > "12"){
+	if(no_Months > 12){
 		alert("Holding period can not be greater than 12 months");
 		$('#hold_Period').val("");
 	}
 });
+// The following code is for check in case of heavy and light vehicles.
+		 $('#income_PerVehicle').change(function() {
+			 getCheck_IncomeVehicle();
+		 });
+		 $('#type_Vehicle').change(function() {
+			 getCheck_IncomeVehicle();
+		 });
+	function getCheck_IncomeVehicle(){
+		 var type_Vehicle = $('#type_Vehicle').val();
+			var income_Vehicle = $('#income_PerVehicle').val();
+			if(type_Vehicle == "Light"){
+			if((income_Vehicle < 4500) && (income_Vehicle != "")){
+				alert("For Light vehicle Please enter amount more than 4500");
+				$('#income_PerVehicle').val("");
+			} 
+			}else {
+				if(type_Vehicle == "Heavy"){
+					if((income_Vehicle < 5000) && (income_Vehicle != "")){
+						alert("For Heavy vehicle Please enter amount more than 5000");
+						$('#income_PerVehicle').val("");
+				}
+			
+			}}
+	}
+	
+	
+
+
+
 
 </script>
 
