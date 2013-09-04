@@ -385,7 +385,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 					</select>
 				</div>
 
-				<div class="span2">
+				<div class="span2 <c:if test="${parentBean.country == '99'}"></c:if>hide" id="countrylist" >
 					<div class="rowlabel">
 						<label for="pi_country"><small>Country</small> </label>
 					</div>
@@ -994,39 +994,6 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 		}
 
 		$(document).ready(function() {
-		// The following code is used to show representative details for only ITR2
-		var package = $('#flex_string_ITRForm').val();
-		if(package == 'ITR1') $('#represenative_detail').hide();
-		if(package != 'ITR4S') $('#trpdetails').hide();
-		var yesRepresentative = $('#isRepresentative').val();
-		if((yesRepresentative == 'N') || (yesRepresentative == '')) {
-		$('#name_represent').hide();
-  	 	 $('#add_represent').hide();
-   	 	$('#pan_represent').hide();
-   		 } else{
-   	  $('#name_represent').show();
-   	 $('#add_represent').show();
-   	 $('#pan_represent').show();
-   		 }
-		// end code for itr2
-
-		// The following lines are for itr4
-		var isITR4 = $('#flex_string_ITRForm').val();
-		if(isITR4 == 'ITR4') {
-		$('#firstField_itr4').show();
-		$('#secondField_itr4').show();
-		} else{
-		$('#firstField_itr4').hide();
-		$('#secondField_itr4').hide();
-		}
-		var yesLiable_ForAudit = $('#isLiable_ForAudit').val();
-		if((yesLiable_ForAudit == 'N' || (yesLiable_ForAudit == '')) ){
-		$('#date_name_membership').hide();
-		$('#name_pan_dateofAudit').hide();
-		$('#sec92E').hide();
-		} else{
-		$('#fieldsfor_ITR4').show();
-		}
 
 			$("#flex_string_ITRForm").change(function (aval) {
 					var sele = this.options[this.selectedIndex].value;
@@ -1130,9 +1097,11 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 			if($('#pi_state').val()=='99'){
 			      $('#pi_pin_code').val('999999');
 			      $('#pi_pin_code').attr('readonly','readonly');
+			     
 			   }else{
                      $('#pi_pin_code').val('');
                      $('#pi_pin_code').removeAttr('readonly');
+                    
                     }
 			});
 			$('#bd_bank_name').tooltip('data-toggle');
@@ -1144,17 +1113,18 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 	        var stateName = option.options[option.selectedIndex].value;
 	        if(stateName!="99"){
 	        $("#pi_country").val("91");
+	         $('#countrylist').hide();
 	         }else{
               	$("#pi_country").val("");
+              	 $('#countrylist').show();
               	 }
         }
 
         // The following logic is for itr2 and itr4 both
     $('#flex_string_ITRForm').change(function(){
     var packageName = $('#flex_string_ITRForm').val();
-    if(packageName == 'ITR2') {
+    if((packageName == 'ITR2' || (packageName == 'ITR4'))) {
     $('#represenative_detail').show();
-     $('#represenative_detail').show();
     }
     else{
     $('#represenative_detail').hide();
@@ -1162,27 +1132,22 @@ request.setAttribute("objHashMapstates", objHashMapstates);
     })
     $('#isRepresentative').change(function(){
     var yesRepresenative = $('#isRepresentative').val();
+    alert("yesRepresenative"+yesRepresenative);
     if((yesRepresenative == 'N') || (yesRepresenative == '')){
-    $('#name_represent').hide();
-    $('#add_represent').hide();
-    $('#pan_represent').hide();
+    $('#showRepresentDetail').hide();
     } else{
-     $('#name_represent').show();
-    $('#add_represent').show();
-    $('#pan_represent').show();
+     $('#showRepresentDetail').show();
     }
     })
  // And This logic is for itr4
 	$('#flex_string_ITRForm').change(function(){
 	var packageName = $('#flex_string_ITRForm').val();
 	if(packageName == 'ITR4') {
-	$('#firstField_itr4').show();
-	$('#secondField_itr4').show();
+	$('#fieldsfor_ITR4').show();
 	} else{
-	
-	$('#firstField_itr4').hide();
-	$('#secondField_itr4').hide();
+	$('#fieldsfor_ITR4').hide();
 	}
+	// This code is for ITR4S
 	if(packageName == 'ITR4S'){
 	$('#trpdetails').show();
 	} else  $('#trpdetails').hide();

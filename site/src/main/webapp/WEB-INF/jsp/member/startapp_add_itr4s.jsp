@@ -5,7 +5,7 @@
 
 
 <hst:actionURL var="actionUrl" />
-<fieldset id="trpdetails">
+<fieldset id="trpdetails" class="<c:if test="${parentBean.selectedITRForm != 'ITR4S'}">hide</c:if>">
 	<legend style="font-style: italic;">
 		<fmt:message key="member.trp.info" />
 	</legend>
