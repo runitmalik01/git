@@ -157,4 +157,6 @@
 		</c:otherwise>
 	</c:choose>
 </div>
-
+<res:client-validation formId="frmdataInvoice"
+	screenConfigurationDocumentName="memberinvoice"
+	formSubmitButtonId="myModalHrefinvoice" />
