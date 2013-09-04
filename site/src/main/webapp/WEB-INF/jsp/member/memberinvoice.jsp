@@ -41,15 +41,17 @@
 					<legend>Invoice Details</legend>
 					<div class="row-fluid show-grid letout_L_v letout_S_h"
 						style="dispaly: none;">
-						<div class="span1 decimal">
+						<div class="span8">
 							<div class="rowlabel">
-								<label for="services"><small>Services</small> </label>
+								<label for="services">Services</label>
 							</div>
 						</div>
-						<div class="span4 offset1">
+						<div class="span4">
 							<div class="rowlabel">
 								<select name="services" id="services">
+									<option value="">-Select-</option>
 									<c:forEach var="serviceList" items="${serviceDocumentList}">
+
 										<option value="<c:out value="${serviceList.name}"></c:out>">
 											<c:out value="${serviceList.name}"></c:out>
 										</option>
@@ -60,12 +62,12 @@
 					</div>
 					<div class="row-fluid show-grid letout_L_v letout_S_h"
 						style="dispaly: none;">
-						<div class="span1 decimal">
+						<div class="span9">
 							<div class="rowlabel">
-								<label for="filingMode"><small>Mode</small> </label>
+								<label for="filingMode">Mode </label>
 							</div>
 						</div>
-						<div class="span3 offset1">
+						<div class="span3">
 							<div class="rowlabel">
 								<select name="filingMode" id="filingMode">
 									<option value="">-Select-</option>
@@ -79,12 +81,12 @@
 					</div>
 					<div class="row-fluid show-grid letout_L_v letout_S_h"
 						style="dispaly: none;">
-						<div class="span1 decimal">
+						<div class="span9">
 							<div class="rowlabel">
-								<label for="quantity"><small>Quantity</small> </label>
+								<label for="quantity">Quantity</label>
 							</div>
 						</div>
-						<div class="span3 offset1">
+						<div class="span3">
 							<div class="rowlabel">
 								<input id="quantity" name="quantity" placeholder="Quantity"
 									type="text"
@@ -96,12 +98,12 @@
 
 					<div class="row-fluid show-grid letout_L_v letout_S_h"
 						style="dispaly: none;">
-						<div class="span1 decimal">
+						<div class="span9">
 							<div class="rowlabel">
-								<label for="amount"><small>Amount</small> </label>
+								<label for="amount">Amount </label>
 							</div>
 						</div>
-						<div class="span3 offset1">
+						<div class="span3">
 							<div class="rowlabel">
 								<input id="amount" name="amount" placeholder="Amount"
 									type="text"
@@ -124,30 +126,28 @@
 			<table>
 				<tr align="center">
 					<th><b>Services</b></th>
-					<th><b>Mode</b>
-					</th>
+					<th><b>Mode</b></th>
 					<th><b>Quantity</b></th>
 					<th><b>Amount</b></th>
-
+					<th><b>Actions</b></th>
 				</tr>
 				<c:if test="${not empty parentBean}">
 					<c:forEach items="${parentBean.invoiceDocumentDetailList}"
-						var="invoicedocumentdetail">
+						var="invoicedetail"><tr align="center">
 						<tr>
-							<td><c:out value="${invoicedocumentdetail.services}" /></td>
-							<td><c:out value="${invoicedocumentdetail.mode}" /></td>
+							<td><c:out value="${invoicedetail.services}" /></td>
+							<td><c:out value="${invoicedetail.filingMode}" /></td>
+							<td><c:out value="${invoicedetail.quantity}" /></td>
+							<td><c:out value="${invoicedetail.amount}" /></td>
 							<td><a class="btn btn-primary"
-								href="${scriptName}/<c:out value="${invoicedocumentdetail.canonicalUUID}"/>/memberinvoiceedit"><i
-									class="icon-pencil icon-white"></i><small>Edit</small> </a>&nbsp;&nbsp;<a
+								href="${scriptName}/<c:out value="${invoicedetail.canonicalUUID}"/>/memberinvoiceedit"><small><i
+									class="icon-pencil icon-white"></i>Edit</small> </a>&nbsp;&nbsp;<a
 								class="btn btn-danger"
-								href="${scriptName}/<c:out value="${invoicedocumentdetail.canonicalUUID}"/>/memberinvoicedelete"
-								data-confirm=""><i class="icon-trash icon-white"></i><small>Delete</small>
+								href="${scriptName}/<c:out value="${invoicedetail.canonicalUUID}"/>/memberinvoicedelete"
+								data-confirm=""><small><i class="icon-trash icon-white"></i>Delete</small>
 							</a></td>
 						</tr>
 					</c:forEach>
-					<tr>
-
-					</tr>
 				</c:if>
 			</table>
 			<c:if test="${empty NEW_CHILD_DISABLED}">
