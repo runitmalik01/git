@@ -5,7 +5,7 @@
 
 
 <hst:actionURL var="actionUrl" />
-<fieldset id="represenative_detail">
+<fieldset id="represenative_detail" class="<c:choose> <c:when test="${(parentBean.selectedITRForm == 'ITR4') || (parentBean.selectedITRForm == 'ITR2')}"> </c:when> <c:otherwise> hide</c:otherwise></c:choose>">
 <div class="row-fluid show-grid">
 	<div class="span9">
 				<div class="rowlabel" >
@@ -22,7 +22,7 @@
 					</select>
 				</div>
 		</div></div>
-		<div class="row-fluid show-grid">
+		<div class="row-fluid show-grid <c:if test="${parentBean.isRepresentative == 'N'}">hide</c:if>" id="showRepresentDetail" >
 			<div class="span4" id="name_represent">
 				<div class="rowlabel">
 					<label for="name_Representative"><small><fmt:message

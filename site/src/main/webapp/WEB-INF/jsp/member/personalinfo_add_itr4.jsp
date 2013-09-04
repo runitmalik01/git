@@ -5,7 +5,23 @@
 
 
 <hst:actionURL var="actionUrl" />
-<fieldset id="fieldsfor_ITR4">
+<fieldset id="fieldsfor_ITR4" class="<c:if test="${parentBean.selectedITRForm != 'ITR4'}"> hide </c:if>">
+<div class="row-fluid show-grid">
+		<div class="span9">
+				<div class="rowlabel" >
+					<label for="isLiable_FurnishSec92E"><small><fmt:message key="liable.toFurnish.us99E.itr4"/> </small> </label>
+				</div></div>
+			
+			<div class="span2">
+				<div class="rowlabel">
+					<select id="isLiable_FurnishSec92E" name="isLiable_FurnishSec92E">
+					<option value="">-SELECT-</option>
+					<option	value="Y"<c:if test="${not empty parentBean.isLiable_FurnishSec92E && parentBean.isLiable_FurnishSec92E =='Y'}">selected</c:if>>YES</option>
+					<option value="N"<c:if test="${not empty parentBean.isLiable_FurnishSec92E && parentBean.isLiable_FurnishSec92E =='N'}">selected</c:if>>NO</option>
+					</select>
+				</div>
+		</div>
+		</div>
 <div class="row-fluid show-grid" id="firstField_itr4">
 	<div class="span9" >
 				<div class="rowlabel" >
@@ -36,7 +52,8 @@
 					</select>
 				</div>
 		</div></div>
-		<div class="row-fluid show-grid" id="date_name_membership">
+		
+		<div class="row-fluid show-grid <c:if test="${parentBean.isLiable_ForAudit == 'N'}"> hide </c:if>" id="date_name_membership">
 			<div class="span4">
 				<div class="rowlabel">
 					<label for="date_FurnishAuditReport"><small><fmt:message
@@ -70,7 +87,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="row-fluid show-grid" id="name_pan_dateofAudit">
+		<div class="row-fluid show-grid <c:if test="${parentBean.isLiable_ForAudit == 'N'}"> hide </c:if>" id="name_pan_dateofAudit">
 		<div class="span4">
 				<div class="rowlabel">
 					<label for="name_auditorFirm"><small><fmt:message
@@ -102,21 +119,6 @@
 				</div>
 			</div>
 		</div>
-		<div class="row-fluid show-grid" id="sec92E">
-		<div class="span9">
-				<div class="rowlabel" >
-					<label for="isLiable_FurnishSec92E"><small><fmt:message key="liable.toFurnish.us99E.itr4"/> </small> </label>
-				</div></div>
-			
-			<div class="span2">
-				<div class="rowlabel">
-					<select id="isLiable_FurnishSec92E" name="isLiable_FurnishSec92E">
-					<option value="">-SELECT-</option>
-					<option	value="Y"<c:if test="${not empty parentBean.isLiable_FurnishSec92E && parentBean.isLiable_FurnishSec92E =='Y'}">selected</c:if>>YES</option>
-					<option value="N"<c:if test="${not empty parentBean.isLiable_FurnishSec92E && parentBean.isLiable_FurnishSec92E =='N'}">selected</c:if>>NO</option>
-					</select>
-				</div>
-		</div>
-		</div>
+		
 		
 </fieldset>
