@@ -4454,39 +4454,41 @@
       </sv:node>
     </sv:node>
   </sv:node>
-  <sv:node sv:name="tcs">
+ 
+<sv:node sv:name="tcs" >
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:component</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>3d94a215-3ab7-4629-b78f-f5c755954bb6</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:referencecomponent" sv:type="String">
+    <sv:value>hst:pages/simplepage.re</sv:value>
+  </sv:property>
+  <sv:node sv:name="main">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
       <sv:value>hst:component</sv:value>
     </sv:property>
     <sv:property sv:name="jcr:uuid" sv:type="String">
-      <sv:value>3d94a215-3ab7-4629-b78f-f5c755954bb6</sv:value>
+      <sv:value>399ea9b9-06ea-4dcf-879d-ee130bef92dd</sv:value>
     </sv:property>
-    <sv:property sv:name="hst:referencecomponent" sv:type="String">
-      <sv:value>hst:pages/simplepage</sv:value>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>standard.main.re</sv:value>
     </sv:property>
-    <sv:node sv:name="main">
+    <sv:node sv:name="content">
       <sv:property sv:name="jcr:primaryType" sv:type="Name">
         <sv:value>hst:component</sv:value>
       </sv:property>
       <sv:property sv:name="jcr:uuid" sv:type="String">
-        <sv:value>399ea9b9-06ea-4dcf-879d-ee130bef92dd</sv:value>
+        <sv:value>40c7a44d-28f5-4ecf-8fe5-1dffe6267663</sv:value>
       </sv:property>
-      <sv:property sv:name="hst:template" sv:type="String">
-        <sv:value>standard.main.ftl</sv:value>
+      <sv:property sv:name="hst:referencecomponent" sv:type="String">
+        <sv:value>hst:components/tcs</sv:value>
       </sv:property>
-      <sv:node sv:name="content">
-        <sv:property sv:name="jcr:primaryType" sv:type="Name">
-          <sv:value>hst:component</sv:value>
-        </sv:property>
-        <sv:property sv:name="jcr:uuid" sv:type="String">
-          <sv:value>40c7a44d-28f5-4ecf-8fe5-1dffe6267663</sv:value>
-        </sv:property>
-        <sv:property sv:name="hst:referencecomponent" sv:type="String">
-          <sv:value>hst:components/tcs</sv:value>
-        </sv:property>
-      </sv:node>
     </sv:node>
   </sv:node>
+</sv:node>
+
   <sv:node sv:name="capitalasset">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
       <sv:value>hst:component</sv:value>
@@ -8930,6 +8932,43 @@
     </sv:node>
   </sv:node>
 </sv:node>
+
+<!-- new page for UADepreciation-->
+
+<sv:node sv:name="schedule_UD">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:component</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>ff599bed-8065-4c4f-8c25-d3db8013732e</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:referencecomponent" sv:type="String">
+    <sv:value>hst:pages/simplepage.re</sv:value>
+  </sv:property>
+  <sv:node sv:name="main">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>b62006ac-7966-4770-8ddb-c2e7b1cf8dea</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>standard.main.re</sv:value>
+    </sv:property>
+    <sv:node sv:name="content">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>hst:component</sv:value>
+      </sv:property>
+      <sv:property sv:name="jcr:uuid" sv:type="String">
+        <sv:value>9039626c-6990-4d94-81ad-34958a0f8f0c</sv:value>
+      </sv:property>
+      <sv:property sv:name="hst:referencecomponent" sv:type="String">
+        <sv:value>hst:components/member_schedule_UD</sv:value>
+      </sv:property>
+    </sv:node>
+  </sv:node>
+</sv:node>
+
 
 <sv:node sv:name="firmspartner">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
