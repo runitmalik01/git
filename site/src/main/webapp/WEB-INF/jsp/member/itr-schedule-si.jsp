@@ -250,7 +250,8 @@
 						'method':'POST',
 						'async':false											
 					  }).done (function () {
-						window.location.href = '<c:out value="${scriptName}"/>';
+					   
+						window.location.href = <c:choose><c:when test="${pageAction == 'NEW_CHILD'}"> '<c:out value="${scriptName}"/>'</c:when><c:otherwise>'../../servicerequest-itr-summary.html'</c:otherwise></c:choose>;
 					});
 		}
       
