@@ -186,6 +186,7 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 	private String trpnumber;
 	private String trpname;
 	private Double trpreimbursement;
+	private String isTaxPreparebyTRP;
 	ResourceBundle messagesResourceBundle = ResourceBundle.getBundle("messages");
 
 	//ITR1.packageName.DIY.cost
@@ -507,6 +508,7 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 		if (date_FurnishAuditReport == null) date_FurnishAuditReport = getProperty("mootlywcm:date_FurnishAuditReport");
 		if (date_FurnishAuditReport != null) {
 			String date_FurnishAuditReportStr = getIndianDateFormatter().format(date_FurnishAuditReport.getTime());
+			log.info("date_FurnishAuditReportStr DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD"+date_FurnishAuditReportStr);
 			return date_FurnishAuditReportStr;
 		}
 		return null;
@@ -931,6 +933,7 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 			node.setProperty("mootlywcm:trpname", mpi.getTrpname());
 			node.setProperty("mootlywcm:trpnumber", mpi.getTrpnumber());
 			node.setProperty("mootlywcm:trpreimbursement", mpi.getTrpreimbursement());
+			node.setProperty("mootlywcm:isTaxPreparebyTRP", mpi.getIsTaxPreparebyTRP());
 			node.setProperty("mootlywcm:isLiable_FurnishSecNinetyTwoE", mpi.getIsLiable_FurnishSec92E());
 		}catch (RepositoryException re) {
 			log.error("Binding Node Error",re);
@@ -1051,6 +1054,7 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 
 		if (formMap.getField("date_FurnishAuditReport") != null){
 			String strdate_FurnishAuditReport= formMap.getField("date_FurnishAuditReport").getValue();
+			log.info("SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS"+strdate_FurnishAuditReport);
 			setDate_FurnishAuditReport(ConvDateStringToCalendar(strdate_FurnishAuditReport));
 		}
 		if (formMap.getField("date_AuditReport") != null){
@@ -1087,6 +1091,8 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 		double amt=0.0d;
 		if (formMap.getField("trpnumber") != null) setTrpnumber(formMap.getField("trpnumber").getValue());
 		if (formMap.getField("trpname") != null) setTrpname(formMap.getField("trpname").getValue());
+		
+		if (formMap.getField("isTaxPreparebyTRP") != null) setIsTaxPreparebyTRP(formMap.getField("isTaxPreparebyTRP").getValue());
 		if (formMap.getField("trpreimbursement").getValue().isEmpty())
 		{
 			setTrpreimbursement(amt);
@@ -1206,7 +1212,14 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 	public final void setTrpname(String trpname) {
 		this.trpname = trpname;
 	}
+	public String getIsTaxPreparebyTRP() {
+		if (isTaxPreparebyTRP == null) isTaxPreparebyTRP = getProperty("mootlywcm:isTaxPreparebyTRP");
+		return isTaxPreparebyTRP;
+	}
 
+	public final void setIsTaxPreparebyTRP(String isTaxPreparebyTRP) {
+		this.isTaxPreparebyTRP = isTaxPreparebyTRP;
+	}
 	public Double getTrpreimbursement() {
 		if (trpreimbursement == null) trpreimbursement = getProperty("mootlywcm:trpreimbursement");
 		return trpreimbursement;
