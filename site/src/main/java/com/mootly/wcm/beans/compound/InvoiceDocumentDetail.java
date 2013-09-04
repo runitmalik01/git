@@ -46,7 +46,7 @@ import com.mootly.wcm.beans.standard.FlexibleDocument;
 
 
 @SuppressWarnings("unused")
-@Node(jcrType = "mootlywcm:interestdocumentdetail")
+@Node(jcrType = "mootlywcm:invoicedocumentdetail")
 @TagAsTaxDataProvider(type=TaxDataProviderType.INCOME)
 public class InvoiceDocumentDetail extends FlexibleDocument implements FormMapFiller {
 	static final public String NODE_NAME = InvoiceDocumentDetail.class.getName().toLowerCase();
