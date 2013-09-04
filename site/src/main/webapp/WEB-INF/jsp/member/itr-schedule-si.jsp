@@ -127,7 +127,7 @@
 							</c:if>
 						</c:forEach>
 					</c:if>
-					<input id="amount" name="amount" class="<c:if test="${pageAction == 'NEW_CHILD'}">hide</c:if>" placeholder="Gross Amount" value="${editAmount}" type="text" />
+					<input id="amount" name="amount" class="<c:if test="${pageAction == 'NEW_CHILD'}">hide</c:if>" placeholder="Gross Amount" value="${editAmount}" type="text" maxlength="14"/>
 				</div>
 			</div>
 		</div>
