@@ -105,6 +105,13 @@
 [mootlywcm:formsixteendocument] > hippostd:relaxed, mootlywcm:basedocument
   orderable
   
+  [mootlywcm:invoicedocumentdetail] > hippo:compound, hippostd:relaxed
+  orderable
+
+
+[mootlywcm:invoicedocument] > hippostd:relaxed, mootlywcm:basedocument
+  orderable
+  
 
 [mootlywcm:deductiondocument] >hippostd:relaxed, mootlywcm:basedocument
   orderable
