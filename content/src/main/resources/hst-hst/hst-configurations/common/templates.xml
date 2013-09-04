@@ -3267,6 +3267,22 @@
     <sv:value>jsp/member/quantitative_details.jsp</sv:value>
   </sv:property>
 </sv:node>
+	<!-- /invoice -->
+	
+<sv:node sv:name="memberinvoice">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:template</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>2b42c41a-60e8-448b-85c3-263320175dad</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="hst:containers" sv:type="String"/>
+  <sv:property sv:name="hst:renderpath" sv:type="String">
+    <sv:value>jsp/member/memberinvoice.jsp</sv:value>
+  </sv:property>
+</sv:node>
+	
+	
 	
 <sv:node sv:name="manufacture_rawmaterials" >
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
