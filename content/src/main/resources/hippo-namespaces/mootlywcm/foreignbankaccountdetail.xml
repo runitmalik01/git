@@ -8,7 +8,7 @@
     <sv:value>editor:editable</sv:value>
   </sv:property>
   <sv:property sv:name="jcr:uuid" sv:type="String">
-    <sv:value>5737d610-a1ac-4edf-8359-77113a490c95</sv:value>
+    <sv:value>1f470090-cc22-4bac-bfb0-82e80a1ec2e7</sv:value>
   </sv:property>
   <sv:node sv:name="hipposysedit:nodetype">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
@@ -18,7 +18,7 @@
       <sv:value>hippo:hardhandle</sv:value>
     </sv:property>
     <sv:property sv:name="jcr:uuid" sv:type="String">
-      <sv:value>c82982a9-6ee5-4bf4-b401-5a51d22f47ce</sv:value>
+      <sv:value>63c2ce2d-7580-4617-884f-8b9e97b210a4</sv:value>
     </sv:property>
     <sv:node sv:name="hipposysedit:nodetype">
       <sv:property sv:name="jcr:primaryType" sv:type="Name">
@@ -29,7 +29,7 @@
         <sv:value>hippo:harddocument</sv:value>
       </sv:property>
       <sv:property sv:name="jcr:uuid" sv:type="String">
-        <sv:value>02fd87f7-bb51-466b-9f4a-93a4e2bfe6df</sv:value>
+        <sv:value>b876c1d2-f3d3-4241-a0e6-7a333410dc4e</sv:value>
       </sv:property>
       <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
       <sv:property sv:name="hipposysedit:node" sv:type="Boolean">
