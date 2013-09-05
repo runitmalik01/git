@@ -61,7 +61,7 @@
 				</div>
 				<div class="rowlabel">
 					<input id="date_FurnishAuditReport" name="date_FurnishAuditReport" class="uprcase"
-						type="text" value="" />
+						type="text" value="${parentBean.date_FurnishAuditReportStr}" />
 				</div>
 			</div>
 
