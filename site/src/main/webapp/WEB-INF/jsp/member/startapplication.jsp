@@ -233,7 +233,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 							<div class="rowlabel">
 								<input id="pi_first_name" name="pi_first_name" class="uprcase"
 									placeholder="First Name" type="text"
-									value="<c:if test="${not empty parentBean.firstName}"><c:out value="${parentBean.firstName}"/></c:if>" maxlength="25"/>
+									value="<c:choose><c:when test="${not empty parentBean.firstName}"><c:out value="${parentBean.firstName}"/></c:when><c:otherwise><c:if test="${not empty retrievePANResponse}"><c:out value="${fn:split(retrievePANResponse.fullName,' ')[0]}"/></c:if></c:otherwise></c:choose>" maxlength="25"/>
 							</div>
 						</div>
 						<div class="span4">
@@ -254,7 +254,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 								<input id="pi_last_name" name="pi_last_name" class="uprcase"
 									placeholder="Last Name" type="text"
 									value="<c:choose><c:when test="${not empty parentBean.lastName}"><c:out value="${parentBean.lastName}"/></c:when><c:when test="${not empty savedValuesFormMap && not empty savedValuesFormMap.value['pi_last_name']}"><c:out value="${savedValuesFormMap.value['pi_last_name'].value}"/></c:when></c:choose>"
-									readonly="readonly" maxlength="75"/>
+								    maxlength="75"/>
 							</div>
 						</div>
 					</c:when>
@@ -288,7 +288,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 							<div class="rowlabel">
 								<input id="pi_dob" name="pi_dob" placeholder="DOB" type="text"
 									maxlength="10"
-									value="<c:if test="${not empty parentBean.DOBStr}"><c:out value="${parentBean.DOBStr}"/></c:if>" />
+									value="<c:choose><c:when test="${not empty parentBean.DOBStr}"><c:out value="${parentBean.DOBStr}"/></c:when><c:otherwise><c:if test="${not empty retrievePANResponse}"><c:out value="${retrievePANResponse.dOB}"/></c:if></c:otherwise></c:choose>" />
 							</div>
 						</div>
 						<div class="span4">
@@ -314,7 +314,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 							<div class="rowlabel">
 								<input id="pi_father_name" name="pi_father_name"
 									placeholder="Father Name" type="text" class="uprcase"
-									value="<c:if test="${not empty parentBean.fatherName}"><c:out value="${parentBean.fatherName}"/></c:if>" maxlength="125"/>
+									value="<c:choose><c:when test="${not empty parentBean.fatherName}"><c:out value="${parentBean.fatherName}"/></c:when><c:otherwise><c:if test="${not empty retrievePANResponse}"><c:out value="${retrievePANResponse.fatherFullName}"/></c:if></c:otherwise></c:choose>" maxlength="125"/>
 							</div>
 						</div>
 					</div>
@@ -336,7 +336,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 							value="${parentBean.flatDoorBuilding}"
 							name="pi_flat_door_building" placeholder="Flat/Door/Building"
 							type="text"
-							value="<c:if test="${not empty parentBean.flatDoorBuilding}"><c:out value="${parentBean.flatDoorBuilding}"/></c:if>" maxlength="50"/>
+							value="<c:choose><c:when test="${not empty parentBean.flatDoorBuilding}"><c:out value="${parentBean.flatDoorBuilding}"/></c:when><c:othrewise><c:if test="${not empty retrievePANResponse}"><c:out value="${fn:split(retrievePANResponse.address,' ')[0]}"/></c:if></c:othrewise></c:choose>" maxlength="50"/>
 					</div>
 				</div>
 				<div class="span6">
@@ -874,11 +874,12 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 		    <h3 id="myModalLabel">Application in Progress</h3>
 		  </div>
 		  <div class="modal-body">
-		    <p>An application is already in progress</p>
+		    <p>An application is already in progress.</p>
+		    <p>Do you want to Duplicate PAN<a class="btn"><c:out value="${fn:toUpperCase(pan)}"/></a>Infomation?</p>
 		  </div>
 		  <div class="modal-footer">
 		    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-		    <button class="btn btn-primary">Continue</button>
+		    <a href="./servicerequest-itr-copy-or-move.html" class="btn btn-primary">Continue</a>
 		  </div>
 		</div>
 	</c:if>
@@ -889,6 +890,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 	<hst:element var="uiCustom" name="script">
 	<hst:attribute name="type">text/javascript</hst:attribute>
         	$(document).ready( function() {
+        	  if($('#myModal').length > 0) $('#myModal').modal();
         		$("#revisingNoNotice,#revisingWithNotice,#originalReturn").click ( function() {
         			var v= ($(this).val());
         			$("#ul_revised").hide();
@@ -1157,7 +1159,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 	if(packageName == 'ITR4S'){
 	$('#trpdetails').show();
 	} else  $('#trpdetails').hide();
-	})
+	});
 	$('#isTaxPreparebyTRP').change(function(){
 	 var val_TaxPreparebyTRP = $('#isTaxPreparebyTRP').val();
 	 if((val_TaxPreparebyTRP == 'N') || (val_TaxPreparebyTRP == ''))
@@ -1176,7 +1178,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 	$('#name_pan_dateofAudit').show();
 	$('#sec92E').show();
 	}
-	})
+	});
 
 </hst:element>
 <hst:headContribution element="${uiCustom}" category="jsInternal" />
