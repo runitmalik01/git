@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package com.mootly.wcm.model.schedules.y2012_2013;
 
@@ -24,7 +24,7 @@ public class ITRScheduleBPForITR4S {
 
 	BusinessProfessionDocument businessProfessionDocument = null;
 	SchFourtyFourAEDocument schFourtyFourAEDocument = null;
-	
+
 	public ITRScheduleBPForITR4S(BusinessProfessionDocument businessProfessionDocument, SchFourtyFourAEDocument schFourtyFourAEDocument) {
 		// TODO Auto-generated constructor stub
 		this.businessProfessionDocument = businessProfessionDocument;
@@ -33,14 +33,14 @@ public class ITRScheduleBPForITR4S {
 	/**
 	 * This method is used to create ScheduleBP for {@link ITR4S}.<br/>
 	 * Before using this method we need to create the instance of {@link ITRScheduleBPForITR4S} using it's defined Constructor.
-	 * 
+	 *
 	 * @return {@link ScheduleBPForITR4S}
 	 * */
 	public ScheduleBPForITR4S getScheduleBPForITR4S(ITR itr){
 		Long incChargUnderBusiness = 0l;
 		IndianCurrencyHelper indianCurrencyHelper = new IndianCurrencyHelper();
 		ScheduleBPForITR4S scheduleBPForITR4S = new ScheduleBPForITR4S();
-		
+
 		PersumptiveInc44AD persumptiveInc44AD = new PersumptiveInc44AD();
 		NoBooksOfAccBS noBooksOfAccBS = new NoBooksOfAccBS();
 		if(businessProfessionDocument!=null){
@@ -62,17 +62,17 @@ public class ITRScheduleBPForITR4S {
 		if(schFourtyFourAEDocument!=null){
 			persumptiveInc44AE.setPersumptiveIncHeavyVehicle(indianCurrencyHelper.bigIntegerRound(schFourtyFourAEDocument.getTotal_deemedIncome_Heavy()));
 			persumptiveInc44AE.setPersumptiveIncHeavyVehicle(indianCurrencyHelper.bigIntegerRound(schFourtyFourAEDocument.getTotal_deemedIncome_Light()));
-			incChargUnderBusiness = incChargUnderBusiness + indianCurrencyHelper.longRound(schFourtyFourAEDocument.getTotal_deemedIncome_Heavy()) + 
+			incChargUnderBusiness = incChargUnderBusiness + indianCurrencyHelper.longRound(schFourtyFourAEDocument.getTotal_deemedIncome_Heavy()) +
 			               indianCurrencyHelper.longRound(schFourtyFourAEDocument.getTotal_deemedIncome_Light());
 		}else{
 			persumptiveInc44AE.setPersumptiveIncHeavyVehicle(new BigInteger("0"));
 			persumptiveInc44AE.setPersumptiveIncHeavyVehicle(new BigInteger("0"));
 		}
-	
+
 		scheduleBPForITR4S.setPersumptiveInc44AD(persumptiveInc44AD);
 		scheduleBPForITR4S.setPersumptiveInc44AE(persumptiveInc44AE);
 		scheduleBPForITR4S.setIncChargeableUnderBus(incChargUnderBusiness);
-		scheduleBPForITR4S.setNoBooksOfAccBS(noBooksOfAccBS);	
+		scheduleBPForITR4S.setNoBooksOfAccBS(noBooksOfAccBS);
 		return scheduleBPForITR4S;
 	}
 }
