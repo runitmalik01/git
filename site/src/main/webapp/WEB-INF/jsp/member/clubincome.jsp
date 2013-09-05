@@ -61,8 +61,7 @@ request.setAttribute("objTreeMapRelation", objTreeMapRelation);
 									key="relationship.clubincome" /> </small> </label>
 					</div>
 					<div class="rowlabel">
-							<select name="relationship" id="relationship" class="uprcase"
-									style="text-transform: uppercase;">
+							<select name="relationship" id="relationship">
 									<option value="">-Select-</option>
 									<c:forEach var="relation" items="${objTreeMapRelation}">
 										<option
@@ -83,7 +82,7 @@ request.setAttribute("objTreeMapRelation", objTreeMapRelation);
 									key="nature.income.itr2" /> </small> </label>
 					</div>
 					<div class="rowlabel">
-						<input id="nature_income" name="nature_income" class="uprcase"
+						<input id="nature_income" name="nature_income" class="uprcase" maxlength="50"
 							type="text" value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.nature_income}"/></c:if> " />
 					</div>
 				</div>
@@ -144,7 +143,7 @@ request.setAttribute("objTreeMapRelation", objTreeMapRelation);
 					</tr>
 				</c:forEach>
 				<tr>
-					<td colspan="3"><fmt:message key="tds.amount.total" /></td>
+					<td colspan="4"><fmt:message key="tds.amount.total" /></td>
 					<td><w4india:inr value="${parentBean.total_Amount}" /></td>
 				</tr>
 			</c:if>
