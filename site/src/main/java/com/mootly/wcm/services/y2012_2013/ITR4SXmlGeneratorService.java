@@ -65,7 +65,6 @@ import com.mootly.wcm.model.schedules.y2012_2013.Form_ITR4S;
 import com.mootly.wcm.model.schedules.y2012_2013.HouseIncomeDocumentSchedules;
 import com.mootly.wcm.model.schedules.y2012_2013.ITR4S_IncomeDeductions;
 import com.mootly.wcm.model.schedules.y2012_2013.ITR4S_TaxComputation;
-import com.mootly.wcm.model.schedules.y2012_2013.ITR4S_TaxPaid;
 import com.mootly.wcm.model.schedules.y2012_2013.ITRScheduleBPForITR4S;
 import com.mootly.wcm.model.schedules.y2012_2013.ITRScheduleSI;
 import com.mootly.wcm.model.schedules.y2012_2013.MemberVerification;
