@@ -37,6 +37,9 @@
                 <c:if test="${ITR eq 'ITR2'}">
 			         <jsp:include page="ITR2Summary.jsp"/>
                 </c:if>
+                 <c:if test="${ITR eq 'ITR4S'}">
+			         <jsp:include page="ITR4SSummary.jsp"/>
+                </c:if>
 			</c:when>
 			<c:when test="${not empty show || show == 'xml'}">
 				<script type="syntaxhighlighter" class="brush: xml">
@@ -92,21 +95,21 @@
 				<p>
 					eZ-File (pronounced as <i>easy</i> Filing), lets you upload all your relevant tax documents.
 					Wealth4India professionals will download your documents and work on your case.
-					You will be notified via email/phone when your tax is ready.					
+					You will be notified via email/phone when your tax is ready.
 				</p>
 			</fieldset>
 			<fieldset>
 				<legend>When to pay?</legend>
 				<p>
-					Once you are done uploading your documents. You can click on Proceed button on the Upload Documents Screen.					
+					Once you are done uploading your documents. You can click on Proceed button on the Upload Documents Screen.
 				</p>
 			</fieldset>
 			<fieldset>
 				<legend>I love it !! What's Next??</legend>
 				<p>
-					
-					<hst:link var="memberDriveComp" siteMapItemRefId="docattach"></hst:link>	
-					Click on Upload Documents <a href="${fn:replace(scriptName,'servicerequest-itr-summary.html','attachdoc.html')}" class="btn btn-primary">Upload Documents</a> to get started.	 				
+
+					<hst:link var="memberDriveComp" siteMapItemRefId="docattach"></hst:link>
+					Click on Upload Documents <a href="${fn:replace(scriptName,'servicerequest-itr-summary.html','attachdoc.html')}" class="btn btn-primary">Upload Documents</a> to get started.
 				</p>
 			</fieldset>
 		</form>
