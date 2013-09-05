@@ -55,9 +55,9 @@ public class ITRXmlGeneratorService extends ITRXmlGeneratorServiceCommon  implem
 	SchemaFactory factory = null;
 	Schema schema = null;
 	Validator validator = null;
-	
+
 	private static Logger log = LoggerFactory.getLogger(ITRXmlGeneratorService.class);
-	
+
 	@Override
 	public String generateXml(HstRequest request,HstResponse response) throws Exception {
 		// TODO Auto-generated method stub
@@ -69,10 +69,12 @@ public class ITRXmlGeneratorService extends ITRXmlGeneratorServiceCommon  implem
 		if(memberPersonalInformation.getFlexField("flex_string_ITRForm", "").equals("ITR2")){
 			return ITR2XmlGeneratorService.generateITR2(request, response);
 		}
-		
+		if(memberPersonalInformation.getFlexField("flex_string_ITRForm", "").equals("ITR4S")){
+			return ITR4SXmlGeneratorService.generateITR4S(request, response);
+		}
 		return null;
 	}
-	
+
 	@Override
 	public Map<String,Object> generateXml(FinancialYear financialYear,
 			Map<String, HippoBean> inputBeans) throws Exception {
@@ -86,10 +88,13 @@ public class ITRXmlGeneratorService extends ITRXmlGeneratorServiceCommon  implem
 		if(memberPersonalInformation.getFlexField("flex_string_ITRForm", "").equals("ITR2")){
 			returnMap = ITR2XmlGeneratorService.generateITR2(financialYear, inputBeans);
 		}
-		
+		if(memberPersonalInformation.getFlexField("flex_string_ITRForm", "").equals("ITR4S")){
+			returnMap = ITR4SXmlGeneratorService.generateITR4S(financialYear, inputBeans);
+		}
+
 		return returnMap;
 	}
-	
+
 	@Override
 	public String getConsolidateReturnsToBulk(List<Object> listOfItrForms) {
 		// TODO Auto-generated method stub
@@ -115,80 +120,80 @@ public class ITRXmlGeneratorService extends ITRXmlGeneratorServiceCommon  implem
 		} catch (JAXBException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}		
+		}
 		return null;
-		
+
 	}
-		
+
 	public Unmarshaller validateXmlGetUnmarshaller() throws Exception {
 		SchemaFactory sf = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
 		sf.setResourceResolver(new ClasspathResourceResolver());
 		InputStream inputStream1= this.getClass().getClassLoader().getResourceAsStream("in/gov/incometaxindiaefiling/y2012_2013/ITRMain13.xsd");
-		
+
 		Source streamSource = new StreamSource(inputStream1);
-        Schema schema = sf.newSchema(streamSource); 
- 
+        Schema schema = sf.newSchema(streamSource);
+
         JAXBContext jc = JAXBContext.newInstance(ITR.class);
- 
+
         Unmarshaller unmarshaller = jc.createUnmarshaller();
         unmarshaller.setSchema(schema);
-        
+
         return unmarshaller;
-      
+
 	}
-	
+
 	public ValidationEventHandler validateXmlSetValidationEventHandler(Unmarshaller unmarshaller) throws Exception {
 		MyValidationEventHandler myValidationHandler = new MyValidationEventHandler();
 	    unmarshaller.setEventHandler(myValidationHandler);
 	    return myValidationHandler;
 	}
-	
+
 	public ValidationResponse validateXmlGetErrors(Unmarshaller unmarshaller) throws Exception {
 		MyValidationEventHandler myValidationHandler = (MyValidationEventHandler) unmarshaller.getEventHandler();
 		ValidationResponse vr = new ValidationResponse();
 	    vr.setValid(!myValidationHandler.hasError());
         vr.setErrors(myValidationHandler.getAllErrors());
-        
+
         return vr;
 	}
-	
+
 	@Override
 	public ValidationResponse validateXml(InputStream inputStream)
 			throws Exception {
 		// TODO Auto-generated method stub
-		Unmarshaller unmarshaller = validateXmlGetUnmarshaller();		
+		Unmarshaller unmarshaller = validateXmlGetUnmarshaller();
 		validateXmlSetValidationEventHandler(unmarshaller);
 		ITR itr = (ITR) unmarshaller.unmarshal(inputStream);
 		ValidationResponse validationResponse = validateXmlGetErrors(unmarshaller);
 		return validationResponse;
 	}
-	
+
 	@Override
-	public ValidationResponse validateXml(String xml) throws Exception {			
-		Unmarshaller unmarshaller = validateXmlGetUnmarshaller();		
+	public ValidationResponse validateXml(String xml) throws Exception {
+		Unmarshaller unmarshaller = validateXmlGetUnmarshaller();
 		validateXmlSetValidationEventHandler(unmarshaller);
 		ITR itr = (ITR) unmarshaller.unmarshal(new StringReader(xml));
 		ValidationResponse validationResponse = validateXmlGetErrors(unmarshaller);
 		return validationResponse;
 	}
-	
-	
+
+
 	/**
 	* This is an implementation of LSResourceResolver that can resolve XML schemas from the classpath
 	*/
 	private class ClasspathResourceResolver implements LSResourceResolver {
 		private DOMImplementationLS domImplementationLS;
 		Logger logger= LoggerFactory.getLogger(ClasspathResourceResolver.class);
-		
+
 		private ClasspathResourceResolver() throws ClassNotFoundException, IllegalAccessException, InstantiationException {
-			//System.setProperty(DOMImplementationRegistry.PROPERTY, "org.apache.xerces.dom.DOMImplementationSourceImpl");			
+			//System.setProperty(DOMImplementationRegistry.PROPERTY, "org.apache.xerces.dom.DOMImplementationSourceImpl");
 			DOMImplementationRegistry registry = DOMImplementationRegistry.newInstance();
 			domImplementationLS = (DOMImplementationLS) registry.getDOMImplementation("LS");
 		}
-		
+
 		public LSInput resolveResource(String type, String namespaceURI, String publicId, String systemId,String baseURI) {
 			logger.info("==== Resolving '" + type + "' '" + namespaceURI + "' '" + publicId + "' '" + systemId + "' '" + baseURI + "'");
-		
+
 			LSInput lsInput = domImplementationLS.createLSInput();
 			if (systemId.contains("master")) {
 				log.debug("STOP");
@@ -207,21 +212,21 @@ public class ITRXmlGeneratorService extends ITRXmlGeneratorServiceCommon  implem
 			return lsInput;
 		}
 	}
-	
+
 	public class MyValidationEventHandler implements ValidationEventHandler {
 		StringBuffer allErrors = new StringBuffer();
-		
+
 		public boolean hasError() {
-			return ((allErrors == null || allErrors.length() == 0) ? false : true );				
+			return ((allErrors == null || allErrors.length() == 0) ? false : true );
 		}
-		
+
 		public String getAllErrors() {
-			return allErrors.toString();					
+			return allErrors.toString();
 		}
-		
+
 	    public boolean handleEvent(ValidationEvent event) {
 	    	String lineSeparator = System.getProperty("line.separator");
-	    	
+
 	    	allErrors.append("EVENT").append(lineSeparator).append(lineSeparator);
 	        allErrors.append("SEVERITY:  " + event.getSeverity()).append(lineSeparator);
 	        allErrors.append("MESSAGE:  " + event.getMessage()).append(lineSeparator);
@@ -233,10 +238,10 @@ public class ITRXmlGeneratorService extends ITRXmlGeneratorServiceCommon  implem
 	        allErrors.append("    OBJECT:  " + event.getLocator().getObject()).append(lineSeparator);
 	        allErrors.append("    NODE:  " + event.getLocator().getNode()).append(lineSeparator);
 	        allErrors.append("    URL:  " + event.getLocator().getURL()).append(lineSeparator);
-	        
+
 	        return true;
 	    }
-	 
+
 	}
 }
 
