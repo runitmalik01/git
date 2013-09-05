@@ -25,8 +25,11 @@ TreeMap objTreeMapSection = (TreeMap) objValueListService.getReturnFile();
 	<h4>Prepare Income Tax Return for Individuals and/or HUF</h4>
 	<hst:actionURL var="actionURL"/>
 	<form id="frmdata" method="post" action="${actionURL}">
-     <div id="error" class="alert alert-error" style="display:none;">PAN's fifth alphabet should be first alphabet of Last Name</div>
+     <div id="error" class="alert alert-error" style="display:none;"><fmt:message key="err.valid.lastName.with.pan"/></div>
      <div id="strictmsg" class="alert hide">Please enter PAN number for Individual or HUF</div>
+	    <c:if test="${not empty noPanMatchFound}">
+			<div id="strictmsg" class="alert alert-error"><fmt:message key="err.match.pan.dit"/>Still You want to Continue then Resubmit.</div>
+		</c:if>
 		<fieldset>
 			<legend><fmt:message key="member.homepage.fillform"/> </legend>
 			<div class="row-fluid show-grid">
@@ -71,7 +74,7 @@ TreeMap objTreeMapSection = (TreeMap) objValueListService.getReturnFile();
 		          	</select></div>
 		          </div>
 		     </div>
-		     <div align="center" ><a id="myModalHref" class="btn orange">Click Here!! </a></div>
+		     <div align="center" ><a id="myModalHref" class="btn <c:choose><c:when test="${empty noPanMatchFound}">orange</c:when><c:otherwise>btn-error</c:otherwise></c:choose> ">Click Here!! </a></div>
 		</fieldset>
 
                 <!--   <fieldset id="ul_revised" style="display:none;" class="revised_v original_h">
