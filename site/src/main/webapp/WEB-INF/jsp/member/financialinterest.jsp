@@ -54,7 +54,7 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 									key="nature.entity.itr2" /> </small> </label>
 					</div>
 					<div class="rowlabel">
-						<input id="nature_entity" name="nature_entity"
+						<input id="nature_entity" name="nature_entity" maxlength="100"
 							type="text" 
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.name_Entity}"/></c:if>" />
 					</div>
@@ -65,7 +65,7 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 									key="name.entity.itr2" /> </small> </label>
 					</div>
 					<div class="rowlabel">
-						<input id="name_entity" name="name_entity"
+						<input id="name_entity" name="name_entity" maxlength="125"
 							type="text" 
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.nature_Entity}"/></c:if>" />
 					</div>
@@ -79,7 +79,7 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 									key="address.entity.itr2" /> </small> </label>
 					</div>
 					<div class="rowlabel">
-						<input id="address_entity" name="address_entity"
+						<input id="address_entity" name="address_entity" maxlength="100"
 							type="text"
 							 
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.address_Entity}"/></c:if>" />
