@@ -29,7 +29,7 @@
 								key="name.representative.itr2" /> </small> </label>
 				</div>
 				<div class="rowlabel">
-					<input id="name_Representative" name="name_Representative" class="uprcase"
+					<input id="name_Representative" name="name_Representative" class="uprcase" maxlength="125"
 						type="text" value="${parentBean.name_Representative}" />
 				</div>
 			</div>
@@ -40,7 +40,7 @@
 								key="address.representative.itr2" /> </small> </label>
 				</div>
 				<div class="rowlabel">
-					<input id="address_Representative" name="address_Representative"  class="uprcase"
+					<input id="address_Representative" name="address_Representative"  class="uprcase" maxlength="200"
 						type="text" value="${parentBean.address_Representative}" />
 				</div>
 			</div>
