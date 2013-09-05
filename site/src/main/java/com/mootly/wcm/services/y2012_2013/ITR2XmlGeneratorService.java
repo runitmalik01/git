@@ -40,6 +40,7 @@ import com.mootly.wcm.beans.ScheduleSIDocument;
 import com.mootly.wcm.beans.SelfAssesmetTaxDocument;
 import com.mootly.wcm.beans.SigningAuthorityAccountsDocument;
 import com.mootly.wcm.beans.TaxReliefDocument;
+import com.mootly.wcm.beans.TcsDocument;
 import com.mootly.wcm.beans.TdsFromothersDocument;
 import com.mootly.wcm.model.FinancialYear;
 import com.mootly.wcm.model.schedules.y2012_2013.BroughtFwdLossesSchedules;
@@ -105,6 +106,7 @@ public class ITR2XmlGeneratorService  {
 		CapitalAssetDocument capitalAssetDocument = (CapitalAssetDocument) inputBeans.get(CapitalAssetDocument.class.getSimpleName().toLowerCase());
 		ClubIncomeDocument clubIncomeDocument = (ClubIncomeDocument) inputBeans.get(ClubIncomeDocument.class.getSimpleName().toLowerCase());
 		ScheduleSIDocument scheduleSIDocument = (ScheduleSIDocument) inputBeans.get(ScheduleSIDocument.class.getSimpleName().toLowerCase());
+		TcsDocument tcsDocument = (TcsDocument) inputBeans.get(TcsDocument.class.getSimpleName().toLowerCase());
 
 		ITR2 itr2 = new ObjectFactory().createITR2();
 		ITR itr = new ITR();
@@ -155,13 +157,14 @@ public class ITR2XmlGeneratorService  {
 		PartB_TTI partB_TTI = new PartB_TTI(formSixteenDocument, salaryIncomeDocument, houseProperty,
 				otherSourcesDocument, deductionDocument, memberPersonalInformation, taxReliefDocument, advanceTaxDocument,
 				selfAssesmetTaxDocument, tdsFromothersDocument, scheduleSIDocument, capitalAssetDocument, immovablePropertyDocument,
-				natureInvestmentDocument,signingAuthorityAccountsDocument,detailOfTrustDocument,foreignBankAccountDocument,financialInterestDocument);
+				natureInvestmentDocument,signingAuthorityAccountsDocument,detailOfTrustDocument,foreignBankAccountDocument,financialInterestDocument,
+				tcsDocument);
 		itr2.setPartBTTI(partB_TTI.getPartBTTI(itr, financialYear, inputBeans));
 
 		PartA_Gen1 partA_Gen1 = new PartA_Gen1(formSixteenDocument, salaryIncomeDocument, houseProperty, otherSourcesDocument,
 				deductionDocument, memberPersonalInformation, taxReliefDocument, advanceTaxDocument, selfAssesmetTaxDocument,
 				tdsFromothersDocument, scheduleSIDocument, capitalAssetDocument, immovablePropertyDocument,natureInvestmentDocument,
-				signingAuthorityAccountsDocument,detailOfTrustDocument,foreignBankAccountDocument,financialInterestDocument);
+				signingAuthorityAccountsDocument,detailOfTrustDocument,foreignBankAccountDocument,financialInterestDocument, tcsDocument);
 		itr2.setPartAGEN1(partA_Gen1.getPartAGEN1(itr, financialYear, inputBeans));
 
 		CapitalGainDocumentSchedules capitalGainDocumentSchedules = new CapitalGainDocumentSchedules(capitalAssetDocument);
