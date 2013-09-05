@@ -400,7 +400,7 @@ orderable
 
 [mootlywcm:natureinvestmentdocument] > hippostd:relaxed, mootlywcm:basedocument orderable
 
-[mootlywcm:foreignbankaccoundtetail] > hippo:compound, hippostd:relaxed orderable
+[mootlywcm:foreignbankaccountdetail] > hippo:compound, hippostd:relaxed orderable
 
 [mootlywcm:foreignbankaccountdocument] > hippostd:relaxed, mootlywcm:basedocument orderable
 
