@@ -10,10 +10,10 @@ var condition_1=(cbasscategory == "M" && cbasstype == "I" && ((cbresistatus == "
 var condition_2=(cbasscategory == "F" && cbasstype == "I" && ((cbresistatus == "RES")|| (cbresistatus == "NRI") || (cbresistatus == "NOR"))) ? true :false;
 var condition_3=(cbasscategory == "Senior Citizen" && cbasstype == "I" && ((cbresistatus == "RES")|| (cbresistatus == "NOR"))) ? true :false;
 var condition_4=(cbasscategory == "Super Senior Citizen" && cbasstype == "I" && ((cbresistatus == "RES")|| (cbresistatus == "NOR"))) ? true :false;
-var condition_5=(cbasstype == "h") ? true :false;
-var condition_6=(cbasstype == "c") ? true :false;
-var condition_7=(cbasstype == "f" || cbasstype == "l") ? true :false;
-var condition_8=(cbasstype == "a" || cbasstype == "b") ? true :false;
+var condition_5=(cbasstype == "H") ? true :false;
+var condition_6=(cbasstype == "C") ? true :false;
+var condition_7=(cbasstype == "F" || cbasstype == "l") ? true :false;
+var condition_8=(cbasstype == "A" || cbasstype == "B") ? true :false;
 var condition_9=(cbasscategory == "Senior Citizen") && cbasstype == "I" && ((cbresistatus == "NRI")) ? true :false;
 var condition_10=(cbasscategory == "Super Senior Citizen" && cbasstype == "I" && ((cbresistatus == "NRI"))) ? true :false;
 
