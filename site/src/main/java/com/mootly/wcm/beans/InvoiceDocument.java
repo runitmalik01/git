@@ -25,8 +25,6 @@
 
 
 package com.mootly.wcm.beans;
-import static com.mootly.wcm.utils.Constants.NT_PERSONAL_INFO_LINK;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,31 +36,34 @@ import org.hippoecm.hst.content.beans.ContentNodeBinder;
 import org.hippoecm.hst.content.beans.ContentNodeBindingException;
 import org.hippoecm.hst.content.beans.Node;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
-import org.hippoecm.hst.content.beans.standard.HippoMirror;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.mootly.wcm.annotations.TagAsTaxDataProvider;
 import com.mootly.wcm.annotations.TagAsTaxDataProvider.TaxDataProviderType;
 import com.mootly.wcm.beans.compound.InvoiceDocumentDetail;
-import com.mootly.wcm.beans.compound.PersonalInformation;
 import com.mootly.wcm.beans.standard.FlexibleDocument;
+import com.mootly.wcm.model.InvoicePaymentStatus;
+import com.mootly.wcm.model.PaymentVerificationStatus;
 
 @SuppressWarnings("unused")
 @Node(jcrType = "mootlywcm:invoicedocument")
 @TagAsTaxDataProvider(type=TaxDataProviderType.INCOME)
 public class InvoiceDocument extends FlexibleDocument implements ContentNodeBinder,FormMapFiller,CompoundChildUpdate {
 	final String PROP_DETAIL_BEAN="mootlywcm:invoicedocumentdetail";
-	
+
 	private final static Logger log = LoggerFactory.getLogger(InvoiceDocument.class); 
 
 	private List<InvoiceDocumentDetail> invoiceDocumentDetailList;
-	
+	private boolean UNPAID = false;
+	private boolean PARTIALLY_PAID = false;
+	private boolean FULLY_PAID = false;
+	private boolean OVER_PAID = false;
 	private String invoiceNumber;
 	/** is the invoice paid fully */
 	private Boolean isPaid;
 	private List<MemberPayment> listOfMemberPayment;
-	
+
 	public final String getInvoiceNumber() {
 		if (invoiceNumber == null) invoiceNumber = getProperty("mootlywcm:invoiceNumber");
 		return invoiceNumber;
@@ -70,6 +71,27 @@ public class InvoiceDocument extends FlexibleDocument implements ContentNodeBind
 
 	public final void setInvoiceNumber(String invoiceNumber) {
 		this.invoiceNumber = invoiceNumber;
+	}
+	public InvoicePaymentStatus getPaymentStatus() {
+		for (InvoicePaymentStatus p : InvoicePaymentStatus.values()) {		
+			for(MemberPayment memPayment:getListOfMemberPayment()){
+				if(PaymentVerificationStatus.UNVERIFIED.equals(memPayment.getPaymentVerificationStatus())){
+					UNPAID = true;
+					System.out.println("unpaid ????????????");
+				}
+				if(PaymentVerificationStatus.VERIFIED.equals(memPayment.getPaymentVerificationStatus())){
+					FULLY_PAID = true;
+					System.out.println("fullypaid ????????????");
+				}
+			}
+			if(UNPAID && FULLY_PAID){
+				return InvoicePaymentStatus.PARTIALLY_PAID;
+			}
+			if(!UNPAID && FULLY_PAID){
+				return InvoicePaymentStatus.FULLY_PAID;
+			}
+		}
+		return InvoicePaymentStatus.UNPAID;
 	}
 
 	public final List<InvoiceDocumentDetail> getInvoiceDocumentDetailList() {
@@ -86,7 +108,7 @@ public class InvoiceDocument extends FlexibleDocument implements ContentNodeBind
 		if (invoiceDocumentDetailList == null) invoiceDocumentDetailList = new ArrayList<InvoiceDocumentDetail>();
 		invoiceDocumentDetailList.add(invoiceIncomeDetail);
 	}
-	
+
 	@Override
 	public boolean bind(Object content, javax.jcr.Node node)
 			throws ContentNodeBindingException {
@@ -108,14 +130,14 @@ public class InvoiceDocument extends FlexibleDocument implements ContentNodeBind
 				for (InvoiceDocumentDetail invoiceDocumentDetail:invoiceDocument.getInvoiceDocumentDetailList()) {
 					if (!invoiceDocumentDetail.isMarkedForDeletion()) {
 						//double value_rentSec25A=houseincomeDetail.getRentSec25A();
-						
+
 						//double value_arrearRentSec25B=houseincomeDetail.getArrearRentSec25B();
 						//double value_total_houseIncome=houseincomeDetail.getTotal_houseIncome();
-						
+
 						//sum_rentSec25A = sum_rentSec25A+value_rentSec25A;
 						//sum_arrearRentSec25B = sum_arrearRentSec25B+value_arrearRentSec25B;
 						//sum_total_houseIncome = sum_total_houseIncome+value_total_houseIncome;
-						
+
 						javax.jcr.Node html = node.addNode(PROP_DETAIL_BEAN, PROP_DETAIL_BEAN);
 						invoiceDocumentDetail.bindToNode(html); 
 					}
@@ -203,5 +225,13 @@ public class InvoiceDocument extends FlexibleDocument implements ContentNodeBind
 			InvoiceDocumentDetail source =(InvoiceDocumentDetail) child;
 			addInvoiceDocumentDetail(source);
 		}		
+	}
+
+	public List<MemberPayment> getListOfMemberPayment() {
+		return listOfMemberPayment;
+	}
+
+	public void setListOfMemberPayment(List<MemberPayment> listOfMemberPayment) {
+		this.listOfMemberPayment = listOfMemberPayment;
 	}
 }
