@@ -33,6 +33,7 @@ import com.mootly.wcm.beans.ScheduleSIDocument;
 import com.mootly.wcm.beans.SelfAssesmetTaxDocument;
 import com.mootly.wcm.beans.SigningAuthorityAccountsDocument;
 import com.mootly.wcm.beans.TaxReliefDocument;
+import com.mootly.wcm.beans.TcsDocument;
 import com.mootly.wcm.beans.TdsFromothersDocument;
 import com.mootly.wcm.model.FinancialYear;
 import com.mootly.wcm.services.IndianCurrencyHelper;
@@ -56,13 +57,14 @@ public class PartA_Gen1 {
 	DetailOfTrustDocument detailOfTrustDocument = null;
 	ForeignBankAccountDocument foreignBankAccountDocument = null;
 	FinancialInterestDocument financialInterestDocument = null;
+	TcsDocument tcsDocument = null;
 
 	public PartA_Gen1(FormSixteenDocument formSixteenDocument, SalaryIncomeDocument salaryIncomeDocument, HouseProperty housePropertyDocument ,
 			OtherSourcesDocument otherSourcesDocument, DeductionDocument deductionDocument, MemberPersonalInformation memberPersonalInformation,
 			TaxReliefDocument taxReliefDocument, AdvanceTaxDocument advanceTaxDocument, SelfAssesmetTaxDocument selfAssesmetTaxDocument,
 			TdsFromothersDocument tdsFromothersDocument, ScheduleSIDocument scheduleSIDocument, CapitalAssetDocument capitalAssetDocument,
 			ImmovablePropertyDocument immovablePropertyDocument, NatureInvestmentDocument natureInvestmentDocument, SigningAuthorityAccountsDocument signingAuthorityAccountsDocument,
-			DetailOfTrustDocument detailOfTrustDocument, ForeignBankAccountDocument foreignBankAccountDocument, FinancialInterestDocument financialInterestDocument) {
+			DetailOfTrustDocument detailOfTrustDocument, ForeignBankAccountDocument foreignBankAccountDocument, FinancialInterestDocument financialInterestDocument, TcsDocument tcsDocument) {
 		this.formSixteenDocument = formSixteenDocument;
 		this.salaryIncomeDocument = salaryIncomeDocument;
 		this.housePropertyDocument = housePropertyDocument;
@@ -81,6 +83,7 @@ public class PartA_Gen1 {
 		this.detailOfTrustDocument = detailOfTrustDocument;
 		this.foreignBankAccountDocument = foreignBankAccountDocument;
 		this.financialInterestDocument = financialInterestDocument;
+		this.tcsDocument = tcsDocument;
 	}
 
 	/**
@@ -91,18 +94,34 @@ public class PartA_Gen1 {
 
 	public PartAGEN1 getPartAGEN1(ITR itr, FinancialYear financialYear, Map<String,HippoBean> inputBeans){
 
-		IndianCurrencyHelper indianCurrencyHelper = new IndianCurrencyHelper();
 		PartAGEN1 partAGEN1 = new PartAGEN1();
-		PersonalInfo personalInfo = new PersonalInfo();
-		AssesseeName assesseeName = new AssesseeName();
-		Address address= new Address();
-		FilingStatus filingstatus = new FilingStatus();
-
 		PartB_TTI partB_TTI = new PartB_TTI(formSixteenDocument, salaryIncomeDocument, housePropertyDocument, otherSourcesDocument,
 				deductionDocument, memberPersonalInformation, taxReliefDocument, advanceTaxDocument, selfAssesmetTaxDocument,
 				tdsFromothersDocument, scheduleSIDocument, capitalAssetDocument, immovablePropertyDocument, natureInvestmentDocument,
-				signingAuthorityAccountsDocument, detailOfTrustDocument, foreignBankAccountDocument, financialInterestDocument);
+				signingAuthorityAccountsDocument, detailOfTrustDocument, foreignBankAccountDocument, financialInterestDocument, tcsDocument);
 		PartBTTI partBTTI = partB_TTI.getPartBTTI(itr, financialYear, inputBeans);
+
+		BigInteger taxPaybale = new BigInteger("0");
+		taxPaybale = partBTTI.getTaxPaid().getBalTaxPayable();
+		BigInteger taxRefundable = new BigInteger("0");
+		taxRefundable = partBTTI.getRefund().getRefundDue();
+
+		PersonalInfo personalInfo = getPersonalInfo(itr);
+		partAGEN1.setPersonalInfo(personalInfo);
+
+		FilingStatus filingStatus = getFilingStatus(itr, taxPaybale, taxRefundable);
+		partAGEN1.setFilingStatus(filingStatus);
+
+		return partAGEN1;
+
+	}
+
+	public PersonalInfo getPersonalInfo(ITR itr){
+
+		PersonalInfo personalInfo = new PersonalInfo();
+		AssesseeName assesseeName = new AssesseeName();
+		Address address= new Address();
+		IndianCurrencyHelper indianCurrencyHelper = new IndianCurrencyHelper();
 
 		if(!(memberPersonalInformation.getFirstName().isEmpty()))
 			assesseeName.setFirstName(memberPersonalInformation.getFirstName().toUpperCase());
@@ -135,7 +154,14 @@ public class PartA_Gen1 {
 
 		personalInfo.setGender(memberPersonalInformation.getSex());
 		personalInfo.setStatus(memberPersonalInformation.getFilingStatus());
-		partAGEN1.setPersonalInfo(personalInfo);
+
+		return personalInfo;
+	}
+
+	public FilingStatus getFilingStatus(ITR itr, BigInteger taxPaybale, BigInteger taxRefundable){
+
+		FilingStatus filingstatus = new FilingStatus();
+		IndianCurrencyHelper indianCurrencyHelper = new IndianCurrencyHelper();
 
 		if(!(memberPersonalInformation.getWard_circle().isEmpty())){
 			filingstatus.setDesigOfficerWardorCircle(memberPersonalInformation.getWard_circle());
@@ -145,10 +171,10 @@ public class PartA_Gen1 {
 		filingstatus.setResidentialStatus(memberPersonalInformation.getResidentCategory());
 		filingstatus.setPortugeseCC5A(memberPersonalInformation.getPortugesecivil());
 
-		if (partBTTI.getTaxPaid().getBalTaxPayable().compareTo(BigInteger.ZERO) > 0){
+		if (taxPaybale.compareTo(BigInteger.ZERO) > 0){
 			filingstatus.setTaxStatus("TP");
 		}else
-			if (partBTTI.getRefund().getRefundDue().compareTo(BigInteger.ZERO) > 0){
+			if (taxRefundable.compareTo(BigInteger.ZERO) > 0){
 				filingstatus.setTaxStatus("TR");
 			}else
 				filingstatus.setTaxStatus("NT");
@@ -163,18 +189,18 @@ public class PartA_Gen1 {
 				filingstatus.setReceiptNo(memberPersonalInformation.getReceiptNo());
 			}
 		}
-		filingstatus.setAsseseeRepFlg(memberPersonalInformation.getIsRepresentative());
-		if(memberPersonalInformation.getIsRepresentative().equals("Y")){
-			AssesseeRep assesseeRep = new AssesseeRep();
-			assesseeRep.setRepName(memberPersonalInformation.getName_Representative());
-			assesseeRep.setRepAddress(memberPersonalInformation.getAddress_Representative());
-			assesseeRep.setRepPAN(memberPersonalInformation.getPan_Representative());
-			filingstatus.setAssesseeRep(assesseeRep);
+		String itrSelection =  memberPersonalInformation.getFlexField("flex_string_ITRForm", "");
+		if(itrSelection.equals("ITR2") || itrSelection.equals("ITR4")){
+			filingstatus.setAsseseeRepFlg(memberPersonalInformation.getIsRepresentative());
+			if(memberPersonalInformation.getIsRepresentative().equals("Y")){
+				AssesseeRep assesseeRep = new AssesseeRep();
+				assesseeRep.setRepName(memberPersonalInformation.getName_Representative());
+				assesseeRep.setRepAddress(memberPersonalInformation.getAddress_Representative());
+				assesseeRep.setRepPAN(memberPersonalInformation.getPan_Representative());
+				filingstatus.setAssesseeRep(assesseeRep);
+			}
 		}
 
-
-		partAGEN1.setFilingStatus(filingstatus);
-		return partAGEN1;
-
+		return filingstatus;
 	}
 }
