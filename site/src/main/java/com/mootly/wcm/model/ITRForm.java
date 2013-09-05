@@ -5,7 +5,7 @@ public enum ITRForm {
 	ITR2("ITR-2",new ITRServiceDelivery[] {ITRServiceDelivery.DIY,ITRServiceDelivery.Assisted},2),
 	ITR3("ITR-3",new ITRServiceDelivery[] {ITRServiceDelivery.Assisted},3),
 	ITR4("ITR-4",new ITRServiceDelivery[] {ITRServiceDelivery.Assisted},4),
-	ITR4S("ITR-4S",new ITRServiceDelivery[] {ITRServiceDelivery.Assisted},5),
+	ITR4S("ITR-4S",new ITRServiceDelivery[] {ITRServiceDelivery.DIY, ITRServiceDelivery.Assisted},5),
 	ITR5("ITR-5",new ITRServiceDelivery[] {ITRServiceDelivery.Assisted},6),
 	ITR6("ITR-6",new ITRServiceDelivery[] {ITRServiceDelivery.Assisted},7),
 	ITR7("ITR-7",new ITRServiceDelivery[] {ITRServiceDelivery.Assisted},8),
