@@ -34,6 +34,7 @@ import com.mootly.wcm.beans.compound.AdjustmentOfLossesCom;
 import com.mootly.wcm.beans.compound.CapitalAssetDetail;
 import com.mootly.wcm.beans.compound.FormSixteenDetail;
 import com.mootly.wcm.beans.compound.HouseIncomeDetail;
+import com.mootly.wcm.beans.compound.SalaryIncomeDetail;
 import com.mootly.wcm.beans.compound.TdsFromSalaryDetail;
 import com.mootly.wcm.beans.compound.AdvanceTaxDetail;
 import com.mootly.wcm.model.FinancialYear;
@@ -303,7 +304,55 @@ public class XmlCalculation implements XmlCalculationImplement {
 
 		MemberPersonalInformation memberPersonalInformation = (MemberPersonalInformation) inputBeans.get(MemberPersonalInformation.class.getSimpleName().toLowerCase());
 		AdvanceTaxDocument advanceTaxDocument = (AdvanceTaxDocument) inputBeans.get(AdvanceTaxDocument.class.getSimpleName().toLowerCase());
+		FormSixteenDocument formSixteenDocument = (FormSixteenDocument) inputBeans.get(FormSixteenDocument.class.getSimpleName().toLowerCase());
+		SalaryIncomeDocument salaryIncomeDocument = (SalaryIncomeDocument) inputBeans.get(SalaryIncomeDocument.class.getSimpleName().toLowerCase());
+		TdsFromothersDocument tdsFromothersDocument = (TdsFromothersDocument) inputBeans.get(TdsFromothersDocument.class.getSimpleName().toLowerCase());
 
+		IndianCurrencyHelper indianCurrencyHelper =  new IndianCurrencyHelper();
+		Map<String,Object> totalMapForJS = new HashMap<String, Object>();
+		Map<String,String[]> requestParameterMap = new HashMap<String, String[]>(); //not being used any where
+
+		BigInteger bigTdsSlry=new BigInteger ("0");
+		BigInteger bigTotalTdsSlry=new BigInteger ("0");
+		Double tdsSalary = 0d;
+		if( formSixteenDocument!=null){
+			List<FormSixteenDetail> listOfFormSixteenDetail = formSixteenDocument.getFormSixteenDetailList();
+			if ( listOfFormSixteenDetail != null && listOfFormSixteenDetail.size() > 0 ){
+				for(FormSixteenDetail formSixteenDetail:listOfFormSixteenDetail){
+					Double tds1 = 0d;
+					Double tds2 = 0d;
+					if(formSixteenDetail.getDed_ent_1()!=null)
+						tds1 = formSixteenDetail.getDed_ent_1();
+					if(formSixteenDetail.getDed_ent_3()!=null)
+						tds2 = formSixteenDetail.getDed_ent_3();
+					tdsSalary =tds1 + tds2;
+					bigTdsSlry=indianCurrencyHelper.bigIntegerRound(tdsSalary);
+					bigTotalTdsSlry= bigTotalTdsSlry.add(bigTdsSlry);
+
+				}
+			}
+		}
+		BigInteger bigTdsPension = new BigInteger("0");
+		BigInteger bigTotalTdsPension = new BigInteger("0");
+		if( salaryIncomeDocument!=null){
+			List<SalaryIncomeDetail> listOfSalaryIncomeDetail = salaryIncomeDocument.getSalaryIncomeDetailList();
+			if ( listOfSalaryIncomeDetail != null && listOfSalaryIncomeDetail.size() > 0 ){
+				for(SalaryIncomeDetail salaryIncomeDetail:listOfSalaryIncomeDetail){
+					if(salaryIncomeDetail.getTdsPension()!=null){
+						bigTdsPension=indianCurrencyHelper.bigIntegerRound(salaryIncomeDetail.getTdsPension());
+						bigTotalTdsPension= bigTotalTdsPension.add(bigTdsPension);
+					}
+				}
+			}
+		}
+		BigInteger bigTdsOther=new BigInteger ("0");
+		if(tdsFromothersDocument!=null){
+			bigTdsOther=indianCurrencyHelper.bigIntegerRound(tdsFromothersDocument.getTotal_Amount());
+		}
+		BigInteger TDS = new BigInteger("0");
+		TDS = bigTotalTdsSlry.add(bigTdsOther).add(bigTotalTdsPension);
+		BigInteger TaxLiability = new BigInteger("0");
+		TaxLiability = netTaxLiability.subtract(TDS);
 		//current date
 		final Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("GMT"));
 		final Date currentdate=cal.getTime();
@@ -359,7 +408,7 @@ public class XmlCalculation implements XmlCalculationImplement {
 		Map<String,Object> totalMapForINTREST = new HashMap<String, Object>();
 		totalMapForINTREST.put("aytaxmp",currentdatemonth);
 		totalMapForINTREST.put("ddate", DueDate);
-		totalMapForINTREST.put("aytaxd", netTaxLiability.longValue());
+		totalMapForINTREST.put("aytaxd", TaxLiability.longValue());
 		totalMapForINTREST.put("aytaxp", dtotalamount);
 		totalMapForINTREST.put("atpq2", dsum12);
 		totalMapForINTREST.put("atpq3", dsum3+dsum12);
