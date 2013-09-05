@@ -41,7 +41,7 @@
 					<legend style="font-style: italic; color: blue;">Asset
 						Information</legend>
 					<div align="center" style="color: red">Please enter your
-						details </div>
+						details</div>
 					<br />
 					<div class="row-fluid show-grid">
 						<div class="span3">
@@ -74,6 +74,18 @@
 						</div>
 						<div class="span3">
 							<div class="rowlabel">
+								<label for="date_sale"><small><fmt:message
+											key="capital.gain.date.sale" /> </small> </label>
+							</div>
+							<div class="rowlabel">
+								<input id="date_sale" name="date_sale" placeholder="dd/mm/yyyy"
+									type="text"
+									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
+								<c:out value="${childBean.datesaleStr}"/></c:if>" />
+							</div>
+						</div>
+						<div class="span3">
+							<div class="rowlabel">
 								<label for="date_acquisition"><small><fmt:message
 											key="capital.gain.date.acquisition" /> </small> </label>
 							</div>
@@ -86,18 +98,7 @@
 						</div>
 
 
-						<div class="span3">
-							<div class="rowlabel">
-								<label for="date_sale"><small><fmt:message
-											key="capital.gain.date.sale" /> </small> </label>
-							</div>
-							<div class="rowlabel">
-								<input id="date_sale" name="date_sale" placeholder="dd/mm/yyyy"
-									type="text"
-									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
-								<c:out value="${childBean.datesaleStr}"/></c:if>" />
-							</div>
-						</div>
+
 					</div>
 					<div class="row-fluid show-grid">
 						<div class="span4">
@@ -174,7 +175,7 @@
 							</div>
 						</div>
 					</c:if>
-					<c:if test="${status == 'RES'}">
+					<c:if test="${status != 'RES'}">
 						<div class="lt" id="lnri">
 							<div class="row-fluid show-grid">
 								<div class="span9">
@@ -335,7 +336,7 @@
 						<div class="span9">
 							<div class="rowlabel">
 								<label for="losssec94"><small><fmt:message
-										key="capital.gain.loss" /></small> </label>
+											key="capital.gain.loss" /> </small> </label>
 							</div>
 						</div>
 						<div class="span3">
@@ -397,7 +398,7 @@
 						<div class="span9">
 							<div class="rowlabel">
 								<label for="capitalgain"><fmt:message
-											key="capital.gain.cpgain" /> </label>
+										key="capital.gain.cpgain" /> </label>
 							</div>
 						</div>
 						<div class="span3">
@@ -590,9 +591,27 @@
 <res:client-validation formId="capitalassetfrm"
 	screenConfigurationDocumentName="capitalasset"
 	formSubmitButtonId="myModalHrefcapitalast" />
-<script type="text/javascript">
-	$(document).ready(function() {
+<hst:element var="uiCustom" name="script">
+	<hst:attribute name="type">text/javascript</hst:attribute>
+    $(document).ready(function() {
 
+	var fY='<c:out value="${financialYear}" />'.split("-", 4);
+	itrFinYrMax="31/03/"+fY[1];
+	itrFinYrMin="01/04/"+fY[0];
+			$( ".indiandateAdvance" ).datepicker( "option", "minDate", itrFinYrMin );
+			$( ".indiandateAdvance" ).datepicker( "option", "maxDate", itrFinYrMax );
+			});
+			
+
+
+</hst:element>
+<hst:headContribution element="${uiCustom}" category="jsInternal" />
+
+
+
+<script type="text/javascript">
+	$(document).ready(function() 
+			{
 		var type = $('#asset_type').val();
 		if (type == 'SHARES') {
 			var day = $('#months').val();
@@ -608,10 +627,9 @@
 				$("#sg").show();
 				$("#lindex").hide();
 				$("#pan").hide();
-				
+
 			} else {
 				$("#lg").show();
-				
 				$("#lnri").show();
 				$("#snri").hide();
 				$("#lindex").show();
@@ -625,7 +643,9 @@
 			$("#sst_charge").hide();
 			$("#sst").hide();
 		}
+		
 	});
+	
 
 	$('#asset_type').change(function() {
 		var d = $('#asset_type').val();
@@ -637,6 +657,7 @@
 			$("#sst").hide();
 		}
 	});
+	
 
 	$('#index').change(function() {
 		if ($(this).val() == 'Y') {
@@ -646,11 +667,6 @@
 			$('.with_' + $(this).val() + '_index').hide();
 			$('.without_' + $(this).val() + '_index').show();
 		}
-	});
-
-	$('#date_acquisition').change(function() {
-		var data = $('#date_acquisition').val();
-		var arr = data.split('/');
 	});
 
 	$('#sst_charge').change(function() {
