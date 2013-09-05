@@ -65,6 +65,11 @@ import com.mootly.wcm.model.ITReturnType;
 import com.mootly.wcm.model.PaymentVerificationStatus;
 import com.mootly.wcm.services.FreeTextSearchSreviceImpl;
 import com.mootly.wcm.services.SequenceGenerator;
+import com.mootly.wcm.services.ditws.RetrievePANInformation;
+import com.mootly.wcm.services.ditws.exception.DataMismatchException;
+import com.mootly.wcm.services.ditws.exception.InvalidFormatException;
+import com.mootly.wcm.services.ditws.exception.MissingInformationException;
+import com.mootly.wcm.services.ditws.model.RetrievePANResponse;
 import com.mootly.wcm.utils.Constants;
 import com.mootly.wcm.utils.GoGreenUtil;
 import com.mootly.wcm.utils.PageableCollection;
@@ -93,7 +98,9 @@ abstract public class AbstractITReturnHomePage extends ITReturnComponent {
 
 	@Override
 	public void doBeforeRender(HstRequest request, HstResponse response) {
-		super.doBeforeRender(request, response);			
+		super.doBeforeRender(request, response);		
+		log.info("setting parameter that noMatchFound");
+		request.setAttribute("noPanMatchFound", request.getParameter("noPanMatchFound"));
 		List<HippoFolderBean> pansForMember = getPanFolder().getFolders(); 
 		HippoBean currentBean = pansForMember.get(0); //this.getContentBean(request);
 		if (currentBean == null) {
@@ -229,6 +236,26 @@ abstract public class AbstractITReturnHomePage extends ITReturnComponent {
 
 		if (!DataTypeValidationHelper.isOfType(pan, DataTypeValidationType.PAN)) {
 			return;
+		} 
+		if(shouldValidatePANWithDIT()){
+			RetrievePANInformation retrievePANInformation =  getRetrievePANInformationService();
+			log.info("lets get the instance of RetrievePanInfomation");
+			try {
+				RetrievePANResponse retrievePANResponse = retrievePANInformation.retrievePANInformation(pan);
+				if(retrievePANResponse == null || StringUtils.isNotBlank(retrievePANResponse.getError())){
+					response.setRenderParameter("noPanMatchFound", "false");
+					return;
+				}
+			} catch (MissingInformationException e) {
+				// TODO Auto-generated catch block
+				log.error("Error while Calling Dit Mock Service due to lack of Information",e);
+			} catch (DataMismatchException e) {
+				// TODO Auto-generated catch block
+				log.error("Error while Mocking Dit Service for Pan Information due to Data Missed",e);
+			} catch (InvalidFormatException e) {
+				// TODO Auto-generated catch block
+				log.error("Error while Mocking Dit Service for Pan Information due to Invalid Format of Inputs",e);
+			}
 		}
 
 		StoreFormResult sfr = new StoreFormResult();				
@@ -240,7 +267,6 @@ abstract public class AbstractITReturnHomePage extends ITReturnComponent {
 			return;
 		}
 		// sending email to admin of wealth4india :- by Pankaj Singh
-
 		String StartApp_Mobile = map.getField("pi_mobile").getValue();
 		Map<String,Object> velocityContext = new HashMap<String, Object>();
 		velocityContext.put("userName",getUserName());
