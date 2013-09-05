@@ -54,7 +54,7 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 									key="address.property.itr2" /> </small> </label>
 					</div>
 					<div class="rowlabel">
-						<input id="address_property" name="address_property"
+						<input id="address_property" name="address_property" maxlength="200"
 							type="text" 
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.address_Property}"/></c:if>" />
 					</div>
@@ -65,7 +65,7 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 									key="total.investmentitr2" /> </small> </label>
 					</div>
 					<div class="rowlabel">
-						<input id="total_investment" name="total_investment"
+						<input id="total_investment" name="total_investment" maxlength="14"
 							type="text" 
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.total_Investment}"/></c:if>" />
 					</div>
