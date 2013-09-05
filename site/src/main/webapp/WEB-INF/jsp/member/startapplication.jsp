@@ -1151,6 +1151,13 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 	$('#trpdetails').show();
 	} else  $('#trpdetails').hide();
 	})
+	$('#isTaxPreparebyTRP').change(function(){
+	 var val_TaxPreparebyTRP = $('#isTaxPreparebyTRP').val();
+	 if((val_TaxPreparebyTRP == 'N') || (val_TaxPreparebyTRP == ''))
+	 $('#yesTaxPreparebyTRP').hide();
+	 else $('#yesTaxPreparebyTRP').show();
+	})
+	// end code for itr4s
 	$('#isLiable_ForAudit').change(function(){
 	var yesLiable_ForAudit = $('#isLiable_ForAudit').val();
 	if((yesLiable_ForAudit == 'N' || (yesLiable_ForAudit == '')) ){
