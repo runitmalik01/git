@@ -3,8 +3,11 @@ package com.mootly.wcm.model.schedules.y2012_2013;
 import in.gov.incometaxindiaefiling.y2012_2013.EmployerOrDeductorOrCollectDetl;
 import in.gov.incometaxindiaefiling.y2012_2013.ITR;
 import in.gov.incometaxindiaefiling.y2012_2013.ScheduleTDS1;
+import in.gov.incometaxindiaefiling.y2012_2013.TDSonOthThanSal;
+import in.gov.incometaxindiaefiling.y2012_2013.TDSonSalaries;
 import in.gov.incometaxindiaefiling.y2012_2013.TDSonSalary;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.mootly.wcm.beans.FormSixteenDocument;
@@ -25,12 +28,54 @@ public class TdsSalarySchedules {
 	/**
 	 * 2012-2013 Financial Year
 	 * @param itr
-	 * @return
+	 * @return This method will return ScheduleTDS1 for ITR2
+	 * @author Dhananjay
 	 */
 	public ScheduleTDS1 getScheduleTDS1(ITR itr) {
-		IndianCurrencyHelper indianCurrencyHelper = new IndianCurrencyHelper();
+
 		ScheduleTDS1 scheduleTDS1 = new ScheduleTDS1();
-		boolean hasAValidTDS = false;
+		List<TDSonSalary> tDSonSalaryList = getTDSonSalary();
+		if(tDSonSalaryList != null && tDSonSalaryList.size() > 0){
+			for(TDSonSalary TDSonSalary : tDSonSalaryList){
+				scheduleTDS1.getTDSonSalary().add(TDSonSalary);
+			}
+			return scheduleTDS1;
+		}else
+			return null;
+
+	}
+
+	/**
+	 * 2012-2013 Financial Year
+	 * @param itr
+	 * @return This method will return TDSonSalaries for ITR4S
+	 * @author Dhananjay
+	 */
+
+	public TDSonSalaries getTDSonSalaries(ITR itr){
+		TDSonSalaries tDSonSalaries = new TDSonSalaries();
+		List<TDSonSalary> tDSonSalaryList = getTDSonSalary();
+		if(tDSonSalaryList != null && tDSonSalaryList.size() > 0){
+			for(TDSonSalary TDSonSalary : tDSonSalaryList){
+				tDSonSalaries.getTDSonSalary().add(TDSonSalary);
+			}
+			return tDSonSalaries;
+		}else
+			return null;
+
+	}
+
+	/**
+	 * 2012-2013 Financial Year
+	 * @param itr
+	 * @return This method will return a list of TDS from Salaries
+	 * @author Dhananjay
+	 */
+
+	public List<TDSonSalary> getTDSonSalary(){
+
+		IndianCurrencyHelper indianCurrencyHelper = new IndianCurrencyHelper();
+		List<TDSonSalary> tDSonSalaryList = new ArrayList<TDSonSalary>();
 		/*
 		 * this loop will take care of Form Sixteen Screen
 		 * and related details
@@ -62,8 +107,8 @@ public class TdsSalarySchedules {
 							tdsonSalary.setIncChrgSal(indianCurrencyHelper.bigIntegerRound(formSixteenDetail.getIncome_chargable_tax()));
 						}
 						tdsonSalary.setTotalTDSSal(indianCurrencyHelper.bigIntegerRound(TdsSalary));
-						scheduleTDS1.getTDSonSalary().add(tdsonSalary);
-						if(!hasAValidTDS) hasAValidTDS = true;
+						tDSonSalaryList.add(tdsonSalary);
+						//scheduleTDS1.getTDSonSalary().add(tdsonSalary);
 					}
 				}
 			}
@@ -91,15 +136,12 @@ public class TdsSalarySchedules {
 							tdsonSalary.setIncChrgSal(indianCurrencyHelper.bigIntegerRound(salaryIncomeDetail.getGross_salary()));
 						}
 						tdsonSalary.setTotalTDSSal(indianCurrencyHelper.bigIntegerRound(salaryIncomeDetail.getTdsPension()));
-						scheduleTDS1.getTDSonSalary().add(tdsonSalary);
-						if(!hasAValidTDS) hasAValidTDS = true;
+						tDSonSalaryList.add(tdsonSalary);
+						//scheduleTDS1.getTDSonSalary().add(tdsonSalary);
 					}
 				}
 			}
 		}
-		if(hasAValidTDS){
-			return scheduleTDS1;
-		}else
-			return null;
+		return tDSonSalaryList;
 	}
 }
