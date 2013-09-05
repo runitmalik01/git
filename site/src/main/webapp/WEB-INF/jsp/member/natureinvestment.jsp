@@ -56,7 +56,7 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 									key="nature.asset.itr2" /> </small> </label>
 					</div>
 					<div class="rowlabel">
-						<input id="nature_asset" name="nature_asset"
+						<input id="nature_asset" name="nature_asset" maxlength="100"
 							type="text" 
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.nature_Asset}"/></c:if>" />
 					</div>
@@ -67,7 +67,7 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 									key="total.investmentitr2" /> </small> </label>
 					</div>
 					<div class="rowlabel">
-						<input id="total_investment" name="total_investment"
+						<input id="total_investment" name="total_investment" maxlength="14"
 							type="text" 
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.total_Investment}"/></c:if>" />
 					</div>
