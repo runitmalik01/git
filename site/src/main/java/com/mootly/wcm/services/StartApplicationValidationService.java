@@ -191,7 +191,7 @@ public class StartApplicationValidationService {
 	 * 
 	 * @return null
 	 * */
-	protected void validLastName(FormMap formMap){
+	public void validLastName(FormMap formMap){
 		Boolean check=masterConfigService.shouldValidate5thChar();
 		
 		if(check != null && check){
@@ -199,7 +199,7 @@ public class StartApplicationValidationService {
 				char pan5thChar=formMap.getField("pan").getValue().toLowerCase().charAt(4);
 				char lastName1stChar=formMap.getField("pi_last_name").getValue().toLowerCase().charAt(0);
 				if(pan5thChar!=lastName1stChar){
-					formMap.getField("pi_last_name").addMessage("1st Char Last Name Should match with 5th Char PAN");
+					formMap.getField("pi_last_name").addMessage("err.valid.lastName.with.pan");
 				}
 			}
 		}
