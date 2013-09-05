@@ -9,8 +9,11 @@ import in.gov.incometaxindiaefiling.y2012_2013.Rentdetails;
 import in.gov.incometaxindiaefiling.y2012_2013.ScheduleHP;
 import in.gov.incometaxindiaefiling.y2012_2013.ScheduleTDS2;
 import in.gov.incometaxindiaefiling.y2012_2013.TDSonOthThanSal;
+import in.gov.incometaxindiaefiling.y2012_2013.TDSonOthThanSals;
+import in.gov.incometaxindiaefiling.y2012_2013.TDSonSalary;
 
 import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.mootly.wcm.beans.HouseProperty;
@@ -30,14 +33,54 @@ public class TdsOthersSchedules {
 	/**
 	 * 2012-2013 Financial Year
 	 * @param itr
-	 * @return
+	 * @return This method will return ScheduleTDS2 for ITR2
+	 * @author Dhananjay
 	 */
 
 	public ScheduleTDS2 getScheduleTDS2(ITR itr){
 
-		IndianCurrencyHelper indianCurrencyHelper = new IndianCurrencyHelper();
 		ScheduleTDS2 scheduleTDS2 = new ScheduleTDS2();
-		boolean hasAValidTDS = false;
+
+		List<TDSonOthThanSal> tDSonOthThanSalList = getTDSonOthThanSal();
+		if(tDSonOthThanSalList != null && tDSonOthThanSalList.size() > 0){
+			for(TDSonOthThanSal tDSonOthThanSal : tDSonOthThanSalList){
+				scheduleTDS2.getTDSonOthThanSal().add(tDSonOthThanSal);
+			}
+			return scheduleTDS2;
+		}else
+			return null;
+	}
+
+	/**
+	 * 2012-2013 Financial Year
+	 * @param itr
+	 * @return This method will return TDSonOthThanSalaries for ITR4S
+	 * @author Dhananjay
+	 */
+
+	public TDSonOthThanSals getTDSonOthThanSals(ITR itr){
+		TDSonOthThanSals tDSonOthThanSals = new TDSonOthThanSals();
+
+		List<TDSonOthThanSal> tDSonOthThanSalList = getTDSonOthThanSal();
+		if(tDSonOthThanSalList != null && tDSonOthThanSalList.size() > 0){
+			for(TDSonOthThanSal tDSonOthThanSal : tDSonOthThanSalList){
+				tDSonOthThanSals.getTDSonOthThanSal().add(tDSonOthThanSal);
+			}
+			return tDSonOthThanSals;
+		}else
+			return null;
+	}
+
+	/**
+	 * 2012-2013 Financial Year
+	 * @param itr
+	 * @return This method will return a list of TDS Other than Salaries
+	 * @author Dhananjay
+	 */
+
+	public List<TDSonOthThanSal> getTDSonOthThanSal(){
+		IndianCurrencyHelper indianCurrencyHelper = new IndianCurrencyHelper();
+		List<TDSonOthThanSal> tDSonOthThanSalList = new ArrayList<TDSonOthThanSal>();
 		if(document!=null){
 			List<TdsOthersDetail> tdsOthersDetails = document.getTdsSalaryDetailList();
 			if (tdsOthersDetails != null && tdsOthersDetails.size() > 0 ){
@@ -49,16 +92,12 @@ public class TdsOthersSchedules {
 					tdsonOthThanSal.setEmployerOrDeductorOrCollectDetl(employerOrDeductorOrCollectDetl);
 					tdsonOthThanSal.setTotTDSOnAmtPaid(indianCurrencyHelper.bigIntegerRound(tdsOthersDetail.getTotal_TaxDeductor()));
 					tdsonOthThanSal.setClaimOutOfTotTDSOnAmtPaid(indianCurrencyHelper.bigIntegerRound(tdsOthersDetail.getP_Amount()));
-					scheduleTDS2.getTDSonOthThanSal().add(tdsonOthThanSal);
-					if(!hasAValidTDS) hasAValidTDS = true;
+					//scheduleTDS2.getTDSonOthThanSal().add(tdsonOthThanSal);
+					tDSonOthThanSalList.add(tdsonOthThanSal);
 				}
 			}
 		}
-		if(hasAValidTDS){
-			return scheduleTDS2;
-		}else
-			return null;
-
+		return tDSonOthThanSalList;
 	}
 
 }
