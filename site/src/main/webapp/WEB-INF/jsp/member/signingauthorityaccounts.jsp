@@ -33,7 +33,7 @@
 									key="name.institution.itr2" /> </small> </label>
 					</div>
 					<div class="rowlabel">
-						<input id="name_institution" name="name_institution" 
+						<input id="name_institution" name="name_institution"  maxlength="125"
 							type="text" 
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.name_Institution}"/></c:if>" />
 					</div>
@@ -44,7 +44,7 @@
 									key="address.institution.itr2" /> </small> </label>
 					</div>
 					<div class="rowlabel">
-						<input id="address_institution" name="address_institution"
+						<input id="address_institution" name="address_institution" maxlength="200"
 							type="text" 
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.address_Institution}"/></c:if>" />
 					</div>
@@ -55,7 +55,7 @@
 									key="name.account.holder.itr2" /> </small> </label>
 					</div>
 					<div class="rowlabel">
-						<input id="name_accountholder" name="name_accountholder"
+						<input id="name_accountholder" name="name_accountholder" maxlength="125"
 							type="text" 
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.name_Accountholder}"/></c:if>" />
 					</div>
@@ -69,7 +69,7 @@
 									key="account.number.itr2" /> </small> </label>
 					</div>
 					<div class="rowlabel">
-						<input id="account_number" name="account_number" type="text"
+						<input id="account_number" name="account_number" type="text" maxlength="17"
 							
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.account_Number}"/></c:if>" />
 					</div>
