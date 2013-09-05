@@ -62,7 +62,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 			</div>
 			<div class="row-fluid show-grid" style="font-family: arial;font-size: 11px;border: 1px dashed #ccc;">
 				<div class="span8">
-					<input type="radio" <c:if test="${not empty memberpersonalinformation && memberpersonalinformation.returnType == 'O' && not empty memberpersonalinformation.filingSection.requiresNotice}">checked</c:if> value="revisingWithNotice" id="revisingWithNotice" name="returnTypeChoice">I am revising my return in response to a notice received from the Income Tax Department and Section is
+					<input type="radio" <c:if test="${not empty memberpersonalinformation && memberpersonalinformation.returnType == 'O' && not empty memberpersonalinformation.filingSection.requiresNotice}">checked</c:if> value="revisingWithNotice" id="revisingWithNotice" name="returnTypeChoice">I am filing my return in response to a notice received from the Income Tax Department and Section is
 				</div>
 				<div class="span4" id="NoticeSection">
 					<select name="revisingWithNoticeSection" id="revisingWithNoticeSection">
