@@ -217,6 +217,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 
 	MemberPersonalInformation memberPersonalInformation;
 	boolean shouldRetrievePANInformation = false;
+	boolean shouldValidatePANWithDIT = false;
 	RetrievePANInformation.VALIDATION_RESULT retrievePANInformationValidationResult = VALIDATION_RESULT.NOT_INITIATED;
 	RetrievePANResponse retrievePANResponse = null;
 
@@ -834,7 +835,13 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 
 	protected void initComponent(HstRequest request,HstResponse response) throws InvalidNavigationException,InvalidPANException{
 		ResolvedSiteMapItem resolvedMapItem = request.getRequestContext().getResolvedSiteMapItem();
-
+		
+		//configuration details for RetrievePanInformation Dit Service.
+		String retrievePANInfo = request.getRequestContext().getResolvedSiteMapItem().getParameter("shouldRetrievePANInformation");
+		shouldRetrievePANInformation = StringUtils.isNotBlank(retrievePANInfo) && "true".equalsIgnoreCase(retrievePANInfo) ? true : false;
+		String validPanWithDit = request.getRequestContext().getResolvedSiteMapItem().getParameter("shouldValidatePANWithDIT");
+		shouldValidatePANWithDIT = StringUtils.isNotBlank(validPanWithDit) && "true".equalsIgnoreCase(validPanWithDit) ? true : false;
+		
 		member = itReturnComponentHelper.getMember(request);
 		scriptName = itReturnComponentHelper.getScriptName(request, (String) request.getAttribute("selectedItrTab"), getPublicRequestParameter(request, "selectedItrTab"));
 		String strFinancialYear = itReturnComponentHelper.getStrFinancialYear(request, response);  //request.getRequestContext().getResolvedSiteMapItem().getParameter("financialYear");
@@ -1190,9 +1197,40 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			}
 		}
 
+		StartApplicationValidationService startappvalidserv=new StartApplicationValidationService();
 		if(filingStatus.getXmlCode()=="I"){
-			StartApplicationValidationService startappvalidserv=new StartApplicationValidationService();
 			startappvalidserv.validResidential(formMap, assessmentYear);
+		}
+		//validate last name of Member with PAN 
+		startappvalidserv.validLastName(formMap);
+		//validate last name of Member with Income Tax department by Call RetrievePanInformation Dit Service
+		if(shouldValidatePANWithDIT() && shouldRetrievePANInformation()){
+			if(formMap.getField("pan")!=null && formMap.getField("pi_last_name")!=null){
+				try {
+					String lastName = formMap.getField("pi_last_name").getValue();
+					RetrievePANResponse retrievePANResponse = retrievePANInformation();
+					if(retrievePANResponse!=null && StringUtils.isBlank(retrievePANResponse.getError())){
+						//Search last name in RetrievePanResponse's Full Name.
+						if(!retrievePANResponse.getFullName().trim().replaceAll(" ", "").toLowerCase().contains(lastName.toLowerCase())){
+							formMap.getField("pi_last_name").addMessage("err.match.last.name.dit");
+						}
+					}
+					//change if we don't want to Save Pan If found error In RetrievePanInformation DIT Service
+					boolean validpan = false;
+					if(retrievePANResponse!=null && StringUtils.isNotBlank(retrievePANResponse.getError()) && validpan){
+						formMap.getField("pan").addMessage("err.match.pan.dit");
+					}
+				} catch (MissingInformationException e) {
+					// TODO Auto-generated catch block
+					log.error("Error while Calling Dit Mock Service due to lack of Information",e);
+				} catch (DataMismatchException e) {
+					// TODO Auto-generated catch block
+					log.error("Error while Mocking Dit Service for Pan Information due to Data Missed",e);
+				} catch (InvalidFormatException e) {
+					// TODO Auto-generated catch block
+					log.error("Error while Mocking Dit Service for Pan Information due to Invalid Format of Inputs",e);
+				}
+			}
 		}
 		if (formMap.getMessage() != null && formMap.getMessage().size() > 0) {
 			FormUtils.persistFormMap(request, response, formMap, null);
@@ -1262,6 +1300,9 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		}
 
 		if (redirectURLToSamePage != null) request.setAttribute("redirectURLToSamePage", redirectURLToSamePage);
+		//set attributes in request for RetrievePanInformation Dit Service
+		request.setAttribute("shouldRetrievePANInformation", shouldRetrievePANInformation());
+		request.setAttribute("shouldValidatePANWithDIT", shouldValidatePANWithDIT());
 	}
 
 	protected void fillDueDate(HstRequest request,HstResponse response) {
@@ -2049,11 +2090,11 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 	}
 
 	protected boolean shouldValidatePANWithDIT() {
-		return false;
+		return shouldValidatePANWithDIT;
 	}
 
 	protected boolean shouldRetrievePANInformation() {
-		return false;
+		return shouldRetrievePANInformation;
 	}
 
 	protected RetrievePANResponse retrievePANInformation() throws MissingInformationException, DataMismatchException, InvalidFormatException {
