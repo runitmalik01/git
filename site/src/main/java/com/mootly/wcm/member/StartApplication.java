@@ -36,6 +36,7 @@ import org.hippoecm.hst.content.beans.manager.workflow.WorkflowCallbackHandler;
 import org.hippoecm.hst.content.beans.manager.workflow.WorkflowPersistenceManager;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.content.beans.standard.HippoFolder;
+import org.hippoecm.hst.content.beans.standard.HippoFolderBean;
 import org.hippoecm.hst.core.component.HstComponentException;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
@@ -44,6 +45,8 @@ import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.mootly.wcm.annotations.DataTypeValidationFields;
+import com.mootly.wcm.annotations.DataTypeValidationType;
 import com.mootly.wcm.annotations.FormFields;
 import com.mootly.wcm.annotations.PrimaryBean;
 import com.mootly.wcm.annotations.RequiredFields;
@@ -55,6 +58,11 @@ import com.mootly.wcm.components.ITReturnComponent;
 import com.mootly.wcm.components.InvalidNavigationException;
 import com.mootly.wcm.model.FilingStatus;
 import com.mootly.wcm.model.ITRForm;
+import com.mootly.wcm.services.ditws.RetrievePANInformation;
+import com.mootly.wcm.services.ditws.exception.DataMismatchException;
+import com.mootly.wcm.services.ditws.exception.InvalidFormatException;
+import com.mootly.wcm.services.ditws.exception.MissingInformationException;
+import com.mootly.wcm.services.ditws.model.RetrievePANResponse;
 import com.mootly.wcm.utils.ContentStructure;
 import com.mootly.wcm.utils.GoGreenUtil;
 import com.mootly.wcm.utils.MootlyFormUtils;
@@ -75,7 +83,7 @@ import com.mootly.wcm.utils.UrlUtility;
 		"pi_last_name","pi_dob","gender",
 		"pi_flat_door_building","pi_email","pi_pin_code","pi_town_city_district","pi_state","pi_area_locality","pi_mobile",
 		"rsstatus_q","bd_account_type","bd_account_no","bd_ecs"})
-
+@DataTypeValidationFields(dataTypes={DataTypeValidationType.PAN},fieldNames={"pan"})
 public class StartApplication extends ITReturnComponent {
 	private static final Logger log = LoggerFactory.getLogger(StartApplication.class);
 	private static final String FNAME = "pi_first_name";
@@ -98,11 +106,20 @@ public class StartApplication extends ITReturnComponent {
 		super.doBeforeRender(request, response);
 		parentBean=(MemberPersonalInformation)request.getAttribute("parentBean");
 
-		String checkForDuplicate = request.getRequestContext().getResolvedSiteMapItem().getParameter("checkForDuplicate");
-		if (checkForDuplicate != null && checkForDuplicate.trim().equals("true")) {
-			if (parentBean != null) {
-				//duplicate information
-				request.setAttribute("isDuplicate", "true");
+		if(shouldRetrievePANInformation()){
+			RetrievePANInformation retrievePANInformation = getRetrievePANInformationService();
+			try {
+				RetrievePANResponse retrievePANResponse = retrievePANInformation.retrievePANInformation(getPAN());
+				request.setAttribute("retrievePANResponse", retrievePANResponse);
+			} catch (MissingInformationException e) {
+				// TODO Auto-generated catch block
+				log.error("Error while Calling Dit Mock Service due to lack of Information",e);
+			} catch (DataMismatchException e) {
+				// TODO Auto-generated catch block
+				log.error("Error while Mocking Dit Service for Pan Information due to Data Missed",e);
+			} catch (InvalidFormatException e) {
+				// TODO Auto-generated catch block
+				log.error("Error while Mocking Dit Service for Pan Information due to Invalid Format of Inputs",e);
 			}
 		}
 
@@ -193,8 +210,24 @@ public class StartApplication extends ITReturnComponent {
 		JSONObject jsonObject = new JSONObject(map);
 		request.setAttribute("jsonObject", jsonObject);
 		request.setAttribute("map", map);
-		request.setAttribute("ITR1_FORM_SELECTION",request.getParameter("ITR1_FORM_SELECTION"));
-
+		request.setAttribute("ITR1_FORM_SELECTION", request.getParameter("ITR1_FORM_SELECTION"));
+		
+		String checkForDuplicate = request.getRequestContext().getResolvedSiteMapItem().getParameter("checkForDuplicate");
+		if (checkForDuplicate != null && "true".equalsIgnoreCase(checkForDuplicate)) {
+			if(savedValuesFormMap !=null && getPanFolder() !=null){
+				List<HippoFolderBean> hippoFolderList = getPanFolder().getFolders();
+				if(!hippoFolderList.isEmpty() && hippoFolderList.size() > 0){
+					for(HippoFolderBean hipFoldBean:hippoFolderList){
+						if(hipFoldBean.getName().equalsIgnoreCase(getPAN()) || hipFoldBean.getName().toLowerCase().contains(getPAN().toLowerCase())){
+							if (parentBean != null) {
+								//duplicate information
+								request.setAttribute("isDuplicate", "true");
+							}
+						}
+					}
+				}
+			}
+		}
 	}
 
 	@Override
@@ -210,7 +243,7 @@ public class StartApplication extends ITReturnComponent {
 					if (mi != null && mi.getSelectedITRForm().equals(other) )
 				}
 			}
-			*/
+			 */
 			Map<String,Object> velocityContext = new HashMap<String, Object>();
 			velocityContext.put("userName",getUserName());
 			velocityContext.put("userNameNormalized",getUserNameNormalized());
@@ -287,7 +320,7 @@ public class StartApplication extends ITReturnComponent {
 			return getRedirectURLForSiteMapItem(request,response,formSaveResult);
 		}
 	}
-	*/
+	 */
 
 	class SortyByDepth implements Comparator<String> {
 		@Override
