@@ -508,7 +508,6 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 		if (date_FurnishAuditReport == null) date_FurnishAuditReport = getProperty("mootlywcm:date_FurnishAuditReport");
 		if (date_FurnishAuditReport != null) {
 			String date_FurnishAuditReportStr = getIndianDateFormatter().format(date_FurnishAuditReport.getTime());
-			log.info("date_FurnishAuditReportStr DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD"+date_FurnishAuditReportStr);
 			return date_FurnishAuditReportStr;
 		}
 		return null;
@@ -1054,7 +1053,6 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 
 		if (formMap.getField("date_FurnishAuditReport") != null){
 			String strdate_FurnishAuditReport= formMap.getField("date_FurnishAuditReport").getValue();
-			log.info("SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS"+strdate_FurnishAuditReport);
 			setDate_FurnishAuditReport(ConvDateStringToCalendar(strdate_FurnishAuditReport));
 		}
 		if (formMap.getField("date_AuditReport") != null){
