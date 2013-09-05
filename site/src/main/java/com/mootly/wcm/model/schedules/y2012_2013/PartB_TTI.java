@@ -24,6 +24,7 @@ import com.mootly.wcm.beans.ScheduleSIDocument;
 import com.mootly.wcm.beans.SelfAssesmetTaxDocument;
 import com.mootly.wcm.beans.SigningAuthorityAccountsDocument;
 import com.mootly.wcm.beans.TaxReliefDocument;
+import com.mootly.wcm.beans.TcsDocument;
 import com.mootly.wcm.beans.TdsFromothersDocument;
 import com.mootly.wcm.beans.compound.FormSixteenDetail;
 import com.mootly.wcm.beans.compound.SalaryIncomeDetail;
@@ -40,6 +41,7 @@ import in.gov.incometaxindiaefiling.y2012_2013.Refund;
 import in.gov.incometaxindiaefiling.y2012_2013.Refund.DepositToBankAccount;
 import in.gov.incometaxindiaefiling.y2012_2013.ScheduleTR.TotTaxreliefClaimed;
 import in.gov.incometaxindiaefiling.y2012_2013.ITR;
+import in.gov.incometaxindiaefiling.y2012_2013.ITR4STaxComputation;
 import in.gov.incometaxindiaefiling.y2012_2013.PartBTI;
 import in.gov.incometaxindiaefiling.y2012_2013.PartBTTI;
 import in.gov.incometaxindiaefiling.y2012_2013.ScheduleFA;
@@ -69,13 +71,14 @@ public class PartB_TTI {
 	DetailOfTrustDocument detailOfTrustDocument = null;
 	ForeignBankAccountDocument foreignBankAccountDocument = null;
 	FinancialInterestDocument financialInterestDocument = null;
+	TcsDocument tcsDocument = null;
 
 	public PartB_TTI(FormSixteenDocument formSixteenDocument, SalaryIncomeDocument salaryIncomeDocument, HouseProperty housePropertyDocument ,
 			OtherSourcesDocument otherSourcesDocument, DeductionDocument deductionDocument, MemberPersonalInformation memberPersonalInformation,
 			TaxReliefDocument taxReliefDocument, AdvanceTaxDocument advanceTaxDocument, SelfAssesmetTaxDocument selfAssesmetTaxDocument,
 			TdsFromothersDocument tdsFromothersDocument, ScheduleSIDocument scheduleSIDocument, CapitalAssetDocument capitalAssetDocument,
 			ImmovablePropertyDocument immovablePropertyDocument, NatureInvestmentDocument natureInvestmentDocument, SigningAuthorityAccountsDocument signingAuthorityAccountsDocument,
-			DetailOfTrustDocument detailOfTrustDocument, ForeignBankAccountDocument foreignBankAccountDocument, FinancialInterestDocument financialInterestDocument){
+			DetailOfTrustDocument detailOfTrustDocument, ForeignBankAccountDocument foreignBankAccountDocument, FinancialInterestDocument financialInterestDocument, TcsDocument tcsDocument){
 		this.formSixteenDocument = formSixteenDocument;
 		this.salaryIncomeDocument = salaryIncomeDocument;
 		this.housePropertyDocument = housePropertyDocument;
@@ -94,6 +97,8 @@ public class PartB_TTI {
 		this.detailOfTrustDocument = detailOfTrustDocument;
 		this.foreignBankAccountDocument = foreignBankAccountDocument;
 		this.financialInterestDocument = financialInterestDocument;
+		this.tcsDocument = tcsDocument;
+
 
 	}
 
@@ -192,6 +197,57 @@ public class PartB_TTI {
 			if(taxReliefDocument.getRebate90() != null)
 				relief91 = indianCurrencyHelper.bigIntegerRound(taxReliefDocument.getRebate90());
 		}
+
+		TaxRelief taxRelief = new TaxRelief();
+		taxRelief.setSection89(relief89Total);
+		taxRelief.setSection90(relief90);
+		taxRelief.setSection91(relief91);
+		taxRelief.setTotTaxRelief(taxRelief.getSection89().add(taxRelief.getSection90()).add(taxRelief.getSection91()));
+		computationOfTaxLiability.setTaxRelief(taxRelief);
+
+		BigInteger netTaxLiability = new BigInteger("0");
+		netTaxLiability = computationOfTaxLiability.getGrossTaxLiability().subtract(taxRelief.getTotTaxRelief());
+		if(netTaxLiability.compareTo(BigInteger.ZERO) > 0){
+			computationOfTaxLiability.setNetTaxLiability(netTaxLiability);
+		}else
+			computationOfTaxLiability.setNetTaxLiability(new BigInteger("0"));
+
+		// Interest Calculation
+
+		Map<String,Object> resultMapINTEREST = xmlCalculation.interestCalc(financialYear, inputBeans, computationOfTaxLiability.getNetTaxLiability());
+
+		IntrstPay intrstPay = new IntrstPay();
+		intrstPay.setIntrstPayUs234A(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMapINTEREST.get("intA").toString())));
+		intrstPay.setIntrstPayUs234B(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMapINTEREST.get("intB").toString())));
+		intrstPay.setIntrstPayUs234C(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMapINTEREST.get("ic").toString())));
+		intrstPay.setTotalIntrstPay(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMapINTEREST.get("intt").toString())));
+		computationOfTaxLiability.setIntrstPay(intrstPay);
+
+		computationOfTaxLiability.setAggregateTaxInterestLiability(computationOfTaxLiability.getNetTaxLiability().add(intrstPay.getTotalIntrstPay()));
+		partBTTI.setComputationOfTaxLiability(computationOfTaxLiability);
+
+		TaxPaid taxPaid = getTaxPaid(itr, financialYear, inputBeans, computationOfTaxLiability.getAggregateTaxInterestLiability());
+		partBTTI.setTaxPaid(taxPaid);
+
+		Refund refund = getRefund(itr, financialYear, inputBeans, computationOfTaxLiability.getAggregateTaxInterestLiability());
+
+		partBTTI.setRefund(refund);
+
+		FADetailsSchedule fADetailsSchedule = new FADetailsSchedule(immovablePropertyDocument, natureInvestmentDocument, signingAuthorityAccountsDocument,
+				detailOfTrustDocument, foreignBankAccountDocument, financialInterestDocument);
+		ScheduleFA scheduleFA = fADetailsSchedule.getScheduleFA(itr);
+		if(scheduleFA != null){
+			partBTTI.setAssetOutIndiaFlag("YES");
+		}else
+			partBTTI.setAssetOutIndiaFlag("NO");
+
+		return partBTTI;
+	}
+
+	public TaxPaid getTaxPaid(ITR itr, FinancialYear financialYear,Map<String,HippoBean> inputBeans, BigInteger tax){
+
+		IndianCurrencyHelper indianCurrencyHelper = new IndianCurrencyHelper();
+
 		BigInteger advanceTax = new BigInteger("0");
 		if(advanceTaxDocument!=null){
 			advanceTax=indianCurrencyHelper.bigIntegerRound(advanceTaxDocument.getTotal_Amount());
@@ -241,57 +297,47 @@ public class PartB_TTI {
 		if(selfAssesmetTaxDocument!=null){
 			selfAssessmentTax = indianCurrencyHelper.bigIntegerRound(selfAssesmetTaxDocument.getTotal_Amount());
 		}
-
-		TaxRelief taxRelief = new TaxRelief();
-		taxRelief.setSection89(relief89Total);
-		taxRelief.setSection90(relief90);
-		taxRelief.setSection91(relief91);
-		taxRelief.setTotTaxRelief(taxRelief.getSection89().add(taxRelief.getSection90()).add(taxRelief.getSection91()));
-		computationOfTaxLiability.setTaxRelief(taxRelief);
-
-		BigInteger netTaxLiability = new BigInteger("0");
-		netTaxLiability = computationOfTaxLiability.getGrossTaxLiability().subtract(taxRelief.getTotTaxRelief());
-		if(netTaxLiability.compareTo(BigInteger.ZERO) > 0){
-			computationOfTaxLiability.setNetTaxLiability(netTaxLiability);
-		}else
-			computationOfTaxLiability.setNetTaxLiability(new BigInteger("0"));
-
-		// Interest Calculation
-
-		BigInteger netTaxLiabilitySubTDS = new BigInteger("0");
-		netTaxLiabilitySubTDS = computationOfTaxLiability.getNetTaxLiability().subtract(bigTotalTds);
-
-		Map<String,Object> resultMapINTEREST = xmlCalculation.interestCalc(financialYear, inputBeans, netTaxLiabilitySubTDS);
-
-		IntrstPay intrstPay = new IntrstPay();
-		intrstPay.setIntrstPayUs234A(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMapINTEREST.get("intA").toString())));
-		intrstPay.setIntrstPayUs234B(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMapINTEREST.get("intB").toString())));
-		intrstPay.setIntrstPayUs234C(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMapINTEREST.get("ic").toString())));
-		intrstPay.setTotalIntrstPay(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMapINTEREST.get("intt").toString())));
-		computationOfTaxLiability.setIntrstPay(intrstPay);
-
-		computationOfTaxLiability.setAggregateTaxInterestLiability(computationOfTaxLiability.getNetTaxLiability().add(intrstPay.getTotalIntrstPay()));
-		partBTTI.setComputationOfTaxLiability(computationOfTaxLiability);
-
+		BigInteger tcsTotal = new BigInteger("0");
+		if(tcsDocument!=null){
+			tcsTotal = indianCurrencyHelper.bigIntegerRound(tcsDocument.getTotal());
+		}
+		String itrSelection =  memberPersonalInformation.getFlexField("flex_string_ITRForm", "");
 		TaxPaid taxPaid = new TaxPaid();
 		TaxesPaid taxesPaid = new TaxesPaid();
 		taxesPaid.setAdvanceTax(advanceTax);
 		taxesPaid.setTDS(bigTotalTds);
 		taxesPaid.setSelfAssessmentTax(selfAssessmentTax);
-		taxesPaid.setTotalTaxesPaid(taxesPaid.getAdvanceTax().add(taxesPaid.getSelfAssessmentTax()).add(taxesPaid.getTDS()));
+		if(itrSelection.equals("ITR4S")){
+			taxesPaid.setTCS(tcsTotal);
+			taxesPaid.setTotalTaxesPaid(taxesPaid.getAdvanceTax().add(taxesPaid.getSelfAssessmentTax()).add(taxesPaid.getTDS()).add(taxesPaid.getTCS()));
+
+		}else{
+			taxesPaid.setTotalTaxesPaid(taxesPaid.getAdvanceTax().add(taxesPaid.getSelfAssessmentTax()).add(taxesPaid.getTDS()));
+		}
 		taxPaid.setTaxesPaid(taxesPaid);
 
 		BigInteger taxPayORRef = new BigInteger("0");
-		taxPayORRef = computationOfTaxLiability.getAggregateTaxInterestLiability().subtract(taxesPaid.getTotalTaxesPaid());
+		taxPayORRef = tax.subtract(taxesPaid.getTotalTaxesPaid());
 		long roundOfftaxPayORRef = indianCurrencyHelper.roundOffNearestTenth(taxPayORRef.longValue());
 		if(BigInteger.valueOf(roundOfftaxPayORRef).compareTo(BigInteger.ZERO) > 0){
 			taxPaid.setBalTaxPayable(BigInteger.valueOf(roundOfftaxPayORRef));
 		}else
 			taxPaid.setBalTaxPayable(new BigInteger("0"));
 
-		partBTTI.setTaxPaid(taxPaid);
+		return taxPaid;
+	}
 
+	public Refund getRefund(ITR itr, FinancialYear financialYear,Map<String,HippoBean> inputBeans, BigInteger tax){
+
+		IndianCurrencyHelper indianCurrencyHelper = new IndianCurrencyHelper();
 		Refund refund = new Refund();
+		TaxPaid taxPaid = getTaxPaid(itr, financialYear, inputBeans, tax);
+		BigInteger taxesPaid = taxPaid.getTaxesPaid().getTotalTaxesPaid();
+
+		BigInteger taxPayORRef = new BigInteger("0");
+		taxPayORRef = tax.subtract(taxesPaid);
+		long roundOfftaxPayORRef = indianCurrencyHelper.roundOffNearestTenth(taxPayORRef.longValue());
+
 		if(BigInteger.valueOf(roundOfftaxPayORRef).compareTo(BigInteger.ZERO) < 0){
 			refund.setRefundDue(BigInteger.valueOf(roundOfftaxPayORRef).multiply(new BigInteger("-1")));
 		}else
@@ -302,16 +348,7 @@ public class PartB_TTI {
 		depositToBankAccount.setBankAccountType(memberPersonalInformation.getBD_TYPE_ACC().toUpperCase());
 		depositToBankAccount.setIFSCCode(memberPersonalInformation.getFlexField("flex_string_IFSCCode", "").toUpperCase());
 		refund.setDepositToBankAccount(depositToBankAccount);
-		partBTTI.setRefund(refund);
 
-		FADetailsSchedule fADetailsSchedule = new FADetailsSchedule(immovablePropertyDocument, natureInvestmentDocument, signingAuthorityAccountsDocument,
-				detailOfTrustDocument, foreignBankAccountDocument, financialInterestDocument);
-		ScheduleFA scheduleFA = fADetailsSchedule.getScheduleFA(itr);
-		if(scheduleFA != null){
-			partBTTI.setAssetOutIndiaFlag("YES");
-		}else
-			partBTTI.setAssetOutIndiaFlag("NO");
-
-		return partBTTI;
+		return refund;
 	}
 }
