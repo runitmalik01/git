@@ -3412,12 +3412,12 @@
 			<sv:value>11051.097</sv:value>
 		</sv:property>
 	</sv:node>
-	<sv:node sv:name="mootlywcm-type-foreignbankaccoundtetail-document">
+	<sv:node sv:name="mootlywcm-type-foreignbankaccountdetail">
 		<sv:property sv:name="jcr:primaryType" sv:type="Name">
 			<sv:value>hippo:initializeitem</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentresource" sv:type="String">
-			<sv:value>hippo-namespaces/mootlywcm/foreignbankaccoundtetail.xml</sv:value>
+			<sv:value>hippo-namespaces/mootlywcm/foreignbankaccountdetail.xml</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentroot" sv:type="String">
 			<sv:value>/hippo:namespaces/mootlywcm</sv:value>
