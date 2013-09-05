@@ -66,7 +66,7 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 									key="address.bank.itr2" /> </small> </label>
 					</div>
 					<div class="rowlabel">
-						<input id="address_bank" name="address_bank"
+						<input id="address_bank" name="address_bank" maxlength="200"
 							type="text" 
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.address_Bank}"/></c:if>" />
 					</div>
@@ -80,7 +80,7 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 									key="name.account.itr2" /> </small> </label>
 					</div>
 					<div class="rowlabel">
-						<input id="name_account" name="name_account" maxlength="200"
+						<input id="name_account" name="name_account" maxlength="125"
 							type="text"
 							 class="decimal"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.name_Account}"/></c:if>" />
