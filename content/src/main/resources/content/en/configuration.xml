@@ -10477,7 +10477,8 @@ acknowledgement&lt;/p&gt;
 </sv:node>
 
 
-<sv:node sv:name="taxrelief">
+
+<sv:node sv:name="taxrelief" >
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hippo:handle</sv:value>
   </sv:property>
@@ -10496,7 +10497,7 @@ acknowledgement&lt;/p&gt;
       <sv:value>hippotranslation:translated</sv:value>
     </sv:property>
     <sv:property sv:name="jcr:uuid" sv:type="String">
-      <sv:value>2c26e25a-2ff5-4e59-91e7-93a3926b851e</sv:value>
+      <sv:value>d271fec6-c55e-4fd7-833b-ce2086686f9e</sv:value>
     </sv:property>
     <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
       <sv:value>live</sv:value>
@@ -10521,13 +10522,13 @@ acknowledgement&lt;/p&gt;
       <sv:value>2013-06-29T10:29:54.224+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-      <sv:value>2013-08-14T11:39:07.136+05:30</sv:value>
+      <sv:value>2013-09-05T17:35:29.506+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
       <sv:value>admin</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-      <sv:value>2013-08-14T11:39:11.259+05:30</sv:value>
+      <sv:value>2013-09-05T17:35:34.105+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippotranslation:id" sv:type="String">
       <sv:value>05e58a69-9c2c-4c3f-8eef-a65c5a61bdbb</sv:value>
@@ -10559,11 +10560,23 @@ acknowledgement&lt;/p&gt;
       <sv:property sv:name="jcr:primaryType" sv:type="Name">
         <sv:value>mootlywcm:screenfieldconfig</sv:value>
       </sv:property>
+      <sv:property sv:name="mootlywcm:dropDownListName" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldClass" sv:type="String">
+        <sv:value/>
+      </sv:property>
       <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
         <sv:value/>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
         <sv:value>country_code</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldLabel" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldMaxLength" sv:type="String">
+        <sv:value/>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
         <sv:value>country_code</sv:value>
@@ -10571,11 +10584,32 @@ acknowledgement&lt;/p&gt;
       <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
         <sv:value/>
       </sv:property>
+      <sv:property sv:name="mootlywcm:fieldSpan" sv:type="String">
+        <sv:value/>
+      </sv:property>
       <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldValue" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:formFieldType" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:href" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:inputFormFieldType" sv:type="String">
         <sv:value/>
       </sv:property>
       <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
         <sv:value>true</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:readOnly" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:rowLabel" sv:type="String">
+        <sv:value/>
       </sv:property>
       <sv:property sv:multiple="true" sv:name="mootlywcm:validatorArguments" sv:type="String">
         <sv:value/>
@@ -10588,11 +10622,23 @@ acknowledgement&lt;/p&gt;
       <sv:property sv:name="jcr:primaryType" sv:type="Name">
         <sv:value>mootlywcm:screenfieldconfig</sv:value>
       </sv:property>
-      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+      <sv:property sv:name="mootlywcm:dropDownListName" sv:type="String">
         <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldClass" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>TaxIdNo</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
         <sv:value>tax_ID</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldLabel" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldMaxLength" sv:type="String">
+        <sv:value/>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
         <sv:value>tax_ID</sv:value>
@@ -10600,11 +10646,32 @@ acknowledgement&lt;/p&gt;
       <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
         <sv:value/>
       </sv:property>
+      <sv:property sv:name="mootlywcm:fieldSpan" sv:type="String">
+        <sv:value/>
+      </sv:property>
       <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldValue" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:formFieldType" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:href" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:inputFormFieldType" sv:type="String">
         <sv:value/>
       </sv:property>
       <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
         <sv:value>true</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:readOnly" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:rowLabel" sv:type="String">
+        <sv:value/>
       </sv:property>
       <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
         <sv:value/>
@@ -10616,6 +10683,12 @@ acknowledgement&lt;/p&gt;
     <sv:node sv:name="mootlywcm:screenfieldconfig">
       <sv:property sv:name="jcr:primaryType" sv:type="Name">
         <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:dropDownListName" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldClass" sv:type="String">
+        <sv:value/>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
         <sv:value/>
@@ -10623,17 +10696,44 @@ acknowledgement&lt;/p&gt;
       <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
         <sv:value>article_dtaa</sv:value>
       </sv:property>
+      <sv:property sv:name="mootlywcm:fieldLabel" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldMaxLength" sv:type="String">
+        <sv:value/>
+      </sv:property>
       <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
         <sv:value>article_dtaa</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
         <sv:value/>
       </sv:property>
+      <sv:property sv:name="mootlywcm:fieldSpan" sv:type="String">
+        <sv:value/>
+      </sv:property>
       <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldValue" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:formFieldType" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:href" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:inputFormFieldType" sv:type="String">
         <sv:value/>
       </sv:property>
       <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
         <sv:value>true</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:readOnly" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:rowLabel" sv:type="String">
+        <sv:value/>
       </sv:property>
       <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
         <sv:value/>
@@ -10645,6 +10745,12 @@ acknowledgement&lt;/p&gt;
     <sv:node sv:name="mootlywcm:screenfieldconfig">
       <sv:property sv:name="jcr:primaryType" sv:type="Name">
         <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:dropDownListName" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldClass" sv:type="String">
+        <sv:value/>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
         <sv:value>amount</sv:value>
@@ -10652,17 +10758,44 @@ acknowledgement&lt;/p&gt;
       <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
         <sv:value>totaltax_fsi</sv:value>
       </sv:property>
+      <sv:property sv:name="mootlywcm:fieldLabel" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldMaxLength" sv:type="String">
+        <sv:value/>
+      </sv:property>
       <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
         <sv:value>totaltax_fsi</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
         <sv:value/>
       </sv:property>
+      <sv:property sv:name="mootlywcm:fieldSpan" sv:type="String">
+        <sv:value/>
+      </sv:property>
       <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldValue" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:formFieldType" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:href" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:inputFormFieldType" sv:type="String">
         <sv:value/>
       </sv:property>
       <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
         <sv:value>true</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:readOnly" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:rowLabel" sv:type="String">
+        <sv:value/>
       </sv:property>
       <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
         <sv:value/>
@@ -10674,6 +10807,12 @@ acknowledgement&lt;/p&gt;
     <sv:node sv:name="mootlywcm:screenfieldconfig">
       <sv:property sv:name="jcr:primaryType" sv:type="Name">
         <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:dropDownListName" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldClass" sv:type="String">
+        <sv:value/>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
         <sv:value>amount</sv:value>
@@ -10681,17 +10820,44 @@ acknowledgement&lt;/p&gt;
       <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
         <sv:value>relief90_91</sv:value>
       </sv:property>
+      <sv:property sv:name="mootlywcm:fieldLabel" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldMaxLength" sv:type="String">
+        <sv:value/>
+      </sv:property>
       <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
         <sv:value>relief90_91</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
         <sv:value/>
       </sv:property>
+      <sv:property sv:name="mootlywcm:fieldSpan" sv:type="String">
+        <sv:value/>
+      </sv:property>
       <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldValue" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:formFieldType" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:href" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:inputFormFieldType" sv:type="String">
         <sv:value/>
       </sv:property>
       <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
         <sv:value>true</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:readOnly" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:rowLabel" sv:type="String">
+        <sv:value/>
       </sv:property>
       <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
         <sv:value/>
@@ -10703,6 +10869,12 @@ acknowledgement&lt;/p&gt;
     <sv:node sv:name="mootlywcm:screenfieldconfig">
       <sv:property sv:name="jcr:primaryType" sv:type="Name">
         <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:dropDownListName" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldClass" sv:type="String">
+        <sv:value/>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
         <sv:value>amount</sv:value>
@@ -10710,17 +10882,44 @@ acknowledgement&lt;/p&gt;
       <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
         <sv:value>relief91</sv:value>
       </sv:property>
+      <sv:property sv:name="mootlywcm:fieldLabel" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldMaxLength" sv:type="String">
+        <sv:value/>
+      </sv:property>
       <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
         <sv:value>relief91</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
         <sv:value/>
       </sv:property>
+      <sv:property sv:name="mootlywcm:fieldSpan" sv:type="String">
+        <sv:value/>
+      </sv:property>
       <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldValue" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:formFieldType" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:href" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:inputFormFieldType" sv:type="String">
         <sv:value/>
       </sv:property>
       <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
         <sv:value>true</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:readOnly" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:rowLabel" sv:type="String">
+        <sv:value/>
       </sv:property>
       <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
         <sv:value/>
@@ -10733,11 +10932,23 @@ acknowledgement&lt;/p&gt;
       <sv:property sv:name="jcr:primaryType" sv:type="Name">
         <sv:value>mootlywcm:screenfieldconfig</sv:value>
       </sv:property>
+      <sv:property sv:name="mootlywcm:dropDownListName" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldClass" sv:type="String">
+        <sv:value/>
+      </sv:property>
       <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
         <sv:value/>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
         <sv:value>isDtaaCountry</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldLabel" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldMaxLength" sv:type="String">
+        <sv:value/>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
         <sv:value>isDtaaCountry</sv:value>
@@ -10745,11 +10956,32 @@ acknowledgement&lt;/p&gt;
       <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
         <sv:value/>
       </sv:property>
+      <sv:property sv:name="mootlywcm:fieldSpan" sv:type="String">
+        <sv:value/>
+      </sv:property>
       <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldValue" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:formFieldType" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:href" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:inputFormFieldType" sv:type="String">
         <sv:value/>
       </sv:property>
       <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
         <sv:value>true</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:readOnly" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:rowLabel" sv:type="String">
+        <sv:value/>
       </sv:property>
       <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
         <sv:value/>
@@ -10760,6 +10992,7 @@ acknowledgement&lt;/p&gt;
     </sv:node>
   </sv:node>
 </sv:node>
+
 
    
 <sv:node sv:name="foreignbankdetail" >
