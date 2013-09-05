@@ -994,7 +994,14 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 		}
 
 		$(document).ready(function() {
-
+// this code is for itr2 when pan is HUF
+ 	 var packageName = $('#flex_string_ITRForm').val();
+ 	 if(packageName == 'ITR2') {
+  	  $('#represenative_detail').show();
+  	  }
+  	  else{
+  	  $('#represenative_detail').hide();
+  	  }
 			$("#flex_string_ITRForm").change(function (aval) {
 					var sele = this.options[this.selectedIndex].value;
 					$("#whoCan").html(mapOfItrFormWhoCanAndWhoCan[sele]);
