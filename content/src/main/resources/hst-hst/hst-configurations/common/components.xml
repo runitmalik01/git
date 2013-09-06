@@ -1180,7 +1180,7 @@
 	  <sv:property sv:name="hst:template" sv:type="String">
 	    <sv:value>knowledgearticles.leftnav</sv:value>
 	  </sv:property>
-	</sv:node>	
+	</sv:node>
 	<sv:node sv:name="clubincome" >
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hst:component</sv:value>
@@ -1370,7 +1370,7 @@
 	  <sv:property sv:name="hst:template" sv:type="String">
 	    <sv:value>xml-generator</sv:value>
 	  </sv:property>
-	</sv:node>  
+	</sv:node>
 	<sv:node sv:name="servicerequest-itr-download-xml" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
 	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
 	    <sv:value>hst:component</sv:value>
@@ -1383,7 +1383,7 @@
 	  </sv:property>
 	  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String"/>
 	  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String"/>
-	</sv:node> 
+	</sv:node>
 	<sv:node sv:name="servicerequest-itr-download-summary" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
 	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
 	    <sv:value>hst:component</sv:value>
@@ -1399,7 +1399,7 @@
 	  <sv:property sv:name="hst:template" sv:type="String">
 	    <sv:value>xml-generator</sv:value>
 	  </sv:property>
-	</sv:node>	
+	</sv:node>
 	<sv:node sv:name="servicerequest-itr-email-xml-summary" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
 	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
 	    <sv:value>hst:component</sv:value>
@@ -1415,7 +1415,7 @@
 	  <sv:property sv:name="hst:template" sv:type="String">
 	    <sv:value>xml-generator</sv:value>
 	  </sv:property>
-	</sv:node>	
+	</sv:node>
 	<sv:node sv:name="servicerequest-itr-payment" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
 	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
 	    <sv:value>hst:component</sv:value>
@@ -1431,7 +1431,7 @@
 	  <sv:property sv:name="hst:template" sv:type="String">
 	    <sv:value>servicerequest-itr-payment</sv:value>
 	  </sv:property>
-	</sv:node>	
+	</sv:node>
 	<sv:node sv:name="servicerequest-itr-tos-confirmation" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
 	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
 	    <sv:value>hst:component</sv:value>
@@ -1520,7 +1520,7 @@
 	  <sv:property sv:name="hst:template" sv:type="String">
 	    <sv:value>servicerequest-itr-copy-or-move</sv:value>
 	  </sv:property>
-	</sv:node>	
+	</sv:node>
 	<!--  new component for bulk download 08/10/2013 -->
 	<sv:node xmlns:sv="http://www.jcp.org/jcr/sv/1.0" sv:name="servicerequest-itr-download-xml-bulk-addpath">
 	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
@@ -1532,7 +1532,7 @@
 	  <sv:property sv:name="hst:componentclassname" sv:type="String">
 	    <sv:value>com.mootly.wcm.components.ITReturnComponent</sv:value>
 	  </sv:property>
-	</sv:node>	
+	</sv:node>
 	<sv:node xmlns:sv="http://www.jcp.org/jcr/sv/1.0" sv:name="servicerequest-itr-download-xml-bulk">
 	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
 	    <sv:value>hst:component</sv:value>
@@ -1543,7 +1543,7 @@
 	  <sv:property sv:name="hst:componentclassname" sv:type="String">
 	    <sv:value>com.mootly.wcm.components.ITReturnComponent</sv:value>
 	  </sv:property>
-	</sv:node>	
+	</sv:node>
 	<!--  / new component for bulk download -->
 	<!--  new component for ITRV Status Check -->
 	<sv:node sv:name="servicerequest-itr-v-status" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
@@ -1594,7 +1594,7 @@
 	  <sv:property sv:name="hst:template" sv:type="String">
 	    <sv:value>servicerequest-itr-sync-tds-from-dit</sv:value>
 	  </sv:property>
-	</sv:node>	
+	</sv:node>
 	<!-- / DIT  -->
 	<!-- member security question component -->
 	<sv:node sv:name="member-secure-connection">
@@ -1613,7 +1613,7 @@
     </sv:node>
 	<!--  nodes for itr4 -->
 	<!--  for nature business -->
-	
+
 <sv:node sv:name="businessnature" >
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hst:component</sv:value>
@@ -1630,9 +1630,9 @@
     <sv:value>businessnature</sv:value>
   </sv:property>
 </sv:node>
-	
+
 	<!-- /nature business -->
-	
+
 <sv:node sv:name="quantitativedetails">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hst:component</sv:value>
@@ -1788,5 +1788,20 @@
     <sv:value>schedule-business-profession</sv:value>
   </sv:property>
 </sv:node>
-<!-- end of business profession Component -->	
+<!-- end of business profession Component -->
+<sv:node sv:name="other-information">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:component</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>e632e97f-cfcf-486c-b3d1-4c0d20fc1924</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:componentclassname" sv:type="String">
+    <sv:value>com.mootly.wcm.member.OtherInformation</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:template" sv:type="String">
+    <sv:value>other.information</sv:value>
+  </sv:property>
+</sv:node>
+<!--end of otherinformation-->
 </sv:node>
