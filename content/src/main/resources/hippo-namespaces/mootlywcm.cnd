@@ -377,6 +377,9 @@ orderable
 
 [mootlywcm:clubincomedocument] > hippostd:relaxed, mootlywcm:basedocument orderable
 
+[mootlywcm:unabsorbeddepreciationdocument] > hippostd:relaxed, mootlywcm:basedocument orderable
+[mootlywcm:unabsorbeddepreciationdetail] > hippo:compound, hippostd:relaxed orderable
+
 
 [mootlywcm:clubincomedetail] > hippo:compound, hippostd:relaxed orderable
 
