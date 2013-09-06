@@ -362,18 +362,18 @@
 &lt;![endif]--&gt;
 
 
-    
+
    &lt;div id="doc" class="yui-d-custom"&gt;
        &lt;div&gt;
           &lt;div&gt;
               &lt;!-- header --&gt;
                 &lt;@hst.include ref="header"/&gt;
-        
-      
+
+
             &lt;!-- body / main --&gt;
             &lt;@hst.include ref="main"/&gt;
-     
-       
+
+
             &lt;!-- footer --&gt;
             &lt;@hst.include ref="footer"/&gt;
         &lt;/div&gt;
@@ -615,8 +615,8 @@
         &lt;/li&gt;
         &lt;li id="menu-item-879" class=
         "menu-item menu-item-type-custom menu-item-object-custom menu-item-879"&gt;
-          &lt;a href="#"&gt;Contact Us&lt;/a&gt;    
-        &lt;/li&gt;  
+          &lt;a href="#"&gt;Contact Us&lt;/a&gt;
+        &lt;/li&gt;
       &lt;/ul&gt;
      &lt;!--
       &lt;ul id="menu-sub" class="sub-header-menu"&gt;
@@ -663,7 +663,7 @@
         "images/Drawing2.png"
         width="440" height="300" alt="" /&gt;&lt;/div&gt;&lt;!-- end of #featured-image --&gt;
       &lt;/div&gt;&lt;!-- end of #featured --&gt;
-	  
+
       &lt;div id="widgets" class="home-widgets"&gt;
         &lt;div class="grid col-220"&gt;
           &lt;div class="widget-wrapper"&gt;
@@ -677,8 +677,8 @@
 								&lt;li&gt;Salary/Pension&lt;/li&gt;
 								&lt;li&gt;Interest Income&lt;/li&gt;
 								&lt;li&gt;Family Pension&lt;/li&gt;
-							&lt;/ul&gt;   
-						&lt;/li&gt;						
+							&lt;/ul&gt;
+						&lt;/li&gt;
                     &lt;/ul&gt;
 					&lt;a class="btn silver left" href="/myRapidTax/?CreateAccount"&gt;Start for Free&lt;/a&gt;
             &lt;/div&gt;
@@ -697,14 +697,14 @@
 								&lt;li&gt;One or more house&lt;/li&gt;
 								&lt;li&gt;Other Sources&lt;/li&gt;
 								&lt;li&gt;+ All source from Basic&lt;/li&gt;
-							&lt;/ul&gt;  
-						&lt;/li&gt;						
-                    &lt;/ul&gt;			
-					&lt;a class="btn silver left" href="/myRapidTax/?CreateAccount"&gt;Start for Free&lt;/a&gt;					
+							&lt;/ul&gt;
+						&lt;/li&gt;
+                    &lt;/ul&gt;
+					&lt;a class="btn silver left" href="/myRapidTax/?CreateAccount"&gt;Start for Free&lt;/a&gt;
             &lt;/div&gt;
           &lt;/div&gt;&lt;!-- end of .widget-wrapper --&gt;
         &lt;/div&gt;&lt;!-- end of .col-300 --&gt;
-		
+
 		&lt;div class="grid col-220"&gt;
           &lt;div class="widget-wrapper"&gt;
             &lt;div class="widget-title-home"&gt;
@@ -718,8 +718,8 @@
 								&lt;li&gt;Capital Gains&lt;/li&gt;
 								&lt;li&gt;Partner in Partnership Firm&lt;/li&gt;
 								&lt;li&gt;+ All source from Basic &amp; Delux&lt;/li&gt;
-							&lt;/ul&gt;  
-						&lt;/li&gt;						
+							&lt;/ul&gt;
+						&lt;/li&gt;
                     &lt;/ul&gt;
 					&lt;a class="btn silver left" href="/myRapidTax/?CreateAccount"&gt;Start for Free&lt;/a&gt;
             &lt;/div&gt;
@@ -738,8 +738,8 @@
 								&lt;li&gt;Capital Gains&lt;/li&gt;
 								&lt;li&gt;Partner in Partnership Firm&lt;/li&gt;
 								&lt;li&gt;+ All source from Basic &amp; Delux&lt;/li&gt;
-							&lt;/ul&gt;  
-						&lt;/li&gt;						
+							&lt;/ul&gt;
+						&lt;/li&gt;
                     &lt;/ul&gt;
 					&lt;a class="btn silver left" href="/myRapidTax/?CreateAccount"&gt;Start for Free&lt;/a&gt;
             &lt;/div&gt;
@@ -792,8 +792,8 @@
           &lt;/div&gt;&lt;!-- end of .widget-wrapper --&gt;
         &lt;/div&gt;&lt;!-- end of .col-300 fit --&gt;
       &lt;/div&gt;&lt;!-- end of #widgets --&gt;
-	  
-	  
+
+
 	  &lt;!-- /widgets2 --&gt;
     &lt;/div&gt;&lt;!-- end of #wrapper --&gt;
   &lt;/div&gt;&lt;!-- end of #container --&gt;
@@ -956,14 +956,14 @@
     &lt;/#if&gt;
 
     &lt;!-- search bar --&gt;
-    &lt;@hst.include ref="search"/&gt; 
-    
+    &lt;@hst.include ref="search"/&gt;
+
     &lt;!--  language navigation --&gt;
     &lt;@hst.include ref="langnavigation" /&gt;
-    
+
     &lt;!-- main navigation --&gt;
     &lt;@hst.include ref="mainnavigation"/&gt;
- 
+
     &lt;!-- login / registration --&gt;
     &lt;@hst.include ref="login"/&gt;
 &lt;/div&gt;</sv:value>
@@ -1038,16 +1038,16 @@
 &lt;#assign hst=JspTaglibs["http://www.hippoecm.org/jsp/hst/core"]&gt;
 
 &lt;div id="bd" class="yui-t1"&gt;
-   
+
     &lt;!-- left --&gt;
     &lt;@hst.include ref="left"/&gt;
-    
+
     &lt;!-- content --&gt;
     &lt;@hst.include ref="content"/&gt;
-    
+
     &lt;!-- right --&gt;
     &lt;@hst.include ref="right"/&gt;
-   
+
 &lt;/div&gt;</sv:value>
     </sv:property>
   </sv:node>
@@ -2536,26 +2536,26 @@
     </sv:property>
     <sv:property sv:name="hst:script" sv:type="String">
       <sv:value>&lt;#--
-	
+
 	    Copyright (C) 2010 Hippo B.V.
-	
+
 	    Licensed under the Apache License, Version 2.0 (the "License");
 	    you may not use this file except in compliance with the License.
 	    You may obtain a copy of the License at
-	
+
 	            http://www.apache.org/licenses/LICENSE-2.0
-	
+
 	    Unless required by applicable law or agreed to in writing, software
 	    distributed under the License is distributed on an "AS IS" BASIS,
 	    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 	    See the License for the specific language governing permissions and
 	    limitations under the License.
-	
+
 	--&gt;
-	
+
 	&lt;#assign fmt=JspTaglibs["http://java.sun.com/jsp/jstl/fmt"]&gt;
 	&lt;#assign hst=JspTaglibs["http://www.hippoecm.org/jsp/hst/core"]&gt;
-	
+
 	&lt;@hst.defineObjects /&gt;
 	&lt;@hst.link var="signup" path="/signup"/&gt;
 	&lt;div id="text-3" class="widget-wrapper widget_text"&gt;
@@ -2573,26 +2573,26 @@
     </sv:property>
     <sv:property sv:name="hst:script" sv:type="String">
       <sv:value>&lt;#--
-	
+
 	    Copyright (C) 2010 Hippo B.V.
-	
+
 	    Licensed under the Apache License, Version 2.0 (the "License");
 	    you may not use this file except in compliance with the License.
 	    You may obtain a copy of the License at
-	
+
 	            http://www.apache.org/licenses/LICENSE-2.0
-	
+
 	    Unless required by applicable law or agreed to in writing, software
 	    distributed under the License is distributed on an "AS IS" BASIS,
 	    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 	    See the License for the specific language governing permissions and
 	    limitations under the License.
-	
+
 	--&gt;
-	
+
 	&lt;#assign fmt=JspTaglibs["http://java.sun.com/jsp/jstl/fmt"]&gt;
 	&lt;#assign hst=JspTaglibs["http://www.hippoecm.org/jsp/hst/core"]&gt;
-	
+
 	&lt;@hst.defineObjects /&gt;
 	&lt;@hst.link var="forgotpass" path="/forgotpass"/&gt;
 	&lt;div id="text-4" class="widget-wrapper widget_text"&gt;
@@ -2610,26 +2610,26 @@
     </sv:property>
     <sv:property sv:name="hst:script" sv:type="String">
       <sv:value>&lt;#--
-	
+
 	    Copyright (C) 2010 Hippo B.V.
-	
+
 	    Licensed under the Apache License, Version 2.0 (the "License");
 	    you may not use this file except in compliance with the License.
 	    You may obtain a copy of the License at
-	
+
 	            http://www.apache.org/licenses/LICENSE-2.0
-	
+
 	    Unless required by applicable law or agreed to in writing, software
 	    distributed under the License is distributed on an "AS IS" BASIS,
 	    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 	    See the License for the specific language governing permissions and
 	    limitations under the License.
-	
+
 	--&gt;
-	
+
 	&lt;#assign fmt=JspTaglibs["http://java.sun.com/jsp/jstl/fmt"]&gt;
 	&lt;#assign hst=JspTaglibs["http://www.hippoecm.org/jsp/hst/core"]&gt;
-	
+
 	&lt;@hst.defineObjects /&gt;
 	&lt;@hst.link var="login" path="/memberLogin"/&gt;
 	&lt;div id="text-3" class="widget-wrapper widget_text"&gt;
@@ -2647,26 +2647,26 @@
     </sv:property>
     <sv:property sv:name="hst:script" sv:type="String">
       <sv:value>&lt;#--
-	
+
 	    Copyright (C) 2010 Hippo B.V.
-	
+
 	    Licensed under the Apache License, Version 2.0 (the "License");
 	    you may not use this file except in compliance with the License.
 	    You may obtain a copy of the License at
-	
+
 	            http://www.apache.org/licenses/LICENSE-2.0
-	
+
 	    Unless required by applicable law or agreed to in writing, software
 	    distributed under the License is distributed on an "AS IS" BASIS,
 	    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 	    See the License for the specific language governing permissions and
 	    limitations under the License.
-	
+
 	--&gt;
-	
+
 	&lt;#assign fmt=JspTaglibs["http://java.sun.com/jsp/jstl/fmt"]&gt;
 	&lt;#assign hst=JspTaglibs["http://www.hippoecm.org/jsp/hst/core"]&gt;
-	
+
 	&lt;@hst.defineObjects /&gt;
 	&lt;@hst.link var="activationcode" path="/activationcode"/&gt;
 	&lt;div id="text-3" class="widget-wrapper widget_text"&gt;
@@ -2929,7 +2929,7 @@
 	  <sv:property sv:name="hst:renderpath" sv:type="String">
 	    <sv:value>jsp/knowledgearticles/overview.jsp</sv:value>
 	  </sv:property>
-	</sv:node>	
+	</sv:node>
 <sv:node sv:name="clubincome" >
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hst:template</sv:value>
@@ -2963,7 +2963,7 @@
   <sv:property sv:name="hst:renderpath" sv:type="String">
     <sv:value>jsp/member/trdetails.jsp</sv:value>
   </sv:property>
-</sv:node>	
+</sv:node>
 
 <sv:node sv:name="immovableproperty">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
@@ -3083,7 +3083,7 @@
 	  <sv:property sv:name="hst:renderpath" sv:type="String">
 	    <sv:value>jsp/simple/main.re.jsp</sv:value>
 	  </sv:property>
-	</sv:node>  
+	</sv:node>
 	<!--  Amit Patkar 07/16/2013 -->
 	<sv:node sv:name="itr.validate.xml" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
 	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
@@ -3106,7 +3106,7 @@
 	  <sv:property sv:name="hst:renderpath" sv:type="String">
 	    <sv:value>jsp/vendor/itreturnhome.jsp</sv:value>
 	  </sv:property>
-	</sv:node>	
+	</sv:node>
 	<sv:node sv:name="servicerequest-itr-payment" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
 	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
 	    <sv:value>hst:template</sv:value>
@@ -3117,7 +3117,7 @@
 	  <sv:property sv:name="hst:renderpath" sv:type="String">
 	    <sv:value>jsp/member/servicerequest-itr-payment.jsp</sv:value>
 	  </sv:property>
-	</sv:node>	
+	</sv:node>
 	<sv:node sv:name="servicerequest-itr-tos-confirmation" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
 	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
 	    <sv:value>hst:template</sv:value>
@@ -3129,7 +3129,7 @@
 	    <sv:value>jsp/member/servicerequest-itr-tos-confirmation.jsp</sv:value>
 	  </sv:property>
 	</sv:node>
-	<!--  /Amit Patkar 07/16/2013 -->	
+	<!--  /Amit Patkar 07/16/2013 -->
 <sv:node sv:name="contactus">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hst:template</sv:value>
@@ -3141,7 +3141,7 @@
     <sv:value>jsp/member/contactus.jsp</sv:value>
   </sv:property>
 </sv:node>
-	
+
 <sv:node sv:name="hracalculator" >
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hst:template</sv:value>
@@ -3216,7 +3216,7 @@
       <sv:property sv:name="hst:renderpath" sv:type="String">
         <sv:value>jsp/member/itr-schedule-si.jsp</sv:value>
      </sv:property>
-    </sv:node>	
+    </sv:node>
 	<sv:node sv:name="servicerequest-itr-sync-tds-from-dit" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
 	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
 	    <sv:value>hst:template</sv:value>
@@ -3241,7 +3241,7 @@
    </sv:node>
 	<!-- nodes for itr4 -->
 	<!--  node for nature business -->
-	
+
 <sv:node sv:name="businessnature" >
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hst:template</sv:value>
@@ -3253,9 +3253,9 @@
     <sv:value>jsp/member/nature_business.jsp</sv:value>
   </sv:property>
 </sv:node>
-	
+
 	<!-- /naturebusiness -->
-	
+
 <sv:node sv:name="quantitativedetails">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hst:template</sv:value>
@@ -3268,7 +3268,7 @@
   </sv:property>
 </sv:node>
 	<!-- /invoice -->
-	
+
 <sv:node sv:name="memberinvoice">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hst:template</sv:value>
@@ -3281,9 +3281,9 @@
     <sv:value>jsp/member/memberinvoice.jsp</sv:value>
   </sv:property>
 </sv:node>
-	
-	
-	
+
+
+
 <sv:node sv:name="manufacture_rawmaterials" >
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hst:template</sv:value>
@@ -3295,7 +3295,7 @@
     <sv:value>jsp/member/manufacture_rawmaterials.jsp</sv:value>
   </sv:property>
 </sv:node>
-	
+
 <sv:node sv:name="manufacture_finishedgoods">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hst:template</sv:value>
@@ -3367,6 +3367,18 @@
   <sv:property sv:name="hst:renderpath" sv:type="String">
     <sv:value>jsp/member/itr4s/businessprofession.jsp</sv:value>
   </sv:property>
-</sv:node>	
+</sv:node>
 <!-- end of business profession template -->
+<sv:node sv:name="other.information">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:template</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>c6f85d89-516b-410e-90b6-256698c29e81</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:renderpath" sv:type="String">
+    <sv:value>jsp/member/otherinformation.jsp</sv:value>
+  </sv:property>
+</sv:node>
+<!--end of otherinformation-->
 </sv:node>
