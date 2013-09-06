@@ -4454,7 +4454,7 @@
       </sv:node>
     </sv:node>
   </sv:node>
- 
+
 <sv:node sv:name="tcs" >
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hst:component</sv:value>
@@ -4803,7 +4803,7 @@
       </sv:node>
     </sv:node>
   </sv:node>
-  
+
   <!-- invoice -->
  <sv:node sv:name="memberinvoice" >
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
@@ -4838,8 +4838,8 @@
     </sv:node>
   </sv:node>
 </sv:node>
-  
-  
+
+
   <sv:node sv:name="houseincome">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
       <sv:value>hst:component</sv:value>
@@ -7345,7 +7345,7 @@
 	    </sv:node>
 	  </sv:node>
 	</sv:node>
-  
+
   <!--  -->
   <sv:node sv:name="clubincome" >
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
@@ -7440,7 +7440,7 @@
   </sv:node>
 </sv:node>
 
- 
+
 
 <sv:node sv:name="trdetails">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
@@ -7765,7 +7765,7 @@
   </sv:node>
 </sv:node>
 
-  
+
   <sv:node sv:name="knowledgearticles-overview">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
       <sv:value>hst:component</sv:value>
@@ -8142,7 +8142,7 @@
 	      </sv:property>
 	    </sv:node>
 	  </sv:node>
-	</sv:node>	
+	</sv:node>
 	<!--  /Amit Patkar 07/16/2013 -->
 	<!--  Amit PAtkar -->
 	<sv:node sv:name="vendor-itreturn" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
@@ -8194,7 +8194,7 @@
 	      </sv:property>
 	    </sv:node>
 	  </sv:node>
-	</sv:node>	
+	</sv:node>
 	<sv:node sv:name="servicerequest-itr-payment" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
 	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
 	    <sv:value>hst:component</sv:value>
@@ -8227,7 +8227,7 @@
 	      </sv:property>
 	    </sv:node>
 	  </sv:node>
-	</sv:node>	
+	</sv:node>
 	<sv:node sv:name="servicerequest-itr-tos-confirmation" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
 	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
 	    <sv:value>hst:component</sv:value>
@@ -8473,7 +8473,7 @@
 									&lt;/ul&gt;
 									&lt;/div&gt;
 									&lt;/div&gt;
-	
+
 									&lt;div id="text-4" class="widget-wrapper widget_text"&gt;
 									&lt;div class="h3" style="font-weight:bold"&gt;Questions?&lt;/div&gt;
 									&lt;div class="textwidget"&gt;&lt;a
@@ -8491,7 +8491,7 @@
 	    </sv:node>
 	  </sv:node>
 	</sv:node>
-	
+
 	<!-- New pages added for schedule5a by Pankaj Singh -->
 
 	<sv:node sv:name="schedule5a">
@@ -8545,7 +8545,7 @@
 	</sv:node>
 
 	<!--end schedule5a -->
-	
+
 	<!--  new Site map -->
 	<sv:node sv:name="servicerequest-itr-copy-or-move" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
 	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
@@ -8744,7 +8744,7 @@
 <!-- end -->
 	<!--  nodes for itr4 -->
 	<!--  for nature of business -->
-	
+
 <sv:node sv:name="businessnature" >
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hst:component</sv:value>
@@ -8792,7 +8792,7 @@
 </sv:node>
 	<!--  end nature of business -->
 	<!--  page for quantitative details -->
-	
+
 <sv:node sv:name="quantitativedetails">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hst:component</sv:value>
@@ -8840,7 +8840,7 @@
 </sv:node>
 	<!-- /quantitative details -->
 	<!--  -->
-	
+
 <sv:node sv:name="manufacture_rawmaterials">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hst:component</sv:value>
@@ -8886,7 +8886,7 @@
     </sv:node>
   </sv:node>
 </sv:node>
-	
+
 <sv:node sv:name="manufacture_finishedgoods" >
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hst:component</sv:value>
@@ -9206,4 +9206,51 @@
   </sv:node>
 </sv:node>
 <!-- end of business profession -->
+
+<sv:node sv:name="otherinformation">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:component</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>1352217a-d6e9-45ee-bb55-4756b2877299</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+    <sv:value>bodyCss</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+    <sv:value>bodyCssClass</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:referencecomponent" sv:type="String">
+    <sv:value>hst:pages/simplepage.re</sv:value>
+  </sv:property>
+  <sv:node sv:name="main">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>b43f2576-4ca2-4b45-b1e9-f284d8b4e083</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+      <sv:value>contentCssClass</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+      <sv:value>grid-right col-940</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>standard.main.re</sv:value>
+    </sv:property>
+    <sv:node sv:name="content">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>hst:component</sv:value>
+      </sv:property>
+      <sv:property sv:name="jcr:uuid" sv:type="String">
+        <sv:value>ce199411-78ea-4a2a-a7f9-0cf5084352c7</sv:value>
+      </sv:property>
+      <sv:property sv:name="hst:referencecomponent" sv:type="String">
+        <sv:value>hst:components/other-information</sv:value>
+      </sv:property>
+    </sv:node>
+  </sv:node>
+</sv:node>
+<!--end of otherinformation-->
 </sv:node>
