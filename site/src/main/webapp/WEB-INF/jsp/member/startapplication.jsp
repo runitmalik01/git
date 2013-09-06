@@ -336,7 +336,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 							value="${parentBean.flatDoorBuilding}"
 							name="pi_flat_door_building" placeholder="Flat/Door/Building"
 							type="text"
-							value="<c:choose><c:when test="${not empty parentBean.flatDoorBuilding}"><c:out value="${parentBean.flatDoorBuilding}"/></c:when><c:othrewise><c:if test="${not empty retrievePANResponse}"><c:out value="${fn:split(retrievePANResponse.address,' ')[0]}"/></c:if></c:othrewise></c:choose>" maxlength="50"/>
+							value="<c:choose><c:when test="${not empty parentBean.flatDoorBuilding}"><c:out value="${parentBean.flatDoorBuilding}"/></c:when><c:otherwise><c:if test="${not empty retrievePANResponse}"><c:out value="${fn:split(retrievePANResponse.address,' ')[0]}"/></c:if></c:otherwise></c:choose>" maxlength="50"/>
 					</div>
 				</div>
 				<div class="span6">
