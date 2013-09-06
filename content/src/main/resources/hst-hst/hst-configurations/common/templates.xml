@@ -3308,6 +3308,21 @@
   </sv:property>
 </sv:node>
 
+
+
+<!--scheduleud-->
+<sv:node sv:name="scheduleud" >
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:template</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>d29ad55f-7183-4c9a-aba0-4cb3b53129be</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:renderpath" sv:type="String">
+    <sv:value>jsp/member/scheduleud.jsp</sv:value>
+  </sv:property>
+</sv:node>
+
 <sv:node sv:name="firmspartner">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hst:template</sv:value>

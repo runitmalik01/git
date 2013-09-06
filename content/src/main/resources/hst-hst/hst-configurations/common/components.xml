@@ -1701,6 +1701,28 @@
   </sv:property>
 </sv:node>
 
+
+<!-- schedule ud-->
+
+<sv:node sv:name="scheduleud">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:component</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>653afa82-d35b-4f6d-8918-79d84004b2aa</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:componentclassname" sv:type="String">
+    <sv:value>com.mootly.wcm.member.ScheduleUD</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:template" sv:type="String">
+    <sv:value>scheduleud</sv:value>
+  </sv:property>
+</sv:node>
+
+
+
+
+
 <sv:node sv:name="firmspartner">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hst:component</sv:value>
