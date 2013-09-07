@@ -22,6 +22,7 @@
 			</c:when>
 			<c:otherwise>Invoice Details</c:otherwise>
 		</c:choose>
+		- <c:out value="${parentBean.invoiceNumber}"/>
 	</h3>
 	<c:if test="${not empty formMap}">
 		<c:forEach items="${formMap.message}" var="item">
@@ -48,10 +49,10 @@
 						</div>
 						<div class="span4">
 							<div class="rowlabel">
-								<select name="services" id="services">
+								<select name="serviceName" id="services">
 											<option value="">-Select-</option>
 											<c:forEach var="serviceList" items="${serviceDocumentList}">
-												 <option value="${serviceList.name}" <c:if test="${pageAction == 'EDIT_CHILD' && serviceList.name == childBean.services}">selected</c:if>>
+												 <option value="${serviceList.name}" <c:if test="${pageAction == 'EDIT_CHILD' && serviceList.name == childBean.serviceName}">selected</c:if>>
                                                       <c:out value="${serviceList.name}" />
                                                </option>
 											</c:forEach>
@@ -79,6 +80,22 @@
 							</div>
 						</div>
 					</div>
+				    <div class="row-fluid show-grid letout_L_v letout_S_h"
+						style="dispaly: none;">
+						<div class="span9">
+							<div class="rowlabel">
+								<label for="quantity">Rate</label>
+							</div>
+						</div>
+						<div class="span3">
+							<div class="rowlabel">
+								<input id="serviceRate" name="serviceRate" placeholder="Rate"
+									type="text"
+									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.serviceRate}"/></c:if>" />
+
+							</div>
+						</div>
+					</div>					
 					<div class="row-fluid show-grid letout_L_v letout_S_h"
 						style="dispaly: none;">
 						<div class="span9">
@@ -88,9 +105,9 @@
 						</div>
 						<div class="span3">
 							<div class="rowlabel">
-								<input id="quantity" name="quantity" placeholder="Quantity"
+								<input id="quantity" name="serviceQty" placeholder="Quantity"
 									type="text"
-									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.quantity}"/></c:if>" />
+									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.serviceQty}"/></c:if>" />
 
 							</div>
 						</div>
@@ -107,7 +124,7 @@
 							<div class="rowlabel">
 								<input id="amount" name="amount" placeholder="Amount"
 									type="text"
-									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.amount}"/></c:if>" />
+									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.serviceAmount}"/></c:if>" />
 							</div>
 						</div>
 					</div>
@@ -141,14 +158,15 @@
 						var="invoicedetail">
 						<tr align="center">
 						<tr>
-							<td><c:out value="${invoicedetail.services}" />
+							<td><c:out value="${invoicedetail.serviceName}" />
 							</td>
 							<td><c:out value="${invoicedetail.filingMode}" />
 							</td>
-							<td><c:out value="${invoicedetail.quantity}" />
+							<td><c:out value="${invoicedetail.serviceQty}" />
 							</td>
-							<td><c:out value="${invoicedetail.amount}" />
+							<td><c:out value="${invoicedetail.serviceRate}" />
 							</td>
+							<td><c:out value="${invoicedetail.serviceAmount}" /></td>
 							<td><a class="btn btn-primary"
 								href="${scriptName}/<c:out value="${invoicedetail.canonicalUUID}"/>/memberinvoiceedit"><small><i
 										class="icon-pencil icon-white"></i>Edit</small> </a>&nbsp;&nbsp;<a

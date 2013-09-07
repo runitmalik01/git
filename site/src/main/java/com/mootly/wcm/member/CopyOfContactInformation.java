@@ -12,8 +12,10 @@ package com.mootly.wcm.member;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
+
 import org.apache.commons.lang.StringUtils;
 import org.hippoecm.hst.content.beans.ObjectBeanManagerException;
 import org.hippoecm.hst.content.beans.ObjectBeanPersistenceException;
@@ -25,6 +27,7 @@ import org.hippoecm.hst.core.component.HstResponse;
 import org.hippoecm.repository.reviewedactions.FullReviewedActionsWorkflow;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import com.mootly.wcm.beans.MemberContactInformation;
 import com.mootly.wcm.components.BaseComponent;
 import com.mootly.wcm.utils.ContentStructure;

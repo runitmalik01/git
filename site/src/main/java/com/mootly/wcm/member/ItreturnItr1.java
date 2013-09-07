@@ -4,7 +4,6 @@ package com.mootly.wcm.member;
 import org.hippoecm.hst.core.component.HstComponentException;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
-import org.hippoecm.hst.core.request.ResolvedSiteMapItem;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

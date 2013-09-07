@@ -10,7 +10,8 @@ import java.lang.annotation.Target;
 @Target({ElementType.TYPE,ElementType.METHOD})
 public @interface FormField {
 	String name();
-	String propertyName();
-	DataTypeValidationType[] dataTypeValidationTypes();
+	String propertyName() default "";
+	DataTypeValidationType[] dataTypeValidationTypes() default {};
 	String format() default "";
+	Class<? extends Object> convert() default String.class;
 }

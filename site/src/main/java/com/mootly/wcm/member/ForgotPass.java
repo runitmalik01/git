@@ -22,7 +22,6 @@ import com.mootly.wcm.beans.EmailMessage;
 import com.mootly.wcm.beans.EmailTemplate;
 import com.mootly.wcm.beans.MemberSignupDocument;
 import com.mootly.wcm.beans.compound.SecurityQuestionAnswerValueList;
-import com.mootly.wcm.beans.compound.ValueListDocumentDetail;
 import com.mootly.wcm.components.BaseComponent;
 import com.mootly.wcm.services.SecureHashGeneration;
 import com.mootly.wcm.utils.ContentStructure;

@@ -7,14 +7,9 @@
  */
 package com.mootly.wcm.member;
 
-import java.util.Map;
-
-import org.hippoecm.hst.component.support.forms.FormMap;
-import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.core.component.HstComponentException;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
-import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -25,10 +20,8 @@ import com.mootly.wcm.annotations.FormFields;
 import com.mootly.wcm.annotations.PrimaryBean;
 import com.mootly.wcm.annotations.RequiredFields;
 import com.mootly.wcm.beans.HouseProperty;
-import com.mootly.wcm.beans.ScreenCalculation;
 import com.mootly.wcm.beans.compound.HouseIncomeDetail;
 import com.mootly.wcm.components.ITReturnComponent;
-import com.mootly.wcm.services.ScreenCalculatorService;
 
 @PrimaryBean(primaryBeanClass=HouseProperty.class)
 @ChildBean(childBeanClass=HouseIncomeDetail.class)

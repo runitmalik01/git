@@ -38,6 +38,10 @@ import org.hippoecm.hst.content.beans.Node;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 
 import com.mootly.wcm.annotations.TagAsTaxDataProvider;
 import com.mootly.wcm.annotations.TagAsTaxDataProvider.TaxDataProviderType;
@@ -45,6 +49,7 @@ import com.mootly.wcm.beans.compound.InvoiceDocumentDetail;
 import com.mootly.wcm.beans.standard.FlexibleDocument;
 import com.mootly.wcm.model.InvoicePaymentStatus;
 import com.mootly.wcm.model.PaymentVerificationStatus;
+import com.mootly.wcm.services.SequenceGenerator;
 
 @SuppressWarnings("unused")
 @Node(jcrType = "mootlywcm:invoicedocument")
@@ -63,6 +68,8 @@ public class InvoiceDocument extends FlexibleDocument implements ContentNodeBind
 	/** is the invoice paid fully */
 	private Boolean isPaid;
 	private List<MemberPayment> listOfMemberPayment;
+	
+	@Autowired ApplicationContext applicationContext;
 
 	public final String getInvoiceNumber() {
 		if (invoiceNumber == null) invoiceNumber = getProperty("mootlywcm:invoiceNumber");
@@ -115,6 +122,11 @@ public class InvoiceDocument extends FlexibleDocument implements ContentNodeBind
 		// TODO Auto-generated method stub
 		try {
 			InvoiceDocument invoiceDocument = (InvoiceDocument) content;
+			
+			
+			if (content != null && invoiceDocument.getInvoiceNumber() != null) {
+				node.setProperty("mootlywcm:invoiceNumber",invoiceDocument.getInvoiceNumber());
+			}
 
 			NodeIterator nodeIterator = node.getNodes(PROP_DETAIL_BEAN);
 			if (nodeIterator != null) {

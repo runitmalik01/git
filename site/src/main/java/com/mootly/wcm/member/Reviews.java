@@ -6,14 +6,11 @@
 
 package com.mootly.wcm.member;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.jcr.Session;
 
-import org.apache.commons.lang.StringUtils;
 import org.hippoecm.hst.content.beans.ObjectBeanPersistenceException;
 import org.hippoecm.hst.content.beans.manager.workflow.WorkflowCallbackHandler;
 import org.hippoecm.hst.content.beans.manager.workflow.WorkflowPersistenceManager;
@@ -27,18 +24,15 @@ import org.hippoecm.hst.core.component.HstComponentException;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
 import org.hippoecm.hst.core.parameters.ParametersInfo;
-import org.hippoecm.hst.core.request.ResolvedSiteMapItem;
 import org.hippoecm.hst.util.ContentBeanUtils;
 import org.hippoecm.repository.reviewedactions.FullReviewedActionsWorkflow;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.mootly.wcm.beans.Product;
 import com.mootly.wcm.beans.Review;
 import com.mootly.wcm.components.BaseComponent;
 import com.mootly.wcm.components.products.ProductDetailParamInfo;
 import com.mootly.wcm.utils.Constants;
-import com.mootly.wcm.utils.ContentStructure;
 import com.mootly.wcm.utils.GoGreenUtil;
 
 @ParametersInfo(type = ProductDetailParamInfo.class)

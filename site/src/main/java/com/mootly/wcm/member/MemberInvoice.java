@@ -3,14 +3,13 @@ package com.mootly.wcm.member;
 
 import java.util.List;
 
-import org.hippoecm.hst.component.support.forms.FormField;
-import org.hippoecm.hst.component.support.forms.FormMap;
-import org.hippoecm.hst.content.beans.ObjectBeanManagerException;
-import org.hippoecm.hst.content.beans.standard.HippoFolder;
-import org.hippoecm.hst.content.beans.standard.HippoFolderBean;
+import javax.servlet.ServletContext;
+
+import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.core.component.HstComponentException;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
+import org.hippoecm.hst.core.request.ComponentConfiguration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -20,9 +19,10 @@ import com.mootly.wcm.annotations.FormFields;
 import com.mootly.wcm.annotations.PrimaryBean;
 import com.mootly.wcm.annotations.RequiredFields;
 import com.mootly.wcm.beans.InvoiceDocument;
-import com.mootly.wcm.beans.Service;
 import com.mootly.wcm.beans.compound.InvoiceDocumentDetail;
+import com.mootly.wcm.beans.events.BeanLifecycle;
 import com.mootly.wcm.components.ITReturnComponent;
+import com.mootly.wcm.model.SORT_DIRECTION;
 import com.mootly.wcm.services.SequenceGenerator;
 
 /**
@@ -32,46 +32,35 @@ import com.mootly.wcm.services.SequenceGenerator;
  */
 @PrimaryBean(primaryBeanClass=InvoiceDocument.class)
 @ChildBean(childBeanClass=InvoiceDocumentDetail.class)
-@FormFields(fieldNames={"services", "filingMode", "quantity", "amount", "invoiceNumber"})
+@FormFields(fieldNames={"serviceName", "serviceDesc", "serviceQty", "serviceRate","filingMode"})
 @RequiredFields(fieldNames={})
 @DataTypeValidationFields(fieldNames={},dataTypes={})
 public class MemberInvoice extends ITReturnComponent {
 
 	private static final Logger log = LoggerFactory.getLogger(MemberInvoice.class);
-
+	
+	@Override
+	public void init(ServletContext servletContext,
+			ComponentConfiguration componentConfig)
+			throws HstComponentException {
+		// TODO Auto-generated method stub
+		super.init(servletContext, componentConfig);
+	}
+	
 	public void doBeforeRender(HstRequest request, HstResponse response) {
 		// TODO Auto-generated method stub
-		super.doBeforeRender(request, response);
-		if(log.isInfoEnabled()){
-			log.info("this is do before render of clubbing of income");
-		}
-		try {
-			//HippoBean serviceHippoBean = getContentBean(request);
-			//serviceHippoBean.getChildBeans(com.mootly.wcm.beans.Service.class);
-			String createPathTogetServiceNode = request.getRequestContext().getResolvedMount().getMount().getCanonicalContentPath()+"/services";
-			HippoFolder wealth4IndiaServiceFolder = (HippoFolder) getObjectBeanManager(request).getObject(createPathTogetServiceNode);
-			List<com.mootly.wcm.beans.Service> serviceDocumentList = wealth4IndiaServiceFolder.getChildBeans(com.mootly.wcm.beans.Service.class);
-			List<HippoFolderBean> weath4IndiaSubServiceFolders = wealth4IndiaServiceFolder.getFolders();
-			//Not a right way to do this need to find an alternative to find all child nodes.
-			for(HippoFolderBean hippoFdBean:weath4IndiaSubServiceFolders){
-				if(hippoFdBean.getDocumentSize()==0||hippoFdBean.getDocumentSize() < 0){
-					for(HippoFolderBean subHippoFolderBean:hippoFdBean.getFolders()){
-						if(subHippoFolderBean.getDocumentSize()==0||subHippoFolderBean.getDocumentSize() < 0){
-							log.info("Still looking for somthing");
-						}else{
-							serviceDocumentList.addAll(subHippoFolderBean.getChildBeans(com.mootly.wcm.beans.Service.class));
-						}
-					}
-				}else{
-					serviceDocumentList.addAll(hippoFdBean.getChildBeans(com.mootly.wcm.beans.Service.class));
+		super.doBeforeRender(request, response);		
+		List<HippoBean> serviceDocumentList = loadAllBeansUnderTheFolder(request,response,"services","mootlywcm:Name",SORT_DIRECTION.ASC);
+		if (log.isInfoEnabled()) {
+			if (serviceDocumentList != null && serviceDocumentList.size() > 0) {
+				for (HippoBean theServiceBean:serviceDocumentList) {
+					log.info("The Key:" + theServiceBean + " ---- class name :" + theServiceBean.getClass().getSimpleName());						
 				}
 			}
-			request.setAttribute("serviceDocumentList", serviceDocumentList);
-		} catch (ObjectBeanManagerException e) {
-			// TODO Auto-generated catch block
-			log.error("Error while get the object at siteContentBasePath",e);
 		}
-
+		if (serviceDocumentList != null && serviceDocumentList.size() > 0) {
+			request.setAttribute("serviceDocumentList", serviceDocumentList);
+		}
 	}
 	@Override
 	public void doAction(HstRequest request, HstResponse response) throws HstComponentException {
@@ -79,21 +68,60 @@ public class MemberInvoice extends ITReturnComponent {
 		super.doAction(request, response);
 
 	} 
-
+	
 	@Override
-	public boolean beforeSave(HstRequest request) {
+	protected BeanLifecycle<HippoBean> getParentBeanLifeCycleHandler() {
 		// TODO Auto-generated method stub
-		super.beforeSave(request);
-		FormMap existingMap = getFormMap();
-		PAGE_ACTION pageAction = getPageAction();
-		SequenceGenerator sequenceGenerator = getSequenceGenerator();
-		if (pageAction != null && pageAction == PAGE_ACTION.NEW_CHILD) {
-			FormField invoiceNumberField = new FormField("invoiceNumber");
-			Long invoiceNumber = sequenceGenerator.getNextId(SequenceGenerator.SEQUENCE_INVOICE);
-			invoiceNumberField.addValue(String.valueOf(invoiceNumber));
-			existingMap.addFormField(invoiceNumberField);
+		return new InvoiceDocumentBeanHandler();
+	}
+/**
+ * This class is responsible to inject the invoice number every time an invoice is created
+ * @author admin
+ *
+ */
+	class InvoiceDocumentBeanHandler implements BeanLifecycle<HippoBean> {
+	
+		@Override
+		public void beforeCreate(HippoBean hippoBean) {
+			// TODO Auto-generated method stub
+			
 		}
-		return true;
+
+		@Override
+		public void afterCreate(HippoBean hippoBean) {
+			// TODO Auto-generated method stub
+			// TODO Auto-generated method stub
+			SequenceGenerator sequenceGenerator = getSequenceGenerator();
+			Long invoiceNumber = sequenceGenerator.getNextId(SequenceGenerator.SEQUENCE_INVOICE);
+			if (hippoBean != null && hippoBean instanceof InvoiceDocument) {
+				InvoiceDocument invoiceDocument = (InvoiceDocument) hippoBean;
+				invoiceDocument.setInvoiceNumber(String.valueOf(invoiceNumber));
+			}
+		}
+
+		@Override
+		public boolean beforeSaveNewBean(HippoBean hippoBean) {
+			// TODO Auto-generated method stub
+			return false;
+		}
+
+		@Override
+		public void afterSaveNewBean(HippoBean hippoBean) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public boolean beforeUpdate(HippoBean hippoBean) {
+			// TODO Auto-generated method stub
+			return false;
+		}
+
+		@Override
+		public void afterUpdate(HippoBean hippoBean) {
+			// TODO Auto-generated method stub
+			
+		}
 	}
 }
 

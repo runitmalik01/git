@@ -37,12 +37,18 @@ import org.hippoecm.hst.content.beans.standard.HippoMirror;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.mootly.wcm.annotations.BeanClone;
+import com.mootly.wcm.annotations.FormField;
+import com.mootly.wcm.annotations.NodeBinder;
 import com.mootly.wcm.annotations.TagAsTaxDataProvider;
 import com.mootly.wcm.annotations.TagAsTaxDataProvider.TaxDataProviderType;
 import com.mootly.wcm.beans.BaseDocument;
 import com.mootly.wcm.beans.FormMapFiller;
 import com.mootly.wcm.beans.HouseProperty;
 import com.mootly.wcm.beans.standard.FlexibleDocument;
+import com.mootly.wcm.services.FormMapHelper;
+import com.mootly.wcm.utils.BeanCloneHelper;
+import com.mootly.wcm.utils.NodeBinderHelper;
 
 
 @SuppressWarnings("unused")
@@ -51,100 +57,113 @@ import com.mootly.wcm.beans.standard.FlexibleDocument;
 public class InvoiceDocumentDetail extends FlexibleDocument implements FormMapFiller {
 	static final public String NODE_NAME = InvoiceDocumentDetail.class.getName().toLowerCase();
 	private final static Logger log = LoggerFactory.getLogger(InvoiceDocumentDetail.class); 
-	private String services;
-	private String filingMode; 
-	private String amount;
-	private String quantity;
-	private boolean markedForDeletion;
 
-	public final boolean isMarkedForDeletion() {
-		return markedForDeletion;
-	}
-	public final void setMarkedForDeletion(boolean markedForDeletion) {
-		this.markedForDeletion = markedForDeletion;
+	private String serviceName;
+	private String serviceDesc;
+	private Double serviceQty;
+	private Double serviceRate;
+	private Double serviceAmount;
+	
+	private String filingMode; 
+	private boolean markedForDeletion;
+	
+	@FormField(name="serviceName",propertyName="serviceName",dataTypeValidationTypes={})
+	@NodeBinder(nodePropertyName="mootlywcm:serviceName",propertyName="serviceName")
+	@BeanClone(propertyName="serviceName")
+	public final String getServiceName() {
+		if (serviceName == null) NodeBinderHelper.setObjectProperty("serviceName", this, "");
+		return serviceName;
 	}
 	
-	public final String getAmount() {
-		if (amount == null) amount = getProperty("mootlywcm:amount");
-		return amount;
+	@FormField(name="serviceDesc",propertyName="serviceDesc",dataTypeValidationTypes={})
+	@NodeBinder(nodePropertyName="mootlywcm:serviceDescription",propertyName="serviceDesc")
+	@BeanClone(propertyName="serviceDesc")
+	public final String getServiceDesc() {
+		return serviceDesc;
 	}
 	
-	public final void setAmount(String amount) {
-		this.amount = amount;
+	@FormField(name="serviceQty",propertyName="serviceQty",dataTypeValidationTypes={},convert = Double.class)
+	@NodeBinder(nodePropertyName="mootlywcm:serviceQuantity",propertyName="serviceQty")
+	@BeanClone(propertyName="serviceQty")
+	public final Double getServiceQty() {
+		return serviceQty;
 	}
-	public final String getQuantity() {
-		if (quantity == null) quantity = getProperty("mootlywcm:quantity");
-		return quantity;
+
+	@FormField(name="serviceRate",propertyName="serviceRate",dataTypeValidationTypes={},convert = Double.class)
+	@NodeBinder(nodePropertyName="mootlywcm:serviceRate",propertyName="serviceRate")
+	@BeanClone(propertyName="serviceRate")
+	public final Double getServiceRate() {
+		if (serviceRate == null) NodeBinderHelper.setObjectProperty("serviceRate", this, 0.00D);
+		return serviceRate;
 	}
 	
-	public final void setQuantity(String quantity) {
-		this.quantity = quantity;
-	}
-	
+	@FormField(name="filingMode",propertyName="filingMode",dataTypeValidationTypes={})
+	@NodeBinder(nodePropertyName="mootlywcm:filingMode",propertyName="filingMode")
+	@BeanClone(propertyName="filingMode")
 	public final String getFilingMode() {
-		if (filingMode == null) filingMode = getProperty("mootlywcm:mode");
+		if (filingMode == null) NodeBinderHelper.setObjectProperty("filingMode", this, "");
 		return filingMode;
 	}
 	
-	public final String getServices() {
-		if (services == null) services = getProperty("mootlywcm:services");
-		return services;
+	public Double getServiceAmount() {
+		return serviceAmount;
 	}
 	
-	public final void setServices(String services) {
-		this.services = services;
+	public final void setServiceName(String serviceName) {
+		this.serviceName = serviceName;
+	}
+
+	public final void setServiceDesc(String serviceDesc) {
+		this.serviceDesc = serviceDesc;
+	}
+	
+	public final void setServiceQty(Double serviceQty) {
+		this.serviceQty = serviceQty;
+	}
+
+	public final void setServiceRate(Double serviceRate) {
+		this.serviceRate = serviceRate;
 	}
 
 	public final void setFilingMode(String filingMode) {
 		this.filingMode = filingMode;
 	}
+	
+	public void setServiceAmount(Double serviceAmount) {
+		this.serviceAmount = serviceAmount;
+	}
 
+	public final boolean isMarkedForDeletion() {
+		return markedForDeletion;
+	}
+	
+	public final void setMarkedForDeletion(boolean markedForDeletion) {
+		this.markedForDeletion = markedForDeletion;
+	}
 	
 	public boolean bindToNode(javax.jcr.Node node) throws ContentNodeBindingException {
 		// TODO Auto-generated method stub
-		try {
-			log.info("this is bean");
-			//HouseProperty memberSignup = (HouseProperty) ;
-			 node.setProperty("mootlywcm:quantity",getQuantity());
-			node.setProperty("mootlywcm:amount",getAmount());
-			 node.setProperty("mootlywcm:services",getServices());
-			 node.setProperty("mootlywcm:mode",getFilingMode());
-		}catch (RepositoryException re) {
-			log.error("Binding Node Error",re);
-
-		}
+		//try {
+		super.bindToNode(node);
+		NodeBinderHelper nodeBinderHelper = new NodeBinderHelper();
+		nodeBinderHelper.bindObjectToNode(node, this);
 		return true;
 	}
+	
 	@Override
 	public void fill(FormMap formMap) {
 		// TODO Auto-generated method stub
 		if (formMap == null) return;
-		
-		if (formMap.getField("filingMode") != null){
-			log.info("value"+formMap.getField("filingMode").getValue());
-			setFilingMode(formMap.getField("filingMode").getValue());
-		}
-		if (formMap.getField("services") != null){
-			log.info("value"+formMap.getField("services").getValue());
-			setServices(formMap.getField("services").getValue());
-		}
-		if (formMap.getField("quantity") != null){
-			log.info("value"+formMap.getField("quantity").getValue());
-			setQuantity(formMap.getField("quantity").getValue());
-		}
-		if (formMap.getField("amount") != null){
-			log.info("value"+formMap.getField("amount").getValue());
-			setAmount(formMap.getField("amount").getValue());
-		}
+		super.fill(formMap);
+		FormMapHelper formMapHelper = new FormMapHelper();
+		formMapHelper.fillFromFormMap(this, formMap);
 	}
 
-
+	
 	public <T extends HippoBean> void cloneBean(T sourceBean) {
 		InvoiceDocumentDetail objinvoiceDetail = (InvoiceDocumentDetail) sourceBean;
-		setQuantity(objinvoiceDetail.getQuantity());
-		setAmount(objinvoiceDetail.getAmount());
-		setFilingMode(objinvoiceDetail.getFilingMode());
-		setServices(objinvoiceDetail.getServices());
-		
-	};
+		super.cloneBean(sourceBean);
+		BeanCloneHelper beanCloneHelper = new BeanCloneHelper();
+		beanCloneHelper.cloneTheBean(sourceBean,this);
+	}
 }

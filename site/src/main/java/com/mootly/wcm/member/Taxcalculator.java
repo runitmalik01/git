@@ -1,21 +1,12 @@
 package com.mootly.wcm.member;
 
-import java.io.IOException;
-import java.sql.ResultSet;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
-import javax.servlet.ServletContext;
-
-import org.apache.commons.digester.SetRootRule;
 import org.hippoecm.hst.component.support.forms.FormMap;
-import org.hippoecm.hst.component.support.forms.FormUtils;
 import org.hippoecm.hst.content.beans.manager.workflow.WorkflowCallbackHandler;
 import org.hippoecm.hst.core.component.HstComponentException;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
-import org.hippoecm.hst.core.request.ComponentConfiguration;
 import org.hippoecm.repository.reviewedactions.FullReviewedActionsWorkflow;
 import org.json.JSONObject;
 import org.slf4j.Logger;
@@ -23,7 +14,6 @@ import org.slf4j.LoggerFactory;
 
 import com.mootly.wcm.components.BaseComponent;
 import com.mootly.wcm.services.ScreenCalculatorService;
-import com.mootly.wcm.utils.GoGreenUtil;
 
 public class Taxcalculator extends BaseComponent {
 	private static final Logger log = LoggerFactory.getLogger(Taxcalculator.class);

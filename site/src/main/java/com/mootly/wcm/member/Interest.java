@@ -9,9 +9,6 @@
 package com.mootly.wcm.member;
 
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Calendar;
 import java.util.Date;
@@ -20,7 +17,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.TimeZone;
 
-import javax.jcr.Session;
+import org.hippoecm.hst.core.component.HstComponentException;
+import org.hippoecm.hst.core.component.HstRequest;
+import org.hippoecm.hst.core.component.HstResponse;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.mootly.wcm.annotations.AdditionalBeans;
 import com.mootly.wcm.annotations.FormFields;
@@ -52,15 +53,7 @@ import com.mootly.wcm.model.deduction.DeductionSection;
 import com.mootly.wcm.services.DeductionListService;
 import com.mootly.wcm.services.IndianCurrencyHelper;
 import com.mootly.wcm.services.ScreenCalculatorService;
-import com.mootly.wcm.utils.ContentStructure;
 import com.mootly.wcm.utils.XmlCalculation;
-
-import org.hippoecm.hst.content.beans.ObjectBeanManagerException;
-import org.hippoecm.hst.core.component.HstComponentException;
-import org.hippoecm.hst.core.component.HstRequest;
-import org.hippoecm.hst.core.component.HstResponse;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 @PrimaryBean(primaryBeanClass=InterestDoc.class)
 @AdditionalBeans(additionalBeansToLoad={MemberPersonalInformation.class,MemberContactInformation.class,SalaryIncomeDocument.class,

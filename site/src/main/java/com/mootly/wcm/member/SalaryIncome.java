@@ -9,11 +9,6 @@
 
 package com.mootly.wcm.member;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-
 import org.hippoecm.hst.core.component.HstComponentException;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
@@ -32,7 +27,6 @@ import com.mootly.wcm.beans.MemberPersonalInformation;
 import com.mootly.wcm.beans.SalaryIncomeDocument;
 import com.mootly.wcm.beans.compound.SalaryIncomeDetail;
 import com.mootly.wcm.components.ITReturnComponent;
-import com.mootly.wcm.utils.ContentStructure;
 @PrimaryBean(primaryBeanClass=SalaryIncomeDocument.class)
 @ChildBean(childBeanClass=SalaryIncomeDetail.class)
 @AdditionalBeans(additionalBeansToLoad=MemberPersonalInformation.class)

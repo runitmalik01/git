@@ -12,8 +12,6 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 
 import javax.jcr.Session;
 import javax.transaction.SystemException;
@@ -30,7 +28,6 @@ import com.mootly.wcm.beans.InterestDocument;
 import com.mootly.wcm.beans.MemberDeductionScheduleVIA;
 import com.mootly.wcm.beans.MemberPersonalInformation;
 import com.mootly.wcm.beans.MemberRebateSectionEightyNine;
-import com.mootly.wcm.beans.OtherSourceIncome;
 import com.mootly.wcm.beans.OtherSourcesDocument;
 import com.mootly.wcm.beans.RebateSec90Document;
 import com.mootly.wcm.beans.SalaryIncomeDocument;

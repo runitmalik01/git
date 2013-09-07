@@ -2,7 +2,6 @@ package com.mootly.wcm.member;
 
 
 import java.util.Calendar;
-import java.util.GregorianCalendar;
 
 public class MonthCalculate {
   /* public static void main(String[] args) {

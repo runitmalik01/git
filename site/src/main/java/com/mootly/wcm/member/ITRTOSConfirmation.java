@@ -9,8 +9,6 @@ import org.hippoecm.hst.core.component.HstResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.mootly.wcm.annotations.AdditionalBeans;
-import com.mootly.wcm.beans.MemberPersonalInformation;
 import com.mootly.wcm.components.ITReturnComponent;
 import com.mootly.wcm.utils.MootlyFormUtils;
 

@@ -126,6 +126,33 @@ public class FlexibleDocument extends BaseDocument implements FormMapFiller {
 		return theReturnValue;
 	}
 	
+	public static Value getValueFromDataType(Object fieldValue) throws ParseException {		
+		ValueFactory vf = ValueFactoryImpl.getInstance();
+		Value theReturnValue = null;
+		if (fieldValue instanceof String){
+			theReturnValue = vf.createValue( (String) fieldValue);
+		}
+		else if (fieldValue instanceof Double) {
+			theReturnValue = vf.createValue((Double) fieldValue);
+		}
+		else if (fieldValue instanceof Long) {
+			theReturnValue = vf.createValue((Long)fieldValue);
+		}
+		else if (fieldValue instanceof Integer) {
+			theReturnValue = vf.createValue((Integer) fieldValue);
+		}
+		else if (fieldValue instanceof Boolean ) {
+			theReturnValue = vf.createValue( (Boolean) fieldValue );
+		}
+		else if (fieldValue instanceof BigDecimal) {
+			theReturnValue = vf.createValue(BigDecimal.valueOf( (Double)fieldValue));
+		}
+		else if ( fieldValue instanceof Calendar )  {
+			theReturnValue = vf.createValue( (Calendar) fieldValue  );
+		}
+		return theReturnValue;
+	}
+	
 	//public Map<String, Value> getValueOfFlexFields() {
 	//	return getValueOfFlexFields(node);
 	//}

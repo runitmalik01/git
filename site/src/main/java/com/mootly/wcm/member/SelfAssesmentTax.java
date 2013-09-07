@@ -9,7 +9,6 @@ import org.slf4j.LoggerFactory;
 
 import com.mootly.wcm.annotations.ChildBean;
 import com.mootly.wcm.annotations.DataTypeValidationFields;
-import com.mootly.wcm.annotations.DataTypeValidationHelper;
 import com.mootly.wcm.annotations.DataTypeValidationType;
 import com.mootly.wcm.annotations.FormFields;
 import com.mootly.wcm.annotations.PrimaryBean;

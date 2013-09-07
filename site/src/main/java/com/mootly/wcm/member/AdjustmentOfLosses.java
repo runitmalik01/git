@@ -10,29 +10,22 @@
 package com.mootly.wcm.member;
 
 import java.text.DateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Map;
-import java.util.TimeZone;
 
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
-import javax.jcr.SimpleCredentials;
 
 import org.apache.commons.lang.StringUtils;
 import org.hippoecm.hst.component.support.forms.FormMap;
 import org.hippoecm.hst.content.beans.ObjectBeanManagerException;
 import org.hippoecm.hst.content.beans.ObjectBeanPersistenceException;
-import org.hippoecm.hst.content.beans.manager.workflow.WorkflowCallbackHandler;
 import org.hippoecm.hst.content.beans.manager.workflow.WorkflowPersistenceManager;
 import org.hippoecm.hst.core.component.HstComponentException;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
-import org.hippoecm.repository.api.WorkflowManager;
-import org.hippoecm.repository.reviewedactions.FullReviewedActionsWorkflow;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -41,22 +34,16 @@ import com.mootly.wcm.annotations.ChildBean;
 import com.mootly.wcm.annotations.FormFields;
 import com.mootly.wcm.annotations.PrimaryBean;
 import com.mootly.wcm.annotations.RequiredBeans;
-import com.mootly.wcm.annotations.RequiredFields;
-import com.mootly.wcm.beans.compound.AdjustmentOfLossesCom;
-import com.mootly.wcm.beans.compound.FormSixteenDetail;
-import com.mootly.wcm.beans.compound.HouseIncomeDetail;
 import com.mootly.wcm.beans.AdjustmentOfLossesDoc;
 import com.mootly.wcm.beans.BaseDocument;
 import com.mootly.wcm.beans.HouseProperty;
 import com.mootly.wcm.beans.MemberPersonalInformation;
+import com.mootly.wcm.beans.compound.AdjustmentOfLossesCom;
+import com.mootly.wcm.beans.compound.HouseIncomeDetail;
 import com.mootly.wcm.components.ITReturnComponent;
-import com.mootly.wcm.components.ITReturnScreen.PAGE_ACTION;
 import com.mootly.wcm.components.InvalidNavigationException;
 import com.mootly.wcm.model.FinancialYear;
 import com.mootly.wcm.model.ITRScheduleCFLSections;
-import com.mootly.wcm.model.ITRScheduleSISections;
-import com.mootly.wcm.model.ResidentStatus;
-import com.mootly.wcm.services.IndianCurrencyHelper;
 
 @PrimaryBean(primaryBeanClass=AdjustmentOfLossesDoc.class)
 @ChildBean(childBeanClass=AdjustmentOfLossesCom.class)
