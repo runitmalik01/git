@@ -3419,4 +3419,19 @@
   </sv:property>
 </sv:node>
 <!-- end of itr-ded-schedule-10a -->
+<!-- itr4 sch bp -->
+
+<sv:node sv:name="incomebusinessprofession" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:template</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>3450e63f-35fd-4ad9-aef1-ac8bb9d871e9</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:renderpath" sv:type="String">
+    <sv:value>jsp/member/income_businessprofession.jsp</sv:value>
+  </sv:property>
+</sv:node>
+
+<!--  itr4 sch bp -->
 </sv:node>

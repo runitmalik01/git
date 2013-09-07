@@ -1860,4 +1860,24 @@
   </sv:property>
 </sv:node>
 <!-- endo of itr-ded-schedule-10a -->
+<!-- sch bp itr4 -->
+
+<sv:node sv:name="incomebusinessprofession" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:component</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>114c9753-ea39-4e0b-94a2-ac38eb9a9673</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:componentclassname" sv:type="String">
+    <sv:value>com.mootly.wcm.member.IncomeBusinessProfession</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String"/>
+  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String"/>
+  <sv:property sv:name="hst:template" sv:type="String">
+    <sv:value>incomebusinessprofession</sv:value>
+  </sv:property>
+</sv:node>
+
+<!--  sch bp itr4 -->
 </sv:node>
