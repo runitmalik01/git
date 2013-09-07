@@ -455,6 +455,8 @@ orderable
 [mootlywcm:firmspartnerdetail] > hippo:compound, hippostd:relaxed orderable
 [mootlywcm:balancesheetdocument] > hippostd:relaxed, mootlywcm:basedocument
   orderable
+  [mootlywcm:incbusinessprofessiondoc] > hippostd:relaxed, mootlywcm:basedocument
+  orderable
   [mootlywcm:profitandlossdocument] > hippostd:relaxed, mootlywcm:basedocument
   orderable
    [mootlywcm:assetandliabilitydocument] > hippostd:relaxed, mootlywcm:basedocument
