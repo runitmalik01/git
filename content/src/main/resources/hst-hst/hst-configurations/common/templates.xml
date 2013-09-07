@@ -3281,8 +3281,19 @@
     <sv:value>jsp/member/memberinvoice.jsp</sv:value>
   </sv:property>
 </sv:node>
-
-
+<!-- assetandliability -->
+<?xml version="1.0" encoding="UTF-8"?>
+<sv:node sv:name="assetandliability" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:template</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>6b21d0b0-132c-4ee6-9fba-0ac614eb1d36</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:renderpath" sv:type="String">
+    <sv:value>jsp/member/assetandliability.jsp</sv:value>
+  </sv:property>
+</sv:node>
 
 <sv:node sv:name="manufacture_rawmaterials" >
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
