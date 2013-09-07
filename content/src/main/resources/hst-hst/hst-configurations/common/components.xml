@@ -1826,4 +1826,19 @@
   </sv:property>
 </sv:node>
 <!--end of otherinformation-->
+<sv:node sv:name="itr-ded-schedule-10a" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:component</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>5d0a0d35-8ec5-4b68-837d-ea6706e28789</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:componentclassname" sv:type="String">
+    <sv:value>com.mootly.wcm.member.ITRScheduleSI</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:template" sv:type="String">
+    <sv:value>itr-ded-schedule-10a</sv:value>
+  </sv:property>
+</sv:node>
+<!-- endo of itr-ded-schedule-10a -->
 </sv:node>
