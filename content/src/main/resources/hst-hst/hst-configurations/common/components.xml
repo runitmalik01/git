@@ -1649,6 +1649,25 @@
     <sv:value>quantitativedetails</sv:value>
   </sv:property>
 </sv:node>
+
+<!-- assetandliability -->
+<sv:node sv:name="assetandliability">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:component</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>51d6510d-16ae-4947-af78-d9c3ae151c56</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:componentclassname" sv:type="String">
+    <sv:value>com.mootly.wcm.member.AssetAndLiability</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String"/>
+  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String"/>
+  <sv:property sv:name="hst:template" sv:type="String">
+    <sv:value>assetandliability</sv:value>
+  </sv:property>
+</sv:node>
+
 <!-- for invoice -->
 <sv:node sv:name="memberinvoice">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
