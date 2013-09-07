@@ -467,3 +467,5 @@ orderable
   orderable
 [mootlywcm:schfourtyfouraedocument] > hippostd:relaxed, mootlywcm:basedocument orderable
 [mootlywcm:schfourtyfouraedetail] > hippo:compound, hippostd:relaxed orderable
+[mootlywcm:deductionschedtenadetail] > hippo:compound, hippostd:relaxed orderable
+[mootlywcm:deductionschedtenadocument] > hippostd:relaxed, mootlywcm:basedocument orderable
