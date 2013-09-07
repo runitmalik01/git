@@ -2,6 +2,7 @@ package com.mootly.wcm.beans;
 
 import javax.jcr.RepositoryException;
 
+import org.apache.commons.lang.StringUtils;
 import org.hippoecm.hst.component.support.forms.FormMap;
 import org.hippoecm.hst.content.beans.ContentNodeBinder;
 import org.hippoecm.hst.content.beans.ContentNodeBindingException;
@@ -31,7 +32,7 @@ public class BalanceSheetDocument extends FlexibleDocument implements ContentNod
 	private Double otherReserve;
 	private Double grossProprietFund;
 	private Double grossLoanFund;
-	
+
 	private Double forgnCurrLoan;
 	private Double rupLoanBank;
 	private Double rupLoanOther;
@@ -39,19 +40,19 @@ public class BalanceSheetDocument extends FlexibleDocument implements ContentNod
 	private Double unsecLoanOther;
 	private Double defTaxLiability;
 	private Double sourcOfFund;
-	
+
 	private Double grossBlock;
 	private Double depreciation;
 	private Double capWorkProgrss;
 	private Double grossFixedAsset;
-	
+
 	private Double ltInvestQuot;
 	private Double ltInvestUnquot;
 	private Double stInvestEquity;
 	private Double stInvestPrefShare;
 	private Double stInvestDebent;
 	private Double grossInvest;
-	
+
 	private Double storesConsum;
 	private Double rawMaterial;
 	private Double stockProcess;
@@ -61,7 +62,7 @@ public class BalanceSheetDocument extends FlexibleDocument implements ContentNod
 	private Double balanceBank;
 	private Double otherCurrAsset;
 	private Double grossCurrAssets;
-	
+
 	private Double advancRecover;
 	private Double advancRecover1;
 	private Double loanAdvanCorpOthr;
@@ -82,19 +83,19 @@ public class BalanceSheetDocument extends FlexibleDocument implements ContentNod
 	private Double leaveProvis;
 	private Double otherProvis;
 	private Double grossProvision;
-	
+
 	private Double grossCurrLaibilProvison;
 	private Double netCurrAssets;
 	private Double miscellanExpend;
 	private Double deftaxAssets;
 	private Double profLoassAccn;
 	private Double grossAppliFund;
-	
+
 	private Double totalSundryDebtor;
 	private Double totalSundryCreditor;
 	private Double totalStockTrade;
 	private Double cashBalance;
-	
+
 
 	public Double getPropCapital() {
 		if(propCapital == null) propCapital = getProperty("mootlywcm:propCapital"); 
@@ -175,7 +176,7 @@ public class BalanceSheetDocument extends FlexibleDocument implements ContentNod
 		super.bindToNode(node);
 		try {
 			BalanceSheetDocument bsd = (BalanceSheetDocument) content;
-			
+
 			node.setProperty("mootlywcm:advancRecover", bsd.getAdvancRecover());
 			node.setProperty("mootlywcm:balanceBank", bsd.getBalanceBank());
 			node.setProperty("mootlywcm:balWthRevenAuth", bsd.getBalWthRevenAuth());
@@ -185,18 +186,18 @@ public class BalanceSheetDocument extends FlexibleDocument implements ContentNod
 			node.setProperty("mootlywcm:deftaxAssets", bsd.getDeftaxAssets());
 			node.setProperty("mootlywcm:defTaxLiability", bsd.getDefTaxLiability());
 			node.setProperty("mootlywcm:depreciation", bsd.getDepreciation());
-			
+
 			node.setProperty("mootlywcm:finishGoods", bsd.getFinishGoods());
 			node.setProperty("mootlywcm:forgnCurrLoan", bsd.getForgnCurrLoan());
 			node.setProperty("mootlywcm:grossAppliFund", bsd.getGrossAppliFund());
 			node.setProperty("mootlywcm:grossBlock", bsd.getGrossBlock());
-			
+
 			node.setProperty("mootlywcm:grossCurrAssets", bsd.getGrossCurrAssets());
 			node.setProperty("mootlywcm:grossCurrAssLoanAdvan", bsd.getGrossCurrAssLoanAdvan());
 			node.setProperty("mootlywcm:grossCurrLaibilProvison", bsd.getGrossCurrLaibilProvison());
 			node.setProperty("mootlywcm:grossCurrLiability", bsd.getGrossCurrLiability());
 			node.setProperty("mootlywcm:grossFixedAsset", bsd.getGrossFixedAsset());
-			
+
 			node.setProperty("mootlywcm:grossInvest", bsd.getGrossInvest());
 			node.setProperty("mootlywcm:grossProvision", bsd.getGrossProvision());
 			node.setProperty("mootlywcm:incometaxProvis", bsd.getIncometaxProvis());
@@ -210,19 +211,19 @@ public class BalanceSheetDocument extends FlexibleDocument implements ContentNod
 			node.setProperty("mootlywcm:miscellanExpend", bsd.getMiscellanExpend());
 			node.setProperty("mootlywcm:netCurrAssets", bsd.getNetCurrAssets());
 			node.setProperty("mootlywcm:otherCurrAsset", bsd.getOtherCurrAsset());
-			
+
 			node.setProperty("mootlywcm:otherReserve", bsd.getOtherReserve());
 			node.setProperty("mootlywcm:profLoassAccn", bsd.getProfLoassAccn());
 			node.setProperty("mootlywcm:propCapital", bsd.getPropCapital());
 			node.setProperty("mootlywcm:rawMaterial", bsd.getRawMaterial());
 			node.setProperty("mootlywcm:reavReserve", bsd.getReavReserve());
-			
+
 			node.setProperty("mootlywcm:rupLoanBank", bsd.getRupLoanBank());
 			node.setProperty("mootlywcm:rupLoanOther", bsd.getRupLoanOther());
 			node.setProperty("mootlywcm:sourcOfFund", bsd.getSourcOfFund());
 			node.setProperty("mootlywcm:statReserve", bsd.getStatReserve());
 			node.setProperty("mootlywcm:stInvestDebent", bsd.getStInvestDebent());
-			
+
 			node.setProperty("mootlywcm:stInvestEquity", bsd.getStInvestEquity());
 			node.setProperty("mootlywcm:stInvestPrefShare", bsd.getStInvestPrefShare());
 			node.setProperty("mootlywcm:stockProcess", bsd.getStockProcess());
@@ -230,7 +231,7 @@ public class BalanceSheetDocument extends FlexibleDocument implements ContentNod
 			node.setProperty("mootlywcm:sundryCreditor", bsd.getSundryCreditor());
 			node.setProperty("mootlywcm:sundryDebtor", bsd.getSundryDebtor());
 			node.setProperty("mootlywcm:unpaidCallMoney", bsd.getUnpaidCallMoney());
-			
+
 			node.setProperty("mootlywcm:unpaidDividnd", bsd.getUnpaidDividnd());
 			node.setProperty("mootlywcm:unpaidMatdebntur", bsd.getUnpaidMatdebntur());
 			node.setProperty("mootlywcm:unsecLoanBank", bsd.getUnsecLoanBank());
@@ -238,7 +239,7 @@ public class BalanceSheetDocument extends FlexibleDocument implements ContentNod
 			node.setProperty("mootlywcm:wealthTaxProvis", bsd.getWealthTaxProvis());
 			node.setProperty("mootlywcm:grossProprietFund", bsd.getGrossProprietFund());
 			node.setProperty("mootlywcm:grossLoanFund", bsd.getGrossLoanFund());
-			
+
 			node.setProperty("mootlywcm:totalStockTrade", bsd.getTotalStockTrade());
 			node.setProperty("mootlywcm:totalSundryCreditor", bsd.getTotalSundryCreditor());
 			node.setProperty("mootlywcm:totalSundryDebtor", bsd.getTotalSundryDebtor());
@@ -258,73 +259,73 @@ public class BalanceSheetDocument extends FlexibleDocument implements ContentNod
 			log.info("Into the fill method");
 		}
 		if (formMap == null) return;
-		if(formMap.getField("advancRecover")!=null) setAdvancRecover(Double.parseDouble(formMap.getField("advancRecover").getValue()));
-		if(formMap.getField("balanceBank")!=null) setBalanceBank(Double.parseDouble(formMap.getField("balanceBank").getValue()));
-		if(formMap.getField("balWthRevenAuth")!=null) setBalWthRevenAuth(Double.parseDouble(formMap.getField("balWthRevenAuth").getValue()));
-		if(formMap.getField("capReserve")!=null) setCapReserve(Double.parseDouble(formMap.getField("capReserve").getValue()));
-		if(formMap.getField("capWorkProgrss")!=null) setCapWorkProgrss(Double.parseDouble(formMap.getField("capWorkProgrss").getValue()));
-		if(formMap.getField("cashBalance")!=null) setCashBalance(Double.parseDouble(formMap.getField("cashBalance").getValue()));
-		if(formMap.getField("cashInHand")!=null) setCashInHand(Double.parseDouble(formMap.getField("cashInHand").getValue()));
-		if(formMap.getField("deftaxAssets")!=null) setDeftaxAssets(Double.parseDouble(formMap.getField("deftaxAssets").getValue()));
-		if(formMap.getField("defTaxLiability")!=null) setDefTaxLiability(Double.parseDouble(formMap.getField("defTaxLiability").getValue()));
-		if(formMap.getField("depreciation")!=null) setDepreciation(Double.parseDouble(formMap.getField("depreciation").getValue()));
-		if(formMap.getField("finishGoods")!=null) setFinishGoods(Double.parseDouble(formMap.getField("finishGoods").getValue()));
-		if(formMap.getField("forgnCurrLoan")!=null) setForgnCurrLoan(Double.parseDouble(formMap.getField("forgnCurrLoan").getValue()));
-		if(formMap.getField("grossAppliFund")!=null) setGrossAppliFund(Double.parseDouble(formMap.getField("grossAppliFund").getValue()));
-		if(formMap.getField("grossBlock")!=null) setGrossBlock(Double.parseDouble(formMap.getField("grossBlock").getValue()));
-		if(formMap.getField("grossCurrAssets")!=null) setGrossCurrAssets(Double.parseDouble(formMap.getField("grossCurrAssets").getValue()));
-		if(formMap.getField("grossCurrAssLoanAdvan")!=null) setGrossCurrAssLoanAdvan(Double.parseDouble(formMap.getField("grossCurrAssLoanAdvan").getValue()));
-		if(formMap.getField("grossCurrLaibilProvison")!=null) setGrossCurrLaibilProvison(Double.parseDouble(formMap.getField("grossCurrLaibilProvison").getValue()));
-		if(formMap.getField("grossCurrLiability")!=null) setGrossCurrLiability(Double.parseDouble(formMap.getField("grossCurrLiability").getValue()));
-		if(formMap.getField("grossFixedAsset")!=null) setGrossFixedAsset(Double.parseDouble(formMap.getField("grossFixedAsset").getValue()));
-		if(formMap.getField("grossInvest")!=null) setGrossInvest(Double.parseDouble(formMap.getField("grossInvest").getValue()));
-		if(formMap.getField("grossLoanFund")!=null) setGrossLoanFund(Double.parseDouble(formMap.getField("grossLoanFund").getValue()));
-		
-		if(formMap.getField("grossProprietFund")!=null) setGrossProprietFund(Double.parseDouble(formMap.getField("grossProprietFund").getValue()));
-		if(formMap.getField("grossProvision")!=null) setGrossProvision(Double.parseDouble(formMap.getField("grossProvision").getValue()));
-		if(formMap.getField("incometaxProvis")!=null) setIncometaxProvis(Double.parseDouble(formMap.getField("incometaxProvis").getValue()));
-		if(formMap.getField("interestAcuurNtLoan")!=null) setInterestAcuurNtLoan(Double.parseDouble(formMap.getField("interestAcuurNtLoan").getValue()));
-		if(formMap.getField("interestAcuurOnabove")!=null) setInterestAcuurOnabove(Double.parseDouble(formMap.getField("interestAcuurOnabove").getValue()));
-		if(formMap.getField("laibLeaseAsset")!=null) setLaibLeaseAsset(Double.parseDouble(formMap.getField("laibLeaseAsset").getValue()));
-		if(formMap.getField("leaveProvis")!=null) setLeaveProvis(Double.parseDouble(formMap.getField("leaveProvis").getValue()));
-		if(formMap.getField("loanAdvanCorpOthr")!=null) setLoanAdvanCorpOthr(Double.parseDouble(formMap.getField("loanAdvanCorpOthr").getValue()));
-		if(formMap.getField("ltInvestQuot")!=null) setLtInvestQuot(Double.parseDouble(formMap.getField("ltInvestQuot").getValue()));
-		if(formMap.getField("ltInvestUnquot")!=null) setLtInvestUnquot(Double.parseDouble(formMap.getField("ltInvestUnquot").getValue()));
-		
-		if(formMap.getField("miscellanExpend")!=null) setMiscellanExpend(Double.parseDouble(formMap.getField("miscellanExpend").getValue()));
-		if(formMap.getField("netCurrAssets")!=null) setNetCurrAssets(Double.parseDouble(formMap.getField("netCurrAssets").getValue()));
-		if(formMap.getField("otherCurrAsset")!=null) setOtherCurrAsset(Double.parseDouble(formMap.getField("otherCurrAsset").getValue()));
-		if(formMap.getField("otherProvis")!=null) setOtherProvis(Double.parseDouble(formMap.getField("otherProvis").getValue()));
-		
-		if(formMap.getField("otherReserve")!=null) setOtherReserve(Double.parseDouble(formMap.getField("otherReserve").getValue()));
-		if(formMap.getField("profLoassAccn")!=null) setProfLoassAccn(Double.parseDouble(formMap.getField("profLoassAccn").getValue()));
-		if(formMap.getField("propCapital")!=null) setPropCapital(Double.parseDouble(formMap.getField("propCapital").getValue()));
-		if(formMap.getField("rawMaterial")!=null) setRawMaterial(Double.parseDouble(formMap.getField("rawMaterial").getValue()));
-		if(formMap.getField("reavReserve")!=null) setReavReserve(Double.parseDouble(formMap.getField("reavReserve").getValue()));
-		
-		if(formMap.getField("rupLoanBank")!=null) setRupLoanBank(Double.parseDouble(formMap.getField("rupLoanBank").getValue()));
-		if(formMap.getField("rupLoanOther")!=null) setRupLoanOther(Double.parseDouble(formMap.getField("rupLoanOther").getValue()));
-		if(formMap.getField("sourcOfFund")!=null) setSourcOfFund(Double.parseDouble(formMap.getField("sourcOfFund").getValue()));
-		if(formMap.getField("statReserve")!=null) setStatReserve(Double.parseDouble(formMap.getField("statReserve").getValue()));
-		if(formMap.getField("stInvestDebent")!=null) setStInvestDebent(Double.parseDouble(formMap.getField("stInvestDebent").getValue()));
-		if(formMap.getField("stInvestEquity")!=null) setStInvestEquity(Double.parseDouble(formMap.getField("stInvestEquity").getValue()));
-		if(formMap.getField("stInvestPrefShare")!=null) setStInvestPrefShare(Double.parseDouble(formMap.getField("stInvestPrefShare").getValue()));
-		if(formMap.getField("stockProcess")!=null) setStockProcess(Double.parseDouble(formMap.getField("stockProcess").getValue()));
-		
-		if(formMap.getField("storesConsum")!=null) setStoresConsum(Double.parseDouble(formMap.getField("storesConsum").getValue()));
-		if(formMap.getField("sundryCreditor")!=null) setSundryCreditor(Double.parseDouble(formMap.getField("sundryCreditor").getValue()));
-		if(formMap.getField("sundryDebtor")!=null) setSundryDebtor(Double.parseDouble(formMap.getField("sundryDebtor").getValue()));
-		if(formMap.getField("totalStockTrade")!=null) setTotalStockTrade(Double.parseDouble(formMap.getField("totalStockTrade").getValue()));
-		
-		if(formMap.getField("totalSundryCreditor")!=null) setTotalSundryCreditor(Double.parseDouble(formMap.getField("totalSundryCreditor").getValue()));
-		if(formMap.getField("totalSundryDebtor")!=null) setTotalSundryDebtor(Double.parseDouble(formMap.getField("totalSundryDebtor").getValue()));
-		if(formMap.getField("unpaidCallMoney")!=null) setUnpaidCallMoney(Double.parseDouble(formMap.getField("unpaidCallMoney").getValue()));
-			
-		if(formMap.getField("unpaidDividnd")!=null) setUnpaidDividnd(Double.parseDouble(formMap.getField("unpaidDividnd").getValue()));
-		if(formMap.getField("unpaidMatdebntur")!=null) setUnpaidMatdebntur(Double.parseDouble(formMap.getField("unpaidMatdebntur").getValue()));
-		if(formMap.getField("unsecLoanBank")!=null) setUnsecLoanBank(Double.parseDouble(formMap.getField("unsecLoanBank").getValue()));
-		if(formMap.getField("unsecLoanOther")!=null) setUnsecLoanOther(Double.parseDouble(formMap.getField("unsecLoanOther").getValue()));
-		if(formMap.getField("wealthTaxProvis")!=null) setWealthTaxProvis(Double.parseDouble(formMap.getField("wealthTaxProvis").getValue()));
+		if(formMap.getField("advancRecover")!=null) setAdvancRecover(Double.parseDouble(StringUtils.isNotBlank(formMap.getField("advancRecover").getValue()) ? formMap.getField("advancRecover").getValue() : "0"));
+		if(formMap.getField("balanceBank")!=null) setBalanceBank(Double.parseDouble(StringUtils.isNotBlank(formMap.getField("balanceBank").getValue()) ? formMap.getField("balanceBank").getValue()  : "0"));
+		if(formMap.getField("balWthRevenAuth")!=null) setBalWthRevenAuth(Double.parseDouble(StringUtils.isNotBlank(formMap.getField("balWthRevenAuth").getValue()) ? formMap.getField("balWthRevenAuth").getValue() : "0"));
+		if(formMap.getField("capReserve")!=null) setCapReserve(Double.parseDouble(StringUtils.isNotBlank(formMap.getField("capReserve").getValue()) ? formMap.getField("capReserve").getValue()  : "0"));
+		if(formMap.getField("capWorkProgrss")!=null) setCapWorkProgrss(Double.parseDouble(StringUtils.isNotBlank(formMap.getField("capWorkProgrss").getValue()) ? formMap.getField("capWorkProgrss").getValue()  : "0"));
+		if(formMap.getField("cashBalance")!=null) setCashBalance(Double.parseDouble(StringUtils.isNotBlank(formMap.getField("cashBalance").getValue()) ? formMap.getField("cashBalance").getValue()  : "0"));
+		if(formMap.getField("cashInHand")!=null) setCashInHand(Double.parseDouble(StringUtils.isNotBlank(formMap.getField("cashInHand").getValue()) ? formMap.getField("cashInHand").getValue() : "0"));
+		if(formMap.getField("deftaxAssets")!=null) setDeftaxAssets(Double.parseDouble(StringUtils.isNotBlank(formMap.getField("deftaxAssets").getValue()) ? formMap.getField("deftaxAssets").getValue() : "0"));
+		if(formMap.getField("defTaxLiability")!=null) setDefTaxLiability(Double.parseDouble(StringUtils.isNotBlank(formMap.getField("defTaxLiability").getValue()) ? formMap.getField("defTaxLiability").getValue() : "0"));
+		if(formMap.getField("depreciation")!=null) setDepreciation(Double.parseDouble(StringUtils.isNotBlank(formMap.getField("depreciation").getValue()) ? formMap.getField("depreciation").getValue() : "0"));
+		if(formMap.getField("finishGoods")!=null) setFinishGoods(Double.parseDouble(StringUtils.isNotBlank(formMap.getField("finishGoods").getValue()) ? formMap.getField("finishGoods").getValue() : "0"));
+		if(formMap.getField("forgnCurrLoan")!=null) setForgnCurrLoan(Double.parseDouble(StringUtils.isNotBlank(formMap.getField("forgnCurrLoan").getValue()) ? formMap.getField("forgnCurrLoan").getValue() : "0"));
+		if(formMap.getField("grossAppliFund")!=null) setGrossAppliFund(Double.parseDouble(StringUtils.isNotBlank(formMap.getField("grossAppliFund").getValue()) ? formMap.getField("grossAppliFund").getValue() : "0"));
+		if(formMap.getField("grossBlock")!=null) setGrossBlock(Double.parseDouble(StringUtils.isNotBlank(formMap.getField("grossBlock").getValue()) ? formMap.getField("grossBlock").getValue() : "0"));
+		if(formMap.getField("grossCurrAssets")!=null) setGrossCurrAssets(Double.parseDouble(StringUtils.isNotBlank(formMap.getField("grossCurrAssets").getValue()) ? formMap.getField("grossCurrAssets").getValue() : "0"));
+		if(formMap.getField("grossCurrAssLoanAdvan")!=null) setGrossCurrAssLoanAdvan(Double.parseDouble(StringUtils.isNotBlank(formMap.getField("grossCurrAssLoanAdvan").getValue()) ? formMap.getField("grossCurrAssLoanAdvan").getValue() : "0"));
+		if(formMap.getField("grossCurrLaibilProvison")!=null) setGrossCurrLaibilProvison(Double.parseDouble(StringUtils.isNotBlank(formMap.getField("grossCurrLaibilProvison").getValue()) ? formMap.getField("grossCurrLaibilProvison").getValue() : "0"));
+		if(formMap.getField("grossCurrLiability")!=null) setGrossCurrLiability(Double.parseDouble(StringUtils.isNotBlank(formMap.getField("grossCurrLiability").getValue()) ? formMap.getField("grossCurrLiability").getValue() : "0"));
+		if(formMap.getField("grossFixedAsset")!=null) setGrossFixedAsset(Double.parseDouble(StringUtils.isNotBlank(formMap.getField("grossFixedAsset").getValue()) ? formMap.getField("grossFixedAsset").getValue() : "0"));
+		if(formMap.getField("grossInvest")!=null) setGrossInvest(Double.parseDouble(StringUtils.isNotBlank(formMap.getField("grossInvest").getValue()) ? formMap.getField("grossInvest").getValue() : "0"));
+		if(formMap.getField("grossLoanFund")!=null) setGrossLoanFund(Double.parseDouble(StringUtils.isNotBlank(formMap.getField("grossLoanFund").getValue()) ? formMap.getField("grossLoanFund").getValue() : "0"));
+
+		if(formMap.getField("grossProprietFund")!=null) setGrossProprietFund(Double.parseDouble(StringUtils.isNotBlank(formMap.getField("grossProprietFund").getValue()) ? formMap.getField("grossProprietFund").getValue() : "0"));
+		if(formMap.getField("grossProvision")!=null) setGrossProvision(Double.parseDouble(StringUtils.isNotBlank(formMap.getField("grossProvision").getValue()) ? formMap.getField("grossProvision").getValue() : "0"));
+		if(formMap.getField("incometaxProvis")!=null) setIncometaxProvis(Double.parseDouble(StringUtils.isNotBlank(formMap.getField("incometaxProvis").getValue()) ? formMap.getField("incometaxProvis").getValue() : "0"));
+		if(formMap.getField("interestAcuurNtLoan")!=null) setInterestAcuurNtLoan(Double.parseDouble(StringUtils.isNotBlank(formMap.getField("interestAcuurNtLoan").getValue()) ? formMap.getField("interestAcuurNtLoan").getValue() : "0"));
+		if(formMap.getField("interestAcuurOnabove")!=null) setInterestAcuurOnabove(Double.parseDouble(StringUtils.isNotBlank(formMap.getField("interestAcuurOnabove").getValue()) ? formMap.getField("interestAcuurOnabove").getValue() : "0"));
+		if(formMap.getField("laibLeaseAsset")!=null) setLaibLeaseAsset(Double.parseDouble(StringUtils.isNotBlank(formMap.getField("laibLeaseAsset").getValue()) ? formMap.getField("laibLeaseAsset").getValue() : "0"));
+		if(formMap.getField("leaveProvis")!=null) setLeaveProvis(Double.parseDouble(StringUtils.isNotBlank(formMap.getField("leaveProvis").getValue()) ? formMap.getField("leaveProvis").getValue() : "0"));
+		if(formMap.getField("loanAdvanCorpOthr")!=null) setLoanAdvanCorpOthr(Double.parseDouble(StringUtils.isNotBlank(formMap.getField("loanAdvanCorpOthr").getValue()) ? formMap.getField("loanAdvanCorpOthr").getValue() : "0"));
+		if(formMap.getField("ltInvestQuot")!=null) setLtInvestQuot(Double.parseDouble(StringUtils.isNotBlank(formMap.getField("ltInvestQuot").getValue()) ? formMap.getField("ltInvestQuot").getValue() : "0"));
+		if(formMap.getField("ltInvestUnquot")!=null) setLtInvestUnquot(Double.parseDouble(StringUtils.isNotBlank(formMap.getField("ltInvestUnquot").getValue()) ? formMap.getField("ltInvestUnquot").getValue() : "0"));
+
+		if(formMap.getField("miscellanExpend")!=null) setMiscellanExpend(Double.parseDouble(StringUtils.isNotBlank(formMap.getField("miscellanExpend").getValue()) ? formMap.getField("miscellanExpend").getValue() : "0"));
+		if(formMap.getField("netCurrAssets")!=null) setNetCurrAssets(Double.parseDouble(StringUtils.isNotBlank(formMap.getField("netCurrAssets").getValue()) ? formMap.getField("netCurrAssets").getValue() : "0"));
+		if(formMap.getField("otherCurrAsset")!=null) setOtherCurrAsset(Double.parseDouble(StringUtils.isNotBlank(formMap.getField("otherCurrAsset").getValue()) ? formMap.getField("otherCurrAsset").getValue() : "0"));
+		if(formMap.getField("otherProvis")!=null) setOtherProvis(Double.parseDouble(StringUtils.isNotBlank(formMap.getField("otherProvis").getValue()) ? formMap.getField("otherProvis").getValue() : "0"));
+
+		if(formMap.getField("otherReserve")!=null) setOtherReserve(Double.parseDouble(StringUtils.isNotBlank(formMap.getField("otherReserve").getValue()) ? formMap.getField("otherReserve").getValue() : "0"));
+		if(formMap.getField("profLoassAccn")!=null) setProfLoassAccn(Double.parseDouble(StringUtils.isNotBlank(formMap.getField("profLoassAccn").getValue()) ? formMap.getField("profLoassAccn").getValue() : "0"));
+		if(formMap.getField("propCapital")!=null) setPropCapital(Double.parseDouble(StringUtils.isNotBlank(formMap.getField("propCapital").getValue()) ? formMap.getField("propCapital").getValue() : "0"));
+		if(formMap.getField("rawMaterial")!=null) setRawMaterial(Double.parseDouble(StringUtils.isNotBlank(formMap.getField("rawMaterial").getValue()) ? formMap.getField("rawMaterial").getValue() : "0"));
+		if(formMap.getField("reavReserve")!=null) setReavReserve(Double.parseDouble(StringUtils.isNotBlank(formMap.getField("reavReserve").getValue()) ? formMap.getField("reavReserve").getValue() : "0"));
+
+		if(formMap.getField("rupLoanBank")!=null) setRupLoanBank(Double.parseDouble(StringUtils.isNotBlank(formMap.getField("rupLoanBank").getValue()) ? formMap.getField("rupLoanBank").getValue() : "0"));
+		if(formMap.getField("rupLoanOther")!=null) setRupLoanOther(Double.parseDouble(StringUtils.isNotBlank(formMap.getField("rupLoanOther").getValue()) ? formMap.getField("rupLoanOther").getValue() : "0"));
+		if(formMap.getField("sourcOfFund")!=null) setSourcOfFund(Double.parseDouble(StringUtils.isNotBlank(formMap.getField("sourcOfFund").getValue()) ? formMap.getField("sourcOfFund").getValue() : "0"));
+		if(formMap.getField("statReserve")!=null) setStatReserve(Double.parseDouble(StringUtils.isNotBlank(formMap.getField("statReserve").getValue()) ? formMap.getField("statReserve").getValue() : "0"));
+		if(formMap.getField("stInvestDebent")!=null) setStInvestDebent(Double.parseDouble(StringUtils.isNotBlank(formMap.getField("stInvestDebent").getValue()) ? formMap.getField("stInvestDebent").getValue() : "0"));
+		if(formMap.getField("stInvestEquity")!=null) setStInvestEquity(Double.parseDouble(StringUtils.isNotBlank(formMap.getField("stInvestEquity").getValue()) ? formMap.getField("stInvestEquity").getValue() : "0"));
+		if(formMap.getField("stInvestPrefShare")!=null) setStInvestPrefShare(Double.parseDouble(StringUtils.isNotBlank(formMap.getField("stInvestPrefShare").getValue()) ? formMap.getField("stInvestPrefShare").getValue() : "0"));
+		if(formMap.getField("stockProcess")!=null) setStockProcess(Double.parseDouble(StringUtils.isNotBlank(formMap.getField("stockProcess").getValue()) ? formMap.getField("stockProcess").getValue() : "0"));
+
+		if(formMap.getField("storesConsum")!=null) setStoresConsum(Double.parseDouble(StringUtils.isNotBlank(formMap.getField("storesConsum").getValue()) ? formMap.getField("storesConsum").getValue() : "0"));
+		if(formMap.getField("sundryCreditor")!=null) setSundryCreditor(Double.parseDouble(StringUtils.isNotBlank(formMap.getField("sundryCreditor").getValue()) ? formMap.getField("sundryCreditor").getValue() : "0"));
+		if(formMap.getField("sundryDebtor")!=null) setSundryDebtor(Double.parseDouble(StringUtils.isNotBlank(formMap.getField("sundryDebtor").getValue()) ? formMap.getField("sundryDebtor").getValue() : "0"));
+		if(formMap.getField("totalStockTrade")!=null) setTotalStockTrade(Double.parseDouble(StringUtils.isNotBlank(formMap.getField("totalStockTrade").getValue()) ? formMap.getField("totalStockTrade").getValue() : "0"));
+
+		if(formMap.getField("totalSundryCreditor")!=null) setTotalSundryCreditor(Double.parseDouble(StringUtils.isNotBlank(formMap.getField("totalSundryCreditor").getValue()) ? formMap.getField("totalSundryCreditor").getValue() : "0"));
+		if(formMap.getField("totalSundryDebtor")!=null) setTotalSundryDebtor(Double.parseDouble(StringUtils.isNotBlank(formMap.getField("totalSundryDebtor").getValue()) ? formMap.getField("totalSundryDebtor").getValue() : "0"));
+		if(formMap.getField("unpaidCallMoney")!=null) setUnpaidCallMoney(Double.parseDouble(StringUtils.isNotBlank(formMap.getField("unpaidCallMoney").getValue()) ? formMap.getField("unpaidCallMoney").getValue() : "0"));
+
+		if(formMap.getField("unpaidDividnd")!=null) setUnpaidDividnd(Double.parseDouble(StringUtils.isNotBlank(formMap.getField("unpaidDividnd").getValue()) ? formMap.getField("unpaidDividnd").getValue() : "0"));
+		if(formMap.getField("unpaidMatdebntur")!=null) setUnpaidMatdebntur(Double.parseDouble(StringUtils.isNotBlank(formMap.getField("unpaidMatdebntur").getValue()) ? formMap.getField("unpaidMatdebntur").getValue() : "0"));
+		if(formMap.getField("unsecLoanBank")!=null) setUnsecLoanBank(Double.parseDouble(StringUtils.isNotBlank(formMap.getField("unsecLoanBank").getValue()) ? formMap.getField("unsecLoanBank").getValue() : "0"));
+		if(formMap.getField("unsecLoanOther")!=null) setUnsecLoanOther(Double.parseDouble(StringUtils.isNotBlank(formMap.getField("unsecLoanOther").getValue()) ? formMap.getField("unsecLoanOther").getValue() : "0"));
+		if(formMap.getField("wealthTaxProvis")!=null) setWealthTaxProvis(Double.parseDouble(StringUtils.isNotBlank(formMap.getField("wealthTaxProvis").getValue()) ? formMap.getField("wealthTaxProvis").getValue() : "0"));
 	}
 	@Override
 	public <T extends HippoBean> void cloneBean(T sourceBean) {

@@ -2,12 +2,14 @@ package com.mootly.wcm.beans;
 
 import javax.jcr.RepositoryException;
 
+import org.apache.commons.lang.StringUtils;
 import org.hippoecm.hst.component.support.forms.FormMap;
 import org.hippoecm.hst.content.beans.ContentNodeBinder;
 import org.hippoecm.hst.content.beans.ContentNodeBindingException;
 import org.hippoecm.hst.content.beans.Node;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 
+import com.ctc.wstx.util.StringUtil;
 import com.mootly.wcm.beans.standard.FlexibleDocument;
 import com.mootly.wcm.model.FilingSection;
 import com.mootly.wcm.model.FinancialYear;
@@ -64,13 +66,13 @@ public class BusinessProfessionDocument extends FlexibleDocument implements Cont
 		}
 		if (formMap == null) return;
 		
-		if(formMap.getField("grossTurnOver")!=null) setGrossPresumptIncome(Double.parseDouble(formMap.getField("grossTurnOver").getValue()));
-		if(formMap.getField("grossPresumptIncome")!=null) setGrossTurnOver(Double.parseDouble(formMap.getField("grossPresumptIncome").getValue()));
-		if(formMap.getField("incChargBusiness")!=null) setIncChargBusiness(Double.parseDouble(formMap.getField("incChargBusiness").getValue()));
-		if(formMap.getField("grossCashBalance")!=null) setGrossCashBalance(Double.parseDouble(formMap.getField("grossCashBalance").getValue()));
-		if(formMap.getField("grossStockTrade")!=null) setGrossStockTrade(Double.parseDouble(formMap.getField("grossStockTrade").getValue()));
-		if(formMap.getField("grossSundryCredit")!=null) setGrossSundryCredit(Double.parseDouble(formMap.getField("grossSundryCredit").getValue()));
-		if(formMap.getField("grossSundryDebt")!=null) setGrossSundryDebt(Double.parseDouble(formMap.getField("grossSundryDebt").getValue()));
+		if(formMap.getField("grossTurnOver")!=null) setGrossPresumptIncome(Double.parseDouble(StringUtils.isNotBlank(formMap.getField("grossTurnOver").getValue()) ? formMap.getField("grossTurnOver").getValue() : "0"));
+		if(formMap.getField("grossPresumptIncome")!=null) setGrossTurnOver(Double.parseDouble(StringUtils.isNotBlank(formMap.getField("grossPresumptIncome").getValue()) ? formMap.getField("grossPresumptIncome").getValue() : "0"));
+		if(formMap.getField("incChargBusiness")!=null) setIncChargBusiness(Double.parseDouble(StringUtils.isNotBlank(formMap.getField("incChargBusiness").getValue()) ? formMap.getField("incChargBusiness").getValue() : "0"));
+		if(formMap.getField("grossCashBalance")!=null) setGrossCashBalance(Double.parseDouble(StringUtils.isNotBlank(formMap.getField("grossCashBalance").getValue()) ? formMap.getField("grossCashBalance").getValue() : "0"));
+		if(formMap.getField("grossStockTrade")!=null) setGrossStockTrade(Double.parseDouble(StringUtils.isNotBlank(formMap.getField("grossStockTrade").getValue()) ? formMap.getField("grossStockTrade").getValue() : "0"));
+		if(formMap.getField("grossSundryCredit")!=null) setGrossSundryCredit(Double.parseDouble(StringUtils.isNotBlank(formMap.getField("grossSundryCredit").getValue()) ? formMap.getField("grossSundryCredit").getValue()  : "0"));
+		if(formMap.getField("grossSundryDebt")!=null) setGrossSundryDebt(Double.parseDouble(StringUtils.isNotBlank(formMap.getField("grossSundryDebt").getValue()) ? formMap.getField("grossSundryDebt").getValue() : "0"));
 
 	}
 	@Override
