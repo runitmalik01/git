@@ -4880,6 +4880,35 @@
   </sv:property>
 </sv:node>
 <!--end of business-profession sitemap  -->
+<!--  schedule bp for itr4 -->
+
+<sv:node sv:name="incomebusinessprofession.html">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:sitemapitem</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>55eb37a8-e3f0-4328-8d92-1fc1cf6bdc0e</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+    <sv:value>hst:pages/incomebusinessprofession</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+    <sv:value>mainSiteMapItemRefId</sv:value>
+    <sv:value>action</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+    <sv:value>incomebusinessprofession</sv:value>
+    <sv:value>EDIT</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:refId" sv:type="String">
+    <sv:value>incomebusinessprofession</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:relativecontentpath" sv:type="String">
+    <sv:value>configuration</sv:value>
+  </sv:property>
+</sv:node>
+
+<!--  end bp -->
 <sv:node sv:name="otherinformation.html">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hst:sitemapitem</sv:value>
