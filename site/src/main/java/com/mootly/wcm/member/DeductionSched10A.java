@@ -19,6 +19,7 @@ import com.mootly.wcm.components.ITReturnComponent;
 @RequiredBeans(requiredBeans={MemberPersonalInformation.class})
 @FormFields(fieldNames={"scheduleName","amount"})
 @RequiredFields(fieldNames={"scheduleName","amount"})
+
 public class DeductionSched10A extends ITReturnComponent{
 	
 	@Override
