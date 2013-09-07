@@ -33,6 +33,7 @@
 				<c:set var="appliesToFilingStatus" value="${deductionSectionMapEntry.value.additionalProperties['filingStatus']}"/>
 				<c:set var="appliesToResidentStatus" value="${deductionSectionMapEntry.value.additionalProperties['residentStatus']}"/>
 				<c:set var="isDerived" value="${deductionSectionMapEntry.value.additionalProperties['isDerived']}"/>
+				<c:set var="appliesToItrForm" value="${deductionSectionMapEntry.value.additionalProperties['itrform']}"/>
 				<c:choose>
 					<c:when test="${empty ischildofform16 || ischildofform16 !='true'}">
 						<c:set var="addURL" value="${scriptName}/newc6deduction/${deductionSectionName}"/>
@@ -43,6 +44,10 @@
 						<c:if test="${skipIt != 'true' && not empty appliesToResidentStatus && memberpersonalinformation.residentCategory != appliesToResidentStatus}">
 							<c:set var="skipIt" value="true"/>
 						</c:if>
+						<!--Show Deduction section According to Package i.e ITR_FORM  -->
+						<c:if test="${skipIt != 'true' && not empty appliesToItrForm && !fn:contains(appliesToItrForm,fn:toLowerCase(memberpersonalinformation.selectedITRForm))}">
+							<c:set var="skipIt" value="true"/>
+						</c:if>						
 					</c:when>
 					<c:otherwise>
 						<c:set var="successURL" value="./formsixteenedit"/>
