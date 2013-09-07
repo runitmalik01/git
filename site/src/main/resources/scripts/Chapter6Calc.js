@@ -173,13 +173,25 @@ else {
 //out_total_80gga= (total_OtherThanCash < grosstotal) ? total_OtherThanCash:grosstotal;
 out_total_80ggc= (total_80ggc < grosstotal) ? total_80ggc:grosstotal;
 
-//out_total_80id= (total_80id < grosstotal) ? total_80id:grosstotal;
+//Deduction Sections for Itr4
+out_total_80id= (total_80id < grosstotal) ? total_80id:grosstotal;
 
-//out_total_80jja= (total_80jja < grosstotal) ? total_80jja:grosstotal;
+out_total_80jja= (total_80jja < grosstotal) ? total_80jja:grosstotal;
 
-//out_total_80ia= (total_80ia < grosstotal) ? total_80ia:grosstotal;
+out_total_80ia= (total_80ia < grosstotal) ? total_80ia:grosstotal;
+
+out_total_80ib= (total_80ib < grosstotal) ? total_80ic:grosstotal;
+
+out_total_80ic= (total_80ic < grosstotal) ? total_80ic:grosstotal;
+
+out_total_80iab= (total_80iab < grosstotal) ? total_80iab:grosstotal;
+//end of ITR4 deduction sections
 
 out_total_eligiblededuction = out_total_80c + out_total_80ccc + out_total_80ccd_1 + out_total_80ccd_2 + out_total_80d + out_total_80qqb + out_total_80rrb + out_total_80gga + out_total_80ggc +/* out_total_80g*/ + out_total_80ddb + out_total_80u + out_total_80dd + out_total_80e + out_total_80tta + out_total_80ccg;
+
+//Add ITR4 deduction Sections in eligible Deduction
+out_total_eligiblededuction = out_total_eligiblededuction + out_total_80id + out_total_80jja + out_total_80ia + out_total_80ib + out_total_80ic + out_total_80iab;
+
 if(out_total_eligiblededuction>grosstotal)
 	out_total_eligiblededuction=grosstotal;
 //80G- Calculate AdjustedGrossTotal and Excess Rent Paid and 2000 per Month
