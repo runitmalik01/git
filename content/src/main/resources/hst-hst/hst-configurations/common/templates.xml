@@ -3282,8 +3282,8 @@
   </sv:property>
 </sv:node>
 <!-- assetandliability -->
-<?xml version="1.0" encoding="UTF-8"?>
-<sv:node sv:name="assetandliability" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+
+<sv:node sv:name="assetandliability">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hst:template</sv:value>
   </sv:property>
