@@ -83,6 +83,7 @@ public abstract class IncBusinessProfessionVar extends BaseDocument implements C
 	private Double pl_SpecifiedBuss;
 	private Double dedAcc35AD;
 	private Double pl_SpecifiedBussNet;
+	private Double depreciation_PL;
 	private Double incomeChargeable_PL;
 	
 	
@@ -359,6 +360,10 @@ public abstract class IncBusinessProfessionVar extends BaseDocument implements C
 		if(pl_SpecifiedBuss == null) pl_SpecifiedBuss = getProperty("mootlywcm:pl_SpecifiedBuss");
 		return pl_SpecifiedBuss;
 	}
+	public Double getDepreciation_PL(){
+		if(depreciation_PL == null) depreciation_PL = getProperty("mootlywcm:depreciation_PL");
+		return depreciation_PL;
+	}
 		
 	// set method 
 	
@@ -568,6 +573,9 @@ public abstract class IncBusinessProfessionVar extends BaseDocument implements C
 	public final void setDedAcc28to44DEx35AD(Double dedAcc28to44DEx35AD){
 		this.dedAcc28to44DEx35AD=dedAcc28to44DEx35AD;
 	}
+	public final void setDepreciation_PL(Double depreciation_PL){
+		this.depreciation_PL=depreciation_PL;
+	}
 	public final void setPl_SpecifiedBuss(Double pl_SpecifiedBuss){
 		this.pl_SpecifiedBuss=pl_SpecifiedBuss;
 	}
@@ -646,6 +654,7 @@ public abstract class IncBusinessProfessionVar extends BaseDocument implements C
 		node.setProperty("mootlywcm:incomeChargeable_PL", objIncBusinessProfessionDoc.getIncomeChargeable_PL());
 		node.setProperty("mootlywcm:additionAcc28to44D", objIncBusinessProfessionDoc.getAdditionAcc28to44D());
 		node.setProperty("mootlywcm:dedAcc28to44DEx35AD", objIncBusinessProfessionDoc.getDedAcc28to44DEx35AD());
+		node.setProperty("mootlywcm:depreciation_PL", objIncBusinessProfessionDoc.getDepreciation_PL());
 		node.setProperty("mootlywcm:pl_SpecifiedBuss", objIncBusinessProfessionDoc.getPl_SpecifiedBuss());
 		
 		

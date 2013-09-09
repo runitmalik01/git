@@ -633,6 +633,15 @@ public class IncBusinessProfessionDoc extends IncBusinessProfessionVar{
 			val_pl_SpecifiedBuss= Double.parseDouble(strpl_SpecifiedBuss);
 			setPl_SpecifiedBuss(val_pl_SpecifiedBuss);
 		}
+		double val_depreciation_PL=0.0d;
+		if (formMap.getField("depreciation_PL").getValue().isEmpty()) {
+			setDepreciation_PL(val_depreciation_PL);
+		}
+		else{
+			String strdepreciation_PL=formMap.getField("depreciation_PL").getValue();
+			val_depreciation_PL= Double.parseDouble(strdepreciation_PL);
+			setDepreciation_PL(val_depreciation_PL);
+		}
 		
 		
 		
