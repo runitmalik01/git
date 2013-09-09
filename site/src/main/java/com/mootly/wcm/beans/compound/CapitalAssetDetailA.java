@@ -52,6 +52,7 @@ public abstract class CapitalAssetDetailA extends HippoItem implements FormMapFi
 	private String sstCharge;
 	private Double costAcquisition;
 	private GregorianCalendar dateSale;
+	private GregorianCalendar dateImprove;
 	private String costIndexAcquisition;
 	private Double saleConsideration;
 	private String costIndexConsideration;
@@ -163,6 +164,26 @@ public abstract class CapitalAssetDetailA extends HippoItem implements FormMapFi
 		}
 		return null;
 	}
+	public GregorianCalendar getDateImprove() {
+		if (dateImprove == null) dateImprove = getProperty("mootlywcm:dateimp");
+		return dateImprove;
+	}
+	
+	public String getDateimpStr() {
+		if (dateImprove == null) dateImprove = getProperty("mootlywcm:dateimp");
+		if (dateImprove != null) {
+			String dateimpStr = getIndianDateFormatter().format(dateImprove.getTime());
+			return dateimpStr;
+		}
+		return null;
+	}
+	
+	
+	
+	
+	
+	
+	
 	public Double getSaleConsideration() {
 		if (saleConsideration == null) saleConsideration = getProperty("mootlywcm:sale_consideration");
 		return saleConsideration;
@@ -308,6 +329,11 @@ public abstract class CapitalAssetDetailA extends HippoItem implements FormMapFi
 	}
 	public final void setDateSale(GregorianCalendar dateSale) {
 		this.dateSale = dateSale;
+	}
+	
+	
+	public final void setDateImprove(GregorianCalendar dateImprove) {
+		this.dateImprove = dateImprove;
 	}
 	public final void setAssetType(String assetType) {
 		this.assetType = assetType;
@@ -456,6 +482,7 @@ public abstract class CapitalAssetDetailA extends HippoItem implements FormMapFi
 		}
 		return prdBean;
 	}
+	
 
 
 }

@@ -170,6 +170,9 @@ public class CapitalAssetDetail extends CapitalAssetDetailA implements FormMapFi
 			if(getDateSale()!=null){
 				node.setProperty("mootlywcm:year_sale", getDateSale());
 			}
+			if(getDateImprove()!=null){
+				node.setProperty("mootlywcm:dateimp", getDateImprove());
+			}
 			if(getSaleConsideration()!=null){
 				node.setProperty("mootlywcm:sale_consideration", getSaleConsideration());
 			}
@@ -215,7 +218,6 @@ public class CapitalAssetDetail extends CapitalAssetDetailA implements FormMapFi
 				if(log.isInfoEnabled()){
 					log.info("inside else");
 				}
-
 				String mnths=getMonths();
 				double d=Double.parseDouble(mnths);
 				if(d>(365*3)){
@@ -227,9 +229,7 @@ public class CapitalAssetDetail extends CapitalAssetDetailA implements FormMapFi
 					Double sgain=getCapitalGain();
 					setCapitalGainTaxST(sgain);
 					node.setProperty("mootlywcm:sgain",getCapitalGain());
-
 				}
-
 			}
 
 		}catch (RepositoryException re) {
@@ -299,6 +299,11 @@ public class CapitalAssetDetail extends CapitalAssetDetailA implements FormMapFi
 
 			String strdate = formMap.getField("date_sale").getValue();
 			setDateSale(ConvDateStringToCalendar(strdate));
+		}
+		if (formMap.getField("date_improve") != null){
+
+			String strdate = formMap.getField("date_improve").getValue();
+			setDateImprove(ConvDateStringToCalendar(strdate));
 		}
 
 		if (formMap.getField("saleconsideration").getValue().isEmpty()) {
@@ -528,13 +533,13 @@ public class CapitalAssetDetail extends CapitalAssetDetailA implements FormMapFi
 		setDateAcquisition(objCapitalAssetdetail.getDateAcquisition());
 		setCostAcquisition(objCapitalAssetdetail.getCostAcquisition());
 		setDateSale(objCapitalAssetdetail.getDateSale());
+		setDateImprove(objCapitalAssetdetail.getDateImprove());
 		setSaleConsideration(objCapitalAssetdetail.getSaleConsideration());
 		setCostIndexAcquisition(objCapitalAssetdetail.getCostIndexAcquisition());
 		setCostIndexConsideration(objCapitalAssetdetail.getCostIndexConsideration());
 		setCapitalGain(objCapitalAssetdetail.getCapitalGain());
 		setIndex(objCapitalAssetdetail.getIndex());
-		setPan(objCapitalAssetdetail.getPan()
-				);
+		setPan(objCapitalAssetdetail.getPan());
 		setAccural(objCapitalAssetdetail.getAccural());
 		setCapitalGainTaxLT(objCapitalAssetdetail.getCapitalGainTaxLT());
 		setCapitalGainTaxST(objCapitalAssetdetail.getCapitalGainTaxST());
