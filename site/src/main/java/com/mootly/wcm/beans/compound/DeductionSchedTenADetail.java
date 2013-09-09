@@ -64,7 +64,7 @@ import com.mootly.wcm.utils.Constants;
 public class DeductionSchedTenADetail extends FlexibleDocument implements FormMapFiller {
 	private final static Logger log = LoggerFactory.getLogger(DeductionSchedTenADetail.class);
 	private Double amount;
-	private Double scheduleName;
+	private String scheduleName;
 	private Map<String,List<Value>> valueOfFlexFields = null; //new HashMap<String, List<Value>>();
 
 	private final String prop_scheduleName ="mootlywcm:scheduleName";
@@ -120,11 +120,11 @@ public class DeductionSchedTenADetail extends FlexibleDocument implements FormMa
 		IndianCurrencyHelper indianCurrencyHelper = new IndianCurrencyHelper();
 		if ( formMap.getField("amount") != null) {
 			log.info("this is uuid of form"+formMap.getField("amount").getValue());
-			setAmount(Double.parseDouble(formMap.getField("amount").getValue()));
+			setAmount(Double.parseDouble(StringUtils.isNotBlank(formMap.getField("amount").getValue()) ? formMap.getField("amount").getValue() : "0"));
 		}
 		if ( formMap.getField("scheduleName") != null) {
 			log.info("this is uuid of form"+formMap.getField("scheduleName").getValue());
-			setScheduleName(Double.parseDouble(formMap.getField("scheduleName").getValue()));
+			setScheduleName(formMap.getField("scheduleName").getValue());
 		}
 	}
 
@@ -134,11 +134,11 @@ public class DeductionSchedTenADetail extends FlexibleDocument implements FormMa
 		setAmount(scheduleTenADocumentDetail.getAmount());
 		setScheduleName(scheduleTenADocumentDetail.getScheduleName());
 	}
-	public Double getScheduleName() {
+	public String getScheduleName() {
 		if(scheduleName == null) scheduleName = getProperty("mootlywcm:scheduleName");
 		return scheduleName;
 	}
-	public void setScheduleName(Double scheduleName) {
+	public void setScheduleName(String scheduleName) {
 		this.scheduleName = scheduleName;
 	}
 }
