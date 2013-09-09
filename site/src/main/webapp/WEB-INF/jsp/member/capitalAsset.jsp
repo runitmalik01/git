@@ -210,7 +210,7 @@
 							</div>
 						</div>
 					</c:if>
-					<div class="row-fluid show-grid lt" id="lindex">
+					<div class="row-fluid show-grid" id="lindex">
 						<div class="span9">
 							<div class="rowlabel">
 								<label for="index"><small><fmt:message
@@ -286,7 +286,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="row-fluid show-grid">
+					<div class="row-fluid show-grid" id="imp">
 						<div class="span9">
 							<div class="rowlabel">
 								<label for="date_improve"><small><fmt:message
@@ -295,8 +295,9 @@
 						</div>
 						<div class="span3">
 							<div class="rowlabel">
-								<input id="date_improve" name="date_improve" type="date"
-									title="Please fill date of improvement" />
+								<input id="date_improve" name="date_improve" type="text"
+									value="<c:if test="${not empty childBean.dateimpStr}">
+								<c:out value="${childBean.dateimpStr}"/></c:if>">
 							</div>
 						</div>
 					</div>
@@ -332,7 +333,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="row-fluid show-grid st">
+					<div class="row-fluid show-grid st" id="loss">
 						<div class="span9">
 							<div class="rowlabel">
 								<label for="losssec94"><small><fmt:message
@@ -447,43 +448,49 @@
 								<td><input type="text" name="upto15st" id="upto15st"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
 									<c:out value="${childBean.upto15St}"/></c:if>"
-									class="decimal" maxlength="15"></td>
+									class="decimal" maxlength="15">
+								</td>
 								<td><input type="text" name="upto15oth" id="upto15oth"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
 									<c:out value="${childBean.upto15Oth}"/></c:if>"
-									class="decimal" maxlength="15"></td>
+									class="decimal" maxlength="15">
+								</td>
 							<tr>
 								<td>ii- 16/9 to 15/12(ii)</td>
 								<td><input type="text" name="upto16st" id="upto16st"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
 									<c:out value="${childBean.upto16St}"/></c:if>"
-									class="decimal" maxlength="15"></td>
+									class="decimal" maxlength="15">
+								</td>
 								<td><input type="text" name="upto16oth" id="upto16oth"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
 									<c:out value="${childBean.upto16Oth}"/></c:if>"
-									class="decimal" maxlength="15">
-								</td>
+									class="decimal" maxlength="15"></td>
 							<tr>
 
 								<td>iii- 16/12 to 15/3(iii)</td>
 								<td><input type="text" name="upto16decst" id="upto16decst"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
 									<c:out value="${childBean.upto16decSt}"/></c:if>"
-									class="decimal" maxlength="15"></td>
+									class="decimal" maxlength="15">
+								</td>
 								<td><input type="text" name="upto16decoth"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
 									<c:out value="${childBean.upto16DecOth}"/></c:if>"
-									class="decimal" id="upto16decoth" maxlength="15"></td>
+									class="decimal" id="upto16decoth" maxlength="15">
+								</td>
 							<tr>
 								<td>iv- 16/3 to 31/3(iv)</td>
 								<td><input type="text" name="upto31st" id="upto31st"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
 									<c:out value="${childBean.upto31St}"/></c:if>"
-									class="decimal" maxlength="15"></td>
+									class="decimal" maxlength="15">
+								</td>
 								<td><input type="text" name="upto31oth" id="upto31oth"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
 									<c:out value="${childBean.upto31Oth}"/></c:if>"
-									class="decimal" maxlength="15"></td>
+									class="decimal" maxlength="15">
+								</td>
 							</tr>
 							<tr>
 								<th width="50%" style="color: black;">Dates:</th>
@@ -495,41 +502,49 @@
 								<td><input type="text" name="upto15Lt" id="upto15Lt"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
 									<c:out value="${childBean.upto15Lt}"/></c:if>"
-									class="decimal" maxlength="15"></td>
+									class="decimal" maxlength="15">
+								</td>
 								<td><input type="text" name="upto15np" id="upto15np"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
 									<c:out value="${childBean.upto15Np}"/></c:if>"
-									class="decimal" maxlength="15"></td>
+									class="decimal" maxlength="15">
+								</td>
 							<tr>
 								<td>ii- 16/9 to 15/12(ii)</td>
 								<td><input type="text" name="upto16Lt" id="upto16Lt"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
 									<c:out value="${childBean.upto16Lt}"/></c:if>"
-									class="decimal" maxlength="15"></td>
+									class="decimal" maxlength="15">
+								</td>
 								<td><input type="text" name="upto16np" id="upto16np"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
 									<c:out value="${childBean.upto16Np}"/></c:if>"
-									class="decimal" maxlength="15"></td>
+									class="decimal" maxlength="15">
+								</td>
 							<tr>
 								<td>iii- 16/12 to 15/3(iii)</td>
 								<td><input type="text" name="upto16decLt" id="upto16decLt"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
 								<c:out value="${childBean.upto16DecLt}"/></c:if>"
-									class="decimal" maxlength="15"></td>
+									class="decimal" maxlength="15">
+								</td>
 								<td><input type="text" name="uptodecnp" id="uptodecnp"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
 								<c:out value="${childBean.uptodecNp}"/></c:if>"
-									class="decimal" maxlength="15"></td>
+									class="decimal" maxlength="15">
+								</td>
 							<tr>
 								<td>iv- 16/3 to 31/3(iv)</td>
 								<td><input type="text" name="upto31Lt" id="upto31Lt"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
 								<c:out value="${childBean.upto31Lt}"/></c:if>"
-									class="decimal" maxlength="15"></td>
+									class="decimal" maxlength="15">
+								</td>
 								<td><input type="text" name="upto31np" id="upto31np"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
 								<c:out value="${childBean.upto31Np}"/></c:if>"
-									class="decimal" maxlength="15"></td>
+									class="decimal" maxlength="15">
+								</td>
 							</tr>
 						</table>
 					</div>
@@ -546,38 +561,55 @@
 		<c:otherwise>
 			<table>
 				<tr align="center">
-					<th><b style="color: olive;">Type of Asset </b></th>
-					<th><b style="color: olive;"><fmt:message
-								key="capital.gain.cost.acquisition" /> </b></th>
-					<th><b style="color: olive;"><fmt:message
-								key="capital.gain.sale.consideration" /> </b></th>
-					<th><b style="color: olive;">Long Term Gain </b></th>
-					<th><b style="color: olive;">Short Term Gain </b></th>
-					<th><b style="color: olive;">Actions</b></th>
+					<th width="10%"><b style="color: olive;">Type of Asset </b>
+					</th>
+					<th width="10%"><b style="color: olive;">Name of Asset </b>
+					</th>
+					<th width="15%"><b style="color: olive;"><fmt:message
+								key="capital.gain.cost.acquisition" /> </b>
+					</th>
+					<th width="15%"><b style="color: olive;"><fmt:message
+								key="capital.gain.sale.consideration" /> </b>
+					</th>
+					<th width="15%"><b style="color: olive;">Long Term Gain </b>
+					</th>
+					<th width="15%"><b style="color: olive;">Short Term Gain </b>
+					</th>
+					<th width="20%"><b style="color: olive;">Actions</b>
+					</th>
 				</tr>
 				<c:if test="${not empty parentBean}">
 					<c:forEach items="${parentBean.capitalAssetDetailList}"
 						var="capitalassetdetail">
 						<tr>
 							<td align="right"><c:out
-									value="${capitalassetdetail.assetType}" /></td>
+									value="${capitalassetdetail.assetType}" />
+							</td>
 							<td align="right"><c:out
-									value="${capitalassetdetail.costAcquisition}" /></td>
+									value="${capitalassetdetail.nameAsset}" />
+							</td>
 							<td align="right"><c:out
-									value="${capitalassetdetail.saleConsideration}" /></td>
+									value="${capitalassetdetail.costAcquisition}" />
+							</td>
+							<td align="right"><c:out
+									value="${capitalassetdetail.saleConsideration}" />
+							</td>
 							<td align="right"><fmt:formatNumber type="number"
 									maxIntegerDigits="14"
-									value="${capitalassetdetail.capitalGainTaxLT}" /></td>
+									value="${capitalassetdetail.capitalGainTaxLT}" />
+							</td>
 							<td align="right"><fmt:formatNumber type="number"
 									maxIntegerDigits="14"
-									value="${capitalassetdetail.capitalGainTaxST}" /></td>
+									value="${capitalassetdetail.capitalGainTaxST}" />
+							</td>
 							<td><a class="btn btn-primary"
 								href="${scriptName}/<c:out value="${capitalassetdetail.canonicalUUID}"/>/edit"><small><i
 										class="icon-pencil icon-white"></i>Edit</small> &nbsp;&nbsp; </a>&nbsp;&nbsp;<a
 								class="btn btn-danger"
 								href="${scriptName}/<c:out value="${capitalassetdetail.canonicalUUID}"/>/delete"
 								id="delete" data-confirm=""><small><i
-										class="icon-trash icon-white"></i>Delete</small> </a></td>
+										class="icon-trash icon-white"></i>Delete</small> </a>
+							</td>
 						</tr>
 					</c:forEach>
 				</c:if>
@@ -610,11 +642,11 @@
 
 
 <script type="text/javascript">
-	$(document).ready(function() 
-			{
+	$(document).ready(function() {
 		var type = $('#asset_type').val();
+		var day = $('#months').val();
 		if (type == 'SHARES') {
-			var day = $('#months').val();
+			 day = $('#months').val();
 			var stt = $('#sst_charge').val();
 			if (stt == 'N') {
 				$("#ded").show();
@@ -627,25 +659,51 @@
 				$("#sg").show();
 				$("#lindex").hide();
 				$("#pan").hide();
-
+				$("#imp").hide();
 			} else {
+				if (stt == 'Y') {
+					$("#pan").hide();
+					$("#ded").hide();
+					$("#lindex").hide();
+				} else {
+					$("#lindex").show();
+				}
+				$("#loss").hide();
+				$("#imp").hide();
 				$("#lg").show();
 				$("#lnri").show();
 				$("#snri").hide();
-				$("#lindex").show();
-				$("#pan").show();
-				$("#index").show();
 				$("#sg").hide();
 			}
 			$("#sst").show();
 			$("#sst_charge").show();
 		} else {
+			
+			if (day <= 1096) {
+				
+				$(".st").show();
+				$("#imp").hide();
+				$("#lg").hide();
+				$("#sg").show();
+				$(".with_Y_index").hide();
+				$(".without_N_index").show();
+				$(".lt").hide();
+				$("#sst").hide();
+			} else {
+				$("#loss").hide();
+				$("#lg").show();
+				$("#sg").hide();
+				$("#imp").show();
+				$(".with_Y_index").hide();
+				$(".lt").show();
+				$("#sst").hide();
+			}
+			
+			$("#lindex").hide();
 			$("#sst_charge").hide();
-			$("#sst").hide();
 		}
-		
+
 	});
-	
 
 	$('#asset_type').change(function() {
 		var d = $('#asset_type').val();
@@ -657,7 +715,6 @@
 			$("#sst").hide();
 		}
 	});
-	
 
 	$('#index').change(function() {
 		if ($(this).val() == 'Y') {
@@ -681,11 +738,10 @@
 			$("#ded").hide();
 		}
 	});
-	$('#date_sale,#date_acquisition').change(function() {
+	$('#date_sale,#date_acquisition,#sst_charge').change(function() {
 		var a;
 		var b;
 		a = document.getElementById("date_acquisition").value;
-		//alert("" + a);
 		b = document.getElementById("date_sale").value;
 		document.getElementById("months").value = datediff(a, b);
 		document.getElementById("shortterms").value = decidegaintype();
@@ -698,32 +754,50 @@
 					//$("#longterms").hide();
 					$('#fd_set_gain').show();
 					$(".st").show();
+					$("#lg").hide();
+					$("#sg").show();
 					$(".with_Y_index").hide();
 					$(".without_N_index").show();
 					$(".lt").hide();
+					$("#imp").hide();
 				} else {
-					//$("#shortterms").show();
-					//$("#longterms").show();
+					var sst = $("#sst_charge").val();
+					if (sst == 'N') {
+						$("#lindex").show();
+					} else {
+						$("#pan").hide();
+						$("#ded").hide();
+						$("#lindex").hide();
+					}
+					$("#lg").show();
+					$("#sg").hide();
+					$("#loss").hide();
 					$(".with_Y_index").hide();
 					$('#fd_set_gain').show();
-					$(".st").hide();
+					$("#imp").hide();
 					$(".lt").show();
-
+					$("#sst").show();
 				}
 			} else {
 				if (c <= 1096) {
 					$('#fd_set_gain').show();
 					$(".st").show();
+					$("#imp").hide();
+					$("#lg").hide();
+					$("#sg").show();
 					$(".with_Y_index").hide();
 					$(".without_N_index").show();
 					$(".lt").hide();
+					$("#sst").hide();
 				} else {
-					//$("#shortterms").show();
-					//$("#longterms").show();
-					$(".with_Y_index").hide();
+					$("#loss").hide();
+					$("#lg").show();
+					$("#sg").hide();
 					$('#fd_set_gain').show();
-					$(".st").hide();
+					$("#imp").show();
+					$(".with_Y_index").hide();
 					$(".lt").show();
+					$("#sst").hide();
 				}
 			}
 		}
@@ -734,6 +808,7 @@
 			var yy = parseInt(dsarr[2], 10);
 			return Date.UTC(yy, mm - 1, dd, 0, 0, 0);
 		}
+
 		$(document).ready(function() {
 			<c:if test="${pageAction == 'EDIT_CHILD'}">
 			$('#fd_set_gain').show();
@@ -743,7 +818,13 @@
 			var d1 = dstrToUTC(ds1);
 			var d2 = dstrToUTC(ds2);
 			var oneday = 86400000;
-			return (d2 - d1) / oneday;
+			var e = (d2 - d1) / oneday;
+			if (e < 0) {
+				alert("days can't be negative change your date");
+				return 0;
+			}
+			return e;
+
 		}
 	});
 	$("#accural_info").on('change', function() {
