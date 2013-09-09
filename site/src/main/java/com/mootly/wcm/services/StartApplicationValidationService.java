@@ -30,7 +30,13 @@ import com.mootly.wcm.beans.ScreenConfigDocument;
 public class StartApplicationValidationService {
 
 	private static final Logger log = LoggerFactory.getLogger(StartApplicationValidationService.class);
+	
 	MasterConfigService masterConfigService = MasterConfigService.getInstance();
+	
+	public StartApplicationValidationService(MasterConfigService masterConfigService) {
+		// TODO Auto-generated constructor stub
+		this.masterConfigService = masterConfigService;
+	}
 	/***
 	 * This Method is Used to Validate The Start Application Screen
 	 * 
@@ -156,15 +162,10 @@ public class StartApplicationValidationService {
 				formMap.getField("rsstatus_q").addMessage("err.required.residential");
 			}else{
 				choice="rsstatus_q_"+formMap.getField("rsstatus_q").getValue();
-				log.info("choice HHHHHHHJJJJJKKKK"+choice);
 				for(String fieldsName:formMap.getFieldNames()){
-					log.info("THIS is Inside form");
 					if(fieldsName.startsWith("rsstatus_q_")){
-						log.info("NNNBBBMMMKKKJJJJHHHGGFFFFF"+fieldsName.startsWith("rsstatus_q_"));
-						log.info("HHJJJJJKKKMMMNNNNNBBBVVVV"+formMap.getField(choice).getValue());
 						if(!formMap.getField(choice).getValue().matches("Select")){
 							choice=choice+"_"+formMap.getField(choice).getValue();
-							log.info("JJJJJJJJBBBBHBVBVGGVGV"+choice);
 							if(rbstat.getString(choice).startsWith("ans_")){
 								break;
 							}
@@ -193,12 +194,12 @@ public class StartApplicationValidationService {
 	 * */
 	public void validLastName(FormMap formMap){
 		Boolean check=masterConfigService.shouldValidate5thChar();
-		
 		if(check != null && check){
-			if(formMap.getField("pi_last_name")!=null&& formMap.getField("pan")!=null){
+			if(formMap.getField("pi_last_name")!=null && formMap.getField("pan")!=null){
 				char pan5thChar=formMap.getField("pan").getValue().toLowerCase().charAt(4);
 				char lastName1stChar=formMap.getField("pi_last_name").getValue().toLowerCase().charAt(0);
 				if(pan5thChar!=lastName1stChar){
+					log.info("Not Found a match with LastName& PAN::");
 					formMap.getField("pi_last_name").addMessage("err.valid.lastName.with.pan");
 				}
 			}

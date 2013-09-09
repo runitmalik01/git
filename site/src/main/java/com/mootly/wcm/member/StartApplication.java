@@ -103,7 +103,7 @@ public class StartApplication extends ITReturnComponent {
 		// TODO Auto-generated method stub
 		super.doBeforeRender(request, response);
 		parentBean=(MemberPersonalInformation)request.getAttribute("parentBean");
-
+		//Call to DIT Service then get the Response
 		if(shouldRetrievePANInformation()){
 			RetrievePANInformation retrievePANInformation = getRetrievePANInformationService();
 			try {
@@ -209,7 +209,7 @@ public class StartApplication extends ITReturnComponent {
 		request.setAttribute("jsonObject", jsonObject);
 		request.setAttribute("map", map);
 		request.setAttribute("ITR1_FORM_SELECTION", request.getParameter("ITR1_FORM_SELECTION"));
-		
+
 		String checkForDuplicate = request.getRequestContext().getResolvedSiteMapItem().getParameter("checkForDuplicate");
 		if (checkForDuplicate != null && "true".equalsIgnoreCase(checkForDuplicate)) {
 			if(savedValuesFormMap !=null && getPanFolder() !=null){
@@ -349,31 +349,32 @@ public class StartApplication extends ITReturnComponent {
 	public boolean validate(HstRequest request, HstResponse response,
 			FormMap formMap) {
 		// TODO Auto-generated method stub
-		super.validate(request, response, formMap);
+		if(super.validate(request, response, formMap)){
 
-		boolean hasAValidSelection = true;
-		MemberPersonalInformation memberPersonalInformation = (MemberPersonalInformation) getParentBean();
+			boolean hasAValidSelection = true;
+			MemberPersonalInformation memberPersonalInformation = (MemberPersonalInformation) getParentBean();
 
-		if(memberPersonalInformation != null){
-			ITRForm saveditrForm = memberPersonalInformation.getSelectedITRForm();
-			int savedITRPriority = saveditrForm.getPriority();
-			String selecteditrForm= formMap.getField("flex_string_ITRForm").getValue();
-			ITRForm selectedITR = ITRForm.valueOf(selecteditrForm);
-			int selectedITRPriority = selectedITR.getPriority();
+			if(memberPersonalInformation != null){
+				ITRForm saveditrForm = memberPersonalInformation.getSelectedITRForm();
+				int savedITRPriority = saveditrForm.getPriority();
+				String selecteditrForm= formMap.getField("flex_string_ITRForm").getValue();
+				ITRForm selectedITR = ITRForm.valueOf(selecteditrForm);
+				int selectedITRPriority = selectedITR.getPriority();
 
-			if(savedITRPriority > selectedITRPriority){
-				HippoFolder hippoFolder = (HippoFolder) memberPersonalInformation.getParentBean();
+				if(savedITRPriority > selectedITRPriority){
+					HippoFolder hippoFolder = (HippoFolder) memberPersonalInformation.getParentBean();
 
-				long size = hippoFolder.getDocumentSize();
-				if(size > 1){
-					formMap.addMessage("flex_string_ITRForm", "error.itr.selection");
-					response.setRenderParameter("ITR1_FORM_SELECTION", "error.itr.selection");
-					hasAValidSelection = false;
+					long size = hippoFolder.getDocumentSize();
+					if(size > 1){
+						formMap.addMessage("flex_string_ITRForm", "error.itr.selection");
+						response.setRenderParameter("ITR1_FORM_SELECTION", "error.itr.selection");
+						hasAValidSelection = false;
+					}
 				}
 			}
 		}
 
-		return hasAValidSelection;
+		return super.validate(request, response, formMap);
 	}
 
 	public void doBeforeRenderOld(HstRequest request, HstResponse response) {

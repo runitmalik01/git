@@ -123,6 +123,7 @@ import com.mootly.wcm.model.ValidationResponse;
 import com.mootly.wcm.services.DownloadConfirmationRequiredException;
 import com.mootly.wcm.services.ITRXmlGeneratorServiceFactory;
 import com.mootly.wcm.services.InvalidXMLException;
+import com.mootly.wcm.services.MasterConfigService;
 import com.mootly.wcm.services.PaymentRequiredException;
 import com.mootly.wcm.services.ScreenCalculatorService;
 import com.mootly.wcm.services.ScreenConfigService;
@@ -552,6 +553,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 
 		boolean isValid = validate(request,response,formMap);
 		if (!isValid) {
+			log.info("Lets check result of validation:"+isValid);
 			//this action is save
 			return;
 		}
@@ -1210,7 +1212,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			}
 		}
 
-		StartApplicationValidationService startappvalidserv=new StartApplicationValidationService();
+		StartApplicationValidationService startappvalidserv=new StartApplicationValidationService(MasterConfigService.getInstance());
 		if(filingStatus.getXmlCode()=="I"){
 			startappvalidserv.validResidential(formMap, assessmentYear);
 		}
@@ -1246,10 +1248,12 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			}
 		}
 		if (formMap.getMessage() != null && formMap.getMessage().size() > 0) {
+			log.info("size of message"+formMap.getMessage().size());
 			FormUtils.persistFormMap(request, response, formMap, null);
 			return false;
 		}
 		else {
+			log.info("could not possible");
 			return true;
 		}
 	}

@@ -59,6 +59,6 @@ public class BusinessProfession extends ITReturnComponent {
 				return false;
 			}
 		}
-		return true;
+		return super.validate(request, response, formMap);
 	}
 }

@@ -254,7 +254,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 								<input id="pi_last_name" name="pi_last_name" class="uprcase"
 									placeholder="Last Name" type="text"
 									value="<c:choose><c:when test="${not empty parentBean.lastName}"><c:out value="${parentBean.lastName}"/></c:when><c:when test="${not empty savedValuesFormMap && not empty savedValuesFormMap.value['pi_last_name']}"><c:out value="${savedValuesFormMap.value['pi_last_name'].value}"/></c:when></c:choose>"
-								    readonly="readonly" maxlength="75"/>
+								     maxlength="75"/>
 							</div>
 						</div>
 					</c:when>
