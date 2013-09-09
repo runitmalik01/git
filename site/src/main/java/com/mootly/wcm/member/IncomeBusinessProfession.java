@@ -42,7 +42,7 @@ import com.mootly.wcm.utils.GoGreenUtil;
 		"amountDisAllow_Sec43B","amountDebited_ToProfitLoss","amountAllow_Deduction","excessAmountAllow_Deduction","anyOtherAmountAllow_Deduction","total_Deduction","income_AfterDed","section44AD",
 		"section44AE","section44AF","section44B","section44BB","section44BBA","section44BBB","section44D","section44DA","chapter_XII_G","firstSchedule_ITAct","total_Sections","plBefore_DedUs10A",
 		"deduction_Sec10A","deduction_Sec10AA","deduction_total10","netPL_otherthanSpeculative_SpecifiedBuss","netPl_FromBP","computeInc_SpeculativeBuss","addAccordance_28to44DA",
-		"dedAccordance_28to44DA","pl_SpeculativeBuss","netPLFrom_SPecifiedInc","additionAcc28to44D","dedAcc28to44DEx35AD","pl_SpecifiedBuss","dedAcc35AD","pl_SpecifiedBussNet","incomeChargeable_PL"
+		"dedAccordance_28to44DA","pl_SpeculativeBuss","netPLFrom_SPecifiedInc","additionAcc28to44D","dedAcc28to44DEx35AD","pl_SpecifiedBuss","dedAcc35AD","pl_SpecifiedBussNet","incomeChargeable_PL","depreciation_PL"
 	})
 
 
