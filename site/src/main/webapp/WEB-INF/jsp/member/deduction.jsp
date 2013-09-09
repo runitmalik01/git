@@ -37,9 +37,9 @@
 				<c:choose>
 					<c:when test="${empty ischildofform16 || ischildofform16 !='true'}">
 						<c:set var="addURL" value="${scriptName}/newc6deduction/${deductionSectionName}"/>
-						<c:if test="${not empty appliesToFilingStatus && ( (filingStatus.name == appliesToFilingStatus) || fn:contains(filingStatus,appliesToFilingStatus))}">
+						<%-- <c:if test="${not empty appliesToFilingStatus && ( (filingStatus.name == appliesToFilingStatus) || fn:contains(filingStatus,appliesToFilingStatus))}">--%>
+						<c:if test="${not empty appliesToFilingStatus && !fn:contains(fn:toUpperCase(fn:trim(appliesToFilingStatus)),fn:toUpperCase(fn:trim(memberpersonalinformation.filingStatus)))}">
 							<c:set var="skipIt" value="true"/>
-							<c:out value="${deductionSectionName}---${filingStatus.name}"/>
 						</c:if>
 						<c:if test="${skipIt != 'true' && not empty appliesToResidentStatus && memberpersonalinformation.residentCategory != appliesToResidentStatus}">
 							<c:set var="skipIt" value="true"/>
