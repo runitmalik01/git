@@ -35,7 +35,7 @@ import com.mootly.wcm.components.ITReturnComponent;
 @FormFields(fieldNames={"date_acquisition","saleconsideration","costacquisition","date_sale","capitalgain","nameasset","costimprovement","sst_charge",
 		"asset_type","months","costtrnsfr","asset111","assetnt111","amtdeemed","balanc","losssec94","dedsec54","section48","unlstdsecurity" ,"upto15st","upto15oth",
 		"upto16st","upto16oth","upto16decst","upto16decoth","upto31st","upto31oth","upto15Lt","upto15np","upto16Lt","upto16np","upto16decLt","uptodecnp",
-		"upto31Lt","upto31np","index","accural_info","panifded"})
+		"upto31Lt","upto31np","index","accural_info","panifded","date_improve"})
 public class CapitalAsset extends ITReturnComponent {
 
 	private static final Logger log = LoggerFactory.getLogger(CapitalAsset.class);
