@@ -271,8 +271,8 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 									value="<c:choose><c:when test="${not empty parentBean.lastName}"><c:out value="${parentBean.lastName}"/></c:when><c:when test="${not empty savedValuesFormMap && not empty savedValuesFormMap.value['pi_last_name']}"><c:out value="${savedValuesFormMap.value['pi_last_name'].value}"/></c:when></c:choose>" maxlength="75"/>
 							</div>
 							<input type="hidden" id="pi_first_name" name="pi_first_name" class="uprcase"
-								value="-" /> <input type="hidden" id="pi_last_name" class="uprcase"
-								name="pi_last_name" value="-" /> <input type="hidden"
+								value="-" /> <input type="hidden" id="pi_middle_name" class="uprcase"
+								name="pi_middle_name" value="-" /> <input type="hidden"
 								id="pi_dob" name="pi_dob" value="01/01/1970" /> <input
 								type="hidden" id="gender" name="gender" value="X" />
 						</div>
@@ -870,7 +870,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 	<c:if test="${not empty isDuplicate && isDuplicate == 'true'}">
 		<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		  <div class="modal-header">
-		    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">Ã</button>
+		    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 		    <h3 id="myModalLabel">Application in Progress</h3>
 		  </div>
 		  <div class="modal-body">

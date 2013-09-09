@@ -317,7 +317,8 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 		if (getFirstName() != null) sb.append(firstName).append(" ");
 		if (getMiddleName() != null) sb.append(getMiddleName()).append(" ");
 		if (getLastName() != null) sb.append(lastName);
-		return sb.toString().trim();
+		//as in case of HUF First Name and LAst Name is no Need so it save with a "-".Need to remove these from Name on showed on Member Home Page
+		return sb.toString().trim().replaceAll("-", "");
 	}
 	//for personal information
 	public String getFirstName() {
