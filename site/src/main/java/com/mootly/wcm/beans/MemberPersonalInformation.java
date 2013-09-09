@@ -90,6 +90,7 @@ import com.mootly.wcm.model.FilingSection;
 import com.mootly.wcm.model.FinancialYear;
 import com.mootly.wcm.model.ITRForm;
 import com.mootly.wcm.model.ITRServiceDelivery;
+import com.mootly.wcm.model.ResidentStatus;
 
 /**
  * User: vivek
@@ -1089,7 +1090,7 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 		double amt=0.0d;
 		if (formMap.getField("trpnumber") != null) setTrpnumber(formMap.getField("trpnumber").getValue());
 		if (formMap.getField("trpname") != null) setTrpname(formMap.getField("trpname").getValue());
-		
+
 		if (formMap.getField("isTaxPreparebyTRP") != null) setIsTaxPreparebyTRP(formMap.getField("isTaxPreparebyTRP").getValue());
 		if (formMap.getField("trpreimbursement").getValue().isEmpty())
 		{
@@ -1169,6 +1170,14 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 				}
 				setResidentCategory(ResidentialFind(rb.getString(aKey)));
 				break;
+			}
+		}
+		//In case of HUF we are not asking question to member so if "rsstatus_q" has a value that have residential status then we will set Residential Status
+		if(StringUtils.isBlank(getResidentCategory())){
+			for(ResidentStatus resiStat:ResidentStatus.values()){
+				if(resiStat.name().equalsIgnoreCase(getRsstatusQ())){
+					setResidentCategory(resiStat.name());
+				}
 			}
 		}
 	}
