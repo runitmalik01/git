@@ -17,7 +17,7 @@
 --%>
 
 <%@include file="../includes/tags.jspf" %>
-
+<hst:link var="homeLink" siteMapItemRefId="home"></hst:link>
 <c:set var="searchresultstitle"><fmt:message key="search.results.title"/></c:set>
 <hippo-gogreen:title title="${searchresultstitle}"/>
 <div class="page">
@@ -34,21 +34,30 @@
 		    <%-- Do titles --%>
 		    <c:choose>
 		      <%-- When page is not found --%>
-		      <c:when test="${pagenotfound}">
-		        <h2><fmt:message key="search.results.pagenotfound"/></h2>
-		        <div id="not-found">
-		          <p>
-		            <fmt:message key="search.results.notfounddescr"/>
-		            <c:if test="${not isFound}">
-		              <br/><br/><fmt:message key="search.results.norelatedpages"/>
-		            </c:if>
-		          </p>
-		          <c:if test="${isFound}">
-		            <p class="b"><fmt:message key="search.results.suggestion"/></p>
-		          </c:if>
-		        </div>
-		      </c:when>
-		      <%-- When a search is done, but no results where found --%>
+				<c:when test="${pagenotfound}">
+					<div class="hero-unit center">
+						<h1>
+							<fmt:message key="search.results.pagenotfound" />
+							<small><font face="Tahoma" color="red">Error 404</font></small>
+						</h1>
+						<br/>
+						<!--  <h2><fmt:message key="search.results.pagenotfound"/></h2> -->
+						<div id="not-found">
+							<p>
+								<fmt:message key="search.results.notfounddescr" />
+								<c:if test="${not isFound}"><br /><br />
+									<fmt:message key="search.results.norelatedpages" />
+								</c:if>
+							</p>
+							<c:if test="${isFound}">
+								<p class="b">
+									<fmt:message key="search.results.suggestion" /></p>
+							</c:if>
+						</div>
+						<a href="${homeLink}" class="btn btn-large btn-info"><i class="icon-home icon-white"></i> Take Me Home</a>
+					</div>
+				</c:when>
+				<%-- When a search is done, but no results where found --%>
 		      <c:when test="${not isFound}">
 		        <h2><fmt:message key="search.results.title"/></h2>
 		        <p id="results"><fmt:message key="search.results.noresults"/> '${searched}'</p>
@@ -171,5 +180,6 @@
 	.page #search-results .search-result .title { display: block; font-size: 108%; margin-top: 7px; }
 	.page #search-results .search-result .text { display: block; margin-top: 5px; }
 	.page #search-results .search-result .path { display: block; color: #009900; font-size: 85%; margin: 3px 0 10px; }
+	.center {text-align: center; margin-left: auto; margin-right: auto; margin-bottom: auto; margin-top: auto;}
 </hst:element>
 <hst:headContribution element="${cssCustom}" category="css"/>

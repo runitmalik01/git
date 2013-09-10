@@ -26,52 +26,52 @@
 			.getStates();
 	request.setAttribute("objMapstates", objMapstates);
 %>
-<c:if test="${shouldRetrievePANInformation && not empty retrievePANResponse}">
-	<hst:element var="uiCustom" name="script">
-		<hst:attribute name="type">text/javascript</hst:attribute>
+<hst:element var="uiCustom" name="script">
+	<hst:attribute name="type">text/javascript</hst:attribute>
+	<c:if test="${shouldRetrievePANInformation && not empty retrievePANResponse}">
 		<%--invoke response of RetrievePANResponse to Fields of StartApplication Screen --%>
-
+        //alert('Putting Response of DIT Service');
 		<%-- Invoke DOB in Start Application Screen --%>
-	  $('#pi_dob').val('<c:out value="${retrievePANResponse.dOB}" />');
+	  $('#pi_dob').val('<c:out value="${retrievePANResponse.DOB}" />');
 	  <%-- Invoke Father Name in Start Application Screen --%>
-	  $('#pi_father_name').val('<c:out value="${retrievePANResponse.fatherFullName }"/>');
+	  $('#pi_father_name').val('<c:out value="${retrievePANResponse.fatherFullName }" />');
 	  <%-- Invoke First Name in Start Application Screen 
 	       As First Name will be at Start of Full Name so we Split Name and then invoke this value to Screen
 	  --%>
-		<c:set value="${fn:split(retrievePANResponse.fullName,' ')}" var="splittedFullName"/>
+		<c:set value="${fn:split(retrievePANResponse.fullName,' ')}" var="splittedFullName" />
 	  $('#pi_first_name').val('<c:out value="${splittedFullName[0]}" />');
 	  <%-- Invoke Middle Name in Start Application Screen 
 	       As Middle Name will be at mid of Full Name so we Split Name and then invoke this value to Screen
 	  --%>
-	  <c:if test="${fn:length(splittedFullName) > 2}">
-		 <c:forEach items="${splittedFullName}" var="namePart" varStatus="cnt">
-		     <c:if test="${cnt.count > 1 && cnt.count <= (fn:length(splittedFullName) -1)}">
-				<c:set value="${namePart + ' ' + midName}" var="midName" />
-			 </c:if>
-		 </c:forEach>
+		<c:if test="${fn:length(splittedFullName) > 2}">
+			<c:forEach items="${splittedFullName}" var="namePart" varStatus="cnt">
+				<c:if test="${cnt.count > 1 && cnt.count <= (fn:length(splittedFullName) -1)}">
+					<c:set value="${namePart + ' ' + midName}" var="midName" />
+				</c:if>
+			</c:forEach>
 	    $('#pi_middle_name').val('<c:out value="${fn:trim(midName)}" />');
 	  </c:if>
-	  <%-- Invoke flat/Door/Building in Start Application Screen 
+		<%-- Invoke flat/Door/Building in Start Application Screen 
 	       As flat/door/Building will be at Start of Address so we Split Address and then invoke this value to Screen
 	  --%>
 	  $('#pi_flat_door_building').val('<c:out value="${fn:split(retrievePANResponse.address,' ')[0]}" />');
 	  <%-- Invoke Town/City/District in Start Application Screen 
 	       As Town/City/District will be at someWhere in Address so we Split Address and then invoke this value to Screen
 	  --%>
-	   <c:forEach var="booleanCombo" items="${objMapstates}">
-		  <c:if test="${fn:contains(retrievePANResponse.address,booleanCombo.value)}">
-			  <c:set value="${fn:substringBefore(retrievePANResponse.address, booleanCombo.value)}" var="strBefstate" />
-			  <c:set value="${booleanCombo.key}" var="resStateKey" />
-		  </c:if>
-	   </c:forEach>
-	   <c:set value="${fn:split(strBefstate,' ')}" var="cityTownDistct" />
+		<c:forEach var="booleanCombo" items="${objMapstates}">
+			<c:if test="${fn:contains(retrievePANResponse.address,booleanCombo.value)}">
+				<c:set value="${fn:substringBefore(retrievePANResponse.address, booleanCombo.value)}" var="strBefstate" />
+				<c:set value="${booleanCombo.key}" var="resStateKey" />
+			</c:if>
+		</c:forEach>
+		<c:set value="${fn:split(strBefstate,' ')}" var="cityTownDistct" />
 	   $('#pi_town_city_district').val('<c:out value="${cityTownDistct[fn:length(cityTownDistct)-1]}" />');
 	   <%-- Invoke Area/Locality in Start Application Screen 
 	       As Area/Locality will be at someWhere in Address so we Split Address and then invoke this value to Screen.
 	       Use "strBefstate" value remove flat/door/building with string after space("/000u") and then select string before cityTownDrict 
 	  --%>
-	  <c:set value="${fn:substringBefore(fn:substringAfter(strBefstate,' '),cityTownDistct[fn:length(cityTownDistct)-1]) }" var="areaLocal"/>
-	  <%-- <c:if test="${fn:length(cityTownDistct) >= 2}">
+		<c:set value="${fn:substringBefore(fn:substringAfter(strBefstate,' '),cityTownDistct[fn:length(cityTownDistct)-1]) }" var="areaLocal" />
+		<%-- <c:if test="${fn:length(cityTownDistct) >= 2}">
 	    <c:forEach items="${cityTownDistct}" var="addrsItem" varStatus="addsct">
 	      
 	    </c:forEach>
@@ -80,7 +80,8 @@
 	  <%-- Invoke state in Start Application Screen 
 	       As state will be at someWhere of Address so we Split Address and then invoke this value to Screen
 	  --%>
-	  $(#'pi_state').val('<c:out value="${resStateKey}" />');
-	</hst:element>
-	<hst:headContribution element="${uiCustom}" category="jsInternal" />
-</c:if>
+	  $('#pi_state').val('<c:out value="${resStateKey}" />');
+	  
+	  </c:if>
+</hst:element>
+<hst:headContribution element="${uiCustom}" category="jsInternal" />
