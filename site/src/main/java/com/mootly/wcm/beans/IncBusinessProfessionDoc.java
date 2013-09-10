@@ -112,7 +112,7 @@ public class IncBusinessProfessionDoc extends IncBusinessProfessionVar{
 		if (formMap.getField("exemptIncome_AnyOther").getValue().isEmpty()) {
 			setExemptIncome_AnyOther(val_exemptIncome_AnyOther);
 		}
-		else{
+		else{    
 			String strexemptIncome_AnyOther=formMap.getField("exemptIncome_AnyOther").getValue();
 			val_exemptIncome_AnyOther= Double.parseDouble(strexemptIncome_AnyOther);
 			setExemptIncome_AnyOther(val_exemptIncome_AnyOther);
@@ -125,6 +125,15 @@ public class IncBusinessProfessionDoc extends IncBusinessProfessionVar{
 			String strbalance=formMap.getField("balance").getValue();
 			val_balance= Double.parseDouble(strbalance);
 			setBalance(val_balance);
+		}
+		double val_total_ExemptIncome=0.0d; 
+		if (formMap.getField("total_ExemptIncome").getValue().isEmpty()){
+			setTotal_ExemptIncome(val_balance);
+		}
+		else{
+			String strtotal_ExemptIncome=formMap.getField("total_ExemptIncome").getValue();
+			val_total_ExemptIncome= Double.parseDouble(strtotal_ExemptIncome);
+			setTotal_ExemptIncome(val_total_ExemptIncome);
 		}
 		double val_expenseDebit_HeadsInc=0.0d;
 		if (formMap.getField("expenseDebit_HeadsInc").getValue().isEmpty()) {
@@ -229,7 +238,7 @@ public class IncBusinessProfessionDoc extends IncBusinessProfessionVar{
 		if (formMap.getField("amountDebit_sec40A").getValue().isEmpty()) {
 			setAmountDebit_sec40A(val_amountDebit_sec40A);
 		}
-		else{
+		else{  
 			String stramountDebit_sec40A=formMap.getField("amountDebit_sec40A").getValue();
 			val_amountDebit_sec40A= Double.parseDouble(stramountDebit_sec40A);
 			setAmountDebit_sec40A(val_amountDebit_sec40A);
@@ -243,6 +252,7 @@ public class IncBusinessProfessionDoc extends IncBusinessProfessionVar{
 			val_amountDebit_sec43B= Double.parseDouble(amountDebit_sec43Bstr);
 			setAmountDebit_sec43B(val_amountDebit_sec43B);
 		}
+		
 		double val_interestDisallow_sec23=0.0d;
 		if (formMap.getField("interestDisallow_sec23").getValue().isEmpty()){
 			setInterestDisallow_sec23(val_interestDisallow_sec23);
@@ -280,13 +290,22 @@ public class IncBusinessProfessionDoc extends IncBusinessProfessionVar{
 			setAddItem_sec28to44DA(val_addItem_sec28to44DA);
 		}
 		double val_anyIncNotInclude_PLAcc=0.0d;
-		if (formMap.getField("anyIncNotInclude_PLAcc").getValue().isEmpty()){
+		if (formMap.getField("anyIncNotInclude_PLAcc").getValue().isEmpty()){  
 			setAnyIncNotInclude_PLAcc(val_anyIncNotInclude_PLAcc);
 		}
 		else{
 			String stranyIncNotInclude_PLAcc=formMap.getField("anyIncNotInclude_PLAcc").getValue();
 			val_anyIncNotInclude_PLAcc= Double.parseDouble(stranyIncNotInclude_PLAcc);
 			setAnyIncNotInclude_PLAcc(val_anyIncNotInclude_PLAcc);
+		}
+		double val_totalIncome_sec=0.0d;
+		if (formMap.getField("totalIncome_sec").getValue().isEmpty()){
+			setTotalIncome_sec(val_totalIncome_sec);
+		}
+		else{
+			String strtotalIncome_sec=formMap.getField("totalIncome_sec").getValue();
+			val_totalIncome_sec= Double.parseDouble(strtotalIncome_sec);
+			setTotalIncome_sec(val_totalIncome_sec);
 		}
 		double val_deductionAllow_Sec32_1_iii=0.0d;
 		if (formMap.getField("deductionAllow_Sec32_1_iii").getValue().isEmpty()){

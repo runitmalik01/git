@@ -23,7 +23,8 @@ public abstract class IncBusinessProfessionVar extends BaseDocument implements C
 	private Double shareIncome_Firms;
 	private Double shareIncome_Firms_AOP;
 	private Double exemptIncome_AnyOther;
-	private Double balance;
+	private Double balance; 
+	private Double total_ExemptIncome;
 	private Double expenseDebit_HeadsInc;
 	private Double expenseDebit_ExemptInc;
 	private Double total_Expense;
@@ -125,6 +126,10 @@ public abstract class IncBusinessProfessionVar extends BaseDocument implements C
 	public  Double getBalance() {
 		if (balance == null) balance = getProperty("mootlywcm:balance");
 		return balance;
+	}
+	public Double getTotal_ExemptIncome(){
+		if(total_ExemptIncome == null) total_ExemptIncome = getProperty("mootlywcm:total_ExemptIncome");
+		return total_ExemptIncome;
 	}
 	public Double getExpenseDebit_HeadsInc() {
 		if (expenseDebit_HeadsInc == null) expenseDebit_HeadsInc = getProperty("mootlywcm:expenseDebit_HeadsInc");
@@ -395,6 +400,9 @@ public abstract class IncBusinessProfessionVar extends BaseDocument implements C
 	public final void setBalance(Double balance) {
 		this.balance = balance;
 	}
+	public final void setTotal_ExemptIncome(Double total_ExemptIncome){
+		this.total_ExemptIncome=total_ExemptIncome;
+	}
 	public void setExpenseDebit_HeadsInc(Double expenseDebit_HeadsInc) {
 		this.expenseDebit_HeadsInc = expenseDebit_HeadsInc;
 	}
@@ -596,6 +604,7 @@ public abstract class IncBusinessProfessionVar extends BaseDocument implements C
 		node.setProperty("mootlywcm:shareIncome_Firms_AOP", objIncBusinessProfessionDoc.getShareIncome_Firms_AOP());
 		node.setProperty("mootlywcm:exemptIncome_AnyOther", objIncBusinessProfessionDoc.getExemptIncome_AnyOther());
 		node.setProperty("mootlywcm:balance", objIncBusinessProfessionDoc.getBalance());
+		node.setProperty("mootlywcm:total_ExemptIncome", objIncBusinessProfessionDoc.getTotal_ExemptIncome());
 		node.setProperty("mootlywcm:expenseDebit_HeadsInc", objIncBusinessProfessionDoc.getExpenseDebit_HeadsInc());
 		node.setProperty("mootlywcm:expenseDebit_ExemptInc", objIncBusinessProfessionDoc.getExpenseDebit_ExemptInc());
 		node.setProperty("mootlywcm:total_Expense", objIncBusinessProfessionDoc.getTotal_Expense());
@@ -609,6 +618,7 @@ public abstract class IncBusinessProfessionVar extends BaseDocument implements C
 		node.setProperty("mootlywcm:amountDebit_sec40", objIncBusinessProfessionDoc.getAmountDebit_sec40());
 		node.setProperty("mootlywcm:amountDebit_sec40A", objIncBusinessProfessionDoc.getAmountDebit_sec40A());
 		node.setProperty("mootlywcm:amountDebit_sec43B", objIncBusinessProfessionDoc.getAmountDebit_sec43B());
+		node.setProperty("mootlywcm:interestDisallow_sec23", objIncBusinessProfessionDoc.getInterestDisallow_sec23());
 		node.setProperty("mootlywcm:section44D", objIncBusinessProfessionDoc.getSection44D());
 		node.setProperty("mootlywcm:deemedIncome_Sec41", objIncBusinessProfessionDoc.getDeemedIncome_Sec41());
 		node.setProperty("mootlywcm:deemedIncome_Sec33AB", objIncBusinessProfessionDoc.getDeemedIncome_Sec33AB());
