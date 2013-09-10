@@ -147,6 +147,10 @@
 			</tr>
 		</table>
 </div>
+<%-- 
+<c:if test="${fn:toLowerCase(memberpersonalinformation.selectedITRForm) == 'itr4' }">
+<hst:include ref="ded-sched-10a"/>
+</c:if>--%>
 <c:set var="deductionAdditionalScreen" value="${deductionSection.additionalProperties['additionalScreen']}"/>
 <c:choose>
 	<c:when test="${not empty deductionAdditionalScreen && deductionAdditionalScreen != ''}">

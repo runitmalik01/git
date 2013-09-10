@@ -23,7 +23,9 @@
 			Deduction Schedule-10A/10AA in special economic zone<span class="caret"></span>
 		</button>
 		<ul class="dropdown-menu">
-			<li><a href="${scriptName}/itrdedschedule10anew" id="newchild"><i class="icon-plus-sign"></i><strong>Add</strong></a></li>
+			<li> <a href="${scriptName}/itrdedschedule10anew" id="newchild"><i class="icon-plus-sign"></i><strong>Add</strong></a>
+			    <%-- <a href="./itrdedschedule10a.html/itrdedschedule10anew" id="newchild"><i class="icon-plus-sign"></i><strong>Add</strong></a>--%>    
+			</li>
 		</ul>
 	</div>&nbsp;<strong>to add new Schedule 10A/10AA(Undertaking Amount)!!</strong>
 </fieldset>
@@ -40,17 +42,17 @@
 		</tr>
 	</thead>
 	<tbody>
-		<c:if test="${not empty parentBean.schedule10ADetailList}">
-			<c:forEach items="${parentBean.schedule10ADetailList}" var="schedule10ADetail" varStatus="ct">
+		<c:if test="${not empty parentBean.scheduleTenADetailList}">
+			<c:forEach items="${parentBean.scheduleTenADetailList}" var="schedule10ADetail" varStatus="ct">
 				<tr class="warning">
 					<td><c:out value="${ct.count}"/></td>
-					<td><c:out value="${schedule10ADetail.scheduleName}"/></td>
+					<td><c:out value="Schedule-${fn:toUpperCase(schedule10ADetail.scheduleName)}"/></td>
 					<td><w4india:inr value="${schedule10ADetail.amount}"/></td>
-					<td align="center"><div class="span1">
+					<td align="center"><div class="rowlabel">
 							<a href="${scriptName}/${schedule10ADetail.canonicalUUID}/itrdedschedule10aedit"
 								class="btn btn-primary"><i class="icon-edit icon-white"></i><span><strong>Edit</strong></span></a>&nbsp;
-							<%-- <a href="${scriptName}/${schedule10ADetail.canonicalUUID}/itrschedule10adelete" data-confirm=""
-							class="btn btn-danger"><i class="icon-trash icon-white"></i><span><strong>Delete</strong></span></a>--%>
+							<a href="${scriptName}/${schedule10ADetail.canonicalUUID}/itrdedschedule10adelete" data-confirm=""
+							class="btn btn-danger"><i class="icon-trash icon-white"></i><span><strong>Delete</strong></span></a>
 						</div></td>
 				</tr>
 			</c:forEach>
@@ -58,9 +60,9 @@
 		<tr class="success">
 			<td colspan="2"><b>Total</b></td>
 
-			<td><c:if test="${not empty parentBean.schedule10ADetailList}">
+			<td><c:if test="${not empty parentBean.scheduleTenADetailList}">
 					<c:set value="sumGross" var="0" />
-					<c:forEach items="${parentBean.schedule10ADetailList}" var="schedule10ADetail">
+					<c:forEach items="${parentBean.scheduleTenADetailList}" var="schedule10ADetail">
 						<c:set value="${sumGross + schedule10ADetail.amount}" var="sumGross" />
 					</c:forEach>
 				</c:if><b><w4india:inr value="${sumGross}" /></b></td>
@@ -78,7 +80,7 @@
 				</div>
 				<div class="rowlabel">
 					<c:if test="${pageAction == 'EDIT_CHILD'}">
-						<c:forEach items="${parentBean.schedule10ADetailList}" var="schedule10ADetail">
+						<c:forEach items="${parentBean.scheduleTenADetailList}" var="schedule10ADetail">
 							<c:if test="${schedule10ADetail.canonicalUUID == uuid}">
 								<c:set value="${schedule10ADetail.scheduleName}" var="editschedule10A" />
 							</c:if>
@@ -101,7 +103,7 @@
 				</div>
 				<div class="rowlabel">
 					<c:if test="${pageAction == 'EDIT_CHILD'}">
-						<c:forEach items="${parentBean.schedule10ADetailList}" var="schedule10ADetail">
+						<c:forEach items="${parentBean.scheduleTenADetailList}" var="schedule10ADetail">
 							<c:if test="${schedule10ADetail.canonicalUUID == uuid}">
 								<c:set value="${schedule10ADetail.amount}" var="editAmount" />
 							</c:if>

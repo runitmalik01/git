@@ -104,6 +104,7 @@ public class DeductionSchedTenADetail extends FlexibleDocument implements FormMa
 		try {
 			super.bindToNode(node);
 			node.setProperty(prop_amount, getAmount());
+			node.setProperty(prop_scheduleName, getScheduleName());
 		} catch (RepositoryException rex) {
 			log.error("Repository Exception while binding",rex);
 		}
@@ -135,7 +136,7 @@ public class DeductionSchedTenADetail extends FlexibleDocument implements FormMa
 		setScheduleName(scheduleTenADocumentDetail.getScheduleName());
 	}
 	public String getScheduleName() {
-		if(scheduleName == null) scheduleName = getProperty("mootlywcm:scheduleName");
+		if(scheduleName == null) scheduleName = getProperty(prop_scheduleName);
 		return scheduleName;
 	}
 	public void setScheduleName(String scheduleName) {
