@@ -31,11 +31,11 @@ public class StartApplicationValidationService {
 
 	private static final Logger log = LoggerFactory.getLogger(StartApplicationValidationService.class);
 	
-	MasterConfigService masterConfigService = MasterConfigService.getInstance();
+	MasterConfigService masterConfigService = null;
 	
-	public StartApplicationValidationService(MasterConfigService masterConfigService) {
+	public StartApplicationValidationService() {
 		// TODO Auto-generated constructor stub
-		this.masterConfigService = masterConfigService;
+		this.masterConfigService = MasterConfigService.getInstance();;
 	}
 	/***
 	 * This Method is Used to Validate The Start Application Screen

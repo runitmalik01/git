@@ -1212,7 +1212,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			}
 		}
 
-		StartApplicationValidationService startappvalidserv=new StartApplicationValidationService(MasterConfigService.getInstance());
+		StartApplicationValidationService startappvalidserv=new StartApplicationValidationService();
 		if(filingStatus.getXmlCode()=="I"){
 			startappvalidserv.validResidential(formMap, assessmentYear);
 		}
