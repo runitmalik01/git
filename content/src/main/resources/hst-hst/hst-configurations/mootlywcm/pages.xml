@@ -7015,17 +7015,28 @@
       <sv:property sv:name="hst:template" sv:type="String">
         <sv:value>standard.main.re</sv:value>
       </sv:property>
-      <sv:node sv:name="content">
-        <sv:property sv:name="jcr:primaryType" sv:type="Name">
-          <sv:value>hst:component</sv:value>
-        </sv:property>
-        <sv:property sv:name="jcr:uuid" sv:type="String">
-          <sv:value>3e8d1554-8d49-46bb-aa72-3d3e2205c7e9</sv:value>
-        </sv:property>
-        <sv:property sv:name="hst:referencecomponent" sv:type="String">
-          <sv:value>hst:components/member.deduction</sv:value>
-        </sv:property>
-      </sv:node>
+<sv:node sv:name="content">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:component</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>3e8d1554-8d49-46bb-aa72-3d3e2205c7e9</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:referencecomponent" sv:type="String">
+    <sv:value>hst:components/member.deduction</sv:value>
+  </sv:property>
+  <sv:node sv:name="ded-sched-10a">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>1e71b849-650d-4e06-9bf3-d72b70bcdefd</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:referencecomponent" sv:type="String">
+      <sv:value>hst:components/itr-ded-schedule-10a</sv:value>
+    </sv:property>
+  </sv:node>
+</sv:node>
     </sv:node>
   </sv:node>
   <sv:node sv:name="reviews">
