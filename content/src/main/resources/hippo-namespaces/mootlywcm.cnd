@@ -112,6 +112,8 @@
 [mootlywcm:invoicedocument] > hippostd:relaxed, mootlywcm:basedocument
   orderable
   
+  [mootlywcm:scheduleesrdocument] > hippostd:relaxed, mootlywcm:basedocument
+  orderable
 
 [mootlywcm:deductiondocument] >hippostd:relaxed, mootlywcm:basedocument
   orderable
