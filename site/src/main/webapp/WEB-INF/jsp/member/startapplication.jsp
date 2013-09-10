@@ -34,24 +34,23 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 SortedSet<Map.Entry<String,String>> objHashMapstates = objValueListService.getStates();
 request.setAttribute("objHashMapstates", objHashMapstates);
 %>
-<c:if test="${not empty formMap}">
-	<c:forEach items="${formMap.message}" var="item">
-		<div class="alert alert-error">
-			<fmt:message key="${item.value}" />
-		</div>
-	</c:forEach>
-</c:if>
 <hst:actionURL var="actionUrl"></hst:actionURL>
 <div class="page">
 	<w4india:itrmenu />
-		<c:if test="${not empty ITR1_FORM_SELECTION}">
-	   <div class="alert alert-error">
-	        <fmt:message key="${ITR1_FORM_SELECTION}" />
-	   </div>
+	<c:if test="${not empty formMap}">
+		<c:forEach items="${formMap.message}" var="item">
+			<div class="alert alert-error">
+				<fmt:message key="${item.value}" />
+			</div>
+		</c:forEach>
+	</c:if>
+	<c:if test="${not empty ITR1_FORM_SELECTION}">
+		<div class="alert alert-error">
+			<fmt:message key="${ITR1_FORM_SELECTION}" />
+		</div>
 	</c:if>
 	<h4>
-		<c:out value="${filingStatus}" />
-		Information
+		<c:out value="${filingStatus}" /> Information
 	</h4>
 	<form id="frmPersonalInfo" action="${actionUrl}" method="post"
 		name="pi">
@@ -789,12 +788,11 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 					</div>
 				</div>
 			</div>
+			<input type="hidden" name="bnk_name_solr" id="bnk_name_solr"/>
+		</fieldset>
 			<jsp:include page="personalinfo_add_itr2.jsp"></jsp:include>
 			<jsp:include page="personalinfo_add_itr4.jsp"></jsp:include>
 			<jsp:include page="startapp_add_itr4s.jsp"></jsp:include>
-
-			<input type="hidden" name="bnk_name_solr" id="bnk_name_solr"/>
-		</fieldset>
 		<div id="itreturnHomepage" style="display: none; visiblity: hidden">
 			<input id="pan" name="pan"
 				value="<c:choose><c:when test="${not empty parentBean && not empty parentBean.PAN}"><c:out value="${parentBean.PAN}"/></c:when><c:otherwise><c:if test="${not empty savedValuesFormMap && not empty savedValuesFormMap.value['pan']}"><c:out value="${savedValuesFormMap.value['pan'].value}"/></c:if></c:otherwise></c:choose>"

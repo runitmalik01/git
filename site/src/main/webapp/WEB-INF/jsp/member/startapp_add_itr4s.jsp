@@ -28,8 +28,8 @@
 	<div class="row-fluid show-grid <c:if test="${parentBean.isTaxPreparebyTRP == 'N'}"> hide </c:if>" id="yesTaxPreparebyTRP">
 		<div class="span3">
 			<div class="rowlabel">
-				<label for="trpnumber"><fmt:message
-						key="member.trp.ident.number" /> </label>
+				<label for="trpnumber"><small><fmt:message
+						key="member.trp.ident.number" /></small> </label>
 			</div>
 				<div class="rowlabel">
 					<input id="trpnumber" name="trpnumber" class="uprcase"
@@ -38,7 +38,7 @@
 			</div>
 		<div class="span3">
 			<div class="rowlabel">
-				<label for="trpname"><fmt:message key="member.trp.name" />
+				<label for="trpname"><small><fmt:message key="member.trp.name" /></small>
 				</label>
 			</div>
 			<div class="rowlabel">
@@ -50,8 +50,8 @@
 	
 		<div class="span8">
 			<div class="rowlabel">
-				<label for="trpreimbursement"><fmt:message
-						key="member.trp.reimbursement" /> </label>
+				<label for="trpreimbursement"><small><fmt:message
+						key="member.trp.reimbursement" /></small> </label>
 			</div>
 		</div>
 		<div class="span3">
