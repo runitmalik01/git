@@ -3334,6 +3334,20 @@
   </sv:property>
 </sv:node>
 
+
+<!--schedule esr-->
+<sv:node sv:name="scheduleESR">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:template</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>e36ba57d-d14a-408a-80c1-6e662b9d0f52</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:renderpath" sv:type="String">
+    <sv:value>jsp/member/scheduleEsr.jsp</sv:value>
+  </sv:property>
+</sv:node>
+
 <sv:node sv:name="firmspartner">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hst:template</sv:value>

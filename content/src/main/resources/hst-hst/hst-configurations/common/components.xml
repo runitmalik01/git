@@ -1739,6 +1739,23 @@
 </sv:node>
 
 
+<!--schedule esr-->
+<sv:node sv:name="scheduleESR">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:component</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>daf6761a-c8ec-4080-905c-eaafb3dae6ad</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:componentclassname" sv:type="String">
+    <sv:value>com.mootly.wcm.member.ScheduleESR</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:template" sv:type="String">
+    <sv:value>scheduleESR</sv:value>
+  </sv:property>
+</sv:node>
+
+
 
 
 
