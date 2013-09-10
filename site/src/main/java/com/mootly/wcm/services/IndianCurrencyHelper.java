@@ -5,6 +5,7 @@ import java.math.BigInteger;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.ResourceBundle;
 
@@ -161,14 +162,62 @@ public final class IndianCurrencyHelper {
 		DecimalFormat df2 = new DecimalFormat("###");
 		return df2.format(o);
 	}
-	public double getYearIndexValue(String year){
-		ResourceBundle rb = ResourceBundle.getBundle("valueList_InflationIndex");
+
+	public double getYearIndexValue(String Calldate){
+		ResourceBundle rb = ResourceBundle.getBundle("valueList_Infla" +
+				"tionIndex");
+		String expDate= Calldate;
+		String[] getDate= expDate.split("/");
+		String  year= getDate[2];
+		if(rb.containsKey("valueList."+year)){
+			log.info("it contains");
+			String[] newString=rb.getString("valueList."+year+"").split("-");
+			String fromDate=newString[0];
+			String toDate=newString[1];
+			Boolean comapreResult=	IsDateBetween(Calldate, fromDate, toDate);
+			if(comapreResult.equals(true)){
+				log.info("success");
+				return Double.parseDouble(rb.getString("valueList."+year+".cii"));
+			}else{
+				double year1= Double.parseDouble(year);
+				return Double.parseDouble(rb.getString("valueList."+(year1-1)+".cii"));
+			}	
+		}
+		return Double.parseDouble(rb.getString("valueList.2012.cii"));
+	}
+
+
+	/**
+	 * this method for checking whether date lies between indexation or not
+
+	@return true or false
+	@param current date, from Date and to Date
+	@author abhishek
+
+	 **/
+	public Boolean IsDateBetween(String dd, String Ndate, String Odate) {
+
+		long  from=Date.parse(Ndate);  // From some date
+		long to=Date.parse(Odate);     // To Some Date
+		long check=Date.parse(dd);
+		if((check-from)>0 && (to-check)>0)
+		{
+			return  true;
+
+		}
+		return false;
+	}   
+
+	//try to send default value so that no NullPointer Exception
+	/*public double getYearIndexValue(String year){
+		ResourceBundle rb = ResourceBundle.getBundle("valueList_Infla" +
+				"tionIndex");
 		if(rb.containsKey("valueList."+year+".cii")){
 			log.info("it contains");
 			return Double.parseDouble(rb.getString("valueList."+year+".cii"));
 		}
 		return Double.parseDouble(rb.getString("valueList.1990.cii"));//try to send default value so that no NullPointer Exception
-	}
+	}*/
 
 	/**
 	 * This Method is used to round off to its nearest tenth
