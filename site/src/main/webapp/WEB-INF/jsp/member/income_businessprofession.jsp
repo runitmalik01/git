@@ -16,6 +16,8 @@
 </h4>
 		<form id="frmIncomeBP" action="${actionUrl}" method="post"
 			name="frmIncomeBP">
+			<fieldset>
+			<legend><fmt:message key="income.from.BP.otherthan.speculative"/></legend>
 			<div class="row-fluid show-grid">
 				<div class="span8">
 					<div class="rowlabel">
@@ -26,14 +28,14 @@
 					<div class="rowlabel">
 						<input id="profitBeforeTax" name="profitBeforeTax" 
 							type="text" maxlength="14"
-							value="" />
+							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.profitBeforeTax}" />" />
 					</div>
 				</div>
 				</div>
 				<fieldset>
-				<legend><fmt:message key=""/></legend>
+				
 				<div class="row-fluid show-grid">
-				<div class="span4">
+				<div class="span6">
 					<div class="rowlabel">
 						<label for="profitLoss_SpecualtiveBusiness"><small><fmt:message
 									key="profitLoss_SpecualtiveBusiness.itr4" /> </small> </label>
@@ -44,7 +46,7 @@
 							value="${parentBean.profitLoss_SpecualtiveBusiness}" />
 					</div>
 				</div>
-				<div class="span4">
+				<div class="span6">
 					<div class="rowlabel">
 						<label for="profitLoss_SpecifiedBusiness"><small><fmt:message
 									key="profitLoss_SpecifiedBusiness.itr4" /> </small> </label>
@@ -55,7 +57,9 @@
 							value="${parentBean.profitLoss_SpecifiedBusiness}" />
 					</div>
 				</div>
-					<div class="span4">
+				</div>
+				<div class="row-fluid show-grid">
+					<div class="span6">
 					<div class="rowlabel">
 						<label for="incomeCredited_ProfitLossAcc"><small><fmt:message
 									key="incomeCredited_ProfitLossAcc.itr4" /> </small> </label>
@@ -66,7 +70,7 @@
 							value="${parentBean.incomeCredited_ProfitLossAcc}" />
 					</div>
 				</div>
-				<div class="span3">
+				<div class="span6">
 					<div class="rowlabel">
 						<label for="profitLoss_IncludeSchPL"><small><fmt:message
 									key="profitLoss_IncludeSchPL.itr4" /> </small> </label>
@@ -79,8 +83,10 @@
 				</div>
 				</div>
 			</fieldset>
+			<fieldset>
+			<legend><fmt:message key="income.credited.to.PL"/></legend>
 			<div class="row-fluid show-grid">
-			<div class="span4">
+			<div class="span6">
 					<div class="rowlabel">
 						<label for="shareIncome_Firms"><small><fmt:message
 									key="shareIncome_Firms.itr4" /> </small> </label>
@@ -91,7 +97,7 @@
 							value="${parentBean.shareIncome_Firms}" />
 					</div>
 				</div>
-				<div class="span4">
+				<div class="span6">
 					<div class="rowlabel">
 						<label for="shareIncome_Firms_AOP"><small><fmt:message
 									key="shareIncome_Firms_AOP.itr4" /> </small> </label>
@@ -105,10 +111,9 @@
 				
 				
 			</div>
-			<fieldset>
-			<legend></legend>
+			
 			<div class="row-fluid show-grid">
-			<div class="span4">
+			<div class="span6">
 					<div class="rowlabel">
 						<label for="exemptIncome_AnyOther"><small><fmt:message
 									key="exemptIncome_AnyOther.itr4" /> </small> </label>
@@ -119,11 +124,26 @@
 							value="${parentBean.exemptIncome_AnyOther}" />
 					</div>
 				</div>
-				<div class="span4">
+				<div class="span6">
 					<div class="rowlabel">
-						<label for="balance"><small><fmt:message
-									key="balance.bp.itr4" /> </small> </label>
+						<label for="total_ExemptIncome"><small><fmt:message
+									key="total_ExemptIncome.itr4" /> </small> </label>
 					</div>
+					<div class="rowlabel">
+						<input id="total_ExemptIncome" name="total_ExemptIncome"
+							type="text" maxlength="14" 
+							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.total_ExemptIncome}" />" />
+					</div>
+				</div>
+				</div>
+				<div class="row-fluid show-grid">
+				<div class="span6">
+					<div class="rowlabel">
+						<label for="balance"><small><b><fmt:message
+									key="balance.bp.itr4" /></b> </small> </label>
+					</div>
+					</div>
+					<div class="span4">
 					<div class="rowlabel">
 						<input id="balance" name="balance"
 							type="text" maxlength="14" 
@@ -132,8 +152,9 @@
 				</div>
 			
 				</div>
+				</fieldset>
 				<div class="row-fluid show-grid">
-				<div class="span4">
+				<div class="span6">
 					<div class="rowlabel">
 						<label for="expenseDebit_HeadsInc"><small><fmt:message
 									key="expenseDebit_HeadsInc.bp.itr4" /> </small> </label>
@@ -144,7 +165,7 @@
 							value="${parentBean.expenseDebit_HeadsInc}" />
 					</div>
 				</div>
-					<div class="span4">
+					<div class="span6">
 					<div class="rowlabel">
 						<label for="expenseDebit_ExemptInc"><small><fmt:message
 									key="expenseDebit_ExemptInc.bp.itr4" /> </small> </label>
@@ -160,7 +181,7 @@
 			<div class="span4">
 					<div class="rowlabel">
 						<label for="total_Expense"><small><fmt:message
-									key="interest.bp.itr4" /> </small> </label>
+									key="total_Expense.bp.itr4" /> </small> </label>
 					</div>
 					<div class="rowlabel">
 						<input id="total_Expense" name="total_Expense"
@@ -226,7 +247,7 @@
 					</div>
 				</div>
 				<div class="row-fluid show-grid">
-				<div class="span4">
+				<div class="span6">
 					<div class="rowlabel">
 						<label for="plAfter_AdjustDepr"><small><fmt:message
 									key="plAfter_AdjustDepr.bp.itr4" /> </small> </label>
@@ -237,7 +258,7 @@
 							value="${parentBean.plAfter_AdjustDepr}" />
 					</div>
 				</div>
-					<div class="span4">
+					<div class="span6">
 					<div class="rowlabel">
 						<label for="amountDebit_sec36"><small><fmt:message
 									key="amountDebit_sec36.bp.itr4" /> </small> </label>
@@ -252,7 +273,7 @@
 			</div>
 			</fieldset>
 			<div class="row-fluid show-grid">
-			<div class="span4">
+			<div class="span6">
 					<div class="rowlabel">
 						<label for="amountDebit_sec37"><small><fmt:message
 									key="amountDebit_sec37.bp.itr4" /> </small> </label>
@@ -263,7 +284,7 @@
 							value="${parentBean.amountDebit_sec37}" />
 					</div>
 				</div>
-				<div class="span4">
+				<div class="span6">
 					<div class="rowlabel">
 						<label for="amountDebit_sec40"><small><fmt:message
 									key="amountDebit_sec40.bp.itr4" /> </small> </label>
@@ -276,7 +297,7 @@
 				</div>
 			</div>
 			<div class="row-fluid show-grid">
-			<div class="span4">
+			<div class="span6">
 					<div class="rowlabel">
 						<label for="amountDebit_sec40A"><small><fmt:message
 									key="amountDebit_sec40A.bp.itr4" /> </small> </label>
@@ -287,7 +308,7 @@
 							value="${parentBean.amountDebit_sec40A}" />
 					</div>
 				</div>
-				<div class="span4">
+				<div class="span6">
 					<div class="rowlabel">
 						<label for="amountDebit_sec43B"><small><fmt:message
 									key="amountDebit_sec43B.bp.itr4" /> </small> </label>
@@ -300,10 +321,9 @@
 				</div>
 			
 			</div>
-			<fieldset>
-			<legend><fmt:message key=""/></legend>
+			
 			<div class="row-fluid show-grid">
-			<div class="span4">
+			<div class="span6">
 					<div class="rowlabel">
 						<label for="interestDisallow_sec23"><small><fmt:message
 									key="interestDisallow_sec23.bp.itr4" /> </small> </label>
@@ -314,7 +334,7 @@
 							value="${parentBean.interestDisallow_sec23}" />
 					</div>
 				</div>
-				<div class="span4">
+				<div class="span6">
 					<div class="rowlabel">
 						<label for="deemedIncome_Sec41"><small><fmt:message
 									key="deemedIncome_Sec41.bp.itr4" /> </small> </label>
@@ -325,7 +345,9 @@
 							value="${parentBean.deemedIncome_Sec41}" />
 					</div>
 				</div>
-			<div class="span4">
+				</div>
+				<div class="row-fluid show-grid">
+			<div class="span6">
 					<div class="rowlabel">
 						<label for="deemedIncome_Sec33AB"><small><fmt:message
 									key="deemedIncome_Sec33AB.bp.itr4" /> </small> </label>
@@ -336,9 +358,9 @@
 							value="${parentBean.deemedIncome_Sec33AB}" />
 					</div>
 				</div>
-				</div>
-				<div class="row-fluid show-grid">
-					<div class="span4">
+				
+				
+					<div class="span6">
 					<div class="rowlabel">
 						<label for="addItem_sec28to44DA"><small><fmt:message
 									key="addItem_sec28to44DA.bp.itr4" /> </small> </label>
@@ -349,7 +371,8 @@
 							value="${parentBean.addItem_sec28to44DA}" />
 					</div>
 				</div>
-					<div class="span4">
+				<div class="row-fluid show-grid">
+					<div class="span6">
 					<div class="rowlabel">
 						<label for="anyIncNotInclude_PLAcc"><small><fmt:message
 									key="anyIncNotInclude_PLAcc.bp.itr4" /> </small> </label>
@@ -360,7 +383,7 @@
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.anyIncNotInclude_PLAcc}" />" />
 					</div>
 				</div>
-				<div class="span4">
+				<div class="span6">
 					<div class="rowlabel">
 						<label for="totalIncome_sec"><small><fmt:message
 									key="totalIncome_sec.bp.itr4" /> </small> </label>
@@ -373,7 +396,7 @@
 				</div>
 				</div>
 				<div class="row-fluid show-grid">
-				<div class="span4">
+				<div class="span6">
 					<div class="rowlabel">
 						<label for="deductionAllow_Sec32_1_iii"><small><fmt:message
 									key="deductionAllow_Sec32_1_iii.bp.itr4" /> </small> </label>
@@ -384,7 +407,7 @@
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.deductionAllow_Sec32_1_iii}" />" />
 					</div>
 				</div>
-					<div class="span4">
+					<div class="span6">
 					<div class="rowlabel">
 						<label for="amountDed_Sec35"><small><fmt:message
 									key="amountDed_Sec35.bp.itr4" /> </small> </label>
@@ -396,9 +419,9 @@
 					</div>
 				</div>
 				</div>
-			</fieldset>
+		
 			<div class="row-fluid show-grid">
-			<div class="span4">
+			<div class="span6">
 					<div class="rowlabel">
 						<label for="amountDisAllow_Sec40"><small><fmt:message
 									key="amountDisAllow_Sec40.bp.itr4" /> </small> </label>
@@ -409,7 +432,7 @@
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.amountDisAllow_Sec40}" />" />
 					</div>
 				</div>
-				<div class="span4">
+				<div class="span6">
 					<div class="rowlabel">
 						<label for="amountDisAllow_Sec43B"><small><fmt:message
 									key="amountDisAllow_Sec43B.bp.itr4" /> </small> </label>
@@ -420,8 +443,11 @@
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.amountDisAllow_Sec43B}" />" />
 					</div>
 				</div>
-				<fieldset> ned</fieldset>
-				<div class="span4">
+				</div>
+				<fieldset> 
+				<legend><fmt:message key="deduction.section.35AC"/></legend>
+				<div class="row-fluid show-grid">
+				<div class="span6">
 					<div class="rowlabel">
 						<label for="amountDebited_ToProfitLoss"><small><fmt:message
 									key="amountDebited_ToProfitLoss.bp.itr4" /> </small> </label>
@@ -432,9 +458,9 @@
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.amountDebited_ToProfitLoss}" />" />
 					</div>
 				</div>
-			</div>
-			<div class="row-fluid show-grid">
-				<div class="span4">
+			
+			
+				<div class="span6">
 					<div class="rowlabel">
 						<label for="amountAllow_Deduction"><small><fmt:message
 									key="amountAllow_Deduction.bp.itr4" /> </small> </label>
@@ -445,7 +471,9 @@
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.amountAllow_Deduction}" />" />
 					</div>
 				</div>
-				<div class="span4">
+				</div>
+				<div class="row-fluid show-grid">
+				<div class="span6">
 					<div class="rowlabel">
 						<label for="excessAmountAllow_Deduction"><small><fmt:message
 									key="excessAmountAllow_Deduction.bp.itr4" /> </small> </label>
@@ -456,7 +484,9 @@
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.excessAmountAllow_Deduction}" />" />
 					</div>
 				</div>
-				<div class="span4">
+				
+				
+				<div class="span6">
 					<div class="rowlabel">
 						<label for="anyOtherAmountAllow_Deduction"><small><fmt:message
 									key="anyOtherAmountAllow_Deduction.bp.itr4" /> </small> </label>
@@ -468,10 +498,10 @@
 					</div>
 				</div>
 			</div>
-			<fieldset>
-			<legend> <fmt:message key=""/></legend>
+			</fieldset>
+			
 			<div class="row-fluid show-grid">
-				<div class="span4">
+				<div class="span6">
 					<div class="rowlabel">
 						<label for="total_Deduction"><small><fmt:message
 									key="total_Deduction.bp.itr4" /> </small> </label>
@@ -483,7 +513,7 @@
 					</div>
 				</div>
 			
-				<div class="span4">
+				<div class="span6">
 					<div class="rowlabel">
 						<label for="income_AfterDed"><small><fmt:message
 									key="income_AfterDed.bp.itr4" /> </small> </label>
@@ -495,7 +525,8 @@
 					</div>
 				</div>
 				</div>
-				<fieldset>need</fieldset>
+				<fieldset>
+				<legend><fmt:message key="profit.gains.of.business"/></legend>
 				<div class="row-fluid show-grid">
 					<div class="span4">
 					<div class="rowlabel">
@@ -589,8 +620,8 @@
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.section44D}" />" />
 					</div>
 				</div>
-				</div>
-				<div class="row-fluid show-grid">
+				
+				
 					<div class="span4">
 					<div class="rowlabel">
 						<label for="section44DA"><small><fmt:message
@@ -604,9 +635,8 @@
 				</div>
 				</div>
 				
-			</fieldset>
-			<fieldset>
-			<legend>Insurance</legend>
+			
+			
 			<div class="row-fluid show-grid">
 				<div class="span4">
 					<div class="rowlabel">
@@ -642,8 +672,11 @@
 					</div>
 				</div>
 				</div>
+				</fieldset>
+				<fieldset>
+				<legend><fmt:message key="Deduction.under.section"/></legend>
 				<div class="row-fluid show-grid">
-					<div class="span4">
+					<div class="span6">
 					<div class="rowlabel">
 						<label for="plBefore_DedUs10A"><small><fmt:message
 									key="plBefore_DedUs10A.bp.itr4" /> </small> </label>
@@ -654,8 +687,8 @@
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.plBefore_DedUs10A}" />" />
 					</div>
 				</div>
-				<fieldset>Need</fieldset>
-					<div class="span4">
+				
+					<div class="span6">
 					<div class="rowlabel">
 						<label for="deduction_Sec10A"><small><fmt:message
 									key="deduction_Sec10A.bp.itr4" /> </small> </label>
@@ -667,9 +700,9 @@
 					</div>
 				</div>
 				</div>
-				</fieldset>
+		
 				<div class="row-fluid show-grid">
-					<div class="span4">
+					<div class="span6">
 					<div class="rowlabel">
 						<label for="deduction_Sec10AA"><small><fmt:message
 									key="deduction_Sec10AA.bp.itr4" /> </small> </label>
@@ -680,7 +713,7 @@
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.deduction_Sec10AA}" />" />
 					</div>
 				</div>
-					<div class="span4">
+					<div class="span6">
 					<div class="rowlabel">
 						<label for="deduction_total10"><small><fmt:message
 									key="deduction_total10.bp.itr4" /> </small> </label>
@@ -691,11 +724,16 @@
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.deduction_total10}" />" />
 					</div>
 				</div>
-					<div class="span4">
+				</div>
+				</fieldset>
+				<div class="row-fluid show-grid">
+					<div class="span8">
 					<div class="rowlabel">
 						<label for="netPL_otherthanSpeculative_SpecifiedBuss"><small><fmt:message
 									key="netPL_otherthanSpeculative_SpecifiedBuss.bp.itr4" /> </small> </label>
 					</div>
+					</div>
+					<div class="span4">
 					<div class="rowlabel">
 						<input id="netPL_otherthanSpeculative_SpecifiedBuss" name="netPL_otherthanSpeculative_SpecifiedBuss"
 							type="text" maxlength="14" 
@@ -703,8 +741,10 @@
 					</div>
 				</div>
 				</div>
+				<fieldset>
+				<legend><fmt:message key="compute.income.speculative.business"></fmt:message> </legend>
 				<div class="row-fluid show-grid">
-					<div class="span4">
+					<div class="span6">
 					<div class="rowlabel">
 						<label for="netPl_FromBP"><small><fmt:message
 									key="netPl_FromBP.bp.itr4" /> </small> </label>
@@ -715,18 +755,8 @@
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.netPl_FromBP}" />" />
 					</div>
 				</div>
-					<div class="span4">
-					<div class="rowlabel">
-						<label for="computeInc_SpeculativeBuss"><small><fmt:message
-									key="computeInc_SpeculativeBuss.bp.itr4" /> </small> </label>
-					</div>
-					<div class="rowlabel">
-						<input id="computeInc_SpeculativeBuss" name="computeInc_SpeculativeBuss"
-							type="text" maxlength="14" 
-							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.computeInc_SpeculativeBuss}" />" />
-					</div>
-				</div>
-					<div class="span4">
+					
+					<div class="span6">
 					<div class="rowlabel">
 						<label for="addAccordance_28to44DA"><small><fmt:message
 									key="addAccordance_28to44DA.bp.itr4" /> </small> </label>
@@ -739,7 +769,7 @@
 				</div>
 				</div>
 				<div class="row-fluid show-grid">
-				<div class="span4">
+				<div class="span6">
 					<div class="rowlabel">
 						<label for="dedAccordance_28to44DA"><small><fmt:message
 									key="dedAccordance_28to44DA.bp.itr4" /> </small> </label>
@@ -750,7 +780,7 @@
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.dedAccordance_28to44DA}" />" />
 					</div>
 				</div>
-				<div class="span4">
+				<div class="span6">
 					<div class="rowlabel">
 						<label for="pl_SpeculativeBuss"><small><fmt:message
 									key="pl_SpeculativeBuss.bp.itr4" /> </small> </label>
@@ -761,8 +791,12 @@
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.pl_SpeculativeBuss}" />" />
 					</div>
 				</div>
-				<fieldset>Needc</fieldset>
-				<div class="span4">
+				</div>
+				</fieldset>
+				<fieldset>
+				<legend><fmt:message key="compute.business.speculative.business"></fmt:message></legend>
+				<div class="row-fluid show-grid">
+				<div class="span6">
 					<div class="rowlabel">
 						<label for="netPLFrom_SPecifiedInc"><small><fmt:message
 									key="netPLFrom_SPecifiedInc.pl.itr4" /> </small> </label>
@@ -773,9 +807,9 @@
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.netPLFrom_SPecifiedInc}" />" />
 					</div>
 				</div>
-				</div>
-				<div class="row-fluid show-grid">
-				<div class="span4">
+				
+				
+				<div class="span6">
 					<div class="rowlabel">
 						<label for="additionAcc28to44D"><small><fmt:message
 									key="additionAcc28to44D.bp.itr4" /> </small> </label>
@@ -786,7 +820,9 @@
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.additionAcc28to44D}" />" />
 					</div>
 				</div>
-				<div class="span4">
+				</div>
+				<div class="row-fluid show-grid">
+				<div class="span6">
 					<div class="rowlabel">
 						<label for="dedAcc28to44DEx35AD"><small><fmt:message
 									key="dedAcc28to44DEx35AD.bp.itr4" /> </small> </label>
@@ -797,7 +833,7 @@
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.dedAcc28to44DEx35AD}" />" />
 					</div>
 				</div>
-				<div class="span4">
+				<div class="span6">
 					<div class="rowlabel">
 						<label for="pl_SpecifiedBuss"><small><fmt:message
 									key="pl_SpecifiedBuss.pl.itr4" /> </small> </label>
@@ -810,7 +846,7 @@
 				</div>
 				</div>
 				<div class="row-fluid show-grid">
-				<div class="span4">
+				<div class="span6">
 					<div class="rowlabel">
 						<label for="dedAcc35AD"><small><fmt:message
 									key="dedAcc35AD.bp.itr4" /> </small> </label>
@@ -821,7 +857,7 @@
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.dedAcc35AD}" />" />
 					</div>
 				</div>
-				<div class="span4">
+				<div class="span6">
 					<div class="rowlabel">
 						<label for="pl_SpecifiedBussNet"><small><fmt:message
 									key="pl_SpecifiedBussNet.bp.itr4" /> </small> </label>
@@ -832,16 +868,20 @@
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.pl_SpecifiedBussNet}" />" />
 					</div>
 				</div>
-				<div class="span4">
+				<div class="row-fluid show-grid">
+				<div class="span8">
 					<div class="rowlabel">
 						<label for="incomeChargeable_PL"><small><fmt:message
 									key="incomeChargeable_PL.bp.itr4" /> </small> </label>
 					</div>
+					</div>
+					<div class="span4">
 					<div class="rowlabel">
 						<input id="incomeChargeable_PL" name="incomeChargeable_PL"
 							type="text" maxlength="14" 
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.incomeChargeable_PL}" />" />
 					</div>
+				</div>
 				</div>
 				</div>
 				
@@ -861,6 +901,6 @@
 
 
 <res:client-validation formId="frmIncomeBP"
-	screenConfigurationDocumentName="profitandloss"
+	screenConfigurationDocumentName="incomebusinessprofession"
 	formSubmitButtonId="myModalProfitAndLoss" />
 	
