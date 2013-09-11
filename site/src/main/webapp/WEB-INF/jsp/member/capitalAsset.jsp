@@ -439,7 +439,7 @@
 					<div id="accural_gain" class="accural_Y_gain accural_N_gain hide">
 						<table>
 							<tr>
-								<th style="color: black;" width="50%">Dates:</th>
+								<th style="color: black;" width="50%">(In case of short term gain only) Dates:</th>
 								<th style="color: black;">STCG 111A</th>
 								<th style="color: black;">STCG OTH</th>
 							</tr>
@@ -493,7 +493,7 @@
 								</td>
 							</tr>
 							<tr>
-								<th width="50%" style="color: black;">Dates:</th>
+								<th width="50%" style="color: black;">(In case of long term gain only)Dates:</th>
 								<th style="color: black;">LTCG proviso</th>
 								<th style="color: black;">LTCG NO proviso</th>
 							</tr>
@@ -713,16 +713,6 @@
 		} else {
 			$("#sst_charge").hide();
 			$("#sst").hide();
-		}
-	});
-
-	$('#index').change(function() {
-		if ($(this).val() == 'Y') {
-			$('.with_' + $(this).val() + '_index').show();
-			$('.without_' + $(this).val() + '_index').hide();
-		} else {
-			$('.with_' + $(this).val() + '_index').hide();
-			$('.without_' + $(this).val() + '_index').show();
 		}
 	});
 
