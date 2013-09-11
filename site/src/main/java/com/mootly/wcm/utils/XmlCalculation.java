@@ -559,7 +559,7 @@ public class XmlCalculation implements XmlCalculationImplement {
 					List<CapitalAssetDetail> shortTermChildBean = new ArrayList<CapitalAssetDetail>();
 					List<CapitalAssetDetail> longTermChildBean = new ArrayList<CapitalAssetDetail>();
 
-					if(capitalAssetDetail.getCapitalGainTaxST() != null && capitalAssetDetail.getSstCharge().equals("Y")){
+					if(capitalAssetDetail.getCapitalGainTaxST() != null && capitalAssetDetail.getAssetType().equals("SHARES") && capitalAssetDetail.getSstCharge().equals("Y")){
 						if(totalMapForJS.containsKey("STCGSST")&& (!totalMapForJS.isEmpty())){
 							shortTermChildBean =  totalMapForJS.get("STCGSST");
 							shortTermChildBean.add(capitalAssetDetail);
@@ -568,7 +568,8 @@ public class XmlCalculation implements XmlCalculationImplement {
 							shortTermChildBean.add(capitalAssetDetail);
 							totalMapForJS.put("STCGSST", shortTermChildBean);
 						}
-					}else if(capitalAssetDetail.getCapitalGainTaxST() != null && capitalAssetDetail.getSstCharge().equals("N")){
+					}else if((capitalAssetDetail.getCapitalGainTaxST() != null && capitalAssetDetail.getAssetType().equals("SHARES") && capitalAssetDetail.getSstCharge().equals("N"))||
+							(capitalAssetDetail.getCapitalGainTaxST() != null && capitalAssetDetail.getAssetType().equals("OTH"))){
 						if(totalMapForJS.containsKey("STCGNSST")&& (!totalMapForJS.isEmpty())){
 							shortTermChildBean =  totalMapForJS.get("STCGNSST");
 							shortTermChildBean.add(capitalAssetDetail);
@@ -577,7 +578,8 @@ public class XmlCalculation implements XmlCalculationImplement {
 							shortTermChildBean.add(capitalAssetDetail);
 							totalMapForJS.put("STCGNSST", shortTermChildBean);
 						}
-					}else if(capitalAssetDetail.getCapitalGainTaxLT() != null && capitalAssetDetail.getIndex().equals("N")){
+					}else if(capitalAssetDetail.getCapitalGainTaxLT() != null && capitalAssetDetail.getAssetType().equals("SHARES")
+							&& capitalAssetDetail.getSstCharge().equals("N") && capitalAssetDetail.getIndex().equals("N")){
 						if(totalMapForJS.containsKey("LTCGNINDEX")&& (!totalMapForJS.isEmpty())){
 							longTermChildBean = totalMapForJS.get("LTCGNINDEX");
 							longTermChildBean.add(capitalAssetDetail);
@@ -586,7 +588,8 @@ public class XmlCalculation implements XmlCalculationImplement {
 							longTermChildBean.add(capitalAssetDetail);
 							totalMapForJS.put("LTCGNINDEX", longTermChildBean);
 						}
-					}else if(capitalAssetDetail.getCapitalGainTaxLT() != null && capitalAssetDetail.getIndex().equals("Y")){
+					}else if((capitalAssetDetail.getCapitalGainTaxLT() != null && capitalAssetDetail.getAssetType().equals("SHARES") && capitalAssetDetail.getSstCharge().equals("N")
+							&& capitalAssetDetail.getIndex().equals("Y"))||(capitalAssetDetail.getCapitalGainTaxLT() != null && capitalAssetDetail.getAssetType().equals("OTH"))){
 						if(totalMapForJS.containsKey("LTCGINDEX")&& (!totalMapForJS.isEmpty())){
 							longTermChildBean = totalMapForJS.get("LTCGINDEX");
 							longTermChildBean.add(capitalAssetDetail);
