@@ -20,9 +20,11 @@ import com.mootly.wcm.annotations.RequiredBeans;
 import com.mootly.wcm.beans.FormSixteenDocument;
 import com.mootly.wcm.beans.MemberPersonalInformation;
 import com.mootly.wcm.beans.SelfAssesmetTaxDocument;
+import com.mootly.wcm.beans.TcsDocument;
 import com.mootly.wcm.beans.TdsFromothersDocument;
 import com.mootly.wcm.beans.compound.FormSixteenDetail;
 import com.mootly.wcm.beans.compound.SelfAssesmentTaxDetail;
+import com.mootly.wcm.beans.compound.TcsDetail;
 import com.mootly.wcm.beans.compound.TdsOthersDetail;
 import com.mootly.wcm.beans.events.BeanLifecycle;
 import com.mootly.wcm.components.ITReturnComponent;
@@ -95,6 +97,7 @@ public class SyncTDSFromDIT extends ITReturnComponent {
 			saveElementsToRepository(twenty26asResponse.getTwenty26asTaxPayments(),SelfAssesmetTaxDocument.class,SelfAssesmentTaxDetail.class,persistableSession,wpm);
 			saveElementsToRepository(twenty26asResponse.getTwenty26astdsOtherThanSalaries(),TdsFromothersDocument.class,TdsOthersDetail.class,persistableSession,wpm);
 			saveElementsToRepository(twenty26asResponse.getTwenty26astdsOnSalaries(),FormSixteenDocument.class,FormSixteenDetail.class,persistableSession,wpm);
+			saveElementsToRepository(twenty26asResponse.getTwenty26astcs(),TcsDocument.class,TcsDetail.class,persistableSession,wpm);
 
 			response.setRenderParameter("Success", "Success");
 
