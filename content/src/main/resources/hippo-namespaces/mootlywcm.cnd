@@ -461,6 +461,8 @@ orderable
   orderable
   [mootlywcm:profitandlossdocument] > hippostd:relaxed, mootlywcm:basedocument
   orderable
+ [mootlywcm:otherinformationdocument] > hippostd:relaxed, mootlywcm:basedocument
+  orderable
    [mootlywcm:assetandliabilitydocument] > hippostd:relaxed, mootlywcm:basedocument
   orderable
   
