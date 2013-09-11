@@ -22092,7 +22092,8 @@ acknowledgement&lt;/p&gt;
 <!-- /profit and loss itr4 -->
 <!-- income from business or profit -->
 
-<sv:node sv:name="incomebusinessprofession" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+
+<sv:node sv:name="incomebusinessprofession">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hippo:handle</sv:value>
   </sv:property>
@@ -22111,7 +22112,7 @@ acknowledgement&lt;/p&gt;
       <sv:value>hippotranslation:translated</sv:value>
     </sv:property>
     <sv:property sv:name="jcr:uuid" sv:type="String">
-      <sv:value>61ad48f0-c878-4f88-ae6f-83257ea6e152</sv:value>
+      <sv:value>dd14b15e-a4cc-4898-b73b-de6d0377cf2a</sv:value>
     </sv:property>
     <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
       <sv:value>live</sv:value>
@@ -22136,13 +22137,13 @@ acknowledgement&lt;/p&gt;
       <sv:value>2013-09-06T11:30:20.509+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-      <sv:value>2013-09-09T16:12:22.496+05:30</sv:value>
+      <sv:value>2013-09-11T12:12:45.936+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
       <sv:value>admin</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-      <sv:value>2013-09-09T16:12:43.205+05:30</sv:value>
+      <sv:value>2013-09-11T12:15:14.195+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippotranslation:id" sv:type="String">
       <sv:value>5cee9a36-081b-4db4-8828-a10054997aea</sv:value>
@@ -22925,7 +22926,7 @@ acknowledgement&lt;/p&gt;
         <sv:value/>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
-        <sv:value>amount</sv:value>
+        <sv:value/>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
         <sv:value>total_Expense</sv:value>
@@ -22987,7 +22988,7 @@ acknowledgement&lt;/p&gt;
         <sv:value/>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
-        <sv:value>amount</sv:value>
+        <sv:value/>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
         <sv:value>adjusted_ProfitLoss</sv:value>
@@ -23111,7 +23112,7 @@ acknowledgement&lt;/p&gt;
         <sv:value/>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
-        <sv:value>amount</sv:value>
+        <sv:value/>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
         <sv:value>depreciation_total</sv:value>
@@ -24165,7 +24166,7 @@ acknowledgement&lt;/p&gt;
         <sv:value/>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
-        <sv:value>amount</sv:value>
+        <sv:value/>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
         <sv:value>excessAmountAllow_Deduction</sv:value>
@@ -24289,7 +24290,7 @@ acknowledgement&lt;/p&gt;
         <sv:value/>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
-        <sv:value>amount</sv:value>
+        <sv:value/>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
         <sv:value>total_Deduction</sv:value>
@@ -24351,7 +24352,7 @@ acknowledgement&lt;/p&gt;
         <sv:value/>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
-        <sv:value>amount</sv:value>
+        <sv:value/>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
         <sv:value>income_AfterDed</sv:value>
@@ -25095,7 +25096,7 @@ acknowledgement&lt;/p&gt;
         <sv:value/>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
-        <sv:value>amount</sv:value>
+        <sv:value/>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
         <sv:value>total_Sections</sv:value>
@@ -25157,7 +25158,7 @@ acknowledgement&lt;/p&gt;
         <sv:value/>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
-        <sv:value>amount</sv:value>
+        <sv:value/>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
         <sv:value>plBefore_DedUs10A</sv:value>
@@ -25653,7 +25654,7 @@ acknowledgement&lt;/p&gt;
         <sv:value/>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
-        <sv:value>amount</sv:value>
+        <sv:value/>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
         <sv:value>pl_SpeculativeBuss</sv:value>
@@ -25901,7 +25902,7 @@ acknowledgement&lt;/p&gt;
         <sv:value/>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
-        <sv:value>amount</sv:value>
+        <sv:value/>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
         <sv:value>pl_SpecifiedBuss</sv:value>
@@ -26025,7 +26026,7 @@ acknowledgement&lt;/p&gt;
         <sv:value/>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
-        <sv:value>amount</sv:value>
+        <sv:value/>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
         <sv:value>pl_SpecifiedBussNet</sv:value>
@@ -26087,7 +26088,7 @@ acknowledgement&lt;/p&gt;
         <sv:value/>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
-        <sv:value>amount</sv:value>
+        <sv:value/>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
         <sv:value>incomeChargeable_PL</sv:value>
@@ -26202,6 +26203,7 @@ acknowledgement&lt;/p&gt;
     </sv:node>
   </sv:node>
 </sv:node>
+
 
 <!-- /income from business -->
 <!-- asset and liability -->
@@ -30274,6 +30276,157 @@ out_balanceCarried_BalanceSheet = out_amount_Appropriation - transReserves_Surpl
     </sv:property>
   </sv:node>
 </sv:node>
+<!-- schedule BP -->
+
+<sv:node sv:name="incbusinessprofession" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hippo:handle</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+    <sv:value>hippo:hardhandle</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>a714d46f-638f-4a6d-bbff-c6e7015ab9af</sv:value>
+  </sv:property>
+  <sv:node sv:name="incbusinessprofession">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>mootlywcm:screencalculation</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+      <sv:value>hippo:harddocument</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>da802e7d-5e5a-4a3f-acdf-736015559cfd</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
+      <sv:value>live</sv:value>
+      <sv:value>preview</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippo:related___pathreference" sv:type="String">
+      <sv:value>incbusinessprofession</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostd:holder" sv:type="String">
+      <sv:value>admin</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostd:state" sv:type="String">
+      <sv:value>published</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostd:stateSummary" sv:type="String">
+      <sv:value>live</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
+      <sv:value>admin</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
+      <sv:value>2013-09-10T14:52:54.578+05:30</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
+      <sv:value>2013-09-11T11:15:42.371+05:30</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
+      <sv:value>admin</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
+      <sv:value>2013-09-11T11:15:44.862+05:30</sv:value>
+    </sv:property>
+    <sv:property sv:name="mootlywcm:additionalScript" sv:type="String">
+      <sv:value/>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="mootlywcm:dropRadio" sv:type="String">
+      <sv:value/>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="mootlywcm:input" sv:type="String">
+      <sv:value>profitBeforeTax</sv:value>
+      <sv:value>profitLoss_SpecualtiveBusiness</sv:value>
+      <sv:value>profitLoss_SpecifiedBusiness</sv:value>
+      <sv:value>incomeCredited_ProfitLossAcc</sv:value>
+      <sv:value>profitLoss_IncludeSchPL</sv:value>
+      <sv:value>total_ExemptIncome</sv:value>
+      <sv:value>shareIncome_Firms</sv:value>
+      <sv:value>shareIncome_Firms_AOP</sv:value>
+      <sv:value>exemptIncome_AnyOther</sv:value>
+      <sv:value>expenseDebit_HeadsInc</sv:value>
+      <sv:value>expenseDebit_ExemptInc</sv:value>
+      <sv:value>total_Expense</sv:value>
+      <sv:value>depreAllow_us32_1_i</sv:value>
+      <sv:value>depreAllow_us32_1_ii</sv:value>
+      <sv:value>depreciation_total</sv:value>
+      <sv:value>depreciation_PL</sv:value>
+      <sv:value>adjusted_ProfitLoss</sv:value>
+      <sv:value>amountDebit_sec36</sv:value>
+      <sv:value>amountDebit_sec37</sv:value>
+      <sv:value>amountDebit_sec40</sv:value>
+      <sv:value>amountDebit_sec40A</sv:value>
+      <sv:value>amountDebit_sec43B</sv:value>
+      <sv:value>interestDisallow_sec23</sv:value>
+      <sv:value>deemedIncome_Sec41</sv:value>
+      <sv:value>deemedIncome_Sec33AB</sv:value>
+      <sv:value>addItem_sec28to44DA</sv:value>
+      <sv:value>anyIncNotInclude_PLAcc</sv:value>
+      <sv:value>amountDebited_ToProfitLoss</sv:value>
+      <sv:value>amountAllow_Deduction</sv:value>
+      <sv:value>deductionAllow_Sec32_1_iii</sv:value>
+      <sv:value>amountDed_Sec35</sv:value>
+      <sv:value>amountDisAllow_Sec40</sv:value>
+      <sv:value>amountDisAllow_Sec43B</sv:value>
+      <sv:value>excessAmountAllow_Deduction</sv:value>
+      <sv:value>anyOtherAmountAllow_Deduction</sv:value>
+      <sv:value>section44AD</sv:value>
+      <sv:value>section44AE</sv:value>
+      <sv:value>section44AF</sv:value>
+      <sv:value>section44B</sv:value>
+      <sv:value>section44BB</sv:value>
+      <sv:value>section44BBA</sv:value>
+      <sv:value>section44BBB</sv:value>
+      <sv:value>section44D</sv:value>
+      <sv:value>section44DA</sv:value>
+      <sv:value>chapter_XII_G</sv:value>
+      <sv:value>firstSchedule_ITAct</sv:value>
+      <sv:value>deduction_Sec10A</sv:value>
+      <sv:value>deduction_Sec10AA</sv:value>
+      <sv:value>netPL_otherthanSpeculative_SpecifiedBuss</sv:value>
+      <sv:value>netPl_FromBP</sv:value>
+      <sv:value>addAccordance_28to44DA</sv:value>
+      <sv:value>dedAccordance_28to44DA</sv:value>
+      <sv:value>netPLFrom_SPecifiedInc</sv:value>
+      <sv:value>additionAcc28to44D</sv:value>
+      <sv:value>dedAcc28to44DEx35AD</sv:value>
+      <sv:value>dedAcc35AD</sv:value>
+    </sv:property>
+    <sv:property sv:name="mootlywcm:script" sv:type="String">
+      <sv:value>out_total_ExemptIncome = (shareIncome_Firms-0) + (shareIncome_Firms_AOP-0)+(exemptIncome_AnyOther-0);
+out_balance = ((profitBeforeTax-0)-((profitLoss_SpecualtiveBusiness-0)+(profitLoss_SpecifiedBusiness-0)+(incomeCredited_ProfitLossAcc-0)+(profitLoss_IncludeSchPL-0)+(out_total_ExemptIncome -0)));
+out_total_Expense = (expenseDebit_HeadsInc -0) + (expenseDebit_ExemptInc-0);
+out_adjusted_ProfitLoss = out_total_Expense + out_balance ;
+out_depreciation_total = (depreAllow_us32_1_i-0)+(depreAllow_us32_1_ii-0);
+out_plAfter_AdjustDepr = ((out_adjusted_ProfitLoss -0)+(depreciation_PL-0)-(out_depreciation_total -0));
+
+out_totalIncome_sec = ((amountDebit_sec36-0)+(amountDebit_sec37-0)+(amountDebit_sec40-0)+(amountDebit_sec40A-0)+(amountDebit_sec43B-0)+(interestDisallow_sec23-0)+(deemedIncome_Sec41-0)+(deemedIncome_Sec33AB-0)+(addItem_sec28to44DA-0)+(anyIncNotInclude_PLAcc-0));
+out_excessAmountAllow_Deduction = ((amountAllow_Deduction-0)-(amountDebited_ToProfitLoss-0)) &gt;0 ? ((amountAllow_Deduction-0)-  (amountDebited_ToProfitLoss-0)) :0;
+
+out_total_Deduction = (deductionAllow_Sec32_1_iii-0) + (amountDed_Sec35-0)+(amountDisAllow_Sec40-0)+(amountDisAllow_Sec43B-0)+(excessAmountAllow_Deduction-0) + (anyOtherAmountAllow_Deduction-0);
+
+out_income_AfterDed = ((out_totalIncome_sec )+(out_plAfter_AdjustDepr )) - (out_total_Deduction );
+
+out_total_Sections = (section44AD-0)+(section44AE-0)+(section44AF-0)+(section44B-0)+(section44BB-0)+(section44BBA-0)+(section44BBB-0)+(section44D-0)+(section44DA-0)+(chapter_XII_G-0)+(firstSchedule_ITAct-0);
+out_plBefore_DedUs10A = (out_total_Sections-0) + (out_income_AfterDed-0) ;
+out_deduction_total10 = (deduction_Sec10A-0)+(deduction_Sec10AA-0);
+out_netPL_otherthanSpeculative_SpecifiedBuss1 = ((out_plBefore_DedUs10A ) - (out_deduction_total10 )) &gt; netPL_otherthanSpeculative_SpecifiedBuss ? ((out_plBefore_DedUs10A ) - (out_deduction_total10 )) : netPL_otherthanSpeculative_SpecifiedBuss ;
+
+out_pl_SpeculativeBuss  = ((netPl_FromBP-0) + (addAccordance_28to44DA -0)) - (dedAccordance_28to44DA-0);
+out_pl_SpecifiedBuss = ((netPLFrom_SPecifiedInc-0) + (additionAcc28to44D-0)) - (dedAcc28to44DEx35AD-0);
+out_pl_SpecifiedBussNet = (out_pl_SpecifiedBuss -0)-(dedAcc35AD-0);
+out_incomeChargeable_PL = (out_netPL_otherthanSpeculative_SpecifiedBuss1 -0)+(out_pl_SpeculativeBuss  -0)+(out_pl_SpecifiedBussNet -0);</sv:value>
+    </sv:property>
+    <sv:property sv:name="mootlywcm:title" sv:type="String">
+      <sv:value>calculation for schedule Business or Profession</sv:value>
+    </sv:property>
+  </sv:node>
+</sv:node>
+
+<!-- /schedule BP -->
+
+
 
 <sv:node sv:name="assetandliability" >
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
