@@ -195,7 +195,7 @@ public class PartB_TI {
 		if(totEligibleDeduction.compareTo(BigInteger.ZERO) > 0){
 			if(diffGrossIncNIncChargeable.longValue() > totEligibleDeduction.longValue() && totEligibleDeduction.longValue() > 0){
 				partBTI.setDeductionsUnderScheduleVIA(totEligibleDeduction);
-			}else if(diffGrossIncNIncChargeable.longValue() < totEligibleDeduction.longValue() && totEligibleDeduction.longValue() > 0){
+			}else if(diffGrossIncNIncChargeable.longValue() < totEligibleDeduction.longValue() && diffGrossIncNIncChargeable.longValue() > 0){
 				partBTI.setDeductionsUnderScheduleVIA(diffGrossIncNIncChargeable);
 			}else
 				partBTI.setDeductionsUnderScheduleVIA(new BigInteger("0"));
