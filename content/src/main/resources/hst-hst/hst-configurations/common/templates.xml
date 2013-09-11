@@ -3448,4 +3448,19 @@
 </sv:node>
 
 <!--  itr4 sch bp -->
+<!-- schedule DPM -->
+
+<sv:node sv:name="scheduleDPM" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:template</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>bef5eb11-5175-4ec7-bbce-ff5aac47cf8d</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:renderpath" sv:type="String">
+    <sv:value>jsp/member/scheduleDPM.jsp</sv:value>
+  </sv:property>
+</sv:node>
+
+<!-- /schedule DPM -->
 </sv:node>
