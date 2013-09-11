@@ -166,7 +166,7 @@
 		           <div class="row-fluid show-grid">
 						<div class="span4">
 					        <div class="rowlabel"><label for="contributions_superannuation"><small>Amount of contributions to an approved superannuation fund</small></label></div>
-					         <div class="rowlabel"><input type="text" id="contributions_superannuation" name="contributions_superannuation" value=""<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.contributions_superannuation}"/>/></div>
+					         <div class="rowlabel"><input type="text" id="contributions_superannuation" name="contributions_superannuation" value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.contributions_superannuation}"/>"/></div>
 				        </div>
 				        <div class="span4">
 					        <div class="rowlabel"><label for="contributions_gratuity"><small>Amount of contributions to an approved gratuity</small></label></div>
