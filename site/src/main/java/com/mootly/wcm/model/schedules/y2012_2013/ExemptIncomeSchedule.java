@@ -24,36 +24,33 @@ public class ExemptIncomeSchedule {
 	public ScheduleEI getScheduleEI(ITR itr){
 		IndianCurrencyHelper indianCurrencyHelper = new IndianCurrencyHelper();
 		ScheduleEI scheduleEI = new ScheduleEI();
-		boolean hasValidEI = false;
 		if(otherSourcesDocument != null){
 			scheduleEI.setInterestInc(indianCurrencyHelper.bigIntegerRound(otherSourcesDocument.getBank_detail_fdr()));
 			scheduleEI.setDividendInc(indianCurrencyHelper.bigIntegerRound(otherSourcesDocument.getDividends()));
 			scheduleEI.setNetAgriIncOrOthrIncRule7(indianCurrencyHelper.bigIntegerRound(otherSourcesDocument.getAgriculture_income()));
 			scheduleEI.setOthers(indianCurrencyHelper.bigIntegerRound(otherSourcesDocument.getOtherincome()));
-	if(!hasValidEI) hasValidEI = true;
 		}else{
 			scheduleEI.setInterestInc(new BigInteger("0"));
 			scheduleEI.setDividendInc(new BigInteger("0"));
 			scheduleEI.setNetAgriIncOrOthrIncRule7(new BigInteger("0"));
 			scheduleEI.setOthers(new BigInteger("0"));
 		}
+		BigInteger LTCGEI = new BigInteger("0");
 		if(capitalAssetDocument != null){
-
-			/* commented for now.. waiting to complete capital gain module
-			 * List<CapitalAssetDetail> capitalAssetDetails = capitalAssetDocument.getCapitalAssetDetailList();
-			for(CapitalAssetDetail capitalAssetDetail:capitalAssetDetails){
-				System.out.println("TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT"+indianCurrencyHelper.bigIntegerRoundStr(capitalAssetDetail.getCapitalGainTaxLT()));
-				scheduleEI.setLTCGWhereSTTPaid(indianCurrencyHelper.bigIntegerRoundStr(capitalAssetDetail.getCapitalGainTaxLT()));
+			List<CapitalAssetDetail> capitalAssetDetails = capitalAssetDocument.getCapitalAssetDetailList();
+			if ( capitalAssetDetails != null && capitalAssetDetails.size() > 0 ){
+				for(CapitalAssetDetail capitalAssetDetail:capitalAssetDetails){
+					if(capitalAssetDetail.getCapitalGainTaxLT() != null && capitalAssetDetail.getAssetType().equals("SHARES") && capitalAssetDetail.getSstCharge().equals("Y")){
+						LTCGEI = LTCGEI.add(indianCurrencyHelper.bigIntegerRound(capitalAssetDetail.getCapitalGain()));
+					}
+				}
 			}
-			 */
-			scheduleEI.setLTCGWhereSTTPaid(new BigInteger("0"));// need to discuss
-			if(!hasValidEI) hasValidEI = true;
-		}else{
-			scheduleEI.setLTCGWhereSTTPaid(new BigInteger("0"));
 		}
+		scheduleEI.setLTCGWhereSTTPaid(LTCGEI);
+
 		scheduleEI.setTotalExemptInc(scheduleEI.getInterestInc().add(scheduleEI.getDividendInc()).add(scheduleEI.getNetAgriIncOrOthrIncRule7())
 				.add(scheduleEI.getOthers()).add(scheduleEI.getLTCGWhereSTTPaid()));
-		if( hasValidEI && scheduleEI.getTotalExemptInc().longValue() > 0 ){
+		if(scheduleEI.getTotalExemptInc().longValue() > 0 ){
 			return scheduleEI;
 		}else
 			return null;
