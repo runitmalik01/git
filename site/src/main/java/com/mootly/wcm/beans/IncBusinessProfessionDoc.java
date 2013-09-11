@@ -553,6 +553,15 @@ public class IncBusinessProfessionDoc extends IncBusinessProfessionVar{
 			val_netPL_otherthanSpeculative_SpecifiedBuss= Double.parseDouble(strnetPL_otherthanSpeculative_SpecifiedBuss);
 			setNetPL_otherthanSpeculative_SpecifiedBuss(val_netPL_otherthanSpeculative_SpecifiedBuss);
 		}
+		double val_netPL_otherthanSpeculative_SpecifiedBuss1=0.0d;
+		if (formMap.getField("netPL_otherthanSpeculative_SpecifiedBuss1").getValue().isEmpty()){
+			setNetPL_otherthanSpeculative_SpecifiedBuss1(val_netPL_otherthanSpeculative_SpecifiedBuss1);
+		}
+		else{
+			String strnetPL_otherthanSpeculative_SpecifiedBuss1=formMap.getField("netPL_otherthanSpeculative_SpecifiedBuss1").getValue();
+			val_netPL_otherthanSpeculative_SpecifiedBuss1= Double.parseDouble(strnetPL_otherthanSpeculative_SpecifiedBuss1);
+			setNetPL_otherthanSpeculative_SpecifiedBuss1(val_netPL_otherthanSpeculative_SpecifiedBuss1);
+		}
 		double val_netPl_FromBP=0.0d;
 		if (formMap.getField("netPl_FromBP").getValue().isEmpty()){
 			setNetPl_FromBP(val_netPl_FromBP);
