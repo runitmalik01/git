@@ -22,6 +22,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.mootly.wcm.beans.ScreenConfigDocument;
+import com.mootly.wcm.services.ditws.model.RetrievePANResponse;
 
 /**
  * @author BEN-10
@@ -30,9 +31,9 @@ import com.mootly.wcm.beans.ScreenConfigDocument;
 public class StartApplicationValidationService {
 
 	private static final Logger log = LoggerFactory.getLogger(StartApplicationValidationService.class);
-	
+
 	MasterConfigService masterConfigService = null;
-	
+
 	public StartApplicationValidationService() {
 		// TODO Auto-generated constructor stub
 		this.masterConfigService = MasterConfigService.getInstance();;
@@ -235,6 +236,29 @@ public class StartApplicationValidationService {
 				} catch (ParseException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
+				}
+			}
+		}
+	}
+	/**
+	 * This method is used to Validate Last Name with RetrievePanResponse if DIT Service for PAN is Enabled.
+	 * 
+	 * @param formMap {@link FormMap}
+	 * @param retrievePANResponse {@link RetrievePANResponse} This Response Return After Call of DIT Service for PAN
+	 * 
+	 * */
+	public void validLastNameWithDIT(FormMap formMap, RetrievePANResponse retrievePANResponse){
+		if(retrievePANResponse!=null && StringUtils.isBlank(retrievePANResponse.getError())){
+			if(formMap.getField("pan")!=null && formMap.getField("pi_last_name")!=null){
+				String lastName = formMap.getField("pi_last_name").getValue();
+				//Search last name in RetrievePanResponse's Full Name.
+				String respDitLastName = retrievePANResponse.getFullName();
+				//if Name contain Space character then Name will have LastName Otherwise it will already Last Name
+				if(retrievePANResponse.getFullName().contains(" ")){ 
+					respDitLastName = retrievePANResponse.getFullName().substring(retrievePANResponse.getFullName().lastIndexOf(" "));
+				}
+				if(!respDitLastName.trim().equalsIgnoreCase(lastName.trim())){
+					formMap.getField("pi_last_name").addMessage("err.match.last.name.dit");
 				}
 			}
 		}

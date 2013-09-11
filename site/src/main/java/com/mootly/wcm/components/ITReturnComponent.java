@@ -222,7 +222,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 	boolean shouldValidatePANWithDIT = false;
 	RetrievePANInformation.VALIDATION_RESULT retrievePANInformationValidationResult = VALIDATION_RESULT.NOT_INITIATED;
 	RetrievePANResponse retrievePANResponse = null;
-	
+
 	@Override
 	public void init(ServletContext servletContext,
 			ComponentConfiguration componentConfig)
@@ -838,13 +838,13 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 
 	protected void initComponent(HstRequest request,HstResponse response) throws InvalidNavigationException,InvalidPANException{
 		ResolvedSiteMapItem resolvedMapItem = request.getRequestContext().getResolvedSiteMapItem();
-		
+
 		//configuration details for RetrievePanInformation Dit Service.
 		String retrievePANInfo = request.getRequestContext().getResolvedSiteMapItem().getParameter("shouldRetrievePANInformation");
 		shouldRetrievePANInformation = StringUtils.isNotBlank(retrievePANInfo) && "true".equalsIgnoreCase(retrievePANInfo) ? true : false;
 		String validPanWithDit = request.getRequestContext().getResolvedSiteMapItem().getParameter("shouldValidatePANWithDIT");
 		shouldValidatePANWithDIT = StringUtils.isNotBlank(validPanWithDit) && "true".equalsIgnoreCase(validPanWithDit) ? true : false;
-		
+
 		member = itReturnComponentHelper.getMember(request);
 		scriptName = itReturnComponentHelper.getScriptName(request, (String) request.getAttribute("selectedItrTab"), getPublicRequestParameter(request, "selectedItrTab"));
 		String strFinancialYear = itReturnComponentHelper.getStrFinancialYear(request, response);  //request.getRequestContext().getResolvedSiteMapItem().getParameter("financialYear");
@@ -1219,32 +1219,27 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		//validate last name of Member with PAN 
 		startappvalidserv.validLastName(formMap);
 		//validate last name of Member with Income Tax department by Call RetrievePanInformation Dit Service
-		if(shouldValidatePANWithDIT() && shouldRetrievePANInformation()){
-			if(formMap.getField("pan")!=null && formMap.getField("pi_last_name")!=null){
-				try {
-					String lastName = formMap.getField("pi_last_name").getValue();
-					RetrievePANResponse retrievePANResponse = retrievePANInformation();
-					if(retrievePANResponse!=null && StringUtils.isBlank(retrievePANResponse.getError())){
-						//Search last name in RetrievePanResponse's Full Name.
-						if(!retrievePANResponse.getFullName().trim().replaceAll(" ", "").toLowerCase().contains(lastName.toLowerCase())){
-							formMap.getField("pi_last_name").addMessage("err.match.last.name.dit");
-						}
-					}
-					//change if we don't want to Save Pan If found error In RetrievePanInformation DIT Service
-					boolean validpan = false;
+		if(shouldValidatePANWithDIT()){
+			try {
+				RetrievePANResponse retrievePANResponse = retrievePANInformation();
+				MasterConfigService configService = MasterConfigService.getInstance();
+				if(configService.shouldContinueWithInvalidPAN()){
+					startappvalidserv.validLastNameWithDIT(formMap, retrievePANResponse);
+				}
+				//change if we don't want to Save Pan If found error In RetrievePanInformation DIT Service
+				/*boolean validpan = false;
 					if(retrievePANResponse!=null && StringUtils.isNotBlank(retrievePANResponse.getError()) && validpan){
 						formMap.getField("pan").addMessage("err.match.pan.dit");
-					}
-				} catch (MissingInformationException e) {
-					// TODO Auto-generated catch block
-					log.error("Error while Calling Dit Mock Service due to lack of Information",e);
-				} catch (DataMismatchException e) {
-					// TODO Auto-generated catch block
-					log.error("Error while Mocking Dit Service for Pan Information due to Data Missed",e);
-				} catch (InvalidFormatException e) {
-					// TODO Auto-generated catch block
-					log.error("Error while Mocking Dit Service for Pan Information due to Invalid Format of Inputs",e);
-				}
+					}*/
+			} catch (MissingInformationException e) {
+				// TODO Auto-generated catch block
+				log.error("Error while Calling Dit Mock Service due to lack of Information",e);
+			} catch (DataMismatchException e) {
+				// TODO Auto-generated catch block
+				log.error("Error while Mocking Dit Service for Pan Information due to Data Missed",e);
+			} catch (InvalidFormatException e) {
+				// TODO Auto-generated catch block
+				log.error("Error while Mocking Dit Service for Pan Information due to Invalid Format of Inputs",e);
 			}
 		}
 		if (formMap.getMessage() != null && formMap.getMessage().size() > 0) {
@@ -1720,7 +1715,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 				savedValuesFormMap.getField("financialYear").addValue(getFinancialYear().name());
 				savedValuesFormMap.getField("itReturnType").addValue(getITReturnType().name());
 				savedValuesFormMap.getField("userName").addValue(getUserName());
-				*/
+				 */
 
 				MootlyFormUtils.populate(request, publicParameterUUID, savedValuesFormMap);
 				if (savedValuesFormMap != null) {
@@ -1776,7 +1771,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			try {
 				MemberPayment memberPayment = (MemberPayment) request.getAttribute("memberpayment");
 				if (memberPayment != null && memberPayment.getPaymentVerificationStatus() != null &&  memberPayment.getPaymentVerificationStatus() == PaymentVerificationStatus.VERIFIED)
-				isPaid = true;
+					isPaid = true;
 			}catch (Exception ex) {
 				throw new PaymentRequiredException(ex);
 			}
@@ -1795,7 +1790,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			else { //normal user must pay
 
 			}
-			*/
+			 */
 		}
 
 
@@ -1822,46 +1817,46 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		}
 
 		switch (pageAction) {
-			case DOWNLOAD_ITR_XML:
-				request.setAttribute("fileName", downloadXMLFileName);
-				response.setRenderPath("jsp/member/downloadfile.jsp");
-				break;
-			case DOWNLOAD_ITR_SUMMARY:
-				request.setAttribute("fileName", downloadPDFFileName);
-				request.setAttribute("filePath", generatedPathToPDF);
-				response.setRenderPath("jsp/member/downloadfile.jsp");
-				break;
-			case EMAIL_ITR_XML_AND_SUMMARY:
-				if (generatedPathToXML != null && generatedPathToPDF != null) {
-					String deliveryEmail = getPublicRequestParameter(request, "email");
-					String[] to = null;
-					if (deliveryEmail != null && !"".equals(deliveryEmail.trim())) {
-						to = new String[]{ getUserName(), deliveryEmail };
-					}
-					else {
-						to = new String[]{ getUserName()};
-					}
-
-					//sendEmail(request, to, null, new String[] {"info@wealth4india.com"}, "Your IT Return", temporaryPathToPDF + "," + temporaryPathToXML, "Your IT Return Summary", "itreturnSummaryAndXml", null);
-					Map<String,Object> vC = new HashMap<String, Object>();
-					vC.put("financialYearDisplay", getFinancialYear().getDisplayName());
-					vC.put("financialYear", getFinancialYear());
-
-					try {
-						MemberPersonalInformation mi = (MemberPersonalInformation) request.getAttribute(MemberPersonalInformation.class.getSimpleName().toLowerCase());
-						if (mi != null) {
-							vC.put ("paymentAmount",mi.getPrice());
-						}
-					}catch (Exception ex) {
-
-					}
-
-					sendEmail(request, to, generatedPathToXML + "," + generatedPathToPDF,"Attached is your Income Tax Return for Financial Year " + getFinancialYear().getDisplayName(),"w4i_email",vC);
-					request.setAttribute("emailMeStatus", "success");
+		case DOWNLOAD_ITR_XML:
+			request.setAttribute("fileName", downloadXMLFileName);
+			response.setRenderPath("jsp/member/downloadfile.jsp");
+			break;
+		case DOWNLOAD_ITR_SUMMARY:
+			request.setAttribute("fileName", downloadPDFFileName);
+			request.setAttribute("filePath", generatedPathToPDF);
+			response.setRenderPath("jsp/member/downloadfile.jsp");
+			break;
+		case EMAIL_ITR_XML_AND_SUMMARY:
+			if (generatedPathToXML != null && generatedPathToPDF != null) {
+				String deliveryEmail = getPublicRequestParameter(request, "email");
+				String[] to = null;
+				if (deliveryEmail != null && !"".equals(deliveryEmail.trim())) {
+					to = new String[]{ getUserName(), deliveryEmail };
 				}
 				else {
-					request.setAttribute("emailMeStatus", "failure");
+					to = new String[]{ getUserName()};
 				}
+
+				//sendEmail(request, to, null, new String[] {"info@wealth4india.com"}, "Your IT Return", temporaryPathToPDF + "," + temporaryPathToXML, "Your IT Return Summary", "itreturnSummaryAndXml", null);
+				Map<String,Object> vC = new HashMap<String, Object>();
+				vC.put("financialYearDisplay", getFinancialYear().getDisplayName());
+				vC.put("financialYear", getFinancialYear());
+
+				try {
+					MemberPersonalInformation mi = (MemberPersonalInformation) request.getAttribute(MemberPersonalInformation.class.getSimpleName().toLowerCase());
+					if (mi != null) {
+						vC.put ("paymentAmount",mi.getPrice());
+					}
+				}catch (Exception ex) {
+
+				}
+
+				sendEmail(request, to, generatedPathToXML + "," + generatedPathToPDF,"Attached is your Income Tax Return for Financial Year " + getFinancialYear().getDisplayName(),"w4i_email",vC);
+				request.setAttribute("emailMeStatus", "success");
+			}
+			else {
+				request.setAttribute("emailMeStatus", "failure");
+			}
 		}
 		//Object theForm = request.getAttribute("theForm");
 	}
@@ -1900,7 +1895,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			catch ( IOException e)
 			{
 			}
-	     }
+		}
 	}
 
 	/**
@@ -2035,12 +2030,12 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			if (sortDirection == null) sortDirection = SORT_DIRECTION.ASC;
 			if (sortByAttribute != null) {
 				switch (sortDirection) {
-					case ASC:
-						hstQuery.addOrderByAscending(sortByAttribute);
-						break;
-					case DESC:
-						hstQuery.addOrderByAscending(sortByAttribute);
-						break;
+				case ASC:
+					hstQuery.addOrderByAscending(sortByAttribute);
+					break;
+				case DESC:
+					hstQuery.addOrderByAscending(sortByAttribute);
+					break;
 				}
 			}
 			final HstQueryResult result = hstQuery.execute();
@@ -2101,7 +2096,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 	protected RetrievePANInformation.VALIDATION_RESULT getRetrievePANInformationValidationResult() {
 		return retrievePANInformationValidationResult;
 	}
-	
+
 	protected BeanLifecycle<HippoBean> getChildBeanLifeCycleHandler() {
 		return null;
 	}

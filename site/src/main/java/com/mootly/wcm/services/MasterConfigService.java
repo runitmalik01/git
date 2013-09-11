@@ -38,6 +38,10 @@ public class MasterConfigService implements ConfigService {
 		return getBoolean("itreturn.dob.shouldValidateDob");
 	}
 
+	public Boolean shouldContinueWithInvalidPAN(){
+	    	return getBoolean("itreturn.ditValidPAN.continueWithInvalidPAN");
+	}
+	
 	@Override
 	public String[] getArray(String propertyKey) {
 		// TODO Auto-generated method stub

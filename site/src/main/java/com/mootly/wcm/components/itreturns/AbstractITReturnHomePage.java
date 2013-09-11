@@ -64,7 +64,10 @@ import com.mootly.wcm.model.ITReturnHomePageView;
 import com.mootly.wcm.model.ITReturnType;
 import com.mootly.wcm.model.PaymentVerificationStatus;
 import com.mootly.wcm.services.FreeTextSearchSreviceImpl;
+import com.mootly.wcm.services.MasterConfigService;
+import com.mootly.wcm.services.MemberInfoPdfGenService;
 import com.mootly.wcm.services.SequenceGenerator;
+import com.mootly.wcm.services.StartApplicationValidationService;
 import com.mootly.wcm.services.ditws.RetrievePANInformation;
 import com.mootly.wcm.services.ditws.exception.DataMismatchException;
 import com.mootly.wcm.services.ditws.exception.InvalidFormatException;
@@ -98,9 +101,11 @@ abstract public class AbstractITReturnHomePage extends ITReturnComponent {
 
 	@Override
 	public void doBeforeRender(HstRequest request, HstResponse response) {
-		super.doBeforeRender(request, response);		
-		log.info("setting parameter that noMatchFound");
+		super.doBeforeRender(request, response);
+		//set Parameter if on call of DIT service PAN Match Not Found
 		request.setAttribute("noPanMatchFound", request.getParameter("noPanMatchFound"));
+		//set parameter if Last name does not Match with PAN
+		request.setAttribute("valiPanWithLastNameError", request.getParameter("valiPanWithLastNameError"));
 		List<HippoFolderBean> pansForMember = getPanFolder().getFolders(); 
 		HippoBean currentBean = pansForMember.get(0); //this.getContentBean(request);
 		if (currentBean == null) {
@@ -237,13 +242,23 @@ abstract public class AbstractITReturnHomePage extends ITReturnComponent {
 		if (!DataTypeValidationHelper.isOfType(pan, DataTypeValidationType.PAN)) {
 			return;
 		} 
+		//validate pan's 5thCahr with LastName's 1stChar
+		StartApplicationValidationService applicationValidationService = new StartApplicationValidationService();
+		applicationValidationService.validLastName(map);
+		if (map.getMessage() != null && map.getMessage().size() > 0) {
+			response.setRenderParameter("valiPanWithLastNameError", "true");
+			return;
+		}
 		if(shouldValidatePANWithDIT()){
 			RetrievePANInformation retrievePANInformation =  getRetrievePANInformationService();
-			log.info("lets get the instance of RetrievePanInfomation");
+			//Boolean defContinueInvalidPAN = Boolean.valueOf(map.getField("invalidSubmit").getValue());
+			MasterConfigService configService = MasterConfigService.getInstance();
+			Boolean defContinueInvalidPAN = configService.shouldContinueWithInvalidPAN();
 			try {
 				RetrievePANResponse retrievePANResponse = retrievePANInformation.retrievePANInformation(pan);
-				if(retrievePANResponse == null || StringUtils.isNotBlank(retrievePANResponse.getError())){
-					response.setRenderParameter("noPanMatchFound", "false");
+				if(retrievePANResponse != null && StringUtils.isNotBlank(retrievePANResponse.getError()) && !defContinueInvalidPAN){
+					log.warn("Error while Match Pan with DIT"+retrievePANResponse.getError());
+					response.setRenderParameter("noPanMatchFound", "true");
 					return;
 				}
 			} catch (MissingInformationException e) {

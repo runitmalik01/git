@@ -49,6 +49,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 			<fmt:message key="${ITR1_FORM_SELECTION}" />
 		</div>
 	</c:if>
+	<div id="ditPanInvalid" class="alert alert-error hide"><strong><fmt:message key="err.match.last.name.dit"/></strong></div>
 	<h4>
 		<c:out value="${filingStatus}" /> Information
 	</h4>
@@ -865,10 +866,10 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 			</div>
 		</div>
 	</form>
-	<c:if test="${not empty isDuplicate && isDuplicate == 'true'}">
+	<c:if test="${not empty isDuplicate && isDuplicate == 'true' && empty formMap}">
 		<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		  <div class="modal-header">
-		    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 		    <h3 id="myModalLabel">Application in Progress</h3>
 		  </div>
 		  <div class="modal-body">
@@ -876,15 +877,15 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 		    <p>Do you want to Duplicate PAN<a class="btn"><c:out value="${fn:toUpperCase(pan)}"/></a>Infomation?</p>
 		  </div>
 		  <div class="modal-footer">
+		    <a href="${fn:substringBefore(scriptName,pan)}${duplicatePANFolder}/${pan}/servicerequest-itr-copy-or-move.html" class="btn btn-primary">Continue</a>
 		    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-		    <a href="./servicerequest-itr-copy-or-move.html" class="btn btn-primary">Continue</a>
 		  </div>
 		</div>
 	</c:if>
 </div>
 <res:client-validation
 	screenConfigurationDocumentName="startapplication"
-	formId="frmPersonalInfo" formSubmitButtonId="hrefLogin"></res:client-validation>
+	formId="frmPersonalInfo" formSubmitButtonId="hrefLogin" fieldOneID="pan" fieldTwoID="pi_last_name" validationType="pan"></res:client-validation>
 	<hst:element var="uiCustom" name="script">
 	<hst:attribute name="type">text/javascript</hst:attribute>
         	$(document).ready( function() {
@@ -1180,3 +1181,4 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 
 </hst:element>
 <hst:headContribution element="${uiCustom}" category="jsInternal" />
+<w4india:dit-mock-service formId="frmPersonalInfo"></w4india:dit-mock-service>

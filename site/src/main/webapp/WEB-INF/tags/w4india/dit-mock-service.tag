@@ -8,7 +8,7 @@
 <%@ taglib prefix="hst" uri="http://www.hippoecm.org/jsp/hst/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ tag trimDirectiveWhitespaces="true"%>
-
+<%@ attribute name="formId" type="java.lang.String" rtexprvalue="true" required="true"%>
 <%@ tag import="com.mootly.wcm.utils.*"%>
 <%@ tag import="java.util.*"%>
 
@@ -46,7 +46,7 @@
 		<c:if test="${fn:length(splittedFullName) > 2}">
 			<c:forEach items="${splittedFullName}" var="namePart" varStatus="cnt">
 				<c:if test="${cnt.count > 1 && cnt.count <= (fn:length(splittedFullName) -1)}">
-					<c:set value="${namePart + ' ' + midName}" var="midName" />
+					<c:set value="${namePart}${' '}${midName}" var="midName" />
 				</c:if>
 			</c:forEach>
 	    $('#pi_middle_name').val('<c:out value="${fn:trim(midName)}" />');
@@ -81,7 +81,11 @@
 	       As state will be at someWhere of Address so we Split Address and then invoke this value to Screen
 	  --%>
 	  $('#pi_state').val('<c:out value="${resStateKey}" />');
-	  
+	  <%-- Decide country on basis of State value
+	  --%>
+	  if('<c:out value="${resStateKey}" />'!='99'){
+         $('#pi_country').val('91');	  
+	   }
 	  </c:if>
 </hst:element>
 <hst:headContribution element="${uiCustom}" category="jsInternal" />

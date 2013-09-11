@@ -40,6 +40,7 @@ import org.hippoecm.hst.core.component.HstComponentException;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
 import org.hippoecm.repository.reviewedactions.FullReviewedActionsWorkflow;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -56,6 +57,7 @@ import com.mootly.wcm.components.ITReturnComponent;
 import com.mootly.wcm.components.InvalidNavigationException;
 import com.mootly.wcm.model.FilingStatus;
 import com.mootly.wcm.model.ITRForm;
+import com.mootly.wcm.services.StartApplicationValidationService;
 import com.mootly.wcm.services.ditws.RetrievePANInformation;
 import com.mootly.wcm.services.ditws.exception.DataMismatchException;
 import com.mootly.wcm.services.ditws.exception.InvalidFormatException;
@@ -104,11 +106,11 @@ public class StartApplication extends ITReturnComponent {
 		super.doBeforeRender(request, response);
 		parentBean=(MemberPersonalInformation)request.getAttribute("parentBean");
 		//Call to DIT Service then get the Response
+		RetrievePANResponse retrievePANResponse = null;
 		if(shouldRetrievePANInformation()){
 			RetrievePANInformation retrievePANInformation = getRetrievePANInformationService();
 			try {
-				RetrievePANResponse retrievePANResponse = retrievePANInformation.retrievePANInformation(getPAN());
-				request.setAttribute("retrievePANResponse", retrievePANResponse);
+				retrievePANResponse = retrievePANInformation.retrievePANInformation(getPAN());
 			} catch (MissingInformationException e) {
 				// TODO Auto-generated catch block
 				log.error("Error while Calling Dit Mock Service due to lack of Information",e);
@@ -120,11 +122,10 @@ public class StartApplication extends ITReturnComponent {
 				log.error("Error while Mocking Dit Service for Pan Information due to Invalid Format of Inputs",e);
 			}
 		}
-
 		String publicParameterUUID = getPublicRequestParameter(request, "uuid");
-		if(publicParameterUUID==null){
+		/*if(publicParameterUUID==null){
 			publicParameterUUID=(String)request.getSession().getAttribute("uuid");
-		}
+		}*/
 		if (publicParameterUUID != null) {
 			try {
 				FormUtils.validateId(publicParameterUUID);
@@ -210,16 +211,28 @@ public class StartApplication extends ITReturnComponent {
 		request.setAttribute("map", map);
 		request.setAttribute("ITR1_FORM_SELECTION", request.getParameter("ITR1_FORM_SELECTION"));
 
+		if(shouldRetrievePANInformation() && publicParameterUUID !=null){
+			request.setAttribute("retrievePANResponse", retrievePANResponse);
+		}
 		String checkForDuplicate = request.getRequestContext().getResolvedSiteMapItem().getParameter("checkForDuplicate");
-		if (checkForDuplicate != null && "true".equalsIgnoreCase(checkForDuplicate)) {
-			if(savedValuesFormMap !=null && getPanFolder() !=null){
-				List<HippoFolderBean> hippoFolderList = getPanFolder().getFolders();
-				if(!hippoFolderList.isEmpty() && hippoFolderList.size() > 0){
-					for(HippoFolderBean hipFoldBean:hippoFolderList){
-						if(hipFoldBean.getName().equalsIgnoreCase(getPAN()) || hipFoldBean.getName().toLowerCase().contains(getPAN().toLowerCase())){
-							if (parentBean != null) {
-								//duplicate information
-								request.setAttribute("isDuplicate", "true");
+		if (checkForDuplicate != null && "true".equalsIgnoreCase(checkForDuplicate)) {  //check that Admin enable or disable the functionality
+			if(publicParameterUUID !=null && getPanFolder() !=null){                   //duplicate will applicable for New PAN entry 
+				List<HippoFolderBean> hippoFolderList = getPanFolder().getFolders();  //get list of all pans
+				if(!hippoFolderList.isEmpty() && hippoFolderList.size() > 0){        //check that PAN Folder list should not be empty
+					for(HippoFolderBean hipFoldBean:hippoFolderList){               //iterate PAN Folder List 
+						if(hipFoldBean.getName().toLowerCase().contains(getPAN().toLowerCase())){   //Find the entered PAN in the List of PAN Folders
+							if(hipFoldBean.getFolders().size() > 0){                               //Now get the List of Folder in Matched PAN Folder
+								for(HippoFolderBean hipfyFolder:hipFoldBean.getFolders()){        //Iterate List of Financial Folder In Matched PAN Folder
+									if(hipfyFolder.getName().equalsIgnoreCase(getFinancialYear().getDisplayName())){//find Match of FY Folder with Choose Financial Year
+										for(HippoFolderBean hipPANFolder:hipfyFolder.getFolders()){                //iterate all Folders in Matched FY Folder
+											if(hipPANFolder.getName().toLowerCase().contains(getPAN().toLowerCase())){ //Find that Folder contain Entered PAN in it
+												request.setAttribute("duplicatePANFolder", hipPANFolder.getName());   //set the this PAN Folder(with Sequence Number) 
+												request.setAttribute("isDuplicate", "true");                         //set Duplicate Parameter true
+												break;
+											}
+										}
+									}
+								}
 							}
 						}
 					}
