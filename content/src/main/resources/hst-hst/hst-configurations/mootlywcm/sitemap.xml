@@ -5144,9 +5144,10 @@
 </sv:node>
 <!-- end of itrdedschedule10a sitemap -->
 
-<!-- schedule DEP -->
+<!-- schedule DPM -->
 
-<sv:node sv:name="scheduleDEP.html" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+
+<sv:node sv:name="scheduleDPM.html" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hst:sitemapitem</sv:value>
   </sv:property>
@@ -5154,7 +5155,7 @@
     <sv:value>3af28ed2-884f-46e8-9cd2-cb82abc1ad12</sv:value>
   </sv:property>
   <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
-    <sv:value>hst:pages/scheduleDEP</sv:value>
+    <sv:value>hst:pages/scheduleDPM</sv:value>
   </sv:property>
   <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
     <sv:value>action</sv:value>
@@ -5162,17 +5163,18 @@
   </sv:property>
   <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
     <sv:value>EDIT</sv:value>
-    <sv:value>scheduleDEP</sv:value>
+    <sv:value>scheduleDPM</sv:value>
   </sv:property>
   <sv:property sv:name="hst:refId" sv:type="String">
-    <sv:value>scheduleDEP</sv:value>
+    <sv:value>scheduleDPM</sv:value>
   </sv:property>
   <sv:property sv:name="hst:relativecontentpath" sv:type="String">
     <sv:value>members</sv:value>
   </sv:property>
 </sv:node>
 
-<!-- /schedule DEP -->
+
+<!-- /schedule DPM -->
         </sv:node>
         </sv:node>
       </sv:node>

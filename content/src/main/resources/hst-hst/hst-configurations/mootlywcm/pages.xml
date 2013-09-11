@@ -9445,9 +9445,10 @@
 </sv:node>
 
 <!-- /sch bp itr4 -->
-<!-- schedule DEP -->
+<!-- schedule DPM -->
 
-<sv:node sv:name="scheduleDEP" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+
+<sv:node sv:name="scheduleDPM" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hst:component</sv:value>
   </sv:property>
@@ -9487,11 +9488,12 @@
         <sv:value>f665c2ff-9d77-468e-a679-5b15b7d7e737</sv:value>
       </sv:property>
       <sv:property sv:name="hst:referencecomponent" sv:type="String">
-        <sv:value>hst:components/scheduleDEP</sv:value>
+        <sv:value>hst:components/scheduleDPM</sv:value>
       </sv:property>
     </sv:node>
   </sv:node>
 </sv:node>
 
-<!-- /schedule DEP -->
+
+<!-- /schedule DPM -->
 </sv:node>
