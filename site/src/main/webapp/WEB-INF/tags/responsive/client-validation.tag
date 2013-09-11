@@ -155,9 +155,17 @@
 						                   if(jqXhr.getResponseHeader("myHeader").match('error')){
 							                   $('#error').show();
 							                   flagforPanAndTan=false;
-							                   }
-							             		 else {
+							                   }else {
 							             		 $('#error').hide();
+							             		 flagforPanAndTan=true;
+							             		 }
+							               if(jqXhr.getResponseHeader("panInvalid").match('true')){
+							                   $('#ditPanInvalid').show();
+							                   <c:if test="${not empty ditInvalidPanContnue && ditInvalidPanContnue eq 'false'}">
+							                     flagforPanAndTan=false;
+							                   </c:if>
+							                   }else {
+							             		 $('#ditPanInvalid').hide();
 							             		 flagforPanAndTan=true;
 							             		 }
 					              }
