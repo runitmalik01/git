@@ -128,14 +128,14 @@ for (HstSiteMenuItem siteMenuItem : itrSiteMenu.getSiteMenuItems() ){
 %>
 <div class="navbar">
    <div class="navbar-inner">
-      <div class="container">
+      <div class="container" style="font-size: small;">
          <a class="btn btn-navbar" data-toggle="collapse" data-target=".navbar-responsive-collapse">
 	         <span class="icon-bar"></span>
 	         <span class="icon-bar"></span>
 	         <span class="icon-bar"></span>
          </a>
          <a class="brand" href="${fn:substringBefore(scriptName,pan)}${pan}${itrFolderSuffix}/${pan}/servicerequest-itr.html">
-            <span class="pan">
+            <span class="pan" style="font-size: x-small;">
                <c:out value="${pan}"/>
             </span>
          </a>
