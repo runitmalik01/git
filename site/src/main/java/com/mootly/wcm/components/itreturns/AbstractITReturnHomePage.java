@@ -65,7 +65,6 @@ import com.mootly.wcm.model.ITReturnType;
 import com.mootly.wcm.model.PaymentVerificationStatus;
 import com.mootly.wcm.services.FreeTextSearchSreviceImpl;
 import com.mootly.wcm.services.MasterConfigService;
-import com.mootly.wcm.services.MemberInfoPdfGenService;
 import com.mootly.wcm.services.SequenceGenerator;
 import com.mootly.wcm.services.StartApplicationValidationService;
 import com.mootly.wcm.services.ditws.RetrievePANInformation;
