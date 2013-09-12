@@ -320,7 +320,7 @@ public class CapitalAssetDetail extends CapitalAssetDetailA implements FormMapFi
 			setIndex(formMap.getField("index").getValue());
 		}
 		if (formMap.getField("accural_info") != null) {
-			setIndex(formMap.getField("accural_info").getValue());
+			setAccural(formMap.getField("accural_info").getValue());
 		}
 		if (formMap.getField("dedsec54").getValue().isEmpty()) {
 			setDed_sec54(amtA);
