@@ -219,8 +219,8 @@
 						</div>
 						<div class="span3">
 							<div class="rowlabel">
-								<select id="index" name="index" onchange="hidesstoptions()">
-									<option value="">-Select-</option>
+								<select id="index" name="index">
+								<option value="">-Select-</option>
 									<option value="Y" style="border-right: olive;"
 										<c:if test="${not empty childBean.index && childBean.index =='Y'}">selected</c:if>>YES</option>
 									<option value="N"
@@ -242,6 +242,21 @@
 									id="saleconsideration"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.saleConsideration}"/></c:if>"
 									class="decimal" title="Please fill only Numeric value" />
+							</div>
+						</div>
+					</div>
+					<div class="row-fluid show-grid" id="imp">
+						<div class="span9">
+							<div class="rowlabel">
+								<label for="date_improve"><small><fmt:message
+											key="capital.gain.date.imprv" /> </small> </label>
+							</div>
+						</div>
+						<div class="span3">
+							<div class="rowlabel">
+								<input id="date_improve" name="date_improve" type="text"
+									value="<c:if test="${not empty childBean.dateimpStr}">
+								<c:out value="${childBean.dateimpStr}"/></c:if>">
 							</div>
 						</div>
 					</div>
@@ -286,21 +301,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="row-fluid show-grid" id="imp">
-						<div class="span9">
-							<div class="rowlabel">
-								<label for="date_improve"><small><fmt:message
-											key="capital.gain.date.imprv" /> </small> </label>
-							</div>
-						</div>
-						<div class="span3">
-							<div class="rowlabel">
-								<input id="date_improve" name="date_improve" type="text"
-									value="<c:if test="${not empty childBean.dateimpStr}">
-								<c:out value="${childBean.dateimpStr}"/></c:if>">
-							</div>
-						</div>
-					</div>
+					
 					<div class="row-fluid show-grid">
 						<div class="span9">
 							<div class="rowlabel">
@@ -406,8 +407,6 @@
 							<div class="rowlabel">
 								<input type="text" name="capitalgain" id="capitalgain"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
-									<c:if test= "${childBean.index == 'Y' || 'N' }">
-									<fmt:formatNumber type="number"  maxIntegerDigits="14" value="${childBean.capitalGainTaxLT}"/></c:if>
 									<fmt:formatNumber type="number"  maxIntegerDigits="14" value="${childBean.capitalGain}"/></c:if>"
 									class="decimal" readonly="readonly" />
 							</div>
@@ -563,7 +562,7 @@
 				<tr align="center">
 					<th width="10%"><b style="color: olive;">Type of Asset </b>
 					</th>
-					<th width="10%"><b style="color: olive;">Name of Asset </b>
+					<th width="15%"><b style="color: olive;">Name of Asset </b>
 					</th>
 					<th width="15%"><b style="color: olive;"><fmt:message
 								key="capital.gain.cost.acquisition" /> </b>
@@ -571,9 +570,9 @@
 					<th width="15%"><b style="color: olive;"><fmt:message
 								key="capital.gain.sale.consideration" /> </b>
 					</th>
-					<th width="15%"><b style="color: olive;">Long Term Gain </b>
+					<th width="12%"><b style="color: olive;">Long Term Gain </b>
 					</th>
-					<th width="15%"><b style="color: olive;">Short Term Gain </b>
+					<th width="12%"><b style="color: olive;">Short Term Gain </b>
 					</th>
 					<th width="20%"><b style="color: olive;">Actions</b>
 					</th>
@@ -667,9 +666,9 @@
 					$("#lindex").hide();
 				} else {
 					$("#lindex").show();
+					$("#imp").show();
 				}
 				$("#loss").hide();
-				$("#imp").hide();
 				$("#lg").show();
 				$("#lnri").show();
 				$("#snri").hide();
@@ -754,6 +753,8 @@
 					var sst = $("#sst_charge").val();
 					if (sst == 'N') {
 						$("#lindex").show();
+						$("#imp").show();
+						$("#pan").show();
 					} else {
 						$("#pan").hide();
 						$("#ded").hide();
@@ -764,7 +765,6 @@
 					$("#loss").hide();
 					$(".with_Y_index").hide();
 					$('#fd_set_gain').show();
-					$("#imp").hide();
 					$(".lt").show();
 					$("#sst").show();
 				}
