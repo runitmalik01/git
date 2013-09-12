@@ -40,7 +40,6 @@ import org.hippoecm.hst.core.component.HstComponentException;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
 import org.hippoecm.repository.reviewedactions.FullReviewedActionsWorkflow;
-import org.json.JSONException;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -105,9 +104,9 @@ public class StartApplication extends ITReturnComponent {
 		// TODO Auto-generated method stub
 		super.doBeforeRender(request, response);
 		parentBean=(MemberPersonalInformation)request.getAttribute("parentBean");
-		//Call to DIT Service then get the Response
 		RetrievePANResponse retrievePANResponse = null;
-		if(shouldRetrievePANInformation()){
+		//Call to DIT Service then get the Response
+		if(shouldRetrievePANInformation()||shouldRetrievePANInformation()){
 			RetrievePANInformation retrievePANInformation = getRetrievePANInformationService();
 			try {
 				retrievePANResponse = retrievePANInformation.retrievePANInformation(getPAN());
@@ -122,10 +121,17 @@ public class StartApplication extends ITReturnComponent {
 				log.error("Error while Mocking Dit Service for Pan Information due to Invalid Format of Inputs",e);
 			}
 		}
+		//validation for PAN/LastName of using DIT Service of with 
+		String reqFormJson = getPublicRequestParameter(request, "data");
+		String validation = getPublicRequestParameter(request, "validation");
+		StartApplicationValidationService validationService = new StartApplicationValidationService();
+		Map<String, String> resultResponseMap = validationService.handleAjaxValidationForStartApp(reqFormJson, validation, retrievePANResponse);
+		if(!resultResponseMap.isEmpty()){
+			for(String respKey:resultResponseMap.keySet()){
+				response.setHeader(respKey, resultResponseMap.get(respKey));
+			}
+		}
 		String publicParameterUUID = getPublicRequestParameter(request, "uuid");
-		/*if(publicParameterUUID==null){
-			publicParameterUUID=(String)request.getSession().getAttribute("uuid");
-		}*/
 		if (publicParameterUUID != null) {
 			try {
 				FormUtils.validateId(publicParameterUUID);

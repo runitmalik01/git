@@ -8,6 +8,8 @@ import java.text.MessageFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.regex.PatternSyntaxException;
 
@@ -22,6 +24,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.mootly.wcm.beans.ScreenConfigDocument;
+import com.mootly.wcm.member.ITReturnHomePage;
 import com.mootly.wcm.services.ditws.model.RetrievePANResponse;
 
 /**
@@ -243,24 +246,67 @@ public class StartApplicationValidationService {
 	/**
 	 * This method is used to Validate Last Name with RetrievePanResponse if DIT Service for PAN is Enabled.
 	 * 
-	 * @param formMap {@link FormMap}
+	 * @param pan {@link FormMap}
+	 * @param lastName {@link String} Member's Last Name that will validate with Call of DIT Service
 	 * @param retrievePANResponse {@link RetrievePANResponse} This Response Return After Call of DIT Service for PAN
 	 * 
 	 * */
-	public void validLastNameWithDIT(FormMap formMap, RetrievePANResponse retrievePANResponse){
+	public boolean validLastNameWithDIT(String pan,String lastName, RetrievePANResponse retrievePANResponse){
 		if(retrievePANResponse!=null && StringUtils.isBlank(retrievePANResponse.getError())){
-			if(formMap.getField("pan")!=null && formMap.getField("pi_last_name")!=null){
-				String lastName = formMap.getField("pi_last_name").getValue();
+			if(StringUtils.isNotBlank(lastName) && StringUtils.isNotBlank(pan)){
+				//String lastName = formMap.getField("pi_last_name").getValue();
 				//Search last name in RetrievePanResponse's Full Name.
 				String respDitLastName = retrievePANResponse.getFullName();
 				//if Name contain Space character then Name will have LastName Otherwise it will already Last Name
-				if(retrievePANResponse.getFullName().contains(" ")){ 
+				if(retrievePANResponse.getFullName().contains(" ")){
 					respDitLastName = retrievePANResponse.getFullName().substring(retrievePANResponse.getFullName().lastIndexOf(" "));
 				}
 				if(!respDitLastName.trim().equalsIgnoreCase(lastName.trim())){
-					formMap.getField("pi_last_name").addMessage("err.match.last.name.dit");
+					return false;//invalid case
 				}
 			}
 		}
+		return true;
+	}
+	/**
+	 * This method used to handle Ajax request from {@link ITReturnHomePage} and validate As they are.If "shouldValidatePANWithDIT" false then 
+	 * <br/>it will not validate with DIT Service.<br/>Also it validate lastName's 1stChar  with pan's 5thChar
+	 * 
+	 * @param reqFormJson Request JSONString
+	 * @param validation Type of validation requested
+	 * 
+	 * @return {@link Map}
+	 * */
+	public Map<String, String> handleAjaxValidationForStartApp(String reqFormJson, String validation,RetrievePANResponse retrievePANResponse){
+		Map<String, String> resultResponseMap = new HashMap<String, String>();
+		if(reqFormJson!=null&&validation!=null){
+			try {
+				JSONObject formJson=new JSONObject(reqFormJson);
+				if(formJson.getString("pan").length()!=0 && formJson.getString("pi_last_name").length()!=0 ){		
+					char pan5thChar=formJson.getString("pan").toLowerCase().charAt(4);
+					char lastName1stChar=formJson.getString("pi_last_name").toLowerCase().charAt(0);
+					if(pan5thChar!=lastName1stChar){
+						resultResponseMap.put("myHeader", "error");
+					}else{
+						resultResponseMap.put("myHeader", "success");
+					}
+					if(retrievePANResponse != null && StringUtils.isNotBlank(retrievePANResponse.getError())){
+						resultResponseMap.put("panInvalid", "true");
+					}else{
+						resultResponseMap.put("panInvalid", "false");
+					}
+					//validate LastName with DIT Service Call
+					if(!validLastNameWithDIT(formJson.getString("pan"), formJson.getString("pi_last_name"), retrievePANResponse)){
+						resultResponseMap.put("lastNameInvalid", "true");
+					}else{
+						resultResponseMap.put("lastNameInvalid", "false");
+					}
+				}
+			}catch (JSONException e) {
+				// TODO Auto-generated catch block				
+				e.printStackTrace();
+			}
+		}	
+		return resultResponseMap;
 	}
 }

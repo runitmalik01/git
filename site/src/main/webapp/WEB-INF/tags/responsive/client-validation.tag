@@ -146,11 +146,11 @@
 							 });
 						     return json;
 						     };
-                       var reqFromJson=JSON.stringify(ConvertFormToJSON());
-                          $.ajax({
-						         url:'<c:out value="${ajaxLinkToComponent}"/>?validation=<c:out value="${validationType}"/>',
-						         data: 'data='+reqFromJson,
-						         datatype:'text',
+                       var reqFromJson = JSON.stringify(ConvertFormToJSON());
+                         $.ajax({
+						         url:'<c:out value="${ajaxLinkToComponent}"/>',
+						         data: 'data='+reqFromJson+'&validation=<c:out value="${validationType}"/>',                         
+						         dataType: 'text',						         
 						         success: function(data,textStatus,jqXhr) {
 						                   if(jqXhr.getResponseHeader("myHeader").match('error')){
 							                   $('#error').show();
@@ -166,6 +166,15 @@
 							                   </c:if>
 							                   }else {
 							             		 $('#ditPanInvalid').hide();
+							             		 flagforPanAndTan=true;
+							             		 }
+							              if(jqXhr.getResponseHeader("lastNameInvalid").match('true')){
+							                   $('#lastNameInvalid').show();
+							                   <c:if test="${not empty ditInvalidPanContnue && ditInvalidPanContnue eq 'false'}">
+							                     flagforPanAndTan=false;
+							                   </c:if>
+							                   }else {
+							             		 $('#lastNameInvalid').hide();
 							             		 flagforPanAndTan=true;
 							             		 }
 					              }

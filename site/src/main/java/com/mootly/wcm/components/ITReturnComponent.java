@@ -220,6 +220,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 	MemberPersonalInformation memberPersonalInformation;
 	boolean shouldRetrievePANInformation = false;
 	boolean shouldValidatePANWithDIT = false;
+	boolean ditInvalidPanContnue = false; 
 	RetrievePANInformation.VALIDATION_RESULT retrievePANInformationValidationResult = VALIDATION_RESULT.NOT_INITIATED;
 	RetrievePANResponse retrievePANResponse = null;
 
@@ -844,6 +845,8 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		shouldRetrievePANInformation = StringUtils.isNotBlank(retrievePANInfo) && "true".equalsIgnoreCase(retrievePANInfo) ? true : false;
 		String validPanWithDit = request.getRequestContext().getResolvedSiteMapItem().getParameter("shouldValidatePANWithDIT");
 		shouldValidatePANWithDIT = StringUtils.isNotBlank(validPanWithDit) && "true".equalsIgnoreCase(validPanWithDit) ? true : false;
+		MasterConfigService masterConfigService = MasterConfigService.getInstance();
+		ditInvalidPanContnue = masterConfigService.shouldContinueWithInvalidPAN();
 
 		member = itReturnComponentHelper.getMember(request);
 		scriptName = itReturnComponentHelper.getScriptName(request, (String) request.getAttribute("selectedItrTab"), getPublicRequestParameter(request, "selectedItrTab"));
@@ -1222,9 +1225,12 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		if(shouldValidatePANWithDIT()){
 			try {
 				RetrievePANResponse retrievePANResponse = retrievePANInformation();
-				MasterConfigService configService = MasterConfigService.getInstance();
-				if(configService.shouldContinueWithInvalidPAN()){
-					startappvalidserv.validLastNameWithDIT(formMap, retrievePANResponse);
+				if(ditInvalidPanContnue){
+					if(formMap.getField("pi_last_Name")!=null && formMap.getField("pan")!=null){
+						if(!startappvalidserv.validLastNameWithDIT(formMap.getField("pan").getValue(), formMap.getField("pi_last_Name").getValue(), retrievePANResponse)){
+							formMap.getField("pi_last_name").addMessage("err.match.last.name.dit");
+						}
+					}
 				}
 				//change if we don't want to Save Pan If found error In RetrievePanInformation DIT Service
 				/*boolean validpan = false;
@@ -1315,6 +1321,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		//set attributes in request for RetrievePanInformation Dit Service
 		request.setAttribute("shouldRetrievePANInformation", shouldRetrievePANInformation());
 		request.setAttribute("shouldValidatePANWithDIT", shouldValidatePANWithDIT());
+		request.setAttribute("ditInvalidPanContnue", ditInvalidPanContnue);
 	}
 
 	protected void fillDueDate(HstRequest request,HstResponse response) {

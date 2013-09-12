@@ -28,6 +28,7 @@ TreeMap objTreeMapSection = (TreeMap) objValueListService.getReturnFile();
      <div id="error" class="alert alert-error" style="display:none;"><fmt:message key="err.valid.lastName.with.pan"/></div>
      <div id="strictmsg" class="alert hide">Please enter PAN number for Individual or HUF</div>
 	 <div id="ditPanInvalid" class="alert alert-error <c:if test="${empty noPanMatchFound}">hide</c:if>"><strong><fmt:message key="err.match.pan.dit"/></strong></div>
+	 <div id="lastNameInvalid" class="alert alert-error hide"><strong><fmt:message key="err.match.last.name.dit"/></strong></div>
 		<fieldset>
 			<legend><fmt:message key="member.homepage.fillform"/> </legend>
 			<div class="row-fluid show-grid">
