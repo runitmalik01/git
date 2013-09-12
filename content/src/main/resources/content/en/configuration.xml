@@ -30426,9 +30426,7 @@ out_incomeChargeable_PL = (out_netPL_otherthanSpeculative_SpecifiedBuss1 -0)+(ou
 
 <!-- /schedule BP -->
 
-
-
-<sv:node sv:name="assetandliability" >
+<sv:node sv:name="assetandliability">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hippo:handle</sv:value>
   </sv:property>
@@ -30446,7 +30444,7 @@ out_incomeChargeable_PL = (out_netPL_otherthanSpeculative_SpecifiedBuss1 -0)+(ou
       <sv:value>hippo:harddocument</sv:value>
     </sv:property>
     <sv:property sv:name="jcr:uuid" sv:type="String">
-      <sv:value>c9a5eade-9f03-46ff-980d-e160c03c8ed2</sv:value>
+      <sv:value>f9ac6a9f-2abc-43c5-bbc4-b12230695b9d</sv:value>
     </sv:property>
     <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
       <sv:value>live</sv:value>
@@ -30454,6 +30452,9 @@ out_incomeChargeable_PL = (out_netPL_otherthanSpeculative_SpecifiedBuss1 -0)+(ou
     </sv:property>
     <sv:property sv:name="hippo:related___pathreference" sv:type="String">
       <sv:value>assetandliability</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostd:holder" sv:type="String">
+      <sv:value>admin</sv:value>
     </sv:property>
     <sv:property sv:name="hippostd:state" sv:type="String">
       <sv:value>published</sv:value>
@@ -30468,13 +30469,13 @@ out_incomeChargeable_PL = (out_netPL_otherthanSpeculative_SpecifiedBuss1 -0)+(ou
       <sv:value>2013-09-07T02:31:07.814+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-      <sv:value>2013-09-07T02:36:00.800+05:30</sv:value>
+      <sv:value>2013-09-12T12:22:57.006+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
       <sv:value>admin</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-      <sv:value>2013-09-07T02:36:05.963+05:30</sv:value>
+      <sv:value>2013-09-12T12:23:02.396+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="mootlywcm:additionalScript" sv:type="String">
       <sv:value/>
@@ -30493,17 +30494,16 @@ out_incomeChargeable_PL = (out_netPL_otherthanSpeculative_SpecifiedBuss1 -0)+(ou
       <sv:value>jewellery</sv:value>
       <sv:value>drawing</sv:value>
       <sv:value>vehicles</sv:value>
-      <sv:value>total</sv:value>
-      <sv:value>liability</sv:value>
     </sv:property>
     <sv:property sv:name="mootlywcm:script" sv:type="String">
-      <sv:value/>
+      <sv:value>out_total = (land-0)+(building-0)+(deposit_Bank-0)+(shares-0)+(insurance-0)+(loans_Adv-0)+(cash-0)+(jewellery-0)+(drawing-0)+(vehicles-0);</sv:value>
     </sv:property>
     <sv:property sv:name="mootlywcm:title" sv:type="String">
       <sv:value>Screen Calculation for Asset and Liability(Schedule AL)</sv:value>
     </sv:property>
   </sv:node>
 </sv:node>
+
 
 <!-- schedule PL -->
 <!--  calculatuin for shcedule44AE in ITR4S  -->
