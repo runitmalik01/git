@@ -1667,6 +1667,24 @@
     <sv:value>assetandliability</sv:value>
   </sv:property>
 </sv:node>
+<!-- dcg -->
+
+<sv:node sv:name="deemedcapitalgain">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:component</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>97671d53-2943-441d-8d7d-687051acd4cf</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:componentclassname" sv:type="String">
+    <sv:value>com.mootly.wcm.member.DeemedCapitalGain</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String"/>
+  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String"/>
+  <sv:property sv:name="hst:template" sv:type="String">
+    <sv:value>deemedcapitalgain</sv:value>
+  </sv:property>
+</sv:node>
 
 <!-- for invoice -->
 <sv:node sv:name="memberinvoice">
