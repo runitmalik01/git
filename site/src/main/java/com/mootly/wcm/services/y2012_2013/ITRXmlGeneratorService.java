@@ -72,6 +72,9 @@ public class ITRXmlGeneratorService extends ITRXmlGeneratorServiceCommon  implem
 		if(memberPersonalInformation.getFlexField("flex_string_ITRForm", "").equals("ITR4S")){
 			return ITR4SXmlGeneratorService.generateITR4S(request, response);
 		}
+		if(memberPersonalInformation.getFlexField("flex_string_ITRForm", "").equals("ITR4")){
+			return ITR4XmlGeneratorService.generateITR4(request, response);
+		}
 		return null;
 	}
 
@@ -90,6 +93,9 @@ public class ITRXmlGeneratorService extends ITRXmlGeneratorServiceCommon  implem
 		}
 		if(memberPersonalInformation.getFlexField("flex_string_ITRForm", "").equals("ITR4S")){
 			returnMap = ITR4SXmlGeneratorService.generateITR4S(financialYear, inputBeans);
+		}
+		if(memberPersonalInformation.getFlexField("flex_string_ITRForm", "").equals("ITR4")){
+			returnMap = ITR4XmlGeneratorService.generateITR4(financialYear, inputBeans);
 		}
 
 		return returnMap;
