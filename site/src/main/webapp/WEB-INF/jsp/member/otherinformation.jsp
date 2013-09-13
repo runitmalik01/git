@@ -123,7 +123,7 @@
 				        </div>
 				        <div class="span4">
 					         <div class="total_amount"><label for="total_amount"><small>Total Amount</small></label></div>
-					         <div class="rowlabel"><input type="text" id="total_amount" name="total_amount" value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.total_amount}"/>"/></div>
+					         <div class="rowlabel"><input type="text" readonly="readonly" id="total_amount" name="total_amount" value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.total_amount}"/>"/></div>
 				        </div>
 		           </div>
 		</fieldset>
@@ -208,7 +208,7 @@
 		           <div class="row-fluid show-grid">
 						<div class="span4">
 					        <div class="rowlabel"><label for="totalamount_disallowable"><small>Total amount disallowable under section 36</small></label></div>
-					        <div class="rowlabel"><input type="text" id="totalamount_disallowable" name="totalamount_disallowable" value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.totalamount_disallowable}"/>"/></div>
+					        <div class="rowlabel"><input type="text" readonly="readonly" id="totalamount_disallowable" name="totalamount_disallowable" value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.totalamount_disallowable}"/>"/></div>
 				        </div>
 		           </div>
 		</fieldset>
@@ -259,7 +259,7 @@
 				        </div>
 				        <div class="span4">
 					         <div class="rowlabel"><label for="totalamount_disallowableus37"><small>Total amount disallowable under section 37</small></label></div>
-					         <div class="rowlabel"><input type="text" id="totalamount_disallowableus37" name="totalamount_disallowableus37" value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.totalamount_disallowableus37}"/>"/></div>
+					         <div class="rowlabel"><input type="text" readonly="readonly" id="totalamount_disallowableus37" name="totalamount_disallowableus37" value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.totalamount_disallowableus37}"/>"/></div>
 				        </div>
 		           </div>
 		</fieldset>
@@ -296,7 +296,7 @@
 				        </div>
 				        <div class="span4">
 					         <div class="rowlabel"><label for="amount_disallowanceus40"><small>Total amount disallowable under section 40</small></label></div>
-					         <div class="rowlabel"><input type="text" id="amount_disallowanceus40" name="amount_disallowanceus40" value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.amount_disallowanceus40}"/>"/></div>
+					         <div class="rowlabel"><input type="text" readonly="readonly" id="amount_disallowanceus40" name="amount_disallowanceus40" value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.amount_disallowanceus40}"/>"/></div>
 				        </div>
 		           </div>
 		</fieldset>
@@ -344,7 +344,7 @@
 				        </div>
 				        <div class="span4">
 					         <div class="rowlabel"><label for="totalamount_disallowanceus40"><small>Total amount disallowable under section 40A</small></label></div>
-					         <div class="rowlabel"><input type="text" id="totalamount_disallowanceus40" name="totalamount_disallowanceus40" value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.totalamount_disallowanceus40}"/>"/></div>
+					         <div class="rowlabel"><input type="text" readonly="readonly" id="totalamount_disallowanceus40" name="totalamount_disallowanceus40" value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.totalamount_disallowanceus40}"/>"/></div>
 				        </div>
 		           </div>
 		</fieldset>
@@ -387,7 +387,7 @@
 		            <div class="row-fluid show-grid">
 						<div class="span4">
 					        <div class="rowlabel"><label for="totalamount_us43"><small>Total amount allowable under section 43B</small></label></div>
-					         <div class="rowlabel"><input type="text" id="totalamount_us43" name="totalamount_us43" value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.totalamount_us43}"/>"/></div>
+					         <div class="rowlabel"><input type="text" readonly="readonly" id="totalamount_us43" name="totalamount_us43" value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.totalamount_us43}"/>"/></div>
 				        </div>
 		           </div>
 		</fieldset>
@@ -429,8 +429,8 @@
 		           </div>
 		            <div class="row-fluid show-grid">
 						<div class="span4">
-					        <div class="rowlabel"><label for="totalamount_us43b"><small>Total amount allowable under section 43B</small></label></div>
-					         <div class="rowlabel"><input type="text" id="totalamount_us43b" name="totalamount_us43b" value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.totalamount_us43b}"/>"/></div>
+					        <div class="rowlabel"><label for="totalamount_us43b"><small>Total amount disallowable under Section 43B</small></label></div>
+					         <div class="rowlabel"><input type="text" readonly="readonly" id="totalamount_us43b" name="totalamount_us43b" value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.totalamount_us43b}"/>"/></div>
 				        </div>
 		           </div>
 		</fieldset>
@@ -463,7 +463,7 @@
 				        </div>
 				        <div class="span4">
 					        <div class="rowlabel"><label for="totalamount_outstanding"><small>Total amount outstanding</small></label></div>
-					         <div class="rowlabel"><input type="text" id="totalamount_outstanding" name="totalamount_outstanding" value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.totalamount_outstanding}"/>"/></div>
+					         <div class="rowlabel"><input type="text" readonly="readonly" id="totalamount_outstanding" name="totalamount_outstanding" value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.totalamount_outstanding}"/>"/></div>
 				        </div>
 				   </div>
 		</fieldset>
@@ -509,5 +509,5 @@
 
   </form>
 </div>
-
+<res:calc screenCalc="otherinformation" formId="frmOtherInformation"></res:calc>
 <res:client-validation formId="frmOtherInformation" screenConfigurationDocumentName="otherinformation" formSubmitButtonId="myModalOtherInformation" />
