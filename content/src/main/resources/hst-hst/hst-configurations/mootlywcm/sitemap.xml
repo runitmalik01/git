@@ -3490,6 +3490,35 @@
 		  </sv:property>
 		</sv:node>
 
+
+<!--schedule DEP-->
+<sv:node sv:name="scheduleDEP.html">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:sitemapitem</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>d1b16294-217e-4011-b81d-35c531ec5765</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+    <sv:value>hst:pages/scheduleDEP</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+    <sv:value>mainSiteMapItemRefId</sv:value>
+    <sv:value>action</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+    <sv:value>scheduleDEP</sv:value>
+    <sv:value>EDIT</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:refId" sv:type="String">
+    <sv:value>scheduleDEP</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:relativecontentpath" sv:type="String">
+    <sv:value>members</sv:value>
+  </sv:property>
+</sv:node>
+
+
 <sv:node sv:name="foreignbankdetail.html">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hst:sitemapitem</sv:value>

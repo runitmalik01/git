@@ -9111,6 +9111,40 @@
   </sv:node>
 </sv:node>
 
+<!--schedule DEP-->
+<sv:node sv:name="scheduleDEP">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:component</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>11373fcd-39e6-4bfd-85ec-df0805ec5b25</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:referencecomponent" sv:type="String">
+    <sv:value>hst:pages/simplepage.re</sv:value>
+  </sv:property>
+  <sv:node sv:name="main">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>d7e4d983-4ef2-445f-8ae1-e5dcf1b442d7</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>standard.main.re</sv:value>
+    </sv:property>
+    <sv:node sv:name="content">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>hst:component</sv:value>
+      </sv:property>
+      <sv:property sv:name="jcr:uuid" sv:type="String">
+        <sv:value>828eac61-7db3-49a6-a16d-241bf20af6ee</sv:value>
+      </sv:property>
+      <sv:property sv:name="hst:referencecomponent" sv:type="String">
+        <sv:value>hst:components/scheduleDEP</sv:value>
+      </sv:property>
+    </sv:node>
+  </sv:node>
+</sv:node>
 
 <sv:node sv:name="firmspartner">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
