@@ -214,7 +214,7 @@ public class ITRScheduleSI extends ITReturnComponent {
 			}
 			totalMapForJS.put("userAmount", null);
 			XmlCalculation xmlCal = new XmlCalculation();
-			long grossTotal = xmlCal.grossTotal(fy, inputBean);
+			long grossTotal = xmlCal.getGrossTotalOfIncomeWTFlateRate(fy, inputBean);
 			Double slabValue = findSlabOfGrossIncome(fy, inputBean, grossTotal);
 			totalMapForJS.put("grossTotal", grossTotal);
 			totalMapForJS.put("slabValue", slabValue);

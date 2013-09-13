@@ -682,5 +682,64 @@ public class XmlCalculation implements XmlCalculationImplement {
 		}
 		return ScreenCalculatorService.getScreenCalculations("accruralOfCG.js", requestParameterMap, resultMapST);
 	}
+	/**
+	 * This method is used to calculate the Gross Total of Income which is exempt i.e 
+	 * <br/>we will not include that income on which Flat Rate will Applicable.
+	 * 
+	 * @param financialYear {@link FinancialYear}
+	 * @param inputBeans {@link Map} of type <{@link String}, {@link HippoBean}>
+	 * 
+	 * @return {@link Long} value of Gross Income
+	 * */
+	public long getGrossTotalOfIncomeWTFlateRate(FinancialYear financialYear,Map<String,HippoBean> inputBeans){
+		long grosstotal = 0l;
+		long otherincome = 0l;
+		long houseIncomeTotal = 0l;
+		SalaryIncomeDocument salaryIncomeDocument = (SalaryIncomeDocument) inputBeans.get(SalaryIncomeDocument.class.getSimpleName().toLowerCase());
+		//HouseIncomeDetail houseIncomeDetail = (HouseIncomeDetail) inputBeans.get(HouseIncomeDetail.class.getSimpleName().toLowerCase());
+		FormSixteenDocument formSixteenDocument = (FormSixteenDocument) inputBeans.get(FormSixteenDocument.class.getSimpleName().toLowerCase());
+		HouseProperty houseProperty = (HouseProperty) inputBeans.get(HouseProperty.class.getSimpleName().toLowerCase());
+		OtherSourcesDocument otherSourcesDocument = (OtherSourcesDocument) inputBeans.get(OtherSourcesDocument.class.getSimpleName().toLowerCase());
+
+		IndianCurrencyHelper indianCurrencyHelper = new IndianCurrencyHelper();
+
+		//BigInteger salarytotal=new BigInteger("0");
+		BigInteger GrossIncome=new BigInteger("0");
+		BigInteger GrossIncomeTotal=new BigInteger("0");
+
+		if( formSixteenDocument!=null){
+			if ( formSixteenDocument.getFormSixteenDetailList() != null && formSixteenDocument.getFormSixteenDetailList().size() > 0 ){
+				for(FormSixteenDetail formSixteenDetail:formSixteenDocument.getFormSixteenDetailList()){
+					if(formSixteenDetail.getIncome_chargable_tax()!=null){
+						GrossIncome=indianCurrencyHelper.bigIntegerRound(formSixteenDetail.getIncome_chargable_tax());
+						GrossIncomeTotal=GrossIncomeTotal.add(GrossIncome);
+					}
+				}
+			}
+		}
+		BigInteger Penson=new BigInteger("0");
+		if(salaryIncomeDocument!=null){
+			Penson = indianCurrencyHelper.bigIntegerRound(salaryIncomeDocument.getTotal());
+		}
+		BigInteger TotalSalaryIncome=new BigInteger("0");
+		TotalSalaryIncome = GrossIncomeTotal.add(Penson);
+		longsalarytotal = TotalSalaryIncome.longValue();
+
+		if(houseProperty!=null){
+			if (houseProperty.getHouseIncomeDetailList() != null && houseProperty.getHouseIncomeDetailList().size() > 0 ){
+				for(HouseIncomeDetail houseIncomeDetail: houseProperty.getHouseIncomeDetailList()){ 
+					houseIncomeTotal = houseIncomeTotal+indianCurrencyHelper.longRound(houseIncomeDetail.getTotal_houseIncome());
+				}
+			}
+		}
+		
+		if(otherSourcesDocument!=null){
+			//we will not exempt income on which we apply flat rates.
+			otherincome = indianCurrencyHelper.longRound(otherSourcesDocument.getTaxable_income() - otherSourcesDocument.getLotteryOrhorse_income());
+		}
+		grosstotal = longsalarytotal+houseIncomeTotal+otherincome;
+
+		return grosstotal;
+	}
 
 }
