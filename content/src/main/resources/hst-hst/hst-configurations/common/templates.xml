@@ -3281,6 +3281,20 @@
     <sv:value>jsp/member/memberinvoice.jsp</sv:value>
   </sv:property>
 </sv:node>
+<!-- dcg -->
+
+<sv:node sv:name="deemedcapitalgain" >
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:template</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>a85afdbc-704f-4833-979c-523a5c6e8520</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:renderpath" sv:type="String">
+    <sv:value>jsp/member/deemedcapitalgain.jsp</sv:value>
+  </sv:property>
+</sv:node>
+
 <!-- assetandliability -->
 
 <sv:node sv:name="assetandliability">
