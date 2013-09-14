@@ -15268,7 +15268,7 @@ acknowledgement&lt;/p&gt;
 </sv:node>
 
     <!-- /firm partner -->
-    <sv:node sv:name="balancesheet" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+    <sv:node sv:name="balancesheet">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hippo:handle</sv:value>
   </sv:property>
@@ -15287,7 +15287,7 @@ acknowledgement&lt;/p&gt;
       <sv:value>hippotranslation:translated</sv:value>
     </sv:property>
     <sv:property sv:name="jcr:uuid" sv:type="String">
-      <sv:value>d3d3951f-cd3b-4172-96c0-958425b9cad1</sv:value>
+      <sv:value>349b4d4e-29ac-43f8-aa28-15ed9da1e5bb</sv:value>
     </sv:property>
     <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
       <sv:value>live</sv:value>
@@ -15312,13 +15312,13 @@ acknowledgement&lt;/p&gt;
       <sv:value>2013-08-22T22:48:12.130+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-      <sv:value>2013-08-25T01:46:51.159+05:30</sv:value>
+      <sv:value>2013-09-14T14:06:43.891+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
       <sv:value>admin</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-      <sv:value>2013-08-25T01:47:14.809+05:30</sv:value>
+      <sv:value>2013-09-14T14:06:59.785+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippotranslation:id" sv:type="String">
       <sv:value>d2a36d31-afef-4430-ae67-bd74417608ff</sv:value>
@@ -16119,6 +16119,9 @@ acknowledgement&lt;/p&gt;
       <sv:property sv:name="mootlywcm:rowLabel" sv:type="String">
         <sv:value>1</sv:value>
       </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
       <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
         <sv:value/>
       </sv:property>
@@ -16177,6 +16180,9 @@ acknowledgement&lt;/p&gt;
       </sv:property>
       <sv:property sv:name="mootlywcm:rowLabel" sv:type="String">
         <sv:value>1</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
       </sv:property>
       <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
         <sv:value/>
@@ -16237,6 +16243,9 @@ acknowledgement&lt;/p&gt;
       <sv:property sv:name="mootlywcm:rowLabel" sv:type="String">
         <sv:value>1</sv:value>
       </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
       <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
         <sv:value/>
       </sv:property>
@@ -16295,6 +16304,9 @@ acknowledgement&lt;/p&gt;
       </sv:property>
       <sv:property sv:name="mootlywcm:rowLabel" sv:type="String">
         <sv:value>2</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
       </sv:property>
       <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
         <sv:value/>
@@ -16355,6 +16367,9 @@ acknowledgement&lt;/p&gt;
       <sv:property sv:name="mootlywcm:rowLabel" sv:type="String">
         <sv:value>1</sv:value>
       </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
       <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
         <sv:value/>
       </sv:property>
@@ -16413,6 +16428,9 @@ acknowledgement&lt;/p&gt;
       </sv:property>
       <sv:property sv:name="mootlywcm:rowLabel" sv:type="String">
         <sv:value>1</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
       </sv:property>
       <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
         <sv:value/>
@@ -16473,6 +16491,9 @@ acknowledgement&lt;/p&gt;
       <sv:property sv:name="mootlywcm:rowLabel" sv:type="String">
         <sv:value>2</sv:value>
       </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
       <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
         <sv:value/>
       </sv:property>
@@ -16531,6 +16552,9 @@ acknowledgement&lt;/p&gt;
       </sv:property>
       <sv:property sv:name="mootlywcm:rowLabel" sv:type="String">
         <sv:value>2</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
       </sv:property>
       <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
         <sv:value/>
@@ -16591,6 +16615,9 @@ acknowledgement&lt;/p&gt;
       <sv:property sv:name="mootlywcm:rowLabel" sv:type="String">
         <sv:value>2</sv:value>
       </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
       <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
         <sv:value/>
       </sv:property>
@@ -16649,6 +16676,9 @@ acknowledgement&lt;/p&gt;
       </sv:property>
       <sv:property sv:name="mootlywcm:rowLabel" sv:type="String">
         <sv:value>2</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
       </sv:property>
       <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
         <sv:value/>
@@ -16709,6 +16739,9 @@ acknowledgement&lt;/p&gt;
       <sv:property sv:name="mootlywcm:rowLabel" sv:type="String">
         <sv:value>1</sv:value>
       </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
       <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
         <sv:value/>
       </sv:property>
@@ -16767,6 +16800,9 @@ acknowledgement&lt;/p&gt;
       </sv:property>
       <sv:property sv:name="mootlywcm:rowLabel" sv:type="String">
         <sv:value>1</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
       </sv:property>
       <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
         <sv:value/>
@@ -16827,6 +16863,9 @@ acknowledgement&lt;/p&gt;
       <sv:property sv:name="mootlywcm:rowLabel" sv:type="String">
         <sv:value>1</sv:value>
       </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
       <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
         <sv:value/>
       </sv:property>
@@ -16885,6 +16924,9 @@ acknowledgement&lt;/p&gt;
       </sv:property>
       <sv:property sv:name="mootlywcm:rowLabel" sv:type="String">
         <sv:value>1</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
       </sv:property>
       <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
         <sv:value/>
@@ -16945,6 +16987,9 @@ acknowledgement&lt;/p&gt;
       <sv:property sv:name="mootlywcm:rowLabel" sv:type="String">
         <sv:value>2</sv:value>
       </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
       <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
         <sv:value/>
       </sv:property>
@@ -17003,6 +17048,9 @@ acknowledgement&lt;/p&gt;
       </sv:property>
       <sv:property sv:name="mootlywcm:rowLabel" sv:type="String">
         <sv:value>2</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
       </sv:property>
       <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
         <sv:value/>
@@ -17063,6 +17111,9 @@ acknowledgement&lt;/p&gt;
       <sv:property sv:name="mootlywcm:rowLabel" sv:type="String">
         <sv:value>2</sv:value>
       </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
       <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
         <sv:value/>
       </sv:property>
@@ -17121,6 +17172,9 @@ acknowledgement&lt;/p&gt;
       </sv:property>
       <sv:property sv:name="mootlywcm:rowLabel" sv:type="String">
         <sv:value>3</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
       </sv:property>
       <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
         <sv:value/>
@@ -17181,6 +17235,9 @@ acknowledgement&lt;/p&gt;
       <sv:property sv:name="mootlywcm:rowLabel" sv:type="String">
         <sv:value>3</sv:value>
       </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
       <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
         <sv:value/>
       </sv:property>
@@ -17239,6 +17296,9 @@ acknowledgement&lt;/p&gt;
       </sv:property>
       <sv:property sv:name="mootlywcm:rowLabel" sv:type="String">
         <sv:value>1</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
       </sv:property>
       <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
         <sv:value/>
@@ -17299,6 +17359,9 @@ acknowledgement&lt;/p&gt;
       <sv:property sv:name="mootlywcm:rowLabel" sv:type="String">
         <sv:value>2</sv:value>
       </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
       <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
         <sv:value/>
       </sv:property>
@@ -17357,6 +17420,9 @@ acknowledgement&lt;/p&gt;
       </sv:property>
       <sv:property sv:name="mootlywcm:rowLabel" sv:type="String">
         <sv:value>2</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
       </sv:property>
       <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
         <sv:value/>
@@ -17417,6 +17483,9 @@ acknowledgement&lt;/p&gt;
       <sv:property sv:name="mootlywcm:rowLabel" sv:type="String">
         <sv:value>2</sv:value>
       </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
       <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
         <sv:value/>
       </sv:property>
@@ -17475,6 +17544,9 @@ acknowledgement&lt;/p&gt;
       </sv:property>
       <sv:property sv:name="mootlywcm:rowLabel" sv:type="String">
         <sv:value>2</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
       </sv:property>
       <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
         <sv:value/>
@@ -17535,6 +17607,9 @@ acknowledgement&lt;/p&gt;
       <sv:property sv:name="mootlywcm:rowLabel" sv:type="String">
         <sv:value>1</sv:value>
       </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
       <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
         <sv:value/>
       </sv:property>
@@ -17593,6 +17668,9 @@ acknowledgement&lt;/p&gt;
       </sv:property>
       <sv:property sv:name="mootlywcm:rowLabel" sv:type="String">
         <sv:value>1</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
       </sv:property>
       <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
         <sv:value/>
@@ -17653,6 +17731,9 @@ acknowledgement&lt;/p&gt;
       <sv:property sv:name="mootlywcm:rowLabel" sv:type="String">
         <sv:value>1</sv:value>
       </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
       <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
         <sv:value/>
       </sv:property>
@@ -17711,6 +17792,9 @@ acknowledgement&lt;/p&gt;
       </sv:property>
       <sv:property sv:name="mootlywcm:rowLabel" sv:type="String">
         <sv:value>2</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
       </sv:property>
       <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
         <sv:value/>
@@ -17771,6 +17855,9 @@ acknowledgement&lt;/p&gt;
       <sv:property sv:name="mootlywcm:rowLabel" sv:type="String">
         <sv:value>2</sv:value>
       </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
       <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
         <sv:value/>
       </sv:property>
@@ -17829,6 +17916,9 @@ acknowledgement&lt;/p&gt;
       </sv:property>
       <sv:property sv:name="mootlywcm:rowLabel" sv:type="String">
         <sv:value>2</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
       </sv:property>
       <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
         <sv:value/>
@@ -17888,6 +17978,9 @@ acknowledgement&lt;/p&gt;
       </sv:property>
       <sv:property sv:name="mootlywcm:rowLabel" sv:type="String">
         <sv:value>2</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
       </sv:property>
       <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
         <sv:value/>
@@ -17954,6 +18047,9 @@ acknowledgement&lt;/p&gt;
       <sv:property sv:name="mootlywcm:rowLabel" sv:type="String">
         <sv:value>1</sv:value>
       </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
       <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
         <sv:value/>
       </sv:property>
@@ -18013,6 +18109,9 @@ acknowledgement&lt;/p&gt;
       <sv:property sv:name="mootlywcm:rowLabel" sv:type="String">
         <sv:value>1</sv:value>
       </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
       <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
         <sv:value/>
       </sv:property>
@@ -18071,6 +18170,9 @@ acknowledgement&lt;/p&gt;
       </sv:property>
       <sv:property sv:name="mootlywcm:rowLabel" sv:type="String">
         <sv:value>1</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
       </sv:property>
       <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
         <sv:value/>
@@ -18131,6 +18233,9 @@ acknowledgement&lt;/p&gt;
       <sv:property sv:name="mootlywcm:rowLabel" sv:type="String">
         <sv:value>2</sv:value>
       </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
       <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
         <sv:value/>
       </sv:property>
@@ -18189,6 +18294,9 @@ acknowledgement&lt;/p&gt;
       </sv:property>
       <sv:property sv:name="mootlywcm:rowLabel" sv:type="String">
         <sv:value>1</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
       </sv:property>
       <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
         <sv:value/>
@@ -18249,6 +18357,9 @@ acknowledgement&lt;/p&gt;
       <sv:property sv:name="mootlywcm:rowLabel" sv:type="String">
         <sv:value>1</sv:value>
       </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
       <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
         <sv:value/>
       </sv:property>
@@ -18308,6 +18419,9 @@ acknowledgement&lt;/p&gt;
       <sv:property sv:name="mootlywcm:rowLabel" sv:type="String">
         <sv:value>1</sv:value>
       </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
       <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
         <sv:value/>
       </sv:property>
@@ -18366,6 +18480,9 @@ acknowledgement&lt;/p&gt;
       </sv:property>
       <sv:property sv:name="mootlywcm:rowLabel" sv:type="String">
         <sv:value>1</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
       </sv:property>
       <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
         <sv:value/>
@@ -18426,6 +18543,9 @@ acknowledgement&lt;/p&gt;
       <sv:property sv:name="mootlywcm:rowLabel" sv:type="String">
         <sv:value>2</sv:value>
       </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
       <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
         <sv:value/>
       </sv:property>
@@ -18484,6 +18604,9 @@ acknowledgement&lt;/p&gt;
       </sv:property>
       <sv:property sv:name="mootlywcm:rowLabel" sv:type="String">
         <sv:value>2</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
       </sv:property>
       <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
         <sv:value/>
@@ -18544,6 +18667,9 @@ acknowledgement&lt;/p&gt;
       <sv:property sv:name="mootlywcm:rowLabel" sv:type="String">
         <sv:value>2</sv:value>
       </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
       <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
         <sv:value/>
       </sv:property>
@@ -18603,6 +18729,9 @@ acknowledgement&lt;/p&gt;
       <sv:property sv:name="mootlywcm:rowLabel" sv:type="String">
         <sv:value>2</sv:value>
       </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
       <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
         <sv:value/>
       </sv:property>
@@ -18662,6 +18791,9 @@ acknowledgement&lt;/p&gt;
       <sv:property sv:name="mootlywcm:rowLabel" sv:type="String">
         <sv:value>1</sv:value>
       </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
       <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
         <sv:value/>
       </sv:property>
@@ -18720,6 +18852,9 @@ acknowledgement&lt;/p&gt;
       </sv:property>
       <sv:property sv:name="mootlywcm:rowLabel" sv:type="String">
         <sv:value>1</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
       </sv:property>
       <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
         <sv:value/>
@@ -18786,6 +18921,9 @@ acknowledgement&lt;/p&gt;
       <sv:property sv:name="mootlywcm:rowLabel" sv:type="String">
         <sv:value>1</sv:value>
       </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
       <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
         <sv:value/>
       </sv:property>
@@ -18844,6 +18982,9 @@ acknowledgement&lt;/p&gt;
       </sv:property>
       <sv:property sv:name="mootlywcm:rowLabel" sv:type="String">
         <sv:value>2</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
       </sv:property>
       <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
         <sv:value/>
@@ -18904,6 +19045,9 @@ acknowledgement&lt;/p&gt;
       <sv:property sv:name="mootlywcm:rowLabel" sv:type="String">
         <sv:value>2</sv:value>
       </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
       <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
         <sv:value/>
       </sv:property>
@@ -18963,6 +19107,9 @@ acknowledgement&lt;/p&gt;
       <sv:property sv:name="mootlywcm:rowLabel" sv:type="String">
         <sv:value>2</sv:value>
       </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
       <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
         <sv:value/>
       </sv:property>
@@ -19021,6 +19168,9 @@ acknowledgement&lt;/p&gt;
       </sv:property>
       <sv:property sv:name="mootlywcm:rowLabel" sv:type="String">
         <sv:value>3</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
       </sv:property>
       <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
         <sv:value/>
@@ -19087,6 +19237,9 @@ acknowledgement&lt;/p&gt;
       <sv:property sv:name="mootlywcm:rowLabel" sv:type="String">
         <sv:value>1</sv:value>
       </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
       <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
         <sv:value/>
       </sv:property>
@@ -19145,6 +19298,9 @@ acknowledgement&lt;/p&gt;
       </sv:property>
       <sv:property sv:name="mootlywcm:rowLabel" sv:type="String">
         <sv:value>1</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
       </sv:property>
       <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
         <sv:value/>
@@ -19211,6 +19367,9 @@ acknowledgement&lt;/p&gt;
       <sv:property sv:name="mootlywcm:rowLabel" sv:type="String">
         <sv:value>1</sv:value>
       </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
       <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
         <sv:value/>
       </sv:property>
@@ -19270,13 +19429,350 @@ acknowledgement&lt;/p&gt;
       <sv:property sv:name="mootlywcm:rowLabel" sv:type="String">
         <sv:value>1</sv:value>
       </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:dropDownListName" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldClass" sv:type="String">
+        <sv:value>decimal</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>amount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>interestAcuurNtLoan</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldLabel" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldMaxLength" sv:type="String">
+        <sv:value>14</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>interestAcuurNtLoan</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldSpan" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value>Interest Accured but not due on loans</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldValue" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:formFieldType" sv:type="String">
+        <sv:value>input</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:href" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:inputFormFieldType" sv:type="String">
+        <sv:value>text</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:readOnly" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:rowLabel" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:dropDownListName" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldClass" sv:type="String">
+        <sv:value>decimal</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value>amount</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>totalSundryDebtor</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldLabel" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldMaxLength" sv:type="String">
+        <sv:value>14</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>totalSundryDebtor</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value>&lt;html&gt;
+&lt;body&gt;
+
+&lt;p&gt;Amount of Total Sundry Debtors&lt;/p&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldSpan" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value>Total Sundry Debtors</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldValue" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:formFieldType" sv:type="String">
+        <sv:value>input</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:href" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:inputFormFieldType" sv:type="String">
+        <sv:value>text</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:readOnly" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:rowLabel" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:dropDownListName" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldClass" sv:type="String">
+        <sv:value>decimal</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>totalSundryCreditor</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldLabel" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldMaxLength" sv:type="String">
+        <sv:value>14</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>totalSundryCreditor</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value>&lt;html&gt;
+&lt;body&gt;
+
+&lt;p&gt;Amount of Total Sundry Creditors&lt;/p&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldSpan" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value>Total Sundry Creditor</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldValue" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:formFieldType" sv:type="String">
+        <sv:value>input</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:href" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:inputFormFieldType" sv:type="String">
+        <sv:value>text</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:readOnly" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:rowLabel" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:dropDownListName" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldClass" sv:type="String">
+        <sv:value>decimal</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>totalStockTrade</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldLabel" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldMaxLength" sv:type="String">
+        <sv:value>14</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>totalStockTrade</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value>&lt;html&gt;
+&lt;body&gt;
+
+&lt;p&gt;Amount of Total Stock In Trade&lt;/p&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldSpan" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value>Total Stock In Trade</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldValue" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:formFieldType" sv:type="String">
+        <sv:value>input</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:href" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:inputFormFieldType" sv:type="String">
+        <sv:value>text</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:readOnly" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:rowLabel" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:dropDownListName" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldClass" sv:type="String">
+        <sv:value>decimal</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>cashBalance</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldLabel" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldMaxLength" sv:type="String">
+        <sv:value>14</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>cashBalance</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value>&lt;html&gt;
+&lt;body&gt;
+
+&lt;p&gt;Amount of Total Cash Balance&lt;/p&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldSpan" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value>Total Cash Balance</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldValue" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:formFieldType" sv:type="String">
+        <sv:value>input</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:href" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:inputFormFieldType" sv:type="String">
+        <sv:value>text</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:readOnly" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:rowLabel" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
       <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
         <sv:value/>
       </sv:property>
     </sv:node>
   </sv:node>
 </sv:node>
-<!-- end of Balance Sheet Schedule -->
+    <!-- end of Balance Sheet Schedule -->
 <!-- profit and loss itr4 -->
 
 
@@ -36078,7 +36574,7 @@ out_incChargBusiness  = indianCurrencyHelper.RoundTo2Decimals(incChargBusiness);
       <sv:value>hippo:harddocument</sv:value>
     </sv:property>
     <sv:property sv:name="jcr:uuid" sv:type="String">
-      <sv:value>c4d1da37-4df8-4c98-8ae6-50a4658dd019</sv:value>
+      <sv:value>095adb26-84b4-48c9-8cc6-60dae48501d3</sv:value>
     </sv:property>
     <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
       <sv:value>live</sv:value>
@@ -36086,6 +36582,9 @@ out_incChargBusiness  = indianCurrencyHelper.RoundTo2Decimals(incChargBusiness);
     </sv:property>
     <sv:property sv:name="hippo:related___pathreference" sv:type="String">
       <sv:value>balancesheet</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostd:holder" sv:type="String">
+      <sv:value>admin</sv:value>
     </sv:property>
     <sv:property sv:name="hippostd:state" sv:type="String">
       <sv:value>published</sv:value>
@@ -36100,13 +36599,13 @@ out_incChargBusiness  = indianCurrencyHelper.RoundTo2Decimals(incChargBusiness);
       <sv:value>2013-09-02T15:23:13.592+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-      <sv:value>2013-09-02T15:38:10.679+05:30</sv:value>
+      <sv:value>2013-09-14T13:43:15.535+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
       <sv:value>admin</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-      <sv:value>2013-09-02T15:38:15.460+05:30</sv:value>
+      <sv:value>2013-09-14T13:43:19.346+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="mootlywcm:additionalScript" sv:type="String">
       <sv:value/>
@@ -36172,7 +36671,35 @@ out_incChargBusiness  = indianCurrencyHelper.RoundTo2Decimals(incChargBusiness);
       <sv:value>grossAppliFund</sv:value>
     </sv:property>
     <sv:property sv:name="mootlywcm:script" sv:type="String">
-      <sv:value>var indianCurrencyHelper = new com.mootly.wcm.services.IndianCurrencyHelper();</sv:value>
+      <sv:value>var indianCurrencyHelper = new com.mootly.wcm.services.IndianCurrencyHelper();	
+ 
+out_grossProprietFund = (reavReserve-0) + (propCapital-0) + (capReserve-0) + (statReserve-0) + (otherReserve-0);
+
+out_grossLoanFund = (forgnCurrLoan-0) + (rupLoanBank-0) + (rupLoanBank-0) + (rupLoanOther-0) + (unsecLoanBank-0) + (unsecLoanOther-0);
+
+out_sourcOfFund = (defTaxLiability-0) + out_grossProprietFund + out_grossLoanFund;
+
+out_grossFixedAsset = (grossBlock-0) - (depreciation-0) + (capWorkProgrss-0);
+
+out_grossFixedAsset = out_grossFixedAsset &gt; 0 ? out_grossFixedAsset : 0; 
+
+out_grossInvest = (ltInvestQuot-0) + (ltInvestUnquot-0) + (stInvestEquity-0) + (stInvestPrefShare-0) + (stInvestDebent-0);
+
+out_grossCurrAssets  = (storesConsum-0) + (rawMaterial-0) + (stockProcess-0) + (finishGoods-0) + (sundryDebtor-0) + (cashInHand-0) +(balanceBank-0) + (otherCurrAsset-0);
+
+out_grossCurrAssLoanAdvan  = (advancRecover-0)+ (loanAdvanCorpOthr-0)+ (balWthRevenAuth-0);
+
+out_grossCurrLiability = (sundryCreditor-0)+ (laibLeaseAsset-0)+ (interestAcuurOnabove-0) + (interestAcuurNtLoan-0);
+
+out_grossProvision = (incometaxProvis-0)+ (wealthTaxProvis-0)+ (leaveProvis-0) + (otherProvis-0);
+
+out_grossCurrLaibilProvison = out_grossProvision + out_grossCurrLiability;
+
+out_netCurrAssets = out_grossCurrAssLoanAdvan + out_grossCurrAssets - out_grossCurrLaibilProvison;
+
+out_netCurrAssets = out_netCurrAssets &gt; 0 ? out_netCurrAssets : 0;
+	
+out_grossAppliFund = (miscellanExpend-0) + (deftaxAssets-0) + (profLoassAccn-0);</sv:value>
     </sv:property>
     <sv:property sv:name="mootlywcm:title" sv:type="String">
       <sv:value/>

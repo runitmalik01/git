@@ -40,8 +40,8 @@ import com.mootly.wcm.components.ITReturnComponent;
 @FormFields(fieldNames={"propCapital","reavReserve", "capReserve", "statReserve", "otherReserve","forgnCurrLoan", "rupLoanBank", "rupLoanOther", "unsecLoanBank",
 		"defTaxLiability", "sourcOfFund", "grossBlock", "depreciation", "capWorkProgrss", "grossFixedAsset", "ltInvestQuot", "ltInvestUnquot", "stInvestEquity",
 		"stInvestPrefShare", "stInvestDebent", "grossInvest", "storesConsum", "rawMaterial", "stockProcess", "finishGoods", "sundryDebtor", "cashInHand",
-		"balanceBank", "otherCurrAsset", "grossCurrAssets", "advancRecover", "loanAdvanCorpOthr", "balWthRevenAuth","grossLoanFund",
-		"grossCurrAssLoanAdvan", "sundryCreditor", "laibLeaseAsset", "unpaidDividnd", "unpaidMatdebntur", "unpaidCallMoney", "interestAcuurOnabove",
+		"balanceBank", "otherCurrAsset", "grossCurrAssets", "advancRecover", "loanAdvanCorpOthr", "balWthRevenAuth","grossLoanFund","totalStockTrade",
+		"grossCurrAssLoanAdvan", "sundryCreditor", "laibLeaseAsset", "interestAcuurOnabove","totalSundryDebtor","totalSundryCreditor","cashBalance",
 		"interestAcuurNtLoan", "grossCurrLiability", "incometaxProvis", "wealthTaxProvis", "leaveProvis","grossProprietFund","unsecLoanOther",
 		"otherProvis", "grossProvision", "grossCurrLaibilProvison", "netCurrAssets", "miscellanExpend", "deftaxAssets", "profLoassAccn", "grossAppliFund"})
 @DataTypeValidationFields(dataTypes={DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,
@@ -54,13 +54,14 @@ import com.mootly.wcm.components.ITReturnComponent;
 		DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,
 		DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,
 		DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,
-		DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL},
+		DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,
+		DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL},
 fieldNames={"propCapital","reavReserve", "capReserve", "statReserve", "otherReserve","forgnCurrLoan", "rupLoanBank", "rupLoanOther", "unsecLoanBank",
 		"defTaxLiability", "sourcOfFund", "grossBlock", "depreciation", "capWorkProgrss", "grossFixedAsset", "ltInvestQuot", "ltInvestUnquot", "stInvestEquity",
 		"stInvestPrefShare", "stInvestDebent", "grossInvest", "storesConsum", "rawMaterial", "stockProcess", "finishGoods", "sundryDebtor", "cashInHand",
-		"balanceBank", "otherCurrAsset", "grossCurrAssets", "advancRecover", "loanAdvanCorpOthr", "balWthRevenAuth",
-		"grossCurrAssLoanAdvan", "sundryCreditor", "laibLeaseAsset", "unpaidDividnd", "unpaidMatdebntur", "unpaidCallMoney", "interestAcuurOnabove",
-		"interestAcuurNtLoan", "grossCurrLiability", "incometaxProvis", "wealthTaxProvis", "leaveProvis","unsecLoanOther",
+		"balanceBank", "otherCurrAsset", "grossCurrAssets", "advancRecover", "loanAdvanCorpOthr", "balWthRevenAuth","grossLoanFund","totalStockTrade",
+		"grossCurrAssLoanAdvan", "sundryCreditor", "laibLeaseAsset", "interestAcuurOnabove","totalSundryDebtor","totalSundryCreditor","cashBalance",
+		"interestAcuurNtLoan", "grossCurrLiability", "incometaxProvis", "wealthTaxProvis", "leaveProvis","grossProprietFund","unsecLoanOther",
 		"otherProvis", "grossProvision", "grossCurrLaibilProvison", "netCurrAssets", "miscellanExpend", "deftaxAssets", "profLoassAccn", "grossAppliFund"})
 public class ITRBalanceSheet extends ITReturnComponent {
 

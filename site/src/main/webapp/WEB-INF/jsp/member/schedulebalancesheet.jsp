@@ -351,8 +351,7 @@
 		<div class="row-fluid show-grid">
 			<div class="span4">
 				<div class="rowlabel">
-					<label for="finishGoods"> <small>Finished
-							Goods/Traded Goods</small>
+					<label for="finishGoods"> <small>Finished Goods/Traded Goods</small>
 					</label>
 				</div>
 				<div class="rowlabel">
@@ -362,8 +361,7 @@
 			</div>
 			<div class="span4">
 				<div class="rowlabel">
-					<label for="otherCurrAsset"> <small>Other Current
-							Assets</small>
+					<label for="otherCurrAsset"> <small>Other Current Assets</small>
 					</label>
 				</div>
 				<div class="rowlabel">
@@ -373,8 +371,7 @@
 			</div>
 			<div class="span4">
 				<div class="rowlabel">
-					<label for="grossCurrAssets"> <small>Gross Current
-							Assets</small>
+					<label for="grossCurrAssets"> <small>Gross Current Assets</small>
 					</label>
 				</div>
 				<div class="rowlabel">
@@ -432,12 +429,12 @@
 		<div class="row-fluid show-grid">
 			<div class="span4">
 				<div class="rowlabel">
-					<label for="unpaidCallMoney"> <small>Unpaid Call Money</small>
+					<label for="interestAcuurNtLoan"> <small>Interest Accrued(Not due on Loan)</small>
 					</label>
 				</div>
 				<div class="rowlabel">
-					<input id="unpaidCallMoney" name="" type="text" maxlength="14"
-						class="decimal" value="${parentBean.unpaidCallMoney }" />
+					<input id="interestAcuurNtLoan" name="interestAcuurNtLoan" type="text" maxlength="14"
+						class="decimal" value="${parentBean.interestAcuurNtLoan }" />
 				</div>
 			</div>
 			<div class="span4">
@@ -462,7 +459,7 @@
 			</div>
 		</div>
 		<div class="row-fluid show-grid">
-			<div class="span3">
+			<div class="span4">
 				<div class="rowlabel">
 					<label for="laibLeaseAsset"> <small>Liability for Leased Assets</small>
 					</label>
@@ -472,27 +469,7 @@
 						maxlength="14" class="decimal" value="${parentBean.laibLeaseAsset }" />
 				</div>
 			</div>
-			<div class="span3">
-				<div class="rowlabel">
-					<label for="unpaidDividnd"> <small>Unpaid Dividend</small>
-					</label>
-				</div>
-				<div class="rowlabel">
-					<input id="unpaidDividnd" name="unpaidDividnd" type="text"
-						maxlength="14" class="decimal" value="${parentBean.unpaidDividnd }" />
-				</div>
-			</div>
-			<div class="span3">
-				<div class="rowlabel">
-					<label for="unpaidMatdebntur"> <small>Unpaid Matured debentures</small>
-					</label>
-				</div>
-				<div class="rowlabel">
-					<input id="unpaidMatdebntur" name="unpaidMatdebntur" type="text"
-						maxlength="14" class="decimal" value="${parentBean.unpaidMatdebntur }" />
-				</div>
-			</div>
-			<div class="span3">
+			<div class="span4">
 				<div class="rowlabel">
 					<label for="grossCurrLiability"> <small>Gross Current Liablity</small>
 					</label>
@@ -609,7 +586,7 @@
 					</label>
 				</div>
 				<div class="rowlabel">
-					<input id="profLoassAccn" name="grossAppliFund" type="text"
+					<input id="profLoassAccn" name="profLoassAccn" type="text"
 						maxlength="14" class="decimal" value="${parentBean.grossAppliFund }" />
 				</div>
 			</div>
@@ -686,5 +663,6 @@
 
 
 <res:client-validation screenConfigurationDocumentName="balancesheet" formId="schedBalanceSheet" formSubmitButtonId="myModalScheduleBalSheet"></res:client-validation>
+<res:calc screenCalc="balancesheet" formId="schedBalanceSheet"></res:calc>
 
 <!-- Display all fields with out any presentation -->

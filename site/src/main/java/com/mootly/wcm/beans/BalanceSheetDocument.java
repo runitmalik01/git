@@ -71,9 +71,6 @@ public class BalanceSheetDocument extends FlexibleDocument implements ContentNod
 
 	private Double sundryCreditor ;
 	private Double laibLeaseAsset ;
-	private Double unpaidDividnd ;
-	private Double unpaidMatdebntur;
-	private Double unpaidCallMoney;
 	private Double interestAcuurOnabove;
 	private Double interestAcuurNtLoan;
 	private Double grossCurrLiability;
@@ -230,10 +227,7 @@ public class BalanceSheetDocument extends FlexibleDocument implements ContentNod
 			node.setProperty("mootlywcm:storesConsum", bsd.getStoresConsum());
 			node.setProperty("mootlywcm:sundryCreditor", bsd.getSundryCreditor());
 			node.setProperty("mootlywcm:sundryDebtor", bsd.getSundryDebtor());
-			node.setProperty("mootlywcm:unpaidCallMoney", bsd.getUnpaidCallMoney());
 
-			node.setProperty("mootlywcm:unpaidDividnd", bsd.getUnpaidDividnd());
-			node.setProperty("mootlywcm:unpaidMatdebntur", bsd.getUnpaidMatdebntur());
 			node.setProperty("mootlywcm:unsecLoanBank", bsd.getUnsecLoanBank());
 			node.setProperty("mootlywcm:unsecLoanOther", bsd.getUnsecLoanOther());
 			node.setProperty("mootlywcm:wealthTaxProvis", bsd.getWealthTaxProvis());
@@ -319,10 +313,7 @@ public class BalanceSheetDocument extends FlexibleDocument implements ContentNod
 
 		if(formMap.getField("totalSundryCreditor")!=null) setTotalSundryCreditor(Double.parseDouble(StringUtils.isNotBlank(formMap.getField("totalSundryCreditor").getValue()) ? formMap.getField("totalSundryCreditor").getValue() : "0"));
 		if(formMap.getField("totalSundryDebtor")!=null) setTotalSundryDebtor(Double.parseDouble(StringUtils.isNotBlank(formMap.getField("totalSundryDebtor").getValue()) ? formMap.getField("totalSundryDebtor").getValue() : "0"));
-		if(formMap.getField("unpaidCallMoney")!=null) setUnpaidCallMoney(Double.parseDouble(StringUtils.isNotBlank(formMap.getField("unpaidCallMoney").getValue()) ? formMap.getField("unpaidCallMoney").getValue() : "0"));
-
-		if(formMap.getField("unpaidDividnd")!=null) setUnpaidDividnd(Double.parseDouble(StringUtils.isNotBlank(formMap.getField("unpaidDividnd").getValue()) ? formMap.getField("unpaidDividnd").getValue() : "0"));
-		if(formMap.getField("unpaidMatdebntur")!=null) setUnpaidMatdebntur(Double.parseDouble(StringUtils.isNotBlank(formMap.getField("unpaidMatdebntur").getValue()) ? formMap.getField("unpaidMatdebntur").getValue() : "0"));
+		
 		if(formMap.getField("unsecLoanBank")!=null) setUnsecLoanBank(Double.parseDouble(StringUtils.isNotBlank(formMap.getField("unsecLoanBank").getValue()) ? formMap.getField("unsecLoanBank").getValue() : "0"));
 		if(formMap.getField("unsecLoanOther")!=null) setUnsecLoanOther(Double.parseDouble(StringUtils.isNotBlank(formMap.getField("unsecLoanOther").getValue()) ? formMap.getField("unsecLoanOther").getValue() : "0"));
 		if(formMap.getField("wealthTaxProvis")!=null) setWealthTaxProvis(Double.parseDouble(StringUtils.isNotBlank(formMap.getField("wealthTaxProvis").getValue()) ? formMap.getField("wealthTaxProvis").getValue() : "0"));
@@ -592,33 +583,6 @@ public class BalanceSheetDocument extends FlexibleDocument implements ContentNod
 
 	public void setLaibLeaseAsset(Double laibLeaseAsset) {
 		this.laibLeaseAsset = laibLeaseAsset;
-	}
-
-	public Double getUnpaidDividnd() {
-		if(unpaidDividnd == null) unpaidDividnd = getProperty("mootlywcm:unpaidDividnd");
-		return unpaidDividnd;
-	}
-
-	public void setUnpaidDividnd(Double unpaidDividnd) {
-		this.unpaidDividnd = unpaidDividnd;
-	}
-
-	public Double getUnpaidMatdebntur() {
-		if(unpaidMatdebntur == null) unpaidMatdebntur = getProperty("mootlywcm:unpaidMatdebntur");
-		return unpaidMatdebntur;
-	}
-
-	public void setUnpaidMatdebntur(Double unpaidMatdebntur) {
-		this.unpaidMatdebntur = unpaidMatdebntur;
-	}
-
-	public Double getUnpaidCallMoney() {
-		if(unpaidCallMoney == null) unpaidCallMoney = getProperty("mootlywcm:unpaidCallMoney");
-		return unpaidCallMoney;
-	}
-
-	public void setUnpaidCallMoney(Double unpaidCallMoney) {
-		this.unpaidCallMoney = unpaidCallMoney;
 	}
 
 	public Double getInterestAcuurOnabove() {
