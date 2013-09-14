@@ -109,6 +109,7 @@ import com.mootly.wcm.beans.ScreenCalculation;
 import com.mootly.wcm.beans.ScreenConfigDocument;
 import com.mootly.wcm.beans.ValueListDocument;
 import com.mootly.wcm.beans.events.BeanLifecycle;
+import com.mootly.wcm.components.ITReturnScreen.PAGE_ACTION;
 import com.mootly.wcm.member.Member;
 import com.mootly.wcm.model.FilingSection;
 import com.mootly.wcm.model.FilingStatus;
@@ -1495,6 +1496,13 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			}
 			else if (pageAction.equals(PAGE_ACTION.NEW_CHILD)) {
 				ChildBean childBeanLocal = getClass().getAnnotation(ChildBean.class);
+				//temporary fix for deductions --- 14-Sept
+				String deduction_section = request.getRequestContext().getResolvedSiteMapItem().getParameter("deduction_section");
+				if (deduction_section != null) {
+					FormField dedSectnFormField = new FormField("section");
+					dedSectnFormField.addValue(deduction_section);
+					formMap.addFormField(dedSectnFormField);
+				}
 				itReturnComponentHelper.saveAddNewChild(formMap, null, getChildBeanLifeCycleHandler(), getParentBeanLifeCycleHandler(), baseAbsolutePathToReturnDocuments, parentBeanAbsolutePath, getParentBeanNameSpace(), getParentBeanNodeName(),  childBeanLocal.childBeanClass(), persistableSession, wpm);
 			}
 			else if (pageAction.equals(PAGE_ACTION.DELETE_CHILD) && childBean != null) {
