@@ -479,3 +479,6 @@ orderable
 
 [mootlywcm:scheduledpmdocument] > hippostd:relaxed, mootlywcm:basedocument orderable
 [mootlywcm:scheduledpmdetails] > hippo:compound, hippostd:relaxed orderable
+
+[mootlywcm:scheduledoadocument] > hippostd:relaxed, mootlywcm:basedocument orderable
+[mootlywcm:scheduledoadetails] > hippo:compound, hippostd:relaxed orderable
