@@ -1946,4 +1946,22 @@
 </sv:node>
 
 <!-- /schedule DPM -->
+<!-- schedule DOA -->
+
+<sv:node sv:name="scheduleDOA" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:component</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>0422efa5-f72b-4280-9487-9030c14646fb</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:componentclassname" sv:type="String">
+    <sv:value>com.mootly.wcm.member.SchedDOA</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:template" sv:type="String">
+    <sv:value>scheduleDOA</sv:value>
+  </sv:property>
+</sv:node>
+
+<!-- /schedule DOA -->
 </sv:node>
