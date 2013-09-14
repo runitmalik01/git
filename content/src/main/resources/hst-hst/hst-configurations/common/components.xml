@@ -1964,4 +1964,35 @@
 </sv:node>
 
 <!-- /schedule DOA -->
+<sv:node sv:name="itr-schedule-amt" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:component</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>aa861082-9f00-44d6-b694-ac706d45ca92</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:componentclassname" sv:type="String">
+    <sv:value>com.mootly.wcm.member.ITRScheduelAMT</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:template" sv:type="String">
+    <sv:value>itr-schedule-amt</sv:value>
+  </sv:property>
+</sv:node>
+
+<sv:node sv:name="itr-schedule-amtc" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:component</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>4b730609-a4d2-47bd-bf82-1e5f3095b400</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:componentclassname" sv:type="String">
+    <sv:value>com.mootly.wcm.member.ITRScheduleAMTC</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:template" sv:type="String">
+    <sv:value>itr-schedule-amtc</sv:value>
+  </sv:property>
+</sv:node>
+
+<!-- Schedule AMTC -->
 </sv:node>
