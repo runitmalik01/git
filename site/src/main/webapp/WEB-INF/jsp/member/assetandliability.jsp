@@ -28,7 +28,8 @@
 					</div>
 					<div class="span3">
 						<div class="rowlabel">
-							<input id="land" name="land" type="text" maxlength="14" value="" />
+							<input id="land" name="land" type="text" maxlength="14"
+								value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.land}" />" />
 
 						</div>
 					</div>
@@ -42,7 +43,7 @@
 					<div class="span3">
 						<div class="rowlabel">
 							<input id="building" name="building" type="text" maxlength="14"
-								value="" />
+								value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.building}" />" />
 
 						</div>
 					</div>
@@ -67,7 +68,8 @@
 					<div class="span2 offset1">
 						<div class="rowlabel">
 							<input id="deposit_Bank" name="deposit_Bank" type="text"
-								maxlength="14" value="" />
+								maxlength="14"
+								value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.deposit_Bank}" />" />
 						</div>
 					</div>
 				</div>
@@ -86,7 +88,7 @@
 					<div class="span2 offset1">
 						<div class="rowlabel">
 							<input id="shares" name="shares" type="text" maxlength="14"
-								value="" />
+								value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.shares}" />" />
 						</div>
 					</div>
 				</div>
@@ -105,7 +107,7 @@
 					<div class="span2 offset1">
 						<div class="rowlabel">
 							<input id="insurance" name="insurance" type="text" maxlength="14"
-								value="" />
+								value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.insurance}" />" />
 						</div>
 					</div>
 				</div>
@@ -124,7 +126,7 @@
 					<div class="span2 offset1">
 						<div class="rowlabel">
 							<input id="loans_Adv" name="loans_Adv" type="text" maxlength="14"
-								value="" />
+								value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.loans_Adv}" />" />
 						</div>
 					</div>
 				</div>
@@ -141,7 +143,8 @@
 					</div>
 					<div class="span2 offset1">
 						<div class="rowlabel">
-							<input id="cash" name="cash" type="text" maxlength="14" value="" />
+							<input id="cash" name="cash" type="text" maxlength="14"
+								value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.cash}" />" />
 						</div>
 					</div>
 				</div>
@@ -156,7 +159,7 @@
 					<div class="span3">
 						<div class="rowlabel">
 							<input id="jewellery" name="jewellery" type="text" maxlength="14"
-								value="" />
+								value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.jewellery}" />" />
 
 						</div>
 					</div>
@@ -171,7 +174,7 @@
 					<div class="span3">
 						<div class="rowlabel">
 							<input id="drawing" name="drawing" type="text" maxlength="14"
-								value="" />
+								value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.drawing}" />" />
 
 						</div>
 					</div>
@@ -180,61 +183,60 @@
 					<div class="span8">
 						<div class="rowlabel">
 							<label for="vehicles"><small><fmt:message
-										key="al.vehicles.itr4" />
-							</small> </label>
+										key="al.vehicles.itr4" /> </small> </label>
 						</div>
 					</div>
 					<div class="span3">
 						<div class="rowlabel">
 							<input id="vehicles" name="vehicles" type="text" maxlength="14"
-								value="" />
-						</div>
-					</div>
-				</div>
-
-				<div class="row-fluid show-grid">
-					<div class="span8">
-						<div class="rowlabel">
-							<label for="total"><small>Total</small> </label>
-						</div>
-					</div>
-					<div class="span3">
-						<div class="rowlabel">
-							<input id="total" name="total" type="text" maxlength="14"
-								readonly="readonly" />
+								value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.vehicles}" />" />
 						</div>
 					</div>
 				</div>
 			</fieldset>
-
-
-			<div id="liability_A">
-				<div class="row-fluid show-grid">
-					<div class="span8">
-						<div class="rowlabel">
-							<label for="liability"><small><fmt:message
-										key="al.liability.itr4" /> </small> </label>
-						</div>
-					</div>
-					<div class="span3">
-						<div class="rowlabel">
-							<input id="liability" name="liability" type="text" maxlength="14"
-								value="" />
-						</div>
-					</div>
-				</div>
-			</div>
 			<div class="row-fluid show-grid">
-				<div class="span4 offset8 decimal">
-					<a href="${scriptName}" class="btn btn-danger" style="color: black">Cancel</a>&nbsp;
-					<a id="myModalAssetAndLiability" role="button"
-						class="btn btn-success" style="color: black">Save</a>
+				<div class="span8">
+					<div class="rowlabel">
+						<label for="total"><small>Total</small> </label>
+					</div>
+				</div>
+				<div class="span3">
+					<div class="rowlabel">
+						<input id="total" name="total" type="text" maxlength="14"
+							readonly="readonly" value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.total}" />"/>
+					</div>
 				</div>
 			</div>
+		</fieldset>
+
+
+		<div id="liability_A">
+			<div class="row-fluid show-grid">
+				<div class="span8">
+					<div class="rowlabel">
+						<label for="liability"><small><fmt:message
+									key="al.liability.itr4" /> </small> </label>
+					</div>
+				</div>
+				<div class="span3">
+					<div class="rowlabel">
+						<input id="liability" name="liability" type="text" maxlength="14"
+							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.medical_Insurance}" />" />
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row-fluid show-grid">
+			<div class="span4 offset8 decimal">
+				<a href="${scriptName}" class="btn btn-danger" style="color: black">Cancel</a>&nbsp;
+				<a id="myModalAssetAndLiability" role="button"
+					class="btn btn-success" style="color: black">Save</a>
+			</div>
+		</div>
 	</form>
 </div>
 
-
+<res:calc screenCalc="assetandliability" formId="frmAsset_Liability"></res:calc>
 <res:client-validation formId="frmAsset_Liability"
 	screenConfigurationDocumentName="assetandliability"
 	formSubmitButtonId="myModalAssetAndLiability" />
