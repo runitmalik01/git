@@ -21,10 +21,10 @@ import com.mootly.wcm.model.FinancialYear;
  * */
 
 @SuppressWarnings("unused")
-@Node(jcrType = "mootlywcm:scheduleamtcdocument")
+@Node(jcrType = "mootlywcm:scheduleamtdocument")
 public class ScheduleAMTDocument extends FlexibleDocument implements ContentNodeBinder,FormMapFiller {
-	static final public String NAMESPACE = "mootlywcm:scheduleamtcdocument";
-	static final public String NODE_NAME = "scheduleamtcdocument";
+	static final public String NAMESPACE = "mootlywcm:scheduleamtdocument";
+	static final public String NODE_NAME = "scheduleamtdocument";
 
 	private Double totalIncomeItem13;
 	private Double dedClaimChapSix;
