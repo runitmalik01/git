@@ -37,6 +37,7 @@ import com.mootly.wcm.beans.NatureBusinessDocument;
 import com.mootly.wcm.beans.NatureInvestmentDocument;
 import com.mootly.wcm.beans.OtherInformationDocument;
 import com.mootly.wcm.beans.OtherSourcesDocument;
+import com.mootly.wcm.beans.ProfitAndLossDocument;
 import com.mootly.wcm.beans.SalaryIncomeDocument;
 import com.mootly.wcm.beans.ScheduleFiveADocument;
 import com.mootly.wcm.beans.ScheduleSIDocument;
@@ -69,6 +70,7 @@ import com.mootly.wcm.model.schedules.y2012_2013.PartA_Gen1;
 import com.mootly.wcm.model.schedules.y2012_2013.PartA_Gen2;
 import com.mootly.wcm.model.schedules.y2012_2013.PartB_TI;
 import com.mootly.wcm.model.schedules.y2012_2013.PartB_TTI;
+import com.mootly.wcm.model.schedules.y2012_2013.ProfitLossSchedule;
 import com.mootly.wcm.model.schedules.y2012_2013.ScheduleFiveA;
 import com.mootly.wcm.model.schedules.y2012_2013.TRDetailsSchedule;
 import com.mootly.wcm.model.schedules.y2012_2013.TaxesDocumentScheduleIT;
@@ -115,6 +117,7 @@ public class ITR4XmlGeneratorService  {
 		TcsDocument tcsDocument = (TcsDocument) inputBeans.get(TcsDocument.class.getSimpleName().toLowerCase());
 		NatureBusinessDocument natureBusinessDocument = (NatureBusinessDocument) inputBeans.get(NatureBusinessDocument.class.getSimpleName().toLowerCase());
 		OtherInformationDocument otherInformationDocument = (OtherInformationDocument) inputBeans.get(OtherInformationDocument.class.getSimpleName().toLowerCase());
+		ProfitAndLossDocument profitAndLossDocument = (ProfitAndLossDocument) inputBeans.get(ProfitAndLossDocument.class.getSimpleName().toLowerCase());
 
 		ITR4 itr4 = new ObjectFactory().createITR4();
 		ITR itr = new ITR();
@@ -206,6 +209,9 @@ public class ITR4XmlGeneratorService  {
 
 		OtherInformationSchedule otherInformationSchedule = new OtherInformationSchedule(otherInformationDocument);
 		itr4.setPARTAOI(otherInformationSchedule.getPARTAOI(itr));
+
+		ProfitLossSchedule profitLossSchedule = new ProfitLossSchedule(profitAndLossDocument);
+		itr4.setPARTAPL(profitLossSchedule.getPARTAPL(itr));
 
 		MemberVerification memberVerification = new MemberVerification(memberPersonalInformation);
 		itr4.setVerification(memberVerification.getVerification(itr));
