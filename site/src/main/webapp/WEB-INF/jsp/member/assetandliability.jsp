@@ -221,7 +221,7 @@
 				<div class="span3">
 					<div class="rowlabel">
 						<input id="liability" name="liability" type="text" maxlength="14"
-							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.medical_Insurance}" />" />
+							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.liability}" />" />
 					</div>
 				</div>
 			</div>
