@@ -22,6 +22,7 @@ import org.slf4j.LoggerFactory;
 
 import com.mootly.wcm.beans.AdjustmentOfLossesDoc;
 import com.mootly.wcm.beans.AdvanceTaxDocument;
+import com.mootly.wcm.beans.AssetAndLiabilityDocument;
 import com.mootly.wcm.beans.CapitalAssetDocument;
 import com.mootly.wcm.beans.ClubIncomeDocument;
 import com.mootly.wcm.beans.DeductionDocument;
@@ -48,6 +49,7 @@ import com.mootly.wcm.beans.TaxReliefDocument;
 import com.mootly.wcm.beans.TcsDocument;
 import com.mootly.wcm.beans.TdsFromothersDocument;
 import com.mootly.wcm.model.FinancialYear;
+import com.mootly.wcm.model.schedules.y2012_2013.ALSchedule;
 import com.mootly.wcm.model.schedules.y2012_2013.BroughtFwdLossesSchedules;
 import com.mootly.wcm.model.schedules.y2012_2013.CapitalGainDocumentSchedules;
 import com.mootly.wcm.model.schedules.y2012_2013.CarryFwdLossesSchedules;
@@ -121,6 +123,7 @@ public class ITR4XmlGeneratorService  {
 		OtherInformationDocument otherInformationDocument = (OtherInformationDocument) inputBeans.get(OtherInformationDocument.class.getSimpleName().toLowerCase());
 		ProfitAndLossDocument profitAndLossDocument = (ProfitAndLossDocument) inputBeans.get(ProfitAndLossDocument.class.getSimpleName().toLowerCase());
 		ScheduleESRDocument scheduleESRDocument = (ScheduleESRDocument) inputBeans.get(ScheduleESRDocument.class.getSimpleName().toLowerCase());
+		AssetAndLiabilityDocument assetAndLiabilityDocument = (AssetAndLiabilityDocument) inputBeans.get(AssetAndLiabilityDocument.class.getSimpleName().toLowerCase());
 
 		ITR4 itr4 = new ObjectFactory().createITR4();
 		ITR itr = new ITR();
@@ -218,6 +221,9 @@ public class ITR4XmlGeneratorService  {
 
 		ProfitLossSchedule profitLossSchedule = new ProfitLossSchedule(profitAndLossDocument);
 		itr4.setPARTAPL(profitLossSchedule.getPARTAPL(itr));
+
+		ALSchedule aLSchedule = new ALSchedule(assetAndLiabilityDocument);
+		itr4.setScheduleAL(aLSchedule.getScheduleAL(itr));
 
 		MemberVerification memberVerification = new MemberVerification(memberPersonalInformation);
 		itr4.setVerification(memberVerification.getVerification(itr));
