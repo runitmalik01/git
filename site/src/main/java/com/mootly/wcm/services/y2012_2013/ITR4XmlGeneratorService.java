@@ -39,6 +39,7 @@ import com.mootly.wcm.beans.OtherInformationDocument;
 import com.mootly.wcm.beans.OtherSourcesDocument;
 import com.mootly.wcm.beans.ProfitAndLossDocument;
 import com.mootly.wcm.beans.SalaryIncomeDocument;
+import com.mootly.wcm.beans.ScheduleESRDocument;
 import com.mootly.wcm.beans.ScheduleFiveADocument;
 import com.mootly.wcm.beans.ScheduleSIDocument;
 import com.mootly.wcm.beans.SelfAssesmetTaxDocument;
@@ -55,6 +56,7 @@ import com.mootly.wcm.model.schedules.y2012_2013.CreationInformation;
 import com.mootly.wcm.model.schedules.y2012_2013.CurrentYearLossesSchedules;
 import com.mootly.wcm.model.schedules.y2012_2013.DeductionVIASchedules;
 import com.mootly.wcm.model.schedules.y2012_2013.Donation80gSchedules;
+import com.mootly.wcm.model.schedules.y2012_2013.ESRSchedule;
 import com.mootly.wcm.model.schedules.y2012_2013.ExemptIncomeSchedule;
 import com.mootly.wcm.model.schedules.y2012_2013.FADetailsSchedule;
 import com.mootly.wcm.model.schedules.y2012_2013.ForeignIncomeScheduleFSI;
@@ -118,6 +120,7 @@ public class ITR4XmlGeneratorService  {
 		NatureBusinessDocument natureBusinessDocument = (NatureBusinessDocument) inputBeans.get(NatureBusinessDocument.class.getSimpleName().toLowerCase());
 		OtherInformationDocument otherInformationDocument = (OtherInformationDocument) inputBeans.get(OtherInformationDocument.class.getSimpleName().toLowerCase());
 		ProfitAndLossDocument profitAndLossDocument = (ProfitAndLossDocument) inputBeans.get(ProfitAndLossDocument.class.getSimpleName().toLowerCase());
+		ScheduleESRDocument scheduleESRDocument = (ScheduleESRDocument) inputBeans.get(ScheduleESRDocument.class.getSimpleName().toLowerCase());
 
 		ITR4 itr4 = new ObjectFactory().createITR4();
 		ITR itr = new ITR();
@@ -209,6 +212,9 @@ public class ITR4XmlGeneratorService  {
 
 		OtherInformationSchedule otherInformationSchedule = new OtherInformationSchedule(otherInformationDocument);
 		itr4.setPARTAOI(otherInformationSchedule.getPARTAOI(itr));
+
+		ESRSchedule eSRSchedule = new ESRSchedule(scheduleESRDocument);
+		itr4.setScheduleESR(eSRSchedule.getScheduleESR(itr));
 
 		ProfitLossSchedule profitLossSchedule = new ProfitLossSchedule(profitAndLossDocument);
 		itr4.setPARTAPL(profitLossSchedule.getPARTAPL(itr));
