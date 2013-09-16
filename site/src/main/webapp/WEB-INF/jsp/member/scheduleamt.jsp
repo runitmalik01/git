@@ -31,7 +31,7 @@
 				</div>
 				<div class="rowlabel">
 					<input id="totalIncomeItem13" name="totalIncomeItem13" type="text"
-						maxlength="14" class="decimal" value="${parentBean.totalIncomeItem13 }" readonly="readonly"/>
+						maxlength="14" class="decimal" value="${partBTIitem13}" readonly="readonly"/>
 				</div>
 			</div>
 		</div>
@@ -44,7 +44,7 @@
 				<div class="rowlabel">
 					<input id="dedClaimChapSix" name="dedClaimChapSix"
 						type="text" maxlength="14" class="decimal"
-						value="${parentBean.dedClaimChapSix}" readonly="readonly"/>
+						value="${dedUnderChapSix}" readonly="readonly"/>
 				</div>
 			</div>
 			<div class="span4">
@@ -55,7 +55,7 @@
 				<div class="rowlabel">
 					<input id="dedClaimTenAA" name="dedClaimTenAA" type="text"
 						maxlength="14" class="decimal"
-						value="${parentBean.dedClaimTenAA}" readonly="readonly"/>
+						value="${dedSecTanAA}" readonly="readonly"/>
 				</div>
 			</div>
 			<div class="span4">
@@ -66,7 +66,7 @@
 				<div class="rowlabel">
 					<input id="totalAdjustment" name="totalAdjustment" type="text"
 						maxlength="14" class="decimal"
-						value="${parentBean.dedClaimTenAA + parentBean.dedClaimChapSix}" readonly="readonly" />
+						value="${dedSecTanAA + dedUnderChapSix}" readonly="readonly" />
 				</div>
 			</div>
 		</div>
@@ -79,7 +79,7 @@
 				<div class="rowlabel">
 					<input id="incUndSec115JC" name="incUndSec115JC"
 						type="text" maxlength="14" class="decimal"
-						value="${parentBean.incUndSec115JC}" readonly="readonly"/>
+						value="${dedSecTanAA + dedUnderChapSix + partBTIitem13}" readonly="readonly"/>
 				</div>
 			</div>
 			<div class="span4">
@@ -88,8 +88,9 @@
 					</label>
 				</div>
 				<div class="rowlabel">
+				<c:if test="${(dedSecTanAA + dedUnderChapSix + partBTIitem13) > 2000000}"><c:set value="${(dedSecTanAA + dedUnderChapSix + partBTIitem13)*0.185}" var="taxPayUndSec115JC"/></c:if>
 					<input id="taxPayUndSec115JC" name="taxPayUndSec115JC" type="text"
-						maxlength="14" class="decimal" value="${parentBean.taxPayUndSec115JC}"
+						maxlength="14" class="decimal" value="<fmt:formatNumber value="${taxPayUndSec115JC}" maxFractionDigits="2" type="CURRENCY"></fmt:formatNumber>"
 						readonly="readonly"/>
 				</div>
 			</div>
