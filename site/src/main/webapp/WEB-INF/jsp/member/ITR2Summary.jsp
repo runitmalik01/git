@@ -144,18 +144,31 @@
 							</button>
 							<ul class="dropdown-menu">
 								<li>
-								<c:choose>
-									<c:when test="${theForm.partBTI.capGain.totalCapGains eq'0'}">
-										<a href="capitalgains.html/new"><fmt:message key="itr2.capital.gain"/></a>
-									</c:when>
-									<c:otherwise>
-										<a href="capitalgains.html"><fmt:message key="itr2.long.term"/> |<w4india:inr value="${theForm.partBTI.capGain.longTerm.totalLongTerm}" />|</a>
-										<a href="capitalgains.html"><fmt:message key="itr2.short.term"/> |<w4india:inr value="${theForm.partBTI.capGain.shortTerm.totalShortTerm}" />|</a>
-									</c:otherwise>
-								</c:choose>
+									<a href="capitalgains.html"><fmt:message key="itr2.long.term"/> |<w4india:inr value="${theForm.partBTI.capGain.longTerm.totalLongTerm}" />|</a>
+									<a href="capitalgains.html"><fmt:message key="itr2.short.term"/> |<w4india:inr value="${theForm.partBTI.capGain.shortTerm.totalShortTerm}" />|</a>
+									<c:choose>
+									   <c:when test="${theForm.scheduleEI.LTCGWhereSTTPaid eq null}">
+						         			<a href="capitalgains.html"><fmt:message key="itr2.long.term.exempt"/> |<w4india:inr value="0" />|</a>
+									   </c:when>
+									   <c:otherwise>
+									      <a href="capitalgains.html"><fmt:message key="itr2.long.term.exempt"/> |<w4india:inr value="${theForm.scheduleEI.LTCGWhereSTTPaid}" />|</a>
+									   </c:otherwise>
+									</c:choose>
 								</li>
 							</ul>
 						</div>
+					</td>
+				</tr>
+				 <tr>
+					<td colspan="1">
+					   <a style="font-weight:bold;color: black;">
+					    <fmt:message key="itr2.total.income"/>
+					   </a>
+					</td>
+					<td  style="text-align:left">
+						<span class="decimal">
+									<w4india:inr value="${theForm.partBTI.totalTI}"/>
+						</span>
 					</td>
 				</tr>
 				 <tr>
@@ -218,11 +231,31 @@
 					</td>
 				</tr>
 				<tr>
-				<td colspan="1" style="font-weight:bold; color: black;"><fmt:message key="income.tax"/></td>
-					<td  style="text-align:left;">
-						<span class="decimal">
-									<w4india:inr value="${theForm.partBTTI.computationOfTaxLiability.taxPayableOnTI.taxPayableOnTotInc }"/>
+					<td colspan="1" style="font-weight:bold; color: black;">
+					     <fmt:message key="income.tax"/>
+					</td>
+					<td  style="text-align:left">
+					<c:choose>
+					<c:when test="${theForm.partBTTI.computationOfTaxLiability.taxPayableOnTI.taxPayableOnTotInc eq '0'}">
+					<span class="decimal">
+									<w4india:inr value="${theForm.partBTTI.computationOfTaxLiability.taxPayableOnTI.taxPayableOnTotInc}"/>
 						</span>
+					</c:when>
+					<c:otherwise>
+					<div class="btn-group" class="decimal">
+							<button class="btn btn-small dropdown-toggle"
+								data-toggle="dropdown">
+										<w4india:inr value="${theForm.partBTTI.computationOfTaxLiability.taxPayableOnTI.taxPayableOnTotInc}" />
+								<span class="caret"></span>
+							</button>
+							<ul class="dropdown-menu">
+								<li><a><fmt:message key="income.tax.normal.rates"/> |<w4india:inr value="${theForm.partBTTI.computationOfTaxLiability.taxPayableOnTI.taxAtNormalRatesOnAggrInc}" />|</a></li>
+								<li><a><fmt:message key="income.tax.special.rates"/> |<w4india:inr value="${theForm.partBTTI.computationOfTaxLiability.taxPayableOnTI.taxAtSpecialRates}" />|</a></li>
+								<li><a><fmt:message key="income.tax.rebate.agriculture"/> |<w4india:inr value="${theForm.partBTTI.computationOfTaxLiability.taxPayableOnTI.rebateOnAgriInc}" />|</a></li>
+							</ul>
+						</div>
+					</c:otherwise>
+					</c:choose>
 					</td>
 				</tr>
 				<tr>
