@@ -5207,7 +5207,6 @@
 
 <!-- schedule DPM -->
 
-
 <sv:node sv:name="scheduleDPM.html" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hst:sitemapitem</sv:value>
@@ -5220,9 +5219,11 @@
   </sv:property>
   <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
     <sv:value>mainSiteMapItemRefId</sv:value>
+    <sv:value>maxChildrenAllowed</sv:value>
   </sv:property>
   <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
     <sv:value>memberscheduleDPM</sv:value>
+    <sv:value>7</sv:value>
   </sv:property>
   <sv:property sv:name="hst:refId" sv:type="String">
     <sv:value>scheduleDPM</sv:value>
@@ -5312,9 +5313,11 @@
   </sv:property>
   <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
     <sv:value>mainSiteMapItemRefId</sv:value>
+    <sv:value>maxChildrenAllowed</sv:value>
   </sv:property>
   <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
     <sv:value>memberscheduleDOA</sv:value>
+    <sv:value>6</sv:value>
   </sv:property>
   <sv:property sv:name="hst:refId" sv:type="String">
     <sv:value>scheduleDOA</sv:value>
