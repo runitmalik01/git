@@ -1972,7 +1972,7 @@
     <sv:value>aa861082-9f00-44d6-b694-ac706d45ca92</sv:value>
   </sv:property>
   <sv:property sv:name="hst:componentclassname" sv:type="String">
-    <sv:value>com.mootly.wcm.member.ITRScheduelAMT</sv:value>
+    <sv:value>com.mootly.wcm.member.ITRScheduleAMT</sv:value>
   </sv:property>
   <sv:property sv:name="hst:template" sv:type="String">
     <sv:value>itr-schedule-amt</sv:value>

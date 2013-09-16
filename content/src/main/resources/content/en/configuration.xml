@@ -36707,5 +36707,90 @@ out_grossAppliFund = (miscellanExpend-0) + (deftaxAssets-0) + (profLoassAccn-0);
   </sv:node>
 </sv:node>
 <!-- end of calculation document for balance sheet -->
+<sv:node sv:name="itrscheduleamtc" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hippo:handle</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+    <sv:value>hippo:hardhandle</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>df1bc8b6-76d8-436d-9395-1788b530ad36</sv:value>
+  </sv:property>
+  <sv:node sv:name="itrscheduleamtc">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>mootlywcm:screencalculation</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+      <sv:value>hippo:harddocument</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>96581240-3631-4f48-ae6b-9ceb3cce0cff</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
+      <sv:value>live</sv:value>
+      <sv:value>preview</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippo:related___pathreference" sv:type="String">
+      <sv:value>itrscheduleamtc</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostd:holder" sv:type="String">
+      <sv:value>admin</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostd:state" sv:type="String">
+      <sv:value>published</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostd:stateSummary" sv:type="String">
+      <sv:value>live</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
+      <sv:value>admin</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
+      <sv:value>2013-09-16T12:13:09.139+05:30</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
+      <sv:value>2013-09-16T12:24:13.936+05:30</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
+      <sv:value>admin</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
+      <sv:value>2013-09-16T12:24:17.155+05:30</sv:value>
+    </sv:property>
+    <sv:property sv:name="mootlywcm:additionalScript" sv:type="String">
+      <sv:value/>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="mootlywcm:dropRadio" sv:type="String">
+      <sv:value/>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="mootlywcm:input" sv:type="String">
+      <sv:value>amtCreditGross</sv:value>
+      <sv:value>taxAgainstCredit</sv:value>
+      <sv:value>taxUndSec115JC</sv:value>
+      <sv:value>taxUnderOtherProv</sv:value>
+      <sv:value>amtCreditUnlisted</sv:value>
+    </sv:property>
+    <sv:property sv:name="mootlywcm:script" sv:type="String">
+      <sv:value>var indianCurrencyHelper = new com.mootly.wcm.services.IndianCurrencyHelper();
+
+out_taxAgainstCredit = (taxUndSec115JC-0) + (taxUnderOtherProv-0);
+
+out_taxAgainstCredit = out_taxAgainstCredit &gt; 0 ? out_taxAgainstCredit : 0;
+
+out_amtCreditBrghtFwrd = (amtCreditGross-0) - (amtCreditSetOff-0);
+
+out_amtCreditBrghtFwrd  = out_amtCreditBrghtFwrd  &gt; 0 out_amtCreditBrghtFwrd : 0;
+
+out_amtCreditCarriedFwrd  = out_amtCreditBrghtFwrd  - (amtCreditUnlisted-0) ;
+
+out_amtCreditCarriedFwrd  = out_amtCreditCarriedFwrd   &gt; 0 out_amtCreditCarriedFwrd  : 0;</sv:value>
+    </sv:property>
+    <sv:property sv:name="mootlywcm:title" sv:type="String">
+      <sv:value/>
+    </sv:property>
+  </sv:node>
+</sv:node>
+<!-- end of calculation document for itr-schedule amtc -->
   </sv:node>
 </sv:node>
