@@ -36780,11 +36780,11 @@ out_taxAgainstCredit = out_taxAgainstCredit &gt; 0 ? out_taxAgainstCredit : 0;
 
 out_amtCreditBrghtFwrd = (amtCreditGross-0) - (amtCreditSetOff-0);
 
-out_amtCreditBrghtFwrd  = out_amtCreditBrghtFwrd  &gt; 0 out_amtCreditBrghtFwrd : 0;
+out_amtCreditBrghtFwrd  = out_amtCreditBrghtFwrd  &gt; 0 ? out_amtCreditBrghtFwrd : 0;
 
 out_amtCreditCarriedFwrd  = out_amtCreditBrghtFwrd  - (amtCreditUnlisted-0) ;
 
-out_amtCreditCarriedFwrd  = out_amtCreditCarriedFwrd   &gt; 0 out_amtCreditCarriedFwrd  : 0;</sv:value>
+out_amtCreditCarriedFwrd  = out_amtCreditCarriedFwrd   &gt; 0 ? out_amtCreditCarriedFwrd  : 0;</sv:value>
     </sv:property>
     <sv:property sv:name="mootlywcm:title" sv:type="String">
       <sv:value/>
