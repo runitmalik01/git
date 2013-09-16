@@ -3,6 +3,10 @@
  */
 package com.mootly.wcm.member;
 
+import in.gov.incometaxindiaefiling.y2012_2013.ITR;
+import in.gov.incometaxindiaefiling.y2012_2013.ScheduleVIA;
+
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -30,19 +34,25 @@ import com.mootly.wcm.annotations.FormFields;
 import com.mootly.wcm.annotations.PrimaryBean;
 import com.mootly.wcm.annotations.RequiredBeans;
 import com.mootly.wcm.annotations.RequiredFields;
+import com.mootly.wcm.beans.AdvanceTaxDocument;
 import com.mootly.wcm.beans.CapitalAssetDocument;
+import com.mootly.wcm.beans.DeductionDocument;
 import com.mootly.wcm.beans.FormSixteenDocument;
 import com.mootly.wcm.beans.HouseProperty;
 import com.mootly.wcm.beans.MemberPersonalInformation;
 import com.mootly.wcm.beans.OtherSourcesDocument;
 import com.mootly.wcm.beans.SalaryIncomeDocument;
 import com.mootly.wcm.beans.ScheduleSIDocument;
+import com.mootly.wcm.beans.SelfAssesmetTaxDocument;
+import com.mootly.wcm.beans.TdsFromothersDocument;
 import com.mootly.wcm.beans.compound.ScheduleSIDocumentDetail;
 import com.mootly.wcm.components.ITReturnComponent;
 import com.mootly.wcm.components.InvalidNavigationException;
 import com.mootly.wcm.model.FinancialYear;
 import com.mootly.wcm.model.ITRScheduleSISections;
 import com.mootly.wcm.model.ResidentStatus;
+import com.mootly.wcm.model.schedules.y2012_2013.DeductionVIASchedules;
+import com.mootly.wcm.services.IndianCurrencyHelper;
 import com.mootly.wcm.services.ScreenCalculatorService;
 import com.mootly.wcm.utils.XmlCalculation;
 
@@ -53,7 +63,7 @@ import com.mootly.wcm.utils.XmlCalculation;
 @PrimaryBean(primaryBeanClass=ScheduleSIDocument.class)
 @ChildBean(childBeanClass=ScheduleSIDocumentDetail.class)
 @RequiredBeans(requiredBeans={MemberPersonalInformation.class})
-@AdditionalBeans(additionalBeansToLoad={OtherSourcesDocument.class,CapitalAssetDocument.class,SalaryIncomeDocument.class,FormSixteenDocument.class,HouseProperty.class})
+@AdditionalBeans(additionalBeansToLoad={OtherSourcesDocument.class,CapitalAssetDocument.class,SalaryIncomeDocument.class,FormSixteenDocument.class,HouseProperty.class,DeductionDocument.class})
 @FormFields(fieldNames={"schedulesiSection","amount","specialRate"})
 @RequiredFields(fieldNames={"schedulesiSection","amount"})
 @DataTypeValidationFields(fieldNames={"amount"},dataTypes={DataTypeValidationType.DECIMAL})
@@ -102,6 +112,7 @@ public class ITRScheduleSI extends ITReturnComponent {
 		inputBean.put(FormSixteenDocument.class.getSimpleName().toLowerCase(), (HippoBean)request.getAttribute(FormSixteenDocument.class.getSimpleName().toLowerCase()));
 		inputBean.put(HouseProperty.class.getSimpleName().toLowerCase(), (HippoBean)request.getAttribute(HouseProperty.class.getSimpleName().toLowerCase()));
 		inputBean.put(CapitalAssetDocument.class.getSimpleName().toLowerCase(), (HippoBean)request.getAttribute(CapitalAssetDocument.class.getSimpleName().toLowerCase()));
+		inputBean.put(DeductionDocument.class.getSimpleName().toLowerCase(), (HippoBean)request.getAttribute(DeductionDocument.class.getSimpleName().toLowerCase()));
 		
 		try {
 			persistableSession = getPersistableSession(request);
@@ -215,8 +226,17 @@ public class ITRScheduleSI extends ITReturnComponent {
 			totalMapForJS.put("userAmount", null);
 			XmlCalculation xmlCal = new XmlCalculation();
 			long grossTotal = xmlCal.getGrossTotalOfIncomeWTFlateRate(fy, inputBean);
-			Double slabValue = findSlabOfGrossIncome(fy, inputBean, grossTotal);
-			totalMapForJS.put("grossTotal", grossTotal);
+			MemberPersonalInformation memberPersonalInformation = (MemberPersonalInformation) inputBean.get(MemberPersonalInformation.class.getSimpleName().toLowerCase());		
+			DeductionDocument deductionDocument = (DeductionDocument) inputBean.get(DeductionDocument.class.getSimpleName().toLowerCase());
+
+			DeductionVIASchedules deductionVIASchedules = new DeductionVIASchedules(deductionDocument, memberPersonalInformation, Osd);
+			ITR itr = new ITR();
+			ScheduleVIA  scheduleVIA = deductionVIASchedules.getScheduleVIA(itr, fy, inputBean);
+			IndianCurrencyHelper currencyHelper = new IndianCurrencyHelper();
+			BigInteger deductionChapSix = scheduleVIA.getDeductUndChapVIA().getTotalChapVIADeductions();
+			BigInteger exemptFreeGrossTotal = currencyHelper.longToBigInteger(grossTotal).subtract(deductionChapSix); 
+			Double slabValue = findSlabOfGrossIncome(fy, inputBean, exemptFreeGrossTotal);
+			totalMapForJS.put("grossTotal", exemptFreeGrossTotal);
 			totalMapForJS.put("slabValue", slabValue);
 			totalMapForJS.put("xmlCode", siSection.getXmlCode());
 		}
@@ -228,11 +248,11 @@ public class ITRScheduleSI extends ITReturnComponent {
 	 * 
 	 * @param fy {@link FinancialYear} Current Active Financial Year.
 	 * @param inputBean {@link Map} Map contain all necessary Document Beans.
-	 * @param grossTotal {@link Long}
+	 * @param grossTotal {@link BigInteger}
 	 * 
 	 * @return {@link Double} Value of Slab Amount.
 	 * */
-	public static Double findSlabOfGrossIncome(FinancialYear fy,Map<String, HippoBean> inputBean, long grossTotal){
+	public static Double findSlabOfGrossIncome(FinancialYear fy,Map<String, HippoBean> inputBean, BigInteger grossTotal){
 		MemberPersonalInformation o = (MemberPersonalInformation) inputBean.get(MemberPersonalInformation.class.getSimpleName().toLowerCase());
 		Map<String,Object> totalMapForJS = new HashMap<String, Object>();
 		totalMapForJS.put("cbassyear",fy.getDisplayAssessmentYear());

@@ -700,7 +700,7 @@ public class XmlCalculation implements XmlCalculationImplement {
 		FormSixteenDocument formSixteenDocument = (FormSixteenDocument) inputBeans.get(FormSixteenDocument.class.getSimpleName().toLowerCase());
 		HouseProperty houseProperty = (HouseProperty) inputBeans.get(HouseProperty.class.getSimpleName().toLowerCase());
 		OtherSourcesDocument otherSourcesDocument = (OtherSourcesDocument) inputBeans.get(OtherSourcesDocument.class.getSimpleName().toLowerCase());
-
+		
 		IndianCurrencyHelper indianCurrencyHelper = new IndianCurrencyHelper();
 
 		//BigInteger salarytotal=new BigInteger("0");
@@ -735,7 +735,8 @@ public class XmlCalculation implements XmlCalculationImplement {
 		
 		if(otherSourcesDocument!=null){
 			//we will not exempt income on which we apply flat rates.
-			otherincome = indianCurrencyHelper.longRound(otherSourcesDocument.getTaxable_income() - otherSourcesDocument.getLotteryOrhorse_income());
+			otherincome = indianCurrencyHelper.longRound(otherSourcesDocument.getTaxable_income() - otherSourcesDocument.getLotteryOrhorse_income() - otherSourcesDocument.getBank_detail_saving());
+			otherincome = (otherincome > 0) ? otherincome : 0l; 
 		}
 		grosstotal = longsalarytotal+houseIncomeTotal+otherincome;
 
