@@ -6,10 +6,13 @@ import org.hippoecm.hst.core.component.HstResponse;
 
 import com.mootly.wcm.annotations.FormFields;
 import com.mootly.wcm.annotations.PrimaryBean;
+import com.mootly.wcm.annotations.RequiredBeans;
+import com.mootly.wcm.beans.MemberPersonalInformation;
 import com.mootly.wcm.beans.ScheduleAMTCDocument;
 import com.mootly.wcm.components.ITReturnComponent;
 
 @PrimaryBean(primaryBeanClass=ScheduleAMTCDocument.class)
+@RequiredBeans(requiredBeans=MemberPersonalInformation.class)
 @FormFields(fieldNames={"taxUndSec115JC","taxUnderOtherProv","taxAgainstCredit","amtCreditGross","amtCreditSetOff","amtCreditBrghtFwrd","amtCreditUnlisted",
 		"amtCreditCarriedFwrd","liabAvailCredit","unlistCreditUndSec115JD"})
 public class ITRScheduleAMTC extends ITReturnComponent{

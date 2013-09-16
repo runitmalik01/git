@@ -1,7 +1,7 @@
 <%@page import="com.mootly.wcm.beans.ValueListDocument"%>
 <%@include file="../includes/tags.jspf"%>
-<hst:link var="memberDriveComp" siteMapItemRefId="balancesheet"></hst:link>
-<hippo-gogreen:title title="Schedule-BP" />
+<hst:link var="memberDriveComp" siteMapItemRefId="itr-schedule-amtc"></hst:link>
+<hippo-gogreen:title title="Schedule-AMTC" />
 <w4india:itrmenu />
 <hst:actionURL var="actionUrl"></hst:actionURL>
 <c:if test="${not empty formMap}">
@@ -12,156 +12,171 @@
 	</c:forEach>
 </c:if>
 <h4>
-	<b>ITR- Schedule Business Profession</b>
+	<b>ITR- Schedule AMTC(Alternative Minimum Tax Credit)</b>
 </h4>
 <c:if test="${not empty exceedErrorGrossTurnOver}">
 	<div class="alert alert-error">
 		<strong><fmt:message key="busi.prof.exceed.grosturnover.itr4" /></strong><a
-			href="./servicerequest-itr.html" class="btn btn-warning">Change Package</a>
+			href="./servicerequest-itr.html" class="btn btn-warning">Change
+			Package</a>
 	</div>
 </c:if>
-<form name="schedBusinessProfess" id="schedBusinessProfess" action="${actionUrl}" method="post">
-	<h5 align="center">Presumptive Income</h5>
+<form name="scheduleAMTC" id="scheduleAMTC" action="${actionUrl}"
+	method="post">
 	<fieldset>
-		<legend>Presumptive Income under 44AD</legend>
+		<legend>Computation of Tax U|S 115JC</legend>
 		<div class="row-fluid show-grid">
 			<div class="span4">
 				<div class="rowlabel">
-					<label for="grossTurnOver"> <small>GrossIncome or GrossTurnOver Receipts</small>
-					</label>
+					<label for="taxUndSec115JC"><small>Tax U|S 115JC in
+							Assessment Yr ${assessmentYear}</small> </label>
 				</div>
 				<div class="rowlabel">
-					<input id="grossTurnOver" name="grossTurnOver" type="text"
-						maxlength="14" class="decimal" value="${parentBean.grossTurnOver }" />
-				</div>
-			</div>
-			<div class="span4">
-				<div class="rowlabel">
-					<label for="grossPresumptIncome"> <small>Total Presumptive Income u|s 44AD</small>
-					</label>
-				</div>
-				<div class="rowlabel">
-					<input id="grossPresumptIncome" name="grossPresumptIncome"
-						type="text" maxlength="14" class="decimal"
-						value="${parentBean.grossPresumptIncome}" />
-				</div>
-			</div>
-		</div>
-	</fieldset>
-	<fieldset>
-		<legend>Presumptive Income under 44AE</legend>
-		<div class="row-fluid show-grid">
-			<div class="span4">
-				<div class="rowlabel">
-					<label for="presumHeavyVehi"> <small>Presumptive Income from Heavy Vehicles</small>
-					</label>
-				</div>
-				<div class="rowlabel">
-					<input id="presumHeavyVehi" name="presumHeavyVehi" type="text"
+					<input id="taxUndSec115JC" name="taxUndSec115JC" type="text"
 						maxlength="14" class="decimal"
-						value="${schFourtyFourAEDocument.total_deemedIncome_Heavy}" readonly="readonly" />
+						value="${parentBean.taxUndSec115JC }" readonly="readonly" />
 				</div>
 			</div>
 			<div class="span4">
 				<div class="rowlabel">
-					<label for="presumOtherVehi"> <small>Presumptive Income from Other Vehicles</small>
-					</label>
+					<label for="taxUnderOtherProv"><small>Tax under
+							Other Provision in Assessment Yr <c:out value="${assessmentYear}" />
+					</small> </label>
 				</div>
 				<div class="rowlabel">
-					<input id="presumOtherVehi" name="presumOtherVehi" type="text"
+					<input id="taxUnderOtherProv" name="taxUnderOtherProv" type="text"
 						maxlength="14" class="decimal"
-						value="${schFourtyFourAEDocument.total_deemedIncome_Light}" readonly="readonly" />
+						value="${parentBean.taxUnderOtherProv}" readonly="readonly" />
 				</div>
 			</div>
 			<div class="span4">
 				<div class="rowlabel">
-					<label for="grossPresumInc44AE"> <small>Gross Presumptive Income u|s 44AE</small>
-					</label>
+					<label for="taxAgainstCredit"><small>Amount of Tax
+							Against which Credit Available</small> </label>
 				</div>
 				<div class="rowlabel">
-					<input id="grossPresumInc44AE" name="grossPresumInc44AE"
-						type="text" maxlength="14" class="decimal"
-						value="${schFourtyFourAEDocument.total_deemedIncome_Light + schFourtyFourAEDocument.total_deemedIncome_Heavy}"
+					<input id="taxAgainstCredit" name="taxAgainstCredit" type="text"
+						maxlength="14" class="decimal"
+						value="${schFourtyFourAEDocument.total_deemedIncome_Heavy}"
 						readonly="readonly" />
 				</div>
 			</div>
 		</div>
 	</fieldset>
-	<div class="well">
-		<div class="row -fluid show-grid">
+	<fieldset>
+		<legend>Utilisation of AMT credit available for Assessment
+			Year ${assessmentYear}</legend>
+		<div class="row-fluid show-grid">
 			<div class="span4">
 				<div class="rowlabel">
-					<label for="statReserve"><small>Gross Business or Profession Income</small>
+					<label for="amtCreditGross"> <small>AMT Credit
+							Gross</small>
 					</label>
 				</div>
 				<div class="rowlabel">
-					<input id="incChargBusiness" name="incChargBusiness" type="text"
-						maxlength="14" class="decimal" value="${parentBean.incChargBusiness}"
+					<input id="amtCreditGross" name="amtCreditGross" type="text"
+						maxlength="14" class="decimal"
+						value="${schFourtyFourAEDocument.amtCreditGross}" />
+				</div>
+			</div>
+			<div class="span4">
+				<div class="rowlabel">
+					<label for="amtCreditSetOff"> <small>AMT Credit Set
+							Off In earlier Year</small>
+					</label>
+				</div>
+				<div class="rowlabel">
+					<input id="amtCreditSetOff" name="amtCreditSetOff" type="text"
+						maxlength="14" class="decimal"
+						value="${schFourtyFourAEDocument.amtCreditSetOff}"
+						readonly="readonly" />
+				</div>
+			</div>
+			<div class="span4">
+				<div class="rowlabel">
+					<label for="amtCreditBrghtFwrd"> <small>AMT Credit
+							Brought Forward</small>
+					</label>
+				</div>
+				<div class="rowlabel">
+					<input id="amtCreditBrghtFwrd" name="amtCreditBrghtFwrd"
+						type="text" maxlength="14" class="decimal"
+						value="${schFourtyFourAEDocument.amtCreditBrghtFwrd}"
 						readonly="readonly" />
 				</div>
 			</div>
 		</div>
-	</div>
-	<fieldset>
-		<legend>Financial Particulars of Business</legend>
 		<div class="row-fluid show-grid">
-			<div class="span3">
+			<div class="span4">
 				<div class="rowlabel">
-					<label for="grossSundryDebt"> <small>Total Sundry Debtors</small>
+					<label for="amtCreditUnlisted"> <small>AMT Credit
+							Unlisted in Current year</small>
 					</label>
 				</div>
 				<div class="rowlabel">
-					<input id="grossSundryDebt" name="grossSundryDebt" type="text"
+					<input id="amtCreditUnlisted" name="amtCreditUnlisted" type="text"
 						maxlength="14" class="decimal"
-						value="${parentBean.grossSundryDebt}"/>
+						value="${schFourtyFourAEDocument.amtCreditBrghtFwrd}"
+						readonly="readonly" />
 				</div>
 			</div>
-			<div class="span3">
+			<div class="span4">
 				<div class="rowlabel">
-					<label for="grossSundryCredit"> <small>Total Sundry Creditors</small>
+					<label for="amtCreditCarriedFwrd"> <small>Balance
+							AMT Credit Carried Forward</small>
 					</label>
 				</div>
 				<div class="rowlabel">
-					<input id="grossSundryCredit" name="grossSundryCredit" type="text"
-						maxlength="14" class="decimal"
-						value="${parentBean.grossSundryCredit}"/>
-				</div>
-			</div>
-			<div class="span3">
-				<div class="rowlabel">
-					<label for="grossStockTrade"> <small>Total Stock In Trade</small>
-					</label>
-				</div>
-				<div class="rowlabel">
-					<input id="grossStockTrade" name="grossStockTrade" type="text"
-						maxlength="14" class="decimal"
-						value="${parentBean.grossStockTrade}"/>
-				</div>
-			</div>
-			<div class="span3">
-				<div class="rowlabel">
-					<label for="grossCashBalance"> <small>Total cash in Balance</small>
-					</label>
-				</div>
-				<div class="rowlabel">
-					<input id="grossCashBalance" name="grossCashBalance" type="text"
-						maxlength="14" class="decimal"
-						value="${parentBean.grossCashBalance}"/>
+					<input id="amtCreditCarriedFwrd" name="amtCreditCarriedFwrd"
+						type="text" maxlength="14" class="decimal"
+						value="${schFourtyFourAEDocument.amtCreditBrghtFwrd}"
+						readonly="readonly" />
 				</div>
 			</div>
 		</div>
 	</fieldset>
 	<div class="row-fluid show-grid">
+		<div class="span4">
+			<div class="rowlabel">
+				<label for="unlistCreditUndSec115JD"><small>Tax
+						Credit Amount U|S 115JC unlisted during year</small> </label>
+			</div>
+			<div class="rowlabel">
+				<input id="unlistCreditUndSec115JD" name="unlistCreditUndSec115JD"
+					type="text" maxlength="14" class="decimal"
+					value="${parentBean.incChargBusiness}" readonly="readonly" />
+			</div>
+		</div>
+		<div class="span4">
+			<div class="rowlabel">
+				<label for="liabAvailCredit"> <small>AMT liability
+						Available for Credit in Assessment year</small>
+				</label>
+			</div>
+			<div class="rowlabel">
+				<input id="liabAvailCredit" name="liabAvailCredit" type="text"
+					maxlength="14" class="decimal"
+					value="${parentBean.grossSundryDebt}" readonly="readonly" />
+			</div>
+		</div>
+	</div>
+	<div class="row-fluid show-grid">
 		<div class="span4 offset8 decimal">
 			<!--<a href="${scriptName}"
-				class="btn btn-danger" style="color: black">Cancel</a>&nbsp;  --> <a
-				id="myModalScheduleBusiProf" role="button" class="btn btn-success"
+				class="btn btn-danger" style="color: black">Cancel</a>&nbsp;  -->
+			<a id="myModalscheduleAMTC" role="button" class="btn btn-success"
 				style="color: black">Save</a>
 		</div>
 	</div>
 </form>
+<hst:element var="uiCustom" name="script">
+	<hst:attribute name="type">text/javascript</hst:attribute>
+        	$(document).ready( function() {
+        	  $('#myModalscheduleAMTC').on('click',function(){
+        	    $('#scheduleAMTC').submit();
+        	  });
+        	});
+</hst:element>
+<hst:headContribution element="${uiCustom}" category="jsInternal" />
 
-
-<res:client-validation screenConfigurationDocumentName="businessprofession" formId="schedBusinessProfess" formSubmitButtonId="myModalScheduleBusiProf"></res:client-validation>
-
-<res:calc screenCalc="businessprofession" formId="schedBusinessProfess"></res:calc>
+<res:calc screenCalc="itrscheduleamtc" formId="scheduleAMTC"></res:calc>
