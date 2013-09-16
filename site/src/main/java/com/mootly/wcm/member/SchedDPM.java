@@ -63,6 +63,7 @@ public class SchedDPM extends ITReturnComponent {
 			FormMap formMap) {
 		if(super.validate(request, response, formMap)){
 			ScheduleDPMDocument objScheduleDPMDocument = (ScheduleDPMDocument) getParentBean();
+			if(objScheduleDPMDocument != null){
 			List<ScheduleDPMDetails> listScheduleDPMDetails = objScheduleDPMDocument.getScheduleDPMDetailList();
 			if((objScheduleDPMDocument != null) && (objScheduleDPMDocument.getScheduleDPMDetailList().size() > 0)){
 				for(ScheduleDPMDetails scheduleDPMDetails :listScheduleDPMDetails ){
@@ -77,7 +78,7 @@ public class SchedDPM extends ITReturnComponent {
 				}
 				
 			}
-			
+			}
 		}
 		return super.validate(request, response, formMap);
 	}

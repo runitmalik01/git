@@ -30,7 +30,7 @@ import com.mootly.wcm.components.ITReturnComponent;
 @ChildBean(childBeanClass=ScheduleDOADetails.class)
 @FormFields(fieldNames={"rates","valFirstDayPrevYr","periodMore180Day","prevYrConsider","amtDepreciationFullRate","periodLess180Day","considerOrRealDuringYr",
 		"halfRateDepreciation","considerOrRealDuringYr","amtDepreciationHalfRate","depreciationFullRate","depreciationHalfRate","addDepreciatMore180Day","addDepreciatLess180Day",
-		"totalDepreciation","expense_TransferAsset","capitalGain_LossSec50","valLastDayPrevYr"})
+		"totalDepreciation","expense_TransferAsset","capitalGain_LossSec50","valLastDayPrevYr","type_Asset"})
 
 public class SchedDOA extends ITReturnComponent {
 
@@ -62,6 +62,7 @@ public class SchedDOA extends ITReturnComponent {
 			FormMap formMap) {
 		if(super.validate(request, response, formMap)){
 			ScheduleDOADocument objScheduleDOADocument = (ScheduleDOADocument) getParentBean();
+			if(objScheduleDOADocument != null){
 			List<ScheduleDOADetails> listScheduleDOADetails = objScheduleDOADocument.getScheduleDOADetailList();
 			if((objScheduleDOADocument != null) && (objScheduleDOADocument.getScheduleDOADetailList().size() > 0)){
 				for(ScheduleDOADetails scheduleDOADetails :listScheduleDOADetails ){
@@ -76,7 +77,7 @@ public class SchedDOA extends ITReturnComponent {
 				}
 				
 			}
-			
+			}
 		}
 		return super.validate(request, response, formMap);
 	}
