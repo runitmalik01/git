@@ -35018,7 +35018,6 @@ out_Taxable_earning=(Gross_salary-0)-(Allowance-0)+(Perquisite-0)+(profit-0);</s
     <sv:property sv:multiple="true" sv:name="mootlywcm:input" sv:type="String">
       <sv:value>income_salary</sv:value>
       <sv:value>income_house</sv:value>
-      <sv:value>income_business</sv:value>
       <sv:value>income_capitalgain</sv:value>
       <sv:value>income_othersources</sv:value>
       <sv:value>income_total</sv:value>
@@ -35030,7 +35029,7 @@ out_Taxable_earning=(Gross_salary-0)-(Allowance-0)+(Perquisite-0)+(profit-0);</s
 *
 * **/
 
-out_income_total=(income_salary-0)+(income_house-0)+(income_business-0)+(income_capitalgain-0)+(income_othersources-0);
+out_income_total=(income_salary-0)+(income_house-0)+(income_capitalgain-0)+(income_othersources-0);
 if(isDtaa == 'Yes') {
 out_dtaa_CountryIncome=(income_total-0);
 out_Nodtaa_CountryIncome=0;
