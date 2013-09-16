@@ -9,6 +9,9 @@
 
 package com.mootly.wcm.member;
 
+import java.util.List;
+
+import org.hippoecm.hst.component.support.forms.FormMap;
 import org.hippoecm.hst.core.component.HstComponentException;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
@@ -41,7 +44,7 @@ public class SchedDOA extends ITReturnComponent {
 		if(log.isInfoEnabled()){
 			log.info("this is do before of schedule DOA");
 		}
-
+		request.setAttribute("stopPuttingSameRate", request.getParameter("stopPuttingSameRate"));
 	}
 
 	@Override
@@ -52,7 +55,31 @@ public class SchedDOA extends ITReturnComponent {
 		if(log.isInfoEnabled()){
 			log.info("this is do action of schedule DOA");
 		}
-
+		
 	}
+	@Override
+	public boolean validate(HstRequest request, HstResponse response,
+			FormMap formMap) {
+		if(super.validate(request, response, formMap)){
+			ScheduleDOADocument objScheduleDOADocument = (ScheduleDOADocument) getParentBean();
+			List<ScheduleDOADetails> listScheduleDOADetails = objScheduleDOADocument.getScheduleDOADetailList();
+			if((objScheduleDOADocument != null) && (objScheduleDOADocument.getScheduleDOADetailList().size() > 0)){
+				for(ScheduleDOADetails scheduleDOADetails :listScheduleDOADetails ){
+				String existingRate = scheduleDOADetails.getRates();
+				String newArrivingRate = formMap.getField("rates").getValue();
+				if(existingRate.equals(newArrivingRate)){
+					formMap.addMessage("rates", "error.not.samerate.itr4.dpm");
+					response.setRenderParameter("stopPuttingSameRate", "error.not.samerate.itr4.dpm");
+					return false;
+				}
+					
+				}
+				
+			}
+			
+		}
+		return super.validate(request, response, formMap);
+	}
+
 
 }
