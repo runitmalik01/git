@@ -146,10 +146,17 @@ public class StartApplication extends ITReturnComponent {
 		}
 		String assessmentYear = getAssessmentYear() == null ? "2012-2013"  : getAssessmentYear();
 		ResourceBundle rb = ResourceBundle.getBundle("rstatus_"+assessmentYear);
+		ResourceBundle rbNew = ResourceBundle.getBundle("rstatushuf_"+assessmentYear);
+		log.info("object getting"+rbNew);
 
 		List<String> keyList = new ArrayList<String>();
 		for (String aKey: rb.keySet() ) {
 			keyList.add(aKey);
+		}
+		// new list for huf by abhishek
+		List<String> keyListHuf = new ArrayList<String>();
+		for (String bKey: rbNew.keySet() ) {
+			keyListHuf.add(bKey);
 		}
 		if(parentBean!=null){
 			memberName=parentBean.getLastName();
@@ -176,6 +183,26 @@ public class StartApplication extends ITReturnComponent {
 					log.info("Now attempting to apply format to " + ke);
 				}
 				map.put(aKey, MessageFormat.format(ke,memberName));
+			}
+			/*else {
+					//map.put(aKey, rb.getString(aKey));
+					String ke = rb.getString(aKey);
+					if (log.isInfoEnabled()) {
+						log.info("Now attempting to apply format to " + ke);
+					}
+					map.put(aKey, MessageFormat.format(ke,"the Individual"));
+				}*/
+		}
+		// new map for huf, abhi 14/09/2013
+		Map<String, String> maphuf = new LinkedHashMap<String, String>();
+		Collections.sort(keyListHuf, new SortyByDepth());
+		for (String bKey:keyListHuf) {
+			if (memberName != null) {
+				String key = rbNew.getString(bKey);
+				if (log.isInfoEnabled()) {
+					log.info("Now attempting to apply format to " + key);
+				}
+				maphuf.put(bKey, MessageFormat.format(key,memberName));
 			}
 			/*else {
 					//map.put(aKey, rb.getString(aKey));
@@ -213,8 +240,11 @@ public class StartApplication extends ITReturnComponent {
 			request.setAttribute("fetchmap", fetchmap);
 		}
 		JSONObject jsonObject = new JSONObject(map);
+		JSONObject jsonObjecthuf = new JSONObject(maphuf);
 		request.setAttribute("jsonObject", jsonObject);
+		request.setAttribute("jsonObjecthuf", jsonObjecthuf);
 		request.setAttribute("map", map);
+		request.setAttribute("maphuf", maphuf);
 		request.setAttribute("ITR1_FORM_SELECTION", request.getParameter("ITR1_FORM_SELECTION"));
 
 		if(shouldRetrievePANInformation() && publicParameterUUID !=null){
