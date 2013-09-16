@@ -64,6 +64,9 @@ public class DeductionVIASchedules extends XmlCalculation {
 		Map<String,Object> totalMapForJSDe = new HashMap<String, Object>();
 		DeductionListService deductionListService=new DeductionListService();
 		Map<String,DeductionSection> deductionSectionMap=deductionListService.getDeductionSectionMap().get(financialYear);
+		Map<String,DeductionSection> modDeductionSectionMap = new HashMap<String, DeductionSection>();
+		modDeductionSectionMap.putAll(deductionSectionMap);
+		
 		//This is tricky deductionDocument can be null but othersource income could have section 80tta data?
 		List<DeductionDocumentDetail> listOfDeductionDocumentDetail = getDeductionDocumentList(deductionDocument,otherSourcesDocument);
 
@@ -127,28 +130,31 @@ public class DeductionVIASchedules extends XmlCalculation {
 				methodname="setSection80CCDEmployeeOrSE";
 			if(keySection.contains("ccd_2"))
 				methodname="setSection80CCDEmployer";
-			String eligbleSection="total_"+keySection.replaceAll("-", "_");
+			//modify List of Deduction on basis of Selected ITR Form
+			if(deductionSectionMap.get(keySection).getAdditionalProperties().get("itrform").contains(memberPersonalInformation.getSelectedITRForm().name().toLowerCase())){
+				String eligbleSection="total_"+keySection.replaceAll("-", "_");
 
-			if(resultMapDe.containsKey(eligbleSection)){
-				try {
-					Method meth = DeductUndChapVIA.class.getMethod(methodname, partypes);
-					Method methusr = UsrDeductUndChapVIA.class.getMethod(methodname, partypes);
-					Object[] args = new Object[]{new BigInteger(String.valueOf(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMapDe.get(eligbleSection).toString()))))};
-					Object[] argsusr=new Object[]{new BigInteger(String.valueOf(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(totalMapForJSDe.get(eligbleSection).toString()))))};
-					meth.invoke(deductUndChapVIA, args);
-					methusr.invoke(usrDeductUndChapVIA, argsusr);
-				}catch (NoSuchMethodException e) {
-					log.warn ("The following method does not exist in this year's return " + methodname + " will continue with next method");
-				} catch (IllegalArgumentException e) {
-					// TODO Auto-generated catch block
-					log.warn ("Exception while invoking the method of deductUndChapVIA or usrDeductUndChapVIA",e);
+				if(resultMapDe.containsKey(eligbleSection)){
+					try {
+						Method meth = DeductUndChapVIA.class.getMethod(methodname, partypes);
+						Method methusr = UsrDeductUndChapVIA.class.getMethod(methodname, partypes);
+						Object[] args = new Object[]{new BigInteger(String.valueOf(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMapDe.get(eligbleSection).toString()))))};
+						Object[] argsusr=new Object[]{new BigInteger(String.valueOf(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(totalMapForJSDe.get(eligbleSection).toString()))))};
+						meth.invoke(deductUndChapVIA, args);
+						methusr.invoke(usrDeductUndChapVIA, argsusr);
+					}catch (NoSuchMethodException e) {
+						log.warn ("The following method does not exist in this year's return " + methodname + " will continue with next method");
+					} catch (IllegalArgumentException e) {
+						// TODO Auto-generated catch block
+						log.warn ("Exception while invoking the method of deductUndChapVIA or usrDeductUndChapVIA",e);
 
-				} catch (IllegalAccessException e) {
-					// TODO Auto-generated catch block
-					log.warn ("Exception while accessing the method of deductUndChapVIA or usrDeductUndChapVIA",e);
-				} catch (InvocationTargetException e) {
-					// TODO Auto-generated catch block
-					log.warn ("TargetException while invoking the method of deductUndChapVIA or usrDeductUndChapVIA",e);
+					} catch (IllegalAccessException e) {
+						// TODO Auto-generated catch block
+						log.warn ("Exception while accessing the method of deductUndChapVIA or usrDeductUndChapVIA",e);
+					} catch (InvocationTargetException e) {
+						// TODO Auto-generated catch block
+						log.warn ("TargetException while invoking the method of deductUndChapVIA or usrDeductUndChapVIA",e);
+					}
 				}
 			}
 		}
