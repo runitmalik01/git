@@ -26,6 +26,7 @@ public class ALSchedule {
 		IndianCurrencyHelper indianCurrencyHelper = new IndianCurrencyHelper();
 		ScheduleAL scheduleAL = new ScheduleAL();
 
+		//To set Dummy if Document is null
 		if(assetAndLiabilityDocument == null){
 			AssetAndLiabilityDocument assetAndLiabilityDocumentDummy = new AssetAndLiabilityDocument();
 			DirectFieldAccessor directFieldAccessor = new DirectFieldAccessor(assetAndLiabilityDocumentDummy);
