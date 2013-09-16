@@ -18,6 +18,12 @@
 		</div>
 	</c:forEach>
 </c:if>
+<c:if test="${not empty stopPuttingSameRate}">
+		<div class="alert alert-error">
+			<fmt:message key="${stopPuttingSameRate}" />
+		</div>
+	</c:if>
+	
 <h4>
 	<fmt:message key="schedule.DPM.itr4" />
 </h4>
@@ -36,13 +42,13 @@
 					<div class="rowlabel">
 								<select id="rates" name="rates">
 								<option value="">-Select-</option>
-								<option value="Rate15"<c:if test="${not empty childBean.rates && childBean.rates =='Rate15'}">selected</c:if>>15</option>
-								<option value="Rate30"<c:if test="${not empty childBean.rates && childBean.rates =='Rate30'}">selected</c:if>>30</option>
-								<option value="Rate40"<c:if test="${not empty childBean.rates && childBean.rates =='Rate40'}">selected</c:if>>40</option>
-								<option value="Rate50"<c:if test="${not empty childBean.rates && childBean.rates =='Rate50'}">selected</c:if>>50</option>
-								<option value="Rate60"<c:if test="${not empty childBean.rates && childBean.rates =='Rate60'}">selected</c:if>>60</option>
-								<option value="Rate80"<c:if test="${not empty childBean.rates && childBean.rates =='Rate80'}">selected</c:if>>80</option>
-								<option value="Rate100"<c:if test="${not empty childBean.rates && childBean.rates =='Rate100'}">selected</c:if>>100</option>
+								<option value="15"<c:if test="${not empty childBean.rates && childBean.rates =='15'}">selected</c:if>>15</option>
+								<option value="30"<c:if test="${not empty childBean.rates && childBean.rates =='30'}">selected</c:if>>30</option>
+								<option value="40"<c:if test="${not empty childBean.rates && childBean.rates =='40'}">selected</c:if>>40</option>
+								<option value="50"<c:if test="${not empty childBean.rates && childBean.rates =='50'}">selected</c:if>>50</option>
+								<option value="60"<c:if test="${not empty childBean.rates && childBean.rates =='60'}">selected</c:if>>60</option>
+								<option value="80"<c:if test="${not empty childBean.rates && childBean.rates =='80'}">selected</c:if>>80</option>
+								<option value="100"<c:if test="${not empty childBean.rates && childBean.rates =='100'}">selected</c:if>>100</option>
 								</select>
 							</div>
 				
@@ -65,7 +71,7 @@
 									key="periodMore180Day.dpm.itr4" /> </small> </label>
 					</div>
 					<div class="rowlabel">
-						<input id="periodMore180Day" name="periodMore180Day" maxlength="125"
+						<input id="periodMore180Day" name="periodMore180Day" maxlength="14"
 							type="text" 
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.periodMore180Day}"/></c:if>" />
 					</div>
@@ -78,7 +84,7 @@
 									key="prevYrConsider.dpm.itr4" /> </small> </label>
 					</div>
 					<div class="rowlabel">
-						<input id="prevYrConsider" name="prevYrConsider" maxlength="200"
+						<input id="prevYrConsider" name="prevYrConsider" maxlength="14"
 							type="text" 
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.prevYrConsider}"/></c:if>" />
 					</div>
@@ -89,8 +95,8 @@
 									key="amtDepreciationFullRate.dpm.itr4" /> </small> </label>
 					</div>
 					<div class="rowlabel">
-						<input id="amtDepreciationFullRate" name="amtDepreciationFullRate" maxlength="125"
-							type="text"
+						<input id="amtDepreciationFullRate" name="amtDepreciationFullRate" maxlength="14"
+							type="text" readonly="readonly"
 							 class="decimal"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.amtDepreciationFullRate}"/></c:if>" />
 					</div>
@@ -101,7 +107,7 @@
 									key="periodLess180Day.dpm.itr4" /> </small> </label>
 					</div>
 					<div class="rowlabel">
-						<input id="periodLess180Day" name="periodLess180Day" type="text" maxlength="17"
+						<input id="periodLess180Day" name="periodLess180Day" type="text" maxlength="14"
 							  
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.periodLess180Day}"/></c:if>" />
 					</div>
@@ -126,7 +132,7 @@
 					</div>
 					<div class="rowlabel">
 						<input id="amtDepreciationHalfRate" name="amtDepreciationHalfRate" type="text" 
-							maxlength="14"   class="decimal" 
+							maxlength="14"   class="decimal" readonly="readonly"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.amtDepreciationHalfRate}"/></c:if>" />
 					</div>
 				
@@ -139,7 +145,7 @@
 					</div>
 					<div class="rowlabel">
 						<input id="depreciationFullRate" name="depreciationFullRate" type="text" 
-							maxlength="14"   class="decimal" 
+							maxlength="14"   class="decimal" readonly="readonly"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.depreciationFullRate}"/></c:if>" />
 					</div>
 				</div>
@@ -152,7 +158,7 @@
 					</div>
 					<div class="rowlabel">
 						<input id="depreciationHalfRate" name="depreciationHalfRate" type="text" 
-							maxlength="14"   class="decimal" 
+							maxlength="14"   class="decimal" readonly="readonly"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.depreciationHalfRate}"/></c:if>" />
 					</div>
 				</div>
@@ -189,7 +195,7 @@
 					</div>
 					<div class="rowlabel">
 						<input id="totalDepreciation" name="totalDepreciation" type="text" 
-							maxlength="14"   class="decimal" 
+							maxlength="14"   class="decimal" readonly="readonly"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.totalDepreciation}"/></c:if>" />
 					</div>
 				</div>
@@ -226,7 +232,7 @@
 					</div>
 					<div class="rowlabel">
 						<input id="valLastDayPrevYr" name="valLastDayPrevYr" type="text" 
-							maxlength="14"   class="decimal" 
+							maxlength="14"   class="decimal" readonly="readonly"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.valLastDayPrevYr}"/></c:if>" />
 					</div>
 				</div>
@@ -235,7 +241,7 @@
 			<div class="row-fluid show-grid">
 				<div class="span4 offset8 decimal">
 					<a href="${scriptName}" class="btn btn-danger">Cancel</a>&nbsp;
-					<a id="myModalHrefForeignBankDetail" role="button" class="btn btn-success">Save</a>
+					<a id="myModalScheduleDPM" role="button" class="btn btn-success">Save</a>
 				</div>  
 			
 			</div>
@@ -245,9 +251,9 @@
 	<c:otherwise>
 		<table>
 			<tr align="center">
-				<th><b><fmt:message key="foreign.country.name" /> </b>
+				<th><b><fmt:message key="rates.dpm.itr4" /> </b>
 				</th>
-				<th><b><fmt:message key="name.bank.itr2" /> </b>
+				<th><b><fmt:message key="valLastDayPrevYr.dpm.itr4" /> </b>
 				</th>
 				
 				<th><b>Actions</b></th>
@@ -279,6 +285,7 @@ class="btn btn-info">Add New</a>
 
 
 
-<res:client-validation formId="frmtForeignBankDetail"
-	screenConfigurationDocumentName="foreignbankdetail"
-	formSubmitButtonId="myModalHrefForeignBankDetail" />
+<res:calc screenCalc="scheduledpm" formId="frmScheduleDPM"></res:calc>
+<res:client-validation formId="frmScheduleDPM"
+	screenConfigurationDocumentName="scheduledpm"
+	formSubmitButtonId="myModalScheduleDPM" />

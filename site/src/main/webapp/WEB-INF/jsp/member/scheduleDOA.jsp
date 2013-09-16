@@ -260,7 +260,7 @@
 			<div class="row-fluid show-grid">
 				<div class="span4 offset8 decimal">
 					<a href="${scriptName}" class="btn btn-danger">Cancel</a>&nbsp;
-					<a id="myModalHrefForeignBankDetail" role="button" class="btn btn-success">Save</a>
+					<a id="myModalScheduleDPM" role="button" class="btn btn-success">Save</a>
 				</div>  
 			
 			</div>
@@ -337,7 +337,7 @@ $("#type_Asset").change(function(){
 }
 });
 </script>
-
-<res:client-validation formId="frmtForeignBankDetail"
-	screenConfigurationDocumentName="foreignbankdetail"
-	formSubmitButtonId="myModalHrefForeignBankDetail" />
+<res:calc screenCalc="scheduledpm" formId="frmScheduleDPM"></res:calc>
+<res:client-validation formId="frmScheduleDPM"
+	screenConfigurationDocumentName="scheduledpm"
+	formSubmitButtonId="myModalScheduleDPM" />
