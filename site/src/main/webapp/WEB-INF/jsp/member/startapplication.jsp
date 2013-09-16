@@ -588,24 +588,104 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 					</c:if>
 				</c:when>
 				<c:otherwise>
+					<script>
+						var qs = <c:out value="${jsonObjecthuf}" escapeXml="false"/>
+					</script>
 					<div class="row-fluid show-grid">
-						<div class="span5">Control &amp; management of affairs of
-							the taxpayer is</div>
-						<div class="span4">
-							<select id="rsstatus_q" name="rsstatus_q">
-								<option value="">Select</option>
-								<option
-									<c:if test="${parentBean.rsstatusQ=='RES'}">selected</c:if>
-									value="RES">Wholly in India</option>
-								<option
-									<c:if test="${parentBean.rsstatusQ=='NRI'}">selected</c:if>
-									value="NRI">Wholly outside India</option>
-								<option
-									<c:if test="${parentBean.rsstatusQ=='NRO'}">selected</c:if>
-									value="NRO">Partly in India partly outside India</option>
+						<div class="span10">
+							<c:out value="${maphuf['rsstatus_q']}" />
+						</div>
+						<div class="span2">
+							<select class="answer" id="rsstatus_q" name="rsstatus_q">
+								<option>Select</option>
+								<option value="yes">Yes</option>
+								<option value="no">No</option>
 							</select>
 						</div>
 					</div>
+					<c:forEach items="${maphuf}" var="item" varStatus="status">
+						<c:if test="${item.key != 'rsstatus_q'}">
+							<c:set var="pageItemValue" value="${item.value}" />
+							<%
+								pageContext.setAttribute("isAnswer", "false");
+												String pageItemValue = (String) pageContext
+														.getAttribute("pageItemValue");
+												if (pageItemValue != null
+														&& pageItemValue.startsWith("ans_")) {
+													pageContext.setAttribute("isAnswer", "true");
+												}
+							%>
+							<div class="row-fluid show-grid"
+								id="ul_<c:out value="${item.key}"/>"
+								style="display: none; visiblity: hidden">
+								<div class="span10">
+									<c:choose>
+										<c:when test="${fn:startsWith(item.value,'ans_')}">
+											<br />
+											<p id="resi<c:out value="${status.index}" />"
+												style="color: #65B43D;" align="center">
+												<b><c:out value="${fn:replace(item.value,'ans_','')}" />
+												</b>
+											</p>
+										</c:when>
+										<c:otherwise>
+											<c:out value="${item.value}" />
+										</c:otherwise>
+									</c:choose>
+									<c:if test="${fn:startsWith(item.value,'ans_')}">
+									</c:if>
+								</div>
+								<div class="span2">
+									<c:if test="${isAnswer != 'true'}">
+										<select class="answer" id="<c:out value="${item.key}"/>"
+											name="<c:out value="${item.key}"/>">
+											<option>Select</option>
+											<option value="yes">Yes</option>
+											<option value="no">No</option>
+										</select>
+									</c:if>
+								</div>
+							</div>
+						</c:if>
+					</c:forEach>
+					<c:if test="${not empty parentBean }">
+						<c:if test="${not empty fetchmap}">
+							<c:forEach items="${fetchmap}" var="item" varStatus="stat">
+								<c:if
+									test="${fn:contains(item.value,'yes') || fn:contains(item.value,'no') }">
+									<c:set var="myVar"
+										value="${stat.first ? '' : myVar}${item.value}_" />
+								</c:if>
+							</c:forEach>
+						</c:if>
+					</c:if>
+					<c:set var="len" value="${fn:length(myVar)}" />
+					<c:set var="modmyVar" value="${fn:substring(myVar,0,len-1)}" />
+					<c:if test="${not empty parentBean }">
+						<c:if test="${not empty fetchmap}">
+							<c:forEach items="${fetchmap}" var="fitem">
+								<c:set var="fmapkey" value="${fitem.key}" />
+								<c:set var="fmapvalue" value="${fitem.value}" />
+								<script type="text/javascript">
+									var fmapkey = '<c:out value="${fmapkey}"/>';
+									var fmapvalue = '<c:out value="${fmapvalue}"/>';
+									var myVar = '<c:out value="${modmyVar}"/>';
+									if (fmapvalue.match("yes")
+											|| fmapvalue.match("no")) {
+										$('#' + fmapkey).val(fmapvalue);
+										$("#ul_" + fmapkey).css("display",
+												"block");
+										$("#ul_" + fmapkey).css("visibility",
+												"visible");
+									}
+									$("#ul_rsstatus_q_" + myVar).css("display",
+											"block");
+									$("#ul_rsstatus_q_" + myVar).css(
+											"visibility", "visible");
+								</script>
+							</c:forEach>
+						</c:if>
+					</c:if>
 				</c:otherwise>
 			</c:choose>
 		</fieldset>
