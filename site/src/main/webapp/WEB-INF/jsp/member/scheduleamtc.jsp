@@ -57,7 +57,7 @@
 				<div class="rowlabel">
 					<input id="taxAgainstCredit" name="taxAgainstCredit" type="text"
 						maxlength="14" class="decimal"
-						value="${schFourtyFourAEDocument.total_deemedIncome_Heavy}"
+						value="${parentBean.taxAgainstCredit}"
 						readonly="readonly" />
 				</div>
 			</div>
@@ -76,7 +76,7 @@
 				<div class="rowlabel">
 					<input id="amtCreditGross" name="amtCreditGross" type="text"
 						maxlength="14" class="decimal"
-						value="${schFourtyFourAEDocument.amtCreditGross}" />
+						value="${parentBean.amtCreditGross}" />
 				</div>
 			</div>
 			<div class="span4">
@@ -88,7 +88,7 @@
 				<div class="rowlabel">
 					<input id="amtCreditSetOff" name="amtCreditSetOff" type="text"
 						maxlength="14" class="decimal"
-						value="${schFourtyFourAEDocument.amtCreditSetOff}"
+						value="${parentBean.amtCreditSetOff}"
 						readonly="readonly" />
 				</div>
 			</div>
@@ -101,7 +101,7 @@
 				<div class="rowlabel">
 					<input id="amtCreditBrghtFwrd" name="amtCreditBrghtFwrd"
 						type="text" maxlength="14" class="decimal"
-						value="${schFourtyFourAEDocument.amtCreditBrghtFwrd}"
+						value="${parentBean.amtCreditBrghtFwrd}"
 						readonly="readonly" />
 				</div>
 			</div>
@@ -116,7 +116,7 @@
 				<div class="rowlabel">
 					<input id="amtCreditUnlisted" name="amtCreditUnlisted" type="text"
 						maxlength="14" class="decimal"
-						value="${schFourtyFourAEDocument.amtCreditBrghtFwrd}"
+						value="${parentBean.amtCreditUnlisted}"
 						readonly="readonly" />
 				</div>
 			</div>
@@ -129,7 +129,7 @@
 				<div class="rowlabel">
 					<input id="amtCreditCarriedFwrd" name="amtCreditCarriedFwrd"
 						type="text" maxlength="14" class="decimal"
-						value="${schFourtyFourAEDocument.amtCreditBrghtFwrd}"
+						value="${parentBean.amtCreditCarriedFwrd}"
 						readonly="readonly" />
 				</div>
 			</div>
@@ -144,7 +144,7 @@
 			<div class="rowlabel">
 				<input id="unlistCreditUndSec115JD" name="unlistCreditUndSec115JD"
 					type="text" maxlength="14" class="decimal"
-					value="${parentBean.incChargBusiness}" readonly="readonly" />
+					value="${parentBean.unlistCreditUndSec115JD}" readonly="readonly" />
 			</div>
 		</div>
 		<div class="span4">
@@ -156,7 +156,7 @@
 			<div class="rowlabel">
 				<input id="liabAvailCredit" name="liabAvailCredit" type="text"
 					maxlength="14" class="decimal"
-					value="${parentBean.grossSundryDebt}" readonly="readonly" />
+					value="${parentBean.liabAvailCredit}" readonly="readonly" />
 			</div>
 		</div>
 	</div>
