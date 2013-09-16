@@ -105,6 +105,7 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 	static final public String NODE_NAME = "PersonalInformation";
 
 	private String rbfilename="rstatus_";
+	private String rbfilenameNew="rstatushuf_";
 	private String choice="";
 
 	private String employerCategory;
@@ -146,7 +147,6 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 	private String stdCode;
 	private String phone;
 	private String Employe_category;
-
 	private String accNumber ;
 	private String bankName ;
 	private String ecs ;
@@ -154,7 +154,6 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 	private String addBankBranch;
 	private String micrCode;
 	private Boolean bankDetailStatus;
-
 	private String rsstatus_q;
 	private String rsstatus_q_yes;
 	private String rsstatus_q_yes_yes;
@@ -853,8 +852,8 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 				log.warn("this is bean");
 			}
 			super.bindToNode(node);
-			MemberPersonalInformation mpi = (MemberPersonalInformation) content;
 
+			MemberPersonalInformation mpi = (MemberPersonalInformation) content;
 			node.setProperty(PROP_PI_FINANCIAL_YEAR,mpi.getFinancialYear());
 			node.setProperty(PROP_PI_RETURN_TYPE,mpi.getReturnType());
 			node.setProperty(PROP_PI_ORIGINAL_ACK_DATE,mpi.getOriginalAckDate());
@@ -875,14 +874,11 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 			node.setProperty(PROP_PI_PAN, mpi.getPAN());
 			node.setProperty(PROP_PI_FILING_STATUS, mpi.getFilingStatus());
 			node.setProperty(PROP_PI_PORTUGESE_CIVIL, mpi.getPortugesecivil());
-
 			node.setProperty(PROP_PI_DOB, mpi.getDOB());
 			node.setProperty(PROP_PI_RETURN_SECTION, mpi.getReturnSection());
-
 			node.setProperty(PROP_PI_DOB, mpi.getDOB());
-
 			node.setProperty(PROP_PI_SEX, mpi.getSex());
-
+			node.setProperty(PROP_PI_RESIDENT_CATEGORY, mpi.getResidentCategory());
 			node.setProperty(PROP_PI_FLAT_FLOOR_BUILDING, mpi.getFlatDoorBuilding());
 			node.setProperty(PROP_PI_PREMISES_BUILDING, mpi.getPremisesBuilding());
 			node.setProperty(PROP_PI_ROAD_STREET, mpi.getRoadStreet());
@@ -897,14 +893,12 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 			node.setProperty(PROP_PI_WARD_CIRCLE, mpi.getWard_circle());
 			node.setProperty(PROP_PI_STD_CODE, mpi.getStdCode());
 			node.setProperty(PROP_PI_PHONE, mpi.getPhone());
-
 			node.setProperty(BD_ACC_NUMBER,mpi.getBD_ACC_NUMBER());
 			node.setProperty(BD_BANK_NAME,mpi.getBD_BANK_NAME());
 			node.setProperty(BD_ECS,mpi.getBD_ECS());
 			node.setProperty(BD_TYPE_ACC,mpi.getBD_TYPE_ACC());
 			node.setProperty(BD_ADD_BANK_BRANCH,mpi.getBD_ADD_BANK_BRANCH());
 			node.setProperty(BD_MICR_CODE,mpi.getBD_MICR_CODE());
-
 			node.setProperty(Rsstatus_q, mpi.getRsstatusQ());
 			node.setProperty(Rsstatus_q_yes, mpi.getRsstatusQYes());
 			node.setProperty(Rsstatus_q_yes_yes, mpi.getRsstatusQYesYes());
@@ -915,7 +909,7 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 			node.setProperty(Rsstatus_q_no_no_yes, mpi.getRsstatusQNoNoYes());
 			node.setProperty(Rsstatus_q_no_no_yes_yes, mpi.getRsstatusQNoNoYesYes());
 			node.setProperty(Rsstatus_q_no_yes_yes_yes, mpi.getRsstatusQNoYesYesYes());
-			node.setProperty(PROP_PI_RESIDENT_CATEGORY, mpi.getResidentCategory());
+
 			// added for itr2
 			node.setProperty("mootlywcm:isRepresentative", mpi.getIsRepresentative());
 			node.setProperty("mootlywcm:name_Representative", mpi.getName_Representative());
@@ -950,6 +944,7 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 		if (log.isInfoEnabled()) {
 			log.info("Into the fill method");
 		}
+		log.info("here areeeeeee"+getFilingStatus());
 		if (formMap == null) return;
 		if ( formMap.getField("tax_status") != null) setTaxStatus(formMap.getField("tax_status").getValue());
 		if ( formMap.getField("return_section") != null) setReturnFileSection(Long.parseLong(formMap.getField("return_section").getValue()));
@@ -994,8 +989,10 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 			setFinancialYear(formMap.getField("fy").getValue());
 			if(StringUtils.isNotEmpty(formMap.getField("fy").getValue())){
 				rbfilename=rbfilename+formMap.getField("fy").getValue();
+				rbfilenameNew=rbfilenameNew+formMap.getField("fy").getValue();
 			}else{
 				rbfilename=rbfilename+"2012-2013";
+				rbfilenameNew=rbfilenameNew+"2012-2013";
 			}
 		}
 		if ( formMap.getField("ack_date") != null){
@@ -1162,25 +1159,47 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 				choice=choice+"_"+formMap.getField("rsstatus_q_no_yes_yes_yes").getValue();
 			}
 		}
+
 		String modchoice="rsstatus_q_"+choice.trim();
-		ResourceBundle rb = ResourceBundle.getBundle(rbfilename);
-		for (String aKey: rb.keySet() ) {
-			if(aKey.matches(modchoice.trim())){
-				if(log.isInfoEnabled()){
-					log.info("this is residential status"+rb.getString(aKey).replaceFirst("ans_","").trim());
+		//In case of HUF we are not asking question to member so if "rsstatus_q" has a value that have residential status then we will set Residential Status
+		// new case for huf, abhi 14/09/2013
+		if(getFilingStatus().equals("H")){
+			log.info("for huf"+modchoice);
+			ResourceBundle rbNew = ResourceBundle.getBundle(rbfilenameNew);
+			for (String bKey: rbNew.keySet()) {
+
+				if(bKey.matches(modchoice.trim().substring(0,modchoice.length()-1))){
+					if(log.isInfoEnabled()){
+						log.info("this is residential status new for huf"+rbNew.getString(bKey).replaceFirst("ans_","").trim());
+					}
+					setResidentCategory(ResidentialFind(rbNew.getString(bKey)));
+					log.info("value of res is another"+ResidentialFind(rbNew.getString(bKey)));
+					break;
 				}
-				setResidentCategory(ResidentialFind(rb.getString(aKey)));
-				break;
 			}
 		}
-		//In case of HUF we are not asking question to member so if "rsstatus_q" has a value that have residential status then we will set Residential Status
-		if(StringUtils.isBlank(getResidentCategory())){
+		else{
+			log.info("for huf"+modchoice);
+			
+			ResourceBundle rb = ResourceBundle.getBundle(rbfilename);
+			for (String aKey: rb.keySet() ) {
+				if(aKey.matches(modchoice.trim())){
+					if(log.isInfoEnabled()){
+						log.info("this is residential status"+rb.getString(aKey).replaceFirst("ans_","").trim());
+					}
+					setResidentCategory(ResidentialFind(rb.getString(aKey)));
+					log.info("value of res is"+ResidentialFind(rb.getString(aKey)));
+					break;
+				}
+			}
+		}
+		/*	if(StringUtils.isBlank(getResidentCategory())){
 			for(ResidentStatus resiStat:ResidentStatus.values()){
 				if(resiStat.name().equalsIgnoreCase(getRsstatusQ())){
 					setResidentCategory(resiStat.name());
 				}
 			}
-		}
+		}*/
 	}
 	private String ResidentialFind(String key){
 		if(key.matches("ans_Resident and Ordinarily Resident")) return "RES";
