@@ -727,6 +727,18 @@
 			$("#ded").hide();
 		}
 	});
+	$('#date_improve').change(function() {
+		var imp = $('#date_improve').val();
+		var acq = $('#date_acquisition').val();
+		if(new Date(imp).getTime() > new Date(acq).getTime()){
+			alert("hello");
+		}
+		else{
+			alert("Date of improvement can't be before then date of acquisition, Please choose right date of improvement");
+			document.getElementById("date_improve").value = $('#date_sale').val();;
+		}
+		
+	});
 	$('#date_sale,#date_acquisition,#sst_charge').change(function() {
 		var a;
 		var b;
@@ -816,6 +828,7 @@
 			return e;
 
 		}
+			
 	});
 	$("#accural_info").on('change', function() {
 		if ($(this).val() == 'Y') {
