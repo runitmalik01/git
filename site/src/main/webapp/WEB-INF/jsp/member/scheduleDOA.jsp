@@ -18,6 +18,11 @@
 		</div>
 	</c:forEach>
 </c:if>
+<c:if test="${not empty stopPuttingSameRate}">
+		<div class="alert alert-error">
+			<fmt:message key="${stopPuttingSameRate}" />
+		</div>
+	</c:if>
 <h4>
 	<fmt:message key="schedule.DOA.itr4" />
 </h4>
@@ -26,6 +31,26 @@
 		test="${pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD'}">
 		<form id="frmScheduleDPM" action="${actionUrl}" method="post"
 			name="frmScheduleDPM">
+			<div class="row-fluid show-grid">
+			<div class="span8">
+					<div class="rowlabel">
+						<label for="rates"><small><fmt:message
+									key="type.asset.depreciation.doa.itr4" /> </small> </label>
+					</div>
+					</div>
+					<div class="span4">
+					<div class="rowlabel">
+								<select id="type_Asset" name="type_Asset">
+								<option value="">-Select-</option>
+								<option value="Building"<c:if test="${not empty childBean.type_Asset && childBean.type_Asset =='Building'}">selected</c:if>>Building</option>
+								<option value="Furniture"<c:if test="${not empty childBean.type_Asset && childBean.type_Asset =='Furniture'}">selected</c:if>>Furniture and Fittings</option>
+								<option value="Intangible"<c:if test="${not empty childBean.type_Asset && childBean.type_Asset =='Intangible'}">selected</c:if>>Intangible</option>
+								<option value="Ships"<c:if test="${not empty childBean.type_Asset && childBean.type_Asset =='Ships'}">selected</c:if>>Ships</option>
+							
+								</select>
+							</div>
+							</div>
+			</div>
 			<div class="row-fluid show-grid">
 			<div class="span4">
 					<div class="rowlabel">
@@ -36,13 +61,13 @@
 					<div class="rowlabel">
 								<select id="rates" name="rates">
 								<option value="">-Select-</option>
-								<option value="Rate15"<c:if test="${not empty childBean.rates && childBean.rates =='Rate15'}">selected</c:if>>15</option>
-								<option value="Rate30"<c:if test="${not empty childBean.rates && childBean.rates =='Rate30'}">selected</c:if>>30</option>
-								<option value="Rate40"<c:if test="${not empty childBean.rates && childBean.rates =='Rate40'}">selected</c:if>>40</option>
-								<option value="Rate50"<c:if test="${not empty childBean.rates && childBean.rates =='Rate50'}">selected</c:if>>50</option>
-								<option value="Rate60"<c:if test="${not empty childBean.rates && childBean.rates =='Rate60'}">selected</c:if>>60</option>
-								<option value="Rate80"<c:if test="${not empty childBean.rates && childBean.rates =='Rate80'}">selected</c:if>>80</option>
-								<option value="Rate100"<c:if test="${not empty childBean.rates && childBean.rates =='Rate100'}">selected</c:if>>100</option>
+								<option id="Rate5" value="Rate5"<c:if test="${not empty childBean.rates && childBean.rates =='Rate5'}">selected</c:if>>5</option>
+								<option id="Rate10" value="Rate10"<c:if test="${not empty childBean.rates && childBean.rates =='Rate10'}">selected</c:if>>10</option>
+								<option id="Rate100" value="Rate100"<c:if test="${not empty childBean.rates && childBean.rates =='Rate100'}">selected</c:if>>100</option>
+								<option id="Rate_10" value="Rate10"<c:if test="${not empty childBean.rates && childBean.rates =='Rate50'}">selected</c:if>>10</option>
+								<option id="Rate25" value="Rate25"<c:if test="${not empty childBean.rates && childBean.rates =='Rate60'}">selected</c:if>>25</option>
+								<option id="Rate20" value="Rate20"<c:if test="${not empty childBean.rates && childBean.rates =='Rate80'}">selected</c:if>>20</option>
+								
 								</select>
 							</div>
 				
@@ -276,8 +301,42 @@ class="btn btn-info">Add New</a>
 	</c:otherwise>
 </c:choose>
 </div>
-
-
+<script type="text/javascript">
+$("#type_Asset").change(function(){
+ if($("#type_Asset").val() == "Building"){
+	    $('#Rate5').show();
+		$('#Rate10').show();
+		$('#Rate100').show();
+		$('#Rate_10').hide();
+		$('#Rate25').hide();
+		$('#Rate20').hide();
+}
+ if($("#type_Asset").val() == "Furniture"){
+	 	$('#Rate5').hide();
+		$('#Rate10').show();
+		$('#Rate100').hide();
+		$('#Rate_10').hide();
+		$('#Rate25').hide();
+		$('#Rate20').hide();
+}
+ if($("#type_Asset").val() == "Intangible"){
+	 	$('#Rate5').hide();
+		$('#Rate10').hide();
+		$('#Rate100').hide();
+		$('#Rate_10').hide();
+		$('#Rate25').show();
+		$('#Rate20').hide();
+}
+ if($("#type_Asset").val() == "Ships"){
+	 	$('#Rate5').hide();
+		$('#Rate10').hide();
+		$('#Rate100').hide();
+		$('#Rate_10').hide();
+		$('#Rate25').hide();
+		$('#Rate20').show();
+}
+});
+</script>
 
 <res:client-validation formId="frmtForeignBankDetail"
 	screenConfigurationDocumentName="foreignbankdetail"
