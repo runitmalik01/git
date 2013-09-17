@@ -515,8 +515,13 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 							</a></td>
 							<td><c:out value="${houseincomedetail.address}" /></td>
 							<td><c:out value="${houseincomedetail.property_share}" /></td>
-							<td><w4india:inr
+							<c:choose><c:when test="${ not empty ITR2}"><td><w4india:inr
+									value="${houseincomedetail.total_houseIncome}" /></td>
+									</c:when><c:otherwise>
+									<td><w4india:inr
 									value="${houseincomedetail.income_hproperty}" /></td>
+									</c:otherwise>
+									</c:choose>
 							<td><a class="btn btn-primary"
 								href="${scriptName}/<c:out value="${houseincomedetail.canonicalUUID}"/>/houseincomeedit"><i
 									class="icon-pencil icon-white"></i><small>Edit</small> </a>&nbsp;&nbsp;<a
