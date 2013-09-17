@@ -2,17 +2,16 @@
 <%@include file="../includes/tags.jspf"%>
 <%@ page import="com.mootly.wcm.utils.*"%>
 <%@ page import="java.util.*"%>
-<c:set var="p_l">
-	<fmt:message key="p_l" />
+<c:set var="b_p">
+	<fmt:message key="b_p" />
 </c:set>
-<hippo-gogreen:title title="${p_l}" />
+<hippo-gogreen:title title="${b_p}" />
 <hst:actionURL var="actionUrl" />
 <div class="page type-page">
 	<w4india:itrmenu />
 	<hst:link var="mainSiteMapRefId" />
-
 	<h4>
-		<fmt:message key="profit.loss.itr4" />
+		<fmt:message key="income.bp.itr4" />
 	</h4>
 	<form id="frmIncomeBP" action="${actionUrl}" method="post"
 		name="frmIncomeBP">
