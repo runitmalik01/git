@@ -143,11 +143,8 @@
 			<div class="row-fluid show-grid">
 				<div class="span9">
 					<div class="rowlabel">
-						<label for="proforma_credits"><small>The proforma
-								credits, drawbacks, refund of duty of customs or excise or
-								service tax, or refund of sales tax or value added tax, where
-								such credits, drawbacks, refunds are admitted as due by the
-								authorities concerned</small> </label>
+						<label for="proforma_credits"><small><fmt:message
+										key="oi.proforma.itr4" /> </small> </label>
 					</div>
 				</div>
 				<div class="span2">
@@ -242,9 +239,8 @@
 			<div class="row-fluid show-grid">
 				<div class="span9">
 					<div class="rowlabel">
-						<label for="sumpaid_bonus"><small>Any sum paid to
-								an employee as bonus or commission for services rendered, where
-								such sum was otherwise payable to him as profits or dividend</small> </label>
+						<label for="sumpaid_bonus"><small><fmt:message
+										key="oi.sumpaid.itr4" /> </small> </label>
 					</div>
 				</div>
 				<div class="span2">
@@ -404,11 +400,8 @@
 			</div>
 			<div class="row-fluid show-grid">
 				<div class="span9">
-					<label for="sum_received"><small>Any sum received
-							from employees as contribution to any provident fund or
-							superannuation fund or any fund set up under ESI Act or any other
-							fund for the welfare of employees to the extent credited to the
-							employees account on or before the due date</small> </label>
+					<label for="sum_received"><small><fmt:message
+										key="oi.sumreceived.itr4" /> </small> </label>
 				</div>
 				<div class="span2">
 					<input type="text" id="sum_received" name="sum_received"
@@ -461,9 +454,8 @@
 			<div class="row-fluid show-grid">
 				<div class="span9">
 					<div class="rowlabel">
-						<label for="expenditure_advertisement"><small>Expenditure
-								on advertisement in any souvenir, brochure, tract, pamphlet or
-								the like, published by a political party</small> </label>
+						<label for="expenditure_advertisement"><small><fmt:message
+										key="oi.advertisement.itr4" /></small> </label>
 					</div>
 				</div>
 				<div class="span2">
@@ -583,10 +575,8 @@
 			<div class="row-fluid show-grid">
 				<div class="span9">
 					<div class="rowlabel">
-						<label for="amountdisallowable_us40A"><small>Amount
-								disallowable under section 40 (a)(i), 40(a)(ia) and 40(a)(iii)
-								on account of non-compliance with the provisions of Chapter
-								XVII-B</small> </label>
+						<label for="amountdisallowable_us40A"><small><fmt:message
+										key="oi.us40A.itr4" /></small> </label>
 					</div>
 				</div>
 				<div class="span2">
@@ -628,9 +618,8 @@
 			<div class="row-fluid show-grid">
 				<div class="span9">
 					<div class="rowlabel">
-						<label for="amount_commission"><small>Amount of
-								interest, salary, bonus, commission or remuneration paid to any
-								partner or member</small> </label>
+						<label for="amount_commission"><small><fmt:message
+										key="oi.commission.itr4" /></small> </label>
 					</div>
 				</div>
 				<div class="span2">
@@ -671,9 +660,8 @@
 			<div class="row-fluid show-grid">
 				<div class="span9">
 					<div class="rowlabel">
-						<label for="amountdisallowable_us40B"><small>Any
-								amount disallowed under section 40 in any preceding previous
-								year but allowable during the previous year</small> </label>
+						<label for="amountdisallowable_us40B"><small><fmt:message
+										key="oi.us40B.itr4" /></small> </label>
 					</div>
 				</div>
 				<div class="span2">
@@ -705,10 +693,8 @@
 			<div class="row-fluid show-grid">
 				<div class="span9">
 					<div class="rowlabel">
-						<label for="amount_excesstwth"><small>Amount in
-								excess of twenty thousand rupees paid to a person in a day
-								otherwise than by account payee cheque or account payee bank
-								draft under section 40A(3) - 100% disallowable</small> </label>
+						<label for="amount_excesstwth"><small><fmt:message
+										key="oi.excesstwth.itr4" /></small> </label>
 					</div>
 				</div>
 				<div class="span2">
@@ -736,10 +722,8 @@
 			<div class="row-fluid show-grid">
 				<div class="span9">
 					<div class="rowlabel">
-						<label for="sumpaid_assessee"><small>Any sum paid
-								by the assessee as an employer for setting up or as contribution
-								to any fund, trust, company, AOP, or BOI or society or any other
-								institution</small> </label>
+						<label for="sumpaid_assessee"><small><fmt:message
+										key="oi.assessee.itr4" /></small> </label>
 					</div>
 				</div>
 				<div class="span2">
@@ -795,10 +779,8 @@
 			<div class="row-fluid show-grid">
 				<div class="span9">
 					<div class="rowlabel">
-						<label for="sumpayable_provident"><small>Any sum
-								payable by way of contribution to any provident fund or
-								superannuation fund or gratuity fund or any other fund for the
-								welfare of employees</small> </label>
+						<label for="sumpayable_provident"><small><fmt:message
+										key="oi.provident.itr4" /></small> </label>
 					</div>
 				</div>
 				<div class="span2">
@@ -812,9 +794,8 @@
 			<div class="row-fluid show-grid">
 				<div class="span9">
 					<div class="rowlabel">
-						<label for="sumpayable_employee"><small>Any sum
-								payable to an employee as bonus or commission for services
-								rendered</small> </label>
+						<label for="sumpayable_employee"><small><fmt:message
+										key="oi.employee.itr4" /></small> </label>
 					</div>
 				</div>
 				<div class="span2">
@@ -828,10 +809,8 @@
 			<div class="row-fluid show-grid">
 				<div class="span9">
 					<div class="rowlabel">
-						<label for="sumpayable_institution"><small>Any sum
-								payable as interest on any loan or borrowing from any public
-								financial institution or a State financial corporation or a
-								State Industrial investment corporation</small> </label>
+						<label for="sumpayable_institution"><small><fmt:message
+										key="oi.institution.itr4" /></small> </label>
 					</div>
 				</div>
 				<div class="span2">
@@ -845,9 +824,8 @@
 			<div class="row-fluid show-grid">
 				<div class="span9">
 					<div class="rowlabel">
-						<label for="sumpayable_bank"><small>Any sum
-								payable as interest on any loan or borrowing from any scheduled
-								bank</small> </label>
+						<label for="sumpayable_bank"><small><fmt:message
+										key="oi.bank.itr4" /></small> </label>
 					</div>
 				</div>
 				<div class="span2">
@@ -908,10 +886,8 @@
 			<div class="row-fluid show-grid">
 				<div class="span9">
 					<div class="rowlabel">
-						<label for="sumpayable_provident43b"><small>Any
-								sum payable by way of contribution to any provident fund or
-								superannuation fund or gratuity fund or any other fund for the
-								welfare of employees</small> </label>
+						<label for="sumpayable_provident43b"><small><fmt:message
+										key="oi.provident43b.itr4" /></small> </label>
 					</div>
 				</div>
 				<div class="span2">
@@ -925,9 +901,8 @@
 			<div class="row-fluid show-grid">
 				<div class="span9">
 					<div class="rowlabel">
-						<label for="sumpayable_employee43b"><small>Any sum
-								payable to an employee as bonus or commission for services
-								rendered</small> </label>
+						<label for="sumpayable_employee43b"><small><fmt:message
+										key="oi.employee43b.itr4" /></small> </label>
 					</div>
 				</div>
 				<div class="span2">
@@ -941,10 +916,8 @@
 			<div class="row-fluid show-grid">
 				<div class="span9">
 					<div class="rowlabel">
-						<label for="sumpayable_institution43b"><small>Any
-								sum payable as interest on any loan or borrowing from any public
-								financial institution or a State financial corporation or a
-								State Industrial investment corporation</small> </label>
+						<label for="sumpayable_institution43b"><small><fmt:message
+										key="oi.institution43b.itr4" /></small> </label>
 					</div>
 				</div>
 				<div class="span2">
@@ -958,9 +931,8 @@
 			<div class="row-fluid show-grid">
 				<div class="span9">
 					<div class="rowlabel">
-						<label for="sumpayable_bank43b"><small>Any sum
-								payable as interest on any loan or borrowing from any scheduled
-								bank</small> </label>
+						<label for="sumpayable_bank43b"><small><fmt:message
+										key="oi.bank43b.itr4" /></small> </label>
 					</div>
 				</div>
 				<div class="span2">
@@ -1090,9 +1062,8 @@
 			<tr>
 				<td>
 					<div class="rowlabel">
-						<label for="amount_income"><small>Amount of income
-								or expenditure of prior period credited or debited to the profit
-								and loss account (net)</small> </label>
+						<label for="amount_income"><small><fmt:message
+										key="oi.income.itr4" /></small> </label>
 					</div>
 				</td>
 				<td>
