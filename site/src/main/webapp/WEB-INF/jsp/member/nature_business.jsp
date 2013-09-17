@@ -51,7 +51,7 @@ request.setAttribute("objHashMapBusinessCode", objHashMapBusinessCode);
 										key="tradeName.Proprietorship.itr4" /> </small> </label>
 						</div>
 						<div class="rowlabel">
-							<input id="tradeName_Proprietorship" class="uprcase"
+							<input id="tradeName_Proprietorship" class="uprcase" maxlength="125"
 								name="tradeName_Proprietorship" type="text" value="${childBean.tradeName_Proprietorship}" />
 						</div>
 					</div>
