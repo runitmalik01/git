@@ -36973,8 +36973,8 @@ out_incomeChargeable_PL = (out_netPL_otherthanSpeculative_SpecifiedBuss1 -0)+(ou
 out_amtDepreciationFullRate =   ((valFirstDayPrevYr-0) + (periodMore180Day-0) -(prevYrConsider -0)) &gt;0 ? ((valFirstDayPrevYr-0) + (periodMore180Day-0) -(prevYrConsider -0)) : 0;
 
 out_amtDepreciationHalfRate = ((periodLess180Day-0)-(considerOrRealDuringYr-0)) &gt;0 ? ((periodLess180Day-0)-(considerOrRealDuringYr-0)) :0;
-out_depreciationFullRate = (out_amtDepreciationFullRate *val_FullRate )/100 ;
-out_depreciationHalfRate = (out_amtDepreciationHalfRate *val_HalfRate )/100;
+out_depreciationFullRate = Math.round((out_amtDepreciationFullRate *val_FullRate )/100);
+out_depreciationHalfRate = Math.round((out_amtDepreciationHalfRate *val_HalfRate )/100);
 
 out_totalDepreciation  = out_depreciationFullRate + out_depreciationHalfRate +(addDepreciatMore180Day-0) +(addDepreciatLess180Day-0);
 out_valLastDayPrevYr = ((out_amtDepreciationFullRate +out_amtDepreciationHalfRate )-(out_totalDepreciation  )) &gt; 0 ? ((out_amtDepreciationFullRate +out_amtDepreciationHalfRate )-(out_totalDepreciation  )) : 0;</sv:value>
