@@ -82,8 +82,17 @@ request.setAttribute("objTreeMapRelation", objTreeMapRelation);
 									key="nature.income.itr2" /> </small> </label>
 					</div>
 					<div class="rowlabel">
-						<input id="nature_income" name="nature_income" class="uprcase" maxlength="50"
-							type="text" value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.nature_income}"/></c:if> " />
+					<select id="nature_income" name="nature_income">
+								<option value="">-Select-</option>
+								<option value="House Property"<c:if test="${not empty childBean.nature_income && childBean.nature_income =='House Property'}">selected</c:if>>House Property</option>
+								<option value="Long Term Capital Gain 10%"<c:if test="${not empty childBean.nature_income && childBean.nature_income =='Long Term Capital Gain 10%'}">selected</c:if>>Long Term Capital Gain 10%</option>
+								<option value="Long Term Capital Gain 20%"<c:if test="${not empty childBean.nature_income && childBean.nature_income =='Long Term Capital Gain 20%'}">selected</c:if>>Long Term Capital Gain 20%</option>
+								<option value="Short Term Capital Gain 15%"<c:if test="${not empty childBean.nature_income && childBean.nature_income =='Short Term Capital Gain 15%'}">selected</c:if>>Short Term Capital Gain 15%</option>
+								<option value="Short Term Capital Gain Normal"<c:if test="${not empty childBean.nature_income && childBean.nature_income =='Short Term Capital Gain Normal'}">selected</c:if>>Short Term Capital Gain Normal</option>
+								<option value="Income from Other Sources"<c:if test="${not empty childBean.nature_income && childBean.nature_income =='Income from Other Sources'}">selected</c:if>>Income from Other Sources</option>
+								<option value="Speculative Business"<c:if test="${not empty childBean.nature_income && childBean.nature_income =='Speculative Business'}">selected</c:if>>Speculative Business</option>
+								<option value="Profit from Firm"<c:if test="${not empty childBean.nature_income && childBean.nature_income =='Profit from Firm'}">selected</c:if>>Profit from Firm</option>
+								</select>
 					</div>
 				</div>
 				<div class="span4">
@@ -98,7 +107,7 @@ request.setAttribute("objTreeMapRelation", objTreeMapRelation);
 					</div>
 				</div>
 				</div>
-			</div>
+			
 		 	<div class="row-fluid show-grid">
 				<div class="span4 offset8 decimal">
 					<a href="${scriptName}" class="btn btn-danger" style="color: black">Cancel</a>&nbsp;
@@ -140,7 +149,7 @@ request.setAttribute("objTreeMapRelation", objTreeMapRelation);
 						</a>&nbsp;<a class="btn btn-danger" style="color: black" href="${scriptName}/<c:out value="${clubincomedetail.canonicalUUID}"/>/clubincomedelete" data-confirm=""><small><i class="icon-trash icon-white"></i>Delete</small> </a>
 							</td>
 						</tr>
-					</tr>
+					
 				</c:forEach>
 				<tr>
 					<td colspan="4"><fmt:message key="tds.amount.total" /></td>
