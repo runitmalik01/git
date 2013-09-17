@@ -220,7 +220,7 @@
 						<div class="span3">
 							<div class="rowlabel">
 								<select id="index" name="index">
-								<option value="">-Select-</option>
+									<option value="">-Select-</option>
 									<option value="Y" style="border-right: olive;"
 										<c:if test="${not empty childBean.index && childBean.index =='Y'}">selected</c:if>>YES</option>
 									<option value="N"
@@ -301,7 +301,7 @@
 							</div>
 						</div>
 					</div>
-					
+
 					<div class="row-fluid show-grid">
 						<div class="span9">
 							<div class="rowlabel">
@@ -438,7 +438,8 @@
 					<div id="accural_gain" class="accural_Y_gain accural_N_gain hide">
 						<table>
 							<tr>
-								<th style="color: black;" width="50%">(In case of short term gain only) Dates:</th>
+								<th style="color: black;" width="50%">(In case of short
+									term gain only) Dates:</th>
 								<th style="color: black;">STCG 111A</th>
 								<th style="color: black;">STCG OTH</th>
 							</tr>
@@ -492,7 +493,8 @@
 								</td>
 							</tr>
 							<tr>
-								<th width="50%" style="color: black;">(In case of long term gain only)Dates:</th>
+								<th width="50%" style="color: black;">(In case of long term
+									gain only)Dates:</th>
 								<th style="color: black;">LTCG proviso</th>
 								<th style="color: black;">LTCG NO proviso</th>
 							</tr>
@@ -645,7 +647,7 @@
 		var type = $('#asset_type').val();
 		var day = $('#months').val();
 		if (type == 'SHARES') {
-			 day = $('#months').val();
+			day = $('#months').val();
 			var stt = $('#sst_charge').val();
 			if (stt == 'N') {
 				$("#ded").show();
@@ -677,9 +679,9 @@
 			$("#sst").show();
 			$("#sst_charge").show();
 		} else {
-			
+
 			if (day <= 1096) {
-				
+
 				$(".st").show();
 				$("#imp").hide();
 				$("#lg").hide();
@@ -697,7 +699,7 @@
 				$(".lt").show();
 				$("#sst").hide();
 			}
-			
+
 			$("#lindex").hide();
 			$("#sst_charge").hide();
 		}
@@ -727,18 +729,20 @@
 			$("#ded").hide();
 		}
 	});
-	$('#date_improve').change(function() {
-		var imp = $('#date_improve').val();
-		var acq = $('#date_acquisition').val();
-		if(new Date(imp).getTime() > new Date(acq).getTime()){
-			alert("hello");
-		}
-		else{
-			alert("Date of improvement can't be before then date of acquisition, Please choose right date of improvement");
-			document.getElementById("date_improve").value = $('#date_sale').val();;
-		}
-		
-	});
+	$('#date_improve')
+			.change(
+					function() {
+						var imp = $('#date_improve').val();
+						var acq = $('#date_acquisition').val();
+						if (new Date(imp).getTime() > new Date(acq).getTime()) {
+						} else {
+							alert("Date of improvement can't be before then date of acquisition, Please choose right date of improvement");
+							document.getElementById("date_improve").value = $(
+									'#date_sale').val();
+							;
+						}
+
+					});
 	$('#date_sale,#date_acquisition,#sst_charge').change(function() {
 		var a;
 		var b;
@@ -828,7 +832,7 @@
 			return e;
 
 		}
-			
+
 	});
 	$("#accural_info").on('change', function() {
 		if ($(this).val() == 'Y') {
@@ -837,4 +841,13 @@
 			$('#accural_gain').hide();
 		}
 	});
+	$("#costacquisition").on(
+			'change',
+			function() {
+				var imp = $('#date_improve').val();
+				if (imp == '') {
+					document.getElementById("date_improve").value = $(
+							'#date_sale').val();
+				}
+			});
 </script>
