@@ -4703,7 +4703,7 @@ case of search; &lt;/p&gt;
         <sv:value/>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
-        <sv:value>indiandate</sv:value>
+        <sv:value>currentDateCal</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
         <sv:value>ack_date</sv:value>
@@ -4889,7 +4889,7 @@ case of search; &lt;/p&gt;
         <sv:value/>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
-        <sv:value>indiandate</sv:value>
+        <sv:value>currentDateCal</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
         <sv:value>notice_date</sv:value>

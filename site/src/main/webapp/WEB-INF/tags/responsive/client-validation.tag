@@ -47,6 +47,8 @@
 		var flagforPanAndTan=true;
 		var strictAddpan=true;
 		var d = new Date();
+		var minDate4NoticeAck = "01/04/"+d.getFullYear();
+		var maxDate_currDate = [d.getDate(), d.getMonth()+1, d.getFullYear()].join('/');
 		yrRange="1900:"+d.getFullYear();
 		var validationRules = new Object();
 			validationRules.rules = new Object();
@@ -104,6 +106,17 @@
                                     showAnim: "fadeIn",
 
 								}).addClass("indiandateLosses");
+								 fObj.keypress(function(e) {
+           								 e.preventDefault();
+    									});
+    					case "currentDateCal":
+								fObj.datepicker({
+									changeMonth : true,
+									changeYear : true,
+                                    showAnim: "fadeIn",
+                                    minDate: minDate4NoticeAck,
+                                    maxDate: maxDate_currDate,
+								}).addClass("currentDateCal");
 								 fObj.keypress(function(e) {
            								 e.preventDefault();
     									});
