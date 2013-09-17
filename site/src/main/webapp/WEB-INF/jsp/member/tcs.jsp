@@ -35,23 +35,27 @@
 						Collected from Sources Details</legend>
 					<table>
 						<tr>
-							<th><b>TAN of Collector</b></th>
-							<th><b>Name of Collector</b></th>
-							<th><b>Total Tax Deducted</b></th>
-							<th><b>Amount to be allowed as credit during the year</b></th>
+							<th width="20%"><b>TAN of Collector</b></th>
+							<th width="36%"><b>Name of Collector</b></th>
+							<th width="22%"><b>Total Tax Deducted</b></th>
+							<th width="22%"><b>Amount to be allowed as credit during
+									the year</b></th>
 						</tr>
 						<tr>
-							<td><input id="tan" name="tan"
+							<td><input id="tan" name="tan" class="uprcase"
 								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.tan}"/></c:if>"
 								type="text"></td>
 							<td><input id="name" name="name"
+								placeholder="Collector Name" maxlength="125"
 								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.name}"/></c:if>"
 								type="text"></td>
 							<td><input id="totaltax" name="totaltax"
-								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.totaltax}"/></c:if>"
+								placeholder="Amount" maxlength="14"
+								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  groupingUsed="false" value="${childBean.totaltax}"/></c:if>"
 								type="text"></td>
 							<td><input id="taxCredited" name="taxCredited"
-								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.taxCredited}"/></c:if>"
+								placeholder="Amount" maxlength="14"
+								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  groupingUsed="false" value="${childBean.taxCredited}"/></c:if>"
 								type="text"></td>
 						</tr>
 					</table>
@@ -86,9 +90,10 @@
 							</td>
 							<td align="right"><c:out value="${tdsdetail.name}" />
 							</td>
-							<td align="right"><c:out value="${tdsdetail.totaltax}" />
-							</td>
-							<td align="right"><c:out value="${tdsdetail.taxCredited}" />
+							<td align="right"><fmt:formatNumber type="number"
+									groupingUsed="false" value="${tdsdetail.totaltax}" /></td>
+							<td align="right"><fmt:formatNumber type="number"
+									groupingUsed="false" value="${tdsdetail.taxCredited}" />
 							</td>
 							<td><a class="btn btn-primary"
 								href="${scriptName}/<c:out value="${tdsdetail.canonicalUUID}"/>/tcsedit"><small><i
