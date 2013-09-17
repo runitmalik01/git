@@ -73,7 +73,7 @@
 					<div class="rowlabel">
 						<input id="periodMore180Day" name="periodMore180Day" maxlength="14"
 							type="text" 
-							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.periodMore180Day}"/></c:if>" />
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.periodMore180Day}"/></c:if>">
 					</div>
 				</div>
 				</div>
@@ -86,7 +86,7 @@
 					<div class="rowlabel">
 						<input id="prevYrConsider" name="prevYrConsider" maxlength="14"
 							type="text" 
-							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.prevYrConsider}"/></c:if>" />
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.prevYrConsider}"/></c:if>">
 					</div>
 				</div>
 				<div class="span4">
@@ -98,7 +98,7 @@
 						<input id="amtDepreciationFullRate" name="amtDepreciationFullRate" maxlength="14"
 							type="text" readonly="readonly"
 							 class="decimal"
-							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.amtDepreciationFullRate}"/></c:if>" />
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.amtDepreciationFullRate}"/></c:if>">
 					</div>
 				</div>
 				<div class="span4">
@@ -109,7 +109,7 @@
 					<div class="rowlabel">
 						<input id="periodLess180Day" name="periodLess180Day" type="text" maxlength="14"
 							  
-							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.periodLess180Day}"/></c:if>" />
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.periodLess180Day}"/></c:if>">
 					</div>
 				</div>
 				</div>
@@ -122,7 +122,7 @@
 					<div class="rowlabel">
 						<input id="considerOrRealDuringYr" name="considerOrRealDuringYr" type="text" 
 							maxlength="14"   class="decimal" 
-							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.considerOrRealDuringYr}"/></c:if>" />
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.considerOrRealDuringYr}"/></c:if>">
 					</div>
 				</div>
 			<div class="span4">
@@ -131,9 +131,9 @@
 									key="amtDepreciationHalfRate.dpm.itr4" /> </small> </label>
 					</div>
 					<div class="rowlabel">
-						<input id="amtDepreciationHalfRate" name="amtDepreciationHalfRate" type="text" 
+						<input id="amtDepreciationHalfRate" name="depreciationFullRate" type="text" 
 							maxlength="14"   class="decimal" readonly="readonly"
-							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.amtDepreciationHalfRate}"/></c:if>" />
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.depreciationFullRate}"/></c:if>">
 					</div>
 				
 			</div>
@@ -146,7 +146,7 @@
 					<div class="rowlabel">
 						<input id="depreciationFullRate" name="depreciationFullRate" type="text" 
 							maxlength="14"   class="decimal" readonly="readonly"
-							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.depreciationFullRate}"/></c:if>" />
+						value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.depreciationFullRate}"/></c:if>">
 					</div>
 				</div>
 				</div>
@@ -159,7 +159,7 @@
 					<div class="rowlabel">
 						<input id="depreciationHalfRate" name="depreciationHalfRate" type="text" 
 							maxlength="14"   class="decimal" readonly="readonly"
-							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.depreciationHalfRate}"/></c:if>" />
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.depreciationHalfRate}"/></c:if>">
 					</div>
 				</div>
 				<div class="span4">
@@ -170,7 +170,7 @@
 					<div class="rowlabel">
 						<input id="addDepreciatMore180Day" name="addDepreciatMore180Day" type="text" 
 							maxlength="14"   class="decimal" 
-							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.addDepreciatMore180Day}"/></c:if>" />
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.addDepreciatMore180Day}"/></c:if>">
 					</div>
 				</div>
 		
@@ -183,7 +183,7 @@
 					<div class="rowlabel">
 						<input id="addDepreciatLess180Day" name="addDepreciatLess180Day" type="text" 
 							maxlength="14"   class="decimal" 
-							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.addDepreciatLess180Day}"/></c:if>" />
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.addDepreciatLess180Day}"/></c:if>">
 					</div>
 				</div>
 				</div>
@@ -196,7 +196,7 @@
 					<div class="rowlabel">
 						<input id="totalDepreciation" name="totalDepreciation" type="text" 
 							maxlength="14"   class="decimal" readonly="readonly"
-							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.totalDepreciation}"/></c:if>" />
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.totalDepreciation}"/></c:if>">
 					</div>
 				</div>
 				<div class="span4">
@@ -207,7 +207,7 @@
 					<div class="rowlabel">
 						<input id="expense_TransferAsset" name="expense_TransferAsset" type="text" 
 							maxlength="14"   class="decimal" 
-							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.expense_TransferAsset}"/></c:if>" />
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.expense_TransferAsset}"/></c:if>">
 					</div>
 				</div>
 		
@@ -220,7 +220,7 @@
 					<div class="rowlabel">
 						<input id="capitalGain_LossSec50" name="capitalGain_LossSec50" type="text" 
 							maxlength="14"   class="decimal" 
-							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.capitalGain_LossSec50}"/></c:if>" />
+							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.capitalGain_LossSec50}"/></c:if>">
 					</div>
 				</div>
 				</div>
@@ -233,7 +233,7 @@
 					<div class="rowlabel">
 						<input id="valLastDayPrevYr" name="valLastDayPrevYr" type="text" 
 							maxlength="14"   class="decimal" readonly="readonly"
-							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.valLastDayPrevYr}"/></c:if>" />
+						value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.valLastDayPrevYr}"/></c:if>">
 					</div>
 				</div>
 				
@@ -245,7 +245,7 @@
 				</div>  
 			
 			</div>
-			<div><input type="submit"></div>
+			
 		</form>
 	</c:when>
 	<c:otherwise>
