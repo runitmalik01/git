@@ -32,7 +32,7 @@
 						key="member.trp.ident.number" /></small> </label>
 			</div>
 				<div class="rowlabel">
-					<input id="trpnumber" name="trpnumber" class="uprcase"
+					<input id="trpnumber" name="trpnumber" class="uprcase" maxlength="10"
 						type="text"  value="${parentBean.trpnumber }"/>
 				</div>
 			</div>
@@ -42,7 +42,7 @@
 				</label>
 			</div>
 			<div class="rowlabel">
-				<input id="trpname" name="trpname" class="uprcase"
+				<input id="trpname" name="trpname" class="uprcase" maxlength="125"
 						type="text" value="${parentBean.trpname }" />
 			</div>
 		</div>
