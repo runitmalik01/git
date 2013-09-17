@@ -76,7 +76,10 @@ import com.mootly.wcm.model.schedules.y2012_2013.PartB_TI;
 import com.mootly.wcm.model.schedules.y2012_2013.PartB_TTI;
 import com.mootly.wcm.model.schedules.y2012_2013.ProfitLossSchedule;
 import com.mootly.wcm.model.schedules.y2012_2013.Schedule80_IA;
+import com.mootly.wcm.model.schedules.y2012_2013.Schedule80_IB;
+import com.mootly.wcm.model.schedules.y2012_2013.Schedule80_IC;
 import com.mootly.wcm.model.schedules.y2012_2013.ScheduleFiveA;
+import com.mootly.wcm.model.schedules.y2012_2013.TCSSchedule;
 import com.mootly.wcm.model.schedules.y2012_2013.TRDetailsSchedule;
 import com.mootly.wcm.model.schedules.y2012_2013.TaxesDocumentScheduleIT;
 import com.mootly.wcm.model.schedules.y2012_2013.TdsOthersSchedules;
@@ -228,6 +231,15 @@ public class ITR4XmlGeneratorService  {
 
 		Schedule80_IA schedule80_IA = new Schedule80_IA(deductionDocument);
 		itr4.setSchedule80IA(schedule80_IA.getSchedule80IA(itr));
+
+		Schedule80_IB schedule80_IB = new Schedule80_IB(deductionDocument);
+		itr4.setSchedule80IB(schedule80_IB.getSchedule80IB(itr));
+
+		Schedule80_IC schedule80_IC = new Schedule80_IC(deductionDocument);
+		itr4.setSchedule80IC(schedule80_IC.getSchedule80IC(itr));
+
+		TCSSchedule tCSSchedule = new TCSSchedule(tcsDocument);
+		itr4.setScheduleTCS(tCSSchedule.getScheduleTCS(itr));
 
 		MemberVerification memberVerification = new MemberVerification(memberPersonalInformation);
 		itr4.setVerification(memberVerification.getVerification(itr));
