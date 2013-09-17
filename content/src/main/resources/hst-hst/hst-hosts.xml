@@ -773,6 +773,52 @@
         </sv:node>
       </sv:node>
     </sv:node>
+    <!-- qlick -->
+	<sv:node sv:name="com" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hst:virtualhost</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>b54777bd-ada2-4a7a-8802-ba1b2f628e75</sv:value>
+	  </sv:property>
+	  <sv:node sv:name="localhost">
+	    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	      <sv:value>hst:virtualhost</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="jcr:uuid" sv:type="String">
+	      <sv:value>31f85ded-57f2-4747-882d-248a8fa61aa6</sv:value>
+	    </sv:property>
+	    <sv:node sv:name="qlick">
+	      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	        <sv:value>hst:virtualhost</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="jcr:uuid" sv:type="String">
+	        <sv:value>7d478014-d278-410c-bc02-c0353172b075</sv:value>
+	      </sv:property>
+	      <sv:node sv:name="hst:root">
+	        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	          <sv:value>hst:mount</sv:value>
+	        </sv:property>
+	        <sv:property sv:name="jcr:uuid" sv:type="String">
+	          <sv:value>7e6e3c05-6bac-4291-b1cd-182188c6254c</sv:value>
+	        </sv:property>
+	        <sv:property sv:name="hst:alias" sv:type="String">
+	          <sv:value>site</sv:value>
+	        </sv:property>
+	        <sv:property sv:name="hst:channelpath" sv:type="String">
+	          <sv:value>/hst:hst/hst:channels/qlick</sv:value>
+	        </sv:property>
+	        <sv:property sv:name="hst:mountpoint" sv:type="String">
+	          <sv:value>/hst:hst/hst:sites/mootlywcm</sv:value>
+	        </sv:property>
+	        <sv:property sv:name="hst:showport" sv:type="Boolean">
+	          <sv:value>true</sv:value>
+	        </sv:property>
+	      </sv:node>
+	    </sv:node>
+	  </sv:node>
+	</sv:node>
+    <!-- /qlick -->
   </sv:node>
   <!--  Production GRoup -->
 	<sv:node sv:name="prod-w4india" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
