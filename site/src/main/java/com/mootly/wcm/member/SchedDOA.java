@@ -67,8 +67,10 @@ public class SchedDOA extends ITReturnComponent {
 			if((objScheduleDOADocument != null) && (objScheduleDOADocument.getScheduleDOADetailList().size() > 0)){
 				for(ScheduleDOADetails scheduleDOADetails :listScheduleDOADetails ){
 				String existingRate = scheduleDOADetails.getRates();
+				String existingAssetType= scheduleDOADetails.getType_Asset();
 				String newArrivingRate = formMap.getField("rates").getValue();
-				if(existingRate.equals(newArrivingRate)){
+				String newArrivingAssetType = formMap.getField("type_Asset").getValue();
+				if((existingRate.equals(newArrivingRate)) && (existingAssetType.equals(newArrivingAssetType))){
 					formMap.addMessage("rates", "error.not.samerate.itr4.dpm");
 					response.setRenderParameter("stopPuttingSameRate", "error.not.samerate.itr4.dpm");
 					return false;
