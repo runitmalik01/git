@@ -26,23 +26,29 @@ import javax.jcr.LoginException;
 import javax.jcr.Node;
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
+import javax.servlet.ServletContext;
 
 import org.hippoecm.hst.component.support.bean.BaseHstComponent;
+import org.hippoecm.hst.configuration.hosting.Mount;
+import org.hippoecm.hst.content.beans.ObjectBeanManagerException;
 import org.hippoecm.hst.content.beans.manager.workflow.WorkflowCallbackHandler;
 import org.hippoecm.hst.content.beans.manager.workflow.WorkflowPersistenceManager;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.core.component.HstComponentException;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
+import org.hippoecm.hst.core.request.ComponentConfiguration;
 import org.hippoecm.hst.core.request.ResolvedSiteMapItem;
-import org.hippoecm.repository.api.Workflow;
 import org.hippoecm.repository.reviewedactions.FullReviewedActionsWorkflow;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import com.mootly.wcm.beans.EmailMessage;
 import com.mootly.wcm.beans.EmailTemplate;
-import com.mootly.wcm.components.ITReturnComponent.FullReviewedWorkflowCallbackHandler;
+import com.mootly.wcm.beans.compound.ImageSet;
+import com.mootly.wcm.channels.WebsiteInfo;
 import com.mootly.wcm.utils.ContentStructure;
 import com.mootly.wcm.utils.VelocityUtils;
 
@@ -52,6 +58,18 @@ public class BaseComponent extends BaseHstComponent {
 	String strIsOnVendorPortal;
 	String memberhandleuuid;
 	String memberFolderPath;
+	
+	ITReturnComponentHelper itReturnComponentHelper = null;
+	
+	@Override
+	public void init(ServletContext servletContext,
+			ComponentConfiguration componentConfig)
+			throws HstComponentException {
+		// TODO Auto-generated method stub
+		super.init(servletContext, componentConfig);
+		ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(servletContext);
+		itReturnComponentHelper = context.getBean( ITReturnComponentHelper.class );
+	}
 	
     @Override
     public void doBeforeRender(HstRequest request, HstResponse response) {
@@ -130,6 +148,7 @@ public class BaseComponent extends BaseHstComponent {
 			}
         }
         
+        setLogo(request, response);
     }
     
     protected void redirectToNotFoundPage(HstResponse response) {
@@ -141,8 +160,16 @@ public class BaseComponent extends BaseHstComponent {
     }
     
     public String getNormalizedUserName(HstRequest request) {
-    	if (request.getUserPrincipal() != null && request.getUserPrincipal().getName() != null) {
-    		return request.getUserPrincipal().getName().replaceAll("@", "-at-");
+    	return getNormalizedUserName (request, null);
+    }
+    
+    public String getNormalizedUserName(HstRequest request,String emailAddress) {
+    	String whatToNormalize = emailAddress;
+    	if (whatToNormalize == null) {
+    		whatToNormalize = ( (request.getUserPrincipal() != null && request.getUserPrincipal().getName() != null) ? request.getUserPrincipal().getName() : null); 
+    	}
+    	if ( whatToNormalize != null) {
+    		return whatToNormalize.replaceAll("@", "-at-");
     	}
     	else {
     		return null;
@@ -192,7 +219,7 @@ public class BaseComponent extends BaseHstComponent {
      * @param velocityContext
      */
     //protected void sendEmail(HstRequest request, String[] to,String[] cc,String[] bcc,String subject,String attachmentList,String defaultMessage,String templateKey,Map<String,String> velocityContext) {
-    	protected void sendEmail(HstRequest request, String[] to,String attachmentList,String defaultMessage,String templateKey,Map<String,Object> velocityContext) {
+    protected void sendEmail(HstRequest request, String[] to,String attachmentList,String defaultMessage,String templateKey,Map<String,Object> velocityContext) {
     	try {
     		
     		//here we do the VEOCITY MAGIC
@@ -201,7 +228,7 @@ public class BaseComponent extends BaseHstComponent {
     		if (templateKey == null) return;
     		Session persistableSession = null;
     		WorkflowPersistenceManager wpm;
-    		String basePathToSiteContentBean =  request.getRequestContext().getResolvedMount().getMount().getCanonicalContentPath();
+    		String basePathToSiteContentBean =  getCanonicalBasePathForWrite(request);
     		persistableSession = getPersistableSession(request);
     		wpm = getWorkflowPersistenceManager(persistableSession);
     		
@@ -260,5 +287,83 @@ public class BaseComponent extends BaseHstComponent {
     		log.error("Error in sending email",ex);
     	}
     }
+    	
+    protected void setLogo(HstRequest request, HstResponse response) {
+    	final Mount mount = request.getRequestContext().getResolvedMount().getMount();
+        final WebsiteInfo info = mount.getChannelInfo();
+        if (info == null) {
+            log.warn("No channel info available for mount '{}'. No logo will be shown", mount.getMountPath());
+            return;
+        }
 
+        final String logoPath = info.getLogoPath();
+        try {
+            Object logo = getObjectBeanManager(request).getObject(logoPath);
+            if (logo instanceof ImageSet) {
+                request.setAttribute("logo", logo);
+            } else {
+                log.warn("Mount '{}' has illegal logo path '{}' (not an image set). No logo will be shown.");
+            }
+        } catch (ObjectBeanManagerException e) {
+            log.warn("Cannot retrieve logo at '" + logoPath + "'", e);
+        }
+    }
+    
+    public HippoBean getSiteContentBaseBeanForReseller(HstRequest request) {
+    	// TODO Auto-generated method stub
+    	boolean isReseller = itReturnComponentHelper.isReSeller(request);
+    	String resellerId = itReturnComponentHelper.getResellerId(request);
+    	HippoBean siteContentBaseBean = super.getSiteContentBaseBean(request);
+    	HippoBean hippoBeanForReseller = null;
+    	if (isReseller && resellerId != null) {
+    		hippoBeanForReseller = siteContentBaseBean.getBean("resellers/"+resellerId);
+    		if ( hippoBeanForReseller == null ) {
+    			return siteContentBaseBean;
+    		}
+    		else {
+    			return hippoBeanForReseller;
+    		}
+    	}
+    	return siteContentBaseBean;
+    }
+    
+    
+    public String getCanonicalBasePathForWrite(HstRequest request) {
+    	// TODO Auto-generated method stub
+    	boolean isReseller = itReturnComponentHelper.isReSeller(request);
+    	String resellerId = itReturnComponentHelper.getResellerId(request);
+    	HippoBean siteContentBaseBean = super.getSiteContentBaseBean(request);
+    	HippoBean hippoBeanForReseller = null;
+    	if (isReseller && resellerId != null) {
+    		hippoBeanForReseller = siteContentBaseBean.getBean("resellers/"+resellerId);
+    		if ( hippoBeanForReseller == null ) {
+    			return siteContentBaseBean.getCanonicalPath();
+    		}
+    		else {
+    			return hippoBeanForReseller.getCanonicalPath();
+    		}
+    	}
+    	return siteContentBaseBean.getCanonicalPath();
+    }
+    
+
+	protected ITReturnComponentHelper getItReturnComponentHelper() {
+		return itReturnComponentHelper;
+	}
+
+	protected String getStrIsOnVendorPortal() {
+		return strIsOnVendorPortal;
+	}
+
+	protected void setStrIsOnVendorPortal(String strIsOnVendorPortal) {
+		this.strIsOnVendorPortal = strIsOnVendorPortal;
+	}
+
+	protected String getMemberFolderPath() {
+		return memberFolderPath;
+	}
+
+	protected void setMemberFolderPath(String memberFolderPath) {
+		this.memberFolderPath = memberFolderPath;
+	}
 }

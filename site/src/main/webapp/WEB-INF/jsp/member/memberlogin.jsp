@@ -96,6 +96,10 @@ try {
 				   </p>
 				   <hst:link var="memberhome" path="/member"/>
 				   <input type="hidden" name="destination" value="${memberhome}"/> 
+				   <%--  multi tenancy the channel UUID --%>
+				   <c:if test="${not empty mountIdentifier}">
+				   	<input type="hidden" name="c" value="${mountIdentifier}"/>
+				   </c:if>
 				</form>
 		</div>
 		

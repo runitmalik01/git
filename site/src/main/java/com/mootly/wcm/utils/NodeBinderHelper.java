@@ -6,24 +6,14 @@ import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.text.ParseException;
 
-import javax.jcr.RepositoryException;
-import javax.jcr.Value;
-import javax.jcr.ValueFactory;
-import javax.jcr.ValueFormatException;
-import javax.jcr.lock.LockException;
-import javax.jcr.nodetype.ConstraintViolationException;
-import javax.jcr.version.VersionException;
-
-import org.apache.jackrabbit.value.ValueFactoryImpl;
+import org.apache.commons.beanutils.MethodUtils;
 import org.hippoecm.hst.content.beans.standard.HippoItem;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.DirectFieldAccessor;
 
 import com.mootly.wcm.annotations.NodeBinder;
-import com.mootly.wcm.beans.standard.FlexibleDocument;
 
 public class NodeBinderHelper {
 	private final Logger log = LoggerFactory.getLogger(NodeBinderHelper.class);
@@ -85,11 +75,25 @@ public class NodeBinderHelper {
 			        String propertyName = nodeBinder.propertyName();		
 			        Object theValue = directFieldAccessor.getPropertyValue(propertyName);
 			        if (node != null) {
-						try {
-							Method theMethod = node.getClass().getMethod("setProperty", String.class,  directFieldAccessor.getPropertyType(propertyName));
-							theMethod.invoke(node, nodePropertyName,theValue);
-						}catch (NoSuchMethodException nfe) {
-							log.warn("No",nfe);
+						try {							
+							Class theTypeClass = directFieldAccessor.getPropertyType(propertyName);
+							if ( !theTypeClass.isPrimitive() ) {
+								try {
+									Class thePrimitiveClass = (Class) theTypeClass.getDeclaredField("TYPE").get(node);
+									if (thePrimitiveClass != null) {
+										theTypeClass = thePrimitiveClass;
+									}
+								} catch (NoSuchFieldException e) {
+									// TODO Auto-generated catch block
+									//e.printStackTrace();
+								}
+							}
+							Method theMethod = MethodUtils.getAccessibleMethod( node.getClass() , "setProperty", new Class[]{String.class,  theTypeClass});
+							//Method apacheMethod = org.apache.commons.lang.reflect.MethodUtils.getAccessibleMethod(node.getClass() , "setProperty", new Class[]{String.class,  theTypeClass});
+							//Method theMethod2 = node.getClass().getMethod("setProperty", String.class, theTypeClass);
+							if ( theMethod != null ) {
+								theMethod.invoke(node, nodePropertyName,theValue);
+							}
 						} catch (IllegalAccessException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
@@ -101,6 +105,9 @@ public class NodeBinderHelper {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 							log.warn("No",e);
+						}catch (SecurityException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
 						}
 			        }
 		    	}

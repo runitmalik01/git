@@ -103,7 +103,7 @@ public class StartApplication extends ITReturnComponent {
 	public void doBeforeRender(HstRequest request, HstResponse response) {
 		// TODO Auto-generated method stub
 		super.doBeforeRender(request, response);
-		parentBean=(MemberPersonalInformation)request.getAttribute("parentBean");
+		parentBean = getMemberPersonalInformation(); //(MemberPersonalInformation)request.getAttribute("parentBean");
 		RetrievePANResponse retrievePANResponse = null;
 		//Call to DIT Service then get the Response
 		if(shouldRetrievePANInformation()||shouldRetrievePANInformation()){

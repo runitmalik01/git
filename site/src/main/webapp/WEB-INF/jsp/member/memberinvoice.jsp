@@ -142,30 +142,22 @@
 			<!--  show the table -->
 			<table>
 				<tr align="center">
-					<th><b>Services</b>
-					</th>
-					<th><b>Mode</b>
-					</th>
-					<th><b>Quantity</b>
-					</th>
-					<th><b>Amount</b>
-					</th>
-					<th><b>Actions</b>
-					</th>
+					<th><b>Services</b></th>
+					<th><b>Mode</b></th>
+					<th><b>Rate</b></th>
+					<th><b>Quantity</b></th>
+					<th><b>Amount</b></th>
+					<th><b>Actions</b></th>
 				</tr>
 				<c:if test="${not empty parentBean}">
 					<c:forEach items="${parentBean.invoiceDocumentDetailList}"
 						var="invoicedetail">
 						<tr align="center">
 						<tr>
-							<td><c:out value="${invoicedetail.serviceName}" />
-							</td>
-							<td><c:out value="${invoicedetail.filingMode}" />
-							</td>
-							<td><c:out value="${invoicedetail.serviceQty}" />
-							</td>
-							<td><c:out value="${invoicedetail.serviceRate}" />
-							</td>
+							<td><c:out value="${invoicedetail.serviceName}" /></td>
+							<td><c:out value="${invoicedetail.filingMode}" /></td>
+							<td><c:out value="${invoicedetail.serviceRate}" /></td>
+							<td><c:out value="${invoicedetail.serviceQty}" /></td>
 							<td><c:out value="${invoicedetail.serviceAmount}" /></td>
 							<td><a class="btn btn-primary"
 								href="${scriptName}/<c:out value="${invoicedetail.canonicalUUID}"/>/memberinvoiceedit"><small><i

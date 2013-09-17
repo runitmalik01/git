@@ -20,6 +20,7 @@
    <fmt:message key="home.title"/>
 </c:set>
 <hippo-gogreen:title title="${hometitle}"/>
+
 <%--
 <div class="slider-wrapper grid col-940 theme-default">
    <div id="slider" class="nivoSlider">

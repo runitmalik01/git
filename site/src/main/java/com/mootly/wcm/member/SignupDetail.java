@@ -188,7 +188,7 @@ public class SignupDetail extends BaseComponent {
 		*/
 	}
 	
-	private MemberSignupDocument createMemberSignupForm(HstRequest request,MemberSignupDocument signupDocument) {
+	protected  MemberSignupDocument createMemberSignupForm(HstRequest request,MemberSignupDocument signupDocument) {
 		// TODO Auto-generated method stub
 		Session persistableSession = null;
 		WorkflowPersistenceManager wpm;
@@ -196,15 +196,14 @@ public class SignupDetail extends BaseComponent {
 		try {
 			persistableSession = getPersistableSession(request);
 			wpm = getWorkflowPersistenceManager(persistableSession);
-			//SIMPLE WORKFLOW
 			wpm.setWorkflowCallbackHandler(new FullReviewedWorkflowCallbackHandler());
-			final String memberFolderPath = ContentStructure.getMemberFolder(request,signupDocument.getUserName());
+			String cPath = getCanonicalBasePathForWrite(request);
+			final String memberFolderPath = cPath + "/" + ContentStructure.MEMBER_FOLDER_NAME + "/" + getNormalizedUserName(request, signupDocument.getUserName());//ContentStructure.getMemberFolder(request,signupDocument.getUserName());
 			finalMembershipDocumentPath = wpm.createAndReturn(memberFolderPath, MemberSignupDocument.NAMESPACE ,  MemberSignupDocument.NODE_NAME, true);
 			MemberSignupDocument membershipSignupDocument = (MemberSignupDocument) wpm.getObject(finalMembershipDocumentPath);
 			// update content properties
 			if (membershipSignupDocument != null) {
 				membershipSignupDocument.setUserName(signupDocument.getUserName());
-				
 				membershipSignupDocument.setPassword(SecureHashGeneration.passSHAdigest(signupDocument.getPassword()));
 				membershipSignupDocument.setEmail(signupDocument.getEmail());
 				membershipSignupDocument.setRoles(new String[]{"unverifiedmember"});
@@ -214,40 +213,9 @@ public class SignupDetail extends BaseComponent {
 				wpm.update(membershipSignupDocument);
 				MemberSignupDocument publishedSignUpDocument = (MemberSignupDocument) wpm.getObject(finalMembershipDocumentPath); // getSiteContentBaseBean(request).getBean("member/" + signupDocument.getUserName().replaceAll("@","-at-") + "/membersignupdocument");
 				if (publishedSignUpDocument == null) return null;//major screwup
-				//persistableSession = getPersistableSession(request);
-				//wpm = getWorkflowPersistenceManager(persistableSession);
-				//also queue up the message for welcome
-				//first find the template membership_signup, this template is under emailtemplates folder
-				//SIMPLE WORKFLOW
 				Map<String,Object> contextMap = new HashMap<String, Object>();
 				contextMap.put("membershipSignupDocument", publishedSignUpDocument);
-				//contextMap.put("member", member);
-				StringBuffer sbHostName = new StringBuffer();
-				sbHostName.append(request.getScheme() + "://" +  request.getServerName()).append(":").append(request.getServerPort());
-				
-				contextMap.put("memberHostName", sbHostName.toString());
-				String pathToNewNode = wpm.createAndReturn(memberFolderPath +"/emails", EmailMessage.NAMESPACE, "activation_link", true);
-				EmailMessage emailMessage = (EmailMessage) wpm.getObject(pathToNewNode);
-				emailMessage.setTo(new String[]{membershipSignupDocument.getEmail()});
-				emailMessage.setTemplateKey("member_signup");
-				// here we are creating template for email.
-				
-				EmailTemplate emailTemplate = (EmailTemplate) wpm.getObject(ContentStructure.getEmailTemplatesPath(request) + "/member_signup");
-				if (emailTemplate != null) {
-					log.error("Email template found");
-					log.error("Email template HTML BODY" + emailTemplate.getHtmlBody());
-					String htmlBody = VelocityUtils.parseVelocity(emailTemplate.getHtmlBody(), contextMap);
-					String plainBody = VelocityUtils.parseVelocity(emailTemplate.getPlainBody(), contextMap);
-					String subject = VelocityUtils.parseVelocity(emailTemplate.getSubject(), contextMap);
-					emailMessage.setSubject(subject);
-					emailMessage.setHtmlBody(htmlBody);
-					emailMessage.setPlainBody(plainBody);
-				}
-				else {
-					emailMessage.setSubject("This is TEST, Welcome to MOOTLY");
-					emailMessage.setHtmlBody("<B>COOL</B>");
-				}
-				wpm.update(emailMessage);
+				sendEmail(request, new String[]{membershipSignupDocument.getEmail()}, null, "", "member_signup", contextMap);
 				return membershipSignupDocument;
 			}
 			return null;

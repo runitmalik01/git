@@ -4,6 +4,8 @@ import java.beans.BeanInfo;
 import java.beans.IntrospectionException;
 import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,25 +36,31 @@ public class BeanCloneHelper {
 			DirectFieldAccessor directFieldAccessorDest = new DirectFieldAccessor(dest);
 		    for(PropertyDescriptor property : properties) {
 		        //One way
-		    	BeanClone beanClone = property.getReadMethod().getAnnotation(BeanClone.class);
-		    	if (log.isInfoEnabled()) {
-		    		if (beanClone == null) {
-		    			log.info("Could not find FormField annotation on the readMethod " + property.getReadMethod().getName());
-		    		}
-		    		else {
-		    			log.info("Annotation found on the readMethod " + property.getReadMethod().getName());
-		    		}
-		    	}
-		    	if (beanClone != null) {
-			        String propertyName = beanClone.propertyName();		
-			        String theValue = (String) directFieldAccessorSrc.getPropertyValue(propertyName);	
-			        directFieldAccessorDest.setPropertyValue(new PropertyValue(propertyName,theValue));
-		    	}
+		    	Method aSrcMethod = property.getWriteMethod();
+		    	if (aSrcMethod == null) continue;
+		    	BeanClone beanClone = aSrcMethod.getAnnotation(BeanClone.class);
+		    	if (beanClone == null) continue;
+		    	try {
+		    		Object theValue = directFieldAccessorSrc.getPropertyValue(property.getName());
+					aSrcMethod.invoke(dest,theValue);
+				} catch (IllegalAccessException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IllegalArgumentException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (InvocationTargetException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}		    	
 		    }	
 		} catch (IntrospectionException e) {
 			// TODO Auto-generated catch block
 			//e.printStackTrace();
 			log.error("There was an error converting object to FormMap instance",e);
+		}
+		catch (Exception ex) {
+			log.error("There was an error converting object to FormMap instance",ex);
 		}
 	}	
 }

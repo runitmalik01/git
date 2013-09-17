@@ -49,9 +49,17 @@ public class MemberLogin extends BaseComponent {
 		}catch (Exception ex) {
 			log.info("Error",ex);
 		}
+		
+		//this is an important enhancement for multi tenant model
+		if ( request.getRequestContext().getResolvedMount() != null && request.getRequestContext().getResolvedMount().getMount() != null) {
+			String mountIdentifier =  request.getRequestContext().getResolvedMount().getMount().getIdentifier();
+			request.setAttribute("mountIdentifier", mountIdentifier);
+		}
 	}
-
-	@Override
+	
+	// Not being used
+	// j_security is used by spring security
+	/*@Override
 	public void doAction(HstRequest request, HstResponse response) throws HstComponentException{
 		// TODO Auto-generated method stub
 		super.doAction(request, response);
@@ -136,7 +144,7 @@ public class MemberLogin extends BaseComponent {
 			log.warn("User has not been Registered.");
 			response.setRenderParameter(LOGIN_ERROR,"User.has.not.been.Registered");
 		}
-	}
+	}*/
 
 
 	@Override

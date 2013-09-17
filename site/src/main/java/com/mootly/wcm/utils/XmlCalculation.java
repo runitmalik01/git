@@ -16,7 +16,6 @@ import org.hippoecm.hst.core.component.HstResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
 import com.mootly.wcm.annotations.AdditionalBeans;
 import com.mootly.wcm.beans.AdjustmentOfLossesDoc;
 import com.mootly.wcm.beans.AdvanceTaxDocument;
@@ -31,12 +30,12 @@ import com.mootly.wcm.beans.SelfAssesmetTaxDocument;
 import com.mootly.wcm.beans.TdsFromSalaryDocument;
 import com.mootly.wcm.beans.TdsFromothersDocument;
 import com.mootly.wcm.beans.compound.AdjustmentOfLossesCom;
+import com.mootly.wcm.beans.compound.AdvanceTaxDetail;
 import com.mootly.wcm.beans.compound.CapitalAssetDetail;
 import com.mootly.wcm.beans.compound.FormSixteenDetail;
 import com.mootly.wcm.beans.compound.HouseIncomeDetail;
 import com.mootly.wcm.beans.compound.SalaryIncomeDetail;
 import com.mootly.wcm.beans.compound.TdsFromSalaryDetail;
-import com.mootly.wcm.beans.compound.AdvanceTaxDetail;
 import com.mootly.wcm.model.FinancialYear;
 import com.mootly.wcm.services.IndianCurrencyHelper;
 import com.mootly.wcm.services.ScreenCalculatorService;

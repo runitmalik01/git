@@ -38,6 +38,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.mootly.wcm.annotations.BeanClone;
+import com.mootly.wcm.annotations.CalculatedField;
 import com.mootly.wcm.annotations.FormField;
 import com.mootly.wcm.annotations.NodeBinder;
 import com.mootly.wcm.annotations.TagAsTaxDataProvider;
@@ -48,6 +49,7 @@ import com.mootly.wcm.beans.HouseProperty;
 import com.mootly.wcm.beans.standard.FlexibleDocument;
 import com.mootly.wcm.services.FormMapHelper;
 import com.mootly.wcm.utils.BeanCloneHelper;
+import com.mootly.wcm.utils.CalculatedFieldHelper;
 import com.mootly.wcm.utils.NodeBinderHelper;
 
 
@@ -68,67 +70,73 @@ public class InvoiceDocumentDetail extends FlexibleDocument implements FormMapFi
 	private boolean markedForDeletion;
 	
 	@FormField(name="serviceName",propertyName="serviceName",dataTypeValidationTypes={})
-	@NodeBinder(nodePropertyName="mootlywcm:serviceName",propertyName="serviceName")
-	@BeanClone(propertyName="serviceName")
+	@NodeBinder(nodePropertyName="mootlywcm:serviceName",propertyName="serviceName")	
 	public final String getServiceName() {
 		if (serviceName == null) NodeBinderHelper.setObjectProperty("serviceName", this, "");
 		return serviceName;
 	}
 	
 	@FormField(name="serviceDesc",propertyName="serviceDesc",dataTypeValidationTypes={})
-	@NodeBinder(nodePropertyName="mootlywcm:serviceDescription",propertyName="serviceDesc")
-	@BeanClone(propertyName="serviceDesc")
+	@NodeBinder(nodePropertyName="mootlywcm:serviceDescription",propertyName="serviceDesc")	
 	public final String getServiceDesc() {
+		if (serviceDesc == null) NodeBinderHelper.setObjectProperty("serviceDesc", this, "");
 		return serviceDesc;
 	}
 	
-	@FormField(name="serviceQty",propertyName="serviceQty",dataTypeValidationTypes={},convert = Double.class)
-	@NodeBinder(nodePropertyName="mootlywcm:serviceQuantity",propertyName="serviceQty")
-	@BeanClone(propertyName="serviceQty")
+	@FormField(name="serviceQty",propertyName="serviceQty",dataTypeValidationTypes={})
+	@NodeBinder(nodePropertyName="mootlywcm:serviceQuantity",propertyName="serviceQty")	
 	public final Double getServiceQty() {
+		if (serviceQty == null) NodeBinderHelper.setObjectProperty("serviceQty", this, "");
 		return serviceQty;
 	}
 
 	@FormField(name="serviceRate",propertyName="serviceRate",dataTypeValidationTypes={},convert = Double.class)
-	@NodeBinder(nodePropertyName="mootlywcm:serviceRate",propertyName="serviceRate")
-	@BeanClone(propertyName="serviceRate")
+	@NodeBinder(nodePropertyName="mootlywcm:serviceRate",propertyName="serviceRate")	
 	public final Double getServiceRate() {
 		if (serviceRate == null) NodeBinderHelper.setObjectProperty("serviceRate", this, 0.00D);
 		return serviceRate;
 	}
 	
 	@FormField(name="filingMode",propertyName="filingMode",dataTypeValidationTypes={})
-	@NodeBinder(nodePropertyName="mootlywcm:filingMode",propertyName="filingMode")
-	@BeanClone(propertyName="filingMode")
+	@NodeBinder(nodePropertyName="mootlywcm:filingMode",propertyName="filingMode")	
 	public final String getFilingMode() {
 		if (filingMode == null) NodeBinderHelper.setObjectProperty("filingMode", this, "");
 		return filingMode;
 	}
 	
+	@NodeBinder(nodePropertyName="mootlywcm:serviceAmount",propertyName="serviceAmount")	
 	public Double getServiceAmount() {
+		if (serviceAmount == null) NodeBinderHelper.setObjectProperty("serviceAmount", this, "");
 		return serviceAmount;
 	}
 	
+	@BeanClone(propertyName="serviceName")
 	public final void setServiceName(String serviceName) {
 		this.serviceName = serviceName;
 	}
 
+	@BeanClone(propertyName="serviceDesc")
 	public final void setServiceDesc(String serviceDesc) {
 		this.serviceDesc = serviceDesc;
 	}
 	
+	@BeanClone(propertyName="serviceQty")
 	public final void setServiceQty(Double serviceQty) {
 		this.serviceQty = serviceQty;
 	}
 
+	@BeanClone(propertyName="serviceRate")
 	public final void setServiceRate(Double serviceRate) {
 		this.serviceRate = serviceRate;
 	}
 
+	@BeanClone(propertyName="filingMode")
 	public final void setFilingMode(String filingMode) {
 		this.filingMode = filingMode;
 	}
 	
+	@CalculatedField(springExpression="#serviceRate * #serviceQty")
+	@BeanClone(propertyName="serviceAmount")
 	public void setServiceAmount(Double serviceAmount) {
 		this.serviceAmount = serviceAmount;
 	}
@@ -157,6 +165,8 @@ public class InvoiceDocumentDetail extends FlexibleDocument implements FormMapFi
 		super.fill(formMap);
 		FormMapHelper formMapHelper = new FormMapHelper();
 		formMapHelper.fillFromFormMap(this, formMap);
+		CalculatedFieldHelper calculatedFieldHelper = new CalculatedFieldHelper();
+		calculatedFieldHelper.processCalculatedFields(this);
 	}
 
 	

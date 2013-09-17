@@ -21,9 +21,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.onehippo.org/jsp/google-analytics" prefix="ga" %>
 <%@include file="../../../includes/tags.jspf" %>
-<hst:link var="logopath" path="/img/w4ilogo.png"/>
+<hst:link var="logopath" path="/img/w4ilogo.png"/>	
 <hst:link var="logopathtext" path="/images/w4indiatxt.png"/>
 <hst:link var="home" path="/"/>
+<hst:link var="imgLogo" hippobean="${logo.original}"/>
 <div id="logo">
-        <a href="${home}"><img class="logo" width="290" height="40" src="${logopath}?123">&nbsp;</a>
+ 	<a href="${home}"><img class="logo" width="${logo.original.width}" height="${logo.original.height}" src="${imgLogo}?123">&nbsp;</a>
 </div>

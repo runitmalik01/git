@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.jcr.Credentials;
+import javax.jcr.ItemNotFoundException;
 import javax.jcr.LoginException;
 import javax.jcr.Node;
 import javax.jcr.NodeIterator;
@@ -31,11 +32,11 @@ import com.mootly.wcm.services.SecureHashGeneration;
  * @author admin
  *
  */
-public class MootlyHippoUserDetailsServiceImpl implements HippoUserDetailsService {
+public class MootlyHippoUserDetailsServiceImpl implements MootlyUserDetailsService {
 	 static final Logger log = LoggerFactory.getLogger(HippoUserDetailsServiceImpl.class);
 	 private final static String SELECT_PASSWORD_QUERY = "SELECT * FROM mootlywcm:membersignupdocument WHERE mootlywcm:password='pwd'";
 	  //private static final String DEFAULT_USER_QUERY = "//hippo:configuration/hippo:users/{0}";
-	  private static final String DEFAULT_USER_QUERY = "//{0}/membersignupdocument/membersignupdocument";
+	  private static final String DEFAULT_USER_QUERY = "{0}/{1}/membersignupdocument/membersignupdocument";
 	  
 	  private static final String DEFAULT_VENDOR_USER_QUERY = "//element(*,mootlywcm:vendorsignupdocument)[@mootlywcm:members=''{0}'']";
 	  
@@ -156,7 +157,7 @@ public class MootlyHippoUserDetailsServiceImpl implements HippoUserDetailsServic
 	    return loadUserByUsernameAndPassword(username, null);
 	  }
 
-	  public UserDetails loadUserByUsernameAndPassword(String username, String password) throws UsernameNotFoundException, DataAccessException {
+	  public UserDetails loadUserByUsernameAndPassword(String username, String password, String mountIdentifier) throws UsernameNotFoundException, DataAccessException {
 	    User user = null;
 	    Session session = null;
 
@@ -166,23 +167,65 @@ public class MootlyHippoUserDetailsServiceImpl implements HippoUserDetailsServic
 	      } else {
 	        session = getSystemRepository().login();
 	      }
+	      String pathToRestrict = "/content/documents/mootlywcm/members";
+	      if (mountIdentifier != null) {
+	    	  //attempt to get the mount path and then get the channel out of it
+	    	  try {
+	    		 Node theMountNode = session.getNodeByIdentifier(mountIdentifier);
+	    		 if ( theMountNode.hasProperty("hst:channelpath") ) {
+	    			 String channelPath = theMountNode.getProperty("hst:channelpath").getString();
+	    			 String channelAbsPath = channelPath + "/" + "hst:channelinfo";
+	    			 Node theChannelInfoNode = session.getNode(channelAbsPath);
+	    			 boolean isReseller = false;
+	    			 String resellerId = null;
+	    			 if ( theChannelInfoNode.hasProperty("isReseller") ) {
+	    				 isReseller = Boolean.valueOf( theChannelInfoNode.getProperty("isReseller").getString() );
+	    			 }
+	    			 if ( isReseller ) {
+	    				 if (theChannelInfoNode.hasProperty("resellerId")) {
+	    					 resellerId = theChannelInfoNode.getProperty("resellerId").getString().trim();
+	    					 pathToRestrict = "/content/documents/mootlywcm/resellers/" + resellerId + "/members";
+	    				 }
+	    			 }
+	    		 }
+	    	  }catch (ItemNotFoundException e) {
+	    		  log.error("Error finding node by identifier " + mountIdentifier,e);
+	    		  throw new UsernameNotFoundException("user.not.found");
+	    	  }
+	    	  catch (RepositoryException e) {
+	    		  log.error("Error finding node by identifier " + mountIdentifier,e);
+	    		  throw new UsernameNotFoundException("user.not.found");
+	    	  }
+	      }
 
-	      String statement = MessageFormat.format(getUserQuery(), username.replaceAll("@", "-at-"));
+	      String statement = MessageFormat.format(getUserQuery(), pathToRestrict, username.replaceAll("@", "-at-"));
 
 	      if (log.isDebugEnabled()) {
 	        log.debug("Searching user with query: " + statement);
 	      }
 
-	      Query q = session.getWorkspace().getQueryManager().createQuery(statement, getQueryLanguage());
-	      QueryResult result = q.execute();
-	      NodeIterator nodeIt = result.getNodes();
-	      Node userNode = (nodeIt.hasNext() ? userNode = nodeIt.nextNode() : null);
+	      //Query q = session.getWorkspace().getQueryManager().createQuery(statement, getQueryLanguage());
+	      //QueryResult result = q.execute();
+	      //NodeIterator nodeIt = result.getNodes();
+	      Node userNode = null;
+	      try {
+	    	  userNode = session.getNode(statement);  //(nodeIt.hasNext() ? userNode = nodeIt.nextNode() : null);
+	      } catch (ItemNotFoundException e) {
+    		  log.error("Error finding node by identifier " + mountIdentifier,e);
+    		  throw new UsernameNotFoundException("user.not.found");
+    	  }
+    	  catch (RepositoryException e) {
+    		  log.error("Error finding node by identifier " + mountIdentifier,e);
+    		  throw new UsernameNotFoundException("user.not.found");
+    	  } 
+	      
 	      if (userNode == null) {
 	    	  if (log.isInfoEnabled()) {
 	    		  log.info("User node not found");	
 	    	  }
 	    	  throw new UsernameNotFoundException("user.not.found");
 	      }
+	       
 	      String passwordProp = null;
 	      //changes by priyank
 	      //check for both type of Password in SHA-256 or String 
@@ -330,4 +373,12 @@ public class MootlyHippoUserDetailsServiceImpl implements HippoUserDetailsServic
 			}
 			return null;
 		}
+
+	@Override
+	public UserDetails loadUserByUsernameAndPassword(String username,
+			String password)
+			throws UsernameNotFoundException, DataAccessException {
+		// TODO Auto-generated method stub
+		return loadUserByUsernameAndPassword(username,password,null);
+	}
 }

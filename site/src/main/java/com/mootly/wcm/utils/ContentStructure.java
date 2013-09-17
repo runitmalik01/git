@@ -17,9 +17,9 @@ import org.hippoecm.hst.core.component.HstRequest;
 
 public final class ContentStructure {
 
-	final static String MEMBER_FOLDER_NAME = "members";
-	final static String EMAILTEMPLATES_FOLDER_NAME = "emailtemplates";
-	final static String VENDOR_FOLDER_NAME = "vendors";
+	public final static String MEMBER_FOLDER_NAME = "members";
+	public final static String EMAILTEMPLATES_FOLDER_NAME = "emailtemplates";
+	public final static String VENDOR_FOLDER_NAME = "vendors";
 
 	// it specify the path for the document in repository.
 	public static String getMemberTdsFolder(HstRequest request) {

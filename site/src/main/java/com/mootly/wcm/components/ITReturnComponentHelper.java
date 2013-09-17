@@ -7,6 +7,7 @@ import javax.jcr.Session;
 
 import org.apache.commons.lang.StringUtils;
 import org.hippoecm.hst.component.support.forms.FormMap;
+import org.hippoecm.hst.configuration.hosting.Mount;
 import org.hippoecm.hst.content.beans.ObjectBeanManagerException;
 import org.hippoecm.hst.content.beans.ObjectBeanPersistenceException;
 import org.hippoecm.hst.content.beans.manager.workflow.WorkflowPersistenceManager;
@@ -21,6 +22,7 @@ import com.mootly.wcm.annotations.PrimaryBean;
 import com.mootly.wcm.beans.CompoundChildUpdate;
 import com.mootly.wcm.beans.FormMapFiller;
 import com.mootly.wcm.beans.events.BeanLifecycle;
+import com.mootly.wcm.channels.WebsiteInfo;
 import com.mootly.wcm.components.ITReturnComponent.FullReviewedWorkflowCallbackHandler;
 import com.mootly.wcm.components.ITReturnScreen.PAGE_ACTION;
 import com.mootly.wcm.components.ITReturnScreen.PAGE_OUTPUT_FORMAT;
@@ -123,13 +125,26 @@ public final class ITReturnComponentHelper {
 		return retValue;
 	}
 	
-	/**
-	 * 
-	 * @return
-	 */
-	public String getBaseAbsolutePathToReturnDocuments(HstRequest request, String baseRelPathToReturnDocuments) {
-		String baseAbsolutePathToReturnDocuments = request.getRequestContext().getResolvedMount().getMount().getCanonicalContentPath() + "/" + baseRelPathToReturnDocuments;
-		return baseAbsolutePathToReturnDocuments;
+	public boolean isReSeller(HstRequest request) {
+		final Mount mount = request.getRequestContext().getResolvedMount().getMount();
+        final WebsiteInfo info = mount.getChannelInfo();
+        if (info == null) {
+            log.warn("No channel info available for mount '{}'. No logo will be shown", mount.getMountPath());
+            return false;
+        }
+        if (info.isReseller() == null || !Boolean.valueOf(info.isReseller()) ) {
+        	return false;
+        }        
+        
+        return true;
+	}
+	
+	public String getResellerId(HstRequest request) {
+		final Mount mount = request.getRequestContext().getResolvedMount().getMount();
+        final WebsiteInfo info = mount.getChannelInfo();
+        boolean isReseller = isReSeller(request);
+        if ( !isReseller ) return null;
+        return info.getResellerId();
 	}
 	
 	/**

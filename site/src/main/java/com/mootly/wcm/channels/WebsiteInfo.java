@@ -29,7 +29,7 @@ import com.mootly.wcm.DocumentTypes;
 @FieldGroupList({
         @FieldGroup(
                 titleKey = "fields.channel",
-                value = { "logo", "pageTitlePrefix", "themeCss" }
+                value = { "logo", "pageTitlePrefix", "themeCss","contentFolder","startDate","endDate" }
         )
 })
 public interface WebsiteInfo extends ChannelInfo {
@@ -51,5 +51,24 @@ public interface WebsiteInfo extends ChannelInfo {
             pickerInitialPath = "/content/assets/themes/css"
     )
     String getThemeCss();
+    
+    @Parameter(name = "contentFolder")
+    @JcrPath(
+    		
+            pickerInitialPath = "/content/mootlywcm"
+    )
+    String getContentFolder();
+
+    @Parameter(name = "startDate", defaultValue = "")
+    String getStartDate();
+
+    @Parameter(name = "endDate", defaultValue = "")
+    String getEndDate();
+    
+    @Parameter(name = "isReseller", defaultValue = "true")
+    String isReseller();
+    
+    @Parameter(name = "resellerId", defaultValue = "", required = true)
+    String getResellerId();
 
 }

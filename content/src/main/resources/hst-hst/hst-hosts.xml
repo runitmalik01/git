@@ -881,6 +881,36 @@
 	          </sv:property>
 	        </sv:node>
 	      </sv:node>
+	      <!-- qlick -->
+		  <sv:node sv:name="qlick" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+			  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+			    <sv:value>hst:virtualhost</sv:value>
+			  </sv:property>
+			  <sv:property sv:name="jcr:uuid" sv:type="String">
+			    <sv:value>8b648468-1175-4baa-a06e-175c4a3ad377</sv:value>
+			  </sv:property>
+			  <sv:node sv:name="hst:root">
+			    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+			      <sv:value>hst:mount</sv:value>
+			    </sv:property>
+			    <sv:property sv:name="jcr:uuid" sv:type="String">
+			      <sv:value>dc8eac68-1ec4-4d5e-817c-22a71c81bd08</sv:value>
+			    </sv:property>
+			    <sv:property sv:name="hst:alias" sv:type="String">
+			      <sv:value>site</sv:value>
+			    </sv:property>
+			    <sv:property sv:name="hst:channelpath" sv:type="String">
+			      <sv:value>/hst:hst/hst:channels/qlick</sv:value>
+			    </sv:property>
+			    <sv:property sv:name="hst:mountpoint" sv:type="String">
+			      <sv:value>/hst:hst/hst:sites/mootlywcm</sv:value>
+			    </sv:property>
+			    <sv:property sv:name="hst:showport" sv:type="Boolean">
+			      <sv:value>true</sv:value>
+			    </sv:property>
+			  </sv:node>
+		  </sv:node>	      
+	      <!-- qlick  -->
 	    </sv:node>
 	  </sv:node>
 	</sv:node>

@@ -33,7 +33,8 @@ public class MootlyHippoAuthenticationProvider extends AbstractUserDetailsAuthen
 
   private Repository systemRepository;
 
-  private HippoUserDetailsService hippoUserDetailsService;
+  private MootlyUserDetailsService hippoUserDetailsService;
+  
 
   public MootlyHippoAuthenticationProvider() {
   }
@@ -50,16 +51,15 @@ public class MootlyHippoAuthenticationProvider extends AbstractUserDetailsAuthen
     return systemRepository;
   }
 
-  public void setHippoUserDetailsService(HippoUserDetailsService hippoUserDetailsService) {
+  public void setHippoUserDetailsService(MootlyUserDetailsService hippoUserDetailsService) {
     this.hippoUserDetailsService = hippoUserDetailsService;
   }
 
-  protected HippoUserDetailsService getHippoUserDetailsService() {
+  protected MootlyUserDetailsService getHippoUserDetailsService() {
     if (hippoUserDetailsService == null) {
-      hippoUserDetailsService = new HippoUserDetailsServiceImpl();
+      hippoUserDetailsService = new MootlyHippoUserDetailsServiceImpl();
       ((HippoUserDetailsServiceImpl) hippoUserDetailsService).setDefaultRoleName("everybody");
     }
-
     return hippoUserDetailsService;
   }
 
@@ -80,17 +80,25 @@ public class MootlyHippoAuthenticationProvider extends AbstractUserDetailsAuthen
       throws AuthenticationException {
 
     Repository sysRepo = getSystemRepository();
+    String mountIdentifier = null;
 
     if (sysRepo == null) {
       throw new ProviderNotFoundException("Hippo Repository is not available now.");
     }
-
+    
     Session session = null;
     String password = authentication.getCredentials().toString();
     if (password == null || password.trim().equals("")) {
     	throw new AuthenticationServiceException("password.mismatch");
     }
-    
+    if (authentication != null) {
+    	Object oDetails = authentication.getDetails();
+    	if (oDetails != null && oDetails instanceof MootlyWebAuthenticationDetails) {
+    		MootlyWebAuthenticationDetails moa = (MootlyWebAuthenticationDetails) oDetails;
+    		mountIdentifier = moa.getMountIdentifier();
+    		//moa.getRemoteAddress()
+    	}
+    }
     //There is no need to do this as all user's who have the membershipsignupdocument should be allowed to login
     /*
     try {
@@ -109,7 +117,7 @@ public class MootlyHippoAuthenticationProvider extends AbstractUserDetailsAuthen
     UserDetails loadedUser = null;
 
     try {
-      loadedUser = getHippoUserDetailsService().loadUserByUsernameAndPassword(username, password);
+      loadedUser = getHippoUserDetailsService().loadUserByUsernameAndPassword(username, password,mountIdentifier);
     }catch (UsernameNotFoundException usernameNotFoundException) {
     	if (usernameNotFoundException.getMessage() != null && usernameNotFoundException.getMessage().equals("password.mismatch")) {
     		throw new AuthenticationServiceException(usernameNotFoundException.getMessage());

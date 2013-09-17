@@ -154,7 +154,6 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 	RetrieveITRV retrieveITRVService = null;
 	Retrieve26ASInformation retrieve26ASService = null;
 	RetrievePANInformation retrievePANInformation = null;
-	ITReturnComponentHelper itReturnComponentHelper = null;
 
 	String servletPath = null;
 	String xsltPath = null;
@@ -240,7 +239,6 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		retrieveITRVService = context.getBean(RetrieveITRV.class);
 		retrieve26ASService = context.getBean(Retrieve26ASInformation.class);
 
-		itReturnComponentHelper = context.getBean( ITReturnComponentHelper.class );
 	}
 
 
@@ -916,6 +914,11 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		siteContentBaseBean = getSiteContentBaseBean(request);
 		String memberFolderName= getMemberFolderPath(request);
 		hippoBeanMemberBase = siteContentBaseBean.getBean("members/" + memberFolderName);
+		boolean isReseller = itReturnComponentHelper.isReSeller(request);
+		String resellerId = itReturnComponentHelper.getResellerId(request);
+		if (isReseller && resellerId != null) {
+			hippoBeanMemberBase = getSiteContentBaseBeanForReseller(request).getBean("members/" + memberFolderName);
+		}
 		if (hippoBeanMemberBase != null) {
 			memberRootFolderAbsolutePath = hippoBeanMemberBase.getPath();
 			//we need to get into pans sub folder
@@ -927,7 +930,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 
 		baseRelPathToReturnDocuments = itReturnComponentHelper.getBaseRelPathToReturnDocuments(getMemberFolderPath(request), getPAN(), getFinancialYear(), theFolderContainingITRDocuments);  //"members/" + getMemberFolderPath(request) + "/pans/" + getPAN() + "/" + getFinancialYear() + "/" + theFolderContainingITRDocuments; // getITReturnType();
 		hippoBeanBaseITReturnDocuments = siteContentBaseBean.getBean(baseRelPathToReturnDocuments);
-		baseAbsolutePathToReturnDocuments = itReturnComponentHelper.getBaseAbsolutePathToReturnDocuments(request, baseRelPathToReturnDocuments); //request.getRequestContext().getResolvedMount().getMount().getCanonicalContentPath() + "/" + baseRelPathToReturnDocuments;
+		baseAbsolutePathToReturnDocuments =  getCanonicalBasePathForWrite(request) + "/" + baseRelPathToReturnDocuments; //itReturnComponentHelper.getBaseAbsolutePathToReturnDocuments(request, baseRelPathToReturnDocuments); //request.getRequestContext().getResolvedMount().getMount().getCanonicalContentPath() + "/" + baseRelPathToReturnDocuments;
 		//if (hippoBeanBaseITReturnDocuments != null) {
 		//	baseAbsolutePathToReturnDocuments = hippoBeanBaseITReturnDocuments.getPath();
 		//}
@@ -1279,7 +1282,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		if (log.isInfoEnabled()) {
 			log.info("I will not attempt to fetch the primary bean using the following path:" + getParentBeanPath());
 		}
-		parentBean = getSiteContentBaseBean(request).getBean(getParentBeanPath(),getParentBeanClass());
+		parentBean = getSiteContentBaseBeanForReseller(request).getBean(getParentBeanPath(),getParentBeanClass());
 	}
 
 	protected void setRequestAttributes(HstRequest request) {
@@ -2035,7 +2038,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 	 * @param pathToTheItReturn
 	 */
 	protected List<HippoBean> loadAllBeansUnderTheFolder(HstRequest request,HstResponse response,String baseRelPathToReturnDocuments,String sortByAttribute,SORT_DIRECTION sortDirection) {
-		HippoBean scopeForAllBeans =  getSiteContentBaseBean(request).getBean(baseRelPathToReturnDocuments);
+		HippoBean scopeForAllBeans =  getSiteContentBaseBeanForReseller(request).getBean(baseRelPathToReturnDocuments);
 		HstQuery hstQuery;
 		List<HippoBean> theLocalBeansUnderMemberFolder = null;
 		try {

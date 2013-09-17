@@ -48,6 +48,11 @@
      <beans:property name="authenticationFailureHandler" ref="failureHandler"/>
      <beans:property name="authenticationSuccessHandler" ref="successHandler"/>
      <beans:property name="rememberMeServices" ref="rememberMeServices"/>
+     <beans:property name="authenticationDetailsSource">
+          <beans:bean class="org.springframework.security.authentication.AuthenticationDetailsSourceImpl">
+              <beans:property name="clazz" value="org.onehippo.forge.security.support.springsecurity.authentication.MootlyWebAuthenticationDetails"/>
+          </beans:bean>
+     </beans:property>
    </beans:bean>
 
    <beans:bean id="successHandler"
