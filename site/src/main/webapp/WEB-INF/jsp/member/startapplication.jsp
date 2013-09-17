@@ -273,15 +273,14 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 									value="<c:choose><c:when test="${not empty parentBean.lastName}"><c:out value="${parentBean.lastName}"/></c:when><c:when test="${not empty savedValuesFormMap && not empty savedValuesFormMap.value['pi_last_name']}"><c:out value="${savedValuesFormMap.value['pi_last_name'].value}"/></c:when></c:choose>" maxlength="75"/>
 							</div>
 							<input type="hidden" id="pi_first_name" name="pi_first_name" class="uprcase"
-								value="-" /> <input type="hidden" id="pi_middle_name" class="uprcase"
-								name="pi_middle_name" value="-" /> <input type="hidden"
-								id="pi_dob" name="pi_dob" value="01/01/1970" /> <input
+								value="" /> <input type="hidden" id="pi_middle_name" class="uprcase"
+								name="pi_middle_name" value="" /><input
 								type="hidden" id="gender" name="gender" value="X" />
 						</div>
 					</c:otherwise>
 				</c:choose>
 
-				<c:if test="${filingStatus eq 'PERSON'}">
+				<c:if test="${filingStatus eq 'PERSON' || filingStatus eq 'HUF'}">
 					<div class="row-fluid show-grid">
 						<div class="span4">
 							<div class="rowlabel">
@@ -293,6 +292,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 									value="<c:if test="${not empty parentBean.DOBStr}"><c:out value="${parentBean.DOBStr}"/></c:if>" />
 							</div>
 						</div>
+						<c:if test="${filingStatus eq 'PERSON' }">
 						<div class="span4">
 							<div class="rowlabel">
 								<label for="pi_dob"><small>Gender</small> </label>
@@ -309,6 +309,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 								</select>
 							</div>
 						</div>
+						</c:if>
 						<div class="span4">
 							<div class="rowlabel">
 								<label for="pi_father_name"><small>Father Name</small> </label>
@@ -1187,11 +1188,11 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 			if($('#pi_state').val()=='99'){
 			      $('#pi_pin_code').val('999999');
 			      $('#pi_pin_code').attr('readonly','readonly');
-			     
+
 			   }else{
                      $('#pi_pin_code').val('');
                      $('#pi_pin_code').removeAttr('readonly');
-                    
+
                     }
 			});
 			$('#bd_bank_name').tooltip('data-toggle');
