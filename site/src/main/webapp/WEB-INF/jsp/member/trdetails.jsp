@@ -54,7 +54,7 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 									key="tax.id.itr2" /> </small> </label>
 					</div>
 					<div class="rowlabel">
-						<input id="tax_ID" name="tax_ID"
+						<input id="tax_ID" name="tax_ID"  maxlength="16"
 							type="text" 
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.tax_ID}"/></c:if>" />
 					</div>
