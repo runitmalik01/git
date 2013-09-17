@@ -17,6 +17,7 @@ public class ScheduleDOADetails extends HippoItem implements FormMapFiller {
 	static final public String NODE_NAME = ScheduleDOADetails.class.getName().toLowerCase();
 	private final static Logger log = LoggerFactory.getLogger(ScheduleDOADetails.class); 
 	
+	private String type_Asset;
 	private String rates;
 	private Double valFirstDayPrevYr;
 	private Double periodMore180Day;
@@ -43,7 +44,13 @@ public class ScheduleDOADetails extends HippoItem implements FormMapFiller {
 	public final void setMarkedForDeletion(boolean markedForDeletion) {
 		this.markedForDeletion = markedForDeletion;
 	}
-
+	public String getType_Asset(){
+		if(type_Asset == null) type_Asset = getProperty("mootlywcm:type_Asset");
+		return type_Asset;
+	}
+	public void setType_Asset(String type_Asset){
+		this.type_Asset = type_Asset;
+	}
 	public String getRates() {
 		if(rates == null) rates = getProperty("mootlywcm:rates");
 		return rates;
@@ -202,8 +209,8 @@ public class ScheduleDOADetails extends HippoItem implements FormMapFiller {
 	// TODO Auto-generated method stub
 	try {
 		
-			
-			 node.setProperty("mootlywcm:rates",getRates());
+				node.setProperty("mootlywcm:type_Asset", getType_Asset());
+				node.setProperty("mootlywcm:rates",getRates());
 				node.setProperty("mootlywcm:valFirstDayPrevYr", getValFirstDayPrevYr());
 				node.setProperty("mootlywcm:periodMore180Day", getPeriodMore180Day());
 				node.setProperty("mootlywcm:prevYrConsider", getPrevYrConsider());
@@ -232,8 +239,12 @@ public class ScheduleDOADetails extends HippoItem implements FormMapFiller {
 	@Override
 	public void fill(FormMap formMap) {
 		// TODO Auto-generated method stub
+		
 		double defValueifNull=0.0d;
-
+		if (!(formMap.getField("type_Asset").getValue().isEmpty())){
+			String type_AssetStr=formMap.getField("type_Asset").getValue();
+			setType_Asset(type_AssetStr);
+		}
 		if (!(formMap.getField("rates").getValue().isEmpty())){
 			String ratesStr=formMap.getField("rates").getValue();
 			setRates(ratesStr);
@@ -331,13 +342,11 @@ public class ScheduleDOADetails extends HippoItem implements FormMapFiller {
 			setAddDepreciatMore180Day(val_addDepreciatMore180Day);
 		}
 		if (formMap.getField("addDepreciatLess180Day").getValue().isEmpty()){
-			log.info("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
 			setAddDepreciatLess180Day(defValueifNull);
 		}
 		else{
 			String addDepreciatLess180DayStr=formMap.getField("addDepreciatLess180Day").getValue();
 			double val_addDepreciatLess180Day= Double.parseDouble(addDepreciatLess180DayStr);
-			log.info("BBBBBBBBBBBBBBBBBBBBBBBB"+val_addDepreciatLess180Day);
 			setAddDepreciatLess180Day(val_addDepreciatLess180Day);
 		}
 		
@@ -380,6 +389,7 @@ public class ScheduleDOADetails extends HippoItem implements FormMapFiller {
 	public <T extends HippoBean> void cloneBean(T sourceBean) {
 		// TODO Auto-generated method stub
 		ScheduleDOADetails objScheduleDPMDetails = (ScheduleDOADetails) sourceBean;
+		setType_Asset(objScheduleDPMDetails.getType_Asset());
 		setRates(objScheduleDPMDetails.getRates());
 		setValFirstDayPrevYr(objScheduleDPMDetails.getValFirstDayPrevYr());
 		setPeriodMore180Day(objScheduleDPMDetails.getPeriodMore180Day());

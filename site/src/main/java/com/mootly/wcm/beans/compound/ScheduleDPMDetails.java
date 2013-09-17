@@ -30,6 +30,7 @@ public class ScheduleDPMDetails extends HippoItem implements FormMapFiller {
 	private Double depreciationFullRate;
 	private Double depreciationHalfRate;
 	private Double addDepreciatMore180Day;
+	//private Double addDepreciatLess180Day;
 	private Double addDepreciatLess180Day;
 	private Double totalDepreciation;
 	private Double expense_TransferAsset;
@@ -152,16 +153,15 @@ public class ScheduleDPMDetails extends HippoItem implements FormMapFiller {
 	public void setAddDepreciatMore180Day(Double addDepreciatMore180Day) {
 		this.addDepreciatMore180Day = addDepreciatMore180Day;
 	}
-
-	public Double getAddDepreciatLess180Day() {
+	public Double getAddDepreciatLess180Day(){
 		if(addDepreciatLess180Day == null) addDepreciatLess180Day = getProperty("mootlywcm:addDepreciatLess180Day");
 		return addDepreciatLess180Day;
 	}
 
-	public void setAddDepreciatLess180Day(Double addDepreciatLess180Day) {
+	public void setAddDepreciatLess180Day(Double addDepreciatLess180Day){
 		this.addDepreciatLess180Day = addDepreciatLess180Day;
 	}
-
+	
 	public Double getTotalDepreciation() {
 		if(totalDepreciation == null) totalDepreciation = getProperty("mootlywcm:totalDepreciation");
 		return totalDepreciation;
@@ -203,7 +203,7 @@ public class ScheduleDPMDetails extends HippoItem implements FormMapFiller {
 	try {
 		
 			
-			 node.setProperty("mootlywcm:rates",getRates());
+				node.setProperty("mootlywcm:rates",getRates());
 				node.setProperty("mootlywcm:valFirstDayPrevYr", getValFirstDayPrevYr());
 				node.setProperty("mootlywcm:periodMore180Day", getPeriodMore180Day());
 				node.setProperty("mootlywcm:prevYrConsider", getPrevYrConsider());
@@ -215,11 +215,12 @@ public class ScheduleDPMDetails extends HippoItem implements FormMapFiller {
 				node.setProperty("mootlywcm:depreciationFullRate", getDepreciationFullRate());
 				node.setProperty("mootlywcm:depreciationHalfRate", getDepreciationHalfRate());
 				node.setProperty("mootlywcm:addDepreciatMore180Day", getAddDepreciatMore180Day());
+				node.setProperty("mootlywcm:addDepreciatLess180Day", getAddDepreciatLess180Day());
 				node.setProperty("mootlywcm:totalDepreciation", getTotalDepreciation());
 				node.setProperty("mootlywcm:expense_TransferAsset", getExpense_TransferAsset());
 				node.setProperty("mootlywcm:capitalGain_LossSec50", getCapitalGain_LossSec50());
 				node.setProperty("mootlywcm:valLastDayPrevYr", getValLastDayPrevYr());
-				node.setProperty("mootlywcm:addDepreciatLess180Day", getAddDepreciatLess180Day());
+			//	node.setProperty("mootlywcm:addDepreciatLess180Day", getAddDepreciatLess180Day());
 			
 
 		} catch (RepositoryException rex) {
@@ -331,15 +332,16 @@ public class ScheduleDPMDetails extends HippoItem implements FormMapFiller {
 			setAddDepreciatMore180Day(val_addDepreciatMore180Day);
 		}
 		if (formMap.getField("addDepreciatLess180Day").getValue().isEmpty()){
-			log.info("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+			log.info("value is null");
 			setAddDepreciatLess180Day(defValueifNull);
 		}
 		else{
 			String addDepreciatLess180DayStr=formMap.getField("addDepreciatLess180Day").getValue();
 			double val_addDepreciatLess180Day= Double.parseDouble(addDepreciatLess180DayStr);
-			log.info("BBBBBBBBBBBBBBBBBBBBBBBB"+val_addDepreciatLess180Day);
+			log.info("GGGGGGGGGGGGGGGGGGGGGGGGGG"+val_addDepreciatLess180Day);
 			setAddDepreciatLess180Day(val_addDepreciatLess180Day);
 		}
+		
 		
 		if (formMap.getField("totalDepreciation").getValue().isEmpty()){
 			setTotalDepreciation(defValueifNull);
@@ -393,6 +395,7 @@ public class ScheduleDPMDetails extends HippoItem implements FormMapFiller {
 		setDepreciationFullRate(objScheduleDPMDetails.getDepreciationFullRate());
 		setDepreciationHalfRate(objScheduleDPMDetails.getDepreciationHalfRate());
 		setAddDepreciatMore180Day(objScheduleDPMDetails.getAddDepreciatMore180Day());
+		//setAddDepreciatLess180Day(objScheduleDPMDetails.getAddDepreciatLess180Day());
 		setAddDepreciatLess180Day(objScheduleDPMDetails.getAddDepreciatLess180Day());
 		setTotalDepreciation(objScheduleDPMDetails.getTotalDepreciation());
 		setExpense_TransferAsset(objScheduleDPMDetails.getExpense_TransferAsset());
