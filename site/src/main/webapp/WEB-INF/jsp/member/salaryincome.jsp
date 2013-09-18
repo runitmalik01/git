@@ -31,6 +31,7 @@
 			</div>
 		</c:forEach>
 	</c:if>
+	<c:if test="${finStatus != 'H'}">
 	<c:choose>
 		<c:when
 			test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD') || pageAction == 'NEW_CHILD'}">
@@ -226,62 +227,6 @@
 									<fmt:formatNumber type="number"  groupingUsed="false" value="${childBean.gross_salary}" /></c:if>" />
 							</div>
 						</div>
-					<%--	<div class="span4">
-							<div class="rowlabel">
-								<label>Allowance Not Exempt: </label>
-							</div>
-							<div class="rowlabel">
-								<input type="text" name="Allowance" id="Allowance"
-									maxlength="14" class="decimal"
-									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.allowance}"/></c:if>">
-							</div>
-						</div>
-
-						<div class="span4">
-							<div class="rowlabel">
-								<label><fmt:message key="member.allowance.salary" /> </label>
-							</div>
-							<div class="rowlabel">
-								<input type="text" name="Allowance1" maxlength="14" value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.allowance1}"/></c:if>"
-									class="decimal">
-							</div>
-						</div>
-					</div>
-					<div class="row-fluid show-grid">
-						<div class="span4">
-							<div class="rowlabel">
-								<label><fmt:message key="member.value.preq" /> </label>
-							</div>
-							<div class="rowlabel">
-								<input type="text" maxlength="14" name="Perquisite"
-									id="Perquisite" class="decimal"
-									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.perquisite}"/></c:if>">
-							</div>
-						</div>
-
-						<div class="span4">
-							<div class="rowlabel">
-								<label><fmt:message key="member.value.profit" /> </label>
-							</div>
-							<div class="rowlabel">
-								<input type="text" maxlength="14" name="profit" id="profit"
-									class="decimal"
-									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.profit}"/></c:if>">
-							</div>
-						</div>
-						<div class="span4">
-							<div class="rowlabel">
-								<label for="Taxable_earning"><fmt:message
-										key="member.value.tax" /> </label>
-							</div>
-
-							<div class="rowlabel">
-								<input type="text" name="Taxable_earning" id="Taxable_earning"
-									class="decimal" readonly="readonly"
-									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"
-            maxIntegerDigits="14" value="${childBean.taxable_earning}" /></c:if>" />
-							</div>
-						</div> --%>
 					</div>
 				</fieldset>
 				<div class="row-fluid show-grid">
@@ -332,6 +277,11 @@
 				New</a>
 		</c:otherwise>
 	</c:choose>
+	</c:if>
+	<br/><br/>
+<c:if test="${finStatus eq 'H' }">
+	<p style="color: red" align="center"><b>Sorry!!!</b>, You are not eligible for this service</p></c:if>
+
 </div>
 </div>
 <res:client-validation formId="frmdataSlryInc"
