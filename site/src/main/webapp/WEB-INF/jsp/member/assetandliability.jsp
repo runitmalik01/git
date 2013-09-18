@@ -203,7 +203,8 @@
 				<div class="span3">
 					<div class="rowlabel">
 						<input id="total" name="total" type="text" maxlength="14"
-							readonly="readonly" value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.total}" />"/>
+							readonly="readonly"
+							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.total}" />" />
 					</div>
 				</div>
 			</div>
