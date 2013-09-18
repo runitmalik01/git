@@ -33,7 +33,7 @@
 	</h3>
 <form name="oi" id="frmIncomeinfo" action="${actionUrl}" method="post">
 	<fieldset>
-		<legend>
+		<legend style="color: green; font-weight: bold;">
 			<fmt:message key="member.interest.tax" />
 		</legend>
 		<div class="row-fluid show-grid">
@@ -133,7 +133,7 @@
 	</fieldset>
 
 	<fieldset>
-		<legend>
+		<legend style="color: green; font-weight: bold;">
 			<fmt:message key="member.otherincome.message1" />
 		</legend>
 		<div class="row-fluid show-grid">
@@ -226,7 +226,7 @@
 
 	</fieldset>
 	<fieldset>
-		<legend>
+		<legend style="color: green; font-weight: bold;">
 			<fmt:message key="member.income.expenses" />
 		</legend>
 		<div class="row-fluid show-grid">
@@ -279,7 +279,7 @@
 		</div>
 	</fieldset>
 	<fieldset>
-		<legend>
+		<legend style="color: green; font-weight: bold;">
 			<fmt:message key="member.income.taxfree" />
 		</legend>
 		<div class="row-fluid show-grid">
