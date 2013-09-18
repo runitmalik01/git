@@ -337,13 +337,13 @@ public class BaseComponent extends BaseHstComponent {
     	if (isReseller && resellerId != null) {
     		hippoBeanForReseller = siteContentBaseBean.getBean("resellers/"+resellerId);
     		if ( hippoBeanForReseller == null ) {
-    			return siteContentBaseBean.getCanonicalPath();
+    			return super.getMount(request).getCanonicalContentPath();
     		}
     		else {
     			return hippoBeanForReseller.getCanonicalPath();
     		}
     	}
-    	return siteContentBaseBean.getCanonicalPath();
+    	return super.getMount(request).getCanonicalContentPath();
     }
     
 
