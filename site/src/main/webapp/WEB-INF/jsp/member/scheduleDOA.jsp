@@ -2,10 +2,10 @@
 <%@include file="../includes/tags.jspf"%>
 <%@ page import="com.mootly.wcm.utils.*"%>
 <%@ page import="java.util.*"%>
-<c:set var="DPM">
-	<fmt:message key="DPM" />
+<c:set var="DOA">
+	<fmt:message key="DOA" />
 </c:set>
-<hippo-gogreen:title title="${DPM}" />
+<hippo-gogreen:title title="${DOA}" />
 <hst:actionURL var="actionUrl" />
 
 <div class="page type-page">
@@ -52,12 +52,13 @@
 							</div>
 			</div>
 			<div class="row-fluid show-grid">
-			<div class="span4">
+			<div class="span8">
 					<div class="rowlabel">
 						<label for="rates"><small><fmt:message
 									key="rates.dpm.itr4" /> </small> </label>
 					</div>
-					
+					</div>
+					<div class="span4">
 					<div class="rowlabel">
 								<select id="rates" name="rates">
 								<option value="">-Select-</option>
@@ -70,25 +71,28 @@
 								
 								</select>
 							</div>
-				
 				</div>
-				
-			<div class="span4">
+				</div>
+					<div class="row-fluid show-grid">
+			<div class="span8">
 					<div class="rowlabel">
 						<label for="valFirstDayPrevYr"><small><fmt:message
 									key="valFirstDayPrevYr.dpm.itr4" /> </small> </label>
-					</div>
+					</div></div>
+					<div class="span4">
 					<div class="rowlabel">
 						<input id="valFirstDayPrevYr" name="valFirstDayPrevYr" class="uprcase" type="text"
 						value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.valFirstDayPrevYr}"/></c:if>">
 						
 					</div>
-				</div>
-				<div class="span4">
+				</div></div>
+					<div class="row-fluid show-grid">
+			<div class="span8">
 					<div class="rowlabel">
 						<label for="periodMore180Day"><small><fmt:message
 									key="periodMore180Day.dpm.itr4" /> </small> </label>
-					</div>
+					</div></div>
+					<div class="span4">
 					<div class="rowlabel">
 						<input id="periodMore180Day" name="periodMore180Day" maxlength="14"
 							type="text" 
@@ -97,34 +101,39 @@
 				</div>
 				</div>
 				<div class="row-fluid show-grid">
-				<div class="span4">
+				<div class="span8">
 					<div class="rowlabel">
 						<label for="prevYrConsider"><small><fmt:message
 									key="prevYrConsider.dpm.itr4" /> </small> </label>
-					</div>
+					</div></div>
+					<div class="span4">
 					<div class="rowlabel">
 						<input id="prevYrConsider" name="prevYrConsider" maxlength="14"
 							type="text" 
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.periodMore180Day}"/></c:if>" />
 					</div>
-				</div>
-				<div class="span4">
+				</div></div>
+			<div class="row-fluid show-grid">
+				<div class="span8">
 					<div class="rowlabel">
 						<label for="amtDepreciationFullRate"><small><fmt:message
 									key="amtDepreciationFullRate.dpm.itr4" /> </small> </label>
-					</div>
+					</div></div>
+					<div class="span4">
 					<div class="rowlabel">
 						<input id="amtDepreciationFullRate" name="amtDepreciationFullRate" maxlength="14"
 							type="text"
 							 class="decimal" readonly="readonly"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.amtDepreciationFullRate}"/></c:if>" />
 					</div>
-				</div>
-				<div class="span4">
+				</div></div>
+				<div class="row-fluid show-grid">
+				<div class="span8">
 					<div class="rowlabel">
 						<label for="periodLess180Day"><small><fmt:message
 									key="periodLess180Day.dpm.itr4" /> </small> </label>
-					</div>
+					</div></div>
+					<div class="span4">
 					<div class="rowlabel">
 						<input id="periodLess180Day" name="periodLess180Day" type="text" maxlength="14"
 							  
@@ -133,35 +142,39 @@
 				</div>
 				</div>
 				<div class="row-fluid show-grid">
-				<div class="span4">
+				<div class="span8">
 					<div class="rowlabel">
 						<label for="considerOrRealDuringYr"><small><fmt:message
 									key="considerOrRealDuringYr.dpm.itr4" /> </small> </label>
-					</div>
+					</div></div>
+					<div class="span4">
 					<div class="rowlabel">
 						<input id="considerOrRealDuringYr" name="considerOrRealDuringYr" type="text" 
 							maxlength="14"   class="decimal" 
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.considerOrRealDuringYr}"/></c:if>" />
 					</div>
-				</div>
-			<div class="span4">
+				</div></div>
+			<div class="row-fluid show-grid">
+				<div class="span8">
 					<div class="rowlabel">
 						<label for="amtDepreciationHalfRate"><small><fmt:message
 									key="amtDepreciationHalfRate.dpm.itr4" /> </small> </label>
-					</div>
+					</div></div>
+					<div class="span4">
 					<div class="rowlabel">
 						<input id="amtDepreciationHalfRate" name="amtDepreciationHalfRate" type="text" 
 							maxlength="14"   class="decimal" readonly="readonly"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.amtDepreciationHalfRate}"/></c:if>" />
 					</div>
-				
+				</div>
 			</div>
-			
-			<div class="span4">
+			<div class="row-fluid show-grid">
+				<div class="span8">
 					<div class="rowlabel">
 						<label for="depreciationFullRate"><small><fmt:message
 									key="DepreciationFullRate.dpm.itr4" /> </small> </label>
-					</div>
+					</div></div>
+					<div class="span4">
 					<div class="rowlabel">
 						<input id="depreciationFullRate" name="depreciationFullRate" type="text" 
 							maxlength="14"   class="decimal" readonly="readonly"
@@ -170,35 +183,38 @@
 				</div>
 				</div>
 				<div class="row-fluid show-grid">
-				<div class="span4">
+				<div class="span8">
 					<div class="rowlabel">
 						<label for="depreciationHalfRate"><small><fmt:message
 									key="depreciationHalfRate.dpm.itr4" /> </small> </label>
-					</div>
+					</div></div>
+					<div class="span4">
 					<div class="rowlabel">
 						<input id="depreciationHalfRate" name="depreciationHalfRate" type="text" 
 							maxlength="14"   class="decimal" readonly="readonly"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.depreciationHalfRate}"/></c:if>" />
 					</div>
-				</div>
-				<div class="span4">
+				</div></div>
+				<div class="row-fluid show-grid">
+				<div class="span8">
 					<div class="rowlabel">
 						<label for="addDepreciatMore180Day"><small><fmt:message
 									key="addDepreciatMore180Day.dpm.itr4" /> </small> </label>
-					</div>
+					</div></div>
+					<div class="span4">
 					<div class="rowlabel">
 						<input id="addDepreciatMore180Day" name="addDepreciatMore180Day" type="text" 
 							maxlength="14"   class="decimal" 
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.addDepreciatMore180Day}"/></c:if>" />
 					</div>
 				</div>
-		
-		
-		<div class="span4">
+		</div><div class="row-fluid show-grid">
+				<div class="span8">
 					<div class="rowlabel">
 						<label for="addDepreciatLess180Day"><small><fmt:message
 									key="addDepreciatLess180Day.dpm.itr4" /> </small> </label>
-					</div>
+					</div></div>
+					<div class="span4">
 					<div class="rowlabel">
 						<input id="addDepreciatLess180Day" name="addDepreciatLess180Day" type="text" 
 							maxlength="14"   class="decimal" 
@@ -207,35 +223,39 @@
 				</div>
 				</div>
 				<div class="row-fluid show-grid">
-				<div class="span4">
+				<div class="span8">
 					<div class="rowlabel">
 						<label for="totalDepreciation"><small><fmt:message
 									key="totalDepreciation.dpm.itr4" /> </small> </label>
-					</div>
+					</div></div>
+					<div class="span4">
 					<div class="rowlabel">
 						<input id="totalDepreciation" name="totalDepreciation" type="text" 
 							maxlength="14"   class="decimal" readonly="readonly"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.totalDepreciation}"/></c:if>" />
 					</div>
-				</div>
-				<div class="span4">
+				</div></div>
+				<div class="row-fluid show-grid">
+				<div class="span8">
 					<div class="rowlabel">
 						<label for="expense_TransferAsset"><small><fmt:message
 									key="expense_TransferAsset.dpm.itr4" /> </small> </label>
-					</div>
+					</div></div>
+					<div class="span4">
 					<div class="rowlabel">
 						<input id="expense_TransferAsset" name="expense_TransferAsset" type="text" 
 							maxlength="14"   class="decimal" 
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.expense_TransferAsset}"/></c:if>" />
 					</div>
 				</div>
-		
-		
-		<div class="span4">
+		</div>
+		<div class="row-fluid show-grid">
+				<div class="span8">
 					<div class="rowlabel">
 						<label for="capitalGain_LossSec50"><small><fmt:message
 									key="capitalGain_LossSec50.dpm.itr4" /> </small> </label>
-					</div>
+					</div></div>
+					<div class="span4">
 					<div class="rowlabel">
 						<input id="capitalGain_LossSec50" name="capitalGain_LossSec50" type="text" 
 							maxlength="14"   class="decimal" 
@@ -244,18 +264,18 @@
 				</div>
 				</div>
 				<div class="row-fluid show-grid">
-				<div class="span6">
+				<div class="span8">
 					<div class="rowlabel">
 						<label for="valLastDayPrevYr"><small><fmt:message
 									key="valLastDayPrevYr.dpm.itr4" /> </small> </label>
-					</div>
+					</div></div>
+					<div class="span4">
 					<div class="rowlabel">
 						<input id="valLastDayPrevYr" name="valLastDayPrevYr" type="text" 
 							maxlength="14"   class="decimal" readonly="readonly"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.valLastDayPrevYr}"/></c:if>" />
 					</div>
 				</div>
-				
 		</div>
 			<div class="row-fluid show-grid">
 				<div class="span4 offset8 decimal">
