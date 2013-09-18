@@ -31,7 +31,7 @@
 			<form id="frmdatatcs" action="${actionUrl}" method="post"
 				name="frmdatatcs">
 				<fieldset>
-					<legend style="font-style: italic; color: blue;">Tax
+					<legend style="color: green; font-weight: bold;">Tax
 						Collected from Sources Details</legend>
 					<table>
 						<tr>
