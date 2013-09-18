@@ -29,6 +29,7 @@ public class ITR_Schedule10AA {
 
 	public Schedule10AA getITRSchedule10aa(ITR itr, FinancialYear financialYear, Map<String,HippoBean> inputBeans){
 		IndianCurrencyHelper currencyHelper = new IndianCurrencyHelper();
+		boolean hasAVaild10AA = false;
 		Schedule10AA schedule10aa = new Schedule10AA();
 		Schedule10AA.DeductSEZ deductSEZ = new DeductSEZ();
 		DedUs10Detail dedUs10Detail = new DedUs10Detail();
@@ -41,6 +42,7 @@ public class ITR_Schedule10AA {
 					if(aDetail.getScheduleName().equalsIgnoreCase("10aa")){
 						underTakingList.add(currencyHelper.bigIntegerRound(aDetail.getAmount()));
 						dedSecTanAA += aDetail.getAmount();
+						if(!hasAVaild10AA) hasAVaild10AA = true;
 					}
 				}
 			}
@@ -50,6 +52,10 @@ public class ITR_Schedule10AA {
 		deductSEZ.setDedUs10Detail(dedUs10Detail);
 		schedule10aa.setDeductSEZ(deductSEZ);
 
-		return schedule10aa;
+		if(hasAVaild10AA){
+			return schedule10aa;
+		}else
+			return null;
+
 	}
 }
