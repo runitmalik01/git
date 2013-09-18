@@ -29,6 +29,7 @@
 		</div>
 	</c:forEach>
 </c:if>
+<c:if test="${finStatus != 'H'}">
 <c:choose>
 	<c:when
 		test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
@@ -904,7 +905,7 @@
 					</div>
 					<div class="span4">
 						<div class="rowlabel">
-							<input id="relief_2" name="relief_2" class="decimal"
+							<input id="relief_2" name="relief_2" class="decimal" type="text"
 								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
 							<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.relief_2}"/></c:if>"
 								placeholder="Rs.">
@@ -951,7 +952,7 @@
 					<div class="span4">
 						<div class="rowlabel">
 							<input id="ded_ent1" name="ded_ent1" class=" decimal"
-								placeholder="Rs." maxlength="14"
+								placeholder="Rs." maxlength="14" type="text"
 								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.ded_ent_1}"/></c:if>">
 						</div>
 					</div>
@@ -970,7 +971,7 @@
 					<div class="span4">
 						<div class="rowlabel">
 							<input id="ded_ent3" name="ded_ent3" class="numberinput decimal"
-								placeholder="Rs." maxlength="14"
+								placeholder="Rs." maxlength="14" type="text"
 								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
 					<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.ded_ent_3}"/></c:if>">
 
@@ -986,7 +987,7 @@
 					<div class="span4">
 						<div class="rowlabel">
 							<input id="ded_ent4" name="ded_ent4" class=" decimal"
-								placeholder="Rs." readonly="readonly"
+								placeholder="Rs." readonly="readonly" type="text"
 								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.ded_ent_4}"/></c:if>">
 						</div>
 					</div>
@@ -1053,6 +1054,11 @@
 			New</a>
 	</c:otherwise>
 </c:choose>
+</c:if>
+<br/><br/><br/>
+<c:if test="${finStatus eq 'H' }">
+	<p style="color: red" align="center"><b>Sorry!!!</b>, You are not eligible for this service</p></c:if>
+
 <%
 	HstRequest hstRequest = (HstRequest) request;
 	String formHTMLComplete = (String) hstRequest.getRequestContext()
