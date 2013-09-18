@@ -17,7 +17,7 @@
 	<form id="frmDeemed_Capital" action="${actionUrl}" method="post"
 		name="frmDeemed_Capital">
 		<fieldset>
-			<legend style="color: black">Plant and Machinery </legend>
+			<legend style="color: green; font-weight: bold;">Plant and Machinery </legend>
 			<div class="row-fluid show-grid">
 				<div class="span4">
 					<div class="rowlabel">
@@ -111,7 +111,7 @@
 			</div>
 		</fieldset>
 		<fieldset>
-			<legend style="color: black">Building</legend>
+			<legend style="color: green; font-weight: bold;">Building</legend>
 			<div class="row-fluid show-grid">
 				<div class="span4">
 					<div class="rowlabel">
@@ -199,17 +199,7 @@
 				</div>
 		</div>
 		</div>
-
-		<div class="row-fluid show-grid">
-			<div class="span4 offset8 decimal">
-				<a href="${scriptName}" class="btn btn-danger" style="color: black">Cancel</a>&nbsp;
-				<a id="myModalDeemedCapitalGain" role="button"
-					class="btn btn-success" style="color: black">Save</a>
-			</div>
-		</div>
 	</form>
 </div>
-<res:client-validation formId="frmDeemed_Capital"
-	screenConfigurationDocumentName="deemedcapitalgain"
-	formSubmitButtonId="myModalDeemedCapitalGain" />
+
 
