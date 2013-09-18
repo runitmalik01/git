@@ -61,7 +61,7 @@ request.setAttribute("objHashMapBoolean", objHashMapBoolean);
 	<c:when test="${pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD'}">
 		<form id="frmdataLosses" action="${actionUrl}" name="adjustmentoflosses" method="post" class="frmlosses">
 			<fieldset>
-				<legend>Detail Of Losses</legend>
+				<legend style="color: green; font-weight: bold;">Detail Of Losses</legend>
 				<div class="row-fluid show-grid" >
                     <div class="span4">
 					<div class="rowlabel"><label for="NameOfHead"><small><fmt:message key="member.adjustment.losses.name"></fmt:message></small></label></div>
