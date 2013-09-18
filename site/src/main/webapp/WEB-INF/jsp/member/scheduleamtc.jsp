@@ -24,36 +24,42 @@
 <form name="scheduleAMTC" id="scheduleAMTC" action="${actionUrl}"
 	method="post">
 	<fieldset>
-		<legend>Computation of Tax U|S 115JC</legend>
+		<legend style="color: green; font-weight: bold;">Computation of Tax U|S 115JC</legend>
 		<div class="row-fluid show-grid">
-			<div class="span4">
+			<div class="span8">
 				<div class="rowlabel">
 					<label for="taxUndSec115JC"><small>Tax U|S 115JC in
 							Assessment Yr ${assessmentYear}</small> </label>
-				</div>
+				</div></div>
+				<div class="span4">
 				<div class="rowlabel">
 					<input id="taxUndSec115JC" name="taxUndSec115JC" type="text"
 						maxlength="14" class="decimal"
 						value="${parentBean.taxUndSec115JC }" readonly="readonly" />
 				</div>
-			</div>
-			<div class="span4">
+			</div></div>
+			<div class="row-fluid show-grid">
+			<div class="span8">
 				<div class="rowlabel">
 					<label for="taxUnderOtherProv"><small>Tax under
 							Other Provision in Assessment Yr <c:out value="${assessmentYear}" />
 					</small> </label>
-				</div>
+				</div></div>
+				<div class="span4">
 				<div class="rowlabel">
 					<input id="taxUnderOtherProv" name="taxUnderOtherProv" type="text"
 						maxlength="14" class="decimal"
 						value="${parentBean.taxUnderOtherProv}" readonly="readonly" />
 				</div>
 			</div>
-			<div class="span4">
+			</div>
+			<div class="row-fluid show-grid">
+			<div class="span8">
 				<div class="rowlabel">
 					<label for="taxAgainstCredit"><small>Amount of Tax
 							Against which Credit Available</small> </label>
-				</div>
+				</div></div>
+				<div class="span4">
 				<div class="rowlabel">
 					<input id="taxAgainstCredit" name="taxAgainstCredit" type="text"
 						maxlength="14" class="decimal"
@@ -62,9 +68,9 @@
 				</div>
 			</div>
 		</div>
-	</fieldset>
+	
 	<fieldset>
-		<legend>Utilisation of AMT credit available for Assessment
+		<legend style="color: green; font-weight: bold;">Utilisation of AMT credit available for Assessment
 			Year ${assessmentYear}</legend>
 		<div class="row-fluid show-grid">
 			<div class="span4">
@@ -147,7 +153,7 @@
 					value="${parentBean.unlistCreditUndSec115JD}" readonly="readonly" />
 			</div>
 		</div>
-		<div class="span4">
+		<div class="span5">
 			<div class="rowlabel">
 				<label for="liabAvailCredit"> <small>AMT liability
 						Available for Credit in Assessment year</small>
@@ -160,6 +166,7 @@
 			</div>
 		</div>
 	</div>
+	</fieldset>
 	<div class="row-fluid show-grid">
 		<div class="span4 offset8 decimal">
 			<!--<a href="${scriptName}"
