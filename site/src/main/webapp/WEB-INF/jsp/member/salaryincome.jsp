@@ -41,7 +41,7 @@
 			<form id="frmdataSlryInc" action="${actionUrl}" name="salaryincome"
 				method="post">
 				<fieldset>
-					<legend>Employment</legend>
+					<legend style="color: green; font-weight: bold;">Employment</legend>
 					<div class="row-fluid show-grid">
 						<div class="span3">
 							<div class="rowlabel">
@@ -58,7 +58,7 @@
 					</div>
 				</fieldset>
 				<fieldset>
-					<legend>Employer</legend>
+					<legend style="color: green; font-weight: bold;">Employer</legend>
 					<div class="row-fluid show-grid">
 						<div class="span4">
 							<div class="rowlabel">
@@ -122,7 +122,7 @@
 					</div>
 				</fieldset>
 				<fieldset>
-					<legend>Employer Address</legend>
+					<legend style="color: green; font-weight: bold;">Employer Address</legend>
 					<div class="row-fluid show-grid">
 						<div class="span3">
 							<div class="rowlabel">
@@ -204,7 +204,7 @@
 					</div>
 				</fieldset>--%>
 				<fieldset>
-					<legend>Compensation and Taxation</legend>
+					<legend style="color: green; font-weight: bold;">Compensation and Taxation</legend>
 					<div class="row-fluid show-grid">
 					    <div class="span4">
 					         <div class = "rowlabel">
