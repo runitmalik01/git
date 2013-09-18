@@ -19,9 +19,9 @@ import com.mootly.wcm.model.FinancialYear;
 import com.mootly.wcm.services.IndianCurrencyHelper;
 
 public class ITR_Schedule10A {
-	
+
 	public DeductionSchedTenADocumemt deductionSchedTenADocumemt;
-	
+
 	public ITR_Schedule10A(DeductionSchedTenADocumemt deductionSchedTenADocumemt) {
 		// TODO Auto-generated constructor stub
 		this.deductionSchedTenADocumemt = deductionSchedTenADocumemt;
@@ -29,6 +29,7 @@ public class ITR_Schedule10A {
 
 	public Schedule10A getITRSchedule10a(ITR itr, FinancialYear financialYear, Map<String,HippoBean> inputBeans){
 		IndianCurrencyHelper currencyHelper = new IndianCurrencyHelper();
+		boolean hasAVaild10A = false;
 		Schedule10A schedule10a = new Schedule10A();
 		Schedule10A.DeductSEZ deductSEZ = new DeductSEZ();
 		DedUs10Detail dedUs10Detail = new DedUs10Detail();
@@ -41,6 +42,7 @@ public class ITR_Schedule10A {
 					if(aDetail.getScheduleName().equalsIgnoreCase("10a")){
 						underTakingList.add(currencyHelper.bigIntegerRound(aDetail.getAmount()));
 						dedSecTanA += aDetail.getAmount();
+						if(!hasAVaild10A) hasAVaild10A= true;
 					}
 				}
 			}
@@ -50,7 +52,11 @@ public class ITR_Schedule10A {
 		deductSEZ.setDedUs10Detail(dedUs10Detail);
 		schedule10a.setDeductSEZ(deductSEZ);
 		schedule10a.setTotalDedUs10A(currencyHelper.bigIntegerRound(dedSecTanA));
-		
-		return schedule10a;
+
+		if(hasAVaild10A){
+			return schedule10a;
+		}else
+			return null;
+
 	}
 }
