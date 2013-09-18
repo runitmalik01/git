@@ -174,15 +174,17 @@ public final class IndianCurrencyHelper {
 			String[] newString=rb.getString("valueList."+year+"").split("-");
 			String fromDate=newString[0];
 			String toDate=newString[1];
-			Boolean comapreResult=	IsDateBetween(Calldate, fromDate, toDate);
-			if(comapreResult.equals(true)){
+			int comapreResult=	IsDateBetween(Calldate, fromDate, toDate);
+			log.info("comapreResult"+comapreResult);
+			if(comapreResult==1){
 				log.info("success");
 				return Double.parseDouble(rb.getString("valueList."+year+".cii"));
-			}else{
+			}else {
 				double year1= Double.parseDouble(year);
 				return Double.parseDouble(rb.getString("valueList."+(year1-1)+".cii"));
 			}	
 		}
+		log.info("here is the value in outer loopsss"+Double.parseDouble(rb.getString("valueList.2012.cii")));
 		return Double.parseDouble(rb.getString("valueList.2012.cii"));
 	}
 
@@ -190,24 +192,26 @@ public final class IndianCurrencyHelper {
 	/**
 	 * this method for checking whether date lies between indexation or not
 
-	@return true or false
 	@param current date, from Date and to Date
 	@author abhishek
+	 * @return 
 
 	 **/
-	public Boolean IsDateBetween(String dd, String Ndate, String Odate) {
+	public int IsDateBetween(String dd, String Ndate, String Odate) {
 
 		long  from=Date.parse(Ndate);  // From some date
 		long to=Date.parse(Odate);     // To Some Date
 		long check=Date.parse(dd);
-		if((check-from)>0 && (to-check)>0)
+		int x=0;
+		if((check-from)>=0 && (to-check)>=0)
 		{
-			return  true;
-
+			x=1;
+			return x;
 		}
-		return false;
-	}   
-
+		return 0;
+		
+	}  
+	
 	//try to send default value so that no NullPointer Exception
 	/*public double getYearIndexValue(String year){
 		ResourceBundle rb = ResourceBundle.getBundle("valueList_Infla" +
