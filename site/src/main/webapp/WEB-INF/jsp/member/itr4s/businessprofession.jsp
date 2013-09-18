@@ -23,7 +23,7 @@
 <form name="schedBusinessProfess" id="schedBusinessProfess" action="${actionUrl}" method="post">
 	<h5 align="center">Presumptive Income</h5>
 	<fieldset>
-		<legend>Presumptive Income under 44AD</legend>
+		<legend style="color: green; font-weight: bold;">Presumptive Income under 44AD</legend>
 		<div class="row-fluid show-grid">
 			<div class="span4">
 				<div class="rowlabel">
@@ -49,7 +49,7 @@
 		</div>
 	</fieldset>
 	<fieldset>
-		<legend>Presumptive Income under 44AE</legend>
+		<legend style="color: green; font-weight: bold;">Presumptive Income under 44AE</legend>
 		<div class="row-fluid show-grid">
 			<div class="span4">
 				<div class="rowlabel">
@@ -103,7 +103,7 @@
 		</div>
 	</div>
 	<fieldset>
-		<legend>Financial Particulars of Business</legend>
+		<legend style="color: green; font-weight: bold;">Financial Particulars of Business</legend>
 		<div class="row-fluid show-grid">
 			<div class="span3">
 				<div class="rowlabel">
