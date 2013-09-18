@@ -19,7 +19,7 @@
 		<fieldset>
 			<legend style="color: blue">Particulars of Asset </legend>
 			<fieldset>
-				<legend style="color: black">Immovable Asset</legend>
+				<legend style="color: green; font-weight: bold;">Immovable Asset</legend>
 				<div class="row-fluid show-grid">
 					<div class="span8">
 						<div class="rowlabel">
@@ -50,7 +50,7 @@
 				</div>
 			</fieldset>
 			<fieldset>
-				<legend style="color: black">Movable Asset</legend>
+				<legend style="color: green; font-weight: bold;">Movable Asset</legend>
 				<h2>Financial Asset</h2>
 
 				<div class="row-fluid show-grid">
