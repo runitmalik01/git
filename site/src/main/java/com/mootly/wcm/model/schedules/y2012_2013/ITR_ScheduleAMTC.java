@@ -39,16 +39,16 @@ import com.mootly.wcm.model.FinancialYear;
 import com.mootly.wcm.services.IndianCurrencyHelper;
 
 public class ITR_ScheduleAMTC {
-	
+
 	public ScheduleAMTCDocument scheduleAMTCDocument;
 
 	public ITR_ScheduleAMTC(ScheduleAMTCDocument scheduleAMTCDocument) {
 		// TODO Auto-generated constructor stub
 		this.scheduleAMTCDocument = scheduleAMTCDocument;
 	}
-	
+
 	public ITRScheduleAMTC getScheduleAMTC(ITR itr, FinancialYear financialYear, Map<String, HippoBean> inputBeans){
-		
+
 		MemberPersonalInformation memberPersonalInformation = (MemberPersonalInformation) inputBeans.get(MemberPersonalInformation.class.getSimpleName().toLowerCase());
 		SalaryIncomeDocument salaryIncomeDocument = (SalaryIncomeDocument) inputBeans.get(SalaryIncomeDocument.class.getSimpleName().toLowerCase());
 		HouseProperty houseProperty = (HouseProperty) inputBeans.get(HouseProperty.class.getSimpleName().toLowerCase());
@@ -68,14 +68,14 @@ public class ITR_ScheduleAMTC {
 		CapitalAssetDocument capitalAssetDocument = (CapitalAssetDocument) inputBeans.get(CapitalAssetDocument.class.getSimpleName().toLowerCase());
 		ScheduleSIDocument scheduleSIDocument = (ScheduleSIDocument) inputBeans.get(ScheduleSIDocument.class.getSimpleName().toLowerCase());
 		TcsDocument tcsDocument = (TcsDocument) inputBeans.get(TcsDocument.class.getSimpleName().toLowerCase());
-		
+
 		PartB_TTI partB_TTI = new PartB_TTI(formSixteenDocument, salaryIncomeDocument, houseProperty,
 				otherSourcesDocument, deductionDocument, memberPersonalInformation, taxReliefDocument, advanceTaxDocument,
 				selfAssesmetTaxDocument, tdsFromothersDocument, scheduleSIDocument, capitalAssetDocument, immovablePropertyDocument,
 				natureInvestmentDocument,signingAuthorityAccountsDocument,detailOfTrustDocument,foreignBankAccountDocument,financialInterestDocument,
 				tcsDocument);
 		PartBTTI partBTTI = partB_TTI.getPartBTTI(itr, financialYear, inputBeans);
-		
+
 		IndianCurrencyHelper currencyHelper = new IndianCurrencyHelper();
 		List<ScheduleAMTC> scheduleAMTCList = new ArrayList<ScheduleAMTC>();
 		ITRScheduleAMTC itrScheduleAMTC = new ITRScheduleAMTC();
@@ -83,7 +83,7 @@ public class ITR_ScheduleAMTC {
 		scheduleAMTC.setAssYr(financialYear.getDisplayAssessmentYear());
 		if(scheduleAMTCDocument == null){
 			ScheduleAMTCDocument dummyAmtcDocument = new ScheduleAMTCDocument();
-			Field[] balSheetFields = BalanceSheetDocument.class.getDeclaredFields();
+			Field[] balSheetFields = ScheduleAMTCDocument.class.getDeclaredFields();
 			for(Field balField:balSheetFields){
 				if(balField.getType().getSimpleName().equalsIgnoreCase(Double.class.getSimpleName())){
 					DirectFieldAccessor directFieldAccessor = new DirectFieldAccessor(dummyAmtcDocument);
@@ -110,7 +110,7 @@ public class ITR_ScheduleAMTC {
 		itrScheduleAMTC.setTotBalAMTCreditCF(currencyHelper.bigIntegerRound(scheduleAMTCDocument.getAmtCreditCarriedFwrd()));
 		itrScheduleAMTC.setTaxSection115JD(currencyHelper.bigIntegerRound(scheduleAMTCDocument.getAmtCreditUnlisted()));
 		itrScheduleAMTC.setAmtLiabilityAvailable(currencyHelper.bigIntegerRound(scheduleAMTCDocument.getAmtCreditCarriedFwrd()));
-		
+
 		return itrScheduleAMTC;
-	} 
+	}
 }
