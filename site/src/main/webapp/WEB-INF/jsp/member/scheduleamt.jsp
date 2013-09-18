@@ -22,7 +22,7 @@
 </c:if>
 <form name="scheduleAMT" id="scheduleAMT" action="${actionUrl}" method="post">
 	<fieldset>
-		<legend>Computation of AMT U|S 115JC</legend>
+		<legend style="color: green; font-weight: bold;">Computation of AMT U|S 115JC</legend>
 		<div class="row-fluid show-grid">
 			<div class="span4">
 				<div class="rowlabel">
@@ -34,8 +34,6 @@
 						maxlength="14" class="decimal" value="${partBTIitem13}" readonly="readonly"/>
 				</div>
 			</div>
-		</div>
-		<div class="row-fluid show-grid">
 			<div class="span4">
 				<div class="rowlabel">
 					<label for="dedClaimChapSix"> <small>Deduction claim Under Chapter IV-A</small>
@@ -58,6 +56,8 @@
 						value="${dedSecTanAA}" readonly="readonly"/>
 				</div>
 			</div>
+		</div>
+			<div class="row-fluid show-grid">
 			<div class="span4">
 				<div class="rowlabel">
 					<label for="totalAdjustment"> <small>Total Adjustment</small>
@@ -69,8 +69,7 @@
 						value="${dedSecTanAA + dedUnderChapSix}" readonly="readonly" />
 				</div>
 			</div>
-		</div>
-		<div class="row-fluid show-grid">
+		
 			<div class="span4">
 				<div class="rowlabel">
 					<label for="incUndSec115JC"> <small>Total Income Adjusted U|S 115JC</small>
