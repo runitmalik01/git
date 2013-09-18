@@ -73,8 +73,12 @@ public class SalaryIncome extends ITReturnComponent {
 		// TODO Auto-generated method stub
 		super.doBeforeRender(request, response);
 
-		//String date1= ContentStructure.getMemberAssetDocPath(, filing_year, getUserName());
-
+		// for checking whether we are dealing with HUF or Individual by abhishek sept 2013
+		MemberPersonalInformation mpi = (MemberPersonalInformation) request.getAttribute(MemberPersonalInformation.class.getSimpleName().toLowerCase());
+		String finStatus=mpi.getFilingStatus();
+		if(finStatus.equals("H")){
+			request.setAttribute("finStatus", finStatus);
+		}
 	}
 
 	@Override
