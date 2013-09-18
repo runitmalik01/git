@@ -47,7 +47,7 @@
 				</div>
 				</div>
 				<fieldset>
-				<legend><fmt:message key="profitLoss.fieldset.two.itr4"/></legend>
+				<legend style="color: green; font-weight: bold;"><fmt:message key="profitLoss.fieldset.two.itr4"/></legend>
 				<div class="row-fluid show-grid">
 				<div class="span4">
 					<div class="rowlabel">
@@ -110,7 +110,7 @@
 				
 			</div>
 			<fieldset>
-			<legend>Other Income</legend>
+			<legend style="color: green; font-weight: bold;">Other Income</legend>
 			<div class="row-fluid show-grid">
 			<div class="span4">
 					<div class="rowlabel">
@@ -291,7 +291,7 @@
 			
 			</div>
 			<fieldset>
-			<legend><fmt:message key="duties.taxes.paid.pl.itr4"/></legend>
+			<legend style="color: green; font-weight: bold;"><fmt:message key="duties.taxes.paid.pl.itr4"/></legend>
 			<div class="row-fluid show-grid">
 			<div class="span4">
 					<div class="rowlabel">
@@ -458,7 +458,7 @@
 				</div>
 			</div>
 			<fieldset>
-			<legend> <fmt:message key="compensation.to.employees.pl.itr4"/></legend>
+			<legend style="color: green; font-weight: bold;"> <fmt:message key="compensation.to.employees.pl.itr4"/></legend>
 			<div class="row-fluid show-grid">
 				<div class="span4">
 					<div class="rowlabel">
@@ -594,7 +594,7 @@
 				
 			</fieldset>
 			<fieldset>
-			<legend>Insurance</legend>
+			<legend style="color: green; font-weight: bold;">Insurance</legend>
 			<div class="row-fluid show-grid">
 				<div class="span4">
 					<div class="rowlabel">
@@ -856,7 +856,7 @@
 				
 				</div>
 				<fieldset>
-				<legend><fmt:message key="rates.taxes.paid.govt.itr4"></fmt:message> </legend>
+				<legend style="color: green; font-weight: bold;"><fmt:message key="rates.taxes.paid.govt.itr4"></fmt:message> </legend>
 				<div class="row-fluid show-grid">
 					<div class="span4">
 					<div class="rowlabel">
@@ -1119,7 +1119,7 @@
 				</div>
 				<div id="NoAccount_Maintain">
 				<fieldset>
-				<legend><fmt:message key ="noAccounts.PL.itr4"></fmt:message> </legend>
+				<legend style="color: green; font-weight: bold;"><fmt:message key ="noAccounts.PL.itr4"></fmt:message> </legend>
 				<div class="row-fluid show-grid">
 				<div class="span5">
 					<div class="rowlabel">
