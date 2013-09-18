@@ -37996,7 +37996,7 @@ out_deemedIncome_Light  = 0;
       <sv:value>//Script is used to calculate the presumptive Income
 var indianCurrencyHelper = new com.mootly.wcm.services.IndianCurrencyHelper();
 var incChargBusiness  = 0;
-incChargBusiness = (grossTurnOver-0) + (grossPresumptIncome-0) + (presumHeavyVehi-0) + (presumOtherVehi-0);
+incChargBusiness = (grossPresumptIncome-0) + (presumHeavyVehi-0) + (presumOtherVehi-0);
 
 out_incChargBusiness  = indianCurrencyHelper.RoundTo2Decimals(incChargBusiness);</sv:value>
     </sv:property>
