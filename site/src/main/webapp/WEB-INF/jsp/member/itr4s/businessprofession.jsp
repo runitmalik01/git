@@ -96,7 +96,7 @@
 				</div>
 				<div class="rowlabel">
 					<input id="incChargBusiness" name="incChargBusiness" type="text"
-						maxlength="14" class="decimal" value="${parentBean.incChargBusiness}"
+						maxlength="14" class="decimal" value="${schFourtyFourAEDocument.total_deemedIncome_Light + schFourtyFourAEDocument.total_deemedIncome_Heavy + parentBean.grossPresumptIncome}"
 						readonly="readonly" />
 				</div>
 			</div>
