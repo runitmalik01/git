@@ -45,17 +45,32 @@ public class EmailTemplate extends BaseDocument implements ContentNodeBinder {
 	String[] to;
 	
 	public final String[] getTo() {
-		if (to == null) to = getProperty("mootlywcm:to").toString().split(",");
+		if (to == null) {
+			String toStr = getProperty("mootlywcm:to");
+			if (toStr != null) {
+				to = toStr.toString().split(",");
+			}
+		}
 		return to;
 	}
 	
 	public final String[] getBcc() {
-		if (bcc == null) bcc = getProperty("mootlywcm:bcc").toString().split(",");
+		if (bcc == null) {
+			String bccStr = getProperty("mootlywcm:bcc");
+			if (bccStr != null) {
+				bcc = bccStr.toString().split(",");
+			}
+		}
 		return bcc;
 	}
 	
 	public final String[] getCc() {
-		if (cc == null) cc = getProperty("mootlywcm:cc").toString().split(",");
+		if (cc == null) {
+			String ccStr = getProperty("mootlywcm:cc");
+			if (ccStr != null) {
+				cc = ccStr.toString().split(",");
+			}
+		}
 		return cc;
 	}
 	

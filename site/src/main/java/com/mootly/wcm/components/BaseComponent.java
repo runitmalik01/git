@@ -275,8 +275,8 @@ public class BaseComponent extends BaseHstComponent {
 			//String plainBody = VelocityUtils.parseVelocity(emailTemplate.getPlainBody(), velocityContext);
 			String subject = VelocityUtils.parseVelocity(emailTemplate.getSubject(), velocityContext);
 			
-    		emailMessage.setCc(emailTemplate.getCc());
-    		emailMessage.setBcc(emailTemplate.getBcc());
+    		if (emailTemplate.getCc() != null) emailMessage.setCc(emailTemplate.getCc());
+    		if (emailTemplate.getBcc() != null) emailMessage.setBcc(emailTemplate.getBcc());
     		emailMessage.setSubject(subject);
     		emailMessage.setAttachmentList(attachmentList);
     		emailMessage.setTemplateKey(templateKey);
