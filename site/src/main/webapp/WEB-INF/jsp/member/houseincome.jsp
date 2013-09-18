@@ -51,7 +51,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 			<form id="frmdataHouseIncome" action="${actionUrl}" method="post"
 				name="housefrm">
 				<fieldset>
-					<legend>Property Details</legend>
+					<legend style="color: green; font-weight: bold;">Property Details</legend>
 					<div class="row-fluid show-grid">
 						<div class="span3">
 							<div class="rowlabel">
@@ -183,7 +183,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 					</div>
 				</fieldset>
 				<fieldset id="coOwner">
-					<legend>
+					<legend style="color: green; font-weight: bold;">
 						<abbr title="Is this property being owned by someone else">Ownership
 							Details</abbr>
 					</legend>
@@ -330,7 +330,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 					</div>
 				</fieldset>
 				<fieldset>
-					<legend>Property Income Details</legend>
+					<legend style="color: green; font-weight: bold;">Property Income Details</legend>
 					<div class="row-fluid show-grid letout_L_v letout_S_h"
 						style="dispaly: none;">
 						<div class="span1 decimal">
