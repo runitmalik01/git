@@ -50,13 +50,13 @@
 						<select id="Employe_category" name="Employe_category">
 							<option value="">-Select-</option>
 							<option value="GOV"
-								<c:if test="${not empty memberpersonalinformation.employe_category && memberpersonalinformation.employe_category =='GOV'}">selected</c:if>>GOVT.</option>
+								<c:if test="${not empty childBean.employe_category && childBean.employe_category =='GOV'}">selected</c:if>>GOVT.</option>
 							<option value="PSU"
-								<c:if test="${not empty memberpersonalinformation.employe_category && memberpersonalinformation.employe_category =='PSU'}">selected</c:if>>PSU</option>
+								<c:if test="${not empty childBean.employe_category && childBean.employe_category =='PSU'}">selected</c:if>>PSU</option>
 							<option value="OTH"
-								<c:if test="${not empty memberpersonalinformation.employe_category && memberpersonalinformation.employe_category =='OTH'}">selected</c:if>>OTHERS.</option>
+								<c:if test="${not empty childBean.employe_category && childBean.employe_category =='OTH'}">selected</c:if>>OTHERS.</option>
 						    <option value="NA"
-								<c:if test="${not empty memberpersonalinformation.employe_category && memberpersonalinformation.employe_category =='NA'}">selected</c:if>>NA</option>
+								<c:if test="${not empty childBean.employe_category && childBean.employe_category =='NA'}">selected</c:if>>NA</option>
 
 						</select>
 					</div>
