@@ -27,7 +27,7 @@
 			name="tdsfromothers">
 			<div id="error" class="alert alert-error" style="display:none;">TAN's fourth alphabet should be first alphabet of Name of Deductor</div>
 		<fieldset>
-			<legend>Enter Details</legend>
+			<legend style="color: green; font-weight: bold;">Enter Details</legend>
 			<div class="row-fluid show-grid">
 				<div class="span4">
 					<div class="rowlabel">
