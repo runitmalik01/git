@@ -50,13 +50,9 @@ import com.mootly.wcm.components.ITReturnComponent;
 		"gross_a",
 		"gross_b",
 		"gross_c",
-
 		"less_total_2",
-
 		"deductions_entertainment",
 		"deductions_tax",
-
-
 		"relief_2",
 		"ded_ent1",
 		"ded_ent3"
@@ -96,7 +92,7 @@ public class FormSixteen extends ITReturnComponent {
 		if (log.isInfoEnabled()) {
 			log.info("This is do before render form sixteen");
 		}
-		
+
 		// here we are checking for itr2
 		String itr_version=request.getRequestContext().getResolvedSiteMapItem().getParameter("ITR_version");
 		if(null!=itr_version)
@@ -107,7 +103,16 @@ public class FormSixteen extends ITReturnComponent {
 				log.info("we have"+request.getRequestContext().getResolvedSiteMapItem().getParameter("ITR_version"));
 				request.setAttribute("itr2", itr_version);
 			}	
-			}
+		}
+
+
+		// for checking whether we are dealing with HUF or Individual, by abhishek sept 2013
+		MemberPersonalInformation mpi = (MemberPersonalInformation) request.getAttribute(MemberPersonalInformation.class.getSimpleName().toLowerCase());
+		String finStatus=mpi.getFilingStatus();
+		if(finStatus.equals("H"))
+		{
+			request.setAttribute("finStatus", finStatus);
+		}
 
 		// it is bad code due to session...
 		/*
