@@ -22,7 +22,7 @@
 <div align="center" class="adornment">
 <div id="demo"class="yui3-module"align="center">
 <div class="yui3-hd">
-<b>Thank you for Creating account on WEALTH4INDIA</b>
+<b>Thank you for Creating account on <w4india:resellername/></b>
 </div><br/><br/>
 <div class="yui3-bd" align="center" >
 
@@ -32,10 +32,10 @@
 </p> 
 <ol style="margin-bottom:30px; margin-top:20px; width:90%;">
      <li style="font-size:14px; line-height:16px; margin-bottom:10px;"><strong>Please check your email.</strong> An Activation Email will be there shortly. If you do not receive it, please contact  
-    <a href="mailto:info@wealth4india.com">info@wealth4india.com</a>.</li>
+    <a href="mailto:info@<w4india:resellername/>.com">info@<w4india:resellername/>.com</a>.</li>
      <li style="font-size:14px; line-height:16px; margin-bottom:10px;"><strong>Click the Activation Link.</strong></li>
      <li style="font-size:14px; line-height:16px; margin-bottom:10px;"><strong>Start Enjoying you signed up for.</strong></li>
-     <li style="font-size:14px; line-height:16px; margin-bottom:10px;"><strong>If you do not receive you Activation Email shortly, please check your bulk folder,</strong> or contact <a href="mailto:info@wealth4india.com">info@wealth4india.com</a>.</li>
+     <li style="font-size:14px; line-height:16px; margin-bottom:10px;"><strong>If you do not receive you Activation Email shortly, please check your bulk folder,</strong> or contact <a href="mailto:info@<w4india:resellername/>.com">info@<w4india:resellername/>.com</a>.</li>
 </ol>
 <h3>Thank You</h3>
 </div>

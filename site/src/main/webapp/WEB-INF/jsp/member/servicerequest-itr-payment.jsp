@@ -44,14 +44,14 @@
 		</div>
 	</c:if>
 	<h5 style="color: maroon;">Your Income Tax return will be
-		available for email/download, once Wealth4India receives and
+		available for email/download, once <w4india:resellername/> receives and
 		successfully verifies your payment.</h5>
 	<c:if test="${not empty parentBean}">
 		<c:choose>
 			<c:when
 				test="${not empty parentBean.paymentVerificationStatus && parentBean.paymentVerificationStatus == 'VERIFIED'}">
 				<span class="label label-success">Your payment has been
-					verified by Wealth4India. You can continue to download XML.</span>
+					verified by <w4india:resellername/>. You can continue to download XML.</span>
 				<c:set var="allReadOnly" value="readonly" />
 			</c:when>
 			<c:otherwise>

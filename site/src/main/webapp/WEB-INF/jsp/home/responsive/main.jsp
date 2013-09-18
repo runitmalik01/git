@@ -32,7 +32,7 @@
    </div>
 </div>
 <div id="htmlcaption1" class="nivo-html-caption">
-   Its free to join Wealth4India.<a href="#nogo" class="orange button">Get Started!</a>
+   Its free to join <w4india:resellername/>.<a href="#nogo" class="orange button">Get Started!</a>
 </div>
 <div id="htmlcaption2" class="nivo-html-caption">
    <a href="#nogo" class="orange button">Free! Get Started!</a>

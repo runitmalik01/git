@@ -47,13 +47,13 @@
         <div class="grid col-380 fit">
         </div><!-- end of col-940 -->
             </div><!-- end of #colophon-widget -->                
-        <div class="grid col-300 copyright">© 2013<a href="http://www.wealth4india.com/" title="Wealth4India">Wealth4India</a>
+        <div class="grid col-300 copyright">© 2013<a href="http://www.<w4india:resellername/>.com/" title="<w4india:resellername/>"><w4india:resellername/></a>
         </div><!-- end of .copyright -->
         
         <div class="grid col-300 scroll-top"><a href="#scroll-top" title="scroll to top">↑</a></div>
         
         <div class="grid col-300 fit powered">
-            <a href='<hst:link path="/"/>' title="Wealth4India">Wealth4India</a>
+            <a href='<hst:link path="/"/>' title="<w4india:resellername/>"><w4india:resellername/></a>
             developed by <a href="http://www.mootly.com/" title="Mootly. Get IT Done Get IT Right">
                     Mootly Software Pvt Ltd.</a>
         </div><!-- end .powered -->

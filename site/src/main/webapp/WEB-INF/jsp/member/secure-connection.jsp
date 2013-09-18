@@ -4,7 +4,7 @@
 <hst:actionURL var="actionUrl"></hst:actionURL>
 <c:if test="${securityQues eq true }">
 <div class="alert alert-info">
-<p><strong>Wealth4India cares about your security and we take all necessary measures to make sure your information is secured and safe.</strong></p>
+<p><strong><w4india:resellername/> cares about your security and we take all necessary measures to make sure your information is secured and safe.</strong></p>
 <p>In order to ensure your safety we will need the following.Please answer these questions.</p>
 </div>
 <div class="well">

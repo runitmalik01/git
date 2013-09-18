@@ -72,7 +72,7 @@ try {
 	</c:when>
 	<c:otherwise>
 		<div class="memberlogin page type-page">
-				<h4>Login to Wealth4India</h4>				
+				<h4>Login to <w4india:resellername/></h4>				
 				<c:if test="${not empty login_error_key}">
 					<div class="alert alert-error"><fmt:message key="${login_error_key}"/></div>
 				</c:if>

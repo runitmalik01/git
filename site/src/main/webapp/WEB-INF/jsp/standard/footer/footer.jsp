@@ -77,7 +77,7 @@
  <img class="xr_ap" src="<c:url value='/images/copyimg.png'/>" alt="" title="" style="left: 165px; top: 852px; width: 965px; height:40px;">
  
  <span class="xr_s16" style="position: absolute; left:300px; top:855px;width:700px;">
-  Copyright 2013&nbsp;&nbsp; &nbsp;&nbsp; WEALTH4INDIA&nbsp;&nbsp; &nbsp;&nbsp; Web Design: Proweaver
+  Copyright 2013&nbsp;&nbsp; &nbsp;&nbsp; <w4india:resellername/>&nbsp;&nbsp; &nbsp;&nbsp; Web Design: Proweaver
  </span>
  
   <span class="xr_s16" style="position: absolute; left:300px; top:870px;width:700px;">

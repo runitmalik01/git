@@ -21,7 +21,7 @@
 <hst:link var="forgotpass" siteMapItemRefId="forgotpass"></hst:link>
 <hst:actionURL var="actionUrl"></hst:actionURL>
 <div class="memberlogin page type-page">
-		<h3 id="respond1">Signup to Wealth4India</h3>
+		<h3 id="respond1">Signup to <w4india:resellername/></h3>
 		
 		<p style="color:blue;" >
 

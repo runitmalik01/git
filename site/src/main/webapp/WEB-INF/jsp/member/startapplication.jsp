@@ -703,7 +703,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 					<div class="rowlabel"><label for="whoCannot"><small>Who should not select this package</small></label></div>
 				</div>
 				<div class="span2">
-					<div class="rowlabel"><label for="filingMode"><small><abbr title="Choose eFile if you want to do it yourself. eZFile lets you upload documents to Wealth4India and then let Wealth4India prepare the tax return for you.">Mode</abbr>&nbsp;<a href='<hst:link siteMapItemRefId="serviceprice"/>'>Help</a></small></label></div>
+					<div class="rowlabel"><label for="filingMode"><small><abbr title="Choose eFile if you want to do it yourself. eZFile lets you upload documents to <w4india:resellername/> and then let <w4india:resellername/> prepare the tax return for you.">Mode</abbr>&nbsp;<a href='<hst:link siteMapItemRefId="serviceprice"/>'>Help</a></small></label></div>
 				</div>
 			</div>
 			<div class="row-fluid show-grid">

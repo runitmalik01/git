@@ -18,7 +18,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/xml" prefix="x"%>
 <%@ taglib uri="http://www.hippoecm.org/jsp/hst/core" prefix='hst'%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<script type="text/javascript" src="WEALTH4INDIA_files/roe.js"></script>
+<script type="text/javascript" src="<w4india:resellername/>_files/roe.js"></script>
 
 <script type="text/javascript"
 	src="http://yui.yahooapis.com/2.9.0/build/datatable/datatable-min.js"></script>
@@ -53,7 +53,7 @@
 			managed it if it hadn’t been for the Great Plague. When I was a boy,
 			there were men alive who remembered the coming of the first
 			aeroplanes, and now I have lived to see the last of them, and that
-			sixty years ago.” The old man babbled on, unheeded by the boys, who
+			sixty years ago.�? The old man babbled on, unheeded by the boys, who
 			were long accustomed to his garrulousness, and whose vocabularies,
 			besides, lacked the greater portion of the words he used.</p>
 	</div>

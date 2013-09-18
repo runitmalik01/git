@@ -3,7 +3,7 @@
 <hst:actionURL var="actionURL" />
 <div class="page">
 	<h2>
-		Customizing Wealth4India to suit your needs 
+		Customizing <w4india:resellername/> to suit your needs 
 	</h2>
 	<h5>
 		In order to provide you an out of the world experience, we must ask you few questions related to your sources of income.

@@ -2,7 +2,7 @@
 <div class="modal hide" id="modal">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal">x</button>
-    <h3>Wealth4India Tutorial</h3>
+    <h3><w4india:resellername/> Tutorial</h3>
   </div>
   <div class="modal-body">      
     <p>One fine body</p>

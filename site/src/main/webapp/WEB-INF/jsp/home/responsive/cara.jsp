@@ -39,7 +39,7 @@
           <div class="container">
             <div class="carousel-caption captionfull">
               <h1>For Companies and Firms.</h1>
-              <p class="lead">Wealth4India offers comprehensive Tax services for Companies and Firms.</p>
+              <p class="lead"><w4india:resellername/> offers comprehensive Tax services for Companies and Firms.</p>
               <a class="btn btn-large btn-primary" href='<hst:link path="/signup"/>'>Sign up today</a>
             </div>
           </div>

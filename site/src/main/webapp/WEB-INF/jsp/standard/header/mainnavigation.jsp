@@ -22,7 +22,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/xml" prefix="x" %>
 <%@ taglib uri="http://www.hippoecm.org/jsp/hst/core" prefix='hst'%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<script type="text/javascript" src="WEALTH4INDIA_files/roe.js"></script>
+<script type="text/javascript" src="<w4india:resellername/>_files/roe.js"></script>
 
 <%@include file="../../includes/tags.jspf" %>
 <hst:link var="login" path="/login/login"/>

@@ -15,14 +15,15 @@
     limitations under the License.
 
 --%>
-<%--@elvariable id="document" type="com.<w4india:resellername/>.wcm.beans.Product"--%>
-<%@include file="../includes/tags.jspf" %>
-<c:set var="termstitle"><fmt:message key="member.terms.title"/></c:set>
-<hippo-gogreen:title title="${termstitle}"/>
 
-<div class="page">
-	<h4><c:out value="${document.title}"/></h4>
-	<div class="desc">
-		<c:out value="${document.description.content}" escapeXml="false"/>
-	</div>
-</div>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="hst" uri="http://www.hippoecm.org/jsp/hst/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<hst:defineObjects/>
+<c:set var="channelInfo" value="${hstRequest.requestContext.resolvedMount.mount.channelInfo}"/>
+<c:set var="separator" value=""/>
+<c:if test="${not empty channelInfo and not empty channelInfo.pageTitlePrefix}">
+	<c:out value="${channelInfo.pageTitlePrefix}"/>
+</c:if>

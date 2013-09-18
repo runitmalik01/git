@@ -1,5 +1,5 @@
 <%@include file="../includes/tags.jspf"%>
-<hippo-gogreen:title title="Please confirm and agree to Wealth4India's Terms and Conditions" />
+<hippo-gogreen:title title="Please confirm and agree to <w4india:resellername/>'s Terms and Conditions" />
 <hst:actionURL var="actionUrl"></hst:actionURL>
 
 <div class="page">

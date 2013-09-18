@@ -35,7 +35,7 @@
 	</c:when>
 	<c:otherwise>
 		<div class="memberlogin page type-page">
-				<h3 id="respond1">Login to Wealth4India</h3>
+				<h3 id="respond1">Login to <w4india:resellername/></h3>
 				<form action="${loginProxy}" method="post" id="loginForm">
 				   <p>
 				 	  <label for="username">

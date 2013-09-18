@@ -97,7 +97,7 @@
 				<legend>What is eZ-Filing?</legend>
 				<p>
 					eZ-File (pronounced as <i>easy</i> Filing), lets you upload all your relevant tax documents.
-					Wealth4India professionals will download your documents and work on your case.
+					<w4india:resellername/> professionals will download your documents and work on your case.
 					You will be notified via email/phone when your tax is ready.
 				</p>
 			</fieldset>

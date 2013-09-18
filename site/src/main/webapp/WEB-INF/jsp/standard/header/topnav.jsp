@@ -6,7 +6,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/xml" prefix="x" %>
 <%@ taglib uri="http://www.hippoecm.org/jsp/hst/core" prefix='hst'%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<script type="text/javascript" src="WEALTH4INDIA_files/roe.js"></script>
+<script type="text/javascript" src="<w4india:resellername/>_files/roe.js"></script>
 
 <!-- top navigation -->
 <div class="xr_ap" id="xr_xr" style="width: 1300px; height:950px; top: 0px; left: 0px; margin-left: 0px;">
