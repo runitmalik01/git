@@ -4816,7 +4816,8 @@
 <!--  schedule 44AE ITR4S -->
 
 
-<sv:node sv:name="schedulefourtyfourAE.html" >
+
+<sv:node sv:name="schedulefourtyfourAE.html" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hst:sitemapitem</sv:value>
   </sv:property>
@@ -4828,9 +4829,11 @@
   </sv:property>
   <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
     <sv:value>mainSiteMapItemRefId</sv:value>
+    <sv:value>maxChildrenAllowed</sv:value>
   </sv:property>
   <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
     <sv:value>memberschedulefourtyfourAE</sv:value>
+    <sv:value>10</sv:value>
   </sv:property>
   <sv:property sv:name="hst:refId" sv:type="String">
     <sv:value>schedulefourtyfourAE</sv:value>
@@ -4904,6 +4907,7 @@
     </sv:property>
   </sv:node>
 </sv:node>
+
 
 <!-- /schedule 44AE ITR4S -->
 <sv:node sv:name="balancesheet.html" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
