@@ -38,7 +38,7 @@
 			name="advancetax">
 
 			<fieldset>
-				<legend style="color: black">Enter Details</legend>
+				<legend style="color: green; font-weight: bold;">Enter Details</legend>
 				<div class="row-fluid show-grid">
 					<div class="span4">
 						<div class="rowlabel">
