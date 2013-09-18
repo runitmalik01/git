@@ -5,7 +5,7 @@
 
 
 <fieldset>
-		<legend>
+		<legend style="color: green; font-weight: bold;">
 			Income From Owning and Maintaining Race Horses
 		</legend>
 		<div class="row-fluid show-grid">
@@ -41,18 +41,21 @@
 		</div>
 	</fieldset>
     <fieldset>
-		<legend>
+		<legend style="color: green; font-weight: bold;">
 			Winnings from lotteries, crossword puzzles, races, games, gambling, betting etc
 		</legend>
-	        <div class="span5">
+		<div class="row-fluid show-grid">
+	        <div class="span8">
 				<div class="rowlabel">
 			<label for="LotteryOrhorse_income">Winnings from lotteries, crossword puzzles, races, games, gambling, betting etc</label>
-				</div>
+				</div></div>
+				  <div class="span4">
 				<div class="rowlabel">
 					<input type="text" name="LotteryOrhorse_income" id="LotteryOrhorse_income"
 						value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.lotteryOrhorse_income}"/>" maxlength="14"
 						class=" decimal"  />
 				</div>
+			</div>
 			</div>
 	</fieldset>
 
