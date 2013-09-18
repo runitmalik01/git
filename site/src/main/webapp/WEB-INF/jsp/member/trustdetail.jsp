@@ -76,8 +76,7 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 			
 				<div class="span4">
 					<div class="rowlabel">
-						<label for="name_othertrust"><small><fmt:message
-									key="name.other.trust.itr2" /> </small> </label>
+						<label for="name_othertrust"><small>Name of Other trustees </small> </label>
 					</div>
 					<div class="rowlabel">
 						<input id="name_othertrust" name="name_othertrust"
@@ -88,8 +87,7 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 				</div>
 				<div class="span4">
 					<div class="rowlabel">
-						<label for="address_othertrust"><small><fmt:message
-									key="address.other.trust.itr2" /> </small> </label>
+						<label for="address_othertrust"><small>Address of Other trustees </small> </label>
 					</div>
 					<div class="rowlabel">
 						<input id="address_othertrust" name="address_othertrust" type="text"
