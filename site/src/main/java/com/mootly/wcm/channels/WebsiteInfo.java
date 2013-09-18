@@ -65,7 +65,7 @@ public interface WebsiteInfo extends ChannelInfo {
     @Parameter(name = "endDate", defaultValue = "")
     String getEndDate();
     
-    @Parameter(name = "isReseller", defaultValue = "true")
+    @Parameter(name = "isReseller", defaultValue = "false")
     String isReseller();
     
     @Parameter(name = "resellerId", defaultValue = "", required = true)

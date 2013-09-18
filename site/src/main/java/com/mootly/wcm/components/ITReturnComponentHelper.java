@@ -132,11 +132,12 @@ public final class ITReturnComponentHelper {
             log.warn("No channel info available for mount '{}'. No logo will be shown", mount.getMountPath());
             return false;
         }
-        if (info.isReseller() == null || !Boolean.valueOf(info.isReseller()) ) {
-        	return false;
+        String isReseller = info.isReseller();
+        String resellerId = info.getResellerId();
+        if (info.isReseller() != null && Boolean.valueOf(info.isReseller()) && info.getResellerId() != null && !"".equals(info.getResellerId()) ) {
+        	return true;
         }        
-        
-        return true;
+        return false;
 	}
 	
 	public String getResellerId(HstRequest request) {
