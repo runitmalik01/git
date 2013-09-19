@@ -25,7 +25,7 @@
 	<form id="scheduleESR" action="${actionUrl}" method="post"
 		name="scheduleESR">
 		<fieldset>
-			<legend style="font-style: italic; color: blue;">Deduction
+			<legend style="color: green; font-weight: bold;">Deduction
 				Under Section 35</legend>
 			<br />
 			<table>
