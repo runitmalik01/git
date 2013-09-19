@@ -106,7 +106,7 @@
 					<a id="myModalHrefTaxrebate" role="button" class="btn orange">Save</a>
 				</div>  -->
 			<input type="submit" value="save">
-			</div>
+			
 		</form>
 	</c:when>
 	<c:otherwise>
@@ -143,7 +143,7 @@
 						</a>&nbsp;<a href="${scriptName}/<c:out value="${taxrelief.canonicalUUID}"/>/foreignassetdelete" id="delete" onclick="return checkdelete()"><small>Delete</small> </a>
 							</td>
 						</tr>
-					</tr>
+				
 				</c:forEach>
 				<tr>
 					<td colspan="3"><fmt:message key="tds.amount.total" /></td>
