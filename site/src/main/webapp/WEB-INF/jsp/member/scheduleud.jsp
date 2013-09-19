@@ -32,11 +32,11 @@
 			<form id="UAdepriciation" action="${actionUrl}" method="post"
 				name="UAdepriciation">
 				<fieldset>
-					<legend style="font-style: italic; color: blue;">UnAbsorbed
+					<legend style="color: green; font-weight: bold;">UnAbsorbed
 						Depreciation Details</legend>
 					<br />
 					<p>
-						<span style="color: red">*</span> indicate mandatory fields
+						<span style="color: red">*</span> Indicates mandatory fields
 					</p>
 					<table>
 						<tr>
