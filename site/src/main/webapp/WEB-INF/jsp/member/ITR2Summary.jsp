@@ -143,8 +143,9 @@
 								<span class="caret"></span>
 							</button>
 							<ul class="dropdown-menu">
-								<li>
-									<a href="capitalgains.html"><fmt:message key="itr2.long.term"/> |<w4india:inr value="${theForm.partBTI.capGain.longTerm.totalLongTerm}" />|</a>
+								<li><c:choose>
+								<c:when test="${theForm.partBTI.capGain.longTerm.totalLongTerm gt '0' || theForm.partBTI.capGain.shortTerm.totalShortTerm gt '0'|| theForm.scheduleEI.LTCGWhereSTTPaid gt '0' }">
+								<a href="capitalgains.html"><fmt:message key="itr2.long.term"/> |<w4india:inr value="${theForm.partBTI.capGain.longTerm.totalLongTerm}" />|</a>
 									<a href="capitalgains.html"><fmt:message key="itr2.short.term"/> |<w4india:inr value="${theForm.partBTI.capGain.shortTerm.totalShortTerm}" />|</a>
 									<c:choose>
 									   <c:when test="${theForm.scheduleEI.LTCGWhereSTTPaid eq null}">
@@ -154,6 +155,12 @@
 									      <a href="capitalgains.html"><fmt:message key="itr2.long.term.exempt"/> |<w4india:inr value="${theForm.scheduleEI.LTCGWhereSTTPaid}" />|</a>
 									   </c:otherwise>
 									</c:choose>
+								</c:when>
+								<c:otherwise>
+								<a href="capitalgains.html"><fmt:message key="itr2.capital.gain"/></a>
+								</c:otherwise>
+								</c:choose>
+
 								</li>
 							</ul>
 						</div>
