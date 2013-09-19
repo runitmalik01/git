@@ -46,14 +46,15 @@ public class ITRScheduleBPForITR4S {
 		if(businessProfessionDocument!=null){
 			persumptiveInc44AD.setGrsTrnOverOrReceipt(indianCurrencyHelper.bigIntegerRound(businessProfessionDocument.getGrossTurnOver()));
 			persumptiveInc44AD.setTotPersumptiveInc44AD(indianCurrencyHelper.bigIntegerRound(businessProfessionDocument.getGrossPresumptIncome()));
-			incChargUnderBusiness = incChargUnderBusiness + indianCurrencyHelper.longRound(businessProfessionDocument.getGrossPresumptIncome()) +
-					indianCurrencyHelper.longRound(businessProfessionDocument.getGrossPresumptIncome())	;
+			incChargUnderBusiness = incChargUnderBusiness + indianCurrencyHelper.longRound(businessProfessionDocument.getGrossPresumptIncome());
+			noBooksOfAccBS.setCashBalAmt(indianCurrencyHelper.bigIntegerRound(businessProfessionDocument.getGrossCashBalance()));
 			noBooksOfAccBS.setTotStkInTradAmt(indianCurrencyHelper.bigIntegerRound(businessProfessionDocument.getGrossStockTrade()));
 			noBooksOfAccBS.setTotSundryCrdAmt(indianCurrencyHelper.bigIntegerRound(businessProfessionDocument.getGrossSundryCredit()));
 			noBooksOfAccBS.setTotSundryDbtAmt(indianCurrencyHelper.bigIntegerRound(businessProfessionDocument.getGrossSundryDebt()));
 		}else{
 			persumptiveInc44AD.setGrsTrnOverOrReceipt(new BigInteger("0"));
 			persumptiveInc44AD.setTotPersumptiveInc44AD(new BigInteger("0"));
+			noBooksOfAccBS.setCashBalAmt(new BigInteger("0"));
 			noBooksOfAccBS.setTotStkInTradAmt(new BigInteger("0"));
 			noBooksOfAccBS.setTotSundryCrdAmt(new BigInteger("0"));
 			noBooksOfAccBS.setTotSundryDbtAmt(new BigInteger("0"));
@@ -61,18 +62,21 @@ public class ITRScheduleBPForITR4S {
 		PersumptiveInc44AE persumptiveInc44AE = new PersumptiveInc44AE();
 		if(schFourtyFourAEDocument!=null){
 			persumptiveInc44AE.setPersumptiveIncHeavyVehicle(indianCurrencyHelper.bigIntegerRound(schFourtyFourAEDocument.getTotal_deemedIncome_Heavy()));
-			persumptiveInc44AE.setPersumptiveIncHeavyVehicle(indianCurrencyHelper.bigIntegerRound(schFourtyFourAEDocument.getTotal_deemedIncome_Light()));
+			persumptiveInc44AE.setPersumptiveIncOtherVehicle(indianCurrencyHelper.bigIntegerRound(schFourtyFourAEDocument.getTotal_deemedIncome_Light()));
+			persumptiveInc44AE.setTotPersumInc44AE(persumptiveInc44AE.getPersumptiveIncHeavyVehicle().add(persumptiveInc44AE.getPersumptiveIncOtherVehicle()));
 			incChargUnderBusiness = incChargUnderBusiness + indianCurrencyHelper.longRound(schFourtyFourAEDocument.getTotal_deemedIncome_Heavy()) +
 			               indianCurrencyHelper.longRound(schFourtyFourAEDocument.getTotal_deemedIncome_Light());
 		}else{
 			persumptiveInc44AE.setPersumptiveIncHeavyVehicle(new BigInteger("0"));
-			persumptiveInc44AE.setPersumptiveIncHeavyVehicle(new BigInteger("0"));
+			persumptiveInc44AE.setPersumptiveIncOtherVehicle(new BigInteger("0"));
+			persumptiveInc44AE.setTotPersumInc44AE(new BigInteger("0"));
 		}
 
 		scheduleBPForITR4S.setPersumptiveInc44AD(persumptiveInc44AD);
 		scheduleBPForITR4S.setPersumptiveInc44AE(persumptiveInc44AE);
 		scheduleBPForITR4S.setIncChargeableUnderBus(incChargUnderBusiness);
 		scheduleBPForITR4S.setNoBooksOfAccBS(noBooksOfAccBS);
+		
 		return scheduleBPForITR4S;
 	}
 }
