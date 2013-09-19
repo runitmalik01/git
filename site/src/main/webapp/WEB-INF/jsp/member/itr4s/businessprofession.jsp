@@ -20,6 +20,11 @@
 			href="./servicerequest-itr.html" class="btn btn-warning">Change Package</a>
 	</div>
 </c:if>
+<c:if test="${not empty exceedErrorGrossPremptInc}">
+	<div class="alert alert-error">
+		<strong><fmt:message key="busi.prof.exceed.grossPresumptIncome.itr4" /></strong>
+	</div>
+</c:if>
 <form name="schedBusinessProfess" id="schedBusinessProfess" action="${actionUrl}" method="post">
 	<h5 align="center">Presumptive Income</h5>
 	<fieldset>

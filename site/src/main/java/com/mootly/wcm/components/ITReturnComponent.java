@@ -109,7 +109,6 @@ import com.mootly.wcm.beans.ScreenCalculation;
 import com.mootly.wcm.beans.ScreenConfigDocument;
 import com.mootly.wcm.beans.ValueListDocument;
 import com.mootly.wcm.beans.events.BeanLifecycle;
-import com.mootly.wcm.components.ITReturnScreen.PAGE_ACTION;
 import com.mootly.wcm.member.Member;
 import com.mootly.wcm.model.FilingSection;
 import com.mootly.wcm.model.FilingStatus;
@@ -122,6 +121,7 @@ import com.mootly.wcm.model.PaymentVerificationStatus;
 import com.mootly.wcm.model.SORT_DIRECTION;
 import com.mootly.wcm.model.ValidationResponse;
 import com.mootly.wcm.services.DownloadConfirmationRequiredException;
+import com.mootly.wcm.services.ITRScreenXmlValidateServiceImpl;
 import com.mootly.wcm.services.ITRXmlGeneratorServiceFactory;
 import com.mootly.wcm.services.InvalidXMLException;
 import com.mootly.wcm.services.MasterConfigService;
@@ -387,7 +387,11 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 				}
 			}
 		}
-
+		/** Validate XML According to Compulsory Screen that need to be Filled Before download **/
+		if (pageAction != null && (pageAction.equals(PAGE_ACTION.DOWNLOAD_ITR_SUMMARY) || pageAction.equals(PAGE_ACTION.DOWNLOAD_ITR_XML) || pageAction.equals(PAGE_ACTION.EMAIL_ITR_XML_AND_SUMMARY)) ) {
+			ITRScreenXmlValidateServiceImpl iTRScreenXmlValidateServiceImpl = new ITRScreenXmlValidateServiceImpl();
+			iTRScreenXmlValidateServiceImpl.getValidateXmlBasedOnReqScreen(request, response);
+		}
 		String redirectToIfPaymentNotFound = getRedirectURLForSiteMapItem(request, response, null,(  (isVendor(request) && isOnVendorPortal()) ? "vendor-servicerequest-itr-payment" : "servicerequest-itr-payment"), getFinancialYear(), getTheFolderContainingITRDocuments(), getPAN());
 		String redirectToIfConfirmationNotFound = getRedirectURLForSiteMapItem(request, response, null, (  (isVendor(request) && isOnVendorPortal()) ? "vendor-servicerequest-itr-tos-confirmation" : "servicerequest-itr-tos-confirmation"), getFinancialYear(), getTheFolderContainingITRDocuments(), getPAN());
 		if (pageAction != null && (pageAction.equals(PAGE_ACTION.SHOW_ITR_SUMMARY) || pageAction.equals(PAGE_ACTION.DOWNLOAD_ITR_SUMMARY) || pageAction.equals(PAGE_ACTION.DOWNLOAD_ITR_XML) || pageAction.equals(PAGE_ACTION.EMAIL_ITR_XML_AND_SUMMARY)) ) {

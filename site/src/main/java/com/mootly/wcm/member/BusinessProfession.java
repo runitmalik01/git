@@ -31,6 +31,7 @@ public class BusinessProfession extends ITReturnComponent {
 		// TODO Auto-generated method stub
 		super.doBeforeRender(request, response);
 		request.setAttribute("exceedErrorGrossTurnOver", request.getParameter("exceedErrorGrossTurnOver"));
+		request.setAttribute("exceedErrorGrossPremptInc", request.getParameter("exceedErrorGrossPremptInc"));
 		SchFourtyFourAEDocument schFourtyFourAEDocument = (SchFourtyFourAEDocument) request.getAttribute(SchFourtyFourAEDocument.class.getSimpleName().toLowerCase());
 		if(schFourtyFourAEDocument!=null){
 			request.setAttribute("schFourtyFourAEDocument", schFourtyFourAEDocument);
@@ -56,6 +57,11 @@ public class BusinessProfession extends ITReturnComponent {
 			if(grossPresumptIncome < eightPerCOfGrossTurnOver){
 				formMap.getField("grossPresumptIncome").addMessage("busi.prof.exceed.grosturnover.itr4");
 				response.setRenderParameter("exceedErrorGrossTurnOver", "busi.prof.exceed.grosturnover.itr4");
+				return false;
+			}
+			if(grossTurnOver < grossPresumptIncome){
+				formMap.getField("grossTurnOver").addMessage("busi.prof.exceed.grossPresumptIncome.itr4");
+				response.setRenderParameter("exceedErrorGrossPremptInc", "busi.prof.exceed.grossPresumptIncome.itr4");
 				return false;
 			}
 		}
