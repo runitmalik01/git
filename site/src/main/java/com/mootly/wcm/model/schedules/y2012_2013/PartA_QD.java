@@ -1,6 +1,7 @@
 package com.mootly.wcm.model.schedules.y2012_2013;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.List;
 
 import in.gov.incometaxindiaefiling.y2012_2013.ITR;
@@ -69,11 +70,23 @@ public class PartA_QD {
 					quantitDet.setUnitOfMeasure(manufactureRawMatDetail.getItemUnit_Code());
 					quantitDet.setOpeningStock(indianCurrencyHelper.bigIntegerRoundStr(manufactureRawMatDetail.getOpening_Stock()));
 					quantitDet.setPurchaseQty(indianCurrencyHelper.bigIntegerRoundStr(manufactureRawMatDetail.getPurchage()));
-					quantitDet.setPrevYrConsum(indianCurrencyHelper.bigIntegerRoundStr(manufactureRawMatDetail.getConsumption()));
-					quantitDet.setSaleQty(indianCurrencyHelper.bigIntegerRoundStr(manufactureRawMatDetail.getSales()));
+					if(!(manufactureRawMatDetail.getConsumption().isEmpty())){
+						quantitDet.setPrevYrConsum(indianCurrencyHelper.bigIntegerRoundStr(manufactureRawMatDetail.getConsumption()));
+					}else
+						quantitDet.setPrevYrConsum(new BigInteger("0"));
+					if(!(manufactureRawMatDetail.getSales().isEmpty())){
+						quantitDet.setSaleQty(indianCurrencyHelper.bigIntegerRoundStr(manufactureRawMatDetail.getSales()));
+					}else
+						quantitDet.setSaleQty(new BigInteger("0"));
 					quantitDet.setClgStock(indianCurrencyHelper.bigIntegerRoundStr(manufactureRawMatDetail.getClosing_Stock()));
-					quantitDet.setYldFinisProd(indianCurrencyHelper.bigIntegerRoundStr(manufactureRawMatDetail.getYield_finishedProd()));
-					quantitDet.setPercentYld(new BigDecimal(manufactureRawMatDetail.getPercentage_Yield()));
+					if(!(manufactureRawMatDetail.getYield_finishedProd().isEmpty())){
+						quantitDet.setYldFinisProd(indianCurrencyHelper.bigIntegerRoundStr(manufactureRawMatDetail.getYield_finishedProd()));
+					}else
+						quantitDet.setYldFinisProd(new BigInteger("0"));
+					if(!(manufactureRawMatDetail.getPercentage_Yield().isEmpty())){
+						quantitDet.setPercentYld(new BigDecimal(manufactureRawMatDetail.getPercentage_Yield()));
+					}else
+						quantitDet.setPercentYld(new BigDecimal("0"));
 					quantitDet.setAnyShortExces(Long.parseLong(manufactureRawMatDetail.getShortage_IfAny()));
 					rawMaterial.getQuantitDet().add(quantitDet);
 					manfactrConcern.setRawMaterial(rawMaterial);
@@ -91,7 +104,10 @@ public class PartA_QD {
 					quantitDet.setUnitOfMeasure(manufactureFinishedGoodsDetail.getItemUnit_Code());
 					quantitDet.setOpeningStock(indianCurrencyHelper.bigIntegerRoundStr(manufactureFinishedGoodsDetail.getOpening_Stock()));
 					quantitDet.setPurchaseQty(indianCurrencyHelper.bigIntegerRoundStr(manufactureFinishedGoodsDetail.getPurchage()));
-					quantitDet.setPrevyrManfact(indianCurrencyHelper.bigIntegerRoundStr(manufactureFinishedGoodsDetail.getFinished_Goods()));
+					if(!(manufactureFinishedGoodsDetail.getFinished_Goods().isEmpty())){
+						quantitDet.setPrevyrManfact(indianCurrencyHelper.bigIntegerRoundStr(manufactureFinishedGoodsDetail.getFinished_Goods()));
+					}else
+						quantitDet.setPrevyrManfact(new BigInteger("0"));
 					quantitDet.setSaleQty(indianCurrencyHelper.bigIntegerRoundStr(manufactureFinishedGoodsDetail.getSales_Qty()));
 					quantitDet.setClgStock(indianCurrencyHelper.bigIntegerRoundStr(manufactureFinishedGoodsDetail.getClosing_Stock()));
 					quantitDet.setAnyShortExces(Long.parseLong(manufactureFinishedGoodsDetail.getShortage_IfAny()));
@@ -103,9 +119,9 @@ public class PartA_QD {
 			}
 		}
 
-	if(hasAValidQD){
-		return pARTAQD;
-	}else
-		return null;
-}
+		if(hasAValidQD){
+			return pARTAQD;
+		}else
+			return null;
+	}
 }
