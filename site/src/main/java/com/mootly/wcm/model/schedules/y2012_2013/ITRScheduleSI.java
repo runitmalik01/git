@@ -65,52 +65,57 @@ public class ITRScheduleSI {
 		ScheduleSI scheduleSI = new ScheduleSI();
 
 		List<SplCodeRateTax> finalSplCodeRateTax = new ArrayList<SplCodeRateTax>();
-
+		BigInteger totalCalTaxOnInc = new BigInteger("0");
 		//list of all section which are compulsory for Xml
 		List<ITRScheduleSISections> xmlSISectionsList = ITRScheduleSISections.createXmlActiveListOfSI();
+		if(capitalAssetDocument != null){
+			Map<String, Map<String,Object>> resultMap = capitalAssetDocument.getScheduleSIService(financialYear, inputBean);
+			List<SplCodeRateTax> returnSplCodeRateTaxList = invokeITRAdditionScreenResults(resultMap);
+			if(returnSplCodeRateTaxList !=null){
+				for(SplCodeRateTax splCodeTax:returnSplCodeRateTaxList){
+					finalSplCodeRateTax.add(splCodeTax);
+				}
+			}
+		}
+		if(otherSourcesDocument != null){
+			Map<String, Map<String,Object>> resultMap = otherSourcesDocument.getScheduleSIService(financialYear, inputBean);
+			List<SplCodeRateTax> returnSplCodeRateTaxList = invokeITRAdditionScreenResults(resultMap);
+			if(returnSplCodeRateTaxList !=null){
+				for(SplCodeRateTax splCodeTax:returnSplCodeRateTaxList){
+					finalSplCodeRateTax.add(splCodeTax);
+				}
+			}
+		}
 		for(ITRScheduleSISections siSection:xmlSISectionsList){
 			//fetch all section from CapitalAssetsDocument
 			if(siSection.getDocumentName().equals(CapitalAssetDocument.class.getSimpleName())){
-				if(capitalAssetDocument != null){
-					Map<String, Map<String,Object>> resultMap = capitalAssetDocument.getScheduleSIService(financialYear, inputBean);
-					List<SplCodeRateTax> returnSplCodeRateTaxList = invokeITRAdditionScreenResults(resultMap);
-					if(returnSplCodeRateTaxList !=null){
-						for(SplCodeRateTax splCodeTax:returnSplCodeRateTaxList){
-							finalSplCodeRateTax.add(splCodeTax);
-						}
-					}
-				}else{
+				if(capitalAssetDocument == null){
 					finalSplCodeRateTax.add(dummyInvokeScheduleSI(siSection));
 				}
 			}
 			//fetch all section from OtherSourceDocument
 			if(siSection.getDocumentName().equals(OtherSourcesDocument.class.getSimpleName())){
-				if(otherSourcesDocument != null){
-					Map<String, Map<String,Object>> resultMap = otherSourcesDocument.getScheduleSIService(financialYear, inputBean);
-					List<SplCodeRateTax> returnSplCodeRateTaxList = invokeITRAdditionScreenResults(resultMap);
-					if(returnSplCodeRateTaxList !=null){
-						for(SplCodeRateTax splCodeTax:returnSplCodeRateTaxList){
-							finalSplCodeRateTax.add(splCodeTax);
-						}
-					}
-				}else{
+				if(otherSourcesDocument == null){
 					finalSplCodeRateTax.add(dummyInvokeScheduleSI(siSection));
 				}
 			}
 			//fetch all section from SchedulSIDocument
 			if(siSection.getDocumentName().equals(ScheduleSIDocument.class.getSimpleName())){
-				if(scheduleSIDocument !=null){
-					if(scheduleSIDocument.getScheduleSiDetailList().size()!=0 && scheduleSIDocument.getScheduleSiDetailList() != null){
-						for(ScheduleSIDocumentDetail siDetail:scheduleSIDocument.getScheduleSiDetailList()){
-							if(siSection.getXmlCode().equals(siDetail.getSchedulesiSection())){
-								finalSplCodeRateTax.add(invokeFromScheduleSIDetail(siDetail));
-							}
-						}
-					}else{
-						finalSplCodeRateTax.add(dummyInvokeScheduleSI(siSection));
-					}
-				}else{
+				if(scheduleSIDocument ==null){
 					finalSplCodeRateTax.add(dummyInvokeScheduleSI(siSection));
+				}
+			}
+		}
+		if(scheduleSIDocument !=null){
+			if(scheduleSIDocument.getScheduleSiDetailList().size()!=0 && scheduleSIDocument.getScheduleSiDetailList() != null){
+				for(ScheduleSIDocumentDetail siDetail:scheduleSIDocument.getScheduleSiDetailList()){
+					for(SplCodeRateTax codeRateTax:finalSplCodeRateTax){
+						if(codeRateTax.getSecCode().equals(siDetail.getSchedulesiSection())){
+							codeRateTax.setSplRatePercent(siDetail.getSpecialRate());
+							codeRateTax.setSplRateInc(indianCurrencyHelper.bigIntegerRound(siDetail.getAmount()));
+							codeRateTax.setSplRateIncTax(indianCurrencyHelper.bigIntegerRound(siDetail.getCalcRateIncome()));
+						}
+					}
 				}
 			}
 		}
@@ -134,17 +139,14 @@ public class ITRScheduleSI {
 				}
 			}
 		}
-		if(scheduleSIDocument !=null){
-			scheduleSI.setTotSplRateIncTax(indianCurrencyHelper.bigIntegerRound(scheduleSIDocument.getTotalCalTaxOnInc()));
-		}else{
-			scheduleSI.setTotSplRateIncTax(new BigInteger("0"));
-		}
 		System.out.println("finalSplCodeRateTax"+finalSplCodeRateTax.size());
 		if(finalSplCodeRateTax !=null){
 			for(SplCodeRateTax splCodeRateTax:finalSplCodeRateTax){
+				totalCalTaxOnInc.add(splCodeRateTax.getSplRateIncTax());
 				scheduleSI.getSplCodeRateTax().add(splCodeRateTax);
 			}
 		}
+		scheduleSI.setTotSplRateIncTax(totalCalTaxOnInc);
 		return scheduleSI;
 	}
 	/**
