@@ -23,7 +23,7 @@
 					</select>
 				</div>
 		</div></div>
-		<div class="row-fluid show-grid <c:if test="${parentBean.isRepresentative == 'N'}">hide</c:if>" id="showRepresentDetail" >
+		<div class="row-fluid show-grid <c:if test="${(parentBean.isRepresentative == 'N') || (parentBean.isRepresentative == '')}">hide</c:if>" id="showRepresentDetail" >
 			<div class="span4" id="name_represent">
 				<div class="rowlabel">
 					<label for="name_Representative"><small><fmt:message

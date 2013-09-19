@@ -54,7 +54,7 @@
 				</div>
 		</div></div>
 		
-		<div class="row-fluid show-grid <c:if test="${parentBean.isLiable_ForAudit == 'N'}"> hide </c:if>" id="date_name_membership">
+		<div class="row-fluid show-grid <c:if test="${(parentBean.isLiable_ForAudit == 'N') || (parentBean.isLiable_ForAudit == '') }"> hide </c:if>" id="date_name_membership">
 			<div class="span4">
 				<div class="rowlabel">
 					<label for="date_FurnishAuditReport"><small><fmt:message
@@ -88,7 +88,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="row-fluid show-grid <c:if test="${parentBean.isLiable_ForAudit == 'N'}"> hide </c:if>" id="name_pan_dateofAudit">
+		<div class="row-fluid show-grid <c:if test="${(parentBean.isLiable_ForAudit == 'N') || (parentBean.isLiable_ForAudit == '')}"> hide </c:if>" id="name_pan_dateofAudit">
 		<div class="span4">
 				<div class="rowlabel">
 					<label for="name_auditorFirm"><small><fmt:message
