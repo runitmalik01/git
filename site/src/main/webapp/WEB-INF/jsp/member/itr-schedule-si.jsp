@@ -57,11 +57,11 @@
 							<td><c:out value="${scheduleSiDetail.specialRate}" /></td>
 							<td><w4india:inr value="${scheduleSiDetail.amount}" /></td>
 							<td><w4india:inr value="${scheduleSiDetail.calcRateIncome}" /></td>
-							<td align="center"><div class="span1">
+							<td align="center"><div class="span2 rowlabel">
 									<a href="${scriptName}/${scheduleSiDetail.canonicalUUID}/itrschedulesiedit"
 										class="btn btn-primary"><i class="icon-edit icon-white"></i><span><strong>Edit</strong></span></a>&nbsp;
-									<%-- <a href="${scriptName}/${scheduleSiDetail.canonicalUUID}/itrschedulesidelete" data-confirm=""
-							class="btn btn-danger"><i class="icon-trash icon-white"></i><span><strong>Delete</strong></span></a>--%>
+									<a href="${scriptName}/${scheduleSiDetail.canonicalUUID}/itrschedulesidelete" data-confirm=""
+							class="btn btn-danger"><i class="icon-trash icon-white"></i><span><strong>Delete</strong></span></a>
 								</div></td>
 						</tr>
 					</c:if>
@@ -74,14 +74,22 @@
 			<td><c:if test="${not empty parentBean.scheduleSiDetailList}">
 					<c:set value="sumGross" var="0" />
 					<c:forEach items="${parentBean.scheduleSiDetailList}" var="scheduleSiDetail">
-						<c:set value="${sumGross + scheduleSiDetail.amount}" var="sumGross" />
+						<c:forEach var="si" items="${scheduleSIList}">
+							<c:if test="${scheduleSiDetail.schedulesiSection ==  si.xmlCode}">
+								<c:set value="${sumGross + scheduleSiDetail.amount}" var="sumGross" />
+							</c:if>
+						</c:forEach>
 					</c:forEach>
 				</c:if><b><w4india:inr value="${sumGross}" /></b></td>
 
 			<td><c:if test="${not empty parentBean.scheduleSiDetailList}">
 					<c:set value="eligSum" var="0" />
 					<c:forEach items="${parentBean.scheduleSiDetailList}" var="scheduleSiDetail">
-						<c:set value="${eligSum + scheduleSiDetail.calcRateIncome}" var="eligSum" />
+						<c:forEach var="si" items="${scheduleSIList}">
+							<c:if test="${scheduleSiDetail.schedulesiSection ==  si.xmlCode}">
+								<c:set value="${eligSum + scheduleSiDetail.calcRateIncome}" var="eligSum" />
+							</c:if>
+						</c:forEach>
 					</c:forEach>
 				</c:if><b><w4india:inr value="${eligSum}" /></b></td>
 

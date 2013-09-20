@@ -65,7 +65,7 @@ public class ITRScheduleSI {
 		ScheduleSI scheduleSI = new ScheduleSI();
 
 		List<SplCodeRateTax> finalSplCodeRateTax = new ArrayList<SplCodeRateTax>();
-		BigInteger totalCalTaxOnInc = new BigInteger("0");
+		Double totalCalTaxOnInc = 0d;
 		//list of all section which are compulsory for Xml
 		List<ITRScheduleSISections> xmlSISectionsList = ITRScheduleSISections.createXmlActiveListOfSI();
 		if(capitalAssetDocument != null){
@@ -101,19 +101,19 @@ public class ITRScheduleSI {
 			}
 			//fetch all section from SchedulSIDocument
 			if(siSection.getDocumentName().equals(ScheduleSIDocument.class.getSimpleName())){
-				if(scheduleSIDocument ==null){
-					finalSplCodeRateTax.add(dummyInvokeScheduleSI(siSection));
-				}
+				finalSplCodeRateTax.add(dummyInvokeScheduleSI(siSection));
 			}
 		}
-		if(scheduleSIDocument !=null){
-			if(scheduleSIDocument.getScheduleSiDetailList().size()!=0 && scheduleSIDocument.getScheduleSiDetailList() != null){
-				for(ScheduleSIDocumentDetail siDetail:scheduleSIDocument.getScheduleSiDetailList()){
-					for(SplCodeRateTax codeRateTax:finalSplCodeRateTax){
-						if(codeRateTax.getSecCode().equals(siDetail.getSchedulesiSection())){
-							codeRateTax.setSplRatePercent(siDetail.getSpecialRate());
-							codeRateTax.setSplRateInc(indianCurrencyHelper.bigIntegerRound(siDetail.getAmount()));
-							codeRateTax.setSplRateIncTax(indianCurrencyHelper.bigIntegerRound(siDetail.getCalcRateIncome()));
+		for(ITRScheduleSISections siSection:xmlSISectionsList){
+			if(scheduleSIDocument !=null && siSection.getDocumentName().equals(ScheduleSIDocument.class.getSimpleName())){
+				if(scheduleSIDocument.getScheduleSiDetailList().size()!=0 && scheduleSIDocument.getScheduleSiDetailList() != null){
+					for(ScheduleSIDocumentDetail siDetail:scheduleSIDocument.getScheduleSiDetailList()){
+						for(SplCodeRateTax codeRateTax:finalSplCodeRateTax){
+							if(codeRateTax.getSecCode().equals(siSection.getXmlCode()) && siSection.getXmlCode().equals(siDetail.getSchedulesiSection())){
+								codeRateTax.setSplRatePercent(siDetail.getSpecialRate());
+								codeRateTax.setSplRateInc(indianCurrencyHelper.bigIntegerRound(siDetail.getAmount()));
+								codeRateTax.setSplRateIncTax(indianCurrencyHelper.bigIntegerRound(siDetail.getCalcRateIncome()));
+							}
 						}
 					}
 				}
@@ -142,11 +142,14 @@ public class ITRScheduleSI {
 		System.out.println("finalSplCodeRateTax"+finalSplCodeRateTax.size());
 		if(finalSplCodeRateTax !=null){
 			for(SplCodeRateTax splCodeRateTax:finalSplCodeRateTax){
-				totalCalTaxOnInc.add(splCodeRateTax.getSplRateIncTax());
 				scheduleSI.getSplCodeRateTax().add(splCodeRateTax);
 			}
 		}
-		scheduleSI.setTotSplRateIncTax(totalCalTaxOnInc);
+		for(SplCodeRateTax splCodeRateTax:scheduleSI.getSplCodeRateTax()){
+			totalCalTaxOnInc = totalCalTaxOnInc + splCodeRateTax.getSplRateIncTax().doubleValue();
+		}
+		System.out.println("value ::"+totalCalTaxOnInc);
+		scheduleSI.setTotSplRateIncTax(indianCurrencyHelper.bigIntegerRound(totalCalTaxOnInc));
 		return scheduleSI;
 	}
 	/**
@@ -177,9 +180,16 @@ public class ITRScheduleSI {
 	 *
 	 * */
 	public SplCodeRateTax dummyInvokeScheduleSI(ITRScheduleSISections siSection){
+		double percentRate = 0d;
 		SplCodeRateTax splCodeRateTax = new SplCodeRateTax();
 		splCodeRateTax.setSecCode(siSection.getXmlCode());
-		splCodeRateTax.setSplRatePercent(siSection.getPercentRate()[siSection.getPercentRate().length-1]);
+		if(siSection.getXmlCode().equals("1")){
+			percentRate = siSection.getPercentRate()[1];//default value of percantRate for Section code "1" will be 10 
+		}
+		else { 
+			percentRate = siSection.getPercentRate()[siSection.getPercentRate().length-1];
+		}
+		splCodeRateTax.setSplRatePercent(percentRate);
 		splCodeRateTax.setSplRateInc(new BigInteger("0"));
 		splCodeRateTax.setSplRateIncTax(new BigInteger("0"));
 		return splCodeRateTax;
