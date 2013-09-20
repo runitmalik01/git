@@ -45,6 +45,7 @@ import in.gov.incometaxindiaefiling.y2012_2013.ITR4STaxComputation;
 import in.gov.incometaxindiaefiling.y2012_2013.PartBTI;
 import in.gov.incometaxindiaefiling.y2012_2013.PartBTTI;
 import in.gov.incometaxindiaefiling.y2012_2013.ScheduleFA;
+import in.gov.incometaxindiaefiling.y2012_2013.ScheduleSI;
 import in.gov.incometaxindiaefiling.y2012_2013.ScheduleTR;
 import in.gov.incometaxindiaefiling.y2012_2013.TaxPaid;
 import in.gov.incometaxindiaefiling.y2012_2013.TaxPayableOnTI;
@@ -145,13 +146,11 @@ public class PartB_TTI {
 
 		TaxPayableOnTI taxPayableOnTI = new TaxPayableOnTI();
 		taxPayableOnTI.setTaxAtNormalRatesOnAggrInc(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMap.get("txtTax").toString())));
-		if(scheduleSIDocument != null){
-			taxPayableOnTI.setTaxAtSpecialRates(indianCurrencyHelper.bigIntegerRound(scheduleSIDocument.getTotalCalTaxOnInc()));
-		}else{
-			Map<String,Double> resultMapSI = xmlCalculation.getSumOfScheduleSIisInActiveSection(financialYear, inputBeans);
-			Double totalCalTax = resultMapSI.get("totalCalTax");
-			taxPayableOnTI.setTaxAtSpecialRates(indianCurrencyHelper.bigIntegerRound(totalCalTax));
-		}
+
+		ITRScheduleSI iTRScheduleSI = new ITRScheduleSI(scheduleSIDocument, capitalAssetDocument, otherSourcesDocument, formSixteenDocument, salaryIncomeDocument,
+				housePropertyDocument, memberPersonalInformation);
+		ScheduleSI scheduleSI = iTRScheduleSI.getScheduleSI(itr, financialYear);
+		taxPayableOnTI.setTaxAtSpecialRates(scheduleSI.getTotSplRateIncTax());
 
 		taxPayableOnTI.setTaxOnAggregateInc(new BigInteger("0"));//Don't know need to consult(i think this is for ITR4)
 		if(agricultureIncome > 5000){
