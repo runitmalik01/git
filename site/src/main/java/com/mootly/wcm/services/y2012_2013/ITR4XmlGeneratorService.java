@@ -47,6 +47,8 @@ import com.mootly.wcm.beans.ProfitAndLossDocument;
 import com.mootly.wcm.beans.QuantitativeUnitDocument;
 import com.mootly.wcm.beans.SalaryIncomeDocument;
 import com.mootly.wcm.beans.ScheduleAMTCDocument;
+import com.mootly.wcm.beans.ScheduleDOADocument;
+import com.mootly.wcm.beans.ScheduleDPMDocument;
 import com.mootly.wcm.beans.ScheduleESRDocument;
 import com.mootly.wcm.beans.ScheduleFiveADocument;
 import com.mootly.wcm.beans.ScheduleSIDocument;
@@ -81,6 +83,8 @@ import com.mootly.wcm.model.schedules.y2012_2013.ITR_Schedule10A;
 import com.mootly.wcm.model.schedules.y2012_2013.ITR_Schedule10AA;
 import com.mootly.wcm.model.schedules.y2012_2013.ITR_ScheduleAMT;
 import com.mootly.wcm.model.schedules.y2012_2013.ITR_ScheduleAMTC;
+import com.mootly.wcm.model.schedules.y2012_2013.ITR_ScheduleDOA;
+import com.mootly.wcm.model.schedules.y2012_2013.ITR_ScheduleDPM;
 import com.mootly.wcm.model.schedules.y2012_2013.MemberVerification;
 import com.mootly.wcm.model.schedules.y2012_2013.OtherIncomeDocumentSchedules;
 import com.mootly.wcm.model.schedules.y2012_2013.OtherInformationSchedule;
@@ -152,6 +156,8 @@ public class ITR4XmlGeneratorService  {
 		BalanceSheetDocument balanceSheetDocument = (BalanceSheetDocument) inputBeans.get(BalanceSheetDocument.class.getSimpleName().toLowerCase());
 		IncBusinessProfessionDoc incBusinessProfessionDoc = (IncBusinessProfessionDoc) inputBeans.get(IncBusinessProfessionDoc.class.getSimpleName().toLowerCase());
 		UnabsorbedDepreciationDocument unabsorbedDepreciationDocument = (UnabsorbedDepreciationDocument) inputBeans.get(UnabsorbedDepreciationDocument.class.getSimpleName().toLowerCase());
+		ScheduleDPMDocument scheduleDPMDocument = (ScheduleDPMDocument) inputBeans.get(ScheduleDPMDocument.class.getSimpleName().toLowerCase());
+		ScheduleDOADocument scheduleDOADocument = (ScheduleDOADocument) inputBeans.get(ScheduleDOADocument.class.getSimpleName().toLowerCase());
 
 		ITR4 itr4 = new ObjectFactory().createITR4();
 		ITR itr = new ITR();
@@ -288,6 +294,12 @@ public class ITR4XmlGeneratorService  {
 
 		ITR4_ScheduleUD iTR4_ScheduleUD = new ITR4_ScheduleUD(unabsorbedDepreciationDocument);
 		itr4.setITR4ScheduleUD(iTR4_ScheduleUD.getITR4ScheduleUD(itr));
+
+		ITR_ScheduleDPM iTR_ScheduleDPM = new ITR_ScheduleDPM(scheduleDPMDocument);
+		itr4.setScheduleDPM(iTR_ScheduleDPM.getScheduleDPM(itr));
+
+		ITR_ScheduleDOA iTR_ScheduleDOA = new ITR_ScheduleDOA(scheduleDOADocument);
+		itr4.setScheduleDOA(iTR_ScheduleDOA.getScheduleDOA(itr));
 
 		MemberVerification memberVerification = new MemberVerification(memberPersonalInformation);
 		itr4.setVerification(memberVerification.getVerification(itr));
