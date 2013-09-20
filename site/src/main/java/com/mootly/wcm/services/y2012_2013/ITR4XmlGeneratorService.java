@@ -291,7 +291,7 @@ public class ITR4XmlGeneratorService  {
 		PartA_BS partA_BS = new PartA_BS(balanceSheetDocument);
 		itr4.setPARTABS(partA_BS.getPartABalanceSheet(itr, financialYear));
 
-		ITR4_ScheduleBP iTR4_ScheduleBP = new ITR4_ScheduleBP(incBusinessProfessionDoc, profitAndLossDocument, otherInformationDocument);
+		ITR4_ScheduleBP iTR4_ScheduleBP = new ITR4_ScheduleBP(incBusinessProfessionDoc, profitAndLossDocument, otherInformationDocument, scheduleDPMDocument, scheduleDOADocument);
 		itr4.setITR4ScheduleBP(iTR4_ScheduleBP.getITR4ScheduleBP(itr, itr4.getScheduleESR(), itr4.getSchedule10A(), itr4.getSchedule10AA()));
 
 		ITR4_ScheduleUD iTR4_ScheduleUD = new ITR4_ScheduleUD(unabsorbedDepreciationDocument);
