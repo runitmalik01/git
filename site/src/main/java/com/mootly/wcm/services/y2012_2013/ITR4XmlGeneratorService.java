@@ -83,6 +83,8 @@ import com.mootly.wcm.model.schedules.y2012_2013.ITR_Schedule10A;
 import com.mootly.wcm.model.schedules.y2012_2013.ITR_Schedule10AA;
 import com.mootly.wcm.model.schedules.y2012_2013.ITR_ScheduleAMT;
 import com.mootly.wcm.model.schedules.y2012_2013.ITR_ScheduleAMTC;
+import com.mootly.wcm.model.schedules.y2012_2013.ITR_ScheduleDCG;
+import com.mootly.wcm.model.schedules.y2012_2013.ITR_ScheduleDEP;
 import com.mootly.wcm.model.schedules.y2012_2013.ITR_ScheduleDOA;
 import com.mootly.wcm.model.schedules.y2012_2013.ITR_ScheduleDPM;
 import com.mootly.wcm.model.schedules.y2012_2013.MemberVerification;
@@ -300,6 +302,12 @@ public class ITR4XmlGeneratorService  {
 
 		ITR_ScheduleDOA iTR_ScheduleDOA = new ITR_ScheduleDOA(scheduleDOADocument);
 		itr4.setScheduleDOA(iTR_ScheduleDOA.getScheduleDOA(itr));
+
+		ITR_ScheduleDEP iTR_ScheduleDEP = new ITR_ScheduleDEP(scheduleDPMDocument, scheduleDOADocument);
+		itr4.setScheduleDEP(iTR_ScheduleDEP.getScheduleDEP(itr));
+
+		ITR_ScheduleDCG iTR_ScheduleDCG = new ITR_ScheduleDCG(scheduleDPMDocument, scheduleDOADocument);
+		itr4.setScheduleDCG(iTR_ScheduleDCG.getScheduleDCG(itr));
 
 		MemberVerification memberVerification = new MemberVerification(memberPersonalInformation);
 		itr4.setVerification(memberVerification.getVerification(itr));
