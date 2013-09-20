@@ -85,10 +85,10 @@
         <sv:value>en</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:From" sv:type="String">
-        <sv:value>Wealth4India</sv:value>
+        <sv:value>${emailFrom}</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:fromName" sv:type="String">
-        <sv:value>Wealth4india Information</sv:value>
+        <sv:value>${emailFromName}</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:htmlBody" sv:type="String">
         <sv:value>&lt;html&gt;
@@ -96,7 +96,7 @@
 
 &lt;p&gt;Dear User,&lt;/p&gt;
 
-&lt;p&gt; Thanks for registering with Wealth4India. To confirm your account we need to validate your email address.&lt;/p&gt;
+&lt;p&gt; Thank You for registering with ${resellerName}. To confirm your account we need to validate your email address.&lt;/p&gt;
 
 &lt;p&gt;
 ${memberHostName}/site/activation/${membershipSignupDocument.canonicalUUID} 
@@ -108,8 +108,7 @@ Please click the link above to finish your registration.
 &lt;/p&gt;
 
 &lt;p&gt;
-Sincerely,
-Wealth4India Team
+${emailSignature}
 &lt;/p&gt;
 
 
@@ -117,10 +116,10 @@ Wealth4India Team
 &lt;/html&gt;</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:plainBody" sv:type="String">
-        <sv:value>Welcome to Wealth4India</sv:value>
+        <sv:value>Welcome to ${resellerName}</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:subject" sv:type="String">
-        <sv:value>Please confirm your registration with Wealth4India</sv:value>
+        <sv:value>Please confirm your registration with ${resellerName}</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:templateKey" sv:type="String">
         <sv:value>member_signup</sv:value>
@@ -297,10 +296,10 @@ Wealth4India Team
         <sv:value>en</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:From" sv:type="String">
-        <sv:value>info@wealth4india.com</sv:value>
+        <sv:value>${emailFrom}</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:fromName" sv:type="String">
-        <sv:value>Mootly Information</sv:value>
+        <sv:value>${emailFromName}</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:htmlBody" sv:type="String">
         <sv:value>&lt;html&gt;
@@ -313,7 +312,7 @@ Wealth4India Team
 &lt;p&gt;Your feedback is very important to us and we will be working on it with due
 diligence.&lt;/p&gt;
 
-&lt;p&gt;Sincerely, Mootly Team&lt;/p&gt;
+&lt;p&gt;${emailSignature}&lt;/p&gt;
 
 &lt;/body&gt;
 &lt;/html&gt;</sv:value>
@@ -394,7 +393,7 @@ diligence.&lt;/p&gt;
       <sv:value>en</sv:value>
     </sv:property>
     <sv:property sv:name="mootlywcm:From" sv:type="String">
-      <sv:value>info@mootly.com</sv:value>
+      <sv:value>${emailFrom}</sv:value>
     </sv:property>
     <sv:property sv:name="mootlywcm:bcc" sv:type="String">
       <sv:value/>
@@ -403,7 +402,7 @@ diligence.&lt;/p&gt;
       <sv:value/>
     </sv:property>
     <sv:property sv:name="mootlywcm:fromName" sv:type="String">
-      <sv:value>Mootly Information</sv:value>
+      <sv:value>${emailFromName}</sv:value>
     </sv:property>
     <sv:property sv:name="mootlywcm:htmlBody" sv:type="String">
       <sv:value>&lt;html&gt;
@@ -422,9 +421,7 @@ ${memberHostName}/site/changepass.html?ch=${member.activationCode}&amp;amp;membe
 &lt;p&gt;For more security and safety of your confidential data use security
 Questions. &lt;/p&gt;
 
-&lt;p&gt;Regards&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Wealth4India Team &lt;/strong&gt;&lt;/p&gt;
+${emailSignature}
 
 &lt;/body&gt;
 &lt;/html&gt;</sv:value>
@@ -520,10 +517,10 @@ Questions. &lt;/p&gt;
         <sv:value>en</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:From" sv:type="String">
-        <sv:value>Wealth4India</sv:value>
+        <sv:value>${emailFrom}</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:fromName" sv:type="String">
-        <sv:value>Wealth4india Information</sv:value>
+        <sv:value>${emailFromName}</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:htmlBody" sv:type="String">
         <sv:value>&lt;html&gt;
@@ -531,7 +528,7 @@ Questions. &lt;/p&gt;
 
 &lt;p&gt;Dear User,&lt;/p&gt;
 
-&lt;p&gt;Thanks for registering with Wealth4India. To confirm your account we need to
+&lt;p&gt;Thanks for registering with ${resellerName}. To confirm your account we need to
 validate your email address.&lt;/p&gt;
 
 &lt;p&gt;
@@ -540,16 +537,16 @@ ${vendorHostName}/site/activation/${vendorshipSignupDocument.canonicalUUID}
 
 &lt;p&gt;Please click the link above to finish your registration.&lt;/p&gt;
 
-&lt;p&gt;Sincerely, Wealth4India Team&lt;/p&gt;
+${emailSignature}
 
 &lt;/body&gt;
 &lt;/html&gt;</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:plainBody" sv:type="String">
-        <sv:value>Welcome to Wealth4India</sv:value>
+        <sv:value>Welcome to ${resellerName}</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:subject" sv:type="String">
-        <sv:value>Please confirm your registration with Wealth4India</sv:value>
+        <sv:value>Please confirm your registration with ${resellerName}</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:templateKey" sv:type="String">
         <sv:value>vendor_signup</sv:value>
@@ -621,16 +618,16 @@ ${vendorHostName}/site/activation/${vendorshipSignupDocument.canonicalUUID}
 	      <sv:value>en</sv:value>
 	    </sv:property>
 	    <sv:property sv:name="mootlywcm:From" sv:type="String">
-	      <sv:value>info@mootly.com</sv:value>
+	      <sv:value>${emailFrom}</sv:value>
 	    </sv:property>
 	    <sv:property sv:name="mootlywcm:bcc" sv:type="String">
-	      <sv:value>pgupta@mootly.com</sv:value>
+	      <sv:value></sv:value>
 	    </sv:property>
 	    <sv:property sv:name="mootlywcm:cc" sv:type="String">
-	      <sv:value>pgupta@mootly.com</sv:value>
+	      <sv:value></sv:value>
 	    </sv:property>
 	    <sv:property sv:name="mootlywcm:fromName" sv:type="String">
-	      <sv:value>Mootly Information</sv:value>
+	      <sv:value>${emailFromName}</sv:value>
 	    </sv:property>
 	    <sv:property sv:name="mootlywcm:htmlBody" sv:type="String">
 	      <sv:value>&lt;html&gt;
@@ -639,7 +636,7 @@ ${vendorHostName}/site/activation/${vendorshipSignupDocument.canonicalUUID}
 		&lt;/head&gt;
 		&lt;body&gt;
 			&lt;p&gt;
-				&lt;span style="font-family:arial,helvetica,sans-serif;"&gt;&lt;span style="color:#4b0082;"&gt;&lt;strong&gt;&lt;span style="font-size:14px;"&gt;Thank You for choosing Wealth4India..!!&amp;nbsp;&lt;/span&gt;&lt;/strong&gt;&lt;/span&gt;&lt;br /&gt;
+				&lt;span style="font-family:arial,helvetica,sans-serif;"&gt;&lt;span style="color:#4b0082;"&gt;&lt;strong&gt;&lt;span style="font-size:14px;"&gt;Thank You for choosing ${resellerName}..!!&amp;nbsp;&lt;/span&gt;&lt;/strong&gt;&lt;/span&gt;&lt;br /&gt;
 				&lt;br /&gt;
 				We have received your payment of Rs.$!{paymentAmount}/- and we have enclosed the xml and summary of the ITR&amp;nbsp;return to be filed for the AY &lt;/span&gt;$!{financialYear.displayAssessmentYear}. (FY $!{financialYearDisplay}).&lt;/p&gt;
 			&lt;p&gt;
@@ -677,7 +674,7 @@ ${vendorHostName}/site/activation/${vendorshipSignupDocument.canonicalUUID}
 			&lt;p&gt;
 				&lt;span style="font-family:arial,helvetica,sans-serif;"&gt;&lt;span style="font-size:12px;"&gt;Thanks &amp;amp; Regards&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
 			&lt;p&gt;
-				&lt;span style="font-family:arial,helvetica,sans-serif;"&gt;&lt;span style="font-size:12px;"&gt;Wealth4India Team&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+				${emailSignature}
 		&lt;/body&gt;
 	&lt;/html&gt;</sv:value>
 	    </sv:property>
@@ -685,7 +682,7 @@ ${vendorHostName}/site/activation/${vendorshipSignupDocument.canonicalUUID}
 	      <sv:value/>
 	    </sv:property>
 	    <sv:property sv:name="mootlywcm:subject" sv:type="String">
-	      <sv:value>Your Income Tax Return for Financial Year $financialYearDisplay</sv:value>
+	      <sv:value>Your Income Tax Return for Financial Year ${financialYearDisplay}</sv:value>
 	    </sv:property>
 	    <sv:property sv:name="mootlywcm:templateKey" sv:type="String">
 	      <sv:value>w4i_email</sv:value>
@@ -757,7 +754,7 @@ ${vendorHostName}/site/activation/${vendorshipSignupDocument.canonicalUUID}
 	      <sv:value>en</sv:value>
 	    </sv:property>
 	    <sv:property sv:name="mootlywcm:From" sv:type="String">
-	      <sv:value>info@wealth4india.com</sv:value>
+	      <sv:value>${emailFrom}</sv:value>
 	    </sv:property>
 	    <sv:property sv:name="mootlywcm:bcc" sv:type="String">
 	      <sv:value/>
@@ -766,7 +763,7 @@ ${vendorHostName}/site/activation/${vendorshipSignupDocument.canonicalUUID}
 	      <sv:value/>
 	    </sv:property>
 	    <sv:property sv:name="mootlywcm:fromName" sv:type="String">
-	      <sv:value/>
+	      <sv:value>${emailFromName}</sv:value>
 	    </sv:property>
 	    <sv:property sv:name="mootlywcm:htmlBody" sv:type="String">
 	      <sv:value>&lt;html&gt;
@@ -870,7 +867,7 @@ ${vendorHostName}/site/activation/${vendorshipSignupDocument.canonicalUUID}
 	      <sv:value>en</sv:value>
 	    </sv:property>
 	    <sv:property sv:name="mootlywcm:From" sv:type="String">
-	      <sv:value/>
+	      <sv:value>${emailFrom}</sv:value>
 	    </sv:property>
 	    <sv:property sv:name="mootlywcm:bcc" sv:type="String">
 	      <sv:value/>
@@ -879,7 +876,7 @@ ${vendorHostName}/site/activation/${vendorshipSignupDocument.canonicalUUID}
 	      <sv:value/>
 	    </sv:property>
 	    <sv:property sv:name="mootlywcm:fromName" sv:type="String">
-	      <sv:value/>
+	      <sv:value>${emailFromName}</sv:value>
 	    </sv:property>
 	    <sv:property sv:name="mootlywcm:htmlBody" sv:type="String">
 	      <sv:value>&lt;html&gt;
@@ -887,14 +884,15 @@ ${vendorHostName}/site/activation/${vendorshipSignupDocument.canonicalUUID}
 	
 	&lt;p&gt;Dear ${serviceDoc.firstName} ${serviceDoc.lastName},&lt;/p&gt;
 	
-	&lt;p&gt;Thank you for your interest in Wealth4India.&lt;/p&gt;
+	&lt;p&gt;Thank you for your interest in ${resellerName}.&lt;/p&gt;
 	
 	&lt;p&gt;We have received your request regarding ${serviceName}.&lt;/p&gt;
 	
-	&lt;p&gt;A wealth4India agent will contact you as soon as possible and work with you
+	&lt;p&gt;A ${resellerName} agent will contact you as soon as possible and work with you
 	on the next steps. &lt;br/&gt;
-	Once again thank you for your interest. &lt;br/&gt;
-	Wealth4India Team.&lt;/p&gt;
+	Once again thank you for your interest. 
+	
+	${emailSignature}
 	
 	&lt;/body&gt;
 	&lt;/html&gt;</sv:value>
@@ -990,7 +988,7 @@ ${vendorHostName}/site/activation/${vendorshipSignupDocument.canonicalUUID}
 	      <sv:value>en</sv:value>
 	    </sv:property>
 	    <sv:property sv:name="mootlywcm:From" sv:type="String">
-	      <sv:value>info@mootly.com</sv:value>
+	      <sv:value>${emailFrom}</sv:value>
 	    </sv:property>
 	    <sv:property sv:name="mootlywcm:bcc" sv:type="String">
 	      <sv:value/>
@@ -1038,7 +1036,7 @@ ${vendorHostName}/site/activation/${vendorshipSignupDocument.canonicalUUID}
 	      <sv:value/>
 	    </sv:property>
 	    <sv:property sv:name="mootlywcm:subject" sv:type="String">
-	      <sv:value>[Member Doc Upload] - $userName uploaded a doc for PAN $PAN</sv:value>
+	      <sv:value>[Member Doc Upload] - ${userName} uploaded a doc for PAN $PAN</sv:value>
 	    </sv:property>
 	    <sv:property sv:name="mootlywcm:templateKey" sv:type="String">
 	      <sv:value>memberuploadedadoc</sv:value>
@@ -1125,7 +1123,7 @@ ${vendorHostName}/site/activation/${vendorshipSignupDocument.canonicalUUID}
 	      <sv:value>en</sv:value>
 	    </sv:property>
 	    <sv:property sv:name="mootlywcm:From" sv:type="String">
-	      <sv:value>info@mootly.com</sv:value>
+	      <sv:value>${emailFrom}</sv:value>
 	    </sv:property>
 	    <sv:property sv:name="mootlywcm:bcc" sv:type="String">
 	      <sv:value/>
@@ -1243,7 +1241,7 @@ ${vendorHostName}/site/activation/${vendorshipSignupDocument.canonicalUUID}
 	      <sv:value/>
 	    </sv:property>
 	    <sv:property sv:name="mootlywcm:subject" sv:type="String">
-	      <sv:value>[Member Doc Upload] - $userName uploaded a doc for PAN $PAN</sv:value>
+	      <sv:value>[Member Doc Upload] - ${userName} uploaded a doc for PAN $PAN</sv:value>
 	    </sv:property>
 	    <sv:property sv:name="mootlywcm:templateKey" sv:type="String">
 	      <sv:value>memberuploadedadoc</sv:value>
@@ -1329,7 +1327,7 @@ ${vendorHostName}/site/activation/${vendorshipSignupDocument.canonicalUUID}
 	      <sv:value>en</sv:value>
 	    </sv:property>
 	    <sv:property sv:name="mootlywcm:From" sv:type="String">
-	      <sv:value>info@mootly.com</sv:value>
+	      <sv:value>${emailFrom}</sv:value>
 	    </sv:property>
 	    <sv:property sv:name="mootlywcm:bcc" sv:type="String">
 	      <sv:value/>
@@ -1469,13 +1467,13 @@ ${vendorHostName}/site/activation/${vendorshipSignupDocument.canonicalUUID}
 	      <sv:value/>
 	    </sv:property>
 	    <sv:property sv:name="mootlywcm:subject" sv:type="String">
-	      <sv:value>[Member Payment] - $userName updated payment for PAN $PAN</sv:value>
+	      <sv:value>[Member Payment] - ${userName} updated payment for PAN $PAN</sv:value>
 	    </sv:property>
 	    <sv:property sv:name="mootlywcm:templateKey" sv:type="String">
 	      <sv:value>memberpaymentupdate</sv:value>
 	    </sv:property>
 	    <sv:property sv:name="mootlywcm:to" sv:type="String">
-	      <sv:value>amit@mootly.com,info@wealth4india.com</sv:value>
+	      <sv:value>amit@mootly.com,${emailFrom}</sv:value>
 	    </sv:property>
 	    <sv:node sv:name="hippotranslation:translations">
 	      <sv:property sv:name="jcr:primaryType" sv:type="Name">
@@ -1555,7 +1553,7 @@ ${vendorHostName}/site/activation/${vendorshipSignupDocument.canonicalUUID}
 	      <sv:value>en</sv:value>
 	    </sv:property>
 	    <sv:property sv:name="mootlywcm:From" sv:type="String">
-	      <sv:value>info@mootly.com</sv:value>
+	      <sv:value>${emailFrom}</sv:value>
 	    </sv:property>
 	    <sv:property sv:name="mootlywcm:bcc" sv:type="String">
 	      <sv:value/>
@@ -1643,7 +1641,7 @@ ${vendorHostName}/site/activation/${vendorshipSignupDocument.canonicalUUID}
 	      <sv:value/>
 	    </sv:property>
 	    <sv:property sv:name="mootlywcm:subject" sv:type="String">
-	      <sv:value>[Member Application] - $userName updated Application for PAN $PAN</sv:value>
+	      <sv:value>[Member Application] - ${userName} updated Application for PAN $PAN</sv:value>
 	    </sv:property>
 	    <sv:property sv:name="mootlywcm:templateKey" sv:type="String">
 	      <sv:value>memberitrsrupdate</sv:value>
@@ -1729,7 +1727,7 @@ ${vendorHostName}/site/activation/${vendorshipSignupDocument.canonicalUUID}
 	      <sv:value>en</sv:value>
 	    </sv:property>
 	    <sv:property sv:name="mootlywcm:From" sv:type="String">
-	      <sv:value>Wealth4India</sv:value>
+	      <sv:value>${emailFrom}</sv:value>
 	    </sv:property>
 	    <sv:property sv:name="mootlywcm:bcc" sv:type="String">
 	      <sv:value/>
@@ -1738,7 +1736,7 @@ ${vendorHostName}/site/activation/${vendorshipSignupDocument.canonicalUUID}
 	      <sv:value/>
 	    </sv:property>
 	    <sv:property sv:name="mootlywcm:fromName" sv:type="String">
-	      <sv:value>Wealth4india Information</sv:value>
+	      <sv:value>${emailFromName}</sv:value>
 	    </sv:property>
 	    <sv:property sv:name="mootlywcm:htmlBody" sv:type="String">
 	      <sv:value>&lt;html&gt;
@@ -1757,16 +1755,16 @@ ${vendorHostName}/site/activation/${vendorshipSignupDocument.canonicalUUID}
 	&lt;p&gt;If you have not requested the activation code, please feel free to contact
 	our office or discard your email.&lt;/p&gt;
 	
-	&lt;p&gt;Sincerely, Wealth4India Team&lt;/p&gt;
+	${emailSignature}
 	
 	&lt;/body&gt;
 	&lt;/html&gt;</sv:value>
 	    </sv:property>
 	    <sv:property sv:name="mootlywcm:plainBody" sv:type="String">
-	      <sv:value>Welcome to Wealth4India</sv:value>
+	      <sv:value>Welcome to ${resellerName}</sv:value>
 	    </sv:property>
 	    <sv:property sv:name="mootlywcm:subject" sv:type="String">
-	      <sv:value>Wealth4India - Your Activation Code is here</sv:value>
+	      <sv:value>${resellerName} - Your Activation Code is here</sv:value>
 	    </sv:property>
 	    <sv:property sv:name="mootlywcm:templateKey" sv:type="String">
 	      <sv:value>member_resend_activationcode</sv:value>
@@ -1853,7 +1851,7 @@ ${vendorHostName}/site/activation/${vendorshipSignupDocument.canonicalUUID}
 	      <sv:value>en</sv:value>
 	    </sv:property>
 	    <sv:property sv:name="mootlywcm:From" sv:type="String">
-	      <sv:value>info@mootly.com</sv:value>
+	      <sv:value>${emailFrom}</sv:value>
 	    </sv:property>
 	    <sv:property sv:name="mootlywcm:bcc" sv:type="String">
 	      <sv:value/>
@@ -1862,7 +1860,7 @@ ${vendorHostName}/site/activation/${vendorshipSignupDocument.canonicalUUID}
 	      <sv:value/>
 	    </sv:property>
 	    <sv:property sv:name="mootlywcm:fromName" sv:type="String">
-	      <sv:value/>
+	      <sv:value>${emailFromName}</sv:value>
 	    </sv:property>
 	    <sv:property sv:name="mootlywcm:htmlBody" sv:type="String">
 	      <sv:value>&lt;html&gt;
@@ -1871,7 +1869,7 @@ ${vendorHostName}/site/activation/${vendorshipSignupDocument.canonicalUUID}
 		&lt;/head&gt;
 		&lt;body&gt;
 			&lt;div&gt;
-				&lt;span style="font-family:arial,helvetica,sans-serif;"&gt;&lt;span style="font-size:12px;"&gt;&lt;strong&gt;Greetings from Wealth4India..!!&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+				&lt;span style="font-family:arial,helvetica,sans-serif;"&gt;&lt;span style="font-size:12px;"&gt;&lt;strong&gt;Greetings from ${resellerName}..!!&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
 			&lt;div&gt;
 				&amp;nbsp;&lt;/div&gt;
 			&lt;div&gt;
@@ -1968,7 +1966,7 @@ ${vendorHostName}/site/activation/${vendorshipSignupDocument.canonicalUUID}
 			&lt;div&gt;
 				&amp;nbsp;&lt;/div&gt;
 			&lt;div&gt;
-				&lt;span style="font-family:arial,helvetica,sans-serif;"&gt;&lt;span style="font-size:12px;"&gt;You may login to &lt;a href="https://www.wealth4india.com"&gt;www.wealth4india.com&lt;/a&gt; &amp;nbsp;to download your xml and summary or you can even mail to your&amp;nbsp;&lt;/span&gt;&lt;/span&gt;&lt;span style="font-family: arial, helvetica, sans-serif; font-size: 12px;"&gt;registered E-mail ID.&amp;nbsp;&lt;/span&gt;&lt;/div&gt;
+				&lt;span style="font-family:arial,helvetica,sans-serif;"&gt;&lt;span style="font-size:12px;"&gt;You may login to &lt;a href="${memberHostName}"&gt;${memberHostName}&lt;/a&gt; &amp;nbsp;to download your xml and summary or you can even mail to your&amp;nbsp;&lt;/span&gt;&lt;/span&gt;&lt;span style="font-family: arial, helvetica, sans-serif; font-size: 12px;"&gt;registered E-mail ID.&amp;nbsp;&lt;/span&gt;&lt;/div&gt;
 			&lt;div&gt;
 				&amp;nbsp;&lt;/div&gt;
 			&lt;div&gt;
@@ -1984,7 +1982,8 @@ ${vendorHostName}/site/activation/${vendorshipSignupDocument.canonicalUUID}
 			&lt;div&gt;
 				&amp;nbsp;&lt;/div&gt;
 			&lt;div&gt;
-				&lt;span style="font-family:arial,helvetica,sans-serif;"&gt;&lt;span style="font-size:12px;"&gt;Wealth4 India Team&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/body&gt;
+				${emailSignature}
+				&lt;/body&gt;
 	&lt;/html&gt;</sv:value>
 	    </sv:property>
 	    <sv:property sv:name="mootlywcm:plainBody" sv:type="String">
@@ -1997,7 +1996,7 @@ ${vendorHostName}/site/activation/${vendorshipSignupDocument.canonicalUUID}
 	      <sv:value>memberpaymentverified</sv:value>
 	    </sv:property>
 	    <sv:property sv:name="mootlywcm:to" sv:type="String">
-	      <sv:value>${memberEmail},info@wealth4india.com</sv:value>
+	      <sv:value>${memberEmail},${emailCustomerService}</sv:value>
 	    </sv:property>
 	    <sv:node sv:name="hippotranslation:translations">
 	      <sv:property sv:name="jcr:primaryType" sv:type="Name">
@@ -2080,7 +2079,7 @@ ${vendorHostName}/site/activation/${vendorshipSignupDocument.canonicalUUID}
       <sv:value>en</sv:value>
     </sv:property>
     <sv:property sv:name="mootlywcm:From" sv:type="String">
-      <sv:value>${userName}</sv:value>
+      <sv:value>${emailFrom}</sv:value>
     </sv:property>
     <sv:property sv:name="mootlywcm:bcc" sv:type="String">
       <sv:value/>
@@ -2089,7 +2088,7 @@ ${vendorHostName}/site/activation/${vendorshipSignupDocument.canonicalUUID}
       <sv:value/>
     </sv:property>
     <sv:property sv:name="mootlywcm:fromName" sv:type="String">
-      <sv:value/>
+      <sv:value>${emailFromName}</sv:value>
     </sv:property>
     <sv:property sv:name="mootlywcm:htmlBody" sv:type="String">
       <sv:value>&lt;html&gt;
@@ -2119,7 +2118,7 @@ tax .&lt;/p&gt;
       <sv:value>memberStartAppTemplate</sv:value>
     </sv:property>
     <sv:property sv:name="mootlywcm:to" sv:type="String">
-      <sv:value>info@wealth4india.com</sv:value>
+      <sv:value>${emailCustomerService}</sv:value>
     </sv:property>
     <sv:node sv:name="hippotranslation:translations">
       <sv:property sv:name="jcr:primaryType" sv:type="Name">
@@ -2190,7 +2189,7 @@ tax .&lt;/p&gt;
       <sv:value>en</sv:value>
     </sv:property>
     <sv:property sv:name="mootlywcm:From" sv:type="String">
-      <sv:value/>
+      <sv:value>${emailFrom}</sv:value>
     </sv:property>
     <sv:property sv:name="mootlywcm:bcc" sv:type="String">
       <sv:value/>
@@ -2207,17 +2206,15 @@ tax .&lt;/p&gt;
 
 &lt;p&gt;Dear User,&lt;/p&gt;
 
-&lt;p&gt;Wealth4India have found some activity on your account. It seems that you
+&lt;p&gt;${resellerName} have found some activity on your account. It seems that you
 have change your Password on ${date}.&lt;/p&gt;
 
-&lt;p&gt;Wealth4India understand the safety of your confidential data.&lt;/p&gt;
+&lt;p&gt;${resellerName} understand the safety of your confidential data.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Note-If you have not change your password then you can contact us at
-info@wealth4india.com.&lt;/strong&gt;&lt;/p&gt;
+${emailCustomerService}.&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;Thanks&lt;/p&gt;
-
-&lt;p&gt;Wealth4India&lt;/p&gt;
+${emailSignature}
 
 &lt;/body&gt;
 &lt;/html&gt;</sv:value>

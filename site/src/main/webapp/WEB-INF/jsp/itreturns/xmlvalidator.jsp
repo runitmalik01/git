@@ -38,8 +38,8 @@
 						</div>
 						<div class="rowlabel">
 							<select id="financialYear" name="financialYear">
-								<option value="<%=FinancialYear.TwentyEleven%>"><%=FinancialYear.TwentyEleven.getDisplayName()%> (AY:<%=FinancialYear.TwentyEleven.getDisplayAssessmentYear()%>)</option>
-								<option value="<%=FinancialYear.TwentyTweleve%>"><%=FinancialYear.TwentyTweleve.getDisplayName()%> (AY:<%=FinancialYear.TwentyTweleve.getDisplayAssessmentYear()%>)</option>
+								<option <c:if test="${financialYear == '2011-2012'}">SELECTED</c:if> value="<%=FinancialYear.TwentyEleven%>"><%=FinancialYear.TwentyEleven.getDisplayName()%> (AY:<%=FinancialYear.TwentyEleven.getDisplayAssessmentYear()%>)</option>
+								<option <c:if test="${financialYear == '2012-2013'}">SELECTED</c:if> value="<%=FinancialYear.TwentyTweleve%>"><%=FinancialYear.TwentyTweleve.getDisplayName()%> (AY:<%=FinancialYear.TwentyTweleve.getDisplayAssessmentYear()%>)</option>
 							</select>
 						</div>
 					</div>
@@ -51,7 +51,7 @@
 						</div>
 						<div class="rowlabel">
 							<select id="isCorp" name="isCorp">
-								<option value="FALSE">Individual/HUF</option>
+								<option <c:if test="${isCorp == 'FALSE'}">SELECTED</c:if> value="FALSE">Individual/HUF</option>
 								<option value="TRUE">Corporate</option>								
 							</select>
 						</div>

@@ -29,7 +29,7 @@ import com.mootly.wcm.DocumentTypes;
 @FieldGroupList({
         @FieldGroup(
                 titleKey = "fields.channel",
-                value = { "logo", "pageTitlePrefix", "themeCss","contentFolder","startDate","endDate" }
+                value = { "logo", "pageTitlePrefix", "themeCss","contentFolder","startDate","endDate","isReseller","resellerId", "emailFrom","emailFromName","emailSignature","emailCustomerService"}
         )
 })
 public interface WebsiteInfo extends ChannelInfo {
@@ -70,5 +70,20 @@ public interface WebsiteInfo extends ChannelInfo {
     
     @Parameter(name = "resellerId", defaultValue = "", required = true)
     String getResellerId();
+    
+    @Parameter(name = "emailFrom", defaultValue = "info@wealth4india.com", required = true)
+    String getEmailFrom();
+    
+    @Parameter(name = "emailFromName", defaultValue = "info@wealth4india.com", required = true)
+    String getEmailFromName();
+    
+    @Parameter(name = "emailSignature", defaultValue = "Thank You<br/>Wealth4India Team", required = true)
+    String getEmailSignature();
+    
+    @Parameter(name = "emailCustomerService", defaultValue = "info@wealth4india.com", required = true)
+    String getEmailCustomerService();
+    
+    @Parameter(name = "phoneCustomerService", defaultValue = "", required = false)
+    String getPhoneCustomerService();
 
 }

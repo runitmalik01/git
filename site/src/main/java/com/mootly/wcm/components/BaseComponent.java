@@ -221,7 +221,27 @@ public class BaseComponent extends BaseHstComponent {
     //protected void sendEmail(HstRequest request, String[] to,String[] cc,String[] bcc,String subject,String attachmentList,String defaultMessage,String templateKey,Map<String,String> velocityContext) {
     protected void sendEmail(HstRequest request, String[] to,String attachmentList,String defaultMessage,String templateKey,Map<String,Object> velocityContext) {
     	try {
+    		final Map<String,Object> finalVelocityContext = new HashMap<String, Object>();
+    		if (velocityContext != null) {
+    			finalVelocityContext.putAll(velocityContext);
+    		}
     		
+    		WebsiteInfo websiteInfo = request.getRequestContext().getResolvedMount().getMount().getChannelInfo();
+    		if (websiteInfo.getEmailFrom() != null) {
+    			finalVelocityContext.put("resellerName", websiteInfo.getPageTitlePrefix() );
+    		}
+    		if (websiteInfo.getEmailFrom() != null) {
+    			finalVelocityContext.put("emailFrom", websiteInfo.getEmailFrom() );
+    		}
+    		if (websiteInfo.getEmailFromName() != null) {
+    			finalVelocityContext.put("emailFromName", websiteInfo.getEmailFromName() );
+    		}
+    		if (websiteInfo.getEmailSignature() != null) {
+    			finalVelocityContext.put("emailSignature", websiteInfo.getEmailSignature() );
+    		}
+    		if (websiteInfo.getEmailCustomerService() != null) {
+    			finalVelocityContext.put("emailCustomerService", websiteInfo.getEmailCustomerService() );
+    		}
     		//here we do the VEOCITY MAGIC
     		//todo - megha
     		//if (subject == null) return;
@@ -259,7 +279,7 @@ public class BaseComponent extends BaseHstComponent {
     		EmailMessage emailMessage = (EmailMessage) wpm.getObject(pathToParentBean);
     		
     		for (int i=0;i < to.length;i++) {
-    			String theParseTo = VelocityUtils.parseVelocity(to[i], velocityContext);
+    			String theParseTo = VelocityUtils.parseVelocity(to[i], finalVelocityContext);
     			to[i] = theParseTo;
     		}
     		
@@ -268,12 +288,14 @@ public class BaseComponent extends BaseHstComponent {
     		if (bcc != null) emailMessage.setBcc(bcc);*/
     		StringBuffer sbHostName = new StringBuffer();
 			sbHostName.append(request.getScheme() + "://" +  request.getServerName()).append(":").append(request.getServerPort());
-			if (velocityContext == null) velocityContext = new HashMap<String, Object>(1);
-			velocityContext.put("memberHostName", sbHostName.toString());
+			//if (velocityContext == null) {
+			//	velocityContext = new HashMap<String, Object>(1);
+			//}
+			finalVelocityContext.put("memberHostName", sbHostName.toString());
     		
-    		String htmlBody = VelocityUtils.parseVelocity(emailTemplate.getHtmlBody(), velocityContext);
+    		String htmlBody = VelocityUtils.parseVelocity(emailTemplate.getHtmlBody(), finalVelocityContext);
 			//String plainBody = VelocityUtils.parseVelocity(emailTemplate.getPlainBody(), velocityContext);
-			String subject = VelocityUtils.parseVelocity(emailTemplate.getSubject(), velocityContext);
+			String subject = VelocityUtils.parseVelocity(emailTemplate.getSubject(), finalVelocityContext);
 			
     		if (emailTemplate.getCc() != null) emailMessage.setCc(emailTemplate.getCc());
     		if (emailTemplate.getBcc() != null) emailMessage.setBcc(emailTemplate.getBcc());

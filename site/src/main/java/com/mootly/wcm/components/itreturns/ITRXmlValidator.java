@@ -104,6 +104,8 @@ public class ITRXmlValidator extends BaseComponent {
 			if (formMap.getField("errors") != null) request.setAttribute("errors", formMap.getField("errors").getValue());
 			if (formMap.getField("financialYear") != null) request.setAttribute("financialYear", formMap.getField("financialYear").getValue());
 			
+			if (formMap.getField("isCorp") != null) request.setAttribute("isCorp", formMap.getField("isCorp").getValue());
+			
 			if (formMap.getField("reason") != null) request.setAttribute("reason", formMap.getField("reason").getValue());
 			if (formMap.getField("PAN") != null) request.setAttribute("PAN", formMap.getField("PAN").getValue());
 			if (formMap.getField("itReturnType") != null) request.setAttribute("itReturnType", formMap.getField("itReturnType").getValue());

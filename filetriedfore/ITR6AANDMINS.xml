@@ -11,7 +11,7 @@
       <ITRForm:Form_ITR6>
          <ITRForm:FormName>ITR-6</ITRForm:FormName>
          <ITRForm:Description>For Companies other than companies claiming exemption under section 11</ITRForm:Description>
-         <ITRForm:AssessmentYear>2012</ITRForm:AssessmentYear>
+         <ITRForm:AssessmentYear>2013</ITRForm:AssessmentYear>
          <ITRForm:SchemaVer>Ver1.0</ITRForm:SchemaVer>
          <ITRForm:FormVer>Ver1.0</ITRForm:FormVer>
       </ITRForm:Form_ITR6>

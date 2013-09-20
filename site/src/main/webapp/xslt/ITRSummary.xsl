@@ -58,7 +58,7 @@
 		</html>
 	</xsl:template>
 	
-    <xsl:template match="ITR1FORM:ITR1">
+    <xsl:template match="ITR1FORM:ITR1 | ITR2FORM:ITR2">
              <xsl:apply-templates />
     </xsl:template>
 
@@ -384,7 +384,7 @@
 		</table>
 		<xsl:apply-templates select="ITRForm:DeductUndChapVIA" />
 	</xsl:template>
-	<xsl:template match="ITRForm:ITR1_TaxComputation">
+	<xsl:template match="ITRForm:ITR1_TaxComputation | ITRForm:ComputationOfTaxLiability">
 		<table width="100%" border="1" id="taxc">
 			<tr>
 				<th colspan="2">Tax Information</th>
@@ -504,10 +504,17 @@
 
 	</xsl:template>
 
-	<xsl:template match="ITRForm:* | xsi:* | *">
-
+	<xsl:template match="xsi:* | *">
+		
 	</xsl:template>
 
+	<xsl:template match="ITRForm:*">
+		<xsl:choose>
+			<xsl:when test="starts-with(name(.),'ITRForm:Part') or starts-with(name(.),'ITRForm:Schedule')">
+				<xsl:apply-templates/>
+			</xsl:when>
+		</xsl:choose>
+	</xsl:template>
 
 
 </xsl:stylesheet>
