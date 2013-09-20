@@ -1188,11 +1188,12 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 			if($('#pi_state').val()=='99'){
 			      $('#pi_pin_code').val('999999');
 			      $('#pi_pin_code').attr('readonly','readonly');
+			      $("#pi_country option[value=" + 91 + "]").hide();
 
 			   }else{
                      $('#pi_pin_code').val('');
                      $('#pi_pin_code').removeAttr('readonly');
-
+					$("#pi_country option[value=" + 91 + "]").show();
                     }
 			});
 			$('#bd_bank_name').tooltip('data-toggle');
