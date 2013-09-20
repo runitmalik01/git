@@ -7,6 +7,7 @@ import org.springframework.beans.DirectFieldAccessor;
 
 import in.gov.incometaxindiaefiling.y2012_2013.ITR;
 import in.gov.incometaxindiaefiling.y2012_2013.ITR4ScheduleBP;
+import in.gov.incometaxindiaefiling.y2012_2013.ScheduleDEP;
 import in.gov.incometaxindiaefiling.y2012_2013.ITR4ScheduleBP.SpecBusinessInc;
 import in.gov.incometaxindiaefiling.y2012_2013.ITR4ScheduleBP.SpecifiedBusinessInc;
 import in.gov.incometaxindiaefiling.y2012_2013.Schedule10A;
@@ -25,6 +26,8 @@ import com.mootly.wcm.beans.OtherInformationDocument;
 import com.mootly.wcm.beans.OtherInformationVariables;
 import com.mootly.wcm.beans.ProfitAndLossDocument;
 import com.mootly.wcm.beans.ProfitAndLossVariables;
+import com.mootly.wcm.beans.ScheduleDOADocument;
+import com.mootly.wcm.beans.ScheduleDPMDocument;
 import com.mootly.wcm.services.IndianCurrencyHelper;
 
 public class ITR4_ScheduleBP {
@@ -32,12 +35,16 @@ public class ITR4_ScheduleBP {
 	IncBusinessProfessionDoc incBusinessProfessionDoc = null;
 	ProfitAndLossDocument profitAndLossDocument = null;
 	OtherInformationDocument otherInformationDocument = null;
+	ScheduleDPMDocument scheduleDPMDocument = null;
+	ScheduleDOADocument scheduleDOADocument = null;
 
 	public ITR4_ScheduleBP(IncBusinessProfessionDoc incBusinessProfessionDoc, ProfitAndLossDocument profitAndLossDocument,
-			OtherInformationDocument otherInformationDocument){
+			OtherInformationDocument otherInformationDocument, ScheduleDPMDocument scheduleDPMDocument, ScheduleDOADocument scheduleDOADocument){
 		this.incBusinessProfessionDoc = incBusinessProfessionDoc;
 		this.profitAndLossDocument = profitAndLossDocument;
 		this.otherInformationDocument = otherInformationDocument;
+		this.scheduleDPMDocument = scheduleDPMDocument;
+		this.scheduleDOADocument = scheduleDOADocument;
 	}
 
 	public ITR4ScheduleBP getITR4ScheduleBP(ITR itr,ScheduleESR scheduleESR, Schedule10A schedule10a, Schedule10AA schedule10aa){
@@ -129,7 +136,11 @@ public class ITR4_ScheduleBP {
 		businessIncOthThanSpec.setAdjustedPLOthThanSpecBus(businessIncOthThanSpec.getBalancePLOthThanSpecBus() + businessIncOthThanSpec.getTotExpDebPL().longValue());
 		businessIncOthThanSpec.setDepreciationDebPLCosAct(indianCurrencyHelper.bigIntegerRound(incBusinessProfessionDoc.getDepreciation_PL()));
 		DepreciationAllowITAct32 depreciationAllowITAct32 = new DepreciationAllowITAct32();
-		depreciationAllowITAct32.setDepreciationAllowUs321Ii(new BigInteger("0")); //waiting for schedule DEP
+
+		ITR_ScheduleDEP iTR_ScheduleDEP = new ITR_ScheduleDEP(scheduleDPMDocument, scheduleDOADocument);
+		ScheduleDEP scheduleDEP = iTR_ScheduleDEP.getScheduleDEP(itr);
+
+		depreciationAllowITAct32.setDepreciationAllowUs321Ii(scheduleDEP.getSummaryFromDeprSch().getTotalDepreciation());
 		depreciationAllowITAct32.setDepreciationAllowUs321I(indianCurrencyHelper.bigIntegerRound(incBusinessProfessionDoc.getDepreAllow_us32_1_ii()));
 		depreciationAllowITAct32.setTotDeprAllowITAct(depreciationAllowITAct32.getDepreciationAllowUs321Ii().add(depreciationAllowITAct32.getDepreciationAllowUs321I()));
 		businessIncOthThanSpec.setDepreciationAllowITAct32(depreciationAllowITAct32);
