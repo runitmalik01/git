@@ -46,7 +46,7 @@
 								<option value="Furniture"<c:if test="${not empty childBean.type_Asset && childBean.type_Asset =='Furniture'}">selected</c:if>>Furniture and Fittings</option>
 								<option value="Intangible"<c:if test="${not empty childBean.type_Asset && childBean.type_Asset =='Intangible'}">selected</c:if>>Intangible</option>
 								<option value="Ships"<c:if test="${not empty childBean.type_Asset && childBean.type_Asset =='Ships'}">selected</c:if>>Ships</option>
-							
+
 								</select>
 							</div>
 							</div>
@@ -68,7 +68,7 @@
 								<option id="Rate_10" value="10"<c:if test="${not empty childBean.rates && childBean.rates =='10'}">selected</c:if>>10</option>
 								<option id="Rate25" value="25"<c:if test="${not empty childBean.rates && childBean.rates =='25'}">selected</c:if>>25</option>
 								<option id="Rate20" value="20"<c:if test="${not empty childBean.rates && childBean.rates =='20'}">selected</c:if>>20</option>
-								
+
 								</select>
 							</div>
 				</div>
@@ -83,7 +83,7 @@
 					<div class="rowlabel">
 						<input id="valFirstDayPrevYr" name="valFirstDayPrevYr" class="uprcase" type="text"
 						value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.valFirstDayPrevYr}"/></c:if>">
-						
+
 					</div>
 				</div></div>
 					<div class="row-fluid show-grid">
@@ -95,7 +95,7 @@
 					<div class="span4">
 					<div class="rowlabel">
 						<input id="periodMore180Day" name="periodMore180Day" maxlength="14"
-							type="text" 
+							type="text"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.periodMore180Day}"/></c:if>" />
 					</div>
 				</div>
@@ -109,7 +109,7 @@
 					<div class="span4">
 					<div class="rowlabel">
 						<input id="prevYrConsider" name="prevYrConsider" maxlength="14"
-							type="text" 
+							type="text"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.periodMore180Day}"/></c:if>" />
 					</div>
 				</div></div>
@@ -136,7 +136,7 @@
 					<div class="span4">
 					<div class="rowlabel">
 						<input id="periodLess180Day" name="periodLess180Day" type="text" maxlength="14"
-							  
+
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.periodLess180Day}"/></c:if>" />
 					</div>
 				</div>
@@ -149,8 +149,8 @@
 					</div></div>
 					<div class="span4">
 					<div class="rowlabel">
-						<input id="considerOrRealDuringYr" name="considerOrRealDuringYr" type="text" 
-							maxlength="14"   class="decimal" 
+						<input id="considerOrRealDuringYr" name="considerOrRealDuringYr" type="text"
+							maxlength="14"   class="decimal"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.considerOrRealDuringYr}"/></c:if>" />
 					</div>
 				</div></div>
@@ -162,7 +162,7 @@
 					</div></div>
 					<div class="span4">
 					<div class="rowlabel">
-						<input id="amtDepreciationHalfRate" name="amtDepreciationHalfRate" type="text" 
+						<input id="amtDepreciationHalfRate" name="amtDepreciationHalfRate" type="text"
 							maxlength="14"   class="decimal" readonly="readonly"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.amtDepreciationHalfRate}"/></c:if>" />
 					</div>
@@ -176,7 +176,7 @@
 					</div></div>
 					<div class="span4">
 					<div class="rowlabel">
-						<input id="depreciationFullRate" name="depreciationFullRate" type="text" 
+						<input id="depreciationFullRate" name="depreciationFullRate" type="text"
 							maxlength="14"   class="decimal" readonly="readonly"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.depreciationFullRate}"/></c:if>" />
 					</div>
@@ -190,7 +190,7 @@
 					</div></div>
 					<div class="span4">
 					<div class="rowlabel">
-						<input id="depreciationHalfRate" name="depreciationHalfRate" type="text" 
+						<input id="depreciationHalfRate" name="depreciationHalfRate" type="text"
 							maxlength="14"   class="decimal" readonly="readonly"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.depreciationHalfRate}"/></c:if>" />
 					</div>
@@ -203,8 +203,8 @@
 					</div></div>
 					<div class="span4">
 					<div class="rowlabel">
-						<input id="addDepreciatMore180Day" name="addDepreciatMore180Day" type="text" 
-							maxlength="14"   class="decimal" 
+						<input id="addDepreciatMore180Day" name="addDepreciatMore180Day" type="text"
+							maxlength="14"   class="decimal"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.addDepreciatMore180Day}"/></c:if>" />
 					</div>
 				</div>
@@ -216,8 +216,8 @@
 					</div></div>
 					<div class="span4">
 					<div class="rowlabel">
-						<input id="addDepreciatLess180Day" name="addDepreciatLess180Day" type="text" 
-							maxlength="14"   class="decimal" 
+						<input id="addDepreciatLess180Day" name="addDepreciatLess180Day" type="text"
+							maxlength="14"   class="decimal"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.addDepreciatLess180Day}"/></c:if>" />
 					</div>
 				</div>
@@ -230,7 +230,7 @@
 					</div></div>
 					<div class="span4">
 					<div class="rowlabel">
-						<input id="totalDepreciation" name="totalDepreciation" type="text" 
+						<input id="totalDepreciation" name="totalDepreciation" type="text"
 							maxlength="14"   class="decimal" readonly="readonly"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.totalDepreciation}"/></c:if>" />
 					</div>
@@ -243,8 +243,8 @@
 					</div></div>
 					<div class="span4">
 					<div class="rowlabel">
-						<input id="expense_TransferAsset" name="expense_TransferAsset" type="text" 
-							maxlength="14"   class="decimal" 
+						<input id="expense_TransferAsset" name="expense_TransferAsset" type="text"
+							maxlength="14"   class="decimal"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.expense_TransferAsset}"/></c:if>" />
 					</div>
 				</div>
@@ -257,8 +257,8 @@
 					</div></div>
 					<div class="span4">
 					<div class="rowlabel">
-						<input id="capitalGain_LossSec50" name="capitalGain_LossSec50" type="text" 
-							maxlength="14"   class="decimal" 
+						<input id="capitalGain_LossSec50" name="capitalGain_LossSec50" type="text"
+							maxlength="14"   class="decimal"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.capitalGain_LossSec50}"/></c:if>" />
 					</div>
 				</div>
@@ -271,7 +271,7 @@
 					</div></div>
 					<div class="span4">
 					<div class="rowlabel">
-						<input id="valLastDayPrevYr" name="valLastDayPrevYr" type="text" 
+						<input id="valLastDayPrevYr" name="valLastDayPrevYr" type="text"
 							maxlength="14"   class="decimal" readonly="readonly"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.valLastDayPrevYr}"/></c:if>" />
 					</div>
@@ -281,10 +281,10 @@
 				<div class="span4 offset8 decimal">
 					<a href="${scriptName}" class="btn btn-danger">Cancel</a>&nbsp;
 					<a id="myModalScheduleDOA" role="button" class="btn btn-success">Save</a>
-				</div>  
-			
+				</div>
+
 			</div>
-			
+
 		</form>
 	</c:when>
 	<c:otherwise>
@@ -294,7 +294,7 @@
 				</th>
 				<th><b><fmt:message key="valLastDayPrevYr.dpm.itr4" /> </b>
 				</th>
-				
+
 				<th><b>Actions</b></th>
 			</tr>
 			<c:if test="${not empty parentBean}">
@@ -312,8 +312,8 @@
 						</tr>
 					</tr>
 				</c:forEach>
-				
-				
+
+
 			</c:if>
 		</table>
 		<a href="${scriptName}/scheduleDOAnew"
@@ -324,6 +324,7 @@ class="btn btn-info">Add New</a>
 <script type="text/javascript">
 $("#type_Asset").change(function(){
  if($("#type_Asset").val() == "Building"){
+	    $('#rates').val('');
 	    $('#Rate5').show();
 		$('#Rate10').show();
 		$('#Rate100').show();
@@ -332,6 +333,7 @@ $("#type_Asset").change(function(){
 		$('#Rate20').hide();
 }
  if($("#type_Asset").val() == "Furniture"){
+	    $('#rates').val('');
 	 	$('#Rate5').hide();
 		$('#Rate10').show();
 		$('#Rate100').hide();
@@ -340,6 +342,7 @@ $("#type_Asset").change(function(){
 		$('#Rate20').hide();
 }
  if($("#type_Asset").val() == "Intangible"){
+	 $('#rates').val('');
 	 	$('#Rate5').hide();
 		$('#Rate10').hide();
 		$('#Rate100').hide();
@@ -348,6 +351,7 @@ $("#type_Asset").change(function(){
 		$('#Rate20').hide();
 }
  if($("#type_Asset").val() == "Ships"){
+	    $('#rates').val('');
 	 	$('#Rate5').hide();
 		$('#Rate10').hide();
 		$('#Rate100').hide();
