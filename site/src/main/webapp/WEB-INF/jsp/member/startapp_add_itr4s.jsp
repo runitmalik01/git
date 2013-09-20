@@ -25,7 +25,7 @@
 					</select>
 				</div>
 		</div></div>
-	<div class="row-fluid show-grid <c:if test="${(parentBean.isTaxPreparebyTRP == 'N') || (parentBean.isTaxPreparebyTRP == '')}"> hide </c:if>" id="yesTaxPreparebyTRP">
+	<div class="row-fluid show-grid <c:if test="${(parentBean.isTaxPreparebyTRP == 'N') || (empty parentBean.isTaxPreparebyTRP)}"> hide </c:if>" id="yesTaxPreparebyTRP">
 		<div class="span3">
 			<div class="rowlabel">
 				<label for="trpnumber"><small><fmt:message
