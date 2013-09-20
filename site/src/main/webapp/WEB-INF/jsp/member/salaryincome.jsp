@@ -280,7 +280,7 @@
 	</c:if>
 	<br/><br/>
 <c:if test="${finStatus eq 'H' }">
-	<p style="color: red" align="center"><b>Sorry!!!</b>, You are not eligible for this service</p></c:if>
+	<h1 style="font-style: italic;color: red" align="center"><b>Sorry</b> This service is not applicable in case of 'HUF'</h1></c:if>
 
 </div>
 </div>
