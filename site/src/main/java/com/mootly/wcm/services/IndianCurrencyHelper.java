@@ -3,7 +3,10 @@ package com.mootly.wcm.services;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.math.RoundingMode;
+import java.text.DateFormat;
 import java.text.DecimalFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -163,25 +166,29 @@ public final class IndianCurrencyHelper {
 		return df2.format(o);
 	}
 
-	public double getYearIndexValue(String Calldate){
+	public double getYearIndexValue(String Calldate) throws ParseException{
 		ResourceBundle rb = ResourceBundle.getBundle("valueList_Infla" +
 				"tionIndex");
 		String expDate= Calldate;
+		Date dNew= parsedate(Calldate);
 		String[] getDate= expDate.split("/");
 		String  year= getDate[2];
 		if(rb.containsKey("valueList."+year)){
 			log.info("it contains");
 			String[] newString=rb.getString("valueList."+year+"").split("-");
 			String fromDate=newString[0];
+			Date frm= parsedate(fromDate);
 			String toDate=newString[1];
-			int comapreResult=	IsDateBetween(Calldate, fromDate, toDate);
-			log.info("comapreResult"+comapreResult);
-			if(comapreResult==1){
+			Date to= parsedate(toDate);
+			boolean comapreResult= between(dNew, frm, to);
+			if(comapreResult){
 				log.info("success");
 				return Double.parseDouble(rb.getString("valueList."+year+".cii"));
-			}else {
+			}if(!comapreResult) {
 				double year1= Double.parseDouble(year);
-				return Double.parseDouble(rb.getString("valueList."+(year1-1)+".cii"));
+				double yearnew = (year1-1.0d);
+				 int ss = (int)yearnew;
+				return Double.parseDouble(rb.getString("valueList."+ss+".cii"));
 			}	
 		}
 		log.info("here is the value in outer loopsss"+Double.parseDouble(rb.getString("valueList.2012.cii")));
@@ -189,31 +196,72 @@ public final class IndianCurrencyHelper {
 	}
 
 
+	
+
 	/**
-	 * this method for checking whether date lies between indexation or not
+	 * this method for converting a string to Date
+
+	@param string date,
+	@author abhishek
+	 * @return  Date
+	 * @throws ParseException 
+
+	 **/
+	public static Date parsedate(String dateparse)throws ParseException{
+		DateFormat formatter ; 
+		@SuppressWarnings("unused")
+		Date date ; 
+		formatter = new SimpleDateFormat("dd/MM/yyyy");
+		log.info("changed date is"+formatter.parse(dateparse));
+		return date = formatter.parse(dateparse);
+
+	}
+
+	/**
+	 * this method for checking whether date lies between two dates, or not
 
 	@param current date, from Date and to Date
 	@author abhishek
-	 * @return 
+    @return
 
 	 **/
-	public int IsDateBetween(String dd, String Ndate, String Odate) {
-
-		long  from=Date.parse(Ndate);  // From some date
+	public static boolean between(Date date, Date dateStart, Date dateEnd) {
+		if (date != null && dateStart != null && dateEnd != null) {
+			if (date.after(dateStart) && date.before(dateEnd)) {
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
+		return false;
+	}
+	
+	
+	
+	
+/*	public int IsDateBetween(String dd, String Ndate, String Odate) {
+		log.info("inside case"+dd);
+		long from=Date.parse(Ndate);  // From some date
+		log.info("from"+from);
 		long to=Date.parse(Odate);     // To Some Date
+		log.info("to"+to);
 		long check=Date.parse(dd);
+		log.info("now"+check);
 		int x=0;
+		//c <= e && c >= s))
 		if((check-from)>=0 && (to-check)>=0)
+
 		{
 			x=1;
 			return x;
 		}
 		return 0;
-		
+
 	}  
-	
+
 	//try to send default value so that no NullPointer Exception
-	/*public double getYearIndexValue(String year){
+	public double getYearIndexValue(String year){
 		ResourceBundle rb = ResourceBundle.getBundle("valueList_Infla" +
 				"tionIndex");
 		if(rb.containsKey("valueList."+year+".cii")){
