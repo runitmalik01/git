@@ -958,15 +958,19 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 				mapOfAllBeans.put(theBean.getClass().getSimpleName().toLowerCase(), theBean);
 			}
 		}
+		// As mapOfAllBeans define globally (Member of Class) So for new Entry of pan it remain hold  
+		// previous viewed or entered value for pan so we have to kill this as it depends upon result of loadAllBeansUnderTheFolder() function i.e listOfBeans
 		//fill up request
-		if (mapOfAllBeans != null) {
+		//if (mapOfAllBeans != null) {
+		if (mapOfAllBeans != null && listOfBeans != null) {
 			for (String theKey:mapOfAllBeans.keySet()) {
 				request.setAttribute(theKey, mapOfAllBeans.get(theKey));		
 			}			
 		}
 		//time has come to reset the ITReturnType and other variables
 		String keyToMemberPersonalInformation = MemberPersonalInformation.class.getSimpleName().toLowerCase();
-		if (mapOfAllBeans != null && mapOfAllBeans.containsKey(keyToMemberPersonalInformation)) {
+		//if (mapOfAllBeans != null && mapOfAllBeans.containsKey(keyToMemberPersonalInformation)) {
+		if (mapOfAllBeans != null && mapOfAllBeans.containsKey(keyToMemberPersonalInformation) && listOfBeans != null) {
 			memberPersonalInformation = (MemberPersonalInformation) mapOfAllBeans.get(keyToMemberPersonalInformation);
 			itReturnType = ITReturnType.getByXmlStatus(memberPersonalInformation.getReturnType()); //this will determine original or revised
 		}
@@ -2046,7 +2050,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		HstQuery hstQuery;
 		List<HippoBean> theLocalBeansUnderMemberFolder = null;
 		try {
-			if (scopeForAllBeans == null) return null;
+			if (scopeForAllBeans == null)  return null;
 			theLocalBeansUnderMemberFolder = new ArrayList<HippoBean>();
 			hstQuery = getQueryManager(request).createQuery( scopeForAllBeans );
 			if (sortDirection == null) sortDirection = SORT_DIRECTION.ASC;
