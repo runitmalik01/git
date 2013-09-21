@@ -30,6 +30,7 @@ import com.mootly.wcm.beans.DeductionDocument;
 import com.mootly.wcm.beans.DeductionSchedTenADocumemt;
 import com.mootly.wcm.beans.DetailOfTrustDocument;
 import com.mootly.wcm.beans.FinancialInterestDocument;
+import com.mootly.wcm.beans.FirmsPartnerDocument;
 import com.mootly.wcm.beans.ForeignBankAccountDocument;
 import com.mootly.wcm.beans.ForeignIncomeDocument;
 import com.mootly.wcm.beans.FormSixteenDocument;
@@ -87,6 +88,7 @@ import com.mootly.wcm.model.schedules.y2012_2013.ITR_ScheduleDCG;
 import com.mootly.wcm.model.schedules.y2012_2013.ITR_ScheduleDEP;
 import com.mootly.wcm.model.schedules.y2012_2013.ITR_ScheduleDOA;
 import com.mootly.wcm.model.schedules.y2012_2013.ITR_ScheduleDPM;
+import com.mootly.wcm.model.schedules.y2012_2013.ITR_ScheduleIF;
 import com.mootly.wcm.model.schedules.y2012_2013.MemberVerification;
 import com.mootly.wcm.model.schedules.y2012_2013.OtherIncomeDocumentSchedules;
 import com.mootly.wcm.model.schedules.y2012_2013.OtherInformationSchedule;
@@ -160,6 +162,7 @@ public class ITR4XmlGeneratorService  {
 		UnabsorbedDepreciationDocument unabsorbedDepreciationDocument = (UnabsorbedDepreciationDocument) inputBeans.get(UnabsorbedDepreciationDocument.class.getSimpleName().toLowerCase());
 		ScheduleDPMDocument scheduleDPMDocument = (ScheduleDPMDocument) inputBeans.get(ScheduleDPMDocument.class.getSimpleName().toLowerCase());
 		ScheduleDOADocument scheduleDOADocument = (ScheduleDOADocument) inputBeans.get(ScheduleDOADocument.class.getSimpleName().toLowerCase());
+		FirmsPartnerDocument firmsPartnerDocument = (FirmsPartnerDocument) inputBeans.get(FirmsPartnerDocument.class.getSimpleName().toLowerCase());
 
 		ITR4 itr4 = new ObjectFactory().createITR4();
 		ITR itr = new ITR();
@@ -308,6 +311,9 @@ public class ITR4XmlGeneratorService  {
 
 		ITR_ScheduleDCG iTR_ScheduleDCG = new ITR_ScheduleDCG(scheduleDPMDocument, scheduleDOADocument);
 		itr4.setScheduleDCG(iTR_ScheduleDCG.getScheduleDCG(itr));
+
+		ITR_ScheduleIF iTR_ScheduleIF= new ITR_ScheduleIF(firmsPartnerDocument);
+		itr4.setScheduleIF(iTR_ScheduleIF.getScheduleIF(itr));
 
 		MemberVerification memberVerification = new MemberVerification(memberPersonalInformation);
 		itr4.setVerification(memberVerification.getVerification(itr));
