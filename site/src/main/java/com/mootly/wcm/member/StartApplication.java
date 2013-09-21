@@ -103,7 +103,8 @@ public class StartApplication extends ITReturnComponent {
 	public void doBeforeRender(HstRequest request, HstResponse response) {
 		// TODO Auto-generated method stub
 		super.doBeforeRender(request, response);
-		parentBean = getMemberPersonalInformation(); //(MemberPersonalInformation)request.getAttribute("parentBean");
+		//being member return of getMemberPersonalInformation() of ITReturnComponent it return previous entered and viewed value.
+		parentBean =  (MemberPersonalInformation)request.getAttribute("parentBean"); //getMemberPersonalInformation();
 		RetrievePANResponse retrievePANResponse = null;
 		//Call to DIT Service then get the Response
 		if(shouldRetrievePANInformation()||shouldRetrievePANInformation()){
@@ -399,30 +400,26 @@ public class StartApplication extends ITReturnComponent {
 			FormMap formMap) {
 		// TODO Auto-generated method stub
 		if(super.validate(request, response, formMap)){
-
 			boolean hasAValidSelection = true;
 			MemberPersonalInformation memberPersonalInformation = (MemberPersonalInformation) getParentBean();
-
 			if(memberPersonalInformation != null){
 				ITRForm saveditrForm = memberPersonalInformation.getSelectedITRForm();
 				int savedITRPriority = saveditrForm.getPriority();
 				String selecteditrForm= formMap.getField("flex_string_ITRForm").getValue();
 				ITRForm selectedITR = ITRForm.valueOf(selecteditrForm);
 				int selectedITRPriority = selectedITR.getPriority();
-
 				if(savedITRPriority > selectedITRPriority){
 					HippoFolder hippoFolder = (HippoFolder) memberPersonalInformation.getParentBean();
-
 					long size = hippoFolder.getDocumentSize();
 					if(size > 1){
 						formMap.addMessage("flex_string_ITRForm", "error.itr.selection");
 						response.setRenderParameter("ITR1_FORM_SELECTION", "error.itr.selection");
 						hasAValidSelection = false;
+						return hasAValidSelection;
 					}
 				}
 			}
 		}
-
 		return super.validate(request, response, formMap);
 	}
 
