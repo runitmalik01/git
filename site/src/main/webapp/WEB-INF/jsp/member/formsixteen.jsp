@@ -19,7 +19,7 @@
 			test="${not empty screenConfigDocument && not empty screenConfigDocument.screenHeading}">
 			<c:out value="${screenConfigDocument.screenHeading}" />
 		</c:when>
-		<c:otherwise></c:otherwise>
+		<c:otherwise><h2 style="color: black;">Form 16</h2></c:otherwise>
 	</c:choose>
 </h3>
 <c:if test="${not empty formMap}">
@@ -35,7 +35,7 @@
 		test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
 		<form id="frmdataFormSixteen" action="${actionUrl}" name="formsixteen"
 			method="post">
-			<h2 style="color: black;">Form 16</h2>
+			
 			<p>Certificate under section 203 of the Income_tax Act, 1961 for
 				tax deducted at source from income chargeable under the head
 				"Salaries".</p>
@@ -978,7 +978,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="row-fluid show-grid" style="display:none;">
+				<%--<div class="row-fluid show-grid" style="display:none;">
 					<div class="span8">
 						<div class="rowlabel">
 							<label>9. Net income under the head Salary</label>
