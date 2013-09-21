@@ -37647,7 +37647,8 @@ out_incomeChargeable_PL = (out_netPL_otherthanSpeculative_SpecifiedBuss1 -0)+(ou
 </sv:node>
 
 <!-- /schedule BP -->
-<!-- schedule DPM -->
+<!-- schedule DPM  calculation-->
+
 
 <sv:node sv:name="scheduledpm" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
@@ -37679,7 +37680,7 @@ out_incomeChargeable_PL = (out_netPL_otherthanSpeculative_SpecifiedBuss1 -0)+(ou
       <sv:value>hippo:harddocument</sv:value>
     </sv:property>
     <sv:property sv:name="jcr:uuid" sv:type="String">
-      <sv:value>32946b78-252c-49c1-adcd-f9bb27dc4da8</sv:value>
+      <sv:value>28ae73b8-9ed4-482d-8c4b-17efa2f338ef</sv:value>
     </sv:property>
     <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
       <sv:value>live</sv:value>
@@ -37704,13 +37705,13 @@ out_incomeChargeable_PL = (out_netPL_otherthanSpeculative_SpecifiedBuss1 -0)+(ou
       <sv:value>2013-05-24T01:55:56.242+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-      <sv:value>2013-09-16T17:25:46.750+05:30</sv:value>
+      <sv:value>2013-09-21T10:27:09.490+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
       <sv:value>admin</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-      <sv:value>2013-09-16T17:25:50.239+05:30</sv:value>
+      <sv:value>2013-09-21T10:27:21.969+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="mootlywcm:additionalScript" sv:type="String">
       <sv:value/>
@@ -37726,6 +37727,7 @@ out_incomeChargeable_PL = (out_netPL_otherthanSpeculative_SpecifiedBuss1 -0)+(ou
       <sv:value>considerOrRealDuringYr</sv:value>
       <sv:value>addDepreciatMore180Day</sv:value>
       <sv:value>addDepreciatLess180Day</sv:value>
+      <sv:value>expense_TransferAsset</sv:value>
     </sv:property>
     <sv:property sv:name="mootlywcm:script" sv:type="String">
       <sv:value>/***
@@ -37737,12 +37739,14 @@ out_incomeChargeable_PL = (out_netPL_otherthanSpeculative_SpecifiedBuss1 -0)+(ou
  var val_HalfRate = (val_FullRate ) / 2;
 
 out_amtDepreciationFullRate =   ((valFirstDayPrevYr-0) + (periodMore180Day-0) -(prevYrConsider -0)) &gt;0 ? ((valFirstDayPrevYr-0) + (periodMore180Day-0) -(prevYrConsider -0)) : 0;
+var diffAmtPrYr = ((prevYrConsider-0 )-((valFirstDayPrevYr-0)+(periodMore180Day-0)));
+out_amtDepreciationHalfRate = ((periodLess180Day-0)-((considerOrRealDuringYr-0) + (diffAmtPrYr -0))) &gt;0 ? ((periodLess180Day-0)-((considerOrRealDuringYr-0) + (diffAmtPrYr -0))) :0;
 
-out_amtDepreciationHalfRate = ((periodLess180Day-0)-(considerOrRealDuringYr-0)) &gt;0 ? ((periodLess180Day-0)-(considerOrRealDuringYr-0)) :0;
 out_depreciationFullRate = Math.round((out_amtDepreciationFullRate *val_FullRate )/100);
 out_depreciationHalfRate = Math.round((out_amtDepreciationHalfRate *val_HalfRate )/100);
 
 out_totalDepreciation  = out_depreciationFullRate + out_depreciationHalfRate +(addDepreciatMore180Day-0) +(addDepreciatLess180Day-0);
+out_capitalGain_LossSec50 = ((prevYrConsider-0)+(considerOrRealDuringYr-0))-((valFirstDayPrevYr-0)+(periodMore180Day-0)+(periodLess180Day-0)+(expense_TransferAsset-0));
 out_valLastDayPrevYr = ((out_amtDepreciationFullRate +out_amtDepreciationHalfRate )-(out_totalDepreciation  )) &gt; 0 ? ((out_amtDepreciationFullRate +out_amtDepreciationHalfRate )-(out_totalDepreciation  )) : 0;</sv:value>
     </sv:property>
     <sv:property sv:name="mootlywcm:title" sv:type="String">
@@ -37750,6 +37754,7 @@ out_valLastDayPrevYr = ((out_amtDepreciationFullRate +out_amtDepreciationHalfRat
     </sv:property>
   </sv:node>
 </sv:node>
+
 
 <!-- /schedule DPM -->
 
@@ -38244,6 +38249,7 @@ out_amtCreditCarriedFwrd  = out_amtCreditCarriedFwrd   &gt; 0 ? out_amtCreditCar
 <!-- end of calculation document for itr-schedule amtc -->
 <!-- calc for schedule DOA -->
 
+
 <sv:node sv:name="scheduledoa" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hippo:handle</sv:value>
@@ -38274,7 +38280,7 @@ out_amtCreditCarriedFwrd  = out_amtCreditCarriedFwrd   &gt; 0 ? out_amtCreditCar
       <sv:value>hippo:harddocument</sv:value>
     </sv:property>
     <sv:property sv:name="jcr:uuid" sv:type="String">
-      <sv:value>76a2febe-a7bb-4d0f-9f9d-27bff19021c6</sv:value>
+      <sv:value>06fcacbd-21f6-4cd2-8d8b-28552687b446</sv:value>
     </sv:property>
     <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
       <sv:value>live</sv:value>
@@ -38299,13 +38305,13 @@ out_amtCreditCarriedFwrd  = out_amtCreditCarriedFwrd   &gt; 0 ? out_amtCreditCar
       <sv:value>2013-05-24T01:55:56.242+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-      <sv:value>2013-09-17T11:04:01.479+05:30</sv:value>
+      <sv:value>2013-09-21T10:35:32.819+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
       <sv:value>admin</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-      <sv:value>2013-09-17T11:04:04.326+05:30</sv:value>
+      <sv:value>2013-09-21T10:35:39.019+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="mootlywcm:additionalScript" sv:type="String">
       <sv:value/>
@@ -38321,6 +38327,7 @@ out_amtCreditCarriedFwrd  = out_amtCreditCarriedFwrd   &gt; 0 ? out_amtCreditCar
       <sv:value>considerOrRealDuringYr</sv:value>
       <sv:value>addDepreciatMore180Day</sv:value>
       <sv:value>addDepreciatLess180Day</sv:value>
+      <sv:value>expense_TransferAsset</sv:value>
     </sv:property>
     <sv:property sv:name="mootlywcm:script" sv:type="String">
       <sv:value>/***
@@ -38332,12 +38339,14 @@ var val_FullRate = rates;
 var val_HalfRate = (val_FullRate ) / 2;
 
 out_amtDepreciationFullRate = ((valFirstDayPrevYr-0) + (periodMore180Day-0) -(prevYrConsider -0)) &gt;0 ? ((valFirstDayPrevYr-0) + (periodMore180Day-0) -(prevYrConsider -0)) : 0;
+var diffAmtPrYr = ((prevYrConsider-0 )-((valFirstDayPrevYr-0)+(periodMore180Day-0)));
+out_amtDepreciationHalfRate = ((periodLess180Day-0)-((considerOrRealDuringYr-0) + (diffAmtPrYr -0))) &gt;0 ? ((periodLess180Day-0)-((considerOrRealDuringYr-0) + (diffAmtPrYr -0))) :0;
 
-out_amtDepreciationHalfRate = ((periodLess180Day-0)-(considerOrRealDuringYr-0)) &gt;0 ? ((periodLess180Day-0)-(considerOrRealDuringYr-0)) :0;
-out_depreciationFullRate = Math.round((out_amtDepreciationFullRate *val_FullRate )/100 );
-out_depreciationHalfRate =Math.round( (out_amtDepreciationHalfRate *val_HalfRate )/100);
+out_depreciationFullRate = Math.round((out_amtDepreciationFullRate *val_FullRate )/100);
+out_depreciationHalfRate = Math.round((out_amtDepreciationHalfRate *val_HalfRate )/100);
 
 out_totalDepreciation = out_depreciationFullRate + out_depreciationHalfRate +(addDepreciatMore180Day-0) +(addDepreciatLess180Day-0);
+out_capitalGain_LossSec50 = ((prevYrConsider-0)+(considerOrRealDuringYr-0))-((valFirstDayPrevYr-0)+(periodMore180Day-0)+(periodLess180Day-0)+(expense_TransferAsset-0));
 out_valLastDayPrevYr = ((out_amtDepreciationFullRate +out_amtDepreciationHalfRate )-(out_totalDepreciation )) &gt; 0 ? ((out_amtDepreciationFullRate +out_amtDepreciationHalfRate )-(out_totalDepreciation )) : 0;</sv:value>
     </sv:property>
     <sv:property sv:name="mootlywcm:title" sv:type="String">
@@ -38345,6 +38354,7 @@ out_valLastDayPrevYr = ((out_amtDepreciationFullRate +out_amtDepreciationHalfRat
     </sv:property>
   </sv:node>
 </sv:node>
+
 
 <!-- /calc for schedule DOA -->
   </sv:node>
