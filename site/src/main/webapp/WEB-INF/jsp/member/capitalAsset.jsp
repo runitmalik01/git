@@ -701,6 +701,12 @@
 			$("#lindex").hide();
 			$("#sst_charge").hide();
 		}
+		var acc = $('#accural_info').val();
+		if(acc=='Y'){
+			$('#accural_gain').show();	
+		}else{
+			$('#accural_gain').hide();	
+		}
 
 	});
 
@@ -753,8 +759,6 @@
 			var m = document.getElementById("asset_type").value;
 			if (m == "SHARES") {
 				if (c <= 365) {
-					//$("#shortterms").show();
-					//$("#longterms").hide();
 					$('#fd_set_gain').show();
 					$(".st").show();
 					$("#lg").hide();
