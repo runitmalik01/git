@@ -258,7 +258,7 @@
 					<div class="span4">
 					<div class="rowlabel">
 						<input id="capitalGain_LossSec50" name="capitalGain_LossSec50" type="text"
-							maxlength="14"   class="decimal"
+							maxlength="14"   class="decimal" readonly="readonly"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.capitalGain_LossSec50}"/></c:if>" />
 					</div>
 				</div>
