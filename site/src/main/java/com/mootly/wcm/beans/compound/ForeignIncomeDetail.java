@@ -213,6 +213,7 @@ public class ForeignIncomeDetail extends HippoItem implements FormMapFiller {
 		if (log.isInfoEnabled()) {
 			log.info("Into the fill method");			
 		}
+		double defaultZero=0.0d;
 		if (formMap == null) return;
 		
 		if ( formMap.getField("country_code") != null) {
@@ -222,55 +223,57 @@ public class ForeignIncomeDetail extends HippoItem implements FormMapFiller {
 			setTaxpayer_ID(formMap.getField("taxpayer_ID").getValue());
 		}
 		
-		if ( formMap.getField("income_salary") != null) {
+		if ( !(formMap.getField("income_salary").getValue().isEmpty())) {
 			 String strIncomeSlry=formMap.getField("income_salary").getValue();
 			double IncomeSalary=Double.parseDouble(strIncomeSlry);
 			setIncome_Salary(IncomeSalary);
-		}
-		if ( formMap.getField("income_house") != null) {
+		} else setIncome_Salary(defaultZero);
+		if ( !(formMap.getField("income_house").getValue().isEmpty())) {
 			String strIncomeHouse=formMap.getField("income_house").getValue();
 			double IncomeHouse=Double.parseDouble(strIncomeHouse);
 			setIncome_House(IncomeHouse);
-		}
-		if ( formMap.getField("income_business") != null) {
+		} else setIncome_House(defaultZero);
+		
+		if ( !(formMap.getField("income_business").getValue().isEmpty() )) {
 			String strIncomeBusiness=formMap.getField("income_business").getValue();
 			double IncomeBusiness=Double.parseDouble(strIncomeBusiness);
 			setIncome_Business(IncomeBusiness);
-		}
-		if ( formMap.getField("income_capitalgain") != null) {
+		} else setIncome_Business(defaultZero);
+		
+		if ( !(formMap.getField("income_capitalgain").getValue().isEmpty())) {
 			String strIncomeCapital=formMap.getField("income_capitalgain").getValue();
-			log.info("strIncomeCapital UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU"+strIncomeCapital);
 			double IncomeCapital=Double.parseDouble(strIncomeCapital);
-			log.info("VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV"+IncomeCapital);
 			setIncome_Capitalgain(IncomeCapital);
-		}
-		if ( formMap.getField("income_othersources") != null) {
+		} else setIncome_Capitalgain(defaultZero);
+		
+		if ( !(formMap.getField("income_othersources").getValue().isEmpty())) {
 			String strIncomeHouse=formMap.getField("income_othersources").getValue();
 			double Incomeother=Double.parseDouble(strIncomeHouse);
 			setIncome_Othersources(Incomeother);
-		}
-		if ( formMap.getField("income_total") != null) {
+		} else setIncome_Othersources(defaultZero);
+		
+		if ( !(formMap.getField("income_total").getValue().isEmpty())) {
 			String strIncomeTotal=formMap.getField("income_total").getValue();
 			double IncomeTotal=Double.parseDouble(strIncomeTotal);
 			setincome_Total(IncomeTotal);
-		}
+		} else setincome_Total(defaultZero);
 		if(formMap.getField("country_name") != null){
 			setCountry_Name(formMap.getField("country_name").getValue());
 		}
 		if(formMap.getField("isDtaa") != null){
-			log.info("GGGGGGGGGGGGGGGGGGGGGGGGG"+formMap.getField("isDtaa").getValue());
 			setIsDtaaCountry(formMap.getField("isDtaa").getValue());
 		}
-		if ( formMap.getField("dtaa_CountryIncome") != null) {
+		if (!(formMap.getField("dtaa_CountryIncome").getValue().isEmpty())) {
 			String strdtaa_CountryIncome=formMap.getField("dtaa_CountryIncome").getValue();
 			double Dtaa_CountryIncome=Double.parseDouble(strdtaa_CountryIncome);
 			setDtaa_CountryIncome(Dtaa_CountryIncome);
-		}
-		if ( formMap.getField("Nodtaa_CountryIncome") != null) {
+		} else setDtaa_CountryIncome(defaultZero);
+		
+		if (!(formMap.getField("Nodtaa_CountryIncome").getValue().isEmpty())) {
 			String strNodtaa_CountryIncome=formMap.getField("Nodtaa_CountryIncome").getValue();
 			double Nodtaa_CountryIncome=Double.parseDouble(strNodtaa_CountryIncome);
 			setNodtaa_CountryIncome(Nodtaa_CountryIncome);
-		}
+		} else setNodtaa_CountryIncome(defaultZero);
 		
 	}
 
