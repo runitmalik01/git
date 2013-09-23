@@ -28,7 +28,7 @@
 										key="name.Firm.itr4" /> </small> </label>
 						</div>
 						<div class="rowlabel">
-							<input id="name_Firm" name="name_Firm" type="text" maxlength="125"
+							<input id="name_Firm" name="name_Firm" type="text" maxlength="75"
 								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.name_Firm}"/></c:if>" />
 						</div>
 					</div>
