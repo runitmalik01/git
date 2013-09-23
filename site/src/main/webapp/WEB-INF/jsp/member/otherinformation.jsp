@@ -117,7 +117,7 @@
 								profit or loss because of deviation</small> </label>
 					</div>
 					<div class="rowlabel">
-						<input type="text" id="loss_deviation" name="loss_deviation"
+						<input type="text" id="loss_deviation" name="loss_deviation"  maxlength="14" 
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.loss_deviation}"/>" />
 					</div>
 				</div>
@@ -135,7 +135,7 @@
 				</div>
 				<div class="span2">
 					<div class="rowlabel">
-						<input type="text" id="item_section28" name="item_section28"
+						<input type="text" id="item_section28" name="item_section28"  maxlength="14" 
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.item_section28}"/>" />
 					</div>
 				</div>
@@ -149,7 +149,7 @@
 				</div>
 				<div class="span2">
 					<div class="rowlabel">
-						<input type="text" id="proforma_credits" name="proforma_credits"
+						<input type="text" id="proforma_credits" name="proforma_credits"  maxlength="14" 
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.proforma_credits}"/>" />
 					</div>
 				</div>
@@ -163,7 +163,7 @@
 				</div>
 				<div class="span2">
 					<div class="rowlabel">
-						<input type="text" id="escalation_claims" name="escalation_claims"
+						<input type="text" id="escalation_claims" name="escalation_claims"  maxlength="14" 
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.escalation_claims}"/>" />
 					</div>
 				</div>
@@ -176,7 +176,7 @@
 								income</small> </label>
 					</div>
 					<div class="rowlabel">
-						<input type="text" id="other_income" name="other_income"
+						<input type="text" id="other_income" name="other_income"  maxlength="14" 
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.other_income}"/>" />
 					</div>
 				</div>
@@ -186,7 +186,7 @@
 								receipt, if any</small> </label>
 					</div>
 					<div class="rowlabel">
-						<input type="text" id="capital_receipt" name="capital_receipt"
+						<input type="text" id="capital_receipt" name="capital_receipt"  maxlength="14" 
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.capital_receipt}"/>" />
 					</div>
 				</div>
@@ -195,7 +195,7 @@
 						<label for="total_amount"><small>Total Amount</small> </label>
 					</div>
 					<div class="rowlabel">
-						<input type="text" readonly="readonly" id="total_amount"
+						<input type="text" readonly="readonly" id="total_amount"  
 							name="total_amount"
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.total_amount}"/>" />
 					</div>
@@ -216,7 +216,7 @@
 				<div class="span2">
 					<div class="rowlabel">
 						<input type="text" id="premiumpaid_damage"
-							name="premiumpaid_damage"
+							name="premiumpaid_damage"  maxlength="14" 
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.premiumpaid_damage}"/>" />
 					</div>
 				</div>
@@ -231,7 +231,7 @@
 				<div class="span2">
 					<div class="rowlabel">
 						<input type="text" id="premiumpaid_health"
-							name="premiumpaid_health"
+							name="premiumpaid_health"  maxlength="14" 
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.premiumpaid_health}"/>" />
 					</div>
 				</div>
@@ -245,7 +245,7 @@
 				</div>
 				<div class="span2">
 					<div class="rowlabel">
-						<input type="text" id="sumpaid_bonus" name="sumpaid_bonus"
+						<input type="text" id="sumpaid_bonus" name="sumpaid_bonus"  maxlength="14" 
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.sumpaid_bonus}"/>" />
 					</div>
 				</div>
@@ -259,7 +259,7 @@
 				</div>
 				<div class="span2">
 					<div class="rowlabel">
-						<input type="text" id="interest_borrowed" name="interest_borrowed"
+						<input type="text" id="interest_borrowed" name="interest_borrowed"  maxlength="14" 
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.interest_borrowed}"/>" />
 					</div>
 				</div>
@@ -274,7 +274,7 @@
 				<div class="span2">
 					<div class="rowlabel">
 						<input type="text" id="discount_zerocoupon"
-							name="discount_zerocoupon"
+							name="discount_zerocoupon"  maxlength="14" 
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.discount_zerocoupon}"/>" />
 					</div>
 				</div>
@@ -289,7 +289,7 @@
 				<div class="span2">
 					<div class="rowlabel">
 						<input type="text" id="contributions_provident"
-							name="contributions_provident"
+							name="contributions_provident"  maxlength="14" 
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.contributions_provident}"/>" />
 					</div>
 				</div>
@@ -304,7 +304,7 @@
 				<div class="span2">
 					<div class="rowlabel">
 						<input type="text" id="contributions_superannuation"
-							name="contributions_superannuation"
+							name="contributions_superannuation"  maxlength="14" 
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.contributions_superannuation}"/>" />
 					</div>
 				</div>
@@ -319,7 +319,7 @@
 				<div class="span2">
 					<div class="rowlabel">
 						<input type="text" id="contributions_gratuity"
-							name="contributions_gratuity"
+							name="contributions_gratuity"  maxlength="14" 
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.contributions_gratuity}"/>" />
 					</div>
 				</div>
@@ -334,7 +334,7 @@
 				<div class="span2">
 					<div class="rowlabel">
 						<input type="text" id="contributions_other"
-							name="contributions_other"
+							name="contributions_other"  maxlength="14" 
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.contributions_other}"/>" />
 					</div>
 				</div>
@@ -348,7 +348,7 @@
 				</div>
 				<div class="span2">
 					<div class="rowlabel">
-						<input type="text" id="amount_debts" name="amount_debts"
+						<input type="text" id="amount_debts" name="amount_debts"  maxlength="14" 
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.amount_debts}"/>" />
 					</div>
 				</div>
@@ -362,7 +362,7 @@
 				</div>
 				<div class="span2">
 					<div class="rowlabel">
-						<input type="text" id="provision_debts" name="provision_debts"
+						<input type="text" id="provision_debts" name="provision_debts"  maxlength="14" 
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.provision_debts}"/>" />
 					</div>
 				</div>
@@ -377,7 +377,7 @@
 				<div class="span2">
 					<div class="rowlabel">
 						<input type="text" id="amount_transferred"
-							name="amount_transferred"
+							name="amount_transferred"  maxlength="14" 
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.amount_transferred}"/>" />
 					</div>
 				</div>
@@ -393,7 +393,7 @@
 				<div class="span2">
 					<div class="rowlabel">
 						<input type="text" id="expenditure_promoting"
-							name="expenditure_promoting"
+							name="expenditure_promoting"  maxlength="14" 
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.expenditure_promoting}"/>" />
 					</div>
 				</div>
@@ -404,7 +404,7 @@
 										key="oi.sumreceived.itr4" /> </small> </label>
 				</div>
 				<div class="span2">
-					<input type="text" id="sum_received" name="sum_received"
+					<input type="text" id="sum_received" name="sum_received"  maxlength="14" 
 						value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.sum_received}"/>" />
 				</div>
 			</div>
@@ -416,7 +416,7 @@
 					</div>
 					<div class="rowlabel">
 						<input type="text" id="other_disallowance"
-							name="other_disallowance"
+							name="other_disallowance"  maxlength="14" 
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.other_disallowance}"/>" />
 					</div>
 				</div>
@@ -446,7 +446,7 @@
 				<div class="span2">
 					<div class="rowlabel">
 						<input type="text" id="expenditure_personal"
-							name="expenditure_personal"
+							name="expenditure_personal"  maxlength="14" 
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.expenditure_personal}"/>" />
 					</div>
 				</div>
@@ -461,7 +461,7 @@
 				<div class="span2">
 					<div class="rowlabel">
 						<input type="text" id="expenditure_advertisement"
-							name="expenditure_advertisement"
+							name="expenditure_advertisement"  maxlength="14" 
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.expenditure_advertisement}"/>" />
 					</div>
 				</div>
@@ -477,7 +477,7 @@
 				<div class="span2">
 					<div class="rowlabel">
 						<input type="text" id="expenditure_penalty"
-							name="expenditure_penalty"
+							name="expenditure_penalty"  maxlength="14" 
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.expenditure_penalty}"/>" />
 					</div>
 				</div>
@@ -491,7 +491,7 @@
 				</div>
 				<div class="span2">
 					<div class="rowlabel">
-						<input type="text" id="other_penalty" name="other_penalty"
+						<input type="text" id="other_penalty" name="other_penalty"  maxlength="14" 
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.other_penalty}"/>" />
 					</div>
 				</div>
@@ -507,7 +507,7 @@
 				<div class="span2">
 					<div class="rowlabel">
 						<input type="text" id="expenditure_incurred"
-							name="expenditure_incurred"
+							name="expenditure_incurred"  maxlength="14" 
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.expenditure_incurred}"/>" />
 					</div>
 				</div>
@@ -521,7 +521,7 @@
 				</div>
 				<div class="span2">
 					<div class="rowlabel">
-						<input type="text" id="amount_liability" name="amount_liability"
+						<input type="text" id="amount_liability" name="amount_liability"  maxlength="14" 
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.amount_liability}"/>" />
 					</div>
 				</div>
@@ -537,7 +537,7 @@
 				<div class="span2">
 					<div class="rowlabel">
 						<input type="text" id="amount_expenditure"
-							name="amount_expenditure"
+							name="amount_expenditure"  maxlength="14" 
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.amount_expenditure}"/>" />
 					</div>
 				</div>
@@ -550,7 +550,7 @@
 								amount not allowable under section 37</small> </label>
 					</div>
 					<div class="rowlabel">
-						<input type="text" id="other_amountus37" name="other_amountus37"
+						<input type="text" id="other_amountus37" name="other_amountus37"  maxlength="14" 
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.other_amountus37}"/>" />
 					</div>
 				</div>
@@ -562,7 +562,7 @@
 					<div class="rowlabel">
 						<input type="text" readonly="readonly"
 							id="totalamount_disallowableus37"
-							name="totalamount_disallowableus37"
+							name="totalamount_disallowableus37"  maxlength="14" 
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.totalamount_disallowableus37}"/>" />
 					</div>
 				</div>
@@ -582,7 +582,7 @@
 				<div class="span2">
 					<div class="rowlabel">
 						<input type="text" id="amountdisallowable_us40A"
-							name="amountdisallowable_us40A"
+							name="amountdisallowable_us40A"  maxlength="14" 
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.amountdisallowable_us40A}"/>" />
 					</div>
 				</div>
@@ -596,7 +596,7 @@
 				</div>
 				<div class="span2">
 					<div class="rowlabel">
-						<input type="text" id="amount_ratelevied" name="amount_ratelevied"
+						<input type="text" id="amount_ratelevied" name="amount_ratelevied"  maxlength="14" 
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.amount_ratelevied}"/>" />
 					</div>
 				</div>
@@ -610,7 +610,7 @@
 				</div>
 				<div class="span2">
 					<div class="rowlabel">
-						<input type="text" id="amount_wealthtax" name="amount_wealthtax"
+						<input type="text" id="amount_wealthtax" name="amount_wealthtax"  maxlength="14" 
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.amount_wealthtax}"/>" />
 					</div>
 				</div>
@@ -624,7 +624,7 @@
 				</div>
 				<div class="span2">
 					<div class="rowlabel">
-						<input type="text" id="amount_commission" name="amount_commission"
+						<input type="text" id="amount_commission" name="amount_commission"  maxlength="14" 
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.amount_commission}"/>" />
 					</div>
 				</div>
@@ -637,7 +637,7 @@
 					</div>
 					<div class="rowlabel">
 						<input type="text" id="other_disallowance2"
-							name="other_disallowance2"
+							name="other_disallowance2"  maxlength="14" 
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.other_disallowance2}"/>" />
 					</div>
 				</div>
@@ -648,7 +648,7 @@
 					</div>
 					<div class="rowlabel">
 						<input type="text" readonly="readonly"
-							id="amount_disallowanceus40" name="amount_disallowanceus40"
+							id="amount_disallowanceus40" name="amount_disallowanceus40"  maxlength="14" 
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.amount_disallowanceus40}"/>" />
 					</div>
 				</div>
@@ -667,7 +667,7 @@
 				<div class="span2">
 					<div class="rowlabel">
 						<input type="text" id="amountdisallowable_us40B"
-							name="amountdisallowable_us40B"
+							name="amountdisallowable_us40B"  maxlength="14" 
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.amountdisallowable_us40B}"/>" />
 					</div>
 				</div>
@@ -685,7 +685,7 @@
 				</div>
 				<div class="span2">
 					<div class="rowlabel">
-						<input type="text" id="amount_persons" name="amount_persons"
+						<input type="text" id="amount_persons" name="amount_persons"  maxlength="14" 
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.amount_persons}"/>" />
 					</div>
 				</div>
@@ -699,7 +699,7 @@
 				</div>
 				<div class="span2">
 					<div class="rowlabel">
-						<input type="text" id="amount_excesstwth" name="amount_excesstwth"
+						<input type="text" id="amount_excesstwth" name="amount_excesstwth"  maxlength="14" 
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.amount_excesstwth}"/>" />
 					</div>
 				</div>
@@ -713,7 +713,7 @@
 				</div>
 				<div class="span2">
 					<div class="rowlabel">
-						<input type="text" id="provision_gratuity"
+						<input type="text" id="provision_gratuity"  maxlength="14" 
 							name="provision_gratuity"
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.provision_gratuity}"/>" />
 					</div>
@@ -728,7 +728,7 @@
 				</div>
 				<div class="span2">
 					<div class="rowlabel">
-						<input type="text" id="sumpaid_assessee" name="sumpaid_assessee"
+						<input type="text" id="sumpaid_assessee" name="sumpaid_assessee"  maxlength="14" 
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.sumpaid_assessee}"/>" />
 					</div>
 				</div>
@@ -741,7 +741,7 @@
 					</div>
 					<div class="rowlabel">
 						<input type="text" id="anyother_disallowance"
-							name="anyother_disallowance"
+							name="anyother_disallowance"  maxlength="14" 
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.anyother_disallowance}"/>" />
 					</div>
 				</div>
@@ -771,7 +771,7 @@
 				</div>
 				<div class="span2">
 					<div class="rowlabel">
-						<input type="text" id="sum_naturetax" name="sum_naturetax"
+						<input type="text" id="sum_naturetax" name="sum_naturetax"  maxlength="14" 
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.sum_naturetax}"/>" />
 					</div>
 				</div>
@@ -786,7 +786,7 @@
 				<div class="span2">
 					<div class="rowlabel">
 						<input type="text" id="sumpayable_provident"
-							name="sumpayable_provident"
+							name="sumpayable_provident"  maxlength="14" 
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.sumpayable_provident}"/>" />
 					</div>
 				</div>
@@ -801,7 +801,7 @@
 				<div class="span2">
 					<div class="rowlabel">
 						<input type="text" id="sumpayable_employee"
-							name="sumpayable_employee"
+							name="sumpayable_employee"  maxlength="14" 
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.sumpayable_employee}"/>" />
 					</div>
 				</div>
@@ -816,7 +816,7 @@
 				<div class="span2">
 					<div class="rowlabel">
 						<input type="text" id="sumpayable_institution"
-							name="sumpayable_institution"
+							name="sumpayable_institution"  maxlength="14" 
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.sumpayable_institution}"/>" />
 					</div>
 				</div>
@@ -830,7 +830,7 @@
 				</div>
 				<div class="span2">
 					<div class="rowlabel">
-						<input type="text" id="sumpayable_bank" name="sumpayable_bank"
+						<input type="text" id="sumpayable_bank" name="sumpayable_bank"  maxlength="14" 
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.sumpayable_bank}"/>" />
 					</div>
 				</div>
@@ -845,7 +845,7 @@
 				<div class="span2">
 					<div class="rowlabel">
 						<input type="text" id="sumpayable_encashment"
-							name="sumpayable_encashment"
+							name="sumpayable_encashment"  maxlength="14" 
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.sumpayable_encashment}"/>" />
 					</div>
 				</div>
@@ -878,7 +878,7 @@
 				</div>
 				<div class="span2">
 					<div class="rowlabel">
-						<input type="text" id="sum_naturetax43b" name="sum_naturetax43b"
+						<input type="text" id="sum_naturetax43b" name="sum_naturetax43b"  maxlength="14" 
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.sum_naturetax43b}"/>" />
 					</div>
 				</div>
@@ -893,7 +893,7 @@
 				<div class="span2">
 					<div class="rowlabel">
 						<input type="text" id="sumpayable_provident43b"
-							name="sumpayable_provident43b"
+							name="sumpayable_provident43b"  maxlength="14" 
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.sumpayable_provident43b}"/>" />
 					</div>
 				</div>
@@ -907,7 +907,7 @@
 				</div>
 				<div class="span2">
 					<div class="rowlabel">
-						<input type="text" id="sumpayable_employee43b"
+						<input type="text" id="sumpayable_employee43b"  maxlength="14" 
 							name="sumpayable_employee43b"
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.sumpayable_employee43b}"/>" />
 					</div>
@@ -922,7 +922,7 @@
 				</div>
 				<div class="span2">
 					<div class="rowlabel">
-						<input type="text" id="sumpayable_institution43b"
+						<input type="text" id="sumpayable_institution43b"  maxlength="14" 
 							name="sumpayable_institution43b"
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.sumpayable_institution43b}"/>" />
 					</div>
@@ -938,7 +938,7 @@
 				<div class="span2">
 					<div class="rowlabel">
 						<input type="text" id="sumpayable_bank43b"
-							name="sumpayable_bank43b"
+							name="sumpayable_bank43b"  maxlength="14" 
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.sumpayable_bank43b}"/>" />
 					</div>
 				</div>
@@ -953,7 +953,7 @@
 				<div class="span2">
 					<div class="rowlabel">
 						<input type="text" id="sumpayable_encashment43b"
-							name="sumpayable_encashment43b"
+							name="sumpayable_encashment43b"  maxlength="14" 
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.sumpayable_encashment43b}"/>" />
 					</div>
 				</div>
@@ -984,7 +984,7 @@
 						</label>
 					</div>
 					<div class="rowlabel">
-						<input type="text" id="union_excise" name="union_excise"
+						<input type="text" id="union_excise" name="union_excise"  maxlength="14" 
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.union_excise}"/>" />
 					</div>
 				</div>
@@ -993,7 +993,7 @@
 						<label for="service_tax"><small>Service tax</small> </label>
 					</div>
 					<div class="rowlabel">
-						<input type="text" id="service_tax" name="service_tax"
+						<input type="text" id="service_tax" name="service_tax"  maxlength="14" 
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.service_tax}"/>" />
 					</div>
 				</div>
@@ -1002,7 +1002,7 @@
 						<label for="vat_tax"><small>VAT/sales tax</small> </label>
 					</div>
 					<div class="rowlabel">
-						<input type="text" id="vat_tax" name="vat_tax"
+						<input type="text" id="vat_tax" name="vat_tax"  maxlength="14" 
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.vat_tax}"/>" />
 					</div>
 				</div>
@@ -1012,8 +1012,8 @@
 					<div class="rowlabel">
 						<label for="other_tax"><small>Any other tax</small> </label>
 					</div>
-					<div class="rowlabel">
-						<input type="text" id="other_tax" name="other_tax"
+					<div class="rowlabel"> 
+						<input type="text" id="other_tax" name="other_tax"  maxlength="14" 
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.other_tax}"/>" />
 					</div>
 				</div>
@@ -1040,7 +1040,7 @@
 				</td>
 				<td>
 					<div class="rowlabel">
-						<input type="text" id="amount_deemed" name="amount_deemed"
+						<input type="text" id="amount_deemed" name="amount_deemed"  maxlength="14" 
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.amount_deemed}"/>" />
 					</div>
 				</td>
@@ -1054,7 +1054,7 @@
 				</td>
 				<td>
 					<div class="rowlabel">
-						<input type="text" id="amount_profit" name="amount_profit"
+						<input type="text" id="amount_profit" name="amount_profit"  maxlength="14" 
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.amount_profit}"/>" />
 					</div>
 				</td>
@@ -1068,7 +1068,7 @@
 				</td>
 				<td>
 					<div class="rowlabel">
-						<input type="text" id="amount_income" name="amount_income"
+						<input type="text" id="amount_income" name="amount_income"  maxlength="14" 
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.amount_income}"/>" />
 					</div>
 				</td>
