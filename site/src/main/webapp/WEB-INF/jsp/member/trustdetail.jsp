@@ -67,7 +67,7 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 					</div>
 					<div class="rowlabel">
 						<input id="address_trust" name="address_trust"
-							type="text" 
+							type="text"  maxlength="200"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.address_Trust}"/></c:if>" />
 					</div>
 				</div>
