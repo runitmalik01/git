@@ -28,7 +28,7 @@
 										key="name.Firm.itr4" /> </small> </label>
 						</div>
 						<div class="rowlabel">
-							<input id="name_Firm" name="name_Firm" type="text"
+							<input id="name_Firm" name="name_Firm" type="text" maxlength="125"
 								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.name_Firm}"/></c:if>" />
 						</div>
 					</div>
@@ -38,7 +38,7 @@
 										key="pan.Firms.itr4" /> </small> </label>
 						</div>
 						<div class="rowlabel">
-							<input id="pan_Firm" name="pan_Firm" type="text"
+							<input id="pan_Firm" name="pan_Firm" type="text" maxlength="10"
 								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.pan_Firm}"/></c:if>" />
 						</div>
 					</div>
@@ -49,7 +49,7 @@
 						</div>
 						<div class="rowlabel">
 							<input id="perShare_InProfit" name="perShare_InProfit"
-								type="text"
+								type="text" maxlength="3"
 								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.perShare_InProfit}"/></c:if>" />
 						</div>
 					</div>
@@ -63,7 +63,7 @@
 						</div>
 						<div class="rowlabel">
 							<input id="amountShare_InProfit" name="amountShare_InProfit"
-								type="text"
+								type="text" maxlength="14"
 								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.amountShare_InProfit}"/></c:if>" />
 						</div>
 					</div>
@@ -73,7 +73,7 @@
 										key="capital.balance.itr4" /> </small> </label>
 						</div>
 						<div class="rowlabel">
-							<input id="capital_Balance" name="capital_Balance" type="text"
+							<input id="capital_Balance" name="capital_Balance" type="text" maxlength="14"
 								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.capital_Balance}"/></c:if>" />
 						</div>
 					</div>
