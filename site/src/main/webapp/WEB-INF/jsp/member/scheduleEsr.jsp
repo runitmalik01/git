@@ -44,10 +44,10 @@
 				<tr>
 					<td>35(1)(i)</td>
 
-					<td><input id="amtDebit1" name="amtDebit1" maxlength="14" type="text"
+					<td><input id="amtDebit1" name="amtDebit1" maxlength="14" type="text" class="decimal"
 						value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.amtDebit1}" />" />
 					</td>
-					<td><input id="amtDeduct1" name="amtDeduct1" class="decimal"maxlength="14" type="text"
+					<td><input id="amtDeduct1" name="amtDeduct1" class="decimal" maxlength="14" type="text"
 						value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.amtDeduct1}" />" /> 
 					</td>
 					<td><input id="amtExcess1" name="amtExcess1"
