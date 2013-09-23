@@ -61,8 +61,10 @@ public class SchedDOA extends ITReturnComponent {
 	public boolean validate(HstRequest request, HstResponse response,
 			FormMap formMap) {
 		if(super.validate(request, response, formMap)){
+			PAGE_ACTION pageAction = null;
+			
 			ScheduleDOADocument objScheduleDOADocument = (ScheduleDOADocument) getParentBean();
-			if(objScheduleDOADocument != null){
+			if((objScheduleDOADocument != null) && (pageAction == PAGE_ACTION.NEW_CHILD )){
 			List<ScheduleDOADetails> listScheduleDOADetails = objScheduleDOADocument.getScheduleDOADetailList();
 			if((objScheduleDOADocument != null) && (objScheduleDOADocument.getScheduleDOADetailList().size() > 0)){
 				for(ScheduleDOADetails scheduleDOADetails :listScheduleDOADetails ){
