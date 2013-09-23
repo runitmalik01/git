@@ -56,7 +56,7 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 					</div>
 					<div class="rowlabel">
 						<input id="name_trust" name="name_trust"
-							type="text" 
+							type="text" maxlength="125"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.name_Trust}"/></c:if>" />
 					</div>
 				</div>
@@ -81,7 +81,7 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 					<div class="rowlabel">
 						<input id="name_othertrust" name="name_othertrust"
 							type="text"
-							 
+							 maxlength="125"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.name_Othertrust}"/></c:if>" />
 					</div>
 				</div>
@@ -91,7 +91,7 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 					</div>
 					<div class="rowlabel">
 						<input id="address_othertrust" name="address_othertrust" type="text"
-							
+							maxlength="200"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.address_Othertrust}"/></c:if>" />
 					</div>
 				</div>
@@ -102,7 +102,7 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 					</div>
 					<div class="rowlabel">
 						<input id="name_settlor" name="name_settlor" type="text"
-						
+						maxlength="125"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.name_Settlor}"/></c:if>" />
 					</div>
 				</div>
@@ -115,7 +115,7 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 					</div>
 					<div class="rowlabel">
 						<input id="address_settlor" name="address_settlor" type="text"
-						
+						maxlength="200"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.address_Settlor}"/></c:if>" />
 					</div>
 				</div>
@@ -126,7 +126,7 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 					</div>
 					<div class="rowlabel">
 						<input id="name_beneficiaries" name="name_beneficiaries" type="text"
-						
+						maxlength="125"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.name_Beneficiaries}"/></c:if>" />
 					</div>
 				</div>
@@ -137,7 +137,7 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 					</div>
 					<div class="rowlabel">
 						<input id="address_beneficiaries" name="address_beneficiaries" type="text"
-						
+						maxlength="200"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.address_Beneficiaries}"/></c:if>" />
 					</div>
 				</div>
