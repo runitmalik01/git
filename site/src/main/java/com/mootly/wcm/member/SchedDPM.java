@@ -61,9 +61,11 @@ public class SchedDPM extends ITReturnComponent {
 	@Override
 	public boolean validate(HstRequest request, HstResponse response,
 			FormMap formMap) {
+		PAGE_ACTION	pageAction= null;
 		if(super.validate(request, response, formMap)){
+			
 			ScheduleDPMDocument objScheduleDPMDocument = (ScheduleDPMDocument) getParentBean();
-			if(objScheduleDPMDocument != null){
+			if((objScheduleDPMDocument != null) && (pageAction == PAGE_ACTION.NEW_CHILD)){
 			List<ScheduleDPMDetails> listScheduleDPMDetails = objScheduleDPMDocument.getScheduleDPMDetailList();
 			if((objScheduleDPMDocument != null) && (objScheduleDPMDocument.getScheduleDPMDetailList().size() > 0)){
 				for(ScheduleDPMDetails scheduleDPMDetails :listScheduleDPMDetails ){
@@ -79,6 +81,7 @@ public class SchedDPM extends ITReturnComponent {
 				
 			}
 			}
+		
 		}
 		return super.validate(request, response, formMap);
 	}
