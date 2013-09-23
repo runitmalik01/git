@@ -26,7 +26,7 @@
 					</div>
 					<div class="rowlabel">
 						<input id="ratefifteen" name="ratefifteen" readonly="readonly"
-							type="text" maxlength="14" value="" />
+							type="text" maxlength="14" value="${plantMach_15Per}" />
 					</div>
 				</div>
 				<div class="span4">
@@ -36,7 +36,7 @@
 					</div>
 					<div class="rowlabel">
 						<input id="ratethirty" name="ratethirty" readonly="readonly"
-							type="text" maxlength="14" value="" />
+							type="text" maxlength="14" value="${plantMach_30Per}" />
 
 					</div>
 				</div>
@@ -47,7 +47,7 @@
 					</div>
 					<div class="rowlabel">
 						<input id="rateforty" name="rateforty" readonly="readonly"
-							type="text" maxlength="14" value="" />
+							type="text" maxlength="14" value="${plantMach_40Per}" />
 
 					</div>
 				</div>
@@ -60,7 +60,7 @@
 					</div>
 					<div class="rowlabel">
 						<input id="ratefifty" name="ratefifty" readonly="readonly"
-							type="text" maxlength="14" value="" />
+							type="text" maxlength="14" value="${plantMach_50Per}" />
 
 					</div>
 				</div>
@@ -71,7 +71,7 @@
 					</div>
 					<div class="rowlabel">
 						<input id="ratesixty" name="ratesixty" readonly="readonly"
-							type="text" maxlength="14" value="" />
+							type="text" maxlength="14" value="${plantMach_60Per}" />
 
 					</div>
 				</div>
@@ -82,7 +82,7 @@
 					</div>
 					<div class="rowlabel">
 						<input id="rateeighty" name="rateeighty" readonly="readonly"
-							type="text" maxlength="14" value="" />
+							type="text" maxlength="14" value="${plantMach_80Per}" />
 
 					</div>
 				</div>
@@ -95,7 +95,7 @@
 					</div>
 					<div class="rowlabel">
 						<input id="ratehundred" name="ratehundred" readonly="readonly"
-							type="text" maxlength="14" value="" />
+							type="text" maxlength="14" value="${plantMach_100Per}" />
 
 					</div>
 				</div>
@@ -104,7 +104,7 @@
 						<label for="total"><small>Total</small> </label>
 					</div>
 					<div class="rowlabel">
-						<input id="total" name="total" type="text" maxlength="14"
+						<input id="total" name="total" type="text" maxlength="14" value="${plantMach_Total}"
 							readonly="readonly" />
 					</div>
 				</div>
@@ -120,7 +120,7 @@
 					</div>
 					<div class="rowlabel">
 						<input id="ratefive" name="ratefive" type="text" maxlength="14"
-							value="" readonly="readonly" />
+							value="${build_5Per}" readonly="readonly" />
 					</div>
 				</div>
 				<div class="span4">
@@ -130,7 +130,7 @@
 					</div>
 					<div class="rowlabel">
 						<input id="rateten" name="rateten" type="text" maxlength="14"
-							readonly="readonly" value="" />
+							readonly="readonly" value="${build_10Per}" />
 
 					</div>
 				</div>
@@ -141,9 +141,11 @@
 					</div>
 					<div class="rowlabel">
 						<input id="hundred" name="hundred" type="text" maxlength="14"
-							readonly="readonly" value="" />
+							readonly="readonly" value="${buid_100Per}" />
+
 					</div>
 				</div>
+				
 			</div>
 			<div class="row-fluid show-grid">
 
@@ -152,7 +154,7 @@
 						<label for="total1"><small>Total</small> </label>
 					</div>
 					<div class="rowlabel">
-						<input id="total1" name="total1" type="text" maxlength="14"
+						<input id="total1" name="total1" type="text" maxlength="14" value="${build_TotalPer}"
 							readonly="readonly" />
 					</div>
 				</div>
@@ -167,7 +169,7 @@
 					</div>
 					<div class="rowlabel">
 						<input id="furniture" name="furniture" type="text" maxlength="14"
-							readonly="readonly" value="" />
+							readonly="readonly" value="${furniture_Fitting}" />
 					</div>
 				</div>
 			<div class="span3">
@@ -176,7 +178,7 @@
 					</div>
 					<div class="rowlabel">
 						<input id="intangible" name="intangible" type="text"
-							maxlength="14" readonly="readonly" value="" />
+							maxlength="14" readonly="readonly" value="${intangible}" />
 					</div>
 				</div>
 			<div class="span3">
@@ -185,7 +187,7 @@
 					</div>
 					<div class="rowlabel">
 						<input id="ships" name="ships" type="text" maxlength="14"
-							readonly="readonly" value="" />
+							readonly="readonly" value="${ships}" />
 					</div>
 				</div>
 				<div class="span3">
@@ -193,7 +195,7 @@
 						<label for="total2"><small>Total</small> </label>
 					</div>
 					<div class="rowlabel">
-						<input id="total2" name="total2" type="text" maxlength="14"
+						<input id="total2" name="total2" type="text" maxlength="14" value="${total_CG}"
 							readonly="readonly" />
 					</div>
 				</div>
