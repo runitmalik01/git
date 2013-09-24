@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <sv:node sv:name="configuration" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
-    <sv:value>hippostd:folder</sv:value>
+    <sv:value>hippostd:folder</sv:value>sta
   </sv:property>
   <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
     <sv:value>hippo:harddocument</sv:value>
@@ -3207,8 +3207,7 @@ case of search; &lt;/p&gt;
     </sv:node>
 
 
-
-<sv:node sv:name="startapplication">
+<sv:node sv:name="startapplication" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hippo:handle</sv:value>
   </sv:property>
@@ -3227,7 +3226,7 @@ case of search; &lt;/p&gt;
       <sv:value>hippotranslation:translated</sv:value>
     </sv:property>
     <sv:property sv:name="jcr:uuid" sv:type="String">
-      <sv:value>72e23f10-5c4d-4af9-8ac6-b6861c106c5b</sv:value>
+      <sv:value>fe04492c-7697-4c5a-bd79-919483f4ef89</sv:value>
     </sv:property>
     <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
       <sv:value>live</sv:value>
@@ -3252,13 +3251,13 @@ case of search; &lt;/p&gt;
       <sv:value>2013-05-02T03:53:31.540+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-      <sv:value>2013-09-04T17:52:54.639+05:30</sv:value>
+      <sv:value>2013-09-24T15:20:03.402+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
       <sv:value>admin</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-      <sv:value>2013-09-04T17:53:05.732+05:30</sv:value>
+      <sv:value>2013-09-24T15:20:19.400+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippotranslation:id" sv:type="String">
       <sv:value>548dcb42-edfa-49e4-925c-32c9f4acabd0</sv:value>
@@ -5860,7 +5859,7 @@ or by both. Eg. Bharat Petroleum, Air India&lt;/p&gt;
         <sv:value/>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
-        <sv:value>indiandate</sv:value>
+        <sv:value>auditdateCal</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
         <sv:value>date_FurnishAuditReport</sv:value>
@@ -6108,7 +6107,7 @@ or by both. Eg. Bharat Petroleum, Air India&lt;/p&gt;
         <sv:value/>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
-        <sv:value>indiandate</sv:value>
+        <sv:value>auditdateCal</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
         <sv:value>date_AuditReport</sv:value>
@@ -6471,6 +6470,9 @@ or by both. Eg. Bharat Petroleum, Air India&lt;/p&gt;
     </sv:node>
   </sv:node>
 </sv:node>
+
+
+
 
 
 
@@ -27757,7 +27759,6 @@ acknowledgement&lt;/p&gt;
 
 <!-- /income from business -->
 <!-- schedule DPM -->
-
 <sv:node sv:name="scheduledpm" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hippo:handle</sv:value>
@@ -27777,7 +27778,7 @@ acknowledgement&lt;/p&gt;
       <sv:value>hippotranslation:translated</sv:value>
     </sv:property>
     <sv:property sv:name="jcr:uuid" sv:type="String">
-      <sv:value>06cc17c7-1da2-400f-b4e1-f2fa8ffc5650</sv:value>
+      <sv:value>906479f7-faec-40ac-be58-6d2aa60ebc7c</sv:value>
     </sv:property>
     <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
       <sv:value>live</sv:value>
@@ -27802,13 +27803,13 @@ acknowledgement&lt;/p&gt;
       <sv:value>2013-09-16T15:20:13.004+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-      <sv:value>2013-09-16T17:34:37.772+05:30</sv:value>
+      <sv:value>2013-09-23T14:41:06.562+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
       <sv:value>admin</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-      <sv:value>2013-09-16T17:34:43.839+05:30</sv:value>
+      <sv:value>2013-09-23T14:41:12.558+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippotranslation:id" sv:type="String">
       <sv:value>b4727284-958d-4b39-aad6-3d238b8eed2a</sv:value>
@@ -28281,7 +28282,7 @@ acknowledgement&lt;/p&gt;
         <sv:value/>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
-        <sv:value>amount</sv:value>
+        <sv:value/>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
         <sv:value>capitalGain_LossSec50</sv:value>
@@ -28334,10 +28335,8 @@ acknowledgement&lt;/p&gt;
     </sv:node>
   </sv:node>
 </sv:node>
-
 <!-- /schedule DPM --> -->
 <!--  schedule DOA -->
-
 <sv:node sv:name="scheduledoa" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hippo:handle</sv:value>
@@ -28357,7 +28356,7 @@ acknowledgement&lt;/p&gt;
       <sv:value>hippotranslation:translated</sv:value>
     </sv:property>
     <sv:property sv:name="jcr:uuid" sv:type="String">
-      <sv:value>86c86ff7-dbc6-4487-aa2d-d867c7080c7b</sv:value>
+      <sv:value>e80519c3-1bca-4f63-8653-00eb700f83e9</sv:value>
     </sv:property>
     <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
       <sv:value>live</sv:value>
@@ -28382,13 +28381,13 @@ acknowledgement&lt;/p&gt;
       <sv:value>2013-09-17T10:47:47.608+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-      <sv:value>2013-09-17T11:28:25.074+05:30</sv:value>
+      <sv:value>2013-09-23T15:48:18.138+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
       <sv:value>admin</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-      <sv:value>2013-09-17T11:28:29.462+05:30</sv:value>
+      <sv:value>2013-09-23T15:48:22.875+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippotranslation:id" sv:type="String">
       <sv:value>884cd493-82e3-4b13-b572-496976680f4c</sv:value>
@@ -28985,7 +28984,7 @@ acknowledgement&lt;/p&gt;
         <sv:value/>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
-        <sv:value>amount</sv:value>
+        <sv:value/>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
         <sv:value>capitalGain_LossSec50</sv:value>
@@ -29100,6 +29099,7 @@ acknowledgement&lt;/p&gt;
     </sv:node>
   </sv:node>
 </sv:node>
+
 
 <!-- /schedule DOA -->
 <!-- dcg -->
