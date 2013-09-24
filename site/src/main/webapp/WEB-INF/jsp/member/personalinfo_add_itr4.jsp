@@ -72,7 +72,7 @@
 								key="name.Auditor.Sign_Report" /> </small> </label>
 				</div>
 				<div class="rowlabel">
-					<input id="name_AuditorSign_Report" name="name_AuditorSign_Report"  class="uprcase"
+					<input id="name_AuditorSign_Report" name="name_AuditorSign_Report"  class="uprcase" maxlength="125"
 						type="text" value="${parentBean.name_AuditorSign_Report}" />
 				</div>
 			</div>
@@ -95,7 +95,7 @@
 								key="name.auditorFirm.itr4" /> </small> </label>
 				</div>
 				<div class="rowlabel">
-					<input id="name_auditorFirm" name="name_auditorFirm" class="uprcase"
+					<input id="name_auditorFirm" name="name_auditorFirm" class="uprcase" maxlength="125"
 						type="text" value="${parentBean.name_auditorFirm}" />
 				</div>
 			</div>
