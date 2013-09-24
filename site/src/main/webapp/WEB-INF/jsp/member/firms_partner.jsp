@@ -89,8 +89,8 @@
 		<c:otherwise>
 			<table>
 				<tr align="center">
-					<th><b><fmt:message key="item.Name.quant.itr4" /> </b></th>
-					<th><b><fmt:message key="item.Name.quant.itr4" /> </b></th>
+					<th><b><fmt:message key="name.Firm.itr4" /> </b></th>
+					<th><b><fmt:message key="pan.Firms.itr4" /> </b></th>
 					<th><b>Actions</b>
 					</th>
 				</tr>
