@@ -53,16 +53,16 @@
 							</th>
 						</tr>
 						<tr>
-							<td><input id="assessYear" name="assessYear"
+							<td><input id="assessYear" name="assessYear" maxLength="7"
 								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.assessYear}"/></c:if>"
 								type="text">
 							</td>
 
-							<td><input id="amtUaDep" name="amtUaDep"
+							<td><input id="amtUaDep" name="amtUaDep" maxLength="14"
 								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.amtUADepreciation}"/></c:if>"
 								type="text">
 							</td>
-							<td><input id="amtDepCurrYear" name="amtDepCurrYear"
+							<td><input id="amtDepCurrYear" name="amtDepCurrYear" maxLength="14"
 								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.amtDepCurrYear}"/></c:if>"
 								type="text">
 							</td>
