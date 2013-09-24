@@ -1078,7 +1078,14 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 		}
 
 		$(document).ready(function() {
-// this code is for itr2 when pan is HUF
+	// This is the check for audit filds 
+	var AY='<c:out value="${assessmentYear}"/>'.split("-", 4);
+	alert("AY"+AY);
+	itrFinYrMin="01/04/"+AY[0];
+	alert("itrFinYrMin"+itrFinYrMin);
+	$( ".auditdateCal" ).datepicker( "option", "minDate", itrFinYrMin );
+	
+	// this code is for itr2 when pan is HUF
  	 var packageName = $('#flex_string_ITRForm').val();
  	 if(packageName == 'ITR2') {
   	  $('#represenative_detail').show();
