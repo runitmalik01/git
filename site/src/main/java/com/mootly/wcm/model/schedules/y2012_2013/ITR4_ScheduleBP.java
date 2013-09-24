@@ -7,6 +7,7 @@ import org.springframework.beans.DirectFieldAccessor;
 
 import in.gov.incometaxindiaefiling.y2012_2013.ITR;
 import in.gov.incometaxindiaefiling.y2012_2013.ITR4ScheduleBP;
+import in.gov.incometaxindiaefiling.y2012_2013.PARTAPL;
 import in.gov.incometaxindiaefiling.y2012_2013.ScheduleDEP;
 import in.gov.incometaxindiaefiling.y2012_2013.ITR4ScheduleBP.SpecBusinessInc;
 import in.gov.incometaxindiaefiling.y2012_2013.ITR4ScheduleBP.SpecifiedBusinessInc;
@@ -81,6 +82,8 @@ public class ITR4_ScheduleBP {
 			}
 			this.otherInformationDocument = otherInformationDocumentDummy;
 		}
+
+		/*
 		//To set Dummy if ProfitLossDocument is null
 		if(profitAndLossDocument == null){
 			ProfitAndLossDocument profitAndLossDocumentDummy = new ProfitAndLossDocument();
@@ -98,6 +101,8 @@ public class ITR4_ScheduleBP {
 			}
 			this.profitAndLossDocument = profitAndLossDocumentDummy;
 		}
+		 */
+
 		//To set Dummy if incBusinessProfessionDoc is null
 		if(incBusinessProfessionDoc == null){
 			IncBusinessProfessionDoc IncBusinessProfessionDocDummy = new IncBusinessProfessionDoc();
@@ -111,12 +116,16 @@ public class ITR4_ScheduleBP {
 			}
 		}
 
+		// Getting the values of Profit and Loss from ProfitLossSchedule instead of getting from its bean
+		ProfitLossSchedule profitLossSchedule = new ProfitLossSchedule(profitAndLossDocument);
+		PARTAPL pARTAPL = profitLossSchedule.getPARTAPL(itr);
+
 		BusinessIncOthThanSpec businessIncOthThanSpec = new BusinessIncOthThanSpec();
-		if(profitAndLossDocument.getIsAccountMaintain().equals("Y")){
-			businessIncOthThanSpec.setProfBfrTaxPL(profitAndLossDocument.getProfit_BeforeTaxes().longValue());
+		if(profitAndLossDocument.getIsAccountMaintain().equals("Yes")){
+			businessIncOthThanSpec.setProfBfrTaxPL(pARTAPL.getDebitsToPL().getPBT());
 		}
-		if(profitAndLossDocument.getIsAccountMaintain().equals("N")){
-			businessIncOthThanSpec.setProfBfrTaxPL(profitAndLossDocument.getNet_Profit().longValue());
+		if(profitAndLossDocument.getIsAccountMaintain().equals("No")){
+			businessIncOthThanSpec.setProfBfrTaxPL(pARTAPL.getNoBooksOfAccPL().getNetProfit());
 		}
 		businessIncOthThanSpec.setNetPLFromSpecBus(incBusinessProfessionDoc.getProfitLoss_SpecualtiveBusiness().longValue());
 		businessIncOthThanSpec.setNetPLFromSpecifiedBus(incBusinessProfessionDoc.getProfitLoss_SpecifiedBusiness().longValue());
@@ -134,7 +143,7 @@ public class ITR4_ScheduleBP {
 		businessIncOthThanSpec.setExpDebToPLExemptInc(indianCurrencyHelper.bigIntegerRound(incBusinessProfessionDoc.getExpenseDebit_ExemptInc()));
 		businessIncOthThanSpec.setTotExpDebPL(businessIncOthThanSpec.getExpDebToPLOthHeads().add(businessIncOthThanSpec.getExpDebToPLExemptInc()));
 		businessIncOthThanSpec.setAdjustedPLOthThanSpecBus(businessIncOthThanSpec.getBalancePLOthThanSpecBus() + businessIncOthThanSpec.getTotExpDebPL().longValue());
-		businessIncOthThanSpec.setDepreciationDebPLCosAct(indianCurrencyHelper.bigIntegerRound(incBusinessProfessionDoc.getDepreciation_PL()));
+		businessIncOthThanSpec.setDepreciationDebPLCosAct(pARTAPL.getDebitsToPL().getDepreciationAmort());
 		DepreciationAllowITAct32 depreciationAllowITAct32 = new DepreciationAllowITAct32();
 
 		ITR_ScheduleDEP iTR_ScheduleDEP = new ITR_ScheduleDEP(scheduleDPMDocument, scheduleDOADocument);
