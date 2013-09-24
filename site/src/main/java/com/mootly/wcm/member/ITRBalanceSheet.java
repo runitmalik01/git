@@ -54,15 +54,14 @@ import com.mootly.wcm.components.ITReturnComponent;
 		DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,
 		DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,
 		DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,
-		DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,
-		DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL},
-fieldNames={"propCapital","reavReserve", "capReserve", "statReserve", "otherReserve","forgnCurrLoan", "rupLoanBank", "rupLoanOther", "unsecLoanBank",
-		"defTaxLiability", "sourcOfFund", "grossBlock", "depreciation", "capWorkProgrss", "grossFixedAsset", "ltInvestQuot", "ltInvestUnquot", "stInvestEquity",
+		DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL},
+fieldNames={"reavReserve", "capReserve", "statReserve", "otherReserve","forgnCurrLoan", "rupLoanBank", "rupLoanOther", "unsecLoanBank",
+		"defTaxLiability", "grossBlock", "depreciation", "capWorkProgrss", "grossFixedAsset", "ltInvestQuot", "ltInvestUnquot", "stInvestEquity",
 		"stInvestPrefShare", "stInvestDebent", "grossInvest", "storesConsum", "rawMaterial", "stockProcess", "finishGoods", "sundryDebtor", "cashInHand",
 		"balanceBank", "otherCurrAsset", "grossCurrAssets", "advancRecover", "loanAdvanCorpOthr", "balWthRevenAuth","grossLoanFund","totalStockTrade",
 		"grossCurrAssLoanAdvan", "sundryCreditor", "laibLeaseAsset", "interestAcuurOnabove","totalSundryDebtor","totalSundryCreditor","cashBalance",
-		"interestAcuurNtLoan", "grossCurrLiability", "incometaxProvis", "wealthTaxProvis", "leaveProvis","grossProprietFund","unsecLoanOther",
-		"otherProvis", "grossProvision", "grossCurrLaibilProvison", "netCurrAssets", "miscellanExpend", "deftaxAssets", "profLoassAccn", "grossAppliFund"})
+		"interestAcuurNtLoan", "grossCurrLiability", "incometaxProvis", "wealthTaxProvis", "leaveProvis","unsecLoanOther",
+		"otherProvis", "grossProvision", "grossCurrLaibilProvison", "miscellanExpend", "deftaxAssets", "profLoassAccn", "grossAppliFund"})
 public class ITRBalanceSheet extends ITReturnComponent {
 
 	private static final Logger log = LoggerFactory.getLogger(ITRBalanceSheet.class);

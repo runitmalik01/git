@@ -16656,7 +16656,7 @@ acknowledgement&lt;/p&gt;
         </sv:property>
         <sv:property sv:multiple="true" sv:name="mootlywcm:fieldClass" sv:type="Double"/>
         <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
-          <sv:value>amount</sv:value>
+          <sv:value/>
         </sv:property>
         <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
           <sv:value>propCapital</sv:value>
@@ -18989,7 +18989,7 @@ acknowledgement&lt;/p&gt;
         <sv:value>decimal</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
-        <sv:value>amount</sv:value>
+        <sv:value/>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
         <sv:value>sourcOfFund</sv:value>
@@ -20179,7 +20179,7 @@ acknowledgement&lt;/p&gt;
         <sv:value>decimal</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
-        <sv:value>amount</sv:value>
+        <sv:value/>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
         <sv:value>netCurrAssets</sv:value>
@@ -39206,9 +39206,11 @@ out_grossCurrLaibilProvison = out_grossProvision + out_grossCurrLiability;
 
 out_netCurrAssets = out_grossCurrAssLoanAdvan + out_grossCurrAssets - out_grossCurrLaibilProvison;
 
-out_netCurrAssets = out_netCurrAssets &gt; 0 ? out_netCurrAssets : 0;
+//out_netCurrAssets = out_netCurrAssets &gt; 0 ? out_netCurrAssets : 0;
 	
-out_grossAppliFund = (miscellanExpend-0) + (deftaxAssets-0) + (profLoassAccn-0) + out_grossFixedAsset + out_grossInvest + out_netCurrAssets;</sv:value>
+out_grossAppliFund = (miscellanExpend-0) + (deftaxAssets-0) + (profLoassAccn-0) + out_grossFixedAsset + out_grossInvest + out_netCurrAssets;
+
+out_grossAppliFund = out_grossAppliFund > 0 &gt; out_grossAppliFund : 0;</sv:value>
     </sv:property>
     <sv:property sv:name="mootlywcm:title" sv:type="String">
       <sv:value/>
