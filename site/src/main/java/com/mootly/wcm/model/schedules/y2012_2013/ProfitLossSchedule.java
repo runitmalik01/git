@@ -36,7 +36,6 @@ public class ProfitLossSchedule {
 		IndianCurrencyHelper indianCurrencyHelper = new IndianCurrencyHelper();
 		PARTAPL pARTAPL = new PARTAPL();
 
-
 		//To set Dummy if Document is null
 		if(profitAndLossDocument == null){
 			ProfitAndLossDocument profitAndLossDocumentDummy = new ProfitAndLossDocument();
@@ -48,12 +47,13 @@ public class ProfitLossSchedule {
 				}
 				if(field.getType().getSimpleName().equals(String.class.getSimpleName())){
 					if(field.getName().equals("isAccountMaintain")){
-						directFieldAccessor.setPropertyValue(field.getName(), "Y");
+						directFieldAccessor.setPropertyValue(field.getName(), "Yes");
 					}
 				}
 			}
 			this.profitAndLossDocument = profitAndLossDocumentDummy;
 		}
+
 		if(profitAndLossDocument.getIsAccountMaintain().equals("Yes")){
 			CreditsToPL creditsToPL = new CreditsToPL();
 			creditsToPL.setBusinessReceipts(indianCurrencyHelper.bigIntegerRound(profitAndLossDocument.getSales_GrossBusiness()));
@@ -179,6 +179,7 @@ public class ProfitLossSchedule {
 			noBooksOfAccPL.setNetProfit(0);
 			pARTAPL.setNoBooksOfAccPL(noBooksOfAccPL);
 		}
+
 		if(profitAndLossDocument.getIsAccountMaintain().equals("No")){
 			CreditsToPL creditsToPL = new CreditsToPL();
 			creditsToPL.setBusinessReceipts(new BigInteger("0"));
@@ -304,7 +305,6 @@ public class ProfitLossSchedule {
 			noBooksOfAccPL.setNetProfit(profitAndLossDocument.getNet_Profit().longValue());
 			pARTAPL.setNoBooksOfAccPL(noBooksOfAccPL);
 		}
-
 
 		return pARTAPL;
 	}
