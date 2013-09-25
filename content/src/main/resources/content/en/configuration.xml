@@ -35563,7 +35563,8 @@ acknowledgement&lt;/p&gt;
 <!-- end of business profession screen config  -->
 <!--Start of OtherInformation Screen Config For ITR4-->
 
-<sv:node sv:name="otherinformation">
+<?xml version="1.0" encoding="UTF-8"?>
+<sv:node sv:name="otherinformation" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hippo:handle</sv:value>
   </sv:property>
@@ -35582,7 +35583,7 @@ acknowledgement&lt;/p&gt;
       <sv:value>hippotranslation:translated</sv:value>
     </sv:property>
     <sv:property sv:name="jcr:uuid" sv:type="String">
-      <sv:value>0a9e1a23-a028-45f8-a0ef-1a0574c3db59</sv:value>
+      <sv:value>43978fd0-0037-491f-be68-663683746753</sv:value>
     </sv:property>
     <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
       <sv:value>live</sv:value>
@@ -35607,13 +35608,13 @@ acknowledgement&lt;/p&gt;
       <sv:value>2013-09-11T12:43:11.323+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-      <sv:value>2013-09-12T12:33:24.830+05:30</sv:value>
+      <sv:value>2013-09-25T16:12:07.975+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
       <sv:value>admin</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-      <sv:value>2013-09-12T12:33:56.670+05:30</sv:value>
+      <sv:value>2013-09-25T16:12:52.422+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippotranslation:id" sv:type="String">
       <sv:value>41975bd4-c7aa-4dac-b723-d871f2fcb60e</sv:value>
@@ -35962,7 +35963,7 @@ acknowledgement&lt;/p&gt;
         <sv:value/>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
-        <sv:value>amount</sv:value>
+        <sv:value>amountNeg</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
         <sv:value>profit_deviation</sv:value>
@@ -36024,7 +36025,7 @@ acknowledgement&lt;/p&gt;
         <sv:value/>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
-        <sv:value>amount</sv:value>
+        <sv:value>amountNeg</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
         <sv:value>loss_deviation</sv:value>
@@ -39682,7 +39683,7 @@ acknowledgement&lt;/p&gt;
         <sv:value/>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
-        <sv:value>amount</sv:value>
+        <sv:value>amountNeg</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
         <sv:value>amount_income</sv:value>
@@ -39735,6 +39736,8 @@ acknowledgement&lt;/p&gt;
     </sv:node>
   </sv:node>
 </sv:node>
+
+     
 <!--End of OtherInformation Screen Config For ITR4-->
 <!-- Start of New ScreenPresentaiton Hippo Folder -->
 <sv:node sv:name="screenpresentation" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
@@ -41219,8 +41222,9 @@ out_totalExcess= (out_amtExcess1+out_amtExcess2+out_amtExcess3+out_amtExcess4+ou
 </sv:node>
 
 <!--Start of Other Information Screen Calculation For ITR4-->
+
 <sv:node sv:name="otherinformation">
-  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hippo:handle</sv:value>
   </sv:property>
   <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
