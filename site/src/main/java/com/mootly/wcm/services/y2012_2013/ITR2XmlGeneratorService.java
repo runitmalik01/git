@@ -21,20 +21,34 @@ import org.slf4j.LoggerFactory;
 
 import com.mootly.wcm.beans.AdjustmentOfLossesDoc;
 import com.mootly.wcm.beans.AdvanceTaxDocument;
+import com.mootly.wcm.beans.AssetAndLiabilityDocument;
+import com.mootly.wcm.beans.BalanceSheetDocument;
 import com.mootly.wcm.beans.CapitalAssetDocument;
 import com.mootly.wcm.beans.ClubIncomeDocument;
 import com.mootly.wcm.beans.DeductionDocument;
+import com.mootly.wcm.beans.DeductionSchedTenADocumemt;
 import com.mootly.wcm.beans.DetailOfTrustDocument;
 import com.mootly.wcm.beans.FinancialInterestDocument;
+import com.mootly.wcm.beans.FirmsPartnerDocument;
 import com.mootly.wcm.beans.ForeignBankAccountDocument;
 import com.mootly.wcm.beans.ForeignIncomeDocument;
 import com.mootly.wcm.beans.FormSixteenDocument;
 import com.mootly.wcm.beans.HouseProperty;
 import com.mootly.wcm.beans.ImmovablePropertyDocument;
+import com.mootly.wcm.beans.IncBusinessProfessionDoc;
+import com.mootly.wcm.beans.ManufactureFinishedProductsDocument;
+import com.mootly.wcm.beans.ManufactureRawMatDocument;
 import com.mootly.wcm.beans.MemberPersonalInformation;
 import com.mootly.wcm.beans.NatureInvestmentDocument;
+import com.mootly.wcm.beans.OtherInformationDocument;
 import com.mootly.wcm.beans.OtherSourcesDocument;
+import com.mootly.wcm.beans.ProfitAndLossDocument;
+import com.mootly.wcm.beans.QuantitativeUnitDocument;
 import com.mootly.wcm.beans.SalaryIncomeDocument;
+import com.mootly.wcm.beans.ScheduleAMTCDocument;
+import com.mootly.wcm.beans.ScheduleDOADocument;
+import com.mootly.wcm.beans.ScheduleDPMDocument;
+import com.mootly.wcm.beans.ScheduleESRDocument;
 import com.mootly.wcm.beans.ScheduleFiveADocument;
 import com.mootly.wcm.beans.ScheduleSIDocument;
 import com.mootly.wcm.beans.SelfAssesmetTaxDocument;
@@ -42,6 +56,7 @@ import com.mootly.wcm.beans.SigningAuthorityAccountsDocument;
 import com.mootly.wcm.beans.TaxReliefDocument;
 import com.mootly.wcm.beans.TcsDocument;
 import com.mootly.wcm.beans.TdsFromothersDocument;
+import com.mootly.wcm.beans.UnabsorbedDepreciationDocument;
 import com.mootly.wcm.model.FinancialYear;
 import com.mootly.wcm.model.schedules.y2012_2013.BroughtFwdLossesSchedules;
 import com.mootly.wcm.model.schedules.y2012_2013.CapitalGainDocumentSchedules;
@@ -107,6 +122,21 @@ public class ITR2XmlGeneratorService  {
 		ClubIncomeDocument clubIncomeDocument = (ClubIncomeDocument) inputBeans.get(ClubIncomeDocument.class.getSimpleName().toLowerCase());
 		ScheduleSIDocument scheduleSIDocument = (ScheduleSIDocument) inputBeans.get(ScheduleSIDocument.class.getSimpleName().toLowerCase());
 		TcsDocument tcsDocument = (TcsDocument) inputBeans.get(TcsDocument.class.getSimpleName().toLowerCase());
+		OtherInformationDocument otherInformationDocument = (OtherInformationDocument) inputBeans.get(OtherInformationDocument.class.getSimpleName().toLowerCase());
+		ProfitAndLossDocument profitAndLossDocument = (ProfitAndLossDocument) inputBeans.get(ProfitAndLossDocument.class.getSimpleName().toLowerCase());
+		ScheduleESRDocument scheduleESRDocument = (ScheduleESRDocument) inputBeans.get(ScheduleESRDocument.class.getSimpleName().toLowerCase());
+		AssetAndLiabilityDocument assetAndLiabilityDocument = (AssetAndLiabilityDocument) inputBeans.get(AssetAndLiabilityDocument.class.getSimpleName().toLowerCase());
+		QuantitativeUnitDocument quantitativeUnitDocument = (QuantitativeUnitDocument) inputBeans.get(QuantitativeUnitDocument.class.getSimpleName().toLowerCase());
+		ManufactureRawMatDocument manufactureRawMatDocument = (ManufactureRawMatDocument) inputBeans.get(ManufactureRawMatDocument.class.getSimpleName().toLowerCase());
+		ManufactureFinishedProductsDocument manufactureFinishedProductsDocument = (ManufactureFinishedProductsDocument) inputBeans.get(ManufactureFinishedProductsDocument.class.getSimpleName().toLowerCase());
+		DeductionSchedTenADocumemt deductionSchedTenADocumemt = (DeductionSchedTenADocumemt) inputBeans.get(DeductionSchedTenADocumemt.class.getSimpleName().toLowerCase());
+		ScheduleAMTCDocument scheduleAMTCDocument = (ScheduleAMTCDocument) inputBeans.get(ScheduleAMTCDocument.class.getSimpleName().toLowerCase());
+		BalanceSheetDocument balanceSheetDocument = (BalanceSheetDocument) inputBeans.get(BalanceSheetDocument.class.getSimpleName().toLowerCase());
+		IncBusinessProfessionDoc incBusinessProfessionDoc = (IncBusinessProfessionDoc) inputBeans.get(IncBusinessProfessionDoc.class.getSimpleName().toLowerCase());
+		UnabsorbedDepreciationDocument unabsorbedDepreciationDocument = (UnabsorbedDepreciationDocument) inputBeans.get(UnabsorbedDepreciationDocument.class.getSimpleName().toLowerCase());
+		ScheduleDPMDocument scheduleDPMDocument = (ScheduleDPMDocument) inputBeans.get(ScheduleDPMDocument.class.getSimpleName().toLowerCase());
+		ScheduleDOADocument scheduleDOADocument = (ScheduleDOADocument) inputBeans.get(ScheduleDOADocument.class.getSimpleName().toLowerCase());
+		FirmsPartnerDocument firmsPartnerDocument = (FirmsPartnerDocument) inputBeans.get(FirmsPartnerDocument.class.getSimpleName().toLowerCase());
 
 		ITR2 itr2 = new ObjectFactory().createITR2();
 		ITR itr = new ITR();
@@ -151,20 +181,25 @@ public class ITR2XmlGeneratorService  {
 		itr2.setScheduleCFL(carryFwdLossesSchedules.getScheduleCFL(itr, financialYear, inputBeans));
 
 		PartB_TI partB_TI = new PartB_TI(formSixteenDocument, salaryIncomeDocument, houseProperty, otherSourcesDocument,
-				deductionDocument, memberPersonalInformation,scheduleSIDocument,capitalAssetDocument);
+				deductionDocument, memberPersonalInformation,scheduleSIDocument,capitalAssetDocument, incBusinessProfessionDoc,
+				profitAndLossDocument, otherInformationDocument, scheduleDPMDocument, scheduleDOADocument,scheduleESRDocument, deductionSchedTenADocumemt);
 		itr2.setPartBTI(partB_TI.getPartBTI(itr, financialYear, inputBeans));
+
 
 		PartB_TTI partB_TTI = new PartB_TTI(formSixteenDocument, salaryIncomeDocument, houseProperty,
 				otherSourcesDocument, deductionDocument, memberPersonalInformation, taxReliefDocument, advanceTaxDocument,
 				selfAssesmetTaxDocument, tdsFromothersDocument, scheduleSIDocument, capitalAssetDocument, immovablePropertyDocument,
 				natureInvestmentDocument,signingAuthorityAccountsDocument,detailOfTrustDocument,foreignBankAccountDocument,financialInterestDocument,
-				tcsDocument);
+				tcsDocument,incBusinessProfessionDoc,profitAndLossDocument, otherInformationDocument, scheduleDPMDocument, scheduleDOADocument,
+				scheduleESRDocument, deductionSchedTenADocumemt,scheduleAMTCDocument);
 		itr2.setPartBTTI(partB_TTI.getPartBTTI(itr, financialYear, inputBeans));
 
 		PartA_Gen1 partA_Gen1 = new PartA_Gen1(formSixteenDocument, salaryIncomeDocument, houseProperty, otherSourcesDocument,
 				deductionDocument, memberPersonalInformation, taxReliefDocument, advanceTaxDocument, selfAssesmetTaxDocument,
 				tdsFromothersDocument, scheduleSIDocument, capitalAssetDocument, immovablePropertyDocument,natureInvestmentDocument,
-				signingAuthorityAccountsDocument,detailOfTrustDocument,foreignBankAccountDocument,financialInterestDocument, tcsDocument);
+				signingAuthorityAccountsDocument,detailOfTrustDocument,foreignBankAccountDocument,financialInterestDocument, tcsDocument,
+				incBusinessProfessionDoc,profitAndLossDocument, otherInformationDocument, scheduleDPMDocument, scheduleDOADocument,
+				scheduleESRDocument, deductionSchedTenADocumemt,scheduleAMTCDocument);
 		itr2.setPartAGEN1(partA_Gen1.getPartAGEN1(itr, financialYear, inputBeans));
 
 		CapitalGainDocumentSchedules capitalGainDocumentSchedules = new CapitalGainDocumentSchedules(capitalAssetDocument);
