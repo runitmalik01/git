@@ -39210,7 +39210,7 @@ out_netCurrAssets = out_grossCurrAssLoanAdvan + out_grossCurrAssets - out_grossC
 	
 out_grossAppliFund = (miscellanExpend-0) + (deftaxAssets-0) + (profLoassAccn-0) + out_grossFixedAsset + out_grossInvest + out_netCurrAssets;
 
-out_grossAppliFund = out_grossAppliFund > 0 &gt; out_grossAppliFund : 0;</sv:value>
+out_grossAppliFund = out_grossAppliFund &gt; 0 ? out_grossAppliFund : 0;</sv:value>
     </sv:property>
     <sv:property sv:name="mootlywcm:title" sv:type="String">
       <sv:value/>
