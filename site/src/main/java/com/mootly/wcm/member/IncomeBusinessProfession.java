@@ -1,32 +1,17 @@
 package com.mootly.wcm.member;
 
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.List;
-
-import org.apache.commons.lang.StringUtils;
 import org.hippoecm.hst.core.component.HstComponentException;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.mootly.wcm.annotations.ChildBean;
-import com.mootly.wcm.annotations.DataTypeValidationFields;
-import com.mootly.wcm.annotations.DataTypeValidationHelper;
-import com.mootly.wcm.annotations.DataTypeValidationType;
 import com.mootly.wcm.annotations.FormFields;
 import com.mootly.wcm.annotations.PrimaryBean;
-import com.mootly.wcm.annotations.RequiredBeans;
-import com.mootly.wcm.annotations.RequiredFields;
-import com.mootly.wcm.beans.AdvanceTaxDocument;
 import com.mootly.wcm.beans.IncBusinessProfessionDoc;
-import com.mootly.wcm.beans.MemberPersonalInformation;
 import com.mootly.wcm.beans.ScreenConfigDocument;
-import com.mootly.wcm.beans.compound.AdvanceTaxDetail;
 import com.mootly.wcm.components.ITReturnComponent;
-import com.mootly.wcm.utils.GoGreenUtil;
 
 /*
  * Author:Pankaj Singh
@@ -42,21 +27,12 @@ import com.mootly.wcm.utils.GoGreenUtil;
 		"amountDisAllow_Sec43B","amountDebited_ToProfitLoss","amountAllow_Deduction","excessAmountAllow_Deduction","anyOtherAmountAllow_Deduction","total_Deduction","income_AfterDed","section44AD",
 		"section44AE","section44AF","section44B","section44BB","section44BBA","section44BBB","section44D","section44DA","chapter_XII_G","firstSchedule_ITAct","total_Sections","plBefore_DedUs10A",
 		"deduction_Sec10A","deduction_Sec10AA","deduction_total10","netPL_otherthanSpeculative_SpecifiedBuss","netPL_otherthanSpeculative_SpecifiedBuss1","netPl_FromBP","computeInc_SpeculativeBuss","addAccordance_28to44DA",
-		"dedAccordance_28to44DA","pl_SpeculativeBuss","netPLFrom_SPecifiedInc","additionAcc28to44D","dedAcc28to44DEx35AD","pl_SpecifiedBuss","dedAcc35AD","pl_SpecifiedBussNet","incomeChargeable_PL","depreciation_PL"
-	})
+		"dedAccordance_28to44DA","pl_SpeculativeBuss","netPLFrom_SPecifiedInc","additionAcc28to44D","dedAcc28to44DEx35AD","pl_SpecifiedBuss","dedAcc35AD","pl_SpecifiedBussNet","incomeChargeable_PL","depreciation_PL","netPL_FromBussProf"
+})
 
 
 public class IncomeBusinessProfession extends ITReturnComponent {
 	private static final Logger log = LoggerFactory.getLogger(TdsFromSalary.class);
-	public void doBeforeRender(HstRequest request, HstResponse response) {
-		// TODO Auto-generated method stub
-		super.doBeforeRender(request, response);
-		if(log.isInfoEnabled()){
-		log.info("this is do before of income form business or profession in itr4");
-		}
-		ScreenConfigDocument screenConfigDocument = getSiteContentBaseBean(request).getBean("configuration/screenconfigs/incomebusinessprofession");
-		request.setAttribute("screenConfigDocument", screenConfigDocument);
-	}
 	@Override
 	public void doAction(HstRequest request, HstResponse response)
 			throws HstComponentException {
@@ -64,8 +40,18 @@ public class IncomeBusinessProfession extends ITReturnComponent {
 		super.doAction(request, response);
 		if(log.isInfoEnabled()){
 			log.info("this is do Action of income form business or profession in itr4");
-			}
-	} 
+		}
+	}
+	@Override
+	public void doBeforeRender(HstRequest request, HstResponse response) {
+		// TODO Auto-generated method stub
+		super.doBeforeRender(request, response);
+		if(log.isInfoEnabled()){
+			log.info("this is do before of income form business or profession in itr4");
+		}
+		ScreenConfigDocument screenConfigDocument = getSiteContentBaseBean(request).getBean("configuration/screenconfigs/incomebusinessprofession");
+		request.setAttribute("screenConfigDocument", screenConfigDocument);
+	}
 }
 
 
