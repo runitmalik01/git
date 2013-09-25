@@ -19,16 +19,24 @@ import org.hippoecm.hst.content.beans.standard.HippoBean;
 import com.mootly.wcm.beans.AdvanceTaxDocument;
 import com.mootly.wcm.beans.CapitalAssetDocument;
 import com.mootly.wcm.beans.DeductionDocument;
+import com.mootly.wcm.beans.DeductionSchedTenADocumemt;
 import com.mootly.wcm.beans.DetailOfTrustDocument;
 import com.mootly.wcm.beans.FinancialInterestDocument;
 import com.mootly.wcm.beans.ForeignBankAccountDocument;
 import com.mootly.wcm.beans.FormSixteenDocument;
 import com.mootly.wcm.beans.HouseProperty;
 import com.mootly.wcm.beans.ImmovablePropertyDocument;
+import com.mootly.wcm.beans.IncBusinessProfessionDoc;
 import com.mootly.wcm.beans.MemberPersonalInformation;
 import com.mootly.wcm.beans.NatureInvestmentDocument;
+import com.mootly.wcm.beans.OtherInformationDocument;
 import com.mootly.wcm.beans.OtherSourcesDocument;
+import com.mootly.wcm.beans.ProfitAndLossDocument;
 import com.mootly.wcm.beans.SalaryIncomeDocument;
+import com.mootly.wcm.beans.ScheduleAMTCDocument;
+import com.mootly.wcm.beans.ScheduleDOADocument;
+import com.mootly.wcm.beans.ScheduleDPMDocument;
+import com.mootly.wcm.beans.ScheduleESRDocument;
 import com.mootly.wcm.beans.ScheduleSIDocument;
 import com.mootly.wcm.beans.SelfAssesmetTaxDocument;
 import com.mootly.wcm.beans.SigningAuthorityAccountsDocument;
@@ -58,13 +66,24 @@ public class PartA_Gen1 {
 	ForeignBankAccountDocument foreignBankAccountDocument = null;
 	FinancialInterestDocument financialInterestDocument = null;
 	TcsDocument tcsDocument = null;
+	IncBusinessProfessionDoc incBusinessProfessionDoc = null;
+	ProfitAndLossDocument profitAndLossDocument = null;
+	OtherInformationDocument otherInformationDocument = null;
+	ScheduleDPMDocument scheduleDPMDocument = null;
+	ScheduleDOADocument scheduleDOADocument = null;
+	ScheduleESRDocument scheduleESRDocument = null;
+	DeductionSchedTenADocumemt deductionSchedTenADocumemt = null;
+	ScheduleAMTCDocument scheduleAMTCDocument = null;
+
 
 	public PartA_Gen1(FormSixteenDocument formSixteenDocument, SalaryIncomeDocument salaryIncomeDocument, HouseProperty housePropertyDocument ,
 			OtherSourcesDocument otherSourcesDocument, DeductionDocument deductionDocument, MemberPersonalInformation memberPersonalInformation,
 			TaxReliefDocument taxReliefDocument, AdvanceTaxDocument advanceTaxDocument, SelfAssesmetTaxDocument selfAssesmetTaxDocument,
 			TdsFromothersDocument tdsFromothersDocument, ScheduleSIDocument scheduleSIDocument, CapitalAssetDocument capitalAssetDocument,
 			ImmovablePropertyDocument immovablePropertyDocument, NatureInvestmentDocument natureInvestmentDocument, SigningAuthorityAccountsDocument signingAuthorityAccountsDocument,
-			DetailOfTrustDocument detailOfTrustDocument, ForeignBankAccountDocument foreignBankAccountDocument, FinancialInterestDocument financialInterestDocument, TcsDocument tcsDocument) {
+			DetailOfTrustDocument detailOfTrustDocument, ForeignBankAccountDocument foreignBankAccountDocument, FinancialInterestDocument financialInterestDocument, TcsDocument tcsDocument,
+			IncBusinessProfessionDoc incBusinessProfessionDoc,ProfitAndLossDocument profitAndLossDocument, OtherInformationDocument otherInformationDocument, ScheduleDPMDocument scheduleDPMDocument,
+			ScheduleDOADocument scheduleDOADocument, ScheduleESRDocument scheduleESRDocument, DeductionSchedTenADocumemt deductionSchedTenADocumemt,ScheduleAMTCDocument scheduleAMTCDocument) {
 		this.formSixteenDocument = formSixteenDocument;
 		this.salaryIncomeDocument = salaryIncomeDocument;
 		this.housePropertyDocument = housePropertyDocument;
@@ -84,6 +103,14 @@ public class PartA_Gen1 {
 		this.foreignBankAccountDocument = foreignBankAccountDocument;
 		this.financialInterestDocument = financialInterestDocument;
 		this.tcsDocument = tcsDocument;
+		this.incBusinessProfessionDoc = incBusinessProfessionDoc;
+		this.profitAndLossDocument = profitAndLossDocument;
+		this.otherInformationDocument = otherInformationDocument;
+		this.scheduleDPMDocument = scheduleDPMDocument;
+		this.scheduleDOADocument = scheduleDOADocument;
+		this.scheduleESRDocument = scheduleESRDocument;
+		this.deductionSchedTenADocumemt = deductionSchedTenADocumemt;
+		this.scheduleAMTCDocument = scheduleAMTCDocument;
 	}
 
 	/**
@@ -98,7 +125,9 @@ public class PartA_Gen1 {
 		PartB_TTI partB_TTI = new PartB_TTI(formSixteenDocument, salaryIncomeDocument, housePropertyDocument, otherSourcesDocument,
 				deductionDocument, memberPersonalInformation, taxReliefDocument, advanceTaxDocument, selfAssesmetTaxDocument,
 				tdsFromothersDocument, scheduleSIDocument, capitalAssetDocument, immovablePropertyDocument, natureInvestmentDocument,
-				signingAuthorityAccountsDocument, detailOfTrustDocument, foreignBankAccountDocument, financialInterestDocument, tcsDocument);
+				signingAuthorityAccountsDocument, detailOfTrustDocument, foreignBankAccountDocument, financialInterestDocument, tcsDocument,
+				incBusinessProfessionDoc,profitAndLossDocument, otherInformationDocument, scheduleDPMDocument, scheduleDOADocument,
+				scheduleESRDocument, deductionSchedTenADocumemt,scheduleAMTCDocument);
 		PartBTTI partBTTI = partB_TTI.getPartBTTI(itr, financialYear, inputBeans);
 
 		BigInteger taxPaybale = new BigInteger("0");
