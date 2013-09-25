@@ -40,7 +40,7 @@ request.setAttribute("objTreeMapRelation", objTreeMapRelation);
 					</div>
 					<div class="rowlabel">
 						<input id="name_person" name="name_person"
-							type="text" maxlength="125" class="uprcase"
+							type="text" maxlength="125" 
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.name_Person}"/></c:if> " />
 					</div>
 				</div>
@@ -51,7 +51,7 @@ request.setAttribute("objTreeMapRelation", objTreeMapRelation);
 					</div>
 					<div class="rowlabel">
 						<input id="pan_person" name="pan_person"
-							type="text" maxlength="10"
+							type="text" maxlength="10" class="uprcase"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.pan_person}"/></c:if>" />
 					</div>
 				</div>
