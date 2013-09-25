@@ -3,7 +3,7 @@
 <%@ page import="com.mootly.wcm.utils.*"%>
 <%@ page import="java.util.*"%>
 <c:set var="firm">
-	<fmt:message key="firm" />
+	Firms
 </c:set>
 <hippo-gogreen:title title="${firm}" />
 <hst:actionURL var="actionUrl" />
