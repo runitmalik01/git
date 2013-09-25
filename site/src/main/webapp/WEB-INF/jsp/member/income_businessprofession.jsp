@@ -797,6 +797,21 @@
 				</div>
 			</fieldset>
 			<div class="row-fluid show-grid">
+			<div class="span8">
+						<div class="rowlabel">
+							<label for="netPL_FromBussProf"><small>Net profit or loss from business or profession other than speculative business and specified business			
+ </small> </label>
+						</div>
+						</div>
+						<div class="span4">
+						<div class="rowlabel">
+							<input id="netPL_FromBussProf" name="netPL_FromBussProf"
+								readonly="readonly" type="text" maxlength="14"
+								value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.netPL_FromBussProf}" />" />
+						</div>
+					</div>
+			</div>
+			<div class="row-fluid show-grid">
 				<div class="span6">
 					<div class="rowlabel">
 						<label for="netPL_otherthanSpeculative_SpecifiedBuss"><small><fmt:message
