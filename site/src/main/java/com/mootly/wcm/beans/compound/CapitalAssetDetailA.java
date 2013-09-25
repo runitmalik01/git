@@ -87,6 +87,11 @@ public abstract class CapitalAssetDetailA extends HippoItem implements FormMapFi
 	private Double uptodecNp;
 	private Double upto31Lt;
 	private Double upto31Np;
+	
+	// for itr4 (slump) sale
+	private Double cgSlump;
+	private Double netCGSlump;
+	private Double amtdeemedsc;
 	private boolean markedForDeletion;
 
 	public final boolean isMarkedForDeletion() {
@@ -246,6 +251,23 @@ public abstract class CapitalAssetDetailA extends HippoItem implements FormMapFi
 		if (section48 == null) section48 = getProperty("mootlywcm:section48");
 		return section48;
 	}
+	
+	
+	// for itr4(slump field)
+	public Double getAmtdeemedsc() {
+		if (amtdeemedsc == null) amtdeemedsc = getProperty("mootlywcm:amtdeemedsc");
+		return amtdeemedsc;
+	}
+	public Double getCgSlump() {
+		if (cgSlump == null) cgSlump = getProperty("mootlywcm:cgSlump");
+		return cgSlump;
+	}
+	public Double getNetCGSlump() {
+		if (netCGSlump == null) netCGSlump = getProperty("mootlywcm:netCGSlump");
+		return netCGSlump;
+	}
+	
+	
 	// new fields for getting accural options
 
 
@@ -411,6 +433,18 @@ public abstract class CapitalAssetDetailA extends HippoItem implements FormMapFi
 		this.loss_sec94 = loss_sec94;
 	}
 
+	// for itr4(slump fields)
+	public final void setAmtdeemedsc(Double amtdeemedsc) {
+		this.amtdeemedsc = amtdeemedsc;
+	}
+	public final void setNetCGSlump(Double netCGSlump) {
+		this.netCGSlump = netCGSlump;
+	}
+	public final void setCgSlump(Double cgSlump) {
+		this.cgSlump = cgSlump;
+	}
+	
+	
 	// new fields for accural options
 
 

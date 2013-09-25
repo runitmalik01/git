@@ -109,7 +109,17 @@ public class CapitalAssetDetail extends CapitalAssetDetailA implements FormMapFi
 				node.setProperty("mootlywcm:upto31Np", getUpto31Np());
 			}
 
-			// end property fields for accural
+			// for itr4(slump )sale
+			if(getCgSlump()!=null){
+				node.setProperty("mootlywcm:cgSlump", getCgSlump());
+			}
+			if(getAmtdeemedsc()!=null){
+				node.setProperty("mootlywcm:amtdeemedsc", getAmtdeemedsc());
+			}
+			if(getNetCGSlump()!=null){
+				node.setProperty("mootlywcm:netCGSlump", getNetCGSlump());
+
+			}
 
 			if(getDateAcquisition()!=null){
 				node.setProperty("mootlywcm:year_acquisition", getDateAcquisition());
@@ -124,8 +134,7 @@ public class CapitalAssetDetail extends CapitalAssetDetailA implements FormMapFi
 				node.setProperty("mootlywcm:pan", getPan());
 			}
 			if(getAccural()!=null){
-				node.setProperty("mootlywcm:accural", getAccural());
-			}
+				node.setProperty("mootlywcm:accural", getAccural());}
 			if(getSstCharge()!=null){
 				node.setProperty("mootlywcm:sstcharge", getSstCharge());
 			}
@@ -191,37 +200,47 @@ public class CapitalAssetDetail extends CapitalAssetDetailA implements FormMapFi
 				node.setProperty("mootlywcm:capital_gain",getCapitalGain());
 			}
 
+
+
+			// calculation for itr4 in case of slump
+			if(getAssetType().equals("SLUMP")){
+				log.info("inside slump");
+				String mnths=getMonths();
+				double d=Double.parseDouble(mnths);
+				if(d<=1096){
+					Double stgain=getNetCGSlump();
+					setCapitalGainTaxLT(stgain);
+					node.setProperty("mootlywcm:sgain",getNetCGSlump());
+				}else{
+					Double ltgain=getNetCGSlump();
+					setCapitalGainTaxST(ltgain);
+					node.setProperty("mootlywcm:lgain",getNetCGSlump());
+				}
+			}
+
+           // normal calculations
 			if(getAssetType().equals("SHARES")){
 				String mnths=getMonths();
 				log.info("months are"+mnths);
 				double d=Double.parseDouble(mnths);
 				if(d>365){
-					if(log.isInfoEnabled()){
-						log.info("would b longterm gain ");
-					}
 					Double ltgain=getCapitalGain();
 					setCapitalGainTaxLT(ltgain);
 					node.setProperty("mootlywcm:lgain",getCapitalGain());
 				}
 				else
 				{
-					if(log.isInfoEnabled()){
-						log.info("would b shortterm gain ");
-					}
 					Double sgain=getCapitalGain();
 					setCapitalGainTaxST(sgain);
 					node.setProperty("mootlywcm:sgain",getCapitalGain());
 				}	
 			}
-			else
+			// for others
+			if(getAssetType().equals("OTH"))
 			{
-				if(log.isInfoEnabled()){
-					log.info("inside else");
-				}
 				String mnths=getMonths();
 				double d=Double.parseDouble(mnths);
 				if(d>(365*3)){
-					log.info("we ar in long tems gain"+d);
 					Double ltgain=getCapitalGain();
 					setCapitalGainTaxLT(ltgain);
 					node.setProperty("mootlywcm:lgain",getCapitalGain());
@@ -506,6 +525,29 @@ public class CapitalAssetDetail extends CapitalAssetDetailA implements FormMapFi
 			setUpto31Np(strdate);
 		}
 
+		// for itr4
+		if (formMap.getField("cgSlump").getValue().isEmpty()) {
+			setCgSlump(amtA);
+
+		}else{
+			Double cgslump = Double.parseDouble(formMap.getField("cgSlump").getValue());
+			setCgSlump(cgslump);
+		}
+		if (formMap.getField("amtdeemedsc").getValue().isEmpty()) {
+			setAmtdeemedsc(amtA);
+
+		}else{
+			Double amtdeedeemedsc = Double.parseDouble(formMap.getField("amtdeemedsc").getValue());
+			setAmtdeemedsc(amtdeedeemedsc);
+		}
+		if (formMap.getField("netCGSlump").getValue().isEmpty()) {
+			setNetCGSlump(amtA);
+
+		}else{
+			Double amtdeedeemedsc = Double.parseDouble(formMap.getField("netCGSlump").getValue());
+			setNetCGSlump(amtdeedeemedsc);
+		}
+
 
 	}
 	private GregorianCalendar ConvDateStringToCalendar(String strDate){
@@ -573,7 +615,10 @@ public class CapitalAssetDetail extends CapitalAssetDetailA implements FormMapFi
 		setUpto31St(objCapitalAssetdetail.getUpto31St());
 		setUptodecNp(objCapitalAssetdetail.getUptodecNp());
 		setUpto31Np(objCapitalAssetdetail.getUpto31Np());
-
+		// for (itr4)
+		setNetCGSlump(objCapitalAssetdetail.getNetCGSlump());
+		setCgSlump(objCapitalAssetdetail.getCgSlump());
+		setAmtdeemedsc(objCapitalAssetdetail.getAmtdeemedsc());
 	}
 }
 
