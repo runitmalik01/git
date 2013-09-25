@@ -1,11 +1,4 @@
-/*
- * In this class we are creating a document for storing value of salary income details of user
- * according to form 16.
- * @author abhishek
- * 04/03/2013
- *
- *
- */
+
 
 package com.mootly.wcm.member;
 
