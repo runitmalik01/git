@@ -22,6 +22,18 @@
 			<form id="frmFirm_Partner" action="${actionUrl}" method="post"
 				name="frmFirm_Partner">
 				<div class="row-fluid show-grid">
+				<div class="span4">
+							<div class="rowlabel">
+								<label for="isDtaa"><small>Is Firm liable to audit </small> </label>
+							</div>
+							<div class="rowlabel">
+								<select id="isLiableToAudit" name="isLiableToAudit">
+								<option value="">-Select-</option>
+								<option value="Y"<c:if test="${not empty childBean.isLiableToAudit && childBean.isLiableToAudit =='Y'}">selected</c:if>>Yes</option>
+								<option value="N"<c:if test="${not empty childBean.isLiableToAudit && childBean.isLiableToAudit =='N'}">selected</c:if>>No</option>
+								</select>
+							</div>
+						</div>
 					<div class="span4">
 						<div class="rowlabel">
 							<label for="name_Firm"><small><fmt:message
@@ -34,14 +46,17 @@
 					</div>
 					<div class="span4">
 						<div class="rowlabel">
-							<label for="pan_Firm"><small><fmt:message
+							<label for="firm_Pan"><small><fmt:message
 										key="pan.Firms.itr4" /> </small> </label>
 						</div>
 						<div class="rowlabel">
-							<input id="pan_Firm" name="pan_Firm" type="text" maxlength="10"
+							<input id="firm_Pan" name="firm_Pan" type="text" maxlength="10" class="uprcase"
 								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.pan_Firm}"/></c:if>" />
 						</div>
 					</div>
+					</div>
+					
+				<div class="row-fluid show-grid">
 					<div class="span4">
 						<div class="rowlabel">
 							<label for="perShare_InProfit"><small><fmt:message
@@ -53,8 +68,7 @@
 								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.perShare_InProfit}"/></c:if>" />
 						</div>
 					</div>
-				</div>
-				<div class="row-fluid show-grid">
+				
 
 					<div class="span4">
 						<div class="rowlabel">
