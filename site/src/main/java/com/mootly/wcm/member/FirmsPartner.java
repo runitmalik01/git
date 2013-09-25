@@ -21,21 +21,13 @@ import com.mootly.wcm.components.ITReturnComponent;
  */
 @PrimaryBean(primaryBeanClass=FirmsPartnerDocument.class)
 @ChildBean(childBeanClass=FirmsPartnerDetail.class)
-@FormFields(fieldNames={"name_Firm","pan_Firm","perShare_InProfit","amountShare_InProfit","capital_Balance"})
+@FormFields(fieldNames={"isLiableToAudit","name_Firm","firm_Pan","perShare_InProfit","amountShare_InProfit","capital_Balance"})
 
 
 
 public class FirmsPartner extends ITReturnComponent {
 
 	private static final Logger log = LoggerFactory.getLogger(TdsFromSalary.class);
-	public void doBeforeRender(HstRequest request, HstResponse response) {
-		// TODO Auto-generated method stub
-		super.doBeforeRender(request, response);
-		if(log.isInfoEnabled()){
-			log.info("this is do before render of firms partner");
-		}
-
-	}
 	@Override
 	public void doAction(HstRequest request, HstResponse response)
 			throws HstComponentException {
@@ -44,6 +36,15 @@ public class FirmsPartner extends ITReturnComponent {
 		super.doAction(request, response);
 		if(log.isInfoEnabled()){
 			log.info("this is do Action of firms partner");
+		}
+
+	}
+	@Override
+	public void doBeforeRender(HstRequest request, HstResponse response) {
+		// TODO Auto-generated method stub
+		super.doBeforeRender(request, response);
+		if(log.isInfoEnabled()){
+			log.info("this is do before render of firms partner");
 		}
 
 	} }
