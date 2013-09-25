@@ -38369,7 +38369,8 @@ out_Nodtaa_CountryTax=(totaltax_fsi-0);
 </sv:node>
 <!--  calculation schedule PL in ITR4 -->
 
-<sv:node sv:name="profitandloss">
+
+<sv:node sv:name="profitandloss" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hippo:handle</sv:value>
   </sv:property>
@@ -38399,7 +38400,7 @@ out_Nodtaa_CountryTax=(totaltax_fsi-0);
       <sv:value>hippo:harddocument</sv:value>
     </sv:property>
     <sv:property sv:name="jcr:uuid" sv:type="String">
-      <sv:value>f633f4d7-fc64-4317-a417-53c2d0c5c52c</sv:value>
+      <sv:value>8b9c28f7-e6fe-49e2-85cc-b846100422e7</sv:value>
     </sv:property>
     <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
       <sv:value>live</sv:value>
@@ -38424,19 +38425,19 @@ out_Nodtaa_CountryTax=(totaltax_fsi-0);
       <sv:value>2013-05-24T01:58:54.710+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-      <sv:value>2013-08-31T15:53:36.240+05:30</sv:value>
+      <sv:value>2013-09-25T14:35:27.782+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
       <sv:value>admin</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-      <sv:value>2013-08-31T15:53:39.841+05:30</sv:value>
+      <sv:value>2013-09-25T14:35:31.341+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="mootlywcm:additionalScript" sv:type="String">
       <sv:value/>
     </sv:property>
     <sv:property sv:multiple="true" sv:name="mootlywcm:dropRadio" sv:type="String">
-      <sv:value>letout</sv:value>
+      <sv:value>isAccountMaintain</sv:value>
     </sv:property>
     <sv:property sv:multiple="true" sv:name="mootlywcm:input" sv:type="String">
       <sv:value>service_Tax</sv:value>
@@ -38517,6 +38518,8 @@ out_Nodtaa_CountryTax=(totaltax_fsi-0);
       <sv:value>prov_DeferredTax</sv:value>
       <sv:value>balance_PreviousYear</sv:value>
       <sv:value>transReserves_Surplus</sv:value>
+      <sv:value>expenses_NoAccount</sv:value>
+      <sv:value>gross_Profit</sv:value>
     </sv:property>
     <sv:property sv:name="mootlywcm:script" sv:type="String">
       <sv:value>/**
@@ -38525,6 +38528,7 @@ out_Nodtaa_CountryTax=(totaltax_fsi-0);
 * **/
 //Define Helper Classes
 var indianCurrencyHelper = new com.mootly.wcm.services.IndianCurrencyHelper();
+if((isAccountMaintain == 'Yes') &amp;&amp; (isAccountMaintain != ' ')){
 out_total_DutyTaxCess=parseInt(service_Tax-0)+parseInt(vat_SalesTax-0)+parseInt(any_OtherTax-0)+parseInt(union_ExciseDuties-0);
 
 out_total_OtherIncome=parseInt(rent-0)+parseInt(commission-0)+parseInt(dividend-0)+parseInt(interest-0)+parseInt(profit_FixedAsset-0)+parseInt(profit_InvestmentSTT-0)+parseInt(profit_OtherInvestment-0)+parseInt(profit_CurrencyFluctuation-0)+parseInt(agricultural_Income-0)+parseInt(any_OtherIncome-0);
@@ -38545,13 +38549,18 @@ var netProfitBefireInt = parseInt(opening_Stocks-0)+parseInt(purchases-0)+parseI
 out_profit_BeforeTaxes =(out_profitBefore_InterestTaxes )-(parseInt(interest_PL-0) + parseInt(depreciation_PL-0)) ;
 out_profit_AfterTax =(out_profit_BeforeTaxes )-(parseInt(prov_CurrentTax-0) + parseInt(prov_DeferredTax-0));
 out_amount_Appropriation = out_profit_AfterTax  + parseInt(balance_PreviousYear-0)  ;
-out_balanceCarried_BalanceSheet = out_amount_Appropriation - transReserves_Surplus;</sv:value>
+out_balanceCarried_BalanceSheet = out_amount_Appropriation - transReserves_Surplus;
+}
+if((isAccountMaintain == 'No') &amp;&amp; (isAccountMaintain != ' ')){
+out_net_Profit = (gross_Profit-0)-(expenses_NoAccount-0);
+}</sv:value>
     </sv:property>
     <sv:property sv:name="mootlywcm:title" sv:type="String">
       <sv:value>Screen Calculation for profit and loss (Schedule5a)</sv:value>
     </sv:property>
   </sv:node>
 </sv:node>
+
 <!-- schedule BP -->
 
 <sv:node sv:name="incbusinessprofession" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
