@@ -26,12 +26,12 @@
 							<div class="rowlabel">
 								<select id="isAccountMaintain" name="isAccountMaintain">
 								<option value="">-Select-</option>
-								<option value="Yes">Yes</option>
-								<option value="No">No</option>
+								<option value="Yes"<c:if test="${not empty parentBean.isAccountMaintain && parentBean.isAccountMaintain =='Yes'}">selected</c:if>>Yes</option>
+								<option value="No"<c:if test="${not empty parentBean.isAccountMaintain && parentBean.isAccountMaintain =='No'}">selected</c:if>>No</option>
 								</select>
 							</div>
 						</div></div>
-			<div id="Account_Maintain">
+			<div id="Account_Maintain" class="<c:if test="${(parentBean.isAccountMaintain == 'No')}">hide</c:if> ">  
 		<div class="row-fluid show-grid">
 				<div class="span8">
 					<div class="rowlabel">
@@ -1117,7 +1117,7 @@
 				</div>
 				</div>
 				</div>
-				<div id="NoAccount_Maintain">
+				<div id="NoAccount_Maintain" class="<c:if test="${(parentBean.isAccountMaintain == 'Yes') ||(empty parentBean.isAccountMaintain)}"> hide</c:if>">
 				<fieldset>
 				<legend style="color: green; font-weight: bold;"><fmt:message key ="noAccounts.PL.itr4"></fmt:message> </legend>
 				<div class="row-fluid show-grid">
