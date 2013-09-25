@@ -43,12 +43,16 @@
 					<div align="center" style="color: red">Please enter your
 						details</div>
 					<br />
+
+
 					<div class="row-fluid show-grid">
+
 						<div class="span3">
 							<div class="rowlabel">
 								<label for="asset_type"><small><fmt:message
 											key="capital.gain.type.asset" /> </small> </label>
 							</div>
+
 							<div class="rowlabel">
 								<select id="asset_type" name="asset_type" onChange="hidesst()">
 									<option value="">-Select-</option>
@@ -57,7 +61,12 @@
 										Shares/Debentures/Bond/ Unit of Mutual Fund etc</option>
 									<option value="OTH"
 										<c:if test="${not empty childBean.assetType && childBean.assetType =='OTH'}">selected</c:if>>Other
-									</option>
+										Asset</option>
+									<c:if test="${itrform=='ITR4' }">
+										<option value="SLUMP"
+											<c:if test="${not empty childBean.assetType && childBean.assetType =='SLUMP'}">selected</c:if>>Slump
+											Sale</option>
+									</c:if>
 								</select>
 							</div>
 						</div>
@@ -242,7 +251,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="row-fluid show-grid" id="imp">
+					<div class="row-fluid show-grid dateimp" id="imp">
 						<div class="span9">
 							<div class="rowlabel">
 								<label for="date_improve"><small><fmt:message
@@ -259,13 +268,13 @@
 					</div>
 					<div class="row-fluid show-grid">
 						<div class="span9">
-							<div class="rowlabel without_Y_index without_N_index ">
-								<label for="costacquisition"><small><fmt:message
-											key="capital.gain.cost.acquisition" /> </small> </label>
+							<div class="rowlabel acq">
+								<label for="costacquisition"><fmt:message
+											key="capital.gain.cost.acquisition" /> </label>
 							</div>
-							<div class="rowlabel hide with_Y_index with_N_index ">
+							<div class="rowlabel hide slmacq ">
 								<label for="costacquisition"><small><fmt:message
-											key="capital.gain.cost.index" /> </small> </label>
+											key="capital.gain.sale.slump" /> </small> </label>
 							</div>
 						</div>
 						<div class="span3 ">
@@ -277,7 +286,22 @@
 							</div>
 						</div>
 					</diV>
-					<div class="row-fluid show-grid">
+					<div class="row-fluid show-grid hide slump">
+						<div class="span9">
+							<div class="rowlabel">
+								<label for="cgSlump"> <fmt:message
+										key="capital.gain.slump" /> </label>
+							</div>
+						</div>
+						<div class="span3">
+							<div class="rowlabel">
+								<input type="text" name="cgSlump" id="cgSlump" readonly="readonly"
+									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.cgSlump}"/></c:if>"
+									class="decimal" title="Please fill only Numeric value" />
+							</div>
+						</div>
+					</div>
+					<div class="row-fluid show-grid cstimp">
 						<div class="span9">
 							<div class="rowlabel without_Y_index without_N_index">
 								<label for="costimprovement"><small><fmt:message
@@ -299,7 +323,7 @@
 						</div>
 					</div>
 
-					<div class="row-fluid show-grid">
+					<div class="row-fluid show-grid csttrsfr">
 						<div class="span9">
 							<div class="rowlabel">
 								<label for="costtrnsfr"><small><fmt:message
@@ -315,7 +339,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="row-fluid show-grid">
+					<div class="row-fluid show-grid bal">
 						<div class="span9">
 							<div class="rowlabel">
 								<label for="balanc"><fmt:message
@@ -364,7 +388,39 @@
 							</div>
 						</div>
 					</div>
-					<div class="row-fluid show-grid">
+					<div class="row-fluid show-grid hide slump">
+						<div class="span9">
+							<div class="rowlabel">
+								<label for="netCGSlump"> <fmt:message
+										key="capital.gain.slump.net" /> </label>
+							</div>
+						</div>
+						<div class="span3">
+							<div class="rowlabel">
+								<input type="text" name="netCGSlump" id="netCGSlump" readonly="readonly"
+									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.netCGSlump}"/></c:if>"
+									class="decimal" title="Please fill only Numeric value" />
+							</div>
+						</div>
+					</div>
+					<c:if test="${itrform=='ITR4' }">
+						<div class="row-fluid show-grid amtdmdsc">
+							<div class="span9">
+								<div class="rowlabel">
+									<label for="amtdeemedsc"><small> <fmt:message
+												key="capital.amt.deemed.schedule6" /> </small> </label>
+								</div>
+							</div>
+							<div class="span3">
+								<div class="rowlabel">
+									<input id="amtdeemedsc" name="amtdeemedsc" readonly="readonly"
+										value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.amtdeemedsc}"/></c:if>"
+										type="text" class="decimal" />
+								</div>
+							</div>
+						</div>
+					</c:if>
+					<div class="row-fluid show-grid amtdmd">
 						<div class="span9">
 							<div class="rowlabel">
 								<label for="amtdeemed"><small><fmt:message
@@ -394,7 +450,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="row-fluid show-grid">
+					<div class="row-fluid show-grid cpgain">
 						<div class="span9">
 							<div class="rowlabel">
 								<label for="capitalgain"><fmt:message
@@ -412,13 +468,14 @@
 					</div>
 				</fieldset>
 				<fieldset>
-					<legend style="color: green; font-weight: bold;">Information
-						about accrual/Receipt of Capital Gain</legend>
+					<legend style="color: green; font-weight: bold;">
+						<fmt:message key="capital.gain.acc.message" />
+					</legend>
 					<div class="row-fluid show-grid">
 						<div class="span9">
 							<div class="rowlabel">
-								<label for="accural_info"><small>Do you have
-										accural/Receipt of Capital Gain</small> </label>
+								<label for="accural_info"><small><fmt:message
+											key="capital.gain.acc.option" /> </small> </label>
 							</div>
 						</div>
 						<div class="span3">
@@ -446,13 +503,11 @@
 								<td><input type="text" name="upto15st" id="upto15st"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
 									<c:out value="${childBean.upto15St}"/></c:if>"
-									class="decimal" maxlength="15">
-								</td>
+									class="decimal" maxlength="15"></td>
 								<td><input type="text" name="upto15oth" id="upto15oth"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
 									<c:out value="${childBean.upto15Oth}"/></c:if>"
-									class="decimal" maxlength="15">
-								</td>
+									class="decimal" maxlength="15"></td>
 							<tr>
 								<td>ii- 16/9 to 15/12(ii)</td>
 								<td><input type="text" name="upto16st" id="upto16st"
@@ -463,7 +518,8 @@
 								<td><input type="text" name="upto16oth" id="upto16oth"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
 									<c:out value="${childBean.upto16Oth}"/></c:if>"
-									class="decimal" maxlength="15"></td>
+									class="decimal" maxlength="15">
+								</td>
 							<tr>
 
 								<td>iii- 16/12 to 15/3(iii)</td>
@@ -573,7 +629,8 @@
 					</th>
 					<th width="12%"><b>Long Term Gain </b>
 					</th>
-					<th width="12%"><b>Short Term Gain </b></th>
+					<th width="12%"><b>Short Term Gain </b>
+					</th>
 					<th width="20%"><b>Actions</b>
 					</th>
 				</tr>
@@ -644,6 +701,47 @@
 	$(document).ready(function() {
 		var type = $('#asset_type').val();
 		var day = $('#months').val();
+
+		if (type == 'SLUMP') {
+			if (day <= 1096) {
+				$('#fd_set_gain').show();
+				$(".slump").show();
+				$(".amtdmdsc").hide();
+				$(".cstacq").hide();
+				$("#imp").hide();
+				$("#sst").hide();
+				$("#sst_charge").hide();
+				$(".amtdmd").hide();
+				$(".csttrsfr").hide();
+				$(".bal").hide();
+				$(".cpgain").hide();
+				$("#pan").hide();
+				$(".cstimp").hide();
+				$("#sg").show();
+				$("#lg").hide();
+				$("#loss").hide();
+				$("#lindex").hide();
+			} else {
+				$('#fd_set_gain').show();
+				$(".slump").show();
+				$("#sst_charge").hide();
+				$("#sst").hide();
+				$(".cstacq").hide();
+				$(".amtdmdsc").hide();
+				$("#imp").hide();
+				$(".amtdmd").hide();
+				$(".csttrsfr").hide();
+				$(".bal").hide();
+				$(".cpgain").hide();
+				$("#pan").hide();
+				$(".cstimp").hide();
+				$("#sg").hide();
+				$("#lg").show();
+				$("#loss").hide();
+				$("#lindex").hide();
+			}
+		}
+
 		if (type == 'SHARES') {
 			day = $('#months').val();
 			var stt = $('#sst_charge').val();
@@ -659,9 +757,11 @@
 				$("#lindex").hide();
 				$("#pan").hide();
 				$("#imp").hide();
+				$(".amtdmdsc").hide();
 			} else {
 				if (stt == 'Y') {
 					$("#pan").hide();
+					$("#imp").hide();
 					$("#ded").hide();
 					$("#lindex").hide();
 				} else {
@@ -673,11 +773,12 @@
 				$("#lnri").show();
 				$("#snri").hide();
 				$("#sg").hide();
+				$(".amtdmdsc").hide();
 			}
 			$("#sst").show();
 			$("#sst_charge").show();
-		} else {
-
+		}
+		if (type == 'OTH') {
 			if (day <= 1096) {
 
 				$(".st").show();
@@ -688,6 +789,8 @@
 				$(".without_N_index").show();
 				$(".lt").hide();
 				$("#sst").hide();
+				$(".amtdmdsc").show();
+				
 			} else {
 				$("#loss").hide();
 				$("#lg").show();
@@ -696,16 +799,17 @@
 				$(".with_Y_index").hide();
 				$(".lt").show();
 				$("#sst").hide();
+				$(".amtdmdsc").hide();
 			}
 
 			$("#lindex").hide();
 			$("#sst_charge").hide();
 		}
 		var acc = $('#accural_info').val();
-		if(acc=='Y'){
-			$('#accural_gain').show();	
-		}else{
-			$('#accural_gain').hide();	
+		if (acc == 'Y') {
+			$('#accural_gain').show();
+		} else {
+			$('#accural_gain').hide();
 		}
 
 	});
@@ -757,6 +861,44 @@
 		function decidegaintype() {
 			var c = document.getElementById("months").value;
 			var m = document.getElementById("asset_type").value;
+			if (m == 'SLUMP') {
+				if (c <= 1096) {
+					$('#fd_set_gain').show();
+					$("#lindex").hide();
+					$(".slump").show();
+					$(".acq").hide();
+					$(".slmacq").show();
+					$("#imp").hide();
+					$(".amtdmd").hide();
+					$(".csttrsfr").hide();
+					$(".bal").hide();
+					$(".cpgain").hide();
+					$("#pan").hide();
+					$(".cstimp").hide();
+					$("#sg").show();
+					$("#lg").hide();
+					$("#loss").hide();
+					$(".amtdmdsc").hide();
+				} else {
+					$('#fd_set_gain').show();
+					$(".slump").show();
+					$("#lindex").hide();
+					$(".acq").hide();
+					$(".slmacq").show();
+					$("#imp").hide();
+					$(".amtdmd").hide();
+					$(".csttrsfr").hide();
+					$(".bal").hide();
+					$(".cpgain").hide();
+					$("#pan").hide();
+					$(".cstimp").hide();
+					$("#sg").hide();
+					$("#lg").show();
+					$("#loss").hide();
+					$(".amtdmdsc").hide();
+				}
+			}
+
 			if (m == "SHARES") {
 				if (c <= 365) {
 					$('#fd_set_gain').show();
@@ -767,6 +909,7 @@
 					$(".without_N_index").show();
 					$(".lt").hide();
 					$("#imp").hide();
+					$(".amtdmdsc").hide();
 				} else {
 					var sst = $("#sst_charge").val();
 					if (sst == 'N') {
@@ -775,6 +918,7 @@
 						$("#pan").show();
 					} else {
 						$("#pan").hide();
+						$("#imp").show();
 						$("#ded").hide();
 						$("#lindex").hide();
 					}
@@ -785,8 +929,10 @@
 					$('#fd_set_gain').show();
 					$(".lt").show();
 					$("#sst").show();
+					$(".amtdmdsc").hide();
 				}
-			} else {
+			}
+			if (m == 'OTH') {
 				if (c <= 1096) {
 					$('#fd_set_gain').show();
 					$(".st").show();
@@ -797,7 +943,9 @@
 					$(".without_N_index").show();
 					$(".lt").hide();
 					$("#sst").hide();
+					$(".amtdmdsc").show();
 				} else {
+
 					$("#loss").hide();
 					$("#lg").show();
 					$("#sg").hide();
@@ -806,6 +954,9 @@
 					$(".with_Y_index").hide();
 					$(".lt").show();
 					$("#sst").hide();
+					$("#lindex").hide();
+					$(".amtdmdsc").hide();
+
 				}
 			}
 		}
