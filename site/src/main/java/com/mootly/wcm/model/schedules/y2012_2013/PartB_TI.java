@@ -9,11 +9,18 @@ import org.hippoecm.hst.content.beans.standard.HippoBean;
 
 import com.mootly.wcm.beans.CapitalAssetDocument;
 import com.mootly.wcm.beans.DeductionDocument;
+import com.mootly.wcm.beans.DeductionSchedTenADocumemt;
 import com.mootly.wcm.beans.FormSixteenDocument;
 import com.mootly.wcm.beans.HouseProperty;
+import com.mootly.wcm.beans.IncBusinessProfessionDoc;
 import com.mootly.wcm.beans.MemberPersonalInformation;
+import com.mootly.wcm.beans.OtherInformationDocument;
 import com.mootly.wcm.beans.OtherSourcesDocument;
+import com.mootly.wcm.beans.ProfitAndLossDocument;
 import com.mootly.wcm.beans.SalaryIncomeDocument;
+import com.mootly.wcm.beans.ScheduleDOADocument;
+import com.mootly.wcm.beans.ScheduleDPMDocument;
+import com.mootly.wcm.beans.ScheduleESRDocument;
 import com.mootly.wcm.beans.ScheduleSIDocument;
 import com.mootly.wcm.beans.compound.FormSixteenDetail;
 import com.mootly.wcm.beans.compound.SalaryIncomeDetail;
@@ -26,6 +33,7 @@ import com.mootly.wcm.utils.XmlCalculation;
 import in.gov.incometaxindiaefiling.y2012_2013.CapGain;
 import in.gov.incometaxindiaefiling.y2012_2013.DeductUndChapVIA;
 import in.gov.incometaxindiaefiling.y2012_2013.ITR;
+import in.gov.incometaxindiaefiling.y2012_2013.ITR4ScheduleBP;
 import in.gov.incometaxindiaefiling.y2012_2013.IncFromOS;
 import in.gov.incometaxindiaefiling.y2012_2013.LongTerm;
 import in.gov.incometaxindiaefiling.y2012_2013.LossSummaryDetail;
@@ -50,10 +58,19 @@ public class PartB_TI {
 	MemberPersonalInformation memberPersonalInformation = null;
 	ScheduleSIDocument scheduleSIDocument= null;
 	CapitalAssetDocument capitalAssetDocument = null;
+	IncBusinessProfessionDoc incBusinessProfessionDoc = null;
+	ProfitAndLossDocument profitAndLossDocument = null;
+	OtherInformationDocument otherInformationDocument = null;
+	ScheduleDPMDocument scheduleDPMDocument = null;
+	ScheduleDOADocument scheduleDOADocument = null;
+	ScheduleESRDocument scheduleESRDocument = null;
+	DeductionSchedTenADocumemt deductionSchedTenADocumemt = null;
 
 	public PartB_TI(FormSixteenDocument formSixteenDocument, SalaryIncomeDocument salaryIncomeDocument, HouseProperty housePropertyDocument ,
 			OtherSourcesDocument otherSourcesDocument, DeductionDocument deductionDocument, MemberPersonalInformation memberPersonalInformation,
-			ScheduleSIDocument scheduleSIDocument, CapitalAssetDocument capitalAssetDocument){
+			ScheduleSIDocument scheduleSIDocument, CapitalAssetDocument capitalAssetDocument, IncBusinessProfessionDoc incBusinessProfessionDoc,
+			ProfitAndLossDocument profitAndLossDocument, OtherInformationDocument otherInformationDocument, ScheduleDPMDocument scheduleDPMDocument,
+			ScheduleDOADocument scheduleDOADocument, ScheduleESRDocument scheduleESRDocument, DeductionSchedTenADocumemt deductionSchedTenADocumemt){
 		this.formSixteenDocument = formSixteenDocument;
 		this.salaryIncomeDocument = salaryIncomeDocument;
 		this.housePropertyDocument = housePropertyDocument;
@@ -62,11 +79,19 @@ public class PartB_TI {
 		this.memberPersonalInformation = memberPersonalInformation;
 		this.scheduleSIDocument = scheduleSIDocument;
 		this.capitalAssetDocument = capitalAssetDocument;
+		this.incBusinessProfessionDoc = incBusinessProfessionDoc;
+		this.profitAndLossDocument = profitAndLossDocument;
+		this.otherInformationDocument = otherInformationDocument;
+		this.scheduleDPMDocument = scheduleDPMDocument;
+		this.scheduleDOADocument = scheduleDOADocument;
+		this.scheduleESRDocument = scheduleESRDocument;
+		this.deductionSchedTenADocumemt = deductionSchedTenADocumemt;
 	}
 
 	public PartBTI getPartBTI(ITR itr, FinancialYear financialYear,Map<String,HippoBean> inputBeans){
 
 		PartBTI partBTI = new PartBTI();
+		String itrSelection =  memberPersonalInformation.getFlexField("flex_string_ITRForm", "");
 
 		IndianCurrencyHelper indianCurrencyHelper = new IndianCurrencyHelper();
 		XmlCalculation xmlCalculation = new XmlCalculation();
@@ -97,13 +122,39 @@ public class PartB_TI {
 		}else
 			partBTI.setIncomeFromHP(new BigInteger("0"));
 
-		//ProfBusGain not required in ITR2
 		ProfBusGain profBusGain = new ProfBusGain();
-		profBusGain.setProfGainNoSpecBus(0);
-		profBusGain.setProfGainSpecBus(new BigInteger("0"));
-		profBusGain.setProfGainSpecifiedBus(new BigInteger("0"));
-		profBusGain.setTotProfBusGain(new BigInteger("0"));
-		partBTI.setProfBusGain(profBusGain);
+
+		//getting Schedule BP for ITR4 (in case of ITR2 else loop will set all values to Zero because ProfBusGain not required in ITR2)
+		if(itrSelection.equals("ITR4")){
+			ITR4_ScheduleBP iTR4_ScheduleBP = new ITR4_ScheduleBP(incBusinessProfessionDoc, profitAndLossDocument, otherInformationDocument,
+					scheduleDPMDocument, scheduleDOADocument, scheduleESRDocument, deductionSchedTenADocumemt);
+			ITR4ScheduleBP iTR4ScheduleBP = iTR4_ScheduleBP.getITR4ScheduleBP(itr, financialYear, inputBeans);
+
+			profBusGain.setProfGainNoSpecBus(iTR4ScheduleBP.getBusinessIncOthThanSpec().getNetPLBusOthThanSpec7A7B7C());
+			if(iTR4ScheduleBP.getSpecBusinessInc().getAdjustedPLFrmSpecuBus() > 0){
+				profBusGain.setProfGainSpecBus(BigInteger.valueOf(iTR4ScheduleBP.getSpecBusinessInc().getAdjustedPLFrmSpecuBus()));
+			}else
+				profBusGain.setProfGainSpecBus(new BigInteger("0"));
+			if(iTR4ScheduleBP.getSpecifiedBusinessInc().getPLFrmSpecifiedBus() > 0){
+				profBusGain.setProfGainSpecifiedBus(BigInteger.valueOf(iTR4ScheduleBP.getSpecifiedBusinessInc().getPLFrmSpecifiedBus()));
+			}else
+				profBusGain.setProfGainSpecifiedBus(new BigInteger("0"));
+
+			if((BigInteger.valueOf(profBusGain.getProfGainNoSpecBus()).add(profBusGain.getProfGainSpecBus())
+					.add(profBusGain.getProfGainSpecifiedBus())).compareTo(BigInteger.ZERO) > 0){
+				profBusGain.setTotProfBusGain(BigInteger.valueOf(profBusGain.getProfGainNoSpecBus()).add(profBusGain.getProfGainSpecBus())
+						.add(profBusGain.getProfGainSpecifiedBus()));
+			}else
+				profBusGain.setTotProfBusGain(new BigInteger("0"));
+
+			partBTI.setProfBusGain(profBusGain);
+		}else{
+			profBusGain.setProfGainNoSpecBus(0);
+			profBusGain.setProfGainSpecBus(new BigInteger("0"));
+			profBusGain.setProfGainSpecifiedBus(new BigInteger("0"));
+			profBusGain.setTotProfBusGain(new BigInteger("0"));
+			partBTI.setProfBusGain(profBusGain);
+		}
 
 		//Capital Gain
 		CapitalGainDocumentSchedules capitalGainDocumentSchedules = new CapitalGainDocumentSchedules(capitalAssetDocument);
@@ -165,8 +216,8 @@ public class PartB_TI {
 		incFromOS.setTotIncFromOS(BigInteger.valueOf(incFromOS.getOtherSrcThanOwnRaceHorse()).add(incFromOS.getWinLotteriesRacesGambling()).add(incFromOS.getFromOwnRaceHorse()));
 		partBTI.setIncFromOS(incFromOS);
 
-		//total of SalaryIncome+HouseIncome+CapitalGain+OtherIncome
-		partBTI.setTotalTI(partBTI.getSalaries().add(partBTI.getIncomeFromHP()).add(capGain.getTotalCapGains()).add(incFromOS.getTotIncFromOS()));
+		//total of SalaryIncome+HouseIncome+CapitalGain+OtherIncome+ProfitandGainfromBP
+		partBTI.setTotalTI(partBTI.getSalaries().add(partBTI.getIncomeFromHP()).add(capGain.getTotalCapGains()).add(incFromOS.getTotIncFromOS()).add(profBusGain.getTotProfBusGain()));
 
 		//total of 2vii and 3vii of Schedule CYLA
 		partBTI.setCurrentYearLoss(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMapLosses.get("totalHPLossSetoff").toString())+Double.parseDouble(resultMapLosses.get("totalOILossSetoff").toString())));
