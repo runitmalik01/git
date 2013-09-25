@@ -20,7 +20,7 @@
 				<div class="span8">
 							<div class="rowlabel">
 								<label for="isAccountMaintain"><small><fmt:message
-											key="foreign.is.dtaa.applicable" /> </small> </label>
+											key="ifAccount.maintain.itr4.pl" /> </small> </label>
 							</div></div>
 							<div class="span3">
 							<div class="rowlabel">
@@ -142,7 +142,7 @@
 					<div class="rowlabel">
 						<input id="dividend" name="dividend"
 							type="text" maxlength="14" 
-							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.dividend}"/>" />
+							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.dividends}"/>" />
 					</div>
 				</div>
 			</div>
