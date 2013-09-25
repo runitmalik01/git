@@ -207,7 +207,8 @@ public class ITR4XmlGeneratorService  {
 		itr4.setScheduleCFL(carryFwdLossesSchedules.getScheduleCFL(itr, financialYear, inputBeans));
 
 		PartB_TI partB_TI = new PartB_TI(formSixteenDocument, salaryIncomeDocument, houseProperty, otherSourcesDocument,
-				deductionDocument, memberPersonalInformation,scheduleSIDocument,capitalAssetDocument);
+				deductionDocument, memberPersonalInformation,scheduleSIDocument,capitalAssetDocument, incBusinessProfessionDoc,
+				profitAndLossDocument, otherInformationDocument, scheduleDPMDocument, scheduleDOADocument,scheduleESRDocument, deductionSchedTenADocumemt);
 		itr4.setPartBTI(partB_TI.getPartBTI(itr, financialYear, inputBeans));
 
 		ITR_ScheduleAMT iTR_ScheduleAMT = new ITR_ScheduleAMT(deductionDocument, deductionSchedTenADocumemt);
@@ -220,13 +221,16 @@ public class ITR4XmlGeneratorService  {
 				otherSourcesDocument, deductionDocument, memberPersonalInformation, taxReliefDocument, advanceTaxDocument,
 				selfAssesmetTaxDocument, tdsFromothersDocument, scheduleSIDocument, capitalAssetDocument, immovablePropertyDocument,
 				natureInvestmentDocument,signingAuthorityAccountsDocument,detailOfTrustDocument,foreignBankAccountDocument,financialInterestDocument,
-				tcsDocument);
+				tcsDocument,incBusinessProfessionDoc,profitAndLossDocument, otherInformationDocument, scheduleDPMDocument, scheduleDOADocument,
+				scheduleESRDocument, deductionSchedTenADocumemt,scheduleAMTCDocument);
 		itr4.setPartBTTI(partB_TTI.getPartBTTI(itr, financialYear, inputBeans));
 
 		PartA_Gen1 partA_Gen1 = new PartA_Gen1(formSixteenDocument, salaryIncomeDocument, houseProperty, otherSourcesDocument,
 				deductionDocument, memberPersonalInformation, taxReliefDocument, advanceTaxDocument, selfAssesmetTaxDocument,
 				tdsFromothersDocument, scheduleSIDocument, capitalAssetDocument, immovablePropertyDocument,natureInvestmentDocument,
-				signingAuthorityAccountsDocument,detailOfTrustDocument,foreignBankAccountDocument,financialInterestDocument, tcsDocument);
+				signingAuthorityAccountsDocument,detailOfTrustDocument,foreignBankAccountDocument,financialInterestDocument, tcsDocument,
+				incBusinessProfessionDoc,profitAndLossDocument, otherInformationDocument, scheduleDPMDocument, scheduleDOADocument,
+				scheduleESRDocument, deductionSchedTenADocumemt,scheduleAMTCDocument);
 		itr4.setPartAGEN1(partA_Gen1.getPartAGEN1(itr, financialYear, inputBeans));
 
 		PartA_Gen2 partA_Gen2 = new PartA_Gen2(memberPersonalInformation, natureBusinessDocument);
@@ -294,8 +298,9 @@ public class ITR4XmlGeneratorService  {
 		PartA_BS partA_BS = new PartA_BS(balanceSheetDocument);
 		itr4.setPARTABS(partA_BS.getPartABalanceSheet(itr, financialYear));
 
-		ITR4_ScheduleBP iTR4_ScheduleBP = new ITR4_ScheduleBP(incBusinessProfessionDoc, profitAndLossDocument, otherInformationDocument, scheduleDPMDocument, scheduleDOADocument);
-		itr4.setITR4ScheduleBP(iTR4_ScheduleBP.getITR4ScheduleBP(itr, itr4.getScheduleESR(), itr4.getSchedule10A(), itr4.getSchedule10AA()));
+		ITR4_ScheduleBP iTR4_ScheduleBP = new ITR4_ScheduleBP(incBusinessProfessionDoc, profitAndLossDocument, otherInformationDocument,
+				scheduleDPMDocument, scheduleDOADocument,scheduleESRDocument, deductionSchedTenADocumemt);
+		itr4.setITR4ScheduleBP(iTR4_ScheduleBP.getITR4ScheduleBP(itr, financialYear, inputBeans));
 
 		ITR4_ScheduleUD iTR4_ScheduleUD = new ITR4_ScheduleUD(unabsorbedDepreciationDocument);
 		itr4.setITR4ScheduleUD(iTR4_ScheduleUD.getITR4ScheduleUD(itr));
