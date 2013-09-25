@@ -281,6 +281,15 @@ public class ProfitAndLossDocument extends ProfitAndLossVariables{
 			val_service_TaxPL= Double.parseDouble(service_TaxPLStr);
 			setService_TaxPL(val_service_TaxPL);
 		}
+		double val_vat_SalesTaxPL=0.0d;
+		if (formMap.getField("vat_SalesTaxPL").getValue().isEmpty()){
+			setVat_SalesTaxPL(val_vat_SalesTaxPL);
+		}
+		else{
+			String vat_SalesTaxPLStr=formMap.getField("vat_SalesTaxPL").getValue();
+			val_vat_SalesTaxPL= Double.parseDouble(vat_SalesTaxPLStr);
+			setVat_SalesTaxPL(val_vat_SalesTaxPL);
+		}
 		double val_anyOther_TaxPaid=0.0d;
 		if (formMap.getField("anyOther_TaxPaid").getValue().isEmpty()){
 			setAnyOther_TaxPaid(val_anyOther_TaxPaid);
