@@ -1080,9 +1080,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 		$(document).ready(function() {
 	// This is the check for audit filds 
 	var AY='<c:out value="${assessmentYear}"/>'.split("-", 4);
-	alert("AY"+AY);
 	itrFinYrMin="01/04/"+AY[0];
-	alert("itrFinYrMin"+itrFinYrMin);
 	$( ".auditdateCal" ).datepicker( "option", "minDate", itrFinYrMin );
 	
 	// this code is for itr2 when pan is HUF
