@@ -10,16 +10,24 @@ import org.hippoecm.hst.content.beans.standard.HippoBean;
 import com.mootly.wcm.beans.AdvanceTaxDocument;
 import com.mootly.wcm.beans.CapitalAssetDocument;
 import com.mootly.wcm.beans.DeductionDocument;
+import com.mootly.wcm.beans.DeductionSchedTenADocumemt;
 import com.mootly.wcm.beans.DetailOfTrustDocument;
 import com.mootly.wcm.beans.FinancialInterestDocument;
 import com.mootly.wcm.beans.ForeignBankAccountDocument;
 import com.mootly.wcm.beans.FormSixteenDocument;
 import com.mootly.wcm.beans.HouseProperty;
 import com.mootly.wcm.beans.ImmovablePropertyDocument;
+import com.mootly.wcm.beans.IncBusinessProfessionDoc;
 import com.mootly.wcm.beans.MemberPersonalInformation;
 import com.mootly.wcm.beans.NatureInvestmentDocument;
+import com.mootly.wcm.beans.OtherInformationDocument;
 import com.mootly.wcm.beans.OtherSourcesDocument;
+import com.mootly.wcm.beans.ProfitAndLossDocument;
 import com.mootly.wcm.beans.SalaryIncomeDocument;
+import com.mootly.wcm.beans.ScheduleAMTCDocument;
+import com.mootly.wcm.beans.ScheduleDOADocument;
+import com.mootly.wcm.beans.ScheduleDPMDocument;
+import com.mootly.wcm.beans.ScheduleESRDocument;
 import com.mootly.wcm.beans.ScheduleSIDocument;
 import com.mootly.wcm.beans.SelfAssesmetTaxDocument;
 import com.mootly.wcm.beans.SigningAuthorityAccountsDocument;
@@ -42,11 +50,14 @@ import in.gov.incometaxindiaefiling.y2012_2013.Refund.DepositToBankAccount;
 import in.gov.incometaxindiaefiling.y2012_2013.ScheduleTR.TotTaxreliefClaimed;
 import in.gov.incometaxindiaefiling.y2012_2013.ITR;
 import in.gov.incometaxindiaefiling.y2012_2013.ITR4STaxComputation;
+import in.gov.incometaxindiaefiling.y2012_2013.ITRScheduleAMT;
+import in.gov.incometaxindiaefiling.y2012_2013.ITRScheduleAMTC;
 import in.gov.incometaxindiaefiling.y2012_2013.PartBTI;
 import in.gov.incometaxindiaefiling.y2012_2013.PartBTTI;
 import in.gov.incometaxindiaefiling.y2012_2013.ScheduleFA;
 import in.gov.incometaxindiaefiling.y2012_2013.ScheduleSI;
 import in.gov.incometaxindiaefiling.y2012_2013.ScheduleTR;
+import in.gov.incometaxindiaefiling.y2012_2013.ScheduleVIA;
 import in.gov.incometaxindiaefiling.y2012_2013.TaxPaid;
 import in.gov.incometaxindiaefiling.y2012_2013.TaxPayableOnTI;
 import in.gov.incometaxindiaefiling.y2012_2013.TaxRelief;
@@ -73,13 +84,23 @@ public class PartB_TTI {
 	ForeignBankAccountDocument foreignBankAccountDocument = null;
 	FinancialInterestDocument financialInterestDocument = null;
 	TcsDocument tcsDocument = null;
+	IncBusinessProfessionDoc incBusinessProfessionDoc = null;
+	ProfitAndLossDocument profitAndLossDocument = null;
+	OtherInformationDocument otherInformationDocument = null;
+	ScheduleDPMDocument scheduleDPMDocument = null;
+	ScheduleDOADocument scheduleDOADocument = null;
+	ScheduleESRDocument scheduleESRDocument = null;
+	DeductionSchedTenADocumemt deductionSchedTenADocumemt = null;
+	ScheduleAMTCDocument scheduleAMTCDocument = null;
 
 	public PartB_TTI(FormSixteenDocument formSixteenDocument, SalaryIncomeDocument salaryIncomeDocument, HouseProperty housePropertyDocument ,
 			OtherSourcesDocument otherSourcesDocument, DeductionDocument deductionDocument, MemberPersonalInformation memberPersonalInformation,
 			TaxReliefDocument taxReliefDocument, AdvanceTaxDocument advanceTaxDocument, SelfAssesmetTaxDocument selfAssesmetTaxDocument,
 			TdsFromothersDocument tdsFromothersDocument, ScheduleSIDocument scheduleSIDocument, CapitalAssetDocument capitalAssetDocument,
 			ImmovablePropertyDocument immovablePropertyDocument, NatureInvestmentDocument natureInvestmentDocument, SigningAuthorityAccountsDocument signingAuthorityAccountsDocument,
-			DetailOfTrustDocument detailOfTrustDocument, ForeignBankAccountDocument foreignBankAccountDocument, FinancialInterestDocument financialInterestDocument, TcsDocument tcsDocument){
+			DetailOfTrustDocument detailOfTrustDocument, ForeignBankAccountDocument foreignBankAccountDocument, FinancialInterestDocument financialInterestDocument, TcsDocument tcsDocument,
+			IncBusinessProfessionDoc incBusinessProfessionDoc,ProfitAndLossDocument profitAndLossDocument, OtherInformationDocument otherInformationDocument, ScheduleDPMDocument scheduleDPMDocument,
+			ScheduleDOADocument scheduleDOADocument, ScheduleESRDocument scheduleESRDocument, DeductionSchedTenADocumemt deductionSchedTenADocumemt,ScheduleAMTCDocument scheduleAMTCDocument){
 		this.formSixteenDocument = formSixteenDocument;
 		this.salaryIncomeDocument = salaryIncomeDocument;
 		this.housePropertyDocument = housePropertyDocument;
@@ -99,6 +120,14 @@ public class PartB_TTI {
 		this.foreignBankAccountDocument = foreignBankAccountDocument;
 		this.financialInterestDocument = financialInterestDocument;
 		this.tcsDocument = tcsDocument;
+		this.incBusinessProfessionDoc = incBusinessProfessionDoc;
+		this.profitAndLossDocument = profitAndLossDocument;
+		this.otherInformationDocument = otherInformationDocument;
+		this.scheduleDPMDocument = scheduleDPMDocument;
+		this.scheduleDOADocument = scheduleDOADocument;
+		this.scheduleESRDocument = scheduleESRDocument;
+		this.deductionSchedTenADocumemt = deductionSchedTenADocumemt;
+		this.scheduleAMTCDocument = scheduleAMTCDocument;
 
 
 	}
@@ -106,9 +135,20 @@ public class PartB_TTI {
 	public PartBTTI getPartBTTI(ITR itr, FinancialYear financialYear, Map<String,HippoBean> inputBeans){
 
 		IndianCurrencyHelper indianCurrencyHelper = new IndianCurrencyHelper();
+
 		PartBTTI partBTTI = new PartBTTI();
-		PartB_TI partB_TI = new PartB_TI(formSixteenDocument, salaryIncomeDocument, housePropertyDocument, otherSourcesDocument, deductionDocument, memberPersonalInformation, scheduleSIDocument, capitalAssetDocument);
+		String itrSelection =  memberPersonalInformation.getFlexField("flex_string_ITRForm", "");
+
+		//getting PartB_TI required in the calculation of PartB_TTI
+		PartB_TI partB_TI = new PartB_TI(formSixteenDocument, salaryIncomeDocument, housePropertyDocument, otherSourcesDocument, deductionDocument, memberPersonalInformation,
+				scheduleSIDocument, capitalAssetDocument, incBusinessProfessionDoc, profitAndLossDocument, otherInformationDocument,
+				scheduleDPMDocument, scheduleDOADocument, scheduleESRDocument, deductionSchedTenADocumemt);
 		PartBTI partBTI = partB_TI.getPartBTI(itr, financialYear, inputBeans);
+
+		//getting Deduction Schedule required in the calculation of PARTB_TTI
+		DeductionVIASchedules deductionVIASchedules = new DeductionVIASchedules(deductionDocument, memberPersonalInformation, otherSourcesDocument);
+		ScheduleVIA scheduleVIA = deductionVIASchedules.getScheduleVIA(itr, financialYear, inputBeans);
+
 		Map<String,String[]> requestParameterMap = new HashMap<String, String[]>(); //not being used any where
 
 		XmlCalculation xmlCalculation   = new XmlCalculation();
@@ -139,11 +179,23 @@ public class PartB_TTI {
 		ComputationOfTaxLiability computationOfTaxLiability = new ComputationOfTaxLiability();
 
 		TaxPayableOnDeemedTI taxPayableOnDeemedTI = new TaxPayableOnDeemedTI();
-		taxPayableOnDeemedTI.setEducationCess(new BigInteger("0"));
-		taxPayableOnDeemedTI.setTaxDeemedTISec115JC(new BigInteger("0"));
-		taxPayableOnDeemedTI.setTotalTax(new BigInteger("0"));
-		computationOfTaxLiability.setTaxPayableOnDeemedTI(taxPayableOnDeemedTI);
 
+		if(itrSelection.equals("ITR4")){
+
+			//getting ScheduleAMT required in PARTB_TTI
+			ITR_ScheduleAMT iTR_ScheduleAMT = new ITR_ScheduleAMT(deductionDocument, deductionSchedTenADocumemt);
+			ITRScheduleAMT itrScheduleAMT = iTR_ScheduleAMT.getITItrScheduleAMT(itr, financialYear, inputBeans, scheduleVIA, partBTI);
+
+			taxPayableOnDeemedTI.setTaxDeemedTISec115JC(itrScheduleAMT.getTaxPayableUnderSec115JC());
+			taxPayableOnDeemedTI.setEducationCess((taxPayableOnDeemedTI.getTaxDeemedTISec115JC().multiply(new BigInteger("3"))).divide(new BigInteger("100")));
+			taxPayableOnDeemedTI.setTotalTax(taxPayableOnDeemedTI.getTaxDeemedTISec115JC().add(taxPayableOnDeemedTI.getEducationCess()));
+			computationOfTaxLiability.setTaxPayableOnDeemedTI(taxPayableOnDeemedTI);
+		}else{
+			taxPayableOnDeemedTI.setTaxDeemedTISec115JC(new BigInteger("0"));
+			taxPayableOnDeemedTI.setEducationCess(new BigInteger("0"));
+			taxPayableOnDeemedTI.setTotalTax(taxPayableOnDeemedTI.getTaxDeemedTISec115JC().add(taxPayableOnDeemedTI.getEducationCess()));
+			computationOfTaxLiability.setTaxPayableOnDeemedTI(taxPayableOnDeemedTI);
+		}
 		TaxPayableOnTI taxPayableOnTI = new TaxPayableOnTI();
 		taxPayableOnTI.setTaxAtNormalRatesOnAggrInc(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMap.get("txtTax").toString())));
 
@@ -170,8 +222,21 @@ public class PartB_TTI {
 		computationOfTaxLiability.setSurchargeOnTaxPayable(new BigInteger("0"));
 		computationOfTaxLiability.setEducationCess((taxPayableOnTI.getTaxPayableOnTotInc().multiply(new BigInteger("3"))).divide(new BigInteger("100")));
 		computationOfTaxLiability.setGrossTaxLiability(taxPayableOnTI.getTaxPayableOnTotInc().add(computationOfTaxLiability.getEducationCess()));
-		computationOfTaxLiability.setGrossTaxPayable(computationOfTaxLiability.getGrossTaxLiability());
-		computationOfTaxLiability.setCreditUS115JD(new BigInteger("0"));//Don't know need to consult
+
+		if(taxPayableOnDeemedTI.getTotalTax().longValue() >= computationOfTaxLiability.getGrossTaxLiability().longValue()){
+			computationOfTaxLiability.setGrossTaxPayable(taxPayableOnDeemedTI.getTotalTax());
+		}else{
+			computationOfTaxLiability.setGrossTaxPayable(computationOfTaxLiability.getGrossTaxLiability());
+		}
+
+	/*	if(computationOfTaxLiability.getGrossTaxLiability().longValue() > taxPayableOnDeemedTI.getTotalTax().longValue() && itrSelection.equals("ITR4")){
+			ITR_ScheduleAMTC iTR_ScheduleAMTC = new ITR_ScheduleAMTC(scheduleAMTCDocument);
+			ITRScheduleAMTC itrScheduleAMTC = iTR_ScheduleAMTC.getScheduleAMTC(itr, financialYear, inputBeans);
+			computationOfTaxLiability.setCreditUS115JD(itrScheduleAMTC.getTaxSection115JD());
+		}else
+			computationOfTaxLiability.setCreditUS115JD(new BigInteger("0"));
+*/
+		computationOfTaxLiability.setCreditUS115JD(new BigInteger("0"));
 		computationOfTaxLiability.setTaxPayAfterCreditUs115JD(computationOfTaxLiability.getGrossTaxPayable().subtract(computationOfTaxLiability.getCreditUS115JD()));
 
 		// Getting values of relief, Taxes, TDS
@@ -306,7 +371,7 @@ public class PartB_TTI {
 		taxesPaid.setAdvanceTax(advanceTax);
 		taxesPaid.setTDS(bigTotalTds);
 		taxesPaid.setSelfAssessmentTax(selfAssessmentTax);
-		if(itrSelection.equals("ITR4S")){
+		if(itrSelection.equals("ITR4S") || itrSelection.equals("ITR4")){
 			taxesPaid.setTCS(tcsTotal);
 			taxesPaid.setTotalTaxesPaid(taxesPaid.getAdvanceTax().add(taxesPaid.getSelfAssessmentTax()).add(taxesPaid.getTDS()).add(taxesPaid.getTCS()));
 
