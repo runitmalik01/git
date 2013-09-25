@@ -2,7 +2,9 @@ package com.mootly.wcm.model.schedules.y2012_2013;
 
 import java.lang.reflect.Field;
 import java.math.BigInteger;
+import java.util.Map;
 
+import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.springframework.beans.DirectFieldAccessor;
 
 import in.gov.incometaxindiaefiling.y2012_2013.ITR;
@@ -21,6 +23,7 @@ import in.gov.incometaxindiaefiling.y2012_2013.ITR4ScheduleBP.BusinessIncOthThan
 import in.gov.incometaxindiaefiling.y2012_2013.ITR4ScheduleBP.BusinessIncOthThanSpec.DepreciationAllowITAct32;
 import in.gov.incometaxindiaefiling.y2012_2013.ITR4ScheduleBP.BusinessIncOthThanSpec.IncCredPL;
 
+import com.mootly.wcm.beans.DeductionSchedTenADocumemt;
 import com.mootly.wcm.beans.IncBusinessProfessionDoc;
 import com.mootly.wcm.beans.IncBusinessProfessionVar;
 import com.mootly.wcm.beans.OtherInformationDocument;
@@ -29,6 +32,8 @@ import com.mootly.wcm.beans.ProfitAndLossDocument;
 import com.mootly.wcm.beans.ProfitAndLossVariables;
 import com.mootly.wcm.beans.ScheduleDOADocument;
 import com.mootly.wcm.beans.ScheduleDPMDocument;
+import com.mootly.wcm.beans.ScheduleESRDocument;
+import com.mootly.wcm.model.FinancialYear;
 import com.mootly.wcm.services.IndianCurrencyHelper;
 
 public class ITR4_ScheduleBP {
@@ -38,20 +43,36 @@ public class ITR4_ScheduleBP {
 	OtherInformationDocument otherInformationDocument = null;
 	ScheduleDPMDocument scheduleDPMDocument = null;
 	ScheduleDOADocument scheduleDOADocument = null;
+	ScheduleESRDocument scheduleESRDocument = null;
+	DeductionSchedTenADocumemt deductionSchedTenADocumemt = null;
 
 	public ITR4_ScheduleBP(IncBusinessProfessionDoc incBusinessProfessionDoc, ProfitAndLossDocument profitAndLossDocument,
-			OtherInformationDocument otherInformationDocument, ScheduleDPMDocument scheduleDPMDocument, ScheduleDOADocument scheduleDOADocument){
+			OtherInformationDocument otherInformationDocument, ScheduleDPMDocument scheduleDPMDocument, ScheduleDOADocument scheduleDOADocument,
+			ScheduleESRDocument scheduleESRDocument, DeductionSchedTenADocumemt deductionSchedTenADocumemt){
 		this.incBusinessProfessionDoc = incBusinessProfessionDoc;
 		this.profitAndLossDocument = profitAndLossDocument;
 		this.otherInformationDocument = otherInformationDocument;
 		this.scheduleDPMDocument = scheduleDPMDocument;
 		this.scheduleDOADocument = scheduleDOADocument;
+		this.scheduleESRDocument = scheduleESRDocument;
+		this.deductionSchedTenADocumemt = deductionSchedTenADocumemt;
 	}
 
-	public ITR4ScheduleBP getITR4ScheduleBP(ITR itr,ScheduleESR scheduleESR, Schedule10A schedule10a, Schedule10AA schedule10aa){
+	public ITR4ScheduleBP getITR4ScheduleBP(ITR itr, FinancialYear financialYear, Map<String,HippoBean> inputBeans){
 
 		ITR4ScheduleBP iTR4ScheduleBP = new ITR4ScheduleBP();
 		IndianCurrencyHelper indianCurrencyHelper = new IndianCurrencyHelper();
+		//get Schedule ESR
+		ESRSchedule eSRSchedule = new ESRSchedule(scheduleESRDocument);
+		ScheduleESR scheduleESR = eSRSchedule.getScheduleESR(itr);
+
+		//get Schedule10A
+		ITR_Schedule10A iTR_Schedule10A = new ITR_Schedule10A(deductionSchedTenADocumemt);
+		Schedule10A schedule10a = iTR_Schedule10A.getITRSchedule10a(itr, financialYear, inputBeans);
+
+		// get Schedule10AA
+		ITR_Schedule10AA iTR_Schedule10AA = new ITR_Schedule10AA(deductionSchedTenADocumemt);
+		Schedule10AA schedule10aa = iTR_Schedule10AA.getITRSchedule10aa(itr, financialYear, inputBeans);
 
 		//To set Dummy if OtherInformationDocument is null
 		if(otherInformationDocument == null){
@@ -83,7 +104,6 @@ public class ITR4_ScheduleBP {
 			this.otherInformationDocument = otherInformationDocumentDummy;
 		}
 
-		/*
 		//To set Dummy if ProfitLossDocument is null
 		if(profitAndLossDocument == null){
 			ProfitAndLossDocument profitAndLossDocumentDummy = new ProfitAndLossDocument();
@@ -95,13 +115,12 @@ public class ITR4_ScheduleBP {
 				}
 				if(field.getType().getSimpleName().equals(String.class.getSimpleName())){
 					if(field.getName().equals("isAccountMaintain")){
-						directFieldAccessor.setPropertyValue(field.getName(), "Y");
+						directFieldAccessor.setPropertyValue(field.getName(), "Yes");
 					}
 				}
 			}
 			this.profitAndLossDocument = profitAndLossDocumentDummy;
 		}
-		 */
 
 		//To set Dummy if incBusinessProfessionDoc is null
 		if(incBusinessProfessionDoc == null){
