@@ -1166,7 +1166,7 @@
 					</div>
 					<div class="rowlabel">
 						<input id="net_Profit" name="net_Profit"
-							type="text" maxlength="14" 
+							type="text" maxlength="14" readonly="readonly"
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.net_Profit}" />"/>
 					</div>
 				</div>
