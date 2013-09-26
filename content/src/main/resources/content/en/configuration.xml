@@ -42763,7 +42763,9 @@ out_amtCreditBrghtFwrd  = out_amtCreditBrghtFwrd  &gt; 0 ? out_amtCreditBrghtFwr
 
 out_amtCreditCarriedFwrd  = out_amtCreditBrghtFwrd  - (amtCreditUnlisted-0) ;
 
-out_amtCreditCarriedFwrd  = out_amtCreditCarriedFwrd   &gt; 0 ? out_amtCreditCarriedFwrd  : 0;</sv:value>
+out_amtCreditCarriedFwrd  = out_amtCreditCarriedFwrd   &gt; 0 ? out_amtCreditCarriedFwrd  : 0;
+
+out_liabAvailCredit = out_amtCreditCarriedFwrd;</sv:value>
     </sv:property>
     <sv:property sv:name="mootlywcm:title" sv:type="String">
       <sv:value/>
