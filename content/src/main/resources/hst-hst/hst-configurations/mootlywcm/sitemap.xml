@@ -4087,29 +4087,32 @@
 			  </sv:property>
 			</sv:node>
 			<!--  new node to allow copy tax payments  -->
-			<sv:node sv:name="servicerequest-itr-sync-tds-from-dit.html" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
-			  <sv:property sv:name="jcr:primaryType" sv:type="Name">
-			    <sv:value>hst:sitemapitem</sv:value>
-			  </sv:property>
-			  <sv:property sv:name="jcr:uuid" sv:type="String">
-			    <sv:value>766c1208-c661-465e-9551-5ae7abd7b046</sv:value>
-			  </sv:property>
-			  <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
-			    <sv:value>hst:pages/servicerequest-itr-sync-tds-from-dit</sv:value>
-			  </sv:property>
-			  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
-			    <sv:value>action</sv:value>
-			  </sv:property>
-			  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
-			    <sv:value>SYNC_TDS_FROM_DIT</sv:value>
-			  </sv:property>
-			  <sv:property sv:name="hst:refId" sv:type="String">
-			    <sv:value>servicerequest-itr-sync-tds-from-dit</sv:value>
-			  </sv:property>
-			  <sv:property sv:name="hst:relativecontentpath" sv:type="String">
-			    <sv:value>members</sv:value>
-			  </sv:property>
-			</sv:node>
+		<sv:node sv:name="servicerequest-itr-sync-tds-from-dit.html" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+		  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+		    <sv:value>hst:sitemapitem</sv:value>
+		  </sv:property>
+		  <sv:property sv:name="jcr:uuid" sv:type="String">
+		    <sv:value>766c1208-c661-465e-9551-5ae7abd7b046</sv:value>
+		  </sv:property>
+		  <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+		    <sv:value>hst:pages/servicerequest-itr-sync-tds-from-dit</sv:value>
+		  </sv:property>
+		  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+		    <sv:value>action</sv:value>
+		    <sv:value>enable_import_data</sv:value>
+		  </sv:property>
+		  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+		    <sv:value>SYNC_TDS_FROM_DIT</sv:value>
+		    <sv:value>false</sv:value>
+		  </sv:property>
+		  <sv:property sv:name="hst:refId" sv:type="String">
+		    <sv:value>servicerequest-itr-sync-tds-from-dit</sv:value>
+		  </sv:property>
+		  <sv:property sv:name="hst:relativecontentpath" sv:type="String">
+		    <sv:value>members</sv:value>
+		  </sv:property>
+		</sv:node>
+
 			<!-- /new node to allow copy tax payments -->
 			<!-- / New Site Map Item for ITRV Check Status -->
 			<!-- new sitemap for schedule 5a by Pankaj singh -->
