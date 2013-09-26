@@ -214,9 +214,6 @@ public class ITR4XmlGeneratorService  {
 		ITR_ScheduleAMT iTR_ScheduleAMT = new ITR_ScheduleAMT(deductionDocument, deductionSchedTenADocumemt);
 		itr4.setITRScheduleAMT(iTR_ScheduleAMT.getITItrScheduleAMT(itr, financialYear, inputBeans, itr4.getScheduleVIA(), itr4.getPartBTI()));
 
-		ITR_ScheduleAMTC iTR_ScheduleAMTC = new ITR_ScheduleAMTC(scheduleAMTCDocument);
-		itr4.setITRScheduleAMTC(iTR_ScheduleAMTC.getScheduleAMTC(itr, financialYear, inputBeans));
-
 		PartB_TTI partB_TTI = new PartB_TTI(formSixteenDocument, salaryIncomeDocument, houseProperty,
 				otherSourcesDocument, deductionDocument, memberPersonalInformation, taxReliefDocument, advanceTaxDocument,
 				selfAssesmetTaxDocument, tdsFromothersDocument, scheduleSIDocument, capitalAssetDocument, immovablePropertyDocument,
@@ -224,6 +221,10 @@ public class ITR4XmlGeneratorService  {
 				tcsDocument,incBusinessProfessionDoc,profitAndLossDocument, otherInformationDocument, scheduleDPMDocument, scheduleDOADocument,
 				scheduleESRDocument, deductionSchedTenADocumemt,scheduleAMTCDocument);
 		itr4.setPartBTTI(partB_TTI.getPartBTTI(itr, financialYear, inputBeans));
+
+		ITR_ScheduleAMTC iTR_ScheduleAMTC = new ITR_ScheduleAMTC(scheduleAMTCDocument);
+		itr4.setITRScheduleAMTC(iTR_ScheduleAMTC.getScheduleAMTC(itr, financialYear, inputBeans, itr4.getPartBTTI().getComputationOfTaxLiability().getTaxPayableOnDeemedTI().getTotalTax(),
+				itr4.getPartBTTI().getComputationOfTaxLiability().getGrossTaxLiability()));
 
 		PartA_Gen1 partA_Gen1 = new PartA_Gen1(formSixteenDocument, salaryIncomeDocument, houseProperty, otherSourcesDocument,
 				deductionDocument, memberPersonalInformation, taxReliefDocument, advanceTaxDocument, selfAssesmetTaxDocument,
