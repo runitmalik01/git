@@ -229,13 +229,13 @@ public class PartB_TTI {
 			computationOfTaxLiability.setGrossTaxPayable(computationOfTaxLiability.getGrossTaxLiability());
 		}
 
-	/*	if(computationOfTaxLiability.getGrossTaxLiability().longValue() > taxPayableOnDeemedTI.getTotalTax().longValue() && itrSelection.equals("ITR4")){
+		if(computationOfTaxLiability.getGrossTaxLiability().longValue() > taxPayableOnDeemedTI.getTotalTax().longValue() && itrSelection.equals("ITR4")){
 			ITR_ScheduleAMTC iTR_ScheduleAMTC = new ITR_ScheduleAMTC(scheduleAMTCDocument);
-			ITRScheduleAMTC itrScheduleAMTC = iTR_ScheduleAMTC.getScheduleAMTC(itr, financialYear, inputBeans);
+			ITRScheduleAMTC itrScheduleAMTC = iTR_ScheduleAMTC.getScheduleAMTC(itr, financialYear, inputBeans, taxPayableOnDeemedTI.getTotalTax(), computationOfTaxLiability.getGrossTaxLiability());
 			computationOfTaxLiability.setCreditUS115JD(itrScheduleAMTC.getTaxSection115JD());
 		}else
 			computationOfTaxLiability.setCreditUS115JD(new BigInteger("0"));
-*/
+
 		computationOfTaxLiability.setCreditUS115JD(new BigInteger("0"));
 		computationOfTaxLiability.setTaxPayAfterCreditUs115JD(computationOfTaxLiability.getGrossTaxPayable().subtract(computationOfTaxLiability.getCreditUS115JD()));
 
