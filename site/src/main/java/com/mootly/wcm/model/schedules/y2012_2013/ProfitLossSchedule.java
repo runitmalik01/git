@@ -93,7 +93,7 @@ public class ProfitLossSchedule {
 			exciseCustomsVATB.setSplAddDuty(indianCurrencyHelper.bigIntegerRound(profitAndLossDocument.getSpecial_addtionalDuty()));
 			exciseCustomsVATB.setUnionExciseDuty(indianCurrencyHelper.bigIntegerRound(profitAndLossDocument.getUnion_ExciseDuty()));
 			exciseCustomsVATB.setServiceTax(indianCurrencyHelper.bigIntegerRound(profitAndLossDocument.getService_TaxPL()));
-			//exciseCustomsVATB.setVATorSaleTax(indianCurrencyHelper.bigIntegerRound(profitAndLossDocument.getVat_Sales())); remaining field pankaj forgot to make a method for this now working
+			exciseCustomsVATB.setVATorSaleTax(indianCurrencyHelper.bigIntegerRound(profitAndLossDocument.getVat_SalesTaxPL()));
 			exciseCustomsVATB.setOthDutyTaxCess(indianCurrencyHelper.bigIntegerRound(profitAndLossDocument.getAnyOther_TaxPaid()));
 			exciseCustomsVATB.setTotExciseCustomsVAT(indianCurrencyHelper.bigIntegerRound(profitAndLossDocument.getTotal()));
 			dutyTaxPay.setExciseCustomsVAT(exciseCustomsVATB);
