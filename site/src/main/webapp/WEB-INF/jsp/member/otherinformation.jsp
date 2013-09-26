@@ -24,8 +24,7 @@
 			<div class="row-fluid show-grid">
 				<div class="span4">
 					<div class="rowlabel">
-						<label for="accounting_employed"><small>Method of
-								accounting employed in the previous year</small> </label>
+						<label for="accounting_employed"><small><fmt:message key="oi.employed.itr4" /></small> </label>
 					</div>
 					<select id="accounting_employed" name="accounting_employed">
 						<option value="">-SELECT-</option>
@@ -98,8 +97,8 @@
 				</div>
 				<div class="span4">
 					<div class="rowlabel">
-						<label for="stock_valuation"><small>Is there any
-								change in stock valuation method</small> </label>
+						<label for="stock_valuation"><small><fmt:message
+										key="oi.valuation.itr4" /></small> </label>
 					</div>
 					<select id="stock_valuation" name="stock_valuation">
 						<option value="">-SELECT-</option>
@@ -129,8 +128,8 @@
 			<div class="row-fluid show-grid">
 				<div class="span9">
 					<div class="rowlabel">
-						<label for="item_section28"><small>The items
-								falling within the scope of section of 28</small> </label>
+						<label for="item_section28"><small><fmt:message
+										key="oi.section28.itr4" /></small> </label>
 					</div>
 				</div>
 				<div class="span2">
@@ -157,8 +156,8 @@
 			<div class="row-fluid show-grid">
 				<div class="span9">
 					<div class="rowlabel">
-						<label for="escalation_claims"><small>Escalation
-								claims accepted during the previous year</small> </label>
+						<label for="escalation_claims"><small><fmt:message
+										key="oi.claims.itr4" /></small> </label>
 					</div>
 				</div>
 				<div class="span2">
@@ -208,9 +207,8 @@
 			<div class="row-fluid show-grid">
 				<div class="span9">
 					<div class="rowlabel">
-						<label for="premiumpaid_damage"><small>Premium
-								paid for insurance against risk of damage or destruction of
-								stocks or store</small> </label>
+						<label for="premiumpaid_damage"><small><fmt:message
+										key="oi.damage.itr4" /></small> </label>
 					</div>
 				</div>
 				<div class="span2">
@@ -253,8 +251,8 @@
 			<div class="row-fluid show-grid">
 				<div class="span9">
 					<div class="rowlabel">
-						<label for="interest_borrowed"><small>Any amount
-								of interest paid in respect of borrowed capital</small> </label>
+						<label for="interest_borrowed"><small><fmt:message
+										key="oi.borrowed.itr4" /></small> </label>
 					</div>
 				</div>
 				<div class="span2">
@@ -267,8 +265,8 @@
 			<div class="row-fluid show-grid">
 				<div class="span9">
 					<div class="rowlabel">
-						<label for="discount_zerocoupon"><small>Amount of
-								discount on a zero-coupon bond</small> </label>
+						<label for="discount_zerocoupon"><small><fmt:message
+										key="oi.zerocoupon.itr4" /></small> </label>
 					</div>
 				</div>
 				<div class="span2">
@@ -282,8 +280,8 @@
 			<div class="row-fluid show-grid">
 				<div class="span9">
 					<div class="rowlabel">
-						<label for="contributions_provident"><small>Amount
-								of contributions to a recognised provident fund</small> </label>
+						<label for="contributions_provident"><small><fmt:message
+										key="oi.contributions.itr4" /></small> </label>
 					</div>
 				</div>
 				<div class="span2">
@@ -469,9 +467,8 @@
 			<div class="row-fluid show-grid">
 				<div class="span9">
 					<div class="rowlabel">
-						<label for="expenditure_penalty"><small>Expenditure
-								by way of penalty or fine for violation of any law for the time
-								being in force</small> </label>
+						<label for="expenditure_penalty"><small><fmt:message
+										key="oi.penalty.itr4" /></small> </label>
 					</div>
 				</div>
 				<div class="span2">
@@ -499,9 +496,8 @@
 			<div class="row-fluid show-grid">
 				<div class="span9">
 					<div class="rowlabel">
-						<label for="expenditure_incurred"><small>Expenditure
-								incurred for any purpose which is an offence or which is
-								prohibited by law</small> </label>
+						<label for="expenditure_incurred"><small><fmt:message
+										key="oi.incurred.itr4" /></small> </label>
 					</div>
 				</div>
 				<div class="span2">
@@ -529,9 +525,8 @@
 			<div class="row-fluid show-grid">
 				<div class="span9">
 					<div class="rowlabel">
-						<label for="amount_expenditure"><small>Amount of
-								expenditure in relation to income which does not form part of
-								total income</small> </label>
+						<label for="amount_expenditure"><small><fmt:message
+										key="oi.expenditure.itr4" /></small> </label>
 					</div>
 				</div>
 				<div class="span2">
@@ -590,8 +585,8 @@
 			<div class="row-fluid show-grid">
 				<div class="span9">
 					<div class="rowlabel">
-						<label for="amount_ratelevied"><small>Amount of
-								tax or rate levied or assessed on the basis of profits</small> </label>
+						<label for="amount_ratelevied"><small><fmt:message
+										key="oi.ratelevied.itr4" /></small> </label>
 					</div>
 				</div>
 				<div class="span2">
@@ -679,8 +674,8 @@
 			<div class="row-fluid show-grid">
 				<div class="span9">
 					<div class="rowlabel">
-						<label for="amount_persons"><small>Amounts paid to
-								persons specified in section 40A(2)(b)</small> </label>
+						<label for="amount_persons"><small><fmt:message
+										key="oi.persons.itr4" /></small> </label>
 					</div>
 				</div>
 				<div class="span2">
@@ -765,8 +760,8 @@
 			<div class="row-fluid show-grid">
 				<div class="span9">
 					<div class="rowlabel">
-						<label for="sum_naturetax"><small>Any sum in the
-								nature of tax, duty, cess or fee under any law</small> </label>
+						<label for="sum_naturetax"><small><fmt:message
+										key="oi.naturetax.itr4" /></small> </label>
 					</div>
 				</div>
 				<div class="span2">
