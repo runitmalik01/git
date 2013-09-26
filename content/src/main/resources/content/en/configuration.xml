@@ -26997,8 +26997,7 @@ acknowledgement&lt;/p&gt;
 <!-- /profit and loss itr4 -->
 <!-- income from business or profit -->
 
-
-<sv:node sv:name="incomebusinessprofession">
+<sv:node sv:name="incomebusinessprofession" >
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hippo:handle</sv:value>
   </sv:property>
@@ -27017,7 +27016,7 @@ acknowledgement&lt;/p&gt;
       <sv:value>hippotranslation:translated</sv:value>
     </sv:property>
     <sv:property sv:name="jcr:uuid" sv:type="String">
-      <sv:value>dd14b15e-a4cc-4898-b73b-de6d0377cf2a</sv:value>
+      <sv:value>740573c0-e79d-4b93-9209-704c610bf22a</sv:value>
     </sv:property>
     <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
       <sv:value>live</sv:value>
@@ -27042,13 +27041,13 @@ acknowledgement&lt;/p&gt;
       <sv:value>2013-09-06T11:30:20.509+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-      <sv:value>2013-09-11T12:12:45.936+05:30</sv:value>
+      <sv:value>2013-09-26T13:20:18.517+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
       <sv:value>admin</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-      <sv:value>2013-09-11T12:15:14.195+05:30</sv:value>
+      <sv:value>2013-09-26T13:27:33.129+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippotranslation:id" sv:type="String">
       <sv:value>5cee9a36-081b-4db4-8828-a10054997aea</sv:value>
@@ -27087,7 +27086,7 @@ acknowledgement&lt;/p&gt;
         <sv:value>decimal</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
-        <sv:value>amount</sv:value>
+        <sv:value>amountNeg</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
         <sv:value>profitBeforeTax</sv:value>
@@ -27149,7 +27148,7 @@ acknowledgement&lt;/p&gt;
         <sv:value/>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
-        <sv:value>amount</sv:value>
+        <sv:value>amountNeg</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
         <sv:value>profitLoss_SpecualtiveBusiness</sv:value>
@@ -27211,7 +27210,7 @@ acknowledgement&lt;/p&gt;
         <sv:value>decimal</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
-        <sv:value>amount</sv:value>
+        <sv:value>amountNeg</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
         <sv:value>profitLoss_SpecifiedBusiness</sv:value>
@@ -27273,7 +27272,7 @@ acknowledgement&lt;/p&gt;
         <sv:value>decimal</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
-        <sv:value>amount</sv:value>
+        <sv:value>amountNeg</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
         <sv:value>profiitLoss_IncludeSchPL</sv:value>
@@ -27335,7 +27334,7 @@ acknowledgement&lt;/p&gt;
         <sv:value/>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
-        <sv:value>amount</sv:value>
+        <sv:value>amountNeg</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
         <sv:value>incomeCredited_ProfitLossAcc</sv:value>
@@ -27459,7 +27458,7 @@ acknowledgement&lt;/p&gt;
         <sv:value/>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
-        <sv:value>amount</sv:value>
+        <sv:value>amountNeg</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
         <sv:value>shareIncome_Firms</sv:value>
@@ -27521,7 +27520,7 @@ acknowledgement&lt;/p&gt;
         <sv:value/>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
-        <sv:value>amount</sv:value>
+        <sv:value>amountNeg</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
         <sv:value>shareIncome_Firms_AOP</sv:value>
@@ -28637,7 +28636,7 @@ acknowledgement&lt;/p&gt;
         <sv:value/>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
-        <sv:value>amount</sv:value>
+        <sv:value>amountNeg</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
         <sv:value>anyIncNotInclude_PLAcc</sv:value>
@@ -31108,6 +31107,7 @@ acknowledgement&lt;/p&gt;
     </sv:node>
   </sv:node>
 </sv:node>
+
 
 
 <!-- /income from business -->
@@ -35563,8 +35563,8 @@ acknowledgement&lt;/p&gt;
 <!-- end of business profession screen config  -->
 <!--Start of OtherInformation Screen Config For ITR4-->
 
-<?xml version="1.0" encoding="UTF-8"?>
-<sv:node sv:name="otherinformation" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+
+<sv:node sv:name="otherinformation" >
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hippo:handle</sv:value>
   </sv:property>
