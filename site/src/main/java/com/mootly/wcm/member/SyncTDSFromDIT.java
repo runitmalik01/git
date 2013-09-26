@@ -47,6 +47,17 @@ public class SyncTDSFromDIT extends ITReturnComponent {
 	public void doBeforeRender(HstRequest request, HstResponse response) {
 		// TODO Auto-generated method stub
 		super.doBeforeRender(request, response);
+		/**
+		 * for checking isimport flag for preventing multiple import
+		 * 
+		 */
+		//Twenty26ASTCS twenty26ASTCS = new Twenty26ASTCS();
+		// String  valueImport = twenty26ASTCS.getIsImported();
+
+		String enableImportData = request.getRequestContext().getResolvedSiteMapItem().getParameter("enable_import_data");
+		if(null != enableImportData){
+			request.setAttribute("enableImportData", enableImportData);
+		}
 		String message = request.getParameter("Success");
 		if(null != message){
 			request.setAttribute("message", message);
@@ -93,7 +104,7 @@ public class SyncTDSFromDIT extends ITReturnComponent {
 				//e.printStackTrace();
 			}
 			WorkflowPersistenceManager wpm = getWorkflowPersistenceManager(persistableSession);
-			
+
 			saveElementsToRepository(twenty26asResponse.getTwenty26asTaxPayments(),SelfAssesmetTaxDocument.class,SelfAssesmentTaxDetail.class,persistableSession,wpm);
 			saveElementsToRepository(twenty26asResponse.getTwenty26astdsOtherThanSalaries(),TdsFromothersDocument.class,TdsOthersDetail.class,persistableSession,wpm);
 			saveElementsToRepository(twenty26asResponse.getTwenty26astdsOnSalaries(),FormSixteenDocument.class,FormSixteenDetail.class,persistableSession,wpm);
@@ -115,7 +126,7 @@ public class SyncTDSFromDIT extends ITReturnComponent {
 			e.printStackTrace();
 		}
 	}
-	
+
 	protected void saveElementsToRepository(List<? extends Object> listOfObjects,Class<? extends HippoBean> parentBeanClass,Class<? extends HippoBean> childBeanClass,Session persistableSession, WorkflowPersistenceManager wpm) throws InvalidNavigationException {
 		ITReturnComponentHelper itReturnComponentHelper = getITReturnComponentHelper();
 		FormMapHelper formMapHelper = new FormMapHelper();
@@ -139,13 +150,13 @@ public class SyncTDSFromDIT extends ITReturnComponent {
 		@Override
 		public void beforeCreate(HippoBean hippoBean) {
 			// TODO Auto-generated method stub
-			
+
 		}
 
 		@Override
 		public void afterCreate(HippoBean hippoBean) {
 			// TODO Auto-generated method stub
-			
+
 		}
 
 		@Override
@@ -157,7 +168,7 @@ public class SyncTDSFromDIT extends ITReturnComponent {
 		@Override
 		public void afterSaveNewBean(HippoBean hippoBean) {
 			// TODO Auto-generated method stub
-			
+
 		}
 
 		@Override
@@ -169,22 +180,22 @@ public class SyncTDSFromDIT extends ITReturnComponent {
 		@Override
 		public void afterUpdate(HippoBean hippoBean) {
 			// TODO Auto-generated method stub
-			
+
 		}
 	}
-	
+
 	class ChildBeanLifeCycleHandler implements BeanLifecycle<HippoBean> {
 
 		@Override
 		public void beforeCreate(HippoBean hippoBean) {
 			// TODO Auto-generated method stub
-			
+
 		}
 
 		@Override
 		public void afterCreate(HippoBean hippoBean) {
 			// TODO Auto-generated method stub
-			
+
 		}
 
 		@Override
@@ -196,7 +207,7 @@ public class SyncTDSFromDIT extends ITReturnComponent {
 		@Override
 		public void afterSaveNewBean(HippoBean hippoBean) {
 			// TODO Auto-generated method stub
-			
+
 		}
 
 		@Override
@@ -208,11 +219,11 @@ public class SyncTDSFromDIT extends ITReturnComponent {
 		@Override
 		public void afterUpdate(HippoBean hippoBean) {
 			// TODO Auto-generated method stub
-			
+
 		}
 	}
-	
-	
+
+
 }
 
 
