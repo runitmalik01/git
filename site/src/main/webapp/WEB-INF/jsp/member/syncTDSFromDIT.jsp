@@ -31,7 +31,7 @@
 	and click on Import if you want this data to be imported in your tax
 	return</h3>
 <c:choose>
-	<c:when test="${pageAction == 'SYNC_TDS_FROM_DIT'}">
+	<c:when test="${pageAction == 'SYNC_TDS_FROM_DIT' && enableImportData=='true'}">
 
 		<form id="tdsfromdit" action="${actionUrl}" method="post"
 			name="tdsfromdit">
@@ -193,41 +193,6 @@
 					</c:choose>
 				</tbody>
 			</table>
-			<h4 style="font-style: italic; color: blue;">Advance Tax</h4>
-			<table class="table table-striped">
-				<thead>
-					<tr>
-						<th>BSRCode</th>
-						<th>Srl No Of Chalan</th>
-						<th>Date Deposite</th>
-						<th>Amount</th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:choose>
-						<c:when
-							test="${not empty  twenty26asResponse.twenty26asTaxPayments && fn:length(twenty26asResponse.twenty26asTaxPayments) > 0}">
-							<c:forEach var="anItem"
-								items="${twenty26asResponse.twenty26asTaxPayments}">
-								<tr>
-									<td><c:out value="${anItem.BSRCode}" />
-									</td>
-									<td><c:out value="${anItem.srlNoOfChaln}" />
-									</td>
-									<td><c:out value="${anItem.dateDep}" />
-									</td>
-									<td align="right"><c:out value="${anItem.amt}" />
-									</td>
-								</tr>
-							</c:forEach>
-						</c:when>
-						<c:otherwise>
-							<h5 style="font-style: italic; color: blue;">No data for Advance
-								Tax</h5>
-						</c:otherwise>
-					</c:choose>
-				</tbody>
-			</table>
 
 			<div class="row-fluid show-grid">
 				<div class="span3 offset10">
@@ -238,7 +203,7 @@
 		</form>
 	</c:when>
 	<c:otherwise>
-abhishek bhardwaj
+	<h1> Action Can't be Proceed !!! You are not authorized for this service at this time.</h1>
 </c:otherwise>
 </c:choose>
 <res:client-validation formId="tdsfromdit"
