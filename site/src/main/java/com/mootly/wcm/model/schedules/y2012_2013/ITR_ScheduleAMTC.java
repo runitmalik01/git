@@ -54,8 +54,9 @@ public class ITR_ScheduleAMTC {
 		this.scheduleAMTCDocument = scheduleAMTCDocument;
 	}
 
-	public ITRScheduleAMTC getScheduleAMTC(ITR itr, FinancialYear financialYear, Map<String, HippoBean> inputBeans){
+	public ITRScheduleAMTC getScheduleAMTC(ITR itr, FinancialYear financialYear, Map<String, HippoBean> inputBeans, BigInteger totalTax, BigInteger grossTaxLiability){
 
+		/*
 		MemberPersonalInformation memberPersonalInformation = (MemberPersonalInformation) inputBeans.get(MemberPersonalInformation.class.getSimpleName().toLowerCase());
 		SalaryIncomeDocument salaryIncomeDocument = (SalaryIncomeDocument) inputBeans.get(SalaryIncomeDocument.class.getSimpleName().toLowerCase());
 		HouseProperty houseProperty = (HouseProperty) inputBeans.get(HouseProperty.class.getSimpleName().toLowerCase());
@@ -90,7 +91,7 @@ public class ITR_ScheduleAMTC {
 				tcsDocument,incBusinessProfessionDoc,profitAndLossDocument,otherInformationDocument,scheduleDPMDocument,scheduleDOADocument,
 				scheduleESRDocument,deductionSchedTenADocumemt,scheduleAMTCDocument);
 		PartBTTI partBTTI = partB_TTI.getPartBTTI(itr, financialYear, inputBeans);
-
+		 */
 		IndianCurrencyHelper currencyHelper = new IndianCurrencyHelper();
 		List<ScheduleAMTC> scheduleAMTCList = new ArrayList<ScheduleAMTC>();
 		ITRScheduleAMTC itrScheduleAMTC = new ITRScheduleAMTC();
@@ -115,8 +116,8 @@ public class ITR_ScheduleAMTC {
 		}
 		scheduleAMTCList.add(scheduleAMTC);
 		itrScheduleAMTC.getScheduleAMTC().addAll(scheduleAMTCList);
-		itrScheduleAMTC.setTaxSection115JC(partBTTI.getComputationOfTaxLiability().getTaxPayableOnDeemedTI().getTotalTax());
-		itrScheduleAMTC.setTaxOthProvisions(partBTTI.getComputationOfTaxLiability().getGrossTaxLiability());
+		itrScheduleAMTC.setTaxSection115JC(totalTax);
+		itrScheduleAMTC.setTaxOthProvisions(grossTaxLiability);
 		itrScheduleAMTC.setAmtTaxCreditAvailable(itrScheduleAMTC.getTaxOthProvisions().subtract(itrScheduleAMTC.getTaxSection115JC()).doubleValue() > 0 ? itrScheduleAMTC.getTaxOthProvisions().subtract(itrScheduleAMTC.getTaxSection115JC()) : new BigInteger("0"));
 		itrScheduleAMTC.setTotAMTGross(currencyHelper.bigIntegerRound(scheduleAMTCDocument.getAmtCreditGross()));
 		itrScheduleAMTC.setTotSetOffEys(currencyHelper.bigIntegerRound(scheduleAMTCDocument.getAmtCreditSetOff()));
