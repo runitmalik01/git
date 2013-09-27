@@ -69,7 +69,7 @@ public class MemberSecurity extends BaseComponent {
 				memberPath=ContentStructure.getSignUpDocumentPath(getNormalizedUserName(request)).toLowerCase();
 				memberSignupDoc=(MemberSignupDocument)getObjectBeanManager(request).getObject(memberPath);
 				if(memberSignupDoc!=null){
-					boolean hexValue=SecureHashGeneration.isHexFormat(memberSignupDoc.getPassword().toString());
+					boolean hexValue = SecureHashGeneration.isHexFormat(memberSignupDoc.getPassword().toString());
 					log.info("is Password in SHA-256 or hexValue:"+hexValue);
 					if(memberSignupDoc.getSecurityQuestions() && StringUtils.isBlank(sec_param_sitemMap) && StringUtils.isBlank(sec_param_url)){							
 						response.sendRedirect(targetPath);
@@ -106,9 +106,6 @@ public class MemberSecurity extends BaseComponent {
 		if(questionsMap!=null){
 			request.setAttribute("questionsMap", questionsMap);
 		}
-		uuid = request.getRequestContext().getResolvedSiteMapItem().getParameter("uuid");
-		String action = request.getRequestContext().getResolvedSiteMapItem().getParameter("action");
-		pageAction = action !=null ? PAGE_ACTION.DEFAULT : PAGE_ACTION.valueOf(action);
 	}
 	@Override
 	public void doAction(HstRequest request, HstResponse response)

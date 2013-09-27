@@ -58,7 +58,7 @@
 		</html>
 	</xsl:template>
 	
-    <xsl:template match="ITR1FORM:ITR1 | ITR2FORM:ITR2">
+    <xsl:template match="ITR1FORM:ITR1 | ITR2FORM:ITR2 | ns5:ITR4S">
              <xsl:apply-templates />
     </xsl:template>
 
@@ -331,7 +331,7 @@
 		<br />
 		 -->
 	</xsl:template>
-	<xsl:template match="ITRForm:ITR1_IncomeDeductions">
+	<xsl:template match="ITRForm:ITR1_IncomeDeductions | ITRForm:ITR4S_IncomeDeductions">
 	<span style="font-size:16.0pt;line-height:115%;font-family:Algerian">Computation of Total taxable Income</span>
 		<table width="100%" border="1" id="taxi">
 			<tr>
@@ -384,7 +384,7 @@
 		</table>
 		<xsl:apply-templates select="ITRForm:DeductUndChapVIA" />
 	</xsl:template>
-	<xsl:template match="ITRForm:ITR1_TaxComputation | ITRForm:ComputationOfTaxLiability">
+	<xsl:template match="ITRForm:ITR1_TaxComputation | ITRForm:ComputationOfTaxLiability | ITRForm:ITR4S_TaxComputation">
 		<table width="100%" border="1" id="taxc">
 			<tr>
 				<th colspan="2">Tax Information</th>

@@ -10,7 +10,6 @@
 <hippo-gogreen:title title="${ScheduleSI}" />
 <hst:actionURL var="actionUrl"></hst:actionURL> 
 <w4india:itrmenu/>
-<c:out value="${ipAddress}"/>
 <c:if test="${not empty formMap}">
 	<c:forEach items="${formMap.message}" var="item">
 		<div class="alert alert-error">
@@ -60,8 +59,8 @@
 							<td align="center"><div class="span2 rowlabel">
 									<a href="${scriptName}/${scheduleSiDetail.canonicalUUID}/itrschedulesiedit"
 										class="btn btn-primary"><i class="icon-edit icon-white"></i><span><strong>Edit</strong></span></a>&nbsp;
-									<a href="${scriptName}/${scheduleSiDetail.canonicalUUID}/itrschedulesidelete" data-confirm=""
-							class="btn btn-danger"><i class="icon-trash icon-white"></i><span><strong>Delete</strong></span></a>
+									<a href="${scriptName}/${scheduleSiDetail.canonicalUUID}/itrschedulesidelete" data-confirm="" class="btn btn-danger">
+									<i class="icon-trash icon-white"></i><span><strong>Delete</strong></span></a>
 								</div></td>
 						</tr>
 					</c:if>
@@ -343,7 +342,17 @@
 			  });
 			}
         });
-   
+    $('a[data-confirm]').click(function(ev) {
+        var href = $(this).attr('href');
+
+        if (!$('#dataConfirmModal').length) {
+            $('body').append('<div id="dataConfirmModal" class="modal" role="dialog" aria-labelledby="dataConfirmLabel" aria-hidden="true"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button><h3 id="dataConfirmLabel">Please Confirm</h3></div><div class="modal-body"></div><div class="modal-footer"><button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button><a class="btn btn-primary" id="dataConfirmOK">OK</a></div></div>');
+        }
+        $('#dataConfirmModal').find('.modal-body').text("Are you sure you want to delete?");
+        $('#dataConfirmOK').attr('href', href);
+        $('#dataConfirmModal').modal({show:true});
+        return false;
+    });
   });
 </hst:element>
 <hst:headContribution element="${uiCustom}" category="jsInternal"/>

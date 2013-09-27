@@ -15,7 +15,6 @@ import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.springframework.beans.DirectFieldAccessor;
 
 import com.mootly.wcm.beans.AdvanceTaxDocument;
-import com.mootly.wcm.beans.BalanceSheetDocument;
 import com.mootly.wcm.beans.CapitalAssetDocument;
 import com.mootly.wcm.beans.DeductionDocument;
 import com.mootly.wcm.beans.DeductionSchedTenADocumemt;
@@ -96,7 +95,7 @@ public class ITR_ScheduleAMTC {
 		List<ScheduleAMTC> scheduleAMTCList = new ArrayList<ScheduleAMTC>();
 		ITRScheduleAMTC itrScheduleAMTC = new ITRScheduleAMTC();
 		ScheduleAMTC scheduleAMTC = new ScheduleAMTC();
-		scheduleAMTC.setAssYr(financialYear.getDisplayAssessmentYear());
+		scheduleAMTC.setAssYr(financialYear.getAssessmentYearForDITSOAPCall());//Assessment Year should be like e.g. 2013-14
 		if(scheduleAMTCDocument == null){
 			ScheduleAMTCDocument dummyAmtcDocument = new ScheduleAMTCDocument();
 			Field[] balSheetFields = ScheduleAMTCDocument.class.getDeclaredFields();
@@ -113,6 +112,7 @@ public class ITR_ScheduleAMTC {
 			scheduleAMTC.setAmtCreditUtilized(currencyHelper.bigIntegerRound(scheduleAMTCDocument.getAmtCreditUnlisted()));
 			scheduleAMTC.setAmtCreditSetOfEy(currencyHelper.bigIntegerRound(scheduleAMTCDocument.getAmtCreditSetOff()));
 			scheduleAMTC.setAmtCreditBalBroughtFwd(currencyHelper.bigIntegerRound(scheduleAMTCDocument.getAmtCreditBrghtFwrd()));
+			scheduleAMTC.setBalAmtCreditCarryFwd(currencyHelper.bigIntegerRound(scheduleAMTCDocument.getAmtCreditCarriedFwrd()));
 		}
 		scheduleAMTCList.add(scheduleAMTC);
 		itrScheduleAMTC.getScheduleAMTC().addAll(scheduleAMTCList);
@@ -125,7 +125,7 @@ public class ITR_ScheduleAMTC {
 		itrScheduleAMTC.setTotAmtCreditUtilisedCY(currencyHelper.bigIntegerRound(scheduleAMTCDocument.getAmtCreditUnlisted()));
 		itrScheduleAMTC.setTotBalAMTCreditCF(currencyHelper.bigIntegerRound(scheduleAMTCDocument.getAmtCreditCarriedFwrd()));
 		itrScheduleAMTC.setTaxSection115JD(currencyHelper.bigIntegerRound(scheduleAMTCDocument.getAmtCreditUnlisted()));
-		itrScheduleAMTC.setAmtLiabilityAvailable(currencyHelper.bigIntegerRound(scheduleAMTCDocument.getAmtCreditCarriedFwrd()));
+		itrScheduleAMTC.setAmtLiabilityAvailable(currencyHelper.bigIntegerRound(scheduleAMTCDocument.getLiabAvailCredit()));
 
 		return itrScheduleAMTC;
 	}

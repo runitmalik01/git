@@ -16,7 +16,7 @@
 </c:if>
 <form id="frmchangepass" action="${actionUrl}" method="post">
 	<c:set value="<%=request.getUserPrincipal() != null ? request.getUserPrincipal().getName().replaceAll(\"@\",\"-at-\") :\"\"%>" var="loggedin"></c:set>
-	<c:if test="${(not empty loggedin) || (empty loggedin && changePass== true)}">
+	<c:if test="${(not empty loggedin && empty notify) || (empty loggedin && changePass== true && empty notify)}">
 		<fieldset>
 			<legend>
 				<small><strong>CHANGE PASSWORD!!</strong></small>

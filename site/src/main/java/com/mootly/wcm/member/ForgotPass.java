@@ -39,7 +39,11 @@ public class ForgotPass extends BaseComponent {
 	@Override
 	public void doBeforeRender(HstRequest request, HstResponse response) {
 		// TODO Auto-generated method stub
-		super.doBeforeRender(request, response);
+		super.doBeforeRender(request, response);		
+		if(request.getUserPrincipal() != null){//If User logged in then this screen should not be accessible to user
+			response.setRenderPath("jsp/security/invalidoperation.jsp");
+			return;
+		}
 		String enableSecurityQuestion = request.getRequestContext().getResolvedSiteMapItem().getParameter("enableSecurityQuestion");
 		request.setAttribute("enableSecurityQuestion", enableSecurityQuestion); //important parameter decide that Security question will enable or not
 		request.setAttribute(ERRORS, request.getParameterValues(ERRORS));
@@ -104,7 +108,8 @@ public class ForgotPass extends BaseComponent {
 		if(memberSignupDocument!= null){
 			if((memberSignupDocument.getEmail().toString()).equalsIgnoreCase(email)){
 				log.info("have security Qyestions for member/request for email "+memberSignupDocument.getSecurityQuestions());
-				if(recoverType.equals("via-question") && memberSignupDocument.getSecurityQuestions() && memberSignupDocument.getSecurityQuestionAnswerValueListList().size()!=0){
+				if(recoverType.equals("via-question") && memberSignupDocument.getSecurityQuestions() && memberSignupDocument.getSecurityQuestionAnswerValueListList().size() > 0
+						&& memberSignupDocument.getSecurityQuestionAnswerValueListList() != null){
 					response.setRenderParameter("email_ur", email);
 					response.setRenderParameter("securityQuestion","true");
 					return;

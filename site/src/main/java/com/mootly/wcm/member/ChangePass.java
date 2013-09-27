@@ -65,26 +65,30 @@ public class ChangePass extends BaseComponent {
 		String change=getPublicRequestParameter(request, "ch");
 		String member=getPublicRequestParameter(request, "member");
 		if(change!=null&& member!=null){
-			try {
-				String userName=SecureHashGeneration.simpleBase64Decrytion(member);
-				String memberPath=ContentStructure.getMemberFolder(request, userName.replaceAll("@", "-at-"));
-				MemberSignupDocument memberFolder=(MemberSignupDocument) getObjectBeanManager(request).getObject(memberPath+"/"+MemberSignupDocument.NODE_NAME);
-				if(memberFolder!=null){
-					if(memberFolder.getActivationCode().equals(change)){
-						request.setAttribute("changePass", "true");
-						request.setAttribute("userName", userName);	
+			if(request.getUserPrincipal() == null){
+				try {
+					String userName=SecureHashGeneration.simpleBase64Decrytion(member);
+					String memberPath=ContentStructure.getMemberFolder(request, userName.replaceAll("@", "-at-"));
+					MemberSignupDocument memberFolder=(MemberSignupDocument) getObjectBeanManager(request).getObject(memberPath+"/"+MemberSignupDocument.NODE_NAME);
+					if(memberFolder!=null){
+						if(memberFolder.getActivationCode().equals(change)){
+							request.setAttribute("changePass", "true");
+							request.setAttribute("userName", userName);	
+						}else{
+							request.setAttribute("notify", "true");
+						}
 					}else{
 						request.setAttribute("notify", "true");
-					}
-				}else{
-					request.setAttribute("notify", "true");
-				}	
-			} catch (ObjectBeanManagerException e) {
-				// TODO Auto-generated catch block
-				log.warn("Error while decrypt the data or get Object from repository",e);
+					}	
+				} catch (ObjectBeanManagerException e) {
+					// TODO Auto-generated catch block
+					log.warn("Error while decrypt the data or get Object from repository",e);
+				}
+			}else{
+				response.setRenderPath("jsp/security/invalidoperation.jsp");
+				return; 
 			}
 		}
-
 	}
 
 	@Override
@@ -107,14 +111,12 @@ public class ChangePass extends BaseComponent {
 				if(objSignup!=null){
 					//check for validation
 					List<String> errors=new ArrayList<String>();
-					
 					if(loggedOffuserName == null){
 						if (StringUtils.isEmpty(Old_Password)) {
 							errors.add("signup.password.error.required");
-						}else{							
-                            // here we are matching the current password with the password in repository
+						}else if(!objSignup.getPassword().toString().equals(Old_Password)){ // here we are matching the current password with the password in repository
 							if(!objSignup.getPassword().toString().equals(SecureHashGeneration.passSHAdigest(Old_Password))){
-								errors.add("signup.password.error.mismatch");
+								errors.add("signup.password.error.mismatch");	
 							}
 						}
 					}
@@ -141,6 +143,10 @@ public class ChangePass extends BaseComponent {
 							Map<String, Object> velocityContext=new HashMap<String, Object>(); //look it need to be change the date according to new implementation							
 							velocityContext.put("date", Calendar.getInstance().getTime());
 							sendEmail(request,new String[]{userNameNormalized.replaceAll("-at-", "@")}, null, null, "changepass_ack", velocityContext);
+						}
+						if(request.getSession()!=null){
+							log.info("Lets invalidate session of User");
+							request.getSession().invalidate();//kill session of logged in user.	
 						}
 						response.sendRedirect(UrlUtility.MemberLogin+"?SUCCESS=CHANGE");
 					}

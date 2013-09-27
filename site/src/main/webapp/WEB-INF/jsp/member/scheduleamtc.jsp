@@ -35,7 +35,7 @@
 				<div class="rowlabel">
 					<input id="taxUndSec115JC" name="taxUndSec115JC" type="text"
 						maxlength="14" class="decimal"
-						value="${parentBean.taxUndSec115JC }" readonly="readonly" />
+						value="${taxUndSec115JC }" readonly="readonly" />
 				</div>
 			</div></div>
 			<div class="row-fluid show-grid">
@@ -49,7 +49,7 @@
 				<div class="rowlabel">
 					<input id="taxUnderOtherProv" name="taxUnderOtherProv" type="text"
 						maxlength="14" class="decimal"
-						value="${parentBean.taxUnderOtherProv}" readonly="readonly" />
+						value="${taxUnderOtherProv}" readonly="readonly" />
 				</div>
 			</div>
 			</div>
@@ -63,7 +63,7 @@
 				<div class="rowlabel">
 					<input id="taxAgainstCredit" name="taxAgainstCredit" type="text"
 						maxlength="14" class="decimal"
-						value="${parentBean.taxAgainstCredit}"
+						value="${taxAgainstCredit}"
 						readonly="readonly" />
 				</div>
 			</div>

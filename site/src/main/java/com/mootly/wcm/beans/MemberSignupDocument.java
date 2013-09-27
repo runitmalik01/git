@@ -156,6 +156,7 @@ public class MemberSignupDocument extends BaseDocument implements ContentNodeBin
 	 */
 	public Boolean getRandomPassword() {
 		if(randomPassword==null) randomPassword=getProperty("mootlywcm:randomPassword");
+		randomPassword = randomPassword == null ? false : randomPassword;
 		return randomPassword;
 	}
 	/**
@@ -169,6 +170,7 @@ public class MemberSignupDocument extends BaseDocument implements ContentNodeBin
 	 */
 	public Boolean getSecurityQuestions() {
 		if(securityQuestions==null) securityQuestions=getProperty("mootlywcm:securityQuestions");
+		securityQuestions = securityQuestions == null ? false : securityQuestions;
 		return securityQuestions;
 	}
 	/**
@@ -227,7 +229,7 @@ public class MemberSignupDocument extends BaseDocument implements ContentNodeBin
 				node.setProperty("mootlywcm:groups", memberSignup.getGroups());
 			}
 			
-			if(memberSignup.getSecurityQuestionAnswerValueListList() !=null && memberSignup.getSecurityQuestionAnswerValueListList().size() != 0){
+			if(memberSignup.getSecurityQuestionAnswerValueListList() !=null && memberSignup.getSecurityQuestionAnswerValueListList().size() > 0){
 				for(SecurityQuestionAnswerValueList secQuesAnsDoc:getSecurityQuestionAnswerValueListList()){
 					if (!secQuesAnsDoc.isMarkedForDeletion()) {
 						javax.jcr.Node html = node.addNode(PROP_DETAIL_BEAN, PROP_DETAIL_BEAN);

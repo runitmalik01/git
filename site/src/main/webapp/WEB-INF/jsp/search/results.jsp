@@ -17,7 +17,15 @@
 --%>
 
 <%@include file="../includes/tags.jspf" %>
-<hst:link var="homeLink" siteMapItemRefId="home"></hst:link>
+<c:set value="<%=request.getUserPrincipal() != null ? request.getUserPrincipal().getName().replaceAll(\"@\",\"-at-\") :\"\"%>" var="loggedin"></c:set>
+<c:choose>
+	<c:when test="${not empty loggedin}">
+		<hst:link var="homeLink" siteMapItemRefId="itreturnhome"></hst:link>
+	</c:when>
+	<c:otherwise>
+		<hst:link var="homeLink" siteMapItemRefId="home"></hst:link>
+	</c:otherwise>
+</c:choose>
 <c:set var="searchresultstitle"><fmt:message key="search.results.title"/></c:set>
 <hippo-gogreen:title title="${searchresultstitle}"/>
 <div class="page">
