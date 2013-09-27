@@ -227,7 +227,7 @@ public final class IndianCurrencyHelper {
 	 **/
 	public static boolean between(Date date, Date dateStart, Date dateEnd) {
 		if (date != null && dateStart != null && dateEnd != null) {
-			if (date.after(dateStart) && date.before(dateEnd)) {
+			if ((date.after(dateStart)||date.equals(dateStart)) && (date.before(dateEnd)||date.equals(dateEnd))) {
 				return true;
 			}
 			else {
