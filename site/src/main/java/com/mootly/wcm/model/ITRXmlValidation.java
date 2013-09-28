@@ -19,7 +19,7 @@ public enum ITRXmlValidation {
 
 	VALIDATE1(true,"memberschedule5a",ScheduleFiveADocument.class.getSimpleName(),new ITRForm[]{ITRForm.ITR2,ITRForm.ITR4},new ValidateProperty[]{}),
 	VALIDATE2(true,"schedule-business-profession",BusinessProfessionDocument.class.getSimpleName(),new ITRForm[]{ITRForm.ITR4S},new ValidateProperty[]{}),
-	VALIDATE3(true,"businessnature",NatureBusinessDocument.class.getSimpleName(),new ITRForm[]{ITRForm.ITR4S},new ValidateProperty[]{}),
+	VALIDATE3(true,"businessnature",NatureBusinessDocument.class.getSimpleName(),new ITRForm[]{ITRForm.ITR4S,ITRForm.ITR4},new ValidateProperty[]{}),
 	VALIDATE4(true,"assetandliability",AssetAndLiabilityDocument.class.getSimpleName(),new ITRForm[]{ITRForm.ITR4},new ValidateProperty[]{ValidateProperty.PROP_1,ValidateProperty.PROP_2}),
 	UNKOWN;
 
