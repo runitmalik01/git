@@ -66,8 +66,8 @@ public class BusinessProfessionDocument extends FlexibleDocument implements Cont
 		}
 		if (formMap == null) return;
 		
-		if(formMap.getField("grossTurnOver")!=null) setGrossPresumptIncome(Double.parseDouble(StringUtils.isNotBlank(formMap.getField("grossTurnOver").getValue()) ? formMap.getField("grossTurnOver").getValue() : "0"));
-		if(formMap.getField("grossPresumptIncome")!=null) setGrossTurnOver(Double.parseDouble(StringUtils.isNotBlank(formMap.getField("grossPresumptIncome").getValue()) ? formMap.getField("grossPresumptIncome").getValue() : "0"));
+		if(formMap.getField("grossTurnOver")!=null) setGrossTurnOver(Double.parseDouble(StringUtils.isNotBlank(formMap.getField("grossTurnOver").getValue()) ? formMap.getField("grossTurnOver").getValue() : "0"));
+		if(formMap.getField("grossPresumptIncome")!=null) setGrossPresumptIncome(Double.parseDouble(StringUtils.isNotBlank(formMap.getField("grossPresumptIncome").getValue()) ? formMap.getField("grossPresumptIncome").getValue() : "0"));
 		if(formMap.getField("incChargBusiness")!=null) setIncChargBusiness(Double.parseDouble(StringUtils.isNotBlank(formMap.getField("incChargBusiness").getValue()) ? formMap.getField("incChargBusiness").getValue() : "0"));
 		if(formMap.getField("grossCashBalance")!=null) setGrossCashBalance(Double.parseDouble(StringUtils.isNotBlank(formMap.getField("grossCashBalance").getValue()) ? formMap.getField("grossCashBalance").getValue() : "0"));
 		if(formMap.getField("grossStockTrade")!=null) setGrossStockTrade(Double.parseDouble(StringUtils.isNotBlank(formMap.getField("grossStockTrade").getValue()) ? formMap.getField("grossStockTrade").getValue() : "0"));
