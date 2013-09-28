@@ -41842,8 +41842,8 @@ if(asset_type=='SHARES'){
 
 };
 
-out_capitalgain= cpgain;
-out_balanc= bal;
+out_capitalgain= indianCurrencyHelper.RoundTo2Decimals(cpgain);
+out_balanc= indianCurrencyHelper.RoundTo2Decimals(bal);
 
 /*
  * 
