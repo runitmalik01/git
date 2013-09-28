@@ -39,7 +39,7 @@ request.setAttribute("objTreeMapRelation", objTreeMapRelation);
 									key="name.person.itr2" /> </small> </label>
 					</div>
 					<div class="rowlabel">
-						<input id="name_person" name="name_person"
+						<input id="name_person" name="name_person" class="uprcase"
 							type="text" maxlength="125" 
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.name_Person}"/></c:if> " />
 					</div>
@@ -61,7 +61,7 @@ request.setAttribute("objTreeMapRelation", objTreeMapRelation);
 									key="relationship.clubincome" /> </small> </label>
 					</div>
 					<div class="rowlabel">
-							<select name="relationship" id="relationship">
+							<select name="relationship" id="relationship" class="uprcase">
 									<option value="">-Select-</option>
 									<c:forEach var="relation" items="${objTreeMapRelation}">
 										<option
@@ -82,7 +82,7 @@ request.setAttribute("objTreeMapRelation", objTreeMapRelation);
 									key="nature.income.itr2" /> </small> </label>
 					</div>
 					<div class="rowlabel">
-					<select id="nature_income" name="nature_income">
+					<select id="nature_income" name="nature_income" class="uprcase">
 								<option value="">-Select-</option>
 								<option value="House Property"<c:if test="${not empty childBean.nature_income && childBean.nature_income =='House Property'}">selected</c:if>>House Property</option>
 								<option value="Long Term Capital Gain 10%"<c:if test="${not empty childBean.nature_income && childBean.nature_income =='Long Term Capital Gain 10%'}">selected</c:if>>Long Term Capital Gain 10%</option>
