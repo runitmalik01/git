@@ -30,7 +30,7 @@
 					<div class="rowlabel">
 						<input id="profitBeforeTax" name="profitBeforeTax" type="text"
 							maxlength="14"
-							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.profitBeforeTax}" />" />
+							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${profitBeforeTax}" />" />
 					</div>
 				</div>
 			</div>
@@ -90,7 +90,7 @@
 					<div class="rowlabel">
 						<input id="profitLoss_IncludeSchPL" name="profitLoss_IncludeSchPL"
 							type="text" maxlength="14"
-							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.profitLoss_IncludeSchPL}" />" />
+							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${profitLoss_IncludeSchPL}" />" />
 					</div>
 				</div>
 			</div>
@@ -229,8 +229,8 @@
 				<div class="span4">
 					<div class="rowlabel">
 						<input id="depreciation_PL" name="depreciation_PL" type="text"
-							maxlength="14"
-							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.depreciation_PL}" />" />
+							maxlength="14" readonly="readonly"
+							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${depreciation_PL}" />" />
 					</div>
 				</div>
 			</div>
@@ -244,8 +244,8 @@
 				<div class="span4">
 					<div class="rowlabel">
 						<input id="depreAllow_us32_1_i" name="depreAllow_us32_1_i"
-							type="text" maxlength="14"
-							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.depreAllow_us32_1_i}" />" />
+							type="text" maxlength="14" readonly="readonly"
+							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${depreAllow_us32_1_ii}" />" />
 					</div>
 				</div>
 			</div>
@@ -304,8 +304,8 @@
 				<div class="span4">
 					<div class="rowlabel">
 						<input id="amountDebit_sec36" name="amountDebit_sec36" type="text"
-							maxlength="14"
-							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.amountDebit_sec36}" />" />
+							maxlength="14" readonly="readonly"
+							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${amountDebit_sec36}" />" />
 					</div>
 				</div>
 			</div>
@@ -319,8 +319,8 @@
 				<div class="span4">
 					<div class="rowlabel">
 						<input id="amountDebit_sec37" name="amountDebit_sec37" type="text"
-							maxlength="14"
-							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.amountDebit_sec37}" />" />
+							maxlength="14" readonly="readonly"
+							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${amountDebit_sec37}" />" />
 					</div>
 				</div>
 			</div>
@@ -334,8 +334,8 @@
 				<div class="span4">
 					<div class="rowlabel">
 						<input id="amountDebit_sec40" name="amountDebit_sec40" type="text"
-							maxlength="14"
-							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.amountDebit_sec40}" />" />
+							maxlength="14" readonly="readonly"
+							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${amountDebit_sec40}" />" />
 					</div>
 				</div>
 			</div>
@@ -349,8 +349,8 @@
 				<div class="span4">
 					<div class="rowlabel">
 						<input id="amountDebit_sec40A" name="amountDebit_sec40A"
-							type="text" maxlength="14"
-							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.amountDebit_sec40A}" />" />
+							type="text" maxlength="14" readonly="readonly"
+							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${amountDebit_sec40A}" />" />
 					</div>
 				</div>
 			</div>
@@ -364,8 +364,8 @@
 				<div class="span4">
 					<div class="rowlabel">
 						<input id="amountDebit_sec43B" name="amountDebit_sec43B"
-							type="text" maxlength="14"
-							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.amountDebit_sec43B}" />" />
+							type="text" maxlength="14" readonly="readonly"
+							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${amountDebit_sec43B}" />" />
 					</div>
 				</div>
 			</div>
@@ -485,7 +485,7 @@
 					<div class="rowlabel">
 						<input id="amountDed_Sec35" name="amountDed_Sec35" type="text"
 							maxlength="14"
-							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.amountDed_Sec35}" />" />
+							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${amountDed_Sec35}" />" />
 					</div>
 				</div>
 			</div>
@@ -500,7 +500,7 @@
 					<div class="rowlabel">
 						<input id="amountDisAllow_Sec40" name="amountDisAllow_Sec40"
 							type="text" maxlength="14"
-							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.amountDisAllow_Sec40}" />" />
+							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${amountDisAllow_Sec40}" />" />
 					</div>
 				</div>
 			</div>
@@ -515,7 +515,7 @@
 					<div class="rowlabel">
 						<input id="amountDisAllow_Sec43B" name="amountDisAllow_Sec43B"
 							type="text" maxlength="14"
-							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.amountDisAllow_Sec43B}" />" />
+							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${amountDisAllow_Sec43B}" />" />
 					</div>
 				</div>
 			</div>
@@ -766,7 +766,7 @@
 						<div class="rowlabel">
 							<input id="deduction_Sec10A" name="deduction_Sec10A" type="text"
 								maxlength="14"
-								value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.deduction_Sec10A}" />" />
+								value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${deduction_Sec10A}" />" />
 						</div>
 					</div>
 				</div>
@@ -780,7 +780,7 @@
 						<div class="rowlabel">
 							<input id="deduction_Sec10AA" name="deduction_Sec10AA"
 								type="text" maxlength="14"
-								value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.deduction_Sec10AA}" />" />
+								value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${deduction_Sec10AA}" />" />
 						</div>
 					</div>
 					<div class="span6">
@@ -849,7 +849,7 @@
 						<div class="rowlabel">
 							<input id="netPl_FromBP" name="netPl_FromBP" type="text"
 								maxlength="14"
-								value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.netPl_FromBP}" />" />
+								value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${netPl_FromBP}" />" />
 						</div>
 					</div>
 </div>
@@ -910,7 +910,7 @@
 						<div class="rowlabel">
 							<input id="netPLFrom_SPecifiedInc" name="netPLFrom_SPecifiedInc"
 								type="text" maxlength="14"
-								value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.netPLFrom_SPecifiedInc}" />" />
+								value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${netPLFrom_SPecifiedInc}" />" />
 						</div>
 					</div>
 </div>
