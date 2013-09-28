@@ -54,7 +54,7 @@
 							</div>
 
 							<div class="rowlabel">
-								<select id="asset_type" name="asset_type" onChange="hidesst()">
+								<select id="asset_type" name="asset_type" onChange="hidesst()" class="uprcase">
 									<option value="">-Select-</option>
 									<option value="SHARES"
 										<c:if test="${not empty childBean.assetType && childBean.assetType =='SHARES'}">selected</c:if>>Listed
@@ -76,7 +76,7 @@
 											key="capital.gain.name.asset" /> </small> </label>
 							</div>
 							<div class="rowlabel">
-								<input id="nameasset" name="nameasset"
+								<input id="nameasset" name="nameasset" class="uprcase"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.nameAsset}"/></c:if>"
 									type="text">
 							</div>
