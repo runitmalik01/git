@@ -10,8 +10,8 @@
 	<div class="span9">
 	   <div class="rowlabel">
 <ul class="breadcrumb">
-  <li><a href="${home}"><i class="icon-home"></i>Home</a> <span class="divider">/</span></li>
-  <li><a href="#">Services</a> <span class="divider">/</span></li>
+  <li><a href="${home}" class="btn btn-info"><i class="icon-home icon-white"></i><strong>Home</strong></a> <span class="divider">/</span></li>
+  <li><a href="${services}" class="btn btn-info"><i class="icon-cog icon-white"></i><strong>Services</strong></a> <span class="divider">/</span></li>
   <li class="active"><c:out value="${document.name}"/></li>
 </ul>
 <c:if test="${not empty Success}">
