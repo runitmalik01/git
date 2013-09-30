@@ -39,6 +39,7 @@ import in.gov.incometaxindiaefiling.y2012_2013.LongTerm;
 import in.gov.incometaxindiaefiling.y2012_2013.LossSummaryDetail;
 import in.gov.incometaxindiaefiling.y2012_2013.PartBTI;
 import in.gov.incometaxindiaefiling.y2012_2013.ScheduleCGFor23;
+import in.gov.incometaxindiaefiling.y2012_2013.ScheduleCGFor4;
 import in.gov.incometaxindiaefiling.y2012_2013.PartBTI.ProfBusGain;
 import in.gov.incometaxindiaefiling.y2012_2013.ScheduleBFLA.TotalBFLossSetOff;
 import in.gov.incometaxindiaefiling.y2012_2013.ScheduleCFL.CurrentAYloss;
@@ -157,39 +158,77 @@ public class PartB_TI {
 		}
 
 		//Capital Gain
-		CapitalGainDocumentSchedules capitalGainDocumentSchedules = new CapitalGainDocumentSchedules(capitalAssetDocument);
-		ScheduleCGFor23 scheduleCGFor23 = capitalGainDocumentSchedules.getSchedulecCgFor23(itr, financialYear, inputBeans);
 		CapGain capGain = new CapGain();
+		if(itrSelection.equals("ITR4")){
 
-		ShortTerm shortTerm = new ShortTerm();
-		shortTerm.setShortTermUs111A(scheduleCGFor23.getShortTermCapGainFor23().getNRIAssetSec48Dtl().getNRI111AApplicable()
-				+ scheduleCGFor23.getShortTermCapGainFor23().getOtherAsset111AApplicable().getBalCG());
-		shortTerm.setShortTermOther(scheduleCGFor23.getShortTermCapGainFor23().getTotalSTCG() - shortTerm.getShortTermUs111A());
-		shortTerm.setTotalShortTerm(shortTerm.getShortTermOther() + shortTerm.getShortTermUs111A());
-		capGain.setShortTerm(shortTerm);
+			CapitalGainScheduleFor4 capitalGainScheduleFor4 = new CapitalGainScheduleFor4(capitalAssetDocument, scheduleDPMDocument, scheduleDOADocument);
+			ScheduleCGFor4 scheduleCGFor4 = capitalGainScheduleFor4.getScheduleCGFor4(itr, financialYear, inputBeans);
 
-		LongTerm longTerm = new LongTerm();
-		longTerm.setLongTermIndexation(scheduleCGFor23.getLongTermCapGain23().getTotalLTCG()
-				- scheduleCGFor23.getLongTermCapGain23().getOtherAssetProviso112().getBalLTCG112()
-				- scheduleCGFor23.getLongTermCapGain23().getUnlistedSecurities().longValue());
-		longTerm.setLongTermWOIndexation( scheduleCGFor23.getLongTermCapGain23().getOtherAssetProviso112().getBalLTCG112()
-				+ scheduleCGFor23.getLongTermCapGain23().getUnlistedSecurities().longValue());
+			ShortTerm shortTerm = new ShortTerm();
+			shortTerm.setShortTermUs111A(scheduleCGFor4.getShortTermCapGainFor4().getNRIAssetSec48Dtl().getNRI111AApplicable()
+					+ scheduleCGFor4.getShortTermCapGainFor4().getOtherAsset111AApplicable().getBalCG());
+			shortTerm.setShortTermOther(scheduleCGFor4.getShortTermCapGainFor4().getTotalSTCG() - shortTerm.getShortTermUs111A());
+			shortTerm.setTotalShortTerm(shortTerm.getShortTermOther() + shortTerm.getShortTermUs111A());
+			capGain.setShortTerm(shortTerm);
 
-		long longTermIndex = longTerm.getLongTermIndexation();
-		long longTermWOIndex = longTerm.getLongTermWOIndexation();
-		long longterm = longTermIndex + longTermWOIndex;
+			LongTerm longTerm = new LongTerm();
+			longTerm.setLongTermIndexation(scheduleCGFor4.getLongTermCapGain4().getTotalLTCG()
+					- scheduleCGFor4.getLongTermCapGain4().getOtherAssetProviso112().getBalLTCG112()
+					- scheduleCGFor4.getLongTermCapGain4().getUnlistedSecurities());
+			longTerm.setLongTermWOIndexation( scheduleCGFor4.getLongTermCapGain4().getOtherAssetProviso112().getBalLTCG112()
+					+ scheduleCGFor4.getLongTermCapGain4().getUnlistedSecurities());
 
-		if(longterm > 0){
-			longTerm.setTotalLongTerm(BigInteger.valueOf(longterm));
-		}else
-			longTerm.setTotalLongTerm(new BigInteger("0"));
-		capGain.setLongTerm(longTerm);
+			long longTermIndex = longTerm.getLongTermIndexation();
+			long longTermWOIndex = longTerm.getLongTermWOIndexation();
+			long longterm = longTermIndex + longTermWOIndex;
 
-		long totalCapitalGain = shortTerm.getTotalShortTerm() + longTerm.getTotalLongTerm().longValue();
-		if(totalCapitalGain > 0){
-			capGain.setTotalCapGains(BigInteger.valueOf(totalCapitalGain));
-		}else
-			capGain.setTotalCapGains(new BigInteger("0"));
+			if(longterm > 0){
+				longTerm.setTotalLongTerm(BigInteger.valueOf(longterm));
+			}else
+				longTerm.setTotalLongTerm(new BigInteger("0"));
+			capGain.setLongTerm(longTerm);
+
+			long totalCapitalGain = shortTerm.getTotalShortTerm() + longTerm.getTotalLongTerm().longValue();
+			if(totalCapitalGain > 0){
+				capGain.setTotalCapGains(BigInteger.valueOf(totalCapitalGain));
+			}else
+				capGain.setTotalCapGains(new BigInteger("0"));
+		}else{
+
+			CapitalGainDocumentSchedules capitalGainDocumentSchedules = new CapitalGainDocumentSchedules(capitalAssetDocument);
+			ScheduleCGFor23 scheduleCGFor23 = capitalGainDocumentSchedules.getSchedulecCgFor23(itr, financialYear, inputBeans);
+
+			ShortTerm shortTerm = new ShortTerm();
+			shortTerm.setShortTermUs111A(scheduleCGFor23.getShortTermCapGainFor23().getNRIAssetSec48Dtl().getNRI111AApplicable()
+					+ scheduleCGFor23.getShortTermCapGainFor23().getOtherAsset111AApplicable().getBalCG());
+			shortTerm.setShortTermOther(scheduleCGFor23.getShortTermCapGainFor23().getTotalSTCG() - shortTerm.getShortTermUs111A());
+			shortTerm.setTotalShortTerm(shortTerm.getShortTermOther() + shortTerm.getShortTermUs111A());
+			capGain.setShortTerm(shortTerm);
+
+			LongTerm longTerm = new LongTerm();
+			longTerm.setLongTermIndexation(scheduleCGFor23.getLongTermCapGain23().getTotalLTCG()
+					- scheduleCGFor23.getLongTermCapGain23().getOtherAssetProviso112().getBalLTCG112()
+					- scheduleCGFor23.getLongTermCapGain23().getUnlistedSecurities().longValue());
+			longTerm.setLongTermWOIndexation( scheduleCGFor23.getLongTermCapGain23().getOtherAssetProviso112().getBalLTCG112()
+					+ scheduleCGFor23.getLongTermCapGain23().getUnlistedSecurities().longValue());
+
+			long longTermIndex = longTerm.getLongTermIndexation();
+			long longTermWOIndex = longTerm.getLongTermWOIndexation();
+			long longterm = longTermIndex + longTermWOIndex;
+
+			if(longterm > 0){
+				longTerm.setTotalLongTerm(BigInteger.valueOf(longterm));
+			}else
+				longTerm.setTotalLongTerm(new BigInteger("0"));
+			capGain.setLongTerm(longTerm);
+
+			long totalCapitalGain = shortTerm.getTotalShortTerm() + longTerm.getTotalLongTerm().longValue();
+			if(totalCapitalGain > 0){
+				capGain.setTotalCapGains(BigInteger.valueOf(totalCapitalGain));
+			}else
+				capGain.setTotalCapGains(new BigInteger("0"));
+		}
+
 		partBTI.setCapGain(capGain);
 
 		//Getting values of other income
@@ -219,8 +258,9 @@ public class PartB_TI {
 		//total of SalaryIncome+HouseIncome+CapitalGain+OtherIncome+ProfitandGainfromBP
 		partBTI.setTotalTI(partBTI.getSalaries().add(partBTI.getIncomeFromHP()).add(capGain.getTotalCapGains()).add(incFromOS.getTotIncFromOS()).add(profBusGain.getTotProfBusGain()));
 
-		//total of 2vii and 3vii of Schedule CYLA
-		partBTI.setCurrentYearLoss(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMapLosses.get("totalHPLossSetoff").toString())+Double.parseDouble(resultMapLosses.get("totalOILossSetoff").toString())));
+		//total of 2vii and 3vii of Schedule CYLA in case of ITR2 and total of 2x,3x,4x of CYLA in case of ITR4
+		partBTI.setCurrentYearLoss(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMapLosses.get("totalHPLossSetoff").toString())+Double.parseDouble(resultMapLosses.get("totalOILossSetoff").toString())+
+				Double.parseDouble(resultMapLosses.get("totalBILossSetoff").toString())));
 
 		//totalTI - CurrentYearLoss
 		partBTI.setBalanceAfterSetoffLosses(partBTI.getTotalTI().subtract(partBTI.getCurrentYearLoss()));
