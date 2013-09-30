@@ -1,14 +1,22 @@
 package com.mootly.wcm.utils;
 
 
+import in.gov.incometaxindiaefiling.y2012_2013.ITR4ScheduleBP;
+import in.gov.incometaxindiaefiling.y2012_2013.TaxPayment;
+
 import java.math.BigInteger;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TimeZone;
+import java.util.TreeMap;
 
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.core.component.HstRequest;
@@ -20,12 +28,19 @@ import com.mootly.wcm.annotations.AdditionalBeans;
 import com.mootly.wcm.beans.AdjustmentOfLossesDoc;
 import com.mootly.wcm.beans.AdvanceTaxDocument;
 import com.mootly.wcm.beans.CapitalAssetDocument;
+import com.mootly.wcm.beans.DeductionSchedTenADocumemt;
 import com.mootly.wcm.beans.FormSixteenDocument;
 import com.mootly.wcm.beans.HouseProperty;
+import com.mootly.wcm.beans.IncBusinessProfessionDoc;
 import com.mootly.wcm.beans.MemberContactInformation;
 import com.mootly.wcm.beans.MemberPersonalInformation;
+import com.mootly.wcm.beans.OtherInformationDocument;
 import com.mootly.wcm.beans.OtherSourcesDocument;
+import com.mootly.wcm.beans.ProfitAndLossDocument;
 import com.mootly.wcm.beans.SalaryIncomeDocument;
+import com.mootly.wcm.beans.ScheduleDOADocument;
+import com.mootly.wcm.beans.ScheduleDPMDocument;
+import com.mootly.wcm.beans.ScheduleESRDocument;
 import com.mootly.wcm.beans.SelfAssesmetTaxDocument;
 import com.mootly.wcm.beans.TdsFromSalaryDocument;
 import com.mootly.wcm.beans.TdsFromothersDocument;
@@ -35,8 +50,13 @@ import com.mootly.wcm.beans.compound.CapitalAssetDetail;
 import com.mootly.wcm.beans.compound.FormSixteenDetail;
 import com.mootly.wcm.beans.compound.HouseIncomeDetail;
 import com.mootly.wcm.beans.compound.SalaryIncomeDetail;
+import com.mootly.wcm.beans.compound.ScheduleDPMDetails;
+import com.mootly.wcm.beans.compound.SelfAssesmentTaxDetail;
 import com.mootly.wcm.beans.compound.TdsFromSalaryDetail;
+import com.mootly.wcm.member.MonthCalculate;
 import com.mootly.wcm.model.FinancialYear;
+import com.mootly.wcm.model.schedules.y2012_2013.ITR4_ScheduleBP;
+import com.mootly.wcm.services.ITRXmlGeneratorServiceCommon;
 import com.mootly.wcm.services.IndianCurrencyHelper;
 import com.mootly.wcm.services.ScreenCalculatorService;
 
@@ -64,6 +84,17 @@ public class XmlCalculation implements XmlCalculationImplement {
 	public Double totalSTCLoss = 0d;
 	public Double MaintainingRaceHorseLoss = 0d;
 	public Double totalMaintainingRaceHorseLoss = 0d;
+	public Double LossFrmSpecifiedBuss = 0d;
+	public Double totalLossFrmSpecifiedBuss = 0d;
+	public Double NonSpeculationBusinessLoss = 0d;
+	public Double totalNonSpeculationBusinessLoss = 0d;
+	public Double SpeculationBusinessLoss = 0d;
+	public Double totalSpeculationBusinessLoss = 0d;
+
+	// for ITR4
+	public long businessIncome = 0;
+	public long speculativeIncome = 0;
+	public long specifiedIncome = 0;
 
 	/**
 	 * This Method is used to return Gross Total(SalaryIncome+HouseIncome+OtherIncome)
@@ -235,13 +266,50 @@ public class XmlCalculation implements XmlCalculationImplement {
 		AdjustmentOfLossesDoc adjustmentOfLossesDoc = (AdjustmentOfLossesDoc) inputBeans.get(AdjustmentOfLossesDoc.class.getSimpleName().toLowerCase());
 		OtherSourcesDocument otherSourcesDocument = (OtherSourcesDocument) inputBeans.get(OtherSourcesDocument.class.getSimpleName().toLowerCase());
 		HouseProperty houseProperty = (HouseProperty) inputBeans.get(HouseProperty.class.getSimpleName().toLowerCase());
+
+		//added for ITR4 on 26-sep-2012 by Dhananjay
+		IncBusinessProfessionDoc incBusinessProfessionDoc = (IncBusinessProfessionDoc) inputBeans.get(IncBusinessProfessionDoc.class.getSimpleName().toLowerCase());
+		ProfitAndLossDocument profitAndLossDocument = (ProfitAndLossDocument) inputBeans.get(ProfitAndLossDocument.class.getSimpleName().toLowerCase());
+		OtherInformationDocument otherInformationDocument = (OtherInformationDocument) inputBeans.get(OtherInformationDocument.class.getSimpleName().toLowerCase());
+		ScheduleDPMDocument scheduleDPMDocument = (ScheduleDPMDocument) inputBeans.get(ScheduleDPMDocument.class.getSimpleName().toLowerCase());
+		ScheduleDOADocument scheduleDOADocument = (ScheduleDOADocument) inputBeans.get(ScheduleDOADocument.class.getSimpleName().toLowerCase());
+		ScheduleESRDocument scheduleESRDocument = (ScheduleESRDocument) inputBeans.get(ScheduleESRDocument.class.getSimpleName().toLowerCase());
+		DeductionSchedTenADocumemt deductionSchedTenADocumemt = (DeductionSchedTenADocumemt) inputBeans.get(DeductionSchedTenADocumemt.class.getSimpleName().toLowerCase());
 		grossTotal(financialYear, inputBeans);
+		// getting Schedule BP to get values of Business Income, Speculative Income and Specified Income
+		ITR4_ScheduleBP iTR4_ScheduleBP = new ITR4_ScheduleBP(incBusinessProfessionDoc,profitAndLossDocument,otherInformationDocument,
+				scheduleDPMDocument,scheduleDOADocument,scheduleESRDocument,deductionSchedTenADocumemt);
+		ITR4ScheduleBP iTR4ScheduleBP = iTR4_ScheduleBP.getITR4ScheduleBP(null, financialYear, inputBeans);
+		businessIncome = iTR4ScheduleBP.getBusinessIncOthThanSpec().getNetPLBusOthThanSpec7A7B7C();
+		speculativeIncome = iTR4ScheduleBP.getSpecBusinessInc().getAdjustedPLFrmSpecuBus();
+		specifiedIncome = iTR4ScheduleBP.getSpecifiedBusinessInc().getPLFrmSpecifiedBus();
+
+		//here what we are trying to do we will adjust business income loss with specified income and speculative income
+		if(businessIncome < 0){
+			if(specifiedIncome > 0){
+				businessIncome = businessIncome + specifiedIncome;
+				if(businessIncome>0){
+					specifiedIncome = businessIncome;
+					businessIncome = 0;
+				}else
+					specifiedIncome = 0;
+			}
+			if(speculativeIncome > 0){
+				businessIncome = businessIncome + speculativeIncome;
+			}
+			if(businessIncome>0){
+				speculativeIncome = businessIncome;
+				businessIncome = 0;
+			}else
+				speculativeIncome = 0;
+		}
+		//end
 
 		Map<String,Map<String, Object>> resultMap = capitalGainChilds(financialYear, inputBeans);
 		Double shortTermCG = Double.parseDouble(resultMap.get("STCGSST").get("totCG").toString()) + Double.parseDouble(resultMap.get("STCGNSST").get("totCG").toString());
-        Double longTermCG = Double.parseDouble(resultMap.get("LTCGINDEX").get("totCG").toString()) + Double.parseDouble(resultMap.get("LTCGNINDEX").get("totCG").toString());
+		Double longTermCG = Double.parseDouble(resultMap.get("LTCGINDEX").get("totCG").toString()) + Double.parseDouble(resultMap.get("LTCGNINDEX").get("totCG").toString());
 
-        if(adjustmentOfLossesDoc != null){
+		if(adjustmentOfLossesDoc != null){
 			List<AdjustmentOfLossesCom> listofAdjustmentOfLossesCom = adjustmentOfLossesDoc.getAdjustmentOfLossesList() ;
 			if ( listofAdjustmentOfLossesCom != null && listofAdjustmentOfLossesCom.size() > 0 ){
 				for(AdjustmentOfLossesCom adjustmentOfLossesCom:listofAdjustmentOfLossesCom){
@@ -260,6 +328,19 @@ public class XmlCalculation implements XmlCalculationImplement {
 					if(adjustmentOfLossesCom.getNameOfHead().equals("Owning and Maintaining Race Horses")){
 						MaintainingRaceHorseLoss = adjustmentOfLossesCom.getAmount();
 						totalMaintainingRaceHorseLoss = totalMaintainingRaceHorseLoss + MaintainingRaceHorseLoss;
+					}
+					//added for ITR4
+					if(adjustmentOfLossesCom.getNameOfHead().equals("Loss From Specified Business")){
+						LossFrmSpecifiedBuss = adjustmentOfLossesCom.getAmount();
+						totalLossFrmSpecifiedBuss = totalLossFrmSpecifiedBuss + LossFrmSpecifiedBuss;
+					}
+					if(adjustmentOfLossesCom.getNameOfHead().equals("Non Speculation Business Loss")){
+						NonSpeculationBusinessLoss = adjustmentOfLossesCom.getAmount();
+						totalNonSpeculationBusinessLoss = totalNonSpeculationBusinessLoss + NonSpeculationBusinessLoss;
+					}
+					if(adjustmentOfLossesCom.getNameOfHead().equals("Speculation Business Loss")){
+						SpeculationBusinessLoss = adjustmentOfLossesCom.getAmount();
+						totalSpeculationBusinessLoss = totalSpeculationBusinessLoss + SpeculationBusinessLoss;
 					}
 				}
 			}
@@ -285,6 +366,22 @@ public class XmlCalculation implements XmlCalculationImplement {
 		totalMapForLosses.put("LTCLoss", totalLTCLoss);
 		totalMapForLosses.put("STCLoss", totalSTCLoss);
 		totalMapForLosses.put("MaintainingRaceHorseLoss", totalMaintainingRaceHorseLoss);
+
+		//added for ITR4
+		totalMapForLosses.put("businessIncome",businessIncome);
+		if(speculativeIncome > 0){
+			totalMapForLosses.put("speculativeIncome",speculativeIncome);
+		}else
+			totalMapForLosses.put("speculativeIncome",0);
+		if(specifiedIncome > 0){
+			totalMapForLosses.put("specifiedIncome",specifiedIncome);
+		}else
+			totalMapForLosses.put("specifiedIncome",0);
+		totalMapForLosses.put("LossFrmSpecifiedBuss", totalLossFrmSpecifiedBuss);
+		totalMapForLosses.put("NonSpeculationBusinessLoss", totalNonSpeculationBusinessLoss);
+		totalMapForLosses.put("SpeculationBusinessLoss", totalSpeculationBusinessLoss);
+		//end
+
 		Map<String,String[]> paramMap = new HashMap<String, String[]>();
 		Map<String,Object> resultMapLosses = ScreenCalculatorService.getScreenCalculations("lossesCalculation.js", paramMap, totalMapForLosses);
 
@@ -297,6 +394,7 @@ public class XmlCalculation implements XmlCalculationImplement {
 	 * @param Finincial Year, Input Beans, BigInteger
 	 * Added on 15/08/2013
 	 * @author Dhananjay
+	 * @throws ParseException
 	 * */
 
 	public Map<String,Object> interestCalc(FinancialYear financialYear,Map<String,HippoBean> inputBeans, BigInteger netTaxLiability){
@@ -306,6 +404,7 @@ public class XmlCalculation implements XmlCalculationImplement {
 		FormSixteenDocument formSixteenDocument = (FormSixteenDocument) inputBeans.get(FormSixteenDocument.class.getSimpleName().toLowerCase());
 		SalaryIncomeDocument salaryIncomeDocument = (SalaryIncomeDocument) inputBeans.get(SalaryIncomeDocument.class.getSimpleName().toLowerCase());
 		TdsFromothersDocument tdsFromothersDocument = (TdsFromothersDocument) inputBeans.get(TdsFromothersDocument.class.getSimpleName().toLowerCase());
+		SelfAssesmetTaxDocument selfAssesmetTaxDocument = (SelfAssesmetTaxDocument) inputBeans.get(SelfAssesmetTaxDocument.class.getSimpleName().toLowerCase());
 
 		IndianCurrencyHelper indianCurrencyHelper =  new IndianCurrencyHelper();
 		Map<String,Object> totalMapForJS = new HashMap<String, Object>();
@@ -352,6 +451,8 @@ public class XmlCalculation implements XmlCalculationImplement {
 		TDS = bigTotalTdsSlry.add(bigTdsOther).add(bigTotalTdsPension);
 		BigInteger TaxLiability = new BigInteger("0");
 		TaxLiability = netTaxLiability.subtract(TDS);
+
+		/*
 		//current date
 		final Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("GMT"));
 		final Date currentdate=cal.getTime();
@@ -384,6 +485,24 @@ public class XmlCalculation implements XmlCalculationImplement {
 			if(year==2013){
 				currentdatemonth =currentdate.getMonth()+1+12;
 			}
+		 */
+		int diffInMonths = 0;
+		DateFormat formatter ;
+		Date currentDate = null;
+		Date fixedDueDate = null;
+		formatter = new SimpleDateFormat("yyyy-MM-dd");
+		try {
+			currentDate = formatter.parse(ITRXmlGeneratorServiceCommon.getCurrentDateInIndiaAsString());
+			fixedDueDate = indianCurrencyHelper.parsedate("31/07/"+financialYear.getEndYear());
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Date varDueDate = financialYear.getDueDate(memberPersonalInformation.getSelectedITRForm(), memberPersonalInformation.getState()).getTime();
+
+		if(currentDate.after(varDueDate)){
+			diffInMonths = indianCurrencyHelper.getDiffInMonths(fixedDueDate, currentDate);
+		}
 
 		double dtotalamount=0.0d;
 		double dsum1=0.0d;
@@ -404,9 +523,15 @@ public class XmlCalculation implements XmlCalculationImplement {
 			dsum12=dsum1+dsum2;
 
 		}
+
+		double nettaxLiability = TaxLiability.doubleValue() - dtotalamount;
+		Interest234BCalc interest234BCalc = new Interest234BCalc();
+		Double intB = interest234BCalc.getInterest235B(financialYear, nettaxLiability, TaxLiability.doubleValue(), selfAssesmetTaxDocument);
+
 		Map<String,Object> totalMapForINTREST = new HashMap<String, Object>();
-		totalMapForINTREST.put("aytaxmp",currentdatemonth);
-		totalMapForINTREST.put("ddate", DueDate);
+
+		//totalMapForINTREST.put("aytaxmp",currentdatemonth);
+		//totalMapForINTREST.put("ddate", DueDate);
 		totalMapForINTREST.put("aytaxd", TaxLiability.longValue());
 		totalMapForINTREST.put("aytaxp", dtotalamount);
 		totalMapForINTREST.put("atpq2", dsum12);
@@ -415,6 +540,8 @@ public class XmlCalculation implements XmlCalculationImplement {
 		totalMapForINTREST.put("atlq2", 0);
 		totalMapForINTREST.put("atlq3", 0);
 		totalMapForINTREST.put("atlq4", 0);
+		totalMapForINTREST.put("resultIntB", intB);
+		totalMapForINTREST.put("dueDateFor234A", diffInMonths);
 		Map<String,String[]> paramMap = new HashMap<String, String[]>();
 		Map<String,Object> resultMapINTEREST = ScreenCalculatorService.getScreenCalculations("interestCalculation.js", paramMap, totalMapForINTREST);
 
@@ -682,12 +809,12 @@ public class XmlCalculation implements XmlCalculationImplement {
 		return ScreenCalculatorService.getScreenCalculations("accruralOfCG.js", requestParameterMap, resultMapST);
 	}
 	/**
-	 * This method is used to calculate the Gross Total of Income which is exempt i.e 
+	 * This method is used to calculate the Gross Total of Income which is exempt i.e
 	 * <br/>we will not include that income on which Flat Rate will Applicable.
-	 * 
+	 *
 	 * @param financialYear {@link FinancialYear}
 	 * @param inputBeans {@link Map} of type <{@link String}, {@link HippoBean}>
-	 * 
+	 *
 	 * @return {@link Long} value of Gross Income
 	 * */
 	public long getGrossTotalOfIncomeWTFlateRate(FinancialYear financialYear,Map<String,HippoBean> inputBeans){
@@ -699,7 +826,7 @@ public class XmlCalculation implements XmlCalculationImplement {
 		FormSixteenDocument formSixteenDocument = (FormSixteenDocument) inputBeans.get(FormSixteenDocument.class.getSimpleName().toLowerCase());
 		HouseProperty houseProperty = (HouseProperty) inputBeans.get(HouseProperty.class.getSimpleName().toLowerCase());
 		OtherSourcesDocument otherSourcesDocument = (OtherSourcesDocument) inputBeans.get(OtherSourcesDocument.class.getSimpleName().toLowerCase());
-		
+
 		IndianCurrencyHelper indianCurrencyHelper = new IndianCurrencyHelper();
 
 		//BigInteger salarytotal=new BigInteger("0");
@@ -726,20 +853,19 @@ public class XmlCalculation implements XmlCalculationImplement {
 
 		if(houseProperty!=null){
 			if (houseProperty.getHouseIncomeDetailList() != null && houseProperty.getHouseIncomeDetailList().size() > 0 ){
-				for(HouseIncomeDetail houseIncomeDetail: houseProperty.getHouseIncomeDetailList()){ 
+				for(HouseIncomeDetail houseIncomeDetail: houseProperty.getHouseIncomeDetailList()){
 					houseIncomeTotal = houseIncomeTotal+indianCurrencyHelper.longRound(houseIncomeDetail.getTotal_houseIncome());
 				}
 			}
 		}
-		
+
 		if(otherSourcesDocument!=null){
 			//we will not exempt income on which we apply flat rates.
 			otherincome = indianCurrencyHelper.longRound(otherSourcesDocument.getTaxable_income() - otherSourcesDocument.getLotteryOrhorse_income() - otherSourcesDocument.getBank_detail_saving());
-			otherincome = (otherincome > 0) ? otherincome : 0l; 
+			otherincome = (otherincome > 0) ? otherincome : 0l;
 		}
 		grosstotal = longsalarytotal+houseIncomeTotal+otherincome;
 
 		return grosstotal;
 	}
-
 }
