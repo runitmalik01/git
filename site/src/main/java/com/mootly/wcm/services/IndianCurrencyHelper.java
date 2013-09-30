@@ -189,14 +189,14 @@ public final class IndianCurrencyHelper {
 				double yearnew = (year1-1.0d);
 				 int ss = (int)yearnew;
 				return Double.parseDouble(rb.getString("valueList."+ss+".cii"));
-			}	
+			}
 		}
 		log.info("here is the value in outer loopsss"+Double.parseDouble(rb.getString("valueList.2012.cii")));
 		return Double.parseDouble(rb.getString("valueList.2012.cii"));
 	}
 
 
-	
+
 
 	/**
 	 * this method for converting a string to Date
@@ -204,13 +204,13 @@ public final class IndianCurrencyHelper {
 	@param string date,
 	@author abhishek
 	 * @return  Date
-	 * @throws ParseException 
+	 * @throws ParseException
 
 	 **/
 	public static Date parsedate(String dateparse)throws ParseException{
-		DateFormat formatter ; 
+		DateFormat formatter ;
 		@SuppressWarnings("unused")
-		Date date ; 
+		Date date ;
 		formatter = new SimpleDateFormat("dd/MM/yyyy");
 		log.info("changed date is"+formatter.parse(dateparse));
 		return date = formatter.parse(dateparse);
@@ -236,10 +236,10 @@ public final class IndianCurrencyHelper {
 		}
 		return false;
 	}
-	
-	
-	
-	
+
+
+
+
 /*	public int IsDateBetween(String dd, String Ndate, String Odate) {
 		log.info("inside case"+dd);
 		long from=Date.parse(Ndate);  // From some date
@@ -258,7 +258,7 @@ public final class IndianCurrencyHelper {
 		}
 		return 0;
 
-	}  
+	}
 
 	//try to send default value so that no NullPointer Exception
 	public double getYearIndexValue(String year){
@@ -290,6 +290,29 @@ public final class IndianCurrencyHelper {
 			return roundedValue;
 		}else
 			return 0;
+
+	}
+
+	/**
+	 * This Method is used to calculate difference between two dates in months
+	 * @return Integer
+	 * @param Date sdate, Date, edate
+	 * Added on 27-08-2013
+	 * @author Dhananjay
+	 * */
+
+	public Integer getDiffInMonths(Date sdate, Date edate){
+
+		Calendar sdateCal = Calendar.getInstance();
+		Calendar edateCal = Calendar.getInstance();
+		sdateCal.setTime(sdate);
+		edateCal.setTime(edate);
+		int difInMonths = edateCal.get(Calendar.MONTH) - sdateCal.get(Calendar.MONTH);
+		if(difInMonths < 0){
+			difInMonths = 0;
+		}
+
+		return difInMonths;
 
 	}
 
