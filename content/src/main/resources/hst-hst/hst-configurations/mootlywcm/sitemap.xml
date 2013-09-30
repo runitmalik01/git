@@ -5911,7 +5911,7 @@
           <sv:value>hst:pages/my-services</sv:value>
         </sv:property>
         <sv:property sv:name="hst:relativecontentpath" sv:type="String">
-          <sv:value>${parent}/factedservices/${1}</sv:value>
+          <sv:value>${parent}/facetedservices/${1}</sv:value>
         </sv:property>
       </sv:node>
     </sv:node>
