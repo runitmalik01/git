@@ -29,6 +29,7 @@ import org.slf4j.LoggerFactory;
 
 import com.ctc.wstx.util.StringUtil;
 import com.mootly.wcm.beans.AdjustmentOfLossesDoc;
+import com.mootly.wcm.beans.MemberPersonalInformation;
 import com.mootly.wcm.beans.compound.AdjustmentOfLossesCom;
 import com.mootly.wcm.beans.compound.FormSixteenDetail;
 import com.mootly.wcm.model.FinancialYear;
@@ -60,6 +61,9 @@ public class CarryFwdLossesSchedules extends XmlCalculation {
 
 	public ScheduleCFL getScheduleCFL(ITR itr, FinancialYear financialYear,Map<String,HippoBean> inputBeans) {
 
+		MemberPersonalInformation memberPersonalInformation = (MemberPersonalInformation) inputBeans.get(MemberPersonalInformation.class.getSimpleName().toLowerCase());
+		String itrSelection =  memberPersonalInformation.getFlexField("flex_string_ITRForm", "");
+
 		IndianCurrencyHelper indianCurrencyHelper = new IndianCurrencyHelper();
 		Map<String,Object> resultMapLosses = lossesCalc(financialYear,inputBeans);
 
@@ -69,7 +73,7 @@ public class CarryFwdLossesSchedules extends XmlCalculation {
 			if ( lossesDetails != null && lossesDetails.size() > 0 ){
 				Map<String,List<AdjustmentOfLossesCom>> resultChildMap = lossesCFLChilds(financialYear, inputBeans);
 				for(String key : resultChildMap.keySet()){
-					CarryFwdLossDetail carryFwdLossDetail = invokeCarryFwdLossDetail(resultChildMap.get(key));
+					CarryFwdLossDetail carryFwdLossDetail = invokeCarryFwdLossDetail(resultChildMap.get(key),itrSelection);
 					Class[] classesCFL = ScheduleCFL.class.getDeclaredClasses();
 					XmlType xmlType = ScheduleCFL.class.getAnnotation(XmlType.class);
 					String fields[] = xmlType.propOrder();
@@ -188,7 +192,7 @@ public class CarryFwdLossesSchedules extends XmlCalculation {
 		return scheduleCFL;
 	}
 
-	public CarryFwdLossDetail invokeCarryFwdLossDetail(List<AdjustmentOfLossesCom> childBean){
+	public CarryFwdLossDetail invokeCarryFwdLossDetail(List<AdjustmentOfLossesCom> childBean, String WhichITR){
 		IndianCurrencyHelper indianCurrencyHelper = new IndianCurrencyHelper();
 		CarryFwdLossDetail carryFwdLossDetail = new CarryFwdLossDetail();
 
@@ -196,6 +200,11 @@ public class CarryFwdLossesSchedules extends XmlCalculation {
 		carryFwdLossDetail.setLTCGLossCF(new BigInteger("0"));
 		carryFwdLossDetail.setSTCGLossCF(new BigInteger("0"));
 		carryFwdLossDetail.setOthSrcLossRaceHorseCF(new BigInteger("0"));
+		carryFwdLossDetail.setBusLossOthThanSpecLossCF(new BigInteger("0"));
+		carryFwdLossDetail.setLossFrmSpecBusCF(new BigInteger("0"));
+		if(WhichITR.equals("ITR4")){
+			carryFwdLossDetail.setLossFrmSpecifiedBusCF(new BigInteger("0"));
+		}
 
 		for(AdjustmentOfLossesCom adjustmentOfLossesCom:childBean){
 			carryFwdLossDetail.setDateOfFiling(indianCurrencyHelper.gregorianCalendar(adjustmentOfLossesCom.getDateOfFilingYear()));
@@ -211,8 +220,17 @@ public class CarryFwdLossesSchedules extends XmlCalculation {
 			if(adjustmentOfLossesCom.getNameOfHead().equals("Owning and Maintaining Race Horses")){
 				carryFwdLossDetail.setOthSrcLossRaceHorseCF(indianCurrencyHelper.bigIntegerRound(adjustmentOfLossesCom.getAmount()));
 			}
-			carryFwdLossDetail.setBusLossOthThanSpecLossCF(new BigInteger("0"));
-			carryFwdLossDetail.setLossFrmSpecBusCF(new BigInteger("0"));
+			if(WhichITR.equals("ITR4")){
+				if(adjustmentOfLossesCom.getNameOfHead().equals("Non Speculation Business Loss")){
+					carryFwdLossDetail.setBusLossOthThanSpecLossCF(indianCurrencyHelper.bigIntegerRound(adjustmentOfLossesCom.getAmount()));
+				}
+				if(adjustmentOfLossesCom.getNameOfHead().equals("Loss From Specified Business")){
+					carryFwdLossDetail.setLossFrmSpecifiedBusCF(indianCurrencyHelper.bigIntegerRound(adjustmentOfLossesCom.getAmount()));
+				}
+				if(adjustmentOfLossesCom.getNameOfHead().equals("Speculation Business Loss")){
+					carryFwdLossDetail.setLossFrmSpecBusCF(indianCurrencyHelper.bigIntegerRound(adjustmentOfLossesCom.getAmount()));
+				}
+			}
 		}
 		return carryFwdLossDetail;
 	}
