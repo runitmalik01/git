@@ -745,13 +745,14 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 				</c:if>
 			</c:otherwise>
 		</c:choose>
+		<fmt:parseNumber var="fyInt" type="number" integerOnly="true" value="${fy}"></fmt:parseNumber>
 		<c:choose>
-			<c:when test="${fy=='2012'}">
+			<c:when test="${fyInt >= 2012}">
 				<c:set var="bnkcode" value="flex_string_IFSCCode" />
 				<c:set var="maxlen" value="11" />
 				<c:set var="label" value="IFSC Code" />
 			</c:when>
-			<c:when test="${fy=='2011'}">
+			<c:when test="${fyInt <= 2011}">
 				<c:set var="bnkcode" value="bd_micr_code" />
 				<c:set var="maxlen" value="9" />
 				<c:set var="label" value="MICR Code" />
