@@ -63,6 +63,7 @@ import com.mootly.wcm.model.FinancialYear;
 import com.mootly.wcm.model.schedules.y2012_2013.ALSchedule;
 import com.mootly.wcm.model.schedules.y2012_2013.BroughtFwdLossesSchedules;
 import com.mootly.wcm.model.schedules.y2012_2013.CapitalGainDocumentSchedules;
+import com.mootly.wcm.model.schedules.y2012_2013.CapitalGainScheduleFor4;
 import com.mootly.wcm.model.schedules.y2012_2013.CarryFwdLossesSchedules;
 import com.mootly.wcm.model.schedules.y2012_2013.ClubbingOfIncome;
 import com.mootly.wcm.model.schedules.y2012_2013.CreationInformation;
@@ -237,8 +238,8 @@ public class ITR4XmlGeneratorService  {
 		PartA_Gen2 partA_Gen2 = new PartA_Gen2(memberPersonalInformation, natureBusinessDocument);
 		itr4.setPartAGEN2(partA_Gen2.getPartAGen2(itr));
 
-		//CapitalGainDocumentSchedules capitalGainDocumentSchedules = new CapitalGainDocumentSchedules(capitalAssetDocument);
-		//itr4.setScheduleCGFor23(capitalGainDocumentSchedules.getSchedulecCgFor23(itr, financialYear, inputBeans));
+		CapitalGainScheduleFor4 capitalGainScheduleFor4 = new CapitalGainScheduleFor4(capitalAssetDocument, scheduleDPMDocument, scheduleDOADocument);
+        itr4.setScheduleCGFor4(capitalGainScheduleFor4.getScheduleCGFor4(itr, financialYear, inputBeans));
 
 		ITRScheduleSI iTRScheduleSI = new ITRScheduleSI(scheduleSIDocument, capitalAssetDocument, otherSourcesDocument,
 				formSixteenDocument, salaryIncomeDocument, houseProperty, memberPersonalInformation);
