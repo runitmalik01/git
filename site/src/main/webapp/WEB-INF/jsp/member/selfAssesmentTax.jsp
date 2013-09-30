@@ -137,8 +137,9 @@
     $(document).ready(function() {
 
     var AY='<c:out value="${assessmentYear}"/>'.split("-", 4);
-	itrFinYrMax="31/03/"+AY[1];
-	itrFinYrMin="01/04/"+AY[0];
+    var currDate = '<c:out value="${currDate}"></c:out>';
+	itrFinYrMax=currDate;
+	itrFinYrMin="01/04/"+'<c:out value="${endYear}"></c:out>';
 	$( ".indiandateSelfAssesment" ).datepicker( "option", "minDate", itrFinYrMin );
 			$( ".indiandateSelfAssesment" ).datepicker( "option", "maxDate", itrFinYrMax );
 			});
