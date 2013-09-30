@@ -408,6 +408,7 @@ public class ITR1XmlGeneratorService {
 
 		//interest calculation
 
+		/*
 		BigInteger bigTdsSlry=new BigInteger ("0");
 		BigInteger bigTotalTdsSlry=new BigInteger ("0");
 		Double tdsSalary = 0d;
@@ -513,7 +514,9 @@ public class ITR1XmlGeneratorService {
 		totalMapForINTREST.put("atlq3", 0);
 		totalMapForINTREST.put("atlq4", 0);
 		Map<String,Object> resultMapINTEREST = ScreenCalculatorService.getScreenCalculations("interestCalculation.js", requestParameterMap, totalMapForINTREST);
-
+		 */
+		// Now getting Interest from XmlCalculation instead of calculating here (Added on 30-sep-2013 By Dhananjay)
+		Map<String,Object> resultMapINTEREST = xmlCalculation.interestCalc(financialYear, inputBeans, itr1TaxComputation.getNetTaxLiability());
 		BigInteger Interest234A = new BigInteger("0");
 		BigInteger Interest234B = new BigInteger("0");
 		BigInteger Interest234C = new BigInteger("0");
