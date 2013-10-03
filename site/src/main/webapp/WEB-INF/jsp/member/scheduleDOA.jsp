@@ -81,7 +81,7 @@
 					</div></div>
 					<div class="span4">
 					<div class="rowlabel">
-						<input id="valFirstDayPrevYr" name="valFirstDayPrevYr" class="uprcase" type="text"
+						<input id="valFirstDayPrevYr" name="valFirstDayPrevYr" class="uprcase decimal" type="text" 
 						value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.valFirstDayPrevYr}"/></c:if>">
 
 					</div>
@@ -95,7 +95,7 @@
 					<div class="span4">
 					<div class="rowlabel">
 						<input id="periodMore180Day" name="periodMore180Day" maxlength="14"
-							type="text"
+							type="text" class="decimal"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.periodMore180Day}"/></c:if>" />
 					</div>
 				</div>
@@ -109,7 +109,7 @@
 					<div class="span4">
 					<div class="rowlabel">
 						<input id="prevYrConsider" name="prevYrConsider" maxlength="14"
-							type="text"
+							type="text" class="decimal"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.periodMore180Day}"/></c:if>" />
 					</div>
 				</div></div>
@@ -136,7 +136,7 @@
 					<div class="span4">
 					<div class="rowlabel">
 						<input id="periodLess180Day" name="periodLess180Day" type="text" maxlength="14"
-
+									class="decimal"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.periodLess180Day}"/></c:if>" />
 					</div>
 				</div>
