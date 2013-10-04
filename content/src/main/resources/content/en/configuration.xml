@@ -43558,7 +43558,8 @@ out_net_Profit = (gross_Profit-0)-(expenses_NoAccount-0);
   </sv:node>
 </sv:node>
 
-<!-- schedule BP -->
+<!-- schedule BP calculation-->
+
 
 <sv:node sv:name="incbusinessprofession" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
@@ -43578,7 +43579,7 @@ out_net_Profit = (gross_Profit-0)-(expenses_NoAccount-0);
       <sv:value>hippo:harddocument</sv:value>
     </sv:property>
     <sv:property sv:name="jcr:uuid" sv:type="String">
-      <sv:value>da802e7d-5e5a-4a3f-acdf-736015559cfd</sv:value>
+      <sv:value>f4b5742d-d016-4651-9cf2-b65bbb1e8802</sv:value>
     </sv:property>
     <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
       <sv:value>live</sv:value>
@@ -43603,13 +43604,13 @@ out_net_Profit = (gross_Profit-0)-(expenses_NoAccount-0);
       <sv:value>2013-09-10T14:52:54.578+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-      <sv:value>2013-09-11T11:15:42.371+05:30</sv:value>
+      <sv:value>2013-09-28T16:04:04.488+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
       <sv:value>admin</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-      <sv:value>2013-09-11T11:15:44.862+05:30</sv:value>
+      <sv:value>2013-09-28T16:04:08.327+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="mootlywcm:additionalScript" sv:type="String">
       <sv:value/>
@@ -43676,7 +43677,11 @@ out_net_Profit = (gross_Profit-0)-(expenses_NoAccount-0);
       <sv:value>dedAcc35AD</sv:value>
     </sv:property>
     <sv:property sv:name="mootlywcm:script" sv:type="String">
-      <sv:value>out_total_ExemptIncome = (shareIncome_Firms-0) + (shareIncome_Firms_AOP-0)+(exemptIncome_AnyOther-0);
+      <sv:value>out_netPl_FromBP = (profitLoss_SpecualtiveBusiness-0);
+out_netPLFrom_SPecifiedInc = (profitLoss_SpecifiedBusiness-0);
+out_total_Sections = (section44AD-0)+(section44AE-0)+(section44AF-0)+(section44B-0)+(section44BB-0)+(section44BBA-0)+(section44BBB-0)+(section44D-0)+(section44DA-0)+(chapter_XII_G-0)+(firstSchedule_ITAct-0);
+out_profitLoss_IncludeSchPL = (out_total_Sections -0);
+out_total_ExemptIncome = (shareIncome_Firms-0) + (shareIncome_Firms_AOP-0)+(exemptIncome_AnyOther-0);
 out_balance = ((profitBeforeTax-0)-((profitLoss_SpecualtiveBusiness-0)+(profitLoss_SpecifiedBusiness-0)+(incomeCredited_ProfitLossAcc-0)+(profitLoss_IncludeSchPL-0)+(out_total_ExemptIncome -0)));
 out_total_Expense = (expenseDebit_HeadsInc -0) + (expenseDebit_ExemptInc-0);
 out_adjusted_ProfitLoss = out_total_Expense + out_balance ;
@@ -43690,9 +43695,10 @@ out_total_Deduction = (deductionAllow_Sec32_1_iii-0) + (amountDed_Sec35-0)+(amou
 
 out_income_AfterDed = ((out_totalIncome_sec )+(out_plAfter_AdjustDepr )) - (out_total_Deduction );
 
-out_total_Sections = (section44AD-0)+(section44AE-0)+(section44AF-0)+(section44B-0)+(section44BB-0)+(section44BBA-0)+(section44BBB-0)+(section44D-0)+(section44DA-0)+(chapter_XII_G-0)+(firstSchedule_ITAct-0);
+
 out_plBefore_DedUs10A = (out_total_Sections-0) + (out_income_AfterDed-0) ;
 out_deduction_total10 = (deduction_Sec10A-0)+(deduction_Sec10AA-0);
+out_netPL_FromBussProf = ((out_plBefore_DedUs10A ) - (out_deduction_total10 ));
 out_netPL_otherthanSpeculative_SpecifiedBuss1 = ((out_plBefore_DedUs10A ) - (out_deduction_total10 )) &gt; netPL_otherthanSpeculative_SpecifiedBuss ? ((out_plBefore_DedUs10A ) - (out_deduction_total10 )) : netPL_otherthanSpeculative_SpecifiedBuss ;
 
 out_pl_SpeculativeBuss  = ((netPl_FromBP-0) + (addAccordance_28to44DA -0)) - (dedAccordance_28to44DA-0);
@@ -43705,6 +43711,7 @@ out_incomeChargeable_PL = (out_netPL_otherthanSpeculative_SpecifiedBuss1 -0)+(ou
     </sv:property>
   </sv:node>
 </sv:node>
+
 
 <!-- /schedule BP -->
 <!-- schedule DPM  calculation-->
