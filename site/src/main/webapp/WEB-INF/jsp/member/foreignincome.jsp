@@ -83,7 +83,9 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.income_House}"/></c:if>" />
 						</div>
 					</div>
-					<%-- <div class="span4">
+					<!-- the given below field is  visible in itr4 only -->
+					<c:if test="${ not empty whichItrForm}">
+					 <div class="span4">
 						<div class="rowlabel">
 							<label for="income_business"><small><fmt:message
 										key="foreign.income.business" /> </small> </label>
@@ -93,7 +95,8 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 								maxlength="14" class="decimal"
 								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.income_Business}"/></c:if>" />
 						</div>
-					</div>--%>
+					</div>
+					</c:if>
 					<div class="span4">
 						<div class="rowlabel">
 							<label for="income_capitalgain"><small><fmt:message
@@ -105,8 +108,8 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.income_Capitalgain}"/></c:if>" />
 						</div>
 					</div>
-
-
+				</div>
+			<div class="row-fluid show-grid">
 					<div class="span4">
 						<div class="rowlabel">
 							<label for="income_othersources"><small><fmt:message
@@ -118,8 +121,8 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.income_Othersources}"/></c:if>" />
 						</div>
 					</div>
-				</div>
-				<div class="row-fluid show-grid">
+				
+				
 					<div class="span4">
 						<div class="rowlabel">
 							<label for="income_total"><small><fmt:message
@@ -148,7 +151,8 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 							</select>
 						</div>
 					</div>
-
+					</div>
+					<div class="row-fluid show-grid">
 					<div class="span4">
 						<div class="rowlabel">
 							<label for="dtaa_CountryIncome"><small><fmt:message
@@ -160,8 +164,8 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.dtaa_CountryIncome}"/></c:if>" />
 						</div>
 					</div>
-				</div>
-				<div class="row-fluid show-grid">
+				
+				
 					<div class="span4">
 						<div class="rowlabel">
 							<label for="Nodtaa_CountryIncome"><small><fmt:message
