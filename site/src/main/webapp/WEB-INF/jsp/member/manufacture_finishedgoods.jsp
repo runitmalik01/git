@@ -63,7 +63,7 @@ request.setAttribute("objHashMapQuantUnitCode", objHashMapQuantUnitCode);
 					</div>
 					<div class="rowlabel">
 						<input id="opening_Stock" name="opening_Stock"
-							type="text" 
+							type="text" maxlength="14"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.opening_Stock}"/></c:if>" />
 					</div>
 				</div>
@@ -76,7 +76,7 @@ request.setAttribute("objHashMapQuantUnitCode", objHashMapQuantUnitCode);
 					</div>
 					<div class="rowlabel">
 						<input id="purchage" name="purchage"
-							type="text" 
+							type="text" maxlength="14"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.purchage}"/></c:if>" />
 					</div>
 				</div>
@@ -87,7 +87,7 @@ request.setAttribute("objHashMapQuantUnitCode", objHashMapQuantUnitCode);
 					</div>
 					<div class="rowlabel">
 						<input id="finished_Goods" name="finished_Goods"
-							type="text" 
+							type="text" maxlength="14"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.finished_Goods}"/></c:if>" />
 					</div>
 				</div>
@@ -99,11 +99,12 @@ request.setAttribute("objHashMapQuantUnitCode", objHashMapQuantUnitCode);
 					</div>
 					<div class="rowlabel">
 						<input id="sales_Qty" name="sales_Qty"
-							type="text" 
+							type="text" maxlength="14"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.sales_Qty}"/></c:if>" />
 					</div>
 				</div>
 					</div>
+					<div class="row-fluid show-grid">
 			<div class="span4">
 					<div class="rowlabel">
 						<label for="closing_Stock"><small><fmt:message
@@ -111,7 +112,7 @@ request.setAttribute("objHashMapQuantUnitCode", objHashMapQuantUnitCode);
 					</div>
 					<div class="rowlabel">
 						<input id="closing_Stock" name="closing_Stock"
-							type="text" 
+							type="text" maxlength="14"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.closing_Stock}"/></c:if>" />
 					</div>
 				</div>
@@ -123,7 +124,7 @@ request.setAttribute("objHashMapQuantUnitCode", objHashMapQuantUnitCode);
 					</div>
 					<div class="rowlabel">
 						<input id="shortage_IfAny" name="shortage_IfAny"
-							type="text" 
+							type="text" maxlength="14"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.shortage_IfAny}"/></c:if>" />
 					</div>
 				</div>
