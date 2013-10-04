@@ -47,7 +47,8 @@ public class ForeignIncome extends ITReturnComponent {
 		if(log.isInfoEnabled()){
 			log.info("this is do before render of foreign income");
 		}
-
+		String whichItrForm = request.getRequestContext().getResolvedSiteMapItem().getParameter("whichITRForm");
+		request.setAttribute("whichItrForm", whichItrForm);
 
 	}
 	@Override
