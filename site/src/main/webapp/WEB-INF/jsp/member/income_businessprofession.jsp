@@ -154,7 +154,7 @@
 						<div class="rowlabel">
 							<input id="balance" name="balance" readonly="readonly"
 								type="text" maxlength="14"
-								value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.balance}" />" />
+								value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${BalancePLOthThanSpecBus}" />" />
 						</div>
 					</div>
 				</div>
@@ -215,7 +215,7 @@
 					<div class="rowlabel">
 						<input id="adjusted_ProfitLoss" name="adjusted_ProfitLoss"
 							readonly="readonly" type="text" maxlength="14"
-							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.adjusted_ProfitLoss}" />" />
+							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${AdjustedPLOthThanSpecBus}" />" />
 					</div>
 				</div>
 			</div>
@@ -275,7 +275,7 @@
 					<div class="rowlabel">
 						<input id="depreciation_total" name="depreciation_total"
 							type="text" maxlength="14" readonly="readonly"
-							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.depreciation_total}" />" />
+							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${TotDeprAllowITAct}" />" />
 					</div>
 				</div>
 			</div>
@@ -290,7 +290,7 @@
 					<div class="rowlabel">
 						<input id="plAfter_AdjustDepr" name="plAfter_AdjustDepr"
 							type="text" maxlength="14" readonly="readonly"
-							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.plAfter_AdjustDepr}" />" />
+							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${AdjustPLAfterDeprOthSpecInc}" />" />
 					</div>
 				</div>
 			</div>
@@ -455,7 +455,7 @@
 					<div class="rowlabel">
 						<input id="totalIncome_sec" name="totalIncome_sec"
 							readonly="readonly" type="text" maxlength="14"
-							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.totalIncome_sec}" />" />
+							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${TotAfterAddToPLDeprOthSpecInc}" />" />
 					</div>
 				</div>
 			</div>
@@ -580,7 +580,7 @@
 					<div class="rowlabel">
 						<input id="total_Deduction" name="total_Deduction" type="text"
 							maxlength="14" readonly="readonly"
-							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.total_Deduction}" />" />
+							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${TotDeductionAmts}" />" />
 					</div>
 				</div>
 				<div class="span4">
@@ -591,7 +591,7 @@
 					<div class="rowlabel">
 						<input id="income_AfterDed" name="income_AfterDed" type="text"
 							maxlength="14" readonly="readonly"
-							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.income_AfterDed}" />" />
+							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${PLAftAdjDedBusOthThanSpec}" />" />
 					</div>
 				</div>
 				</div>
@@ -754,7 +754,7 @@
 						<div class="rowlabel">
 							<input id="plBefore_DedUs10A" name="plBefore_DedUs10A"
 								type="text" maxlength="14" readonly="readonly"
-								value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.plBefore_DedUs10A}" />" />
+								value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${ProfitLossBfrDeductUs10S}" />" />
 						</div>
 					</div>
 
@@ -799,7 +799,7 @@
 			<div class="row-fluid show-grid">
 			<div class="span8">
 						<div class="rowlabel">
-							<label for="netPL_FromBussProf"><small>Net profit or loss from business or profession other than speculative business and specified business			
+							<label for="netPL_FromBussProf"><small>Net profit or loss from business or profession other than speculative business and specified business
  </small> </label>
 						</div>
 						</div>
@@ -807,7 +807,7 @@
 						<div class="rowlabel">
 							<input id="netPL_FromBussProf" name="netPL_FromBussProf"
 								readonly="readonly" type="text" maxlength="14"
-								value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.netPL_FromBussProf}" />" />
+								value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${NetPLAftAdjBusOthThanSpec}" />" />
 						</div>
 					</div>
 			</div>
@@ -831,7 +831,7 @@
 						<input id="netPL_otherthanSpeculative_SpecifiedBuss1"
 							name="netPL_otherthanSpeculative_SpecifiedBuss1" type="text"
 							maxlength="14" readonly="readonly"
-							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.netPL_otherthanSpeculative_SpecifiedBuss1}" />" />
+							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${NetPLBusOthThanSpec7A7B7C}" />" />
 					</div>
 				</div>
 			</div>
@@ -891,7 +891,7 @@
 						<div class="rowlabel">
 							<input id="pl_SpeculativeBuss" name="pl_SpeculativeBuss"
 								readonly="readonly" type="text" maxlength="14"
-								value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.pl_SpeculativeBuss}" />" />
+								value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${AdjustedPLFrmSpecuBus}" />" />
 						</div>
 					</div>
 				</div>
@@ -951,7 +951,7 @@
 						<div class="rowlabel">
 							<input id="pl_SpecifiedBuss" name="pl_SpecifiedBuss"
 								readonly="readonly" type="text" maxlength="14"
-								value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.pl_SpecifiedBuss}" />" />
+								value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${ProfitLossSpecifiedBusiness}" />" />
 						</div>
 					</div>
 				</div>
@@ -979,7 +979,7 @@
 						<div class="rowlabel">
 							<input id="pl_SpecifiedBussNet" name="pl_SpecifiedBussNet"
 								readonly="readonly" type="text" maxlength="14"
-								value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.pl_SpecifiedBussNet}" />" />
+								value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${PLFrmSpecifiedBus}" />" />
 						</div>
 					</div>
 				</div>
@@ -994,7 +994,7 @@
 						<div class="rowlabel">
 							<input id="incomeChargeable_PL" name="incomeChargeable_PL"
 								readonly="readonly" type="text" maxlength="14"
-								value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.incomeChargeable_PL}" />" />
+								value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${IncChrgUnHdProftGain}" />" />
 						</div>
 					</div>
 				</div>
