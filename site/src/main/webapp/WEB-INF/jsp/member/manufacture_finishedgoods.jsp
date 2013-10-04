@@ -3,7 +3,7 @@
 <%@ page import="com.mootly.wcm.utils.*"%>
 <%@ page import="java.util.*"%>
 <c:set var="finished_goods">
-	<fmt:message key="finished_goods" />
+	Finished Goods
 </c:set>
 <hippo-gogreen:title title="${finished_goods}" />
 <hst:actionURL var="actionUrl" />
@@ -34,7 +34,7 @@ request.setAttribute("objHashMapQuantUnitCode", objHashMapQuantUnitCode);
 					</div>
 					<div class="rowlabel">
 						<input id="item_Name" name="item_Name"
-							type="text" 
+							type="text" maxlength="25"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.item_Name}"/></c:if>" />
 					</div>
 				</div>
@@ -145,7 +145,7 @@ request.setAttribute("objHashMapQuantUnitCode", objHashMapQuantUnitCode);
 			<tr align="center">
 				<th><b><fmt:message key="item.Name.quant.itr4" /> </b>
 				</th>
-				<th><b><fmt:message key="item.Name.quant.itr4" /> </b>
+				<th><b><fmt:message key="item.unit.quant.itr4" /> </b>
 				</th>
 				<th><b>Actions</b></th>
 			</tr>

@@ -34,7 +34,7 @@ request.setAttribute("objHashMapQuantUnitCode", objHashMapQuantUnitCode);
 					</div>
 					<div class="rowlabel">
 						<input id="item_Name" name="item_Name"
-							type="text" 
+							type="text"  maxlength="25"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.item_Name}"/></c:if>" />
 					</div>
 				</div>
