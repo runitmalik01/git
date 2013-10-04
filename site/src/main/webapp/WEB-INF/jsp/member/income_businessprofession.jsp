@@ -89,7 +89,7 @@
 				<div class="span3">
 					<div class="rowlabel">
 						<input id="profitLoss_IncludeSchPL" name="profitLoss_IncludeSchPL"
-							type="text" maxlength="14"
+							type="text" maxlength="14" readonly="readonly"
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${profitLoss_IncludeSchPL}" />" />
 					</div>
 				</div>
