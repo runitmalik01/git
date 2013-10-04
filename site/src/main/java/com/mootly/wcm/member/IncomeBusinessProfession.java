@@ -117,6 +117,21 @@ public class IncomeBusinessProfession extends ITReturnComponent {
 			request.setAttribute("netPl_FromBP", netPl_FromBP);
 			request.setAttribute("netPLFrom_SPecifiedInc", netPLFrom_SPecifiedInc);
 
+			request.setAttribute("BalancePLOthThanSpecBus", objITR4_ScheduleBP.getITR4ScheduleBP(null, null, null).getBusinessIncOthThanSpec().getBalancePLOthThanSpecBus());
+			request.setAttribute("TotDeprAllowITAct", objITR4_ScheduleBP.getITR4ScheduleBP(null, null, null).getBusinessIncOthThanSpec().getDepreciationAllowITAct32().getTotDeprAllowITAct());
+			request.setAttribute("AdjustPLAfterDeprOthSpecInc", objITR4_ScheduleBP.getITR4ScheduleBP(null, null, null).getBusinessIncOthThanSpec().getAdjustPLAfterDeprOthSpecInc());
+			request.setAttribute("TotAfterAddToPLDeprOthSpecInc", objITR4_ScheduleBP.getITR4ScheduleBP(null, null, null).getBusinessIncOthThanSpec().getTotAfterAddToPLDeprOthSpecInc());
+			request.setAttribute("TotDeductionAmts", objITR4_ScheduleBP.getITR4ScheduleBP(null, null, null).getBusinessIncOthThanSpec().getTotDeductionAmts());
+			request.setAttribute("PLAftAdjDedBusOthThanSpec", objITR4_ScheduleBP.getITR4ScheduleBP(null, null, null).getBusinessIncOthThanSpec().getPLAftAdjDedBusOthThanSpec());
+			request.setAttribute("ProfitLossBfrDeductUs10S", objITR4_ScheduleBP.getITR4ScheduleBP(null, null, null).getBusinessIncOthThanSpec().getProfitLossBfrDeductUs10S());
+			request.setAttribute("NetPLAftAdjBusOthThanSpec", objITR4_ScheduleBP.getITR4ScheduleBP(null, null, null).getBusinessIncOthThanSpec().getNetPLAftAdjBusOthThanSpec());
+			request.setAttribute("NetPLBusOthThanSpec7A7B7C", objITR4_ScheduleBP.getITR4ScheduleBP(null, null, null).getBusinessIncOthThanSpec().getNetPLBusOthThanSpec7A7B7C());
+			request.setAttribute("AdjustedPLFrmSpecuBus", objITR4_ScheduleBP.getITR4ScheduleBP(null, null, null).getSpecBusinessInc().getAdjustedPLFrmSpecuBus());
+			request.setAttribute("ProfitLossSpecifiedBusiness", objITR4_ScheduleBP.getITR4ScheduleBP(null, null, null).getSpecifiedBusinessInc().getProfitLossSpecifiedBusiness());
+			request.setAttribute("PLFrmSpecifiedBus", objITR4_ScheduleBP.getITR4ScheduleBP(null, null, null).getSpecifiedBusinessInc().getPLFrmSpecifiedBus());
+			request.setAttribute("IncChrgUnHdProftGain", objITR4_ScheduleBP.getITR4ScheduleBP(null, null, null).getIncChrgUnHdProftGain());
+			request.setAttribute("AdjustedPLOthThanSpecBus", objITR4_ScheduleBP.getITR4ScheduleBP(null, null, null).getBusinessIncOthThanSpec().getAdjustedPLOthThanSpecBus());
+
 		}
 	}
 }
