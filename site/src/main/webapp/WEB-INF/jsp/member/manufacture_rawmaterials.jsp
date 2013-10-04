@@ -3,7 +3,7 @@
 <%@ page import="com.mootly.wcm.utils.*"%>
 <%@ page import="java.util.*"%>
 <c:set var="rawmaterials">
-	<fmt:message key="rawmaterials" />
+	Raw Materials
 </c:set>
 <hippo-gogreen:title title="${rawmaterials}" />
 <hst:actionURL var="actionUrl" />
@@ -63,7 +63,7 @@ request.setAttribute("objHashMapQuantUnitCode", objHashMapQuantUnitCode);
 					</div>
 					<div class="rowlabel">
 						<input id="opening_Stock" name="opening_Stock"
-							type="text" 
+							type="text" maxlength="14"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.opening_Stock}"/></c:if>" />
 					</div>
 				</div>
@@ -76,7 +76,7 @@ request.setAttribute("objHashMapQuantUnitCode", objHashMapQuantUnitCode);
 					</div>
 					<div class="rowlabel">
 						<input id="purchage" name="purchage"
-							type="text" 
+							type="text" maxlength="14"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.purchage}"/></c:if>" />
 					</div>
 				</div>
@@ -87,7 +87,7 @@ request.setAttribute("objHashMapQuantUnitCode", objHashMapQuantUnitCode);
 					</div>
 					<div class="rowlabel">
 						<input id="consumption" name="consumption"
-							type="text" 
+							type="text" maxlength="14"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.consumption}"/></c:if>" />
 					</div>
 				</div>
@@ -98,7 +98,7 @@ request.setAttribute("objHashMapQuantUnitCode", objHashMapQuantUnitCode);
 					</div>
 					<div class="rowlabel">
 						<input id="sales" name="sales"
-							type="text" 
+							type="text" maxlength="14"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.sales}"/></c:if>" />
 					</div>
 				</div>
@@ -111,7 +111,7 @@ request.setAttribute("objHashMapQuantUnitCode", objHashMapQuantUnitCode);
 					</div>
 					<div class="rowlabel">
 						<input id="closing_Stock" name="closing_Stock"
-							type="text" 
+							type="text" maxlength="14"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.closing_Stock}"/></c:if>" />
 					</div>
 				</div>
@@ -122,7 +122,7 @@ request.setAttribute("objHashMapQuantUnitCode", objHashMapQuantUnitCode);
 					</div>
 					<div class="rowlabel">
 						<input id="yield_finishedProd" name="yield_finishedProd"
-							type="text" 
+							type="text" maxlength="14"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.yield_finishedProd}"/></c:if>" />
 					</div>
 				</div>
@@ -133,7 +133,7 @@ request.setAttribute("objHashMapQuantUnitCode", objHashMapQuantUnitCode);
 					</div>
 					<div class="rowlabel">
 						<input id="percentage_Yield" name="percentage_Yield"
-							type="text" 
+							type="text" maxlength="14"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.percentage_Yield}"/></c:if>" />
 					</div>
 				</div>
@@ -145,7 +145,7 @@ request.setAttribute("objHashMapQuantUnitCode", objHashMapQuantUnitCode);
 					</div>
 					<div class="rowlabel">
 						<input id="shortage_IfAny" name="shortage_IfAny"
-							type="text" 
+							type="text" maxlength="14"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.shortage_IfAny}"/></c:if>" />
 					</div>
 				</div>
@@ -167,7 +167,7 @@ request.setAttribute("objHashMapQuantUnitCode", objHashMapQuantUnitCode);
 			<tr align="center">
 				<th><b><fmt:message key="item.Name.quant.itr4" /> </b>
 				</th>
-				<th><b><fmt:message key="item.Name.quant.itr4" /> </b>
+				<th><b><fmt:message key="item.unit.quant.itr4" /> </b>
 				</th>
 				<th><b>Actions</b></th>
 			</tr>
