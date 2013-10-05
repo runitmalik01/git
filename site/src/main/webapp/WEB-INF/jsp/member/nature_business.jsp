@@ -3,7 +3,7 @@
 <%@ page import="com.mootly.wcm.utils.*"%>
 <%@ page import="java.util.*"%>
 <c:set var="nat_bus">
-	<fmt:message key="nat_bus" />
+	Nature of Business
 </c:set>
 <hippo-gogreen:title title="${nat_bus}" />
 <hst:actionURL var="actionUrl" />
