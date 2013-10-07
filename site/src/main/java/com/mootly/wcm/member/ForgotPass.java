@@ -157,6 +157,7 @@ public class ForgotPass extends BaseComponent {
 			sbHostName.append(request.getScheme() + "://" +  request.getServerName()).append(":").append(request.getServerPort());
 			contextMap.put("memberHostName", sbHostName.toString());
 			contextMap.put("encyptUserName", SecureHashGeneration.simpleBase64Encrption(member.getUserName()));
+			contextMap.put("emailSignature", "Thank You<br/>Wealth4India Team");// to putting signature in email template
 			//It will create a path "content/docunments/mootlywcm/members/forgotpass"
 			final String memberpath=ContentStructure.getMemberForgotpass(request,member.getUserName());
 			//A node is created at above path with name emailmessage
