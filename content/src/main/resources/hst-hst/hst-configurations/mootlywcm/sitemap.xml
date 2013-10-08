@@ -4995,6 +4995,38 @@
 </sv:node>
 
 <!--  end bp -->
+
+<!--start of BFLA-->
+
+<sv:node sv:name="BFLA.html">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:sitemapitem</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>1fd3917f-58b7-4991-a680-4e7bf7ce0f77</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+    <sv:value>hst:pages/BFLA</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+    <sv:value>action</sv:value>
+    <sv:value>mainSiteMapItemRefId</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+    <sv:value>EDIT</sv:value>
+    <sv:value>BFLA</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:refId" sv:type="String">
+    <sv:value>BFLA</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:relativecontentpath" sv:type="String">
+    <sv:value>members</sv:value>
+  </sv:property>
+</sv:node>
+
+<!-- end of BFLA-->
+
+
 <sv:node sv:name="otherinformation.html">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hst:sitemapitem</sv:value>
@@ -8674,7 +8706,7 @@
 	                </sv:property>
 	              </sv:node>
 	            </sv:node>
-	         
+
 
 	            <sv:node sv:name="immovableproperty.html">
 	              <sv:property sv:name="jcr:primaryType" sv:type="Name">
@@ -8852,9 +8884,9 @@
 	                </sv:property>
 	              </sv:node>
 	            </sv:node>
-	            
 
-				
+
+
 
 	            <sv:node sv:name="foreignbankdetail.html">
 	              <sv:property sv:name="jcr:primaryType" sv:type="Name">
