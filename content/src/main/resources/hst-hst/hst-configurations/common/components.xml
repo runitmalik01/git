@@ -1877,6 +1877,25 @@
   </sv:property>
 </sv:node>
 <!-- end of business profession Component -->
+<!--start of BFLA-->
+
+<sv:node sv:name="BFLA">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:component</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>be88d804-8d1b-4808-ada3-7c25b211fbae</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:componentclassname" sv:type="String">
+    <sv:value>com.mootly.wcm.member.BroughtFwdLosses</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:template" sv:type="String">
+    <sv:value>BFLA</sv:value>
+  </sv:property>
+</sv:node>
+
+<!--end of BFLA-->
+
 <sv:node sv:name="other-information">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hst:component</sv:value>
