@@ -21,6 +21,7 @@ import com.mootly.wcm.annotations.DataTypeValidationType;
 import com.mootly.wcm.annotations.FormFields;
 import com.mootly.wcm.annotations.PrimaryBean;
 import com.mootly.wcm.annotations.RequiredBeans;
+import com.mootly.wcm.annotations.RequiredFields;
 import com.mootly.wcm.beans.BalanceSheetDocument;
 import com.mootly.wcm.beans.MemberPersonalInformation;
 import com.mootly.wcm.beans.ScreenConfigDocument;
@@ -42,7 +43,7 @@ import com.mootly.wcm.components.ITReturnComponent;
 		"stInvestPrefShare", "stInvestDebent", "grossInvest", "storesConsum", "rawMaterial", "stockProcess", "finishGoods", "sundryDebtor", "cashInHand",
 		"balanceBank", "otherCurrAsset", "grossCurrAssets", "advancRecover", "loanAdvanCorpOthr", "balWthRevenAuth","grossLoanFund","totalStockTrade",
 		"grossCurrAssLoanAdvan", "sundryCreditor", "laibLeaseAsset", "interestAcuurOnabove","totalSundryDebtor","totalSundryCreditor","cashBalance",
-		"interestAcuurNtLoan", "grossCurrLiability", "incometaxProvis", "wealthTaxProvis", "leaveProvis","grossProprietFund","unsecLoanOther",
+		"interestAcuurNtLoan", "grossCurrLiability", "incometaxProvis", "wealthTaxProvis", "leaveProvis","grossProprietFund","unsecLoanOther","regularAccOrNoCase",
 		"otherProvis", "grossProvision", "grossCurrLaibilProvison", "netCurrAssets", "miscellanExpend", "deftaxAssets", "profLoassAccn", "grossAppliFund"})
 @DataTypeValidationFields(dataTypes={DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,
 		DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,
@@ -62,6 +63,7 @@ fieldNames={"reavReserve", "capReserve", "statReserve", "otherReserve","forgnCur
 		"grossCurrAssLoanAdvan", "sundryCreditor", "laibLeaseAsset", "interestAcuurOnabove","totalSundryDebtor","totalSundryCreditor","cashBalance",
 		"interestAcuurNtLoan", "grossCurrLiability", "incometaxProvis", "wealthTaxProvis", "leaveProvis","unsecLoanOther",
 		"otherProvis", "grossProvision", "grossCurrLaibilProvison", "miscellanExpend", "deftaxAssets", "profLoassAccn", "grossAppliFund"})
+@RequiredFields(fieldNames={"regularAccOrNoCase"})
 public class ITRBalanceSheet extends ITReturnComponent {
 
 	private static final Logger log = LoggerFactory.getLogger(ITRBalanceSheet.class);
