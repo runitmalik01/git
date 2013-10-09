@@ -9,7 +9,8 @@
 	xmlns:ITR3FORM="http://incometaxindiaefiling.gov.in/ITR3" 
 	xmlns:ns5="http://incometaxindiaefiling.gov.in/ITR4S" 
 	xmlns:ns7="http://www.w3.org/2001/XMLSchema-instance"
-	exclude-result-prefixes="ITR1FORM ITR2FORM ITRETURN ITRForm ITR3FORM ns5 ns7">
+	xmlns:ITR4FORM="http://incometaxindiaefiling.gov.in/ITR4"
+	exclude-result-prefixes="ITR1FORM ITR2FORM ITRETURN ITRForm ITR4FORM ITR3FORM ns5 ns7">
 
 	<xsl:output method="xml"></xsl:output>
 	<xsl:param name="showLogo"></xsl:param>
@@ -58,7 +59,7 @@
 		</html>
 	</xsl:template>
 	
-    <xsl:template match="ITR1FORM:ITR1 | ITR2FORM:ITR2 | ns5:ITR4S">
+    <xsl:template match="ITR1FORM:ITR1 | ITR2FORM:ITR2 | ns5:ITR4S | ITR3FORM:ITR3 | ITR4FORM:ITR4">
              <xsl:apply-templates />
     </xsl:template>
 
@@ -379,6 +380,95 @@
 				<td>Taxable Income</td>
 				<td align="right">
 					<xsl:value-of select="ITRForm:TotalIncome" />
+				</td>
+			</tr>
+		</table>
+		<xsl:apply-templates select="ITRForm:DeductUndChapVIA" />
+	</xsl:template>
+	<xsl:template match="ITRForm:PartB-TI">
+	<span style="font-size:16.0pt;line-height:115%;font-family:Algerian">Computation of Total taxable Income</span>
+		<table width="100%" border="1" id="taxi">
+			<tr>
+				<th colspan="2">Taxable Income</th>
+			</tr>
+			<xsl:if test="ITRForm:Salaries/text() != '0'">
+				<tr>
+					<td>Income from Salary</td>
+					<td align="right">
+						<xsl:value-of select="ITRForm:Salaries" />
+					</td>
+				</tr>
+			</xsl:if>
+			<xsl:if test="ITRForm:IncomeFromHP/text() != '0'">
+				<tr>
+					<td>Income from House Property</td>
+					<td align="right">
+						<xsl:value-of select="ITRForm:IncomeFromHP" />
+					</td>
+				</tr>
+			</xsl:if>
+				<tr>
+					<td>Income from Business or Profession</td>
+					<td align="right">
+						<xsl:value-of select="ITRForm:TotProfBusGain" />
+					</td>
+				</tr>
+				<tr>
+					<td>Capital Gains</td>
+					<td align="right">
+						<xsl:value-of select="ITRForm:TotalCapGains" />
+					</td>
+				</tr>
+			<xsl:if test="ITRForm:TotIncFromOS/text() != ''">
+				<tr>
+					<td>Income from Other Sources</td>
+					<td align="right">
+						<xsl:value-of select="ITRForm:TotIncFromOS" />
+					</td>
+				</tr>
+			</xsl:if>
+			<xsl:if test="ITRForm:CurrentYearLoss/text() != ''">
+				<tr>
+					<td>Current Year Losses</td>
+					<td align="right">
+						<xsl:value-of select="ITRForm:CurrentYearLoss" />
+					</td>
+				</tr>
+			</xsl:if>
+			<xsl:if test="ITRForm:BroughtFwdLossesSetoff/text() != '0'">
+				<tr>
+					<td>Brought Forward Losses</td>
+					<td align="right">
+						<xsl:value-of select="ITRForm:BroughtFwdLossesSetoff" />
+					</td>
+				</tr>
+			</xsl:if>
+			<tr>
+				<td> Gross Total Income</td>
+				<td align="right">
+					<xsl:value-of select="ITRForm:GrossTotalIncome" />
+				</td>
+			</tr>
+			<xsl:if test="ITRForm:IncChargeableTaxSplRates/text() != '0'">
+				<tr>
+					<td>Income Chargeable Tax at Special Rate</td>
+					<td align="right">
+						<xsl:value-of select="ITRForm:IncChargeableTaxSplRates" />
+					</td>
+				</tr>
+			</xsl:if>
+			<xsl:if test="ITRForm:DeductionsUnderScheduleVIA/text() != '0'">
+				<tr>
+					<td>Deduction under Chapter VI-A</td>
+					<td align="right">
+						<xsl:value-of select="ITRForm:DeductionsUnderScheduleVIA" />
+					</td>
+				</tr>
+			</xsl:if>
+			<tr>
+				<td>Taxable Income</td>
+				<td align="right">
+					<xsl:value-of select="ITRForm:AggregateIncome" />
 				</td>
 			</tr>
 		</table>
