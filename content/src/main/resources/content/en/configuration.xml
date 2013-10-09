@@ -44198,7 +44198,7 @@ out_incChargBusiness  = indianCurrencyHelper.RoundTo2Decimals(incChargBusiness);
  
 out_grossProprietFund = (reavReserve-0) + (propCapital-0) + (capReserve-0) + (statReserve-0) + (otherReserve-0);
 
-out_grossLoanFund = (forgnCurrLoan-0) + (rupLoanBank-0) + (rupLoanBank-0) + (rupLoanOther-0) + (unsecLoanBank-0) + (unsecLoanOther-0);
+out_grossLoanFund = (forgnCurrLoan-0) + (rupLoanBank-0) + (rupLoanOther-0) + (unsecLoanBank-0) + (unsecLoanOther-0);
 
 out_sourcOfFund = (defTaxLiability-0) + out_grossProprietFund + out_grossLoanFund;
 
