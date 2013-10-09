@@ -20,8 +20,22 @@
 	</div>
 </c:if>
 <form name="schedBalanceSheet" id="schedBalanceSheet" action="${actionUrl}" method="post">
-	<h5 align="center">Sources of Funds</h5>
-	<fieldset>
+    <div class="row-fluid show-grid">
+     <div class="span4">
+       <div class="rowlabel">
+         <label for="regularAccOrNoCase"><small>Do you maintain regular books of accounts of Business or Profession?</small></label>
+       </div>
+       <div class="rowlabel">
+         <select id="regularAccOrNoCase" name="regularAccOrNoCase">
+          <option value="">Select</option>
+          <option value="Y" <c:if test="${parentBean.regularAccOrNoCase == 'Y'}">selected</c:if>>YES</option>
+          <option value="N" <c:if test="${parentBean.regularAccOrNoCase == 'N'}">selected</c:if>>NO</option>
+         </select>
+       </div>
+     </div>
+    </div>
+	<h5 align="center" class="regularAcc_Y regularAcc_N <c:choose><c:when test="${empty parentBean.regularAccOrNoCase || parentBean.regularAccOrNoCase == 'N'}">hide</c:when></c:choose>">Sources of Funds</h5>
+	<fieldset class="regularAcc_Y regularAcc_N <c:choose><c:when test="${empty parentBean.regularAccOrNoCase || parentBean.regularAccOrNoCase == 'N'}">hide</c:when></c:choose>">
 		<legend> Proprietor's fund</legend>
 		<div class="span3">
 			<div class="rowlabel">
@@ -84,7 +98,7 @@
 			</div>
 		</div>		
 	</fieldset>
-	<fieldset>
+	<fieldset class="regularAcc_Y regularAcc_N <c:choose><c:when test="${empty parentBean.regularAccOrNoCase || parentBean.regularAccOrNoCase == 'N'}">hide</c:when></c:choose>">
 		<legend> Loan funds</legend>
 		<div class="span3">
 			<div class="rowlabel">
@@ -147,7 +161,7 @@
 			</div>
 		</div>		
 	</fieldset>
-	<div class="well">
+	<div class="well regularAcc_Y regularAcc_N <c:choose><c:when test="${empty parentBean.regularAccOrNoCase || parentBean.regularAccOrNoCase == 'N'}">hide</c:when></c:choose>">
 		<div class="row-fluid show-grid">
 			<div class="span4">
 				<div class="rowlabel">
@@ -171,8 +185,8 @@
 			</div>
 		</div>
 	</div>
-	<h5 align="center">Application of Funds</h5>
-	<fieldset>
+	<h5 align="center" class="regularAcc_Y regularAcc_N <c:choose><c:when test="${empty parentBean.regularAccOrNoCase || parentBean.regularAccOrNoCase == 'N'}">hide</c:when></c:choose>">Application of Funds</h5>
+	<fieldset class="regularAcc_Y regularAcc_N <c:choose><c:when test="${empty parentBean.regularAccOrNoCase || parentBean.regularAccOrNoCase == 'N'}">hide</c:when></c:choose>">
 		<legend> Fixed assets</legend>
 		<div class="row-fluid show-grid">
 			<div class="span3">
@@ -218,7 +232,7 @@
 			</div>
 		</div>
 	</fieldset>
-	<fieldset>
+	<fieldset class="regularAcc_Y regularAcc_N <c:choose><c:when test="${empty parentBean.regularAccOrNoCase || parentBean.regularAccOrNoCase == 'N'}">hide</c:when></c:choose>">
 		<legend> Investments</legend>
 		<div class="span3">
 			<div class="rowlabel">
@@ -281,7 +295,7 @@
 			</div>
 		</div>
 	</fieldset>
-	<fieldset>
+	<fieldset class="regularAcc_Y regularAcc_N <c:choose><c:when test="${empty parentBean.regularAccOrNoCase || parentBean.regularAccOrNoCase == 'N'}">hide</c:when></c:choose>">
 		<legend> Current assets</legend>
 		<div class="row-fluid show-grid">
 			<div class="span4">
@@ -381,7 +395,7 @@
 			</div>
 		</div>
 	</fieldset>
-	<fieldset>
+	<fieldset class="regularAcc_Y regularAcc_N <c:choose><c:when test="${empty parentBean.regularAccOrNoCase || parentBean.regularAccOrNoCase == 'N'}">hide</c:when></c:choose>">
 		<legend> Loans and advances</legend>
 		<div class="span3">
 			<div class="rowlabel">
@@ -424,7 +438,7 @@
 			</div>
 		</div>
 	</fieldset>
-	<fieldset>
+	<fieldset class="regularAcc_Y regularAcc_N <c:choose><c:when test="${empty parentBean.regularAccOrNoCase || parentBean.regularAccOrNoCase == 'N'}">hide</c:when></c:choose>">
 		<legend> Current liabilities</legend>
 		<div class="row-fluid show-grid">
 			<div class="span4">
@@ -481,7 +495,7 @@
 			</div>
 		</div>
 	</fieldset>
-	<fieldset>
+	<fieldset class="regularAcc_Y regularAcc_N <c:choose><c:when test="${empty parentBean.regularAccOrNoCase || parentBean.regularAccOrNoCase == 'N'}">hide</c:when></c:choose>">
 		<legend> Provisions</legend>
 		<div class="span3">
 			<div class="rowlabel">
@@ -534,7 +548,7 @@
 			</div>
 		</div>
 	</fieldset>
-	<div class="well">
+	<div class="well regularAcc_Y regularAcc_N <c:choose><c:when test="${empty parentBean.regularAccOrNoCase || parentBean.regularAccOrNoCase == 'N'}">hide</c:when></c:choose>">
 		<div class="row-fluid show-grid">
 			<div class="span4">
 				<div class="rowlabel">
@@ -558,7 +572,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="well">
+	<div class="well regularAcc_Y regularAcc_N <c:choose><c:when test="${empty parentBean.regularAccOrNoCase || parentBean.regularAccOrNoCase == 'N'}">hide</c:when></c:choose>">
 		<div class="row-fluid show-grid">
 			<div class="span3">
 				<div class="rowlabel">
@@ -602,7 +616,7 @@
 			</div>
 		</div>
 	</div>
-	<fieldset>
+	<fieldset class="noAccount_Y noAccount_N <c:choose><c:when test="${empty parentBean.regularAccOrNoCase || parentBean.regularAccOrNoCase == 'Y'}">hide</c:when></c:choose>">
 	 <legend>No Account Case</legend>
 		<div class="alert alert-info">In a case where regular books of
 			account of business or profession are not maintained -furnish the
@@ -661,8 +675,34 @@
 	</div>
 </form>
 
-
 <res:client-validation screenConfigurationDocumentName="balancesheet" formId="schedBalanceSheet" formSubmitButtonId="myModalScheduleBalSheet"></res:client-validation>
 <res:calc screenCalc="balancesheet" formId="schedBalanceSheet"></res:calc>
-
+	<hst:element var="uiCustom" name="script">
+	<hst:attribute name="type">text/javascript</hst:attribute>
+       $(document).ready(function() {
+          $('#regularAccOrNoCase').change(function(){
+            if($(this).val()== 'Y'){
+              $('.noAccount_'+$(this).val()).hide();
+              $('.regularAcc_'+$(this).val()).show();
+            }else{
+              $('.noAccount_'+$(this).val()).show();
+              $('.regularAcc_'+$(this).val()).hide();
+             }
+             if($(this).val()== 'N'){
+               $('.noAccount_Y').hide();
+               $('.regularAcc_Y').hide();
+              }
+          });
+          <c:if test="${not empty parentBean}">
+           /* var selectChoice = '<c:out value="${parentBean.regularAccOrNoCase}"/>'; 
+           $('#regularAccOrNoCase').change(function(){
+            if($(this).val() != selectChoice && $(this).val() != ''){
+              $()
+              $('.decimal').val("");
+            }
+          });*/
+          </c:if> 
+	   });
+</hst:element>
+<hst:headContribution element="${uiCustom}" category="jsInternal" />
 <!-- Display all fields with out any presentation -->

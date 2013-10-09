@@ -92,6 +92,8 @@ public class BalanceSheetDocument extends FlexibleDocument implements ContentNod
 	private Double totalSundryCreditor;
 	private Double totalStockTrade;
 	private Double cashBalance;
+	
+	private String regularAccOrNoCase;
 
 
 	public Double getPropCapital() {
@@ -238,6 +240,7 @@ public class BalanceSheetDocument extends FlexibleDocument implements ContentNod
 			node.setProperty("mootlywcm:totalSundryCreditor", bsd.getTotalSundryCreditor());
 			node.setProperty("mootlywcm:totalSundryDebtor", bsd.getTotalSundryDebtor());
 			node.setProperty("mootlywcm:cashBalance", bsd.getCashBalance());
+			node.setProperty("mootlywcm:regularAccOrNoCase", bsd.getRegularAccOrNoCase());
 		}catch (RepositoryException re) {
 			log.error("Binding Node Error",re);
 
@@ -317,6 +320,8 @@ public class BalanceSheetDocument extends FlexibleDocument implements ContentNod
 		if(formMap.getField("unsecLoanBank")!=null) setUnsecLoanBank(Double.parseDouble(StringUtils.isNotBlank(formMap.getField("unsecLoanBank").getValue()) ? formMap.getField("unsecLoanBank").getValue() : "0"));
 		if(formMap.getField("unsecLoanOther")!=null) setUnsecLoanOther(Double.parseDouble(StringUtils.isNotBlank(formMap.getField("unsecLoanOther").getValue()) ? formMap.getField("unsecLoanOther").getValue() : "0"));
 		if(formMap.getField("wealthTaxProvis")!=null) setWealthTaxProvis(Double.parseDouble(StringUtils.isNotBlank(formMap.getField("wealthTaxProvis").getValue()) ? formMap.getField("wealthTaxProvis").getValue() : "0"));
+		
+		if(formMap.getField("regularAccOrNoCase")!=null) setRegularAccOrNoCase(formMap.getField("regularAccOrNoCase").getValue());
 	}
 	@Override
 	public <T extends HippoBean> void cloneBean(T sourceBean) {
@@ -763,5 +768,14 @@ public class BalanceSheetDocument extends FlexibleDocument implements ContentNod
 
 	public void setCashBalance(Double cashBalance) {
 		this.cashBalance = cashBalance;
+	}
+
+	public String getRegularAccOrNoCase() {
+		if(regularAccOrNoCase == null) regularAccOrNoCase = getProperty("mootlywcm:regularAccOrNoCase");
+		return regularAccOrNoCase;
+	}
+
+	public void setRegularAccOrNoCase(String regularAccOrNoCase) {
+		this.regularAccOrNoCase = regularAccOrNoCase;
 	}
 }
