@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.hippoecm.hst.component.support.forms.FormMap;
 import org.hippoecm.hst.content.beans.ObjectBeanManagerException;
 import org.hippoecm.hst.content.beans.manager.ObjectBeanManager;
 import org.hippoecm.hst.core.component.HstComponentException;
@@ -56,7 +57,7 @@ import com.mootly.wcm.components.ITReturnComponent;
 		DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,
 		DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,
 		DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL,DataTypeValidationType.DECIMAL},
-fieldNames={"reavReserve", "capReserve", "statReserve", "otherReserve","forgnCurrLoan", "rupLoanBank", "rupLoanOther", "unsecLoanBank",
+		fieldNames={"reavReserve", "capReserve", "statReserve", "otherReserve","forgnCurrLoan", "rupLoanBank", "rupLoanOther", "unsecLoanBank",
 		"defTaxLiability", "grossBlock", "depreciation", "capWorkProgrss", "grossFixedAsset", "ltInvestQuot", "ltInvestUnquot", "stInvestEquity",
 		"stInvestPrefShare", "stInvestDebent", "grossInvest", "storesConsum", "rawMaterial", "stockProcess", "finishGoods", "sundryDebtor", "cashInHand",
 		"balanceBank", "otherCurrAsset", "grossCurrAssets", "advancRecover", "loanAdvanCorpOthr", "balWthRevenAuth","grossLoanFund","totalStockTrade",
@@ -72,6 +73,7 @@ public class ITRBalanceSheet extends ITReturnComponent {
 	public void doBeforeRender(HstRequest request, HstResponse response) {
 		// TODO Auto-generated method stub
 		super.doBeforeRender(request, response);
+		request.setAttribute("invalidSouceAndAppliFind", request.getParameter("err.invalid.sourcOfFund"));
 		//Test Logic for to Create Screen from Screen Config.
 		try {
 			//create the object of objectBeanManager
@@ -145,6 +147,27 @@ public class ITRBalanceSheet extends ITReturnComponent {
 			throws HstComponentException {
 		// TODO Auto-generated method stub
 		super.doAction(request, response);
+	}
+
+	@Override
+	protected boolean validate(HstRequest request, HstResponse response,
+			FormMap formMap) {
+		// TODO Auto-generated method stub
+		if(super.validate(request, response, formMap)){
+			boolean hasAValidAmount = true;
+			Double sourceOfFund = 0d, applOfFund = 0d;
+			if(formMap.getField("sourcOfFund")!=null && formMap.getField("grossAppliFund") !=null){
+				sourceOfFund = Double.parseDouble(formMap.getField("sourcOfFund").getValue());
+				applOfFund = Double.parseDouble(formMap.getField("grossAppliFund").getValue());
+				if(sourceOfFund != applOfFund){
+					//formMap.getField("sourcOfFund").addMessage("err.invalid."+)
+					response.setRenderParameter("err.invalid.sourcOfFund", "err.invalid.sourcOfFund");
+					hasAValidAmount = false;
+					return hasAValidAmount;
+				}
+			}
+		}
+		return super.validate(request, response, formMap);
 	}
 
 }

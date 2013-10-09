@@ -4,13 +4,6 @@
 <hippo-gogreen:title title="Schedule-BL" />
 <w4india:itrmenu />
 <hst:actionURL var="actionUrl"></hst:actionURL>
-<c:if test="${not empty formMap}">
-	<c:forEach items="${formMap.message}" var="item">
-		<div class="alert alert-error">
-			<fmt:message key="${item.value}" />
-		</div>
-	</c:forEach>
-</c:if>
 <h4>
 	<b><c:out value="${screenConfigDocument.screenHeading}"/></b>
 </h4>
@@ -18,6 +11,18 @@
 	<div class="alert alert-info">
 		<c:out value="${screenConfigDocument.screenSubHeading}"/>
 	</div>
+</c:if>
+<c:if test="${not empty formMap}">
+	<c:forEach items="${formMap.message}" var="item">
+		<div class="alert alert-error">
+			<fmt:message key="${item.value}" />
+		</div>
+	</c:forEach>
+</c:if>
+<c:if test="${not empty invalidSouceAndAppliFind}">
+ <div class="alert alert-error">
+   <fmt:message key="${invalidSouceAndAppliFind}"/>
+ </div>
 </c:if>
 <form name="schedBalanceSheet" id="schedBalanceSheet" action="${actionUrl}" method="post">
     <div class="row-fluid show-grid">
