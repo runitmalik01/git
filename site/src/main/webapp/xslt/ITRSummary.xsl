@@ -407,19 +407,23 @@
 					</td>
 				</tr>
 			</xsl:if>
+			<xsl:if test="ITRForm:TotProfBusGain/text() != '0'">
 				<tr>
 					<td>Income from Business or Profession</td>
 					<td align="right">
 						<xsl:value-of select="ITRForm:TotProfBusGain" />
 					</td>
 				</tr>
+			</xsl:if>
+			<xsl:if test="ITRForm:TotalCapGains/text() != '0'">
 				<tr>
 					<td>Capital Gains</td>
 					<td align="right">
 						<xsl:value-of select="ITRForm:TotalCapGains" />
 					</td>
 				</tr>
-			<xsl:if test="ITRForm:TotIncFromOS/text() != ''">
+			</xsl:if>
+			<xsl:if test="ITRForm:TotIncFromOS/text() != '0'">
 				<tr>
 					<td>Income from Other Sources</td>
 					<td align="right">
@@ -427,7 +431,7 @@
 					</td>
 				</tr>
 			</xsl:if>
-			<xsl:if test="ITRForm:CurrentYearLoss/text() != ''">
+			<xsl:if test="ITRForm:CurrentYearLoss/text() != '0'">
 				<tr>
 					<td>Current Year Losses</td>
 					<td align="right">
