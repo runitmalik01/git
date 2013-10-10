@@ -463,6 +463,8 @@ orderable
   orderable
  [mootlywcm:otherinformationdocument] > hippostd:relaxed, mootlywcm:basedocument
   orderable
+ [mootlywcm:broughtfwdlossesdocument] > hippostd:relaxed, mootlywcm:basedocument
+  orderable
    [mootlywcm:assetandliabilitydocument] > hippostd:relaxed, mootlywcm:basedocument
   orderable
   [mootlywcm:deemedcapitalgaindocument] > hippostd:relaxed, mootlywcm:basedocument
