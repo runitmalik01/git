@@ -37184,7 +37184,7 @@ acknowledgement&lt;/p&gt;
       <sv:value>hippotranslation:translated</sv:value>
     </sv:property>
     <sv:property sv:name="jcr:uuid" sv:type="String">
-      <sv:value>0e6168d7-a205-4a4c-8ddc-bd209c65a3ad</sv:value>
+      <sv:value>9d5a508f-7878-4b40-a196-4e7db98db1fc</sv:value>
     </sv:property>
     <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
       <sv:value>live</sv:value>
@@ -37209,13 +37209,13 @@ acknowledgement&lt;/p&gt;
       <sv:value>2013-10-09T16:53:33.051+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-      <sv:value>2013-10-09T17:24:38.215+05:30</sv:value>
+      <sv:value>2013-10-11T15:02:25.053+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
       <sv:value>admin</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-      <sv:value>2013-10-09T17:24:54.906+05:30</sv:value>
+      <sv:value>2013-10-11T15:02:48.042+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippotranslation:id" sv:type="String">
       <sv:value>bfbee7a0-18b9-4b25-9b7b-ca9906d23d60</sv:value>
@@ -37316,7 +37316,7 @@ acknowledgement&lt;/p&gt;
         <sv:value/>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
-        <sv:value>mobile</sv:value>
+        <sv:value>amount</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
         <sv:value>salariescurrentsetoff</sv:value>
@@ -40097,6 +40097,7 @@ acknowledgement&lt;/p&gt;
     </sv:node>
   </sv:node>
 </sv:node>
+
 
 
 <!--End of broughtfwdlossesdocument Screen Config for ITR4-->
@@ -45760,6 +45761,131 @@ out_totalExcess= (out_amtExcess1+out_amtExcess2+out_amtExcess3+out_amtExcess4+ou
     </sv:property>
   </sv:node>
 </sv:node>
+
+<!--Start of broughtfwdlosses Screen Calculation-->
+
+<sv:node sv:name="broughtfwdlosses">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hippo:handle</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+    <sv:value>hippo:hardhandle</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>1e6936de-d46e-4a91-ad54-f9dcd7d966f6</sv:value>
+  </sv:property>
+  <sv:node sv:name="broughtfwdlosses">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>mootlywcm:screencalculation</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+      <sv:value>hippo:harddocument</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>77bd5204-bdd2-4590-a98c-21b620f8b03f</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
+      <sv:value>live</sv:value>
+      <sv:value>preview</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippo:related___pathreference" sv:type="String">
+      <sv:value>broughtfwdlosses</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostd:holder" sv:type="String">
+      <sv:value>admin</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostd:state" sv:type="String">
+      <sv:value>published</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostd:stateSummary" sv:type="String">
+      <sv:value>live</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
+      <sv:value>admin</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
+      <sv:value>2013-10-11T15:20:29.342+05:30</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
+      <sv:value>2013-10-11T16:44:48.425+05:30</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
+      <sv:value>admin</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
+      <sv:value>2013-10-11T16:44:57.380+05:30</sv:value>
+    </sv:property>
+    <sv:property sv:name="mootlywcm:additionalScript" sv:type="String">
+      <sv:value/>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="mootlywcm:dropRadio" sv:type="String">
+      <sv:value/>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="mootlywcm:input" sv:type="String">
+      <sv:value>hpbflasetoff</sv:value>
+      <sv:value>businessbflasetoff</sv:value>
+      <sv:value>speculativebflasetoff</sv:value>
+      <sv:value>specifiedbflasetoff</sv:value>
+      <sv:value>stgcbflasetoff</sv:value>
+      <sv:value>ltgcbflasetoff</sv:value>
+      <sv:value>horsebflasetoff</sv:value>
+      <sv:value>hpbfdsetoff</sv:value>
+      <sv:value>businessbfdsetoff</sv:value>
+      <sv:value>speculativebfdsetoff</sv:value>
+      <sv:value>specifiedbfdsetoff</sv:value>
+      <sv:value>stgcbfdsetoff</sv:value>
+      <sv:value>ltgcbfdsetoff</sv:value>
+      <sv:value>otherbfdsetoff</sv:value>
+      <sv:value>horsebfdsetoff</sv:value>
+      <sv:value>hpbflus35setoff</sv:value>
+      <sv:value>businessbflus35setoff</sv:value>
+      <sv:value>speculativebflus35setoff</sv:value>
+      <sv:value>specifiedbflus35setoff</sv:value>
+      <sv:value>stgcbflus35setoff</sv:value>
+      <sv:value>ltgcbflus35setoff</sv:value>
+      <sv:value>otherbflus35setoff</sv:value>
+      <sv:value>horsebflus35setoff</sv:value>
+      <sv:value>salariescurrentsetoff</sv:value>
+      <sv:value>hpcurrentsetoff</sv:value>
+      <sv:value>businesscurrentsetoff</sv:value>
+      <sv:value>speculativecurrentsetoff</sv:value>
+      <sv:value>specifiedcurrentsetoff</sv:value>
+      <sv:value>stgccurrentsetoff</sv:value>
+      <sv:value>ltgccurrentsetoff</sv:value>
+      <sv:value>othercurrentsetoff</sv:value>
+      <sv:value>horsecurrentsetoff</sv:value>
+      <sv:value>salariesincomesetoff</sv:value>
+      <sv:value>hpincomesetoff</sv:value>
+      <sv:value>businessincomesetoff</sv:value>
+      <sv:value>speculativeincomesetoff</sv:value>
+      <sv:value>specifiedincomesetoff</sv:value>
+      <sv:value>stgcincomesetoff</sv:value>
+      <sv:value>ltgcincomesetoff</sv:value>
+      <sv:value>otherincomesetoff</sv:value>
+      <sv:value>horseincomesetoff</sv:value>
+    </sv:property>
+    <sv:property sv:name="mootlywcm:script" sv:type="String">
+      <sv:value>out_totalbflasetoff = (hpbflasetoff-0)+(businessbflasetoff-0)+(speculativebflasetoff-0)+(specifiedbflasetoff-0)+(stgcbflasetoff-0)+(ltgcbflasetoff-0)+(horsebflasetoff-0);
+out_totalbfdsetoff = (hpbfdsetoff-0)+(businessbfdsetoff-0)+(speculativebfdsetoff-0)+(specifiedbfdsetoff-0)+(stgcbfdsetoff-0)+(ltgcbfdsetoff-0)+(otherbfdsetoff-0)+(horsebfdsetoff-0);
+out_totalbflus35setoff = (hpbflus35setoff-0)+(businessbflus35setoff-0)+(speculativebflus35setoff-0)+(specifiedbflus35setoff-0)+(stgcbflus35setoff-0)+(ltgcbflus35setoff-0)+(otherbflus35setoff-0)+(horsebflus35setoff-0);
+out_currentsetoff = (salariescurrentsetoff-0)+(hpcurrentsetoff-0)+(businesscurrentsetoff-0)+(speculativecurrentsetoff-0)+(specifiedcurrentsetoff-0)+(stgccurrentsetoff-0)+(ltgccurrentsetoff-0)+(othercurrentsetoff-0)+(horsecurrentsetoff-0);
+out_hpcurrentsetoff = (hpincomesetoff-0)-(hpbflasetoff-0)-(hpbfdsetoff-0)-(hpbflus35setoff-0);
+out_businesscurrentsetoff = (businessincomesetoff-0)-(businessbflasetoff-0)-(businessbfdsetoff-0)-(businessbflus35setoff-0);
+out_speculativecurrentsetoff = (speculativeincomesetoff-0)-(speculativebflasetoff-0)-(speculativebfdsetoff-0)-(speculativebflus35setoff-0);
+out_specifiedcurrentsetoff = (specifiedincomesetoff-0)-(specifiedbflasetoff-0)-(specifiedbfdsetoff-0)-(specifiedbflus35setoff-0);
+out_stgccurrentsetoff = (stgcincomesetoff-0)-(stgcbflasetoff-0)-(stgcbfdsetoff-0)-(stgcbflus35setoff-0);
+out_ltgccurrentsetoff = (ltgcincomesetoff-0)-(ltgcbflasetoff-0)-(ltgcbfdsetoff-0)-(ltgcbflus35setoff-0);
+out_othercurrentsetoff = (otherincomesetoff-0)-(otherbfdsetoff-0)-(otherbflus35setoff-0);
+out_horsecurrentsetoff = (horseincomesetoff-0)-(horsebflasetoff-0)-(horsebfdsetoff-0)-(horsebflus35setoff-0);</sv:value>
+    </sv:property>
+    <sv:property sv:name="mootlywcm:title" sv:type="String">
+      <sv:value/>
+    </sv:property>
+  </sv:node>
+</sv:node>
+
+
+<!--End of broughtfwdlosses Screen Calculation-->
 
 <!--Start of Other Information Screen Calculation For ITR4-->
 
