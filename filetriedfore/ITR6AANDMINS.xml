@@ -5,7 +5,7 @@
          <ITRForm:SWVersionNo>1.0</ITRForm:SWVersionNo>
          <ITRForm:SWCreatedBy>Wealth4India</ITRForm:SWCreatedBy>
          <ITRForm:XMLCreatedBy>WEB-e-TAX</ITRForm:XMLCreatedBy>
-         <ITRForm:XMLCreationDate>2012-09-29</ITRForm:XMLCreationDate>
+         <ITRForm:XMLCreationDate>2013-09-29</ITRForm:XMLCreationDate>
          <ITRForm:IntermediaryCity>New Delhi</ITRForm:IntermediaryCity>
       </ITRForm:CreationInfo>
       <ITRForm:Form_ITR6>
@@ -27,11 +27,13 @@
                <ITRForm:LocalityOrArea>Rajendra Place</ITRForm:LocalityOrArea>
                <ITRForm:CityOrTownOrDistrict>New Delhi</ITRForm:CityOrTownOrDistrict>
                <ITRForm:StateCode>09</ITRForm:StateCode>
+               <ITRForm:CountryCode>994</ITRForm:CountryCode>
                <ITRForm:PinCode>110008</ITRForm:PinCode>
                <ITRForm:Phone>
                   <ITRForm:STDcode>11</ITRForm:STDcode>
                   <ITRForm:PhoneNo>25713136</ITRForm:PhoneNo>
                </ITRForm:Phone>
+               <ITRForm:MobileNo>9999999999</ITRForm:MobileNo>
                <ITRForm:EmailAddress>info@insurancepandit.com</ITRForm:EmailAddress>
             </ITRForm:Address>
             <ITRForm:DateOFFormOrIncorp>2002-10-16</ITRForm:DateOFFormOrIncorp>
@@ -52,35 +54,64 @@
          </ITRForm:FilingStatus>
       </ITRForm:PartA_GEN1>
       <ITRForm:PartA_GEN2For6>
-         <ITRForm:IntlTaxationFlg_92E>N</ITRForm:IntlTaxationFlg_92E>
          <ITRForm:LiableSec44AAflg>N</ITRForm:LiableSec44AAflg>
          <ITRForm:LiableSec44ABflg>Y</ITRForm:LiableSec44ABflg>
+         <ITRForm:AuditedByAccountantFlg>Y</ITRForm:AuditedByAccountantFlg>
          <ITRForm:AuditInfo>
+            <ITRForm:AuditReportFurnishDate>2013-05-01</ITRForm:AuditReportFurnishDate>
             <ITRForm:AuditorName>RAKESH MEDIRATTA</ITRForm:AuditorName>
             <ITRForm:AuditorMemNo>083797</ITRForm:AuditorMemNo>
             <ITRForm:AudFrmName>.R.MEDIRATTA &amp; ASSOCIATES</ITRForm:AudFrmName>
             <ITRForm:AudFrmPAN>AAAPM3114D</ITRForm:AudFrmPAN>
-            <ITRForm:AuditDate>2012-09-29</ITRForm:AuditDate>
-            <ITRForm:RepSec92EFlag>YES</ITRForm:RepSec92EFlag>
+            <ITRForm:AuditDate>2013-09-29</ITRForm:AuditDate>
          </ITRForm:AuditInfo>
+         <ITRForm:RepSec92EFlag>NO</ITRForm:RepSec92EFlag>
+      	 <ITRForm:AuditDetails>
+            <ITRForm:AuditedSection>RAKESH MEDIRATTA</ITRForm:AuditedSection>
+            <ITRForm:DateOfAudit>2013-09-29</ITRForm:DateOfAudit>
+         </ITRForm:AuditDetails>         
          <ITRForm:HoldingStatus>
             <ITRForm:NatOfCompFlg>4</ITRForm:NatOfCompFlg>
          </ITRForm:HoldingStatus>
          <ITRForm:BusOrganisation>
             <ITRForm:BusOrgType>AMALGAMATED</ITRForm:BusOrgType>
             <ITRForm:CompName>Not Applicable</ITRForm:CompName>
+            <ITRForm:AddressDetail>
+            	<ITRForm:AddrDetail>DDDD</ITRForm:AddrDetail>
+            	<ITRForm:CityOrTownOrDistrict>DD</ITRForm:CityOrTownOrDistrict>
+            	<ITRForm:StateCode>15</ITRForm:StateCode>
+            	<ITRForm:PinCode>123456</ITRForm:PinCode>
+            </ITRForm:AddressDetail>
          </ITRForm:BusOrganisation>
          <ITRForm:BusOrganisation>
             <ITRForm:BusOrgType>AMALGAMATING</ITRForm:BusOrgType>
             <ITRForm:CompName>Not Applicable</ITRForm:CompName>
+            <ITRForm:AddressDetail>
+            	<ITRForm:AddrDetail>DDDD</ITRForm:AddrDetail>
+            	<ITRForm:CityOrTownOrDistrict>DD</ITRForm:CityOrTownOrDistrict>
+            	<ITRForm:StateCode>15</ITRForm:StateCode>
+            	<ITRForm:PinCode>123456</ITRForm:PinCode>
+            </ITRForm:AddressDetail>            
          </ITRForm:BusOrganisation>
          <ITRForm:BusOrganisation>
             <ITRForm:BusOrgType>RESULTING</ITRForm:BusOrgType>
             <ITRForm:CompName>Not Applicable</ITRForm:CompName>
+            <ITRForm:AddressDetail>
+            	<ITRForm:AddrDetail>DDDD</ITRForm:AddrDetail>
+            	<ITRForm:CityOrTownOrDistrict>DD</ITRForm:CityOrTownOrDistrict>
+            	<ITRForm:StateCode>15</ITRForm:StateCode>
+            	<ITRForm:PinCode>123456</ITRForm:PinCode>
+            </ITRForm:AddressDetail>            
          </ITRForm:BusOrganisation>
          <ITRForm:BusOrganisation>
             <ITRForm:BusOrgType>DEMERGED</ITRForm:BusOrgType>
             <ITRForm:CompName>Notapllicable</ITRForm:CompName>
+            <ITRForm:AddressDetail>
+            	<ITRForm:AddrDetail>DDDD</ITRForm:AddrDetail>
+            	<ITRForm:CityOrTownOrDistrict>DD</ITRForm:CityOrTownOrDistrict>
+            	<ITRForm:StateCode>15</ITRForm:StateCode>
+            	<ITRForm:PinCode>123456</ITRForm:PinCode>
+            </ITRForm:AddressDetail>            
          </ITRForm:BusOrganisation>
          <ITRForm:KeyPersons>
             <ITRForm:PersonName>MRS MANISHA MAHAJAN</ITRForm:PersonName>
@@ -198,145 +229,247 @@
             </ITRForm:Business>
          </ITRForm:NatOfBus>
       </ITRForm:PartA_GEN2For6>
-      <ITRForm:PARTA_BSFor6>
-         <ITRForm:FundSrc>
-            <ITRForm:ShareHolderFund>
-               <ITRForm:ShareCapital>
-                  <ITRForm:Authorised>5600000</ITRForm:Authorised>
-                  <ITRForm:IssuedSubsPaidUp>5000000</ITRForm:IssuedSubsPaidUp>
-                  <ITRForm:ShareAppMoney>0</ITRForm:ShareAppMoney>
-                  <ITRForm:TotShareCapital>5000000</ITRForm:TotShareCapital>
-               </ITRForm:ShareCapital>
-               <ITRForm:ResrNSurp>
-                  <ITRForm:RevResr>0</ITRForm:RevResr>
-                  <ITRForm:CapResr>0</ITRForm:CapResr>
-                  <ITRForm:CapRedempResr>0</ITRForm:CapRedempResr>
-                  <ITRForm:SecurPremResr>0</ITRForm:SecurPremResr>
-                  <ITRForm:DebunRedResr>0</ITRForm:DebunRedResr>
-                  <ITRForm:StatResr>0</ITRForm:StatResr>
-                  <ITRForm:GenResr>0</ITRForm:GenResr>
-                  <ITRForm:PLAccount>1773990</ITRForm:PLAccount>
-                  <ITRForm:TotResrNSurp>1773990</ITRForm:TotResrNSurp>
-               </ITRForm:ResrNSurp>
-               <ITRForm:TotShareHolderFund>6773990</ITRForm:TotShareHolderFund>
-            </ITRForm:ShareHolderFund>
-            <ITRForm:LoanFunds>
-               <ITRForm:SecrLoan>
-                  <ITRForm:Debentures>0</ITRForm:Debentures>
-                  <ITRForm:ForeignCurrLoan>0</ITRForm:ForeignCurrLoan>
-                  <ITRForm:RupeeLoan>
-                     <ITRForm:FrmBank>1919389</ITRForm:FrmBank>
-                     <ITRForm:FrmOthrs>0</ITRForm:FrmOthrs>
-                     <ITRForm:TotRupeeLoan>1919389</ITRForm:TotRupeeLoan>
-                  </ITRForm:RupeeLoan>
-                  <ITRForm:TotSecrLoan>1919389</ITRForm:TotSecrLoan>
-               </ITRForm:SecrLoan>
-               <ITRForm:UnsecrLoan>
-                  <ITRForm:LongTermLoan>
-                     <ITRForm:FrmBank>0</ITRForm:FrmBank>
-                     <ITRForm:FrmOthrs>0</ITRForm:FrmOthrs>
-                     <ITRForm:TotLongTermLoan>0</ITRForm:TotLongTermLoan>
-                  </ITRForm:LongTermLoan>
-                  <ITRForm:ShortTermLoan>
-                     <ITRForm:FrmBank>0</ITRForm:FrmBank>
-                     <ITRForm:FrmOthrs>0</ITRForm:FrmOthrs>
-                     <ITRForm:TotShortTermLoan>0</ITRForm:TotShortTermLoan>
-                  </ITRForm:ShortTermLoan>
-                  <ITRForm:TotUnSecrLoan>0</ITRForm:TotUnSecrLoan>
-               </ITRForm:UnsecrLoan>
-               <ITRForm:TotLoanFund>1919389</ITRForm:TotLoanFund>
-            </ITRForm:LoanFunds>
-            <ITRForm:DeferredTaxLiability>0</ITRForm:DeferredTaxLiability>
-            <ITRForm:TotFundSrc>8693379</ITRForm:TotFundSrc>
-         </ITRForm:FundSrc>
-         <ITRForm:FundApply>
-            <ITRForm:FixedAsset>
-               <ITRForm:GrossBlock>12458651</ITRForm:GrossBlock>
-               <ITRForm:Depreciation>8528511</ITRForm:Depreciation>
-               <ITRForm:NetBlock>3930140</ITRForm:NetBlock>
-               <ITRForm:CapWrkProg>0</ITRForm:CapWrkProg>
-               <ITRForm:TotFixedAsset>3930140</ITRForm:TotFixedAsset>
-            </ITRForm:FixedAsset>
-            <ITRForm:Investments>
-               <ITRForm:LongTermInv>
-                  <ITRForm:GovtOthSecQuoted>0</ITRForm:GovtOthSecQuoted>
-                  <ITRForm:GovOthSecUnQoted>0</ITRForm:GovOthSecUnQoted>
-                  <ITRForm:TotLongTermInv>0</ITRForm:TotLongTermInv>
-               </ITRForm:LongTermInv>
-               <ITRForm:TradeInv>
-                  <ITRForm:EquityShares>0</ITRForm:EquityShares>
-                  <ITRForm:PreferShares>0</ITRForm:PreferShares>
-                  <ITRForm:Debenture>0</ITRForm:Debenture>
-                  <ITRForm:TotTradeInv>0</ITRForm:TotTradeInv>
-               </ITRForm:TradeInv>
-               <ITRForm:TotInvestments>0</ITRForm:TotInvestments>
-            </ITRForm:Investments>
-            <ITRForm:CurrAssetLoanAdv>
-               <ITRForm:CurrAsset>
-                  <ITRForm:Inventories>
-                     <ITRForm:StoresConsumables>0</ITRForm:StoresConsumables>
-                     <ITRForm:RawMatl>0</ITRForm:RawMatl>
-                     <ITRForm:StkInProcess>0</ITRForm:StkInProcess>
-                     <ITRForm:FinOrTradGood>0</ITRForm:FinOrTradGood>
-                     <ITRForm:TotInventries>0</ITRForm:TotInventries>
-                  </ITRForm:Inventories>
-                  <ITRForm:SundryDebtors>
-                     <ITRForm:OverSixMonthSD>0</ITRForm:OverSixMonthSD>
-                     <ITRForm:OthSD>8184460</ITRForm:OthSD>
-                     <ITRForm:TotSundryDebtors>8184460</ITRForm:TotSundryDebtors>
-                  </ITRForm:SundryDebtors>
-                  <ITRForm:CashOrBankBal>
-                     <ITRForm:CashinHand>9715</ITRForm:CashinHand>
-                     <ITRForm:BankBal>272161</ITRForm:BankBal>
-                     <ITRForm:TotCashOrBankBal>281876</ITRForm:TotCashOrBankBal>
-                  </ITRForm:CashOrBankBal>
-                  <ITRForm:OthCurrAsset>16594356</ITRForm:OthCurrAsset>
-                  <ITRForm:TotCurrAsset>25060692</ITRForm:TotCurrAsset>
-               </ITRForm:CurrAsset>
-               <ITRForm:LoanAdv>
-                  <ITRForm:LoanToSubsComp>0</ITRForm:LoanToSubsComp>
-                  <ITRForm:AdvRecoverable>265750</ITRForm:AdvRecoverable>
-                  <ITRForm:Deposits>1420482</ITRForm:Deposits>
-                  <ITRForm:BalWithRevAuth>0</ITRForm:BalWithRevAuth>
-                  <ITRForm:TotLoanAdv>1686232</ITRForm:TotLoanAdv>
-               </ITRForm:LoanAdv>
-               <ITRForm:TotCurrAssetLoanAdv>26746924</ITRForm:TotCurrAssetLoanAdv>
-               <ITRForm:CurrLiabilitiesProv>
-                  <ITRForm:CurrLiabilities>
-                     <ITRForm:SundryCred>20034317</ITRForm:SundryCred>
-                     <ITRForm:LiabForLeasedAsset>0</ITRForm:LiabForLeasedAsset>
-                     <ITRForm:UnpaidDividend>0</ITRForm:UnpaidDividend>
-                     <ITRForm:UnpaidMatureDebenture>0</ITRForm:UnpaidMatureDebenture>
-                     <ITRForm:UnpaidCallMoney>0</ITRForm:UnpaidCallMoney>
-                     <ITRForm:AccrInterest>0</ITRForm:AccrInterest>
-                     <ITRForm:AccrInterestNotDue>0</ITRForm:AccrInterestNotDue>
-                     <ITRForm:TotCurrLiabilities>20034317</ITRForm:TotCurrLiabilities>
-                  </ITRForm:CurrLiabilities>
-                  <ITRForm:Provisions>
-                     <ITRForm:ITProvision>1045600</ITRForm:ITProvision>
-                     <ITRForm:FBTProvision>0</ITRForm:FBTProvision>
-                     <ITRForm:WTProvision>0</ITRForm:WTProvision>
-                     <ITRForm:ELSuperAnnGratProvision>0</ITRForm:ELSuperAnnGratProvision>
-                     <ITRForm:OthProvision>0</ITRForm:OthProvision>
-                     <ITRForm:ProposedDividend>1000000</ITRForm:ProposedDividend>
-                     <ITRForm:TaxOnDividend>169950</ITRForm:TaxOnDividend>
-                     <ITRForm:TotProvisions>2215550</ITRForm:TotProvisions>
-                  </ITRForm:Provisions>
-                  <ITRForm:TotCurrLiabilitiesProvision>22249867</ITRForm:TotCurrLiabilitiesProvision>
-               </ITRForm:CurrLiabilitiesProv>
-               <ITRForm:NetCurrAsset>4497057</ITRForm:NetCurrAsset>
-            </ITRForm:CurrAssetLoanAdv>
-            <ITRForm:MiscAdjust>
-               <ITRForm:MiscExpndr>0</ITRForm:MiscExpndr>
-               <ITRForm:DefferTaxAsset>266182</ITRForm:DefferTaxAsset>
-               <ITRForm:ProfLossAcnt>0</ITRForm:ProfLossAcnt>
-               <ITRForm:TotMiscAdjust>266182</ITRForm:TotMiscAdjust>
-            </ITRForm:MiscAdjust>
-            <ITRForm:TotFundApply>8693379</ITRForm:TotFundApply>
-         </ITRForm:FundApply>
-      </ITRForm:PARTA_BSFor6>
-      <ITRForm:PARTA_PLFor6>
+      <ITRForm:PARTA_BSFor6FrmAY13>
+		<ITRForm:EquityAndLiablities>
+			<ITRForm:ShareHolderFund>
+				<ITRForm:ShareCapital>
+					<ITRForm:Authorised>1200</ITRForm:Authorised>
+					<ITRForm:IssuedSubsPaidUp>1200</ITRForm:IssuedSubsPaidUp>
+					<ITRForm:SubscribedNotFullyPaid>1200</ITRForm:SubscribedNotFullyPaid>
+					<ITRForm:TotShareCapital>1200</ITRForm:TotShareCapital>
+				</ITRForm:ShareCapital>
+				<ITRForm:ResrNSurp>
+					<ITRForm:CapResr>1200</ITRForm:CapResr>
+					<ITRForm:CapRedempResr>1200</ITRForm:CapRedempResr>
+					<ITRForm:SecurPremResr>1200</ITRForm:SecurPremResr>
+					<ITRForm:DebunRedResr>1200</ITRForm:DebunRedResr>
+					<ITRForm:RevResr>1200</ITRForm:RevResr>
+					<ITRForm:ShareOptOSAmount>1200</ITRForm:ShareOptOSAmount>
+					<ITRForm:OtherResrvDtls>
+						<ITRForm:Nature>Testing</ITRForm:Nature>
+						<ITRForm:Amount>1200</ITRForm:Amount>
+					</ITRForm:OtherResrvDtls>
+					<ITRForm:OtherResrvTotal>1200</ITRForm:OtherResrvTotal>
+					<ITRForm:PLAccount>1200</ITRForm:PLAccount>
+					<ITRForm:TotResrNSurp>1200</ITRForm:TotResrNSurp>
+				</ITRForm:ResrNSurp>
+				<ITRForm:MoneyRecvdAgainstShares>1200
+				</ITRForm:MoneyRecvdAgainstShares>
+				<ITRForm:TotShareHolderFund>1200</ITRForm:TotShareHolderFund>
+			</ITRForm:ShareHolderFund>
+			<ITRForm:ShareAppMoneyAllot>
+				<ITRForm:PendingLtOneYr>1200</ITRForm:PendingLtOneYr>
+				<ITRForm:PendingMtOneYr>1200</ITRForm:PendingMtOneYr>
+				<ITRForm:Total>1200</ITRForm:Total>
+			</ITRForm:ShareAppMoneyAllot>
+			<ITRForm:NonCurrLiabilities>
+				<ITRForm:LongTermBorrowings>
+					<ITRForm:BondsDebentures>
+						<ITRForm:ForeignCurrency>1200</ITRForm:ForeignCurrency>
+						<ITRForm:Rupee>1200</ITRForm:Rupee>
+						<ITRForm:Total>1200</ITRForm:Total>
+					</ITRForm:BondsDebentures>
+					<ITRForm:TermLoans>
+						<ITRForm:ForeignCurrency>1200</ITRForm:ForeignCurrency>
+						<ITRForm:RupeeLoans>
+							<ITRForm:FromBanks>1200</ITRForm:FromBanks>
+							<ITRForm:FromOthers>1200</ITRForm:FromOthers>
+							<ITRForm:Total>1200</ITRForm:Total>
+						</ITRForm:RupeeLoans>
+						<ITRForm:TotalTermLoans>1200</ITRForm:TotalTermLoans>
+					</ITRForm:TermLoans>
+					<ITRForm:DeferredPymtLiabilities>1200
+					</ITRForm:DeferredPymtLiabilities>
+					<ITRForm:DepositsFrmRelatedParties>1200
+					</ITRForm:DepositsFrmRelatedParties>
+					<ITRForm:OtherDeposits>1200</ITRForm:OtherDeposits>
+					<ITRForm:LoansAndAdv>1200</ITRForm:LoansAndAdv>
+					<ITRForm:OthersLoanAdv>1200</ITRForm:OthersLoanAdv>
+					<ITRForm:LongTermMaturities>1200</ITRForm:LongTermMaturities>
+					<ITRForm:TotalLTBorrowings>1200</ITRForm:TotalLTBorrowings>
+				</ITRForm:LongTermBorrowings>
+				<ITRForm:NetDefferedTaxLiability>1200
+				</ITRForm:NetDefferedTaxLiability>
+				<ITRForm:OthLongTermLiablities>
+					<ITRForm:TradePayables>1200</ITRForm:TradePayables>
+					<ITRForm:Others>1200</ITRForm:Others>
+					<ITRForm:TotalOthLtLiabilities>1200</ITRForm:TotalOthLtLiabilities>
+				</ITRForm:OthLongTermLiablities>
+				<ITRForm:LongTermProvisions>
+					<ITRForm:ProvEmpBenefits>1200</ITRForm:ProvEmpBenefits>
+					<ITRForm:Others>1200</ITRForm:Others>
+					<ITRForm:Total>1200</ITRForm:Total>
+				</ITRForm:LongTermProvisions>
+				<ITRForm:TotalNonCurrLiabilites>1200</ITRForm:TotalNonCurrLiabilites>
+			</ITRForm:NonCurrLiabilities>
+			<ITRForm:CurrentLiabilities>
+				<ITRForm:ShortTrmBorrowings>
+					<ITRForm:LoansRepaybleOnDemand>
+						<ITRForm:FromBanks>1200</ITRForm:FromBanks>
+						<ITRForm:FrmNonBanking>1200</ITRForm:FrmNonBanking>
+						<ITRForm:OthFinanceInst>1200</ITRForm:OthFinanceInst>
+						<ITRForm:Others>1200</ITRForm:Others>
+						<ITRForm:TotLoansRepaybleOnDemand>1200
+						</ITRForm:TotLoansRepaybleOnDemand>
+					</ITRForm:LoansRepaybleOnDemand>
+					<ITRForm:DepositsFrmRelatedParties>1200
+					</ITRForm:DepositsFrmRelatedParties>
+					<ITRForm:LoansAndAdv>1200</ITRForm:LoansAndAdv>
+					<ITRForm:OthLoansAndAdv>1200</ITRForm:OthLoansAndAdv>
+					<ITRForm:OthDeposits>1200</ITRForm:OthDeposits>
+					<ITRForm:TotShortTrmBorrowings>1200</ITRForm:TotShortTrmBorrowings>
+				</ITRForm:ShortTrmBorrowings>
+				<ITRForm:TradePayables>
+					<ITRForm:OSMoreThanOneYr>1200</ITRForm:OSMoreThanOneYr>
+					<ITRForm:Others>1200</ITRForm:Others>
+					<ITRForm:TotalTradePayables>1200</ITRForm:TotalTradePayables>
+				</ITRForm:TradePayables>
+				<ITRForm:OthCurrLiabilities>
+					<ITRForm:CurrMatOnLTDebt>1200</ITRForm:CurrMatOnLTDebt>
+					<ITRForm:CurrMatFinanceOblg>1200</ITRForm:CurrMatFinanceOblg>
+					<ITRForm:AccrInterest>1200</ITRForm:AccrInterest>
+					<ITRForm:AccrInterestNotDue>1200</ITRForm:AccrInterestNotDue>
+					<ITRForm:IncRecvdAdvance>1200</ITRForm:IncRecvdAdvance>
+					<ITRForm:UnpaidDividend>1200</ITRForm:UnpaidDividend>
+					<ITRForm:AppMonyRecvdAllotSecurities>1200
+					</ITRForm:AppMonyRecvdAllotSecurities>
+					<ITRForm:UnpaidMatDeposits>1200</ITRForm:UnpaidMatDeposits>
+					<ITRForm:UnpaidMatureDebenture>1200</ITRForm:UnpaidMatureDebenture>
+					<ITRForm:OthPayables>1200</ITRForm:OthPayables>
+					<ITRForm:TotOthCurrLiabilities>1200</ITRForm:TotOthCurrLiabilities>
+				</ITRForm:OthCurrLiabilities>
+				<ITRForm:ShortTermProv>
+					<ITRForm:EmpBenefitProv>1200</ITRForm:EmpBenefitProv>
+					<ITRForm:ITProvision>1200</ITRForm:ITProvision>
+					<ITRForm:WTProvision>1200</ITRForm:WTProvision>
+					<ITRForm:ProposedDividend>1200</ITRForm:ProposedDividend>
+					<ITRForm:TaxOnDividend>1200</ITRForm:TaxOnDividend>
+					<ITRForm:OthProvision>1200</ITRForm:OthProvision>
+					<ITRForm:TotShortTermProvisions>1200</ITRForm:TotShortTermProvisions>
+				</ITRForm:ShortTermProv>
+				<ITRForm:TotCurrLiabilitiesProvision>1200
+				</ITRForm:TotCurrLiabilitiesProvision>
+			</ITRForm:CurrentLiabilities>
+			<ITRForm:TotEquityAndLiabilities>1200</ITRForm:TotEquityAndLiabilities>
+						</ITRForm:EquityAndLiablities>
+						<ITRForm:Assets>
+						<ITRForm:NonCurrAssets>
+						<ITRForm:FixedAsset>
+						<ITRForm:Tangible>
+						<ITRForm:GrossBlock>1200</ITRForm:GrossBlock>
+						<ITRForm:Depreciation>1200</ITRForm:Depreciation>
+						<ITRForm:ImpairmentLosses>1200</ITRForm:ImpairmentLosses>
+						<ITRForm:NetBlock>1200</ITRForm:NetBlock>
+						</ITRForm:Tangible>
+						<ITRForm:InTangible>
+						<ITRForm:GrossBlock>1200</ITRForm:GrossBlock>
+						<ITRForm:Amortization>1200</ITRForm:Amortization>
+						<ITRForm:ImpairmentLosses>1200</ITRForm:ImpairmentLosses>
+						<ITRForm:NetBlock>1200</ITRForm:NetBlock>
+						</ITRForm:InTangible>
+						<ITRForm:CapWrkProg>1200</ITRForm:CapWrkProg>
+						<ITRForm:IntangibleAssetUnDev>1200</ITRForm:IntangibleAssetUnDev>
+						<ITRForm:TotFixedAsset>1200</ITRForm:TotFixedAsset>
+						</ITRForm:FixedAsset>
+						<ITRForm:NonCurrInvstmnts>
+						<ITRForm:InvInProperty>1200</ITRForm:InvInProperty>
+						<ITRForm:EquityInstruments>
+						<ITRForm:ListedEquities>1200</ITRForm:ListedEquities>
+						<ITRForm:UnListedEquities>1200</ITRForm:UnListedEquities>
+						<ITRForm:Total>1200</ITRForm:Total>
+						</ITRForm:EquityInstruments>
+						<ITRForm:PreferenceShares>1200</ITRForm:PreferenceShares>
+						<ITRForm:GovtOrTrustSecurities>1200</ITRForm:GovtOrTrustSecurities>
+						<ITRForm:DebenturesOrBonds>1200</ITRForm:DebenturesOrBonds>
+						<ITRForm:MutualFunds>1200</ITRForm:MutualFunds>
+						<ITRForm:InvstmntInPrtnrShipFirm>1200</ITRForm:InvstmntInPrtnrShipFirm>
+						<ITRForm:OtherInvstmnts>1200</ITRForm:OtherInvstmnts>
+						<ITRForm:TotNonCurrInvstmnts>1200</ITRForm:TotNonCurrInvstmnts>
+						</ITRForm:NonCurrInvstmnts>
+						<ITRForm:NetDeferredTaxAssets>1200</ITRForm:NetDeferredTaxAssets>
+						<ITRForm:LongTrmLoanAdv>
+						<ITRForm:CapitalAdv>1200</ITRForm:CapitalAdv>
+						<ITRForm:SecurityDeposits>1200</ITRForm:SecurityDeposits>
+						<ITRForm:LoanAdvRelatedParties>1200</ITRForm:LoanAdvRelatedParties>
+						<ITRForm:OthLoanAdv>1200</ITRForm:OthLoanAdv>
+						<ITRForm:TotLTLoanAdv>1200</ITRForm:TotLTLoanAdv>
+						<ITRForm:LTLoanAdvDtls>
+						<ITRForm:BusOrProf>1200</ITRForm:BusOrProf>
+						<ITRForm:NotForBusOrProf>1200</ITRForm:NotForBusOrProf>
+						<ITRForm:ShareHolderUs2_22>1200</ITRForm:ShareHolderUs2_22>
+						</ITRForm:LTLoanAdvDtls>
+						</ITRForm:LongTrmLoanAdv>
+						<ITRForm:OthNonCurrAssets>
+						<ITRForm:LTTradeReceivables>
+						<ITRForm:Secured>1200</ITRForm:Secured>
+						<ITRForm:Unsecured>1200</ITRForm:Unsecured>
+						<ITRForm:Doubtful>1200</ITRForm:Doubtful>
+						<ITRForm:TotOthNonCurrAssets>1200</ITRForm:TotOthNonCurrAssets>
+						</ITRForm:LTTradeReceivables>
+						<ITRForm:Others>1200</ITRForm:Others>
+						<ITRForm:Total>1200</ITRForm:Total>
+						<ITRForm:NonCurrAssetUs2_22>1200</ITRForm:NonCurrAssetUs2_22>
+						</ITRForm:OthNonCurrAssets>
+						<ITRForm:TotNonCurrAssets>1200</ITRForm:TotNonCurrAssets>
+						</ITRForm:NonCurrAssets>
+						<ITRForm:CurrentAssets>
+						<ITRForm:CurrInvstmnts>
+						<ITRForm:EquityInstruments>
+						<ITRForm:ListedEquities>1200</ITRForm:ListedEquities>
+						<ITRForm:UnListedEquities>1200</ITRForm:UnListedEquities>
+						<ITRForm:Total>1200</ITRForm:Total>
+						</ITRForm:EquityInstruments>
+						<ITRForm:PreferenceShares>1200</ITRForm:PreferenceShares>
+						<ITRForm:GovtOrTrustSecurities>1200</ITRForm:GovtOrTrustSecurities>
+						<ITRForm:DebenturesOrBonds>1200</ITRForm:DebenturesOrBonds>
+						<ITRForm:MutualFunds>1200</ITRForm:MutualFunds>
+						<ITRForm:InvstmntInPrtnrShipFirm>1200</ITRForm:InvstmntInPrtnrShipFirm>
+						<ITRForm:OtherInvstmnts>1200</ITRForm:OtherInvstmnts>
+						<ITRForm:TotCurrInvstmnts>1200</ITRForm:TotCurrInvstmnts>
+						</ITRForm:CurrInvstmnts>
+						<ITRForm:Inventories>
+						<ITRForm:RawMatl>1200</ITRForm:RawMatl>
+						<ITRForm:WorkInProgress>1200</ITRForm:WorkInProgress>
+						<ITRForm:FinOrTradGood>1200</ITRForm:FinOrTradGood>
+						<ITRForm:StkInTrade>1200</ITRForm:StkInTrade>
+						<ITRForm:StoresConsumables>1200</ITRForm:StoresConsumables>
+						<ITRForm:LooseTools>1200</ITRForm:LooseTools>
+						<ITRForm:Others>1200</ITRForm:Others>
+						<ITRForm:TotInventries>1200</ITRForm:TotInventries>
+						</ITRForm:Inventories>
+						<ITRForm:TradeReceivables>
+						<ITRForm:OSMoreThanSixMonths>1200</ITRForm:OSMoreThanSixMonths>
+						<ITRForm:Others>1200</ITRForm:Others>
+						<ITRForm:TotalTradeReceivables>1200</ITRForm:TotalTradeReceivables>
+						</ITRForm:TradeReceivables>
+						<ITRForm:CashNCashEquivalents>
+						<ITRForm:BalWithBanks>1200</ITRForm:BalWithBanks>
+						<ITRForm:ChequesDrafts>1200</ITRForm:ChequesDrafts>
+						<ITRForm:CashInHand>1200</ITRForm:CashInHand>
+						<ITRForm:Others>1200</ITRForm:Others>
+						<ITRForm:TotCashNCashEquivalents>1200</ITRForm:TotCashNCashEquivalents>
+						</ITRForm:CashNCashEquivalents>
+						<ITRForm:TotShortTermLoanAdv>
+						<ITRForm:LoanAdv>1200</ITRForm:LoanAdv>
+						<ITRForm:Others>1200</ITRForm:Others>
+						<ITRForm:TotShrtTermLoans>1200</ITRForm:TotShrtTermLoans>
+						<ITRForm:STLoanAdvDtls>
+						<ITRForm:BusOrProf>1200</ITRForm:BusOrProf>
+						<ITRForm:NotForBusOrProf>1200</ITRForm:NotForBusOrProf>
+						<ITRForm:ShareHolderUs2_22>1200</ITRForm:ShareHolderUs2_22>
+						</ITRForm:STLoanAdvDtls>
+						</ITRForm:TotShortTermLoanAdv>
+						<ITRForm:OtherCurrAssets>1200</ITRForm:OtherCurrAssets>
+						<ITRForm:TotCurrAssets>1200</ITRForm:TotCurrAssets>
+						</ITRForm:CurrentAssets>
+						</ITRForm:Assets>
+						<ITRForm:TotalAssets>1200</ITRForm:TotalAssets>
+      </ITRForm:PARTA_BSFor6FrmAY13>
+      <ITRForm:PARTA_PL>
          <ITRForm:CreditsToPL>
+         	<ITRForm:SaleOfGoods></ITRForm:SaleOfGoods>
+         	<ITRForm:SaleOfServices></ITRForm:SaleOfServices>
+         	<ITRForm:OperatingRevenueTotAmt></ITRForm:OperatingRevenueTotAmt>
             <ITRForm:BusinessReceipts>47823432</ITRForm:BusinessReceipts>
             <ITRForm:ExciseCustomsVAT>
                <ITRForm:CustomDuty>0</ITRForm:CustomDuty>
@@ -349,6 +482,7 @@
                <ITRForm:Cess>0</ITRForm:Cess>
                <ITRForm:TotExciseCustomsVAT>0</ITRForm:TotExciseCustomsVAT>
             </ITRForm:ExciseCustomsVAT>
+            <ITRForm:TotRevenueFrmOperations>10000</ITRForm:TotRevenueFrmOperations>
             <ITRForm:OthIncome>
                <ITRForm:RentInc>0</ITRForm:RentInc>
                <ITRForm:Comissions>0</ITRForm:Comissions>
@@ -362,12 +496,22 @@
                <ITRForm:MiscOthIncome>6723</ITRForm:MiscOthIncome>
                <ITRForm:TotOthIncome>816215</ITRForm:TotOthIncome>
             </ITRForm:OthIncome>
-            <ITRForm:ClosingStock>0</ITRForm:ClosingStock>
+            <ITRForm:ClosingStockDtls>
+            	<ITRForm:RawMaterial>0</ITRForm:RawMaterial>
+            	<ITRForm:WorkInProgress>0</ITRForm:WorkInProgress>
+            	<ITRForm:FinishedGoods>0</ITRForm:FinishedGoods>
+            	<ITRForm:ClosingStock>0</ITRForm:ClosingStock>
+            </ITRForm:ClosingStockDtls>
             <ITRForm:TotCreditsToPL>48639647</ITRForm:TotCreditsToPL>
          </ITRForm:CreditsToPL>
-         <ITRForm:DebitsToPLFor6>
+         <ITRForm:DebitsToPL>
             <ITRForm:DebitPlAcnt>
-               <ITRForm:OpeningStock>0</ITRForm:OpeningStock>
+              <ITRForm:OpeningStockDtls>
+	            	<ITRForm:RawMaterial>0</ITRForm:RawMaterial>
+	            	<ITRForm:WorkInProgress>0</ITRForm:WorkInProgress>
+	            	<ITRForm:FinishedGoods>0</ITRForm:FinishedGoods>
+	            	<ITRForm:OpeningStock>0</ITRForm:OpeningStock>
+               </ITRForm:OpeningStockDtls>
                <ITRForm:Purchases>0</ITRForm:Purchases>
                <ITRForm:DutyTaxPay>
                   <ITRForm:ExciseCustomsVAT>
@@ -399,8 +543,9 @@
                   <ITRForm:ContToGratFund>0</ITRForm:ContToGratFund>
                   <ITRForm:ContToOthFund>0</ITRForm:ContToOthFund>
                   <ITRForm:OthEmpBenftExpdr>0</ITRForm:OthEmpBenftExpdr>
-                  <ITRForm:FBTPay>0</ITRForm:FBTPay>
                   <ITRForm:TotEmployeeComp>18750453</ITRForm:TotEmployeeComp>
+                  <ITRForm:AnyCompPaidToNonRes>Y</ITRForm:AnyCompPaidToNonRes>
+                  <ITRForm:AmtPaidToNonRes>18750453</ITRForm:AmtPaidToNonRes>
                </ITRForm:EmployeeComp>
                <ITRForm:Insurances>
                   <ITRForm:MedInsur>0</ITRForm:MedInsur>
@@ -415,9 +560,24 @@
                <ITRForm:Conference>0</ITRForm:Conference>
                <ITRForm:SalePromoExp>0</ITRForm:SalePromoExp>
                <ITRForm:Advertisement>6346049</ITRForm:Advertisement>
-               <ITRForm:CommissionExpdr>0</ITRForm:CommissionExpdr>
+               <ITRForm:CommissionExpdrDtls>
+               		<ITRForm:NonResOtherCompany>12</ITRForm:NonResOtherCompany>
+               		<ITRForm:Others>12</ITRForm:Others>
+               		<ITRForm:Total>12</ITRForm:Total>
+               </ITRForm:CommissionExpdrDtls>
+               <ITRForm:RoyalityDtls>
+               		<ITRForm:NonResOtherCompany>12</ITRForm:NonResOtherCompany>
+               		<ITRForm:Others>12</ITRForm:Others>
+               		<ITRForm:Total>12</ITRForm:Total>
+               </ITRForm:RoyalityDtls>
+               <ITRForm:ProfessionalConstDtls>
+               		<ITRForm:NonResOtherCompany>12</ITRForm:NonResOtherCompany>
+               		<ITRForm:Others>12</ITRForm:Others>
+               		<ITRForm:Total>12</ITRForm:Total>
+               </ITRForm:ProfessionalConstDtls>
                <ITRForm:HotelBoardLodge>0</ITRForm:HotelBoardLodge>
                <ITRForm:TravelExp>0</ITRForm:TravelExp>
+               <ITRForm:ForeignTravelExp>0</ITRForm:ForeignTravelExp>               
                <ITRForm:ConveyanceExp>2745912</ITRForm:ConveyanceExp>
                <ITRForm:TelephoneExp>1047995</ITRForm:TelephoneExp>
                <ITRForm:GuestHouseExp>0</ITRForm:GuestHouseExp>
@@ -441,17 +601,24 @@
                </ITRForm:RatesTaxesPays>
                <ITRForm:AuditFee>450000</ITRForm:AuditFee>
                <ITRForm:OtherExpenses>11603588</ITRForm:OtherExpenses>
-               <ITRForm:BadDebt>0</ITRForm:BadDebt>
+               <ITRForm:BadDebtDtls>
+               		<ITRForm:OthersWherePANNotAvlble>0</ITRForm:OthersWherePANNotAvlble>
+               		<ITRForm:OthersAmtLt1Lakh>0</ITRForm:OthersAmtLt1Lakh>
+               		<ITRForm:BadDebt>0</ITRForm:BadDebt>
+               </ITRForm:BadDebtDtls>
                <ITRForm:ProvForBadDoubtDebt>0</ITRForm:ProvForBadDoubtDebt>
                <ITRForm:OthProvisionsExpdr>0</ITRForm:OthProvisionsExpdr>
                <ITRForm:PBIDTA>4742487</ITRForm:PBIDTA>
-               <ITRForm:InterestExpdr>438201</ITRForm:InterestExpdr>
+               <ITRForm:InterestExpdrtDtls>
+               		<ITRForm:NonResOtherCompany>12</ITRForm:NonResOtherCompany>
+               		<ITRForm:Others>22</ITRForm:Others>
+               		<ITRForm:InterestExpdr>222</ITRForm:InterestExpdr>
+               </ITRForm:InterestExpdrtDtls>
                <ITRForm:DepreciationAmort>1150417</ITRForm:DepreciationAmort>
                <ITRForm:PBT>3153869</ITRForm:PBT>
             </ITRForm:DebitPlAcnt>
-            <ITRForm:TaxProvApprFor6>
+            <ITRForm:TaxProvAppr>
                <ITRForm:ProvForCurrTax>1044769</ITRForm:ProvForCurrTax>
-               <ITRForm:ProvFBT>0</ITRForm:ProvFBT>
                <ITRForm:ProvDefTax>-90727</ITRForm:ProvDefTax>
                <ITRForm:ProfitAfterTax>2199827</ITRForm:ProfitAfterTax>
                <ITRForm:BalBFPrevYr>0</ITRForm:BalBFPrevYr>
@@ -463,10 +630,10 @@
                   <ITRForm:AnyOtherAppr>0</ITRForm:AnyOtherAppr>
                   <ITRForm:TotAppropriations>1269950</ITRForm:TotAppropriations>
                </ITRForm:Appropriations>
-               <ITRForm:BalToBalSheet>929877</ITRForm:BalToBalSheet>
-            </ITRForm:TaxProvApprFor6>
-         </ITRForm:DebitsToPLFor6>
-      </ITRForm:PARTA_PLFor6>
+               <ITRForm:PartnerAccBalTrf>929877</ITRForm:PartnerAccBalTrf>
+            </ITRForm:TaxProvAppr>
+         </ITRForm:DebitsToPL>
+      </ITRForm:PARTA_PL>
       <ITRForm:PartB-TI>
          <ITRForm:IncomeFromHP>0</ITRForm:IncomeFromHP>
          <ITRForm:ProfBusGain>
@@ -490,6 +657,7 @@
          </ITRForm:CapGain>
          <ITRForm:IncFromOS>
             <ITRForm:OtherSrcThanOwnRaceHorse>745860</ITRForm:OtherSrcThanOwnRaceHorse>
+            <ITRForm:WinLotteriesRacesGambling>1000</ITRForm:WinLotteriesRacesGambling>
             <ITRForm:FromOwnRaceHorse>0</ITRForm:FromOwnRaceHorse>
             <ITRForm:TotIncFromOS>745860</ITRForm:TotIncFromOS>
          </ITRForm:IncFromOS>
@@ -498,11 +666,15 @@
          <ITRForm:BalanceAfterSetoffLosses>3383851</ITRForm:BalanceAfterSetoffLosses>
          <ITRForm:BroughtFwdLossesSetoff>0</ITRForm:BroughtFwdLossesSetoff>
          <ITRForm:GrossTotalIncome>3383851</ITRForm:GrossTotalIncome>
+         <ITRForm:IncChargeTaxSplRate111A112>111</ITRForm:IncChargeTaxSplRate111A112>
          <ITRForm:DeductionsUnderScheduleVIA>0</ITRForm:DeductionsUnderScheduleVIA>
          <ITRForm:TotalIncome>3383851</ITRForm:TotalIncome>
+         <ITRForm:IncChargeableTaxSplRates>112</ITRForm:IncChargeableTaxSplRates>
+         <ITRForm:IncChargeableTaxNormalRates>11212</ITRForm:IncChargeableTaxNormalRates>
          <ITRForm:NetAgricultureIncomeOrOtherIncomeForRate>0</ITRForm:NetAgricultureIncomeOrOtherIncomeForRate>
          <ITRForm:AggregateIncome>3383851</ITRForm:AggregateIncome>
          <ITRForm:LossesOfCurrentYearCarriedFwd>0</ITRForm:LossesOfCurrentYearCarriedFwd>
+         <ITRForm:DeemedTotIncSec115JC>111</ITRForm:DeemedTotIncSec115JC>
          <ITRForm:DeemedTotIncSec115JB>0</ITRForm:DeemedTotIncSec115JB>
       </ITRForm:PartB-TI>
       <ITRForm:PartB_TTI>
@@ -515,6 +687,7 @@
             <ITRForm:TaxPayableOnTI>
                <ITRForm:TaxAtNormalRates>1015155</ITRForm:TaxAtNormalRates>
                <ITRForm:TaxAtSpecialRates>0</ITRForm:TaxAtSpecialRates>
+               <ITRForm:RebateOnAgriInc>111</ITRForm:RebateOnAgriInc>
                <ITRForm:TaxPayableOnTotInc>1015155</ITRForm:TaxPayableOnTotInc>
             </ITRForm:TaxPayableOnTI>
             <ITRForm:EducationCess>0</ITRForm:EducationCess>
@@ -556,7 +729,7 @@
             <ITRForm:Capacity>Principal Officer</ITRForm:Capacity>
          </ITRForm:Declaration>
          <ITRForm:Place>New Delhi</ITRForm:Place>
-         <ITRForm:Date>2012-09-29</ITRForm:Date>
+         <ITRForm:Date>2013-09-29</ITRForm:Date>
       </ITRForm:Verification>
       <ITRForm:CorpScheduleBP>
          <ITRForm:BusinessIncOthThanSpec>
@@ -624,8 +797,6 @@
             <ITRForm:DeductionUs10s>
                <ITRForm:Section10A>0</ITRForm:Section10A>
                <ITRForm:Section10AA>0</ITRForm:Section10AA>
-               <ITRForm:Section10B>0</ITRForm:Section10B>
-               <ITRForm:Section10BA>0</ITRForm:Section10BA>
                <ITRForm:TotDeductionUs10s>0</ITRForm:TotDeductionUs10s>
             </ITRForm:DeductionUs10s>
             <ITRForm:NetPLAftAdjBusOthThanSpec>2637991</ITRForm:NetPLAftAdjBusOthThanSpec>
@@ -650,9 +821,9 @@
       <ITRForm:ScheduleMAT>
          <ITRForm:PLAcntPrepSchedVICompAct>2</ITRForm:PLAcntPrepSchedVICompAct>
          <ITRForm:PLAcntPrepAsperAGM>2</ITRForm:PLAcntPrepAsperAGM>
-         <ITRForm:ProfBeforeTaxPLAcnt>3153869</ITRForm:ProfBeforeTaxPLAcnt>
+         <ITRForm:ProfAfterTaxPLAcnt>3153869</ITRForm:ProfAfterTaxPLAcnt>
          <ITRForm:Additions>
-            <ITRForm:ITPaidNoFBT>0</ITRForm:ITPaidNoFBT>
+            <ITRForm:ITPaidInclDefTax>0</ITRForm:ITPaidInclDefTax>
             <ITRForm:ResvrNo33AC>0</ITRForm:ResvrNo33AC>
             <ITRForm:ProvUncertainLiab>0</ITRForm:ProvUncertainLiab>
             <ITRForm:ProvLossOfSubsComp>0</ITRForm:ProvLossOfSubsComp>
@@ -675,15 +846,16 @@
          <ITRForm:TaxPayableUs115JB>0</ITRForm:TaxPayableUs115JB>
       </ITRForm:ScheduleMAT>
       <ITRForm:ScheduleMATC>
-         <ITRForm:TaxUs115JBPrevAssYr>0</ITRForm:TaxUs115JBPrevAssYr>
-         <ITRForm:TaxOthProvPrevAssYr>0</ITRForm:TaxOthProvPrevAssYr>
-         <ITRForm:AmtMATLiabAllAssYrAvailSubseqYr>0</ITRForm:AmtMATLiabAllAssYrAvailSubseqYr>
          <ITRForm:TaxUs115JBCurrAssYr>0</ITRForm:TaxUs115JBCurrAssYr>
          <ITRForm:TaxOthProvCurrAssYr>0</ITRForm:TaxOthProvCurrAssYr>
-         <ITRForm:AmtOfTaxCredWithMATLiab>0</ITRForm:AmtOfTaxCredWithMATLiab>
+         <ITRForm:AmtOfTaxWithCred>0</ITRForm:AmtOfTaxWithCred>
+         <ITRForm:TotMatCredGross>0</ITRForm:TotMatCredGross>
+         <ITRForm:TotMatCredSetOff>0</ITRForm:TotMatCredSetOff>
+         <ITRForm:TotMatCredBF>0</ITRForm:TotMatCredBF>
+         <ITRForm:TotMatCredUtilCurrYr>0</ITRForm:TotMatCredUtilCurrYr>
+         <ITRForm:TotBalMATCredCF>0</ITRForm:TotBalMATCredCF>
          <ITRForm:AmtTaxCredUs115JAA>0</ITRForm:AmtTaxCredUs115JAA>
-         <ITRForm:BalMATCredAvlAllPrevAssYr>0</ITRForm:BalMATCredAvlAllPrevAssYr>
-         <ITRForm:BalMATCredAvlCurrAssYr>0</ITRForm:BalMATCredAvlCurrAssYr>
+ 		 <ITRForm:AmtMATLiabAllAssYrAvailSubseqYr>0</ITRForm:AmtMATLiabAllAssYrAvailSubseqYr>         
       </ITRForm:ScheduleMATC>
    </ITR6FORM:ITR6>
 </ITRETURN:ITR>
