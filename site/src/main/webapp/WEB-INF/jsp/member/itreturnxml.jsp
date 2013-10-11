@@ -43,6 +43,9 @@
                  <c:if test="${ITR eq 'ITR4'}">
 			         <jsp:include page="ITR4Summary.jsp"/>
                 </c:if>
+                <c:if test="${ITR eq 'ITR3'}">
+			         <jsp:include page="ITR3Summary.jsp"/>
+                </c:if>
 			</c:when>
 			<c:when test="${not empty show || show == 'xml'}">
 				<script type="syntaxhighlighter" class="brush: xml">
