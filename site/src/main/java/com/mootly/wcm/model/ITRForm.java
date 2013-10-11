@@ -3,7 +3,7 @@ package com.mootly.wcm.model;
 public enum ITRForm {
 	ITR1("ITR-1",new ITRServiceDelivery[] {ITRServiceDelivery.DIY,ITRServiceDelivery.Assisted},1),
 	ITR2("ITR-2",new ITRServiceDelivery[] {ITRServiceDelivery.DIY,ITRServiceDelivery.Assisted},2),
-	ITR3("ITR-3",new ITRServiceDelivery[] {ITRServiceDelivery.Assisted},3),
+	ITR3("ITR-3",new ITRServiceDelivery[] {ITRServiceDelivery.DIY,ITRServiceDelivery.Assisted},3),
 	ITR4("ITR-4",new ITRServiceDelivery[] {ITRServiceDelivery.DIY,ITRServiceDelivery.Assisted},4),
 	ITR4S("ITR-4S",new ITRServiceDelivery[] {ITRServiceDelivery.DIY, ITRServiceDelivery.Assisted},5),
 	ITR5("ITR-5",new ITRServiceDelivery[] {ITRServiceDelivery.Assisted},6),
