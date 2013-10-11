@@ -65,6 +65,9 @@ public class ITRXmlGeneratorService extends ITRXmlGeneratorServiceCommon  implem
 		if(memberPersonalInformation.getFlexField("flex_string_ITRForm", "").equals("ITR4")){
 			return ITR4XmlGeneratorService.generateITR4(request, response);
 		}
+		if(memberPersonalInformation.getFlexField("flex_string_ITRForm", "").equals("ITR3")){
+			return ITR3XmlGeneratorService.generateITR3(request, response);
+		}
 		return null;
 	}
 
@@ -86,6 +89,9 @@ public class ITRXmlGeneratorService extends ITRXmlGeneratorServiceCommon  implem
 		}
 		if(memberPersonalInformation.getFlexField("flex_string_ITRForm", "").equals("ITR4")){
 			returnMap = ITR4XmlGeneratorService.generateITR4(financialYear, inputBeans);
+		}
+		if(memberPersonalInformation.getFlexField("flex_string_ITRForm", "").equals("ITR3")){
+			returnMap = ITR3XmlGeneratorService.generateITR3(financialYear, inputBeans);
 		}
 
 		return returnMap;
@@ -172,42 +178,42 @@ public class ITRXmlGeneratorService extends ITRXmlGeneratorServiceCommon  implem
 		ValidationResponse validationResponse = validateXmlGetErrors(unmarshaller);
 		return validationResponse;
 	}
-	
+
 	@Override
 	public ValidationResponse validateXmlCorp(InputStream inputStream)
 			throws Exception {
 		// TODO Auto-generated method stub
-		Unmarshaller unmarshaller = validateXmlGetUnmarshallerCorp();		
+		Unmarshaller unmarshaller = validateXmlGetUnmarshallerCorp();
 		validateXmlSetValidationEventHandler(unmarshaller);
 		in.gov.incometaxindiaefiling.y2012_2013.corp.ITR itr = (in.gov.incometaxindiaefiling.y2012_2013.corp.ITR) unmarshaller.unmarshal(inputStream);
 		ValidationResponse validationResponse = validateXmlGetErrors(unmarshaller);
 		return validationResponse;
 	}
-	
+
 	@Override
-	public ValidationResponse validateXmlCorp(String xml) throws Exception {			
-		Unmarshaller unmarshaller = validateXmlGetUnmarshallerCorp();		
+	public ValidationResponse validateXmlCorp(String xml) throws Exception {
+		Unmarshaller unmarshaller = validateXmlGetUnmarshallerCorp();
 		validateXmlSetValidationEventHandler(unmarshaller);
 		in.gov.incometaxindiaefiling.y2012_2013.corp.ITR itr = (in.gov.incometaxindiaefiling.y2012_2013.corp.ITR) unmarshaller.unmarshal(new StringReader(xml));
 		ValidationResponse validationResponse = validateXmlGetErrors(unmarshaller);
 		return validationResponse;
 	}
-	
+
 	public Unmarshaller validateXmlGetUnmarshallerCorp() throws Exception {
 		SchemaFactory sf = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
 		sf.setResourceResolver(new ClasspathResourceResolver());
 		InputStream inputStream1= this.getClass().getClassLoader().getResourceAsStream("in/gov/incometaxindiaefiling/y2012_2013/CorpITRMain13.xsd");
-		
+
 		Source streamSource = new StreamSource(inputStream1);
-        Schema schema = sf.newSchema(streamSource); 
- 
+        Schema schema = sf.newSchema(streamSource);
+
         JAXBContext jc = JAXBContext.newInstance(in.gov.incometaxindiaefiling.y2012_2013.corp.ITR.class);
- 
+
         Unmarshaller unmarshaller = jc.createUnmarshaller();
         unmarshaller.setSchema(schema);
-        
+
         return unmarshaller;
-      
+
 	}
 
 
