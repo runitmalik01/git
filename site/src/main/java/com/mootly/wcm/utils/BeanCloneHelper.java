@@ -4,13 +4,10 @@ import java.beans.BeanInfo;
 import java.beans.IntrospectionException;
 import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.DirectFieldAccessor;
-import org.springframework.beans.PropertyValue;
 
 import com.mootly.wcm.annotations.BeanClone;
 
@@ -32,28 +29,24 @@ public class BeanCloneHelper {
 		try {
 			bi = Introspector.getBeanInfo(src.getClass());
 			PropertyDescriptor[] properties = bi.getPropertyDescriptors();
-			DirectFieldAccessor directFieldAccessorSrc = new DirectFieldAccessor(src);
-			DirectFieldAccessor directFieldAccessorDest = new DirectFieldAccessor(dest);
+			//DirectFieldAccessor directFieldAccessorSrc = new DirectFieldAccessor(src);
+			//DirectFieldAccessor directFieldAccessorDest = new DirectFieldAccessor(dest);
 		    for(PropertyDescriptor property : properties) {
-		        //One way
+		        Method aReadMethod = property.getReadMethod();
+		    	
+		    	//One way
 		    	Method aSrcMethod = property.getWriteMethod();
 		    	if (aSrcMethod == null) continue;
 		    	BeanClone beanClone = aSrcMethod.getAnnotation(BeanClone.class);
 		    	if (beanClone == null) continue;
-		    	try {
-		    		Object theValue = directFieldAccessorSrc.getPropertyValue(property.getName());
-					aSrcMethod.invoke(dest,theValue);
-				} catch (IllegalAccessException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IllegalArgumentException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (InvocationTargetException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}		    	
+		    	Object theValue =  aReadMethod.invoke(src);
+		    	aSrcMethod.invoke(dest, theValue);
+	    		//Object theValue = directFieldAccessorSrc.getPropertyValue(property.getName());
+	    		//directFieldAccessorDest.setPropertyValue(property.getName(), theValue);
 		    }	
+		    if (log.isInfoEnabled()) {
+		    	log.info("Cloning complete");
+		    }
 		} catch (IntrospectionException e) {
 			// TODO Auto-generated catch block
 			//e.printStackTrace();

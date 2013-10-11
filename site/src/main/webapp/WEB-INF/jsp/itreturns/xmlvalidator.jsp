@@ -52,7 +52,7 @@
 						<div class="rowlabel">
 							<select id="isCorp" name="isCorp">
 								<option <c:if test="${isCorp == 'FALSE'}">SELECTED</c:if> value="FALSE">Individual/HUF</option>
-								<option value="TRUE">Corporate</option>								
+								<option <c:if test="${isCorp == 'TRUE'}">SELECTED</c:if> value="TRUE">Corporate</option>								
 							</select>
 						</div>
 					</div>

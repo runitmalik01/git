@@ -175,5 +175,9 @@ public class InvoiceDocumentDetail extends FlexibleDocument implements FormMapFi
 		super.cloneBean(sourceBean);
 		BeanCloneHelper beanCloneHelper = new BeanCloneHelper();
 		beanCloneHelper.cloneTheBean(sourceBean,this);
+		
+		if (log.isInfoEnabled()) {
+			log.info("The cloning is done");
+		}
 	}
 }

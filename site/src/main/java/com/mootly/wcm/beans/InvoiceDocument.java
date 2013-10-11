@@ -46,6 +46,7 @@ import org.springframework.context.ApplicationContextAware;
 import com.mootly.wcm.annotations.TagAsTaxDataProvider;
 import com.mootly.wcm.annotations.TagAsTaxDataProvider.TaxDataProviderType;
 import com.mootly.wcm.beans.compound.InvoiceDocumentDetail;
+import com.mootly.wcm.beans.compound.InvoicePaymentDetail;
 import com.mootly.wcm.beans.standard.FlexibleDocument;
 import com.mootly.wcm.model.InvoicePaymentStatus;
 import com.mootly.wcm.model.PaymentVerificationStatus;
@@ -56,10 +57,12 @@ import com.mootly.wcm.services.SequenceGenerator;
 @TagAsTaxDataProvider(type=TaxDataProviderType.INCOME)
 public class InvoiceDocument extends FlexibleDocument implements ContentNodeBinder,FormMapFiller,CompoundChildUpdate {
 	final String PROP_DETAIL_BEAN="mootlywcm:invoicedocumentdetail";
+	final String PROP_DETAIL_PAYMENT_BEAN="mootlywcm:invoicepaymentdetail";
 
 	private final static Logger log = LoggerFactory.getLogger(InvoiceDocument.class); 
 
 	private List<InvoiceDocumentDetail> invoiceDocumentDetailList;
+	private List<InvoicePaymentDetail> invoicePaymentDetailList;
 	private boolean UNPAID = false;
 	private boolean PARTIALLY_PAID = false;
 	private boolean FULLY_PAID = false;
@@ -79,7 +82,60 @@ public class InvoiceDocument extends FlexibleDocument implements ContentNodeBind
 	public final void setInvoiceNumber(String invoiceNumber) {
 		this.invoiceNumber = invoiceNumber;
 	}
+	
+	public Double getTotalInvoiceAmount() {
+		Double totalInvoiceAmount = 0.00D;
+		List<InvoiceDocumentDetail> invoiceDocumentDetailList = getInvoiceDocumentDetailList();
+		if (invoiceDocumentDetailList == null || invoiceDocumentDetailList.size() == 0) {
+			return totalInvoiceAmount;
+		}
+		
+		for (InvoiceDocumentDetail invoiceDocumentDetail:invoiceDocumentDetailList) {
+			totalInvoiceAmount += invoiceDocumentDetail.getServiceAmount();
+		}		
+		return totalInvoiceAmount;
+		
+	}
+	
+	public Double getTotalPaymentAmount() {
+		Double totalPaymentAmount = 0.00D;
+		List<InvoicePaymentDetail> invoicePaymentDetailListLocal = getInvoicePaymentDetailList();
+		if (invoicePaymentDetailListLocal == null || invoicePaymentDetailListLocal.size() == 0) {
+			return totalPaymentAmount;
+		}
+		
+		for (InvoicePaymentDetail invoicePaymentDetail:invoicePaymentDetailListLocal) {
+			totalPaymentAmount += invoicePaymentDetail.getPaymentAmount();
+		}		
+		return totalPaymentAmount;
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public Double getAmountDue() {
+		return getTotalInvoiceAmount() - getTotalPaymentAmount();
+	}
+	
 	public InvoicePaymentStatus getPaymentStatus() {
+		Double totalInvoiceAmount = getTotalInvoiceAmount();
+		Double totalPaymentAmount = getTotalPaymentAmount();
+		
+		Double amountDue = getAmountDue();
+		if (totalInvoiceAmount == totalPaymentAmount) {
+			return InvoicePaymentStatus.FULLY_PAID;
+		}
+		else if (totalInvoiceAmount > totalPaymentAmount && totalPaymentAmount > 0) {
+			return InvoicePaymentStatus.PARTIALLY_PAID;
+		}
+		else if (totalInvoiceAmount > totalPaymentAmount && totalPaymentAmount == 0) {
+			return InvoicePaymentStatus.UNPAID;
+		}
+		else {
+			return InvoicePaymentStatus.OVER_PAID;
+		}
+		/*
 		for (InvoicePaymentStatus p : InvoicePaymentStatus.values()) {		
 			for(MemberPayment memPayment:getListOfMemberPayment()){
 				if(PaymentVerificationStatus.UNVERIFIED.equals(memPayment.getPaymentVerificationStatus())){
@@ -98,7 +154,7 @@ public class InvoiceDocument extends FlexibleDocument implements ContentNodeBind
 				return InvoicePaymentStatus.FULLY_PAID;
 			}
 		}
-		return InvoicePaymentStatus.UNPAID;
+		*/
 	}
 
 	public final List<InvoiceDocumentDetail> getInvoiceDocumentDetailList() {
@@ -115,6 +171,22 @@ public class InvoiceDocument extends FlexibleDocument implements ContentNodeBind
 		if (invoiceDocumentDetailList == null) invoiceDocumentDetailList = new ArrayList<InvoiceDocumentDetail>();
 		invoiceDocumentDetailList.add(invoiceIncomeDetail);
 	}
+	
+	
+	public final List<InvoicePaymentDetail> getInvoicePaymentDetailList() {
+		if (invoicePaymentDetailList == null) invoicePaymentDetailList= getChildBeans(PROP_DETAIL_PAYMENT_BEAN);
+		return invoicePaymentDetailList;
+	}
+
+	public final void setInvoicePaymentDetailList(List<InvoicePaymentDetail> invoicePaymentDetailList) {
+		this.invoicePaymentDetailList = invoicePaymentDetailList;
+	}
+
+	public final void addInvoicePaymentDetail(InvoicePaymentDetail invoicePaymentDetail) {
+		getInvoicePaymentDetailList();
+		if (invoicePaymentDetailList == null) invoicePaymentDetailList = new ArrayList<InvoicePaymentDetail>();
+		invoicePaymentDetailList.add(invoicePaymentDetail);
+	}
 
 	@Override
 	public boolean bind(Object content, javax.jcr.Node node)
@@ -129,6 +201,14 @@ public class InvoiceDocument extends FlexibleDocument implements ContentNodeBind
 			}
 
 			NodeIterator nodeIterator = node.getNodes(PROP_DETAIL_BEAN);
+			if (nodeIterator != null) {
+				while (nodeIterator.hasNext()) {
+					javax.jcr.Node aNode = nodeIterator.nextNode();
+					aNode.remove();
+				}
+			}
+			
+			nodeIterator = node.getNodes(PROP_DETAIL_PAYMENT_BEAN);
 			if (nodeIterator != null) {
 				while (nodeIterator.hasNext()) {
 					javax.jcr.Node aNode = nodeIterator.nextNode();
@@ -154,13 +234,16 @@ public class InvoiceDocument extends FlexibleDocument implements ContentNodeBind
 						invoiceDocumentDetail.bindToNode(html); 
 					}
 				}
-				//setRentSec25A(sum_rentSec25A);
-				//setArrearRentSec25B(sum_arrearRentSec25B);
-				//setTotal_HouseIncome(sum_total_houseIncome);
 			}
-			//if (getRentSec25A() != null) node.setProperty("mootlywcm:rentSec25A", getRentSec25A());
-			//if (getArrearRentSec25B() != null)  node.setProperty("mootlywcm:arrearRentSec25B", getArrearRentSec25B());
-			//if (getTotal_HouseIncome() != null)  node.setProperty("mootlywcm:total_houseIncome", getTotal_HouseIncome());
+			
+			if (invoiceDocument.getInvoicePaymentDetailList() != null && invoiceDocument.getInvoicePaymentDetailList().size() > 0 ){ 
+				for (InvoicePaymentDetail invoicePaymentDetail:invoiceDocument.getInvoicePaymentDetailList()) {
+					if (!invoicePaymentDetail.isMarkedForDeletion()) {
+						javax.jcr.Node html = node.addNode(PROP_DETAIL_PAYMENT_BEAN, PROP_DETAIL_PAYMENT_BEAN);
+						invoicePaymentDetail.bindToNode(html); 
+					}
+				}
+			}
 
 		} catch (RepositoryException rex) {
 			log.error("Repository Exception while binding",rex);
@@ -178,25 +261,25 @@ public class InvoiceDocument extends FlexibleDocument implements ContentNodeBind
 
 	public <T extends HippoBean> void cloneBean(T sourceBean) {
 		//we know the source bean will be CapitalAssetDocument but doesn't hurt to check
-		InvoiceDocument housePropertyDocument = (InvoiceDocument) sourceBean;
-
-
 	}
 
 	@Override
 	public void update(HippoBean child) {
 		// TODO Auto-generated method stub
 		//check for available children
-		if (child.getCanonicalUUID() == null) {
+		if (child.getCanonicalUUID() == null && child instanceof InvoiceDocumentDetail) {
 			InvoiceDocumentDetail source =(InvoiceDocumentDetail) child;
 			addInvoiceDocumentDetail(source);
+		}
+		else if (child.getCanonicalUUID() == null && child instanceof InvoicePaymentDetail) {
+			InvoicePaymentDetail source =(InvoicePaymentDetail) child;
+			addInvoicePaymentDetail(source);
 		}
 		boolean found = false;
 		List<InvoiceDocumentDetail> listOfChildren = getInvoiceDocumentDetailList();
 		for (HippoBean o:listOfChildren) {
 			log.info( o.getCanonicalUUID() );
 			if (child.getCanonicalUUID() != null && child.getCanonicalUUID().equals(o.getCanonicalUUID())) {
-				log.info("GOT A MATCH");
 				InvoiceDocumentDetail destination =(InvoiceDocumentDetail) o;
 				InvoiceDocumentDetail source  = (InvoiceDocumentDetail) child;
 				destination.cloneBean(source);
@@ -204,14 +287,33 @@ public class InvoiceDocument extends FlexibleDocument implements ContentNodeBind
 				break;
 			}
 		}		
+		if (!found) {
+			List<InvoicePaymentDetail> listOfPaymentChildren = getInvoicePaymentDetailList();
+			for (HippoBean o:listOfPaymentChildren) {
+				log.info( o.getCanonicalUUID() );
+				if (child.getCanonicalUUID() != null && child.getCanonicalUUID().equals(o.getCanonicalUUID())) {
+					InvoicePaymentDetail destination =(InvoicePaymentDetail) o;
+					InvoicePaymentDetail source  = (InvoicePaymentDetail) child;
+					destination.cloneBean(source);
+					found = true;
+					break;
+				}
+			}		
+		}
 	}
 
 	@Override
 	public void add(HippoBean child) {
 		// TODO Auto-generated method stub
 		//check for available children
-		InvoiceDocumentDetail source =(InvoiceDocumentDetail) child;
-		addInvoiceDocumentDetail(source);		
+		if (child instanceof InvoiceDocumentDetail) {
+			InvoiceDocumentDetail source =(InvoiceDocumentDetail) child;
+			addInvoiceDocumentDetail(source);
+		}
+		else if (child instanceof InvoicePaymentDetail) {
+			InvoicePaymentDetail source =(InvoicePaymentDetail) child;
+			addInvoicePaymentDetail(source);
+		}
 	}
 
 	@Override
@@ -233,17 +335,18 @@ public class InvoiceDocument extends FlexibleDocument implements ContentNodeBind
 			}
 		}
 		if (!found) {
-			//its a new node lets add it
-			InvoiceDocumentDetail source =(InvoiceDocumentDetail) child;
-			addInvoiceDocumentDetail(source);
+			List<InvoicePaymentDetail> listOfPaymentChildren = getInvoicePaymentDetailList();
+			for (HippoBean o:listOfPaymentChildren) {
+				log.info( o.getCanonicalUUID() );
+				if (child.getCanonicalUUID() != null && child.getCanonicalUUID().equals(o.getCanonicalUUID())) {
+					InvoicePaymentDetail destination =(InvoicePaymentDetail) o;
+					InvoicePaymentDetail source  = (InvoicePaymentDetail) child;
+					destination.setMarkedForDeletion(true);
+					found = true;
+					break;
+				}
+			}
 		}		
 	}
 
-	public List<MemberPayment> getListOfMemberPayment() {
-		return listOfMemberPayment;
-	}
-
-	public void setListOfMemberPayment(List<MemberPayment> listOfMemberPayment) {
-		this.listOfMemberPayment = listOfMemberPayment;
-	}
 }

@@ -50,6 +50,7 @@ public class MemberInvoice extends ITReturnComponent {
 	public void doBeforeRender(HstRequest request, HstResponse response) {
 		// TODO Auto-generated method stub
 		super.doBeforeRender(request, response);		
+		request.setAttribute("type", "invoice");
 		List<HippoBean> serviceDocumentList = loadAllBeansUnderTheFolder(request,response,"services","mootlywcm:Name",SORT_DIRECTION.ASC);
 		if (log.isInfoEnabled()) {
 			if (serviceDocumentList != null && serviceDocumentList.size() > 0) {
@@ -57,7 +58,7 @@ public class MemberInvoice extends ITReturnComponent {
 					log.info("The Key:" + theServiceBean + " ---- class name :" + theServiceBean.getClass().getSimpleName());						
 				}
 			}
-		}
+		}		
 		if (serviceDocumentList != null && serviceDocumentList.size() > 0) {
 			request.setAttribute("serviceDocumentList", serviceDocumentList);
 		}

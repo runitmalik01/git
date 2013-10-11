@@ -90,6 +90,7 @@ public class FormMapHelper {
 			DirectFieldAccessor directFieldAccessor = new DirectFieldAccessor(anObject);
 		    for(PropertyDescriptor property : properties) {
 		        //One way
+		    	if (property.getReadMethod() == null) continue;
 		    	FormField formField = property.getReadMethod().getAnnotation(FormField.class);
 		    	if (log.isInfoEnabled()) {
 		    		if (formField == null) {

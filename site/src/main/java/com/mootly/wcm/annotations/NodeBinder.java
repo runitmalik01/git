@@ -13,5 +13,5 @@ import java.lang.annotation.RetentionPolicy;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface NodeBinder {
 	String nodePropertyName();
-	String propertyName();
+	String propertyName() default "";
 }

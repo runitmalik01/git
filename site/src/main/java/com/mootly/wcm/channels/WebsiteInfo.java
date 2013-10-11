@@ -30,6 +30,10 @@ import com.mootly.wcm.DocumentTypes;
         @FieldGroup(
                 titleKey = "fields.channel",
                 value = { "logo", "pageTitlePrefix", "themeCss","contentFolder","startDate","endDate","isReseller","resellerId", "emailFrom","emailFromName","emailSignature","emailCustomerService"}
+        ),
+        @FieldGroup(
+                titleKey = "fields.channel",
+                value = { "logo", "pageTitlePrefix", "themeCss","contentFolder","startDate","endDate","isReseller","resellerId", "emailFrom","emailFromName","emailSignature","emailCustomerService"}
         )
 })
 public interface WebsiteInfo extends ChannelInfo {
@@ -85,5 +89,21 @@ public interface WebsiteInfo extends ChannelInfo {
     
     @Parameter(name = "phoneCustomerService", defaultValue = "", required = false)
     String getPhoneCustomerService();
+    
+    @Parameter(name = "eriEnabled", defaultValue = "false", required = true)
+    String getEriEnabled();
+    
+    @Parameter(name = "eriUserId", defaultValue = "", required = false)
+    String getEriUserId();
+    
+    @Parameter(name = "eriPassword", defaultValue = "", required = false)
+    String getEriPassword();
+    
+    @Parameter(name = "paymentEnabled", defaultValue = "true", required = true)
+    String getPaymentEnabled();
+    
+    @Parameter(name = "paymentAvailableTypes", defaultValue = "CHECK,CASH,RTGS", required = true)
+    String getPaymentAvailableTypes();
+    
 
 }

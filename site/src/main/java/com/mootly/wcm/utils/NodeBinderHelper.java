@@ -61,6 +61,7 @@ public class NodeBinderHelper {
 			DirectFieldAccessor directFieldAccessor = new DirectFieldAccessor(anObject);
 		    for(PropertyDescriptor property : properties) {
 		        //One way
+		    	if (property.getReadMethod() == null) continue;
 		    	NodeBinder nodeBinder = property.getReadMethod().getAnnotation(NodeBinder.class);
 		    	if (log.isInfoEnabled()) {
 		    		if (nodeBinder == null) {
@@ -72,8 +73,10 @@ public class NodeBinderHelper {
 		    	}
 		    	if (nodeBinder != null) {
 		    		String nodePropertyName = nodeBinder.nodePropertyName();
-			        String propertyName = nodeBinder.propertyName();		
-			        Object theValue = directFieldAccessor.getPropertyValue(propertyName);
+			        String propertyName = nodeBinder.propertyName();	
+			        if (propertyName.equals("")) propertyName = property.getName();
+			        Method theReadMethod = property.getReadMethod();
+			        //Object theValue = directFieldAccessor.getPropertyValue(propertyName);
 			        if (node != null) {
 						try {							
 							Class theTypeClass = directFieldAccessor.getPropertyType(propertyName);
@@ -88,6 +91,7 @@ public class NodeBinderHelper {
 									//e.printStackTrace();
 								}
 							}
+							Object theValue = theReadMethod.invoke(anObject);
 							Method theMethod = MethodUtils.getAccessibleMethod( node.getClass() , "setProperty", new Class[]{String.class,  theTypeClass});
 							//Method apacheMethod = org.apache.commons.lang.reflect.MethodUtils.getAccessibleMethod(node.getClass() , "setProperty", new Class[]{String.class,  theTypeClass});
 							//Method theMethod2 = node.getClass().getMethod("setProperty", String.class, theTypeClass);
@@ -116,6 +120,9 @@ public class NodeBinderHelper {
 			// TODO Auto-generated catch block
 			//e.printStackTrace();
 			log.error("There was an error converting object to FormMap instance",e);
+		}
+		catch (Exception ex) {
+			log.error("Error",ex);
 		}
 	}
 	

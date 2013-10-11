@@ -1,4 +1,6 @@
 
+<%@page import="com.mootly.wcm.model.PaymentType"%>
+<%@page import="com.mootly.wcm.model.IndianGregorianCalendar"%>
 <%@include file="../includes/tags.jspf"%>
 <%@ page import="com.mootly.wcm.utils.*"%>
 <%@page import="com.mootly.wcm.services.ScreenConfigService"%>
@@ -7,6 +9,9 @@
 <%@page import="com.mootly.wcm.member.MemberInvoice"%>
 <%@ page import="com.mootly.wcm.beans.*"%>
 
+<% 
+pageContext.setAttribute("paymentTypeValues",PaymentType.values());
+%>
 <c:set var="parentBeantitle">
 	<fmt:message key="member.invoice.title" />
 </c:set>
@@ -24,6 +29,17 @@
 		</c:choose>
 		- <c:out value="${parentBean.invoiceNumber}"/>
 	</h3>
+	<ul>
+		<li>Total Invoice Amount: <w4india:inr value="${parentBean.totalInvoiceAmount}"/></li>
+		<li>Total Payment Amount:<w4india:inr  value="${parentBean.totalPaymentAmount}"/></li>
+		<li>Total Due:<w4india:inr  value="${parentBean.amountDue}"/></li>
+		<c:if test="${parentBean.amountDue > 0}">
+			<c:forEach items="${paymentTypeValues}" var="paymentType">
+					<a class="btn btn-primary" href="${scriptName}/payment/paymentadd/${paymentType}"><small><i class="icon-pencil icon-white"></i>Pay by <fmt:message key="paymentType.${paymentType}.label" /></small></a>
+			</c:forEach>
+					
+		</c:if>		
+	</ul>
 	<c:if test="${not empty formMap}">
 		<c:forEach items="${formMap.message}" var="item">
 			<div class="alert alert-error">
@@ -31,112 +47,116 @@
 			</div>
 		</c:forEach>
 	</c:if>
-
 	<c:choose>
-		<c:when
-			test="${pageAction == 'NEW_CHILD' || pageAction == 'EDIT_CHILD'}">
-
-			<form id="frmdataInvoice" action="${actionUrl}" method="post"
-				name="frmdataInvoice">
-				<fieldset>
-					<legend>Invoice Details</legend>
-					<div class="row-fluid show-grid letout_L_v letout_S_h"
-						style="dispaly: none;">
-						<div class="span8">
-							<div class="rowlabel">
-								<label for="services">Services</label>
+		<c:when test="${pageAction == 'NEW_CHILD' || pageAction == 'EDIT_CHILD'}">
+			<c:choose>
+				<c:when test="${type == 'invoice'}">
+					<form id="frmdataInvoice" action="${actionUrl}" method="post"
+						name="frmdataInvoice">
+						<fieldset>
+							<legend>Invoice Details</legend>
+							<div class="row-fluid show-grid letout_L_v letout_S_h"
+								style="dispaly: none;">
+								<div class="span8">
+									<div class="rowlabel">
+										<label for="services">Services</label>
+									</div>
+								</div>
+								<div class="span4">
+									<div class="rowlabel">
+										<select name="serviceName" id="services">
+													<option value="">-Select-</option>
+													<c:forEach var="serviceList" items="${serviceDocumentList}">
+														 <option value="${serviceList.name}" <c:if test="${pageAction == 'EDIT_CHILD' && serviceList.name == childBean.serviceName}">selected</c:if>>
+		                                                      <c:out value="${serviceList.name}" />
+		                                               </option>
+													</c:forEach>
+													
+										</select>
+									</div>
+								</div>
 							</div>
-						</div>
-						<div class="span4">
-							<div class="rowlabel">
-								<select name="serviceName" id="services">
+							<div class="row-fluid show-grid letout_L_v letout_S_h"
+								style="dispaly: none;">
+								<div class="span9">
+									<div class="rowlabel">
+										<label for="filingMode">Offering Mode </label>
+									</div>
+								</div>
+								<div class="span3">
+									<div class="rowlabel">
+										<select name="filingMode" id="filingMode">
 											<option value="">-Select-</option>
-											<c:forEach var="serviceList" items="${serviceDocumentList}">
-												 <option value="${serviceList.name}" <c:if test="${pageAction == 'EDIT_CHILD' && serviceList.name == childBean.serviceName}">selected</c:if>>
-                                                      <c:out value="${serviceList.name}" />
-                                               </option>
-											</c:forEach>
-											
-								</select>
+											<option value="e File"
+												<c:if test="${not empty childBean.filingMode && childBean.filingMode =='e File'}">selected</c:if>>EFile</option>
+											<option value="eZ File"
+												<c:if test="${not empty childBean.filingMode && childBean.filingMode =='eZ File'}">selected</c:if>>EzFile</option>
+										</select>
+									</div>
+								</div>
+							</div>
+						    <div class="row-fluid show-grid letout_L_v letout_S_h"
+								style="dispaly: none;">
+								<div class="span9">
+									<div class="rowlabel">
+										<label for="quantity">Rate</label>
+									</div>
+								</div>
+								<div class="span3">
+									<div class="rowlabel">
+										<input id="serviceRate" name="serviceRate" placeholder="Rate"
+											type="text"
+											value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.serviceRate}"/></c:if>" />
+		
+									</div>
+								</div>
+							</div>					
+							<div class="row-fluid show-grid letout_L_v letout_S_h"
+								style="dispaly: none;">
+								<div class="span9">
+									<div class="rowlabel">
+										<label for="quantity">Quantity</label>
+									</div>
+								</div>
+								<div class="span3">
+									<div class="rowlabel">
+										<input id="quantity" name="serviceQty" placeholder="Quantity"
+											type="text"
+											value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.serviceQty}"/></c:if>" />
+		
+									</div>
+								</div>
+							</div>
+		
+							<div class="row-fluid show-grid letout_L_v letout_S_h"
+								style="dispaly: none;">
+								<div class="span9">
+									<div class="rowlabel">
+										<label for="amount">Amount </label>
+									</div>
+								</div>
+								<div class="span3">
+									<div class="rowlabel">
+										<input id="amount" name="amount" placeholder="Amount"
+											type="text"
+											value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.serviceAmount}"/></c:if>" />
+									</div>
+								</div>
+							</div>
+						</fieldset>
+						<div class="row-fluid show-grid">
+							<div class="span3 offset10">
+								<a href="${redirectURLToSamePage}" class="btn btn-danger"
+									style="color: black">Cancel</a> &nbsp; <a id="myModalHrefinvoice"
+									role="button" class="btn btn-success" style="color: black">Save</a>
 							</div>
 						</div>
-					</div>
-					<div class="row-fluid show-grid letout_L_v letout_S_h"
-						style="dispaly: none;">
-						<div class="span9">
-							<div class="rowlabel">
-								<label for="filingMode">Offering Mode </label>
-							</div>
-						</div>
-						<div class="span3">
-							<div class="rowlabel">
-								<select name="filingMode" id="filingMode">
-									<option value="">-Select-</option>
-									<option value="e File"
-										<c:if test="${not empty childBean.filingMode && childBean.filingMode =='e File'}">selected</c:if>>EFile</option>
-									<option value="eZ File"
-										<c:if test="${not empty childBean.filingMode && childBean.filingMode =='eZ File'}">selected</c:if>>EzFile</option>
-								</select>
-							</div>
-						</div>
-					</div>
-				    <div class="row-fluid show-grid letout_L_v letout_S_h"
-						style="dispaly: none;">
-						<div class="span9">
-							<div class="rowlabel">
-								<label for="quantity">Rate</label>
-							</div>
-						</div>
-						<div class="span3">
-							<div class="rowlabel">
-								<input id="serviceRate" name="serviceRate" placeholder="Rate"
-									type="text"
-									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.serviceRate}"/></c:if>" />
-
-							</div>
-						</div>
-					</div>					
-					<div class="row-fluid show-grid letout_L_v letout_S_h"
-						style="dispaly: none;">
-						<div class="span9">
-							<div class="rowlabel">
-								<label for="quantity">Quantity</label>
-							</div>
-						</div>
-						<div class="span3">
-							<div class="rowlabel">
-								<input id="quantity" name="serviceQty" placeholder="Quantity"
-									type="text"
-									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.serviceQty}"/></c:if>" />
-
-							</div>
-						</div>
-					</div>
-
-					<div class="row-fluid show-grid letout_L_v letout_S_h"
-						style="dispaly: none;">
-						<div class="span9">
-							<div class="rowlabel">
-								<label for="amount">Amount </label>
-							</div>
-						</div>
-						<div class="span3">
-							<div class="rowlabel">
-								<input id="amount" name="amount" placeholder="Amount"
-									type="text"
-									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.serviceAmount}"/></c:if>" />
-							</div>
-						</div>
-					</div>
-				</fieldset>
-				<div class="row-fluid show-grid">
-					<div class="span3 offset10">
-						<a href="${redirectURLToSamePage}" class="btn btn-danger"
-							style="color: black">Cancel</a> &nbsp; <a id="myModalHrefinvoice"
-							role="button" class="btn btn-success" style="color: black">Save</a>
-					</div>
-				</div>
-			</form>
+					</form>
+				</c:when>
+				<c:otherwise>
+						PAYMENT EDIT OR ADD			
+				</c:otherwise>
+			</c:choose>
 		</c:when>
 		<c:otherwise>
 			<!--  show the table -->
@@ -171,6 +191,39 @@
 					</c:forEach>
 				</c:if>
 			</table>
+			<hr/>
+			<h4>Payments</h4>
+			<table>
+				<tr align="center">
+					<th><b>Date</b></th>
+					<th><b>Mode</b></th>
+					<th><b>Amount</b></th>
+					<th><b>Quantity</b></th>
+					<th><b>Amount</b></th>
+					<th><b>Actions</b></th>
+				</tr>
+				<c:if test="${not empty parentBean}">
+					<c:forEach items="${parentBean.invoicePaymentDetailList}"
+						var="invoicepaymentdetail">
+						<tr align="center">
+						<tr>
+							<td><fmt:formatDate value="${invoicepaymentdetail.paymentDate.time}" timeZone="<%=IndianGregorianCalendar.indianTimeZone%>"/></td>
+							<td></td>
+							<td><c:out value="${invoicepaymentdetail.paymentAmount}"/></td>
+							<td></td>
+							<td></td>
+							<td><a class="btn btn-primary"
+								href="${scriptName}/<c:out value="/payment/${invoicepaymentdetail.canonicalUUID}"/>/paymentedit"><small><i
+										class="icon-pencil icon-white"></i>Edit</small> </a>&nbsp;&nbsp;<a
+								class="btn btn-danger"
+								href="${scriptName}/<c:out value="/payment/${invoicepaymentdetail.canonicalUUID}"/>/paymentdelete"
+								data-confirm=""><small><i class="icon-trash icon-white"></i>Delete</small> </a>
+							</td>
+						</tr>
+					</c:forEach>
+				</c:if>
+			</table>
+			
 			<c:if test="${empty NEW_CHILD_DISABLED}">
 				<a href="${scriptName}/memberinvoicenew" class="btn btn-info"
 					style="color: black">Add New</a>
