@@ -1,5 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<sv:node sv:name="emailtemplates" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+﻿<sv:node sv:name="emailtemplates" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hippostd:folder</sv:value>
   </sv:property>
@@ -1042,7 +1041,7 @@ ${emailSignature}
 	      <sv:value>memberuploadedadoc</sv:value>
 	    </sv:property>
 	    <sv:property sv:name="mootlywcm:to" sv:type="String">
-	      <sv:value>amit@mootly.com,info@mootly.com</sv:value>
+	      <sv:value>${emailCustomerService}</sv:value>
 	    </sv:property>
 	    <sv:node sv:name="hippotranslation:translations">
 	      <sv:property sv:name="jcr:primaryType" sv:type="Name">
@@ -1247,7 +1246,7 @@ ${emailSignature}
 	      <sv:value>memberuploadedadoc</sv:value>
 	    </sv:property>
 	    <sv:property sv:name="mootlywcm:to" sv:type="String">
-	      <sv:value>amit@mootly.com,info@mootly.com</sv:value>
+	      <sv:value>${emailCustomerService}</sv:value>
 	    </sv:property>
 	    <sv:node sv:name="hippotranslation:translations">
 	      <sv:property sv:name="jcr:primaryType" sv:type="Name">
@@ -1473,7 +1472,7 @@ ${emailSignature}
 	      <sv:value>memberpaymentupdate</sv:value>
 	    </sv:property>
 	    <sv:property sv:name="mootlywcm:to" sv:type="String">
-	      <sv:value>amit@mootly.com,${emailFrom}</sv:value>
+	      <sv:value>${emailFrom}</sv:value>
 	    </sv:property>
 	    <sv:node sv:name="hippotranslation:translations">
 	      <sv:property sv:name="jcr:primaryType" sv:type="Name">
@@ -1647,7 +1646,7 @@ ${emailSignature}
 	      <sv:value>memberitrsrupdate</sv:value>
 	    </sv:property>
 	    <sv:property sv:name="mootlywcm:to" sv:type="String">
-	      <sv:value>amit@mootly.com,info@mootly.com</sv:value>
+	      <sv:value>${emailCustomerService}</sv:value>
 	    </sv:property>
 	    <sv:node sv:name="hippotranslation:translations">
 	      <sv:property sv:name="jcr:primaryType" sv:type="Name">

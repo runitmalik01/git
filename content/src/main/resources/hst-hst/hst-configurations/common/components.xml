@@ -2014,4 +2014,21 @@
 </sv:node>
 
 <!-- Schedule AMTC -->
+<!-- new -->
+<sv:node sv:name="invoice-payment" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:component</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>8a6af314-696a-4fd3-9a83-798a6da0dab2</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:componentclassname" sv:type="String">
+    <sv:value>com.mootly.wcm.components.accounting.InvoicePayment</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String"/>
+  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String"/>
+  <sv:property sv:name="hst:template" sv:type="String">
+    <sv:value>invoice-payment</sv:value>
+  </sv:property>
+</sv:node>
 </sv:node>
