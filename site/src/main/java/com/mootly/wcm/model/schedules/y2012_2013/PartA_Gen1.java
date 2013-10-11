@@ -219,7 +219,7 @@ public class PartA_Gen1 {
 			}
 		}
 		String itrSelection =  memberPersonalInformation.getFlexField("flex_string_ITRForm", "");
-		if(itrSelection.equals("ITR2") || itrSelection.equals("ITR4")){
+		if(itrSelection.equals("ITR2") || itrSelection.equals("ITR4") || itrSelection.equals("ITR3")){
 			filingstatus.setAsseseeRepFlg(memberPersonalInformation.getIsRepresentative());
 			if(memberPersonalInformation.getIsRepresentative().equals("Y")){
 				AssesseeRep assesseeRep = new AssesseeRep();
