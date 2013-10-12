@@ -9,6 +9,7 @@ import in.gov.incometaxindiaefiling.y2012_2013.ScheduleEI;
 import org.omg.CORBA.PUBLIC_MEMBER;
 
 import com.mootly.wcm.beans.CapitalAssetDocument;
+import com.mootly.wcm.beans.MemberPersonalInformation;
 import com.mootly.wcm.beans.OtherSourcesDocument;
 import com.mootly.wcm.beans.compound.CapitalAssetDetail;
 import com.mootly.wcm.services.IndianCurrencyHelper;
@@ -16,10 +17,13 @@ import com.mootly.wcm.services.IndianCurrencyHelper;
 public class ExemptIncomeSchedule {
 	OtherSourcesDocument otherSourcesDocument = null;
 	CapitalAssetDocument capitalAssetDocument = null;
+	MemberPersonalInformation memberPersonalInformation = null;
 
-	public ExemptIncomeSchedule(OtherSourcesDocument otherSourcesDocument, CapitalAssetDocument capitalAssetDocument){
+	public ExemptIncomeSchedule(OtherSourcesDocument otherSourcesDocument, CapitalAssetDocument capitalAssetDocument,
+			MemberPersonalInformation memberPersonalInformation){
 		this.otherSourcesDocument=otherSourcesDocument;
 		this.capitalAssetDocument=capitalAssetDocument;
+		this.memberPersonalInformation = memberPersonalInformation;
 	}
 	public ScheduleEI getScheduleEI(ITR itr){
 		IndianCurrencyHelper indianCurrencyHelper = new IndianCurrencyHelper();
@@ -35,6 +39,7 @@ public class ExemptIncomeSchedule {
 			scheduleEI.setNetAgriIncOrOthrIncRule7(new BigInteger("0"));
 			scheduleEI.setOthers(new BigInteger("0"));
 		}
+
 		BigInteger LTCGEI = new BigInteger("0");
 		if(capitalAssetDocument != null){
 			List<CapitalAssetDetail> capitalAssetDetails = capitalAssetDocument.getCapitalAssetDetailList();
@@ -48,8 +53,15 @@ public class ExemptIncomeSchedule {
 		}
 		scheduleEI.setLTCGWhereSTTPaid(LTCGEI);
 
-		scheduleEI.setTotalExemptInc(scheduleEI.getInterestInc().add(scheduleEI.getDividendInc()).add(scheduleEI.getNetAgriIncOrOthrIncRule7())
-				.add(scheduleEI.getOthers()).add(scheduleEI.getLTCGWhereSTTPaid()));
+		String itrSelection =  memberPersonalInformation.getFlexField("flex_string_ITRForm", "");
+		if(itrSelection.equals("ITR3")){
+			scheduleEI.setShareOfProfitFirmAOP(new BigInteger("0"));// need to discuss
+			scheduleEI.setTotalExemptInc(scheduleEI.getInterestInc().add(scheduleEI.getDividendInc()).add(scheduleEI.getNetAgriIncOrOthrIncRule7())
+					.add(scheduleEI.getOthers()).add(scheduleEI.getLTCGWhereSTTPaid()).add(scheduleEI.getShareOfProfitFirmAOP()));
+		}else
+			scheduleEI.setTotalExemptInc(scheduleEI.getInterestInc().add(scheduleEI.getDividendInc()).add(scheduleEI.getNetAgriIncOrOthrIncRule7())
+					.add(scheduleEI.getOthers()).add(scheduleEI.getLTCGWhereSTTPaid()));
+
 		if(scheduleEI.getTotalExemptInc().longValue() > 0 ){
 			return scheduleEI;
 		}else
