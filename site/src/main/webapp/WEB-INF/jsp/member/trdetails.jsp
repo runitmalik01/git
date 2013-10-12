@@ -116,7 +116,7 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 											key="foreign.is.dtaa.applicable" /> </small> </label>
 							</div>
 							<div class="rowlabel">
-								<select id="isDtaaCountry" name="isDtaaCountry" class="uprcase">
+								<select id="isDtaaCountry" name="isDtaaCountry">
 								<option value="">-Select-</option>
 								<option value="Yes"<c:if test="${not empty childBean.isDtaaCountry && childBean.isDtaaCountry =='Yes'}">selected</c:if>>Yes</option></option>
 								<option value="No"<c:if test="${not empty childBean.isDtaaCountry && childBean.isDtaaCountry =='No'}">selected</c:if>>No</option></option>
