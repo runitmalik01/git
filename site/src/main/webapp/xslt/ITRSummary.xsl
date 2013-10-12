@@ -332,12 +332,21 @@
 		<br />
 		 -->
 	</xsl:template>
+	<!-- for ITR1,ITR4S -->
 	<xsl:template match="ITRForm:ITR1_IncomeDeductions | ITRForm:ITR4S_IncomeDeductions">
 	<span style="font-size:16.0pt;line-height:115%;font-family:Algerian">Computation of Total taxable Income</span>
 		<table width="100%" border="1" id="taxi">
 			<tr>
 				<th colspan="2">Taxable Income</th>
 			</tr>
+			<xsl:if test="ITRForm:IncomeFromBusinessProf/text() != '0'">
+				<tr>
+					<td>Income from Salary</td>
+					<td align="right">
+						<xsl:value-of select="ITRForm:IncomeFromBusinessProf" />
+					</td>
+				</tr>
+			</xsl:if>
 			<xsl:if test="ITRForm:IncomeFromSal/text() != '0'">
 				<tr>
 					<td>Income from Salary</td>
@@ -348,7 +357,14 @@
 			</xsl:if>
 			<xsl:if test="ITRForm:TotalIncomeOfHP/text() != '0'">
 				<tr>
-					<td>Income from House Property</td>
+					<td>Income from House Property
+					<xsl:if test="ITRForm:TypeOfHP/text() = 'S'">
+					(Self Occupid)
+					</xsl:if>
+					<xsl:if test="ITRForm:TypeOfHP/text() = 'L'">
+					(Letout)
+					</xsl:if>
+					</td>
 					<td align="right">
 						<xsl:value-of select="ITRForm:TotalIncomeOfHP" />
 					</td>
@@ -385,6 +401,7 @@
 		</table>
 		<xsl:apply-templates select="ITRForm:DeductUndChapVIA" />
 	</xsl:template>
+	<!-- for ITR2,ITR3,ITR4  -->
 	<xsl:template match="ITRForm:PartB-TI">
 	<span style="font-size:16.0pt;line-height:115%;font-family:Algerian">Computation of Total taxable Income</span>
 		<table width="100%" border="1" id="taxi">
@@ -407,27 +424,27 @@
 					</td>
 				</tr>
 			</xsl:if>
-			<xsl:if test="ITRForm:TotProfBusGain/text() != '0'">
+			<xsl:if test="ITRForm:ProfBusGain/ITRForm:TotProfBusGain/text() != '0'">
 				<tr>
 					<td>Income from Business or Profession</td>
 					<td align="right">
-						<xsl:value-of select="ITRForm:TotProfBusGain" />
+						<xsl:value-of select="ITRForm:ProfBusGain/ITRForm:TotProfBusGain" />
 					</td>
 				</tr>
 			</xsl:if>
-			<xsl:if test="ITRForm:TotalCapGains/text() != '0'">
+			<xsl:if test="ITRForm:CapGain/ITRForm:TotalCapGains/text() != '0'">
 				<tr>
 					<td>Capital Gains</td>
 					<td align="right">
-						<xsl:value-of select="ITRForm:TotalCapGains" />
+						<xsl:value-of select="ITRForm:CapGain/ITRForm:TotalCapGains" />
 					</td>
 				</tr>
 			</xsl:if>
-			<xsl:if test="ITRForm:TotIncFromOS/text() != '0'">
+			<xsl:if test="ITRForm:IncFromOS/ITRForm:TotIncFromOS/text() != '0'">
 				<tr>
 					<td>Income from Other Sources</td>
 					<td align="right">
-						<xsl:value-of select="ITRForm:TotIncFromOS" />
+						<xsl:value-of select="ITRForm:IncFromOS/ITRForm:TotIncFromOS" />
 					</td>
 				</tr>
 			</xsl:if>
@@ -478,7 +495,7 @@
 		</table>
 		<xsl:apply-templates select="ITRForm:DeductUndChapVIA" />
 	</xsl:template>
-	<xsl:template match="ITRForm:ITR1_TaxComputation | ITRForm:ComputationOfTaxLiability | ITRForm:ITR4S_TaxComputation">
+	<xsl:template match="ITRForm:ITR1_TaxComputation | ITRForm:ITR4S_TaxComputation">
 		<table width="100%" border="1" id="taxc">
 			<tr>
 				<th colspan="2">Tax Information</th>
@@ -533,6 +550,67 @@
 						<xsl:when test="../ITRForm:FilingStatus/ITRForm:TaxStatus[text() = 'TR']"><xsl:value-of select="../ITRForm:Refund/ITRForm:RefundDue"/></xsl:when>
 						<xsl:when test="../ITRForm:FilingStatus/ITRForm:TaxStatus[text() = 'TP']"><xsl:value-of select="../ITRForm:TaxPaid/ITRForm:BalTaxPayable"/></xsl:when>
 						<xsl:when test="../ITRForm:FilingStatus/ITRForm:TaxStatus[text() = 'NT']"><b>0</b></xsl:when>						
+					</xsl:choose>
+				</td>
+			</tr>
+		</table>
+	</xsl:template>
+	<!-- For ITR2,ITR3,ITR4  -->
+	<xsl:template match="ITRForm:ComputationOfTaxLiability">
+		<table width="100%" border="1" id="taxc">
+			<tr>
+				<th colspan="2">Tax Information</th>
+			</tr>
+			<tr>
+				<td>TotalTaxPayable</td>
+				<td align="right">
+					<xsl:value-of select="ITRForm:TaxPayableOnTI/ITRForm:TaxPayableOnTotInc" />
+				</td>
+			</tr>
+			<tr>
+				<td>EducationCess</td>
+				<td align="right">
+					<xsl:value-of select="ITRForm:EducationCess" />
+				</td>
+			</tr>
+			<tr>
+				<td>GrossTaxLiability</td>
+				<td align="right">
+					<xsl:value-of select="ITRForm:GrossTaxLiability" />
+				</td>
+			</tr>
+			<tr>
+				<td>Total Interest Pay</td>
+				<td align="right">
+					<xsl:value-of select="ITRForm:IntrstPay/ITRForm:TotalIntrstPay" />
+				</td>
+			</tr>
+			<tr>
+				<td>Total Tax and Interest Pay</td>
+				<td align="right">
+					<xsl:value-of select="ITRForm:AggregateTaxInterestLiability" />
+				</td>
+			</tr>
+ 			<tr>
+                 <td>Total Tax Paid</td>                                                        
+                 <td align="right">
+                         <xsl:value-of select="//ITRForm:TotalTaxesPaid" />                       
+                 </td>
+			</tr>
+			<tr>
+				<td>Tax Status (
+					<xsl:choose>
+						<xsl:when test="//ITRForm:FilingStatus/ITRForm:TaxStatus[text() = 'TR']"><b>Tax Refund</b></xsl:when>
+						<xsl:when test="//ITRForm:FilingStatus/ITRForm:TaxStatus[text() = 'TP']"><b>Tax Payable</b></xsl:when>
+						<xsl:when test="//ITRForm:FilingStatus/ITRForm:TaxStatus[text() = 'NT']"><b>No Tax </b></xsl:when>						
+					</xsl:choose>
+					)					
+				</td>
+				<td align="right">
+					<xsl:choose>
+						<xsl:when test="//ITRForm:FilingStatus/ITRForm:TaxStatus[text() = 'TR']"><xsl:value-of select="../ITRForm:Refund/ITRForm:RefundDue"/></xsl:when>
+						<xsl:when test="//ITRForm:FilingStatus/ITRForm:TaxStatus[text() = 'TP']"><xsl:value-of select="../ITRForm:TaxPaid/ITRForm:BalTaxPayable"/></xsl:when>
+						<xsl:when test="//ITRForm:FilingStatus/ITRForm:TaxStatus[text() = 'NT']"><b>0</b></xsl:when>						
 					</xsl:choose>
 				</td>
 			</tr>
