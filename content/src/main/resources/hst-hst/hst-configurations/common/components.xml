@@ -2031,4 +2031,22 @@
     <sv:value>invoice-payment</sv:value>
   </sv:property>
 </sv:node>
+<!-- income from firms in itr3 -->
+
+<sv:node sv:name="incomefromfirmsItr3" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:component</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>7fab24f7-0c5a-474e-89f9-9f29c81da1ca</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:componentclassname" sv:type="String">
+    <sv:value>com.mootly.wcm.member.IncomeFromFirmsITR3</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:template" sv:type="String">
+    <sv:value>incomefromfirmsItr3</sv:value>
+  </sv:property>
+</sv:node>
+
+<!--  income from firms -->
 </sv:node>

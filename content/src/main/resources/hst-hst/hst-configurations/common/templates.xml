@@ -3555,4 +3555,19 @@
 	    <sv:value>jsp/accounting/invoice-payment.jsp</sv:value>
 	  </sv:property>
 	</sv:node>
+	<!--  itr3 incomefromfirms -->
+	
+<sv:node sv:name="incomefromfirmsItr3" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:template</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>00096881-9a3f-4258-bb72-50a27fe33ab4</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:renderpath" sv:type="String">
+    <sv:value>jsp/member/itr3/incomeFromFirmsITR3.jsp</sv:value>
+  </sv:property>
+</sv:node>
+	
+	<!-- /income from firms -->
 </sv:node>
