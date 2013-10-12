@@ -487,3 +487,6 @@ orderable
 
 [mootlywcm:scheduleamtdocument] > hippostd:relaxed, mootlywcm:basedocument orderable
 [mootlywcm:scheduleamtcdocument] > hippostd:relaxed, mootlywcm:basedocument orderable
+
+[mootlywcm:incomefromfirmsdocument] > hippostd:relaxed, mootlywcm:basedocument orderable
+[mootlywcm:incomefromfirmsdetail] > hippo:compound, hippostd:relaxed orderable
