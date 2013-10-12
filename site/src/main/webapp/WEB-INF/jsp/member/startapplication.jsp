@@ -1221,7 +1221,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
         // The following logic is for itr2 and itr4 both
     $('#flex_string_ITRForm').change(function(){
     var packageName = $('#flex_string_ITRForm').val();
-    if((packageName == 'ITR2' || (packageName == 'ITR4'))) {
+    if((packageName == 'ITR2' || (packageName == 'ITR4') || (packageName == 'ITR3'))) {
     $('#represenative_detail').show();
     }
     else{
