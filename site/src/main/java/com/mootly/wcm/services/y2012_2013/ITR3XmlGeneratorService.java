@@ -59,6 +59,7 @@ import com.mootly.wcm.beans.TcsDocument;
 import com.mootly.wcm.beans.TdsFromothersDocument;
 import com.mootly.wcm.beans.UnabsorbedDepreciationDocument;
 import com.mootly.wcm.model.FinancialYear;
+import com.mootly.wcm.model.schedules.y2012_2013.ALSchedule;
 import com.mootly.wcm.model.schedules.y2012_2013.BroughtFwdLossesSchedules;
 import com.mootly.wcm.model.schedules.y2012_2013.CapitalGainDocumentSchedules;
 import com.mootly.wcm.model.schedules.y2012_2013.CarryFwdLossesSchedules;
@@ -75,6 +76,7 @@ import com.mootly.wcm.model.schedules.y2012_2013.Form_ITR2;
 import com.mootly.wcm.model.schedules.y2012_2013.Form_ITR3;
 import com.mootly.wcm.model.schedules.y2012_2013.HouseIncomeDocumentSchedules;
 import com.mootly.wcm.model.schedules.y2012_2013.ITRScheduleSI;
+import com.mootly.wcm.model.schedules.y2012_2013.ITR_ScheduleIF;
 import com.mootly.wcm.model.schedules.y2012_2013.MemberVerification;
 import com.mootly.wcm.model.schedules.y2012_2013.OtherIncomeDocumentSchedules;
 import com.mootly.wcm.model.schedules.y2012_2013.PartA_Gen1;
@@ -224,11 +226,17 @@ public class ITR3XmlGeneratorService  {
 		ScheduleFiveA scheduleFiveA = new ScheduleFiveA(scheduleFiveADocument);
 		itr3.setSchedule5A(scheduleFiveA.getScheduleFiveA(itr));
 
-		ExemptIncomeSchedule exemptIncomeSchedule = new ExemptIncomeSchedule(otherSourcesDocument, capitalAssetDocument);
+		ExemptIncomeSchedule exemptIncomeSchedule = new ExemptIncomeSchedule(otherSourcesDocument, capitalAssetDocument, memberPersonalInformation);
 		itr3.setScheduleEI(exemptIncomeSchedule.getScheduleEI(itr));
 
 		ClubbingOfIncome clubbingOfIncome = new ClubbingOfIncome(clubIncomeDocument);
 		itr3.setScheduleSPI(clubbingOfIncome.getScheduleSPI(itr));
+
+		ITR_ScheduleIF iTR_ScheduleIF = new ITR_ScheduleIF(firmsPartnerDocument);
+		itr3.setScheduleIF(iTR_ScheduleIF.getScheduleIF(itr));
+
+		ALSchedule aLSchedule = new ALSchedule(assetAndLiabilityDocument);
+		itr3.setScheduleAL(aLSchedule.getScheduleAL(itr));
 
 		MemberVerification memberVerification = new MemberVerification(memberPersonalInformation);
 		itr3.setVerification(memberVerification.getVerification(itr));
