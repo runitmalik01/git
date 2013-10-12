@@ -258,7 +258,7 @@ public class ITR4XmlGeneratorService  {
 		ScheduleFiveA scheduleFiveA = new ScheduleFiveA(scheduleFiveADocument);
 		itr4.setSchedule5A(scheduleFiveA.getScheduleFiveA(itr));
 
-		ExemptIncomeSchedule exemptIncomeSchedule = new ExemptIncomeSchedule(otherSourcesDocument, capitalAssetDocument);
+		ExemptIncomeSchedule exemptIncomeSchedule = new ExemptIncomeSchedule(otherSourcesDocument, capitalAssetDocument, memberPersonalInformation);
 		itr4.setScheduleEI(exemptIncomeSchedule.getScheduleEI(itr));
 
 		ClubbingOfIncome clubbingOfIncome = new ClubbingOfIncome(clubIncomeDocument);
