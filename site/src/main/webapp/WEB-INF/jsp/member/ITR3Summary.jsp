@@ -166,6 +166,34 @@
 						</div>
 					</td>
 				</tr>
+				<tr>
+					<td colspan="1">
+					   <a href="incomefromfirmsItr3.html"  style="color: blue; margin-left: 20px;">
+					      <fmt:message key="itr4s.bussiness.income" />
+					   </a>
+					   <a style="color: blue;"><fmt:message key="itr2.nil.income"/></a>
+					</td>
+					<td>
+						<div class="btn-group" class="decimal">
+							<button class="btn btn-small dropdown-toggle"
+								data-toggle="dropdown">
+								<c:choose>
+									<c:when test="${theForm.partBTI.profBusGain.totProfBusGain eq '0'}">
+										<c:out value="Fill Now" />
+									</c:when>
+									<c:otherwise>
+										<w4india:inr value="${theForm.partBTI.profBusGain.totProfBusGain}"/>
+									</c:otherwise>
+								</c:choose>
+								<span class="caret"></span>
+							</button>
+							<ul class="dropdown-menu">
+								<li><a href="incomefromfirmsItr3.html">
+								<fmt:message key="itr4s.bussiness.income" /></a></li>
+							</ul>
+						</div>
+					</td>
+				</tr>
 				 <tr>
 					<td colspan="1">
 					   <a style="font-weight:bold;color: black;">
