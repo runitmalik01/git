@@ -15,9 +15,9 @@ public enum ITRScheduleCFLSections {
 	HP_Loss("House Property Loss", ITRForm.values(), ITRScheduleCFLYear.values()),
 	LT_Loss("Long Term Capital Loss", ITRForm.values(), ITRScheduleCFLYear.values()),
 	ST_Loss("Short Term Cpital Loss", ITRForm.values(), ITRScheduleCFLYear.values()),
-	BP_Loss("Business or Profession Loss", new ITRForm[]{ITRForm.ITR3}, ITRScheduleCFLYear.values()),
+	//BP_Loss("Business or Profession Loss", new ITRForm[]{ITRForm.ITR3}, ITRScheduleCFLYear.values()),
 	RH_Loss("Owning and Maintaining Race Horses", ITRForm.values(), new ITRScheduleCFLYear[]{ITRScheduleCFLYear.PrevYrToAY, ITRScheduleCFLYear.Prev2ndYearFromAY, ITRScheduleCFLYear.Prev3rdYearFromAY, ITRScheduleCFLYear.Prev4thYearFromAY}),
-	N_Spec_Loss("Non Speculation Business Loss", new ITRForm[]{ITRForm.ITR4}, ITRScheduleCFLYear.values()),
+	N_Spec_Loss("Non Speculation Business Loss", new ITRForm[]{ITRForm.ITR4,ITRForm.ITR3}, ITRScheduleCFLYear.values()),
 	Spec_Loss("Speculation Business Loss", new ITRForm[]{ITRForm.ITR4}, new ITRScheduleCFLYear[]{ITRScheduleCFLYear.PrevYrToAY, ITRScheduleCFLYear.Prev2ndYearFromAY, ITRScheduleCFLYear.Prev3rdYearFromAY, ITRScheduleCFLYear.Prev4thYearFromAY}),
 	Speci_Buss_Loss("Loss From Specified Business", new ITRForm[]{ITRForm.ITR4}, new ITRScheduleCFLYear[]{ITRScheduleCFLYear.PrevYrToAY, ITRScheduleCFLYear.Prev2ndYearFromAY}),
 	UNKNOWN;
