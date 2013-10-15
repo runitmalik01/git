@@ -13,6 +13,7 @@ import com.mootly.wcm.beans.DeductionSchedTenADocumemt;
 import com.mootly.wcm.beans.FormSixteenDocument;
 import com.mootly.wcm.beans.HouseProperty;
 import com.mootly.wcm.beans.IncBusinessProfessionDoc;
+import com.mootly.wcm.beans.IncomeFromFirmsDocument;
 import com.mootly.wcm.beans.MemberPersonalInformation;
 import com.mootly.wcm.beans.OtherInformationDocument;
 import com.mootly.wcm.beans.OtherSourcesDocument;
@@ -38,6 +39,7 @@ import in.gov.incometaxindiaefiling.y2012_2013.IncFromOS;
 import in.gov.incometaxindiaefiling.y2012_2013.LongTerm;
 import in.gov.incometaxindiaefiling.y2012_2013.LossSummaryDetail;
 import in.gov.incometaxindiaefiling.y2012_2013.PartBTI;
+import in.gov.incometaxindiaefiling.y2012_2013.ScheduleBPA;
 import in.gov.incometaxindiaefiling.y2012_2013.ScheduleCGFor23;
 import in.gov.incometaxindiaefiling.y2012_2013.ScheduleCGFor4;
 import in.gov.incometaxindiaefiling.y2012_2013.PartBTI.ProfBusGain;
@@ -66,12 +68,14 @@ public class PartB_TI {
 	ScheduleDOADocument scheduleDOADocument = null;
 	ScheduleESRDocument scheduleESRDocument = null;
 	DeductionSchedTenADocumemt deductionSchedTenADocumemt = null;
+	IncomeFromFirmsDocument incomeFromFirmsDocument = null;
 
 	public PartB_TI(FormSixteenDocument formSixteenDocument, SalaryIncomeDocument salaryIncomeDocument, HouseProperty housePropertyDocument ,
 			OtherSourcesDocument otherSourcesDocument, DeductionDocument deductionDocument, MemberPersonalInformation memberPersonalInformation,
 			ScheduleSIDocument scheduleSIDocument, CapitalAssetDocument capitalAssetDocument, IncBusinessProfessionDoc incBusinessProfessionDoc,
 			ProfitAndLossDocument profitAndLossDocument, OtherInformationDocument otherInformationDocument, ScheduleDPMDocument scheduleDPMDocument,
-			ScheduleDOADocument scheduleDOADocument, ScheduleESRDocument scheduleESRDocument, DeductionSchedTenADocumemt deductionSchedTenADocumemt){
+			ScheduleDOADocument scheduleDOADocument, ScheduleESRDocument scheduleESRDocument, DeductionSchedTenADocumemt deductionSchedTenADocumemt,
+			IncomeFromFirmsDocument incomeFromFirmsDocument){
 		this.formSixteenDocument = formSixteenDocument;
 		this.salaryIncomeDocument = salaryIncomeDocument;
 		this.housePropertyDocument = housePropertyDocument;
@@ -87,6 +91,7 @@ public class PartB_TI {
 		this.scheduleDOADocument = scheduleDOADocument;
 		this.scheduleESRDocument = scheduleESRDocument;
 		this.deductionSchedTenADocumemt = deductionSchedTenADocumemt;
+		this.incomeFromFirmsDocument = incomeFromFirmsDocument;
 	}
 
 	public PartBTI getPartBTI(ITR itr, FinancialYear financialYear,Map<String,HippoBean> inputBeans){
@@ -148,6 +153,21 @@ public class PartB_TI {
 			}else
 				profBusGain.setTotProfBusGain(new BigInteger("0"));
 
+			partBTI.setProfBusGain(profBusGain);
+		}else if(itrSelection.equals("ITR3")){
+			ITR3_ScheduleBPA iTR3_ScheduleBPA = new ITR3_ScheduleBPA(incomeFromFirmsDocument);
+			ScheduleBPA scheduleBPA = iTR3_ScheduleBPA.getScheduleBPA(itr);
+			profBusGain.setProfGainNoSpecBus(0);
+			profBusGain.setProfGainSpecBus(new BigInteger("0"));
+			profBusGain.setProfGainSpecifiedBus(new BigInteger("0"));
+			if(scheduleBPA != null){
+				long totBP = scheduleBPA.getTotal().getAggreNetIncome();
+				if(totBP > 0){
+					profBusGain.setTotProfBusGain(BigInteger.valueOf(totBP));
+				}else
+					profBusGain.setTotProfBusGain(new BigInteger("0"));
+			}else
+				profBusGain.setTotProfBusGain(new BigInteger("0"));
 			partBTI.setProfBusGain(profBusGain);
 		}else{
 			profBusGain.setProfGainNoSpecBus(0);
