@@ -39,6 +39,7 @@ import com.mootly.wcm.beans.FormSixteenDocument;
 import com.mootly.wcm.beans.HouseProperty;
 import com.mootly.wcm.beans.ImmovablePropertyDocument;
 import com.mootly.wcm.beans.IncBusinessProfessionDoc;
+import com.mootly.wcm.beans.IncomeFromFirmsDocument;
 import com.mootly.wcm.beans.ManufactureFinishedProductsDocument;
 import com.mootly.wcm.beans.ManufactureRawMatDocument;
 import com.mootly.wcm.beans.MemberPersonalInformation;
@@ -152,6 +153,7 @@ public class ITR4SXmlGeneratorService  {
 		ScheduleDPMDocument scheduleDPMDocument = (ScheduleDPMDocument) inputBeans.get(ScheduleDPMDocument.class.getSimpleName().toLowerCase());
 		ScheduleDOADocument scheduleDOADocument = (ScheduleDOADocument) inputBeans.get(ScheduleDOADocument.class.getSimpleName().toLowerCase());
 		FirmsPartnerDocument firmsPartnerDocument = (FirmsPartnerDocument) inputBeans.get(FirmsPartnerDocument.class.getSimpleName().toLowerCase());
+		IncomeFromFirmsDocument incomeFromFirmsDocument = (IncomeFromFirmsDocument) inputBeans.get(IncomeFromFirmsDocument.class.getSimpleName().toLowerCase());
 
 		ITR4S itr4S = new ObjectFactory().createITR4S();
 		ITR itr = new ITR();
@@ -200,7 +202,7 @@ public class ITR4SXmlGeneratorService  {
 				tdsFromothersDocument, scheduleSIDocument, capitalAssetDocument, immovablePropertyDocument,natureInvestmentDocument,
 				signingAuthorityAccountsDocument,detailOfTrustDocument,foreignBankAccountDocument,financialInterestDocument, tcsDocument,
 				incBusinessProfessionDoc,profitAndLossDocument, otherInformationDocument, scheduleDPMDocument, scheduleDOADocument,
-				scheduleESRDocument, deductionSchedTenADocumemt,scheduleAMTCDocument);
+				scheduleESRDocument, deductionSchedTenADocumemt,scheduleAMTCDocument, incomeFromFirmsDocument);
 		itr4S.setPersonalInfo(partA_Gen1.getPersonalInfo(itr));
 
 		PartB_TTI partB_TTI = new PartB_TTI(formSixteenDocument, salaryIncomeDocument, houseProperty,
@@ -208,7 +210,7 @@ public class ITR4SXmlGeneratorService  {
 				selfAssesmetTaxDocument, tdsFromothersDocument, scheduleSIDocument, capitalAssetDocument, immovablePropertyDocument,
 				natureInvestmentDocument,signingAuthorityAccountsDocument,detailOfTrustDocument,foreignBankAccountDocument,financialInterestDocument,
 				tcsDocument,incBusinessProfessionDoc,profitAndLossDocument, otherInformationDocument, scheduleDPMDocument, scheduleDOADocument,
-				scheduleESRDocument, deductionSchedTenADocumemt,scheduleAMTCDocument);
+				scheduleESRDocument, deductionSchedTenADocumemt,scheduleAMTCDocument, incomeFromFirmsDocument);
 		itr4S.setTaxPaid(partB_TTI.getTaxPaid(itr, financialYear, inputBeans, tax));
 
 		itr4S.setRefund(partB_TTI.getRefund(itr, financialYear, inputBeans, tax));
