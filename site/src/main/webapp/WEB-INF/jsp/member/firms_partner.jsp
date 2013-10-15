@@ -24,7 +24,7 @@
 				<div class="row-fluid show-grid">
 				<div class="span4">
 							<div class="rowlabel">
-								<label for="isDtaa"><small>Is Firm liable to audit </small> </label>
+								<label for="isLiableToAudit"><small>Is Firm liable to audit </small> </label>
 							</div>
 							<div class="rowlabel">
 								<select id="isLiableToAudit" name="isLiableToAudit">
