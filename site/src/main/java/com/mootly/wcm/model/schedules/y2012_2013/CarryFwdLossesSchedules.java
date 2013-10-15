@@ -146,7 +146,7 @@ public class CarryFwdLossesSchedules extends XmlCalculation {
 
 		TotalOfBFLossesEarlierYrs totalOfBFLossesEarlierYrs = new TotalOfBFLossesEarlierYrs();
 		LossSummaryDetail lossSummaryDetail = new LossSummaryDetail();
-		lossSummaryDetail.setBusLossOthThanSpecLossCF(new BigInteger("0"));
+		lossSummaryDetail.setBusLossOthThanSpecLossCF(indianCurrencyHelper.bigIntegerRound(totalNonSpeculationBusinessLoss));
 		lossSummaryDetail.setHPLossCF(indianCurrencyHelper.bigIntegerRound(totalHPLoss));
 		lossSummaryDetail.setLossFrmSpecBusCF(new BigInteger("0"));
 		lossSummaryDetail.setLTCGLossCF(indianCurrencyHelper.bigIntegerRound(totalLTCLoss));
@@ -157,7 +157,7 @@ public class CarryFwdLossesSchedules extends XmlCalculation {
 
 		AdjTotBFLossInBFLA adjTotBFLossInBFLA = new AdjTotBFLossInBFLA();
 		LossSummaryDetail adjlossSummaryDetail = new LossSummaryDetail();
-		adjlossSummaryDetail.setBusLossOthThanSpecLossCF(new BigInteger("0"));
+		adjlossSummaryDetail.setBusLossOthThanSpecLossCF(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMapLosses.get("balancedBusinessLoss").toString())));
 		adjlossSummaryDetail.setHPLossCF(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMapLosses.get("balancedHouseLoss").toString())));
 		adjlossSummaryDetail.setLossFrmSpecBusCF(new BigInteger("0"));
 		adjlossSummaryDetail.setLTCGLossCF(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMapLosses.get("balancedLTCLoss").toString())));
@@ -168,7 +168,7 @@ public class CarryFwdLossesSchedules extends XmlCalculation {
 
 		CurrentAYloss currentAYloss = new CurrentAYloss();
 		LossSummaryDetail currYrlossSummaryDetail = new LossSummaryDetail();
-		currYrlossSummaryDetail.setBusLossOthThanSpecLossCF(new BigInteger("0"));
+		currYrlossSummaryDetail.setBusLossOthThanSpecLossCF(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMapLosses.get("currYearBusinessIncomeLoss").toString())));
 		currYrlossSummaryDetail.setHPLossCF(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMapLosses.get("currYearHouseIncomeLoss").toString())));
 		currYrlossSummaryDetail.setLossFrmSpecBusCF(new BigInteger("0"));
 		currYrlossSummaryDetail.setLTCGLossCF(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMapLosses.get("currYearLTCLoss").toString())));
@@ -179,9 +179,8 @@ public class CarryFwdLossesSchedules extends XmlCalculation {
 
 		TotalLossCFSummary totalLossCFSummary = new TotalLossCFSummary();
 		LossSummaryDetail toallossSummaryDetail = new LossSummaryDetail();
-
 		toallossSummaryDetail.setHPLossCF(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMapLosses.get("cryFwdHouseIncomeLoss").toString())));
-		toallossSummaryDetail.setBusLossOthThanSpecLossCF(new BigInteger("0"));
+		toallossSummaryDetail.setBusLossOthThanSpecLossCF(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMapLosses.get("cryFwdBusinessIncomeLoss").toString())));
 		toallossSummaryDetail.setLossFrmSpecBusCF(new BigInteger("0"));
 		toallossSummaryDetail.setLTCGLossCF(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMapLosses.get("cryFwdLTCLoss").toString())));
 		toallossSummaryDetail.setOthSrcLossRaceHorseCF(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMapLosses.get("cryFwdRaceHorseLoss").toString())));
@@ -220,15 +219,16 @@ public class CarryFwdLossesSchedules extends XmlCalculation {
 			if(adjustmentOfLossesCom.getNameOfHead().equals("Owning and Maintaining Race Horses")){
 				carryFwdLossDetail.setOthSrcLossRaceHorseCF(indianCurrencyHelper.bigIntegerRound(adjustmentOfLossesCom.getAmount()));
 			}
+
+			if(adjustmentOfLossesCom.getNameOfHead().equals("Non Speculation Business Loss")){
+				carryFwdLossDetail.setBusLossOthThanSpecLossCF(indianCurrencyHelper.bigIntegerRound(adjustmentOfLossesCom.getAmount()));
+			}
+			if(adjustmentOfLossesCom.getNameOfHead().equals("Speculation Business Loss")){
+				carryFwdLossDetail.setLossFrmSpecBusCF(indianCurrencyHelper.bigIntegerRound(adjustmentOfLossesCom.getAmount()));
+			}
 			if(WhichITR.equals("ITR4")){
-				if(adjustmentOfLossesCom.getNameOfHead().equals("Non Speculation Business Loss")){
-					carryFwdLossDetail.setBusLossOthThanSpecLossCF(indianCurrencyHelper.bigIntegerRound(adjustmentOfLossesCom.getAmount()));
-				}
 				if(adjustmentOfLossesCom.getNameOfHead().equals("Loss From Specified Business")){
 					carryFwdLossDetail.setLossFrmSpecifiedBusCF(indianCurrencyHelper.bigIntegerRound(adjustmentOfLossesCom.getAmount()));
-				}
-				if(adjustmentOfLossesCom.getNameOfHead().equals("Speculation Business Loss")){
-					carryFwdLossDetail.setLossFrmSpecBusCF(indianCurrencyHelper.bigIntegerRound(adjustmentOfLossesCom.getAmount()));
 				}
 			}
 		}
