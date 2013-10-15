@@ -19,6 +19,7 @@ import com.mootly.wcm.beans.FormSixteenDocument;
 import com.mootly.wcm.beans.HouseProperty;
 import com.mootly.wcm.beans.ImmovablePropertyDocument;
 import com.mootly.wcm.beans.IncBusinessProfessionDoc;
+import com.mootly.wcm.beans.IncomeFromFirmsDocument;
 import com.mootly.wcm.beans.MemberPersonalInformation;
 import com.mootly.wcm.beans.NatureInvestmentDocument;
 import com.mootly.wcm.beans.OtherInformationDocument;
@@ -93,6 +94,7 @@ public class PartB_TTI {
 	ScheduleESRDocument scheduleESRDocument = null;
 	DeductionSchedTenADocumemt deductionSchedTenADocumemt = null;
 	ScheduleAMTCDocument scheduleAMTCDocument = null;
+	IncomeFromFirmsDocument incomeFromFirmsDocument = null;
 
 	public PartB_TTI(FormSixteenDocument formSixteenDocument, SalaryIncomeDocument salaryIncomeDocument, HouseProperty housePropertyDocument ,
 			OtherSourcesDocument otherSourcesDocument, DeductionDocument deductionDocument, MemberPersonalInformation memberPersonalInformation,
@@ -101,7 +103,8 @@ public class PartB_TTI {
 			ImmovablePropertyDocument immovablePropertyDocument, NatureInvestmentDocument natureInvestmentDocument, SigningAuthorityAccountsDocument signingAuthorityAccountsDocument,
 			DetailOfTrustDocument detailOfTrustDocument, ForeignBankAccountDocument foreignBankAccountDocument, FinancialInterestDocument financialInterestDocument, TcsDocument tcsDocument,
 			IncBusinessProfessionDoc incBusinessProfessionDoc,ProfitAndLossDocument profitAndLossDocument, OtherInformationDocument otherInformationDocument, ScheduleDPMDocument scheduleDPMDocument,
-			ScheduleDOADocument scheduleDOADocument, ScheduleESRDocument scheduleESRDocument, DeductionSchedTenADocumemt deductionSchedTenADocumemt,ScheduleAMTCDocument scheduleAMTCDocument){
+			ScheduleDOADocument scheduleDOADocument, ScheduleESRDocument scheduleESRDocument, DeductionSchedTenADocumemt deductionSchedTenADocumemt,ScheduleAMTCDocument scheduleAMTCDocument,
+			IncomeFromFirmsDocument incomeFromFirmsDocument ){
 		this.formSixteenDocument = formSixteenDocument;
 		this.salaryIncomeDocument = salaryIncomeDocument;
 		this.housePropertyDocument = housePropertyDocument;
@@ -129,6 +132,7 @@ public class PartB_TTI {
 		this.scheduleESRDocument = scheduleESRDocument;
 		this.deductionSchedTenADocumemt = deductionSchedTenADocumemt;
 		this.scheduleAMTCDocument = scheduleAMTCDocument;
+		this.incomeFromFirmsDocument = incomeFromFirmsDocument;
 
 
 	}
@@ -143,7 +147,7 @@ public class PartB_TTI {
 		//getting PartB_TI required in the calculation of PartB_TTI
 		PartB_TI partB_TI = new PartB_TI(formSixteenDocument, salaryIncomeDocument, housePropertyDocument, otherSourcesDocument, deductionDocument, memberPersonalInformation,
 				scheduleSIDocument, capitalAssetDocument, incBusinessProfessionDoc, profitAndLossDocument, otherInformationDocument,
-				scheduleDPMDocument, scheduleDOADocument, scheduleESRDocument, deductionSchedTenADocumemt);
+				scheduleDPMDocument, scheduleDOADocument, scheduleESRDocument, deductionSchedTenADocumemt, incomeFromFirmsDocument);
 		PartBTI partBTI = partB_TI.getPartBTI(itr, financialYear, inputBeans);
 
 		//getting Deduction Schedule required in the calculation of PARTB_TTI
