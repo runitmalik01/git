@@ -180,7 +180,7 @@ public class IncomeFromFirmsDocument extends BaseDocument implements ContentNode
         			}
         		}
         		setVal_InterestRcv(tot_InterestRcv);
-        		setVal_Salary(tot_salaryAndIntrst);
+        		setVal_Salary(tot_Salary);
         		setVal_Expense(tot_Expense);
         		setVal_NetIncome(tot_NetIncome);
         		setVal_salaryAndIntrst(tot_salaryAndIntrst);
