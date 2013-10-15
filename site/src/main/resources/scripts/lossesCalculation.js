@@ -293,7 +293,7 @@ if(LTCGain>0){
 			LTCGain = 0;
 		}
 	}
-	*/
+	 */
 	out_adjustedLTCGain = LTCGain;
 }
 
@@ -396,6 +396,23 @@ if(out_adjustedHouseIncome>0){
 	out_totalIncomeAftBFLoss = out_HouseIncomeAftBFLA;
 }
 
+out_BusinessIncomeAftBFLA = 0;
+out_balancedBusinessLoss = 0;
+if(out_adjustedBusinessIncome>0){
+	out_BusinessIncomeAftBFLA =out_adjustedBusinessIncome-NonSpeculationBusinessLoss;
+	if(out_BusinessIncomeAftBFLA>0){
+		out_balancedBusinessLoss = NonSpeculationBusinessLoss;
+		NonSpeculationBusinessLoss = 0;
+	}
+	if(out_BusinessIncomeAftBFLA<=0){
+		out_balancedBusinessLoss = out_adjustedBusinessIncome;
+		NonSpeculationBusinessLoss = out_BusinessIncomeAftBFLA*(-1);
+		out_BusinessIncomeAftBFLA = 0;
+	}
+	out_totalBFLossSetOff = out_totalBFLossSetOff + out_balancedBusinessLoss;
+	out_totalIncomeAftBFLoss = out_totalIncomeAftBFLoss + out_BusinessIncomeAftBFLA;
+}
+
 out_STCGainAftBFLA = 0;
 out_balancedSTCLoss = 0;
 if(out_adjustedSTCGain>0){
@@ -452,23 +469,27 @@ if(out_adjustedmaintainingRaceHorseIncome>0){
  */
 
 out_currYearHouseIncomeLoss=0;
+out_currYearBusinessIncomeLoss=0;
 out_currYearLTCLoss=0;
 out_currYearSTCLoss=0;
 out_currYearRaceHorseLoss=0;
 
 if(houseIncome<0)
-out_currYearHouseIncomeLoss = houseIncome*(-1);
+	out_currYearHouseIncomeLoss = houseIncome*(-1);
+if(businessIncome<0)
+	out_currYearBusinessIncomeLoss = businessIncome*(-1);
 if(LTCGain<0)
-out_currYearLTCLoss = LTCGain*(-1);
+	out_currYearLTCLoss = LTCGain*(-1);
 if(STCGain<0)
-out_currYearSTCLoss = STCGain*(-1);
+	out_currYearSTCLoss = STCGain*(-1);
 if(maintainingRaceHorseIncome<0)
-out_currYearRaceHorseLoss = maintainingRaceHorseIncome*(-1);
+	out_currYearRaceHorseLoss = maintainingRaceHorseIncome*(-1);
 
-out_cryFwdHouseIncomeLoss = houseIncomeLoss + out_currYearHouseIncomeLoss;
-out_cryFwdLTCLoss = LTCLoss + out_currYearLTCLoss;
-out_cryFwdSTCLoss = STCLoss + out_currYearSTCLoss;
-out_cryFwdRaceHorseLoss = MaintainingRaceHorseLoss + out_currYearRaceHorseLoss;
+out_cryFwdHouseIncomeLoss = (houseIncomeLoss-0) + (out_currYearHouseIncomeLoss-0);
+out_cryFwdBusinessIncomeLoss = (NonSpeculationBusinessLoss-0) + (out_currYearBusinessIncomeLoss-0);
+out_cryFwdLTCLoss = (LTCLoss-0) + (out_currYearLTCLoss-0);
+out_cryFwdSTCLoss = (STCLoss-0) + (out_currYearSTCLoss-0);
+out_cryFwdRaceHorseLoss = (MaintainingRaceHorseLoss-0) + (out_currYearRaceHorseLoss-0);
 
 
 
