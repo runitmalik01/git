@@ -73,20 +73,21 @@ public class CurrentYearLossesSchedules extends XmlCalculation{
 		scheduleCYLA.setHP(hP);
 
 		//for ITR4
-		if(itrSelection.equals("ITR4")){
-			BusProfExclSpecProf busProfExclSpecProf = new BusProfExclSpecProf();
-			IncCYLA iNCCYLA = new IncCYLA();
-			if(businessIncome > 0){
-				iNCCYLA.setIncOfCurYrUnderThatHead(BigInteger.valueOf(businessIncome));
-			}else
-				iNCCYLA.setIncOfCurYrUnderThatHead(new BigInteger("0"));
-			iNCCYLA.setBusLossSetoff(new BigInteger("0"));
-			iNCCYLA.setHPlossCurYrSetoff(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMapLosses.get("balancedHouseIncomeAftBI").toString())));
-			iNCCYLA.setOthSrcLossNoRaceHorseSetoff(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMapLosses.get("balancedOtherIncomeAftBI").toString())));
-			iNCCYLA.setIncOfCurYrAfterSetOff(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMapLosses.get("adjustedBusinessIncome").toString())));
-			busProfExclSpecProf.setIncCYLA(iNCCYLA);
-			scheduleCYLA.setBusProfExclSpecProf(busProfExclSpecProf);
 
+		BusProfExclSpecProf busProfExclSpecProf = new BusProfExclSpecProf();
+		IncCYLA iNCCYLA = new IncCYLA();
+		if(businessIncome > 0){
+			iNCCYLA.setIncOfCurYrUnderThatHead(BigInteger.valueOf(businessIncome));
+		}else
+			iNCCYLA.setIncOfCurYrUnderThatHead(new BigInteger("0"));
+		iNCCYLA.setBusLossSetoff(new BigInteger("0"));
+		iNCCYLA.setHPlossCurYrSetoff(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMapLosses.get("balancedHouseIncomeAftBI").toString())));
+		iNCCYLA.setOthSrcLossNoRaceHorseSetoff(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMapLosses.get("balancedOtherIncomeAftBI").toString())));
+		iNCCYLA.setIncOfCurYrAfterSetOff(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMapLosses.get("adjustedBusinessIncome").toString())));
+		busProfExclSpecProf.setIncCYLA(iNCCYLA);
+		scheduleCYLA.setBusProfExclSpecProf(busProfExclSpecProf);
+
+		if(itrSelection.equals("ITR4")){
 			SpeculativeInc speculativeInc = new SpeculativeInc();
 			IncCYLA iNCCYLAforSI = new IncCYLA();
 			if(speculativeIncome>0){
@@ -112,24 +113,13 @@ public class CurrentYearLossesSchedules extends XmlCalculation{
 			iNCCYLAforSPI.setIncOfCurYrAfterSetOff(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMapLosses.get("adjustedSpecifiedIncome").toString())));
 			specifiedInc.setIncCYLA(iNCCYLAforSPI);
 			scheduleCYLA.setSpecifiedInc(specifiedInc);
-		}else{
-			BusProfExclSpecProf busProfExclSpecProf = new BusProfExclSpecProf();
-			IncCYLA iNCCYLA = new IncCYLA();
-			iNCCYLA.setIncOfCurYrUnderThatHead(new BigInteger("0"));
-			iNCCYLA.setBusLossSetoff(new BigInteger("0"));
-			iNCCYLA.setHPlossCurYrSetoff(new BigInteger("0"));
-			iNCCYLA.setOthSrcLossNoRaceHorseSetoff(new BigInteger("0"));
-			iNCCYLA.setIncOfCurYrAfterSetOff(new BigInteger("0"));
-			busProfExclSpecProf.setIncCYLA(iNCCYLA);
-			scheduleCYLA.setBusProfExclSpecProf(busProfExclSpecProf);
 		}
 		//end
 
 		STCG sTCG = new STCG();
 		IncCYLA incCYLAforSTCG = new IncCYLA();
-		long STCGain = 0; //initialize Short Term Cpital Gain because Capital Gain screen is not completed
-		if(STCGain>0){
-			incCYLAforSTCG.setIncOfCurYrUnderThatHead(indianCurrencyHelper.longToBigInteger(STCGain));
+		if(shortTermCG>0){
+			incCYLAforSTCG.setIncOfCurYrUnderThatHead(indianCurrencyHelper.bigIntegerRound(shortTermCG));
 		}else
 			incCYLAforSTCG.setIncOfCurYrUnderThatHead(new BigInteger("0"));
 		incCYLAforSTCG.setHPlossCurYrSetoff(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMapLosses.get("balancedHouseIncomeAftSTC").toString())));
@@ -141,9 +131,8 @@ public class CurrentYearLossesSchedules extends XmlCalculation{
 
 		LTCG lTCG = new LTCG();
 		IncCYLA incCYLAforLTCG = new IncCYLA();
-		long LTCGain = 0; //initialize Short Term Cpital Gain because Capital Gain screen is not completed
-		if(LTCGain>0){
-			incCYLAforLTCG.setIncOfCurYrUnderThatHead(indianCurrencyHelper.longToBigInteger(LTCGain));
+		if(longTermCG>0){
+			incCYLAforLTCG.setIncOfCurYrUnderThatHead(indianCurrencyHelper.bigIntegerRound(longTermCG));
 		}else
 			incCYLAforLTCG.setIncOfCurYrUnderThatHead(new BigInteger("0"));
 		incCYLAforLTCG.setBusLossSetoff(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMapLosses.get("balancedBusinessIncomeAftLTC").toString())));
