@@ -66,7 +66,7 @@
 					</div>
 					<div class="rowlabel">
 						<input id="total_SalaryAndInterest" name="total_SalaryAndInterest"
-							type="text" maxlength="14"
+							type="text" maxlength="14" readonly="readonly"
 							class="decimal"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.total_SalaryAndInterest}"/></c:if>" />
 					</div>
@@ -89,16 +89,16 @@
 					</div>
 					<div class="rowlabel">
 						<input id="netIncome" name="netIncome" type="text"
-							maxlength="14"   class="decimal"
+							maxlength="14"   class="decimal" readonly="readonly"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.netIncome}"/></c:if>" />
 					</div>
 				</div>
 			</div></fieldset>
-			<div><input type="submit"></div>
+			
 			<div class="row-fluid show-grid">
 				<div class="span4 offset8 decimal">
 					<a href="${scriptName}" class="btn btn-danger" style="color: black">Cancel</a>&nbsp;
-					<a id="myModalHrefTdsOther" role="button" class="btn btn-success" style="color: black">Save</a>
+					<a id="myModalIncFirms" role="button" class="btn btn-success" style="color: black">Save</a>
 				</div>
 			</div>
 		</form>
@@ -108,11 +108,11 @@
 			<tr align="center">
 				<th><b><fmt:message key="firm_PAN.schBP.ITR3" /> </b>
 				</th>
-				<th><b><fmt:message key="salary_BonusRcv.schBP.itr3" /> </b>
+				<th align="left"><b>Salary, Bonus, Commissionf </b>
 				</th>
-				<th><b><fmt:message key="interest_Rcv.schBP.itr3" /> </b></th>
+				<th align="left"><b><fmt:message key="interest_Rcv.schBP.itr3" /> </b></th>
 				<th><b><fmt:message key="total_SalaryAndInterest.schBP.itr3" /> </b></th>
-				<th><b><fmt:message key="expenses_RelTotal.schBP.itr3" /> </b></th>
+				<th align="left"><b><fmt:message key="expenses_RelTotal.schBP.itr3" /> </b></th>
 				<th><b><fmt:message key="netIncome.schBP.itr3" /> </b></th>
 				
 				<th><b>Actions</b></th>
@@ -156,7 +156,7 @@
 </div>
 
 
-
-<res:client-validation formId="frmdataTdsOther"
-	screenConfigurationDocumentName="tdsfromothers"
-	formSubmitButtonId="myModalHrefTdsOther" fieldOneID="tan_deductortdsoth" fieldTwoID="name_deductortdsoth" validationType="tan"/>
+<res:calc screenCalc="incfromfirms" formId="frmIncFirms"></res:calc>
+<res:client-validation formId="frmIncFirms"
+	screenConfigurationDocumentName="incfromfirms"
+	formSubmitButtonId="myModalIncFirms"/>
