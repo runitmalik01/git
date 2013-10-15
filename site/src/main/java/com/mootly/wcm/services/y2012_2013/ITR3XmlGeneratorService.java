@@ -37,6 +37,7 @@ import com.mootly.wcm.beans.FormSixteenDocument;
 import com.mootly.wcm.beans.HouseProperty;
 import com.mootly.wcm.beans.ImmovablePropertyDocument;
 import com.mootly.wcm.beans.IncBusinessProfessionDoc;
+import com.mootly.wcm.beans.IncomeFromFirmsDocument;
 import com.mootly.wcm.beans.ManufactureFinishedProductsDocument;
 import com.mootly.wcm.beans.ManufactureRawMatDocument;
 import com.mootly.wcm.beans.MemberPersonalInformation;
@@ -75,6 +76,7 @@ import com.mootly.wcm.model.schedules.y2012_2013.Form16DocumentSchedules;
 import com.mootly.wcm.model.schedules.y2012_2013.Form_ITR2;
 import com.mootly.wcm.model.schedules.y2012_2013.Form_ITR3;
 import com.mootly.wcm.model.schedules.y2012_2013.HouseIncomeDocumentSchedules;
+import com.mootly.wcm.model.schedules.y2012_2013.ITR3_ScheduleBPA;
 import com.mootly.wcm.model.schedules.y2012_2013.ITRScheduleSI;
 import com.mootly.wcm.model.schedules.y2012_2013.ITR_ScheduleIF;
 import com.mootly.wcm.model.schedules.y2012_2013.MemberVerification;
@@ -141,6 +143,7 @@ public class ITR3XmlGeneratorService  {
 		ScheduleDPMDocument scheduleDPMDocument = (ScheduleDPMDocument) inputBeans.get(ScheduleDPMDocument.class.getSimpleName().toLowerCase());
 		ScheduleDOADocument scheduleDOADocument = (ScheduleDOADocument) inputBeans.get(ScheduleDOADocument.class.getSimpleName().toLowerCase());
 		FirmsPartnerDocument firmsPartnerDocument = (FirmsPartnerDocument) inputBeans.get(FirmsPartnerDocument.class.getSimpleName().toLowerCase());
+		IncomeFromFirmsDocument incomeFromFirmsDocument = (IncomeFromFirmsDocument) inputBeans.get(IncomeFromFirmsDocument.class.getSimpleName().toLowerCase());
 
 		ITR3 itr3 = new ObjectFactory().createITR3();
 		ITR itr = new ITR();
@@ -186,7 +189,8 @@ public class ITR3XmlGeneratorService  {
 
 		PartB_TI partB_TI = new PartB_TI(formSixteenDocument, salaryIncomeDocument, houseProperty, otherSourcesDocument,
 				deductionDocument, memberPersonalInformation,scheduleSIDocument,capitalAssetDocument, incBusinessProfessionDoc,
-				profitAndLossDocument, otherInformationDocument, scheduleDPMDocument, scheduleDOADocument,scheduleESRDocument, deductionSchedTenADocumemt);
+				profitAndLossDocument, otherInformationDocument, scheduleDPMDocument, scheduleDOADocument,scheduleESRDocument, deductionSchedTenADocumemt,
+				incomeFromFirmsDocument);
 		itr3.setPartBTI(partB_TI.getPartBTI(itr, financialYear, inputBeans));
 
 
@@ -195,7 +199,7 @@ public class ITR3XmlGeneratorService  {
 				selfAssesmetTaxDocument, tdsFromothersDocument, scheduleSIDocument, capitalAssetDocument, immovablePropertyDocument,
 				natureInvestmentDocument,signingAuthorityAccountsDocument,detailOfTrustDocument,foreignBankAccountDocument,financialInterestDocument,
 				tcsDocument,incBusinessProfessionDoc,profitAndLossDocument, otherInformationDocument, scheduleDPMDocument, scheduleDOADocument,
-				scheduleESRDocument, deductionSchedTenADocumemt,scheduleAMTCDocument);
+				scheduleESRDocument, deductionSchedTenADocumemt,scheduleAMTCDocument, incomeFromFirmsDocument);
 		itr3.setPartBTTI(partB_TTI.getPartBTTI(itr, financialYear, inputBeans));
 
 		PartA_Gen1 partA_Gen1 = new PartA_Gen1(formSixteenDocument, salaryIncomeDocument, houseProperty, otherSourcesDocument,
@@ -203,7 +207,7 @@ public class ITR3XmlGeneratorService  {
 				tdsFromothersDocument, scheduleSIDocument, capitalAssetDocument, immovablePropertyDocument,natureInvestmentDocument,
 				signingAuthorityAccountsDocument,detailOfTrustDocument,foreignBankAccountDocument,financialInterestDocument, tcsDocument,
 				incBusinessProfessionDoc,profitAndLossDocument, otherInformationDocument, scheduleDPMDocument, scheduleDOADocument,
-				scheduleESRDocument, deductionSchedTenADocumemt,scheduleAMTCDocument);
+				scheduleESRDocument, deductionSchedTenADocumemt,scheduleAMTCDocument, incomeFromFirmsDocument);
 		itr3.setPartAGEN1(partA_Gen1.getPartAGEN1(itr, financialYear, inputBeans));
 
 		CapitalGainDocumentSchedules capitalGainDocumentSchedules = new CapitalGainDocumentSchedules(capitalAssetDocument);
@@ -232,11 +236,14 @@ public class ITR3XmlGeneratorService  {
 		ClubbingOfIncome clubbingOfIncome = new ClubbingOfIncome(clubIncomeDocument);
 		itr3.setScheduleSPI(clubbingOfIncome.getScheduleSPI(itr));
 
-		ITR_ScheduleIF iTR_ScheduleIF = new ITR_ScheduleIF(firmsPartnerDocument);
+		ITR_ScheduleIF iTR_ScheduleIF = new ITR_ScheduleIF(firmsPartnerDocument, memberPersonalInformation);
 		itr3.setScheduleIF(iTR_ScheduleIF.getScheduleIF(itr));
 
 		ALSchedule aLSchedule = new ALSchedule(assetAndLiabilityDocument);
 		itr3.setScheduleAL(aLSchedule.getScheduleAL(itr));
+
+		ITR3_ScheduleBPA iTR3_ScheduleBPA = new ITR3_ScheduleBPA(incomeFromFirmsDocument);
+		itr3.setScheduleBPA(iTR3_ScheduleBPA.getScheduleBPA(itr));
 
 		MemberVerification memberVerification = new MemberVerification(memberPersonalInformation);
 		itr3.setVerification(memberVerification.getVerification(itr));
