@@ -140,8 +140,12 @@
 					</tr>
 				</c:forEach>
 				<tr>
-					<td colspan="1">Total</td>
+					<td colspan="1"><b>Total</b></td>
 					<td><w4india:inr value="${parentBean.val_Salary}" /></td>
+					<td><w4india:inr value="${parentBean.val_InterestRcv}" /></td>
+					<td><w4india:inr value="${parentBean.val_salaryAndIntrst}" /></td>
+					<td><w4india:inr value="${parentBean.val_Expense}" /></td>
+					<td><w4india:inr value="${parentBean.val_NetIncome}" /></td>
 				</tr>
 			</c:if>
 		</table>
