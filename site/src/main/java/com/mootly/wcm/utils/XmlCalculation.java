@@ -2,6 +2,8 @@ package com.mootly.wcm.utils;
 
 
 import in.gov.incometaxindiaefiling.y2012_2013.ITR4ScheduleBP;
+import in.gov.incometaxindiaefiling.y2012_2013.ScheduleBPA;
+import in.gov.incometaxindiaefiling.y2012_2013.ScheduleCGFor4;
 import in.gov.incometaxindiaefiling.y2012_2013.TaxPayment;
 
 import java.math.BigInteger;
@@ -32,6 +34,7 @@ import com.mootly.wcm.beans.DeductionSchedTenADocumemt;
 import com.mootly.wcm.beans.FormSixteenDocument;
 import com.mootly.wcm.beans.HouseProperty;
 import com.mootly.wcm.beans.IncBusinessProfessionDoc;
+import com.mootly.wcm.beans.IncomeFromFirmsDocument;
 import com.mootly.wcm.beans.MemberContactInformation;
 import com.mootly.wcm.beans.MemberPersonalInformation;
 import com.mootly.wcm.beans.OtherInformationDocument;
@@ -55,6 +58,8 @@ import com.mootly.wcm.beans.compound.SelfAssesmentTaxDetail;
 import com.mootly.wcm.beans.compound.TdsFromSalaryDetail;
 import com.mootly.wcm.member.MonthCalculate;
 import com.mootly.wcm.model.FinancialYear;
+import com.mootly.wcm.model.schedules.y2012_2013.CapitalGainScheduleFor4;
+import com.mootly.wcm.model.schedules.y2012_2013.ITR3_ScheduleBPA;
 import com.mootly.wcm.model.schedules.y2012_2013.ITR4_ScheduleBP;
 import com.mootly.wcm.services.ITRXmlGeneratorServiceCommon;
 import com.mootly.wcm.services.IndianCurrencyHelper;
@@ -90,11 +95,15 @@ public class XmlCalculation implements XmlCalculationImplement {
 	public Double totalNonSpeculationBusinessLoss = 0d;
 	public Double SpeculationBusinessLoss = 0d;
 	public Double totalSpeculationBusinessLoss = 0d;
+	public Double BusinessorProfessionLoss = 0d;
+	public Double totalBusinessorProfessionLoss = 0d;
 
 	// for ITR4
 	public long businessIncome = 0;
 	public long speculativeIncome = 0;
 	public long specifiedIncome = 0;
+	public Double shortTermCG = 0d;
+	public Double longTermCG = 0d;
 
 	/**
 	 * This Method is used to return Gross Total(SalaryIncome+HouseIncome+OtherIncome)
@@ -266,6 +275,8 @@ public class XmlCalculation implements XmlCalculationImplement {
 		AdjustmentOfLossesDoc adjustmentOfLossesDoc = (AdjustmentOfLossesDoc) inputBeans.get(AdjustmentOfLossesDoc.class.getSimpleName().toLowerCase());
 		OtherSourcesDocument otherSourcesDocument = (OtherSourcesDocument) inputBeans.get(OtherSourcesDocument.class.getSimpleName().toLowerCase());
 		HouseProperty houseProperty = (HouseProperty) inputBeans.get(HouseProperty.class.getSimpleName().toLowerCase());
+		MemberPersonalInformation memberPersonalInformation = (MemberPersonalInformation) inputBeans.get(MemberPersonalInformation.class.getSimpleName().toLowerCase());
+		String itrSelection =  memberPersonalInformation.getFlexField("flex_string_ITRForm", "");
 
 		//added for ITR4 on 26-sep-2012 by Dhananjay
 		IncBusinessProfessionDoc incBusinessProfessionDoc = (IncBusinessProfessionDoc) inputBeans.get(IncBusinessProfessionDoc.class.getSimpleName().toLowerCase());
@@ -275,39 +286,52 @@ public class XmlCalculation implements XmlCalculationImplement {
 		ScheduleDOADocument scheduleDOADocument = (ScheduleDOADocument) inputBeans.get(ScheduleDOADocument.class.getSimpleName().toLowerCase());
 		ScheduleESRDocument scheduleESRDocument = (ScheduleESRDocument) inputBeans.get(ScheduleESRDocument.class.getSimpleName().toLowerCase());
 		DeductionSchedTenADocumemt deductionSchedTenADocumemt = (DeductionSchedTenADocumemt) inputBeans.get(DeductionSchedTenADocumemt.class.getSimpleName().toLowerCase());
+		CapitalAssetDocument capitalAssetDocument = (CapitalAssetDocument) inputBeans.get(CapitalAssetDocument.class.getSimpleName().toLowerCase());
+		IncomeFromFirmsDocument incomeFromFirmsDocument = (IncomeFromFirmsDocument) inputBeans.get(IncomeFromFirmsDocument.class.getSimpleName().toLowerCase());
+
 		grossTotal(financialYear, inputBeans);
+		Map<String,Map<String, Object>> resultMap = capitalGainChilds(financialYear, inputBeans);
 		// getting Schedule BP to get values of Business Income, Speculative Income and Specified Income
+
 		ITR4_ScheduleBP iTR4_ScheduleBP = new ITR4_ScheduleBP(incBusinessProfessionDoc,profitAndLossDocument,otherInformationDocument,
 				scheduleDPMDocument,scheduleDOADocument,scheduleESRDocument,deductionSchedTenADocumemt);
 		ITR4ScheduleBP iTR4ScheduleBP = iTR4_ScheduleBP.getITR4ScheduleBP(null, financialYear, inputBeans);
-		businessIncome = iTR4ScheduleBP.getBusinessIncOthThanSpec().getNetPLBusOthThanSpec7A7B7C();
-		speculativeIncome = iTR4ScheduleBP.getSpecBusinessInc().getAdjustedPLFrmSpecuBus();
-		specifiedIncome = iTR4ScheduleBP.getSpecifiedBusinessInc().getPLFrmSpecifiedBus();
 
-		//here what we are trying to do we will adjust business income loss with specified income and speculative income
-		if(businessIncome < 0){
-			if(specifiedIncome > 0){
-				businessIncome = businessIncome + specifiedIncome;
+		if(itrSelection.equals("ITR4")){
+			businessIncome = iTR4ScheduleBP.getBusinessIncOthThanSpec().getNetPLBusOthThanSpec7A7B7C();
+			speculativeIncome = iTR4ScheduleBP.getSpecBusinessInc().getAdjustedPLFrmSpecuBus();
+			specifiedIncome = iTR4ScheduleBP.getSpecifiedBusinessInc().getPLFrmSpecifiedBus();
+
+			//here what we are trying to do we will adjust business income loss with specified income and speculative income
+			if(businessIncome < 0){
+				if(specifiedIncome > 0){
+					businessIncome = businessIncome + specifiedIncome;
+					if(businessIncome>0){
+						specifiedIncome = businessIncome;
+						businessIncome = 0;
+					}else
+						specifiedIncome = 0;
+				}
+				if(speculativeIncome > 0){
+					businessIncome = businessIncome + speculativeIncome;
+				}
 				if(businessIncome>0){
-					specifiedIncome = businessIncome;
+					speculativeIncome = businessIncome;
 					businessIncome = 0;
 				}else
-					specifiedIncome = 0;
+					speculativeIncome = 0;
 			}
-			if(speculativeIncome > 0){
-				businessIncome = businessIncome + speculativeIncome;
-			}
-			if(businessIncome>0){
-				speculativeIncome = businessIncome;
-				businessIncome = 0;
-			}else
-				speculativeIncome = 0;
-		}
-		//end
 
-		Map<String,Map<String, Object>> resultMap = capitalGainChilds(financialYear, inputBeans);
-		Double shortTermCG = Double.parseDouble(resultMap.get("STCGSST").get("totCG").toString()) + Double.parseDouble(resultMap.get("STCGNSST").get("totCG").toString());
-		Double longTermCG = Double.parseDouble(resultMap.get("LTCGINDEX").get("totCG").toString()) + Double.parseDouble(resultMap.get("LTCGNINDEX").get("totCG").toString());
+			CapitalGainScheduleFor4 capitalGainScheduleFor4= new CapitalGainScheduleFor4(capitalAssetDocument,scheduleDPMDocument,scheduleDOADocument);
+			ScheduleCGFor4 scheduleCGFor4 = capitalGainScheduleFor4.getScheduleCGFor4(null, financialYear, inputBeans);
+			shortTermCG = (double) scheduleCGFor4.getShortTermCapGainFor4().getTotalSTCG();
+			longTermCG = (double) scheduleCGFor4.getLongTermCapGain4().getTotalLTCG();
+		}else{
+			shortTermCG = Double.parseDouble(resultMap.get("STCGSST").get("totCG").toString()) + Double.parseDouble(resultMap.get("STCGNSST").get("totCG").toString());
+			longTermCG = Double.parseDouble(resultMap.get("LTCGINDEX").get("totCG").toString()) + Double.parseDouble(resultMap.get("LTCGNINDEX").get("totCG").toString());
+			if(incomeFromFirmsDocument != null)
+				businessIncome = incomeFromFirmsDocument.getVal_NetIncome().longValue();
+		}
 
 		if(adjustmentOfLossesDoc != null){
 			List<AdjustmentOfLossesCom> listofAdjustmentOfLossesCom = adjustmentOfLossesDoc.getAdjustmentOfLossesList() ;
@@ -342,6 +366,7 @@ public class XmlCalculation implements XmlCalculationImplement {
 						SpeculationBusinessLoss = adjustmentOfLossesCom.getAmount();
 						totalSpeculationBusinessLoss = totalSpeculationBusinessLoss + SpeculationBusinessLoss;
 					}
+					//end
 				}
 			}
 		}
@@ -356,6 +381,7 @@ public class XmlCalculation implements XmlCalculationImplement {
 			incomeHouseProperty = houseProperty.getTotal_HouseIncome();
 		}
 		Map<String,Object> totalMapForLosses = new HashMap<String, Object>();
+		totalMapForLosses.put("itrSelection",itrSelection);
 		totalMapForLosses.put("salaryIncome",longsalarytotal);
 		totalMapForLosses.put("houseIncome",incomeHouseProperty);
 		totalMapForLosses.put("otherIncome",incomeOtherThanRaceHorse);
