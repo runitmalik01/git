@@ -19,10 +19,12 @@ import com.mootly.wcm.annotations.FormFields;
 import com.mootly.wcm.annotations.PrimaryBean;
 import com.mootly.wcm.beans.AdjustmentOfLossesDoc;
 import com.mootly.wcm.beans.BroughtFwdLossesDocument;
+import com.mootly.wcm.beans.CapitalAssetDocument;
 import com.mootly.wcm.beans.DeductionSchedTenADocumemt;
 import com.mootly.wcm.beans.FormSixteenDocument;
 import com.mootly.wcm.beans.HouseProperty;
 import com.mootly.wcm.beans.IncBusinessProfessionDoc;
+import com.mootly.wcm.beans.IncomeFromFirmsDocument;
 import com.mootly.wcm.beans.MemberPersonalInformation;
 import com.mootly.wcm.beans.OtherInformationDocument;
 import com.mootly.wcm.beans.OtherSourcesDocument;
@@ -72,6 +74,8 @@ public class BroughtFwdLosses extends ITReturnComponent {
 		IncBusinessProfessionDoc incBusinessProfessionDoc = (IncBusinessProfessionDoc) request.getAttribute(IncBusinessProfessionDoc.class.getSimpleName().toLowerCase());
 		ScheduleESRDocument scheduleESRDocument = (ScheduleESRDocument) request.getAttribute(ScheduleESRDocument.class.getSimpleName().toLowerCase());
 		AdjustmentOfLossesDoc adjustmentOfLossesDoc = (AdjustmentOfLossesDoc) request.getAttribute(AdjustmentOfLossesDoc.class.getSimpleName().toLowerCase());
+		CapitalAssetDocument capitalAssetDocument = (CapitalAssetDocument) request.getAttribute(CapitalAssetDocument.class.getSimpleName().toLowerCase());
+		IncomeFromFirmsDocument incomeFromFirmsDocument = (IncomeFromFirmsDocument) request.getAttribute(IncomeFromFirmsDocument.class.getSimpleName().toLowerCase());
 
 		ITR itr = new ITR();
 		Map<String, HippoBean> inputBeans = new HashMap<String, HippoBean>();
@@ -88,6 +92,8 @@ public class BroughtFwdLosses extends ITReturnComponent {
 		inputBeans.put(IncBusinessProfessionDoc.class.getSimpleName().toLowerCase(),incBusinessProfessionDoc);
 		inputBeans.put(ScheduleDPMDocument.class.getSimpleName().toLowerCase(),scheduleDPMDocument);
 		inputBeans.put(ScheduleDOADocument.class.getSimpleName().toLowerCase(),scheduleDOADocument);
+		inputBeans.put(CapitalAssetDocument.class.getSimpleName().toLowerCase(),capitalAssetDocument);
+		inputBeans.put(IncomeFromFirmsDocument.class.getSimpleName().toLowerCase(),incomeFromFirmsDocument);
 
 		CurrentYearLossesSchedules currentYearLossesSchedules = new CurrentYearLossesSchedules();
 		ScheduleCYLA scheduleCYLA = currentYearLossesSchedules.getScheduleCYLA(itr, getFinancialYear(), inputBeans);
