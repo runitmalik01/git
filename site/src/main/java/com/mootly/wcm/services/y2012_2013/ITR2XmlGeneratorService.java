@@ -36,6 +36,7 @@ import com.mootly.wcm.beans.FormSixteenDocument;
 import com.mootly.wcm.beans.HouseProperty;
 import com.mootly.wcm.beans.ImmovablePropertyDocument;
 import com.mootly.wcm.beans.IncBusinessProfessionDoc;
+import com.mootly.wcm.beans.IncomeFromFirmsDocument;
 import com.mootly.wcm.beans.ManufactureFinishedProductsDocument;
 import com.mootly.wcm.beans.ManufactureRawMatDocument;
 import com.mootly.wcm.beans.MemberPersonalInformation;
@@ -137,6 +138,7 @@ public class ITR2XmlGeneratorService  {
 		ScheduleDPMDocument scheduleDPMDocument = (ScheduleDPMDocument) inputBeans.get(ScheduleDPMDocument.class.getSimpleName().toLowerCase());
 		ScheduleDOADocument scheduleDOADocument = (ScheduleDOADocument) inputBeans.get(ScheduleDOADocument.class.getSimpleName().toLowerCase());
 		FirmsPartnerDocument firmsPartnerDocument = (FirmsPartnerDocument) inputBeans.get(FirmsPartnerDocument.class.getSimpleName().toLowerCase());
+		IncomeFromFirmsDocument incomeFromFirmsDocument = (IncomeFromFirmsDocument) inputBeans.get(IncomeFromFirmsDocument.class.getSimpleName().toLowerCase());
 
 		ITR2 itr2 = new ObjectFactory().createITR2();
 		ITR itr = new ITR();
@@ -182,7 +184,8 @@ public class ITR2XmlGeneratorService  {
 
 		PartB_TI partB_TI = new PartB_TI(formSixteenDocument, salaryIncomeDocument, houseProperty, otherSourcesDocument,
 				deductionDocument, memberPersonalInformation,scheduleSIDocument,capitalAssetDocument, incBusinessProfessionDoc,
-				profitAndLossDocument, otherInformationDocument, scheduleDPMDocument, scheduleDOADocument,scheduleESRDocument, deductionSchedTenADocumemt);
+				profitAndLossDocument, otherInformationDocument, scheduleDPMDocument, scheduleDOADocument,scheduleESRDocument,
+				deductionSchedTenADocumemt, incomeFromFirmsDocument);
 		itr2.setPartBTI(partB_TI.getPartBTI(itr, financialYear, inputBeans));
 
 
@@ -191,7 +194,7 @@ public class ITR2XmlGeneratorService  {
 				selfAssesmetTaxDocument, tdsFromothersDocument, scheduleSIDocument, capitalAssetDocument, immovablePropertyDocument,
 				natureInvestmentDocument,signingAuthorityAccountsDocument,detailOfTrustDocument,foreignBankAccountDocument,financialInterestDocument,
 				tcsDocument,incBusinessProfessionDoc,profitAndLossDocument, otherInformationDocument, scheduleDPMDocument, scheduleDOADocument,
-				scheduleESRDocument, deductionSchedTenADocumemt,scheduleAMTCDocument);
+				scheduleESRDocument, deductionSchedTenADocumemt,scheduleAMTCDocument, incomeFromFirmsDocument);
 		itr2.setPartBTTI(partB_TTI.getPartBTTI(itr, financialYear, inputBeans));
 
 		PartA_Gen1 partA_Gen1 = new PartA_Gen1(formSixteenDocument, salaryIncomeDocument, houseProperty, otherSourcesDocument,
@@ -199,7 +202,7 @@ public class ITR2XmlGeneratorService  {
 				tdsFromothersDocument, scheduleSIDocument, capitalAssetDocument, immovablePropertyDocument,natureInvestmentDocument,
 				signingAuthorityAccountsDocument,detailOfTrustDocument,foreignBankAccountDocument,financialInterestDocument, tcsDocument,
 				incBusinessProfessionDoc,profitAndLossDocument, otherInformationDocument, scheduleDPMDocument, scheduleDOADocument,
-				scheduleESRDocument, deductionSchedTenADocumemt,scheduleAMTCDocument);
+				scheduleESRDocument, deductionSchedTenADocumemt,scheduleAMTCDocument, incomeFromFirmsDocument);
 		itr2.setPartAGEN1(partA_Gen1.getPartAGEN1(itr, financialYear, inputBeans));
 
 		CapitalGainDocumentSchedules capitalGainDocumentSchedules = new CapitalGainDocumentSchedules(capitalAssetDocument);
