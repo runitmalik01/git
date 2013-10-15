@@ -47,11 +47,11 @@ public class BroughtFwdLossesSchedules extends XmlCalculation{
 
 		in.gov.incometaxindiaefiling.y2012_2013.ScheduleBFLA.BusProfExclSpecProf busProfExclSpecProfBFLA = new in.gov.incometaxindiaefiling.y2012_2013.ScheduleBFLA.BusProfExclSpecProf();
 		IncBFLA incBFLAForBusiness = new IncBFLA();
-		incBFLAForBusiness.setBFAllUs35Cl4Setoff(new BigInteger("0"));
-		incBFLAForBusiness.setBFlossPrevYrUndSameHeadSetoff(new BigInteger("0"));
+		incBFLAForBusiness.setIncOfCurYrUndHeadFromCYLA(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMapLosses.get("adjustedBusinessIncome").toString())));
+		incBFLAForBusiness.setBFlossPrevYrUndSameHeadSetoff(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMapLosses.get("balancedBusinessLoss").toString())));
 		incBFLAForBusiness.setBFUnabsorbedDeprSetoff(new BigInteger("0"));
-		incBFLAForBusiness.setIncOfCurYrAfterSetOffBFLosses(new BigInteger("0"));
-		incBFLAForBusiness.setIncOfCurYrUndHeadFromCYLA(new BigInteger("0"));
+		incBFLAForBusiness.setBFAllUs35Cl4Setoff(new BigInteger("0"));
+		incBFLAForBusiness.setIncOfCurYrAfterSetOffBFLosses(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMapLosses.get("BusinessIncomeAftBFLA").toString())));
 		busProfExclSpecProfBFLA.setIncBFLA(incBFLAForBusiness);
 		scheduleBFLA.setBusProfExclSpecProf(busProfExclSpecProfBFLA);
 
