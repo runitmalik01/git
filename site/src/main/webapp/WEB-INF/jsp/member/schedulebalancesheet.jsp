@@ -25,20 +25,27 @@
  </div>
 </c:if>
 <form name="schedBalanceSheet" id="schedBalanceSheet" action="${actionUrl}" method="post">
-    <div class="row-fluid show-grid">
-     <div class="span4">
-       <div class="rowlabel">
-         <label for="regularAccOrNoCase"><small>Do you maintain regular books of accounts of Business or Profession?</small></label>
-       </div>
-       <div class="rowlabel">
-         <select id="regularAccOrNoCase" name="regularAccOrNoCase">
-          <option value="">Select</option>
-          <option value="Y" <c:if test="${parentBean.regularAccOrNoCase == 'Y'}">selected</c:if>>YES</option>
-          <option value="N" <c:if test="${parentBean.regularAccOrNoCase == 'N'}">selected</c:if>>NO</option>
-         </select>
-       </div>
-     </div>
-    </div>
+	<c:if test="${not empty parentBean}">
+		<div class="alert alert-warning">
+			<strong>CareFull! Change of selection can lost data until you don't click on save button.Click on<a href="${scriptName}" class="btn btn-inverse">Get Saved Data</a>.If lost.</strong>
+		</div>
+	</c:if>
+	<div class="row-fluid show-grid">
+		<div class="span6">
+			<div class="rowlabel">
+				<label for="regularAccOrNoCase"><small>Do you maintain regular books of accounts of Business or Profession?</small></label>
+			</div>
+		</div>
+		<div class="span4">
+			<div class="rowlabel">
+				<select id="regularAccOrNoCase" name="regularAccOrNoCase">
+					<option value="">Select</option>
+					<option value="Y" <c:if test="${parentBean.regularAccOrNoCase == 'Y'}">selected</c:if>>YES</option>
+					<option value="N" <c:if test="${parentBean.regularAccOrNoCase == 'N'}">selected</c:if>>NO</option>
+				</select>
+			</div>
+		</div>
+	</div>
 	<h5 align="center" class="regularAcc_Y regularAcc_N <c:choose><c:when test="${empty parentBean.regularAccOrNoCase || parentBean.regularAccOrNoCase == 'N'}">hide</c:when></c:choose>">Sources of Funds</h5>
 	<fieldset class="regularAcc_Y regularAcc_N <c:choose><c:when test="${empty parentBean.regularAccOrNoCase || parentBean.regularAccOrNoCase == 'N'}">hide</c:when></c:choose>">
 		<legend> Proprietor's fund</legend>
@@ -688,16 +695,18 @@
           $('#regularAccOrNoCase').change(function(){
             if($(this).val()== 'Y'){
               $('.noAccount_'+$(this).val()).hide();
+              $('.decimal').val('');
               $('.regularAcc_'+$(this).val()).show();
             }else{
               $('.noAccount_'+$(this).val()).show();
               $('.regularAcc_'+$(this).val()).hide();
+              $('.decimal').val('');
              }
-             if($(this).val()== 'N'){
-               $('.noAccount_Y').hide();
-               $('.regularAcc_Y').hide();
-              }
           });
+          <c:if test="${not empty invalidSouceAndAppliFind}">
+            $('.regularAcc_Y').show();
+            $('.noAccount_Y').hide();
+          </c:if>
           <c:if test="${not empty parentBean}">
            /* var selectChoice = '<c:out value="${parentBean.regularAccOrNoCase}"/>'; 
            $('#regularAccOrNoCase').change(function(){

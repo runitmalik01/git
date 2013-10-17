@@ -8,9 +8,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.jcr.RepositoryException;
+import javax.jcr.Session;
+
 import org.hippoecm.hst.component.support.forms.FormMap;
 import org.hippoecm.hst.content.beans.ObjectBeanManagerException;
 import org.hippoecm.hst.content.beans.manager.ObjectBeanManager;
+import org.hippoecm.hst.content.beans.manager.workflow.WorkflowPersistenceManager;
 import org.hippoecm.hst.core.component.HstComponentException;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
@@ -32,6 +36,7 @@ import com.mootly.wcm.beans.compound.ScreenFieldConfig;
 import com.mootly.wcm.beans.compound.ScreenFieldSetDetail;
 import com.mootly.wcm.beans.compound.ValueListDocumentDetail;
 import com.mootly.wcm.components.ITReturnComponent;
+import com.mootly.wcm.components.InvalidNavigationException;
 
 /**
  * @author BEN-10
@@ -146,6 +151,29 @@ public class ITRBalanceSheet extends ITReturnComponent {
 	public void doAction(HstRequest request, HstResponse response)
 			throws HstComponentException {
 		// TODO Auto-generated method stub
+		Session persistableSession= null;
+		WorkflowPersistenceManager objWorkflowPersistenceManager= null;
+		try {
+			persistableSession=getPersistableSession(request);
+			objWorkflowPersistenceManager= getWorkflowPersistenceManager(persistableSession);
+			objWorkflowPersistenceManager.setWorkflowCallbackHandler(new FullReviewedWorkflowCallbackHandler());
+
+			String getPathBalanceSheetDocument=getAbsoluteBasePathToReturnDocuments()+"/"+BalanceSheetDocument.class.getSimpleName().toLowerCase();
+			BalanceSheetDocument objBalanceSheetDocument= (BalanceSheetDocument)objWorkflowPersistenceManager.getObject(getPathBalanceSheetDocument);
+			if(objBalanceSheetDocument != null){
+				log.info("Got Document.Let's remove it then recreate it::");
+				objWorkflowPersistenceManager.remove(objBalanceSheetDocument);
+			}
+		} catch (RepositoryException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InvalidNavigationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ObjectBeanManagerException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		super.doAction(request, response);
 	}
 
@@ -159,7 +187,7 @@ public class ITRBalanceSheet extends ITReturnComponent {
 			if(formMap.getField("sourcOfFund")!=null && formMap.getField("grossAppliFund") !=null){
 				sourceOfFund = Double.parseDouble(formMap.getField("sourcOfFund").getValue());
 				applOfFund = Double.parseDouble(formMap.getField("grossAppliFund").getValue());
-				if(sourceOfFund != applOfFund){
+				if(sourceOfFund.compareTo(applOfFund) != 0){
 					//formMap.getField("sourcOfFund").addMessage("err.invalid."+)
 					response.setRenderParameter("err.invalid.sourcOfFund", "err.invalid.sourcOfFund");
 					hasAValidAmount = false;
