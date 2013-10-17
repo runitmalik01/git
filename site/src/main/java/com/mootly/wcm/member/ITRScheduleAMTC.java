@@ -31,6 +31,7 @@ import com.mootly.wcm.beans.FormSixteenDocument;
 import com.mootly.wcm.beans.HouseProperty;
 import com.mootly.wcm.beans.ImmovablePropertyDocument;
 import com.mootly.wcm.beans.IncBusinessProfessionDoc;
+import com.mootly.wcm.beans.IncomeFromFirmsDocument;
 import com.mootly.wcm.beans.ManufactureFinishedProductsDocument;
 import com.mootly.wcm.beans.ManufactureRawMatDocument;
 import com.mootly.wcm.beans.MemberPersonalInformation;
@@ -106,6 +107,7 @@ public class ITRScheduleAMTC extends ITReturnComponent{
 		BalanceSheetDocument balanceSheetDocument = (BalanceSheetDocument) request.getAttribute(BalanceSheetDocument.class.getSimpleName().toLowerCase());
 		UnabsorbedDepreciationDocument unabsorbedDepreciationDocument = (UnabsorbedDepreciationDocument) request.getAttribute(UnabsorbedDepreciationDocument.class.getSimpleName().toLowerCase());
 		FirmsPartnerDocument firmsPartnerDocument = (FirmsPartnerDocument) request.getAttribute(FirmsPartnerDocument.class.getSimpleName().toLowerCase());
+		IncomeFromFirmsDocument incomeFromFirmsDocument = (IncomeFromFirmsDocument) request.getAttribute(IncomeFromFirmsDocument.class.getSimpleName().toLowerCase());
 		ITR itr = new ITR();
 		Map<String, HippoBean> inputBeans = new HashMap<String, HippoBean>();
 		inputBeans.put(MemberPersonalInformation.class.getSimpleName().toLowerCase(),memberPersonalInformation);
@@ -147,12 +149,14 @@ public class ITRScheduleAMTC extends ITReturnComponent{
 		inputBeans.put(ScheduleDPMDocument.class.getSimpleName().toLowerCase(),scheduleDPMDocument);
 		inputBeans.put(ScheduleDOADocument.class.getSimpleName().toLowerCase(),scheduleDOADocument);
 		inputBeans.put(FirmsPartnerDocument.class.getSimpleName().toLowerCase(),firmsPartnerDocument);
+		inputBeans.put(IncomeFromFirmsDocument.class.getSimpleName().toLowerCase(),incomeFromFirmsDocument);
+
 		PartB_TTI partB_TTI = new PartB_TTI(formSixteenDocument, salaryIncomeDocument, houseProperty,
 				otherSourcesDocument, deductionDocument, memberPersonalInformation, taxReliefDocument, advanceTaxDocument,
 				selfAssesmetTaxDocument, tdsFromothersDocument, scheduleSIDocument, capitalAssetDocument, immovablePropertyDocument,
 				natureInvestmentDocument,signingAuthorityAccountsDocument,detailOfTrustDocument,foreignBankAccountDocument,financialInterestDocument,
 				tcsDocument,incBusinessProfessionDoc,profitAndLossDocument, otherInformationDocument, scheduleDPMDocument, scheduleDOADocument,
-				scheduleESRDocument, deductionSchedTenADocumemt,scheduleAMTCDocument);
+				scheduleESRDocument, deductionSchedTenADocumemt,scheduleAMTCDocument, incomeFromFirmsDocument);
 		PartBTTI btti = partB_TTI.getPartBTTI(itr, getFinancialYear(), inputBeans);
 		Double taxAgainstCredit = 0d;
 		request.setAttribute("taxUndSec115JC", btti.getComputationOfTaxLiability().getTaxPayableOnDeemedTI().getTotalTax());
@@ -160,7 +164,7 @@ public class ITRScheduleAMTC extends ITReturnComponent{
 		taxAgainstCredit = btti.getComputationOfTaxLiability().getGrossTaxLiability().doubleValue() - btti.getComputationOfTaxLiability().getTaxPayableOnDeemedTI().getTotalTax().doubleValue();
 		taxAgainstCredit = taxAgainstCredit > 0 ? taxAgainstCredit : 0;
 		request.setAttribute("taxAgainstCredit", taxAgainstCredit);
-		
+
 	}
 
 	@Override
