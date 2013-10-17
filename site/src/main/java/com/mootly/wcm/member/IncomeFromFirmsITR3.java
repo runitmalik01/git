@@ -64,7 +64,6 @@ public class IncomeFromFirmsITR3 extends ITReturnComponent {
 		if(super.validate(request, response, formMap)){
 
 			String panNo= formMap.getField("firm_PAN").getValue();
-			log.info("tanNo"+panNo+"KKKKK"+panNo.charAt(3));
 
 			if(panNo.charAt(3) != 'F'){
 				formMap.addMessage("InCorrectPan", "FourthcharPan.is.F");
@@ -74,14 +73,11 @@ public class IncomeFromFirmsITR3 extends ITReturnComponent {
 			}
 
 			String firmPan= formMap.getField("firm_PAN").getValue();
-			log.info("firm pan --------"+firmPan);
 			FirmsPartnerDocument firmsPartnerDocument = (FirmsPartnerDocument) request.getAttribute(FirmsPartnerDocument.class.getSimpleName().toLowerCase());
-			log.info("incomeFromFirmsDocument object ----"+firmsPartnerDocument);
 			if(firmsPartnerDocument != null){
 				List<FirmsPartnerDetail> firmsPartnerDetails = firmsPartnerDocument.getFirmsPartnerDetailList();
 				if ( firmsPartnerDetails != null && firmsPartnerDetails.size() > 0 ){
 					for (FirmsPartnerDetail firmsPartnerDetail:firmsPartnerDetails)  {
-						log.info("firm pan IF-----"+firmsPartnerDetail.getPan_Firm());
 						if(firmPan.equals(firmsPartnerDetail.getPan_Firm())){
 							hasAValidPAN = true;
 						}
@@ -89,7 +85,6 @@ public class IncomeFromFirmsITR3 extends ITReturnComponent {
 				}
 			}
 		}
-		log.info("boolean PAN-----"+hasAValidPAN);
 		if(!hasAValidPAN){
 			formMap.addMessage("firm_PAN", "error.itr.firm.pan");
 			response.setRenderParameter("ITR1_FIRM_PAN", "error.itr.firm.pan");
