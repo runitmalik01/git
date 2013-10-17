@@ -18,6 +18,12 @@
 
 </c:if>
 
+<c:if test="${not empty ITR1_FIRM_PAN}">
+		<div class="alert alert-error">
+			<fmt:message key="${ITR1_FIRM_PAN}" />
+		</div>
+	</c:if>
+
 <h4>
 	<fmt:message key="member.income.from.firms.itr3" />
 </h4>
@@ -26,7 +32,7 @@
 		test="${pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD'}">
 		<form id="frmIncFirms" action="${actionUrl}" method="post"
 			name="frmIncFirms">
-			
+
 		<fieldset>
 			<legend style="color: green; font-weight: bold;">Enter Details</legend>
 			<div class="row-fluid show-grid">
@@ -65,7 +71,7 @@
 				</div>
 			</div>
 			<div class="row-fluid show-grid">
-		
+
 				<div class="span4">
 					<div class="rowlabel">
 						<label for="total_SalaryAndInterest"><small><fmt:message
@@ -101,7 +107,7 @@
 					</div>
 				</div>
 			</div></fieldset>
-			
+
 			<div class="row-fluid show-grid">
 				<div class="span4 offset8 decimal">
 					<a href="${scriptName}" class="btn btn-danger" style="color: black">Cancel</a>&nbsp;
@@ -121,7 +127,7 @@
 				<th><b><fmt:message key="total_SalaryAndInterest.schBP.itr3" /> </b></th>
 				<th align="left"><b><fmt:message key="expenses_RelTotal.schBP.itr3" /> </b></th>
 				<th><b><fmt:message key="netIncome.schBP.itr3" /> </b></th>
-				
+
 				<th><b>Actions</b></th>
 			</tr>
 			<c:if test="${not empty parentBean}">
@@ -162,9 +168,16 @@
 </c:choose>
 </div>
 
+<script>
+$(document).ready( function() {
+	var linkURL = '<c:out value="${fn:substringBefore(scriptName,pan)}${pan}${itrFolderSuffix}/${pan}/firmspartner.html"/>';
+	$("#panError").attr("href",linkURL);
+});
+
+</script>
 
 <res:calc screenCalc="incfromfirms" formId="frmIncFirms"></res:calc>
 <res:client-validation formId="frmIncFirms"
 	screenConfigurationDocumentName="incfromfirms"
 	formSubmitButtonId="myModalIncFirms"/>
-	
+
