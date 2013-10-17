@@ -1,6 +1,9 @@
 package com.mootly.wcm.member;
 
 
+import javax.swing.text.StyledEditorKit.BoldAction;
+
+import org.hippoecm.hst.component.support.forms.FormMap;
 import org.hippoecm.hst.core.component.HstComponentException;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
@@ -34,6 +37,7 @@ public class TdsFromOthers extends ITReturnComponent {
 		if(log.isInfoEnabled()){
 			log.info("this is do before render of tds from salary");
 		}
+		request.setAttribute("putSameChar", request.getParameter("putSameChar"));
 		
 		request.getAttribute("financialYear");
 		int eight=FinancialYear.TwentyEight.getStartYear();
@@ -63,11 +67,37 @@ public class TdsFromOthers extends ITReturnComponent {
 		
 		// TODO Auto-generated method stub
 		super.doAction(request, response);
+		
 		if(log.isInfoEnabled()){
 			log.info("this is do Action of tds from salary");
 		}
 		
-	} }
+	}
+	
+
+	@Override
+	public boolean validate(HstRequest request, HstResponse response, FormMap formMap){
+		if(super.validate(request, response, formMap)){
+			String tanNo= formMap.getField("tan_deductortdsoth").getValue();
+			log.info("tanNo"+tanNo+"KKKKK"+tanNo.charAt(3));
+			String nameDeductor = formMap.getField("name_deductortdsoth").getValue();
+			log.info("nameDeductor"+nameDeductor);
+			if(tanNo.charAt(3) != nameDeductor.charAt(0)){
+				formMap.addMessage("charMatches", "FourthcharPan.is.FirstCharDeductor");
+				response.setRenderParameter("putSameChar", "FourthcharPan.is.FirstCharDeductor");
+				
+				return false;
+			}
+		}
+		
+		return super.validate(request, response, formMap);
+			
+		
+	}
+	
+	
+	
+}
 	
 	
 	
