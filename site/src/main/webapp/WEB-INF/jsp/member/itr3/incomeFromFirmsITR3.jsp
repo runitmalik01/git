@@ -10,6 +10,13 @@
 <div class="page type-page">
 	<w4india:itrmenu/>
 <hst:link var="mainSiteMapRefId" />
+<c:if test="${not empty InCorrectPan}">
+<div class="alert alert-error">
+
+<fmt:message key="not.valid.Pan"> </fmt:message>
+</div>
+
+</c:if>
 
 <h4>
 	<fmt:message key="member.income.from.firms.itr3" />
@@ -160,3 +167,4 @@
 <res:client-validation formId="frmIncFirms"
 	screenConfigurationDocumentName="incfromfirms"
 	formSubmitButtonId="myModalIncFirms"/>
+	
