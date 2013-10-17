@@ -57,7 +57,7 @@ public class ITRScreenXmlValidateServiceImpl implements ITRScreenXmlValidateServ
 	 * @see com.mootly.wcm.services.ITRScreenXmlValidateService#getValidateXmlBasedOnReqScreen(org.hippoecm.hst.core.component.HstRequest, org.hippoecm.hst.core.component.HstResponse)
 	 */
 	@Override
-	public String getValidateXmlBasedOnReqScreen(HstRequest request,
+	public void getValidateXmlBasedOnReqScreen(HstRequest request,
 			HstResponse response) {
 		// TODO Auto-generated method stub
 		List<ITRXmlValidation> listOfITRXmlValidate = new ArrayList<ITRXmlValidation>();
@@ -91,8 +91,8 @@ public class ITRScreenXmlValidateServiceImpl implements ITRScreenXmlValidateServ
 										if(getValidateType(itrXmlValidation, parentFolder, 0)){
 											if(redirectURLForSiteMapItem != null){
 												response.setRenderParameter("itr.require.screen.srreq", "itr.require.screen.srreq");
-												//response.sendRedirect(redirectURLForSiteMapItem);
-												return redirectURLForSiteMapItem;
+												response.sendRedirect(redirectURLForSiteMapItem);
+												//return redirectURLForSiteMapItem;
 											}
 										}
 									}
@@ -101,8 +101,8 @@ public class ITRScreenXmlValidateServiceImpl implements ITRScreenXmlValidateServ
 									if(getValidateType(itrXmlValidation, parentFolder, 0)){
 										if(redirectURLForSiteMapItem != null){
 											response.setRenderParameter("itr.require.screen", "itr.require.screen");
-											//response.sendRedirect(redirectURLForSiteMapItem);
-											return redirectURLForSiteMapItem;
+											response.sendRedirect(redirectURLForSiteMapItem);
+											//return redirectURLForSiteMapItem;
 										}
 									}
 									break;
@@ -110,8 +110,8 @@ public class ITRScreenXmlValidateServiceImpl implements ITRScreenXmlValidateServ
 									if(getValidateType(itrXmlValidation, parentFolder, 1)){
 										if(redirectURLForSiteMapItem != null){
 											response.setRenderParameter("itr.require.screen", "itr.require.screen");
-											//response.sendRedirect(redirectURLForSiteMapItem);
-											return redirectURLForSiteMapItem;
+											response.sendRedirect(redirectURLForSiteMapItem);
+											//return redirectURLForSiteMapItem;
 										}
 									}
 									break;
@@ -119,15 +119,15 @@ public class ITRScreenXmlValidateServiceImpl implements ITRScreenXmlValidateServ
 									if(getValidateType(itrXmlValidation, parentFolder)){
 										if(redirectURLForSiteMapItem != null){
 											response.setRenderParameter("itr.require.screen", "itr.require.screen");
-											//response.sendRedirect(redirectURLForSiteMapItem);
-											return redirectURLForSiteMapItem;
+											response.sendRedirect(redirectURLForSiteMapItem);
+											//return redirectURLForSiteMapItem;
 										}
 									}else{
 										if(getValidateWithTotalIncome(request, financialYear, itrXmlValidation, parentFolder)){
 											if(redirectURLForSiteMapItem != null){
 												response.setRenderParameter("itr.require.screen", "itr.require.screen");
-												//response.sendRedirect(redirectURLForSiteMapItem);
-												return redirectURLForSiteMapItem;
+												response.sendRedirect(redirectURLForSiteMapItem);
+												//return redirectURLForSiteMapItem;
 											}
 										}
 									}
@@ -141,7 +141,7 @@ public class ITRScreenXmlValidateServiceImpl implements ITRScreenXmlValidateServ
 				}
 			}
 		}
-		return null;
+		//return null;
 	}
 	/**
 	 * This method will Validate that Screen has been Reviewed by User or not .<br/>
