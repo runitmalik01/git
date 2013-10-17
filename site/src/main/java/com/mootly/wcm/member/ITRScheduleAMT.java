@@ -22,6 +22,7 @@ import com.mootly.wcm.beans.DeductionSchedTenADocumemt;
 import com.mootly.wcm.beans.FormSixteenDocument;
 import com.mootly.wcm.beans.HouseProperty;
 import com.mootly.wcm.beans.IncBusinessProfessionDoc;
+import com.mootly.wcm.beans.IncomeFromFirmsDocument;
 import com.mootly.wcm.beans.MemberPersonalInformation;
 import com.mootly.wcm.beans.OtherInformationDocument;
 import com.mootly.wcm.beans.OtherSourcesDocument;
@@ -40,7 +41,7 @@ import com.mootly.wcm.model.schedules.y2012_2013.PartB_TI;
 @PrimaryBean(primaryBeanClass=ScheduleAMTDocument.class)
 @RequiredBeans(requiredBeans=MemberPersonalInformation.class)
 @AdditionalBeans(additionalBeansToLoad={DeductionDocument.class,DeductionSchedTenADocumemt.class,OtherSourcesDocument.class,SalaryIncomeDocument.class,
-		HouseProperty.class,FormSixteenDocument.class,ScheduleSIDocument.class,CapitalAssetDocument.class})
+		HouseProperty.class,FormSixteenDocument.class,ScheduleSIDocument.class,CapitalAssetDocument.class, IncomeFromFirmsDocument.class})
 @FormFields(fieldNames={"totalIncomeItem13","dedClaimChapSix","dedClaimTenAA","totalAdjustment","incUndSec115JC","taxPayUndSec115JC"})
 public class ITRScheduleAMT extends ITReturnComponent{
 
@@ -73,6 +74,7 @@ public class ITRScheduleAMT extends ITReturnComponent{
 		inputBeans.put(ScheduleDOADocument.class.getSimpleName().toLowerCase(), (ScheduleDOADocument)request.getAttribute(ScheduleDOADocument.class.getSimpleName().toLowerCase()));
 		inputBeans.put(ScheduleESRDocument.class.getSimpleName().toLowerCase(), (ScheduleESRDocument)request.getAttribute(ScheduleESRDocument.class.getSimpleName().toLowerCase()));
 		inputBeans.put(DeductionSchedTenADocumemt.class.getSimpleName().toLowerCase(), (DeductionSchedTenADocumemt)request.getAttribute(DeductionSchedTenADocumemt.class.getSimpleName().toLowerCase()));
+		inputBeans.put(IncomeFromFirmsDocument.class.getSimpleName().toLowerCase(), (IncomeFromFirmsDocument)request.getAttribute(IncomeFromFirmsDocument.class.getSimpleName().toLowerCase()));
 
 		DeductionDocument deductionDocument = (DeductionDocument) request.getAttribute(DeductionDocument.class.getSimpleName().toLowerCase());
 		ITR itr = new ITR();
@@ -92,7 +94,7 @@ public class ITRScheduleAMT extends ITReturnComponent{
 				(IncBusinessProfessionDoc)request.getAttribute(IncBusinessProfessionDoc.class.getSimpleName().toLowerCase()),(ProfitAndLossDocument)request.getAttribute(ProfitAndLossDocument.class.getSimpleName().toLowerCase()),
 				(OtherInformationDocument)request.getAttribute(OtherInformationDocument.class.getSimpleName().toLowerCase()),(ScheduleDPMDocument)request.getAttribute(ScheduleDPMDocument.class.getSimpleName().toLowerCase()),
 				(ScheduleDOADocument)request.getAttribute(ScheduleDOADocument.class.getSimpleName().toLowerCase()),(ScheduleESRDocument)request.getAttribute(ScheduleESRDocument.class.getSimpleName().toLowerCase()),
-				(DeductionSchedTenADocumemt)request.getAttribute(DeductionSchedTenADocumemt.class.getSimpleName().toLowerCase()));
+				(DeductionSchedTenADocumemt)request.getAttribute(DeductionSchedTenADocumemt.class.getSimpleName().toLowerCase()), (IncomeFromFirmsDocument)request.getAttribute(IncomeFromFirmsDocument.class.getSimpleName().toLowerCase()));
 		PartBTI partBTI = partB_TI.getPartBTI(itr, getFinancialYear(), inputBeans);
 		request.setAttribute("partBTIitem13", partBTI.getTotalIncome());
 	}
