@@ -1,6 +1,7 @@
 package com.mootly.wcm.member;
 
 
+import org.hippoecm.hst.component.support.forms.FormMap;
 import org.hippoecm.hst.core.component.HstComponentException;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
@@ -46,8 +47,26 @@ public class FirmsPartner extends ITReturnComponent {
 		if(log.isInfoEnabled()){
 			log.info("this is do before render of firms partner");
 		}
+		request.setAttribute("InCorrectPan", request.getParameter("InCorrectPan"));
 
-	} }
+	}
+	@Override
+	public boolean validate(HstRequest request, HstResponse response, FormMap formMap){
+		if(super.validate(request, response, formMap)){
+			String panNo= formMap.getField("firm_Pan").getValue();
+			if(panNo.charAt(3) != 'F'){
+				formMap.addMessage("InCorrectPan", "FourthcharPan.is.F");
+				response.setRenderParameter("InCorrectPan", "FourthcharPan.is.F");
+				
+				return false;
+			}
+		}
+		
+		return super.validate(request, response, formMap);
+			
+		
+	}	
+}
 
 
 
