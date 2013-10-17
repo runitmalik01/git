@@ -6,6 +6,7 @@ package com.mootly.wcm.services;
 import in.gov.incometaxindiaefiling.y2012_2013.ITR;
 import in.gov.incometaxindiaefiling.y2012_2013.PartBTI;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -63,6 +64,7 @@ public class ITRScreenXmlValidateServiceImpl implements ITRScreenXmlValidateServ
 		List<ITRXmlValidation> listOfITRXmlValidate = new ArrayList<ITRXmlValidation>();
 		listOfITRXmlValidate = ITRXmlValidation.getListOfXmlValidation();
 		MemberPersonalInformation memberPersonalInformation = (MemberPersonalInformation) request.getAttribute(MemberPersonalInformation.class.getSimpleName().toLowerCase());
+		try{
 		if(memberPersonalInformation != null){
 			HippoFolder parentFolder = (HippoFolder) memberPersonalInformation.getParentBean();
 			ITRForm selectedITRForm = memberPersonalInformation.getSelectedITRForm();
@@ -140,6 +142,9 @@ public class ITRScreenXmlValidateServiceImpl implements ITRScreenXmlValidateServ
 					}
 				}
 			}
+		}
+		} catch(IOException e){
+			logger.error("Error while redirecting to Page",e);
 		}
 		//return null;
 	}
