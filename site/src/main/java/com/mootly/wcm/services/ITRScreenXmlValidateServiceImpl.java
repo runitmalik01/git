@@ -6,7 +6,6 @@ package com.mootly.wcm.services;
 import in.gov.incometaxindiaefiling.y2012_2013.ITR;
 import in.gov.incometaxindiaefiling.y2012_2013.PartBTI;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -29,6 +28,7 @@ import com.mootly.wcm.beans.DeductionSchedTenADocumemt;
 import com.mootly.wcm.beans.FormSixteenDocument;
 import com.mootly.wcm.beans.HouseProperty;
 import com.mootly.wcm.beans.IncBusinessProfessionDoc;
+import com.mootly.wcm.beans.IncomeFromFirmsDocument;
 import com.mootly.wcm.beans.MemberPersonalInformation;
 import com.mootly.wcm.beans.OtherInformationDocument;
 import com.mootly.wcm.beans.OtherSourcesDocument;
@@ -57,95 +57,91 @@ public class ITRScreenXmlValidateServiceImpl implements ITRScreenXmlValidateServ
 	 * @see com.mootly.wcm.services.ITRScreenXmlValidateService#getValidateXmlBasedOnReqScreen(org.hippoecm.hst.core.component.HstRequest, org.hippoecm.hst.core.component.HstResponse)
 	 */
 	@Override
-	public void getValidateXmlBasedOnReqScreen(HstRequest request,
+	public String getValidateXmlBasedOnReqScreen(HstRequest request,
 			HstResponse response) {
 		// TODO Auto-generated method stub
 		List<ITRXmlValidation> listOfITRXmlValidate = new ArrayList<ITRXmlValidation>();
 		listOfITRXmlValidate = ITRXmlValidation.getListOfXmlValidation();
 		MemberPersonalInformation memberPersonalInformation = (MemberPersonalInformation) request.getAttribute(MemberPersonalInformation.class.getSimpleName().toLowerCase());
-		try {
-			if(memberPersonalInformation != null){
-				HippoFolder parentFolder = (HippoFolder) memberPersonalInformation.getParentBean();
-				ITRForm selectedITRForm = memberPersonalInformation.getSelectedITRForm();
-				String strFinancialYear = memberPersonalInformation.getFinancialYear();
-				String pan = memberPersonalInformation.getPAN().toLowerCase();
-				if(logger.isInfoEnabled()){
-					logger.info("Parent Folder Bean::"+parentFolder.getName());
-				}
-				if(!listOfITRXmlValidate.isEmpty() && listOfITRXmlValidate != null){
-					for(ITRXmlValidation itrXmlValidation:listOfITRXmlValidate){
-						if(itrXmlValidation.getItrForms().length > 0){
-							for(ITRForm itrForm:itrXmlValidation.getItrForms()){
-								ITReturnComponentHelper iTReturnComponentHelper = new ITReturnComponentHelper();
-								FinancialYear financialYear = iTReturnComponentHelper.getFinancialYear(strFinancialYear, request, response);
-								String folderContainsITReturnDocuments = iTReturnComponentHelper.getTheFolderContainingITRDocuments(request, response);
-								String siteMapReferenceId = itrXmlValidation.getScreenSiteMapRefID();
-								ITReturnComponent itReturnComponent = new ITReturnComponent();
-								String redirectURLForSiteMapItem = itReturnComponent.getRedirectURLForSiteMapItem(request, response, null, siteMapReferenceId, financialYear, folderContainsITReturnDocuments, pan);
-								if(logger.isInfoEnabled()){
-									logger.info("Redirect Url to Screen ::"+redirectURLForSiteMapItem);
-								}
-								if(itrForm.equals(selectedITRForm)){
-									switch(itrXmlValidation){
-									case VALIDATE1:
-										if("Y".equals(memberPersonalInformation.getPortugesecivil())){
-											if(getValidateType(itrXmlValidation, parentFolder, 0)){
-												if(redirectURLForSiteMapItem != null){
-													response.setRenderParameter("itr.require.screen.srreq", "itr.require.screen.srreq");
-													response.sendRedirect(redirectURLForSiteMapItem);
-													return;
-												}
-											}
-										}
-										break;
-									case VALIDATE2:
+		if(memberPersonalInformation != null){
+			HippoFolder parentFolder = (HippoFolder) memberPersonalInformation.getParentBean();
+			ITRForm selectedITRForm = memberPersonalInformation.getSelectedITRForm();
+			String strFinancialYear = memberPersonalInformation.getFinancialYear();
+			String pan = memberPersonalInformation.getPAN().toLowerCase();
+			if(logger.isInfoEnabled()){
+				logger.info("Parent Folder Bean::"+parentFolder.getName());
+			}
+			if(!listOfITRXmlValidate.isEmpty() && listOfITRXmlValidate != null){
+				for(ITRXmlValidation itrXmlValidation:listOfITRXmlValidate){
+					if(itrXmlValidation.getItrForms().length > 0){
+						for(ITRForm itrForm:itrXmlValidation.getItrForms()){
+							ITReturnComponentHelper iTReturnComponentHelper = new ITReturnComponentHelper();
+							FinancialYear financialYear = iTReturnComponentHelper.getFinancialYear(strFinancialYear, request, response);
+							String folderContainsITReturnDocuments = iTReturnComponentHelper.getTheFolderContainingITRDocuments(request, response);
+							String siteMapReferenceId = itrXmlValidation.getScreenSiteMapRefID();
+							ITReturnComponent itReturnComponent = new ITReturnComponent();
+							String redirectURLForSiteMapItem = itReturnComponent.getRedirectURLForSiteMapItem(request, response, null, siteMapReferenceId, financialYear, folderContainsITReturnDocuments, pan);
+							if(logger.isInfoEnabled()){
+								logger.info("Redirect Url to Screen ::"+redirectURLForSiteMapItem);
+							}
+							if(itrForm.equals(selectedITRForm)){
+								switch(itrXmlValidation){
+								case VALIDATE1:
+									if("Y".equals(memberPersonalInformation.getPortugesecivil())){
 										if(getValidateType(itrXmlValidation, parentFolder, 0)){
 											if(redirectURLForSiteMapItem != null){
-												response.setRenderParameter("itr.require.screen", "itr.require.screen");
-												response.sendRedirect(redirectURLForSiteMapItem);
-												return;
+												response.setRenderParameter("itr.require.screen.srreq", "itr.require.screen.srreq");
+												//response.sendRedirect(redirectURLForSiteMapItem);
+												return redirectURLForSiteMapItem;
 											}
 										}
-										break;
-									case VALIDATE3:
-										if(getValidateType(itrXmlValidation, parentFolder, 1)){
-											if(redirectURLForSiteMapItem != null){
-												response.setRenderParameter("itr.require.screen", "itr.require.screen");
-												response.sendRedirect(redirectURLForSiteMapItem);
-												return;
-											}
-										}
-										break;
-									case VALIDATE4:
-										if(getValidateType(itrXmlValidation, parentFolder)){
-											if(redirectURLForSiteMapItem != null){
-												response.setRenderParameter("itr.require.screen", "itr.require.screen");
-												response.sendRedirect(redirectURLForSiteMapItem);
-												return;
-											}
-										}else{
-											if(getValidateWithTotalIncome(request, financialYear, itrXmlValidation, parentFolder)){
-												if(redirectURLForSiteMapItem != null){
-													response.setRenderParameter("itr.require.screen", "itr.require.screen");
-													response.sendRedirect(redirectURLForSiteMapItem);
-													return;
-												}
-											}
-										}
-										break;
-									default:
-										break;
 									}
+									break;
+								case VALIDATE2:
+									if(getValidateType(itrXmlValidation, parentFolder, 0)){
+										if(redirectURLForSiteMapItem != null){
+											response.setRenderParameter("itr.require.screen", "itr.require.screen");
+											//response.sendRedirect(redirectURLForSiteMapItem);
+											return redirectURLForSiteMapItem;
+										}
+									}
+									break;
+								case VALIDATE3:
+									if(getValidateType(itrXmlValidation, parentFolder, 1)){
+										if(redirectURLForSiteMapItem != null){
+											response.setRenderParameter("itr.require.screen", "itr.require.screen");
+											//response.sendRedirect(redirectURLForSiteMapItem);
+											return redirectURLForSiteMapItem;
+										}
+									}
+									break;
+								case VALIDATE4:
+									if(getValidateType(itrXmlValidation, parentFolder)){
+										if(redirectURLForSiteMapItem != null){
+											response.setRenderParameter("itr.require.screen", "itr.require.screen");
+											//response.sendRedirect(redirectURLForSiteMapItem);
+											return redirectURLForSiteMapItem;
+										}
+									}else{
+										if(getValidateWithTotalIncome(request, financialYear, itrXmlValidation, parentFolder)){
+											if(redirectURLForSiteMapItem != null){
+												response.setRenderParameter("itr.require.screen", "itr.require.screen");
+												//response.sendRedirect(redirectURLForSiteMapItem);
+												return redirectURLForSiteMapItem;
+											}
+										}
+									}
+									break;
+								default:
+									break;
 								}
 							}
 						}
 					}
 				}
 			}
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
+		return null;
 	}
 	/**
 	 * This method will Validate that Screen has been Reviewed by User or not .<br/>
@@ -327,8 +323,8 @@ public class ITRScreenXmlValidateServiceImpl implements ITRScreenXmlValidateServ
 		inputBeans.put(ScheduleDOADocument.class.getSimpleName().toLowerCase(), (ScheduleDOADocument)request.getAttribute(ScheduleDOADocument.class.getSimpleName().toLowerCase()));
 		inputBeans.put(ScheduleESRDocument.class.getSimpleName().toLowerCase(), (ScheduleESRDocument)request.getAttribute(ScheduleESRDocument.class.getSimpleName().toLowerCase()));
 		inputBeans.put(DeductionSchedTenADocumemt.class.getSimpleName().toLowerCase(), (DeductionSchedTenADocumemt)request.getAttribute(DeductionSchedTenADocumemt.class.getSimpleName().toLowerCase()));
-
-		PartB_TI partB_TI = new	PartB_TI((FormSixteenDocument)request.getAttribute(FormSixteenDocument.class.getSimpleName().toLowerCase()),
+		
+		PartB_TI partB_TI = new PartB_TI((FormSixteenDocument)request.getAttribute(FormSixteenDocument.class.getSimpleName().toLowerCase()),
 				(SalaryIncomeDocument)request.getAttribute(SalaryIncomeDocument.class.getSimpleName().toLowerCase()),
 				(HouseProperty)request.getAttribute(HouseProperty.class.getSimpleName().toLowerCase()),
 				(OtherSourcesDocument)(OtherSourcesDocument)request.getAttribute(OtherSourcesDocument.class.getSimpleName().toLowerCase()),
@@ -337,7 +333,7 @@ public class ITRScreenXmlValidateServiceImpl implements ITRScreenXmlValidateServ
 				(IncBusinessProfessionDoc)request.getAttribute(IncBusinessProfessionDoc.class.getSimpleName().toLowerCase()),(ProfitAndLossDocument)request.getAttribute(ProfitAndLossDocument.class.getSimpleName().toLowerCase()),
 				(OtherInformationDocument)request.getAttribute(OtherInformationDocument.class.getSimpleName().toLowerCase()),(ScheduleDPMDocument)request.getAttribute(ScheduleDPMDocument.class.getSimpleName().toLowerCase()),
 				(ScheduleDOADocument)request.getAttribute(ScheduleDOADocument.class.getSimpleName().toLowerCase()),(ScheduleESRDocument)request.getAttribute(ScheduleESRDocument.class.getSimpleName().toLowerCase()),
-				(DeductionSchedTenADocumemt)request.getAttribute(DeductionSchedTenADocumemt.class.getSimpleName().toLowerCase()));
+				(DeductionSchedTenADocumemt)request.getAttribute(DeductionSchedTenADocumemt.class.getSimpleName().toLowerCase()),(IncomeFromFirmsDocument)request.getAttribute(IncomeFromFirmsDocument.class.getSimpleName().toLowerCase()));
 		PartBTI partBTI = partB_TI.getPartBTI(itr, financialYear, inputBeans);
 		Double totalIncome = partBTI.getTotalIncome().doubleValue();
 		if(totalIncome > 2500000d){
