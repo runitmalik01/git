@@ -1,6 +1,8 @@
 package com.mootly.wcm.member;
 
 
+import java.util.List;
+
 import org.hippoecm.hst.component.support.forms.FormMap;
 import org.hippoecm.hst.core.component.HstComponentException;
 import org.hippoecm.hst.core.component.HstRequest;
@@ -11,7 +13,9 @@ import org.slf4j.LoggerFactory;
 import com.mootly.wcm.annotations.ChildBean;
 import com.mootly.wcm.annotations.FormFields;
 import com.mootly.wcm.annotations.PrimaryBean;
+import com.mootly.wcm.beans.FirmsPartnerDocument;
 import com.mootly.wcm.beans.IncomeFromFirmsDocument;
+import com.mootly.wcm.beans.compound.FirmsPartnerDetail;
 import com.mootly.wcm.beans.compound.IncomeFromFirmsDetail;
 import com.mootly.wcm.components.ITReturnComponent;
 
@@ -28,6 +32,18 @@ import com.mootly.wcm.components.ITReturnComponent;
 public class IncomeFromFirmsITR3 extends ITReturnComponent {
 
 	private static final Logger log = LoggerFactory.getLogger(TdsFromSalary.class);
+
+	@Override
+	public void doBeforeRender(HstRequest request, HstResponse response) {
+		// TODO Auto-generated method stub
+		super.doBeforeRender(request, response);
+		if(log.isInfoEnabled()){
+			log.info("this is do before render of income from firms in itr3");
+		}
+		request.setAttribute("InCorrectPan", request.getParameter("InCorrectPan"));
+		request.setAttribute("ITR1_FIRM_PAN", request.getParameter("ITR1_FIRM_PAN"));
+	}
+
 	@Override
 	public void doAction(HstRequest request, HstResponse response)
 			throws HstComponentException {
@@ -39,35 +55,48 @@ public class IncomeFromFirmsITR3 extends ITReturnComponent {
 		}
 
 	}
-	@Override
-	public void doBeforeRender(HstRequest request, HstResponse response) {
-		// TODO Auto-generated method stub
-		super.doBeforeRender(request, response);
-		if(log.isInfoEnabled()){
-			log.info("this is do before render of income from firms in itr3");
-		}
-		request.setAttribute("InCorrectPan", request.getParameter("InCorrectPan"));
 
-	}
-	
-@Override
-public boolean validate(HstRequest request, HstResponse response, FormMap formMap){
-	if(super.validate(request, response, formMap)){
-		String panNo= formMap.getField("firm_PAN").getValue();
-		log.info("tanNo"+panNo+"KKKKK"+panNo.charAt(3));
-		
-		if(panNo.charAt(3) != 'F'){
-			formMap.addMessage("InCorrectPan", "FourthcharPan.is.F");
-			response.setRenderParameter("InCorrectPan", "FourthcharPan.is.F");
-			
-			return false;
+	@Override
+	public boolean validate(HstRequest request, HstResponse response,
+			FormMap formMap) {
+		// TODO Auto-generated method stub
+		boolean hasAValidPAN = false;
+		if(super.validate(request, response, formMap)){
+
+			String panNo= formMap.getField("firm_PAN").getValue();
+			log.info("tanNo"+panNo+"KKKKK"+panNo.charAt(3));
+
+			if(panNo.charAt(3) != 'F'){
+				formMap.addMessage("InCorrectPan", "FourthcharPan.is.F");
+				response.setRenderParameter("InCorrectPan", "FourthcharPan.is.F");
+
+				return false;
+			}
+
+			String firmPan= formMap.getField("firm_PAN").getValue();
+			log.info("firm pan --------"+firmPan);
+			FirmsPartnerDocument firmsPartnerDocument = (FirmsPartnerDocument) request.getAttribute(FirmsPartnerDocument.class.getSimpleName().toLowerCase());
+			log.info("incomeFromFirmsDocument object ----"+firmsPartnerDocument);
+			if(firmsPartnerDocument != null){
+				List<FirmsPartnerDetail> firmsPartnerDetails = firmsPartnerDocument.getFirmsPartnerDetailList();
+				if ( firmsPartnerDetails != null && firmsPartnerDetails.size() > 0 ){
+					for (FirmsPartnerDetail firmsPartnerDetail:firmsPartnerDetails)  {
+						log.info("firm pan IF-----"+firmsPartnerDetail.getPan_Firm());
+						if(firmPan.equals(firmsPartnerDetail.getPan_Firm())){
+							hasAValidPAN = true;
+						}
+					}
+				}
+			}
 		}
+		log.info("boolean PAN-----"+hasAValidPAN);
+		if(!hasAValidPAN){
+			formMap.addMessage("firm_PAN", "error.itr.firm.pan");
+			response.setRenderParameter("ITR1_FIRM_PAN", "error.itr.firm.pan");
+			return hasAValidPAN;
+		}else
+			return super.validate(request, response, formMap);
 	}
-	
-	return super.validate(request, response, formMap);
-		
-	
-}
 }
 
 
