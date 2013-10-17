@@ -17,9 +17,15 @@
 		</div>
 	</c:forEach>
 </c:if>
+<c:if test="${not empty putSameChar}">
+<div class="alert alert-error">
+<fmt:message key="eneter.validPan.ORvalidName"></fmt:message>
+</div>
+</c:if>
 <h4>
 	<fmt:message key="member.tds.from.others" />
 </h4>
+
 <c:choose>
 	<c:when
 		test="${pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD'}">
