@@ -109,6 +109,7 @@ public class ITRScreenXmlValidateServiceImpl implements ITRScreenXmlValidateServ
 									}
 									break;
 								case VALIDATE3:
+								case VALIDATE5:
 									if(getValidateType(itrXmlValidation, parentFolder, 1)){
 										if(redirectURLForSiteMapItem != null){
 											response.setRenderParameter("itr.require.screen", "itr.require.screen");

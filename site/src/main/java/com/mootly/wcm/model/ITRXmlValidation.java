@@ -8,6 +8,7 @@ import java.util.List;
 
 import com.mootly.wcm.beans.AssetAndLiabilityDocument;
 import com.mootly.wcm.beans.BusinessProfessionDocument;
+import com.mootly.wcm.beans.IncomeFromFirmsDocument;
 import com.mootly.wcm.beans.NatureBusinessDocument;
 import com.mootly.wcm.beans.ScheduleFiveADocument;
 
@@ -21,6 +22,7 @@ public enum ITRXmlValidation {
 	VALIDATE2(true,"schedule-business-profession",BusinessProfessionDocument.class.getSimpleName(),new ITRForm[]{ITRForm.ITR4S},new ValidateProperty[]{}),
 	VALIDATE3(true,"businessnature",NatureBusinessDocument.class.getSimpleName(),new ITRForm[]{ITRForm.ITR4S,ITRForm.ITR4},new ValidateProperty[]{}),
 	VALIDATE4(true,"assetandliability",AssetAndLiabilityDocument.class.getSimpleName(),new ITRForm[]{ITRForm.ITR4},new ValidateProperty[]{ValidateProperty.PROP_1,ValidateProperty.PROP_2}),
+	VALIDATE5(true,"",IncomeFromFirmsDocument.class.getSimpleName(),new ITRForm[]{ITRForm.ITR3},new ValidateProperty[]{}),
 	UNKOWN;
 
 	boolean validateOrNot;//Decide that we will validate or not
