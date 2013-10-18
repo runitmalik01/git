@@ -555,28 +555,6 @@
           <sv:value>false</sv:value>
         </sv:property>
       </sv:node>
-      <sv:node sv:name="Capital Gains">
-        <sv:property sv:name="jcr:primaryType" sv:type="Name">
-          <sv:value>hst:sitemenuitem</sv:value>
-        </sv:property>
-        <sv:property sv:name="jcr:uuid" sv:type="String">
-          <sv:value>8ef02b6a-8490-4a7c-bc70-821eb4e670dc</sv:value>
-        </sv:property>
-        <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
-          <sv:value>theURL</sv:value>
-          <sv:value>weight</sv:value>
-          <sv:value>ITR1.enabled</sv:value>
-          <sv:value>ITR2.enabled</sv:value>
-          <sv:value>ITR4S.enabled</sv:value>
-        </sv:property>
-        <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
-          <sv:value>/../capitalgains.html</sv:value>
-          <sv:value>5</sv:value>
-          <sv:value>false</sv:value>
-          <sv:value>true</sv:value>
-          <sv:value>false</sv:value>
-        </sv:property>
-      </sv:node>
       <sv:node sv:name="Club Income">
         <sv:property sv:name="jcr:primaryType" sv:type="Name">
           <sv:value>hst:sitemenuitem</sv:value>
@@ -656,6 +634,7 @@
           <sv:value>ITR1.enabled</sv:value>
           <sv:value>ITR2.enabled</sv:value>
           <sv:value>ITR4S.enabled</sv:value>
+          <sv:value>ITR3.enabled</sv:value>
         </sv:property>
         <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
           <sv:value>9</sv:value>
@@ -663,6 +642,7 @@
           <sv:value>false</sv:value>
           <sv:value>false</sv:value>
           <sv:value>true</sv:value>
+          <sv:value>false</sv:value>
         </sv:property>
         <sv:property sv:name="hst:refidsitemapitem" sv:type="String">
           <sv:value/>
@@ -774,7 +754,7 @@
           <sv:value>/../BFLA.html</sv:value>
           <sv:value>8</sv:value>
           <sv:value>false</sv:value>
-          <sv:value>true</sv:value>
+          <sv:value>false</sv:value>
           <sv:value>true</sv:value>
         </sv:property>
       </sv:node>
@@ -798,6 +778,28 @@
           <sv:value>false</sv:value>
           <sv:value>true</sv:value>
           <sv:value>true</sv:value>
+        </sv:property>
+      </sv:node>
+      <sv:node sv:name="Capital Gain">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hst:sitemenuitem</sv:value>
+        </sv:property>
+        <sv:property sv:name="jcr:uuid" sv:type="String">
+          <sv:value>8ef02b6a-8490-4a7c-bc70-821eb4e670dc</sv:value>
+        </sv:property>
+        <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+          <sv:value>theURL</sv:value>
+          <sv:value>weight</sv:value>
+          <sv:value>ITR1.enabled</sv:value>
+          <sv:value>ITR2.enabled</sv:value>
+          <sv:value>ITR4S.enabled</sv:value>
+        </sv:property>
+        <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+          <sv:value>/../capitalgains.html</sv:value>
+          <sv:value>5</sv:value>
+          <sv:value>false</sv:value>
+          <sv:value>true</sv:value>
+          <sv:value>false</sv:value>
         </sv:property>
       </sv:node>
     </sv:node>
@@ -947,9 +949,11 @@
           <sv:value>theURL</sv:value>
           <sv:value>ITR1.enabled</sv:value>
           <sv:value>ITR2.enabled</sv:value>
+          <sv:value>ITR3.enabled</sv:value>
         </sv:property>
         <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
           <sv:value>/../tcsdetail.html</sv:value>
+          <sv:value>false</sv:value>
           <sv:value>false</sv:value>
           <sv:value>false</sv:value>
         </sv:property>
