@@ -22,6 +22,8 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 	<li><a href="${scriptName}" class="btn btn-info"><i class="icon-file icon-white"></i><strong>Member Invoices</strong></a><span class="divider">/</span></li>
 	<li class="active">Net Banking</li>
 </ul>
+<c:choose>
+<c:when test="${pageAction == 'NEW_CHILD'}">
 <form name="payment_net_banking" id="payment_net_banking" method="post" action="${actionUrl}">
 	<div class="page well" align="justify">
 		<div class="row-fluid show-grid">
@@ -138,19 +140,114 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 		<div class="row-fluid show-grid">
 			<div class="span12">
 				<div class="rowlabel" align="right">
+				    <input type="submit" name="tst" value="PayNetBanking"/>
 					<a class="btn btn-success" href="#" id="payNetBanking"><i class=" icon-ok-sign icon-white"></i>Pay (Net Banking)</a>				
 				</div>
 			</div>
 		</div>
 	</div>
 </form>
+</c:when>
+<c:otherwise>
+		<c:if test="${pageAction =='EDIT_CHILD'}">
+			<div class="page well" align="justify">
+			   <div class="alert alert-success"><strong>Successfully Amount paid Description for Invoice Number ${parentBean.invoiceNumber}</strong></div>
+				<div class="row-fluid show-grid">
+					<div class="span4">
+						<div class="rowlabel">
+							<label for="lastName"><small>Last Name</small></label>
+						</div>
+						<div class="rowlabel">${memberpersonalinformation.lastName}</div>
+					</div>
+					<div class="span4">
+						<div class="rowlabel">
+							<label for="firstName"><small>First Name</small></label>
+						</div>
+						<div class="rowlabel">${memberpersonalinformation.firstName}</div>
+					</div>
+					<div class="span4" align="center">
+						<div class="rowlabel">
+							<label for="paymentDate"><small>Payment Date</small></label>
+						</div>
+						<div class="rowlabel"><c:forEach items="${parentBean.invoicePaymentDetailList}" var="paymentdetail">
+						   <c:if test="${uuid == paymentdetail.canonicalUUID}"><fmt:formatDate value="${paymentdetail.paymentDate.time}" pattern="dd-MMM-yyyy"/></c:if>
+						</c:forEach></div>
+					</div>
+				</div>
+				<div class="row-fluid show-grid">
+					<div class="span8">
+						<div class="rowlabel">
+							<label for="email"><small>Billing E-Mail</small></label>
+						</div>
+						<div class="rowlabel"><%=request.getUserPrincipal().getName()%>
+						</div>
+					</div>
+					<div class="span4" align="center">
+						<div class="rowlabel">
+							<label for="amount"><small>Amount Paid</small></label>
+						</div>
+						<div class="rowlabel"><c:forEach items="${parentBean.invoicePaymentDetailList}" var="paymentdetail">
+						   <c:if test="${uuid == paymentdetail.canonicalUUID}"><strong><w4india:inr value="${paymentdetail.paymentAmount}"></w4india:inr></strong></c:if>
+						</c:forEach>
+						</div>
+					</div>
+				</div>
+				<div class="row-fluid show-grid">
+					<div class="span6">
+						<div class="rowlabel">
+							<label for="bilingAddress"><small>Billing Address</small></label>
+						</div>
+						<div class="rowlabel">${memberpersonalinformation.flatDoorBuilding},${memberpersonalinformation.roadStreet},${memberpersonalinformation.areaLocality}</div>
+					</div>
+				</div>
+				<div class="row-fluid show-grid">
+					<div class="span5">
+						<div class="rowlabel">
+							<label for="pi_townCity"><small>Address City</small></label>
+						</div>
+						<div class="rowlabel">${memberpersonalinformation.townCityDistrict}</div>
+					</div>
+					<div class="span3">
+						<div class="rowlabel">
+							<label for="pi_state"><small>Address State</small></label>
+						</div>
+						<div class="rowlabel">
+							<c:forEach var="booleanCombo" items="${objHashMapstates}">
+								<c:if test="${memberpersonalinformation.state == booleanCombo.key}">${booleanCombo.value}</c:if>
+							</c:forEach>
+						</div>
+					</div>
+					<div class="span3">
+						<div class="rowlabel">
+							<label for="pi_pinCode"><small>Pin/Zip Code</small></label>
+						</div>
+						<div class="rowlabel">${memberpersonalinformation.pinCode}</div>
+					</div>
+				</div>
+				<div class="row-fluid show-grid">
+					<div class="span5">
+						<div class="rowlabel">
+							<label for="pi_mobile"><small>Mobile</small></label>
+						</div>
+						<div class="rowlabel">${memberpersonalinformation.mobile}</div>
+					</div>
+				</div>
+				<div class="row-fluid show-grid">
+					<div class="span12">
+						<div class="rowlabel" align="right">
+							<a class="btn btn-primary" href="${scriptName}">Back</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</c:if>
+	</c:otherwise>
+</c:choose>
 <hst:element var="uiCustom" name="script">
 	<hst:attribute name="type">text/javascript</hst:attribute>
-     $('#payNetBanking').change(function(){
+     $('#payNetBanking').on('click',function(){
+        //alert("hey");
 		  $('#payment_net_banking').submit(); 
 	  });
 </hst:element>
 <hst:headContribution element="${uiCustom}" category="jsInternal" />
-<res:client-validation formId="frmdataInvoice"
-	screenConfigurationDocumentName="memberinvoice"
-	formSubmitButtonId="myModalHrefinvoice" />

@@ -51,8 +51,7 @@
 					<th><b>Actions</b></th>
 				</tr>
 				<c:if test="${not empty parentBean}">
-					<c:forEach items="${parentBean.invoiceDocumentDetailList}"
-						var="invoicedetail">
+					<c:forEach items="${parentBean.invoiceDocumentDetailList}" var="invoicedetail">
 						<tr align="center">
 						<tr>
 							<td><c:out value="${invoicedetail.serviceName}" /></td>
