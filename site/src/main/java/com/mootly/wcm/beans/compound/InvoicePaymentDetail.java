@@ -168,35 +168,35 @@ public class InvoicePaymentDetail extends FlexibleDocument implements FormMapFil
 		return paymentType;
 	}
 	//"checkNo","checkDate","checkBank","checkBranch","checkLocation"
-	@FormField(name="checkNo")
+	@FormField(name="checkNo",propertyName="checkNo")
 	@NodeBinder(nodePropertyName=PROP_CHECK_NO)
 	public String getCheckNo() {
 		if (checkNo == null) checkNo = getProperty(PROP_CHECK_NO);
 		return checkNo;
 	}
 	
-	@FormField(name="checkDate")
+	@FormField(name="checkDate",propertyName="checkDate")
 	@NodeBinder(nodePropertyName=PROP_CHECK_DATE)	
 	public String getCheckDate() {
 		if (checkDate == null) checkDate = getProperty(PROP_CHECK_DATE);
 		return checkDate;
 	}
 	
-	@FormField(name="checkBank")
+	@FormField(name="checkBank",propertyName="checkBank")
 	@NodeBinder(nodePropertyName=PROP_CHECK_BANK)	
 	public String getCheckBank() {
 		if (checkBank == null) checkBank = getProperty(PROP_CHECK_BANK);
 		return checkBank;
 	}
 	
-	@FormField(name="checkBranch")
+	@FormField(name="checkBranch",propertyName="checkBranch")
 	@NodeBinder(nodePropertyName=PROP_CHECK_BRANCH)	
 	public String getCheckBranch() {
 		if (checkBranch == null) checkBranch = getProperty(PROP_CHECK_BRANCH);
 		return checkBranch;
 	}
 	
-	@FormField(name="checkLocation")
+	@FormField(name="checkLocation",propertyName="checkLocation")
 	@NodeBinder(nodePropertyName=PROP_CHECK_LOCATION)	
 	public String getCheckLocation() {
 		if (checkLocation == null) checkLocation = getProperty(PROP_CHECK_LOCATION);
@@ -204,21 +204,21 @@ public class InvoicePaymentDetail extends FlexibleDocument implements FormMapFil
 	}
 
 	//"cashAddress","cashContactNumber","cashBestTime"
-	@FormField(name="cashAddress")
+	@FormField(name="cashAddress",propertyName="cashAddress")
 	@NodeBinder(nodePropertyName=PROP_CASH_ADDRESS)	
 	public String getCashAddress() {
 		if (cashAddress == null) cashAddress = getProperty(PROP_CASH_ADDRESS);
 		return cashAddress;
 	}
 
-	@FormField(name="cashContactNumber")
+	@FormField(name="cashContactNumber",propertyName="cashContactNumber")
 	@NodeBinder(nodePropertyName=PROP_CASH_CONTACT_NUMBER)	
 	public String getCashContactNumber() {
 		if (cashContactNumber == null) cashContactNumber = getProperty(PROP_CASH_CONTACT_NUMBER);
 		return cashContactNumber;
 	}
 
-	@FormField(name="cashBestTime")
+	@FormField(name="cashBestTime",propertyName="cashBestTime")
 	@NodeBinder(nodePropertyName=PROP_CASH_BEST_TIME)	
 	public String getCashBestTime() {
 		if (cashBestTime == null) cashBestTime = getProperty(PROP_CASH_BEST_TIME);
@@ -226,29 +226,29 @@ public class InvoicePaymentDetail extends FlexibleDocument implements FormMapFil
 	}
 	
 	//"rtgsTransNumber","rtgsDate","rtgsAmount","rtgsTime"
-	@FormField(name="rtgsDate")
+	@FormField(name="rtgsDate",propertyName="rtgsDate")
 	@NodeBinder(nodePropertyName=PROP_RTGS_DATE)
 	public String getRtgsDate() {
 		if (rtgsDate == null) rtgsDate = getProperty(PROP_RTGS_DATE);
 		return rtgsDate;
 	}
 
-	@FormField(name="rtgsAmount")
+	@FormField(name="rtgsAmount",propertyName="rtgsAmount")
 	@NodeBinder(nodePropertyName=PROP_RTGS_AMOUNT)
 	public Double getRtgsAmount() {
 		if (rtgsAmount == null) rtgsAmount = getProperty(PROP_RTGS_AMOUNT);
 		return rtgsAmount;
 	}
 
-	@FormField(name="rtgsTime")
+	@FormField(name="rtgsTime",propertyName="rtgsTime")
 	@NodeBinder(nodePropertyName=PROP_RTGS_TIME)
 	public String getRtgsTime() {
 		if (rtgsTime == null) rtgsTime = getProperty(PROP_RTGS_TIME);
 		return rtgsTime;
 	}
 
-	@FormField(name="rtgsTime")
-	@NodeBinder(nodePropertyName=PROP_RTGS_TIME)
+	@FormField(name="rtgsTransNumber",propertyName="rtgsTransNumber")
+	@NodeBinder(nodePropertyName=PROP_RTGS_TRANSNUMBER)
 	public String getRtgsTransNumber() {
 		if (rtgsTransNumber == null) rtgsTransNumber = getProperty(PROP_RTGS_TRANSNUMBER);
 		return rtgsTransNumber;
