@@ -490,4 +490,4 @@ orderable
 
 [mootlywcm:incomefromfirmsdocument] > hippostd:relaxed, mootlywcm:basedocument orderable
 [mootlywcm:incomefromfirmsdetail] > hippo:compound, hippostd:relaxed orderable
-[mootlywcm:invoicepaymentdetail] > hippostd:relaxed, mootlywcm:basedocument orderable
+[mootlywcm:invoicepaymentdetail] > hippo:compound, hippostd:relaxed orderable
