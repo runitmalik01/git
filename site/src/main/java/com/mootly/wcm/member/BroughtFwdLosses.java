@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import in.gov.incometaxindiaefiling.y2012_2013.ITR;
+import in.gov.incometaxindiaefiling.y2012_2013.ScheduleBFLA;
 import in.gov.incometaxindiaefiling.y2012_2013.ScheduleCYLA;
 
 import org.hippoecm.hst.content.beans.standard.HippoBean;
@@ -36,6 +37,7 @@ import com.mootly.wcm.beans.ScheduleESRDocument;
 import com.mootly.wcm.beans.compound.AdjustmentOfLossesCom;
 import com.mootly.wcm.components.ITReturnComponent;
 import com.mootly.wcm.model.schedules.y2012_2013.CurrentYearLossesSchedules;
+import com.mootly.wcm.model.schedules.y2012_2013.ITR4_ScheduleBFLA;
 
 /*
  * Author:Dhananjay Panwar
@@ -76,6 +78,7 @@ public class BroughtFwdLosses extends ITReturnComponent {
 		AdjustmentOfLossesDoc adjustmentOfLossesDoc = (AdjustmentOfLossesDoc) request.getAttribute(AdjustmentOfLossesDoc.class.getSimpleName().toLowerCase());
 		CapitalAssetDocument capitalAssetDocument = (CapitalAssetDocument) request.getAttribute(CapitalAssetDocument.class.getSimpleName().toLowerCase());
 		IncomeFromFirmsDocument incomeFromFirmsDocument = (IncomeFromFirmsDocument) request.getAttribute(IncomeFromFirmsDocument.class.getSimpleName().toLowerCase());
+		BroughtFwdLossesDocument broughtFwdLossesDocument = (BroughtFwdLossesDocument) request.getAttribute(BroughtFwdLossesDocument.class.getSimpleName().toLowerCase());
 
 		ITR itr = new ITR();
 		Map<String, HippoBean> inputBeans = new HashMap<String, HippoBean>();
@@ -94,6 +97,7 @@ public class BroughtFwdLosses extends ITReturnComponent {
 		inputBeans.put(ScheduleDOADocument.class.getSimpleName().toLowerCase(),scheduleDOADocument);
 		inputBeans.put(CapitalAssetDocument.class.getSimpleName().toLowerCase(),capitalAssetDocument);
 		inputBeans.put(IncomeFromFirmsDocument.class.getSimpleName().toLowerCase(),incomeFromFirmsDocument);
+		inputBeans.put(BroughtFwdLossesDocument.class.getSimpleName().toLowerCase(),broughtFwdLossesDocument);
 
 		CurrentYearLossesSchedules currentYearLossesSchedules = new CurrentYearLossesSchedules();
 		ScheduleCYLA scheduleCYLA = currentYearLossesSchedules.getScheduleCYLA(itr, getFinancialYear(), inputBeans);
@@ -174,6 +178,24 @@ public class BroughtFwdLosses extends ITReturnComponent {
 			request.setAttribute("maintainingRaceHorseLoss", maintainingRaceHorseLoss);
 		}else
 			request.setAttribute("maintainingRaceHorseLoss", scheduleCYLA.getOthSrcRaceHorse().getIncCYLA().getIncOfCurYrAfterSetOff());
+
+		ITR4_ScheduleBFLA iTR4_ScheduleBFLA = new ITR4_ScheduleBFLA(broughtFwdLossesDocument);
+		ScheduleBFLA scheduleBFLA = iTR4_ScheduleBFLA.getScheduleBFLA(itr, getFinancialYear(), inputBeans);
+
+		request.setAttribute("hpTotal", scheduleBFLA.getHP().getIncBFLA().getIncOfCurYrAfterSetOffBFLosses());
+		request.setAttribute("biTotal", scheduleBFLA.getBusProfExclSpecProf().getIncBFLA().getIncOfCurYrAfterSetOffBFLosses());
+		request.setAttribute("siTotal", scheduleBFLA.getSpeculativeInc().getIncBFLA().getIncOfCurYrAfterSetOffBFLosses());
+		request.setAttribute("spiTotal", scheduleBFLA.getSpecifiedInc().getIncBFLA().getIncOfCurYrAfterSetOffBFLosses());
+		request.setAttribute("stcgTotal", scheduleBFLA.getSTCG().getIncBFLA().getIncOfCurYrAfterSetOffBFLosses());
+		request.setAttribute("ltcgTotal", scheduleBFLA.getLTCG().getIncBFLA().getIncOfCurYrAfterSetOffBFLosses());
+		request.setAttribute("oiTotal", scheduleBFLA.getOthSrcExclRaceHorse().getIncBFLA().getIncOfCurYrAfterSetOffBFLosses());
+		request.setAttribute("rhTotal", scheduleBFLA.getOthSrcRaceHorse().getIncBFLA().getIncOfCurYrAfterSetOffBFLosses());
+
+		request.setAttribute("broughtfwdlossesSetOff", scheduleBFLA.getTotalBFLossSetOff().getTotBFLossSetoff());
+		request.setAttribute("broughtfwdlossesDepSetOff", scheduleBFLA.getTotalBFLossSetOff().getTotUnabsorbedDeprSetoff());
+		request.setAttribute("broughtfwdlossesus34SetOff", scheduleBFLA.getTotalBFLossSetOff().getTotAllUs35Cl4Setoff());
+		request.setAttribute("currYearIncAftSetOff", scheduleBFLA.getIncomeOfCurrYrAftCYLABFLA());
+
 	}
 
 	@Override
