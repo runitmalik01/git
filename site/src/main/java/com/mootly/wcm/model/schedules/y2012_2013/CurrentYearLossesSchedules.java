@@ -31,7 +31,7 @@ import com.mootly.wcm.services.IndianCurrencyHelper;
 import com.mootly.wcm.utils.XmlCalculation;
 
 public class CurrentYearLossesSchedules extends XmlCalculation{
-	private static Logger log = LoggerFactory.getLogger(DeductionVIASchedules .class);
+	private static Logger log = LoggerFactory.getLogger(CurrentYearLossesSchedules .class);
 
 
 	/**
