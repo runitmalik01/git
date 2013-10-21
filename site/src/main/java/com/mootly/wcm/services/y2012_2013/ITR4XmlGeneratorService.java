@@ -24,6 +24,7 @@ import com.mootly.wcm.beans.AdjustmentOfLossesDoc;
 import com.mootly.wcm.beans.AdvanceTaxDocument;
 import com.mootly.wcm.beans.AssetAndLiabilityDocument;
 import com.mootly.wcm.beans.BalanceSheetDocument;
+import com.mootly.wcm.beans.BroughtFwdLossesDocument;
 import com.mootly.wcm.beans.CapitalAssetDocument;
 import com.mootly.wcm.beans.ClubIncomeDocument;
 import com.mootly.wcm.beans.DeductionDocument;
@@ -79,7 +80,9 @@ import com.mootly.wcm.model.schedules.y2012_2013.Form16DocumentSchedules;
 import com.mootly.wcm.model.schedules.y2012_2013.Form_ITR2;
 import com.mootly.wcm.model.schedules.y2012_2013.Form_ITR4;
 import com.mootly.wcm.model.schedules.y2012_2013.HouseIncomeDocumentSchedules;
+import com.mootly.wcm.model.schedules.y2012_2013.ITR4_ScheduleBFLA;
 import com.mootly.wcm.model.schedules.y2012_2013.ITR4_ScheduleBP;
+import com.mootly.wcm.model.schedules.y2012_2013.ITR4_ScheduleCFL;
 import com.mootly.wcm.model.schedules.y2012_2013.ITR4_ScheduleUD;
 import com.mootly.wcm.model.schedules.y2012_2013.ITRScheduleSI;
 import com.mootly.wcm.model.schedules.y2012_2013.ITR_Schedule10A;
@@ -166,6 +169,7 @@ public class ITR4XmlGeneratorService  {
 		ScheduleDOADocument scheduleDOADocument = (ScheduleDOADocument) inputBeans.get(ScheduleDOADocument.class.getSimpleName().toLowerCase());
 		FirmsPartnerDocument firmsPartnerDocument = (FirmsPartnerDocument) inputBeans.get(FirmsPartnerDocument.class.getSimpleName().toLowerCase());
 		IncomeFromFirmsDocument incomeFromFirmsDocument = (IncomeFromFirmsDocument) inputBeans.get(IncomeFromFirmsDocument.class.getSimpleName().toLowerCase());
+		BroughtFwdLossesDocument broughtFwdLossesDocument = (BroughtFwdLossesDocument) inputBeans.get(BroughtFwdLossesDocument.class.getSimpleName().toLowerCase());
 
 		ITR4 itr4 = new ObjectFactory().createITR4();
 		ITR itr = new ITR();
@@ -200,14 +204,20 @@ public class ITR4XmlGeneratorService  {
 		TdsOthersSchedules tdsOthersSchedules = new TdsOthersSchedules(tdsFromothersDocument);
 		itr4.setScheduleTDS2(tdsOthersSchedules.getScheduleTDS2(itr));
 
-		BroughtFwdLossesSchedules broughtFwdLossesSchedules = new BroughtFwdLossesSchedules();
-		itr4.setScheduleBFLA(broughtFwdLossesSchedules.getScheduleBFLA(itr, financialYear, inputBeans));
+		//BroughtFwdLossesSchedules broughtFwdLossesSchedules = new BroughtFwdLossesSchedules();
+		//itr4.setScheduleBFLA(broughtFwdLossesSchedules.getScheduleBFLA(itr, financialYear, inputBeans));
+
+		ITR4_ScheduleBFLA iTR4_ScheduleBFLA = new ITR4_ScheduleBFLA(broughtFwdLossesDocument);
+		itr4.setScheduleBFLA(iTR4_ScheduleBFLA.getScheduleBFLA(itr, financialYear, inputBeans));
 
 		CurrentYearLossesSchedules currentYearLossesSchedules = new CurrentYearLossesSchedules();
 		itr4.setScheduleCYLA(currentYearLossesSchedules.getScheduleCYLA(itr, financialYear, inputBeans));
 
-		CarryFwdLossesSchedules carryFwdLossesSchedules = new CarryFwdLossesSchedules(adjustmentOfLossesDoc);
-		itr4.setScheduleCFL(carryFwdLossesSchedules.getScheduleCFL(itr, financialYear, inputBeans));
+		//CarryFwdLossesSchedules carryFwdLossesSchedules = new CarryFwdLossesSchedules(adjustmentOfLossesDoc);
+		//itr4.setScheduleCFL(carryFwdLossesSchedules.getScheduleCFL(itr, financialYear, inputBeans));
+
+		ITR4_ScheduleCFL iTR4_ScheduleCFL = new ITR4_ScheduleCFL(adjustmentOfLossesDoc, broughtFwdLossesDocument);
+        itr4.setScheduleCFL(iTR4_ScheduleCFL.getScheduleCFL(itr, financialYear, inputBeans));
 
 		PartB_TI partB_TI = new PartB_TI(formSixteenDocument, salaryIncomeDocument, houseProperty, otherSourcesDocument,
 				deductionDocument, memberPersonalInformation,scheduleSIDocument,capitalAssetDocument, incBusinessProfessionDoc,
