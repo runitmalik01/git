@@ -132,6 +132,7 @@ import com.mootly.wcm.services.SequenceGenerator;
 import com.mootly.wcm.services.SequenceGeneratorImpl;
 import com.mootly.wcm.services.StartApplicationValidationService;
 import com.mootly.wcm.services.XmlGeneratorService;
+import com.mootly.wcm.services.citruspay.Transaction;
 import com.mootly.wcm.services.ditws.ITRVStatus;
 import com.mootly.wcm.services.ditws.Retrieve26ASInformation;
 import com.mootly.wcm.services.ditws.RetrieveITRV;
@@ -223,6 +224,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 	boolean ditInvalidPanContnue = false; 
 	RetrievePANInformation.VALIDATION_RESULT retrievePANInformationValidationResult = VALIDATION_RESULT.NOT_INITIATED;
 	RetrievePANResponse retrievePANResponse = null;
+	Transaction transaction = null;
 
 	@Override
 	public void init(ServletContext servletContext,
@@ -238,7 +240,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		retrievePANInformation = context.getBean(RetrievePANInformation.class);
 		retrieveITRVService = context.getBean(RetrieveITRV.class);
 		retrieve26ASService = context.getBean(Retrieve26ASInformation.class);
-
+		transaction = context.getBean(Transaction.class);
 	}
 
 
@@ -260,6 +262,10 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 
 	public SequenceGenerator getSequenceGenerator() {
 		return sequenceGenerator;
+	}
+	
+	public Transaction getTransaction() {
+		return transaction;
 	}
 
 	@Override

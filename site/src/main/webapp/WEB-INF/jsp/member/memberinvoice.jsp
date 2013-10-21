@@ -70,8 +70,7 @@ pageContext.setAttribute("paymentTypeValues",PaymentType.values());
 														 <option value="${serviceList.name}" <c:if test="${pageAction == 'EDIT_CHILD' && serviceList.name == childBean.serviceName}">selected</c:if>>
 		                                                      <c:out value="${serviceList.name}" />
 		                                               </option>
-													</c:forEach>
-													
+													</c:forEach>													
 										</select>
 									</div>
 								</div>
@@ -160,7 +159,7 @@ pageContext.setAttribute("paymentTypeValues",PaymentType.values());
 		</c:when>
 		<c:otherwise>
 			<!--  show the table -->
-			<table>
+			<table class="table table-bordered table-striped">
 				<tr align="center">
 					<th><b>Services</b></th>
 					<th><b>Mode</b></th>
@@ -193,13 +192,12 @@ pageContext.setAttribute("paymentTypeValues",PaymentType.values());
 			</table>
 			<hr/>
 			<h4>Payments</h4>
-			<table>
+			<table class="table table-bordered table-striped">
 				<tr align="center">
 					<th><b>Date</b></th>
-					<th><b>Mode</b></th>
+					<th><b>Payment By</b></th>
 					<th><b>Amount</b></th>
-					<th><b>Quantity</b></th>
-					<th><b>Amount</b></th>
+					<th><b>Status</b></th>
 					<th><b>Actions</b></th>
 				</tr>
 				<c:if test="${not empty parentBean}">
@@ -208,15 +206,14 @@ pageContext.setAttribute("paymentTypeValues",PaymentType.values());
 						<tr align="center">
 						<tr>
 							<td><fmt:formatDate value="${invoicepaymentdetail.paymentDate.time}" timeZone="<%=IndianGregorianCalendar.indianTimeZone%>"/></td>
-							<td></td>
+							<td><c:out value="${fn:replace(invoicepaymentdetail.paymentType,'_',' ')}"/></td>
 							<td><c:out value="${invoicepaymentdetail.paymentAmount}"/></td>
 							<td></td>
-							<td></td>
 							<td><a class="btn btn-primary"
-								href="${scriptName}/<c:out value="/payment/${invoicepaymentdetail.canonicalUUID}"/>/paymentedit"><small><i
+								href="${scriptName}<c:out value="/payment/${invoicepaymentdetail.canonicalUUID}"/>/paymentedit?paymentType=${invoicepaymentdetail.paymentType}"><small><i
 										class="icon-pencil icon-white"></i>Edit</small> </a>&nbsp;&nbsp;<a
 								class="btn btn-danger"
-								href="${scriptName}/<c:out value="/payment/${invoicepaymentdetail.canonicalUUID}"/>/paymentdelete"
+								href="${scriptName}<c:out value="/payment/${invoicepaymentdetail.canonicalUUID}"/>/paymentdelete?paymentType=${invoicepaymentdetail.paymentType}"
 								data-confirm=""><small><i class="icon-trash icon-white"></i>Delete</small> </a>
 							</td>
 						</tr>

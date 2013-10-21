@@ -24,7 +24,6 @@ import com.mootly.wcm.beans.events.BeanLifecycle;
 import com.mootly.wcm.components.ITReturnComponent;
 import com.mootly.wcm.model.SORT_DIRECTION;
 import com.mootly.wcm.services.SequenceGenerator;
-
 /**
  * 
  * @author admin

@@ -49,6 +49,9 @@
       </constructor-arg>
   </bean>
   
-  <!-- DIT SOAP Integration define the services  -->
+  <!-- DIT SOAP Integration define the services -->  
   <import resource="DITConnectorContext.xml"/>
+  
+  <import resource="CitrusIntegrationContext.xml"/>
+      
 </beans>

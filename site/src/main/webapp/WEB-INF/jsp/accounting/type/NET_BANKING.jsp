@@ -20,7 +20,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 <ul class="breadcrumb">
 	<li><a href="${home}" class="btn btn-info"><i class="icon-home icon-white"></i><strong>Home</strong></a> <span class="divider">/</span></li>
 	<li><a href="${scriptName}" class="btn btn-info"><i class="icon-file icon-white"></i><strong>Member Invoices</strong></a><span class="divider">/</span></li>
-	<li class="active">Net Banking</li>
+	<li class="active"><a href="" class="btn btn-info"><strong>Net Banking</strong></a></li>
 </ul>
 <c:choose>
 <c:when test="${pageAction == 'NEW_CHILD'}">
@@ -140,8 +140,9 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 		<div class="row-fluid show-grid">
 			<div class="span12">
 				<div class="rowlabel" align="right">
-				    <input type="submit" name="tst" value="PayNetBanking"/>
-					<a class="btn btn-success" href="#" id="payNetBanking"><i class=" icon-ok-sign icon-white"></i>Pay (Net Banking)</a>				
+				    <button type="submit" name="pay" class="btn btn-success"><i class=" icon-ok-sign icon-white"></i>Pay (Net Banking)</button>
+				    <!-- <input type="submit" name="pay" class="btn orange" value="PayNetBanking"/>
+					<a class="btn btn-success" href="#" id="payNetBanking"><i class=" icon-ok-sign icon-white"></i>Pay (Net Banking)</a> -->				
 				</div>
 			</div>
 		</div>

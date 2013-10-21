@@ -23,6 +23,7 @@
 	    <property name="locations">
 	    	<list>
 	    		<value>classpath:DITConnectorContext.properties</value>
+	    		<value>classpath:CitrusIntegrationContext.properties</value>
 	    	</list>	        	        
 	    </property>
 	</bean>
@@ -47,8 +48,7 @@
 			</map>
 		</constructor-arg>
 	</bean>
-	
-	
+		
 	<bean id="xPathFactory" class="javax.xml.xpath.XPathFactory" factory-method="newInstance"/>
 	<bean id="xPath" class="javax.xml.xpath.XPath" factory-bean="xPathFactory" factory-method="newXPath">
 		<property name="namespaceContext" ref="SOAPNameSpaceContext"/>

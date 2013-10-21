@@ -106,7 +106,7 @@ public class InvoiceDocumentDetail extends FlexibleDocument implements FormMapFi
 	
 	@NodeBinder(nodePropertyName="mootlywcm:serviceAmount",propertyName="serviceAmount")	
 	public Double getServiceAmount() {
-		if (serviceAmount == null) NodeBinderHelper.setObjectProperty("serviceAmount", this, "");
+		if (serviceAmount == null) NodeBinderHelper.setObjectProperty("serviceAmount", this, 0d);
 		return serviceAmount;
 	}
 	
