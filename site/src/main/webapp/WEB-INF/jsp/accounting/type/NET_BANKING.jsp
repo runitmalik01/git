@@ -10,18 +10,14 @@ ValueListService objValueListService = ValueListServiceImpl.getInstance();
 SortedSet<Map.Entry<String,String>> objHashMapstates = objValueListService.getStates();
 request.setAttribute("objHashMapstates", objHashMapstates);
 %>
-<c:set var="parentBeantitle">
-	Payment(NetBanking)
-</c:set>
-<hippo-gogreen:title title="${parentBeantitle}"/>
 <hst:actionURL var="actionUrl"></hst:actionURL>
-<hst:link var="home" siteMapItemRefId="itreturnhome"></hst:link>
-<hst:link var="invoiceLink" siteMapItemRefId="memberinvoice"></hst:link>
-<ul class="breadcrumb">
-	<li><a href="${home}" class="btn btn-info"><i class="icon-home icon-white"></i><strong>Home</strong></a> <span class="divider">/</span></li>
-	<li><a href="${scriptName}" class="btn btn-info"><i class="icon-file icon-white"></i><strong>Member Invoices</strong></a><span class="divider">/</span></li>
-	<li class="active"><a href="" class="btn btn-info"><strong>Net Banking</strong></a></li>
-</ul>
+<c:if test="${not empty formMap}">
+	<c:forEach items="${formMap.message}" var="item">
+		<div class="alert alert-error">
+			<fmt:message key="${item.value}" />
+		</div>
+	</c:forEach>
+</c:if>
 <c:choose>
 <c:when test="${pageAction == 'NEW_CHILD'}">
 <form name="payment_net_banking" id="payment_net_banking" method="post" action="${actionUrl}">
@@ -72,14 +68,22 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 			</div>
 		</div>
 		<div class="row-fluid show-grid">
-			<div class="span6">
+			<div class="span8">
 				<div class="rowlabel">
 					<label for="bilingAddress"><small>Billing Address</small></label>
 				</div>
 				<div class="rowlabel">
-					<textarea rows="3" cols="1"  name="bilingAddress" id="bilingAddress">${memberpersonalinformation.flatDoorBuilding},${memberpersonalinformation.roadStreet},${memberpersonalinformation.areaLocality}</textarea>			
+					<textarea rows="3" cols="1" name="bilingAddress" id="bilingAddress" draggable="false">${memberpersonalinformation.flatDoorBuilding},${memberpersonalinformation.roadStreet},${memberpersonalinformation.areaLocality}</textarea>			
 				</div>
 			</div>
+			<div class="span4" align="center">
+				<div class="rowlabel">
+					<label for="paymentDate"><small>Invoice Number</small></label>
+				</div>
+				<div class="rowlabel">
+					<strong>${parentBean.invoiceNumber}</strong>
+				</div>
+			</div>			
 		</div>
 		<div class="row-fluid show-grid">
 			<div class="span5">
@@ -126,21 +130,18 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 		<div class="row-fluid show-grid">
 			<div class="span12">
 				<div class="rowlabel">
-					<div class="alert alert-info">I son/daughter of P. P.
-						GUPTA solemnly declare that to the best of my knowledge and
-						belief, the information given in the return there to is correct
-						and complete and that the amount of total income and other
-						particulars shown therein are truly stated and are in accordance
-						with provisions of Income-tax Act, 1961, in respect of income
-						chargeable to Income-tax for the previous year relevant to the
-						Assessment Year 2013-2014</div>
+					<div class="alert alert-info">Click on the
+				Pay Now button. You will be redirected to a secure payment
+				gateway for payment. After successful payment authorization, you
+				will be redirected to Wealth4India's confirmation page.</div>
 				</div>
 			</div>
 		</div>
 		<div class="row-fluid show-grid">
 			<div class="span12">
 				<div class="rowlabel" align="right">
-				    <button type="submit" name="pay" class="btn btn-success"><i class=" icon-ok-sign icon-white"></i>Pay (Net Banking)</button>
+				    <button type="submit" name="pay" class="btn btn-success"><i class=" icon-ok-sign icon-white"></i>Pay Now</button>
+				    <a class="btn btn-default"  href="${scriptName}" id="payment_submit"><strong>Cancel</strong></a>
 				    <!-- <input type="submit" name="pay" class="btn orange" value="PayNetBanking"/>
 					<a class="btn btn-success" href="#" id="payNetBanking"><i class=" icon-ok-sign icon-white"></i>Pay (Net Banking)</a> -->				
 				</div>

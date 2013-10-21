@@ -5523,22 +5523,39 @@
 		        </sv:property>
 		      </sv:node>
 		      <sv:node sv:name="NET_BANKING">
-		        <sv:property sv:name="jcr:primaryType" sv:type="Name">
-		          <sv:value>hst:sitemapitem</sv:value>
-		        </sv:property>
-		        <sv:property sv:name="jcr:uuid" sv:type="String">
-		          <sv:value>f8ba8efd-5bde-4e25-9727-b2e12f602408</sv:value>
-		        </sv:property>
-		        <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
-		          <sv:value>hst:pages/invoice-payment</sv:value>
-		        </sv:property>
-		        <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
-		          <sv:value>paymentType</sv:value>
-		        </sv:property>
-		        <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
-		          <sv:value>NET_BANKING</sv:value>
-		        </sv:property>
-		      </sv:node>
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:sitemapitem</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>f8ba8efd-5bde-4e25-9727-b2e12f602408</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+    <sv:value>hst:pages/invoice-payment</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+    <sv:value>paymentType</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+    <sv:value>NET_BANKING</sv:value>
+  </sv:property>
+  <sv:node sv:name="confirm-payment-success">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:sitemapitem</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>fced2496-fc50-4449-aafa-dad2ba430910</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+      <sv:value>hst:pages/confirmation-payment-success</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:refId" sv:type="String">
+      <sv:value>payment-success-NET_BANKING</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:relativecontentpath" sv:type="String">
+      <sv:value>members</sv:value>
+    </sv:property>
+  </sv:node>
+</sv:node>
 		      <sv:node sv:name="DEBIT_CARD">
 		        <sv:property sv:name="jcr:primaryType" sv:type="Name">
 		          <sv:value>hst:sitemapitem</sv:value>

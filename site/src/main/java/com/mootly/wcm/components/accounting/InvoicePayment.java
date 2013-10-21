@@ -11,8 +11,6 @@ import org.hippoecm.hst.core.component.HstResponse;
 import org.hippoecm.hst.core.request.ComponentConfiguration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.context.ApplicationContext;
-import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import com.mootly.wcm.annotations.ChildBean;
 import com.mootly.wcm.annotations.DataTypeValidationFields;
@@ -20,19 +18,18 @@ import com.mootly.wcm.annotations.DataTypeValidationType;
 import com.mootly.wcm.annotations.FormFields;
 import com.mootly.wcm.annotations.PrimaryBean;
 import com.mootly.wcm.annotations.RequiredBeans;
-import com.mootly.wcm.annotations.RequiredFields;
 import com.mootly.wcm.beans.InvoiceDocument;
 import com.mootly.wcm.beans.MemberPersonalInformation;
-import com.mootly.wcm.beans.compound.InvoiceDocumentDetail;
 import com.mootly.wcm.beans.compound.InvoicePaymentDetail;
 import com.mootly.wcm.beans.events.BeanLifecycle;
 import com.mootly.wcm.components.ITReturnComponent;
-import com.mootly.wcm.model.FinancialYear;
 import com.mootly.wcm.model.IndianGregorianCalendar;
 import com.mootly.wcm.model.PaymentType;
 import com.mootly.wcm.services.SequenceGenerator;
-import com.mootly.wcm.services.citruspay.Transaction;
 import com.mootly.wcm.services.citruspay.PaymentService.BANK_ISSUER;
+import com.mootly.wcm.services.citruspay.Transaction;
+import com.mootly.wcm.services.citruspay.Transaction.CARD_TYPE;
+import com.mootly.wcm.services.citruspay.Transaction.PAYMENT_MODE;
 
 @PrimaryBean(primaryBeanClass=InvoiceDocument.class)
 @ChildBean(childBeanClass=InvoicePaymentDetail.class)
@@ -84,7 +81,6 @@ public class InvoicePayment extends ITReturnComponent {
 		request.setAttribute("type", "payment");
 		request.setAttribute("paymentType", paymentType);
 		super.doAction(request, response);
-		log.info("Alert:::::Start of Transaction");
 		String paymentTypeStr = request.getRequestContext().getResolvedSiteMapItem().getParameter("paymentType");
 		if (paymentTypeStr != null) {
 			paymentType = PaymentType.valueOf(paymentTypeStr);
@@ -99,7 +95,6 @@ public class InvoicePayment extends ITReturnComponent {
 		}
 		request.setAttribute("type", "payment");
 		request.setAttribute("paymentType", paymentType);
-		log.info("Alert:::::Start of Transaction");
 		MemberPersonalInformation personalInformation = (MemberPersonalInformation)request.getAttribute(MemberPersonalInformation.class.getSimpleName().toLowerCase());
 		InvoiceDocument invDoc = (InvoiceDocument) getParentBean(); 
 		returnSiteMapRefID = returnSiteMapRefID + paymentType.name();
@@ -114,12 +109,31 @@ public class InvoicePayment extends ITReturnComponent {
 		//String returnUrl = "http://www.wealth4india/site/blah";
 		String notifyUrl = "http://www.wealth4india/site/blah";
 		//FinancialYear fy = FinancialYear.getByDisplayName(personalInformation.getFinancialYear());
-		
-		Map<String, Object> output = getTransaction().acceptITRPaymentByNetBanking(memberLoginName, getFinancialYear(), getPAN(), 
-				returnUrl, notifyUrl, BANK_ISSUER.ICICI_BANK, amount, email, personalInformation.getFirstName(), personalInformation.getLastName(),
-				personalInformation.getMobile(), address, personalInformation.getTownCityDistrict(), personalInformation.getState(), personalInformation.getPinCode());
-		
-		System.out.println("test output"+output);
+		if(paymentType.equals(PaymentType.NET_BANKING)){
+			Map<String, Object> output = getTransaction().acceptITRPaymentByNetBanking(memberLoginName, getFinancialYear(), getPAN(), 
+					returnUrl, notifyUrl, BANK_ISSUER.ICICI_BANK, amount, email, personalInformation.getFirstName(), personalInformation.getLastName(),
+					personalInformation.getMobile(), address, personalInformation.getTownCityDistrict(), personalInformation.getState(), personalInformation.getPinCode());
+			System.out.println("test output"+output);
+		}
+		if(paymentType.equals(PaymentType.CREDIT_CARD) || paymentType.equals(PaymentType.DEBIT_CARD)){
+			String cardHolderName = getFormMap().getField("cardHolderName").getValue();
+			String expiryMonth = getFormMap().getField("expiryMonth").getValue();
+			String expiryYear = getFormMap().getField("expiryYear").getValue();
+			String cvvNumber = getFormMap().getField("cvvNumber").getValue();
+			String cardNumber = getFormMap().getField("cardNumber").getValue();
+			String cardType = getFormMap().getField("cardType").getValue();
+			Map<String, Object> output = transaction.acceptITRPaymentByDebitOrCreditCard(
+					//memberLoginName, financialYear, PAN, 
+					// returnURL, notifyURL, paymentNode, 
+					// cardHolderName, cardNumber, cardType, cvvNumber, expiryMonth, expiryYear, 
+					// amount, email, firstName, lastName, mobile) (
+					memberLoginName, getFinancialYear(), getPAN(), 
+					returnUrl,notifyUrl,PAYMENT_MODE.valueOf(paymentType.toString()),
+					cardHolderName,cardNumber, CARD_TYPE.valueOf(cardType),cvvNumber,expiryMonth,expiryYear,
+					amount,email,personalInformation.getFirstName(),personalInformation.getLastName(),personalInformation.getMobile(),
+					address, personalInformation.getTownCityDistrict(), personalInformation.getState(), personalInformation.getPinCode());
+			System.out.println(output);
+		}
 	}
 
 	@Override

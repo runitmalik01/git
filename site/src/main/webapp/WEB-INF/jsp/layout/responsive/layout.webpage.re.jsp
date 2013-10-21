@@ -194,6 +194,12 @@
 		$.validator.addMethod("amountNeg", function(value, element) {
 		   	 return this.optional(element) || /^-?[0-9]+\.?[0-9]{0,2}?$/i.test(value);
 		}, "AMOUNT is invalid.");
+		$.validator.addMethod("cvvNumber", function(value, element) {
+		   	 return this.optional(element) || /^[0-9]{3}?$/i.test(value);
+		}, "CVV is invalid.");
+		$.validator.addMethod("cardNumber", function(value, element) {
+		   	 return this.optional(element) || /^[0-9]{16}?$/i.test(value);
+		}, "Card Number is invalid.");
 		$(".uprcase").each(function(){
 	          this.style.textTransform = 'uppercase';
 	       })

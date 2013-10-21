@@ -3570,4 +3570,15 @@
 </sv:node>
 	
 	<!-- /income from firms -->
+<sv:node sv:name="confirmation-payment-success" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:template</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>c7549696-1277-47da-bbce-08603288d2df</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:renderpath" sv:type="String">
+    <sv:value>jsp/accounting/confirm-payment-success.jsp</sv:value>
+  </sv:property>
+</sv:node>	
 </sv:node>

@@ -36,6 +36,15 @@
 	<c:choose>
 		<c:when test="${pageAction == 'NEW_CHILD' || pageAction == 'EDIT_CHILD'}">
 			<form id="frmdataInvoice" action="${actionUrl}" method="post" name="frmdataInvoice">
+				<hst:link var="home" siteMapItemRefId="itreturnhome"></hst:link>
+				<hst:link var="invoiceLink" siteMapItemRefId="memberinvoice"></hst:link>
+				<ul class="breadcrumb">
+					<li><a href="${home}" class="btn btn-info"><i class="icon-home icon-white"></i><strong>Member Home</strong></a> <span
+						class="divider">/</span></li>
+					<li><a href="${scriptName}" class="btn btn-info"><i class="icon-file icon-white"></i><strong>Member Invoices</strong></a><span
+						class="divider">/</span></li>
+					<li class="active"><c:out value="${fn:replace(paymentType,'_',' ')}" /></li>
+				</ul>
 				<jsp:include page="type/${paymentType}.jsp"></jsp:include>
 			</form>
 		</c:when>

@@ -50,7 +50,7 @@ public abstract class PaymentServiceGeneric implements PaymentService {
 				//merchantAccessKey=HS6Q0E1N40OUSYCJXMX5&transactionId=t12345t1&amount=1.0
 				String signature = String.format("merchantAccessKey=%s&transactionId=%s&amount=%s", getAccessKey(),merchantTxId,amount);
 				String theSecretKey = getSecretKey();
-				//HMACSignature = com.citruspay.util.HMACSignature.generateHMAC(signature, theSecretKey);
+				HMACSignature = com.citruspay.util.HMACSignature.generateHMAC(signature, theSecretKey);
 			}catch (Exception ex) {
 				logger.error("Error has occurred in generating HMACSignature",ex);
 				HMACSignature = null;

@@ -1149,7 +1149,7 @@
     </sv:node>
    
    
-<sv:node sv:name="fieldformats">
+<sv:node sv:name="fieldformats" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hippo:handle</sv:value>
   </sv:property>
@@ -1415,65 +1415,83 @@
         <sv:value>TrabsitionNo</sv:value>
       </sv:property>
     </sv:node>
-    
-	<sv:node sv:name="selection:listitem" >
-  <sv:property sv:name="jcr:primaryType" sv:type="Name">
-    <sv:value>selection:listitem</sv:value>
-  </sv:property>
-  <sv:property sv:name="selection:key" sv:type="String">
-    <sv:value>MembershipNo</sv:value>
-  </sv:property>
-  <sv:property sv:name="selection:label" sv:type="String">
-    <sv:value>MembershipNo</sv:value>
-  </sv:property>
-</sv:node>
-<sv:node sv:name="selection:listitem">
-  <sv:property sv:name="jcr:primaryType" sv:type="Name">
-    <sv:value>selection:listitem</sv:value>
-  </sv:property>
-  <sv:property sv:name="selection:key" sv:type="String">
-    <sv:value>TaxIdNo</sv:value>
-  </sv:property>
-  <sv:property sv:name="selection:label" sv:type="String">
-    <sv:value>TaxIdNo</sv:value>
-  </sv:property>
-</sv:node>
-<sv:node sv:name="selection:listitem">
-  <sv:property sv:name="jcr:primaryType" sv:type="Name">
-    <sv:value>selection:listitem</sv:value>
-  </sv:property>
-  <sv:property sv:name="selection:key" sv:type="String">
-    <sv:value>currentDateCal</sv:value>
-  </sv:property>
-  <sv:property sv:name="selection:label" sv:type="String">
-    <sv:value>Current Date Calendar</sv:value>
-  </sv:property>
-</sv:node>
-
-<sv:node sv:name="selection:listitem">
-  <sv:property sv:name="jcr:primaryType" sv:type="Name">
-    <sv:value>selection:listitem</sv:value>
-  </sv:property>
-  <sv:property sv:name="selection:key" sv:type="String">
-    <sv:value>amountNeg</sv:value>
-  </sv:property>
-  <sv:property sv:name="selection:label" sv:type="String">
-    <sv:value>amountNeg</sv:value>
-  </sv:property>
-</sv:node>
-
-<sv:node sv:name="selection:listitem">
-  <sv:property sv:name="jcr:primaryType" sv:type="Name">
-    <sv:value>selection:listitem</sv:value>
-  </sv:property>
-  <sv:property sv:name="selection:key" sv:type="String">
-    <sv:value>auditdateCal</sv:value>
-  </sv:property>
-  <sv:property sv:name="selection:label" sv:type="String">
-    <sv:value>AuditDateCalendar</sv:value>
-  </sv:property>
-</sv:node>
-
+    <sv:node sv:name="selection:listitem">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>selection:listitem</sv:value>
+      </sv:property>
+      <sv:property sv:name="selection:key" sv:type="String">
+        <sv:value>MembershipNo</sv:value>
+      </sv:property>
+      <sv:property sv:name="selection:label" sv:type="String">
+        <sv:value>MembershipNo</sv:value>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="selection:listitem">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>selection:listitem</sv:value>
+      </sv:property>
+      <sv:property sv:name="selection:key" sv:type="String">
+        <sv:value>TaxIdNo</sv:value>
+      </sv:property>
+      <sv:property sv:name="selection:label" sv:type="String">
+        <sv:value>TaxIdNo</sv:value>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="selection:listitem">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>selection:listitem</sv:value>
+      </sv:property>
+      <sv:property sv:name="selection:key" sv:type="String">
+        <sv:value>currentDateCal</sv:value>
+      </sv:property>
+      <sv:property sv:name="selection:label" sv:type="String">
+        <sv:value>Current Date Calendar</sv:value>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="selection:listitem">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>selection:listitem</sv:value>
+      </sv:property>
+      <sv:property sv:name="selection:key" sv:type="String">
+        <sv:value>amountNeg</sv:value>
+      </sv:property>
+      <sv:property sv:name="selection:label" sv:type="String">
+        <sv:value>amountNeg</sv:value>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="selection:listitem">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>selection:listitem</sv:value>
+      </sv:property>
+      <sv:property sv:name="selection:key" sv:type="String">
+        <sv:value>auditdateCal</sv:value>
+      </sv:property>
+      <sv:property sv:name="selection:label" sv:type="String">
+        <sv:value>AuditDateCalendar</sv:value>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="selection:listitem">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>selection:listitem</sv:value>
+      </sv:property>
+      <sv:property sv:name="selection:key" sv:type="String">
+        <sv:value>cardNumber</sv:value>
+      </sv:property>
+      <sv:property sv:name="selection:label" sv:type="String">
+        <sv:value>Credit/Debit Card Number</sv:value>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="selection:listitem">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>selection:listitem</sv:value>
+      </sv:property>
+      <sv:property sv:name="selection:key" sv:type="String">
+        <sv:value>cvvNumber</sv:value>
+      </sv:property>
+      <sv:property sv:name="selection:label" sv:type="String">
+        <sv:value>CVV Number</sv:value>
+      </sv:property>
+    </sv:node>
   </sv:node>
   <sv:node sv:name="hippo:translation">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
@@ -1486,9 +1504,6 @@
       <sv:value>Field Formats</sv:value>
     </sv:property>
   </sv:node>
-  
-
-  
 </sv:node>
    
     <sv:node sv:name="services">
