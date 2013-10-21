@@ -37,7 +37,7 @@ import com.mootly.wcm.services.IndianCurrencyHelper;
 import com.mootly.wcm.utils.XmlCalculation;
 
 public class CarryFwdLossesSchedules extends XmlCalculation {
-	private static Logger log = LoggerFactory.getLogger(DeductionVIASchedules .class);
+	private static Logger log = LoggerFactory.getLogger(CarryFwdLossesSchedules .class);
 	private static Class classToCFL =null;
 
 	AdjustmentOfLossesDoc adjustmentOfLossesDoc = null;
