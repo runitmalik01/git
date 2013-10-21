@@ -7,6 +7,7 @@ import java.util.Map;
 
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 
+import com.mootly.wcm.beans.BroughtFwdLossesDocument;
 import com.mootly.wcm.beans.CapitalAssetDocument;
 import com.mootly.wcm.beans.DeductionDocument;
 import com.mootly.wcm.beans.DeductionSchedTenADocumemt;
@@ -39,6 +40,7 @@ import in.gov.incometaxindiaefiling.y2012_2013.IncFromOS;
 import in.gov.incometaxindiaefiling.y2012_2013.LongTerm;
 import in.gov.incometaxindiaefiling.y2012_2013.LossSummaryDetail;
 import in.gov.incometaxindiaefiling.y2012_2013.PartBTI;
+import in.gov.incometaxindiaefiling.y2012_2013.ScheduleBFLA;
 import in.gov.incometaxindiaefiling.y2012_2013.ScheduleBPA;
 import in.gov.incometaxindiaefiling.y2012_2013.ScheduleCGFor23;
 import in.gov.incometaxindiaefiling.y2012_2013.ScheduleCGFor4;
@@ -285,8 +287,15 @@ public class PartB_TI {
 		//totalTI - CurrentYearLoss
 		partBTI.setBalanceAfterSetoffLosses(partBTI.getTotalTI().subtract(partBTI.getCurrentYearLoss()));
 
-		// 2vii of Schedule BFLA
-		partBTI.setBroughtFwdLossesSetoff(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMapLosses.get("totalBFLossSetOff").toString())));
+		// 2vii of Schedule BFLA in case of ITR2 and total of 2x,3x,4x of Schedule BFLA in case of ITR4
+		if(itrSelection.equals("ITR4")){
+			BroughtFwdLossesDocument broughtFwdLossesDocument = (BroughtFwdLossesDocument) inputBeans.get(BroughtFwdLossesDocument.class.getSimpleName().toLowerCase());
+			ITR4_ScheduleBFLA iTR4_ScheduleBFLA = new ITR4_ScheduleBFLA(broughtFwdLossesDocument);
+			ScheduleBFLA scheduleBFLA = iTR4_ScheduleBFLA.getScheduleBFLA(itr, financialYear, inputBeans);
+			partBTI.setBroughtFwdLossesSetoff(scheduleBFLA.getTotalBFLossSetOff().getTotAllUs35Cl4Setoff().add(scheduleBFLA.getTotalBFLossSetOff().getTotBFLossSetoff())
+					.add(scheduleBFLA.getTotalBFLossSetOff().getTotUnabsorbedDeprSetoff()));
+		}else
+			partBTI.setBroughtFwdLossesSetoff(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMapLosses.get("totalBFLossSetOff").toString())));
 
 		//BalanceAfterSetoffLosses - BroughtFrwdLossesSetoff
 		partBTI.setGrossTotalIncome(partBTI.getBalanceAfterSetoffLosses().subtract(partBTI.getBroughtFwdLossesSetoff()));
@@ -327,7 +336,10 @@ public class PartB_TI {
 		Double currYrLTCLoss = Double.parseDouble(resultMapLosses.get("currYearLTCLoss").toString());
 		Double currYrRaceHrsLoss = Double.parseDouble(resultMapLosses.get("currYearRaceHorseLoss").toString());
 		Double currYrSTCLoss = Double.parseDouble(resultMapLosses.get("currYearSTCLoss").toString());
-		Double totalCurrYrLoss = currYrHILoss + currYrLTCLoss + currYrRaceHrsLoss + currYrSTCLoss;
+		Double currYrBILoss = Double.parseDouble(resultMapLosses.get("currYearBusinessIncomeLoss").toString());
+		Double currYrSILoss = Double.parseDouble(resultMapLosses.get("currYearSpecifiedIncomeLoss").toString());
+		Double currYrSPILoss = Double.parseDouble(resultMapLosses.get("currYearSpeculativeIncomeLoss").toString());
+		Double totalCurrYrLoss = currYrHILoss + currYrLTCLoss + currYrRaceHrsLoss + currYrSTCLoss + currYrBILoss + currYrSILoss + currYrSPILoss;
 		partBTI.setLossesOfCurrentYearCarriedFwd(indianCurrencyHelper.bigIntegerRound(totalCurrYrLoss));
 
 		return partBTI;
