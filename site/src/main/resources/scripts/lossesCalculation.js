@@ -470,6 +470,8 @@ if(out_adjustedmaintainingRaceHorseIncome>0){
 
 out_currYearHouseIncomeLoss=0;
 out_currYearBusinessIncomeLoss=0;
+out_currYearSpecifiedIncomeLoss=0;
+out_currYearSpeculativeIncomeLoss=0;
 out_currYearLTCLoss=0;
 out_currYearSTCLoss=0;
 out_currYearRaceHorseLoss=0;
@@ -478,6 +480,10 @@ if(houseIncome<0)
 	out_currYearHouseIncomeLoss = houseIncome*(-1);
 if(businessIncome<0)
 	out_currYearBusinessIncomeLoss = businessIncome*(-1);
+if(speculativeIncome<0)
+	out_currYearSpeculativeIncomeLoss = speculativeIncome*(-1);
+if(specifiedIncome<0)
+	out_currYearSpecifiedIncomeLoss = specifiedIncome*(-1);
 if(LTCGain<0)
 	out_currYearLTCLoss = LTCGain*(-1);
 if(STCGain<0)
