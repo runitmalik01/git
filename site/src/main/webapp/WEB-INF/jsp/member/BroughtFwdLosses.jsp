@@ -55,7 +55,7 @@
 						value="<fmt:formatNumber type="number"  groupingUsed="false" value="${parentBean.hpbflus35setoff}" />" />
 					</td>
 					<td><input id="hpcurrentsetoff" name="hpcurrentsetoff" class="decimal" type="text"
-						readonly="readonly" value="<fmt:formatNumber type="number"  groupingUsed="false" value="${parentBean.hpcurrentsetoff}" />" />
+						readonly="readonly" value="<fmt:formatNumber type="number"  groupingUsed="false" value="${hpTotal}" />" />
 					</td>
 				</tr>
 				<tr>
@@ -73,7 +73,7 @@
 						value="<fmt:formatNumber type="number"  groupingUsed="false" value="${parentBean.businessbflus35setoff}" />" />
 					</td>
 					<td><input id="businesscurrentsetoff" name="businesscurrentsetoff" class="decimal" type="text"
-						readonly="readonly" value="<fmt:formatNumber type="number"  groupingUsed="false" value="${parentBean.businesscurrentsetoff}" />" />
+						readonly="readonly" value="<fmt:formatNumber type="number"  groupingUsed="false" value="${biTotal}" />" />
 					</td>
 				</tr>
 				<tr>
@@ -91,7 +91,7 @@
 						value="<fmt:formatNumber type="number"  groupingUsed="false" value="${parentBean.speculativebflus35setoff}" />" />
 					</td>
 					<td><input id="speculativecurrentsetoff" name="speculativecurrentsetoff" class="decimal" type="text"
-						readonly="readonly" value="<fmt:formatNumber type="number"  groupingUsed="false" value="${parentBean.speculativecurrentsetoff}" />" />
+						readonly="readonly" value="<fmt:formatNumber type="number"  groupingUsed="false" value="${siTotal}" />" />
 					</td>
 				</tr>
 				<tr>
@@ -109,7 +109,7 @@
 						value="<fmt:formatNumber type="number"  groupingUsed="false" value="${parentBean.specifiedbflus35setoff}" />" />
 					</td>
 					<td><input id="specifiedcurrentsetoff" name="specifiedcurrentsetoff" class="decimal" type="text"
-						readonly="readonly" value="<fmt:formatNumber type="number"  groupingUsed="false" value="${parentBean.specifiedcurrentsetoff}" />" />
+						readonly="readonly" value="<fmt:formatNumber type="number"  groupingUsed="false" value="${spiTotal}" />" />
 					</td>
 				</tr>
 				<tr>
@@ -127,7 +127,7 @@
 						value="<fmt:formatNumber type="number"  groupingUsed="false" value="${parentBean.stgcbflus35setoff}" />" />
 					</td>
 					<td><input id="stgccurrentsetoff" name="stgccurrentsetoff" class="decimal" type="text"
-						readonly="readonly" value="<fmt:formatNumber type="number"  groupingUsed="false" value="${parentBean.stgccurrentsetoff}" />" />
+						readonly="readonly" value="<fmt:formatNumber type="number"  groupingUsed="false" value="${stcgTotal}" />" />
 					</td>
 				</tr>
 			    <tr>
@@ -145,7 +145,7 @@
 						value="<fmt:formatNumber type="number"  groupingUsed="false" value="${parentBean.ltgcbflus35setoff}" />" />
 					</td>
 					<td><input id="ltgccurrentsetoff" name="ltgccurrentsetoff" class="decimal" type="text"
-						readonly="readonly" value="<fmt:formatNumber type="number"  groupingUsed="false" value="${parentBean.ltgccurrentsetoff}" />" />
+						readonly="readonly" value="<fmt:formatNumber type="number"  groupingUsed="false" value="${ltcgTotal}" />" />
 					</td>
 				</tr>
 			    <tr>
@@ -161,7 +161,7 @@
 						value="<fmt:formatNumber type="number"  groupingUsed="false" value="${parentBean.otherbflus35setoff}" />" />
 					</td>
 					<td><input id="othercurrentsetoff" name="othercurrentsetoff" class="decimal" type="text"
-						readonly="readonly" value="<fmt:formatNumber type="number"  groupingUsed="false" value="${parentBean.othercurrentsetoff}" />" />
+						readonly="readonly" value="<fmt:formatNumber type="number"  groupingUsed="false" value="${oiTotal}" />" />
 					</td>
 				</tr>
 				<tr>
@@ -179,20 +179,20 @@
 						value="<fmt:formatNumber type="number"  groupingUsed="false" value="${parentBean.horsebflus35setoff}" />" />
 					</td>
 					<td><input id="horsecurrentsetoff" name="horsecurrentsetoff" class="decimal" type="text"
-						readonly="readonly" value="<fmt:formatNumber type="number"  groupingUsed="false" value="${parentBean.horsecurrentsetoff}" />" />
+						readonly="readonly" value="<fmt:formatNumber type="number"  groupingUsed="false" value="${rhTotal}" />" />
 					</td>
 				</tr>
 
 				<tr class="well">
 					<td colspan="2"><label>Total of brought forward loss set off</label></td>
 					<td><input id="totalbflasetoff" name="totalbflasetoff" class="decimal" maxlength="14" type="text" readonly="readonly"
-						value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.totalbflasetoff}" />" />
+						value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${broughtfwdlossesSetOff}" />" />
 					</td>
 					<td><input id="totalbfdsetoff" name="totalbfdsetoff" class="decimal" type="text" readonly="readonly"
-						value="<fmt:formatNumber type="number"  groupingUsed="false" value="${parentBean.totalbfdsetoff}" />" />
+						value="<fmt:formatNumber type="number"  groupingUsed="false" value="${broughtfwdlossesDepSetOff}" />" />
 					</td>
 					<td><input id="totalbflus35setoff" name="totalbflus35setoff" class="decimal" type="text" readonly="readonly"
-						value="<fmt:formatNumber type="number"  groupingUsed="false" value="${parentBean.totalbflus35setoff}" />" />
+						value="<fmt:formatNumber type="number"  groupingUsed="false" value="${broughtfwdlossesus34SetOff}" />" />
 					</td>
 					<td>
 					</td>
@@ -200,7 +200,7 @@
 				<tr class="well">
 					<td colspan="5"><label>Current year's income remaining after set off Total</label></td>
 					<td><input id="currentsetoff" name="currentsetoff" class="decimal" type="text"
-						readonly="readonly" value="<fmt:formatNumber type="number"  groupingUsed="false" value="${parentBean.currentsetoff}" />" />
+						readonly="readonly" value="<fmt:formatNumber type="number"  groupingUsed="false" value="${currYearIncAftSetOff}" />" />
 					</td>
 				</tr>
 			</table>
