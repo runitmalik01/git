@@ -424,10 +424,12 @@
           <sv:value>weight</sv:value>
           <sv:value>ITR2.enabled</sv:value>
           <sv:value>ITR3.enabled</sv:value>
+          <sv:value>ITR4.enabled</sv:value>
         </sv:property>
         <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
           <sv:value>/../formsixteen.html</sv:value>
           <sv:value>1</sv:value>
+          <sv:value>false</sv:value>
           <sv:value>false</sv:value>
           <sv:value>false</sv:value>
         </sv:property>
@@ -485,10 +487,12 @@
           <sv:value>weight</sv:value>
           <sv:value>ITR2.enabled</sv:value>
           <sv:value>ITR3.enabled</sv:value>
+          <sv:value>ITR4.enabled</sv:value>
         </sv:property>
         <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
           <sv:value>/../singlehouseincome.html</sv:value>
           <sv:value>3</sv:value>
+          <sv:value>false</sv:value>
           <sv:value>false</sv:value>
           <sv:value>false</sv:value>
         </sv:property>
@@ -547,55 +551,13 @@
           <sv:value>weight</sv:value>
           <sv:value>ITR2.enabled</sv:value>
           <sv:value>ITR3.enabled</sv:value>
+          <sv:value>ITR4.enabled</sv:value>
         </sv:property>
         <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
           <sv:value>/../othersources.html</sv:value>
           <sv:value>4</sv:value>
           <sv:value>false</sv:value>
           <sv:value>false</sv:value>
-        </sv:property>
-      </sv:node>
-      <sv:node sv:name="Club Income">
-        <sv:property sv:name="jcr:primaryType" sv:type="Name">
-          <sv:value>hst:sitemenuitem</sv:value>
-        </sv:property>
-        <sv:property sv:name="jcr:uuid" sv:type="String">
-          <sv:value>06c06ea0-0a32-42c3-b73d-f462a57f6578</sv:value>
-        </sv:property>
-        <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
-          <sv:value>theURL</sv:value>
-          <sv:value>weight</sv:value>
-          <sv:value>ITR1.enabled</sv:value>
-          <sv:value>ITR2.enabled</sv:value>
-          <sv:value>ITR4S.enabled</sv:value>
-        </sv:property>
-        <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
-          <sv:value>/../clubincome.html</sv:value>
-          <sv:value>6</sv:value>
-          <sv:value>false</sv:value>
-          <sv:value>true</sv:value>
-          <sv:value>false</sv:value>
-        </sv:property>
-      </sv:node>
-      <sv:node sv:name="Schedule SI(Special rates)">
-        <sv:property sv:name="jcr:primaryType" sv:type="Name">
-          <sv:value>hst:sitemenuitem</sv:value>
-        </sv:property>
-        <sv:property sv:name="jcr:uuid" sv:type="String">
-          <sv:value>4f6c25de-c204-4c08-9ae5-6f099d78cbc9</sv:value>
-        </sv:property>
-        <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
-          <sv:value>theURL</sv:value>
-          <sv:value>weight</sv:value>
-          <sv:value>ITR1.enabled</sv:value>
-          <sv:value>ITR2.enabled</sv:value>
-          <sv:value>ITR4S.enabled</sv:value>
-        </sv:property>
-        <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
-          <sv:value>/../itr-schedule-si.html</sv:value>
-          <sv:value>7</sv:value>
-          <sv:value>false</sv:value>
-          <sv:value>true</sv:value>
           <sv:value>false</sv:value>
         </sv:property>
       </sv:node>
@@ -635,13 +597,15 @@
           <sv:value>ITR2.enabled</sv:value>
           <sv:value>ITR4S.enabled</sv:value>
           <sv:value>ITR3.enabled</sv:value>
+          <sv:value>ITR4.enabled</sv:value>
         </sv:property>
         <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
-          <sv:value>9</sv:value>
+          <sv:value>10</sv:value>
           <sv:value>true</sv:value>
           <sv:value>false</sv:value>
           <sv:value>false</sv:value>
           <sv:value>true</sv:value>
+          <sv:value>false</sv:value>
           <sv:value>false</sv:value>
         </sv:property>
         <sv:property sv:name="hst:refidsitemapitem" sv:type="String">
@@ -736,28 +700,6 @@
           <sv:value>false</sv:value>
         </sv:property>
       </sv:node>
-      <sv:node sv:name="Schedule BFLA">
-        <sv:property sv:name="jcr:primaryType" sv:type="Name">
-          <sv:value>hst:sitemenuitem</sv:value>
-        </sv:property>
-        <sv:property sv:name="jcr:uuid" sv:type="String">
-          <sv:value>21d31834-42bc-4993-817a-80bf38d2fa0a</sv:value>
-        </sv:property>
-        <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
-          <sv:value>theURL</sv:value>
-          <sv:value>weight</sv:value>
-          <sv:value>ITR1.enabled</sv:value>
-          <sv:value>ITR3.enabled</sv:value>
-          <sv:value>ITR4.enabled</sv:value>
-        </sv:property>
-        <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
-          <sv:value>/../BFLA.html</sv:value>
-          <sv:value>8</sv:value>
-          <sv:value>false</sv:value>
-          <sv:value>false</sv:value>
-          <sv:value>true</sv:value>
-        </sv:property>
-      </sv:node>
       <sv:node sv:name="Schedule IF">
         <sv:property sv:name="jcr:primaryType" sv:type="Name">
           <sv:value>hst:sitemenuitem</sv:value>
@@ -769,15 +711,15 @@
           <sv:value>theURL</sv:value>
           <sv:value>weight</sv:value>
           <sv:value>ITR1.enabled</sv:value>
-          <sv:value>ITR3.enabled</sv:value>
-          <sv:value>ITR4.enabled</sv:value>
+          <sv:value>ITR2.enabled</sv:value>
+          <sv:value>ITR4S.enabled</sv:value>
         </sv:property>
         <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
           <sv:value>/../firmspartner.html</sv:value>
           <sv:value>8</sv:value>
           <sv:value>false</sv:value>
-          <sv:value>true</sv:value>
-          <sv:value>true</sv:value>
+          <sv:value>false</sv:value>
+          <sv:value>false</sv:value>
         </sv:property>
       </sv:node>
       <sv:node sv:name="Capital Gain">
@@ -801,6 +743,307 @@
           <sv:value>true</sv:value>
           <sv:value>false</sv:value>
         </sv:property>
+      </sv:node>
+      <sv:node sv:name="Business Income">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hst:sitemenuitem</sv:value>
+        </sv:property>
+        <sv:property sv:name="jcr:uuid" sv:type="String">
+          <sv:value>021a5335-0bc0-4ba5-b591-62926bbb3324</sv:value>
+        </sv:property>
+        <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+          <sv:value>weight</sv:value>
+          <sv:value>sub-menu</sv:value>
+          <sv:value>ITR1.enabled</sv:value>
+          <sv:value>ITR2.enabled</sv:value>
+          <sv:value>ITR4S.enabled</sv:value>
+          <sv:value>ITR3.enabled</sv:value>
+        </sv:property>
+        <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+          <sv:value>9</sv:value>
+          <sv:value>true</sv:value>
+          <sv:value>false</sv:value>
+          <sv:value>false</sv:value>
+          <sv:value>false</sv:value>
+          <sv:value>false</sv:value>
+        </sv:property>
+        <sv:property sv:name="hst:refidsitemapitem" sv:type="String">
+          <sv:value/>
+        </sv:property>
+        <sv:node sv:name="Balance Sheet">
+          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+            <sv:value>hst:sitemenuitem</sv:value>
+          </sv:property>
+          <sv:property sv:name="jcr:uuid" sv:type="String">
+            <sv:value>f8e7b5f1-41ad-4fca-ad0c-127cac314818</sv:value>
+          </sv:property>
+          <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+            <sv:value>theURL</sv:value>
+            <sv:value>weight</sv:value>
+          </sv:property>
+          <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+            <sv:value>/../balancesheet.html</sv:value>
+            <sv:value>1</sv:value>
+          </sv:property>
+        </sv:node>
+        <sv:node sv:name="Profit and Loss">
+          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+            <sv:value>hst:sitemenuitem</sv:value>
+          </sv:property>
+          <sv:property sv:name="jcr:uuid" sv:type="String">
+            <sv:value>8eb24027-96a0-4067-893d-012fc08f48f0</sv:value>
+          </sv:property>
+          <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+            <sv:value>theURL</sv:value>
+            <sv:value>weight</sv:value>
+          </sv:property>
+          <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+            <sv:value>/../profitandloss.html</sv:value>
+            <sv:value>2</sv:value>
+          </sv:property>
+        </sv:node>
+        <sv:node sv:name="Profession income">
+          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+            <sv:value>hst:sitemenuitem</sv:value>
+          </sv:property>
+          <sv:property sv:name="jcr:uuid" sv:type="String">
+            <sv:value>23669505-abf4-4ecf-a492-ea9e2240e6b2</sv:value>
+          </sv:property>
+          <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+            <sv:value>theURL</sv:value>
+            <sv:value>weight</sv:value>
+          </sv:property>
+          <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+            <sv:value>/../incomebusinessprofession.html</sv:value>
+            <sv:value>3</sv:value>
+          </sv:property>
+        </sv:node>
+        <sv:node sv:name="Other Information">
+          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+            <sv:value>hst:sitemenuitem</sv:value>
+          </sv:property>
+          <sv:property sv:name="jcr:uuid" sv:type="String">
+            <sv:value>91283849-de45-4785-a892-7cf37a1fe312</sv:value>
+          </sv:property>
+          <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+            <sv:value>theURL</sv:value>
+            <sv:value>weight</sv:value>
+          </sv:property>
+          <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+            <sv:value>/../otherinformation.html</sv:value>
+            <sv:value>4</sv:value>
+          </sv:property>
+        </sv:node>
+        <sv:node sv:name="Nature of Business">
+          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+            <sv:value>hst:sitemenuitem</sv:value>
+          </sv:property>
+          <sv:property sv:name="jcr:uuid" sv:type="String">
+            <sv:value>3f3b2576-4bf1-4f01-b73d-bed24cf3d940</sv:value>
+          </sv:property>
+          <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+            <sv:value>theURL</sv:value>
+            <sv:value>weight</sv:value>
+          </sv:property>
+          <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+            <sv:value>/../businessnature.html</sv:value>
+            <sv:value>5</sv:value>
+          </sv:property>
+        </sv:node>
+      </sv:node>
+      <sv:node sv:name="Alternate Tax">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hst:sitemenuitem</sv:value>
+        </sv:property>
+        <sv:property sv:name="jcr:uuid" sv:type="String">
+          <sv:value>299b723d-2c64-4880-bb0d-3de6bef4afa0</sv:value>
+        </sv:property>
+        <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+          <sv:value>weight</sv:value>
+          <sv:value>sub-menu</sv:value>
+          <sv:value>ITR1.enabled</sv:value>
+          <sv:value>ITR2.enabled</sv:value>
+          <sv:value>ITR4S.enabled</sv:value>
+          <sv:value>ITR3.enabled</sv:value>
+        </sv:property>
+        <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+          <sv:value>10</sv:value>
+          <sv:value>true</sv:value>
+          <sv:value>false</sv:value>
+          <sv:value>false</sv:value>
+          <sv:value>false</sv:value>
+          <sv:value>false</sv:value>
+        </sv:property>
+        <sv:property sv:name="hst:refidsitemapitem" sv:type="String">
+          <sv:value/>
+        </sv:property>
+        <sv:node sv:name="Schedule AMT">
+          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+            <sv:value>hst:sitemenuitem</sv:value>
+          </sv:property>
+          <sv:property sv:name="jcr:uuid" sv:type="String">
+            <sv:value>410fb340-704d-43b0-aec7-e4534f6e1913</sv:value>
+          </sv:property>
+          <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+            <sv:value>theURL</sv:value>
+            <sv:value>weight</sv:value>
+          </sv:property>
+          <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+            <sv:value>/../itr-schedule-amt.html</sv:value>
+            <sv:value>1</sv:value>
+          </sv:property>
+        </sv:node>
+        <sv:node sv:name="Schedule AMTC">
+          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+            <sv:value>hst:sitemenuitem</sv:value>
+          </sv:property>
+          <sv:property sv:name="jcr:uuid" sv:type="String">
+            <sv:value>d4bf962f-ae04-43c8-86c7-696ed469352e</sv:value>
+          </sv:property>
+          <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+            <sv:value>theURL</sv:value>
+            <sv:value>weight</sv:value>
+          </sv:property>
+          <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+            <sv:value>/../itr-schedule-amtc.html</sv:value>
+            <sv:value>2</sv:value>
+          </sv:property>
+        </sv:node>
+        <sv:node sv:name="Schedule AL">
+          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+            <sv:value>hst:sitemenuitem</sv:value>
+          </sv:property>
+          <sv:property sv:name="jcr:uuid" sv:type="String">
+            <sv:value>06cab9ea-bcec-4f63-b8cd-13ffafb2e0ba</sv:value>
+          </sv:property>
+          <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+            <sv:value>theURL</sv:value>
+            <sv:value>weight</sv:value>
+          </sv:property>
+          <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+            <sv:value>/../assetandliability.html</sv:value>
+            <sv:value>3</sv:value>
+          </sv:property>
+        </sv:node>
+      </sv:node>
+      <sv:node sv:name="Schedule SI">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hst:sitemenuitem</sv:value>
+        </sv:property>
+        <sv:property sv:name="jcr:uuid" sv:type="String">
+          <sv:value>4f6c25de-c204-4c08-9ae5-6f099d78cbc9</sv:value>
+        </sv:property>
+        <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+          <sv:value>theURL</sv:value>
+          <sv:value>weight</sv:value>
+          <sv:value>ITR1.enabled</sv:value>
+          <sv:value>ITR2.enabled</sv:value>
+          <sv:value>ITR4S.enabled</sv:value>
+        </sv:property>
+        <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+          <sv:value>/../itr-schedule-si.html</sv:value>
+          <sv:value>7</sv:value>
+          <sv:value>false</sv:value>
+          <sv:value>true</sv:value>
+          <sv:value>false</sv:value>
+        </sv:property>
+      </sv:node>
+      <sv:node sv:name="Schedule SPI">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hst:sitemenuitem</sv:value>
+        </sv:property>
+        <sv:property sv:name="jcr:uuid" sv:type="String">
+          <sv:value>06c06ea0-0a32-42c3-b73d-f462a57f6578</sv:value>
+        </sv:property>
+        <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+          <sv:value>theURL</sv:value>
+          <sv:value>weight</sv:value>
+          <sv:value>ITR1.enabled</sv:value>
+          <sv:value>ITR2.enabled</sv:value>
+          <sv:value>ITR4S.enabled</sv:value>
+        </sv:property>
+        <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+          <sv:value>/../clubincome.html</sv:value>
+          <sv:value>6</sv:value>
+          <sv:value>false</sv:value>
+          <sv:value>true</sv:value>
+          <sv:value>false</sv:value>
+        </sv:property>
+      </sv:node>
+      <sv:node sv:name="Quantitative Details">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hst:sitemenuitem</sv:value>
+        </sv:property>
+        <sv:property sv:name="jcr:uuid" sv:type="String">
+          <sv:value>43e4bc83-d6a4-47a0-a6b0-ca813427b1a6</sv:value>
+        </sv:property>
+        <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+          <sv:value>weight</sv:value>
+          <sv:value>sub-menu</sv:value>
+          <sv:value>ITR1.enabled</sv:value>
+          <sv:value>ITR2.enabled</sv:value>
+          <sv:value>ITR4S.enabled</sv:value>
+          <sv:value>ITR3.enabled</sv:value>
+        </sv:property>
+        <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+          <sv:value>11</sv:value>
+          <sv:value>true</sv:value>
+          <sv:value>false</sv:value>
+          <sv:value>false</sv:value>
+          <sv:value>false</sv:value>
+          <sv:value>false</sv:value>
+        </sv:property>
+        <sv:property sv:name="hst:refidsitemapitem" sv:type="String">
+          <sv:value/>
+        </sv:property>
+        <sv:node sv:name="Trade">
+          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+            <sv:value>hst:sitemenuitem</sv:value>
+          </sv:property>
+          <sv:property sv:name="jcr:uuid" sv:type="String">
+            <sv:value>f50191a4-8ffd-4c7f-8aef-433383f9d420</sv:value>
+          </sv:property>
+          <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+            <sv:value>theURL</sv:value>
+            <sv:value>weight</sv:value>
+          </sv:property>
+          <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+            <sv:value>/../quantitativedetails.html</sv:value>
+            <sv:value>1</sv:value>
+          </sv:property>
+        </sv:node>
+        <sv:node sv:name="Raw Materials">
+          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+            <sv:value>hst:sitemenuitem</sv:value>
+          </sv:property>
+          <sv:property sv:name="jcr:uuid" sv:type="String">
+            <sv:value>452b4412-070f-49d6-a0b3-e2645a5394f3</sv:value>
+          </sv:property>
+          <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+            <sv:value>theURL</sv:value>
+            <sv:value>weight</sv:value>
+          </sv:property>
+          <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+            <sv:value>/../manufacture_rawmaterials.html</sv:value>
+            <sv:value>2</sv:value>
+          </sv:property>
+        </sv:node>
+        <sv:node sv:name="Finished Goods">
+          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+            <sv:value>hst:sitemenuitem</sv:value>
+          </sv:property>
+          <sv:property sv:name="jcr:uuid" sv:type="String">
+            <sv:value>f89a49d0-dd57-487c-8975-82b69d075274</sv:value>
+          </sv:property>
+          <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+            <sv:value>theURL</sv:value>
+            <sv:value>weight</sv:value>
+          </sv:property>
+          <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+            <sv:value>/../manufacture_finishedgoods.html</sv:value>
+            <sv:value>3</sv:value>
+          </sv:property>
+        </sv:node>
       </sv:node>
     </sv:node>
     <sv:node sv:name="Deductions">
@@ -871,11 +1114,221 @@
           <sv:value>ITR1.enabled</sv:value>
           <sv:value>weight</sv:value>
           <sv:value>ITR4S.enabled</sv:value>
+          <sv:value>ITR4.enabled</sv:value>
         </sv:property>
         <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
           <sv:value>/../adjustmentoflosses.html</sv:value>
           <sv:value>false</sv:value>
           <sv:value>3</sv:value>
+          <sv:value>false</sv:value>
+          <sv:value>false</sv:value>
+        </sv:property>
+      </sv:node>
+      <sv:node sv:name="Adjustment Of Losses">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hst:sitemenuitem</sv:value>
+        </sv:property>
+        <sv:property sv:name="jcr:uuid" sv:type="String">
+          <sv:value>8b9b95b5-8c8d-4aff-8a6d-a0d2c3dfc97f</sv:value>
+        </sv:property>
+        <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+          <sv:value>ITR1.enabled</sv:value>
+          <sv:value>weight</sv:value>
+          <sv:value>ITR4S.enabled</sv:value>
+          <sv:value>ITR2.enabled</sv:value>
+          <sv:value>sub-menu</sv:value>
+          <sv:value>ITR3.enabled</sv:value>
+        </sv:property>
+        <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+          <sv:value>false</sv:value>
+          <sv:value>3</sv:value>
+          <sv:value>false</sv:value>
+          <sv:value>false</sv:value>
+          <sv:value>true</sv:value>
+          <sv:value>false</sv:value>
+        </sv:property>
+        <sv:node sv:name="Schedule CFL">
+          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+            <sv:value>hst:sitemenuitem</sv:value>
+          </sv:property>
+          <sv:property sv:name="jcr:uuid" sv:type="String">
+            <sv:value>c6c6be55-af74-4969-b867-4175db54592f</sv:value>
+          </sv:property>
+          <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+            <sv:value>theURL</sv:value>
+            <sv:value>weight</sv:value>
+          </sv:property>
+          <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+            <sv:value>/../adjustmentoflosses.html</sv:value>
+            <sv:value>1</sv:value>
+          </sv:property>
+        </sv:node>
+        <sv:node sv:name="Schedule BFLA">
+          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+            <sv:value>hst:sitemenuitem</sv:value>
+          </sv:property>
+          <sv:property sv:name="jcr:uuid" sv:type="String">
+            <sv:value>69ac4f3f-525f-48f8-9294-6f9fcb2becee</sv:value>
+          </sv:property>
+          <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+            <sv:value>theURL</sv:value>
+            <sv:value>weight</sv:value>
+          </sv:property>
+          <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+            <sv:value>/../BFLA.html</sv:value>
+            <sv:value>2</sv:value>
+          </sv:property>
+        </sv:node>
+      </sv:node>
+      <sv:node sv:name="Schedule 10A 10AA">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hst:sitemenuitem</sv:value>
+        </sv:property>
+        <sv:property sv:name="jcr:uuid" sv:type="String">
+          <sv:value>7ac7d943-80c7-4394-8283-7ae08edfbc26</sv:value>
+        </sv:property>
+        <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+          <sv:value>theURL</sv:value>
+          <sv:value>ITR1.enabled</sv:value>
+          <sv:value>weight</sv:value>
+          <sv:value>ITR2.enabled</sv:value>
+          <sv:value>ITR3.enabled</sv:value>
+          <sv:value>ITR4S.enabled</sv:value>
+        </sv:property>
+        <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+          <sv:value>/../itrdedschedule10a.html</sv:value>
+          <sv:value>false</sv:value>
+          <sv:value>4</sv:value>
+          <sv:value>false</sv:value>
+          <sv:value>false</sv:value>
+          <sv:value>false</sv:value>
+        </sv:property>
+      </sv:node>
+      <sv:node sv:name="Depreciation">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hst:sitemenuitem</sv:value>
+        </sv:property>
+        <sv:property sv:name="jcr:uuid" sv:type="String">
+          <sv:value>d7a1009d-4355-425a-a70c-762da9f8d5b9</sv:value>
+        </sv:property>
+        <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+          <sv:value>ITR1.enabled</sv:value>
+          <sv:value>weight</sv:value>
+          <sv:value>ITR4S.enabled</sv:value>
+          <sv:value>ITR2.enabled</sv:value>
+          <sv:value>sub-menu</sv:value>
+          <sv:value>ITR3.enabled</sv:value>
+        </sv:property>
+        <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+          <sv:value>false</sv:value>
+          <sv:value>5</sv:value>
+          <sv:value>false</sv:value>
+          <sv:value>false</sv:value>
+          <sv:value>true</sv:value>
+          <sv:value>false</sv:value>
+        </sv:property>
+        <sv:node sv:name="Schedule DPM">
+          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+            <sv:value>hst:sitemenuitem</sv:value>
+          </sv:property>
+          <sv:property sv:name="jcr:uuid" sv:type="String">
+            <sv:value>c769ac31-0bfd-49b3-b43d-bbe59f31556a</sv:value>
+          </sv:property>
+          <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+            <sv:value>theURL</sv:value>
+            <sv:value>weight</sv:value>
+          </sv:property>
+          <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+            <sv:value>/../scheduleDPM.html</sv:value>
+            <sv:value>1</sv:value>
+          </sv:property>
+        </sv:node>
+        <sv:node sv:name="Schedule DOA">
+          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+            <sv:value>hst:sitemenuitem</sv:value>
+          </sv:property>
+          <sv:property sv:name="jcr:uuid" sv:type="String">
+            <sv:value>fd38133a-5bd9-4b7a-a096-7a10f5a6f0dc</sv:value>
+          </sv:property>
+          <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+            <sv:value>theURL</sv:value>
+            <sv:value>weight</sv:value>
+          </sv:property>
+          <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+            <sv:value>/../scheduleDOA.html</sv:value>
+            <sv:value>2</sv:value>
+          </sv:property>
+        </sv:node>
+        <sv:node sv:name="Schedule DEP">
+          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+            <sv:value>hst:sitemenuitem</sv:value>
+          </sv:property>
+          <sv:property sv:name="jcr:uuid" sv:type="String">
+            <sv:value>e264302c-1aef-4b37-962f-40f3dc25315c</sv:value>
+          </sv:property>
+          <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+            <sv:value>theURL</sv:value>
+            <sv:value>weight</sv:value>
+          </sv:property>
+          <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+            <sv:value>/../scheduleDEP.html</sv:value>
+            <sv:value>3</sv:value>
+          </sv:property>
+        </sv:node>
+        <sv:node sv:name="Schedule DCG">
+          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+            <sv:value>hst:sitemenuitem</sv:value>
+          </sv:property>
+          <sv:property sv:name="jcr:uuid" sv:type="String">
+            <sv:value>2a5b3e65-2a99-418d-868d-00e65f288685</sv:value>
+          </sv:property>
+          <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+            <sv:value>theURL</sv:value>
+            <sv:value>weight</sv:value>
+          </sv:property>
+          <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+            <sv:value>/../deemedcapitalgain.html</sv:value>
+            <sv:value>4</sv:value>
+          </sv:property>
+        </sv:node>
+        <sv:node sv:name="Schedule UD">
+          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+            <sv:value>hst:sitemenuitem</sv:value>
+          </sv:property>
+          <sv:property sv:name="jcr:uuid" sv:type="String">
+            <sv:value>407a5efc-5d1e-4b09-bb8f-9ec0501a0c1a</sv:value>
+          </sv:property>
+          <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+            <sv:value>theURL</sv:value>
+            <sv:value>weight</sv:value>
+          </sv:property>
+          <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+            <sv:value>/../scheduleUD.html</sv:value>
+            <sv:value>5</sv:value>
+          </sv:property>
+        </sv:node>
+      </sv:node>
+      <sv:node sv:name="Schedule ESR">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hst:sitemenuitem</sv:value>
+        </sv:property>
+        <sv:property sv:name="jcr:uuid" sv:type="String">
+          <sv:value>00943bcc-d091-4f6a-8a9c-55bdfa362ed7</sv:value>
+        </sv:property>
+        <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+          <sv:value>theURL</sv:value>
+          <sv:value>ITR1.enabled</sv:value>
+          <sv:value>weight</sv:value>
+          <sv:value>ITR2.enabled</sv:value>
+          <sv:value>ITR3.enabled</sv:value>
+          <sv:value>ITR4S.enabled</sv:value>
+        </sv:property>
+        <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+          <sv:value>/../scheduleESR.html</sv:value>
+          <sv:value>false</sv:value>
+          <sv:value>6</sv:value>
+          <sv:value>false</sv:value>
+          <sv:value>false</sv:value>
           <sv:value>false</sv:value>
         </sv:property>
       </sv:node>
