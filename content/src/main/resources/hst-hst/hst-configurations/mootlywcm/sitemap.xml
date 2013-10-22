@@ -4549,7 +4549,8 @@
 <!-- /raw material -->
 <!--  url for manufacturing :finished goods -->
 
-<sv:node sv:name="manufacture_finishedgoods.html">
+
+<sv:node sv:name="manufacture_finishedgoods.html" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hst:sitemapitem</sv:value>
   </sv:property>
@@ -4566,7 +4567,7 @@
     <sv:value>membermanufacture_finishedgoods</sv:value>
   </sv:property>
   <sv:property sv:name="hst:refId" sv:type="String">
-    <sv:value>manufacture_rawmaterials</sv:value>
+    <sv:value>manufacture_finishedgoods</sv:value>
   </sv:property>
   <sv:property sv:name="hst:relativecontentpath" sv:type="String">
     <sv:value>members</sv:value>
@@ -4637,6 +4638,7 @@
     </sv:property>
   </sv:node>
 </sv:node>
+
 
 <!-- /finished goods -->
 <!-- firm partner -->
