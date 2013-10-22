@@ -689,14 +689,16 @@
           <sv:value>theURL</sv:value>
           <sv:value>weight</sv:value>
           <sv:value>ITR1.enabled</sv:value>
-          <sv:value>ITR3.enabled</sv:value>
+          <sv:value>ITR2.enabled</sv:value>
           <sv:value>ITR4.enabled</sv:value>
+          <sv:value>ITR4S.enabled</sv:value>
         </sv:property>
         <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
           <sv:value>/../incomefromfirmsItr3.html</sv:value>
           <sv:value>8</sv:value>
           <sv:value>false</sv:value>
-          <sv:value>true</sv:value>
+          <sv:value>false</sv:value>
+          <sv:value>false</sv:value>
           <sv:value>false</sv:value>
         </sv:property>
       </sv:node>
