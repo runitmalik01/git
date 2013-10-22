@@ -126,6 +126,74 @@ for (HstSiteMenuItem siteMenuItem : itrSiteMenu.getSiteMenuItems() ){
 }
 //How is the page designed, lets define a structure for this page using simple linkedhashmap and arraylist
 %>
+<% final class EvaluateMenusList{
+	String propertyToCheck;
+	boolean hasDIY;
+	String theResolvedPathInfoFileName;
+	boolean didWeFindTheResolvedMapItemInMenu;
+	EvaluateMenusList(String propertyToCheck,boolean hasDIY,String theResolvedPathInfoFileName,boolean didWeFindTheResolvedMapItemInMenu){
+		this.propertyToCheck = propertyToCheck;
+		this.hasDIY = hasDIY;
+		this.theResolvedPathInfoFileName = theResolvedPathInfoFileName;
+		this.didWeFindTheResolvedMapItemInMenu = didWeFindTheResolvedMapItemInMenu;
+	}
+	public List<HstSiteMenuItem> getListOfSortedMenutItems(HstSiteMenuItem itrSiteMenuItem){
+		if (itrSiteMenuItem != null && itrSiteMenuItem.getChildMenuItems() != null && propertyToCheck != null) {
+			List<HstSiteMenuItem> listOfChildMenuItems = itrSiteMenuItem.getChildMenuItems();
+			List<HstSiteMenuItem> onlyEnabledForThisITRForm = new ArrayList<HstSiteMenuItem>();
+			for (HstSiteMenuItem anItem:listOfChildMenuItems) {
+				if (anItem.getParameter(propertyToCheck) == null || (anItem.getParameter(propertyToCheck) != null && anItem.getParameter(propertyToCheck).equals("true"))) {
+					if (hasDIY || ( !hasDIY && anItem.getParameter("nonDIY") != null )) {
+						onlyEnabledForThisITRForm.add(anItem);
+					}
+				}
+			}
+			Collections.sort(onlyEnabledForThisITRForm,new MenuComparator());
+			return onlyEnabledForThisITRForm;
+		}
+		return null;
+	} 
+	public void getMenuItemsAttributes(HttpServletRequest request,HstSiteMenuItem anItem){
+		 Boolean shouldPutDivider = null;
+		 Boolean isAPackage = null;
+		 request.removeAttribute("shouldPutDivider");
+		 request.removeAttribute("isAPackage");
+		 request.removeAttribute("price");
+		 request.removeAttribute("sub-menu");
+		 if (anItem != null) {
+			String theURL =  anItem.getParameter("theURL");
+			String isPackage =  anItem.getParameter("isPackage");
+			String weight =  anItem.getParameter("weight");
+			String subMenu =  anItem.getParameter("sub-menu");
+			if(subMenu!=null && subMenu.equalsIgnoreCase("true")) request.setAttribute("subMenu", true);
+			else request.setAttribute("subMenu", false);
+			if (isPackage != null && isPackage.equals("true")) {
+				isAPackage = Boolean.TRUE;
+				if (weight != null && weight.equals("0")) {
+					shouldPutDivider = null;
+				}
+				else {
+					shouldPutDivider = Boolean.TRUE;
+				}
+				String price = anItem.getParameter("price");
+				if (price != null) request.setAttribute("price", price);
+			}
+			else {
+				isAPackage = null;
+			}
+			if (shouldPutDivider != null) request.setAttribute("shouldPutDivider",shouldPutDivider);
+			if (isAPackage != null) request.setAttribute("isAPackage",isAPackage);
+		 	//String theURL = anItem.getHstLink().toUrlForm(hstRequest.getRequestContext(), true);
+		 	if (theURL != null) {
+		 		request.setAttribute("theURL",theURL);
+		 		if (theURL.contains(theResolvedPathInfoFileName)) didWeFindTheResolvedMapItemInMenu= true;
+		 	}
+		 	else {
+		 		request.setAttribute("theURL", "#");
+		 	}
+		 }
+	}
+} %>
 <div class="navbar">
    <div class="navbar-inner">
       <div class="container" style="font-size: small;">
@@ -153,65 +221,44 @@ for (HstSiteMenuItem siteMenuItem : itrSiteMenu.getSiteMenuItems() ){
 	                				<%-- bad luck the child menus r not SORTED it sucks so lets sort it for now based on weight  --%>
 	                				<%
 	                					HstSiteMenuItem itrSiteMenuItem = (HstSiteMenuItem) request.getAttribute("itrSiteMenuItem");
-	                					if (itrSiteMenuItem != null && itrSiteMenuItem.getChildMenuItems() != null && propertyToCheck != null) {
-		                					List<HstSiteMenuItem> listOfChildMenuItems = itrSiteMenuItem.getChildMenuItems();
-		                					List<HstSiteMenuItem> onlyEnabledForThisITRForm = new ArrayList<HstSiteMenuItem>();
-		                					for (HstSiteMenuItem anItem:listOfChildMenuItems) {
-		                						if (anItem.getParameter(propertyToCheck) == null || (anItem.getParameter(propertyToCheck) != null && anItem.getParameter(propertyToCheck).equals("true"))) {
-		                							if (hasDIY || ( !hasDIY && anItem.getParameter("nonDIY") != null )) {
-		                								onlyEnabledForThisITRForm.add(anItem);
-		                							}
-		                						}
-		                					}
-		                					Collections.sort(onlyEnabledForThisITRForm,new MenuComparator());
-		                					request.setAttribute("listOfChildMenuItems", onlyEnabledForThisITRForm);
-	                					}
+	                					EvaluateMenusList evaluateMenusList = new EvaluateMenusList(propertyToCheck,hasDIY,theResolvedPathInfoFileName,didWeFindTheResolvedMapItemInMenu);	                						
+	                					request.setAttribute("listOfChildMenuItems", evaluateMenusList.getListOfSortedMenutItems(itrSiteMenuItem));	                					
 	                				%>
 	                				<c:forEach items="${listOfChildMenuItems}" var="childMenuItem">
 	                					<c:set var="childMenuItemReq" scope="request" value="${childMenuItem}"/>
 	                					<%
-	                					 HstSiteMenuItem anItem = ( HstSiteMenuItem ) request.getAttribute("childMenuItemReq");
-	                					 Boolean shouldPutDivider = null;
-	                					 Boolean isAPackage = null;
-	                					 request.removeAttribute("shouldPutDivider");
-	                					 request.removeAttribute("isAPackage");
-	                					 request.removeAttribute("price");
-	                					 if (anItem != null) {
-	                						String theURL =  anItem.getParameter("theURL");
-	                						String isPackage =  anItem.getParameter("isPackage");
-	                						String weight =  anItem.getParameter("weight");
-	                						if (isPackage != null && isPackage.equals("true")) {
-	                							isAPackage = Boolean.TRUE;
-	                							if (weight != null && weight.equals("0")) {
-	                								shouldPutDivider = null;
-	                							}
-	                							else {
-	                								shouldPutDivider = Boolean.TRUE;
-	                							}
-	                							String price = anItem.getParameter("price");
-	                							if (price != null) request.setAttribute("price", price);
-	                						}
-	                						else {
-	                							isAPackage = null;
-	                						}
-	                						if (shouldPutDivider != null) request.setAttribute("shouldPutDivider",shouldPutDivider);
-	                						if (isAPackage != null) request.setAttribute("isAPackage",isAPackage);
-	                					 	//String theURL = anItem.getHstLink().toUrlForm(hstRequest.getRequestContext(), true);
-	                	 				 	if (theURL != null) {
-	                	 				 		request.setAttribute("theURL",theURL);
-	                	 				 		if (theURL.contains(theResolvedPathInfoFileName)) didWeFindTheResolvedMapItemInMenu= true;
-	                	 				 	}
-	                	 				 	else {
-	                	 				 		request.setAttribute("theURL", "#");
-	                	 				 	}
-	                					 }
+	                					HstSiteMenuItem anItem = ( HstSiteMenuItem ) request.getAttribute("childMenuItemReq");
+	                					 evaluateMenusList.getMenuItemsAttributes(request,anItem);
 	                					%>
 	                					<c:if test="${not empty shouldPutDivider}">
 	                						<li class="divider"></li>
 	                					</c:if>
+	                					<c:set var="subMenuChildCount" value="${fn:length(childMenuItem.childMenuItems)}"/>
 	                					<c:choose>
 	                						<c:when test="${childMenuItem.name == 'nav-header' || childMenuItem.name == 'divider' || not empty isAPackage}">
 	                							<li class="nav-header">${childMenuItem.name}</li>
+	                						</c:when>
+	                						<c:when test="${subMenu && subMenuChildCount gt 0}">
+	                						  <li class="dropdown-submenu">
+	                							<a tabindex="-1" href="#">${childMenuItem.name}</a>                							
+	                							<c:set var="childMenuItem" value="${childMenuItem}" scope="request"/>
+	                							 <c:if test="${subMenuChildCount gt 0}">
+	                							    <ul class="dropdown-menu">
+	                							    <%	                  						
+	                							     HstSiteMenuItem childMenuItem = (HstSiteMenuItem) request.getAttribute("childMenuItem");
+	                					             request.setAttribute("listOfSubChildMenuItems", evaluateMenusList.getListOfSortedMenutItems(childMenuItem));	                					
+	                				                 %>
+	                							      <c:forEach items="${listOfSubChildMenuItems}" var="subChildMenuItem">
+	                							        <c:set var="subChildMenuItemReq" scope="request" value="${subChildMenuItem}"/>
+	                					             <%
+	                					              HstSiteMenuItem anChildItem = ( HstSiteMenuItem ) request.getAttribute("subChildMenuItemReq");
+	                					              evaluateMenusList.getMenuItemsAttributes(request,anChildItem);
+	                					             %>
+                                                        <li><a tabindex="-1" href="${scriptName}${theURL}">${subChildMenuItem.name}</a></li>
+                                                      </c:forEach>
+                                                    </ul>
+                                                  </c:if>
+                                               </li>
 	                						</c:when>
 	                						<c:otherwise>
 	                							<li><a href="${scriptName}${theURL}">${childMenuItem.name}</a></li>
