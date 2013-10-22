@@ -31,9 +31,9 @@ public enum ITRXmlValidation {
 	boolean validateOrNot;//Decide that we will validate or not
 	String screenSiteMapRefID;//sitemapRefID of Screen that need to be reviewed
 	String documentName;//name of Document for Screen
-	String dependScreenSiteMapRefID;
-	String dependDocumentName;
-	boolean crossValidate;
+	String dependScreenSiteMapRefID;//added siteMapRef ID of Dependent Screen  
+	String dependDocumentName;//name of document of dependent screen
+	boolean crossValidate;//want to validate at cross-over i.e from both side
 	ITRForm[] itrForms;//List of all ITRForm that will validate for validation
 	ValidateProperty[] validateProperty;//name of all dependent screen on which this will depend
 
