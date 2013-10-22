@@ -9,6 +9,8 @@ import java.util.List;
 import com.mootly.wcm.beans.AssetAndLiabilityDocument;
 import com.mootly.wcm.beans.BusinessProfessionDocument;
 import com.mootly.wcm.beans.IncomeFromFirmsDocument;
+import com.mootly.wcm.beans.ManufactureFinishedProductsDocument;
+import com.mootly.wcm.beans.ManufactureRawMatDocument;
 import com.mootly.wcm.beans.NatureBusinessDocument;
 import com.mootly.wcm.beans.ScheduleFiveADocument;
 
@@ -18,16 +20,20 @@ import com.mootly.wcm.beans.ScheduleFiveADocument;
  */
 public enum ITRXmlValidation {
 
-	VALIDATE1(true,"memberschedule5a",ScheduleFiveADocument.class.getSimpleName(),new ITRForm[]{ITRForm.ITR2,ITRForm.ITR4},new ValidateProperty[]{}),
-	VALIDATE2(true,"schedule-business-profession",BusinessProfessionDocument.class.getSimpleName(),new ITRForm[]{ITRForm.ITR4S},new ValidateProperty[]{}),
-	VALIDATE3(true,"businessnature",NatureBusinessDocument.class.getSimpleName(),new ITRForm[]{ITRForm.ITR4S,ITRForm.ITR4},new ValidateProperty[]{}),
-	VALIDATE4(true,"assetandliability",AssetAndLiabilityDocument.class.getSimpleName(),new ITRForm[]{ITRForm.ITR4},new ValidateProperty[]{ValidateProperty.PROP_1,ValidateProperty.PROP_2}),
-	VALIDATE5(true,"",IncomeFromFirmsDocument.class.getSimpleName(),new ITRForm[]{ITRForm.ITR3},new ValidateProperty[]{}),
+	VALIDATE1(true,"memberschedule5a",ScheduleFiveADocument.class.getSimpleName(),null,null,false,new ITRForm[]{ITRForm.ITR2,ITRForm.ITR4},new ValidateProperty[]{}),
+	VALIDATE2(true,"schedule-business-profession",BusinessProfessionDocument.class.getSimpleName(),null,null,false,new ITRForm[]{ITRForm.ITR4S},new ValidateProperty[]{}),
+	VALIDATE3(true,"businessnature",NatureBusinessDocument.class.getSimpleName(),null,null,false,new ITRForm[]{ITRForm.ITR4S,ITRForm.ITR4},new ValidateProperty[]{}),
+	VALIDATE4(true,"assetandliability",AssetAndLiabilityDocument.class.getSimpleName(),null,null,false,new ITRForm[]{ITRForm.ITR4},new ValidateProperty[]{ValidateProperty.PROP_1,ValidateProperty.PROP_2}),
+	VALIDATE5(true,"memberincomefromfirmsItr3",IncomeFromFirmsDocument.class.getSimpleName(),null,null,false,new ITRForm[]{ITRForm.ITR3},new ValidateProperty[]{}),
+	VALIDATE6(true,"manufacture_rawmaterials",ManufactureRawMatDocument.class.getSimpleName(),"manufacture_finishedgoods",ManufactureFinishedProductsDocument.class.getSimpleName(),true,new ITRForm[]{ITRForm.ITR4},new ValidateProperty[]{}),
 	UNKOWN;
 
 	boolean validateOrNot;//Decide that we will validate or not
 	String screenSiteMapRefID;//sitemapRefID of Screen that need to be reviewed
 	String documentName;//name of Document for Screen
+	String dependScreenSiteMapRefID;
+	String dependDocumentName;
+	boolean crossValidate;
 	ITRForm[] itrForms;//List of all ITRForm that will validate for validation
 	ValidateProperty[] validateProperty;//name of all dependent screen on which this will depend
 
@@ -35,11 +41,14 @@ public enum ITRXmlValidation {
 		// TODO Auto-generated constructor stub
 	}
 
-	private ITRXmlValidation(boolean validateOrNot, String screenSiteMapRefID, String documentName, ITRForm[] itrForm, ValidateProperty[] validateProperty){
+	private ITRXmlValidation(boolean validateOrNot, String screenSiteMapRefID, String documentName, String dependScreenSiteMapRefID, String dependDocumentName, boolean crossValidate, ITRForm[] itrForm, ValidateProperty[] validateProperty){
 
 		this.validateOrNot = validateOrNot;
 		this.screenSiteMapRefID = screenSiteMapRefID;
 		this.documentName = documentName;
+		this.dependScreenSiteMapRefID = dependScreenSiteMapRefID;
+		this.dependDocumentName = dependDocumentName;
+		this.crossValidate = crossValidate;
 		this.itrForms = itrForm;
 		this.validateProperty = validateProperty;
 	}
@@ -64,6 +73,18 @@ public enum ITRXmlValidation {
 		return validateProperty;
 	}
 
+	public String getDependDocumentName() {
+		return dependDocumentName;
+	}
+	
+	public String getDependScreenSiteMapRefID() {
+		return dependScreenSiteMapRefID;
+	}
+	
+	public boolean isCrossValidate() {
+		return crossValidate;
+	}
+	
 	public static List<ITRXmlValidation> getListOfXmlValidation(){
 		List<ITRXmlValidation> listOfITRXmlValidation = new ArrayList<ITRXmlValidation>();
 		for(ITRXmlValidation itrXmlValidation:ITRXmlValidation.values()){
