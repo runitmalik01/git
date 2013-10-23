@@ -121,7 +121,7 @@
 			<tr align="center">
 				<th><b><fmt:message key="firm_PAN.schBP.ITR3" /> </b>
 				</th>
-				<th align="left"><b>Salary, Bonus, Commissionf </b>
+				<th align="left"><b>Salary, Bonus, Commission</b>
 				</th>
 				<th align="left"><b><fmt:message key="interest_Rcv.schBP.itr3" /> </b></th>
 				<th><b><fmt:message key="total_SalaryAndInterest.schBP.itr3" /> </b></th>
