@@ -1,4 +1,4 @@
-%@page import="com.mootly.wcm.model.ITRTab"%>
+<%@page import="com.mootly.wcm.model.ITRTab"%>
 <%@include file="../includes/tags.jspf"%>
 <%@ page import="com.mootly.wcm.utils.*"%>
 <%@ page import="java.util.*"%>
