@@ -382,8 +382,8 @@ public class ITRScreenXmlValidateServiceImpl implements ITRScreenXmlValidateServ
 		String dependSiteMapReferenceId = itrXmlValidation.getDependScreenSiteMapRefID();
 		ITReturnComponent itReturnComponent = new ITReturnComponent();
 		//create URL for both screens
-		String redirectURLForSiteMapItem = itReturnComponent.getRedirectURLForSiteMapItem(request, response, null, siteMapReferenceId, financialYear, folderContainsITReturnDocuments, mpi.getPAN());
-		String dependRedirectURLForSiteMapItem = itReturnComponent.getRedirectURLForSiteMapItem(request, response, null, dependSiteMapReferenceId, financialYear, folderContainsITReturnDocuments, mpi.getPAN());
+		String redirectURLForSiteMapItem = itReturnComponent.getRedirectURLForSiteMapItem(request, response, null, siteMapReferenceId, financialYear, folderContainsITReturnDocuments, mpi.getPAN().toLowerCase());
+		String dependRedirectURLForSiteMapItem = itReturnComponent.getRedirectURLForSiteMapItem(request, response, null, dependSiteMapReferenceId, financialYear, folderContainsITReturnDocuments, mpi.getPAN().toLowerCase());
 		//check that both screens are present in Parent Folder or not 
 		boolean isPrimaryInValid = getValidateType(itrXmlValidation.getDocumentName(), parentFolder, 1);
 		boolean isSecondaryInValid = getValidateType(itrXmlValidation.getDependDocumentName(), parentFolder, 1);
