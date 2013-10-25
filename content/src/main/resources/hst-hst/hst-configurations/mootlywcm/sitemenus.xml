@@ -1447,12 +1447,14 @@
           <sv:value>ITR1.enabled</sv:value>
           <sv:value>ITR2.enabled</sv:value>
           <sv:value>ITR4.enabled</sv:value>
+          <sv:value>ITR3.enabled</sv:value>
         </sv:property>
         <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
           <sv:value>/../foreignincome.html</sv:value>
           <sv:value>9</sv:value>
           <sv:value>false</sv:value>
           <sv:value>true</sv:value>
+          <sv:value>false</sv:value>
           <sv:value>false</sv:value>
         </sv:property>
       </sv:node>
@@ -1599,7 +1601,7 @@
           <sv:value>false</sv:value>
           <sv:value>false</sv:value>
           <sv:value>true</sv:value>
-          <sv:value>false</sv:value>
+          <sv:value>true</sv:value>
         </sv:property>
       </sv:node>
     </sv:node>
