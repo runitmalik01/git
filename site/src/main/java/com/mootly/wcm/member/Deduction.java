@@ -8,6 +8,10 @@
  */
 package com.mootly.wcm.member;
 
+import in.gov.incometaxindiaefiling.y2012_2013.ITR;
+import in.gov.incometaxindiaefiling.y2012_2013.PartBTI;
+import in.gov.incometaxindiaefiling.y2012_2013.ScheduleVIA;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -26,6 +30,7 @@ import org.hippoecm.hst.content.beans.ObjectBeanManagerException;
 import org.hippoecm.hst.content.beans.ObjectBeanPersistenceException;
 import org.hippoecm.hst.content.beans.manager.workflow.WorkflowCallbackHandler;
 import org.hippoecm.hst.content.beans.manager.workflow.WorkflowPersistenceManager;
+import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.core.component.HstComponentException;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
@@ -45,9 +50,13 @@ import com.mootly.wcm.annotations.PrimaryBean;
 import com.mootly.wcm.annotations.RequiredBeans;
 import com.mootly.wcm.annotations.RequiredFields;
 import com.mootly.wcm.annotations.ValueListBeans;
+import com.mootly.wcm.beans.CapitalAssetDocument;
 import com.mootly.wcm.beans.DeductionDocument;
+import com.mootly.wcm.beans.DeductionSchedTenADocumemt;
 import com.mootly.wcm.beans.FormSixteenDocument;
 import com.mootly.wcm.beans.HouseProperty;
+import com.mootly.wcm.beans.IncBusinessProfessionDoc;
+import com.mootly.wcm.beans.IncomeFromFirmsDocument;
 import com.mootly.wcm.beans.MemberDeductionScheduleC;
 import com.mootly.wcm.beans.MemberDeductionScheduleG;
 import com.mootly.wcm.beans.MemberDeductionScheduleGG;
@@ -56,16 +65,25 @@ import com.mootly.wcm.beans.MemberDeductionScheduleIB;
 import com.mootly.wcm.beans.MemberDeductionScheduleIC;
 import com.mootly.wcm.beans.MemberDeductionScheduleVIA;
 import com.mootly.wcm.beans.MemberPersonalInformation;
+import com.mootly.wcm.beans.OtherInformationDocument;
 import com.mootly.wcm.beans.OtherSourcesDocument;
+import com.mootly.wcm.beans.ProfitAndLossDocument;
 import com.mootly.wcm.beans.SalaryIncomeDocument;
+import com.mootly.wcm.beans.ScheduleDOADocument;
+import com.mootly.wcm.beans.ScheduleDPMDocument;
+import com.mootly.wcm.beans.ScheduleESRDocument;
+import com.mootly.wcm.beans.ScheduleSIDocument;
 import com.mootly.wcm.beans.compound.DeductionDocumentDetail;
 import com.mootly.wcm.beans.compound.FormSixteenDetail;
 import com.mootly.wcm.beans.compound.HouseIncomeDetail;
 import com.mootly.wcm.components.ITReturnComponent;
 import com.mootly.wcm.model.DoneeWithPan;
+import com.mootly.wcm.model.ITRForm;
 import com.mootly.wcm.model.ResidentStatus;
 import com.mootly.wcm.model.deduction.DeductionHead;
 import com.mootly.wcm.model.deduction.DeductionSection;
+import com.mootly.wcm.model.schedules.y2012_2013.DeductionVIASchedules;
+import com.mootly.wcm.model.schedules.y2012_2013.PartB_TI;
 import com.mootly.wcm.services.DeductionListService;
 import com.mootly.wcm.services.ScreenCalculatorService;
 import com.mootly.wcm.utils.ContentStructure;
@@ -273,7 +291,9 @@ public class Deduction extends ITReturnComponent {
 					salarypension=salaryincome.getTotal();
 			}
 			totalMapForJS.put("salarypension", salarypension);
-
+			//added Business Income for ITR4
+			totalMapForJS.put("businessIncome", getBusinessIncome(request));
+			
 			if(othersourcesdoc!=null)
 				othersources=othersourcesdoc.getTaxable_income();
 			totalMapForJS.put("othersources", othersources);
@@ -295,7 +315,43 @@ public class Deduction extends ITReturnComponent {
 			}
 		}
 	}
+	public Double getBusinessIncome(HstRequest request){
+		Double businessIncome = 0d;
+		MemberPersonalInformation pi = (MemberPersonalInformation) request.getAttribute(MemberPersonalInformation.class.getSimpleName().toLowerCase());
+		ITRForm selectedITR = pi.getSelectedITRForm();
+		if(selectedITR.equals(ITRForm.ITR4)){
+			Map<String, HippoBean> inputBeans = new HashMap<String, HippoBean>();
+			inputBeans.put(MemberPersonalInformation.class.getSimpleName().toLowerCase(), (MemberPersonalInformation)request.getAttribute(MemberPersonalInformation.class.getSimpleName().toLowerCase()));
+			inputBeans.put(OtherSourcesDocument.class.getSimpleName().toLowerCase(), (OtherSourcesDocument)request.getAttribute(OtherSourcesDocument.class.getSimpleName().toLowerCase()));
+			inputBeans.put(HouseProperty.class.getSimpleName().toLowerCase(), (HouseProperty)request.getAttribute(HouseProperty.class.getSimpleName().toLowerCase()));
+			inputBeans.put(FormSixteenDocument.class.getSimpleName().toLowerCase(), (FormSixteenDocument)request.getAttribute(FormSixteenDocument.class.getSimpleName().toLowerCase()));
+			inputBeans.put(SalaryIncomeDocument.class.getSimpleName().toLowerCase(), (SalaryIncomeDocument)request.getAttribute(SalaryIncomeDocument.class.getSimpleName().toLowerCase()));
+			inputBeans.put(IncBusinessProfessionDoc.class.getSimpleName().toLowerCase(), (IncBusinessProfessionDoc)request.getAttribute(IncBusinessProfessionDoc.class.getSimpleName().toLowerCase()));
+			inputBeans.put(ProfitAndLossDocument.class.getSimpleName().toLowerCase(), (ProfitAndLossDocument)request.getAttribute(ProfitAndLossDocument.class.getSimpleName().toLowerCase()));
+			inputBeans.put(OtherInformationDocument.class.getSimpleName().toLowerCase(), (OtherInformationDocument)request.getAttribute(OtherInformationDocument.class.getSimpleName().toLowerCase()));
+			inputBeans.put(ScheduleDPMDocument.class.getSimpleName().toLowerCase(), (ScheduleDPMDocument)request.getAttribute(ScheduleDPMDocument.class.getSimpleName().toLowerCase()));
+			inputBeans.put(ScheduleDOADocument.class.getSimpleName().toLowerCase(), (ScheduleDOADocument)request.getAttribute(ScheduleDOADocument.class.getSimpleName().toLowerCase()));
+			inputBeans.put(ScheduleESRDocument.class.getSimpleName().toLowerCase(), (ScheduleESRDocument)request.getAttribute(ScheduleESRDocument.class.getSimpleName().toLowerCase()));
+			inputBeans.put(DeductionSchedTenADocumemt.class.getSimpleName().toLowerCase(), (DeductionSchedTenADocumemt)request.getAttribute(DeductionSchedTenADocumemt.class.getSimpleName().toLowerCase()));
+			inputBeans.put(IncomeFromFirmsDocument.class.getSimpleName().toLowerCase(), (IncomeFromFirmsDocument)request.getAttribute(IncomeFromFirmsDocument.class.getSimpleName().toLowerCase()));
 
+			DeductionDocument deductionDocument = (DeductionDocument) request.getAttribute(DeductionDocument.class.getSimpleName().toLowerCase());
+			ITR itr = new ITR();
+			PartB_TI partB_TI = new	PartB_TI((FormSixteenDocument)request.getAttribute(FormSixteenDocument.class.getSimpleName().toLowerCase()),
+					(SalaryIncomeDocument)request.getAttribute(SalaryIncomeDocument.class.getSimpleName().toLowerCase()),
+					(HouseProperty)request.getAttribute(HouseProperty.class.getSimpleName().toLowerCase()),
+					(OtherSourcesDocument)(OtherSourcesDocument)request.getAttribute(OtherSourcesDocument.class.getSimpleName().toLowerCase()),
+					deductionDocument, (MemberPersonalInformation)request.getAttribute(MemberPersonalInformation.class.getSimpleName().toLowerCase()),
+					(ScheduleSIDocument)request.getAttribute(ScheduleSIDocument.class.getSimpleName().toLowerCase()), (CapitalAssetDocument)request.getAttribute(CapitalAssetDocument.class.getSimpleName().toLowerCase()),
+					(IncBusinessProfessionDoc)request.getAttribute(IncBusinessProfessionDoc.class.getSimpleName().toLowerCase()),(ProfitAndLossDocument)request.getAttribute(ProfitAndLossDocument.class.getSimpleName().toLowerCase()),
+					(OtherInformationDocument)request.getAttribute(OtherInformationDocument.class.getSimpleName().toLowerCase()),(ScheduleDPMDocument)request.getAttribute(ScheduleDPMDocument.class.getSimpleName().toLowerCase()),
+					(ScheduleDOADocument)request.getAttribute(ScheduleDOADocument.class.getSimpleName().toLowerCase()),(ScheduleESRDocument)request.getAttribute(ScheduleESRDocument.class.getSimpleName().toLowerCase()),
+					(DeductionSchedTenADocumemt)request.getAttribute(DeductionSchedTenADocumemt.class.getSimpleName().toLowerCase()), (IncomeFromFirmsDocument)request.getAttribute(IncomeFromFirmsDocument.class.getSimpleName().toLowerCase()));
+			PartBTI partBTI = partB_TI.getPartBTI(itr, getFinancialYear(), inputBeans);
+			businessIncome = partBTI.getProfBusGain().getTotProfBusGain().doubleValue();
+		}
+		return businessIncome;
+	}
 	@Override
 	public void doAction(HstRequest request, HstResponse response)
 			throws HstComponentException {

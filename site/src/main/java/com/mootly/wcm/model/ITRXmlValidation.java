@@ -23,7 +23,7 @@ public enum ITRXmlValidation {
 	VALIDATE1(true,"memberschedule5a",ScheduleFiveADocument.class.getSimpleName(),null,null,false,new ITRForm[]{ITRForm.ITR2,ITRForm.ITR4},new ValidateProperty[]{}),
 	VALIDATE2(true,"schedule-business-profession",BusinessProfessionDocument.class.getSimpleName(),null,null,false,new ITRForm[]{ITRForm.ITR4S},new ValidateProperty[]{}),
 	VALIDATE3(true,"businessnature",NatureBusinessDocument.class.getSimpleName(),null,null,false,new ITRForm[]{ITRForm.ITR4S,ITRForm.ITR4},new ValidateProperty[]{}),
-	VALIDATE4(true,"assetandliability",AssetAndLiabilityDocument.class.getSimpleName(),null,null,false,new ITRForm[]{ITRForm.ITR4},new ValidateProperty[]{ValidateProperty.PROP_1,ValidateProperty.PROP_2}),
+	VALIDATE4(true,"assetandliability",AssetAndLiabilityDocument.class.getSimpleName(),null,null,false,new ITRForm[]{ITRForm.ITR3,ITRForm.ITR4},new ValidateProperty[]{ValidateProperty.PROP_1,ValidateProperty.PROP_2}),
 	VALIDATE5(true,"memberincomefromfirmsItr3",IncomeFromFirmsDocument.class.getSimpleName(),null,null,false,new ITRForm[]{ITRForm.ITR3},new ValidateProperty[]{}),
 	VALIDATE6(true,"manufacture_rawmaterials",ManufactureRawMatDocument.class.getSimpleName(),"manufacture_finishedgoods",ManufactureFinishedProductsDocument.class.getSimpleName(),true,new ITRForm[]{ITRForm.ITR4},new ValidateProperty[]{}),
 	UNKOWN;
