@@ -55,7 +55,7 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 									key="name.trust.itr2" /> </small> </label>
 					</div>
 					<div class="rowlabel">
-						<input id="name_trust" name="name_trust"
+						<input id="name_trust" name="name_trust" class="uprcase"
 							type="text" maxlength="125"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.name_Trust}"/></c:if>" />
 					</div>
@@ -67,7 +67,7 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 					</div>
 					<div class="rowlabel">
 						<input id="address_trust" name="address_trust"
-							type="text"  maxlength="200"
+							type="text"  maxlength="200" class="uprcase"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.address_Trust}"/></c:if>" />
 					</div>
 				</div>
@@ -80,7 +80,7 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 					</div>
 					<div class="rowlabel">
 						<input id="name_othertrust" name="name_othertrust"
-							type="text"
+							type="text" class="uprcase"
 							 maxlength="125"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.name_Othertrust}"/></c:if>" />
 					</div>
@@ -91,7 +91,7 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 					</div>
 					<div class="rowlabel">
 						<input id="address_othertrust" name="address_othertrust" type="text"
-							maxlength="200"
+							maxlength="200" class="uprcase"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.address_Othertrust}"/></c:if>" />
 					</div>
 				</div>
@@ -102,7 +102,7 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 					</div>
 					<div class="rowlabel">
 						<input id="name_settlor" name="name_settlor" type="text"
-						maxlength="125"
+						maxlength="125" class="uprcase"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.name_Settlor}"/></c:if>" />
 					</div>
 				</div>
@@ -115,7 +115,7 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 					</div>
 					<div class="rowlabel">
 						<input id="address_settlor" name="address_settlor" type="text"
-						maxlength="200"
+						maxlength="200" class="uprcase"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.address_Settlor}"/></c:if>" />
 					</div>
 				</div>
@@ -126,7 +126,7 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 					</div>
 					<div class="rowlabel">
 						<input id="name_beneficiaries" name="name_beneficiaries" type="text"
-						maxlength="125"
+						maxlength="125" class="uprcase"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.name_Beneficiaries}"/></c:if>" />
 					</div>
 				</div>
@@ -137,7 +137,7 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 					</div>
 					<div class="rowlabel">
 						<input id="address_beneficiaries" name="address_beneficiaries" type="text"
-						maxlength="200"
+						maxlength="200" class="uprcase"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.address_Beneficiaries}"/></c:if>" />
 					</div>
 				</div>
@@ -153,7 +153,7 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 		</form>
 	</c:when>
 	<c:otherwise>
-		<table>
+		<table class="table table-bordered">
 			<tr align="center">
 				<th><b><fmt:message key="foreign.country.name" /> </b>
 				</th>
