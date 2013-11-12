@@ -2,6 +2,7 @@ package com.mootly.wcm.model.schedules.y2012_2013;
 
 import in.gov.incometaxindiaefiling.y2012_2013.DeductUndChapVIA;
 import in.gov.incometaxindiaefiling.y2012_2013.ITR;
+import in.gov.incometaxindiaefiling.y2012_2013.PartBTI;
 import in.gov.incometaxindiaefiling.y2012_2013.ScheduleVIA;
 import in.gov.incometaxindiaefiling.y2012_2013.UsrDeductUndChapVIA;
 
@@ -14,16 +15,28 @@ import java.util.List;
 import java.util.Map;
 
 import org.hippoecm.hst.content.beans.standard.HippoBean;
-import org.hippoecm.hst.core.component.HstRequest;
-import org.hippoecm.hst.core.component.HstResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.mootly.wcm.beans.CapitalAssetDocument;
 import com.mootly.wcm.beans.DeductionDocument;
+import com.mootly.wcm.beans.DeductionSchedTenADocumemt;
+import com.mootly.wcm.beans.FormSixteenDocument;
+import com.mootly.wcm.beans.HouseProperty;
+import com.mootly.wcm.beans.IncBusinessProfessionDoc;
+import com.mootly.wcm.beans.IncomeFromFirmsDocument;
 import com.mootly.wcm.beans.MemberPersonalInformation;
+import com.mootly.wcm.beans.OtherInformationDocument;
 import com.mootly.wcm.beans.OtherSourcesDocument;
+import com.mootly.wcm.beans.ProfitAndLossDocument;
+import com.mootly.wcm.beans.SalaryIncomeDocument;
+import com.mootly.wcm.beans.ScheduleDOADocument;
+import com.mootly.wcm.beans.ScheduleDPMDocument;
+import com.mootly.wcm.beans.ScheduleESRDocument;
+import com.mootly.wcm.beans.ScheduleSIDocument;
 import com.mootly.wcm.beans.compound.DeductionDocumentDetail;
 import com.mootly.wcm.model.FinancialYear;
+import com.mootly.wcm.model.ITRForm;
 import com.mootly.wcm.model.deduction.DeductionHead;
 import com.mootly.wcm.model.deduction.DeductionSection;
 import com.mootly.wcm.services.DeductionListService;
@@ -116,6 +129,7 @@ public class DeductionVIASchedules extends XmlCalculation {
 		grossTotal(financialYear, inputBeans);
 		totalMapForJSDe.put("isSeniorCitizen",financialYear.isSeniorCitizen(memberPersonalInformation.getDOB().getTime()));
 		totalMapForJSDe.put("salarypension",longsalarytotal);
+		totalMapForJSDe.put("businessIncome", getBusinessIncome(itr, financialYear, inputBeans));
 		totalMapForJSDe.put("othersources",otherincome);
 		totalMapForJSDe.put("houseproperty",houseIncomeTotal);
 		Map<String,Object> resultMapDe = ScreenCalculatorService.getScreenCalculations("Chapter6Calc.js", requestParameterMap, totalMapForJSDe);
@@ -189,5 +203,33 @@ public class DeductionVIASchedules extends XmlCalculation {
 			listOfDeductionDocumentDetail.add(bankSavingDetail);
 		}
 		return listOfDeductionDocumentDetail;
+	}
+	/**
+	 * Calculate Business Income that also take part while calculating Deductions.
+	 * 
+	 * @param itr {@link ITR}
+	 * @param financialYear {@link FinancialYear}
+	 * @param inputBeans {@link HippoBean}
+	 * 
+	 * **/
+	public Double getBusinessIncome(ITR itr, FinancialYear financialYear,Map<String,HippoBean> inputBeans){
+		Double businessIncome = 0d;
+		MemberPersonalInformation pi = (MemberPersonalInformation) inputBeans.get(MemberPersonalInformation.class.getSimpleName().toLowerCase());
+		ITRForm selectedITR = pi.getSelectedITRForm();
+		if(selectedITR.equals(ITRForm.ITR4)){
+			/*PartB_TI partB_TI = new	PartB_TI((FormSixteenDocument)inputBeans.get(FormSixteenDocument.class.getSimpleName().toLowerCase()),
+					(SalaryIncomeDocument)inputBeans.get(SalaryIncomeDocument.class.getSimpleName().toLowerCase()),
+					(HouseProperty)inputBeans.get(HouseProperty.class.getSimpleName().toLowerCase()),
+					(OtherSourcesDocument)(OtherSourcesDocument)inputBeans.get(OtherSourcesDocument.class.getSimpleName().toLowerCase()),
+					deductionDocument, (MemberPersonalInformation)inputBeans.get(MemberPersonalInformation.class.getSimpleName().toLowerCase()),
+					(ScheduleSIDocument)inputBeans.get(ScheduleSIDocument.class.getSimpleName().toLowerCase()), (CapitalAssetDocument)inputBeans.get(CapitalAssetDocument.class.getSimpleName().toLowerCase()),
+					(IncBusinessProfessionDoc)inputBeans.get(IncBusinessProfessionDoc.class.getSimpleName().toLowerCase()),(ProfitAndLossDocument)inputBeans.get(ProfitAndLossDocument.class.getSimpleName().toLowerCase()),
+					(OtherInformationDocument)inputBeans.get(OtherInformationDocument.class.getSimpleName().toLowerCase()),(ScheduleDPMDocument)inputBeans.get(ScheduleDPMDocument.class.getSimpleName().toLowerCase()),
+					(ScheduleDOADocument)inputBeans.get(ScheduleDOADocument.class.getSimpleName().toLowerCase()),(ScheduleESRDocument)inputBeans.get(ScheduleESRDocument.class.getSimpleName().toLowerCase()),
+					(DeductionSchedTenADocumemt)inputBeans.get(DeductionSchedTenADocumemt.class.getSimpleName().toLowerCase()), (IncomeFromFirmsDocument)inputBeans.get(IncomeFromFirmsDocument.class.getSimpleName().toLowerCase()));
+			PartBTI partBTI = partB_TI.getPartBTI(itr, financialYear, inputBeans);
+			businessIncome = partBTI.getProfBusGain().getTotProfBusGain().doubleValue();*/
+		}
+		return businessIncome;
 	}
 }

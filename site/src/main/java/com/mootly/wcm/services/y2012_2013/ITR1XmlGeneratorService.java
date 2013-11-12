@@ -314,6 +314,7 @@ public class ITR1XmlGeneratorService {
 		//totalMapForJSDe.put("ageInYears",ageInYears);
 		totalMapForJSDe.put("isSeniorCitizen",financialYear.isSeniorCitizen(memberPersonalInformation.getDOB().getTime()));
 		totalMapForJSDe.put("salarypension",incomeDeductions.getIncomeFromSal());
+		totalMapForJSDe.put("businessIncome", 0d);
 		totalMapForJSDe.put("othersources",incomeDeductions.getIncomeOthSrc());
 		totalMapForJSDe.put("houseproperty",incomeDeductions.getTotalIncomeOfHP());
 
