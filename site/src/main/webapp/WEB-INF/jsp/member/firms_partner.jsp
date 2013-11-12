@@ -107,7 +107,7 @@
 			</form>
 		</c:when>
 		<c:otherwise>
-			<table>
+			<table class="table table-bordered">
 				<tr align="center">
 					<th><b><fmt:message key="name.Firm.itr4" /> </b></th>
 					<th><b><fmt:message key="pan.Firms.itr4" /> </b></th>

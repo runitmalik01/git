@@ -97,7 +97,7 @@
 		</form>
 	</c:when>
 	<c:otherwise>
-		<table>
+		<table class="table table-bordered">
 			<tr align="center">
 				<th><b><fmt:message key="sch441e.type.Vehicle.itr4s" /> </b>
 				</th>

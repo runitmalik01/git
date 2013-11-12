@@ -90,7 +90,7 @@
 
 	</c:when>
 	<c:otherwise>
-		<table>
+		<table class="table table-bordered">
 			<tr align="center">
 				<th><b><fmt:message key="tds.bsr.code" /> </b>
 				</th>

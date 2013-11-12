@@ -70,7 +70,7 @@
 			</form>
 		</c:when>
 		<c:otherwise>
-			<table>
+			<table class="table table-bordered">
 				<tr align="center">
 					<th><b style="color: olive;">Tan Collector</b>
 					</th>

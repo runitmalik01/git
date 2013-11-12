@@ -110,7 +110,7 @@
 		</form>
 	</c:when>
 	<c:otherwise>
-		<table>
+		<table class="table table-bordered">
 			<tr align="center">
 				<th><b><fmt:message key="tds.tan.deductor" /> </b>
 				</th>

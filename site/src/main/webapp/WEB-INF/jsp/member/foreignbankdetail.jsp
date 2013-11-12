@@ -56,7 +56,7 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 					</div>
 					<div class="rowlabel">
 						<input id="name_bank" name="name_bank" maxlength="125"
-							type="text" 
+							type="text"  class="uprcase"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.name_Bank}"/></c:if>" />
 					</div>
 				</div>
@@ -67,7 +67,7 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 					</div>
 					<div class="rowlabel">
 						<input id="address_bank" name="address_bank" maxlength="200"
-							type="text" 
+							type="text" class="uprcase"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.address_Bank}"/></c:if>" />
 					</div>
 				</div>
@@ -81,7 +81,7 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 					</div>
 					<div class="rowlabel">
 						<input id="name_account" name="name_account" maxlength="125"
-							type="text"
+							type="text" class="uprcase"
 							 class="decimal"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.name_Account}"/></c:if>" />
 					</div>
@@ -92,7 +92,7 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 									key="account.no.itr2" /> </small> </label>
 					</div>
 					<div class="rowlabel">
-						<input id="account_no" name="account_no" type="text" maxlength="17"
+						<input id="account_no" name="account_no" type="text" maxlength="17" class="uprcase"
 							  
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.account_No}"/></c:if>" />
 					</div>
@@ -104,7 +104,7 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 					</div>
 					<div class="rowlabel">
 						<input id="peak_balance" name="peak_balance" type="text" 
-							maxlength="14"   class="decimal" 
+							maxlength="14"   class="decimal uprcase" 
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.peak_Balance}"/></c:if>" />
 					</div>
 				</div>
@@ -112,21 +112,20 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 		<input type="hidden" id="country_name" name="country_name">
 			<div class="row-fluid show-grid">
 				<div class="span4 offset8 decimal">
-					<a href="${scriptName}" class="button olive">Cancel</a>&nbsp;
-					<a id="myModalHrefForeignBankDetail" role="button" class="btn orange">Save</a>
+					<a href="${scriptName}" class="btn btn-danger">Cancel</a>&nbsp;
+					<a id="myModalHrefForeignBankDetail" role="button" class="btn btn-success">Save</a>
 				</div>  
 			
 			</div>
 		</form>
 	</c:when>
 	<c:otherwise>
-		<table>
+		<table class="table table-bordered table-responsive">
 			<tr align="center">
 				<th><b><fmt:message key="foreign.country.name" /> </b>
 				</th>
 				<th><b><fmt:message key="name.bank.itr2" /> </b>
 				</th>
-				<th><b><fmt:message key="address.bank.itr2" /> </b></th>
 				<th><b><fmt:message key="name.account.itr2" /> </b></th>
 				<th><b><fmt:message key="account.no.itr2" /> </b></th>
 				<th><b><fmt:message key="balance.itr2" /> </b></th>
@@ -140,23 +139,21 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 						</td>
 						<td><c:out value="${foreignbank.name_Bank}" />
 						</td>
-						<td><c:out value="${foreignbank.address_Bank}" />
-						</td>
 						<td><c:out value="${foreignbank.name_Account}" />
 						</td>
 						<td><c:out value="${foreignbank.account_No}" />
 						</td>
 						<td><w4india:inr value="${foreignbank.peak_Balance}" />
 						</td>
-						<td><a
-							href="${scriptName}/<c:out value="${foreignbank.canonicalUUID}"/>/foreignbankdetailedit"><small>Edit</small> &nbsp;&nbsp;
-						</a>&nbsp;<a href="${scriptName}/<c:out value="${foreignbank.canonicalUUID}"/>/foreignbankdetaildelete" id="delete" onclick="return checkdelete()"><small>Delete</small> </a>
+						<td><a class="btn btn-danger"
+							href="${scriptName}/<c:out value="${foreignbank.canonicalUUID}"/>/foreignbankdetailedit"><small><i class="icon-pencil icon-white"></i>Edit</small> &nbsp;&nbsp;
+						</a>&nbsp;<a class="btn btn-primary" href="${scriptName}/<c:out value="${foreignbank.canonicalUUID}"/>/foreignbankdetaildelete" data-confirm=""><small><i class="icon-trash icon-white"></i>Delete</small> </a>
 							</td>
 						</tr>
 					</tr>
 				</c:forEach>
 				<tr>
-					<td colspan="5" align="center"></<b><fmt:message key="tds.amount.total" /></b></td>
+					<td colspan="4" align="center"></<b><fmt:message key="tds.amount.total" /></b></td>
 					<td><w4india:inr value="${parentBean.total_peakBalance}" /></td>
 					
 				</tr>
@@ -164,7 +161,7 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 			</c:if>
 		</table>
 		<a href="${scriptName}/foreignbankdetailnew"
-class="button orange">Add New</a>
+class="btn btn-info">Add New</a>
 	</c:otherwise>
 </c:choose>
 </div>

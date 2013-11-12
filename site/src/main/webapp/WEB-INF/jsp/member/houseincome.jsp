@@ -490,7 +490,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 		</c:when>
 		<c:otherwise>
 			<!--  show the table -->
-			<table>
+			<table class="table table-bordered">
 				<tr align="center">
 					<th><b>Property Let Out</b></th>
 					<th><b>Address</b></th>

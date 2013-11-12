@@ -69,7 +69,7 @@ request.setAttribute("objHashMapBusinessCode", objHashMapBusinessCode);
 			</form>
 		</c:when>
 		<c:otherwise>
-			<table>
+			<table class="table table-bordered">
 				<tr align="center">
 					<th><b><fmt:message key="business.name.itr4" /> </b></th>
 

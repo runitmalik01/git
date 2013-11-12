@@ -61,7 +61,7 @@
 
 	</c:when>
 	<c:otherwise>
-		<table>
+		<table class="table table-bordered">
 			<tr align="center">
 				<th><b>TAN of Employer</b></th>
 				<th><b>Name of Employer</b></th>

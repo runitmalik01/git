@@ -240,7 +240,7 @@
 			</form>
 		</c:when>
 		<c:otherwise>
-			<table>
+			<table class="table table-bordered">
 				<tr align="center">
 					<th><b>Employer's Name</b></th>
 					<th><b>Address</b></th>

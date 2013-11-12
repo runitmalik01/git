@@ -117,7 +117,7 @@
 		</form>
 	</c:when>
 	<c:otherwise>
-		<table>
+		<table class="table table-bordered">
 			<tr align="center">
 				<th><b><fmt:message key="firm_PAN.schBP.ITR3" /> </b>
 				</th>

@@ -101,7 +101,7 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 	
 			<div class="row-fluid show-grid">
 				<div class="span4 offset8 decimal">
-					<a href="${scriptName}" class="btn btn-danger" style="color: black">Cancel</a>&nbsp;
+					<a href="${scriptName}" class="btn btn-danger" style="color: black" >Cancel</a>&nbsp;
 					<a id="myModalHrefFinInterest" role="button" class="btn btn-success" style="color: black">Save</a>
 				</div>  
 			<input type="hidden" id="country_name" name="country_name">
@@ -109,7 +109,7 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 		</form>
 	</c:when>
 	<c:otherwise>
-		<table>
+		<table class="table table-bordered">
 			<tr align="center">
 				<th><b><fmt:message key="foreign.country.name" /> </b>
 				</th>

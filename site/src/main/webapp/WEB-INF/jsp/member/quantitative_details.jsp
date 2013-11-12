@@ -129,7 +129,7 @@ request.setAttribute("objHashMapQuantUnitCode", objHashMapQuantUnitCode);
 		</form>
 	</c:when>
 	<c:otherwise>
-		<table>
+		<table class="table table-bordered">
 			<tr align="center">
 				<th><b><fmt:message key="item.Name.quant.itr4" /> </b>
 				</th>
