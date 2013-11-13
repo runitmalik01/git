@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:lang="http://www.springframework.org/schema/lang"
+       xsi:schemaLocation="
+                http://www.springframework.org/schema/beans
+                http://www.springframework.org/schema/beans/spring-beans.xsd
+                http://www.springframework.org/schema/context
+                http://www.springframework.org/schema/context/spring-context.xsd
+                http://www.springframework.org/schema/aop
+                http://www.springframework.org/schema/aop/spring-aop.xsd
+                http://www.springframework.org/schema/util 
+                http://www.springframework.org/schema/util/spring-util-2.0.xsd
+                http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang-2.5.xsd">
+  
+  <!-- Validation Chain for Income Tax Return -->
+  <!--  First define the validation for Section and Due Date -->
+  <bean id="itrValidationForSectionAndDueDate" class="com.mootly.wcm.validation.impl.itr.ValidateSectionAndDueDate"/>
+  
+  <!-- Finally define the chain -->
+  <bean id="itrValidationChain" class="com.mootly.wcm.validation.impl.itr.ITRValidatorChain">
+      <constructor-arg>
+                <list>
+                    <!-- commented out a major change no need for now for this -->
+                   <!--  <ref bean="itrValidationForSectionAndDueDate"/>  -->                    
+                </list>
+      </constructor-arg>
+  </bean>
+</beans>

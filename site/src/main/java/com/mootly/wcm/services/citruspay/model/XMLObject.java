@@ -1,13 +1,31 @@
 package com.mootly.wcm.services.citruspay.model;
 
+import in.gov.incometaxindiaefiling.y2012_2013.ITR;
+
+import java.io.InputStream;
+import java.io.StringReader;
 import java.io.StringWriter;
 
+import javax.xml.XMLConstants;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
+import javax.xml.bind.Unmarshaller;
+import javax.xml.validation.SchemaFactory;
 
 
 public class XMLObject {
+	
+	public static <T extends XMLObject> T loadFromXml(String xmlInput,T objectClass) throws JAXBException {
+		SchemaFactory sf = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+        JAXBContext jc = JAXBContext.newInstance(objectClass.getClass());
+        Unmarshaller unmarshaller = jc.createUnmarshaller();
+        T theObjectInstance =  (T) unmarshaller.unmarshal(new StringReader(xmlInput));
+        return theObjectInstance;
+	}
+	
+	
+	
 	public String convertToXML() {
 		// TODO Auto-generated method stub
 		StringWriter sw = new StringWriter();

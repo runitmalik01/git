@@ -110,6 +110,7 @@ import com.mootly.wcm.beans.ScreenConfigDocument;
 import com.mootly.wcm.beans.ValueListDocument;
 import com.mootly.wcm.beans.events.BeanLifecycle;
 import com.mootly.wcm.member.Member;
+import com.mootly.wcm.member.MemberInvoice;
 import com.mootly.wcm.model.FilingSection;
 import com.mootly.wcm.model.FilingStatus;
 import com.mootly.wcm.model.FinancialYear;
@@ -132,6 +133,7 @@ import com.mootly.wcm.services.SequenceGenerator;
 import com.mootly.wcm.services.SequenceGeneratorImpl;
 import com.mootly.wcm.services.StartApplicationValidationService;
 import com.mootly.wcm.services.XmlGeneratorService;
+import com.mootly.wcm.services.citruspay.Enquiry;
 import com.mootly.wcm.services.citruspay.Transaction;
 import com.mootly.wcm.services.ditws.ITRVStatus;
 import com.mootly.wcm.services.ditws.Retrieve26ASInformation;
@@ -190,6 +192,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 	//Document Specific
 	HippoBean hippoBeanBaseITReturnDocuments;
 	Class<? extends HippoBean> parentBeanClass = null;
+	Class<? extends HippoBean> childBeanClass = null;
 	String parentBeanNameSpace;
 	String parentBeanPath;
 	String parentBeanAbsolutePath;
@@ -225,6 +228,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 	RetrievePANInformation.VALIDATION_RESULT retrievePANInformationValidationResult = VALIDATION_RESULT.NOT_INITIATED;
 	RetrievePANResponse retrievePANResponse = null;
 	Transaction transaction = null;
+	Enquiry enquiry =	null;
 
 	@Override
 	public void init(ServletContext servletContext,
@@ -241,6 +245,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		retrieveITRVService = context.getBean(RetrieveITRV.class);
 		retrieve26ASService = context.getBean(Retrieve26ASInformation.class);
 		transaction = context.getBean(Transaction.class);
+		enquiry =	context.getBean(Enquiry.class);
 	}
 
 
@@ -266,6 +271,10 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 	
 	public Transaction getTransaction() {
 		return transaction;
+	}
+	
+	public Enquiry getEnquiry() {
+		return enquiry;
 	}
 
 	@Override
@@ -591,6 +600,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 					response.sendRedirect( urlToRedirect );
 				}
 				else {
+					if (!shouldRedirectAfterSuccess()) return;
 					String urlToRedirect = getScriptName(request,response,FormSaveResult.SUCCESS); // getRedirectURL(request,response,FormSaveResult.SUCCESS) ;
 					//if the page passes a URL as a parameter take that into consideration
 					if (request.getParameter("successURL") != null) {
@@ -714,6 +724,11 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		// TODO Auto-generated method stub
 		return parentBeanClass;
 	}
+	
+	public Class<? extends HippoBean> getChildBeanClass() {
+		// TODO Auto-generated method stub
+		return childBeanClass;
+	}
 
 
 	@Override
@@ -770,17 +785,20 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	public final String getParentBeanAbsolutePath() {
+		return parentBeanAbsolutePath;
+	}
+
 
 	@Override
-	public String getAbsoluteBasePathToReturnDocuments()
-			throws InvalidNavigationException {
+	public String getAbsoluteBasePathToReturnDocuments()			 {
 		// TODO Auto-generated method stub
 		return baseAbsolutePathToReturnDocuments;
 	}
 
 	@Override
-	public String getRelBasePathToReturnDocuments()
-			throws InvalidNavigationException {
+	public String getRelBasePathToReturnDocuments()			{
 		// TODO Auto-generated method stub
 		return baseRelPathToReturnDocuments;
 	}
@@ -817,7 +835,18 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			}
 		}
 	}
-
+	
+	/**
+	 * Check Personal Information, check if InvoiceExists if it does not then create one
+	 * If it does make sure the ITR Service selected matches what's in the form
+	 * 
+	 * @param request
+	 */
+	private void updateInvoice(HstRequest request) {
+		MemberPersonalInformation memberPersonalInformation = (MemberPersonalInformation) request.getAttribute(MemberPersonalInformation.class.getSimpleName().toLowerCase()); 
+		MemberInvoice memberInvoice = (MemberInvoice) request.getAttribute(MemberInvoice.class.getSimpleName().toLowerCase());
+		 
+	}
 
 	public String getScriptName() {
 		return scriptName;
@@ -954,29 +983,17 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			parentBeanPath = baseRelPathToReturnDocuments + "/" + getParentBeanNodeName();
 			parentBeanAbsolutePath = baseAbsolutePathToReturnDocuments + "/" + getParentBeanNodeName();
 		}
+		if (this.getClass().isAnnotationPresent(ChildBean.class)) {
+			ChildBean childBean = this.getClass().getAnnotation(ChildBean.class);
+			childBeanClass = childBean.childBeanClass();
+		}
 		screenMode = GoGreenUtil.getEscapedParameter(request, "screenMode");
-
-		//loading Additional Beans
-		List<HippoBean> listOfBeans = loadAllBeansUnderTheFolder(request, response,baseRelPathToReturnDocuments,null,null);
-		if (listOfBeans != null) {
-			mapOfAllBeans = new HashMap<String, HippoBean>();
-			for (HippoBean theBean:listOfBeans) {
-				mapOfAllBeans.put(theBean.getClass().getSimpleName().toLowerCase(), theBean);
-			}
-		}
-		// As mapOfAllBeans define globally (Member of Class) So for new Entry of pan it remain hold  
-		// previous viewed or entered value for pan so we have to kill this as it depends upon result of loadAllBeansUnderTheFolder() function i.e listOfBeans
-		//fill up request
-		//if (mapOfAllBeans != null) {
-		if (mapOfAllBeans != null && listOfBeans != null) {
-			for (String theKey:mapOfAllBeans.keySet()) {
-				request.setAttribute(theKey, mapOfAllBeans.get(theKey));		
-			}			
-		}
+		
+		mapOfAllBeans = loadBeansAndSetRequestAttributes(request, response);		
 		//time has come to reset the ITReturnType and other variables
 		String keyToMemberPersonalInformation = MemberPersonalInformation.class.getSimpleName().toLowerCase();
 		//if (mapOfAllBeans != null && mapOfAllBeans.containsKey(keyToMemberPersonalInformation)) {
-		if (mapOfAllBeans != null && mapOfAllBeans.containsKey(keyToMemberPersonalInformation) && listOfBeans != null) {
+		if (mapOfAllBeans != null && mapOfAllBeans.containsKey(keyToMemberPersonalInformation)) {
 			memberPersonalInformation = (MemberPersonalInformation) mapOfAllBeans.get(keyToMemberPersonalInformation);
 			itReturnType = ITReturnType.getByXmlStatus(memberPersonalInformation.getReturnType()); //this will determine original or revised
 		}
@@ -1450,7 +1467,6 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		}
 	}
 
-
 	/*
 	 * The ultimate goal here is to save the parent bean and if it didn't exist then it should have been created in the first place
 	 * a child cannot exist without a parent
@@ -1480,36 +1496,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			}
 			wpm = getWorkflowPersistenceManager(persistableSession);
 			if (pageAction.equals(PAGE_ACTION.EDIT_CHILD) && childBean != null) {
-				try {
-					//Object parentBeanInSession = wpm.getObject(parentBean.getCanonicalUUID());
-					HippoBean childBeanInSession = (HippoBean) wpm.getObjectByUuid(uuid);
-					HippoBean parentBeanInSession = childBeanInSession.getParentBean();
-					//now set the value we received from the form submission
-					if (childBeanInSession instanceof FormMapFiller) {
-						FormMapFiller formMapFiller = (FormMapFiller) childBeanInSession;
-						formMapFiller.fill(formMap);
-					}
-					if (parentBeanInSession instanceof CompoundChildUpdate) {
-						CompoundChildUpdate compoundChildUpdate = (CompoundChildUpdate) parentBeanInSession;
-						compoundChildUpdate.update(childBeanInSession);
-					}
-					wpm.setWorkflowCallbackHandler(new FullReviewedWorkflowCallbackHandler());
-					if (parentBean != null && childBean != null) {
-						try {
-							//wpm.update(childBeanInSession);
-							if (!beforeSave(request)) return; // don't save if this method returns false
-							wpm.update(parentBeanInSession);
-						} catch (ObjectBeanPersistenceException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-							log.error("Error in Save",e);
-						}
-					}
-				} catch (ObjectBeanManagerException e) {
-					// TODO Auto-generated catch block
-					log.error("Error saving document",e);
-					e.printStackTrace();
-				}
+				itReturnComponentHelper.saveUpdateExistingChild(formMap, null, getChildBeanLifeCycleHandler(), getParentBeanLifeCycleHandler(), baseAbsolutePathToReturnDocuments, parentBeanAbsolutePath, getParentBeanNameSpace(), getParentBeanNodeName(), getChildBeanClass(), persistableSession, wpm, uuid);				
 			}
 			else if (pageAction.equals(PAGE_ACTION.NEW_CHILD)) {
 				ChildBean childBeanLocal = getClass().getAnnotation(ChildBean.class);
@@ -1553,6 +1540,8 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 				try {
 					//Object parentBeanInSession = wpm.getObject(parentBean.getCanonicalUUID());
 					HippoBean parentBeanInSession = (HippoBean) wpm.getObject(parentBeanAbsolutePath);
+					HippoBean beanBeforeUpdate = parentBeanInSession;
+					BeanLifecycle<HippoBean> parentBeanLifeCycleHandler = getParentBeanLifeCycleHandler();
 					if (parentBeanInSession == null) {
 						//gotta create this damn thing
 						if (log.isInfoEnabled()) {
@@ -1573,6 +1562,10 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 							//wpm.update(childBeanInSession);
 							if (!beforeSave(request)) return; // don't save if this method returns false
 							wpm.update(parentBeanInSession);
+							HippoBean beanAfterUpdate = parentBeanInSession;
+							if (parentBeanLifeCycleHandler != null) {
+								parentBeanLifeCycleHandler.afterUpdate(beanBeforeUpdate,beanAfterUpdate,wpm,getAbsoluteBasePathToReturnDocuments(), getITReturnComponentHelper());
+							}
 						} catch (ObjectBeanPersistenceException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
@@ -2045,6 +2038,28 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			return false;
 		}
 	}
+	
+	protected Map<String,HippoBean> loadBeansAndSetRequestAttributes(HstRequest request,HstResponse response) {
+		//loading Additional Beans
+		Map<String,HippoBean> localMapOfAllBeans = new HashMap<String, HippoBean>();
+		List<HippoBean> listOfBeans = loadAllBeansUnderTheFolder(request, response,baseRelPathToReturnDocuments,null,null);
+		if (listOfBeans != null) {
+			localMapOfAllBeans = new HashMap<String, HippoBean>();
+			for (HippoBean theBean:listOfBeans) {
+				localMapOfAllBeans.put(theBean.getClass().getSimpleName().toLowerCase(), theBean);
+			}
+		}
+		// As mapOfAllBeans define globally (Member of Class) So for new Entry of pan it remain hold  
+		// previous viewed or entered value for pan so we have to kill this as it depends upon result of loadAllBeansUnderTheFolder() function i.e listOfBeans
+		//fill up request
+		//if (mapOfAllBeans != null) {
+		if (localMapOfAllBeans != null && listOfBeans != null) {
+			for (String theKey:localMapOfAllBeans.keySet()) {
+				request.setAttribute(theKey, localMapOfAllBeans.get(theKey));		
+			}			
+		}		
+		return localMapOfAllBeans;
+	}
 	/**
 	 *
 	 * @param request
@@ -2090,6 +2105,10 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			e.printStackTrace();
 		}
 		return theLocalBeansUnderMemberFolder;
+	}
+	
+	protected boolean shouldRedirectAfterSuccess() {
+		return true;
 	}
 
 	@Override

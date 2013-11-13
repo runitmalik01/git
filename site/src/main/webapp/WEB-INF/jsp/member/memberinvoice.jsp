@@ -201,22 +201,52 @@ pageContext.setAttribute("paymentTypeValues",PaymentType.values());
 					<th><b>Actions</b></th>
 				</tr>
 				<c:if test="${not empty parentBean}">
-					<c:forEach items="${parentBean.invoicePaymentDetailList}"
-						var="invoicepaymentdetail">
-						<tr align="center">
-						<tr>
-							<td><fmt:formatDate value="${invoicepaymentdetail.paymentDate.time}" timeZone="<%=IndianGregorianCalendar.indianTimeZone%>"/></td>
-							<td><c:out value="${fn:replace(invoicepaymentdetail.paymentType,'_',' ')}"/></td>
-							<td><c:out value="${invoicepaymentdetail.paymentAmount}"/></td>
-							<td></td>
-							<td><a class="btn btn-primary"
-								href="${scriptName}<c:out value="/payment/${invoicepaymentdetail.canonicalUUID}"/>/paymentedit?paymentType=${invoicepaymentdetail.paymentType}"><small><i
-										class="icon-pencil icon-white"></i>Edit</small> </a>&nbsp;&nbsp;<a
-								class="btn btn-danger"
-								href="${scriptName}<c:out value="/payment/${invoicepaymentdetail.canonicalUUID}"/>/paymentdelete?paymentType=${invoicepaymentdetail.paymentType}"
-								data-confirm=""><small><i class="icon-trash icon-white"></i>Delete</small> </a>
-							</td>
-						</tr>
+					<c:forEach items="${parentBean.invoicePaymentDetailList}" var="invoicepaymentdetail">
+						<c:if test="${invoicepaymentdetail.paymentVerificationStatus == 'VERIFIED'}">
+							<tr>
+								<td><fmt:formatDate value="${invoicepaymentdetail.paymentDate.time}" timeZone="<%=IndianGregorianCalendar.indianTimeZone%>"/></td>
+								<td><c:out value="${fn:replace(invoicepaymentdetail.paymentType,'_',' ')}"/></td>
+								<td><c:out value="${invoicepaymentdetail.txnAmount}"/></td>
+								<td>VERIFIED</td>
+								<td><a class="btn btn-primary"
+									href="${scriptName}<c:out value="/payment/${invoicepaymentdetail.canonicalUUID}"/>/paymentedit?paymentType=${invoicepaymentdetail.paymentType}"><small><i
+											class="icon-pencil icon-white"></i>Edit</small> </a>&nbsp;&nbsp;<a
+									class="btn btn-danger"
+									href="${scriptName}<c:out value="/payment/${invoicepaymentdetail.canonicalUUID}"/>/paymentdelete?paymentType=${invoicepaymentdetail.paymentType}"
+									data-confirm=""><small><i class="icon-trash icon-white"></i>Delete</small> </a>
+								</td>
+							</tr>
+						</c:if>
+					</c:forEach>
+				</c:if>
+			</table>
+			<%-- Refunds --%>
+			<h4>Refunds</h4>
+			<table class="table table-bordered table-striped">
+				<tr align="center">
+					<th><b>Date</b></th>
+					<th><b>Payment By</b></th>
+					<th><b>Amount</b></th>
+					<th><b>Status</b></th>
+					<th><b>Actions</b></th>
+				</tr>
+				<c:if test="${not empty parentBean}">
+					<c:forEach items="${parentBean.invoiceRefundDetailList}" var="invoicerefunddetail">
+						<c:if test="${invoicerefunddetail.paymentVerificationStatus == 'VERIFIED'}">
+							<tr>
+								<td><fmt:formatDate value="${invoicerefunddetail.paymentDate.time}" timeZone="<%=IndianGregorianCalendar.indianTimeZone%>"/></td>
+								<td><c:out value="${fn:replace(invoicerefunddetail.paymentType,'_',' ')}"/></td>
+								<td><c:out value="${invoicerefunddetail.txnAmount}"/></td>
+								<td>VERIFIED</td>
+								<td><a class="btn btn-primary"
+									href="${scriptName}<c:out value="/payment/${invoicerefunddetail.canonicalUUID}"/>/paymentedit?paymentType=${invoicerefunddetail.paymentType}"><small><i
+											class="icon-pencil icon-white"></i>Edit</small> </a>&nbsp;&nbsp;<a
+									class="btn btn-danger"
+									href="${scriptName}<c:out value="/payment/${invoicerefunddetail.canonicalUUID}"/>/paymentdelete?paymentType=${invoicerefunddetail.paymentType}"
+									data-confirm=""><small><i class="icon-trash icon-white"></i>Delete</small> </a>
+								</td>
+							</tr>
+						</c:if>
 					</c:forEach>
 				</c:if>
 			</table>

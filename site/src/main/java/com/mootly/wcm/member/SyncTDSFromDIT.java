@@ -27,6 +27,7 @@ import com.mootly.wcm.beans.compound.SelfAssesmentTaxDetail;
 import com.mootly.wcm.beans.compound.TcsDetail;
 import com.mootly.wcm.beans.compound.TdsOthersDetail;
 import com.mootly.wcm.beans.events.BeanLifecycle;
+import com.mootly.wcm.beans.events.GenericLifeCycleHandler;
 import com.mootly.wcm.components.ITReturnComponent;
 import com.mootly.wcm.components.ITReturnComponentHelper;
 import com.mootly.wcm.components.InvalidNavigationException;
@@ -145,82 +146,14 @@ public class SyncTDSFromDIT extends ITReturnComponent {
 		}
 	}
 
-	class ParentBeanLifeCycleHandler implements BeanLifecycle<HippoBean> {
+	class ParentBeanLifeCycleHandler extends GenericLifeCycleHandler implements BeanLifecycle<HippoBean> {
 
-		@Override
-		public void beforeCreate(HippoBean hippoBean) {
-			// TODO Auto-generated method stub
-
-		}
-
-		@Override
-		public void afterCreate(HippoBean hippoBean) {
-			// TODO Auto-generated method stub
-
-		}
-
-		@Override
-		public boolean beforeSaveNewBean(HippoBean hippoBean) {
-			// TODO Auto-generated method stub
-			return false;
-		}
-
-		@Override
-		public void afterSaveNewBean(HippoBean hippoBean) {
-			// TODO Auto-generated method stub
-
-		}
-
-		@Override
-		public boolean beforeUpdate(HippoBean hippoBean) {
-			// TODO Auto-generated method stub
-			return false;
-		}
-
-		@Override
-		public void afterUpdate(HippoBean hippoBean) {
-			// TODO Auto-generated method stub
-
-		}
+		
 	}
 
-	class ChildBeanLifeCycleHandler implements BeanLifecycle<HippoBean> {
+	class ChildBeanLifeCycleHandler extends GenericLifeCycleHandler implements BeanLifecycle<HippoBean> {
 
-		@Override
-		public void beforeCreate(HippoBean hippoBean) {
-			// TODO Auto-generated method stub
 
-		}
-
-		@Override
-		public void afterCreate(HippoBean hippoBean) {
-			// TODO Auto-generated method stub
-
-		}
-
-		@Override
-		public boolean beforeSaveNewBean(HippoBean hippoBean) {
-			// TODO Auto-generated method stub
-			return false;
-		}
-
-		@Override
-		public void afterSaveNewBean(HippoBean hippoBean) {
-			// TODO Auto-generated method stub
-
-		}
-
-		@Override
-		public boolean beforeUpdate(HippoBean hippoBean) {
-			// TODO Auto-generated method stub
-			return false;
-		}
-
-		@Override
-		public void afterUpdate(HippoBean hippoBean) {
-			// TODO Auto-generated method stub
-
-		}
 	}
 
 

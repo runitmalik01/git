@@ -167,9 +167,6 @@ public class ITRBalanceSheet extends ITReturnComponent {
 		} catch (RepositoryException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} catch (InvalidNavigationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		} catch (ObjectBeanManagerException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

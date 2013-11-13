@@ -131,10 +131,7 @@ public class AdjustmentOfLosses extends ITReturnComponent {
 		} catch (ObjectBeanManagerException e) {
 			// TODO Auto-generated catch block
 			log.error("Error while get the object at path"+path,e);
-		} catch (InvalidNavigationException e) {
-			// TODO Auto-generated catch block
-			log.error("Error in invalid navigation from Absolute path",e);
-		}
+		} 
 	}
 }
 

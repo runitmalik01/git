@@ -1,5 +1,9 @@
 package com.mootly.wcm.beans.events;
 
+import org.hippoecm.hst.content.beans.manager.workflow.WorkflowPersistenceManager;
+
+import com.mootly.wcm.components.ITReturnComponentHelper;
+
 public interface BeanLifecycle<T> {
 	//we can do few operation when a bean is created, this could be either the parent bean or child bean
 	void beforeCreate(T hippoBean);
@@ -8,7 +12,14 @@ public interface BeanLifecycle<T> {
 	boolean beforeSaveNewBean(T hippoBean);
 	void afterSaveNewBean(T hippoBean);
 	
+	void beforeFillParentBeanMap(T hippoBean);
+	void beforeFillChildBeanMap(T hippoBean);
+	
+	void afterFillParentBeanMap(T hippoBean);
+	void afterFillChildBeanMap(T hippoBean);
 	
 	boolean beforeUpdate(T hippoBean);
-	void afterUpdate(T hippoBean);
+	void afterUpdate(T beanBeforeUpdate,T beanAfterUpdate,WorkflowPersistenceManager wpm,String baseAbsolutePathToReturnDocuments,ITReturnComponentHelper itReturnComponentHelper);
+	
+	void afterUpdateChild(T parentBeanBeforeUpdate,T parentBeanAfterUpdate,T childBeanBeforeUpdate,T childBeanAfterUpdate, WorkflowPersistenceManager wpm,ITReturnComponentHelper itReturnComponentHelper);
 }

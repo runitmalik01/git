@@ -165,10 +165,7 @@ public class ITRScheduleSI extends ITReturnComponent {
 		} catch (ObjectBeanManagerException e) {
 			// TODO Auto-generated catch block
 			log.error("Error while get Object at specified path",e);
-		} catch (InvalidNavigationException e) {
-			// TODO Auto-generated catch block
-			log.error("Error while create base path to get document",e);
-		}
+		} 
 	}
 	
 	/**

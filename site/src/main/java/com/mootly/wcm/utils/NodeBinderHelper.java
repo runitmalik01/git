@@ -93,6 +93,9 @@ public class NodeBinderHelper {
 							}
 							Object theValue = theReadMethod.invoke(anObject);
 							Method theMethod = MethodUtils.getAccessibleMethod( node.getClass() , "setProperty", new Class[]{String.class,  theTypeClass});
+							if (!"class java.lang.String".equals(theTypeClass.toString()) ) {
+								log.info("STOP" + theTypeClass.toString() + ":" +  theValue + " : method: " + theMethod.toString());
+							}
 							//Method apacheMethod = org.apache.commons.lang.reflect.MethodUtils.getAccessibleMethod(node.getClass() , "setProperty", new Class[]{String.class,  theTypeClass});
 							//Method theMethod2 = node.getClass().getMethod("setProperty", String.class, theTypeClass);
 							if ( theMethod != null ) {

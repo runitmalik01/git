@@ -66,6 +66,8 @@ public class InvoiceDocumentDetail extends FlexibleDocument implements FormMapFi
 	private Double serviceRate;
 	private Double serviceAmount;
 	
+	private String createdBySource;
+	
 	private String filingMode; 
 	private boolean markedForDeletion;
 	
@@ -110,6 +112,13 @@ public class InvoiceDocumentDetail extends FlexibleDocument implements FormMapFi
 		return serviceAmount;
 	}
 	
+	@FormField(name="createdBySource",propertyName="createdBySource")
+	@NodeBinder(nodePropertyName="mootlywcm:createdBySource",propertyName="createdBySource")	
+	public final String getCreatedBySource() {
+		if (createdBySource == null) NodeBinderHelper.setObjectProperty("createdBySource", this, "");
+		return createdBySource;
+	}
+
 	@BeanClone(propertyName="serviceName")
 	public final void setServiceName(String serviceName) {
 		this.serviceName = serviceName;
@@ -139,6 +148,11 @@ public class InvoiceDocumentDetail extends FlexibleDocument implements FormMapFi
 	@BeanClone(propertyName="serviceAmount")
 	public void setServiceAmount(Double serviceAmount) {
 		this.serviceAmount = serviceAmount;
+	}
+	
+	@BeanClone(propertyName="createdBySource")
+	public final void setCreatedBySource(String createdBySource) {
+		this.createdBySource = createdBySource;
 	}
 
 	public final boolean isMarkedForDeletion() {

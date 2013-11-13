@@ -3,6 +3,8 @@ package com.mootly.wcm.services.citruspay.impl;
 import java.net.HttpURLConnection;
 import java.util.Map;
 
+import javax.xml.bind.JAXBException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
@@ -13,6 +15,7 @@ import com.mootly.wcm.model.FinancialYear;
 import com.mootly.wcm.services.citruspay.Enquiry;
 import com.mootly.wcm.services.citruspay.Transaction;
 import com.mootly.wcm.services.citruspay.model.TransactionInput;
+import com.mootly.wcm.services.citruspay.model.enquiry.TxnEnquiryResponse;
 import com.mootly.wcm.services.http.HTTPConnectionException;
 import com.mootly.wcm.services.http.HTTPConnectionService;
 
@@ -53,14 +56,27 @@ public class EnquiryImpl extends PaymentServiceXML implements Enquiry, Applicati
 	}
 
 	@Override
-	public Map<String, Object> doEnquiry(String transactionId) {
+	public TxnEnquiryResponse doEnquiry(String transactionId) {
 		// TODO Auto-generated method stub
 		HttpURLConnection theURLConnection = getHttpUrlConnection(transactionId);
 		try {
-			httpConnectionService.doGet(getHeaders(), transactionId, theURLConnection);
+			String returnXml = httpConnectionService.doGet(getHeaders(), transactionId, theURLConnection);
+			if (returnXml != null && !returnXml.trim().equals("")) {
+				TxnEnquiryResponse enquiryOutput = TxnEnquiryResponse.loadFromXml(returnXml,new TxnEnquiryResponse());			
+				if (logger.isInfoEnabled()) {
+					logger.info("returnXml :" + returnXml);
+					logger.info("returnXml :" + enquiryOutput.toString());
+				}
+				return enquiryOutput;
+			}
 		} catch (HTTPConnectionException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error("Error in HTTP Connection",e);
+			//e.printStackTrace();
+		} catch (JAXBException e) {
+			// TODO Auto-generated catch block
+			logger.error("Error in JAXBException",e);
+			//e.printStackTrace();
 		}
 		return null;
 	}

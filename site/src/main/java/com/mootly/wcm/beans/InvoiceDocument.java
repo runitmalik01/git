@@ -47,6 +47,7 @@ import com.mootly.wcm.annotations.TagAsTaxDataProvider;
 import com.mootly.wcm.annotations.TagAsTaxDataProvider.TaxDataProviderType;
 import com.mootly.wcm.beans.compound.InvoiceDocumentDetail;
 import com.mootly.wcm.beans.compound.InvoicePaymentDetail;
+import com.mootly.wcm.beans.compound.InvoiceRefundDetail;
 import com.mootly.wcm.beans.standard.FlexibleDocument;
 import com.mootly.wcm.model.InvoicePaymentStatus;
 import com.mootly.wcm.model.PaymentVerificationStatus;
@@ -58,11 +59,13 @@ import com.mootly.wcm.services.SequenceGenerator;
 public class InvoiceDocument extends FlexibleDocument implements ContentNodeBinder,FormMapFiller,CompoundChildUpdate {
 	final String PROP_DETAIL_BEAN="mootlywcm:invoicedocumentdetail";
 	final String PROP_DETAIL_PAYMENT_BEAN="mootlywcm:invoicepaymentdetail";
+	final String PROP_DETAIL_REFUND_BEAN="mootlywcm:invoicerefunddetail";
 
 	private final static Logger log = LoggerFactory.getLogger(InvoiceDocument.class); 
 
 	private List<InvoiceDocumentDetail> invoiceDocumentDetailList;
 	private List<InvoicePaymentDetail> invoicePaymentDetailList;
+	private List<InvoiceRefundDetail> invoiceRefundDetailList;
 	private boolean UNPAID = false;
 	private boolean PARTIALLY_PAID = false;
 	private boolean FULLY_PAID = false;
@@ -100,13 +103,24 @@ public class InvoiceDocument extends FlexibleDocument implements ContentNodeBind
 	public Double getTotalPaymentAmount() {
 		Double totalPaymentAmount = 0.00D;
 		List<InvoicePaymentDetail> invoicePaymentDetailListLocal = getInvoicePaymentDetailList();
+		List<InvoiceRefundDetail> invoiceRefundDetailListLocal = getInvoiceRefundDetailList();
 		if (invoicePaymentDetailListLocal == null || invoicePaymentDetailListLocal.size() == 0) {
 			return totalPaymentAmount;
 		}
 		
+		//all val
 		for (InvoicePaymentDetail invoicePaymentDetail:invoicePaymentDetailListLocal) {
-			totalPaymentAmount += invoicePaymentDetail.getPaymentAmount();
-		}		
+			if ( invoicePaymentDetail.isValid()) {
+				totalPaymentAmount += invoicePaymentDetail.getTxnAmount();
+			}
+		}	
+		
+		//now deduct the valid refund 
+		for (InvoiceRefundDetail invoiceRefundDetail:invoiceRefundDetailListLocal) {
+			if ( invoiceRefundDetail.isValid()) {
+				totalPaymentAmount -= invoiceRefundDetail.getTxnAmount();
+			}
+		}
 		return totalPaymentAmount;
 	}
 	
@@ -188,6 +202,20 @@ public class InvoiceDocument extends FlexibleDocument implements ContentNodeBind
 		invoicePaymentDetailList.add(invoicePaymentDetail);
 	}
 
+	public final List<InvoiceRefundDetail> getInvoiceRefundDetailList() {
+		if (invoiceRefundDetailList == null) invoiceRefundDetailList= getChildBeans(PROP_DETAIL_REFUND_BEAN);
+		return invoiceRefundDetailList;
+	}
+
+	public final void setInvoiceRefundDetailList(List<InvoiceRefundDetail> invoiceRefundDetailList) {
+		this.invoiceRefundDetailList = invoiceRefundDetailList;
+	}
+
+	public final void addInvoiceRefundDetail(InvoiceRefundDetail invoiceRefundDetail) {
+		getInvoiceRefundDetailList();
+		if (invoiceRefundDetailList == null) invoiceRefundDetailList = new ArrayList<InvoiceRefundDetail>();
+		invoiceRefundDetailList.add(invoiceRefundDetail);
+	}
 	@Override
 	public boolean bind(Object content, javax.jcr.Node node)
 			throws ContentNodeBindingException {
@@ -215,21 +243,16 @@ public class InvoiceDocument extends FlexibleDocument implements ContentNodeBind
 					aNode.remove();
 				}
 			}
-			double sum_rentSec25A=0.0d;
-			double sum_arrearRentSec25B=0.0d;
-			double sum_total_houseIncome=0.0d;
+			nodeIterator = node.getNodes(PROP_DETAIL_REFUND_BEAN);
+			if (nodeIterator != null) {
+				while (nodeIterator.hasNext()) {
+					javax.jcr.Node aNode = nodeIterator.nextNode();
+					aNode.remove();
+				}
+			}
 			if (invoiceDocument.getInvoiceDocumentDetailList() != null && invoiceDocument.getInvoiceDocumentDetailList().size() > 0 ){ 
 				for (InvoiceDocumentDetail invoiceDocumentDetail:invoiceDocument.getInvoiceDocumentDetailList()) {
 					if (!invoiceDocumentDetail.isMarkedForDeletion()) {
-						//double value_rentSec25A=houseincomeDetail.getRentSec25A();
-
-						//double value_arrearRentSec25B=houseincomeDetail.getArrearRentSec25B();
-						//double value_total_houseIncome=houseincomeDetail.getTotal_houseIncome();
-
-						//sum_rentSec25A = sum_rentSec25A+value_rentSec25A;
-						//sum_arrearRentSec25B = sum_arrearRentSec25B+value_arrearRentSec25B;
-						//sum_total_houseIncome = sum_total_houseIncome+value_total_houseIncome;
-
 						javax.jcr.Node html = node.addNode(PROP_DETAIL_BEAN, PROP_DETAIL_BEAN);
 						invoiceDocumentDetail.bindToNode(html); 
 					}
@@ -244,6 +267,16 @@ public class InvoiceDocument extends FlexibleDocument implements ContentNodeBind
 					}
 				}
 			}
+			
+			if (invoiceDocument.getInvoiceRefundDetailList() != null && invoiceDocument.getInvoiceRefundDetailList().size() > 0 ){ 
+				for (InvoiceRefundDetail invoiceRefundDetail:invoiceDocument.getInvoiceRefundDetailList()) {
+					if (!invoiceRefundDetail.isMarkedForDeletion()) {
+						javax.jcr.Node html = node.addNode(PROP_DETAIL_REFUND_BEAN, PROP_DETAIL_REFUND_BEAN);
+						invoiceRefundDetail.bindToNode(html); 
+					}
+				}
+			}
+
 
 		} catch (RepositoryException rex) {
 			log.error("Repository Exception while binding",rex);
@@ -275,11 +308,15 @@ public class InvoiceDocument extends FlexibleDocument implements ContentNodeBind
 			InvoicePaymentDetail source =(InvoicePaymentDetail) child;
 			addInvoicePaymentDetail(source);
 		}
+		else if (child.getCanonicalUUID() == null && child instanceof InvoiceRefundDetail) {
+			InvoiceRefundDetail source =(InvoiceRefundDetail) child;
+			addInvoiceRefundDetail(source);
+		}
 		boolean found = false;
 		List<InvoiceDocumentDetail> listOfChildren = getInvoiceDocumentDetailList();
 		for (HippoBean o:listOfChildren) {
 			log.info( o.getCanonicalUUID() );
-			if (child.getCanonicalUUID() != null && child.getCanonicalUUID().equals(o.getCanonicalUUID())) {
+			if (child.getCanonicalUUID() != null && child.getCanonicalUUID().equals(o.getCanonicalUUID()) && child instanceof InvoiceDocumentDetail) {
 				InvoiceDocumentDetail destination =(InvoiceDocumentDetail) o;
 				InvoiceDocumentDetail source  = (InvoiceDocumentDetail) child;
 				destination.cloneBean(source);
@@ -291,9 +328,22 @@ public class InvoiceDocument extends FlexibleDocument implements ContentNodeBind
 			List<InvoicePaymentDetail> listOfPaymentChildren = getInvoicePaymentDetailList();
 			for (HippoBean o:listOfPaymentChildren) {
 				log.info( o.getCanonicalUUID() );
-				if (child.getCanonicalUUID() != null && child.getCanonicalUUID().equals(o.getCanonicalUUID())) {
+				if (child.getCanonicalUUID() != null && child.getCanonicalUUID().equals(o.getCanonicalUUID()) && child instanceof InvoicePaymentDetail) {
 					InvoicePaymentDetail destination =(InvoicePaymentDetail) o;
 					InvoicePaymentDetail source  = (InvoicePaymentDetail) child;
+					destination.cloneBean(source);
+					found = true;
+					break;
+				}
+			}		
+		}
+		if (!found) {
+			List<InvoiceRefundDetail> listOfRefundChildren = getInvoiceRefundDetailList();
+			for (HippoBean o:listOfRefundChildren) {
+				log.info( o.getCanonicalUUID() );
+				if (child.getCanonicalUUID() != null && child.getCanonicalUUID().equals(o.getCanonicalUUID()) && child instanceof InvoiceRefundDetail) {
+					InvoiceRefundDetail destination =(InvoiceRefundDetail) o;
+					InvoiceRefundDetail source  = (InvoiceRefundDetail) child;
 					destination.cloneBean(source);
 					found = true;
 					break;
@@ -309,6 +359,10 @@ public class InvoiceDocument extends FlexibleDocument implements ContentNodeBind
 		if (child instanceof InvoiceDocumentDetail) {
 			InvoiceDocumentDetail source =(InvoiceDocumentDetail) child;
 			addInvoiceDocumentDetail(source);
+		}
+		else if (child instanceof InvoiceRefundDetail) { //remember this class extends InvoicePaymentDetail so make sure this comes before in 
+			InvoiceRefundDetail source =(InvoiceRefundDetail) child;
+			addInvoiceRefundDetail(source);
 		}
 		else if (child instanceof InvoicePaymentDetail) {
 			InvoicePaymentDetail source =(InvoicePaymentDetail) child;
@@ -347,6 +401,19 @@ public class InvoiceDocument extends FlexibleDocument implements ContentNodeBind
 				}
 			}
 		}		
+		if (!found) {
+			List<InvoiceRefundDetail> listOfRefundChildren = getInvoiceRefundDetailList();
+			for (HippoBean o:listOfRefundChildren) {
+				log.info( o.getCanonicalUUID() );
+				if (child.getCanonicalUUID() != null && child.getCanonicalUUID().equals(o.getCanonicalUUID())) {
+					InvoiceRefundDetail destination =(InvoiceRefundDetail) o;
+					InvoiceRefundDetail source  = (InvoiceRefundDetail) child;
+					destination.setMarkedForDeletion(true);
+					found = true;
+					break;
+				}
+			}
+		}	
 	}
 
 }

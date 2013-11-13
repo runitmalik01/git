@@ -1,8 +1,8 @@
 package com.mootly.wcm.services.citruspay;
 
-import java.util.Map;
+
+import com.mootly.wcm.services.citruspay.model.enquiry.TxnEnquiryResponse;
 
 public interface Enquiry extends PaymentService {
-	
-	Map<String,Object> doEnquiry(String transactionId);
+	TxnEnquiryResponse doEnquiry(String transactionId);
 }

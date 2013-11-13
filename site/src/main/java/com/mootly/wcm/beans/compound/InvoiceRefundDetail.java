@@ -64,11 +64,12 @@ import com.mootly.wcm.utils.NodeBinderHelper;
 
 
 @SuppressWarnings("unused")
-@Node(jcrType = "mootlywcm:invoicepaymentdetail")
+@Node(jcrType = "mootlywcm:invoicerefunddetail")
 @TagAsTaxDataProvider(type=TaxDataProviderType.INCOME)
-public class InvoicePaymentDetail extends FlexibleDocument implements FormMapFiller {
-	static final public String NODE_NAME = InvoicePaymentDetail.class.getName().toLowerCase();
-	private final static Logger log = LoggerFactory.getLogger(InvoicePaymentDetail.class); 
+public class InvoiceRefundDetail extends FlexibleDocument implements FormMapFiller {
+	
+	static final public String NODE_NAME = InvoiceRefundDetail.class.getName().toLowerCase();
+	private final static Logger log = LoggerFactory.getLogger(InvoiceRefundDetail.class); 
 
 	private Calendar paymentDate;
 	private PaymentType paymentType;
@@ -88,7 +89,7 @@ public class InvoicePaymentDetail extends FlexibleDocument implements FormMapFil
 	private String rrn;
 	private String txnType;
 	private Double txnAmount;
-	private String txnDateTime; 
+	private String txnDateTime;
 	
 	//if by BANK
 	private String checkNo;
@@ -141,11 +142,18 @@ public class InvoicePaymentDetail extends FlexibleDocument implements FormMapFil
 	final String PROP_RTGS_AMOUNT = "mootlywcm:rtgsAmount";
 	final String PROP_RTGS_TIME = "mootlywcm:crtgsTime";
 	
+	public final boolean isMarkedForDeletion() {
+		return markedForDeletion;
+	}
 	/** 
 	 * Is this a valid return
 	 * @return
 	 */
 	public final boolean isValid() {
+		if (log.isInfoEnabled()) {
+			log.info("getPaymentVerificationStatus():" + getPaymentVerificationStatus());
+			log.info("isSuccess():" + isSuccess());
+		}
 		if (getPaymentVerificationStatus() != null && getPaymentVerificationStatus() == PaymentVerificationStatus.VERIFIED && isSuccess()) {
 			return true;
 		}
@@ -155,6 +163,9 @@ public class InvoicePaymentDetail extends FlexibleDocument implements FormMapFil
 	}
 	
 	public final boolean requiresGateway() {
+		if (log.isInfoEnabled()) {
+			log.info("getPaymentType():" + getPaymentType());
+		}
 		if (getPaymentType() != null && (getPaymentType() == PaymentType.NET_BANKING || getPaymentType() == PaymentType.DEBIT_CARD  || getPaymentType() == PaymentType.CREDIT_CARD ) ) {
 			return true;
 		}
@@ -169,7 +180,7 @@ public class InvoicePaymentDetail extends FlexibleDocument implements FormMapFil
 	 */
 	public final boolean isSuccess() {
 		if (requiresGateway() ) {
-			if (getRespCode() != null && getRespCode() == ENQUIRY_RESP_CODE.SUCCESS) {
+			if (getPgTxnId() != null && !"".equals(getPgTxnId())) {
 				return true;
 			}
 			else {
@@ -179,9 +190,6 @@ public class InvoicePaymentDetail extends FlexibleDocument implements FormMapFil
 		return true; 
 	}
 	
-	public final boolean isMarkedForDeletion() {
-		return markedForDeletion;
-	}
 	
 	@FormField(name="paymentDate",propertyName="paymentDate",dataTypeValidationTypes={})
 	@NodeBinder(nodePropertyName="mootlywcm:paymentDate",propertyName="paymentDate")	
@@ -614,7 +622,7 @@ public class InvoicePaymentDetail extends FlexibleDocument implements FormMapFil
 
 	
 	public <T extends HippoBean> void cloneBean(T sourceBean) {
-		InvoicePaymentDetail objinvoiceDetail = (InvoicePaymentDetail) sourceBean;
+		InvoiceRefundDetail objinvoiceDetail = (InvoiceRefundDetail) sourceBean;
 		super.cloneBean(sourceBean);
 		BeanCloneHelper beanCloneHelper = new BeanCloneHelper();
 		beanCloneHelper.cloneTheBean(sourceBean,this);

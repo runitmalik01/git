@@ -34,6 +34,7 @@ import org.hippoecm.hst.content.beans.ObjectBeanManagerException;
 import org.hippoecm.hst.content.beans.ObjectBeanPersistenceException;
 import org.hippoecm.hst.content.beans.manager.workflow.WorkflowCallbackHandler;
 import org.hippoecm.hst.content.beans.manager.workflow.WorkflowPersistenceManager;
+import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.content.beans.standard.HippoFolder;
 import org.hippoecm.hst.content.beans.standard.HippoFolderBean;
 import org.hippoecm.hst.core.component.HstComponentException;
@@ -52,10 +53,13 @@ import com.mootly.wcm.annotations.RequiredFields;
 import com.mootly.wcm.beans.MemberPersonalInformation;
 import com.mootly.wcm.beans.MemberSignupDocument;
 import com.mootly.wcm.beans.ScheduleFiveADocument;
+import com.mootly.wcm.beans.events.BeanLifecycle;
+import com.mootly.wcm.beans.events.MemberPersonalInfoUpdateHandler;
 import com.mootly.wcm.components.ITReturnComponent;
 import com.mootly.wcm.components.InvalidNavigationException;
 import com.mootly.wcm.model.FilingStatus;
 import com.mootly.wcm.model.ITRForm;
+import com.mootly.wcm.model.SORT_DIRECTION;
 import com.mootly.wcm.services.StartApplicationValidationService;
 import com.mootly.wcm.services.ditws.RetrievePANInformation;
 import com.mootly.wcm.services.ditws.exception.DataMismatchException;
@@ -99,6 +103,7 @@ public class StartApplication extends ITReturnComponent {
 	FormMap savedValuesFormMap=null;
 	String memberName = null;
 	MemberPersonalInformation parentBean=null;
+	MemberPersonalInfoUpdateHandler memberPersonalInfoUpdateHandler = null;
 	@Override
 	public void doBeforeRender(HstRequest request, HstResponse response) {
 		// TODO Auto-generated method stub
@@ -331,9 +336,6 @@ public class StartApplication extends ITReturnComponent {
 			} catch (RepositoryException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			} catch (InvalidNavigationException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
 			} catch (ObjectBeanManagerException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -347,6 +349,7 @@ public class StartApplication extends ITReturnComponent {
 	public void doAction(HstRequest request, HstResponse response)
 			throws HstComponentException {
 		// TODO Auto-generated method stub
+		memberPersonalInfoUpdateHandler = new MemberPersonalInfoUpdateHandler(loadAllBeansUnderTheFolder(request, response, "services/incometaxreturn", "mootlywcm:Name",SORT_DIRECTION.ASC));
 		super.doAction(request, response);
 	}
 
@@ -727,6 +730,12 @@ public class StartApplication extends ITReturnComponent {
 		public void processWorkflow(FullReviewedActionsWorkflow wf) throws Exception {
 			wf.publish();
 		}
+	}
+	
+	@Override
+	protected BeanLifecycle<HippoBean> getParentBeanLifeCycleHandler() {
+		// TODO Auto-generated method stub
+		return memberPersonalInfoUpdateHandler;
 	}
 
 }

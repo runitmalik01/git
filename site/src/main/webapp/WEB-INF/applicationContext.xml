@@ -32,26 +32,12 @@
       	</constructor-arg>
   </bean>
   
-  <!--  ITReturn Component Helper -->
-  <bean id="itReturnComponentHelper" class="com.mootly.wcm.components.ITReturnComponentHelper"/>
-  
-  <!-- Validation Chain for Income Tax Return -->
-  <!--  First define the validation for Section and Due Date -->
-  <bean id="itrValidationForSectionAndDueDate" class="com.mootly.wcm.validation.impl.itr.ValidateSectionAndDueDate"/>
-  
-  <!-- Finally define the chain -->
-  <bean id="itrValidationChain" class="com.mootly.wcm.validation.impl.itr.ITRValidatorChain">
-      <constructor-arg>
-                <list>
-                    <!-- commented out a major change no need for now for this -->
-                   <!--  <ref bean="itrValidationForSectionAndDueDate"/>  -->                    
-                </list>
-      </constructor-arg>
-  </bean>
-  
   <!-- DIT SOAP Integration define the services -->  
   <import resource="DITConnectorContext.xml"/>
   
   <import resource="CitrusIntegrationContext.xml"/>
       
+  
+  <!--  ITReturn Component Helper -->
+  <bean id="itReturnComponentHelper" class="com.mootly.wcm.components.ITReturnComponentHelper"/>
 </beans>

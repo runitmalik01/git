@@ -1,8 +1,16 @@
 package com.mootly.wcm.services.citruspay.impl;
 
+import java.io.IOException;
+import java.io.StringReader;
 import java.net.HttpURLConnection;
+import java.util.HashMap;
 import java.util.Map;
 
+import org.jdom.Document;
+import org.jdom.Element;
+import org.jdom.JDOMException;
+import org.jdom.input.SAXBuilder;
+import org.jdom.transform.JDOMSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
@@ -10,6 +18,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 
 import com.mootly.wcm.model.FinancialYear;
+import com.mootly.wcm.model.PaymentType;
 import com.mootly.wcm.services.citruspay.Transaction;
 import com.mootly.wcm.services.citruspay.model.TransactionInput;
 import com.mootly.wcm.services.http.HTTPConnectionException;
@@ -49,7 +58,7 @@ public class TransactionServiceImpl extends PaymentServiceXML implements Transac
 	public Map<String, Object> acceptITRPaymentByDebitOrCreditCard(
 			String memberLoginName, FinancialYear financialYear, String PAN,
 			String returnURL,String notifyURL,
-			PAYMENT_MODE paymentNode, String cardHolderName, String cardNumber,
+			PaymentType paymentNode, String cardHolderName, String cardNumber,
 			CARD_TYPE cardType, String cvvNumber, String expiryMonth,
 			String expiryYear, String amount, String email, String firstName,
 			String lastName, String mobile,String address, String addressCity,String addressState, String addressZip) {
@@ -121,13 +130,19 @@ public class TransactionServiceImpl extends PaymentServiceXML implements Transac
 	
 	@Override
 	public Map<String, Object> acceptITRPaymentByNetBanking(
+			String newMerchantTxnId,
 			String memberLoginName, FinancialYear financialYear, String PAN,
 			String returnURL,String notifyURL,
 			BANK_ISSUER bankIssuer, String amount, String email,
 			String firstName, String lastName, String mobile,String address, String addressCity,String addressState, String addressZip) {
 		// TODO Auto-generated method stub
 		// TODO Auto-generated method stub
-		String merchantTxId = newMerchantTxnId();
+		Map<String,Object> returnMap = new HashMap<String, Object>(1);
+		
+		String merchantTxId = newMerchantTxnId;
+		if (merchantTxId == null) {
+			merchantTxId = newMerchantTxnId(); //generate the transid
+		}
 		String hMacSignature = getHMACSignature(merchantTxId, amount);
 		
 		Map<String,String> headers = getHeaders(hMacSignature);
@@ -143,7 +158,7 @@ public class TransactionServiceImpl extends PaymentServiceXML implements Transac
 		transactionInput.setAddressState(addressState);
 		transactionInput.setAddressZip(addressZip);
 		
-		transactionInput.setPaymentMode(PAYMENT_MODE.NET_BANKING.name());
+		transactionInput.setPaymentMode(PaymentType.NET_BANKING.name());
 		transactionInput.setIssuerCode(bankIssuer.getIssuerCode());
 		
 		transactionInput.setEmail(email);
@@ -158,12 +173,20 @@ public class TransactionServiceImpl extends PaymentServiceXML implements Transac
 		}
 		try {
 			String returnXml = httpConnectionService.doPost(headers, xml, getHttpUrlConnection());
+			if (logger.isInfoEnabled()) {
+				logger.info(returnXml);
+			}			
+			String theReturnURLToGateway = getGatewayReturnURL(returnXml);
+			if (returnURL != null) {
+				returnMap.put(Transaction.RETURN_URL_KEY, theReturnURLToGateway);
+			}
 		} catch (HTTPConnectionException e) {
+			logger.error("Error in Transaction", e.getTheCompleteMessage());
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			logger.error("Error in doPost",e);
 		}
-		return null;
+		return returnMap;
 	}
 
 	@Override

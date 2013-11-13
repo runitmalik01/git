@@ -294,9 +294,11 @@ public final class ITReturnComponentHelper {
 						log.error("parentBeanCreatedHandler handler",ex);
 					}
 				}				
-				if (parentBeanInSession instanceof FormMapFiller && parentBeanMap != null){
+				if (parentBeanInSession instanceof FormMapFiller){
 					FormMapFiller formMapFiller = (FormMapFiller) parentBeanInSession;
-					formMapFiller.fill(parentBeanMap);
+					if (parentBeanLifeCycleHandler != null) parentBeanLifeCycleHandler.beforeFillChildBeanMap(parentBeanInSession);
+					if (parentBeanMap != null) formMapFiller.fill(parentBeanMap);
+					if (parentBeanLifeCycleHandler != null) parentBeanLifeCycleHandler.afterFillChildBeanMap(parentBeanInSession);
 				}
 			}
 			//now set the value we received from the form submission
@@ -317,8 +319,10 @@ public final class ITReturnComponentHelper {
 						}
 					}
 					if (childBean instanceof FormMapFiller) {
+						if (childBeanLifeCycleHandler != null) childBeanLifeCycleHandler.beforeFillChildBeanMap(childBean);						
 						FormMapFiller formMapFiller = (FormMapFiller) childBean;
-						formMapFiller.fill(childBeanMap);
+						if (childBeanMap != null) formMapFiller.fill(childBeanMap);
+						if (childBeanLifeCycleHandler != null)  childBeanLifeCycleHandler.afterFillChildBeanMap(childBean);
 					}
 					if (parentBeanInSession instanceof CompoundChildUpdate) {
 						CompoundChildUpdate compoundChildUpdate = (CompoundChildUpdate) parentBeanInSession;
@@ -342,6 +346,60 @@ public final class ITReturnComponentHelper {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
+			}
+		} catch (ObjectBeanManagerException e) {
+			// TODO Auto-generated catch block
+			log.error("Error saving document",e);
+			e.printStackTrace();
+		}
+	}
+	
+	public <T extends BeanLifecycle<HippoBean>> void saveUpdateExistingChild (FormMap childBeanMap,FormMap parentBeanMap, T childBeanLifeCycleHandler,T parentBeanLifeCycleHandler, String baseAbsolutePathToReturnDocuments, String parentBeanAbsolutePath, String parentBeanNameSpace,String parentBeanNodeName,  Class<? extends HippoBean> childBeanClass,Session persistableSession,WorkflowPersistenceManager wpm,String childBeanCanonicalUUID) {
+		try {
+			//now set the value we received from the form submission
+			//ChildBean childBeanLocal = getClass().getAnnotation(ChildBean.class);
+			//HippoBean newChildBeanInstance = null;
+			HippoBean childBean = (HippoBean) wpm.getObjectByUuid(childBeanCanonicalUUID);
+			HippoBean childBeanBeforeUpdate = childBean;
+			if (childBeanClass != null && childBean != null) {
+					//HippoBean childBean = childBeanClass.newInstance();
+					HippoBean parentBeanInSession = childBean.getParentBean();
+					HippoBean parentBeanBeforeUpdate = parentBeanInSession;
+					//invoke the init method if there is any as a parent bean is created
+					if (childBeanLifeCycleHandler != null) {
+						try {
+							if (log.isInfoEnabled()) {
+								log.info("Handler defined for child bean creation invoke that handler now");
+							}							
+						}catch (Exception  ex) {
+							log.error("parentBeanCreatedHandler handler",ex);
+						}
+					}
+					if (childBean instanceof FormMapFiller) {
+						FormMapFiller formMapFiller = (FormMapFiller) childBean;
+						if (childBeanLifeCycleHandler != null) childBeanLifeCycleHandler.beforeFillChildBeanMap(childBean);
+						if (childBeanMap != null) formMapFiller.fill(childBeanMap);
+						if (childBeanLifeCycleHandler != null) childBeanLifeCycleHandler.afterFillChildBeanMap(childBean);
+					}
+					if (parentBeanInSession instanceof CompoundChildUpdate) {
+						CompoundChildUpdate compoundChildUpdate = (CompoundChildUpdate) parentBeanInSession;
+						compoundChildUpdate.update(childBean);
+					}
+					wpm.setWorkflowCallbackHandler(new FullReviewedWorkflowCallbackHandler());
+					if (parentBeanInSession != null) {
+						try {
+							//if (!beforeSave(request)) return; // don't save if this method returns false
+							if (childBeanLifeCycleHandler != null) childBeanLifeCycleHandler.beforeUpdate(childBean);
+							wpm.update(parentBeanInSession);
+							HippoBean childBeanAfterUpdate = childBean;
+							HippoBean parentBeanAfterUpdate = parentBeanInSession;
+							if (childBeanLifeCycleHandler != null)  childBeanLifeCycleHandler.afterUpdateChild(parentBeanBeforeUpdate,parentBeanAfterUpdate,childBeanBeforeUpdate,childBeanAfterUpdate,wpm,this);
+						} catch (ObjectBeanPersistenceException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+							log.error("Error in Save",e);
+						}
+					}
 			}
 		} catch (ObjectBeanManagerException e) {
 			// TODO Auto-generated catch block

@@ -9,11 +9,9 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.mootly.wcm.model.FinancialYear;
-import com.mootly.wcm.services.citruspay.Enquiry;
+import com.mootly.wcm.model.PaymentType;
 import com.mootly.wcm.services.citruspay.Transaction;
-import com.mootly.wcm.services.citruspay.PaymentService.BANK_ISSUER;
 import com.mootly.wcm.services.citruspay.Transaction.CARD_TYPE;
-import com.mootly.wcm.services.citruspay.Transaction.PAYMENT_MODE;
 import com.mootly.wcm.services.ditws.RetrieveITRV;
 
 public class TestCitrusCreditCardTransaction  {
@@ -46,7 +44,7 @@ public class TestCitrusCreditCardTransaction  {
 										// cardHolderName, cardNumber, cardType, cvvNumber, expiryMonth, expiryYear, 
 										// amount, email, firstName, lastName, mobile) (
 										"amitpatkar@gmail.com", FinancialYear.TwentyTweleve, "ABNPP4706G", 
-										"http://www.wealth4india/site/blah","http://www.wealth4india/site/blah",PAYMENT_MODE.DEBIT_CARD,
+										"http://www.wealth4india/site/blah","http://www.wealth4india/site/blah",PaymentType.DEBIT_CARD,
 										"Sur","5555555555554444", CARD_TYPE.MCRD,"123","8","2020",
 										"1.0","amitpatkar@gmail.com","Swar","Sur","9878685612",
 										"Address","Mumbai","Maharashtra","411500");

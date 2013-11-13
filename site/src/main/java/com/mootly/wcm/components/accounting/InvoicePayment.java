@@ -1,9 +1,12 @@
 package com.mootly.wcm.components.accounting;
 
+import java.io.IOException;
 import java.util.Map;
 
 import javax.servlet.ServletContext;
 
+import org.hippoecm.hst.configuration.sitemap.HstSiteMapItem;
+import org.hippoecm.hst.content.beans.manager.workflow.WorkflowPersistenceManager;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.core.component.HstComponentException;
 import org.hippoecm.hst.core.component.HstRequest;
@@ -22,6 +25,7 @@ import com.mootly.wcm.beans.InvoiceDocument;
 import com.mootly.wcm.beans.MemberPersonalInformation;
 import com.mootly.wcm.beans.compound.InvoicePaymentDetail;
 import com.mootly.wcm.beans.events.BeanLifecycle;
+import com.mootly.wcm.beans.events.InvoicePaymentDetailBeanHandler;
 import com.mootly.wcm.components.ITReturnComponent;
 import com.mootly.wcm.model.IndianGregorianCalendar;
 import com.mootly.wcm.model.PaymentType;
@@ -29,20 +33,21 @@ import com.mootly.wcm.services.SequenceGenerator;
 import com.mootly.wcm.services.citruspay.PaymentService.BANK_ISSUER;
 import com.mootly.wcm.services.citruspay.Transaction;
 import com.mootly.wcm.services.citruspay.Transaction.CARD_TYPE;
-import com.mootly.wcm.services.citruspay.Transaction.PAYMENT_MODE;
 
 @PrimaryBean(primaryBeanClass=InvoiceDocument.class)
 @ChildBean(childBeanClass=InvoicePaymentDetail.class)
 @RequiredBeans(requiredBeans={MemberPersonalInformation.class,InvoiceDocument.class})
-@FormFields(fieldNames={"paymentMemo","paymentAmount","authCode","preAuthCode","checkNo","checkDate","checkBank","checkBranch","checkLocation","cashAddress","cashContactNumber","cashBestTime","rtgsTransNumber","rtgsDate","rtgsAmount","rtgsTime"},
+@FormFields(fieldNames={"paymentMemo","paymentAmount","authCode","preAuthCode","checkNo","checkDate","checkBank","checkBranch","checkLocation","cashAddress","cashContactNumber","cashBestTime","rtgsTransNumber","rtgsDate","rtgsAmount","rtgsTime","issuerCode"},
 fieldNamesVendorOnly={"paymentVerificationStatus"})
 //@RequiredFields(fieldNames={"paymentType"})
 @DataTypeValidationFields(fieldNames={"rtgsDate"},dataTypes={DataTypeValidationType.INDIANDATE})
 public class InvoicePayment extends ITReturnComponent {
 	private static final Logger log = LoggerFactory.getLogger(InvoicePayment.class);
+	String theTransactionId = "";
 	PaymentType paymentType = null;
 	Transaction transaction = null;
 	String returnSiteMapRefID = "payment-success-";
+	InvoicePaymentDetailBeanHandler  invoicePaymentDetailBeanHandler = null;
 	@Override
 	public void init(ServletContext servletContext,
 			ComponentConfiguration componentConfig)
@@ -56,7 +61,7 @@ public class InvoicePayment extends ITReturnComponent {
 	public void doBeforeRender(HstRequest request, HstResponse response) {
 		// TODO Auto-generated method stub
 		request.setAttribute("type", "payment");
-		request.setAttribute("paymentType", paymentType);
+		request.setAttribute("paymentType", paymentType);		
 		super.doBeforeRender(request, response);
 		String paymentTypeStr = request.getRequestContext().getResolvedSiteMapItem().getParameter("paymentType");
 		if (paymentTypeStr != null) {
@@ -71,15 +76,23 @@ public class InvoicePayment extends ITReturnComponent {
 			}
 		}
 		request.setAttribute("type", "payment");
-		request.setAttribute("paymentType", paymentType);
+		request.setAttribute("paymentType", paymentType);		
 	}
-
+	
+	@Override
+	protected boolean shouldRedirectAfterSuccess() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
 	@Override
 	public void doAction(HstRequest request, HstResponse response)
 			throws HstComponentException {
 		// TODO Auto-generated method stub
 		request.setAttribute("type", "payment");
-		request.setAttribute("paymentType", paymentType);
+		request.setAttribute("paymentType", paymentType);		
+		//this is where we create the handler first
+		invoicePaymentDetailBeanHandler = new InvoicePaymentDetailBeanHandler(paymentType,request,getSequenceGenerator());
 		super.doAction(request, response);
 		String paymentTypeStr = request.getRequestContext().getResolvedSiteMapItem().getParameter("paymentType");
 		if (paymentTypeStr != null) {
@@ -104,16 +117,49 @@ public class InvoicePayment extends ITReturnComponent {
 		String email = getUserName().toLowerCase();
 		String amount = String.valueOf(invDoc.getAmountDue());
 		ITReturnComponent itReturnComponent = new ITReturnComponent();
-
-		String returnUrl = itReturnComponent.getRedirectURLForSiteMapItem(request, response, null, returnSiteMapRefID, getFinancialYear(), getTheFolderContainingITRDocuments(), getPAN());
+		
+		String rq = request.getRequestURI();
+		if (log.isInfoEnabled()) {
+			log.info(rq);
+		}
+		
+	 	//HstSiteMapItem returnURL = request.getRequestContext().getResolvedSiteMapItem().getHstSiteMapItem().get
+	 	//HstSiteMapItem notifyURL = request.getRequestContext().getResolvedSiteMapItem().getHstSiteMapItem().getChild("notifyURL");
+		String returnUrl = itReturnComponent.getRedirectURLForSiteMapItem(request, response, null, "memberinvoice", getFinancialYear(), getTheFolderContainingITRDocuments(), getPAN());
+		String notifyUrl = itReturnComponent.getRedirectURLForSiteMapItem(request, response, null,"memberinvoice", getFinancialYear(), getTheFolderContainingITRDocuments(), getPAN());
+		BANK_ISSUER bankIssuer = null;
+		
+		String issuerCodeStr = null;
+		if (getFormMap() != null && getFormMap().getField("issuerCode") != null && getFormMap().getField("issuerCode").getValue() != null) {
+			issuerCodeStr = getFormMap().getField("issuerCode").getValue();
+			try {
+				bankIssuer = BANK_ISSUER.valueOf(issuerCodeStr);
+			}catch (IllegalArgumentException e) {
+				log.warn("Error converting issuer code to enum, check what's going on the value passed was " + issuerCodeStr,e);
+			}
+		}
+		
 		//String returnUrl = "http://www.wealth4india/site/blah";
-		String notifyUrl = "http://www.wealth4india/site/blah";
 		//FinancialYear fy = FinancialYear.getByDisplayName(personalInformation.getFinancialYear());
-		if(paymentType.equals(PaymentType.NET_BANKING)){
-			Map<String, Object> output = getTransaction().acceptITRPaymentByNetBanking(memberLoginName, getFinancialYear(), getPAN(), 
-					returnUrl, notifyUrl, BANK_ISSUER.ICICI_BANK, amount, email, personalInformation.getFirstName(), personalInformation.getLastName(),
-					personalInformation.getMobile(), address, personalInformation.getTownCityDistrict(), personalInformation.getState(), personalInformation.getPinCode());
-			System.out.println("test output"+output);
+		if(paymentType.equals(PaymentType.NET_BANKING) && bankIssuer != null && bankIssuer.isAppliesToMotoAPI()){
+			String strTransactionId = invoicePaymentDetailBeanHandler.getStrPaymentTransactionId();
+			if (log.isInfoEnabled()) {
+				log.info("The transaction Id for this transaction is :" + strTransactionId);
+			}
+			Map<String, Object> output = getTransaction().acceptITRPaymentByNetBanking(
+					strTransactionId,
+					memberLoginName, getFinancialYear(), getPAN(), 
+					returnUrl, notifyUrl, bankIssuer, amount, email, personalInformation.getFirstName(), personalInformation.getLastName(),
+					personalInformation.getMobile(), address, personalInformation.getTownCityDistrict(), personalInformation.getState(), personalInformation.getPinCode());			
+			if (output != null && output.containsKey(Transaction.RETURN_URL_KEY)) {
+				try {
+					response.sendRedirect((String) output.get(Transaction.RETURN_URL_KEY));
+					return;
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					log.error("There was an error redirecting user to ",e);
+				} 
+			}
 		}
 		if(paymentType.equals(PaymentType.CREDIT_CARD) || paymentType.equals(PaymentType.DEBIT_CARD)){
 			String cardHolderName = getFormMap().getField("cardHolderName").getValue();
@@ -128,75 +174,16 @@ public class InvoicePayment extends ITReturnComponent {
 					// cardHolderName, cardNumber, cardType, cvvNumber, expiryMonth, expiryYear, 
 					// amount, email, firstName, lastName, mobile) (
 					memberLoginName, getFinancialYear(), getPAN(), 
-					returnUrl,notifyUrl,PAYMENT_MODE.valueOf(paymentType.toString()),
+					returnUrl,notifyUrl,PaymentType.valueOf(paymentType.toString()),
 					cardHolderName,cardNumber, CARD_TYPE.valueOf(cardType),cvvNumber,expiryMonth,expiryYear,
 					amount,email,personalInformation.getFirstName(),personalInformation.getLastName(),personalInformation.getMobile(),
-					address, personalInformation.getTownCityDistrict(), personalInformation.getState(), personalInformation.getPinCode());
-			System.out.println(output);
+					address, personalInformation.getTownCityDistrict(), personalInformation.getState(), personalInformation.getPinCode());					
 		}
 	}
 
 	@Override
 	protected BeanLifecycle<HippoBean> getChildBeanLifeCycleHandler() {
 		// TODO Auto-generated method stub
-		return new InvoicePaymentDetailBeanHandler(this.paymentType);
-	}
-
-
-	/**
-	 * This class is responsible to inject the invoice number every time an invoice is created
-	 * @author admin
-	 *
-	 */
-	class InvoicePaymentDetailBeanHandler implements BeanLifecycle<HippoBean> {
-
-		final PaymentType paymentType;
-
-		public InvoicePaymentDetailBeanHandler(PaymentType paymentType) {
-			this.paymentType = paymentType;
-		}
-		@Override
-		public void beforeCreate(HippoBean hippoBean) {
-			// TODO Auto-generated method stub
-
-		}
-
-		@Override
-		public void afterCreate(HippoBean hippoBean) {
-			// TODO Auto-generated method stub
-			// TODO Auto-generated method stub
-			SequenceGenerator sequenceGenerator = getSequenceGenerator();
-			Long paymentTransactionId = sequenceGenerator.getNextId(SequenceGenerator.SEQUENCE_PAYMENT);
-			if (hippoBean != null && hippoBean instanceof InvoicePaymentDetail) {
-				InvoicePaymentDetail invoicePaymentDetail = (InvoicePaymentDetail) hippoBean;
-				invoicePaymentDetail.setPaymentTransactionId(String.valueOf(paymentTransactionId));
-				invoicePaymentDetail.setPaymentType(paymentType);
-				invoicePaymentDetail.setPaymentDate(IndianGregorianCalendar.getCurrentDateInIndiaAsDate());
-			}
-		}
-
-		@Override
-		public boolean beforeSaveNewBean(HippoBean hippoBean) {
-			// TODO Auto-generated method stub
-			return false;
-		}
-
-		@Override
-		public void afterSaveNewBean(HippoBean hippoBean) {
-			// TODO Auto-generated method stub
-
-		}
-
-		@Override
-		public boolean beforeUpdate(HippoBean hippoBean) {
-			// TODO Auto-generated method stub
-			return false;
-		}
-
-		@Override
-		public void afterUpdate(HippoBean hippoBean) {
-			// TODO Auto-generated method stub
-
-		}
+		return invoicePaymentDetailBeanHandler;
 	}
 }

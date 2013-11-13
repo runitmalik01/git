@@ -1,3 +1,4 @@
+<%@page import="com.mootly.wcm.services.citruspay.PaymentService"%>
 <%@page import="com.mootly.wcm.model.IndianGregorianCalendar"%>
 <%@include file="../../includes/tags.jspf"%>
 <%@page import="java.util.Map"%>
@@ -9,6 +10,7 @@
 ValueListService objValueListService = ValueListServiceImpl.getInstance();
 SortedSet<Map.Entry<String,String>> objHashMapstates = objValueListService.getStates();
 request.setAttribute("objHashMapstates", objHashMapstates);
+request.setAttribute("issuerCodes", PaymentService.BANK_ISSUER.getSortedValues());
 %>
 <hst:actionURL var="actionUrl"></hst:actionURL>
 <c:if test="${not empty formMap}">
@@ -22,6 +24,22 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 <c:when test="${pageAction == 'NEW_CHILD'}">
 <form name="payment_net_banking" id="payment_net_banking" method="post" action="${actionUrl}">
 	<div class="page well" align="justify">
+		<div class="row-fluid show-grid">
+			<div class="span4">
+				<div class="rowlabel">
+					<label for="issuerCode"><small>Bank</small></label>
+				</div>
+				<div class="rowlabel">
+					<select name="issuerCode" id="issuerCode">
+						<c:forEach items="${issuerCodes}" var="issuerCode">
+							<c:if test="${issuerCode.appliesToMotoAPI}">
+								<option value="${issuerCode}"><c:out value="${issuerCode.displayName}"/></option>
+							</c:if>
+						</c:forEach>
+					</select>
+				</div>
+			</div>			
+		</div>
 		<div class="row-fluid show-grid">
 			<div class="span4">
 				<div class="rowlabel">
@@ -253,3 +271,6 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 	  });
 </hst:element>
 <hst:headContribution element="${uiCustom}" category="jsInternal" />
+<res:client-validation formId="payment_net_banking"
+	screenConfigurationDocumentName="netbankingconfiguration"
+	formSubmitButtonId="payNetBanking" />
