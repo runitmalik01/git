@@ -3,8 +3,12 @@ package com.mootly.wcm.member;
 
 import java.util.List;
 
+import javax.jcr.RepositoryException;
+import javax.jcr.Session;
 import javax.servlet.ServletContext;
 
+import org.hippoecm.hst.content.beans.ObjectBeanManagerException;
+import org.hippoecm.hst.content.beans.manager.workflow.WorkflowPersistenceManager;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.core.component.HstComponentException;
 import org.hippoecm.hst.core.component.HstRequest;
@@ -21,10 +25,17 @@ import com.mootly.wcm.annotations.RequiredFields;
 import com.mootly.wcm.annotations.SyncInvoiceWithCitrus;
 import com.mootly.wcm.beans.InvoiceDocument;
 import com.mootly.wcm.beans.compound.InvoiceDocumentDetail;
+import com.mootly.wcm.beans.compound.InvoicePaymentDetail;
+import com.mootly.wcm.beans.compound.InvoiceRefundDetail;
 import com.mootly.wcm.beans.events.BeanLifecycle;
 import com.mootly.wcm.beans.events.InvoiceDocumentBeanHandler;
 import com.mootly.wcm.components.ITReturnComponent;
+import com.mootly.wcm.components.accounting.InvoiceHelper;
+import com.mootly.wcm.model.PaymentType;
+import com.mootly.wcm.model.PaymentVerificationStatus;
 import com.mootly.wcm.model.SORT_DIRECTION;
+import com.mootly.wcm.services.citruspay.model.enquiry.EnquiryResponse;
+import com.mootly.wcm.services.citruspay.model.enquiry.TxnEnquiryResponse;
 /**
  * 
  * @author admin
@@ -63,85 +74,20 @@ public class MemberInvoice extends ITReturnComponent {
 		if (serviceDocumentList != null && serviceDocumentList.size() > 0) {
 			request.setAttribute("serviceDocumentList", serviceDocumentList);
 		}
-		/*
+		if (request.getAttribute(InvoiceDocument.class.getSimpleName().toLowerCase()) != null) {
+			InvoiceDocument invoiceDocument = (InvoiceDocument) request.getAttribute(InvoiceDocument.class.getSimpleName().toLowerCase());
+			System.out.println(invoiceDocument.getAmountDue());
+			System.out.println(invoiceDocument.getTotalInvoiceAmount());
+		}
 		//this is COOL we call citrus for each transaction which was NET Banking, Credit Card, Debit Card and check for respCode
 		// if there is no respCode we need to get it and update the record accordingly
 		//if there is a respCode and its not success ignore it
 		if (request.getAttribute(InvoiceDocument.class.getSimpleName().toLowerCase()) != null) {
 			InvoiceDocument invoiceDocument = (InvoiceDocument) request.getAttribute(InvoiceDocument.class.getSimpleName().toLowerCase());
 			if (invoiceDocument != null && invoiceDocument.getInvoicePaymentDetailList() != null && invoiceDocument.getInvoicePaymentDetailList().size() > 0) {
-				Session persistableSession = null;
-				WorkflowPersistenceManager wpm;
-				try {
-					persistableSession = getPersistableSession(request);
-				} catch (RepositoryException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-					log.error("Error in Save",e);
-				}
-				wpm = getWorkflowPersistenceManager(persistableSession);
-				try {
-					InvoiceDocument invoiceDocumentInSession = (InvoiceDocument) wpm.getObjectByUuid(invoiceDocument.getCanonicalUUID());				
-					for (InvoicePaymentDetail invoicePaymentDetail:invoiceDocumentInSession.getInvoicePaymentDetailList()) {
-						if ( invoicePaymentDetail.getPaymentType() != null &&  (invoicePaymentDetail.getPaymentType() == PaymentType.NET_BANKING || invoicePaymentDetail.getPaymentType() == PaymentType.CREDIT_CARD || invoicePaymentDetail.getPaymentType() == PaymentType.DEBIT_CARD) && (invoicePaymentDetail.getPaymentVerificationStatus() == null || invoicePaymentDetail.getPaymentVerificationStatus() != PaymentVerificationStatus.VERIFIED) ) {
-							TxnEnquiryResponse theEnquiryOutput = getEnquiry().doEnquiry(invoicePaymentDetail.getPaymentTransactionId());
-							if (theEnquiryOutput != null) {
-								if (log.isInfoEnabled()) {
-									log.info("Transaction Id:" + invoicePaymentDetail.getPaymentTransactionId());
-									log.info("Enquiry Output " + theEnquiryOutput.toString());
-									log.info("The canonical UUID" + invoicePaymentDetail.getCanonicalUUID());
-								}				
-								if (theEnquiryOutput != null && theEnquiryOutput.getEnquiryResponse() != null && theEnquiryOutput.getEnquiryResponse().size() > 0 ) {
-									for (EnquiryResponse enquiryResponse : theEnquiryOutput.getEnquiryResponse()) {									
-										//update the record 
-										if (enquiryResponse.getTxnType().equals("SALE") && invoicePaymentDetail.getCanonicalHandleUUID() != null) {
-											invoicePaymentDetail.setRespCodeStr(enquiryResponse.getRespCode().name());
-											invoicePaymentDetail.setRespMsg(enquiryResponse.getRespMsg());
-											invoicePaymentDetail.setRespCode(enquiryResponse.getRespCode());
-											if (enquiryResponse.getPgTxnId() != null) invoicePaymentDetail.setPgTxnId(enquiryResponse.getPgTxnId());
-											invoicePaymentDetail.setTxnAmount(Double.valueOf(enquiryResponse.getAmount()));
-											invoicePaymentDetail.setRrn(enquiryResponse.getRRN());
-											invoicePaymentDetail.setAuthIdCode(enquiryResponse.getAuthIdCode());
-											invoicePaymentDetail.setTxnDateTime(enquiryResponse.getTxnDateTime());
-											//this has been verified
-											invoicePaymentDetail.setPaymentVerificationStatusStr(PaymentVerificationStatus.VERIFIED.name());
-										}
-										else if (enquiryResponse.getTxnType().equals("REFUND")) { 
-											if (!InvoiceHelper.refundExists(request, invoicePaymentDetail.getPaymentType() , invoicePaymentDetail.getPaymentTransactionId() , enquiryResponse.getPgTxnId(), enquiryResponse.getAuthIdCode(), enquiryResponse.getRRN(),invoiceDocument)) {
-												//check if this trans exist otherwise add it
-												InvoiceRefundDetail invoiceRefundDetail = new InvoiceRefundDetail();												
-												invoiceRefundDetail.setPaymentTransactionId(invoicePaymentDetail.getPaymentTransactionId());
-												invoiceRefundDetail.setPaymentType(invoicePaymentDetail.getPaymentType());
-												if (enquiryResponse.getRespMsg() != null) invoiceRefundDetail.setRespMsg(enquiryResponse.getRespMsg());
-												//if (enquiryResponse.getRespCode() != null) invoiceRefundDetail.setRespCode(enquiryResponse.getRespCode());
-												if (enquiryResponse.getAmount() != null) invoiceRefundDetail.setTxnAmount(Double.valueOf(enquiryResponse.getAmount()));
-												if (enquiryResponse.getPgTxnId() != null) invoiceRefundDetail.setPgTxnId(enquiryResponse.getPgTxnId());
-												if (enquiryResponse.getRRN() != null) invoiceRefundDetail.setRrn(enquiryResponse.getRRN());
-												if (enquiryResponse.getAuthIdCode() != null) invoiceRefundDetail.setAuthIdCode(enquiryResponse.getAuthIdCode());
-												invoiceRefundDetail.setTxnDateTime(enquiryResponse.getTxnDateTime());
-												invoiceRefundDetail.setPaymentVerificationStatusStr(PaymentVerificationStatus.VERIFIED.name());	
-												invoiceDocumentInSession.addInvoiceRefundDetail(invoiceRefundDetail);
-											}
-										}									
-									}
-								}
-							}
-						}
-					}
-					
-					wpm.setWorkflowCallbackHandler(new FullReviewedWorkflowCallbackHandler());
-					wpm.update(invoiceDocumentInSession);
-				} catch (ObjectBeanManagerException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				finally{
-					try { persistableSession.logout(); } finally {}
-				}
-				loadBeansAndSetRequestAttributes(request, response);					
+								
 			}			
 		}
-		*/
 		//after all this lets reload the beans and reset the request attribute
 		
 	}
@@ -151,7 +97,7 @@ public class MemberInvoice extends ITReturnComponent {
 		super.doAction(request, response);
 
 	} 
-
+	
 	@Override
 	protected BeanLifecycle<HippoBean> getParentBeanLifeCycleHandler() {
 		// TODO Auto-generated method stub

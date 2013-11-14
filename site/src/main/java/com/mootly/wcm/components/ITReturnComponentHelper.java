@@ -52,17 +52,17 @@ public final class ITReturnComponentHelper {
 		}
 		return member;
 	}
-	
+
 	public String getStrFinancialYear(HstRequest request,HstResponse response) {
 		String strFinancialYear = request.getRequestContext().getResolvedSiteMapItem().getParameter("financialYear"); 
 		return strFinancialYear;
 	}
-	
+
 	public FinancialYear getFinancialYear(String strFinancialYear,HstRequest request,HstResponse response) {
 		FinancialYear financialYear = FinancialYear.getByDisplayName(strFinancialYear);
 		return financialYear;
 	}
-	
+
 	public String getAssessmentYear(FinancialYear financialYear) {
 		String assessmentYear = null;
 		if (financialYear != null && !financialYear.equals(FinancialYear.UNKNOWN)) {
@@ -70,11 +70,11 @@ public final class ITReturnComponentHelper {
 		}
 		return assessmentYear;
 	}
-	
+
 	public String getTheFolderContainingITRDocuments(HstRequest request,HstResponse response) {
 		return request.getRequestContext().getResolvedSiteMapItem().getParameter("itReturnType");
 	}
-	
+
 	public String getITRFolderSuffix (String theFolderContainingITRDocuments) {
 		String itrFolderSuffix = null;
 		if ( theFolderContainingITRDocuments != null) {
@@ -82,12 +82,12 @@ public final class ITReturnComponentHelper {
 		}
 		return itrFolderSuffix;
 	}
-	
+
 	public String getPANFromRequestContext(HstRequest request) {
 		String PAN = request.getRequestContext().getResolvedSiteMapItem().getParameter("pan"); 
 		return PAN;
 	}
-	
+
 	public ITReturnPackage getITReturnPackage(HstRequest request) {
 		String strItReturnPackage = getParamValueFromRequestContext(request, "itReturnPackage");//request.getRequestContext().getResolvedSiteMapItem().getParameter("itReturnPackage");
 		ITReturnPackage itReturnPackage = ITReturnPackage.basic;
@@ -102,7 +102,7 @@ public final class ITReturnComponentHelper {
 		}
 		return itReturnPackage;
 	}
-	
+
 	public FilingStatus getFilingStatus(String PAN) {
 		FilingStatus filingStatus = FilingStatus.UNKNOWN;
 		if (!StringUtils.isEmpty(PAN)) {
@@ -111,7 +111,7 @@ public final class ITReturnComponentHelper {
 		}
 		return filingStatus;
 	}
-	
+
 	public PAGE_OUTPUT_FORMAT getPageOutputFormat(HstRequest request) {
 		String strPageOutputFormat = getParamValueFromRequestContext(request, "outputFormat");
 		PAGE_OUTPUT_FORMAT pageOutputFormat = PAGE_OUTPUT_FORMAT.HTML;
@@ -129,35 +129,35 @@ public final class ITReturnComponentHelper {
 		hippoBeanBaseITReturnDocuments = siteContentBaseBean.getBean(baseRelPathToReturnDocuments);
 		baseAbsolutePathToReturnDocuments = request.getRequestContext().getResolvedMount().getMount().getCanonicalContentPath() + "/" + baseRelPathToReturnDocuments;
 	 */
-	
+
 	public String getBaseRelPathToReturnDocuments(String memberFolderPath,String PAN,FinancialYear financialYear,String theFolderContainingITRDocuments) {
 		String retValue = "members/" + memberFolderPath + "/pans/" + PAN + "/" + financialYear + "/" + theFolderContainingITRDocuments;
 		return retValue;
 	}
-	
+
 	public boolean isReSeller(HstRequest request) {
 		final Mount mount = request.getRequestContext().getResolvedMount().getMount();
-        final WebsiteInfo info = mount.getChannelInfo();
-        if (info == null) {
-            log.warn("No channel info available for mount '{}'. No logo will be shown", mount.getMountPath());
-            return false;
-        }
-        String isReseller = info.isReseller();
-        String resellerId = info.getResellerId();
-        if (info.isReseller() != null && Boolean.valueOf(info.isReseller()) && info.getResellerId() != null && !"".equals(info.getResellerId()) ) {
-        	return true;
-        }        
-        return false;
+		final WebsiteInfo info = mount.getChannelInfo();
+		if (info == null) {
+			log.warn("No channel info available for mount '{}'. No logo will be shown", mount.getMountPath());
+			return false;
+		}
+		String isReseller = info.isReseller();
+		String resellerId = info.getResellerId();
+		if (info.isReseller() != null && Boolean.valueOf(info.isReseller()) && info.getResellerId() != null && !"".equals(info.getResellerId()) ) {
+			return true;
+		}        
+		return false;
 	}
-	
+
 	public String getResellerId(HstRequest request) {
 		final Mount mount = request.getRequestContext().getResolvedMount().getMount();
-        final WebsiteInfo info = mount.getChannelInfo();
-        boolean isReseller = isReSeller(request);
-        if ( !isReseller ) return null;
-        return info.getResellerId();
+		final WebsiteInfo info = mount.getChannelInfo();
+		boolean isReseller = isReSeller(request);
+		if ( !isReseller ) return null;
+		return info.getResellerId();
 	}
-	
+
 	/**
 	 * parentBeanPath = baseRelPathToReturnDocuments + "/" + getParentBeanNodeName();
 			parentBeanAbsolutePath = baseAbsolutePathToReturnDocuments + "/" + getParentBeanNodeName();
@@ -172,12 +172,12 @@ public final class ITReturnComponentHelper {
 		}
 		return null;
 	}
-	
+
 	public String getParentBeanPath(String baseRelPathToReturnDocuments,String parentNodeName) {
 		String parentBeanPath =  baseRelPathToReturnDocuments + "/" + parentNodeName;
 		return parentBeanPath;
 	}
-	
+
 	/**
 	 * parentBeanAbsolutePath = baseAbsolutePathToReturnDocuments + "/" + getParentBeanNodeName();
 	 * @param request
@@ -188,18 +188,29 @@ public final class ITReturnComponentHelper {
 		String parentBeanAbsolutePath = baseAbsolutePathToReturnDocuments + "/" + parentBeanNodeName;
 		return parentBeanAbsolutePath;
 	}
-	
+
 	public String getParentBeanNodeName(Class<? extends HippoBean> parentBeanClass) {
 		// TODO Auto-generated method stub
 		return parentBeanClass.getSimpleName().toLowerCase();
 	}
-	
+
 	public String getParamValueFromRequestContext(HstRequest request,String paramName) {
 		String theValue = request.getRequestContext().getResolvedSiteMapItem().getParameter(paramName);
 		return theValue;
 	}
-	
-	public void syncInvoiceWithPaymentGateway(String pathToInvoiceDocument, HstRequest request,Enquiry enquiry,Session persistableSession,WorkflowPersistenceManager wpm) throws ObjectBeanManagerException {
+
+	/**
+	 * Did any thing get updated?
+	 * @param pathToInvoiceDocument
+	 * @param request
+	 * @param enquiry
+	 * @param persistableSession
+	 * @param wpm
+	 * @return
+	 * @throws ObjectBeanManagerException
+	 */
+
+	public boolean syncInvoiceWithPaymentGateway(String pathToInvoiceDocument, HstRequest request,Enquiry enquiry,Session persistableSession,WorkflowPersistenceManager wpm) throws ObjectBeanManagerException {
 		/*
 		Session persistableSession = null;
 		WorkflowPersistenceManager wpm;
@@ -211,63 +222,68 @@ public final class ITReturnComponentHelper {
 			log.error("Error in Save",e);
 		}
 		wpm = getWorkflowPersistenceManager(persistableSession);
-		*/
-			InvoiceDocument invoiceDocumentInSession = (InvoiceDocument) wpm.getObject(pathToInvoiceDocument);
-			if (invoiceDocumentInSession == null) return;
-			for (InvoicePaymentDetail invoicePaymentDetail:invoiceDocumentInSession.getInvoicePaymentDetailList()) {
-				if ( invoicePaymentDetail.getPaymentType() != null &&  (invoicePaymentDetail.getPaymentType() == PaymentType.NET_BANKING || invoicePaymentDetail.getPaymentType() == PaymentType.CREDIT_CARD || invoicePaymentDetail.getPaymentType() == PaymentType.DEBIT_CARD) && (invoicePaymentDetail.getPaymentVerificationStatus() == null || invoicePaymentDetail.getPaymentVerificationStatus() != PaymentVerificationStatus.VERIFIED) ) {
-					TxnEnquiryResponse theEnquiryOutput = enquiry.doEnquiry(invoicePaymentDetail.getPaymentTransactionId());
-					if (theEnquiryOutput != null) {
-						if (log.isInfoEnabled()) {
-							log.info("Transaction Id:" + invoicePaymentDetail.getPaymentTransactionId());
-							log.info("Enquiry Output " + theEnquiryOutput.toString());
-							log.info("The canonical UUID" + invoicePaymentDetail.getCanonicalUUID());
-						}				
-						if (theEnquiryOutput != null && theEnquiryOutput.getEnquiryResponse() != null && theEnquiryOutput.getEnquiryResponse().size() > 0 ) {
-							for (EnquiryResponse enquiryResponse : theEnquiryOutput.getEnquiryResponse()) {									
-								//update the record 
-								if (enquiryResponse.getTxnType().equals("SALE") && invoicePaymentDetail.getCanonicalHandleUUID() != null) {
-									invoicePaymentDetail.setRespCodeStr(enquiryResponse.getRespCode().name());
-									invoicePaymentDetail.setRespMsg(enquiryResponse.getRespMsg());
-									invoicePaymentDetail.setRespCode(enquiryResponse.getRespCode());
-									if (enquiryResponse.getPgTxnId() != null) invoicePaymentDetail.setPgTxnId(enquiryResponse.getPgTxnId());
-									invoicePaymentDetail.setTxnAmount(Double.valueOf(enquiryResponse.getAmount()));
-									invoicePaymentDetail.setRrn(enquiryResponse.getRRN());
-									invoicePaymentDetail.setAuthIdCode(enquiryResponse.getAuthIdCode());
-									invoicePaymentDetail.setTxnDateTime(enquiryResponse.getTxnDateTime());
-									//this has been verified
-									invoicePaymentDetail.setPaymentVerificationStatusStr(PaymentVerificationStatus.VERIFIED.name());
-								}
-								else if (enquiryResponse.getTxnType().equals("REFUND")) { 
-									if (!InvoiceHelper.refundExists(request, invoicePaymentDetail.getPaymentType() , invoicePaymentDetail.getPaymentTransactionId() , enquiryResponse.getPgTxnId(), enquiryResponse.getAuthIdCode(), enquiryResponse.getRRN(),invoiceDocumentInSession)) {
-										//check if this trans exist otherwise add it
-										InvoiceRefundDetail invoiceRefundDetail = new InvoiceRefundDetail();												
-										invoiceRefundDetail.setPaymentTransactionId(invoicePaymentDetail.getPaymentTransactionId());
-										invoiceRefundDetail.setPaymentType(invoicePaymentDetail.getPaymentType());
-										if (enquiryResponse.getRespMsg() != null) invoiceRefundDetail.setRespMsg(enquiryResponse.getRespMsg());
-										//if (enquiryResponse.getRespCode() != null) invoiceRefundDetail.setRespCode(enquiryResponse.getRespCode());
-										if (enquiryResponse.getAmount() != null) invoiceRefundDetail.setTxnAmount(Double.valueOf(enquiryResponse.getAmount()));
-										if (enquiryResponse.getPgTxnId() != null) invoiceRefundDetail.setPgTxnId(enquiryResponse.getPgTxnId());
-										if (enquiryResponse.getRRN() != null) invoiceRefundDetail.setRrn(enquiryResponse.getRRN());
-										if (enquiryResponse.getAuthIdCode() != null) invoiceRefundDetail.setAuthIdCode(enquiryResponse.getAuthIdCode());
-										invoiceRefundDetail.setTxnDateTime(enquiryResponse.getTxnDateTime());
-										invoiceRefundDetail.setPaymentVerificationStatusStr(PaymentVerificationStatus.VERIFIED.name());	
-										invoiceDocumentInSession.addInvoiceRefundDetail(invoiceRefundDetail);
-									}
-								}									
+		 */
+		boolean didGotUpdated = false;
+		InvoiceDocument invoiceDocumentInSession = (InvoiceDocument) wpm.getObject(pathToInvoiceDocument);
+		if (invoiceDocumentInSession == null) return false;
+		for (InvoicePaymentDetail invoicePaymentDetail:invoiceDocumentInSession.getInvoicePaymentDetailList()) {
+			if ( invoicePaymentDetail.getPaymentType() != null &&  (invoicePaymentDetail.getPaymentType() == PaymentType.NET_BANKING || invoicePaymentDetail.getPaymentType() == PaymentType.CREDIT_CARD || invoicePaymentDetail.getPaymentType() == PaymentType.DEBIT_CARD)) {
+				TxnEnquiryResponse theEnquiryOutput = enquiry.doEnquiry(invoicePaymentDetail.getPaymentTransactionId());
+				if (theEnquiryOutput != null) {
+					if (log.isInfoEnabled()) {
+						log.info("Transaction Id:" + invoicePaymentDetail.getPaymentTransactionId());
+						log.info("Enquiry Output " + theEnquiryOutput.toString());
+						log.info("The canonical UUID" + invoicePaymentDetail.getCanonicalUUID());
+					}				
+					if (theEnquiryOutput != null && theEnquiryOutput.getEnquiryResponse() != null && theEnquiryOutput.getEnquiryResponse().size() > 0 ) {
+						for (EnquiryResponse enquiryResponse : theEnquiryOutput.getEnquiryResponse()) {									
+							//update the record 
+							if (enquiryResponse.getTxnType().equals("SALE") && invoicePaymentDetail.getCanonicalHandleUUID() != null && (invoicePaymentDetail.getPaymentVerificationStatus() == null || invoicePaymentDetail.getPaymentVerificationStatus() != PaymentVerificationStatus.VERIFIED) ) {
+								invoicePaymentDetail.setRespCodeStr(enquiryResponse.getRespCode().name());
+								invoicePaymentDetail.setRespMsg(enquiryResponse.getRespMsg());
+								invoicePaymentDetail.setRespCode(enquiryResponse.getRespCode());
+								if (enquiryResponse.getPgTxnId() != null) invoicePaymentDetail.setPgTxnId(enquiryResponse.getPgTxnId());
+								invoicePaymentDetail.setTxnAmount(Double.valueOf(enquiryResponse.getAmount()));
+								invoicePaymentDetail.setRrn(enquiryResponse.getRRN());
+								invoicePaymentDetail.setAuthIdCode(enquiryResponse.getAuthIdCode());
+								invoicePaymentDetail.setTxnDateTime(enquiryResponse.getTxnDateTime());
+								//this has been verified
+								invoicePaymentDetail.setPaymentVerificationStatusStr(PaymentVerificationStatus.VERIFIED.name());
+								didGotUpdated = true;
 							}
+							else if (enquiryResponse.getTxnType().equals("REFUND")) { 
+								if (!InvoiceHelper.refundExists(request, invoicePaymentDetail.getPaymentType() , invoicePaymentDetail.getPaymentTransactionId() , enquiryResponse.getPgTxnId(), enquiryResponse.getAuthIdCode(), enquiryResponse.getRRN(),invoiceDocumentInSession)) {
+									//check if this trans exist otherwise add it
+									InvoiceRefundDetail invoiceRefundDetail = new InvoiceRefundDetail();												
+									invoiceRefundDetail.setPaymentTransactionId(invoicePaymentDetail.getPaymentTransactionId());
+									invoiceRefundDetail.setPaymentType(invoicePaymentDetail.getPaymentType());
+									if (enquiryResponse.getRespMsg() != null) invoiceRefundDetail.setRespMsg(enquiryResponse.getRespMsg());
+									//if (enquiryResponse.getRespCode() != null) invoiceRefundDetail.setRespCode(enquiryResponse.getRespCode());
+									if (enquiryResponse.getAmount() != null) invoiceRefundDetail.setTxnAmount(Double.valueOf(enquiryResponse.getAmount()));
+									if (enquiryResponse.getPgTxnId() != null) invoiceRefundDetail.setPgTxnId(enquiryResponse.getPgTxnId());
+									if (enquiryResponse.getRRN() != null) invoiceRefundDetail.setRrn(enquiryResponse.getRRN());
+									if (enquiryResponse.getAuthIdCode() != null) invoiceRefundDetail.setAuthIdCode(enquiryResponse.getAuthIdCode());
+									invoiceRefundDetail.setTxnDateTime(enquiryResponse.getTxnDateTime());
+									invoiceRefundDetail.setPaymentVerificationStatusStr(PaymentVerificationStatus.VERIFIED.name());	
+									invoiceDocumentInSession.addInvoiceRefundDetail(invoiceRefundDetail);
+									if (!didGotUpdated) didGotUpdated = true;
+								}
+							}									
 						}
 					}
 				}
 			}
-			
+		}
+		if (didGotUpdated) {
 			wpm.setWorkflowCallbackHandler(new FullReviewedWorkflowCallbackHandler());
 			wpm.update(invoiceDocumentInSession);
+		}
+		return didGotUpdated;
 		//finally{
 		//	try { persistableSession.logout(); } finally {}
 		//}
 	}
-	
+
 	public String getScriptName(HstRequest request,String selectedItrTabAttr,String selectedItrTabParam) {
 		String pathInfo = request.getRequestContext().getResolvedSiteMapItem().getPathInfo();
 		String scriptName = null;
@@ -335,9 +351,9 @@ public final class ITReturnComponentHelper {
 
 			}
 		}
-		*/
+		 */
 	}
-	
+
 	/**
 	 * Action to Save Add New Child
 	 * @param request
@@ -361,7 +377,7 @@ public final class ITReturnComponentHelper {
 				//final String pathToParentBean = wpm.createAndReturn(baseAbsolutePathToReturnDocuments,getParentBeanNameSpace(),getParentBeanNodeName(), true);
 				final String pathToParentBean = wpm.createAndReturn(baseAbsolutePathToReturnDocuments,parentBeanNameSpace,parentBeanNodeName, true);
 				parentBeanInSession = (HippoBean) wpm .getObject(pathToParentBean);
-				
+
 				//invoke the init method if there is any as a parent bean is created
 				if (parentBeanLifeCycleHandler != null) {
 					try {
@@ -432,7 +448,7 @@ public final class ITReturnComponentHelper {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public <T extends BeanLifecycle<HippoBean>> void saveUpdateExistingChild (FormMap childBeanMap,FormMap parentBeanMap, T childBeanLifeCycleHandler,T parentBeanLifeCycleHandler, String baseAbsolutePathToReturnDocuments, String parentBeanAbsolutePath, String parentBeanNameSpace,String parentBeanNodeName,  Class<? extends HippoBean> childBeanClass,Session persistableSession,WorkflowPersistenceManager wpm,String childBeanCanonicalUUID) {
 		try {
 			//now set the value we received from the form submission
@@ -441,44 +457,44 @@ public final class ITReturnComponentHelper {
 			HippoBean childBean = (HippoBean) wpm.getObjectByUuid(childBeanCanonicalUUID);
 			HippoBean childBeanBeforeUpdate = childBean;
 			if (childBeanClass != null && childBean != null) {
-					//HippoBean childBean = childBeanClass.newInstance();
-					HippoBean parentBeanInSession = childBean.getParentBean();
-					HippoBean parentBeanBeforeUpdate = parentBeanInSession;
-					//invoke the init method if there is any as a parent bean is created
-					if (childBeanLifeCycleHandler != null) {
-						try {
-							if (log.isInfoEnabled()) {
-								log.info("Handler defined for child bean creation invoke that handler now");
-							}							
-						}catch (Exception  ex) {
-							log.error("parentBeanCreatedHandler handler",ex);
-						}
+				//HippoBean childBean = childBeanClass.newInstance();
+				HippoBean parentBeanInSession = childBean.getParentBean();
+				HippoBean parentBeanBeforeUpdate = parentBeanInSession;
+				//invoke the init method if there is any as a parent bean is created
+				if (childBeanLifeCycleHandler != null) {
+					try {
+						if (log.isInfoEnabled()) {
+							log.info("Handler defined for child bean creation invoke that handler now");
+						}							
+					}catch (Exception  ex) {
+						log.error("parentBeanCreatedHandler handler",ex);
 					}
-					if (childBean instanceof FormMapFiller) {
-						FormMapFiller formMapFiller = (FormMapFiller) childBean;
-						if (childBeanLifeCycleHandler != null) childBeanLifeCycleHandler.beforeFillChildBeanMap(childBean);
-						if (childBeanMap != null) formMapFiller.fill(childBeanMap);
-						if (childBeanLifeCycleHandler != null) childBeanLifeCycleHandler.afterFillChildBeanMap(childBean);
+				}
+				if (childBean instanceof FormMapFiller) {
+					FormMapFiller formMapFiller = (FormMapFiller) childBean;
+					if (childBeanLifeCycleHandler != null) childBeanLifeCycleHandler.beforeFillChildBeanMap(childBean);
+					if (childBeanMap != null) formMapFiller.fill(childBeanMap);
+					if (childBeanLifeCycleHandler != null) childBeanLifeCycleHandler.afterFillChildBeanMap(childBean);
+				}
+				if (parentBeanInSession instanceof CompoundChildUpdate) {
+					CompoundChildUpdate compoundChildUpdate = (CompoundChildUpdate) parentBeanInSession;
+					compoundChildUpdate.update(childBean);
+				}
+				wpm.setWorkflowCallbackHandler(new FullReviewedWorkflowCallbackHandler());
+				if (parentBeanInSession != null) {
+					try {
+						//if (!beforeSave(request)) return; // don't save if this method returns false
+						if (childBeanLifeCycleHandler != null) childBeanLifeCycleHandler.beforeUpdate(childBean);
+						wpm.update(parentBeanInSession);
+						HippoBean childBeanAfterUpdate = childBean;
+						HippoBean parentBeanAfterUpdate = parentBeanInSession;
+						if (childBeanLifeCycleHandler != null)  childBeanLifeCycleHandler.afterUpdateChild(parentBeanBeforeUpdate,parentBeanAfterUpdate,childBeanBeforeUpdate,childBeanAfterUpdate,wpm,this);
+					} catch (ObjectBeanPersistenceException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+						log.error("Error in Save",e);
 					}
-					if (parentBeanInSession instanceof CompoundChildUpdate) {
-						CompoundChildUpdate compoundChildUpdate = (CompoundChildUpdate) parentBeanInSession;
-						compoundChildUpdate.update(childBean);
-					}
-					wpm.setWorkflowCallbackHandler(new FullReviewedWorkflowCallbackHandler());
-					if (parentBeanInSession != null) {
-						try {
-							//if (!beforeSave(request)) return; // don't save if this method returns false
-							if (childBeanLifeCycleHandler != null) childBeanLifeCycleHandler.beforeUpdate(childBean);
-							wpm.update(parentBeanInSession);
-							HippoBean childBeanAfterUpdate = childBean;
-							HippoBean parentBeanAfterUpdate = parentBeanInSession;
-							if (childBeanLifeCycleHandler != null)  childBeanLifeCycleHandler.afterUpdateChild(parentBeanBeforeUpdate,parentBeanAfterUpdate,childBeanBeforeUpdate,childBeanAfterUpdate,wpm,this);
-						} catch (ObjectBeanPersistenceException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-							log.error("Error in Save",e);
-						}
-					}
+				}
 			}
 		} catch (ObjectBeanManagerException e) {
 			// TODO Auto-generated catch block
@@ -486,5 +502,5 @@ public final class ITReturnComponentHelper {
 			e.printStackTrace();
 		}
 	}
-	
+
 }

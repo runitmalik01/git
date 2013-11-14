@@ -166,7 +166,9 @@ pageContext.setAttribute("paymentTypeValues",PaymentType.values());
 					<th><b>Rate</b></th>
 					<th><b>Quantity</b></th>
 					<th><b>Amount</b></th>
-					<th><b>Actions</b></th>
+					<c:if test="${not empty strIsOnVendorPortal && strIsOnVendorPortal =='true' && isVendor =='true'}">
+						<th><b>Actions</b></th>
+					</c:if>
 				</tr>
 				<c:if test="${not empty parentBean}">
 					<c:forEach items="${parentBean.invoiceDocumentDetailList}"
@@ -178,14 +180,16 @@ pageContext.setAttribute("paymentTypeValues",PaymentType.values());
 							<td><c:out value="${invoicedetail.serviceRate}" /></td>
 							<td><c:out value="${invoicedetail.serviceQty}" /></td>
 							<td><c:out value="${invoicedetail.serviceAmount}" /></td>
-							<td><a class="btn btn-primary"
-								href="${scriptName}/<c:out value="${invoicedetail.canonicalUUID}"/>/memberinvoiceedit"><small><i
-										class="icon-pencil icon-white"></i>Edit</small> </a>&nbsp;&nbsp;<a
-								class="btn btn-danger"
-								href="${scriptName}/<c:out value="${invoicedetail.canonicalUUID}"/>/memberinvoicedelete"
-								data-confirm=""><small><i
-										class="icon-trash icon-white"></i>Delete</small> </a>
-							</td>
+							<c:if test="${not empty strIsOnVendorPortal && strIsOnVendorPortal =='true' && isVendor =='true'}">
+								<td><a class="btn btn-primary"
+									href="${scriptName}/<c:out value="${invoicedetail.canonicalUUID}"/>/memberinvoiceedit"><small><i
+											class="icon-pencil icon-white"></i>Edit</small> </a>&nbsp;&nbsp;<a
+									class="btn btn-danger"
+									href="${scriptName}/<c:out value="${invoicedetail.canonicalUUID}"/>/memberinvoicedelete"
+									data-confirm=""><small><i
+											class="icon-trash icon-white"></i>Delete</small> </a>
+								</td>
+							</c:if>
 						</tr>
 					</c:forEach>
 				</c:if>
@@ -198,7 +202,9 @@ pageContext.setAttribute("paymentTypeValues",PaymentType.values());
 					<th><b>Payment By</b></th>
 					<th><b>Amount</b></th>
 					<th><b>Status</b></th>
-					<th><b>Actions</b></th>
+					<c:if test="${not empty strIsOnVendorPortal && strIsOnVendorPortal =='true' && isVendor =='true'}">
+						<th><b>Actions</b></th>
+					</c:if>
 				</tr>
 				<c:if test="${not empty parentBean}">
 					<c:forEach items="${parentBean.invoicePaymentDetailList}" var="invoicepaymentdetail">
@@ -208,13 +214,15 @@ pageContext.setAttribute("paymentTypeValues",PaymentType.values());
 								<td><c:out value="${fn:replace(invoicepaymentdetail.paymentType,'_',' ')}"/></td>
 								<td><c:out value="${invoicepaymentdetail.txnAmount}"/></td>
 								<td>VERIFIED</td>
-								<td><a class="btn btn-primary"
-									href="${scriptName}<c:out value="/payment/${invoicepaymentdetail.canonicalUUID}"/>/paymentedit?paymentType=${invoicepaymentdetail.paymentType}"><small><i
-											class="icon-pencil icon-white"></i>Edit</small> </a>&nbsp;&nbsp;<a
-									class="btn btn-danger"
-									href="${scriptName}<c:out value="/payment/${invoicepaymentdetail.canonicalUUID}"/>/paymentdelete?paymentType=${invoicepaymentdetail.paymentType}"
-									data-confirm=""><small><i class="icon-trash icon-white"></i>Delete</small> </a>
-								</td>
+								<c:if test="${not empty strIsOnVendorPortal && strIsOnVendorPortal =='true' && isVendor =='true'}">
+									<td><a class="btn btn-primary"
+										href="${scriptName}<c:out value="/payment/${invoicepaymentdetail.canonicalUUID}"/>/paymentedit?paymentType=${invoicepaymentdetail.paymentType}"><small><i
+												class="icon-pencil icon-white"></i>Edit</small> </a>&nbsp;&nbsp;<a
+										class="btn btn-danger"
+										href="${scriptName}<c:out value="/payment/${invoicepaymentdetail.canonicalUUID}"/>/paymentdelete?paymentType=${invoicepaymentdetail.paymentType}"
+										data-confirm=""><small><i class="icon-trash icon-white"></i>Delete</small> </a>
+									</td>
+								</c:if>
 							</tr>
 						</c:if>
 					</c:forEach>
@@ -228,7 +236,9 @@ pageContext.setAttribute("paymentTypeValues",PaymentType.values());
 					<th><b>Payment By</b></th>
 					<th><b>Amount</b></th>
 					<th><b>Status</b></th>
-					<th><b>Actions</b></th>
+					<c:if test="${not empty strIsOnVendorPortal && strIsOnVendorPortal =='true' && isVendor =='true'}">
+						<th><b>Actions</b></th>
+					</c:if>
 				</tr>
 				<c:if test="${not empty parentBean}">
 					<c:forEach items="${parentBean.invoiceRefundDetailList}" var="invoicerefunddetail">
@@ -238,22 +248,25 @@ pageContext.setAttribute("paymentTypeValues",PaymentType.values());
 								<td><c:out value="${fn:replace(invoicerefunddetail.paymentType,'_',' ')}"/></td>
 								<td><c:out value="${invoicerefunddetail.txnAmount}"/></td>
 								<td>VERIFIED</td>
-								<td><a class="btn btn-primary"
-									href="${scriptName}<c:out value="/payment/${invoicerefunddetail.canonicalUUID}"/>/paymentedit?paymentType=${invoicerefunddetail.paymentType}"><small><i
-											class="icon-pencil icon-white"></i>Edit</small> </a>&nbsp;&nbsp;<a
-									class="btn btn-danger"
-									href="${scriptName}<c:out value="/payment/${invoicerefunddetail.canonicalUUID}"/>/paymentdelete?paymentType=${invoicerefunddetail.paymentType}"
-									data-confirm=""><small><i class="icon-trash icon-white"></i>Delete</small> </a>
-								</td>
+								<c:if test="${not empty strIsOnVendorPortal && strIsOnVendorPortal =='true' && isVendor =='true'}">
+									<td><a class="btn btn-primary"
+										href="${scriptName}<c:out value="/payment/${invoicerefunddetail.canonicalUUID}"/>/paymentedit?paymentType=${invoicerefunddetail.paymentType}"><small><i
+												class="icon-pencil icon-white"></i>Edit</small> </a>&nbsp;&nbsp;<a
+										class="btn btn-danger"
+										href="${scriptName}<c:out value="/payment/${invoicerefunddetail.canonicalUUID}"/>/paymentdelete?paymentType=${invoicerefunddetail.paymentType}"
+										data-confirm=""><small><i class="icon-trash icon-white"></i>Delete</small> </a>
+									</td>
+								</c:if>
 							</tr>
 						</c:if>
 					</c:forEach>
 				</c:if>
 			</table>
-			
-			<c:if test="${empty NEW_CHILD_DISABLED}">
-				<a href="${scriptName}/memberinvoicenew" class="btn btn-info"
-					style="color: black">Add New</a>
+			<c:if test="${not empty strIsOnVendorPortal && strIsOnVendorPortal =='true' && isVendor =='true'}">
+				<c:if test="${empty NEW_CHILD_DISABLED}">
+					<a href="${scriptName}/memberinvoicenew" class="btn btn-info"
+						style="color: black">Add New</a>
+				</c:if>
 			</c:if>
 		</c:otherwise>
 	</c:choose>
@@ -275,6 +288,50 @@ pageContext.setAttribute("paymentTypeValues",PaymentType.values());
 	  });
 </hst:element>
 <hst:headContribution element="${uiCustom}" category="jsInternal" />
+
+<hst:element var="metaCustom" name="meta">
+	<hst:attribute name="http-equiv">Cache-Control</hst:attribute>
+	<hst:attribute name="content">no-cache, no-store, must-revalidate</hst:attribute>
+</hst:element>
+<hst:element var="metaCustom2" name="meta">
+	<hst:attribute name="http-equiv">Pragma</hst:attribute>
+	<hst:attribute name="content">no-cache</hst:attribute>
+</hst:element>
+<hst:element var="metaCustom3" name="meta">
+	<hst:attribute name="http-equiv">Expires</hst:attribute>
+	<hst:attribute name="content">0</hst:attribute>
+</hst:element>
+<hst:headContribution element="${metaCustom}" category="meta" />
+<hst:headContribution element="${metaCustom2}" category="meta" />
+<hst:headContribution element="${metaCustom3}" category="meta" />
+
+<c:if test="${not empty didInvoiceGotUpdated && didInvoiceGotUpdated == 'true'}">
+	<hst:element var="metaCustom4" name="meta">
+		<hst:attribute name="http-equiv">refresh</hst:attribute>
+		<hst:attribute name="content">3</hst:attribute>
+	</hst:element>
+	<hst:headContribution element="${metaCustom4}" category="meta" />
+	<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-header">
+	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	    <h3><c:out value="Please wait. While we verify your payment"/></h3>
+	  </div>
+	  <div class="modal-body">
+	  	We are connecting to the Payment Gateway.. Please wait.
+	  </div>
+	  <div class="modal-footer">
+	  </div>
+	</div>
+	
+	<hst:element var="uiCustom" name="script">
+	<hst:attribute name="type">text/javascript</hst:attribute>
+	   $(document).ready ( function() {
+	   		$("#myModal").modal();	   		
+	   });
+	</hst:element>
+	<hst:headContribution element="${uiCustom}" category="jsInternal" />
+	
+</c:if>
 
 <res:client-validation formId="frmdataInvoice"
 	screenConfigurationDocumentName="memberinvoice"

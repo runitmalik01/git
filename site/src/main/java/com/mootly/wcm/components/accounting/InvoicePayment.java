@@ -77,6 +77,12 @@ public class InvoicePayment extends ITReturnComponent {
 		}
 		request.setAttribute("type", "payment");
 		request.setAttribute("paymentType", paymentType);		
+		if (request.getAttribute(InvoiceDocument.class.getSimpleName().toLowerCase()) != null) {
+			InvoiceDocument invoiceDocument = (InvoiceDocument) request.getAttribute(InvoiceDocument.class.getSimpleName().toLowerCase());
+			if (invoiceDocument != null && invoiceDocument.getAmountDue() == 0D) {
+				response.setRenderPath("jsp/accounting/invoice-payment-already-paid.jsp");
+			}			
+		}
 	}
 	
 	@Override

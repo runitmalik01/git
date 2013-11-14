@@ -838,18 +838,6 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		}
 	}
 	
-	/**
-	 * Check Personal Information, check if InvoiceExists if it does not then create one
-	 * If it does make sure the ITR Service selected matches what's in the form
-	 * 
-	 * @param request
-	 */
-	private void updateInvoice(HstRequest request) {
-		MemberPersonalInformation memberPersonalInformation = (MemberPersonalInformation) request.getAttribute(MemberPersonalInformation.class.getSimpleName().toLowerCase()); 
-		MemberInvoice memberInvoice = (MemberInvoice) request.getAttribute(MemberInvoice.class.getSimpleName().toLowerCase());
-		 
-	}
-
 	public String getScriptName() {
 		return scriptName;
 	}
@@ -974,22 +962,12 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		baseAbsolutePathToReturnDocuments =  getCanonicalBasePathForWrite(request) + "/" + baseRelPathToReturnDocuments; //itReturnComponentHelper.getBaseAbsolutePathToReturnDocuments(request, baseRelPathToReturnDocuments); //request.getRequestContext().getResolvedMount().getMount().getCanonicalContentPath() + "/" + baseRelPathToReturnDocuments;
 		
 		//check if invoice refresh is required
+		boolean didGotUpdated = false;
 		if (this.getClass().isAnnotationPresent(SyncInvoiceWithCitrus.class)) {
-			Session persistableSession = null;
-			WorkflowPersistenceManager wpm;
-			try {
-				persistableSession = getPersistableSession(request);
-				wpm = getWorkflowPersistenceManager(persistableSession);
-				String pathToInvoiceDocument = baseAbsolutePathToReturnDocuments + "/" + InvoiceDocument.class.getSimpleName().toLowerCase();
-				itReturnComponentHelper.syncInvoiceWithPaymentGateway(pathToInvoiceDocument, request, enquiry, persistableSession, wpm);
-			} catch (RepositoryException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				log.error("Error in Save",e);
-				request.setAttribute("SyncInvoiceWithCitrus_ERROR", "true");
-			}catch (Exception e) {
-				log.error("Error resyncing invoice",e);
-				request.setAttribute("SyncInvoiceWithCitrus_ERROR", "true");
+			didGotUpdated = updateInvoice(request);
+			request.setAttribute("didInvoiceGotUpdated", didGotUpdated);
+			if (didGotUpdated) {
+				
 			}
 		}
 		//if (hippoBeanBaseITReturnDocuments != null) {
@@ -2127,6 +2105,36 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			e.printStackTrace();
 		}
 		return theLocalBeansUnderMemberFolder;
+	}
+	
+	/**
+	 * 
+	 * @param request
+	 */
+	protected boolean updateInvoice(HstRequest request) {
+		Session persistableSession = null;
+		boolean didGotUpdated = false;
+		WorkflowPersistenceManager wpm;
+		try {
+			persistableSession = getPersistableSession(request);
+			wpm = getWorkflowPersistenceManager(persistableSession);
+			String pathToInvoiceDocument = getAbsoluteBasePathToReturnDocuments() + "/" + InvoiceDocument.class.getSimpleName().toLowerCase();
+			didGotUpdated = getItReturnComponentHelper().syncInvoiceWithPaymentGateway(pathToInvoiceDocument, request, getEnquiry() , persistableSession, wpm);
+			request.setAttribute("SyncInvoiceWithCitrus_STATUS", "success");
+			return didGotUpdated;
+		} catch (RepositoryException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			log.error("Error in Save",e);
+			request.setAttribute("SyncInvoiceWithCitrus_STATUS", "error");
+		}catch (Exception e) {
+			log.error("Error resyncing invoice",e);
+			request.setAttribute("SyncInvoiceWithCitrus_STATUS", "error");
+		}
+		finally {
+			try { persistableSession.logout(); }finally {}
+		}
+		return didGotUpdated;
 	}
 	
 	protected boolean shouldRedirectAfterSuccess() {
