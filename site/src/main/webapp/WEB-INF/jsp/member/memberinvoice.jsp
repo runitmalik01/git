@@ -202,7 +202,7 @@ pageContext.setAttribute("paymentTypeValues",PaymentType.values());
 				</tr>
 				<c:if test="${not empty parentBean}">
 					<c:forEach items="${parentBean.invoicePaymentDetailList}" var="invoicepaymentdetail">
-						<c:if test="${invoicepaymentdetail.paymentVerificationStatus == 'VERIFIED'}">
+						<c:if test="${invoicepaymentdetail.paymentVerificationStatus == 'VERIFIED' && invoicepaymentdetail.respCode == 'SUCCESS'}">
 							<tr>
 								<td><fmt:formatDate value="${invoicepaymentdetail.paymentDate.time}" timeZone="<%=IndianGregorianCalendar.indianTimeZone%>"/></td>
 								<td><c:out value="${fn:replace(invoicepaymentdetail.paymentType,'_',' ')}"/></td>

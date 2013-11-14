@@ -3,12 +3,8 @@ package com.mootly.wcm.member;
 
 import java.util.List;
 
-import javax.jcr.RepositoryException;
-import javax.jcr.Session;
 import javax.servlet.ServletContext;
 
-import org.hippoecm.hst.content.beans.ObjectBeanManagerException;
-import org.hippoecm.hst.content.beans.manager.workflow.WorkflowPersistenceManager;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.core.component.HstComponentException;
 import org.hippoecm.hst.core.component.HstRequest;
@@ -22,19 +18,13 @@ import com.mootly.wcm.annotations.DataTypeValidationFields;
 import com.mootly.wcm.annotations.FormFields;
 import com.mootly.wcm.annotations.PrimaryBean;
 import com.mootly.wcm.annotations.RequiredFields;
+import com.mootly.wcm.annotations.SyncInvoiceWithCitrus;
 import com.mootly.wcm.beans.InvoiceDocument;
 import com.mootly.wcm.beans.compound.InvoiceDocumentDetail;
-import com.mootly.wcm.beans.compound.InvoicePaymentDetail;
-import com.mootly.wcm.beans.compound.InvoiceRefundDetail;
 import com.mootly.wcm.beans.events.BeanLifecycle;
 import com.mootly.wcm.beans.events.InvoiceDocumentBeanHandler;
 import com.mootly.wcm.components.ITReturnComponent;
-import com.mootly.wcm.components.accounting.InvoiceHelper;
-import com.mootly.wcm.model.PaymentType;
-import com.mootly.wcm.model.PaymentVerificationStatus;
 import com.mootly.wcm.model.SORT_DIRECTION;
-import com.mootly.wcm.services.citruspay.model.enquiry.EnquiryResponse;
-import com.mootly.wcm.services.citruspay.model.enquiry.TxnEnquiryResponse;
 /**
  * 
  * @author admin
@@ -45,6 +35,7 @@ import com.mootly.wcm.services.citruspay.model.enquiry.TxnEnquiryResponse;
 @FormFields(fieldNames={"serviceName", "serviceDesc", "serviceQty", "serviceRate","filingMode"})
 @RequiredFields(fieldNames={})
 @DataTypeValidationFields(fieldNames={},dataTypes={})
+@SyncInvoiceWithCitrus //this is to tell ITReturnComponent to call Citrus Gateway and if there is an error it will set a VARIABLE
 public class MemberInvoice extends ITReturnComponent {
 
 	private static final Logger log = LoggerFactory.getLogger(MemberInvoice.class);
@@ -72,7 +63,7 @@ public class MemberInvoice extends ITReturnComponent {
 		if (serviceDocumentList != null && serviceDocumentList.size() > 0) {
 			request.setAttribute("serviceDocumentList", serviceDocumentList);
 		}
-
+		/*
 		//this is COOL we call citrus for each transaction which was NET Banking, Credit Card, Debit Card and check for respCode
 		// if there is no respCode we need to get it and update the record accordingly
 		//if there is a respCode and its not success ignore it
@@ -147,9 +138,10 @@ public class MemberInvoice extends ITReturnComponent {
 				finally{
 					try { persistableSession.logout(); } finally {}
 				}
-				loadBeansAndSetRequestAttributes(request, response);	
-			}
+				loadBeansAndSetRequestAttributes(request, response);					
+			}			
 		}
+		*/
 		//after all this lets reload the beans and reset the request attribute
 		
 	}

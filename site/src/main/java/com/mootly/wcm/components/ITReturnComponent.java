@@ -100,9 +100,11 @@ import com.mootly.wcm.annotations.PrimaryBean;
 import com.mootly.wcm.annotations.RegExValidationFields;
 import com.mootly.wcm.annotations.RequiredBeans;
 import com.mootly.wcm.annotations.RequiredFields;
+import com.mootly.wcm.annotations.SyncInvoiceWithCitrus;
 import com.mootly.wcm.annotations.ValueListBeans;
 import com.mootly.wcm.beans.CompoundChildUpdate;
 import com.mootly.wcm.beans.FormMapFiller;
+import com.mootly.wcm.beans.InvoiceDocument;
 import com.mootly.wcm.beans.MemberPayment;
 import com.mootly.wcm.beans.MemberPersonalInformation;
 import com.mootly.wcm.beans.ScreenCalculation;
@@ -970,6 +972,26 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		baseRelPathToReturnDocuments = itReturnComponentHelper.getBaseRelPathToReturnDocuments(getMemberFolderPath(request), getPAN(), getFinancialYear(), theFolderContainingITRDocuments);  //"members/" + getMemberFolderPath(request) + "/pans/" + getPAN() + "/" + getFinancialYear() + "/" + theFolderContainingITRDocuments; // getITReturnType();
 		hippoBeanBaseITReturnDocuments = siteContentBaseBean.getBean(baseRelPathToReturnDocuments);
 		baseAbsolutePathToReturnDocuments =  getCanonicalBasePathForWrite(request) + "/" + baseRelPathToReturnDocuments; //itReturnComponentHelper.getBaseAbsolutePathToReturnDocuments(request, baseRelPathToReturnDocuments); //request.getRequestContext().getResolvedMount().getMount().getCanonicalContentPath() + "/" + baseRelPathToReturnDocuments;
+		
+		//check if invoice refresh is required
+		if (this.getClass().isAnnotationPresent(SyncInvoiceWithCitrus.class)) {
+			Session persistableSession = null;
+			WorkflowPersistenceManager wpm;
+			try {
+				persistableSession = getPersistableSession(request);
+				wpm = getWorkflowPersistenceManager(persistableSession);
+				String pathToInvoiceDocument = baseAbsolutePathToReturnDocuments + "/" + InvoiceDocument.class.getSimpleName().toLowerCase();
+				itReturnComponentHelper.syncInvoiceWithPaymentGateway(pathToInvoiceDocument, request, enquiry, persistableSession, wpm);
+			} catch (RepositoryException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				log.error("Error in Save",e);
+				request.setAttribute("SyncInvoiceWithCitrus_ERROR", "true");
+			}catch (Exception e) {
+				log.error("Error resyncing invoice",e);
+				request.setAttribute("SyncInvoiceWithCitrus_ERROR", "true");
+			}
+		}
 		//if (hippoBeanBaseITReturnDocuments != null) {
 		//	baseAbsolutePathToReturnDocuments = hippoBeanBaseITReturnDocuments.getPath();
 		//}

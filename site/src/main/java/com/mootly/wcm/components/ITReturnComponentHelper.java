@@ -3,6 +3,7 @@ package com.mootly.wcm.components;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 
 import org.apache.commons.lang.StringUtils;
@@ -21,17 +22,26 @@ import com.mootly.wcm.annotations.ChildBean;
 import com.mootly.wcm.annotations.PrimaryBean;
 import com.mootly.wcm.beans.CompoundChildUpdate;
 import com.mootly.wcm.beans.FormMapFiller;
+import com.mootly.wcm.beans.InvoiceDocument;
+import com.mootly.wcm.beans.compound.InvoicePaymentDetail;
+import com.mootly.wcm.beans.compound.InvoiceRefundDetail;
 import com.mootly.wcm.beans.events.BeanLifecycle;
 import com.mootly.wcm.channels.WebsiteInfo;
 import com.mootly.wcm.components.ITReturnComponent.FullReviewedWorkflowCallbackHandler;
 import com.mootly.wcm.components.ITReturnScreen.PAGE_ACTION;
 import com.mootly.wcm.components.ITReturnScreen.PAGE_OUTPUT_FORMAT;
+import com.mootly.wcm.components.accounting.InvoiceHelper;
 import com.mootly.wcm.member.Member;
 import com.mootly.wcm.model.FilingStatus;
 import com.mootly.wcm.model.FinancialYear;
 import com.mootly.wcm.model.ITRTab;
 import com.mootly.wcm.model.ITReturnPackage;
 import com.mootly.wcm.model.ITReturnType;
+import com.mootly.wcm.model.PaymentType;
+import com.mootly.wcm.model.PaymentVerificationStatus;
+import com.mootly.wcm.services.citruspay.Enquiry;
+import com.mootly.wcm.services.citruspay.model.enquiry.EnquiryResponse;
+import com.mootly.wcm.services.citruspay.model.enquiry.TxnEnquiryResponse;
 
 public final class ITReturnComponentHelper {
 	private static final Logger log = LoggerFactory.getLogger(ITReturnComponentHelper.class);
@@ -187,6 +197,75 @@ public final class ITReturnComponentHelper {
 	public String getParamValueFromRequestContext(HstRequest request,String paramName) {
 		String theValue = request.getRequestContext().getResolvedSiteMapItem().getParameter(paramName);
 		return theValue;
+	}
+	
+	public void syncInvoiceWithPaymentGateway(String pathToInvoiceDocument, HstRequest request,Enquiry enquiry,Session persistableSession,WorkflowPersistenceManager wpm) throws ObjectBeanManagerException {
+		/*
+		Session persistableSession = null;
+		WorkflowPersistenceManager wpm;
+		try {
+			persistableSession = getPersistableSession(request);
+		} catch (RepositoryException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			log.error("Error in Save",e);
+		}
+		wpm = getWorkflowPersistenceManager(persistableSession);
+		*/
+			InvoiceDocument invoiceDocumentInSession = (InvoiceDocument) wpm.getObject(pathToInvoiceDocument);
+			if (invoiceDocumentInSession == null) return;
+			for (InvoicePaymentDetail invoicePaymentDetail:invoiceDocumentInSession.getInvoicePaymentDetailList()) {
+				if ( invoicePaymentDetail.getPaymentType() != null &&  (invoicePaymentDetail.getPaymentType() == PaymentType.NET_BANKING || invoicePaymentDetail.getPaymentType() == PaymentType.CREDIT_CARD || invoicePaymentDetail.getPaymentType() == PaymentType.DEBIT_CARD) && (invoicePaymentDetail.getPaymentVerificationStatus() == null || invoicePaymentDetail.getPaymentVerificationStatus() != PaymentVerificationStatus.VERIFIED) ) {
+					TxnEnquiryResponse theEnquiryOutput = enquiry.doEnquiry(invoicePaymentDetail.getPaymentTransactionId());
+					if (theEnquiryOutput != null) {
+						if (log.isInfoEnabled()) {
+							log.info("Transaction Id:" + invoicePaymentDetail.getPaymentTransactionId());
+							log.info("Enquiry Output " + theEnquiryOutput.toString());
+							log.info("The canonical UUID" + invoicePaymentDetail.getCanonicalUUID());
+						}				
+						if (theEnquiryOutput != null && theEnquiryOutput.getEnquiryResponse() != null && theEnquiryOutput.getEnquiryResponse().size() > 0 ) {
+							for (EnquiryResponse enquiryResponse : theEnquiryOutput.getEnquiryResponse()) {									
+								//update the record 
+								if (enquiryResponse.getTxnType().equals("SALE") && invoicePaymentDetail.getCanonicalHandleUUID() != null) {
+									invoicePaymentDetail.setRespCodeStr(enquiryResponse.getRespCode().name());
+									invoicePaymentDetail.setRespMsg(enquiryResponse.getRespMsg());
+									invoicePaymentDetail.setRespCode(enquiryResponse.getRespCode());
+									if (enquiryResponse.getPgTxnId() != null) invoicePaymentDetail.setPgTxnId(enquiryResponse.getPgTxnId());
+									invoicePaymentDetail.setTxnAmount(Double.valueOf(enquiryResponse.getAmount()));
+									invoicePaymentDetail.setRrn(enquiryResponse.getRRN());
+									invoicePaymentDetail.setAuthIdCode(enquiryResponse.getAuthIdCode());
+									invoicePaymentDetail.setTxnDateTime(enquiryResponse.getTxnDateTime());
+									//this has been verified
+									invoicePaymentDetail.setPaymentVerificationStatusStr(PaymentVerificationStatus.VERIFIED.name());
+								}
+								else if (enquiryResponse.getTxnType().equals("REFUND")) { 
+									if (!InvoiceHelper.refundExists(request, invoicePaymentDetail.getPaymentType() , invoicePaymentDetail.getPaymentTransactionId() , enquiryResponse.getPgTxnId(), enquiryResponse.getAuthIdCode(), enquiryResponse.getRRN(),invoiceDocumentInSession)) {
+										//check if this trans exist otherwise add it
+										InvoiceRefundDetail invoiceRefundDetail = new InvoiceRefundDetail();												
+										invoiceRefundDetail.setPaymentTransactionId(invoicePaymentDetail.getPaymentTransactionId());
+										invoiceRefundDetail.setPaymentType(invoicePaymentDetail.getPaymentType());
+										if (enquiryResponse.getRespMsg() != null) invoiceRefundDetail.setRespMsg(enquiryResponse.getRespMsg());
+										//if (enquiryResponse.getRespCode() != null) invoiceRefundDetail.setRespCode(enquiryResponse.getRespCode());
+										if (enquiryResponse.getAmount() != null) invoiceRefundDetail.setTxnAmount(Double.valueOf(enquiryResponse.getAmount()));
+										if (enquiryResponse.getPgTxnId() != null) invoiceRefundDetail.setPgTxnId(enquiryResponse.getPgTxnId());
+										if (enquiryResponse.getRRN() != null) invoiceRefundDetail.setRrn(enquiryResponse.getRRN());
+										if (enquiryResponse.getAuthIdCode() != null) invoiceRefundDetail.setAuthIdCode(enquiryResponse.getAuthIdCode());
+										invoiceRefundDetail.setTxnDateTime(enquiryResponse.getTxnDateTime());
+										invoiceRefundDetail.setPaymentVerificationStatusStr(PaymentVerificationStatus.VERIFIED.name());	
+										invoiceDocumentInSession.addInvoiceRefundDetail(invoiceRefundDetail);
+									}
+								}									
+							}
+						}
+					}
+				}
+			}
+			
+			wpm.setWorkflowCallbackHandler(new FullReviewedWorkflowCallbackHandler());
+			wpm.update(invoiceDocumentInSession);
+		//finally{
+		//	try { persistableSession.logout(); } finally {}
+		//}
 	}
 	
 	public String getScriptName(HstRequest request,String selectedItrTabAttr,String selectedItrTabParam) {
