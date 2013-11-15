@@ -3,7 +3,7 @@ package com.mootly.wcm.model.schedules.y2012_2013;
 import java.math.BigInteger;
 import java.util.List;
 
-import in.gov.incometaxindiaefiling.y2011_2012.IncFromOS;
+import in.gov.incometaxindiaefiling.y2012_2013.IncFromOS;
 import in.gov.incometaxindiaefiling.y2012_2013.AddressDetail;
 import in.gov.incometaxindiaefiling.y2012_2013.CoOwners;
 import in.gov.incometaxindiaefiling.y2012_2013.Deductions;
