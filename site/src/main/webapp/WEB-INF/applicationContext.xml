@@ -26,6 +26,9 @@
 						<entry key="2012-2013">
 						    <bean class="com.mootly.wcm.services.y2012_2013.ITRXmlGeneratorService"></bean>
 						</entry>
+						<entry key="2013-2014">
+						    <bean class="com.mootly.wcm.services.y2013_2014.ITRXmlGeneratorService"></bean>
+						</entry>
 					</map>
 				</property>
 			</bean>      	    
