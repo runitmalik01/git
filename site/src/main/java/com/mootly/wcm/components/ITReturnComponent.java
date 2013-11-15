@@ -997,6 +997,8 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			memberPersonalInformation = (MemberPersonalInformation) mapOfAllBeans.get(keyToMemberPersonalInformation);
 			itReturnType = ITReturnType.getByXmlStatus(memberPersonalInformation.getReturnType()); //this will determine original or revised
 		}
+		
+		
 
 		//lets load ValueList Beans
 		ValueListBeans valueListBeans = this.getClass().getAnnotation(ValueListBeans.class);
@@ -1357,6 +1359,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		request.setAttribute("shouldRetrievePANInformation", shouldRetrievePANInformation());
 		request.setAttribute("shouldValidatePANWithDIT", shouldValidatePANWithDIT());
 		request.setAttribute("ditInvalidPanContnue", ditInvalidPanContnue);
+		
 	}
 
 	protected void fillDueDate(HstRequest request,HstResponse response) {

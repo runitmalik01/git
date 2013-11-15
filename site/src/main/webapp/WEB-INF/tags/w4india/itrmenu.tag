@@ -1,3 +1,4 @@
+<%@tag import="com.mootly.wcm.beans.InvoiceDocument"%>
 <%@tag import="com.mootly.wcm.model.IndianGregorianCalendar"%>
 <%@tag import="com.mootly.wcm.model.FilingSection"%>
 <%@tag import="com.mootly.wcm.model.ITReturnType"%>
@@ -124,6 +125,15 @@ if (itrSiteMenu != null && itrSiteMenu.getSiteMenuItems() != null && propertyToC
 for (HstSiteMenuItem siteMenuItem : itrSiteMenu.getSiteMenuItems() ){
 
 }
+
+request.setAttribute("invoicePresent", "false");
+if (request.getAttribute(InvoiceDocument.class.getSimpleName().toLowerCase()) != null) {
+	InvoiceDocument invoiceDocument = (InvoiceDocument) request.getAttribute(InvoiceDocument.class.getSimpleName().toLowerCase());
+	request.setAttribute("totalInvoiceAmount", invoiceDocument.getTotalInvoiceAmount());
+	request.setAttribute("amountDue", invoiceDocument.getAmountDue());
+	request.setAttribute("invoicePresent", "true");
+}
+
 //How is the page designed, lets define a structure for this page using simple linkedhashmap and arraylist
 %>
 <% final class EvaluateMenusList{
@@ -380,22 +390,24 @@ for (HstSiteMenuItem siteMenuItem : itrSiteMenu.getSiteMenuItems() ){
 		<span>Section : <b><u><c:out value="${memberpersonalinformation.filingSection.desc}"/></u></b></span> |
 		<span>Due Date : <b><u><c:out value="${thePastDueDateStr}"/></u></b></span> |
 		<span>Package : <b><u><fmt:message key="${itrForm}.packageName.${memberpersonalinformation.selectedServiceDeliveryOption}.package"/></u></b></span> |
-		<span>Payment : <b><u>
+		<span>Payment : <b>
 			<c:choose>
 				<c:when
-					test="${not empty memberpayment.paymentVerificationStatus && memberpayment.paymentVerificationStatus == 'VERIFIED'}">
-					<a href="${scriptName}/../servicerequest-itr-payment.html">Verified</a>
+					test="${invoicePresent == 'false'}">
+					<a href="${scriptName}/../memberinvoice.html/create">Create Invoice</a>
 				</c:when>
-				<c:when test="${not empty memberpayment && ( empty memberpayment.paymentVerificationStatus || memberpayment.paymentVerificationStatus != 'VERIFIED' )}">
-					<a href="${scriptName}/../servicerequest-itr-payment.html">Under Review</a>
-				</c:when>
-				<c:otherwise>
-					<c:if test="${not empty itrForm && not empty  memberpersonalinformation.selectedServiceDeliveryOption}">
-						<a href="${scriptName}/../servicerequest-itr-payment.html"><fmt:message key="${itrForm}.packageName.${memberpersonalinformation.selectedServiceDeliveryOption}.cost" var="totalCost" />Due (<w4india:inr value="${totalCost}"/>)</a>
-					</c:if>
-				</c:otherwise>
+				<c:when test="${invoicePresent == 'true' }">
+					<c:choose>
+						<c:when test="${amountDue == 0}">
+							<a href="${scriptName}/../memberinvoice.html">PAID</a>
+						</c:when>
+						<c:otherwise>
+							<a href="${scriptName}/../memberinvoice.html">Due (<w4india:inr value="${amountDue}"/>)</a>
+						</c:otherwise>
+					</c:choose>										
+				</c:when>				
 			</c:choose>
-		</u></b></span>
+		</b></span>
 	</div>
 </c:if>
 <%-- you kidding me?? can't escape  --%>
