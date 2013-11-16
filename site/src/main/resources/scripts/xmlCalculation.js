@@ -17,8 +17,123 @@ var condition_8=(cbasstype == "A" || cbasstype == "B") ? true :false;
 var condition_9=(cbasscategory == "Senior Citizen") && cbasstype == "I" && ((cbresistatus == "NRI")) ? true :false;
 var condition_10=(cbasscategory == "Super Senior Citizen" && cbasstype == "I" && ((cbresistatus == "NRI"))) ? true :false;
 
+if(cbassyear == "2014-2015"){
+	if(condition_1 || condition_2){
+		if (txtNetIncome <= 200000 && txtNetIncome != 0) {
+		}
+		else if (txtNetIncome > 200001 && txtNetIncome <= 500000) {
+			A = (txtNetIncome - 200000) * 0.1;
+		}
+		else if (txtNetIncome >= 500001 && txtNetIncome <= 1000000) {
+			A = ((txtNetIncome - 500000) * 0.2) + 30000;
+		}
+		else if (txtNetIncome > 1000000) {
+			A = ((txtNetIncome - 1000000) * 0.3) + 130000;
+		}
+		out_slabRate=200000;
+	}// 2013-2014-- Male & Female as Resident,Non-Resident,Non-ordinary Resident
+	else if(condition_3){
+		out_senior_citizen=condition_3;
+		if (txtNetIncome <= 250000 && txtNetIncome != 0) {
+		}
+		else if (txtNetIncome > 250001 && txtNetIncome <= 500000) {
+			A = (txtNetIncome - 250000) * 0.1;
+		}
+		else if (txtNetIncome > 500001 && txtNetIncome <= 1000000) {
+			A = ((txtNetIncome - 500000) * 0.2) + 25000;
+		}
+		else if (txtNetIncome > 1000000) {
+			A = ((txtNetIncome - 1000000) * 0.3) + 125000;
+		}
+		out_slabRate=250000;
+	}// Senior Citizen as Resident,Non-Resident,Non-ordinary Resident
+	else if(condition_9){
+		if (txtNetIncome <= 200000 && txtNetIncome != 0) {
+		}
+		else if (txtNetIncome > 200001 && txtNetIncome <= 500000) {
+			A = (txtNetIncome - 200000) * 0.1;
+		}
+		else if (txtNetIncome >= 500001 && txtNetIncome <= 1000000) {
+			A = ((txtNetIncome - 500000) * 0.2) + 30000;
+		}
+		else if (txtNetIncome > 1000000) {
+			A = ((txtNetIncome - 1000000) * 0.3) + 130000;
+		}
+		out_slabRate=200000;
+	}// Senior Citizen as Non-Resident
+	else if(condition_4){
+		if (txtNetIncome <= 500000 && txtNetIncome != 0) {
+		}
+		else if (txtNetIncome > 500001 && txtNetIncome <= 1000000) {
+			A = ((txtNetIncome - 500000) * 0.2);
+		}
+		else if (txtNetIncome > 1000000) {
+			A = ((txtNetIncome - 1000000) * 0.3) + 100000;
+		}
+		out_slabRate=500000;
+	}// Super Senior Citizen as Resident,Non-Resident,Non-ordinary Resident
+	else if(condition_10){
+		if (txtNetIncome <= 200000 && txtNetIncome != 0) {
+		}
+		else if (txtNetIncome > 200001 && txtNetIncome <= 500000) {
+			A = (txtNetIncome - 200000) * 0.1;
+		}
+		else if (txtNetIncome >= 500001 && txtNetIncome <= 1000000) {
+			A = ((txtNetIncome - 500000) * 0.2) + 30000;
+		}
+		else if (txtNetIncome > 1000000) {
+			A = ((txtNetIncome - 1000000) * 0.3) + 130000;
+		}
+		out_slabRate=200000;
+	} // Super Senior Citizen as Non-Resident
+	else if (condition_5) {
+		if (txtNetIncome <= 200000 && txtNetIncome != 0) {
+		}
+		else if (txtNetIncome > 200001 && txtNetIncome <= 500000) {
+			A = (txtNetIncome - 200000) * 0.1;
+		}
+		else if (txtNetIncome > 500001 && txtNetIncome <= 1000000) {
+			A = ((txtNetIncome - 500000) * 0.2) + 30000;
+		}
+		else if (txtNetIncome > 1000000) {
+			A = ((txtNetIncome - 1000000) * 0.3) + 130000;
+		}
+		out_slabRate=200000;
+	}// HUF
+	else if (condition_6) {
+		if (txtNetIncome != 0 && txtNetIncome <= 10000000) {
+			A = txtNetIncome * 0.3;
 
-if (cbassyear == "2013-2014") {
+		}
+		else if (txtNetIncome > 10000000) {
+			A = txtNetIncome * 0.3;
+			E = A * 0.05;
+		}
+		out_slabRate=1;
+	}// Company
+	else if (condition_7) {
+		if (txtNetIncome != 0) {
+			A = txtNetIncome * 0.3;
+		}
+		out_slabRate=1;
+	}// Firms and Local Authority
+	else if (condition_8) {
+		if (txtNetIncome <= 200000 && txtNetIncome != 0) {
+		}
+		else if (txtNetIncome > 200001 && txtNetIncome <= 500000) {
+			A = (txtNetIncome - 200000) * 0.1;
+		}
+		else if (txtNetIncome > 500001 && txtNetIncome <= 1000000) {
+			A = ((txtNetIncome - 500000) * 0.2) + 30000;
+		}
+		else if (txtNetIncome > 1000000) {
+			A = ((txtNetIncome - 1000000) * 0.3) + 130000;
+		}
+		out_slabRate=200000;
+	}// Association of Persons (AOP) and Body of Individuals (BOI)
+}// 2013-2014	
+
+else if (cbassyear == "2013-2014") {
 	if(condition_1 || condition_2){
 		if (txtNetIncome <= 200000 && txtNetIncome != 0) {
 		}
