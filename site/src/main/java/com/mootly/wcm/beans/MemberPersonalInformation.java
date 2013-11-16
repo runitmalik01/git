@@ -84,6 +84,7 @@ import org.hippoecm.hst.content.beans.ContentNodeBinder;
 import org.hippoecm.hst.content.beans.ContentNodeBindingException;
 import org.hippoecm.hst.content.beans.Node;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
+import org.onehippo.forge.sitemap.components.model.news.info.Publication;
 
 import com.mootly.wcm.beans.standard.FlexibleDocument;
 import com.mootly.wcm.model.FilingSection;
@@ -262,8 +263,11 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 
 	public FilingSection getFilingSection() {
 		String strReturnSection = getReturnSection();
+		log.info("FFFFFFFFFFFIIIIIILLLLLLLLIIIIIIIINNNNNNNGGGGGGGGG"+strReturnSection);
 		try {
 			FilingSection filingSection = FilingSection.getByXmlCode(strReturnSection);
+			log.info("VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV"+filingSection);
+			
 			return filingSection;
 		}
 		catch (IllegalArgumentException ie) {
@@ -955,11 +959,18 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 		//new changes for Return Filed under section on 06/08/2013
 		String returnTypeChoice = formMap.getField("returnTypeChoice").getValue();
 		String revisingWithNoticeSection = formMap.getField("revisingWithNoticeSection").getValue();
-		FinancialYear financialYear = FinancialYear.TwentyTweleve;
-		FilingSection filingSection;
-		//revisingWithNoticeSection")
-		boolean isPastDue = financialYear.isPastDue(getSelectedITRForm(), formMap.getField("pi_state").getValue());
-		if (isPastDue) {
+		
+		FinancialYear finanYr = FinancialYear.TwentyTweleve;
+		  for(FinancialYear financialYear:FinancialYear.values()){
+		   if(!financialYear.equals(FinancialYear.UNKNOWN)){
+		    if(financialYear.getDisplayName().equals(formMap.getField("fy").getValue())){
+		     finanYr = financialYear;
+		    }
+		   }
+		  }
+		  FilingSection filingSection;
+		  //revisingWithNoticeSection")
+		  boolean isPastDue = finanYr.isPastDue(getSelectedITRForm(), formMap.getField("pi_state").getValue());if (isPastDue) {
 			filingSection = FilingSection.AfterDueDate_139_4;
 		}
 		else {
