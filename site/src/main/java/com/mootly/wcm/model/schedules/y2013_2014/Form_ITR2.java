@@ -10,9 +10,9 @@ public class Form_ITR2 {
 		FormITR2 formITR2 = new FormITR2();
 		formITR2.setFormName("ITR-2");
 		formITR2.setDescription("For Indls and  HUFs not having Income from Business or Profession");
-		formITR2.setAssessmentYear("2013");
+		formITR2.setAssessmentYear("2014");
 		formITR2.setSchemaVer("Ver1.0");
-		formITR2.setFormVer("Ver1.0");
+		formITR2.setFormVer("Ver1.1");
 		return formITR2;
 	}
 }
