@@ -24,6 +24,6 @@
 <hst:defineObjects/>
 <c:set var="channelInfo" value="${hstRequest.requestContext.resolvedMount.mount.channelInfo}"/>
 <c:set var="separator" value=""/>
-<c:if test="${not empty channelInfo and not empty channelInfo.resellerName}">
-	<c:out value="${channelInfo.resellerName}"/>
+<c:if test="${not empty channelInfo and not empty channelInfo.emailCustomerService}">
+	<c:out value="${channelInfo.emailCustomerService}"/>
 </c:if>

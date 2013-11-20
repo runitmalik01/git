@@ -75,6 +75,9 @@ public interface WebsiteInfo extends ChannelInfo {
     @Parameter(name = "resellerId", defaultValue = "", required = true)
     String getResellerId();
     
+    @Parameter(name = "resellerName", defaultValue = "", required = true)
+    String getResellerName();
+    
     @Parameter(name = "emailFrom", defaultValue = "info@wealth4india.com", required = true)
     String getEmailFrom();
     
