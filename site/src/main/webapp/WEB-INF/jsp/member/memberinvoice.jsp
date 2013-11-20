@@ -337,7 +337,8 @@ pageContext.setAttribute("paymentTypeValues",PaymentType.values());
 	  			<li>Type: <c:out value="${paymentUpdateResponse.paymentType}"/> Amount:<c:out value="${paymentUpdateResponse.txnAmount}"/></li>
 	  		</c:forEach>
 	  		</ul>	
-	  	</c:if>
+	  	</c:if>	  	
+	  	Please wait for the page to refresh ..
 	  </div>
 	  <div class="modal-footer">
 	  		<a href="${scriptName}" class="btn btn-inverse" id="addNewBtn" style="display:none">Refresh</a>
