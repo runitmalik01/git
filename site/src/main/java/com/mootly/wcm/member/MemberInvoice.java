@@ -29,6 +29,7 @@ import com.mootly.wcm.beans.compound.InvoicePaymentDetail;
 import com.mootly.wcm.beans.compound.InvoiceRefundDetail;
 import com.mootly.wcm.beans.events.BeanLifecycle;
 import com.mootly.wcm.beans.events.InvoiceDocumentBeanHandler;
+import com.mootly.wcm.beans.events.MemberPersonalInfoUpdateHandler;
 import com.mootly.wcm.components.ITReturnComponent;
 import com.mootly.wcm.components.accounting.InvoiceHelper;
 import com.mootly.wcm.model.PaymentType;
@@ -83,12 +84,21 @@ public class MemberInvoice extends ITReturnComponent {
 		//this is COOL we call citrus for each transaction which was NET Banking, Credit Card, Debit Card and check for respCode
 		// if there is no respCode we need to get it and update the record accordingly
 		//if there is a respCode and its not success ignore it
-		if (request.getAttribute(InvoiceDocument.class.getSimpleName().toLowerCase()) != null) {
-			InvoiceDocument invoiceDocument = (InvoiceDocument) request.getAttribute(InvoiceDocument.class.getSimpleName().toLowerCase());
-			if (invoiceDocument != null && invoiceDocument.getInvoicePaymentDetailList() != null && invoiceDocument.getInvoicePaymentDetailList().size() > 0) {
-								
-			}			
-		}
+		InvoiceDocument invoiceDocument = (InvoiceDocument) request.getAttribute(InvoiceDocument.class.getSimpleName().toLowerCase());
+		if (invoiceDocument == null || invoiceDocument.getInvoiceDocumentDetailList() == null || invoiceDocument.getInvoiceDocumentDetailList().size() == 0) {
+			MemberPersonalInfoUpdateHandler memberPersonalInfoUpdateHandler = new MemberPersonalInfoUpdateHandler(getSequenceGenerator(), serviceDocumentList, getChannelInfoWrapper(), getRetrievePANInformationService());
+			Session persSession;
+			try {
+				persSession = getPersistableSession(request);
+				WorkflowPersistenceManager wpm = getWorkflowPersistenceManager(persSession);
+				memberPersonalInfoUpdateHandler.afterUpdate(null, null, wpm, getAbsoluteBasePathToReturnDocuments(), getITReturnComponentHelper());
+				request.setAttribute("didInvoiceGotUpdated","true");
+			} catch (RepositoryException e) {
+				// TODO Auto-generated catch block
+				//e.printStackTrace();
+				log.error("Error creating Invoice Document",e);
+			}
+		}			
 		//after all this lets reload the beans and reset the request attribute
 		
 	}

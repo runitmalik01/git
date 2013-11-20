@@ -38,9 +38,11 @@
    <a href="#nogo" class="orange button">Free! Get Started!</a>
 </div>
  --%>
+ <%--
 <div class="alert alert-error">
 	<marquee scrollamount="3"><b><fmt:message key="notification.duedate"/></b></marquee>
 </div>
+ --%>
 <jsp:include page="cara.jsp"/>
 <%--
 <div class="slider-wrapper grid col-940 theme-default">

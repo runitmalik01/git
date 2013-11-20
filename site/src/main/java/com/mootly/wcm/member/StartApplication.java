@@ -350,7 +350,7 @@ public class StartApplication extends ITReturnComponent {
 	public void doAction(HstRequest request, HstResponse response)
 			throws HstComponentException {
 		// TODO Auto-generated method stub
-		memberPersonalInfoUpdateHandler = new MemberPersonalInfoUpdateHandler(loadAllBeansUnderTheFolder(request, response, "services/incometaxreturn", "mootlywcm:Name",SORT_DIRECTION.ASC),getChannelInfoWrapper(),getRetrievePANInformationService());
+		memberPersonalInfoUpdateHandler = new MemberPersonalInfoUpdateHandler(getSequenceGenerator(), loadAllBeansUnderTheFolder(request, response, "services/incometaxreturn", "mootlywcm:Name",SORT_DIRECTION.ASC),getChannelInfoWrapper(),getRetrievePANInformationService());
 		super.doAction(request, response);
 	}
 

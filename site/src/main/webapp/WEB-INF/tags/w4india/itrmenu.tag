@@ -142,7 +142,7 @@ boolean showImportTDSButton = false;
 //if DIT is enabled and user has not chosen for 26AS import show the button
 if (channelInfoWrapper != null) {
 	isEriEnabled = channelInfoWrapper.getIsEriEnabled();
-	if (memberPersonalInformation != null) {
+	if (isEriEnabled && memberPersonalInformation != null) {
 		if ( memberPersonalInformation.getChoiceImportTDS() == null ){
 			showImportTDSButton = true;
 		}
@@ -473,6 +473,30 @@ class MenuComparator implements Comparator<HstSiteMenuItem> {
 	}
 </hst:element>
 <hst:headContribution element="${uiCustom}" category="jsInternal"/>
+<c:if test="${showImportTDSButton == 'true'}">
+	<div id="modalForImport" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-header">
+	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	    <h3>Save Time - Import 26AS</h3>
+	  </div>
+	  <div class="modal-body">
+	  	You can now import your 26AS (Tax Deduction) Information from the Income Tax Department
+	  </div>
+	  <div class="modal-footer">
+	  		<a href="${scriptName}" class="btn btn-inverse" id="addNewBtn" style="display:none">Import Now</a>
+	  		<a href="${scriptName}" class="btn btn-inverse" id="remind" style="display:none">Remind me Later</a>
+	  		<a href="${scriptName}" class="btn btn-inverse" id="doNotImport" style="display:none">Do not Import</a>
+	  </div>
+	</div>
+
+	<hst:element var="uiCustom" name="script">
+	<hst:attribute name="type">text/javascript</hst:attribute>
+	   $(document).ready ( function() {
+	   		$("#showImportTDSButton").modal();	   		
+	   });
+	</hst:element>
+	<hst:headContribution element="${uiCustom}" category="jsInternal" />
+</c:if>
 <%-- no need for a shopping cart for now --%>
 <%--
 <hst:element var="uiCustom" name="script">

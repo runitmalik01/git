@@ -1,16 +1,9 @@
 package com.mootly.wcm.services.citruspay.impl;
 
-import java.io.IOException;
-import java.io.StringReader;
 import java.net.HttpURLConnection;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.jdom.Document;
-import org.jdom.Element;
-import org.jdom.JDOMException;
-import org.jdom.input.SAXBuilder;
-import org.jdom.transform.JDOMSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;

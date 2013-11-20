@@ -73,25 +73,19 @@
 	<script type='text/javascript' src='<hst:link path="/js/bootstrap.min.js"></hst:link>'></script>
 	<script src="<hst:link path="/js/bootstrap-typeahead.js"></hst:link>"></script>
 	
-	<script src="<hst:link path="/js/simpleCart.min.js"></hst:link>"></script>
-	<script>
-			simpleCart.currency({
-			    code: "INR" ,
-			    name: "Indian Rupees" ,
-			    symbol: "&#8377;" ,
-			    accuracy: 2
-			});
-		  simpleCart({
-		    checkout: {
-		      type: "PayPal",
-		      email: "you@yours.com"
-		    },
-		    currency: "INR"
-		  });
-	</script>
 	<div id="container" class="hfeed">
 		<hst:include ref="header"/>
 		<div id="wrapper" class="clearfix">
+			<c:if test="${not empty isError && error.key == 'true' && loggedin == 'true'}">
+				<c:choose>
+					<c:when test="${not empty error.key}">
+						<span class="label label-warning"><c:out value="${error.key}" escapeXml="false"/></span>
+					</c:when>
+					<c:otherwise>
+						<span class="label label-warning">There was an error processing your request</span>
+					</c:otherwise>
+				</c:choose>				
+			</c:if>
 			<hst:include ref="main"/>
 			<hst:headContributions categoryIncludes="customHTML" xhtml="false"/>
 	    </div><!-- end of #wrapper -->

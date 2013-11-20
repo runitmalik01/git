@@ -19,6 +19,7 @@ import com.mootly.wcm.channels.ChannelInfoWrapper;
 import com.mootly.wcm.components.ITReturnComponentHelper;
 import com.mootly.wcm.model.ITRForm;
 import com.mootly.wcm.model.ITRServiceDelivery;
+import com.mootly.wcm.services.SequenceGenerator;
 import com.mootly.wcm.services.ditws.RetrievePANInformation;
 import com.mootly.wcm.services.ditws.exception.DataMismatchException;
 import com.mootly.wcm.services.ditws.exception.InvalidFormatException;
@@ -29,6 +30,7 @@ public class MemberPersonalInfoUpdateHandler extends GenericLifeCycleHandler imp
 	Logger logger = LoggerFactory.getLogger(MemberPersonalInfoUpdateHandler.class);
 	final List<HippoBean> itrServices;
 	final ChannelInfoWrapper channelInfoWrapper;
+	final SequenceGenerator sequenceGenerator;
 	final RetrievePANInformation retrievePANInformation;
 	
 	String serviceName;
@@ -38,7 +40,8 @@ public class MemberPersonalInfoUpdateHandler extends GenericLifeCycleHandler imp
 	
 	
 	
-	public MemberPersonalInfoUpdateHandler(List<HippoBean> itrServices,ChannelInfoWrapper channelInfoWrapper,RetrievePANInformation retrievePANInformation) {
+	public MemberPersonalInfoUpdateHandler( SequenceGenerator sequenceGenerator,List<HippoBean> itrServices,ChannelInfoWrapper channelInfoWrapper,RetrievePANInformation retrievePANInformation) {
+		this.sequenceGenerator = sequenceGenerator;
 		this.itrServices = itrServices;
 		this.channelInfoWrapper = channelInfoWrapper;
 		this.retrievePANInformation = retrievePANInformation;
@@ -154,6 +157,12 @@ public class MemberPersonalInfoUpdateHandler extends GenericLifeCycleHandler imp
  			}
  			FormMap childBeanMap = new FormMap();
  			FormMap parentBeanMap = null;
+ 			if (createNew) {
+ 				parentBeanMap = new FormMap();
+ 				FormField invoiceNumberField = new FormField("invoiceNumber");
+ 				invoiceNumberField.addValue( ((Long) sequenceGenerator.getNextId(SequenceGenerator.SEQUENCE_INVOICE)).toString() );
+ 				parentBeanMap.addFormField(invoiceNumberField);
+ 			}
 			BeanLifecycle<HippoBean> childBeanLifeCycleHandler = null;
 			BeanLifecycle<HippoBean> parentBeanLifeCycleHandler = null;
 			String parentBeanAbsolutePath = baseAbsolutePathToReturnDocuments + "/" + InvoiceDocument.class.getSimpleName().toLowerCase();

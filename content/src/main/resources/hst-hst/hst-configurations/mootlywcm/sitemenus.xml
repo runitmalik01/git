@@ -1639,7 +1639,7 @@
         <sv:value>nonDIY</sv:value>
       </sv:property>
       <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
-        <sv:value>/../servicerequest-itr-payment.html</sv:value>
+        <sv:value>/../memberinvoice.html</sv:value>
         <sv:value>6</sv:value>
         <sv:value>true</sv:value>
       </sv:property>

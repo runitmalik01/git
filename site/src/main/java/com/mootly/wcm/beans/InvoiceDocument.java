@@ -43,6 +43,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 
+import com.mootly.wcm.annotations.FormField;
 import com.mootly.wcm.annotations.TagAsTaxDataProvider;
 import com.mootly.wcm.annotations.TagAsTaxDataProvider.TaxDataProviderType;
 import com.mootly.wcm.beans.compound.InvoiceDocumentDetail;
@@ -77,6 +78,7 @@ public class InvoiceDocument extends FlexibleDocument implements ContentNodeBind
 	
 	@Autowired ApplicationContext applicationContext;
 
+	@FormField(name="invoiceNumber")
 	public final String getInvoiceNumber() {
 		if (invoiceNumber == null) invoiceNumber = getProperty("mootlywcm:invoiceNumber");
 		return invoiceNumber;

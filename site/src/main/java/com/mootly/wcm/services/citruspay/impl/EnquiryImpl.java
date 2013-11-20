@@ -1,7 +1,6 @@
 package com.mootly.wcm.services.citruspay.impl;
 
 import java.net.HttpURLConnection;
-import java.util.Map;
 
 import javax.xml.bind.JAXBException;
 
@@ -11,10 +10,7 @@ import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 
-import com.mootly.wcm.model.FinancialYear;
 import com.mootly.wcm.services.citruspay.Enquiry;
-import com.mootly.wcm.services.citruspay.Transaction;
-import com.mootly.wcm.services.citruspay.model.TransactionInput;
 import com.mootly.wcm.services.citruspay.model.enquiry.TxnEnquiryResponse;
 import com.mootly.wcm.services.http.HTTPConnectionException;
 import com.mootly.wcm.services.http.HTTPConnectionService;

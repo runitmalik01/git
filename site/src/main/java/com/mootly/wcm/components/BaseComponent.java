@@ -159,6 +159,16 @@ public class BaseComponent extends BaseHstComponent {
         
         setLogo(request, response);
         
+        String isError = request.getParameter("isError");
+        String errorKey = request.getParameter("error.key");
+        //response.setRenderParameter("error", "true");
+		//response.setRenderParameter("errorMessageKey", "error.paymentgateway.connection");
+        if (isError != null && isError.equalsIgnoreCase("true")) {
+        	request.setAttribute("isError", "true");
+        }
+        if (errorKey != null) {
+        	request.setAttribute("error.key", getPublicRequestParameter(request, "error.key"));
+        }        
     }
     
     @Override

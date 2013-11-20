@@ -327,7 +327,7 @@ pageContext.setAttribute("paymentTypeValues",PaymentType.values());
 	<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	  <div class="modal-header">
 	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-	    <h3><c:out value="Payment Confirmation - Successful"/></h3>
+	    <h3><c:out value="Please wait.."/></h3>
 	  </div>
 	  <div class="modal-body">
 	  	<c:if test="${not empty listOfPaymentUpdateResponse}">	  			

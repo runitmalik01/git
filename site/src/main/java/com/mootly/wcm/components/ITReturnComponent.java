@@ -29,6 +29,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -605,8 +606,12 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 				}
 				else {
 					if (!shouldRedirectAfterSuccess()) return;
-					String urlToRedirect = getScriptName(request,response,FormSaveResult.SUCCESS); // getRedirectURL(request,response,FormSaveResult.SUCCESS) ;
-					//if the page passes a URL as a parameter take that into consideration
+					String urlToRedirect = urlToRedirectAfterSuccess(request,response,formMap) ;
+					if (urlToRedirect == null) {
+						urlToRedirect = getScriptName(request,response,FormSaveResult.SUCCESS); // getRedirectURL(request,response,FormSaveResult.SUCCESS) ;
+					}
+					//if the page passes a URL as a parameter take that into consideration\
+					/*
 					if (request.getParameter("successURL") != null) {
 						urlToRedirect  = request.getParameter("successURL");
 					}
@@ -620,6 +625,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 
 					}
 					log.info("URLToRedirect:"+ urlToRedirect);
+					*/
 					//	if (request.getAttribute("selectedItrTab") != null){
 					//		response.setRenderParameter("selectedItrTab", ((ITRTab)request.getAttribute("selectedItrTab")).name());
 					//		urlToRedirect += "?selectedItrTab=" +  ((ITRTab)request.getAttribute("selectedItrTab")).name();
@@ -1169,6 +1175,14 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		if (this.getClass().isAnnotationPresent(RequiredFields.class)) {
 			RequiredFields requiredFieldsAnnotations = this.getClass().getAnnotation(RequiredFields.class);
 			String[] fieldNames = requiredFieldsAnnotations.fieldNames();
+			String[] additionalFieldNames = getRequiredFields();
+			if (additionalFieldNames != null) {
+				 List<String> both = new ArrayList<String>(fieldNames.length + additionalFieldNames.length);
+				 Collections.addAll(both, fieldNames);
+				 Collections.addAll(both, additionalFieldNames);
+				 fieldNames = both.toArray(new String[both.size()]);
+			}
+			
 			if (fieldNames != null && fieldNames.length > 0 ) {
 				for (String aRequiredField:fieldNames) {
 					if (formMap.getField(aRequiredField) == null) {
@@ -1287,6 +1301,10 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 				log.error("Error while Mocking Dit Service for Pan Information due to Invalid Format of Inputs",e);
 			}
 		}
+		
+		//additionalv validation
+		additionalValidation(request, response, formMap);
+		
 		if (formMap.getMessage() != null && formMap.getMessage().size() > 0) {
 			log.info("size of message"+formMap.getMessage().size());
 			FormUtils.persistFormMap(request, response, formMap, null);
@@ -2199,6 +2217,18 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 	}
 
 	protected BeanLifecycle<HippoBean> getParentBeanLifeCycleHandler() {
+		return null;
+	}
+	
+	protected String[] getRequiredFields() {
+		return null;
+	}
+	
+	protected boolean additionalValidation(HstRequest request,HstResponse response,FormMap formMap) {
+		return true;
+	}
+	
+	protected String urlToRedirectAfterSuccess(HstRequest request,HstResponse response,FormMap formMap) {
 		return null;
 	}
 }

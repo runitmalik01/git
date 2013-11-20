@@ -11,7 +11,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.mootly.wcm.services.citruspay.PaymentService;
-import com.mootly.wcm.services.citruspay.Transaction;
 
 /**
  * The purpose of this to support all XML based transactions
