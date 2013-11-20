@@ -31,7 +31,7 @@
 	and click on Import if you want this data to be imported in your tax
 	return</h3>
 <c:choose>
-	<c:when test="${pageAction == 'SYNC_TDS_FROM_DIT' && enableImportData=='true'}">
+	<c:when test="${pageAction == 'SYNC_TDS_FROM_DIT'}">
 
 		<form id="tdsfromdit" action="${actionUrl}" method="post"
 			name="tdsfromdit">
@@ -202,9 +202,6 @@
 			</div>
 		</form>
 	</c:when>
-	<c:otherwise>
-	<h1> Action Can't be Proceed !!! You are not authorized for this service at this time.</h1>
-</c:otherwise>
 </c:choose>
 <res:client-validation formId="tdsfromdit"
 	screenConfigurationDocumentName="syncTDSFromDIT"

@@ -45,10 +45,14 @@ public class RetrievePANInformationImpl extends DITSOAPServiceImpl implements Re
 	}
 	
 	@Override
-	public RetrievePANResponse retrievePANInformation(String PAN)
-			throws MissingInformationException, DataMismatchException,
-			InvalidFormatException {
+	public RetrievePANResponse retrievePANInformation(String userName,
+			String password,String certChain, String signature, String PAN) throws MissingInformationException,
+			DataMismatchException, InvalidFormatException {
 		// TODO Auto-generated method stub
+		if (userName  != null)  setUserName(userName);
+		if (password  != null)  setPassword(password);
+		if (certChain != null)  setCertChain(certChain);
+		if (signature != null)  setSignature(signature);
 		Map<String,String> inputParamValues = new HashMap<String,String>(1);
 		inputParamValues.put(PARAM_PAN, PAN);		
 		updateInputParamValues (inputParamValues); //update username password 
@@ -85,6 +89,14 @@ public class RetrievePANInformationImpl extends DITSOAPServiceImpl implements Re
 			e.printStackTrace();
 		}
 		return null;
+	}
+	
+	@Override
+	public RetrievePANResponse retrievePANInformation(String PAN)
+			throws MissingInformationException, DataMismatchException,
+			InvalidFormatException {
+		// TODO Auto-generated method stub
+		return retrievePANInformation(getUserName(),getPassword(),getCertChain(),getSignature(),PAN);
 	}
 	
 }

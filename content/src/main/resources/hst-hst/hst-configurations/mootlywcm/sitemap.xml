@@ -9856,6 +9856,332 @@
 				  </sv:property>
 				</sv:node>
 	            <!-- new sitemap for ITRV Status -->
+	            <!-- new sitemap for invoice payment -->
+				<sv:node sv:name="memberinvoice.html" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+				  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+				    <sv:value>hst:sitemapitem</sv:value>
+				  </sv:property>
+				  <sv:property sv:name="jcr:uuid" sv:type="String">
+				    <sv:value>772a8a27-bdfa-4ad1-8fc9-c90523c0d06f</sv:value>
+				  </sv:property>
+				  <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+				    <sv:value>hst:pages/memberinvoice</sv:value>
+				  </sv:property>
+				  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+				    <sv:value>mainSiteMapItemRefId</sv:value>
+				    <sv:value>shouldPostToSelf</sv:value>
+				    <sv:value>whichITRForm</sv:value>
+				  </sv:property>
+				  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+				    <sv:value>member-invoice</sv:value>
+				    <sv:value>true</sv:value>
+				    <sv:value>ITR2</sv:value>
+				  </sv:property>
+				  <sv:property sv:name="hst:refId" sv:type="String">
+				    <sv:value>memberinvoice</sv:value>
+				  </sv:property>
+				  <sv:property sv:name="hst:relativecontentpath" sv:type="String">
+				    <sv:value>services</sv:value>
+				  </sv:property>
+				  <sv:node sv:name="_default_">
+				    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+				      <sv:value>hst:sitemapitem</sv:value>
+				    </sv:property>
+				    <sv:property sv:name="jcr:uuid" sv:type="String">
+				      <sv:value>3e4ad4ab-1d01-4e99-93be-7f5ea19ef8ff</sv:value>
+				    </sv:property>
+				    <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+				      <sv:value>uuid</sv:value>
+				    </sv:property>
+				    <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+				      <sv:value>${5}</sv:value>
+				    </sv:property>
+				    <sv:node sv:name="memberinvoiceedit">
+				      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+				        <sv:value>hst:sitemapitem</sv:value>
+				      </sv:property>
+				      <sv:property sv:name="jcr:uuid" sv:type="String">
+				        <sv:value>182d20ab-fe97-4e7d-9d8a-fdd99b78570e</sv:value>
+				      </sv:property>
+				      <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+				        <sv:value>hst:pages/memberinvoice</sv:value>
+				      </sv:property>
+				      <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+				        <sv:value>action</sv:value>
+				      </sv:property>
+				      <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+				        <sv:value>EDIT_CHILD</sv:value>
+				      </sv:property>
+				    </sv:node>
+				    <sv:node sv:name="memberinvoicedelete">
+				      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+				        <sv:value>hst:sitemapitem</sv:value>
+				      </sv:property>
+				      <sv:property sv:name="jcr:uuid" sv:type="String">
+				        <sv:value>6feed673-4e29-4c02-9eaa-90772e8d3c97</sv:value>
+				      </sv:property>
+				      <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+				        <sv:value>hst:pages/memberinvoice</sv:value>
+				      </sv:property>
+				      <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+				        <sv:value>action</sv:value>
+				      </sv:property>
+				      <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+				        <sv:value>DELETE_CHILD</sv:value>
+				      </sv:property>
+				    </sv:node>
+				  </sv:node>
+				  <sv:node sv:name="memberinvoicenew">
+				    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+				      <sv:value>hst:sitemapitem</sv:value>
+				    </sv:property>
+				    <sv:property sv:name="jcr:uuid" sv:type="String">
+				      <sv:value>0fcd13d6-5646-4e42-9672-3ea1d79e42cb</sv:value>
+				    </sv:property>
+				    <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+				      <sv:value>hst:pages/memberinvoice</sv:value>
+				    </sv:property>
+				    <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+				      <sv:value>action</sv:value>
+				    </sv:property>
+				    <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+				      <sv:value>NEW_CHILD</sv:value>
+				    </sv:property>
+				    <sv:property sv:name="hst:relativecontentpath" sv:type="String">
+				      <sv:value>services</sv:value>
+				    </sv:property>
+				  </sv:node>
+				  <sv:node sv:name="payment">
+				    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+				      <sv:value>hst:sitemapitem</sv:value>
+				    </sv:property>
+				    <sv:property sv:name="jcr:uuid" sv:type="String">
+				      <sv:value>3ba3ce2c-edfe-44c9-a117-cee4713b3902</sv:value>
+				    </sv:property>
+				    <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+				      <sv:value>hst:pages/invoice-payment</sv:value>
+				    </sv:property>
+				    <sv:node sv:name="paymentadd">
+				      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+				        <sv:value>hst:sitemapitem</sv:value>
+				      </sv:property>
+				      <sv:property sv:name="jcr:uuid" sv:type="String">
+				        <sv:value>7fc86c18-a242-4810-b5b5-bacb50ce54b9</sv:value>
+				      </sv:property>
+				      <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+				        <sv:value>hst:pages/invoice-payment</sv:value>
+				      </sv:property>
+				      <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+				        <sv:value>action</sv:value>
+				      </sv:property>
+				      <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+				        <sv:value>NEW_CHILD</sv:value>
+				      </sv:property>
+				      <sv:node sv:name="CASH">
+				        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+				          <sv:value>hst:sitemapitem</sv:value>
+				        </sv:property>
+				        <sv:property sv:name="jcr:uuid" sv:type="String">
+				          <sv:value>39b8ecf2-4514-4445-9a74-b644168b1f12</sv:value>
+				        </sv:property>
+				        <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+				          <sv:value>hst:pages/invoice-payment</sv:value>
+				        </sv:property>
+				        <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+				          <sv:value>paymentType</sv:value>
+				        </sv:property>
+				        <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+				          <sv:value>CASH</sv:value>
+				        </sv:property>
+				      </sv:node>
+				      <sv:node sv:name="NET_BANKING">
+				        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+				          <sv:value>hst:sitemapitem</sv:value>
+				        </sv:property>
+				        <sv:property sv:name="jcr:uuid" sv:type="String">
+				          <sv:value>1d6d1a98-0f39-46c5-bae4-352a85f1ceb1</sv:value>
+				        </sv:property>
+				        <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+				          <sv:value>hst:pages/invoice-payment</sv:value>
+				        </sv:property>
+				        <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+				          <sv:value>paymentType</sv:value>
+				        </sv:property>
+				        <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+				          <sv:value>NET_BANKING</sv:value>
+				        </sv:property>
+				        <sv:node sv:name="confirm-payment-success">
+				          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+				            <sv:value>hst:sitemapitem</sv:value>
+				          </sv:property>
+				          <sv:property sv:name="jcr:uuid" sv:type="String">
+				            <sv:value>97670526-b9df-4215-a02e-b3e8d1697c21</sv:value>
+				          </sv:property>
+				          <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+				            <sv:value>hst:pages/confirmation-payment-success</sv:value>
+				          </sv:property>
+				          <sv:property sv:name="hst:refId" sv:type="String">
+				            <sv:value>payment-success-NET_BANKING</sv:value>
+				          </sv:property>
+				          <sv:property sv:name="hst:relativecontentpath" sv:type="String">
+				            <sv:value>members</sv:value>
+				          </sv:property>
+				        </sv:node>
+				        <sv:node sv:name="returnURL">
+				          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+				            <sv:value>hst:sitemapitem</sv:value>
+				          </sv:property>
+				          <sv:property sv:name="jcr:uuid" sv:type="String">
+				            <sv:value>e2e7e047-2902-4f8b-b0ca-d1165697e9e4</sv:value>
+				          </sv:property>
+				          <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+				            <sv:value>hst:pages/citrus-payment-return</sv:value>
+				          </sv:property>
+				          <sv:property sv:name="hst:refId" sv:type="String">
+				            <sv:value>citrus-payment-return-NET_BANKING</sv:value>
+				          </sv:property>
+				          <sv:property sv:name="hst:relativecontentpath" sv:type="String">
+				            <sv:value>members</sv:value>
+				          </sv:property>
+				        </sv:node>
+				        <sv:node sv:name="notifyURL">
+				          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+				            <sv:value>hst:sitemapitem</sv:value>
+				          </sv:property>
+				          <sv:property sv:name="jcr:uuid" sv:type="String">
+				            <sv:value>a4779c88-8214-4ee1-adb0-47309fe4e746</sv:value>
+				          </sv:property>
+				          <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+				            <sv:value>hst:pages/citrus-payment-notify</sv:value>
+				          </sv:property>
+				          <sv:property sv:name="hst:refId" sv:type="String">
+				            <sv:value>payment-success-NET_BANKING</sv:value>
+				          </sv:property>
+				          <sv:property sv:name="hst:relativecontentpath" sv:type="String">
+				            <sv:value>members</sv:value>
+				          </sv:property>
+				        </sv:node>
+				      </sv:node>
+				      <sv:node sv:name="DEBIT_CARD">
+				        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+				          <sv:value>hst:sitemapitem</sv:value>
+				        </sv:property>
+				        <sv:property sv:name="jcr:uuid" sv:type="String">
+				          <sv:value>f9f5acfa-5d93-4874-b43a-fd2382375700</sv:value>
+				        </sv:property>
+				        <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+				          <sv:value>hst:pages/invoice-payment</sv:value>
+				        </sv:property>
+				        <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+				          <sv:value>paymentType</sv:value>
+				        </sv:property>
+				        <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+				          <sv:value>DEBIT_CARD</sv:value>
+				        </sv:property>
+				      </sv:node>
+				      <sv:node sv:name="CREDIT_CARD">
+				        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+				          <sv:value>hst:sitemapitem</sv:value>
+				        </sv:property>
+				        <sv:property sv:name="jcr:uuid" sv:type="String">
+				          <sv:value>c69f5272-516c-4570-9290-2b1be1cd1275</sv:value>
+				        </sv:property>
+				        <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+				          <sv:value>hst:pages/invoice-payment</sv:value>
+				        </sv:property>
+				        <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+				          <sv:value>paymentType</sv:value>
+				        </sv:property>
+				        <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+				          <sv:value>CREDIT_CARD</sv:value>
+				        </sv:property>
+				      </sv:node>
+				      <sv:node sv:name="RTGS">
+				        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+				          <sv:value>hst:sitemapitem</sv:value>
+				        </sv:property>
+				        <sv:property sv:name="jcr:uuid" sv:type="String">
+				          <sv:value>f2500b2a-20ff-437b-bb58-9ec60c38ac6f</sv:value>
+				        </sv:property>
+				        <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+				          <sv:value>hst:pages/invoice-payment</sv:value>
+				        </sv:property>
+				        <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+				          <sv:value>paymentType</sv:value>
+				        </sv:property>
+				        <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+				          <sv:value>RTGS</sv:value>
+				        </sv:property>
+				      </sv:node>
+				      <sv:node sv:name="CHECK">
+				        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+				          <sv:value>hst:sitemapitem</sv:value>
+				        </sv:property>
+				        <sv:property sv:name="jcr:uuid" sv:type="String">
+				          <sv:value>c22e0d8f-0ea9-4442-bf40-994653ffd80d</sv:value>
+				        </sv:property>
+				        <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+				          <sv:value>hst:pages/invoice-payment</sv:value>
+				        </sv:property>
+				        <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+				          <sv:value>paymentType</sv:value>
+				        </sv:property>
+				        <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+				          <sv:value>CHECK</sv:value>
+				        </sv:property>
+				      </sv:node>
+				    </sv:node>
+				    <sv:node sv:name="_default_">
+				      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+				        <sv:value>hst:sitemapitem</sv:value>
+				      </sv:property>
+				      <sv:property sv:name="jcr:uuid" sv:type="String">
+				        <sv:value>21965bf6-fa5a-4221-a1b6-8c28f10fa8d7</sv:value>
+				      </sv:property>
+				      <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+				        <sv:value>uuid</sv:value>
+				      </sv:property>
+				      <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+				        <sv:value>${5}</sv:value>
+				      </sv:property>
+				      <sv:node sv:name="paymentedit">
+				        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+				          <sv:value>hst:sitemapitem</sv:value>
+				        </sv:property>
+				        <sv:property sv:name="jcr:uuid" sv:type="String">
+				          <sv:value>992556cf-ee96-4cf7-8bba-75c8c3df519f</sv:value>
+				        </sv:property>
+				        <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+				          <sv:value>hst:pages/invoice-payment</sv:value>
+				        </sv:property>
+				        <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+				          <sv:value>action</sv:value>
+				        </sv:property>
+				        <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+				          <sv:value>EDIT_CHILD</sv:value>
+				        </sv:property>
+				      </sv:node>
+				      <sv:node sv:name="paymentdelete">
+				        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+				          <sv:value>hst:sitemapitem</sv:value>
+				        </sv:property>
+				        <sv:property sv:name="jcr:uuid" sv:type="String">
+				          <sv:value>b75e802c-5a03-4f45-a22b-1ffc3d312060</sv:value>
+				        </sv:property>
+				        <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+				          <sv:value>hst:pages/invoice-payment</sv:value>
+				        </sv:property>
+				        <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+				          <sv:value>action</sv:value>
+				        </sv:property>
+				        <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+				          <sv:value>DELETE_CHILD</sv:value>
+				        </sv:property>
+				      </sv:node>
+				    </sv:node>
+				  </sv:node>
+				</sv:node>
+	            <!-- / -->
 	          </sv:node>
 	        </sv:node>
 	      </sv:node>

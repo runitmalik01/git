@@ -48,6 +48,7 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 import com.mootly.wcm.beans.EmailMessage;
 import com.mootly.wcm.beans.EmailTemplate;
 import com.mootly.wcm.beans.compound.ImageSet;
+import com.mootly.wcm.channels.ChannelInfoWrapper;
 import com.mootly.wcm.channels.WebsiteInfo;
 import com.mootly.wcm.utils.ContentStructure;
 import com.mootly.wcm.utils.VelocityUtils;
@@ -60,6 +61,9 @@ public class BaseComponent extends BaseHstComponent {
 	String memberFolderPath;
 	
 	ITReturnComponentHelper itReturnComponentHelper = null;
+	
+	ChannelInfoWrapper channelInfoWrapper = null;
+	WebsiteInfo webSiteInfo = null;
 	
 	@Override
 	public void init(ServletContext servletContext,
@@ -148,7 +152,23 @@ public class BaseComponent extends BaseHstComponent {
 			}
         }
         
+        webSiteInfo = request.getRequestContext().getResolvedMount().getMount().getChannelInfo();
+        channelInfoWrapper = new ChannelInfoWrapper(webSiteInfo);
+        
+        request.setAttribute("channelInfoWrapper", channelInfoWrapper);
+        
         setLogo(request, response);
+        
+    }
+    
+    @Override
+    public void doAction(HstRequest request, HstResponse response)
+    		throws HstComponentException {
+    	// TODO Auto-generated method stub
+    	super.doAction(request, response);
+    	webSiteInfo = request.getRequestContext().getResolvedMount().getMount().getChannelInfo();
+        channelInfoWrapper = new ChannelInfoWrapper(webSiteInfo);
+        request.setAttribute("channelInfoWrapper", channelInfoWrapper);
     }
     
     protected void redirectToNotFoundPage(HstResponse response) {
@@ -387,5 +407,13 @@ public class BaseComponent extends BaseHstComponent {
 
 	protected void setMemberFolderPath(String memberFolderPath) {
 		this.memberFolderPath = memberFolderPath;
+	}
+	
+	public WebsiteInfo getWebSiteInfo() {
+		return webSiteInfo;
+	}
+	
+	public ChannelInfoWrapper getChannelInfoWrapper() {
+		return channelInfoWrapper;
 	}
 }

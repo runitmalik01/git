@@ -55,20 +55,20 @@
       <soap:address location="https://incometaxindiaefiling.gov.in/e-FilingWS/ditws"/>
     </port>
   </service>
-</definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>https://incometaxindiaefiling.gov.in/e-FilingWS/ditws</con:endpoint><con:endpoint>http://mootly-pc-004:8088/mockGetPanInfoSoapHttp</con:endpoint></con:endpoints><con:operation isOneWay="false" action="http://panws.dit.tcs.com//getPanInfo" name="getPanInfo" bindingOperationName="getPanInfo" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>https://incometaxindiaefiling.gov.in/e-FilingWS/ditws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:pan="http://panws.dit.tcs.com/" xmlns:typ="http://panws.dit.tcs.com/types/">
+</definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>https://incometaxindiaefiling.gov.in/e-FilingWS/ditws</con:endpoint><con:endpoint>http://mootly-pc-004:8088/mockGetPanInfoSoapHttp</con:endpoint></con:endpoints><con:operation isOneWay="false" action="http://panws.dit.tcs.com//getPanInfo" name="getPanInfo" bindingOperationName="getPanInfo" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://incometaxindiaefiling.gov.in/e-FilingWS/ditws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:pan="http://panws.dit.tcs.com/" xmlns:typ="http://panws.dit.tcs.com/types/">
    <soapenv:Header/>
    <soapenv:Body>
       <pan:getPanInfo>
          <login>
-            <typ:userName>?</typ:userName>
-            <typ:password>?</typ:password>
+            <typ:userName>ERIA100690</typ:userName>
+            <typ:password>%ERIT000655%</typ:password>
          </login>
          <panNo>
-            <typ:panNo>?</typ:panNo>
+            <typ:panNo>ABNPP1234G</typ:panNo>
          </panNo>
       </pan:getPanInfo>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://panws.dit.tcs.com//getPanInfo"/></con:call><con:call name="Copy of Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://incometaxindiaefiling.gov.in/e-FilingWS/ditws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:pan="http://panws.dit.tcs.com/" xmlns:typ="http://panws.dit.tcs.com/types/">
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://panws.dit.tcs.com//getPanInfo"/><con:wsrmConfig version="1.2"/></con:call><con:call name="Copy of Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://incometaxindiaefiling.gov.in/e-FilingWS/ditws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:pan="http://panws.dit.tcs.com/" xmlns:typ="http://panws.dit.tcs.com/types/">
    <soapenv:Header/>
    <soapenv:Body>
       <pan:getPanInfo>
@@ -9130,13 +9130,13 @@
    <soapenv:Body>
       <v:getTDSDetails>
          <v:LoginInfo>
-            <v:userName>?</v:userName>
-            <v:password>?</v:password>
+            <v:userName>ERIA100690</v:userName>
+            <v:password>%ERIT000655%</v:password>
          </v:LoginInfo>
          <v:ClientInfo>
-            <v:pan>?</v:pan>
-            <v:dob>?</v:dob>
-            <v:assessmentYear>?</v:assessmentYear>
+            <v:pan>CDVPS0756D</v:pan>
+            <v:dob>1989-12-04</v:dob>
+            <v:assessmentYear>2013-14</v:assessmentYear>
          </v:ClientInfo>
       </v:getTDSDetails>
    </soapenv:Body>
@@ -9524,7 +9524,90 @@
          <v:signature>?</v:signature>
       </v:DITWSAuthInfoEle>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:attachment><con:name>consolidated-returns-try9.xml</con:name><con:contentType>text/xml</con:contentType><con:contentId>consolidated-returns-try9.xml</con:contentId><con:url>C:/Users/admin/Projects/Mootly/code/wcm/hippo/solutions/indianonlinetax/branches/indiateam/filetriedfore/consolidated-returns-try9.xml</con:url><con:id>22e9fe44-1afa-430c-b358-2489fc61ca98</con:id></con:attachment><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://incometaxindiaefiling.gov.in/submitITReturn"/><con:wsrmConfig version="1.2"/></con:call><con:requestParts><con:part name="itrXMLFile"><con:contentType>application/octet-stream</con:contentType></con:part></con:requestParts></con:operation></con:interface><con:mockService port="8088" path="/mockGetPanInfoSoapHttp" host="mootly-pc-004" name="GetPanInfoSoapHttp MockService"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.mock.WsdlMockService@require-soap-action">false</con:setting></con:settings><con:mockOperation name="getPanInfo" interface="GetPanInfoSoapHttp" operation="getPanInfo"><con:settings/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:defaultResponse>Response 1</con:defaultResponse><con:response name="Response 1" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:pan="http://panws.dit.tcs.com/" xmlns:typ="http://panws.dit.tcs.com/types/">
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:attachment><con:name>consolidated-returns-try9.xml</con:name><con:contentType>text/xml</con:contentType><con:contentId>consolidated-returns-try9.xml</con:contentId><con:url>C:/Users/admin/Projects/Mootly/code/wcm/hippo/solutions/indianonlinetax/branches/indiateam/filetriedfore/consolidated-returns-try9.xml</con:url><con:id>22e9fe44-1afa-430c-b358-2489fc61ca98</con:id></con:attachment><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://incometaxindiaefiling.gov.in/submitITReturn"/><con:wsrmConfig version="1.2"/></con:call><con:requestParts><con:part name="itrXMLFile"><con:contentType>application/octet-stream</con:contentType></con:part></con:requestParts></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="BulkPanServiceSoapBinding" type="wsdl" bindingName="{http://incometaxindiaefiling.gov.in/bulkPanservice/v_1_0}BulkPanServiceSoapBinding" soapVersion="1_1" anonymous="optional" definition="https://incometaxindiaefiling.gov.in/e-FilingWS/ditws/submitBulkPan.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="https://incometaxindiaefiling.gov.in/e-FilingWS/ditws/submitBulkPan.wsdl"><con:part><con:url>https://incometaxindiaefiling.gov.in/e-FilingWS/ditws/submitBulkPan.wsdl</con:url><con:content><![CDATA[<definitions targetNamespace="http://incometaxindiaefiling.gov.in/bulkPanservice/v_1_0" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://incometaxindiaefiling.gov.in/bulkPanservice/v_1_0" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <types>
+    <xs:schema targetNamespace="http://incometaxindiaefiling.gov.in/bulkPanservice/v_1_0" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:bulkPanException="http://incometaxindiaefiling.gov.in/ws/bulkPan/ex/v_1_0">
+      <xs:element name="submitBulkPan" type="tns:submitBulkPanType"/>
+      <xs:complexType name="submitBulkPanType">
+        <xs:sequence>
+          <xs:element name="LoginInfo" type="tns:LoginInfoType"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="LoginInfoType">
+        <xs:sequence>
+          <xs:element name="userName" type="xs:string" nillable="true"/>
+          <xs:element name="password" type="xs:string" nillable="true"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="DITWSResponse">
+        <xs:sequence>
+          <xs:element name="result" nillable="true" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </types>
+  <message name="SubmitBulkPanRequest">
+    <part name="login" element="tns:submitBulkPan"/>
+    <part name="bulkPanXMLFile" type="xs:hexBinary"/>
+  </message>
+  <message name="SubmitBulkPanResponse">
+    <part name="bulkPanStatus" type="tns:DITWSResponse"/>
+  </message>
+  <portType name="BulkPanServicePort">
+    <operation name="submitBulkPan">
+      <input message="tns:SubmitBulkPanRequest"/>
+      <output message="tns:SubmitBulkPanResponse"/>
+    </operation>
+  </portType>
+  <binding name="BulkPanServiceSoapBinding" type="tns:BulkPanServicePort">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="submitBulkPan">
+      <soap:operation soapAction="http://incometaxindiaefiling.gov.in/submitBulkPan"/>
+      <input>
+        <mime:multipartRelated>
+          <mime:part>
+            <soap:body use="literal" parts="login"/>
+          </mime:part>
+          <mime:part>
+            <mime:content part="bulkPanXMLFile" type="application/octet-stream"/>
+          </mime:part>
+        </mime:multipartRelated>
+      </input>
+      <output>
+        <mime:multipartRelated>
+          <mime:part>
+            <soap:body use="literal" parts="bulkPanStatus"/>
+          </mime:part>
+        </mime:multipartRelated>
+      </output>
+    </operation>
+  </binding>
+  <service name="BulkPanService">
+    <port name="BulkPanServiceSoapHttpPort" binding="tns:BulkPanServiceSoapBinding">
+      <soap:address location="https://incometaxindiaefiling.gov.in/e-FilingWS/ditws"/>
+    </port>
+  </service>
+</definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>https://incometaxindiaefiling.gov.in/e-FilingWS/ditws</con:endpoint><con:endpoint>http://mootly-pc-004:8088/mockBulkPanServiceSoapBinding</con:endpoint></con:endpoints><con:operation isOneWay="false" action="http://incometaxindiaefiling.gov.in/submitBulkPan" name="submitBulkPan" bindingOperationName="submitBulkPan" type="Request-Response" inputName="" receivesAttachments="true" sendsAttachments="true" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>https://incometaxindiaefiling.gov.in/e-FilingWS/ditws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:v="http://incometaxindiaefiling.gov.in/bulkPanservice/v_1_0">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <v:submitBulkPan>
+         <v:LoginInfo>
+            <v:userName>?</v:userName>
+            <v:password>?</v:password>
+         </v:LoginInfo>
+      </v:submitBulkPan>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://incometaxindiaefiling.gov.in/submitBulkPan"/></con:call><con:call name="Copy of Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://incometaxindiaefiling.gov.in/e-FilingWS/ditws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:v="http://incometaxindiaefiling.gov.in/bulkPanservice/v_1_0">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <v:submitBulkPan>
+         <v:LoginInfo>
+            <v:userName>ERIA100690</v:userName>
+            <v:password>%ERIT000655%</v:password>
+         </v:LoginInfo>
+      </v:submitBulkPan>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:attachment><con:name>bulkpanqueryrequest.xml</con:name><con:contentType>text/xml</con:contentType><con:contentId>bulkpanqueryrequest.xml</con:contentId><con:part>bulkPanXMLFile</con:part><con:url>C:/Users/admin/Projects/Mootly/code/wcm/hippo/solutions/indianonlinetax/branches/indiateam/integration-tests/dit/bulkpanqueryrequest.xml</con:url><con:id>0f6d0385-f2cb-4d81-a1de-731293b9f6ed</con:id></con:attachment><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://incometaxindiaefiling.gov.in/submitBulkPan"/><con:wsrmConfig version="1.2"/></con:call><con:requestParts><con:part name="bulkPanXMLFile"><con:contentType>application/octet-stream</con:contentType></con:part></con:requestParts></con:operation></con:interface><con:mockService port="8088" path="/mockGetPanInfoSoapHttp" host="mootly-pc-004" name="GetPanInfoSoapHttp MockService"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.mock.WsdlMockService@require-soap-action">false</con:setting></con:settings><con:mockOperation name="getPanInfo" interface="GetPanInfoSoapHttp" operation="getPanInfo"><con:settings/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:defaultResponse>Response 1</con:defaultResponse><con:response name="Response 1" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:pan="http://panws.dit.tcs.com/" xmlns:typ="http://panws.dit.tcs.com/types/">
    <soapenv:Header/>
    <soapenv:Body>
       <pan:getPanInfoResponse>
@@ -9626,4 +9709,11 @@
          <v:result>?</v:result>
       </v:DITWSResponseEle>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://incometaxindiaefiling.gov.in/submitITReturn"/></con:response><con:dispatchConfig/></con:mockOperation><con:properties/></con:mockService><con:properties/><con:wssContainer/><con:sensitiveInformation/></con:soapui-project>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://incometaxindiaefiling.gov.in/submitITReturn"/></con:response><con:dispatchConfig/></con:mockOperation><con:properties/></con:mockService><con:mockService port="8088" path="/mockBulkPanServiceSoapBinding" host="mootly-pc-004" name="BulkPanServiceSoapBinding MockService"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.mock.WsdlMockService@require-soap-action">false</con:setting></con:settings><con:mockOperation name="submitBulkPan" interface="BulkPanServiceSoapBinding" operation="submitBulkPan"><con:settings/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:defaultResponse>Response 1</con:defaultResponse><con:response name="Response 1" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:v="http://incometaxindiaefiling.gov.in/bulkPanservice/v_1_0">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <bulkPanStatus>
+         <v:result>?</v:result>
+      </bulkPanStatus>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://incometaxindiaefiling.gov.in/submitBulkPan"/></con:response><con:dispatchConfig/></con:mockOperation><con:properties/></con:mockService><con:properties/><con:wssContainer/><con:sensitiveInformation/></con:soapui-project>

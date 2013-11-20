@@ -70,6 +70,13 @@
  - mootlywcm:applicationstatus (string) ='new' mandatory
  - mootlywcm:submissionstatus (string) ='initial' mandatory
  - mootlywcm:submissiontime (date) 
+ 
+[mootlywcm:ditresponse]
+ mixin
+ - mootlywcm:isFault (boolean) ='false' mandatory
+ - mootlywcm:faultMessage (string) 
+ - mootlywcm:request (string)
+ - mootlywcm:response (string) 
 
 [mootlywcm:emailmessage] >  mootlywcm:document, relateddocs:relatabledocs
 

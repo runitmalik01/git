@@ -23,6 +23,8 @@ public final class IndianGregorianCalendar {
 	public static String indianLocalDateFormStr="dd-MM-yyyy";
 	public static String indianDateTimeFormStr="dd-MM-yyyy hh:mm a";
 	
+	public static String soapDateTimeFormStr="YYYY-MM-dd";
+	
 	public static GregorianCalendar getIndianInstance() {
 		return new GregorianCalendar(indianTimeZone);
 	}

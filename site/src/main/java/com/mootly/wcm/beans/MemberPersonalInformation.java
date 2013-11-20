@@ -92,6 +92,7 @@ import com.mootly.wcm.model.FinancialYear;
 import com.mootly.wcm.model.ITRForm;
 import com.mootly.wcm.model.ITRServiceDelivery;
 import com.mootly.wcm.model.ResidentStatus;
+import com.mootly.wcm.model.VerificationStatus;
 
 /**
  * User: vivek
@@ -188,6 +189,13 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 	private String trpname;
 	private Double trpreimbursement;
 	private String isTaxPreparebyTRP;
+	
+	//DIT Integration
+	private VerificationStatus ditVerificationStatus;
+	//did the user choose to import from TDS
+	private String choiceImportTDS; 
+	private Boolean importTDSSuccess;
+	
 	ResourceBundle messagesResourceBundle = ResourceBundle.getBundle("messages");
 
 	//ITR1.packageName.DIY.cost
@@ -528,6 +536,30 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 	public String getPersonalInfoUuid() {
 		return PIUUID;
 	}
+	
+	public VerificationStatus getDitVerificationStatus() {
+		String ditVerificationStatusStr = null;
+		if (ditVerificationStatus == null ) ditVerificationStatusStr = getProperty("mootlywcm:ditVerificationStatus");
+		if (ditVerificationStatusStr != null) {
+			try {
+				ditVerificationStatus = VerificationStatus.valueOf(ditVerificationStatusStr);
+			}catch (IllegalArgumentException e) {
+				log.warn("Problem converting String to ditVerificationStatus ",e);
+			}
+		}
+		return ditVerificationStatus;
+	}
+	
+	public String getChoiceImportTDS() {
+		if ( choiceImportTDS == null ) choiceImportTDS = getProperty("mootlywcm:choiceImportTDS");
+		return choiceImportTDS;
+	}
+	
+	public Boolean getImportTDSSuccess() {
+		if ( importTDSSuccess == null ) importTDSSuccess = getProperty("mootlywcm:importTDSSuccess");
+		return importTDSSuccess;
+	}
+	
 	public final void  setReturnSection(String ReturnSection){
 		this.ReturnSection = ReturnSection;
 	}
@@ -843,8 +875,19 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 	public final void setIsLiable_FurnishSec92E(String isLiable_FurnishSec92E) {
 		this.isLiable_FurnishSec92E = isLiable_FurnishSec92E;
 	}
-
-
+	
+	public void setDitVerificationStatus(
+			VerificationStatus ditVerificationStatus) {
+		this.ditVerificationStatus = ditVerificationStatus;
+	}
+	
+	public void setChoiceImportTDS(String choiceImportTDS) {
+		this.choiceImportTDS = choiceImportTDS;
+	}
+	
+	public void setImportTDSSuccess(Boolean importTDSSuccess) {
+		this.importTDSSuccess = importTDSSuccess;
+	}
 
 
 	@Override
@@ -931,9 +974,22 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 			// added for itr4s
 			node.setProperty("mootlywcm:trpname", mpi.getTrpname());
 			node.setProperty("mootlywcm:trpnumber", mpi.getTrpnumber());
-			node.setProperty("mootlywcm:trpreimbursement", mpi.getTrpreimbursement());
-			node.setProperty("mootlywcm:isTaxPreparebyTRP", mpi.getIsTaxPreparebyTRP());
-			node.setProperty("mootlywcm:isLiable_FurnishSecNinetyTwoE", mpi.getIsLiable_FurnishSec92E());
+			if (mpi.getTrpreimbursement() != null) node.setProperty("mootlywcm:trpreimbursement", mpi.getTrpreimbursement());
+			if (mpi.getIsTaxPreparebyTRP() != null) node.setProperty("mootlywcm:isTaxPreparebyTRP", mpi.getIsTaxPreparebyTRP());
+			if (mpi.getIsLiable_FurnishSec92E() != null) node.setProperty("mootlywcm:isLiable_FurnishSecNinetyTwoE", mpi.getIsLiable_FurnishSec92E());
+			
+			if (getDitVerificationStatus() != null) {
+				node.setProperty("mootlywcm:ditVerificationStatus", mpi.getDitVerificationStatus().name());
+			}
+			
+			if (getChoiceImportTDS() != null) {
+				node.setProperty("mootlywcm:choiceImportTDS", mpi.getChoiceImportTDS());
+			}
+			
+			if (getImportTDSSuccess() != null) {
+				node.setProperty("mootlywcm:importTDSSuccess", mpi.getImportTDSSuccess());
+			}
+			
 		}catch (RepositoryException re) {
 			log.error("Binding Node Error",re);
 

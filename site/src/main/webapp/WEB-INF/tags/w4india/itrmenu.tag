@@ -1,3 +1,4 @@
+<%@tag import="com.mootly.wcm.channels.ChannelInfoWrapper"%>
 <%@tag import="com.mootly.wcm.beans.InvoiceDocument"%>
 <%@tag import="com.mootly.wcm.model.IndianGregorianCalendar"%>
 <%@tag import="com.mootly.wcm.model.FilingSection"%>
@@ -133,6 +134,21 @@ if (request.getAttribute(InvoiceDocument.class.getSimpleName().toLowerCase()) !=
 	request.setAttribute("amountDue", invoiceDocument.getAmountDue());
 	request.setAttribute("invoicePresent", "true");
 }
+
+ChannelInfoWrapper channelInfoWrapper = (ChannelInfoWrapper) request.getAttribute("channelInfoWrapper");
+boolean isEriEnabled = false;
+boolean showImportTDSButton = false;
+
+//if DIT is enabled and user has not chosen for 26AS import show the button
+if (channelInfoWrapper != null) {
+	isEriEnabled = channelInfoWrapper.getIsEriEnabled();
+	if (memberPersonalInformation != null) {
+		if ( memberPersonalInformation.getChoiceImportTDS() == null ){
+			showImportTDSButton = true;
+		}
+	}
+}
+request.setAttribute("showImportTDSButton",showImportTDSButton);
 
 //How is the page designed, lets define a structure for this page using simple linkedhashmap and arraylist
 %>
@@ -380,8 +396,8 @@ if (request.getAttribute(InvoiceDocument.class.getSimpleName().toLowerCase()) !=
 				</c:forEach>
 			</ul>
 		</div>
-	</c:if>
-	<div style="font-size:9px; font-family:arial;border: 1px dashed #ccc;padding:5px;">
+	</c:if>	
+	<div style="font-size:9px; font-family:arial;border: 1px dashed #ccc;padding:5px;">		
 		<span>Local Time: <b><u><fmt:formatDate type="both" pattern="${indianLocalDateFormStr}" timeZone="GMT+5:30" dateStyle="short" timeStyle="short" value="${now}" /></u></b></span> |
 		<span>For: <b><u><c:out value="${memberpersonalinformation.name}"/></u></b></span> |
 		<span>DOB: <b><u><c:out value="${memberpersonalinformation.DOBStr}"/></u></b></span> |
@@ -408,6 +424,9 @@ if (request.getAttribute(InvoiceDocument.class.getSimpleName().toLowerCase()) !=
 				</c:when>				
 			</c:choose>
 		</b></span>
+		<c:if test="${showImportTDSButton == 'true'}">
+			| <span><a class="btn btn-small" href="${scriptName}/../servicerequest-itr-sync-tds-from-dit.html"><i class="icon-download-alt icon-black"></i>Import your 26AS Information</a></span>
+		</c:if>
 	</div>
 </c:if>
 <%-- you kidding me?? can't escape  --%>

@@ -71,10 +71,27 @@ public abstract class DITSOAPServiceImpl implements DITSOAPService{
 		return signature;
 	}
 
-	
-	final String userName;
-	final String password;
-	final String certChain;
-	final String signature;
+	public final void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public final void setPassword(String password) {
+		this.password = password;
+	}
+
+	public final void setCertChain(String certChain) {
+		this.certChain = certChain;
+	}
+
+	public final void setSignature(String signature) {
+		this.signature = signature;
+	}
+
+
+
+	String userName;
+	String password;
+	String certChain;
+	String signature;
 	final SOAPService soapService;
 }

@@ -28,4 +28,13 @@ public enum PaymentType {
 			return listOfPaymentTypes.toArray(new PaymentType[listOfPaymentTypes.size()]);
 		}
 	}
+	
+	public static boolean requiresGateway(PaymentType paymentType) {
+		if (paymentType == CREDIT_CARD || paymentType == DEBIT_CARD || paymentType == NET_BANKING) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
 }

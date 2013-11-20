@@ -1,5 +1,7 @@
 package com.mootly.wcm.beans.events;
 
+import java.util.List;
+
 import org.hippoecm.hst.content.beans.manager.workflow.WorkflowPersistenceManager;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 
@@ -54,7 +56,21 @@ public class GenericLifeCycleHandler implements BeanLifecycle<HippoBean>{
 		// TODO Auto-generated method stub
 		
 	}
-
+	
+	@Override
+	public boolean validateChildBean(HippoBean hippoBean, boolean isNew,
+			List<String> errors, List<String> warnings) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+	@Override
+	public boolean validateParentBean(HippoBean hippoBean, boolean isNew,
+			List<String> errors, List<String> warnings) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
 	@Override
 	public boolean beforeUpdate(HippoBean hippoBean) {
 		// TODO Auto-generated method stub

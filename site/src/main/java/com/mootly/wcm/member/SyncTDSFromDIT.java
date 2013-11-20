@@ -1,12 +1,15 @@
 package com.mootly.wcm.member;
 
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
+import javax.servlet.http.HttpServletResponse;
 
 import org.hippoecm.hst.component.support.forms.FormMap;
+import org.hippoecm.hst.content.beans.ObjectBeanManagerException;
 import org.hippoecm.hst.content.beans.manager.workflow.WorkflowPersistenceManager;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.core.component.HstComponentException;
@@ -43,8 +46,8 @@ import com.mootly.wcm.services.ditws.model.Twenty26ASResponse;
 public class SyncTDSFromDIT extends ITReturnComponent {
 	private static final Logger log = LoggerFactory.getLogger(SyncTDSFromDIT.class);
 	private static final String SUCCESS = "success";
+	
 	@Override
-
 	public void doBeforeRender(HstRequest request, HstResponse response) {
 		// TODO Auto-generated method stub
 		super.doBeforeRender(request, response);
@@ -54,23 +57,34 @@ public class SyncTDSFromDIT extends ITReturnComponent {
 		 */
 		//Twenty26ASTCS twenty26ASTCS = new Twenty26ASTCS();
 		// String  valueImport = twenty26ASTCS.getIsImported();
-
-		String enableImportData = request.getRequestContext().getResolvedSiteMapItem().getParameter("enable_import_data");
-		if(null != enableImportData){
-			request.setAttribute("enableImportData", enableImportData);
+		String enableImportData = getWebSiteInfo().getEriEnable26ASImport();
+		if (!getChannelInfoWrapper().getIsEriEnabled() || enableImportData == null || enableImportData.equalsIgnoreCase("false")) {
+			try {
+				response.sendError(HttpServletResponse.SC_FORBIDDEN, "Reseller is not authorized to run the import");
+				return;
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
-		String message = request.getParameter("Success");
+			
+		String message = request.getParameter("success");
 		if(null != message){
 			request.setAttribute("message", message);
 		}
 		Retrieve26ASInformation retrieve26asInformation = getRetrieve26ASService();
 		MemberPersonalInformation memberPersonalInformation = (MemberPersonalInformation) request.getAttribute(MemberPersonalInformation.class.getSimpleName().toLowerCase());
 		if (memberPersonalInformation == null) {
-			log.warn("Personal Information is NULL for the following path " + request.getPathInfo());
-			return;
+			try {
+				response.sendError(HttpServletResponse.SC_FORBIDDEN, "Reseller is not authorized to run the import");
+				return;
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		try {
-			Twenty26ASResponse twenty26asResponse = retrieve26asInformation.retrieve26ASInformation(memberPersonalInformation.getPAN(), memberPersonalInformation.getDOB() , getFinancialYear().getAssessmentYearForDITSOAPCall());
+			Twenty26ASResponse twenty26asResponse = retrieve26asInformation.retrieve26ASInformation(getWebSiteInfo().getEriUserId(),getWebSiteInfo().getEriPassword(),getWebSiteInfo().getEriCertChain(),getWebSiteInfo().getEriSignature(), memberPersonalInformation.getPAN(), memberPersonalInformation.getDOB() , getFinancialYear().getAssessmentYearForDITSOAPCall());
 			request.setAttribute("twenty26asResponse", twenty26asResponse);
 
 		} catch (MissingInformationException e) {
@@ -94,7 +108,7 @@ public class SyncTDSFromDIT extends ITReturnComponent {
 		Retrieve26ASInformation retrieve26asInformation = getRetrieve26ASService();
 		try {
 			MemberPersonalInformation mpi = (MemberPersonalInformation) request.getAttribute(MemberPersonalInformation.class.getSimpleName().toLowerCase());
-			Twenty26ASResponse twenty26asResponse = retrieve26asInformation.retrieve26ASInformation(mpi.getPAN(), mpi.getDOB() , getFinancialYear().getAssessmentYearForDITSOAPCall());
+			Twenty26ASResponse twenty26asResponse = retrieve26asInformation.retrieve26ASInformation(getWebSiteInfo().getEriUserId(),getWebSiteInfo().getEriPassword(),getWebSiteInfo().getEriCertChain(),getWebSiteInfo().getEriSignature(), mpi.getPAN(), mpi.getDOB() , getFinancialYear().getAssessmentYearForDITSOAPCall());
 			request.setAttribute("twenty26asResponse", twenty26asResponse);
 			//List list = Collections.synchronizedList(new ArrayList());
 			try {
@@ -111,7 +125,7 @@ public class SyncTDSFromDIT extends ITReturnComponent {
 			saveElementsToRepository(twenty26asResponse.getTwenty26astdsOnSalaries(),FormSixteenDocument.class,FormSixteenDetail.class,persistableSession,wpm);
 			saveElementsToRepository(twenty26asResponse.getTwenty26astcs(),TcsDocument.class,TcsDetail.class,persistableSession,wpm);
 
-			response.setRenderParameter("Success", "Success");
+			response.setRenderParameter("success", "success");
 
 		} catch (InvalidNavigationException e) {
 			// TODO Auto-generated catch block
@@ -125,10 +139,19 @@ public class SyncTDSFromDIT extends ITReturnComponent {
 		} catch (InvalidFormatException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} catch (InstantiationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ObjectBeanManagerException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 
-	protected void saveElementsToRepository(List<? extends Object> listOfObjects,Class<? extends HippoBean> parentBeanClass,Class<? extends HippoBean> childBeanClass,Session persistableSession, WorkflowPersistenceManager wpm) throws InvalidNavigationException {
+	protected void saveElementsToRepository(List<? extends Object> listOfObjects,Class<? extends HippoBean> parentBeanClass,Class<? extends HippoBean> childBeanClass,Session persistableSession, WorkflowPersistenceManager wpm) throws InvalidNavigationException, InstantiationException, IllegalAccessException, ObjectBeanManagerException {
 		ITReturnComponentHelper itReturnComponentHelper = getITReturnComponentHelper();
 		FormMapHelper formMapHelper = new FormMapHelper();
 		ParentBeanLifeCycleHandler parentBeanLifeCycleHandler = new ParentBeanLifeCycleHandler();

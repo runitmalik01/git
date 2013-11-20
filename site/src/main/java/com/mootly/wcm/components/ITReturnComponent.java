@@ -151,6 +151,7 @@ import com.mootly.wcm.utils.MootlyFormUtils;
 import com.mootly.wcm.utils.XmlCalculation;
 import com.mootly.wcm.validation.HippoBeanValidationResponse;
 import com.mootly.wcm.validation.impl.itr.ITRValidatorChain;
+import com.mootly.wcm.view.PaymentUpdateResponse;
 
 public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 	private static final Logger log = LoggerFactory.getLogger(ITReturnComponent.class);
@@ -270,11 +271,11 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 	public SequenceGenerator getSequenceGenerator() {
 		return sequenceGenerator;
 	}
-	
+
 	public Transaction getTransaction() {
 		return transaction;
 	}
-	
+
 	public Enquiry getEnquiry() {
 		return enquiry;
 	}
@@ -587,7 +588,8 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 					}
 				}
 			}
-			save(request,formMap);
+			boolean saveResult = save(request,formMap);
+			if (!saveResult) return;
 			afterSave(request,formMap,pageAction);
 			try {
 				if (formMap.getMessage() != null && formMap.getMessage().size() > 0 ) {
@@ -726,7 +728,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		// TODO Auto-generated method stub
 		return parentBeanClass;
 	}
-	
+
 	public Class<? extends HippoBean> getChildBeanClass() {
 		// TODO Auto-generated method stub
 		return childBeanClass;
@@ -787,7 +789,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
+
 	public final String getParentBeanAbsolutePath() {
 		return parentBeanAbsolutePath;
 	}
@@ -837,7 +839,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			}
 		}
 	}
-	
+
 	public String getScriptName() {
 		return scriptName;
 	}
@@ -960,14 +962,14 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		baseRelPathToReturnDocuments = itReturnComponentHelper.getBaseRelPathToReturnDocuments(getMemberFolderPath(request), getPAN(), getFinancialYear(), theFolderContainingITRDocuments);  //"members/" + getMemberFolderPath(request) + "/pans/" + getPAN() + "/" + getFinancialYear() + "/" + theFolderContainingITRDocuments; // getITReturnType();
 		hippoBeanBaseITReturnDocuments = siteContentBaseBean.getBean(baseRelPathToReturnDocuments);
 		baseAbsolutePathToReturnDocuments =  getCanonicalBasePathForWrite(request) + "/" + baseRelPathToReturnDocuments; //itReturnComponentHelper.getBaseAbsolutePathToReturnDocuments(request, baseRelPathToReturnDocuments); //request.getRequestContext().getResolvedMount().getMount().getCanonicalContentPath() + "/" + baseRelPathToReturnDocuments;
-		
-		//check if invoice refresh is required
+
+		//check if invoice refresh is 
 		boolean didGotUpdated = false;
 		if (this.getClass().isAnnotationPresent(SyncInvoiceWithCitrus.class)) {
 			didGotUpdated = updateInvoice(request);
 			request.setAttribute("didInvoiceGotUpdated", didGotUpdated);
 			if (didGotUpdated) {
-				
+
 			}
 		}
 		//if (hippoBeanBaseITReturnDocuments != null) {
@@ -988,7 +990,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			childBeanClass = childBean.childBeanClass();
 		}
 		screenMode = GoGreenUtil.getEscapedParameter(request, "screenMode");
-		
+
 		mapOfAllBeans = loadBeansAndSetRequestAttributes(request, response);		
 		//time has come to reset the ITReturnType and other variables
 		String keyToMemberPersonalInformation = MemberPersonalInformation.class.getSimpleName().toLowerCase();
@@ -997,8 +999,8 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			memberPersonalInformation = (MemberPersonalInformation) mapOfAllBeans.get(keyToMemberPersonalInformation);
 			itReturnType = ITReturnType.getByXmlStatus(memberPersonalInformation.getReturnType()); //this will determine original or revised
 		}
-		
-		
+
+
 
 		//lets load ValueList Beans
 		ValueListBeans valueListBeans = this.getClass().getAnnotation(ValueListBeans.class);
@@ -1359,7 +1361,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		request.setAttribute("shouldRetrievePANInformation", shouldRetrievePANInformation());
 		request.setAttribute("shouldValidatePANWithDIT", shouldValidatePANWithDIT());
 		request.setAttribute("ditInvalidPanContnue", ditInvalidPanContnue);
-		
+
 	}
 
 	protected void fillDueDate(HstRequest request,HstResponse response) {
@@ -1474,7 +1476,8 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 	 * The ultimate goal here is to save the parent bean and if it didn't exist then it should have been created in the first place
 	 * a child cannot exist without a parent
 	 */
-	protected void save(HstRequest request,FormMap formMap) {
+	protected boolean save(HstRequest request,FormMap formMap) {
+		boolean savedSuccessfully = false;
 		//what are we supposed to do??
 		if (pageAction.equals(PAGE_ACTION.EDIT_CHILD) && childBean != null) {
 			//we are updating a child node here
@@ -1486,20 +1489,14 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			//this is fun, now we should ensure that parentBeanExists and if not create it
 			//also a new childNode will be added to this parentBean
 		}
-
 		Session persistableSession = null;
 		WorkflowPersistenceManager wpm;
 		try {
-			try {
-				persistableSession = getPersistableSession(request);
-			} catch (RepositoryException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				log.error("Error in Save",e);
-			}
+			persistableSession = getPersistableSession(request);
 			wpm = getWorkflowPersistenceManager(persistableSession);
 			if (pageAction.equals(PAGE_ACTION.EDIT_CHILD) && childBean != null) {
-				itReturnComponentHelper.saveUpdateExistingChild(formMap, null, getChildBeanLifeCycleHandler(), getParentBeanLifeCycleHandler(), baseAbsolutePathToReturnDocuments, parentBeanAbsolutePath, getParentBeanNameSpace(), getParentBeanNodeName(), getChildBeanClass(), persistableSession, wpm, uuid);				
+				itReturnComponentHelper.saveUpdateExistingChild(formMap, null, getChildBeanLifeCycleHandler(), getParentBeanLifeCycleHandler(), baseAbsolutePathToReturnDocuments, parentBeanAbsolutePath, getParentBeanNameSpace(), getParentBeanNodeName(), getChildBeanClass(), persistableSession, wpm, uuid);
+				savedSuccessfully = true;
 			}
 			else if (pageAction.equals(PAGE_ACTION.NEW_CHILD)) {
 				ChildBean childBeanLocal = getClass().getAnnotation(ChildBean.class);
@@ -1511,82 +1508,91 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 					formMap.addFormField(dedSectnFormField);
 				}
 				itReturnComponentHelper.saveAddNewChild(formMap, null, getChildBeanLifeCycleHandler(), getParentBeanLifeCycleHandler(), baseAbsolutePathToReturnDocuments, parentBeanAbsolutePath, getParentBeanNameSpace(), getParentBeanNodeName(),  childBeanLocal.childBeanClass(), persistableSession, wpm);
+				savedSuccessfully = true;
 			}
 			else if (pageAction.equals(PAGE_ACTION.DELETE_CHILD) && childBean != null) {
-				try {
-					HippoBean childBeanInSession = (HippoBean) wpm.getObjectByUuid(uuid);
-					HippoBean parentBeanInSession = childBeanInSession.getParentBean();
-					if (parentBeanInSession instanceof CompoundChildUpdate) {
-						CompoundChildUpdate compoundChildUpdate = (CompoundChildUpdate) parentBeanInSession;
-						compoundChildUpdate.delete(childBeanInSession);
-					}
-					wpm.setWorkflowCallbackHandler(new FullReviewedWorkflowCallbackHandler());
-					if (parentBeanInSession != null && childBean != null) {
-						try {
-							//wpm.update(childBeanInSession);
-							if (!beforeSave(request)) return; // don't save if this method returns false
-							wpm.update(parentBeanInSession);
-						} catch (ObjectBeanPersistenceException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-							log.error("Error in Save",e);
-						}
-					}
-
-				} catch (ObjectBeanManagerException e) {
-					// TODO Auto-generated catch block
-					log.error("Error saving document",e);
-					e.printStackTrace();
+				HippoBean childBeanInSession = (HippoBean) wpm.getObjectByUuid(uuid);
+				HippoBean parentBeanInSession = childBeanInSession.getParentBean();
+				if (parentBeanInSession instanceof CompoundChildUpdate) {
+					CompoundChildUpdate compoundChildUpdate = (CompoundChildUpdate) parentBeanInSession;
+					compoundChildUpdate.delete(childBeanInSession);
 				}
+				wpm.setWorkflowCallbackHandler(new FullReviewedWorkflowCallbackHandler());
+				if (parentBeanInSession != null && childBean != null) {
+					//wpm.update(childBeanInSession);
+					if (!beforeSave(request)) return false; // don't save if this method returns false
+					wpm.update(parentBeanInSession);
+					savedSuccessfully = true;						
+				}
+
 			}
 			else if (pageAction.equals(PAGE_ACTION.EDIT)) {
-				try {
-					//Object parentBeanInSession = wpm.getObject(parentBean.getCanonicalUUID());
-					HippoBean parentBeanInSession = (HippoBean) wpm.getObject(parentBeanAbsolutePath);
-					HippoBean beanBeforeUpdate = parentBeanInSession;
-					BeanLifecycle<HippoBean> parentBeanLifeCycleHandler = getParentBeanLifeCycleHandler();
-					if (parentBeanInSession == null) {
-						//gotta create this damn thing
-						if (log.isInfoEnabled()) {
-							log.info("Parent Bean is missing, we will need to recreate it");
-						}
-						final String pathToParentBean = wpm.createAndReturn(baseAbsolutePathToReturnDocuments,getParentBeanNameSpace(),getParentBeanNodeName(), true);
-						parentBeanInSession = (HippoBean) wpm .getObject(pathToParentBean);
-						//initParentBean(parentBeanInSession);
+				//Object parentBeanInSession = wpm.getObject(parentBean.getCanonicalUUID());
+				boolean isNew = false;
+				HippoBean parentBeanInSession = (HippoBean) wpm.getObject(parentBeanAbsolutePath);
+				HippoBean beanBeforeUpdate = parentBeanInSession;
+				BeanLifecycle<HippoBean> parentBeanLifeCycleHandler = getParentBeanLifeCycleHandler();
+				if (parentBeanInSession == null) {
+					//gotta create this damn thing
+					if (log.isInfoEnabled()) {
+						log.info("Parent Bean is missing, we will need to recreate it");
 					}
-					//now set the value we received from the form submission
-					if (parentBeanInSession instanceof FormMapFiller) {
-						FormMapFiller formMapFiller = (FormMapFiller) parentBeanInSession;
-						formMapFiller.fill(formMap);
-					}
-					wpm.setWorkflowCallbackHandler(new FullReviewedWorkflowCallbackHandler());
-					if (parentBeanInSession != null) {
-						try {
-							//wpm.update(childBeanInSession);
-							if (!beforeSave(request)) return; // don't save if this method returns false
-							wpm.update(parentBeanInSession);
-							HippoBean beanAfterUpdate = parentBeanInSession;
-							if (parentBeanLifeCycleHandler != null) {
-								parentBeanLifeCycleHandler.afterUpdate(beanBeforeUpdate,beanAfterUpdate,wpm,getAbsoluteBasePathToReturnDocuments(), getITReturnComponentHelper());
-							}
-						} catch (ObjectBeanPersistenceException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-							log.error("Error in Save",e);
-						}
-					}
-				} catch (ObjectBeanManagerException e) {
-					// TODO Auto-generated catch block
-					log.error("Error saving document",e);
-					e.printStackTrace();
+					final String pathToParentBean = wpm.createAndReturn(baseAbsolutePathToReturnDocuments,getParentBeanNameSpace(),getParentBeanNodeName(), true);
+					parentBeanInSession = (HippoBean) wpm .getObject(pathToParentBean);
+					isNew = true;
+					//initParentBean(parentBeanInSession);
 				}
+				//now set the value we received from the form submission
+				if (parentBeanInSession instanceof FormMapFiller) {
+					FormMapFiller formMapFiller = (FormMapFiller) parentBeanInSession;
+					formMapFiller.fill(formMap);
+				}
+				wpm.setWorkflowCallbackHandler(new FullReviewedWorkflowCallbackHandler());
+				if (parentBeanInSession != null) {
+					//wpm.update(childBeanInSession);
+					if (!beforeSave(request)) return false; // don't save if this method returns false
+					List<String> errors = new ArrayList<String>();
+					List<String> warnings = new ArrayList<String>();
+					if (parentBeanLifeCycleHandler != null) {
+						boolean isValid = parentBeanLifeCycleHandler.validateParentBean(parentBeanInSession, isNew, errors, warnings);
+						if (!isValid) {
+							if (errors != null && errors.size() > 0 ){
+								if (formMap == null) formMap = new FormMap();
+								int errCtr = 0;
+								for (String anError:errors) {
+									formMap.addMessage("error_" + (errCtr++), anError);
+								}
+							}
+							return isValid;
+						}
+					}
+					wpm.update(parentBeanInSession);
+					HippoBean beanAfterUpdate = parentBeanInSession;
+					if (parentBeanLifeCycleHandler != null) {
+						parentBeanLifeCycleHandler.afterUpdate(beanBeforeUpdate,beanAfterUpdate,wpm,getAbsoluteBasePathToReturnDocuments(), getITReturnComponentHelper());
+					}
+					savedSuccessfully = true;
+				}			
 			}
+		} catch (ObjectBeanManagerException e) {
+			// TODO Auto-generated catch block
+			log.error("Error in Save",e);
+		} catch (InstantiationException e) {
+			// TODO Auto-generated catch block
+			log.error("Error in Save",e);
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			log.error("Error in Save",e);
+		} catch (RepositoryException e) {
+			// TODO Auto-generated catch block
+			log.error("Error in Save",e);
 		}
 		finally {
 			if (persistableSession != null) {
 				persistableSession.logout();
-			}
+			}			
 		}
+		return savedSuccessfully;
 	}
 
 	public static class FullReviewedWorkflowCallbackHandler implements WorkflowCallbackHandler<FullReviewedActionsWorkflow> {
@@ -2041,7 +2047,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			return false;
 		}
 	}
-	
+
 	protected Map<String,HippoBean> loadBeansAndSetRequestAttributes(HstRequest request,HstResponse response) {
 		//loading Additional Beans
 		Map<String,HippoBean> localMapOfAllBeans = new HashMap<String, HippoBean>();
@@ -2109,7 +2115,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		}
 		return theLocalBeansUnderMemberFolder;
 	}
-	
+
 	/**
 	 * 
 	 * @param request
@@ -2122,7 +2128,14 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			persistableSession = getPersistableSession(request);
 			wpm = getWorkflowPersistenceManager(persistableSession);
 			String pathToInvoiceDocument = getAbsoluteBasePathToReturnDocuments() + "/" + InvoiceDocument.class.getSimpleName().toLowerCase();
-			didGotUpdated = getItReturnComponentHelper().syncInvoiceWithPaymentGateway(pathToInvoiceDocument, request, getEnquiry() , persistableSession, wpm);
+			List<PaymentUpdateResponse> listOfPaymentUpdateResponse = getItReturnComponentHelper().syncInvoiceWithPaymentGateway(pathToInvoiceDocument, request, getEnquiry() , persistableSession, wpm);
+			if (listOfPaymentUpdateResponse == null || listOfPaymentUpdateResponse.size() == 0) {
+				didGotUpdated = false;
+			}
+			else {
+				didGotUpdated = true;
+				request.setAttribute("listOfPaymentUpdateResponse", listOfPaymentUpdateResponse);
+			}
 			request.setAttribute("SyncInvoiceWithCitrus_STATUS", "success");
 			return didGotUpdated;
 		} catch (RepositoryException e) {
@@ -2139,7 +2152,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		}
 		return didGotUpdated;
 	}
-	
+
 	protected boolean shouldRedirectAfterSuccess() {
 		return true;
 	}

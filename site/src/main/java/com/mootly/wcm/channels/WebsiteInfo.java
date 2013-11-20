@@ -99,6 +99,16 @@ public interface WebsiteInfo extends ChannelInfo {
     @Parameter(name = "eriPassword", defaultValue = "", required = false)
     String getEriPassword();
     
+    @Parameter(name = "eriSignature", defaultValue = "", required = false)
+    String getEriSignature();
+    
+    @Parameter(name = "eriCertChain", defaultValue = "", required = false)
+    String getEriCertChain();
+    
+    @Parameter(name = "eriEnable26ASImport", defaultValue = "false", required = false)
+    String getEriEnable26ASImport();
+    
+    
     @Parameter(name = "paymentEnabled", defaultValue = "true", required = true)
     String getPaymentEnabled();
     

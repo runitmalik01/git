@@ -40,7 +40,7 @@ public class Test26ASInformation  {
 			grego.set(Calendar.DAY_OF_MONTH, 12);
 			grego.set(Calendar.MONTH, 11);
 			grego.set(Calendar.YEAR, 1965);
-			Twenty26ASResponse twentyASResponse  = retrieve26ASInformation.retrieve26ASInformation("ABNPP1234G", grego , "2013-14");
+			Twenty26ASResponse twentyASResponse  = retrieve26ASInformation.retrieve26ASInformation("","","","","ABNPP1234G", grego , "2013-14");
 			System.out.println(twentyASResponse.toString());
 		} catch (MissingInformationException e) {
 			// TODO Auto-generated catch block

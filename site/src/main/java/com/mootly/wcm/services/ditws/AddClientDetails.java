@@ -1,8 +1,17 @@
 package com.mootly.wcm.services.ditws;
 
-import java.util.Hashtable;
+import java.util.GregorianCalendar;
+
+import com.mootly.wcm.model.FinancialYear;
+import com.mootly.wcm.services.ditws.exception.DataMismatchException;
+import com.mootly.wcm.services.ditws.exception.InvalidFormatException;
+import com.mootly.wcm.services.ditws.exception.MissingInformationException;
+import com.mootly.wcm.services.ditws.model.AddClientDetailsResponse;
 
 
 public interface AddClientDetails {	
-	public Hashtable getCase(String caseId) throws DITException;
+	public static enum AddClientOption {
+		tdsOption,advanceTaxOption,TaxNotFiledForLastTwoYears
+	}
+	public AddClientDetailsResponse addClientDetails(String userName,String password,String certChain, String signature, String PAN,GregorianCalendar DOB,String email,AddClientOption addClientOption,String TAN,FinancialYear financialYear)  throws MissingInformationException,DataMismatchException,InvalidFormatException;
 }

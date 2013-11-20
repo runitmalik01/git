@@ -77,11 +77,13 @@ public class InvoicePayment extends ITReturnComponent {
 		}
 		request.setAttribute("type", "payment");
 		request.setAttribute("paymentType", paymentType);		
-		if (request.getAttribute(InvoiceDocument.class.getSimpleName().toLowerCase()) != null) {
-			InvoiceDocument invoiceDocument = (InvoiceDocument) request.getAttribute(InvoiceDocument.class.getSimpleName().toLowerCase());
-			if (invoiceDocument != null && invoiceDocument.getAmountDue() == 0D) {
-				response.setRenderPath("jsp/accounting/invoice-payment-already-paid.jsp");
-			}			
+		if (getPageAction() != null && getPageAction() != PAGE_ACTION.EDIT && getPageAction() != PAGE_ACTION.EDIT_CHILD && getPageAction() != PAGE_ACTION.DELETE && getPageAction() != PAGE_ACTION.DELETE_CHILD ) {
+			if (request.getAttribute(InvoiceDocument.class.getSimpleName().toLowerCase()) != null) {
+				InvoiceDocument invoiceDocument = (InvoiceDocument) request.getAttribute(InvoiceDocument.class.getSimpleName().toLowerCase());
+				if (invoiceDocument != null && invoiceDocument.getAmountDue() == 0D) {
+					response.setRenderPath("jsp/accounting/invoice-payment-already-paid.jsp");
+				}			
+			}
 		}
 	}
 	
@@ -96,7 +98,13 @@ public class InvoicePayment extends ITReturnComponent {
 			throws HstComponentException {
 		// TODO Auto-generated method stub
 		request.setAttribute("type", "payment");
-		request.setAttribute("paymentType", paymentType);		
+		request.setAttribute("paymentType", paymentType);	
+		if (paymentType != null) {
+			if ( getChannelInfoWrapper().availablePaymentTypes() == null || getChannelInfoWrapper().availablePaymentTypes().contains(paymentType) ) {
+				response.setRenderPath("jsp/accounting/invalid_paymentype.jsp");
+				return;
+			}
+		}
 		//this is where we create the handler first
 		invoicePaymentDetailBeanHandler = new InvoicePaymentDetailBeanHandler(paymentType,request,getSequenceGenerator());
 		super.doAction(request, response);

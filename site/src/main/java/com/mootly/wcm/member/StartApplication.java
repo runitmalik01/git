@@ -55,6 +55,7 @@ import com.mootly.wcm.beans.MemberSignupDocument;
 import com.mootly.wcm.beans.ScheduleFiveADocument;
 import com.mootly.wcm.beans.events.BeanLifecycle;
 import com.mootly.wcm.beans.events.MemberPersonalInfoUpdateHandler;
+import com.mootly.wcm.channels.ChannelInfoWrapper;
 import com.mootly.wcm.components.ITReturnComponent;
 import com.mootly.wcm.components.InvalidNavigationException;
 import com.mootly.wcm.model.FilingStatus;
@@ -349,7 +350,7 @@ public class StartApplication extends ITReturnComponent {
 	public void doAction(HstRequest request, HstResponse response)
 			throws HstComponentException {
 		// TODO Auto-generated method stub
-		memberPersonalInfoUpdateHandler = new MemberPersonalInfoUpdateHandler(loadAllBeansUnderTheFolder(request, response, "services/incometaxreturn", "mootlywcm:Name",SORT_DIRECTION.ASC));
+		memberPersonalInfoUpdateHandler = new MemberPersonalInfoUpdateHandler(loadAllBeansUnderTheFolder(request, response, "services/incometaxreturn", "mootlywcm:Name",SORT_DIRECTION.ASC),getChannelInfoWrapper(),getRetrievePANInformationService());
 		super.doAction(request, response);
 	}
 

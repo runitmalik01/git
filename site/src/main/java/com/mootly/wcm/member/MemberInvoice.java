@@ -74,6 +74,7 @@ public class MemberInvoice extends ITReturnComponent {
 		if (serviceDocumentList != null && serviceDocumentList.size() > 0) {
 			request.setAttribute("serviceDocumentList", serviceDocumentList);
 		}
+		request.setAttribute("availablePaymentTypes", getChannelInfoWrapper().availablePaymentTypes());
 		if (request.getAttribute(InvoiceDocument.class.getSimpleName().toLowerCase()) != null) {
 			InvoiceDocument invoiceDocument = (InvoiceDocument) request.getAttribute(InvoiceDocument.class.getSimpleName().toLowerCase());
 			System.out.println(invoiceDocument.getAmountDue());

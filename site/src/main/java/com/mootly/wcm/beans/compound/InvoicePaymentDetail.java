@@ -89,6 +89,7 @@ public class InvoicePaymentDetail extends FlexibleDocument implements FormMapFil
 	private String txnType;
 	private Double txnAmount;
 	private String txnDateTime; 
+	private String netBankingCode;
 	
 	//if by BANK
 	private String checkNo;
@@ -125,6 +126,7 @@ public class InvoicePaymentDetail extends FlexibleDocument implements FormMapFil
 	public static final String PROP_TXN_TYPE = "mootlywcm:txnType";
 	public static final String PROP_TXN_AMOUNT = "mootlywcm:txnAmount";
 	public static final String PROP_TXN_DATETIME = "mootlywcm:txnDateTime";
+	public static final String PROP_NET_BANKING_CODE= "mootlywcm:netBankingCode";
 	
 	final String PROP_CHECK_NO = "mootlywcm:checkNo";
 	final String PROP_CHECK_DATE = "mootlywcm:checkDate";
@@ -154,7 +156,7 @@ public class InvoicePaymentDetail extends FlexibleDocument implements FormMapFil
 		}
 	}
 	
-	public final boolean requiresGateway() {
+	public final boolean getRequiresGateway() {
 		if (getPaymentType() != null && (getPaymentType() == PaymentType.NET_BANKING || getPaymentType() == PaymentType.DEBIT_CARD  || getPaymentType() == PaymentType.CREDIT_CARD ) ) {
 			return true;
 		}
@@ -168,7 +170,7 @@ public class InvoicePaymentDetail extends FlexibleDocument implements FormMapFil
 	 * @return
 	 */
 	public final boolean isSuccess() {
-		if (requiresGateway() ) {
+		if (getRequiresGateway() ) {
 			if (getRespCode() != null && getRespCode() == ENQUIRY_RESP_CODE.SUCCESS) {
 				return true;
 			}
@@ -418,6 +420,11 @@ public class InvoicePaymentDetail extends FlexibleDocument implements FormMapFil
 	public final String getTxnDateTime() {
 		return txnDateTime;
 	}
+	
+	@NodeBinder(nodePropertyName=PROP_NET_BANKING_CODE)
+	public final String getNetBankingCode() {
+		return netBankingCode;
+	}
 
 	public final void setMarkedForDeletion(boolean markedForDeletion) {
 		this.markedForDeletion = markedForDeletion;
@@ -568,8 +575,13 @@ public class InvoicePaymentDetail extends FlexibleDocument implements FormMapFil
 	}
 	
 	@BeanClone
-	public void setTxnDateTime(String txnDateTime) {
+	public final void setTxnDateTime(String txnDateTime) {
 		this.txnDateTime = txnDateTime;
+	}
+	
+	@BeanClone
+	public final void setNetBankingCode(String netBankingCode) {
+		this.netBankingCode = netBankingCode;
 	}
 
 	public boolean bindToNode(javax.jcr.Node node) throws ContentNodeBindingException {

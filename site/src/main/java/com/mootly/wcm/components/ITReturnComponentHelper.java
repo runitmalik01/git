@@ -38,10 +38,12 @@ import com.mootly.wcm.model.ITRTab;
 import com.mootly.wcm.model.ITReturnPackage;
 import com.mootly.wcm.model.ITReturnType;
 import com.mootly.wcm.model.PaymentType;
+import com.mootly.wcm.model.PaymentUpdateType;
 import com.mootly.wcm.model.PaymentVerificationStatus;
 import com.mootly.wcm.services.citruspay.Enquiry;
 import com.mootly.wcm.services.citruspay.model.enquiry.EnquiryResponse;
 import com.mootly.wcm.services.citruspay.model.enquiry.TxnEnquiryResponse;
+import com.mootly.wcm.view.PaymentUpdateResponse;
 
 public final class ITReturnComponentHelper {
 	private static final Logger log = LoggerFactory.getLogger(ITReturnComponentHelper.class);
@@ -210,7 +212,7 @@ public final class ITReturnComponentHelper {
 	 * @throws ObjectBeanManagerException
 	 */
 
-	public boolean syncInvoiceWithPaymentGateway(String pathToInvoiceDocument, HstRequest request,Enquiry enquiry,Session persistableSession,WorkflowPersistenceManager wpm) throws ObjectBeanManagerException {
+	public List<PaymentUpdateResponse> syncInvoiceWithPaymentGateway(String pathToInvoiceDocument, HstRequest request,Enquiry enquiry,Session persistableSession,WorkflowPersistenceManager wpm) throws ObjectBeanManagerException {
 		/*
 		Session persistableSession = null;
 		WorkflowPersistenceManager wpm;
@@ -224,8 +226,9 @@ public final class ITReturnComponentHelper {
 		wpm = getWorkflowPersistenceManager(persistableSession);
 		 */
 		boolean didGotUpdated = false;
+		List<PaymentUpdateResponse> listOfPaymentUpdateResponse = new ArrayList<PaymentUpdateResponse>();
 		InvoiceDocument invoiceDocumentInSession = (InvoiceDocument) wpm.getObject(pathToInvoiceDocument);
-		if (invoiceDocumentInSession == null) return false;
+		if (invoiceDocumentInSession == null) return null;
 		for (InvoicePaymentDetail invoicePaymentDetail:invoiceDocumentInSession.getInvoicePaymentDetailList()) {
 			if ( invoicePaymentDetail.getPaymentType() != null &&  (invoicePaymentDetail.getPaymentType() == PaymentType.NET_BANKING || invoicePaymentDetail.getPaymentType() == PaymentType.CREDIT_CARD || invoicePaymentDetail.getPaymentType() == PaymentType.DEBIT_CARD)) {
 				TxnEnquiryResponse theEnquiryOutput = enquiry.doEnquiry(invoicePaymentDetail.getPaymentTransactionId());
@@ -249,6 +252,8 @@ public final class ITReturnComponentHelper {
 								invoicePaymentDetail.setTxnDateTime(enquiryResponse.getTxnDateTime());
 								//this has been verified
 								invoicePaymentDetail.setPaymentVerificationStatusStr(PaymentVerificationStatus.VERIFIED.name());
+								
+								listOfPaymentUpdateResponse.add(new PaymentUpdateResponse(PaymentUpdateType.PAYMENT, invoicePaymentDetail.getPaymentType(), enquiryResponse.getAmount()));
 								didGotUpdated = true;
 							}
 							else if (enquiryResponse.getTxnType().equals("REFUND")) { 
@@ -266,6 +271,7 @@ public final class ITReturnComponentHelper {
 									invoiceRefundDetail.setTxnDateTime(enquiryResponse.getTxnDateTime());
 									invoiceRefundDetail.setPaymentVerificationStatusStr(PaymentVerificationStatus.VERIFIED.name());	
 									invoiceDocumentInSession.addInvoiceRefundDetail(invoiceRefundDetail);
+									listOfPaymentUpdateResponse.add(new PaymentUpdateResponse(PaymentUpdateType.REFUND, invoicePaymentDetail.getPaymentType(), enquiryResponse.getAmount()));
 									if (!didGotUpdated) didGotUpdated = true;
 								}
 							}									
@@ -278,7 +284,7 @@ public final class ITReturnComponentHelper {
 			wpm.setWorkflowCallbackHandler(new FullReviewedWorkflowCallbackHandler());
 			wpm.update(invoiceDocumentInSession);
 		}
-		return didGotUpdated;
+		return ( listOfPaymentUpdateResponse == null || listOfPaymentUpdateResponse.size() == 0 ? null : listOfPaymentUpdateResponse) ;
 		//finally{
 		//	try { persistableSession.logout(); } finally {}
 		//}
@@ -365,9 +371,11 @@ public final class ITReturnComponentHelper {
 	 * @param childBeanClass
 	 * @param persistableSession
 	 * @param wpm
+	 * @throws ObjectBeanManagerException 
+	 * @throws IllegalAccessException 
+	 * @throws InstantiationException 
 	 */
-	public <T extends BeanLifecycle<HippoBean>> void saveAddNewChild (FormMap childBeanMap,FormMap parentBeanMap, T childBeanLifeCycleHandler,T parentBeanLifeCycleHandler, String baseAbsolutePathToReturnDocuments, String parentBeanAbsolutePath, String parentBeanNameSpace,String parentBeanNodeName,  Class<? extends HippoBean> childBeanClass,Session persistableSession,WorkflowPersistenceManager wpm) {
-		try {
+	public <T extends BeanLifecycle<HippoBean>> void saveAddNewChild (FormMap childBeanMap,FormMap parentBeanMap, T childBeanLifeCycleHandler,T parentBeanLifeCycleHandler, String baseAbsolutePathToReturnDocuments, String parentBeanAbsolutePath, String parentBeanNameSpace,String parentBeanNodeName,  Class<? extends HippoBean> childBeanClass,Session persistableSession,WorkflowPersistenceManager wpm) throws ObjectBeanManagerException, InstantiationException, IllegalAccessException {
 			HippoBean parentBeanInSession = (HippoBean) wpm.getObject(parentBeanAbsolutePath);
 			if (parentBeanInSession == null) {
 				//gotta create this damn thing
@@ -400,7 +408,6 @@ public final class ITReturnComponentHelper {
 			//ChildBean childBeanLocal = getClass().getAnnotation(ChildBean.class);
 			//HippoBean newChildBeanInstance = null;
 			if (childBeanClass != null) {
-				try {
 					HippoBean childBean = childBeanClass.newInstance();
 					//invoke the init method if there is any as a parent bean is created
 					if (childBeanLifeCycleHandler != null) {
@@ -425,32 +432,13 @@ public final class ITReturnComponentHelper {
 					}
 					wpm.setWorkflowCallbackHandler(new FullReviewedWorkflowCallbackHandler());
 					if (parentBeanInSession != null) {
-						try {
 							//if (!beforeSave(request)) return; // don't save if this method returns false
-							wpm.update(parentBeanInSession);
-						} catch (ObjectBeanPersistenceException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-							log.error("Error in Save",e);
-						}
-					}
-				} catch (InstantiationException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				} catch (IllegalAccessException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-			}
-		} catch (ObjectBeanManagerException e) {
-			// TODO Auto-generated catch block
-			log.error("Error saving document",e);
-			e.printStackTrace();
-		}
+							wpm.update(parentBeanInSession);						
+					}				
+			}	
 	}
 
-	public <T extends BeanLifecycle<HippoBean>> void saveUpdateExistingChild (FormMap childBeanMap,FormMap parentBeanMap, T childBeanLifeCycleHandler,T parentBeanLifeCycleHandler, String baseAbsolutePathToReturnDocuments, String parentBeanAbsolutePath, String parentBeanNameSpace,String parentBeanNodeName,  Class<? extends HippoBean> childBeanClass,Session persistableSession,WorkflowPersistenceManager wpm,String childBeanCanonicalUUID) {
-		try {
+	public <T extends BeanLifecycle<HippoBean>> void saveUpdateExistingChild (FormMap childBeanMap,FormMap parentBeanMap, T childBeanLifeCycleHandler,T parentBeanLifeCycleHandler, String baseAbsolutePathToReturnDocuments, String parentBeanAbsolutePath, String parentBeanNameSpace,String parentBeanNodeName,  Class<? extends HippoBean> childBeanClass,Session persistableSession,WorkflowPersistenceManager wpm,String childBeanCanonicalUUID) throws ObjectBeanManagerException {
 			//now set the value we received from the form submission
 			//ChildBean childBeanLocal = getClass().getAnnotation(ChildBean.class);
 			//HippoBean newChildBeanInstance = null;
@@ -495,12 +483,7 @@ public final class ITReturnComponentHelper {
 						log.error("Error in Save",e);
 					}
 				}
-			}
-		} catch (ObjectBeanManagerException e) {
-			// TODO Auto-generated catch block
-			log.error("Error saving document",e);
-			e.printStackTrace();
-		}
+			}		
 	}
 
 }
