@@ -330,13 +330,14 @@ pageContext.setAttribute("paymentTypeValues",PaymentType.values());
 	    <h3><c:out value="Payment Confirmation - Successful"/></h3>
 	  </div>
 	  <div class="modal-body">
-	  	<c:if test="${not empty listOfPaymentUpdateResponse}">
-	  		Following payments were applied successfully.
-	  		<ul>
-	  		<c:forEach items="${listOfPaymentUpdateResponse}" var="paymentUpdateResponse">
-	  			<li>Type: <c:out value="${paymentUpdateResponse.paymentType}"/> Amount:<c:out value="${paymentUpdateResponse.txnAmount}"/></li>
-	  		</c:forEach>
-	  		</ul>	
+	  	<c:if test="${not empty listOfPaymentUpdateResponse}">	  			
+		  		<ul>
+			  		<c:forEach items="${listOfPaymentUpdateResponse}" var="paymentUpdateResponse">
+			  			<c:if test="${paymentUpdateResponse.success}">
+			  				<li>Successful payment Type: <c:out value="${paymentUpdateResponse.paymentType}"/> Amount:<c:out value="${paymentUpdateResponse.txnAmount}"/></li>
+			  			</c:if>
+			  		</c:forEach>
+		  		</ul>	
 	  	</c:if>	  	
 	  	Please wait for the page to refresh ..
 	  </div>

@@ -254,7 +254,10 @@ public final class ITReturnComponentHelper {
 								//this has been verified
 								invoicePaymentDetail.setPaymentVerificationStatusStr(PaymentVerificationStatus.VERIFIED.name());
 								if ( enquiryResponse.getRespCode() != null && enquiryResponse.getRespCode() == ENQUIRY_RESP_CODE.SUCCESS) {
-									listOfPaymentUpdateResponse.add(new PaymentUpdateResponse(PaymentUpdateType.PAYMENT, invoicePaymentDetail.getPaymentType(), enquiryResponse.getAmount()));
+									listOfPaymentUpdateResponse.add(new PaymentUpdateResponse(PaymentUpdateType.PAYMENT, invoicePaymentDetail.getPaymentType(), enquiryResponse.getAmount(),true));
+								}
+								else {
+									listOfPaymentUpdateResponse.add(new PaymentUpdateResponse(PaymentUpdateType.PAYMENT, invoicePaymentDetail.getPaymentType(), enquiryResponse.getAmount(), false));
 								}
 								didGotUpdated = true;
 							}
@@ -273,7 +276,7 @@ public final class ITReturnComponentHelper {
 									invoiceRefundDetail.setTxnDateTime(enquiryResponse.getTxnDateTime());
 									invoiceRefundDetail.setPaymentVerificationStatusStr(PaymentVerificationStatus.VERIFIED.name());	
 									invoiceDocumentInSession.addInvoiceRefundDetail(invoiceRefundDetail);
-									listOfPaymentUpdateResponse.add(new PaymentUpdateResponse(PaymentUpdateType.REFUND, invoicePaymentDetail.getPaymentType(), enquiryResponse.getAmount()));
+									listOfPaymentUpdateResponse.add(new PaymentUpdateResponse(PaymentUpdateType.REFUND, invoicePaymentDetail.getPaymentType(), enquiryResponse.getAmount(),true));
 									if (!didGotUpdated) didGotUpdated = true;
 								}
 							}									
