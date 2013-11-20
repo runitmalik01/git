@@ -41,6 +41,7 @@ import com.mootly.wcm.model.PaymentType;
 import com.mootly.wcm.model.PaymentUpdateType;
 import com.mootly.wcm.model.PaymentVerificationStatus;
 import com.mootly.wcm.services.citruspay.Enquiry;
+import com.mootly.wcm.services.citruspay.Transaction.ENQUIRY_RESP_CODE;
 import com.mootly.wcm.services.citruspay.model.enquiry.EnquiryResponse;
 import com.mootly.wcm.services.citruspay.model.enquiry.TxnEnquiryResponse;
 import com.mootly.wcm.view.PaymentUpdateResponse;
@@ -252,8 +253,9 @@ public final class ITReturnComponentHelper {
 								invoicePaymentDetail.setTxnDateTime(enquiryResponse.getTxnDateTime());
 								//this has been verified
 								invoicePaymentDetail.setPaymentVerificationStatusStr(PaymentVerificationStatus.VERIFIED.name());
-								
-								listOfPaymentUpdateResponse.add(new PaymentUpdateResponse(PaymentUpdateType.PAYMENT, invoicePaymentDetail.getPaymentType(), enquiryResponse.getAmount()));
+								if ( enquiryResponse.getRespCode() != null && enquiryResponse.getRespCode() == ENQUIRY_RESP_CODE.SUCCESS) {
+									listOfPaymentUpdateResponse.add(new PaymentUpdateResponse(PaymentUpdateType.PAYMENT, invoicePaymentDetail.getPaymentType(), enquiryResponse.getAmount()));
+								}
 								didGotUpdated = true;
 							}
 							else if (enquiryResponse.getTxnType().equals("REFUND")) { 

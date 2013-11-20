@@ -221,7 +221,7 @@ pageContext.setAttribute("paymentTypeValues",PaymentType.values());
 									<c:set var="display" value="true"/>
 								</c:when>
 								<c:otherwise>
-									<c:set var="display" value="true"/>
+									<c:set var="display" value="false"/>
 								</c:otherwise>
 							</c:choose>
 							<c:if test="${display =='true'}">
