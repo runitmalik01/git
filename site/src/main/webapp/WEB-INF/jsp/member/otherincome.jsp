@@ -36,6 +36,7 @@
 		<legend style="color: green; font-weight: bold;">
 			<fmt:message key="member.interest.tax" />
 		</legend>
+		
 		<div class="row-fluid show-grid">
 			<div class="span3">
 				<div class="rowlabel">
@@ -345,8 +346,7 @@
 			</div>
 			<div class="span4">
 				<div class="rowlabel">
-					<label for="Other_income "><fmt:message
-							key="member.other.income" /> </label>
+					<label for="Other_income ">Others(including exempt income of minor child) </label>
 				</div>
 				<div class="rowlabel">
 					<input type="text" name="Otherincome"
@@ -373,6 +373,19 @@
 	<jsp:include page="otherIncome_add.jsp"></jsp:include>
 	</c:if>
 	<div class="row-fluid show-grid">
+	<c:if test="${(not empty ITR3_4)}">
+		<div class="span4">
+			<div class="rowlabel">
+				<label for="profit_FirmAOP_BOI ">Share in the profit of firm/AOP/BOI etc. </label>
+			</div>
+			<div class="rowlabel">
+				<input type="text" name="profit_FirmAOP_BOI" class="decimal"
+					value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.profit_FirmAOP_BOI}"/>" id="profit_FirmAOP_BOI" 
+					/>
+			</div>
+		</div>
+		</c:if>
+	
 		<div class="span4">
 			<div class="rowlabel">
 				<label for="Taxable_income "><fmt:message
