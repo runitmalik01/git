@@ -69,6 +69,7 @@ public class OtherSourcesDocument extends BaseDocument implements ContentNodeBin
 	private Double dedus57;
 	private Double balance;
 	private Double LotteryOrhorse_income;
+	private Double profit_FirmAOP_BOI;
 	
 	//for personal information
 	public  Double getGov_income() {
@@ -200,6 +201,11 @@ public class OtherSourcesDocument extends BaseDocument implements ContentNodeBin
 		if (LotteryOrhorse_income== null) LotteryOrhorse_income = getProperty("mootlywcm:LotteryOrhorse_income");
 		return LotteryOrhorse_income;
 	}
+	public Double getProfit_FirmAOP_BOI(){
+		if(profit_FirmAOP_BOI == null) profit_FirmAOP_BOI = getProperty("mootlywcm:profit_FirmAOP_BOI");
+		return profit_FirmAOP_BOI;
+		
+	}
 
 	// set method for otherincome document
 
@@ -299,6 +305,9 @@ public class OtherSourcesDocument extends BaseDocument implements ContentNodeBin
 	public void setLotteryOrhorse_income(Double LotteryOrhorse_income) {
 		this.LotteryOrhorse_income = LotteryOrhorse_income;
 	}
+	public void setProfit_FirmAOP_BOI(Double profit_FirmAOP_BOI){
+		this.profit_FirmAOP_BOI = profit_FirmAOP_BOI;
+	}
 
 	/* public MemberPersonalInformation getMemberPersoanlInformation() {
 	    	HippoBean bean = getBean(PROP_PI_PERSONALINFO_LINK);
@@ -358,6 +367,7 @@ public class OtherSourcesDocument extends BaseDocument implements ContentNodeBin
 			node.setProperty("mootlywcm:dedus57", otherincome.getDedus57());
 			node.setProperty("mootlywcm:balance", otherincome.getBalance());
 			node.setProperty("mootlywcm:LotteryOrhorse_income", otherincome.getLotteryOrhorse_income());
+			node.setProperty("mootlywcm:profit_FirmAOP_BOI", otherincome.getProfit_FirmAOP_BOI());
 
 
 		} catch (RepositoryException rex) {
@@ -673,6 +683,17 @@ public class OtherSourcesDocument extends BaseDocument implements ContentNodeBin
 			String strLotteryOrhorse_income=formMap.getField("LotteryOrhorse_income").getValue();
 			value_LotteryOrhorse_income= Double.parseDouble(strLotteryOrhorse_income);
 			setLotteryOrhorse_income(value_LotteryOrhorse_income);
+		}
+		double value_profit_FirmAOP_BOI=0.0d;
+		if (formMap.getField("profit_FirmAOP_BOI").getValue().isEmpty()){
+			log.info("inside if OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
+			setProfit_FirmAOP_BOI(value_profit_FirmAOP_BOI);
+		}
+		else{
+			String strProfit_FirmAOP_BOI=formMap.getField("profit_FirmAOP_BOI").getValue();
+			log.info("HHHHHHHHHHHHHHHHHHHHHHHHHHH else"+strProfit_FirmAOP_BOI);
+			value_profit_FirmAOP_BOI= Double.parseDouble(strProfit_FirmAOP_BOI);
+			setProfit_FirmAOP_BOI(value_profit_FirmAOP_BOI);
 		}
 		
 	}
