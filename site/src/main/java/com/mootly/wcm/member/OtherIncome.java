@@ -32,14 +32,15 @@ import com.mootly.wcm.components.ITReturnComponent;
 		"Totalint","Family_pension","Dividends","Income_rent_machine","Income_other","Deduction_57",
 		"TotalOther_income","Familypension_deduction","Otherdeduction","depreciation",
 		"totalexpense","Dividends_uti","Interest_income","Dividends_mutualfund","Agriculture_income",
-		"Dividends_indian_companies","Otherincome","Total_taxfree_income","Taxable_income","Receipts","dedus57","balance","LotteryOrhorse_income"})
+		"Dividends_indian_companies","Otherincome","Total_taxfree_income","Taxable_income","Receipts","dedus57","balance","LotteryOrhorse_income","profit_FirmAOP_BOI"})
 @DataTypeValidationFields(fieldNames={
 		"Gov_income","Kissan","Bank_detail_fdr","Bank_detail_saving","Indira","intnsc","Otherint",
 		"Totalint","Family_pension","Dividends","Income_rent_machine","Income_other","Deduction_57",
 		"TotalOther_income","Familypension_deduction","Otherdeduction","depreciation",
 		"totalexpense","Dividends_uti","Interest_income","Dividends_mutualfund","Agriculture_income",
-		"Dividends_indian_companies","Otherincome","Total_taxfree_income","Taxable_income"
+		"Dividends_indian_companies","Otherincome","Total_taxfree_income","profit_FirmAOP_BOI","Taxable_income"
 },dataTypes={
+		DataTypeValidationType.DECIMAL,
 		DataTypeValidationType.DECIMAL,
 		DataTypeValidationType.DECIMAL,
 		DataTypeValidationType.DECIMAL,
@@ -88,7 +89,14 @@ public class OtherIncome extends ITReturnComponent {
 			log.info(whichITRForm+" do before render whichITRForm");
 		}
 		request.setAttribute("Max_allowed_ITR1", eRROR_MAX_ALLOWED);
-		
+		// the following line of code is needed to add a field if the package is ITR3 or ITR4
+		MemberPersonalInformation objMemberPersonalInformation = (MemberPersonalInformation) request.getAttribute(MemberPersonalInformation.class.getSimpleName().toLowerCase());
+		if(objMemberPersonalInformation != null){
+		String packageName= objMemberPersonalInformation.getFlexField("flex_string_ITRForm", "");
+		if( (!packageName.isEmpty()) && (packageName.equals("ITR3")) || (packageName.equals("ITR4"))){
+			request.setAttribute("ITR3_4",packageName );
+		}
+		}
 	}
 
 	@Override
