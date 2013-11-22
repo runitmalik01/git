@@ -1,0 +1,82 @@
+/* Move down content because we have a fixed navbar that is 50px tall */
+body {
+  padding-top: 50px;
+  padding-bottom: 20px;
+}
+
+.bestplan {
+	background-color:#acecac;
+	padding: 5px 10px 10px 10px;
+}
+
+.bestplan-header {
+	background-color: #5cb85c;
+	color: #fff;
+	font-weight: bold;
+	font-size: 1.3em;
+	padding: 4px;
+	text-align: center;
+  border-radius: 4px;
+
+}
+
+.betterplan {
+	background-color:#9bc6ec;
+	padding: 5px 10px 10px 10px;
+}
+
+.betterplan-header {
+	background-color:#f0ad4e;
+	color: #fff;
+	font-weight: bold;
+	font-size: 1.3em;
+	padding: 4px;
+	text-align: center;
+  border-radius: 4px;
+}
+
+
+.plan {
+	background-color:#ededed;
+	padding: 5px 10px 10px 10px;
+}
+
+.plan-header {
+	background-color:#ededed;
+	color: #fff;
+	font-weight: bold;
+	font-size: 1.3em;
+	padding: 4px;
+	text-align: center;
+  border-radius: 4px;
+}
+
+/* Pricing CSS Rules   */
+
+
+.w4i-logo {
+		float: left;
+		padding-right: 10px;
+		padding-top: 14px;
+}
+
+.gold {
+	background-color: #fc3;
+	padding: 5px 10px 10px 10px;
+}
+
+/* JumboTron */
+
+.bg-jumbotron {
+	background-image: url('../img/bg_jumbotron_v2.png');
+}
+
+.bg-jumbotron h1 {
+	color: #fff;
+	text-shadow: 0px 1px 0px #999, 0px 2px 0px #888, 0px 3px 0px #777, 0px 4px 0px #666, 0px 5px 0px #555, 0px 6px 0px #444, 0px 7px 0px #333, 0px 8px 7px #001135;
+}
+
+.bg-jumbotron h2 {
+	color: #fff;
+	text-shadow: 0px 1px 0px #999, 0px 2px 0px #888, 0px 3px 0px #777, 0px 4px 0px #666, 0px 5px 0px #555, 0px 6px 0px #444, 0px 7px 0px #333, 0px 8px 7px #001135;
+}
