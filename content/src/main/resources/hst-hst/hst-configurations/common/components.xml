@@ -2064,4 +2064,20 @@
   </sv:property>
 </sv:node>
 
+<!-- new home page layout -->
+<sv:node sv:name="header.v2.re" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:component</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>832409c2-c62c-45ea-8ad2-b2c6db99376c</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:componentclassname" sv:type="String">
+    <sv:value>com.mootly.wcm.components.common.WebsiteLogo</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:template" sv:type="String">
+    <sv:value>standard.header.v2.re</sv:value>
+  </sv:property>
+</sv:node>
+
 </sv:node>
