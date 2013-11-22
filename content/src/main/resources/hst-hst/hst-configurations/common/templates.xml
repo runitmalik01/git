@@ -3581,4 +3581,75 @@
     <sv:value>jsp/accounting/confirm-payment-success.jsp</sv:value>
   </sv:property>
 </sv:node>	
+
+<!-- new home page layout -->
+<sv:node sv:name="layout.webpage.v2" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:template</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>12cc99bb-2064-4dab-8dc1-e7cc7e38fd74</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="hst:containers" sv:type="String">
+    <sv:value>header</sv:value>
+    <sv:value>body</sv:value>
+    <sv:value>footer</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:renderpath" sv:type="String">
+    <sv:value>jsp/layout/bootstrap_v2/layout.webpage.v2.jsp</sv:value>
+  </sv:property>
+</sv:node>
+<sv:node sv:name="standard.header.re.menu-main.v2" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:template</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>fc33a9bc-e3b2-43c7-9cd7-ee499086befe</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:renderpath" sv:type="String">
+    <sv:value>jsp/layout/bootstrap_v2/header/menu-main_v2.jsp</sv:value>
+  </sv:property>
+</sv:node>
+<sv:node sv:name="standard.main.v2.re" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:template</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>31c5daf0-350b-4ad7-a638-780df775e13f</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:renderpath" sv:type="String">
+    <sv:value>jsp/layout/bootstrap_v2/main.jsp</sv:value>
+  </sv:property>
+</sv:node>
+<sv:node sv:name="home.main.v2.re" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:template</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>e774e070-35fb-4131-9e3a-7e2eb3d2c56c</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:renderpath" sv:type="String">
+    <sv:value>jsp/layout/bootstrap_v2/main_v2.jsp</sv:value>
+  </sv:property>
+</sv:node>
+<sv:node sv:name="standard.header.v2.re" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:template</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>7eaa3fab-0eae-49a6-9ef6-2aa8e8eafd04</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="hst:containers" sv:type="String">
+    <sv:value>logo</sv:value>
+    <sv:value>manu-main</sv:value>
+    <sv:value>menu-top</sv:value>
+    <sv:value>top-widget</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:renderpath" sv:type="String">
+    <sv:value>jsp/layout/bootstrap_v2/header/header_v2.jsp</sv:value>
+  </sv:property>
+</sv:node>
+
+
+
 </sv:node>
