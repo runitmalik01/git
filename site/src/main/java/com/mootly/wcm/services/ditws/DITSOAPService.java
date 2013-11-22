@@ -19,12 +19,11 @@ public interface DITSOAPService {
 	public static final String PARAM_PAN ="PAN";
 	public static final String PARAM_PAN_NUMBER ="panNumber";
 	
-	public static final String PARAM_EMAIL = "email";
+	public static final String PARAM_EMAIL = "EMAIL";
 	public static final String PARAM_ADD_CLIENT_OPTION = "addClientOption";
 	
 	public static final String PARAM_TAN ="TAN";
 	public static final String PARAM_DOB ="DOB";
-	public static final String PARAM_DATE_OF_BIRTH ="dateOfBirth";
 	
 	public static final String PARAM_ASSESSMENT_YEAR = "assessmentYear";
 	

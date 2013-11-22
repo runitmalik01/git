@@ -63,6 +63,10 @@
     	<property name="logFileLocationBaseDir" value="${soap_service_log_base_dir}"/>   
     </bean>
     
+    <bean id="endPointURL_AddClientDetails" class="java.net.URL">
+    	<constructor-arg value="${endPointURL_AddClientDetails}"/>
+    </bean>
+    
     <bean id="endPointURL_RetrievePANInformation" class="java.net.URL">
     	<constructor-arg value="${endPointURL_RetrievePANInformation}"/>
     </bean>
@@ -101,6 +105,7 @@
         <constructor-arg index="4" ref="soapService"/>
     </bean>
     
+    <import resource="AddClientDetails.xml"/>
     <import resource="RetrievePANInformation.xml"/>
     <import resource="Retrieve26ASInformation.xml"/>
     <import resource="RetrieveRectificationStatus.xml"/>

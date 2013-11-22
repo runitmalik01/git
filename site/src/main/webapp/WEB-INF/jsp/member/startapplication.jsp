@@ -38,9 +38,16 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 <div class="page">
 	<w4india:itrmenu />
 	<c:if test="${not empty formMap}">
-		<c:forEach items="${formMap.message}" var="item">
+		<c:forEach items="${formMap.message}" var="item">			
 			<div class="alert alert-error">
-				<fmt:message key="${item.value}" />
+				<c:choose>
+					<c:when test="${fn:startsWith(item.key,'RAW_MESSAGE')}">
+						<c:out value="${item.value}" />
+					</c:when>
+					<c:otherwise>
+						<fmt:message key="${item.value}" />
+					</c:otherwise>					
+				</c:choose>
 			</div>
 		</c:forEach>
 	</c:if>
@@ -152,7 +159,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 
 				</div>
 			</div>
-		</fieldset>
+		</fieldset>		
 		<fieldset id="ul_revised" class="revised_v original_h" style="<c:if test="${empty memberpersonalinformation || memberpersonalinformation.returnType == 'O'}">display: none;</c:if>">
 			<legend>Revised Return Details</legend>
 			<div class="row-fluid show-grid" id="ul_revised_input">
@@ -217,7 +224,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 					</div>
 				</div>
 			</div>
-		</fieldset>
+		</fieldset>	
 		<fieldset>
 			<legend>
 				<c:out value="${filingStatus}" />

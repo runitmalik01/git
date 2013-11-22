@@ -7,7 +7,6 @@ import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 import javax.servlet.ServletContext;
 
-import org.hippoecm.hst.content.beans.ObjectBeanManagerException;
 import org.hippoecm.hst.content.beans.manager.workflow.WorkflowPersistenceManager;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.core.component.HstComponentException;
@@ -25,18 +24,11 @@ import com.mootly.wcm.annotations.RequiredFields;
 import com.mootly.wcm.annotations.SyncInvoiceWithCitrus;
 import com.mootly.wcm.beans.InvoiceDocument;
 import com.mootly.wcm.beans.compound.InvoiceDocumentDetail;
-import com.mootly.wcm.beans.compound.InvoicePaymentDetail;
-import com.mootly.wcm.beans.compound.InvoiceRefundDetail;
 import com.mootly.wcm.beans.events.BeanLifecycle;
 import com.mootly.wcm.beans.events.InvoiceDocumentBeanHandler;
 import com.mootly.wcm.beans.events.MemberPersonalInfoUpdateHandler;
 import com.mootly.wcm.components.ITReturnComponent;
-import com.mootly.wcm.components.accounting.InvoiceHelper;
-import com.mootly.wcm.model.PaymentType;
-import com.mootly.wcm.model.PaymentVerificationStatus;
 import com.mootly.wcm.model.SORT_DIRECTION;
-import com.mootly.wcm.services.citruspay.model.enquiry.EnquiryResponse;
-import com.mootly.wcm.services.citruspay.model.enquiry.TxnEnquiryResponse;
 /**
  * 
  * @author admin
@@ -86,7 +78,7 @@ public class MemberInvoice extends ITReturnComponent {
 		//if there is a respCode and its not success ignore it
 		InvoiceDocument invoiceDocument = (InvoiceDocument) request.getAttribute(InvoiceDocument.class.getSimpleName().toLowerCase());
 		if (invoiceDocument == null || invoiceDocument.getInvoiceDocumentDetailList() == null || invoiceDocument.getInvoiceDocumentDetailList().size() == 0) {
-			MemberPersonalInfoUpdateHandler memberPersonalInfoUpdateHandler = new MemberPersonalInfoUpdateHandler(getSequenceGenerator(), serviceDocumentList, getChannelInfoWrapper(), getRetrievePANInformationService());
+			MemberPersonalInfoUpdateHandler memberPersonalInfoUpdateHandler = new MemberPersonalInfoUpdateHandler(getSequenceGenerator(), serviceDocumentList, getChannelInfoWrapper(), getAddClientDetailsService());
 			Session persSession;
 			try {
 				persSession = getPersistableSession(request);

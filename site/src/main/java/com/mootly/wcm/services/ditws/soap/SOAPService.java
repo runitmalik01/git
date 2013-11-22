@@ -27,12 +27,11 @@ import javax.xml.soap.SOAPConnection;
 import javax.xml.soap.SOAPException;
 import javax.xml.soap.SOAPFault;
 import javax.xml.soap.SOAPMessage;
+import javax.xml.ws.soap.SOAPFaultException;
 import javax.xml.xpath.XPathExpressionException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-
 
 
 public class SOAPService {
@@ -85,7 +84,7 @@ public class SOAPService {
 	 * @return SOAPBody representation 
 	 * @throws Exception
 	 */
-	public SOAPMessage executeSOAPCallRAW(SOAPCallWrapper soapCallWrapper,List<Map<String,String>> initialParamValues,SOAPMessage soapMessage) throws MalformedURLException,XPathExpressionException, SOAPException{
+	public SOAPMessage executeSOAPCallRAW(SOAPCallWrapper soapCallWrapper,List<Map<String,String>> initialParamValues,SOAPMessage soapMessage) throws MalformedURLException,XPathExpressionException, SOAPFaultException, SOAPException{
 		if (soapMessage == null) {
 			soapMessage = SOAPCallWrapperHelper.createSOAPMessage(soapCallWrapper, initialParamValues);
 		}
@@ -108,9 +107,10 @@ public class SOAPService {
 	 * @param endPoint Web Service End Point
 	 * @param soapCallWrapper
 	 * @return SOAPBody representation 
+	 * @throws DITSoapFaultException 
 	 * @throws Exception
 	 */
-	public SOAPMessage executeSOAPCallRAW(SOAPCallWrapper soapCallWrapper,List<Map<String,String>> initialParamValues) throws MalformedURLException,XPathExpressionException, SOAPException{
+	public SOAPMessage executeSOAPCallRAW(SOAPCallWrapper soapCallWrapper,List<Map<String,String>> initialParamValues) throws MalformedURLException,XPathExpressionException, SOAPException, SOAPFaultException{
 		SOAPMessage soapResponse = executeSOAPCallRAW(soapCallWrapper, initialParamValues,null);
 		return soapResponse;
 		//Map<String, Object> outputMapLocal= SOAPCallWrapperHelper.parseSOAPResponse(soapResponse, soapCallWrapper);		
@@ -125,7 +125,7 @@ public class SOAPService {
 	 * @return SOAPBody representation 
 	 * @throws Exception
 	 */
-	public Map<String, Object> executeSOAPCall(SOAPCallWrapper soapCallWrapper,List<Map<String,String>> initialParamValues,SOAPMessage soapMessage) throws MalformedURLException,XPathExpressionException, SOAPException{
+	public Map<String, Object> executeSOAPCall(SOAPCallWrapper soapCallWrapper,List<Map<String,String>> initialParamValues,SOAPMessage soapMessage) throws MalformedURLException,XPathExpressionException,  SOAPFaultException, SOAPException{
 		SOAPMessage soapResponse = executeSOAPCallRAW(soapCallWrapper, initialParamValues,soapMessage);
 		//SOAPMessage soapMessage = SOAPCallWrapperHelper.createSOAPMessage(soapCallWrapper, initialParamValues);
 		//SOAPMessage soapResponse = callWebService(soapCallWrapper.getOperation(),soapMessage,soapCallWrapper.getSoapConnection(),soapCallWrapper.getEndPointURL());
@@ -141,7 +141,7 @@ public class SOAPService {
 	 * @return SOAPBody representation 
 	 * @throws Exception
 	 */
-	public Map<String, Object> executeSOAPCall(SOAPCallWrapper soapCallWrapper,List<Map<String,String>> initialParamValues) throws MalformedURLException,XPathExpressionException, SOAPException{
+	public Map<String, Object> executeSOAPCall(SOAPCallWrapper soapCallWrapper,List<Map<String,String>> initialParamValues) throws MalformedURLException,XPathExpressionException, SOAPFaultException, SOAPException{
 		//SOAPMessage soapResponse = executeSOAPCallRAW(soapCallWrapper, initialParamValues,null);
 		//SOAPMessage soapMessage = SOAPCallWrapperHelper.createSOAPMessage(soapCallWrapper, initialParamValues);
 		//SOAPMessage soapResponse = callWebService(soapCallWrapper.getOperation(),soapMessage,soapCallWrapper.getSoapConnection(),soapCallWrapper.getEndPointURL());
@@ -156,7 +156,7 @@ public class SOAPService {
 	 * @return SOAPBody representation 
 	 * @throws Exception
 	 */
-	public SOAPMessage callWebService(String operation,SOAPMessage soapMessage,SOAPConnection soapConnection,URL endpointURL) throws MalformedURLException, SOAPException{
+	public SOAPMessage callWebService(String operation,SOAPMessage soapMessage,SOAPConnection soapConnection,URL endpointURL) throws MalformedURLException, SOAPFaultException, SOAPException{
 		SOAPMessage response = null;
 		final long startTime = System.currentTimeMillis();
 		try {				
@@ -172,8 +172,8 @@ public class SOAPService {
 			}
 			response = soapConnection.call(soapMessage, endpointURL);
 			if (response != null  && response.getSOAPBody() != null && response.getSOAPBody().getFault() != null) {
-				SOAPFault soapFault = response.getSOAPBody().getFault();								
-				throw new SOAPException("operation:" + operation + " Fault:" + soapFault.getFaultString());
+				SOAPFault soapFault = response.getSOAPBody().getFault();
+				throw new SOAPFaultException(soapFault);
 			}
 			//logger.debug(response.toString());
 			if (logger.isDebugEnabled()) {

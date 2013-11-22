@@ -1,3 +1,4 @@
+<%@tag import="com.mootly.wcm.model.VerificationStatus"%>
 <%@tag import="com.mootly.wcm.channels.ChannelInfoWrapper"%>
 <%@tag import="com.mootly.wcm.beans.InvoiceDocument"%>
 <%@tag import="com.mootly.wcm.model.IndianGregorianCalendar"%>
@@ -150,6 +151,12 @@ if (channelInfoWrapper != null) {
 }
 request.setAttribute("showImportTDSButton",showImportTDSButton);
 
+boolean isDITVerified = false;
+if (memberPersonalInformation != null && memberPersonalInformation.getDitVerificationStatus() != null && memberPersonalInformation.getDitVerificationStatus() == VerificationStatus.VERIFIED) {
+	isDITVerified = true;
+}
+request.setAttribute("isDITVerified",isDITVerified);
+
 //How is the page designed, lets define a structure for this page using simple linkedhashmap and arraylist
 %>
 <% final class EvaluateMenusList{
@@ -230,7 +237,7 @@ request.setAttribute("showImportTDSButton",showImportTDSButton);
          </a>
          <a class="brand" href="${fn:substringBefore(scriptName,pan)}${pan}${itrFolderSuffix}/${pan}/servicerequest-itr.html">
             <span class="pan" style="font-size: x-small;">
-               <c:out value="${pan}"/>
+               <c:out value="${pan}"/>               
             </span>
          </a>
          <c:if test="${nomenu != 'true'}">
@@ -369,6 +376,39 @@ request.setAttribute("showImportTDSButton",showImportTDSButton);
    </div>
    <!-- /navbar-inner -->
 </div>
+<c:if test="${isDITVerified == 'false' && not empty memberpersonalinformation}">
+	<c:choose>
+		<c:when test="${fn:endsWith(scriptName,'servicerequest-itr.html')}">
+			<div class="alert alert-error">
+				<small>
+					Unverified Information. You will not be able to file your income tax until the information is verified			
+					Review your information (Name,DOB and PAN) and Click on the Save button.
+					<c:if test="${isVendor == 'true' && not empty memberpersonalinformation}">	
+						<c:out value="${memberpersonalinformation.ditVerificationMessage}"/>
+					</c:if>
+				</small>		
+			</div>		
+		</c:when>
+		<c:otherwise>
+			<div class="alert alert-error">
+				<small>
+					Unverified Information. You will not be able to file your income tax until the information is verified			
+					<a href="{scriptName}../../servicerequest-itr.html">Click here to review your information (Name,DOB and PAN)</a>
+					<c:if test="${isVendor == 'true' && not empty memberpersonalinformation}">
+						<c:out value="${memberpersonalinformation.ditVerificationMessage}"/>
+					</c:if>
+				</small>		
+			</div>		
+		</c:otherwise>
+	</c:choose>
+</c:if>
+<c:if test="${showImportTDSButton == 'true' && isDITVerified == 'true' && not fn:endsWith(scriptName,'servicerequest-itr-sync-tds-from-dit.html') }">
+	<div class="alert alert-important">
+  		<button type="button" class="close" id='dismissImport' data-dismiss="alert">&times;</button>
+  		<strong>Save Time !!!</strong> Automatically import your TDS details from Department Of Income Tax
+  		<small><a href="${scriptName}/../servicerequest-itr-sync-tds-from-dit.html">Learn More..</a></small>
+	</div>
+</c:if>
 <%--ITR1.packageName.DIY.package --%>
 <c:set var="now" value="<%=new java.util.Date()%>" />
 <c:set var="indianLocalDateFormStr" value="<%=IndianGregorianCalendar.indianDateTimeFormStr%>" />
@@ -424,23 +464,11 @@ request.setAttribute("showImportTDSButton",showImportTDSButton);
 				</c:when>				
 			</c:choose>
 		</b></span>
-		<c:if test="${showImportTDSButton == 'true'}">
-			| <span><a class="btn btn-small" href="${scriptName}/../servicerequest-itr-sync-tds-from-dit.html"><i class="icon-download-alt icon-black"></i>Import your 26AS Information</a></span>
-		</c:if>
 	</div>
 </c:if>
 <%-- you kidding me?? can't escape  --%>
 <%-- this is not working as the response has already been sent to the browser --%>
 <%-- //todo we need to more this entire damn logic into a java component --%>
-<%
-if (!didWeFindTheResolvedMapItemInMenu && !hasDIY) { %>
-<%
-
-//HstResponse hstResponse = (HstResponse) response;
-	//HstResponseUtils.sendRedirect(hstRequest,hstResponse,"root");
-	//return;
-}
-%>
 <%!
 class MenuComparator implements Comparator<HstSiteMenuItem> {
     public int compare(HstSiteMenuItem o1, HstSiteMenuItem o2)
@@ -473,26 +501,28 @@ class MenuComparator implements Comparator<HstSiteMenuItem> {
 	}
 </hst:element>
 <hst:headContribution element="${uiCustom}" category="jsInternal"/>
-<c:if test="${showImportTDSButton == 'true'}">
+<c:if test="${showImportTDSButton == 'true' && isDITVerified == 'true'}">
 	<div id="modalForImport" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	  <div class="modal-header">
 	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-	    <h3>Save Time - Import 26AS</h3>
+	    <h3>Save time - Import your TDS details from DIT</h3>
 	  </div>
 	  <div class="modal-body">
-	  	You can now import your 26AS (Tax Deduction) Information from the Income Tax Department
+	  		<p>
+	  			<span class="label label-important">To get back to Import TDS, go to Actions -> Import TDS</span>
+	  		</p>	  		
 	  </div>
 	  <div class="modal-footer">
-	  		<a href="${scriptName}" class="btn btn-inverse" id="addNewBtn" style="display:none">Import Now</a>
-	  		<a href="${scriptName}" class="btn btn-inverse" id="remind" style="display:none">Remind me Later</a>
-	  		<a href="${scriptName}" class="btn btn-inverse" id="doNotImport" style="display:none">Do not Import</a>
+	  		<a href="${scriptName}" class="btn btn-inverse" id="importTDSNow">OK</a>
 	  </div>
 	</div>
 
 	<hst:element var="uiCustom" name="script">
 	<hst:attribute name="type">text/javascript</hst:attribute>
 	   $(document).ready ( function() {
-	   		$("#showImportTDSButton").modal();	   		
+	   		$("#dismissImport").click ( function() {
+	   			 $("#modalForImport").modal();
+	   		}); 		
 	   });
 	</hst:element>
 	<hst:headContribution element="${uiCustom}" category="jsInternal" />

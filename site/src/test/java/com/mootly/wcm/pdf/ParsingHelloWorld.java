@@ -3,7 +3,9 @@ package com.mootly.wcm.pdf;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Iterator;
 import java.util.Map;
+import java.util.Set;
  
  
 import com.itextpdf.text.Document;
@@ -14,19 +16,27 @@ import com.itextpdf.text.pdf.FdfReader;
 import com.itextpdf.text.pdf.PRTokeniser;
 import com.itextpdf.text.pdf.PdfContentByte;
 import com.itextpdf.text.pdf.PdfDictionary;
+import com.itextpdf.text.pdf.PdfIndirectObject;
+import com.itextpdf.text.pdf.PdfIndirectReference;
 import com.itextpdf.text.pdf.PdfName;
+import com.itextpdf.text.pdf.PdfObject;
 import com.itextpdf.text.pdf.PdfReader;
+import com.itextpdf.text.pdf.PdfString;
 import com.itextpdf.text.pdf.PdfTemplate;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.text.pdf.RandomAccessFileOrArray;
 import com.itextpdf.text.pdf.parser.ContentByteUtils;
+import com.itextpdf.text.pdf.parser.FilteredTextRenderListener;
 import com.itextpdf.text.pdf.parser.PdfContentStreamProcessor;
+import com.itextpdf.text.pdf.parser.PdfReaderContentParser;
 import com.itextpdf.text.pdf.parser.RenderListener;
+import com.itextpdf.text.pdf.parser.SimpleTextExtractionStrategy;
+import com.itextpdf.text.pdf.parser.TextExtractionStrategy;
  
 public class ParsingHelloWorld {
  
     /** The resulting PDF. */
-    public static final String PDF = "C:\\Users\\admin\\Downloads\\ITR 1.pdf";
+    public static final String PDF = "C:\\Users\\admin\\Downloads\\form16dalbirkomila\\komila.pdf";
     /** A possible resulting after parsing the PDF. */
     public static final String TEXT1 = "results/part4/chapter15/result1.txt";
     /** A possible resulting after parsing the PDF. */
@@ -74,32 +84,29 @@ public class ParsingHelloWorld {
         document.close();
     }
  
+    
     /**
-     * Parses the PDF using PRTokeniser
-     * @param src  the path to the original PDF file
-     * @param dest the path to the resulting text file
+     * Parses a PDF to a plain text file.
+     * @param pdf the original PDF
+     * @param txt the resulting text
      * @throws IOException
      */
-    public void parsePdf(String src, String dest) throws IOException {
-        PdfReader reader = new PdfReader(src);
-        //reader.
-        FdfReader fdfReader = new FdfReader(src);
-        Map<String,String> ifo = fdfReader.getInfo();
-        // we can inspect the syntax of the imported page
-        byte[] streamBytes = reader.getPageContent(1);
-        PRTokeniser tokenizer = new PRTokeniser(new RandomAccessFileOrArray(new RandomAccessSourceFactory().createSource(streamBytes)));
-        PrintWriter out = new PrintWriter(new FileOutputStream(dest));
-        while (tokenizer.nextToken()) {
-        	System.out.println(tokenizer.getTokenType());
-        	out.println(tokenizer.getStringValue());
-            if (tokenizer.getTokenType() == PRTokeniser.TokenType.STRING) {
-                out.println(tokenizer.getStringValue());
-            }
-        }
+    public void parsePdf(String pdf, String txt) throws IOException {
+        PdfReader reader = new PdfReader(pdf);
+        PdfReaderContentParser parser = new PdfReaderContentParser(reader);
+        PrintWriter out = new PrintWriter(new FileOutputStream(txt));
+        TextExtractionStrategy strategy;
+        
+        MyTextRenderListener listener = new MyTextRenderListener(out);
+        for (int i = 1; i <= reader.getNumberOfPages(); i++) {
+        	out.println("---- PAGE " + i);
+            parser.processContent (i,listener);
+        }       
         out.flush();
         out.close();
         reader.close();
     }
+ 
  
     /**
      * Extracts text from a PDF document.

@@ -138,6 +138,7 @@ import com.mootly.wcm.services.StartApplicationValidationService;
 import com.mootly.wcm.services.XmlGeneratorService;
 import com.mootly.wcm.services.citruspay.Enquiry;
 import com.mootly.wcm.services.citruspay.Transaction;
+import com.mootly.wcm.services.ditws.AddClientDetails;
 import com.mootly.wcm.services.ditws.ITRVStatus;
 import com.mootly.wcm.services.ditws.Retrieve26ASInformation;
 import com.mootly.wcm.services.ditws.RetrieveITRV;
@@ -161,6 +162,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 	RetrieveITRV retrieveITRVService = null;
 	Retrieve26ASInformation retrieve26ASService = null;
 	RetrievePANInformation retrievePANInformation = null;
+	AddClientDetails addClientDetailsService = null;
 
 	String servletPath = null;
 	String xsltPath = null;
@@ -250,6 +252,8 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		retrieve26ASService = context.getBean(Retrieve26ASInformation.class);
 		transaction = context.getBean(Transaction.class);
 		enquiry =	context.getBean(Enquiry.class);
+		
+		addClientDetailsService = context.getBean(AddClientDetails.class);
 	}
 
 
@@ -279,6 +283,10 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 
 	public Enquiry getEnquiry() {
 		return enquiry;
+	}
+	
+	public AddClientDetails getAddClientDetailsService() {
+		return addClientDetailsService;
 	}
 
 	@Override

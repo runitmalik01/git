@@ -4,6 +4,7 @@
 package com.mootly.wcm.model;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -21,9 +22,10 @@ public final class IndianGregorianCalendar {
 	public static TimeZone indianTimeZone = TimeZone.getTimeZone("GMT+05:30");
 	public static String indianDateFormStr="yyyy-MM-dd";
 	public static String indianLocalDateFormStr="dd-MM-yyyy";
+	public static String indianLocalDateFormStr2="dd/MM/yyyy";
 	public static String indianDateTimeFormStr="dd-MM-yyyy hh:mm a";
 	
-	public static String soapDateTimeFormStr="YYYY-MM-dd";
+	public static String soapDateTimeFormStr="yyyy-MM-dd";
 	
 	public static GregorianCalendar getIndianInstance() {
 		return new GregorianCalendar(indianTimeZone);
@@ -36,6 +38,14 @@ public final class IndianGregorianCalendar {
 		strDate = formatter.format(date.getTime());
 		return strDate;
 	}
+	
+	public static Date formatStringToDate(String dateStr, String format) throws ParseException {
+		DateFormat formatter = new SimpleDateFormat(format);
+		formatter.setTimeZone(indianTimeZone);
+		Date theDate = formatter.parse(dateStr);
+		return theDate;
+	}
+	
 	
 	public static String getCurrentDateTimeInIndiaAsStandardString() {
 		Calendar currentdate = IndianGregorianCalendar.getIndianInstance();

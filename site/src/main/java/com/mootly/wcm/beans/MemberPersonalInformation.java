@@ -192,6 +192,7 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 	
 	//DIT Integration
 	private VerificationStatus ditVerificationStatus;
+	private String ditVerificationMessage;
 	//did the user choose to import from TDS
 	private String choiceImportTDS; 
 	private Boolean importTDSSuccess;
@@ -550,6 +551,11 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 		return ditVerificationStatus;
 	}
 	
+	public final String getDitVerificationMessage() {
+		if (ditVerificationMessage == null) ditVerificationMessage = getProperty("mootlywcm:ditVerificationMessage");
+		return ditVerificationMessage;
+	}
+	
 	public String getChoiceImportTDS() {
 		if ( choiceImportTDS == null ) choiceImportTDS = getProperty("mootlywcm:choiceImportTDS");
 		return choiceImportTDS;
@@ -881,6 +887,10 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 		this.ditVerificationStatus = ditVerificationStatus;
 	}
 	
+	public void setDitVerificationMessage(String ditVerificationMessage) {
+		this.ditVerificationMessage = ditVerificationMessage;
+	}
+	
 	public void setChoiceImportTDS(String choiceImportTDS) {
 		this.choiceImportTDS = choiceImportTDS;
 	}
@@ -978,15 +988,19 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 			if (mpi.getIsTaxPreparebyTRP() != null) node.setProperty("mootlywcm:isTaxPreparebyTRP", mpi.getIsTaxPreparebyTRP());
 			if (mpi.getIsLiable_FurnishSec92E() != null) node.setProperty("mootlywcm:isLiable_FurnishSecNinetyTwoE", mpi.getIsLiable_FurnishSec92E());
 			
-			if (getDitVerificationStatus() != null) {
+			if (mpi.getDitVerificationStatus() != null) {
 				node.setProperty("mootlywcm:ditVerificationStatus", mpi.getDitVerificationStatus().name());
 			}
 			
-			if (getChoiceImportTDS() != null) {
+			if (mpi.getDitVerificationMessage() != null) {
+				node.setProperty("mootlywcm:ditVerificationMessage", mpi.getDitVerificationMessage());
+			}
+			
+			if (mpi.getChoiceImportTDS() != null) {
 				node.setProperty("mootlywcm:choiceImportTDS", mpi.getChoiceImportTDS());
 			}
 			
-			if (getImportTDSSuccess() != null) {
+			if (mpi.getImportTDSSuccess() != null) {
 				node.setProperty("mootlywcm:importTDSSuccess", mpi.getImportTDSSuccess());
 			}
 			
@@ -1260,6 +1274,28 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 				}
 			}
 		}
+		
+		//DIT VErification
+		if (formMap.getField("ditVerificationStatus") != null) {
+			String ditVerificationStatusStr = formMap.getField("ditVerificationStatus").getValue();
+			try {
+				setDitVerificationStatus(VerificationStatus.valueOf(ditVerificationStatusStr));
+			}
+			catch (IllegalArgumentException e){
+				
+			}
+		}
+		
+		if (formMap.getField("ditVerificationMessage") != null) {
+			String ditVerificationMessageStr = formMap.getField("ditVerificationMessage").getValue();
+			try {
+				setDitVerificationMessage(ditVerificationMessageStr);
+			}
+			catch (IllegalArgumentException e){
+				
+			}
+		}
+		
 		/*	if(StringUtils.isBlank(getResidentCategory())){
 			for(ResidentStatus resiStat:ResidentStatus.values()){
 				if(resiStat.name().equalsIgnoreCase(getRsstatusQ())){

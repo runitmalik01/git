@@ -8,12 +8,8 @@
  */
 package com.mootly.wcm.member;
 
-import java.text.DateFormat;
 import java.text.MessageFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
@@ -26,12 +22,13 @@ import java.util.ResourceBundle;
 
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
+import javax.xml.ws.soap.SOAPFaultException;
 
 import org.apache.commons.lang.StringUtils;
+import org.hippoecm.hst.component.support.forms.FormField;
 import org.hippoecm.hst.component.support.forms.FormMap;
 import org.hippoecm.hst.component.support.forms.FormUtils;
 import org.hippoecm.hst.content.beans.ObjectBeanManagerException;
-import org.hippoecm.hst.content.beans.ObjectBeanPersistenceException;
 import org.hippoecm.hst.content.beans.manager.workflow.WorkflowCallbackHandler;
 import org.hippoecm.hst.content.beans.manager.workflow.WorkflowPersistenceManager;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
@@ -51,26 +48,23 @@ import com.mootly.wcm.annotations.FormFields;
 import com.mootly.wcm.annotations.PrimaryBean;
 import com.mootly.wcm.annotations.RequiredFields;
 import com.mootly.wcm.beans.MemberPersonalInformation;
-import com.mootly.wcm.beans.MemberSignupDocument;
 import com.mootly.wcm.beans.ScheduleFiveADocument;
 import com.mootly.wcm.beans.events.BeanLifecycle;
 import com.mootly.wcm.beans.events.MemberPersonalInfoUpdateHandler;
-import com.mootly.wcm.channels.ChannelInfoWrapper;
 import com.mootly.wcm.components.ITReturnComponent;
-import com.mootly.wcm.components.InvalidNavigationException;
 import com.mootly.wcm.model.FilingStatus;
 import com.mootly.wcm.model.ITRForm;
+import com.mootly.wcm.model.IndianGregorianCalendar;
 import com.mootly.wcm.model.SORT_DIRECTION;
+import com.mootly.wcm.model.VerificationStatus;
 import com.mootly.wcm.services.StartApplicationValidationService;
 import com.mootly.wcm.services.ditws.RetrievePANInformation;
 import com.mootly.wcm.services.ditws.exception.DataMismatchException;
 import com.mootly.wcm.services.ditws.exception.InvalidFormatException;
 import com.mootly.wcm.services.ditws.exception.MissingInformationException;
+import com.mootly.wcm.services.ditws.model.AddClientDetailsResponse;
 import com.mootly.wcm.services.ditws.model.RetrievePANResponse;
-import com.mootly.wcm.utils.ContentStructure;
-import com.mootly.wcm.utils.GoGreenUtil;
 import com.mootly.wcm.utils.MootlyFormUtils;
-import com.mootly.wcm.utils.UrlUtility;
 
 @PrimaryBean(primaryBeanClass=MemberPersonalInformation.class)
 //update Amit Patkar 07/22/2013 duplicate instance of ReturnSection
@@ -350,7 +344,7 @@ public class StartApplication extends ITReturnComponent {
 	public void doAction(HstRequest request, HstResponse response)
 			throws HstComponentException {
 		// TODO Auto-generated method stub
-		memberPersonalInfoUpdateHandler = new MemberPersonalInfoUpdateHandler(getSequenceGenerator(), loadAllBeansUnderTheFolder(request, response, "services/incometaxreturn", "mootlywcm:Name",SORT_DIRECTION.ASC),getChannelInfoWrapper(),getRetrievePANInformationService());
+		memberPersonalInfoUpdateHandler = new MemberPersonalInfoUpdateHandler(getSequenceGenerator(), loadAllBeansUnderTheFolder(request, response, "services/incometaxreturn", "mootlywcm:Name",SORT_DIRECTION.ASC),getChannelInfoWrapper(),getAddClientDetailsService());
 		super.doAction(request, response);
 	}
 
@@ -427,306 +421,6 @@ public class StartApplication extends ITReturnComponent {
 		return super.validate(request, response, formMap);
 	}
 
-	public void doBeforeRenderOld(HstRequest request, HstResponse response) {
-		// TODO Auto-generated method stub
-		super.doBeforeRender(request, response);
-		log.info("This is Start Application Page");
-		String pan=getPublicRequestParameter(request, "pan");
-		Member member=(Member)request.getSession().getAttribute("user");
-		String username=member.getUserName().trim();
-		String modusername=username.replaceAll("@", "-at-").trim();
-		String filing_year=(String)request.getSession().getAttribute("filing_year");
-		String urlnew=getPublicRequestParameter(request, "new");
-		if(urlnew==null){
-			try {
-				if(pan!=null){
-					String path=ContentStructure.getPersonalDocumentPath(pan,filing_year,modusername);
-					MemberPersonalInformation objdocument=(MemberPersonalInformation)getObjectBeanManager(request).getObject(path);
-					Calendar dob=objdocument.getDOB();
-
-					Date date =dob.getTime();
-					DateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy");
-					DateFormat formatter2=new SimpleDateFormat("yyyy-mm-dd");
-					String hiddob=formatter2.format(date);
-					String fetchdob=formatter.format(date);
-					request.setAttribute("dob", fetchdob);
-					request.setAttribute("hiddate", hiddob);
-					log.info("date of birth"+fetchdob);
-					log.info("this is info"+fetchdob);
-					request.setAttribute("document", objdocument);
-				} else{
-					String start_pan=(String)request.getSession().getAttribute("start_pan");
-					if(start_pan!=null){
-						String path=ContentStructure.getPersonalDocumentPath(start_pan,filing_year,modusername);
-						MemberPersonalInformation objdocument=(MemberPersonalInformation)getObjectBeanManager(request).getObject(path);
-						Calendar dob=objdocument.getDOB();
-						Date date =dob.getTime();
-						DateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy");
-						DateFormat formatter2=new SimpleDateFormat("yyyy-mm-dd");
-						String hiddob=formatter2.format(date);
-						String fetchdob=formatter.format(date);
-						request.setAttribute("dob", fetchdob);
-						request.setAttribute("hiddate", hiddob);
-						log.info("date of birth"+fetchdob);
-						log.info("this is info"+fetchdob);
-						request.setAttribute("document", objdocument);
-					}
-				}
-			}catch (ObjectBeanManagerException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		request.setAttribute("pageName", "startApplication");
-		request.setAttribute(ERRORS, request.getParameterValues(ERRORS));
-		request.setAttribute(DOB, request.getParameter(DOB));
-		request.setAttribute(PAN , request.getParameter(PAN));
-		request.setAttribute(LNAME, request.getParameter(LNAME));
-		request.setAttribute(MNAME, request.getParameter(MNAME));
-		request.setAttribute(FNAME, request.getParameter(FNAME));
-		request.setAttribute(FA_NAME, request.getParameter(FA_NAME));
-		request.setAttribute(GENDER, request.getParameter(GENDER));
-		request.setAttribute(STATUS, request.getParameter(STATUS));
-		request.setAttribute(SECTION, request.getParameter(SECTION));
-
-	}
-
-	public void doActionOld(HstRequest request, HstResponse response)
-			throws HstComponentException {
-		// TODO Auto-generated method stub
-		super.doAction(request, response);
-		//get all parameter of form
-		String fname=GoGreenUtil.getEscapedParameter(request,FNAME);
-		String pan=GoGreenUtil.getEscapedParameter(request, PAN).toUpperCase();
-		String lname=GoGreenUtil.getEscapedParameter(request, LNAME);
-		String mname=GoGreenUtil.getEscapedParameter(request, MNAME);
-		String fathername=GoGreenUtil.getEscapedParameter(request, FA_NAME);
-		String gender=GoGreenUtil.getEscapedParameter(request, GENDER);
-		String status=GoGreenUtil.getEscapedParameter(request, STATUS);
-
-		String dob=GoGreenUtil.getEscapedParameter(request, DOB);
-		String repDob=dob;
-		String section=GoGreenUtil.getEscapedParameter(request,SECTION);
-
-		/*Next 6-7 lines
-		 * to covert String date into Calendar object
-		 * */
-		log.info(dob);
-		Date date = null ;
-		DateFormat formatter ;
-		formatter = new SimpleDateFormat("yyyy-mm-dd");
-		GregorianCalendar cal=(GregorianCalendar) GregorianCalendar.getInstance();
-		try{
-			date = (Date)formatter.parse(dob);
-			log.info("date"+date);
-			cal.setTime(date);
-		}
-		catch(Exception e){
-			log.info("calendar error"+e);
-		}
-		/*
-		 * If Filing Status will HUF then Gender will be "X"
-		 */
-		if(status.matches("H")){
-			gender="X";
-		}
-		/*Next line
-		 * Regular Expression to validate the PAN Number
-		 * */
-		String reg_pan="^[A-Z]{5}\\d{4}[A-Z]$";
-		/*get the Member object
-		 * To fetch the Login User details
-		 * */
-		Member member=(Member)request.getSession().getAttribute("user");
-		if(member!=null){
-			//check for validation
-			List<String> errors = new ArrayList<String>();
-			if(StringUtils.isEmpty(pan) || !pan.matches(reg_pan) || pan.toLowerCase().charAt(4)!=lname.toLowerCase().charAt(0)){
-				errors.add("Enter a valid PAN");
-			}
-			if(StringUtils.isEmpty(lname)){
-				errors.add("invalid.lname-label");
-			}
-			if(StringUtils.isEmpty(dob)){
-				errors.add("invalid.dob-label");
-			}
-			//if(StringUtils.isEmpty(section)){
-			//	errors.add("select.one.section");
-			//}
-			if (errors.size()!=0){
-				response.setRenderParameter(ERRORS, errors.toArray(new String[errors.size()]));
-				response.setRenderParameter(PAN, pan);
-				response.setRenderParameter(FNAME, fname);
-				response.setRenderParameter(LNAME, lname);
-				response.setRenderParameter(MNAME, mname);
-				response.setRenderParameter(STATUS, status);
-				response.setRenderParameter(FA_NAME, fathername);
-				response.setRenderParameter(DOB, repDob);
-				//response.setRenderParameter(SECTION, section);
-				return;
-			}
-			else{
-				/*Create the MemberPersoanlInformation Document Object
-				 * Set the Values get from Form
-				 * */
-				MemberPersonalInformation objpi = new MemberPersonalInformation();
-				objpi.setPAN(pan);
-				objpi.setMiddleName(mname);
-				objpi.setFirstName(fname);
-				objpi.setLastName(lname);
-				objpi.setSex(gender);
-				objpi.setDOB(cal);
-				objpi.setFilingStatus(status);
-				objpi.setFatherName(fathername);
-				createMemberPersoanlInformation(request, objpi);
-				try{
-					request.getSession().setAttribute("start_pan",pan);
-					response.sendRedirect(UrlUtility.Contactinformation+"?pan="+pan);
-				}
-				catch(Exception e){
-				}
-			}
-		}
-
-	}
-	/**
-	 * Method to Create & Update the Member Personal Document
-	 * @param HstRequest
-	 * @param String
-	 * @return String returns the form to create method.
-	 * @throws
-	 * @author Priyank
-	 */
-	private MemberPersonalInformation createMemberPersoanlInformation(HstRequest request,MemberPersonalInformation personal_info) {
-		// TODO Auto-generated method stub
-		Session persistableSession = null;
-		WorkflowPersistenceManager wpm;
-		try {
-			persistableSession = getPersistableSession(request);
-			wpm = getWorkflowPersistenceManager(persistableSession);
-			//SIMPLE WORKFLOW
-			wpm.setWorkflowCallbackHandler(new FullReviewedWorkflowCallbackHandler());
-			Member member=(Member)request.getSession().getAttribute("user");
-			String username=member.getUserName().trim();
-			String filing_year=(String)request.getSession().getAttribute("filing_year");
-			String modusername=username.replaceAll("@", "-at-").trim();
-			/*Create the path to Save Document in the Repository
-			 * */
-			log.info("this is user"+username);
-			final String itReturnFolderPath = ContentStructure.getMemberOriginalFilingPath(request,personal_info.getPAN(), filing_year, modusername);
-			/*CreateAndReturn method is used to Create the Document(Node) Of name NODE_NAME
-			 * NAMESPACE determine the Type of Node with Document Template
-			 * Also return the path of that Document
-			 * */
-			String updatePersonalReturnPath=ContentStructure.getPersonalDocumentPath(personal_info.getPAN(),filing_year,modusername);
-			MemberPersonalInformation objupdateobjpersonalInformation = (MemberPersonalInformation) wpm.getObject(updatePersonalReturnPath);
-			if(objupdateobjpersonalInformation==null){
-				final String personalReturnPath = wpm.createAndReturn(itReturnFolderPath,MemberPersonalInformation.NAMESPACE ,  MemberPersonalInformation.NODE_NAME, true);
-				/*
-			HippoFolder hippoFolder = (HippoFolder) wpm.getObject(itReturnFolderPath);
-			List<HippoTranslation> hippoTranslations = hippoFolder.getChildBeansByName("hippo:translation");
-			if (hippoTranslations != null && hippoTranslations.size() > 0) {
-				for (HippoTranslation translation:hippoTranslations) {
-					if (translation.getProperty("locale","").equals("en")) {
-					}
-				}
-			}
-				 */
-				/*MemberPersoanlInformation
-				 *getObject method get the object at passed path in Repository.
-				 * */
-				MemberPersonalInformation objpersonalInformation = (MemberPersonalInformation) wpm.getObject(personalReturnPath);
-
-				// update content properties
-				if (objpersonalInformation != null) {
-					log.info("PAN NUKMBER"+personal_info.getPAN().toString());
-					objpersonalInformation.setPAN(personal_info.getPAN());
-					objpersonalInformation.setMiddleName(personal_info.getMiddleName());
-					objpersonalInformation.setFirstName(personal_info.getFirstName());
-					objpersonalInformation.setLastName(personal_info.getLastName());
-					objpersonalInformation.setSex(personal_info.getSex());
-					objpersonalInformation.setFatherName(personal_info.getFatherName());
-					objpersonalInformation.setDOB((GregorianCalendar) personal_info.getDOB());
-					objpersonalInformation.setFilingStatus(personal_info.getFilingStatus());
-					objpersonalInformation.setFilingStatus(personal_info.getFilingStatus());
-					// update now
-					wpm.update(objpersonalInformation);
-					//Member Signup Document
-					String signUpPath=ContentStructure.getSignUpDocumentPath(modusername);
-					MemberSignupDocument docupdate=(MemberSignupDocument) wpm.getObject(signUpPath);
-					if(docupdate!=null){
-						/*Next 4 lines
-						 * get the Previous entries of PAN saved in doc
-						 * add new entry
-						 * convert Collection into a String Array
-						 * then pass array and update the MemberSignupDocument
-						 * */
-						Collection<String> oldpan= member.getPAN();
-						oldpan.add(personal_info.getPAN());
-						String[] newpan=(String[])oldpan.toArray(new String[0]);
-						docupdate.setPAN(newpan);
-						wpm.update(docupdate);
-					}
-					return objpersonalInformation;
-				} else {
-					log.info("Failed to add review for product '{}': could not retrieve Review bean for node '{}'.", MemberPersonalInformation.NODE_NAME, personalReturnPath);
-					GoGreenUtil.refreshWorkflowManager(wpm);
-					return objpersonalInformation;
-				}
-			}else{
-				objupdateobjpersonalInformation.setPAN(personal_info.getPAN());
-				objupdateobjpersonalInformation.setMiddleName(personal_info.getMiddleName());
-				objupdateobjpersonalInformation.setFirstName(personal_info.getFirstName());
-				objupdateobjpersonalInformation.setLastName(personal_info.getLastName());
-				objupdateobjpersonalInformation.setSex(personal_info.getSex());
-				objupdateobjpersonalInformation.setFatherName(personal_info.getFatherName());
-				objupdateobjpersonalInformation.setDOB((GregorianCalendar)personal_info.getDOB());
-				objupdateobjpersonalInformation.setFilingStatus(personal_info.getFilingStatus());
-				wpm.update(objupdateobjpersonalInformation);
-				String signUpPath=ContentStructure.getSignUpDocumentPath(modusername);
-				MemberSignupDocument docupdate=(MemberSignupDocument) wpm.getObject(signUpPath);
-				/*Next 4 lines
-				 * get the Previous entries of PAN saved in doc
-				 * add new entry
-				 * convert Collection into a String Array
-				 * then pass array and update the MemberSignupDocument
-				 * */
-				Collection<String> oldpan= member.getPAN();
-				if(oldpan.contains(personal_info.getPAN())){
-					log.info("have it");
-				}else{
-					if(docupdate!=null){
-						log.info("updating");
-						oldpan.add(personal_info.getPAN());
-						String[] newpan=(String[])oldpan.toArray(new String[0]);
-						docupdate.setPAN(newpan);
-						wpm.update(docupdate);
-					}
-				}
-				return objupdateobjpersonalInformation;
-			}
-		} catch (ObjectBeanPersistenceException e) {
-			log.error("Failed to create a review for personal '" + "----- IT RETURN ------" + "'", e);
-			return null;
-		} catch (ObjectBeanManagerException e) {
-			log.error("Failed to create a review for personal'" + "----- IT RETURN ------" + "'", e);
-			return null;
-		} catch (RepositoryException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return null;
-		}finally {
-			if (persistableSession != null) {
-				persistableSession.logout();
-			}
-		}
-	}
-	@Override
-	public void doBeforeServeResource(HstRequest request, HstResponse response)
-			throws HstComponentException {
-		// TODO Auto-generated method stub
-		super.doBeforeServeResource(request, response);
-	}
 	public static class FullReviewedWorkflowCallbackHandler implements WorkflowCallbackHandler<FullReviewedActionsWorkflow> {
 		public void processWorkflow(FullReviewedActionsWorkflow wf) throws Exception {
 			wf.publish();
@@ -738,5 +432,95 @@ public class StartApplication extends ITReturnComponent {
 		// TODO Auto-generated method stub
 		return memberPersonalInfoUpdateHandler;
 	}
-
+	
+	@Override
+	protected boolean additionalValidation(HstRequest request,
+			HstResponse response, FormMap formMap) {
+		// TODO Auto-generated method stub
+		boolean isValid = false;
+		if (!getChannelInfoWrapper().getIsEriEnabled()) {
+			log.warn("Will SKIP the validation for information");
+		}
+		if (formMap != null && getChannelInfoWrapper().getIsEriEnabled()) {
+			try {				
+				String PAN = formMap.getField("pan").getValue();	
+				String dobStr = formMap.getField("pi_dob").getValue();	
+				Date DOB = IndianGregorianCalendar.formatStringToDate(dobStr, IndianGregorianCalendar.indianLocalDateFormStr2);
+				GregorianCalendar theGCalDOB = new GregorianCalendar();
+				theGCalDOB.setTime(DOB);
+				String email = formMap.getField("pi_email").getValue();
+				if (log.isInfoEnabled()) {
+					log.info("Will call DIT ");
+					log.info("DIT getEriUserId:" + getChannelInfoWrapper().getWebSiteInfo().getEriUserId());
+					log.info("DIT getEriPassword:" +  getChannelInfoWrapper().getWebSiteInfo().getEriPassword());
+					log.info("DIT getEriCertChain:" +  getChannelInfoWrapper().getWebSiteInfo().getEriCertChain());
+					log.info("DIT getEriSignature:" +  getChannelInfoWrapper().getWebSiteInfo().getEriSignature());
+				}				
+				AddClientDetailsResponse addClientDetailsResponse = getAddClientDetailsService().addClientDetails(getChannelInfoWrapper().getWebSiteInfo().getEriUserId(), getChannelInfoWrapper().getWebSiteInfo().getEriPassword(), null, null, PAN, theGCalDOB, email, null, null, null);
+				if (addClientDetailsResponse == null || addClientDetailsResponse.getError() != null) {
+					//formMap.addMessage("RAW_MESSAGE_1",addClientDetailsResponse.getError());
+					isValid = false;
+					addDitVerificationStatusFieldToFormMap(formMap,VerificationStatus.FAILED,addClientDetailsResponse.getError());
+				}
+				else {					
+					isValid = true;
+					addDitVerificationStatusFieldToFormMap(formMap,VerificationStatus.VERIFIED);
+				}				
+			} catch (MissingInformationException e) {
+				// TODO Auto-generated catch block
+				log.error("Error",e);
+				//formMap.addMessage("error.dit.verification","error.dit.verification");
+				//formMap.addMessage("error.dit.verification.action","error.dit.verification.action");
+				addDitVerificationStatusFieldToFormMap(formMap,VerificationStatus.FAILED,e.getMessage());
+			} catch (DataMismatchException e) {
+				// TODO Auto-generated catch block
+				log.error("Error",e);
+				//formMap.addMessage("error.dit.verification","error.dit.verification");
+				//formMap.addMessage("error.dit.verification.action","error.dit.verification.action");				
+				addDitVerificationStatusFieldToFormMap(formMap,VerificationStatus.FAILED,e.getMessage());
+			} catch (InvalidFormatException e) {
+				// TODO Auto-generated catch block
+				log.error("Error",e);
+				//formMap.addMessage("error.dit.verification","error.dit.verification");
+				//formMap.addMessage("error.dit.verification.action","error.dit.verification.action");				
+				addDitVerificationStatusFieldToFormMap(formMap,VerificationStatus.FAILED,e.getMessage());
+			}		
+			catch (SOAPFaultException e) {
+				log.error("Error",e);
+				if (e.getMessage() != null && e.getMessage().equals("This PAN is already added as a client.")) {
+					log.warn("The user is already added in the client database");
+					addDitVerificationStatusFieldToFormMap(formMap,VerificationStatus.VERIFIED,e.getMessage());
+				}
+				else {
+					//formMap.addMessage("error.dit.verification","error.dit.verification");
+					//formMap.addMessage("error.dit.verification.action","error.dit.verification.action");				
+					addDitVerificationStatusFieldToFormMap(formMap,VerificationStatus.FAILED,e.getMessage());
+				}
+			}
+			catch (Exception e) {
+				log.error("Error",e);
+				//formMap.addMessage("error.dit.verification","error.dit.verification");
+				//formMap.addMessage("error.dit.verification.action","error.dit.verification.action");				
+				addDitVerificationStatusFieldToFormMap(formMap,VerificationStatus.FAILED,e.getMessage());
+			}
+		}
+		return isValid;
+	}
+	
+	private void addDitVerificationStatusFieldToFormMap(FormMap formMap,VerificationStatus verificationStatus) {
+		addDitVerificationStatusFieldToFormMap(formMap,verificationStatus,null);
+	}
+	
+	private void addDitVerificationStatusFieldToFormMap(FormMap formMap,VerificationStatus verificationStatus,String verificationMessage) {
+		FormField verStatus = new FormField("ditVerificationStatus");
+		verStatus.addValue(verificationStatus.name());
+		
+		formMap.addFormField(verStatus);
+		
+		if (verificationMessage != null) {
+			FormField verMsg = new FormField("ditVerificationMessage");
+			verMsg.addValue(verificationMessage);
+			formMap.addFormField(verMsg);
+		}
+	}
 }

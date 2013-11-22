@@ -1,6 +1,7 @@
 package com.mootly.wcm.beans.events;
 
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import org.hippoecm.hst.component.support.forms.FormField;
@@ -20,10 +21,12 @@ import com.mootly.wcm.components.ITReturnComponentHelper;
 import com.mootly.wcm.model.ITRForm;
 import com.mootly.wcm.model.ITRServiceDelivery;
 import com.mootly.wcm.services.SequenceGenerator;
+import com.mootly.wcm.services.ditws.AddClientDetails;
 import com.mootly.wcm.services.ditws.RetrievePANInformation;
 import com.mootly.wcm.services.ditws.exception.DataMismatchException;
 import com.mootly.wcm.services.ditws.exception.InvalidFormatException;
 import com.mootly.wcm.services.ditws.exception.MissingInformationException;
+import com.mootly.wcm.services.ditws.model.AddClientDetailsResponse;
 import com.mootly.wcm.services.ditws.model.RetrievePANResponse;
 
 public class MemberPersonalInfoUpdateHandler extends GenericLifeCycleHandler implements BeanLifecycle<HippoBean>{
@@ -31,7 +34,7 @@ public class MemberPersonalInfoUpdateHandler extends GenericLifeCycleHandler imp
 	final List<HippoBean> itrServices;
 	final ChannelInfoWrapper channelInfoWrapper;
 	final SequenceGenerator sequenceGenerator;
-	final RetrievePANInformation retrievePANInformation;
+	final AddClientDetails addClientDetails;
 	
 	String serviceName;
 	String serviceQty;
@@ -40,63 +43,19 @@ public class MemberPersonalInfoUpdateHandler extends GenericLifeCycleHandler imp
 	
 	
 	
-	public MemberPersonalInfoUpdateHandler( SequenceGenerator sequenceGenerator,List<HippoBean> itrServices,ChannelInfoWrapper channelInfoWrapper,RetrievePANInformation retrievePANInformation) {
+	public MemberPersonalInfoUpdateHandler( SequenceGenerator sequenceGenerator,List<HippoBean> itrServices,ChannelInfoWrapper channelInfoWrapper, AddClientDetails addClientDetails) {
 		this.sequenceGenerator = sequenceGenerator;
 		this.itrServices = itrServices;
 		this.channelInfoWrapper = channelInfoWrapper;
-		this.retrievePANInformation = retrievePANInformation;
+		this.addClientDetails = addClientDetails;
 	}
 	
 	@Override
 	public boolean validateParentBean(HippoBean hippoBean, boolean isNew,
 			List<String> errors, List<String> warnings) {
 		// TODO Auto-generated method stub
-		boolean isValid = true;
-		/*
-		if (errors == null) errors = new ArrayList<String>();
-		//this can go into validator chain but for now lets do it right here
-		MemberPersonalInformation memberPersonalInformation = (MemberPersonalInformation) hippoBean;
-		if (memberPersonalInformation != null) {
-			try {				
-				if (logger.isInfoEnabled()) {
-					logger.info("Will call DIT ");
-					logger.info("DIT getEriUserId:" + channelInfoWrapper.getWebSiteInfo().getEriUserId());
-					logger.info("DIT getEriPassword:" + channelInfoWrapper.getWebSiteInfo().getEriPassword());
-					logger.info("DIT getEriCertChain:" + channelInfoWrapper.getWebSiteInfo().getEriCertChain());
-					logger.info("DIT getEriSignature:" + channelInfoWrapper.getWebSiteInfo().getEriSignature());
-				}
-				RetrievePANResponse retrievePANResponse = retrievePANInformation.retrievePANInformation(channelInfoWrapper.getWebSiteInfo().getEriUserId() , channelInfoWrapper.getWebSiteInfo().getEriPassword(), channelInfoWrapper.getWebSiteInfo().getEriCertChain(), channelInfoWrapper.getWebSiteInfo().getEriSignature() , memberPersonalInformation.getPAN());
-				if (retrievePANResponse == null) {
-					errors.add("error.dit");
-					isValid = false;
-				}
-				else {
-					if (logger.isInfoEnabled()) {
-						logger.info("memberPersonalInformation.getDOBStr() :" + memberPersonalInformation.getDOBStr());
-						logger.info("retrievePANResponse.getDOB():" + retrievePANResponse.getDOB());
-					}
-					isValid = true;
-				}
-				
-			} catch (MissingInformationException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				logger.error("Error",e);
-			} catch (DataMismatchException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				logger.error("Error",e);
-			} catch (InvalidFormatException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				logger.error("Error",e);
-			}			
-			catch (Exception e) {
-				logger.error("Error",e);
-			}
-		}
-		*/
-		return isValid;
+		
+		return true;
 	}
 	/**
 	 * 
@@ -194,8 +153,7 @@ public class MemberPersonalInfoUpdateHandler extends GenericLifeCycleHandler imp
 			//check if invoice is present or not
 			if (createNew) {
 				//String baseAbsolutePathToReturnDocuments = beanAfterUpdate.getPath() + "/../"
-				itReturnComponentHelper.saveAddNewChild(childBeanMap, parentBeanMap, childBeanLifeCycleHandler, parentBeanLifeCycleHandler, baseAbsolutePathToReturnDocuments, parentBeanAbsolutePath, parentBeanNameSpace, parentBeanNodeName, InvoiceDocumentDetail.class, wpm.getSession(), wpm);
-				
+				itReturnComponentHelper.saveAddNewChild(childBeanMap, parentBeanMap, childBeanLifeCycleHandler, parentBeanLifeCycleHandler, baseAbsolutePathToReturnDocuments, parentBeanAbsolutePath, parentBeanNameSpace, parentBeanNodeName, InvoiceDocumentDetail.class, wpm.getSession(), wpm);				
 				//check for legacy memberpayment bean if it exists lets add it to the new invoice this way its consistent with the new payment
 				
 			}
