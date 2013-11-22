@@ -10275,4 +10275,40 @@
       </sv:property>
     </sv:node>
     <!-- end of url -->
+    
+     <!-- new home page layout -->
+    <sv:node sv:name="home_v2">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:sitemapitem</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>c1725141-0e2d-4c91-9967-c8323c89b016</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+    <sv:value>hst:pages/homepage_v2.re</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:refId" sv:type="String">
+    <sv:value>home_ref</sv:value>
+  </sv:property>
+</sv:node>
+    
+    <!-- new home page layout (frontpage) --> 
+<sv:node sv:name="frontpage">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:sitemapitem</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>1107bb1b-68de-4a42-be99-d9af97d52500</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+    <sv:value>hst:pages/homepage_v2.re</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:refId" sv:type="String">
+    <sv:value>home_v2</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:relativecontentpath" sv:type="String">
+    <sv:value>services</sv:value>
+  </sv:property>
+</sv:node>
+    
 </sv:node>
