@@ -26,6 +26,18 @@
       <sv:property sv:name="jcr:primaryType" sv:type="Name">
         <sv:value>hst:channelinfo</sv:value>
       </sv:property>
+      <sv:property sv:name="emailCustomerService" sv:type="String">
+        <sv:value>info@wealth4india.com</sv:value>
+      </sv:property>
+      <sv:property sv:name="emailFrom" sv:type="String">
+        <sv:value>info@wealth4india.com</sv:value>
+      </sv:property>
+      <sv:property sv:name="emailFromName" sv:type="String">
+        <sv:value>Wealth4India Team</sv:value>
+      </sv:property>
+      <sv:property sv:name="emailSignature" sv:type="String">
+        <sv:value>Wealth4India</sv:value>
+      </sv:property>
       <sv:property sv:name="eriEnable26ASImport" sv:type="String">
         <sv:value>true</sv:value>
       </sv:property>
@@ -38,6 +50,9 @@
       <sv:property sv:name="eriUserId" sv:type="String">
         <sv:value>ERIA100690</sv:value>
       </sv:property>
+      <sv:property sv:name="isReseller" sv:type="String">
+        <sv:value>true</sv:value>
+      </sv:property>
       <sv:property sv:name="logo" sv:type="String">
         <sv:value>/content/gallery/logos/w4ilogo.png</sv:value>
       </sv:property>
@@ -49,6 +64,15 @@
       </sv:property>
       <sv:property sv:name="paymentEnabled" sv:type="String">
         <sv:value>true</sv:value>
+      </sv:property>
+      <sv:property sv:name="phoneCustomerService" sv:type="String">
+        <sv:value>+91-11-45067102, +91-11-25074341, +91-9136265229</sv:value>
+      </sv:property>
+      <sv:property sv:name="resellerId" sv:type="String">
+        <sv:value>w4india</sv:value>
+      </sv:property>
+      <sv:property sv:name="resellerName" sv:type="String">
+        <sv:value>Wealth4India</sv:value>
       </sv:property>
       <sv:property sv:name="themeCss" sv:type="String">
         <sv:value>/content/assets/themes/css/white.css</sv:value>
