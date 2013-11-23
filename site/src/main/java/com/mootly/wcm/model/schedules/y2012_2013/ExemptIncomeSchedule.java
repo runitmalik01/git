@@ -55,7 +55,10 @@ public class ExemptIncomeSchedule {
 
 		String itrSelection =  memberPersonalInformation.getFlexField("flex_string_ITRForm", "");
 		if(itrSelection.equals("ITR3") || itrSelection.equals("ITR4")){
-			scheduleEI.setShareOfProfitFirmAOP(indianCurrencyHelper.bigIntegerRound(otherSourcesDocument.getProfit_FirmAOP_BOI()));
+			/*scheduleEI.setShareOfProfitFirmAOP(new BigInteger("0"));*/
+			if(otherSourcesDocument != null){
+				scheduleEI.setShareOfProfitFirmAOP(indianCurrencyHelper.bigIntegerRound(otherSourcesDocument.getProfit_FirmAOP_BOI()));
+			}else scheduleEI.setShareOfProfitFirmAOP(new BigInteger("0"));
 			scheduleEI.setTotalExemptInc(scheduleEI.getInterestInc().add(scheduleEI.getDividendInc()).add(scheduleEI.getNetAgriIncOrOthrIncRule7())
 					.add(scheduleEI.getOthers()).add(scheduleEI.getLTCGWhereSTTPaid()).add(scheduleEI.getShareOfProfitFirmAOP()));
 		}else
