@@ -70,6 +70,8 @@ public class SelfAssesmentTaxDetail extends FlexibleDocument implements FormMapF
     Boolean isImported;
 	private boolean isReviewed;
 	
+	private Boolean isImportedFromDIT;
+	
 	public final boolean isMarkedForDeletion() {
 		return markedForDeletion;
 	}
@@ -83,6 +85,11 @@ public class SelfAssesmentTaxDetail extends FlexibleDocument implements FormMapF
 	}
 	public void setIsImported(Boolean isImported) {
 		this.isImported = isImported;
+	}
+	
+	public final boolean isImportedFromDIT() {
+		if ( isImportedFromDIT == null) isImportedFromDIT = getProperty("mootlywcm:isImportedFromDIT");
+		return isImportedFromDIT;
 	}
 	
 	public String getP_BSR() {
@@ -145,6 +152,7 @@ public class SelfAssesmentTaxDetail extends FlexibleDocument implements FormMapF
 			node.setProperty(SERIAL, getP_Serial());
 			node.setProperty(DATE, getP_Date());
 			node.setProperty(AMOUNT,getP_Amount());
+			if (isImportedFromDIT()) node.setProperty("mootlywcm:isImportedFromDIT", isImportedFromDIT());
     	}catch (ContentNodeBindingException re) {
     		log.error("Binding Node Error",re);
     	} catch (ValueFormatException e) {
@@ -184,6 +192,10 @@ public class SelfAssesmentTaxDetail extends FlexibleDocument implements FormMapF
 	public final void setP_Amount(Double val_amount) {
 		this.val_amount = val_amount;
 	}
+	
+	public final void setImportedFromDIT(boolean isImportedFromDIT) {
+		this.isImportedFromDIT = isImportedFromDIT;
+	}
 	@Override
 	public void fill(FormMap formMap) {
 		// TODO Auto-generated method stub
@@ -205,6 +217,11 @@ public class SelfAssesmentTaxDetail extends FlexibleDocument implements FormMapF
 			String stramt=formMap.getField("amountself").getValue();
 			double amt=Double.parseDouble(stramt);
 			setP_Amount(amt);
+		}
+		
+		if ( formMap.getField("isImportedFromDIT") != null) {
+			String isImportedFromDIT=formMap.getField("isImportedFromDIT").getValue();			
+			setImportedFromDIT(Boolean.valueOf(isImportedFromDIT));
 		}
 		if ( formMap.getField("date_creditself") != null) {
 			String strDate = formMap.getField("date_creditself").getValue();
@@ -235,6 +252,7 @@ public class SelfAssesmentTaxDetail extends FlexibleDocument implements FormMapF
 		setP_Date(objSelfAssesment.getP_Date());
 		setIsImported(objSelfAssesment.getIsImported());
 		
+		setImportedFromDIT(objSelfAssesment.isImportedFromDIT());
 	}
 
 	

@@ -13,6 +13,7 @@ public class Twenty26ASTCS {
 	String TAN;
 	String TotalTCS;
 	String isImported = "true";
+	Boolean isImportedFromDIT = true;
 	
 	@FormField(name="taxCredited",propertyName="AmtTCSClaimedThisYear",dataTypeValidationTypes={})
 	public final String getAmtTCSClaimedThisYear() {
@@ -48,6 +49,15 @@ public class Twenty26ASTCS {
 	@FormField(name="flex_string_isImported",propertyName="isImported",dataTypeValidationTypes={})
 	public String getIsImported() {
 		return isImported;
+	}
+	
+	@FormField(name="isImportedFromDIT",propertyName="isImportedFromDIT",dataTypeValidationTypes={})
+	public final Boolean getIsImportedFromDIT() {
+		return isImportedFromDIT;
+	}
+	
+	public final void setIsImportedFromDIT(Boolean isImportedFromDIT) {
+		this.isImportedFromDIT = isImportedFromDIT;
 	}
 	
 }

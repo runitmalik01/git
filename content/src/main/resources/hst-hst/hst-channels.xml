@@ -45,10 +45,10 @@
         <sv:value>true</sv:value>
       </sv:property>
       <sv:property sv:name="eriPassword" sv:type="String">
-        <sv:value>%ERIT000655%</sv:value>
+        <sv:value>arun@123</sv:value>
       </sv:property>
       <sv:property sv:name="eriUserId" sv:type="String">
-        <sv:value>ERIA100690</sv:value>
+        <sv:value>ERIU101869</sv:value>
       </sv:property>
       <sv:property sv:name="isReseller" sv:type="String">
         <sv:value>true</sv:value>
@@ -57,7 +57,7 @@
         <sv:value>/content/gallery/logos/w4ilogo.png</sv:value>
       </sv:property>
       <sv:property sv:name="pageTitlePrefix" sv:type="String">
-        <sv:value>WEALTH4INDIA</sv:value>
+        <sv:value>Income Tax Return Online, Income Tax eFiling India, Online Tax Filing, ITR e Filing - Wealth4India</sv:value>
       </sv:property>
       <sv:property sv:name="paymentAvailableTypes" sv:type="String">
         <sv:value>CHECK,CASH,RTGS,NET_BANKING</sv:value>

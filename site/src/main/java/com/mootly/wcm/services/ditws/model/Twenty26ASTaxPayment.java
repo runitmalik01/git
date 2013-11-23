@@ -13,7 +13,8 @@ public class Twenty26ASTaxPayment {
 	String SrlNoOfChaln;
 	String BSRCode;
 	String DateDep;
-	String isImported = "true";
+	String isImported = "true";	
+	Boolean isImportedFromDIT = true;
 	
 	@FormField(name="amountself",propertyName="Amt", dataTypeValidationTypes={})
 	public final String getAmt() {
@@ -51,5 +52,17 @@ public class Twenty26ASTaxPayment {
 		return isImported;
 	}
 	
+	@FormField(name="isImportedFromDIT",propertyName="isImportedFromDIT",dataTypeValidationTypes={})
+	public final Boolean getIsImportedFromDIT() {
+		return isImportedFromDIT;
+	}
+	
+	public final void setIsImportedFromDIT(Boolean isImportedFromDIT) {
+		this.isImportedFromDIT = isImportedFromDIT;
+	}
+	
+	public final void setIsImported(String isImported) {
+		this.isImported = isImported;
+	}
 	
 }

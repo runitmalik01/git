@@ -1,15 +1,10 @@
 package com.mootly.wcm.services.ditws.model;
 
-import java.lang.reflect.Method;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.DirectFieldAccessor;
-import org.springframework.beans.NotWritablePropertyException;
 
 import com.mootly.wcm.services.ditws.soap.SOAPCallWrapperHelper;
 

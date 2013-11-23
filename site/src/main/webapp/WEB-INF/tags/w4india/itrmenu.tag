@@ -381,7 +381,7 @@ request.setAttribute("isDITVerified",isDITVerified);
 		<c:when test="${fn:endsWith(scriptName,'servicerequest-itr.html')}">
 			<div class="alert alert-error">
 				<small>
-					PAN,. You will not be able to file your income tax until the information is verified			
+					Unverified Information. You will not be able to file your income tax until the information is verified			
 					Review your information (Name,DOB and PAN) and Click on the Save button.
 					<c:if test="${isVendor == 'true' && not empty memberpersonalinformation}">	
 						<c:out value="${memberpersonalinformation.ditVerificationMessage}"/>

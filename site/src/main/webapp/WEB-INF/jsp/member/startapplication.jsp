@@ -9,7 +9,7 @@
 <c:set var="startapplication">
 	<fmt:message key="member.start.application" />
 </c:set>
-<hippo-gogreen:title title="${ startapplication}" />
+<hippo-gogreen:title title="${startapplication}" />
 <%--res:breadcrumb / --%>
 <%-- <hst:link var ="mainSiteMapRefId" siteMapItemRefId="${mainSiteMapItemRefId}"/>
 <%

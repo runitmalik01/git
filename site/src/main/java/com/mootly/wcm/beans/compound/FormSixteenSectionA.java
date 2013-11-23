@@ -121,6 +121,8 @@ private final static Logger log = LoggerFactory.getLogger(FormSixteenSectionA.cl
 	private String pin;
 	private String state;
 	private Double allowNotExempt;
+	
+	private Boolean isImportedFromDIT;
 
 	//for personal information
 	public  String getEmploye_category() {
@@ -536,7 +538,11 @@ private final static Logger log = LoggerFactory.getLogger(FormSixteenSectionA.cl
 		if (allowNotExempt == null) allowNotExempt = getProperty("mootlywcm:allowNotExempt");
 		return allowNotExempt;
 	}
-
+	
+	public final Boolean isImportedFromDIT() {
+		if ( isImportedFromDIT == null) isImportedFromDIT = getProperty("mootlywcm:isImportedFromDIT");
+		return isImportedFromDIT;
+	}
 	// for setter method
 	public final void  setEmploye_category(String Employe_category) {
 		this.Employe_category = Employe_category;
@@ -854,5 +860,9 @@ private final static Logger log = LoggerFactory.getLogger(FormSixteenSectionA.cl
 	}
     public final void  setAllowNotExempt(Double allowNotExempt) {
 		this.allowNotExempt = allowNotExempt;
+	}
+    
+	public final void setImportedFromDIT(boolean isImportedFromDIT) {
+		this.isImportedFromDIT = isImportedFromDIT;
 	}
 }

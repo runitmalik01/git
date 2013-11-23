@@ -14,6 +14,7 @@ public class Twenty26ASTDSOnSalary {
 	String TotalTDSSal;
 	String IncChrgSal;
 	String TAN;
+	Boolean isImportedFromDIT = true;
 	
 	@FormField(name="employer",propertyName="EmployerOrDeductorOrCollecterName",dataTypeValidationTypes={})
 	public final String getEmployerOrDeductorOrCollecterName() {
@@ -47,6 +48,15 @@ public class Twenty26ASTDSOnSalary {
 	}
 	public final void setTAN(String tAN) {
 		TAN = tAN;
+	}
+	
+	@FormField(name="isImportedFromDIT",propertyName="isImportedFromDIT",dataTypeValidationTypes={})
+	public final Boolean getIsImportedFromDIT() {
+		return isImportedFromDIT;
+	}
+	
+	public final void setIsImportedFromDIT(Boolean isImportedFromDIT) {
+		this.isImportedFromDIT = isImportedFromDIT;
 	}
 
 }

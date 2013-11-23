@@ -52,6 +52,7 @@ public class FormSixteenDetail extends FormSixteenSectionB{
 	private String personalInfoUuid;
 
 	private boolean markedForDeletion;
+	
 
 	public final boolean isMarkedForDeletion() {
 		return markedForDeletion;
@@ -65,7 +66,7 @@ public class FormSixteenDetail extends FormSixteenSectionB{
 	public final String getPersonalInfoUuid() {
 		return personalInfoUuid;
 	}
-
+	
 	public final void setPersonalInfoUuid(String personalInfoUuid) {
 		this.personalInfoUuid = personalInfoUuid;
 	}
@@ -271,6 +272,9 @@ public class FormSixteenDetail extends FormSixteenSectionB{
 				node.setProperty("mootlywcm:allowNotExempt", getAllowNotExempt());}
 			
 			node.setProperty("mootlywcm:formsixteenuuid", getForm16Uuid());
+			
+			if (isImportedFromDIT()) node.setProperty("mootlywcm:isImportedFromDIT", isImportedFromDIT());
+			
 		} catch (RepositoryException rex) {
 			log.error("Repository Exception while binding",rex);
 		}
@@ -388,6 +392,8 @@ public class FormSixteenDetail extends FormSixteenSectionB{
 		setPin(objFormSixteen.getPin());	
 		setForm16Uuid(objFormSixteen.getForm16Uuid());
 		setAllowNotExempt(objFormSixteen.getAllowNotExempt());
+		
+		setImportedFromDIT(objFormSixteen.isImportedFromDIT());
 	}
 
 

@@ -617,12 +617,11 @@ public abstract class FormSixteenSectionB extends FormSixteenSectionA  implement
 		else{
 			setAllowNotExempt(value_allowNotExempt);
 		}
+		
+		if ( formMap.getField("isImportedFromDIT") != null) {
+			String isImportedFromDIT=formMap.getField("isImportedFromDIT").getValue();			
+			setImportedFromDIT(Boolean.valueOf(isImportedFromDIT));
+		}
 	}
-
-
-
-
-
-
 
 }
