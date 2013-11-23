@@ -44,7 +44,7 @@
 						class="icon-bar"></span>
 				</button>
 				<a class="w4i-logo" href="#"><img alt="Wealth4India"
-					src=""> </a>
+					src="./bootstrap_v2_img/w4ilogo_v2.png"> </a>
 			</div>
 
 			<div class="navbar-collapse collapse">
