@@ -3,9 +3,11 @@ package com.mootly.wcm.pdf;
 import java.io.PrintWriter;
 
 import com.itextpdf.text.pdf.parser.ImageRenderInfo;
+import com.itextpdf.text.pdf.parser.LineSegment;
 import com.itextpdf.text.pdf.parser.LocationTextExtractionStrategy;
 import com.itextpdf.text.pdf.parser.RenderListener;
 import com.itextpdf.text.pdf.parser.TextRenderInfo;
+import com.itextpdf.text.pdf.parser.Vector;
 
 public class MyTextRenderListener extends LocationTextExtractionStrategy implements RenderListener {
 
@@ -49,11 +51,12 @@ public class MyTextRenderListener extends LocationTextExtractionStrategy impleme
     public void renderText(TextRenderInfo renderInfo) {
         out.print("<");
         //out.print ( "X:" + renderInfo.getBaseline().getBoundingRectange());
-        out.print ( "X:" + renderInfo.getBaseline().getBoundingRectange().getX());
-        out.print ( "Y:" + renderInfo.getBaseline().getBoundingRectange().getY());
+        //out.print ( "X:" + renderInfo.getBaseline().getBoundingRectange().getX());
+        //out.print ( "Y:" + renderInfo.getBaseline().getBoundingRectange().getY());
         
-        out.print ( "Y:" + renderInfo.getBaseline().getStartPoint());
-        out.print ( "Y:" + renderInfo.getBaseline().getEndPoint());
+        out.print ( "I1:" + renderInfo.getBaseline().getStartPoint().get(Vector.I1));
+        out.print ( "I2:" + renderInfo.getBaseline().getStartPoint().get(Vector.I2));
+        out.print ( "I3:" + renderInfo.getBaseline().getStartPoint().get(Vector.I3));
         
         out.print(renderInfo.getText());
         out.print(">");

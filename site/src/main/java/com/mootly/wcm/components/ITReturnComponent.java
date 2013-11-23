@@ -419,7 +419,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			ITRScreenXmlValidateServiceImpl iTRScreenXmlValidateServiceImpl = new ITRScreenXmlValidateServiceImpl();
 			iTRScreenXmlValidateServiceImpl.getValidateXmlBasedOnReqScreen(request, response);
 		}
-		String redirectToIfPaymentNotFound = getRedirectURLForSiteMapItem(request, response, null,(  (isVendor(request) && isOnVendorPortal()) ? "vendor-servicerequest-itr-payment" : "servicerequest-itr-payment"), getFinancialYear(), getTheFolderContainingITRDocuments(), getPAN());
+		String redirectToIfPaymentNotFound = getRedirectURLForSiteMapItem(request, response, null,(  (isVendor(request) && isOnVendorPortal()) ? "vendor-memberinvoice" : "memberinvoice"), getFinancialYear(), getTheFolderContainingITRDocuments(), getPAN());
 		String redirectToIfConfirmationNotFound = getRedirectURLForSiteMapItem(request, response, null, (  (isVendor(request) && isOnVendorPortal()) ? "vendor-servicerequest-itr-tos-confirmation" : "servicerequest-itr-tos-confirmation"), getFinancialYear(), getTheFolderContainingITRDocuments(), getPAN());
 		if (pageAction != null && (pageAction.equals(PAGE_ACTION.SHOW_ITR_SUMMARY) || pageAction.equals(PAGE_ACTION.DOWNLOAD_ITR_SUMMARY) || pageAction.equals(PAGE_ACTION.DOWNLOAD_ITR_XML) || pageAction.equals(PAGE_ACTION.EMAIL_ITR_XML_AND_SUMMARY)) ) {
 			try {

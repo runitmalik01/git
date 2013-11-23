@@ -338,14 +338,17 @@
             <artifactId>cargo-maven2-plugin</artifactId>
             <configuration>
               <configuration>				
-                <deployables>				
-				 <deployable>
+                <deployables>		
+                 <!-- remove solr for now -->
+                 <!-- 	
+				 <deployable>				
                     <type>war</type>
                     <properties>
                       <context>/site/solr</context>
                     </properties>
                     <location>${project.basedir}/solr/etc/war/solr-4.3.0.war</location>
                   </deployable>
+                   -->	
                   <deployable>
                     <type>war</type>
                     <properties>
@@ -378,6 +381,8 @@
                   <log4j.configuration>file:${project.basedir}/conf/log4j-dev.xml</log4j.configuration>
 				  <solr.solr.home>${project.basedir}\solr\solr_home</solr.solr.home>
 				  <bootstrap_confdir></bootstrap_confdir>
+				  <controlFY>true</controlFY>
+				  <FY.2012.enabled>true</FY.2012.enabled>
                 </systemProperties>
               </container>
             </configuration>

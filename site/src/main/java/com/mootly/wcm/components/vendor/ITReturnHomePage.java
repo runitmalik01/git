@@ -47,7 +47,7 @@ public class ITReturnHomePage extends AbstractITReturnHomePage {
 	@Override
 	public HippoBean getScope(HstRequest request) {
 		// TODO Auto-generated method stub
-		return getSiteContentBaseBean(request);
+		return getSiteContentBaseBeanForReseller(request);
 	}
 
 }

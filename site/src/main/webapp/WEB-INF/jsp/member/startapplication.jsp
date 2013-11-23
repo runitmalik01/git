@@ -703,15 +703,17 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 			    <div class="span2">
 			    	<div class="rowlabel"><label for="flex_string_ITRForm"><small>Select the ITR Package</small></label></div>
 			    </div>
-				<div class="span4">
+				<div class="span5">
 					<div class="rowlabel"><label for="whoCan"><small>Who can select this package</small></label></div>
 				</div>
-				<div class="span4">
+				<div class="span5">
 					<div class="rowlabel"><label for="whoCannot"><small>Who should not select this package</small></label></div>
 				</div>
+				<%--
 				<div class="span2">
 					<div class="rowlabel"><label for="filingMode"><small><abbr title="Choose eFile if you want to do it yourself. eZFile lets you upload documents to <w4india:resellername/> and then let <w4india:resellername/> prepare the tax return for you.">Mode</abbr>&nbsp;<a href='<hst:link siteMapItemRefId="serviceprice"/>'>Help</a></small></label></div>
 				</div>
+				 --%>
 			</div>
 			<div class="row-fluid show-grid">
 				<div class="span2">
@@ -720,13 +722,15 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 							<option <c:if test="${parentBean.selectedITRForm == itrForm}">selected</c:if> value="${itrForm}"><fmt:message key="${itrForm}.packageName"></fmt:message></option>
 						</c:forEach>
 					</select>
+					<input type="hidden" name="flex_string_ITRServiceDelivery" value="DIY"/>					
 				</div>
-				<div class="span4">
+				<div class="span5">
 					<div style="font-size:small" id="whoCan"></div>
 				</div>
-				<div class="span4">
+				<div class="span5">
 					<div style="font-size:small" id="whoCannot"></div>
 				</div>
+				<%--
 				<div class="span2">
 					<div style="font-size:small" id="filingMode">
 						<input type="hidden" id="hidden_flex_string_ITRServiceDelivery" name="hidden_flex_string_ITRServiceDelivery" value="${parentBean.selectedServiceDeliveryOption}">
@@ -735,6 +739,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 						</select>
 					</div>
 				</div>
+				 --%>
 			</div>
 		</fieldset>
 		<c:choose>

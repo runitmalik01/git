@@ -105,6 +105,10 @@ public class StartApplication extends ITReturnComponent {
 		super.doBeforeRender(request, response);
 		//being member return of getMemberPersonalInformation() of ITReturnComponent it return previous entered and viewed value.
 		parentBean =  (MemberPersonalInformation)request.getAttribute("parentBean"); //getMemberPersonalInformation();
+		
+		List<HippoBean> listOfITRServices = loadAllBeansUnderTheFolder(request, response, "services/incometaxreturn", "mootlywcm:Name",SORT_DIRECTION.ASC);
+		request.setAttribute("listOfITRServices", listOfITRServices);
+		
 		RetrievePANResponse retrievePANResponse = null;
 		//Call to DIT Service then get the Response
 		if(shouldRetrievePANInformation()||shouldRetrievePANInformation()){
@@ -344,7 +348,8 @@ public class StartApplication extends ITReturnComponent {
 	public void doAction(HstRequest request, HstResponse response)
 			throws HstComponentException {
 		// TODO Auto-generated method stub
-		memberPersonalInfoUpdateHandler = new MemberPersonalInfoUpdateHandler(getSequenceGenerator(), loadAllBeansUnderTheFolder(request, response, "services/incometaxreturn", "mootlywcm:Name",SORT_DIRECTION.ASC),getChannelInfoWrapper(),getAddClientDetailsService());
+		List<HippoBean> listOfITRServices = loadAllBeansUnderTheFolder(request, response, "services/incometaxreturn", "mootlywcm:Name",SORT_DIRECTION.ASC);
+		memberPersonalInfoUpdateHandler = new MemberPersonalInfoUpdateHandler(getSequenceGenerator(), listOfITRServices ,getChannelInfoWrapper(),getAddClientDetailsService());
 		super.doAction(request, response);
 	}
 

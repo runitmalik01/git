@@ -10,9 +10,11 @@ import javax.jcr.ItemNotFoundException;
 import javax.jcr.LoginException;
 import javax.jcr.Node;
 import javax.jcr.NodeIterator;
+import javax.jcr.Property;
 import javax.jcr.Repository;
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
+import javax.jcr.Value;
 import javax.jcr.query.Query;
 import javax.jcr.query.QueryResult;
 
@@ -261,17 +263,23 @@ public class MootlyHippoUserDetailsServiceImpl implements MootlyUserDetailsServi
 	      
 	      boolean isVendor = false;
 	      try {
-		      Node theParentHardDoc = userNode.getParent();
-		      //find if there is a vendor signup for this uuid
-		      String parentHardDocUUID = theParentHardDoc.getIdentifier();
-		      String statementForVendor = MessageFormat.format(DEFAULT_VENDOR_USER_QUERY, parentHardDocUUID);
-		      Query qVendor = session.getWorkspace().getQueryManager().createQuery(statementForVendor, getQueryLanguage());
-		      QueryResult resultVendor = qVendor.execute();
-		      NodeIterator nodeItVendor = resultVendor.getNodes();
-		      Node vendorNode = (nodeItVendor.hasNext() ? vendorNode = nodeItVendor.nextNode() : null);
-		      if (vendorNode != null) {
-		    	  isVendor = true;
-		      }
+	    	  if (userNode.hasProperty("mootlywcm:roles")) {
+	    		   Property theProperty = userNode.getProperty("mootlywcm:roles");
+	    		   if (theProperty.isMultiple()) {
+	    			   Value[] values =  theProperty.getValues();
+	    			   for (Value aValue:values) {
+	    				   if ( aValue.getString().equalsIgnoreCase("VENDOR")) {
+	    					   isVendor = true;
+	    					   break;
+	    				   }
+	    			   }
+	    		   }
+	    		   else {
+	    			   if ( theProperty.getString() != null && "VENDOR".equalsIgnoreCase(theProperty.getString()) ) {
+	    				   isVendor = true;
+	    			   }
+	    		   }
+	    	  }		      
 	      }catch (Exception ex) {
 	    	  ex.printStackTrace();
 	      }

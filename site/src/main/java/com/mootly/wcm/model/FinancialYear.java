@@ -43,6 +43,21 @@ public enum FinancialYear {
 	FinancialYear(int startYear,boolean isActive) {
 		this.startYear = startYear;
 		this.isActive = isActive;
+		
+		String controlFYStr = System.getProperty("controlFY");
+		boolean controlFY = false;
+		if (controlFYStr != null && Boolean.valueOf(controlFYStr)) {
+			controlFY = true;
+		}
+		if (controlFY) {
+			String fyStartYearEnabled = System.getProperty("FY."+startYear + ".enabled");
+			if (fyStartYearEnabled != null) {
+				this.isActive = Boolean.valueOf(fyStartYearEnabled);
+			}
+			else {
+				this.isActive = false;
+			}
+		}
 
 		this.endYear = startYear + 1;
 
