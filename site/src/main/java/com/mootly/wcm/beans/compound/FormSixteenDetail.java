@@ -273,7 +273,7 @@ public class FormSixteenDetail extends FormSixteenSectionB{
 			
 			node.setProperty("mootlywcm:formsixteenuuid", getForm16Uuid());
 			
-			if (isImportedFromDIT()) node.setProperty("mootlywcm:isImportedFromDIT", isImportedFromDIT());
+			if (isImportedFromDIT() != null) node.setProperty("mootlywcm:isImportedFromDIT", isImportedFromDIT());
 			
 		} catch (RepositoryException rex) {
 			log.error("Repository Exception while binding",rex);

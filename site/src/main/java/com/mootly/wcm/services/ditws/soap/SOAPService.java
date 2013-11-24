@@ -1,6 +1,8 @@
 package com.mootly.wcm.services.ditws.soap;
 
+import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -12,6 +14,7 @@ import java.security.SecureRandom;
 import java.security.Security;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -126,10 +129,43 @@ public class SOAPService {
 	 * @throws Exception
 	 */
 	public Map<String, Object> executeSOAPCall(SOAPCallWrapper soapCallWrapper,List<Map<String,String>> initialParamValues,SOAPMessage soapMessage) throws MalformedURLException,XPathExpressionException,  SOAPFaultException, SOAPException{
+		String soapRequestStr = null;
+		try {
+			//doTrustToCertificates();
+			ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+			BufferedOutputStream bo = new BufferedOutputStream(byteArrayOutputStream);
+			soapMessage.writeTo(bo);
+			bo.flush();
+			soapRequestStr = byteArrayOutputStream.toString("UTF-8");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		SOAPMessage soapResponse = executeSOAPCallRAW(soapCallWrapper, initialParamValues,soapMessage);
+		String soapResponseStr = null;
+		try {
+			//doTrustToCertificates();
+			ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+			BufferedOutputStream bo = new BufferedOutputStream(byteArrayOutputStream);
+			soapResponse.writeTo(bo);
+			bo.flush();
+			soapResponseStr = byteArrayOutputStream.toString("UTF-8");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		//SOAPMessage soapMessage = SOAPCallWrapperHelper.createSOAPMessage(soapCallWrapper, initialParamValues);
 		//SOAPMessage soapResponse = callWebService(soapCallWrapper.getOperation(),soapMessage,soapCallWrapper.getSoapConnection(),soapCallWrapper.getEndPointURL());
-		Map<String, Object> outputMapLocal= SOAPCallWrapperHelper.parseSOAPResponse(soapResponse, soapCallWrapper);		
+		Map<String, Object> outputMapLocal= SOAPCallWrapperHelper.parseSOAPResponse(soapResponse, soapCallWrapper);
+		if (outputMapLocal == null && (soapRequestStr != null || soapResponseStr != null) ) {
+			outputMapLocal =new HashMap<String, Object>(2);
+		}
+		if (soapRequestStr != null) {
+			outputMapLocal.put("soapRequest", soapRequestStr);
+		}
+		if (soapResponseStr != null) {
+			outputMapLocal.put("soapResponse", soapResponseStr);
+		}
 		return outputMapLocal;
 	}
 	
@@ -164,12 +200,7 @@ public class SOAPService {
 				logger.debug("Now Ready to Connect to " + endpointURL.toExternalForm());
 				debugMessage(startTime, SOAPMessageDirection.IN  ,SOAPDebugVerbosity.DEBUG,soapMessage,operation);
 			}			
-			try {
-				//doTrustToCertificates();
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			
 			response = soapConnection.call(soapMessage, endpointURL);
 			if (response != null  && response.getSOAPBody() != null && response.getSOAPBody().getFault() != null) {
 				SOAPFault soapFault = response.getSOAPBody().getFault();

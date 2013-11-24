@@ -27,20 +27,19 @@
 		</div>
 	</c:forEach>
 </c:if>
-<h3 style="font-style: italic; color: red;">Please review the data
+<h3>Please review the data
 	and click on Import if you want this data to be imported in your tax
 	return</h3>
 <c:choose>
 	<c:when test="${pageAction == 'SYNC_TDS_FROM_DIT'}">
-
 		<form id="tdsfromdit" action="${actionUrl}" method="post"
 			name="tdsfromdit">
-			<h4 style="font-style: italic; color: blue;">TDS Salaries</h4>
+			<h4>TDS Salaries</h4>
 			<table class="table table-striped">
 				<tr>
 					<th>Deductor Name</th>
 					<th>TAN of Deductor</th>
-					<th>Income Chrgable on Salary</th>
+					<th>Income Chargable on Salary</th>
 					<th>Total TDS on Salary</th>
 				</tr>
 				<c:choose>
@@ -73,8 +72,7 @@
 	String TAN;
 	String ClaimOutOfTotTDSOnAmtPaid;
 	 --%>
-			<h4 style="font-style: italic; color: blue;">TDS Other than
-				Salaries</h4>
+			<h4>TDS Other than Salaries</h4>
 			<table class="table table-striped">
 				<thead>
 					<tr>
@@ -121,8 +119,7 @@
 	String TAN;
 	String TotalTCS;
 	 --%>
-			<h4 style="font-style: italic; color: blue;">Tax Collected form
-				Source</h4>
+			<h4>Tax Collected from Source</h4>
 			<table class="table table-striped">
 				<thead>
 					<tr>
@@ -162,7 +159,7 @@
 	String BSRCode;
 	String DateDep;
 	 --%>
-			<h4 style="font-style: italic; color: blue;">Tax Payments</h4>
+			<h4>Tax Payments</h4>
 			<table class="table table-striped">
 				<thead>
 					<tr>
@@ -197,7 +194,7 @@
 			<div class="row-fluid show-grid">
 				<div class="span3 offset10">
 					<a href="${redirectURLToSamePage}" class="button olive">Cancel</a>
-					<input type="submit" value="Import" style="color: maroon;">
+					<input type="submit" value="Import" class="button default">
 				</div>
 			</div>
 		</form>

@@ -40,6 +40,7 @@ import com.mootly.wcm.model.ITReturnType;
 import com.mootly.wcm.model.PaymentType;
 import com.mootly.wcm.model.PaymentUpdateType;
 import com.mootly.wcm.model.PaymentVerificationStatus;
+import com.mootly.wcm.services.FormMapHelper;
 import com.mootly.wcm.services.citruspay.Enquiry;
 import com.mootly.wcm.services.citruspay.Transaction.ENQUIRY_RESP_CODE;
 import com.mootly.wcm.services.citruspay.model.enquiry.EnquiryResponse;
@@ -489,6 +490,20 @@ public final class ITReturnComponentHelper {
 					}
 				}
 			}		
+	}
+	
+	public void saveElementsToRepository(String baseAbsolutePathToReturnDocuments,List<? extends Object> listOfObjects,Class<? extends HippoBean> parentBeanClass,Class<? extends HippoBean> childBeanClass,Session persistableSession, WorkflowPersistenceManager wpm) throws InvalidNavigationException, InstantiationException, IllegalAccessException, ObjectBeanManagerException {
+		FormMapHelper formMapHelper = new FormMapHelper();
+		if (listOfObjects != null && listOfObjects.size() > 0) {
+			for (Object anObject:listOfObjects) {
+				String parentBeanNodeName = getParentBeanNodeName(parentBeanClass);
+				String parentBeanNameSpace = getParentBeanNamespace(parentBeanClass);
+				String parentBeanAbsolutePath = getParentBeanAbsolutePath(baseAbsolutePathToReturnDocuments, parentBeanNodeName);
+				//Class<? extends HippoBean> childBeanClass = SelfAssesmentTaxDetail.class;
+				FormMap formMap = formMapHelper.convertToFormMap(anObject);
+				saveAddNewChild(formMap,null, null, null, baseAbsolutePathToReturnDocuments, parentBeanAbsolutePath, parentBeanNameSpace, parentBeanNodeName, childBeanClass, persistableSession, wpm);
+			}
+		}
 	}
 
 }

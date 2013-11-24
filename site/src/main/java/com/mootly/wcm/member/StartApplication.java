@@ -349,7 +349,7 @@ public class StartApplication extends ITReturnComponent {
 			throws HstComponentException {
 		// TODO Auto-generated method stub
 		List<HippoBean> listOfITRServices = loadAllBeansUnderTheFolder(request, response, "services/incometaxreturn", "mootlywcm:Name",SORT_DIRECTION.ASC);
-		memberPersonalInfoUpdateHandler = new MemberPersonalInfoUpdateHandler(getSequenceGenerator(), listOfITRServices ,getChannelInfoWrapper(),getAddClientDetailsService());
+		memberPersonalInfoUpdateHandler = new MemberPersonalInfoUpdateHandler(getSequenceGenerator(), listOfITRServices ,getChannelInfoWrapper(),getAddClientDetailsService(),getRetrieve26ASService(),getFinancialYear());
 		super.doAction(request, response);
 	}
 

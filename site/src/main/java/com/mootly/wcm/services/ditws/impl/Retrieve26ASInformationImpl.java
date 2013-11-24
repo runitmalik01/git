@@ -10,7 +10,6 @@ import java.util.Map;
 import javax.xml.soap.SOAPException;
 import javax.xml.xpath.XPathExpressionException;
 
-import org.apache.commons.lang.time.DateUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

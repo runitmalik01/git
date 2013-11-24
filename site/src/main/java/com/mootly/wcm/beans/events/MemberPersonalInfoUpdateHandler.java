@@ -1,33 +1,40 @@
 package com.mootly.wcm.beans.events;
 
-import java.util.ArrayList;
-import java.util.GregorianCalendar;
 import java.util.List;
 
 import org.hippoecm.hst.component.support.forms.FormField;
 import org.hippoecm.hst.component.support.forms.FormMap;
+import org.hippoecm.hst.component.support.forms.FormUtils;
 import org.hippoecm.hst.content.beans.manager.workflow.WorkflowPersistenceManager;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.mootly.wcm.beans.DITResponseDocument;
+import com.mootly.wcm.beans.FormSixteenDocument;
 import com.mootly.wcm.beans.InvoiceDocument;
 import com.mootly.wcm.beans.MemberPersonalInformation;
+import com.mootly.wcm.beans.SelfAssesmetTaxDocument;
 import com.mootly.wcm.beans.Service;
+import com.mootly.wcm.beans.TcsDocument;
+import com.mootly.wcm.beans.TdsFromothersDocument;
 import com.mootly.wcm.beans.compound.CostModel;
+import com.mootly.wcm.beans.compound.DITResponseDocumentDetail;
+import com.mootly.wcm.beans.compound.FormSixteenDetail;
 import com.mootly.wcm.beans.compound.InvoiceDocumentDetail;
+import com.mootly.wcm.beans.compound.SelfAssesmentTaxDetail;
+import com.mootly.wcm.beans.compound.TcsDetail;
+import com.mootly.wcm.beans.compound.TdsOthersDetail;
+import com.mootly.wcm.beans.compound.DITResponseDocumentDetail.DITSOAPOperation;
 import com.mootly.wcm.channels.ChannelInfoWrapper;
 import com.mootly.wcm.components.ITReturnComponentHelper;
+import com.mootly.wcm.model.FinancialYear;
 import com.mootly.wcm.model.ITRForm;
 import com.mootly.wcm.model.ITRServiceDelivery;
 import com.mootly.wcm.services.SequenceGenerator;
 import com.mootly.wcm.services.ditws.AddClientDetails;
-import com.mootly.wcm.services.ditws.RetrievePANInformation;
-import com.mootly.wcm.services.ditws.exception.DataMismatchException;
-import com.mootly.wcm.services.ditws.exception.InvalidFormatException;
-import com.mootly.wcm.services.ditws.exception.MissingInformationException;
-import com.mootly.wcm.services.ditws.model.AddClientDetailsResponse;
-import com.mootly.wcm.services.ditws.model.RetrievePANResponse;
+import com.mootly.wcm.services.ditws.Retrieve26ASInformation;
+import com.mootly.wcm.services.ditws.model.Twenty26ASResponse;
 
 public class MemberPersonalInfoUpdateHandler extends GenericLifeCycleHandler implements BeanLifecycle<HippoBean>{
 	Logger logger = LoggerFactory.getLogger(MemberPersonalInfoUpdateHandler.class);
@@ -35,6 +42,8 @@ public class MemberPersonalInfoUpdateHandler extends GenericLifeCycleHandler imp
 	final ChannelInfoWrapper channelInfoWrapper;
 	final SequenceGenerator sequenceGenerator;
 	final AddClientDetails addClientDetails;
+	final Retrieve26ASInformation retrieve26asInformation;
+	final FinancialYear financialYear;
 	
 	String serviceName;
 	String serviceQty;
@@ -43,11 +52,13 @@ public class MemberPersonalInfoUpdateHandler extends GenericLifeCycleHandler imp
 	
 	
 	
-	public MemberPersonalInfoUpdateHandler( SequenceGenerator sequenceGenerator,List<HippoBean> itrServices,ChannelInfoWrapper channelInfoWrapper, AddClientDetails addClientDetails) {
+	public MemberPersonalInfoUpdateHandler( SequenceGenerator sequenceGenerator,List<HippoBean> itrServices,ChannelInfoWrapper channelInfoWrapper, AddClientDetails addClientDetails, Retrieve26ASInformation retrieve26asInformation,FinancialYear financialYear) {
 		this.sequenceGenerator = sequenceGenerator;
 		this.itrServices = itrServices;
 		this.channelInfoWrapper = channelInfoWrapper;
 		this.addClientDetails = addClientDetails;
+		this.retrieve26asInformation = retrieve26asInformation;
+		this.financialYear = financialYear;
 	}
 	
 	@Override
@@ -69,6 +80,7 @@ public class MemberPersonalInfoUpdateHandler extends GenericLifeCycleHandler imp
 		super.afterUpdate(beanBeforeUpdate, beanAfterUpdate, wpm,baseAbsolutePathToReturnDocuments,itReturnComponentHelper);
 		try {
 			MemberPersonalInformation memberPersonalInformation = (MemberPersonalInformation) wpm.getObject(baseAbsolutePathToReturnDocuments + "/" + MemberPersonalInformation.class.getSimpleName().toLowerCase());
+			//DITResponseDocument ditResponseDocument = (DITResponseDocument) wpm.getObject(baseAbsolutePathToReturnDocuments + "/" + DITResponseDocument.class.getSimpleName().toLowerCase());
 			Service selectedService = null;
 			CostModel theSelectedCostModel = null;
 			ITRForm itrForm = memberPersonalInformation.getSelectedITRForm();
@@ -100,7 +112,7 @@ public class MemberPersonalInfoUpdateHandler extends GenericLifeCycleHandler imp
 					if (invoiceDocumentDetail.getCreatedBySource() != null && MemberPersonalInformation.class.getSimpleName().toLowerCase().equals(invoiceDocumentDetail.getCreatedBySource())) {
 						didFindTheRecord = true;
 						if ( 	invoiceDocumentDetail.getServiceName() == null || !invoiceDocumentDetail.getServiceName().equals( selectedService.getName() ) ||
-								invoiceDocumentDetail.getServiceRate() == null || !invoiceDocumentDetail.getServiceRate().equals( theSelectedCostModel.getCost() ) ||  	
+								//invoiceDocumentDetail.getServiceRate() == null || !invoiceDocumentDetail.getServiceRate().equals( theSelectedCostModel.getCost() ) ||  	
 								invoiceDocumentDetail.getFilingMode() == null || !invoiceDocumentDetail.getFilingMode().equals( theSelectedCostModel.getOfferingMode() ) 
 							) {
 							updateExisting = true;
@@ -163,6 +175,30 @@ public class MemberPersonalInfoUpdateHandler extends GenericLifeCycleHandler imp
 				//String baseAbsolutePathToReturnDocuments = beanAfterUpdate.getPath() + "/../"
 				itReturnComponentHelper.saveUpdateExistingChild(childBeanMap, parentBeanMap, childBeanLifeCycleHandler, parentBeanLifeCycleHandler, baseAbsolutePathToReturnDocuments, parentBeanAbsolutePath, parentBeanNameSpace, parentBeanNodeName, InvoiceDocumentDetail.class, wpm.getSession(), wpm, childBeanCanonicalUUID);
 			}
+			
+			//as of now I am simply going to run the IMPORT from DIT but making sure that the client has been authorized by DIT
+			Twenty26ASResponse twenty26asResponse = retrieve26asInformation.retrieve26ASInformation(channelInfoWrapper.getWebSiteInfo().getEriUserId(),channelInfoWrapper.getWebSiteInfo().getEriPassword(),channelInfoWrapper.getWebSiteInfo().getEriCertChain(),channelInfoWrapper.getWebSiteInfo().getEriSignature(), memberPersonalInformation.getPAN(), memberPersonalInformation.getDOB() , financialYear.getAssessmentYearForDITSOAPCall());
+			itReturnComponentHelper.saveElementsToRepository(baseAbsolutePathToReturnDocuments, twenty26asResponse.getTwenty26asTaxPayments(),SelfAssesmetTaxDocument.class,SelfAssesmentTaxDetail.class,wpm.getSession(),wpm);
+			itReturnComponentHelper.saveElementsToRepository(baseAbsolutePathToReturnDocuments, twenty26asResponse.getTwenty26astdsOtherThanSalaries(),TdsFromothersDocument.class,TdsOthersDetail.class,wpm.getSession(),wpm);
+			itReturnComponentHelper.saveElementsToRepository(baseAbsolutePathToReturnDocuments, twenty26asResponse.getTwenty26astdsOnSalaries(),FormSixteenDocument.class,FormSixteenDetail.class,wpm.getSession(),wpm);
+			itReturnComponentHelper.saveElementsToRepository(baseAbsolutePathToReturnDocuments, twenty26asResponse.getTwenty26astcs(),TcsDocument.class,TcsDetail.class,wpm.getSession(),wpm);
+			
+			//now save an import document
+			FormMap theMapForSOAPResponse = new FormMap();
+			
+			FormField theSOAPOperation = new FormField("soapOperation");
+			theSOAPOperation.addValue(DITSOAPOperation.getTDSDetails.name());
+			theMapForSOAPResponse.addFormField(theSOAPOperation);
+			
+			childBeanLifeCycleHandler = null;
+			parentBeanLifeCycleHandler = null;
+			parentBeanAbsolutePath = baseAbsolutePathToReturnDocuments + "/" + DITResponseDocument.class.getSimpleName().toLowerCase();
+			parentBeanNameSpace = "mootlywcm:ditResponseDocument";
+			parentBeanNodeName = DITResponseDocument.class.getSimpleName().toLowerCase();
+			itReturnComponentHelper.saveAddNewChild(theMapForSOAPResponse, null, null, null, baseAbsolutePathToReturnDocuments, parentBeanAbsolutePath, parentBeanNameSpace, parentBeanNodeName, DITResponseDocumentDetail.class, wpm.getSession(), wpm);
+			
+			
+			//now before the page is redirected lets set a parameter so that the next page can do a proper display on what we have imported.
 		}catch (Exception e) {
 			logger.error("Error in afterUpdate ",e);
 		}

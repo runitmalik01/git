@@ -48,26 +48,30 @@ public class Interest234BCalc {
 					String selfAssessmentDatestr = selfAssesmentTaxDetail.getDateStr();
 					//calculating difference between due date and selfassessment date
 					Date selfAssessmentDate = null;
-					try {
-						selfAssessmentDate = indianCurrencyHelper.parsedate(selfAssessmentDatestr);
-					} catch (ParseException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
+					if (selfAssessmentDatestr != null) {
+						try {
+							selfAssessmentDate = indianCurrencyHelper.parsedate(selfAssessmentDatestr);
+						} catch (ParseException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 					}
-					if(!totalMapFor234B.isEmpty()){
-						Date savedKey = null;
-						for(Date key : totalMapFor234B.keySet()){
-							if(key.getMonth() == selfAssessmentDate.getMonth() && key.getYear() == selfAssessmentDate.getYear()){
-								amount = amount + totalMapFor234B.get(key);
-								savedKey = key;
+					if (selfAssessmentDate != null) {
+						if(!totalMapFor234B.isEmpty()){
+							Date savedKey = null;
+							for(Date key : totalMapFor234B.keySet()){
+								if(key.getMonth() == selfAssessmentDate.getMonth() && key.getYear() == selfAssessmentDate.getYear()){
+									amount = amount + totalMapFor234B.get(key);
+									savedKey = key;
+								}
 							}
+							if(savedKey != null){
+								totalMapFor234B.remove(savedKey);
+							}
+							totalMapFor234B.put(selfAssessmentDate, amount);
+						}else{
+							totalMapFor234B.put(selfAssessmentDate, amount);
 						}
-						if(savedKey != null){
-							totalMapFor234B.remove(savedKey);
-						}
-						totalMapFor234B.put(selfAssessmentDate, amount);
-					}else{
-						totalMapFor234B.put(selfAssessmentDate, amount);
 					}
 				}
 			}

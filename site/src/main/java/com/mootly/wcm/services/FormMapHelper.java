@@ -52,7 +52,33 @@ public class FormMapHelper {
 		    	if (formField != null) {
 			        String fieldName = formField.name();
 			        String propertyName = formField.propertyName();		
-			        String theValue = (String) directFieldAccessor.getPropertyValue(propertyName);	
+			        Object theObjValue = directFieldAccessor.getPropertyValue(propertyName);
+			        Class<? extends Object> theConverter = theObjValue.getClass(); 
+			        String theValue = null;
+			        if (theConverter != String.class) {		        		
+						try {
+							Method getToStringMethod = theConverter.getMethod("toString");
+							theValue = (String) getToStringMethod.invoke(theObjValue);												
+						} catch (IllegalAccessException e) {
+							// TODO Auto-generated catch block
+							log.error("Error in setting the bean",e);
+						} catch (IllegalArgumentException e) {
+							// TODO Auto-generated catch block
+							log.error("Error in setting the bean",e);
+						} catch (InvocationTargetException e) {
+							// TODO Auto-generated catch block
+							log.error("Error in setting the bean",e);
+						} catch (NoSuchMethodException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						} catch (SecurityException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+			        }
+			        else {
+			        	theValue = (String) directFieldAccessor.getPropertyValue(propertyName);	
+			        }
 			        org.hippoecm.hst.component.support.forms.FormField theFormField = new org.hippoecm.hst.component.support.forms.FormField(fieldName);
 			        theFormField.addValue(theValue);
 			        theMapForForm.put(fieldName, theFormField);

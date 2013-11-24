@@ -93,7 +93,7 @@ public class TdsOthersDetail extends FlexibleDocument implements FormMapFiller {
 		return financial_year;
 	}
 
-	public final boolean isImportedFromDIT() {
+	public final Boolean isImportedFromDIT() {
 		if ( isImportedFromDIT == null) isImportedFromDIT = getProperty("mootlywcm:isImportedFromDIT");
 		return isImportedFromDIT;
 	}
@@ -159,7 +159,7 @@ public class TdsOthersDetail extends FlexibleDocument implements FormMapFiller {
 			node.setProperty(tds_Certificate,getTds_Certificate());
 			node.setProperty(financial_Year,getFinancial_Year());
 
-			if (isImportedFromDIT()) node.setProperty("mootlywcm:isImportedFromDIT", isImportedFromDIT());
+			if (isImportedFromDIT() != null) node.setProperty("mootlywcm:isImportedFromDIT", isImportedFromDIT());
 		} catch (RepositoryException rex) {
 			log.error("Repository Exception while binding",rex);
 		}

@@ -78,7 +78,7 @@ public class MemberInvoice extends ITReturnComponent {
 		//if there is a respCode and its not success ignore it
 		InvoiceDocument invoiceDocument = (InvoiceDocument) request.getAttribute(InvoiceDocument.class.getSimpleName().toLowerCase());
 		if (invoiceDocument == null || invoiceDocument.getInvoiceDocumentDetailList() == null || invoiceDocument.getInvoiceDocumentDetailList().size() == 0) {
-			MemberPersonalInfoUpdateHandler memberPersonalInfoUpdateHandler = new MemberPersonalInfoUpdateHandler(getSequenceGenerator(), serviceDocumentList, getChannelInfoWrapper(), getAddClientDetailsService());
+			MemberPersonalInfoUpdateHandler memberPersonalInfoUpdateHandler = new MemberPersonalInfoUpdateHandler(getSequenceGenerator(), serviceDocumentList, getChannelInfoWrapper(), getAddClientDetailsService(),getRetrieve26ASService(),getFinancialYear());
 			Session persSession;
 			try {
 				persSession = getPersistableSession(request);

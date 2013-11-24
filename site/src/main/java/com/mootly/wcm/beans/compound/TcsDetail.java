@@ -102,7 +102,7 @@ public class TcsDetail extends HippoItem implements FormMapFiller {
 		return markedForDeletion;
 	}
 
-	public final boolean isImportedFromDIT() {
+	public final Boolean isImportedFromDIT() {
 		if (isImportedFromDIT == null)
 			isImportedFromDIT = getProperty("mootlywcm:isImportedFromDIT");
 		return isImportedFromDIT;
@@ -145,9 +145,7 @@ public class TcsDetail extends HippoItem implements FormMapFiller {
 				node.setProperty("mootlywcm:taxcredit", getTaxCredited());
 			}
 
-			if (isImportedFromDIT())
-				node.setProperty("mootlywcm:isImportedFromDIT",
-						isImportedFromDIT());
+			if (isImportedFromDIT() != null) node.setProperty("mootlywcm:isImportedFromDIT", isImportedFromDIT());
 		} catch (RepositoryException rex) {
 			log.error("Repository Exception while binding", rex);
 		}

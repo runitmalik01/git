@@ -87,7 +87,7 @@ public class SelfAssesmentTaxDetail extends FlexibleDocument implements FormMapF
 		this.isImported = isImported;
 	}
 	
-	public final boolean isImportedFromDIT() {
+	public final Boolean isImportedFromDIT() {
 		if ( isImportedFromDIT == null) isImportedFromDIT = getProperty("mootlywcm:isImportedFromDIT");
 		return isImportedFromDIT;
 	}
@@ -152,7 +152,7 @@ public class SelfAssesmentTaxDetail extends FlexibleDocument implements FormMapF
 			node.setProperty(SERIAL, getP_Serial());
 			node.setProperty(DATE, getP_Date());
 			node.setProperty(AMOUNT,getP_Amount());
-			if (isImportedFromDIT()) node.setProperty("mootlywcm:isImportedFromDIT", isImportedFromDIT());
+			if (isImportedFromDIT() != null) node.setProperty("mootlywcm:isImportedFromDIT", isImportedFromDIT());
     	}catch (ContentNodeBindingException re) {
     		log.error("Binding Node Error",re);
     	} catch (ValueFormatException e) {
