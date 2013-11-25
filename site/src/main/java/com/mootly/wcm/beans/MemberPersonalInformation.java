@@ -543,11 +543,11 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 	public VerificationStatus getDitVerificationStatus() {
 		String ditVerificationStatusStr = null;
 		if (ditVerificationStatus == null ) ditVerificationStatusStr = getProperty("mootlywcm:ditVerificationStatus");
-		if (ditVerificationStatusStr != null) {
+		if (ditVerificationStatusStr != null && !"".equals(ditVerificationStatusStr.trim())) {
 			try {
 				ditVerificationStatus = VerificationStatus.valueOf(ditVerificationStatusStr);
 			}catch (IllegalArgumentException e) {
-				log.warn("Problem converting String to ditVerificationStatus ditVerificationStatusStr=" + ditVerificationStatusStr,e);
+				log.warn("Problem converting String to ditVerificationStatus ditSubmissionStatusStr = " + ditVerificationStatusStr,e);
 			}
 		}
 		return ditVerificationStatus;
@@ -569,7 +569,16 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 	}
 	
 	public final DITSubmissionStatus getDitSubmissionStatus() {
-		if (ditSubmissionStatus == null) ditSubmissionStatus = getProperty("mootlywcm:ditSubmissionStatus");
+		if (ditSubmissionStatus == null) {
+			String ditSubmissionStatusStr = getProperty("mootlywcm:ditSubmissionStatus");
+			try {
+				if (ditSubmissionStatusStr != null && !"".equals(ditSubmissionStatusStr.trim())) {
+					ditSubmissionStatus = DITSubmissionStatus.valueOf(ditSubmissionStatusStr);
+				}
+			}catch (IllegalArgumentException e){
+				log.warn("Error converting the value " + ditSubmissionStatusStr + " to a valid ENUM");
+			}
+		}
 		return ditSubmissionStatus;
 	}
 
