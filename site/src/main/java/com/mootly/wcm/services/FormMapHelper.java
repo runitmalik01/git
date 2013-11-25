@@ -129,6 +129,9 @@ public class FormMapHelper {
 		    	if (formField != null) {
 			        String fieldName = formField.name();
 			        String propertyName = formField.propertyName();		
+			        if (propertyName == null || "".equals(propertyName.trim())) {
+			        	propertyName = fieldName;
+			        }
 			        //String theValue = (String) directFieldAccessor.getPropertyValue(propertyName);			        
 			        org.hippoecm.hst.component.support.forms.FormField theFormField =  formMap.getField(fieldName);
 			        if ( theFormField != null && theFormField.getValue() != null) {

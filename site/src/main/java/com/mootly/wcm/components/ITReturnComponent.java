@@ -103,6 +103,7 @@ import com.mootly.wcm.annotations.RequiredFields;
 import com.mootly.wcm.annotations.SyncInvoiceWithCitrus;
 import com.mootly.wcm.annotations.ValueListBeans;
 import com.mootly.wcm.beans.CompoundChildUpdate;
+import com.mootly.wcm.beans.DITResponseDocument;
 import com.mootly.wcm.beans.FormMapFiller;
 import com.mootly.wcm.beans.InvoiceDocument;
 import com.mootly.wcm.beans.MemberPayment;
@@ -226,6 +227,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 
 
 	MemberPersonalInformation memberPersonalInformation;
+	DITResponseDocument ditResponseDocument;
 	boolean shouldRetrievePANInformation = false;
 	boolean shouldValidatePANWithDIT = false;
 	boolean ditInvalidPanContnue = false; 
@@ -1010,9 +1012,8 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		if (mapOfAllBeans != null && mapOfAllBeans.containsKey(keyToMemberPersonalInformation)) {
 			memberPersonalInformation = (MemberPersonalInformation) mapOfAllBeans.get(keyToMemberPersonalInformation);
 			itReturnType = ITReturnType.getByXmlStatus(memberPersonalInformation.getReturnType()); //this will determine original or revised
+			ditResponseDocument = (DITResponseDocument) mapOfAllBeans.get(DITResponseDocument.class.getSimpleName().toLowerCase());			
 		}
-
-
 
 		//lets load ValueList Beans
 		ValueListBeans valueListBeans = this.getClass().getAnnotation(ValueListBeans.class);
@@ -1434,7 +1435,14 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 
 		HippoBeanValidationResponse hippoBeanValidationResponse = itrValidationChain.execute(mapOfBeans);
 		if (hippoBeanValidationResponse != null) request.setAttribute("hippoBeanValidationResponse", hippoBeanValidationResponse);
-
+		if ( hippoBeanValidationResponse != null) {
+			if (hippoBeanValidationResponse.getTotalErrors() > 0 ) {
+				request.setAttribute("hippoBeanValidationResponse_totalErrors", hippoBeanValidationResponse.getTotalErrors() );
+			}
+			if (hippoBeanValidationResponse.getTotalWarnings() > 0 ) {
+				request.setAttribute("hippoBeanValidationResponse_totalWarnings", hippoBeanValidationResponse.getTotalWarnings() );
+			}
+		}
 	}
 
 	protected void redirectToMemberHome(HstRequest hstRequest, HstResponse response) {
@@ -2189,6 +2197,10 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 
 	protected MemberPersonalInformation getMemberPersonalInformation() {
 		return memberPersonalInformation;
+	}
+	
+	protected DITResponseDocument getDITResponseDocument() {
+		return ditResponseDocument;
 	}
 
 	protected boolean shouldValidatePANWithDIT() {

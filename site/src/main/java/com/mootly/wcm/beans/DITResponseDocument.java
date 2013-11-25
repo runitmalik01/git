@@ -32,6 +32,7 @@ import org.hippoecm.hst.content.beans.Node;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 
 import com.mootly.wcm.beans.compound.DITResponseDocumentDetail;
+import com.mootly.wcm.beans.compound.DITResponseDocumentDetail.DITSOAPOperation;
 import com.mootly.wcm.beans.compound.SelfAssesmentTaxDetail;
 import com.mootly.wcm.beans.standard.FlexibleDocument;
 
@@ -49,7 +50,7 @@ public class DITResponseDocument extends FlexibleDocument implements ContentNode
 	final String PROP_DETAIL_BEAN="mootlywcm:ditResponseDocumentDetail";
 
 	public final List<DITResponseDocumentDetail> getDitResponseDocumentDetails() {
-		if (ditResponseDocumentDetailList == null) ditResponseDocumentDetailList= getChildBeans(PROP_DETAIL_BEAN);
+		if (ditResponseDocumentDetailList == null) ditResponseDocumentDetailList = getChildBeans(PROP_DETAIL_BEAN);
 		return ditResponseDocumentDetailList;
 	}
 
@@ -62,6 +63,24 @@ public class DITResponseDocument extends FlexibleDocument implements ContentNode
 		getDitResponseDocumentDetails();
 		if (ditResponseDocumentDetailList == null) ditResponseDocumentDetailList = new ArrayList<DITResponseDocumentDetail>();
 		ditResponseDocumentDetailList.add(ditResponseDocumentDetail);
+	}
+	
+	/**
+	 * 
+	 * @param ditSOAPOperation
+	 * @return
+	 */
+	public final Integer getTotalCountOfOperation(DITSOAPOperation ditSOAPOperation) {
+		getDitResponseDocumentDetails();
+		Integer totalCount = 0;
+		if ( ditResponseDocumentDetailList != null && ditResponseDocumentDetailList.size() > 0) {
+			for (DITResponseDocumentDetail ditResponseDocumentDetail:ditResponseDocumentDetailList) {
+				if ( (ditResponseDocumentDetail.getIsFault() == null || !ditResponseDocumentDetail.getIsFault()) && ditResponseDocumentDetail.getDitSOperation() != null && ditResponseDocumentDetail.getDitSOperation() == ditSOAPOperation ) {
+					totalCount++;
+				}
+			}
+		}
+		return totalCount;
 	}
 	
 	

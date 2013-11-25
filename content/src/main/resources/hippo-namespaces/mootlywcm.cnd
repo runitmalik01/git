@@ -499,3 +499,6 @@ orderable
 [mootlywcm:incomefromfirmsdetail] > hippo:compound, hippostd:relaxed orderable
 [mootlywcm:invoicepaymentdetail] > hippo:compound, hippostd:relaxed orderable
 [mootlywcm:invoicerefunddetail] > hippo:compound, hippostd:relaxed orderable
+
+[mootlywcm:ditResponseDocument] > hippostd:relaxed, mootlywcm:basedocument orderable
+[mootlywcm:ditResponseDocumentDetail] > hippo:compound, hippostd:relaxed orderable

@@ -126,7 +126,9 @@ public final class IndianCurrencyHelper {
 		try {
 			//date2 = DatatypeFactory.newInstance().newXMLGregorianCalendar(dobStr);
 			//date2 = DatatypeFactory.newInstance().newXMLGregorianCalendar(val_Date);
-			if (val_Date == null) return null;
+			if (val_Date == null) {
+				return null;
+			}
 			date2 = DatatypeFactory.newInstance().newXMLGregorianCalendarDate(val_Date.get(Calendar.YEAR),val_Date.get(Calendar.MONTH)+1,val_Date.get(Calendar.DAY_OF_MONTH),DatatypeConstants.FIELD_UNDEFINED);
 		} catch (DatatypeConfigurationException e) {
 			// TODO Auto-generated catch block

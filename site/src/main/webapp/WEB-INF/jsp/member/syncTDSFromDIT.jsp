@@ -30,6 +30,11 @@
 <h3>Please review the data
 	and click on Import if you want this data to be imported in your tax
 	return</h3>
+<c:if test="${not empty totalGetTDSDetail && totalGetTDSDetail > 0}">
+	<div>
+		<span class="label label-warning">Our record indicates that you have already imported your 26AS information.Re-importing the information may result in duplicates</span>
+	</div>
+</c:if>
 <c:choose>
 	<c:when test="${pageAction == 'SYNC_TDS_FROM_DIT'}">
 		<form id="tdsfromdit" action="${actionUrl}" method="post"
@@ -164,8 +169,8 @@
 				<thead>
 					<tr>
 						<th>BSR Code</th>
-						<th>Srl No Of Challan</th>
-						<th>Date Deposite</th>
+						<th>Sr No Of Challan</th>
+						<th>Date Deposit</th>
 						<th>Amount</th>
 					</tr>
 				</thead>

@@ -87,6 +87,7 @@ import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.onehippo.forge.sitemap.components.model.news.info.Publication;
 
 import com.mootly.wcm.beans.standard.FlexibleDocument;
+import com.mootly.wcm.model.DITSubmissionStatus;
 import com.mootly.wcm.model.FilingSection;
 import com.mootly.wcm.model.FinancialYear;
 import com.mootly.wcm.model.ITRForm;
@@ -197,6 +198,10 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 	private String choiceImportTDS; 
 	private Boolean importTDSSuccess;
 	
+	private DITSubmissionStatus ditSubmissionStatus;
+	private String  ditSubmissionToken;
+	
+	
 	ResourceBundle messagesResourceBundle = ResourceBundle.getBundle("messages");
 
 	//ITR1.packageName.DIY.cost
@@ -272,11 +277,8 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 
 	public FilingSection getFilingSection() {
 		String strReturnSection = getReturnSection();
-		log.info("FFFFFFFFFFFIIIIIILLLLLLLLIIIIIIIINNNNNNNGGGGGGGGG"+strReturnSection);
 		try {
 			FilingSection filingSection = FilingSection.getByXmlCode(strReturnSection);
-			log.info("VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV"+filingSection);
-			
 			return filingSection;
 		}
 		catch (IllegalArgumentException ie) {
@@ -545,7 +547,7 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 			try {
 				ditVerificationStatus = VerificationStatus.valueOf(ditVerificationStatusStr);
 			}catch (IllegalArgumentException e) {
-				log.warn("Problem converting String to ditVerificationStatus ",e);
+				log.warn("Problem converting String to ditVerificationStatus ditVerificationStatusStr=" + ditVerificationStatusStr,e);
 			}
 		}
 		return ditVerificationStatus;
@@ -564,6 +566,16 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 	public Boolean getImportTDSSuccess() {
 		if ( importTDSSuccess == null ) importTDSSuccess = getProperty("mootlywcm:importTDSSuccess");
 		return importTDSSuccess;
+	}
+	
+	public final DITSubmissionStatus getDitSubmissionStatus() {
+		if (ditSubmissionStatus == null) ditSubmissionStatus = getProperty("mootlywcm:ditSubmissionStatus");
+		return ditSubmissionStatus;
+	}
+
+	public final String getDitSubmissionToken() {
+		if (ditSubmissionToken == null) ditSubmissionToken =  getProperty("mootlywcm:ditSubmissionToken");
+		return ditSubmissionToken;
 	}
 	
 	public final void  setReturnSection(String ReturnSection){
@@ -898,6 +910,14 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 	public void setImportTDSSuccess(Boolean importTDSSuccess) {
 		this.importTDSSuccess = importTDSSuccess;
 	}
+	
+	public final void setDitSubmissionStatus(DITSubmissionStatus ditSubmissionStatus) {
+		this.ditSubmissionStatus = ditSubmissionStatus;
+	}
+
+	public final void setDitSubmissionToken(String ditSubmissionToken) {
+		this.ditSubmissionToken = ditSubmissionToken;
+	}
 
 
 	@Override
@@ -905,9 +925,6 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 			throws ContentNodeBindingException {
 		// TODO Auto-generated method stub
 		try {
-			if(log.isInfoEnabled()){
-				log.warn("this is bean");
-			}
 			super.bindToNode(node);
 
 			MemberPersonalInformation mpi = (MemberPersonalInformation) content;
@@ -1002,6 +1019,14 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 			
 			if (mpi.getImportTDSSuccess() != null) {
 				node.setProperty("mootlywcm:importTDSSuccess", mpi.getImportTDSSuccess());
+			}
+			
+			if (mpi.getDitSubmissionStatus() != null) {
+				node.setProperty("mootlywcm:ditSubmissionStatus", mpi.getDitSubmissionStatus().name());
+			}
+			
+			if (mpi.getDitSubmissionToken() != null) {
+				node.setProperty("mootlywcm:ditSubmissionToken", mpi.getDitSubmissionToken());
 			}
 			
 		}catch (RepositoryException re) {
@@ -1296,6 +1321,22 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 			}
 		}
 		
+		
+		if (formMap.getField("ditSubmissionStatus") != null) {
+			String ditSubmissionStatusStr = formMap.getField("ditSubmissionStatus").getValue();
+			try {
+				setDitSubmissionStatus(DITSubmissionStatus.valueOf(ditSubmissionStatusStr));
+			}
+			catch (IllegalArgumentException e){
+				
+			}
+		}
+		
+		if (formMap.getField("ditSubmissionToken") != null) {
+			String ditSubmissionToken = formMap.getField("ditSubmissionToken").getValue();
+			setDitSubmissionToken(ditSubmissionToken);
+		}
+		
 		/*	if(StringUtils.isBlank(getResidentCategory())){
 			for(ResidentStatus resiStat:ResidentStatus.values()){
 				if(resiStat.name().equalsIgnoreCase(getRsstatusQ())){
@@ -1358,4 +1399,5 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 	public final  void setTrpreimbursement(Double trpreimbursement) {
 		this.trpreimbursement = trpreimbursement;
 	}
+	
 }

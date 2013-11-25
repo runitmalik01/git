@@ -176,6 +176,7 @@ public class MemberPersonalInfoUpdateHandler extends GenericLifeCycleHandler imp
 				itReturnComponentHelper.saveUpdateExistingChild(childBeanMap, parentBeanMap, childBeanLifeCycleHandler, parentBeanLifeCycleHandler, baseAbsolutePathToReturnDocuments, parentBeanAbsolutePath, parentBeanNameSpace, parentBeanNodeName, InvoiceDocumentDetail.class, wpm.getSession(), wpm, childBeanCanonicalUUID);
 			}
 			
+			//memberPersonalInformation.getImportTDSSuccess()
 			//as of now I am simply going to run the IMPORT from DIT but making sure that the client has been authorized by DIT
 			Twenty26ASResponse twenty26asResponse = retrieve26asInformation.retrieve26ASInformation(channelInfoWrapper.getWebSiteInfo().getEriUserId(),channelInfoWrapper.getWebSiteInfo().getEriPassword(),channelInfoWrapper.getWebSiteInfo().getEriCertChain(),channelInfoWrapper.getWebSiteInfo().getEriSignature(), memberPersonalInformation.getPAN(), memberPersonalInformation.getDOB() , financialYear.getAssessmentYearForDITSOAPCall());
 			itReturnComponentHelper.saveElementsToRepository(baseAbsolutePathToReturnDocuments, twenty26asResponse.getTwenty26asTaxPayments(),SelfAssesmetTaxDocument.class,SelfAssesmentTaxDetail.class,wpm.getSession(),wpm);

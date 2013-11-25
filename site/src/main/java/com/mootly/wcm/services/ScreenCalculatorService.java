@@ -51,8 +51,8 @@ public final class ScreenCalculatorService {
         	Map<String,Object> resultset = new HashMap<String, Object>();
         	for (String aKey: engineScope.keySet()) {
         		if (aKey.startsWith("out_")) {
-        			log.info("get the key of fields"+aKey);
-        			log.info("get the engine scope"+engineScope.get(aKey).toString());
+        			//log.info("get the key of fields"+aKey);
+        			//log.info("get the engine scope"+engineScope.get(aKey).toString());
         			resultset.put(aKey.substring(4), engineScope.get(aKey));
         		}        		
         	}

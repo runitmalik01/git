@@ -353,6 +353,14 @@ request.setAttribute("isDITVerified",isDITVerified);
 	            <c:if test="${hasDIY =='true'}">
 		            <ul class="nav pull-right">
 		               <li class="divider-vertical"></li>
+		               <li>
+							<c:if test="${not empty hippoBeanValidationResponse_totalErrors}">
+								<span title="Errors" class="badge badge-important"><c:out value="${hippoBeanValidationResponse_totalErrors}"/></span>
+							</c:if>
+							<c:if test="${not empty hippoBeanValidationResponse_totalWarnings}">
+								<span title="Errors"  class="badge badge-warning" ><c:out value="${hippoBeanValidationResponse_totalWarnings}"/></span>
+							</c:if>
+					   </li>
 		               <li class="dropdown">
 		                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Actions<b class="caret"></b></a>
 		                  <ul class="dropdown-menu">
@@ -414,6 +422,7 @@ request.setAttribute("isDITVerified",isDITVerified);
 <c:set var="indianLocalDateFormStr" value="<%=IndianGregorianCalendar.indianDateTimeFormStr%>" />
 <c:if test="${not empty memberpersonalinformation}">
 	<c:if test="${not empty hippoBeanValidationResponse && ( fn:length(hippoBeanValidationResponse.errors) > 0 || fn:length(hippoBeanValidationResponse.warnings) > 0) }">
+		<%--
 		<div style="font-weight:bold;font-size:10px; border: 1px dashed #FF0000;padding:5px;text-align:center">
 			<ul>
 				<c:forEach items="${hippoBeanValidationResponse.errors}" var="error">
@@ -436,6 +445,7 @@ request.setAttribute("isDITVerified",isDITVerified);
 				</c:forEach>
 			</ul>
 		</div>
+		 --%>
 	</c:if>	
 	<div style="font-size:9px; font-family:arial;border: 1px dashed #ccc;padding:5px;">		
 		<span>Local Time: <b><u><fmt:formatDate type="both" pattern="${indianLocalDateFormStr}" timeZone="GMT+5:30" dateStyle="short" timeStyle="short" value="${now}" /></u></b></span> |

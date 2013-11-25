@@ -26,6 +26,8 @@ import org.hippoecm.hst.component.support.forms.FormMap;
 import org.hippoecm.hst.content.beans.ContentNodeBindingException;
 import org.hippoecm.hst.content.beans.Node;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.mootly.wcm.annotations.BeanClone;
 import com.mootly.wcm.annotations.FormField;
@@ -45,11 +47,14 @@ import com.mootly.wcm.utils.CalculatedFieldHelper;
 @Node(jcrType="mootlywcm:ditResponseDocumentDetail")
 public class DITResponseDocumentDetail extends FlexibleDocument implements FormMapFiller {
 	
+	static final private Logger log = LoggerFactory.getLogger(DITResponseDocumentDetail.class);
+	
 	public static enum DITSOAPOperation { getTDSDetails };
 	
 	String soapOperation;
 	String soapRequest;
 	String soapResponse;
+	Boolean isFault;
 	
 	DITSOAPOperation ditSOperation;
 	
@@ -58,9 +63,10 @@ public class DITResponseDocumentDetail extends FlexibleDocument implements FormM
 	static final String SOAP_OPERATION = "mootlywcm:soapOperation";
 	static final String SOAP_REQUEST_NAMESPACE = "mootlywcm:soapRequest";
 	static final String SOAP_RESPONSE_NAMESPACE = "mootlywcm:soapResponse";
+	static final String SOAP_IS_FAULT = "mootlywcm:isFault";
 	
 	
-	@FormField(name="soapOperation")
+	@FormField(name="soapOperation",convert=Boolean.class)
 	public final String getSoapOperation() {
 		if (soapOperation == null) soapOperation = getProperty(SOAP_OPERATION);
 		return soapOperation;
@@ -78,12 +84,27 @@ public class DITResponseDocumentDetail extends FlexibleDocument implements FormM
 		return soapResponse;
 	}
 	
+	@FormField(name="isFault")
+	public final Boolean getIsFault() {
+		if (isFault == null) isFault = getProperty(SOAP_IS_FAULT);
+		return isFault;
+	}
+
 	public DITSOAPOperation getDitSOperation() {
+		getSoapOperation();
+		if (soapOperation != null && !"".equals(soapOperation.trim()) ) {
+			ditSOperation = DITSOAPOperation.valueOf(soapOperation);
+		}
 		return ditSOperation;
 	}
 	
 	public final boolean isMarkedForDeletion() {
 		return markedForDeletion;
+	}
+
+	@BeanClone
+	public final void setIsFault(Boolean isFault) {
+		this.isFault = isFault;
 	}
 	
 	@BeanClone
@@ -117,23 +138,24 @@ public class DITResponseDocumentDetail extends FlexibleDocument implements FormM
 		super.bindToNode(node);
 		try {
 			if (getSoapRequest() != null) node.setProperty(SOAP_REQUEST_NAMESPACE, getSoapRequest());
-			if (getSoapResponse() != null) node.setProperty(SOAP_REQUEST_NAMESPACE,getSoapRequest());
+			if (getSoapResponse() != null) node.setProperty(SOAP_RESPONSE_NAMESPACE,getSoapResponse());
 			if (getSoapOperation() != null) node.setProperty(SOAP_OPERATION,getSoapOperation());
+			if (getIsFault() != null) node.setProperty(SOAP_IS_FAULT,getIsFault().toString());
 		} catch (ValueFormatException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.error("Error in bindToNode",e);
 		} catch (VersionException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.error("Error in bindToNode",e);
 		} catch (LockException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.error("Error in bindToNode",e);
 		} catch (ConstraintViolationException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.error("Error in bindToNode",e);
 		} catch (RepositoryException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.error("Error in bindToNode",e);
 		}
 		return true;
 	}
