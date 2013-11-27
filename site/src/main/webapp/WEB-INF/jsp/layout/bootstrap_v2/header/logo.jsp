@@ -15,6 +15,7 @@
     limitations under the License.
 
 --%>
+<%--
 <%@ page language="java"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
@@ -28,3 +29,4 @@
 <div id="logo">
  	<a href="${home}"><img class="logo" width="${logo.original.width}" height="${logo.original.height}" src="${imgLogo}?123">&nbsp;</a>
 </div>
+ --%>
