@@ -3649,7 +3649,92 @@
     <sv:value>jsp/layout/bootstrap_v2/header/header_v2.jsp</sv:value>
   </sv:property>
 </sv:node>
-
-
-
+<sv:node sv:name="pricing.catalog" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:template</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>3f7db857-bb09-4785-bb41-b398f1a9d0d9</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:renderpath" sv:type="String">
+    <sv:value>jsp/common/servicepricecatalog.jsp</sv:value>
+  </sv:property>
+</sv:node>
+<sv:node sv:name="newsitem.catalog" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:template</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>945bdfc2-5deb-42fd-8672-2193a124598f</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:renderpath" sv:type="String">
+    <sv:value>jsp/common/newsitemcatalog.jsp</sv:value>
+  </sv:property>
+</sv:node>
+<sv:node sv:name="serviceitem.catalog" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:template</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>2bb00a34-5f07-46b7-b605-aa1da8a8cf86</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:renderpath" sv:type="String">
+    <sv:value>jsp/common/servicesitemcatalog.jsp</sv:value>
+  </sv:property>
+</sv:node>
+<sv:node sv:name="html.catalog" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:template</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>a8d19ed4-4f20-4b85-b3a3-af21b6ff383a</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:renderpath" sv:type="String">
+    <sv:value>jsp/common/html.jsp</sv:value>
+  </sv:property>
+</sv:node>
+<sv:node sv:name="headbox.catalog" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:template</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>08143ab0-8509-4c6c-93bc-92442d578f2d</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:renderpath" sv:type="String">
+    <sv:value>jsp/common/headboxcatalog.jsp</sv:value>
+  </sv:property>
+</sv:node>
+<sv:node sv:name="imagebox.catalog" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:template</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>50c6e873-81af-4264-a367-1c8e100918ed</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:renderpath" sv:type="String">
+    <sv:value>jsp/common/imageboxcatalog.jsp</sv:value>
+  </sv:property>
+</sv:node>
+<sv:node sv:name="home.main.re.v1.0" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:template</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>b6d90695-242b-4732-ae77-986c2f92ecf3</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:renderpath" sv:type="String">
+    <sv:value>jsp/home/responsive/main.V1.0.jsp</sv:value>
+  </sv:property>
+</sv:node>
+<sv:node sv:name="container.component" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:template</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>6ca8fa19-230a-4272-a92e-3840026833a6</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:renderpath" sv:type="String">
+    <sv:value>jsp/common/container/containercomponent.jsp</sv:value>
+  </sv:property>
+</sv:node>
 </sv:node>

@@ -417,5 +417,187 @@
         <sv:value>images/catalog/icon-map.png</sv:value>
       </sv:property>
     </sv:node>
+    <sv:node sv:name="pricing">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:containeritemcomponent</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>a7a4cfcb-a4c4-4262-8af2-029f658f7d88</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:componentclassname" sv:type="String">
+    <sv:value>com.mootly.wcm.components.common.ServicePrice</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:description" sv:type="String">
+    <sv:value>Add pricing Component on Home Page</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:iconpath" sv:type="String">
+    <sv:value>images/catalog/markedprice.png</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:label" sv:type="String">
+    <sv:value>Pricing</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+    <sv:value>pricingLocation</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+    <sv:value>mootlypricingplan</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:template" sv:type="String">
+    <sv:value>pricing.catalog</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:xtype" sv:type="String">
+    <sv:value>HST.Item</sv:value>
+  </sv:property>
+</sv:node>
+<sv:node sv:name="newsItems">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:containeritemcomponent</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>e19b14dd-959d-4bf2-bfff-5b9d3efca5a5</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:componentclassname" sv:type="String">
+    <sv:value>com.mootly.wcm.components.common.NewsCatalog</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:description" sv:type="String">
+    <sv:value>Add News Component on Home Page</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:iconpath" sv:type="String">
+    <sv:value>images/catalog/newsitem.png</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:label" sv:type="String">
+    <sv:value>News</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+    <sv:value>newsItemLocation</sv:value>
+    <sv:value>spanSize</sv:value>
+    <sv:value>newsSize</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+    <sv:value>news</sv:value>
+    <sv:value>4</sv:value>
+    <sv:value>4</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:template" sv:type="String">
+    <sv:value>newsitem.catalog</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:xtype" sv:type="String">
+    <sv:value>HST.Item</sv:value>
+  </sv:property>
+</sv:node>
+<sv:node sv:name="services">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:containeritemcomponent</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>1737e3af-3ee7-4c5f-b745-617c94cde620</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:componentclassname" sv:type="String">
+    <sv:value>com.mootly.wcm.components.common.ServicesCatalog</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:description" sv:type="String">
+    <sv:value>Add Services Component on Home Page</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:iconpath" sv:type="String">
+    <sv:value>images/catalog/service.png</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:label" sv:type="String">
+    <sv:value>Services</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+    <sv:value>servicesLocation</sv:value>
+    <sv:value>spanSize</sv:value>
+    <sv:value>servicesLimit</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+    <sv:value>services</sv:value>
+    <sv:value>4</sv:value>
+    <sv:value>4</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:template" sv:type="String">
+    <sv:value>serviceitem.catalog</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:xtype" sv:type="String">
+    <sv:value>HST.Item</sv:value>
+  </sv:property>
+</sv:node>
+<sv:node sv:name="headbox">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:containeritemcomponent</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>e118c08e-d2c8-4ba4-9133-1cf344fcb972</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:componentclassname" sv:type="String">
+    <sv:value>com.mootly.wcm.components.common.HeadBoxCatalog</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:description" sv:type="String">
+    <sv:value>Add HeadBox Component on Home Page</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:iconpath" sv:type="String">
+    <sv:value>images/catalog/headbox.png</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:label" sv:type="String">
+    <sv:value>Head Box</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+    <sv:value>title</sv:value>
+    <sv:value>content</sv:value>
+    <sv:value>urlRefID</sv:value>
+    <sv:value>imagePath</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+    <sv:value>What We Do?</sv:value>
+    <sv:value>We are constantly working towards our goal of bridging the possible</sv:value>
+    <sv:value>about</sv:value>
+    <sv:value>images/${reseller}/keyicon.png</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:template" sv:type="String">
+    <sv:value>headbox.catalog</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:xtype" sv:type="String">
+    <sv:value>HST.Item</sv:value>
+  </sv:property>
+</sv:node>
+<sv:node sv:name="imagesbox">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:containeritemcomponent</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>05ebd409-1001-4c68-8fa0-d5d4e60f86c1</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:componentclassname" sv:type="String">
+    <sv:value>com.mootly.wcm.components.common.HeadBoxCatalog</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:description" sv:type="String">
+    <sv:value>Add Image Box Component on Home Page</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:iconpath" sv:type="String">
+    <sv:value>images/catalog/headbox.png</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:label" sv:type="String">
+    <sv:value>Image Box</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+    <sv:value>urlRefID</sv:value>
+    <sv:value>imagePath</sv:value>
+    <sv:value>image</sv:value>
+    <sv:value>content</sv:value>
+    <sv:value>title</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+    <sv:value>contact</sv:value>
+    <sv:value>images/${reseller}/keyicon.png</sv:value>
+    <sv:value>...</sv:value>
+    <sv:value>...</sv:value>
+    <sv:value>...</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:template" sv:type="String">
+    <sv:value>imagebox.catalog</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:xtype" sv:type="String">
+    <sv:value>HST.Item</sv:value>
+  </sv:property>
+</sv:node>
   </sv:node>
 </sv:node>
