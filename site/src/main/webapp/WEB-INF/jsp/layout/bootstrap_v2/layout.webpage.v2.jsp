@@ -44,15 +44,10 @@
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
 	<%-- <meta name='robots' content='noindex,nofollow' /> --%>	
 	<hst:link var="stylecss" path="/css/style.css"/>
-    <link rel="stylesheet" media="screen" type="text/css" href="${stylecss}"/>
-    <hst:link var="w4indiacss" path="/css/w4india.css"/>
-    <link rel="stylesheet" media="screen" type="text/css" href="${w4indiacss}"/>
-    <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/themes/smoothness/jquery-ui.css" />
-    <link rel="stylesheet" media="screen" type="text/css" href='<hst:link path="/css/bootstrap.css"></hst:link>'/>
-	<link rel="stylesheet" media="screen" type="text/css" href='<hst:link path="/css/bootstrap-responsive.css"></hst:link>'/>
-	<!-- <link rel="stylesheet" media="screen" type="text/css" href='<hst:link path="/css/bootplus.css"></hst:link>'/> -->
-	<!-- <link rel="stylesheet" media="screen" type="text/css" href='<hst:link path="/css/font-awesome-min.css"></hst:link>'/> -->
-	<link rel="stylesheet" media="screen" type="text/css" href="<hst:link path="/css/author.css"></hst:link>"/>
+	<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/themes/smoothness/jquery-ui.css" />
+	<link rel="stylesheet" media="screen" type="text/css" href='<hst:link path="/css/bootstrap_v2/bootstrap.flat.min.css"></hst:link>'/>
+	<link rel="stylesheet" media="screen" type="text/css" href='<hst:link path="/css/bootstrap_v2/wealth4india.css"></hst:link>'/>
+	
     <hst:headContributions categoryIncludes="css"/>
 </head>
 <body class="<c:choose><c:when test="${not empty strIsOnVendorPortal}">page-vendor</c:when><c:when test="${not empty bodyCssClass}"><c:out value="${bodyCssClass}"/></c:when><c:otherwise>page</c:otherwise></c:choose>">
@@ -73,26 +68,14 @@
 	<script type='text/javascript' src='<hst:link path="/js/bootstrap.min.js"></hst:link>'></script>
 	<script src="<hst:link path="/js/bootstrap-typeahead.js"></hst:link>"></script>
 	
-	<div id="container" class="hfeed">
-		<hst:include ref="header"/>
-		<div id="wrapper" class="clearfix">
-			<c:if test="${not empty isError && error.key == 'true' && loggedin == 'true'}">
-				<c:choose>
-					<c:when test="${not empty error.key}">
-						<span class="label label-warning"><c:out value="${error.key}" escapeXml="false"/></span>
-					</c:when>
-					<c:otherwise>
-						<span class="label label-warning">There was an error processing your request</span>
-					</c:otherwise>
-				</c:choose>				
-			</c:if>
-			<hst:include ref="main"/>
-			<hst:headContributions categoryIncludes="customHTML" xhtml="false"/>
-	    </div><!-- end of #wrapper -->
+	<div id="">
+	 	<hst:include ref="header"/> 
+	 	<hst:include ref="main"/>
+	    <hst:headContributions categoryIncludes="customHTML" xhtml="false"/>
 	</div><!-- end of #container -->
-	<hst:include ref="footer"/>
+	<hst:include ref="footer"/> 
 	<hst:headContributions categoryIncludes="jsInternal"/>
-	<hst:link var="responsive_scripts" path="/js/responsive-scripts.js"/>
+ <hst:link var="responsive_scripts" path="/js/responsive-scripts.js"/>
 	<script type='text/javascript' src='${responsive_scripts}'></script>
 	<hst:link var="responsive_plugin" path="/js/responsive-plugins.js"/>
 	<script type='text/javascript' src='${responsive_plugin}'></script>
@@ -200,10 +183,7 @@
 	       .change(function(){
 	          this.value = this.value.toUpperCase();
 	       });		
-		
-		
-
-	</script>	
+	</script>
 	<script type="text/javascript">
 	 	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
