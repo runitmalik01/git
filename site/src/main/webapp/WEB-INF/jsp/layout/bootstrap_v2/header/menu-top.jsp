@@ -15,6 +15,7 @@
     limitations under the License.
 
 --%>
+<%--
 <%@ page language="java"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
@@ -24,16 +25,19 @@
 <hst:link var="login" path="/memberLogin"/>
 <hst:link var="logout" path="/j_spring_security_logout"/>
 <hst:link var="signup" path="/signup"/>
-<hst:link var="myaccount" path="/member"/>
+<hst:link var="myaccount" path="/member"/> 
+ --%>
 <%--
 <span class="simpleCart_quantity"></span> items - <span class="simpleCart_total"></span>
 <a href="javascript:;" class="simpleCart_checkout">Checkout</a>
  --%>
+ <%--
  <hst:link var="securelink" siteMapItemRefId="secure-connection"></hst:link>
 <ul id="menu-top" class="top-menu">
 		<c:choose>
 			<c:when test="${loggedin}">			
 				<%--<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-724" style="color: brown"><small><strong></strong></small></li> --%>
+	<%--			
 				<li id="menu-item-723" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-724">
 				<li class="dropdown">
 	                <a class="dropdown-toggle btn btn-primary" data-toggle="dropdown" href="#" style="color: white"><i class="icon-user icon-white"></i><%=request.getUserPrincipal().getName()%><b></b></a>
@@ -56,3 +60,4 @@
 			</c:otherwise>
 		</c:choose>		
 </ul>
+--%>
