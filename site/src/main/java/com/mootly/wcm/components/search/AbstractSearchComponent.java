@@ -114,7 +114,7 @@ public class AbstractSearchComponent extends TagComponent {
         String parsedQuery = SearchInputParsingUtils.parse(query,false);
         
         request.setAttribute("query", StringEscapeUtils.escapeHtml(parsedQuery));
-        HippoBean scope = getSiteContentBaseBean(request);
+        HippoBean scope = getSiteContentBaseBeanForReseller(request);
         if (scope == null) {
             log.error("Scope for search is null");
             return;

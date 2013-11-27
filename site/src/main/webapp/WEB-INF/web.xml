@@ -89,6 +89,7 @@
   <filter-mapping>
     <filter-name>springSecurityFilterChain</filter-name>
     <url-pattern>/*</url-pattern>
+    <url-pattern>/r/**</url-pattern>
     <dispatcher>REQUEST</dispatcher>
   </filter-mapping>
   

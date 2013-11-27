@@ -173,7 +173,7 @@ public class NewsOverview extends TagComponent {
     private void updateCommentsCount(HstRequest request, PageableCollection news) throws QueryException {
         List<Integer> commentCount = new ArrayList<Integer>();
         
-        HippoBean siteContentBase = getSiteContentBaseBean(request);
+        HippoBean siteContentBase = getSiteContentBaseBeanForReseller(request);
         
         if (siteContentBase == null) {
             log.warn("Site content base bean is not found: {}", getSiteContentBasePath(request));

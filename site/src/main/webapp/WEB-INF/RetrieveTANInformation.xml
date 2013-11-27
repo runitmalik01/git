@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:lang="http://www.springframework.org/schema/lang"
+       xsi:schemaLocation="
+                http://www.springframework.org/schema/beans
+                http://www.springframework.org/schema/beans/spring-beans.xsd
+                http://www.springframework.org/schema/context
+                http://www.springframework.org/schema/context/spring-context.xsd
+                http://www.springframework.org/schema/aop
+                http://www.springframework.org/schema/aop/spring-aop.xsd
+                http://www.springframework.org/schema/util 
+                http://www.springframework.org/schema/util/spring-util-2.0.xsd
+                http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang-2.5.xsd"> 
+
+    <!--  SOAP Call Wrapper for GetRequest_ById -->
+    <bean id="soapCallWrapperRetrieveTANInformation" class="com.mootly.wcm.services.ditws.soap.SOAPCallWrapper">
+    	<constructor-arg index="0" name="operation" value="getTanInfo"/>
+    	<property name="xPath" ref="xPath"/>
+    	<property name="soapConnectionFactory" ref="soapConnectionFactory"/>
+    	<property name="soapFactory" ref="soapFactory"/>
+    	<property name="messageFactory" ref="messageFactory"/>
+    	<property name="endPointURL" ref="endPointURL_RetrieveTANInformation"/>
+    	<property name="soapConnection" ref="soapConnection"/>
+    	<property name="detachHeader"><value>false</value></property>
+    	<!-- 
+    	<property name="mimeHeaders">
+    		<list>
+    			<bean class="javax.xml.soap.MimeHeader">
+    				<constructor-arg index="0" value="SOAPAction"/>
+    				<constructor-arg index="1" value="urn:RIM-INT-KNV-KRL-KnovaRequestLookup_WS/GetRequestBy_ID"/>
+    			</bean>
+    		</list>
+    	</property>
+    	 -->
+    	<property name="inputElementMap">
+    		<map>
+    		    <entry key="userName" value="#userName"></entry>
+    			<entry key="password" value="#password"></entry>
+    			<entry key="tanNo" value="#TAN.toUpperCase()"></entry>    			
+    		</map>
+    	</property>
+ 		<property name="outputElementMap">
+    		<map>
+				<entry key="tan" value="//tan"></entry>
+				<entry key="categoryOfDeductor" value="//categoryOfDeductor"></entry>
+				<entry key="fullname" value="//fullname"></entry>
+				<entry key="address" value="//address"></entry>
+				<entry key="pan" value="//pan"></entry>
+				<entry key="status" value="//status"></entry>
+				<entry key="emailId1" value="//emailId1"></entry>
+				<entry key="emailId2" value="//emailId2"></entry>
+				<entry key="areaCode" value="//areaCode"></entry>
+				<entry key="AOType" value="//AOType"></entry>
+				<entry key="rangeCode" value="//rangeCode"></entry>
+				<entry key="AONumber" value="//AONumber"></entry>
+			</map>
+    	</property>
+    	<!--  no head is required for this call -->
+    	<property name="soapBodyElement">
+    		<bean class="com.mootly.wcm.services.ditws.soap.SOAPCallElement">
+    				<constructor-arg index="0" name="soapCallElementType" value="TEXT_ELEMENT"/>
+    				<constructor-arg index="1" name="name" value="getTanInfo"/>
+    				<constructor-arg index="2" name="nsPrefix" value="${nsPrefix}"/>
+    				<constructor-arg index="3" name="ns" value="${ns_getTanInfo}"/>
+    				<constructor-arg index="4" name="value"><null/></constructor-arg>
+    		</bean>
+    	</property>
+    	<property name="bodyChildren">
+    		<list>    	
+    		    <bean class="com.mootly.wcm.services.ditws.soap.SOAPCallElement">
+    				<constructor-arg index="0" name="soapCallElementType" value="START_ELEMENT"/>
+    				<constructor-arg index="1" name="name" value="LoginInfo"/>
+    				<constructor-arg index="2" name="value"><null/></constructor-arg>
+    			</bean> 		
+    			<bean class="com.mootly.wcm.services.ditws.soap.SOAPCallElement">
+    				<constructor-arg index="0" name="soapCallElementType" value="TEXT_ELEMENT"/>
+    				<constructor-arg index="1" name="name" value="userName"/>
+    				<constructor-arg index="2" name="value" value="userName"></constructor-arg>
+    			</bean>    		
+				<bean class="com.mootly.wcm.services.ditws.soap.SOAPCallElement">
+    				<constructor-arg index="0" name="soapCallElementType" value="TEXT_ELEMENT"/>
+    				<constructor-arg index="1" name="name" value="password"/>
+    				<constructor-arg index="2" name="value" value="password"></constructor-arg>
+    			</bean>    	
+    			<bean class="com.mootly.wcm.services.ditws.soap.SOAPCallElement">
+    				<constructor-arg index="0" name="soapCallElementType" value="END_ELEMENT"/>
+    				<constructor-arg index="1" name="name" value="login"/>
+    				<constructor-arg index="2" name="value"><null/></constructor-arg>
+    			</bean> 	    
+    			<bean class="com.mootly.wcm.services.ditws.soap.SOAPCallElement">
+    				<constructor-arg index="0" name="soapCallElementType" value="START_ELEMENT"/>
+    				<constructor-arg index="1" name="name" value="TanNum"/>
+    				<constructor-arg index="2" name="value"><null/></constructor-arg>
+    			</bean> 	
+    			<bean class="com.mootly.wcm.services.ditws.soap.SOAPCallElement">
+    				<constructor-arg index="0" name="soapCallElementType" value="TEXT_ELEMENT"/>
+    				<constructor-arg index="1" name="name" value="tanNo"/>
+    				<constructor-arg index="2" name="value" value="tanNo"></constructor-arg>
+    			</bean>    			
+    			<bean class="com.mootly.wcm.services.ditws.soap.SOAPCallElement">
+    				<constructor-arg index="0" name="soapCallElementType" value="END_ELEMENT"/>
+    				<constructor-arg index="1" name="name" value="panNo"/>
+    				<constructor-arg index="2" name="value"><null/></constructor-arg>
+    			</bean> 
+    		</list>
+    	</property>    
+    </bean>
+    
+    <bean id="retrieveTANInformation" class="com.mootly.wcm.services.ditws.impl.RetrieveTANInformationImpl" parent="ditSOAPServiceImpl">		
+		<property name="soapCallWrapperRetrieveTANInfo" ref="soapCallWrapperRetrieveTANInformation"/>
+	</bean>
+ </beans>

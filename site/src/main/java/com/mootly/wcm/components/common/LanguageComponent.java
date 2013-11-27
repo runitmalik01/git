@@ -59,7 +59,7 @@ public class LanguageComponent extends BaseComponent {
     public void doBeforeRender(HstRequest request, HstResponse response) {
         super.doBeforeRender(request, response);
 
-        final HippoBean baseBean = this.getSiteContentBaseBean(request);
+        final HippoBean baseBean = this.getSiteContentBaseBeanForReseller(request);
         final HippoAvailableTranslationsBean<HippoBean> availableBaseTranslations = baseBean.getAvailableTranslationsBean();
 
         final HippoBean contentBean = this.getContentBean(request);

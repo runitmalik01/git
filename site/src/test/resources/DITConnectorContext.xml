@@ -78,6 +78,7 @@
     <bean id="endPointURL_RetrieveRectificationStatus" class="java.net.URL">
     	<constructor-arg value="${endPointURL_RetrieveRectificationStatus}"/>
     </bean>
+    
     <bean id="endPointURL_RetrieveRefundStatus" class="java.net.URL">
     	<constructor-arg value="${endPointURL_RetrieveRefundStatus}"/>
     </bean>    
@@ -93,8 +94,13 @@
     <bean id="endPointURL_RetrieveITRVByAckNo" class="java.net.URL">
     	<constructor-arg value="${endPointURL_RetrieveITRVByAckNo}"/>
     </bean>
+    
     <bean id="endPointURL_RetrieveITRVByTokenNo" class="java.net.URL">
     	<constructor-arg value="${endPointURL_RetrieveITRVByTokenNo}"/>
+    </bean>
+    
+    <bean id="endPointURL_RetrieveTANInformation" class="java.net.URL">
+    	<constructor-arg value="${endPointURL_RetrieveTANInformation}"/>
     </bean>
     
     <bean id="ditSOAPServiceImpl" class="com.mootly.wcm.services.ditws.impl.DITSOAPServiceImpl" abstract="true" >
@@ -107,6 +113,7 @@
     
     <import resource="AddClientDetails.xml"/>
     <import resource="RetrievePANInformation.xml"/>
+    <import resource="RetrieveTANInformation.xml"/>
     <import resource="Retrieve26ASInformation.xml"/>
     <import resource="RetrieveRectificationStatus.xml"/>
     <import resource="RetrieveRefundStatus.xml"/>

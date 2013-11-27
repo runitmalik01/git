@@ -8,7 +8,7 @@ package com.mootly.wcm.services.ditws.model;
 				<entry key="fullName" value="//fullname"></entry>
 				<entry key="error" value="//error"></entry>
  */
-public class RetrievePANResponse {
+public class RetrievePANResponse extends DITSOAPResponse {
 	String PAN;
 	String fatherFullName;
 	String address;

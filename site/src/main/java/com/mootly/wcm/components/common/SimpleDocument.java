@@ -37,7 +37,7 @@ public class SimpleDocument extends BaseComponent {
         SimpleDocumentParamsInfo paramsInfo = getParametersInfo(request);
         String location = paramsInfo.getDocumentLocation();
 
-        final HippoBean document = getSiteContentBaseBean(request).getBean(location);
+        final HippoBean document = getSiteContentBaseBeanForReseller(request).getBean(location);
         if (document == null) {
             return;
         }

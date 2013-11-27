@@ -98,7 +98,7 @@
 &lt;p&gt; Thank You for registering with ${resellerName}. To confirm your account we need to validate your email address.&lt;/p&gt;
 
 &lt;p&gt;
-${memberHostName}/site/activation/${membershipSignupDocument.canonicalUUID} 
+${memberHostName}/activation/${membershipSignupDocument.canonicalUUID} 
 &lt;/p&gt;
 
 
@@ -414,7 +414,7 @@ diligence.&lt;/p&gt;
 &lt;p&gt;Click on below link and you will be able to access your account &lt;/p&gt;
 
 &lt;p&gt;
-${memberHostName}/site/changepass.html?ch=${member.activationCode}&amp;amp;member=${encyptUserName}
+${memberHostName}/changepass.html?ch=${member.activationCode}&amp;amp;member=${encyptUserName}
 &lt;/p&gt;
 
 &lt;p&gt;For more security and safety of your confidential data use security
@@ -1748,7 +1748,7 @@ ${emailSignature}
 	&lt;p&gt;Please click on the below link or copy and paste the link into the web
 	browser to complete your registration process. &lt;/p&gt;
 	
-	&lt;p&gt;${memberHostName}/site/activation/${membershipSignupDocument.canonicalUUID}
+	&lt;p&gt;${memberHostName}/activation/${membershipSignupDocument.canonicalUUID}
 	&lt;/p&gt;
 	
 	&lt;p&gt;If you have not requested the activation code, please feel free to contact

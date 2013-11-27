@@ -54,6 +54,7 @@ try {
 %>
 <hst:link var="forgotpass" siteMapItemRefId="forgotpass"></hst:link>
 <hst:link var="loginProxy" path="/login/proxy"></hst:link>
+<hst:link var="j_spring_security_check" path="/j_spring_security_check"></hst:link>
 <hst:actionURL var="actionUrl"></hst:actionURL>
 <c:if test="${ not empty errormsg}">
 		<div class="alert alert-success"><c:out value="${errormsg}"/></div>
@@ -76,7 +77,7 @@ try {
 				<c:if test="${not empty login_error_key}">
 					<div class="alert alert-error"><fmt:message key="${login_error_key}"/></div>
 				</c:if>
-				<form action="j_spring_security_check" method="post" id="loginForm">
+				<form action="/site/j_spring_security_check" method="post" id="loginForm">
 				   <p>
 				 	  <label for="username">
 				          <small>Email Address</small>

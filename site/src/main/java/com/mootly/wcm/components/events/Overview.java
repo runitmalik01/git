@@ -98,7 +98,7 @@ public class Overview extends BaseComponent {
         
         try {
 
-            HstQuery hstQuery = this.getQueryManager(request).createQuery(getSiteContentBaseBean(request), EventDocument.class);
+            HstQuery hstQuery = this.getQueryManager(request).createQuery(getSiteContentBaseBeanForReseller(request), EventDocument.class);
             if(!StringUtils.isEmpty(query)) {
                 Filter f = hstQuery.createFilter();
                 Filter f1 = hstQuery.createFilter();

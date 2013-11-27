@@ -968,9 +968,9 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			memberRootFolderAbsolutePath = hippoBeanMemberBase.getPath();
 			//we need to get into pans sub folder
 			panFolder = hippoBeanMemberBase.getBean("pans", HippoFolder.class) ;// .getChildBeansByName("pans", HippoFolder.class);
-			//if (listOfFolders != null && listOfFolders.size() > 0 ){
-			//	panFolder = listOfFolders.get(0);
-			//}
+		}
+		else {
+			panFolder = null;
 		}
 
 		baseRelPathToReturnDocuments = itReturnComponentHelper.getBaseRelPathToReturnDocuments(getMemberFolderPath(request), getPAN(), getFinancialYear(), theFolderContainingITRDocuments);  //"members/" + getMemberFolderPath(request) + "/pans/" + getPAN() + "/" + getFinancialYear() + "/" + theFolderContainingITRDocuments; // getITReturnType();
@@ -1651,7 +1651,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			Map<FinancialYear,List<Object>> listOfITRForms = new HashMap<FinancialYear, List<Object>>();
 			for (String aPath:pathToITR) {
 				@SuppressWarnings("unchecked")
-				HippoBean hippoBean = getSiteContentBaseBean(request).getBean(aPath);
+				HippoBean hippoBean = getSiteContentBaseBeanForReseller(request).getBean(aPath);
 				HstQuery hstQuery = this.getQueryManager(request).createQuery(hippoBean);
 				final HstQueryResult result = hstQuery.execute();
 				Map<String,HippoBean> inputMap = new HashMap<String, HippoBean>();
@@ -2110,7 +2110,11 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 	 * @param pathToTheItReturn
 	 */
 	protected List<HippoBean> loadAllBeansUnderTheFolder(HstRequest request,HstResponse response,String baseRelPathToReturnDocuments,String sortByAttribute,SORT_DIRECTION sortDirection) {
-		HippoBean scopeForAllBeans =  getSiteContentBaseBeanForReseller(request).getBean(baseRelPathToReturnDocuments);
+		HippoBean theBean = getSiteContentBaseBeanForReseller(request);
+		if (theBean == null) {
+			return null;
+		}
+		HippoBean scopeForAllBeans =  theBean.getBean(baseRelPathToReturnDocuments);
 		HstQuery hstQuery;
 		List<HippoBean> theLocalBeansUnderMemberFolder = null;
 		try {

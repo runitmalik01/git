@@ -65,6 +65,9 @@ public class BaseComponent extends BaseHstComponent {
 	ChannelInfoWrapper channelInfoWrapper = null;
 	WebsiteInfo webSiteInfo = null;
 	
+	boolean isReseller = false; //itReturnComponentHelper.isReSeller(request);
+	String resellerId = null; //itReturnComponentHelper.getResellerId(request);
+	
 	@Override
 	public void init(ServletContext servletContext,
 			ComponentConfiguration componentConfig)
@@ -80,6 +83,9 @@ public class BaseComponent extends BaseHstComponent {
         super.doBeforeRender(request, response);
         
         ComponentUtil.doRedirectionOnWrongLandingMount(request, response);
+        
+        isReseller = itReturnComponentHelper.isReSeller(request);
+    	resellerId = itReturnComponentHelper.getResellerId(request);
         
         request.setAttribute("preview", isPreview(request));
         request.setAttribute("composermode", request.getRequestContext().getResolvedMount().getMount().isOfType("composermode"));
@@ -176,12 +182,22 @@ public class BaseComponent extends BaseHstComponent {
     		throws HstComponentException {
     	// TODO Auto-generated method stub
     	super.doAction(request, response);
+    	isReseller = itReturnComponentHelper.isReSeller(request);
+    	resellerId = itReturnComponentHelper.getResellerId(request);
     	webSiteInfo = request.getRequestContext().getResolvedMount().getMount().getChannelInfo();
         channelInfoWrapper = new ChannelInfoWrapper(webSiteInfo);
         request.setAttribute("channelInfoWrapper", channelInfoWrapper);
     }
     
-    protected void redirectToNotFoundPage(HstResponse response) {
+    public final boolean isReseller() {
+		return isReseller;
+	}
+
+	public final String getResellerId() {
+		return resellerId;
+	}
+
+	protected void redirectToNotFoundPage(HstResponse response) {
         try {
             response.forward("/404");
         } catch (IOException e) {
@@ -317,7 +333,11 @@ public class BaseComponent extends BaseHstComponent {
     		/*if (cc != null) emailMessage.setCc(cc);
     		if (bcc != null) emailMessage.setBcc(bcc);*/
     		StringBuffer sbHostName = new StringBuffer();
-			sbHostName.append(request.getScheme() + "://" +  request.getServerName()).append(":").append(request.getServerPort());
+			sbHostName.append(request.getScheme() + "://" +  request.getServerName()).append(":").append(request.getServerPort()).append("/").append(request.getContextPath());
+			
+			if (isReseller() && getResellerId() != null) {
+				sbHostName.append("/r/").append(getResellerId());
+			}
 			//if (velocityContext == null) {
 			//	velocityContext = new HashMap<String, Object>(1);
 			//}
@@ -426,4 +446,23 @@ public class BaseComponent extends BaseHstComponent {
 	public ChannelInfoWrapper getChannelInfoWrapper() {
 		return channelInfoWrapper;
 	}
+	
+	public String getHippoRequestURL(HstRequest request,boolean includeHost, boolean includeContext) {
+		StringBuffer sbHostName = new StringBuffer();
+		if (includeHost) {
+			sbHostName.append(request.getScheme() + "://" +  request.getServerName()).append(":").append(request.getServerPort());
+		}
+		if (includeContext) {
+			sbHostName.append(request.getContextPath());
+		}
+		
+		if (isReseller() && getResellerId() != null) {
+			sbHostName.append("/r/").append(getResellerId());
+		}
+		
+		return sbHostName.toString();
+	}
+	
+	
+	
 }

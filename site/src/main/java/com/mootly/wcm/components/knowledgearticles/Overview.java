@@ -97,7 +97,7 @@ public class Overview extends BaseComponent {
         String jsEnabled = getPublicRequestParameter(request, "jsEnabled");
 
         try {
-            HstQuery hstQuery = this.getQueryManager(request).createQuery(getSiteContentBaseBean(request), KnowledgeArticle.class);
+            HstQuery hstQuery = this.getQueryManager(request).createQuery(getSiteContentBaseBeanForReseller(request), KnowledgeArticle.class);
             if (!StringUtils.isEmpty(query)) {
                 Filter f = hstQuery.createFilter();
                 Filter f1 = hstQuery.createFilter();

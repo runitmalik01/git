@@ -20,16 +20,10 @@ import static com.mootly.wcm.utils.Constants.AMOUNT;
 import static com.mootly.wcm.utils.Constants.BSR;
 import static com.mootly.wcm.utils.Constants.DATE;
 import static com.mootly.wcm.utils.Constants.NT_PERSONAL_INFO_LINK;
-import static com.mootly.wcm.utils.Constants.PROP_PI_DOB;
-import static com.mootly.wcm.utils.Constants.PROP_PI_PINCODE;
 import static com.mootly.wcm.utils.Constants.SERIAL;
-import static com.mootly.wcm.utils.Constants.total_Taxdeducted;
 
-import java.math.BigInteger;
 import java.text.DateFormat;
-import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
@@ -62,40 +56,40 @@ public class AdvanceTaxDetail extends HippoItem implements FormMapFiller {
 	static final public String NODE_NAME = AdvanceTaxDetail.class.getName().toLowerCase();
 	private final static Logger log = LoggerFactory.getLogger(AdvanceTaxDetail.class); 
 
-	
+
 	private String val_BSR ;
 	private GregorianCalendar val_Date ;
 	private String val_serial ;
 	private Double	val_amount;
-	
+
 	private String personalInfoUuid;
 	private boolean markedForDeletion;
-	
+
 	public final boolean isMarkedForDeletion() {
 		return markedForDeletion;
 	}
 	public final void setMarkedForDeletion(boolean markedForDeletion) {
 		this.markedForDeletion = markedForDeletion;
 	}
-	
-	public String getP_BSR() {
-    	if (val_BSR == null) val_BSR = getProperty(BSR);
-    	return val_BSR;
-    }
 
-    public GregorianCalendar getP_Date() {
-    	if (val_Date == null) val_Date = getProperty(DATE);
-    	return val_Date;
-    }
-    public String getDateStr() {
-    	if (val_Date == null) val_Date = getProperty(DATE);
-    	if (val_Date != null) {
-    		String dateStr = getIndianDateFormatter().format(val_Date.getTime());
-    		return dateStr;
-    	}
-    	return null;
-    }
-   //created for xml
+	public String getP_BSR() {
+		if (val_BSR == null) val_BSR = getProperty(BSR);
+		return val_BSR;
+	}
+
+	public GregorianCalendar getP_Date() {
+		if (val_Date == null) val_Date = getProperty(DATE);
+		return val_Date;
+	}
+	public String getDateStr() {
+		if (val_Date == null) val_Date = getProperty(DATE);
+		if (val_Date != null) {
+			String dateStr = getIndianDateFormatter().format(val_Date.getTime());
+			return dateStr;
+		}
+		return null;
+	}
+	//created for xml
 	public XMLGregorianCalendar getGregorianP_Date() {
 		if (val_Date == null) val_Date = getProperty(DATE);
 		String dobStr = getIndianDateFormatter().format(val_Date.getTime());
@@ -111,59 +105,59 @@ public class AdvanceTaxDetail extends HippoItem implements FormMapFiller {
 		return date2;
 	}
 
-    public String getP_Serial() {
-    	if (val_serial == null) val_serial = getProperty(SERIAL);
-    	return val_serial;
-    }
+	public String getP_Serial() {
+		if (val_serial == null) val_serial = getProperty(SERIAL);
+		return val_serial;
+	}
 
-    public Double getP_Amount() {
-    	if (val_amount == null) val_amount = getProperty(AMOUNT);
-    	return val_amount;
-    }
-  
+	public Double getP_Amount() {
+		if (val_amount == null) val_amount = getProperty(AMOUNT);
+		return val_amount;
+	}
+
 	public final String getPersonalInfoUuid() {
 		return personalInfoUuid;
 	}
 	public final void setPersonalInfoUuid(String personalInfoUuid) {
 		this.personalInfoUuid = personalInfoUuid;
 	}
-	
+
 	public PersonalInformation getPersonalInformation() {
-        HippoBean bean = getBean(NT_PERSONAL_INFO_LINK);
-        if (!(bean instanceof HippoMirror)) {
-            return null;
-        }
+		HippoBean bean = getBean(NT_PERSONAL_INFO_LINK);
+		if (!(bean instanceof HippoMirror)) {
+			return null;
+		}
 
-        PersonalInformation prdBean = (PersonalInformation) ((HippoMirror) bean).getReferencedBean();
+		PersonalInformation prdBean = (PersonalInformation) ((HippoMirror) bean).getReferencedBean();
 
-        if (prdBean == null) {
-            return null;
-        }
-        return prdBean;
-    }
+		if (prdBean == null) {
+			return null;
+		}
+		return prdBean;
+	}
 	public void bindToNode(javax.jcr.Node node) throws RepositoryException {
-	    	try {
-	    		log.warn("Bind to Node for TdsSalary Called");
-	    		node.setProperty(BSR,getP_BSR());
-				node.setProperty(SERIAL, getP_Serial());
-				node.setProperty(DATE, getP_Date());
-				node.setProperty(AMOUNT,getP_Amount());
-	    	}catch (RepositoryException re) {
-	    		log.error("Binding Node Error",re);
-	    		throw re;
-	    	}
-	    	
-	    }
+		try {
+			log.warn("Bind to Node for TdsSalary Called");
+					node.setProperty(BSR,getP_BSR());
+					node.setProperty(SERIAL, getP_Serial());
+					node.setProperty(DATE, getP_Date());
+					node.setProperty(AMOUNT,getP_Amount());
+		}catch (RepositoryException re) {
+			log.error("Binding Node Error",re);
+			throw re;
+		}
+
+	}
 	public final void setP_BSR(String val_BSR) {
 		this.val_BSR = val_BSR;
 	}
 
 
- 	
+
 	public final void setP_Date(GregorianCalendar val_Date) {
-	this.val_Date = val_Date;
-}
-	
+		this.val_Date = val_Date;
+	}
+
 
 	public final void setP_Serial(String val_serial) {
 		this.val_serial = val_serial;
@@ -179,11 +173,11 @@ public class AdvanceTaxDetail extends HippoItem implements FormMapFiller {
 			log.info("Into the fill method");			
 		}
 		if (formMap == null) return;
-		
+
 		if ( formMap.getField("bsr_codeadv") != null) {
 			setP_BSR(formMap.getField("bsr_codeadv").getValue());
 		}
-		
+
 		if ( formMap.getField("Serial_challanadv") != null) {
 			setP_Serial(formMap.getField("Serial_challanadv").getValue());
 		}
@@ -208,13 +202,13 @@ public class AdvanceTaxDetail extends HippoItem implements FormMapFiller {
 				log.info("calendar error"+e);
 			}
 		}
-		
+
 	}
-	 		
-	
-	 public static final SimpleDateFormat getIndianDateFormatter() {
-	      return new SimpleDateFormat("dd/MM/yyyy");
-	     }
+
+
+	public static final SimpleDateFormat getIndianDateFormatter() {
+		return new SimpleDateFormat("dd/MM/yyyy");
+	}
 	@Override
 	public <T extends HippoBean> void cloneBean(T sourceBean) {
 		// TODO Auto-generated method stub
@@ -223,10 +217,6 @@ public class AdvanceTaxDetail extends HippoItem implements FormMapFiller {
 		setP_Serial(objAdvanceTax.getP_Serial());
 		setP_Amount(objAdvanceTax.getP_Amount());
 		setP_Date(objAdvanceTax.getP_Date());
-		
-		
 	}
-	
 
-	
 }

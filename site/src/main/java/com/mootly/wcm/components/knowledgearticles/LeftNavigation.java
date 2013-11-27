@@ -32,7 +32,7 @@ public class LeftNavigation extends BaseComponent {
             throw new ComponentParameterNotFoundException("Please configure the 'facet.location' parameter on productleftnav component");
         }
 
-        HippoFacetsAvailableNavigation facetNavigation = getSiteContentBaseBean(request).getBean(facetLocation, HippoFacetsAvailableNavigation.class);
+        HippoFacetsAvailableNavigation facetNavigation = getSiteContentBaseBeanForReseller(request).getBean(facetLocation, HippoFacetsAvailableNavigation.class);
         if (facetNavigation != null) {
             request.setAttribute("facets", facetNavigation.getFolders());
         }

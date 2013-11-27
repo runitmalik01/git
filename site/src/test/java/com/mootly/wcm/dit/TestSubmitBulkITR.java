@@ -9,7 +9,6 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.mootly.wcm.services.ditws.Retrieve26ASInformation;
 import com.mootly.wcm.services.ditws.RetrieveITRV;
 import com.mootly.wcm.services.ditws.SubmitBulkITR;
 import com.mootly.wcm.services.ditws.exception.DataMismatchException;

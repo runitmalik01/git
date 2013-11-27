@@ -78,7 +78,7 @@ public class KnowledgeArticleDetail extends BaseComponent {
         }
         request.setAttribute("document", document);
 
-        HippoBean siteContentBase = getSiteContentBaseBean(request);
+        HippoBean siteContentBase = getSiteContentBaseBeanForReseller(request);
         HippoFolder reviewsFolder = siteContentBase.getBean(reviewsFolderName);
         /*
         if (reviewsFolder == null) {

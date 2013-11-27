@@ -99,11 +99,29 @@
       <sv:property sv:name="jcr:primaryType" sv:type="Name">
         <sv:value>hst:channelinfo</sv:value>
       </sv:property>
-      <sv:property sv:name="contentFolder" sv:type="String">
-        <sv:value>/content/documents/mootlywcm</sv:value>
+      <sv:property sv:name="emailCustomerService" sv:type="String">
+        <sv:value>info@qlick.co.in</sv:value>
       </sv:property>
-      <sv:property sv:name="endDate" sv:type="String">
-        <sv:value>2013-08-10</sv:value>
+      <sv:property sv:name="emailFrom" sv:type="String">
+        <sv:value>info@qlick.co.in</sv:value>
+      </sv:property>
+      <sv:property sv:name="emailFromName" sv:type="String">
+        <sv:value>Qlick Customer Server</sv:value>
+      </sv:property>
+      <sv:property sv:name="emailSignature" sv:type="String">
+        <sv:value>Qlick</sv:value>
+      </sv:property>
+      <sv:property sv:name="eriEnable26ASImport" sv:type="String">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="eriEnabled" sv:type="String">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="eriPassword" sv:type="String">
+        <sv:value>---</sv:value>
+      </sv:property>
+      <sv:property sv:name="eriUserId" sv:type="String">
+        <sv:value>---</sv:value>
       </sv:property>
       <sv:property sv:name="isReseller" sv:type="String">
         <sv:value>true</sv:value>
@@ -112,13 +130,168 @@
         <sv:value>/content/gallery/logos/qlicklogo.png</sv:value>
       </sv:property>
       <sv:property sv:name="pageTitlePrefix" sv:type="String">
-        <sv:value>Qlick Vendor</sv:value>
+        <sv:value>Income Tax Return Online, Income Tax eFiling India, Online Tax Filing, ITR e Filing - Qlick</sv:value>
+      </sv:property>
+      <sv:property sv:name="paymentAvailableTypes" sv:type="String">
+        <sv:value>CHECK,CASH,RTGS</sv:value>
+      </sv:property>
+      <sv:property sv:name="paymentEnabled" sv:type="String">
+        <sv:value>true</sv:value>
+      </sv:property>
+      <sv:property sv:name="phoneCustomerService" sv:type="String">
+        <sv:value>+91-11-45067102, +91-11-25074341, +91-9136265229</sv:value>
       </sv:property>
       <sv:property sv:name="resellerId" sv:type="String">
         <sv:value>qlick</sv:value>
       </sv:property>
-      <sv:property sv:name="startDate" sv:type="String">
-        <sv:value>2012-08-10</sv:value>
+      <sv:property sv:name="resellerName" sv:type="String">
+        <sv:value>Qlick</sv:value>
+      </sv:property>
+      <sv:property sv:name="themeCss" sv:type="String">
+        <sv:value>/content/assets/themes/css/white.css</sv:value>
+      </sv:property>
+    </sv:node>
+  </sv:node>
+  <sv:node sv:name="creditsafeindia">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:channel</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>b5cbd81d-4667-4cfa-9e3e-aa7ca3d561c8</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:channelinfoclass" sv:type="String">
+      <sv:value>com.mootly.wcm.channels.WebsiteInfo</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:name" sv:type="String">
+      <sv:value>Credit Safe India</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:type" sv:type="String">
+      <sv:value>website</sv:value>
+    </sv:property>
+    <sv:node sv:name="hst:channelinfo">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>hst:channelinfo</sv:value>
+      </sv:property>
+      <sv:property sv:name="emailCustomerService" sv:type="String">
+        <sv:value>info@creditsafeindia.com</sv:value>
+      </sv:property>
+      <sv:property sv:name="emailFrom" sv:type="String">
+        <sv:value>info@creditsafeindia.com</sv:value>
+      </sv:property>
+      <sv:property sv:name="emailFromName" sv:type="String">
+        <sv:value>CreditSafeIndia</sv:value>
+      </sv:property>
+      <sv:property sv:name="emailSignature" sv:type="String">
+        <sv:value>CreditSafeIndia</sv:value>
+      </sv:property>
+      <sv:property sv:name="eriEnable26ASImport" sv:type="String">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="eriEnabled" sv:type="String">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="eriPassword" sv:type="String">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="eriUserId" sv:type="String">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="isReseller" sv:type="String">
+        <sv:value>true</sv:value>
+      </sv:property>
+      <sv:property sv:name="logo" sv:type="String">
+        <sv:value>/content/gallery/logos/creditsafeindia.png</sv:value>
+      </sv:property>
+      <sv:property sv:name="pageTitlePrefix" sv:type="String">
+        <sv:value>Income Tax Return Online, Income Tax eFiling India, Online Tax Filing, ITR e Filing - CreditSafeIndia</sv:value>
+      </sv:property>
+      <sv:property sv:name="paymentAvailableTypes" sv:type="String">
+        <sv:value>CHECK,CASH,RTGS,NET_BANKING</sv:value>
+      </sv:property>
+      <sv:property sv:name="paymentEnabled" sv:type="String">
+        <sv:value>true</sv:value>
+      </sv:property>
+      <sv:property sv:name="phoneCustomerService" sv:type="String">
+        <sv:value>+91-11-45067102, +91-11-25074341, +91-9136265229</sv:value>
+      </sv:property>
+      <sv:property sv:name="resellerId" sv:type="String">
+        <sv:value>creditsafeindia</sv:value>
+      </sv:property>
+      <sv:property sv:name="resellerName" sv:type="String">
+        <sv:value>CreditSafeIndia</sv:value>
+      </sv:property>
+      <sv:property sv:name="themeCss" sv:type="String">
+        <sv:value>/content/assets/themes/css/white.css</sv:value>
+      </sv:property>
+    </sv:node>
+  </sv:node>
+  <sv:node sv:name="w4india">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:channel</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>3baf8b94-ba63-465e-b102-bc965a409aee</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:channelinfoclass" sv:type="String">
+      <sv:value>com.mootly.wcm.channels.WebsiteInfo</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:name" sv:type="String">
+      <sv:value>Credit Safe India</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:type" sv:type="String">
+      <sv:value>website</sv:value>
+    </sv:property>
+    <sv:node sv:name="hst:channelinfo">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>hst:channelinfo</sv:value>
+      </sv:property>
+      <sv:property sv:name="emailCustomerService" sv:type="String">
+        <sv:value>info@wealth4india.com</sv:value>
+      </sv:property>
+      <sv:property sv:name="emailFrom" sv:type="String">
+        <sv:value>info@wealth4india.com</sv:value>
+      </sv:property>
+      <sv:property sv:name="emailFromName" sv:type="String">
+        <sv:value>Wealth4India Team</sv:value>
+      </sv:property>
+      <sv:property sv:name="emailSignature" sv:type="String">
+        <sv:value>Wealth4India</sv:value>
+      </sv:property>
+      <sv:property sv:name="eriEnable26ASImport" sv:type="String">
+        <sv:value>true</sv:value>
+      </sv:property>
+      <sv:property sv:name="eriEnabled" sv:type="String">
+        <sv:value>true</sv:value>
+      </sv:property>
+      <sv:property sv:name="eriPassword" sv:type="String">
+        <sv:value>arun@123</sv:value>
+      </sv:property>
+      <sv:property sv:name="eriUserId" sv:type="String">
+        <sv:value>ERIU101869</sv:value>
+      </sv:property>
+      <sv:property sv:name="isReseller" sv:type="String">
+        <sv:value>true</sv:value>
+      </sv:property>
+      <sv:property sv:name="logo" sv:type="String">
+        <sv:value>/content/gallery/logos/w4ilogo.png</sv:value>
+      </sv:property>
+      <sv:property sv:name="pageTitlePrefix" sv:type="String">
+        <sv:value>Income Tax Return Online, Income Tax eFiling India, Online Tax Filing, ITR e Filing - Wealth4India</sv:value>
+      </sv:property>
+      <sv:property sv:name="paymentAvailableTypes" sv:type="String">
+        <sv:value>CHECK,CASH,RTGS,NET_BANKING</sv:value>
+      </sv:property>
+      <sv:property sv:name="paymentEnabled" sv:type="String">
+        <sv:value>true</sv:value>
+      </sv:property>
+      <sv:property sv:name="phoneCustomerService" sv:type="String">
+        <sv:value>+91-11-45067102, +91-11-25074341, +91-9136265229</sv:value>
+      </sv:property>
+      <sv:property sv:name="resellerId" sv:type="String">
+        <sv:value>w4india</sv:value>
+      </sv:property>
+      <sv:property sv:name="resellerName" sv:type="String">
+        <sv:value>Wealth4India</sv:value>
       </sv:property>
       <sv:property sv:name="themeCss" sv:type="String">
         <sv:value>/content/assets/themes/css/white.css</sv:value>

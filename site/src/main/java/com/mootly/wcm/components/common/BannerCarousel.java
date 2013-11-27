@@ -24,7 +24,7 @@ public class BannerCarousel extends BaseComponent {
 
         BannerCarouselParamsInfo paramsInfo = getParametersInfo(request);
         List<Banner> banners = new ArrayList<Banner>();
-        HippoBean siteContentBaseBean = getSiteContentBaseBean(request);
+        HippoBean siteContentBaseBean = getSiteContentBaseBeanForReseller(request);
         
         Banner banner = null;
         if(!StringUtils.isEmpty(paramsInfo.getBanner1())) {

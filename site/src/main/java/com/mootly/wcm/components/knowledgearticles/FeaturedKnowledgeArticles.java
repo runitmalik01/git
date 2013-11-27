@@ -34,9 +34,9 @@ public class FeaturedKnowledgeArticles extends BaseComponent {
         super.doBeforeRender(request, response);
         FeaturedKnowledgeArticlesParamInfo paramInfo = getParametersInfo(request);
         List<Product> products = new ArrayList<Product>();
-        products.add(getSiteContentBaseBean(request).<Product>getBean(paramInfo.getProduct1()));
-        products.add(getSiteContentBaseBean(request).<Product>getBean(paramInfo.getProduct2()));
-        products.add(getSiteContentBaseBean(request).<Product>getBean(paramInfo.getProduct3()));
+        products.add(getSiteContentBaseBeanForReseller(request).<Product>getBean(paramInfo.getProduct1()));
+        products.add(getSiteContentBaseBeanForReseller(request).<Product>getBean(paramInfo.getProduct2()));
+        products.add(getSiteContentBaseBeanForReseller(request).<Product>getBean(paramInfo.getProduct3()));
         request.setAttribute("products", products);
         Boolean isReseller = request.isUserInRole("reseller");
         request.setAttribute("reseller", isReseller);

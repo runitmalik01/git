@@ -81,7 +81,7 @@ public class RepoFolderSiteMenu extends BaseComponent {
                 if (root == null) {
                     continue;
                 }
-                final HippoBean rootMenuBean = getSiteContentBaseBean(request).getBean(root);
+                final HippoBean rootMenuBean = getSiteContentBaseBeanForReseller(request).getBean(root);
                 if (rootMenuBean != null && rootMenuBean.isHippoFolderBean()) {
                     HippoFolderBean rootFolder = (HippoFolderBean) rootMenuBean;
 

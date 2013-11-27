@@ -53,7 +53,7 @@ public class ForgotPass extends BaseComponent {
 		if(securityQues!=null&& email!=null){
 			if(securityQues.equals("true")){
 				String pathToMemberSignupDocument = "members/" + email.replaceAll("@", "-at-") + "/membersignupdocument";
-				MemberSignupDocument memberSignupDocument =  getSiteContentBaseBean(request).getBean(pathToMemberSignupDocument);
+				MemberSignupDocument memberSignupDocument =  getSiteContentBaseBeanForReseller(request).getBean(pathToMemberSignupDocument);
 				if(memberSignupDocument!=null){
 					request.setAttribute("memberSignup", memberSignupDocument);
 				}
@@ -103,7 +103,7 @@ public class ForgotPass extends BaseComponent {
 		}
 		//Get ForgotPass is used to check whether the user is registered 
 		String pathToMemberSignupDocument = "members/" + email.replaceAll("@", "-at-") + "/membersignupdocument";
-		MemberSignupDocument memberSignupDocument =  getSiteContentBaseBean(request).getBean(pathToMemberSignupDocument);
+		MemberSignupDocument memberSignupDocument =  getSiteContentBaseBeanForReseller(request).getBean(pathToMemberSignupDocument);
 
 		if(memberSignupDocument!= null){
 			if((memberSignupDocument.getEmail().toString()).equalsIgnoreCase(email)){
@@ -220,7 +220,7 @@ public class ForgotPass extends BaseComponent {
 			return;
 		}
 		String pathToMemberSignupDocument = "members/" + userName.replaceAll("@", "-at-") + "/" +MemberSignupDocument.NODE_NAME;
-		MemberSignupDocument memberSignupDocument =  getSiteContentBaseBean(request).getBean(pathToMemberSignupDocument);
+		MemberSignupDocument memberSignupDocument =  getSiteContentBaseBeanForReseller(request).getBean(pathToMemberSignupDocument);
 		if(memberSignupDocument!=null){
 			for(SecurityQuestionAnswerValueList sqValueListDoc:memberSignupDocument.getSecurityQuestionAnswerValueListList()){
 				if(sqValueListDoc.getQuestion().equalsIgnoreCase(secQues) && sqValueListDoc.getAnswer().equalsIgnoreCase(secAns)){

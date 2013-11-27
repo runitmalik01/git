@@ -131,10 +131,17 @@ public class SOAPService {
 	public Map<String, Object> executeSOAPCall(SOAPCallWrapper soapCallWrapper,List<Map<String,String>> initialParamValues,SOAPMessage soapMessage) throws MalformedURLException,XPathExpressionException,  SOAPFaultException, SOAPException{
 		String soapRequestStr = null;
 		try {
+			SOAPMessage theDebugMessage = null;
+			if ( soapMessage == null) {
+				theDebugMessage = SOAPCallWrapperHelper.createSOAPMessage(soapCallWrapper, initialParamValues);
+			}
+			else {
+				theDebugMessage = soapMessage;
+			}
 			//doTrustToCertificates();
 			ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
 			BufferedOutputStream bo = new BufferedOutputStream(byteArrayOutputStream);
-			soapMessage.writeTo(bo);
+			theDebugMessage.writeTo(bo);
 			bo.flush();
 			soapRequestStr = byteArrayOutputStream.toString("UTF-8");
 		} catch (Exception e) {

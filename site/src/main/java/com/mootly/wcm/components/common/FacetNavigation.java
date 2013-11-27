@@ -55,7 +55,7 @@ public class FacetNavigation extends BaseComponent {
         
         // when the resolved sitemap item is /search, resolved content path can be null...
         if (!StringUtils.isEmpty(resolvedContentPath)) {
-            resolvedContentBean = getSiteContentBaseBean(request).getBean(resolvedContentPath, HippoFacetChildNavigationBean.class);
+            resolvedContentBean = getSiteContentBaseBeanForReseller(request).getBean(resolvedContentPath, HippoFacetChildNavigationBean.class);
         }
         
         HippoFacetNavigationBean facNavBean = null;

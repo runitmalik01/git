@@ -71,7 +71,7 @@ public class SignupDetail extends BaseComponent {
         request.setAttribute(SUCCESS, request.getParameter(SUCCESS));
         
         try {
-        	HippoBean siteContentBaseBean = getSiteContentBaseBean(request);
+        	HippoBean siteContentBaseBean = getSiteContentBaseBeanForReseller(request);
         	if (siteContentBaseBean != null) request.setAttribute("siteContentBaseBean", siteContentBaseBean);
         }catch (Exception ex) {
         	log.info("Error",ex);
@@ -141,7 +141,7 @@ public class SignupDetail extends BaseComponent {
 		// this method fetch username from repository and check whether exist or not
 		
 		 try {
-        	HippoBean siteContentBaseBean = getSiteContentBaseBean(request);
+        	HippoBean siteContentBaseBean = getSiteContentBaseBeanForReseller(request); // getSiteContentBaseBean(request);
         	if (siteContentBaseBean != null) request.setAttribute("siteContentBaseBean", siteContentBaseBean);
         	if (siteContentBaseBean != null) {
         		String normalizedEmail = email.replaceAll("@","-at-").toLowerCase();

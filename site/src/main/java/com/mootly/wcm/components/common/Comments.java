@@ -70,7 +70,7 @@ public class Comments extends BaseComponent {
 
         String commentsFolderPath = getCommentsFolderPath(request);
         log.debug("Comments folder path " + commentsFolderPath);
-        HippoFolder commentsFolder = getSiteContentBaseBean(request).getBean(commentsFolderPath);
+        HippoFolder commentsFolder = getSiteContentBaseBeanForReseller(request).getBean(commentsFolderPath);
         log.debug("Comments folder " + commentsFolder);
         if (commentsFolder != null) {
             HippoDocumentBean document = (HippoDocumentBean) getContentBean(request);

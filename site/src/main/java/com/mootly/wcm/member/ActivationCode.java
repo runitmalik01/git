@@ -62,7 +62,7 @@ public class ActivationCode extends BaseComponent {
 
 		//Get activecode is used to check whether the user is registered or not
 		String pathToMemberSignupDocument = "members/" + email.replaceAll("@", "-at-") + "/membersignupdocument";
-		MemberSignupDocument memberSignupDocument =  getSiteContentBaseBean(request).getBean(pathToMemberSignupDocument);
+		MemberSignupDocument memberSignupDocument =  getSiteContentBaseBeanForReseller(request).getBean(pathToMemberSignupDocument);
 		if(memberSignupDocument!= null)
 		{
 			if((memberSignupDocument.getEmail().toString()).equalsIgnoreCase(email))

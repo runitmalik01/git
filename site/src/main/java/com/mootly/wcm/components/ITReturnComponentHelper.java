@@ -298,6 +298,9 @@ public final class ITReturnComponentHelper {
 
 	public String getScriptName(HstRequest request,String selectedItrTabAttr,String selectedItrTabParam) {
 		String pathInfo = request.getRequestContext().getResolvedSiteMapItem().getPathInfo();
+		boolean isReseller = isReSeller(request);
+    	String resellerId = getResellerId(request);
+    	pathInfo = "r/" + resellerId + "/" + pathInfo;
 		String scriptName = null;
 		if (pathInfo != null && pathInfo.contains(".html")) {
 			String[] parts = pathInfo.split("[/]");

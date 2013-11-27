@@ -105,7 +105,11 @@ abstract public class AbstractITReturnHomePage extends ITReturnComponent {
 		request.setAttribute("noPanMatchFound", request.getParameter("noPanMatchFound"));
 		//set parameter if Last name does not Match with PAN
 		request.setAttribute("valiPanWithLastNameError", request.getParameter("valiPanWithLastNameError"));
-		List<HippoFolderBean> pansForMember = getPanFolder().getFolders(); 
+		HippoFolder hippoFolder = getPanFolder();
+		if (hippoFolder == null) {
+			return;
+		}
+		List<HippoFolderBean> pansForMember = hippoFolder.getFolders(); 
 		HippoBean currentBean = pansForMember.get(0); //this.getContentBean(request);
 		if (currentBean == null) {
 			return;
@@ -197,7 +201,7 @@ abstract public class AbstractITReturnHomePage extends ITReturnComponent {
 			request.setAttribute("listOfITReturnHomePageView", listOfITReturnHomePageView);		
 		}
 		String facetLocation= "vendors/faceteditreturns";
-		HippoBean vendorFolder = getSiteContentBaseBean(request).getBean("vendors");
+		HippoBean vendorFolder = getSiteContentBaseBeanForReseller(request).getBean("vendors");
 		HippoBean theFacet = vendorFolder.getBean("itreturnsfacetnav");
 		HippoFacetsAvailableNavigation facetNavigation = getSiteContentBaseBean(request).getBean(facetLocation, HippoFacetsAvailableNavigation.class);
 		if (facetNavigation != null) {
@@ -288,7 +292,7 @@ abstract public class AbstractITReturnHomePage extends ITReturnComponent {
 		velocityContext.put("StartApp_Mobile", StartApp_Mobile);
 		sendEmail(request, null, null, null, "memberstartapptemplate", velocityContext);
 		// end of code for sending email
-		String returnURL =  request.getContextPath() +"/member/itreturn/" + financialYear.getDisplayName() + "/" + pan.toLowerCase() + "_f_"  + nextId  + "/" + pan.toLowerCase() + "/servicerequest-itr.html?uuid=" +  sfr.getUuid(); //getRedirectURL(request, response, FormSaveResult.SUCCESS,"packageselector",financialYear,itReturnType,pan);
+		String returnURL =  getHippoRequestURL(request, true, true) + "/member/itreturn/" + financialYear.getDisplayName() + "/" + pan.toLowerCase() + "_f_"  + nextId  + "/" + pan.toLowerCase() + "/servicerequest-itr.html?uuid=" +  sfr.getUuid(); //getRedirectURL(request, response, FormSaveResult.SUCCESS,"packageselector",financialYear,itReturnType,pan);
 		//returnURL +="?uuid=" + 
 		try {
 			response.sendRedirect(returnURL);

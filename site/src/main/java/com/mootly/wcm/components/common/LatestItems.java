@@ -82,7 +82,7 @@ public class LatestItems extends BaseComponent {
 
         boolean ascending = ComponentUtil.parseAscendingParameter(PARAM_SORT_ORDER, sortOrderParam, false, log);
 
-        HippoBean folderBean = getSiteContentBaseBean(request);
+        HippoBean folderBean = getSiteContentBaseBeanForReseller(request);
         if (itemsScope != null) {
             folderBean = folderBean.getBean(itemsScope);
             if (folderBean == null) {

@@ -1,8 +1,6 @@
 package com.mootly.wcm.dit;
 
 
-import java.util.Map;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
@@ -13,7 +11,6 @@ import com.mootly.wcm.model.IndianGregorianCalendar;
 import com.mootly.wcm.services.ditws.AddClientDetails;
 import com.mootly.wcm.services.ditws.AddClientDetails.AddClientOption;
 import com.mootly.wcm.services.ditws.RetrieveITRV;
-import com.mootly.wcm.services.ditws.RetrieveRectificationStatus;
 import com.mootly.wcm.services.ditws.exception.DataMismatchException;
 import com.mootly.wcm.services.ditws.exception.InvalidFormatException;
 import com.mootly.wcm.services.ditws.exception.MissingInformationException;

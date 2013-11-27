@@ -39,7 +39,7 @@ public class Banner extends BaseComponent {
 
         log.debug("banner location specified in hst is " + bannerLocation);
 
-        final HippoBean document = getSiteContentBaseBean(request).getBean(bannerLocation);
+        final HippoBean document = getSiteContentBaseBeanForReseller(request).getBean(bannerLocation);
 
         log.debug("banner document is " + document);
 

@@ -71,7 +71,7 @@ public class MootlyHippoUserDetailsServiceImpl implements MootlyUserDetailsServi
 	  private String rolePrefix = "ROLE_";
 	  
 	  private String PASS_PREFIX="$SHA-256$";
-
+	  
 	  public MootlyHippoUserDetailsServiceImpl() {
 	  }
 
@@ -173,23 +173,10 @@ public class MootlyHippoUserDetailsServiceImpl implements MootlyUserDetailsServi
 	      if (mountIdentifier != null) {
 	    	  //attempt to get the mount path and then get the channel out of it
 	    	  try {
-	    		 Node theMountNode = session.getNodeByIdentifier(mountIdentifier);
-	    		 if ( theMountNode.hasProperty("hst:channelpath") ) {
-	    			 String channelPath = theMountNode.getProperty("hst:channelpath").getString();
-	    			 String channelAbsPath = channelPath + "/" + "hst:channelinfo";
-	    			 Node theChannelInfoNode = session.getNode(channelAbsPath);
-	    			 boolean isReseller = false;
-	    			 String resellerId = null;
-	    			 if ( theChannelInfoNode.hasProperty("isReseller") ) {
-	    				 isReseller = Boolean.valueOf( theChannelInfoNode.getProperty("isReseller").getString() );
-	    			 }
-	    			 if ( isReseller ) {
-	    				 if (theChannelInfoNode.hasProperty("resellerId")) {
-	    					 resellerId = theChannelInfoNode.getProperty("resellerId").getString().trim();
-	    					 pathToRestrict = "/content/documents/mootlywcm/resellers/" + resellerId + "/members";
-	    				 }
-	    			 }
-	    		 }
+	    		 HippoMountDetail hippoMountDetail = loadHippoMountDetail(session,mountIdentifier);
+	    		 if (hippoMountDetail != null && null != hippoMountDetail.getPathToRestrict()) {
+	    			 pathToRestrict = hippoMountDetail.getPathToRestrict();
+	    		 }	    		
 	    	  }catch (ItemNotFoundException e) {
 	    		  log.error("Error finding node by identifier " + mountIdentifier,e);
 	    		  throw new UsernameNotFoundException("user.not.found");
@@ -287,7 +274,7 @@ public class MootlyHippoUserDetailsServiceImpl implements MootlyUserDetailsServi
 	      boolean accountNonExpired = true;
 	      boolean credentialsNonExpired = true;
 	      boolean accountNonLocked = true;
-	      Collection<? extends GrantedAuthority> authorities = getGrantedAuthoritiesOfUser(username,isVendor);
+	      Collection<? extends GrantedAuthority> authorities = getGrantedAuthoritiesOfUser(username,isVendor,mountIdentifier);
 
 	      user = new User(username, password != null ? password : passwordProp, enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, authorities);
 	    } catch (RepositoryException e) {
@@ -304,14 +291,16 @@ public class MootlyHippoUserDetailsServiceImpl implements MootlyUserDetailsServi
 	    return user;
 	  }
 
-	  protected Collection<? extends GrantedAuthority> getGrantedAuthoritiesOfUser(String username,boolean isVendor) throws LoginException, RepositoryException {
+	  protected Collection<? extends GrantedAuthority> getGrantedAuthoritiesOfUser(String username,boolean isVendor,String mountIdentifier) throws LoginException, RepositoryException {
 	    Set<GrantedAuthority> authorities = new HashSet<GrantedAuthority>();
-	    Session session = null;
 	    //Amit Patkar for now lets give member and everybody to all logged in users
 	    //lets check if this user 	    
 	    authorities.add(new GrantedAuthorityImpl("ROLE_everybody"));
 	    authorities.add(new GrantedAuthorityImpl("ROLE_member"));
 	    if (isVendor)authorities.add(new GrantedAuthorityImpl("ROLE_vendor")); 
+	    if (mountIdentifier != null) {
+	    	if (isVendor)authorities.add(new GrantedAuthorityImpl("ROLE_" + mountIdentifier)); 
+	    }
 	    /*
 	    try {
 	      if (getSystemCredentials() != null) {
@@ -388,5 +377,40 @@ public class MootlyHippoUserDetailsServiceImpl implements MootlyUserDetailsServi
 			throws UsernameNotFoundException, DataAccessException {
 		// TODO Auto-generated method stub
 		return loadUserByUsernameAndPassword(username,password,null);
+	}
+	
+	@Override
+	public HippoMountDetail loadHippoMountDetail(Session session,String mountIdentifier) throws ItemNotFoundException, RepositoryException {
+		 Node theMountNode = session.getNodeByIdentifier(mountIdentifier);
+		 HippoMountDetail hippoMountDetail = null;
+		 if ( theMountNode != null ) {
+			 hippoMountDetail = new HippoMountDetail(mountIdentifier);
+			 String pathToRestrict  = null;
+			 String channelPath = null;
+			 String channelAbsPath = null;
+			 boolean isReseller = false;
+			 String resellerId = null;
+			 if ( theMountNode.hasProperty("hst:channelpath") ) {
+				 channelPath = theMountNode.getProperty("hst:channelpath").getString();
+				 channelAbsPath = channelPath + "/" + "hst:channelinfo";
+				 Node theChannelInfoNode = session.getNode(channelAbsPath);
+				 isReseller = false;
+				 if ( theChannelInfoNode.hasProperty("isReseller") ) {
+					 isReseller = Boolean.valueOf( theChannelInfoNode.getProperty("isReseller").getString() );
+				 }
+				 if ( isReseller ) {
+					 if (theChannelInfoNode.hasProperty("resellerId")) {
+						 resellerId = theChannelInfoNode.getProperty("resellerId").getString().trim();
+						 pathToRestrict = "/content/documents/mootlywcm/resellers/" + resellerId + "/members";
+					 }
+				 }
+				 hippoMountDetail.setPathToRestrict(pathToRestrict);
+				 hippoMountDetail.setResellerId(resellerId);
+				 hippoMountDetail.setIsReseller(isReseller);
+				 hippoMountDetail.setChannelPath(channelPath);
+				 hippoMountDetail.setChannelAbsPath(channelAbsPath);
+			 }
+		 }
+		 return hippoMountDetail;
 	}
 }
