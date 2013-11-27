@@ -392,7 +392,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 					//response.setRenderParameter("selectedItrTab", ((ITRTab)request.getAttribute("selectedItrTab")).name());
 					//urlToRedirect += "?selectedItrTab=" +  ((ITRTab)request.getAttribute("selectedItrTab")).name();
 					//	}
-					//log.info("urlToRedirect EEEEEEEEEEEE"+urlToRedirect);
+				
 					response.sendRedirect( urlToRedirect );
 					//response.sendRedirect(redirectURL);
 					return;
@@ -1720,9 +1720,10 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		boolean isPaid = false;
 
 		MemberPersonalInformation memberPersonalInformation = (MemberPersonalInformation) request.getAttribute(MemberPersonalInformation.class.getSimpleName().toLowerCase());
-		//log.info("AAAAAAAAAAAAAAAAAAAAAAAAAAAAFFFFFFFFFFFFFFFFFFFFFFFFFFF"+memberPersonalInformation);
+	
 		String ITR = memberPersonalInformation.getFlexField("flex_string_ITRForm", "");
 		request.setAttribute("ITR", ITR);
+		if (getPublicRequestParameter(request, "show") != null) request.setAttribute("show",getPublicRequestParameter(request, "show"));
 
 		//time to hand over
 		XmlGeneratorService xmlGeneratorService = itrXmlGeneratorServiceFactory.getInstance(getFinancialYear());
@@ -1730,6 +1731,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			if (xmlGeneratorService != null) {
 				try {
 					generatedXml = xmlGeneratorService.generateXml(request, response);
+					
 				}
 				catch (Exception e) {
 					// TODO Auto-generated catch block
