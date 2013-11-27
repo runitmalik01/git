@@ -3649,4 +3649,17 @@
     <sv:value>jsp/layout/bootstrap_v2/header/header_v2.jsp</sv:value>
   </sv:property>
 </sv:node>
+<sv:node sv:name="standard.footer.v2.re" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:template</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>f1730934-2fc6-4ae7-8737-dd6f9f78770f</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="hst:containers" sv:type="String"/>
+  <sv:property sv:name="hst:renderpath" sv:type="String">
+    <sv:value>jsp/layout/bootstrap_v2/footer_v2.jsp</sv:value>
+  </sv:property>
+</sv:node>
+<!-- end of new home page -->
 </sv:node>
