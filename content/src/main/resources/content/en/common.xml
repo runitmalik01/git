@@ -2712,6 +2712,153 @@
   </sv:node>
 </sv:node>
 <!-- free Text Search Value List End -->
+<sv:node sv:name="catalogitemslist" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hippo:handle</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+    <sv:value>hippo:hardhandle</sv:value>
+    <sv:value>hippo:translated</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>4550f685-fa81-41bc-837c-f4f2f5ae1932</sv:value>
+  </sv:property>
+  <sv:node sv:name="catalogitemslist">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>selection:valuelist</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+      <sv:value>hippo:harddocument</sv:value>
+      <sv:value>hippotranslation:translated</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>9e7bfc19-2c79-4f16-b58f-2b63328a3c57</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String"/>
+    <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
+    <sv:property sv:name="hippotranslation:id" sv:type="String">
+      <sv:value>910a10f0-d621-4a38-b707-7b644eb52b56</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippotranslation:locale" sv:type="String">
+      <sv:value>inherited - from query</sv:value>
+    </sv:property>
+    <sv:node sv:name="hippotranslation:translations">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>hippotranslation:translations</sv:value>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="selection:listitem">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>selection:listitem</sv:value>
+      </sv:property>
+      <sv:property sv:name="selection:key" sv:type="String">
+        <sv:value>home-newsitems</sv:value>
+      </sv:property>
+      <sv:property sv:name="selection:label" sv:type="String">
+        <sv:value>News Items Catalog</sv:value>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="selection:listitem">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>selection:listitem</sv:value>
+      </sv:property>
+      <sv:property sv:name="selection:key" sv:type="String">
+        <sv:value>home-pricing</sv:value>
+      </sv:property>
+      <sv:property sv:name="selection:label" sv:type="String">
+        <sv:value>Pricing Catalog</sv:value>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="selection:listitem">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>selection:listitem</sv:value>
+      </sv:property>
+      <sv:property sv:name="selection:key" sv:type="String">
+        <sv:value>home-events</sv:value>
+      </sv:property>
+      <sv:property sv:name="selection:label" sv:type="String">
+        <sv:value>Events Catalog</sv:value>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="selection:listitem">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>selection:listitem</sv:value>
+      </sv:property>
+      <sv:property sv:name="selection:key" sv:type="String">
+        <sv:value>home-carousel</sv:value>
+      </sv:property>
+      <sv:property sv:name="selection:label" sv:type="String">
+        <sv:value>Carousel Catalog</sv:value>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="selection:listitem">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>selection:listitem</sv:value>
+      </sv:property>
+      <sv:property sv:name="selection:key" sv:type="String">
+        <sv:value>home-html</sv:value>
+      </sv:property>
+      <sv:property sv:name="selection:label" sv:type="String">
+        <sv:value>HTML Catalog</sv:value>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="selection:listitem">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>selection:listitem</sv:value>
+      </sv:property>
+      <sv:property sv:name="selection:key" sv:type="String">
+        <sv:value>home-services</sv:value>
+      </sv:property>
+      <sv:property sv:name="selection:label" sv:type="String">
+        <sv:value>Services Catalog</sv:value>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="selection:listitem">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>selection:listitem</sv:value>
+      </sv:property>
+      <sv:property sv:name="selection:key" sv:type="String">
+        <sv:value>home-headbox</sv:value>
+      </sv:property>
+      <sv:property sv:name="selection:label" sv:type="String">
+        <sv:value>Head Box Catalog</sv:value>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="selection:listitem">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>selection:listitem</sv:value>
+      </sv:property>
+      <sv:property sv:name="selection:key" sv:type="String">
+        <sv:value>home-imagebox</sv:value>
+      </sv:property>
+      <sv:property sv:name="selection:label" sv:type="String">
+        <sv:value>Image Box Catalog</sv:value>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="selection:listitem">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>selection:listitem</sv:value>
+      </sv:property>
+      <sv:property sv:name="selection:key" sv:type="String">
+        <sv:value>home-imagebox2</sv:value>
+      </sv:property>
+      <sv:property sv:name="selection:label" sv:type="String">
+        <sv:value>Image Box 2 Catalog</sv:value>
+      </sv:property>
+    </sv:node>
+  </sv:node>
+  <sv:node sv:name="hippo:translation">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hippo:translation</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippo:language" sv:type="String">
+      <sv:value/>
+    </sv:property>
+    <sv:property sv:name="hippo:message" sv:type="String">
+      <sv:value>catalogItemsList</sv:value>
+    </sv:property>
+  </sv:node>
+</sv:node>
   </sv:node>
   <sv:node sv:name="simpledocuments">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
