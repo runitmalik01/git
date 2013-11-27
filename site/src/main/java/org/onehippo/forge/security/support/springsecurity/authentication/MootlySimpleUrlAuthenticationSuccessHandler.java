@@ -11,7 +11,6 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.onehippo.forge.security.support.springsecurity.utils.SpringSecurityUtils;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.web.WebAttributes;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 
 public class MootlySimpleUrlAuthenticationSuccessHandler  extends SimpleUrlAuthenticationSuccessHandler{

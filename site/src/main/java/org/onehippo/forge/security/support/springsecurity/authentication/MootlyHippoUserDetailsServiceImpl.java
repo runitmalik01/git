@@ -16,7 +16,6 @@ import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 import javax.jcr.Value;
 import javax.jcr.query.Query;
-import javax.jcr.query.QueryResult;
 
 import org.hippoecm.hst.site.HstServices;
 import org.slf4j.Logger;

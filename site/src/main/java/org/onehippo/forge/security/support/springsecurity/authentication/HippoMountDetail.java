@@ -2,8 +2,6 @@ package org.onehippo.forge.security.support.springsecurity.authentication;
 
 import java.io.Serializable;
 
-import javax.jcr.Node;
-
 /**
  *  String channelPath = theMountNode.getProperty("hst:channelpath").getString();
 			 String channelAbsPath = channelPath + "/" + "hst:channelinfo";

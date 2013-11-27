@@ -2,7 +2,6 @@ package org.onehippo.forge.security.support.springsecurity.authentication;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang.StringUtils;
 import org.onehippo.forge.security.support.springsecurity.authentication.logout.HippoLogoutFilter;
