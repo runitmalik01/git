@@ -20,40 +20,52 @@
       <sv:value>home_ref</sv:value>
     </sv:property>
   </sv:node>
-  <sv:node sv:name="root">
-    <sv:property sv:name="jcr:primaryType" sv:type="Name">
-      <sv:value>hst:sitemapitem</sv:value>
-    </sv:property>
-    <sv:property sv:name="jcr:uuid" sv:type="String">
-      <sv:value>0b83b138-daef-4463-a05a-56213d9a4bb7</sv:value>
-    </sv:property>
-    <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
-      <sv:value>hst:pages/homepage.re</sv:value>
-    </sv:property>
-    <sv:property sv:name="hst:refId" sv:type="String">
-      <sv:value>home</sv:value>
-    </sv:property>
-    <sv:property sv:name="hst:relativecontentpath" sv:type="String">
-      <sv:value>services</sv:value>
-    </sv:property>
-  </sv:node>
-  <sv:node sv:name="contactus">
-    <sv:property sv:name="jcr:primaryType" sv:type="Name">
-      <sv:value>hst:sitemapitem</sv:value>
-    </sv:property>
-    <sv:property sv:name="jcr:uuid" sv:type="String">
-      <sv:value>b0446afd-b8d2-4f29-a414-a6707c5ada3a</sv:value>
-    </sv:property>
-    <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
-      <sv:value>hst:pages/contactus-page</sv:value>
-    </sv:property>
-    <sv:property sv:name="hst:refId" sv:type="String">
-      <sv:value>contactus</sv:value>
-    </sv:property>
-    <sv:property sv:name="hst:relativecontentpath" sv:type="String">
-      <sv:value>common/Contact-Us</sv:value>
-    </sv:property>
-  </sv:node>
+  <sv:node sv:name="root" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:sitemapitem</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>0b83b138-daef-4463-a05a-56213d9a4bb7</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+    <sv:value>hst:pages/homepage.re</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+    <sv:value>webContentLocation</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+    <sv:value>webstaticcontentnode</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:refId" sv:type="String">
+    <sv:value>home</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:relativecontentpath" sv:type="String">
+    <sv:value>services</sv:value>
+  </sv:property>
+</sv:node>
+  <sv:node sv:name="contactus" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:sitemapitem</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>b0446afd-b8d2-4f29-a414-a6707c5ada3a</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+    <sv:value>hst:pages/contactus-page</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+    <sv:value>webContentLocation</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+    <sv:value>webstaticcontentnode</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:refId" sv:type="String">
+    <sv:value>contactus</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:relativecontentpath" sv:type="String">
+    <sv:value>common/Contact-Us</sv:value>
+  </sv:property>
+</sv:node>
   <!-- Comment Out -->
   <sv:node sv:name="search">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
@@ -6080,7 +6092,7 @@
 	    <sv:value>terms</sv:value>
 	  </sv:property>
 	  <sv:property sv:name="hst:relativecontentpath" sv:type="String">
-	    <sv:value>about/quick-facts/terms--conditions/terms--conditions</sv:value>
+	    <sv:value>about/terms--conditions/terms--conditions</sv:value>
 	  </sv:property>
   </sv:node>
   <!--  /Amit Patkar 07/16/2013 -->
@@ -6150,7 +6162,7 @@
 	    <sv:value>privacy</sv:value>
 	  </sv:property>
 	  <sv:property sv:name="hst:relativecontentpath" sv:type="String">
-	    <sv:value>about/quick-facts/terms--conditions/privacy-policy</sv:value>
+	    <sv:value>about/terms--conditions/privacy-policy</sv:value>
 	  </sv:property>
 	</sv:node>
   <!--  /Amit Patkar 07/16/2013 -->
