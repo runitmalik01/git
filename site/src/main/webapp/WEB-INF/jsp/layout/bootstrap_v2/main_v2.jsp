@@ -3,28 +3,16 @@
 
 
 <%@include file="../../includes/tags.jspf"%>
-<%@page import="org.hippoecm.hst.content.beans.standard.HippoBean"%>
+
+<%-- <%@page import="org.hippoecm.hst.content.beans.standard.HippoBean"%> --%>
 <c:set var="hometitle">
 	<fmt:message key="home.title" />
 </c:set>
 <hippo-gogreen:title title="${hometitle}" />
-<%@ page language="java"%>
-<%@ page contentType="text/html; charset=UTF-8"%>
-<%@ page trimDirectiveWhitespaces="true"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://www.onehippo.org/jsp/google-analytics"
-	prefix="ga"%>
-<hst:link var="login" path="/memberLogin" />
-<hst:link var="logout" path="/j_spring_security_logout" />
-<hst:link var="signup" path="/signup" />
-<hst:link var="myaccount" path="/member" />
-<%@ taglib uri="http://java.sun.com/jsp/jstl/xml" prefix="x"%>
-<%@ taglib uri="http://www.hippoecm.org/jsp/hst/core" prefix='hst'%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!-- Main jumbotron for a primary marketing message or call to action -->
 <div class="jumbotron bg-jumbotron">
-		<div class="container">
+		<div class="container" >
 			<h1>Pricing as low as &#8377; 199! </h1>
 			<h2>The Easiest and Fastest Way to E-File or eZ File Tax
 				Returns!</h2>
@@ -56,7 +44,7 @@
 		</div>
 		<div class="col-lg-4">
 			<h1 style="text-align: center; font-size: 5em">
-				<span class="glyphicon glyphicon-send"></span>
+				<span class="glyphicon glyphicon-plane"></span>
 			</h1>
 			<h1>Fast.</h1>
 			<p class="lead">
@@ -180,7 +168,6 @@
 
 <div class="container">
 	<footer>
-		<p class="text-muted credit">&copy; 2013 Wealth4India</p>
 		<p>
 			Call Us: <a href="callto:+91-11-45067102">+91-11-45067102</a>, <a
 				href="callto:+91-11-25074341">+91-11-25074341</a>, <a
@@ -191,18 +178,9 @@
 		</p>
 	</footer>
 </div>
-<!-- /container -->
 
-
-<!-- Bootstrap core JavaScript
-    ================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-<script src="./js/bootstrap.min.js"></script>
-</body>
-</html>
 <!--this File is reponsible to add modal with respective youtube videos  -->
-<jsp:include page="../../home/responsive/modal-tutorial.jsp" />
+
 <hst:headContribution keyHint="detectMobile" category="jsInternal">
 	<script type="text/javascript">
       $(document).ready(function(){
