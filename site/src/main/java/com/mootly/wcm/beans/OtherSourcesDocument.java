@@ -686,12 +686,10 @@ public class OtherSourcesDocument extends BaseDocument implements ContentNodeBin
 		}
 		double value_profit_FirmAOP_BOI=0.0d;
 		if (formMap.getField("profit_FirmAOP_BOI").getValue().isEmpty()){
-			log.info("inside if OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
 			setProfit_FirmAOP_BOI(value_profit_FirmAOP_BOI);
 		}
 		else{
 			String strProfit_FirmAOP_BOI=formMap.getField("profit_FirmAOP_BOI").getValue();
-			log.info("HHHHHHHHHHHHHHHHHHHHHHHHHHH else"+strProfit_FirmAOP_BOI);
 			value_profit_FirmAOP_BOI= Double.parseDouble(strProfit_FirmAOP_BOI);
 			setProfit_FirmAOP_BOI(value_profit_FirmAOP_BOI);
 		}
