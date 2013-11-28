@@ -21,27 +21,23 @@
 				<a class="w4i-logo" href="#"><img alt="Wealth4India"
 					src='./images/bootstrap_v2_img/w4ilogo_v2.png'> </a>
 			</div>
+			<!-- Wealth4India Logo Image -->
 
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href='/site/home_v2'>Home</a>
-					</li>
-					<li><a href='/site/serviceprice'>Pricing</a>
-					</li>
-					<li class="dropdown"><a href="#taxes" class="dropdown-toggle"
-						data-toggle="dropdown">Tax Filing <b class="caret"></b>
-					</a>
+					<li class="active"><a href='/site/home_v2'>Home</a></li>
+					<li><a href='/site/serviceprice'>Pricing</a></li>
+
+
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown">Tax Filing <b class="caret"></b> </a>
 						<ul class="dropdown-menu">
-							<%-- 	<li class="dropdown"><a id="dLabel" role="button"
-						class="dropdown-toggle" data-toggle="dropdown" data-target="#"
-						href="#">Tax Filing <b class="caret"></b> </a>
-						<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel"> --%>
 							<li class="dropdown-header">Calculators</li>
 							<li><a href='/site/taxcalculator'>Tax Calculator</a>
 							</li>
-							<li><a href='/site/npvcalculator'>NPV Calculator</a>
-							</li>
 							<li><a href='/site/emicalculator'>EMI Calculator</a>
+							</li>
+							<li><a href='/site/npvcalculator'>NPV Calculator</a>
 							</li>
 							<li><a href='/site/hracalculator'>HRA Calculator</a>
 							</li>
@@ -51,16 +47,16 @@
 							<li><a href='/site/knowledgeportal'>Knowledge Portal</a>
 							</li>
 						</ul></li>
+
+
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown">About Us <b class="caret"></b> </a>
 						<ul class="dropdown-menu">
-							<li><a href='/site/about'>About</a>
-							</li>
-							<li><a href='/site/faq'>FAQ</a>
-							</li>
-							<li><a href='/site/news'>News</a>
-							</li>
-						</ul></li>
+							<li><a href='/site/about'>About</a></li>
+							<li><a href='/site/faq'>FAQ</a></li>
+							<li><a href='/site/news'>News</a></li>
+						</ul>
+					</li>
 				</ul>
 
 				<form class="navbar-form navbar-right">
@@ -72,11 +68,11 @@
 			<!--/.navbar-collapse -->
 		</div>
 	</div>
-</body>
 
 <!-- Placed at the end of the document so the pages load faster -->
-<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+<script src="https://code.jquery.com/jquery.js"></script>
 <script src='./js/bootstrap_v2/bootstrap.min.js'></script>
+<script src='./js/bootstrap_v2/bootstrap.js'></script>
 </body>
 </html>
 
