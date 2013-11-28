@@ -9,11 +9,17 @@
 	<fmt:message key="home.title" />
 </c:set>
 <hippo-gogreen:title title="${hometitle}" />
+<head>
+<link rel="stylesheet" media="screen" type="text/css"
+	href='<hst:link path="/css/bootstrap_v2/bootstrap.flat.min.css"></hst:link>' />
+<link rel="stylesheet" media="screen" type="text/css"
+	href='<hst:link path="/css/bootstrap_v2/wealth4india.css"></hst:link>' />
+</head>
 
-<!-- Main jumbotron for a primary marketing message or call to action -->
-<div class="jumbotron bg-jumbotron">
-		<div class="container" >
-			<h1>Pricing as low as &#8377; 199! </h1>
+<body>
+	<div class="jumbotron bg-jumbotron" style="background-image: url('images/bootstrap_v2_img/bg_jumbotron_v2.png');"> 
+		<div class="container">
+			<h1>Pricing as low as &#8377; 199!</h1>
 			<h2>The Easiest and Fastest Way to E-File or eZ File Tax
 				Returns!</h2>
 			<p>
@@ -26,14 +32,14 @@
 					Now! &raquo;</a>
 			</p>
 		</div>
-	</div>
-
+		</div>
+</body>
 <div class="container">
 	<!-- Example row of columns -->
 	<div class="row">
 		<div class="col-lg-4">
 			<h1 style="text-align: center; font-size: 5em">
-				<span class="glyphicon glyphicon-check"></span>
+				<span class="glyphicon glyphicon-usd"></span>
 			</h1>
 			<h1>Simple.</h1>
 			<p class="lead">
@@ -44,7 +50,7 @@
 		</div>
 		<div class="col-lg-4">
 			<h1 style="text-align: center; font-size: 5em">
-				<span class="glyphicon glyphicon-plane"></span>
+				<span class="glyphicon glyphicon-usd"></span>
 			</h1>
 			<h1>Fast.</h1>
 			<p class="lead">
@@ -180,8 +186,10 @@
 </div>
 
 <!--this File is reponsible to add modal with respective youtube videos  -->
-
+<script src='./js/bootstrap_v2/bootstrap.min.js'></script>
+<script src='./js/bootstrap_v2/bootstrap.js'></script>
 <hst:headContribution keyHint="detectMobile" category="jsInternal">
+
 	<script type="text/javascript">
       $(document).ready(function(){
         if ("${path}" == "/") {
