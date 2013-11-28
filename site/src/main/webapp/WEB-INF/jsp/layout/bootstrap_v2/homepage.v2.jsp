@@ -3,7 +3,9 @@
 <!--[if IE 7 ]>    <html class="no-js ie7" lang="en-US"> <![endif]-->
 <!--[if IE 8 ]>    <html class="no-js ie8" lang="en-US"> <![endif]-->
 <!--[if IE 9 ]>    <html class="no-js ie9" lang="en-US"> <![endif]-->
-<!--[if gt IE 9]><!--> <html class="no-js" lang="en-US"> <!--<![endif]-->
+<!--[if gt IE 9]><!-->
+<html class="no-js" lang="en-US">
+<!--<![endif]-->
 <%--
 
     Copyright (C) 2010 Hippo B.V.
@@ -25,59 +27,70 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://www.onehippo.org/jsp/google-analytics" prefix="ga" %>
-<%@include file="../../includes/tags.jspf" %>
+<%@ taglib uri="http://www.onehippo.org/jsp/google-analytics"
+	prefix="ga"%>
+<%@include file="../../includes/tags.jspf"%>
 <%@page import="com.mootly.wcm.beans.MemberPersonalInformation"%>
-<c:set var="lang" value="${pageContext.request.locale.language}"/>
+<c:set var="lang" value="${pageContext.request.locale.language}" />
 <head>
-    <hst:headContributions categoryExcludes="css,jsInternal,jsExternal"  />
-	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
-    <link rel="schema.DCTERMS" href="http://purl.org/dc/terms/" />
-    <meta name="DC.keywords" content="<fmt:message key="layout.webpage.metadckeywords"/>" />
-    <meta name="description" content="<fmt:message key="layout.webpage.metadescription"/>" />
-    <meta name="DC.type" content="webpagina" scheme="THC.type" />
-    <meta name="DCTERMS.issued" content="2009-07-09T10:31" scheme="DCTERMS.W3CDTF" />
-    <meta name="DCTERMS.available" content="2009-07-09T10:31" scheme="DCTERMS.W3CDTF" />
-    <meta name="DC.title" content="<fmt:message key="layout.webpage.metadctitle"/>" />
-    <meta name="DC.language" content="en" scheme="DCTERMS.RFC3066" />
-	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
-	<%-- <meta name='robots' content='noindex,nofollow' /> --%>	
-	<%--<hst:link var="stylecss" path="/css/style.css"/>
+<hst:headContributions categoryExcludes="css,jsInternal,jsExternal" />
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+<link rel="schema.DCTERMS" href="http://purl.org/dc/terms/" />
+<meta name="DC.keywords"
+	content="<fmt:message key="layout.webpage.metadckeywords"/>" />
+<meta name="description"
+	content="<fmt:message key="layout.webpage.metadescription"/>" />
+<meta name="DC.type" content="webpagina" scheme="THC.type" />
+<meta name="DCTERMS.issued" content="2009-07-09T10:31"
+	scheme="DCTERMS.W3CDTF" />
+<meta name="DCTERMS.available" content="2009-07-09T10:31"
+	scheme="DCTERMS.W3CDTF" />
+<meta name="DC.title"
+	content="<fmt:message key="layout.webpage.metadctitle"/>" />
+<meta name="DC.language" content="en" scheme="DCTERMS.RFC3066" />
+<meta name="viewport"
+	content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+<%-- <meta name='robots' content='noindex,nofollow' /> --%>
+<%--<hst:link var="stylecss" path="/css/style.css"/>
     <link rel="stylesheet" media="screen" type="text/css" href="${stylecss}"/>
     <hst:link var="w4indiacss" path="/css/w4india.css"/>
     <link rel="stylesheet" media="screen" type="text/css" href="${w4indiacss}"/>
     <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/themes/smoothness/jquery-ui.css" />
     <link rel="stylesheet" media="screen" type="text/css" href='<hst:link path="/css/bootstrap.css"></hst:link>'/>
 	<link rel="stylesheet" media="screen" type="text/css" href='<hst:link path="/css/bootstrap-responsive.css"></hst:link>'/>
-	<link rel="stylesheet" media="screen" type="text/css" href="<hst:link path="/css/author.css"></hst:link>"/> --%>	
-	<!-- <link rel="stylesheet" media="screen" type="text/css" href='<hst:link path="/css/bootplus.css"></hst:link>'/> -->
-	<!-- <link rel="stylesheet" media="screen" type="text/css" href='<hst:link path="/css/font-awesome-min.css"></hst:link>'/> -->
-	
-	<!-- New layout----kusum -->
-	<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/themes/smoothness/jquery-ui.css" />
-	<link rel="stylesheet" media="screen" type="text/css" href='<hst:link path="/css/bootstrap_v2/bootstrap.flat.min.css"></hst:link>'/>
-	<link rel="stylesheet" media="screen" type="text/css" href='<hst:link path="/css/bootstrap_v2/wealth4india.css"></hst:link>'/>
-    <hst:headContributions categoryIncludes="css"/>
+	<link rel="stylesheet" media="screen" type="text/css" href="<hst:link path="/css/author.css"></hst:link>"/> --%>
+<!-- <link rel="stylesheet" media="screen" type="text/css" href='<hst:link path="/css/bootplus.css"></hst:link>'/> -->
+<!-- <link rel="stylesheet" media="screen" type="text/css" href='<hst:link path="/css/font-awesome-min.css"></hst:link>'/> -->
+
+<!-- New layout----kusum -->
+<link rel="stylesheet"
+	href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/themes/smoothness/jquery-ui.css" />
+<link rel="stylesheet" media="screen" type="text/css"
+	href='<hst:link path="/css/bootstrap_v2/bootstrap.flat.min.css"></hst:link>' />
+<link rel="stylesheet" media="screen" type="text/css"
+	href='<hst:link path="/css/bootstrap_v2/wealth4india.css"></hst:link>' />
+<hst:headContributions categoryIncludes="css" />
 </head>
-<body class="<c:choose><c:when test="${not empty strIsOnVendorPortal}">page-vendor</c:when><c:when test="${not empty bodyCssClass}"><c:out value="${bodyCssClass}"/></c:when><c:otherwise>page</c:otherwise></c:choose>">
-    <hst:link var="modernizr" path="/js/modernizr.custom.39581.js"/>
+<body
+	class="<c:choose><c:when test="${not empty strIsOnVendorPortal}">page-vendor</c:when><c:when test="${not empty bodyCssClass}"><c:out value="${bodyCssClass}"/></c:when><c:otherwise>page</c:otherwise></c:choose>">
+	<hst:link var="modernizr" path="/js/modernizr.custom.39581.js" />
 	<script type='text/javascript' src='${modernizr}'></script>
-
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" ></script>
-    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.js"></script>
-
-    <hst:link var="jqueryWaterMark" path="/js/jquery.watermark.min.js"/>
-    <script src="${jqueryWaterMark}"></script>
-
-
-
-	<hst:link var="responsive_modernizr" path="/js/responsive-modernizr.js"/>
+	<script
+		src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script
+		src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.js"></script>
+	<hst:link var="jqueryWaterMark" path="/js/jquery.watermark.min.js" />
+	<script src="${jqueryWaterMark}"></script>
+	<hst:link var="responsive_modernizr" path="/js/responsive-modernizr.js" />
 	<script type='text/javascript' src='${responsive_modernizr}'></script>
 
-	<script type='text/javascript' src='<hst:link path="/js/bootstrap_v2/bootstrap.min.js"></hst:link>'></script>
-	<script src="<hst:link path="/js/bootstrap_v2/bootstrap-typeahead.js"></hst:link>"></script>
-	
+	<!-- New .js included for new page layout (/frontpage) -->
+	<script type='text/javascript'
+		src='<hst:link path="/js/bootstrap_v2/bootstrap.min.js"></hst:link>'></script>
+	<script
+		src="<hst:link path="/js/bootstrap_v2/bootstrap-typeahead.js"></hst:link>"></script>
+
 	<%-- <script src="<hst:link path="/js/simpleCart.min.js"></hst:link>"></script>--%>
 	<script>
 			simpleCart.currency({
@@ -95,24 +108,23 @@
 		  });
 	</script>
 	<div id="container">
-		<hst:include ref="header"/>
-		<div id="wrapper">
-			<hst:include ref="main"/>
-			<hst:headContributions categoryIncludes="customHTML" xhtml="false"/>
-	    </div><!-- end of #wrapper -->
-	</div><!-- end of #container -->
-	<hst:include ref="footer"/>
-	<hst:headContributions categoryIncludes="jsInternal"/>
-	<hst:link var="responsive_scripts" path="/js/responsive-scripts.js"/>
+		<hst:include ref="header" />
+		<hst:include ref="main" />
+		<hst:headContributions categoryIncludes="customHTML" xhtml="false" />
+	</div>
+	<!-- end of #container -->
+	<hst:include ref="footer" />
+	<hst:headContributions categoryIncludes="jsInternal" />
+	<script type='text/javascript' src='${jquery_validate_min}'></script>
+	<hst:componentRenderingURL var="ajaxLinkToComponent"></hst:componentRenderingURL>
+	<hst:headContributions categoryIncludes="jsExternal" />
+
+	 <hst:link var="responsive_scripts" path="/js/responsive-scripts.js"/>
 	<script type='text/javascript' src='${responsive_scripts}'></script>
 	<hst:link var="responsive_plugin" path="/js/responsive-plugins.js"/>
 	<script type='text/javascript' src='${responsive_plugin}'></script>
-
 	<hst:link var="jquery_validate_min" path="/js/jquery.validate.min.js"/>
-	<script type='text/javascript' src='${jquery_validate_min}'></script>
-	<hst:componentRenderingURL var="ajaxLinkToComponent"></hst:componentRenderingURL>
-	<hst:headContributions categoryIncludes="jsExternal"/>
-	<%-- <script>
+	<script>
 		$.datepicker.setDefaults({
 		  /*showOn: "both",*/
 		  /*buttonImageOnly: true,
@@ -212,8 +224,8 @@
 	          this.value = this.value.toUpperCase();
 	       });		
 	</script>	
-	--%>
 	
+
 	<script type="text/javascript">
 	 	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
