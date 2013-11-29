@@ -17,7 +17,6 @@
 package com.mootly.wcm.components.common;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
@@ -25,7 +24,6 @@ import org.hippoecm.hst.content.beans.query.HstQuery;
 import org.hippoecm.hst.content.beans.query.HstQueryManager;
 import org.hippoecm.hst.content.beans.query.HstQueryResult;
 import org.hippoecm.hst.content.beans.query.exceptions.QueryException;
-import org.hippoecm.hst.content.beans.query.filter.Filter;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.content.beans.standard.HippoBeanIterator;
 import org.hippoecm.hst.core.component.HstRequest;
@@ -90,7 +88,7 @@ public class LatestItems extends BaseComponent {
                 return;
             }
         }
-
+        //log.warn("Scope not found: '{}'. Latest items of type '{}' will not be shown");
         final HstQueryManager hstQueryManager = getQueryManager(request);
         final HstQuery hstQuery;
 
@@ -99,6 +97,7 @@ public class LatestItems extends BaseComponent {
             if (StringUtils.isEmpty(nodeType)) {
                 hstQuery = hstQueryManager.createQuery(folderBean, BaseDocument.class, true);
             } else {
+            	log.warn("Scope not found: '{}'. Latest items of type '{}' will not be shown");
                 hstQuery = hstQueryManager.createQuery(folderBean, getObjectConverter().getAnnotatedClassFor(nodeType), false);
             }
 
@@ -110,7 +109,7 @@ public class LatestItems extends BaseComponent {
 
             hstQuery.setLimit(limit);
 
-            if (CONSTRAINT_UPCOMING.equals(constraint)) {
+            /*if (CONSTRAINT_UPCOMING.equals(constraint)) {
                 Filter filter = hstQuery.createFilter();
                 filter.addGreaterOrEqualThan(Constants.PROP_DATE, new Date());
                 hstQuery.setFilter(filter);
@@ -118,7 +117,7 @@ public class LatestItems extends BaseComponent {
                 Filter filter = hstQuery.createFilter();
                 filter.addLessThan(Constants.PROP_DATE, new Date());
                 hstQuery.setFilter(filter);
-            }
+            }*/
 
             final HstQueryResult queryResult = hstQuery.execute();
             request.setAttribute("count", queryResult.getSize());

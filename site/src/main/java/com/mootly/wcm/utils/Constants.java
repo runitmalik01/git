@@ -86,6 +86,7 @@ public interface Constants {
     String NT_HIPPO_MIRROR = "hippo:mirror";
     String NT_NEWSITEM = "mootlywcm:newsitem";
     String NT_PRODUCTLINK = "mootlywcm:productlink";
+    String NT_SERVICESITEM = "mootlywcm:Service";
     String NT_REVIEW = "mootlywcm:review";
     String NT_PRODUCT = "mootlywcm:product";
     String NT_SIMPLE_DOCUMENT = "mootlywcm:simpledocument";

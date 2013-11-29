@@ -20,11 +20,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 
+import org.apache.commons.lang.StringUtils;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.content.beans.standard.HippoDocumentBean;
 import org.hippoecm.hst.content.beans.standard.HippoFolderBean;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
+import org.hippoecm.hst.core.parameters.ParametersInfo;
 import org.hippoecm.hst.core.request.ResolvedSiteMapItem;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,6 +34,7 @@ import org.slf4j.LoggerFactory;
 import com.mootly.wcm.components.BaseComponent;
 import com.mootly.wcm.exceptions.BeanTypeException;
 import com.mootly.wcm.model.ITRForm;
+@ParametersInfo(type = ServicePriceParamsInfo.class)
 public class ServicePrice extends BaseComponent {
 
 	private static final Logger log = LoggerFactory.getLogger(ServicePrice.class);
@@ -39,8 +42,19 @@ public class ServicePrice extends BaseComponent {
 	@Override
 	public void doBeforeRender(HstRequest request, HstResponse response) {
 		super.doBeforeRender(request, response);
-		HippoBean bean = getContentBean(request);
+		//HippoBean bean = getContentBean(request);
+		String pricingRelativeContentPath = request.getRequestContext().getResolvedSiteMapItem().getRelativeContentPath();
+		String excludePricingNames = null;
+		//log.info("Lets see Relavtive Content Path::"+pricingRelativeContentPath);
+		/* Changes made for Catalog Item of PRICING. **/
+		ServicePriceParamsInfo paramsInfo = getParametersInfo(request);
+		if(paramsInfo!=null){
+			pricingRelativeContentPath = paramsInfo.getPricingPlanLocation();
+			excludePricingNames = paramsInfo.getExcludePricings();
+		}
 
+		HippoBean bean = getSiteContentBaseBeanForReseller(request).getBean(pricingRelativeContentPath);//Reseller Module Implementation.
+		//log.info("Content Bean as :::"+getSiteContentBaseBeanForReseller(request).getName());
 		if (bean == null) {
 			ResolvedSiteMapItem resolvedSiteMapItem = request.getRequestContext().getResolvedSiteMapItem();
 			log.warn("Cannot create document list: content bean not found; please check the relative content path for sitemap item: {}. Relative content path: {}.", 
@@ -50,11 +64,19 @@ public class ServicePrice extends BaseComponent {
 		} else if (bean instanceof HippoFolderBean) {
 			HippoFolderBean folder = (HippoFolderBean) bean;
 			List<HippoDocumentBean> documents = folder.getDocuments();
+			if(!StringUtils.isBlank(excludePricingNames)){
+				if(StringUtils.contains(excludePricingNames, ',')){
+					for(String exPricingNam:excludePricingNames.split(",")){
+						getReStructureList(documents, exPricingNam);
+					}
+				} else{
+					getReStructureList(documents, excludePricingNames);
+				}
+			}
 			request.setAttribute("documents", documents);
 		} else {
 			throw new BeanTypeException("Cannot create document list: " + bean.getPath() + " is not a folder");
 		}
-		
 		//"who can not" choose package
 		Map<String,String> WhoCanNot = new HashMap<String, String>();
 		ResourceBundle rsbundle=ResourceBundle.getBundle("messages");
@@ -81,6 +103,25 @@ public class ServicePrice extends BaseComponent {
 		}
 		request.setAttribute("whoCan", WhoCan);
 	} 
-		
+	/**
+	 * This method is used to exclude the {@link HippoDocumentBean} of Name excludeDocName from {@link List} 
+	 * 
+	 * @param documents {@link HippoDocumentBean}
+	 * @param excludeDocName {@link String}
+	 * 
+	 * @return {@link HippoDocumentBean}
+	 * */
+	public List<HippoDocumentBean> getReStructureList(List<HippoDocumentBean> documents ,String excludeDocName){
+		for(HippoDocumentBean documentBean:documents){
+			if(!StringUtils.isBlank(excludeDocName)){
+				if(documentBean.getName().equalsIgnoreCase(excludeDocName)){
+					log.info("Have the Docuemnt Bean to Exclude::");
+					documents.remove(documentBean);
+				}
+			}
+		}
+		return documents;
 	} 
+
+} 
 

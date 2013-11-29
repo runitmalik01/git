@@ -1,23 +1,5 @@
-<%--
-
-    Copyright (C) 2010 Hippo B.V.
-
-    Licensed under the Apache License, Version 2.0 (the "License");
-    you may not use this file except in compliance with the License.
-    You may obtain a copy of the License at
-
-            http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing, software
-    distributed under the License is distributed on an "AS IS" BASIS,
-    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-    See the License for the specific language governing permissions and
-    limitations under the License.
-
---%>
-
 <%@include file="../includes/tags.jspf" %>
-
+<%-- <div class="row-fluid">
 <c:if test="${fn:length(items) gt 0}">
 	<ul class="box-general box-event <c:if test="${preview}">editable</c:if>">
 	    <c:forEach items="${items}" var="item">
@@ -35,3 +17,26 @@
 	    </li>
 	</ul>
 </c:if>
+</div> --%>
+<hst:link var="eventslink" siteMapItemRefId=""/>
+<div class="widget-wrapper">
+	<div class="row-fluid">
+		<c:if test="${not empty items}">
+			<c:forEach items="${items}" var="evdocument" varStatus="nstat">
+					<div class="span2">
+						<hst:link path="images/catalog/icon-latest-events.png" var="evimgpath"></hst:link>
+						<img src="${evimgpath}" class="img-circle">
+					</div>
+					<div class="">
+						<hst:link var="eventdoclink" hippobean="${evdocument}" />
+						<h6>
+							<small><fmt:formatDate value="${evdocument.date.time}" pattern="MMM-DD-YYYY"/></small>
+						</h6>
+						<small><a href="${eventdoclink}"><c:out value="${evdocument.title}" /></a></small>
+					</div>
+					<hr />
+			</c:forEach>
+			<small><a href="${eventslink}">More...</a></small>
+		</c:if>
+	</div>
+</div>
