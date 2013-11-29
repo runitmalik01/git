@@ -1,13 +1,11 @@
 package com.mootly.wcm.member.service;
 
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.commons.lang.StringUtils;
-import org.hippoecm.hst.content.beans.ObjectBeanManagerException;
 import org.hippoecm.hst.content.beans.manager.workflow.WorkflowCallbackHandler;
 import org.hippoecm.hst.content.beans.query.HstQuery;
 import org.hippoecm.hst.content.beans.query.HstQueryResult;
@@ -34,7 +32,6 @@ import org.slf4j.LoggerFactory;
 
 import com.mootly.wcm.components.BaseComponent;
 import com.mootly.wcm.components.ComponentUtil;
-import com.mootly.wcm.components.ITReturnComponentHelper;
 import com.mootly.wcm.utils.Constants;
 import com.mootly.wcm.utils.GoGreenUtil;
 import com.mootly.wcm.utils.PageableCollection;
@@ -53,16 +50,7 @@ public class Services extends BaseComponent {
 		// TODO Auto-generated method stub
 		super.doBeforeRender(request, response);
 		//final HippoBean scope = getContentBean(request);
-		final HippoBean scope = getSiteContentBaseBeanForReseller(request);
-		HippoBean resellerScopeBean = null;
-		String basePathToreseller = request.getRequestContext().getResolvedMount().getMount().getCanonicalContentPath();
-		String resellerPath = basePathToreseller + "/" + RESELLER_NODE;
-		try {
-			resellerScopeBean = (HippoBean) getObjectBeanManager(request).getObject(resellerPath);
-		} catch (ObjectBeanManagerException e1) {
-			// TODO Auto-generated catch block
-			log.error("Error while get object from path"+resellerPath,e1);
-		} 
+		final HippoBean scope = getSiteContentBaseBeanForReseller(request); 
 		request.setAttribute("scope", scope);
 		if (scope == null) {
 			ResolvedSiteMapItem resolvedSiteMapItem = request.getRequestContext().getResolvedSiteMapItem();
@@ -79,7 +67,7 @@ public class Services extends BaseComponent {
 		query = SearchInputParsingUtils.parse(query, false);
 		request.setAttribute("query", StringEscapeUtils.escapeHtml(query));
 		try {
-			final PageableCollection<com.mootly.wcm.beans.Service> services = getServices(request, scope, pageSize, currentPage, query, resellerScopeBean);
+			final PageableCollection<com.mootly.wcm.beans.Service> services = getServices(request, scope, pageSize, currentPage, query);
 			log.info("Page collection"+services.toString()+"now next don't know"+services.getStartPage());
 			request.setAttribute("services", services);
 
@@ -90,7 +78,7 @@ public class Services extends BaseComponent {
 		request.setAttribute("Success", request.getRequestContext().getAttribute("Success"));
 	}
 
-	private PageableCollection<com.mootly.wcm.beans.Service> getServices(HstRequest request, HippoBean scope, int pageSize, int currentPage, String query,HippoBean excludeBeanScope) throws QueryException {
+	private PageableCollection<com.mootly.wcm.beans.Service> getServices(HstRequest request, HippoBean scope, int pageSize, int currentPage, String query) throws QueryException {
 
 		final HstQuery hstQuery = getQueryManager(request).createQuery(scope);
 		final BaseFilter filter = new PrimaryNodeTypeFilterImpl("mootlywcm:Service");
@@ -99,13 +87,6 @@ public class Services extends BaseComponent {
 		enable.addAndFilter(filter);
 		hstQuery.setFilter(enable);
 		hstQuery.addOrderByAscending("mootlywcm:serviceCode");
-		if(!new ITReturnComponentHelper().isReSeller(request)){
-			List<HippoBean> excludeScopeList = new ArrayList<HippoBean>();
-			if(excludeBeanScope!=null){
-				excludeScopeList.add(excludeBeanScope);
-				hstQuery.excludeScopes(excludeScopeList);
-			}
-		}
 		if (!StringUtils.isEmpty(query)) {
 			log.info("query"+query);
 			final Filter f = hstQuery.createFilter();
