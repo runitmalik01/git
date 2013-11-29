@@ -28,7 +28,7 @@
     <sv:value>0b83b138-daef-4463-a05a-56213d9a4bb7</sv:value>
   </sv:property>
   <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
-    <sv:value>hst:pages/homepage.re</sv:value>
+    <sv:value>hst:pages/_any_.cms</sv:value>
   </sv:property>
   <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
     <sv:value>webContentLocation</sv:value>
