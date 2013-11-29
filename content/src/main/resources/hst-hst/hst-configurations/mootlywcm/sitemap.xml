@@ -11946,22 +11946,45 @@
 </sv:node>
     
     <!-- new home page layout (frontpage) --> 
-<sv:node sv:name="frontpage">
-  <sv:property sv:name="jcr:primaryType" sv:type="Name">
-    <sv:value>hst:sitemapitem</sv:value>
-  </sv:property>
-  <sv:property sv:name="jcr:uuid" sv:type="String">
-    <sv:value>1107bb1b-68de-4a42-be99-d9af97d52500</sv:value>
-  </sv:property>
-  <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
-    <sv:value>hst:pages/homepage_v2.re</sv:value>
-  </sv:property>
-  <sv:property sv:name="hst:refId" sv:type="String">
-    <sv:value>home_v2</sv:value>
-  </sv:property>
-  <sv:property sv:name="hst:relativecontentpath" sv:type="String">
-    <sv:value>services</sv:value>
-  </sv:property>
-</sv:node>
-    
+	<sv:node sv:name="frontpage">
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hst:sitemapitem</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>1107bb1b-68de-4a42-be99-d9af97d52500</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+	    <sv:value>hst:pages/homepage_v2.re</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:refId" sv:type="String">
+	    <sv:value>home_v2</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:relativecontentpath" sv:type="String">
+	    <sv:value>services</sv:value>
+	  </sv:property>
+	</sv:node>
+	<!-- _any_ -->
+	<sv:node sv:name="_any_.cms" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hst:sitemapitem</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>6d1e4afa-a577-4450-92ae-024c0c764716</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+	    <sv:value>hst:pages/_any_.cms</sv:value>
+	  </sv:property>
+	  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+	    <sv:value>pageId</sv:value>
+	  </sv:property>
+	  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+	    <sv:value>${1}</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:refId" sv:type="String">
+	    <sv:value>anycms</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:relativecontentpath" sv:type="String">
+	    <sv:value>services</sv:value>
+	  </sv:property>
+	</sv:node>	
 </sv:node>

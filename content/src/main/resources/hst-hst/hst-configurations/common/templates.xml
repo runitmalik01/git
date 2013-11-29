@@ -3632,34 +3632,55 @@
     <sv:value>jsp/layout/bootstrap_v2/main_v2.jsp</sv:value>
   </sv:property>
 </sv:node>
-<sv:node sv:name="standard.header.v2.re" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
-  <sv:property sv:name="jcr:primaryType" sv:type="Name">
-    <sv:value>hst:template</sv:value>
-  </sv:property>
-  <sv:property sv:name="jcr:uuid" sv:type="String">
-    <sv:value>7eaa3fab-0eae-49a6-9ef6-2aa8e8eafd04</sv:value>
-  </sv:property>
-  <sv:property sv:multiple="true" sv:name="hst:containers" sv:type="String">
-    <sv:value>logo</sv:value>
-    <sv:value>manu-main</sv:value>
-    <sv:value>menu-top</sv:value>
-    <sv:value>top-widget</sv:value>
-  </sv:property>
-  <sv:property sv:name="hst:renderpath" sv:type="String">
-    <sv:value>jsp/layout/bootstrap_v2/header/header_v2.jsp</sv:value>
-  </sv:property>
-</sv:node>
-<sv:node sv:name="standard.footer.v2.re" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
-  <sv:property sv:name="jcr:primaryType" sv:type="Name">
-    <sv:value>hst:template</sv:value>
-  </sv:property>
-  <sv:property sv:name="jcr:uuid" sv:type="String">
-    <sv:value>f1730934-2fc6-4ae7-8737-dd6f9f78770f</sv:value>
-  </sv:property>
-  <sv:property sv:multiple="true" sv:name="hst:containers" sv:type="String"/>
-  <sv:property sv:name="hst:renderpath" sv:type="String">
-    <sv:value>jsp/layout/bootstrap_v2/footer_v2.jsp</sv:value>
-  </sv:property>
-</sv:node>
-<!-- end of new home page -->
+	<sv:node sv:name="standard.header.v2.re" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hst:template</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>7eaa3fab-0eae-49a6-9ef6-2aa8e8eafd04</sv:value>
+	  </sv:property>
+	  <sv:property sv:multiple="true" sv:name="hst:containers" sv:type="String">
+	    <sv:value>logo</sv:value>
+	    <sv:value>manu-main</sv:value>
+	    <sv:value>menu-top</sv:value>
+	    <sv:value>top-widget</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:renderpath" sv:type="String">
+	    <sv:value>jsp/layout/bootstrap_v2/header/header_v2.jsp</sv:value>
+	  </sv:property>
+	</sv:node>
+	<sv:node sv:name="_any_.cms" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hst:template</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>43825777-1532-4966-b9ee-1b07dbfbd394</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:renderpath" sv:type="String">
+	    <sv:value>jsp/cms/pagedisplay.jsp</sv:value>
+	  </sv:property>
+	</sv:node>
+	<sv:node sv:name="standard.footer.v2.re" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hst:template</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>b6d4d344-864c-4021-81c0-05b39d8b750f</sv:value>
+	  </sv:property>
+	  <sv:property sv:multiple="true" sv:name="hst:containers" sv:type="String"/>
+	  <sv:property sv:name="hst:renderpath" sv:type="String">
+	    <sv:value>jsp/layout/responsive/bootstrap_v2/footer.jsp</sv:value>
+	  </sv:property>
+	</sv:node>	
+	<sv:node sv:name="standard.header.v2.logo" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hst:template</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>b363150d-54d4-46fb-8308-adc9b2b5a323</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:renderpath" sv:type="String">
+	    <sv:value>jsp/layout/bootstrap_v2/header/logo.jsp</sv:value>
+	  </sv:property>
+	</sv:node>
 </sv:node>

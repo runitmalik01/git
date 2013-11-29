@@ -2888,4 +2888,2345 @@
       </sv:property>
     </sv:node>
   </sv:node>
+  <!--  -->
+	<sv:node sv:name="cms" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+		  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+		    <sv:value>hippostd:folder</sv:value>
+		  </sv:property>
+		  <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+		    <sv:value>hippo:harddocument</sv:value>
+		    <sv:value>hippotranslation:translated</sv:value>
+		  </sv:property>
+		  <sv:property sv:name="jcr:uuid" sv:type="String">
+		    <sv:value>f4df83cb-83b4-4f1e-868f-68b579b73597</sv:value>
+		  </sv:property>
+		  <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
+		  <sv:property sv:multiple="true" sv:name="hippostd:foldertype" sv:type="String">
+		    <sv:value>new-translated-folder</sv:value>
+		    <sv:value>new-document</sv:value>
+		  </sv:property>
+		  <sv:property sv:name="hippotranslation:id" sv:type="String">
+		    <sv:value>7bd51dff-1647-49ee-a43b-6850b159825f</sv:value>
+		  </sv:property>
+		  <sv:property sv:name="hippotranslation:locale" sv:type="String">
+		    <sv:value>en</sv:value>
+		  </sv:property>
+		  <sv:node sv:name="hippotranslation:translations">
+		    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+		      <sv:value>hippotranslation:translations</sv:value>
+		    </sv:property>
+		  </sv:node>
+		  <sv:node sv:name="pages">
+		    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+		      <sv:value>hippostd:folder</sv:value>
+		    </sv:property>
+		    <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+		      <sv:value>hippo:harddocument</sv:value>
+		      <sv:value>hippotranslation:translated</sv:value>
+		    </sv:property>
+		    <sv:property sv:name="jcr:uuid" sv:type="String">
+		      <sv:value>34d3953c-e88d-48db-9d16-f97b862bffe1</sv:value>
+		    </sv:property>
+		    <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
+		    <sv:property sv:multiple="true" sv:name="hippostd:foldertype" sv:type="String">
+		      <sv:value>new-translated-folder</sv:value>
+		      <sv:value>new-document</sv:value>
+		    </sv:property>
+		    <sv:property sv:name="hippotranslation:id" sv:type="String">
+		      <sv:value>8e0aae5d-8103-42a2-86cc-10c04b023970</sv:value>
+		    </sv:property>
+		    <sv:property sv:name="hippotranslation:locale" sv:type="String">
+		      <sv:value>en</sv:value>
+		    </sv:property>
+		    <sv:node sv:name="hippotranslation:translations">
+		      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+		        <sv:value>hippotranslation:translations</sv:value>
+		      </sv:property>
+		    </sv:node>
+		    <sv:node sv:name="home">
+		      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+		        <sv:value>hippo:handle</sv:value>
+		      </sv:property>
+		      <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+		        <sv:value>hippo:hardhandle</sv:value>
+		      </sv:property>
+		      <sv:property sv:name="jcr:uuid" sv:type="String">
+		        <sv:value>5cfdbd49-6787-47fa-9409-20e159183f9a</sv:value>
+		      </sv:property>
+		      <sv:node sv:name="home">
+		        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+		          <sv:value>mootlywcm:pbpagedocument</sv:value>
+		        </sv:property>
+		        <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+		          <sv:value>hippo:harddocument</sv:value>
+		          <sv:value>hippotranslation:translated</sv:value>
+		        </sv:property>
+		        <sv:property sv:name="jcr:uuid" sv:type="String">
+		          <sv:value>95e61fd5-9ba3-437c-9cb4-52dec89e5da9</sv:value>
+		        </sv:property>
+		        <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
+		          <sv:value>live</sv:value>
+		          <sv:value>preview</sv:value>
+		        </sv:property>
+		        <sv:property sv:name="hippo:related___pathreference" sv:type="String">
+		          <sv:value>cms/pages/home</sv:value>
+		        </sv:property>
+		        <sv:property sv:name="hippostd:holder" sv:type="String">
+		          <sv:value>admin</sv:value>
+		        </sv:property>
+		        <sv:property sv:name="hippostd:state" sv:type="String">
+		          <sv:value>published</sv:value>
+		        </sv:property>
+		        <sv:property sv:name="hippostd:stateSummary" sv:type="String">
+		          <sv:value>live</sv:value>
+		        </sv:property>
+		        <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
+		          <sv:value>admin</sv:value>
+		        </sv:property>
+		        <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
+		          <sv:value>2013-11-28T10:42:15.580-08:00</sv:value>
+		        </sv:property>
+		        <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
+		          <sv:value>2013-11-28T15:45:44.897-08:00</sv:value>
+		        </sv:property>
+		        <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
+		          <sv:value>admin</sv:value>
+		        </sv:property>
+		        <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
+		          <sv:value>2013-11-28T15:45:48.154-08:00</sv:value>
+		        </sv:property>
+		        <sv:property sv:name="hippotranslation:id" sv:type="String">
+		          <sv:value>adc75d63-88cc-4c2e-8c0d-9cb1087960f9</sv:value>
+		        </sv:property>
+		        <sv:property sv:name="hippotranslation:locale" sv:type="String">
+		          <sv:value>en</sv:value>
+		        </sv:property>
+		        <sv:property sv:name="mootlywcm:blocks" sv:type="String">
+		          <sv:value/>
+		        </sv:property>
+		        <sv:property sv:name="mootlywcm:title" sv:type="String">
+		          <sv:value>Home</sv:value>
+		        </sv:property>
+		        <sv:node sv:name="hippotranslation:translations">
+		          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+		            <sv:value>hippotranslation:translations</sv:value>
+		          </sv:property>
+		        </sv:node>
+		        <sv:node sv:name="mootlywcm:pbpagerowdetail">
+		          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+		            <sv:value>mootlywcm:pbpagerowdetail</sv:value>
+		          </sv:property>
+		          <sv:node sv:name="mootlywcm:columns">
+		            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+		              <sv:value>hippo:mirror</sv:value>
+		            </sv:property>
+		            <sv:property sv:name="hippo:docbase" sv:type="String">
+		              <sv:value>a43a66e8-14f0-4ed4-b7ef-2ab910a4caad</sv:value>
+		            </sv:property>
+		          </sv:node>
+		        </sv:node>
+		        <sv:node sv:name="mootlywcm:pbpagerowdetail">
+		          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+		            <sv:value>mootlywcm:pbpagerowdetail</sv:value>
+		          </sv:property>
+		          <sv:node sv:name="mootlywcm:columns">
+		            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+		              <sv:value>hippo:mirror</sv:value>
+		            </sv:property>
+		            <sv:property sv:name="hippo:docbase" sv:type="String">
+		              <sv:value>76a4b134-594a-4fb8-b3cf-ebd8b6cb6791</sv:value>
+		            </sv:property>
+		          </sv:node>
+		          <sv:node sv:name="mootlywcm:columns">
+		            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+		              <sv:value>hippo:mirror</sv:value>
+		            </sv:property>
+		            <sv:property sv:name="hippo:docbase" sv:type="String">
+		              <sv:value>3a620c58-a4dd-4906-9331-a57835076277</sv:value>
+		            </sv:property>
+		          </sv:node>
+		          <sv:node sv:name="mootlywcm:columns">
+		            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+		              <sv:value>hippo:mirror</sv:value>
+		            </sv:property>
+		            <sv:property sv:name="hippo:docbase" sv:type="String">
+		              <sv:value>9e84e848-6e05-4e3f-8ad4-c92dad7dc96b</sv:value>
+		            </sv:property>
+		          </sv:node>
+		        </sv:node>
+		      </sv:node>
+		    </sv:node>
+		    <sv:node sv:name="contactus">
+		      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+		        <sv:value>hippo:handle</sv:value>
+		      </sv:property>
+		      <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+		        <sv:value>hippo:hardhandle</sv:value>
+		      </sv:property>
+		      <sv:property sv:name="jcr:uuid" sv:type="String">
+		        <sv:value>496c1ec5-e4c2-4234-b561-9080df6cd780</sv:value>
+		      </sv:property>
+		      <sv:node sv:name="contactus">
+		        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+		          <sv:value>mootlywcm:pbpagedocument</sv:value>
+		        </sv:property>
+		        <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+		          <sv:value>hippo:harddocument</sv:value>
+		          <sv:value>hippotranslation:translated</sv:value>
+		        </sv:property>
+		        <sv:property sv:name="jcr:uuid" sv:type="String">
+		          <sv:value>e9af3a79-7b86-4513-a1e1-ea8c5d1628cb</sv:value>
+		        </sv:property>
+		        <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
+		          <sv:value>live</sv:value>
+		          <sv:value>preview</sv:value>
+		        </sv:property>
+		        <sv:property sv:name="hippo:related___pathreference" sv:type="String">
+		          <sv:value>cms/pages/contactus</sv:value>
+		        </sv:property>
+		        <sv:property sv:name="hippostd:holder" sv:type="String">
+		          <sv:value>admin</sv:value>
+		        </sv:property>
+		        <sv:property sv:name="hippostd:state" sv:type="String">
+		          <sv:value>published</sv:value>
+		        </sv:property>
+		        <sv:property sv:name="hippostd:stateSummary" sv:type="String">
+		          <sv:value>live</sv:value>
+		        </sv:property>
+		        <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
+		          <sv:value>admin</sv:value>
+		        </sv:property>
+		        <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
+		          <sv:value>2013-11-27T18:53:54.060-08:00</sv:value>
+		        </sv:property>
+		        <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
+		          <sv:value>2013-11-28T15:12:55.448-08:00</sv:value>
+		        </sv:property>
+		        <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
+		          <sv:value>admin</sv:value>
+		        </sv:property>
+		        <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
+		          <sv:value>2013-11-28T15:12:58.062-08:00</sv:value>
+		        </sv:property>
+		        <sv:property sv:name="hippotranslation:id" sv:type="String">
+		          <sv:value>756f0d33-ac37-48d5-92d8-32ac1799cd3b</sv:value>
+		        </sv:property>
+		        <sv:property sv:name="hippotranslation:locale" sv:type="String">
+		          <sv:value>en</sv:value>
+		        </sv:property>
+		        <sv:property sv:name="mootlywcm:blocks" sv:type="String">
+		          <sv:value/>
+		        </sv:property>
+		        <sv:property sv:name="mootlywcm:title" sv:type="String">
+		          <sv:value>Contact Us</sv:value>
+		        </sv:property>
+		        <sv:node sv:name="hippotranslation:translations">
+		          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+		            <sv:value>hippotranslation:translations</sv:value>
+		          </sv:property>
+		        </sv:node>
+		        <sv:node sv:name="mootlywcm:pbpagerowdetail">
+		          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+		            <sv:value>mootlywcm:pbpagerowdetail</sv:value>
+		          </sv:property>
+		          <sv:node sv:name="mootlywcm:columns">
+		            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+		              <sv:value>hippo:mirror</sv:value>
+		            </sv:property>
+		            <sv:property sv:name="hippo:docbase" sv:type="String">
+		              <sv:value>09664175-efba-4bc0-a209-6652e1246fce</sv:value>
+		            </sv:property>
+		          </sv:node>
+		        </sv:node>
+		      </sv:node>
+		    </sv:node>
+		    <sv:node sv:name="privacypolicy">
+		      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+		        <sv:value>hippo:handle</sv:value>
+		      </sv:property>
+		      <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+		        <sv:value>hippo:hardhandle</sv:value>
+		      </sv:property>
+		      <sv:property sv:name="jcr:uuid" sv:type="String">
+		        <sv:value>d600fda9-7890-4f2f-8a7b-9fca45604cf5</sv:value>
+		      </sv:property>
+		      <sv:node sv:name="privacypolicy">
+		        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+		          <sv:value>mootlywcm:pbpagedocument</sv:value>
+		        </sv:property>
+		        <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+		          <sv:value>hippo:harddocument</sv:value>
+		          <sv:value>hippotranslation:translated</sv:value>
+		        </sv:property>
+		        <sv:property sv:name="jcr:uuid" sv:type="String">
+		          <sv:value>76b50582-9a7b-49f9-a111-5853e55685e4</sv:value>
+		        </sv:property>
+		        <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
+		          <sv:value>live</sv:value>
+		          <sv:value>preview</sv:value>
+		        </sv:property>
+		        <sv:property sv:name="hippo:related___pathreference" sv:type="String">
+		          <sv:value>cms/pages/privacypolicy</sv:value>
+		        </sv:property>
+		        <sv:property sv:name="hippostd:holder" sv:type="String">
+		          <sv:value>admin</sv:value>
+		        </sv:property>
+		        <sv:property sv:name="hippostd:state" sv:type="String">
+		          <sv:value>published</sv:value>
+		        </sv:property>
+		        <sv:property sv:name="hippostd:stateSummary" sv:type="String">
+		          <sv:value>live</sv:value>
+		        </sv:property>
+		        <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
+		          <sv:value>admin</sv:value>
+		        </sv:property>
+		        <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
+		          <sv:value>2013-11-28T15:07:06.358-08:00</sv:value>
+		        </sv:property>
+		        <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
+		          <sv:value>2013-11-28T15:09:08.178-08:00</sv:value>
+		        </sv:property>
+		        <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
+		          <sv:value>admin</sv:value>
+		        </sv:property>
+		        <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
+		          <sv:value>2013-11-28T15:09:11.172-08:00</sv:value>
+		        </sv:property>
+		        <sv:property sv:name="hippotranslation:id" sv:type="String">
+		          <sv:value>e6af4b14-c789-4e87-9ea2-020f4e9c3569</sv:value>
+		        </sv:property>
+		        <sv:property sv:name="hippotranslation:locale" sv:type="String">
+		          <sv:value>en</sv:value>
+		        </sv:property>
+		        <sv:property sv:name="mootlywcm:blocks" sv:type="String">
+		          <sv:value/>
+		        </sv:property>
+		        <sv:property sv:name="mootlywcm:title" sv:type="String">
+		          <sv:value>Privacy Policy</sv:value>
+		        </sv:property>
+		        <sv:node sv:name="hippotranslation:translations">
+		          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+		            <sv:value>hippotranslation:translations</sv:value>
+		          </sv:property>
+		        </sv:node>
+		        <sv:node sv:name="mootlywcm:pbpagerowdetail">
+		          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+		            <sv:value>mootlywcm:pbpagerowdetail</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="mootlywcm:column1" sv:type="String">
+		            <sv:value/>
+		          </sv:property>
+		          <sv:property sv:name="mootlywcm:column2" sv:type="String">
+		            <sv:value/>
+		          </sv:property>
+		          <sv:property sv:name="mootlywcm:totalColumns" sv:type="Long">
+		            <sv:value>0</sv:value>
+		          </sv:property>
+		          <sv:node sv:name="mootlywcm:columns">
+		            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+		              <sv:value>hippo:mirror</sv:value>
+		            </sv:property>
+		            <sv:property sv:name="hippo:docbase" sv:type="String">
+		              <sv:value>9e66a850-13b7-44cb-9b04-fb28c380d9cb</sv:value>
+		            </sv:property>
+		          </sv:node>
+		        </sv:node>
+		      </sv:node>
+		    </sv:node>
+		    <sv:node sv:name="terms">
+		      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+		        <sv:value>hippo:handle</sv:value>
+		      </sv:property>
+		      <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+		        <sv:value>hippo:hardhandle</sv:value>
+		      </sv:property>
+		      <sv:property sv:name="jcr:uuid" sv:type="String">
+		        <sv:value>ed7e8960-5a7b-46d5-b9d5-580f0ac7b304</sv:value>
+		      </sv:property>
+		      <sv:node sv:name="terms">
+		        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+		          <sv:value>mootlywcm:pbpagedocument</sv:value>
+		        </sv:property>
+		        <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+		          <sv:value>hippo:harddocument</sv:value>
+		          <sv:value>hippotranslation:translated</sv:value>
+		        </sv:property>
+		        <sv:property sv:name="jcr:uuid" sv:type="String">
+		          <sv:value>1cb5b6c9-d492-4565-bd73-cdd526f1bc96</sv:value>
+		        </sv:property>
+		        <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
+		          <sv:value>live</sv:value>
+		          <sv:value>preview</sv:value>
+		        </sv:property>
+		        <sv:property sv:name="hippo:related___pathreference" sv:type="String">
+		          <sv:value>cms/pages/terms</sv:value>
+		        </sv:property>
+		        <sv:property sv:name="hippostd:holder" sv:type="String">
+		          <sv:value>admin</sv:value>
+		        </sv:property>
+		        <sv:property sv:name="hippostd:state" sv:type="String">
+		          <sv:value>published</sv:value>
+		        </sv:property>
+		        <sv:property sv:name="hippostd:stateSummary" sv:type="String">
+		          <sv:value>live</sv:value>
+		        </sv:property>
+		        <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
+		          <sv:value>admin</sv:value>
+		        </sv:property>
+		        <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
+		          <sv:value>2013-11-28T15:11:08.810-08:00</sv:value>
+		        </sv:property>
+		        <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
+		          <sv:value>2013-11-28T15:11:22.595-08:00</sv:value>
+		        </sv:property>
+		        <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
+		          <sv:value>admin</sv:value>
+		        </sv:property>
+		        <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
+		          <sv:value>2013-11-28T15:11:25.210-08:00</sv:value>
+		        </sv:property>
+		        <sv:property sv:name="hippotranslation:id" sv:type="String">
+		          <sv:value>e158ab09-841c-4876-a5b2-894e70ab1d79</sv:value>
+		        </sv:property>
+		        <sv:property sv:name="hippotranslation:locale" sv:type="String">
+		          <sv:value>en</sv:value>
+		        </sv:property>
+		        <sv:property sv:name="mootlywcm:blocks" sv:type="String">
+		          <sv:value/>
+		        </sv:property>
+		        <sv:property sv:name="mootlywcm:title" sv:type="String">
+		          <sv:value/>
+		        </sv:property>
+		        <sv:node sv:name="hippotranslation:translations">
+		          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+		            <sv:value>hippotranslation:translations</sv:value>
+		          </sv:property>
+		        </sv:node>
+		        <sv:node sv:name="mootlywcm:pbpagerowdetail">
+		          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+		            <sv:value>mootlywcm:pbpagerowdetail</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="mootlywcm:column1" sv:type="String">
+		            <sv:value/>
+		          </sv:property>
+		          <sv:property sv:name="mootlywcm:column2" sv:type="String">
+		            <sv:value/>
+		          </sv:property>
+		          <sv:property sv:name="mootlywcm:totalColumns" sv:type="Long">
+		            <sv:value>0</sv:value>
+		          </sv:property>
+		          <sv:node sv:name="mootlywcm:columns">
+		            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+		              <sv:value>hippo:mirror</sv:value>
+		            </sv:property>
+		            <sv:property sv:name="hippo:docbase" sv:type="String">
+		              <sv:value>0d2fc1eb-2032-40a7-8644-553dbfc0a400</sv:value>
+		            </sv:property>
+		          </sv:node>
+		        </sv:node>
+		      </sv:node>
+		    </sv:node>
+		    <sv:node sv:name="aboutus">
+		      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+		        <sv:value>hippo:handle</sv:value>
+		      </sv:property>
+		      <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+		        <sv:value>hippo:hardhandle</sv:value>
+		      </sv:property>
+		      <sv:property sv:name="jcr:uuid" sv:type="String">
+		        <sv:value>d585b0e6-ff4d-453d-af4c-d27054e17fbe</sv:value>
+		      </sv:property>
+		      <sv:node sv:name="aboutus">
+		        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+		          <sv:value>mootlywcm:pbpagedocument</sv:value>
+		        </sv:property>
+		        <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+		          <sv:value>hippo:harddocument</sv:value>
+		          <sv:value>hippotranslation:translated</sv:value>
+		        </sv:property>
+		        <sv:property sv:name="jcr:uuid" sv:type="String">
+		          <sv:value>ab453495-6030-4e8f-9f3d-44b6c63ecbef</sv:value>
+		        </sv:property>
+		        <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
+		          <sv:value>live</sv:value>
+		          <sv:value>preview</sv:value>
+		        </sv:property>
+		        <sv:property sv:name="hippo:related___pathreference" sv:type="String">
+		          <sv:value>cms/pages/aboutus</sv:value>
+		        </sv:property>
+		        <sv:property sv:name="hippostd:holder" sv:type="String">
+		          <sv:value>admin</sv:value>
+		        </sv:property>
+		        <sv:property sv:name="hippostd:state" sv:type="String">
+		          <sv:value>published</sv:value>
+		        </sv:property>
+		        <sv:property sv:name="hippostd:stateSummary" sv:type="String">
+		          <sv:value>live</sv:value>
+		        </sv:property>
+		        <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
+		          <sv:value>admin</sv:value>
+		        </sv:property>
+		        <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
+		          <sv:value>2013-11-28T15:11:55.245-08:00</sv:value>
+		        </sv:property>
+		        <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
+		          <sv:value>2013-11-28T15:12:05.777-08:00</sv:value>
+		        </sv:property>
+		        <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
+		          <sv:value>admin</sv:value>
+		        </sv:property>
+		        <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
+		          <sv:value>2013-11-28T15:12:07.980-08:00</sv:value>
+		        </sv:property>
+		        <sv:property sv:name="hippotranslation:id" sv:type="String">
+		          <sv:value>0f3201d2-6ad8-4a16-8d09-37e14d9a003e</sv:value>
+		        </sv:property>
+		        <sv:property sv:name="hippotranslation:locale" sv:type="String">
+		          <sv:value>en</sv:value>
+		        </sv:property>
+		        <sv:property sv:name="mootlywcm:blocks" sv:type="String">
+		          <sv:value/>
+		        </sv:property>
+		        <sv:property sv:name="mootlywcm:title" sv:type="String">
+		          <sv:value/>
+		        </sv:property>
+		        <sv:node sv:name="hippotranslation:translations">
+		          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+		            <sv:value>hippotranslation:translations</sv:value>
+		          </sv:property>
+		        </sv:node>
+		        <sv:node sv:name="mootlywcm:pbpagerowdetail">
+		          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+		            <sv:value>mootlywcm:pbpagerowdetail</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="mootlywcm:column1" sv:type="String">
+		            <sv:value/>
+		          </sv:property>
+		          <sv:property sv:name="mootlywcm:column2" sv:type="String">
+		            <sv:value/>
+		          </sv:property>
+		          <sv:property sv:name="mootlywcm:totalColumns" sv:type="Long">
+		            <sv:value>0</sv:value>
+		          </sv:property>
+		          <sv:node sv:name="mootlywcm:columns">
+		            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+		              <sv:value>hippo:mirror</sv:value>
+		            </sv:property>
+		            <sv:property sv:name="hippo:docbase" sv:type="String">
+		              <sv:value>7544c701-1b6c-4ccd-a8d5-be7ddb1d852e</sv:value>
+		            </sv:property>
+		          </sv:node>
+		        </sv:node>
+		      </sv:node>
+		    </sv:node>
+		  </sv:node>
+		  <sv:node sv:name="blocks">
+		    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+		      <sv:value>hippostd:folder</sv:value>
+		    </sv:property>
+		    <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+		      <sv:value>hippo:harddocument</sv:value>
+		      <sv:value>hippotranslation:translated</sv:value>
+		    </sv:property>
+		    <sv:property sv:name="jcr:uuid" sv:type="String">
+		      <sv:value>8f91cdd5-0a28-47d9-a951-ad92aac4fa15</sv:value>
+		    </sv:property>
+		    <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
+		    <sv:property sv:multiple="true" sv:name="hippostd:foldertype" sv:type="String">
+		      <sv:value>new-translated-folder</sv:value>
+		      <sv:value>new-document</sv:value>
+		    </sv:property>
+		    <sv:property sv:name="hippotranslation:id" sv:type="String">
+		      <sv:value>7d135bba-7d6e-43c6-9966-7c4030fc3553</sv:value>
+		    </sv:property>
+		    <sv:property sv:name="hippotranslation:locale" sv:type="String">
+		      <sv:value>en</sv:value>
+		    </sv:property>
+		    <sv:node sv:name="hippotranslation:translations">
+		      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+		        <sv:value>hippotranslation:translations</sv:value>
+		      </sv:property>
+		    </sv:node>
+		    <sv:node sv:name="block-home">
+		      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+		        <sv:value>hippo:handle</sv:value>
+		      </sv:property>
+		      <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+		        <sv:value>hippo:hardhandle</sv:value>
+		      </sv:property>
+		      <sv:property sv:name="jcr:uuid" sv:type="String">
+		        <sv:value>c8e48e4e-3c76-433d-bb8c-e9ed75412b3b</sv:value>
+		      </sv:property>
+		      <sv:node sv:name="block-home">
+		        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+		          <sv:value>mootlywcm:pbblockdocument</sv:value>
+		        </sv:property>
+		        <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+		          <sv:value>hippo:harddocument</sv:value>
+		          <sv:value>hippotranslation:translated</sv:value>
+		        </sv:property>
+		        <sv:property sv:name="jcr:uuid" sv:type="String">
+		          <sv:value>127f1867-fa38-49ef-a4de-46c2f6335255</sv:value>
+		        </sv:property>
+		        <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
+		          <sv:value>live</sv:value>
+		          <sv:value>preview</sv:value>
+		        </sv:property>
+		        <sv:property sv:name="hippo:related___pathreference" sv:type="String">
+		          <sv:value>cms/blocks/block-home</sv:value>
+		        </sv:property>
+		        <sv:property sv:name="hippostd:holder" sv:type="String">
+		          <sv:value>admin</sv:value>
+		        </sv:property>
+		        <sv:property sv:name="hippostd:state" sv:type="String">
+		          <sv:value>published</sv:value>
+		        </sv:property>
+		        <sv:property sv:name="hippostd:stateSummary" sv:type="String">
+		          <sv:value>live</sv:value>
+		        </sv:property>
+		        <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
+		          <sv:value>admin</sv:value>
+		        </sv:property>
+		        <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
+		          <sv:value>2013-11-28T10:39:28.302-08:00</sv:value>
+		        </sv:property>
+		        <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
+		          <sv:value>2013-11-28T11:04:08.191-08:00</sv:value>
+		        </sv:property>
+		        <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
+		          <sv:value>admin</sv:value>
+		        </sv:property>
+		        <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
+		          <sv:value>2013-11-28T11:04:18.817-08:00</sv:value>
+		        </sv:property>
+		        <sv:property sv:name="hippotranslation:id" sv:type="String">
+		          <sv:value>9798da00-09cd-46cc-8366-db73771d1ffc</sv:value>
+		        </sv:property>
+		        <sv:property sv:name="hippotranslation:locale" sv:type="String">
+		          <sv:value>en</sv:value>
+		        </sv:property>
+		        <sv:property sv:name="hst:script" sv:type="String">
+		          <sv:value>&lt;div id="myCarousel" class="carousel slide"&gt;
+		   &lt;div class="carousel-inner"&gt;
+		      &lt;div class="item active"&gt;
+		         &lt;img src="/site/images/slide-02.jpg" alt=""&gt;
+		         &lt;div class="container"&gt;
+		            &lt;div class="carousel-caption captionfull"&gt;
+		               &lt;h1&gt;For Individuals and HUF&lt;/h1&gt;
+		               &lt;p class="lead"&gt;eFile or eZ File choice is yours. In any case its as easy as 1,2,3...
+		                  &lt;a class="btn btn-mini yellow" id="huf_invdl" data-toggle="modal" href="#modal"&gt;&lt;i class="icon-info-sign"&gt;&lt;/i&gt;&lt;strong&gt;Help&lt;/strong&gt;&lt;/a&gt;
+		               &lt;/p&gt;
+		               &lt;a class="btn btn-large btn-primary" href="/site/signup"&gt;Sign up today&lt;/a&gt;
+		            &lt;/div&gt;
+		         &lt;/div&gt;
+		      &lt;/div&gt;
+		      &lt;div class="item"&gt;
+		         &lt;img src="/site/images/slide-02.jpg" alt=""&gt;
+		         &lt;div class="container"&gt;
+		            &lt;div class="carousel-caption captionfull"&gt;
+		               &lt;h1&gt;eZ-File&lt;/h1&gt;
+		               &lt;p class="lead"&gt;Don't know what to do? Just choose eZ Filing option after you fill your personal information.&lt;br&gt;
+		                  &lt;a class="btn btn-mini yellow" id="ezFile" data-toggle="modal" href="#modal"&gt;&lt;i class="icon-info-sign"&gt;&lt;/i&gt;&lt;strong&gt;Help&lt;/strong&gt;&lt;/a&gt;
+		               &lt;/p&gt;
+		               &lt;a class="btn btn-large btn-primary" href="/site/signup"&gt;Sign up today&lt;/a&gt;
+		            &lt;/div&gt;
+		         &lt;/div&gt;
+		      &lt;/div&gt;
+		      &lt;div class="item"&gt;
+		         &lt;img src="/site/images/slide-02.jpg" alt=""&gt;
+		         &lt;div class="container"&gt;
+		            &lt;div class="carousel-caption captionfull"&gt;
+		               &lt;h1&gt;e-File&lt;/h1&gt;
+		               &lt;p class="lead"&gt;Do it yourself.&lt;br&gt;
+		                  &lt;a class="btn btn-mini yellow" id="eFile" data-toggle="modal" href="#modal"&gt;&lt;i class="icon-info-sign"&gt;&lt;/i&gt;&lt;strong&gt;Help&lt;/strong&gt;&lt;/a&gt;
+		               &lt;/p&gt;
+		               &lt;a class="btn btn-large btn-primary" href="/site/signup"&gt;Sign up today&lt;/a&gt;
+		            &lt;/div&gt;
+		         &lt;/div&gt;
+		      &lt;/div&gt;
+		      &lt;div class="item"&gt;
+		         &lt;img src="/site/images/slide-03.jpg" alt=""&gt;
+		         &lt;div class="container"&gt;
+		            &lt;div class="carousel-caption captionfull"&gt;
+		               &lt;h1&gt;For Companies and Firms.&lt;/h1&gt;
+		               &lt;p class="lead"&gt;Wealth4India offers comprehensive Tax services for Companies and Firms.&lt;/p&gt;
+		               &lt;a class="btn btn-large btn-primary" href="/site/signup"&gt;Sign up today&lt;/a&gt;
+		            &lt;/div&gt;
+		         &lt;/div&gt;
+		      &lt;/div&gt;
+		   &lt;/div&gt;
+		   &lt;a class="left carousel-control" href="#myCarousel" data-slide="prev"&gt;‹&lt;/a&gt;
+		   &lt;a class="right carousel-control" href="#myCarousel" data-slide="next"&gt;›&lt;/a&gt;
+		&lt;/div&gt;
+		&lt;!--this File is reponsible to add modal with respective youtube videos  --&gt;
+		&lt;div class="modal hide" id="modal"&gt;
+		   &lt;div class="modal-header"&gt;
+		      &lt;button type="button" class="close" data-dismiss="modal"&gt;x&lt;/button&gt;
+		      &lt;h3&gt;Wealth4India Tutorial&lt;/h3&gt;
+		   &lt;/div&gt;
+		   &lt;div class="modal-body"&gt;
+		      &lt;p&gt;One fine body&lt;/p&gt;
+		   &lt;/div&gt;
+		   &lt;div class="modal-footer"&gt;
+		      &lt;a href="#" class="btn" data-dismiss="modal"&gt;Close&lt;/a&gt;
+		   &lt;/div&gt;
+		&lt;/div&gt;
+		&lt;script type="text/javascript"&gt;
+		   //for main.jsp (Main home page in their Text-widget)
+		   $('#itr1').on('click',function(){
+		   	$('div.modal-body').html('&lt;iframe width="500" height="281" src="//www.youtube.com/embed/N8uSYsth98I?list=PLmKJmEkZclKGvO_9sOtrcw2OqXHqz0g4r" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;');  
+		   });
+		   //for main.jsp (Main home page in their Text-widget)
+		   $('#itr2,#itr3,#itr4,#itr5').on('click',function(){
+		   	$('div.modal-body').html('&lt;iframe width="500" height="281" src="//www.youtube.com/embed/RcqDH2w3Wb4" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;');  
+		   });
+		   //for cara.jsp (Carousel) on home page Individual and HUF
+		   $('#huf_invdl').on('click',function(){
+		   	$('div.modal-body').html('&lt;iframe width="500" height="281" src="//www.youtube.com/embed/N8uSYsth98I?list=PLmKJmEkZclKGvO_9sOtrcw2OqXHqz0g4r" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;');
+		    });    
+		   //for cara.jsp (Carousel) on home page eZ File
+		    $('#ezFile').on('click', function() {
+		   	$('div.modal-body').html('&lt;iframe width="500" height="281" src="//www.youtube.com/embed/RcqDH2w3Wb4" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;');
+		   });
+		   //for cara.jsp (Carousel) on home page e File
+		   $('#eFile').on('click', function() {
+		   	$('div.modal-body').html('&lt;iframe width="500" height="281" src="//www.youtube.com/embed/N8uSYsth98I" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;');
+		   });
+		   $('#modal').on('hide', function () {
+		   	  $('div.modal-body').html('');  
+		   	});
+		&lt;/script&gt;&lt;!-- 
+		   &lt;div class="row-fluid show-grid"&gt;	        
+		   	&lt;div class="span6" style="border-bottom:1px solid green;border-top:1px solid green"&gt;
+		   		&lt;h2 style="display:inline"&gt;eFile&lt;/h2&gt;&amp;nbsp;&amp;nbsp;&lt;a href=""&gt;Learn More..&lt;/a&gt;
+		   		&lt;div class="row-fluid show-grid"&gt;	
+		   			&lt;div class="span6"&gt;
+		   				&lt;h3&gt;Basic&lt;/h3&gt;			
+		   			&lt;/div&gt;
+		   			&lt;div class="span6"&gt;
+		   				&lt;h3&gt;Standard&lt;/h3&gt;
+		   			&lt;/div&gt;
+		   		&lt;/div&gt;		
+		   	&lt;/div&gt;
+		   	&lt;div class="span6" style="border-bottom:1px solid olive;border-top:1px solid olive"&gt;
+		   		&lt;h2  style="display:inline"&gt;eZ-File&lt;/h2&gt;&amp;nbsp;&amp;nbsp;&lt;a href=""&gt;Learn More..&lt;/a&gt;
+		   		&lt;div class="row-fluid show-grid"&gt;	
+		   			&lt;div class="span6"&gt;
+		   				&lt;h3&gt;Premium&lt;/h3&gt;
+		   			&lt;/div&gt;
+		   			&lt;div class="span6"&gt;
+		   				&lt;h3&gt;Platinum&lt;/h3&gt;
+		   			&lt;/div&gt;
+		   		&lt;/div&gt;			
+		   	&lt;/div&gt;
+		   &lt;/div&gt;
+		   --&gt;
+		&lt;!--&lt;div&gt;File your Tax Return as easy as 1,2,3..&lt;/div&gt;--&gt;
+		&lt;div&gt;&lt;b&gt;Choose the package which suits your need&lt;/b&gt;&lt;/div&gt;
+		&lt;div&gt;&lt;b&gt;Each package gives you a choice to eZ File. eZ File can help you get the maximum out of your return.&lt;/b&gt;&lt;/div&gt;
+		&lt;div class="row-fluid show-grid homepackage"&gt;
+		   &lt;div class="grid span3"&gt;
+		      &lt;div class="widget-wrapper"&gt;
+		         &lt;div class="widget-title-home"&gt;
+		            &lt;h3&gt;Basic&amp;nbsp;&amp;nbsp;&lt;a href="#modal" data-toggle="modal" id="itr1"&gt;&lt;i class="icon-facetime-video"&gt;&lt;/i&gt;&lt;/a&gt;&lt;/h3&gt;
+		         &lt;/div&gt;
+		         &lt;div class="textwidget"&gt;
+		            &lt;div&gt;(a) Income from Salary/ Pension; or  &lt;br&gt;(b) Income from One House Property (excluding cases where loss is brought forward from previous years); or&lt;br&gt;(c) Income from Other Sources (excluding Winning from Lottery and Income from Race Horses).&lt;br&gt;In case where the income of another person like spouse, minor child, etc. is to be clubbed with the income of the assessee, this Return Form can be used only if the income being clubbed falls into the above income categories.&lt;/div&gt;
+		            &lt;button type="button" class="btnfiling btn btn-success"&gt;Pricing from  &lt;small&gt;(₹ 199)&lt;/small&gt;&lt;/button&gt;
+		         &lt;/div&gt;
+		      &lt;/div&gt;
+		      &lt;!-- end of .widget-wrapper --&gt;
+		   &lt;/div&gt;
+		   &lt;!-- end of .col-300 --&gt;
+		   &lt;div class="grid span3"&gt;
+		      &lt;div class="widget-wrapper"&gt;
+		         &lt;div class="widget-title-home"&gt;
+		            &lt;h3&gt;Deluxe&amp;nbsp;&amp;nbsp;&lt;a href="#modal" data-toggle="modal" id="itr2"&gt;&lt;i class="icon-facetime-video"&gt;&lt;/i&gt;&lt;/a&gt;&lt;/h3&gt;
+		         &lt;/div&gt;
+		         &lt;div class="textwidget"&gt;
+		            &lt;div&gt;(a) Income from Salary / Pension; or &lt;br&gt;(b) Income from House Property; or &lt;br&gt;(c) Income from Capital Gains; or &lt;br&gt;(d) Income from Other Sources (including Winning from Lottery and Income from Race Horses).&lt;br&gt;Further, in a case where the income of another person like spouse, minor child, etc. is to be clubbed with the income of the assessee, this Return Form can be used where such income falls in any of the above categories.&lt;/div&gt;
+		            &lt;button type="button" class="btnfiling btn btn-info"&gt;Pricing from (₹ 799)&lt;/button&gt;			
+		         &lt;/div&gt;
+		      &lt;/div&gt;
+		      &lt;!-- end of .widget-wrapper --&gt;
+		   &lt;/div&gt;
+		   &lt;!-- end of .col-300 --&gt;
+		   &lt;div class="grid span3"&gt;
+		      &lt;div class="widget-wrapper"&gt;
+		         &lt;div class="widget-title-home"&gt;
+		            &lt;h3&gt;Premier&amp;nbsp;&amp;nbsp;&lt;a href="#modal" data-toggle="modal" id="itr3"&gt;&lt;i class="icon-facetime-video"&gt;&lt;/i&gt;&lt;/a&gt;&lt;/h3&gt;
+		         &lt;/div&gt;
+		         &lt;div class="textwidget"&gt;
+		            &lt;div&gt;This Return is to be used, who is partner in a Firm and where income chargeable include any income except the income by way of any interest, salary, bonus, commission or remuneration, by whatever name called, due to, or received by him from such firm. and has only exempt income by way of share in the profit of the firm, he shall use this form only and not Form ITR-2. (a) Income from Salary / Pension; or &lt;br&gt;(b)&lt;a href="serviceprice"&gt; learn more..&lt;/a&gt;&lt;/div&gt;
+		            &lt;button type="button" class="btnfiling btn btn-info"&gt;Pricing from (₹ 1,099)&lt;/button&gt;			
+		         &lt;/div&gt;
+		      &lt;/div&gt;
+		      &lt;!-- end of .widget-wrapper --&gt;
+		   &lt;/div&gt;
+		   &lt;div class="grid span3"&gt;
+		      &lt;div class="widget-wrapper"&gt;
+		         &lt;div class="widget-title-home"&gt;
+		            &lt;h3&gt;Platinum &amp;amp; Platinum+ &amp;nbsp;&amp;nbsp;&lt;a href="#modal" data-toggle="modal" id="itr4"&gt;&lt;i class="icon-facetime-video"&gt;&lt;/i&gt;&lt;/a&gt;&lt;/h3&gt;
+		         &lt;/div&gt;
+		         &lt;div class="textwidget"&gt;
+		            &lt;div&gt;(a) Income from Salary / Pension; or &lt;br&gt;(b) Income &amp;amp; Losses from House Property; or &lt;br&gt;(c) Capital Gains/Loss on sale of investments/ property; or &lt;br&gt;(d) Share of profit of partner from a Partnership Firm; or &lt;br&gt;(e) Income from Other Sources (including winnings from lottery and race horses); or &lt;br&gt;(f) Details of Foreign Assets; or &lt;br&gt;(g) Claiming relief of tax under sections 90, 90A or 91; or &lt;br&gt;(h) Income from Proprietary Business/ Profession.&lt;/div&gt;
+		            &lt;button type="button" class="btnpricing btn btn-info"&gt;Pricing from (₹ 1,499)&lt;/button&gt;		
+		         &lt;/div&gt;
+		      &lt;/div&gt;
+		   &lt;/div&gt;
+		&lt;/div&gt;
+		&lt;!--this File is reponsible to add modal with respective youtube videos  --&gt;
+		&lt;div class="modal hide" id="modal"&gt;
+		   &lt;div class="modal-header"&gt;
+		      &lt;button type="button" class="close" data-dismiss="modal"&gt;x&lt;/button&gt;
+		      &lt;h3&gt;Wealth4India Tutorial&lt;/h3&gt;
+		   &lt;/div&gt;
+		   &lt;div class="modal-body"&gt;
+		      &lt;p&gt;One fine body&lt;/p&gt;
+		   &lt;/div&gt;
+		   &lt;div class="modal-footer"&gt;
+		      &lt;a href="#" class="btn" data-dismiss="modal"&gt;Close&lt;/a&gt;
+		   &lt;/div&gt;
+		&lt;/div&gt;
+		&lt;script type="text/javascript"&gt;
+		   //for main.jsp (Main home page in their Text-widget)
+		   $('#itr1').on('click',function(){
+		   	$('div.modal-body').html('&lt;iframe width="500" height="281" src="//www.youtube.com/embed/N8uSYsth98I?list=PLmKJmEkZclKGvO_9sOtrcw2OqXHqz0g4r" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;');  
+		   });
+		   //for main.jsp (Main home page in their Text-widget)
+		   $('#itr2,#itr3,#itr4,#itr5').on('click',function(){
+		   	$('div.modal-body').html('&lt;iframe width="500" height="281" src="//www.youtube.com/embed/RcqDH2w3Wb4" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;');  
+		   });
+		   //for cara.jsp (Carousel) on home page Individual and HUF
+		   $('#huf_invdl').on('click',function(){
+		   	$('div.modal-body').html('&lt;iframe width="500" height="281" src="//www.youtube.com/embed/N8uSYsth98I?list=PLmKJmEkZclKGvO_9sOtrcw2OqXHqz0g4r" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;');
+		    });    
+		   //for cara.jsp (Carousel) on home page eZ File
+		    $('#ezFile').on('click', function() {
+		   	$('div.modal-body').html('&lt;iframe width="500" height="281" src="//www.youtube.com/embed/RcqDH2w3Wb4" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;');
+		   });
+		   //for cara.jsp (Carousel) on home page e File
+		   $('#eFile').on('click', function() {
+		   	$('div.modal-body').html('&lt;iframe width="500" height="281" src="//www.youtube.com/embed/N8uSYsth98I" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;');
+		   });
+		   $('#modal').on('hide', function () {
+		   	  $('div.modal-body').html('');  
+		   	});
+		&lt;/script&gt;</sv:value>
+		        </sv:property>
+		        <sv:property sv:name="mootlywcm:html" sv:type="String">
+		          <sv:value/>
+		        </sv:property>
+		        <sv:property sv:name="mootlywcm:id" sv:type="String">
+		          <sv:value/>
+		        </sv:property>
+		        <sv:node sv:name="hippotranslation:translations">
+		          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+		            <sv:value>hippotranslation:translations</sv:value>
+		          </sv:property>
+		        </sv:node>
+		      </sv:node>
+		    </sv:node>
+		    <sv:node sv:name="corporate">
+		      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+		        <sv:value>hippostd:folder</sv:value>
+		      </sv:property>
+		      <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+		        <sv:value>hippo:harddocument</sv:value>
+		        <sv:value>hippotranslation:translated</sv:value>
+		      </sv:property>
+		      <sv:property sv:name="jcr:uuid" sv:type="String">
+		        <sv:value>f954d79f-47b3-4942-92f4-767b69bf9328</sv:value>
+		      </sv:property>
+		      <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
+		      <sv:property sv:multiple="true" sv:name="hippostd:foldertype" sv:type="String">
+		        <sv:value>new-translated-folder</sv:value>
+		        <sv:value>new-document</sv:value>
+		      </sv:property>
+		      <sv:property sv:name="hippotranslation:id" sv:type="String">
+		        <sv:value>1cb915c8-9cc7-4ed1-924d-42e54aee0b2f</sv:value>
+		      </sv:property>
+		      <sv:property sv:name="hippotranslation:locale" sv:type="String">
+		        <sv:value>en</sv:value>
+		      </sv:property>
+		      <sv:node sv:name="hippotranslation:translations">
+		        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+		          <sv:value>hippotranslation:translations</sv:value>
+		        </sv:property>
+		      </sv:node>
+		      <sv:node sv:name="privacy-policy">
+		        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+		          <sv:value>hippo:handle</sv:value>
+		        </sv:property>
+		        <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+		          <sv:value>hippo:hardhandle</sv:value>
+		        </sv:property>
+		        <sv:property sv:name="jcr:uuid" sv:type="String">
+		          <sv:value>903d8611-5f2a-43b0-b23a-0c068428b1fb</sv:value>
+		        </sv:property>
+		        <sv:node sv:name="privacy-policy">
+		          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+		            <sv:value>mootlywcm:pbblockdocument</sv:value>
+		          </sv:property>
+		          <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+		            <sv:value>hippo:harddocument</sv:value>
+		            <sv:value>hippotranslation:translated</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="jcr:uuid" sv:type="String">
+		            <sv:value>9766e3df-e696-4358-8b91-16c10b1bc6b4</sv:value>
+		          </sv:property>
+		          <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
+		            <sv:value>live</sv:value>
+		            <sv:value>preview</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="hippo:related___pathreference" sv:type="String">
+		            <sv:value>cms/blocks/corporate/privacy-policy</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="hippostd:holder" sv:type="String">
+		            <sv:value>admin</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="hippostd:state" sv:type="String">
+		            <sv:value>published</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="hippostd:stateSummary" sv:type="String">
+		            <sv:value>live</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
+		            <sv:value>admin</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
+		            <sv:value>2013-11-28T15:00:00.687-08:00</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
+		            <sv:value>2013-11-28T15:00:52.514-08:00</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
+		            <sv:value>admin</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
+		            <sv:value>2013-11-28T15:00:57.921-08:00</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="hippotranslation:id" sv:type="String">
+		            <sv:value>5f337133-14bc-49f0-88c1-69793abdb657</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="hippotranslation:locale" sv:type="String">
+		            <sv:value>en</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="hst:script" sv:type="String">
+		            <sv:value>&lt;pre&gt;
+		This policy tells you about how we use and protect your personal information. To see a summary of this policy, and for more information to answer your privacy concerns, please go to our Privacy Central page. 
+		
+			Contents
+			
+			    * Scope
+			    * Collection
+			    * Marketing
+			    * Use
+			    * Our Disclosure of Your Information
+			    * Activity Associated with User IDs
+			    * Using Information from CreditSafeIndia
+			    * Cookies
+			    * No Spam, Spyware or Spoofing
+			    * Account Protection
+			    * Accessing, Reviewing and Changing Your Personal Information
+			    * Security
+			    * Third Parties
+			    * General
+			
+			Scope
+			
+			This Privacy Policy describes how we handle your personal information for our services on the CreditSafeIndia websites. It applies generally to the CreditSafeIndia.com website and other related websites where this policy appears in the footer of the page. Some CreditSafeIndia-branded websites or websites we operate may be governed by separate privacy policies. The policy that applies on any of our domains or subdomains is always the policy that appears in the footer of each website.
+			
+			Our subsidiariesâ and joint venturesâ privacy practices are similar to those described in this Privacy Policy. Subject to the requirements of applicable law, we strive to provide a consistent set of privacy practices throughout the global CreditSafeIndia community. By accepting the Privacy Policy and the User Agreement in registration, you expressly consent to our collection, storage, use and disclosure of your personal information as described in this Privacy Policy. This Privacy Policy is effective upon acceptance for new users and is otherwise effective on April 1, 2008.
+			
+			
+			Collection
+			
+			You can browse our sites without telling us who you are or revealing any personal information about yourself. Once you give us your personal information, you are not anonymous to us. If you choose to provide us with personal information, you consent to the transfer and storage of that information on our servers located in the United States.
+			
+			We may collect and store the following personal information:
+			
+			    * email address, physical contact information, and (depending on the service used) sometimes financial information, such as credit card or bank account numbers;
+			    * transactional information based on your activities on the sites (such as  buying, selling, item and content you generate or that relates to your account);
+			    * community discussions, chats, dispute resolution, correspondence through our sites, and correspondence sent to us;
+			    * other information from your interaction with our sites, services, content and advertising, including computer and connection information, statistics on page views, traffic to and from the sites, ad data, IP address and standard web log information;
+			    * information from other companies, such as demographic and traffic data; and
+			
+			
+			Marketing
+			
+			We don't sell or rent your personal information to third parties for their marketing purposes without your explicit consent. We may combine your information with information we collect from other companies and use it to improve and personalize our services, content and advertising. If you don't wish to receive marketing communications from us or participate in our ad-customization programs, simply indicate your preference once you sign-on in My Account (or similar account status page) or by following the directions provided in an email or from a link on the advertisement.
+			
+			
+			Use
+			
+			Our primary purpose in collecting personal information is to provide you with a safe, smooth, efficient, and customized experience. You agree that we may use your personal information to:
+			
+			    * provide the services and customer support you request;
+			    * resolve disputes, collect fees, and troubleshoot problems;
+			    * prevent potentially prohibited or illegal activities, and enforce our User Agreement;
+			    * customize, measure and improve our services, content and advertising;
+			    * tell you about targeted marketing, service updates, and promotional offers based on your communication preferences; and
+			    * compare information for accuracy, and verify it with third parties.
+			
+			
+			Our Disclosure of Your Information
+			
+			We may disclose personal information to respond to legal requirements, enforce our policies, respond to claims that a listing or other content violates the rights of others, or protect anyone's rights, property, or safety.
+			
+			We may also share your personal information with:
+			
+			    * Members of our corporate family to help detect and prevent potentially illegal acts and provide joint content and services (for example, registration, transactions and customer support). Our corporate affiliates will send marketing communications only to users who request these services.
+			    * Service providers under contract who help with our business operations (such as fraud investigations, bill collection, affiliate and rewards programs and co-branded credit cards).
+			    * Other third parties to whom you explicitly ask us to send your information (or about whom you are otherwise explicitly notified and consent to when using a specific service).
+			    * Law enforcement or other governmental officials, in response to a verified request relating to a criminal investigation or alleged illegal activity. In such events, we will disclose information relevant to the investigation, such as name, city, state, zip code, telephone number, email address, User ID history, IP address, fraud complaints, and listing history.
+			    * Other business entities, should we plan to merge with or be acquired by that business entity. (Should such a combination occur, we will require that the new combined entity follow this privacy policy with respect to your personal information. If your personal information will be used contrary to this policy, you will receive prior notice.) 
+			
+			Without limiting the above, in an effort to respect your privacy and our ability to keep the community free from bad actors, we will not otherwise disclose your personal information to law enforcement, other government officials, or other third parties without a subpoena, court order or substantially similar legal procedure, except when we believe in good faith that the disclosure of information is necessary to prevent imminent physical harm or financial loss or to report suspected illegal activity.
+			
+			
+			Activity Associated with User IDs
+			
+			Your User ID is displayed throughout CreditSafeIndia and is therefore available to the public. All of your activity on our sites is traceable to your User ID. Other people can see your items that you have purchased in the past, items for sale, feedback, ratings and associated comments, and so on. 
+			
+			
+			Using Information from CreditSafeIndiaCreditSafeIndia enables you to share personal and financial information to complete transactions. We encourage you to disclose your privacy practices and respect the privacy of other users. We cannot guarantee the privacy or security of your information and therefore we encourage you to evaluate the privacy and security policies of your trading partner before entering into a transaction and choosing to share your information. To help protect your privacy, we allow only limited access to other users' contact, shipping and financial information to facilitate your transactions. When users are involved in a transaction, they may have access to each other's name, User ID, email address and other contact and shipping information. In all cases, you must give other users a chance to remove themselves from your database and a chance to review what information you have collected about them.
+			
+			You agree to use user information only for:
+			
+			    * CreditSafeIndia transaction-related purposes that are not unsolicited commercial messages;
+			    * using services offered through CreditSafeIndia (e.g. shipping and fraud complaints), or
+			    * other purposes that a user expressly chooses. 
+			
+			
+			Cookies
+			
+			"Cookies" are small files placed on the hard drive of your computer. We use "cookies" (small files placed on your hard drive) on certain of our pages to help analyze our web page flow; customize our services, content and advertising; measure promotional effectiveness, and promote trust and safety. CreditSafeIndia uses cookies, web beacons, and related tools provided by third parties to provide you with services that make the CreditSafeIndia site more efficient for your buying and selling activities. CreditSafeIndia limits the use of these tools to protect your privacy. Most cookies are "session cookies," meaning that they are automatically deleted from your hard drive once you end your session (log out or close your browser).
+			
+			A few important things you should know about cookies are that:
+			
+			    * We offer certain features that are available only through the use of cookies.
+			    * We use cookies to help identify you and maintain your signed-in status.
+			    * Most cookies are "session cookies," meaning that they are automatically deleted from your hard drive at the end of a session.
+			    * You are always free to decline our cookies if your browser permits, although doing so may interfere with your use of some of our sites or services.
+			    * You may encounter cookies from third parties on certain pages of the sites that we do not control. (For example, if you view a web page created by another user, there may be a cookie placed by that web page.) 
+			
+			CreditSafeIndia uses cookies on certain pages of the website to:
+			
+			    * Allow you to enter your password less frequently during a session. 
+			    * Provide information that is targeted to your interests. 
+			    * Promote and enforce trust and safety. 
+			    * Offer certain features that are only available through the use of cookies. 
+			    * Measure promotional effectiveness. 
+			    * Analyze our web page flow. 
+			
+			Cookies on CreditSafeIndia's discussion boards use session cookies to facilitate conversation threads and overall service functions.
+			
+			Your choices about cookies â We offer certain features that are only available through the use of a cookie. You are always free to decline cookies if your browser permits. However, if you decline cookies, you may not be able to use certain features on the website, and you may be required to reenter your password more frequently during a session. Learn how to set your browser to accept cookies.
+			
+			Web beacons
+			
+			A web beacon is an electronic image placed in the web page code that can serve many of the same purposes as cookies. Web beacons are used to track the traffic patterns of users from one page to another in order to maximize web traffic flow.
+			
+			How CreditSafeIndia protects your privacy with third parties
+			
+			    * CreditSafeIndia may work with other companies who place cookies or web beacons on our websites. These companies help operate our websites and provide you with additional products and services. They are subject to confidentiality agreements with CreditSafeIndia and other legal restrictions. CreditSafeIndia does not permit any of these companies to collect personal information using cookies or web beacons on our websites.   
+			    * Some of these companies like DoubleClick and MediaPlex â maybe our service providers who place cookies that help us serve our own content and compile anonymous site metrics and analytics. We require these companies to use the information they collect only to provide us with these services under contract.
+			    * CreditSafeIndia may participate in cookie-based ad networks operated by Yahoo and Tacoda. This means that these companies may use some anonymous information about you (based on a cookie on your computer) to display ads. We do not permit these companies to collect any personal information about you. Tacoda collects anonymous information using cookies to tailor the advertising you see on the CreditSafeIndia sites or elsewhere on the web. Yahoo uses some anonymous information we send them (like age range and gender) to display ads on the CreditSafeIndia sites. Yahoo may also use anonymous information about its own users to select ads to serve on our pages. Click these links to learn more about Yahooâs{http://info.yahoo.com/privacy/us/yahoo/opt_out/targeting/details.html} and Tacodaâs{http://www.tacoda.com/notice/privacy_policy.html} ad-serving business practices and privacy policies, including how to decline participation in these programs.
+			    * CreditSafeIndia does not permit third-party content on CreditSafeIndia (such as an item listing) to include cookies or web beacons, although this may still happen from time to time. If you believe a listing may be collecting personal information or using cookies, please report it to spam@CreditSafeIndia.com.
+			
+			
+			No Spam, Spyware or Spoofing
+			
+			We and our users do not tolerate spam. Make sure to set your CreditSafeIndia notification preferences so we communicate to you as you prefer. You are not licensed to add other CreditSafeIndia users, even a user who has purchased an item from you, to your mailing list (email or physical mail) without their express consent. To report CreditSafeIndia-related spam or spoof emails to CreditSafeIndia, please forward the email to spam@CreditSafeIndia.com or spoof@CreditSafeIndia.com. You may not use our communication tools to send spam or otherwise send content that would violate our User Agreement. We occasionally scan and may manually filter messages to check for spam, viruses, phishing attacks and other malicious activity or illegal or prohibited content, but we do not permanently store messages sent through these tools. If you send an email to an email address that is not registered in our community (via Refer-a-Friend or other tools), we do not permanently store that email or use that email address for any marketing purpose. We do not rent or sell these email addresses.
+			
+			
+			Account Protection
+			
+			Your password is the key to your account. Use unique numbers, letters and special characters, and do not disclose your CreditSafeIndia password to anyone. If you do share your password or your personal information with others, remember that you are responsible for all actions taken in the name of your account. If you lose control of your password, you may lose substantial control over your personal information and may be subject to legally binding actions taken on your behalf. Therefore, if your password has been compromised for any reason, you should immediately notify CreditSafeIndia and change your password.
+			
+			
+			Accessing, Reviewing and Changing Your Personal Information
+			
+			You can see, review and change most of your personal information by signing on to CreditSafeIndia. Generally, we will not manually modify your personal information because it is very difficult to verify your identity remotely. You must promptly update your personal information if it changes or is inaccurate. Once you make a public posting, you may not be able to change or remove it. Upon your request, we will close your account and remove your personal information from view as soon as reasonably possible, based on your account activity and in accordance with applicable law. We do retain personal information from closed accounts to comply with law, prevent fraud, collect any fees owed, resolve disputes, troubleshoot problems, assist with any investigations, enforce our CreditSafeIndia User Agreement, and take other actions otherwise permitted by law.
+			
+			
+			Security
+			
+			Your information is stored on our servers located in the United States. We treat data as an asset that must be protected and use lots of tools (encryption, passwords, physical security, etc.) to protect your personal information against unauthorized access and disclosure. However, as you probably know, third parties may unlawfully intercept or access transmissions or private communications, and other users may abuse or misuse your personal information that they collect from the site. Therefore, although we work very hard to protect your privacy, we do not promise, and you should not expect, that your personal information or private communications will always remain private.
+			
+			
+			Third Parties
+			
+			Except as otherwise expressly included in this Privacy Policy, this document addresses only the use and disclosure of information we collect from you. If you disclose your information to others, whether they are buyers or sellers on our sites or other sites throughout the internet, different rules may apply to their use or disclosure of the information you disclose to them. CreditSafeIndia does not control the privacy policies of third parties, and you are subject to the privacy policies of those third parties where applicable. We encourage you to ask questions before you disclose your personal information to others.
+			
+			
+			General
+			
+			We may amend this Privacy Policy at any time by posting the amended terms on this site. All amended terms automatically take effect 30 days after they are initially posted on the Site. 
+		&lt;/pre&gt;</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="mootlywcm:html" sv:type="String">
+		            <sv:value/>
+		          </sv:property>
+		          <sv:property sv:name="mootlywcm:id" sv:type="String">
+		            <sv:value/>
+		          </sv:property>
+		          <sv:node sv:name="hippotranslation:translations">
+		            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+		              <sv:value>hippotranslation:translations</sv:value>
+		            </sv:property>
+		          </sv:node>
+		        </sv:node>
+		      </sv:node>
+		      <sv:node sv:name="terms-use">
+		        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+		          <sv:value>hippo:handle</sv:value>
+		        </sv:property>
+		        <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+		          <sv:value>hippo:hardhandle</sv:value>
+		        </sv:property>
+		        <sv:property sv:name="jcr:uuid" sv:type="String">
+		          <sv:value>cafc082b-7a2f-462e-a93e-c0665be15b3c</sv:value>
+		        </sv:property>
+		        <sv:node sv:name="terms-use">
+		          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+		            <sv:value>mootlywcm:pbblockdocument</sv:value>
+		          </sv:property>
+		          <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+		            <sv:value>hippo:harddocument</sv:value>
+		            <sv:value>hippotranslation:translated</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="jcr:uuid" sv:type="String">
+		            <sv:value>44080e11-c7dd-461b-ac63-2f47c24e4b22</sv:value>
+		          </sv:property>
+		          <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
+		            <sv:value>live</sv:value>
+		            <sv:value>preview</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="hippo:related___pathreference" sv:type="String">
+		            <sv:value>cms/blocks/corporate/terms-use</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="hippostd:holder" sv:type="String">
+		            <sv:value>admin</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="hippostd:state" sv:type="String">
+		            <sv:value>published</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="hippostd:stateSummary" sv:type="String">
+		            <sv:value>live</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
+		            <sv:value>admin</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
+		            <sv:value>2013-11-28T15:01:50.783-08:00</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
+		            <sv:value>2013-11-28T15:01:54.942-08:00</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
+		            <sv:value>admin</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
+		            <sv:value>2013-11-28T15:01:58.860-08:00</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="hippotranslation:id" sv:type="String">
+		            <sv:value>d7a4eee9-5c52-4931-b5b1-73bab9c041ea</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="hippotranslation:locale" sv:type="String">
+		            <sv:value>en</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="hst:script" sv:type="String">
+		            <sv:value>&lt;pre&gt;	1. ACCEPTANCE OF TERMS
+			
+			CreditSafeIndia provides a collection of online resources, including classified
+			ads, forums, and various email services, (referred to hereafter as "the
+			Service") subject to the following Terms of Use. By using the Service 
+			in any way, you are agreeing to comply with the Terms of Use. In addition, when using 
+			particular CreditSafeIndia services, you agree to abide by any applicable posted 
+			guidelines for all CreditSafeIndia services, which may change from time to time.  
+			Should you object to any term or condition of the Terms of Use, any guidelines, 
+			or any subsequent modifications thereto or become dissatisfied with CreditSafeIndia
+			in any way, your only recourse is to immediately discontinue use of CreditSafeIndia.
+			
+			
+			2. MODIFICATIONS TO THIS AGREEMENT
+			
+			We reserve the right, at our sole discretion, to change, modify or otherwise 
+			alter these terms and conditions at any time.  Such modifications shall become 
+			effective immediately upon the posting thereof. You must review this agreement 
+			on a regular basis to keep yourself apprised of any changes. You can find the 
+			most recent version of the Terms of Use at:
+			
+			http://www.CreditSafeIndia.com/termsofuse
+			
+			
+			3. CONTENT
+			
+			You understand that all postings, messages, text, files, images, photos,
+			video, sounds, or other materials ("Content") posted on, transmitted
+			through, or linked from the Service, are the sole responsibility of the
+			person from whom such Content originated. More specifically, you are
+			entirely responsible for each individual item ("Item") of Content that you 
+			post, email or otherwise make available via the Service. You understand that 
+			CreditSafeIndia does not control, and is not responsible for Content made available 
+			through the Service, and that by using the Service, you may be exposed to 
+			Content that is offensive, indecent, inaccurate, misleading, or otherwise 
+			objectionable. Furthermore, the CreditSafeIndia site and Content available through 
+			the Service may contain links to other websites, which are completely 
+			independent of CreditSafeIndia. CreditSafeIndia makes no representation or warranty as 
+			to the accuracy, completeness or authenticity of the information contained 
+			in any such site. Your linking to any other webites is at your own risk. 
+			You agree that you must evaluate, and bear all risks associated with, the 
+			use of any Content, that you may not rely on said Content, and that under no 
+			circumstances will CreditSafeIndia be liable in any way for any Content or for 
+			any loss or damage of any kind incurred as a result of the use of any Content 
+			posted, emailed or otherwise made available via the Service. You acknowledge 
+			that CreditSafeIndia does not pre-screen or approve Content, but that CreditSafeIndia 
+			shall have the right (but not the obligation) in its sole discretion to 
+			refuse, delete or move any Content that is available via the Service, for 
+			violating the letter or spirit of the Terms of Use or for any other reason.
+			
+			
+			4. THIRD PARTY CONTENT, SITES, AND SERVICES
+			
+			The CreditSafeIndia site and Content available through the Service may contain 
+			features and functionalities that may link you or provide you with access 
+			to third party content which is completely independent of CreditSafeIndia, 
+			including web sites, directories, servers, networks, systems, information 
+			and databases, applications, software, programs, products or services, 
+			and the Internet as a whole.  
+			
+			Your interactions with organizations and/or individuals found on or through 
+			the Service, including payment and delivery of goods or services, and any 
+			other terms, conditions, warranties or representations associated with such 
+			dealings, are solely between you and such organizations and/or individuals. 
+			You should make whatever investigation you feel necessary or appropriate 
+			before proceeding with any online or offline transaction with any of these 
+			third parties.  
+			
+			You agree that CreditSafeIndia shall not be responsible or liable for any loss or 
+			damage of any sort incurred as the result of any such dealings. If there is 
+			a dispute between participants on this site, or between users and any third 
+			party, you understand and agree that CreditSafeIndia is under no obligation to 
+			become involved. In the event that you have a dispute with one or more other 
+			users, you hereby release CreditSafeIndia, its officers, employees, agents and 
+			successors in rights from claims, demands and damages (actual and 
+			consequential) of every kind or nature, known or unknown, suspected and 
+			unsuspected, disclosed and undisclosed, arising out of or in any way related 
+			to such disputes and / or our service. If you are a California resident, you 
+			waive California Civil Code Section 1542, which says: "A general release does 
+			not extend to claims which the creditor does not know or suspect to exist in 
+			his favor at the time of executing the release, which, if known by him must 
+			have materially affected his settlement with the debtor."  
+			
+			
+			5.  NOTIFICATION OF CLAIMS OF INFRINGEMENT
+			
+			If you believe that your work has been copied in a way that constitutes
+			copyright infringement, or your intellectual property rights have been
+			otherwise violated, please notify CreditSafeIndia's agent for notice of claims of
+			copyright or other intellectual property infringement ("Agent"), at
+			
+			abuse@CreditSafeIndia.com
+			
+			or:
+			
+			Copyright Agent
+			CreditSafeIndia
+			4800 Great America Pkwy, Suite 310
+			Santa Clara, CA 95054
+			
+			
+			Please provide our Agent with the following Notice:
+			
+			a) Identify the material on the CreditSafeIndia site that you claim is
+			infringing, with enough detail so that we may locate it on the website;
+			
+			b) A statement by you that you have a good faith belief that the disputed
+			use is not authorized by the copyright owner, its agent, or the law;
+			
+			c) A statement by you declaring under penalty of perjury that (1) the above
+			information in your Notice is accurate, and (2) that you are the owner of
+			the copyright interest involved or that you are authorized to act on behalf
+			of that owner;
+			
+			d) Your address, telephone number, and email address; and
+			
+			e) Your physical or electronic signature.
+			
+			CreditSafeIndia will remove the infringing posting(s), subject to the the procedures
+			outlined in the Digital Millenium Copyright Act (DMCA).
+			
+			
+			6. PRIVACY AND INFORMATION DISCLOSURE
+			
+			CreditSafeIndia has established a Privacy Policy to explain to users how their
+			information is collected and used, which is located at the following web 
+			address:  http://www.CreditSafeIndia.com/privacypolicy
+			
+			Your use of the CreditSafeIndia website or the Service signifies acknowledgement of 
+			and agreement to our Privacy Policy. You further acknowledge and agree that 
+			CreditSafeIndia may, in its sole discretion, preserve or disclose your Content, 
+			as well as your information, such as email addresses, IP addresses, timestamps, 
+			and other user information, if required to do so by law or in the good faith
+			belief that such preservation or disclosure is reasonably necessary to:
+			comply with legal process; enforce the Terms of Use; respond to claims that any
+			Content violates the rights of third-parties; respond to claims that contact 
+			information (e.g. phone number, street address) of a third-party has been 
+			posted or transmitted without their consent or as a form of harassment; 
+			protect the rights, property, or personal safety of CreditSafeIndia, its users or 
+			the general public.                
+			
+			
+			7. CONDUCT
+			
+			You agree not to post, email, or otherwise make available Content:
+			
+			a) that is unlawful, harmful, threatening, abusive, harassing, defamatory,
+			libelous, invasive of another's privacy, or is harmful to minors in any way;
+			
+			b) that is pornographic or depicts a human being engaged in actual sexual conduct
+			including but not limited to (i) sexual intercourse, including genital-genital, 
+			oral-genital, anal-genital, or oral-anal, whether between persons of the same or
+			opposite sex, or (ii) bestiality, or (iii) masturbation, or (iv) sadistic or 
+			masochistic abuse, or (v) lascivious exhibition of the genitals or pubic area 
+			of any person;
+			
+			c) that harasses, degrades, intimidates or is hateful toward an individual or
+			group of individuals on the basis of religion, gender, sexual orientation,
+			race, ethnicity, age, or disability;
+			
+			d) that violates the Fair Housing Act by stating, in any notice or ad for the 
+			sale or rental of any dwelling, a discriminatory preference based on race, 
+			color, national origin, religion, sex, familial status or handicap (or 
+			violates any state or local law prohibiting discrimination on the basis of 
+			these or other characteristics); 
+			
+			e) that violates federal, state, or local equal employment opportunity
+			laws, including but not limited to, stating in any advertisement for
+			employment a preference or requirement based on race, color, religion,
+			sex, national origin, age, or disability.
+			
+			f) with respect to employers that employ four or more employees, that
+			violates the anti-discrimination provision of the Immigration and
+			Nationality Act, including requiring U.S. citizenship or lawful
+			permanent residency (green card status) as a condition for employment,
+			unless otherwise required in order to comply with law, regulation,
+			executive order, or federal, state, or local government contract.
+			
+			g) that impersonates any person or entity, including, but not limited to, a
+			CreditSafeIndia employee, or falsely states or otherwise misrepresents your
+			affiliation with a person or entity (this provision does not apply to Content 
+			that constitutes lawful non-deceptive parody of public figures.);
+			
+			h) that includes personal or identifying information about another person
+			without that person's explicit consent;
+			
+			i) that is false, deceptive, misleading, deceitful, misinformative, or
+			constitutes "bait and switch";
+			
+			j) that infringes any patent, trademark, trade secret, copyright or other
+			proprietary rights of any party, or Content that you do not have a right to
+			make available under any law or under contractual or fiduciary
+			relationships;
+			
+			k) that constitutes or contains  "affiliate marketing," "link referral code," 
+			"junk mail," "spam," "chain letters," "pyramid schemes," or unsolicited 
+			commercial advertisement;
+			
+			l) that constitutes or contains any form of advertising or solicitation if:
+			posted in areas of the CreditSafeIndia sites which are not designated for such 
+			purposes; or emailed to CreditSafeIndia users who have not indicated in writing that 
+			it is ok to contact them about other services, products or commercial interests.
+			
+			m) that includes links to commercial services or web sites, except as allowed
+			in "services";
+			
+			n) that advertises any illegal service or the sale of any items the sale of
+			which is prohibited or restricted by any applicable law, including without
+			limitation items the sale of which is prohibited or regulated by California 
+			law. A partial list of prohibited items for sale and prohibited services 
+			offered is provided at the following web address for your 
+			convenience: http://www.CreditSafeIndia.com/prohibiteditems
+			
+			o) that contains software viruses or any other computer code, files or
+			programs designed to interrupt, destroy or limit the functionality of any
+			computer software or hardware or telecommunications equipment;
+			
+			p) that disrupts the normal flow of dialogue with an excessive amount of 
+			Content (flooding attack) to the Service, or that otherwise negatively
+			affects other users' ability to use the Service; or
+			
+			q) that employs misleading email addresses, or forged headers or otherwise
+			manipulated identifiers in order to disguise the origin of Content
+			transmitted through the Service.
+			
+			Additionally, you agree not to:
+			
+			r) contact anyone who has asked not to be contacted;
+			
+			s) "stalk" or otherwise harass anyone;
+			
+			t) collect personal data about other users for commercial or unlawful
+			purposes;
+			
+			u) use automated means, including spiders, robots, crawlers, data mining
+			tools, or the like to download data from the Service - unless expressly
+			permitted by CreditSafeIndia;
+			
+			v) post irrelevant Content, repeatedly post the
+			same or similar Content or otherwise impose an unreasonable or
+			disproportionately large load on our infrastructure;
+			
+			w) post the same item or service in more than one classified category or
+			forum, or in more than one area;
+			
+			x) attempt to gain unauthorized access to CreditSafeIndia's computer systems or
+			engage in any activity that disrupts, diminishes the quality of, interferes
+			with the performance of, or impairs the functionality of, the Service or the
+			CreditSafeIndia website; or
+			
+			y) use any form of automated device or computer program that enables the 
+			submission of postings on CreditSafeIndia without each posting being manually 
+			entered by the author thereof (an "automated posting device"), including
+			without limitation, the use of any such automated posting device to submit
+			postings in bulk, or for automatic submission of postings at regular intervals.
+			
+			8. POSTING AGENTS
+			
+			A "Posting Agent" is a third-party agent, service, or intermediary 
+			that offers to post Content to the Service on behalf of others. To 
+			moderate demands on CreditSafeIndia's resources, you may not use a Posting 
+			Agent to post Content to the Service without express permission or 
+			license from CreditSafeIndia.  Correspondingly, Posting Agents are not 
+			permitted to post Content on behalf of others, to cause Content to 
+			be so posted, or otherwise access the Service to facilitate posting 
+			Content on behalf of others, except with express permission or 
+			license from CreditSafeIndia.
+			
+			
+			9. NO SPAM POLICY
+			
+			You understand and agree that sending unsolicited email advertisements to
+			CreditSafeIndia email addresses or through CreditSafeIndia computer systems, which is
+			expressly prohibited by these Terms of Use, will use or cause to be used servers
+			located in California.  Any unauthorized use of CreditSafeIndia computer systems
+			is a violation of the Terms of Use and certain federal and state laws, including
+			without limitation the Computer Fraud and Abuse Act (18 U.S.C. § 1030 et
+			seq.), Section 502 of the California Penal Code and Section 17538.45 of the
+			California Business and Professions Code.  Such violations may subject the
+			sender and his or her agents to civil and criminal penalties.
+			
+			
+			10. PAID POSTINGS
+			
+			We may charge a fee to post Content in some areas of the Service. The fee
+			is an access fee permitting Content to be posted in a designated area.
+			Each party posting Content to the Service is responsible for said Content
+			and compliance with the Terms of Use. All fees paid will be non-refundable in the
+			event that Content is removed from the Service for violating the Terms of Use.
+			
+			
+			11. LIMITATIONS ON SERVICE
+			
+			You acknowledge that CreditSafeIndia may establish limits concerning use of the
+			Service, including the maximum number of days that Content will be retained
+			by the Service, the maximum number and size of postings, email messages, or
+			other Content that may be transmitted or stored by the Service, and the
+			frequency with which you may access the Service. You agree that CreditSafeIndia
+			has no responsibility or liability for the deletion or failure to store any
+			Content maintained or transmitted by the Service. You acknowledge that
+			CreditSafeIndia reserves the right at any time to modify or discontinue the
+			Service (or any part thereof) with or without notice, and that CreditSafeIndia
+			shall not be liable to you or to any third party for any modification,
+			suspension or discontinuance of the Service.
+			
+			
+			12. ACCESS TO THE SERVICE
+			
+			CreditSafeIndia grants you a limited, revocable, nonexclusive license to access 
+			the Service for your own personal use. This license does not include:
+			(a) access to the Service by Posting Agents; or (b) any collection, 
+			aggregation, copying, duplication, display or derivative use of the Service 
+			nor any use of data mining, robots, spiders, or similar data gathering and 
+			extraction tools for any purpose unless expressly permitted by CreditSafeIndia. 
+			A limited exception to (b) is provided to general purpose internet search 
+			engines and non-commercial public archives that use such tools to gather 
+			information for the sole purpose of displaying hyperlinks to the Service, 
+			provided they each do so from a stable IP address or range of IP addresses 
+			using an easily identifiable agent and comply with our robots.txt file. 
+			"General purpose internet search engine" does not include a website or 
+			search engine or other service that specializes in classified listings 
+			or in any subset of classifieds listings such as jobs, housing, for sale, 
+			services, or personals, or which is in the business of providing classified 
+			ad listing services.
+			
+			CreditSafeIndia permits you to display on your website, or create a hyperlink
+			on your website to, individual postings on the Service so long as such use
+			is for noncommercial and/or news reporting purposes only (e.g., for use in
+			personal web blogs or personal online media).  If the total number of such
+			postings displayed or linked to on your website exceeds one hundred (100)
+			postings, your use will be presumed to be in violation of the Terms of Use,
+			absent express permission granted by CreditSafeIndia to do so.  You may also
+			create a hyperlink to the home page of CreditSafeIndia sites so long as the
+			link does not portray CreditSafeIndia, its employees, or its affiliates in a
+			false, misleading, derogatory, or otherwise offensive manner.
+			
+			CreditSafeIndia offers various parts of the Service in RSS format so that users
+			can embed individual feeds into a personal website or blog, or view postings
+			through third party software news aggregators.  CreditSafeIndia permits you to
+			display, excerpt from, and link to the RSS feeds on your personal website
+			or personal web blog, provided that (a) your use of the RSS feed is for
+			personal, non-commercial purposes only, (b) each title is correctly linked
+			back to the original post on the Service and redirects the user to the
+			post when the user clicks on it, (c) you provide, adjacent to the RSS
+			feed, proper attribution to 'CreditSafeIndia' as the source, (d) your use or
+			display does not suggest that CreditSafeIndia promotes or endorses any third
+			party causes, ideas, web sites, products or services, (e) you do not
+			redistribute the RSS feed, and (f) your use does not overburden
+			CreditSafeIndia's systems.  CreditSafeIndia reserves all rights in the content of
+			the RSS feeds and may terminate any RSS feed at any time.
+			
+			Use of the Service beyond the scope of authorized access granted to you by
+			CreditSafeIndia immediately terminates said permission or license.  In order to
+			collect, aggregate, copy, duplicate, display or make derivative use of the
+			the Service or any Content made available via the Service for other
+			purposes (including commercial purposes) not stated herein, you must first
+			obtain a license from CreditSafeIndia.
+			
+			
+			13. TERMINATION OF SERVICE
+			
+			You agree that CreditSafeIndia, in its sole discretion, has the right (but not
+			the obligation) to delete or deactivate your account, block your email or IP
+			address, or otherwise terminate your access to or use of the Service (or any
+			part thereof), immediately and without notice, and remove and discard any
+			Content within the Service, for any reason, including, without limitation,
+			if CreditSafeIndia believes that you have acted inconsistently with the letter or
+			spirit of the Terms of Use. Further, you agree that CreditSafeIndia shall not be liable
+			to you or any third-party for any termination of your access to the Service.
+			Further, you agree not to attempt to use the Service after said termination.
+			Sections 2, 4, 6 and 12-18 shall survive termination of the Terms of Use.
+			
+			
+			14. PROPRIETARY RIGHTS
+			
+			The Service is protected to the maximum extent permitted by copyright laws
+			and international treaties. Content displayed on or through the Service is
+			protected by copyright as a collective work and/or compilation, pursuant to
+			copyrights laws, and international conventions. Any reproduction,
+			modification, creation of derivative works from or redistribution of the
+			site or the collective work, and/or copying or reproducing the sites
+			or any portion thereof to any other server or location for further
+			reproduction or redistribution is prohibited without the express
+			written consent of CreditSafeIndia. You further agree not to reproduce, 
+			duplicate or copy Content from the Service without the express written 
+			consent of CreditSafeIndia, and agree to abide by any and all copyright notices 
+			displayed on the Service. You may not decompile or disassemble, reverse 
+			engineer or otherwise attempt to discover any source code contained in the 
+			Service. Without limiting the foregoing, you agree not to reproduce, 
+			duplicate, copy, sell, resell or exploit for any commercial purposes, any 
+			aspect of the Service. CreditSafeIndia is a registered mark in the U.S. Patent 
+			and Trademark Office.
+			
+			Although CreditSafeIndia does not claim ownership of content that its users post,
+			by posting Content to any public area of the Service, you automatically
+			grant, and you represent and warrant that you have the right to grant, to
+			CreditSafeIndia an irrevocable, perpetual, non-exclusive, fully paid, worldwide
+			license to use, copy, perform, display, and distribute said Content and to
+			prepare derivative works of, or incorporate into other works, said Content,
+			and to grant and authorize sublicenses (through multiple tiers) of the
+			foregoing. Furthermore, by posting Content to any public area of the Service, 
+			you automatically grant CreditSafeIndia all rights necessary to prohibit any 
+			subsequent aggregation, display, copying, duplication, reproduction, or 
+			exploitation of the Content on the Service by any party for any purpose.
+			
+			
+			15. DISCLAIMER OF WARRANTIES
+			
+			YOU AGREE THAT USE OF THE CreditSafeIndia SITE AND THE SERVICE IS ENTIRELY AT
+			YOUR OWN RISK. THE CreditSafeIndia SITE AND THE SERVICE ARE PROVIDED ON AN "AS
+			IS" OR "AS AVAILABLE" BASIS, WITHOUT ANY WARRANTIES OF ANY KIND.  ALL
+			EXPRESS AND IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE
+			WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND
+			NON-INFRINGEMENT OF PROPRIETARY RIGHTS ARE EXPRESSLY DISCLAIMED TO THE
+			FULLEST EXTENT PERMITTED BY LAW.  TO THE FULLEST EXTENT PERMITTED BY LAW,
+			CreditSafeIndia DISCLAIMS ANY WARRANTIES FOR THE SECURITY, RELIABILITY,
+			TIMELINESS, ACCURACY, AND PERFORMANCE OF THE CreditSafeIndia SITE AND THE
+			SERVICE.  TO THE FULLEST EXTENT PERMITTED BY LAW, CreditSafeIndia DISCLAIMS ANY
+			WARRANTIES FOR OTHER SERVICES OR GOODS RECEIVED THROUGH OR ADVERTISED ON THE
+			CreditSafeIndia SITE OR THE SITES OR SERVICE, OR ACCESSED THROUGH ANY LINKS ON
+			THE CreditSafeIndia SITE.  TO THE FULLEST EXTENT PERMITTED BY LAW, CreditSafeIndia
+			DISCLAIMS ANY WARRANTIES FOR VIRUSES OR OTHER HARMFUL COMPONENTS IN
+			CONNECTION WITH THE CreditSafeIndia SITE OR THE SERVICE.  Some jurisdictions do
+			not allow the disclaimer of implied warranties.  In such jurisdictions, some
+			of the foregoing disclaimers may not apply to you insofar as they relate to
+			implied warranties.
+			
+			
+			16. LIMITATIONS OF LIABILITY
+			
+			UNDER NO CIRCUMSTANCES SHALL CreditSafeIndia BE LIABLE FOR DIRECT, INDIRECT,
+			INCIDENTAL, SPECIAL, CONSEQUENTIAL OR EXEMPLARY DAMAGES (EVEN IF CreditSafeIndia
+			HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES), RESULTING FROM ANY
+			ASPECT OF YOUR USE OF THE CreditSafeIndia SITE OR THE SERVICE, WHETHER THE
+			DAMAGES ARISE FROM USE OR MISUSE OF THE CreditSafeIndia SITE OR THE SERVICE, FROM
+			INABILITY TO USE THE CreditSafeIndia SITE OR THE SERVICE, OR THE INTERRUPTION,
+			SUSPENSION, MODIFICATION, ALTERATION, OR TERMINATION OF THE CreditSafeIndia SITE
+			OR THE SERVICE.  SUCH LIMITATION SHALL ALSO APPLY WITH RESPECT TO DAMAGES
+			INCURRED BY REASON OF OTHER SERVICES OR PRODUCTS RECEIVED THROUGH OR
+			ADVERTISED IN CONNECTION WITH THE CreditSafeIndia SITE OR THE SERVICE OR ANY
+			LINKS ON THE CreditSafeIndia SITE, AS WELL AS BY REASON OF ANY INFORMATION OR
+			ADVICE RECEIVED THROUGH OR ADVERTISED IN CONNECTION WITH THE CreditSafeIndia SITE
+			OR THE SERVICE OR ANY LINKS ON THE CreditSafeIndia SITE.  THESE LIMITATIONS SHALL
+			APPLY TO THE FULLEST EXTENT PERMITTED BY LAW. In some jurisdictions,
+			limitations of liability are not permitted.  In such jurisdictions, some of
+			the foregoing limitation may not apply to you.
+			
+			
+			17. INDEMNITY
+			
+			You agree to indemnify and hold CreditSafeIndia, its officers, subsidiaries,
+			affiliates, successors, assigns, directors, officers, agents, service
+			providers, suppliers and employees, harmless from any claim or demand,
+			including reasonable attorney fees and court costs, made by any third party
+			due to or arising out of Content you submit, post or make available through
+			the Service, your use of the Service, your violation of the Terms of Use, your
+			breach of any of the representations and warranties herein, or your
+			violation of any rights of another.
+			
+			
+			18. GENERAL INFORMATION
+			
+			The Terms of Use constitute the entire agreement between you and CreditSafeIndia and
+			govern your use of the Service, superseding any prior agreements between you
+			and CreditSafeIndia. The Terms of Use and the relationship between you and CreditSafeIndia
+			shall be governed by the laws of the State of California without regard to
+			its conflict of law provisions. You and CreditSafeIndia agree to submit to the
+			personal and exclusive jurisdiction of the courts located within the county
+			of San Francisco, California. The failure of CreditSafeIndia to exercise or
+			enforce any right or provision of the Terms of Use shall not constitute a waiver of
+			such right or provision. If any provision of the Terms of Use is found by a court
+			of competent jurisdiction to be invalid, the parties nevertheless agree that
+			the court should endeavor to give effect to the parties' intentions as
+			reflected in the provision, and the other provisions of the Terms of Use remain in
+			full force and effect. You agree that regardless of any statute or law to
+			the contrary, any claim or cause of action arising out of or related to use
+			of the Service or the Terms of Use must be filed within one (1) year after such
+			claim or cause of action arose or be forever barred.
+			
+			
+			19. VIOLATION OF TERMS AND LIQUIDATED DAMAGES
+			
+			Please report any violations of the Terms of Use, by flagging the posting(s) for
+			review, or by emailing to:
+			
+			abuse@CreditSafeIndia.com
+			
+			Our failure to act with respect to a breach by you or others does not waive our 
+			right to act with respect to subsequent or similar breaches.
+			
+			You understand and agree that, because damages are often difficult to quantify, 
+			if it becomes necessary for CreditSafeIndia to pursue legal action to enforce the 
+			Terms of Use, you will be liable to pay CreditSafeIndia the following amounts as liquidated 
+			damages, which you accept as reasonable estimates of CreditSafeIndias' damages for 
+			the specified breaches of the Terms of Use:
+			
+			a. If you post a message that (1) impersonates any person or entity; (2)
+			falsely states or otherwise misrepresents your affiliation with a person or
+			entity; or (3) that includes personal or identifying information about
+			another person without that person's explicit consent, you agree to pay
+			CreditSafeIndia one thousand dollars ($1,000) for each such message.
+			This provision does not apply to messages that are lawful non-deceptive
+			parodies of public figures.
+			
+			b. If CreditSafeIndia establishes limits on the frequency with which you may
+			access the Service, or terminates your access to or use of the Service, you
+			agree to pay CreditSafeIndia one hundred dollars ($100) for each message posted
+			in excess of such limits or for each day on which you access CreditSafeIndia in
+			excess of such limits, whichever is higher.
+			
+			c. If you send unsolicited email advertisements to CreditSafeIndia email
+			addresses or through CreditSafeIndia computer systems, you agree to pay
+			CreditSafeIndia twenty five dollars ($25) for each such email.
+			
+			d. If you post Content in violation of the Terms of Use, other than as described 
+			above, you agree to pay CreditSafeIndia one hundred dollars ($100) for each 
+			Item of Content posted.  In its sole discretion, CreditSafeIndia may elect 
+			to issue a warning before assessing damages.
+			
+			e. If you are a Posting Agent that uses the Service in violation of the
+			Terms of Use, in addition to any liquidated damages under clause (d), you agree to
+			pay CreditSafeIndia one hundred dollars ($100) for each and every Item of Conent
+			posted in violation of the Terms of Use.  A Posting Agent will also be deemed an agent 
+			of the party engaging the Posting Agent to access the Service (the
+			"Principal"), and the Principal (by engaging the Posting Agent in
+			violation of the Terms of Use) agrees to pay CreditSafeIndia an additional one hundred
+			dollars ($100) for each Item of Conent posted by the Posting Agent on 
+			behalf of the principal in violation of the Terms of Use.
+			
+			f. If you aggregate, display, copy, duplicate, reproduce, or otherwise 
+			exploit for any purpose any Content (except for your own Content) in 
+			violation of the Terms of Use without CreditSafeIndia's express written permission, 
+			you agree to pay CreditSafeIndia three thousand dollars ($3,000) for each day 
+			on which you engage in such conduct.
+			
+			Otherwise, you agree to pay CreditSafeIndia's actual damages, to the extent such
+			actual damages can be reasonably calculated. Notwithstanding any other 
+			provision of the Terms of Use, CreditSafeIndia retains the right to seek the remedy 
+			of specific performance of any term contained in the Terms of Use, or a preliminary 
+			or permanent injunction against the breach of any such term or in aid of the 
+			exercise of any power granted in the Terms of Use, or any combination thereof.
+			
+			
+			20. SUBMISSIONS
+			
+			You acknowledge and agree that any questions, comments, suggestions, ideas, feedback 
+			or other information about the Site or the Service ("Submissions"), provided by you to 
+			Company are non-confidential and shall become the sole property of Company. 
+			Company shall own exclusive rights, including all intellectual property rights, and shall 
+			be entitled to the unrestricted use and dissemination of these Submissions for any purpose, 
+			commercial or otherwise, without acknowledgment or compensation to you.
+			&lt;/pre&gt;</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="mootlywcm:html" sv:type="String">
+		            <sv:value/>
+		          </sv:property>
+		          <sv:property sv:name="mootlywcm:id" sv:type="String">
+		            <sv:value/>
+		          </sv:property>
+		          <sv:node sv:name="hippotranslation:translations">
+		            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+		              <sv:value>hippotranslation:translations</sv:value>
+		            </sv:property>
+		          </sv:node>
+		        </sv:node>
+		      </sv:node>
+		      <sv:node sv:name="about-us">
+		        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+		          <sv:value>hippo:handle</sv:value>
+		        </sv:property>
+		        <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+		          <sv:value>hippo:hardhandle</sv:value>
+		        </sv:property>
+		        <sv:property sv:name="jcr:uuid" sv:type="String">
+		          <sv:value>fdf0d90e-d80c-4bb5-b113-5473c9980295</sv:value>
+		        </sv:property>
+		        <sv:node sv:name="about-us">
+		          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+		            <sv:value>mootlywcm:pbblockdocument</sv:value>
+		          </sv:property>
+		          <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+		            <sv:value>hippo:harddocument</sv:value>
+		            <sv:value>hippotranslation:translated</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="jcr:uuid" sv:type="String">
+		            <sv:value>d6182e52-daa9-4ba7-a4cc-309c5c183140</sv:value>
+		          </sv:property>
+		          <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
+		            <sv:value>live</sv:value>
+		            <sv:value>preview</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="hippo:related___pathreference" sv:type="String">
+		            <sv:value>cms/blocks/corporate/about-us</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="hippostd:holder" sv:type="String">
+		            <sv:value>admin</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="hippostd:state" sv:type="String">
+		            <sv:value>published</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="hippostd:stateSummary" sv:type="String">
+		            <sv:value>live</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
+		            <sv:value>admin</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
+		            <sv:value>2013-11-28T15:02:30.581-08:00</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
+		            <sv:value>2013-11-28T15:02:38.774-08:00</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
+		            <sv:value>admin</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
+		            <sv:value>2013-11-28T15:02:41.287-08:00</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="hippotranslation:id" sv:type="String">
+		            <sv:value>0d015440-3992-4fc0-bf8c-99c277b4b24f</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="hippotranslation:locale" sv:type="String">
+		            <sv:value>en</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="hst:script" sv:type="String">
+		            <sv:value>&lt;div id="article" class="about "&gt;
+		        &lt;h2 class="title"&gt;About Wealth4India&lt;/h2&gt;
+		        
+		        &lt;p class="intro"&gt;About Us&lt;/p&gt;
+		               
+		        &lt;div class="yui-cssbase body"&gt;
+		          
+		
+		&lt;p&gt;&amp;nbsp;&lt;strong&gt;Wealth&lt;/strong&gt;&lt;strong&gt;4&lt;/strong&gt;&lt;strong&gt;India&lt;/strong&gt; Group with
+		its talent advantage is making its clients comfortably feel that W4I Group is
+		obviously different from others indeed.&lt;/p&gt;
+		
+		&lt;p&gt;&amp;nbsp;&lt;strong&gt;Wealth&lt;/strong&gt;&lt;strong&gt;4&lt;/strong&gt;&lt;strong&gt;India&lt;/strong&gt; is committed
+		to advancing accountability, integrity and transparency. In our own operations
+		too we aim to be an example of good governance, ethical practice and openness to
+		greater transparency. Accountability is both an integral part of our work and
+		one of our client’s wider objectives.&lt;/p&gt;
+		
+		&lt;p&gt;&amp;nbsp;&lt;strong&gt;Responsiveness: -&lt;/strong&gt; We are sensitive, prompt, fair and
+		objective in our dealings with our clients, fostering mutual trust. We are keen
+		to learn from others and acknowledge mistakes.&lt;/p&gt;
+		
+		&lt;p&gt;&amp;nbsp;&lt;strong&gt;Professionalism: -&lt;/strong&gt; We strive for improving performance and
+		competence with a focus on achieving excellence.&amp;nbsp;&lt;/p&gt;
+		
+		&lt;p&gt;&lt;strong&gt;&lt;u&gt;Vision&lt;/u&gt; &amp;nbsp;: -&lt;/strong&gt; To help customers achieve lifetime
+		financial solutions.&lt;/p&gt;
+		
+		&lt;p&gt;&lt;strong&gt;&lt;u&gt;Mission&lt;/u&gt;: - &lt;/strong&gt;To be a leading company in wealth
+		planning.&lt;/p&gt;
+		
+		&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+		
+		&lt;p&gt;&amp;nbsp;&lt;strong&gt;&lt;u&gt;Company Core Values&lt;/u&gt;&lt;/strong&gt;&lt;/p&gt;
+		
+		&lt;p&gt;&lt;strong&gt;Integrity&lt;/strong&gt;&lt;strong&gt; :- W4I Committed for highest standard of
+		business ethics and greater transparency.&lt;/strong&gt;&lt;/p&gt;
+		
+		&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+		
+		&lt;p&gt;&lt;strong&gt;Engagement&lt;/strong&gt;&lt;strong&gt; : - W4I value our Employees, talented
+		workforce and motivate, Encourage and reward them in contributing to the full
+		extent for their potential. &lt;/strong&gt;&lt;/p&gt;
+		
+		&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+		
+		&lt;p&gt;&lt;strong&gt;Customer Focus&lt;/strong&gt;&lt;strong&gt; :- We provide sound financial
+		solutions for our customers. We are sensitive, prompt, fair and objective in our
+		dealings with our customers.&lt;/strong&gt;&lt;/p&gt;
+		
+		&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+		
+		&lt;p&gt;&lt;strong&gt;Excellence&lt;/strong&gt;&lt;strong&gt; : - W4I Provide operational excellence
+		through our expert and dedicated panel, our quality products and
+		services.&lt;/strong&gt;&lt;/p&gt;
+		
+		&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+		
+		&lt;p&gt;&lt;strong&gt;Value &lt;/strong&gt;&lt;strong&gt;: - W4I Deliver value to the clients and
+		communities which we operate.&lt;/strong&gt;&lt;/p&gt;
+		
+		&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+		&lt;u&gt; &lt;/u&gt;
+		&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+		&lt;u&gt; &lt;/u&gt;
+		
+		&lt;/div&gt;
+		      &lt;/div&gt;</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="mootlywcm:html" sv:type="String">
+		            <sv:value/>
+		          </sv:property>
+		          <sv:property sv:name="mootlywcm:id" sv:type="String">
+		            <sv:value/>
+		          </sv:property>
+		          <sv:node sv:name="hippotranslation:translations">
+		            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+		              <sv:value>hippotranslation:translations</sv:value>
+		            </sv:property>
+		          </sv:node>
+		        </sv:node>
+		      </sv:node>
+		      <sv:node sv:name="contact-us">
+		        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+		          <sv:value>hippo:handle</sv:value>
+		        </sv:property>
+		        <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+		          <sv:value>hippo:hardhandle</sv:value>
+		        </sv:property>
+		        <sv:property sv:name="jcr:uuid" sv:type="String">
+		          <sv:value>5dbc34a8-cbfb-4ada-896e-fcc4f3bbed25</sv:value>
+		        </sv:property>
+		        <sv:node sv:name="contact-us">
+		          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+		            <sv:value>mootlywcm:pbblockdocument</sv:value>
+		          </sv:property>
+		          <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+		            <sv:value>hippo:harddocument</sv:value>
+		            <sv:value>hippotranslation:translated</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="jcr:uuid" sv:type="String">
+		            <sv:value>0b1e12b8-b618-4296-9614-d3d40abbb5c4</sv:value>
+		          </sv:property>
+		          <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
+		            <sv:value>live</sv:value>
+		            <sv:value>preview</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="hippo:related___pathreference" sv:type="String">
+		            <sv:value>cms/blocks/corporate/contact-us</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="hippostd:holder" sv:type="String">
+		            <sv:value>admin</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="hippostd:state" sv:type="String">
+		            <sv:value>published</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="hippostd:stateSummary" sv:type="String">
+		            <sv:value>live</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
+		            <sv:value>admin</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
+		            <sv:value>2013-11-28T15:03:08.928-08:00</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
+		            <sv:value>2013-11-28T15:05:51.774-08:00</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
+		            <sv:value>admin</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
+		            <sv:value>2013-11-28T15:05:54.749-08:00</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="hippotranslation:id" sv:type="String">
+		            <sv:value>3c3e168a-7f15-45d1-943c-701643f988c9</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="hippotranslation:locale" sv:type="String">
+		            <sv:value>en</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="hst:script" sv:type="String">
+		            <sv:value>&lt;table class="table table-bordered table-hover table-
+		
+		striped"&gt;
+			&lt;thead&gt;
+				&lt;tr&gt;
+					&lt;th class="success" itemscope="" itemtype="http://schema.org/AccountingService" itemprop="name"&gt;
+						New Delhi Office
+					&lt;/th&gt;
+					&lt;th class="success" itemscope="" itemtype="http://schema.org/AccountingService" itemprop="name"&gt;Gurgaon Office&lt;/th&gt;
+					&lt;th class="success" itemscope="" itemtype="http://schema.org/AccountingService" itemprop="name"&gt;USA Office&lt;/th&gt;
+				&lt;/tr&gt;
+			&lt;/thead&gt;
+			&lt;tbody&gt;
+				&lt;tr&gt;
+					&lt;td width="35%"&gt;
+						&lt;div itemscope="" itemtype="http://schema.org/AccountingService"&gt;
+								  &lt;div itemprop="address" itemscope="" itemtype="http://schema.org/PostalAddress"&gt;
+								    &lt;span itemprop="streetAddress" style="font-size:smaller"&gt;T-4, 3rd Floor, Manish Twin Plaza Plot No.3, Sector-4&lt;/span&gt;
+								    &lt;span itemprop="addressLocality" style="font-size:smaller"&gt;Dwarka&lt;/span&gt;,
+								    &lt;span itemprop="addressRegion" style="font-size:smaller"&gt;New Delhi&lt;/span&gt; 
+								    &lt;span itemprop="postalCode" style="font-size:smaller"&gt;110075&lt;/span&gt;
+								  &lt;/div&gt;
+								  &lt;span itemprop="telephone" style="font-size:smaller"&gt;91-11-45067102&lt;/span&gt;
+								  &lt;div&gt;&lt;small&gt;&lt;a href="https://www.wealth4india.com" itemprop="url"&gt;https://www.wealth4india.com&lt;/a&gt;&lt;/small&gt;&lt;/div&gt;
+						&lt;/div&gt;
+					&lt;/td&gt;
+					&lt;td width="35%"&gt;
+						&lt;div itemscope="" itemtype="http://schema.org/AccountingService"&gt;
+							&lt;div itemprop="address" itemscope="" itemtype="http://schema.org/PostalAddress"&gt;
+								&lt;div itemprop="streetAddress" style="font-size:smaller"&gt;338, Vipul Trade Center&lt;/div&gt;
+							    &lt;div itemprop="addressLocality" style="font-size:smaller"&gt;Sohna Road&lt;/div&gt;
+							    &lt;span itemprop="addressRegion" style="font-size:smaller"&gt;Gurgaon,Haryana&lt;/span&gt; 
+							    &lt;span itemprop="postalCode" style="font-size:smaller"&gt;122103&lt;/span&gt;
+							&lt;/div&gt;
+							&lt;div&gt;&lt;small&gt;&lt;a href="https://www.wealth4india.com" itemprop="url"&gt;https://www.wealth4india.com&lt;/a&gt;&lt;/small&gt;&lt;/div&gt;
+						&lt;/div&gt;
+				       &lt;/td&gt;
+					&lt;td width="30%"&gt;
+						&lt;div itemscope="" itemtype="http://schema.org/AccountingService"&gt;
+							&lt;div itemprop="address" itemscope="" itemtype="http://schema.org/PostalAddress"&gt;
+								&lt;div itemprop="streetAddress" style="font-size:smaller"&gt;830, Stewart Drive Suite 109&lt;/div&gt;
+							    &lt;span itemprop="addressLocality" style="font-size:smaller"&gt;Sunnyvale&lt;/span&gt;,
+							    &lt;span itemprop="addressRegion" style="font-size:smaller"&gt;CA&lt;/span&gt; 
+							    &lt;span itemprop="postalCode" style="font-size:smaller"&gt;94085&lt;/span&gt;
+							&lt;/div&gt;
+							&lt;span itemprop="telephone" style="font-size:smaller"&gt;+1-408-475-2035&lt;/span&gt;
+							&lt;div&gt;&lt;small&gt;&lt;a href="https://www.wealth4india.com" itemprop="url"&gt;https://www.wealth4india.com&lt;/a&gt;&lt;/small&gt;&lt;/div&gt;
+						&lt;/div&gt;
+					&lt;/td&gt;
+				&lt;/tr&gt;
+			&lt;/tbody&gt;
+		&lt;/table&gt;
+		
+		&lt;div&gt;
+			&lt;strong&gt;E-mail:&lt;/strong&gt;&amp;nbsp;&lt;span itemprop="email"&gt;&lt;a href="mailto:info@wealth4india.com"&gt;info@wealth4india.com&lt;/a&gt;
+			&lt;/span&gt;
+		&lt;/div&gt;
+		&lt;div&gt;
+			&lt;strong&gt;Website:&lt;/strong&gt;&amp;nbsp;&lt;span&gt;&lt;a href="http://www.wealth4india.com"&gt;www.wealth4india.com&lt;/a&gt;
+			&lt;/span&gt;
+		&lt;/div&gt;
+		&lt;div&gt;
+			&lt;strong&gt;Telephone No:&lt;/strong&gt;&lt;span itemprop="telephone"&gt;+91-(11)-45067102, +91-(11)-25074341, +91-9136265229, +1-408-475-2035&lt;/span&gt;
+		&lt;/div&gt;</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="mootlywcm:html" sv:type="String">
+		            <sv:value/>
+		          </sv:property>
+		          <sv:property sv:name="mootlywcm:id" sv:type="String">
+		            <sv:value/>
+		          </sv:property>
+		          <sv:node sv:name="hippotranslation:translations">
+		            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+		              <sv:value>hippotranslation:translations</sv:value>
+		            </sv:property>
+		          </sv:node>
+		        </sv:node>
+		      </sv:node>
+		    </sv:node>
+		    <sv:node sv:name="home">
+		      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+		        <sv:value>hippostd:folder</sv:value>
+		      </sv:property>
+		      <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+		        <sv:value>hippo:harddocument</sv:value>
+		        <sv:value>hippotranslation:translated</sv:value>
+		      </sv:property>
+		      <sv:property sv:name="jcr:uuid" sv:type="String">
+		        <sv:value>8bf5016a-06e0-43ba-8dab-74cd05b878cc</sv:value>
+		      </sv:property>
+		      <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
+		      <sv:property sv:multiple="true" sv:name="hippostd:foldertype" sv:type="String">
+		        <sv:value>new-translated-folder</sv:value>
+		        <sv:value>new-document</sv:value>
+		      </sv:property>
+		      <sv:property sv:name="hippotranslation:id" sv:type="String">
+		        <sv:value>c648a235-ea6f-4fcd-a65b-fc4ccb1a5a2b</sv:value>
+		      </sv:property>
+		      <sv:property sv:name="hippotranslation:locale" sv:type="String">
+		        <sv:value>en</sv:value>
+		      </sv:property>
+		      <sv:node sv:name="hippotranslation:translations">
+		        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+		          <sv:value>hippotranslation:translations</sv:value>
+		        </sv:property>
+		      </sv:node>
+		      <sv:node sv:name="home-image">
+		        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+		          <sv:value>hippo:handle</sv:value>
+		        </sv:property>
+		        <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+		          <sv:value>hippo:hardhandle</sv:value>
+		        </sv:property>
+		        <sv:property sv:name="jcr:uuid" sv:type="String">
+		          <sv:value>a43a66e8-14f0-4ed4-b7ef-2ab910a4caad</sv:value>
+		        </sv:property>
+		        <sv:node sv:name="home-image">
+		          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+		            <sv:value>mootlywcm:pbblockdocument</sv:value>
+		          </sv:property>
+		          <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+		            <sv:value>hippo:harddocument</sv:value>
+		            <sv:value>hippotranslation:translated</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="jcr:uuid" sv:type="String">
+		            <sv:value>438f196d-f20e-4963-a964-dec4320925d8</sv:value>
+		          </sv:property>
+		          <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
+		            <sv:value>live</sv:value>
+		            <sv:value>preview</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="hippo:related___pathreference" sv:type="String">
+		            <sv:value>cms/blocks/home/home-image</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="hippostd:holder" sv:type="String">
+		            <sv:value>admin</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="hippostd:state" sv:type="String">
+		            <sv:value>published</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="hippostd:stateSummary" sv:type="String">
+		            <sv:value>live</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
+		            <sv:value>admin</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
+		            <sv:value>2013-11-28T15:41:40.858-08:00</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
+		            <sv:value>2013-11-28T15:41:54.213-08:00</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
+		            <sv:value>admin</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
+		            <sv:value>2013-11-28T15:42:46.078-08:00</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="hippotranslation:id" sv:type="String">
+		            <sv:value>d943d1ed-3965-45c1-b566-aeba1abeda22</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="hippotranslation:locale" sv:type="String">
+		            <sv:value>en</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="hst:script" sv:type="String">
+		            <sv:value>&lt;div class="jumbotron bg-jumbotron"&gt;
+		         &lt;div class="container"&gt;
+		            &lt;h1&gt;Pricing as low as  &amp;#8377; 199!&lt;/h1&gt;
+		            &lt;h2&gt;The Easiest and Fastest Way to E-File or eZ File Tax Returns!&lt;/h2&gt;
+		            &lt;p&gt;For Individuals and HUF eFile or eZ File, the choice is yours.&lt;br /&gt;
+		               Straight-forward pricing with no hidden fees. Securely file in as little as 15 minutes! &lt;br /&gt;
+		               Simple. Fast. Safe.  
+		            &lt;/p&gt;
+		            &lt;p&gt;&lt;a class="btn btn-warning btn-lg"&gt;Sign Up Now! &amp;raquo;&lt;/a&gt;&lt;/p&gt;
+		         &lt;/div&gt;
+		      &lt;/div&gt;</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="mootlywcm:html" sv:type="String">
+		            <sv:value/>
+		          </sv:property>
+		          <sv:property sv:name="mootlywcm:id" sv:type="String">
+		            <sv:value/>
+		          </sv:property>
+		          <sv:node sv:name="hippotranslation:translations">
+		            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+		              <sv:value>hippotranslation:translations</sv:value>
+		            </sv:property>
+		          </sv:node>
+		        </sv:node>
+		      </sv:node>
+		      <sv:node sv:name="homepage-block-1">
+		        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+		          <sv:value>hippo:handle</sv:value>
+		        </sv:property>
+		        <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+		          <sv:value>hippo:hardhandle</sv:value>
+		        </sv:property>
+		        <sv:property sv:name="jcr:uuid" sv:type="String">
+		          <sv:value>76a4b134-594a-4fb8-b3cf-ebd8b6cb6791</sv:value>
+		        </sv:property>
+		        <sv:node sv:name="homepage-block-1">
+		          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+		            <sv:value>mootlywcm:pbblockdocument</sv:value>
+		          </sv:property>
+		          <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+		            <sv:value>hippo:harddocument</sv:value>
+		            <sv:value>hippotranslation:translated</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="jcr:uuid" sv:type="String">
+		            <sv:value>211a8be1-a4c4-4eed-a084-52dd4191ab50</sv:value>
+		          </sv:property>
+		          <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
+		            <sv:value>live</sv:value>
+		            <sv:value>preview</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="hippo:related___pathreference" sv:type="String">
+		            <sv:value>cms/blocks/home/homepage-block-1</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="hippostd:holder" sv:type="String">
+		            <sv:value>admin</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="hippostd:state" sv:type="String">
+		            <sv:value>published</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="hippostd:stateSummary" sv:type="String">
+		            <sv:value>live</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
+		            <sv:value>admin</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
+		            <sv:value>2013-11-28T15:42:26.687-08:00</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
+		            <sv:value>2013-11-28T15:44:17.698-08:00</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
+		            <sv:value>admin</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
+		            <sv:value>2013-11-28T15:44:20.728-08:00</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="hippotranslation:id" sv:type="String">
+		            <sv:value>531b62dd-5f5b-4c71-8f11-838f5195b9d5</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="hippotranslation:locale" sv:type="String">
+		            <sv:value>en</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="hst:script" sv:type="String">
+		            <sv:value>&lt;h1 style="text-align: center; font-size: 5em"&gt;&lt;span class="glyphicon glyphicon-check"&gt;&lt;/span&gt;&lt;/h1&gt;
+		               &lt;h1&gt;Simple.&lt;/h1&gt;
+		               &lt;p class="lead"&gt;Simple, straight-forward pricing with no hidden fees. Easy-to-use tools to help you complete your e-file or eZ File tax return.&lt;br /&gt;
+		                  &lt;a href="#"&gt;Learn More...&lt;/a&gt;						
+		               &lt;/p&gt;</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="mootlywcm:html" sv:type="String">
+		            <sv:value/>
+		          </sv:property>
+		          <sv:property sv:name="mootlywcm:id" sv:type="String">
+		            <sv:value/>
+		          </sv:property>
+		          <sv:node sv:name="hippotranslation:translations">
+		            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+		              <sv:value>hippotranslation:translations</sv:value>
+		            </sv:property>
+		          </sv:node>
+		        </sv:node>
+		      </sv:node>
+		      <sv:node sv:name="homepage-block-2">
+		        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+		          <sv:value>hippo:handle</sv:value>
+		        </sv:property>
+		        <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+		          <sv:value>hippo:hardhandle</sv:value>
+		        </sv:property>
+		        <sv:property sv:name="jcr:uuid" sv:type="String">
+		          <sv:value>3a620c58-a4dd-4906-9331-a57835076277</sv:value>
+		        </sv:property>
+		        <sv:node sv:name="homepage-block-2">
+		          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+		            <sv:value>mootlywcm:pbblockdocument</sv:value>
+		          </sv:property>
+		          <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+		            <sv:value>hippo:harddocument</sv:value>
+		            <sv:value>hippotranslation:translated</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="jcr:uuid" sv:type="String">
+		            <sv:value>b42c0748-02d2-4d33-abb5-b1f675ac0064</sv:value>
+		          </sv:property>
+		          <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
+		            <sv:value>live</sv:value>
+		            <sv:value>preview</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="hippo:related___pathreference" sv:type="String">
+		            <sv:value>cms/blocks/home/homepage-block-2</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="hippostd:holder" sv:type="String">
+		            <sv:value>admin</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="hippostd:state" sv:type="String">
+		            <sv:value>published</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="hippostd:stateSummary" sv:type="String">
+		            <sv:value>live</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
+		            <sv:value>admin</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
+		            <sv:value>2013-11-28T15:43:07.743-08:00</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
+		            <sv:value>2013-11-28T15:44:06.845-08:00</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
+		            <sv:value>admin</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
+		            <sv:value>2013-11-28T15:44:09.846-08:00</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="hippotranslation:id" sv:type="String">
+		            <sv:value>bd98c117-1a67-462b-9221-2b7ba055641d</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="hippotranslation:locale" sv:type="String">
+		            <sv:value>en</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="hst:script" sv:type="String">
+		            <sv:value>&lt;h1 style="text-align: center; font-size: 5em"&gt;&lt;span class="glyphicon glyphicon-send"&gt;&lt;/span&gt;&lt;/h1&gt;
+		               &lt;h1&gt;Fast.&lt;/h1&gt;
+		               &lt;p class="lead"&gt;Fast and easy service. Finish your e-file in as little as 15 minutes! Don't know what to do? Just choose eZ Filing option after you fill your personal information.&lt;br /&gt;
+		                  &lt;a href="#"&gt;Learn More...&lt;/a&gt;
+		               &lt;/p&gt;</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="mootlywcm:html" sv:type="String">
+		            <sv:value/>
+		          </sv:property>
+		          <sv:property sv:name="mootlywcm:id" sv:type="String">
+		            <sv:value/>
+		          </sv:property>
+		          <sv:node sv:name="hippotranslation:translations">
+		            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+		              <sv:value>hippotranslation:translations</sv:value>
+		            </sv:property>
+		          </sv:node>
+		        </sv:node>
+		      </sv:node>
+		      <sv:node sv:name="homepage-block-3">
+		        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+		          <sv:value>hippo:handle</sv:value>
+		        </sv:property>
+		        <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+		          <sv:value>hippo:hardhandle</sv:value>
+		        </sv:property>
+		        <sv:property sv:name="jcr:uuid" sv:type="String">
+		          <sv:value>9e84e848-6e05-4e3f-8ad4-c92dad7dc96b</sv:value>
+		        </sv:property>
+		        <sv:node sv:name="homepage-block-3">
+		          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+		            <sv:value>mootlywcm:pbblockdocument</sv:value>
+		          </sv:property>
+		          <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+		            <sv:value>hippo:harddocument</sv:value>
+		            <sv:value>hippotranslation:translated</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="jcr:uuid" sv:type="String">
+		            <sv:value>e40722f8-e74e-45c4-b0e2-3b11b7729cd1</sv:value>
+		          </sv:property>
+		          <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
+		            <sv:value>live</sv:value>
+		            <sv:value>preview</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="hippo:related___pathreference" sv:type="String">
+		            <sv:value>cms/blocks/home/homepage-block-3</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="hippostd:holder" sv:type="String">
+		            <sv:value>admin</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="hippostd:state" sv:type="String">
+		            <sv:value>published</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="hippostd:stateSummary" sv:type="String">
+		            <sv:value>live</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
+		            <sv:value>admin</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
+		            <sv:value>2013-11-28T15:43:47.553-08:00</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
+		            <sv:value>2013-11-28T15:43:53.152-08:00</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
+		            <sv:value>admin</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
+		            <sv:value>2013-11-28T15:43:55.596-08:00</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="hippotranslation:id" sv:type="String">
+		            <sv:value>e4448948-7d2a-4bae-91ef-73ed666b3ca1</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="hippotranslation:locale" sv:type="String">
+		            <sv:value>en</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="hst:script" sv:type="String">
+		            <sv:value>&lt;h1 style="text-align: center; font-size: 5em"&gt;&lt;span class="glyphicon glyphicon-lock"&gt;&lt;/span&gt;&lt;/h1&gt;
+		               &lt;h1&gt;Safe.&lt;/h1&gt;
+		               &lt;p class="lead"&gt;Our secure servers and SSL encryption will keep your personal information safe. We are Authorized by Government of India for e-Filing.&lt;br /&gt;&lt;a href="#"&gt;Learn More...&lt;/a&gt;&lt;br /&gt;&lt;/p&gt;</sv:value>
+		          </sv:property>
+		          <sv:property sv:name="mootlywcm:html" sv:type="String">
+		            <sv:value/>
+		          </sv:property>
+		          <sv:property sv:name="mootlywcm:id" sv:type="String">
+		            <sv:value/>
+		          </sv:property>
+		          <sv:node sv:name="hippotranslation:translations">
+		            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+		              <sv:value>hippotranslation:translations</sv:value>
+		            </sv:property>
+		          </sv:node>
+		        </sv:node>
+		      </sv:node>
+		    </sv:node>
+		  </sv:node>
+		</sv:node>
 </sv:node>

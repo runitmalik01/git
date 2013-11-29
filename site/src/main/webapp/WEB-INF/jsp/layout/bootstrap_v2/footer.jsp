@@ -21,7 +21,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.onehippo.org/jsp/google-analytics" prefix="ga" %>
 <%@include file="../../includes/tags.jspf" %>
-
+<%--
 <div id="footer" class="clearfix">
    <div id="footer-wrapper">
         <div class="grid col-940">
@@ -60,5 +60,5 @@
         
     </div>
 </div><!-- end #footer -->
-
+ --%>
 

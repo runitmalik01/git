@@ -1,15 +1,20 @@
 
 <!-- New home page design 14tn Nov'13 -->
 
-<html>
-<head>
-<title>Wealth4India - Home</title>
-<link rel="stylesheet" media="screen" type="text/css"
-	href='<hst:link path="/css/bootstrap_v2/bootstrap.flat.min.css"></hst:link>' />
-<link rel="stylesheet" media="screen" type="text/css"
-	href='<hst:link path="/css/bootstrap_v2/wealth4india.css"></hst:link>' />
-</head>
-<body>
+
+
+<%@page import="java.util.List"%>
+<%@page import="org.hippoecm.hst.core.sitemenu.HstSiteMenuItem"%>
+<%@ page language="java"%>
+<%@ page contentType="text/html; charset=UTF-8"%>
+<%@ page trimDirectiveWhitespaces="true"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.onehippo.org/jsp/google-analytics" prefix="ga"%>
+<%@include file="../../../includes/tags.jspf"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/xml" prefix="x"%>
+<%@ taglib uri="http://www.hippoecm.org/jsp/hst/core" prefix='hst'%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 	<div class="navbar navbar-default navbar-fixed-top">
 		<div class="container">
 			<div class="navbar-header">
@@ -18,26 +23,26 @@
 					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="w4i-logo" href="#"><img alt="Wealth4India"
-					src='./images/bootstrap_v2_img/w4ilogo_v2.png'> </a>
+				<%--<a class="w4i-logo" href="#"><img alt="Wealth4India" src="<hst:link path="/img/w4ilogo_v2.png"/>"> </a> --%>
+				<hst:include ref="logo"/>
 			</div>
-			<!-- Wealth4India Logo Image -->
 
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href='/site/home_v2'>Home</a></li>
-					<li><a href='/site/serviceprice'>Pricing</a></li>
-
-
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown">Tax Filing <b class="caret"></b> </a>
-						<ul class="dropdown-menu">
+					<li class="active"><a href='/site/home_v2'>Home</a>
+					</li>
+					<li><a href='/site/serviceprice'>Pricing</a>
+					</li>
+					<li class="dropdown"><a id="dLabel" role="button"
+						class="dropdown-toggle" data-toggle="dropdown" data-target="#"
+						href='/site/taxcalculator'>Tax Filing <b class="caret"></b> </a>
+						<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
 							<li class="dropdown-header">Calculators</li>
 							<li><a href='/site/taxcalculator'>Tax Calculator</a>
 							</li>
-							<li><a href='/site/emicalculator'>EMI Calculator</a>
-							</li>
 							<li><a href='/site/npvcalculator'>NPV Calculator</a>
+							</li>
+							<li><a href='/site/emicalculator'>EMI Calculator</a>
 							</li>
 							<li><a href='/site/hracalculator'>HRA Calculator</a>
 							</li>
@@ -47,16 +52,16 @@
 							<li><a href='/site/knowledgeportal'>Knowledge Portal</a>
 							</li>
 						</ul></li>
-
-
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
+					<li class="dropdown"><a href="#about" class="dropdown-toggle"
 						data-toggle="dropdown">About Us <b class="caret"></b> </a>
 						<ul class="dropdown-menu">
-							<li><a href='/site/about'>About</a></li>
-							<li><a href='/site/faq'>FAQ</a></li>
-							<li><a href='/site/news'>News</a></li>
-						</ul>
-					</li>
+							<li><a href='/site/about'>About</a>
+							</li>
+							<li><a href='/site/faq'>FAQ</a>
+							</li>
+							<li><a href='/site/news'>News</a>
+							</li>
+						</ul></li>
 				</ul>
 
 				<form class="navbar-form navbar-right">
@@ -68,11 +73,4 @@
 			<!--/.navbar-collapse -->
 		</div>
 	</div>
-
-<!-- Placed at the end of the document so the pages load faster -->
-<script src="https://code.jquery.com/jquery.js"></script>
-<script src='./js/bootstrap_v2/bootstrap.min.js'></script>
-<script src='./js/bootstrap_v2/bootstrap.js'></script>
-</body>
-</html>
 

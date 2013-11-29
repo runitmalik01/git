@@ -2079,5 +2079,18 @@
     <sv:value>standard.header.v2.re</sv:value>
   </sv:property>
 </sv:node>
-
+	<sv:node sv:name="_any_.cms" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hst:component</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>d5b6796e-a539-447b-944e-e6b0d4842454</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:componentclassname" sv:type="String">
+	    <sv:value>com.mootly.wcm.components.cms.PageDisplay</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:template" sv:type="String">
+	    <sv:value>_any_.cms</sv:value>
+	  </sv:property>
+	</sv:node>
 </sv:node>
