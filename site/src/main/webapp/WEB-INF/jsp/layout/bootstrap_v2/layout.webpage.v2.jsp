@@ -31,7 +31,7 @@
 <c:set var="lang" value="${pageContext.request.locale.language}"/>
 <head>
     <hst:headContributions categoryExcludes="css,jsInternal,jsExternal"  />
-	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
 	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
     <link rel="schema.DCTERMS" href="http://purl.org/dc/terms/" />
     <meta name="DC.keywords" content="<fmt:message key="layout.webpage.metadckeywords"/>" />

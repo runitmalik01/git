@@ -3669,7 +3669,7 @@
 	  </sv:property>
 	  <sv:property sv:multiple="true" sv:name="hst:containers" sv:type="String"/>
 	  <sv:property sv:name="hst:renderpath" sv:type="String">
-	    <sv:value>jsp/layout/responsive/bootstrap_v2/footer.jsp</sv:value>
+	    <sv:value>jsp/layout/bootstrap_v2/footer.jsp</sv:value>
 	  </sv:property>
 	</sv:node>	
 	<sv:node sv:name="standard.header.v2.logo" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">

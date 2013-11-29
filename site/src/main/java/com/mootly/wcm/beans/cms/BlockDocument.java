@@ -64,7 +64,9 @@ import com.mootly.wcm.services.SequenceGenerator;
 public class BlockDocument extends FlexibleDocument implements ContentNodeBinder,FormMapFiller {
 	
 	private final static Logger log = LoggerFactory.getLogger(BlockDocument.class); 
-
+	
+	public static enum BLOCK_TYPE {HTML,CATALOG_COMPONENT};
+	
 	String title;
 	String script;
 	Boolean showAsIs;

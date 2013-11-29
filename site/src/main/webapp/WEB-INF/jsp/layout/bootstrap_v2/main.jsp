@@ -31,7 +31,5 @@
 	}
 	System.out.println("template:"+ request.getAttribute("template"));
 --%>
-<div class="container">
 	<hst:include ref="content"/>
-</div>
 

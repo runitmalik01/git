@@ -21,6 +21,25 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.onehippo.org/jsp/google-analytics" prefix="ga" %>
 <%@include file="../../includes/tags.jspf" %>
+ <!-- FOOTER -->
+ <hst:link var="contactUs" siteMapItemRefId="contactus"/>
+ <hst:link var="feedback" path="/feedback"/>
+<div class="container">
+ <footer>
+   <p class="pull-right"><a href="#">Back to top</a></p>
+   <p>
+   	&copy; 2013 <w4india:resellername/> &middot; <a href="<hst:link path="/privacypolicy.cms"/>">Privacy</a>
+   	&middot; <a href="<hst:link path="/terms.cms"/>">Terms</a>
+   	&middot; <a href="<hst:link path="/aboutus.cms"/>">About Us</a>
+   	&middot; <a href="<hst:link path="/contactus.cms"/>">Contact Us</a>
+   	&middot; <a href="${feedback}">Feedback</a>
+   	&middot; <a href="<hst:link siteMapItemRefId="itr-validate-xml"/>">IT Return XML Validator</a>
+   	&middot; <a href="<hst:link siteMapItemRefId="news"/>">News</a>
+   	&middot; <a href="<hst:link siteMapItemRefId="events"/>">Events</a>
+   </p>
+   
+ </footer>
+</div>
 <%--
 <div id="footer" class="clearfix">
    <div id="footer-wrapper">
