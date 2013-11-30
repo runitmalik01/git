@@ -40,18 +40,19 @@
     		<map>
     		    <entry key="userName" value="#userName"></entry>
     			<entry key="password" value="#password"></entry>
-    			<entry key="pan" value="#PAN.toUpperCase()"></entry>
+    			<entry key="panNo" value="#PAN.toUpperCase()"></entry>
     			<entry key="asseessmentYear" value="#assessmentYear"></entry>
     		</map>
     	</property>
     	<property name="outputElementMap">
     		<map>
-				<entry key="PAN" value="//pan"></entry>
-				<entry key="fatherFullName" value="//ffullname"></entry>
-				<entry key="address" value="//address"></entry>
-				<entry key="DOB" value="//dob"></entry>
-				<entry key="fullName" value="//fullname"></entry>
-				<entry key="error" value="//error"></entry>
+				<entry key="panNo" value="//panNo"></entry>
+				<entry key="asseessmentYear" value="//asseessmentYear"></entry>
+				<entry key="itrName" value="//itrName"></entry>
+				<entry key="rectification" value="//rectification"></entry>
+				<entry key="cpcOrder" value="//cpcOrder"></entry>
+				<entry key="details" value="//details"></entry>
+				<entry key="status" value="//status"></entry>
 		</map>
     	</property>
     	<!--  no head is required for this call -->

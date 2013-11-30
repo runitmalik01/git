@@ -12,13 +12,11 @@ import javax.xml.xpath.XPathExpressionException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.mootly.wcm.services.ditws.RetrievePANInformation;
 import com.mootly.wcm.services.ditws.RetrieveTANInformation;
 import com.mootly.wcm.services.ditws.exception.DataMismatchException;
 import com.mootly.wcm.services.ditws.exception.InvalidFormatException;
 import com.mootly.wcm.services.ditws.exception.MissingInformationException;
 import com.mootly.wcm.services.ditws.helper.SpringExpressionParser;
-import com.mootly.wcm.services.ditws.model.RetrievePANResponse;
 import com.mootly.wcm.services.ditws.model.RetrieveTANResponse;
 import com.mootly.wcm.services.ditws.soap.SOAPCallWrapper;
 import com.mootly.wcm.services.ditws.soap.SOAPCallWrapperHelper;

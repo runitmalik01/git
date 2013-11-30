@@ -143,10 +143,14 @@ import com.mootly.wcm.services.ditws.Retrieve26ASInformation;
 import com.mootly.wcm.services.ditws.RetrieveITRV;
 import com.mootly.wcm.services.ditws.RetrievePANInformation;
 import com.mootly.wcm.services.ditws.RetrievePANInformation.VALIDATION_RESULT;
+import com.mootly.wcm.services.ditws.RetrieveRectificationStatus;
+import com.mootly.wcm.services.ditws.RetrieveRefundStatus;
 import com.mootly.wcm.services.ditws.exception.DataMismatchException;
 import com.mootly.wcm.services.ditws.exception.InvalidFormatException;
 import com.mootly.wcm.services.ditws.exception.MissingInformationException;
 import com.mootly.wcm.services.ditws.model.RetrievePANResponse;
+import com.mootly.wcm.services.ditws.model.RetrieveRectificationResponse;
+import com.mootly.wcm.services.ditws.model.RetrieveRefundResponse;
 import com.mootly.wcm.utils.GoGreenUtil;
 import com.mootly.wcm.utils.MootlyFormUtils;
 import com.mootly.wcm.utils.XmlCalculation;
@@ -162,6 +166,9 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 	Retrieve26ASInformation retrieve26ASService = null;
 	RetrievePANInformation retrievePANInformation = null;
 	AddClientDetails addClientDetailsService = null;
+	
+	RetrieveRectificationStatus retrieveRectificationStatus = null;
+	RetrieveRefundStatus retrieveRefundStatus = null;
 
 	String servletPath = null;
 	String xsltPath = null;
@@ -253,6 +260,9 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		transaction = context.getBean(Transaction.class);
 		enquiry =	context.getBean(Enquiry.class);
 		
+		retrieveRectificationStatus = context.getBean(RetrieveRectificationStatus.class);
+		retrieveRefundStatus = context.getBean(RetrieveRefundStatus.class);
+		
 		addClientDetailsService = context.getBean(AddClientDetails.class);
 	}
 
@@ -287,6 +297,14 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 	
 	public AddClientDetails getAddClientDetailsService() {
 		return addClientDetailsService;
+	}
+	
+	public RetrieveRefundStatus getRetrieveRefundStatus() {
+		return retrieveRefundStatus;
+	}
+	
+	public RetrieveRectificationStatus getRetrieveRectificationStatus() {
+		return retrieveRectificationStatus;
 	}
 
 	@Override
@@ -532,6 +550,58 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 				try {
 					ITRVStatus itrvStatus = retrieveITRVService.retrieveITRVStatus(getPAN(), getFinancialYear().getAssessmentYearForDITSOAPCall());
 					request.setAttribute("itrvStatus", itrvStatus);
+				} catch (MissingInformationException e) {
+					// TODO Auto-generated catch block
+					log.error("Error in RetrieveITRVStatus-MissingInformationException",e);
+					request.setAttribute("isError", "true");
+				} catch (DataMismatchException e) {
+					// TODO Auto-generated catch block
+					log.error("Error in RetrieveITRVStatus-DataMismatchException",e);
+					request.setAttribute("isError", "true");
+				} catch (InvalidFormatException e) {
+					// TODO Auto-generated catch block
+					log.error("Error in RetrieveITRVStatus-InvalidFormatException",e);
+					request.setAttribute("isError", "true");
+				}
+			}
+			else {
+				request.setAttribute("isError", "true");
+			}
+			if (getPageOutputFormat() != null && getPageOutputFormat() == PAGE_OUTPUT_FORMAT.JSON) {
+				response.setRenderPath("jsp/common/json_output.jsp");
+			}
+		}
+		else if (pageAction != null && pageAction == PAGE_ACTION.RETRIEVE_REFUND_STATUS) {
+			if (retrieveRefundStatus != null) {
+				try {
+					RetrieveRefundResponse retrieveRefundResponse  = retrieveRefundStatus.retrieveRefundStatus(getChannelInfoWrapper().getWebSiteInfo().getEriUserId(), getChannelInfoWrapper().getWebSiteInfo().getEriPassword(), getChannelInfoWrapper().getWebSiteInfo().getEmailSignature(),  getChannelInfoWrapper().getWebSiteInfo().getEriCertChain(), getPAN(), getFinancialYear().getAssessmentYearForDITSOAPCall());
+					request.setAttribute("retrieveRefundResponse", retrieveRefundResponse);
+				} catch (MissingInformationException e) {
+					// TODO Auto-generated catch block
+					log.error("Error in RetrieveITRVStatus-MissingInformationException",e);
+					request.setAttribute("isError", "true");
+				} catch (DataMismatchException e) {
+					// TODO Auto-generated catch block
+					log.error("Error in RetrieveITRVStatus-DataMismatchException",e);
+					request.setAttribute("isError", "true");
+				} catch (InvalidFormatException e) {
+					// TODO Auto-generated catch block
+					log.error("Error in RetrieveITRVStatus-InvalidFormatException",e);
+					request.setAttribute("isError", "true");
+				}
+			}
+			else {
+				request.setAttribute("isError", "true");
+			}
+			if (getPageOutputFormat() != null && getPageOutputFormat() == PAGE_OUTPUT_FORMAT.JSON) {
+				response.setRenderPath("jsp/common/json_output.jsp");
+			}
+		}
+		else if (pageAction != null && pageAction == PAGE_ACTION.RETRIEVE_RECTIFICATION_STATUS) {
+			if (retrieveITRVService != null) {
+				try {
+					RetrieveRectificationResponse retrieveRectificationResponse = retrieveRectificationStatus.retrieveRectificationStatus(getChannelInfoWrapper().getWebSiteInfo().getEriUserId(), getChannelInfoWrapper().getWebSiteInfo().getEriPassword(), getChannelInfoWrapper().getWebSiteInfo().getEmailSignature(),  getChannelInfoWrapper().getWebSiteInfo().getEriCertChain(), getPAN(), getFinancialYear().getAssessmentYearForDITSOAPCall());
+					request.setAttribute("retrieveRectificationResponse", retrieveRectificationResponse);
 				} catch (MissingInformationException e) {
 					// TODO Auto-generated catch block
 					log.error("Error in RetrieveITRVStatus-MissingInformationException",e);

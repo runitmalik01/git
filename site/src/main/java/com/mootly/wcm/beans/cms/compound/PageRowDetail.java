@@ -75,11 +75,25 @@ public class PageRowDetail extends FlexibleDocument implements FormMapFiller {
 	private final static Logger log = LoggerFactory.getLogger(PageRowDetail.class); 
 	final String PROP_DETAIL_BEAN="mootlywcm:pbpagerowdetail";
 	
+	Boolean notContainer;
+	Boolean notRow;
+	Boolean notColumn;
+	
 	List<BlockDocument> blockDocuments;
 	
+	public final Boolean getNotContainer() {
+		if (notContainer == null) notContainer = getProperty("mootlywcm:notContainer");
+		return notContainer;
+	}
 
-	public final void setBlockDocuments(List<BlockDocument> blockDocuments) {
-		this.blockDocuments = blockDocuments;
+	public final Boolean getNotRow() {
+		if (notRow == null) notRow = getProperty("mootlywcm:notRow");
+		return notRow;
+	}
+
+	public final Boolean getNotColumn() {
+		if (notColumn == null) notColumn = getProperty("mootlywcm:notColumn");
+		return notColumn;
 	}
 
 	public final List<BlockDocument> getBlockDocuments() {
@@ -96,5 +110,44 @@ public class PageRowDetail extends FlexibleDocument implements FormMapFiller {
 			}
 		}
 		return blockDocuments;
+	}
+	
+	@BeanClone
+	public final void setNotContainer(Boolean notContainer) {
+		this.notContainer = notContainer;
+	}
+
+	@BeanClone
+	public final void setNotRow(Boolean notRow) {
+		this.notRow = notRow;
+	}
+
+	@BeanClone
+	public final void setNotColumn(Boolean notColumn) {
+		this.notColumn = notColumn;
+	}
+
+	@BeanClone
+	public final void setBlockDocuments(List<BlockDocument> blockDocuments) {
+		this.blockDocuments = blockDocuments;
+	}
+	
+	@Override
+	public void fill(FormMap formMap) {
+		// TODO Auto-generated method stub
+		super.fill(formMap);
+	}
+	
+	@Override
+	public <T extends HippoBean> void cloneBean(T sourceBean) {
+		super.cloneBean(sourceBean);
+		
+	};
+	
+	@Override
+	public boolean bindToNode(javax.jcr.Node node)
+			throws ContentNodeBindingException {
+		// TODO Auto-generated method stub
+		return super.bindToNode(node);
 	}
 }

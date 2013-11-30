@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.xml.soap.SOAPException;
+import javax.xml.ws.soap.SOAPFaultException;
 import javax.xml.xpath.XPathExpressionException;
 
 import org.slf4j.Logger;
@@ -17,7 +18,9 @@ import com.mootly.wcm.services.ditws.exception.DataMismatchException;
 import com.mootly.wcm.services.ditws.exception.InvalidFormatException;
 import com.mootly.wcm.services.ditws.exception.MissingInformationException;
 import com.mootly.wcm.services.ditws.helper.SpringExpressionParser;
+import com.mootly.wcm.services.ditws.model.RetrieveRefundResponse;
 import com.mootly.wcm.services.ditws.soap.SOAPCallWrapper;
+import com.mootly.wcm.services.ditws.soap.SOAPCallWrapperHelper;
 import com.mootly.wcm.services.ditws.soap.SOAPService;
 
 
@@ -43,14 +46,18 @@ public class RetrieveRefundStatusImpl extends DITSOAPServiceImpl implements Retr
 	}
 
 	@Override
-	public String retrieveRefundStatusRAW(String PAN, String assessmentYear)
+	public RetrieveRefundResponse retrieveRefundStatus(String userName,String password,String certChain, String signature, String PAN, String assessmentYear)
 			throws MissingInformationException, DataMismatchException,
 			InvalidFormatException {
 		// TODO Auto-generated method stub
 		// TODO Auto-generated method stub
+		if (userName  != null)  setUserName(userName);
+		if (password  != null)  setPassword(password);
+		if (certChain != null)  setCertChain(certChain);
+		if (signature != null)  setSignature(signature);
 		Map<String,String> inputParamValues = new HashMap<String,String>(1);
-		inputParamValues.put(PARAM_PAN, PAN);		
-		inputParamValues.put(PARAM_ASSESSMENT_YEAR, assessmentYear);		
+		inputParamValues.put(PARAM_PAN_NO, PAN);		
+		inputParamValues.put(PARAM_ASSESSMENT_YEAR.toLowerCase(), assessmentYear);		
 		
 		updateInputParamValues (inputParamValues); //update username password 
 		
@@ -64,25 +71,38 @@ public class RetrieveRefundStatusImpl extends DITSOAPServiceImpl implements Retr
 		List<Map<String,String>> inputParams = new ArrayList<Map<String,String>>(1);
 		inputParams.add(inputParamValues);
 		
+		
 		try {
 			Map<String,Object> outputMap = soapService.executeSOAPCall(soapCallWrapperRetrieveRefundStatus,inputParams);
-			if (outputMap != null && outputMap.containsKey(PARAM_RESULT)) {
-				String theResponse = (String) outputMap.get(PARAM_RESULT);
-				if (theResponse != null) {
-					return theResponse;
-				}
-			}
+			RetrieveRefundResponse retrieveRefundResponse = SOAPCallWrapperHelper.getInstanceFromSOAPMapSingleInstance(RetrieveRefundResponse.class, outputMap);
+			return retrieveRefundResponse;
+		} catch (InstantiationException e) {
+			// TODO Auto-generated catch block
+			logger.error("Error refund status",e);
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			logger.error("Error refund status",e);
+		} catch (SOAPFaultException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			logger.error("Error refund status",e);
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
-			logger.error("Malformed URL",e);
 			e.printStackTrace();
+			logger.error("Error refund status",e);
 		} catch (XPathExpressionException e) {
 			// TODO Auto-generated catch block
-			logger.error("XPathExpressionException",e);
+			e.printStackTrace();
+			logger.error("Error refund status",e);
 		} catch (SOAPException e) {
 			// TODO Auto-generated catch block
-			logger.error("SOAPException",e);
+			e.printStackTrace();
+			logger.error("Error refund status",e);
 		}
+			
+		
 		return null;
 	}
 }

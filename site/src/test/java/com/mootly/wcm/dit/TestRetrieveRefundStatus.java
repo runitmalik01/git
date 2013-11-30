@@ -11,6 +11,7 @@ import com.mootly.wcm.services.ditws.RetrieveRefundStatus;
 import com.mootly.wcm.services.ditws.exception.DataMismatchException;
 import com.mootly.wcm.services.ditws.exception.InvalidFormatException;
 import com.mootly.wcm.services.ditws.exception.MissingInformationException;
+import com.mootly.wcm.services.ditws.model.RetrieveRefundResponse;
 
 public class TestRetrieveRefundStatus  {
 	ApplicationContext ac = null;
@@ -31,8 +32,8 @@ public class TestRetrieveRefundStatus  {
 	public void testRetrieveRefundStatus() {
 		RetrieveRefundStatus retrieveRefundStatus =	ac.getBean(RetrieveRefundStatus.class);
 		try {
-			String output = retrieveRefundStatus.retrieveRefundStatusRAW("ABNPP1234G", "2013-14");
-			System.out.println(output);
+			RetrieveRefundResponse retrieveRefundResponse = retrieveRefundStatus.retrieveRefundStatus("ERIU101869", "arun@123", "certChain1", "signature1", "ABNPP1234G", "2013-14");
+			System.out.println(retrieveRefundResponse);
 		} catch (MissingInformationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

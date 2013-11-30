@@ -18,6 +18,7 @@ public interface DITSOAPService {
 	
 	public static final String PARAM_PAN ="PAN";
 	public static final String PARAM_PAN_NUMBER ="panNumber";
+	public static final String PARAM_PAN_NO ="panNo";
 	
 	public static final String PARAM_EMAIL = "EMAIL";
 	public static final String PARAM_ADD_CLIENT_OPTION = "addClientOption";

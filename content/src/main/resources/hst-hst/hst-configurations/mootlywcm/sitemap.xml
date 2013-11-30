@@ -4098,6 +4098,52 @@
 			    <sv:value>members</sv:value>
 			  </sv:property>
 			</sv:node>
+			<sv:node sv:name="servicerequest-refund-status.html" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+			  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+			    <sv:value>hst:sitemapitem</sv:value>
+			  </sv:property>
+			  <sv:property sv:name="jcr:uuid" sv:type="String">
+			    <sv:value>4c2d3541-998e-4575-ab37-7a1daab6a5ea</sv:value>
+			  </sv:property>
+			  <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+			    <sv:value>hst:pages/servicerequest-itr-v-status</sv:value>
+			  </sv:property>
+			  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+			    <sv:value>action</sv:value>
+			  </sv:property>
+			  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+			    <sv:value>RETRIEVE_REFUND_STATUS</sv:value>
+			  </sv:property>
+			  <sv:property sv:name="hst:refId" sv:type="String">
+			    <sv:value>servicerequest-refund-status</sv:value>
+			  </sv:property>
+			  <sv:property sv:name="hst:relativecontentpath" sv:type="String">
+			    <sv:value>members</sv:value>
+			  </sv:property>
+			</sv:node>		
+			<sv:node sv:name="servicerequest-rectification-status.html" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+			  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+			    <sv:value>hst:sitemapitem</sv:value>
+			  </sv:property>
+			  <sv:property sv:name="jcr:uuid" sv:type="String">
+			    <sv:value>4c2d3541-998e-4575-ab37-7a1daab6a5ea</sv:value>
+			  </sv:property>
+			  <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+			    <sv:value>hst:pages/servicerequest-itr-v-status</sv:value>
+			  </sv:property>
+			  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+			    <sv:value>action</sv:value>
+			  </sv:property>
+			  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+			    <sv:value>RETRIEVE_RECTIFICATION_STATUS</sv:value>
+			  </sv:property>
+			  <sv:property sv:name="hst:refId" sv:type="String">
+			    <sv:value>servicerequest-rectification-status</sv:value>
+			  </sv:property>
+			  <sv:property sv:name="hst:relativecontentpath" sv:type="String">
+			    <sv:value>members</sv:value>
+			  </sv:property>
+			</sv:node>	
 			<!--  new node to allow copy tax payments  -->
 		<sv:node sv:name="servicerequest-itr-sync-tds-from-dit.html" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
 		  <sv:property sv:name="jcr:primaryType" sv:type="Name">
@@ -10114,6 +10160,52 @@
 				      <sv:value>members</sv:value>
 				    </sv:property>
 				  </sv:node>
+				<sv:node sv:name="servicerequest-refund-status.html" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+					  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+					    <sv:value>hst:sitemapitem</sv:value>
+					  </sv:property>
+					  <sv:property sv:name="jcr:uuid" sv:type="String">
+					    <sv:value>4c2d3541-998e-4575-ab37-7a1daab6a5ea</sv:value>
+					  </sv:property>
+					  <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+					    <sv:value>hst:pages/servicerequest-itr-v-status</sv:value>
+					  </sv:property>
+					  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+					    <sv:value>action</sv:value>
+					  </sv:property>
+					  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+					    <sv:value>RETRIEVE_REFUND_STATUS</sv:value>
+					  </sv:property>
+					  <sv:property sv:name="hst:refId" sv:type="String">
+					    <sv:value>servicerequest-refund-status</sv:value>
+					  </sv:property>
+					  <sv:property sv:name="hst:relativecontentpath" sv:type="String">
+					    <sv:value>members</sv:value>
+					  </sv:property>
+				</sv:node>		
+				<sv:node sv:name="servicerequest-rectification-status.html" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+					  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+					    <sv:value>hst:sitemapitem</sv:value>
+					  </sv:property>
+					  <sv:property sv:name="jcr:uuid" sv:type="String">
+					    <sv:value>4c2d3541-998e-4575-ab37-7a1daab6a5ea</sv:value>
+					  </sv:property>
+					  <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+					    <sv:value>hst:pages/servicerequest-itr-v-status</sv:value>
+					  </sv:property>
+					  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+					    <sv:value>action</sv:value>
+					  </sv:property>
+					  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+					    <sv:value>RETRIEVE_RECTIFICATION_STATUS</sv:value>
+					  </sv:property>
+					  <sv:property sv:name="hst:refId" sv:type="String">
+					    <sv:value>servicerequest-rectification-status</sv:value>
+					  </sv:property>
+					  <sv:property sv:name="hst:relativecontentpath" sv:type="String">
+					    <sv:value>members</sv:value>
+					  </sv:property>
+				</sv:node>	
 				  <sv:node sv:name="servicerequest-itr-sync-tds-from-dit.html">
 				    <sv:property sv:name="jcr:primaryType" sv:type="Name">
 				      <sv:value>hst:sitemapitem</sv:value>

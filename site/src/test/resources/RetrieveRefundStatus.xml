@@ -41,18 +41,12 @@
     		    <entry key="userName" value="#userName"></entry>
     			<entry key="password" value="#password"></entry>
     			<entry key="panNo" value="#PAN.toUpperCase()"></entry>
-    			<entry key="dob" value="#DOB"></entry>
     			<entry key="asseessmentyear" value="#assessmentYear"></entry>
     		</map>
     	</property>
     	<property name="outputElementMap">
     		<map>
-				<entry key="PAN" value="//pan"></entry>
-				<entry key="fatherFullName" value="//ffullname"></entry>
-				<entry key="address" value="//address"></entry>
-				<entry key="DOB" value="//dob"></entry>
-				<entry key="fullName" value="//fullname"></entry>
-				<entry key="error" value="//error"></entry>
+				<entry key="result" value="//result"></entry>
 		</map>
     	</property>
     	<!--  no head is required for this call -->
@@ -122,7 +116,7 @@
     			<bean class="com.mootly.wcm.services.ditws.soap.SOAPCallElement">
     				<constructor-arg index="0" name="soapCallElementType" value="TEXT_ELEMENT"/>
     				<constructor-arg index="1" name="name" value="panNo"/>
-    				<constructor-arg index="2" name="value" value="PAN"></constructor-arg>
+    				<constructor-arg index="2" name="value" value="panNo"></constructor-arg>
     			</bean>    					
     			<bean class="com.mootly.wcm.services.ditws.soap.SOAPCallElement">
     				<constructor-arg index="0" name="soapCallElementType" value="TEXT_ELEMENT"/>

@@ -32,10 +32,24 @@
 </c:if>
 <div class="page">
 	<w4india:itrmenu />
-	<h4>
-		Your ITR-V Status		
-	</h4>
-	<c:out value="${itrvStatus}"/>
-	<c:if test="${empty isError}">
-	</c:if>
+	<c:choose>
+		<c:when test="${pageAction == 'RETRIEVE_ITRV_STATUS'}">
+			<h4>
+				Your ITR-V Status		
+			</h4>
+			<c:out value="${itrvStatus}"/>
+		</c:when>
+		<c:when test="${pageAction == 'RETRIEVE_REFUND_STATUS'}">
+			<h4>
+				Retrieve Refund Status		
+			</h4>
+			<c:out value="${retrieveRefundResponse.status}"/>
+		</c:when>
+		<c:when test="${pageAction == 'RETRIEVE_RECTIFICATION_STATUS'}">
+			<h4>
+				Retrieve Rectification Status		
+			</h4>
+			<c:out value="${retrieveRectificationResponse.status}"/>
+		</c:when>
+	</c:choose>
 </div>

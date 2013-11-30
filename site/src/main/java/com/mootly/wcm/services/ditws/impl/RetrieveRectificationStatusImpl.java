@@ -17,7 +17,10 @@ import com.mootly.wcm.services.ditws.exception.DataMismatchException;
 import com.mootly.wcm.services.ditws.exception.InvalidFormatException;
 import com.mootly.wcm.services.ditws.exception.MissingInformationException;
 import com.mootly.wcm.services.ditws.helper.SpringExpressionParser;
+import com.mootly.wcm.services.ditws.model.RetrieveRectificationResponse;
+import com.mootly.wcm.services.ditws.model.RetrieveRefundResponse;
 import com.mootly.wcm.services.ditws.soap.SOAPCallWrapper;
+import com.mootly.wcm.services.ditws.soap.SOAPCallWrapperHelper;
 import com.mootly.wcm.services.ditws.soap.SOAPService;
 
 
@@ -43,12 +46,16 @@ public class RetrieveRectificationStatusImpl extends DITSOAPServiceImpl implemen
 	}
 
 	@Override
-	public Map<String, Object> retrieveRectificationStatus(String PAN,
+	public RetrieveRectificationResponse retrieveRectificationStatus(String userName,String password,String certChain, String signature, String PAN,
 			String assessmentYear) throws MissingInformationException,
 			DataMismatchException, InvalidFormatException {
 		// TODO Auto-generated method stub
+		if (userName  != null)  setUserName(userName);
+		if (password  != null)  setPassword(password);
+		if (certChain != null)  setCertChain(certChain);
+		if (signature != null)  setSignature(signature);
 		Map<String,String> inputParamValues = new HashMap<String,String>(1);
-		inputParamValues.put(PARAM_PAN, PAN);	
+		inputParamValues.put(PARAM_PAN_NO, PAN);	
 		inputParamValues.put(PARAM_ASSESSMENT_YEAR, assessmentYear);	
 		updateInputParamValues (inputParamValues); //update username password 
 		
@@ -64,7 +71,8 @@ public class RetrieveRectificationStatusImpl extends DITSOAPServiceImpl implemen
 		
 		try {
 			Map<String,Object> outputMap = soapService.executeSOAPCall(soapCallWrapperRetrieveRectificationStatus,inputParams);
-			return outputMap;
+			RetrieveRectificationResponse retrieveRectificationResponse = SOAPCallWrapperHelper.getInstanceFromSOAPMapSingleInstance(RetrieveRectificationResponse.class, outputMap);
+			return retrieveRectificationResponse;
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			logger.error("Malformed URL",e);
@@ -75,8 +83,13 @@ public class RetrieveRectificationStatusImpl extends DITSOAPServiceImpl implemen
 		} catch (SOAPException e) {
 			// TODO Auto-generated catch block
 			logger.error("SOAPException",e);
+		} catch (InstantiationException e) {
+			// TODO Auto-generated catch block
+			logger.error("SOAPException",e);
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			logger.error("SOAPException",e);
 		}
-		
 		return null;
 	}
 	

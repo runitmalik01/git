@@ -73,9 +73,13 @@ public final class PageDisplay extends BaseComponent {
 					List<BlockDocument> blockDocuments = pageRowDetail.getBlockDocuments();
 					if (blockDocuments != null && blockDocuments.size() > 0) {
 						PageDisplayRow pageDisplayRow = new PageDisplayRow();		
+						pageDisplayRow.setNotContainer(pageRowDetail.getNotContainer());
+						pageDisplayRow.setNotRow(pageRowDetail.getNotRow());
+						pageDisplayRow.setNotColumn(pageRowDetail.getNotColumn());
 						for (BlockDocument blockDocument:blockDocuments) {
 							PageDisplayColumn pageDisplayColumn = new PageDisplayColumn();
 							pageDisplayColumn.setParsedHTML(blockDocument.getScript());
+							
 							/*
 							MootlyRepositoryTemplateLoader repositoryTemplateLoader = new MootlyRepositoryTemplateLoader();
 							try {
