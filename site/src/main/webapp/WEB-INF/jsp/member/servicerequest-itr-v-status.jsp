@@ -43,7 +43,7 @@
 			<h4>
 				Retrieve Refund Status		
 			</h4>
-			<c:out value="${retrieveRefundResponse.status}"/>
+			<c:out value="${retrieveRefundResponse.result}"/>
 		</c:when>
 		<c:when test="${pageAction == 'RETRIEVE_RECTIFICATION_STATUS'}">
 			<h4>
