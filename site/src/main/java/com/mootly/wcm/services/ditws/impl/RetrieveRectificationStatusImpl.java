@@ -56,7 +56,7 @@ public class RetrieveRectificationStatusImpl extends DITSOAPServiceImpl implemen
 		if (signature != null)  setSignature(signature);
 		Map<String,String> inputParamValues = new HashMap<String,String>(1);
 		inputParamValues.put(PARAM_PAN_NO, PAN);	
-		inputParamValues.put(PARAM_ASSESSMENT_YEAR, assessmentYear);	
+		inputParamValues.put(PARAM_ASSESSMENT_YEAR_2E, assessmentYear);	
 		updateInputParamValues (inputParamValues); //update username password 
 		
 		Map<String,Object> variables = new HashMap<String, Object>();

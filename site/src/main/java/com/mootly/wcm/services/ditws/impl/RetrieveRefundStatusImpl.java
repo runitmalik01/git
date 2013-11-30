@@ -55,9 +55,9 @@ public class RetrieveRefundStatusImpl extends DITSOAPServiceImpl implements Retr
 		if (password  != null)  setPassword(password);
 		if (certChain != null)  setCertChain(certChain);
 		if (signature != null)  setSignature(signature);
-		Map<String,String> inputParamValues = new HashMap<String,String>(1);
+		Map<String,String> inputParamValues = new HashMap<String,String>(2);
 		inputParamValues.put(PARAM_PAN_NO, PAN);		
-		inputParamValues.put(PARAM_ASSESSMENT_YEAR.toLowerCase(), assessmentYear);		
+		inputParamValues.put(PARAM_ASSESSMENT_YEAR_2E_LC, assessmentYear);		
 		
 		updateInputParamValues (inputParamValues); //update username password 
 		

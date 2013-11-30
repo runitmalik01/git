@@ -40,8 +40,8 @@
     		<map>
     		    <entry key="userName" value="#userName"></entry>
     			<entry key="password" value="#password"></entry>
-    			<entry key="panNo" value="#PAN.toUpperCase()"></entry>
-    			<entry key="asseessmentyear" value="#assessmentYear"></entry>
+    			<entry key="panNo" value="#panNo.toUpperCase()"></entry>
+    			<entry key="asseessmentyear" value="#asseessmentyear"></entry>
     		</map>
     	</property>
     	<property name="outputElementMap">

@@ -28,6 +28,9 @@ public interface DITSOAPService {
 	
 	public static final String PARAM_ASSESSMENT_YEAR = "assessmentYear";
 	
+	public static final String PARAM_ASSESSMENT_YEAR_2E = "asseessmentYear";	
+	public static final String PARAM_ASSESSMENT_YEAR_2E_LC = "asseessmentyear";
+	
 	public static final String PARAM_ACK_NO = "acknowledgementNo";
 	
 	

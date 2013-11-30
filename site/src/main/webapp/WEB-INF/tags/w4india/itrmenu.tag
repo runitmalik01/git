@@ -364,13 +364,17 @@ request.setAttribute("isDITVerified",isDITVerified);
 		               <li class="dropdown">
 		                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Actions<b class="caret"></b></a>
 		                  <ul class="dropdown-menu">
+		                  		 <li><a href="${scriptName}/../servicerequest-refund-status.html">Refund Status</a></li>
+		                  		 <li><a href="${scriptName}/../servicerequest-rectification-status.html">Rectification Status</a></li>
+		                  		 <li><a href="${scriptName}/../servicerequest-itr-v-status.html">ITR-V Status</a></li>
+		                  		 <li class="divider"></li>
 		                  	 	 <%-- hide Show XML only for developers --%>
 		                  	 	 <%--
 			                  	 <li><a href="servicerequest-itr-summary.html">View Summary</a></li>
 			                     <li><a href="servicerequest-itr-summary.html?show=xml">View XML</a></li>
 			                     <li class="divider"></li>
 			                      --%>
-			                     <li><a href="${scriptName}/../servicerequest-itr-download-xml.html">Download XML</a></li>
+			                    <li><a href="${scriptName}/../servicerequest-itr-download-xml.html">Download XML</a></li>
 		                     	<li><a href="${scriptName}/../servicerequest-itr-download-summary.html">Download Summary</a></li>
 		                     	<li><a href="${scriptName}/../servicerequest-itr-email-xml-summary.html?email=<%=deliveryEmail%>">Email to <small>(<%=deliveryEmail%>)</small></a></li>
 		                  </ul>
