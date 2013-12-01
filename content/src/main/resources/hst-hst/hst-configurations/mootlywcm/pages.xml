@@ -9940,159 +9940,169 @@
 </sv:node>
 
 <!-- new home page layout (frontpage) -->
-	<sv:node sv:name="defaultpage_v2.re" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
-	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
-	    <sv:value>hst:component</sv:value>
-	  </sv:property>
-	  <sv:property sv:name="jcr:uuid" sv:type="String">
-	    <sv:value>985266b1-af3d-49e2-81ff-3f140d62717b</sv:value>
-	  </sv:property>
-	  <sv:property sv:name="hst:componentclassname" sv:type="String">
-	    <sv:value>com.mootly.wcm.components.DefaultPageComponent</sv:value>
-	  </sv:property>
-	  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
-	    <sv:value>org.hippoecm.hst.core.container.custom.errorhandler
+<sv:node sv:name="defaultpage_v2.re" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:component</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>985266b1-af3d-49e2-81ff-3f140d62717b</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:componentclassname" sv:type="String">
+    <sv:value>com.mootly.wcm.components.DefaultPageComponent</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+    <sv:value>org.hippoecm.hst.core.container.custom.errorhandler
 				</sv:value>
-	  </sv:property>
-	  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
-	    <sv:value>com.mootly.wcm.exceptions.CustomPageErrorHandler</sv:value>
-	  </sv:property>
-	  <sv:property sv:name="hst:template" sv:type="String">
-	    <sv:value>layout.webpage.v2</sv:value>
-	  </sv:property>
-	  <sv:node sv:name="header">
-	    <sv:property sv:name="jcr:primaryType" sv:type="Name">
-	      <sv:value>hst:component</sv:value>
-	    </sv:property>
-	    <sv:property sv:name="jcr:uuid" sv:type="String">
-	      <sv:value>a41b4fcf-fbb2-4b3f-a4f6-2362c7db1968</sv:value>
-	    </sv:property>
-	    <sv:property sv:name="hst:referencecomponent" sv:type="String">
-	      <sv:value>hst:components/header.v2.re</sv:value>
-	    </sv:property>
-	    <sv:node sv:name="logo">
-	      <sv:property sv:name="jcr:primaryType" sv:type="Name">
-	        <sv:value>hst:component</sv:value>
-	      </sv:property>
-	      <sv:property sv:name="jcr:uuid" sv:type="String">
-	        <sv:value>25ee73bd-74a5-4a97-9aa0-62581d0c4d4e</sv:value>
-	      </sv:property>
-	      <sv:property sv:name="hst:componentclassname" sv:type="String">
-	        <sv:value>com.mootly.wcm.components.common.TopNav</sv:value>
-	      </sv:property>
-	      <sv:property sv:name="hst:template" sv:type="String">
-	        <sv:value>standard.header.v2.logo</sv:value>
-	      </sv:property>
-	    </sv:node>
-	    <sv:node sv:name="menu-top">
-	      <sv:property sv:name="jcr:primaryType" sv:type="Name">
-	        <sv:value>hst:component</sv:value>
-	      </sv:property>
-	      <sv:property sv:name="jcr:uuid" sv:type="String">
-	        <sv:value>0df121b4-cac6-4da1-9c77-0d2736049725</sv:value>
-	      </sv:property>
-	      <sv:property sv:name="hst:template" sv:type="String">
-	        <sv:value>standard.header.re.v2.menu-top</sv:value>
-	      </sv:property>
-	    </sv:node>
-	    <sv:node sv:name="menu-main">
-	      <sv:property sv:name="jcr:primaryType" sv:type="Name">
-	        <sv:value>hst:component</sv:value>
-	      </sv:property>
-	      <sv:property sv:name="jcr:uuid" sv:type="String">
-	        <sv:value>7cd36ebc-0dc9-4127-8220-87c92891a89a</sv:value>
-	      </sv:property>
-	      <sv:property sv:name="hst:componentclassname" sv:type="String">
-	        <sv:value>com.mootly.wcm.components.common.SiteMenu</sv:value>
-	      </sv:property>
-	      <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
-	        <sv:value>siteMenu</sv:value>
-	      </sv:property>
-	      <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
-	        <sv:value>mainnavigation</sv:value>
-	      </sv:property>
-	      <sv:property sv:name="hst:template" sv:type="String">
-	        <sv:value>standard.header.re.menu-main.v2</sv:value>
-	      </sv:property>
-	    </sv:node>
-	    <sv:node sv:name="top-widget">
-	      <sv:property sv:name="jcr:primaryType" sv:type="Name">
-	        <sv:value>hst:component</sv:value>
-	      </sv:property>
-	      <sv:property sv:name="jcr:uuid" sv:type="String">
-	        <sv:value>0dec4b8c-cdba-4f09-998b-0745dde815ae</sv:value>
-	      </sv:property>
-	    </sv:node>
-	  </sv:node>
-	  <sv:node sv:name="main">
-	    <sv:property sv:name="jcr:primaryType" sv:type="Name">
-	      <sv:value>hst:component</sv:value>
-	    </sv:property>
-	    <sv:property sv:name="jcr:uuid" sv:type="String">
-	      <sv:value>b3552023-308b-4908-8d33-2af26dc01786</sv:value>
-	    </sv:property>
-	    <sv:property sv:name="hst:componentclassname" sv:type="String">
-	      <sv:value>com.mootly.wcm.components.BaseComponent</sv:value>
-	    </sv:property>
-	    <sv:property sv:name="hst:template" sv:type="String">
-	      <sv:value>standard.main.v2.re</sv:value>
-	    </sv:property>
-	  </sv:node>
-	  <sv:node sv:name="footer">
-	    <sv:property sv:name="jcr:primaryType" sv:type="Name">
-	      <sv:value>hst:component</sv:value>
-	    </sv:property>
-	    <sv:property sv:name="jcr:uuid" sv:type="String">
-	      <sv:value>2a6de57a-8659-4333-90d8-67a1ba7bdf04</sv:value>
-	    </sv:property>
-	    <sv:property sv:name="hst:componentclassname" sv:type="String">
-	      <sv:value>com.mootly.wcm.components.FooterComponent</sv:value>
-	    </sv:property>
-	    <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
-	      <sv:value>termsPath</sv:value>
-	    </sv:property>
-	    <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
-	      <sv:value>about/terms--conditions</sv:value>
-	    </sv:property>
-	    <sv:property sv:name="hst:template" sv:type="String">
-	      <sv:value>standard.footer.v2.re</sv:value>
-	    </sv:property>
-	    <sv:node sv:name="service">
-	      <sv:property sv:name="jcr:primaryType" sv:type="Name">
-	        <sv:value>hst:component</sv:value>
-	      </sv:property>
-	      <sv:property sv:name="jcr:uuid" sv:type="String">
-	        <sv:value>27f8932d-9509-4ca6-83b5-3734e2148be3</sv:value>
-	      </sv:property>
-	      <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
-	        <sv:value>siteMenu</sv:value>
-	      </sv:property>
-	      <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
-	        <sv:value>servicemenu</sv:value>
-	      </sv:property>
-	      <sv:property sv:name="hst:referencecomponent" sv:type="String">
-	        <sv:value>hst:components/footermenu</sv:value>
-	      </sv:property>
-	    </sv:node>
-	    <sv:node sv:name="sections">
-	      <sv:property sv:name="jcr:primaryType" sv:type="Name">
-	        <sv:value>hst:component</sv:value>
-	      </sv:property>
-	      <sv:property sv:name="jcr:uuid" sv:type="String">
-	        <sv:value>390aac5f-c65a-4792-948a-8d4993a4f602</sv:value>
-	      </sv:property>
-	      <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
-	        <sv:value>siteMenu</sv:value>
-	      </sv:property>
-	      <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
-	        <sv:value>sectionsmenu</sv:value>
-	      </sv:property>
-	      <sv:property sv:name="hst:referencecomponent" sv:type="String">
-	        <sv:value>hst:components/footermenu</sv:value>
-	      </sv:property>
-	    </sv:node>
-	  </sv:node>
-	</sv:node>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+    <sv:value>com.mootly.wcm.exceptions.CustomPageErrorHandler</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:template" sv:type="String">
+    <sv:value>layout.webpage.v2</sv:value>
+  </sv:property>
+  <sv:node sv:name="header">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>a41b4fcf-fbb2-4b3f-a4f6-2362c7db1968</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:referencecomponent" sv:type="String">
+      <sv:value>hst:components/header.v2.re</sv:value>
+    </sv:property>
+    <sv:node sv:name="logo">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>hst:component</sv:value>
+      </sv:property>
+      <sv:property sv:name="jcr:uuid" sv:type="String">
+        <sv:value>25ee73bd-74a5-4a97-9aa0-62581d0c4d4e</sv:value>
+      </sv:property>
+      <sv:property sv:name="hst:componentclassname" sv:type="String">
+        <sv:value>com.mootly.wcm.components.common.TopNav</sv:value>
+      </sv:property>
+      <sv:property sv:name="hst:template" sv:type="String">
+        <sv:value>standard.header.v2.logo</sv:value>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="menu-top">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>hst:component</sv:value>
+      </sv:property>
+      <sv:property sv:name="jcr:uuid" sv:type="String">
+        <sv:value>0df121b4-cac6-4da1-9c77-0d2736049725</sv:value>
+      </sv:property>
+      <sv:property sv:name="hst:componentclassname" sv:type="String">
+        <sv:value>com.mootly.wcm.components.common.SiteMenu</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+        <sv:value>siteMenu</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+        <sv:value>mainnavigation</sv:value>
+      </sv:property>
+      <sv:property sv:name="hst:template" sv:type="String">
+        <sv:value>standard.header.re.v2.menu-top</sv:value>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="menu-main">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>hst:component</sv:value>
+      </sv:property>
+      <sv:property sv:name="jcr:uuid" sv:type="String">
+        <sv:value>7cd36ebc-0dc9-4127-8220-87c92891a89a</sv:value>
+      </sv:property>
+      <sv:property sv:name="hst:componentclassname" sv:type="String">
+        <sv:value>com.mootly.wcm.components.common.SiteMenu</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+        <sv:value>siteMenu</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+        <sv:value>mainnavigation</sv:value>
+      </sv:property>
+      <sv:property sv:name="hst:template" sv:type="String">
+        <sv:value>standard.header.re.menu-main.v2</sv:value>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="top-widget">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>hst:component</sv:value>
+      </sv:property>
+      <sv:property sv:name="jcr:uuid" sv:type="String">
+        <sv:value>0dec4b8c-cdba-4f09-998b-0745dde815ae</sv:value>
+      </sv:property>
+    </sv:node>
+  </sv:node>
+  <sv:node sv:name="main">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>b3552023-308b-4908-8d33-2af26dc01786</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentclassname" sv:type="String">
+      <sv:value>com.mootly.wcm.components.BaseComponent</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>standard.main.v2.re</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="footer">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>2a6de57a-8659-4333-90d8-67a1ba7bdf04</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentclassname" sv:type="String">
+      <sv:value>com.mootly.wcm.components.FooterComponent</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+      <sv:value>termsPath</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+      <sv:value>about/terms--conditions</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>standard.footer.v2.re</sv:value>
+    </sv:property>
+    <sv:node sv:name="service">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>hst:component</sv:value>
+      </sv:property>
+      <sv:property sv:name="jcr:uuid" sv:type="String">
+        <sv:value>27f8932d-9509-4ca6-83b5-3734e2148be3</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+        <sv:value>siteMenu</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+        <sv:value>servicemenu</sv:value>
+      </sv:property>
+      <sv:property sv:name="hst:referencecomponent" sv:type="String">
+        <sv:value>hst:components/footermenu</sv:value>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="sections">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>hst:component</sv:value>
+      </sv:property>
+      <sv:property sv:name="jcr:uuid" sv:type="String">
+        <sv:value>390aac5f-c65a-4792-948a-8d4993a4f602</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+        <sv:value>siteMenu</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+        <sv:value>sectionsmenu</sv:value>
+      </sv:property>
+      <sv:property sv:name="hst:referencecomponent" sv:type="String">
+        <sv:value>hst:components/footermenu</sv:value>
+      </sv:property>
+    </sv:node>
+  </sv:node>
+</sv:node>
+	
 	<!-- end of new home page -->
 	<sv:node sv:name="_any_.cms" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
 	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
