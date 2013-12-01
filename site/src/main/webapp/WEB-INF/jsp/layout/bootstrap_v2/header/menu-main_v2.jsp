@@ -1,76 +1,123 @@
+<%--
 
-<!-- New home page design 14tn Nov'13 -->
+    Copyright (C) 2010 Hippo B.V.
 
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
 
+            http://www.apache.org/licenses/LICENSE-2.0
 
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+--%>
 <%@page import="java.util.List"%>
 <%@page import="org.hippoecm.hst.core.sitemenu.HstSiteMenuItem"%>
 <%@ page language="java"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://www.onehippo.org/jsp/google-analytics" prefix="ga"%>
+<%@ taglib uri="http://www.onehippo.org/jsp/google-analytics"
+	prefix="ga"%>
 <%@include file="../../../includes/tags.jspf"%>
+
+<%--
+
+    Copyright (C) 2010 Hippo B.V.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+            http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+--%>
+<%@ page language="java"%>
+<%@ page contentType="text/html; charset=UTF-8"%>
+<%@ page trimDirectiveWhitespaces="true"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/xml" prefix="x"%>
 <%@ taglib uri="http://www.hippoecm.org/jsp/hst/core" prefix='hst'%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
-	<div class="navbar navbar-default navbar-fixed-top">
-		<div class="container">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse"
-					data-target=".navbar-collapse">
-					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
-				</button>
-				<%--<a class="w4i-logo" href="#"><img alt="Wealth4India" src="<hst:link path="/img/w4ilogo_v2.png"/>"> </a> --%>
-				<hst:include ref="logo"/>
-			</div>
-
-			<div class="navbar-collapse collapse">
-				<ul class="nav navbar-nav">
-					<li class="active"><a href='/site/home_v2'>Home</a>
+<%@include file="../../../includes/tags.jspf"%>
+<ul id="menu-main" class="menu">
+	<c:forEach var="item" items="${menu.siteMenuItems}">
+		<c:set var="itemLink" value="${item.hstLink}" />
+		<c:if test="${not empty itemLink}">
+			<hst:link var="link" link="${itemLink}" />
+			<%
+				HstSiteMenuItem item = (HstSiteMenuItem) pageContext
+								.getAttribute("item");
+						List<HstSiteMenuItem> childMenuItems = item
+								.getChildMenuItems();
+						if (childMenuItems != null && childMenuItems.size() > 0) {
+							pageContext.setAttribute("hasChildren", "1");
+						} else {
+							pageContext.setAttribute("hasChildren", "0");
+						}
+			%>
+			<c:choose>
+				<c:when test="${item.expanded}">
+					<div class="navbar-collapse collapse">					
+							<li class="dropdown dropdown-header dropdown-toggle nav navbar-nav"
+								data-toggle="dropdown" data-target="#"><a
+								href="${fn:escapeXml(link)}"><c:out value="${item.name}" />
+							</a></li> <!-- home link is done --> 
+							<c:if test="${hasChildren == '1'}">
+									<ul class="dropdown-menu">
+										<c:forEach items="${item.childMenuItems}" var="childItem">
+											<c:set var="childItemLink" value="${childItem.hstLink}" />
+											<hst:link var="childLink" link="${childItemLink}" />
+											<li class="dropdown"><a
+												href="${fn:escapeXml(childLink)}"><c:out
+														value="${childItem.name}" /> </a>
+												<ul class="dropdown-menu">
+													<c:forEach items="${item.childMenuItems}" var="childItem2">
+														<c:set var="childItemLink2" value="${childItem2.hstLink}" />
+														<hst:link var="childLink2" link="${childItemLink2}" />
+														<li class="dropdown"><a
+															href="${fn:escapeXml(childLink2)}"><c:out
+																	value="${childItem2.name}" /> </a>
+														</li>
+													</c:forEach>
+												</ul>
+											</li>
+										</c:forEach>
+									</ul>
+								</c:if>
+					</div>
+				</c:when>
+				<c:otherwise>
+					<!-- calculators/service price/faq/income tax return link -->
+					<li class="dropdown dropdown-header nav navbar-nav"><c:set
+							var="totalChildren" value="${item.childMenuItems}" /> <a
+						href="${fn:escapeXml(link)}" class="dropdown-toggle"
+						data-toggle="dropdown" data-target="#"><c:out
+								value="${item.name}" /> </a> <c:if test="${hasChildren == '1'}">
+							<ul class="dropdown-menu">
+								<c:forEach items="${item.childMenuItems}" var="childItem">
+									<c:set var="childItemLink" value="${childItem.hstLink}" />
+									<hst:link var="childLink" link="${childItemLink}" />
+									<li class="dropdown"><a href="${fn:escapeXml(childLink)}"><c:out
+												value="${childItem.name}" /> </a></li>
+								</c:forEach>
+							</ul>
+						</c:if>
 					</li>
-					<li><a href='/site/serviceprice'>Pricing</a>
-					</li>
-					<li class="dropdown"><a id="dLabel" role="button"
-						class="dropdown-toggle" data-toggle="dropdown" data-target="#"
-						href='/site/taxcalculator'>Tax Filing <b class="caret"></b> </a>
-						<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-							<li class="dropdown-header">Calculators</li>
-							<li><a href='/site/taxcalculator'>Tax Calculator</a>
-							</li>
-							<li><a href='/site/npvcalculator'>NPV Calculator</a>
-							</li>
-							<li><a href='/site/emicalculator'>EMI Calculator</a>
-							</li>
-							<li><a href='/site/hracalculator'>HRA Calculator</a>
-							</li>
-							<li class="divider"></li>
-							<li><a href='/site/memberLogin'>Income Tax Return</a>
-							</li>
-							<li><a href='/site/knowledgeportal'>Knowledge Portal</a>
-							</li>
-						</ul></li>
-					<li class="dropdown"><a href="#about" class="dropdown-toggle"
-						data-toggle="dropdown">About Us <b class="caret"></b> </a>
-						<ul class="dropdown-menu">
-							<li><a href='/site/about'>About</a>
-							</li>
-							<li><a href='/site/faq'>FAQ</a>
-							</li>
-							<li><a href='/site/news'>News</a>
-							</li>
-						</ul></li>
-				</ul>
+				</c:otherwise>
+			</c:choose>
+		</c:if>
+	</c:forEach>
+</ul>
 
-				<form class="navbar-form navbar-right">
-					<a href='/site/memberLogin' class="btn btn-info">Login</a> <a
-						href='/site/signup' class="btn btn-warning">Sign Up </a>
-				</form>
-
-			</div>
-			<!--/.navbar-collapse -->
-		</div>
-	</div>
 
