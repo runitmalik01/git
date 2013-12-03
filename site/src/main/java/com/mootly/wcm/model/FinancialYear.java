@@ -1,5 +1,8 @@
 package com.mootly.wcm.model;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -7,6 +10,8 @@ import java.util.Locale;
 import java.util.TimeZone;
 
 import com.mootly.wcm.beans.MemberPersonalInformation;
+import com.mootly.wcm.services.ITRXmlGeneratorServiceCommon;
+import com.mootly.wcm.services.IndianCurrencyHelper;
 
 public enum FinancialYear {
 	TwentyEight(2008,false),
@@ -34,7 +39,7 @@ public enum FinancialYear {
 
 	boolean isActive = true;
 	boolean isPastDue = false;
-	
+
 	TimeZone indianTimeZone = TimeZone.getTimeZone("UTC+5:30");
 
 	FinancialYear() {
@@ -43,7 +48,7 @@ public enum FinancialYear {
 	FinancialYear(int startYear,boolean isActive) {
 		this.startYear = startYear;
 		this.isActive = isActive;
-		
+
 		String controlFYStr = System.getProperty("controlFY");
 		boolean controlFY = false;
 		if (controlFYStr != null && Boolean.valueOf(controlFYStr)) {
@@ -71,10 +76,10 @@ public enum FinancialYear {
 
 		this.dateStartFinancialYear = IndianGregorianCalendar.getIndianInstance();
 		this.dateStartFinancialYear.set(startYear, 03, 01);
-		
+
 		this.dateEndFinancialYear = IndianGregorianCalendar.getIndianInstance();
 		this.dateEndFinancialYear.set(endYear, 04, 30);
-		
+
 		this.assessmentYear = endYear;
 
 	}
@@ -85,70 +90,70 @@ public enum FinancialYear {
 
 
 	public int getAgeInYears(Date dateOfBirth) {
-	    Calendar dob = IndianGregorianCalendar.getIndianInstance();
+		Calendar dob = IndianGregorianCalendar.getIndianInstance();
 
-	    dob.setTime(dateOfBirth);
+		dob.setTime(dateOfBirth);
 
-	    if (dob.after(dateEndFinancialYear))
-	    {
-	        throw new IllegalArgumentException("Can't be born in the future");
-	    }
+		if (dob.after(dateEndFinancialYear))
+		{
+			throw new IllegalArgumentException("Can't be born in the future");
+		}
 
-	    int age = dateEndFinancialYear.get(Calendar.YEAR) - dob.get(Calendar.YEAR);
+		int age = dateEndFinancialYear.get(Calendar.YEAR) - dob.get(Calendar.YEAR);
 
-	    if (dateEndFinancialYear.get(Calendar.DAY_OF_YEAR) < dob.get(Calendar.DAY_OF_YEAR))
-	    {
-	        age--;
-	    }
+		if (dateEndFinancialYear.get(Calendar.DAY_OF_YEAR) < dob.get(Calendar.DAY_OF_YEAR))
+		{
+			age--;
+		}
 
-	    return age;
+		return age;
 	}
 
 	public boolean isSeniorCitizen(Date dateOfBirth) {
-	    Calendar dob = IndianGregorianCalendar.getIndianInstance();
+		Calendar dob = IndianGregorianCalendar.getIndianInstance();
 
-	    dob.setTime(dateOfBirth);
+		dob.setTime(dateOfBirth);
 
-	    if (dob.after(dateEndFinancialYear))
-	    {
-	        throw new IllegalArgumentException("Can't be born in the future");
-	    }
+		if (dob.after(dateEndFinancialYear))
+		{
+			throw new IllegalArgumentException("Can't be born in the future");
+		}
 
-	    int age = dateEndFinancialYear.get(Calendar.YEAR) - dob.get(Calendar.YEAR);
+		int age = dateEndFinancialYear.get(Calendar.YEAR) - dob.get(Calendar.YEAR);
 
-	    if (dateEndFinancialYear.get(Calendar.DAY_OF_YEAR) < dob.get(Calendar.DAY_OF_YEAR))
-	    {
-	        age--;
-	    }
+		if (dateEndFinancialYear.get(Calendar.DAY_OF_YEAR) < dob.get(Calendar.DAY_OF_YEAR))
+		{
+			age--;
+		}
 
-	    return (age >=60 ? true : false);
+		return (age >=60 ? true : false);
 	}
 
 	public boolean isSuperSeniorCitizen(Date dateOfBirth) {
-	    Calendar dob = IndianGregorianCalendar.getIndianInstance();
+		Calendar dob = IndianGregorianCalendar.getIndianInstance();
 
-	    dob.setTime(dateOfBirth);
+		dob.setTime(dateOfBirth);
 
-	    if (dob.after(dateEndFinancialYear))
-	    {
-	        throw new IllegalArgumentException("Can't be born in the future");
-	    }
+		if (dob.after(dateEndFinancialYear))
+		{
+			throw new IllegalArgumentException("Can't be born in the future");
+		}
 
-	    int age = dateEndFinancialYear.get(Calendar.YEAR) - dob.get(Calendar.YEAR);
+		int age = dateEndFinancialYear.get(Calendar.YEAR) - dob.get(Calendar.YEAR);
 
-	    if (dateEndFinancialYear.get(Calendar.DAY_OF_YEAR) < dob.get(Calendar.DAY_OF_YEAR))
-	    {
-	        age--;
-	    }
+		if (dateEndFinancialYear.get(Calendar.DAY_OF_YEAR) < dob.get(Calendar.DAY_OF_YEAR))
+		{
+			age--;
+		}
 
-	    return (age >=80 ? true : false);
+		return (age >=80 ? true : false);
 	}
 
 	public GregorianCalendar getDueDate(ITRForm itrForm,String stateCode) {
 		GregorianCalendar gc = null;
 		if (stateCode != null && !"".equals(stateCode.trim()) && stateCode.equals("34") ) {
-				gc = IndianGregorianCalendar.getIndianInstance();
-				gc.set(dateEndFinancialYear.get(GregorianCalendar.YEAR),9,31,23,59,59);				
+			gc = IndianGregorianCalendar.getIndianInstance();
+			gc.set(dateEndFinancialYear.get(GregorianCalendar.YEAR),9,31,23,59,59);				
 		}
 		else {
 			gc = IndianGregorianCalendar.getIndianInstance();
@@ -172,7 +177,7 @@ public enum FinancialYear {
 		GregorianCalendar currentDate = IndianGregorianCalendar.getIndianInstance();//new GregorianCalendar();
 		return isPastDue(itrForm,currentDate,stateCode);
 	}
-	
+
 	public boolean isIncomeTaxPastDue(ITRForm itrForm,String stateCode) {
 		if (stateCode != null) {
 			return isPastDue(itrForm, stateCode);
@@ -181,7 +186,34 @@ public enum FinancialYear {
 			return false;
 		}
 	}
-	
+
+	//Added on 03-dec-2013 to get due date for Interest Section 234B
+	public Date getDueDateFor234B(){
+		IndianCurrencyHelper indianCurrencyHelper = new IndianCurrencyHelper();
+		String dueDatefor234Bstr = "31/03/"+getEndYear();
+		Date dueDatefor234B = null;
+		try {
+			dueDatefor234B  = indianCurrencyHelper.parsedate(dueDatefor234Bstr);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return dueDatefor234B;
+	}
+
+	//Added on 03-dec-2013 to get Fixed Due Date i.e 31-July for respective Financial Year
+	public Date getFixDueDate(){
+		IndianCurrencyHelper indianCurrencyHelper = new IndianCurrencyHelper();
+		Date fixedDueDate = null;
+		try {
+			fixedDueDate = indianCurrencyHelper.parsedate("31/07/"+getEndYear());
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return fixedDueDate;
+	}
+
 	public boolean isIncomeTaxPastDue(MemberPersonalInformation memberPersonalInformation) {
 		if (memberPersonalInformation != null && memberPersonalInformation.getState() != null) {
 			String theStateCode = memberPersonalInformation.getState();
@@ -192,7 +224,7 @@ public enum FinancialYear {
 		}
 	}
 
-	
+
 	public FilingSection getFilingSection (ITRForm itrForm,ITReturnType itReturnType,String stateCode) {
 		GregorianCalendar dueDate = IndianGregorianCalendar.getIndianInstance();//new GregorianCalendar();
 		boolean isPastDue = isPastDue(itrForm,dueDate,stateCode);
@@ -250,7 +282,7 @@ public enum FinancialYear {
 	public String getDisplayAssessmentYear() {
 		return displayAssessmentYear;
 	}
-	
+
 	public String getAssessmentYearForDITSOAPCall() {
 		return assessmentYearForDITSOAPCall;
 	}
@@ -262,7 +294,7 @@ public enum FinancialYear {
 	public int getEndAssessmentYear() {
 		return endAssessmentYear;
 	}
-	
+
 	/** 
 	 * The convention is y2012_2013
 	 * @return
