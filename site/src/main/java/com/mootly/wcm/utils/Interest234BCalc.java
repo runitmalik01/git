@@ -20,22 +20,20 @@ public class Interest234BCalc {
 
 		IndianCurrencyHelper indianCurrencyHelper = new IndianCurrencyHelper();
 		Map<Date,Double> totalMapFor234B = new TreeMap<Date, Double>();
-
 		Double intB = 0d;
 
 		DateFormat formatter ;
 		Date currentDate = null;
 		formatter = new SimpleDateFormat("yyyy-MM-dd");
-		//Here my logic is to make due date dependent on Financial Year
-		String dueDatefor234Bstr = "31/03/"+financialYear.getEndYear();
 		Date dueDatefor234B = null;
 		try {
 			currentDate = formatter.parse(ITRXmlGeneratorServiceCommon.getCurrentDateInIndiaAsString());
-			dueDatefor234B  = indianCurrencyHelper.parsedate(dueDatefor234Bstr);
+			dueDatefor234B = financialYear.getDueDateFor234B();
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 		totalMapFor234B.put(dueDatefor234B, nettaxLiability);
 		totalMapFor234B.put(currentDate, 0d);
 
@@ -79,7 +77,7 @@ public class Interest234BCalc {
 
 		double preAmount = 0d;double currAmount = 0d;
 
-        //Here i am calculating Interest for Section 234B if Tax Liability is greater than 10000
+		//Here i am calculating Interest for Section 234B if Tax Liability is greater than 10000
 		if(taxLiability > 10000){
 			for(int i=0;i<totalMapFor234B.keySet().toArray().length;i++){
 				Date startDate = (Date) totalMapFor234B.keySet().toArray()[i];
