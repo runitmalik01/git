@@ -37,6 +37,11 @@
             <bean class="com.mootly.wcm.jaxrs.services.TopProductsResource" />
           </constructor-arg>
         </bean>
+		<bean class="org.apache.cxf.jaxrs.lifecycle.SingletonResourceProvider">
+          <constructor-arg>
+            <bean class="com.mootly.wcm.jaxrs.services.ITRsContentResource" />
+          </constructor-arg>
+        </bean>        
       </list>
     </property>
   </bean>

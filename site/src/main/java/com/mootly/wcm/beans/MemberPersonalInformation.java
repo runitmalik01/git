@@ -77,6 +77,12 @@ import java.util.GregorianCalendar;
 import java.util.ResourceBundle;
 
 import javax.jcr.RepositoryException;
+import javax.ws.rs.Encoded;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import org.apache.commons.lang.StringUtils;
 import org.hippoecm.hst.component.support.forms.FormMap;
@@ -100,7 +106,7 @@ import com.mootly.wcm.model.VerificationStatus;
  * Date: Jun 29, 2010
  * Time: 11:26:35 AM
  */
-
+@XmlAccessorType(XmlAccessType.NONE)
 @SuppressWarnings("unused")
 @Node(jcrType = "mootlywcm:MemberPersonalInformation")
 public class MemberPersonalInformation extends FlexibleDocument implements ContentNodeBinder,FormMapFiller {
@@ -117,7 +123,9 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 	private String incomeTaxWard;
 	private String receiptNo;
 	private String taxStatus;
+	
 	private String finacialYear;
+	
 	private String returnType;
 	private String originalAckNo;
 	private GregorianCalendar originalAckDate;
@@ -209,7 +217,8 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 		String retValue = messagesResourceBundle.getString( getSelectedITRForm().name() + ".packageName." + getSelectedServiceDeliveryOption().name() + ".cost");
 		return retValue;
 	}
-
+	
+	@XmlElement
 	public ITRForm getSelectedITRForm() {
 		String retValueString = getFlexField("flex_string_ITRForm",null);
 		if (retValueString != null) {
@@ -344,15 +353,19 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 		return middleName;
 	}
 
+	@XmlElement
 	public String getLastName() {
 		if (lastName == null) lastName = getProperty(PROP_PI_LAST_NAME);
 		return lastName;
 	}
-
+	
+	@XmlElement
 	public String getFatherName() {
 		if (fatherName == null) fatherName = getProperty(PROP_PI_FATHER_NAME);
 		return fatherName;
 	}
+	
+	@XmlElement
 	public String getEmploye_category() {
 		if (Employe_category == null) Employe_category = getProperty(PROP_PI_EMPLOYER_CATEGORY);
 		return Employe_category;
@@ -383,25 +396,31 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 	}
 
 
-
+	@XmlElement
 	public String getSex() {
 		if (sex == null) sex = getProperty(PROP_PI_SEX);
 		return sex;
 	}
+	
+	@XmlElement
 	public String getFlatDoorBuilding() {
 		if (flatDoorBuilding == null) flatDoorBuilding = getProperty(PROP_PI_FLAT_FLOOR_BUILDING);
 		return flatDoorBuilding;
 	}
+	
+	@XmlElement
 	public String getPremisesBuilding() {
 		if (premisesBuilding == null) premisesBuilding = getProperty(PROP_PI_PREMISES_BUILDING);
 		return premisesBuilding;
 	}
-
+	
+	@XmlElement
 	public String getRoadStreet() {
 		if (roadStreet == null) roadStreet = getProperty(PROP_PI_ROAD_STREET);
 		return roadStreet;
 	}
 
+	@XmlElement
 	public String getAreaLocality() {
 		if (areaLocality == null) areaLocality = getProperty(PROP_PI_AREA_LOCALITY);
 		return areaLocality;

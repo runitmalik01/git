@@ -43,6 +43,9 @@ import javax.jcr.RepositoryException;
 import javax.jcr.Value;
 import javax.jcr.ValueFactory;
 import javax.jcr.ValueFormatException;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlTransient;
 
 import org.apache.jackrabbit.value.ValueFactoryImpl;
 import org.hippoecm.hst.component.support.forms.FormMap;
@@ -60,13 +63,14 @@ import com.mootly.wcm.beans.BaseDocument;
 import com.mootly.wcm.beans.FormMapFiller;
 //@Node(jcrType = "mootlywcm:flexibledocument")
 @SuppressWarnings("unused")
+
+@XmlAccessorType(XmlAccessType.NONE)
 public class FlexibleDocument extends BaseDocument implements FormMapFiller {
 	public final static Logger log = LoggerFactory.getLogger(FlexibleDocument.class); 
 	
+	@XmlTransient
 	private Map<String,Value> valueOfFlexFields = null;//new HashMap<String, Value>();
-	
 	private final static String FLEX_FIELD_PRFIX="flex_";
-	
 	private final String prop_flex_string ="mootlywcm:flex_field_string";
 	private final String prop_flex_long ="mootlywcm:flex_field_long";
 	private final String prop_flex_date ="mootlywcm:flex_field_date";
@@ -160,6 +164,7 @@ public class FlexibleDocument extends BaseDocument implements FormMapFiller {
 	 * 
 	 * @return
 	 */
+	@XmlTransient
 	public Map<String, Value> getValueOfFlexFields() {
 		if (valueOfFlexFields == null) {
 			valueOfFlexFields = new HashMap<String, Value>();

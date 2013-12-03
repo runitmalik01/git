@@ -1,15 +1,31 @@
 package com.mootly.wcm.model;
 
+import javax.xml.bind.annotation.XmlEnum;
+import javax.xml.bind.annotation.XmlEnumValue;
+import javax.xml.bind.annotation.XmlType;
+
+@XmlType(name = "ITRForm")
+@XmlEnum
 public enum ITRForm {
+	@XmlEnumValue(value = "ITR1")
 	ITR1("ITR-1",new ITRServiceDelivery[] {ITRServiceDelivery.DIY,ITRServiceDelivery.Assisted},1),
+	@XmlEnumValue(value = "ITR2")
 	ITR2("ITR-2",new ITRServiceDelivery[] {ITRServiceDelivery.DIY,ITRServiceDelivery.Assisted},2),
+	@XmlEnumValue(value = "ITR3")
 	ITR3("ITR-3",new ITRServiceDelivery[] {ITRServiceDelivery.DIY,ITRServiceDelivery.Assisted},3),
+	@XmlEnumValue(value = "ITR4")
 	ITR4("ITR-4",new ITRServiceDelivery[] {ITRServiceDelivery.DIY,ITRServiceDelivery.Assisted},4),
+	@XmlEnumValue(value = "ITR5")
 	ITR4S("ITR-4S",new ITRServiceDelivery[] {ITRServiceDelivery.DIY, ITRServiceDelivery.Assisted},5),
+	@XmlEnumValue(value = "ITR6")
 	ITR5("ITR-5",new ITRServiceDelivery[] {ITRServiceDelivery.Assisted},6),
+	@XmlEnumValue(value = "ITR7")
 	ITR6("ITR-6",new ITRServiceDelivery[] {ITRServiceDelivery.Assisted},7),
+	@XmlEnumValue(value = "ITR8")
 	ITR7("ITR-7",new ITRServiceDelivery[] {ITRServiceDelivery.Assisted},8),
+	@XmlEnumValue(value = "ITR9")
 	ITR8("ITR-8",new ITRServiceDelivery[] {ITRServiceDelivery.Assisted},9),
+	@XmlEnumValue(value = "UNKNOWN")
 	UNKNOWN;
 
 	String whoCanAndWhoCannot;

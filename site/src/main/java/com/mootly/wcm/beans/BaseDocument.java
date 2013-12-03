@@ -23,6 +23,8 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 
 import javax.jcr.RepositoryException;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 
 import org.apache.commons.lang.StringUtils;
 import org.hippoecm.hst.content.beans.Node;
@@ -32,6 +34,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @Node(jcrType="mootlywcm:basedocument")
+
+@XmlAccessorType(XmlAccessType.PROPERTY)
 public class BaseDocument extends HippoDocument {
 
     public static final Logger log = LoggerFactory.getLogger(BaseDocument.class);
@@ -117,6 +121,5 @@ public class BaseDocument extends HippoDocument {
 			return 0.0D;
 		}
 		
-	}
-    
+	}  
 }
