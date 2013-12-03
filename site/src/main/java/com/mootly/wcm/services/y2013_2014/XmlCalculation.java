@@ -521,11 +521,12 @@ public class XmlCalculation implements XmlCalculationImplement {
 		formatter = new SimpleDateFormat("yyyy-MM-dd");
 		try {
 			currentDate = formatter.parse(ITRXmlGeneratorServiceCommon.getCurrentDateInIndiaAsString());
-			fixedDueDate = indianCurrencyHelper.parsedate("31/07/"+financialYear.getEndYear());
+			fixedDueDate = financialYear.getFixDueDate();
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
 		Date varDueDate = financialYear.getDueDate(memberPersonalInformation.getSelectedITRForm(), memberPersonalInformation.getState()).getTime();
 
 		if(currentDate.after(varDueDate)){
