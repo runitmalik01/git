@@ -35,69 +35,24 @@
 				<span class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
+			<!-- logo -->
 			<hst:include ref="logo" />
 		</div>
+		<!-- menu top-->
+		<form class="navbar-form navbar-right">
+			<div class="form-group">
+				<hst:include ref="menu-top" />
+			</div>
+			</form>
+		<!-- main-menu -->
 		<div class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">
 				<hst:include ref="menu-main" />
 			</ul>
 		</div>
-		<!-- menu top-->
-		<form class="navbar-form navbar-right">
-			<hst:include ref="menu-top" />
-		</form>
 	</div>
 </div>
 
-
-
-<%--
-				<li class="active"><a href="#">Home</a>
-				</li>
-				<li><a href="#">Pricing</a>
-				</li>
-				<li class="dropdown"><a href="#taxes" class="dropdown-toggle"
-					data-toggle="dropdown">Tax Filing <b class="caret"></b>
-				</a>
-					<ul class="dropdown-menu">
-						<li class="dropdown-header">Calculators</li>
-						<li><a href="#">Tax Calculator</a>
-						</li>
-						<li><a href="#">NPV Calculator</a>
-						</li>
-						<li><a href="#">EMI Calculator</a>
-						</li>
-						<li><a href="#">HRA Calculator</a>
-						</li>
-						<li class="divider"></li>
-						<li><a href="#">Income Tax Return</a>
-						</li>
-						<li><a href=href="#">Knowledge Portal</a>
-						</li>
-					</ul></li>
-				<li class="dropdown"><a href="#about" class="dropdown-toggle"
-					data-toggle="dropdown">About Us <b class="caret"></b>
-				</a>
-					<ul class="dropdown-menu">
-						<li><a href="#">About</a>
-						</li>
-						<li><a href="#">FAQ</a>
-						</li>
-						<li><a href="#">News</a>
-						</li>
-					</ul></li>
-	</ul>
-
-
-	<form class="navbar-form navbar-right">
-		<button type="submit" class="btn btn-info">Login</button>
-		<button type="submit" class="btn btn-warning">Sign Up</button>
-
-	</form>
-</div>
-<!--/.navbar-collapse -->
-</div>
-</div>--%>
 
 
 
