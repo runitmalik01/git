@@ -16,30 +16,27 @@
 <%@ taglib uri="http://www.hippoecm.org/jsp/hst/core" prefix='hst'%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@include file="../../../includes/tags.jspf"%>
-
-<ul id="menu-main" class="menu">
-	<c:forEach var="item" items="${menu.siteMenuItems}">
-		<c:set var="itemLink" value="${item.hstLink}" />
-		<c:if test="${not empty itemLink}">
-			<hst:link var="link" link="${itemLink}" />
-			<%
-				HstSiteMenuItem item = (HstSiteMenuItem) pageContext
-								.getAttribute("item");
-						List<HstSiteMenuItem> childMenuItems = item
-								.getChildMenuItems();
-						if (childMenuItems != null && childMenuItems.size() > 0) {
-							pageContext.setAttribute("hasChildren", "1");
-						} else {
-							pageContext.setAttribute("hasChildren", "0");
-						}
-			%>
-			<c:choose>
-				<c:when test="${item.expanded}">
-					<div class="navbar-collapse collapse">
-						<ul class="dropdown dropdown-headerdropdown-toggle nav navbar-nav">
-							<a href="${fn:escapeXml(link)}"><c:out value="${item.name}" />
-							</a>
-						</ul>
+<div class="navbar-collapse collapse">
+	<ul id="menu-main" class="menu nav navbar-nav">
+		<c:forEach var="item" items="${menu.siteMenuItems}">
+			<c:set var="itemLink" value="${item.hstLink}" />
+			<c:if test="${not empty itemLink}">
+				<hst:link var="link" link="${itemLink}" />
+				<%
+					HstSiteMenuItem item = (HstSiteMenuItem) pageContext
+									.getAttribute("item");
+							List<HstSiteMenuItem> childMenuItems = item
+									.getChildMenuItems();
+							if (childMenuItems != null && childMenuItems.size() > 0) {
+								pageContext.setAttribute("hasChildren", "1");
+							} else {
+								pageContext.setAttribute("hasChildren", "0");
+							}
+				%>
+				<c:choose>
+					<c:when test="${item.expanded}">
+						<li><a href="${fn:escapeXml(link)}"><c:out
+									value="${item.name}" /> </a></li>
 						<!-- home link is done -->
 						<c:if test="${hasChildren == '1'}">
 							<ul class="dropdown-menu">
@@ -62,30 +59,32 @@
 								</c:forEach>
 							</ul>
 						</c:if>
-					</div>
-				</c:when>
-				<c:otherwise>
-					<!-- calculators/service price/faq/income tax return link -->
-					<li class="dropdown dropdown-header nav navbar-nav"><c:set
-							var="totalChildren" value="${item.childMenuItems}" /> <a
-						href="${fn:escapeXml(link)}"
-						<c:if test="${hasChildren == '1'}"> data-toggle="dropdown"
-						data-target="#" class="dropdown-toggle"</c:if>>
-							<c:out value="${item.name}" />
-					</a> <c:if test="${hasChildren == '1'}">
-							<ul class="dropdown-menu">
-								<c:forEach items="${item.childMenuItems}" var="childItem">
-									<c:set var="childItemLink" value="${childItem.hstLink}" />
-									<hst:link var="childLink" link="${childItemLink}" />
-									<li class="dropdown"><a href="${fn:escapeXml(childLink)}"><c:out
-												value="${childItem.name}" /> </a></li>
-								</c:forEach>
-							</ul>
-						</c:if></li>
-				</c:otherwise>
-			</c:choose>
-		</c:if>
-	</c:forEach>
-</ul>
 
+					</c:when>
+					<c:otherwise>
+						<!-- calculators/service price/faq/income tax return link -->
+						<li><c:set var="totalChildren" value="${item.childMenuItems}" />
+							<a href="${fn:escapeXml(link)}"
+							<c:if test="${hasChildren == '1'}"> data-toggle="dropdown"
+						data-target="#" class="dropdown-toggle"</c:if>>
+								<c:out value="${item.name}" /> </a>
+								
+							<!--sub-menu of Calculators-->
+							<c:if test="${hasChildren == '1'}">
+								<ul class="dropdown-menu">
+									<c:forEach items="${item.childMenuItems}" var="childItem">
+										<c:set var="childItemLink" value="${childItem.hstLink}" />
+										<hst:link var="childLink" link="${childItemLink}" />
+										<li><a href="${fn:escapeXml(childLink)}"><c:out
+													value="${childItem.name}" /> </a></li>
+									</c:forEach>
+								</ul>
+							</c:if></li>
+					</c:otherwise>
+				</c:choose>
+			</c:if>
+		</c:forEach>
+
+	</ul>
+</div>
 
