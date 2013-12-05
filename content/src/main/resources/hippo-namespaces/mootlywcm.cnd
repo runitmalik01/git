@@ -501,14 +501,8 @@ orderable
 [mootlywcm:invoicerefunddetail] > hippo:compound, hippostd:relaxed orderable
 [mootlywcm:ditResponseDocument] > hippostd:relaxed, mootlywcm:basedocument orderable
 [mootlywcm:ditResponseDocumentDetail] > hippo:compound, hippostd:relaxed orderable
-[mootlywcm:CatalogItemDocument] > hippo:compound, hippostd:relaxed orderable
-[mootlywcm:GridStructureDocument] > hippo:compound, hippostd:relaxed orderable
-[mootlywcm:ResellerInfoDocument] > hippostd:relaxed, mootlywcm:basedocument orderable
-[mootlywcm:HomeStructureDocument] > hippostd:relaxed, mootlywcm:basedocument orderable
-[mootlywcm:ContactDetailDocument] > hippostd:relaxed, mootlywcm:basedocument orderable
-
 [mootlywcm:pbpagerowdetail] > hippo:compound, hippostd:relaxed orderable
 [mootlywcm:pbwebsitedocument] > hippostd:relaxed, mootlywcm:basedocument orderable
 [mootlywcm:pbpagedocument] > hippostd:relaxed, mootlywcm:basedocument orderable
 [mootlywcm:pbblockdocument] > hippostd:relaxed, mootlywcm:basedocument orderable
-
+[mootlywcm:pbassetdocument] > hippostd:relaxed, mootlywcm:basedocument orderable
