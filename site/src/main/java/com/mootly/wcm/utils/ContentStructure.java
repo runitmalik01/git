@@ -20,6 +20,7 @@ public final class ContentStructure {
 	public final static String MEMBER_FOLDER_NAME = "members";
 	public final static String EMAILTEMPLATES_FOLDER_NAME = "emailtemplates";
 	public final static String VENDOR_FOLDER_NAME = "vendors";
+	public final static String RESELLER_FOLDER_NAME = "admin";
 
 	// it specify the path for the document in repository.
 	public static String getMemberTdsFolder(HstRequest request) {
