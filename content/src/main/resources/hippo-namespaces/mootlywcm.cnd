@@ -324,6 +324,7 @@ orderable
 
 [mootlywcm:vendorsignupdocument] > hippostd:relaxed, mootlywcm:basedocument orderable
 
+[mootlywcm:resellersignupdocument] > hippostd:relaxed, mootlywcm:basedocument orderable
 
 [mootlywcm:securitiesdetail] > hippo:compound, hippostd:relaxed orderable
 
