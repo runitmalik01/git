@@ -2248,6 +2248,19 @@
       <sv:value>jsp/member/activationcode.jsp</sv:value>
     </sv:property>
   </sv:node>
+  <!-- start of reseller activation -->
+<sv:node sv:name="reseller.activation">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:template</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>cbe7584f-2191-4e65-b9df-85da30b12b65</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:renderpath" sv:type="String">
+    <sv:value>jsp/member/activation.jsp</sv:value>
+  </sv:property>
+</sv:node>
+  <!-- end of reseller activation -->
   <sv:node sv:name="member.bank.detail.rightnav">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
       <sv:value>hst:template</sv:value>
@@ -2797,6 +2810,20 @@
       <sv:value>jsp/vendor/vendorsignup.jsp</sv:value>
     </sv:property>
   </sv:node>
+  <!-- start of reseller signup -->
+<sv:node sv:name="reseller.signup.detail">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:template</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>1e1aec1d-340b-40e4-adf5-0130cbf0aea7</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:renderpath" sv:type="String">
+    <sv:value>jsp/reseller/resellersignup.jsp</sv:value>
+  </sv:property>
+</sv:node>
+  
+  <!-- end of reseller signup -->
   <sv:node sv:name="reviews">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
       <sv:value>hst:template</sv:value>
