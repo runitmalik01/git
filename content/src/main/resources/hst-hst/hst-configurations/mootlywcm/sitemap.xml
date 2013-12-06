@@ -256,6 +256,36 @@
       <sv:value>members</sv:value>
     </sv:property>
   </sv:node>
+  <!-- start of reseller activation -->
+<sv:node sv:name="reselleractivation">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:sitemapitem</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>3a285036-db11-4f8f-b3ce-bb3ec56cc71c</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+    <sv:value>hst:pages/reseller-activation</sv:value>
+  </sv:property>
+  <sv:node sv:name="_default_">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:sitemapitem</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>309b9b9f-1f5e-426b-8e56-bbaca25bc17f</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+      <sv:value>hst:pages/reseller-activation</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+      <sv:value>activationCode</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+      <sv:value>${1}</sv:value>
+    </sv:property>
+  </sv:node>
+</sv:node>
+  <!-- end of reseller activation -->
   <sv:node sv:name="estimation">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
       <sv:value>hst:sitemapitem</sv:value>
@@ -6261,6 +6291,26 @@
       <sv:value>vendors</sv:value>
     </sv:property>
   </sv:node>
+  <!-- Start of resellersignup -->
+<sv:node sv:name="resellersignup">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:sitemapitem</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>e730e5ae-45e4-4394-9b2d-104f45e9a4f7</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+    <sv:value>hst:pages/reseller-signup</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:refId" sv:type="String">
+    <sv:value>resellersignup</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:relativecontentpath" sv:type="String">
+    <sv:value>members</sv:value>
+  </sv:property>
+</sv:node>
+  
+  <!-- end of resellersignup -->
 <sv:node sv:name="feedback">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hst:sitemapitem</sv:value>
