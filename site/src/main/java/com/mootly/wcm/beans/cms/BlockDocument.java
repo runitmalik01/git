@@ -101,16 +101,6 @@ public class BlockDocument extends FlexibleDocument implements ContentNodeBinder
 	}
 	
 	@Override
-	public void fill(FormMap formMap) {
-		// TODO Auto-generated method stub
-		super.fill(formMap);
-	}
-
-	public <T extends HippoBean> void cloneBean(T sourceBean) {
-		super.cloneBean(sourceBean);
-	}
-	
-	@Override
 	public boolean bind(Object content, javax.jcr.Node node)
 			throws ContentNodeBindingException {
 		// TODO Auto-generated method stub

@@ -22,50 +22,25 @@
  */
 
 package com.mootly.wcm.beans.cms.compound;
-import static com.mootly.wcm.utils.Constants.NT_PERSONAL_INFO_LINK;
-
-import java.math.BigInteger;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
+import java.util.Map;
 
 import javax.jcr.RepositoryException;
-import javax.jcr.ValueFormatException;
-import javax.jcr.lock.LockException;
-import javax.jcr.nodetype.ConstraintViolationException;
-import javax.jcr.version.VersionException;
 
 import org.hippoecm.hst.component.support.forms.FormMap;
 import org.hippoecm.hst.content.beans.ContentNodeBindingException;
 import org.hippoecm.hst.content.beans.Node;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
-import org.hippoecm.hst.content.beans.standard.HippoDocument;
-import org.hippoecm.hst.content.beans.standard.HippoItem;
 import org.hippoecm.hst.content.beans.standard.HippoMirror;
 import org.hippoecm.hst.content.beans.standard.HippoMirrorBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.mootly.wcm.annotations.BeanClone;
-import com.mootly.wcm.annotations.CalculatedField;
-import com.mootly.wcm.annotations.FormField;
-import com.mootly.wcm.annotations.NodeBinder;
-import com.mootly.wcm.annotations.TagAsTaxDataProvider;
-import com.mootly.wcm.annotations.TagAsTaxDataProvider.TaxDataProviderType;
-import com.mootly.wcm.annotations.prop.FormMapKey;
-import com.mootly.wcm.beans.BaseDocument;
 import com.mootly.wcm.beans.FormMapFiller;
-import com.mootly.wcm.beans.HouseProperty;
 import com.mootly.wcm.beans.cms.BlockDocument;
 import com.mootly.wcm.beans.standard.FlexibleDocument;
-import com.mootly.wcm.model.PaymentType;
-import com.mootly.wcm.model.PaymentVerificationStatus;
-import com.mootly.wcm.services.FormMapHelper;
-import com.mootly.wcm.services.citruspay.Transaction;
-import com.mootly.wcm.services.citruspay.Transaction.ENQUIRY_RESP_CODE;
-import com.mootly.wcm.utils.BeanCloneHelper;
-import com.mootly.wcm.utils.CalculatedFieldHelper;
-import com.mootly.wcm.utils.NodeBinderHelper;
 
 
 @SuppressWarnings("unused")
@@ -74,16 +49,42 @@ public class PageRowDetail extends FlexibleDocument implements FormMapFiller {
 	static final public String NODE_NAME = PageRowDetail.class.getName().toLowerCase();
 	private final static Logger log = LoggerFactory.getLogger(PageRowDetail.class); 
 	final String PROP_DETAIL_BEAN="mootlywcm:pbpagerowdetail";
-	
+	final String UUID_SEPRATE = ",";
+	final String PROP_COLUMN_BEAN = "mootlywcm:columns";
+
 	Boolean notContainer;
 	Boolean notRow;
 	Boolean notColumn;
 	
 	List<BlockDocument> blockDocuments;
-	
+	List<String> blockCanonicalUUIDs;
+	private boolean markedForDeletion;
 	public final Boolean getNotContainer() {
 		if (notContainer == null) notContainer = getProperty("mootlywcm:notContainer");
 		return notContainer;
+	}
+
+	public final boolean isMarkedForDeletion() {
+		return markedForDeletion;
+	}
+	public final void setMarkedForDeletion(boolean markedForDeletion) {
+		this.markedForDeletion = markedForDeletion;
+	}
+
+	public List<String> getBlockCanonicalUUIDs() {
+		if(blockCanonicalUUIDs == null){
+			blockCanonicalUUIDs = new ArrayList<String>();
+			List<String> uuidsArray = new ArrayList<String>();
+			for(HippoBean bean:getBlockDocuments()){
+				uuidsArray.add(bean.getCanonicalUUID());
+			}
+			blockCanonicalUUIDs.addAll(uuidsArray);
+		}
+		return blockCanonicalUUIDs;
+	}
+
+	public void setBlockCanonicalUUIDs(List<String> blockCanonicalUUIDs) {
+		this.blockCanonicalUUIDs = blockCanonicalUUIDs;
 	}
 
 	public final Boolean getNotRow() {
@@ -112,6 +113,54 @@ public class PageRowDetail extends FlexibleDocument implements FormMapFiller {
 		return blockDocuments;
 	}
 	
+	public boolean bindToNode(javax.jcr.Node node)
+			throws ContentNodeBindingException {
+		super.bindToNode(node);
+		if (log.isInfoEnabled()) {
+			log.info("Lets see value of UUID List"+getBlockCanonicalUUIDs());			
+		}
+		for(String canonicalUUID:getBlockCanonicalUUIDs()){
+			javax.jcr.Node prdLinkNode;
+			try {
+				//prdLinkNode = node.getNode(PROP_COLUMN_BEAN);
+				prdLinkNode = node.addNode(PROP_COLUMN_BEAN, "hippo:mirror");
+				prdLinkNode.setProperty("hippo:docbase", canonicalUUID);
+			}  catch (RepositoryException e) {
+				// TODO Auto-generated catch block
+				log.error("Error in Repository",e);
+			}	
+		}
+		return true;
+	}
+
+	@Override
+	public void fill(FormMap formMap) {
+		// TODO Auto-generated method stub
+		super.fill(formMap);
+		if (log.isInfoEnabled()) {
+			log.info("Into the fill method");			
+		}
+		if (formMap == null) return;
+		if(formMap.getField("blockDocCanonicalUUIDs")!=null){
+			Map<String,String> mapForUUIDS = formMap.getField("blockDocCanonicalUUIDs").getValues();
+			List<String> uuids = new ArrayList<String>();
+			for(String key:mapForUUIDS.keySet()){
+				if (log.isInfoEnabled()) {
+					log.info("UUid of Block Doc"+mapForUUIDS.get(key));			
+				}
+				uuids.add(key);
+			}
+			setBlockCanonicalUUIDs(uuids);
+		}
+	}
+	@Override
+	public <T extends HippoBean> void cloneBean(T sourceBean) {
+		// TODO Auto-generated method stub
+		super.cloneBean(sourceBean);
+		PageRowDetail pageRowDetail = (PageRowDetail) sourceBean;
+		setBlockCanonicalUUIDs(pageRowDetail.getBlockCanonicalUUIDs());
+	}
+	
 	@BeanClone
 	public final void setNotContainer(Boolean notContainer) {
 		this.notContainer = notContainer;
@@ -132,22 +181,6 @@ public class PageRowDetail extends FlexibleDocument implements FormMapFiller {
 		this.blockDocuments = blockDocuments;
 	}
 	
-	@Override
-	public void fill(FormMap formMap) {
-		// TODO Auto-generated method stub
-		super.fill(formMap);
-	}
 	
-	@Override
-	public <T extends HippoBean> void cloneBean(T sourceBean) {
-		super.cloneBean(sourceBean);
-		
-	};
-	
-	@Override
-	public boolean bindToNode(javax.jcr.Node node)
-			throws ContentNodeBindingException {
-		// TODO Auto-generated method stub
-		return super.bindToNode(node);
-	}
+
 }
