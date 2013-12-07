@@ -21,15 +21,16 @@
  * 
  */
 
-
-
-
 package com.mootly.wcm.beans.cms;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.jcr.NodeIterator;
 import javax.jcr.RepositoryException;
+import javax.jcr.ValueFormatException;
+import javax.jcr.lock.LockException;
+import javax.jcr.nodetype.ConstraintViolationException;
+import javax.jcr.version.VersionException;
 
 import org.hippoecm.hst.component.support.forms.FormMap;
 import org.hippoecm.hst.content.beans.ContentNodeBinder;
@@ -113,8 +114,39 @@ public class BlockDocument extends FlexibleDocument implements ContentNodeBinder
 	public boolean bind(Object content, javax.jcr.Node node)
 			throws ContentNodeBindingException {
 		// TODO Auto-generated method stub
-		return false;
+		//super.bindToNode(node);
+		BlockDocument blockDocument = (BlockDocument) content;
+		try {
+			node.setProperty("mootlywcm:title", blockDocument.getTitle());
+			node.setProperty("hst:script", blockDocument.getScript());
+			node.setProperty("mootlywcm:showAsIs", blockDocument.getShowAsIs());
+		} catch (RepositoryException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return true;
 	}
 	
+	@Override
+	public void fill(FormMap formMap) {
+		// TODO Auto-generated method stub
+		super.fill(formMap);
+		if(formMap == null)
+			return;
+		if(formMap.getField("title")!=null){
+			setTitle(formMap.getField("title").getValue());
+		}
+		if(formMap.getField("script")!=null){
+			setScript(formMap.getField("script").getValue());
+		}
+		if(formMap.getField("showAsIs")!=null){
+			setShowAsIs(Boolean.valueOf(formMap.getField("showAsIs").getValue()));
+		}
+	}
 	
+	@Override
+	public <T extends HippoBean> void cloneBean(T sourceBean) {
+		// TODO Auto-generated method stub
+		super.cloneBean(sourceBean);
+	}
 }

@@ -21,9 +21,6 @@
  * 
  */
 
-
-
-
 package com.mootly.wcm.beans.cms;
 import java.util.ArrayList;
 import java.util.List;
@@ -50,11 +47,13 @@ import com.mootly.wcm.annotations.TagAsTaxDataProvider;
 import com.mootly.wcm.annotations.TagAsTaxDataProvider.TaxDataProviderType;
 import com.mootly.wcm.beans.CompoundChildUpdate;
 import com.mootly.wcm.beans.FormMapFiller;
+import com.mootly.wcm.beans.SalaryIncomeDocument;
 import com.mootly.wcm.beans.cms.compound.PageRowDetail;
 import com.mootly.wcm.beans.compound.ImageSet;
 import com.mootly.wcm.beans.compound.InvoiceDocumentDetail;
 import com.mootly.wcm.beans.compound.InvoicePaymentDetail;
 import com.mootly.wcm.beans.compound.InvoiceRefundDetail;
+import com.mootly.wcm.beans.compound.SalaryIncomeDetail;
 import com.mootly.wcm.beans.standard.FlexibleDocument;
 import com.mootly.wcm.model.InvoicePaymentStatus;
 import com.mootly.wcm.model.PaymentVerificationStatus;
@@ -63,14 +62,14 @@ import com.mootly.wcm.services.SequenceGenerator;
 @SuppressWarnings("unused")
 @Node(jcrType = "mootlywcm:pbpagedocument")
 @TagAsTaxDataProvider(type=TaxDataProviderType.INCOME)
-public class PageDocument extends FlexibleDocument implements ContentNodeBinder,FormMapFiller {
-	
+public class PageDocument extends FlexibleDocument implements ContentNodeBinder,FormMapFiller,CompoundChildUpdate {
+
 	private final static Logger log = LoggerFactory.getLogger(PageDocument.class); 
 	final String PROP_DETAIL_BEAN="mootlywcm:pbpagerowdetail";
 
 	String title;
 	List<HippoBean> blocks;
-	
+
 	private List<PageRowDetail> pageRowDetails;
 
 	@FormField(name="title")
@@ -82,25 +81,24 @@ public class PageDocument extends FlexibleDocument implements ContentNodeBinder,
 	public final void setTitle(String title) {
 		this.title = title;
 	}
-	
-	
+
 	public List<HippoBean> getBlocks() {
 		if (blocks == null) {
 			loadBlocks();
 		}
 		return blocks;
 	}
-	
+
 	private void loadBlocks() {
 		blocks = new ArrayList<HippoBean>();
 		List<HippoBean> hippoBeans = getChildBeansByName("mootlywcm:blocks");
 		log.info("Testing");
 		if (hippoBeans != null) {
 			for (HippoBean hippoBean : hippoBeans) {
-				 if (hippoBean instanceof HippoMirror) {
-					 HippoMirror hippoMirror = (HippoMirror) hippoBean;
-					 blocks.add( hippoMirror.getReferencedBean() );
-				 }
+				if (hippoBean instanceof HippoMirror) {
+					HippoMirror hippoMirror = (HippoMirror) hippoBean;
+					blocks.add( hippoMirror.getReferencedBean() );
+				}
 			}
 		}
 		//getChildBeans(mootlywcm:blocks)
@@ -116,9 +114,9 @@ public class PageDocument extends FlexibleDocument implements ContentNodeBinder,
                 }
             }
         }
-        */
-    }
-	
+		 */
+	}
+
 	public final List<PageRowDetail> getPageRowDetails() {
 		if (pageRowDetails == null) pageRowDetails= getChildBeans(PROP_DETAIL_BEAN);
 		return pageRowDetails;
@@ -133,14 +131,91 @@ public class PageDocument extends FlexibleDocument implements ContentNodeBinder,
 		if (pageRowDetails == null) pageRowDetails = new ArrayList<PageRowDetail>();
 		pageRowDetails.add(pageRowDetail);
 	}
-	
+
 
 	@Override
 	public boolean bind(Object content, javax.jcr.Node node)
 			throws ContentNodeBindingException {
 		// TODO Auto-generated method stub
-		return false;
+		try {
+			PageDocument pageDocument = (PageDocument) content;
+			NodeIterator nodeIterator = node.getNodes(PROP_DETAIL_BEAN);
+			if (nodeIterator != null) {
+				while (nodeIterator.hasNext()) {
+					javax.jcr.Node aNode = nodeIterator.nextNode();
+					aNode.remove();
+				}
+			}
+			if (pageDocument.getPageRowDetails() != null && pageDocument.getPageRowDetails().size() > 0 ){ 
+				for (PageRowDetail pageRowDetail:pageDocument.getPageRowDetails()) {    			
+					if (!pageRowDetail.isMarkedForDeletion()) {
+						javax.jcr.Node html = node.addNode(PROP_DETAIL_BEAN, PROP_DETAIL_BEAN);
+						pageRowDetail.bindToNode(html); 
+					}
+				}
+			}
+		} catch (RepositoryException e) {
+			// TODO Auto-generated catch block
+			log.error("Repository Exception while binding",e);
+		}
+		return true;
 	}
-	
-	
+
+	@Override
+	public void fill(FormMap formMap) {
+		// TODO Auto-generated method stub
+		super.fill(formMap);
+	}
+
+	@Override
+	public void update(HippoBean child) {
+		// TODO Auto-generated method stub
+		if (child.getCanonicalUUID() == null) {
+			PageRowDetail source =(PageRowDetail) child;
+			addPageRowDetail(source);
+		}
+		boolean found = false;
+		List<PageRowDetail> listOfChildren = getPageRowDetails();
+		for (HippoBean o:listOfChildren) {
+			log.info( o.getCanonicalUUID() );
+			if (child.getCanonicalUUID() != null && child.getCanonicalUUID().equals(o.getCanonicalUUID())) {
+				log.info("GOT A MATCH");
+				PageRowDetail destination =(PageRowDetail) o;
+				PageRowDetail source  = (PageRowDetail) child;
+				destination.cloneBean(source);
+				found = true;
+				break;
+			}
+		}
+	}
+
+	@Override
+	public void delete(HippoBean child) {
+		// TODO Auto-generated method stub
+		boolean found = false;
+		List<PageRowDetail> listOfChildren = getPageRowDetails();
+		for (HippoBean o:listOfChildren) {
+			log.info( o.getCanonicalUUID() );
+			if (child.getCanonicalUUID() != null && child.getCanonicalUUID().equals(o.getCanonicalUUID())) {
+				log.info("GOT A MATCH");
+				PageRowDetail destination =(PageRowDetail) o;
+				PageRowDetail source  = (PageRowDetail) child;
+				destination.setMarkedForDeletion(true);
+				found = true;
+				break;
+			}
+		}
+		if (!found) {
+			//its a new node lets add it
+			PageRowDetail source =(PageRowDetail) child;
+			addPageRowDetail(source);
+		}
+	}
+
+	@Override
+	public void add(HippoBean child) {
+		// TODO Auto-generated method stub
+		PageRowDetail source =(PageRowDetail) child;
+		addPageRowDetail(source);	
+	}
 }
