@@ -23,9 +23,11 @@
 <%--@elvariable id="ef_errors" type="java.util.List"--%>
 <%--@elvariable id="error" type="org.onehippo.forge.easyforms.model.ErrorMessage"--%>
 
-<%if(request.getUserPrincipal()!=null){
-    pageContext.setAttribute("regemail", request.getUserPrincipal().getName()); 
-    }
+<%
+	if (request.getUserPrincipal() != null) {
+		pageContext.setAttribute("regemail", request.getUserPrincipal()
+				.getName());
+	}
 %>
 
 
@@ -47,108 +49,44 @@
 		</c:forEach>
 		<form class="form" name="contactus" action="<hst:actionURL />"
 			method="post" id="${form.id}">
+			
+			<div class="row-fluid show-grid">
+				<div class="span3">Your Name<span style="color: red">*</span></div>
+				<div class="span8">
+					<input id="name" type="text" name="name" required="required"><br><br>
+				</div>
+			</div>
+			<div class="row-fluid show-grid">
+				<div class="span3">E-mail ID<span style="color: red">*</span></div>
+				<div class="span8">
+					<input type="text" id="email" name="email" required="required"><br><br>
+				</div>
 
-			<c:forEach var="field" items="${form.fields}">
-				<c:choose>
-					<c:when test="${field.simpleText}">
-						<div class="ef-text">
-							<h2>
-								<c:out value="${field.label}" />
-							</h2>
-
-							<p>
-								<c:out value="${field.hint}" />
-							</p>
-						</div>
-					</c:when>
-
-					<%-- simple types layout--%>
-
-					<c:when
-						test="${field.textField or field.password or field.textArea or field.dropdown or field.radioBox or field.checkBox}">
-						<!--   <div class="ef-field clearfix">
-                        <label><c:out value="${field.label}"/><span class="ef-req"><c:out value="${field.requiredMarker}"/></span></label>
-                        <>${field.html}<span class="ef-hint"><c:out value="${field.hint}"/></span>
-                    </div>-->
-						<div class="span2">
-							<label><c:out value="${field.label}" /><span
-								class="ef-req"><c:out value="${field.requiredMarker}" />
-							</span>
-							</label> ${field.html} <span class="ef-hint"><c:out
-									value="${field.hint}" />
-							</span>
-						</div>
-					</c:when>
-					<c:when test="${field.radioGroup}">
-						<div class="ef-field clearfix">
-							<label><c:out value="${field.label}" /><span
-								class="ef-req"><c:out value="${field.requiredMarker}" />
-							</span>
-							</label>
-							<c:forEach var="radio" items="${field.fields}">
-								<p>
-									${radio.html}<span><c:out value="${radio.label}" />
-									</span>
-								</p>
-							</c:forEach>
-							<c:if test="${field.allowOther}">
-                               ${field.otherChoice} <fmt:message
-									key="easyforms.formtemplate.other" />: <span>${field.other}</span>
-							</c:if>
-							<span class="ef-hint"><c:out value="${field.hint}" />
-							</span>
-						</div>
-					</c:when>
-					<c:when test="${field.checkBoxGroup}">
-						<div class="ef-field clearfix">
-							<label><c:out value="${field.label}" /><span
-								class="ef-req">${field.requiredMarker}</span>
-							</label>
-							<c:forEach var="box" items="${field.fields}">
-								<p>
-									${box.html}
-									<c:out value="${box.label}" />
-								</p>
-							</c:forEach>
-							<c:if test="${field.allowOther}">
-                               ${field.otherChoice} <fmt:message
-									key="easyforms.formtemplate.other" />: <span>${field.other}</span>
-							</c:if>
-							<span class="ef-hint"><c:out value="${field.hint}" />
-							</span>
-						</div>
-					</c:when>
-					<%--  LIKERT--%>
-					<c:when test="${field.likert}">
-						<div class="ef-field clearfix">
-							<label><c:out value="${field.label}" /><span
-								class="ef-req"><c:out value="${field.requiredMarker}" />
-							</span>
-							</label>
-							<table class="ef-likert-table">
-								<tr>
-									<td>&nbsp;</td>
-									<c:forEach var="option" items="${field.options}">
-										<td>${option}</td>
-									</c:forEach>
-								</tr>
-								<c:forEach var="map" items="${field.htmlMap}">
-									<tr>
-										<td><c:out value="${map.key.label}" />
-										</td>
-										<c:forEach var="radio" items="${map.value}">
-											<td>${radio.html}</td>
-										</c:forEach>
-									</tr>
-								</c:forEach>
-							</table>
-							<span class="ef-hint"><c:out value="${field.hint}" />
-							</span>
-						</div>
-					</c:when>
-				</c:choose>
-			</c:forEach>
-
+			</div>
+			<div class="row-fluid show-grid">
+				<div class="span4">Category<span style="color: red">*</span></div>
+				<div class="span7">
+					<select name="category" id="category" required="required">
+						<option value="">-Select-</option>
+						<option value="am">Accounting Management</option>
+						<option value="nd">Newsletter Delivery</option>
+						<option value="up">Username and Password</option>
+						<option value="ep">Email Preferences</option>
+						<option value="ma">Mailing Address Change</option>
+						<option value="oth">Other</option>
+					</select> <br>
+				</div>
+			</div>
+		<div class="row-fluid show-grid">
+				<div class="span3">Comments/Questions</div>
+				<div class="span8">	<textarea cols="40" rows="20" name="comments"></textarea><br>
+				</div>
+			</div>
+			<div class="row-fluid show-grid">
+				<div class="span3">Resolution</div>
+				<div class="span8">	<textarea cols="40" rows="20" name="resolution"></textarea><br>
+				</div>
+			</div>
 			<div class="ef-buttons">
 				<c:forEach var="button" items="${form.buttons}">
                 ${button.html}
@@ -187,11 +125,11 @@ ${form.jsCall}
 		type="text/css" />
 </hst:headContribution>
 <script type="text/javascript">
-	$(document).ready(function(){ 
-	var regemail='<c:out value = "${regemail}" />';
-	if(regemail!='')
-	{
-	contactus.email.value= regemail ;}
+	$(document).ready(function() {
+		var regemail = '<c:out value = "${regemail}" />';
+		if (regemail != '') {
+			contactus.email.value = regemail;
+		}
 	});
-	
-	</script>
+</script>
+
