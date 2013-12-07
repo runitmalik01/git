@@ -318,7 +318,7 @@ public class ITR4XmlGeneratorService  {
 		itr4.setITR4ScheduleBP(iTR4_ScheduleBP.getITR4ScheduleBP(itr, financialYear, inputBeans));
 
 		ITR4_ScheduleUD iTR4_ScheduleUD = new ITR4_ScheduleUD(unabsorbedDepreciationDocument);
-		itr4.setITR4ScheduleUD(iTR4_ScheduleUD.getITR4ScheduleUD(itr));
+		itr4.setITR4ScheduleUD(iTR4_ScheduleUD.getITR4ScheduleUD(itr,financialYear,inputBeans));
 
 		ITR_ScheduleDPM iTR_ScheduleDPM = new ITR_ScheduleDPM(scheduleDPMDocument);
 		itr4.setScheduleDPM(iTR_ScheduleDPM.getScheduleDPM(itr));
