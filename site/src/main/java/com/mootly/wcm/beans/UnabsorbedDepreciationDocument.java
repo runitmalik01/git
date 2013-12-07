@@ -157,14 +157,8 @@ public class UnabsorbedDepreciationDocument extends BaseDocument implements Cont
 
 					if (!unabsorbedDepreciationDetail.isMarkedForDeletion()) {
 						double amount=unabsorbedDepreciationDetail.getAmtUADepreciation();
-						double amount2=unabsorbedDepreciationDetail.getAmtDepCurrYear();
-						double amount3=unabsorbedDepreciationDetail.getBalanceCarry();
 						log.info("value of amount after fetching from compound bean"+amount);
 						sum=sum+ amount;
-						sum2=sum2+amount2;
-						sum3=sum3+amount3;
-						// Double sum1= (double) sum;
-						//  strSum= BigDecimal.valueOf(sum1).toPlainString();
 						javax.jcr.Node html = node.addNode(PROP_DETAIL_BEAN, PROP_DETAIL_BEAN);
 						unabsorbedDepreciationDetail.bindToNode(html); 
 					}
@@ -177,17 +171,7 @@ public class UnabsorbedDepreciationDocument extends BaseDocument implements Cont
 			node.setProperty("mootlywcm:total1", getTotal_Amount());
 			node.setProperty("mootlywcm:total2", getTotal2());
 			node.setProperty("mootlywcm:total3", getTotal3());
-			/*
-			javax.jcr.Node prdLinkNode;
-			if (node.hasNode(NT_PERSONAL_INFO_LINK)) {
-				prdLinkNode = node.getNode(NT_PERSONAL_INFO_LINK);
-			} else {
-				prdLinkNode = node.addNode(NT_PERSONAL_INFO_LINK, "hippo:mirror");
-			}
-			prdLinkNode.setProperty("hippo:docbase", salaryincome.getPersonalInfoUuid());
-			 */
-
-		} catch (RepositoryException rex) {
+			} catch (RepositoryException rex) {
 			log.error("Repository Exception while binding",rex);
 		}
 		return true;
