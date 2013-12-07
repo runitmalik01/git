@@ -1,5 +1,6 @@
 package com.mootly.wcm.model.schedules.y2013_2014;
 
+import java.math.BigInteger;
 import java.util.List;
 
 import in.gov.incometaxindiaefiling.y2013_2014.ITR;
@@ -31,8 +32,8 @@ public class ITR4_ScheduleUD {
 					ScheduleUD scheduleUD = new ScheduleUD();
 					scheduleUD.setAssYr(unabsorbedDepreciationDetail.getAssessYear());
 					scheduleUD.setAmtBFUD(indianCurrencyHelper.bigIntegerRound(unabsorbedDepreciationDetail.getAmtUADepreciation()));
-					scheduleUD.setAmtDeprSOCY(indianCurrencyHelper.bigIntegerRound(unabsorbedDepreciationDetail.getAmtDepCurrYear()));
-					scheduleUD.setBalCFNY(indianCurrencyHelper.bigIntegerRound(unabsorbedDepreciationDetail.getBalanceCarry()));
+					scheduleUD.setAmtDeprSOCY(new BigInteger("0"));
+					scheduleUD.setBalCFNY(new BigInteger("0"));
 					iTR4ScheduleUD.getScheduleUD().add(scheduleUD);
 					if(!hasAValidUD) hasAValidUD = true;
 				}
