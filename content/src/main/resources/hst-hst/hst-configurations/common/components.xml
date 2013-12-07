@@ -549,6 +549,22 @@
   </sv:property>
 </sv:node>
   <!-- end of reseller activation -->
+  <!-- start of reseller reactivation -->
+<sv:node sv:name="reseller-reactivation">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:component</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>478551ff-5a22-4f20-941f-6a9beb21a540</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:componentclassname" sv:type="String">
+    <sv:value>com.mootly.wcm.reseller.ReActivation</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:template" sv:type="String">
+    <sv:value>reseller.reactivation</sv:value>
+  </sv:property>
+</sv:node>
+  <!-- end of reseller reactivation -->
   <sv:node sv:name="activationcode">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
       <sv:value>hst:component</sv:value>
