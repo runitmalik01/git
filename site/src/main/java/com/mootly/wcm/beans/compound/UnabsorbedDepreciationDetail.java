@@ -36,8 +36,7 @@ public class UnabsorbedDepreciationDetail extends HippoItem implements FormMapFi
 	private final static Logger log = LoggerFactory.getLogger(UnabsorbedDepreciationDetail.class);
 	private String assessYear;
 	private Double amtUADepreciation;
-	private Double amtDepCurrYear;
-	private Double balanceCarry;
+
 	private boolean markedForDeletion;
 	private String personalInfoUuid;
 	public final boolean isMarkedForDeletion() {
@@ -55,16 +54,6 @@ public class UnabsorbedDepreciationDetail extends HippoItem implements FormMapFi
 		if (amtUADepreciation == null) amtUADepreciation = getProperty("mootlywcm:amtUaDep");
 		return amtUADepreciation;
 	}
-	public final Double getAmtDepCurrYear() {
-		if (amtDepCurrYear == null) amtDepCurrYear = getProperty("mootlywcm:amtDepCurrYear");
-		return amtDepCurrYear;
-	}
-	public final Double getBalanceCarry() {
-		if (balanceCarry == null) balanceCarry = getProperty("mootlywcm:balanceCarry");
-		return balanceCarry;
-	}
-
-
 
 	// setter method start here
 	public final void setAssessYear(String assessYear) {
@@ -72,12 +61,6 @@ public class UnabsorbedDepreciationDetail extends HippoItem implements FormMapFi
 	}
 	public final void setAmtUADepreciation(Double amtUADepreciation) {
 		this.amtUADepreciation = amtUADepreciation;
-	}
-	public final void setAmtDepCurrYear(Double amtDepCurrYear) {
-		this.amtDepCurrYear = amtDepCurrYear;
-	}
-	public final void setBalanceCarry(Double balanceCarry) {
-		this.balanceCarry = balanceCarry;
 	}
 
 	//for personal information
@@ -108,17 +91,9 @@ public class UnabsorbedDepreciationDetail extends HippoItem implements FormMapFi
 		// TODO Auto-generated method stub
 		try {
 			node.setProperty("mootlywcm:assessYear", getAssessYear());
-			if(getAmtDepCurrYear()!=null){
-				node.setProperty("mootlywcm:amtDepCurrYear", getAmtDepCurrYear());
-			}
 			if(getAmtUADepreciation()!=null){
-
 				node.setProperty("mootlywcm:amtUaDep", getAmtUADepreciation());
 			}
-			if (getBalanceCarry()!=null) {
-				node.setProperty("mootlywcm:balanceCarry", getBalanceCarry());
-			}
-
 		} catch (RepositoryException rex) {
 			log.error("Repository Exception while binding",rex);
 		}
@@ -132,17 +107,8 @@ public class UnabsorbedDepreciationDetail extends HippoItem implements FormMapFi
 		}
 		double amtdef=0.0d;
 		if (formMap == null) return;
-
 		if ( formMap.getField("assessYear") != null) {
 			setAssessYear(formMap.getField("assessYear").getValue());
-		}
-		if ( formMap.getField("amtDepCurrYear").getValue().isEmpty()) {
-			setAmtDepCurrYear(amtdef);
-		}
-		else{
-			String stramtDepCurrYear = formMap.getField("amtDepCurrYear").getValue();
-			double amtDepCurrYear= Double.parseDouble(stramtDepCurrYear);
-			setAmtDepCurrYear(amtDepCurrYear);
 		}
 		if ( formMap.getField("amtUaDep").getValue().isEmpty()) {
 			setAmtUADepreciation(amtdef);
@@ -152,21 +118,12 @@ public class UnabsorbedDepreciationDetail extends HippoItem implements FormMapFi
 			double amtUaDep = Double.parseDouble(stramtUaDep);
 			setAmtUADepreciation(amtUaDep);
 		}
-		if ( formMap.getField("balanceCarry").getValue().isEmpty()) {
-			setBalanceCarry(amtdef);}
-		else{
-			String strbalanceCarry = formMap.getField("balanceCarry").getValue();
-			double balanceCarry = Double.parseDouble(strbalanceCarry);
-			setBalanceCarry(balanceCarry);
-		}
+
 	}
 
 	public <T extends HippoBean> void cloneBean(T sourceBean) {
 		UnabsorbedDepreciationDetail objUAdepDetail = (UnabsorbedDepreciationDetail) sourceBean;
 		setAssessYear(objUAdepDetail.getAssessYear());
-		setAmtDepCurrYear(objUAdepDetail.getAmtDepCurrYear());
 		setAmtUADepreciation(objUAdepDetail.getAmtUADepreciation());
-		setBalanceCarry(objUAdepDetail.getBalanceCarry());
-
 	};
 }
