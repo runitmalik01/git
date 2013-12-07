@@ -3774,5 +3774,48 @@
     <sv:value>jsp/layout/bootstrap_v2/header/menu-top_v2.jsp</sv:value>
   </sv:property>
 </sv:node>
-
+<sv:node sv:name="websitebuilder" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:template</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>d6030edc-1616-498f-9e1f-24b410840e24</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:renderpath" sv:type="String">
+    <sv:value>jsp/cms/websitebuilder/websitebuilder.jsp</sv:value>
+  </sv:property>
+</sv:node>
+<sv:node sv:name="websitebuilder-pages" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:template</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>140452b7-a3eb-4382-86b8-a16571a0c178</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:renderpath" sv:type="String">
+    <sv:value>jsp/cms/websitebuilder/pages.jsp</sv:value>
+  </sv:property>
+</sv:node>
+<sv:node sv:name="websitebuilder-blocks" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:template</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>3bfc1e7c-140e-4c68-b4ee-5f77ca8daa07</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:renderpath" sv:type="String">
+    <sv:value>jsp/cms/websitebuilder/blocks.jsp</sv:value>
+  </sv:property>
+</sv:node>
+<sv:node sv:name="websitebuilder-assets" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:template</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>7decdd1d-2c7f-41f2-a168-a026772359b3</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:renderpath" sv:type="String">
+    <sv:value>jsp/cms/websitebuilder/assets.jsp</sv:value>
+  </sv:property>
+</sv:node>
 </sv:node>
