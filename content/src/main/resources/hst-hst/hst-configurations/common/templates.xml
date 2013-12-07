@@ -2261,6 +2261,58 @@
   </sv:property>
 </sv:node>
   <!-- end of reseller activation -->
+  <!-- start of reseller reactivation -->
+<sv:node sv:name="reseller.reactivation">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:template</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>da62d977-33fb-407e-9a99-5b7732dc84eb</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:renderpath" sv:type="String">
+    <sv:value>jsp/reseller/reactivation.jsp</sv:value>
+  </sv:property>
+</sv:node>
+  <!-- end of reseller reactivation -->
+  <!-- start of reseller signup box -->
+<sv:node sv:name="resellersignup.box.reactivation.ftl">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:template</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>ebfa9639-245e-4b37-bd47-97ee4c14dd10</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:script" sv:type="String">
+    <sv:value>&lt;#--
+
+	    Copyright (C) 2010 Hippo B.V.
+
+	    Licensed under the Apache License, Version 2.0 (the "License");
+	    you may not use this file except in compliance with the License.
+	    You may obtain a copy of the License at
+
+	            http://www.apache.org/licenses/LICENSE-2.0
+
+	    Unless required by applicable law or agreed to in writing, software
+	    distributed under the License is distributed on an "AS IS" BASIS,
+	    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	    See the License for the specific language governing permissions and
+	    limitations under the License.
+
+	--&gt;
+
+	&lt;#assign fmt=JspTaglibs["http://java.sun.com/jsp/jstl/fmt"]&gt;
+	&lt;#assign hst=JspTaglibs["http://www.hippoecm.org/jsp/hst/core"]&gt;
+
+	&lt;@hst.defineObjects /&gt;
+	&lt;@hst.link var="activationcode" path="/reseller-reactivation"/&gt;
+	&lt;div id="text-3" class="widget-wrapper widget_text"&gt;
+	   &lt;div class="h3" style="font-weight:bold"&gt;Lost activation code?&lt;/div&gt;
+	   &lt;div class="textwidget"&gt;&lt;a href="${activationcode}"&gt;Resend Activation Code&lt;/a&gt;&lt;/div&gt;
+	&lt;/div&gt;</sv:value>
+  </sv:property>
+</sv:node>
+  <!-- end of reseller signup box -->
   <sv:node sv:name="member.bank.detail.rightnav">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
       <sv:value>hst:template</sv:value>
