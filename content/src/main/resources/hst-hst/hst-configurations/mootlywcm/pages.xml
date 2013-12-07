@@ -2813,6 +2813,41 @@
   </sv:node>
 </sv:node>
   <!-- end of reseller activation -->
+  <!-- start of reseller reactivation -->
+<sv:node sv:name="reseller-reactivation">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:component</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>e3bde728-66c3-4ecf-8e8c-8aabbfd4bf9b</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:referencecomponent" sv:type="String">
+    <sv:value>hst:pages/simplepage.re</sv:value>
+  </sv:property>
+  <sv:node sv:name="main">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>430fe668-8211-4bcd-84eb-b53e5f8a2df9</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>standard.main.re</sv:value>
+    </sv:property>
+    <sv:node sv:name="content">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>hst:component</sv:value>
+      </sv:property>
+      <sv:property sv:name="jcr:uuid" sv:type="String">
+        <sv:value>5aa76c0f-1e57-4e60-b03b-7ec6341a2515</sv:value>
+      </sv:property>
+      <sv:property sv:name="hst:referencecomponent" sv:type="String">
+        <sv:value>hst:components/reseller-reactivation</sv:value>
+      </sv:property>
+    </sv:node>
+  </sv:node>
+</sv:node>
+  <!-- end of reseller reactivation -->
   <sv:node sv:name="activation">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
       <sv:value>hst:component</sv:value>
@@ -6869,6 +6904,7 @@
   </sv:node>
   
   <!-- start of resellersignup -->
+
 <sv:node sv:name="reseller-signup">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hst:component</sv:value>
@@ -6971,7 +7007,7 @@
             <sv:value>com.mootly.wcm.components.BaseComponent</sv:value>
           </sv:property>
           <sv:property sv:name="hst:template" sv:type="String">
-            <sv:value>signup.box.reactivation.ftl</sv:value>
+            <sv:value>resellersignup.box.reactivation.ftl</sv:value>
           </sv:property>
           <sv:property sv:name="hst:xtype" sv:type="String">
             <sv:value>HST.Item</sv:value>
