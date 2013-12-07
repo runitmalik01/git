@@ -286,6 +286,25 @@
   </sv:node>
 </sv:node>
   <!-- end of reseller activation -->
+  <!-- start of reseller reactivation -->
+<sv:node sv:name="reseller-reactivation">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:sitemapitem</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>2e446ea0-9fd4-40be-a03b-a1c67e7b6bc8</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+    <sv:value>hst:pages/reseller-reactivation</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:refId" sv:type="String">
+    <sv:value>reseller-reactivation</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:relativecontentpath" sv:type="String">
+    <sv:value>members</sv:value>
+  </sv:property>
+</sv:node>
+  <!-- end of reseller reactivation -->
   <sv:node sv:name="estimation">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
       <sv:value>hst:sitemapitem</sv:value>
