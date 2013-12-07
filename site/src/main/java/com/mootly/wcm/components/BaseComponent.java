@@ -333,7 +333,7 @@ public class BaseComponent extends BaseHstComponent {
     		/*if (cc != null) emailMessage.setCc(cc);
     		if (bcc != null) emailMessage.setBcc(bcc);*/
     		StringBuffer sbHostName = new StringBuffer();
-			sbHostName.append(request.getScheme() + "://" +  request.getServerName()).append(":").append(request.getServerPort()).append("/").append(request.getContextPath());
+			sbHostName.append(request.getScheme() + "://" +  request.getServerName()).append(":").append(request.getServerPort()).append(request.getContextPath());
 			
 			if (isReseller() && getResellerId() != null) {
 				sbHostName.append("/r/").append(getResellerId());
