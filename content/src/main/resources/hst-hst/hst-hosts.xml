@@ -156,7 +156,7 @@
             <sv:value>r</sv:value>
           </sv:property>
           <sv:property sv:name="hst:channelpath" sv:type="String">
-            <sv:value>/hst:hst/hst:channels/mootlywcm-mobile</sv:value>
+            <sv:value>/hst:hst/hst:channels/mootlywcm</sv:value>
           </sv:property>
           <sv:property sv:name="hst:mountpoint" sv:type="String">
             <sv:value>/hst:hst/hst:sites/mootlywcm</sv:value>
@@ -209,7 +209,7 @@
               <sv:value>1db91752-dcf1-474a-a731-b8ea6629830c</sv:value>
             </sv:property>
             <sv:property sv:name="hst:alias" sv:type="String">
-              <sv:value>creditsafeindia</sv:value>
+              <sv:value>w4india</sv:value>
             </sv:property>
             <sv:property sv:name="hst:channelpath" sv:type="String">
               <sv:value>/hst:hst/hst:channels/w4india</sv:value>

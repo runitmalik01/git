@@ -27,14 +27,27 @@ import com.mootly.wcm.DocumentTypes;
  * Retrieves the properties of the GoGreen channels.
  */
 @FieldGroupList({
-        @FieldGroup(
-                titleKey = "fields.channel",
-                value = { "logo", "pageTitlePrefix", "themeCss","contentFolder","startDate","endDate","isReseller","resellerId", "emailFrom","emailFromName","emailSignature","emailCustomerService"}
-        ),
-        @FieldGroup(
-                titleKey = "fields.channel",
-                value = { "logo", "pageTitlePrefix", "themeCss","contentFolder","startDate","endDate","isReseller","resellerId", "emailFrom","emailFromName","emailSignature","emailCustomerService"}
-        )
+	@FieldGroup(
+            titleKey = "fields.channel",
+            value = { "logo", "pageTitlePrefix", "themeCss","contentFolder","startDate","endDate",
+			"isReseller","resellerId", 
+			"paymentEnabled","paymentAvailableTypes","numberOfLicensedUsers"}
+    ),
+    @FieldGroup(
+            titleKey = "fields.channel.customerservice",
+            value = { 
+			"emailFrom","emailFromName","emailSignature","emailCustomerService","phoneCustomerService"}
+    ),
+    @FieldGroup(
+            titleKey = "fields.channel.eri",
+            value = { 
+			"eriEnabled","eriUserId","eriPassword","eriSignature","eriCertChain","eriEnable26ASImport"}
+    ),
+	@FieldGroup(
+            titleKey = "fields.channel.payment",
+            value = { 
+			"paymentEnabled","paymentAvailableTypes","citrusUserId","citrusPassword"}
+	)
 })
 public interface WebsiteInfo extends ChannelInfo {
 
@@ -118,5 +131,14 @@ public interface WebsiteInfo extends ChannelInfo {
     @Parameter(name = "paymentAvailableTypes", defaultValue = "CHECK,CASH,RTGS", required = true)
     String getPaymentAvailableTypes();
     
-
+    @Parameter(name = "citrusUserId", defaultValue = "", required = false)
+    String getCitrusUserId();
+    
+    @Parameter(name = "citrusPassword", defaultValue = "", required = false)
+    String getCitrusPassword();
+    
+    
+    @Parameter(name = "numberOfLicensedUsers", defaultValue = "1", required = true)
+    String getNumberOfLicensedUsers();
+    //other website features
 }

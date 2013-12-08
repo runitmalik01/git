@@ -1,6 +1,5 @@
 package com.mootly.wcm.model;
 
-import com.mootly.wcm.member.ResidentialStatus;
 
 public enum FilingStatus {
 	COMPANY('c',"Company","C"),

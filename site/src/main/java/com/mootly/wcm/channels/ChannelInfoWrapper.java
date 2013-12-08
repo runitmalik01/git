@@ -28,6 +28,35 @@ public final class ChannelInfoWrapper {
 		return Boolean.valueOf(strEriEnabled);
 	}
 	
+	public Boolean getAllowSignup() {
+		Boolean allowSignup = false;
+		String strNumberOfLicensedUsers = webSiteInfo.getNumberOfLicensedUsers();
+		if (strNumberOfLicensedUsers != null) {
+			try {
+				Integer numberOfLicensedUsers = Integer.parseInt(strNumberOfLicensedUsers);
+				if (numberOfLicensedUsers != null && numberOfLicensedUsers > 0) {
+					allowSignup = true;
+				}
+			}catch (Exception ex) {
+				
+			}
+		}
+		return allowSignup;
+	}
+	
+	public Integer getTotalNumberOfLicensedUsers() {
+		String strNumberOfLicensedUsers = webSiteInfo.getNumberOfLicensedUsers();
+		if (strNumberOfLicensedUsers != null) {
+			try {
+				Integer numberOfLicensedUsers = Integer.parseInt(strNumberOfLicensedUsers);
+				return numberOfLicensedUsers;
+			}catch (Exception ex) {
+				
+			}
+		}
+		return 0;
+	}
+	
 	public final List<PaymentType> availablePaymentTypes() {
 		//List<PaymentType> listOfPaymentTypes = Arrays.asList(PaymentType.values());
 		List<PaymentType> minimumPaymentTypes = new ArrayList<PaymentType>();

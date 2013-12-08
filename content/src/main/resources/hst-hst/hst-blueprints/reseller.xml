@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?><sv:node xmlns:sv="http://www.jcp.org/jcr/sv/1.0" sv:name="reseller">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:blueprint</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>835c8d4e-8360-47dc-a5fa-6d69be03cd76</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:description" sv:type="String">
+    <sv:value>New Reseller Blueprint</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:name" sv:type="String">
+    <sv:value>Reseller</sv:value>
+  </sv:property>
+  <sv:node sv:name="hst:site">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:site</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>8d4ee2f5-0836-4538-928e-af0eb162a1b8</sv:value>
+    </sv:property>
+    <sv:node sv:name="hst:content">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>hippo:facetselect</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippo:docbase" sv:type="String">
+        <sv:value>996bcac5-86cf-49b5-a7a3-16a74863e814</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippo:facets" sv:type="String" sv:multiple="true">
+        <sv:value>hippo:availability</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippo:modes" sv:type="String" sv:multiple="true">
+        <sv:value>single</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippo:values" sv:type="String" sv:multiple="true">
+        <sv:value>live</sv:value>
+      </sv:property>
+    </sv:node>
+  </sv:node>
+  <sv:node sv:name="hst:channel">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:channel</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>f36feeca-a471-45ba-87f3-138defc16d71</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:channelinfoclass" sv:type="String">
+      <sv:value>com.mootly.wcm.channels.WebsiteInfo</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:name" sv:type="String">
+      <sv:value>Reseller WebSite</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:type" sv:type="String">
+      <sv:value>website</sv:value>
+    </sv:property>
+    <sv:node sv:name="hst:channelinfo">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>hst:channelinfo</sv:value>
+      </sv:property>
+      <sv:property sv:name="emailCustomerService" sv:type="String">
+        <sv:value>info@wealth4india.com</sv:value>
+      </sv:property>
+      <sv:property sv:name="emailFrom" sv:type="String">
+        <sv:value>info@wealth4india.com</sv:value>
+      </sv:property>
+      <sv:property sv:name="emailFromName" sv:type="String">
+        <sv:value>Wealth4India Team</sv:value>
+      </sv:property>
+      <sv:property sv:name="emailSignature" sv:type="String">
+        <sv:value>Wealth4India</sv:value>
+      </sv:property>
+      <sv:property sv:name="eriEnable26ASImport" sv:type="String">
+        <sv:value>true</sv:value>
+      </sv:property>
+      <sv:property sv:name="eriEnabled" sv:type="String">
+        <sv:value>true</sv:value>
+      </sv:property>
+      <sv:property sv:name="eriPassword" sv:type="String">
+        <sv:value>arun@123</sv:value>
+      </sv:property>
+      <sv:property sv:name="eriUserId" sv:type="String">
+        <sv:value>ERIU101869</sv:value>
+      </sv:property>
+      <sv:property sv:name="isReseller" sv:type="String">
+        <sv:value>true</sv:value>
+      </sv:property>
+      <sv:property sv:name="logo" sv:type="String">
+        <sv:value>/content/gallery/logos/w4ilogo_v2.png</sv:value>
+      </sv:property>
+      <sv:property sv:name="pageTitlePrefix" sv:type="String">
+        <sv:value>Income Tax Return Online, Income Tax eFiling India, Online Tax Filing, ITR e Filing - Wealth4India</sv:value>
+      </sv:property>
+      <sv:property sv:name="paymentAvailableTypes" sv:type="String">
+        <sv:value>CHECK,CASH,RTGS,NET_BANKING</sv:value>
+      </sv:property>
+      <sv:property sv:name="paymentEnabled" sv:type="String">
+        <sv:value>true</sv:value>
+      </sv:property>
+      <sv:property sv:name="phoneCustomerService" sv:type="String">
+        <sv:value>+91-11-45067102, +91-11-25074341, +91-9136265229</sv:value>
+      </sv:property>
+      <sv:property sv:name="resellerId" sv:type="String">
+        <sv:value>w4india</sv:value>
+      </sv:property>
+      <sv:property sv:name="resellerName" sv:type="String">
+        <sv:value>Wealth4India</sv:value>
+      </sv:property>
+      <sv:property sv:name="themeCss" sv:type="String">
+        <sv:value>/content/assets/themes/css/white.css</sv:value>
+      </sv:property>
+    </sv:node>
+  </sv:node>
+  <sv:node sv:name="hst:configuration">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:configuration</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>5a4ad073-3048-4146-86cb-af673d6c7671</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:inheritsfrom" sv:type="String" sv:multiple="true">
+      <sv:value>../common</sv:value>
+    </sv:property>
+  </sv:node>
+</sv:node>
