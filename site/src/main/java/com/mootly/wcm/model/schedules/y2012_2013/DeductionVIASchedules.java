@@ -15,9 +15,11 @@ import java.util.List;
 import java.util.Map;
 
 import org.hippoecm.hst.content.beans.standard.HippoBean;
+import org.hippoecm.hst.core.component.HstRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.mootly.wcm.beans.BusinessProfessionDocument;
 import com.mootly.wcm.beans.CapitalAssetDocument;
 import com.mootly.wcm.beans.DeductionDocument;
 import com.mootly.wcm.beans.DeductionSchedTenADocumemt;
@@ -30,6 +32,7 @@ import com.mootly.wcm.beans.OtherInformationDocument;
 import com.mootly.wcm.beans.OtherSourcesDocument;
 import com.mootly.wcm.beans.ProfitAndLossDocument;
 import com.mootly.wcm.beans.SalaryIncomeDocument;
+import com.mootly.wcm.beans.SchFourtyFourAEDocument;
 import com.mootly.wcm.beans.ScheduleDOADocument;
 import com.mootly.wcm.beans.ScheduleDPMDocument;
 import com.mootly.wcm.beans.ScheduleESRDocument;
@@ -130,6 +133,8 @@ public class DeductionVIASchedules extends XmlCalculation {
 		totalMapForJSDe.put("isSeniorCitizen",financialYear.isSeniorCitizen(memberPersonalInformation.getDOB().getTime()));
 		totalMapForJSDe.put("salarypension",longsalarytotal);
 		totalMapForJSDe.put("businessIncome", getBusinessIncome(itr, financialYear, inputBeans));
+		inputBeans.get(MemberPersonalInformation.class.getSimpleName().toLowerCase());
+		totalMapForJSDe.put("businessIncomeITR4",getBusinessIncITR4S((MemberPersonalInformation)inputBeans.get(MemberPersonalInformation.class.getSimpleName().toLowerCase()),(BusinessProfessionDocument)inputBeans.get(BusinessProfessionDocument.class.getSimpleName().toLowerCase()),(SchFourtyFourAEDocument)inputBeans.get(SchFourtyFourAEDocument.class.getSimpleName().toLowerCase())));
 		totalMapForJSDe.put("othersources",otherincome);
 		totalMapForJSDe.put("houseproperty",houseIncomeTotal);
 		Map<String,Object> resultMapDe = ScreenCalculatorService.getScreenCalculations("Chapter6Calc.js", requestParameterMap, totalMapForJSDe);
@@ -231,5 +236,20 @@ public class DeductionVIASchedules extends XmlCalculation {
 			businessIncome = partBTI.getProfBusGain().getTotProfBusGain().doubleValue();*/
 		}
 		return businessIncome;
+	}
+	public Double getBusinessIncITR4S(MemberPersonalInformation memberPersonalInformation,BusinessProfessionDocument businessProfessionDocument,SchFourtyFourAEDocument schFourtyFourAEDocument){
+		Double incChargUnderBusiness = 0d;
+		if(memberPersonalInformation != null){
+			ITRForm itrForm= memberPersonalInformation.getSelectedITRForm();
+			if(itrForm.equals(ITRForm.ITR4S)){
+				if(businessProfessionDocument != null){
+					incChargUnderBusiness = incChargUnderBusiness + businessProfessionDocument.getGrossPresumptIncome();
+				}
+				if(schFourtyFourAEDocument != null){
+					incChargUnderBusiness = incChargUnderBusiness + schFourtyFourAEDocument.getTotal_deemedIncome_Heavy()+schFourtyFourAEDocument.getTotal_deemedIncome_Light();
+				}
+			}
+		} 
+		return incChargUnderBusiness;
 	}
 }
