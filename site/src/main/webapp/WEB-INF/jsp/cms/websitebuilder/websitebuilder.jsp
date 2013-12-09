@@ -1,7 +1,7 @@
 <%@include file="../../includes/tags.jspf"%>
 <link rel="stylesheet" href="css/metro-bootstrap.css">
 <hippo-gogreen:title title="Website Builder"></hippo-gogreen:title>
-<hst:link var="websitebuilderlink" siteMapItemRefId="websitebuilder" />
+<hst:link var="websitebuilderlink" siteMapItemRefId="websitebuilder" /><br/>
 <div class="alert alert-info">
 	<h4>Welcome To WebsiteBuilder Panel</h4>
 </div>
@@ -52,8 +52,8 @@
     <div class="thumbnail">
       <!-- <img data-src="http://placehold.it/380x500" alt="fu"> -->
       <div class="caption">
-        <h4>Page Components</h4>
-        <p></p>
+        <h4><strong>Page Components</strong></h4>
+        <p>Capability to create WebPages for your WebSite.</p>
         <p><a href="${websitebuilderlink}/pages.html" class="btn btn-info" role="button"><span class="btn-label"><i
 			class="glyphicon glyphicon-eye-open"></i></span>View Pages</a> 
 		    <a href="${websitebuilderlink}/pages.html/newpage" class="btn btn-success" role="button"><span class="btn-label"><i
@@ -65,8 +65,8 @@
     <div class="thumbnail">
 <!--       <img data-src="http://placehold.it/380x500" alt="..."> -->
       <div class="caption">
-        <h4>Blocks Components</h4>
-        <p></p>
+        <h4><strong>Blocks Components</strong></h4>
+        <p>Capability to create Block component for WebPages.</p>
         <p><a href="${websitebuilderlink}/blocks.html" class="btn btn-info" role="button"><span class="btn-label"><i
 			class="glyphicon glyphicon-eye-open"></i></span>View Blocks</a>
 	      <a href="${websitebuilderlink}/blocks.html/newblock" class="btn btn-success" role="button"><span class="btn-label"><i
@@ -78,8 +78,8 @@
     <div class="thumbnail">
 <!--      <img src="http://placehold.it/300x200" alt=""/> -->
       <div class="caption">
-        <h4>Assets Components</h4>
-        <p></p>
+        <h4><strong>Assets Components</strong></h4>
+        <p>Capability to add Assets for Block components.</p>
         <p><a href="${websitebuilderlink}/assests.html" class="btn btn-info" role="button"><span class="btn-label"><i
 			class="glyphicon glyphicon-eye-open"></i></span>View Assets</a>
 	       <a href="${websitebuilderlink}/assests.html" class="btn btn-success" role="button"><span class="btn-label"><i

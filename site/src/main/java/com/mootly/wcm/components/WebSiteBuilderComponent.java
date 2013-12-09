@@ -461,7 +461,6 @@ public class WebSiteBuilderComponent extends BaseComponent implements WebSiteBui
 
 	}
 
-
 	@Override
 	public Class<? extends HippoBean> getParentBeanClass() {
 		// TODO Auto-generated method stub
@@ -473,14 +472,16 @@ public class WebSiteBuilderComponent extends BaseComponent implements WebSiteBui
 		return childBeanClass;
 	}
 
-
 	@Override
 	public String getParentBeanNodeName() {
 		// TODO Auto-generated method stub
 		PrimaryBean primaryBean = this.getClass().getAnnotation(PrimaryBean.class);
-		//return primaryBean.primaryBeanClass().getSimpleName().toLowerCase();
 		if(parentBeanNodeName == null){
-			parentBeanNodeName = primaryBean.primaryBeanClass().getSimpleName().toLowerCase()+UUID.randomUUID();
+			if(StringUtils.isNotBlank(absoluteComponentName)){
+				parentBeanNodeName = absoluteComponentName + "_" + getDocumentSuffix();
+			} else {
+				parentBeanNodeName = primaryBean.primaryBeanClass().getSimpleName().toLowerCase()+UUID.randomUUID();	
+			}
 		}
 		return parentBeanNodeName;
 	}
@@ -777,10 +778,8 @@ public class WebSiteBuilderComponent extends BaseComponent implements WebSiteBui
 			}
 			if (parentBean != null) {
 				List<HippoBean> listOfChildBeans = parentBean.getChildBeans(HippoBean.class);
-				log.info("size of Child Bean list::"+listOfChildBeans);
 				if (listOfChildBeans != null && listOfChildBeans.size() > 0) {
 					for (HippoBean aBean:listOfChildBeans) {
-						log.info("size of Child Bean UUID:::"+aBean.getCanonicalUUID());
 						if (aBean != null && aBean.getCanonicalUUID() != null && aBean.getCanonicalUUID().equals(uuid)) {
 							//childBean = (HippoBean) getObjectBeanManager(request).getObjectByUuid(uuid);
 							childBean = aBean;
@@ -1311,6 +1310,16 @@ public class WebSiteBuilderComponent extends BaseComponent implements WebSiteBui
 	public String getPAN() throws InvalidNavigationException {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	public String getDocumentSuffix(){
+		long documentSequence = getSequenceGenerator().getNextId(SequenceGenerator.SEQUENCE_DOCUMENT);
+		String documentSuffix = "";
+		if(StringUtils.isNotBlank(getComponentName())){
+			documentSuffix += StringUtils.substring(getComponentName(), 0, 2);
+		}
+		documentSuffix += String.valueOf(documentSequence);
+		return documentSuffix;
 	}
 
 }

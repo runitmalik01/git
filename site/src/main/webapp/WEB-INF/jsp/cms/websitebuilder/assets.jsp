@@ -5,11 +5,10 @@
 <c:set value="Pages Component" var="pagestitle" />
 <hippo-gogreen:title title="${pagestitle}"></hippo-gogreen:title>
 <hst:link var="websitebuilderlink" siteMapItemRefId="websitebuilder" />
-<hst:link var="vendorhomelink" siteMapItemRefId="vendoritreturnhome" />
+<hst:link var="assetslink" siteMapItemRefId="assets" />
 <div class="alert alert-info">
 	<h4>Welcome To WebsiteBuilder Panel</h4>
 </div>
-
 <ol class="breadcrumb">
 	<li><a href="${vendorhomelink}">Home</a></li>
 	<li><a href="${websitebuilderlink}">WebSite Builder</a></li>
@@ -93,7 +92,7 @@ pageContext.setAttribute("hostname", builder.toString());
 						class="btn btn-info btn-sm"> <i class="glyphicon-eye-open glyphicon"></i><span>View</span></a> 
 						<a href="${assetLink}" class="btn btn-success btn-sm"> <i
 							class="glyphicon-download-alt glyphicon"></i><span>Download</span></a>
-						<a href="${scriptName}?delete=${file.canonicalUUID}" id="deletefile" class="btn btn-danger btn-sm" data-confirm="">
+						<a href="${assetslink}?delete=${file.canonicalUUID}" id="deletefile" class="btn btn-danger btn-sm" data-confirm="">
 							<i class="glyphicon-trash glyphicon"></i><span>Delete</span>
 					</a></td>
 					<td><fmt:formatDate value="${file.memberFileResource.lastModified.time}" type="date" pattern="MMM d, yyyy" /></td>
@@ -125,3 +124,4 @@ $(document).ready(function(){
         }
 	 });
 </script>
+<script src="<hst:link path="/js/action-confirm.js"></hst:link>"></script>

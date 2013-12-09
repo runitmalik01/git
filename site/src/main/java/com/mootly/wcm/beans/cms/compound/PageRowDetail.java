@@ -55,7 +55,7 @@ public class PageRowDetail extends FlexibleDocument implements FormMapFiller {
 	Boolean notContainer;
 	Boolean notRow;
 	Boolean notColumn;
-	
+
 	List<BlockDocument> blockDocuments;
 	List<String> blockCanonicalUUIDs;
 	private boolean markedForDeletion;
@@ -75,8 +75,10 @@ public class PageRowDetail extends FlexibleDocument implements FormMapFiller {
 		if(blockCanonicalUUIDs == null){
 			blockCanonicalUUIDs = new ArrayList<String>();
 			List<String> uuidsArray = new ArrayList<String>();
-			for(HippoBean bean:getBlockDocuments()){
-				uuidsArray.add(bean.getCanonicalUUID());
+			if(getBlockDocuments()!= null){
+				for(HippoBean bean:getBlockDocuments()){
+					uuidsArray.add(bean.getCanonicalUUID());
+				}
 			}
 			blockCanonicalUUIDs.addAll(uuidsArray);
 		}
@@ -112,10 +114,10 @@ public class PageRowDetail extends FlexibleDocument implements FormMapFiller {
 		}
 		return blockDocuments;
 	}
-	
+
 	public boolean bindToNode(javax.jcr.Node node)
 			throws ContentNodeBindingException {
-		super.bindToNode(node);
+		//super.bindToNode(node);
 		if (log.isInfoEnabled()) {
 			log.info("Lets see value of UUID List"+getBlockCanonicalUUIDs());			
 		}
@@ -160,7 +162,7 @@ public class PageRowDetail extends FlexibleDocument implements FormMapFiller {
 		PageRowDetail pageRowDetail = (PageRowDetail) sourceBean;
 		setBlockCanonicalUUIDs(pageRowDetail.getBlockCanonicalUUIDs());
 	}
-	
+
 	@BeanClone
 	public final void setNotContainer(Boolean notContainer) {
 		this.notContainer = notContainer;
@@ -180,7 +182,7 @@ public class PageRowDetail extends FlexibleDocument implements FormMapFiller {
 	public final void setBlockDocuments(List<BlockDocument> blockDocuments) {
 		this.blockDocuments = blockDocuments;
 	}
-	
-	
+
+
 
 }

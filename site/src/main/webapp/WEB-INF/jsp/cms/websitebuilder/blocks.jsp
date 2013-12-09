@@ -1,3 +1,8 @@
+<%@page import="com.mootly.wcm.beans.cms.BlockDocument"%>
+<%@page import="java.util.Arrays"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.mootly.wcm.beans.cms.PageDocument"%>
+<%@page import="java.util.List"%>
 <%@include file="../../includes/tags.jspf"%>
 <c:set value="Block Component" var="blocktitle" />
 <hippo-gogreen:title title="${blocktitle}"></hippo-gogreen:title>
@@ -15,9 +20,28 @@
   <li><a href="${pageslink}">Pages Component</a></li>
   <li class="active"><a href="${blockslink}">Block Components</a></li>
 </ol>
-<c:if test="${pageAction == 'DEFAULT'}">
+<c:if test="${not empty formMap}">
+	<c:forEach items="${formMap.message}" var="item">
+		<div class="alert alert-error">
+			<fmt:message key="${item.value}" />
+		</div>
+	</c:forEach>
+</c:if>
+<c:forEach items="${listOfAllBlocksComponet}" var="mxblockDocument" varStatus="pgstatus">
+	<c:set var="lstModDocName" value="${mxblockDocument}" />
+	<c:forEach items="${listOfAllBlocksComponet}" var="mnblockDocument" varStatus="pgstatus">
+		<fmt:formatDate type="both" value="${lstModDocName.lastModificationDate.time}" var="mxtime" />
+		<fmt:formatDate type="both" value="${mnblockDocument.lastModificationDate.time}" var="mntime" />
+		<c:if test="${mxtime != mntime}">
+			<c:if test="${mntime lt mxtime}">
+				<c:set var="lstModDocName" value="${mnblockDocument}" />
+			</c:if>
+		</c:if>
+	</c:forEach>
+</c:forEach>
+<c:if test="${pageAction eq 'DEFAULT'}">
 	<c:choose>
-		<c:when test="${not empty listOfAllPagesComponet}">
+		<c:when test="${not empty listOfAllBlocksComponet}">
 			<div class="panel panel-info">
 				<!-- Default panel contents -->
 				<div class="panel-heading">WebSite-Block Components</div>
@@ -32,14 +56,16 @@
 					</thead>
 					<tbody>
 						<c:forEach items="${listOfAllBlocksComponet}" var="blockDocument" varStatus="pgstatus">
-							<tr>
-								<td><c:out value="${pgstatus.count}" /></td>
-								<td><c:out value="${fn:toUpperCase(blockDocument.name)}" /></td>
+							<tr><td><c:out value="${pgstatus.count}" /></td>
+								<td><c:out value="${fn:toUpperCase(blockDocument.name)}" />
+								    <c:if test="${lstModDocName.name eq blockDocument.name}">
+								    <sup><span class="text-danger"><i class="glyphicon glyphicon-asterisk"></i>
+								    <strong>Last Updated</strong></span></sup></c:if></td>
 								<td><c:out value="${blockDocument.title}" /></td>
 								<td><a href="${websitebuilderlink}/blocks.html/${blockDocument.canonicalUUID}/editblock"
 									class="btn btn-primary btn-sm"><i
 										class="glyphicon glyphicon-edit"></i>&nbsp;<span><strong>Edit</strong></span></a>&nbsp;&nbsp;&nbsp;
-									<a href="${websitebuilderlink}/blocks.html/${blockDocument.canonicalUUID}/deleteblock"
+									<a href="${websitebuilderlink}/blocks.html/${blockDocument.canonicalUUID}/deleteblock" data-confirm=""
 									class="btn btn-danger btn-sm"><i
 										class="glyphicon glyphicon-trash"></i>&nbsp;<span><strong>Delete</strong></span></a></td>
 							</tr>
@@ -55,7 +81,7 @@
 	</c:choose>
 </c:if> 
 <c:choose>
-	<c:when test="${pageAction eq 'EDIT' || pageAction eq 'NEW'}">
+	<c:when test="${pageAction eq 'EDIT' or pageAction eq 'NEW'}">
 		<form class="form" method="post" action="${actionUrl}" id="blockCompoForm" name="blockCompoForm">
 			<div class="container">
 				<div class="row">
@@ -74,11 +100,11 @@
 											<div class="col-md-12">
 												<div class="form-group">
 													<input type="text" class="form-control" placeholder="Title"
-														required="required" name="title" id="title" value="<c:if test="${pageAction=='EDIT'}">${parentBean.title}</c:if>"/>
+														required="required" name="title" id="title" value="<c:if test="${pageAction eq 'EDIT'}">${parentBean.title}</c:if>"/>
 												</div>
 												<div class="form-group">
 													<textarea class="form-control" placeholder="Content"
-														rows="7" required="required" name="script" id="script"><c:if test="${pageAction=='EDIT'}">${parentBean.script}</c:if></textarea>
+														rows="7" required="required" name="script" id="script"><c:if test="${pageAction eq 'EDIT'}">${parentBean.script}</c:if></textarea>
 												</div>
 											</div>
 										</div>
@@ -88,8 +114,8 @@
 													<div class="input-group">
 														<select name="showAsIs" id="showAsIs" class="form-control">
 															<option value="">Select</option>
-															<option value="true" <c:if test="${pageAction=='EDIT' && parentBean.showAsIs eq 'true'}">selected</c:if>>YES</option>
-															<option value="false" <c:if test="${pageAction=='EDIT' && parentBean.showAsIs eq 'false'}">selected</c:if>>NO</option>
+															<option value="true" <c:if test="${pageAction eq 'EDIT' and parentBean.showAsIs eq 'true'}">selected</c:if>>YES</option>
+															<option value="false" <c:if test="${pageAction eq 'EDIT' and parentBean.showAsIs eq 'false'}">selected</c:if>>NO</option>
 														</select>
 															<span class="input-group-addon">Show Content As It is.</span>
 													</div>
@@ -123,13 +149,12 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal"
-					aria-hidden="true">&times;</button>
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				<h4 class="modal-title" id="myModalLabel">Content Preview Panel</h4>
 			</div>
 			<div class="modal-body"></div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Close</button>
 			</div>
 		</div>
 	</div>
@@ -147,6 +172,7 @@ $('document').ready(function(){
      });
   });
 </script>
+<script src="<hst:link path="/js/action-confirm.js"></hst:link>"></script>
 <hst:element var="uiCustom" name="script">
     <hst:attribute name="type">text/javascript</hst:attribute>
    

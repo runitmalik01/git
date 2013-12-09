@@ -1,3 +1,5 @@
+<%@page import="com.mootly.wcm.beans.cms.PageDocument"%>
+<%@page import="java.util.List"%>
 <%@page import="org.hippoecm.hst.core.component.HstRequest"%>
 <%@include file="../../includes/tags.jspf"%>
 <c:set value="Pages Component" var="pagestitle" />
@@ -13,7 +15,19 @@
 	<li><a href="${websitebuilderlink}">WebSite Builder</a></li>
 	<li class="active"><a href="${pageslink}">Page Components</a></li>
 </ol>
-<c:if test="${pageAction == 'DEFAULT'}">
+<c:forEach items="${listOfAllPagesComponet}" var="mxpageDocument" varStatus="pgstatus">
+	<c:set var="lstModDocName" value="${mxpageDocument}" />
+	<c:forEach items="${listOfAllPagesComponet}" var="mnpageDocument" varStatus="pgstatus">
+		<fmt:formatDate type="both" value="${lstModDocName.lastModificationDate.time}" var="mxtime" />
+		<fmt:formatDate type="both" value="${mnpageDocument.lastModificationDate.time}" var="mntime" />
+		<c:if test="${mxtime != mntime}">
+			<c:if test="${mntime gt mxtime}">
+				<c:set var="lstModDocName" value="${mnpageDocument}" />
+			</c:if>
+		</c:if>
+	</c:forEach>
+</c:forEach>
+<c:if test="${pageAction eq 'DEFAULT'}">
 	<c:choose>
 		<c:when test="${not empty listOfAllPagesComponet}">
 			<div class="panel panel-info">
@@ -32,11 +46,14 @@
 						<c:forEach items="${listOfAllPagesComponet}" var="pageDocument" varStatus="pgstatus">
 							<tr>
 								<td><c:out value="${pgstatus.count}" /></td>
-								<td><c:out value="${fn:toUpperCase(pageDocument.name)}" /></td>
+								<td><c:out value="${fn:toUpperCase(pageDocument.name)}" />
+								    <c:if test="${lstModDocName.name eq pageDocument.name}">
+								     <sup><span class="text-danger"><i class="glyphicon glyphicon-asterisk"></i>
+								     <strong>Last Updated</strong></span></sup></c:if></td>
 								<td><c:out value="${fn:length(pageDocument.pageRowDetails)}" /></td>
 								<td><a href="${websitebuilderlink}/pages.html/${pageDocument.canonicalUUID}/editpage"
 									class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-edit"></i>&nbsp;<span><strong>Edit</strong></span></a>
-									<a href="${websitebuilderlink}/pages.html/${pageDocument.canonicalUUID}/deletepage"
+									<a href="${websitebuilderlink}/pages.html/${pageDocument.canonicalUUID}/deletepage" data-confirm=""
 									class="btn btn-danger btn-sm"><i class="glyphicon glyphicon-trash"></i>&nbsp;<span><strong>Delete</strong></span></a></td>
 							</tr>
 						</c:forEach>
@@ -50,7 +67,7 @@
 		</c:otherwise>
 	</c:choose>
 </c:if>
-<c:if test="${pageAction eq 'EDIT' || pageAction eq 'NEW' }">
+<c:if test="${pageAction eq 'EDIT' or pageAction eq 'NEW' }">
 <div class="alert alert-info">
 	All Components of Page has been shown in rows.Each row can contain 'n'
 	no of Block components.You can add Other Block Component to it.<br />
@@ -70,34 +87,44 @@
 	</div>
 </div><hr/>
 </c:if>
-<c:if test="${pageAction == 'EDIT'}">
+<c:if test="${pageAction eq 'EDIT'}">
 	<div>
 		<c:if test="${not empty parentBean}">
 			<c:forEach items="${parentBean.pageRowDetails}" var="pageRowDetail">
-				<div class="panel panel-default">
-					<div class="panel-heading" align="right">
-						<a href="${scriptName}/${componentUUID}/editpage/rows/${pageRowDetail.canonicalUUID}/editrow"
-							class="btn btn-info btn-xs"><i class="glyphicon glyphicon-edit"></i>Edit Row</a> 
-						<a href="${scriptName}/${componentUUID}/editpage/rows/${pageRowDetail.canonicalUUID}/deleterow"
-							class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-trash"></i>Remove Row</a>
+				<div class="panel panel-success">
+					<div class="panel-heading">
+						<div class="row">
+							<div class="col-md-6"><strong>Grid Row of ${parentBean.name} Page</strong></div>
+							<div class="col-md-2 col-md-offset-4">
+								<a href="${scriptName}/${componentUUID}/editpage/rows/${pageRowDetail.canonicalUUID}/editrow"
+									class="btn btn-info btn-xs"><i class="glyphicon glyphicon-edit"></i>Edit Row</a> 
+								<a href="${scriptName}/${componentUUID}/editpage/rows/${pageRowDetail.canonicalUUID}/deleterow"
+									class="btn btn-danger btn-xs" data-confirm=""><i class="glyphicon glyphicon-remove-sign"></i>Remove Row</a>
+							</div>
+						</div>
 					</div>
 					<div class="panel-body">
-						<c:forEach items="${pageRowDetail.blockDocuments}" var="blockDocument">
-							<div class="thumbnail">
-								<!-- <img data-src="http://placehold.it/380x500" alt="fu"> -->
-								<div class="caption">
-									<h4><c:out value="${blockDocument.name}" /></h4>
-									<p></p>
-									<p><a href="${websitebuilderlink}/blocks.html/${blockDocument.canonicalUUID}/editblock"
-											class="btn btn-primary btn-xs"><i class="glyphicon glyphicon-edit"></i><span><strong>Edit
-													Block</strong></span></a> 
-										<a href="${websitebuilderlink}/blocks.html/${blockDocument.canonicalUUID}/deleteblock"
-											class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-remove-sign"></i><span><strong>Delete
-													Block</strong></span></a>
-									</p>
+						<div class="row">
+							<c:forEach items="${pageRowDetail.blockDocuments}" var="blockDocument">
+							   <c:set value="${12 div fn:length(pageRowDetail.blockDocuments)}" var="spanSize"/>
+								<div class="col-md-<fmt:parseNumber integerOnly="true" type="number" value="${spanSize}"/>">
+									<div class="thumbnail well">
+										<!-- <img data-src="http://placehold.it/380x500" alt="fu"> -->
+										<div class="caption">
+											<h4> <c:out value="${blockDocument.name}" /> </h4>
+											<p></p>
+											<p><a href="${websitebuilderlink}/blocks.html/${blockDocument.canonicalUUID}/editblock"
+													class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-edit"></i><span><strong>Edit
+															Block</strong></span></a>
+											    <a href="${websitebuilderlink}/blocks.html/${blockDocument.canonicalUUID}/deleteblock" data-confirm=""
+													class="btn btn-danger btn-sm"><i class="glyphicon glyphicon-trash"></i><span><strong>Delete
+															Block</strong></span></a>
+											</p>
+										</div>
+									</div>
 								</div>
-							</div>
-						</c:forEach>
+							</c:forEach>
+						</div>
 					</div>
 				</div>
 			</c:forEach>
@@ -133,7 +160,7 @@
 		</div>
 	</div>
 </c:set>
-<c:if test="${pageAction == 'NEW_CHILD'||pageAction == 'EDIT_CHILD'}">
+<c:if test="${pageAction eq 'NEW_CHILD' or pageAction eq 'EDIT_CHILD'}">
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -143,7 +170,7 @@
 				</div>
 				<div class="modal-body">
 					<c:choose>
-						<c:when test="${pageAction == 'NEW_CHILD'}">
+						<c:when test="${pageAction eq 'NEW_CHILD'}">
 							<c:set value="row_0" var="formID" />
 						</c:when>
 						<c:otherwise>
@@ -158,7 +185,7 @@
 					</form>
 				</div>
 				<div class="modal-footer">
-				    <c:if test="${pageAction == 'NEW_CHILD'}"><a href="#" class="btn btn-warning btn-sm" id="addnew"><i class="glyphicon glyphicon-plus-sign"></i>Add New</a></c:if>
+				    <c:if test="${pageAction eq 'NEW_CHILD'}"><a href="#" class="btn btn-warning btn-sm" id="addnew"><i class="glyphicon glyphicon-plus-sign"></i>Add New</a></c:if>
 					<%-- <c:if test="${pageAction eq 'EDIT_CHILD'}">
 						<a href="${scriptName}/${uuid}/deleterows"
 							class="btn btn-danger btn-sm"> <i class="glyphicon-trash glyphicon"></i>Delete
@@ -181,8 +208,7 @@
 		</div>
 	</div>
 </c:if>
-<c:if test="${pageAction eq 'DEFAULT' || pageAction eq 'EDIT' }"><jsp:include page="addcomponentfoot.jsp"/></c:if>
-
+<c:if test="${pageAction eq 'DEFAULT' or pageAction eq 'EDIT' }"><jsp:include page="addcomponentfoot.jsp"/></c:if>
 <script type="text/javascript">
 $('document').ready(function(){
 	if ($("#myModal").length >0) $("#myModal").modal();
@@ -231,10 +257,7 @@ $('document').ready(function(){
 						var newdiv1 = $('<form class="pageRowDetailsForm" name="pageRowDetailsForm"  id="row_' +  (parseInt(theindx) + 1)  + '"/>');
 						//alert(html);
 						newdiv1.append(html);
-						$(".modal-body").append(newdiv1);
-						//newdiv1.find(".span4").hide();
-						//$(".theamount").blur( handleBlur );	
-						//$(".head").change(headChangeHandler);					
+						$(".modal-body").append(newdiv1);				
 						$('.pageRowDetailsForm input').keydown(function(e) {
 						    if (e.keyCode == 13) {
 						   		e.preventDefault();
@@ -257,26 +280,6 @@ $('document').ready(function(){
 			  });
 			}
        });
-//    $('a[data-confirm]').click(function(ev) {
-//        var href = $(this).attr('href');
-
-//        if (!$('#dataConfirmModal').length) {
-//            $('body').append('<div id="dataConfirmModal" class="modal" role="dialog" aria-labelledby="dataConfirmLabel" aria-hidden="true"> <div class="modal-header">
-// 			<button type="button" class="close" data-dismiss="modal"
-// 				aria-hidden="true">×</button>
-// 			<h3 id="dataConfirmLabel">Please Confirm</h3>
-// 		</div>
-// 		<div class="modal-body"></div>
-// 		<div class="modal-footer">
-// 			<button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-// 			<a class="btn btn-primary" id="dataConfirmOK">OK</a>
-// 		</div>
-// 	</div>');
-//        }
-//        $('#dataConfirmModal').find('.modal-body').text("Are you sure you want to delete?");
-//        $('#dataConfirmOK').attr('href', href);
-//        $('#dataConfirmModal').modal({show:true});
-//        return false;
-//    });
 });
 </script>
+<script src="<hst:link path="/js/action-confirm.js"></hst:link>"></script>
