@@ -67,7 +67,7 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 					</div>
 					<div class="rowlabel">
 						<input id="article_dtaa" name="article_dtaa"
-							type="text" 
+							type="text" maxlength="16"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.article_dtaa}"/></c:if>" />
 					</div>
 				</div>
@@ -82,7 +82,7 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 					<div class="rowlabel">
 						<input id="totaltax_fsi" name="totaltax_fsi"
 							type="text"
-							 class="decimal"
+							 class="decimal" maxlength="14"
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.totaltax_fsi}"/></c:if>" />
 					</div>
 				</div>
