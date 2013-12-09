@@ -18,30 +18,35 @@
 <c:if test="${pageAction == 'DEFAULT'}">
 	<c:choose>
 		<c:when test="${not empty listOfAllPagesComponet}">
-			<table class="table table-bordered table-striped">
-				<thead>
-					<tr>
-						<th>#</th>
-						<th>Block Component Name</th>
-						<th>Title</th>
-						<th>Actions</th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach items="${listOfAllBlocksComponet}" var="blockDocument"
-						varStatus="pgstatus">
+			<div class="panel panel-info">
+				<!-- Default panel contents -->
+				<div class="panel-heading">WebSite-Block Components</div>
+				<table class="table table-striped table-hover">
+					<thead>
 						<tr>
-							<td><c:out value="${pgstatus.count}" /></td>
-							<td><c:out value="${fn:toUpperCase(blockDocument.name)}" /></td>
-							<td><c:out value="${blockDocument.title}" /></td>
-							<td><a href="${websitebuilderlink}/blocks.html/${blockDocument.canonicalUUID}/editblock"
-								class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-edit"></i>&nbsp;<span><strong>Edit</strong></span></a>&nbsp;&nbsp;&nbsp;
-								<a href="${websitebuilderlink}/blocks.html/${blockDocument.canonicalUUID}/deleteblock"
-								class="btn btn-danger btn-sm"><i class="glyphicon glyphicon-trash"></i>&nbsp;<span><strong>Delete</strong></span></a></td>
+							<th>#</th>
+							<th>Block Component Name</th>
+							<th>Title</th>
+							<th>Actions</th>
 						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
+					</thead>
+					<tbody>
+						<c:forEach items="${listOfAllBlocksComponet}" var="blockDocument" varStatus="pgstatus">
+							<tr>
+								<td><c:out value="${pgstatus.count}" /></td>
+								<td><c:out value="${fn:toUpperCase(blockDocument.name)}" /></td>
+								<td><c:out value="${blockDocument.title}" /></td>
+								<td><a href="${websitebuilderlink}/blocks.html/${blockDocument.canonicalUUID}/editblock"
+									class="btn btn-primary btn-sm"><i
+										class="glyphicon glyphicon-edit"></i>&nbsp;<span><strong>Edit</strong></span></a>&nbsp;&nbsp;&nbsp;
+									<a href="${websitebuilderlink}/blocks.html/${blockDocument.canonicalUUID}/deleteblock"
+									class="btn btn-danger btn-sm"><i
+										class="glyphicon glyphicon-trash"></i>&nbsp;<span><strong>Delete</strong></span></a></td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+			</div>
 		</c:when>
 		<c:otherwise>
 			<div class="alert alert-warning">Opps! You have not create any
@@ -129,6 +134,7 @@
 		</div>
 	</div>
 </div>
+<c:if test="${pageAction eq 'DEFAULT' || pageAction eq 'EDIT' }"><jsp:include page="addcomponentfoot.jsp"/></c:if>
 <script type="text/javascript">
 $('document').ready(function(){
     $('#preview').on('click',function(){

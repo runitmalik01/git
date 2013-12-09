@@ -47,29 +47,45 @@
 		</div>
 	</div>
 </div>
-<div align="center" class="btn-labeled">
-	<a href="${websitebuilderlink}/pages.html"
-		class="btn btn-info btn-labeled"><span class="btn-label"><i
-			class="glyphicon glyphicon-eye-open"></i></span>View All Pages</a>&nbsp;&nbsp;&nbsp;&nbsp;
-	<a href="${websitebuilderlink}/pages.html/newpage"
-		class="btn btn-success btn-labeled"><span class="btn-label"><i
-			class="glyphicon glyphicon-plus"></i></span>Click Here to add New PageComponent</a>
+<div class="row">
+  <div class="col-sm-6 col-md-4">
+    <div class="thumbnail">
+      <!-- <img data-src="http://placehold.it/380x500" alt="fu"> -->
+      <div class="caption">
+        <h4>Page Components</h4>
+        <p></p>
+        <p><a href="${websitebuilderlink}/pages.html" class="btn btn-info" role="button"><span class="btn-label"><i
+			class="glyphicon glyphicon-eye-open"></i></span>View Pages</a> 
+		    <a href="${websitebuilderlink}/pages.html/newpage" class="btn btn-success" role="button"><span class="btn-label"><i
+			class="glyphicon glyphicon-plus"></i></span>Add Page</a></p>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6 col-md-4">
+    <div class="thumbnail">
+<!--       <img data-src="http://placehold.it/380x500" alt="..."> -->
+      <div class="caption">
+        <h4>Blocks Components</h4>
+        <p></p>
+        <p><a href="${websitebuilderlink}/blocks.html" class="btn btn-info" role="button"><span class="btn-label"><i
+			class="glyphicon glyphicon-eye-open"></i></span>View Blocks</a>
+	      <a href="${websitebuilderlink}/blocks.html/newblock" class="btn btn-success" role="button"><span class="btn-label"><i
+			class="glyphicon glyphicon-plus"></i></span>Add Block</a></p>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6 col-md-4">
+    <div class="thumbnail">
+<!--      <img src="http://placehold.it/300x200" alt=""/> -->
+      <div class="caption">
+        <h4>Assets Components</h4>
+        <p></p>
+        <p><a href="${websitebuilderlink}/assests.html" class="btn btn-info" role="button"><span class="btn-label"><i
+			class="glyphicon glyphicon-eye-open"></i></span>View Assets</a>
+	       <a href="${websitebuilderlink}/assests.html" class="btn btn-success" role="button"><span class="btn-label"><i
+			class="glyphicon glyphicon-plus"></i></span>Add Asset</a></p>
+      </div>
+    </div>
+  </div>
 </div>
 <hr />
-<div align="center">
-	<a href="${websitebuilderlink}/blocks.html"
-		class="btn btn-info btn-labeled"><span class="btn-label"><i
-			class="glyphicon glyphicon-eye-open"></i></span>View All Blocks</a>&nbsp;&nbsp;&nbsp;&nbsp;
-	<a href="${websitebuilderlink}/blocks.html/newblock"
-		class="btn btn-success btn-labeled"><span class="btn-label"><i
-			class="glyphicon glyphicon-plus"></i></span>Click Here to add New BlockComponent</a>    
-</div>
-<hr />
-<div class="tile bg-darkPink">
-<div class="tile-content icon">
-<i class="icon-cart-2"></i>
-</div>
-<div class="tile-status">
-<span class="name">Store</span>
-</div>
-</div>
