@@ -22,7 +22,7 @@ out_total_eligiblededuction=0;
 /** - END Configuration */
 //80E-It depends on gross total income
 if(salarypension <=0) salarypension=0;
-var grosstotal= salarypension + othersources + houseproperty + businessIncome;//Added Business Income to calculate Deduction. 
+var grosstotal= salarypension + othersources + houseproperty + businessIncome + businessIncomeITR4;//Added Business Income to calculate Deduction. 
 if(grosstotal <=0) grosstotal=0;
 
 //--- This concludes 80c,80ccc,80D Employee's Contribution
