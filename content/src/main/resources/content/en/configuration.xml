@@ -45858,8 +45858,6 @@ out_total_houseIncome=(out_Income_hproperty-0)+(rentSec25A-0)+(arrearRentSec25B-
   </sv:node>
 </sv:node>
 
-
-
 <sv:node sv:name="otherincome" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hippo:handle</sv:value>
@@ -45878,7 +45876,7 @@ out_total_houseIncome=(out_Income_hproperty-0)+(rentSec25A-0)+(arrearRentSec25B-
       <sv:value>hippo:harddocument</sv:value>
     </sv:property>
     <sv:property sv:name="jcr:uuid" sv:type="String">
-      <sv:value>6b8e250e-7826-45b4-ad45-54b509238766</sv:value>
+      <sv:value>a69985aa-f782-49d3-a725-16f59a201fa2</sv:value>
     </sv:property>
     <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
       <sv:value>live</sv:value>
@@ -45903,13 +45901,13 @@ out_total_houseIncome=(out_Income_hproperty-0)+(rentSec25A-0)+(arrearRentSec25B-
       <sv:value>2013-05-24T02:01:44.056+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-      <sv:value>2013-11-21T14:07:57.926+05:30</sv:value>
+      <sv:value>2013-12-10T10:56:13.999+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
       <sv:value>admin</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-      <sv:value>2013-11-21T14:08:20.308+05:30</sv:value>
+      <sv:value>2013-12-10T10:56:17.645+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="mootlywcm:additionalScript" sv:type="String">
       <sv:value/>
@@ -45961,7 +45959,7 @@ out_Totalint=(Gov_income-0)+(Kissan-0)+(Bank_detail_fdr-0)+(Bank_detail_saving-0
 out_TotalOther_income=(Family_pension-0)+(Dividends-0)+(Income_rent_machine-0)+(Income_other-0)-(Deduction_57-0);
 
 
-out_Total_taxfree_income=(Dividends_uti-0)+(Interest_income-0)+(Dividends_mutualfund-0)+(Agriculture_income-0)+(Dividends_indian_companies-0)+(Otherincome-0)+(profit_FirmAOP_BOI-0);
+out_Total_taxfree_income=(Dividends_uti-0)+(Interest_income-0)+(Dividends_mutualfund-0)+(Agriculture_income-0)+(Dividends_indian_companies-0)+(Otherincome-0);
 
 
 var deduction=indianCurrencyHelper.RoundTo2Decimals(((Family_pension-0)*.333*100)/100);
@@ -45981,9 +45979,9 @@ if(out_Taxable_income &lt;0) out_Taxable_income=0;
 out_balance=(Receipts-0)-(dedus57-0);
 if(out_balance &lt;0){
  balance=0;
-out_Taxable_income=(out_Taxable_income)+(LotteryOrhorse_income-0)+(balance-0);
+out_Taxable_income=(out_Taxable_income)+(LotteryOrhorse_income-0)+(balance-0)+(profit_FirmAOP_BOI-0);
 }else{
-out_Taxable_income=(out_Taxable_income)+(LotteryOrhorse_income-0)+(out_balance -0);
+out_Taxable_income=(out_Taxable_income)+(LotteryOrhorse_income-0)+(out_balance -0)+(profit_FirmAOP_BOI-0);
 }</sv:value>
     </sv:property>
     <sv:property sv:name="mootlywcm:title" sv:type="String">
