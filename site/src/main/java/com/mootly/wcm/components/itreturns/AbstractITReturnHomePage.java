@@ -200,6 +200,7 @@ abstract public class AbstractITReturnHomePage extends ITReturnComponent {
 			}
 			request.setAttribute("listOfITReturnHomePageView", listOfITReturnHomePageView);		
 		}
+		/*
 		String facetLocation= "vendors/faceteditreturns";
 		HippoBean vendorFolder = getSiteContentBaseBeanForReseller(request).getBean("vendors");
 		HippoBean theFacet = vendorFolder.getBean("itreturnsfacetnav");
@@ -207,7 +208,7 @@ abstract public class AbstractITReturnHomePage extends ITReturnComponent {
 		if (facetNavigation != null) {
 			request.setAttribute("facets", facetNavigation.getFolders());
 		}
-
+		*/
 		request.setAttribute("count", resultCount);
 		Boolean isReseller = request.isUserInRole("reseller");
 		request.setAttribute("reseller", isReseller);

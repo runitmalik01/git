@@ -9134,9 +9134,9 @@
             <v:password>%ERIT000655%</v:password>
          </v:LoginInfo>
          <v:ClientInfo>
-            <v:pan>CDVPS0756D</v:pan>
-            <v:dob>1989-12-04</v:dob>
-            <v:assessmentYear>2013-14</v:assessmentYear>
+            <v:pan>AAHPP2080N</v:pan>
+            <v:dob>1950-04-26</v:dob>
+            <v:assessmentYear>2012-13</v:assessmentYear>
          </v:ClientInfo>
       </v:getTDSDetails>
    </soapenv:Body>
@@ -9243,12 +9243,12 @@
    <soapenv:Body>
       <v:getRectificationStatusRequest>
          <LoginInfo>
-            <userName>?</userName>
-            <password>?</password>
+            <userName>ERIA100690</userName>
+            <password>%ERIT000655%</password>
          </LoginInfo>
          <RectificationInput>
-            <panNo>?</panNo>
-            <asseessmentYear>?</asseessmentYear>
+            <panNo>AAHPP2080N</panNo>
+            <asseessmentYear>2012-13</asseessmentYear>
          </RectificationInput>
       </v:getRectificationStatusRequest>
    </soapenv:Body>
@@ -9346,12 +9346,12 @@
    <soapenv:Body>
       <v:getRefundStatusRequest>
          <LoginInfo>
-            <userName>testing</userName>
-            <password>testing</password>
+            <userName>ERIA100690</userName>
+            <password>%ERIT000655%</password>
          </LoginInfo>
          <RefundInput>
-            <panNo>?</panNo>
-            <asseessmentyear>?</asseessmentyear>
+            <panNo>AAHPP2080N</panNo>
+            <asseessmentyear>2012-13</asseessmentyear>
          </RefundInput>
       </v:getRefundStatusRequest>
    </soapenv:Body>
@@ -9514,17 +9514,44 @@
          <v:signature>?</v:signature>
       </v:DITWSAuthInfoEle>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://incometaxindiaefiling.gov.in/submitITReturn"/></con:call><con:call name="Copy of Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://incometaxindiaefiling.gov.in/e-FilingWS/ditws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:v="http://incometaxindiaefiling.gov.in/ws/ds/common/v_1_0">
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://incometaxindiaefiling.gov.in/submitITReturn"/><con:wsrmConfig version="1.2"/></con:call><con:call name="Copy of Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://incometaxindiaefiling.gov.in/e-FilingWS/ditws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:v="http://incometaxindiaefiling.gov.in/ws/ds/common/v_1_0">
    <soapenv:Header/>
    <soapenv:Body>
       <v:DITWSAuthInfoEle>
-         <v:userID>?</v:userID>
-         <v:password>?</v:password>
-         <v:certChain>?</v:certChain>
-         <v:signature>?</v:signature>
+         <v:userID>ERIU101969</v:userID>
+         <v:password>%cdvps0756d%</v:password>
+         <v:certChain></v:certChain>
+         <v:signature>
+         <Signature xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315#WithComments"/><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/><Reference URI="#CDVPS0756D"><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/><DigestValue>ABnB17eDb8QdH9QQKAMKbwNwIx0=</DigestValue></Reference></SignedInfo><SignatureValue>Xltr4EDEEgkGfT12hpyR8PdB+dS+O7UGkA6FS9dFI0FcdM0KYEmucCh7daDg1vgCf1Daz7JHwMmG
+GaIfRckfN5S/DdSc6dUUAAQBeST8o+H+Thiv8saTBAeEexEs5WIcb+cWpvIVS0syFgfmDxA3tDec
+oP3rA3cb2/nDIuNFB4BMQLu6QNuGFaweULg+B1fOkk6trFSIVmDKcUkgy6dQ3KT48pVOU1G98qEc
++/Fq3CKZtV8SAL0HQk2yqIL48PKCFstWpujLVgPTMPhjZ2F8i+ZOvxI5l5yG8rjasBQmDyHRsVni
+ANXdER4yj0kL+yOSoMYjK5Yt7XygKgjeFGB6ow==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=SWETA,2.5.4.5=#134064383239656166663631303137303933333161306339663931643864356164343432666638356538306536613435636463356264633236383936646235646632,ST=Delhi,2.5.4.17=#1306313130303735,O=Personal,C=IN</X509SubjectName><X509Certificate>MIIEyTCCA7GgAwIBAgIIGWeNXwEGZOYwDQYJKoZIhvcNAQELBQAwdDELMAkGA1UEBhMCSU4xIjAg
+BgNVBAoTGVNpZnkgVGVjaG5vbG9naWVzIExpbWl0ZWQxDzANBgNVBAsTBlN1Yi1DQTEwMC4GA1UE
+AxMnU2FmZVNjcnlwdCBzdWItQ0EgZm9yIFJDQUkgQ2xhc3MgMiAyMDEyMB4XDTEzMTIwMjA4NDUy
+N1oXDTE1MTIwMjA4NDUyN1owgZwxCzAJBgNVBAYTAklOMREwDwYDVQQKEwhQZXJzb25hbDEPMA0G
+A1UEERMGMTEwMDc1MQ4wDAYDVQQIEwVEZWxoaTFJMEcGA1UEBRNAZDgyOWVhZmY2MTAxNzA5MzMx
+YTBjOWY5MWQ4ZDVhZDQ0MmZmODVlODBlNmE0NWNkYzViZGMyNjg5NmRiNWRmMjEOMAwGA1UEAxMF
+U1dFVEEwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCfmcRZv6gaplra7oyTS2gNlKzf
+QEaD32WJNYJZFrUBJ8LVpiUilPzuSRo/lPzHYmp2RcG0ENF8pbYvIxChCO3YHaA5XHVi6vdtPTka
+9yPWSBHynXYuE/Uiulo7SUiF0pVxIQA0hAlUZSWGVKuJq3wZC5yrspR+PY7EFmxeik0Fqfe12FVn
+/NbL0CUdnPp5lQiizI3kX2DXh0BSgUcVtxoDac3qaZu/9z+PvOTbeU+OLz5mBigS0uKK4kNVzCV2
+Wr/PTJd8UibjwX/6X3oza5pc1h6wSLa5VBAgxNQkZmyluajLDaKVZr1OMgDSdzUF0WJEsFIruofG
+wlY6LNdrZEKNAgMBAAGjggE0MIIBMDAOBgNVHQ8BAf8EBAMCBsAwEwYDVR0jBAwwCoAISzwMcsiJ
+LbUwEQYDVR0OBAoECEf7Vl61xXe1MCEGA1UdEQQaMBiBFndlYWx0aDRpbmRpYUBnbWFpbC5jb20w
+RwYDVR0fBEAwPjA8oDqgOIY2aHR0cDovL2NybC5zYWZlc2NyeXB0LmNvbS9TYWZlU2NyeXB0UkNB
+SUNsYXNzMjIwMTIuY3JsMHUGCCsGAQUFBwEBBGkwZzA9BggrBgEFBQcwAoYxaHR0cHM6Ly93d3cu
+c2FmZXNjcnlwdC5jb20vY2VydHMvU2FmZVNjcnlwdENBLmNlcjAmBggrBgEFBQcwAYYaaHR0cDov
+L29jc3Auc2FmZXNjcnlwdC5jb20wEwYDVR0gBAwwCjAIBgZggmRkAgIwDQYJKoZIhvcNAQELBQAD
+ggEBAGlauhGZtwjo6l1RJYGPvPJHr/B5osgWETzzvhnENGIdQPBuMydDlCmE66XKOEfL3WCPw3mr
+J0eWM0yaPGsFX1Ov94Na2rGNfzOzfd1wTqgpnp55KT4+eUkI6+WRe0VryAdoA/sZ4xUEs6zjiY0M
+GFdaPnKOOXMbSXbSWv9LMDHQxoPveHrDRJZ5RG9Th1EumZvWsjlaND2GsmQ6mEWeFZfi3T77C82l
+Z+z2hqvERsV8Br8XWRLWLSzC7VmGKboR37MJQrQaNuHFsDMnOg4d1kxbmEjpue1R3WBxuOGyjQUS
+6EHUsBp4VZgFBZgjOMWFKfa56rXAKeIUQt+jdJh+bcw=</X509Certificate></X509Data></KeyInfo><Object Id="CDVPS0756D"/></Signature>
+         </v:signature>
       </v:DITWSAuthInfoEle>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:attachment><con:name>consolidated-returns-try9.xml</con:name><con:contentType>text/xml</con:contentType><con:contentId>consolidated-returns-try9.xml</con:contentId><con:url>C:/Users/admin/Projects/Mootly/code/wcm/hippo/solutions/indianonlinetax/branches/indiateam/filetriedfore/consolidated-returns-try9.xml</con:url><con:id>22e9fe44-1afa-430c-b358-2489fc61ca98</con:id></con:attachment><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://incometaxindiaefiling.gov.in/submitITReturn"/><con:wsrmConfig version="1.2"/></con:call><con:requestParts><con:part name="itrXMLFile"><con:contentType>application/octet-stream</con:contentType></con:part></con:requestParts></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="BulkPanServiceSoapBinding" type="wsdl" bindingName="{http://incometaxindiaefiling.gov.in/bulkPanservice/v_1_0}BulkPanServiceSoapBinding" soapVersion="1_1" anonymous="optional" definition="https://incometaxindiaefiling.gov.in/e-FilingWS/ditws/submitBulkPan.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="https://incometaxindiaefiling.gov.in/e-FilingWS/ditws/submitBulkPan.wsdl"><con:part><con:url>https://incometaxindiaefiling.gov.in/e-FilingWS/ditws/submitBulkPan.wsdl</con:url><con:content><![CDATA[<definitions targetNamespace="http://incometaxindiaefiling.gov.in/bulkPanservice/v_1_0" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://incometaxindiaefiling.gov.in/bulkPanservice/v_1_0" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:attachment><con:name>x.zip</con:name><con:contentType>application/zip</con:contentType><con:contentId>x.zip</con:contentId><con:part>itrXMLFile</con:part><con:url>C:/Users/admin/Downloads/x.zip</con:url><con:id>2c81241b-f73a-4d8f-8189-54291640d1a4</con:id></con:attachment><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://incometaxindiaefiling.gov.in/submitITReturn"/><con:wsrmConfig version="1.2"/></con:call><con:requestParts><con:part name="itrXMLFile"><con:contentType>application/octet-stream</con:contentType></con:part></con:requestParts></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="BulkPanServiceSoapBinding" type="wsdl" bindingName="{http://incometaxindiaefiling.gov.in/bulkPanservice/v_1_0}BulkPanServiceSoapBinding" soapVersion="1_1" anonymous="optional" definition="https://incometaxindiaefiling.gov.in/e-FilingWS/ditws/submitBulkPan.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="https://incometaxindiaefiling.gov.in/e-FilingWS/ditws/submitBulkPan.wsdl"><con:part><con:url>https://incometaxindiaefiling.gov.in/e-FilingWS/ditws/submitBulkPan.wsdl</con:url><con:content><![CDATA[<definitions targetNamespace="http://incometaxindiaefiling.gov.in/bulkPanservice/v_1_0" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://incometaxindiaefiling.gov.in/bulkPanservice/v_1_0" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
   <types>
     <xs:schema targetNamespace="http://incometaxindiaefiling.gov.in/bulkPanservice/v_1_0" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:bulkPanException="http://incometaxindiaefiling.gov.in/ws/bulkPan/ex/v_1_0">
       <xs:element name="submitBulkPan" type="tns:submitBulkPanType"/>
