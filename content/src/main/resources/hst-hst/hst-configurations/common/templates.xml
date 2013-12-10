@@ -2026,6 +2026,20 @@
       <sv:value>jsp/member/contactinformation.jsp</sv:value>
     </sv:property>
   </sv:node>
+ 
+<sv:node sv:name="memberticket">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:template</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>9747c6cf-ded4-45dc-93cd-371fb0c017f1</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="hst:containers" sv:type="String"/>
+  <sv:property sv:name="hst:renderpath" sv:type="String">
+    <sv:value>jsp/member/memberticket.jsp</sv:value>
+  </sv:property>
+</sv:node>
+  
   <sv:node sv:name="houseincome">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
       <sv:value>hst:template</sv:value>
