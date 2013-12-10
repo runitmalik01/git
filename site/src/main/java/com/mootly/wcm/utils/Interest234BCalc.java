@@ -100,6 +100,9 @@ public class Interest234BCalc {
 			}
 		}
 
+		if(intB < 0){
+			intB = 0d ;
+		}
 		return intB;
 	}
 
