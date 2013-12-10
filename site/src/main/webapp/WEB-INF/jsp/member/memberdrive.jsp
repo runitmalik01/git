@@ -1,4 +1,6 @@
 <%@page import="java.net.URLEncoder"%>
+<%@page import="com.mootly.wcm.components.ITReturnComponentHelper"%>
+<%@page import="org.hippoecm.hst.core.component.HstRequest"%>
 <%@include file="../includes/tags.jspf"%>
 <hst:link var="memberDriveComp" siteMapItemRefId="docattach"></hst:link>
 <hippo-gogreen:title title="Member Drive" />
@@ -10,7 +12,14 @@
 	</c:forEach>
 </c:if>
 <%StringBuilder builder=new StringBuilder();
-builder.append(request.getScheme() + "://" +  request.getServerName()).append(":").append(request.getServerPort()); 
+builder.append(request.getScheme() + "://" +  request.getServerName()).append(":").append(request.getServerPort());
+HstRequest hstRequest = (HstRequest) request;
+ITReturnComponentHelper componentHelper = new ITReturnComponentHelper();
+if(componentHelper.isReSeller(hstRequest)){
+	if(componentHelper.getResellerId(hstRequest) != null){
+		builder.append("/r/").append(componentHelper.getResellerId(hstRequest));
+	}
+}
 pageContext.setAttribute("hostname", builder.toString());
 %>
 <hst:actionURL var="actionUrl"></hst:actionURL>

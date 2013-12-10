@@ -47,6 +47,18 @@
     <link rel="stylesheet" media="screen" type="text/css" href="${stylecss}"/>
     <hst:link var="w4indiacss" path="/css/bootstrap_v2/wealth4india.css"/>
     <link rel="stylesheet" media="screen" type="text/css" href="${w4indiacss}"/>
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+	<script type='text/javascript' src='<hst:link path="/js/bootstrap_v2/bootstrap.min.js"></hst:link>'></script>
+	<script src="<hst:link path="/js/bootstrap-typeahead.js"></hst:link>"></script>
+	
+	<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.js"></script>
+	<hst:link var="jqueryWaterMark" path="/js/jquery.watermark.min.js"/>
+    <script src="${jqueryWaterMark}"></script>
+
+	<hst:link var="jquery_validate_min" path="/js/jquery.validate.min.js"/>
+	<script type='text/javascript' src='${jquery_validate_min}'></script>
+	<hst:componentRenderingURL var="ajaxLinkToComponent"></hst:componentRenderingURL>
+	<hst:headContributions categoryIncludes="jsExternal"/>
 </head>
 <body class="<c:choose><c:when test="${not empty strIsOnVendorPortal}">page-vendor</c:when><c:when test="${not empty bodyCssClass}"><c:out value="${bodyCssClass}"/></c:when><c:otherwise>page</c:otherwise></c:choose>">
 
@@ -65,19 +77,7 @@
 	<hst:include ref="main"/>
 	<hst:headContributions categoryIncludes="customHTML" xhtml="false"/>
 	<hst:include ref="footer"/>
-
-	<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-	<script type='text/javascript' src='<hst:link path="/js/bootstrap_v2/bootstrap.min.js"></hst:link>'></script>
-	<script src="<hst:link path="/js/bootstrap-typeahead.js"></hst:link>"></script>
 	
-	<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.js"></script>
-	<hst:link var="jqueryWaterMark" path="/js/jquery.watermark.min.js"/>
-    <script src="${jqueryWaterMark}"></script>
-
-	<hst:link var="jquery_validate_min" path="/js/jquery.validate.min.js"/>
-	<script type='text/javascript' src='${jquery_validate_min}'></script>
-	<hst:componentRenderingURL var="ajaxLinkToComponent"></hst:componentRenderingURL>
-	<hst:headContributions categoryIncludes="jsExternal"/>
 	<script>
 		$.datepicker.setDefaults({
 		  /*showOn: "both",*/
