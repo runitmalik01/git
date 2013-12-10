@@ -1,10 +1,11 @@
 
 //var aysfall = $('#aytaxd').val()-$('#aytaxp').val();
 var aysfall = aytaxd-aytaxp;
-/*
+
 if(aysfall<0){
 	aysfall = 0;
 }
+/*
 if(ddate==7 && aytaxmp>7){  // Due date is 31 july after that interest will be calculated for Section 234A
 	var dateA = aytaxmp-7;   //For salary earners and other non corporate assessees whose accounts are not required to be audited
 }else
