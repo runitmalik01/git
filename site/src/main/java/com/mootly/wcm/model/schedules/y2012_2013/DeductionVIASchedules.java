@@ -133,7 +133,6 @@ public class DeductionVIASchedules extends XmlCalculation {
 		grossTotal(financialYear, inputBeans);
 		totalMapForJSDe.put("isSeniorCitizen",financialYear.isSeniorCitizen(memberPersonalInformation.getDOB().getTime()));
 		totalMapForJSDe.put("salarypension",longsalarytotal);
-		log.info("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD"+getBusinessIncome(itr, financialYear, inputBeans));
 		totalMapForJSDe.put("businessIncome", getBusinessIncome(itr, financialYear, inputBeans));
 		inputBeans.get(MemberPersonalInformation.class.getSimpleName().toLowerCase());
 		totalMapForJSDe.put("businessIncomeITR4",getBusinessIncITR4S((MemberPersonalInformation)inputBeans.get(MemberPersonalInformation.class.getSimpleName().toLowerCase()),(BusinessProfessionDocument)inputBeans.get(BusinessProfessionDocument.class.getSimpleName().toLowerCase()),(SchFourtyFourAEDocument)inputBeans.get(SchFourtyFourAEDocument.class.getSimpleName().toLowerCase())));
