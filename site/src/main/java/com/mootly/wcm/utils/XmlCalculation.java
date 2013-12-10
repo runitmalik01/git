@@ -552,6 +552,7 @@ public class XmlCalculation implements XmlCalculationImplement {
 		}
 
 		double nettaxLiability = TaxLiability.doubleValue() - dtotalamount;
+		
 		Interest234BCalc interest234BCalc = new Interest234BCalc();
 		Double intB = interest234BCalc.getInterest235B(financialYear, nettaxLiability, TaxLiability.doubleValue(), selfAssesmetTaxDocument);
 
