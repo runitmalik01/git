@@ -1,6 +1,5 @@
 package com.mootly.wcm.model.schedules.y2013_2014;
 
-import in.gov.incometaxindiaefiling.y2013_2014.ITR4ScheduleBP;
 import in.gov.incometaxindiaefiling.y2013_2014.DeductUndChapVIA;
 import in.gov.incometaxindiaefiling.y2013_2014.ITR;
 import in.gov.incometaxindiaefiling.y2013_2014.ScheduleVIA;
@@ -20,24 +19,13 @@ import org.hippoecm.hst.core.component.HstResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.mootly.wcm.beans.BusinessProfessionDocument;
 import com.mootly.wcm.beans.DeductionDocument;
-import com.mootly.wcm.beans.DeductionSchedTenADocumemt;
-import com.mootly.wcm.beans.IncBusinessProfessionDoc;
 import com.mootly.wcm.beans.MemberPersonalInformation;
-import com.mootly.wcm.beans.OtherInformationDocument;
 import com.mootly.wcm.beans.OtherSourcesDocument;
-import com.mootly.wcm.beans.ProfitAndLossDocument;
-import com.mootly.wcm.beans.SchFourtyFourAEDocument;
-import com.mootly.wcm.beans.ScheduleDOADocument;
-import com.mootly.wcm.beans.ScheduleDPMDocument;
-import com.mootly.wcm.beans.ScheduleESRDocument;
 import com.mootly.wcm.beans.compound.DeductionDocumentDetail;
 import com.mootly.wcm.model.FinancialYear;
-import com.mootly.wcm.model.ITRForm;
 import com.mootly.wcm.model.deduction.DeductionHead;
 import com.mootly.wcm.model.deduction.DeductionSection;
-import com.mootly.wcm.model.schedules.y2013_2014.ITR4_ScheduleBP;
 import com.mootly.wcm.services.DeductionListService;
 import com.mootly.wcm.services.IndianCurrencyHelper;
 import com.mootly.wcm.services.ScreenCalculatorService;
@@ -130,8 +118,6 @@ public class DeductionVIASchedules extends XmlCalculation {
 		totalMapForJSDe.put("salarypension",longsalarytotal);
 		totalMapForJSDe.put("othersources",otherincome);
 		totalMapForJSDe.put("houseproperty",houseIncomeTotal);
-		totalMapForJSDe.put("businessIncome", getBusinessIncome(itr, financialYear, inputBeans));
-		totalMapForJSDe.put("businessIncomeITR4",getBusinessIncITR4S((MemberPersonalInformation)inputBeans.get(MemberPersonalInformation.class.getSimpleName().toLowerCase()),(BusinessProfessionDocument)inputBeans.get(BusinessProfessionDocument.class.getSimpleName().toLowerCase()),(SchFourtyFourAEDocument)inputBeans.get(SchFourtyFourAEDocument.class.getSimpleName().toLowerCase())));
 		Map<String,Object> resultMapDe = ScreenCalculatorService.getScreenCalculations("Chapter6Calc.js", requestParameterMap, totalMapForJSDe);
 		Double totaleligiblededuction=0D;
 		if(resultMapDe.containsKey("total_eligiblededuction")) {
@@ -203,45 +189,5 @@ public class DeductionVIASchedules extends XmlCalculation {
 			listOfDeductionDocumentDetail.add(bankSavingDetail);
 		}
 		return listOfDeductionDocumentDetail;
-	}
-	
-	// This method is used to fetch the values of business income for deduction calculation
-	public Double getBusinessIncome(ITR itr, FinancialYear financialYear,Map<String,HippoBean> inputBeans){
-		Double businessIncome = 0d;
-		Long notSpecBuss = 0l;
-		Long profitLossSpecBuss = 0l;
-		Long specBusinessIncome = 0l;
-		MemberPersonalInformation pi = (MemberPersonalInformation) inputBeans.get(MemberPersonalInformation.class.getSimpleName().toLowerCase());
-		ITRForm selectedITR = pi.getSelectedITRForm();
-		if(selectedITR.equals(ITRForm.ITR4)){
-			ITR4_ScheduleBP iTR4_ScheduleBP = new ITR4_ScheduleBP((IncBusinessProfessionDoc)inputBeans.get(IncBusinessProfessionDoc.class.getSimpleName().toLowerCase()), (ProfitAndLossDocument)inputBeans.get(ProfitAndLossDocument.class.getSimpleName().toLowerCase()),
-																(OtherInformationDocument)inputBeans.get(OtherInformationDocument.class.getSimpleName().toLowerCase()),
-					                                            (ScheduleDPMDocument)inputBeans.get(ScheduleDPMDocument.class.getSimpleName().toLowerCase()), (ScheduleDOADocument)inputBeans.get(ScheduleDOADocument.class.getSimpleName().toLowerCase()), 
-					                                            (ScheduleESRDocument)inputBeans.get(ScheduleESRDocument.class.getSimpleName().toLowerCase()), (DeductionSchedTenADocumemt)inputBeans.get(DeductionSchedTenADocumemt.class.getSimpleName().toLowerCase()));
-			        ITR4ScheduleBP iTR4ScheduleBP = iTR4_ScheduleBP.getITR4ScheduleBP(itr, financialYear, inputBeans);
-			        if(iTR4ScheduleBP != null){
-			        	notSpecBuss = iTR4ScheduleBP.getBusinessIncOthThanSpec().getNetPLBusOthThanSpec7A7B7C();
-						profitLossSpecBuss = iTR4ScheduleBP.getSpecifiedBusinessInc().getPLFrmSpecifiedBus();
-						specBusinessIncome = iTR4ScheduleBP.getSpecBusinessInc().getAdjustedPLFrmSpecuBus();	
-			        }
-			        businessIncome = notSpecBuss.doubleValue()+ profitLossSpecBuss.doubleValue()+specBusinessIncome.doubleValue();
-		}
-		return businessIncome;
-	}
-	// The following method will be fetching the business income for itr4s
-	public Double getBusinessIncITR4S(MemberPersonalInformation memberPersonalInformation,BusinessProfessionDocument businessProfessionDocument,SchFourtyFourAEDocument schFourtyFourAEDocument){
-		Double incChargUnderBusiness = 0d;
-		if(memberPersonalInformation != null){
-			ITRForm itrForm= memberPersonalInformation.getSelectedITRForm();
-			if(itrForm.equals(ITRForm.ITR4S)){
-				if(businessProfessionDocument != null){
-					incChargUnderBusiness = incChargUnderBusiness + businessProfessionDocument.getGrossPresumptIncome();
-				}
-				if(schFourtyFourAEDocument != null){
-					incChargUnderBusiness = incChargUnderBusiness + schFourtyFourAEDocument.getTotal_deemedIncome_Heavy()+schFourtyFourAEDocument.getTotal_deemedIncome_Light();
-				}
-			}
-		} 
-		return incChargUnderBusiness;
 	}
 }
