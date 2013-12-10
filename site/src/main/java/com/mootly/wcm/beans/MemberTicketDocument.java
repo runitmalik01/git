@@ -47,13 +47,12 @@ import org.slf4j.LoggerFactory;
 
 import com.mootly.wcm.annotations.TagAsTaxDataProvider;
 import com.mootly.wcm.annotations.TagAsTaxDataProvider.TaxDataProviderType;
-import com.mootly.wcm.beans.compound.ClubIncomeDetail;
 import com.mootly.wcm.beans.compound.MemberTicketDocumentDetail;
 import com.mootly.wcm.beans.compound.PersonalInformation;
 import com.mootly.wcm.beans.compound.TdsOthersDetail;
 
 @SuppressWarnings("unused")
-@Node(jcrType = "mootlywcm:clubincomedocument")
+@Node(jcrType = "mootlywcm:memberticketdocument")
 @TagAsTaxDataProvider(type=TaxDataProviderType.INCOME)
 public class MemberTicketDocument extends BaseDocument implements ContentNodeBinder,FormMapFiller,CompoundChildUpdate {
 	static final public String NAMESPACE = "mootlywcm:memberticketdocument";
