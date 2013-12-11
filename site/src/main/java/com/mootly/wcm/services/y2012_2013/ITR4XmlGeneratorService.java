@@ -108,6 +108,7 @@ import com.mootly.wcm.model.schedules.y2012_2013.Schedule80_IA;
 import com.mootly.wcm.model.schedules.y2012_2013.Schedule80_IB;
 import com.mootly.wcm.model.schedules.y2012_2013.Schedule80_IC;
 import com.mootly.wcm.model.schedules.y2012_2013.ScheduleFiveA;
+import com.mootly.wcm.model.schedules.y2012_2013.Schedule_STTR;
 import com.mootly.wcm.model.schedules.y2012_2013.TCSSchedule;
 import com.mootly.wcm.model.schedules.y2012_2013.TRDetailsSchedule;
 import com.mootly.wcm.model.schedules.y2012_2013.TaxesDocumentScheduleIT;
@@ -334,6 +335,10 @@ public class ITR4XmlGeneratorService  {
 
 		ITR_ScheduleIF iTR_ScheduleIF= new ITR_ScheduleIF(firmsPartnerDocument, memberPersonalInformation);
 		itr4.setScheduleIF(iTR_ScheduleIF.getScheduleIF(itr));
+		
+		// schedule STTR
+		Schedule_STTR schedule_STTR = new Schedule_STTR();
+		itr4.setScheduleSTTR(schedule_STTR.getScheduleSTTR());
 
 		MemberVerification memberVerification = new MemberVerification(memberPersonalInformation);
 		itr4.setVerification(memberVerification.getVerification(itr));
