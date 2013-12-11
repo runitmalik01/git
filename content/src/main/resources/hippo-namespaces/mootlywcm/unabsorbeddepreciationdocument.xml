@@ -29,7 +29,7 @@
         <sv:value>hippo:harddocument</sv:value>
       </sv:property>
       <sv:property sv:name="jcr:uuid" sv:type="String">
-        <sv:value>18f06bba-92b6-4e6b-8fcf-d45100ab981a</sv:value>
+        <sv:value>49f9ceb1-e3bd-4c7f-b552-e53b9fb4d4c5</sv:value>
       </sv:property>
       <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
       <sv:property sv:name="hipposysedit:node" sv:type="Boolean">
@@ -149,7 +149,7 @@
         <sv:value>hippotranslation:translated</sv:value>
       </sv:property>
       <sv:property sv:name="jcr:uuid" sv:type="String">
-        <sv:value>557641f4-7d6d-41da-b005-074c0e620c2b</sv:value>
+        <sv:value>b73d59bb-91ba-47ae-bc8d-6ddc35a76906</sv:value>
       </sv:property>
       <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
       <sv:property sv:name="hippostd:holder" sv:type="String">
@@ -191,23 +191,6 @@
       <sv:node sv:name="hippotranslation:translations">
         <sv:property sv:name="jcr:primaryType" sv:type="Name">
           <sv:value>hippotranslation:translations</sv:value>
-        </sv:property>
-      </sv:node>
-      <sv:node sv:name="mootlywcm:unabsorbeddepreciationdetail">
-        <sv:property sv:name="jcr:primaryType" sv:type="Name">
-          <sv:value>mootlywcm:unabsorbeddepreciationdetail</sv:value>
-        </sv:property>
-        <sv:property sv:name="mootlywcm:amtDepCurrYear" sv:type="Double">
-          <sv:value>0.0</sv:value>
-        </sv:property>
-        <sv:property sv:name="mootlywcm:amtUaDep" sv:type="Double">
-          <sv:value>0.0</sv:value>
-        </sv:property>
-        <sv:property sv:name="mootlywcm:assessYear" sv:type="String">
-          <sv:value/>
-        </sv:property>
-        <sv:property sv:name="mootlywcm:balanceCarry" sv:type="Double">
-          <sv:value>0.0</sv:value>
         </sv:property>
       </sv:node>
     </sv:node>
