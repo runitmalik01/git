@@ -22,13 +22,13 @@
 <hst:actionURL var="actionUrl"></hst:actionURL>
 <div class="memberlogin page type-page well">
 		<h3 id="respond1">Signup to <w4india:resellername/></h3>
-	    <div class="alert alert-info" id="chkentry">It takes just a minute to join. Please enter the following information to create your account.</div>
+	    <div class="alert alert-info">It takes just a minute to join. Please enter the following information to create your account.</div>
 		<form action="${actionUrl}" method="post" id="signupForm">
 		 <p>
 		 	  <label for="email">
 		          <small>Reseller ID (required)</small>
 		       </label>
-		       <input name="resellerID" id="resellerID" value="${fn:escapeXml(resellerID)}" size="22" tabindex="1" type="text" maxlength="50">
+		       <input name="resellerID" id="resellerID" value="${fn:escapeXml(resellerID)}" size="22" tabindex="1" type="text" maxlength="6">
 		       <label for="resellerID" class="error" generated="false"><c:if test="${not empty resellerIDError}"><fmt:message key="${resellerIDError}"/></c:if></label>
 		   </p>
 		   <p>
