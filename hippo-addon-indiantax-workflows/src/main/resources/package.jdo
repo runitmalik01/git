@@ -22,5 +22,6 @@
     <class name="UserSignupEventWorkflowImpl" detachable="false" identity-type="datastore"/>
     <class name="MemberPersonalInformationEventWorkflowImpl" detachable="false" identity-type="datastore"/>
     <class name="ChangePasswordWorkflow" detachable="false" identity-type="datastore"/>
+    <class name="ResellerSetupConfigurationWorkflowImpl" detachable="false" identity-type="datastore"/>
   </package>
 </jdo>
