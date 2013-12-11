@@ -1,13 +1,3 @@
-/*
- * 
- * here we are resends the activation link to user
- *  by which he can activate his account
- *  @author abhishek
- *  12/03/2013
- *  
- */
-
-
 
 package com.mootly.wcm.reseller;
 
@@ -48,7 +38,6 @@ public class ReActivation extends BaseComponent {
 		String success=request.getParameter(SUCCESS);
 		if (success != null && SUCCESS.equals(success)) {
 			request.setAttribute(SUCCESS, request.getParameterValues(success));
-			return;
 		}
 		request.setAttribute(ERRORS, request.getParameterValues(ERRORS));
 		request.setAttribute(EMAIL_ERROR, request.getParameterValues(EMAIL_ERROR));
@@ -63,13 +52,13 @@ public class ReActivation extends BaseComponent {
 		super.doAction(request, response);
 		//Any submission will go here (we are getting email)
 
-		String email = GoGreenUtil.getEscapedParameter(request, "email");
+		//String email = GoGreenUtil.getEscapedParameter(request, "email");
 		String resellerID = GoGreenUtil.getEscapedParameter(request, "resellerID");
 		List<String> errors=new ArrayList<String>();
 
-		if(StringUtils.isEmpty(email)){
-			errors.add("Enter a valid email");
-		}
+		//	if(StringUtils.isEmpty(email)){
+		//	errors.add("Enter a valid email");
+		//	}
 		if(StringUtils.isEmpty(resellerID)){
 			errors.add("Enter a valid Reseller ID");
 		}
@@ -80,7 +69,7 @@ public class ReActivation extends BaseComponent {
 		}
 
 		//Get activecode is used to check whether the user is registered or not
-		String pathToResellerSignupDocument = resellerID + "/admin/" + email.replaceAll("@", "-at-") + "/resellersignupdocument";
+		String pathToResellerSignupDocument = resellerID + "/admin/resellersignupdocument";
 		HippoBean siteContentBaseBean = getSiteContentBaseBean(request);
 		if (siteContentBaseBean != null) request.setAttribute("siteContentBaseBean", siteContentBaseBean);
 		if (siteContentBaseBean != null) {
@@ -94,20 +83,13 @@ public class ReActivation extends BaseComponent {
 						if(resellerSignupDocument!= null)
 						{
 							if(!resellerSignupDocument.getIsActive()){
-								if((resellerSignupDocument.getEmail().toString()).equalsIgnoreCase(email))
-								{
-									Map<String,Object> velocityContext = new HashMap<String, Object>();
-									StringBuffer sbHostName = new StringBuffer();
-									sbHostName.append(request.getServerName()).append(":").append(request.getServerPort());
-									velocityContext.put("memberHostName", sbHostName.toString());
-									velocityContext.put("resellershipSignupDocument", resellerSignupDocument);
-									sendEmail(request, new String[] {email}, null, "", "reseller_resend_activationcode", velocityContext);
-									response.setRenderParameter(SUCCESS, SUCCESS);
-								}
-								else{
-									log.warn("Email is not found");
-									response.setRenderParameter(EMAIL_ERROR, "Your Email is not registered.");
-								}
+								Map<String,Object> velocityContext = new HashMap<String, Object>();
+								StringBuffer sbHostName = new StringBuffer();
+								sbHostName.append(request.getServerName()).append(":").append(request.getServerPort());
+								velocityContext.put("memberHostName", sbHostName.toString());
+								velocityContext.put("resellershipSignupDocument", resellerSignupDocument);
+								sendEmail(request,new String[]{resellerSignupDocument.getEmail()}, null, "", "reseller_resend_activationcode", velocityContext);
+								response.setRenderParameter(SUCCESS, SUCCESS);
 							}else{
 								response.setRenderParameter(RESELLER_ACTIVATION, "Reseller ID is already activated.");
 							}
@@ -115,7 +97,7 @@ public class ReActivation extends BaseComponent {
 						else
 						{
 							log.warn("Can not able to get the node");
-							response.setRenderParameter(EMAIL_ERROR, "Your Email is not registered.");
+							response.setRenderParameter(RESELLER_ERROR, "Reseller ID is not registered.");
 						}
 					}
 				}
