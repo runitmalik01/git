@@ -279,10 +279,12 @@
 			//allForms.validate();
 			allForms.each ( function(index,value) {
 				$(value).validate();
+				
 				if (!$(value).valid()) {
+				
 					return false;
 				}
-			});
+	//	}); instead of ending this method here end it later
 			$(".progress").show();
 			$(".progress").addClass('active');
 			$("#theProgressBar").css('width:0%');
@@ -300,6 +302,7 @@
 			}
 			$(".progress").removeClass('active');
 			window.location.href = '../../chapterVIdeductions.html';
+				});// it is right place to end method
 		}
 		
 <c:if test="${pageAction == 'NEW_CHILD' && not empty deductionSection.listOfDeductionHead && deductionSection.name != '80g'}">
