@@ -1,9 +1,3 @@
-/*
- * Class responsible for vendor signup
- * @author Dhananjay
- * 01/06/2013
- */
-
 
 package com.mootly.wcm.reseller;
 
@@ -169,7 +163,6 @@ public class ResellerSignup extends BaseComponent {
         	HippoBean siteContentBaseBean = getSiteContentBaseBean(request);
         	if (siteContentBaseBean != null) request.setAttribute("siteContentBaseBean", siteContentBaseBean);
         	if (siteContentBaseBean != null) {
-        		String normalizedEmail = email.replaceAll("@","-at-").toLowerCase();
         		HippoBean resellersBean = siteContentBaseBean.getBean("resellers");
         		if (resellersBean != null) {
         			if(resellersBean instanceof HippoFolder){
@@ -229,7 +222,7 @@ public class ResellerSignup extends BaseComponent {
 			wpm = getWorkflowPersistenceManager(persistableSession);
 			wpm.setWorkflowCallbackHandler(new FullReviewedWorkflowCallbackHandler());
 			String cPath =request.getRequestContext().getResolvedMount().getMount().getCanonicalContentPath()+"/resellers/"+signupDocument.getResellerID(); //getCanonicalBasePathForWrite(request);
-			final String memberFolderPath = cPath + "/" + ContentStructure.RESELLER_FOLDER_NAME + "/" + getNormalizedUserName(request, signupDocument.getUserName());//ContentStructure.getMemberFolder(request,signupDocument.getUserName());
+			final String memberFolderPath = cPath + "/" + ContentStructure.RESELLER_FOLDER_NAME;//ContentStructure.getMemberFolder(request,signupDocument.getUserName());
 			finalResellershipDocumentPath = wpm.createAndReturn(memberFolderPath, ResellerSignupDocument.NAMESPACE ,  ResellerSignupDocument.NODE_NAME, true);
 			ResellerSignupDocument resellershipSignupDocument = (ResellerSignupDocument) wpm.getObject(finalResellershipDocumentPath);
 			// update content properties
