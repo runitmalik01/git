@@ -57,7 +57,7 @@ public class PageRowDetail extends FlexibleDocument implements FormMapFiller {
 	Boolean notColumn;
 
 	List<BlockDocument> blockDocuments;
-	List<String> blockCanonicalUUIDs;
+	List<String> blockCanonicalHandleUUID;
 	private boolean markedForDeletion;
 	public final Boolean getNotContainer() {
 		if (notContainer == null) notContainer = getProperty("mootlywcm:notContainer");
@@ -71,22 +71,22 @@ public class PageRowDetail extends FlexibleDocument implements FormMapFiller {
 		this.markedForDeletion = markedForDeletion;
 	}
 
-	public List<String> getBlockCanonicalUUIDs() {
-		if(blockCanonicalUUIDs == null){
-			blockCanonicalUUIDs = new ArrayList<String>();
+	public List<String> getBlockCanonicalHandleUUID() {
+		if(blockCanonicalHandleUUID == null){
+			blockCanonicalHandleUUID = new ArrayList<String>();
 			List<String> uuidsArray = new ArrayList<String>();
 			if(getBlockDocuments()!= null){
-				for(HippoBean bean:getBlockDocuments()){
-					uuidsArray.add(bean.getCanonicalUUID());
+				for(BlockDocument thebean:getBlockDocuments()){
+					uuidsArray.add(thebean.getCanonicalHandleUUID());
 				}
 			}
-			blockCanonicalUUIDs.addAll(uuidsArray);
+			blockCanonicalHandleUUID.addAll(uuidsArray);
 		}
-		return blockCanonicalUUIDs;
+		return blockCanonicalHandleUUID;
 	}
 
-	public void setBlockCanonicalUUIDs(List<String> blockCanonicalUUIDs) {
-		this.blockCanonicalUUIDs = blockCanonicalUUIDs;
+	public void setBlockCanonicalHandleUUID(List<String> blockCanonicalHandleUUID) {
+		this.blockCanonicalHandleUUID = blockCanonicalHandleUUID;
 	}
 
 	public final Boolean getNotRow() {
@@ -114,19 +114,18 @@ public class PageRowDetail extends FlexibleDocument implements FormMapFiller {
 		}
 		return blockDocuments;
 	}
-
 	public boolean bindToNode(javax.jcr.Node node)
 			throws ContentNodeBindingException {
 		//super.bindToNode(node);
 		if (log.isInfoEnabled()) {
-			log.info("Lets see value of UUID List"+getBlockCanonicalUUIDs());			
+			log.info("Lets see value of UUID List"+getBlockCanonicalHandleUUID());			
 		}
-		for(String canonicalUUID:getBlockCanonicalUUIDs()){
+		for(String canonicalHandleUUID:getBlockCanonicalHandleUUID()){
 			javax.jcr.Node prdLinkNode;
 			try {
 				//prdLinkNode = node.getNode(PROP_COLUMN_BEAN);
 				prdLinkNode = node.addNode(PROP_COLUMN_BEAN, "hippo:mirror");
-				prdLinkNode.setProperty("hippo:docbase", canonicalUUID);
+				prdLinkNode.setProperty("hippo:docbase", canonicalHandleUUID);
 			}  catch (RepositoryException e) {
 				// TODO Auto-generated catch block
 				log.error("Error in Repository",e);
@@ -152,7 +151,7 @@ public class PageRowDetail extends FlexibleDocument implements FormMapFiller {
 				}
 				uuids.add(key);
 			}
-			setBlockCanonicalUUIDs(uuids);
+			setBlockCanonicalHandleUUID(uuids);
 		}
 	}
 	@Override
@@ -160,7 +159,7 @@ public class PageRowDetail extends FlexibleDocument implements FormMapFiller {
 		// TODO Auto-generated method stub
 		super.cloneBean(sourceBean);
 		PageRowDetail pageRowDetail = (PageRowDetail) sourceBean;
-		setBlockCanonicalUUIDs(pageRowDetail.getBlockCanonicalUUIDs());
+		setBlockCanonicalHandleUUID(pageRowDetail.getBlockCanonicalHandleUUID());
 	}
 
 	@BeanClone

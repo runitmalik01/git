@@ -271,7 +271,6 @@ public class WebSiteBuilderComponent extends BaseComponent implements WebSiteBui
 					//response.setRenderParameter("selectedItrTab", ((ITRTab)request.getAttribute("selectedItrTab")).name());
 					//urlToRedirect += "?selectedItrTab=" +  ((ITRTab)request.getAttribute("selectedItrTab")).name();
 					//	}
-
 					response.sendRedirect( urlToRedirect );
 					//response.sendRedirect(redirectURL);
 					return;

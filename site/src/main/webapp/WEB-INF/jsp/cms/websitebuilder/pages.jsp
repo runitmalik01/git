@@ -141,11 +141,11 @@
 					<select name="blockDocCanonicalUUIDs" class="select-drop head form-control" id="blockDocCanonicalUUIDs" multiple="multiple">
 						<option value="">-Select-</option>
 						<c:forEach var="blockDoc" items="${listOfAllBlocksComponet}">
-							<option value="${blockDoc.canonicalUUID}"
+							<option value="${blockDoc.canonicalHandleUUID}"
 								<c:if test="${pageAction eq 'EDIT_CHILD'}">
 							<c:forEach items="${childBean.blockDocuments}" var="svblockDocument">
 								<c:choose>
-									<c:when test="${svblockDocument.canonicalUUID eq blockDoc.canonicalUUID}">
+									<c:when test="${svblockDocument.canonicalHandleUUID eq blockDoc.canonicalHandleUUID}">
 										selected="selected"
 									</c:when>
 								</c:choose>

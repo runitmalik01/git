@@ -46,7 +46,6 @@ import com.mootly.wcm.model.ITRForm;
 import com.mootly.wcm.model.ITRXmlValidation;
 import com.mootly.wcm.model.ValidateProperty;
 import com.mootly.wcm.model.schedules.y2012_2013.PartB_TI;
-import com.sun.org.apache.bcel.internal.generic.GETSTATIC;
 
 /**
  * @author admin
@@ -210,7 +209,7 @@ public class ITRScreenXmlValidateServiceImpl implements ITRScreenXmlValidateServ
 		if(VALIDATE.getValidateProperty().length > 0){
 			for(HippoDocumentBean documentBean:parentFolder.getDocuments()){
 				for(ValidateProperty propertyName: VALIDATE.getValidateProperty()){
-					if(propertyName.getDocumentName().equalsIgnoreCase(documentBean.getName())){
+					if(propertyName.getDocumentBean().getSimpleName().equalsIgnoreCase(documentBean.getName())){
 						Object object = documentBean.getProperty(propertyName.getPropertyName());
 						if(object != null){
 							switch(propertyName.getValidateType()){
