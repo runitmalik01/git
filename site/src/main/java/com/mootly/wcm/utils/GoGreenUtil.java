@@ -37,6 +37,21 @@ public final class GoGreenUtil {
         return StringEscapeUtils.escapeHtml(value);
     }
 
+    /**
+     * Returns null if parameter is empty string or  null, it escapes HTML otherwise
+     *
+     * @param request       hst request
+     * @param parameterName name of the parameter
+     * @return html escaped value
+     */
+    public static String[] getEscapedParameterValues(final HstRequest request, final String parameterName) {
+        String[] values = request.getParameterValues(parameterName);
+        if (values == null || values.length == 0) {
+            return null;
+        }
+       // return StringEscapeUtils.escapeHtml(value);
+        return values;
+    }
 
     public static int getIntConfigurationParameter(final HstRequest request, final String param, final int defaultValue) {
         String paramValue = request.getParameter(param);
