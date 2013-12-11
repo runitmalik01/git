@@ -51,9 +51,9 @@ import com.mootly.wcm.beans.compound.SalaryIncomeDetail;
 import com.mootly.wcm.beans.compound.SecurityQuestionAnswerValueList;
 
 /**
- * User: vivek
- * Date: Jun 29, 2010
- * Time: 11:26:35 AM
+ * User: Dhananjay
+ * Date: 10-12-2013
+ * 
  */
 
 @SuppressWarnings("unused")
@@ -79,6 +79,21 @@ public class ResellerSignupDocument extends BaseDocument implements ContentNodeB
 	private String mobile;
 	private String alternativeEmail;
 	private List<SecurityQuestionAnswerValueList> secQuestionsAnswersList;
+
+	String emailCustomerService;
+	String emailFrom;
+	String emailFromName;
+	String emailSignature;
+	Boolean eriEnable26ASImport;
+	Boolean eriEnabled;
+	String eriPassword;
+	String eriUserId;
+	Boolean isReseller;
+	String pageTitlePrefix;
+	String[] paymentAvailableTypes;
+	Boolean paymentEnabled;
+	String resellerName;
+
 	//for personal information
 	public final String getUserName() {
 		if (userName == null) userName = getProperty("mootlywcm:userName");
@@ -128,6 +143,58 @@ public class ResellerSignupDocument extends BaseDocument implements ContentNodeB
 		if (groups != null) groups = getProperty("mootlywcm:groups", new String[]{"registereduser"});
 		return groups;
 	}
+	public String getEmailCustomerService() {
+		if (emailCustomerService == null) emailCustomerService = getProperty("mootlywcm:emailCustomerService");
+		return emailCustomerService;
+	}
+	public String getEmailFrom() {
+		if (emailFrom == null) emailFrom = getProperty("mootlywcm:emailFrom");
+		return emailFrom;
+	}
+	public String getEmailFromName() {
+		if (emailFromName == null) emailFromName = getProperty("mootlywcm:emailFromName");
+		return emailFromName;
+	}
+	public String getEmailSignature() {
+		if (emailSignature == null) emailSignature = getProperty("mootlywcm:emailSignature");
+		return emailSignature;
+	}
+	public String getEriPassword() {
+		if (eriPassword == null) eriPassword = getProperty("mootlywcm:eriPassword");
+		return eriPassword;
+	}
+	public String getEriUserId() {
+		if (eriUserId == null) eriUserId = getProperty("mootlywcm:eriUserId");
+		return eriUserId;
+	}
+	public String getPageTitlePrefix() {
+		if (pageTitlePrefix == null) pageTitlePrefix = getProperty("mootlywcm:pageTitlePrefix");
+		return pageTitlePrefix;
+	}
+	public String[] getPaymentAvailableTypes() {
+		if (paymentAvailableTypes == null) paymentAvailableTypes = getProperty("mootlywcm:paymentAvailableTypes", new String[]{"paymentAvailableTypes"});
+		return paymentAvailableTypes;
+	}
+	public String getResellerName() {
+		if (resellerName == null) resellerName = getProperty("mootlywcm:resellerName");
+		return resellerName;
+	}
+	public Boolean getEriEnable26ASImport() {
+		if (eriEnable26ASImport == null) eriEnable26ASImport = getProperty("mootlywcm:eriEnable26ASImport");
+		return eriEnable26ASImport;
+	}
+	public Boolean getEriEnabled() {
+		if (eriEnabled == null) eriEnabled = getProperty("mootlywcm:eriEnabled");
+		return eriEnabled;
+	}
+	public Boolean getIsReseller() {
+		if (isReseller == null) isReseller = getProperty("mootlywcm:isReseller");
+		return isReseller;
+	}
+	public Boolean getPaymentEnabled() {
+		if (paymentEnabled == null) paymentEnabled = getProperty("mootlywcm:paymentEnabled");
+		return paymentEnabled;
+	}
 
 	public final void setUserName(String userName) {
 		this.userName = userName;
@@ -165,6 +232,46 @@ public class ResellerSignupDocument extends BaseDocument implements ContentNodeB
 	public final void setGroups(String[] groups) {
 		this.groups = groups;
 	}
+	public void setEmailCustomerService(String emailCustomerService) {
+		this.emailCustomerService = emailCustomerService;
+	}
+	public void setEmailFrom(String emailFrom) {
+		this.emailFrom = emailFrom;
+	}
+	public void setEmailFromName(String emailFromName) {
+		this.emailFromName = emailFromName;
+	}
+	public void setEmailSignature(String emailSignature) {
+		this.emailSignature = emailSignature;
+	}
+	public void setEriPassword(String eriPassword) {
+		this.eriPassword = eriPassword;
+	}
+	public void setEriUserId(String eriUserId) {
+		this.eriUserId = eriUserId;
+	}
+	public void setPageTitlePrefix(String pageTitlePrefix) {
+		this.pageTitlePrefix = pageTitlePrefix;
+	}
+	public void setPaymentAvailableTypes(String[] paymentAvailableTypes) {
+		this.paymentAvailableTypes = paymentAvailableTypes;
+	}
+	public void setResellerName(String resellerName) {
+		this.resellerName = resellerName;
+	}
+	public void setEriEnable26ASImport(Boolean eriEnable26ASImport) {
+		this.eriEnable26ASImport = eriEnable26ASImport;
+	}
+	public void setEriEnabled(Boolean eriEnabled) {
+		this.eriEnabled = eriEnabled;
+	}
+	public void setIsReseller(Boolean isReseller) {
+		this.isReseller = isReseller;
+	}
+	public void setPaymentEnabled(Boolean paymentEnabled) {
+		this.paymentEnabled = paymentEnabled;
+	}
+
 
 	//for personal information
 	/**
@@ -218,16 +325,31 @@ public class ResellerSignupDocument extends BaseDocument implements ContentNodeB
 		try {
 			log.warn("this is vendor signup Bena");
 			NodeIterator nodeIterator = node.getNodes(PROP_DETAIL_BEAN);
-        	if (nodeIterator != null) {
-	        	while (nodeIterator.hasNext()) {
-	        		javax.jcr.Node aNode = nodeIterator.nextNode();
-	        		aNode.remove();
-	        	}
-        	}
+			if (nodeIterator != null) {
+				while (nodeIterator.hasNext()) {
+					javax.jcr.Node aNode = nodeIterator.nextNode();
+					aNode.remove();
+				}
+			}
 			ResellerSignupDocument resellerSignup = (ResellerSignupDocument) content;
 			node.setProperty("mootlywcm:userName", resellerSignup.getUserName());
 			node.setProperty("mootlywcm:password", resellerSignup.getPassword());
 			node.setProperty("mootlywcm:email", resellerSignup.getEmail());
+			node.setProperty("mootlywcm:emailCustomerService", resellerSignup.getEmailCustomerService());
+			node.setProperty("mootlywcm:emailFrom", resellerSignup.getEmailFrom());
+			node.setProperty("mootlywcm:emailFromName", resellerSignup.getEmailFromName());
+			node.setProperty("mootlywcm:emailSignature", resellerSignup.getEmailSignature());
+			node.setProperty("mootlywcm:eriEnable26ASImport", resellerSignup.getEriEnable26ASImport());
+			node.setProperty("mootlywcm:eriEnabled", resellerSignup.getEriEnabled());
+			node.setProperty("mootlywcm:eriPassword", resellerSignup.getEriPassword());
+			node.setProperty("mootlywcm:eriUserId", resellerSignup.getEriUserId());
+			node.setProperty("mootlywcm:isReseller", resellerSignup.getIsReseller());
+			node.setProperty("mootlywcm:pageTitlePrefix", resellerSignup.getPageTitlePrefix());
+			if(resellerSignup.getPaymentAvailableTypes()!=null)
+				node.setProperty("mootlywcm:paymentAvailableTypes", resellerSignup.getPaymentAvailableTypes());
+			node.setProperty("mootlywcm:paymentEnabled", resellerSignup.getPaymentEnabled());
+			node.setProperty("mootlywcm:resellerName", resellerSignup.getResellerName());
+
 			if (resellerSignup.getPAN() != null) {
 				node.setProperty("mootlywcm:pan", resellerSignup.getPAN());
 			}
@@ -246,7 +368,7 @@ public class ResellerSignupDocument extends BaseDocument implements ContentNodeB
 			if (resellerSignup.getGroups() != null) {
 				node.setProperty("mootlywcm:groups", resellerSignup.getGroups());
 			}
-			
+
 			if(resellerSignup.getSecurityQuestionAnswerValueListList() !=null && resellerSignup.getSecurityQuestionAnswerValueListList().size() > 0){
 				for(SecurityQuestionAnswerValueList secQuesAnsDoc:getSecurityQuestionAnswerValueListList()){
 					if (!secQuesAnsDoc.isMarkedForDeletion()) {
