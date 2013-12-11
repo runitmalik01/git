@@ -6,5 +6,6 @@
     <class>com.mootly.wcm.it.workflow.UserSignupEventWorkflowImpl</class>
     <class>com.mootly.wcm.it.workflow.MemberPersonalInformationEventWorkflowImpl</class>
     <class>com.mootly.wcm.it.workflow.ChangePasswordWorkflow</class>
+    <class>com.mootly.wcm.it.workflow.ResellerSetupConfigurationWorkflowImpl</class>
   </persistence-unit>
 </persistence>
