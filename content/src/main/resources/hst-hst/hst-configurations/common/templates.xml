@@ -2271,7 +2271,7 @@
     <sv:value>cbe7584f-2191-4e65-b9df-85da30b12b65</sv:value>
   </sv:property>
   <sv:property sv:name="hst:renderpath" sv:type="String">
-    <sv:value>jsp/member/activation.jsp</sv:value>
+    <sv:value>jsp/reseller/reselleractivation.jsp</sv:value>
   </sv:property>
 </sv:node>
   <!-- end of reseller activation -->
