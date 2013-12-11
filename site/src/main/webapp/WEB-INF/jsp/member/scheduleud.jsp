@@ -116,7 +116,7 @@ ${aggIncome }
 
 			</table>
 			<a href="${redirectURLToSamePage}/scheduleUDnew"
-				class="button orange">Add New</a>
+				class="btn btn-info">Add New</a>
 		</c:otherwise>
 	</c:choose>
 </div>
