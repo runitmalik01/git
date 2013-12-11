@@ -1,21 +1,4 @@
 
-<%--
-
-    Copyright (C) 2010 Hippo B.V.
-
-    Licensed under the Apache License, Version 2.0 (the "License");
-    you may not use this file except in compliance with the License.
-    You may obtain a copy of the License at
-
-            http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing, software
-    distributed under the License is distributed on an "AS IS" BASIS,
-    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-    See the License for the specific language governing permissions and
-    limitations under the License.
-
---%>
 <%@include file="../includes/tags.jspf" %>
 <c:set var="activationtitle"><fmt:message key="member.activation.title"/></c:set>
 <hippo-gogreen:title title="${activationtitle}"/>
@@ -32,112 +15,188 @@
 		            </div>
 		     </c:when>
 		     <c:otherwise>
-		      <div class="alert alert-info">
-		      Your account is just one step away to being fully activated. Please fill in your details.
+		     <div class="alert alert-info">
+		      Your account is just one step away from being fully activated. The last little step to finishing the registration. Please fill in your details to activate your account.
+		     </div>
+	  <fieldset class="well">
+		     <div class="row-fluid show-grid" >
+		        <div class="span4">
+		            <div class="rowlabel">
+		 	            <label for="emailCustomerService">
+		                <small>Email Customer Service (required)</small>
+		                </label>
+		           </div>
+		           <div class="rowlabel">
+		              <input name="emailCustomerService" id="emailCustomerService" value="${fn:escapeXml(emailCustomerService)}" size="22" tabindex="1" type="text" maxlength="50">
+		           </div>
+		        </div>   
+		    <div class="span4">
+		        <div class="rowlabel">
+		 	        <label for="emailFrom">
+		            <small>Email From (required)</small>
+		            </label>
+		        </div>
+		        <div class="rowlabel">
+		            <input name="emailFrom" id="emailFrom" value="${fn:escapeXml(emailFrom)}" size="22" tabindex="1" type="text" maxlength="50">
+		        </div>
+		   </div>    
+		   <div class="span4">
+		        <div class="rowlabel">
+		 	       <label for="emailFromName">
+		           <small>Email From Name (required)</small>
+		           </label>
+		        </div>
+		        <div class="rowlabel">
+		           <input name="emailFromName" id="emailFromName" value="" size="22" tabindex="2" type="text" maxlength="50">
+		        </div>
+		  </div>
+		  </div> 
+		  <div class="row-fluid show-grid" >
+		        <div class="span4">
+		            <div class="rowlabel">
+				     <label for="emailSignature">
+		             <small>Email Signature (required)</small>
+		             </label>
+		             </div>
+		          <div class="rowlabel">
+		            <input name="emailSignature" id="emailSignature" value="" size="22" tabindex="3" type="text" maxlength="50">
+		          </div>
 		      </div>
-		   <p>
-		 	  <label for="emailCustomerService">
-		          <small>Email Customer Service (required)</small>
-		       </label>
-		       <input name="emailCustomerService" id="emailCustomerService" value="${fn:escapeXml(emailCustomerService)}" size="22" tabindex="1" type="text" maxlength="50">
-		   </p>
-		   <p>
-		 	  <label for="emailFrom">
-		          <small>Email From (required)</small>
-		       </label>
-		       <input name="emailFrom" id="emailFrom" value="${fn:escapeXml(emailFrom)}" size="22" tabindex="1" type="text" maxlength="50">
-		   </p>
-		   <p>
-		 	  <label for="emailFromName">
-		          <small>Email From Name (required)</small>
-		       </label>
-		       <input name="emailFromName" id="emailFromName" value="" size="22" tabindex="2" type="text" maxlength="50">
-		   
-		   </p>
-		   <p>
-				<label for="emailSignature">
-		           <small>Email Signature (required)</small>
-		       </label>
-		       <input name="emailSignature" id="emailSignature" value="" size="22" tabindex="3" type="text" maxlength="50">
-		      
-		   </p>
-		   <p>
-				<label for="eriEnable26ASImport ">
-		           <small>Eri Enable 26AS Import  (required)</small>
-		       </label>
-		      <select id= "eriEnable26ASImport" name="eriEnable26ASImport">
+		   </div>
+	</fieldset>
+	 <fieldset class="well">
+		     <div class="row-fluid show-grid" >
+		        <div class="span4">
+		            <div class="rowlabel">	   
+				       <label for="eriEnable26ASImport ">
+		               <small>Eri Enable 26AS Import  (required)</small>
+		               </label>
+		            </div> 
+		           <div class="rowlabel">   
+		               <select id= "eriEnable26ASImport" name="eriEnable26ASImport">
 							<option value="">-Select-</option>
 							<option value="true">Yes</option>
 							<option value="false">No</option>
-			  </select>
-		   </p>
-		   <p>
-		 	  <label for="eriEnabled">
-		          <small>Eri Enabled (required)</small>
-		       </label>
-		        <select id= "eriEnabled" name="eriEnabled">
+			          </select>   
+		          </div>
+		    </div>
+		    <div class="span4">
+		        <div class="rowlabel">	
+		 	       <label for="eriEnabled">
+		           <small>Eri Enabled (required)</small>
+		           </label>
+		        </div>
+		        <div class="rowlabel">
+		            <select id= "eriEnabled" name="eriEnabled">
 						<option value="">-Select-</option>
 						<option value="true">Yes</option>
 						<option value="false">No</option>
-				</select>
-		   </p>
-		   <p>
-			  <label for="eriPassword">
+				    </select>
+				</div>
+		   </div>
+		    <div class="span4">
+		        <div class="rowlabel">	
+			       <label for="eriPassword">
 		           <small>Eri Password (required)</small>
-		       </label>
-		       <input name="eriPassword" id="eriPassword" value="" size="22" tabindex="3" type="password" maxlength="20">
-		   </p>
-		   <p>
-		   	  <label for="eriUserId">
+		           </label>
+		        </div>
+		        <div class="rowlabel">	
+		           <input name="eriPassword" id="eriPassword" value="" size="22" tabindex="3" type="password" maxlength="20">
+		       </div>
+		   </div>
+	   </div>
+	   <div class="row-fluid show-grid" >
+	       <div class="span4">
+		       <div class="rowlabel">	 
+		   	      <label for="eriUserId">
 		          <small>Eri UserId (required)</small>
-		       </label>
-		       <input name="eriUserId" id="eriUserId" value="${fn:escapeXml(eriUserId)}" size="22" tabindex="1" type="text" maxlength="20">
-		   </p>
-		    <p>
-		 	  <label for="isReseller">
-		          <small>Is Reseller (required)</small>
-		       </label>
-		        <select id= "isReseller" name="isReseller">
-						<option value="">-Select-</option>
-						<option value="true">Yes</option>
-						<option value="false">No</option>
-				</select>
-		   </p>
-		    <p>
-		   	  <label for="pageTitlePrefix">
-		          <small>Page Title Prefix (required)</small>
-		       </label>
-		       <input name="pageTitlePrefix" id="pageTitlePrefix" value="${fn:escapeXml(pageTitlePrefix)}" size="22" tabindex="1" type="text" maxlength="50">
-		   </p>
-		     <p>
-		   	  <label for="paymentAvailableTypes">
-		          <small>Payment Available Types (required)</small>
-		       </label>
-		        <select id= "paymentAvailableTypes" name="paymentAvailableTypes" multiple="multiple">
-						<option value="CASH">Cash</option>
-						<option value="RTGS">RTGS</option>
-						<option value="CREDIT">Credit</option>
-				</select>
-		   </p>
-		   <p>
-		 	  <label for="paymentEnabled">
-		          <small>Payment Enabled (required)</small>
-		       </label>
-		        <select id= "paymentEnabled" name="paymentEnabled">
-						<option value="">-Select-</option>
-						<option value="true">Yes</option>
-						<option value="false">No</option>
-				</select>
-		   </p>
-		   <p>
-		   	  <label for="resellerName">
-		          <small>Reseller Name (required)</small>
-		       </label>
-		       <input name="resellerName" id="resellerName" value="${fn:escapeXml(resellerName)}" size="22" tabindex="1" type="text" maxlength="20">
-		   </p>
-		   <p>
-		   		<a href="javascript:void(0);" id="hrefSignup" class="orange button">Activate your account</a>
-		   </p>
+		          </label>
+		       </div>
+		       <div class="rowlabel">	
+		           <input name="eriUserId" id="eriUserId" value="${fn:escapeXml(eriUserId)}" size="22" tabindex="1" type="text" maxlength="20">
+		       </div>
+		    </div>
+		 </div>
+ </fieldset>
+ <fieldset class="well">
+		   <div class="row-fluid show-grid" >
+		        <div class="span4">
+		            <div class="rowlabel">	
+		 	            <label for="isReseller">
+		                <small>Is Reseller (required)</small>
+		                </label>
+		            </div>
+		            <div class="rowlabel">
+		               <select id= "isReseller" name="isReseller">
+						    <option value="">-Select-</option>
+						    <option value="true">Yes</option>
+						    <option value="false">No</option>
+				      </select>
+				    </div>
+				</div>
+		        <div class="span4">
+		            <div class="rowlabel">	
+		   	            <label for="pageTitlePrefix">
+		                <small>Page Title Prefix (required)</small>
+		                </label>
+		            </div>
+		            <div class="rowlabel">
+		               <input name="pageTitlePrefix" id="pageTitlePrefix" value="${fn:escapeXml(pageTitlePrefix)}" size="22" tabindex="1" type="text" maxlength="50">
+		            </div>
+		        </div>
+		        <div class="span4">
+		            <div class="rowlabel">	
+		   	           <label for="paymentAvailableTypes">
+		               <small>Payment Available Types (required)</small>
+		               </label>
+		            </div>
+		            <div class="rowlabel">	
+		               <select id= "paymentAvailableTypes" name="paymentAvailableTypes" multiple="multiple">
+						     <option value="CASH">Cash</option>
+						     <option value="RTGS">RTGS</option>
+						     <option value="CREDIT">Credit</option>
+			       	   </select>
+		          </div>
+		       </div>
+		   </div>
+		  <div class="row-fluid show-grid" >
+		        <div class="span4">
+		            <div class="rowlabel">
+		 	           <label for="paymentEnabled">
+		               <small>Payment Enabled (required)</small>
+		               </label>
+		             </div>
+		             <div class="rowlabel">
+		                <select id= "paymentEnabled" name="paymentEnabled">
+						     <option value="">-Select-</option>
+						     <option value="true">Yes</option>
+						     <option value="false">No</option>
+				       </select>
+				    </div>
+		       </div>
+		   </div>
+   </fieldset>
+   <fieldset class="well">
+		     <div class="row-fluid show-grid" >
+		        <div class="span4">
+		            <div class="rowlabel">
+		   	            <label for="resellerName">
+		                <small>Reseller Name (required)</small>
+		                </label>
+		            </div>
+		            <div class="rowlabel">
+		                <input name="resellerName" id="resellerName" value="${fn:escapeXml(resellerName)}" size="22" tabindex="1" type="text" maxlength="20">
+		            </div>
+		        </div>
+		    </div>
+    </fieldset>
+  
+	      <div class="row-fluid show-grid">
+			  <div class="span4 offset8 decimal">
+		   		  <a href="javascript:void(0);" id="hrefSignup" class="orange button">Activate your account</a>
+		      </div>
+		  </div>
+		 
 		 </c:otherwise>
 		 </c:choose>
 		</form>
@@ -223,8 +282,6 @@
 					resellerName: "This field is required."
 				}
 			});
-
-
 		});
 </hst:element>
 <hst:headContribution element="${uiCustom}" category="jsInternal"/>
