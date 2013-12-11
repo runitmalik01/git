@@ -12,9 +12,11 @@
 		<form action="${activationcode}" method="post" id="activationForm">
 		<c:choose>
 		<c:when test="${not empty success}">
-		 <div class="alert alert-info" id="chkentry">
-		 Activation code has been sent to your Email ID.
-		 </div>
+		    <div class="alert alert-info" id="chkentry">
+            <fmt:message key="member.message.active"/>
+		    <h3><fmt:message key="member.message.info1"/></h3><br/>
+		    <h4 style="color:green"><fmt:message key="member.message.info2"/>(${userName}) </h4>
+		    </div>
 		</c:when>
 		<c:otherwise>
 		 <div class="alert alert-info" id="chkentry">
@@ -27,18 +29,19 @@
 		 	  <label for="email">
 		          <small>Reseller ID (required)</small>
 		       </label>
-		       <input name="resellerID" id="resellerID" value="${fn:escapeXml(resellerID)}" size="22" tabindex="1" type="text" maxlength="50">
+		       <input name="resellerID" id="resellerID" value="${fn:escapeXml(resellerID)}" size="22" tabindex="1" type="text" maxlength="6">
 		       <c:if test="${not empty reseller_error}">
 				    <span class="form-error">
 					      <c:out value="Reseller ID is not registered" /> 
 					</span>
 			   </c:if>
-			    <c:if test="${not empty reseller_activation}">
+			    <c:if test="${not empty reseller_acvtivation}">
 				    <span class="form-error">
 					      <c:out value="Reseller ID is already activated" /> 
 					</span>
 			   </c:if>
 		   </p>
+		   <!-- 
 		   <p>
 		 	  <label for="email">
 		          <small>Email Address (required)</small>
@@ -64,7 +67,7 @@
 								<c:out value="Your Email is not registered" /> </span>
 							</c:if>
 		   </p>
-		   
+		    -->
 		    <p>
 		   		<a href="javascript:void(0);" id="hrefActivation" class="orange button">Get Activation Code</a>
 		   </p>
