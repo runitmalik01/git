@@ -10,9 +10,9 @@
 		            <h3><fmt:message key="${errorCode}"/></h3><br/>
 	            </c:when>
 		        <c:when test="${not empty success}">
-		            <div class="alert alert-info" id="chkentry">
-		             Thanks for choosing our service. Now you can login with your Reseller ID (${success}). 
-		            </div>
+		           <div class="alert alert-info">Congratulations !!!!! You have Successfully Signup
+		           <h2 style="color:green">We would like to thank you for choosing our service. Now you can login with your Reseller ID : ${success}</h2>
+		      </div>
 		     </c:when>
 		     <c:otherwise>
 		     <div class="alert alert-info">
