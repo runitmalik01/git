@@ -130,11 +130,9 @@
 					confirmPassword: "Confirm Password is required.",
 					signupTerms: "Terms of Use must be checked.",
 					resellerID: "Reseller ID is required.",
-					phoneCustomerService: "Please enter valid contact no."
+					phoneCustomerService: "Please enter a valid contact no."
 				}
 			});
-
-
 		});
 </hst:element>
 <hst:headContribution element="${uiCustom}" category="jsInternal"/>
