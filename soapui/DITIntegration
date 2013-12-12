@@ -9520,38 +9520,22 @@
       <v:DITWSAuthInfoEle>
          <v:userID>ERIU101969</v:userID>
          <v:password>%cdvps0756d%</v:password>
-         <v:certChain></v:certChain>
-         <v:signature>
-         <Signature xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315#WithComments"/><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/><Reference URI="#CDVPS0756D"><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/><DigestValue>ABnB17eDb8QdH9QQKAMKbwNwIx0=</DigestValue></Reference></SignedInfo><SignatureValue>Xltr4EDEEgkGfT12hpyR8PdB+dS+O7UGkA6FS9dFI0FcdM0KYEmucCh7daDg1vgCf1Daz7JHwMmG
-GaIfRckfN5S/DdSc6dUUAAQBeST8o+H+Thiv8saTBAeEexEs5WIcb+cWpvIVS0syFgfmDxA3tDec
-oP3rA3cb2/nDIuNFB4BMQLu6QNuGFaweULg+B1fOkk6trFSIVmDKcUkgy6dQ3KT48pVOU1G98qEc
-+/Fq3CKZtV8SAL0HQk2yqIL48PKCFstWpujLVgPTMPhjZ2F8i+ZOvxI5l5yG8rjasBQmDyHRsVni
-ANXdER4yj0kL+yOSoMYjK5Yt7XygKgjeFGB6ow==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=SWETA,2.5.4.5=#134064383239656166663631303137303933333161306339663931643864356164343432666638356538306536613435636463356264633236383936646235646632,ST=Delhi,2.5.4.17=#1306313130303735,O=Personal,C=IN</X509SubjectName><X509Certificate>MIIEyTCCA7GgAwIBAgIIGWeNXwEGZOYwDQYJKoZIhvcNAQELBQAwdDELMAkGA1UEBhMCSU4xIjAg
-BgNVBAoTGVNpZnkgVGVjaG5vbG9naWVzIExpbWl0ZWQxDzANBgNVBAsTBlN1Yi1DQTEwMC4GA1UE
-AxMnU2FmZVNjcnlwdCBzdWItQ0EgZm9yIFJDQUkgQ2xhc3MgMiAyMDEyMB4XDTEzMTIwMjA4NDUy
-N1oXDTE1MTIwMjA4NDUyN1owgZwxCzAJBgNVBAYTAklOMREwDwYDVQQKEwhQZXJzb25hbDEPMA0G
-A1UEERMGMTEwMDc1MQ4wDAYDVQQIEwVEZWxoaTFJMEcGA1UEBRNAZDgyOWVhZmY2MTAxNzA5MzMx
-YTBjOWY5MWQ4ZDVhZDQ0MmZmODVlODBlNmE0NWNkYzViZGMyNjg5NmRiNWRmMjEOMAwGA1UEAxMF
-U1dFVEEwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCfmcRZv6gaplra7oyTS2gNlKzf
-QEaD32WJNYJZFrUBJ8LVpiUilPzuSRo/lPzHYmp2RcG0ENF8pbYvIxChCO3YHaA5XHVi6vdtPTka
-9yPWSBHynXYuE/Uiulo7SUiF0pVxIQA0hAlUZSWGVKuJq3wZC5yrspR+PY7EFmxeik0Fqfe12FVn
-/NbL0CUdnPp5lQiizI3kX2DXh0BSgUcVtxoDac3qaZu/9z+PvOTbeU+OLz5mBigS0uKK4kNVzCV2
-Wr/PTJd8UibjwX/6X3oza5pc1h6wSLa5VBAgxNQkZmyluajLDaKVZr1OMgDSdzUF0WJEsFIruofG
-wlY6LNdrZEKNAgMBAAGjggE0MIIBMDAOBgNVHQ8BAf8EBAMCBsAwEwYDVR0jBAwwCoAISzwMcsiJ
-LbUwEQYDVR0OBAoECEf7Vl61xXe1MCEGA1UdEQQaMBiBFndlYWx0aDRpbmRpYUBnbWFpbC5jb20w
-RwYDVR0fBEAwPjA8oDqgOIY2aHR0cDovL2NybC5zYWZlc2NyeXB0LmNvbS9TYWZlU2NyeXB0UkNB
-SUNsYXNzMjIwMTIuY3JsMHUGCCsGAQUFBwEBBGkwZzA9BggrBgEFBQcwAoYxaHR0cHM6Ly93d3cu
-c2FmZXNjcnlwdC5jb20vY2VydHMvU2FmZVNjcnlwdENBLmNlcjAmBggrBgEFBQcwAYYaaHR0cDov
-L29jc3Auc2FmZXNjcnlwdC5jb20wEwYDVR0gBAwwCjAIBgZggmRkAgIwDQYJKoZIhvcNAQELBQAD
-ggEBAGlauhGZtwjo6l1RJYGPvPJHr/B5osgWETzzvhnENGIdQPBuMydDlCmE66XKOEfL3WCPw3mr
-J0eWM0yaPGsFX1Ov94Na2rGNfzOzfd1wTqgpnp55KT4+eUkI6+WRe0VryAdoA/sZ4xUEs6zjiY0M
-GFdaPnKOOXMbSXbSWv9LMDHQxoPveHrDRJZ5RG9Th1EumZvWsjlaND2GsmQ6mEWeFZfi3T77C82l
-Z+z2hqvERsV8Br8XWRLWLSzC7VmGKboR37MJQrQaNuHFsDMnOg4d1kxbmEjpue1R3WBxuOGyjQUS
-6EHUsBp4VZgFBZgjOMWFKfa56rXAKeIUQt+jdJh+bcw=</X509Certificate></X509Data></KeyInfo><Object Id="CDVPS0756D"/></Signature>
+         <v:certChain>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</v:certChain>
+         <v:signature>a3EwDtPJdDCqc2xwxcCgGgMoGbdaglAwl0Wgwll0J0QMmjr+QCrm7fqRL/K09pRf4w6DuTnzCA/w+BKsipSFkhZrVPfLgZcFQKR2y6LA+0/193bebDcq0xCsyEkcu1mWhomDNTLcIosm0kMmDcjJesXSk6J4KmgEPcp8UvexiXkNFHWjS74qtYqU2J4X3WwskQiW2/4hHJ08IRAIoI0qVMzlhnPhSDW4sQkQB8bMJksKaEdqagVETTnH4Z+Ugk9byutyYAF8fSmANo5JtmgfWCXOyz9eoCHKdIdieWWNjC2EvKSUcDbhIS3gPImQrAGn7eZEcz9aP4LCp0fslmNJpw==</v:signature>
+      </v:DITWSAuthInfoEle>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:attachment><con:name>x.zip</con:name><con:contentType>application/zip</con:contentType><con:contentId>x.zip</con:contentId><con:url>C:/temp/dsc/x.zip</con:url><con:id>1cfb1839-4c92-480e-bfe3-92eb4152cf58</con:id></con:attachment><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://incometaxindiaefiling.gov.in/submitITReturn"/><con:wsrmConfig version="1.2"/></con:call><con:call name="SWETA"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://incometaxindiaefiling.gov.in/e-FilingWS/ditws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:v="http://incometaxindiaefiling.gov.in/ws/ds/common/v_1_0">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <v:DITWSAuthInfoEle>
+         <v:userID>ERIU101969</v:userID>
+         <v:password>%cdvps0756d%</v:password>
+         <v:certChain>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</v:certChain>
+         <v:signature>Fz93Gem3NmVmCkDys4URrAnrGmCDECd9j0EDQIIby62L3ObakoHH/0hogUZYjOFHgu8PTtJ5uAkDB9ymhepK9VI2oAOY3cuceeEXr9EU/Zd5NVx9Ni4o2Ywgl24s8DcFZqImIaksxWayebMchJTAoUCqOlKkPqqKwNWZYXJ7ox5W3TsSdqMjiMJ+iHRZ9LCa4vm5SgKyi0w0b4wSPn38OD/Bh9Z7Hwlb+Oiu14qfbN6iJdg0Z9kqZ10Vb255IXknSeT8weDH3lO8a/Arjo1Uzh2BxBikmodH+nresXQGNazekKR6VWvS+wpFRvxep7cF+PCU9HXHl+S8vtCISxfpCQ==</Signature>
          </v:signature>
       </v:DITWSAuthInfoEle>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:attachment><con:name>x.zip</con:name><con:contentType>application/zip</con:contentType><con:contentId>x.zip</con:contentId><con:part>itrXMLFile</con:part><con:url>C:/Users/admin/Downloads/x.zip</con:url><con:id>2c81241b-f73a-4d8f-8189-54291640d1a4</con:id></con:attachment><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://incometaxindiaefiling.gov.in/submitITReturn"/><con:wsrmConfig version="1.2"/></con:call><con:requestParts><con:part name="itrXMLFile"><con:contentType>application/octet-stream</con:contentType></con:part></con:requestParts></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="BulkPanServiceSoapBinding" type="wsdl" bindingName="{http://incometaxindiaefiling.gov.in/bulkPanservice/v_1_0}BulkPanServiceSoapBinding" soapVersion="1_1" anonymous="optional" definition="https://incometaxindiaefiling.gov.in/e-FilingWS/ditws/submitBulkPan.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="https://incometaxindiaefiling.gov.in/e-FilingWS/ditws/submitBulkPan.wsdl"><con:part><con:url>https://incometaxindiaefiling.gov.in/e-FilingWS/ditws/submitBulkPan.wsdl</con:url><con:content><![CDATA[<definitions targetNamespace="http://incometaxindiaefiling.gov.in/bulkPanservice/v_1_0" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://incometaxindiaefiling.gov.in/bulkPanservice/v_1_0" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:attachment><con:name>ITR1_MODIFED.zip</con:name><con:contentType>application/zip</con:contentType><con:contentId>ITR1_MODIFED.zip</con:contentId><con:part>itrXMLFile</con:part><con:url>C:/temp/dsc/ITR1_MODIFED.zip</con:url><con:id>8dfd334b-c240-4f4f-aeba-01d942d4f5db</con:id></con:attachment><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://incometaxindiaefiling.gov.in/submitITReturn"/><con:wsrmConfig version="1.2"/></con:call><con:requestParts><con:part name="itrXMLFile"><con:contentType>application/octet-stream</con:contentType></con:part></con:requestParts></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="BulkPanServiceSoapBinding" type="wsdl" bindingName="{http://incometaxindiaefiling.gov.in/bulkPanservice/v_1_0}BulkPanServiceSoapBinding" soapVersion="1_1" anonymous="optional" definition="https://incometaxindiaefiling.gov.in/e-FilingWS/ditws/submitBulkPan.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="https://incometaxindiaefiling.gov.in/e-FilingWS/ditws/submitBulkPan.wsdl"><con:part><con:url>https://incometaxindiaefiling.gov.in/e-FilingWS/ditws/submitBulkPan.wsdl</con:url><con:content><![CDATA[<definitions targetNamespace="http://incometaxindiaefiling.gov.in/bulkPanservice/v_1_0" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://incometaxindiaefiling.gov.in/bulkPanservice/v_1_0" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
   <types>
     <xs:schema targetNamespace="http://incometaxindiaefiling.gov.in/bulkPanservice/v_1_0" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:bulkPanException="http://incometaxindiaefiling.gov.in/ws/bulkPan/ex/v_1_0">
       <xs:element name="submitBulkPan" type="tns:submitBulkPanType"/>
@@ -9784,7 +9768,259 @@ Z+z2hqvERsV8Br8XWRLWLSzC7VmGKboR37MJQrQaNuHFsDMnOg4d1kxbmEjpue1R3WBxuOGyjQUS
          </v:addClient>
       </v:addClientDetails>
    </SOAP-ENV:Body>
-</SOAP-ENV:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://incometaxindiaefiling.gov.in/ditws/addClientDetails/v_1_0/addClientPort/addClientDetailsRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:mockService port="8088" path="/mockGetPanInfoSoapHttp" host="mootly-pc-004" name="GetPanInfoSoapHttp MockService"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.mock.WsdlMockService@require-soap-action">false</con:setting></con:settings><con:mockOperation name="getPanInfo" interface="GetPanInfoSoapHttp" operation="getPanInfo"><con:settings/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:defaultResponse>Response 1</con:defaultResponse><con:response name="Response 1" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:pan="http://panws.dit.tcs.com/" xmlns:typ="http://panws.dit.tcs.com/types/">
+</SOAP-ENV:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://incometaxindiaefiling.gov.in/ditws/addClientDetails/v_1_0/addClientPort/addClientDetailsRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="itrvstatusPortSoap11" type="wsdl" bindingName="{http://incometaxindiaefiling.gov.in/ditws/ITRVStatus/v_1_0}itrvstatusPortSoap11" soapVersion="1_1" anonymous="optional" definition="https://incometaxindiaefiling.gov.in/e-FilingWS/ditws/itrvstatus.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="https://incometaxindiaefiling.gov.in/e-FilingWS/ditws/itrvstatus.wsdl"><con:part><con:url>https://incometaxindiaefiling.gov.in/e-FilingWS/ditws/itrvstatus.wsdl</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://incometaxindiaefiling.gov.in/ditws/ITRVStatus/v_1_0" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="http://incometaxindiaefiling.gov.in/ditws/ITRVStatus/v_1_0" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://incometaxindiaefiling.gov.in/ditws/ITRVStatus/v_1_0">
+  <wsdl:types>
+    <xs:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://incometaxindiaefiling.gov.in/ditws/ITRVStatus/v_1_0" xmlns="http://tanws.dit.tcs.com/types/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="getITRVStatusRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="PAN" type="xs:string"/>
+            <xs:element name="AssessmentYear" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getITRVStatusResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="result" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="getITRVStatusRequest">
+    <wsdl:part element="tns:getITRVStatusRequest" name="getITRVStatusRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getITRVStatusResponse">
+    <wsdl:part element="tns:getITRVStatusResponse" name="getITRVStatusResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="itrvstatusPort">
+    <wsdl:operation name="getITRVStatus">
+      <wsdl:input message="tns:getITRVStatusRequest" name="getITRVStatusRequest"></wsdl:input>
+      <wsdl:output message="tns:getITRVStatusResponse" name="getITRVStatusResponse"></wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="itrvstatusPortSoap11" type="tns:itrvstatusPort">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getITRVStatus">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="getITRVStatusRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getITRVStatusResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="itrvstatusService">
+    <wsdl:port binding="tns:itrvstatusPortSoap11" name="itrvstatusPortSoap11">
+      <soap:address location="https://incometaxindiaefiling.gov.in/e-FilingWS/ditws"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>https://incometaxindiaefiling.gov.in/e-FilingWS/ditws</con:endpoint><con:endpoint>http://mootly-pc-004:8088/mockitrvstatusPortSoap11</con:endpoint></con:endpoints><con:operation isOneWay="false" action="" name="getITRVStatus" bindingOperationName="getITRVStatus" type="Request-Response" outputName="getITRVStatusResponse" inputName="getITRVStatusRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>https://incometaxindiaefiling.gov.in/e-FilingWS/ditws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:v="http://incometaxindiaefiling.gov.in/ditws/ITRVStatus/v_1_0">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <v:getITRVStatusRequest>
+         <PAN>?</PAN>
+         <AssessmentYear>?</AssessmentYear>
+      </v:getITRVStatusRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://incometaxindiaefiling.gov.in/ditws/ITRVStatus/v_1_0/itrvstatusPort/getITRVStatusRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="ITRVServiceBinding" type="wsdl" bindingName="{http://incometaxindiaefiling.gov.in/itrvservice/v_1_0}ITRVServiceBinding" soapVersion="1_1" anonymous="optional" definition="https://incometaxindiaefiling.gov.in/e-FilingWS/ditws/getITRV.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="https://incometaxindiaefiling.gov.in/e-FilingWS/ditws/getITRV.wsdl"><con:part><con:url>https://incometaxindiaefiling.gov.in/e-FilingWS/ditws/getITRV.wsdl</con:url><con:content><![CDATA[<definitions targetNamespace="http://incometaxindiaefiling.gov.in/itrvservice/v_1_0" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://incometaxindiaefiling.gov.in/itrvservice/v_1_0" xmlns:itrvcmns="http://incometaxindiaefiling.gov.in/ws/ds/common/v_1_0" xmlns:itrvns="http://incometaxindiaefiling.gov.in/ws/ds/itrv/v_1_0" xmlns:ns="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:itrvexcepns="http://incometaxindiaefiling.gov.in/ws/ds/ex/v_1_0">
+  <types>
+    <xs:schema>
+      <xs:import namespace="http://incometaxindiaefiling.gov.in/ws/ds/common/v_1_0" schemaLocation="../xsd/DITWSCommon.xsd"/>
+      <xs:import namespace="http://incometaxindiaefiling.gov.in/ws/ds/itrv/v_1_0" schemaLocation="../xsd/DITWSITRV.xsd"/>
+      <xs:import namespace="http://incometaxindiaefiling.gov.in/ws/ds/ex/v_1_0" schemaLocation="../xsd/DITWSITRVException.xsd"/>
+    </xs:schema>
+  </types>
+  <message name="getITRVByAckNoRequest">
+    <part name="itrvByAckNoRequest" element="itrvns:itrvAckNoRequestEle"/>
+  </message>
+  <message name="getITRVResponse">
+    <part name="itrvResponse" element="itrvcmns:DITWSResponseEle"/>
+  </message>
+  <message name="getITRVServiceFaultException">
+    <part name="itrvServiceFaultException" element="itrvexcepns:itrvServiceFaultException"/>
+  </message>
+  <message name="getITRVInvalidCertificateFaultException">
+    <part name="itrvInvalidCertificateFaultException" element="itrvexcepns:itrvInvalidCertificateFaultException"/>
+  </message>
+  <message name="getITRVCredentialFaultException">
+    <part name="itrvCredentialFaultException" element="itrvexcepns:itrvCredentialFaultException"/>
+  </message>
+  <message name="getITRVByTokenNoRequest">
+    <part name="itrvByTokenNoRequest" element="itrvns:itrvTokenNoRequestEle"/>
+  </message>
+  <portType name="ITRVServicePortType">
+    <operation name="getITRVByAckNo">
+      <input message="tns:getITRVByAckNoRequest"/>
+      <output message="tns:getITRVResponse"/>
+      <fault name="getITRVServiceFaultException" message="tns:getITRVServiceFaultException"/>
+      <fault name="getITRVInvalidCertificateFaultException" message="tns:getITRVInvalidCertificateFaultException"/>
+      <fault name="getITRVCredentialFaultException" message="tns:getITRVCredentialFaultException"/>
+    </operation>
+    <operation name="getITRVByTokenNo">
+      <input message="tns:getITRVByTokenNoRequest"/>
+      <output message="tns:getITRVResponse"/>
+      <fault name="getITRVServiceFaultException" message="tns:getITRVServiceFaultException"/>
+      <fault name="getITRVInvalidCertificateFaultException" message="tns:getITRVInvalidCertificateFaultException"/>
+      <fault name="getITRVCredentialFaultException" message="tns:getITRVCredentialFaultException"/>
+    </operation>
+  </portType>
+  <binding name="ITRVServiceBinding" type="tns:ITRVServicePortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="getITRVByAckNo">
+      <soap:operation style="document" soapAction="http://incometaxindiaefiling.gov.in/getITRV"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+      <fault name="getITRVServiceFaultException">
+        <soap:fault name="getITRVServiceFaultException" use="literal"/>
+      </fault>
+      <fault name="getITRVInvalidCertificateFaultException">
+        <soap:fault name="getITRVInvalidCertificateFaultException" use="literal"/>
+      </fault>
+      <fault name="getITRVCredentialFaultException">
+        <soap:fault name="getITRVCredentialFaultException" use="literal"/>
+      </fault>
+    </operation>
+    <operation name="getITRVByTokenNo">
+      <soap:operation style="document" soapAction="http://incometaxindiaefiling.gov.in/getITRV"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+      <fault name="getITRVServiceFaultException">
+        <soap:fault name="getITRVServiceFaultException" use="literal"/>
+      </fault>
+      <fault name="getITRVInvalidCertificateFaultException">
+        <soap:fault name="getITRVInvalidCertificateFaultException" use="literal"/>
+      </fault>
+      <fault name="getITRVCredentialFaultException">
+        <soap:fault name="getITRVCredentialFaultException" use="literal"/>
+      </fault>
+    </operation>
+  </binding>
+  <service name="ITRVService">
+    <port name="ITRVServicePort" binding="tns:ITRVServiceBinding">
+      <soap:address location="https://incometaxindiaefiling.gov.in/e-FilingWS/ditws"/>
+    </port>
+  </service>
+</definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>https://incometaxindiaefiling.gov.in/e-FilingWS/xsd/DITWSCommon.xsd</con:url><con:content><![CDATA[<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://incometaxindiaefiling.gov.in/ws/ds/common/v_1_0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://incometaxindiaefiling.gov.in/ws/ds/common/v_1_0">
+  <xs:element name="DITWSAuthInfoEle" type="DITWSAuthInfo"/>
+  <xs:complexType name="DITWSAuthInfo">
+    <xs:sequence>
+      <xs:element name="userID" type="xs:string"/>
+      <xs:element name="password" type="xs:string"/>
+      <xs:element name="certChain" type="xs:string"/>
+      <xs:element name="signature" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DITWSResponseEle" type="DITWSResponse"/>
+  <xs:complexType name="DITWSResponse">
+    <xs:sequence>
+      <xs:element name="result" nillable="true" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>https://incometaxindiaefiling.gov.in/e-FilingWS/xsd/DITWSITRV.xsd</con:url><con:content><![CDATA[<xs:schema targetNamespace="http://incometaxindiaefiling.gov.in/ws/ds/itrv/v_1_0" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://incometaxindiaefiling.gov.in/ws/ds/itrv/v_1_0" xmlns:dscmn="http://incometaxindiaefiling.gov.in/ws/ds/common/v_1_0">
+  <xs:import namespace="http://incometaxindiaefiling.gov.in/ws/ds/common/v_1_0" schemaLocation="DITWSCommon.xsd"/>
+  <xs:element name="itrvAckNoRequestEle" type="ITRVByAckNoRequest"/>
+  <xs:element name="itrvTokenNoRequestEle" type="ITRVByTokenNoRequest"/>
+  <xs:complexType name="ITRVByAckNoRequest">
+    <xs:sequence>
+      <xs:element name="authInfo" type="dscmn:DITWSAuthInfo"/>
+      <xs:element name="acknowledgementNo" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ITRVByTokenNoRequest">
+    <xs:sequence>
+      <xs:element name="authInfo" type="dscmn:DITWSAuthInfo"/>
+      <xs:element name="tokenNumber" type="xs:string"/>
+      <xs:element name="panID" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>https://incometaxindiaefiling.gov.in/e-FilingWS/xsd/DITWSITRVException.xsd</con:url><con:content><![CDATA[<schema targetNamespace="http://incometaxindiaefiling.gov.in/ws/ds/ex/v_1_0" elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:itrvexcep="http://incometaxindiaefiling.gov.in/ws/ds/ex/v_1_0">
+  <element name="itrvCredentialFaultException" type="itrvexcep:ITRVCredentialFaultException"/>
+  <element name="itrvInvalidCertificateFaultException" type="itrvexcep:ITRVInvalidCertificateFaultException"/>
+  <element name="itrvServiceFaultException" type="itrvexcep:ITRVServiceFaultException"/>
+  <complexType name="ITRVCredentialFaultException">
+    <sequence>
+      <element name="errorCode" type="unsignedShort" nillable="true"/>
+      <element name="errorDesc" type="string" nillable="true"/>
+    </sequence>
+  </complexType>
+  <complexType name="ITRVInvalidCertificateFaultException">
+    <sequence>
+      <element name="errorCode" type="unsignedShort" nillable="true"/>
+      <element name="errorDesc" type="string" nillable="true"/>
+    </sequence>
+  </complexType>
+  <complexType name="ITRVServiceFaultException">
+    <sequence>
+      <element name="errorCode" type="unsignedShort" nillable="true"/>
+      <element name="errorDesc" type="string" nillable="true"/>
+    </sequence>
+  </complexType>
+</schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>https://incometaxindiaefiling.gov.in/e-FilingWS/ditws</con:endpoint><con:endpoint>http://mootly-pc-004:8088/mockITRVServiceBinding</con:endpoint></con:endpoints><con:operation isOneWay="false" action="http://incometaxindiaefiling.gov.in/getITRV" name="getITRVByAckNo" bindingOperationName="getITRVByAckNo" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>https://incometaxindiaefiling.gov.in/e-FilingWS/ditws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:v="http://incometaxindiaefiling.gov.in/ws/ds/itrv/v_1_0" xmlns:v1="http://incometaxindiaefiling.gov.in/ws/ds/common/v_1_0">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <v:itrvAckNoRequestEle>
+         <v:authInfo>
+            <v1:userID>?</v1:userID>
+            <v1:password>?</v1:password>
+            <v1:certChain>?</v1:certChain>
+            <v1:signature>?</v1:signature>
+         </v:authInfo>
+         <v:acknowledgementNo>?</v:acknowledgementNo>
+      </v:itrvAckNoRequestEle>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://incometaxindiaefiling.gov.in/getITRV"/></con:call><con:call name="Copy of Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://incometaxindiaefiling.gov.in/e-FilingWS/ditws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:v="http://incometaxindiaefiling.gov.in/ws/ds/itrv/v_1_0" xmlns:v1="http://incometaxindiaefiling.gov.in/ws/ds/common/v_1_0">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <v:itrvAckNoRequestEle>
+         <v:authInfo>
+            <v1:userID>?</v1:userID>
+            <v1:password>?</v1:password>
+            <v1:certChain>?</v1:certChain>
+            <v1:signature>?</v1:signature>
+         </v:authInfo>
+         <v:acknowledgementNo>?</v:acknowledgementNo>
+      </v:itrvAckNoRequestEle>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://incometaxindiaefiling.gov.in/getITRV"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="http://incometaxindiaefiling.gov.in/getITRV" name="getITRVByTokenNo" bindingOperationName="getITRVByTokenNo" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>https://incometaxindiaefiling.gov.in/e-FilingWS/ditws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:v="http://incometaxindiaefiling.gov.in/ws/ds/itrv/v_1_0" xmlns:v1="http://incometaxindiaefiling.gov.in/ws/ds/common/v_1_0">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <v:itrvTokenNoRequestEle>
+         <v:authInfo>
+            <v1:userID>?</v1:userID>
+            <v1:password>?</v1:password>
+            <v1:certChain>?</v1:certChain>
+            <v1:signature>?</v1:signature>
+         </v:authInfo>
+         <v:tokenNumber>?</v:tokenNumber>
+         <v:panID>?</v:panID>
+      </v:itrvTokenNoRequestEle>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://incometaxindiaefiling.gov.in/getITRV"/></con:call><con:call name="Copy of Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://incometaxindiaefiling.gov.in/e-FilingWS/ditws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:v="http://incometaxindiaefiling.gov.in/ws/ds/itrv/v_1_0" xmlns:v1="http://incometaxindiaefiling.gov.in/ws/ds/common/v_1_0">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <v:itrvTokenNoRequestEle>
+         <v:authInfo>
+            <v1:userID>ERIU101969</v1:userID>
+            <v1:password>%cdvps0756d%</v1:password>
+            <v1:certChain>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</v1:certChain>
+            <v1:signature>Fz93Gem3NmVmCkDys4URrAnrGmCDECd9j0EDQIIby62L3ObakoHH/0hogUZYjOFHgu8PTtJ5uAkDB9ymhepK9VI2oAOY3cuceeEXr9EU/Zd5NVx9Ni4o2Ywgl24s8DcFZqImIaksxWayebMchJTAoUCqOlKkPqqKwNWZYXJ7ox5W3TsSdqMjiMJ+iHRZ9LCa4vm5SgKyi0w0b4wSPn38OD/Bh9Z7Hwlb+Oiu14qfbN6iJdg0Z9kqZ10Vb255IXknSeT8weDH3lO8a/Arjo1Uzh2BxBikmodH+nresXQGNazekKR6VWvS+wpFRvxep7cF+PCU9HXHl+S8vtCISxfpCQ==</v1:signature>
+         </v:authInfo>
+         <v:tokenNumber>111140947</v:tokenNumber>
+         <v:panID>ABNPP123456</v:panID>
+      </v:itrvTokenNoRequestEle>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://incometaxindiaefiling.gov.in/getITRV"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:mockService port="8088" path="/mockGetPanInfoSoapHttp" host="mootly-pc-004" name="GetPanInfoSoapHttp MockService"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.mock.WsdlMockService@require-soap-action">false</con:setting></con:settings><con:mockOperation name="getPanInfo" interface="GetPanInfoSoapHttp" operation="getPanInfo"><con:settings/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:defaultResponse>Response 1</con:defaultResponse><con:response name="Response 1" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:pan="http://panws.dit.tcs.com/" xmlns:typ="http://panws.dit.tcs.com/types/">
    <soapenv:Header/>
    <soapenv:Body>
       <pan:getPanInfoResponse>
@@ -9900,4 +10136,25 @@ Z+z2hqvERsV8Br8XWRLWLSzC7VmGKboR37MJQrQaNuHFsDMnOg4d1kxbmEjpue1R3WBxuOGyjQUS
          <v:result>?</v:result>
       </v:addClientDetailsResponse>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://incometaxindiaefiling.gov.in/ditws/addClientDetails/v_1_0/addClientPort/addClientDetailsResponse"/></con:response><con:dispatchConfig/></con:mockOperation><con:properties/></con:mockService><con:properties/><con:wssContainer/><con:sensitiveInformation/></con:soapui-project>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://incometaxindiaefiling.gov.in/ditws/addClientDetails/v_1_0/addClientPort/addClientDetailsResponse"/></con:response><con:dispatchConfig/></con:mockOperation><con:properties/></con:mockService><con:mockService port="8088" path="/mockitrvstatusPortSoap11" host="mootly-pc-004" name="itrvstatusPortSoap11 MockService"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.mock.WsdlMockService@require-soap-action">false</con:setting></con:settings><con:mockOperation name="getITRVStatus" interface="itrvstatusPortSoap11" operation="getITRVStatus"><con:settings/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:defaultResponse>Response 1</con:defaultResponse><con:response name="Response 1" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:v="http://incometaxindiaefiling.gov.in/ditws/ITRVStatus/v_1_0">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <v:getITRVStatusResponse>
+         <result>?</result>
+      </v:getITRVStatusResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://incometaxindiaefiling.gov.in/ditws/ITRVStatus/v_1_0/itrvstatusPort/getITRVStatusResponse"/></con:response><con:dispatchConfig/></con:mockOperation><con:properties/></con:mockService><con:mockService port="8088" path="/mockITRVServiceBinding" host="mootly-pc-004" name="ITRVServiceBinding MockService"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.mock.WsdlMockService@require-soap-action">false</con:setting></con:settings><con:mockOperation name="getITRVByAckNo" interface="ITRVServiceBinding" operation="getITRVByAckNo"><con:settings/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:defaultResponse>Response 1</con:defaultResponse><con:response name="Response 1" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:v="http://incometaxindiaefiling.gov.in/ws/ds/common/v_1_0">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <v:DITWSResponseEle>
+         <v:result>?</v:result>
+      </v:DITWSResponseEle>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://incometaxindiaefiling.gov.in/getITRV"/></con:response><con:dispatchConfig/></con:mockOperation><con:mockOperation name="getITRVByTokenNo" interface="ITRVServiceBinding" operation="getITRVByTokenNo"><con:settings/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:defaultResponse>Response 1</con:defaultResponse><con:response name="Response 1" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:v="http://incometaxindiaefiling.gov.in/ws/ds/common/v_1_0">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <v:DITWSResponseEle>
+         <v:result>?</v:result>
+      </v:DITWSResponseEle>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://incometaxindiaefiling.gov.in/getITRV"/></con:response><con:dispatchConfig/></con:mockOperation><con:properties/></con:mockService><con:properties/><con:wssContainer/><con:sensitiveInformation/></con:soapui-project>

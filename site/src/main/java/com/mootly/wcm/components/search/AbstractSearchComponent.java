@@ -115,16 +115,41 @@ public class AbstractSearchComponent extends TagComponent {
         
         request.setAttribute("query", StringEscapeUtils.escapeHtml(parsedQuery));
         HippoBean scope = getSiteContentBaseBeanForReseller(request);
+        
         if (scope == null) {
             log.error("Scope for search is null");
             return;
+        }
+        else {
+        	if (log.isInfoEnabled()) {
+        		log.info("Scope Path is :"+ scope.getPath());
+        	}
         }
 
         try {
             HstQueryManager manager = getQueryManager(request);
 
             @SuppressWarnings("unchecked")
-            HstQuery hstQuery = manager.createQuery(scope, KnowledgeArticle.class, Faq.class,Service.class);
+            String documentType = request.getRequestContext().getResolvedSiteMapItem().getLocalParameter("documentType");
+            HstQuery hstQuery = null;
+            if (documentType != null) {
+            	if (documentType.equals("KnowledgeArticle")) {
+            		hstQuery = manager.createQuery(scope, KnowledgeArticle.class);
+            	}
+            	else if (documentType.equals("FAQ"))  {
+            		hstQuery = manager.createQuery(scope, Faq.class);
+            	}
+            	else if (documentType.equals("Service"))  {
+            		hstQuery = manager.createQuery(scope, Service.class);
+            	}
+            	else if (documentType.equals("All"))  {
+            		hstQuery = manager.createQuery(scope, KnowledgeArticle.class, Faq.class,Service.class);
+            	}
+            }
+            
+            if (hstQuery == null) { 
+            	hstQuery = manager.createQuery(scope, KnowledgeArticle.class, Faq.class,Service.class);
+            }
 
             HippoBean assetScope = getAssetBaseBean(request);
             hstQuery.addScopes(Collections.singletonList(assetScope));

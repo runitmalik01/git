@@ -377,6 +377,7 @@
               </configuration>
               <container>
 				<containerId>tomcat7x</containerId>
+				<timeout>6000000</timeout>
                 <systemProperties>
                   <log4j.configuration>file:${project.basedir}/conf/log4j-dev.xml</log4j.configuration>
 				  <solr.solr.home>${project.basedir}\solr\solr_home</solr.solr.home>

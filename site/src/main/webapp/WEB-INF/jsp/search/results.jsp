@@ -109,6 +109,7 @@
 		          <c:forEach items="${searchResult.items}" var="hit">
 		            <hst:link var="link" hippobean="${hit}"/>
 		            <c:set var="hitClassName" value="${hit['class'].simpleName}"/>
+		            <c:out value="${hitClassName}"/>
 		            <ul class="search-result">
 		              <c:choose>
 		                <c:when test="${hitClassName eq 'HippoAsset'}">
@@ -119,6 +120,9 @@
 		                </c:when>
  						<c:when test="${hitClassName eq 'Service'}">
 		                  <li class="title"><a href="${fn:escapeXml(link)}"><c:out value="${hit.name}"/></a></li>
+		                </c:when>	
+		                <c:when test="${hitClassName eq 'KnowledgeArticle'}">
+		                  <li class="title"><a href="knowledgearticles/${hit.name}.html"><c:out value="${hit.name}"/></a></li>
 		                </c:when>	
 		                <c:when test="${hitClassName eq 'SimpleDocument'}">
 		                  <li class="title"><a href="${fn:escapeXml(link)}"><c:out value="${hit.title}"/></a></li>
