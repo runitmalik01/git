@@ -88,7 +88,7 @@
 						</xs:restriction>
 					</xs:simpleType>
 				</xs:element>
-				<xs:element name="FormVer" fixed="Ver1.1" id="FormSec25">
+				<xs:element name="FormVer" fixed="Ver1.0" id="FormSec25">
 					<xs:simpleType>
 						<xs:restriction base="xs:string">
 							<xs:maxLength value="10" />
@@ -133,7 +133,7 @@
 						</xs:restriction>
 					</xs:simpleType>
 				</xs:element>
-				<xs:element name="FormVer" fixed="Ver1.1" id="FormSec35">
+				<xs:element name="FormVer" fixed="Ver1.0" id="FormSec35">
 					<xs:simpleType>
 						<xs:restriction base="xs:string">
 							<xs:maxLength value="10" />
@@ -181,7 +181,7 @@
 						</xs:restriction>
 					</xs:simpleType>
 				</xs:element>
-				<xs:element name="FormVer" fixed="Ver1.1" id="FormSec45">
+				<xs:element name="FormVer" fixed="Ver1.0" id="FormSec45">
 					<xs:simpleType>
 						<xs:restriction base="xs:string">
 							<xs:maxLength value="10" />
@@ -4032,11 +4032,11 @@
 								</xs:annotation>
 								<xs:complexType>
 									<xs:sequence>
-										<xs:element name="TradeName" minOccurs="0" maxOccurs="3">
+										<xs:element name="TradeName" maxOccurs="3">
 											<xs:simpleType>
 												<xs:restriction base="xs:string">
 													<xs:maxLength value="125" />
-													<xs:minLength value="0" />
+													<xs:minLength value="1" />
 												</xs:restriction>
 											</xs:simpleType>
 										</xs:element>
@@ -7263,7 +7263,7 @@
 						</xs:restriction>
 					</xs:simpleType>
 				</xs:element>
-				<xs:element name="CreditUS115JD" default="0" id="ParBTTISec7" >
+				<xs:element name="CreditUS115JD" default="0" id="ParBTTISec7">
 					<xs:simpleType>
 						<xs:restriction base="xs:unsignedLong">
 							<xs:totalDigits value="14" />

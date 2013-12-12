@@ -141,9 +141,9 @@
 				</xs:element>
 				<xs:element name="StatusOrCompanyType" default="1" id="PersSec8">
 					<xs:annotation>
-						<xs:documentation>Firm is 1, local authority 2, co-op bank 3,
-							co-op society 4, any other AOP 5, public company 6, private
-							company is 7, Others 8(for FBT)
+						<xs:documentation>ITR-5 :  Firm is 1, local authority 2, co-op bank 3,
+							co-op society 4, Limited Liability Partner 5, Any other AOP/BOI 6,
+							ITR-6 : public company is 6,private company is 7
 						</xs:documentation>
 					</xs:annotation>
 					<xs:simpleType>
@@ -2574,7 +2574,7 @@
 						</xs:documentation>
 					</xs:annotation>
 					<xs:simpleType>
-						<xs:restriction base="xs:unsignedLong">
+						<xs:restriction base="xs:long">
 							<xs:totalDigits value="14" />
 						</xs:restriction>
 					</xs:simpleType>
@@ -3591,6 +3591,11 @@
 										<xs:enumeration value="5A1aiiaa" />
 										<xs:enumeration value="5A1aiii" />
 										<xs:enumeration value="5BBE" />
+										<xs:enumeration value="5AD1ai" />
+										<xs:enumeration value="5AD1aip" />
+										<xs:enumeration value="5AD1bii" />
+										<xs:enumeration value="5AD1biip" />
+										<xs:enumeration value="5AD1biii" />
 									</xs:restriction>
 								</xs:simpleType>
 							</xs:element>
@@ -9107,7 +9112,7 @@
 						<xs:restriction base="xs:unsignedLong" />
 					</xs:simpleType>
 				</xs:element>
-				<xs:element name="CreditUS115JD" default="0" id="ParBTTISec7">
+				<xs:element name="CreditUS115JD" default="0" id="ParBTTISec7" minOccurs="0">
 					<xs:simpleType>
 						<xs:restriction base="xs:unsignedLong" />
 					</xs:simpleType>
@@ -10475,7 +10480,7 @@
 				<xs:element name="CountryName">
 					<xs:simpleType>
 						<xs:restriction base="xs:string">
-							<xs:maxLength value="50" />
+							<xs:maxLength value="55" />
 						</xs:restriction>
 					</xs:simpleType>
 				</xs:element>
@@ -10528,7 +10533,7 @@
 				<xs:element name="CountryName">
 					<xs:simpleType>
 						<xs:restriction base="xs:string">
-							<xs:maxLength value="50" />
+							<xs:maxLength value="55" />
 						</xs:restriction>
 					</xs:simpleType>
 				</xs:element>
@@ -10574,7 +10579,7 @@
 				<xs:element name="CountryName">
 					<xs:simpleType>
 						<xs:restriction base="xs:string">
-							<xs:maxLength value="50" />
+							<xs:maxLength value="55" />
 						</xs:restriction>
 					</xs:simpleType>
 				</xs:element>
@@ -10605,7 +10610,7 @@
 				<xs:element name="CountryName">
 					<xs:simpleType>
 						<xs:restriction base="xs:string">
-							<xs:maxLength value="50" />
+							<xs:maxLength value="55" />
 						</xs:restriction>
 					</xs:simpleType>
 				</xs:element>
@@ -10711,7 +10716,7 @@
 				<xs:element name="CountryName">
 					<xs:simpleType>
 						<xs:restriction base="xs:string">
-							<xs:maxLength value="50" />
+							<xs:maxLength value="55" />
 						</xs:restriction>
 					</xs:simpleType>
 				</xs:element>
@@ -10975,7 +10980,7 @@
 				<xs:element name="CountryName">
 					<xs:simpleType>
 						<xs:restriction base="xs:string">
-							<xs:maxLength value="50" />
+							<xs:maxLength value="55" />
 						</xs:restriction>
 					</xs:simpleType>
 				</xs:element>
