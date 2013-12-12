@@ -23,7 +23,7 @@ TreeMap objTreeMapSection = (TreeMap) objValueListService.getReturnFile();
 	 
 <div class="page">
 	<h4>Vendor IT Return Home</h4>
-	<c:if test="${strIsOnVendorPortal eq true}"><w4india:reseller-menu></w4india:reseller-menu></c:if>
+	<%-- <c:if test="${strIsOnVendorPortal eq true}"><w4india:reseller-menu></w4india:reseller-menu></c:if> --%>
 	 <c:if test="${not empty strIsOnVendorPortal && strIsOnVendorPortal =='true' && isVendor =='true'}">
 	 	<c:if test="${not empty  bulk_download_xml_paths}">
 	 		<h5>Selected for Bulk XML download</h5>
