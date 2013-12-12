@@ -34,6 +34,7 @@ if(componentHelper.isReSeller(hstRequest)){
 }
 pageContext.setAttribute("hostname", builder.toString());
 %>
+<hst:include ref="folder-component"/>
 <hst:actionURL var="actionUrl"></hst:actionURL>
 	<h4 align="center"><b>Assets Drive</b></h4>
 	<form id="memberdrive" action="${actionUrl}" method="post" name="memberdrive" enctype="multipart/form-data">
@@ -41,13 +42,13 @@ pageContext.setAttribute("hostname", builder.toString());
 		<c:if test="${not empty msg}">
 			<div class="row-fluid show-grid">
 				<div class="alert alert-success">Your have successfully
-					uploaded file in Member Drive.</div>
+					uploaded file in Asset Drive.</div>
 			</div>
 		</c:if>
 		<c:if test="${not empty delete}">
 			<div class="row-fluid show-grid">
 				<div class="alert alert-info">File has been deleted from
-					Member Drive</div>
+					Asset Drive</div>
 			</div>
 		</c:if>
 		
