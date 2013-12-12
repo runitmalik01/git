@@ -9996,7 +9996,7 @@
     </sv:node>
   </sv:node>
 </sv:node>
-	<sv:node sv:name="websitebuilder-assets" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+<sv:node sv:name="websitebuilder-assets" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hst:component</sv:value>
   </sv:property>
@@ -10038,6 +10038,17 @@
       <sv:property sv:name="hst:referencecomponent" sv:type="String">
         <sv:value>hst:components/websitebuilder-assets</sv:value>
       </sv:property>
+      <sv:node sv:name="folder-component">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hst:component</sv:value>
+        </sv:property>
+        <sv:property sv:name="jcr:uuid" sv:type="String">
+          <sv:value>1c7bd23f-f8d0-4fd6-a53f-03d19961c326</sv:value>
+        </sv:property>
+        <sv:property sv:name="hst:referencecomponent" sv:type="String">
+          <sv:value>hst:components/crd-folder-component</sv:value>
+        </sv:property>
+      </sv:node>
     </sv:node>
   </sv:node>
 </sv:node>
