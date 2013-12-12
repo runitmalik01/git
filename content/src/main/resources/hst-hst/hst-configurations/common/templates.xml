@@ -3832,4 +3832,15 @@
     <sv:value>jsp/cms/websitebuilder/assets.jsp</sv:value>
   </sv:property>
 </sv:node>
+<sv:node sv:name="crd-folder-component" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:template</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>f8307e11-38a8-4a85-bff3-49f62a902d37</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:renderpath" sv:type="String">
+    <sv:value>jsp/common/crd-folder.jsp</sv:value>
+  </sv:property>
+</sv:node>
 </sv:node>
