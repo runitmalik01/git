@@ -110,11 +110,11 @@ public class ResellerSignup extends BaseComponent {
 			errors.add("signup.email.error.required");
 		}
 		
-		if (StringUtils.isEmpty(resellerID) || email.indexOf("@")==-1) {
+		if (StringUtils.isEmpty(resellerID)) {
 			errors.add("signup.resellerID.error.required");
 		}
 		
-		if (StringUtils.isEmpty(phoneCustomerService) || email.indexOf("@")==-1) {
+		if (StringUtils.isEmpty(phoneCustomerService)) {
 			errors.add("signup.phoneCustomerService.error.required");
 		}
 
