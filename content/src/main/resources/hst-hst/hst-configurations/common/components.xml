@@ -2199,4 +2199,18 @@
     <sv:value>websitebuilder-assets</sv:value>
   </sv:property>
 </sv:node>
+<sv:node sv:name="crd-folder-component" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:component</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>7a04659a-c37e-481c-a1cc-2f3c7f888da5</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:componentclassname" sv:type="String">
+    <sv:value>com.mootly.wcm.components.common.FolderComponent</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:template" sv:type="String">
+    <sv:value>crd-folder-component</sv:value>
+  </sv:property>
+</sv:node>
 </sv:node>
