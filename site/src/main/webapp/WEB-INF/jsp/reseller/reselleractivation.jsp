@@ -11,7 +11,7 @@
 	            </c:when>
 		        <c:when test="${not empty success}">
 		           <div class="alert alert-info">Congratulations !!!!! You have Successfully Signup
-		           <h2 style="color:green">We would like to thank you for choosing our service. Now you can login with your Reseller ID : ${success}</h2>
+		           <h2 style="color:green">We would like to thank you for choosing our service.</h2>
 		      </div>
 		     </c:when>
 		     <c:otherwise>
