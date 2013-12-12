@@ -11,9 +11,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for anonymous complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -75,8 +75,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
+ *
+ *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
@@ -96,7 +96,7 @@ public class ITR1TaxComputation {
     @XmlElement(name = "TotalTaxPayable", required = true, defaultValue = "0")
     protected BigInteger totalTaxPayable;
     @XmlElement(name = "SurchargeOnTaxPayable", required = true)
-    protected Object surchargeOnTaxPayable;
+    protected BigInteger surchargeOnTaxPayable; //changed by Amit Patkar Object to Big Integer
     @XmlElement(name = "EducationCess", required = true, defaultValue = "0")
     protected BigInteger educationCess;
     @XmlElement(name = "GrossTaxLiability", required = true, defaultValue = "0")
@@ -114,11 +114,11 @@ public class ITR1TaxComputation {
 
     /**
      * Gets the value of the totalTaxPayable property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link BigInteger }
-     *     
+     *
      */
     public BigInteger getTotalTaxPayable() {
         return totalTaxPayable;
@@ -126,11 +126,11 @@ public class ITR1TaxComputation {
 
     /**
      * Sets the value of the totalTaxPayable property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link BigInteger }
-     *     
+     *
      */
     public void setTotalTaxPayable(BigInteger value) {
         this.totalTaxPayable = value;
@@ -138,35 +138,35 @@ public class ITR1TaxComputation {
 
     /**
      * Gets the value of the surchargeOnTaxPayable property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link Object }
-     *     
+     *
      */
-    public Object getSurchargeOnTaxPayable() {
+    public BigInteger getSurchargeOnTaxPayable() {
         return surchargeOnTaxPayable;
     }
 
     /**
      * Sets the value of the surchargeOnTaxPayable property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link Object }
-     *     
+     *
      */
-    public void setSurchargeOnTaxPayable(Object value) {
+    public void setSurchargeOnTaxPayable(BigInteger value) {
         this.surchargeOnTaxPayable = value;
     }
 
     /**
      * Gets the value of the educationCess property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link BigInteger }
-     *     
+     *
      */
     public BigInteger getEducationCess() {
         return educationCess;
@@ -174,11 +174,11 @@ public class ITR1TaxComputation {
 
     /**
      * Sets the value of the educationCess property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link BigInteger }
-     *     
+     *
      */
     public void setEducationCess(BigInteger value) {
         this.educationCess = value;
@@ -186,11 +186,11 @@ public class ITR1TaxComputation {
 
     /**
      * Gets the value of the grossTaxLiability property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link BigInteger }
-     *     
+     *
      */
     public BigInteger getGrossTaxLiability() {
         return grossTaxLiability;
@@ -198,11 +198,11 @@ public class ITR1TaxComputation {
 
     /**
      * Sets the value of the grossTaxLiability property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link BigInteger }
-     *     
+     *
      */
     public void setGrossTaxLiability(BigInteger value) {
         this.grossTaxLiability = value;
@@ -210,11 +210,11 @@ public class ITR1TaxComputation {
 
     /**
      * Gets the value of the section89 property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link BigInteger }
-     *     
+     *
      */
     public BigInteger getSection89() {
         return section89;
@@ -222,11 +222,11 @@ public class ITR1TaxComputation {
 
     /**
      * Sets the value of the section89 property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link BigInteger }
-     *     
+     *
      */
     public void setSection89(BigInteger value) {
         this.section89 = value;
@@ -234,11 +234,11 @@ public class ITR1TaxComputation {
 
     /**
      * Gets the value of the netTaxLiability property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link BigInteger }
-     *     
+     *
      */
     public BigInteger getNetTaxLiability() {
         return netTaxLiability;
@@ -246,11 +246,11 @@ public class ITR1TaxComputation {
 
     /**
      * Sets the value of the netTaxLiability property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link BigInteger }
-     *     
+     *
      */
     public void setNetTaxLiability(BigInteger value) {
         this.netTaxLiability = value;
@@ -258,11 +258,11 @@ public class ITR1TaxComputation {
 
     /**
      * Gets the value of the totalIntrstPay property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link BigInteger }
-     *     
+     *
      */
     public BigInteger getTotalIntrstPay() {
         return totalIntrstPay;
@@ -270,11 +270,11 @@ public class ITR1TaxComputation {
 
     /**
      * Sets the value of the totalIntrstPay property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link BigInteger }
-     *     
+     *
      */
     public void setTotalIntrstPay(BigInteger value) {
         this.totalIntrstPay = value;
@@ -282,11 +282,11 @@ public class ITR1TaxComputation {
 
     /**
      * Gets the value of the intrstPay property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link IntrstPay }
-     *     
+     *
      */
     public IntrstPay getIntrstPay() {
         return intrstPay;
@@ -294,11 +294,11 @@ public class ITR1TaxComputation {
 
     /**
      * Sets the value of the intrstPay property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link IntrstPay }
-     *     
+     *
      */
     public void setIntrstPay(IntrstPay value) {
         this.intrstPay = value;
@@ -306,11 +306,11 @@ public class ITR1TaxComputation {
 
     /**
      * Gets the value of the totTaxPlusIntrstPay property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link BigInteger }
-     *     
+     *
      */
     public BigInteger getTotTaxPlusIntrstPay() {
         return totTaxPlusIntrstPay;
@@ -318,11 +318,11 @@ public class ITR1TaxComputation {
 
     /**
      * Sets the value of the totTaxPlusIntrstPay property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link BigInteger }
-     *     
+     *
      */
     public void setTotTaxPlusIntrstPay(BigInteger value) {
         this.totTaxPlusIntrstPay = value;
