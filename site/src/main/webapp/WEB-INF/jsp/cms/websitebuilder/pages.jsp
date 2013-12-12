@@ -21,7 +21,7 @@
 		<fmt:formatDate type="both" value="${lstModDocName.lastModificationDate.time}" var="mxtime" />
 		<fmt:formatDate type="both" value="${mnpageDocument.lastModificationDate.time}" var="mntime" />
 		<c:if test="${mxtime != mntime}">
-			<c:if test="${mntime gt mxtime}">
+			<c:if test="${mntime lt mxtime}">
 				<c:set var="lstModDocName" value="${mnpageDocument}" />
 			</c:if>
 		</c:if>
@@ -211,7 +211,7 @@
 <c:if test="${pageAction eq 'DEFAULT' or pageAction eq 'EDIT' }"><jsp:include page="addcomponentfoot.jsp"/></c:if>
 <script type="text/javascript">
 $('document').ready(function(){
-	if ($("#myModal").length >0) $("#myModal").modal();
+	if ($("#myModal").length >0) $("#myModal").modal({backdrop: 'static'});
 	$('#siSave').on('click',function(){
         $('#pageRowDetailsForm').submit();
      });   

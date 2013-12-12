@@ -37,7 +37,7 @@ public final class PageDisplay extends BaseComponent {
 		super.doBeforeRender(request, response);
 		boolean isReseller = isReseller();
 		String resellerId = getResellerId();
-		
+		Boolean isCommonPage = false;
 		String pathInfo = request.getRequestContext().getResolvedSiteMapItem().getPathInfo();
 		
 		String pageId = request.getRequestContext().getResolvedSiteMapItem().getParameter("pageId");
@@ -59,6 +59,7 @@ public final class PageDisplay extends BaseComponent {
 			}		
 			HippoBean scopeBaseBean = getSiteContentBaseBean(request);
 			pageDocument = scopeBaseBean.getBean("common/" + relPathToTheRequestedPage,PageDocument.class);
+			isCommonPage = true;
 		}
 		if (pageDocument != null) {
 			if (log.isInfoEnabled()) {
@@ -116,6 +117,8 @@ public final class PageDisplay extends BaseComponent {
 			}
 			request.setAttribute("pageDisplayView", pageDisplayView);			
 			request.setAttribute("pageDocument", pageDocument);
+			request.setAttribute("isVendor", isVendor(request));
+			request.setAttribute("isCommonPage", isCommonPage);
 		}
 	}
 	

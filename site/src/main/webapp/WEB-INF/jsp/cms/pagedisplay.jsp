@@ -1,4 +1,5 @@
 <%@include file="../includes/tags.jspf" %>
+<hst:link var="websitebuilderlink" siteMapItemRefId="websitebuilder"/>
 <c:set var="divOpenContainer">
 	<div class="container">
 </c:set>
@@ -8,7 +9,20 @@
 <c:set var="closeDiv">
 	</div>
 </c:set>
-
+<c:if test="${not empty isVendor && isVendor eq 'true'}">
+	<c:choose>
+		<c:when test="${not empty isCommonPage && isCommonPage eq 'false'}">
+			<a class="btn btn-info" href="${websitebuilderlink}/pages.html/${pageDocument.canonicalUUID}/editpage"
+				style="position: absolute; top: 10em; left: 80em;"><i
+				class="glyphicon glyphicon-edit"></i>&nbsp;Edit Page</a>
+		</c:when>
+		<c:otherwise>
+			<a class="btn btn-warning" href="${websitebuilderlink}/pages.html"
+				style="position: absolute; top: 10em; left: 80em;"><i
+				class="glyphicon glyphicon-plus"></i>&nbsp;Create Own Page</a>
+		</c:otherwise>
+	</c:choose>
+</c:if>
 <c:if test="${not empty pageDisplayView}">
 	<c:if test="${not empty pageDisplayView.title && pageDisplayView.title != ''}">
 		<div class="container">
@@ -17,6 +31,7 @@
 	        </div>
 	    </div>
     </c:if>
+    
 	<c:forEach items="${pageDisplayView.displayRows}" var="row">
 		<c:set var="openDiv2">
 			<div class="col-lg-<c:out value="${row.singleColumnSpan}"/>">
