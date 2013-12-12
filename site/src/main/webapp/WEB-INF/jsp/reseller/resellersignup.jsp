@@ -120,7 +120,6 @@
 					},
 					phoneCustomerService:{
 					required: true,
-					minlength: 10,
 					mobile: true
 					}
 				},
