@@ -47839,8 +47839,6 @@ out_incomeChargeable_PL = (out_netPL_otherthanSpeculative_SpecifiedBuss1 -0)+(ou
 
 <!-- /schedule BP -->
 <!-- schedule DPM  calculation-->
-
-
 <sv:node sv:name="scheduledpm" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hippo:handle</sv:value>
@@ -47871,7 +47869,7 @@ out_incomeChargeable_PL = (out_netPL_otherthanSpeculative_SpecifiedBuss1 -0)+(ou
       <sv:value>hippo:harddocument</sv:value>
     </sv:property>
     <sv:property sv:name="jcr:uuid" sv:type="String">
-      <sv:value>28ae73b8-9ed4-482d-8c4b-17efa2f338ef</sv:value>
+      <sv:value>7e5abd6c-6f6c-4559-88b0-1461fcc77609</sv:value>
     </sv:property>
     <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
       <sv:value>live</sv:value>
@@ -47896,13 +47894,13 @@ out_incomeChargeable_PL = (out_netPL_otherthanSpeculative_SpecifiedBuss1 -0)+(ou
       <sv:value>2013-05-24T01:55:56.242+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-      <sv:value>2013-09-21T10:27:09.490+05:30</sv:value>
+      <sv:value>2013-12-12T23:54:37.767+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
       <sv:value>admin</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-      <sv:value>2013-09-21T10:27:21.969+05:30</sv:value>
+      <sv:value>2013-12-12T23:54:47.126+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="mootlywcm:additionalScript" sv:type="String">
       <sv:value/>
@@ -47926,25 +47924,34 @@ out_incomeChargeable_PL = (out_netPL_otherthanSpeculative_SpecifiedBuss1 -0)+(ou
 *
 *
 * **/
- var val_FullRate = rates;
- var val_HalfRate = (val_FullRate ) / 2;
+var val_FullRate = rates;
+var val_HalfRate = (val_FullRate ) / 2;
 
-out_amtDepreciationFullRate =   ((valFirstDayPrevYr-0) + (periodMore180Day-0) -(prevYrConsider -0)) &gt;0 ? ((valFirstDayPrevYr-0) + (periodMore180Day-0) -(prevYrConsider -0)) : 0;
-var diffAmtPrYr = ((prevYrConsider-0 )-((valFirstDayPrevYr-0)+(periodMore180Day-0)));
-out_amtDepreciationHalfRate = ((periodLess180Day-0)-((considerOrRealDuringYr-0) + (diffAmtPrYr -0))) &gt;0 ? ((periodLess180Day-0)-((considerOrRealDuringYr-0) + (diffAmtPrYr -0))) :0;
-
+out_amtDepreciationFullRate = ((valFirstDayPrevYr-0) + (periodMore180Day-0) -(prevYrConsider -0)) &gt;0 ? ((valFirstDayPrevYr-0) + (periodMore180Day-0) -(prevYrConsider -0)) : 0;
+var diffAmtPrYr = (((valFirstDayPrevYr-0)+(periodMore180Day-0))-(prevYrConsider-0 ));
+var A= ((valFirstDayPrevYr-0) + (periodMore180Day-0) -(prevYrConsider -0));
+if((diffAmtPrYr &lt; 0) &amp;&amp; ((periodLess180Day =="") || (considerOrRealDuringYr == ""))){
+out_amtDepreciationHalfRate = 0;
+} 
+if((diffAmtPrYr &lt; 0) &amp;&amp; ((periodLess180Day !="") || (considerOrRealDuringYr != ""))){
+out_amtDepreciationHalfRate = (periodLess180Day -0)-(considerOrRealDuringYr -0)+(diffAmtPrYr ) &gt;0 ? (periodLess180Day -0)-(considerOrRealDuringYr -0)+(diffAmtPrYr ):0;
+} else{
+out_amtDepreciationHalfRate = (periodLess180Day -0)-(considerOrRealDuringYr -0) &gt;0 ? (periodLess180Day -0)-(considerOrRealDuringYr -0):0;
+}
+var B = (periodLess180Day -0)-(considerOrRealDuringYr -0);
 out_depreciationFullRate = Math.round((out_amtDepreciationFullRate *val_FullRate )/100);
 out_depreciationHalfRate = Math.round((out_amtDepreciationHalfRate *val_HalfRate )/100);
-
-out_totalDepreciation  = out_depreciationFullRate + out_depreciationHalfRate +(addDepreciatMore180Day-0) +(addDepreciatLess180Day-0);
+out_totalDepreciation = out_depreciationFullRate + out_depreciationHalfRate +(addDepreciatMore180Day-0) +(addDepreciatLess180Day-0);
 out_capitalGain_LossSec50 = ((prevYrConsider-0)+(considerOrRealDuringYr-0))-((valFirstDayPrevYr-0)+(periodMore180Day-0)+(periodLess180Day-0)+(expense_TransferAsset-0));
-out_valLastDayPrevYr = ((out_amtDepreciationFullRate +out_amtDepreciationHalfRate )-(out_totalDepreciation  )) &gt; 0 ? ((out_amtDepreciationFullRate +out_amtDepreciationHalfRate )-(out_totalDepreciation  )) : 0;</sv:value>
+
+out_valLastDayPrevYr = ((A+B)-(out_totalDepreciation )) &gt; 0 ? ((A +B)-(out_totalDepreciation )) : 0;</sv:value>
     </sv:property>
     <sv:property sv:name="mootlywcm:title" sv:type="String">
       <sv:value>Calculation of schedule DPM</sv:value>
     </sv:property>
   </sv:node>
 </sv:node>
+
 
 
 <!-- /schedule DPM -->
@@ -48445,6 +48452,7 @@ out_liabAvailCredit = out_amtCreditCarriedFwrd;</sv:value>
 <!-- calc for schedule DOA -->
 
 
+
 <sv:node sv:name="scheduledoa" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hippo:handle</sv:value>
@@ -48475,7 +48483,7 @@ out_liabAvailCredit = out_amtCreditCarriedFwrd;</sv:value>
       <sv:value>hippo:harddocument</sv:value>
     </sv:property>
     <sv:property sv:name="jcr:uuid" sv:type="String">
-      <sv:value>06fcacbd-21f6-4cd2-8d8b-28552687b446</sv:value>
+      <sv:value>93905f00-837f-4ba5-8be3-f93b6fdaa728</sv:value>
     </sv:property>
     <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
       <sv:value>live</sv:value>
@@ -48500,13 +48508,13 @@ out_liabAvailCredit = out_amtCreditCarriedFwrd;</sv:value>
       <sv:value>2013-05-24T01:55:56.242+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-      <sv:value>2013-09-21T10:35:32.819+05:30</sv:value>
+      <sv:value>2013-12-12T23:51:54.920+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
       <sv:value>admin</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-      <sv:value>2013-09-21T10:35:39.019+05:30</sv:value>
+      <sv:value>2013-12-12T23:51:57.876+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="mootlywcm:additionalScript" sv:type="String">
       <sv:value/>
@@ -48534,21 +48542,30 @@ var val_FullRate = rates;
 var val_HalfRate = (val_FullRate ) / 2;
 
 out_amtDepreciationFullRate = ((valFirstDayPrevYr-0) + (periodMore180Day-0) -(prevYrConsider -0)) &gt;0 ? ((valFirstDayPrevYr-0) + (periodMore180Day-0) -(prevYrConsider -0)) : 0;
-var diffAmtPrYr = ((prevYrConsider-0 )-((valFirstDayPrevYr-0)+(periodMore180Day-0)));
-out_amtDepreciationHalfRate = ((periodLess180Day-0)-((considerOrRealDuringYr-0) + (diffAmtPrYr -0))) &gt;0 ? ((periodLess180Day-0)-((considerOrRealDuringYr-0) + (diffAmtPrYr -0))) :0;
-
+var diffAmtPrYr = (((valFirstDayPrevYr-0)+(periodMore180Day-0))-(prevYrConsider-0 ));
+var A= ((valFirstDayPrevYr-0) + (periodMore180Day-0) -(prevYrConsider -0));
+if((diffAmtPrYr &lt; 0) &amp;&amp; ((periodLess180Day =="") || (considerOrRealDuringYr == ""))){
+out_amtDepreciationHalfRate = 0;
+} 
+if((diffAmtPrYr &lt; 0) &amp;&amp; ((periodLess180Day !="") || (considerOrRealDuringYr != ""))){
+out_amtDepreciationHalfRate = (periodLess180Day -0)-(considerOrRealDuringYr -0)+(diffAmtPrYr ) &gt;0 ? (periodLess180Day -0)-(considerOrRealDuringYr -0)+(diffAmtPrYr ):0;
+} else{
+out_amtDepreciationHalfRate = (periodLess180Day -0)-(considerOrRealDuringYr -0) &gt;0 ? (periodLess180Day -0)-(considerOrRealDuringYr -0):0;
+}
+var B = (periodLess180Day -0)-(considerOrRealDuringYr -0);
 out_depreciationFullRate = Math.round((out_amtDepreciationFullRate *val_FullRate )/100);
 out_depreciationHalfRate = Math.round((out_amtDepreciationHalfRate *val_HalfRate )/100);
-
 out_totalDepreciation = out_depreciationFullRate + out_depreciationHalfRate +(addDepreciatMore180Day-0) +(addDepreciatLess180Day-0);
 out_capitalGain_LossSec50 = ((prevYrConsider-0)+(considerOrRealDuringYr-0))-((valFirstDayPrevYr-0)+(periodMore180Day-0)+(periodLess180Day-0)+(expense_TransferAsset-0));
-out_valLastDayPrevYr = ((out_amtDepreciationFullRate +out_amtDepreciationHalfRate )-(out_totalDepreciation )) &gt; 0 ? ((out_amtDepreciationFullRate +out_amtDepreciationHalfRate )-(out_totalDepreciation )) : 0;</sv:value>
+
+out_valLastDayPrevYr = ((A+B)-(out_totalDepreciation )) &gt; 0 ? ((A +B)-(out_totalDepreciation )) : 0;</sv:value>
     </sv:property>
     <sv:property sv:name="mootlywcm:title" sv:type="String">
       <sv:value>Calculation of schedule DOA</sv:value>
     </sv:property>
   </sv:node>
 </sv:node>
+
 
 
 <!-- /calc for schedule DOA -->
