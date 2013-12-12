@@ -63,8 +63,8 @@
 		 	  <label for="email">
 		          <small>Contact No. (required)</small>
 		       </label>
-		       <input name="phoneCustomerService" id="phoneCustomerService" value="${fn:escapeXml(phoneCustomerService)}" size="22" tabindex="1" type="text" maxlength="10">
-		       <label for="phoneCustomerServiceError" class="error" generated="false"><c:if test="${not empty phoneCustomerServiceError}"><fmt:message key="${phoneCustomerServiceError}"/></c:if></label>
+		       <input name="phoneCustomerService" id="phoneCustomerService" onchange="phonenumber()" value="${fn:escapeXml(phoneCustomerService)}" size="22" tabindex="1" type="text" maxlength="50">
+		       <label for="phoneCustomerService" class="error" generated="false"><c:if test="${not empty phoneCustomerServiceError}"><fmt:message key="${phoneCustomerServiceError}"/></c:if></label>
 		   </p>
 		   <p>
 				<input class="checkbox" id="signupTerms" name="signupTerms" tabindex="5" type="checkbox" value="on">
@@ -81,6 +81,7 @@
 
 <hst:element var="uiCustom" name="script">
     <hst:attribute name="type">text/javascript</hst:attribute>
+    
 		$(document).ready(function() {
 			$('#hrefSignup').click(function() {
  				 $('#signupForm').submit();
@@ -118,7 +119,9 @@
 					required: true
 					},
 					phoneCustomerService:{
-					required: true
+					required: true,
+					minlength: 10,
+					mobile: true
 					}
 				},
 				messages: {
@@ -128,7 +131,7 @@
 					confirmPassword: "Confirm Password is required.",
 					signupTerms: "Terms of Use must be checked.",
 					resellerID: "Reseller ID is required.",
-					phoneCustomerService: "Contact No. is required."
+					phoneCustomerService: "Please enter valid contact no."
 				}
 			});
 
