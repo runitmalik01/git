@@ -477,7 +477,8 @@ public class WebSiteBuilderComponent extends BaseComponent implements WebSiteBui
 		PrimaryBean primaryBean = this.getClass().getAnnotation(PrimaryBean.class);
 		if(parentBeanNodeName == null){
 			if(StringUtils.isNotBlank(absoluteComponentName)){
-				parentBeanNodeName = absoluteComponentName + "_" + getDocumentSuffix();
+				//parentBeanNodeName = absoluteComponentName + "_" + getDocumentSuffix();
+				parentBeanNodeName = absoluteComponentName;
 			} else {
 				parentBeanNodeName = primaryBean.primaryBeanClass().getSimpleName().toLowerCase()+UUID.randomUUID();	
 			}
