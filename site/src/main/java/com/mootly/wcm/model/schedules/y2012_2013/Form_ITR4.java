@@ -12,7 +12,7 @@ public class Form_ITR4 {
 		formITR4.setDescription("For indls and HUFs having income from  a proprietory business or profession");
 		formITR4.setAssessmentYear("2013");
 		formITR4.setSchemaVer("Ver1.0");
-		formITR4.setFormVer("Ver1.0");
+		formITR4.setFormVer("Ver1.1");
 		return formITR4;
 	}
 }
