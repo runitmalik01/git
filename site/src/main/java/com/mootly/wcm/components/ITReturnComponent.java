@@ -111,8 +111,10 @@ import com.mootly.wcm.beans.MemberPersonalInformation;
 import com.mootly.wcm.beans.ScreenCalculation;
 import com.mootly.wcm.beans.ScreenConfigDocument;
 import com.mootly.wcm.beans.ValueListDocument;
+import com.mootly.wcm.beans.compound.InvoiceDocumentDetail;
 import com.mootly.wcm.beans.events.BeanLifecycle;
 import com.mootly.wcm.member.Member;
+import com.mootly.wcm.member.MemberInvoice;
 import com.mootly.wcm.model.FilingSection;
 import com.mootly.wcm.model.FilingStatus;
 import com.mootly.wcm.model.FinancialYear;
@@ -1904,12 +1906,25 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		}
 
 		boolean isPaymentRequired = false;
+		isPaid = false;
 		if (! pageAction.equals(PAGE_ACTION.SHOW_ITR_SUMMARY)) isPaymentRequired = true;
-		if (isPaymentRequired && request.getAttribute("memberpayment") != null) {
+		
+		if (isVendor(request) && (pageAction.equals(PAGE_ACTION.DOWNLOAD_ITR_XML) || pageAction.equals(PAGE_ACTION.DOWNLOAD_ITR_SUMMARY)) ) {
+			isPaymentRequired = false; //TO-DO 
+		}
+		if (isPaymentRequired) {
 			try {
+				/*
 				MemberPayment memberPayment = (MemberPayment) request.getAttribute("memberpayment");
 				if (memberPayment != null && memberPayment.getPaymentVerificationStatus() != null &&  memberPayment.getPaymentVerificationStatus() == PaymentVerificationStatus.VERIFIED)
 					isPaid = true;
+				*/
+				InvoiceDocument invoiceDocument = (InvoiceDocument) mapOfAllBeans.get(InvoiceDocument.class.getSimpleName().toLowerCase());				
+				if (invoiceDocument != null  && invoiceDocument.getAmountDue() != null && invoiceDocument.getAmountDue() == 0 && invoiceDocument.getInvoiceDocumentDetailList() != null && invoiceDocument.getInvoiceDocumentDetailList().size() > 0) {
+					for (InvoiceDocumentDetail invoiceDocumentDetail : invoiceDocument.getInvoiceDocumentDetailList()) {
+						
+					}
+				}
 			}catch (Exception ex) {
 				throw new PaymentRequiredException(ex);
 			}

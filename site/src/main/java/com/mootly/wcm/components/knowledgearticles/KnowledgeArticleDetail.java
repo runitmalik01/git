@@ -68,6 +68,9 @@ public class KnowledgeArticleDetail extends BaseComponent {
         super.doBeforeRender(request, response);
         KnowledgeArticleDetailParamInfo paramInfo = getParametersInfo(request);
         String reviewsFolderName = paramInfo.getReviewsFolder();
+        
+        String nodeName = request.getRequestContext().getResolvedSiteMapItem().getHstSiteMapItem().getParameter("nodeName");
+        
 
         HippoBean document = (HippoBean) getContentBean(request);
         
