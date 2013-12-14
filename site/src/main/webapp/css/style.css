@@ -514,6 +514,7 @@ input[type='submit'] {
 	white-space: nowrap;
 }
 
+/*
 button:hover, 
 a.button:hover,
 input[type='reset']:hover, 
@@ -549,6 +550,7 @@ input[type='submit']:active {
 	background-image: linear-gradient(top, #f9f9f9, #f1f1f1);
     box-shadow: 0 1px 0 #fff, inset 0 1px 1px rgba(0, 0, 0, 0.1);
 }
+*/
 
 /* =Buttons (Call to Action)
 -------------------------------------------------------------- */

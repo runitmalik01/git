@@ -1,5 +1,6 @@
 package com.mootly.wcm.validation.impl.itr;
 
+import java.lang.annotation.Annotation;
 import java.util.Map;
 
 import org.hippoecm.hst.content.beans.standard.HippoBean;
@@ -7,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.mootly.wcm.beans.MemberPersonalInformation;
+import com.mootly.wcm.components.ITReturnScreen;
 import com.mootly.wcm.model.FilingSection;
 import com.mootly.wcm.model.FinancialYear;
 import com.mootly.wcm.model.ITRForm;
@@ -18,7 +20,7 @@ public class ValidateSectionAndDueDate implements HippoBeanValidator{
 	Logger logger = LoggerFactory.getLogger(ValidateSectionAndDueDate.class);
 	
 	@Override
-	public boolean validate(Map<String,HippoBean> mapOfBeans, HippoBeanValidationResponse response) {
+	public boolean validate(FinancialYear financialYear,ITReturnScreen.PAGE_ACTION pageAction, Map<String,HippoBean> mapOfBeans, Map<String,Object> additionalData, Annotation[] annotations, HippoBeanValidationResponse response) {
 		// TODO Auto-generated method stub
 		//
 		try {
@@ -45,6 +47,5 @@ public class ValidateSectionAndDueDate implements HippoBeanValidator{
 			logger.warn("WARN",ex);
 		}
 		return false;
-	}
-	
+	}	
 }

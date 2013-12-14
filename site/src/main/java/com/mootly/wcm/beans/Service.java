@@ -42,6 +42,7 @@ import com.mootly.wcm.utils.Constants;
 public class Service extends Document {
     
     private List<ImageSet> images;
+    Double cost;
     
     public List<ImageSet> getImages() {
         initImages();
@@ -92,6 +93,11 @@ public class Service extends Document {
 
     public String[] getOfferingMode() {
         return getProperty("mootlywcm:offeringmode");
+    }
+    
+    public Double getCost() {
+    	if (cost == null) cost = getProperty("mootlywcm:cost");
+    	return cost;
     }
 
     public List<CostModel> getCostModel() {

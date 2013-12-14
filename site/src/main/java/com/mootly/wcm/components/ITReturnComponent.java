@@ -1505,7 +1505,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			}
 		}
 
-		HippoBeanValidationResponse hippoBeanValidationResponse = itrValidationChain.execute(mapOfBeans);
+		HippoBeanValidationResponse hippoBeanValidationResponse = itrValidationChain.execute(getFinancialYear(), pageAction,  mapOfBeans, null, getClass().getAnnotations());
 		if (hippoBeanValidationResponse != null) request.setAttribute("hippoBeanValidationResponse", hippoBeanValidationResponse);
 		if ( hippoBeanValidationResponse != null) {
 			if (hippoBeanValidationResponse.getTotalErrors() > 0 ) {

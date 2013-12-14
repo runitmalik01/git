@@ -1,5 +1,6 @@
 package com.mootly.wcm.validation.impl.itr;
 
+import java.lang.annotation.Annotation;
 import java.util.List;
 import java.util.Map;
 
@@ -9,6 +10,8 @@ import org.slf4j.LoggerFactory;
 
 import com.mootly.wcm.beans.FormSixteenDocument;
 import com.mootly.wcm.beans.compound.FormSixteenDetail;
+import com.mootly.wcm.components.ITReturnScreen;
+import com.mootly.wcm.model.FinancialYear;
 import com.mootly.wcm.validation.HippoBeanValidationError;
 import com.mootly.wcm.validation.HippoBeanValidationResponse;
 import com.mootly.wcm.validation.HippoBeanValidator;
@@ -17,7 +20,7 @@ public class ValidateForm16Document implements HippoBeanValidator{
 	Logger logger = LoggerFactory.getLogger(ValidateForm16Document.class);
 	
 	@Override
-	public boolean validate(Map<String,HippoBean> mapOfBeans, HippoBeanValidationResponse response) {
+	public boolean validate(FinancialYear financialYear, ITReturnScreen.PAGE_ACTION pageAction, Map<String,HippoBean> mapOfBeans,Map<String,Object> additionalData,Annotation[] annotations, HippoBeanValidationResponse response) {
 		// TODO Auto-generated method stub
 		//
 		try {

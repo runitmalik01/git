@@ -6447,8 +6447,12 @@
   <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
     <sv:value>hst:pages/search</sv:value>
   </sv:property>
-  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String"/>
-  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String"/>
+  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+    <sv:value>documentType</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+    <sv:value>KnowledgeArticle</sv:value>
+  </sv:property>
   <sv:property sv:name="hst:refId" sv:type="String">
     <sv:value>knowledgeportal</sv:value>
   </sv:property>
@@ -12538,6 +12542,12 @@
 	    <sv:property sv:name="jcr:uuid" sv:type="String">
 	      <sv:value>d919684c-af84-4dd0-9ad7-d7cd7104a61f</sv:value>
 	    </sv:property>
+		<sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+		    <sv:value>node-name</sv:value>
+		</sv:property>
+		<sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+		    <sv:value>${1}</sv:value>
+		</sv:property>	    
 	    <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
 	      <sv:value>hst:pages/knowledgearticle-detail</sv:value>
 	    </sv:property>
