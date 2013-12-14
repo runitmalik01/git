@@ -140,7 +140,7 @@
     var currDate = '<c:out value="${currDate}"></c:out>';
 	itrFinYrMax=currDate;
 	itrFinYrMin="01/04/"+'<c:out value="${endYear}"></c:out>';
-	//$( ".indiandateSelfAssesment" ).datepicker( "option", "minDate", itrFinYrMin );
+	$( ".indiandateSelfAssesment" ).datepicker( "option", "minDate", itrFinYrMin );
 			$( ".indiandateSelfAssesment" ).datepicker( "option", "maxDate", itrFinYrMax );
 			});
 
