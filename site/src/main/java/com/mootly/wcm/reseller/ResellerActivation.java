@@ -8,23 +8,43 @@
 
 
 package com.mootly.wcm.reseller;
+import java.rmi.RemoteException;
+import java.util.Iterator;
+
+import javax.jcr.Node;
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 
+import org.apache.commons.lang.StringUtils;
 import org.hippoecm.hst.configuration.hosting.Mount;
 import org.hippoecm.hst.content.beans.ObjectBeanManagerException;
+import org.hippoecm.hst.content.beans.ObjectBeanPersistenceException;
+import org.hippoecm.hst.content.beans.manager.workflow.WorkflowCallbackHandler;
 import org.hippoecm.hst.content.beans.manager.workflow.WorkflowPersistenceManager;
+import org.hippoecm.hst.content.beans.query.HstQuery;
+import org.hippoecm.hst.content.beans.query.HstQueryResult;
+import org.hippoecm.hst.content.beans.query.exceptions.QueryException;
+import org.hippoecm.hst.content.beans.standard.HippoBean;
+import org.hippoecm.hst.content.beans.standard.HippoDocumentBean;
+import org.hippoecm.hst.content.beans.standard.HippoFolder;
+import org.hippoecm.hst.content.beans.standard.HippoFolderBean;
 import org.hippoecm.hst.core.component.HstComponentException;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
 import org.hippoecm.hst.tag.HstCmsEditLinkTag;
+import org.hippoecm.hst.util.NodeUtils;
+import org.hippoecm.repository.api.WorkflowException;
+import org.hippoecm.repository.reviewedactions.FullReviewedActionsWorkflow;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.mootly.wcm.beans.MemberPayment;
+import com.mootly.wcm.beans.MemberPersonalInformation;
 import com.mootly.wcm.beans.ResellerSignupDocument;
 import com.mootly.wcm.channels.WebsiteInfo;
 import com.mootly.wcm.components.BaseComponent;
 import com.mootly.wcm.member.SignupDetail.FullReviewedWorkflowCallbackHandler;
+import com.mootly.wcm.services.SequenceGenerator;
 import com.mootly.wcm.utils.GoGreenUtil;
 
 public class ResellerActivation extends BaseComponent {
@@ -47,7 +67,7 @@ public class ResellerActivation extends BaseComponent {
 	public static final String SUCCESS= "success";
 
 	private String Isactive;
-	
+
 	@Override
 	public void doBeforeRender(HstRequest request, HstResponse response) {
 		// TODO Auto-generated method stub
@@ -58,7 +78,7 @@ public class ResellerActivation extends BaseComponent {
 			request.setAttribute(SUCCESS, success);
 			return;
 		}
-		
+
 		String activationCode = request.getRequestContext().getResolvedSiteMapItem().getParameter("activationCode");
 		if (activationCode == null || activationCode.trim().equals("")) {
 			request.setAttribute("isError", "true");
@@ -90,11 +110,11 @@ public class ResellerActivation extends BaseComponent {
 			e.printStackTrace();
 			log.error("Activation Error",e);
 		}
-			finally {
-				if (persistableSession != null) {
-					persistableSession.logout();
-				}
+		finally {
+			if (persistableSession != null) {
+				persistableSession.logout();
 			}
+		}
 	}
 
 	@Override
@@ -119,7 +139,7 @@ public class ResellerActivation extends BaseComponent {
 		String resellerName = GoGreenUtil.getEscapedParameter(request, RESELLERNAME);
 
 		String activationCode = request.getRequestContext().getResolvedSiteMapItem().getParameter("activationCode");
-		
+
 		String userName = null;
 		//now get the membershipdocument right away with the uuid
 		Session persistableSession = null;
@@ -128,6 +148,82 @@ public class ResellerActivation extends BaseComponent {
 			persistableSession = getPersistableSession(request);
 			wpm = getWorkflowPersistenceManager(persistableSession);
 			ResellerSignupDocument resellerSignupDocument = (ResellerSignupDocument) wpm.getObjectByUuid(activationCode);
+			//to copy services in reseller folder
+			HippoBean pathToCommonBeans =  getSiteContentBaseBean(request).getBean("common");
+			HippoBean pathToServiceBeans = pathToCommonBeans.getBean("services");
+			if(pathToServiceBeans != null){
+				HippoFolder hippoFolder = (HippoFolder) resellerSignupDocument.getParentBean().getParentBean();
+				String newFolderName = "services";
+				String newFolderBasePath = hippoFolder.getPath();
+				String newFolderPath = hippoFolder.getPath()+"/"+newFolderName;
+				final String pathToParentBean = wpm.createAndReturn(newFolderBasePath,"hippostd:folder",newFolderName,true);
+				if (log.isInfoEnabled()) {
+					log.info("New Folder was created and the pathToTheBean now is " + pathToParentBean);
+				}
+				HstQuery hstQuery = this.getQueryManager(request).createQuery(pathToServiceBeans);
+				final HstQueryResult result = hstQuery.execute();
+				Iterator<HippoBean> itResults = result.getHippoBeans();
+				HippoFolderBean folder = (HippoFolderBean) wpm.getObject(pathToParentBean);
+				if (log.isInfoEnabled()) {
+					log.info("Now will look into all HippoDocuments under the same folder and make a copy of each");
+				}
+				for (;itResults.hasNext();) {
+					HippoBean hippoBean = itResults.next();
+
+					if (hippoBean instanceof HippoDocumentBean) {
+						if(hippoBean.getParentBean().getName().equals("services")){
+							folder = (HippoFolderBean) wpm.getObject(pathToParentBean);
+						}else{
+							String absoluteBeanPath = StringUtils.substringAfter(hippoBean.getCanonicalPath(), newFolderName);
+							String modAbsoluteBeanPath = StringUtils.substringBeforeLast(absoluteBeanPath, "/");
+							String finalAbsoluteBeanPath = StringUtils.substringBeforeLast(modAbsoluteBeanPath, "/");
+
+							HippoFolderBean resellerFolder = (HippoFolderBean) wpm.getObject(pathToParentBean);
+							String resellerFolderPath = resellerFolder.getCanonicalPath();
+							String defaultFolderName = "";
+
+							String[] newFolderNames = finalAbsoluteBeanPath.split("/");
+							if(newFolderNames.length >0){
+								String mypathToParentBean = pathToParentBean;
+								for(String folderName:newFolderNames){			
+									if(StringUtils.isNotBlank(folderName)){
+										resellerFolderPath = resellerFolderPath+"/"+folderName;
+										//String modresellerFolderPath = StringUtils.substringAfter(resellerFolderPath, newFolderName);
+										folder = (HippoFolderBean) wpm.getObject(resellerFolderPath);
+										defaultFolderName = folderName;					
+									}
+								}
+								if(folder == null){
+									String modpathToParentBean = wpm.createAndReturn(StringUtils.substringBeforeLast(resellerFolderPath, "/"),"hippostd:folder",defaultFolderName,true);
+									folder = (HippoFolderBean) wpm.getObject(modpathToParentBean);
+								}
+							}
+						}
+						String pathToNode = NodeUtils.getCanonicalNode(hippoBean.getNode()).getPath();
+						Node theNodeW = persistableSession.getNode(pathToNode);
+
+						FullReviewedActionsWorkflow fullReviewedActionsWorkflow = (FullReviewedActionsWorkflow) wpm.getWorkflow("default",theNodeW);					
+						org.hippoecm.repository.api.Document document = new org.hippoecm.repository.api.Document();
+						document.setIdentity(folder.getNode().getUUID());
+						fullReviewedActionsWorkflow.copy(document,hippoBean.getNode().getName());
+						Object theNewObject = wpm.getObject(folder.getPath() + "/" + hippoBean.getNode().getName());
+						//fullReviewedActionsWorkflow.publish();						
+						wpm.setWorkflowCallbackHandler(new WorkflowCallbackHandler<FullReviewedActionsWorkflow>() {
+							@Override
+							public void processWorkflow(FullReviewedActionsWorkflow workflow)
+									throws Exception {
+								// TODO Auto-generated method stub
+								workflow.publish();
+							}
+						});
+						wpm.update(theNewObject);
+						if (log.isInfoEnabled()) {
+							log.info("Successfully copied "+ hippoBean.getPath() + " to " + newFolderPath);
+						}
+					}
+				}
+			}
+
 			if(resellerSignupDocument != null && !(resellerSignupDocument.getIsActive())){
 				resellerSignupDocument.setIsActive(true);
 				resellerSignupDocument.setEmailCustomerService(emailCustomerService);
@@ -143,14 +239,13 @@ public class ResellerActivation extends BaseComponent {
 				resellerSignupDocument.setPaymentAvailableTypes(paymentAvailableTypes);
 				resellerSignupDocument.setPaymentEnabled(Boolean.valueOf(paymentEnabled));
 				resellerSignupDocument.setResellerName(resellerName);
-				
+
 				request.setAttribute("userName", resellerSignupDocument.getResellerID());
 				if(!(resellerSignupDocument.getResellerID().isEmpty())){
 					request.setAttribute("userName", resellerSignupDocument.getResellerID());
 					userName = resellerSignupDocument.getResellerID();
 				}else
 					userName = "User name not found";
-
 			}
 			//wpm = getWorkflowPersistenceManager(persistableSession);
 			//SIMPLE WORKFLOW
@@ -166,21 +261,28 @@ public class ResellerActivation extends BaseComponent {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			log.error("Activation Error",e);
-		}
+		} catch (QueryException e) {
+			// TODO Auto-generated catch block
+			log.error("Query Exception",e);
+
+		}catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			log.error("Remote Exception",e);
+
+		} catch (WorkflowException e) {
+			// TODO Auto-generated catch block
+			log.error("Workflow Exception",e);
+
+		} 
 		finally {
 			if (persistableSession != null) {
 				persistableSession.logout();
 			}
 		}
-
-
-		  Mount mount = request.getRequestContext().getResolvedMount().getMount();
-		  WebsiteInfo info = mount.getChannelInfo();
 		response.setRenderParameter(SUCCESS, userName);
 	}
 
 	//Any submission will go here
-
 
 	@Override
 	public void doBeforeServeResource(HstRequest request, HstResponse response)
