@@ -16,10 +16,15 @@
 package com.mootly.wcm.it.workflow;
 
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 import javax.jcr.Node;
+import javax.jcr.NodeIterator;
+import javax.jcr.RepositoryException;
 import javax.jcr.Session;
+import javax.jcr.query.Query;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 
@@ -36,6 +41,8 @@ public class ResellerSetupConfigurationWorkflowImpl extends WorkflowImpl impleme
 	//	private final Logger logger = LoggerFactory.getLogger(ResellerSetupConfigurationWorkflowImpl.class);
 
 	private static final long serialVersionUID = 1L;
+	
+	private final static String SELECT_GROUP_QUERY = "SELECT * FROM hipposys:group WHERE jcr:primaryType='hipposys:group' AND fn:name='{}'";
 
 	@SuppressWarnings("unused")
 	private final static String SVN_ID = "$Id: WorkflowEventsWorkflowImpl.java 29256 2011-08-01 14:36:36Z bvanhalderen $";
@@ -84,7 +91,8 @@ public class ResellerSetupConfigurationWorkflowImpl extends WorkflowImpl impleme
 		try{
 			System.out.println("i m here");
 			if(active){
-				//Session rootSession = getWorkflowContext().getInternalWorkflowSession();
+				
+				Session rootSession = getWorkflowContext().getInternalWorkflowSession();
 				Node hstHostNode = getWorkflowContext().getInternalWorkflowSession().getNode("/hst:hst/hst:hosts/dev-localhost/localhost/hst:root/r");
 				System.out.println("Start of Creation of Channel::");
 
