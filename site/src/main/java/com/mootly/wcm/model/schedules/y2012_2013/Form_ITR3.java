@@ -12,7 +12,7 @@ public class Form_ITR3 {
 		formITR3.setDescription("For Indls and HUFs partners in firms and not having any proprietorship");
 		formITR3.setAssessmentYear("2013");
 		formITR3.setSchemaVer("Ver1.0");
-		formITR3.setFormVer("Ver1.0");
+		formITR3.setFormVer("Ver1.1");
 		return formITR3;
 	}
 }
