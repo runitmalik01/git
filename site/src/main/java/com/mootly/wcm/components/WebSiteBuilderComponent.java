@@ -181,11 +181,7 @@ public class WebSiteBuilderComponent extends BaseComponent implements WebSiteBui
 	public ITReturnComponentHelper getITReturnComponentHelper() {
 		return itReturnComponentHelper;
 	}
-
-	public SequenceGenerator getSequenceGenerator() {
-		return sequenceGenerator;
-	}
-
+	
 	@Override
 	public void doBeforeRender(HstRequest request, HstResponse response) {
 		super.doBeforeRender(request, response);

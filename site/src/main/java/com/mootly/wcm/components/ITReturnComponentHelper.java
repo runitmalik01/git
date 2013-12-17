@@ -3,7 +3,6 @@ package com.mootly.wcm.components;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 
 import org.apache.commons.lang.StringUtils;
@@ -18,8 +17,6 @@ import org.hippoecm.hst.core.component.HstResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.mootly.wcm.annotations.ChildBean;
-import com.mootly.wcm.annotations.PrimaryBean;
 import com.mootly.wcm.beans.CompoundChildUpdate;
 import com.mootly.wcm.beans.FormMapFiller;
 import com.mootly.wcm.beans.InvoiceDocument;
@@ -28,7 +25,6 @@ import com.mootly.wcm.beans.compound.InvoiceRefundDetail;
 import com.mootly.wcm.beans.events.BeanLifecycle;
 import com.mootly.wcm.channels.WebsiteInfo;
 import com.mootly.wcm.components.ITReturnComponent.FullReviewedWorkflowCallbackHandler;
-import com.mootly.wcm.components.ITReturnScreen.PAGE_ACTION;
 import com.mootly.wcm.components.ITReturnScreen.PAGE_OUTPUT_FORMAT;
 import com.mootly.wcm.components.accounting.InvoiceHelper;
 import com.mootly.wcm.member.Member;
@@ -128,6 +124,7 @@ public final class ITReturnComponentHelper {
 		}
 		return pageOutputFormat;
 	}
+	
 	/**
 	 * baseRelPathToReturnDocuments = "members/" + getMemberFolderPath(request) + "/pans/" + getPAN() + "/" + getFinancialYear() + "/" + theFolderContainingITRDocuments; // getITReturnType();
 		hippoBeanBaseITReturnDocuments = siteContentBaseBean.getBean(baseRelPathToReturnDocuments);
@@ -368,7 +365,37 @@ public final class ITReturnComponentHelper {
 		}
 		 */
 	}
-
+	public <T extends BeanLifecycle<HippoBean>> void saveSingleDocument (FormMap parentBeanMap,T parentBeanLifeCycleHandler, String baseAbsolutePathToReturnDocuments, String parentBeanAbsolutePath, String parentBeanNameSpace,String parentBeanNodeName, Session persistableSession,WorkflowPersistenceManager wpm) throws ObjectBeanManagerException, InstantiationException, IllegalAccessException {
+			//Object parentBeanInSession = wpm.getObject(parentBean.getCanonicalUUID());
+			boolean isNew = false;
+			HippoBean parentBeanInSession = (HippoBean) wpm.getObject(parentBeanAbsolutePath);
+			HippoBean beanBeforeUpdate = parentBeanInSession;
+			if (parentBeanInSession == null) {
+				//gotta create this damn thing
+				if (log.isInfoEnabled()) {
+					log.info("Parent Bean is missing, we will need to recreate it");
+				}
+				final String pathToParentBean = wpm.createAndReturn(baseAbsolutePathToReturnDocuments,parentBeanNameSpace,parentBeanNodeName, true);
+				parentBeanInSession = (HippoBean) wpm .getObject(pathToParentBean);
+				isNew = true;
+				//initParentBean(parentBeanInSession);
+			}
+			//now set the value we received from the form submission
+			if (parentBeanInSession instanceof FormMapFiller) {
+				FormMapFiller formMapFiller = (FormMapFiller) parentBeanInSession;
+				if (parentBeanLifeCycleHandler != null) parentBeanLifeCycleHandler.beforeFillParentBeanMap(parentBeanInSession);
+				if (parentBeanMap != null) formMapFiller.fill(parentBeanMap);
+				if (parentBeanLifeCycleHandler != null) parentBeanLifeCycleHandler.afterFillParentBeanMap(parentBeanInSession);
+			}
+			wpm.setWorkflowCallbackHandler(new FullReviewedWorkflowCallbackHandler());
+			if (parentBeanInSession != null) {
+				wpm.update(parentBeanInSession);
+				HippoBean beanAfterUpdate = parentBeanInSession;
+				if (parentBeanLifeCycleHandler != null) {
+					parentBeanLifeCycleHandler.afterUpdate(beanBeforeUpdate,beanAfterUpdate,wpm,parentBeanAbsolutePath,this);
+				}
+			}			
+	}
 	/**
 	 * Action to Save Add New Child
 	 * @param request
@@ -408,9 +435,9 @@ public final class ITReturnComponentHelper {
 				}				
 				if (parentBeanInSession instanceof FormMapFiller){
 					FormMapFiller formMapFiller = (FormMapFiller) parentBeanInSession;
-					if (parentBeanLifeCycleHandler != null) parentBeanLifeCycleHandler.beforeFillChildBeanMap(parentBeanInSession);
+					if (parentBeanLifeCycleHandler != null) parentBeanLifeCycleHandler.beforeFillParentBeanMap(parentBeanInSession);
 					if (parentBeanMap != null) formMapFiller.fill(parentBeanMap);
-					if (parentBeanLifeCycleHandler != null) parentBeanLifeCycleHandler.afterFillChildBeanMap(parentBeanInSession);
+					if (parentBeanLifeCycleHandler != null) parentBeanLifeCycleHandler.afterFillParentBeanMap(parentBeanInSession);
 				}
 			}
 			//now set the value we received from the form submission

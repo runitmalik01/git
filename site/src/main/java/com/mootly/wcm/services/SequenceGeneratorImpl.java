@@ -54,7 +54,7 @@ public class SequenceGeneratorImpl implements SequenceGenerator {
 	}
 
 	@Override
-	public synchronized long getNextId(String sequenceName) {
+	public synchronized Long getNextId(String sequenceName) {
 		// TODO Auto-generated method stub
 		Session session = null;
 		try {
@@ -87,7 +87,7 @@ public class SequenceGeneratorImpl implements SequenceGenerator {
 				}
 			}
 		} 
-		return 0;
+		return Long.valueOf(0L);
 	}
 
 }

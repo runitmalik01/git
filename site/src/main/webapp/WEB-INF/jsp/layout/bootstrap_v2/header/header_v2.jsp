@@ -39,16 +39,16 @@
 			<hst:include ref="logo" />
 		</div>
 		<!-- menu top-->
-		<form class="navbar-form navbar-right">
-			<div class="form-group">
-				<hst:include ref="menu-top" />
-			</div>
-			</form>
 		<!-- main-menu -->
 		<div class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">
 				<hst:include ref="menu-main" />
 			</ul>
+			<form id="frmLogin" method="GET" class="navbar-form navbar-right">
+				<div class="form-group">
+					<hst:include ref="menu-top" />
+				</div>
+			</form>			
 		</div>
 	</div>
 </div>

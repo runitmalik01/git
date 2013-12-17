@@ -227,167 +227,159 @@ request.setAttribute("isDITVerified",isDITVerified);
 		 }
 	}
 } %>
-<div class="navbar">
-   <div class="navbar-inner">
-      <div class="container" style="font-size: small;">
-         <a class="btn btn-navbar" data-toggle="collapse" data-target=".navbar-responsive-collapse">
-	         <span class="icon-bar"></span>
-	         <span class="icon-bar"></span>
-	         <span class="icon-bar"></span>
-         </a>
-         <a class="brand" href="${fn:substringBefore(scriptName,pan)}${pan}${itrFolderSuffix}/${pan}/servicerequest-itr.html">
-            <span class="pan" style="font-size: x-small;">
-               <c:out value="${pan}"/>               
-            </span>
-         </a>
-         <c:if test="${nomenu != 'true'}">
-	         <div class="nav-collapse collapse navbar-responsive-collapse">
-	            <ul class="nav">
-	               <c:forEach items="${listOfSiteItems}" var="itrSiteMenuItem">
-	               	<c:set var="childCount" value="${fn:length(itrSiteMenuItem.childMenuItems)}"/>
-	               	<c:set var="itrSiteMenuItem" value="${itrSiteMenuItem}" scope="request"/>
-	               	<c:choose>
-	                	<c:when test="${childCount gt 0}">
-	                		<li class="dropdown">
-	                			<a href="#" class="dropdown-toggle" data-toggle="dropdown">${itrSiteMenuItem.name}<b class="caret"></b></a>
-	                			<ul class="dropdown-menu">
-	                				<%-- bad luck the child menus r not SORTED it sucks so lets sort it for now based on weight  --%>
-	                				<%
-	                					HstSiteMenuItem itrSiteMenuItem = (HstSiteMenuItem) request.getAttribute("itrSiteMenuItem");
-	                					EvaluateMenusList evaluateMenusList = new EvaluateMenusList(propertyToCheck,hasDIY,theResolvedPathInfoFileName,didWeFindTheResolvedMapItemInMenu);	                						
-	                					request.setAttribute("listOfChildMenuItems", evaluateMenusList.getListOfSortedMenutItems(itrSiteMenuItem));	                					
-	                				%>
-	                				<c:forEach items="${listOfChildMenuItems}" var="childMenuItem">
-	                					<c:set var="childMenuItemReq" scope="request" value="${childMenuItem}"/>
-	                					<%
-	                					HstSiteMenuItem anItem = ( HstSiteMenuItem ) request.getAttribute("childMenuItemReq");
-	                					 evaluateMenusList.getMenuItemsAttributes(request,anItem);
-	                					%>
-	                					<c:if test="${not empty shouldPutDivider}">
-	                						<li class="divider"></li>
-	                					</c:if>
-	                					<c:set var="subMenuChildCount" value="${fn:length(childMenuItem.childMenuItems)}"/>
-	                					<c:choose>
-	                						<c:when test="${childMenuItem.name == 'nav-header' || childMenuItem.name == 'divider' || not empty isAPackage}">
-	                							<li class="nav-header">${childMenuItem.name}</li>
-	                						</c:when>
-	                						<c:when test="${subMenu && subMenuChildCount gt 0}">
-	                						  <li class="dropdown-submenu">
-	                							<a tabindex="-1" href="#">${childMenuItem.name}</a>                							
-	                							<c:set var="childMenuItem" value="${childMenuItem}" scope="request"/>
-	                							 <c:if test="${subMenuChildCount gt 0}">
-	                							    <ul class="dropdown-menu">
-	                							    <%	                  						
-	                							     HstSiteMenuItem childMenuItem = (HstSiteMenuItem) request.getAttribute("childMenuItem");
-	                					             request.setAttribute("listOfSubChildMenuItems", evaluateMenusList.getListOfSortedMenutItems(childMenuItem));	                					
-	                				                 %>
-	                							      <c:forEach items="${listOfSubChildMenuItems}" var="subChildMenuItem">
-	                							        <c:set var="subChildMenuItemReq" scope="request" value="${subChildMenuItem}"/>
-	                					             <%
-	                					              HstSiteMenuItem anChildItem = ( HstSiteMenuItem ) request.getAttribute("subChildMenuItemReq");
-	                					              evaluateMenusList.getMenuItemsAttributes(request,anChildItem);
-	                					             %>
-                                                        <li><a tabindex="-1" href="${scriptName}${theURL}">${subChildMenuItem.name}</a></li>
-                                                      </c:forEach>
-                                                    </ul>
-                                                  </c:if>
-                                               </li>
-	                						</c:when>
-	                						<c:otherwise>
-	                							<li><a href="${scriptName}${theURL}">${childMenuItem.name}</a></li>
-	                						</c:otherwise>
-	                					</c:choose>
-	                				</c:forEach>
-	                			</ul>
-	               		</c:when>
-	               		<c:otherwise>
-							<c:set var="parentMenuItemReq" scope="request" value="${itrSiteMenuItem}"/>
-			    			<%
-			    				HstSiteMenuItem parentItem = ( HstSiteMenuItem ) request.getAttribute("parentMenuItemReq");
-			    				if (parentItem != null) {
-			    					String theURL =  parentItem.getParameter("theURL");
-			    					String currentScriptHTMLName = null;
-			    					//String theURL = anItem.getHstLink().toUrlForm(hstRequest.getRequestContext(), true);
-			    	 				if (theURL != null) {
-										request.setAttribute("theURLParent",theURL);
-										if (theURL.contains(theResolvedPathInfoFileName)) didWeFindTheResolvedMapItemInMenu= true;
-										String[] parts = theURL.split("[/]");
-										if (parts != null && parts.length > 0) currentScriptHTMLName = parts[parts.length-1];
-									}
-									else {
-										request.setAttribute("theURLParent", "#");
-									}
-			    	 				String theScript = (String) request.getAttribute("scriptName");
-				    				if (theScript != null && currentScriptHTMLName != null && theScript.contains(currentScriptHTMLName) ) {
-				    					request.setAttribute("isActive", "true");
-				    				}
-				    				else {
-				    					request.removeAttribute("isActive");
-				    				}
-			    				}
-
-			        		%>
-			        		<c:if test="${itrSiteMenuItem.name != 'PAN'}">
-	               				<li <c:if test='${not empty isActive && isActive == "true"}'>class="active"</c:if>><a href="${scriptName}${theURLParent}">${itrSiteMenuItem.name}</a></li>
-	               			</c:if>
-	               		</c:otherwise>
-	               	</c:choose>
-	               </c:forEach>
-	             </ul>
-	             <!--
-	                <form class="navbar-search pull-left" action="">
-	                  <input type="text" class="search-query span2" placeholder="Search">
-	                </form>
-	                 -->
-	             <%--
-	            <div id="addToCart" style="display:none" class="pull-right simpleCart_shelfItem">
-	            	<h2 class="item_name" style="display:none;"><c:out value="${serviceItemKey}"/></h2>
-	            	<span class="item_price" style="display:none;"><w4india:inr value="199"></w4india:inr></span>
-	            	<input type="hidden" value="1" class="item_Quantity">
-	            	<a class="item_add dropdown-toggle btn btn-primary" data-toggle="dropdown" href="javascript:;" style="color: white"><i class="icon-shopping-cart icon-white"></i>Add to cart</a>
-	            </div>
-	             <div id="removeFromCart" style="display:none" class="pull-right">
-	            	<a id="removeCartLink" class="dropdown-toggle btn btn-primary" data-toggle="dropdown" href="javascript:;" style="color: white"><i class="icon-shopping-cart icon-white"></i>Remove from cart</a>
-	            </div>
-	             --%>
-	            <c:if test="${hasDIY =='true'}">
-		            <ul class="nav pull-right">
-		               <li class="divider-vertical"></li>
-		               <li>
-							<c:if test="${not empty hippoBeanValidationResponse_totalErrors}">
-								<span title="Errors" class="badge badge-important"><c:out value="${hippoBeanValidationResponse_totalErrors}"/></span>
-							</c:if>
-							<c:if test="${not empty hippoBeanValidationResponse_totalWarnings}">
-								<span title="Errors"  class="badge badge-warning" ><c:out value="${hippoBeanValidationResponse_totalWarnings}"/></span>
-							</c:if>
-					   </li>
-		               <li class="dropdown">
-		                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Actions<b class="caret"></b></a>
-		                  <ul class="dropdown-menu">
-		                  		 <li><a href="${scriptName}/../servicerequest-refund-status.html">Refund Status</a></li>
-		                  		 <li><a href="${scriptName}/../servicerequest-rectification-status.html">Rectification Status</a></li>
-		                  		 <li><a href="${scriptName}/../servicerequest-itr-v-status.html">ITR-V Status</a></li>
-		                  		 <li class="divider"></li>
-		                  	 	 <%-- hide Show XML only for developers --%>
-		                  	 	 <%--
-			                  	 <li><a href="servicerequest-itr-summary.html">View Summary</a></li>
-			                     <li><a href="servicerequest-itr-summary.html?show=xml">View XML</a></li>
-			                     <li class="divider"></li>
-			                      --%>
-			                    <li><a href="${scriptName}/../servicerequest-itr-download-xml.html">Download XML</a></li>
-		                     	<li><a href="${scriptName}/../servicerequest-itr-download-summary.html">Download Summary</a></li>
-		                     	<li><a href="${scriptName}/../servicerequest-itr-email-xml-summary.html?email=<%=deliveryEmail%>">Email to <small>(<%=deliveryEmail%>)</small></a></li>
-		                  </ul>
-		               </li>
-		            </ul>
-	            </c:if>
-	         </div>
-         </c:if>
-         <!-- /.nav-collapse -->
+   <div class="container" style="font-size: small;">
+      <div class="navbar-header">
+	      <a href="${fn:substringBefore(scriptName,pan)}${pan}${itrFolderSuffix}/${pan}/servicerequest-itr.html">
+	         <span class="pan" style="font-size: x-small;">
+	            <c:out value="${pan}"/>               
+	         </span>
+	      </a>
       </div>
+      <c:if test="${nomenu != 'true'}">
+       <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">          	
+             <c:forEach items="${listOfSiteItems}" var="itrSiteMenuItem">
+             	<c:set var="childCount" value="${fn:length(itrSiteMenuItem.childMenuItems)}"/>
+             	<c:set var="itrSiteMenuItem" value="${itrSiteMenuItem}" scope="request"/>
+             	<c:choose>
+              	<c:when test="${childCount gt 0}">
+              		<li class="dropdown">
+              			<a href="#" class="dropdown-toggle" data-toggle="dropdown">${itrSiteMenuItem.name}<b class="caret"></b></a>
+              			<ul class="dropdown-menu">
+              				<%-- bad luck the child menus r not SORTED it sucks so lets sort it for now based on weight  --%>
+              				<%
+              					HstSiteMenuItem itrSiteMenuItem = (HstSiteMenuItem) request.getAttribute("itrSiteMenuItem");
+              					EvaluateMenusList evaluateMenusList = new EvaluateMenusList(propertyToCheck,hasDIY,theResolvedPathInfoFileName,didWeFindTheResolvedMapItemInMenu);	                						
+              					request.setAttribute("listOfChildMenuItems", evaluateMenusList.getListOfSortedMenutItems(itrSiteMenuItem));	                					
+              				%>
+              				<c:forEach items="${listOfChildMenuItems}" var="childMenuItem">
+              					<c:set var="childMenuItemReq" scope="request" value="${childMenuItem}"/>
+              					<%
+              					HstSiteMenuItem anItem = ( HstSiteMenuItem ) request.getAttribute("childMenuItemReq");
+              					 evaluateMenusList.getMenuItemsAttributes(request,anItem);
+              					%>
+              					<c:if test="${not empty shouldPutDivider}">
+              						<li class="divider"></li>
+              					</c:if>
+              					<c:set var="subMenuChildCount" value="${fn:length(childMenuItem.childMenuItems)}"/>
+              					<c:choose>
+              						<c:when test="${childMenuItem.name == 'nav-header' || childMenuItem.name == 'divider' || not empty isAPackage}">
+              							<li class="nav-header">${childMenuItem.name}</li>
+              						</c:when>
+              						<c:when test="${subMenu && subMenuChildCount gt 0}">
+              						  <li class="dropdown-submenu">
+              							<a tabindex="-1" href="#">${childMenuItem.name}</a>                							
+              							<c:set var="childMenuItem" value="${childMenuItem}" scope="request"/>
+              							 <c:if test="${subMenuChildCount gt 0}">
+              							    <ul class="dropdown-menu">
+              							    <%	                  						
+              							     HstSiteMenuItem childMenuItem = (HstSiteMenuItem) request.getAttribute("childMenuItem");
+              					             request.setAttribute("listOfSubChildMenuItems", evaluateMenusList.getListOfSortedMenutItems(childMenuItem));	                					
+              				                 %>
+              							      <c:forEach items="${listOfSubChildMenuItems}" var="subChildMenuItem">
+              							        <c:set var="subChildMenuItemReq" scope="request" value="${subChildMenuItem}"/>
+              					             <%
+              					              HstSiteMenuItem anChildItem = ( HstSiteMenuItem ) request.getAttribute("subChildMenuItemReq");
+              					              evaluateMenusList.getMenuItemsAttributes(request,anChildItem);
+              					             %>
+                                                     <li><a tabindex="-1" href="${scriptName}${theURL}">${subChildMenuItem.name}</a></li>
+                                                   </c:forEach>
+                                                 </ul>
+                                               </c:if>
+                                            </li>
+              						</c:when>
+              						<c:otherwise>
+              							<li><a href="${scriptName}${theURL}">${childMenuItem.name}</a></li>
+              						</c:otherwise>
+              					</c:choose>
+              				</c:forEach>
+              			</ul>
+             		</c:when>
+             		<c:otherwise>
+				<c:set var="parentMenuItemReq" scope="request" value="${itrSiteMenuItem}"/>
+    			<%
+    				HstSiteMenuItem parentItem = ( HstSiteMenuItem ) request.getAttribute("parentMenuItemReq");
+    				if (parentItem != null) {
+    					String theURL =  parentItem.getParameter("theURL");
+    					String currentScriptHTMLName = null;
+    					//String theURL = anItem.getHstLink().toUrlForm(hstRequest.getRequestContext(), true);
+    	 				if (theURL != null) {
+							request.setAttribute("theURLParent",theURL);
+							if (theURL.contains(theResolvedPathInfoFileName)) didWeFindTheResolvedMapItemInMenu= true;
+							String[] parts = theURL.split("[/]");
+							if (parts != null && parts.length > 0) currentScriptHTMLName = parts[parts.length-1];
+						}
+						else {
+							request.setAttribute("theURLParent", "#");
+						}
+    	 				String theScript = (String) request.getAttribute("scriptName");
+	    				if (theScript != null && currentScriptHTMLName != null && theScript.contains(currentScriptHTMLName) ) {
+	    					request.setAttribute("isActive", "true");
+	    				}
+	    				else {
+	    					request.removeAttribute("isActive");
+	    				}
+    				}
+
+        		%>
+        		<c:if test="${itrSiteMenuItem.name != 'PAN'}">
+             				<li <c:if test='${not empty isActive && isActive == "true"}'>class="active"</c:if>><a href="${scriptName}${theURLParent}">${itrSiteMenuItem.name}</a></li>
+             			</c:if>
+             		</c:otherwise>
+             	</c:choose>
+             </c:forEach>
+           </ul>
+           <!--
+              <form class="navbar-search pull-left" action="">
+                <input type="text" class="search-query span2" placeholder="Search">
+              </form>
+               -->
+           <%--
+          <div id="addToCart" style="display:none" class="pull-right simpleCart_shelfItem">
+          	<h2 class="item_name" style="display:none;"><c:out value="${serviceItemKey}"/></h2>
+          	<span class="item_price" style="display:none;"><w4india:inr value="199"></w4india:inr></span>
+          	<input type="hidden" value="1" class="item_Quantity">
+          	<a class="item_add dropdown-toggle btn btn-primary" data-toggle="dropdown" href="javascript:;" style="color: white"><i class="icon-shopping-cart icon-white"></i>Add to cart</a>
+          </div>
+           <div id="removeFromCart" style="display:none" class="pull-right">
+          	<a id="removeCartLink" class="dropdown-toggle btn btn-primary" data-toggle="dropdown" href="javascript:;" style="color: white"><i class="icon-shopping-cart icon-white"></i>Remove from cart</a>
+          </div>
+           --%>
+          <c:if test="${hasDIY =='true'}">
+           <ul class="nav pull-right">
+              <li class="divider-vertical"></li>
+              <li>
+				<c:if test="${not empty hippoBeanValidationResponse_totalErrors}">
+					<span title="Errors" class="badge badge-important"><c:out value="${hippoBeanValidationResponse_totalErrors}"/></span>
+				</c:if>
+				<c:if test="${not empty hippoBeanValidationResponse_totalWarnings}">
+					<span title="Errors"  class="badge badge-warning" ><c:out value="${hippoBeanValidationResponse_totalWarnings}"/></span>
+				</c:if>
+		   </li>
+              <li class="dropdown">
+                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Actions<b class="caret"></b></a>
+                 <ul class="dropdown-menu">
+                 		 <li><a href="${scriptName}/../servicerequest-refund-status.html">Refund Status</a></li>
+                 		 <li><a href="${scriptName}/../servicerequest-rectification-status.html">Rectification Status</a></li>
+                 		 <li><a href="${scriptName}/../servicerequest-itr-v-status.html">ITR-V Status</a></li>
+                 		 <li class="divider"></li>
+                 	 	 <%-- hide Show XML only for developers --%>
+                 	 	 <%--
+                  	 <li><a href="servicerequest-itr-summary.html">View Summary</a></li>
+                     <li><a href="servicerequest-itr-summary.html?show=xml">View XML</a></li>
+                     <li class="divider"></li>
+                      --%>
+                    <li><a href="${scriptName}/../servicerequest-itr-download-xml.html">Download XML</a></li>
+                    	<li><a href="${scriptName}/../servicerequest-itr-download-summary.html">Download Summary</a></li>
+                    	<li><a href="${scriptName}/../servicerequest-itr-email-xml-summary.html?email=<%=deliveryEmail%>">Email to <small>(<%=deliveryEmail%>)</small></a></li>
+                 </ul>
+              </li>
+           </ul>
+          </c:if>
+       </div>
+      </c:if>
+      <!-- /.nav-collapse -->
    </div>
-   <!-- /navbar-inner -->
-</div>
 <c:if test="${isDITVerified == 'false' && not empty memberpersonalinformation}">
 	<c:choose>
 		<c:when test="${fn:endsWith(scriptName,'servicerequest-itr.html')}">
@@ -405,7 +397,7 @@ request.setAttribute("isDITVerified",isDITVerified);
 			<div class="alert alert-error">
 				<small>
 					Unverified Information. You will not be able to file your income tax until the information is verified			
-					<a href="{scriptName}../../servicerequest-itr.html">Click here to review your information (Name,DOB and PAN)</a>
+					<a href="${scriptName}../../servicerequest-itr.html">Click here to review your information (Name,DOB and PAN)</a>
 					<c:if test="${isVendor == 'true' && not empty memberpersonalinformation}">
 						<c:out value="${memberpersonalinformation.ditVerificationMessage}"/>
 					</c:if>

@@ -16,8 +16,7 @@
 
 --%>
 
-<%@page import="javax.jcr.Node"%>
-<%@include file="../includes/tags.jspf" %>
+<%@include file="../../includes/tags.jspf" %>
 <c:set value="<%=request.getUserPrincipal() != null ? request.getUserPrincipal().getName().replaceAll(\"@\",\"-at-\") :\"\"%>" var="loggedin"></c:set>
 <c:choose>
 	<c:when test="${not empty loggedin}">
@@ -109,14 +108,8 @@
 		        <div id="search-results">
 		          <c:forEach items="${searchResult.items}" var="hit">
 		            <hst:link var="link" hippobean="${hit}"/>
-		            
-		            <c:set var="theNode" value="${hit.node}"/>
-		            <% 
-		            	Node theNode = (Node) pageContext.getAttribute("theNode");
-		            	boolean isIdentifiable =  theNode.isNodeType("mootlywcm:identifiable");
-		            	pageContext.setAttribute("isIdentifiable",isIdentifiable);
-		            %>
 		            <c:set var="hitClassName" value="${hit['class'].simpleName}"/>
+		            <c:out value="${hitClassName}"/>
 		            <ul class="search-result">
 		              <c:choose>
 		                <c:when test="${hitClassName eq 'HippoAsset'}">
@@ -132,7 +125,7 @@
 		                  <li class="title"><a href="knowledgearticles/${hit.name}.html"><c:out value="${hit.name}"/></a></li>
 		                </c:when>	
 		                <c:when test="${hitClassName eq 'HelpDeskTicketDocument'}">
-		                  <li class="title"><a href="helpdesk/${hit.name}.html"><c:out value="${hit.title}"/> (<c:out value="${document.identifier}"/>)</a></li>
+		                  <li class="title"><a href="helpdesk/view/${hit.name}.html"><c:out value="${hit.title}"/></a></li>
 		                </c:when>	
 		                <c:when test="${hitClassName eq 'SimpleDocument'}">
 		                  <li class="title"><a href="${fn:escapeXml(link)}"><c:out value="${hit.title}"/></a></li>

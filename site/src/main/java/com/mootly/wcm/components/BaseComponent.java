@@ -28,7 +28,11 @@ import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 import javax.servlet.ServletContext;
 
+import org.apache.commons.lang.ArrayUtils;
 import org.hippoecm.hst.component.support.bean.BaseHstComponent;
+import org.hippoecm.hst.component.support.forms.FormField;
+import org.hippoecm.hst.component.support.forms.FormMap;
+import org.hippoecm.hst.component.support.forms.FormUtils;
 import org.hippoecm.hst.configuration.hosting.Mount;
 import org.hippoecm.hst.content.beans.ObjectBeanManagerException;
 import org.hippoecm.hst.content.beans.manager.workflow.WorkflowCallbackHandler;
@@ -45,11 +49,15 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
+import com.mootly.wcm.annotations.FormFields;
 import com.mootly.wcm.beans.EmailMessage;
 import com.mootly.wcm.beans.EmailTemplate;
 import com.mootly.wcm.beans.compound.ImageSet;
 import com.mootly.wcm.channels.ChannelInfoWrapper;
 import com.mootly.wcm.channels.WebsiteInfo;
+import com.mootly.wcm.components.ITReturnScreen.PAGE_ACTION;
+import com.mootly.wcm.services.SequenceGenerator;
+import com.mootly.wcm.services.SequenceGeneratorImpl;
 import com.mootly.wcm.utils.ContentStructure;
 import com.mootly.wcm.utils.VelocityUtils;
 
@@ -57,10 +65,12 @@ public class BaseComponent extends BaseHstComponent {
 	private static final Logger log = LoggerFactory.getLogger(BaseComponent.class);
 	
 	String strIsOnVendorPortal;
+	String strIsOnSystemAdminPortal;
 	String memberhandleuuid;
 	String memberFolderPath;
 	
 	ITReturnComponentHelper itReturnComponentHelper = null;
+	SequenceGenerator sequenceGenerator = null;
 	
 	ChannelInfoWrapper channelInfoWrapper = null;
 	WebsiteInfo webSiteInfo = null;
@@ -76,6 +86,7 @@ public class BaseComponent extends BaseHstComponent {
 		super.init(servletContext, componentConfig);
 		ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(servletContext);
 		itReturnComponentHelper = context.getBean( ITReturnComponentHelper.class );
+		sequenceGenerator = context.getBean(SequenceGeneratorImpl.class);
 	}
 	
     @Override
@@ -136,7 +147,9 @@ public class BaseComponent extends BaseHstComponent {
         
         ResolvedSiteMapItem resolvedSiteMapItem = request.getRequestContext().getResolvedSiteMapItem();
         strIsOnVendorPortal = resolvedSiteMapItem.getParameter("isOnVendorPortal");
+        strIsOnSystemAdminPortal = resolvedSiteMapItem.getParameter("strIsOnSystemAdminPortal");
         if (strIsOnVendorPortal != null) request.setAttribute("strIsOnVendorPortal", strIsOnVendorPortal);
+        if (strIsOnSystemAdminPortal != null) request.setAttribute("strIsOnSystemAdminPortal", strIsOnSystemAdminPortal);
         
         boolean isVendor = ( ( request.getUserPrincipal() != null && request.isUserInRole("ROLE_vendor") ) ? true : false);
         request.setAttribute("isVendor", isVendor);
@@ -229,10 +242,18 @@ public class BaseComponent extends BaseHstComponent {
     public boolean isVendor(HstRequest request) {
    	 return ( ( request.getUserPrincipal() != null && request.isUserInRole("ROLE_vendor") ) ? true : false);
    }
+    
+    public boolean isSystemAdmin(HstRequest request) {
+      	 return ( ( request.getUserPrincipal() != null && request.isUserInRole("ROLE_systemadmin") ) ? true : false);
+    }
    
     
     public boolean isOnVendorPortal() {
     	return ( (strIsOnVendorPortal == null || strIsOnVendorPortal.equals("false")) ? false :  true); 
+    }
+    
+    public boolean isOnSystemAdminPortal() {
+    	return ( (strIsOnSystemAdminPortal == null || strIsOnSystemAdminPortal.equals("false")) ? false :  true); 
     }
     
     public String getMemberhandleuuid() {
@@ -419,8 +440,12 @@ public class BaseComponent extends BaseHstComponent {
     }
     
 
-	protected ITReturnComponentHelper getItReturnComponentHelper() {
+	protected final ITReturnComponentHelper getItReturnComponentHelper() {
 		return itReturnComponentHelper;
+	}
+	
+	protected final SequenceGenerator getSequenceGenerator() {
+		return sequenceGenerator;
 	}
 
 	protected String getStrIsOnVendorPortal() {
@@ -445,6 +470,51 @@ public class BaseComponent extends BaseHstComponent {
 	
 	public ChannelInfoWrapper getChannelInfoWrapper() {
 		return channelInfoWrapper;
+	}
+	
+	protected PAGE_ACTION getPageAction(HstRequest request) {
+		String strPageAction = request.getRequestContext().getResolvedSiteMapItem().getParameter("action");
+		//this is tricky lets allow components to override the configuration by passing it themselves
+		//this is useful for form16 -- deductions scenario where a parent is hosting a child
+		String strPageActionFromComponent = getParameter("action", request);
+		if (strPageActionFromComponent != null) {
+			if (log.isInfoEnabled()) {
+				log.info("Found action parameter in the component. Will override " + strPageAction + " with the component action " + strPageActionFromComponent );
+			}
+			strPageAction = strPageActionFromComponent;
+		}
+		if (strPageAction == null) {
+			PAGE_ACTION pageAction = ITReturnScreen.PAGE_ACTION.DEFAULT;
+			return pageAction;
+		}
+		try {
+			PAGE_ACTION pageAction = PAGE_ACTION.valueOf(strPageAction);
+			return pageAction;
+		}catch (IllegalArgumentException e) {
+			log.error("Error parsing action",e);
+		}
+		return null;
+	}
+	
+	protected FormMap getFormMap(HstRequest request,String[] formMapFields) {
+		FormMap formMap = null;
+		if (getClass().isAnnotationPresent(FormFields.class) || ( formMapFields != null && formMapFields.length > 0) ) {
+			FormFields formFields = this.getClass().getAnnotation(FormFields.class);
+			String[] theFieldsArray = null;
+			if (formFields != null) {
+				String[] vendorFields = formFields.fieldNamesVendorOnly();
+				theFieldsArray = formFields.fieldNames();
+				if (isVendor(request) && vendorFields != null && vendorFields.length > 0){
+					theFieldsArray = (String[]) ArrayUtils.addAll(theFieldsArray, vendorFields);
+				}
+			}
+			if (formMapFields != null && formMapFields.length > 0) {
+				theFieldsArray = (String[]) ArrayUtils.addAll(theFieldsArray, formMapFields);
+			}
+			formMap = new FormMap(request,theFieldsArray);
+			FormUtils.populate(request, formMap);
+		}
+		return formMap;
 	}
 	
 	public String getHippoRequestURL(HstRequest request,boolean includeHost, boolean includeContext) {

@@ -16,8 +16,7 @@
 <%@ taglib uri="http://www.hippoecm.org/jsp/hst/core" prefix='hst'%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@include file="../../../includes/tags.jspf"%>
-<div class="navbar-collapse collapse">
-	<ul id="menu-main" class="menu nav navbar-nav">
+
 		<c:forEach var="item" items="${menu.siteMenuItems}">
 			<c:set var="itemLink" value="${item.hstLink}" />
 			<c:if test="${not empty itemLink}">
@@ -35,8 +34,7 @@
 				%>
 				<c:choose>
 					<c:when test="${item.expanded}">
-						<li><a href="${fn:escapeXml(link)}"><c:out
-									value="${item.name}" /> </a></li>
+						<li><a href="${fn:escapeXml(link)}" class="dropdown-toggle" data-toggle="dropdown"><c:out value="${item.name}" /></a></li>
 						<!-- home link is done -->
 						<c:if test="${hasChildren == '1'}">
 							<ul class="dropdown-menu">
@@ -63,11 +61,11 @@
 					</c:when>
 					<c:otherwise>
 						<!-- calculators/service price/faq/income tax return link -->
-						<li><c:set var="totalChildren" value="${item.childMenuItems}" />
+						<li <c:if test="${hasChildren == '1'}"> class="dropdown"</c:if>><c:set var="totalChildren" value="${item.childMenuItems}" />
 							<a href="${fn:escapeXml(link)}"
 							<c:if test="${hasChildren == '1'}"> data-toggle="dropdown"
 						data-target="#" class="dropdown-toggle"</c:if>>
-								<c:out value="${item.name}" /> </a>
+								<c:out value="${item.name}" /> <c:if test="${hasChildren == '1'}"> <b class="caret"></b></c:if> </a>
 								
 							<!--sub-menu of Calculators-->
 							<c:if test="${hasChildren == '1'}">
@@ -84,7 +82,4 @@
 				</c:choose>
 			</c:if>
 		</c:forEach>
-
-	</ul>
-</div>
 

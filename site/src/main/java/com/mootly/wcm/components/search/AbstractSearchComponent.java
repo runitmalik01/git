@@ -43,6 +43,7 @@ import org.springframework.beans.BeanInstantiationException;
 import com.mootly.wcm.beans.Document;
 import com.mootly.wcm.beans.EventDocument;
 import com.mootly.wcm.beans.Faq;
+import com.mootly.wcm.beans.HelpDeskTicketDocument;
 import com.mootly.wcm.beans.JobsDocument;
 import com.mootly.wcm.beans.KnowledgeArticle;
 import com.mootly.wcm.beans.NewsItem;
@@ -144,6 +145,9 @@ public class AbstractSearchComponent extends TagComponent {
             	}
             	else if (documentType.equals("All"))  {
             		hstQuery = manager.createQuery(scope, KnowledgeArticle.class, Faq.class,Service.class);
+            	}
+            	else if (documentType.equals("HelpDeskTicket"))  {
+            		hstQuery = manager.createQuery(scope, HelpDeskTicketDocument.class);
             	}
             }
             

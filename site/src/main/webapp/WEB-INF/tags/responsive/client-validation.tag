@@ -39,6 +39,7 @@
 		String screenConfigDocumentJSON = ScreenConfigService.generateJSON( siteContentBaseBean, screenConfigurationDocumentName);
 		request.setAttribute("screenConfigDocumentJSON",screenConfigDocumentJSON);
 	}
+	
 %>
 <hst:componentRenderingURL var="ajaxLinkToComponent"></hst:componentRenderingURL>
 <c:if test="${not empty siteContentBaseBean && not empty screenConfigDocumentJSON}">

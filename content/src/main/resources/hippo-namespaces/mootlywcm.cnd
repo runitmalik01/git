@@ -507,3 +507,14 @@ orderable
 [mootlywcm:pbpagedocument] > hippostd:relaxed, mootlywcm:basedocument orderable
 [mootlywcm:pbblockdocument] > hippostd:relaxed, mootlywcm:basedocument orderable
 [mootlywcm:pbassetdocument] > hippostd:relaxed, mootlywcm:basedocument orderable
+
+[mootlywcm:identifiable]
+ mixin
+ - mootlywcm:identifier (string) mandatory
+ 
+ [mootlywcm:HelpDeskTicket] > hippostd:relaxed, mootlywcm:basedocument
+  orderable
+
+[mootlywcm:HelpDeskTicketNote] > hippo:compound, hippostd:relaxed
+  orderable
+ 

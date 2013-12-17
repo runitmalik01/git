@@ -24,7 +24,16 @@ public class SearchComponent extends AbstractSearchComponent {
     @Override
     public void doBeforeRender(HstRequest request, HstResponse response) {
         super.doBeforeRender(request, response);
-
+        String strShowFacetedDocuments = request.getRequestContext().getResolvedSiteMapItem().getLocalParameter("showFacetedDocuments");
+        String strShowTaggedDocuments = request.getRequestContext().getResolvedSiteMapItem().getLocalParameter("showTaggedDocuments");
+        Boolean paramShowFacetedDocuments = false;
+        Boolean paramShowTaggedDocuments = false;
+        if (strShowFacetedDocuments != null) {
+        	paramShowFacetedDocuments = Boolean.valueOf(strShowFacetedDocuments);
+        }
+        if (strShowTaggedDocuments != null) {
+        	paramShowTaggedDocuments = Boolean.valueOf(strShowTaggedDocuments);
+        }
         if (!showTaggedDocuments(request) && !showFacetedDocuments(request)) {
             String query = getQuery(request);
                 searchDocuments(request, query);

@@ -49,6 +49,7 @@
     <link rel="stylesheet" media="screen" type="text/css" href="${w4indiacss}"/>
     <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/themes/smoothness/jquery-ui.css" />
     <link rel="stylesheet" media="screen" type="text/css" href='<hst:link path="/css/bootstrap.css"></hst:link>'/>
+    <link rel="stylesheet" media="screen" type="text/css" href='<hst:link path="/css/bootstrap.flat.min.css"></hst:link>'/>    
 	<link rel="stylesheet" media="screen" type="text/css" href='<hst:link path="/css/bootstrap-responsive.css"></hst:link>'/>
 	<!-- <link rel="stylesheet" media="screen" type="text/css" href='<hst:link path="/css/bootplus.css"></hst:link>'/> -->
 	<!-- <link rel="stylesheet" media="screen" type="text/css" href='<hst:link path="/css/font-awesome-min.css"></hst:link>'/> -->
@@ -73,9 +74,9 @@
 	<script type='text/javascript' src='<hst:link path="/js/bootstrap.min.js"></hst:link>'></script>
 	<script src="<hst:link path="/js/bootstrap-typeahead.js"></hst:link>"></script>
 	
-	<div id="container" class="hfeed">
+	<div id="wrap" class="hfeed">
 		<hst:include ref="header"/>
-		<div id="wrapper" class="clearfix">
+		<div id="wrapper" class="container clearfix">
 			<c:if test="${not empty isError && error.key == 'true' && loggedin == 'true'}">
 				<c:choose>
 					<c:when test="${not empty error.key}">

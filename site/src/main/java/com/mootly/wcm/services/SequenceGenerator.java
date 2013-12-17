@@ -5,6 +5,8 @@ public interface SequenceGenerator {
 	public final String SEQUENCE_INVOICE = "invoiceSequence";
 	public final String SEQUENCE_PAYMENT = "paymentIdSequence";
 	public final String SEQUENCE_DOCUMENT = "documentSequence";
-	long getNextId(String sequenceName);
+	
+	public final String SEQUENCE_HELP_DESK_TICKET = "ticketSequence";
+	Long getNextId(String sequenceName);
 	
 }

@@ -25,6 +25,7 @@ public interface BeanLifecycle<T> {
 	
 	boolean beforeUpdate(T hippoBean);
 	void afterUpdate(T beanBeforeUpdate,T beanAfterUpdate,WorkflowPersistenceManager wpm,String baseAbsolutePathToReturnDocuments,ITReturnComponentHelper itReturnComponentHelper);
+
 	
 	void afterUpdateChild(T parentBeanBeforeUpdate,T parentBeanAfterUpdate,T childBeanBeforeUpdate,T childBeanAfterUpdate, WorkflowPersistenceManager wpm,ITReturnComponentHelper itReturnComponentHelper);
 }

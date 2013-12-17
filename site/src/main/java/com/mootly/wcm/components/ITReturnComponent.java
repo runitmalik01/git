@@ -253,7 +253,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		super.init(servletContext, componentConfig);
 		ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(servletContext);
 		itrXmlGeneratorServiceFactory = context.getBean(com.mootly.wcm.services.ITRXmlGeneratorServiceFactory.class);
-		sequenceGenerator = context.getBean(SequenceGeneratorImpl.class);
+		
 		xsltPath = servletContext.getRealPath("/xslt/ITRSummary.xsl");
 		itrValidationChain =  context.getBean(ITRValidatorChain.class);
 		retrievePANInformation = context.getBean(RetrievePANInformation.class);
@@ -283,10 +283,6 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 
 	public RetrievePANInformation getRetrievePANInformationService() {
 		return retrievePANInformation;
-	}
-
-	public SequenceGenerator getSequenceGenerator() {
-		return sequenceGenerator;
 	}
 
 	public Transaction getTransaction() {
