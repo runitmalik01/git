@@ -39,4 +39,19 @@ public class InvoicePaymentDetailBeanHandler extends GenericLifeCycleHandler imp
 			}
 		}
 	}
+	@Override
+	public void afterFillChildBeanMap(HippoBean hippoBean) {
+		// TODO Auto-generated method stub
+		//super.afterFillChildBeanMap(hippoBean);
+		if (hippoBean != null && hippoBean instanceof InvoicePaymentDetail) {
+			InvoicePaymentDetail invoicePaymentDetail = (InvoicePaymentDetail) hippoBean;
+			//invoicePaymentDetail.setPaymentTransactionId(strPaymentTransactionId);
+			//invoicePaymentDetail.setPaymentType(paymentType);
+			//invoicePaymentDetail.setPaymentDate(IndianGregorianCalendar.getCurrentDateInIndiaAsDate());
+			InvoiceDocument invoiceDocument = (InvoiceDocument) hstRequest.getAttribute("parentBean");
+			if (invoiceDocument != null ) {
+				invoicePaymentDetail.setPaymentAmount(invoiceDocument.getAmountDue());
+			}
+		}
+	}
 }
