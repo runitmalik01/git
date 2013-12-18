@@ -33,12 +33,11 @@
 	</h3>
 	<ul>
 		<li>Total Invoice Amount: <w4india:inr
-				value="${parentBean.totalInvoiceAmount}" />
-		</li>
+				value="${parentBean.totalInvoiceAmount}" /></li>
 		<li>Total Payment Amount:<w4india:inr
-				value="${parentBean.totalPaymentAmount}" />
-		</li>
-		<li>Total Due:<w4india:inr value="${parentBean.amountDue}" />
+				value="${parentBean.totalPaymentAmount}" /></li>
+		<li>Total Due:<w4india:inr
+				value="${parentBean.totalPaymentAmount}" /> <%-- <w4india:inr value="${parentBean.amountDue}" /> --%>
 		</li>
 		<c:if test="${parentBean.amountDue > 0}">
 			<c:forEach items="${availablePaymentTypes}" var="paymentType">
@@ -174,20 +173,14 @@
 			<!--  show the table -->
 			<table class="table table-bordered table-striped">
 				<tr align="center">
-					<th><b>Services</b>
-					</th>
-					<th><b>Mode</b>
-					</th>
-					<th><b>Rate</b>
-					</th>
-					<th><b>Quantity</b>
-					</th>
-					<th><b>Amount</b>
-					</th>
+					<th><b>Services</b></th>
+					<th><b>Mode</b></th>
+					<th><b>Rate</b></th>
+					<th><b>Quantity</b></th>
+					<th><b>Amount</b></th>
 					<c:if
 						test="${not empty strIsOnVendorPortal && strIsOnVendorPortal =='true' && isVendor =='true'}">
-						<th><b>Actions</b>
-						</th>
+						<th><b>Actions</b></th>
 					</c:if>
 				</tr>
 				<c:if test="${not empty parentBean}">
@@ -195,16 +188,11 @@
 						var="invoicedetail">
 						<tr align="center">
 						<tr>
-							<td><c:out value="${invoicedetail.serviceName}" />
-							</td>
-							<td><c:out value="${invoicedetail.filingMode}" />
-							</td>
-							<td><c:out value="${invoicedetail.serviceRate}" />
-							</td>
-							<td><c:out value="${invoicedetail.serviceQty}" />
-							</td>
-							<td><c:out value="${invoicedetail.serviceAmount}" />
-							</td>
+							<td><c:out value="${invoicedetail.serviceName}" /></td>
+							<td><c:out value="${invoicedetail.filingMode}" /></td>
+							<td><c:out value="${invoicedetail.serviceRate}" /></td>
+							<td><c:out value="${invoicedetail.serviceQty}" /></td>
+							<td><c:out value="${invoicedetail.serviceAmount}" /></td>
 							<c:if
 								test="${not empty strIsOnVendorPortal && strIsOnVendorPortal =='true' && isVendor =='true'}">
 								<td><a class="btn btn-primary"
@@ -213,7 +201,8 @@
 									class="btn btn-danger"
 									href="${scriptName}/<c:out value="${invoicedetail.canonicalUUID}"/>/memberinvoicedelete"
 									data-confirm=""><small><i
-											class="icon-trash icon-white"></i>Delete</small> </a></td>
+											class="icon-trash icon-white"></i>Delete</small> </a>
+								</td>
 							</c:if>
 						</tr>
 					</c:forEach>
@@ -230,18 +219,13 @@
 			<h4>Payments</h4>
 			<table class="table table-bordered table-striped">
 				<tr align="center">
-					<th><b>Date</b>
-					</th>
-					<th><b>Payment By</b>
-					</th>
-					<th><b>Amount</b>
-					</th>
-					<th><b>Status</b>
-					</th>
+					<th><b>Date</b></th>
+					<th><b>Payment By</b></th>
+					<th><b>Amount</b></th>
+					<th><b>Status</b></th>
 					<c:if
 						test="${not empty strIsOnVendorPortal && strIsOnVendorPortal =='true' && isVendor =='true'}">
-						<th><b>Actions</b>
-						</th>
+						<th><b>Actions</b></th>
 					</c:if>
 				</tr>
 				<c:if test="${not empty parentBean}">
@@ -263,12 +247,12 @@
 								<tr>
 									<td><fmt:formatDate
 											value="${invoicepaymentdetail.paymentDate.time}"
-											timeZone="<%=IndianGregorianCalendar.indianTimeZone%>" />
-									</td>
+											timeZone="<%=IndianGregorianCalendar.indianTimeZone%>" /></td>
 									<td><c:out
 											value="${fn:replace(invoicepaymentdetail.paymentType,'_',' ')}" />
 									</td>
-									<td><c:out value="${invoicepaymentdetail.paymentAmount}"/></td>
+									<td><c:out value="${invoicepaymentdetail.txnAmount}" />
+									</td>
 									<td>VERIFIED</td>
 									<c:if
 										test="${not empty strIsOnVendorPortal && strIsOnVendorPortal =='true' && isVendor =='true'}">
@@ -278,7 +262,8 @@
 											class="btn btn-danger"
 											href="${scriptName}<c:out value="/payment/${invoicepaymentdetail.canonicalUUID}"/>/paymentdelete?paymentType=${invoicepaymentdetail.paymentType}"
 											data-confirm=""><small><i
-													class="icon-trash icon-white"></i>Delete</small> </a></td>
+													class="icon-trash icon-white"></i>Delete</small> </a>
+										</td>
 									</c:if>
 								</tr>
 							</c:if>
@@ -292,18 +277,13 @@
 				<h4>Refunds</h4>
 				<table class="table table-bordered table-striped">
 					<tr align="center">
-						<th><b>Date</b>
-						</th>
-						<th><b>Payment By</b>
-						</th>
-						<th><b>Amount</b>
-						</th>
-						<th><b>Status</b>
-						</th>
+						<th><b>Date</b></th>
+						<th><b>Payment By</b></th>
+						<th><b>Amount</b></th>
+						<th><b>Status</b></th>
 						<c:if
 							test="${not empty strIsOnVendorPortal && strIsOnVendorPortal =='true' && isVendor =='true'}">
-							<th><b>Actions</b>
-							</th>
+							<th><b>Actions</b></th>
 						</c:if>
 					</tr>
 					<c:if test="${not empty parentBean}">
@@ -314,13 +294,11 @@
 								<tr>
 									<td><fmt:formatDate
 											value="${invoicerefunddetail.paymentDate.time}"
-											timeZone="<%=IndianGregorianCalendar.indianTimeZone%>" />
-									</td>
+											timeZone="<%=IndianGregorianCalendar.indianTimeZone%>" /></td>
 									<td><c:out
 											value="${fn:replace(invoicerefunddetail.paymentType,'_',' ')}" />
 									</td>
-									<td><c:out value="${invoicerefunddetail.txnAmount}" />
-									</td>
+									<td><c:out value="${invoicerefunddetail.txnAmount}" /></td>
 									<td>VERIFIED</td>
 									<c:if
 										test="${not empty strIsOnVendorPortal && strIsOnVendorPortal =='true' && isVendor =='true'}">
@@ -330,7 +308,8 @@
 											class="btn btn-danger"
 											href="${scriptName}<c:out value="/payment/${invoicerefunddetail.canonicalUUID}"/>/paymentdelete?paymentType=${invoicerefunddetail.paymentType}"
 											data-confirm=""><small><i
-													class="icon-trash icon-white"></i>Delete</small> </a></td>
+													class="icon-trash icon-white"></i>Delete</small> </a>
+										</td>
 									</c:if>
 								</tr>
 							</c:if>
@@ -399,8 +378,7 @@
 						<c:if test="${paymentUpdateResponse.success}">
 							<li>Successful payment Type: <c:out
 									value="${paymentUpdateResponse.paymentType}" /> Amount:<c:out
-									value="${paymentUpdateResponse.txnAmount}" />
-							</li>
+									value="${paymentUpdateResponse.txnAmount}" /></li>
 						</c:if>
 					</c:forEach>
 				</ul>
