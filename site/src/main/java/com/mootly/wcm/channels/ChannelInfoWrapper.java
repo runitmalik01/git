@@ -28,6 +28,16 @@ public final class ChannelInfoWrapper {
 		return Boolean.valueOf(strEriEnabled);
 	}
 	
+	public String getStartDate(){
+		String startDate = webSiteInfo.getStartDate();
+		return startDate;
+	}
+	
+	public String getEndDate(){
+		String endDate = webSiteInfo.getEndDate();
+		return endDate;
+	}
+	
 	public Boolean getAllowSignup() {
 		Boolean allowSignup = false;
 		String strNumberOfLicensedUsers = webSiteInfo.getNumberOfLicensedUsers();
