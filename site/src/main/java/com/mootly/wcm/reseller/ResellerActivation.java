@@ -10,6 +10,7 @@
 package com.mootly.wcm.reseller;
 import java.rmi.RemoteException;
 import java.util.Iterator;
+import java.util.UUID;
 
 import javax.jcr.Node;
 import javax.jcr.RepositoryException;
@@ -40,11 +41,15 @@ import org.slf4j.LoggerFactory;
 
 import com.mootly.wcm.beans.MemberPayment;
 import com.mootly.wcm.beans.MemberPersonalInformation;
+import com.mootly.wcm.beans.MemberSignupDocument;
 import com.mootly.wcm.beans.ResellerSignupDocument;
 import com.mootly.wcm.channels.WebsiteInfo;
 import com.mootly.wcm.components.BaseComponent;
 import com.mootly.wcm.member.SignupDetail.FullReviewedWorkflowCallbackHandler;
+import com.mootly.wcm.services.ITRXmlGeneratorServiceCommon;
+import com.mootly.wcm.services.SecureHashGeneration;
 import com.mootly.wcm.services.SequenceGenerator;
+import com.mootly.wcm.utils.ContentStructure;
 import com.mootly.wcm.utils.GoGreenUtil;
 
 public class ResellerActivation extends BaseComponent {
@@ -138,6 +143,9 @@ public class ResellerActivation extends BaseComponent {
 		String paymentEnabled = GoGreenUtil.getEscapedParameter(request, PAYMENTENABLED);
 		String resellerName = GoGreenUtil.getEscapedParameter(request, RESELLERNAME);
 
+		String startDate = ITRXmlGeneratorServiceCommon.getCurrentDateInIndiaAsString();
+		String endDate = ITRXmlGeneratorServiceCommon.getEndDateForResellerTrailPeriod();
+
 		String activationCode = request.getRequestContext().getResolvedSiteMapItem().getParameter("activationCode");
 
 		String userName = null;
@@ -156,6 +164,7 @@ public class ResellerActivation extends BaseComponent {
 				String newFolderName = "services";
 				String newFolderBasePath = hippoFolder.getPath();
 				String newFolderPath = hippoFolder.getPath()+"/"+newFolderName;
+
 				final String pathToParentBean = wpm.createAndReturn(newFolderBasePath,"hippostd:folder",newFolderName,true);
 				if (log.isInfoEnabled()) {
 					log.info("New Folder was created and the pathToTheBean now is " + pathToParentBean);
@@ -171,7 +180,7 @@ public class ResellerActivation extends BaseComponent {
 					HippoBean hippoBean = itResults.next();
 
 					if (hippoBean instanceof HippoDocumentBean) {
-						if(hippoBean.getParentBean().getName().equals("services")){
+						if(hippoBean.getParentBean().getName().equals(newFolderName)){
 							folder = (HippoFolderBean) wpm.getObject(pathToParentBean);
 						}else{
 							String absoluteBeanPath = StringUtils.substringAfter(hippoBean.getCanonicalPath(), newFolderName);
@@ -224,6 +233,24 @@ public class ResellerActivation extends BaseComponent {
 				}
 			}
 
+			HippoFolder hippoFolder = (HippoFolder) resellerSignupDocument.getParentBean().getParentBean();
+			String finalMembershipDocumentPath = null;
+			String cPath = hippoFolder.getPath();
+			final String memberFolderPath = cPath + "/" + ContentStructure.MEMBER_FOLDER_NAME + "/" + getNormalizedUserName(request, resellerSignupDocument.getUserName());//ContentStructure.getMemberFolder(request,signupDocument.getUserName());
+			finalMembershipDocumentPath = wpm.createAndReturn(memberFolderPath, MemberSignupDocument.NAMESPACE ,  MemberSignupDocument.NODE_NAME, true);
+			MemberSignupDocument membershipSignupDocument = (MemberSignupDocument) wpm.getObject(finalMembershipDocumentPath);
+			// update content properties
+			if (membershipSignupDocument != null) {
+				membershipSignupDocument.setUserName(resellerSignupDocument.getUserName());
+				membershipSignupDocument.setPassword(SecureHashGeneration.passSHAdigest(resellerSignupDocument.getPassword()));
+				membershipSignupDocument.setEmail(resellerSignupDocument.getEmail());
+				membershipSignupDocument.setRoles(new String[]{"VENDOR"});
+				membershipSignupDocument.setActivationCode(UUID.randomUUID().toString());
+				membershipSignupDocument.setIsActive(true);
+				// update now           `
+				wpm.update(membershipSignupDocument);
+			}
+
 			if(resellerSignupDocument != null && !(resellerSignupDocument.getIsActive())){
 				resellerSignupDocument.setIsActive(true);
 				resellerSignupDocument.setEmailCustomerService(emailCustomerService);
@@ -239,6 +266,8 @@ public class ResellerActivation extends BaseComponent {
 				resellerSignupDocument.setPaymentAvailableTypes(paymentAvailableTypes);
 				resellerSignupDocument.setPaymentEnabled(Boolean.valueOf(paymentEnabled));
 				resellerSignupDocument.setResellerName(resellerName);
+				resellerSignupDocument.setStartDate(startDate);
+				resellerSignupDocument.setEndDate(endDate);
 
 				request.setAttribute("userName", resellerSignupDocument.getResellerID());
 				if(!(resellerSignupDocument.getResellerID().isEmpty())){
@@ -247,10 +276,8 @@ public class ResellerActivation extends BaseComponent {
 				}else
 					userName = "User name not found";
 			}
-			//wpm = getWorkflowPersistenceManager(persistableSession);
-			//SIMPLE WORKFLOW
+
 			wpm.setWorkflowCallbackHandler(new FullReviewedWorkflowCallbackHandler());
-			// here we replace the name of document with this method by which it can identify the username in content folder
 			wpm.update(resellerSignupDocument);
 
 		} catch (ObjectBeanManagerException e1) {
