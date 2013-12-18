@@ -23,6 +23,10 @@ import com.mootly.wcm.components.BaseComponent;
 import com.mootly.wcm.components.ITReturnScreen.PAGE_ACTION;
 import com.mootly.wcm.model.UserType;
 import com.mootly.wcm.services.SequenceGenerator;
+import com.mootly.wcm.services.ds.exception.InvalidDigitalSignatureException;
+import com.mootly.wcm.services.ds.exception.MissingDigitalCertificateException;
+import com.mootly.wcm.services.ds.exception.MissingPrivateKeyException;
+import com.mootly.wcm.services.ds.model.DigitalSignatureWrapper;
 
 
 public class DetailedView extends BaseComponent{
@@ -51,6 +55,31 @@ public class DetailedView extends BaseComponent{
 			request.setAttribute("document", document);
 			request.setAttribute("pageAction", PAGE_ACTION.NEW_CHILD);					
 		}
+		
+		DigitalSignatureWrapper digitalSignatureWrapper;
+		try {
+			digitalSignatureWrapper = getDigitalSignatureService().getDigitalSignatureFromRepository("/content/documents/mootlywcm/resellers/w4india/members/amitpatkar-at-gmail.com/drive/abnpp1234g/2012-2013/abnpp1234g_f_1213/dsc_sweta.pfx",true);
+			if (log.isInfoEnabled()) {
+				if (digitalSignatureWrapper == null) {
+					log.info("Digital Signature not found");
+				}
+				else {
+					log.info(digitalSignatureWrapper.toString());
+				}
+			}
+		} catch (MissingPrivateKeyException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (MissingDigitalCertificateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (RepositoryException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InvalidDigitalSignatureException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
 	}
 	
 	@Override

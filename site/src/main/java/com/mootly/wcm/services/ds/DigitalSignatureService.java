@@ -1,0 +1,36 @@
+package com.mootly.wcm.services.ds;
+
+import java.io.File;
+import java.security.cert.X509Certificate;
+import java.util.zip.ZipInputStream;
+
+import javax.jcr.RepositoryException;
+
+import com.mootly.wcm.services.ds.exception.InvalidDigitalSignatureException;
+import com.mootly.wcm.services.ds.exception.MissingDigitalCertificateException;
+import com.mootly.wcm.services.ds.exception.MissingPrivateKeyException;
+import com.mootly.wcm.services.ds.model.DigitalSignatureWrapper;
+
+public interface DigitalSignatureService {
+	
+	DigitalSignatureWrapper getDigitalSignature(File file,boolean validate) throws MissingPrivateKeyException;
+	DigitalSignatureWrapper getDigitalSignatureFromRepository(String jcrPathToMemberDriveNode,boolean validate) throws MissingPrivateKeyException,InvalidDigitalSignatureException, MissingDigitalCertificateException, RepositoryException;
+	
+	/**
+	 * 
+	 * @param digitalSignature
+	 * @param financialYear
+	 * @return
+	 */
+	X509Certificate validateAndGetCertificate(DigitalSignatureWrapper digitalSignatureWrapper) throws MissingPrivateKeyException,InvalidDigitalSignatureException;
+	
+	/**
+	 * This will add the Digital Signature of the ASSESSEE 
+	 * The return value is modified XML
+	 */
+	String signITRByAssesse(String xml, DigitalSignatureWrapper digitalSignatureWrapper) throws MissingPrivateKeyException,InvalidDigitalSignatureException,Exception;
+	
+	String signZIPByERISubUser(ZipInputStream zipInputStream, DigitalSignatureWrapper digitalSignatureWrapper) throws MissingPrivateKeyException, InvalidDigitalSignatureException,Exception;
+	
+	
+}

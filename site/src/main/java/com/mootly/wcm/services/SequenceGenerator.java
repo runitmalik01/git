@@ -7,6 +7,7 @@ public interface SequenceGenerator {
 	public final String SEQUENCE_DOCUMENT = "documentSequence";
 	
 	public final String SEQUENCE_HELP_DESK_TICKET = "ticketSequence";
+	public final String SEQUENCE_SERVICE_REQUEST = "serviceRequest";
 	Long getNextId(String sequenceName);
 	
 }

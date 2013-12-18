@@ -54,7 +54,7 @@ import com.mootly.wcm.components.ITReturnComponent;
 public class MemberDrive extends ITReturnComponent {
 
 	private static final Logger log = LoggerFactory.getLogger(MemberDrive.class);
-	private static final String MEMBER_DRIVE_FOLDER_NAME="Members";
+	private static final String MEMBER_DRIVE_FOLDER_NAME="members";
 	private static final long MEMBER_FILE_SIZE= 1024 * 1024;
 	private static final String FILE_DATA="fileData";
 	private static final String CONTENT_TYPE="ContentType";
@@ -232,14 +232,14 @@ public class MemberDrive extends ITReturnComponent {
 	 * 
 	 * @return String Path for Document
 	 * */
-	public static String getMemberDriveDocPath(HstRequest request) {
+	public String getMemberDriveDocPath(HstRequest request) {
 		String returnType=request.getRequestContext().getResolvedSiteMapItem().getParameter("itReturnType");
 		String financialYear=request.getRequestContext().getResolvedSiteMapItem().getParameter("financialYear");
 		String pan=request.getRequestContext().getResolvedSiteMapItem().getParameter("pan");
 		StringBuilder builder = new StringBuilder();
-		builder.append(request.getRequestContext().getResolvedMount().getMount().getCanonicalContentPath());
+		builder.append(getSiteContentBaseBeanForReseller(request).getCanonicalPath());
 		builder.append('/');
-		builder.append(MEMBER_DRIVE_FOLDER_NAME).append("/").append(request.getUserPrincipal().getName().replaceAll("@","-at-")).append("/").append("Drive");
+		builder.append(MEMBER_DRIVE_FOLDER_NAME).append("/").append(getUserNameNormalized()).append("/").append("Drive");
 		builder.append("/").append(pan).append("/").append(financialYear).append("/").append(returnType);
 		return builder.toString();
 	}

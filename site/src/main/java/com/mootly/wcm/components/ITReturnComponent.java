@@ -153,6 +153,8 @@ import com.mootly.wcm.services.ditws.exception.MissingInformationException;
 import com.mootly.wcm.services.ditws.model.RetrievePANResponse;
 import com.mootly.wcm.services.ditws.model.RetrieveRectificationResponse;
 import com.mootly.wcm.services.ditws.model.RetrieveRefundResponse;
+import com.mootly.wcm.services.efile.EFileResponse;
+import com.mootly.wcm.services.efile.exception.EFileException;
 import com.mootly.wcm.utils.GoGreenUtil;
 import com.mootly.wcm.utils.MootlyFormUtils;
 import com.mootly.wcm.utils.XmlCalculation;
@@ -437,6 +439,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		}
 		String redirectToIfPaymentNotFound = getRedirectURLForSiteMapItem(request, response, null,(  (isVendor(request) && isOnVendorPortal()) ? "vendor-memberinvoice" : "memberinvoice"), getFinancialYear(), getTheFolderContainingITRDocuments(), getPAN());
 		String redirectToIfConfirmationNotFound = getRedirectURLForSiteMapItem(request, response, null, (  (isVendor(request) && isOnVendorPortal()) ? "vendor-servicerequest-itr-tos-confirmation" : "servicerequest-itr-tos-confirmation"), getFinancialYear(), getTheFolderContainingITRDocuments(), getPAN());
+		String redirectToAfterEFile = getRedirectURLForSiteMapItem(request, response, null, (  (isVendor(request) && isOnVendorPortal()) ? "vendor-efile-confirmation" : "efile-confirmation"), getFinancialYear(), getTheFolderContainingITRDocuments(), getPAN());
 		if (pageAction != null && (pageAction.equals(PAGE_ACTION.EFILE) || pageAction.equals(PAGE_ACTION.SHOW_ITR_SUMMARY) || pageAction.equals(PAGE_ACTION.DOWNLOAD_ITR_SUMMARY) || pageAction.equals(PAGE_ACTION.DOWNLOAD_ITR_XML) || pageAction.equals(PAGE_ACTION.EMAIL_ITR_XML_AND_SUMMARY)) ) {
 			try {
 				handleITRSummary(request,response);
@@ -501,6 +504,17 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 				String uuidOfSavedForm = e.getUuidOfSavedForm();
 				try {
 					response.sendRedirect(redirectToIfConfirmationNotFound + "?uuid=" + uuidOfSavedForm);
+				} catch (IOException ex) {
+					// TODO Auto-generated catch block
+					log.error("Error in validating XML",ex);
+					ex.printStackTrace();
+				}
+				return;
+			} catch (EFileException e) {
+				log.error("Error in eFiling",e);
+				//String uuidOfSavedForm = e.getUuidOfSavedForm();
+				try {
+					response.sendRedirect(redirectToAfterEFile);
 				} catch (IOException ex) {
 					// TODO Auto-generated catch block
 					log.error("Error in validating XML",ex);
@@ -1774,7 +1788,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 
 
 	//DecimalFormat decimalFormat=new DecimalFormat("#.#");
-	public void handleITRSummary(HstRequest request, HstResponse response) throws InvalidXMLException, PaymentRequiredException, DownloadConfirmationRequiredException{
+	public void handleITRSummary(HstRequest request, HstResponse response) throws InvalidXMLException, PaymentRequiredException, DownloadConfirmationRequiredException, EFileException{
 
 		String generatedXml = null;
 		String generatedHtmlSummary = null;
@@ -2006,6 +2020,9 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			else {
 				request.setAttribute("emailMeStatus", "failure");
 			}
+			break;
+		case EFILE:
+				EFileResponse eFileResponse = eFileITR(generatedXml);
 		}
 		//Object theForm = request.getAttribute("theForm");
 	}
@@ -2250,7 +2267,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			List<PaymentUpdateResponse> listOfPaymentUpdateResponse = getItReturnComponentHelper().syncInvoiceWithPaymentGateway(pathToInvoiceDocument, request, getEnquiry() , persistableSession, wpm);
 			if (listOfPaymentUpdateResponse == null || listOfPaymentUpdateResponse.size() == 0) {
 				didGotUpdated = false;
-			}
+			}	
 			else {
 				didGotUpdated = true;
 				request.setAttribute("listOfPaymentUpdateResponse", listOfPaymentUpdateResponse);
@@ -2274,6 +2291,19 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 
 	protected boolean shouldRedirectAfterSuccess() {
 		return true;
+	}
+	
+	protected EFileResponse eFileITR(String itrXML) throws EFileException {
+		///assuming all is WELL call another class so we can keep the Logic Seperated.
+		//String xml,String resellerId,String pan,FinancialYear financialYear,String canonicalPathToMemberIncomeTaxFolder) throws EFileException;
+		if (getMemberPersonalInformation() != null) {
+			String  canonicalPathToMemberIncomeTaxFolder = getMemberPersonalInformation().getParentBean().getCanonicalPath();
+			EFileResponse eFileResponse = geteFileService().eFile(itrXML, getResellerId(),getPAN(), getFinancialYear(), canonicalPathToMemberIncomeTaxFolder);
+			return eFileResponse;
+		}
+		else {
+			throw new EFileException("Problem with Member Personal Information");
+		}
 	}
 
 	@Override

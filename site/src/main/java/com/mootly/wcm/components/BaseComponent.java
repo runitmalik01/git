@@ -58,6 +58,8 @@ import com.mootly.wcm.channels.WebsiteInfo;
 import com.mootly.wcm.components.ITReturnScreen.PAGE_ACTION;
 import com.mootly.wcm.services.SequenceGenerator;
 import com.mootly.wcm.services.SequenceGeneratorImpl;
+import com.mootly.wcm.services.ds.DigitalSignatureService;
+import com.mootly.wcm.services.efile.EFileService;
 import com.mootly.wcm.utils.ContentStructure;
 import com.mootly.wcm.utils.VelocityUtils;
 
@@ -71,6 +73,8 @@ public class BaseComponent extends BaseHstComponent {
 	
 	ITReturnComponentHelper itReturnComponentHelper = null;
 	SequenceGenerator sequenceGenerator = null;
+	DigitalSignatureService digitalSignatureService = null;
+	EFileService eFileService = null;
 	
 	ChannelInfoWrapper channelInfoWrapper = null;
 	WebsiteInfo webSiteInfo = null;
@@ -87,9 +91,21 @@ public class BaseComponent extends BaseHstComponent {
 		ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(servletContext);
 		itReturnComponentHelper = context.getBean( ITReturnComponentHelper.class );
 		sequenceGenerator = context.getBean(SequenceGeneratorImpl.class);
+		digitalSignatureService = context.getBean(DigitalSignatureService.class);
+		eFileService = context.getBean(EFileService.class);
 	}
 	
-    @Override
+    public final DigitalSignatureService getDigitalSignatureService() {
+		return digitalSignatureService;
+	}
+
+	public final EFileService geteFileService() {
+		return eFileService;
+	}
+
+
+
+	@Override
     public void doBeforeRender(HstRequest request, HstResponse response) {
         super.doBeforeRender(request, response);
         
