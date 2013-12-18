@@ -111,7 +111,8 @@ public class MemberSignupDocument extends BaseDocument implements ContentNodeBin
 		return isActive;
 	}
 	public final String[] getRoles() {
-		if (roles != null) roles = getProperty("mootlywcm:roles", new String[]{"registereduser"});
+		//if (roles != null) roles = getProperty("mootlywcm:roles", new String[]{"registereduser"});
+		if (roles == null) roles = getProperty("mootlywcm:roles", new String[]{"registereduser"});
 		return roles;
 	}
 	public final String[] getGroups() {
@@ -202,12 +203,12 @@ public class MemberSignupDocument extends BaseDocument implements ContentNodeBin
 		try {
 			log.warn("this is Member signup Bena");
 			NodeIterator nodeIterator = node.getNodes(PROP_DETAIL_BEAN);
-        	if (nodeIterator != null) {
-	        	while (nodeIterator.hasNext()) {
-	        		javax.jcr.Node aNode = nodeIterator.nextNode();
-	        		aNode.remove();
-	        	}
-        	}
+			if (nodeIterator != null) {
+				while (nodeIterator.hasNext()) {
+					javax.jcr.Node aNode = nodeIterator.nextNode();
+					aNode.remove();
+				}
+			}
 			MemberSignupDocument memberSignup = (MemberSignupDocument) content;
 			node.setProperty("mootlywcm:userName", memberSignup.getUserName());
 			node.setProperty("mootlywcm:password", memberSignup.getPassword());
@@ -228,7 +229,7 @@ public class MemberSignupDocument extends BaseDocument implements ContentNodeBin
 			if (memberSignup.getGroups() != null) {
 				node.setProperty("mootlywcm:groups", memberSignup.getGroups());
 			}
-			
+
 			if(memberSignup.getSecurityQuestionAnswerValueListList() !=null && memberSignup.getSecurityQuestionAnswerValueListList().size() > 0){
 				for(SecurityQuestionAnswerValueList secQuesAnsDoc:getSecurityQuestionAnswerValueListList()){
 					if (!secQuesAnsDoc.isMarkedForDeletion()) {
