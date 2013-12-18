@@ -20,6 +20,13 @@
 <hippo-gogreen:title title="${signuptitle}"/>
 <hst:link var="forgotpass" siteMapItemRefId="forgotpass"></hst:link>
 <hst:actionURL var="actionUrl"></hst:actionURL>
+
+<c:choose>
+<c:when  test = "${allowSignup==false}">
+    <fmt:message key="signup.not.allowed"></fmt:message>
+</c:when>
+<c:otherwise>
+
 <div class="memberlogin page type-page">
 		<h3 id="respond1">Signup to <w4india:resellername/></h3>
 		
@@ -70,6 +77,9 @@ Please enter the following information to create your account.</p>
 		   <%--<input type="hidden" name="destination" value="${memberhome}"/>  --%>
 		</form>
 </div>
+
+</c:otherwise>
+</c:choose>
 
 <hst:element var="uiCustom" name="script">
     <hst:attribute name="type">text/javascript</hst:attribute>
