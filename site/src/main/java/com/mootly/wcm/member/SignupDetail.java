@@ -22,6 +22,7 @@ import org.slf4j.LoggerFactory;
 import com.mootly.wcm.beans.EmailMessage;
 import com.mootly.wcm.beans.EmailTemplate;
 import com.mootly.wcm.beans.MemberSignupDocument;
+import com.mootly.wcm.channels.ChannelInfoWrapper;
 import com.mootly.wcm.components.BaseComponent;
 import com.mootly.wcm.services.SecureHashGeneration;
 import com.mootly.wcm.utils.ContentStructure;
@@ -30,28 +31,37 @@ import com.mootly.wcm.utils.VelocityUtils;
 
 public class SignupDetail extends BaseComponent {
 	private static final Logger log = LoggerFactory.getLogger(SignupDetail.class);
-	
+
 	//private static final String DATE_PATTERN = "yyyy-MM-dd HH.mm.ss.SSS";
-    private static final String EMAIL = "email";
-    private static final String CONFIRM_EMAIL = "confirmEmail";
-    private static final String PASSWORD = "password";
-    private static final String CONFIRM_PASSWORD = "confirmPassword";
-    private static final String SIGNUP_TERMS = "signupTerms";
-    private static final String PASS_PREFIX="$SHA-256$";
-    private static final String SUCCESS = "success";
-    private static final String ERRORS = "errors";
-    
+	private static final String EMAIL = "email";
+	private static final String CONFIRM_EMAIL = "confirmEmail";
+	private static final String PASSWORD = "password";
+	private static final String CONFIRM_PASSWORD = "confirmPassword";
+	private static final String SIGNUP_TERMS = "signupTerms";
+	private static final String PASS_PREFIX="$SHA-256$";
+	private static final String SUCCESS = "success";
+	private static final String ERRORS = "errors";
+
 	@Override
 	public void doBeforeRender(HstRequest request, HstResponse response) {
 		// TODO Auto-generated method stub
 		super.doBeforeRender(request, response);
-		
+
+		ChannelInfoWrapper channelInfoWrapper = null;
+		channelInfoWrapper = (ChannelInfoWrapper) request.getAttribute("channelInfoWrapper");
+		if(channelInfoWrapper != null){
+			if(!channelInfoWrapper.getAllowSignup()){
+				request.setAttribute("allowSignup", false);
+				return;
+			}
+		}
+
 		String success=request.getParameter(SUCCESS);
 		if (success != null && SUCCESS.equals(success)) {
 			response.setRenderPath("jsp/member/signup_success.jsp");
 			return;
 		}
-		
+
 		String[] errors = request.getParameterValues(ERRORS);
 		if (errors != null) {
 			for (String anError:errors) {
@@ -62,55 +72,55 @@ public class SignupDetail extends BaseComponent {
 				else if (anError.startsWith("signup.terms.")) request.setAttribute("signupTermsError",anError);
 			}
 		}
-		
+
 		//request.setAttribute(ERRORS, request.getParameterValues(ERRORS));
-        request.setAttribute(EMAIL, request.getParameter(EMAIL));
-        //request.setAttribute(PASSWORD, request.getParameter(PASSWORD));
-        //request.setAttribute(CONFIRM_PASSWORD, request.getParameter(CONFIRM_PASSWORD));
-       
-        request.setAttribute(SUCCESS, request.getParameter(SUCCESS));
-        
-        try {
-        	HippoBean siteContentBaseBean = getSiteContentBaseBeanForReseller(request);
-        	if (siteContentBaseBean != null) request.setAttribute("siteContentBaseBean", siteContentBaseBean);
-        }catch (Exception ex) {
-        	log.info("Error",ex);
-        }
-      
+		request.setAttribute(EMAIL, request.getParameter(EMAIL));
+		//request.setAttribute(PASSWORD, request.getParameter(PASSWORD));
+		//request.setAttribute(CONFIRM_PASSWORD, request.getParameter(CONFIRM_PASSWORD));
+
+		request.setAttribute(SUCCESS, request.getParameter(SUCCESS));
+
+		try {
+			HippoBean siteContentBaseBean = getSiteContentBaseBeanForReseller(request);
+			if (siteContentBaseBean != null) request.setAttribute("siteContentBaseBean", siteContentBaseBean);
+		}catch (Exception ex) {
+			log.info("Error",ex);
+		}
+
 	}
-	
+
 	@Override
 	public void doAction(HstRequest request, HstResponse response)
 			throws HstComponentException {
 		// TODO Auto-generated method stub
 		super.doAction(request, response);
-		
+
 		String email = GoGreenUtil.getEscapedParameter(request, EMAIL);
 		String confirmEmail = GoGreenUtil.getEscapedParameter(request, CONFIRM_EMAIL);
 		String password = GoGreenUtil.getEscapedParameter(request, PASSWORD);
 		String confirmPassword = GoGreenUtil.getEscapedParameter(request, CONFIRM_PASSWORD);
 		String signupTerms = GoGreenUtil.getEscapedParameter(request, SIGNUP_TERMS);
 		//String passwordReminder = GoGreenUtil.getEscapedParameter(request, "passwordReminder");
-		
+
 		List<String> errors = new ArrayList<String>();
-		
+
 		if (StringUtils.isEmpty(email) || email.indexOf("@")==-1) {
 			errors.add("signup.email.error.required");
 		}
-		
+
 		if (StringUtils.isEmpty(confirmEmail) || confirmEmail.indexOf("@")==-1) {
 			errors.add("signup.confirmEmail.error.required");
 		}
-		
+
 		if (StringUtils.isEmpty(password)) {
 			errors.add("signup.password.error.required");
 		}
-		
+
 		if (StringUtils.isEmpty(signupTerms)) {
 			errors.add("signup.terms.error.required");
 		}
-		
-		
+
+
 		if (StringUtils.isEmpty(confirmPassword)) {
 			errors.add("signup.confirm_password.error.required");
 		}
@@ -121,14 +131,14 @@ public class SignupDetail extends BaseComponent {
 				}
 			}
 		}
-		
+
 		if (!StringUtils.isEmpty(email) && !StringUtils.isEmpty(confirmEmail)){
 			if (!email.equals(confirmEmail)){
 				errors.add("signup.confirmEmail.error.mismatch");
 			}
 		}
-		
-		
+
+
 		if (errors != null && errors.size() > 0) {
 			response.setRenderParameter(EMAIL, email);
 			response.setRenderParameter(ERRORS, errors.toArray(new String[errors.size()]));
@@ -139,33 +149,33 @@ public class SignupDetail extends BaseComponent {
 			confirmEmail = confirmEmail.toLowerCase();
 		}
 		// this method fetch username from repository and check whether exist or not
-		
-		 try {
-        	HippoBean siteContentBaseBean = getSiteContentBaseBeanForReseller(request); // getSiteContentBaseBean(request);
-        	if (siteContentBaseBean != null) request.setAttribute("siteContentBaseBean", siteContentBaseBean);
-        	if (siteContentBaseBean != null) {
-        		String normalizedEmail = email.replaceAll("@","-at-").toLowerCase();
-        		MemberSignupDocument ms = siteContentBaseBean.getBean("members/" + normalizedEmail + "/membersignupdocument");
-        		if (ms != null) {
-        			errors.add("signup.email.error.alreadyRegistered");
-        		}
-        	}
-        }catch (Exception ex) {
-        	log.info("Error",ex);
-        }
-		if (errors != null && errors.size() > 0 ){
-	            response.setRenderParameter(ERRORS, errors.toArray(new String[errors.size()]));
-	            response.setRenderParameter(EMAIL, email);
-	            //response.setRenderParameter(PASSWORD, password);
-	            //response.setRenderParameter(CONFIRM_PASSWORD, confirm_password);
-	            response.setRenderParameter(EMAIL, email);
-	    
-	            for (String error:errors) {
-	            	log.warn(error);
-	            }
-	            return;
+
+		try {
+			HippoBean siteContentBaseBean = getSiteContentBaseBeanForReseller(request); // getSiteContentBaseBean(request);
+			if (siteContentBaseBean != null) request.setAttribute("siteContentBaseBean", siteContentBaseBean);
+			if (siteContentBaseBean != null) {
+				String normalizedEmail = email.replaceAll("@","-at-").toLowerCase();
+				MemberSignupDocument ms = siteContentBaseBean.getBean("members/" + normalizedEmail + "/membersignupdocument");
+				if (ms != null) {
+					errors.add("signup.email.error.alreadyRegistered");
+				}
+			}
+		}catch (Exception ex) {
+			log.info("Error",ex);
 		}
-		
+		if (errors != null && errors.size() > 0 ){
+			response.setRenderParameter(ERRORS, errors.toArray(new String[errors.size()]));
+			response.setRenderParameter(EMAIL, email);
+			//response.setRenderParameter(PASSWORD, password);
+			//response.setRenderParameter(CONFIRM_PASSWORD, confirm_password);
+			response.setRenderParameter(EMAIL, email);
+
+			for (String error:errors) {
+				log.warn(error);
+			}
+			return;
+		}
+
 		if (errors == null || errors.size() == 0) 
 		{
 			// here we are creating object of membersignupdocument  for craeting documents.
@@ -178,16 +188,16 @@ public class SignupDetail extends BaseComponent {
 		response.setRenderParameter(SUCCESS, SUCCESS);
 		/*
 		try {
-			
+
 			// after signup it show a message to user about activate account
 			response.sendRedirect("/site/message");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			log.warn("can't redirect");
 		}
-		*/
+		 */
 	}
-	
+
 	protected  MemberSignupDocument createMemberSignupForm(HstRequest request,MemberSignupDocument signupDocument) {
 		// TODO Auto-generated method stub
 		Session persistableSession = null;
@@ -234,11 +244,11 @@ public class SignupDetail extends BaseComponent {
 		// TODO Auto-generated method stub
 		super.doBeforeServeResource(request, response);
 	}
-	
+
 	public static class FullReviewedWorkflowCallbackHandler implements WorkflowCallbackHandler<FullReviewedActionsWorkflow> {
 		public void processWorkflow(FullReviewedActionsWorkflow wf) throws Exception {
 			wf.publish();
 		}
 	}
-	
+
 }
