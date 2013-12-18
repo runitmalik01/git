@@ -109,6 +109,34 @@ public class ITRXmlGeneratorServiceCommon implements XmlGeneratorService {
 		String strDate = formatter.format(currentdate.getTime());
 		return strDate;
 	}
+	
+	public static String getEndDateForResellerTrailPeriod() {
+		Calendar currentdate = Calendar.getInstance();
+		currentdate.add(Calendar.DATE, 7);
+		String strdate = null;
+		DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		strdate = formatter.format(currentdate.getTime());
+		System.out.println("strdate=>" + strdate);
+		TimeZone obj = TimeZone.getTimeZone("GMT + 5:30");
+
+		formatter.setTimeZone(obj);
+		String strDate = formatter.format(currentdate.getTime());
+		return strDate;
+	}
+	
+	public static String getEndDateForResellerPaidPeriod() {
+		Calendar currentdate = Calendar.getInstance();
+		currentdate.add(Calendar.DATE, 7);
+		String strdate = null;
+		DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		strdate = formatter.format(currentdate.getTime());
+		System.out.println("strdate=>" + strdate);
+		TimeZone obj = TimeZone.getTimeZone("GMT + 5:30");
+
+		formatter.setTimeZone(obj);
+		String strDate = formatter.format(currentdate.getTime());
+		return strDate;
+	}
 
 	public static GregorianCalendar getCurrentDateInIndiaAsDate() {
 		Calendar currentdate =  GregorianCalendar.getInstance();
