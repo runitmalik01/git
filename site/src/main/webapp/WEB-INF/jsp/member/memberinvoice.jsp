@@ -34,10 +34,9 @@
 	<ul>
 		<li>Total Invoice Amount: <w4india:inr
 				value="${parentBean.totalInvoiceAmount}" /></li>
-		<li>Total Payment Amount:<w4india:inr
-				value="${parentBean.totalPaymentAmount}" /></li>
-		<li>Total Due:<w4india:inr
-				value="${parentBean.totalPaymentAmount}" /> <%-- <w4india:inr value="${parentBean.amountDue}" /> --%>
+		<li>Total Payment Amount:
+		 <w4india:inr value="${parentBean.totalPaymentAmount}" /> </li>
+		<li>Total Due:  <w4india:inr value="${parentBean.amountDue}" /> 
 		</li>
 		<c:if test="${parentBean.amountDue > 0}">
 			<c:forEach items="${availablePaymentTypes}" var="paymentType">
