@@ -10,9 +10,9 @@
 		            <h3><fmt:message key="${errorCode}"/></h3><br/>
 	            </c:when>
 		        <c:when test="${not empty success}">
-		           <div class="alert alert-info">Congratulations !!!!! You have Successfully Signup
+		          Congratulations !!!!! You have Successfully Signup
 		           <h2 style="color:green">We would like to thank you for choosing our service.</h2>
-		      </div>
+		      
 		     </c:when>
 		     <c:otherwise>
 		     <div class="alert alert-info">
@@ -62,17 +62,13 @@
 		            <input name="emailSignature" id="emailSignature" value="" size="22" tabindex="3" type="text" maxlength="50">
 		          </div>
 		      </div>
-		   </div>
-	</fieldset>
-	 <fieldset class="well">
-		     <div class="row-fluid show-grid" >
-		        <div class="span4">
+		      <div class="span4">
 		            <div class="rowlabel">	   
 				       <label for="eriEnable26ASImport ">
 		               <small>Eri Enable 26AS Import  (required)</small>
 		               </label>
 		            </div> 
-		           <div class="rowlabel">   
+		            <div class="rowlabel">   
 		               <select id= "eriEnable26ASImport" name="eriEnable26ASImport">
 							<option value="">-Select-</option>
 							<option value="true">Yes</option>
@@ -94,7 +90,11 @@
 				    </select>
 				</div>
 		   </div>
-		    <div class="span4">
+		   </div>
+	</fieldset>
+	<fieldset class="well">
+		   <div class="row-fluid show-grid" >
+		     <div class="span4">
 		        <div class="rowlabel">	
 			       <label for="eriPassword">
 		           <small>Eri Password (required)</small>
@@ -104,9 +104,7 @@
 		           <input name="eriPassword" id="eriPassword" value="" size="22" tabindex="3" type="password" maxlength="20">
 		       </div>
 		   </div>
-	   </div>
-	   <div class="row-fluid show-grid" >
-	       <div class="span4">
+		   	<div class="span4">
 		       <div class="rowlabel">	 
 		   	      <label for="eriUserId">
 		          <small>Eri UserId (required)</small>
@@ -116,11 +114,7 @@
 		           <input name="eriUserId" id="eriUserId" value="${fn:escapeXml(eriUserId)}" size="22" tabindex="1" type="text" maxlength="20">
 		       </div>
 		    </div>
-		 </div>
- </fieldset>
- <fieldset class="well">
-		   <div class="row-fluid show-grid" >
-		        <div class="span4">
+		    <div class="span4">
 		            <div class="rowlabel">	
 		 	            <label for="isReseller">
 		                <small>Is Reseller (required)</small>
@@ -134,6 +128,8 @@
 				      </select>
 				    </div>
 				</div>
+	   </div>
+	   <div class="row-fluid show-grid" >
 		        <div class="span4">
 		            <div class="rowlabel">	
 		   	            <label for="pageTitlePrefix">
@@ -158,9 +154,7 @@
 			       	   </select>
 		          </div>
 		       </div>
-		   </div>
-		  <div class="row-fluid show-grid" >
-		        <div class="span4">
+		       <div class="span4">
 		            <div class="rowlabel">
 		 	           <label for="paymentEnabled">
 		               <small>Payment Enabled (required)</small>
@@ -174,10 +168,10 @@
 				       </select>
 				    </div>
 		       </div>
-		   </div>
-   </fieldset>
-   <fieldset class="well">
-		     <div class="row-fluid show-grid" >
+		 </div>
+ </fieldset>
+ <fieldset class="well">
+		   <div class="row-fluid show-grid" >
 		        <div class="span4">
 		            <div class="rowlabel">
 		   	            <label for="resellerName">
@@ -188,12 +182,11 @@
 		                <input name="resellerName" id="resellerName" value="${fn:escapeXml(resellerName)}" size="22" tabindex="1" type="text" maxlength="20">
 		            </div>
 		        </div>
-		    </div>
-    </fieldset>
-  
+		   </div>
+   </fieldset>
 	      <div class="row-fluid show-grid">
 			  <div class="span4 offset8 decimal">
-		   		  <a href="javascript:void(0);" id="hrefSignup" class="orange button">Activate your account</a>
+		   		  <a href="javascript:void(0);" id="hrefSignup" class="orange button">Submit</a>
 		      </div>
 		  </div>
 		 
