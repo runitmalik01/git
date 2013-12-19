@@ -7,6 +7,7 @@ import org.hippoecm.hst.component.support.forms.FormMap;
 import org.hippoecm.hst.component.support.forms.FormUtils;
 import org.hippoecm.hst.content.beans.manager.workflow.WorkflowPersistenceManager;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
+import org.hippoecm.hst.content.beans.standard.HippoDocumentBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -38,7 +39,7 @@ import com.mootly.wcm.services.ditws.model.Twenty26ASResponse;
 
 public class MemberPersonalInfoUpdateHandler extends GenericLifeCycleHandler implements BeanLifecycle<HippoBean>{
 	Logger logger = LoggerFactory.getLogger(MemberPersonalInfoUpdateHandler.class);
-	final List<HippoBean> itrServices;
+	final List<HippoDocumentBean> itrServices;
 	final ChannelInfoWrapper channelInfoWrapper;
 	final SequenceGenerator sequenceGenerator;
 	final AddClientDetails addClientDetails;
@@ -52,7 +53,7 @@ public class MemberPersonalInfoUpdateHandler extends GenericLifeCycleHandler imp
 	
 	
 	
-	public MemberPersonalInfoUpdateHandler( SequenceGenerator sequenceGenerator,List<HippoBean> itrServices,ChannelInfoWrapper channelInfoWrapper, AddClientDetails addClientDetails, Retrieve26ASInformation retrieve26asInformation,FinancialYear financialYear) {
+	public MemberPersonalInfoUpdateHandler( SequenceGenerator sequenceGenerator,List<HippoDocumentBean> itrServices,ChannelInfoWrapper channelInfoWrapper, AddClientDetails addClientDetails, Retrieve26ASInformation retrieve26asInformation,FinancialYear financialYear) {
 		this.sequenceGenerator = sequenceGenerator;
 		this.itrServices = itrServices;
 		this.channelInfoWrapper = channelInfoWrapper;

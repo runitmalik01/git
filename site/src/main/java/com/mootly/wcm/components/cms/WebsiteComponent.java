@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.hippoecm.hst.content.beans.standard.HippoBean;
+import org.hippoecm.hst.content.beans.standard.HippoDocumentBean;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
 import org.slf4j.Logger;
@@ -30,7 +31,7 @@ public class WebsiteComponent extends ITReturnComponent {
 				return;
 			}
 		}
-		List<HippoBean> documentsList = new ArrayList<HippoBean>();
+		List<HippoDocumentBean> documentsList = null; //new ArrayList<HippoDocumentBean>();
 		documentsList = loadAllBeansUnderTheFolder(request, response, BASE_PATH_OF_PAGE_DOC, null, SORT_DIRECTION.ASC);
 		request.setAttribute("pageDocumentsList", documentsList);
 		WebsiteInfo websiteInfo = request.getRequestContext().getResolvedMount().getMount().getChannelInfo();

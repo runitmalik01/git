@@ -33,7 +33,7 @@
  --%>
  <%--
  <hst:link var="securelink" siteMapItemRefId="secure-connection"></hst:link>
-<ul id="menu-top" class="top-menu">
+<ul id="menu-top" class="top-menu nav navbar-nav">
 		<c:choose>
 			<c:when test="${loggedin}">			
 				<%--<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-724" style="color: brown"><small><strong></strong></small></li> --%>

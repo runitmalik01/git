@@ -9,6 +9,7 @@ import javax.servlet.ServletContext;
 
 import org.hippoecm.hst.content.beans.manager.workflow.WorkflowPersistenceManager;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
+import org.hippoecm.hst.content.beans.standard.HippoDocumentBean;
 import org.hippoecm.hst.core.component.HstComponentException;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
@@ -56,7 +57,7 @@ public class MemberInvoice extends ITReturnComponent {
 		// TODO Auto-generated method stub
 		super.doBeforeRender(request, response);		
 		request.setAttribute("type", "invoice");
-		List<HippoBean> serviceDocumentList = loadAllBeansUnderTheFolder(request,response,"services","mootlywcm:Name",SORT_DIRECTION.ASC);
+		List<HippoDocumentBean> serviceDocumentList = loadAllBeansUnderTheFolder(request,response,"services","mootlywcm:Name",SORT_DIRECTION.ASC);
 		if (log.isInfoEnabled()) {
 			if (serviceDocumentList != null && serviceDocumentList.size() > 0) {
 				for (HippoBean theServiceBean:serviceDocumentList) {

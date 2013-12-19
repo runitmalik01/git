@@ -227,16 +227,22 @@ request.setAttribute("isDITVerified",isDITVerified);
 		 }
 	}
 } %>
-   <div class="container" style="font-size: small;">
-      <div class="navbar-header">
-	      <a href="${fn:substringBefore(scriptName,pan)}${pan}${itrFolderSuffix}/${pan}/servicerequest-itr.html">
-	         <span class="pan" style="font-size: x-small;">
-	            <c:out value="${pan}"/>               
-	         </span>
-	      </a>
-      </div>
+   <div class="container">
+			<div class="navbar navbar-inverse">
+      	<div class="navbar-header main-nav-header">
+		      <a href="${fn:substringBefore(scriptName,pan)}${pan}${itrFolderSuffix}/${pan}/servicerequest-itr.html" class="navbar-brand">
+		         <span class="pan" style="font-size: small;">
+		            <c:out value="${pan}"/>               
+		         </span>
+		      </a>
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".main-nav">
+	          <span class="icon-bar"></span>
+	          <span class="icon-bar"></span>
+	          <span class="icon-bar"></span>
+	        </button>
+	      </div>
       <c:if test="${nomenu != 'true'}">
-       <div class="navbar-collapse collapse">
+       <div class="navbar-collapse collapse main-nav">
           <ul class="nav navbar-nav">          	
              <c:forEach items="${listOfSiteItems}" var="itrSiteMenuItem">
              	<c:set var="childCount" value="${fn:length(itrSiteMenuItem.childMenuItems)}"/>
@@ -346,8 +352,7 @@ request.setAttribute("isDITVerified",isDITVerified);
           </div>
            --%>
           <c:if test="${hasDIY =='true'}">
-           <ul class="nav pull-right">
-              <li class="divider-vertical"></li>
+           <ul class="nav navbar-nav pull-right">
               <li>
 				<c:if test="${not empty hippoBeanValidationResponse_totalErrors}">
 					<span title="Errors" class="badge badge-important"><c:out value="${hippoBeanValidationResponse_totalErrors}"/></span>
@@ -379,7 +384,9 @@ request.setAttribute("isDITVerified",isDITVerified);
        </div>
       </c:if>
       <!-- /.nav-collapse -->
+			</div> <!-- /.navbar  -->
    </div>
+	
 <c:if test="${isDITVerified == 'false' && not empty memberpersonalinformation}">
 	<c:choose>
 		<c:when test="${fn:endsWith(scriptName,'servicerequest-itr.html')}">

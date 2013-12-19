@@ -143,7 +143,7 @@ bestplan {
           </button>
           <hst:include ref="logo"/>
         </div>
-       	<div class="navbar-collapse collapse">
+       	<div class="navbar-collapse collapse top-nav">
 			<ul class="nav navbar-nav">
 				<hst:include ref="menu-main" />
 			</ul>

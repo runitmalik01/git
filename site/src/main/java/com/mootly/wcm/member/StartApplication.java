@@ -32,6 +32,7 @@ import org.hippoecm.hst.content.beans.ObjectBeanManagerException;
 import org.hippoecm.hst.content.beans.manager.workflow.WorkflowCallbackHandler;
 import org.hippoecm.hst.content.beans.manager.workflow.WorkflowPersistenceManager;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
+import org.hippoecm.hst.content.beans.standard.HippoDocumentBean;
 import org.hippoecm.hst.content.beans.standard.HippoFolder;
 import org.hippoecm.hst.content.beans.standard.HippoFolderBean;
 import org.hippoecm.hst.core.component.HstComponentException;
@@ -106,7 +107,7 @@ public class StartApplication extends ITReturnComponent {
 		//being member return of getMemberPersonalInformation() of ITReturnComponent it return previous entered and viewed value.
 		parentBean =  (MemberPersonalInformation)request.getAttribute("parentBean"); //getMemberPersonalInformation();
 		
-		List<HippoBean> listOfITRServices = loadAllBeansUnderTheFolder(request, response, "services/incometaxreturn", "mootlywcm:Name",SORT_DIRECTION.ASC);
+		List<HippoDocumentBean> listOfITRServices = loadAllBeansUnderTheFolder(request, response, "services/incometaxreturn", "mootlywcm:Name",SORT_DIRECTION.ASC);
 		request.setAttribute("listOfITRServices", listOfITRServices);
 		
 		RetrievePANResponse retrievePANResponse = null;
@@ -348,7 +349,7 @@ public class StartApplication extends ITReturnComponent {
 	public void doAction(HstRequest request, HstResponse response)
 			throws HstComponentException {
 		// TODO Auto-generated method stub
-		List<HippoBean> listOfITRServices = loadAllBeansUnderTheFolder(request, response, "services/incometaxreturn", "mootlywcm:Name",SORT_DIRECTION.ASC);
+		List<HippoDocumentBean> listOfITRServices = loadAllBeansUnderTheFolder(request, response, "services/incometaxreturn", "mootlywcm:Name",SORT_DIRECTION.ASC);
 		memberPersonalInfoUpdateHandler = new MemberPersonalInfoUpdateHandler(getSequenceGenerator(), listOfITRServices ,getChannelInfoWrapper(),getAddClientDetailsService(),getRetrieve26ASService(),getFinancialYear());
 		super.doAction(request, response);
 	}

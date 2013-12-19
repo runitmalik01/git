@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.hippoecm.hst.content.beans.standard.HippoBean;
+import org.hippoecm.hst.content.beans.standard.HippoDocumentBean;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
 import org.slf4j.Logger;
@@ -42,7 +43,7 @@ public class CountComponent extends ITReturnComponent {
 		if(!counterList.isEmpty()){
 			for(Counting counter:counterList){
 				Integer countValue = 0;
-				List<HippoBean> hippoBeanList = loadAllBeansUnderTheFolder(request, response, counter.getCounterScope(), null, null);
+				List<HippoDocumentBean> hippoBeanList = loadAllBeansUnderTheFolder(request, response, counter.getCounterScope(), null, null);
 				log.info("Size of hippoBean List returned"+hippoBeanList.size());
 				for(HippoBean hippoBean:hippoBeanList){
 					if(hippoBean.getClass().equals(counter.getCounterBean())){

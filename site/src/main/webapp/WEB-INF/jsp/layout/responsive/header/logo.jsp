@@ -26,5 +26,5 @@
 <hst:link var="home" path="/"/>
 <hst:link var="imgLogo" hippobean="${logo.original}"/>
 <%--<div id="logo"> --%>
- 	<a href="${home}"><img class="logo" width="${logo.original.width}" height="${logo.original.height}" src="${imgLogo}?123">&nbsp;</a>
+ 	<a href="${home}"><img class="w4i-logo" width="${logo.original.width}" height="${logo.original.height}" src="${imgLogo}?123">&nbsp;</a>
 <%--</div>--%>

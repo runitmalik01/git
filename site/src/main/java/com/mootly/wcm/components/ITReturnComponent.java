@@ -2183,7 +2183,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 	protected Map<String,HippoBean> loadBeansAndSetRequestAttributes(HstRequest request,HstResponse response) {
 		//loading Additional Beans
 		Map<String,HippoBean> localMapOfAllBeans = new HashMap<String, HippoBean>();
-		List<HippoBean> listOfBeans = loadAllBeansUnderTheFolder(request, response,baseRelPathToReturnDocuments,null,null);
+		List<HippoDocumentBean> listOfBeans = loadAllBeansUnderTheFolder(request, response,baseRelPathToReturnDocuments,null,null);
 		if (listOfBeans != null) {
 			localMapOfAllBeans = new HashMap<String, HippoBean>();
 			for (HippoBean theBean:listOfBeans) {
@@ -2207,17 +2207,18 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 	 * @param response
 	 * @param pathToTheItReturn
 	 */
-	protected List<HippoBean> loadAllBeansUnderTheFolder(HstRequest request,HstResponse response,String baseRelPathToReturnDocuments,String sortByAttribute,SORT_DIRECTION sortDirection) {
+	protected List<HippoDocumentBean> loadAllBeansUnderTheFolder(HstRequest request,HstResponse response,String baseRelPathToReturnDocuments,String sortByAttribute,SORT_DIRECTION sortDirection) {
 		HippoBean theBean = getSiteContentBaseBeanForReseller(request);
 		if (theBean == null) {
 			return null;
 		}
 		HippoBean scopeForAllBeans =  theBean.getBean(baseRelPathToReturnDocuments);
 		HstQuery hstQuery;
-		List<HippoBean> theLocalBeansUnderMemberFolder = null;
+		List<HippoDocumentBean> theLocalBeansUnderMemberFolder = null;
+		if (scopeForAllBeans == null)  return null;
+		theLocalBeansUnderMemberFolder =  scopeForAllBeans.getChildBeans(HippoDocumentBean.class);
 		try {
-			if (scopeForAllBeans == null)  return null;
-			theLocalBeansUnderMemberFolder = new ArrayList<HippoBean>();
+			theLocalBeansUnderMemberFolder = new ArrayList<HippoDocumentBean>();
 			hstQuery = getQueryManager(request).createQuery( scopeForAllBeans );
 			if (sortDirection == null) sortDirection = SORT_DIRECTION.ASC;
 			if (sortByAttribute != null) {
@@ -2233,12 +2234,12 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			final HstQueryResult result = hstQuery.execute();
 			Iterator<HippoBean> itResults = result.getHippoBeans();
 			if (log.isInfoEnabled()) {
-				log.info("Now will look into all HippoDocuments under the same folder and make a copy of each");
+				log.info("Now will look into all HippoDocuments under the same folder and make a copy of each " + theBean.getPath());
 			}
 			for (;itResults.hasNext();) {
 				HippoBean hippoBean = itResults.next();
 				if (hippoBean instanceof HippoDocumentBean) {
-					theLocalBeansUnderMemberFolder.add(hippoBean);
+					theLocalBeansUnderMemberFolder.add( (HippoDocumentBean) hippoBean);
 					//request.setAttribute(hippoBean.getClass().getSimpleName().toLowerCase(), hippoBean);
 					//if (hippoBean instanceof MemberPersonalInformation) {
 					//memberPersonalInformation = (MemberPersonalInformation) hippoBean;
