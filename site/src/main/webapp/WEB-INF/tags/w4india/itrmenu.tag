@@ -5,7 +5,8 @@
 <%@tag import="com.mootly.wcm.model.FilingSection"%>
 <%@tag import="com.mootly.wcm.model.ITReturnType"%>
 <%@tag import="com.mootly.wcm.model.FinancialYear"%>
-<%@tag import="net.sf.ehcache.store.MemoryStoreEvictionPolicy.MemoryStoreEvictionPolicyEnum"%>
+<%@tag
+	import="net.sf.ehcache.store.MemoryStoreEvictionPolicy.MemoryStoreEvictionPolicyEnum"%>
 <%@tag import="com.mootly.wcm.model.ITRServiceDelivery"%>
 <%@tag import="org.hippoecm.hst.util.HstResponseUtils"%>
 <%@tag import="org.hippoecm.hst.core.component.HstResponse"%>
@@ -20,16 +21,16 @@
 <%@tag import="org.hippoecm.hst.core.component.HstRequest"%>
 
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="hst" uri="http://www.hippoecm.org/jsp/hst/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="hst" uri="http://www.hippoecm.org/jsp/hst/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<%@ taglib prefix="w4india" tagdir="/WEB-INF/tags/w4india" %>
+<%@ taglib prefix="w4india" tagdir="/WEB-INF/tags/w4india"%>
 
-<%@ tag trimDirectiveWhitespaces="true" %>
+<%@ tag trimDirectiveWhitespaces="true"%>
 
-<%@ tag import="com.mootly.wcm.utils.*" %>
-<%@ tag import="java.util.*" %>
+<%@ tag import="com.mootly.wcm.utils.*"%>
+<%@ tag import="java.util.*"%>
 <%
 HstRequest hstRequest = (HstRequest) request;
 ResolvedSiteMapItem resolvedMapItem = hstRequest.getRequestContext().getResolvedSiteMapItem();
@@ -227,83 +228,92 @@ request.setAttribute("isDITVerified",isDITVerified);
 		 }
 	}
 } %>
-   <div class="container">
-			<div class="navbar navbar-inverse">
-      	<div class="navbar-header main-nav-header">
-		      <a href="${fn:substringBefore(scriptName,pan)}${pan}${itrFolderSuffix}/${pan}/servicerequest-itr.html" class="navbar-brand">
-		         <span class="pan" style="font-size: small;">
-		            <c:out value="${pan}"/>               
-		         </span>
-		      </a>
-					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".main-nav">
-	          <span class="icon-bar"></span>
-	          <span class="icon-bar"></span>
-	          <span class="icon-bar"></span>
-	        </button>
-	      </div>
-      <c:if test="${nomenu != 'true'}">
-       <div class="navbar-collapse collapse main-nav">
-          <ul class="nav navbar-nav">          	
-             <c:forEach items="${listOfSiteItems}" var="itrSiteMenuItem">
-             	<c:set var="childCount" value="${fn:length(itrSiteMenuItem.childMenuItems)}"/>
-             	<c:set var="itrSiteMenuItem" value="${itrSiteMenuItem}" scope="request"/>
-             	<c:choose>
-              	<c:when test="${childCount gt 0}">
-              		<li class="dropdown">
-              			<a href="#" class="dropdown-toggle" data-toggle="dropdown">${itrSiteMenuItem.name}<b class="caret"></b></a>
-              			<ul class="dropdown-menu">
-              				<%-- bad luck the child menus r not SORTED it sucks so lets sort it for now based on weight  --%>
-              				<%
+<div class="container">
+	<div class="navbar navbar-inverse">
+		<div class="navbar-header main-nav-header">
+			<a
+				href="${fn:substringBefore(scriptName,pan)}${pan}${itrFolderSuffix}/${pan}/servicerequest-itr.html"
+				class="navbar-brand"> <span class="pan"
+				style="font-size: small;"> <c:out value="${pan}" /> </span> </a>
+			<button type="button" class="navbar-toggle" data-toggle="collapse"
+				data-target=".main-nav">
+				<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+					class="icon-bar"></span>
+			</button>
+		</div>
+		<c:if test="${nomenu != 'true'}">
+			<div class="navbar-collapse collapse main-nav">
+				<ul class="nav navbar-nav">
+					<c:forEach items="${listOfSiteItems}" var="itrSiteMenuItem">
+						<c:set var="childCount"
+							value="${fn:length(itrSiteMenuItem.childMenuItems)}" />
+						<c:set var="itrSiteMenuItem" value="${itrSiteMenuItem}"
+							scope="request" />
+						<c:choose>
+							<c:when test="${childCount gt 0}">
+								<li class="dropdown"><a href="#" class="dropdown-toggle"
+									data-toggle="dropdown">${itrSiteMenuItem.name}<b
+										class="caret"></b>
+								</a>
+									<ul class="dropdown-menu">
+										<%-- bad luck the child menus r not SORTED it sucks so lets sort it for now based on weight  --%>
+										<%
               					HstSiteMenuItem itrSiteMenuItem = (HstSiteMenuItem) request.getAttribute("itrSiteMenuItem");
               					EvaluateMenusList evaluateMenusList = new EvaluateMenusList(propertyToCheck,hasDIY,theResolvedPathInfoFileName,didWeFindTheResolvedMapItemInMenu);	                						
               					request.setAttribute("listOfChildMenuItems", evaluateMenusList.getListOfSortedMenutItems(itrSiteMenuItem));	                					
               				%>
-              				<c:forEach items="${listOfChildMenuItems}" var="childMenuItem">
-              					<c:set var="childMenuItemReq" scope="request" value="${childMenuItem}"/>
-              					<%
+										<c:forEach items="${listOfChildMenuItems}" var="childMenuItem">
+											<c:set var="childMenuItemReq" scope="request"
+												value="${childMenuItem}" />
+											<%
               					HstSiteMenuItem anItem = ( HstSiteMenuItem ) request.getAttribute("childMenuItemReq");
               					 evaluateMenusList.getMenuItemsAttributes(request,anItem);
               					%>
-              					<c:if test="${not empty shouldPutDivider}">
-              						<li class="divider"></li>
-              					</c:if>
-              					<c:set var="subMenuChildCount" value="${fn:length(childMenuItem.childMenuItems)}"/>
-              					<c:choose>
-              						<c:when test="${childMenuItem.name == 'nav-header' || childMenuItem.name == 'divider' || not empty isAPackage}">
-              							<li class="nav-header">${childMenuItem.name}</li>
-              						</c:when>
-              						<c:when test="${subMenu && subMenuChildCount gt 0}">
-              						  <li class="dropdown-submenu">
-              							<a tabindex="-1" href="#">${childMenuItem.name}</a>                							
-              							<c:set var="childMenuItem" value="${childMenuItem}" scope="request"/>
-              							 <c:if test="${subMenuChildCount gt 0}">
-              							    <ul class="dropdown-menu">
-              							    <%	                  						
+											<c:if test="${not empty shouldPutDivider}">
+												<li class="divider"></li>
+											</c:if>
+											<c:set var="subMenuChildCount"
+												value="${fn:length(childMenuItem.childMenuItems)}" />
+											<c:choose>
+												<c:when
+													test="${childMenuItem.name == 'nav-header' || childMenuItem.name == 'divider' || not empty isAPackage}">
+													<li class="nav-header">${childMenuItem.name}</li>
+												</c:when>
+												<c:when test="${subMenu && subMenuChildCount gt 0}">
+													<li class="dropdown-submenu"><a tabindex="-1" href="#">${childMenuItem.name}</a>
+														<c:set var="childMenuItem" value="${childMenuItem}"
+															scope="request" /> <c:if test="${subMenuChildCount gt 0}">
+															<ul class="dropdown-menu">
+																<%	                  						
               							     HstSiteMenuItem childMenuItem = (HstSiteMenuItem) request.getAttribute("childMenuItem");
               					             request.setAttribute("listOfSubChildMenuItems", evaluateMenusList.getListOfSortedMenutItems(childMenuItem));	                					
               				                 %>
-              							      <c:forEach items="${listOfSubChildMenuItems}" var="subChildMenuItem">
-              							        <c:set var="subChildMenuItemReq" scope="request" value="${subChildMenuItem}"/>
-              					             <%
+																<c:forEach items="${listOfSubChildMenuItems}"
+																	var="subChildMenuItem">
+																	<c:set var="subChildMenuItemReq" scope="request"
+																		value="${subChildMenuItem}" />
+																	<%
               					              HstSiteMenuItem anChildItem = ( HstSiteMenuItem ) request.getAttribute("subChildMenuItemReq");
               					              evaluateMenusList.getMenuItemsAttributes(request,anChildItem);
               					             %>
-                                                     <li><a tabindex="-1" href="${scriptName}${theURL}">${subChildMenuItem.name}</a></li>
-                                                   </c:forEach>
-                                                 </ul>
-                                               </c:if>
-                                            </li>
-              						</c:when>
-              						<c:otherwise>
-              							<li><a href="${scriptName}${theURL}">${childMenuItem.name}</a></li>
-              						</c:otherwise>
-              					</c:choose>
-              				</c:forEach>
-              			</ul>
-             		</c:when>
-             		<c:otherwise>
-				<c:set var="parentMenuItemReq" scope="request" value="${itrSiteMenuItem}"/>
-    			<%
+																	<li><a tabindex="-1" href="${scriptName}${theURL}">${subChildMenuItem.name}</a>
+																	</li>
+																</c:forEach>
+															</ul>
+														</c:if></li>
+												</c:when>
+												<c:otherwise>
+													<li><a href="${scriptName}${theURL}">${childMenuItem.name}</a>
+													</li>
+												</c:otherwise>
+											</c:choose>
+										</c:forEach>
+									</ul>
+							</c:when>
+							<c:otherwise>
+								<c:set var="parentMenuItemReq" scope="request"
+									value="${itrSiteMenuItem}" />
+								<%
     				HstSiteMenuItem parentItem = ( HstSiteMenuItem ) request.getAttribute("parentMenuItemReq");
     				if (parentItem != null) {
     					String theURL =  parentItem.getParameter("theURL");
@@ -328,19 +338,22 @@ request.setAttribute("isDITVerified",isDITVerified);
     				}
 
         		%>
-        		<c:if test="${itrSiteMenuItem.name != 'PAN'}">
-             				<li <c:if test='${not empty isActive && isActive == "true"}'>class="active"</c:if>><a href="${scriptName}${theURLParent}">${itrSiteMenuItem.name}</a></li>
-             			</c:if>
-             		</c:otherwise>
-             	</c:choose>
-             </c:forEach>
-           </ul>
-           <!--
+								<c:if test="${itrSiteMenuItem.name != 'PAN'}">
+									<li
+										<c:if test='${not empty isActive && isActive == "true"}'>class="active"</c:if>><a
+										href="${scriptName}${theURLParent}">${itrSiteMenuItem.name}</a>
+									</li>
+								</c:if>
+							</c:otherwise>
+						</c:choose>
+					</c:forEach>
+				</ul>
+				<!--
               <form class="navbar-search pull-left" action="">
                 <input type="text" class="search-query span2" placeholder="Search">
               </form>
                -->
-           <%--
+				<%--
           <div id="addToCart" style="display:none" class="pull-right simpleCart_shelfItem">
           	<h2 class="item_name" style="display:none;"><c:out value="${serviceItemKey}"/></h2>
           	<span class="item_price" style="display:none;"><w4india:inr value="199"></w4india:inr></span>
@@ -351,80 +364,114 @@ request.setAttribute("isDITVerified",isDITVerified);
           	<a id="removeCartLink" class="dropdown-toggle btn btn-primary" data-toggle="dropdown" href="javascript:;" style="color: white"><i class="icon-shopping-cart icon-white"></i>Remove from cart</a>
           </div>
            --%>
-          <c:if test="${hasDIY =='true'}">
-           <ul class="nav navbar-nav pull-right">
-              <li>
-				<c:if test="${not empty hippoBeanValidationResponse_totalErrors}">
-					<span title="Errors" class="badge badge-important"><c:out value="${hippoBeanValidationResponse_totalErrors}"/></span>
-				</c:if>
-				<c:if test="${not empty hippoBeanValidationResponse_totalWarnings}">
-					<span title="Errors"  class="badge badge-warning" ><c:out value="${hippoBeanValidationResponse_totalWarnings}"/></span>
-				</c:if>
-		   </li>
-              <li class="dropdown">
-                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Actions<b class="caret"></b></a>
-                 <ul class="dropdown-menu">
-                 		 <li><a href="${scriptName}/../servicerequest-refund-status.html">Refund Status</a></li>
-                 		 <li><a href="${scriptName}/../servicerequest-rectification-status.html">Rectification Status</a></li>
-                 		 <li><a href="${scriptName}/../servicerequest-itr-v-status.html">ITR-V Status</a></li>
-                 		 <li class="divider"></li>
-                 	 	 <%-- hide Show XML only for developers --%>
-                 	 	 <%--
+				<c:if test="${hasDIY =='true'}">
+					<ul class="nav navbar-nav pull-right">
+						<li><c:if
+								test="${not empty hippoBeanValidationResponse_totalErrors}">
+								<span title="Errors" class="badge badge-important"><c:out
+										value="${hippoBeanValidationResponse_totalErrors}" />
+								</span>
+							</c:if> <c:if
+								test="${not empty hippoBeanValidationResponse_totalWarnings}">
+								<span title="Errors" class="badge badge-warning"><c:out
+										value="${hippoBeanValidationResponse_totalWarnings}" />
+								</span>
+							</c:if></li>
+						<li class="dropdown"><a href="#" class="dropdown-toggle"
+							data-toggle="dropdown">Actions<b class="caret"></b>
+						</a>
+							<ul class="dropdown-menu">
+								<li><a
+									href="${scriptName}/../servicerequest-refund-status.html">Refund
+										Status</a>
+								</li>
+								<li><a
+									href="${scriptName}/../servicerequest-rectification-status.html">Rectification
+										Status</a>
+								</li>
+								<li><a
+									href="${scriptName}/../servicerequest-itr-v-status.html">ITR-V
+										Status</a>
+								</li>
+								<li class="divider"></li>
+								<%-- hide Show XML only for developers --%>
+								<%--
                   	 <li><a href="servicerequest-itr-summary.html">View Summary</a></li>
                      <li><a href="servicerequest-itr-summary.html?show=xml">View XML</a></li>
                      <li class="divider"></li>
                       --%>
-                    <li><a href="${scriptName}/../servicerequest-itr-download-xml.html">Download XML</a></li>
-                    	<li><a href="${scriptName}/../servicerequest-itr-download-summary.html">Download Summary</a></li>
-                    	<li><a href="${scriptName}/../servicerequest-itr-email-xml-summary.html?email=<%=deliveryEmail%>">Email to <small>(<%=deliveryEmail%>)</small></a></li>
-                 </ul>
-              </li>
-           </ul>
-          </c:if>
-       </div>
-      </c:if>
-      <!-- /.nav-collapse -->
-			</div> <!-- /.navbar  -->
-   </div>
-	
-<c:if test="${isDITVerified == 'false' && not empty memberpersonalinformation}">
+								<li><a
+									href="${scriptName}/../servicerequest-itr-summary-detailed.html">Detailed
+										View of Summary</a>
+								</li>
+								<li><a
+									href="${scriptName}/../servicerequest-itr-download-xml.html">Download
+										XML</a>
+								</li>
+								<li><a
+									href="${scriptName}/../servicerequest-itr-download-summary.html">Download
+										Summary</a>
+								</li>
+								<li><a
+									href="${scriptName}/../servicerequest-itr-email-xml-summary.html?email=<%=deliveryEmail%>">Email
+										to <small>(<%=deliveryEmail%>)</small>
+								</a>
+								</li>
+							</ul></li>
+					</ul>
+				</c:if>
+			</div>
+		</c:if>
+		<!-- /.nav-collapse -->
+	</div>
+	<!-- /.navbar  -->
+</div>
+
+<c:if
+	test="${isDITVerified == 'false' && not empty memberpersonalinformation}">
 	<c:choose>
 		<c:when test="${fn:endsWith(scriptName,'servicerequest-itr.html')}">
 			<div class="alert alert-error">
-				<small>
-					Unverified Information. You will not be able to file your income tax until the information is verified			
-					Review your information (Name,DOB and PAN) and Click on the Save button.
-					<c:if test="${isVendor == 'true' && not empty memberpersonalinformation}">	
-						<c:out value="${memberpersonalinformation.ditVerificationMessage}"/>
-					</c:if>
-				</small>		
-			</div>		
+				<small> Unverified Information. You will not be able to file
+					your income tax until the information is verified Review your
+					information (Name,DOB and PAN) and Click on the Save button. <c:if
+						test="${isVendor == 'true' && not empty memberpersonalinformation}">
+						<c:out value="${memberpersonalinformation.ditVerificationMessage}" />
+					</c:if> </small>
+			</div>
 		</c:when>
 		<c:otherwise>
 			<div class="alert alert-error">
-				<small>
-					Unverified Information. You will not be able to file your income tax until the information is verified			
-					<a href="${scriptName}../../servicerequest-itr.html">Click here to review your information (Name,DOB and PAN)</a>
-					<c:if test="${isVendor == 'true' && not empty memberpersonalinformation}">
-						<c:out value="${memberpersonalinformation.ditVerificationMessage}"/>
-					</c:if>
-				</small>		
-			</div>		
+				<small> Unverified Information. You will not be able to file
+					your income tax until the information is verified <a
+					href="${scriptName}../../servicerequest-itr.html">Click here to
+						review your information (Name,DOB and PAN)</a> <c:if
+						test="${isVendor == 'true' && not empty memberpersonalinformation}">
+						<c:out value="${memberpersonalinformation.ditVerificationMessage}" />
+					</c:if> </small>
+			</div>
 		</c:otherwise>
 	</c:choose>
 </c:if>
-<c:if test="${showImportTDSButton == 'true' && isDITVerified == 'true' && not fn:endsWith(scriptName,'servicerequest-itr-sync-tds-from-dit.html') }">
+<c:if
+	test="${showImportTDSButton == 'true' && isDITVerified == 'true' && not fn:endsWith(scriptName,'servicerequest-itr-sync-tds-from-dit.html') }">
 	<div class="alert alert-important">
-  		<button type="button" class="close" id='dismissImport' data-dismiss="alert">&times;</button>
-  		<strong>Save Time !!!</strong> Automatically import your TDS details from Department Of Income Tax
-  		<small><a href="${scriptName}/../servicerequest-itr-sync-tds-from-dit.html">Learn More..</a></small>
+		<button type="button" class="close" id='dismissImport'
+			data-dismiss="alert">&times;</button>
+		<strong>Save Time !!!</strong> Automatically import your TDS details
+		from Department Of Income Tax <small><a
+			href="${scriptName}/../servicerequest-itr-sync-tds-from-dit.html">Learn
+				More..</a>
+		</small>
 	</div>
 </c:if>
 <%--ITR1.packageName.DIY.package --%>
 <c:set var="now" value="<%=new java.util.Date()%>" />
-<c:set var="indianLocalDateFormStr" value="<%=IndianGregorianCalendar.indianDateTimeFormStr%>" />
+<c:set var="indianLocalDateFormStr"
+	value="<%=IndianGregorianCalendar.indianDateTimeFormStr%>" />
 <c:if test="${not empty memberpersonalinformation}">
-	<c:if test="${not empty hippoBeanValidationResponse && ( fn:length(hippoBeanValidationResponse.errors) > 0 || fn:length(hippoBeanValidationResponse.warnings) > 0) }">
+	<c:if
+		test="${not empty hippoBeanValidationResponse && ( fn:length(hippoBeanValidationResponse.errors) > 0 || fn:length(hippoBeanValidationResponse.warnings) > 0) }">
 		<%--
 		<div style="font-weight:bold;font-size:10px; border: 1px dashed #FF0000;padding:5px;text-align:center">
 			<ul>
@@ -449,34 +496,60 @@ request.setAttribute("isDITVerified",isDITVerified);
 			</ul>
 		</div>
 		 --%>
-	</c:if>	
-	<div style="font-size:9px; font-family:arial;border: 1px dashed #ccc;padding:5px;">		
-		<span>Local Time: <b><u><fmt:formatDate type="both" pattern="${indianLocalDateFormStr}" timeZone="GMT+5:30" dateStyle="short" timeStyle="short" value="${now}" /></u></b></span> |
-		<span>For: <b><u><c:out value="${memberpersonalinformation.name}"/></u></b></span> |
-		<span>DOB: <b><u><c:out value="${memberpersonalinformation.DOBStr}"/></u></b></span> |
-		<span>AY: <b><u><c:out value="${financialYear.displayAssessmentYear}"/></u></b></span> |
-		<span>FY: <b><u><c:out value="${financialYear.displayName}"/></u></b></span> |
-		<span>Section : <b><u><c:out value="${memberpersonalinformation.filingSection.desc}"/></u></b></span> |
-		<span>Due Date : <b><u><c:out value="${thePastDueDateStr}"/></u></b></span> |
-		<span>Package : <b><u><fmt:message key="${itrForm}.packageName.${memberpersonalinformation.selectedServiceDeliveryOption}.package"/></u></b></span> |
-		<span>Payment : <b>
-			<c:choose>
-				<c:when
-					test="${invoicePresent == 'false'}">
-					<a href="${scriptName}/../memberinvoice.html/create">Create Invoice</a>
-				</c:when>
-				<c:when test="${invoicePresent == 'true' }">
-					<c:choose>
-						<c:when test="${amountDue == 0}">
-							<a href="${scriptName}/../memberinvoice.html">PAID</a>
-						</c:when>
-						<c:otherwise>
-							<a href="${scriptName}/../memberinvoice.html">Due (<w4india:inr value="${amountDue}"/>)</a>
-						</c:otherwise>
-					</c:choose>										
-				</c:when>				
-			</c:choose>
-		</b></span>
+	</c:if>
+	<div
+		style="font-size: 9px; font-family: arial; border: 1px dashed #ccc; padding: 5px;">
+		<span>Local Time: <b><u><fmt:formatDate type="both"
+						pattern="${indianLocalDateFormStr}" timeZone="GMT+5:30"
+						dateStyle="short" timeStyle="short" value="${now}" />
+			</u>
+		</b>
+		</span> | <span>For: <b><u><c:out
+						value="${memberpersonalinformation.name}" />
+			</u>
+		</b>
+		</span> | <span>DOB: <b><u><c:out
+						value="${memberpersonalinformation.DOBStr}" />
+			</u>
+		</b>
+		</span> | <span>AY: <b><u><c:out
+						value="${financialYear.displayAssessmentYear}" />
+			</u>
+		</b>
+		</span> | <span>FY: <b><u><c:out
+						value="${financialYear.displayName}" />
+			</u>
+		</b>
+		</span> | <span>Section : <b><u><c:out
+						value="${memberpersonalinformation.filingSection.desc}" />
+			</u>
+		</b>
+		</span> | <span>Due Date : <b><u><c:out
+						value="${thePastDueDateStr}" />
+			</u>
+		</b>
+		</span> | <span>Package : <b><u><fmt:message
+						key="${itrForm}.packageName.${memberpersonalinformation.selectedServiceDeliveryOption}.package" />
+			</u>
+		</b>
+		</span> | <span>Payment : <b> <c:choose>
+					<c:when test="${invoicePresent == 'false'}">
+						<a href="${scriptName}/../memberinvoice.html/create">Create
+							Invoice</a>
+					</c:when>
+					<c:when test="${invoicePresent == 'true' }">
+						<c:choose>
+							<c:when test="${amountDue == 0}">
+								<a href="${scriptName}/../memberinvoice.html">PAID</a>
+							</c:when>
+							<c:otherwise>
+								<a href="${scriptName}/../memberinvoice.html">Due (<w4india:inr
+										value="${amountDue}" />)</a>
+							</c:otherwise>
+						</c:choose>
+					</c:when>
+				</c:choose> </b>
+		</span>
 	</div>
 </c:if>
 <%-- you kidding me?? can't escape  --%>
@@ -508,30 +581,33 @@ class MenuComparator implements Comparator<HstSiteMenuItem> {
 %>
 
 <hst:element var="uiCustom" name="style">
-    <hst:attribute name="type">text/css</hst:attribute>
+	<hst:attribute name="type">text/css</hst:attribute>
     .navbar {
 		margin-bottom: 5px;
 	}
 </hst:element>
-<hst:headContribution element="${uiCustom}" category="jsInternal"/>
+<hst:headContribution element="${uiCustom}" category="jsInternal" />
 <c:if test="${showImportTDSButton == 'true' && isDITVerified == 'true'}">
-	<div id="modalForImport" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	  <div class="modal-header">
-	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-	    <h3>Save time - Import your TDS details from DIT</h3>
-	  </div>
-	  <div class="modal-body">
-	  		<p>
-	  			<span class="label label-important">To get back to Import TDS, go to Actions -> Import TDS</span>
-	  		</p>	  		
-	  </div>
-	  <div class="modal-footer">
-	  		<a href="${scriptName}" class="btn btn-inverse" id="importTDSNow">OK</a>
-	  </div>
+	<div id="modalForImport" class="modal hide fade" tabindex="-1"
+		role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal"
+				aria-hidden="true">&times;</button>
+			<h3>Save time - Import your TDS details from DIT</h3>
+		</div>
+		<div class="modal-body">
+			<p>
+				<span class="label label-important">To get back to Import
+					TDS, go to Actions -> Import TDS</span>
+			</p>
+		</div>
+		<div class="modal-footer">
+			<a href="${scriptName}" class="btn btn-inverse" id="importTDSNow">OK</a>
+		</div>
 	</div>
 
 	<hst:element var="uiCustom" name="script">
-	<hst:attribute name="type">text/javascript</hst:attribute>
+		<hst:attribute name="type">text/javascript</hst:attribute>
 	   $(document).ready ( function() {
 	   		$("#dismissImport").click ( function() {
 	   			 $("#modalForImport").modal();
