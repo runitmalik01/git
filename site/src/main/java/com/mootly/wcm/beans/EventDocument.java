@@ -18,6 +18,7 @@ package com.mootly.wcm.beans;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.hippoecm.hst.content.beans.Node;
@@ -32,8 +33,9 @@ import com.mootly.wcm.utils.Constants;
 
 @Node(jcrType = "mootlywcm:event")
 public class EventDocument extends Document {
-
+	static final public String NAMESPACE = "mootlywcm:event";
     private List<ImageSet> images;
+	private Date date;
 
     public List<ImageSet> getImages() {
         initImages();
@@ -64,12 +66,19 @@ public class EventDocument extends Document {
     public Calendar getDate() {
         return getProperty(Constants.PROP_DATE);
     }
+    public Date setDate( Date dt) {
+    	 return this.date = dt;
+    }
+
 
     public Calendar getEndDate() {
         return getProperty(Constants.PROP_ENDDATE);
     }
 
     public Address getLocation() {
+        return getBean(Constants.PROP_LOCATION);
+    }
+    public Address setLocation() {
         return getBean(Constants.PROP_LOCATION);
     }
 
