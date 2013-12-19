@@ -75,7 +75,7 @@ bestplan {
 .w4i-logo {
 		float: left;
 		padding-right: 10px;
-		padding-top: 14px;
+		padding-top: 10px;
 }
 
 .gold {
@@ -110,19 +110,13 @@ bestplan {
   /* Negative indent footer by its height */
   margin: 0 auto -60px;
   /* Pad bottom by footer height */
-  padding: 60px 0 60px;
+  padding: 40px 0 60px;
 }
 
 /* Set the fixed height of the footer here */
 #footer {
   height: 60px;
   background-color: #f5f5f5;
-}
-
-.navbar-inverse {
-	background-color: #fff;
-	min-height: 30px;
-	border-color: #fff;
 }
 
 .footer-copy {

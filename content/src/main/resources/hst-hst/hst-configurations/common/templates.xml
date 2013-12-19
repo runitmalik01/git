@@ -3904,16 +3904,29 @@
 	</sv:node>
 	<!-- /template -->
 	<!-- for new event-->
-<sv:node sv:name="newevents" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
-  <sv:property sv:name="jcr:primaryType" sv:type="Name">
-    <sv:value>hst:template</sv:value>
-  </sv:property>
-  <sv:property sv:name="jcr:uuid" sv:type="String">
-    <sv:value>4697c5cf-838e-4534-ae7f-bde9f9216a45</sv:value>
-  </sv:property>
-  <sv:property sv:name="hst:renderpath" sv:type="String">
-    <sv:value>jsp/events/addEvents.jsp</sv:value>
-  </sv:property>
-</sv:node>
-<!--end of new event-->
+	<sv:node sv:name="newevents" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hst:template</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>4697c5cf-838e-4534-ae7f-bde9f9216a45</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:renderpath" sv:type="String">
+	    <sv:value>jsp/events/addEvents.jsp</sv:value>
+	  </sv:property>
+	</sv:node>
+	<!--end of new event-->
+	<!-- eFile -->
+	<sv:node sv:name="efile-incometax" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hst:component</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>d06747e5-40c9-41c5-9b5c-3a2b47ef658f</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:componentclassname" sv:type="String">
+	    <sv:value>com.mootly.wcm.components.ITReturnComponent</sv:value>
+	  </sv:property>
+	</sv:node>	
+	<!-- /eFile -->
 </sv:node>
