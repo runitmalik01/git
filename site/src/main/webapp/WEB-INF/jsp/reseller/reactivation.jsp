@@ -1,9 +1,4 @@
-<%--
 
- This for forgot activation code
- @author abhishek
- 12/03/2013
- --%>
 <%@include file="../includes/tags.jspf"%>
 <c:set var="activecodetitle"><fmt:message key="member.activecode.title"/></c:set>
 <hippo-gogreen:title title="${activecodetitle}"/>
