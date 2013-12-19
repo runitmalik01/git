@@ -1571,6 +1571,8 @@
 	    <sv:value>servicerequest-itr-copy-or-move</sv:value>
 	  </sv:property>
 	</sv:node>
+	
+	
 	<!--  new component for bulk download 08/10/2013 -->
 	<sv:node xmlns:sv="http://www.jcp.org/jcr/sv/1.0" sv:name="servicerequest-itr-download-xml-bulk-addpath">
 	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
@@ -2097,6 +2099,49 @@
     <sv:value>incomefromfirmsItr3</sv:value>
   </sv:property>
 </sv:node>
+<!-- new componentfor copy from previous -->
+<sv:node sv:name="servicerequest-itr-copy-previous-return">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>9d56454f-da1e-45bb-869c-985f9a8d56c2</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentclassname" sv:type="String">
+      <sv:value>com.mootly.wcm.member.ITReturnCopyPrevious</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>servicerequest-itr-copy-previous-return</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="servicerequest-itr-copy-for-newyear">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>4129244a-7226-4f3b-b862-530b3c149b24</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentclassname" sv:type="String">
+      <sv:value>com.mootly.wcm.member.StartApplication</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>servicerequest-itr-copy-for-newyear</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="servicerequest-itr-summary-detailed">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:component</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>a8c268b2-ee4c-4523-a10d-5bf5ced51cda</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentclassname" sv:type="String">
+      <sv:value>com.mootly.wcm.member.SummaryDetail</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>servicerequest-itr-summary-detailed</sv:value>
+    </sv:property>
+  </sv:node>
 
 <!--  income from firms -->
 <sv:node sv:name="confirmation-payment-success" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
