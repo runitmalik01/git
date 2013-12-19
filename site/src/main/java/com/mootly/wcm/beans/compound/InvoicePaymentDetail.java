@@ -506,6 +506,10 @@ public class InvoicePaymentDetail extends FlexibleDocument implements FormMapFil
 	public void setCheckLocation(String checkLocation) {
 		this.checkLocation = checkLocation;
 	}
+	@BeanClone
+	public void setCheckAmount(Double checkAmount) {
+		this.checkAmount = checkAmount;
+	}
 	
 	@BeanClone
 	public void setCashAddress(String cashAddress) {
