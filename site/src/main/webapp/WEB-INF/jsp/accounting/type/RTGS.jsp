@@ -2,13 +2,12 @@
 <c:forEach items="${parentBean.invoicePaymentDetailList}" var="paymentdetail">
 						   <c:if test="${uuid == paymentdetail.canonicalUUID}"><c:set value="${paymentdetail}" var="tarPaymentDetail"></c:set></c:if>
 						</c:forEach>
-<fieldset class="CHECK_NOT_ONLY CASH_NOT_ONLY RTGS_ONLY"
-	style="display: none">
+<fieldset class="CHECK_NOT_ONLY CASH_NOT_ONLY RTGS_ONLY">
 	<legend>RTGS Details</legend>
 	<div class="row-fluid show-grid">
 		<div class="span3">
 			<div class="rowlabel">
-				<label for="checkNo"><small>Transation/UTR Number</small>
+				<label for="checkNo"><small>Transaction/UTR Number</small>
 				</label>
 			</div>
 			<div class="rowlabel">
