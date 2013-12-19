@@ -455,6 +455,25 @@
 	  </sv:node>
 	</sv:node>
 	<!-- /new  -->
+	<!-- start of resellerpackage -->
+<sv:node sv:name="reseller-package.html">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:sitemapitem</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>cc866e70-06cb-404f-ba5e-3c1c7395d2c2</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+    <sv:value>hst:pages/resellerpackage</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:refId" sv:type="String">
+    <sv:value>reseller-package</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:relativecontentpath" sv:type="String">
+    <sv:value>members</sv:value>
+  </sv:property>
+</sv:node>
+	<!-- end of resellerpackage -->
     <sv:node sv:name="itreturn">
       <sv:property sv:name="jcr:primaryType" sv:type="Name">
         <sv:value>hst:sitemapitem</sv:value>
