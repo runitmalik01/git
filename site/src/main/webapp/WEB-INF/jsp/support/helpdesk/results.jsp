@@ -62,7 +62,7 @@
 									<fmt:message key="search.results.suggestion" /></p>
 							</c:if>
 						</div>
-						<a href="${homeLink}" class="btn btn-large btn-info"><i class="icon-home icon-white"></i> Take Me Home</a>
+						<a href="${homeLink}" class="btn btn-default btn-lg btn-info"><i class="glyphicon glyphicon-home glyphicon glyphicon-white"></i> Take Me Home</a>
 					</div>
 				</c:when>
 				<%-- When a search is done, but no results where found --%>

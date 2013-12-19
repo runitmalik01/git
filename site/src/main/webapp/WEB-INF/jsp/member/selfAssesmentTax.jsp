@@ -11,7 +11,7 @@
 <w4india:itrmenu></w4india:itrmenu>
 <c:if test="${not empty formMap}">
 	<c:forEach items="${formMap.message}" var="item">
-		<div class="alert alert-error">
+		<div class="alert alert-danger">
 			<fmt:message key="${item.value}" />
 		</div>
 	</c:forEach>
@@ -31,8 +31,8 @@
 
 			<fieldset>
 				<legend style="color: green; font-weight: bold;">Enter Details</legend>
-				<div class="row-fluid show-grid">
-					<div class="span4">
+				<div class="row show-grid">
+					<div class="col-md-4">
 						<div class="rowlabel">
 							<label for="bsr_codeself"><abbr
 								title=" Basic Statistical Return Code"><small><fmt:message
@@ -44,7 +44,7 @@
 								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.p_BSR}"/></c:if>" />
 						</div>
 					</div>
-					<div class="span4">
+					<div class="col-md-4">
 						<div class="rowlabel">
 							<label for="date_creditself"><small><fmt:message
 										key="tds.date.credit" /> </small> </label>
@@ -55,8 +55,8 @@
 						</div>
 					</div>
 				</div>
-				<div class="row-fluid show-grid" id="ul_revised_input">
-					<div class="span4">
+				<div class="row show-grid" id="ul_revised_input">
+					<div class="col-md-4">
 						<div class="rowlabel">
 							<label for="Serial_challanself"><small><fmt:message
 										key="tds.serial.challan" /> </small> </label>
@@ -67,7 +67,7 @@
 								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.p_Serial}"/></c:if>" />
 						</div>
 					</div>
-					<div class="span4">
+					<div class="col-md-4">
 						<div class="rowlabel">
 							<label for="amountself"><small><fmt:message
 										key="tds.amount.selfassesment" /> </small> </label>
@@ -80,10 +80,10 @@
 					</div>
 				</div>
 			</fieldset>
-			<div class="row-fluid show-grid">
-				<div class="span4 offset8 decimal">
-					<a href="${scriptName}?selectedItrTab=<%=ITRTab.TAX_SELF_ASSESSMENT%>" class="btn btn-danger" style="color: black">Cancel</a>&nbsp;
-					<a id="myModalHrefSelfTax" role="button" class="btn btn-success" style="color: black">Save</a>
+			<div class="row show-grid">
+				<div class="col-md-4 col-md-offset-8 decimal">
+					<a href="${scriptName}?selectedItrTab=<%=ITRTab.TAX_SELF_ASSESSMENT%>" class="btn btn-default btn-danger" style="color: black">Cancel</a>&nbsp;
+					<a id="myModalHrefSelfTax" role="button" class="btn btn-default btn-success" style="color: black">Save</a>
 				</div>
 			</div>
 		</form>
@@ -114,9 +114,9 @@
 						</td>
 						<td><w4india:inr value="${selfassesmentdetail.p_Amount}" />
 						</td>
-						<td><a class="btn btn-primary"
-							href="${scriptName}/<c:out value="${selfassesmentdetail.canonicalUUID}"/>/selfassesmenttaxedit"><small><i class="icon-pencil icon-white"></i>Edit</small> &nbsp;&nbsp;
-						</a>&nbsp;&nbsp;<a class="btn btn-danger" href="${scriptName}/<c:out value="${selfassesmentdetail.canonicalUUID}"/>/selfassesmenttaxdelete" id="delete" data-confirm=""><small><i class="icon-trash icon-white"></i>Delete</small> </a>
+						<td><a class="btn btn-default btn-primary"
+							href="${scriptName}/<c:out value="${selfassesmentdetail.canonicalUUID}"/>/selfassesmenttaxedit"><small><i class="glyphicon glyphicon-pencil glyphicon glyphicon-white"></i>Edit</small> &nbsp;&nbsp;
+						</a>&nbsp;&nbsp;<a class="btn btn-default btn-danger" href="${scriptName}/<c:out value="${selfassesmentdetail.canonicalUUID}"/>/selfassesmenttaxdelete" id="delete" data-confirm=""><small><i class="glyphicon glyphicon-trash glyphicon glyphicon-white"></i>Delete</small> </a>
 							</td>
 					</tr>
 			</c:forEach>
@@ -125,7 +125,7 @@
 					<td ><w4india:inr value="${parentBean.total_Amount}" /></td>
 			</c:if>
 		</table>
-		<a href="${scriptName}/selfassesmenttaxnew" class="btn btn-info" style="color: black">Add New</a>
+		<a href="${scriptName}/selfassesmenttaxnew" class="btn btn-default btn-info" style="color: black">Add New</a>
 	</c:otherwise>
 </c:choose>
 

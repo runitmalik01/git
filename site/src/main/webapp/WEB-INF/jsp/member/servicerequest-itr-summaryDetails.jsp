@@ -28,7 +28,7 @@
 				<tr>
 					<td>Status</td>
 					<td><c:out value="${parentBean.employe_category} " /></td>
-					<td>Phone<span class="add-on"><i class="icon-home"></i>
+					<td>Phone<span class="add-on"><i class="glyphicon glyphicon-home"></i>
 					</span>
 					</td>
 					<td><c:out value="${parentBean.phone}" /></td>
@@ -46,7 +46,7 @@
 							value="${parentBean.flatDoorBuilding} ${parentBean.roadStreet} ${parentBean.areaLocality} ${parentBean.townCityDistrict} ${parentBean.pinCode}" />
 					</td>
 					<td>Email Address<span class="add-on"><i
-							class="icon-envelope"></i> </span></td>
+							class="glyphicon glyphicon-envelope"></i> </span></td>
 					<td><c:out value="${parentBean.email}" /></td>
 				</tr>
 				<tr>

@@ -8,7 +8,7 @@
 <hst:link var="contactlink" siteMapItemRefId="contactus"></hst:link>
 <hst:link var="forgotpasslink" siteMapItemRefId="forgotpass"></hst:link>
 <c:if test="${not empty notify && empty changePass}">
-	<div class="alert alert-error">
+	<div class="alert alert-danger">
 		<strong>Oops! Look like you have request for an expired link.If you want to change your password <a href="${forgotpasslink}">click
 				here</a> or <a href="${contactlink}">Contact US</a>.
 		</strong>
@@ -73,7 +73,7 @@
 		      <input name="userName" id="userName" value="${userName}" type="hidden"/>
 			</c:if>
 			<p align="center">
-				<a id="hrefLogin" class="btn orange"><fmt:message key="member.start.cpsubmit.label" /> </a>
+				<a id="hrefLogin" class="btn btn-default orange"><fmt:message key="member.start.cpsubmit.label" /> </a>
 			</p>
 		</fieldset>
 	</c:if>

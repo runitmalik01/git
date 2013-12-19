@@ -21,7 +21,7 @@
 	<h4 id="respond1">IncomeTaxFormSelection</h4>
 	<c:if test="${not empty formMap}">
 		<c:forEach items="${formMap.message}" var="item">
-			<div class="alert alert-error"><fmt:message key="${item.value}" /></div>
+			<div class="alert alert-danger"><fmt:message key="${item.value}" /></div>
 		</c:forEach>
 	</c:if>
 		<form id="frmdata" action="${actionUrl}" name="selectionfrm" method="post">

@@ -8,7 +8,7 @@
 <c:out value="${ipAddress}"/>
 <c:if test="${not empty formMap}">
 	<c:forEach items="${formMap.message}" var="item">
-		<div class="alert alert-error">
+		<div class="alert alert-danger">
 			<fmt:message key="${item.value}" />
 		</div>
 	</c:forEach>
@@ -19,12 +19,12 @@
 	<legend>Schedule 10A/10AA</legend>
 	<strong>Click on</strong>
 	<div class="btn-group">
-		<button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown">
+		<button type="button" class="btn btn-default btn-warning dropdown-toggle" data-toggle="dropdown">
 			Deduction Schedule-10A/10AA in special economic zone<span class="caret"></span>
 		</button>
 		<ul class="dropdown-menu">
-			<li> <a href="${scriptName}/itrdedschedule10anew" id="newchild"><i class="icon-plus-sign"></i><strong>Add</strong></a>
-			    <%-- <a href="./itrdedschedule10a.html/itrdedschedule10anew" id="newchild"><i class="icon-plus-sign"></i><strong>Add</strong></a>--%>    
+			<li> <a href="${scriptName}/itrdedschedule10anew" id="newchild"><i class="glyphicon glyphicon-plus-sign"></i><strong>Add</strong></a>
+			    <%-- <a href="./itrdedschedule10a.html/itrdedschedule10anew" id="newchild"><i class="glyphicon glyphicon-plus-sign"></i><strong>Add</strong></a>--%>    
 			</li>
 		</ul>
 	</div>&nbsp;<strong>to add new Schedule 10A/10AA(Undertaking Amount)!!</strong>
@@ -38,7 +38,7 @@
 			<th>#</th>
 			<th>Schedule 10A/10AA</th>
 			<th>Undertaking Gross Amount</th>
-			<th align="center"><div class="span1">Action</div></th>
+			<th align="center"><div class="col-md-1">Action</div></th>
 		</tr>
 	</thead>
 	<tbody>
@@ -50,9 +50,9 @@
 					<td><w4india:inr value="${schedule10ADetail.amount}"/></td>
 					<td align="center"><div class="rowlabel">
 							<a href="${scriptName}/${schedule10ADetail.canonicalUUID}/itrdedschedule10aedit"
-								class="btn btn-primary"><i class="icon-edit icon-white"></i><span><strong>Edit</strong></span></a>&nbsp;
+								class="btn btn-default btn-primary"><i class="glyphicon glyphicon-edit glyphicon glyphicon-white"></i><span><strong>Edit</strong></span></a>&nbsp;
 							<a href="${scriptName}/${schedule10ADetail.canonicalUUID}/itrdedschedule10adelete" data-confirm=""
-							class="btn btn-danger"><i class="icon-trash icon-white"></i><span><strong>Delete</strong></span></a>
+							class="btn btn-default btn-danger"><i class="glyphicon glyphicon-trash glyphicon glyphicon-white"></i><span><strong>Delete</strong></span></a>
 						</div></td>
 				</tr>
 			</c:forEach>
@@ -73,8 +73,8 @@
 <c:set var="sectionData">
 	<fieldset>
 		<legend>Schedule 10A/10AA</legend>
-		<div class="row-fluid show-grid">
-			<div class="span8">
+		<div class="row show-grid">
+			<div class="col-md-8">
 				<div class="rowlabel">
 					<label for="scheduleName"><small>Select Schedule Name</small></label>
 				</div>
@@ -97,7 +97,7 @@
 					</select>
 				</div>
 			</div>
-			<div class="span4">
+			<div class="col-md-4">
 				<div class="rowlabel">
 					<label for="amount"><abbr title="Gross Amount of Undertakings for selected schedule"><small>Gross Amount</small></abbr></label>
 				</div>
@@ -141,12 +141,12 @@
 					</form>
 				</div>
 				<div class="modal-footer">
-					<c:if test="${pageAction == 'NEW_CHILD'}"><a href="#" class="btn btn-inverse" id="addnew">Add New</a></c:if>
+					<c:if test="${pageAction == 'NEW_CHILD'}"><a href="#" class="btn btn-default btn-inverse" id="addnew">Add New</a></c:if>
 					<c:if test="${pageAction == 'EDIT_CHILD'}">
-						<a href="${scriptName}/${uuid}/itrdedschedule10adelete" class="btn btn-danger">
-                              <i class="icon-trash icon-white"></i>Delete</a>
+						<a href="${scriptName}/${uuid}/itrdedschedule10adelete" class="btn btn-default btn-danger">
+                              <i class="glyphicon glyphicon-trash glyphicon glyphicon-white"></i>Delete</a>
 					</c:if>
-					<a href="${scriptName}" class="btn" data-dismiss="">Close</a>
+					<a href="${scriptName}" class="btn btn-default" data-dismiss="">Close</a>
 					<c:choose>
 						<c:when test="${pageAction == 'NEW_CHILD'}">
 							<c:set value="ajaxsubmit" var="saveID" />
@@ -155,7 +155,7 @@
 							<c:set value="siSave" var="saveID" />
 						</c:otherwise>
 					</c:choose>
-					<a href="#" id="${saveID}" class="btn btn-primary">Save changes</a>
+					<a href="#" id="${saveID}" class="btn btn-default btn-primary">Save changes</a>
 				</div>
 			</div>
 		</div>
@@ -238,7 +238,7 @@
 						
 						$(".modal-body").append(newdiv1);
 						
-						newdiv1.find(".span4").hide();
+						newdiv1.find(".col-md-4").hide();
 						
 						//$(".theamount").blur( handleBlur );	
 						$(".head").change(headChangeHandler);
@@ -264,11 +264,11 @@
 				var o = $(this).val();	
 				if (o.trim() == '') {
 					//hide and remove the corresponding amount button
-					$(this).parents(".row-fluid").find(".span4").hide();
+					$(this).parents(".row").find(".col-md-4").hide();
 					$('label[for="amount"]').hide();
 				}
 				else {
-					$(this).parents(".row-fluid").find(".span4").show();
+					$(this).parents(".row").find(".col-md-4").show();
 					$('label[for="amount"]').show();
 				}
 			}       
@@ -293,5 +293,5 @@
   });
 </hst:element>
 <hst:headContribution element="${uiCustom}" category="jsInternal"/>
-<!-- <fieldset> <legend>test</legend> <div class="row-fluid show-grid"> <div class="rowlabel span6"><select name="test-select" class="select-drop" id="test-select"> <option value="">Select</option> <option value="section-89">Section-89</option> </select> </div> <div class="rowlabel span4"> <input id="amount" name="amount" class="hide" placeholder="Gross Amount" type="text"> </div> </div> </fieldset> 
+<!-- <fieldset> <legend>test</legend> <div class="row show-grid"> <div class="rowlabel col-md-6"><select name="test-select" class="select-drop" id="test-select"> <option value="">Select</option> <option value="section-89">Section-89</option> </select> </div> <div class="rowlabel col-md-4"> <input id="amount" name="amount" class="hide" placeholder="Gross Amount" type="text"> </div> </div> </fieldset> 
 -->

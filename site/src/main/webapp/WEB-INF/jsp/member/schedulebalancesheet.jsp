@@ -14,29 +14,29 @@
 </c:if>
 <c:if test="${not empty formMap}">
 	<c:forEach items="${formMap.message}" var="item">
-		<div class="alert alert-error">
+		<div class="alert alert-danger">
 			<fmt:message key="${item.value}" />
 		</div>
 	</c:forEach>
 </c:if>
 <c:if test="${not empty invalidSouceAndAppliFind}">
- <div class="alert alert-error">
+ <div class="alert alert-danger">
    <fmt:message key="${invalidSouceAndAppliFind}"/>
  </div>
 </c:if>
 <form name="schedBalanceSheet" id="schedBalanceSheet" action="${actionUrl}" method="post">
 	<c:if test="${not empty parentBean}">
 		<div class="alert alert-warning">
-			<strong>CareFull! Change of selection can lost data until you don't click on save button.Click on<a href="${scriptName}" class="btn btn-inverse">Get Saved Data</a>.If lost.</strong>
+			<strong>CareFull! Change of selection can lost data until you don't click on save button.Click on<a href="${scriptName}" class="btn btn-default btn-inverse">Get Saved Data</a>.If lost.</strong>
 		</div>
 	</c:if>
-	<div class="row-fluid show-grid">
-		<div class="span6">
+	<div class="row show-grid">
+		<div class="col-md-6">
 			<div class="rowlabel">
 				<label for="regularAccOrNoCase"><small>Do you maintain regular books of accounts of Business or Profession?</small></label>
 			</div>
 		</div>
-		<div class="span4">
+		<div class="col-md-4">
 			<div class="rowlabel">
 				<select id="regularAccOrNoCase" name="regularAccOrNoCase">
 					<option value="">Select</option>
@@ -49,7 +49,7 @@
 	<h5 align="center" class="regularAcc_Y regularAcc_N <c:choose><c:when test="${empty parentBean.regularAccOrNoCase || parentBean.regularAccOrNoCase == 'N'}">hide</c:when></c:choose>">Sources of Funds</h5>
 	<fieldset class="regularAcc_Y regularAcc_N <c:choose><c:when test="${empty parentBean.regularAccOrNoCase || parentBean.regularAccOrNoCase == 'N'}">hide</c:when></c:choose>">
 		<legend> Proprietor's fund</legend>
-		<div class="span3">
+		<div class="col-md-3">
 			<div class="rowlabel">
 				<label for="reavReserve"> <small>Revaluation Reserve</small>
 				</label>
@@ -59,7 +59,7 @@
 					maxlength="14" class="decimal" value="${parentBean.reavReserve }" />
 			</div>
 		</div>
-		<div class="span3">
+		<div class="col-md-3">
 			<div class="rowlabel">
 				<label for="capReserve"> <small>Capital Reserve</small>
 				</label>
@@ -69,7 +69,7 @@
 					class="decimal" value="${parentBean.capReserve }" />
 			</div>
 		</div>
-		<div class="span3">
+		<div class="col-md-3">
 			<div class="rowlabel">
 				<label for="statReserve"> <small>Statutory Reserve</small>
 				</label>
@@ -79,7 +79,7 @@
 					maxlength="14" class="decimal" value="${parentBean.statReserve }" />
 			</div>
 		</div>
-		<div class="span3">
+		<div class="col-md-3">
 			<div class="rowlabel">
 				<label for="otherReserve"> <small>Any Other Reserve</small>
 				</label>
@@ -89,7 +89,7 @@
 					maxlength="14" class="decimal" value="${parentBean.otherReserve }" />
 			</div>
 		</div>
-		<div class="span3">
+		<div class="col-md-3">
 			<div class="rowlabel">
 				<label for="propCapital"> <small>Proprietor's capital</small>
 				</label>
@@ -99,7 +99,7 @@
 					maxlength="14" class="decimal" value="${parentBean.propCapital }" />
 			</div>
 		</div>
-		<div class="span3">
+		<div class="col-md-3">
 			<div class="rowlabel">
 				<label for="grossProprietFund"> <small>Gross Proprietor's Fund</small>
 				</label>
@@ -112,7 +112,7 @@
 	</fieldset>
 	<fieldset class="regularAcc_Y regularAcc_N <c:choose><c:when test="${empty parentBean.regularAccOrNoCase || parentBean.regularAccOrNoCase == 'N'}">hide</c:when></c:choose>">
 		<legend> Loan funds</legend>
-		<div class="span3">
+		<div class="col-md-3">
 			<div class="rowlabel">
 				<label for="unsecLoanBank"> <small>Unsecured Loan from Banks</small>
 				</label>
@@ -122,7 +122,7 @@
 					maxlength="14" class="decimal" value="${parentBean.unsecLoanBank }" />
 			</div>
 		</div>
-		<div class="span3">
+		<div class="col-md-3">
 			<div class="rowlabel">
 				<label for="unsecLoanOther"> <small>Unsecured Loan from Other</small>
 				</label>
@@ -132,7 +132,7 @@
 					maxlength="14" class="decimal" value="${parentBean.unsecLoanOther }" />
 			</div>
 		</div>
-		<div class="span3">
+		<div class="col-md-3">
 			<div class="rowlabel">
 				<label for="forgnCurrLoan"> <small>Foreign Currency Loans</small>
 				</label>
@@ -142,7 +142,7 @@
 					maxlength="14" class="decimal" value="${parentBean.forgnCurrLoan }" />
 			</div>
 		</div>
-		<div class="span3">
+		<div class="col-md-3">
 			<div class="rowlabel">
 				<label for="rupLoanBank"><small>Rupee Loans from Banks</small>
 				</label>
@@ -152,7 +152,7 @@
 					maxlength="14" class="decimal" value="${parentBean.rupLoanBank }" />
 			</div>
 		</div>
-		<div class="span3">
+		<div class="col-md-3">
 			<div class="rowlabel">
 				<label for="rupLoanOther"> <small>Rupee Loan from Other</small>
 				</label>
@@ -162,7 +162,7 @@
 					maxlength="14" class="decimal" value="${parentBean.rupLoanOther }" />
 			</div>
 		</div>
-		<div class="span3">
+		<div class="col-md-3">
 			<div class="rowlabel">
 				<label for="grossLoanFund"> <small>Gross Loan Fund</small>
 				</label>
@@ -174,8 +174,8 @@
 		</div>		
 	</fieldset>
 	<div class="well regularAcc_Y regularAcc_N <c:choose><c:when test="${empty parentBean.regularAccOrNoCase || parentBean.regularAccOrNoCase == 'N'}">hide</c:when></c:choose>">
-		<div class="row-fluid show-grid">
-			<div class="span4">
+		<div class="row show-grid">
+			<div class="col-md-4">
 				<div class="rowlabel">
 					<label for="defTaxLiability"> <small>Deferred tax liability</small>
 					</label>
@@ -185,7 +185,7 @@
 						maxlength="14" class="decimal" value="${parentBean.defTaxLiability }" />
 				</div>
 			</div>
-			<div class="span4">
+			<div class="col-md-4">
 				<div class="rowlabel">
 					<label for="sourcOfFund"> <small>Sources of Funds</small>
 					</label>
@@ -200,8 +200,8 @@
 	<h5 align="center" class="regularAcc_Y regularAcc_N <c:choose><c:when test="${empty parentBean.regularAccOrNoCase || parentBean.regularAccOrNoCase == 'N'}">hide</c:when></c:choose>">Application of Funds</h5>
 	<fieldset class="regularAcc_Y regularAcc_N <c:choose><c:when test="${empty parentBean.regularAccOrNoCase || parentBean.regularAccOrNoCase == 'N'}">hide</c:when></c:choose>">
 		<legend> Fixed assets</legend>
-		<div class="row-fluid show-grid">
-			<div class="span3">
+		<div class="row show-grid">
+			<div class="col-md-3">
 				<div class="rowlabel">
 					<label for="grossBlock"> <small>Gross: Block</small>
 					</label>
@@ -211,7 +211,7 @@
 						class="decimal" value="${parentBean.grossBlock }" />
 				</div>
 			</div>
-			<div class="span3">
+			<div class="col-md-3">
 				<div class="rowlabel">
 					<label for="depreciation"> <small>Depreciation</small>
 					</label>
@@ -221,7 +221,7 @@
 						maxlength="" class="decimal" value="${parentBean.depreciation }" />
 				</div>
 			</div>
-			<div class="span3">
+			<div class="col-md-3">
 				<div class="rowlabel">
 					<label for="capWorkProgrss"> <small>Capital
 							work-in-progress</small>
@@ -232,7 +232,7 @@
 						maxlength="14" class="decimal" value="${parentBean.capWorkProgrss }" />
 				</div>
 			</div>
-			<div class="span3">
+			<div class="col-md-3">
 				<div class="rowlabel">
 					<label for="grossFixedAsset"> <small>Gross Fixed Assets</small>
 					</label>
@@ -246,7 +246,7 @@
 	</fieldset>
 	<fieldset class="regularAcc_Y regularAcc_N <c:choose><c:when test="${empty parentBean.regularAccOrNoCase || parentBean.regularAccOrNoCase == 'N'}">hide</c:when></c:choose>">
 		<legend> Investments</legend>
-		<div class="span3">
+		<div class="col-md-3">
 			<div class="rowlabel">
 				<label for="stInvestEquity"> <small>Short Term Investment Equity Shares</small>
 				</label>
@@ -256,7 +256,7 @@
 					maxlength="14" class="decimal" value="${parentBean.stInvestEquity }" />
 			</div>
 		</div>
-		<div class="span3">
+		<div class="col-md-3">
 			<div class="rowlabel">
 				<label for="stInvestPrefShare"> <small>Short Term Investment Preference Shares</small>
 				</label>
@@ -266,7 +266,7 @@
 					maxlength="14" class="decimal" value="${parentBean.stInvestPrefShare }" />
 			</div>
 		</div>
-		<div class="span3">
+		<div class="col-md-3">
 			<div class="rowlabel">
 				<label for="stInvestDebent"> <small>Short Term Investment Debenture</small>
 				</label>
@@ -276,7 +276,7 @@
 					maxlength="14" class="decimal" value="${parentBean.stInvestDebent }" />
 			</div>
 		</div>
-		<div class="span3">
+		<div class="col-md-3">
 			<div class="rowlabel">
 				<label for="ltInvestQuot"> <small>Long Term Investment Govt and Other -Quoted</small>
 				</label>
@@ -286,7 +286,7 @@
 					maxlength="14" class="decimal" value="${parentBean.ltInvestQuot }" />
 			</div>
 		</div>
-		<div class="span3">
+		<div class="col-md-3">
 			<div class="rowlabel">
 				<label for="ltInvestUnquot"> <small>Long Term Investment Govt and Other -Unquoted</small>
 				</label>
@@ -296,7 +296,7 @@
 					maxlength="14" class="decimal" value="${parentBean.ltInvestUnquot }" />
 			</div>
 		</div>
-		<div class="span3">
+		<div class="col-md-3">
 			<div class="rowlabel">
 				<label for="grossInvest"> <small>Gross Investment</small>
 				</label>
@@ -309,8 +309,8 @@
 	</fieldset>
 	<fieldset class="regularAcc_Y regularAcc_N <c:choose><c:when test="${empty parentBean.regularAccOrNoCase || parentBean.regularAccOrNoCase == 'N'}">hide</c:when></c:choose>">
 		<legend> Current assets</legend>
-		<div class="row-fluid show-grid">
-			<div class="span4">
+		<div class="row show-grid">
+			<div class="col-md-4">
 				<div class="rowlabel">
 					<label for="sundryDebtor"> <small>Sundry Debtors</small>
 					</label>
@@ -320,7 +320,7 @@
 						maxlength="14" class="decimal" value="${parentBean.sundryDebtor }" />
 				</div>
 			</div>
-			<div class="span4">
+			<div class="col-md-4">
 				<div class="rowlabel">
 					<label for="cashInHand"> <small>Cash-in-hand</small>
 					</label>
@@ -330,7 +330,7 @@
 						class="decimal" value="${parentBean.cashInHand }" />
 				</div>
 			</div>
-			<div class="span4">
+			<div class="col-md-4">
 				<div class="rowlabel">
 					<label for="balanceBank"> <small>Balance with bank</small>
 					</label>
@@ -341,8 +341,8 @@
 				</div>
 			</div>
 		</div>
-		<div class="show-grid row-fluid">
-			<div class="span4">
+		<div class="show-grid row">
+			<div class="col-md-4">
 				<div class="rowlabel">
 					<label for="storesConsum"> <small>Stores/consumables
 							including packing material</small>
@@ -353,7 +353,7 @@
 						maxlength="14" class="decimal" value="${parentBean.storesConsum }" />
 				</div>
 			</div>
-			<div class="span4">
+			<div class="col-md-4">
 				<div class="rowlabel">
 					<label for="rawMaterial"> <small>Raw materials</small>
 					</label>
@@ -363,7 +363,7 @@
 						maxlength="14" class="decimal" value="${parentBean.rawMaterial }" />
 				</div>
 			</div>
-			<div class="span4">
+			<div class="col-md-4">
 				<div class="rowlabel">
 					<label for="stockProcess"> <small>Stock-in-process</small>
 					</label>
@@ -374,8 +374,8 @@
 				</div>
 			</div>
 		</div>
-		<div class="row-fluid show-grid">
-			<div class="span4">
+		<div class="row show-grid">
+			<div class="col-md-4">
 				<div class="rowlabel">
 					<label for="finishGoods"> <small>Finished Goods/Traded Goods</small>
 					</label>
@@ -385,7 +385,7 @@
 						maxlength="14" class="decimal" value="${parentBean.finishGoods }" />
 				</div>
 			</div>
-			<div class="span4">
+			<div class="col-md-4">
 				<div class="rowlabel">
 					<label for="otherCurrAsset"> <small>Other Current Assets</small>
 					</label>
@@ -395,7 +395,7 @@
 						maxlength="14" class="decimal" value="${parentBean.otherCurrAsset }" />
 				</div>
 			</div>
-			<div class="span4">
+			<div class="col-md-4">
 				<div class="rowlabel">
 					<label for="grossCurrAssets"> <small>Gross Current Assets</small>
 					</label>
@@ -409,7 +409,7 @@
 	</fieldset>
 	<fieldset class="regularAcc_Y regularAcc_N <c:choose><c:when test="${empty parentBean.regularAccOrNoCase || parentBean.regularAccOrNoCase == 'N'}">hide</c:when></c:choose>">
 		<legend> Loans and advances</legend>
-		<div class="span3">
+		<div class="col-md-3">
 			<div class="rowlabel">
 				<label for="advancRecover"> <small>Advances recoverable in cash</small>
 				</label>
@@ -419,7 +419,7 @@
 					maxlength="14" class="decimal" value="${parentBean.advancRecover }" />
 			</div>
 		</div>
-		<div class="span3">
+		<div class="col-md-3">
 			<div class="rowlabel">
 				<label for="loanAdvanCorpOthr"> <small>Deposits,loans and advances to Corp &amp; others</small>
 				</label>
@@ -429,7 +429,7 @@
 					maxlength="14" class="decimal" value="${parentBean.loanAdvanCorpOthr }" />
 			</div>
 		</div>
-		<div class="span3">
+		<div class="col-md-3">
 			<div class="rowlabel">
 				<label for="balWthRevenAuth"> <small>Balance with Revenue Authorities</small>
 				</label>
@@ -439,7 +439,7 @@
 					maxlength="14" class="decimal" value="${parentBean.balWthRevenAuth }" />
 			</div>
 		</div>
-		<div class="span3">
+		<div class="col-md-3">
 			<div class="rowlabel">
 				<label for="grossCurrAssLoanAdvan"> <small>Gross Current Assets,Loan &amp;Advances</small>
 				</label>
@@ -452,8 +452,8 @@
 	</fieldset>
 	<fieldset class="regularAcc_Y regularAcc_N <c:choose><c:when test="${empty parentBean.regularAccOrNoCase || parentBean.regularAccOrNoCase == 'N'}">hide</c:when></c:choose>">
 		<legend> Current liabilities</legend>
-		<div class="row-fluid show-grid">
-			<div class="span4">
+		<div class="row show-grid">
+			<div class="col-md-4">
 				<div class="rowlabel">
 					<label for="interestAcuurNtLoan"> <small>Interest Accrued(Not due on Loan)</small>
 					</label>
@@ -463,7 +463,7 @@
 						class="decimal" value="${parentBean.interestAcuurNtLoan }" />
 				</div>
 			</div>
-			<div class="span4">
+			<div class="col-md-4">
 				<div class="rowlabel">
 					<label for="interestAcuurOnabove"> <small>Interest Accrued on above</small>
 					</label>
@@ -473,7 +473,7 @@
 						type="text" maxlength="14" class="decimal" value="${parentBean.interestAcuurOnabove }" />
 				</div>
 			</div>
-			<div class="span4">
+			<div class="col-md-4">
 				<div class="rowlabel">
 					<label for="sundryCreditor"> <small>Sundry Creditors</small>
 					</label>
@@ -484,8 +484,8 @@
 				</div>
 			</div>
 		</div>
-		<div class="row-fluid show-grid">
-			<div class="span4">
+		<div class="row show-grid">
+			<div class="col-md-4">
 				<div class="rowlabel">
 					<label for="laibLeaseAsset"> <small>Liability for Leased Assets</small>
 					</label>
@@ -495,7 +495,7 @@
 						maxlength="14" class="decimal" value="${parentBean.laibLeaseAsset }" />
 				</div>
 			</div>
-			<div class="span4">
+			<div class="col-md-4">
 				<div class="rowlabel">
 					<label for="grossCurrLiability"> <small>Gross Current Liablity</small>
 					</label>
@@ -509,7 +509,7 @@
 	</fieldset>
 	<fieldset class="regularAcc_Y regularAcc_N <c:choose><c:when test="${empty parentBean.regularAccOrNoCase || parentBean.regularAccOrNoCase == 'N'}">hide</c:when></c:choose>">
 		<legend> Provisions</legend>
-		<div class="span3">
+		<div class="col-md-3">
 			<div class="rowlabel">
 				<label for="incometaxProvis"> <small>Provision for Income Tax</small>
 				</label>
@@ -519,7 +519,7 @@
 					maxlength="14" class="decimal" value="${parentBean.incometaxProvis }" />
 			</div>
 		</div>
-		<div class="span3">
+		<div class="col-md-3">
 			<div class="rowlabel">
 				<label for="wealthTaxProvis"> <small>Provision for Wealth Tax</small>
 				</label>
@@ -529,7 +529,7 @@
 					maxlength="14" class="decimal" value="${parentBean.wealthTaxProvis }" />
 			</div>
 		</div>
-		<div class="span3">
+		<div class="col-md-3">
 			<div class="rowlabel">
 				<label for="leaveProvis"> <small>Provision for Leave</small>
 				</label>
@@ -539,7 +539,7 @@
 					maxlength="14" class="decimal" value="${parentBean.leaveProvis }" />
 			</div>
 		</div>
-		<div class="span3">
+		<div class="col-md-3">
 			<div class="rowlabel">
 				<label for="otherProvis"> <small>Other Provisions</small>
 				</label>
@@ -549,7 +549,7 @@
 					maxlength="14" class="decimal" value="${parentBean.otherProvis }" />
 			</div>
 		</div>
-		<div class="span3">
+		<div class="col-md-3">
 			<div class="rowlabel">
 				<label for="grossProvision"> <small>Gross Provisions</small>
 				</label>
@@ -561,8 +561,8 @@
 		</div>
 	</fieldset>
 	<div class="well regularAcc_Y regularAcc_N <c:choose><c:when test="${empty parentBean.regularAccOrNoCase || parentBean.regularAccOrNoCase == 'N'}">hide</c:when></c:choose>">
-		<div class="row-fluid show-grid">
-			<div class="span4">
+		<div class="row show-grid">
+			<div class="col-md-4">
 				<div class="rowlabel">
 					<label for="grossCurrLaibilProvison"> <small>Gross Current liabilities and provisions</small>
 					</label>
@@ -572,7 +572,7 @@
 						type="text" maxlength="14" class="decimal" value="${parentBean.grossCurrLaibilProvison }" readonly />
 				</div>
 			</div>
-			<div class="span4">
+			<div class="col-md-4">
 				<div class="rowlabel">
 					<label for="netCurrAssets"> <small>Net Current Assets</small>
 					</label>
@@ -585,8 +585,8 @@
 		</div>
 	</div>
 	<div class="well regularAcc_Y regularAcc_N <c:choose><c:when test="${empty parentBean.regularAccOrNoCase || parentBean.regularAccOrNoCase == 'N'}">hide</c:when></c:choose>">
-		<div class="row-fluid show-grid">
-			<div class="span3">
+		<div class="row show-grid">
+			<div class="col-md-3">
 				<div class="rowlabel">
 					<label for="miscellanExpend"> <small>Miscellaneous expenditure</small>
 					</label>
@@ -596,7 +596,7 @@
 						maxlength="14" class="decimal" value="${parentBean.miscellanExpend }" />
 				</div>
 			</div>
-			<div class="span3">
+			<div class="col-md-3">
 				<div class="rowlabel">
 					<label for="deftaxAssets"> <small>Deferred tax asset</small>
 					</label>
@@ -606,7 +606,7 @@
 						maxlength="14" class="decimal" value="${parentBean.deftaxAssets }" />
 				</div>
 			</div>
-			<div class="span3">
+			<div class="col-md-3">
 				<div class="rowlabel">
 					<label for="profLoassAccn"> <small>Profit and loss account</small>
 					</label>
@@ -616,7 +616,7 @@
 						maxlength="14" class="decimal" value="${parentBean.grossAppliFund }" />
 				</div>
 			</div>
-			<div class="span3">
+			<div class="col-md-3">
 				<div class="rowlabel">
 					<label for="grossAppliFund"> <small>Gross Application of Funds</small>
 					</label>
@@ -634,8 +634,8 @@
 			account of business or profession are not maintained -furnish the
 			following information as on 31st day of March, 2013, in respect of
 			business</div>
-		<div class="row-fluid show-grid">
-			<div class="span3">
+		<div class="row show-grid">
+			<div class="col-md-3">
 				<div class="rowlabel">
 					<label for="totalSundryDebtor"> <small>Amount of total sundry debtors</small>
 					</label>
@@ -645,7 +645,7 @@
 						maxlength="14" class="decimal" value="${parentBean.totalSundryDebtor }" />
 				</div>
 			</div>
-			<div class="span3">
+			<div class="col-md-3">
 				<div class="rowlabel">
 					<label for="totalSundryCreditor"> <small>Amount of total sundry creditors</small>
 					</label>
@@ -655,7 +655,7 @@
 						maxlength="14" class="decimal" value="${parentBean.totalSundryCreditor }" />
 				</div>
 			</div>
-			<div class="span3">
+			<div class="col-md-3">
 				<div class="rowlabel">
 					<label for="totalStockTrade"> <small>Amount of total stock-in-trade</small>
 					</label>
@@ -665,7 +665,7 @@
 						maxlength="14" class="decimal" value="${parentBean.totalStockTrade }" />
 				</div>
 			</div>
-			<div class="span3">
+			<div class="col-md-3">
 				<div class="rowlabel">
 					<label for="cashBalance"> <small>Amount of the cash balance</small>
 					</label>
@@ -677,11 +677,11 @@
 			</div>
 		</div>
 	</fieldset>
-	<div class="row-fluid show-grid">
-		<div class="span4 offset8 decimal">
+	<div class="row show-grid">
+		<div class="col-md-4 col-md-offset-8 decimal">
 			<!--<a href="${scriptName}"
-				class="btn btn-danger" style="color: black">Cancel</a>&nbsp;  --> <a
-				id="myModalScheduleBalSheet" role="button" class="btn btn-success"
+				class="btn btn-default btn-danger" style="color: black">Cancel</a>&nbsp;  --> <a
+				id="myModalScheduleBalSheet" role="button" class="btn btn-default btn-success"
 				style="color: black">Save</a>
 		</div>
 	</div>

@@ -11,7 +11,7 @@
 	<w4india:itrmenu/>
 <hst:link var="mainSiteMapRefId" />
 <c:if test="${not empty InCorrectPan}">
-<div class="alert alert-error">
+<div class="alert alert-danger">
 
 <fmt:message key="not.valid.Pan"> </fmt:message>
 </div>
@@ -19,7 +19,7 @@
 </c:if>
 
 <c:if test="${not empty ITR1_FIRM_PAN}">
-		<div class="alert alert-error">
+		<div class="alert alert-danger">
 			<fmt:message key="${ITR1_FIRM_PAN}" />
 		</div>
 	</c:if>
@@ -35,8 +35,8 @@
 
 		<fieldset>
 			<legend style="color: green; font-weight: bold;">Enter Details</legend>
-			<div class="row-fluid show-grid">
-				<div class="span4">
+			<div class="row show-grid">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="firm_PAN"><small><fmt:message
 									key="firm_PAN.schBP.ITR3" /> </small> </label>
@@ -47,7 +47,7 @@
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.firm_PAN}"/></c:if>" />
 					</div>
 				</div>
-				<div class="span4">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="salary_BonusRcv"><small><fmt:message
 									key="salary_BonusRcv.schBP.itr3" /> </small> </label>
@@ -58,7 +58,7 @@
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.salary_BonusRcv}"/></c:if>" />
 					</div>
 				</div>
-				<div class="span4">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="interest_Rcv"><small><fmt:message
 									key="interest_Rcv.schBP.itr3" /> </small> </label>
@@ -70,9 +70,9 @@
 					</div>
 				</div>
 			</div>
-			<div class="row-fluid show-grid">
+			<div class="row show-grid">
 
-				<div class="span4">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="total_SalaryAndInterest"><small><fmt:message
 									key="total_SalaryAndInterest.schBP.itr3" /> </small> </label>
@@ -84,7 +84,7 @@
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.total_SalaryAndInterest}"/></c:if>" />
 					</div>
 				</div>
-				<div class="span4">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="expenses_RelTotal"><small><fmt:message
 									key="expenses_RelTotal.schBP.itr3" /> </small> </label>
@@ -95,7 +95,7 @@
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.expenses_RelTotal}"/></c:if>" />
 					</div>
 				</div>
-				<div class="span4">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="netIncome"><small><fmt:message
 									key="netIncome.schBP.itr3" /> </small> </label>
@@ -108,10 +108,10 @@
 				</div>
 			</div></fieldset>
 
-			<div class="row-fluid show-grid">
-				<div class="span4 offset8 decimal">
-					<a href="${scriptName}" class="btn btn-danger" style="color: black">Cancel</a>&nbsp;
-					<a id="myModalIncFirms" role="button" class="btn btn-success" style="color: black">Save</a>
+			<div class="row show-grid">
+				<div class="col-md-4 col-md-offset-8 decimal">
+					<a href="${scriptName}" class="btn btn-default btn-danger" style="color: black">Cancel</a>&nbsp;
+					<a id="myModalIncFirms" role="button" class="btn btn-default btn-success" style="color: black">Save</a>
 				</div>
 			</div>
 		</form>
@@ -146,8 +146,8 @@
 						</td>
 						<td><w4india:inr value="${incFromFirms.netIncome}" />
 						</td>
-						<td><a class="btn btn-primary" href="${scriptName}/<c:out value="${incFromFirms.canonicalUUID}"/>/incomefromfirmsItr3edit"><small><i class="icon-pencil icon-white"></i>Edit</small>&nbsp;&nbsp;
-						</a>&nbsp;<a class="btn btn-danger" href="${scriptName}/<c:out value="${incFromFirms.canonicalUUID}"/>/incomefromfirmsItr3delete" id="delete" data-confirm=""><small><i class="icon-trash icon-white"></i>Delete</small> </a>
+						<td><a class="btn btn-default btn-primary" href="${scriptName}/<c:out value="${incFromFirms.canonicalUUID}"/>/incomefromfirmsItr3edit"><small><i class="glyphicon glyphicon-pencil glyphicon glyphicon-white"></i>Edit</small>&nbsp;&nbsp;
+						</a>&nbsp;<a class="btn btn-default btn-danger" href="${scriptName}/<c:out value="${incFromFirms.canonicalUUID}"/>/incomefromfirmsItr3delete" id="delete" data-confirm=""><small><i class="glyphicon glyphicon-trash glyphicon glyphicon-white"></i>Delete</small> </a>
 							</td>
 						</tr>
 					</tr>
@@ -163,7 +163,7 @@
 			</c:if>
 		</table>
 		<a href="${scriptName}/incomefromfirmsItr3new"
-			class="btn btn-info" style="color: black">Add New</a>
+			class="btn btn-default btn-info" style="color: black">Add New</a>
 	</c:otherwise>
 </c:choose>
 </div>

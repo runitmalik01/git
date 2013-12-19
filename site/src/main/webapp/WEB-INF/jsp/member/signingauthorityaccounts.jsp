@@ -12,7 +12,7 @@
 <hst:link var="mainSiteMapRefId" />
 <c:if test="${not empty formMap}">
 	<c:forEach items="${formMap.message}" var="item">
-		<div class="alert alert-error">
+		<div class="alert alert-danger">
 			<fmt:message key="${item.value}" />
 		</div>
 	</c:forEach>
@@ -26,8 +26,8 @@
 		<form id="frmtSigningAuthority" action="${actionUrl}" method="post"
 			name="frmtSigningAuthority">
 			
-			<div class="row-fluid show-grid">
-				<div class="span4">
+			<div class="row show-grid">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="name_institution"><small><fmt:message
 									key="name.institution.itr2" /> </small> </label>
@@ -38,7 +38,7 @@
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.name_Institution}"/></c:if>" />
 					</div>
 				</div>
-				<div class="span4">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="address_institution"><small><fmt:message
 									key="address.institution.itr2" /> </small> </label>
@@ -49,7 +49,7 @@
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.address_Institution}"/></c:if>" />
 					</div>
 				</div>
-				<div class="span4">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="name_accountholder"><small><fmt:message
 									key="name.account.holder.itr2" /> </small> </label>
@@ -61,9 +61,9 @@
 					</div>
 				</div>
 			</div>
-			<div class="row-fluid show-grid">
+			<div class="row show-grid">
 			
-				<div class="span4">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="account_number"><small><fmt:message
 									key="account.number.itr2" /> </small> </label>
@@ -74,7 +74,7 @@
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.account_Number}"/></c:if>" />
 					</div>
 				</div>
-				<div class="span4">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="peak_balance"><small><fmt:message
 									key="peak.balance.itr2" /> </small> </label>
@@ -87,10 +87,10 @@
 				</div>
 			</div>
 		
-			<div class="row-fluid show-grid">
-				<div class="span4 offset8 decimal">
-					<a href="${scriptName}" class="btn btn-danger">Cancel</a>&nbsp;
-					<a id="myModalHrefSignAccount" role="button" class="btn btn-success">Save</a>
+			<div class="row show-grid">
+				<div class="col-md-4 col-md-offset-8 decimal">
+					<a href="${scriptName}" class="btn btn-default btn-danger">Cancel</a>&nbsp;
+					<a id="myModalHrefSignAccount" role="button" class="btn btn-default btn-success">Save</a>
 				</div>  
 			
 			</div>
@@ -124,9 +124,9 @@
 						
 						<td><w4india:inr value="${foreignbank.peak_Balance}" />
 						</td>
-						<td><a class="btn btn-primary"
+						<td><a class="btn btn-default btn-primary"
 							href="${scriptName}/<c:out value="${foreignbank.canonicalUUID}"/>/signingauthorityaccountsedit"><small>Edit</small> &nbsp;&nbsp;
-						</a>&nbsp;<a class="btn btn-danger" href="${scriptName}/<c:out value="${foreignbank.canonicalUUID}"/>/signingauthorityaccountsdelete" data-confirm=""><small><i class="icon-trash icon-white"></i>Delete</small> </a>
+						</a>&nbsp;<a class="btn btn-default btn-danger" href="${scriptName}/<c:out value="${foreignbank.canonicalUUID}"/>/signingauthorityaccountsdelete" data-confirm=""><small><i class="glyphicon glyphicon-trash glyphicon glyphicon-white"></i>Delete</small> </a>
 							</td>
 						</tr>
 					</tr>
@@ -140,7 +140,7 @@
 			</c:if>
 		</table>
 		<a href="${scriptName}/signingauthorityaccountsnew"
-class="btn btn-info">Add New</a>
+class="btn btn-default btn-info">Add New</a>
 	</c:otherwise>
 </c:choose>
 </div>

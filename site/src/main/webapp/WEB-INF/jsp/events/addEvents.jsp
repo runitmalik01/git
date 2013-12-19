@@ -14,8 +14,8 @@
 		<fieldset>
 			<legend>Edit Your own Events</legend>
 
-			<div class="row-fluid show-grid">
-				<div class="span5">
+			<div class="row show-grid">
+				<div class="col-md-5">
 					<div class="rowlabel">
 						<label for="title">Title Of Events </label>
 					</div>
@@ -24,8 +24,8 @@
 					</div>
 				</div>
 			</div>
-			<div class="row-fluid show-grid">
-				<div class="span7">
+			<div class="row show-grid">
+				<div class="col-md-7">
 					<div class="rowlabel">
 						<label for="summary">Summary </label>
 					</div>
@@ -34,18 +34,18 @@
 					</div>
 				</div>
 			</div>
-			<div class="row-fluid show-grid">
-				<div class="span8">
+			<div class="row show-grid">
+				<div class="col-md-8">
 					<div class="rowlabel">
 						<label for="description">Description </label>
 					</div>
 					<div class="rowlabel">
-						<textarea class="field span12" id="description" name="description"></textarea>
+						<textarea class="field col-md-12" id="description" name="description"></textarea>
 
 					</div>
 				</div>
 			</div>
-			<div class="row-fluid show-grid">
+			<div class="row show-grid">
 				<div class="rowlabel">
 					<input type="submit" value="Save" style="color: blue;">
 				</div>

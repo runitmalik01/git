@@ -4,7 +4,7 @@
 	<div class="container">
 </c:set>
 <c:set var="openDiv1">
-<div class="row-fluid show-grid">
+<div class="row show-grid">
 </c:set>
 <c:set var="closeDiv">
 	</div>
@@ -12,14 +12,14 @@
 <c:if test="${not empty isVendor && isVendor eq 'true'}">
 	<c:choose>
 		<c:when test="${not empty isCommonPage && isCommonPage eq 'false'}">
-			<a class="btn btn-info" href="${websitebuilderlink}/pages.html/${pageDocument.canonicalUUID}/editpage"
+			<a class="btn btn-default btn-info" href="${websitebuilderlink}/pages.html/${pageDocument.canonicalUUID}/editpage"
 				style="position: absolute; top: 10em; left: 80em;"><i
-				class="glyphicon glyphicon-edit"></i>&nbsp;Edit Page</a>
+				class="glyphicon glyphglyphicon glyphicon-edit"></i>&nbsp;Edit Page</a>
 		</c:when>
 		<c:otherwise>
-			<a class="btn btn-warning" href="${websitebuilderlink}/pages.html"
+			<a class="btn btn-default btn-warning" href="${websitebuilderlink}/pages.html"
 				style="position: absolute; top: 10em; left: 80em;"><i
-				class="glyphicon glyphicon-plus"></i>&nbsp;Create Own Page</a>
+				class="glyphicon glyphglyphicon glyphicon-plus"></i>&nbsp;Create Own Page</a>
 		</c:otherwise>
 	</c:choose>
 </c:if>

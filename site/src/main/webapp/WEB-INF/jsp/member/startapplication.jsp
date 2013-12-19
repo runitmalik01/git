@@ -39,7 +39,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 	<w4india:itrmenu />
 	<c:if test="${not empty formMap}">
 		<c:forEach items="${formMap.message}" var="item">			
-			<div class="alert alert-error">
+			<div class="alert alert-danger">
 				<c:choose>
 					<c:when test="${fn:startsWith(item.key,'RAW_MESSAGE')}">
 						<c:out value="${item.value}" />
@@ -52,28 +52,28 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 		</c:forEach>
 	</c:if>
 	<c:if test="${not empty ITR1_FORM_SELECTION}">
-		<div class="alert alert-error">
+		<div class="alert alert-danger">
 			<fmt:message key="${ITR1_FORM_SELECTION}" />
 		</div>
 	</c:if>
-	<div id="ditPanInvalid" class="alert alert-error <c:if test="${empty noPanMatchFound}">hide</c:if>"><strong><fmt:message key="err.match.pan.dit"/></strong></div>
-	<div id="lastNameInvalid" class="alert alert-error hide"><strong><fmt:message key="err.match.last.name.dit"/></strong></div>
-	<div id="error" class="alert alert-error" style="display:none;"><fmt:message key="err.valid.lastName.with.pan"/></div>
+	<div id="ditPanInvalid" class="alert alert-danger <c:if test="${empty noPanMatchFound}">hide</c:if>"><strong><fmt:message key="err.match.pan.dit"/></strong></div>
+	<div id="lastNameInvalid" class="alert alert-danger hide"><strong><fmt:message key="err.match.last.name.dit"/></strong></div>
+	<div id="error" class="alert alert-danger" style="display:none;"><fmt:message key="err.valid.lastName.with.pan"/></div>
 	<h4>
 		<c:out value="${filingStatus}" /> Information
 	</h4>
 	<form id="frmPersonalInfo" action="${actionUrl}" method="post"
 		name="pi">
-			<div class="row-fluid show-grid" style="font-family: arial;font-size: 11px;border: 1px dashed #ccc;">
-				<div class="span12">
+			<div class="row show-grid" style="font-family: arial;font-size: 11px;border: 1px dashed #ccc;">
+				<div class="col-md-12">
 					<input type="radio" <c:if test="${not empty memberpersonalinformation && memberpersonalinformation.filingSection.xmlCode == '17'}">checked</c:if> value="revisingNoNotice" id="revisingNoNotice" name="returnTypeChoice">I am revising my return for AY ${financialYear.displayAssessmentYear} and I have already submitted my original return.
 				</div>
 			</div>
-			<div class="row-fluid show-grid" style="font-family: arial;font-size: 11px;border: 1px dashed #ccc;">
-				<div class="span8">
+			<div class="row show-grid" style="font-family: arial;font-size: 11px;border: 1px dashed #ccc;">
+				<div class="col-md-8">
 					<input type="radio" <c:if test="${not empty memberpersonalinformation && memberpersonalinformation.returnType == 'O' && not empty memberpersonalinformation.filingSection.requiresNotice}">checked</c:if> value="revisingWithNotice" id="revisingWithNotice" name="returnTypeChoice">I am filing my return in response to a notice received from the Income Tax Department and Section is
 				</div>
-				<div class="span4" id="NoticeSection">
+				<div class="col-md-4" id="NoticeSection">
 					<select name="revisingWithNoticeSection" id="revisingWithNoticeSection">
 						<c:forEach items="${filingSections}" var="filingSection">
 							<c:if test="${filingSection.requiresNotice}">
@@ -83,16 +83,16 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 					</select>
 				</div>
 			</div>
-			<div class="row-fluid show-grid" style="font-family: arial;font-size: 11px;border: 1px dashed #ccc;">
-				<div class="span8">
+			<div class="row show-grid" style="font-family: arial;font-size: 11px;border: 1px dashed #ccc;">
+				<div class="col-md-8">
 					<input  <c:if test="${empty memberpersonalinformation || memberpersonalinformation.returnType == 'O' && not empty memberpersonalinformation.filingSection && memberpersonalinformation.filingSection.xmlCode == '11' ||  memberpersonalinformation.filingSection.xmlCode == '12'}">checked</c:if> type="radio" value="originalReturn" id="originalReturn" name="returnTypeChoice">None of the above (This is my first return for assessment year ${financialYear.displayAssessmentYear} )
 				</div>
 			</div>
 		<fieldset>
 			<legend>Filing Status</legend>
-			<div class="row-fluid show-grid">
+			<div class="row show-grid">
 				<%--
-				<div class="span3">
+				<div class="col-md-3">
 					<div class="rowlabel">
 						<label><small>Filing Section<span style="color: red">*</span>
 						</small>
@@ -119,7 +119,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 					</div>
 				</div>
 				 --%>
-				<div class="span4">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label><small><fmt:message
 									key="member.employe.category" /><span style="color: red">*</span>
@@ -134,7 +134,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 									<option value="NA" <c:if test="${not empty parentBean.employe_category && parentBean.employe_category =='NA'}">selected</c:if>>NA</option>
 								</select>
 				</div>
-				<div class="span5">
+				<div class="col-md-5">
 					<div class="rowlabel">
 						<label><small><fmt:message
 									key="member.portugese.civil" /><span style="color: red">*</span>
@@ -162,8 +162,8 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 		</fieldset>		
 		<fieldset id="ul_revised" class="revised_v original_h" style="<c:if test="${empty memberpersonalinformation || memberpersonalinformation.returnType == 'O'}">display: none;</c:if>">
 			<legend>Revised Return Details</legend>
-			<div class="row-fluid show-grid" id="ul_revised_input">
-				<div class="span3" id="ackNo">
+			<div class="row show-grid" id="ul_revised_input">
+				<div class="col-md-3" id="ackNo">
 					<div class="rowlabel">
 						<label for="ack_no"><small>Original Ack No</small> </label>
 					</div>
@@ -173,7 +173,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 							placeholder="Enter Original Ack No" type="text" maxlength="15"/>
 					</div>
 				</div>
-				<div class="span2" id="ackdate">
+				<div class="col-md-2" id="ackdate">
 					<div class="rowlabel" id="ack_date_label">
 						<label for="ack_date"><small>Original Ack Date</small> </label>
 					</div>
@@ -184,7 +184,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 					</div>
 				</div>
 				<%--
-				<div class="span2">
+				<div class="col-md-2">
 					<div class="rowlabel">
 						<label for="defective"><small><abbr
 								title="Defective Return (U/s-139)">Defective?</abbr> </small> </label>
@@ -199,7 +199,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 					</div>
 				</div>
 				 --%>
-				<div class="span3 defective_Y_v defective_N_h" id="noticeNo"
+				<div class="col-md-3 defective_Y_v defective_N_h" id="noticeNo"
 					style="display: none">
 					<div class="rowlabel">
 						<label for="notice_no"><small>Notice No(U/s-139)</small>
@@ -211,7 +211,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 							type="text" maxlength="30"/>
 					</div>
 				</div>
-				<div class="span2 defective_Y_v defective_N_h" id="noticeDate"
+				<div class="col-md-2 defective_Y_v defective_N_h" id="noticeDate"
 					style="display: none">
 					<div class="rowlabel">
 						<label for="notice_date"><small>Notice
@@ -230,12 +230,12 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 				<c:out value="${filingStatus}" />
 				Details
 			</legend>
-			<div class="row-fluid show-grid">
+			<div class="row show-grid">
 				<c:choose>
 					<c:when test="${filingStatus eq 'PERSON'}">
 
 
-						<div class="span4">
+						<div class="col-md-4">
 							<div class="rowlabel">
 								<label for="pi_first_name"><small>First Name</small> </label>
 							</div>
@@ -245,7 +245,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 									value="<c:if test="${not empty parentBean.firstName}"><c:out value="${parentBean.firstName}"/></c:if>" maxlength="25"/>
 							</div>
 						</div>
-						<div class="span4">
+						<div class="col-md-4">
 							<div class="rowlabel">
 								<label for="pi_middle_name"><small>Middle Name</small> </label>
 							</div>
@@ -255,7 +255,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 									value="<c:if test="${not empty parentBean.middleName}"><c:out value="${parentBean.middleName}"/></c:if>" maxlength="25"/>
 							</div>
 						</div>
-						<div class="span4">
+						<div class="col-md-4">
 							<div class="rowlabel">
 								<label for="pi_last_name"><small>Last Name</small> </label>
 							</div>
@@ -268,7 +268,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 						</div>
 					</c:when>
 					<c:otherwise>
-						<div class="span12">
+						<div class="col-md-12">
 							<div class="rowlabel">
 								<label for="pi_last_name"><small><abbr
 										title="Name of your organization name"><c:out
@@ -286,10 +286,11 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 						</div>
 					</c:otherwise>
 				</c:choose>
+			</div>
 
 				<c:if test="${filingStatus eq 'PERSON' || filingStatus eq 'HUF'}">
-					<div class="row-fluid show-grid">
-						<div class="span4">
+					<div class="row show-grid">
+						<div class="col-md-4">
 							<div class="rowlabel">
 								<label for="pi_dob"><small>Date Of Birth</small> </label>
 							</div>
@@ -300,7 +301,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 							</div>
 						</div>
 						<c:if test="${filingStatus eq 'PERSON' }">
-						<div class="span4">
+						<div class="col-md-4">
 							<div class="rowlabel">
 								<label for="pi_dob"><small>Gender</small> </label>
 							</div>
@@ -317,7 +318,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 							</div>
 						</div>
 						</c:if>
-						<div class="span4">
+						<div class="col-md-4">
 							<div class="rowlabel">
 								<label for="pi_father_name"><small>Father Name</small> </label>
 							</div>
@@ -328,15 +329,13 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 							</div>
 						</div>
 					</div>
-
 				</c:if>
-			</div>
 		</fieldset>
 		<fieldset>
 			<legend>Address &amp; Contact Information</legend>
-			<div class="row-fluid show-grid">
+			<div class="row show-grid">
 
-				<div class="span6">
+				<div class="col-md-6">
 					<div class="rowlabel">
 						<label for="pi_flat_door_building"><small>Flat/Door/Building</small>
 						</label>
@@ -349,7 +348,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 							value="<c:if test="${not empty parentBean.flatDoorBuilding}"><c:out value="${parentBean.flatDoorBuilding}"/></c:if>" maxlength="50"/>
 					</div>
 				</div>
-				<div class="span6">
+				<div class="col-md-6">
 					<div class="rowlabel">
 						<label for="pi_road_street"><small>Road/Street</small> </label>
 					</div>
@@ -359,8 +358,8 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 					</div>
 				</div>
 			</div>
-			<div class="row-fluid show-grid">
-				<div class="span3">
+			<div class="row show-grid">
+				<div class="col-md-3">
 					<div class="rowlabel">
 						<label for="pi_area_locality"><small>Area/Locality</small>
 						</label>
@@ -368,7 +367,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 					<input id="pi_area_locality" value="${parentBean.areaLocality}" class="uprcase"
 						name="pi_area_locality" placeholder="Area/Locality" type="text" maxlength="50"/>
 				</div>
-				<div class="span3">
+				<div class="col-md-3">
 					<div class="rowlabel">
 						<label for="pi_town_city_district"><small>City/Town/District</small>
 						</label>
@@ -380,7 +379,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 							type="text" maxlength="50"/>
 					</div>
 				</div>
-				<div class="span3">
+				<div class="col-md-3">
 					<div class="rowlabel">
 						<label for="pi_state"><small>State</small> </label>
 					</div>
@@ -395,7 +394,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 					</select>
 				</div>
 
-				<div class="span2 <c:if test="${parentBean.country == '99'}"></c:if>hide" id="countrylist" >
+				<div class="col-md-2 <c:if test="${parentBean.country == '99'}"></c:if>hide" id="countrylist" >
 					<div class="rowlabel">
 						<label for="pi_country"><small>Country</small> </label>
 					</div>
@@ -409,8 +408,8 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 					</select>
 				</div>
 			</div>
-			<div class="row-fluid show-grid">
-				<div class="span3">
+			<div class="row show-grid">
+				<div class="col-md-3">
 					<div class="rowlabel">
 						<label for="pi_pin_code"><small>PIN</small> </label>
 					</div>
@@ -420,7 +419,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 							maxlength="6" />
 					</div>
 				</div>
-				<div class="span2">
+				<div class="col-md-2">
 					<div class="rowlabel">
 						<label for="pi_std_code"><small>STD Code</small> </label>
 					</div>
@@ -429,7 +428,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 							name="pi_std_code" placeholder="STD" type="text" maxlength="5" />
 					</div>
 				</div>
-				<div class="span2">
+				<div class="col-md-2">
 					<div class="rowlabel">
 						<label for="phone"><small>Phone</small> </label>
 					</div>
@@ -438,7 +437,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 							placeholder="Phone Number" type="text" maxlength="10" />
 					</div>
 				</div>
-				<div class="span2">
+				<div class="col-md-2">
 					<div class="rowlabel">
 						<label for="pi_mobile"><small>Mobile</small> </label>
 					</div>
@@ -449,7 +448,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 							maxlength="10" />
 					</div>
 				</div>
-				<div class="span3">
+				<div class="col-md-3">
 					<div class="rowlabel">
 						<label for="mobile1"><small>Mobile(If any other)</small> </label>
 					</div>
@@ -460,8 +459,8 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 					</div>
 				</div>
 			</div>
-			<div class="row-fluid show-grid">
-				<div class="span3">
+			<div class="row show-grid">
+				<div class="col-md-3">
 					<div class="rowlabel">
 						<label for="ward_circle"><small>IncomeTax
 								Ward/Circle</small> </label>
@@ -471,12 +470,12 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 							name="ward_circle" placeholder=" Ward/Circle" type="text" maxlength="50"/>
 					</div>
 				</div>
-				<div class="span7">
+				<div class="col-md-7">
 					<div class="rowlabel">
 						<label for="pi_email"><small>Email</small> </label>
 					</div>
-					<div class="input-prepend">
-						<span class="add-on"><i class="icon-envelope"></i> </span> <input
+					<div class="input-group">
+						<span class="add-on"><i class="glyphicon glyphicon-envelope"></i> </span> <input
 							id="pi_email" style="width: 200px"
 							value="<c:choose><c:when test="${empty parentBean || empty parentBean.email}"><%=request.getUserPrincipal().getName()%><c:out value="${request.userPrincipal.name}"/></c:when><c:otherwise>${parentBean.email}</c:otherwise></c:choose>"
 							name="pi_email" placeholder="Email Address" type="text" maxlength="125"/>
@@ -499,11 +498,11 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 					<script>
 						var qs = <c:out value="${jsonObject}" escapeXml="false"/>
 					</script>
-					<div class="row-fluid show-grid">
-						<div class="span10">
+					<div class="row show-grid">
+						<div class="col-md-10">
 							<c:out value="${map['rsstatus_q']}" />
 						</div>
-						<div class="span2">
+						<div class="col-md-2">
 							<select class="answer" id="rsstatus_q" name="rsstatus_q">
 								<option>Select</option>
 								<option value="yes">Yes</option>
@@ -523,10 +522,10 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 													pageContext.setAttribute("isAnswer", "true");
 												}
 							%>
-							<div class="row-fluid show-grid"
+							<div class="row show-grid"
 								id="ul_<c:out value="${item.key}"/>"
 								style="display: none; visiblity: hidden">
-								<div class="span10">
+								<div class="col-md-10">
 									<c:choose>
 										<c:when test="${fn:startsWith(item.value,'ans_')}">
 											<br />
@@ -543,7 +542,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 									<c:if test="${fn:startsWith(item.value,'ans_')}">
 									</c:if>
 								</div>
-								<div class="span2">
+								<div class="col-md-2">
 									<c:if test="${isAnswer != 'true'}">
 										<select class="answer" id="<c:out value="${item.key}"/>"
 											name="<c:out value="${item.key}"/>">
@@ -599,11 +598,11 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 					<script>
 						var qs = <c:out value="${jsonObjecthuf}" escapeXml="false"/>
 					</script>
-					<div class="row-fluid show-grid">
-						<div class="span10">
+					<div class="row show-grid">
+						<div class="col-md-10">
 							<c:out value="${maphuf['rsstatus_q']}" />
 						</div>
-						<div class="span2">
+						<div class="col-md-2">
 							<select class="answer" id="rsstatus_q" name="rsstatus_q">
 								<option>Select</option>
 								<option value="yes">Yes</option>
@@ -623,10 +622,10 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 													pageContext.setAttribute("isAnswer", "true");
 												}
 							%>
-							<div class="row-fluid show-grid"
+							<div class="row show-grid"
 								id="ul_<c:out value="${item.key}"/>"
 								style="display: none; visiblity: hidden">
-								<div class="span10">
+								<div class="col-md-10">
 									<c:choose>
 										<c:when test="${fn:startsWith(item.value,'ans_')}">
 											<br />
@@ -643,7 +642,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 									<c:if test="${fn:startsWith(item.value,'ans_')}">
 									</c:if>
 								</div>
-								<div class="span2">
+								<div class="col-md-2">
 									<c:if test="${isAnswer != 'true'}">
 										<select class="answer" id="<c:out value="${item.key}"/>"
 											name="<c:out value="${item.key}"/>">
@@ -699,24 +698,24 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 		</fieldset>
 		<fieldset>
 			<legend>ITR Package selection</legend>
-			<div class="row-fluid show-grid">
-			    <div class="span2">
+			<div class="row show-grid">
+			    <div class="col-md-2">
 			    	<div class="rowlabel"><label for="flex_string_ITRForm"><small>Select the ITR Package</small></label></div>
 			    </div>
-				<div class="span5">
+				<div class="col-md-5">
 					<div class="rowlabel"><label for="whoCan"><small>Who can select this package</small></label></div>
 				</div>
-				<div class="span5">
+				<div class="col-md-5">
 					<div class="rowlabel"><label for="whoCannot"><small>Who should not select this package</small></label></div>
 				</div>
 				<%--
-				<div class="span2">
+				<div class="col-md-2">
 					<div class="rowlabel"><label for="filingMode"><small><abbr title="Choose eFile if you want to do it yourself. eZFile lets you upload documents to <w4india:resellername/> and then let <w4india:resellername/> prepare the tax return for you.">Mode</abbr>&nbsp;<a href='<hst:link siteMapItemRefId="serviceprice"/>'>Help</a></small></label></div>
 				</div>
 				 --%>
 			</div>
-			<div class="row-fluid show-grid">
-				<div class="span2">
+			<div class="row show-grid">
+				<div class="col-md-2">
 					<select id="flex_string_ITRForm" name="flex_string_ITRForm">
 						<c:forEach items="${filingStatus.possibleITRForms}" var="itrForm">
 							<option <c:if test="${parentBean.selectedITRForm == itrForm}">selected</c:if> value="${itrForm}"><fmt:message key="${itrForm}.packageName"></fmt:message></option>
@@ -724,14 +723,14 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 					</select>
 					<input type="hidden" name="flex_string_ITRServiceDelivery" value="DIY"/>					
 				</div>
-				<div class="span5">
+				<div class="col-md-5">
 					<div style="font-size:small" id="whoCan"></div>
 				</div>
-				<div class="span5">
+				<div class="col-md-5">
 					<div style="font-size:small" id="whoCannot"></div>
 				</div>
 				<%--
-				<div class="span2">
+				<div class="col-md-2">
 					<div style="font-size:small" id="filingMode">
 						<input type="hidden" id="hidden_flex_string_ITRServiceDelivery" name="hidden_flex_string_ITRServiceDelivery" value="${parentBean.selectedServiceDeliveryOption}">
 						<select name="flex_string_ITRServiceDelivery" id="flex_string_ITRServiceDelivery">
@@ -774,8 +773,8 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 			<legend>
 				<fmt:message key="member.bank.detail" />
 			</legend>
-			<div class="row-fluid show-grid">
-				<div class="span6">
+			<div class="row show-grid">
+				<div class="col-md-6">
 					<div class="rowlabel">
 						<small><label for="bd_bank_name"> <fmt:message
 									key="member.bank.detail.bank.name" />
@@ -788,7 +787,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 					</div>
 				</div>
 
-				<div class="span6">
+				<div class="col-md-6">
 					<div class="rowlabel">
 						<small><label for="bd_Branch_name"> <fmt:message
 									key="member.bank.detail.bank.branch" />
@@ -801,8 +800,8 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 					</div>
 				</div>
 			</div>
-			<div class="row-fluid show-grid">
-				<div class="span4">
+			<div class="row show-grid">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="bd_account_no"><small><fmt:message
 									key="member.bank.detail.acc.number" />
@@ -814,7 +813,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 							maxlength="17" />
 					</div>
 				</div>
-				<div class="span4">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<small><label for="<c:out value="${bnkcode}"/>"> <c:out
 									value="${label}" />
@@ -828,7 +827,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 							maxlength="<c:out value="${maxlen}"/>" />
 					</div>
 				</div>
-				<div class="span4">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="bd_account_type"><small><fmt:message
 									key="member.bank.detail.acc.type" />
@@ -856,8 +855,8 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 					</div>
 				</div>
 			</div>
-			<div class="row-fluid show-grid">
-				<div class="span9">
+			<div class="row show-grid">
+				<div class="col-md-9">
 					<div class="rowlabel">
 						<small><label for="bd_ecs"><fmt:message
 									key="member.bank.detail.ecs" /> </label>
@@ -865,7 +864,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 
 					</div>
 				</div>
-				<div class="span2">
+				<div class="col-md-2">
 					<div class="rowlabel">
 						<select name="bd_ecs" title="Select Electronic Clearing System" class="uprcase"
 							id="bd_ecs">
@@ -922,43 +921,43 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 		<%--
 		<fieldset>
 			<legend>Choose the service you want</legend>
-			<div class="row-fluid show-grid">
-			    <div class="span2">
+			<div class="row show-grid">
+			    <div class="col-md-2">
 			    	<div class="rowlabel"><label for="flex_string_ITRForm" style="text-decoration: underline;" ><small>Service Type</small></label></div>
 			    </div>
-				<div class="span5">
+				<div class="col-md-5">
 					<div class="rowlabel"><label for="whoCan" style="text-decoration: underline;" ><small>What do you get?</small></label></div>
 				</div>
-				<div class="span2">
+				<div class="col-md-2">
 					<div class="rowlabel"><label for="whoCannot" style="text-decoration: underline;" ><small>How much does it cost?</small></label></div>
 				</div>
-				<div class="span3">
+				<div class="col-md-3">
 					<div class="rowlabel"><label for="whoCannot1" style="text-decoration: underline;" ><small><abbr title="You can name your own price for this service">Name your price</abbr></small></label></div>
 				</div>
 			</div>
-			<div class="row-fluid show-grid">
-				<div class="span2">
+			<div class="row show-grid">
+				<div class="col-md-2">
 					<select id="flex_string_ITRForm" name="flex_string_ITRForm">
 						<c:forEach items="${filingStatus.possibleITRForms}" var="itrForm">
 							<option <c:if test="${parentBean.selectedITRForm == itrForm}">selected</c:if> value="${itrForm}">${itrForm.displayName}</option>
 						</c:forEach>
 					</select>
 				</div>
-				<div class="span5">
+				<div class="col-md-5">
 					<div style="font-size:small" id="whoCan"></div>
 				</div>
-				<div class="span2">
+				<div class="col-md-2">
 					<div style="font-size:small" id="whoCannot"></div>
 				</div>
-				<div class="span2">
+				<div class="col-md-2">
 					<input type="text" value=""/>
 				</div>
 			</div>
 		</fieldset>
 		  --%>
-		<div class="row-fluid show-grid">
-			<div class="span4 offset8 decimal">
-				<a id="hrefLogin" role="button" class="btn orange">Save</a>
+		<div class="row show-grid">
+			<div class="col-md-4 col-md-offset-8 decimal">
+				<a id="hrefLogin" role="button" class="btn btn-default orange">Save</a>
 			</div>
 		</div>
 	</form>
@@ -970,11 +969,11 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 		  </div>
 		  <div class="modal-body">
 		    <p>An application is already in progress.</p>
-		    <p>Do you want to Duplicate PAN<a class="btn"><c:out value="${fn:toUpperCase(pan)}"/></a>Infomation?</p>
+		    <p>Do you want to Duplicate PAN<a class="btn btn-default"><c:out value="${fn:toUpperCase(pan)}"/></a>Infomation?</p>
 		  </div>
 		  <div class="modal-footer">
-		    <a href="${fn:substringBefore(scriptName,pan)}${duplicatePANFolder}/${pan}/servicerequest-itr-copy-or-move.html" class="btn btn-primary">Continue</a>
-		    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+		    <a href="${fn:substringBefore(scriptName,pan)}${duplicatePANFolder}/${pan}/servicerequest-itr-copy-or-move.html" class="btn btn-default btn-primary">Continue</a>
+		    <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">Close</button>
 		  </div>
 		</div>
 	</c:if>

@@ -14,5 +14,5 @@
 	<h1>
 		<small><font face="Tahoma" color="red">Invalid operation.</font></small>
 	</h1>
-	<br /> <a href="${homeLink}" class="btn btn-large btn-info"><i class="icon-home icon-white"></i> Take Me Home</a>
+	<br /> <a href="${homeLink}" class="btn btn-default btn-lg btn-info"><i class="glyphicon glyphicon-home glyphicon glyphicon-white"></i> Take Me Home</a>
 </div>

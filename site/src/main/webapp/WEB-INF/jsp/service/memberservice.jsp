@@ -1,6 +1,6 @@
 <%@include file="../includes/tags.jspf"%>
-<div class="row-fluid show-grid">
-	<div class="span9">
+<div class="row show-grid">
+	<div class="col-md-9">
 	  <div class="rowlabel">
 		<h2 align="center">Weath4India Services</h2>
 		<h5><small>We are constantly working towards our goal of bridging the possible gap between income earning population of 
@@ -32,7 +32,7 @@
 		</c:choose>
 		</div>
 	</div>
-	<div class="span3">
+	<div class="col-md-3">
 	   <div class="rowlabel">
 		   <hst:include ref="facetnav"/>
 		</div>

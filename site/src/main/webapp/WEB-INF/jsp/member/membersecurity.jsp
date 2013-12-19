@@ -12,7 +12,7 @@
 	</div>
 	<c:if test="${not empty formMap}">
 		<c:forEach items="${formMap.message}" var="item">
-			<div class="alert alert-error">
+			<div class="alert alert-danger">
 				<fmt:message key="${item.value}" />
 			</div>
 		</c:forEach>
@@ -20,15 +20,15 @@
 	<div class="well">
 		<fieldset>
 			<legend>
-				<strong><i class="icon-lock"></i>Security Questions</strong>
+				<strong><i class="glyphicon glyphicon-lock"></i>Security Questions</strong>
 			</legend>
 			<strong>Click on</strong>
 			<div class="btn-group">
-				<button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown">
-					<i class="icon-lock icon-white"></i>Security Question Panel<span class="caret"></span>
+				<button type="button" class="btn btn-default btn-warning dropdown-toggle" data-toggle="dropdown">
+					<i class="glyphicon glyphicon-lock glyphicon glyphicon-white"></i>Security Question Panel<span class="caret"></span>
 				</button>
 				<ul class="dropdown-menu">
-					<li><a href="${scriptName}/membersecuritynew" id="newchild"><i class="icon-plus-sign"></i><strong>Add</strong></a></li>
+					<li><a href="${scriptName}/membersecuritynew" id="newchild"><i class="glyphicon glyphicon-plus-sign"></i><strong>Add</strong></a></li>
 				</ul>
 			</div>
 			&nbsp;<strong>to add security question!!</strong>
@@ -37,9 +37,9 @@
 			<thead>
 				<tr class="success">
 					<th>#</th>
-					<th><i class=" icon-ok-circle"></i>Security Question</th>
-					<th><i class="icon-lock"></i><abbr title="Answer of selected Security Question">Answer</abbr></th>
-					<th><i class="icon-adjust"></i>Action</th>
+					<th><i class=" glyphicon glyphicon-ok-circle"></i>Security Question</th>
+					<th><i class="glyphicon glyphicon-lock"></i><abbr title="Answer of selected Security Question">Answer</abbr></th>
+					<th><i class="glyphicon glyphicon-adjust"></i>Action</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -50,24 +50,24 @@
 							<td><c:out value="${secQuesAnsList.question}" /></td>
 							<td><c:out value="${secQuesAnsList.answer}" /></td>
 							<td> <a href="${scriptName}/${secQuesAnsList.canonicalUUID}/membersecurityedit"
-										class="btn btn-primary"><i class="icon-edit icon-white"></i><span><strong>Edit</strong></span></a>&nbsp;
+										class="btn btn-default btn-primary"><i class="glyphicon glyphicon-edit glyphicon glyphicon-white"></i><span><strong>Edit</strong></span></a>&nbsp;
 									<a href="${scriptName}/${secQuesAnsList.canonicalUUID}/membersecuritydelete" 
-									data-confirm="" class="btn btn-danger"><i class="icon-trash icon-white"></i><span><strong>Delete</strong></span></a>
+									data-confirm="" class="btn btn-default btn-danger"><i class="glyphicon glyphicon-trash glyphicon glyphicon-white"></i><span><strong>Delete</strong></span></a>
 								</td>
 						</tr>
 					</c:forEach>
 				</c:if>
 			</tbody>
 		</table>
-		<div class="rowlabel offset6"><a href="${itreturnhomepage}" id="skip" class="btn btn-primary" data-verify=""><i class="icon-play-circle icon-white"></i>Continue Filing</a></div>
+		<div class="rowlabel col-md-offset-6"><a href="${itreturnhomepage}" id="skip" class="btn btn-default btn-primary" data-verify=""><i class="glyphicon glyphicon-play-circle glyphicon glyphicon-white"></i>Continue Filing</a></div>
 	</div>
 	<c:set var="modalBody">
 		<fieldset>
 			<legend>
-				<strong><i class="icon-lock"></i>Security Questions</strong>
+				<strong><i class="glyphicon glyphicon-lock"></i>Security Questions</strong>
 			</legend>
-			<div class="show-grid row-fluid">
-				<div class="span8">
+			<div class="show-grid row">
+				<div class="col-md-8">
 					<div class="rowlabel">
 						<label for="securityQuestion"><small>Security Question</small></label>
 					</div>
@@ -90,7 +90,7 @@
 						</select>
 					</div>
 				</div>
-				<div class="span4 <c:if test="${pageAction == 'NEW_CHILD'}">hide</c:if>">
+				<div class="col-md-4 <c:if test="${pageAction == 'NEW_CHILD'}">hide</c:if>">
 					<div class="rowlabel">
 						<label for="securityAnswer"><small><abbr title="Feasible answer for selected Question">Answer</abbr></small></label>
 					</div>
@@ -131,14 +131,14 @@
 					</div>
 					<div class="modal-footer">
 						<c:if test="${pageAction == 'NEW_CHILD'}">
-							<a href="#" class="btn btn-inverse" id="addnew">Add New</a>
+							<a href="#" class="btn btn-default btn-inverse" id="addnew">Add New</a>
 						</c:if>
 						<c:if test="${pageAction == 'EDIT_CHILD'}">
 							<a href="${scriptName}/${uuid}/membersecuritydelete"
-								class="btn btn-danger"> <i class="icon-trash icon-white"></i>Delete
+								class="btn btn-default btn-danger"> <i class="glyphicon glyphicon-trash glyphicon glyphicon-white"></i>Delete
 							</a>
 						</c:if>
-						<a href="${scriptName}?security=true" class="btn" data-dismiss="">Close</a>
+						<a href="${scriptName}?security=true" class="btn btn-default" data-dismiss="">Close</a>
 						<c:choose>
 							<c:when test="${pageAction == 'NEW_CHILD'}">
 								<c:set value="ajaxsubmit" var="saveID" />
@@ -147,7 +147,7 @@
 								<c:set value="siSave" var="saveID" />
 							</c:otherwise>
 						</c:choose>
-						<a href="#" id="${saveID}" class="btn btn-primary">Save changes</a>
+						<a href="#" id="${saveID}" class="btn btn-default btn-primary">Save changes</a>
 					</div>
 				</div>
 			</div>
@@ -166,7 +166,7 @@
       
     $('.select-drop').on('change',function(){
 	     if($(this).val()!=null){
-		     $('.span4').show();
+		     $('.col-md-4').show();
 	     } 
       });
       $('a[data-verify]').click(function(ev) {
@@ -174,7 +174,7 @@
        if(child_count == '0'){
         var href = $(this).attr('href');
         if (!$('#dataConfirmModal').length) {
-            $('body').append('<div id="dataConfirmModal" class="modal" role="dialog" aria-labelledby="dataConfirmLabel" aria-hidden="true"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button><h3 id="dataConfirmLabel">Please Confirm</h3></div><div class="modal-body"></div><div class="modal-footer"><button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button><a class="btn btn-primary" id="dataConfirmOK">OK</a></div></div>');
+            $('body').append('<div id="dataConfirmModal" class="modal" role="dialog" aria-labelledby="dataConfirmLabel" aria-hidden="true"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button><h3 id="dataConfirmLabel">Please Confirm</h3></div><div class="modal-body"></div><div class="modal-footer"><button class="btn btn-default" data-dismiss="modal" aria-hidden="true">Cancel</button><a class="btn btn-default btn-primary" id="dataConfirmOK">OK</a></div></div>');
         }
         $('#dataConfirmModal').find('.modal-body').text("Are you don't want to save security question?");
         $('#dataConfirmOK').attr('href', href);
@@ -230,7 +230,7 @@
 						
 						$(".modal-body").append(newdiv1);
 						
-						newdiv1.find(".span4").hide();
+						newdiv1.find(".col-md-4").hide();
 						
 						//$(".theamount").blur( handleBlur );	
 						$(".head").change(headChangeHandler);
@@ -255,11 +255,11 @@
 				var o = $(this).val();	
 				if (o.trim() == '') {
 					//hide and remove the corresponding amount button
-					$(this).parents(".row-fluid").find(".span4").hide();
+					$(this).parents(".row").find(".col-md-4").hide();
 					$('label[for="securityAnswer"]').hide();
 				}
 				else {
-					$(this).parents(".row-fluid").find(".span4").show();
+					$(this).parents(".row").find(".col-md-4").show();
 					$('label[for="securityAnswer"]').show();
 				}
 			}       
@@ -286,8 +286,8 @@
 <%--
 <res:client-validation screenConfigurationDocumentName="membersecurity" formId="memberSecQues" formSubmitButtonId="siSave"></res:client-validation>
 <c:forEach items="${questionsMap}" var="question" varStatus="stat">
-					<div class="show-grid row-fluid">
-						<div class="span6">
+					<div class="show-grid row">
+						<div class="col-md-6">
 							<div class="rowlabel">
 								<label for="securityQues${stat.count}"><small>Security Question${stat.count}</small></label>
 							</div>
@@ -306,7 +306,7 @@
 								</select>
 							</div>
 						</div>
-						<div class="span4">
+						<div class="col-md-4">
 							<div class="rowlabel">
 								<label for="answer${stat.count}"><small>Answer${stat.count}</small></label>
 							</div>
@@ -321,8 +321,8 @@
 						</div>
 					</div>
 				</c:forEach>
-				<div class="pull-right rowlabel span2 offset3">
-					<button type="submit" class="btn btn-primary" value="Save">
-						&nbsp;&nbsp;<i class="icon-lock icon-white"></i>Save&nbsp;&nbsp;
+				<div class="pull-right rowlabel col-md-2 col-md-offset-3">
+					<button type="submit" class="btn btn-default btn-primary" value="Save">
+						&nbsp;&nbsp;<i class="glyphicon glyphicon-lock glyphicon glyphicon-white"></i>Save&nbsp;&nbsp;
 					</button>
 				</div>--%>

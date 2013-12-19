@@ -28,9 +28,9 @@
 	</script>
 	<hst:actionURL var="actionUrl"></hst:actionURL>
 	<form name="frmResidential" id="frmResidential" method="post" action="${actionUrl}">
-		 	<div class="row-fluid show-grid">	  
-				<div class="span10"><c:out value="${map['rsstatus_q']}"/></div>
-				<div class="span2">
+		 	<div class="row show-grid">	  
+				<div class="col-md-10"><c:out value="${map['rsstatus_q']}"/></div>
+				<div class="col-md-2">
 					<select class="answer" id="rsstatus_q" name="rsstatus_q">
 						<option>Select</option>
 						<option value="yes">Yes</option>
@@ -48,8 +48,8 @@
 							pageContext.setAttribute("isAnswer","true");
 						}
 					%>				
-						<div class="row-fluid show-grid" id="ul_<c:out value="${item.key}"/>" style="display:none;visiblity:hidden">
-							<div class="span10">
+						<div class="row show-grid" id="ul_<c:out value="${item.key}"/>" style="display:none;visiblity:hidden">
+							<div class="col-md-10">
 								<c:choose>
 									<c:when test="${fn:startsWith(item.value,'ans_')}">
 										<br/><p id="resi<c:out value="${status.index}" />" style="color:#65B43D;">
@@ -63,7 +63,7 @@
 							<input type="submit" name="Submit" value="Save &amp; Next"  id="hrefLogin" class="button orange"/>
 							</c:if>
 							</div>
-							<div class="span2">
+							<div class="col-md-2">
 								<c:if test="${isAnswer != 'true'}">
 									<select class="answer" id="<c:out value="${item.key}"/>" name="<c:out value="${item.key}"/>">
 										<option>Select</option>

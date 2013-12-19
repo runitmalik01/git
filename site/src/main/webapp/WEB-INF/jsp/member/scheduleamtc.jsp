@@ -6,7 +6,7 @@
 <hst:actionURL var="actionUrl"></hst:actionURL>
 <c:if test="${not empty formMap}">
 	<c:forEach items="${formMap.message}" var="item">
-		<div class="alert alert-error">
+		<div class="alert alert-danger">
 			<fmt:message key="${item.value}" />
 		</div>
 	</c:forEach>
@@ -15,9 +15,9 @@
 	<b>ITR- Schedule AMTC(Alternative Minimum Tax Credit)</b>
 </h4>
 <c:if test="${not empty exceedErrorGrossTurnOver}">
-	<div class="alert alert-error">
+	<div class="alert alert-danger">
 		<strong><fmt:message key="busi.prof.exceed.grosturnover.itr4" /></strong><a
-			href="./servicerequest-itr.html" class="btn btn-warning">Change
+			href="./servicerequest-itr.html" class="btn btn-default btn-warning">Change
 			Package</a>
 	</div>
 </c:if>
@@ -25,27 +25,27 @@
 	method="post">
 	<fieldset>
 		<legend style="color: green; font-weight: bold;">Computation of Tax U|S 115JC</legend>
-		<div class="row-fluid show-grid">
-			<div class="span8">
+		<div class="row show-grid">
+			<div class="col-md-8">
 				<div class="rowlabel">
 					<label for="taxUndSec115JC"><small>Tax U|S 115JC in
 							Assessment Yr ${assessmentYear}</small> </label>
 				</div></div>
-				<div class="span4">
+				<div class="col-md-4">
 				<div class="rowlabel">
 					<input id="taxUndSec115JC" name="taxUndSec115JC" type="text"
 						maxlength="14" class="decimal"
 						value="${taxUndSec115JC }" readonly="readonly" />
 				</div>
 			</div></div>
-			<div class="row-fluid show-grid">
-			<div class="span8">
+			<div class="row show-grid">
+			<div class="col-md-8">
 				<div class="rowlabel">
 					<label for="taxUnderOtherProv"><small>Tax under
 							Other Provision in Assessment Yr <c:out value="${assessmentYear}" />
 					</small> </label>
 				</div></div>
-				<div class="span4">
+				<div class="col-md-4">
 				<div class="rowlabel">
 					<input id="taxUnderOtherProv" name="taxUnderOtherProv" type="text"
 						maxlength="14" class="decimal"
@@ -53,13 +53,13 @@
 				</div>
 			</div>
 			</div>
-			<div class="row-fluid show-grid">
-			<div class="span8">
+			<div class="row show-grid">
+			<div class="col-md-8">
 				<div class="rowlabel">
 					<label for="taxAgainstCredit"><small>Amount of Tax
 							Against which Credit Available</small> </label>
 				</div></div>
-				<div class="span4">
+				<div class="col-md-4">
 				<div class="rowlabel">
 					<input id="taxAgainstCredit" name="taxAgainstCredit" type="text"
 						maxlength="14" class="decimal"
@@ -72,8 +72,8 @@
 	<fieldset>
 		<legend style="color: green; font-weight: bold;">Utilisation of AMT credit available for Assessment
 			Year ${assessmentYear}</legend>
-		<div class="row-fluid show-grid">
-			<div class="span4">
+		<div class="row show-grid">
+			<div class="col-md-4">
 				<div class="rowlabel">
 					<label for="amtCreditGross"> <small>AMT Credit
 							Gross</small>
@@ -85,7 +85,7 @@
 						value="${parentBean.amtCreditGross}" />
 				</div>
 			</div>
-			<div class="span4">
+			<div class="col-md-4">
 				<div class="rowlabel">
 					<label for="amtCreditSetOff"> <small>AMT Credit Set
 							Off In earlier Year</small>
@@ -98,7 +98,7 @@
 						readonly="readonly" />
 				</div>
 			</div>
-			<div class="span4">
+			<div class="col-md-4">
 				<div class="rowlabel">
 					<label for="amtCreditBrghtFwrd"> <small>AMT Credit
 							Brought Forward</small>
@@ -112,8 +112,8 @@
 				</div>
 			</div>
 		</div>
-		<div class="row-fluid show-grid">
-			<div class="span4">
+		<div class="row show-grid">
+			<div class="col-md-4">
 				<div class="rowlabel">
 					<label for="amtCreditUnlisted"> <small>AMT Credit
 							Unlisted in Current year</small>
@@ -126,7 +126,7 @@
 						readonly="readonly" />
 				</div>
 			</div>
-			<div class="span4">
+			<div class="col-md-4">
 				<div class="rowlabel">
 					<label for="amtCreditCarriedFwrd"> <small>Balance
 							AMT Credit Carried Forward</small>
@@ -141,8 +141,8 @@
 			</div>
 		</div>
 	</fieldset>
-	<div class="row-fluid show-grid">
-		<div class="span4">
+	<div class="row show-grid">
+		<div class="col-md-4">
 			<div class="rowlabel">
 				<label for="unlistCreditUndSec115JD"><small>Tax
 						Credit Amount U|S 115JC unlisted during year</small> </label>
@@ -153,7 +153,7 @@
 					value="${parentBean.unlistCreditUndSec115JD}" readonly="readonly" />
 			</div>
 		</div>
-		<div class="span5">
+		<div class="col-md-5">
 			<div class="rowlabel">
 				<label for="liabAvailCredit"> <small>AMT liability
 						Available for Credit in Assessment year</small>
@@ -167,11 +167,11 @@
 		</div>
 	</div>
 	</fieldset>
-	<div class="row-fluid show-grid">
-		<div class="span4 offset8 decimal">
+	<div class="row show-grid">
+		<div class="col-md-4 col-md-offset-8 decimal">
 			<!--<a href="${scriptName}"
-				class="btn btn-danger" style="color: black">Cancel</a>&nbsp;  -->
-			<a id="myModalscheduleAMTC" role="button" class="btn btn-success"
+				class="btn btn-default btn-danger" style="color: black">Cancel</a>&nbsp;  -->
+			<a id="myModalscheduleAMTC" role="button" class="btn btn-default btn-success"
 				style="color: black">Save</a>
 		</div>
 	</div>

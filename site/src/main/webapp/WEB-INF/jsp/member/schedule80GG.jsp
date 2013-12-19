@@ -33,7 +33,7 @@
 <table>
 
 			<tr>
-				<td class="label"><fmt:message key="80GG.month" /></td>
+				<td class="label label-default"><fmt:message key="80GG.month" /></td>
 				<td class="input"><c:set var="scheduletitle">
 						<fmt:message key="member.schedule80C.select" />
 					</c:set> <c:set var="scheduleType">
@@ -45,32 +45,32 @@
 
 			<%--  Gross total is dependent of Salary Income,House Property, Capital Gains, Other Sources and Less:Adjustment Of Losses--%>
  			<tr>
-	       <td class="label"><fmt:message key="80GG.gross.income"/></td>
+	       <td class="label label-default"><fmt:message key="80GG.gross.income"/></td>
 	       <td class="input"><input type="text" name="80GG_grossincome" class="numberinput" value="${documentgg.grossIncome }" id="BGG" onChange="fillGG()" title="Please fill this field" maxlength="14" min="0"/></td>
 	       </tr>
 
 			<tr>
-	       <td class="label"><fmt:message key="80GG.rent.paid"/></td>
+	       <td class="label label-default"><fmt:message key="80GG.rent.paid"/></td>
 	       <td class="input"><input type="text" name="80GG_rent_paid" class="numberinput" value="${documentgg.rentPaid }" id="CGG" onChange="fillGG()" title="Please fill this field" maxlength="14" min="0"/></td>
 	       </tr>
 	              
 	       <tr>
-	       <td class="label"><fmt:message key="80GG.min.exemption"/></td>
+	       <td class="label label-default"><fmt:message key="80GG.min.exemption"/></td>
 	       <td class="input"><input type="text" name="80GG_min_exemption" class="numberinput" value="${documentgg.minExemption }" id="DGG" onChange="fillGG()" readonly title="Please fill this field" maxlength="14" min="0"/></td>
 	       </tr>
 	       
 	       <tr>
-	       <td class="label"><fmt:message key="80GG.gross.total"/></td>
+	       <td class="label label-default"><fmt:message key="80GG.gross.total"/></td>
 	       <td class="input"><input type="text" name="80GG_gross_total" class="numberinput" value="${documentgg.grossTotal }" id="EGG" onChange="fillGG()"  readonly title="Please fill this field" maxlength="14" min="0"/></td>
 	       </tr>
 	       
 	        <tr>
-	       <td class="label"><fmt:message key="80GG.rent.paid.gross.income"/></td>
+	       <td class="label label-default"><fmt:message key="80GG.rent.paid.gross.income"/></td>
 	       <td class="input"><input type="text" name="80GG_rent_paid_gross_income" class="numberinput" value="${documentgg.rentPaidGross }" id="FGG" readonly  title="Please fill this field" maxlength="14" min="0"/></td>
 	       </tr>
 	       
 	       <tr>
-	       <td class="label"><fmt:message key="80GG.deduction.allow"/></td>
+	       <td class="label label-default"><fmt:message key="80GG.deduction.allow"/></td>
 	       <td class="input"><input type="text" name="deduction_allow" class="numberinput" id="GGG" value="${documentgg.deductionAllow }" readonly title="Please fill this field" maxlength="14" min="0"/></td>
 	       </tr>
 	       

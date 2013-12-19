@@ -17,18 +17,18 @@
 					<div class="col-sm-6 col-md-8">
 						<h4>${resellerInfo.resellerName}</h4>
 						<small><cite title="San Francisco, USA">San
-								Francisco, USA <i class="glyphicon glyphicon-map-marker"> </i>
+								Francisco, USA <i class="glyphicon glyphglyphicon glyphicon-map-marker"> </i>
 						</cite></small>
 						<p>
-							<i class="glyphicon glyphicon-envelope"></i>&nbsp;${resellerInfo.emailCustomerService } <br />
-							<i class="glyphicon glyphicon-globe"></i><a
+							<i class="glyphicon glyphglyphicon glyphicon-envelope"></i>&nbsp;${resellerInfo.emailCustomerService } <br />
+							<i class="glyphicon glyphglyphicon glyphicon-globe"></i><a
 								href="http://www.jquery2dotnet.com">www.jquery2dotnet.com</a> <br />
-							<i class="glyphicon glyphicon-gift"></i>${resellerInfo.startDate}
+							<i class="glyphicon glyphglyphicon glyphicon-gift"></i>${resellerInfo.startDate}
 						</p>
 						<!-- Split button -->
 						<div class="btn-group">
-							<button type="button" class="btn btn-primary">Social</button>
-							<button type="button" class="btn btn-primary dropdown-toggle"
+							<button type="button" class="btn btn-default btn-primary">Social</button>
+							<button type="button" class="btn btn-default btn-primary dropdown-toggle"
 								data-toggle="dropdown">
 								<span class="caret"></span><span class="sr-only">Social</span>
 							</button>
@@ -54,10 +54,10 @@
       <div class="caption">
         <h4><strong>Page Components</strong></h4>
         <p>Capability to create WebPages for your WebSite.</p>
-        <p><a href="${websitebuilderlink}/pages.html" class="btn btn-info" role="button"><span class="btn-label"><i
-			class="glyphicon glyphicon-eye-open"></i></span>View Pages</a> 
-		    <a href="${websitebuilderlink}/pages.html/newpage" class="btn btn-success" role="button" data-prompt=""><span class="btn-label"><i
-			class="glyphicon glyphicon-plus"></i></span>Add Page</a></p>
+        <p><a href="${websitebuilderlink}/pages.html" class="btn btn-default btn-info" role="button"><span class="btn btn-default-label"><i
+			class="glyphicon glyphglyphicon glyphicon-eye-open"></i></span>View Pages</a> 
+		    <a href="${websitebuilderlink}/pages.html/newpage" class="btn btn-default btn-success" role="button" data-prompt=""><span class="btn btn-default-label"><i
+			class="glyphicon glyphglyphicon glyphicon-plus"></i></span>Add Page</a></p>
       </div>
     </div>
   </div>
@@ -67,10 +67,10 @@
       <div class="caption">
         <h4><strong>Blocks Components</strong></h4>
         <p>Capability to create Block component for WebPages.</p>
-        <p><a href="${websitebuilderlink}/blocks.html" class="btn btn-info" role="button"><span class="btn-label"><i
-			class="glyphicon glyphicon-eye-open"></i></span>View Blocks</a>
-	      <a href="${websitebuilderlink}/blocks.html/newblock" class="btn btn-success" role="button" data-prompt=""><span class="btn-label"><i
-			class="glyphicon glyphicon-plus"></i></span>Add Block</a></p>
+        <p><a href="${websitebuilderlink}/blocks.html" class="btn btn-default btn-info" role="button"><span class="btn btn-default-label"><i
+			class="glyphicon glyphglyphicon glyphicon-eye-open"></i></span>View Blocks</a>
+	      <a href="${websitebuilderlink}/blocks.html/newblock" class="btn btn-default btn-success" role="button" data-prompt=""><span class="btn btn-default-label"><i
+			class="glyphicon glyphglyphicon glyphicon-plus"></i></span>Add Block</a></p>
       </div>
     </div>
   </div>
@@ -80,10 +80,10 @@
       <div class="caption">
         <h4><strong>Assets Components</strong></h4>
         <p>Capability to add Assets for Block components.</p>
-        <p><a href="${websitebuilderlink}/assests.html" class="btn btn-info" role="button"><span class="btn-label"><i
-			class="glyphicon glyphicon-eye-open"></i></span>View Assets</a>
-	       <a href="${websitebuilderlink}/assests.html" class="btn btn-success" role="button"><span class="btn-label"><i
-			class="glyphicon glyphicon-plus"></i></span>Add Asset</a></p>
+        <p><a href="${websitebuilderlink}/assests.html" class="btn btn-default btn-info" role="button"><span class="btn btn-default-label"><i
+			class="glyphicon glyphglyphicon glyphicon-eye-open"></i></span>View Assets</a>
+	       <a href="${websitebuilderlink}/assests.html" class="btn btn-default btn-success" role="button"><span class="btn btn-default-label"><i
+			class="glyphicon glyphglyphicon glyphicon-plus"></i></span>Add Asset</a></p>
       </div>
     </div>
   </div>
@@ -109,8 +109,8 @@
 				</div>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal"><i class="glyphicon glyphicon-remove-sign"></i>Cancle</button>
-				<a href="#" class="btn btn-primary" id="dataConfirmOK"><i class="glyphicon glyphicon-ok-sign"></i>Go</a>
+				<button type="button" class="btn btn-default btn-default" data-dismiss="modal"><i class="glyphicon glyphglyphicon glyphicon-remove-sign"></i>Cancle</button>
+				<a href="#" class="btn btn-default btn-primary" id="dataConfirmOK"><i class="glyphicon glyphglyphicon glyphicon-ok-sign"></i>Go</a>
 			</div>
 		</div>
 	</div>

@@ -40,23 +40,23 @@
 	<%--			
 				<li id="menu-item-723" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-724">
 				<li class="dropdown">
-	                <a class="dropdown-toggle btn btn-primary" data-toggle="dropdown" href="#" style="color: white"><i class="icon-user icon-white"></i><%=request.getUserPrincipal().getName()%><b></b></a>
+	                <a class="dropdown-toggle btn btn-primary" data-toggle="dropdown" href="#" style="color: white"><i class="glyphicon glyphicon-user glyphicon glyphicon-white"></i><%=request.getUserPrincipal().getName()%><b></b></a>
 	                <ul class="dropdown-menu">
 	                	<hst:link var="changepass" siteMapItemRefId="memberchangepass"></hst:link>
-	                    <li><a href="${changepass}"><i class="icon-edit"></i>ChangePassword</a></li>
-	                    <li><a href="${securelink}?security=true"><i class="icon-wrench"></i>Security Setting</a></li>
+	                    <li><a href="${changepass}"><i class="glyphicon glyphicon-edit"></i>ChangePassword</a></li>
+	                    <li><a href="${securelink}?security=true"><i class="glyphicon glyphicon-wrench"></i>Security Setting</a></li>
 	                    <%
 	                    	if (request.isUserInRole("ROLE_vendor")) {	                    		
 	                    %>
-	                    	<li><a href="<hst:link path="/vendor/itreturn"/>"><i class="icon-home"></i>Vendor Home</a></li>
+	                    	<li><a href="<hst:link path="/vendor/itreturn"/>"><i class="glyphicon glyphicon-home"></i>Vendor Home</a></li>
 	                    <% } %>
 	                </ul>
               	</li>
-				<li id="menu-item-724" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-724"><a href="${logout}" class="btn btn-warning" style="color: white"><i class="icon-off icon-white"></i>Logout</a></li>
+				<li id="menu-item-724" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-724"><a href="${logout}" class="btn btn-default btn-warning" style="color: white"><i class="glyphicon glyphicon-off glyphicon glyphicon-white"></i>Logout</a></li>
 			</c:when>
 			<c:otherwise>				
-				<li id="menu-item-724" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-724"><a href="${login}" class="btn btn-info" style="color: white"><i class="icon-user icon-white "></i>Login</a></li>
-				<li id="menu-item-725" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-725"><a href="${signup}" class="btn btn-success" style="color: white"><i class="icon-globe icon-white"></i>Signup</a></li>				
+				<li id="menu-item-724" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-724"><a href="${login}" class="btn btn-default btn-info" style="color: white"><i class="glyphicon glyphicon-user glyphicon glyphicon-white "></i>Login</a></li>
+				<li id="menu-item-725" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-725"><a href="${signup}" class="btn btn-default btn-success" style="color: white"><i class="glyphicon glyphicon-globe glyphicon glyphicon-white"></i>Signup</a></li>				
 			</c:otherwise>
 		</c:choose>		
 </ul>

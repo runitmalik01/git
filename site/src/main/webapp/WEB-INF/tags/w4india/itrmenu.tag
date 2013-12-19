@@ -230,7 +230,7 @@ request.setAttribute("isDITVerified",isDITVerified);
 } %>
 <div class="container">
   	<c:if test="${isTrialPeriodActive==true}">
-		<div class="alert alert-error" style="font-size: small;">
+		<div class="alert alert-danger" style="font-size: small;">
 			<c:if test="${daysLeft == 1}">
 			Only ${daysLeft} day is left of your trial period. <a href="${urlToResellerPackage}">  Click Here !!! To upgrade your account.</a> .
 			</c:if>
@@ -247,8 +247,8 @@ request.setAttribute("isDITVerified",isDITVerified);
 				style="font-size: small;"> <c:out value="${pan}" /> </span> </a>
 			<button type="button" class="navbar-toggle" data-toggle="collapse"
 				data-target=".main-nav">
-				<span class="icon-bar"></span> <span class="icon-bar"></span> <span
-					class="icon-bar"></span>
+				<span class="glyphicon glyphicon-bar"></span> <span class="glyphicon glyphicon-bar"></span> <span
+					class="glyphicon glyphicon-bar"></span>
 			</button>
 		</div>
 		<c:if test="${nomenu != 'true'}">
@@ -290,7 +290,7 @@ request.setAttribute("isDITVerified",isDITVerified);
 													<li class="nav-header">${childMenuItem.name}</li>
 												</c:when>
 												<c:when test="${subMenu && subMenuChildCount gt 0}">
-													<li class="dropdown-submenu"><a tabindex="-1" href="#">${childMenuItem.name}</a>
+													<li class="dropdown"><a tabindex="-1" href="#">${childMenuItem.name}</a>
 														<c:set var="childMenuItem" value="${childMenuItem}"
 															scope="request" /> <c:if test="${subMenuChildCount gt 0}">
 															<ul class="dropdown-menu">
@@ -360,7 +360,7 @@ request.setAttribute("isDITVerified",isDITVerified);
 				</ul>
 				<!--
               <form class="navbar-search pull-left" action="">
-                <input type="text" class="search-query span2" placeholder="Search">
+                <input type="text" class="search-query col-md-2" placeholder="Search">
               </form>
                -->
 				<%--
@@ -368,10 +368,10 @@ request.setAttribute("isDITVerified",isDITVerified);
           	<h2 class="item_name" style="display:none;"><c:out value="${serviceItemKey}"/></h2>
           	<span class="item_price" style="display:none;"><w4india:inr value="199"></w4india:inr></span>
           	<input type="hidden" value="1" class="item_Quantity">
-          	<a class="item_add dropdown-toggle btn btn-primary" data-toggle="dropdown" href="javascript:;" style="color: white"><i class="icon-shopping-cart icon-white"></i>Add to cart</a>
+          	<a class="item_add dropdown-toggle btn btn-primary" data-toggle="dropdown" href="javascript:;" style="color: white"><i class="glyphicon glyphicon-shopping-cart glyphicon glyphicon-white"></i>Add to cart</a>
           </div>
            <div id="removeFromCart" style="display:none" class="pull-right">
-          	<a id="removeCartLink" class="dropdown-toggle btn btn-primary" data-toggle="dropdown" href="javascript:;" style="color: white"><i class="icon-shopping-cart icon-white"></i>Remove from cart</a>
+          	<a id="removeCartLink" class="dropdown-toggle btn btn-primary" data-toggle="dropdown" href="javascript:;" style="color: white"><i class="glyphicon glyphicon-shopping-cart glyphicon glyphicon-white"></i>Remove from cart</a>
           </div>
            --%>
 				<c:if test="${hasDIY =='true'}">
@@ -441,24 +441,28 @@ request.setAttribute("isDITVerified",isDITVerified);
 	test="${isDITVerified == 'false' && not empty memberpersonalinformation}">
 	<c:choose>
 		<c:when test="${fn:endsWith(scriptName,'servicerequest-itr.html')}">
-			<div class="alert alert-error">
-				<small> Unverified Information. You will not be able to file
-					your income tax until the information is verified Review your
-					information (Name,DOB and PAN) and Click on the Save button. <c:if
-						test="${isVendor == 'true' && not empty memberpersonalinformation}">
-						<c:out value="${memberpersonalinformation.ditVerificationMessage}" />
-					</c:if> </small>
+			<div class="container">
+				<div class="alert alert-danger">
+					<small> Unverified Information. You will not be able to file
+						your income tax until the information is verified Review your
+						information (Name,DOB and PAN) and Click on the Save button. <c:if
+							test="${isVendor == 'true' && not empty memberpersonalinformation}">
+							<c:out value="${memberpersonalinformation.ditVerificationMessage}" />
+						</c:if> </small>
+				</div>
 			</div>
 		</c:when>
 		<c:otherwise>
-			<div class="alert alert-error">
-				<small> Unverified Information. You will not be able to file
-					your income tax until the information is verified <a
-					href="${scriptName}../../servicerequest-itr.html">Click here to
-						review your information (Name,DOB and PAN)</a> <c:if
-						test="${isVendor == 'true' && not empty memberpersonalinformation}">
-						<c:out value="${memberpersonalinformation.ditVerificationMessage}" />
-					</c:if> </small>
+			<div class="container">
+				<div class="alert alert-danger">
+					<small> Unverified Information. You will not be able to file
+						your income tax until the information is verified <a
+						href="${scriptName}../../servicerequest-itr.html">Click here to
+							review your information (Name,DOB and PAN)</a> <c:if
+							test="${isVendor == 'true' && not empty memberpersonalinformation}">
+							<c:out value="${memberpersonalinformation.ditVerificationMessage}" />
+						</c:if> </small>
+				</div>
 			</div>
 		</c:otherwise>
 	</c:choose>
@@ -607,12 +611,12 @@ class MenuComparator implements Comparator<HstSiteMenuItem> {
 		</div>
 		<div class="modal-body">
 			<p>
-				<span class="label label-important">To get back to Import
+				<span class="label label-default label-danger">To get back to Import
 					TDS, go to Actions -> Import TDS</span>
 			</p>
 		</div>
 		<div class="modal-footer">
-			<a href="${scriptName}" class="btn btn-inverse" id="importTDSNow">OK</a>
+			<a href="${scriptName}" class="btn btn-default btn-inverse" id="importTDSNow">OK</a>
 		</div>
 	</div>
 

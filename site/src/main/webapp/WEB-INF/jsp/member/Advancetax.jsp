@@ -8,7 +8,7 @@
 <w4india:itrmenu></w4india:itrmenu>
 <c:if test="${not empty formMap}">
 	<c:forEach items="${formMap.message}" var="item">
-		<div class="alert alert-error">
+		<div class="alert alert-danger">
 			<fmt:message key="${item.value}" />
 		</div>
 	</c:forEach>
@@ -39,8 +39,8 @@
 
 			<fieldset>
 				<legend style="color: green; font-weight: bold;">Enter Details</legend>
-				<div class="row-fluid show-grid">
-					<div class="span4">
+				<div class="row show-grid">
+					<div class="col-md-4">
 						<div class="rowlabel">
 							<label for="bsr_codeadv"><abbr
 								title=" Basic Statistical Return Code"><fmt:message
@@ -54,7 +54,7 @@
 								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.p_BSR}"/></c:if>" />
 						</div>
 					</div>
-					<div class="span4">
+					<div class="col-md-4">
 						<div class="rowlabel">
 							<label for="date_creditadv"><small><fmt:message
 										key="tds.date.credit" />
@@ -67,8 +67,8 @@
 						</div>
 					</div>
 				</div>
-				<div class="row-fluid show-grid" id="ul_revised_input">
-					<div class="span4">
+				<div class="row show-grid" id="ul_revised_input">
+					<div class="col-md-4">
 						<div class="rowlabel">
 							<label for="Serial_challanadv"><small><fmt:message
 										key="tds.serial.challan" />
@@ -81,7 +81,7 @@
 								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.p_Serial}"/></c:if>" />
 						</div>
 					</div>
-					<div class="span4">
+					<div class="col-md-4">
 						<div class="rowlabel">
 							<label for="amountadv"><small><fmt:message
 										key="tds.amount.selfassesment" />
@@ -96,11 +96,11 @@
 					</div>
 				</div>
 			</fieldset>
-			<div class="row-fluid show-grid">
-				<div class="span4 offset8 decimal">
+			<div class="row show-grid">
+				<div class="col-md-4 col-md-offset-8 decimal">
 					<a href="${scriptName}?selectedItrTab=<%=ITRTab.TAX_ADVANCE%>"
-						class="btn btn-danger" style="color: black">Cancel</a>&nbsp; <a id="myModalHrefAdvTax"
-						role="button" class="btn btn-success" style="color: black">Save</a>
+						class="btn btn-default btn-danger" style="color: black">Cancel</a>&nbsp; <a id="myModalHrefAdvTax"
+						role="button" class="btn btn-default btn-success" style="color: black">Save</a>
 				</div>
 			</div>
 
@@ -125,11 +125,11 @@
 						<td><c:out value="${advancetaxdetail.dateStr}" /></td>
 						<td><c:out value="${advancetaxdetail.p_Serial}" /></td>
 						<td><w4india:inr value="${advancetaxdetail.p_Amount}" /></td>
-						<td><a class="btn btn-primary"
-							href="${scriptName}/<c:out value="${advancetaxdetail.canonicalUUID}"/>/advancetaxedit"><small><i class="icon-pencil icon-white"></i>Edit</small>
-						</a>&nbsp;&nbsp; <a class="btn btn-danger"
+						<td><a class="btn btn-default btn-primary"
+							href="${scriptName}/<c:out value="${advancetaxdetail.canonicalUUID}"/>/advancetaxedit"><small><i class="glyphicon glyphicon-pencil glyphicon glyphicon-white"></i>Edit</small>
+						</a>&nbsp;&nbsp; <a class="btn btn-default btn-danger"
 							href="${scriptName}/<c:out value="${advancetaxdetail.canonicalUUID}"/>/advancetaxdelete"
-							data-confirm=""><small><i class="icon-trash icon-white"></i>Delete</small>
+							data-confirm=""><small><i class="glyphicon glyphicon-trash glyphicon glyphicon-white"></i>Delete</small>
 						</a></td>
 					</tr>
 
@@ -142,7 +142,7 @@
 			</c:if>
 
 		</table>
-		<a href="${scriptName}/advancetaxnew" class="btn btn-info" style="color: black">Add
+		<a href="${scriptName}/advancetaxnew" class="btn btn-default btn-info" style="color: black">Add
 			New</a>
 
 		<!--

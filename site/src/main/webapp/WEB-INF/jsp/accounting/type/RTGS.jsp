@@ -4,8 +4,8 @@
 						</c:forEach>
 <fieldset class="CHECK_NOT_ONLY CASH_NOT_ONLY RTGS_ONLY">
 	<legend>RTGS Details</legend>
-	<div class="row-fluid show-grid">
-		<div class="span3">
+	<div class="row show-grid">
+		<div class="col-md-3">
 			<div class="rowlabel">
 				<label for="rtgsTranNo"><small>Transaction/UTR Number</small>
 				</label>
@@ -16,7 +16,7 @@
 					<c:out value="${allReadOnly}"/> />
 			</div>
 		</div>
-		<div class="span3">
+		<div class="col-md-3">
 			<div class="rowlabel">
 				<label for="rtgsDate"><small>Date (dd/mm/yyyy)</small> </label>
 			</div>
@@ -25,7 +25,7 @@
 					value="<c:if test="${pageAction=='EDIT_CHILD'}">${tarPaymentDetail.rtgsDateStr}</c:if>" <c:out value="${allReadOnly}"/> />
 			</div>
 		</div>
-		<div class="span3">
+		<div class="col-md-3">
 			<div class="rowlabel">
 				<label for="rtgsAmount"><small>Amount</small> </label>
 			</div>
@@ -34,7 +34,7 @@
 					value="<c:if test="${pageAction=='EDIT_CHILD'}">${tarPaymentDetail.rtgsAmount}</c:if>" <c:out value="${allReadOnly}"/> />
 			</div>
 		</div>
-		<div class="span3">
+		<div class="col-md-3">
 			<div class="rowlabel">
 				<label for="rtgsTime"><small>Time</small> </label>
 			</div>
@@ -46,8 +46,8 @@
 	</div>
 	<div class="control-group" align="right">
 				<div class="controls">
-					<button class="btn btn-success" type="submit" id="payment_submit">Pay Now</button>
-					<a class="btn btn-default"  href="${scriptName}" id="payment_submit"><strong>Cancel</strong></a>
+					<button class="btn btn-default btn-success" type="submit" id="payment_submit">Pay Now</button>
+					<a class="btn btn-default btn-default"  href="${scriptName}" id="payment_submit"><strong>Cancel</strong></a>
 				</div>
 			</div>
 </fieldset>

@@ -50,22 +50,22 @@
 		<form class="form" name="contactus" action="<hst:actionURL />"
 			method="post" id="${form.id}">
 			
-			<div class="row-fluid show-grid">
-				<div class="span3">Your Name<span style="color: red">*</span></div>
-				<div class="span8">
+			<div class="row show-grid">
+				<div class="col-md-3">Your Name<span style="color: red">*</span></div>
+				<div class="col-md-8">
 					<input id="name" type="text" name="name" required="required"><br><br>
 				</div>
 			</div>
-			<div class="row-fluid show-grid">
-				<div class="span3">E-mail ID<span style="color: red">*</span></div>
-				<div class="span8">
+			<div class="row show-grid">
+				<div class="col-md-3">E-mail ID<span style="color: red">*</span></div>
+				<div class="col-md-8">
 					<input type="text" id="email" name="email" required="required"><br><br>
 				</div>
 
 			</div>
-			<div class="row-fluid show-grid">
-				<div class="span4">Category<span style="color: red">*</span></div>
-				<div class="span7">
+			<div class="row show-grid">
+				<div class="col-md-4">Category<span style="color: red">*</span></div>
+				<div class="col-md-7">
 					<select name="category" id="category" required="required">
 						<option value="">-Select-</option>
 						<option value="am">Accounting Management</option>
@@ -77,14 +77,14 @@
 					</select> <br>
 				</div>
 			</div>
-		<div class="row-fluid show-grid">
-				<div class="span3">Comments/Questions</div>
-				<div class="span8">	<textarea cols="40" rows="20" name="comments"></textarea><br>
+		<div class="row show-grid">
+				<div class="col-md-3">Comments/Questions</div>
+				<div class="col-md-8">	<textarea cols="40" rows="20" name="comments"></textarea><br>
 				</div>
 			</div>
-			<div class="row-fluid show-grid">
-				<div class="span3">Resolution</div>
-				<div class="span8">	<textarea cols="40" rows="20" name="resolution"></textarea><br>
+			<div class="row show-grid">
+				<div class="col-md-3">Resolution</div>
+				<div class="col-md-8">	<textarea cols="40" rows="20" name="resolution"></textarea><br>
 				</div>
 			</div>
 			<div class="ef-buttons">

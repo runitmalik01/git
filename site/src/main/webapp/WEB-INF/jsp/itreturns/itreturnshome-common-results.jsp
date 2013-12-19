@@ -14,7 +14,7 @@ HstRequest hstRequest = (HstRequest) request;
 %>
     <c:if test="${strIsOnVendorPortal eq true && empty listOfITReturnHomePageView}">
         <hst:link var="back" path="/${basePath}/itreturn"></hst:link>
-      <div align="center" class="row"><a class="btn green" href="${back}">Back</a></div>
+      <div align="center" class="row"><a class="btn btn-default green" href="${back}">Back</a></div>
     </c:if>
 	<c:if test="${not empty listOfITReturnHomePageView}">
 		<div class="alert alert-info">Click on Actions->Duplicate if you want to Revise an existing return or make a copy of it</div>
@@ -62,7 +62,7 @@ HstRequest hstRequest = (HstRequest) request;
 					<td><fmt:message key="ITRServiceDelivery.${anEntry.ITRFormMode}.displayName"/></td>
 					<td>
 						<div class="btn-group">
-			                <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Action <span class="caret"></span></button>
+			                <button class="btn btn-default btn-primary dropdown-toggle" data-toggle="dropdown">Action <span class="caret"></span></button>
 			                <ul class="dropdown-menu">
 			                  <li><a href="${baseFolderLink}/servicerequest-itr-summary.html">Continue Filing</a></li>
 			                  <li class="divider"></li>

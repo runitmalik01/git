@@ -7,13 +7,13 @@
 <hst:actionURL var="actionUrl" />
 <fieldset id="fieldsfor_ITR4" class="<c:if test="${parentBean.selectedITRForm != 'ITR4'}"> hide </c:if>">
 <legend>Audit Information</legend>
-<div class="row-fluid show-grid">
-		<div class="span9">
+<div class="row show-grid">
+		<div class="col-md-9">
 				<div class="rowlabel" >
 					<label for="isLiable_FurnishSec92E"><small><fmt:message key="liable.toFurnish.us99E.itr4"/> </small> </label>
 				</div></div>
 			
-			<div class="span2">
+			<div class="col-md-2">
 				<div class="rowlabel">
 					<select id="isLiable_FurnishSec92E" name="isLiable_FurnishSec92E">
 					<option value="">-SELECT-</option>
@@ -23,13 +23,13 @@
 				</div>
 		</div>
 		</div>
-<div class="row-fluid show-grid" id="firstField_itr4">
-	<div class="span9" >
+<div class="row show-grid" id="firstField_itr4">
+	<div class="col-md-9" >
 				<div class="rowlabel" >
 					<label for="isLiable_ManageAcc"><small>	<fmt:message key="liable.tomaintain.acounts.itr4"></fmt:message>																								 </small> </label>
 				</div>
 			</div>
-			<div class="span2">
+			<div class="col-md-2">
 				<div class="rowlabel">
 					<select id="isLiable_ManageAcc" name="isLiable_ManageAcc">
 					<option value="">-SELECT-</option>
@@ -38,13 +38,13 @@
 					</select>
 				</div>
 		</div></div>
-		<div class="row-fluid show-grid" id="secondField_itr4">
-	<div class="span9" >
+		<div class="row show-grid" id="secondField_itr4">
+	<div class="col-md-9" >
 				<div class="rowlabel" >
 					<label for="isLiable_ForAudit"><small><fmt:message key="liable.toAudit.us44AA.itr4"/> </small> </label>
 				</div></div>
 			
-			<div class="span2">
+			<div class="col-md-2">
 				<div class="rowlabel">
 					<select id="isLiable_ForAudit" name="isLiable_ForAudit">
 					<option value="">-SELECT-</option>
@@ -54,8 +54,8 @@
 				</div>
 		</div></div>
 		
-		<div class="row-fluid show-grid <c:if test="${(parentBean.isLiable_ForAudit == 'N') || ( empty parentBean.isLiable_ForAudit)}"> hide </c:if>" id="date_name_membership">
-			<div class="span4">
+		<div class="row show-grid <c:if test="${(parentBean.isLiable_ForAudit == 'N') || ( empty parentBean.isLiable_ForAudit)}"> hide </c:if>" id="date_name_membership">
+			<div class="col-md-4">
 				<div class="rowlabel">
 					<label for="date_FurnishAuditReport"><small><fmt:message
 								key="date.furnish.audit.report.itr4" /> </small> </label>
@@ -66,7 +66,7 @@
 				</div>
 			</div>
 
-			<div class="span4" >
+			<div class="col-md-4" >
 				<div class="rowlabel">
 					<label for="name_AuditorSign_Report"><small><fmt:message
 								key="name.Auditor.Sign_Report" /> </small> </label>
@@ -77,7 +77,7 @@
 				</div>
 			</div>
 
-			<div class="span4">
+			<div class="col-md-4">
 				<div class="rowlabel">
 					<label for="membershipNo_auditor"><small><fmt:message
 								key="membershipNo.auditor.ITR4" /> </small> </label>
@@ -88,8 +88,8 @@
 				</div>
 			</div>
 		</div>
-		<div class="row-fluid show-grid <c:if test="${(parentBean.isLiable_ForAudit == 'N') || (empty parentBean.isLiable_ForAudit)}"> hide </c:if>" id="name_pan_dateofAudit">
-		<div class="span4">
+		<div class="row show-grid <c:if test="${(parentBean.isLiable_ForAudit == 'N') || (empty parentBean.isLiable_ForAudit)}"> hide </c:if>" id="name_pan_dateofAudit">
+		<div class="col-md-4">
 				<div class="rowlabel">
 					<label for="name_auditorFirm"><small><fmt:message
 								key="name.auditorFirm.itr4" /> </small> </label>
@@ -99,7 +99,7 @@
 						type="text" value="${parentBean.name_auditorFirm}" />
 				</div>
 			</div>
-			<div class="span4">
+			<div class="col-md-4">
 				<div class="rowlabel">
 					<label for="pan_Firm"><small><fmt:message
 								key="pan.Firm.itr4" /> </small> </label>
@@ -109,7 +109,7 @@
 						type="text" value="${parentBean.pan_Firm}" />
 				</div>
 			</div>
-			<div class="span4">
+			<div class="col-md-4">
 				<div class="rowlabel">
 					<label for="date_AuditReport"><small><fmt:message
 								key="date.AuditReport.itr4" /> </small> </label>

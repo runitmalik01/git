@@ -45,9 +45,9 @@
 					<br />
 
 
-					<div class="row-fluid show-grid">
+					<div class="row show-grid">
 
-						<div class="span3">
+						<div class="col-md-3">
 							<div class="rowlabel">
 								<label for="asset_type"><small><fmt:message
 											key="capital.gain.type.asset" /> </small> </label>
@@ -70,7 +70,7 @@
 								</select>
 							</div>
 						</div>
-						<div class="span3">
+						<div class="col-md-3">
 							<div class="rowlabel">
 								<label for="nameasset"><small><fmt:message
 											key="capital.gain.name.asset" /> </small> </label>
@@ -81,7 +81,7 @@
 									type="text">
 							</div>
 						</div>
-						<div class="span3">
+						<div class="col-md-3">
 							<div class="rowlabel">
 								<label for="date_sale"><small><fmt:message
 											key="capital.gain.date.sale" /> </small> </label>
@@ -93,7 +93,7 @@
 								<c:out value="${childBean.datesaleStr}"/></c:if>" />
 							</div>
 						</div>
-						<div class="span3">
+						<div class="col-md-3">
 							<div class="rowlabel">
 								<label for="date_acquisition"><small><fmt:message
 											key="capital.gain.date.acquisition" /> </small> </label>
@@ -106,8 +106,8 @@
 							</div>
 						</div>
 					</div>
-					<div class="row-fluid show-grid">
-						<div class="span4">
+					<div class="row show-grid">
+						<div class="col-md-4">
 							<div class="rowlabel">
 								<label for="months"><small><fmt:message
 											key="capital.gain.days" /> </small> </label>
@@ -119,7 +119,7 @@
 								<c:out value="${childBean.months}"/></c:if>">
 							</div>
 						</div>
-						<div class="span4 st">
+						<div class="col-md-4 st">
 							<div class="rowlabel" id="sst">
 								<label for="sst_charge"><small><fmt:message
 											key="capital.gain.sst.charge" /> </small> </label>
@@ -149,14 +149,14 @@
 							<h2>
 								<fmt:message key="capital.gain.nri.info" />
 							</h2>
-							<div class="row-fluid show-grid">
-								<div class="span9">
+							<div class="row show-grid">
+								<div class="col-md-9">
 									<div class="rowlabel">
 										<label for="asset111"><small><fmt:message
 													key="capital.gain.nri.infoa" /> </small> </label>
 									</div>
 								</div>
-								<div class="span3">
+								<div class="col-md-3">
 									<div class="rowlabel">
 										<input id="asset111" name="asset111" class="decimal"
 											value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.asset_111}"/></c:if>"
@@ -164,14 +164,14 @@
 									</div>
 								</div>
 							</div>
-							<div class="row-fluid show-grid">
-								<div class="span9">
+							<div class="row show-grid">
+								<div class="col-md-9">
 									<div class="rowlabel">
 										<label for="assetnt111"><small><fmt:message
 													key="capital.gain.nri.infob" /> </small> </label>
 									</div>
 								</div>
-								<div class="span3">
+								<div class="col-md-3">
 									<div class="rowlabel">
 										<input id="assetnt111" name="assetnt111" class="decimal"
 											value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.assetnt111}"/></c:if>"
@@ -183,14 +183,14 @@
 					</c:if>
 					<c:if test="${status != 'RES'}">
 						<div class="lt" id="lnri">
-							<div class="row-fluid show-grid">
-								<div class="span9">
+							<div class="row show-grid">
+								<div class="col-md-9">
 									<div class="rowlabel">
 										<label for="section48"><small><fmt:message
 													key="capital.gain.nri.infosection" /> </small> </label>
 									</div>
 								</div>
-								<div class="span3">
+								<div class="col-md-3">
 									<div class="rowlabel">
 										<input id="section48" name="section48" class="decimal"
 											value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.section48}"/></c:if>"
@@ -198,14 +198,14 @@
 									</div>
 								</div>
 							</div>
-							<div class="row-fluid show-grid">
-								<div class="span9">
+							<div class="row show-grid">
+								<div class="col-md-9">
 									<div class="rowlabel">
 										<label for="unlstdsecurity"><small><fmt:message
 													key="capital.gain.nri.security" /> </small> </label>
 									</div>
 								</div>
-								<div class="span3">
+								<div class="col-md-3">
 									<div class="rowlabel">
 										<input id="unlstdsecurity" name="unlstdsecurity"
 											class="decimal"
@@ -216,14 +216,14 @@
 							</div>
 						</div>
 					</c:if>
-					<div class="row-fluid show-grid" id="lindex">
-						<div class="span9">
+					<div class="row show-grid" id="lindex">
+						<div class="col-md-9">
 							<div class="rowlabel">
 								<label for="index"><small><fmt:message
 											key="capital.gain.index" /> </small> </label>
 							</div>
 						</div>
-						<div class="span3">
+						<div class="col-md-3">
 							<div class="rowlabel">
 								<select id="index" name="index">
 									<option value="">-Select-</option>
@@ -235,14 +235,14 @@
 							</div>
 						</div>
 					</div>
-					<div class="row-fluid show-grid">
-						<div class="span9">
+					<div class="row show-grid">
+						<div class="col-md-9">
 							<div class="rowlabel">
 								<label for="saleconsideration"><fmt:message
 										key="capital.gain.sale.consider" /> </label>
 							</div>
 						</div>
-						<div class="span3">
+						<div class="col-md-3">
 							<div class="rowlabel">
 								<input type="text" name="saleconsideration"
 									id="saleconsideration"
@@ -251,14 +251,14 @@
 							</div>
 						</div>
 					</div>
-					<div class="row-fluid show-grid dateimp" id="imp">
-						<div class="span9">
+					<div class="row show-grid dateimp" id="imp">
+						<div class="col-md-9">
 							<div class="rowlabel">
 								<label for="date_improve"><small><fmt:message
 											key="capital.gain.date.imprv" /> </small> </label>
 							</div>
 						</div>
-						<div class="span3">
+						<div class="col-md-3">
 							<div class="rowlabel">
 								<input id="date_improve" name="date_improve" type="text"
 									value="<c:if test="${not empty childBean.dateimpStr}">
@@ -266,8 +266,8 @@
 							</div>
 						</div>
 					</div>
-					<div class="row-fluid show-grid">
-						<div class="span9">
+					<div class="row show-grid">
+						<div class="col-md-9">
 							<div class="rowlabel acq">
 								<label for="costacquisition"><fmt:message
 											key="capital.gain.cost.acquisition" /> </label>
@@ -277,7 +277,7 @@
 											key="capital.gain.sale.slump" /> </small> </label>
 							</div>
 						</div>
-						<div class="span3 ">
+						<div class="col-md-3 ">
 							<div class="rowlabel">
 								<input id="costacquisition" name="costacquisition" type="text"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.costAcquisition}"/></c:if>"
@@ -286,14 +286,14 @@
 							</div>
 						</div>
 					</diV>
-					<div class="row-fluid show-grid hide slump">
-						<div class="span9">
+					<div class="row show-grid hide slump">
+						<div class="col-md-9">
 							<div class="rowlabel">
 								<label for="cgSlump"> <fmt:message
 										key="capital.gain.slump" /> </label>
 							</div>
 						</div>
-						<div class="span3">
+						<div class="col-md-3">
 							<div class="rowlabel">
 								<input type="text" name="cgSlump" id="cgSlump" readonly="readonly"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.cgSlump}"/></c:if>"
@@ -301,8 +301,8 @@
 							</div>
 						</div>
 					</div>
-					<div class="row-fluid show-grid cstimp">
-						<div class="span9">
+					<div class="row show-grid cstimp">
+						<div class="col-md-9">
 							<div class="rowlabel without_Y_index without_N_index">
 								<label for="costimprovement"><small><fmt:message
 											key="capital.gain.cost.improvement" /> </small> </label>
@@ -313,7 +313,7 @@
 
 							</div>
 						</div>
-						<div class="span3">
+						<div class="col-md-3">
 							<div class="rowlabel">
 								<input id="costimprovement" name="costimprovement" type="text"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.costImprovement}"/></c:if>"
@@ -323,14 +323,14 @@
 						</div>
 					</div>
 
-					<div class="row-fluid show-grid csttrsfr">
-						<div class="span9">
+					<div class="row show-grid csttrsfr">
+						<div class="col-md-9">
 							<div class="rowlabel">
 								<label for="costtrnsfr"><small><fmt:message
 											key="capital.gain.cost.trnsfr" /> </small> </label>
 							</div>
 						</div>
-						<div class="span3">
+						<div class="col-md-3">
 							<div class="rowlabel">
 								<input id="costtrnsfr" name="costtrnsfr" type="text"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.costTransfer}"/></c:if>"
@@ -339,14 +339,14 @@
 							</div>
 						</div>
 					</div>
-					<div class="row-fluid show-grid bal">
-						<div class="span9">
+					<div class="row show-grid bal">
+						<div class="col-md-9">
 							<div class="rowlabel">
 								<label for="balanc"><fmt:message
 										key="capital.gain.balance" /> </label>
 							</div>
 						</div>
-						<div class="span3">
+						<div class="col-md-3">
 							<div class="rowlabel">
 								<input type="text" name="balanc" id="balanc"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
@@ -356,14 +356,14 @@
 							</div>
 						</div>
 					</div>
-					<div class="row-fluid show-grid st" id="loss">
-						<div class="span9">
+					<div class="row show-grid st" id="loss">
+						<div class="col-md-9">
 							<div class="rowlabel">
 								<label for="losssec94"><small><fmt:message
 											key="capital.gain.loss" /> </small> </label>
 							</div>
 						</div>
-						<div class="span3">
+						<div class="col-md-3">
 							<div class="rowlabel">
 								<input type="text" name="losssec94" id="losssec94"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.loss_sec94}"/></c:if>"
@@ -372,14 +372,14 @@
 							</div>
 						</div>
 					</div>
-					<div class="row-fluid show-grid" id="ded">
-						<div class="span9">
+					<div class="row show-grid" id="ded">
+						<div class="col-md-9">
 							<div class="rowlabel">
 								<label for="dedsec54"><fmt:message
 										key="capital.gain.deduction" /> </label>
 							</div>
 						</div>
-						<div class="span3">
+						<div class="col-md-3">
 							<div class="rowlabel">
 								<input type="text" name="dedsec54" id="dedsec54"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.ded_sec54}"/></c:if>"
@@ -388,14 +388,14 @@
 							</div>
 						</div>
 					</div>
-					<div class="row-fluid show-grid hide slump">
-						<div class="span9">
+					<div class="row show-grid hide slump">
+						<div class="col-md-9">
 							<div class="rowlabel">
 								<label for="netCGSlump"> <fmt:message
 										key="capital.gain.slump.net" /> </label>
 							</div>
 						</div>
-						<div class="span3">
+						<div class="col-md-3">
 							<div class="rowlabel">
 								<input type="text" name="netCGSlump" id="netCGSlump" readonly="readonly"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.netCGSlump}"/></c:if>"
@@ -404,14 +404,14 @@
 						</div>
 					</div>
 					<c:if test="${itrform=='ITR4' }">
-						<div class="row-fluid show-grid amtdmdsc">
-							<div class="span9">
+						<div class="row show-grid amtdmdsc">
+							<div class="col-md-9">
 								<div class="rowlabel">
 									<label for="amtdeemedsc"><small> <fmt:message
 												key="capital.amt.deemed.schedule6" /> </small> </label>
 								</div>
 							</div>
-							<div class="span3">
+							<div class="col-md-3">
 								<div class="rowlabel">
 									<input id="amtdeemedsc" name="amtdeemedsc" readonly="readonly"
 										value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.amtdeemedsc}"/></c:if>"
@@ -420,14 +420,14 @@
 							</div>
 						</div>
 					</c:if>
-					<div class="row-fluid show-grid amtdmd">
-						<div class="span9">
+					<div class="row show-grid amtdmd">
+						<div class="col-md-9">
 							<div class="rowlabel">
 								<label for="amtdeemed"><small><fmt:message
 											key="capital.gain.amt.deemed" /> </small> </label>
 							</div>
 						</div>
-						<div class="span3">
+						<div class="col-md-3">
 							<div class="rowlabel">
 								<input id="amtdeemed" name="amtdeemed"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.amtdeemed}"/></c:if>"
@@ -435,14 +435,14 @@
 							</div>
 						</div>
 					</div>
-					<div class="row-fluid show-grid" id="pan">
-						<div class="span9 lt">
+					<div class="row show-grid" id="pan">
+						<div class="col-md-9 lt">
 							<div class="rowlabel">
 								<label for="panifded"><small><fmt:message
 											key="capital.gain.pan" /> </small> </label>
 							</div>
 						</div>
-						<div class="span3 lt">
+						<div class="col-md-3 lt">
 							<div class="rowlabel">
 								<input type="text" name="panifded" id="panifded"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
@@ -450,14 +450,14 @@
 							</div>
 						</div>
 					</div>
-					<div class="row-fluid show-grid cpgain">
-						<div class="span9">
+					<div class="row show-grid cpgain">
+						<div class="col-md-9">
 							<div class="rowlabel">
 								<label for="capitalgain"><fmt:message
 										key="capital.gain.cpgain" /> </label>
 							</div>
 						</div>
-						<div class="span3">
+						<div class="col-md-3">
 							<div class="rowlabel">
 								<input type="text" name="capitalgain" id="capitalgain"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
@@ -471,14 +471,14 @@
 					<legend style="color: green; font-weight: bold;">
 						<fmt:message key="capital.gain.acc.message" />
 					</legend>
-					<div class="row-fluid show-grid">
-						<div class="span9">
+					<div class="row show-grid">
+						<div class="col-md-9">
 							<div class="rowlabel">
 								<label for="accural_info"><small><fmt:message
 											key="capital.gain.acc.option" /> </small> </label>
 							</div>
 						</div>
-						<div class="span3">
+						<div class="col-md-3">
 							<div class="rowlabel">
 								<select name="accural_info" id="accural_info">
 									<option value="">-Select-</option>
@@ -604,11 +604,11 @@
 						</table>
 					</div>
 				</fieldset>
-				<div class="row-fluid show-grid">
-					<div class="span3 offset10">
-						<a href="${redirectURLToSamePage}" class="btn btn-danger"
+				<div class="row show-grid">
+					<div class="col-md-3 col-md-offset-10">
+						<a href="${redirectURLToSamePage}" class="btn btn-default btn-danger"
 							style="color: black">Cancel</a> &nbsp; <a
-							id="myModalHrefcapitalast" role="button" class="btn btn-success"
+							id="myModalHrefcapitalast" role="button" class="btn btn-default btn-success"
 							style="color: black">Save</a>
 					</div>
 				</div>
@@ -658,19 +658,19 @@
 									maxIntegerDigits="14"
 									value="${capitalassetdetail.capitalGainTaxST}" />
 							</td>
-							<td><a class="btn btn-primary"
+							<td><a class="btn btn-default btn-primary"
 								href="${scriptName}/<c:out value="${capitalassetdetail.canonicalUUID}"/>/edit"><small><i
-										class="icon-pencil icon-white"></i>Edit</small> &nbsp;&nbsp; </a>&nbsp;&nbsp;<a
-								class="btn btn-danger"
+										class="glyphicon glyphicon-pencil glyphicon glyphicon-white"></i>Edit</small> &nbsp;&nbsp; </a>&nbsp;&nbsp;<a
+								class="btn btn-default btn-danger"
 								href="${scriptName}/<c:out value="${capitalassetdetail.canonicalUUID}"/>/delete"
 								id="delete" data-confirm=""><small><i
-										class="icon-trash icon-white"></i>Delete</small> </a>
+										class="glyphicon glyphicon-trash glyphicon glyphicon-white"></i>Delete</small> </a>
 							</td>
 						</tr>
 					</c:forEach>
 				</c:if>
 			</table>
-			<a href="${redirectURLToSamePage}/new" class="btn btn-info">Add
+			<a href="${redirectURLToSamePage}/new" class="btn btn-default btn-info">Add
 				New</a>
 		</c:otherwise>
 	</c:choose>

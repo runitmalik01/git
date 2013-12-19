@@ -14,9 +14,9 @@
 							</h1>
 							<p class="lead">
 								<c:out value="${fn:replace(document.title,'${resellerName}',resellerName)}"/>
-								<a class="btn btn-mini yellow" id="huf_invdl" data-toggle="modal" href="#modal"><i class="icon-info-sign"></i><strong>Help</strong></a>
+								<a class="btn btn-default btn-mini yellow" id="huf_invdl" data-toggle="modal" href="#modal"><i class="glyphicon glyphicon-info-sign"></i><strong>Help</strong></a>
 							</p>
-							<a class="btn btn-large btn-primary" href='<hst:link path="/signup"/>'>Sign up today</a>
+							<a class="btn btn-default btn-large btn-primary" href='<hst:link path="/signup"/>'>Sign up today</a>
 						</div>
 						</c:if>
 					</div>

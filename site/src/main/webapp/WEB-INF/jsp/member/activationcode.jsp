@@ -14,13 +14,13 @@
 			<h5><small><fmt:message key="member.forgotcode.message" /></small></h5>
 			<fieldset id="ul_revised" class="revised_v original_h">
 	             <legend>Recover Activation Code</legend>
-	             <div class="row-fluid show-grid" id="ul_revised_input">
-				 	  <div class="span2">
+	             <div class="row show-grid" id="ul_revised_input">
+				 	  <div class="col-md-2">
 					 	  <label for="username">
 					          <small><fmt:message key="signup.email.required" /></small>
 					       </label>
 				       </div>
-				       <div class="span8">
+				       <div class="col-md-8">
 				       <input type="text" name="email" value="${fn:escapeXml(email)}" class="input_data" />
 						 <c:if test="${not empty errors}">
 								<c:forEach items="${errors}" var="error">
@@ -42,7 +42,7 @@
 								<c:out value="Your Email is not registered" /> </span>
 							</c:if>
 				   	</div>
-				   	<div class="span2">
+				   	<div class="col-md-2">
 						<input type="submit"
 						value="<fmt:message key="member.start.submit.label"/>"
 						class="yui3-button" />

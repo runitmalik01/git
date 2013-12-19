@@ -6,22 +6,22 @@
 <hippo-gogreen:title title="${document.name}"/>
 <hst:link var="services" siteMapItemRefId="myservices"></hst:link>
 <hst:link var="home" siteMapItemRefId="home"></hst:link>
-<div class="row-fluid show-grid">
-	<div class="span9">
+<div class="row show-grid">
+	<div class="col-md-9">
 	   <div class="rowlabel">
 <ul class="breadcrumb">
-  <li><a href="${home}" class="btn btn-info"><i class="icon-home icon-white"></i><strong>Home</strong></a> <span class="divider">/</span></li>
-  <li><a href="${services}" class="btn btn-info"><i class="icon-cog icon-white"></i><strong>Services</strong></a> <span class="divider">/</span></li>
+  <li><a href="${home}" class="btn btn-default btn-info"><i class="glyphicon glyphicon-home glyphicon glyphicon-white"></i><strong>Home</strong></a> <span class="divider">/</span></li>
+  <li><a href="${services}" class="btn btn-default btn-info"><i class="glyphicon glyphicon-cog glyphicon glyphicon-white"></i><strong>Services</strong></a> <span class="divider">/</span></li>
   <li class="active"><c:out value="${document.name}"/></li>
 </ul>
 <c:if test="${not empty Success}">
-			<div class="row-fluid show-grid">
+			<div class="row show-grid">
 				<div class="alert alert-success">Your have Successfully
 					applied for ${document.name}.Soon we will contact you.</div>
 			</div>
 </c:if>
 <!-- content -->
-<div class="row-fluid show-grid">
+<div class="row show-grid">
     <div id="content">
         <h3 align="center"><c:out value="${document.name}"/></h3>
         <div>
@@ -45,7 +45,7 @@
             <c:forEach items="${document.costModel}" var="costmodel">
                      <div class="alert alert-info"><c:out value="${costmodel.costDetail }"/>|<w4india:inr value="${costmodel.cost}"></w4india:inr>|
                        <div class="btn-group">
-                          <a class="btn dropdown-toggle btn-primary" data-toggle="dropdown" href="#"><i class="icon-briefcase icon-white"></i>&nbsp;<c:out value="${costmodel.offeringMode}"/>
+                          <a class="btn btn-default dropdown-toggle btn-primary" data-toggle="dropdown" href="#"><i class="glyphicon glyphicon-briefcase glyphicon glyphicon-white"></i>&nbsp;<c:out value="${costmodel.offeringMode}"/>
                              <span class="caret"></span>
                           </a>
                          <ul class="dropdown-menu">
@@ -61,7 +61,7 @@
 </div>
         </div>
    </div>
-   	<div class="span3">
+   	<div class="col-md-3">
 	   <div class="rowlabel">
 		   <hst:include ref="servicerequest-itr"/>
 		</div>

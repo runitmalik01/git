@@ -16,13 +16,13 @@
 </h4>
 		<form id="frmProfitAndLoss" action="${actionUrl}" method="post"
 			name="frmProfitAndLoss">
-			<div class="row-fluid show-grid">
-				<div class="span8">
+			<div class="row show-grid">
+				<div class="col-md-8">
 							<div class="rowlabel">
 								<label for="isAccountMaintain"><small><fmt:message
 											key="ifAccount.maintain.itr4.pl" /> </small> </label>
 							</div></div>
-							<div class="span3">
+							<div class="col-md-3">
 							<div class="rowlabel">
 								<select id="isAccountMaintain" name="isAccountMaintain">
 								<option value="">-Select-</option>
@@ -32,13 +32,13 @@
 							</div>
 						</div></div>
 			<div id="Account_Maintain" class="<c:if test="${(parentBean.isAccountMaintain == 'No')}">hide</c:if> ">  
-		<div class="row-fluid show-grid">
-				<div class="span8">
+		<div class="row show-grid">
+				<div class="col-md-8">
 					<div class="rowlabel">
 						<label for="sales_GrossBusiness"><small><fmt:message
 									key="sales.Gross.Business.itr4" /> </small> </label>
 					</div></div>
-					<div class="span3">
+					<div class="col-md-3">
 					<div class="rowlabel">
 						<input id="sales_GrossBusiness" name="sales_GrossBusiness" 
 							type="text" maxlength="14"
@@ -48,8 +48,8 @@
 				</div>
 				<fieldset>
 				<legend style="color: green; font-weight: bold;"><fmt:message key="profitLoss.fieldset.two.itr4"/></legend>
-				<div class="row-fluid show-grid">
-				<div class="span4">
+				<div class="row show-grid">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="union_ExciseDuties"><small><fmt:message
 									key="union.Excise.Duties.pl.itr4" /> </small> </label>
@@ -60,7 +60,7 @@
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.union_ExciseDuties}"/>" />
 					</div>
 				</div>
-				<div class="span4">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="service_Tax"><small><fmt:message
 									key="service.Tax.pl.itr4" /> </small> </label>
@@ -71,7 +71,7 @@
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.service_Tax}"/>" />
 					</div>
 				</div>
-					<div class="span4">
+					<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="vat_SalesTax"><small><fmt:message
 									key="vat.Sales.Tax.itr4" /> </small> </label>
@@ -84,8 +84,8 @@
 				</div>
 				</div>
 			</fieldset>
-			<div class="row-fluid show-grid">
-			<div class="span4">
+			<div class="row show-grid">
+			<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="any_OtherTax"><small><fmt:message
 									key="any.OtherTax.Tax.pl.itr4" /> </small> </label>
@@ -96,7 +96,7 @@
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.any_OtherTax}"/>" />
 					</div>
 				</div>
-				<div class="span4">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="total_DutyTaxCess"><small><fmt:message
 									key="total.Duty.Tax.Cess.pl.itr4" /> </small> </label>
@@ -111,8 +111,8 @@
 			</div>
 			<fieldset>
 			<legend style="color: green; font-weight: bold;">Other Income</legend>
-			<div class="row-fluid show-grid">
-			<div class="span4">
+			<div class="row show-grid">
+			<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="rent"><small><fmt:message
 									key="rent.pl.itr4" /> </small> </label>
@@ -123,7 +123,7 @@
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.rent}"/>" />
 					</div>
 				</div>
-				<div class="span4">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="commission"><small><fmt:message
 									key="commission.pl.itr4" /> </small> </label>
@@ -134,7 +134,7 @@
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.commission}"/>" />
 					</div>
 				</div>
-					<div class="span4">
+					<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="dividend"><small><fmt:message
 									key="dividend.pl.itr4" /> </small> </label>
@@ -146,8 +146,8 @@
 					</div>
 				</div>
 			</div>
-			<div class="row-fluid show-grid">
-			<div class="span4">
+			<div class="row show-grid">
+			<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="interest"><small><fmt:message
 									key="interest.pl.itr4" /> </small> </label>
@@ -158,7 +158,7 @@
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.interest}"/>" />
 					</div>
 				</div>
-				<div class="span4">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="profit_FixedAsset"><small><fmt:message
 									key="profit.FixedAsset.pl.itr4" /> </small> </label>
@@ -169,7 +169,7 @@
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.profit_FixedAsset}"/>" />
 					</div>
 				</div>
-				<div class="span4">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="profit_InvestmentSTT"><small><fmt:message
 									key="profit.InvestmentSTT.pl.itr4" /> </small> </label>
@@ -181,8 +181,8 @@
 					</div>
 				</div>
 			</div>
-			<div class="row-fluid show-grid">
-			<div class="span4">
+			<div class="row show-grid">
+			<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="profit_OtherInvestment"><small><fmt:message
 									key="profit.OtherInvestment.pl.itr4" /> </small> </label>
@@ -193,7 +193,7 @@
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.profit_OtherInvestment}"/>" />
 					</div>
 				</div>
-				<div class="span4">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="profit_CurrencyFluctuation"><small><fmt:message
 									key="profit.CurrencyFluctuation.pl.itr4" /> </small> </label>
@@ -204,7 +204,7 @@
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.profit_CurrencyFluctuation}"/>" />
 					</div>
 				</div>
-				<div class="span4">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="agricultural_Income"><small><fmt:message
 									key="agricultural.Income.pl.itr4" /> </small> </label>
@@ -215,8 +215,8 @@
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.agricultural_Income}"/>" />
 					</div>
 				</div>
-				<div class="row-fluid show-grid">
-				<div class="span4">
+				<div class="row show-grid">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="any_OtherIncome"><small><fmt:message
 									key="any.OtherIncome.pl.itr4" /> </small> </label>
@@ -227,7 +227,7 @@
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.any_OtherIncome}"/>" />
 					</div>
 				</div>
-					<div class="span4">
+					<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="total_OtherIncome"><small><fmt:message
 									key="total.OtherIncome.pl.itr4" /> </small> </label>
@@ -241,8 +241,8 @@
 				</div>
 			</div>
 			</fieldset>
-			<div class="row-fluid show-grid">
-			<div class="span4">
+			<div class="row show-grid">
+			<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="closing_Stocks"><small><fmt:message
 									key="closing.Stocks.pl.itr4" /> </small> </label>
@@ -253,7 +253,7 @@
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.closing_Stocks}"/>" />
 					</div>
 				</div>
-				<div class="span4">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="total_CreditAccount"><small><fmt:message
 									key="total.CreditAccount.pl.itr4" /> </small> </label>
@@ -265,8 +265,8 @@
 					</div>
 				</div>
 			</div>
-			<div class="row-fluid show-grid">
-			<div class="span4">
+			<div class="row show-grid">
+			<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="opening_Stocks"><small><fmt:message
 									key="opening.Stocks.pl.itr4" /> </small> </label>
@@ -277,7 +277,7 @@
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.opening_Stocks}"/>" />
 					</div>
 				</div>
-				<div class="span4">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="purchases"><small><fmt:message
 									key="purchases.pl.itr4" /> </small> </label>
@@ -292,8 +292,8 @@
 			</div>
 			<fieldset>
 			<legend style="color: green; font-weight: bold;"><fmt:message key="duties.taxes.paid.pl.itr4"/></legend>
-			<div class="row-fluid show-grid">
-			<div class="span4">
+			<div class="row show-grid">
+			<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="custom_Duty"><small><fmt:message
 									key="custom.Duty.pl.itr4" /> </small> </label>
@@ -304,7 +304,7 @@
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.custom_Duty}"/>" />
 					</div>
 				</div>
-				<div class="span4">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="counter_vailingDuty"><small><fmt:message
 									key="counter.vailingDuty.pl.itr4" /> </small> </label>
@@ -315,7 +315,7 @@
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.counter_vailingDuty}"/>" />
 					</div>
 				</div>
-			<div class="span4">
+			<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="special_addtionalDuty"><small><fmt:message
 									key="special.addtionalDuty.pl.itr4" /> </small> </label>
@@ -327,8 +327,8 @@
 					</div>
 				</div>
 				</div>
-				<div class="row-fluid show-grid">
-					<div class="span4">
+				<div class="row show-grid">
+					<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="union_ExciseDuty"><small><fmt:message
 									key="union_ExciseDuty.pl.itr4" /> </small> </label>
@@ -339,7 +339,7 @@
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.union_ExciseDuty}"/>" />
 					</div>
 				</div>
-					<div class="span4">
+					<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="service_TaxPL"><small><fmt:message
 									key="service.Tax.pl.itr4" /> </small> </label>
@@ -350,7 +350,7 @@
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.service_TaxPL}"/>" />
 					</div>
 				</div>
-				<div class="span4">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="vat_SalesTaxPL"><small><fmt:message
 									key="vat.SalesTax.pl.itr4" /> </small> </label>
@@ -362,8 +362,8 @@
 					</div>
 				</div>
 				</div>
-				<div class="row-fluid show-grid">
-				<div class="span4">
+				<div class="row show-grid">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="anyOther_TaxPaid"><small><fmt:message
 									key="anyOther.TaxPaid.pl.itr4" /> </small> </label>
@@ -374,7 +374,7 @@
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.anyOther_TaxPaid}"/>" />
 					</div>
 				</div>
-					<div class="span4">
+					<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="total"><small><fmt:message
 									key="total.pl.itr4" /> </small> </label>
@@ -387,8 +387,8 @@
 				</div>
 				</div>
 			</fieldset>
-			<div class="row-fluid show-grid">
-			<div class="span4">
+			<div class="row show-grid">
+			<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="freight"><small><fmt:message
 									key="freight.pl.itr4" /> </small> </label>
@@ -399,7 +399,7 @@
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.freight}"/>" />
 					</div>
 				</div>
-				<div class="span4">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="consumption_Stores"><small><fmt:message
 									key="consumption.Stores.pl.itr4" /> </small> </label>
@@ -410,7 +410,7 @@
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.consumption_Stores}"/>" />
 					</div>
 				</div>
-				<div class="span4">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="power_Fuels"><small><fmt:message
 									key="power_Fuels.Stores.pl.itr4" /> </small> </label>
@@ -422,8 +422,8 @@
 					</div>
 				</div>
 			</div>
-			<div class="row-fluid show-grid">
-				<div class="span4">
+			<div class="row show-grid">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="rents_PL"><small><fmt:message
 									key="rents_PL.Stores.pl.itr4" /> </small> </label>
@@ -434,7 +434,7 @@
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.rents_PL}"/>" />
 					</div>
 				</div>
-				<div class="span4">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="repairs_Buildings"><small><fmt:message
 									key="repairs.buildings.pl.itr4" /> </small> </label>
@@ -445,7 +445,7 @@
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.repairs_Buildings}"/>" />
 					</div>
 				</div>
-				<div class="span4">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="repairs_Machinery"><small><fmt:message
 									key="repairs.Machinery.pl.itr4" /> </small> </label>
@@ -459,8 +459,8 @@
 			</div>
 			<fieldset>
 			<legend style="color: green; font-weight: bold;"> <fmt:message key="compensation.to.employees.pl.itr4"/></legend>
-			<div class="row-fluid show-grid">
-				<div class="span4">
+			<div class="row show-grid">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="salaries_Wages"><small><fmt:message
 									key="salaries.Wages.pl.itr4" /> </small> </label>
@@ -472,7 +472,7 @@
 					</div>
 				</div>
 			
-				<div class="span4">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="bonus_PL"><small><fmt:message
 									key="bonus.pl.itr4" /> </small> </label>
@@ -484,8 +484,8 @@
 					</div>
 				</div>
 				</div>
-				<div class="row-fluid show-grid">
-					<div class="span4">
+				<div class="row show-grid">
+					<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="reimbursement_MedicalExpenses"><small><fmt:message
 									key="reimbursement.MedicalExpenses.pl.itr4" /> </small> </label>
@@ -496,7 +496,7 @@
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.reimbursement_MedicalExpenses}"/>" />
 					</div>
 				</div>
-					<div class="span4">
+					<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="leave_Encasement"><small><fmt:message
 									key="leave.Encasement.pl.itr4" /> </small> </label>
@@ -507,7 +507,7 @@
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.leave_Encasement}"/>" />
 					</div>
 				</div>
-					<div class="span4">
+					<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="leave_TravelBenefits"><small><fmt:message
 									key="leave.TravelBenefits.pl.itr4" /> </small> </label>
@@ -519,8 +519,8 @@
 					</div>
 				</div>
 				</div>
-				<div class="row-fluid show-grid">
-					<div class="span4">
+				<div class="row show-grid">
+					<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="approved_SuperannuationFund"><small><fmt:message
 									key="approved.SuperannuationFund.pl.itr4" /> </small> </label>
@@ -531,7 +531,7 @@
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.approved_SuperannuationFund}" />"/>
 					</div>
 				</div>
-					<div class="span4">
+					<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="recog_ProvidendFund"><small><fmt:message
 									key="recog.ProvidendFund.pl.itr4" /> </small> </label>
@@ -542,7 +542,7 @@
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.recog_ProvidendFund}" />"/>
 					</div>
 				</div>
-					<div class="span4">
+					<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="recog_GratuityFund"><small><fmt:message
 									key="recog.gratuityFund.pl.itr4" /> </small> </label>
@@ -554,8 +554,8 @@
 					</div>
 				</div>
 				</div>
-				<div class="row-fluid show-grid">
-					<div class="span4">
+				<div class="row show-grid">
+					<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="any_OtherFund"><small><fmt:message
 									key="any.OtherFund.pl.itr4" /> </small> </label>
@@ -566,7 +566,7 @@
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.any_OtherFund}" />"/>
 					</div>
 				</div>
-					<div class="span4">
+					<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="any_otherBenefit"><small><fmt:message
 									key="any.otherBenefit.pl.itr4" /> </small> </label>
@@ -578,8 +578,8 @@
 					</div>
 				</div>
 				</div>
-				<div class="row-fluid show-grid">
-					<div class="span4">
+				<div class="row show-grid">
+					<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="total_Compensation"><small><fmt:message
 									key="total.Compensation.pl.itr4" /> </small> </label>
@@ -595,8 +595,8 @@
 			</fieldset>
 			<fieldset>
 			<legend style="color: green; font-weight: bold;">Insurance</legend>
-			<div class="row-fluid show-grid">
-				<div class="span4">
+			<div class="row show-grid">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="medical_Insurance"><small><fmt:message
 									key="medical.Insurance.pl.itr4" /> </small> </label>
@@ -607,7 +607,7 @@
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.medical_Insurance}" />"/>
 					</div>
 				</div>
-					<div class="span4">
+					<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="life_Insurance"><small><fmt:message
 									key="life.Insurance.pl.itr4" /> </small> </label>
@@ -618,7 +618,7 @@
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.life_Insurance}" />"/>
 					</div>
 				</div>
-					<div class="span4">
+					<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="keyman_Insurance"><small><fmt:message
 									key="keyman_Insurance.pl.itr4" /> </small> </label>
@@ -630,8 +630,8 @@
 					</div>
 				</div>
 				</div>
-				<div class="row-fluid show-grid">
-					<div class="span4">
+				<div class="row show-grid">
+					<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="other_Insurance"><small><fmt:message
 									key="other.Insurance.pl.itr4" /> </small> </label>
@@ -642,7 +642,7 @@
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.other_Insurance}" />"/>
 					</div>
 				</div>
-					<div class="span4">
+					<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="totalExpense_Insurance"><small><fmt:message
 									key="totalExpense.Insurance.pl.itr4" /> </small> </label>
@@ -655,8 +655,8 @@
 				</div>
 				</div>
 				</fieldset>
-				<div class="row-fluid show-grid">
-					<div class="span4">
+				<div class="row show-grid">
+					<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="staff_WelfareExpense"><small><fmt:message
 									key="staff.WelfareExpense.Insurance.pl.itr4" /> </small> </label>
@@ -667,7 +667,7 @@
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.staff_WelfareExpense}" />"/>
 					</div>
 				</div>
-					<div class="span4">
+					<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="entertainment_PL"><small><fmt:message
 									key="entertainment.pl.itr4" /> </small> </label>
@@ -678,7 +678,7 @@
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.entertainment_PL}" />"/>
 					</div>
 				</div>
-					<div class="span4">
+					<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="hospitality_PL"><small><fmt:message
 									key="hospitality.pl.itr4" /> </small> </label>
@@ -690,8 +690,8 @@
 					</div>
 				</div>
 				</div>
-				<div class="row-fluid show-grid">
-					<div class="span4">
+				<div class="row show-grid">
+					<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="conference_PL"><small><fmt:message
 									key="conference.pl.itr4" /> </small> </label>
@@ -702,7 +702,7 @@
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.conference_PL}"/>" />
 					</div>
 				</div>
-					<div class="span4">
+					<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="sales_Promotion"><small><fmt:message
 									key="sales.Promotion.pl.itr4" /> </small> </label>
@@ -713,7 +713,7 @@
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.sales_Promotion}" />"/>
 					</div>
 				</div>
-					<div class="span4">
+					<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="advertisement_PL"><small><fmt:message
 									key="advertisement.pl.itr4" /> </small> </label>
@@ -725,8 +725,8 @@
 					</div>
 				</div>
 				</div>
-				<div class="row-fluid show-grid">
-				<div class="span4">
+				<div class="row show-grid">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="commission_PL"><small><fmt:message
 									key="commission.pl.itr4" /> </small> </label>
@@ -737,7 +737,7 @@
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.commission_PL}" />"/>
 					</div>
 				</div>
-				<div class="span4">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="boarding_Lodging"><small><fmt:message
 									key="boarding.Lodging.pl.itr4" /> </small> </label>
@@ -748,7 +748,7 @@
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.boarding_Lodging}" />"/>
 					</div>
 				</div>
-				<div class="span4">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="travelling_Expenses"><small><fmt:message
 									key="travelling.Expenses.pl.itr4" /> </small> </label>
@@ -760,8 +760,8 @@
 					</div>
 				</div>
 				</div>
-				<div class="row-fluid show-grid">
-				<div class="span4">
+				<div class="row show-grid">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="conveyance_Expenses"><small><fmt:message
 									key="conveyance.Expenses.pl.itr4" /> </small> </label>
@@ -772,7 +772,7 @@
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.conveyance_Expenses}" />"/>
 					</div>
 				</div>
-				<div class="span4">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="telephone_Expenses"><small><fmt:message
 									key="telephone.Expenses.pl.itr4" /> </small> </label>
@@ -783,7 +783,7 @@
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.telephone_Expenses}" />"/>
 					</div>
 				</div>
-				<div class="span4">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="guestHouse_Expenses"><small><fmt:message
 									key="guestHouse.Expenses.pl.itr4" /> </small> </label>
@@ -795,8 +795,8 @@
 					</div>
 				</div>
 				</div>
-				<div class="row-fluid show-grid">
-				<div class="span4">
+				<div class="row show-grid">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="club_Expenses"><small><fmt:message
 									key="club.Expenses.pl.itr4" /> </small> </label>
@@ -807,7 +807,7 @@
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.club_Expenses}" />"/>
 					</div>
 				</div>
-				<div class="span4">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="festivalCeleb_Expenses"><small><fmt:message
 									key="festivalCeleb.Expenses.pl.itr4" /> </small> </label>
@@ -818,7 +818,7 @@
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.festivalCeleb_Expenses}" />"/>
 					</div>
 				</div>
-				<div class="span4">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="scholarship_PL"><small><fmt:message
 									key="scholarship.pl.itr4" /> </small> </label>
@@ -830,8 +830,8 @@
 					</div>
 				</div>
 				</div>
-				<div class="row-fluid show-grid">
-				<div class="span4">
+				<div class="row show-grid">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="gifts_PL"><small><fmt:message
 									key="gifts.pl.itr4" /> </small> </label>
@@ -842,7 +842,7 @@
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.gifts_PL}" />"/>
 					</div>
 				</div>
-				<div class="span4">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="donation_PL"><small><fmt:message
 									key="donation.pl.itr4" /> </small> </label>
@@ -857,8 +857,8 @@
 				</div>
 				<fieldset>
 				<legend style="color: green; font-weight: bold;"><fmt:message key="rates.taxes.paid.govt.itr4"></fmt:message> </legend>
-				<div class="row-fluid show-grid">
-					<div class="span4">
+				<div class="row show-grid">
+					<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="union_ExciseDuty2"><small><fmt:message
 									key="union_ExciseDuty2.pl.itr4" /> </small> </label>
@@ -869,7 +869,7 @@
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.union_ExciseDuty2}" />"/>
 					</div>
 				</div>
-					<div class="span4">
+					<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="service_Tax2"><small><fmt:message
 									key="service.Tax2.itr4" /> </small> </label>
@@ -880,7 +880,7 @@
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.service_Tax2}" />"/>
 					</div>
 				</div>
-					<div class="span4">
+					<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="vat_Salestax2"><small><fmt:message
 									key="vat.Salestax2.pl.itr4" /> </small> </label>
@@ -892,8 +892,8 @@
 					</div>
 				</div>
 				</div>
-				<div class="row-fluid show-grid">
-				<div class="span4">
+				<div class="row show-grid">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="cess_PL"><small><fmt:message
 									key="cess_PL.pl.itr4" /> </small> </label>
@@ -904,7 +904,7 @@
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.cess_PL}" />"/>
 					</div>
 				</div>
-				<div class="span4">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="anyOther_RateInclSTT"><small><fmt:message
 									key="anyOther_RateInclSTT.pl.itr4" /> </small> </label>
@@ -915,7 +915,7 @@
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.anyOther_RateInclSTT}" />"/>
 					</div>
 				</div>
-				<div class="span4">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="totalRates_TaxesPaid"><small><fmt:message
 									key="totalRates_TaxesPaid.pl.itr4" /> </small> </label>
@@ -928,8 +928,8 @@
 				</div>
 				</div>
 				</fieldset>
-				<div class="row-fluid show-grid">
-					<div class="span4">
+				<div class="row show-grid">
+					<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="audit_Fee"><small><fmt:message
 									key="audit.Fee.pl.itr4" /> </small> </label>
@@ -940,7 +940,7 @@
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.audit_Fee}" />"/>
 					</div>
 				</div>
-					<div class="span4">
+					<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="other_Expenses"><small><fmt:message
 									key="other.Expenses.pl.itr4" /> </small> </label>
@@ -951,7 +951,7 @@
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.other_Expenses}" />"/>
 					</div>
 				</div>
-					<div class="span4">
+					<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="bad_Debts"><small><fmt:message
 									key="bad.Debts.pl.itr4" /> </small> </label>
@@ -963,8 +963,8 @@
 					</div>
 				</div>
 				</div>
-				<div class="row-fluid show-grid">
-				<div class="span4">
+				<div class="row show-grid">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="bad_DoubtfulDebts"><small><fmt:message
 									key="bad.DoubtfulDebts.pl.itr4" /> </small> </label>
@@ -975,7 +975,7 @@
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.bad_DoubtfulDebts}" />"/>
 					</div>
 				</div>
-				<div class="span4">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="other_Provisions"><small><fmt:message
 									key="other.Provisions.pl.itr4" /> </small> </label>
@@ -986,7 +986,7 @@
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.other_Provisions}" />"/>
 					</div>
 				</div>
-				<div class="span4">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="profitBefore_InterestTaxes"><small><fmt:message
 									key="profitBefore.InterestTaxes.pl.itr4" /> </small> </label>
@@ -998,8 +998,8 @@
 					</div>
 				</div>
 				</div>
-				<div class="row-fluid show-grid">
-					<div class="span4">
+				<div class="row show-grid">
+					<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="interest_PL"><small><fmt:message
 									key="interest_PL.pl.itr4" /> </small> </label>
@@ -1010,7 +1010,7 @@
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.interest_PL}" />"/>
 					</div>
 				</div>
-					<div class="span4">
+					<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="depreciation_PL"><small><fmt:message
 									key="depreciation_PL.pl.itr4" /> </small> </label>
@@ -1021,7 +1021,7 @@
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.depreciation_PL}" />"/>
 					</div>
 				</div>
-					<div class="span4">
+					<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="profit_BeforeTaxes"><small><fmt:message
 									key="profit_BeforeTaxes.pl.itr4" /> </small> </label>
@@ -1033,8 +1033,8 @@
 					</div>
 				</div>
 				</div>
-				<div class="row-fluid show-grid">
-				<div class="span4">
+				<div class="row show-grid">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="prov_CurrentTax"><small><fmt:message
 									key="Prov.CurrentTax.pl.itr4" /> </small> </label>
@@ -1045,7 +1045,7 @@
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.prov_CurrentTax}" />"/>
 					</div>
 				</div>
-				<div class="span4">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="prov_DeferredTax"><small><fmt:message
 									key="prov.DeferredTax.pl.itr4" /> </small> </label>
@@ -1056,7 +1056,7 @@
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.prov_DeferredTax}" />"/>
 					</div>
 				</div>
-				<div class="span4">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="profit_AfterTax"><small><fmt:message
 									key="profit.AfterTax.pl.itr4" /> </small> </label>
@@ -1068,8 +1068,8 @@
 					</div>
 				</div>
 				</div>
-				<div class="row-fluid show-grid">
-				<div class="span4">
+				<div class="row show-grid">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="balance_PreviousYear"><small><fmt:message
 									key="balance_PreviousYear.pl.itr4" /> </small> </label>
@@ -1080,7 +1080,7 @@
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.balance_PreviousYear}" />"/>
 					</div>
 				</div>
-				<div class="span4">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="amount_Appropriation"><small><fmt:message
 									key="amount_Appropriation.pl.itr4" /> </small> </label>
@@ -1091,7 +1091,7 @@
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.amount_Appropriation}" />"/>
 					</div>
 				</div>
-				<div class="span4">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="transReserves_Surplus"><small><fmt:message
 									key="transReserves.Surplus.pl.itr4" /> </small> </label>
@@ -1103,8 +1103,8 @@
 					</div>
 				</div>
 				</div>
-				<div class="row-fluid show-grid">
-				<div class="span4">
+				<div class="row show-grid">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="balanceCarried_BalanceSheet"><small><fmt:message
 									key="balanceCarried_BalanceSheet.pl.itr4" /> </small> </label>
@@ -1120,8 +1120,8 @@
 				<div id="NoAccount_Maintain" class="<c:if test="${(parentBean.isAccountMaintain == 'Yes') ||(empty parentBean.isAccountMaintain)}"> hide</c:if>">
 				<fieldset>
 				<legend style="color: green; font-weight: bold;"><fmt:message key ="noAccounts.PL.itr4"></fmt:message> </legend>
-				<div class="row-fluid show-grid">
-				<div class="span5">
+				<div class="row show-grid">
+				<div class="col-md-5">
 					<div class="rowlabel">
 						<label for="gross_Recepients"><small><fmt:message
 									key="gross.Recepients.pl.itr4" /> </small> </label>
@@ -1132,7 +1132,7 @@
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.gross_Recepients}" />"/>
 					</div>
 				</div>
-				<div class="span5">
+				<div class="col-md-5">
 					<div class="rowlabel">
 						<label for="gross_Profit"><small><fmt:message
 									key="gross.Profit.pl.itr4" /> </small> </label>
@@ -1145,8 +1145,8 @@
 				</div>
 				</div>
 				
-				<div class="row-fluid show-grid">
-				<div class="span5">
+				<div class="row show-grid">
+				<div class="col-md-5">
 					<div class="rowlabel">
 						<label for="expenses_NoAccount"><small><fmt:message
 									key="expenses.NoAccount.pl.itr4" /> </small> </label>
@@ -1159,7 +1159,7 @@
 				</div>
 				
 				
-				<div class="span5">
+				<div class="col-md-5">
 					<div class="rowlabel">
 						<label for="net_Profit"><small><fmt:message
 									key="Net_Profit.NoAccount.pl.itr4" /> </small> </label>
@@ -1173,10 +1173,10 @@
 				</div>
 				</fieldset>
 				</div>
-			<div class="row-fluid show-grid">
-				<div class="span4 offset8 decimal">
-					<a href="${scriptName}" class="btn btn-danger" style="color: black">Cancel</a>&nbsp;
-					<a id="myModalProfitAndLoss" role="button" class="btn btn-success" style="color: black">Save</a>
+			<div class="row show-grid">
+				<div class="col-md-4 col-md-offset-8 decimal">
+					<a href="${scriptName}" class="btn btn-default btn-danger" style="color: black">Cancel</a>&nbsp;
+					<a id="myModalProfitAndLoss" role="button" class="btn btn-default btn-success" style="color: black">Save</a>
 				</div>
 			</div>
 		</form>

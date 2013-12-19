@@ -12,13 +12,13 @@
 	<w4india:itrmenu/>
 	<c:if test="${not empty formMap}">
 		<c:forEach items="${formMap.message}" var="item">
-			<div class="alert alert-error">
+			<div class="alert alert-danger">
 				<fmt:message key="${item.value}" />
 			</div>
 		</c:forEach>
 	</c:if>
 	<c:if test="${not empty Max_allowed_ITR1}">
-	   <div class="alert alert-error">
+	   <div class="alert alert-danger">
 	        <fmt:message key="${Max_allowed_ITR1}" />
 	   </div>
 	</c:if>
@@ -37,8 +37,8 @@
 			<fmt:message key="member.interest.tax" />
 		</legend>
 		
-		<div class="row-fluid show-grid">
-			<div class="span3">
+		<div class="row show-grid">
+			<div class="col-md-3">
 				<div class="rowlabel">
 					<label for="Gov_income "><fmt:message
 							key="member.income.gov" /> </label>
@@ -50,7 +50,7 @@
 
 				</div>
 			</div>
-			<div class="span3">
+			<div class="col-md-3">
 				<div class="rowlabel">
 					<label for="Kissanpatra "><fmt:message
 							key="member.income.kissan" /> </label>
@@ -61,7 +61,7 @@
 						onchange="cal1()" />
 				</div>
 			</div>
-			<div class="span3">
+			<div class="col-md-3">
 				<div class="rowlabel">
 					<label for="Bank_interest "><fmt:message
 							key="member.bank.interest" /> </label>
@@ -72,7 +72,7 @@
 						id="Bank_detail_fdr" onchange="cal1()" />
 				</div>
 			</div>
-			<div class="span3">
+			<div class="col-md-3">
 				<div class="rowlabel">
 					<label for="Bank_interest "><fmt:message
 							key="member.bank.interest1" /> </label>
@@ -84,9 +84,9 @@
 				</div>
 			</div>
 		</div>
-		<div class="row-fluid show-grid">
+		<div class="row show-grid">
 
-			<div class="span3">
+			<div class="col-md-3">
 				<div class="rowlabel">
 					<label for="Indira"><fmt:message
 							key="member.interest.indiravikas" /> </label>
@@ -97,7 +97,7 @@
 						onchange="cal1()" />
 				</div>
 			</div>
-			<div class="span3">
+			<div class="col-md-3">
 				<div class="rowlabel">
 					<label for="intnsc"><fmt:message key="member.interest.nsc" />
 					</label>
@@ -109,7 +109,7 @@
 				</div>
 			</div>
 
-			<div class="span3">
+			<div class="col-md-3">
 				<div class="rowlabel">
 					<label for="Otherint "><fmt:message
 							key="member.other.interest" /> </label>
@@ -120,7 +120,7 @@
 						onchange="cal1()" />
 				</div>
 			</div>
-			<div class="span3">
+			<div class="col-md-3">
 				<div class="rowlabel">
 					<label for="Totalint "><fmt:message
 							key="member.total.interest" /> </label>
@@ -137,8 +137,8 @@
 		<legend style="color: green; font-weight: bold;">
 			<fmt:message key="member.otherincome.message1" />
 		</legend>
-		<div class="row-fluid show-grid">
-			<div class="span4">
+		<div class="row show-grid">
+			<div class="col-md-4">
 				<div class="rowlabel">
 					<label for="Family_pension"><fmt:message
 							key="member.family.pension" /> </label>
@@ -149,7 +149,7 @@
 						class=" decimal" id="Family_pension" onchange="cal2()" />
 				</div>
 			</div>
-			<div class="span4">
+			<div class="col-md-4">
 				<div class="rowlabel">
 					<label for="Dividends"><fmt:message key="member.dividends" />
 					</label>
@@ -174,7 +174,7 @@
 				</c:if>
 				 -->
 
-			<div class="span4">
+			<div class="col-md-4">
 				<div class="rowlabel">
 					<label for="Income_rent_machine"><fmt:message
 							key="member.income.rental" /> </label>
@@ -188,9 +188,9 @@
 			</div>
 		</div>
 
-		<div class="row-fluid show-grid">
+		<div class="row show-grid">
 
-			<div class="span4">
+			<div class="col-md-4">
 				<div class="rowlabel">
 					<label for="Income_other "><fmt:message
 							key="member.income.other" /> </label>
@@ -202,7 +202,7 @@
 				</div>
 			</div>
 
-			<div class="span4">
+			<div class="col-md-4">
 				<div class="rowlabel">
 					<label for="Deduction_57 "><fmt:message key="member.income.deduct" /> </label>
 				</div>
@@ -212,7 +212,7 @@
 						id="Deduction_57" onchange="cal2()" maxlength="14" />
 				</div>
 			</div>
-			<div class="span4">
+			<div class="col-md-4">
 				<div class="rowlabel">
 					<label for="TotalOther_income "><fmt:message
 							key="member.income.totalother" /> </label>
@@ -230,8 +230,8 @@
 		<legend style="color: green; font-weight: bold;">
 			<fmt:message key="member.income.expenses" />
 		</legend>
-		<div class="row-fluid show-grid">
-			<div class="span3">
+		<div class="row show-grid">
+			<div class="col-md-3">
 				<div class="rowlabel">
 					<label for="Familypension_deduction "><fmt:message
 							key="member.income.deductfamily" /> </label>
@@ -243,7 +243,7 @@
 						onchange="cal3()" readonly="readonly" />
 				</div>
 			</div>
-			<div class="span3">
+			<div class="col-md-3">
 				<div class="rowlabel">
 					<label for="Otherdeduction "><fmt:message
 							key="member.income.others" /> </label>
@@ -255,7 +255,7 @@
 						id="Otherdeduction" onchange="cal3()" />
 				</div>
 			</div>
-			<div class="span3">
+			<div class="col-md-3">
 				<div class="rowlabel">
 			<label for="depreciation"><fmt:message
 							key="member.income.depreciation" /> </label>
@@ -266,7 +266,7 @@
 						id="depreciation" onchange="cal3()" />
 				</div>
 			</div>
-			<div class="span3">
+			<div class="col-md-3">
 				<div class="rowlabel">
 					<label for="totalexpense "><fmt:message
 							key="member.total.expenses" /> </label>
@@ -283,8 +283,8 @@
 		<legend style="color: green; font-weight: bold;">
 			<fmt:message key="member.income.taxfree" />
 		</legend>
-		<div class="row-fluid show-grid">
-			<div class="span3">
+		<div class="row show-grid">
+			<div class="col-md-3">
 				<div class="rowlabel">
 					<label for="Dividends_uti"><fmt:message
 							key="member.div.uti" /> </label>
@@ -295,7 +295,7 @@
 						maxlength="14" id="Dividends_uti" onchange="cal4()" />
 				</div>
 			</div>
-			<div class="span3">
+			<div class="col-md-3">
 				<div class="rowlabel">
 					<label for="Interest_income"><fmt:message
 							key="member.income.intincome" /> </label>
@@ -306,7 +306,7 @@
 						id="Interest_income" onchange="cal4()" maxlength="14" />
 				</div>
 			</div>
-			<div class="span3">
+			<div class="col-md-3">
 				<div class="rowlabel">
 					<label for="Dividends_mutualfund"><fmt:message
 							key="member.div.mutual" /> </label>
@@ -317,7 +317,7 @@
 						class=" decimal" id="Dividends_mutualfund" onchange="cal4()" />
 				</div>
 			</div>
-			<div class="span3">
+			<div class="col-md-3">
 				<div class="rowlabel">
 					<label for="Agriculture_income"><fmt:message
 							key="member.income.agriculture" /> </label>
@@ -331,8 +331,8 @@
 			</div>
 		</div>
 
-		<div class="row-fluid show-grid">
-			<div class="span4">
+		<div class="row show-grid">
+			<div class="col-md-4">
 				<div class="rowlabel">
 					<label for="Dividends_indian_companies"><fmt:message
 							key="member.div.indian" /> </label>
@@ -344,7 +344,7 @@
 						maxlength="14" />
 				</div>
 			</div>
-			<div class="span4">
+			<div class="col-md-4">
 				<div class="rowlabel">
 					<label for="Other_income ">Others(including exempt income of minor child) </label>
 				</div>
@@ -354,7 +354,7 @@
 						class="decimal" id="Otherincome" onchange="cal4()" />
 				</div>
 			</div>
-			<div class="span4">
+			<div class="col-md-4">
 				<div class="rowlabel">
 					<label for="Total_taxfree_income "><fmt:message
 							key="member.total.otherincome" /> </label>
@@ -372,9 +372,9 @@
 	<c:if test="${not empty  ITR2}">
 	<jsp:include page="otherIncome_add.jsp"></jsp:include>
 	</c:if>
-	<div class="row-fluid show-grid">
+	<div class="row show-grid">
 	<c:if test="${(not empty ITR3_4)}">
-		<div class="span4">
+		<div class="col-md-4">
 			<div class="rowlabel">
 				<label for="profit_FirmAOP_BOI ">Share in the profit of firm/AOP/BOI etc. </label>
 			</div>
@@ -386,7 +386,7 @@
 		</div>
 		</c:if>
 	
-		<div class="span4">
+		<div class="col-md-4">
 			<div class="rowlabel">
 				<label for="Taxable_income "><fmt:message
 						key="member.taxable.income" /> </label>
@@ -399,11 +399,11 @@
 		</div>
 	</div>
 
-	<div class="row-fluid show-grid">
-		<div class="span4 offset8 decimal">
+	<div class="row show-grid">
+		<div class="col-md-4 col-md-offset-8 decimal">
 
-			<a href="${scriptName}" class="btn btn-danger" style="color: black">Cancel</a>&nbsp;<a id="myModalHrefothrInc"
-						role="button" class="btn btn-success" style="color: black">Save</a>
+			<a href="${scriptName}" class="btn btn-default btn-danger" style="color: black">Cancel</a>&nbsp;<a id="myModalHrefothrInc"
+						role="button" class="btn btn-default btn-success" style="color: black">Save</a>
 
 		</div>
 	</div>

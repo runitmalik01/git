@@ -40,9 +40,9 @@
 		</li>
 		<c:if test="${parentBean.amountDue > 0}">
 			<c:forEach items="${availablePaymentTypes}" var="paymentType">
-				<a class="btn btn-primary"
+				<a class="btn btn-default btn-primary"
 					href="${scriptName}/payment/paymentadd/${paymentType}"><small><i
-						class="icon-pencil icon-white"></i>Pay by <fmt:message
+						class="glyphicon glyphicon-pencil glyphicon glyphicon-white"></i>Pay by <fmt:message
 							key="paymentType.${paymentType}.label" /> </small> </a>
 			</c:forEach>
 
@@ -50,7 +50,7 @@
 	</ul>
 	<c:if test="${not empty formMap}">
 		<c:forEach items="${formMap.message}" var="item">
-			<div class="alert alert-error">
+			<div class="alert alert-danger">
 				<fmt:message key="${item.value}" />
 			</div>
 		</c:forEach>
@@ -64,14 +64,14 @@
 						name="frmdataInvoice">
 						<fieldset>
 							<legend>Invoice Details</legend>
-							<div class="row-fluid show-grid letout_L_v letout_S_h"
+							<div class="row show-grid letout_L_v letout_S_h"
 								style="dispaly: none;">
-								<div class="span8">
+								<div class="col-md-8">
 									<div class="rowlabel">
 										<label for="services">Services</label>
 									</div>
 								</div>
-								<div class="span4">
+								<div class="col-md-4">
 									<div class="rowlabel">
 										<select name="serviceName" id="services">
 											<option value="">-Select-</option>
@@ -85,14 +85,14 @@
 									</div>
 								</div>
 							</div>
-							<div class="row-fluid show-grid letout_L_v letout_S_h"
+							<div class="row show-grid letout_L_v letout_S_h"
 								style="dispaly: none;">
-								<div class="span9">
+								<div class="col-md-9">
 									<div class="rowlabel">
 										<label for="filingMode">Offering Mode </label>
 									</div>
 								</div>
-								<div class="span3">
+								<div class="col-md-3">
 									<div class="rowlabel">
 										<select name="filingMode" id="filingMode">
 											<option value="">-Select-</option>
@@ -104,14 +104,14 @@
 									</div>
 								</div>
 							</div>
-							<div class="row-fluid show-grid letout_L_v letout_S_h"
+							<div class="row show-grid letout_L_v letout_S_h"
 								style="dispaly: none;">
-								<div class="span9">
+								<div class="col-md-9">
 									<div class="rowlabel">
 										<label for="quantity">Rate</label>
 									</div>
 								</div>
-								<div class="span3">
+								<div class="col-md-3">
 									<div class="rowlabel">
 										<input id="serviceRate" name="serviceRate" placeholder="Rate"
 											type="text"
@@ -120,14 +120,14 @@
 									</div>
 								</div>
 							</div>
-							<div class="row-fluid show-grid letout_L_v letout_S_h"
+							<div class="row show-grid letout_L_v letout_S_h"
 								style="dispaly: none;">
-								<div class="span9">
+								<div class="col-md-9">
 									<div class="rowlabel">
 										<label for="quantity">Quantity</label>
 									</div>
 								</div>
-								<div class="span3">
+								<div class="col-md-3">
 									<div class="rowlabel">
 										<input id="quantity" name="serviceQty" placeholder="Quantity"
 											type="text"
@@ -137,14 +137,14 @@
 								</div>
 							</div>
 
-							<div class="row-fluid show-grid letout_L_v letout_S_h"
+							<div class="row show-grid letout_L_v letout_S_h"
 								style="dispaly: none;">
-								<div class="span9">
+								<div class="col-md-9">
 									<div class="rowlabel">
 										<label for="amount">Amount </label>
 									</div>
 								</div>
-								<div class="span3">
+								<div class="col-md-3">
 									<div class="rowlabel">
 										<input id="amount" name="amount" placeholder="Amount"
 											type="text"
@@ -153,11 +153,11 @@
 								</div>
 							</div>
 						</fieldset>
-						<div class="row-fluid show-grid">
-							<div class="span3 offset10">
-								<a href="${redirectURLToSamePage}" class="btn btn-danger"
+						<div class="row show-grid">
+							<div class="col-md-3 col-md-offset-10">
+								<a href="${redirectURLToSamePage}" class="btn btn-default btn-danger"
 									style="color: black">Cancel</a> &nbsp; <a
-									id="myModalHrefinvoice" role="button" class="btn btn-success"
+									id="myModalHrefinvoice" role="button" class="btn btn-default btn-success"
 									style="color: black">Save</a>
 							</div>
 						</div>
@@ -194,13 +194,13 @@
 							<td><c:out value="${invoicedetail.serviceAmount}" /></td>
 							<c:if
 								test="${not empty strIsOnVendorPortal && strIsOnVendorPortal =='true' && isVendor =='true'}">
-								<td><a class="btn btn-primary"
+								<td><a class="btn btn-default btn-primary"
 									href="${scriptName}/<c:out value="${invoicedetail.canonicalUUID}"/>/memberinvoiceedit"><small><i
-											class="icon-pencil icon-white"></i>Edit</small> </a>&nbsp;&nbsp;<a
-									class="btn btn-danger"
+											class="glyphicon glyphicon-pencil glyphicon glyphicon-white"></i>Edit</small> </a>&nbsp;&nbsp;<a
+									class="btn btn-default btn-danger"
 									href="${scriptName}/<c:out value="${invoicedetail.canonicalUUID}"/>/memberinvoicedelete"
 									data-confirm=""><small><i
-											class="icon-trash icon-white"></i>Delete</small> </a>
+											class="glyphicon glyphicon-trash glyphicon glyphicon-white"></i>Delete</small> </a>
 								</td>
 							</c:if>
 						</tr>
@@ -210,7 +210,7 @@
 			<c:if
 				test="${not empty strIsOnVendorPortal && strIsOnVendorPortal =='true' && isVendor =='true'}">
 				<c:if test="${empty NEW_CHILD_DISABLED}">
-					<a href="${scriptName}/memberinvoicenew" class="btn btn-info"
+					<a href="${scriptName}/memberinvoicenew" class="btn btn-default btn-info"
 						style="color: black">Add New (Service)</a>
 				</c:if>
 			</c:if>
@@ -254,13 +254,13 @@
 							<td>${paymentStatus}</td>
 							<c:if
 								test="${not empty strIsOnVendorPortal && strIsOnVendorPortal =='true' && isVendor =='true'}">
-								<td><a class="btn btn-primary"
+								<td><a class="btn btn-default btn-primary"
 									href="${scriptName}<c:out value="/payment/${invoicepaymentdetail.canonicalUUID}"/>/paymentedit?paymentType=${invoicepaymentdetail.paymentType}"><small><i
-											class="icon-pencil icon-white"></i>Edit</small> </a>&nbsp;&nbsp;<a
-									class="btn btn-danger"
+											class="glyphicon glyphicon-pencil glyphicon glyphicon-white"></i>Edit</small> </a>&nbsp;&nbsp;<a
+									class="btn btn-default btn-danger"
 									href="${scriptName}<c:out value="/payment/${invoicepaymentdetail.canonicalUUID}"/>/paymentdelete?paymentType=${invoicepaymentdetail.paymentType}"
 									data-confirm=""><small><i
-											class="icon-trash icon-white"></i>Delete</small> </a>
+											class="glyphicon glyphicon-trash glyphicon glyphicon-white"></i>Delete</small> </a>
 								</td>
 							</c:if>
 						</tr>
@@ -299,13 +299,13 @@
 									<td>VERIFIED</td>
 									<c:if
 										test="${not empty strIsOnVendorPortal && strIsOnVendorPortal =='true' && isVendor =='true'}">
-										<td><a class="btn btn-primary"
+										<td><a class="btn btn-default btn-primary"
 											href="${scriptName}<c:out value="/payment/${invoicerefunddetail.canonicalUUID}"/>/paymentedit?paymentType=${invoicerefunddetail.paymentType}"><small><i
-													class="icon-pencil icon-white"></i>Edit</small> </a>&nbsp;&nbsp;<a
-											class="btn btn-danger"
+													class="glyphicon glyphicon-pencil glyphicon glyphicon-white"></i>Edit</small> </a>&nbsp;&nbsp;<a
+											class="btn btn-default btn-danger"
 											href="${scriptName}<c:out value="/payment/${invoicerefunddetail.canonicalUUID}"/>/paymentdelete?paymentType=${invoicerefunddetail.paymentType}"
 											data-confirm=""><small><i
-													class="icon-trash icon-white"></i>Delete</small> </a>
+													class="glyphicon glyphicon-trash glyphicon glyphicon-white"></i>Delete</small> </a>
 										</td>
 									</c:if>
 								</tr>
@@ -383,7 +383,7 @@
 			Please wait for the page to refresh ..
 		</div>
 		<div class="modal-footer">
-			<a href="${scriptName}" class="btn btn-inverse" id="addNewBtn"
+			<a href="${scriptName}" class="btn btn-default btn-inverse" id="addNewBtn"
 				style="display: none">Refresh</a>
 		</div>
 	</div>

@@ -120,7 +120,7 @@
 	       </tr>
 		
 	       <tr>
-	       <td class="label"><fmt:message key="80C.id11"/></td>
+	       <td class="label label-default"><fmt:message key="80C.id11"/></td>
 	       <td class="input"><input type="text" name="Total" class="numberinput" id="K" value="${documentc.total }" onblur="fillC()"  readonly title="Please fill this field"/></td>
 	       </tr>
 	                    

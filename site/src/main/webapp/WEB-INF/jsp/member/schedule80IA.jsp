@@ -30,42 +30,42 @@
 <div><h2><fmt:message key="80IA.schedule"/></h2></div>
    <table>
 		<tr>
-	         <td class="label"><fmt:message key="80IA.id1"/></td>
+	         <td class="label label-default"><fmt:message key="80IA.id1"/></td>
 	         <td class="input">
 	         <input  type="text" name="id1ia" class="numberinput" value="${documentia.infraFac}" id="AIA" onblur="fillIA()" title="Please fill this field" maxlength="14" min="0"/>	        
 	         </td>
 		</tr>
            		
 	       <tr>
-	       <td class="label"><fmt:message key="80IA.id2"></fmt:message></td>
+	       <td class="label label-default"><fmt:message key="80IA.id2"></fmt:message></td>
 	       <td class="input">
 	       <input  type="text" name="id2ia"   class="numberinput" value="${documentia.teleFac}" id="BIA"  onblur="fillIA()" title="Please fill this field" maxlength="14" min="0"/>	      
 	       </td>
 	       </tr>
 	       
 	       <tr>
-	       <td class="label"><fmt:message key="80IA.id3"/></td>
+	       <td class="label label-default"><fmt:message key="80IA.id3"/></td>
 	       <td class="input">       
 	       <input type="text" name="id3ia" class="numberinput" id="CIA" value="${documentia.indsPark}"  onblur="fillIA()" title="Please fill this field" maxlength="14" min="0"/>	       
 	       </td>
 	       </tr>
 	       
 	        <tr>
-	       <td class="label"><fmt:message key="80IA.id4"/></td>
+	       <td class="label label-default"><fmt:message key="80IA.id4"/></td>
 	       <td class="input">	     
 	       <input  type="text" name="id4ia" class="numberinput" id="DIA" value="${documentia.powerGen}" onblur="fillIA()" title="Please fill this field" maxlength="14" min="0"/>	      
 	       </td>
 	       </tr>
 	       
 	        <tr>
-	       <td class="label"><fmt:message key="80IA.id5"/></td>
+	       <td class="label label-default"><fmt:message key="80IA.id5"/></td>
 	       <td class="input">	       
 	       <input  type="text" name="id5ia" class="numberinput"  id="EIA" value="${documentia.engPower}" onblur="fillIA()" title="Please fill this field" maxlength="14" min="0"/>	      
 	       </td>
 	       </tr>
 	       
 	        <tr>
-	       <td class="label"><fmt:message key="80IA.id6"/></td>
+	       <td class="label label-default"><fmt:message key="80IA.id6"/></td>
 	       <td class="input">	       
 	       <input  type="text" name="id6ia" class="numberinput" id="FIA" value="${documentia.total}" onblur="fillIA()" readonly  title="Please fill this field" maxlength="14" min="0"/>	      
 	       </td>

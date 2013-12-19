@@ -71,7 +71,7 @@
               </tr>
               </c:if>
               <tr>
-                <td class="label"><fmt:message key="products.detail.name"/></td>
+                <td class="label label-default"><fmt:message key="products.detail.name"/></td>
                 <td class="input"><input type="text" value="${fn:escapeXml(name)}" name="name" />
                   <c:if test="${not empty errors}">
                     <c:forEach items="${errors}" var="error">
@@ -83,7 +83,7 @@
                 </td>
               </tr>
               <tr>
-                <td class="label"><fmt:message key="products.detail.email"/></td>
+                <td class="label label-default"><fmt:message key="products.detail.email"/></td>
                 <td class="input"><input type="text" value="${fn:escapeXml(email)}" name="email" />
                   <c:if test="${not empty errors}">
                     <c:forEach items="${errors}" var="error">
@@ -95,7 +95,7 @@
                 </td>
               </tr>
               <tr>
-                <td class="label vmiddle"><fmt:message key="products.detail.score"/></td>
+                <td class="label label-default vmiddle"><fmt:message key="products.detail.score"/></td>
                 <td class="input">
                   <ol class="rate">
                     <li><span title="Rate: 1">1</span></li>
@@ -108,7 +108,7 @@
                 </td>
               </tr>
               <tr>
-                <td class="label vtop"><fmt:message key="products.detail.review"/></td>
+                <td class="label label-default vtop"><fmt:message key="products.detail.review"/></td>
                 <td class="input">
                   <textarea name="comment" id="comment" rows="3" cols="24"><c:if test="${not empty comment}"><c:out value="${comment}"/></c:if></textarea>
                   <c:if test="${not empty errors}">

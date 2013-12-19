@@ -117,7 +117,7 @@
 								<table width="100%" cellspacing="0" cellpadding="0" border="0">
 									<tr>
 										<td style="padding:5px;" colspan="2" align="left" valign="middle"><input name="searchString" value="" maxLength="4000" class="control_searchString"></td>										
-										<td align="left" valign="middle"><input name="btnSearchAll" class="btn-knova-search" value="" type="submit"></td>
+										<td align="left" valign="middle"><input name="btnSearchAll" class="btn btn-default-knova-search" value="" type="submit"></td>
 										
 									</tr>
 									<tr>
@@ -654,7 +654,7 @@
 								<table border="0" cellpadding="0" cellspacing="0" width="90%">
 									<tr>
 									<td style="padding: 5px;" align="center" valign="top" width="85%"><input name="searchString" width="5" maxlength="10" class="control_documentid"  value="" ></td>
-									<td align="center" valign="top" width="15%"><input name="btnSearchAll" class="btn-knova-openbyid" value="" type="submit"></td>
+									<td align="center" valign="top" width="15%"><input name="btnSearchAll" class="btn btn-default-knova-openbyid" value="" type="submit"></td>
 									</tr>					
 								</table>	
 								<input type="hidden" name="searchMode" value="GuidedSearch">

@@ -41,7 +41,7 @@ request.setAttribute("objHashMapBoolean", objHashMapBoolean);
 </h4>
 	<c:if test="${not empty formMap}">
 		<c:forEach items="${formMap.message}" var="item">
-			<div class="alert alert-error">
+			<div class="alert alert-danger">
 			<c:choose>
 			<c:when test="${item.key == 'checkentry'}">
 			<c:out value="${item.value}"/>
@@ -54,7 +54,7 @@ request.setAttribute("objHashMapBoolean", objHashMapBoolean);
 		</c:forEach>
 	</c:if>
 
-<div class="alert alert-error hide" id="chkentry">
+<div class="alert alert-danger hide" id="chkentry">
 </div>
 
 	<c:choose>
@@ -62,8 +62,8 @@ request.setAttribute("objHashMapBoolean", objHashMapBoolean);
 		<form id="frmdataLosses" action="${actionUrl}" name="adjustmentoflosses" method="post" class="frmlosses">
 			<fieldset>
 				<legend style="color: green; font-weight: bold;">Detail Of Losses</legend>
-				<div class="row-fluid show-grid" >
-                    <div class="span4">
+				<div class="row show-grid" >
+                    <div class="col-md-4">
 					<div class="rowlabel"><label for="NameOfHead"><small><fmt:message key="member.adjustment.losses.name"></fmt:message></small></label></div>
 					<div class="rowlabel">
 					   <!--
@@ -87,7 +87,7 @@ request.setAttribute("objHashMapBoolean", objHashMapBoolean);
 					</select>
 					      </div>
 					      </div>
-					 <div class="span4">
+					 <div class="col-md-4">
 					 <div class="rowlabel"><label for="AssessmentYear"><small><fmt:message key="member.adjustment.losses.year"></fmt:message></small></label></div>
 					 <div class="rowlabel">
 					 <!--
@@ -111,9 +111,9 @@ request.setAttribute("objHashMapBoolean", objHashMapBoolean);
 					</div>
 					</div>
 					</div>
-				<div class="row-fluid show-grid" >
+				<div class="row show-grid" >
 				<!--
-				 <div class="span6">
+				 <div class="col-md-6">
 					<div class="rowlabel"><label for="DueDate"><small><fmt:message key="member.adjustment.losses.duedate"></fmt:message></small></label></div>
 					<div class="rowlabel"><select name="DueDate" id="DueDate">
 					            <option value="">-Select-</option>
@@ -131,20 +131,20 @@ request.setAttribute("objHashMapBoolean", objHashMapBoolean);
 					</div>
 				</div>
 				 -->
-				<div class="span4">
+				<div class="col-md-4">
 					 <div class="rowlabel"><label for="DateOfFilingYear"><small><fmt:message key="member.adjustment.losses.date"></fmt:message></small></label></div>
 					 <div class="rowlabel"><input type="text" id="DateOfFilingYear" name="DateOfFilingYear" value="${childBean.dateStr}" class="filingdate" onchange="checkdate()"/></div>
 				</div>
-				<div class="span4">
+				<div class="col-md-4">
 					 <div class="rowlabel"><label for="Amount"><small><fmt:message key="member.adjustment.losses.amount" /></small></label></div>
 					 <div class="rowlabel"><input type="text" name="Amount" id="Amount" class="decimal" value="<c:if test="${pageAction == 'EDIT_CHILD'}"><c:out value="${childBean.amount}"/></c:if>"/></div>
 				</div>
 			</div>
 			</fieldset>
-			          <div class="row-fluid show-grid">
-					      <div class="span4 offset8 decimal">
-						      <a href="${scriptName}" class="btn btn-danger" style="color: black">Cancel</a>&nbsp;
-					          <a id="myModalHref" role="button" class="btn btn-success" style="color: black">Save</a>
+			          <div class="row show-grid">
+					      <div class="col-md-4 col-md-offset-8 decimal">
+						      <a href="${scriptName}" class="btn btn-default btn-danger" style="color: black">Cancel</a>&nbsp;
+					          <a id="myModalHref" role="button" class="btn btn-default btn-success" style="color: black">Save</a>
 					     </div>
 					 </div>
 					 <input type="hidden" value="${uuid}" id="uuid"/>
@@ -168,10 +168,10 @@ request.setAttribute("objHashMapBoolean", objHashMapBoolean);
 								<td><c:out value="${adjustmentOfLosses.assessmentYear}"/></td>
 								<td><c:out value="${adjustmentOfLosses.dateStr}"/></td>
 								<td><w4india:inr value="${adjustmentOfLosses.amount}" /></td>
-								<td><a class="btn btn-primary" href="${scriptName}/<c:out value="${adjustmentOfLosses.canonicalUUID}"/>/edit"><small><i class="icon-pencil icon-white"></i>Edit</small>
+								<td><a class="btn btn-default btn-primary" href="${scriptName}/<c:out value="${adjustmentOfLosses.canonicalUUID}"/>/edit"><small><i class="glyphicon glyphicon-pencil glyphicon glyphicon-white"></i>Edit</small>
 								</a>&nbsp;&nbsp;
-								<a class="btn btn-danger" href="${scriptName}/<c:out value="${adjustmentOfLosses.canonicalUUID}"/>/delete" data-confirm="">
-								<small><i class="icon-trash icon-white"></i>Delete</small></a></td>
+								<a class="btn btn-default btn-danger" href="${scriptName}/<c:out value="${adjustmentOfLosses.canonicalUUID}"/>/delete" data-confirm="">
+								<small><i class="glyphicon glyphicon-trash glyphicon glyphicon-white"></i>Delete</small></a></td>
 					        </tr>
 
 						</c:forEach>
@@ -184,7 +184,7 @@ request.setAttribute("objHashMapBoolean", objHashMapBoolean);
 					</c:if>
 
 				</table>
-				<a href="${scriptName}/new" class="btn btn-info" style="color: black">Add New</a>
+				<a href="${scriptName}/new" class="btn btn-default btn-info" style="color: black">Add New</a>
 	</c:otherwise>
 	</c:choose>
 <res:client-validation formId="frmdataLosses" screenConfigurationDocumentName="adjustmentoflosses" formSubmitButtonId="myModalHref"/>

@@ -48,7 +48,7 @@ Its a tool in discounted cash flow (DCF) analysis and is a standard method for u
 				</select>
 				<%--<input required type="text" name="no_of_year" id="no_of_year" value="" title="Please fill this field" placeholder="In Years" onkeypress="return isNumberKey(event)" /> --%>
 			</p>
-			<a id="nxt" role="button" class="btn orange"><fmt:message key="npv_button" /></a>
+			<a id="nxt" role="button" class="btn btn-default orange"><fmt:message key="npv_button" /></a>
 		</form>
 	</c:when>
 	<c:otherwise>
@@ -79,9 +79,9 @@ Its a tool in discounted cash flow (DCF) analysis and is a standard method for u
 					readonly="readonly" />
 			</p>
 	
-			<a href="javascript:call()" role="button" class="btn orange"><fmt:message key="tax_button" /></a>
+			<a href="javascript:call()" role="button" class="btn btn-default orange"><fmt:message key="tax_button" /></a>
 	        &nbsp;&nbsp;&nbsp;
-			<a id="rst" role="button" class="btn orange"><fmt:message key="npv1_button" /></a>
+			<a id="rst" role="button" class="btn btn-default orange"><fmt:message key="npv1_button" /></a>
 		</div>
 	</c:otherwise>
 </c:choose>

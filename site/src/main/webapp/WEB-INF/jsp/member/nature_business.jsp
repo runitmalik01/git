@@ -28,8 +28,8 @@ request.setAttribute("objHashMapBusinessCode", objHashMapBusinessCode);
 				name="frmNature_business">
 				<fieldset>
 				<legend style="color: black">Enter Details</legend>
-				<div class="row-fluid show-grid">
-					<div class="span4">
+				<div class="row show-grid">
+					<div class="col-md-4">
 						<div class="rowlabel">
 							<label for="business_code"><small><fmt:message
 										key="business.name.itr4" /> </small> </label>
@@ -45,7 +45,7 @@ request.setAttribute("objHashMapBusinessCode", objHashMapBusinessCode);
 					</select>
 						</div>
 					</div>
-					<div class="span4">
+					<div class="col-md-4">
 						<div class="rowlabel">
 							<label for="tradeName_Proprietorship"><small><fmt:message
 										key="tradeName.Proprietorship.itr4" /> </small> </label>
@@ -58,11 +58,11 @@ request.setAttribute("objHashMapBusinessCode", objHashMapBusinessCode);
 				</div>
      </fieldset>
 
-				<div class="row-fluid show-grid">
-				   <div class="span4 offset8 decimal">
+				<div class="row show-grid">
+				   <div class="col-md-4 col-md-offset-8 decimal">
 					  <a href="${scriptName}"
-						 class="btn btn-danger" style="color: black">Cancel</a>&nbsp; <a id="myModalHrefBusinessNature"
-						 role="button" class="btn btn-success" style="color: black">Save</a>
+						 class="btn btn-default btn-danger" style="color: black">Cancel</a>&nbsp; <a id="myModalHrefBusinessNature"
+						 role="button" class="btn btn-default btn-success" style="color: black">Save</a>
 				</div>
 			</div>
 
@@ -94,13 +94,13 @@ request.setAttribute("objHashMapBusinessCode", objHashMapBusinessCode);
 							<td><c:out
 									value="${businessDetail.tradeName_Proprietorship}" /></td>
 
-							<td><a class="btn btn-danger"
+							<td><a class="btn btn-default btn-danger"
 								href="${scriptName}/<c:out value="${businessDetail.canonicalUUID}"/>/businessnatureedit"><small><i
-										class="icon-pencil icon-white"></i>Edit</small> &nbsp;&nbsp; </a>&nbsp;<a
-								class="btn btn-primary"
+										class="glyphicon glyphicon-pencil glyphicon glyphicon-white"></i>Edit</small> &nbsp;&nbsp; </a>&nbsp;<a
+								class="btn btn-default btn-primary"
 								href="${scriptName}/<c:out value="${businessDetail.canonicalUUID}"/>/businessnaturedelete"
 								data-confirm=""><small><i
-										class="icon-trash icon-white"></i>Delete</small> </a></td>
+										class="glyphicon glyphicon-trash glyphicon glyphicon-white"></i>Delete</small> </a></td>
 						</tr>
 
 					</c:forEach>
@@ -108,7 +108,7 @@ request.setAttribute("objHashMapBusinessCode", objHashMapBusinessCode);
 				</c:if>
 			</table>
             <c:if test="${empty NEW_CHILD_DISABLED}">
-			<a href="${scriptName}/businessnaturenew" class="btn btn-info" style="color: black">Add
+			<a href="${scriptName}/businessnaturenew" class="btn btn-default btn-info" style="color: black">Add
 				New</a>
             </c:if>
 		</c:otherwise>

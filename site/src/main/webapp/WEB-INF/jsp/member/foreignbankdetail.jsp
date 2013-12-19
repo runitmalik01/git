@@ -17,7 +17,7 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 <hst:link var="mainSiteMapRefId" />
 <c:if test="${not empty formMap}">
 	<c:forEach items="${formMap.message}" var="item">
-		<div class="alert alert-error">
+		<div class="alert alert-danger">
 			<fmt:message key="${item.value}" />
 		</div>
 	</c:forEach>
@@ -32,8 +32,8 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 			name="frmtForeignBankDetail">
 			
 			<h2>Enter Details</h2>
-			<div class="row-fluid show-grid">
-				<div class="span4">
+			<div class="row show-grid">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="country_code"><small><fmt:message
 									key="foreign.country.name" /> </small> </label>
@@ -49,7 +49,7 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 					</select>
 					</div>
 				</div>
-				<div class="span4">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="name_bank"><small><fmt:message
 									key="name.bank.itr2" /> </small> </label>
@@ -60,7 +60,7 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.name_Bank}"/></c:if>" />
 					</div>
 				</div>
-				<div class="span4">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="address_bank"><small><fmt:message
 									key="address.bank.itr2" /> </small> </label>
@@ -72,9 +72,9 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 					</div>
 				</div>
 			</div>
-			<div class="row-fluid show-grid">
+			<div class="row show-grid">
 			
-				<div class="span4">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="name_account"><small><fmt:message
 									key="name.account.itr2" /> </small> </label>
@@ -86,7 +86,7 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.name_Account}"/></c:if>" />
 					</div>
 				</div>
-				<div class="span4">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="account_no"><small><fmt:message
 									key="account.no.itr2" /> </small> </label>
@@ -97,7 +97,7 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.account_No}"/></c:if>" />
 					</div>
 				</div>
-				<div class="span4">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="peak_balance"><small><fmt:message
 									key="balance.itr2" /> </small> </label>
@@ -110,10 +110,10 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 				</div>
 			</div>
 		<input type="hidden" id="country_name" name="country_name">
-			<div class="row-fluid show-grid">
-				<div class="span4 offset8 decimal">
-					<a href="${scriptName}" class="btn btn-danger">Cancel</a>&nbsp;
-					<a id="myModalHrefForeignBankDetail" role="button" class="btn btn-success">Save</a>
+			<div class="row show-grid">
+				<div class="col-md-4 col-md-offset-8 decimal">
+					<a href="${scriptName}" class="btn btn-default btn-danger">Cancel</a>&nbsp;
+					<a id="myModalHrefForeignBankDetail" role="button" class="btn btn-default btn-success">Save</a>
 				</div>  
 			
 			</div>
@@ -145,9 +145,9 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 						</td>
 						<td><w4india:inr value="${foreignbank.peak_Balance}" />
 						</td>
-						<td><a class="btn btn-danger"
-							href="${scriptName}/<c:out value="${foreignbank.canonicalUUID}"/>/foreignbankdetailedit"><small><i class="icon-pencil icon-white"></i>Edit</small> &nbsp;&nbsp;
-						</a>&nbsp;<a class="btn btn-primary" href="${scriptName}/<c:out value="${foreignbank.canonicalUUID}"/>/foreignbankdetaildelete" data-confirm=""><small><i class="icon-trash icon-white"></i>Delete</small> </a>
+						<td><a class="btn btn-default btn-danger"
+							href="${scriptName}/<c:out value="${foreignbank.canonicalUUID}"/>/foreignbankdetailedit"><small><i class="glyphicon glyphicon-pencil glyphicon glyphicon-white"></i>Edit</small> &nbsp;&nbsp;
+						</a>&nbsp;<a class="btn btn-default btn-primary" href="${scriptName}/<c:out value="${foreignbank.canonicalUUID}"/>/foreignbankdetaildelete" data-confirm=""><small><i class="glyphicon glyphicon-trash glyphicon glyphicon-white"></i>Delete</small> </a>
 							</td>
 						</tr>
 					</tr>
@@ -161,7 +161,7 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 			</c:if>
 		</table>
 		<a href="${scriptName}/foreignbankdetailnew"
-class="btn btn-info">Add New</a>
+class="btn btn-default btn-info">Add New</a>
 	</c:otherwise>
 </c:choose>
 </div>

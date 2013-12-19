@@ -20,8 +20,8 @@
 					  </a>
 				  </td>
 				  <td>
-					 <div class="btn-group" class="decimal">
-							<button class="btn btn-small dropdown-toggle" data-toggle="dropdown">
+					 <div class="btn btn-group" class="decimal">
+							<button class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
 								<c:choose>
 									<c:when test="${theForm.partBTI.salaries eq '0'}">
 										<c:out value="Fill Now" />
@@ -65,8 +65,8 @@
 					<a style="color: blue;"><fmt:message key="itr2.nil.income"/></a>
 					</td>
 					<td>
-						<div class="btn-group" class="decimal">
-							<button class="btn btn-small dropdown-toggle" data-toggle="dropdown">
+						<div class="btn btn-group" class="decimal">
+							<button class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
 								<c:choose>
 									<c:when test="${theForm.partBTI.incomeFromHP eq '0'}">
 										<c:out value="Fill Now" />
@@ -100,8 +100,8 @@
 					   <a style="color: blue;"><fmt:message key="itr2.nil.income"/></a>
 					</td>
 					<td>
-						<div class="btn-group" class="decimal">
-							<button class="btn btn-small dropdown-toggle"
+						<div class="btn btn-group" class="decimal">
+							<button class="btn btn-default btn-sm dropdown-toggle"
 								data-toggle="dropdown">
 								<c:choose>
 									<c:when test="${theForm.partBTI.incFromOS.totIncFromOS eq '0'}">
@@ -129,8 +129,8 @@
 					</td>
 
 					<td>
-						<div class="btn-group" class="decimal">
-							<button class="btn btn-small dropdown-toggle"
+						<div class="btn btn-group" class="decimal">
+							<button class="btn btn-default btn-sm dropdown-toggle"
 								data-toggle="dropdown">
 								<c:choose>
 									<c:when test="${theForm.partBTI.capGain.totalCapGains eq '0'}">
@@ -208,8 +208,8 @@
 					<fmt:message key="deduction.under.6a"/></a>
 					</td>
 					<td>
-						<div class="btn-group" class="decimal">
-							<button class="btn btn-small dropdown-toggle"
+						<div class="btn btn-group" class="decimal">
+							<button class="btn btn-default btn-sm dropdown-toggle"
 								data-toggle="dropdown">
 								<c:choose>
 								<c:when test="${theForm.partBTI.deductionsUnderScheduleVIA eq'0'}">
@@ -249,8 +249,8 @@
 						</span>
 					</c:when>
 					<c:otherwise>
-					<div class="btn-group" class="decimal">
-							<button class="btn btn-small dropdown-toggle"
+					<div class="btn btn-group" class="decimal">
+							<button class="btn btn-default btn-sm dropdown-toggle"
 								data-toggle="dropdown">
 										<w4india:inr value="${theForm.partBTTI.computationOfTaxLiability.taxPayableOnTI.taxPayableOnTotInc}" />
 								<span class="caret"></span>
@@ -286,8 +286,8 @@
 					<fmt:message key="itr2.tax.relief"/>
 					</td>
 					<td  style="text-align:left">
-					   <div class="btn-group" class="decimal">
-							<button class="btn btn-small dropdown-toggle" data-toggle="dropdown">
+					   <div class="btn btn-group" class="decimal">
+							<button class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
 								<c:choose>
 									<c:when test="${theForm.partBTTI.computationOfTaxLiability.taxRelief.totTaxRelief eq '0'}">
 										<c:out value="Fill Now" />
@@ -318,8 +318,8 @@
 						</span>
 					</c:when>
 					<c:otherwise>
-					<div class="btn-group" class="decimal">
-							<button class="btn btn-small dropdown-toggle"
+					<div class="btn btn-group" class="decimal">
+							<button class="btn btn-default btn-sm dropdown-toggle"
 								data-toggle="dropdown">
 										<w4india:inr value="${theForm.partBTTI.computationOfTaxLiability.intrstPay.totalIntrstPay}" />
 								<span class="caret"></span>
@@ -357,8 +357,8 @@
 					</a>
 					</td>
 					<td>
-						<div class="btn-group" class="decimal">
-							<button class="btn btn-small dropdown-toggle"
+						<div class="btn btn-group" class="decimal">
+							<button class="btn btn-default btn-sm dropdown-toggle"
 								data-toggle="dropdown">
 								<c:choose>
 								<c:when test="${theForm.partBTTI.taxPaid.taxesPaid.advanceTax eq'0'}">
@@ -384,8 +384,8 @@
 					</a>
 					</td>
 					<td>
-						<div class="btn-group" class="decimal">
-							<button class="btn btn-small dropdown-toggle"
+						<div class="btn btn-group" class="decimal">
+							<button class="btn btn-default btn-sm dropdown-toggle"
 								data-toggle="dropdown">
 								<c:choose>
 								<c:when test="${theForm.partBTTI.taxPaid.taxesPaid.selfAssessmentTax eq'0'}">
@@ -412,8 +412,8 @@
 					<a href="tdsfromothers.html" style="color: blue"><fmt:message key="itr2.tds.others"/></a>
 					</td>
 					<td  style="text-align:left">
-					   <div class="btn-group" class="decimal">
-							<button class="btn btn-small dropdown-toggle" data-toggle="dropdown">
+					   <div class="btn btn-group" class="decimal">
+							<button class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
 								<c:choose>
 									<c:when test="${theForm.partBTTI.taxPaid.taxesPaid.TDS eq '0'}">
 										<c:out value="Fill Now" />

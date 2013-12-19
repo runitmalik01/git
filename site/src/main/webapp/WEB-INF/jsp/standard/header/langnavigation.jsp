@@ -27,7 +27,7 @@
 <%--  
 
 <ul id="language">
- <li class="label">
+ <li class="label label-default">
   	<fmt:message key="standard.header.langnav.language" />:
   </li>
   <li class="active">
@@ -71,7 +71,7 @@
 
 
 <%--  <ul id="language">
- <li class="label">
+ <li class="label label-default">
   	<fmt:message key="standard.header.langnav.language" />:
   </li>
   <li class="active">

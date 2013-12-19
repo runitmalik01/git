@@ -8,8 +8,8 @@
 		<legend style="color: green; font-weight: bold;">
 			Income From Owning and Maintaining Race Horses
 		</legend>
-		<div class="row-fluid show-grid">
-			<div class="span4">
+		<div class="row show-grid">
+			<div class="col-md-4">
 				<div class="rowlabel">
 					<label for="Receipts ">Receipts</label>
 				</div>
@@ -18,7 +18,7 @@
 					value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.receipts}"/>" id="Receipts"/>
 				</div>
 			</div>
-			<div class="span4">
+			<div class="col-md-4">
 				<div class="rowlabel">
 					<label for="dedus57 ">Deduction under section 57</label>
 				</div>
@@ -28,7 +28,7 @@
 						id="dedus57" onchange="cal3()" />
 				</div>
 			</div>
-			<div class="span4">
+			<div class="col-md-4">
 				<div class="rowlabel">
 			<label for="balance">Balance</label>
 				</div>
@@ -44,12 +44,12 @@
 		<legend style="color: green; font-weight: bold;">
 			Winnings from lotteries, crossword puzzles, races, games, gambling, betting etc
 		</legend>
-		<div class="row-fluid show-grid">
-	        <div class="span8">
+		<div class="row show-grid">
+	        <div class="col-md-8">
 				<div class="rowlabel">
 			<label for="LotteryOrhorse_income">Winnings from lotteries, crossword puzzles, races, games, gambling, betting etc</label>
 				</div></div>
-				  <div class="span4">
+				  <div class="col-md-4">
 				<div class="rowlabel">
 					<input type="text" name="LotteryOrhorse_income" id="LotteryOrhorse_income"
 						value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.lotteryOrhorse_income}"/>" maxlength="14"

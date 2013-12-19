@@ -1,5 +1,5 @@
 <%@include file="../includes/tags.jspf" %>
-<%-- <div class="row-fluid">
+<%-- <div class="row">
 <c:if test="${fn:length(items) gt 0}">
 	<ul class="box-general box-event <c:if test="${preview}">editable</c:if>">
 	    <c:forEach items="${items}" var="item">
@@ -20,11 +20,11 @@
 </div> --%>
 <hst:link var="eventslink" siteMapItemRefId=""/>
 <div class="widget-wrapper">
-	<div class="row-fluid">
+	<div class="row">
 		<c:if test="${not empty items}">
 			<c:forEach items="${items}" var="evdocument" varStatus="nstat">
-					<div class="span2">
-						<hst:link path="images/catalog/icon-latest-events.png" var="evimgpath"></hst:link>
+					<div class="col-md-2">
+						<hst:link path="images/catalog/glyphicon glyphicon-latest-events.png" var="evimgpath"></hst:link>
 						<img src="${evimgpath}" class="img-circle">
 					</div>
 					<div class="">

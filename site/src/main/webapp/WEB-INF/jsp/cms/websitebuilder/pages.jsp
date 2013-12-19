@@ -48,13 +48,13 @@
 								<td><c:out value="${pgstatus.count}" /></td>
 								<td><c:out value="${fn:toUpperCase(pageDocument.name)}" />
 								    <c:if test="${lstModDocName.name eq pageDocument.name}">
-								     <sup><span class="text-danger"><i class="glyphicon glyphicon-asterisk"></i>
+								     <sup><span class="text-danger"><i class="glyphicon glyphglyphicon glyphicon-asterisk"></i>
 								     <strong>Last Updated</strong></span></sup></c:if></td>
 								<td><c:out value="${fn:length(pageDocument.pageRowDetails)}" /></td>
 								<td><a href="${websitebuilderlink}/pages.html/${pageDocument.canonicalUUID}/editpage"
-									class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-edit"></i>&nbsp;<span><strong>Edit</strong></span></a>
+									class="btn btn-default btn-primary btn-sm"><i class="glyphicon glyphglyphicon glyphicon-edit"></i>&nbsp;<span><strong>Edit</strong></span></a>
 									<a href="${websitebuilderlink}/pages.html/${pageDocument.canonicalUUID}/deletepage" data-confirm=""
-									class="btn btn-danger btn-sm"><i class="glyphicon glyphicon-trash"></i>&nbsp;<span><strong>Delete</strong></span></a></td>
+									class="btn btn-default btn-danger btn-sm"><i class="glyphicon glyphglyphicon glyphicon-trash"></i>&nbsp;<span><strong>Delete</strong></span></a></td>
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -75,14 +75,14 @@
 </div>
 <hr />
 <div align="center">
-	<div class="btn-group" align="center">
-		<button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown">
+	<div class="btn btn-group" align="center">
+		<button type="button" class="btn btn-default btn-warning dropdown-toggle" data-toggle="dropdown">
 			Add New Row to <c:if test="${pageAction eq 'EDIT'}"> <c:out value="${fn:toUpperCase(parentBean.name)}"/></c:if> Page Component <span class="caret"></span>
 		</button>
 		<ul class="dropdown-menu">
 			<li><a href="<c:choose><c:when test="${pageAction eq 'EDIT'}">${websitebuilderlink}/pages.html/${componentUUID}/editpage/rows/newrow</c:when>
 			<c:otherwise>${websitebuilderlink}/pages.html/newpage/${absoluteComponentName}/rows/newrow</c:otherwise></c:choose>"
-				id="newchild"><i class="glyphicon glyphicon-plus-sign"></i><strong>Add</strong></a></li>
+				id="newchild"><i class="glyphicon glyphglyphicon glyphicon-plus-sign"></i><strong>Add</strong></a></li>
 		</ul>
 	</div>
 </div><hr/>
@@ -97,9 +97,9 @@
 							<div class="col-md-6"><strong>Grid Row of ${parentBean.name} Page</strong></div>
 							<div class="col-md-2 col-md-offset-4">
 								<a href="${scriptName}/${componentUUID}/editpage/rows/${pageRowDetail.canonicalUUID}/editrow"
-									class="btn btn-info btn-xs"><i class="glyphicon glyphicon-edit"></i>Edit Row</a> 
+									class="btn btn-default btn-info btn-xs"><i class="glyphicon glyphglyphicon glyphicon-edit"></i>Edit Row</a> 
 								<a href="${scriptName}/${componentUUID}/editpage/rows/${pageRowDetail.canonicalUUID}/deleterow"
-									class="btn btn-danger btn-xs" data-confirm=""><i class="glyphicon glyphicon-remove-sign"></i>Remove Row</a>
+									class="btn btn-default btn-danger btn-xs" data-confirm=""><i class="glyphicon glyphglyphicon glyphicon-remove-sign"></i>Remove Row</a>
 							</div>
 						</div>
 					</div>
@@ -114,10 +114,10 @@
 											<h4> <c:out value="${blockDocument.name}" /> </h4>
 											<p></p>
 											<p><a href="${websitebuilderlink}/blocks.html/${blockDocument.canonicalUUID}/editblock"
-													class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-edit"></i><span><strong>Edit
+													class="btn btn-default btn-primary btn-sm"><i class="glyphicon glyphglyphicon glyphicon-edit"></i><span><strong>Edit
 															Block</strong></span></a>
 											    <a href="${websitebuilderlink}/blocks.html/${blockDocument.canonicalUUID}/deleteblock" data-confirm=""
-													class="btn btn-danger btn-sm"><i class="glyphicon glyphicon-trash"></i><span><strong>Delete
+													class="btn btn-default btn-danger btn-sm"><i class="glyphicon glyphglyphicon glyphicon-trash"></i><span><strong>Delete
 															Block</strong></span></a>
 											</p>
 										</div>
@@ -185,15 +185,15 @@
 					</form>
 				</div>
 				<div class="modal-footer">
-				    <c:if test="${pageAction eq 'NEW_CHILD'}"><a href="#" class="btn btn-warning btn-sm" id="addnew"><i class="glyphicon glyphicon-plus-sign"></i>Add New</a></c:if>
+				    <c:if test="${pageAction eq 'NEW_CHILD'}"><a href="#" class="btn btn-default btn-warning btn-sm" id="addnew"><i class="glyphicon glyphglyphicon glyphicon-plus-sign"></i>Add New</a></c:if>
 					<%-- <c:if test="${pageAction eq 'EDIT_CHILD'}">
 						<a href="${scriptName}/${uuid}/deleterows"
-							class="btn btn-danger btn-sm"> <i class="glyphicon-trash glyphicon"></i>Delete
+							class="btn btn-default btn-danger btn-sm"> <i class="glyphglyphicon glyphicon-trash glyphicon"></i>Delete
 						</a>
 					</c:if> --%>
 					<a href="<c:choose><c:when test="${not empty componentUUID}">${scriptName}/${componentUUID}/editpage</c:when>
 					            <c:otherwise>${websitebuilderlink}/pages.html/newpage/${absoluteComponentName}</c:otherwise></c:choose>"
-						class="btn btn-default btn-sm" data-dismiss="">Close</a> 
+						class="btn btn-default btn-default btn-sm" data-dismiss="">Close</a> 
 					<c:choose>
 						<c:when test="${pageAction == 'NEW_CHILD'}">
 							<c:set value="ajaxsubmit" var="saveID" />
@@ -202,7 +202,7 @@
 							<c:set value="siSave" var="saveID" />
 						</c:otherwise>
 					</c:choose>
-					<a href="#" id="${saveID}" class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-ok-circle"></i>Save changes</a>
+					<a href="#" id="${saveID}" class="btn btn-default btn-primary btn-sm"><i class="glyphicon glyphglyphicon glyphicon-ok-circle"></i>Save changes</a>
 				</div>
 			</div>
 		</div>

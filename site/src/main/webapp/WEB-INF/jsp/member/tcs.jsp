@@ -61,10 +61,10 @@
 					</table>
 
 				</fieldset>
-				<div class="row-fluid show-grid">
-					<div class="span3 offset10">
+				<div class="row show-grid">
+					<div class="col-md-3 col-md-offset-10">
 						<a href="${redirectURLToSamePage}" class="button olive">Cancel</a>
-						&nbsp; <a id="myModalHreftcs" role="button" class="btn orange">Save</a>
+						&nbsp; <a id="myModalHreftcs" role="button" class="btn btn-default orange">Save</a>
 					</div>
 				</div>
 			</form>
@@ -95,13 +95,13 @@
 							<td align="right"><fmt:formatNumber type="number"
 									groupingUsed="false" value="${tdsdetail.taxCredited}" />
 							</td>
-							<td><a class="btn btn-primary"
+							<td><a class="btn btn-default btn-primary"
 								href="${scriptName}/<c:out value="${tdsdetail.canonicalUUID}"/>/tcsedit"><small><i
-										class="icon-pencil icon-white"></i>Edit</small> &nbsp;&nbsp; </a>&nbsp;&nbsp;<a
-								class="btn btn-danger"
+										class="glyphicon glyphicon-pencil glyphicon glyphicon-white"></i>Edit</small> &nbsp;&nbsp; </a>&nbsp;&nbsp;<a
+								class="btn btn-default btn-danger"
 								href="${scriptName}/<c:out value="${tdsdetail.canonicalUUID}"/>/tcsdelete"
 								id="delete" data-confirm=""><small><i
-										class="icon-trash icon-white"></i>Delete</small> </a>
+										class="glyphicon glyphicon-trash glyphicon glyphicon-white"></i>Delete</small> </a>
 							</td>
 						</tr>
 

@@ -3,13 +3,13 @@
 <hst:actionURL var="actionUrl"></hst:actionURL>
 <div class="page type-page">
 	<form action="${actionUrl}" method="post" id="packageSelection">
-	<div class="alert alert-error">
+	<div class="alert alert-danger">
 	Please Select a package according to your need.
 	</div>
        <fieldset>
             <legend>Package Selection</legend>
-		        <div class="row-fluid show-grid" >
-		          <div class="span3">
+		        <div class="row show-grid" >
+		          <div class="col-md-3">
 		            <div class="rowlabel">
 		   	            <label for="packageSelection">
 		                <small>Select the Package (required)</small>
@@ -26,8 +26,8 @@
 		        </div>
 		   </div>
    </fieldset>
-	      <div class="row-fluid show-grid">
-			  <div class="span4 offset8 decimal">
+	      <div class="row show-grid">
+			  <div class="col-md-4 col-md-offset-8 decimal">
 		   		  <a href="javascript:void(0);" id="hrefpackageSelection" class="orange button">Continue</a>
 		      </div>
 		  </div>

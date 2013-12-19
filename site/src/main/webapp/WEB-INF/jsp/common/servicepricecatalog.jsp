@@ -1,6 +1,6 @@
 <%@include file="../includes/tags.jspf"%>
 <hst:link var="pricinglink" siteMapItemRefId="serviceprice" />
-<div class="row-fluid show-grid">
+<div class="row show-grid">
 	<c:if test="${not empty documents }">
 		<c:set value="${12/fn:length(documents)}" var="spanVal" />
 		<c:forEach var="pdocument" items="${documents }">
@@ -17,8 +17,8 @@
 							<c:out value="${fn:substring(whocanDetail,0,200)}" escapeXml="false" />
 							<a href="${pricinglink}"> learn more..</a>
 						</div>
-						<%--<button type="button" class="btn btn-success">e-File (<w4india:inr minFractionDigits="0" value="499"></w4india:inr>)</button>--%>
-						<button type="button" class="btnfiling btn btn-info">
+						<%--<button type="button" class="btn btn-default btn-success">e-File (<w4india:inr minFractionDigits="0" value="499"></w4india:inr>)</button>--%>
+						<button type="button" class="btn btn-defaultfiling btn btn-info">
 							Pricing from (<w4india:inr minFractionDigits="0" value="${pdocument.efilePricing}"></w4india:inr>)
 						</button>
 					</div>

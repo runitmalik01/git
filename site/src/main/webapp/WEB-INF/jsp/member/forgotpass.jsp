@@ -23,7 +23,7 @@
 					</select> 
 					<c:forEach items="${errors}" var="error">
 							<c:if test="${error eq 'recovery.option.required'}">
-								<br/><span class="label label-important">This is required.</span>
+								<br/><span class="label label-default label-danger">This is required.</span>
 							</c:if>
 				     </c:forEach></td>
 				</tr>
@@ -33,18 +33,18 @@
 						<c:if test="${not empty errors}">
 							<c:forEach items="${errors}" var="error">
 								<c:if test="${error eq 'signup.email.error.required'}">
-									<br/><span class="label label-important">This is required.</span>
+									<br/><span class="label label-default label-important">This is required.</span>
 								</c:if>
 							</c:forEach>
 						</c:if></td>
 				</tr>
 				<c:if test="${not empty email_error}">
-					<span class="label label-warning"> <c:out value="Your Email is not registered"/>
+					<span class="label label-default label-warning"> <c:out value="Your Email is not registered"/>
 					</span>
 				</c:if>
 				<tr>
 				    <td></td>
-					<td  align="justify"><div class="rowlabel offset3"><button type="submit" class="btn btn-primary"><fmt:message key="member.start.submit.label"/></button></div></td>
+					<td  align="justify"><div class="rowlabel col-md-offset-3"><button type="submit" class="btn btn-default btn-primary"><fmt:message key="member.start.submit.label"/></button></div></td>
 				</tr>
 			</table>
 			<input name="pageAction" id="pageAction" value="forgotPassHandle" type="hidden"/>
@@ -53,13 +53,13 @@
 	<c:if test="${not empty memberSignup}">
 		<c:forEach items="${chError}" var="error">
 			<c:if test="${error eq 'answer.wrong'}">
-				<div class="alert alert-error">Please give correct answer of selected question.Try again.</div>
+				<div class="alert alert-danger">Please give correct answer of selected question.Try again.</div>
 			</c:if>
 		</c:forEach>
 	<div class="well">
 	<div class=""><strong>Please answer one of following questions and you will be able to access your account.</strong></div>
-		<div class="show-grid row-fluid">
-			<div class="span8">
+		<div class="show-grid row">
+			<div class="col-md-8">
 				<div class="rowlabel">
 					<label for="slquestion"><small>Select a question to answer</small><span class="required">*</span></label>
 				</div>
@@ -74,12 +74,12 @@
 				<div class="rowlabel">
 					<c:forEach items="${chError}" var="error">
 						<c:if test="${error eq 'question.required'}">
-							<span class="label label-important">This is required.</span>
+							<span class="label label-default label-danger">This is required.</span>
 						</c:if>
 					</c:forEach>
 				</div>
 			</div>
-			<div class="span4">
+			<div class="col-md-4">
 				<div class="rowlabel">
 					<label for="slquestion"><small><abbr title="Answer of selected Question">Answer</abbr></small><span class="required">*</span></label>
 				</div>
@@ -89,7 +89,7 @@
 				<div class="rowlabel">
 					<c:forEach items="${chError}" var="error">
 						<c:if test="${error eq 'answer.required'}">
-							<span class="label label-important">This is required.</span>
+							<span class="label label-default label-important">This is required.</span>
 						</c:if>
 					</c:forEach>
 				</div>
@@ -99,9 +99,9 @@
 		<input name="pageAction" id="pageAction" value="changePassHandle" type="hidden"/>
 		<br/>
 		<div class="row">
-		  <div class="span6 offset4">
-			<button type="submit" class="btn btn-success">
-				<i class="icon-lock icon-white"></i>Answered
+		  <div class="col-md-6 col-md-offset-4">
+			<button type="submit" class="btn btn-default btn-success">
+				<i class="glyphicon glyphicon-lock glyphicon glyphicon-white"></i>Answered
 			</button>
 			</div>
 	   </div>

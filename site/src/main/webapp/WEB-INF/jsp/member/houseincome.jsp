@@ -38,7 +38,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 	</h3>
 	<c:if test="${not empty formMap}">
 		<c:forEach items="${formMap.message}" var="item">
-			<div class="alert alert-error">
+			<div class="alert alert-danger">
 				<fmt:message key="${item.value}" />
 			</div>
 		</c:forEach>
@@ -52,8 +52,8 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 				name="housefrm">
 				<fieldset>
 					<legend style="color: green; font-weight: bold;">Property Details</legend>
-					<div class="row-fluid show-grid">
-						<div class="span3">
+					<div class="row show-grid">
+						<div class="col-md-3">
 							<div class="rowlabel">
 								<label for="Address"><small>Address</small> </label>
 							</div>
@@ -64,7 +64,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 
 							</div>
 						</div>
-						<div class="span3">
+						<div class="col-md-3">
 							<div class="rowlabel">
 								<label for="City"><small>Town/City/District</small> </label>
 							</div>
@@ -74,7 +74,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.city}"/></c:if>" />
 							</div>
 						</div>
-						<div class="span3">
+						<div class="col-md-3">
 							<div class="rowlabel">
 								<label for="states"><small><fmt:message
 										key="member.salary.state" /></small></label>
@@ -91,7 +91,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 					</select>
 							</div>
 						</div>
-						<div class="span3">
+						<div class="col-md-3">
 							<div class="rowlabel">
 								<label for="Pin"><small>PIN Code</small> </label>
 							</div>
@@ -103,8 +103,8 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 							</div>
 						</div>
 					</div>
-					<div class="row-fluid show-grid">
-						<div class="span4">
+					<div class="row show-grid">
+						<div class="col-md-4">
 							<div class="rowlabel" id="idletout">
 								<label for="letout"><small>Type of House
 										Property</small> </label>
@@ -129,7 +129,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 -->
 							</div>
 						</div>
-						<div class="span4">
+						<div class="col-md-4">
 							<div class="rowlabel" id="idtenantname">
 								<label for=""><small>Tenant Name</small> </label>
 							</div>
@@ -139,7 +139,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.tenant_name}"/></c:if>" />
 							</div>
 						</div>
-						<div class="span4">
+						<div class="col-md-4">
 							<div class="rowlabel" id="idtenantpan">
 								<label for=""><small>Tenant PAN</small> </label>
 							</div>
@@ -150,8 +150,8 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 							</div>
 						</div>
 					</div>
-					<div class="row-fluid show-grid">
-						<div class="span6">
+					<div class="row show-grid">
+						<div class="col-md-6">
 							<div class="rowlabel">
 								<label for="coowned"><small>Is the property co-owned?</small> </label>
 							</div>
@@ -169,7 +169,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 							</div>
 						</div>
 
-						<div class="span6">
+						<div class="col-md-6">
 							<div class="rowlabel" id="percentageshare_label">
 								<label for=""><small>Your percentage share in
 										Property</small> </label>
@@ -188,14 +188,14 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 							Details</abbr>
 					</legend>
 
-					<div class="row-fluid show-grid">
-						<div class="span1">
+					<div class="row show-grid">
+						<div class="col-md-1">
 							<div class="rowlabel decimal">
 								<label for=""><small>S.No</small> </label>
 							</div>
 							<div class="decimal">1.</div>
 						</div>
-						<div class="span4">
+						<div class="col-md-4">
 							<div class="rowlabel">
 								<label for=""><small>Name of Co-owner</small> </label>
 							</div>
@@ -206,7 +206,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 							</div>
 						</div>
 
-						<div class="span4">
+						<div class="col-md-4">
 							<div class="rowlabel">
 								<label for=""><small>PAN of the Co-owner</small> </label>
 							</div>
@@ -216,7 +216,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.coownerpan1}"/></c:if>" />
 							</div>
 						</div>
-						<div class="span3">
+						<div class="col-md-3">
 							<div class="rowlabel">
 								<label for=""><small><abbr
 										title="Percentage Share In Property">Share (%)</abbr> </small> </label>
@@ -227,100 +227,100 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 							</div>
 						</div>
 
-						<div class="row-fluid show-grid">
-							<div class="span1">
+						<div class="row show-grid">
+							<div class="col-md-1">
 								<div class="decimal">2.</div>
 							</div>
-							<div class="span4">
+							<div class="col-md-4">
 								<div>
 									<input id="coownername2" name="coownername2" class="uprcase"
 										placeholder="Name of Co-owner" type="text" maxLength="125"
 										value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.coownername2}"/></c:if>" />
 								</div>
 							</div>
-							<div class="span4">
+							<div class="col-md-4">
 								<div>
 									<input id="coownerpan2" name="coownerpan2" class="uprcase"
 										placeholder="10 Characters" type="text"
 										value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.coownerpan2}"/></c:if>" />
 								</div>
 							</div>
-							<div class="span3">
+							<div class="col-md-3">
 								<div class="decimal">
 									<input id="share2" name="share2" type="text"
 										value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.share2}"/></c:if>" />
 								</div>
 							</div>
 						</div>
-						<div class="row-fluid show-grid">
-							<div class="span1">
+						<div class="row show-grid">
+							<div class="col-md-1">
 								<div class="decimal">3.</div>
 							</div>
-							<div class="span4">
+							<div class="col-md-4">
 								<div>
 									<input id="coownername3" name="coownername3" class="uprcase"
 										placeholder="Name of Co-owner" type="text" maxLength="125"
 										value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.coownername3}"/></c:if>" />
 								</div>
 							</div>
-							<div class="span4">
+							<div class="col-md-4">
 								<div>
 									<input id="coownerpan3" name="coownerpan3" class="uprcase"
 										placeholder="10 Characters" type="text"
 										value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.coownerpan3}"/></c:if>" />
 								</div>
 							</div>
-							<div class="span3">
+							<div class="col-md-3">
 								<div>
 									<input id="share3" name="share3" type="text"
 										value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.share3}"/></c:if>" />
 								</div>
 							</div>
 						</div>
-						<div class="row-fluid show-grid">
-							<div class="span1">
+						<div class="row show-grid">
+							<div class="col-md-1">
 								<div class="decimal">4.</div>
 							</div>
-							<div class="span4">
+							<div class="col-md-4">
 								<div>
 									<input id="coownername4" name="coownername4" class="uprcase"
 										placeholder="Name of Co-owner" type="text" maxLength="125"
 										value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.coownername4}"/></c:if>" />
 								</div>
 							</div>
-							<div class="span4">
+							<div class="col-md-4">
 								<div>
 									<input id="coownerpan4" name="coownerpan4"
 										placeholder="10 Characters" type="text" class="uprcase"
 										value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.coownerpan4}"/></c:if>" />
 								</div>
 							</div>
-							<div class="span3">
+							<div class="col-md-3">
 								<div>
 									<input id="share4" name="share4" type="text"
 										value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.share4}"/></c:if>" />
 								</div>
 							</div>
 						</div>
-						<div class="row-fluid show-grid">
-							<div class="span1">
+						<div class="row show-grid">
+							<div class="col-md-1">
 								<div class="decimal">5.</div>
 							</div>
-							<div class="span4">
+							<div class="col-md-4">
 								<div>
 									<input id="coownername5" name="coownername5" class="uprcase"
 										placeholder="Name of Co-owner" type="text" maxLength="125"
 										value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.coownername5}"/></c:if>" />
 								</div>
 							</div>
-							<div class="span4">
+							<div class="col-md-4">
 								<div>
 									<input id="coownerpan5" name="coownerpan5" class="uprcase"
 										placeholder="10 Characters" type="text"
 										value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.coownerpan5}"/></c:if>" />
 								</div>
 							</div>
-							<div class="span3">
+							<div class="col-md-3">
 								<div>
 									<input id="share5" name="share5" type="text"
 										value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.share5}"/></c:if>" />
@@ -331,19 +331,19 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 				</fieldset>
 				<fieldset>
 					<legend style="color: green; font-weight: bold;">Property Income Details</legend>
-					<div class="row-fluid show-grid letout_L_v letout_S_h"
+					<div class="row show-grid letout_L_v letout_S_h"
 						style="dispaly: none;">
-						<div class="span1 decimal">
+						<div class="col-md-1 decimal">
 							<div class="rowlabel">
 								<small>a.</small>
 							</div>
 						</div>
-						<div class="span7 decimal">
+						<div class="col-md-7 decimal">
 							<div class="rowlabel">
 								<label for=""><small>Lettable value</small> </label>
 							</div>
 						</div>
-						<div class="span2 offset1">
+						<div class="col-md-2 col-md-offset-1">
 							<div>
 								<input id="Letable_value" name="Letable_value" placeholder="Rs."
 									class="letout_L_inv letout_S_inh" type="text" maxlength="14"
@@ -351,19 +351,19 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 							</div>
 						</div>
 					</div>
-					<div class="row-fluid show-grid letout_L_v letout_S_h"
+					<div class="row show-grid letout_L_v letout_S_h"
 						style="dispaly: none;">
-						<div class="span1 decimal">
+						<div class="col-md-1 decimal">
 							<div class="rowlabel">
 								<small>b.</small>
 							</div>
 						</div>
-						<div class="span7 decimal">
+						<div class="col-md-7 decimal">
 							<div class="rowlabel">
 								<label for=""><small>Unrealised Rent</small> </label>
 							</div>
 						</div>
-						<div class="span2 offset1">
+						<div class="col-md-2 col-md-offset-1">
 							<div>
 								<input id="Unrealised_rent" name="Unrealised_rent"
 									class="letout_L_inv letout_S_inh" placeholder="Rs." type="text"
@@ -372,19 +372,19 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 							</div>
 						</div>
 					</div>
-					<div class="row-fluid show-grid letout_L_v letout_S_h"
+					<div class="row show-grid letout_L_v letout_S_h"
 						style="dispaly: none;">
-						<div class="span1 decimal">
+						<div class="col-md-1 decimal">
 							<div class="rowlabel">
 								<small>c.</small>
 							</div>
 						</div>
-						<div class="span7 decimal">
+						<div class="col-md-7 decimal">
 							<div class="rowlabel">
 								<label for=""><small>Local Taxes</small> </label>
 							</div>
 						</div>
-						<div class="span2 offset1">
+						<div class="col-md-2 col-md-offset-1">
 							<div>
 								<input id="Local_tax" name="Local_tax" placeholder="Rs."
 									class="letout_L_inv letout_S_inh" type="text" maxlength="14"
@@ -392,19 +392,19 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 							</div>
 						</div>
 					</div>
-					<div class="row-fluid show-grid letout_L_v letout_S_h"
+					<div class="row show-grid letout_L_v letout_S_h"
 						style="dispaly: none;">
-						<div class="span1 decimal">
+						<div class="col-md-1 decimal">
 							<div class="rowlabel">
 								<small>d</small>
 							</div>
 						</div>
-						<div class="span7 decimal">
+						<div class="col-md-7 decimal">
 							<div class="rowlabel">
 								<label for=""><small>Balance</small> </label>
 							</div>
 						</div>
-						<div class="span2 offset1">
+						<div class="col-md-2 col-md-offset-1">
 							<div>
 								<input id="Total" name="Total" placeholder="Rs." type="text"
 									class="letout_L_inv letout_S_inh"
@@ -413,19 +413,19 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 							</div>
 						</div>
 					</div>
-					<div class="row-fluid show-grid letout_L_v letout_S_h"
+					<div class="row show-grid letout_L_v letout_S_h"
 						style="dispaly: none;">
-						<div class="span1 decimal">
+						<div class="col-md-1 decimal">
 							<div class="rowlabel">
 								<small>e</small>
 							</div>
 						</div>
-						<div class="span7 decimal">
+						<div class="col-md-7 decimal">
 							<div class="rowlabel">
 								<label for=""><small>30% of d</small> </label>
 							</div>
 						</div>
-						<div class="span2 offset1">
+						<div class="col-md-2 col-md-offset-1">
 							<div>
 								<input id="Balance" name="Balance" placeholder="Rs." type="text"
 									class="letout_L_inv letout_S_inh"
@@ -434,18 +434,18 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 							</div>
 						</div>
 					</div>
-					<div class="row-fluid show-grid">
-						<div class="span1 decimal">
+					<div class="row show-grid">
+						<div class="col-md-1 decimal">
 							<div class="rowlabel">
 								<small>f</small>
 							</div>
 						</div>
-						<div class="span7 decimal">
+						<div class="col-md-7 decimal">
 							<div class="rowlabel">
 								<label for=""><small>Interest Payable</small> </label>
 							</div>
 						</div>
-						<div class="span2 offset1">
+						<div class="col-md-2 col-md-offset-1">
 							<div>
 								<input id="Interest_borrowed" name="Interest_borrowed"
 									class="letout_L_inv letout_S_inh" placeholder="Rs." type="text"
@@ -453,19 +453,19 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 							</div>
 						</div>
 					</div>
-					<div class="row-fluid show-grid">
-						<div class="span1 decimal">
+					<div class="row show-grid">
+						<div class="col-md-1 decimal">
 							<div class="rowlabel">
 								<small>g</small>
 							</div>
 						</div>
-						<div class="span7 decimal">
+						<div class="col-md-7 decimal">
 							<div class="rowlabel">
 								<label for=""><small>Income from House Property</small>
 								</label>
 							</div>
 						</div>
-						<div class="span2 offset1">
+						<div class="col-md-2 col-md-offset-1">
 							<div>
 								<input id="Income_hproperty" name="Income_hproperty"
 									class="letout_L_inv letout_S_inh" placeholder="Rs." type="text"
@@ -478,12 +478,12 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 				<c:if test="${ not empty ITR2}">
 				<jsp:include page="houseIncome_add.jsp"/>
 				</c:if>
-				<div class="row-fluid show-grid">
-					<div class="span4 offset8 decimal">
+				<div class="row show-grid">
+					<div class="col-md-4 col-md-offset-8 decimal">
 						<a
 							href="${scriptName}?selectedItrTab=<%=ITRTab.INCOME_HOUSE_PROPERTY_SINGLE%>"
-							class="btn btn-danger" style="color: black">Cancel</a>&nbsp; <a
-							id="myModalHrefHouseIncome" role="button" class="btn btn-success" style="color: black">Save</a>
+							class="btn btn-default btn-danger" style="color: black">Cancel</a>&nbsp; <a
+							id="myModalHrefHouseIncome" role="button" class="btn btn-default btn-success" style="color: black">Save</a>
 					</div>
 				</div>
 			</form>
@@ -522,19 +522,19 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 									value="${houseincomedetail.income_hproperty}" /></td>
 									</c:otherwise>
 									</c:choose>
-							<td><a class="btn btn-primary"
+							<td><a class="btn btn-default btn-primary"
 								href="${scriptName}/<c:out value="${houseincomedetail.canonicalUUID}"/>/houseincomeedit"><i
-									class="icon-pencil icon-white"></i><small>Edit</small> </a>&nbsp;&nbsp;<a
-								class="btn btn-danger"
+									class="glyphicon glyphicon-pencil glyphicon glyphicon-white"></i><small>Edit</small> </a>&nbsp;&nbsp;<a
+								class="btn btn-default btn-danger"
 								href="${scriptName}/<c:out value="${houseincomedetail.canonicalUUID}"/>/houseincomedelete"
 								data-confirm=""><i
-									class="icon-trash icon-white"></i><small>Delete</small> </a></td>
+									class="glyphicon glyphicon-trash glyphicon glyphicon-white"></i><small>Delete</small> </a></td>
 						</tr>
 				</c:forEach>
 	</c:if>
 			</table>
 			<c:if test="${empty NEW_CHILD_DISABLED}">
-				<a href="${scriptName}/houseincomenew" class="btn btn-info" style="color: black">Add
+				<a href="${scriptName}/houseincomenew" class="btn btn-default btn-info" style="color: black">Add
 					New</a>
 			</c:if>
 			

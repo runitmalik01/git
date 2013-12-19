@@ -7,8 +7,8 @@
             <div class="carousel-caption captionfull">
               <h1>For Individuals and HUF</h1>
               <p class="lead">eFile or eZ File choice is yours. In any case its as easy as 1,2,3...
-              <a class="btn btn-mini yellow" id="huf_invdl" data-toggle="modal" href="#modal" ><i class="icon-info-sign"></i><strong>Help</strong></a></p>
-              <a class="btn btn-large btn-primary" href='<hst:link path="/signup"/>'>Sign up today</a>
+              <a class="btn btn-default btn-mini yellow" id="huf_invdl" data-toggle="modal" href="#modal" ><i class="glyphicon glyphicon-info-sign"></i><strong>Help</strong></a></p>
+              <a class="btn btn-default btn-large btn-primary" href='<hst:link path="/signup"/>'>Sign up today</a>
             </div>
           </div>
         </div>
@@ -18,8 +18,8 @@
             <div class="carousel-caption captionfull">
               <h1>eZ-File</h1>
               <p class="lead">Don't know what to do? Just choose eZ Filing option after you fill your personal information.<br/>
-              <a class="btn btn-mini yellow" id="ezFile" data-toggle="modal" href="#modal" ><i class="icon-info-sign"></i><strong>Help</strong></a></p>
-              <a class="btn btn-large btn-primary" href='<hst:link path="/signup"/>'>Sign up today</a>
+              <a class="btn btn-default btn-mini yellow" id="ezFile" data-toggle="modal" href="#modal" ><i class="glyphicon glyphicon-info-sign"></i><strong>Help</strong></a></p>
+              <a class="btn btn-default btn-large btn-primary" href='<hst:link path="/signup"/>'>Sign up today</a>
             </div>
           </div>
         </div>
@@ -29,8 +29,8 @@
             <div class="carousel-caption captionfull">
               <h1>e-File</h1>
               <p class="lead">Do it yourself.<br/>
-              <a class="btn btn-mini yellow" id="eFile" data-toggle="modal" href="#modal"><i class="icon-info-sign"></i><strong>Help</strong></a></p>
-              <a class="btn btn-large btn-primary" href='<hst:link path="/signup"/>'>Sign up today</a>
+              <a class="btn btn-default btn-mini yellow" id="eFile" data-toggle="modal" href="#modal"><i class="glyphicon glyphicon-info-sign"></i><strong>Help</strong></a></p>
+              <a class="btn btn-default btn-large btn-primary" href='<hst:link path="/signup"/>'>Sign up today</a>
             </div>
           </div>
         </div>
@@ -40,7 +40,7 @@
             <div class="carousel-caption captionfull">
               <h1>For Companies and Firms.</h1>
               <p class="lead"><w4india:resellername/> offers comprehensive Tax services for Companies and Firms.</p>
-              <a class="btn btn-large btn-primary" href='<hst:link path="/signup"/>'>Sign up today</a>
+              <a class="btn btn-default btn-large btn-primary" href='<hst:link path="/signup"/>'>Sign up today</a>
             </div>
           </div>
         </div>

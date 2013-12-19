@@ -24,8 +24,8 @@
 <hst:link var="myitreturns" path="/member/itreturn"/>
 <hst:link var="contactus" path="/contactus"/>
 <div id="top-widget" class="top-widget" style="font-size:12px; border: 1px dotted #ccc;padding:2px;margin-top:10px;">
-  	<div class="row-fluid show-grid">
-	    <div class="span12">      
+  	<div class="row show-grid">
+	    <div class="col-md-12">      
 	        Call Us: <a href="callto:+91-11-45067102">+91-11-45067102</a>,
 	        <a href="callto:+91-11-25074341">+91-11-25074341</a>,
 	        <a href="callto:+91-9136265229">+91-9136265229</a>

@@ -6,8 +6,8 @@
 					<fmt:message key="relief.section.90/91"/></a>
 					</td>
 					<td  style="text-align:left">
-						<div class="btn-group" class="decimal">
-							<button class="btn btn-small dropdown-toggle"
+						<div class="btn btn-group" class="decimal">
+							<button class="btn btn-default btn-sm dropdown-toggle"
 								data-toggle="dropdown">
 								<c:choose>
 								<c:when test="${theForm.ITR1TaxComputation.section90And91 eq'0'}">

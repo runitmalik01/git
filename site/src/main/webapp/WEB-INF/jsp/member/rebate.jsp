@@ -12,7 +12,7 @@
 	<div class="yui3-bd" align="center" >
     <table>
 	 <tr height="30px">
-	<td class="label"><fmt:message key="rebate.section89.required"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+	<td class="label label-default"><fmt:message key="rebate.section89.required"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
 	       <td class="input"><input required type="text" name="Section_89" value="${fn:escapeXml(Section_89)}"class="input_data"/>
 	       <c:if test="${not empty errors}">
               <c:forEach items="${errors}" var="error">
@@ -24,7 +24,7 @@
             </c:if>
 	       </td></tr>
 	       <tr height="30px">
-	<td class="label"><fmt:message key="rebate.section90.required"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+	<td class="label label-default"><fmt:message key="rebate.section90.required"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
 	       <td class="input"><input required type="text" name="Section_90" value="${fn:escapeXml(Section_90)}" class="input_data"/>
 	       <c:if test="${not empty errors}">
               <c:forEach items="${errors}" var="error">
@@ -35,7 +35,7 @@
             </c:if>
 	       </td></tr>
 	       <tr height="30px">
-	<td class="label"><fmt:message key="rebate.section91.required"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+	<td class="label label-default"><fmt:message key="rebate.section91.required"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
 	       <td class="input"><input required type="text" name="Section_91" value="${fn:escapeXml(Section_91)}" class="input_data"/>
 	       <c:if test="${not empty errors}">
               <c:forEach items="${errors}" var="error">

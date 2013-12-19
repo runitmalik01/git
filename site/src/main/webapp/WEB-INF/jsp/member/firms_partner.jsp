@@ -12,7 +12,7 @@
 	<w4india:itrmenu />
 	<hst:link var="mainSiteMapRefId" />
 <c:if test="${not empty InCorrectPan}">
-<div class="alert alert-error">
+<div class="alert alert-danger">
 
 <fmt:message key="not.valid.Pan"> </fmt:message>
 </div>
@@ -27,8 +27,8 @@
 			test="${pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD'}">
 			<form id="frmFirm_Partner" action="${actionUrl}" method="post"
 				name="frmFirm_Partner">
-				<div class="row-fluid show-grid">
-				<div class="span4">
+				<div class="row show-grid">
+				<div class="col-md-4">
 							<div class="rowlabel">
 								<label for="isLiableToAudit"><small>Is Firm liable to audit </small> </label>
 							</div>
@@ -40,7 +40,7 @@
 								</select>
 							</div>
 						</div>
-					<div class="span4">
+					<div class="col-md-4">
 						<div class="rowlabel">
 							<label for="name_Firm"><small><fmt:message
 										key="name.Firm.itr4" /> </small> </label>
@@ -50,7 +50,7 @@
 								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.name_Firm}"/></c:if>" />
 						</div>
 					</div>
-					<div class="span4">
+					<div class="col-md-4">
 						<div class="rowlabel">
 							<label for="firm_Pan"><small><fmt:message
 										key="pan.Firms.itr4" /> </small> </label>
@@ -62,8 +62,8 @@
 					</div>
 					</div>
 					
-				<div class="row-fluid show-grid">
-					<div class="span4">
+				<div class="row show-grid">
+					<div class="col-md-4">
 						<div class="rowlabel">
 							<label for="perShare_InProfit"><small><fmt:message
 										key="perShare.InProfit.itr4" /> </small> </label>
@@ -76,7 +76,7 @@
 					</div>
 				
 
-					<div class="span4">
+					<div class="col-md-4">
 						<div class="rowlabel">
 							<label for="amountShare_InProfit"><small><fmt:message
 										key="amount.share.inprofit.itr4" /> </small> </label>
@@ -87,7 +87,7 @@
 								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.amountShare_InProfit}"/></c:if>" />
 						</div>
 					</div>
-					<div class="span4">
+					<div class="col-md-4">
 						<div class="rowlabel">
 							<label for="capital_Balance"><small><fmt:message
 										key="capital.balance.itr4" /> </small> </label>
@@ -98,10 +98,10 @@
 						</div>
 					</div>
 				</div>
-				<div class="row-fluid show-grid">
-					<div class="span4 offset8 decimal">
-						<a href="${scriptName}" class="btn btn-danger">Cancel</a>&nbsp; <a
-							id="myModalFirmPartner" role="button" class="btn btn-success">Save</a>
+				<div class="row show-grid">
+					<div class="col-md-4 col-md-offset-8 decimal">
+						<a href="${scriptName}" class="btn btn-default btn-danger">Cancel</a>&nbsp; <a
+							id="myModalFirmPartner" role="button" class="btn btn-default btn-success">Save</a>
 					</div>
 				</div>
 			</form>
@@ -120,20 +120,20 @@
 						<tr>
 							<td><c:out value="${firmPartner.name_Firm}" /></td>
 							<td><c:out value="${firmPartner.pan_Firm}" /></td>
-							<td><a class="btn btn-danger"
+							<td><a class="btn btn-default btn-danger"
 								href="${scriptName}/<c:out value="${firmPartner.canonicalUUID}"/>/firmspartneredit"><small><i
-										class="icon-pencil icon-white"></i>Edit</small> &nbsp;&nbsp; </a>&nbsp;<a
-								class="btn btn-primary"
+										class="glyphicon glyphicon-pencil glyphicon glyphicon-white"></i>Edit</small> &nbsp;&nbsp; </a>&nbsp;<a
+								class="btn btn-default btn-primary"
 								href="${scriptName}/<c:out value="${firmPartner.canonicalUUID}"/>/firmspartnerdelete"
 								data-confirm=""><small><i
-										class="icon-trash icon-white"></i>Delete</small> </a></td>
+										class="glyphicon glyphicon-trash glyphicon glyphicon-white"></i>Delete</small> </a></td>
 						</tr>
 
 					</c:forEach>
 
 				</c:if>
 			</table>
-			<a href="${scriptName}/firmspartnernew" class="btn btn-info">Add
+			<a href="${scriptName}/firmspartnernew" class="btn btn-default btn-info">Add
 				New</a>
 		</c:otherwise>
 	</c:choose>

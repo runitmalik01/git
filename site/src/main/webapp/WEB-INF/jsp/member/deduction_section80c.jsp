@@ -14,8 +14,8 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 %>
 <fieldset class="80cadditional" style="display:none">
 	<legend>Description</legend>
-	<div class="row-fluid show-grid">
-	      <div class="span8">
+	<div class="row show-grid">
+	      <div class="col-md-8">
 	      	<div class="rowlabel"><label for="flex_string_doneeName"><small></small></label></div>
 	      	<div class="rowlabel"><textarea name="flex_string_doneeName" placeholder="Description" rows="5" cols="120">${doneeWithPAN.doneeName}</textarea></div>
 	      </div>

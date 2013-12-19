@@ -39,13 +39,13 @@ TreeMap objTreeMapSection = (TreeMap) objValueListService.getReturnFile();
 		<input type="hidden" name="pageNumber" value="${params.pageNumber}"/>
 		<fieldset>
 			<legend><fmt:message key="member.homepage.fillform"/> </legend>
-			<div class="row-fluid show-grid">
+			<div class="row show-grid">
 			  <div class="rowlabel">
-		           <div class="input-append span10">
-                     <input id="query" class="span10" name="query" placeholder="Search String" type="text" maxlength="50" value="${params.query}"/>
-                     <button type="submit" class="btn btn-primary"><i class="icon-search icon-white"></i>Search</button>
+		           <div class="input-group col-md-10">
+                     <input id="query" class="col-md-10" name="query" placeholder="Search String" type="text" maxlength="50" value="${params.query}"/>
+                     <button type="submit" class="btn btn-default btn-primary"><i class="glyphicon glyphicon-search glyphicon glyphicon-white"></i>Search</button>
                      <!--<div class="btn-group">
-                      <button class="btn btn-primary" id="filter-name" type="button" data-toggle="dropdown">Filter<span class="caret"></span></button>
+                      <button class="btn btn-default btn-primary" id="filter-name" type="button" data-toggle="dropdown">Filter<span class="caret"></span></button>
                         <ul class="dropdown-menu">
                           <li><a href="#" id="SalaryIncome" class="search-doc-filter">SalaryIncome</a></li>
                           <li><a href="#" id="Deduction" class="search-doc-filter">Deduction</a></li>
@@ -53,18 +53,18 @@ TreeMap objTreeMapSection = (TreeMap) objValueListService.getReturnFile();
                           <li><a href="#" id="None" class="search-doc-filter">None</a></li>
                         </ul>
                       </div>
-                       <input name="search-filter" id="search-filter" value="${search-filter}" class="span2 hide" type="hidden"/>  -->
+                       <input name="search-filter" id="search-filter" value="${search-filter}" class="col-md-2 hide" type="hidden"/>  -->
                    </div>
                </div>
 		    </div>
 		   <c:if test="${not empty valueListDocument}">
-		    <div class="row-fluid show-grid">
+		    <div class="row show-grid">
 		      <div class="rowlabel">
-		       <div class="btn-group" data-toggle="buttons-checkbox">
+		       <div class="btn btn-group" data-toggle="buttons-checkbox">
 		        <c:forEach items="${valueListDocument.valueListDocumentDetailList}" var="valueListDetail">
-		         <button class="btn btn-warning" id="${valueListDetail.key}">${valueListDetail.label}</button>
+		         <button class="btn btn-default btn-warning" id="${valueListDetail.key}">${valueListDetail.label}</button>
 		        </c:forEach>
-		         <button class="btn btn-warning" id="all">All</button>
+		         <button class="btn btn-default btn-warning" id="all">All</button>
 		         </div>
 		      </div>
 		    </div></c:if>
@@ -78,25 +78,25 @@ TreeMap objTreeMapSection = (TreeMap) objValueListService.getReturnFile();
 				</c:if>
 			</c:when>
 			<c:otherwise>
-				<div class="alert alert-error" align="center"><strong>No search Result has been found.</strong></div>
+				<div class="alert alert-danger" align="center"><strong>No search Result has been found.</strong></div>
 			</c:otherwise>
 		</c:choose>
 	</form>
 	 <%--
-     <div id="error" class="alert alert-error" style="display:none;">PAN's fifth alphabet should be first alphabet of Last Name</div>
+     <div id="error" class="alert alert-danger" style="display:none;">PAN's fifth alphabet should be first alphabet of Last Name</div>
      <div id="strictmsg" class="alert hide">Please enter PAN number for Individual or HUF</div>
 		<fieldset>
 			<legend><fmt:message key="member.homepage.fillform"/> </legend>
-			<div class="row-fluid show-grid">
-		          <div class="span2">
+			<div class="row show-grid">
+		          <div class="col-md-2">
 		          	<div class="rowlabel"><label for="pan"><small>PAN</small></label></div>
 		          	<div class="rowlabel"><input id="pan" name="pan" placeholder="PAN" type="text" maxlength="10" class="uprcase strict"/></div>
 		          </div>
-		          <div class="span3">
+		          <div class="col-md-3">
 		          	<div class="rowlabel"><label for="pi_last_name"><small><fmt:message key="member.homepage.lastname"/></small></label></div>
 		          	<div class="rowlabel"><input id="pi_last_name" name="pi_last_name" placeholder="Last Name" type="text" class="uprcase"/></div>
 		          </div>
-		           <div class="span3">
+		           <div class="col-md-3">
 		            <div class="rowlabel"><label for="ReturnSection"><small>Return filed under section</small><c:out value="${parentBean.returnSection}"/></label></div>
 		          	<div class="rowlabel">
 		          	<select id="ReturnSection" name="ReturnSection" onChange="getSection()" class="uprcase">
@@ -108,19 +108,19 @@ TreeMap objTreeMapSection = (TreeMap) objValueListService.getReturnFile();
 			        </c:forEach>
 		          	</select></div>
 		          </div>
-		          <div class="span2">
+		          <div class="col-md-2">
 		            <div class="rowlabel"><label for="pi_return_type"><small>Return Type</small></label></div>
 		          	<div class="rowlabel">
 		           <input type="text" id="pi_return_type" readonly="readonly" name="pi_return_type" class="uprcase">
 		           </div>
 		          </div>
-		          <div class="span2">
+		          <div class="col-md-2">
 		          	<div class="rowlabel"><label for="fy"><small>Financial Year</small></label></div>
 		          	<div class="rowlabel"><select id="fy" name="fy" style="text-transform: uppercase;"><option value="2012-2013">2012-2013(Current)</option>
 		          	</select></div>
 		          </div>
 		     </div>
-		     <div align="center" ><a id="myModalHref" class="btn orange">Search </a></div>
+		     <div align="center" ><a id="myModalHref" class="btn btn-default orange">Search </a></div>
 		</fieldset>
 				      --%>
 	</form>
@@ -131,15 +131,15 @@ TreeMap objTreeMapSection = (TreeMap) objValueListService.getReturnFile();
 	    <h3 id="myModalLabel">Choose a package which suits your need</h3>
 	  </div>
 	  <div class="modal-body">
-			<div class="row-fluid show-grid">
-				<div class="span4"><label for="basicPackage"></label><input id="basicPackage" type="radio" name="packagename" value="basic">Basic</div>
-				<div class="span4"><label for="premiumPackage"></label><input id="premiumPackage" type="radio" name="packagename" value="premium">Premium</div>
-				<div class="span4"><label for="helpmeChoose"></label><input id="helpmeChoose" type="radio" name="packagename" value="">Help me Choose</div>
+			<div class="row show-grid">
+				<div class="col-md-4"><label for="basicPackage"></label><input id="basicPackage" type="radio" name="packagename" value="basic">Basic</div>
+				<div class="col-md-4"><label for="premiumPackage"></label><input id="premiumPackage" type="radio" name="packagename" value="premium">Premium</div>
+				<div class="col-md-4"><label for="helpmeChoose"></label><input id="helpmeChoose" type="radio" name="packagename" value="">Help me Choose</div>
 			</div>
 	  </div>
 	  <div class="modal-footer">
-	    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-	    <button id="packageSelector" class="btn btn-primary disabled">Choose a Package</button>
+	    <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">Close</button>
+	    <button id="packageSelector" class="btn btn-default btn-primary disabled">Choose a Package</button>
 	  </div>
 	</div>
 	<c:set var="basePath" scope="request" value="vendor"/>

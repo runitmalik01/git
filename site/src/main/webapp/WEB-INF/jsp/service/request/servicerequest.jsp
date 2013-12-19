@@ -126,7 +126,7 @@
 </c:choose>
 <br/><br/>
 <div class="rowlabel" align="center">
-<button value="Apply" id="apply" class="btn btn-info">Apply</button>
+<button value="Apply" id="apply" class="btn btn-default btn-info">Apply</button>
 </div>
 </form>
 <hst:element var="uiCustom" name="script">

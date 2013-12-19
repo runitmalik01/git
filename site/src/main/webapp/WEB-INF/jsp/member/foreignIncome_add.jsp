@@ -10,9 +10,9 @@
 <tr>
 	<td><fmt:message key="foreign.income.dtaa.applicable" /></td>
 	<td align="right">
-		<div class="input-append">
-			<input class="span2" id="appendedInputButton"
-					name="IncomeApplDtaa" type="text" value="${parentBean.incomeApplDtaa}"> <input class="btn green"
+		<div class="input-group">
+			<input class="col-md-2" id="appendedInputButton"
+					name="IncomeApplDtaa" type="text" value="${parentBean.incomeApplDtaa}"> <input class="btn btn-default green"
 					id="test" value="Save" type="submit" /></td>
 			</div>
 		</form>

@@ -3,11 +3,11 @@
 <hst:link var="servicelink" siteMapItemRefId="myservices"/>
 <c:set value="${items}" var="servicesDocuments"/>
 <div class="widget-wrapper">
-	<div class="row-fluid">
+	<div class="row">
 		<c:if test="${not empty servicesDocuments}">
 			<c:forEach items="${servicesDocuments}" var="srdocument" varStatus="nstat">
 <%-- 				<c:if test="${nstat.index lt servicesItems }"> --%>
-					<div class="span2">
+					<div class="col-md-2">
 						<hst:link path="images/catalog/service.png" var="srimgpath"></hst:link>
 						<img src="${srimgpath}" class="img-circle">
 					</div>

@@ -75,7 +75,7 @@ try {
 		<div class="memberlogin page type-page">
 				<h4>Login to <w4india:resellername/></h4>				
 				<c:if test="${not empty login_error_key}">
-					<div class="alert alert-error"><fmt:message key="${login_error_key}"/></div>
+					<div class="alert alert-danger"><fmt:message key="${login_error_key}"/></div>
 				</c:if>
 				<form action="/site/j_spring_security_check" method="post" id="loginForm">
 				   <p>
@@ -93,7 +93,7 @@ try {
 				       <c:if test="${not empty login_error_key &&  (login_error_key == 'login.error' || login_error_key == 'login.error.passwordMismatch')}"><label for="password" generated="true" class="error" style=""><fmt:message key="${login_error_key}"/></label></c:if>
 				   </p>
 				   <p>
-				   		<a href="javascript:void(0)" id="hrefLogin" class="btn btn-success" style="color: black"">Login</a>
+				   		<a href="javascript:void(0)" id="hrefLogin" class="btn btn-default btn-success" style="color: black"">Login</a>
 				   </p>
 				   <hst:link var="memberhome" path="/member"/>
 				   <input type="hidden" name="destination" value="${memberhome}"/> 

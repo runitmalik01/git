@@ -45,10 +45,10 @@ request.setAttribute("itrSiteMenu", itrSiteMenu);
 <div class="navbar top-menu">
    <div class="navbar-inner">
       <div class="container">
-         <a class="btn btn-navbar" data-toggle="collapse" data-target=".navbar-responsive-collapse">
-	         <span class="icon-bar"></span>
-	         <span class="icon-bar"></span>
-	         <span class="icon-bar"></span>
+         <a class="btn btn-default navbar-btn" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+	         <span class="glyphicon glyphicon-bar"></span>
+	         <span class="glyphicon glyphicon-bar"></span>
+	         <span class="glyphicon glyphicon-bar"></span>
          </a>
          <a class="brand" href="./servicerequest-itr.html">
             <span class="pan">
@@ -56,7 +56,7 @@ request.setAttribute("itrSiteMenu", itrSiteMenu);
             </span>
          </a>
          <c:if test="${nomenu != 'true'}">
-	         <div class="nav-collapse collapse navbar-responsive-collapse">
+	         <div class="navbar-collapse collapse navbar-responsive-collapse">
 	            <ul class="nav">
 				    <c:forEach var="item" items="${menu.siteMenuItems}">
 				        <c:set var="itemLink" value="${item.hstLink}" scope="request"/>
@@ -108,7 +108,7 @@ request.setAttribute("itrSiteMenu", itrSiteMenu);
 	             </ul>
 	             <!--
 	                <form class="navbar-search pull-left" action="">
-	                  <input type="text" class="search-query span2" placeholder="Search">
+	                  <input type="text" class="search-query col-md-2" placeholder="Search">
 	                </form>
 	                 -->
 	            <ul class="nav pull-right">

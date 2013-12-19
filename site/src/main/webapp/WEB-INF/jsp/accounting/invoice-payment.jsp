@@ -28,7 +28,7 @@
 	</c:if>
 	<c:if test="${not empty formMap}">
 		<c:forEach items="${formMap.message}" var="item">
-			<div class="alert alert-error">
+			<div class="alert alert-danger">
 				<fmt:message key="${item.value}" />
 			</div>
 		</c:forEach>
@@ -39,9 +39,9 @@
 				<hst:link var="home" siteMapItemRefId="itreturnhome"></hst:link>
 				<hst:link var="invoiceLink" siteMapItemRefId="memberinvoice"></hst:link>
 				<ul class="breadcrumb">
-					<li><a href="${home}" class="btn btn-info"><i class="icon-home icon-white"></i><strong>Member Home</strong></a> <span
+					<li><a href="${home}" class="btn btn-default btn-info"><i class="glyphicon glyphicon-home glyphicon glyphicon-white"></i><strong>Member Home</strong></a> <span
 						class="divider">/</span></li>
-					<li><a href="${scriptName}" class="btn btn-info"><i class="icon-file icon-white"></i><strong>Member Invoices</strong></a><span
+					<li><a href="${scriptName}" class="btn btn-default btn-info"><i class="glyphicon glyphicon-file glyphicon glyphicon-white"></i><strong>Member Invoices</strong></a><span
 						class="divider">/</span></li>
 					<li class="active"><c:out value="${fn:replace(paymentType,'_',' ')}" /></li>
 				</ul>
@@ -68,20 +68,20 @@
 							<td><c:out value="${invoicedetail.serviceRate}" /></td>
 							<td><c:out value="${invoicedetail.serviceQty}" /></td>
 							<td><c:out value="${invoicedetail.serviceAmount}" /></td>
-							<td><a class="btn btn-primary"
+							<td><a class="btn btn-default btn-primary"
 								href="${scriptName}/<c:out value="${invoicedetail.canonicalUUID}"/>/memberinvoiceedit"><small><i
-										class="icon-pencil icon-white"></i>Edit</small> </a>&nbsp;&nbsp;<a
-								class="btn btn-danger"
+										class="glyphicon glyphicon-pencil glyphicon glyphicon-white"></i>Edit</small> </a>&nbsp;&nbsp;<a
+								class="btn btn-default btn-danger"
 								href="${scriptName}/<c:out value="${invoicedetail.canonicalUUID}"/>/memberinvoicedelete"
 								data-confirm=""><small><i
-										class="icon-trash icon-white"></i>Delete</small> </a>
+										class="glyphicon glyphicon-trash glyphicon glyphicon-white"></i>Delete</small> </a>
 							</td>
 						</tr>
 					</c:forEach>
 				</c:if>
 			</table>
 			<c:if test="${empty NEW_CHILD_DISABLED}">
-				<a href="${scriptName}/payment/paymentadd" class="btn btn-info"
+				<a href="${scriptName}/payment/paymentadd" class="btn btn-default btn-info"
 					style="color: black">Add New</a>
 			</c:if>
 		</c:otherwise>

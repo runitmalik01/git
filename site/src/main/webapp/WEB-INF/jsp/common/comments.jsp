@@ -59,7 +59,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="label"><fmt:message key="common.comments.name"/></td>
+                        <td class="label label-default"><fmt:message key="common.comments.name"/></td>
                         <td class="input"><input type="text" value="${name}" name="name"/>
                             <c:if test="${not empty errors}">
                                 <c:forEach items="${errors}" var="error">
@@ -71,7 +71,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="label"><fmt:message key="common.comments.email"/></td>
+                        <td class="label label-default"><fmt:message key="common.comments.email"/></td>
                         <td class="input"><input type="text" value="${email}" name="email"/>
                             <c:if test="${not empty errors}">
                                 <c:forEach items="${errors}" var="error">
@@ -83,7 +83,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="label vtop"><fmt:message key="common.comments.comment"/></td>
+                        <td class="label label-default vtop"><fmt:message key="common.comments.comment"/></td>
                         <td class="input"><textarea name="comment" id="comment" rows="8" cols="50"><c:if
                                 test="${not empty comment}"><c:out value="${comment}"/></c:if></textarea>
                             <c:if test="${not empty errors}">

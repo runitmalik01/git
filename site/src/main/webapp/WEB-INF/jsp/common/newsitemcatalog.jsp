@@ -3,11 +3,11 @@
 <hst:link var="newslink" siteMapItemRefId=""/>
 <c:set value="${items}" var="newsdocuments"/>
 <div class="widget-wrapper">
-	<div class="row-fluid">
+	<div class="row">
 		<c:if test="${not empty newsdocuments}">
 			<c:forEach items="${newsdocuments}" var="nwdocument" varStatus="nstat">
 <%-- 				<c:if test="${nstat.index lt newsItems}"> --%>
-					<div class="span2">
+					<div class="col-md-2">
 						<hst:link path="images/catalog/news.png" var="nwimgpath"></hst:link>
 						<img src="${nwimgpath}" class="img-circle">
 					</div>

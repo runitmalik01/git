@@ -21,8 +21,8 @@
 	<form id="frmOtherInformation" action="${actionUrl}" method="post"
 		name="frmOtherInformation">
 		<fieldset>
-			<div class="row-fluid show-grid">
-				<div class="span4">
+			<div class="row show-grid">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="accounting_employed"><small><fmt:message key="oi.employed.itr4" /></small> </label>
 					</div>
@@ -34,7 +34,7 @@
 							<c:if test="${not empty parentBean.accounting_employed && parentBean.accounting_employed =='CASH'}">selected</c:if>>CASH</option>
 					</select>
 				</div>
-				<div class="span4">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="method_accounting"><small>Is there any
 								change in method of accounting</small> </label>
@@ -47,7 +47,7 @@
 							<c:if test="${not empty parentBean.method_accounting && parentBean.method_accounting =='N'}">selected</c:if>>NO</option>
 					</select>
 				</div>
-				<div class="span4">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="profit_deviation"><small>Effect on the
 								profit because of deviation</small> </label>
@@ -62,8 +62,8 @@
 		<fieldset>
 			<legend style="color: green; font-weight: bold;">Method of valuation of closing stock employed in the
 				previous year</legend>
-			<div class="row-fluid show-grid">
-				<div class="span4">
+			<div class="row show-grid">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="raw_material"><abbr
 							title="If at cost or market rate whichever is less write 1, if at cost write 2, if at market rate write 3"><small>Raw
@@ -79,7 +79,7 @@
 							<c:if test="${not empty parentBean.raw_material && parentBean.raw_material =='3'}">selected</c:if>>3</option>
 					</select>
 				</div>
-				<div class="span4">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="finished_goods"><abbr
 							title="If at cost or market rate whichever is less write 1, if at cost write 2, if at market rate write 3"><small>Finished
@@ -95,7 +95,7 @@
 							<c:if test="${not empty parentBean.finished_goods && parentBean.finished_goods =='3'}">selected</c:if>>3</option>
 					</select>
 				</div>
-				<div class="span4">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="stock_valuation"><small><fmt:message
 										key="oi.valuation.itr4" /></small> </label>
@@ -109,8 +109,8 @@
 					</select>
 				</div>
 			</div>
-			<div class="row-fluid show-grid">
-				<div class="span4">
+			<div class="row show-grid">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="loss_deviation"><small>Effect on the
 								profit or loss because of deviation</small> </label>
@@ -125,42 +125,42 @@
 		<fieldset>
 			<legend style="color: green; font-weight: bold;">Amounts not credited to the profit and loss account,
 				being</legend>
-			<div class="row-fluid show-grid">
-				<div class="span9">
+			<div class="row show-grid">
+				<div class="col-md-9">
 					<div class="rowlabel">
 						<label for="item_section28"><small><fmt:message
 										key="oi.section28.itr4" /></small> </label>
 					</div>
 				</div>
-				<div class="span2">
+				<div class="col-md-2">
 					<div class="rowlabel">
 						<input type="text" id="item_section28" name="item_section28"  maxlength="14" 
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.item_section28}"/>" />
 					</div>
 				</div>
 			</div>
-			<div class="row-fluid show-grid">
-				<div class="span9">
+			<div class="row show-grid">
+				<div class="col-md-9">
 					<div class="rowlabel">
 						<label for="proforma_credits"><small><fmt:message
 										key="oi.proforma.itr4" /> </small> </label>
 					</div>
 				</div>
-				<div class="span2">
+				<div class="col-md-2">
 					<div class="rowlabel">
 						<input type="text" id="proforma_credits" name="proforma_credits"  maxlength="14" 
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.proforma_credits}"/>" />
 					</div>
 				</div>
 			</div>
-			<div class="row-fluid show-grid">
-				<div class="span9">
+			<div class="row show-grid">
+				<div class="col-md-9">
 					<div class="rowlabel">
 						<label for="escalation_claims"><small><fmt:message
 										key="oi.claims.itr4" /></small> </label>
 					</div>
 				</div>
-				<div class="span2">
+				<div class="col-md-2">
 					<div class="rowlabel">
 						<input type="text" id="escalation_claims" name="escalation_claims"  maxlength="14" 
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.escalation_claims}"/>" />
@@ -168,8 +168,8 @@
 				</div>
 			</div>
 
-			<div class="row-fluid show-grid">
-				<div class="span3">
+			<div class="row show-grid">
+				<div class="col-md-3">
 					<div class="other_income">
 						<label for="other_income"><small>Any other item of
 								income</small> </label>
@@ -179,7 +179,7 @@
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.other_income}"/>" />
 					</div>
 				</div>
-				<div class="span3">
+				<div class="col-md-3">
 					<div class="capital_receipt">
 						<label for="capital_receipt"><small>Capital
 								receipt, if any</small> </label>
@@ -189,7 +189,7 @@
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.capital_receipt}"/>" />
 					</div>
 				</div>
-				<div class="span3">
+				<div class="col-md-3">
 					<div class="total_amount">
 						<label for="total_amount"><small>Total Amount</small> </label>
 					</div>
@@ -204,14 +204,14 @@
 		<fieldset>
 			<legend style="color: green; font-weight: bold;">Amounts debited to the profit and loss account, to
 				the extent disallowable u/s 36</legend>
-			<div class="row-fluid show-grid">
-				<div class="span9">
+			<div class="row show-grid">
+				<div class="col-md-9">
 					<div class="rowlabel">
 						<label for="premiumpaid_damage"><small><fmt:message
 										key="oi.damage.itr4" /></small> </label>
 					</div>
 				</div>
-				<div class="span2">
+				<div class="col-md-2">
 					<div class="rowlabel">
 						<input type="text" id="premiumpaid_damage"
 							name="premiumpaid_damage"  maxlength="14" 
@@ -219,14 +219,14 @@
 					</div>
 				</div>
 			</div>
-			<div class="row-fluid show-grid">
-				<div class="span9">
+			<div class="row show-grid">
+				<div class="col-md-9">
 					<div class="rowlabel">
 						<label for="premiumpaid_health"><small>Premium
 								paid for insurance on the health of employees</small> </label>
 					</div>
 				</div>
-				<div class="span2">
+				<div class="col-md-2">
 					<div class="rowlabel">
 						<input type="text" id="premiumpaid_health"
 							name="premiumpaid_health"  maxlength="14" 
@@ -234,42 +234,42 @@
 					</div>
 				</div>
 			</div>
-			<div class="row-fluid show-grid">
-				<div class="span9">
+			<div class="row show-grid">
+				<div class="col-md-9">
 					<div class="rowlabel">
 						<label for="sumpaid_bonus"><small><fmt:message
 										key="oi.sumpaid.itr4" /> </small> </label>
 					</div>
 				</div>
-				<div class="span2">
+				<div class="col-md-2">
 					<div class="rowlabel">
 						<input type="text" id="sumpaid_bonus" name="sumpaid_bonus"  maxlength="14" 
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.sumpaid_bonus}"/>" />
 					</div>
 				</div>
 			</div>
-			<div class="row-fluid show-grid">
-				<div class="span9">
+			<div class="row show-grid">
+				<div class="col-md-9">
 					<div class="rowlabel">
 						<label for="interest_borrowed"><small><fmt:message
 										key="oi.borrowed.itr4" /></small> </label>
 					</div>
 				</div>
-				<div class="span2">
+				<div class="col-md-2">
 					<div class="rowlabel">
 						<input type="text" id="interest_borrowed" name="interest_borrowed"  maxlength="14" 
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.interest_borrowed}"/>" />
 					</div>
 				</div>
 			</div>
-			<div class="row-fluid show-grid">
-				<div class="span9">
+			<div class="row show-grid">
+				<div class="col-md-9">
 					<div class="rowlabel">
 						<label for="discount_zerocoupon"><small><fmt:message
 										key="oi.zerocoupon.itr4" /></small> </label>
 					</div>
 				</div>
-				<div class="span2">
+				<div class="col-md-2">
 					<div class="rowlabel">
 						<input type="text" id="discount_zerocoupon"
 							name="discount_zerocoupon"  maxlength="14" 
@@ -277,14 +277,14 @@
 					</div>
 				</div>
 			</div>
-			<div class="row-fluid show-grid">
-				<div class="span9">
+			<div class="row show-grid">
+				<div class="col-md-9">
 					<div class="rowlabel">
 						<label for="contributions_provident"><small><fmt:message
 										key="oi.contributions.itr4" /></small> </label>
 					</div>
 				</div>
-				<div class="span2">
+				<div class="col-md-2">
 					<div class="rowlabel">
 						<input type="text" id="contributions_provident"
 							name="contributions_provident"  maxlength="14" 
@@ -292,14 +292,14 @@
 					</div>
 				</div>
 			</div>
-			<div class="row-fluid show-grid">
-				<div class="span9">
+			<div class="row show-grid">
+				<div class="col-md-9">
 					<div class="rowlabel">
 						<label for="contributions_superannuation"><small>Amount
 								of contributions to an approved superannuation fund</small> </label>
 					</div>
 				</div>
-				<div class="span2">
+				<div class="col-md-2">
 					<div class="rowlabel">
 						<input type="text" id="contributions_superannuation"
 							name="contributions_superannuation"  maxlength="14" 
@@ -307,14 +307,14 @@
 					</div>
 				</div>
 			</div>
-			<div class="row-fluid show-grid">
-				<div class="span9">
+			<div class="row show-grid">
+				<div class="col-md-9">
 					<div class="rowlabel">
 						<label for="contributions_gratuity"><small>Amount
 								of contributions to an approved gratuity</small> </label>
 					</div>
 				</div>
-				<div class="span2">
+				<div class="col-md-2">
 					<div class="rowlabel">
 						<input type="text" id="contributions_gratuity"
 							name="contributions_gratuity"  maxlength="14" 
@@ -322,14 +322,14 @@
 					</div>
 				</div>
 			</div>
-			<div class="row-fluid show-grid">
-				<div class="span9">
+			<div class="row show-grid">
+				<div class="col-md-9">
 					<div class="rowlabel">
 						<label for="contributions_other"><small>Amount of
 								contributions to any other fund</small> </label>
 					</div>
 				</div>
-				<div class="span2">
+				<div class="col-md-2">
 					<div class="rowlabel">
 						<input type="text" id="contributions_other"
 							name="contributions_other"  maxlength="14" 
@@ -337,42 +337,42 @@
 					</div>
 				</div>
 			</div>
-			<div class="row-fluid show-grid">
-				<div class="span9">
+			<div class="row show-grid">
+				<div class="col-md-9">
 					<div class="rowlabel">
 						<label for="amount_debts"><small>Amount of bad and
 								doubtful debts</small> </label>
 					</div>
 				</div>
-				<div class="span2">
+				<div class="col-md-2">
 					<div class="rowlabel">
 						<input type="text" id="amount_debts" name="amount_debts"  maxlength="14" 
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.amount_debts}"/>" />
 					</div>
 				</div>
 			</div>
-			<div class="row-fluid show-grid">
-				<div class="span9">
+			<div class="row show-grid">
+				<div class="col-md-9">
 					<div class="rowlabel">
 						<label for="provision_debts"><small>Provision for
 								bad and doubtful debts</small> </label>
 					</div>
 				</div>
-				<div class="span2">
+				<div class="col-md-2">
 					<div class="rowlabel">
 						<input type="text" id="provision_debts" name="provision_debts"  maxlength="14" 
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.provision_debts}"/>" />
 					</div>
 				</div>
 			</div>
-			<div class="row-fluid show-grid">
-				<div class="span9">
+			<div class="row show-grid">
+				<div class="col-md-9">
 					<div class="rowlabel">
 						<label for="amount_transferred"><small>Amount
 								transferred to any special reserve</small> </label>
 					</div>
 				</div>
-				<div class="span2">
+				<div class="col-md-2">
 					<div class="rowlabel">
 						<input type="text" id="amount_transferred"
 							name="amount_transferred"  maxlength="14" 
@@ -380,15 +380,15 @@
 					</div>
 				</div>
 			</div>
-			<div class="row-fluid show-grid">
-				<div class="span9">
+			<div class="row show-grid">
+				<div class="col-md-9">
 					<div class="rowlabel">
 						<label for="expenditure_promoting"><small>Expenditure
 								for the purposes of promoting family planning amongst employees</small>
 						</label>
 					</div>
 				</div>
-				<div class="span2">
+				<div class="col-md-2">
 					<div class="rowlabel">
 						<input type="text" id="expenditure_promoting"
 							name="expenditure_promoting"  maxlength="14" 
@@ -396,18 +396,18 @@
 					</div>
 				</div>
 			</div>
-			<div class="row-fluid show-grid">
-				<div class="span9">
+			<div class="row show-grid">
+				<div class="col-md-9">
 					<label for="sum_received"><small><fmt:message
 										key="oi.sumreceived.itr4" /> </small> </label>
 				</div>
-				<div class="span2">
+				<div class="col-md-2">
 					<input type="text" id="sum_received" name="sum_received"  maxlength="14" 
 						value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.sum_received}"/>" />
 				</div>
 			</div>
-			<div class="row-fluid show-grid">
-				<div class="span3">
+			<div class="row show-grid">
+				<div class="col-md-3">
 					<div class="rowlabel">
 						<label for="other_disallowance"><small>Any other
 								disallowance</small> </label>
@@ -418,7 +418,7 @@
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.other_disallowance}"/>" />
 					</div>
 				</div>
-				<div class="span4">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="totalamount_disallowable"><small>Total
 								amount disallowable under section 36</small> </label>
@@ -434,14 +434,14 @@
 		<fieldset>
 			<legend style="color: green; font-weight: bold;">Amounts debited to the profit and loss account, to
 				the extent disallowable under section 37</legend>
-			<div class="row-fluid show-grid">
-				<div class="span9">
+			<div class="row show-grid">
+				<div class="col-md-9">
 					<div class="rowlabel">
 						<label for="expenditure_personal"><small>Expenditure
 								of personal nature</small> </label>
 					</div>
 				</div>
-				<div class="span2">
+				<div class="col-md-2">
 					<div class="rowlabel">
 						<input type="text" id="expenditure_personal"
 							name="expenditure_personal"  maxlength="14" 
@@ -449,14 +449,14 @@
 					</div>
 				</div>
 			</div>
-			<div class="row-fluid show-grid">
-				<div class="span9">
+			<div class="row show-grid">
+				<div class="col-md-9">
 					<div class="rowlabel">
 						<label for="expenditure_advertisement"><small><fmt:message
 										key="oi.advertisement.itr4" /></small> </label>
 					</div>
 				</div>
-				<div class="span2">
+				<div class="col-md-2">
 					<div class="rowlabel">
 						<input type="text" id="expenditure_advertisement"
 							name="expenditure_advertisement"  maxlength="14" 
@@ -464,14 +464,14 @@
 					</div>
 				</div>
 			</div>
-			<div class="row-fluid show-grid">
-				<div class="span9">
+			<div class="row show-grid">
+				<div class="col-md-9">
 					<div class="rowlabel">
 						<label for="expenditure_penalty"><small><fmt:message
 										key="oi.penalty.itr4" /></small> </label>
 					</div>
 				</div>
-				<div class="span2">
+				<div class="col-md-2">
 					<div class="rowlabel">
 						<input type="text" id="expenditure_penalty"
 							name="expenditure_penalty"  maxlength="14" 
@@ -479,28 +479,28 @@
 					</div>
 				</div>
 			</div>
-			<div class="row-fluid show-grid">
-				<div class="span9">
+			<div class="row show-grid">
+				<div class="col-md-9">
 					<div class="rowlabel">
 						<label for="other_penalty"><small>Any other
 								penalty or fine</small> </label>
 					</div>
 				</div>
-				<div class="span2">
+				<div class="col-md-2">
 					<div class="rowlabel">
 						<input type="text" id="other_penalty" name="other_penalty"  maxlength="14" 
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.other_penalty}"/>" />
 					</div>
 				</div>
 			</div>
-			<div class="row-fluid show-grid">
-				<div class="span9">
+			<div class="row show-grid">
+				<div class="col-md-9">
 					<div class="rowlabel">
 						<label for="expenditure_incurred"><small><fmt:message
 										key="oi.incurred.itr4" /></small> </label>
 					</div>
 				</div>
-				<div class="span2">
+				<div class="col-md-2">
 					<div class="rowlabel">
 						<input type="text" id="expenditure_incurred"
 							name="expenditure_incurred"  maxlength="14" 
@@ -508,28 +508,28 @@
 					</div>
 				</div>
 			</div>
-			<div class="row-fluid show-grid">
-				<div class="span9">
+			<div class="row show-grid">
+				<div class="col-md-9">
 					<div class="rowlabel">
 						<label for="amount_liability"><small>Amount of any
 								liability of a contingent nature</small> </label>
 					</div>
 				</div>
-				<div class="span2">
+				<div class="col-md-2">
 					<div class="rowlabel">
 						<input type="text" id="amount_liability" name="amount_liability"  maxlength="14" 
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.amount_liability}"/>" />
 					</div>
 				</div>
 			</div>
-			<div class="row-fluid show-grid">
-				<div class="span9">
+			<div class="row show-grid">
+				<div class="col-md-9">
 					<div class="rowlabel">
 						<label for="amount_expenditure"><small><fmt:message
 										key="oi.expenditure.itr4" /></small> </label>
 					</div>
 				</div>
-				<div class="span2">
+				<div class="col-md-2">
 					<div class="rowlabel">
 						<input type="text" id="amount_expenditure"
 							name="amount_expenditure"  maxlength="14" 
@@ -538,8 +538,8 @@
 				</div>
 			</div>
 
-			<div class="row-fluid show-grid">
-				<div class="span4">
+			<div class="row show-grid">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="other_amountus37"><small>Any other
 								amount not allowable under section 37</small> </label>
@@ -549,7 +549,7 @@
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.other_amountus37}"/>" />
 					</div>
 				</div>
-				<div class="span4">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="totalamount_disallowableus37"><small>Total
 								amount disallowable under section 37</small> </label>
@@ -567,14 +567,14 @@
 		<fieldset>
 			<legend style="color: green; font-weight: bold;">Amounts debited to the profit and loss account, to
 				the extent disallowable under section 40</legend>
-			<div class="row-fluid show-grid">
-				<div class="span9">
+			<div class="row show-grid">
+				<div class="col-md-9">
 					<div class="rowlabel">
 						<label for="amountdisallowable_us40A"><small><fmt:message
 										key="oi.us40A.itr4" /></small> </label>
 					</div>
 				</div>
-				<div class="span2">
+				<div class="col-md-2">
 					<div class="rowlabel">
 						<input type="text" id="amountdisallowable_us40A"
 							name="amountdisallowable_us40A"  maxlength="14" 
@@ -582,50 +582,50 @@
 					</div>
 				</div>
 			</div>
-			<div class="row-fluid show-grid">
-				<div class="span9">
+			<div class="row show-grid">
+				<div class="col-md-9">
 					<div class="rowlabel">
 						<label for="amount_ratelevied"><small><fmt:message
 										key="oi.ratelevied.itr4" /></small> </label>
 					</div>
 				</div>
-				<div class="span2">
+				<div class="col-md-2">
 					<div class="rowlabel">
 						<input type="text" id="amount_ratelevied" name="amount_ratelevied"  maxlength="14" 
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.amount_ratelevied}"/>" />
 					</div>
 				</div>
 			</div>
-			<div class="row-fluid show-grid">
-				<div class="span9">
+			<div class="row show-grid">
+				<div class="col-md-9">
 					<div class="rowlabel">
 						<label for="amount_wealthtax"><small>Amount paid
 								as wealth tax</small> </label>
 					</div>
 				</div>
-				<div class="span2">
+				<div class="col-md-2">
 					<div class="rowlabel">
 						<input type="text" id="amount_wealthtax" name="amount_wealthtax"  maxlength="14" 
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.amount_wealthtax}"/>" />
 					</div>
 				</div>
 			</div>
-			<div class="row-fluid show-grid">
-				<div class="span9">
+			<div class="row show-grid">
+				<div class="col-md-9">
 					<div class="rowlabel">
 						<label for="amount_commission"><small><fmt:message
 										key="oi.commission.itr4" /></small> </label>
 					</div>
 				</div>
-				<div class="span2">
+				<div class="col-md-2">
 					<div class="rowlabel">
 						<input type="text" id="amount_commission" name="amount_commission"  maxlength="14" 
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.amount_commission}"/>" />
 					</div>
 				</div>
 			</div>
-			<div class="row-fluid show-grid">
-				<div class="span4">
+			<div class="row show-grid">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="other_disallowance2"><small>Any other
 								disallowance</small> </label>
@@ -636,7 +636,7 @@
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.other_disallowance2}"/>" />
 					</div>
 				</div>
-				<div class="span4">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="amount_disallowanceus40"><small>Total
 								amount disallowable under section 40</small> </label>
@@ -652,14 +652,14 @@
 		<fieldset>
 			<legend style="color: green; font-weight: bold;">Any amount disallowed under section 40 in any
 				preceding previous year but allowable during the previous year</legend>
-			<div class="row-fluid show-grid">
-				<div class="span9">
+			<div class="row show-grid">
+				<div class="col-md-9">
 					<div class="rowlabel">
 						<label for="amountdisallowable_us40B"><small><fmt:message
 										key="oi.us40B.itr4" /></small> </label>
 					</div>
 				</div>
-				<div class="span2">
+				<div class="col-md-2">
 					<div class="rowlabel">
 						<input type="text" id="amountdisallowable_us40B"
 							name="amountdisallowable_us40B"  maxlength="14" 
@@ -671,42 +671,42 @@
 		<fieldset>
 			<legend style="color: green; font-weight: bold;">Amounts debited to the profit and loss account, to
 				the extent disallowable under section 40A</legend>
-			<div class="row-fluid show-grid">
-				<div class="span9">
+			<div class="row show-grid">
+				<div class="col-md-9">
 					<div class="rowlabel">
 						<label for="amount_persons"><small><fmt:message
 										key="oi.persons.itr4" /></small> </label>
 					</div>
 				</div>
-				<div class="span2">
+				<div class="col-md-2">
 					<div class="rowlabel">
 						<input type="text" id="amount_persons" name="amount_persons"  maxlength="14" 
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.amount_persons}"/>" />
 					</div>
 				</div>
 			</div>
-			<div class="row-fluid show-grid">
-				<div class="span9">
+			<div class="row show-grid">
+				<div class="col-md-9">
 					<div class="rowlabel">
 						<label for="amount_excesstwth"><small><fmt:message
 										key="oi.excesstwth.itr4" /></small> </label>
 					</div>
 				</div>
-				<div class="span2">
+				<div class="col-md-2">
 					<div class="rowlabel">
 						<input type="text" id="amount_excesstwth" name="amount_excesstwth"  maxlength="14" 
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.amount_excesstwth}"/>" />
 					</div>
 				</div>
 			</div>
-			<div class="row-fluid show-grid">
-				<div class="span9">
+			<div class="row show-grid">
+				<div class="col-md-9">
 					<div class="rowlabel">
 						<label for="provision_gratuity"><small>Provision
 								for payment of gratuity</small> </label>
 					</div>
 				</div>
-				<div class="span2">
+				<div class="col-md-2">
 					<div class="rowlabel">
 						<input type="text" id="provision_gratuity"  maxlength="14" 
 							name="provision_gratuity"
@@ -714,22 +714,22 @@
 					</div>
 				</div>
 			</div>
-			<div class="row-fluid show-grid">
-				<div class="span9">
+			<div class="row show-grid">
+				<div class="col-md-9">
 					<div class="rowlabel">
 						<label for="sumpaid_assessee"><small><fmt:message
 										key="oi.assessee.itr4" /></small> </label>
 					</div>
 				</div>
-				<div class="span2">
+				<div class="col-md-2">
 					<div class="rowlabel">
 						<input type="text" id="sumpaid_assessee" name="sumpaid_assessee"  maxlength="14" 
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.sumpaid_assessee}"/>" />
 					</div>
 				</div>
 			</div>
-			<div class="row-fluid show-grid">
-				<div class="span4">
+			<div class="row show-grid">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="anyother_disallowance"><small>Any
 								other disallowance</small> </label>
@@ -740,7 +740,7 @@
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.anyother_disallowance}"/>" />
 					</div>
 				</div>
-				<div class="span4">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="totalamount_disallowanceus40"><small>Total
 								amount disallowable under section 40A</small> </label>
@@ -757,28 +757,28 @@
 		<fieldset>
 			<legend style="color: green; font-weight: bold;">Any amount disallowed under section 43B in any
 				preceding previous year but allowable during the previous year</legend>
-			<div class="row-fluid show-grid">
-				<div class="span9">
+			<div class="row show-grid">
+				<div class="col-md-9">
 					<div class="rowlabel">
 						<label for="sum_naturetax"><small><fmt:message
 										key="oi.naturetax.itr4" /></small> </label>
 					</div>
 				</div>
-				<div class="span2">
+				<div class="col-md-2">
 					<div class="rowlabel">
 						<input type="text" id="sum_naturetax" name="sum_naturetax"  maxlength="14" 
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.sum_naturetax}"/>" />
 					</div>
 				</div>
 			</div>
-			<div class="row-fluid show-grid">
-				<div class="span9">
+			<div class="row show-grid">
+				<div class="col-md-9">
 					<div class="rowlabel">
 						<label for="sumpayable_provident"><small><fmt:message
 										key="oi.provident.itr4" /></small> </label>
 					</div>
 				</div>
-				<div class="span2">
+				<div class="col-md-2">
 					<div class="rowlabel">
 						<input type="text" id="sumpayable_provident"
 							name="sumpayable_provident"  maxlength="14" 
@@ -786,14 +786,14 @@
 					</div>
 				</div>
 			</div>
-			<div class="row-fluid show-grid">
-				<div class="span9">
+			<div class="row show-grid">
+				<div class="col-md-9">
 					<div class="rowlabel">
 						<label for="sumpayable_employee"><small><fmt:message
 										key="oi.employee.itr4" /></small> </label>
 					</div>
 				</div>
-				<div class="span2">
+				<div class="col-md-2">
 					<div class="rowlabel">
 						<input type="text" id="sumpayable_employee"
 							name="sumpayable_employee"  maxlength="14" 
@@ -801,14 +801,14 @@
 					</div>
 				</div>
 			</div>
-			<div class="row-fluid show-grid">
-				<div class="span9">
+			<div class="row show-grid">
+				<div class="col-md-9">
 					<div class="rowlabel">
 						<label for="sumpayable_institution"><small><fmt:message
 										key="oi.institution.itr4" /></small> </label>
 					</div>
 				</div>
-				<div class="span2">
+				<div class="col-md-2">
 					<div class="rowlabel">
 						<input type="text" id="sumpayable_institution"
 							name="sumpayable_institution"  maxlength="14" 
@@ -816,28 +816,28 @@
 					</div>
 				</div>
 			</div>
-			<div class="row-fluid show-grid">
-				<div class="span9">
+			<div class="row show-grid">
+				<div class="col-md-9">
 					<div class="rowlabel">
 						<label for="sumpayable_bank"><small><fmt:message
 										key="oi.bank.itr4" /></small> </label>
 					</div>
 				</div>
-				<div class="span2">
+				<div class="col-md-2">
 					<div class="rowlabel">
 						<input type="text" id="sumpayable_bank" name="sumpayable_bank"  maxlength="14" 
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.sumpayable_bank}"/>" />
 					</div>
 				</div>
 			</div>
-			<div class="row-fluid show-grid">
-				<div class="span9">
+			<div class="row show-grid">
+				<div class="col-md-9">
 					<div class="rowlabel">
 						<label for="sumpayable_encashment"><small>Any sum
 								payable towards leave encashment</small> </label>
 					</div>
 				</div>
-				<div class="span2">
+				<div class="col-md-2">
 					<div class="rowlabel">
 						<input type="text" id="sumpayable_encashment"
 							name="sumpayable_encashment"  maxlength="14" 
@@ -845,14 +845,14 @@
 					</div>
 				</div>
 			</div>
-			<div class="row-fluid show-grid">
-				<div class="span9">
+			<div class="row show-grid">
+				<div class="col-md-9">
 					<div class="rowlabel">
 						<label for="totalamount_us43"><small>Total amount
 								allowable under section 43B</small> </label>
 					</div>
 				</div>
-				<div class="span2">
+				<div class="col-md-2">
 					<div class="rowlabel">
 						<input type="text" readonly="readonly" id="totalamount_us43"
 							name="totalamount_us43"
@@ -864,28 +864,28 @@
 		<fieldset>
 			<legend style="color: green; font-weight: bold;">Any amount debited to profit and loss account of the
 				previous year but disallowable under section 43B</legend>
-			<div class="row-fluid show-grid">
-				<div class="span9">
+			<div class="row show-grid">
+				<div class="col-md-9">
 					<div class="rowlabel">
 						<label for="sum_naturetax43b"><small>Any sum in
 								the nature of tax, duty, cess or fee under any law</small> </label>
 					</div>
 				</div>
-				<div class="span2">
+				<div class="col-md-2">
 					<div class="rowlabel">
 						<input type="text" id="sum_naturetax43b" name="sum_naturetax43b"  maxlength="14" 
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.sum_naturetax43b}"/>" />
 					</div>
 				</div>
 			</div>
-			<div class="row-fluid show-grid">
-				<div class="span9">
+			<div class="row show-grid">
+				<div class="col-md-9">
 					<div class="rowlabel">
 						<label for="sumpayable_provident43b"><small><fmt:message
 										key="oi.provident43b.itr4" /></small> </label>
 					</div>
 				</div>
-				<div class="span2">
+				<div class="col-md-2">
 					<div class="rowlabel">
 						<input type="text" id="sumpayable_provident43b"
 							name="sumpayable_provident43b"  maxlength="14" 
@@ -893,14 +893,14 @@
 					</div>
 				</div>
 			</div>
-			<div class="row-fluid show-grid">
-				<div class="span9">
+			<div class="row show-grid">
+				<div class="col-md-9">
 					<div class="rowlabel">
 						<label for="sumpayable_employee43b"><small><fmt:message
 										key="oi.employee43b.itr4" /></small> </label>
 					</div>
 				</div>
-				<div class="span2">
+				<div class="col-md-2">
 					<div class="rowlabel">
 						<input type="text" id="sumpayable_employee43b"  maxlength="14" 
 							name="sumpayable_employee43b"
@@ -908,14 +908,14 @@
 					</div>
 				</div>
 			</div>
-			<div class="row-fluid show-grid">
-				<div class="span9">
+			<div class="row show-grid">
+				<div class="col-md-9">
 					<div class="rowlabel">
 						<label for="sumpayable_institution43b"><small><fmt:message
 										key="oi.institution43b.itr4" /></small> </label>
 					</div>
 				</div>
-				<div class="span2">
+				<div class="col-md-2">
 					<div class="rowlabel">
 						<input type="text" id="sumpayable_institution43b"  maxlength="14" 
 							name="sumpayable_institution43b"
@@ -923,14 +923,14 @@
 					</div>
 				</div>
 			</div>
-			<div class="row-fluid show-grid">
-				<div class="span9">
+			<div class="row show-grid">
+				<div class="col-md-9">
 					<div class="rowlabel">
 						<label for="sumpayable_bank43b"><small><fmt:message
 										key="oi.bank43b.itr4" /></small> </label>
 					</div>
 				</div>
-				<div class="span2">
+				<div class="col-md-2">
 					<div class="rowlabel">
 						<input type="text" id="sumpayable_bank43b"
 							name="sumpayable_bank43b"  maxlength="14" 
@@ -938,14 +938,14 @@
 					</div>
 				</div>
 			</div>
-			<div class="row-fluid show-grid">
-				<div class="span9">
+			<div class="row show-grid">
+				<div class="col-md-9">
 					<div class="rowlabel">
 						<label for="sumpayable_encashment43b"><small>Any
 								sum payable towards leave encashment</small> </label>
 					</div>
 				</div>
-				<div class="span2">
+				<div class="col-md-2">
 					<div class="rowlabel">
 						<input type="text" id="sumpayable_encashment43b"
 							name="sumpayable_encashment43b"  maxlength="14" 
@@ -953,14 +953,14 @@
 					</div>
 				</div>
 			</div>
-			<div class="row-fluid show-grid">
-				<div class="span9">
+			<div class="row show-grid">
+				<div class="col-md-9">
 					<div class="rowlabel">
 						<label for="totalamount_us43b"><small>Total amount
 								disallowable under Section 43B</small> </label>
 					</div>
 				</div>
-				<div class="span2">
+				<div class="col-md-2">
 					<div class="rowlabel">
 						<input type="text" readonly="readonly" id="totalamount_us43b"
 							name="totalamount_us43b"
@@ -972,8 +972,8 @@
 		<fieldset>
 			<legend style="color: green; font-weight: bold;">Amount of credit outstanding in the accounts in
 				respect of</legend>
-			<div class="row-fluid show-grid">
-				<div class="span4">
+			<div class="row show-grid">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="union_excise"><small>Union Excise Duty</small>
 						</label>
@@ -983,7 +983,7 @@
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.union_excise}"/>" />
 					</div>
 				</div>
-				<div class="span4">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="service_tax"><small>Service tax</small> </label>
 					</div>
@@ -992,7 +992,7 @@
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.service_tax}"/>" />
 					</div>
 				</div>
-				<div class="span4">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="vat_tax"><small>VAT/sales tax</small> </label>
 					</div>
@@ -1002,8 +1002,8 @@
 					</div>
 				</div>
 			</div>
-			<div class="row-fluid show-grid">
-				<div class="span4">
+			<div class="row show-grid">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="other_tax"><small>Any other tax</small> </label>
 					</div>
@@ -1012,7 +1012,7 @@
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.other_tax}"/>" />
 					</div>
 				</div>
-				<div class="span4">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="totalamount_outstanding"><small>Total
 								amount outstanding</small> </label>
@@ -1070,11 +1070,11 @@
 			</tr>
 		</table>
 
-		<div class="row-fluid show-grid">
-			<div class="span4 offset8 decimal">
-				<a href="${scriptName}" class="btn btn-danger" style="color: black">Cancel</a>&nbsp;
+		<div class="row show-grid">
+			<div class="col-md-4 col-md-offset-8 decimal">
+				<a href="${scriptName}" class="btn btn-default btn-danger" style="color: black">Cancel</a>&nbsp;
 				<a id="myModalOtherInformation" role="button"
-					class="btn btn-success" style="color: black">Save</a>
+					class="btn btn-default btn-success" style="color: black">Save</a>
 			</div>
 		</div>
 

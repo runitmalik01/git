@@ -12,7 +12,7 @@
 <hst:link var="mainSiteMapRefId" />
 <c:if test="${not empty formMap}">
 	<c:forEach items="${formMap.message}" var="item">
-		<div class="alert alert-error">
+		<div class="alert alert-danger">
 			<fmt:message key="${item.value}" />
 		</div>
 	</c:forEach>
@@ -33,8 +33,8 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 			
 			<fieldset>
 			<legend>Enter Details</legend>
-			<div class="row-fluid show-grid">
-				<div class="span4">
+			<div class="row show-grid">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="country_code"><small><fmt:message
 									key="foreign.country.code" /> </small> </label>
@@ -50,7 +50,7 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 					</select>
 					</div>
 				</div>
-				<div class="span4">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="nature_asset"><small><fmt:message
 									key="nature.asset.itr2" /> </small> </label>
@@ -61,7 +61,7 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.nature_Asset}"/></c:if>" />
 					</div>
 				</div>
-				<div class="span4">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="total_investment"><small><fmt:message
 									key="total.investmentitr2" /> </small> </label>
@@ -75,10 +75,10 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 			</div>
 			
 		
-			<div class="row-fluid show-grid">
-				<div class="span4 offset8 decimal">
-					<a href="${scriptName}" class="btn btn-danger">Cancel</a>&nbsp;
-					<a id="myModalHrefNatureInvst" role="button" class="btn btn-success">Save</a>
+			<div class="row show-grid">
+				<div class="col-md-4 col-md-offset-8 decimal">
+					<a href="${scriptName}" class="btn btn-default btn-danger">Cancel</a>&nbsp;
+					<a id="myModalHrefNatureInvst" role="button" class="btn btn-default btn-success">Save</a>
 				</div>  
 			<input type="hidden" id="country_name" name="country_name">
 			</div>
@@ -107,9 +107,9 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 						<td><c:out value="${natureInvest.total_Investment}" />
 						</td>
 						
-						<td><a class="btn btn-danger"
-							href="${scriptName}/<c:out value="${natureInvest.canonicalUUID}"/>/natureinvestmentedit"><small><i class="icon-trash icon-white"></i>Edit</small> &nbsp;&nbsp;
-						</a>&nbsp;<a class="btn btn-primary" href="${scriptName}/<c:out value="${natureInvest.canonicalUUID}"/>/natureinvestmentdelete" data-confirm=""><small><i class="icon-trash icon-white"></i>Delete</small> </a>
+						<td><a class="btn btn-default btn-danger"
+							href="${scriptName}/<c:out value="${natureInvest.canonicalUUID}"/>/natureinvestmentedit"><small><i class="glyphicon glyphicon-trash glyphicon glyphicon-white"></i>Edit</small> &nbsp;&nbsp;
+						</a>&nbsp;<a class="btn btn-default btn-primary" href="${scriptName}/<c:out value="${natureInvest.canonicalUUID}"/>/natureinvestmentdelete" data-confirm=""><small><i class="glyphicon glyphicon-trash glyphicon glyphicon-white"></i>Delete</small> </a>
 							</td>
 						</tr>
 					</tr>
@@ -123,7 +123,7 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 			</c:if>
 		</table>
 		<a href="${scriptName}/natureinvestmentnew"
-			class="btn btn-info">Add New</a>
+			class="btn btn-default btn-info">Add New</a>
 	</c:otherwise>
 </c:choose>
 </div>

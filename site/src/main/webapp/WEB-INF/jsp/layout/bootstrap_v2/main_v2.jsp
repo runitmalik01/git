@@ -28,7 +28,7 @@
 				little as 15 minutes! <br /> Simple. Fast. Safe.
 			</p>
 			<p>
-				<a class="btn btn-warning btn-lg" href='/site/home_v2'>Sign Up
+				<a class="btn btn-default btn-warning btn-lg" href='/site/home_v2'>Sign Up
 					Now! &raquo;</a>
 			</p>
 		</div>
@@ -39,7 +39,7 @@
 	<div class="row">
 		<div class="col-lg-4">
 			<h1 style="text-align: center; font-size: 5em">
-				<span class="glyphicon glyphicon-usd"></span>
+				<span class="glyphicon glyphglyphicon glyphicon-usd"></span>
 			</h1>
 			<h1>Simple.</h1>
 			<p class="lead">
@@ -50,7 +50,7 @@
 		</div>
 		<div class="col-lg-4">
 			<h1 style="text-align: center; font-size: 5em">
-				<span class="glyphicon glyphicon-usd"></span>
+				<span class="glyphicon glyphglyphicon glyphicon-usd"></span>
 			</h1>
 			<h1>Fast.</h1>
 			<p class="lead">
@@ -62,7 +62,7 @@
 		</div>
 		<div class="col-lg-4">
 			<h1 style="text-align: center; font-size: 5em">
-				<span class="glyphicon glyphicon-lock"></span>
+				<span class="glyphicon glyphglyphicon glyphicon-lock"></span>
 			</h1>
 			<h1>Safe.</h1>
 			<p class="lead">
@@ -93,7 +93,7 @@
 					</p>
 
 					<p>
-						<a class="btn btn-success btn-lg btn-block" href="#">Pricing
+						<a class="btn btn-default btn-success btn-lg btn-block" href="#">Pricing
 							from &#8377; 199</a>
 					</p>
 				</div>
@@ -105,7 +105,7 @@
 					<p>File your return with Salary details, Bank Interest, House
 						Properties and Other Source income details.</p>
 					<p>
-						<a class="btn btn-info btn-lg btn-block" href="#">Pricing from
+						<a class="btn btn-default btn-info btn-lg btn-block" href="#">Pricing from
 							&#8377; 299</a>
 					</p>
 				</div>
@@ -117,7 +117,7 @@
 					<p>People who deal with Capital Gains and Shares or have any
 						other source of Income, need to file through this plan.</p>
 					<p>
-						<a class="btn btn-info btn-lg btn-block" href="#">Pricing from
+						<a class="btn btn-default btn-info btn-lg btn-block" href="#">Pricing from
 							&#8377; 499</a>
 					</p>
 				</div>
@@ -129,7 +129,7 @@
 					<p>Choose this plan if you have a Professional Income or Income
 						from Business along with any other Income.</p>
 					<p>
-						<a class="btn btn-primary btn-lg" href="#">Pricing from
+						<a class="btn btn-default btn-primary btn-lg" href="#">Pricing from
 							&#8377; 999</a>
 					</p>
 				</div>
@@ -162,7 +162,7 @@
 
 					</ul>
 					<p>
-						<a class="btn btn-primary btn-lg" href="#">Pricing from
+						<a class="btn btn-default btn-primary btn-lg" href="#">Pricing from
 							&#8377; 1099</a>
 					</p>
 				</div>

@@ -47,7 +47,7 @@ else {
 <hst:actionURL var="actionUrl"></hst:actionURL>
 <form name="ci" id="frmContactinfo" action="${actionUrl}" method="post" >
 <div class="row">
-<div class="span4">
+<div class="col-md-4">
 
 	<label for="pi_email "><fmt:message key="member.contact_info.email"/></label>
 

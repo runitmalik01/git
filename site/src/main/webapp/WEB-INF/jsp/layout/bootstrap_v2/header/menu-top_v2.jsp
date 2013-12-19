@@ -34,21 +34,21 @@
 <c:choose>
 	<c:when test="${loggedin}">			
 		<%--<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-724" style="color: brown"><small><strong></strong></small></li> --%>
-               <a class="dropdown-toggle btn btn-primary" data-toggle="dropdown" href="#" style="color: white"><i class="icon-user icon-white"></i><%=request.getUserPrincipal().getName()%><b></b></a>
+               <a class="dropdown-toggle btn btn-primary" data-toggle="dropdown" href="#" style="color: white"><i class="glyphicon glyphicon-user glyphicon glyphicon-white"></i><%=request.getUserPrincipal().getName()%><b></b></a>
                <ul class="dropdown-menu">
                	<hst:link var="changepass" siteMapItemRefId="memberchangepass"></hst:link>
-                   <li><a href="${changepass}"><i class="icon-edit"></i>ChangePassword</a></li>
-                   <li><a href="${securelink}?security=true"><i class="icon-wrench"></i>Security Setting</a></li>
+                   <li><a href="${changepass}"><i class="glyphicon glyphicon-edit"></i>ChangePassword</a></li>
+                   <li><a href="${securelink}?security=true"><i class="glyphicon glyphicon-wrench"></i>Security Setting</a></li>
                    <%
                    	if (request.isUserInRole("ROLE_vendor")) {	                    		
                    %>
-                   	<li><a href="<hst:link path="/vendor/itreturn"/>"><i class="icon-home"></i>Vendor Home</a></li>
+                   	<li><a href="<hst:link path="/vendor/itreturn"/>"><i class="glyphicon glyphicon-home"></i>Vendor Home</a></li>
                    <% } %>
                </ul>
-			   <button type="submit" class="btn btn-info"  onclick="javascript:$('#frmLogin').attr('action','${logout}');$('#frmLogin').submit()">Logout</button>
+			   <button type="submit" class="btn btn-default btn-info"  onclick="javascript:$('#frmLogin').attr('action','${logout}');$('#frmLogin').submit()">Logout</button>
 	</c:when>
 	<c:otherwise>	<!-- Login/Signup (when user is logging first time)-->
-		<button type="submit" class="btn btn-info" onclick="javascript:$('#frmLogin').attr('action','${login}');$('#frmLogin').submit()">Login</button>
-		<button type="submit" class="btn btn-warning" onclick="javascript:$('#frmLogin').attr('action','${signup}');$('#frmLogin').submit()">Signup</button>					
+		<button type="submit" class="btn btn-default btn-info" onclick="javascript:$('#frmLogin').attr('action','${login}');$('#frmLogin').submit()">Login</button>
+		<button type="submit" class="btn btn-default btn-warning" onclick="javascript:$('#frmLogin').attr('action','${signup}');$('#frmLogin').submit()">Signup</button>					
 	</c:otherwise>
 </c:choose>		

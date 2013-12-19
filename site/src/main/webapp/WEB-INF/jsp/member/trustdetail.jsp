@@ -17,7 +17,7 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 <hst:link var="mainSiteMapRefId" />
 <c:if test="${not empty formMap}">
 	<c:forEach items="${formMap.message}" var="item">
-		<div class="alert alert-error">
+		<div class="alert alert-danger">
 			<fmt:message key="${item.value}" />
 		</div>
 	</c:forEach>
@@ -32,8 +32,8 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 			name="frmtrustdetails">
 			
 			<h2>Enter Details</h2>
-			<div class="row-fluid show-grid">
-				<div class="span4">
+			<div class="row show-grid">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="country_code"><small><fmt:message
 									key="foreign.country.code" /> </small> </label>
@@ -49,7 +49,7 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 					</select>
 					</div>
 				</div>
-				<div class="span4">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="name_trust"><small><fmt:message
 									key="name.trust.itr2" /> </small> </label>
@@ -60,7 +60,7 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.name_Trust}"/></c:if>" />
 					</div>
 				</div>
-				<div class="span4">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="address_trust"><small><fmt:message
 									key="address.trust.itr2" /> </small> </label>
@@ -72,9 +72,9 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 					</div>
 				</div>
 			</div>
-			<div class="row-fluid show-grid">
+			<div class="row show-grid">
 			
-				<div class="span4">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="name_othertrust"><small>Name of Other trustees </small> </label>
 					</div>
@@ -85,7 +85,7 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.name_Othertrust}"/></c:if>" />
 					</div>
 				</div>
-				<div class="span4">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="address_othertrust"><small>Address of Other trustees </small> </label>
 					</div>
@@ -95,7 +95,7 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.address_Othertrust}"/></c:if>" />
 					</div>
 				</div>
-				<div class="span4">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="name_settlor"><small><fmt:message
 									key="name.settlor.itr2" /> </small> </label>
@@ -107,8 +107,8 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 					</div>
 				</div>
 			</div>
-			<div class="row-fluid show-grid">
-		<div class="span4">
+			<div class="row show-grid">
+		<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="address_settlor"><small><fmt:message
 									key="address.settlor.itr2" /> </small> </label>
@@ -119,7 +119,7 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.address_Settlor}"/></c:if>" />
 					</div>
 				</div>
-				<div class="span4">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="name_beneficiaries"><small><fmt:message
 									key="name.beneficiaries.itr2" /> </small> </label>
@@ -130,7 +130,7 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.name_Beneficiaries}"/></c:if>" />
 					</div>
 				</div>
-				<div class="span4">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="address_beneficiaries"><small><fmt:message
 									key="address.beneficiaries.itr2" /> </small> </label>
@@ -143,10 +143,10 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 				</div>
 				</div>
 				<input type="hidden" id="country_name" name="country_name">
-			<div class="row-fluid show-grid">
-				<div class="span4 offset8 decimal">
-					<a  href="${scriptName}" class="btn btn-danger" style="color: black">Cancel</a>&nbsp;
-					<a id="myModalHrefTrustDetail" role="button" class="btn btn-success" style="color: black">Save</a>
+			<div class="row show-grid">
+				<div class="col-md-4 col-md-offset-8 decimal">
+					<a  href="${scriptName}" class="btn btn-default btn-danger" style="color: black">Cancel</a>&nbsp;
+					<a id="myModalHrefTrustDetail" role="button" class="btn btn-default btn-success" style="color: black">Save</a>
 				</div> 
 			
 			</div>
@@ -177,9 +177,9 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 						</td>
 						<td><c:out value="${taxrelief.name_Beneficiaries}" />
 						</td>
-						<td><a class="btn btn-primary"
-							href="${scriptName}/<c:out value="${taxrelief.canonicalUUID}"/>/trustdetailedit"><small><i class=" icon-pencil icon-white"></i>Edit</small> &nbsp;&nbsp;
-						</a>&nbsp;<a class="btn btn-danger" href="${scriptName}/<c:out value="${taxrelief.canonicalUUID}"/>/trustdetaildelete" data-confirm=""><small><i class="icon-trash icon-white"></i>Delete</small> </a>
+						<td><a class="btn btn-default btn-primary"
+							href="${scriptName}/<c:out value="${taxrelief.canonicalUUID}"/>/trustdetailedit"><small><i class=" glyphicon glyphicon-pencil glyphicon glyphicon-white"></i>Edit</small> &nbsp;&nbsp;
+						</a>&nbsp;<a class="btn btn-default btn-danger" href="${scriptName}/<c:out value="${taxrelief.canonicalUUID}"/>/trustdetaildelete" data-confirm=""><small><i class="glyphicon glyphicon-trash glyphicon glyphicon-white"></i>Delete</small> </a>
 							</td>
 						</tr>
 					</tr>
@@ -189,7 +189,7 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 			</c:if>
 		</table>
 		<a href="${scriptName}/trustdetailnew"
-			class="btn btn-info" style="color: black">Add New</a>
+			class="btn btn-default btn-info" style="color: black">Add New</a>
 	</c:otherwise>
 </c:choose>
 </div>

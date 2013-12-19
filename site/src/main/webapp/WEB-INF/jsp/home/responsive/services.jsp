@@ -60,8 +60,8 @@ ol.niceList {
 		</c:forEach>
 	</ul>
 <%--
-<div class="row-fluid">
-	<div class="span12">
+<div class="row">
+	<div class="col-md-12">
 		<c:choose>
 			<c:when test="${services.total eq 0}">
 				<p id="results">

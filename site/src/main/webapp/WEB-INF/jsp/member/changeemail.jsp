@@ -25,7 +25,7 @@
  <div class="yui3-bd" align="center" >
     <table>
    <tr height="30px">
- <td class="label"><fmt:message key="signup.c_email.required"/><span class="star">*</span></td>
+ <td class="label label-default"><fmt:message key="signup.c_email.required"/><span class="star">*</span></td>
         <td class="input"><input required type="email" name="c_email" value="${fn:escapeXml(c_email)}"class="input_data"/>
         <c:if test="${not empty errors}">
               <c:forEach items="${errors}" var="error">
@@ -37,7 +37,7 @@
             </c:if>
         </td></tr>
   <tr height="30px">
- <td class="label"><fmt:message key="signup.email.required"/><span class="star">*</span></td>
+ <td class="label label-default"><fmt:message key="signup.email.required"/><span class="star">*</span></td>
         <td class="input"><input required type="email" name="new_email" value="${fn:escapeXml(new_email)}"class="input_data"/>
         <c:if test="${not empty errors}">
               <c:forEach items="${errors}" var="error">
@@ -49,7 +49,7 @@
             </c:if>
         </td></tr>
         <tr height="30px">
- <td class="label"><fmt:message key="signup.conemail.required"/><span class="star">*</span></td>
+ <td class="label label-default"><fmt:message key="signup.conemail.required"/><span class="star">*</span></td>
         <td class="input"><input required type="email" name="con_email" value="${fn:escapeXml(con_email)}" class="input_data"/>
         <c:if test="${not empty errors}">
               <c:forEach items="${errors}" var="error">

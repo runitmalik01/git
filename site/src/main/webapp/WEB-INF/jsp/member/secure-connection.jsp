@@ -10,12 +10,12 @@
 <div class="well">
 <fieldset>
 
-<legend><strong><i class="icon-lock"></i>Security Questions</strong></legend>
+<legend><strong><i class="glyphicon glyphicon-lock"></i>Security Questions</strong></legend>
 
 <form name="securityQuestion" id="securityQuestion" action="${actionUrl}" method="post">
 <c:forEach items="${questionsMap}" var="question" varStatus="stat">
-	<div class="show-grid row-fluid">
-			<div class="span6">
+	<div class="show-grid row">
+			<div class="col-md-6">
 				<div class="rowlabel">
 					<label for="securityQues${stat.count}"><small>Security Question${stat.count}</small></label>
 				</div>
@@ -31,7 +31,7 @@
 					</select>
 				</div>
 			</div>
-			<div class="span4">
+			<div class="col-md-4">
 				<div class="rowlabel">
 					<label for="answer${stat.count}"><small>Answer${stat.count}</small></label>
 				</div>
@@ -45,8 +45,8 @@
 		</div>
 	</c:forEach>
 	<br/>
-	<div class="pull-right rowlabel span2 offset3">
-	<button type="submit" class="btn btn-primary" value="Save">&nbsp;&nbsp;<i class="icon-lock icon-white"></i>Save&nbsp;&nbsp;</button>
+	<div class="pull-right rowlabel col-md-2 col-md-offset-3">
+	<button type="submit" class="btn btn-default btn-primary" value="Save">&nbsp;&nbsp;<i class="glyphicon glyphicon-lock glyphicon glyphicon-white"></i>Save&nbsp;&nbsp;</button>
 	</div>
 </form>
 </fieldset>

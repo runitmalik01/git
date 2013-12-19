@@ -44,7 +44,7 @@
 <hst:headContribution keyHint="dialogCss" element="${dialogCss}" category="css"/>
 <hst:headContribution keyHint="dialog" element="${dialog}" category="jsInternal"/>
 
-<div id="hippo-dialog" class="btn-rounded minimized">
+<div id="hippo-dialog" class="btn btn-default-rounded minimized">
     <div id="hippo-dialog-head">
         <a href="#" class="hippo-header-home"><fmt:message key="inc.dialog.hippoheader"/></a>
         <span class="hippo-dialog-title"><fmt:message key="inc.dialog.preview"/></span>

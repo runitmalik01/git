@@ -26,8 +26,8 @@
 
 		<fieldset>
 			<legend>Enter Details</legend>
-			<div class="row-fluid show-grid">
-				<div class="span4">
+			<div class="row show-grid">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="name_spouse"><small><fmt:message
 									key="schedule5a.name.spouse.itr2" /> </small> </label>
@@ -36,7 +36,7 @@
 						<input id="name_spouse" name="name_spouse" type="text" value="${parentBean.name_Spouse}" />
 					</div>
 				</div>
-				<div class="span4">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="pan_spouse"><small><fmt:message
 									key="schedule5a.pan.spouse.itr2" /> </small> </label>
@@ -46,7 +46,7 @@
 							maxlength="10" class="uprcase" value="${parentBean.pan_Spouse}" />
 					</div>
 				</div>
-				<div class="span4">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="house_property"><small><fmt:message
 									key="schedule5a.house.property.itr2" /> </small> </label>
@@ -57,9 +57,9 @@
 					</div>
 				</div>
 			</div>
-			<div class="row-fluid show-grid">
+			<div class="row show-grid">
 
-				<div class="span4">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="capital_gains"><small><fmt:message
 									key="schedule5a.capitalgains.itr2" /> </small> </label>
@@ -69,7 +69,7 @@
 							maxlength="14" class="decimal" value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.capital_Gains}" />" />
 					</div>
 				</div>
-				<div class="span4">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="other_sources"><small><fmt:message
 									key="schedule5a.othersources.itr2" /> </small> </label>
@@ -80,7 +80,7 @@
 					</div>
 					
 				</div>
-				<div class="span4">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="total"><small><fmt:message
 									key="schedule5a.total.itr2" /> </small> </label>
@@ -93,10 +93,10 @@
 				</div>
 			</div>
 		</fieldset>
-		<div class="row-fluid show-grid">
-			<div class="span4 offset8 decimal">
-				<a href="${scriptName}" class="btn btn-danger" style="color: black">Cancel</a>&nbsp;
-				<a id="myModalHrefschedule5a" role="button" class="btn btn-success"
+		<div class="row show-grid">
+			<div class="col-md-4 col-md-offset-8 decimal">
+				<a href="${scriptName}" class="btn btn-default btn-danger" style="color: black">Cancel</a>&nbsp;
+				<a id="myModalHrefschedule5a" role="button" class="btn btn-default btn-success"
 					style="color: black">Save</a>
 			</div>
 		</div>

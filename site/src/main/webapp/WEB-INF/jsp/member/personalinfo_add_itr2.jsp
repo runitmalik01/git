@@ -7,14 +7,14 @@
 <hst:actionURL var="actionUrl" />
 <fieldset id="represenative_detail" class="<c:choose> <c:when test="${(parentBean.selectedITRForm == 'ITR4') || (parentBean.selectedITRForm == 'ITR2') || (parentBean.selectedITRForm == 'ITR3')}"> </c:when> <c:otherwise> hide</c:otherwise></c:choose>">
 <legend>Representative Assessee Details</legend>
-<div class="row-fluid show-grid">
-	<div class="span9">
+<div class="row show-grid">
+	<div class="col-md-9">
 				<div class="rowlabel" >
 					<label for="isRepresentative"><small><fmt:message
 								key="wheather.using.representative.itr2" /> </small> </label>
 				</div>
 			</div>
-			<div class="span2">
+			<div class="col-md-2">
 				<div class="rowlabel">
 					<select id="isRepresentative" name="isRepresentative">
 					<option value="">-SELECT-</option>
@@ -23,8 +23,8 @@
 					</select>
 				</div>
 		</div></div>
-		<div class="row-fluid show-grid <c:if test="${(parentBean.isRepresentative == 'N') || ( empty parentBean.isRepresentative)}">hide</c:if>" id="showRepresentDetail" >
-			<div class="span4" id="name_represent">
+		<div class="row show-grid <c:if test="${(parentBean.isRepresentative == 'N') || ( empty parentBean.isRepresentative)}">hide</c:if>" id="showRepresentDetail" >
+			<div class="col-md-4" id="name_represent">
 				<div class="rowlabel">
 					<label for="name_Representative"><small><fmt:message
 								key="name.representative.itr2" /> </small> </label>
@@ -35,7 +35,7 @@
 				</div>
 			</div>
 
-			<div class="span4" id="add_represent">
+			<div class="col-md-4" id="add_represent">
 				<div class="rowlabel">
 					<label for="address_Representative"><small><fmt:message
 								key="address.representative.itr2" /> </small> </label>
@@ -46,7 +46,7 @@
 				</div>
 			</div>
 
-			<div class="span4" id="pan_represent">
+			<div class="col-md-4" id="pan_represent">
 				<div class="rowlabel">
 					<label for="address_Representative"><small><fmt:message
 								key="pan.representative.itr2" /> </small> </label>

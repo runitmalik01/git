@@ -6,7 +6,7 @@
 <hst:actionURL var="actionUrl"></hst:actionURL>
 <c:if test="${not empty formMap}">
 	<c:forEach items="${formMap.message}" var="item">
-		<div class="alert alert-error">
+		<div class="alert alert-danger">
 			<fmt:message key="${item.value}" />
 		</div>
 	</c:forEach>
@@ -15,16 +15,16 @@
 	<b>ITR- Schedule AMT(Alternative Minimum Tax)</b>
 </h4>
 <c:if test="${not empty exceedErrorGrossTurnOver}">
-	<div class="alert alert-error">
+	<div class="alert alert-danger">
 		<strong><fmt:message key="busi.prof.exceed.grosturnover.itr4" /></strong><a
-			href="./servicerequest-itr.html" class="btn btn-warning">Change Package</a>
+			href="./servicerequest-itr.html" class="btn btn-default btn-warning">Change Package</a>
 	</div>
 </c:if>
 <form name="scheduleAMT" id="scheduleAMT" action="${actionUrl}" method="post">
 	<fieldset>
 		<legend style="color: green; font-weight: bold;">Computation of AMT U|S 115JC</legend>
-		<div class="row-fluid show-grid">
-			<div class="span4">
+		<div class="row show-grid">
+			<div class="col-md-4">
 				<div class="rowlabel">
 					<label for="totalIncomeItem13"><small>Total income as Per item13</small>
 					</label>
@@ -34,7 +34,7 @@
 						maxlength="14" class="decimal" value="${partBTIitem13}" readonly="readonly"/>
 				</div>
 			</div>
-			<div class="span4">
+			<div class="col-md-4">
 				<div class="rowlabel">
 					<label for="dedClaimChapSix"> <small>Deduction claim Under Chapter IV-A</small>
 					</label>
@@ -45,7 +45,7 @@
 						value="${dedUnderChapSix}" readonly="readonly"/>
 				</div>
 			</div>
-			<div class="span4">
+			<div class="col-md-4">
 				<div class="rowlabel">
 					<label for="dedClaimTenAA"> <small>Deduction claimed U|S 10AA</small>
 					</label>
@@ -57,8 +57,8 @@
 				</div>
 			</div>
 		</div>
-			<div class="row-fluid show-grid">
-			<div class="span4">
+			<div class="row show-grid">
+			<div class="col-md-4">
 				<div class="rowlabel">
 					<label for="totalAdjustment"> <small>Total Adjustment</small>
 					</label>
@@ -70,7 +70,7 @@
 				</div>
 			</div>
 		
-			<div class="span4">
+			<div class="col-md-4">
 				<div class="rowlabel">
 					<label for="incUndSec115JC"> <small>Total Income Adjusted U|S 115JC</small>
 					</label>
@@ -81,7 +81,7 @@
 						value="${dedSecTanAA + dedUnderChapSix + partBTIitem13}" readonly="readonly"/>
 				</div>
 			</div>
-			<div class="span4">
+			<div class="col-md-4">
 				<div class="rowlabel">
 					<label for="taxPayUndSec115JC"><small>Tax Payable U|S 115JC</small>
 					</label>

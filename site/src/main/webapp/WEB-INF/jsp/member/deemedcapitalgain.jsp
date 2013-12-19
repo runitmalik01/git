@@ -18,8 +18,8 @@
 		name="frmDeemed_Capital">
 		<fieldset>
 			<legend style="color: green; font-weight: bold;">Plant and Machinery </legend>
-			<div class="row-fluid show-grid">
-				<div class="span4">
+			<div class="row show-grid">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="ratefifteen"><small><fmt:message
 									key="dcg.15.itr4" /> </small> </label>
@@ -29,7 +29,7 @@
 							type="text" maxlength="14" value="${plantMach_15Per}" />
 					</div>
 				</div>
-				<div class="span4">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="ratethirty"><small><fmt:message
 									key="dcg.30.itr4" /> </small> </label>
@@ -40,7 +40,7 @@
 
 					</div>
 				</div>
-				<div class="span4">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="rateforty"><small><fmt:message
 									key="dcg.40.itr4" /> </small> </label>
@@ -52,8 +52,8 @@
 					</div>
 				</div>
 			</div>
-			<div class="row-fluid show-grid">
-				<div class="span4">
+			<div class="row show-grid">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="ratefifty"><small><fmt:message
 									key="dcg.50.itr4" /> </small> </label>
@@ -64,7 +64,7 @@
 
 					</div>
 				</div>
-				<div class="span4">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="ratesixty"><small><fmt:message
 									key="dcg.60.itr4" /> </small> </label>
@@ -75,7 +75,7 @@
 
 					</div>
 				</div>
-				<div class="span4">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="rateeighty"><small><fmt:message
 									key="dcg.80.itr4" /> </small> </label>
@@ -87,8 +87,8 @@
 					</div>
 				</div>
 			</div>
-			<div class="row-fluid show-grid">
-				<div class="span4">
+			<div class="row show-grid">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="ratehundred"><small><fmt:message
 									key="dcg.100.itr4" /> </small> </label>
@@ -99,7 +99,7 @@
 
 					</div>
 				</div>
-				<div class="span4">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="total"><small>Total</small> </label>
 					</div>
@@ -112,8 +112,8 @@
 		</fieldset>
 		<fieldset>
 			<legend style="color: green; font-weight: bold;">Building</legend>
-			<div class="row-fluid show-grid">
-				<div class="span4">
+			<div class="row show-grid">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="ratefive"><small><fmt:message
 									key="dcg.5.itr4" /> </small> </label>
@@ -123,7 +123,7 @@
 							value="${build_5Per}" readonly="readonly" />
 					</div>
 				</div>
-				<div class="span4">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="rateten"><small><fmt:message
 									key="dcg.10.itr4" /> </small> </label>
@@ -134,7 +134,7 @@
 
 					</div>
 				</div>
-				<div class="span4">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="hundred"><small><fmt:message
 									key="dcg.hundred.itr4" /> </small> </label>
@@ -147,9 +147,9 @@
 				</div>
 				
 			</div>
-			<div class="row-fluid show-grid">
+			<div class="row show-grid">
 
-				<div class="span4">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="total1"><small>Total</small> </label>
 					</div>
@@ -161,8 +161,8 @@
 			</div>
 		</fieldset>
 		<div id="depreciable_asset">
-			<div class="row-fluid show-grid">
-				<div class="span3">
+			<div class="row show-grid">
+				<div class="col-md-3">
 					<div class="rowlabel">
 						<label for="furniture"><small>Furniture and
 								fittings </small> </label>
@@ -172,7 +172,7 @@
 							readonly="readonly" value="${furniture_Fitting}" />
 					</div>
 				</div>
-			<div class="span3">
+			<div class="col-md-3">
 					<div class="rowlabel">
 						<label for="intangible"><small>Intangible Assets</small> </label>
 					</div>
@@ -181,7 +181,7 @@
 							maxlength="14" readonly="readonly" value="${intangible}" />
 					</div>
 				</div>
-			<div class="span3">
+			<div class="col-md-3">
 					<div class="rowlabel">
 						<label for="ships"><small>Ships</small> </label>
 					</div>
@@ -190,7 +190,7 @@
 							readonly="readonly" value="${ships}" />
 					</div>
 				</div>
-				<div class="span3">
+				<div class="col-md-3">
 					<div class="rowlabel">
 						<label for="total2"><small>Total</small> </label>
 					</div>

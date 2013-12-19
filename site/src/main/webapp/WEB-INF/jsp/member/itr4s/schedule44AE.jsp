@@ -22,8 +22,8 @@
 			
 		<fieldset>
 			<legend style="color: green; font-weight: bold;">Enter Details</legend>
-			<div class="row-fluid show-grid">
-			<div class="span4">
+			<div class="row show-grid">
+			<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="type_Vehicle"><small><fmt:message
 									key="sch441e.type.Vehicle.itr4s" /> </small> </label>
@@ -37,7 +37,7 @@
 						</div>
 				</div>
 			
-				<div class="span4">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="hold_Period"><small><fmt:message
 									key="sch441e.hold.Period.itr4" /> </small> </label>
@@ -48,7 +48,7 @@
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.hold_Period}"/></c:if>" />
 					</div>
 				</div>
-				<div class="span4">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="income_PerVehicle"><small><fmt:message
 									key="sch44ae.income.PerVehicle.itr4s" /> </small> </label>
@@ -61,9 +61,9 @@
 				</div>
 				
 			</div>
-			<div class="row-fluid show-grid">
+			<div class="row show-grid">
 			
-				<div class="span4">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="deemedIncome_Heavy"><small><fmt:message
 									key="sch44ae.deemed.Income.heavy.itr4s" /> </small> </label>
@@ -75,7 +75,7 @@
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.deemedIncome_Heavy}"/></c:if>" />
 					</div>
 				</div>
-				<div class="span4">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="deemedIncome_Light"><small><fmt:message
 									key="sch44ae.deemed.Income.light.itr4s" /> </small> </label>
@@ -88,10 +88,10 @@
 					</div>
 				</div>
 			</div></fieldset>
-			<div class="row-fluid show-grid">
-				<div class="span4 offset8 decimal">
-					<a href="${scriptName}" class="btn btn-danger" style="color: black">Cancel</a>&nbsp;
-					<a id="myModalSchdule44AE" role="button" class="btn btn-success" style="color: black">Save</a>
+			<div class="row show-grid">
+				<div class="col-md-4 col-md-offset-8 decimal">
+					<a href="${scriptName}" class="btn btn-default btn-danger" style="color: black">Cancel</a>&nbsp;
+					<a id="myModalSchdule44AE" role="button" class="btn btn-default btn-success" style="color: black">Save</a>
 				</div>
 			</div>
 		</form>
@@ -116,8 +116,8 @@
 						</td>
 						<td><w4india:inr value="${scheduleFourtyFour.deemedIncome_Light}" />
 						</td>
-						<td><a class="btn btn-primary" href="${scriptName}/<c:out value="${scheduleFourtyFour.canonicalUUID}"/>/schedulefourtyfourAEedit"><small><i class="icon-pencil icon-white"></i>Edit</small>&nbsp;&nbsp;
-						</a>&nbsp;<a class="btn btn-danger" href="${scriptName}/<c:out value="${scheduleFourtyFour.canonicalUUID}"/>/schedulefourtyfourAEdelete" id="delete" data-confirm=""><small><i class="icon-trash icon-white"></i>Delete</small> </a>
+						<td><a class="btn btn-default btn-primary" href="${scriptName}/<c:out value="${scheduleFourtyFour.canonicalUUID}"/>/schedulefourtyfourAEedit"><small><i class="glyphicon glyphicon-pencil glyphicon glyphicon-white"></i>Edit</small>&nbsp;&nbsp;
+						</a>&nbsp;<a class="btn btn-default btn-danger" href="${scriptName}/<c:out value="${scheduleFourtyFour.canonicalUUID}"/>/schedulefourtyfourAEdelete" id="delete" data-confirm=""><small><i class="glyphicon glyphicon-trash glyphicon glyphicon-white"></i>Delete</small> </a>
 							</td>
 						</tr>
 					</tr>
@@ -131,7 +131,7 @@
 			</c:if>
 		</table>
 		<a href="${scriptName}/schedulefourtyfourAEnew"
-			class="btn btn-info" style="color: black">Add New</a>
+			class="btn btn-default btn-info" style="color: black">Add New</a>
 	</c:otherwise>
 </c:choose>
 </div>

@@ -49,7 +49,7 @@
 									
 							%>
 										<tr height="30px">
-											<td class="label">
+											<td class="label label-default">
 										<tr>
 											<td><fmt:message key="member.salary.income" />
 											</td>
@@ -67,7 +67,7 @@
 										</tr>
 			
 										<tr height="30px">
-											<td class="label">
+											<td class="label label-default">
 										<tr>
 											<td><fmt:message key="member.house.property" />
 											</td>
@@ -84,7 +84,7 @@
 										</tr>
 			
 										<tr height="30px">
-											<td class="label">
+											<td class="label label-default">
 										<tr>
 											<td><fmt:message key="member.capital.gain" />
 											</td>
@@ -98,7 +98,7 @@
 										</tr>
 			
 										<tr height="30px">
-											<td class="label">
+											<td class="label label-default">
 										<tr>
 											<td><fmt:message key="member.other.source" />
 											</td>
@@ -117,7 +117,7 @@
 							<% }else{ %>
 
 										<tr height="30px">
-											<td class="label">
+											<td class="label label-default">
 										<tr>
 											<td><fmt:message key="member.salary.income" />
 											</td>
@@ -127,7 +127,7 @@
 										</tr>
 			
 										<tr height="30px">
-											<td class="label">
+											<td class="label label-default">
 										<tr>
 											<td><fmt:message key="member.house.property" />
 											</td>
@@ -137,7 +137,7 @@
 										</tr>
 			
 										<tr height="30px">
-											<td class="label">
+											<td class="label label-default">
 										<tr>
 											<td><fmt:message key="member.capital.gain" />
 											</td>
@@ -146,7 +146,7 @@
 										</tr>
 			
 										<tr height="30px">
-											<td class="label">
+											<td class="label label-default">
 										<tr>
 											<td><fmt:message key="member.other.source" />
 											</td>

@@ -34,8 +34,8 @@
 		</a> &gt;</li>
 	</ol>
 
-	<div class="row-fluid show-grid">
-		<span class="span8">
+	<div class="row show-grid">
+		<span class="col-md-8">
 			<h2>
 				<fmt:message key="events.overview.title" />
 				&nbsp;&nbsp;&nbsp;
@@ -64,7 +64,7 @@
 					</c:if>
 				</ul>
 			</c:forEach> <hippo-gogreen:pagination pageableResult="${documents}" /> </span> <span
-			class="span4"> <!-- right -->
+			class="col-md-4"> <!-- right -->
 			<div id="events">
 				<h2>
 					<fmt:message key="events.calendar.title" />

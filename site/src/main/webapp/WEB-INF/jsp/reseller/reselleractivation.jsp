@@ -19,8 +19,8 @@
 		      Your account is just one step away from being fully activated. The last little step to finishing the registration. Please fill in your details to activate your account.
 		     </div>
 	  <fieldset class="well">
-		     <div class="row-fluid show-grid" >
-		        <div class="span4">
+		     <div class="row show-grid" >
+		        <div class="col-md-4">
 		            <div class="rowlabel">
 		 	            <label for="emailCustomerService">
 		                <small>Email Customer Service (required)</small>
@@ -30,7 +30,7 @@
 		              <input name="emailCustomerService" id="emailCustomerService" value="${fn:escapeXml(emailCustomerService)}" size="22" tabindex="1" type="text" maxlength="50">
 		           </div>
 		        </div>   
-		    <div class="span4">
+		    <div class="col-md-4">
 		        <div class="rowlabel">
 		 	        <label for="emailFrom">
 		            <small>Email From (required)</small>
@@ -40,7 +40,7 @@
 		            <input name="emailFrom" id="emailFrom" value="${fn:escapeXml(emailFrom)}" size="22" tabindex="1" type="text" maxlength="50">
 		        </div>
 		   </div>    
-		   <div class="span4">
+		   <div class="col-md-4">
 		        <div class="rowlabel">
 		 	       <label for="emailFromName">
 		           <small>Email From Name (required)</small>
@@ -51,8 +51,8 @@
 		        </div>
 		  </div>
 		  </div> 
-		  <div class="row-fluid show-grid" >
-		        <div class="span4">
+		  <div class="row show-grid" >
+		        <div class="col-md-4">
 		            <div class="rowlabel">
 				     <label for="emailSignature">
 		             <small>Email Signature (required)</small>
@@ -62,7 +62,7 @@
 		            <input name="emailSignature" id="emailSignature" value="" size="22" tabindex="3" type="text" maxlength="50">
 		          </div>
 		      </div>
-		      <div class="span4">
+		      <div class="col-md-4">
 		            <div class="rowlabel">	   
 				       <label for="eriEnable26ASImport ">
 		               <small>Eri Enable 26AS Import  (required)</small>
@@ -76,7 +76,7 @@
 			          </select>   
 		          </div>
 		    </div>
-		    <div class="span4">
+		    <div class="col-md-4">
 		        <div class="rowlabel">	
 		 	       <label for="eriEnabled">
 		           <small>Eri Enabled (required)</small>
@@ -93,8 +93,8 @@
 		   </div>
 	</fieldset>
 	<fieldset class="well">
-		   <div class="row-fluid show-grid" >
-		     <div class="span4">
+		   <div class="row show-grid" >
+		     <div class="col-md-4">
 		        <div class="rowlabel">	
 			       <label for="eriPassword">
 		           <small>Eri Password (required)</small>
@@ -104,7 +104,7 @@
 		           <input name="eriPassword" id="eriPassword" value="" size="22" tabindex="3" type="password" maxlength="20">
 		       </div>
 		   </div>
-		   	<div class="span4">
+		   	<div class="col-md-4">
 		       <div class="rowlabel">	 
 		   	      <label for="eriUserId">
 		          <small>Eri UserId (required)</small>
@@ -114,7 +114,7 @@
 		           <input name="eriUserId" id="eriUserId" value="${fn:escapeXml(eriUserId)}" size="22" tabindex="1" type="text" maxlength="20">
 		       </div>
 		    </div>
-		    <div class="span4">
+		    <div class="col-md-4">
 		            <div class="rowlabel">	
 		 	            <label for="isReseller">
 		                <small>Is Reseller (required)</small>
@@ -129,8 +129,8 @@
 				    </div>
 				</div>
 	   </div>
-	   <div class="row-fluid show-grid" >
-		        <div class="span4">
+	   <div class="row show-grid" >
+		        <div class="col-md-4">
 		            <div class="rowlabel">	
 		   	            <label for="pageTitlePrefix">
 		                <small>Page Title Prefix (required)</small>
@@ -140,7 +140,7 @@
 		               <input name="pageTitlePrefix" id="pageTitlePrefix" value="${fn:escapeXml(pageTitlePrefix)}" size="22" tabindex="1" type="text" maxlength="50">
 		            </div>
 		        </div>
-		        <div class="span4">
+		        <div class="col-md-4">
 		            <div class="rowlabel">	
 		   	           <label for="paymentAvailableTypes">
 		               <small>Payment Available Types (required)</small>
@@ -154,7 +154,7 @@
 			       	   </select>
 		          </div>
 		       </div>
-		       <div class="span4">
+		       <div class="col-md-4">
 		            <div class="rowlabel">
 		 	           <label for="paymentEnabled">
 		               <small>Payment Enabled (required)</small>
@@ -171,8 +171,8 @@
 		 </div>
  </fieldset>
  <fieldset class="well">
-		   <div class="row-fluid show-grid" >
-		        <div class="span4">
+		   <div class="row show-grid" >
+		        <div class="col-md-4">
 		            <div class="rowlabel">
 		   	            <label for="resellerName">
 		                <small>Reseller Name (required)</small>
@@ -184,8 +184,8 @@
 		        </div>
 		   </div>
    </fieldset>
-	      <div class="row-fluid show-grid">
-			  <div class="span4 offset8 decimal">
+	      <div class="row show-grid">
+			  <div class="col-md-4 col-md-offset-8 decimal">
 		   		  <a href="javascript:void(0);" id="hrefSignup" class="orange button">Submit</a>
 		      </div>
 		  </div>

@@ -41,8 +41,8 @@
 				"Salaries".</p>
 			<fieldset>
 				<legend style="font-style: italic;color: blue;">Employer Details</legend>
-				<div class="row-fluid show-grid">
-					<div class="span3">
+				<div class="row show-grid">
+					<div class="col-md-3">
 						<div class="rowlabel">
 							<label for="Employe_category"><fmt:message
 									key="member.employe.category" /> </label>
@@ -62,8 +62,8 @@
 					</div>
 				</div>
 				<br />
-				<div class="row-fluid show-grid">
-					<div class="span4">
+				<div class="row show-grid">
+					<div class="col-md-4">
 						<div class="rowlabel">
 							<label for="employer">Name of Employer</label>
 						</div>
@@ -73,7 +73,7 @@
 								maxlength="60">
 						</div>
 					</div>
-					<div class="span4">
+					<div class="col-md-4">
 						<div class="rowlabel">
 							<label for="employee">Name of Employee</label>
 						</div>
@@ -84,7 +84,7 @@
 								readonly="readonly" />
 						</div>
 					</div>
-					<div class="span4">
+					<div class="col-md-4">
 						<div class="rowlabel">
 							<label for="pan_deductor">PAN of Employer</label>
 						</div>
@@ -96,8 +96,8 @@
 					</div>
 
 				</div>
-				<div class="row-fluid show-grid">
-					<div class="span4">
+				<div class="row show-grid">
+					<div class="col-md-4">
 						<div class="rowlabel">
 							<label for="tan_deductor">TAN of Employer <small><w4india:knowyourtan companyNameId="employer"/></small></label>
 						</div>
@@ -106,7 +106,7 @@
 								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.tan_deductor}"/></c:if>">
 						</div>
 					</div>
-					<div class="span4">
+					<div class="col-md-4">
 						<div class="rowlabel">
 							<label>PAN of Employee </label> <input type="text"
 								name="pan_employee" class="uprcase"
@@ -116,7 +116,7 @@
 						</div>
 					</div>
 
-					<div class="span4 <c:if test="${not empty itr2}">hide</c:if>">
+					<div class="col-md-4 <c:if test="${not empty itr2}">hide</c:if>">
 						<div class="rowlabel">
 							<label class="">Address of Employer</label>
 						</div>
@@ -328,8 +328,8 @@
 					<em>Less:</em> Allowance to the exempt under section 10
 				</legend>
 
-				<div class="row-fluid show-grid">
-					<div class="span8">
+				<div class="row show-grid">
+					<div class="col-md-8">
 						<div class="rowlabel">
 							<label><strong>2.</strong> Total Allowance </label>
 						</div>
@@ -375,7 +375,7 @@
 							placeholder="Rs." type="text"/>
 						</td>
 -->
-					<div class="span4">
+					<div class="col-md-4">
 						<div class="rowlabel">
 							<input id="less_total_2" name="less_total_2" class="decimal"
 								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.less_total_2}"/></c:if>"
@@ -385,13 +385,13 @@
 				</div>
 				<br />
 
-				<div class="row-fluid show-grid">
-					<div class="span8">
+				<div class="row show-grid">
+					<div class="col-md-8">
 						<div class="rowlabel">
 							<label><strong>3.</strong> </label> <label> Balance(1-2)</label>
 						</div>
 					</div>
-					<div class="span4">
+					<div class="col-md-4">
 						<div class="rowlabel">
 							<input id="balance" name="balance" class=" decimal"
 								readonly="readonly"
@@ -403,8 +403,8 @@
 			</fieldset>
 			<fieldset id="deductions">
 				<legend style="font-style: italic;color: blue;">Deductions U/S 16</legend>
-				<div class="row-fluid show-grid">
-					<div class="span4">
+				<div class="row show-grid">
+					<div class="col-md-4">
 						<div class="rowlabel" id="ent">
 							<strong>4(a)</strong> Entertainment allowance
 						</div>
@@ -415,7 +415,7 @@
 								placeholder="Rs." type="text" maxlength="14" />
 						</div>
 					</div>
-					<div class="span4">
+					<div class="col-md-4">
 						<div class="rowlabel" id="tax">
 							<strong>4(b)</strong> Tax on Employment/ Professional Tax
 						</div>
@@ -427,14 +427,14 @@
 					</div>
 				</div>
 				<br />
-				<div class="row-fluid show-grid">
-					<div class="span8">
+				<div class="row show-grid">
+					<div class="col-md-8">
 						<div class="rowlabel" id="ent">
 							<label><strong>5.</strong> </label><label>Aggregate of
 								4(a) & (b) </label>
 						</div>
 					</div>
-					<div class="span4">
+					<div class="col-md-4">
 						<div class="rowlabel">
 							<input id="deductions_total" name="deductions_total"
 								class="decimal" readonly="readonly"
@@ -444,14 +444,14 @@
 					</div>
 				</div>
 			</fieldset>
-			<div class="row-fluid show-grid">
-				<div class="span8">
+			<div class="row show-grid">
+				<div class="col-md-8">
 					<div class="rowlabel">
 						&nbsp;&nbsp;&nbsp;<label><strong>6.</strong>Income
 							chargeable under the head."Salaries"(3-5) </label>
 					</div>
 				</div>
-				<div class="span4">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<input id="income_chargable_total" name="income_chargable_total"
 							class=" decimal" readonly="readonly"
@@ -493,8 +493,8 @@
 						<tr>
 							<td><label><strong>9.</strong>Deductions under
 									Chapter VI-A </label></td>
-							<td class="btn-group" class="decimal">
-								<button class="btn btn-small dropdown-toggle"
+							<td class="btn btn-default" class="decimal">
+								<button class="btn btn-default btn-sm dropdown-toggle"
 									data-toggle="dropdown">
 									Click to Add Deductions <span class="caret"></span>
 								</button>
@@ -896,14 +896,14 @@
 							placeholder="Rs.">-->
 			<fieldset>
 				<legend style="font-style: italic;color: blue;">Tax Head</legend>
-				<div class="row-fluid show-grid">
-					<div class="span8">
+				<div class="row show-grid">
+					<div class="col-md-8">
 						<div class="rowlabel">
 							<label><strong>7.</strong> </label> <label>Relief under
 								section 89 </label>
 						</div>
 					</div>
-					<div class="span4">
+					<div class="col-md-4">
 						<div class="rowlabel">
 							<input id="relief_2" name="relief_2" class="decimal" type="text"
 								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
@@ -936,20 +936,20 @@
 								placeholder="Rs."></td>
 						</tr>--%>
 
-				<div class="row-fluid show-grid">
-					<div class="span8">
+				<div class="row show-grid">
+					<div class="col-md-8">
 						<div class="rowlabel">
 							<label><strong>8.</strong> </label> <label> Less : </label>
 						</div>
 					</div>
 				</div>
 
-				<div class="row-fluid show-grid">
-					<div class="span8">
+				<div class="row show-grid">
+					<div class="col-md-8">
 						<div class="rowlabel">&nbsp;&nbsp;&nbsp;&nbsp;(a) Tax
 							Deducted at Source u/s 192(1)</div>
 					</div>
-					<div class="span4">
+					<div class="col-md-4">
 						<div class="rowlabel">
 							<input id="ded_ent1" name="ded_ent1" class=" decimal"
 								placeholder="Rs." maxlength="14" type="text"
@@ -961,14 +961,14 @@
 								placeholder="Rs." readonly="readonly"
 								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.ded_ent_2}"/></c:if>">
 							</td>--%>
-				<div class="row-fluid show-grid">
-					<div class="span8">
+				<div class="row show-grid">
+					<div class="col-md-8">
 						<div class="rowlabel">&nbsp;&nbsp;&nbsp;&nbsp;(b) Tax paid
 							by the employer on behalf of the employee u/s 192(1A) on
 							perquisites u/s 8(2)</div>
 					</div>
 
-					<div class="span4">
+					<div class="col-md-4">
 						<div class="rowlabel">
 							<input id="ded_ent3" name="ded_ent3" class="numberinput decimal"
 								placeholder="Rs." maxlength="14" type="text"
@@ -978,13 +978,13 @@
 						</div>
 					</div>
 				</div>
-				<%--<div class="row-fluid show-grid" style="display:none;">
-					<div class="span8">
+				<%--<div class="row show-grid" style="display:none;">
+					<div class="col-md-8">
 						<div class="rowlabel">
 							<label>9. Net income under the head Salary</label>
 						</div>
 					</div>
-					<div class="span4">
+					<div class="col-md-4">
 						<div class="rowlabel">
 							<input id="ded_ent4" name="ded_ent4" class=" decimal"
 								placeholder="Rs." readonly="readonly" type="text"
@@ -1010,11 +1010,11 @@
 								placeholder="Rs."></td>
 						</tr>--%>
 
-			<div class="row-fluid show-grid">
-				<div class="span4 offset8 decimal">
+			<div class="row show-grid">
+				<div class="col-md-4 col-md-offset-8 decimal">
 					<a href="${scriptName}?selectedItrTab=<%=ITRTab.FORM16_SINGLE%>"
-						class="btn btn-danger" style="color: black">Cancel</a>&nbsp; <a
-						id="myModalHrefFormSixteen" role="button" class="btn btn-success" style="color: black">Save</a>
+						class="btn btn-default btn-danger" style="color: black">Cancel</a>&nbsp; <a
+						id="myModalHrefFormSixteen" role="button" class="btn btn-default btn-success" style="color: black">Save</a>
 				</div>
 			</div>
 		</form>
@@ -1039,18 +1039,18 @@
 						</td>
 						<td><c:out value="${salaryItemDetail.employee}" />
 						</td>
-						<td><a class="btn btn-primary"
+						<td><a class="btn btn-default btn-primary"
 							href="${scriptName}/<c:out value="${salaryItemDetail.canonicalUUID}"/>/formsixteenedit"><small><i
-									class="icon-pencil icon-white"></i>Edit</small> </a>&nbsp;&nbsp;<a
-							class="btn btn-danger"
+									class="glyphicon glyphicon-pencil glyphicon glyphicon-white"></i>Edit</small> </a>&nbsp;&nbsp;<a
+							class="btn btn-default btn-danger"
 							href="${scriptName}/<c:out value="${salaryItemDetail.canonicalUUID}"/>/formsixteendelete"
 							data-confirm=""><small><i
-									class="icon-trash icon-white"></i>Delete</small> </a></td>
+									class="glyphicon glyphicon-trash glyphicon glyphicon-white"></i>Delete</small> </a></td>
 					</tr>
 				</c:forEach>
 			</c:if>
 		</table>
-		<a href="${scriptName}/formsixteennew" class="btn btn-info" style="color: black">Add
+		<a href="${scriptName}/formsixteennew" class="btn btn-default btn-info" style="color: black">Add
 			New</a>
 	</c:otherwise>
 </c:choose>

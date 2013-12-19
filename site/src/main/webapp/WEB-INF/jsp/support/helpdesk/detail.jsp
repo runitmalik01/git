@@ -32,9 +32,9 @@
 
 <form id="frmHelpDesk" name="frmHelpDesk" method="POST" action="${actionUrl}">
 	<%-- Help Desk Ticket Id --%>
-	<div class="row-fluid show-grid">
-		<div class="span2">Ticket #</div>
-		<div class="span10">
+	<div class="row show-grid">
+		<div class="col-md-2">Ticket #</div>
+		<div class="col-md-10">
 			<c:choose>
 				<c:when test="${not empty pageAction && (pageAction == 'NEW') }">			
 				</c:when>
@@ -45,9 +45,9 @@
 		</div>
 	</div>
 	
-	<div class="row-fluid show-grid">
-		<div class="span2"><label for="title">Summary</label></div>
-		<div class="span10">
+	<div class="row show-grid">
+		<div class="col-md-2"><label for="title">Summary</label></div>
+		<div class="col-md-10">
 			<c:choose>
 				<c:when test="${not empty pageAction && (pageAction == 'NEW') }">		
 					<input id="title" type="text" name="title" value="${document.title}"/>	
@@ -59,9 +59,9 @@
 		</div>
 	</div>
 	
-	<div class="row-fluid show-grid">
-		<div class="span2"><label for="problemCategory">Problem Category</label></div>
-		<div class="span10">
+	<div class="row show-grid">
+		<div class="col-md-2"><label for="problemCategory">Problem Category</label></div>
+		<div class="col-md-10">
 			<c:choose>
 				<c:when test="${not empty pageAction && (pageAction == 'NEW') }">
 					<select id="problemCategory" name="problemCategory">
@@ -76,9 +76,9 @@
 		</div>
 	</div>
 	
-	<div class="row-fluid show-grid">
-		<div class="span2"><label for="assessmentYear">Assessment Year</label></div>
-		<div class="span10">
+	<div class="row show-grid">
+		<div class="col-md-2"><label for="assessmentYear">Assessment Year</label></div>
+		<div class="col-md-10">
 			<c:choose>
 				<c:when test="${not empty pageAction && (pageAction == 'NEW') }">
 					<select id="assessmentYear" name="assessmentYear">
@@ -99,9 +99,9 @@
 	</div>
 	
 	<!--  Problem Description -->
-	<div class="row-fluid show-grid">
-		<div class="span2">Description</div>
-		<div class="span10">
+	<div class="row show-grid">
+		<div class="col-md-2">Description</div>
+		<div class="col-md-10">
 			<c:choose>
 				<c:when test="${not empty pageAction && (pageAction == 'NEW') }">		
 					<textarea id="description" name="description" rows="5"></textarea>
@@ -114,9 +114,9 @@
 	</div>
 	
 	<c:if test="${not empty pageAction && pageAction == 'NEW_CHILD'}">
-		<div class="row-fluid show-grid">
-			<div class="span2">Add a Note</div>
-			<div class="span10">
+		<div class="row show-grid">
+			<div class="col-md-2">Add a Note</div>
+			<div class="col-md-10">
 				<textarea id="note" name="note" rows="5"></textarea>
 			</div>
 		</div>		
@@ -129,7 +129,7 @@
 		<hr/>
 	</c:forEach>
 	
-	<a id="hrefSave" role="button" class="btn orange">Submit</a>
+	<a id="hrefSave" role="button" class="btn btn-default orange">Submit</a>
 </form>
 <res:client-validation
 	screenConfigurationDocumentName="helpdeskticket"

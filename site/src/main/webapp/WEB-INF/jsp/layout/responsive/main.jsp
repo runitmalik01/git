@@ -34,7 +34,7 @@
 <div id="content" class="<c:out value="${contentCssClass}"/>">
 	<c:choose>
 		<c:when test="${not empty hasGrid && hasGrid == 'true'}">
-			<div class="row-fluid show-grid">
+			<div class="row show-grid">
 				<c:forEach items="${gridParams}" var="par">
 					<c:if test="${fn:startsWith(par.key,'span')}">
 						<c:set value="class${par.key}" var="spanClass"/>

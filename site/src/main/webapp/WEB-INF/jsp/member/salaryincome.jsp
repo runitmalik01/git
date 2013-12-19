@@ -26,7 +26,7 @@
 	</h3>
 	<c:if test="${not empty formMap}">
 		<c:forEach items="${formMap.message}" var="item">
-			<div class="alert alert-error">
+			<div class="alert alert-danger">
 				<fmt:message key="${item.value}" />
 			</div>
 		</c:forEach>
@@ -42,8 +42,8 @@
 				method="post">
 				<fieldset>
 					<legend style="color: green; font-weight: bold;">Employment</legend>
-					<div class="row-fluid show-grid">
-						<div class="span3">
+					<div class="row show-grid">
+						<div class="col-md-3">
 							<div class="rowlabel">
 								<label for ="Employe_category"><fmt:message key="member.employe.category" /> </label>
 							</div>
@@ -59,8 +59,8 @@
 				</fieldset>
 				<fieldset>
 					<legend style="color: green; font-weight: bold;">Employer</legend>
-					<div class="row-fluid show-grid">
-						<div class="span4">
+					<div class="row show-grid">
+						<div class="col-md-4">
 							<div class="rowlabel">
 								<label for="Name_employer"><fmt:message
 										key="member.employe.name" /> </label>
@@ -73,7 +73,7 @@
 							</div>
 						</div>
 
-						<div class="span4">
+						<div class="col-md-4">
 							<div class="rowlabel">
 								<label for="Name_employee"><fmt:message
 										key="member.employee.name" /> </label>
@@ -85,7 +85,7 @@
 									readonly="readonly" />
 							</div>
 						</div>
-						<div class="span4">
+						<div class="col-md-4">
 							<div class="rowlabel">
 								<label for="Pan_employee"><fmt:message
 										key="member.info.pan.employee" /> </label>
@@ -97,8 +97,8 @@
 							</div>
 						</div>
 					</div>
-					<div class="row-fluid show-grid">
-						<div class="span6">
+					<div class="row show-grid">
+						<div class="col-md-6">
 							<div class="rowlabel">
 								<label for="Pan_employer"><fmt:message
 										key="member.info.pan" /> </label>
@@ -108,7 +108,7 @@
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.pan_employer}"/></c:if>" />
 							</div>
 						</div>
-						<div class="span6">
+						<div class="col-md-6">
 							<div class="rowlabel">
 								<label for="Tan_employer"><fmt:message
 										key="member.info.tan" /> </label>
@@ -123,8 +123,8 @@
 				</fieldset>
 				<fieldset>
 					<legend style="color: green; font-weight: bold;">Employer Address</legend>
-					<div class="row-fluid show-grid">
-						<div class="span3">
+					<div class="row show-grid">
+						<div class="col-md-3">
 							<div class="rowlabel">
 								<label for="Addressslry"><fmt:message
 										key="member.address.info" /> </label>
@@ -134,7 +134,7 @@
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.address}"/></c:if>" />
 							</div>
 						</div>
-						<div class="span3">
+						<div class="col-md-3">
 							<div class="rowlabel">
 								<label for="Cityslry"><fmt:message
 										key="member.city.info" /> </label>
@@ -145,7 +145,7 @@
 							</div>
 						</div>
 
-						<div class="span3">
+						<div class="col-md-3">
 							<div class="rowlabel">
 								<label for="Stateslry"><fmt:message
 										key="member.salary.state" /> </label>
@@ -162,7 +162,7 @@
 									dropDownType="${statesType}" fetchValue="${childBean.state}" />
 							</div>
 						</div>
-						<div class="span3">
+						<div class="col-md-3">
 							<div class="rowlabel">
 								<label for="Pinslry"><fmt:message key="member.pin.info" />
 								</label>
@@ -180,8 +180,8 @@
 					<legend>
 						<fmt:message key="member.period.info" />
 					</legend>
-					<div class="row-fluid show-grid">
-						<div class="span4">
+					<div class="row show-grid">
+						<div class="col-md-4">
 							<div class="rowlabel">
 								<label for="From"><fmt:message key="member.period.info1" />
 								</label>
@@ -191,7 +191,7 @@
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.from}"/></c:if>" />
 							</div>
 						</div>
-						<div class="span4">
+						<div class="col-md-4">
 							<div class="rowlabel">
 								<label for="To"><fmt:message key="member.period.infoto" />
 								</label>
@@ -205,8 +205,8 @@
 				</fieldset>--%>
 				<fieldset>
 					<legend style="color: green; font-weight: bold;">Compensation and Taxation</legend>
-					<div class="row-fluid show-grid">
-					    <div class="span4">
+					<div class="row show-grid">
+					    <div class="col-md-4">
 					         <div class = "rowlabel">
 					              <label for="tdspension"><fmt:message key="itr.tds.pension"/></label>
 					         </div>
@@ -215,7 +215,7 @@
 					              <fmt:formatNumber type="number"  groupingUsed="false" value="${childBean.tdsPension}" /></c:if>"/>
 					         </div>
 					   </div>
-						<div class="span4">
+						<div class="col-md-4">
 							<div class="rowlabel">
 								<label for="Gross_salary"><fmt:message
 										key="member.gross.salary" /> </label>
@@ -229,12 +229,12 @@
 						</div>
 					</div>
 				</fieldset>
-				<div class="row-fluid show-grid">
-					<div class="span4 offset8 decimal">
+				<div class="row show-grid">
+					<div class="col-md-4 col-md-offset-8 decimal">
 						<a
 							href="${scriptName}?selectedItrTab=<%=ITRTab.INCOME_SALARY_PENSION%>"
-							class="btn btn-danger" style="color: black">Cancel</a>&nbsp; <a id="myModalHrefSlryInc"
-							role="button" class="btn btn-success" style="color: black">Save</a>
+							class="btn btn-default btn-danger" style="color: black">Cancel</a>&nbsp; <a id="myModalHrefSlryInc"
+							role="button" class="btn btn-default btn-success" style="color: black">Save</a>
 					</div>
 				</div>
 			</form>
@@ -258,11 +258,11 @@
 									value="${salaryItemDetail.city}" /></td>
 							<td align="right"><w4india:inr
 									value="${salaryItemDetail.gross_salary}" /></td>
-							<td><a class="btn btn-primary"
-								href="${scriptName}/<c:out value="${salaryItemDetail.canonicalUUID}"/>/salaryincomeedit"><small><i class="icon-pencil icon-white"></i>Edit</small>
-							</a>&nbsp;&nbsp;<a class="btn btn-danger"
+							<td><a class="btn btn-default btn-primary"
+								href="${scriptName}/<c:out value="${salaryItemDetail.canonicalUUID}"/>/salaryincomeedit"><small><i class="glyphicon glyphicon-pencil glyphicon glyphicon-white"></i>Edit</small>
+							</a>&nbsp;&nbsp;<a class="btn btn-default btn-danger"
 								href="${scriptName}/<c:out value="${salaryItemDetail.canonicalUUID}"/>/salaryincomedelete"
-								data-confirm=""><small><i class="icon-trash icon-white"></i>Delete</small> </a>
+								data-confirm=""><small><i class="glyphicon glyphicon-trash glyphicon glyphicon-white"></i>Delete</small> </a>
 							</td>
 
 						</tr>
@@ -273,7 +273,7 @@
 									value="${parentBean.total}" /></td>
 				</c:if>
 			</table>
-			<a href="${scriptName}/salaryincomenew" class="btn btn-info" style="color: black">Add
+			<a href="${scriptName}/salaryincomenew" class="btn btn-default btn-info" style="color: black">Add
 				New</a>
 		</c:otherwise>
 	</c:choose>

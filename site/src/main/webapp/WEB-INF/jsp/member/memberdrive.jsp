@@ -6,7 +6,7 @@
 <hippo-gogreen:title title="Member Drive" />
 <c:if test="${not empty formMap}">
 	<c:forEach items="${formMap.message}" var="item">
-		<div class="alert alert-error">
+		<div class="alert alert-danger">
 			<fmt:message key="${item.value}" />
 		</div>
 	</c:forEach>
@@ -30,15 +30,15 @@ pageContext.setAttribute("hostname", builder.toString());
 	<c:if test="${memberpersonalinformation.selectedITRForm=='ITR2'}">
 		<fieldset>
 			<legend>Need help on what to upload? Download these sample templates to help you report your Income Tax Data</legend>
-			<div class="row-fluid show-grid">
-				<div class="span12">
+			<div class="row show-grid">
+				<div class="col-md-12">
 					 <div class="rowlabel">
 					    <label for="sample"><small><abbr title="Download this sample template and provide information for capital gain and other">Capital Gain Document Template</abbr></small></label>				 
 					 </div>
 					 <div class="rowlabel">
 					    <c:forEach items="${sampleDocList}" var="sampleDoc">
 					        <hst:link var="sampledoclink" hippobean="${sampleDoc.memberFileResource}"/>				    
-					        <a href="${sampledoclink}" class="btn btn-inverse"><i class="icon-download-alt icon-white"></i><span>Download</span></a>
+					        <a href="${sampledoclink}" class="btn btn-default btn-inverse"><i class="glyphicon glyphicon-download-alt glyphicon glyphicon-white"></i><span>Download</span></a>
 					    </c:forEach>
 					 </div>
 			 	 </div>
@@ -47,31 +47,31 @@ pageContext.setAttribute("hostname", builder.toString());
 	</c:if>
 	<fieldset>
 		<legend>Upload your Income Tax documents for FY:${memberpersonalinformation.financialYear}</legend>
-		   <!--  <div class="row-fluid show-grid">
-		       <div class="span6">
+		   <!--  <div class="row show-grid">
+		       <div class="col-md-6">
 					<div class="rowlabel">
                        <div id="progressbar"><div class="progress-label"></div></div>
 					</div>
 			   </div>
 		    </div>-->
 		<c:if test="${not empty msg}">
-			<div class="row-fluid show-grid">
+			<div class="row show-grid">
 				<div class="alert alert-success">Your have successfully
 					uploaded file in Member Drive.</div>
 			</div>
 		</c:if>
 		<c:if test="${not empty delete}">
-			<div class="row-fluid show-grid">
+			<div class="row show-grid">
 				<div class="alert alert-info">File has been deleted from Member Drive</div>
 			</div>
 		</c:if>
-		<div class="row-fluid show-grid">
-			    <div class="span3">			                     
+		<div class="row show-grid">
+			    <div class="col-md-3">			                     
 			         <div class="rowlabel">
 			               <label for="description"><small>Type (Optional)</small></label>
 			         </div>
 			         <div class="rowlabel">
-			                 <select name="description" id="description" class="span8">
+			                 <select name="description" id="description" class="col-md-8">
 			                      <option value="">-Select-</option>
 			                      <optgroup label="Income from Salary">
 			                      <c:forEach items="${valueList.valueListDocumentDetailList}" var="listItem" varStatus="status">
@@ -111,20 +111,20 @@ pageContext.setAttribute("hostname", builder.toString());
 			                 </select>
 			          </div>				    				   		
 			   </div>		
-			   <div class="span2">
+			   <div class="col-md-2">
 					<div class="rowlabel">			            
 			                  <label for="member_file"><small>File (required)</small></label>
 			        </div>
 			        <div class="rowlabel">
-			                  <span class="btn btn-success fileinput-button" id="remove">
-                                <i class="icon-plus icon-white"></i>
+			                  <span class="btn btn-default btn-success fileinput-button" id="remove">
+                                <i class="glyphicon glyphicon-plus glyphicon glyphicon-white"></i>
                                 <span>Attach</span>
                                 <input type="file" id="member_file" name="member_file"/>
                              </span>
 			             <div id="member_file_name"></div>
 			        </div>
 			    </div>
-				<div class="span3">
+				<div class="col-md-3">
 					<div class="rowlabel">
 					 <label for="protected"><small><abbr title="If Uploading Document is password protected then please provide password">Document Password</abbr></small></label>				 
 					</div>
@@ -132,7 +132,7 @@ pageContext.setAttribute("hostname", builder.toString());
 					  <input id="protected" name="protected" type="password"/>
 					</div>
 				</div>
-				<div class="span2">
+				<div class="col-md-2">
 					<div class="rowlabel">
 					 <label for="protected"><small><abbr title="If you want to share any additional notes">Additional Notes</abbr></small></label>				 
 					</div>
@@ -140,13 +140,13 @@ pageContext.setAttribute("hostname", builder.toString());
 					  <textarea id="additionalnotes" name="additionalnotes"></textarea>
 					</div>
 				</div>
-				<div class="span2">
+				<div class="col-md-2">
 			         <div class="rowlabel">
 			              <label for="startupload"><small>Click</small></label>
 			         </div>
 				    <div class="rowlabel">
-					 <a href="#" id="upload" class="btn btn-primary start">
-					    <i class="icon-upload icon-white"></i>
+					 <a href="#" id="upload" class="btn btn-default btn-primary start">
+					    <i class="glyphicon glyphicon-upload glyphicon glyphicon-white"></i>
                         <span>Upload</span></a>
 					 </div>
 				 </div>
@@ -154,26 +154,26 @@ pageContext.setAttribute("hostname", builder.toString());
 	</fieldset>
 	<fieldset>
 		<legend>Your documents for Financial Year:${memberpersonalinformation.financialYear}</legend>
-		<div class="row-fluid show-grid hide" id="file_process">
+		<div class="row show-grid hide" id="file_process">
 		      <div class="well">
-		         <div class="span8">
+		         <div class="col-md-8">
 				     <div class="rowlabel">
 		   		        <div class="progress progress-success progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
                            <div class="bar" style="width: 0%;"></div>
                         </div>
                      </div>
                 </div>
-				 <div class="span4">
+				 <div class="col-md-4">
 				     <div class="rowlabel">
-                        <a id="cancel" class="btn btn-warning cancel">
-                          <i class="icon-ban-circle icon-white"></i>
+                        <a id="cancel" class="btn btn-default btn-warning cancel">
+                          <i class="glyphicon glyphicon-ban-circle glyphicon glyphicon-white"></i>
                           <span>Cancel upload</span>
                         </a>
                      </div>
 				 </div>
 			  </div>
 			</div>
-		    <div class="row-fluid show-grid">
+		    <div class="row show-grid">
                    <div class="file_name">
                         <table class="table table-hover table-bordered">
                            <thead>
@@ -188,17 +188,17 @@ pageContext.setAttribute("hostname", builder.toString());
                            <tbody>
                              <c:forEach var="file" items="${memberFiles}">
                                <tr>
-                                  <td><span class="add-on"><i class="icon-file"></i></span></td>
+                                  <td><span class="add-on"><i class="glyphicon glyphicon-file"></i></span></td>
                         	     <hst:link var="assetLink" hippobean="${file.memberFileResource}"/>
                                   <td><c:out value="${file.name}"/></td> 
                                   <td>${file.description}</td>
                                   <td><c:set value="${hostname}${assetLink}" var="doc_url" scope="page"/>                                      
-                                      <a href="https://www.docs.google.com/viewer?url=<%=URLEncoder.encode((String)pageContext.getAttribute("doc_url"),"UTF-8")%>" class="btn btn-info"> 
-                                      <i class="icon-eye-open icon-white"></i><span>View</span></a>
-                                      <a href="${assetLink}" class="btn btn-primary">
-                                      <i class="icon-download-alt icon-white"></i><span>Download</span></a>
-                                      <a href="${scriptName}?delete=${file.canonicalUUID}" id="deletefile" class="btn btn-danger" data-confirm="">
-                                      <i class="icon-trash icon-white"></i><span>Delete</span></a>                                   
+                                      <a href="https://www.docs.google.com/viewer?url=<%=URLEncoder.encode((String)pageContext.getAttribute("doc_url"),"UTF-8")%>" class="btn btn-default btn-info"> 
+                                      <i class="glyphicon glyphicon-eye-open glyphicon glyphicon-white"></i><span>View</span></a>
+                                      <a href="${assetLink}" class="btn btn-default btn-primary">
+                                      <i class="glyphicon glyphicon-download-alt glyphicon glyphicon-white"></i><span>Download</span></a>
+                                      <a href="${scriptName}?delete=${file.canonicalUUID}" id="deletefile" class="btn btn-default btn-danger" data-confirm="">
+                                      <i class="glyphicon glyphicon-trash glyphicon glyphicon-white"></i><span>Delete</span></a>                                   
                                   </td>
                                   <td><fmt:formatDate value="${file.memberFileResource.lastModified.time}" type="date" pattern="MMM d, yyyy"/></td>
                                </tr>
@@ -210,15 +210,15 @@ pageContext.setAttribute("hostname", builder.toString());
 		      	
 		<div id="dialog-confirm" title="Confirm To Delete" style="display: none;">
 			<p>
-				<span class="ui-icon ui-icon-alert" style="float: left; margin: 0 7px 20px 0;"></span>
+				<span class="ui-icon ui-glyphicon glyphicon-alert" style="float: left; margin: 0 7px 20px 0;"></span>
 				Are you sure want to Delete this Document?
 			</p>
 		</div>
 	</fieldset>
 	<c:if test="${fn:length(memberFiles) > 0}">
-		<div class="row-fluid show-grid">
-			<div class="span3 offset9">
-				 <a href="servicerequest-itr-payment.html" id="upload" class="btn btn-inverse start"><i class="icon-arrow-right icon-white"></i><span>Proceed</span></a>
+		<div class="row show-grid">
+			<div class="col-md-3 col-md-offset-9">
+				 <a href="servicerequest-itr-payment.html" id="upload" class="btn btn-default btn-inverse start"><i class="glyphicon glyphicon-arrow-right glyphicon glyphicon-white"></i><span>Proceed</span></a>
 			</div>
 		</div>
 	</c:if>

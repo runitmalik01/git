@@ -35,7 +35,7 @@ ${aggIncome }
 					<legend style="color: green; font-weight: bold;">UnAbsorbed
 						Depreciation Details</legend>
 					<br />
-					<div class="span4">
+					<div class="col-md-4">
 						<div class="rowlabel">
 							<label for="assessYear"> <small>Assessment Year</small> </label>
 						</div>
@@ -46,7 +46,7 @@ ${aggIncome }
 						</div>
 					</div>
 
-					<div class="span4">
+					<div class="col-md-4">
 						<div class="rowlabel">
 							<label for="amtUaDep"> <small>Amount of brought
 									forward unabsorbed depreciation</small> </label>
@@ -58,11 +58,11 @@ ${aggIncome }
 						</div>
 					</div>
 				</fieldset>
-				<div class="row-fluid show-grid">
-					<div class="span3 offset10">
-						<a href="${redirectURLToSamePage}" class="btn btn-danger">Cancel</a>
+				<div class="row show-grid">
+					<div class="col-md-3 col-md-offset-10">
+						<a href="${redirectURLToSamePage}" class="btn btn-default btn-danger">Cancel</a>
 						&nbsp; <a id="myModalHrefUADepreciate" role="button"
-							class="btn btn-success">Save</a>
+							class="btn btn-default btn-success">Save</a>
 					</div>
 				</div>
 			</form>
@@ -95,13 +95,13 @@ ${aggIncome }
 										<td align="right"><c:out value="${UD.balCFNY}" />
 										</td>
 
-										<td><a class="btn btn-primary"
+										<td><a class="btn btn-default btn-primary"
 											href="${scriptName}/<c:out value="${UUID}"/>/scheduleUDedit"><small><i
-													class="icon-pencil icon-white"></i>Edit</small> &nbsp;&nbsp; </a>&nbsp;&nbsp;<a
-											class="btn btn-danger"
+													class="glyphicon glyphicon-pencil glyphicon glyphicon-white"></i>Edit</small> &nbsp;&nbsp; </a>&nbsp;&nbsp;<a
+											class="btn btn-default btn-danger"
 											href="${scriptName}/<c:out value="${UUID}"/>/scheduleUDdelete"
 											id="delete" data-confirm=""><small><i
-													class="icon-trash icon-white"></i>Delete</small> </a>
+													class="glyphicon glyphicon-trash glyphicon glyphicon-white"></i>Delete</small> </a>
 										</td>
 									</tr>
 								</c:forEach>
@@ -116,7 +116,7 @@ ${aggIncome }
 
 			</table>
 			<a href="${redirectURLToSamePage}/scheduleUDnew"
-				class="btn btn-info">Add New</a>
+				class="btn btn-default btn-info">Add New</a>
 		</c:otherwise>
 	</c:choose>
 </div>

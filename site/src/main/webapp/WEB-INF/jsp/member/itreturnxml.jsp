@@ -52,7 +52,7 @@
 <![CDATA[
   <c:out value="${xml}" escapeXml="false"/>
 ]]></script>
-				<!-- <a role="button" class="btn orange">Download XML</a> -->
+				<!-- <a role="button" class="btn btn-default orange">Download XML</a> -->
 			</c:when>
 			<c:otherwise>
 
@@ -115,7 +115,7 @@
 				<p>
 
 					<hst:link var="memberDriveComp" siteMapItemRefId="docattach"></hst:link>
-					Click on Upload Documents <a href="${fn:replace(scriptName,'servicerequest-itr-summary.html','attachdoc.html')}" class="btn btn-primary">Upload Documents</a> to get started.
+					Click on Upload Documents <a href="${fn:replace(scriptName,'servicerequest-itr-summary.html','attachdoc.html')}" class="btn btn-default btn-primary">Upload Documents</a> to get started.
 				</p>
 			</fieldset>
 		</form>

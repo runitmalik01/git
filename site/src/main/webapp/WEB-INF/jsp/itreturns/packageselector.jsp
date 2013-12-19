@@ -27,8 +27,8 @@
 			id="financialyear" name="financialyear"
 			value="${financialYear.displayName}" /> <input type="hidden"
 			id="package" name="package" />
-		<div class="row-fluid show-grid rowlabel">
-			<div class="span4"></div>
+		<div class="row show-grid rowlabel">
+			<div class="col-md-4"></div>
 		</div>
 
 		<c:if test="${(financialYear.displayName eq '2012-2013')}">
@@ -82,7 +82,7 @@
 														test="${(document.title == 'BASIC' || document.title == 'PREMIER') }">
 														<a
 															id="hrefSubmit<c:out value="${fn:toLowerCase(document.title)}"/>"
-															class="btn orange">Start</a>
+															class="btn btn-default orange">Start</a>
 													</c:when>
 													<c:otherwise>
 														<a class="button olive">Coming Soon</a>
@@ -156,7 +156,7 @@
 									</span><br /> <span class="fontArial fontSize12 ">Get your tax
 										filed and hoards of other value additions.</span>
 								</div>
-								<br /> <a id="hrefSubmitassisted" class="btn orange">Start</a>
+								<br /> <a id="hrefSubmitassisted" class="btn btn-default orange">Start</a>
 							</div>
 						</div>
 					</div>
@@ -202,7 +202,7 @@
 								<span class="fontArial fontSize12 ">Get your tax filed
 									and hoards of other value additions.</span>
 							</div>
-							<br /> <a id="hrefSubmitassisted" class="btn orange">Start</a>
+							<br /> <a id="hrefSubmitassisted" class="btn btn-default orange">Start</a>
 						</div>
 					</div>
 				</c:otherwise>
@@ -248,7 +248,7 @@
 						<span class="fontArial fontSize12 ">Get your tax filed and
 							hoards of other value additions.</span>
 					</div>
-					<br /> <a id="hrefSubmitassisted" class="btn orange">Start</a>
+					<br /> <a id="hrefSubmitassisted" class="btn btn-default orange">Start</a>
 				</div>
 			</div>
 		</c:if>

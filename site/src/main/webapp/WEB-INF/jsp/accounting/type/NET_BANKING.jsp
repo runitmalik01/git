@@ -15,7 +15,7 @@ request.setAttribute("issuerCodes", PaymentService.BANK_ISSUER.getSortedValues()
 <hst:actionURL var="actionUrl"></hst:actionURL>
 <c:if test="${not empty formMap}">
 	<c:forEach items="${formMap.message}" var="item">
-		<div class="alert alert-error">
+		<div class="alert alert-danger">
 			<fmt:message key="${item.value}" />
 		</div>
 	</c:forEach>
@@ -24,8 +24,8 @@ request.setAttribute("issuerCodes", PaymentService.BANK_ISSUER.getSortedValues()
 <c:when test="${pageAction == 'NEW_CHILD'}">
 <form name="payment_net_banking" id="payment_net_banking" method="post" action="${actionUrl}">
 	<div class="page well" align="justify">
-		<div class="row-fluid show-grid">
-			<div class="span4">
+		<div class="row show-grid">
+			<div class="col-md-4">
 				<div class="rowlabel">
 					<label for="issuerCode"><small>Bank</small></label>
 				</div>
@@ -40,8 +40,8 @@ request.setAttribute("issuerCodes", PaymentService.BANK_ISSUER.getSortedValues()
 				</div>
 			</div>			
 		</div>
-		<div class="row-fluid show-grid">
-			<div class="span4">
+		<div class="row show-grid">
+			<div class="col-md-4">
 				<div class="rowlabel">
 					<label for="lastName"><small>Last Name</small></label>
 				</div>
@@ -49,7 +49,7 @@ request.setAttribute("issuerCodes", PaymentService.BANK_ISSUER.getSortedValues()
 					<input name="lastName" type="text" value="${memberpersonalinformation.lastName}" id="lastName"/>
 				</div>
 			</div>
-			<div class="span4">
+			<div class="col-md-4">
 				<div class="rowlabel">
 					<label for="firstName"><small>First Name</small></label>
 				</div>
@@ -57,7 +57,7 @@ request.setAttribute("issuerCodes", PaymentService.BANK_ISSUER.getSortedValues()
 					<input name="firstName" type="text" value="${memberpersonalinformation.firstName}" id="firstName"/>
 				</div>
 			</div>
-			<div class="span4" align="center">
+			<div class="col-md-4" align="center">
 				<div class="rowlabel">
 					<label for="paymentDate"><small>Payment Date</small></label>
 				</div>
@@ -66,8 +66,8 @@ request.setAttribute("issuerCodes", PaymentService.BANK_ISSUER.getSortedValues()
 				</div>
 			</div>
 		</div>
-		<div class="row-fluid show-grid">
-			<div class="span8">
+		<div class="row show-grid">
+			<div class="col-md-8">
 				<div class="rowlabel">
 					<label for="email"><small>Billing E-Mail</small></label>
 				</div>
@@ -76,7 +76,7 @@ request.setAttribute("issuerCodes", PaymentService.BANK_ISSUER.getSortedValues()
 						class="help-inline"> Where should we send invoices?</span>
 				</div>
 			</div>
-			<div class="span4" align="center">
+			<div class="col-md-4" align="center">
 				<div class="rowlabel">
 					<label for="amount"><small>Amount</small></label>
 				</div>
@@ -85,8 +85,8 @@ request.setAttribute("issuerCodes", PaymentService.BANK_ISSUER.getSortedValues()
 				</div>
 			</div>
 		</div>
-		<div class="row-fluid show-grid">
-			<div class="span8">
+		<div class="row show-grid">
+			<div class="col-md-8">
 				<div class="rowlabel">
 					<label for="bilingAddress"><small>Billing Address</small></label>
 				</div>
@@ -94,7 +94,7 @@ request.setAttribute("issuerCodes", PaymentService.BANK_ISSUER.getSortedValues()
 					<textarea rows="3" cols="1" name="bilingAddress" id="bilingAddress" draggable="false">${memberpersonalinformation.flatDoorBuilding},${memberpersonalinformation.roadStreet},${memberpersonalinformation.areaLocality}</textarea>			
 				</div>
 			</div>
-			<div class="span4" align="center">
+			<div class="col-md-4" align="center">
 				<div class="rowlabel">
 					<label for="paymentDate"><small>Invoice Number</small></label>
 				</div>
@@ -103,8 +103,8 @@ request.setAttribute("issuerCodes", PaymentService.BANK_ISSUER.getSortedValues()
 				</div>
 			</div>			
 		</div>
-		<div class="row-fluid show-grid">
-			<div class="span5">
+		<div class="row show-grid">
+			<div class="col-md-5">
 				<div class="rowlabel">
 					<label for="pi_townCity"><small>Address City</small></label>
 				</div>
@@ -112,12 +112,12 @@ request.setAttribute("issuerCodes", PaymentService.BANK_ISSUER.getSortedValues()
 					<input name="pi_townCity" type="text" value="${memberpersonalinformation.townCityDistrict}" id="pi_townCity"/>				
 				</div>
 			</div>
-			<div class="span3">
+			<div class="col-md-3">
 				<div class="rowlabel">
 					<label for="pi_state"><small>Address State</small></label>
 				</div>
 				<div class="rowlabel">
-					<select id="pi_state" name="pi_state" class="uprcase span12">
+					<select id="pi_state" name="pi_state" class="uprcase col-md-12">
 						<option value="">-Select-</option>
 						<c:forEach var="booleanCombo" items="${objHashMapstates}">
 							<option <c:if test="${memberpersonalinformation.state == booleanCombo.key}">selected</c:if>
@@ -126,7 +126,7 @@ request.setAttribute("issuerCodes", PaymentService.BANK_ISSUER.getSortedValues()
 					</select>
 				</div>
 			</div>
-			<div class="span3">
+			<div class="col-md-3">
 				<div class="rowlabel">
 					<label for="pi_pinCode"><small>Pin/Zip Code</small></label>
 				</div>
@@ -135,8 +135,8 @@ request.setAttribute("issuerCodes", PaymentService.BANK_ISSUER.getSortedValues()
 				</div>
 			</div>
 		</div>
-		<div class="row-fluid show-grid">
-			<div class="span5">
+		<div class="row show-grid">
+			<div class="col-md-5">
 				<div class="rowlabel">
 					<label for="pi_mobile"><small>Mobile</small></label>
 				</div>
@@ -145,8 +145,8 @@ request.setAttribute("issuerCodes", PaymentService.BANK_ISSUER.getSortedValues()
 				</div>
 			</div>
 		</div><br/>
-		<div class="row-fluid show-grid">
-			<div class="span12">
+		<div class="row show-grid">
+			<div class="col-md-12">
 				<div class="rowlabel">
 					<div class="alert alert-info">Click on the
 				Pay Now button. You will be redirected to a secure payment
@@ -155,13 +155,13 @@ request.setAttribute("issuerCodes", PaymentService.BANK_ISSUER.getSortedValues()
 				</div>
 			</div>
 		</div>
-		<div class="row-fluid show-grid">
-			<div class="span12">
+		<div class="row show-grid">
+			<div class="col-md-12">
 				<div class="rowlabel" align="right">
-				    <button type="submit" name="pay" class="btn btn-success"><i class=" icon-ok-sign icon-white"></i>Pay Now</button>
-				    <a class="btn btn-default"  href="${scriptName}" id="payment_submit"><strong>Cancel</strong></a>
-				    <!-- <input type="submit" name="pay" class="btn orange" value="PayNetBanking"/>
-					<a class="btn btn-success" href="#" id="payNetBanking"><i class=" icon-ok-sign icon-white"></i>Pay (Net Banking)</a> -->				
+				    <button type="submit" name="pay" class="btn btn-default btn-success"><i class=" glyphicon glyphicon-ok-sign glyphicon glyphicon-white"></i>Pay Now</button>
+				    <a class="btn btn-default btn-default"  href="${scriptName}" id="payment_submit"><strong>Cancel</strong></a>
+				    <!-- <input type="submit" name="pay" class="btn btn-default orange" value="PayNetBanking"/>
+					<a class="btn btn-default btn-success" href="#" id="payNetBanking"><i class=" glyphicon glyphicon-ok-sign glyphicon glyphicon-white"></i>Pay (Net Banking)</a> -->				
 				</div>
 			</div>
 		</div>
@@ -172,20 +172,20 @@ request.setAttribute("issuerCodes", PaymentService.BANK_ISSUER.getSortedValues()
 		<c:if test="${pageAction =='EDIT_CHILD'}">
 			<div class="page well" align="justify">
 			   <div class="alert alert-success"><strong>Successfully Amount paid Description for Invoice Number ${parentBean.invoiceNumber}</strong></div>
-				<div class="row-fluid show-grid">
-					<div class="span4">
+				<div class="row show-grid">
+					<div class="col-md-4">
 						<div class="rowlabel">
 							<label for="lastName"><small>Last Name</small></label>
 						</div>
 						<div class="rowlabel">${memberpersonalinformation.lastName}</div>
 					</div>
-					<div class="span4">
+					<div class="col-md-4">
 						<div class="rowlabel">
 							<label for="firstName"><small>First Name</small></label>
 						</div>
 						<div class="rowlabel">${memberpersonalinformation.firstName}</div>
 					</div>
-					<div class="span4" align="center">
+					<div class="col-md-4" align="center">
 						<div class="rowlabel">
 							<label for="paymentDate"><small>Payment Date</small></label>
 						</div>
@@ -194,15 +194,15 @@ request.setAttribute("issuerCodes", PaymentService.BANK_ISSUER.getSortedValues()
 						</c:forEach></div>
 					</div>
 				</div>
-				<div class="row-fluid show-grid">
-					<div class="span8">
+				<div class="row show-grid">
+					<div class="col-md-8">
 						<div class="rowlabel">
 							<label for="email"><small>Billing E-Mail</small></label>
 						</div>
 						<div class="rowlabel"><%=request.getUserPrincipal().getName()%>
 						</div>
 					</div>
-					<div class="span4" align="center">
+					<div class="col-md-4" align="center">
 						<div class="rowlabel">
 							<label for="amount"><small>Amount Paid</small></label>
 						</div>
@@ -212,22 +212,22 @@ request.setAttribute("issuerCodes", PaymentService.BANK_ISSUER.getSortedValues()
 						</div>
 					</div>
 				</div>
-				<div class="row-fluid show-grid">
-					<div class="span6">
+				<div class="row show-grid">
+					<div class="col-md-6">
 						<div class="rowlabel">
 							<label for="bilingAddress"><small>Billing Address</small></label>
 						</div>
 						<div class="rowlabel">${memberpersonalinformation.flatDoorBuilding},${memberpersonalinformation.roadStreet},${memberpersonalinformation.areaLocality}</div>
 					</div>
 				</div>
-				<div class="row-fluid show-grid">
-					<div class="span5">
+				<div class="row show-grid">
+					<div class="col-md-5">
 						<div class="rowlabel">
 							<label for="pi_townCity"><small>Address City</small></label>
 						</div>
 						<div class="rowlabel">${memberpersonalinformation.townCityDistrict}</div>
 					</div>
-					<div class="span3">
+					<div class="col-md-3">
 						<div class="rowlabel">
 							<label for="pi_state"><small>Address State</small></label>
 						</div>
@@ -237,25 +237,25 @@ request.setAttribute("issuerCodes", PaymentService.BANK_ISSUER.getSortedValues()
 							</c:forEach>
 						</div>
 					</div>
-					<div class="span3">
+					<div class="col-md-3">
 						<div class="rowlabel">
 							<label for="pi_pinCode"><small>Pin/Zip Code</small></label>
 						</div>
 						<div class="rowlabel">${memberpersonalinformation.pinCode}</div>
 					</div>
 				</div>
-				<div class="row-fluid show-grid">
-					<div class="span5">
+				<div class="row show-grid">
+					<div class="col-md-5">
 						<div class="rowlabel">
 							<label for="pi_mobile"><small>Mobile</small></label>
 						</div>
 						<div class="rowlabel">${memberpersonalinformation.mobile}</div>
 					</div>
 				</div>
-				<div class="row-fluid show-grid">
-					<div class="span12">
+				<div class="row show-grid">
+					<div class="col-md-12">
 						<div class="rowlabel" align="right">
-							<a class="btn btn-primary" href="${scriptName}">Back</a>
+							<a class="btn btn-default btn-primary" href="${scriptName}">Back</a>
 						</div>
 					</div>
 				</div>

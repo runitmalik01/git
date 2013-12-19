@@ -9,8 +9,8 @@
 			<input type="text" class="form-control input-sm" name="bkcomponentName" id="bkcomponentName" title="Name of Block Component"
 				placeholder="Add New Block Component"><label for="email" class="error" generated="false"></label>
 			<div class="input-group-btn">
-				<a href="${websitebuilderlink}/blocks.html/newblock" class="btn btn-success btn-sm" id="bkaddcomponent"><i
-					class="glyphicon glyphicon-plus-sign"></i><strong>ADD Block</strong></a>
+				<a href="${websitebuilderlink}/blocks.html/newblock" class="btn btn-default btn-success btn-sm" id="bkaddcomponent"><i
+					class="glyphicon glyphglyphicon glyphicon-plus-sign"></i><strong>ADD Block</strong></a>
 			</div>
 		</div>
 	</div>
@@ -19,8 +19,8 @@
 			<input type="text" class="form-control input-sm" name="pgcomponentName" id="pgcomponentName"
 				title="Name of Page Component" placeholder="Add New Page Component"><label for="email" class="error" generated="false"></label>
 			<div class="input-group-btn">
-				<a href="${websitebuilderlink}/pagess.html/newpage" class="btn btn-success btn-sm" id="pgaddcomponent"><i
-					class="glyphicon glyphicon-plus-sign"></i><strong>ADD Page</strong></a>
+				<a href="${websitebuilderlink}/pagess.html/newpage" class="btn btn-default btn-success btn-sm" id="pgaddcomponent"><i
+					class="glyphicon glyphglyphicon glyphicon-plus-sign"></i><strong>ADD Page</strong></a>
 			</div>
 		</div>
 	</div>

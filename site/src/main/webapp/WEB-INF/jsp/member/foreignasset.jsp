@@ -12,7 +12,7 @@
 <hst:link var="mainSiteMapRefId" />
 <c:if test="${not empty formMap}">
 	<c:forEach items="${formMap.message}" var="item">
-		<div class="alert alert-error">
+		<div class="alert alert-danger">
 			<fmt:message key="${item.value}" />
 		</div>
 	</c:forEach>
@@ -27,8 +27,8 @@
 			name="frmtForeignAset">
 			
 			<h2>Enter Details</h2>
-			<div class="row-fluid show-grid">
-				<div class="span4">
+			<div class="row show-grid">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="country_code"><small><fmt:message
 									key="foreign.country.code" /> </small> </label>
@@ -39,7 +39,7 @@
 							value=" " />
 					</div>
 				</div>
-				<div class="span4">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="name_bank"><small><fmt:message
 									key="name.bank.itr2" /> </small> </label>
@@ -50,7 +50,7 @@
 							value=" " />
 					</div>
 				</div>
-				<div class="span4">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="address_bank"><small><fmt:message
 									key="address.bank.itr2" /> </small> </label>
@@ -62,9 +62,9 @@
 					</div>
 				</div>
 			</div>
-			<div class="row-fluid show-grid">
+			<div class="row show-grid">
 			
-				<div class="span4">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="name_account"><small><fmt:message
 									key="name.account.itr2" /> </small> </label>
@@ -76,7 +76,7 @@
 							value=" " />
 					</div>
 				</div>
-				<div class="span4">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="account_no"><small><fmt:message
 									key="account.no.itr2" /> </small> </label>
@@ -87,7 +87,7 @@
 							value=" " />
 					</div>
 				</div>
-				<div class="span4">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="peak_balance"><small><fmt:message
 									key="relief.90.itr2" /> </small> </label>
@@ -100,10 +100,10 @@
 				</div>
 			</div>
 		<!-- 
-			<div class="row-fluid show-grid">
-				<div class="span4 offset8 decimal">
+			<div class="row show-grid">
+				<div class="col-md-4 col-md-offset-8 decimal">
 					<a href="${scriptName}" class="button olive">Cancel</a>&nbsp;
-					<a id="myModalHrefTaxrebate" role="button" class="btn orange">Save</a>
+					<a id="myModalHrefTaxrebate" role="button" class="btn btn-default orange">Save</a>
 				</div>  -->
 			<input type="submit" value="save">
 			

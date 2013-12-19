@@ -16,7 +16,7 @@
 					</c:forEach>|<fmt:formatDate value="${document.lastModificationDate.time}"
 						pattern="dd-MMM-YYYY" />
 				</c:if>
-				<a href="#" class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-edit"></i>&nbsp;Follow</a>
+				<a href="#" class="btn btn-default btn-primary btn-sm"><i class="glyphicon glyphglyphicon glyphicon-edit"></i>&nbsp;Follow</a>
 				<hr />
 			</c:forEach>
 		</div>

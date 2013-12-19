@@ -41,7 +41,7 @@
   </div>
  -->
 <div align="center">
-	<a href="#myModalReview" id="clickReview" role="button" class="btn" data-toggle="modal" >Review This Page</a>
+	<a href="#myModalReview" id="clickReview" role="button" class="btn btn-default" data-toggle="modal" >Review This Page</a>
 </div>
 	<!-- Modal -->
 	<div id="" class="modal hide fade" tabindex="-1" role="dialog"
@@ -74,8 +74,8 @@
 			</fieldset>
 		</div>
 		<div class="modal-footer">
-			<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-			<input type="submit" value="Submit" class="btn btn-primary"/>
+			<button class="btn btn-default" data-dismiss="modal" aria-hidden="true">Close</button>
+			<input type="submit" value="Submit" class="btn btn-default btn-primary"/>
 		</div>
 	</div>
 

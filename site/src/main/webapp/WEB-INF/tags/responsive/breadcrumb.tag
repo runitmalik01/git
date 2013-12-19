@@ -38,7 +38,7 @@
    </li>
    <li class="active">
       <div class="btn-group">
-         <button class="btn btn-info dropdown-toggle pan" data-toggle="dropdown">
+         <button class="btn btn-default btn-info dropdown-toggle pan" data-toggle="dropdown">
             <c:out value="${pan}"/>
             <span class="caret"></span>
          </button>

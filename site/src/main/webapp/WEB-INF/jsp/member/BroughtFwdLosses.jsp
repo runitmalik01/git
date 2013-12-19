@@ -205,9 +205,9 @@
 				</tr>
 			</table>
       </div>
-      <div class="row-fluid show-grid">
-			<div class="span3 offset10">
-			    <a id="myModalHrefscheduleBFLA" role="button" class="btn btn-success">Save</a>
+      <div class="row show-grid">
+			<div class="col-md-3 col-md-offset-10">
+			    <a id="myModalHrefscheduleBFLA" role="button" class="btn btn-default btn-success">Save</a>
 			</div>
 		</div>
 </fieldset>

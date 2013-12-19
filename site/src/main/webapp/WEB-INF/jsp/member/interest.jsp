@@ -18,30 +18,30 @@
 		<form id="frmdataInterest" action="${actionUrl}" name="interest" method="post">
 
 		<fieldset>
-				<div class="row-fluid show-grid" >
-					<div class="span6">
+				<div class="row show-grid" >
+					<div class="col-md-6">
 			            <div class="rowlabel"><label for="intA"><small> Interest Payable under Section 234 A</small></label></div>
 			          	<div class="rowlabel"><input type="text" readonly="readonly" id="intA" name="intA" value=""/></div>
 			          </div>
-			        <div class="span6">
+			        <div class="col-md-6">
 			            <div class="rowlabel"><label for="intB"><small>Interest Payable under Section 234 B</small></label></div>
 			          	<div class="rowlabel"><input type="text" readonly="readonly" id="intB" name="intB" value=""/></div>
 			          </div>
 			          </div>
-			          <div class="row-fluid show-grid">
-			              <div class="span6">
+			          <div class="row show-grid">
+			              <div class="col-md-6">
 			            <div class="rowlabel"><label for="ic"><small>Interest Payable under Section 234 C</small></label></div>
 			          	<div class="rowlabel"><input type="text"  readonly="readonly" id="ic" name="ic" value=""/></div>
 			          </div>
-			               <div class="span6">
+			               <div class="col-md-6">
 			            <div class="rowlabel"><label for="intt"><small>Total Interest payable under Sections 234 A, 234 B and 234 C</small></label></div>
 			          	<div class="rowlabel"><input type="text" readonly="readonly" id="intt" name="intt" value=""/></div>
 			          </div>
 			          </div>
 			</fieldset>
-			<div class="row-fluid show-grid">
-					<div class="span4 offset8 decimal">
-								<a id="myModalHrefInterest" role="button" class="btn orange">Save</a>
+			<div class="row show-grid">
+					<div class="col-md-4 col-md-offset-8 decimal">
+								<a id="myModalHrefInterest" role="button" class="btn btn-default orange">Save</a>
 					</div>
 					</div>
 

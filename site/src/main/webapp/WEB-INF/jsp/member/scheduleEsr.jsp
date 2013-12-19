@@ -144,11 +144,11 @@
 			</table>
 
 		</fieldset>
-		<div class="row-fluid show-grid">
-			<div class="span3 offset10">
-				<a href="${redirectURLToSamePage}" class="btn btn-danger">Cancel</a>
+		<div class="row show-grid">
+			<div class="col-md-3 col-md-offset-10">
+				<a href="${redirectURLToSamePage}" class="btn btn-default btn-danger">Cancel</a>
 				&nbsp; <a id="myModalHrefscheduleESR" role="button"
-					class="btn btn-success">Save</a>
+					class="btn btn-default btn-success">Save</a>
 			</div>
 		</div>
 	</form>

@@ -37,8 +37,8 @@
 					</div>
 			  </div>
 			  <div class="modal-footer">
-			    <button class="btn btn-info" data-dismiss="modal" aria-hidden="true">Cancel</button>
-			    <a href="${redirectToOriginalPage}?uuid=${publicParameterUUID}" class="btn btn-warning">Continue with <fmt:message key="${originalPageAction}.label"/></a>
+			    <button class="btn btn-default btn-info" data-dismiss="modal" aria-hidden="true">Cancel</button>
+			    <a href="${redirectToOriginalPage}?uuid=${publicParameterUUID}" class="btn btn-default btn-warning">Continue with <fmt:message key="${originalPageAction}.label"/></a>
 			  </div>
 		</div>
 	</c:if>
@@ -47,14 +47,14 @@
 	<form id="frmPayment" action="${actionUrl}" method="post" name="frmConfirmation">
 		<fieldset>
 			<legend>Your Income Tax Return Summary</legend>
-			<div class="row-fluid show-grid">
-				<div class="span12">
+			<div class="row show-grid">
+				<div class="col-md-12">
 					<c:out value="${generatedHtmlSummary}" escapeXml="false"/>
 				</div>
 			</div>
 		</fieldset>	
-		<div class="row-fluid show-grid">
-			<div class="span12">
+		<div class="row show-grid">
+			<div class="col-md-12">
 				By clicking <b><i><fmt:message key="${originalPageAction}.label"/></i></b>,<br/>
 				<p>I son/daughter of <b><c:out value="${memberpersonalinformation.fatherName}"/></b> solemnly declare that to the best of my knowledge and belief, the information 
 				given in the return thereto is correct and complete and that the amount of total income and other particulars shown therein are truly stated and are in accordance with provisions of Income-tax Act, 1961, 
@@ -62,9 +62,9 @@
 				</p>
 			</div>
 		</div>
-		<div class="row-fluid show-grid">
-			<div class="span4 offset8 decimal">				  
-				<a href="${redirectToOriginalPage}?uuid=${publicParameterUUID}" role="button" class="btn btn-primary">					
+		<div class="row show-grid">
+			<div class="col-md-4 col-md-offset-8 decimal">				  
+				<a href="${redirectToOriginalPage}?uuid=${publicParameterUUID}" role="button" class="btn btn-default btn-primary">					
 					<fmt:message key="${originalPageAction}.label"/>
 				</a>
 			</div>

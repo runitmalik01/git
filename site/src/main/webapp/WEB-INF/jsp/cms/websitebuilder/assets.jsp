@@ -18,7 +18,7 @@
 </ol>
 <c:if test="${not empty formMap}">
 	<c:forEach items="${formMap.message}" var="item">
-		<div class="alert alert-error">
+		<div class="alert alert-danger">
 			<fmt:message key="${item.value}" />
 		</div>
 	</c:forEach>
@@ -40,13 +40,13 @@ pageContext.setAttribute("hostname", builder.toString());
 	<form id="memberdrive" action="${actionUrl}" method="post" name="memberdrive" enctype="multipart/form-data">
      <small><strong>Upload your Asset for Building Web Pages</strong></small>
 		<c:if test="${not empty msg}">
-			<div class="row-fluid show-grid">
+			<div class="row show-grid">
 				<div class="alert alert-success">Your have successfully
 					uploaded file in Asset Drive.</div>
 			</div>
 		</c:if>
 		<c:if test="${not empty delete}">
-			<div class="row-fluid show-grid">
+			<div class="row show-grid">
 				<div class="alert alert-info">File has been deleted from
 					Asset Drive</div>
 			</div>
@@ -73,8 +73,8 @@ pageContext.setAttribute("hostname", builder.toString());
 			<div class="col-md-4 col-md-offset-4">
 				<div class="well well-sm">
 					<div class="input-group" align="center">
-						<a href="#" id="upload" class="btn btn-info start"> <i
-							class="glyphicon-upload glyphicon"></i>&nbsp;<span>Upload</span></a>
+						<a href="#" id="upload" class="btn btn-default btn-info start"> <i
+							class="glyphglyphicon glyphicon-upload glyphicon"></i>&nbsp;<span>Upload</span></a>
 					</div>
 				</div>
 			</div>
@@ -93,17 +93,17 @@ pageContext.setAttribute("hostname", builder.toString());
 		<tbody>
 			<c:forEach var="file" items="${memberFiles}">
 				<tr>
-					<td><span class="add-on"><i class="glyphicon-file glyphicon"></i></span></td>
+					<td><span class="add-on"><i class="glyphglyphicon glyphicon-file glyphicon"></i></span></td>
 					<hst:link var="assetLink" hippobean="${file.memberFileResource}" />
 					<td><c:out value="${file.name}" /></td>
 					<td>${file.description}</td>
 					<td><c:set value="${hostname}${assetLink}" var="doc_url" scope="page" /> 
 					<a href="https://www.docs.google.com/viewer?url=<%=URLEncoder.encode((String)pageContext.getAttribute("doc_url"),"UTF-8")%>"
-						class="btn btn-info btn-sm"> <i class="glyphicon-eye-open glyphicon"></i><span>View</span></a> 
-						<a href="${assetLink}" class="btn btn-success btn-sm"> <i
-							class="glyphicon-download-alt glyphicon"></i><span>Download</span></a>
-						<a href="${assetslink}?delete=${file.canonicalUUID}" id="deletefile" class="btn btn-danger btn-sm" data-confirm="">
-							<i class="glyphicon-trash glyphicon"></i><span>Delete</span>
+						class="btn btn-default btn-info btn-sm"> <i class="glyphglyphicon glyphicon-eye-open glyphicon"></i><span>View</span></a> 
+						<a href="${assetLink}" class="btn btn-default btn-success btn-sm"> <i
+							class="glyphglyphicon glyphicon-download-alt glyphicon"></i><span>Download</span></a>
+						<a href="${assetslink}?delete=${file.canonicalUUID}" id="deletefile" class="btn btn-default btn-danger btn-sm" data-confirm="">
+							<i class="glyphglyphicon glyphicon-trash glyphicon"></i><span>Delete</span>
 					</a></td>
 					<td><fmt:formatDate value="${file.memberFileResource.lastModified.time}" type="date" pattern="MMM d, yyyy" /></td>
 				</tr>

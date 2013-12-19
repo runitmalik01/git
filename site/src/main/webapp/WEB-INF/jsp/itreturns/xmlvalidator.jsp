@@ -31,8 +31,8 @@
 		<input type="hidden" name="isValid"/>	
 		<fieldset id="ul_revised" class="revised_v original_h">
 			<legend>Your Return</legend>
-			<div class="row-fluid show-grid" id="ul_revised_input">
-					<div class="span12">
+			<div class="row show-grid" id="ul_revised_input">
+					<div class="col-md-12">
 						<div class="rowlabel">
 							<label for="financialYear"><small>Financial Year</small> </label>
 						</div>
@@ -44,8 +44,8 @@
 						</div>
 					</div>
 			</div>
-			<div class="row-fluid show-grid">
-					<div class="span12">
+			<div class="row show-grid">
+					<div class="col-md-12">
 						<div class="rowlabel">
 							<label for="financialYear"><small>Return Type</small> </label>
 						</div>
@@ -57,8 +57,8 @@
 						</div>
 					</div>
 			</div>
-			<div class="row-fluid show-grid">
-				<div class="span12">
+			<div class="row show-grid">
+				<div class="col-md-12">
 						<div class="rowlabel">
 							<label for="xml"><small>Option 1 (Upload your return)</small> </label>
 						</div>
@@ -67,8 +67,8 @@
 						</div>
 				</div>
 			</div>
-			<div class="row-fluid show-grid">
-				<div class="span12">
+			<div class="row show-grid">
+				<div class="col-md-12">
 						<div class="rowlabel">
 							<label for="xml"><small>Option 2 (Copy and Paste the XML here)</small> </label>
 						</div>
@@ -77,28 +77,28 @@
 						</div>
 				</div>
 			</div>
-			<div class="row-fluid show-grid">
-				<div class="span2 offset8">
+			<div class="row show-grid">
+				<div class="col-md-2 col-md-offset-8">
 					<input type="submit" value="Click to begin validation"/>	
 				</div>
 			</div>
 		</fieldset>
 		<fieldset>
 			<legend>Validation Result </legend>
-			<div class="row-fluid show-grid" id="ul_revised_input">
-				<div class="span2">
+			<div class="row show-grid" id="ul_revised_input">
+				<div class="col-md-2">
 					<c:if test="${not empty isValid}">
 						<c:choose>
 							<c:when test="${isValid == 'true'}">
-								<span class="label label-success">Your XML is valid.</span>
+								<span class="label label-default label-success">Your XML is valid.</span>
 							</c:when>
 							<c:otherwise>
-								<span class="label label-warning">Your XML is not valid.</span>
+								<span class="label label-default label-warning">Your XML is not valid.</span>
 							</c:otherwise>
 						</c:choose>		
 					</c:if>				
 				</div>
-				<div class="span10" >
+				<div class="col-md-10" >
 					<c:if test="${not empty errors}">
 						<pre>
 							<c:out value="${errors}" escapeXml="false"/>

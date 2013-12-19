@@ -43,8 +43,8 @@
 		<form id="events" action="${actionUrl}" name="events" method="post">
 			<fieldset>
 				<legend>Edit Your own Events</legend>
-				<div class="row-fluid show-grid">
-					<div class="span6">
+				<div class="row show-grid">
+					<div class="col-md-6">
 						<div class="rowlabel">
 							<label for="title">Title Of Events </label>
 						</div>
@@ -54,8 +54,8 @@
 						</div>
 					</div>
 				</div>
-				<div class="row-fluid show-grid">
-					<div class="span6">
+				<div class="row show-grid">
+					<div class="col-md-6">
 						<div class="rowlabel">
 							<label for="summary">Summary </label>
 						</div>
@@ -65,8 +65,8 @@
 						</div>
 					</div>
 				</div>
-				<div class="row-fluid show-grid">
-					<div class="span6">
+				<div class="row show-grid">
+					<div class="col-md-6">
 						<div class="rowlabel">
 							<label for="date"> End Date </label>
 						</div>
@@ -77,13 +77,13 @@
 					</div>
 				</div>
 
-				<div class="row-fluid show-grid">
-					<div class="span8">
+				<div class="row show-grid">
+					<div class="col-md-8">
 						<div class="rowlabel">
 							<label for="description">Description </label>
 						</div>
 						<div class="rowlabel">
-							<textarea class="field span12" id="description"
+							<textarea class="field col-md-12" id="description"
 								name="description"
 								value="<span class="<c:if test="${preview}">editable</c:if> inline"
 							id="mootlywcm:description"><hst:html
@@ -92,7 +92,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="row-fluid show-grid">
+				<div class="row show-grid">
 					<div class="rowlabel">
 						<input type="submit" value="Save" style="color: blue;">
 					</div>
@@ -106,8 +106,8 @@
 			<fieldset>
 				<legend>Edit Your own Events</legend>
 
-				<div class="row-fluid show-grid">
-					<div class="span4">
+				<div class="row show-grid">
+					<div class="col-md-4">
 						<div class="rowlabel">
 							<label for="deleteevent">Are you sure want to delete ?</label>
 						</div>
@@ -119,7 +119,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="row-fluid show-grid">
+				<div class="row show-grid">
 					<div class="rowlabel">
 						<input type="submit" value="Save" style="color: blue;">
 					</div>

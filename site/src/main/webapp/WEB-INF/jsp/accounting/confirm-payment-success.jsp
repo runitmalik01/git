@@ -23,7 +23,7 @@
 	    You have successfully paid for Member Invoices.
 	    </div>
 	   <br/>Wealth4India have received your payment.Wealth4India is very thankful to you. 
-	   <div class="" align="center"><a class="btn btn-info"><i class="icon-home icon-white"></i>&nbsp;Go Home</a></div>
+	   <div class="" align="center"><a class="btn btn-default btn-info"><i class="glyphicon glyphicon-home glyphicon glyphicon-white"></i>&nbsp;Go Home</a></div>
 	</div>
 </div>
 <hst:element var="uiCustom" name="script">

@@ -26,7 +26,7 @@
 		</div>
 		<div class="col-md-3">
 			<div class="form-group"><br/>
-				<button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-folder-close"></i>&nbsp;Create Folder</button>
+				<button type="submit" class="btn btn-default btn-primary"><i class="glyphicon glyphglyphicon glyphicon-folder-close"></i>&nbsp;Create Folder</button>
 			</div>
 		</div>
 	</div>

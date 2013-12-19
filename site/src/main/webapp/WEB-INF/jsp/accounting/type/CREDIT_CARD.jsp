@@ -18,7 +18,7 @@ request.setAttribute("SavCardType", CARD_TYPE.values());
 <hst:actionURL var="actionUrl"></hst:actionURL>
 <c:if test="${not empty formMap}">
 	<c:forEach items="${formMap.message}" var="item">
-		<div class="alert alert-error">
+		<div class="alert alert-danger">
 			<fmt:message key="${item.value}" />
 		</div>
 	</c:forEach>
@@ -35,8 +35,8 @@ request.setAttribute("SavCardType", CARD_TYPE.values());
 		<fieldset>
 			<legend class="">Payment</legend>
 			<!-- Name -->
-			<div class="row-fluid show-grid">
-				<div class="span6">
+			<div class="row show-grid">
+				<div class="col-md-6">
 					<div class="rowlabel">
 						<label for="cardHolderName"><small>Card Holder's Name</small></label>
 					</div>
@@ -44,7 +44,7 @@ request.setAttribute("SavCardType", CARD_TYPE.values());
 						<input type="text" id="cardHolderName" name="cardHolderName" placeholder="" class="search-query">
 					</div>
 				</div>
-				<div class="span6" align="center">
+				<div class="col-md-6" align="center">
 					<div class="rowlabel">
 						<label for="paymentDate"><small>Payment Date</small></label>
 					</div>
@@ -54,8 +54,8 @@ request.setAttribute("SavCardType", CARD_TYPE.values());
 				</div>
 			</div>
 			<!-- Card Number -->
-			<div class="row-fluid show-grid">
-				<div class="span4">
+			<div class="row show-grid">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="cardNumber"><small>Card Number</small></label>
 					</div>
@@ -63,12 +63,12 @@ request.setAttribute("SavCardType", CARD_TYPE.values());
 						<input type="text" id="cardNumber" name="cardNumber" placeholder="" class="search-query" maxlength="16"/>
 					</div>
 				</div>
-				<div class="span2">
+				<div class="col-md-2">
 					<div class="rowlabel">
 						<label for="cardType"><small>Card Type</small></label>
 					</div>
 					<div class="rowlabel">
-						<select id="cardType" name="cardType" class="span10">
+						<select id="cardType" name="cardType" class="col-md-10">
 						  <option value="">-Select-</option>
 						  <c:forEach items="${SavCardType}" var="crdTyp">
 						    <option value="${crdTyp}">${crdTyp}</option>
@@ -76,7 +76,7 @@ request.setAttribute("SavCardType", CARD_TYPE.values());
 						</select>
 					</div>
 				</div>
-				<div class="span6" align="center">
+				<div class="col-md-6" align="center">
 					<div class="rowlabel">
 						<label for="paymentAmount"><small>Payment Amount</small></label>
 					</div>
@@ -86,13 +86,13 @@ request.setAttribute("SavCardType", CARD_TYPE.values());
 				</div>
 			</div>
 			<!-- Expiry-->
-			<div class="row-fluid show-grid">
-				<div class="span3">
+			<div class="row show-grid">
+				<div class="col-md-3">
 					<div class="rowlabel">
 						<label for="expiryMonth"><small>Card Expiry Month</small></label>
 					</div>
 					<div class="rowlabel">
-						<select class="span8" name="expiryMonth" id="expiryMonth">
+						<select class="col-md-8" name="expiryMonth" id="expiryMonth">
 							<option value="">-Select-</option>
 							<option value="01">Jan (01)</option>
 							<option value="02">Feb (02)</option>
@@ -109,12 +109,12 @@ request.setAttribute("SavCardType", CARD_TYPE.values());
 						</select>
 					</div>
 				</div>
-				<div class="span3">
+				<div class="col-md-3">
 					<div class="rowlabel">
 						<label for="expiryYear"><small>Card Expiry Year</small></label>
 					</div>
 					<div class="rowlabel">
-						 <select class="span8" name="expiryYear" id="expiryYear">
+						 <select class="col-md-8" name="expiryYear" id="expiryYear">
 						    <option value="">-Select-</option>
 							<c:forEach var="expYear" begin="${startYear}" end="${startYear + 20}">
 							  <option value="${expYear}">${expYear}</option>
@@ -122,7 +122,7 @@ request.setAttribute("SavCardType", CARD_TYPE.values());
 						</select>
 					</div>
 				</div>
-				<div class="span6" align="center">
+				<div class="col-md-6" align="center">
 					<div class="rowlabel">
 						<label for="paymentAmount"><small>Invoice Number</small></label>
 					</div>
@@ -133,15 +133,15 @@ request.setAttribute("SavCardType", CARD_TYPE.values());
 			</div>
 			<!-- CVV -->
 			<c:set var="helpText"><input type="image" src="<hst:link path="/images/CVVcodepic.jpg"/>" height="150" width="150"/></c:set>
-			<div class="row-fluid show-grid">
-				<div class="span2">
+			<div class="row show-grid">
+				<div class="col-md-2">
 					<div class="rowlabel">
 						<label for="cvvNumber"><small>Card CVV</small></label>
 					</div>
 					<div class="rowlabel">
-						<div class="input-append">
+						<div class="input-group">
 							<input type="password" id="cvvNumber" name="cvvNumber" placeholder="" class="search-query" maxlength="3">
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="label" id="helpOver"><i class="icon-question-sign iconwhite"></i></span>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="label label-default" id="helpOver"><i class="glyphicon glyphicon-question-sign iconwhite"></i></span>
 						</div>
 						<a href="http://www.cvvnumber.com/cvv.html" target="_blank" style="font-size: 11px">What is my CVV code?</a>
 					</div>
@@ -154,8 +154,8 @@ request.setAttribute("SavCardType", CARD_TYPE.values());
 			<!-- Submit -->
 			<div class="control-group">
 				<div class="controls">
-					<button class="btn btn-success" type="submit" id="payment_submit">Pay Now</button>
-					<a class="btn btn-default"  href="${scriptName}" id="payment_submit"><strong>Cancel</strong></a>
+					<button class="btn btn-default btn-success" type="submit" id="payment_submit">Pay Now</button>
+					<a class="btn btn-default btn-default"  href="${scriptName}" id="payment_submit"><strong>Cancel</strong></a>
 				</div>
 			</div>
 		</fieldset>
@@ -166,20 +166,20 @@ request.setAttribute("SavCardType", CARD_TYPE.values());
 <c:if test="${pageAction =='EDIT_CHILD'}">
 			<div class="page well" align="justify">
 			   <div class="alert alert-success"><strong>Successfully Amount paid Description for Invoice Number ${parentBean.invoiceNumber}</strong></div>
-				<div class="row-fluid show-grid">
-					<div class="span4">
+				<div class="row show-grid">
+					<div class="col-md-4">
 						<div class="rowlabel">
 							<label for="lastName"><small>Last Name</small></label>
 						</div>
 						<div class="rowlabel">${memberpersonalinformation.lastName}</div>
 					</div>
-					<div class="span4">
+					<div class="col-md-4">
 						<div class="rowlabel">
 							<label for="firstName"><small>First Name</small></label>
 						</div>
 						<div class="rowlabel">${memberpersonalinformation.firstName}</div>
 					</div>
-					<div class="span4" align="center">
+					<div class="col-md-4" align="center">
 						<div class="rowlabel">
 							<label for="paymentDate"><small>Payment Date</small></label>
 						</div>
@@ -188,15 +188,15 @@ request.setAttribute("SavCardType", CARD_TYPE.values());
 						</c:forEach></div>
 					</div>
 				</div>
-				<div class="row-fluid show-grid">
-					<div class="span8">
+				<div class="row show-grid">
+					<div class="col-md-8">
 						<div class="rowlabel">
 							<label for="email"><small>Billing E-Mail</small></label>
 						</div>
 						<div class="rowlabel"><%=request.getUserPrincipal().getName()%>
 						</div>
 					</div>
-					<div class="span4" align="center">
+					<div class="col-md-4" align="center">
 						<div class="rowlabel">
 							<label for="amount"><small>Amount Paid</small></label>
 						</div>
@@ -206,22 +206,22 @@ request.setAttribute("SavCardType", CARD_TYPE.values());
 						</div>
 					</div>
 				</div>
-				<div class="row-fluid show-grid">
-					<div class="span6">
+				<div class="row show-grid">
+					<div class="col-md-6">
 						<div class="rowlabel">
 							<label for="bilingAddress"><small>Billing Address</small></label>
 						</div>
 						<div class="rowlabel">${memberpersonalinformation.flatDoorBuilding},${memberpersonalinformation.roadStreet},${memberpersonalinformation.areaLocality}</div>
 					</div>
 				</div>
-				<div class="row-fluid show-grid">
-					<div class="span5">
+				<div class="row show-grid">
+					<div class="col-md-5">
 						<div class="rowlabel">
 							<label for="pi_townCity"><small>Address City</small></label>
 						</div>
 						<div class="rowlabel">${memberpersonalinformation.townCityDistrict}</div>
 					</div>
-					<div class="span3">
+					<div class="col-md-3">
 						<div class="rowlabel">
 							<label for="pi_state"><small>Address State</small></label>
 						</div>
@@ -231,25 +231,25 @@ request.setAttribute("SavCardType", CARD_TYPE.values());
 							</c:forEach>
 						</div>
 					</div>
-					<div class="span3">
+					<div class="col-md-3">
 						<div class="rowlabel">
 							<label for="pi_pinCode"><small>Pin/Zip Code</small></label>
 						</div>
 						<div class="rowlabel">${memberpersonalinformation.pinCode}</div>
 					</div>
 				</div>
-				<div class="row-fluid show-grid">
-					<div class="span5">
+				<div class="row show-grid">
+					<div class="col-md-5">
 						<div class="rowlabel">
 							<label for="pi_mobile"><small>Mobile</small></label>
 						</div>
 						<div class="rowlabel">${memberpersonalinformation.mobile}</div>
 					</div>
 				</div>
-				<div class="row-fluid show-grid">
-					<div class="span12">
+				<div class="row show-grid">
+					<div class="col-md-12">
 						<div class="rowlabel" align="right">
-							<a class="btn btn-primary" href="${scriptName}">Back</a>
+							<a class="btn btn-default btn-primary" href="${scriptName}">Back</a>
 						</div>
 					</div>
 				</div>

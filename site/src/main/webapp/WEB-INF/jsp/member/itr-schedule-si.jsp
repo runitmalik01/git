@@ -12,7 +12,7 @@
 <w4india:itrmenu/>
 <c:if test="${not empty formMap}">
 	<c:forEach items="${formMap.message}" var="item">
-		<div class="alert alert-error">
+		<div class="alert alert-danger">
 			<fmt:message key="${item.value}" />
 		</div>
 	</c:forEach>
@@ -23,11 +23,11 @@
 	<legend>Schedule SI</legend>
 	<strong>Click on</strong>
 	<div class="btn-group">
-		<button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown">
+		<button type="button" class="btn btn-default btn-warning dropdown-toggle" data-toggle="dropdown">
 			Income chargeable to Income tax at special rates IB<span class="caret"></span>
 		</button>
 		<ul class="dropdown-menu">
-			<li><a href="${scriptName}/itrschedulesinew" id="newchild"><i class="icon-plus-sign"></i><strong>Add</strong></a></li>
+			<li><a href="${scriptName}/itrschedulesinew" id="newchild"><i class="glyphicon glyphicon-plus-sign"></i><strong>Add</strong></a></li>
 		</ul>
 	</div>&nbsp;<strong>to add new Schedule SI section!!</strong>
 </fieldset>
@@ -42,7 +42,7 @@
 			<th><abbr title="Rates described by Income Tax Department">Special Rate (%)</abbr></th>
 			<th>Gross Income</th>
 			<th><abbr title="Gross Amount after apply rates.">Eligible Amount</abbr></th>
-			<th align="center"><div class="span1">Action</div></th>
+			<th align="center"><div class="col-md-1">Action</div></th>
 		</tr>
 	</thead>
 	<tbody>
@@ -56,11 +56,11 @@
 							<td><c:out value="${scheduleSiDetail.specialRate}" /></td>
 							<td><w4india:inr value="${scheduleSiDetail.amount}" /></td>
 							<td><w4india:inr value="${scheduleSiDetail.calcRateIncome}" /></td>
-							<td align="center"><div class="span2 rowlabel">
+							<td align="center"><div class="col-md-2 rowlabel">
 									<a href="${scriptName}/${scheduleSiDetail.canonicalUUID}/itrschedulesiedit"
-										class="btn btn-primary"><i class="icon-edit icon-white"></i><span><strong>Edit</strong></span></a>&nbsp;
-									<a href="${scriptName}/${scheduleSiDetail.canonicalUUID}/itrschedulesidelete" data-confirm="" class="btn btn-danger">
-									<i class="icon-trash icon-white"></i><span><strong>Delete</strong></span></a>
+										class="btn btn-default btn-primary"><i class="glyphicon glyphicon-edit glyphicon glyphicon-white"></i><span><strong>Edit</strong></span></a>&nbsp;
+									<a href="${scriptName}/${scheduleSiDetail.canonicalUUID}/itrschedulesidelete" data-confirm="" class="btn btn-default btn-danger">
+									<i class="glyphicon glyphicon-trash glyphicon glyphicon-white"></i><span><strong>Delete</strong></span></a>
 								</div></td>
 						</tr>
 					</c:if>
@@ -99,8 +99,8 @@
 <c:set var="sectionData">
 	<fieldset>
 		<legend>Schedule SI</legend>
-		<div class="row-fluid show-grid">
-			<div class="span8">
+		<div class="row show-grid">
+			<div class="col-md-8">
 				<div class="rowlabel">
 					<label for="schedulesiSection"><small>Schedule SI Section</small></label>
 				</div>
@@ -122,7 +122,7 @@
 					</select>
 				</div>
 			</div>
-			<div class="span4">
+			<div class="col-md-4">
 				<div class="rowlabel">
 					<label for="amount"><small>Gross Amount</small></label>
 				</div>
@@ -138,8 +138,8 @@
 				</div>
 			</div>
 		</div>
-		<div class="row-fluid show-grid hide" id="spRates">
-			<div class="span6">
+		<div class="row show-grid hide" id="spRates">
+			<div class="col-md-6">
 				<div class="rowlabel">
 					<label for="specialRate"><abbr
 						title="Rates described by Income Tax Department"><small>Special
@@ -194,12 +194,12 @@
 					</form>
 				</div>
 				<div class="modal-footer">
-					<c:if test="${pageAction == 'NEW_CHILD'}"><a href="#" class="btn btn-inverse" id="addnew">Add New</a></c:if>
+					<c:if test="${pageAction == 'NEW_CHILD'}"><a href="#" class="btn btn-default btn-inverse" id="addnew">Add New</a></c:if>
 					<c:if test="${pageAction == 'EDIT_CHILD'}">
-						<a href="${scriptName}/${uuid}/itrschedulesidelete" class="btn btn-danger">
-                              <i class="icon-trash icon-white"></i>Delete</a>
+						<a href="${scriptName}/${uuid}/itrschedulesidelete" class="btn btn-default btn-danger">
+                              <i class="glyphicon glyphicon-trash glyphicon glyphicon-white"></i>Delete</a>
 					</c:if>
-					<a href="${scriptName}" class="btn" data-dismiss="">Close</a>
+					<a href="${scriptName}" class="btn btn-default" data-dismiss="">Close</a>
 					<c:choose>
 						<c:when test="${pageAction == 'NEW_CHILD'}">
 							<c:set value="ajaxsubmit" var="saveID" />
@@ -208,7 +208,7 @@
 							<c:set value="siSave" var="saveID" />
 						</c:otherwise>
 					</c:choose>
-					<a href="#" id="${saveID}" class="btn btn-primary">Save changes</a>
+					<a href="#" id="${saveID}" class="btn btn-default btn-primary">Save changes</a>
 				</div>
 			</div>
 		</div>
@@ -291,7 +291,7 @@
 						
 						$(".modal-body").append(newdiv1);
 						
-						newdiv1.find(".span4").hide();
+						newdiv1.find(".col-md-4").hide();
 						
 						//$(".theamount").blur( handleBlur );	
 						$(".head").change(headChangeHandler);
@@ -317,11 +317,11 @@
 				var o = $(this).val();	
 				if (o.trim() == '') {
 					//hide and remove the corresponding amount button
-					$(this).parents(".row-fluid").find(".span4").hide();
+					$(this).parents(".row").find(".col-md-4").hide();
 					$('label[for="amount"]').hide();
 				}
 				else {
-					$(this).parents(".row-fluid").find(".span4").show();
+					$(this).parents(".row").find(".col-md-4").show();
 					$('label[for="amount"]').show();
 				}
 			}       
@@ -346,7 +346,7 @@
         var href = $(this).attr('href');
 
         if (!$('#dataConfirmModal').length) {
-            $('body').append('<div id="dataConfirmModal" class="modal" role="dialog" aria-labelledby="dataConfirmLabel" aria-hidden="true"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button><h3 id="dataConfirmLabel">Please Confirm</h3></div><div class="modal-body"></div><div class="modal-footer"><button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button><a class="btn btn-primary" id="dataConfirmOK">OK</a></div></div>');
+            $('body').append('<div id="dataConfirmModal" class="modal" role="dialog" aria-labelledby="dataConfirmLabel" aria-hidden="true"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button><h3 id="dataConfirmLabel">Please Confirm</h3></div><div class="modal-body"></div><div class="modal-footer"><button class="btn btn-default" data-dismiss="modal" aria-hidden="true">Cancel</button><a class="btn btn-default btn-primary" id="dataConfirmOK">OK</a></div></div>');
         }
         $('#dataConfirmModal').find('.modal-body').text("Are you sure you want to delete?");
         $('#dataConfirmOK').attr('href', href);
@@ -356,5 +356,5 @@
   });
 </hst:element>
 <hst:headContribution element="${uiCustom}" category="jsInternal"/>
-<!-- <fieldset> <legend>test</legend> <div class="row-fluid show-grid"> <div class="rowlabel span6"><select name="test-select" class="select-drop" id="test-select"> <option value="">Select</option> <option value="section-89">Section-89</option> </select> </div> <div class="rowlabel span4"> <input id="amount" name="amount" class="hide" placeholder="Gross Amount" type="text"> </div> </div> </fieldset> 
+<!-- <fieldset> <legend>test</legend> <div class="row show-grid"> <div class="rowlabel col-md-6"><select name="test-select" class="select-drop" id="test-select"> <option value="">Select</option> <option value="section-89">Section-89</option> </select> </div> <div class="rowlabel col-md-4"> <input id="amount" name="amount" class="hide" placeholder="Gross Amount" type="text"> </div> </div> </fieldset> 
 -->

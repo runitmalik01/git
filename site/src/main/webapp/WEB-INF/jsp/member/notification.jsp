@@ -220,7 +220,7 @@
                   <div class="yui3-bd" align="center">
                       <table class="personal_info">
                             <tr height="30px">
-	                            <td class="label"><fmt:message key="member.personal_info.pan"/></td>
+	                            <td class="label label-default"><fmt:message key="member.personal_info.pan"/></td>
 	                            <td class="input">
                                    <input type="text" name="pi_pan" value="<c:out value="${document.PAN}"/>" onclick="" required="required"
                                            maxlength="10" style="text-transform: uppercase;" pattern="^[A-Z]{5}\d{4}[A-Z]$" 
@@ -242,7 +242,7 @@
 	                          </td>
 	                     </tr>
 	                 <tr height="30px">
-	                    <td class="label" colspan="2" align="center"><fmt:message key="member.personal_info.status"/></td>
+	                    <td class="label label-default" colspan="2" align="center"><fmt:message key="member.personal_info.status"/></td>
 	                </tr>
 	               <tr height="30px">
 	                  <td class="select" colspan="2" align="center">
@@ -251,7 +251,7 @@
 	                  </td>
 	              </tr>
                <tr height="30px">
-                   <td class="label"><fmt:message key="member.personal_info.firstname"/> </td>
+                   <td class="label label-default"><fmt:message key="member.personal_info.firstname"/> </td>
 	                   <td class="input"> <input type="text" name="pi_first_name" value="<c:out value="${document.firstName}"/>" title="Enter First Name" onkeyup="AllowAlphabets()"/>
 	                      <c:if test="${not empty errors}">
                                <c:forEach items="${errors}" var="error">
@@ -263,10 +263,10 @@
 	                </td>
 	            </tr>
 	        <tr height="30px">
-	           <td class="label"><fmt:message key="member.personal_info.middlename" /></td>
+	           <td class="label label-default"><fmt:message key="member.personal_info.middlename" /></td>
 	               <td class="input"><input type="text" name="pi_middle_name" value="${fn:escapeXml(pi_middle_name)}" title="Enter Middle Name(if any)" onkeyup="AllowAlphabets()"/></td></tr>      
 	       <tr height="30px">
-	          <td class="label"><fmt:message key="member.personal_info.lastname"/></td>
+	          <td class="label label-default"><fmt:message key="member.personal_info.lastname"/></td>
 	              <td class="input"><input type="text" name="pi_last_name" value="${fn:escapeXml(pi_last_name)}" required="required" title="Last Name should not blank" onkeyup="AllowAlphabets()"/>
 	                  <c:if test="${not empty errors}">
                             <c:forEach items="${errors}" var="error">
@@ -278,7 +278,7 @@
 	             </td>
 	        </tr>
 	     <tr height="30px">
-	         <td class="label"><fmt:message key="member.personal_info.fathername"/></td>
+	         <td class="label label-default"><fmt:message key="member.personal_info.fathername"/></td>
 	             <td class="input"><input type="text" name="pi_father_name" value="${fn:escapeXml(pi_father_name)}" title="Enter Father Name" onkeyup="AllowAlphabets()"/>
 	                <c:if test="${not empty errors}">
                          <c:forEach items="${errors}" var="error">
@@ -290,10 +290,10 @@
 	          </td>
 	     </tr>   
 	  <tr height="30px">
-	     <td class="label"><fmt:message key="member.personal_info.gender"/></td>
+	     <td class="label label-default"><fmt:message key="member.personal_info.gender"/></td>
 	         <td class="input"><input type="radio" name="gender" value="true" checked="checked"/>Male <input type="radio" name="gender" value="false"/>Female</td></tr> 
 	  <tr height="30px">
-	      <td class="label" width="150px"><fmt:message key="member.personal_info.dob"/></td>
+	      <td class="label label-default" width="150px"><fmt:message key="member.personal_info.dob"/></td>
 	           <td class="input"><input type="date" name="pi_dob" required="required"/>
 	               <c:if test="${not empty errors}">
                         <c:forEach items="${errors}" var="error">

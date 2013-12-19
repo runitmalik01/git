@@ -1,5 +1,5 @@
 <%@include file="../includes/tags.jspf"%>
-<div align="left" class="row-fluid show-grid">
+<div align="left" class="row show-grid">
 <h4 class="text-success">Browse Service Categories</h4>
 <ul class="thumbnails nav nav-list bs-docs-sidenav">
     <c:forEach var="facet" items="${facetnav.folders}">

@@ -63,7 +63,7 @@
 					<tr>
 						<td colspan="1">
 							<div class="btn-group">
-								<button class="btn btn-small dropdown-toggle" data-toggle="dropdown"><c:out value="${deductionSectionLabel}"/><span class="caret"></span></button>
+								<button class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown"><c:out value="${deductionSectionLabel}"/><span class="caret"></span></button>
 								<ul class="dropdown-menu">
 					            	<li>
 										<c:choose>
@@ -92,7 +92,7 @@
 							<c:choose>
 								<c:when test="${not empty totalOfSavedData && not empty totalOfSavedData[deductionSectionName]}">
 									<div class="btn-group">
-										<button class="btn btn-small dropdown-toggle" data-toggle="dropdown"><w4india:inr value="${totalOfSavedData[deductionSectionName]}"></w4india:inr><span class="caret"></span></button>
+										<button class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown"><w4india:inr value="${totalOfSavedData[deductionSectionName]}"></w4india:inr><span class="caret"></span></button>
 										<ul class="dropdown-menu">
 											<!-- <li class="divider"></li> -->
 											<c:choose>
@@ -179,32 +179,36 @@
 </c:if>
 <c:set var="formHTMLComplete">
 	<c:if test="${not empty formHTML and ( (empty ischildofform16 )  || ( not empty ischildofform16 &&  not empty uuidform_16) ) }">
-		<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		  <div class="modal-header">
-		    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-		    <h3><c:out value="${modalHeading}"/></h3>
-		  </div>
-		  <div class="modal-body">
-		  	<c:if test="${not empty formMap}">
-				<c:forEach items="${formMap.message}" var="item">
-					<div class="alert alert-error"><fmt:message key="${item.value}" /></div>
-				</c:forEach>
-			</c:if>
-		  	<hst:actionURL var="submitDeduction"></hst:actionURL>
-		    <form id="<c:choose><c:when test="${pageAction == 'EDIT_CHILD'}">frmDeduction</c:when><c:otherwise>row_0</c:otherwise></c:choose>" method="post" name="frmDeduction" action="${submitDeduction}" class="frmDeduction">
-		    	<c:out value="${formHTML}" escapeXml="false"/>
-		    	<c:if test="${not empty successURL && not empty uuidform_16}"><input type="hidden" name="successURL" value="${scriptName}/${uuidform_16}/formsixteenedit"/></c:if>
-		    	<c:if test="${(pageAction == 'EDIT_CHILD' && not empty editingSection)}"><input type="hidden" name="decuuidform16" value="${childBean.form16Uuid}"/></c:if>
-		    	<c:if test="${not empty additionalScreenHTML}"><c:out value="${additionalScreenHTML}" escapeXml="false"/></c:if>
-		    </form>
-		  </div>
-		  <div class="modal-footer">
-		    <a href="#" class="btn btn-inverse" id="addNewBtn" style="display:none">Add New</a>
-		    
-		    <a href="<c:choose><c:when test="${not empty modUrlToredirect}"><c:out value="${modUrlToredirect}"/></c:when><c:otherwise><c:out value="${scriptName}?selectedItrTab="/><%=ITRTab.DEDUCTIONS%></c:otherwise></c:choose>" class="btn" data-dismiss="">Close</a>
-		    <c:if test="${pageAction =='EDIT_CHILD'}"><button class="btn btn-danger" onclick="$('#frmDeduction').attr('action','<c:out value="${scriptName}"/><c:out value="/${editingSection.canonicalUUID}"/>/deletec6deduction');$('#frmDeduction').attr('method','get');$('#frmDeduction').submit()">Delete</button></c:if>
-		    <a href="#" id="<c:choose><c:when test="${pageAction =='NEW_CHILD'}">deductionSaveAJAX</c:when><c:otherwise>deductionSave</c:otherwise></c:choose>" class="btn btn-primary">Save changes</a>
-		  </div>
+		<div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+			<div class="modal-content">
+			  <div class="modal-header">
+			    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			    <h3><c:out value="${modalHeading}"/></h3>
+			  </div>
+			  <div class="modal-body">
+				<c:if test="${not empty formMap}">
+					<c:forEach items="${formMap.message}" var="item">
+						<div class="alert alert-danger"><fmt:message key="${item.value}" /></div>
+					</c:forEach>
+				</c:if>
+				<hst:actionURL var="submitDeduction"></hst:actionURL>
+			    <form id="<c:choose><c:when test="${pageAction == 'EDIT_CHILD'}">frmDeduction</c:when><c:otherwise>row_0</c:otherwise></c:choose>" method="post" name="frmDeduction" action="${submitDeduction}" class="frmDeduction">
+				<c:out value="${formHTML}" escapeXml="false"/>
+				<c:if test="${not empty successURL && not empty uuidform_16}"><input type="hidden" name="successURL" value="${scriptName}/${uuidform_16}/formsixteenedit"/></c:if>
+				<c:if test="${(pageAction == 'EDIT_CHILD' && not empty editingSection)}"><input type="hidden" name="decuuidform16" value="${childBean.form16Uuid}"/></c:if>
+				<c:if test="${not empty additionalScreenHTML}"><c:out value="${additionalScreenHTML}" escapeXml="false"/></c:if>
+			    </form>
+			  </div>
+			  <div class="modal-footer">
+			    <a href="#" class="btn btn-default btn-inverse" id="addNewBtn" style="display:none">Add New</a>
+
+			    <a href="<c:choose><c:when test="${not empty modUrlToredirect}"><c:out value="${modUrlToredirect}"/></c:when><c:otherwise><c:out value="${scriptName}?selectedItrTab="/><%=ITRTab.DEDUCTIONS%></c:otherwise></c:choose>" class="btn btn-default" data-dismiss="">Close</a>
+			    <c:if test="${pageAction =='EDIT_CHILD'}"><button class="btn btn-default btn-danger" onclick="$('#frmDeduction').attr('action','<c:out value="${scriptName}"/><c:out value="/${editingSection.canonicalUUID}"/>/deletec6deduction');$('#frmDeduction').attr('method','get');$('#frmDeduction').submit()">Delete</button></c:if>
+			    <a href="#" id="<c:choose><c:when test="${pageAction =='NEW_CHILD'}">deductionSaveAJAX</c:when><c:otherwise>deductionSave</c:otherwise></c:choose>" class="btn btn-default btn-primary">Save changes</a>
+			  </div>
+			</div>
+		    </div>
 		</div>
 	</c:if>
 </c:set>
@@ -221,7 +225,7 @@
 		%>
 	</c:otherwise>
 </c:choose>
-<%-- <a href="${scriptName}?selectedItrTab=<%=ITRTab.FORM16_SINGLE%>" id="test" role="button" class="btn" data-toggle="" ><fmt:message key="back.to.formsixteen" /></a>--%>
+<%-- <a href="${scriptName}?selectedItrTab=<%=ITRTab.FORM16_SINGLE%>" id="test" role="button" class="btn btn-default" data-toggle="" ><fmt:message key="back.to.formsixteen" /></a>--%>
 <res:client-validation formId="frmDeduction" formName="frmDeduction" screenConfigurationDocumentName="doneedetails" formSubmitButtonId="deductionSave" />
 
 
@@ -329,7 +333,7 @@
 					if (theNewDiv.length == 0) {
 						//insertDiv
 						html = eDiv.html();
-						//<div class="row-fluid show-grid" id="row_0">
+						//<div class="row show-grid" id="row_0">
 						//<form id="<c:choose><c:when test="${pageAction == 'EDIT_CHILD'}">frmDeduction</c:when><c:otherwise>row_0</c:otherwise></c:choose>" method="post" name="frmDeduction" action="${submitDeduction}" class="frmDeduction">
 						var newdiv1 = $('<form class="frmDeduction" name="frmDeduction"  id="row_' +  (parseInt(theindx) + 1)  + '"/>');
 						//alert(html);
@@ -337,7 +341,7 @@
 						
 						$(".modal-body").append(newdiv1);
 						
-						newdiv1.find(".span4").hide();
+						newdiv1.find(".col-md-4").hide();
 						
 						//$(".theamount").blur( handleBlur );	
 						$(".head").change(headChangeHandler);
@@ -365,11 +369,11 @@
 				var o = $(this).val();	
 				if (o.trim() == '') {
 					//hide and remove the corresponding amount button
-					$(this).parents(".row-fluid").find(".span4").hide();
+					$(this).parents(".row").find(".col-md-4").hide();
 					$('label[for="investment"]').hide();
 				}
 				else {
-					$(this).parents(".row-fluid").find(".span4").show();
+					$(this).parents(".row").find(".col-md-4").show();
 					$('label[for="investment"]').show();
 				}
 			}

@@ -6,7 +6,7 @@
 <hst:actionURL var="actionUrl"></hst:actionURL>
 <c:if test="${not empty formMap}">
 	<c:forEach items="${formMap.message}" var="item">
-		<div class="alert alert-error">
+		<div class="alert alert-danger">
 			<fmt:message key="${item.value}" />
 		</div>
 	</c:forEach>
@@ -15,13 +15,13 @@
 	<b>ITR- Schedule Business Profession</b>
 </h4>
 <c:if test="${not empty exceedErrorGrossTurnOver}">
-	<div class="alert alert-error">
+	<div class="alert alert-danger">
 		<strong><fmt:message key="busi.prof.exceed.grosturnover.itr4" /></strong><a
-			href="./servicerequest-itr.html" class="btn btn-warning">Change Package</a>
+			href="./servicerequest-itr.html" class="btn btn-default btn-warning">Change Package</a>
 	</div>
 </c:if>
 <c:if test="${not empty exceedErrorGrossPremptInc}">
-	<div class="alert alert-error">
+	<div class="alert alert-danger">
 		<strong><fmt:message key="busi.prof.exceed.grossPresumptIncome.itr4" /></strong>
 	</div>
 </c:if>
@@ -29,8 +29,8 @@
 	<h5 align="center">Presumptive Income</h5>
 	<fieldset>
 		<legend style="color: green; font-weight: bold;">Presumptive Income under 44AD</legend>
-		<div class="row-fluid show-grid">
-			<div class="span4">
+		<div class="row show-grid">
+			<div class="col-md-4">
 				<div class="rowlabel">
 					<label for="grossTurnOver"> <small>GrossIncome or GrossTurnOver Receipts</small>
 					</label>
@@ -40,7 +40,7 @@
 						maxlength="14" class="decimal" value="${parentBean.grossTurnOver }" />
 				</div>
 			</div>
-			<div class="span4">
+			<div class="col-md-4">
 				<div class="rowlabel">
 					<label for="grossPresumptIncome"> <small>Total Presumptive Income u|s 44AD</small>
 					</label>
@@ -55,8 +55,8 @@
 	</fieldset>
 	<fieldset>
 		<legend style="color: green; font-weight: bold;">Presumptive Income under 44AE</legend>
-		<div class="row-fluid show-grid">
-			<div class="span4">
+		<div class="row show-grid">
+			<div class="col-md-4">
 				<div class="rowlabel">
 					<label for="presumHeavyVehi"> <small>Presumptive Income from Heavy Vehicles</small>
 					</label>
@@ -67,7 +67,7 @@
 						value="${schFourtyFourAEDocument.total_deemedIncome_Heavy}" readonly="readonly" />
 				</div>
 			</div>
-			<div class="span4">
+			<div class="col-md-4">
 				<div class="rowlabel">
 					<label for="presumOtherVehi"> <small>Presumptive Income from Other Vehicles</small>
 					</label>
@@ -78,7 +78,7 @@
 						value="${schFourtyFourAEDocument.total_deemedIncome_Light}" readonly="readonly" />
 				</div>
 			</div>
-			<div class="span4">
+			<div class="col-md-4">
 				<div class="rowlabel">
 					<label for="grossPresumInc44AE"> <small>Gross Presumptive Income u|s 44AE</small>
 					</label>
@@ -94,7 +94,7 @@
 	</fieldset>
 	<div class="well">
 		<div class="row -fluid show-grid">
-			<div class="span4">
+			<div class="col-md-4">
 				<div class="rowlabel">
 					<label for="statReserve"><small>Gross Business or Profession Income</small>
 					</label>
@@ -109,8 +109,8 @@
 	</div>
 	<fieldset>
 		<legend style="color: green; font-weight: bold;">Financial Particulars of Business</legend>
-		<div class="row-fluid show-grid">
-			<div class="span3">
+		<div class="row show-grid">
+			<div class="col-md-3">
 				<div class="rowlabel">
 					<label for="grossSundryDebt"> <small>Total Sundry Debtors</small>
 					</label>
@@ -121,7 +121,7 @@
 						value="${parentBean.grossSundryDebt}"/>
 				</div>
 			</div>
-			<div class="span3">
+			<div class="col-md-3">
 				<div class="rowlabel">
 					<label for="grossSundryCredit"> <small>Total Sundry Creditors</small>
 					</label>
@@ -132,7 +132,7 @@
 						value="${parentBean.grossSundryCredit}"/>
 				</div>
 			</div>
-			<div class="span3">
+			<div class="col-md-3">
 				<div class="rowlabel">
 					<label for="grossStockTrade"> <small>Total Stock In Trade</small>
 					</label>
@@ -143,7 +143,7 @@
 						value="${parentBean.grossStockTrade}"/>
 				</div>
 			</div>
-			<div class="span3">
+			<div class="col-md-3">
 				<div class="rowlabel">
 					<label for="grossCashBalance"> <small>Total cash in Balance</small>
 					</label>
@@ -156,11 +156,11 @@
 			</div>
 		</div>
 	</fieldset>
-	<div class="row-fluid show-grid">
-		<div class="span4 offset8 decimal">
+	<div class="row show-grid">
+		<div class="col-md-4 col-md-offset-8 decimal">
 			<!--<a href="${scriptName}"
-				class="btn btn-danger" style="color: black">Cancel</a>&nbsp;  --> <a
-				id="myModalScheduleBusiProf" role="button" class="btn btn-success"
+				class="btn btn-default btn-danger" style="color: black">Cancel</a>&nbsp;  --> <a
+				id="myModalScheduleBusiProf" role="button" class="btn btn-default btn-success"
 				style="color: black">Save</a>
 		</div>
 	</div>

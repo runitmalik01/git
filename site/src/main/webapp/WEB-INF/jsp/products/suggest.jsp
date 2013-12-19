@@ -35,7 +35,7 @@
         <form action="${suggestProductAction}" method="post">
             <table>
                 <tr>
-                    <td class="label"><fmt:message key="products.suggest.name"/>*</td>            
+                    <td class="label label-default"><fmt:message key="products.suggest.name"/>*</td>            
                     <td class="input"><input type="text" value="${name}" name="name" />
                         <c:forEach items="${errors}" var="error">
                             <c:if test="${error eq 'invalid.name-label'}">
@@ -45,7 +45,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="label"><fmt:message key="products.suggest.price"/>*</td>
+                    <td class="label label-default"><fmt:message key="products.suggest.price"/>*</td>
                     <td class="input"><input type="text" value="${price}" name="price" />
                         <c:forEach items="${errors}" var="error">
                             <c:if test="${error eq 'invalid.price-label'}">
@@ -55,7 +55,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="label vtop"><fmt:message key="products.suggest.description"/></td>
+                    <td class="label label-default vtop"><fmt:message key="products.suggest.description"/></td>
                     <td class="input"><textarea name="description" cols="1" rows="2"></textarea></td>
                 </tr>
                 <tr>

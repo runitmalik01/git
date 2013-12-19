@@ -12,7 +12,7 @@
 <hst:link var="mainSiteMapRefId" />
 <c:if test="${not empty formMap}">
 	<c:forEach items="${formMap.message}" var="item">
-		<div class="alert alert-error">
+		<div class="alert alert-danger">
 			<fmt:message key="${item.value}" />
 		</div>
 	</c:forEach>
@@ -32,8 +32,8 @@ request.setAttribute("objTreeMapRelation", objTreeMapRelation);
 			name="frmClubIncome">
 
 			<h2>Enter Details</h2>
-			<div class="row-fluid show-grid">
-				<div class="span4">
+			<div class="row show-grid">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="name_person"><small><fmt:message
 									key="name.person.itr2" /> </small> </label>
@@ -44,7 +44,7 @@ request.setAttribute("objTreeMapRelation", objTreeMapRelation);
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.name_Person}"/></c:if> " />
 					</div>
 				</div>
-				<div class="span4">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="pan_person"><small><fmt:message
 									key="pan.person.itr2" /> </small> </label>
@@ -55,7 +55,7 @@ request.setAttribute("objTreeMapRelation", objTreeMapRelation);
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.pan_person}"/></c:if>" />
 					</div>
 				</div>
-				<div class="span4">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="relationship"><small><fmt:message
 									key="relationship.clubincome" /> </small> </label>
@@ -73,10 +73,10 @@ request.setAttribute("objTreeMapRelation", objTreeMapRelation);
 					</div>
 				</div>
 			</div>
-			<div class="row-fluid show-grid">
+			<div class="row show-grid">
 
 
-				<div class="span4">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="nature_income"><small><fmt:message
 									key="nature.income.itr2" /> </small> </label>
@@ -95,7 +95,7 @@ request.setAttribute("objTreeMapRelation", objTreeMapRelation);
 								</select>
 					</div>
 				</div>
-				<div class="span4">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="amountclub"><small><fmt:message
 									key="amount.clubincome.itr2" /> </small> </label>
@@ -108,10 +108,10 @@ request.setAttribute("objTreeMapRelation", objTreeMapRelation);
 				</div>
 				</div>
 			
-		 	<div class="row-fluid show-grid">
-				<div class="span4 offset8 decimal">
-					<a href="${scriptName}" class="btn btn-danger" style="color: black">Cancel</a>&nbsp;
-					<a id="myModalHrefClubIncome" role="button" class="btn btn-success" style="color: black">Save</a>
+		 	<div class="row show-grid">
+				<div class="col-md-4 col-md-offset-8 decimal">
+					<a href="${scriptName}" class="btn btn-default btn-danger" style="color: black">Cancel</a>&nbsp;
+					<a id="myModalHrefClubIncome" role="button" class="btn btn-default btn-success" style="color: black">Save</a>
 				</div>
 			</div>
 
@@ -144,9 +144,9 @@ request.setAttribute("objTreeMapRelation", objTreeMapRelation);
 						</td>
 						<td><w4india:inr value="${clubincomedetail.amountclub}" />
 						</td>
-						<td><a class="btn btn-primary" style="color: black"
-							href="${scriptName}/<c:out value="${clubincomedetail.canonicalUUID}"/>/clubincomeedit"><small><i class="icon-pencil icon-white"></i>Edit</small> &nbsp;&nbsp;
-						</a>&nbsp;<a class="btn btn-danger" style="color: black" href="${scriptName}/<c:out value="${clubincomedetail.canonicalUUID}"/>/clubincomedelete" data-confirm=""><small><i class="icon-trash icon-white"></i>Delete</small> </a>
+						<td><a class="btn btn-default btn-primary" style="color: black"
+							href="${scriptName}/<c:out value="${clubincomedetail.canonicalUUID}"/>/clubincomeedit"><small><i class="glyphicon glyphicon-pencil glyphicon glyphicon-white"></i>Edit</small> &nbsp;&nbsp;
+						</a>&nbsp;<a class="btn btn-default btn-danger" style="color: black" href="${scriptName}/<c:out value="${clubincomedetail.canonicalUUID}"/>/clubincomedelete" data-confirm=""><small><i class="glyphicon glyphicon-trash glyphicon glyphicon-white"></i>Delete</small> </a>
 							</td>
 						</tr>
 					
@@ -158,7 +158,7 @@ request.setAttribute("objTreeMapRelation", objTreeMapRelation);
 			</c:if>
 		</table>
 		<a href="${scriptName}/clubincomenew"
-			class="btn btn-info" style="color: black">Add New</a>
+			class="btn btn-default btn-info" style="color: black">Add New</a>
 	</c:otherwise>
 </c:choose>
 </div>

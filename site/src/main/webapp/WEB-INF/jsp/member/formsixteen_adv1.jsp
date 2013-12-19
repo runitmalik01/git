@@ -16,8 +16,8 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 <fieldset>
 	<legend style="font-style: italic; color: blue;">Employer
 		Address</legend>
-	<div class="row-fluid show-grid">
-		<div class="span3">
+	<div class="row show-grid">
+		<div class="col-md-3">
 			<div class="rowlabel">
 				<label for="addressdetail"><fmt:message
 						key="member.address.info" /> </label>
@@ -28,7 +28,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 					value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.addressdetail}"/></c:if>" />
 			</div>
 		</div>
-		<div class="span3">
+		<div class="col-md-3">
 			<div class="rowlabel">
 				<label for="city"><fmt:message key="member.city.info" />
 				</label>
@@ -39,7 +39,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 			</div>
 		</div>
 
-		<div class="span3">
+		<div class="col-md-3">
 			<div class="rowlabel">
 				<label for="state"><fmt:message
 						key="member.salary.state" /> </label>
@@ -54,7 +54,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 						<option <c:if test="${chilldBean.state == '99'}">selected</c:if> value="99">FOREIGN</option>
 					</select>
 		</div>
-		<div class="span3">
+		<div class="col-md-3">
 			<div class="rowlabel">
 				<label for="pin"><fmt:message key="member.pin.info" />
 				</label>

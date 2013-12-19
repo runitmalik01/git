@@ -25,7 +25,7 @@
 %>
 <c:if test="${not empty formMap}">
 	<c:forEach items="${formMap.message}" var="item">
-		<div class="alert alert-error">
+		<div class="alert alert-danger">
 			<fmt:message key="${itrForm}" />
 		</div>
 	</c:forEach>

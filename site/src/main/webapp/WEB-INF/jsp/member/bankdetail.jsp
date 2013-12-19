@@ -43,7 +43,7 @@
 	<hst:actionURL var="actionUrl"></hst:actionURL>
 	<form name="bankDetail" action="${actionUrl}" method="post" id="frmBankDetail">
 		<div id="row">
-			<div id="span4">
+			<div id="col-md-4">
 			<fieldset>
 				 <label><fmt:message key="member.bank.detail.bank.name" /></label> 
 				 <input type="text" name="bd_bank_name" value="${parentBean.BD_BANK_NAME}" title="Enter Name of Bank"maxlength="25" min="1" required="required" /><br/>

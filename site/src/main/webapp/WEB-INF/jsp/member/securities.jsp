@@ -90,7 +90,7 @@ else {
 			<div class="yui3-bd" align="center">
 				<table class="personal_info">
 					<tr height="30px">
-						<td class="label"><fmt:message
+						<td class="label label-default"><fmt:message
 								key="capital.gain.date.acquisition" />
 						</td>
 						<td class="input"><select onChange="dpdown()" id="drop"
@@ -123,7 +123,7 @@ else {
 
 
 					<tr height="30px">
-						<td class="label"><fmt:message
+						<td class="label label-default"><fmt:message
 								key="capital.gain.cost.acquisition" />
 						</td>
 						<td class="input"><c:if test="${not empty parentBean}">
@@ -148,7 +148,7 @@ else {
 							</c:if></td>
 					</tr>
 					<tr height="30px">
-						<td class="label"><fmt:message key="capital.gain.date.sale" />
+						<td class="label label-default"><fmt:message key="capital.gain.date.sale" />
 						</td>
 						<td class="input"><select onChange="dpdown1()" id="drop1"
 							name="dropvalue1" onblur="fill()">
@@ -168,7 +168,7 @@ else {
 					</tr>
 
 					<tr height="30px">
-						<td class="label"><fmt:message
+						<td class="label label-default"><fmt:message
 								key="capital.gain.sale.consideration" />
 						</td>
 						<td class="input"><c:if test="${not empty parentBean}">
@@ -194,7 +194,7 @@ else {
 					</tr>
 
 					<tr height="30px">
-						<td class="label"><fmt:message
+						<td class="label label-default"><fmt:message
 								key="capital.gain.cost.inflation.acquisition" />
 						</td>
 						<td class="input"><c:if test="${not empty parentBean}">
@@ -218,7 +218,7 @@ else {
 							</c:if></td>
 					</tr>
 					<tr height="30px">
-						<td class="label"><fmt:message
+						<td class="label label-default"><fmt:message
 								key="capital.gain.cost.inflation.consideration" />
 						</td>
 						<td class="input"><c:if test="${not empty parentBean}">
@@ -245,7 +245,7 @@ else {
 					</tr>
 
 					<tr height="30px">
-						<td class="label"><fmt:message key="capital.gain" />
+						<td class="label label-default"><fmt:message key="capital.gain" />
 						</td>
 						<td class="input"><c:if test="${not empty parentBean}">
 								<input type="text" pattern="^[0-9]+$" name="capital_gain"

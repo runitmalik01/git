@@ -6,8 +6,8 @@
 <hst:actionURL var="actionUrl"></hst:actionURL>
   <fieldset>
   	  <legend>Deduction Detail</legend>
-	  <div class="row-fluid show-grid">
-	       <div class="span8">
+	  <div class="row show-grid">
+	       <div class="col-md-8">
 	        	<div class="rowlabel"><label for="ack_no"><small>Deduction Head</small></label></div>
 	        	<div class="rowlabel selectdropdown">
 	        		<c:choose>
@@ -35,7 +35,7 @@
 					</c:choose>	
 	        	</div>
 	       </div>
-	       <div class="span4">
+	       <div class="col-md-4">
 				<div class="rowlabel"><label for="investment"><small><abbr title="Enter the gross amount. We will calculate the eligible amount">Gross Amount</abbr></small></label></div>
 	       		<div class="rowlabel"><input class="theamount" name="investment" type="text" placeholder="Gross Investment" value="<c:out value="${childBean.investment}"/>"></div>
 	       </div>

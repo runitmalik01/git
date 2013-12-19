@@ -17,7 +17,7 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 	<hst:link var="mainSiteMapRefId" />
 	<c:if test="${not empty formMap}">
 		<c:forEach items="${formMap.message}" var="item">
-			<div class="alert alert-error">
+			<div class="alert alert-danger">
 				<fmt:message key="${item.value}" />
 			</div>
 		</c:forEach>
@@ -31,8 +31,8 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 			<form id="frmforeignincome" action="${actionUrl}" method="post"
 				name="frmforeignincome">
 
-				<div class="row-fluid show-grid">
-					<div class="span4">
+				<div class="row show-grid">
+					<div class="col-md-4">
 						<div class="rowlabel">
 							<label for="country_code"><small><fmt:message
 										key="foreign.country.name" /> </small> </label>
@@ -49,7 +49,7 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 							</select>
 						</div>
 					</div>
-					<div class="span4">
+					<div class="col-md-4">
 						<div class="rowlabel">
 							<label for="taxpayer_ID"><small><fmt:message
 										key="foreign.taxpayer.id" /> </small> </label>
@@ -59,7 +59,7 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.taxpayer_ID}"/></c:if>" />
 						</div>
 					</div>
-					<div class="span4">
+					<div class="col-md-4">
 						<div class="rowlabel">
 							<label for="income_salary"><small><fmt:message
 										key="foreign.income.salary" /> </small> </label>
@@ -71,8 +71,8 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 						</div>
 					</div>
 				</div>
-				<div class="row-fluid show-grid">
-					<div class="span4">
+				<div class="row show-grid">
+					<div class="col-md-4">
 						<div class="rowlabel">
 							<label for="income_house"><small><fmt:message
 										key="foreign.income.house" /> </small> </label>
@@ -85,7 +85,7 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 					</div>
 					<!-- the given below field is  visible in itr4 only -->
 					<c:if test="${ not empty whichItrForm}">
-					 <div class="span4">
+					 <div class="col-md-4">
 						<div class="rowlabel">
 							<label for="income_business"><small><fmt:message
 										key="foreign.income.business" /> </small> </label>
@@ -97,7 +97,7 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 						</div>
 					</div>
 					</c:if>
-					<div class="span4">
+					<div class="col-md-4">
 						<div class="rowlabel">
 							<label for="income_capitalgain"><small><fmt:message
 										key="foreign.income.capitalgain" /> </small> </label>
@@ -109,8 +109,8 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 						</div>
 					</div>
 				</div>
-			<div class="row-fluid show-grid">
-					<div class="span4">
+			<div class="row show-grid">
+					<div class="col-md-4">
 						<div class="rowlabel">
 							<label for="income_othersources"><small><fmt:message
 										key="foreign.income.othersources" /> </small> </label>
@@ -123,7 +123,7 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 					</div>
 				
 				
-					<div class="span4">
+					<div class="col-md-4">
 						<div class="rowlabel">
 							<label for="income_total"><small><fmt:message
 										key="foreign.income.total" /> </small> </label>
@@ -134,7 +134,7 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.income_Total}"/></c:if>" />
 						</div>
 					</div>
-					<div class="span4">
+					<div class="col-md-4">
 						<div class="rowlabel">
 							<label for="isDtaa"><small><fmt:message
 										key="foreign.is.dtaa.applicable" /> </small> </label>
@@ -152,8 +152,8 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 						</div>
 					</div>
 					</div>
-					<div class="row-fluid show-grid">
-					<div class="span4">
+					<div class="row show-grid">
+					<div class="col-md-4">
 						<div class="rowlabel">
 							<label for="dtaa_CountryIncome"><small><fmt:message
 										key="foreign.income.dtaa" /> </small> </label>
@@ -166,7 +166,7 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 					</div>
 				
 				
-					<div class="span4">
+					<div class="col-md-4">
 						<div class="rowlabel">
 							<label for="Nodtaa_CountryIncome"><small><fmt:message
 										key="foreign.income.Nodtaa" /> </small> </label>
@@ -180,11 +180,11 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 				</div>
 
 				<input type="hidden" id="country_name" name="country_name">
-				<div class="row-fluid show-grid">
-					<div class="span4 offset8 decimal">
-						<a href="${scriptName}" class="btn btn-danger">Cancel</a>&nbsp; <a
+				<div class="row show-grid">
+					<div class="col-md-4 col-md-offset-8 decimal">
+						<a href="${scriptName}" class="btn btn-default btn-danger">Cancel</a>&nbsp; <a
 							id="myModalHrefforeignincome" role="button"
-							class="btn btn-success">Save</a>
+							class="btn btn-default btn-success">Save</a>
 					</div>
 				</div>
 
@@ -214,13 +214,13 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 							<td><w4india:inr value="${foreignIncome.income_Total}" />
 							</td>
 
-							<td><a class="btn btn-danger" style="color: black"
+							<td><a class="btn btn-default btn-danger" style="color: black"
 								href="${scriptName}/<c:out value="${foreignIncome.canonicalUUID}"/>/foreignincomeedit"><small><i
-										class="icon-pencil icon-white"></i>Edit</small> &nbsp;&nbsp; </a>&nbsp;<a
-								class="btn btn-primary" style="color: black"
+										class="glyphicon glyphicon-pencil glyphicon glyphicon-white"></i>Edit</small> &nbsp;&nbsp; </a>&nbsp;<a
+								class="btn btn-default btn-primary" style="color: black"
 								href="${scriptName}/<c:out value="${foreignIncome.canonicalUUID}"/>/foreignincomedelete"
 								data-confirm=""><small><i
-										class="icon-trash icon-white"></i>Delete</small> </a>
+										class="glyphicon glyphicon-trash glyphicon glyphicon-white"></i>Delete</small> </a>
 							</td>
 						</tr>
 						
@@ -237,7 +237,7 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 			</table>
 			<table>
 		
-				<a href="${scriptName}/foreignincomenew" class="btn btn-info"
+				<a href="${scriptName}/foreignincomenew" class="btn btn-default btn-info"
 					style="color: black">Add New</a>
 
 

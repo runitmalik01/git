@@ -25,7 +25,7 @@
 %>
 <c:if test="${not empty formMap}">
 	<c:forEach items="${formMap.message}" var="item">
-		<div class="alert alert-error">
+		<div class="alert alert-danger">
 			<fmt:message key="${itrForm}" />
 		</div>
 	</c:forEach>
@@ -50,12 +50,12 @@
 		<c:choose>
 			<c:when
 				test="${not empty parentBean.paymentVerificationStatus && parentBean.paymentVerificationStatus == 'VERIFIED'}">
-				<span class="label label-success">Your payment has been
+				<span class="label label-default label-success">Your payment has been
 					verified by <w4india:resellername/>. You can continue to download XML.</span>
 				<c:set var="allReadOnly" value="readonly" />
 			</c:when>
 			<c:otherwise>
-				<span class="label label-important">Your payment information
+				<span class="label label-default label-danger">Your payment information
 					is still being reviewed.
 			   </span>
 			</c:otherwise>
@@ -66,14 +66,14 @@
 		<fieldset>
 			<legend>Payment Options. You can choose one of the following
 				methods of payment</legend>
-			<div class="row-fluid show-grid">
-				<div class="span12 info">
+			<div class="row show-grid">
+				<div class="col-md-12 info">
 					<b style="color: teal;">Please mention the PAN Number in the
 						Memo Section of the payment</b>
 				</div>
 			</div>
-			<div class="row-fluid show-grid">
-				<div class="span6">
+			<div class="row show-grid">
+				<div class="col-md-6">
 					<div class="rowlabel">
 						<label for="ack_no"><small>By Cheque</small> </label>
 					</div>
@@ -83,7 +83,7 @@
 							122001, Haryana.</b><br /> RTGS/NEFT/IFSC CODE: ICIC0001143
 					</div>
 				</div>
-				<div class="span6">
+				<div class="col-md-6">
 					<div class="rowlabel">
 						<label for="ack_no"><small>NEFT/RTGS</small> </label>
 					</div>
@@ -95,8 +95,8 @@
 		</fieldset>
 		<fieldset>
 			<legend>Please enter your payment details</legend>
-			<div class="row-fluid show-grid">
-				<div class="span3">
+			<div class="row show-grid">
+				<div class="col-md-3">
 					<div class="rowlabel">
 						<label for="ack_no"><small>Payment Type</small> </label>
 					</div>
@@ -130,8 +130,8 @@
 		<fieldset class="CHECK_ONLY CASH_NOT_ONLY RTGS_NOT_ONLY"
 			style="display: none">
 			<legend>Cheque Details</legend>
-			<div class="row-fluid show-grid">
-				<div class="span3">
+			<div class="row show-grid">
+				<div class="col-md-3">
 					<div class="rowlabel">
 						<label for="checkNo"><small>Cheque No.</small> </label>
 					</div>
@@ -140,7 +140,7 @@
 							value="${parentBean.checkNo}" <c:out value="${allReadOnly}"/> />
 					</div>
 				</div>
-				<div class="span3">
+				<div class="col-md-3">
 					<div class="rowlabel">
 						<label for="checkDate"><small>Dated</small> </label>
 					</div>
@@ -150,7 +150,7 @@
 							<c:out value="${allReadOnly}"/> />
 					</div>
 				</div>
-				<div class="span2">
+				<div class="col-md-2">
 					<div class="rowlabel">
 						<label for="checkDate"><small>For (Amount)</small> </label>
 					</div>
@@ -159,26 +159,26 @@
 					</div>
 				</div>
 			</div>
-			<div class="row-fluid show-grid">
-				<div class="span3">
+			<div class="row show-grid">
+				<div class="col-md-3">
 					<div class="rowlabel"><label for="checkBank"><small>Drawn On Bank</small> </label></div>				
 					<div class="rowlabel">
 						<input type="text" id="checkBank" name="checkBank"
 							value="${parentBean.checkBank}" <c:out value="${allReadOnly}"/> />
 					</div>				
 				</div>			
-				<div class="span2">
+				<div class="col-md-2">
 					<div class="rowlabel"><label><small>Deposited At</small> </label></div>	
 					<div class="rowlabel">ICICI Bank Limited</div>
 				</div>
-				<div class="span3">
+				<div class="col-md-3">
 					<div class="rowlabel"><label for="checkBranch"><small>Branch</small> </label></div>		
 					<div class="rowlabel">
 						<input type="text" id="checkBranch" name="checkBranch"
 							value="${parentBean.checkBranch}" <c:out value="${allReadOnly}"/> />
 					</div>
 				</div>			
-				<div class="span4">
+				<div class="col-md-4">
 					<div class="rowlabel"><label for="checkLocation"><small>Location</small> </label></div>		
 					<div class="rowlabel">
 						<input type="text" id="checkLocation" name="checkLocation"
@@ -191,8 +191,8 @@
 		<fieldset class="CASH_ONLY CHECK_NOT_ONLY RTGS_NOT_ONLY"
 			style="display: none">
 			<legend>Cash (Delhi/NCR only)</legend>
-			<div class="row-fluid show-grid">
-				<div class="span4">
+			<div class="row show-grid">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="checkNo"><small>Address</small> </label>
 					</div>
@@ -201,7 +201,7 @@
 							<c:out value="${allReadOnly}"/>>${parentBean.cashAddress}</textarea>
 					</div>
 				</div>
-				<div class="span4">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="checkDate"><small>Contact Number</small> </label>
 					</div>
@@ -211,7 +211,7 @@
 							<c:out value="${allReadOnly}"/> />
 					</div>
 				</div>
-				<div class="span4">
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="checkDate"><small>Best Time</small> </label>
 					</div>
@@ -226,8 +226,8 @@
 		<fieldset class="CHECK_NOT_ONLY CASH_NOT_ONLY RTGS_ONLY"
 			style="display: none">
 			<legend>RTGS Details</legend>
-			<div class="row-fluid show-grid">
-				<div class="span3">
+			<div class="row show-grid">
+				<div class="col-md-3">
 					<div class="rowlabel">
 						<label for="checkNo"><small>Transation/UTR Number</small>
 						</label>
@@ -238,7 +238,7 @@
 							<c:out value="${allReadOnly}"/> />
 					</div>
 				</div>
-				<div class="span3">
+				<div class="col-md-3">
 					<div class="rowlabel">
 						<label for="checkNo"><small>Date (dd/mm/yyyy)</small> </label>
 					</div>
@@ -247,7 +247,7 @@
 							value="${parentBean.rtgsDateStr}" <c:out value="${allReadOnly}"/> />
 					</div>
 				</div>
-				<div class="span3">
+				<div class="col-md-3">
 					<div class="rowlabel">
 						<label for="checkDate"><small>Amount</small> </label>
 					</div>
@@ -256,7 +256,7 @@
 							value="${parentBean.rtgsAmount}" <c:out value="${allReadOnly}"/> />
 					</div>
 				</div>
-				<div class="span3">
+				<div class="col-md-3">
 					<div class="rowlabel">
 						<label for="checkDate"><small>Time</small> </label>
 					</div>
@@ -269,8 +269,8 @@
 		</fieldset>
 		<c:if test="${not empty parentBean}">
 			<c:if test="${empty allReadOnly && not empty strIsOnVendorPortal && strIsOnVendorPortal =='true' && isVendor =='true'}">
-				<div class="row-fluid show-grid">
-						<div class="span4 offset8">
+				<div class="row show-grid">
+						<div class="col-md-4 col-md-offset-8">
 							<fieldset>
 								<legend>Vendor - Payment Verification</legend>
 						   		<select name="paymentVerificationStatus">
@@ -288,9 +288,9 @@
 			</c:if>
 		</c:if>
 		<c:if test="${empty allReadOnly}">
-			<div class="row-fluid show-grid">
-				<div class="span4 offset8 decimal">
-					<a id="hrefLogin" role="button" class="btn orange">Save</a>
+			<div class="row show-grid">
+				<div class="col-md-4 col-md-offset-8 decimal">
+					<a id="hrefLogin" role="button" class="btn btn-default orange">Save</a>
 				</div>
 			</div>
 		</c:if>

@@ -15,8 +15,8 @@
 					</a>
 					</td>
 					<td>
-						<div class="btn-group" class="decimal">
-							<button class="btn btn-small dropdown-toggle"
+						<div class="btn btn-group" class="decimal">
+							<button class="btn btn-default btn-sm dropdown-toggle"
 								data-toggle="dropdown">
 
 								<c:choose>
@@ -51,8 +51,8 @@
 					</a>
 					</td>
 					<td>
-						<div class="btn-group" class="decimal">
-							<button class="btn btn-small dropdown-toggle"
+						<div class="btn btn-group" class="decimal">
+							<button class="btn btn-default btn-sm dropdown-toggle"
 								data-toggle="dropdown">
 
 								<c:choose>
@@ -87,8 +87,8 @@
 					</a>
 					</td>
 					<td>
-						<div class="btn-group" class="decimal">
-							<button class="btn btn-small dropdown-toggle"
+						<div class="btn btn-group" class="decimal">
+							<button class="btn btn-default btn-sm dropdown-toggle"
 								data-toggle="dropdown">
 
 								<c:choose>
@@ -118,8 +118,8 @@
 					</a>
 					</td>
 					<td>
-						<div class="btn-group" class="decimal">
-							<button class="btn btn-small dropdown-toggle"
+						<div class="btn btn-group" class="decimal">
+							<button class="btn btn-default btn-sm dropdown-toggle"
 								data-toggle="dropdown">
 								<c:choose>
 									<c:when
@@ -155,8 +155,8 @@
 					<fmt:message key="deduction.under.6a"/></a>
 					</td>
 					<td>
-						<div class="btn-group" class="decimal">
-							<button class="btn btn-small dropdown-toggle"
+						<div class="btn btn-group" class="decimal">
+							<button class="btn btn-default btn-sm dropdown-toggle"
 								data-toggle="dropdown">
 								<c:choose>
 								<c:when test="${theForm.ITR1IncomeDeductions.deductUndChapVIA.totalChapVIADeductions eq'0'}">
@@ -236,8 +236,8 @@
 					<fmt:message key="relief.section.90/91"/></a>
 					</td>
 					<td  style="text-align:left">
-						<div class="btn-group" class="decimal">
-							<button class="btn btn-small dropdown-toggle"
+						<div class="btn btn-group" class="decimal">
+							<button class="btn btn-default btn-sm dropdown-toggle"
 								data-toggle="dropdown">
 								<c:choose>
 								<c:when test="${theForm.ITR1TaxComputation.section90And91 eq'0'}">
@@ -270,8 +270,8 @@
 						</span>
 					</c:when>
 					<c:otherwise>
-					<div class="btn-group" class="decimal">
-							<button class="btn btn-small dropdown-toggle"
+					<div class="btn btn-group" class="decimal">
+							<button class="btn btn-default btn-sm dropdown-toggle"
 								data-toggle="dropdown">
 										<w4india:inr value="${theForm.ITR1TaxComputation.totalIntrstPay}" />
 								<span class="caret"></span>
@@ -309,8 +309,8 @@
 					</a>
 					</td>
 					<td>
-						<div class="btn-group" class="decimal">
-							<button class="btn btn-small dropdown-toggle"
+						<div class="btn btn-group" class="decimal">
+							<button class="btn btn-default btn-sm dropdown-toggle"
 								data-toggle="dropdown">
 								<c:choose>
 								<c:when test="${theForm.taxPaid.taxesPaid.advanceTax eq'0'}">
@@ -340,8 +340,8 @@
 					</a>
 					</td>
 					<td>
-						<div class="btn-group" class="decimal">
-							<button class="btn btn-small dropdown-toggle"
+						<div class="btn btn-group" class="decimal">
+							<button class="btn btn-default btn-sm dropdown-toggle"
 								data-toggle="dropdown">
 								<c:choose>
 								<c:when test="${theForm.taxPaid.taxesPaid.selfAssessmentTax eq'0'}">
@@ -380,8 +380,8 @@
 					</a>
 					</td>
 					<td>
-						<div class="btn-group" class="decimal">
-							<button class="btn btn-small dropdown-toggle"
+						<div class="btn btn-group" class="decimal">
+							<button class="btn btn-default btn-sm dropdown-toggle"
 								data-toggle="dropdown">
 								<c:choose>
 									<c:when test="${bigTotalTdsOther eq '0'}">

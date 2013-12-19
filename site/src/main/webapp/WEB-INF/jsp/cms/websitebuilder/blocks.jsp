@@ -22,7 +22,7 @@
 </ol>
 <c:if test="${not empty formMap}">
 	<c:forEach items="${formMap.message}" var="item">
-		<div class="alert alert-error">
+		<div class="alert alert-danger">
 			<fmt:message key="${item.value}" />
 		</div>
 	</c:forEach>
@@ -59,15 +59,15 @@
 							<tr><td><c:out value="${pgstatus.count}" /></td>
 								<td><c:out value="${fn:toUpperCase(blockDocument.name)}" />
 								    <c:if test="${lstModDocName.name eq blockDocument.name}">
-								    <sup><span class="text-danger"><i class="glyphicon glyphicon-asterisk"></i>
+								    <sup><span class="text-danger"><i class="glyphicon glyphglyphicon glyphicon-asterisk"></i>
 								    <strong>Last Updated</strong></span></sup></c:if></td>
 								<td><c:out value="${blockDocument.title}" /></td>
 								<td><a href="${websitebuilderlink}/blocks.html/${blockDocument.canonicalUUID}/editblock"
-									class="btn btn-primary btn-sm"><i
-										class="glyphicon glyphicon-edit"></i>&nbsp;<span><strong>Edit</strong></span></a>&nbsp;&nbsp;&nbsp;
+									class="btn btn-default btn-primary btn-sm"><i
+										class="glyphicon glyphglyphicon glyphicon-edit"></i>&nbsp;<span><strong>Edit</strong></span></a>&nbsp;&nbsp;&nbsp;
 									<a href="${websitebuilderlink}/blocks.html/${blockDocument.canonicalUUID}/deleteblock" data-confirm=""
-									class="btn btn-danger btn-sm"><i
-										class="glyphicon glyphicon-trash"></i>&nbsp;<span><strong>Delete</strong></span></a></td>
+									class="btn btn-default btn-danger btn-sm"><i
+										class="glyphicon glyphglyphicon glyphicon-trash"></i>&nbsp;<span><strong>Delete</strong></span></a></td>
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -91,7 +91,7 @@
 								<div class="panel-heading">
 									<h4 class="panel-title">
 										<a data-toggle="collapse" data-parent="#accordion"
-											href="#collapseOne"><span class="glyphicon glyphicon-file"> </span>${pageAction}-${parentBean.name} BLOCK Component</a>
+											href="#collapseOne"><span class="glyphicon glyphglyphicon glyphicon-file"> </span>${pageAction}-${parentBean.name} BLOCK Component</a>
 									</h4>
 								</div>
 								<div id="collapseOne" class="panel-collapse collapse in">
@@ -124,13 +124,13 @@
 											<div class="col-md-8">
 												<div class="well well-sm well-primary" align="right">
 													<div class="form-group">
-														<button type="submit" class="btn btn-success btn-sm">
-															<span class="glyphicon glyphicon-floppy-disk"></span>Save
+														<button type="submit" class="btn btn-default btn-success btn-sm">
+															<span class="glyphicon glyphglyphicon glyphicon-floppy-disk"></span>Save
 														</button>
-														<button type="button" class="btn btn-default btn-sm" id="preview" data-toggle="modal" data-target="#myModal">
-															<span class="glyphicon glyphicon-eye-open"></span>Preview
+														<button type="button" class="btn btn-default btn-default btn-sm" id="preview" data-toggle="modal" data-target="#myModal">
+															<span class="glyphicon glyphglyphicon glyphicon-eye-open"></span>Preview
 														</button>
-														<a class="btn btn-primary btn-sm" href="${scriptName}"><i class="glyphicon glyphicon-circle-arrow-left"></i>Back To Blocks</a>
+														<a class="btn btn-default btn-primary btn-sm" href="${scriptName}"><i class="glyphicon glyphglyphicon glyphicon-circle-arrow-left"></i>Back To Blocks</a>
 													</div>
 												</div>
 											</div>
@@ -154,7 +154,7 @@
 			</div>
 			<div class="modal-body"></div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-default btn-default btn-sm" data-dismiss="modal">Close</button>
 			</div>
 		</div>
 	</div>

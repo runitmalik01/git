@@ -22,7 +22,7 @@
 			value="Your details has been successfully imported into your return"></c:out>
 	</h4>
 	<c:forEach items="${formMap.message}" var="item">
-		<div class="alert alert-error">
+		<div class="alert alert-danger">
 			<fmt:message key="${item.value}" />
 		</div>
 	</c:forEach>
@@ -32,7 +32,7 @@
 	return</h3>
 <c:if test="${not empty totalGetTDSDetail && totalGetTDSDetail > 0}">
 	<div>
-		<span class="label label-warning">Our record indicates that you have already imported your 26AS information.Re-importing the information may result in duplicates</span>
+		<span class="label label-default label-warning">Our record indicates that you have already imported your 26AS information.Re-importing the information may result in duplicates</span>
 	</div>
 </c:if>
 <c:choose>
@@ -196,8 +196,8 @@
 				</tbody>
 			</table>
 
-			<div class="row-fluid show-grid">
-				<div class="span3 offset10">
+			<div class="row show-grid">
+				<div class="col-md-3 col-md-offset-10">
 					<a href="${redirectURLToSamePage}" class="button olive">Cancel</a>
 					<input type="submit" value="Import" class="button default">
 				</div>

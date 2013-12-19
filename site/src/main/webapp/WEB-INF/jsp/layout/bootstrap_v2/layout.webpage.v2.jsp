@@ -67,10 +67,10 @@
 	<c:if test="${not empty isError && error.key == 'true' && loggedin == 'true'}">
 		<c:choose>
 			<c:when test="${not empty error.key}">
-				<span class="label label-warning"><c:out value="${error.key}" escapeXml="false"/></span>
+				<span class="label label-default label-warning"><c:out value="${error.key}" escapeXml="false"/></span>
 			</c:when>
 			<c:otherwise>
-				<span class="label label-warning">There was an error processing your request</span>
+				<span class="label label-default label-warning">There was an error processing your request</span>
 			</c:otherwise>
 		</c:choose>				
 	</c:if>
