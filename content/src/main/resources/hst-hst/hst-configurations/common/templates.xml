@@ -3297,6 +3297,40 @@
 	    <sv:value>jsp/member/servicerequest-itr-v-status.jsp</sv:value>
 	  </sv:property>
 	</sv:node>
+	<!-- duplication for next year -->
+	<sv:node sv:name="servicerequest-itr-copy-previous-return">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>d586f5f6-013d-4a95-8d14-4bd12aa57ac8</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/member/servicerequest-itr-copy-previous-confirmation.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="servicerequest-itr-copy-for-newyear">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>313eb062-a23c-4c32-a1f1-f6f3df3d3a17</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/member/servicerequest-itr-copy-for-newyear.jsp</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="servicerequest-itr-summary-detailed">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:template</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>82441fa5-d13e-4daf-9c1b-652b98e4b182</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:renderpath" sv:type="String">
+      <sv:value>jsp/member/servicerequest-itr-summaryDetails.jsp</sv:value>
+    </sv:property>
+  </sv:node>
 	<!--  / template for ITRV Status -->
 	<!--schedule si  -->
 	<sv:node sv:name="itr-schedule-si" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
@@ -3856,4 +3890,17 @@
 	  </sv:property>
 	</sv:node>
 	<!-- /template -->
+	<!-- for new event-->
+<sv:node sv:name="newevents" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:template</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>4697c5cf-838e-4534-ae7f-bde9f9216a45</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:renderpath" sv:type="String">
+    <sv:value>jsp/events/addEvents.jsp</sv:value>
+  </sv:property>
+</sv:node>
+<!--end of new event-->
 </sv:node>
