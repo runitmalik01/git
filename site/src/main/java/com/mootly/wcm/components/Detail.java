@@ -16,6 +16,8 @@
 
 package com.mootly.wcm.components;
 
+import java.io.IOException;
+
 import javax.jcr.Session;
 
 import org.hippoecm.hst.content.beans.ObjectBeanPersistenceException;
@@ -41,112 +43,228 @@ import com.mootly.wcm.beans.NewsItem;
 
 public class Detail extends BaseComponent {
 
-    public static final Logger log = LoggerFactory.getLogger(Detail.class);
-    private static final int PATH_DEPTH = 4;
+	public static final Logger log = LoggerFactory.getLogger(Detail.class);
+	private static final int PATH_DEPTH = 4;
 
-    @Override
-    public void doBeforeRender(HstRequest request, HstResponse response) {
+	@Override
+	public void doBeforeRender(HstRequest request, HstResponse response) {
 
-        super.doBeforeRender(request, response);
-        HippoBean document = getContentBean(request);
+		super.doBeforeRender(request, response);
 
-        if (document == null) {
-            redirectToNotFoundPage(response);
-            return;
-        }
-        request.setAttribute("document", document);
-        request.getRequestContext().setAttribute("document", document);
+		HippoBean document = getContentBean(request);
+		//HippoBean document = getSiteContentBaseBeanForReseller(request);
+		String editlink=getPublicRequestParameter(request,"edit");
+		String deletelink=getPublicRequestParameter(request,"delete");
+		if(null!=editlink){
+			request.setAttribute("editlink", editlink);}
+		if(null!=deletelink){
+			request.setAttribute("deletelink", deletelink);}
 
-        HippoFolder commentsFolder = null;
-        int commentCount = 0;
+		if (document == null) {
+			redirectToNotFoundPage(response);
+			return;
+		}
+		request.setAttribute("document", document);
+		request.getRequestContext().setAttribute("document", document);
 
-        if (document instanceof NewsItem) {
-            commentsFolder = getSiteContentBaseBean(request).getBean("comments/news");
+		HippoFolder commentsFolder = null;
+		int commentCount = 0;
 
-        } else if (document instanceof EventDocument) {
-            commentsFolder = getSiteContentBaseBean(request).getBean("comments/events");
-        }
+		if (document instanceof NewsItem) {
+			commentsFolder = getSiteContentBaseBean(request).getBean("comments/news");
 
-        if (commentsFolder != null) {
-            try {
-                HstQuery incomingBeansQuery = ContentBeanUtils.createIncomingBeansQuery((HippoDocumentBean) document, commentsFolder, PATH_DEPTH, getObjectConverter(), Comment.class, false);
-                commentCount = incomingBeansQuery.execute().getSize();
-            } catch (QueryException e) {
-                log.error(e.getMessage());
-            }
+		} else if (document instanceof EventDocument) {
+			commentsFolder = getSiteContentBaseBean(request).getBean("comments/events");
+		}
 
-        }
+		if (commentsFolder != null) {
+			try {
+				HstQuery incomingBeansQuery = ContentBeanUtils.createIncomingBeansQuery((HippoDocumentBean) document, commentsFolder, PATH_DEPTH, getObjectConverter(), Comment.class, false);
+				commentCount = incomingBeansQuery.execute().getSize();
+			} catch (QueryException e) {
+				log.error(e.getMessage());
+			}
+
+		}
 
 
-        request.setAttribute("commentCount", commentCount);
+		request.setAttribute("commentCount", commentCount);
 
-    }
+	}
 
-    @Override
-    public void doBeforeServeResource(HstRequest request, HstResponse response) throws HstComponentException {
 
-        super.doBeforeServeResource(request, response);
 
-        boolean succeeded = true;
-        String errorMessage = "";
+	@Override
+	public void doAction(HstRequest request, HstResponse response) {
+		String edit=getPublicRequestParameter(request, "edit");
+		String delete=getPublicRequestParameter(request, "delete");
+		if(log.isInfoEnabled())
+		{
 
-        String workflowAction = request.getParameter("workflowAction");
+			log.info("delete link"+delete);
+		}
+		String title = request.getParameter("title");
+		String summary = request.getParameter("summary");
+		String description = request.getParameter("description");
+		String flag = request.getParameter("deleteevent");
+		//String date = request.getParameter("date");
+		EventDocument edoc = new EventDocument();
+		edoc.setTitle(title);
+		edoc.setSummary(summary);
+		edoc.setDescriptionContent(description);
+		if(null!=edit){
 
-        String field = request.getParameter("field");
+			editNewEvents(request,edoc);
+		}
+		if(flag.equalsIgnoreCase("yes")){
+			DeleteEvents(request,edoc);
 
-        final boolean requestPublication = "requestPublication".equals(workflowAction);
-        final boolean saveDocument = ("save".equals(workflowAction) || requestPublication);
+		}
+		try {
+			response.sendRedirect("/site/r/"+getResellerId()+"/events");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
-        if (saveDocument || requestPublication) {
-            String documentPath = getContentBean(request).getPath();
-            Session persistableSession = null;
-            WorkflowPersistenceManager cpm = null;
 
-            try {
-                //NOTE: Don't need to use writable session here; use subject based session instead.
-                //persistableSession = getPersistableSession(request);
-                persistableSession = request.getRequestContext().getSession();
-                
-                cpm = getWorkflowPersistenceManager(persistableSession);
-                cpm.setWorkflowCallbackHandler(new WorkflowCallbackHandler<FullReviewedActionsWorkflow>() {
-                    public void processWorkflow(FullReviewedActionsWorkflow wf) throws Exception {
-                        if (requestPublication) {
-                            FullReviewedActionsWorkflow fraw = (FullReviewedActionsWorkflow) wf;
-                            fraw.requestPublication();
-                        }
-                    }
-                });
+	protected  EventDocument editNewEvents(HstRequest request,EventDocument ed) {
+		// TODO Auto-generated method stub
+		Session persistableSession = null;
+		WorkflowPersistenceManager wpm;
+		try {
+			persistableSession = getPersistableSession(request);
+			wpm = getWorkflowPersistenceManager(persistableSession);
+			wpm.setWorkflowCallbackHandler(new FullReviewedWorkflowCallbackHandler());
+			HippoBean document = (HippoBean) getContentBean(request);
+			String memberFolderPath= document.getCanonicalPath();
+			if(log.isInfoEnabled()){
+				log.info("path isssssss"+memberFolderPath);
+			}
+			EventDocument objEventDocument =  (EventDocument) wpm.getObject(memberFolderPath);
+			// update content properties
+			if (objEventDocument != null) {
+				objEventDocument.setTitle(ed.getTitle());
+				objEventDocument.setSummary(ed.getSummary());
+				objEventDocument.setDescriptionContent(ed.getDescriptionContent());
+				// update now  
+				wpm.update(objEventDocument);
+				wpm.save();
+			}
+			return null;
+		} catch (Exception e) {
+			log.warn("Failed to edit document ", e);
+			return null;
+		} finally {
+			if (persistableSession != null) {
 
-                Document document = (Document) cpm.getObject(documentPath);
+			}
+		}
+	}
+	protected  void DeleteEvents(HstRequest request,EventDocument ed) {
+		// TODO Auto-generated method stub
+		Session persistableSession = null;
+		WorkflowPersistenceManager wpm;
+		try {
+			HippoBean document = (HippoBean) getContentBean(request);
+			String memberFolderPath= document.getCanonicalPath();
+			persistableSession = request.getRequestContext().getSession();
 
-                if (saveDocument) {
-                    String content = request.getParameter("editor");
+			wpm = getWorkflowPersistenceManager(persistableSession);
+			wpm.setWorkflowCallbackHandler(new WorkflowCallbackHandler<FullReviewedActionsWorkflow>() {
+				public void processWorkflow(FullReviewedActionsWorkflow wf) throws Exception {
+					FullReviewedActionsWorkflow fraw = (FullReviewedActionsWorkflow) wf;
+					fraw.delete();
+				}
+			});
+			EventDocument objEventDocument =  (EventDocument) wpm.getObject(memberFolderPath);
+			// update content properties
+			if (objEventDocument != null) {
+				log.warn("going to remove");
+				wpm.remove(objEventDocument);
 
-                    if ("mootlywcm:summary".equals(field)) {
-                        document.setSummary(content);
-                    } else if ("mootlywcm:description".equals(field)) {
-                        document.setDescriptionContent(content);
-                    }
-                }
+			}
+		} catch (Exception e) {
+			log.warn("Failed to delete doc ", e);
+		} finally {
+			if (persistableSession != null) {
 
-                // update now
-                cpm.update(document);
-                cpm.save();
-            } catch (Exception e) {
-                log.warn("Failed to create a comment: ", e);
+			}
+		}
+	}
 
-                if (cpm != null) {
-                    try {
-                        cpm.refresh();
-                    } catch (ObjectBeanPersistenceException e1) {
-                        log.warn("Failed to refresh: ", e);
-                    }
-                }
-            }
-            // NOTE: no need to close the persistable session here because subject based session was retrieved from rc.
-        }
+	@Override
+	public void doBeforeServeResource(HstRequest request, HstResponse response) throws HstComponentException {
 
-        request.setAttribute("payload", "{\"success\": " + succeeded + ", \"message\": \"" + errorMessage + "\"}");
-    }
+		super.doBeforeServeResource(request, response);
+
+		boolean succeeded = true;
+		String errorMessage = "";
+
+		String workflowAction = request.getParameter("workflowAction");
+
+		String field = request.getParameter("field");
+
+		final boolean requestPublication = "requestPublication".equals(workflowAction);
+		final boolean saveDocument = ("save".equals(workflowAction) || requestPublication);
+
+		if (saveDocument || requestPublication) {
+			String documentPath = getContentBean(request).getPath();
+			Session persistableSession = null;
+			WorkflowPersistenceManager cpm = null;
+
+			try {
+				//NOTE: Don't need to use writable session here; use subject based session instead.
+				//persistableSession = getPersistableSession(request);
+				persistableSession = request.getRequestContext().getSession();
+
+				cpm = getWorkflowPersistenceManager(persistableSession);
+				cpm.setWorkflowCallbackHandler(new WorkflowCallbackHandler<FullReviewedActionsWorkflow>() {
+					public void processWorkflow(FullReviewedActionsWorkflow wf) throws Exception {
+						if (requestPublication) {
+							FullReviewedActionsWorkflow fraw = (FullReviewedActionsWorkflow) wf;
+							fraw.requestPublication();
+						}
+					}
+				});
+
+				Document document = (Document) cpm.getObject(documentPath);
+
+				if (saveDocument) {
+					String content = request.getParameter("editor");
+
+					if ("mootlywcm:summary".equals(field)) {
+						document.setSummary(content);
+					} else if ("mootlywcm:description".equals(field)) {
+						document.setDescriptionContent(content);
+					}
+				}
+				// update now
+				cpm.update(document);
+
+				cpm.save();
+			} catch (Exception e) {
+				log.warn("Failed to create a comment: ", e);
+
+				if (cpm != null) {
+					try {
+						cpm.refresh();
+					} catch (ObjectBeanPersistenceException e1) {
+						log.warn("Failed to refresh: ", e);
+					}
+				}
+			}
+			// NOTE: no need to close the persistable session here because subject based session was retrieved from rc.
+		}
+
+		request.setAttribute("payload", "{\"success\": " + succeeded + ", \"message\": \"" + errorMessage + "\"}");
+	}
+	private static class FullReviewedWorkflowCallbackHandler implements WorkflowCallbackHandler<FullReviewedActionsWorkflow> {
+		public void processWorkflow(FullReviewedActionsWorkflow wf) throws Exception {
+			wf.publish();
+
+		}
+	}
 
 }
