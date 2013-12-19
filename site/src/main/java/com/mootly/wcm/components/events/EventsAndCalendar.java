@@ -39,58 +39,71 @@ import com.mootly.wcm.utils.PageableCollection;
 
 public class EventsAndCalendar extends BaseComponent {
 
-    public static final Logger log = LoggerFactory.getLogger(EventsAndCalendar.class);
-    private static final String PARAM_PAGE_SIZE = "pageSize";
-    private static final int DEFAULT_PAGE_SIZE = 5;
-    private static final String PARAM_CURRENT_PAGE = "pageNumber";
-    private static final int DEFAULT_CURRENT_PAGE = 1;
+	public static final Logger log = LoggerFactory.getLogger(EventsAndCalendar.class);
+	private static final String PARAM_PAGE_SIZE = "pageSize";
+	private static final int DEFAULT_PAGE_SIZE = 5;
+	private static final String PARAM_CURRENT_PAGE = "pageNumber";
+	private static final int DEFAULT_CURRENT_PAGE = 1;
 
-    @Override
-    public void doBeforeRender(HstRequest request, HstResponse response) {
-        super.doBeforeRender(request, response);
-        //HippoFolderBean n = (HippoFolderBean) getContentNode(request);
-        HippoBean eventsOverviewBean = this.getContentBean(request);
-        if (eventsOverviewBean == null) {
-            throw new BeanNotFoundException("Needed eventsOverviewBean bean not found. Cannot proceed");
-        }
-        String pageSizeParam = getParameter(PARAM_PAGE_SIZE, request);
-        int pageSize = ComponentUtil.parseIntParameter(PARAM_PAGE_SIZE, pageSizeParam, DEFAULT_PAGE_SIZE, log);
+	@Override
+	public void doBeforeRender(HstRequest request, HstResponse response) {
+		super.doBeforeRender(request, response);
+		//HippoFolderBean n = (HippoFolderBean) getContentNode(request);
+		HippoBean eventsOverviewBean = this.getContentBean(request);
+		
+		HippoBean contentBean = getSiteContentBaseBean(request).getBean("events/facetedevents");
+		HippoBean contentBean1 = getSiteContentBaseBean(request).getBean("events");
 
-        String currentPageParam = getPublicRequestParameter(request, PARAM_CURRENT_PAGE);
-        int currentPage = ComponentUtil.parseIntParameter(PARAM_CURRENT_PAGE, currentPageParam, DEFAULT_CURRENT_PAGE, log);
-        if (!(eventsOverviewBean instanceof HippoFacetChildNavigationBean)) {
-            try {
-                HstQuery query = this.getQueryManager(request).createQuery(eventsOverviewBean, EventDocument.class);
-                query.addOrderByDescending("mootlywcm:date");
-                HstQueryResult result = query.execute();
-                request.setAttribute("documents", new PageableCollection<HippoBean>(
-                        result.getHippoBeans(), pageSize, currentPage));
+		if(log.isInfoEnabled()){
+			log.info(""+contentBean);
+		}
 
-            } catch (QueryException qe) {
-                log.error("Error while getting the documents " + qe.getMessage(), qe);
-            }
-        } else {
-            HippoFacetChildNavigationBean facetBean = (HippoFacetChildNavigationBean) eventsOverviewBean;
-            request.setAttribute("documents", new PageableCollection(facetBean.getResultSet().getDocumentIterator(EventDocument.class), facetBean.getCount().intValue(), GoGreenUtil.getIntConfigurationParameter(request,
-                    Constants.PAGE_SIZE, pageSize), currentPage));
-        }
-        // if there is a faceted navigation at 'facetedevents' we can populate the calendar, otherwise we'll throw an exception
-        HippoFacetNavigation facetedEventsBean = eventsOverviewBean.getBean("facetedevents", HippoFacetNavigation.class);
-        if (facetedEventsBean == null) {
-            throw new BeanNotFoundException("The EventsAndCalendar cannot be created: We expect a 'hippofacnav:facetnavigation' node at '"
-                    + eventsOverviewBean.getPath() + "/facetedevents'");
-        }
-        String yearStr = request.getParameter("year");
-        String monthStr = request.getParameter("month");
-        Calendar selectedCal = Calendar.getInstance();
-        if (yearStr != null && monthStr != null) {
-            // if invalid format for year or month, a runtime NumberFormatException will be thrown, which will be handled by the PageErrorHandler
-            int year = Integer.parseInt(yearStr);
-            int month = Integer.parseInt(monthStr);
-            selectedCal.set(Calendar.YEAR, year);
-            selectedCal.set(Calendar.MONTH, month);
-        }
-        EventCalendarMonth ecm = new EventCalendarMonth(selectedCal, facetedEventsBean, request.getLocale());
-        request.setAttribute("calendar", ecm);
-    }
+		log.info(""+eventsOverviewBean.getPath());
+		// by abhishek
+
+
+
+		if (eventsOverviewBean == null) {
+			throw new BeanNotFoundException("Needed eventsOverviewBean bean not found. Cannot proceed");
+		}
+		String pageSizeParam = getParameter(PARAM_PAGE_SIZE, request);
+		int pageSize = ComponentUtil.parseIntParameter(PARAM_PAGE_SIZE, pageSizeParam, DEFAULT_PAGE_SIZE, log);
+
+		String currentPageParam = getPublicRequestParameter(request, PARAM_CURRENT_PAGE);
+		int currentPage = ComponentUtil.parseIntParameter(PARAM_CURRENT_PAGE, currentPageParam, DEFAULT_CURRENT_PAGE, log);
+		if (!(eventsOverviewBean instanceof HippoFacetChildNavigationBean)) {
+			try {
+				HstQuery query = this.getQueryManager(request).createQuery(eventsOverviewBean, EventDocument.class);
+				query.addOrderByDescending("mootlywcm:date");
+				HstQueryResult result = query.execute();
+				request.setAttribute("documents", new PageableCollection<HippoBean>(
+						result.getHippoBeans(), pageSize, currentPage));
+
+			} catch (QueryException qe) {
+				log.error("Error while getting the documents " + qe.getMessage(), qe);
+			}
+		} else {
+			HippoFacetChildNavigationBean facetBean = (HippoFacetChildNavigationBean) eventsOverviewBean;
+			request.setAttribute("documents", new PageableCollection(facetBean.getResultSet().getDocumentIterator(EventDocument.class), facetBean.getCount().intValue(), GoGreenUtil.getIntConfigurationParameter(request,
+					Constants.PAGE_SIZE, pageSize), currentPage));
+		}
+		// if there is a faceted navigation at 'facetedevents' we can populate the calendar, otherwise we'll throw an exception
+		HippoFacetNavigation facetedEventsBean = contentBean1.getBean("facetedevents", HippoFacetNavigation.class);
+		if (facetedEventsBean == null) {
+			throw new BeanNotFoundException("The EventsAndCalendar cannot be created: We expect a 'hippofacnav:facetnavigation' node at '"
+					+ eventsOverviewBean.getPath() + "/facetedevents'");
+		}
+		String yearStr = request.getParameter("year");
+		String monthStr = request.getParameter("month");
+		Calendar selectedCal = Calendar.getInstance();
+		if (yearStr != null && monthStr != null) {
+			// if invalid format for year or month, a runtime NumberFormatException will be thrown, which will be handled by the PageErrorHandler
+			int year = Integer.parseInt(yearStr);
+			int month = Integer.parseInt(monthStr);
+			selectedCal.set(Calendar.YEAR, year);
+			selectedCal.set(Calendar.MONTH, month);
+		}
+		EventCalendarMonth ecm = new EventCalendarMonth(selectedCal, facetedEventsBean, request.getLocale());
+		request.setAttribute("calendar", ecm);
+	}
 }
