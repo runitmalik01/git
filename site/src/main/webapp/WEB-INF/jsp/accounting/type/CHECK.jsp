@@ -24,7 +24,7 @@
 		</div>
 		<div class="span3">
 			<div class="rowlabel">
-				<label for="checkDate"><small>Dated</small> </label>
+				<label for="checkDate"><small>Dated(dd/mm/yyyy)</small> </label>
 			</div>
 			<div class="rowlabel">
 				<input type="text" id="checkDate" name="checkDate" value="${tarPaymentDetail.checkDateStr}" <c:out value="${allReadOnly}"/> />
@@ -32,11 +32,12 @@
 		</div>
 		<div class="span2">
 			<div class="rowlabel">
-				<label for="paymentAmount"><small>For (Amount)</small> </label>
+				<label for="checkAmount"><small>For (Amount)</small> </label>
 			</div>
 			<div class="rowlabel">
-				<input type="text" id="paymentAmount" name="paymentAmount" value="${tarPaymentDetail.paymentAmount}" <c:out value="${allReadOnly}"/> />
-				<w4india:inr value="${totalCost}" />
+				<%-- <input type="text" id="paymentAmount" name="paymentAmount" value="${tarPaymentDetail.paymentAmount}" <c:out value="${allReadOnly}"/> />
+				<w4india:inr value="${totalCost}" /> --%>
+				<input type="text" id="checkAmount" name="checkAmount" value="${tarPaymentDetail.checkAmount}" <c:out value="${allReadOnly}"/> />
 			</div>
 		</div>
 	</div>
