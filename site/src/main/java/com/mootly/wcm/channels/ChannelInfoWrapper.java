@@ -1,7 +1,10 @@
 package com.mootly.wcm.channels;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 import com.mootly.wcm.model.PaymentType;
@@ -36,6 +39,36 @@ public final class ChannelInfoWrapper {
 	public String getEndDate(){
 		String endDate = webSiteInfo.getEndDate();
 		return endDate;
+	}
+	
+	public Boolean getIsLicenseExpired(){
+		int diffStartEndDate = getDiffOfStartEndDate();
+		if(diffStartEndDate <= 0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	
+	public String getResellerPackage(){
+		return webSiteInfo.getResellerPackage();
+	}
+	
+	public int getDiffOfStartEndDate(){
+		String startDate = getStartDate();
+		String endDate = getEndDate();
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+	    Date modStartDate = null;
+	    Date modEndDate = null;
+		try {
+			modStartDate = simpleDateFormat.parse(startDate);
+			modEndDate = simpleDateFormat.parse(endDate);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		int difInDays = (int) ((modEndDate.getTime() - modStartDate.getTime())/(1000*60*60*24));
+	    return difInDays;
 	}
 	
 	public Boolean getAllowSignup() {
