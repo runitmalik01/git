@@ -4,6 +4,7 @@ import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.core.component.HstRequest;
 
 import com.mootly.wcm.beans.InvoiceDocument;
+import com.mootly.wcm.beans.compound.InvoiceDocumentDetail;
 import com.mootly.wcm.beans.compound.InvoicePaymentDetail;
 import com.mootly.wcm.model.IndianGregorianCalendar;
 import com.mootly.wcm.model.PaymentType;
@@ -12,13 +13,13 @@ public class InvoicePaymentDetailBeanHandler extends GenericLifeCycleHandler imp
 	final PaymentType paymentType;
 	final String strPaymentTransactionId;
 	final HstRequest hstRequest;
-	
+
 	public InvoicePaymentDetailBeanHandler(PaymentType paymentType,HstRequest hstRequest,String strPaymentTransactionId) {
 		this.paymentType = paymentType;
 		this.hstRequest = hstRequest;
 		this.strPaymentTransactionId = strPaymentTransactionId;
 	}
-	
+
 	public final String getStrPaymentTransactionId() {
 		return strPaymentTransactionId;
 	}
@@ -34,13 +35,13 @@ public class InvoicePaymentDetailBeanHandler extends GenericLifeCycleHandler imp
 			invoicePaymentDetail.setPaymentType(paymentType);
 			invoicePaymentDetail.setPaymentDate(IndianGregorianCalendar.getCurrentDateInIndiaAsDate());
 			InvoiceDocument invoiceDocument = (InvoiceDocument) hstRequest.getAttribute("parentBean");
-			if (invoiceDocument != null ) {
-				invoicePaymentDetail.setPaymentAmount(invoiceDocument.getAmountDue());
+			if (invoiceDocument != null ) {	
+				//invoicePaymentDetail.setPaymentAmount(invoiceDocument.getAmountDue());
 			}
 		}
 	}
-	
-	//Updates the payment details(txnAmount) after Vendor Verification
+
+	//Updates Payment Amount as user-input amount from PaymentType Screen
 	@Override
 	public void afterFillChildBeanMap(HippoBean hippoBean) {
 		// TODO Auto-generated method stub
@@ -49,9 +50,19 @@ public class InvoicePaymentDetailBeanHandler extends GenericLifeCycleHandler imp
 			InvoicePaymentDetail invoicePaymentDetail = (InvoicePaymentDetail) hippoBean;
 			InvoiceDocument invoiceDocument = (InvoiceDocument) hstRequest.getAttribute("parentBean");
 			if (invoiceDocument != null ) {
-				//invoicePaymentDetail.setPaymentAmount(invoiceDocument.getAmountDue());
-				invoicePaymentDetail.setTxnAmount(invoiceDocument.getAmountDue());
-				
+				if(invoicePaymentDetail.getPaymentType() == PaymentType.CASH){
+					invoicePaymentDetail.setPaymentAmount(invoicePaymentDetail.getCashAmount());
+					
+				}
+				if(invoicePaymentDetail.getPaymentType() == PaymentType.CHECK){
+					invoicePaymentDetail.setPaymentAmount(invoicePaymentDetail.getCheckAmount());
+					
+				}
+				if(invoicePaymentDetail.getPaymentType() == PaymentType.RTGS){
+					invoicePaymentDetail.setPaymentAmount(invoicePaymentDetail.getRtgsAmount());
+					
+				}
+				//invoicePaymentDetail.setTxnAmount(invoiceDocument.getAmountDue());				
 			}
 		}
 	}
