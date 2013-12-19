@@ -6,7 +6,6 @@ import java.util.List;
 
 public enum PackageForReseller {
 
-	trailperiod("Trail Period (7 Days)"),
 	paid_singleuser("Single User"),
 	paid_multipleuser("Multiple User");
 
