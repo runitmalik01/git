@@ -85,6 +85,11 @@ public class ResellerSetupConfigurationWorkflowImpl extends WorkflowImpl impleme
 	String startDate;
 	@Persistent(column="mootlywcm:endDate")
 	String endDate;
+	@Persistent(column="mootlywcm:resellerPackage")
+	String resellerPackage;
+	@Persistent(column="mootlywcm:numberOfLicensedUsers")
+	String numberOfLicensedUsers;
+	
 
 
 	public ResellerSetupConfigurationWorkflowImpl() throws RemoteException {
@@ -141,7 +146,8 @@ public class ResellerSetupConfigurationWorkflowImpl extends WorkflowImpl impleme
 				resellerChannelInfoNode.setProperty("themeCss", "/content/assets/themes/css/white.css");
 				resellerChannelInfoNode.setProperty("startDate", startDate);
 				resellerChannelInfoNode.setProperty("endDate", endDate);
-				resellerChannelInfoNode.setProperty("numberOfLicensedUsers", 0);
+				resellerChannelInfoNode.setProperty("numberOfLicensedUsers", numberOfLicensedUsers);
+				resellerChannelInfoNode.setProperty("resellerPackage", resellerPackage);
 
 				System.out.println(":: End of Channel creation");
 			}
