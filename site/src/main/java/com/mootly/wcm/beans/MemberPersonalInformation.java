@@ -202,7 +202,7 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 
 	private DITSubmissionStatus ditSubmissionStatus;
 	private String  ditSubmissionToken;
-	private String digitalSignatureUUID;
+	private String digitalSignatureHandleUUID;
 
 
 	ResourceBundle messagesResourceBundle = ResourceBundle.getBundle("messages");
@@ -1376,6 +1376,9 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 				}
 			}
 		}*/
+		if(formMap.getField("digitalSignatureHandleUUID") !=null){
+			setDigitalSignatureHandleUUID(formMap.getField("digitalSignatureHandleUUID").getValue());
+		}
 	}
 	private String ResidentialFind(String key){
 		if(key.matches("ans_Resident and Ordinarily Resident")) return "RES";
@@ -1450,15 +1453,15 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 	}
 
 	public String getDigitalSignatureHandleUUID() {
-		if(digitalSignatureUUID == null){
+		if(digitalSignatureHandleUUID == null){
 			if(getDigitalSignature() != null){
-				digitalSignatureUUID = getDigitalSignature().getCanonicalHandleUUID();
+				digitalSignatureHandleUUID = getDigitalSignature().getCanonicalHandleUUID();
 			}
 		}
-		return digitalSignatureUUID;
+		return digitalSignatureHandleUUID;
 	}
 
-	public void setDigitalSignatureHandleUUID(String digitalSignatureUUID) {
-		this.digitalSignatureUUID = digitalSignatureUUID;
+	public void setDigitalSignatureHandleUUID(String digitalSignatureHandleUUID) {
+		this.digitalSignatureHandleUUID = digitalSignatureHandleUUID;
 	}
 }
