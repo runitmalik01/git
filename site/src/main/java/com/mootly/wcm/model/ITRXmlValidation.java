@@ -12,6 +12,7 @@ import com.mootly.wcm.beans.IncomeFromFirmsDocument;
 import com.mootly.wcm.beans.ManufactureFinishedProductsDocument;
 import com.mootly.wcm.beans.ManufactureRawMatDocument;
 import com.mootly.wcm.beans.NatureBusinessDocument;
+import com.mootly.wcm.beans.ResellerSignupDocument;
 import com.mootly.wcm.beans.ScheduleFiveADocument;
 
 /**
@@ -26,6 +27,7 @@ public enum ITRXmlValidation {
 	VALIDATE4(true,"assetandliability",AssetAndLiabilityDocument.class.getSimpleName(),null,null,false,new ITRForm[]{ITRForm.ITR3,ITRForm.ITR4},new ValidateProperty[]{ValidateProperty.PROP_1,ValidateProperty.PROP_2}),
 	VALIDATE5(true,"memberincomefromfirmsItr3",IncomeFromFirmsDocument.class.getSimpleName(),null,null,false,new ITRForm[]{ITRForm.ITR3},new ValidateProperty[]{}),
 	VALIDATE6(true,"manufacture_rawmaterials",ManufactureRawMatDocument.class.getSimpleName(),"manufacture_finishedgoods",ManufactureFinishedProductsDocument.class.getSimpleName(),true,new ITRForm[]{ITRForm.ITR4},new ValidateProperty[]{}),
+	VALIDATE7(true,"reseller-package",ResellerSignupDocument.class.getSimpleName(),null,null,false,ITRForm.values(),new ValidateProperty[]{}),
 	UNKOWN;
 
 	boolean validateOrNot;//Decide that we will validate or not
