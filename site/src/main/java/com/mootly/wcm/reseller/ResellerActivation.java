@@ -268,7 +268,9 @@ public class ResellerActivation extends BaseComponent {
 				resellerSignupDocument.setResellerName(resellerName);
 				resellerSignupDocument.setStartDate(startDate);
 				resellerSignupDocument.setEndDate(endDate);
-
+				resellerSignupDocument.setResellerPackage("trialPeriod");
+				resellerSignupDocument.setNumberOfLicensedUsers("0");
+				
 				request.setAttribute("userName", resellerSignupDocument.getResellerID());
 				if(!(resellerSignupDocument.getResellerID().isEmpty())){
 					request.setAttribute("userName", resellerSignupDocument.getResellerID());
