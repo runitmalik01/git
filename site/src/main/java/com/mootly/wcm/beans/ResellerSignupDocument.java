@@ -95,6 +95,8 @@ public class ResellerSignupDocument extends BaseDocument implements ContentNodeB
 	String resellerName;
 	String startDate;
 	String endDate;
+	String resellerPackage;
+	String numberOfLicensedUsers;
 
 	//for personal information
 	public final String getUserName() {
@@ -205,6 +207,14 @@ public class ResellerSignupDocument extends BaseDocument implements ContentNodeB
 		if (endDate == null) endDate = getProperty("mootlywcm:endDate");
 		return endDate;
 	}
+	public String getResellerPackage() {
+		if (resellerPackage == null) resellerPackage = getProperty("mootlywcm:resellerPackage");
+		return resellerPackage;
+	}
+	public String getNumberOfLicensedUsers() {
+		if (numberOfLicensedUsers == null) numberOfLicensedUsers = getProperty("mootlywcm:numberOfLicensedUsers");
+		return numberOfLicensedUsers;
+	}
 
 	public final void setUserName(String userName) {
 		this.userName = userName;
@@ -287,6 +297,12 @@ public class ResellerSignupDocument extends BaseDocument implements ContentNodeB
 	public void setEndDate(String endDate) {
 		this.endDate = endDate;
 	}
+	public void setResellerPackage(String resellerPackage) {
+		this.resellerPackage = resellerPackage;
+	}
+	public void setNumberOfLicensedUsers(String numberOfLicensedUsers) {
+		this.numberOfLicensedUsers = numberOfLicensedUsers;
+	}
 
 
 	//for personal information
@@ -367,6 +383,8 @@ public class ResellerSignupDocument extends BaseDocument implements ContentNodeB
 				node.setProperty("mootlywcm:paymentAvailableTypes", resellerSignup.getPaymentAvailableTypes());
 			node.setProperty("mootlywcm:paymentEnabled", resellerSignup.getPaymentEnabled());
 			node.setProperty("mootlywcm:resellerName", resellerSignup.getResellerName());
+			node.setProperty("mootlywcm:resellerPackage", resellerSignup.getResellerPackage());
+			node.setProperty("mootlywcm:numberOfLicensedUsers", resellerSignup.getNumberOfLicensedUsers());
 
 			if (resellerSignup.getPAN() != null) {
 				node.setProperty("mootlywcm:pan", resellerSignup.getPAN());
