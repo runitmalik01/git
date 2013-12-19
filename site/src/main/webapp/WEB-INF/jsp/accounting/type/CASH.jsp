@@ -12,7 +12,7 @@
 <fieldset class="CASH_ONLY CHECK_NOT_ONLY RTGS_NOT_ONLY">
 	<legend>Cash (Delhi/NCR only)</legend>
 	<div class="row-fluid show-grid">
-		<div class="span4">
+		<div class="span3">
 			<div class="rowlabel">
 				<label for="checkNo"><small>Address</small> </label>
 			</div>
@@ -21,7 +21,8 @@
 					<c:out value="${allReadOnly}"/> > <c:if test="${pageAction=='EDIT_CHILD'}">${tarPaymentDetail.cashAddress}</c:if></textarea>
 			</div>
 		</div>
-		<div class="span4">
+		
+		<div class="span3">
 			<div class="rowlabel">
 				<label for="checkDate"><small>Contact Number</small> </label>
 			</div>
@@ -31,7 +32,20 @@
 					<c:out value="${allReadOnly}"/> />
 			</div>
 		</div>
-		<div class="span4">
+		
+		
+		
+		<div class="span3">
+			<div class="rowlabel">
+				<label for="checkAmount"><small>Amount</small> </label>
+			</div>
+			<div class="rowlabel">
+				<input type="text" id="cashAmount" name="cashAmount"
+					value="<c:if test="${pageAction=='EDIT_CHILD'}">${tarPaymentDetail.cashAmount}</c:if>"
+					<c:out value="${allReadOnly}"/> />
+			</div>
+		</div>
+		<div class="span3">
 			<div class="rowlabel">
 				<label for="checkDate"><small>Best Time</small> </label>
 			</div>
