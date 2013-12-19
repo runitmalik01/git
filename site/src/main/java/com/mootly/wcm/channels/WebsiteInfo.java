@@ -31,7 +31,7 @@ import com.mootly.wcm.DocumentTypes;
             titleKey = "fields.channel",
             value = { "logo", "pageTitlePrefix", "themeCss","contentFolder","startDate","endDate",
 			"isReseller","resellerId", 
-			"paymentEnabled","paymentAvailableTypes","numberOfLicensedUsers"}
+			"paymentEnabled","paymentAvailableTypes","numberOfLicensedUsers","resellerPackage"}
     ),
     @FieldGroup(
             titleKey = "fields.channel.customerservice",
@@ -140,5 +140,8 @@ public interface WebsiteInfo extends ChannelInfo {
     
     @Parameter(name = "numberOfLicensedUsers", defaultValue = "1", required = true)
     String getNumberOfLicensedUsers();
+    
+    @Parameter(name = "resellerPackage", defaultValue = "", required = false)
+    String getResellerPackage();
     //other website features
 }
