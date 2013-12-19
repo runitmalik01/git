@@ -3,6 +3,7 @@ package com.mootly.wcm.model;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 
 import com.mootly.wcm.beans.ProfitAndLossDocument;
+import com.mootly.wcm.beans.ResellerSignupDocument;
 import com.mootly.wcm.beans.compound.InvoicePaymentDetail;
 
 public enum ValidateProperty {
@@ -11,7 +12,8 @@ public enum ValidateProperty {
 	PROP_2("profitBefore_InterestTaxes","2500000",ProfitAndLossDocument.class,ValidateType.MAX_ALLOWED),
 	PROP_3("hippostd:state","unpublish",null,ValidateType.EQUALITY),
 	PROP_4("mootlywcm:paymentVerificationStatus","VERIFIED",InvoicePaymentDetail.class,ValidateType.EQUALITY),
-	PROP_5("mootlywcm:paymentVerificationStatus","",InvoicePaymentDetail.class,ValidateType.EQUALITY);
+	PROP_5("mootlywcm:paymentVerificationStatus","",InvoicePaymentDetail.class,ValidateType.EQUALITY),
+	PROP_6("mootlywcm:resellerPackage","trialPeriod",ResellerSignupDocument.class,ValidateType.EQUALITY);
 
 	String propertyName;
 	String valueToValidate;
