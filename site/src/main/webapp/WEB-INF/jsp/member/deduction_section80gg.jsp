@@ -13,7 +13,7 @@
 	      </div>
 	      <div class="col-md-4">
 	      	<div class="rowlabel"><label for="rent_amoutnt"><small>Total amount of rent paid</small></label></div>
-	      	<div class="rowlabel"><input id="rent_amount" name="rent_amount" placeholder="Rs." type="text" maxlength="10" value=""/></div>
+	      	<div class="rowlabel"><input id="rent_amount" class="decimal" name="rent_amount" placeholder="Rs." type="text" maxlength="10" value=""/></div>
 	      </div>
 	</div>		
 </fieldset>

@@ -26,8 +26,7 @@
 <%@ attribute name="queryValue" required="false" type="java.lang.String" rtexprvalue="true" %>
 
 <c:if test="${not empty pageableResult.currentRange}">
-<div class="pagination" align="center">
-<ul>
+<ul class="pagination">
   <c:choose>
     <c:when test="${pageableResult.previous}">
       <li>
@@ -73,5 +72,4 @@
     </c:otherwise>
   </c:choose>
 </ul>
-</div>
 </c:if>

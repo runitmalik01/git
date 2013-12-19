@@ -228,7 +228,6 @@ request.setAttribute("isDITVerified",isDITVerified);
 		 }
 	}
 } %>
-<div class="container">
   	<c:if test="${isTrialPeriodActive==true}">
 		<div class="alert alert-danger" style="font-size: small;">
 			<c:if test="${daysLeft == 1}">
@@ -435,36 +434,31 @@ request.setAttribute("isDITVerified",isDITVerified);
 		<!-- /.nav-collapse -->
 	</div>
 	<!-- /.navbar  -->
-</div>
 
 <c:if
 	test="${isDITVerified == 'false' && not empty memberpersonalinformation}">
 	<c:choose>
 		<c:when test="${fn:endsWith(scriptName,'servicerequest-itr.html')}">
-			<div class="container">
-				<div class="alert alert-danger">
-					<small> Unverified Information. You will not be able to file
-						your income tax until the information is verified Review your
-						information (Name,DOB and PAN) and Click on the Save button. <c:if
-							test="${isVendor == 'true' && not empty memberpersonalinformation}">
-							<c:out value="${memberpersonalinformation.ditVerificationMessage}" />
-						</c:if> </small>
-				</div>
+			<div class="alert alert-danger">
+				<small> Unverified Information. You will not be able to file
+					your income tax until the information is verified Review your
+					information (Name,DOB and PAN) and Click on the Save button. <c:if
+						test="${isVendor == 'true' && not empty memberpersonalinformation}">
+						<c:out value="${memberpersonalinformation.ditVerificationMessage}" />
+					</c:if> </small>
 			</div>
 		</c:when>
 		<c:otherwise>
-			<div class="container">
-				<div class="alert alert-danger">
-					<small> Unverified Information. You will not be able to file
-						your income tax until the information is verified <a
-						href="${scriptName}../../servicerequest-itr.html">Click here to
-							review your information (Name,DOB and PAN)</a> <c:if
-							test="${isVendor == 'true' && not empty memberpersonalinformation}">
-							<c:out value="${memberpersonalinformation.ditVerificationMessage}" />
-						</c:if> </small>
-				</div>
+			<div class="alert alert-danger">
+				<small> Unverified Information. You will not be able to file
+					your income tax until the information is verified <a
+					href="${scriptName}../../servicerequest-itr.html">Click here to
+						review your information (Name,DOB and PAN)</a> <c:if
+						test="${isVendor == 'true' && not empty memberpersonalinformation}">
+						<c:out value="${memberpersonalinformation.ditVerificationMessage}" />
+					</c:if> </small>
 			</div>
-		</c:otherwise>
+	</c:otherwise>
 	</c:choose>
 </c:if>
 <c:if

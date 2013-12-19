@@ -36,8 +36,8 @@
 	        	</div>
 	       </div>
 	       <div class="col-md-4">
-				<div class="rowlabel"><label for="investment"><small><abbr title="Enter the gross amount. We will calculate the eligible amount">Gross Amount</abbr></small></label></div>
-	       		<div class="rowlabel"><input class="theamount" name="investment" type="text" placeholder="Gross Investment" value="<c:out value="${childBean.investment}"/>"></div>
+			<div class="rowlabel"><label for="investment"><small><abbr title="Enter the gross amount. We will calculate the eligible amount">Gross Amount</abbr></small></label></div>
+	       		<div class="rowlabel"><input class="theamount decimal" name="investment" type="text" placeholder="Gross Investment" value="<c:out value="${childBean.investment}"/>"></div>
 	       </div>
 		</div>	     
 	</fieldset>     

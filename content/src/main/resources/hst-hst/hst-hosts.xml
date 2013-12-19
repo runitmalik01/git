@@ -838,4 +838,141 @@
       </sv:node>
     </sv:node>
   </sv:node>
+  <!-- new -->
+  <sv:node sv:name="demo-w4india" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hst:virtualhostgroup</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>3736ed65-26b4-4407-91d3-719c77a0fff9</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:cmslocation" sv:type="String">
+	    <sv:value>http://localhost:8080/cms</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:defaultport" sv:type="Long">
+	    <sv:value>80</sv:value>
+	  </sv:property>
+	  <sv:node sv:name="com">
+	    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	      <sv:value>hst:virtualhost</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="jcr:uuid" sv:type="String">
+	      <sv:value>544fef11-9238-4fb9-a225-3abc896dbe2e</sv:value>
+	    </sv:property>
+	    <sv:node sv:name="wealth4india">
+	      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	        <sv:value>hst:virtualhost</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="jcr:uuid" sv:type="String">
+	        <sv:value>bd5144ef-ddd3-4143-b540-c527d8a183b4</sv:value>
+	      </sv:property>
+	      <sv:node sv:name="demo">
+	        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	          <sv:value>hst:virtualhost</sv:value>
+	        </sv:property>
+	        <sv:property sv:name="jcr:uuid" sv:type="String">
+	          <sv:value>529a6ed6-45bd-417d-a237-331843682496</sv:value>
+	        </sv:property>
+	        <sv:node sv:name="hst:root">
+	          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	            <sv:value>hst:mount</sv:value>
+	          </sv:property>
+	          <sv:property sv:name="jcr:uuid" sv:type="String">
+	            <sv:value>8e3c1f96-ebdf-426b-8e3d-27d6398da8b7</sv:value>
+	          </sv:property>
+	          <sv:property sv:name="hst:alias" sv:type="String">
+	            <sv:value>site</sv:value>
+	          </sv:property>
+	          <sv:property sv:name="hst:channelpath" sv:type="String">
+	            <sv:value>/hst:hst/hst:channels/mootlywcm</sv:value>
+	          </sv:property>
+	          <sv:property sv:name="hst:mountpoint" sv:type="String">
+	            <sv:value>/hst:hst/hst:sites/mootlywcm</sv:value>
+	          </sv:property>
+	          <sv:property sv:name="hst:showport" sv:type="Boolean">
+	            <sv:value>false</sv:value>
+	          </sv:property>
+	          <sv:node sv:name="r">
+	            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	              <sv:value>hst:mount</sv:value>
+	            </sv:property>
+	            <sv:property sv:name="jcr:uuid" sv:type="String">
+	              <sv:value>e07a4751-3bd1-46a5-a017-f9bdc2ed23f3</sv:value>
+	            </sv:property>
+	            <sv:property sv:name="hst:alias" sv:type="String">
+	              <sv:value>r</sv:value>
+	            </sv:property>
+	            <sv:property sv:name="hst:channelpath" sv:type="String">
+	              <sv:value>/hst:hst/hst:channels/mootlywcm</sv:value>
+	            </sv:property>
+	            <sv:property sv:name="hst:mountpoint" sv:type="String">
+	              <sv:value>/hst:hst/hst:sites/mootlywcm</sv:value>
+	            </sv:property>
+	            <sv:node sv:name="creditsafeindia">
+	              <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	                <sv:value>hst:mount</sv:value>
+	              </sv:property>
+	              <sv:property sv:name="jcr:uuid" sv:type="String">
+	                <sv:value>3f2b4d7a-6a4c-4b9b-b62e-80dd7fce6adb</sv:value>
+	              </sv:property>
+	              <sv:property sv:name="hst:alias" sv:type="String">
+	                <sv:value>creditsafeindia</sv:value>
+	              </sv:property>
+	              <sv:property sv:name="hst:channelpath" sv:type="String">
+	                <sv:value>/hst:hst/hst:channels/creditsafeindia</sv:value>
+	              </sv:property>
+	              <sv:property sv:name="hst:locale" sv:type="String">
+	                <sv:value>en_US</sv:value>
+	              </sv:property>
+	              <sv:property sv:name="hst:mountpoint" sv:type="String">
+	                <sv:value>/hst:hst/hst:sites/mootlywcm</sv:value>
+	              </sv:property>
+	            </sv:node>
+	            <sv:node sv:name="qlick">
+	              <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	                <sv:value>hst:mount</sv:value>
+	              </sv:property>
+	              <sv:property sv:name="jcr:uuid" sv:type="String">
+	                <sv:value>85bd78e9-5818-4f82-826f-94a76a81389f</sv:value>
+	              </sv:property>
+	              <sv:property sv:name="hst:alias" sv:type="String">
+	                <sv:value>creditsafeindia</sv:value>
+	              </sv:property>
+	              <sv:property sv:name="hst:channelpath" sv:type="String">
+	                <sv:value>/hst:hst/hst:channels/qlick</sv:value>
+	              </sv:property>
+	              <sv:property sv:name="hst:locale" sv:type="String">
+	                <sv:value>en_US</sv:value>
+	              </sv:property>
+	              <sv:property sv:name="hst:mountpoint" sv:type="String">
+	                <sv:value>/hst:hst/hst:sites/mootlywcm</sv:value>
+	              </sv:property>
+	            </sv:node>
+	            <sv:node sv:name="w4india">
+	              <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	                <sv:value>hst:mount</sv:value>
+	              </sv:property>
+	              <sv:property sv:name="jcr:uuid" sv:type="String">
+	                <sv:value>afa5d55c-3721-4c47-b101-037b508334db</sv:value>
+	              </sv:property>
+	              <sv:property sv:name="hst:alias" sv:type="String">
+	                <sv:value>creditsafeindia</sv:value>
+	              </sv:property>
+	              <sv:property sv:name="hst:channelpath" sv:type="String">
+	                <sv:value>/hst:hst/hst:channels/w4india</sv:value>
+	              </sv:property>
+	              <sv:property sv:name="hst:locale" sv:type="String">
+	                <sv:value>en_US</sv:value>
+	              </sv:property>
+	              <sv:property sv:name="hst:mountpoint" sv:type="String">
+	                <sv:value>/hst:hst/hst:sites/mootlywcm</sv:value>
+	              </sv:property>
+	            </sv:node>
+	          </sv:node>
+	        </sv:node>
+	      </sv:node>
+	    </sv:node>
+	  </sv:node>
+	</sv:node>  
+  <!-- /new -->
 </sv:node>
