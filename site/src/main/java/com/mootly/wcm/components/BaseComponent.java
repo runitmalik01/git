@@ -41,6 +41,7 @@ import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.core.component.HstComponentException;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
+import org.hippoecm.hst.core.linking.HstLink;
 import org.hippoecm.hst.core.request.ComponentConfiguration;
 import org.hippoecm.hst.core.request.ResolvedSiteMapItem;
 import org.hippoecm.repository.reviewedactions.FullReviewedActionsWorkflow;
@@ -102,8 +103,6 @@ public class BaseComponent extends BaseHstComponent {
 	public final EFileService geteFileService() {
 		return eFileService;
 	}
-
-
 
 	@Override
     public void doBeforeRender(HstRequest request, HstResponse response) {
@@ -203,7 +202,38 @@ public class BaseComponent extends BaseHstComponent {
         }
         if (errorKey != null) {
         	request.setAttribute("error.key", getPublicRequestParameter(request, "error.key"));
-        }        
+        }  
+        
+        request.setAttribute("resellerId", resellerId);
+		HstLink link = request.getRequestContext().getHstLinkCreator().createByRefId("reseller-package", request.getRequestContext().getResolvedMount().getMount());
+		String urlToResellerPackage = link.toUrlForm(request.getRequestContext(), true);
+
+		// Check for Trial period
+		if(isVendor && request.getUserPrincipal() != null && !(resellerId.equals("w4india"))){
+			if(channelInfoWrapper.getResellerPackage().equals("trialPeriod")){
+				request.setAttribute("isTrialPeriodActive", true);	
+				request.setAttribute("daysLeft", channelInfoWrapper.getDiffOfStartEndDate());
+				request.setAttribute("urlToResellerPackage", urlToResellerPackage);
+			}   	
+		}
+
+		// Check for Reseller (If Reseller license expired)
+		if(isVendor && request.getUserPrincipal() != null && !(resellerId.equals("w4india"))){
+			if(channelInfoWrapper.getIsLicenseExpired() && request.getRequestURL().toString().contains("itreturn")){
+				try {
+					response.sendRedirect(urlToResellerPackage);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}  
+		//Check for Reseller Members (If Reseller license expired)
+		if(!isVendor && request.getUserPrincipal() != null && !(resellerId.equals("w4india"))){
+			if(channelInfoWrapper.getIsLicenseExpired() && request.getRequestURL().toString().contains("itreturn")){
+				response.setRenderPath("jsp/reseller/licensenotvalid.jsp");	
+			}	
+		}  
     }
     
     @Override
