@@ -97,7 +97,7 @@ abstract public class AbstractITReturnHomePage extends ITReturnComponent {
 		// TODO Auto-generated method stub
 		super.init(servletContext, componentConfig);
 	}
-
+	
 	@Override
 	public void doBeforeRender(HstRequest request, HstResponse response) {
 		super.doBeforeRender(request, response);
@@ -106,14 +106,15 @@ abstract public class AbstractITReturnHomePage extends ITReturnComponent {
 		//set parameter if Last name does not Match with PAN
 		request.setAttribute("valiPanWithLastNameError", request.getParameter("valiPanWithLastNameError"));
 		HippoFolder hippoFolder = getPanFolder();
-		if (hippoFolder == null) {
-			return;
+		List<HippoFolderBean> pansForMember = null;
+		HippoBean currentBean = null;
+		if (hippoFolder != null) {
+			pansForMember = hippoFolder.getFolders(); 
+			if (pansForMember != null) currentBean = pansForMember.get(0);
 		}
-		List<HippoFolderBean> pansForMember = hippoFolder.getFolders(); 
-		HippoBean currentBean = pansForMember.get(0); //this.getContentBean(request);
-		if (currentBean == null) {
-			return;
-		}
+		//if (currentBean == null) {
+		//	return;
+		//}
 		request.setAttribute("defaultShowMore", DEFAULT_SHOW_MORE);
 
 		String pageSizeParam = getPublicRequestParameter(request, PARAM_PAGE_SIZE);
@@ -444,7 +445,7 @@ abstract public class AbstractITReturnHomePage extends ITReturnComponent {
 		Map<String ,Object> resultOFHstQuery = new HashMap<String, Object>();
 		PageableCollection pages=null;
 		long resultCount = 0;
-		if (!(currentBean instanceof HippoFacetChildNavigationBean || currentBean instanceof HippoFacetNavigation)) {
+		if (currentBean == null || !(currentBean instanceof HippoFacetChildNavigationBean || currentBean instanceof HippoFacetNavigation)) {
 			HstQueryResult result;
 			try {
 				result = hstQuery.execute();

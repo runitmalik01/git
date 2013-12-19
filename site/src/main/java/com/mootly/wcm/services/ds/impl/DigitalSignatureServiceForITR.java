@@ -29,6 +29,7 @@ import com.mootly.wcm.services.ds.exception.InvalidDigitalSignatureException;
 import com.mootly.wcm.services.ds.exception.MissingDigitalCertificateException;
 import com.mootly.wcm.services.ds.exception.MissingPrivateKeyException;
 import com.mootly.wcm.services.ds.model.DigitalSignatureWrapper;
+import com.mootly.wcm.services.ds.model.ERISOAPHeaderSignatureResponse;
 import com.mootly.wcm.services.impl.SystemRepositorySupportProvider;
 
 public class DigitalSignatureServiceForITR extends SystemRepositorySupportProvider implements DigitalSignatureService {
@@ -193,7 +194,7 @@ public class DigitalSignatureServiceForITR extends SystemRepositorySupportProvid
 	}
 
 	@Override
-	public String signZIPByERISubUser(ZipInputStream zipInputStream,
+	public ERISOAPHeaderSignatureResponse signZIPByERISubUser(byte[] byteArray,
 			DigitalSignatureWrapper digitalSignatureWrapper)
 					throws MissingPrivateKeyException, InvalidDigitalSignatureException,
 					Exception {

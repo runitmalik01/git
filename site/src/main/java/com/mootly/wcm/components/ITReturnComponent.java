@@ -1934,6 +1934,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 					for (InvoiceDocumentDetail invoiceDocumentDetail : invoiceDocument.getInvoiceDocumentDetailList()) {
 						
 					}
+					isPaid = true;
 				}
 			}catch (Exception ex) {
 				throw new PaymentRequiredException(ex);

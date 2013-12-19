@@ -230,43 +230,41 @@
 				<c:if test="${not empty parentBean}">
 					<c:forEach items="${parentBean.invoicePaymentDetailList}"
 						var="invoicepaymentdetail">
-						<c:if
-							test="${invoicepaymentdetail.paymentVerificationStatus == 'VERIFIED'}">
-							<c:set var="display" value="true" />
+						<c:set var="paymentStatus" value="UNVERIFIED" />
+						<c:if test="${invoicepaymentdetail.paymentVerificationStatus == 'VERIFIED'}"> --%>							
 							<c:choose>
 								<c:when
 									test="${invoicepaymentdetail.requiresGateway && not empty invoicepaymentdetail.respCode &&  invoicepaymentdetail.respCode == 'SUCCESS'}">
-									<c:set var="display" value="true" />
+									<c:set var="paymentStatus" value="VERIFIED" />
 								</c:when>
 								<c:otherwise>
-									<c:set var="display" value="true" />
+									<c:set var="paymentStatus" value="VERIFIED" />
 								</c:otherwise>
 							</c:choose>
-							<c:if test="${display =='true'}">
-								<tr>
-									<td><fmt:formatDate
-											value="${invoicepaymentdetail.paymentDate.time}"
-											timeZone="<%=IndianGregorianCalendar.indianTimeZone%>" /></td>
-									<td><c:out
-											value="${fn:replace(invoicepaymentdetail.paymentType,'_',' ')}" />
-									</td>
-									<td><c:out value="${invoicepaymentdetail.txnAmount}" />
-									</td>
-									<td>VERIFIED</td>
-									<c:if
-										test="${not empty strIsOnVendorPortal && strIsOnVendorPortal =='true' && isVendor =='true'}">
-										<td><a class="btn btn-primary"
-											href="${scriptName}<c:out value="/payment/${invoicepaymentdetail.canonicalUUID}"/>/paymentedit?paymentType=${invoicepaymentdetail.paymentType}"><small><i
-													class="icon-pencil icon-white"></i>Edit</small> </a>&nbsp;&nbsp;<a
-											class="btn btn-danger"
-											href="${scriptName}<c:out value="/payment/${invoicepaymentdetail.canonicalUUID}"/>/paymentdelete?paymentType=${invoicepaymentdetail.paymentType}"
-											data-confirm=""><small><i
-													class="icon-trash icon-white"></i>Delete</small> </a>
-										</td>
-									</c:if>
-								</tr>
-							</c:if>
 						</c:if>
+						<tr>
+							<td><fmt:formatDate
+									value="${invoicepaymentdetail.paymentDate.time}"
+									timeZone="<%=IndianGregorianCalendar.indianTimeZone%>" /></td>
+							<td><c:out
+									value="${fn:replace(invoicepaymentdetail.paymentType,'_',' ')}" />
+							</td>
+							<td><c:out value="${invoicepaymentdetail.txnAmount}" />
+							</td>
+							<td>${paymentStatus}</td>
+							<c:if
+								test="${not empty strIsOnVendorPortal && strIsOnVendorPortal =='true' && isVendor =='true'}">
+								<td><a class="btn btn-primary"
+									href="${scriptName}<c:out value="/payment/${invoicepaymentdetail.canonicalUUID}"/>/paymentedit?paymentType=${invoicepaymentdetail.paymentType}"><small><i
+											class="icon-pencil icon-white"></i>Edit</small> </a>&nbsp;&nbsp;<a
+									class="btn btn-danger"
+									href="${scriptName}<c:out value="/payment/${invoicepaymentdetail.canonicalUUID}"/>/paymentdelete?paymentType=${invoicepaymentdetail.paymentType}"
+									data-confirm=""><small><i
+											class="icon-trash icon-white"></i>Delete</small> </a>
+								</td>
+							</c:if>
+						</tr>
+						<%--  </c:if> --%>
 					</c:forEach>
 				</c:if>
 			</table>

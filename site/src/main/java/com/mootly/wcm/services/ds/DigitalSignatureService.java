@@ -10,6 +10,7 @@ import com.mootly.wcm.services.ds.exception.InvalidDigitalSignatureException;
 import com.mootly.wcm.services.ds.exception.MissingDigitalCertificateException;
 import com.mootly.wcm.services.ds.exception.MissingPrivateKeyException;
 import com.mootly.wcm.services.ds.model.DigitalSignatureWrapper;
+import com.mootly.wcm.services.ds.model.ERISOAPHeaderSignatureResponse;
 
 public interface DigitalSignatureService {
 	
@@ -30,7 +31,7 @@ public interface DigitalSignatureService {
 	 */
 	String signITRByAssesse(String xml, DigitalSignatureWrapper digitalSignatureWrapper) throws MissingPrivateKeyException,InvalidDigitalSignatureException,Exception;
 	
-	String signZIPByERISubUser(ZipInputStream zipInputStream, DigitalSignatureWrapper digitalSignatureWrapper) throws MissingPrivateKeyException, InvalidDigitalSignatureException,Exception;
+	ERISOAPHeaderSignatureResponse signZIPByERISubUser(byte[] byteArray, DigitalSignatureWrapper digitalSignatureWrapper) throws MissingPrivateKeyException, InvalidDigitalSignatureException,Exception;
 	
 	
 }

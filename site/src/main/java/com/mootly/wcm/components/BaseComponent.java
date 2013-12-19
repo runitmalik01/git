@@ -184,7 +184,7 @@ public class BaseComponent extends BaseHstComponent {
 			} catch (RepositoryException e) {
 				// TODO Auto-generated catch block
 				//e.printStackTrace();
-			}
+			}	        
         }
         
         webSiteInfo = request.getRequestContext().getResolvedMount().getMount().getChannelInfo();

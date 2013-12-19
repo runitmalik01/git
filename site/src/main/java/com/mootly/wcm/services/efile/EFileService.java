@@ -1,5 +1,8 @@
 package com.mootly.wcm.services.efile;
 
+import javax.jcr.LoginException;
+import javax.jcr.RepositoryException;
+
 import com.mootly.wcm.model.FinancialYear;
 import com.mootly.wcm.services.ds.DigitalSignatureService;
 import com.mootly.wcm.services.ds.model.DigitalSignatureWrapper;
@@ -17,9 +20,9 @@ public interface EFileService {
 	EFileResponse eFile(String xml,String resellerId,String pan,FinancialYear financialYear,String canonicalPathToMemberIncomeTaxFolder) throws EFileException;
 	EFileResponse eFile(String xml,String resellerId,String pan,FinancialYear financialYear,DigitalSignatureWrapper assesseSignature,DigitalSignatureWrapper eriSubUserSignature) throws EFileException;
 	
-	String findJCRPathToAssesseDigitalSignature(String jcrPathToMemberPersonalInformation);
+	String findJCRPathToAssesseDigitalSignature(String jcrPathToMemberPersonalInformation) throws LoginException, RepositoryException;
 	
-	String findJCRPathToERISubUserDigitalSignature(String jcrPathToMemberPersonalInformation);
+	String findJCRPathToERISubUserDigitalSignature(String jcrPathToMemberPersonalInformation) throws LoginException, RepositoryException;
 	
 	DigitalSignatureService getSignatureService();
 	void setDigitalSignatureService(DigitalSignatureService digitalSignatureService);
