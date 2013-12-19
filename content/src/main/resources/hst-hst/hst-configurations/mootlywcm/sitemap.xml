@@ -4267,6 +4267,148 @@
 			    <sv:value>members</sv:value>
 			  </sv:property>
 			</sv:node>
+			<!--copy previous-->
+			 <sv:node sv:name="servicerequest-itr-copy-previous-return.html">
+              <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                <sv:value>hst:sitemapitem</sv:value>
+              </sv:property>
+              <sv:property sv:name="jcr:uuid" sv:type="String">
+                <sv:value>db930485-06d2-4961-9d71-4b66fcdbf4d4</sv:value>
+              </sv:property>
+              <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+                <sv:value>hst:pages/servicerequest-itr-copy-previous-return</sv:value>
+              </sv:property>
+              <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+                <sv:value>action</sv:value>
+              </sv:property>
+              <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+                <sv:value>COPY_PREVIOUS_TO_NEW</sv:value>
+              </sv:property>
+              <sv:property sv:name="hst:refId" sv:type="String">
+                <sv:value>servicerequest-itr-copy-previous-return</sv:value>
+              </sv:property>
+              <sv:property sv:name="hst:relativecontentpath" sv:type="String">
+                <sv:value>members</sv:value>
+              </sv:property>
+            </sv:node>
+            <sv:node sv:name="servicerequest-itr-copy-for-newyear.html">
+              <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                <sv:value>hst:sitemapitem</sv:value>
+              </sv:property>
+              <sv:property sv:name="jcr:uuid" sv:type="String">
+                <sv:value>d23add04-3801-4ec7-ae82-cb2adb5f5053</sv:value>
+              </sv:property>
+              <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+                <sv:value>hst:pages/servicerequest-itr-copy-for-newyear</sv:value>
+              </sv:property>
+              <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+                <sv:value>action</sv:value>
+              </sv:property>
+              <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+                <sv:value>COPY_PREVIOUS_TO_NEW</sv:value>
+              </sv:property>
+              <sv:property sv:name="hst:refId" sv:type="String">
+                <sv:value>servicerequest-itr-copy-for-newyear</sv:value>
+              </sv:property>
+              <sv:property sv:name="hst:relativecontentpath" sv:type="String">
+                <sv:value>members</sv:value>
+              </sv:property>
+            </sv:node>
+            <sv:node sv:name="servicerequest-itr-copy-for-form16.html">
+              <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                <sv:value>hst:sitemapitem</sv:value>
+              </sv:property>
+              <sv:property sv:name="jcr:uuid" sv:type="String">
+                <sv:value>fef22ac6-e409-49cf-9cc7-e0ab5870f261</sv:value>
+              </sv:property>
+              <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+                <sv:value>hst:pages/servicerequest-itr-copy-previous-return</sv:value>
+              </sv:property>
+              <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+                <sv:value>action</sv:value>
+              </sv:property>
+              <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+                <sv:value>COPY_PREVIOUS_FORM16</sv:value>
+              </sv:property>
+              <sv:property sv:name="hst:refId" sv:type="String">
+                <sv:value>hst:pages/servicerequest-itr-copy-previous-return</sv:value>
+              </sv:property>
+              <sv:property sv:name="hst:relativecontentpath" sv:type="String">
+                <sv:value>members</sv:value>
+              </sv:property>
+            </sv:node>
+            <sv:node sv:name="servicerequest-itr-copy-for-houseprprty.html">
+              <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                <sv:value>hst:sitemapitem</sv:value>
+              </sv:property>
+              <sv:property sv:name="jcr:uuid" sv:type="String">
+                <sv:value>d6a6d845-b100-427f-addf-b485c8daaa03</sv:value>
+              </sv:property>
+              <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+                <sv:value>hst:pages/servicerequest-itr-copy-previous-return</sv:value>
+              </sv:property>
+              <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+                <sv:value>action</sv:value>
+              </sv:property>
+              <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+                <sv:value>COPY_PREVIOUS_HP</sv:value>
+              </sv:property>
+              <sv:property sv:name="hst:refId" sv:type="String">
+                <sv:value>servicerequest-itr-copy-previous-return</sv:value>
+              </sv:property>
+              <sv:property sv:name="hst:relativecontentpath" sv:type="String">
+                <sv:value>members</sv:value>
+              </sv:property>
+            </sv:node>
+            <sv:node sv:name="servicerequest-itr-copy-for-otherincome.html">
+              <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                <sv:value>hst:sitemapitem</sv:value>
+              </sv:property>
+              <sv:property sv:name="jcr:uuid" sv:type="String">
+                <sv:value>1ab346ea-601c-498b-b440-582c90326c85</sv:value>
+              </sv:property>
+              <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+                <sv:value>hst:pages/servicerequest-itr-copy-previous-return</sv:value>
+              </sv:property>
+              <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+                <sv:value>action</sv:value>
+              </sv:property>
+              <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+                <sv:value>COPY_PREVIOUS_OI</sv:value>
+              </sv:property>
+              <sv:property sv:name="hst:refId" sv:type="String">
+                <sv:value>servicerequest-itr-copy-previous-return</sv:value>
+              </sv:property>
+              <sv:property sv:name="hst:relativecontentpath" sv:type="String">
+                <sv:value>members</sv:value>
+              </sv:property>
+            </sv:node>
+            <!--details summary-->
+             <sv:node sv:name="servicerequest-itr-summary-detailed.html">
+              <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                <sv:value>hst:sitemapitem</sv:value>
+              </sv:property>
+              <sv:property sv:name="jcr:uuid" sv:type="String">
+                <sv:value>8c231c58-0ee3-42f1-b43e-55e9dffbdff6</sv:value>
+              </sv:property>
+              <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+                <sv:value>hst:pages/servicerequest-itr-summary-detailed</sv:value>
+              </sv:property>
+              <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+                <sv:value>mainSiteMapItemRefId</sv:value>
+                <sv:value>action</sv:value>
+              </sv:property>
+              <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+                <sv:value>servicerequest-itr-summary-detailed</sv:value>
+                <sv:value>SHOW_ITR_SUMMARY</sv:value>
+              </sv:property>
+              <sv:property sv:name="hst:refId" sv:type="String">
+                <sv:value>servicerequest-itr-summary-detailed</sv:value>
+              </sv:property>
+              <sv:property sv:name="hst:relativecontentpath" sv:type="String">
+                <sv:value>members</sv:value>
+              </sv:property>
+            </sv:node>
 			<!-- /another one -->
 			<!-- New Site Map Item for ITRV Check Status -->
 			<sv:node sv:name="servicerequest-itr-v-status.html" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
@@ -12804,7 +12946,7 @@
     <sv:value>events</sv:value>
   </sv:property>
   <sv:property sv:name="hst:relativecontentpath" sv:type="String">
-    <sv:value>events</sv:value>
+    <sv:value>resellers</sv:value>
   </sv:property>
   <sv:node sv:name="_any_.html">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
@@ -12820,7 +12962,19 @@
       <sv:value>${parent}/${1}</sv:value>
     </sv:property>
   </sv:node>
-</sv:node>	<!-- end Events -->
+  <sv:node sv:name="newEvent">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:sitemapitem</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>df79b6c1-fd56-4c08-80ed-1bca5aa5a041</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+      <sv:value>hst:pages/events</sv:value>
+    </sv:property>
+  </sv:node>
+</sv:node>
+<!-- end Events -->
 <!-- Edited News (6th Dec 2013) -->
 <sv:node sv:name="news" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
