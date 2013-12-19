@@ -7,7 +7,7 @@
 	<div class="row-fluid show-grid">
 		<div class="span3">
 			<div class="rowlabel">
-				<label for="checkNo"><small>Transaction/UTR Number</small>
+				<label for="rtgsTranNo"><small>Transaction/UTR Number</small>
 				</label>
 			</div>
 			<div class="rowlabel">
@@ -18,7 +18,7 @@
 		</div>
 		<div class="span3">
 			<div class="rowlabel">
-				<label for="checkNo"><small>Date (dd/mm/yyyy)</small> </label>
+				<label for="rtgsDate"><small>Date (dd/mm/yyyy)</small> </label>
 			</div>
 			<div class="rowlabel">
 				<input type="text" id="rtgsDate" name="rtgsDate"
@@ -27,7 +27,7 @@
 		</div>
 		<div class="span3">
 			<div class="rowlabel">
-				<label for="checkDate"><small>Amount</small> </label>
+				<label for="rtgsAmount"><small>Amount</small> </label>
 			</div>
 			<div class="rowlabel">
 				<input type="text" id="rtgsAmount" name="rtgsAmount"
@@ -36,7 +36,7 @@
 		</div>
 		<div class="span3">
 			<div class="rowlabel">
-				<label for="checkDate"><small>Time</small> </label>
+				<label for="rtgsTime"><small>Time</small> </label>
 			</div>
 			<div class="rowlabel">
 				<input type="text" id="rtgsTime" name="rtgsTime"
