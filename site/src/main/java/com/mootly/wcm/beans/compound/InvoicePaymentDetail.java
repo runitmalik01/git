@@ -97,11 +97,13 @@ public class InvoicePaymentDetail extends FlexibleDocument implements FormMapFil
 	private String checkBank;
 	private String checkBranch;
 	private String checkLocation;
+	private Double checkAmount;
 	
 	//cash fields
 	private String cashAddress;
 	private String cashContactNumber;
 	private String cashBestTime;
+	private Double cashAmount;
 	
 	//RTGS
 	private String rtgsDate;
@@ -133,15 +135,17 @@ public class InvoicePaymentDetail extends FlexibleDocument implements FormMapFil
 	final String PROP_CHECK_BANK = "mootlywcm:checkBank";
 	final String PROP_CHECK_BRANCH = "mootlywcm:checkBranch";
 	final String PROP_CHECK_LOCATION = "mootlywcm:checkLocation";
+	final String PROP_CHECK_AMOUNT = "mootlywcm:checkAmount";
 	
 	final String PROP_CASH_ADDRESS = "mootlywcm:cashAddress";
 	final String PROP_CASH_CONTACT_NUMBER = "mootlywcm:cashContactNumber";
 	final String PROP_CASH_BEST_TIME = "mootlywcm:cashBestTime";
+	final String PROP_CASH_AMOUNT = "mootlywcm:cashAmount";
 	
 	final String PROP_RTGS_TRANSNUMBER = "mootlywcm:rtgsTransNumber";
 	final String PROP_RTGS_DATE = "mootlywcm:rtgsDate";
 	final String PROP_RTGS_AMOUNT = "mootlywcm:rtgsAmount";
-	final String PROP_RTGS_TIME = "mootlywcm:crtgsTime";
+	final String PROP_RTGS_TIME = "mootlywcm:rtgsTime";
 	
 	/** 
 	 * Is this a valid return
@@ -242,7 +246,7 @@ public class InvoicePaymentDetail extends FlexibleDocument implements FormMapFil
 		return paymentTypeStr;
 	}
 
-	//"checkNo","checkDate","checkBank","checkBranch","checkLocation"
+	//"checkNo","checkDate","checkBank","checkBranch","checkLocation","checkAmount"
 	@FormField(name="checkNo",propertyName="checkNo")
 	@NodeBinder(nodePropertyName=PROP_CHECK_NO)
 	public String getCheckNo() {
@@ -277,8 +281,15 @@ public class InvoicePaymentDetail extends FlexibleDocument implements FormMapFil
 		if (checkLocation == null) checkLocation = getProperty(PROP_CHECK_LOCATION);
 		return checkLocation;
 	}
+	
+	@FormField(name="checkAmount",propertyName="checkAmount")
+	@NodeBinder(nodePropertyName=PROP_CHECK_AMOUNT)	
+	public Double getCheckAmount() {
+		if (checkAmount == null) checkAmount = getProperty(PROP_CHECK_AMOUNT);
+		return checkAmount;
+	}
 
-	//"cashAddress","cashContactNumber","cashBestTime"
+	//"cashAddress","cashContactNumber","cashBestTime","cashAmount"
 	@FormField(name="cashAddress",propertyName="cashAddress")
 	@NodeBinder(nodePropertyName=PROP_CASH_ADDRESS)	
 	public String getCashAddress() {
@@ -298,6 +309,13 @@ public class InvoicePaymentDetail extends FlexibleDocument implements FormMapFil
 	public String getCashBestTime() {
 		if (cashBestTime == null) cashBestTime = getProperty(PROP_CASH_BEST_TIME);
 		return cashBestTime;
+	}
+	
+	@FormField(name="cashAmount",propertyName="cashAmount")
+	@NodeBinder(nodePropertyName=PROP_CASH_AMOUNT)	
+	public Double getCashAmount() {
+		if (cashAmount == null) cashAmount = getProperty(PROP_CASH_AMOUNT);
+		return cashAmount;
 	}
 	
 	//"rtgsTransNumber","rtgsDate","rtgsAmount","rtgsTime"
@@ -444,7 +462,7 @@ public class InvoicePaymentDetail extends FlexibleDocument implements FormMapFil
 		this.paymentTypeStr = paymentTypeStr;
 	}
 
-	@BeanClone
+@BeanClone
 	public void setPaymentAmount(Double paymentAmount) {
 		this.paymentAmount = paymentAmount;
 	}
@@ -502,6 +520,11 @@ public class InvoicePaymentDetail extends FlexibleDocument implements FormMapFil
 	@BeanClone
 	public void setCashBestTime(String cashBestTime) {
 		this.cashBestTime = cashBestTime;
+	}
+	
+	@BeanClone
+	public void setCashAmount(Double cashAmount) {
+		this.cashAmount = cashAmount;
 	}
 	
 	@BeanClone
