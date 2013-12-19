@@ -24,6 +24,7 @@ import static com.mootly.wcm.utils.Constants.BD_MICR_CODE;
 import static com.mootly.wcm.utils.Constants.BD_STATUS;
 import static com.mootly.wcm.utils.Constants.BD_TYPE_ACC;
 import static com.mootly.wcm.utils.Constants.PROP_PI_AREA_LOCALITY;
+import static com.mootly.wcm.utils.Constants.PROP_PI_COUNTRY;
 import static com.mootly.wcm.utils.Constants.PROP_PI_DEFECTIVE;
 import static com.mootly.wcm.utils.Constants.PROP_PI_DOB;
 import static com.mootly.wcm.utils.Constants.PROP_PI_EMAIL;
@@ -37,6 +38,7 @@ import static com.mootly.wcm.utils.Constants.PROP_PI_INCOME_TAX_WARD;
 import static com.mootly.wcm.utils.Constants.PROP_PI_LAST_NAME;
 import static com.mootly.wcm.utils.Constants.PROP_PI_MIDDLE_NAME;
 import static com.mootly.wcm.utils.Constants.PROP_PI_MOBILE;
+import static com.mootly.wcm.utils.Constants.PROP_PI_MOBILE1;
 import static com.mootly.wcm.utils.Constants.PROP_PI_NOTICE_DATE;
 import static com.mootly.wcm.utils.Constants.PROP_PI_NOTICE_NO;
 import static com.mootly.wcm.utils.Constants.PROP_PI_ORIGINAL_ACK_DATE;
@@ -44,6 +46,7 @@ import static com.mootly.wcm.utils.Constants.PROP_PI_ORIGINAL_ACK_NO;
 import static com.mootly.wcm.utils.Constants.PROP_PI_PAN;
 import static com.mootly.wcm.utils.Constants.PROP_PI_PHONE;
 import static com.mootly.wcm.utils.Constants.PROP_PI_PINCODE;
+import static com.mootly.wcm.utils.Constants.PROP_PI_PORTUGESE_CIVIL;
 import static com.mootly.wcm.utils.Constants.PROP_PI_PREMISES_BUILDING;
 import static com.mootly.wcm.utils.Constants.PROP_PI_RECEIPT_NO;
 import static com.mootly.wcm.utils.Constants.PROP_PI_RESIDENT_CATEGORY;
@@ -53,10 +56,10 @@ import static com.mootly.wcm.utils.Constants.PROP_PI_RETURN_TYPE;
 import static com.mootly.wcm.utils.Constants.PROP_PI_ROAD_STREET;
 import static com.mootly.wcm.utils.Constants.PROP_PI_SEX;
 import static com.mootly.wcm.utils.Constants.PROP_PI_STATE;
-import static com.mootly.wcm.utils.Constants.PROP_PI_COUNTRY;
 import static com.mootly.wcm.utils.Constants.PROP_PI_STD_CODE;
 import static com.mootly.wcm.utils.Constants.PROP_PI_TAX_STATUS;
 import static com.mootly.wcm.utils.Constants.PROP_PI_TOWN_CITY_DISTRICT;
+import static com.mootly.wcm.utils.Constants.PROP_PI_WARD_CIRCLE;
 import static com.mootly.wcm.utils.Constants.Rsstatus_q;
 import static com.mootly.wcm.utils.Constants.Rsstatus_q_no;
 import static com.mootly.wcm.utils.Constants.Rsstatus_q_no_no;
@@ -67,22 +70,14 @@ import static com.mootly.wcm.utils.Constants.Rsstatus_q_no_yes_yes;
 import static com.mootly.wcm.utils.Constants.Rsstatus_q_no_yes_yes_yes;
 import static com.mootly.wcm.utils.Constants.Rsstatus_q_yes;
 import static com.mootly.wcm.utils.Constants.Rsstatus_q_yes_yes;
-import static com.mootly.wcm.utils.Constants.PROP_PI_WARD_CIRCLE;
-import static com.mootly.wcm.utils.Constants.PROP_PI_MOBILE1;
-import static com.mootly.wcm.utils.Constants.PROP_PI_PORTUGESE_CIVIL;
 
-import java.text.DateFormat;
-import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.ResourceBundle;
 
 import javax.jcr.RepositoryException;
-import javax.ws.rs.Encoded;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
 
 import org.apache.commons.lang.StringUtils;
 import org.hippoecm.hst.component.support.forms.FormMap;
@@ -90,7 +85,7 @@ import org.hippoecm.hst.content.beans.ContentNodeBinder;
 import org.hippoecm.hst.content.beans.ContentNodeBindingException;
 import org.hippoecm.hst.content.beans.Node;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
-import org.onehippo.forge.sitemap.components.model.news.info.Publication;
+import org.hippoecm.hst.content.beans.standard.HippoMirror;
 
 import com.mootly.wcm.beans.standard.FlexibleDocument;
 import com.mootly.wcm.model.DITSubmissionStatus;
@@ -98,8 +93,8 @@ import com.mootly.wcm.model.FilingSection;
 import com.mootly.wcm.model.FinancialYear;
 import com.mootly.wcm.model.ITRForm;
 import com.mootly.wcm.model.ITRServiceDelivery;
-import com.mootly.wcm.model.ResidentStatus;
 import com.mootly.wcm.model.VerificationStatus;
+import com.mootly.wcm.utils.Constants;
 
 /**
  * User: vivek
@@ -107,7 +102,6 @@ import com.mootly.wcm.model.VerificationStatus;
  * Time: 11:26:35 AM
  */
 @XmlAccessorType(XmlAccessType.NONE)
-@SuppressWarnings("unused")
 @Node(jcrType = "mootlywcm:MemberPersonalInformation")
 public class MemberPersonalInformation extends FlexibleDocument implements ContentNodeBinder,FormMapFiller {
 	static final public String NAMESPACE = "mootlywcm:MemberPersonalInformation";
@@ -123,9 +117,9 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 	private String incomeTaxWard;
 	private String receiptNo;
 	private String taxStatus;
-	
+
 	private String finacialYear;
-	
+
 	private String returnType;
 	private String originalAckNo;
 	private GregorianCalendar originalAckDate;
@@ -198,18 +192,19 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 	private String trpname;
 	private Double trpreimbursement;
 	private String isTaxPreparebyTRP;
-	
+
 	//DIT Integration
 	private VerificationStatus ditVerificationStatus;
 	private String ditVerificationMessage;
 	//did the user choose to import from TDS
 	private String choiceImportTDS; 
 	private Boolean importTDSSuccess;
-	
+
 	private DITSubmissionStatus ditSubmissionStatus;
 	private String  ditSubmissionToken;
-	
-	
+	private String digitalSignatureUUID;
+
+
 	ResourceBundle messagesResourceBundle = ResourceBundle.getBundle("messages");
 
 	//ITR1.packageName.DIY.cost
@@ -217,7 +212,7 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 		String retValue = messagesResourceBundle.getString( getSelectedITRForm().name() + ".packageName." + getSelectedServiceDeliveryOption().name() + ".cost");
 		return retValue;
 	}
-	
+
 	@XmlElement
 	public ITRForm getSelectedITRForm() {
 		String retValueString = getFlexField("flex_string_ITRForm",null);
@@ -358,13 +353,13 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 		if (lastName == null) lastName = getProperty(PROP_PI_LAST_NAME);
 		return lastName;
 	}
-	
+
 	@XmlElement
 	public String getFatherName() {
 		if (fatherName == null) fatherName = getProperty(PROP_PI_FATHER_NAME);
 		return fatherName;
 	}
-	
+
 	@XmlElement
 	public String getEmploye_category() {
 		if (Employe_category == null) Employe_category = getProperty(PROP_PI_EMPLOYER_CATEGORY);
@@ -401,19 +396,19 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 		if (sex == null) sex = getProperty(PROP_PI_SEX);
 		return sex;
 	}
-	
+
 	@XmlElement
 	public String getFlatDoorBuilding() {
 		if (flatDoorBuilding == null) flatDoorBuilding = getProperty(PROP_PI_FLAT_FLOOR_BUILDING);
 		return flatDoorBuilding;
 	}
-	
+
 	@XmlElement
 	public String getPremisesBuilding() {
 		if (premisesBuilding == null) premisesBuilding = getProperty(PROP_PI_PREMISES_BUILDING);
 		return premisesBuilding;
 	}
-	
+
 	@XmlElement
 	public String getRoadStreet() {
 		if (roadStreet == null) roadStreet = getProperty(PROP_PI_ROAD_STREET);
@@ -558,7 +553,7 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 	public String getPersonalInfoUuid() {
 		return PIUUID;
 	}
-	
+
 	public VerificationStatus getDitVerificationStatus() {
 		String ditVerificationStatusStr = null;
 		if (ditVerificationStatus == null ) ditVerificationStatusStr = getProperty("mootlywcm:ditVerificationStatus");
@@ -571,22 +566,22 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 		}
 		return ditVerificationStatus;
 	}
-	
+
 	public final String getDitVerificationMessage() {
 		if (ditVerificationMessage == null) ditVerificationMessage = getProperty("mootlywcm:ditVerificationMessage");
 		return ditVerificationMessage;
 	}
-	
+
 	public String getChoiceImportTDS() {
 		if ( choiceImportTDS == null ) choiceImportTDS = getProperty("mootlywcm:choiceImportTDS");
 		return choiceImportTDS;
 	}
-	
+
 	public Boolean getImportTDSSuccess() {
 		if ( importTDSSuccess == null ) importTDSSuccess = getProperty("mootlywcm:importTDSSuccess");
 		return importTDSSuccess;
 	}
-	
+
 	public final DITSubmissionStatus getDitSubmissionStatus() {
 		if (ditSubmissionStatus == null) {
 			String ditSubmissionStatusStr = getProperty("mootlywcm:ditSubmissionStatus");
@@ -605,7 +600,7 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 		if (ditSubmissionToken == null) ditSubmissionToken =  getProperty("mootlywcm:ditSubmissionToken");
 		return ditSubmissionToken;
 	}
-	
+
 	public final void  setReturnSection(String ReturnSection){
 		this.ReturnSection = ReturnSection;
 	}
@@ -921,24 +916,24 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 	public final void setIsLiable_FurnishSec92E(String isLiable_FurnishSec92E) {
 		this.isLiable_FurnishSec92E = isLiable_FurnishSec92E;
 	}
-	
+
 	public void setDitVerificationStatus(
 			VerificationStatus ditVerificationStatus) {
 		this.ditVerificationStatus = ditVerificationStatus;
 	}
-	
+
 	public void setDitVerificationMessage(String ditVerificationMessage) {
 		this.ditVerificationMessage = ditVerificationMessage;
 	}
-	
+
 	public void setChoiceImportTDS(String choiceImportTDS) {
 		this.choiceImportTDS = choiceImportTDS;
 	}
-	
+
 	public void setImportTDSSuccess(Boolean importTDSSuccess) {
 		this.importTDSSuccess = importTDSSuccess;
 	}
-	
+
 	public final void setDitSubmissionStatus(DITSubmissionStatus ditSubmissionStatus) {
 		this.ditSubmissionStatus = ditSubmissionStatus;
 	}
@@ -1032,31 +1027,40 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 			if (mpi.getTrpreimbursement() != null) node.setProperty("mootlywcm:trpreimbursement", mpi.getTrpreimbursement());
 			if (mpi.getIsTaxPreparebyTRP() != null) node.setProperty("mootlywcm:isTaxPreparebyTRP", mpi.getIsTaxPreparebyTRP());
 			if (mpi.getIsLiable_FurnishSec92E() != null) node.setProperty("mootlywcm:isLiable_FurnishSecNinetyTwoE", mpi.getIsLiable_FurnishSec92E());
-			
+
 			if (mpi.getDitVerificationStatus() != null) {
 				node.setProperty("mootlywcm:ditVerificationStatus", mpi.getDitVerificationStatus().name());
 			}
-			
+
 			if (mpi.getDitVerificationMessage() != null) {
 				node.setProperty("mootlywcm:ditVerificationMessage", mpi.getDitVerificationMessage());
 			}
-			
+
 			if (mpi.getChoiceImportTDS() != null) {
 				node.setProperty("mootlywcm:choiceImportTDS", mpi.getChoiceImportTDS());
 			}
-			
+
 			if (mpi.getImportTDSSuccess() != null) {
 				node.setProperty("mootlywcm:importTDSSuccess", mpi.getImportTDSSuccess());
 			}
-			
+
 			if (mpi.getDitSubmissionStatus() != null) {
 				node.setProperty("mootlywcm:ditSubmissionStatus", mpi.getDitSubmissionStatus().name());
 			}
-			
+
 			if (mpi.getDitSubmissionToken() != null) {
 				node.setProperty("mootlywcm:ditSubmissionToken", mpi.getDitSubmissionToken());
 			}
-			
+			javax.jcr.Node digitalSignatureNode = null;
+			if(node.hasNode("mootlywcm:pathToDigitalSignature")){
+				digitalSignatureNode = node.getNode("mootlywcm:pathToDigitalSignature");
+			}else{
+				node.addNode("mootlywcm:pathToDigitalSignature", Constants.NT_HIPPO_MIRROR);
+			}
+			if(digitalSignatureNode != null){
+				digitalSignatureNode.setProperty(Constants.PROP_HIPPO_DOCBASE, getDigitalSignatureHandleUUID());
+			}
+
 		}catch (RepositoryException re) {
 			log.error("Binding Node Error",re);
 
@@ -1082,18 +1086,18 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 		//new changes for Return Filed under section on 06/08/2013
 		String returnTypeChoice = formMap.getField("returnTypeChoice").getValue();
 		String revisingWithNoticeSection = formMap.getField("revisingWithNoticeSection").getValue();
-		
+
 		FinancialYear finanYr = FinancialYear.TwentyTweleve;
-		  for(FinancialYear financialYear:FinancialYear.values()){
-		   if(!financialYear.equals(FinancialYear.UNKNOWN)){
-		    if(financialYear.getDisplayName().equals(formMap.getField("fy").getValue())){
-		     finanYr = financialYear;
-		    }
-		   }
-		  }
-		  FilingSection filingSection;
-		  //revisingWithNoticeSection")
-		  boolean isPastDue = finanYr.isPastDue(getSelectedITRForm(), formMap.getField("pi_state").getValue());if (isPastDue) {
+		for(FinancialYear financialYear:FinancialYear.values()){
+			if(!financialYear.equals(FinancialYear.UNKNOWN)){
+				if(financialYear.getDisplayName().equals(formMap.getField("fy").getValue())){
+					finanYr = financialYear;
+				}
+			}
+		}
+		FilingSection filingSection;
+		//revisingWithNoticeSection")
+		boolean isPastDue = finanYr.isPastDue(getSelectedITRForm(), formMap.getField("pi_state").getValue());if (isPastDue) {
 			filingSection = FilingSection.AfterDueDate_139_4;
 		}
 		else {
@@ -1314,7 +1318,7 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 		}
 		else{
 			log.info("for huf"+modchoice);
-			
+
 			ResourceBundle rb = ResourceBundle.getBundle(rbfilename);
 			for (String aKey: rb.keySet() ) {
 				if(aKey.matches(modchoice.trim())){
@@ -1327,7 +1331,7 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 				}
 			}
 		}
-		
+
 		//DIT VErification
 		if (formMap.getField("ditVerificationStatus") != null) {
 			String ditVerificationStatusStr = formMap.getField("ditVerificationStatus").getValue();
@@ -1335,36 +1339,36 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 				setDitVerificationStatus(VerificationStatus.valueOf(ditVerificationStatusStr));
 			}
 			catch (IllegalArgumentException e){
-				
+
 			}
 		}
-		
+
 		if (formMap.getField("ditVerificationMessage") != null) {
 			String ditVerificationMessageStr = formMap.getField("ditVerificationMessage").getValue();
 			try {
 				setDitVerificationMessage(ditVerificationMessageStr);
 			}
 			catch (IllegalArgumentException e){
-				
+
 			}
 		}
-		
-		
+
+
 		if (formMap.getField("ditSubmissionStatus") != null) {
 			String ditSubmissionStatusStr = formMap.getField("ditSubmissionStatus").getValue();
 			try {
 				setDitSubmissionStatus(DITSubmissionStatus.valueOf(ditSubmissionStatusStr));
 			}
 			catch (IllegalArgumentException e){
-				
+
 			}
 		}
-		
+
 		if (formMap.getField("ditSubmissionToken") != null) {
 			String ditSubmissionToken = formMap.getField("ditSubmissionToken").getValue();
 			setDitSubmissionToken(ditSubmissionToken);
 		}
-		
+
 		/*	if(StringUtils.isBlank(getResidentCategory())){
 			for(ResidentStatus resiStat:ResidentStatus.values()){
 				if(resiStat.name().equalsIgnoreCase(getRsstatusQ())){
@@ -1427,5 +1431,34 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 	public final  void setTrpreimbursement(Double trpreimbursement) {
 		this.trpreimbursement = trpreimbursement;
 	}
-	
+
+	public MemberDriveDocument getDigitalSignature() {
+		MemberDriveDocument driveDocumentDS = null; 
+		HippoBean hippoBeanDS = getBean("mootlywcm:pathToDigitalSignature");
+		if(hippoBeanDS instanceof HippoMirror){
+			HippoMirror hippoMirrorDS = (HippoMirror) hippoBeanDS;
+			if(hippoMirrorDS != null){
+				if(hippoMirrorDS.getReferencedBean() instanceof MemberDriveDocument){
+					driveDocumentDS = (MemberDriveDocument) hippoMirrorDS.getReferencedBean();
+				}
+			}
+		}
+		return driveDocumentDS;
+	}
+	public String getDigitalSignaturePath() {
+		return getDigitalSignature().getCanonicalPath();
+	}
+
+	public String getDigitalSignatureHandleUUID() {
+		if(digitalSignatureUUID == null){
+			if(getDigitalSignature() != null){
+				digitalSignatureUUID = getDigitalSignature().getCanonicalHandleUUID();
+			}
+		}
+		return digitalSignatureUUID;
+	}
+
+	public void setDigitalSignatureHandleUUID(String digitalSignatureUUID) {
+		this.digitalSignatureUUID = digitalSignatureUUID;
+	}
 }
