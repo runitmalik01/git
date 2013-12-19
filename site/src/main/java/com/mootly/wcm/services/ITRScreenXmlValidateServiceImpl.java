@@ -61,6 +61,7 @@ public class ITRScreenXmlValidateServiceImpl implements ITRScreenXmlValidateServ
 	public void getValidateXmlBasedOnReqScreen(HstRequest request,
 			HstResponse response) {
 		// TODO Auto-generated method stub
+		ITReturnComponentHelper itReturnComponentHelper = new ITReturnComponentHelper();
 		List<ITRXmlValidation> listOfITRXmlValidate = new ArrayList<ITRXmlValidation>();
 		listOfITRXmlValidate = ITRXmlValidation.getListOfXmlValidation();
 		MemberPersonalInformation memberPersonalInformation = (MemberPersonalInformation) request.getAttribute(MemberPersonalInformation.class.getSimpleName().toLowerCase());
@@ -132,6 +133,30 @@ public class ITRScreenXmlValidateServiceImpl implements ITRScreenXmlValidateServ
 													response.sendRedirect(redirectURLForSiteMapItem);
 													//return redirectURLForSiteMapItem;
 												}
+											}
+										}
+										break;
+									case VALIDATE7:
+										
+										HippoBean parentBean = parentFolder.getParentBean().getParentBean().getParentBean().getParentBean()
+												.getParentBean().getParentBean();
+										if(logger.isInfoEnabled()){
+											logger.info("parentBean::"+parentBean.getName());
+										}
+										/*for(;parentBean != null;){	
+											if(parentBean.getName().equalsIgnoreCase(itReturnComponentHelper.getResellerId(request))){
+												parentBean = parentFolder.getParentBean();
+												break;
+											}else{
+												parentBean = parentFolder.getParentBean();
+											}
+										}*/
+										parentFolder = parentBean.getBean("admin");
+										if(getValidateType(itrXmlValidation, parentFolder)){
+											if(redirectURLForSiteMapItem != null){
+												response.setRenderParameter("itr.require.screen", "itr.require.screen");
+												response.sendRedirect(redirectURLForSiteMapItem);
+												//return redirectURLForSiteMapItem;
 											}
 										}
 										break;
