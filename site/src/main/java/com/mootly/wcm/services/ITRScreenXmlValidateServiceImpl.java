@@ -89,6 +89,20 @@ public class ITRScreenXmlValidateServiceImpl implements ITRScreenXmlValidateServ
 								}
 								if(itrForm.equals(selectedITRForm)){
 									switch(itrXmlValidation){
+									case VALIDATE7:
+										HippoBean parentBean = parentFolder.getParentBean().getParentBean().getParentBean().getParentBean()
+										.getParentBean().getParentBean();
+										parentFolder = parentBean.getBean("admin");
+										if(parentFolder != null){
+											if(!getValidateProperty(itrXmlValidation, parentFolder)){
+												if(redirectURLForSiteMapItem != null){
+													response.setRenderParameter("itr.require.screen", "itr.require.screen");
+													response.sendRedirect(redirectURLForSiteMapItem);
+													//return redirectURLForSiteMapItem;
+												}
+											}
+										}
+										break;
 									case VALIDATE1:
 										if("Y".equals(memberPersonalInformation.getPortugesecivil())){
 											if(getValidateType(itrXmlValidation.getDocumentName(), parentFolder, 0)){
@@ -133,30 +147,6 @@ public class ITRScreenXmlValidateServiceImpl implements ITRScreenXmlValidateServ
 													response.sendRedirect(redirectURLForSiteMapItem);
 													//return redirectURLForSiteMapItem;
 												}
-											}
-										}
-										break;
-									case VALIDATE7:
-										
-										HippoBean parentBean = parentFolder.getParentBean().getParentBean().getParentBean().getParentBean()
-												.getParentBean().getParentBean();
-										if(logger.isInfoEnabled()){
-											logger.info("parentBean::"+parentBean.getName());
-										}
-										/*for(;parentBean != null;){	
-											if(parentBean.getName().equalsIgnoreCase(itReturnComponentHelper.getResellerId(request))){
-												parentBean = parentFolder.getParentBean();
-												break;
-											}else{
-												parentBean = parentFolder.getParentBean();
-											}
-										}*/
-										parentFolder = parentBean.getBean("admin");
-										if(getValidateType(itrXmlValidation, parentFolder)){
-											if(redirectURLForSiteMapItem != null){
-												response.setRenderParameter("itr.require.screen", "itr.require.screen");
-												response.sendRedirect(redirectURLForSiteMapItem);
-												//return redirectURLForSiteMapItem;
 											}
 										}
 										break;
@@ -431,5 +421,31 @@ public class ITRScreenXmlValidateServiceImpl implements ITRScreenXmlValidateServ
 			}
 		}	
 		return null;
+	}
+
+	public boolean getValidateProperty(ITRXmlValidation VALIDATE,
+			HippoFolder parentFolder) {
+		// TODO Auto-generated method stub
+		boolean invalid = true;//check for valid of xml is false
+		//boolean unCheckDoc = true;//no need to check document in parentBeanFolder
+		if(VALIDATE.getValidateProperty().length > 0){
+			for(HippoDocumentBean documentBean:parentFolder.getDocuments()){
+				for(ValidateProperty propertyName: VALIDATE.getValidateProperty()){
+					if(propertyName.getDocumentBean().getSimpleName().equalsIgnoreCase(documentBean.getName())){
+						Object object = documentBean.getProperty(propertyName.getPropertyName());
+						if(object != null){
+							switch(propertyName.getValidateType()){
+							case EQUALITY:
+								invalid = getEqualPropertyValidate(object, propertyName);
+								break;
+							default:
+								break;
+							}
+						}
+					} 
+				}
+			}
+		}
+		return invalid;
 	}
 }
