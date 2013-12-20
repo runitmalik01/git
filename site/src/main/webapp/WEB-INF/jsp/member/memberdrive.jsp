@@ -215,6 +215,7 @@ pageContext.setAttribute("hostname", builder.toString());
 			</p>
 		</div>
 	</fieldset>
+	<%--
 	<c:if test="${fn:length(memberFiles) > 0}">
 		<div class="row show-grid">
 			<div class="col-md-3 col-md-offset-9">
@@ -222,6 +223,7 @@ pageContext.setAttribute("hostname", builder.toString());
 			</div>
 		</div>
 	</c:if>
+	 --%>
 </form>
 <script type="text/javascript">
   $('#delete').click(function(){

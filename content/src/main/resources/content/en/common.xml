@@ -1715,7 +1715,7 @@
             <sv:value>DIY</sv:value>
           </sv:property>
           <sv:property sv:name="selection:label" sv:type="String">
-            <sv:value>e File</sv:value>
+            <sv:value>DIY</sv:value>
           </sv:property>
         </sv:node>
         <sv:node sv:name="selection:listitem">
@@ -3990,7 +3990,7 @@
 							src="//www.youtube.com/embed/RcqDH2w3Wb4" frameborder="0"
 							allowfullscreen&gt;&lt;/iframe&gt;');
 							});
-							//for cara.jsp (Carousel) on home page e File
+							//for cara.jsp (Carousel) on home page DIY
 							$('#eFile').on('click', function() {
 							$('div.modal-body').html('&lt;iframe width="500" height="281"
 							src="//www.youtube.com/embed/N8uSYsth98I" frameborder="0"
@@ -4169,7 +4169,7 @@
 							src="//www.youtube.com/embed/RcqDH2w3Wb4" frameborder="0"
 							allowfullscreen&gt;&lt;/iframe&gt;');
 							});
-							//for cara.jsp (Carousel) on home page e File
+							//for cara.jsp (Carousel) on home page DIY
 							$('#eFile').on('click', function() {
 							$('div.modal-body').html('&lt;iframe width="500" height="281"
 							src="//www.youtube.com/embed/N8uSYsth98I" frameborder="0"
@@ -5720,7 +5720,7 @@
 								law to
 								the contrary, any claim or cause of action arising out of or
 								related to use
-								of the Service or the Terms of Use must be filed
+								of the Service or the Terms of Use must bDIYd
 								within one (1)
 								year after such
 								claim or cause of action arose or
@@ -7966,604 +7966,977 @@ Wealth4India has provided the facility to the Assessee / tax Payer to  check sta
         </sv:property>
       </sv:node>
     </sv:node>
-    <sv:node sv:name="incometaxreturn">
-      <sv:property sv:name="jcr:primaryType" sv:type="Name">
-        <sv:value>hippostd:folder</sv:value>
-      </sv:property>
-      <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
-        <sv:value>hippo:harddocument</sv:value>
-        <sv:value>hippotranslation:translated</sv:value>
-        <sv:value>hippo:translated</sv:value>
-      </sv:property>
-      <sv:property sv:name="jcr:uuid" sv:type="String">
-        <sv:value>ffd0d0cb-b331-4c3f-9124-516717ab2988</sv:value>
-      </sv:property>
-      <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
-      <sv:property sv:multiple="true" sv:name="hippostd:foldertype" sv:type="String">
-        <sv:value>new-translated-folder</sv:value>
-        <sv:value>new-document</sv:value>
-      </sv:property>
-      <sv:property sv:name="hippotranslation:id" sv:type="String">
-        <sv:value>6d865a09-6b1b-46af-a537-4b3cade1ce71</sv:value>
-      </sv:property>
-      <sv:property sv:name="hippotranslation:locale" sv:type="String">
-        <sv:value>en</sv:value>
-      </sv:property>
-      <sv:node sv:name="hippotranslation:translations">
-        <sv:property sv:name="jcr:primaryType" sv:type="Name">
-          <sv:value>hippotranslation:translations</sv:value>
-        </sv:property>
-      </sv:node>
-      <sv:node sv:name="hippo:translation">
-        <sv:property sv:name="jcr:primaryType" sv:type="Name">
-          <sv:value>hippo:translation</sv:value>
-        </sv:property>
-        <sv:property sv:name="hippo:language" sv:type="String">
-          <sv:value/>
-        </sv:property>
-        <sv:property sv:name="hippo:message" sv:type="String">
-          <sv:value>IncometaxReturn</sv:value>
-        </sv:property>
-      </sv:node>
-      <sv:node sv:name="itr1">
-        <sv:property sv:name="jcr:primaryType" sv:type="Name">
-          <sv:value>hippo:handle</sv:value>
-        </sv:property>
-        <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
-          <sv:value>hippo:hardhandle</sv:value>
-          <sv:value>hippo:translated</sv:value>
-        </sv:property>
-        <sv:property sv:name="jcr:uuid" sv:type="String">
-          <sv:value>ea2a131d-1f9c-4eeb-872d-23c6a519f36e</sv:value>
-        </sv:property>
-        <sv:node sv:name="hippo:translation">
-          <sv:property sv:name="jcr:primaryType" sv:type="Name">
-            <sv:value>hippo:translation</sv:value>
-          </sv:property>
-          <sv:property sv:name="hippo:language" sv:type="String">
-            <sv:value/>
-          </sv:property>
-          <sv:property sv:name="hippo:message" sv:type="String">
-            <sv:value>ITR1</sv:value>
-          </sv:property>
-        </sv:node>
-        <sv:node sv:name="itr1">
-          <sv:property sv:name="jcr:primaryType" sv:type="Name">
-            <sv:value>mootlywcm:Service</sv:value>
-          </sv:property>
-          <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
-            <sv:value>hippo:harddocument</sv:value>
-            <sv:value>hippotranslation:translated</sv:value>
-          </sv:property>
-          <sv:property sv:name="jcr:uuid" sv:type="String">
-            <sv:value>428ba9b1-72fe-4255-befa-59952b59cd82</sv:value>
-          </sv:property>
-          <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
-            <sv:value>live</sv:value>
-            <sv:value>preview</sv:value>
-          </sv:property>
-          <sv:property sv:name="hippo:related___pathreference" sv:type="String">
-            <sv:value>common/services/incometaxreturn/itr1</sv:value>
-          </sv:property>
-          <sv:property sv:name="hippostd:holder" sv:type="String">
-            <sv:value>admin</sv:value>
-          </sv:property>
-          <sv:property sv:name="hippostd:state" sv:type="String">
-            <sv:value>published</sv:value>
-          </sv:property>
-          <sv:property sv:name="hippostd:stateSummary" sv:type="String">
-            <sv:value>live</sv:value>
-          </sv:property>
-          <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
-            <sv:value>admin</sv:value>
-          </sv:property>
-          <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
-            <sv:value>2013-07-07T01:33:00.415-07:00</sv:value>
-          </sv:property>
-          <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-            <sv:value>2013-11-09T16:45:59.452-08:00</sv:value>
-          </sv:property>
-          <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
-            <sv:value>admin</sv:value>
-          </sv:property>
-          <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-            <sv:value>2013-11-09T16:46:06.645-08:00</sv:value>
-          </sv:property>
-          <sv:property sv:name="hippotranslation:id" sv:type="String">
-            <sv:value>38b956a9-0045-4098-8f92-f3866d2e32ca</sv:value>
-          </sv:property>
-          <sv:property sv:name="hippotranslation:locale" sv:type="String">
-            <sv:value>en</sv:value>
-          </sv:property>
-          <sv:property sv:name="mootlywcm:Name" sv:type="String">
-            <sv:value>ITR1</sv:value>
-          </sv:property>
-          <sv:property sv:multiple="true" sv:name="mootlywcm:categories" sv:type="String">
-            <sv:value>taxreturn</sv:value>
-          </sv:property>
-          <sv:property sv:name="mootlywcm:description" sv:type="String">
-            <sv:value>ITR-1 SAHAJ Form is an essential Income Tax Return form for Indian citizens filing their Tax Returns with the Income Tax Department of India. The Income Tax Act, 1961, and the Income Tax Rules, 1962, obligates citizens to file their returns with the Income Tax Department at the end of every financial year. These returns should be filed before the specified due date. This form is issued by the Income Tax Department of India and is an integral part of the rules laid down by the Government of India for filing Income Tax Returns.
-	Every Income Tax Return Form is applicable to a certain section of the Assessees and so is the case with the ITR-1 SAHAJ Form. Only those Forms which are filed by the eligible Assessees are processed by the Income Tax Department of India. It is therefore imperative to know which particular form is appropriate in each case. Income Tax Return Forms vary depending on the criteria of the source of income of the Assessee and the category of the Assessee.</sv:value>
-          </sv:property>
-          <sv:property sv:name="mootlywcm:enable" sv:type="Boolean">
-            <sv:value>false</sv:value>
-          </sv:property>
-          <sv:property sv:multiple="true" sv:name="mootlywcm:highlights" sv:type="String">
-            <sv:value>This Return Form is to be used by an individual whose total income for the assessment year includes:-</sv:value>
-            <sv:value>(a) Income from Salary/ Pension; or</sv:value>
-            <sv:value>(b) Income from One House Property (excluding cases where loss is brought forward from previous years);</sv:value>
-            <sv:value>(c) Income from Other Sources (Excluding Winning from Lottery and Income from Race Horses).</sv:value>
-          </sv:property>
-          <sv:property sv:name="mootlywcm:id" sv:type="String">
-            <sv:value/>
-          </sv:property>
-          <sv:property sv:name="mootlywcm:serviceCode" sv:type="String">
-            <sv:value>09</sv:value>
-          </sv:property>
-          <sv:property sv:name="mootlywcm:srForm" sv:type="String">
-            <sv:value>98364bc0-bbec-4fff-b223-fc22d6411de0</sv:value>
-          </sv:property>
-          <sv:property sv:multiple="true" sv:name="mootlywcm:subCategories" sv:type="String">
-            <sv:value>ITR1</sv:value>
-          </sv:property>
-          <sv:node sv:name="hippotranslation:translations">
-            <sv:property sv:name="jcr:primaryType" sv:type="Name">
-              <sv:value>hippotranslation:translations</sv:value>
-            </sv:property>
-          </sv:node>
-          <sv:node sv:name="mootlywcm:costmodel">
-            <sv:property sv:name="jcr:primaryType" sv:type="Name">
-              <sv:value>mootlywcm:costmodel</sv:value>
-            </sv:property>
-            <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
-              <sv:value>hippo:harddocument</sv:value>
-            </sv:property>
-            <sv:property sv:name="jcr:uuid" sv:type="String">
-              <sv:value>78d7b182-0046-41f7-9c73-adb71ccad591</sv:value>
-            </sv:property>
-            <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
-            <sv:property sv:name="hippostd:state" sv:type="String">
-              <sv:value>draft</sv:value>
-            </sv:property>
-            <sv:property sv:name="hippostd:stateSummary" sv:type="String">
-              <sv:value>new</sv:value>
-            </sv:property>
-            <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
-              <sv:value/>
-            </sv:property>
-            <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
-              <sv:value>2013-06-25T15:23:07.952+05:30</sv:value>
-            </sv:property>
-            <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-              <sv:value>2013-06-25T15:23:07.952+05:30</sv:value>
-            </sv:property>
-            <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
-              <sv:value/>
-            </sv:property>
-            <sv:property sv:name="mootlywcm:cost" sv:type="String">
-              <sv:value>400</sv:value>
-            </sv:property>
-            <sv:property sv:name="mootlywcm:costDetail" sv:type="String">
-              <sv:value/>
-            </sv:property>
-            <sv:property sv:name="mootlywcm:offeringMode" sv:type="String">
-              <sv:value>DIY</sv:value>
-            </sv:property>
-          </sv:node>
-          <sv:node sv:name="mootlywcm:costmodel">
-            <sv:property sv:name="jcr:primaryType" sv:type="Name">
-              <sv:value>mootlywcm:costmodel</sv:value>
-            </sv:property>
-            <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
-              <sv:value>hippo:harddocument</sv:value>
-            </sv:property>
-            <sv:property sv:name="jcr:uuid" sv:type="String">
-              <sv:value>8f039bbf-9a10-4491-b855-d5859f1949cd</sv:value>
-            </sv:property>
-            <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
-            <sv:property sv:name="hippostd:state" sv:type="String">
-              <sv:value>draft</sv:value>
-            </sv:property>
-            <sv:property sv:name="hippostd:stateSummary" sv:type="String">
-              <sv:value>new</sv:value>
-            </sv:property>
-            <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
-              <sv:value/>
-            </sv:property>
-            <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
-              <sv:value>2013-06-25T15:23:07.952+05:30</sv:value>
-            </sv:property>
-            <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-              <sv:value>2013-06-25T15:23:07.952+05:30</sv:value>
-            </sv:property>
-            <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
-              <sv:value/>
-            </sv:property>
-            <sv:property sv:name="mootlywcm:cost" sv:type="String">
-              <sv:value>500</sv:value>
-            </sv:property>
-            <sv:property sv:name="mootlywcm:costDetail" sv:type="String">
-              <sv:value/>
-            </sv:property>
-            <sv:property sv:name="mootlywcm:offeringMode" sv:type="String">
-              <sv:value>Assisted</sv:value>
-            </sv:property>
-          </sv:node>
-        </sv:node>
-      </sv:node>
-      <sv:node sv:name="itr2">
-        <sv:property sv:name="jcr:primaryType" sv:type="Name">
-          <sv:value>hippo:handle</sv:value>
-        </sv:property>
-        <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
-          <sv:value>hippo:hardhandle</sv:value>
-          <sv:value>hippo:translated</sv:value>
-        </sv:property>
-        <sv:property sv:name="jcr:uuid" sv:type="String">
-          <sv:value>9b4aede8-2058-4951-845f-4d6368021c42</sv:value>
-        </sv:property>
-        <sv:node sv:name="hippo:translation">
-          <sv:property sv:name="jcr:primaryType" sv:type="Name">
-            <sv:value>hippo:translation</sv:value>
-          </sv:property>
-          <sv:property sv:name="hippo:language" sv:type="String">
-            <sv:value/>
-          </sv:property>
-          <sv:property sv:name="hippo:message" sv:type="String">
-            <sv:value>ITR2</sv:value>
-          </sv:property>
-        </sv:node>
-        <sv:node sv:name="itr2">
-          <sv:property sv:name="jcr:primaryType" sv:type="Name">
-            <sv:value>mootlywcm:Service</sv:value>
-          </sv:property>
-          <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
-            <sv:value>hippo:harddocument</sv:value>
-            <sv:value>hippotranslation:translated</sv:value>
-          </sv:property>
-          <sv:property sv:name="jcr:uuid" sv:type="String">
-            <sv:value>e99d96b7-e3b1-447d-959d-115f5fec735e</sv:value>
-          </sv:property>
-          <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
-            <sv:value>live</sv:value>
-            <sv:value>preview</sv:value>
-          </sv:property>
-          <sv:property sv:name="hippo:related___pathreference" sv:type="String">
-            <sv:value>common/services/incometaxreturn/itr2</sv:value>
-          </sv:property>
-          <sv:property sv:name="hippostd:holder" sv:type="String">
-            <sv:value>admin</sv:value>
-          </sv:property>
-          <sv:property sv:name="hippostd:state" sv:type="String">
-            <sv:value>published</sv:value>
-          </sv:property>
-          <sv:property sv:name="hippostd:stateSummary" sv:type="String">
-            <sv:value>live</sv:value>
-          </sv:property>
-          <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
-            <sv:value>admin</sv:value>
-          </sv:property>
-          <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
-            <sv:value>2013-07-07T18:18:40.775+05:30</sv:value>
-          </sv:property>
-          <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-            <sv:value>2013-07-11T23:36:04.368+05:30</sv:value>
-          </sv:property>
-          <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
-            <sv:value>admin</sv:value>
-          </sv:property>
-          <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-            <sv:value>2013-07-11T23:36:07.868+05:30</sv:value>
-          </sv:property>
-          <sv:property sv:name="hippotranslation:id" sv:type="String">
-            <sv:value>82ec7310-4598-4ad5-9bdc-f453a008ea0e</sv:value>
-          </sv:property>
-          <sv:property sv:name="hippotranslation:locale" sv:type="String">
-            <sv:value>en</sv:value>
-          </sv:property>
-          <sv:property sv:name="mootlywcm:Name" sv:type="String">
-            <sv:value>ITR2</sv:value>
-          </sv:property>
-          <sv:property sv:multiple="true" sv:name="mootlywcm:categories" sv:type="String">
-            <sv:value>taxreturn</sv:value>
-          </sv:property>
-          <sv:property sv:name="mootlywcm:description" sv:type="String">
-            <sv:value>The ITR-2 is a Form used by Income Tax Assessees in India. The process of filing Tax Returns in India involves the use of various forms for different categories of Assessees and the ITR-2 is one such form.
-	he due date for filing return with the Income Tax Department of India is 31 July every year. This is subject to change only if a directive to this effect is issued by the Income Tax Department or the Ministry of Finance, India. The Financial Year ends on 31 March every year so Assessees have a period of four months to prepare their Income Tax Returns.</sv:value>
-          </sv:property>
-          <sv:property sv:name="mootlywcm:enable" sv:type="Boolean">
-            <sv:value>false</sv:value>
-          </sv:property>
-          <sv:property sv:multiple="true" sv:name="mootlywcm:highlights" sv:type="String">
-            <sv:value>This Return Form is to be used by an individual or a Hindu Undivided Family whose total income for the assessment year includes:-</sv:value>
-            <sv:value>(a) Income from Salary / Pension</sv:value>
-            <sv:value>(b) Income from House Property</sv:value>
-            <sv:value>(c) Income from Capital Gains</sv:value>
-            <sv:value>(d) Income from Other Sources (including Winning from Lottery and Income from Race Horses)</sv:value>
-          </sv:property>
-          <sv:property sv:name="mootlywcm:id" sv:type="String">
-            <sv:value/>
-          </sv:property>
-          <sv:property sv:name="mootlywcm:serviceCode" sv:type="String">
-            <sv:value>10</sv:value>
-          </sv:property>
-          <sv:property sv:name="mootlywcm:srForm" sv:type="String">
-            <sv:value/>
-          </sv:property>
-          <sv:property sv:multiple="true" sv:name="mootlywcm:subCategories" sv:type="String">
-            <sv:value>ITR2</sv:value>
-          </sv:property>
-          <sv:node sv:name="hippotranslation:translations">
-            <sv:property sv:name="jcr:primaryType" sv:type="Name">
-              <sv:value>hippotranslation:translations</sv:value>
-            </sv:property>
-          </sv:node>
-          <sv:node sv:name="mootlywcm:costmodel">
-            <sv:property sv:name="jcr:primaryType" sv:type="Name">
-              <sv:value>mootlywcm:costmodel</sv:value>
-            </sv:property>
-            <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
-              <sv:value>hippo:harddocument</sv:value>
-            </sv:property>
-            <sv:property sv:name="jcr:uuid" sv:type="String">
-              <sv:value>3d16346f-c58b-4f31-ba5b-b6420e0c1fc1</sv:value>
-            </sv:property>
-            <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
-            <sv:property sv:name="hippostd:state" sv:type="String">
-              <sv:value>draft</sv:value>
-            </sv:property>
-            <sv:property sv:name="hippostd:stateSummary" sv:type="String">
-              <sv:value>new</sv:value>
-            </sv:property>
-            <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
-              <sv:value/>
-            </sv:property>
-            <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
-              <sv:value>2013-06-25T15:23:07.952+05:30</sv:value>
-            </sv:property>
-            <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-              <sv:value>2013-06-25T15:23:07.952+05:30</sv:value>
-            </sv:property>
-            <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
-              <sv:value/>
-            </sv:property>
-            <sv:property sv:name="mootlywcm:cost" sv:type="String">
-              <sv:value>400</sv:value>
-            </sv:property>
-            <sv:property sv:name="mootlywcm:costDetail" sv:type="String">
-              <sv:value/>
-            </sv:property>
-            <sv:property sv:name="mootlywcm:offeringMode" sv:type="String">
-              <sv:value>e File</sv:value>
-            </sv:property>
-          </sv:node>
-          <sv:node sv:name="mootlywcm:costmodel">
-            <sv:property sv:name="jcr:primaryType" sv:type="Name">
-              <sv:value>mootlywcm:costmodel</sv:value>
-            </sv:property>
-            <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
-              <sv:value>hippo:harddocument</sv:value>
-            </sv:property>
-            <sv:property sv:name="jcr:uuid" sv:type="String">
-              <sv:value>bef43ce9-b594-44a1-87ae-a02327ec123c</sv:value>
-            </sv:property>
-            <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
-            <sv:property sv:name="hippostd:state" sv:type="String">
-              <sv:value>draft</sv:value>
-            </sv:property>
-            <sv:property sv:name="hippostd:stateSummary" sv:type="String">
-              <sv:value>new</sv:value>
-            </sv:property>
-            <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
-              <sv:value/>
-            </sv:property>
-            <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
-              <sv:value>2013-06-25T15:23:07.952+05:30</sv:value>
-            </sv:property>
-            <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-              <sv:value>2013-06-25T15:23:07.952+05:30</sv:value>
-            </sv:property>
-            <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
-              <sv:value/>
-            </sv:property>
-            <sv:property sv:name="mootlywcm:cost" sv:type="String">
-              <sv:value>500</sv:value>
-            </sv:property>
-            <sv:property sv:name="mootlywcm:costDetail" sv:type="String">
-              <sv:value/>
-            </sv:property>
-            <sv:property sv:name="mootlywcm:offeringMode" sv:type="String">
-              <sv:value>eZ File</sv:value>
-            </sv:property>
-          </sv:node>
-        </sv:node>
-      </sv:node>
-      <sv:node sv:name="itr3">
-        <sv:property sv:name="jcr:primaryType" sv:type="Name">
-          <sv:value>hippo:handle</sv:value>
-        </sv:property>
-        <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
-          <sv:value>hippo:hardhandle</sv:value>
-          <sv:value>hippo:translated</sv:value>
-        </sv:property>
-        <sv:property sv:name="jcr:uuid" sv:type="String">
-          <sv:value>12c6d6f4-a77c-4564-b58f-506e095e71b6</sv:value>
-        </sv:property>
-        <sv:node sv:name="hippo:translation">
-          <sv:property sv:name="jcr:primaryType" sv:type="Name">
-            <sv:value>hippo:translation</sv:value>
-          </sv:property>
-          <sv:property sv:name="hippo:language" sv:type="String">
-            <sv:value/>
-          </sv:property>
-          <sv:property sv:name="hippo:message" sv:type="String">
-            <sv:value>ITR3</sv:value>
-          </sv:property>
-        </sv:node>
-        <sv:node sv:name="itr3">
-          <sv:property sv:name="jcr:primaryType" sv:type="Name">
-            <sv:value>mootlywcm:Service</sv:value>
-          </sv:property>
-          <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
-            <sv:value>hippo:harddocument</sv:value>
-            <sv:value>hippotranslation:translated</sv:value>
-          </sv:property>
-          <sv:property sv:name="jcr:uuid" sv:type="String">
-            <sv:value>aeb3f3f5-62f7-4312-9c13-c3cba3f40b92</sv:value>
-          </sv:property>
-          <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
-            <sv:value>live</sv:value>
-            <sv:value>preview</sv:value>
-          </sv:property>
-          <sv:property sv:name="hippo:related___pathreference" sv:type="String">
-            <sv:value>common/services/incometaxreturn/itr3</sv:value>
-          </sv:property>
-          <sv:property sv:name="hippostd:holder" sv:type="String">
-            <sv:value>admin</sv:value>
-          </sv:property>
-          <sv:property sv:name="hippostd:state" sv:type="String">
-            <sv:value>published</sv:value>
-          </sv:property>
-          <sv:property sv:name="hippostd:stateSummary" sv:type="String">
-            <sv:value>live</sv:value>
-          </sv:property>
-          <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
-            <sv:value>admin</sv:value>
-          </sv:property>
-          <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
-            <sv:value>2013-07-07T18:22:13.372+05:30</sv:value>
-          </sv:property>
-          <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-            <sv:value>2013-07-11T23:36:17.745+05:30</sv:value>
-          </sv:property>
-          <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
-            <sv:value>admin</sv:value>
-          </sv:property>
-          <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-            <sv:value>2013-07-11T23:36:21.373+05:30</sv:value>
-          </sv:property>
-          <sv:property sv:name="hippotranslation:id" sv:type="String">
-            <sv:value>c4783d4c-ce19-4361-a68b-42391eed1cc2</sv:value>
-          </sv:property>
-          <sv:property sv:name="hippotranslation:locale" sv:type="String">
-            <sv:value>en</sv:value>
-          </sv:property>
-          <sv:property sv:name="mootlywcm:Name" sv:type="String">
-            <sv:value>ITR3</sv:value>
-          </sv:property>
-          <sv:property sv:multiple="true" sv:name="mootlywcm:categories" sv:type="String">
-            <sv:value>taxreturn</sv:value>
-          </sv:property>
-          <sv:property sv:name="mootlywcm:description" sv:type="String">
-            <sv:value>There are various forms that Assessees use while filing Income Tax Returns in India and the ITR-3 Form is one such form. The ITR-3 Form is used by a certain section of Tax payers as per the guidelines laid down by the Income Tax Department of India.</sv:value>
-          </sv:property>
-          <sv:property sv:name="mootlywcm:enable" sv:type="Boolean">
-            <sv:value>false</sv:value>
-          </sv:property>
-          <sv:property sv:multiple="true" sv:name="mootlywcm:highlights" sv:type="String">
-            <sv:value>The ITR-3 Form is applicable only to those Individuals and Hindu Undivided Families that can be placed under the following categories</sv:value>
-            <sv:value>(a) Is a Partner in a firm?</sv:value>
-            <sv:value>(b) Gains Income through ‘Profits or gains of business or profession’</sv:value>
-            <sv:value>(c) Gains Income by means of interest, salary, bonus, commission, remuneration, as a partner</sv:value>
-          </sv:property>
-          <sv:property sv:name="mootlywcm:id" sv:type="String">
-            <sv:value/>
-          </sv:property>
-          <sv:property sv:name="mootlywcm:serviceCode" sv:type="String">
-            <sv:value>11</sv:value>
-          </sv:property>
-          <sv:property sv:name="mootlywcm:srForm" sv:type="String">
-            <sv:value/>
-          </sv:property>
-          <sv:property sv:multiple="true" sv:name="mootlywcm:subCategories" sv:type="String">
-            <sv:value>ITR3</sv:value>
-          </sv:property>
-          <sv:node sv:name="hippotranslation:translations">
-            <sv:property sv:name="jcr:primaryType" sv:type="Name">
-              <sv:value>hippotranslation:translations</sv:value>
-            </sv:property>
-          </sv:node>
-          <sv:node sv:name="mootlywcm:costmodel">
-            <sv:property sv:name="jcr:primaryType" sv:type="Name">
-              <sv:value>mootlywcm:costmodel</sv:value>
-            </sv:property>
-            <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
-              <sv:value>hippo:harddocument</sv:value>
-            </sv:property>
-            <sv:property sv:name="jcr:uuid" sv:type="String">
-              <sv:value>6a83c0e8-7f12-429f-b55d-93c987fd4d58</sv:value>
-            </sv:property>
-            <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
-            <sv:property sv:name="hippostd:state" sv:type="String">
-              <sv:value>draft</sv:value>
-            </sv:property>
-            <sv:property sv:name="hippostd:stateSummary" sv:type="String">
-              <sv:value>new</sv:value>
-            </sv:property>
-            <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
-              <sv:value/>
-            </sv:property>
-            <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
-              <sv:value>2013-06-25T15:23:07.952+05:30</sv:value>
-            </sv:property>
-            <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-              <sv:value>2013-06-25T15:23:07.952+05:30</sv:value>
-            </sv:property>
-            <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
-              <sv:value/>
-            </sv:property>
-            <sv:property sv:name="mootlywcm:cost" sv:type="String">
-              <sv:value>600</sv:value>
-            </sv:property>
-            <sv:property sv:name="mootlywcm:costDetail" sv:type="String">
-              <sv:value/>
-            </sv:property>
-            <sv:property sv:name="mootlywcm:offeringMode" sv:type="String">
-              <sv:value>e File</sv:value>
-            </sv:property>
-          </sv:node>
-          <sv:node sv:name="mootlywcm:costmodel">
-            <sv:property sv:name="jcr:primaryType" sv:type="Name">
-              <sv:value>mootlywcm:costmodel</sv:value>
-            </sv:property>
-            <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
-              <sv:value>hippo:harddocument</sv:value>
-            </sv:property>
-            <sv:property sv:name="jcr:uuid" sv:type="String">
-              <sv:value>bbd0549b-8beb-4e31-808b-b366d0fe31b0</sv:value>
-            </sv:property>
-            <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
-            <sv:property sv:name="hippostd:state" sv:type="String">
-              <sv:value>draft</sv:value>
-            </sv:property>
-            <sv:property sv:name="hippostd:stateSummary" sv:type="String">
-              <sv:value>new</sv:value>
-            </sv:property>
-            <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
-              <sv:value/>
-            </sv:property>
-            <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
-              <sv:value>2013-06-25T15:23:07.952+05:30</sv:value>
-            </sv:property>
-            <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-              <sv:value>2013-06-25T15:23:07.952+05:30</sv:value>
-            </sv:property>
-            <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
-              <sv:value/>
-            </sv:property>
-            <sv:property sv:name="mootlywcm:cost" sv:type="String">
-              <sv:value>500</sv:value>
-            </sv:property>
-            <sv:property sv:name="mootlywcm:costDetail" sv:type="String">
-              <sv:value/>
-            </sv:property>
-            <sv:property sv:name="mootlywcm:offeringMode" sv:type="String">
-              <sv:value>eZ File</sv:value>
-            </sv:property>
-          </sv:node>
-        </sv:node>
-      </sv:node>
-    </sv:node>
+    <!-- ITRETURN -->
+	<sv:node sv:name="incometaxreturn" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hippostd:folder</sv:value>
+	  </sv:property>
+	  <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+	    <sv:value>hippo:harddocument</sv:value>
+	    <sv:value>hippotranslation:translated</sv:value>
+	    <sv:value>hippo:translated</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>ffd0d0cb-b331-4c3f-9124-516717ab2988</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
+	  <sv:property sv:multiple="true" sv:name="hippostd:foldertype" sv:type="String">
+	    <sv:value>new-translated-folder</sv:value>
+	    <sv:value>new-document</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hippotranslation:id" sv:type="String">
+	    <sv:value>6d865a09-6b1b-46af-a537-4b3cade1ce71</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hippotranslation:locale" sv:type="String">
+	    <sv:value>en</sv:value>
+	  </sv:property>
+	  <sv:node sv:name="hippotranslation:translations">
+	    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	      <sv:value>hippotranslation:translations</sv:value>
+	    </sv:property>
+	  </sv:node>
+	  <sv:node sv:name="hippo:translation">
+	    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	      <sv:value>hippo:translation</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="hippo:language" sv:type="String">
+	      <sv:value/>
+	    </sv:property>
+	    <sv:property sv:name="hippo:message" sv:type="String">
+	      <sv:value>IncometaxReturn</sv:value>
+	    </sv:property>
+	  </sv:node>
+	  <sv:node sv:name="itr1">
+	    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	      <sv:value>hippo:handle</sv:value>
+	    </sv:property>
+	    <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+	      <sv:value>hippo:hardhandle</sv:value>
+	      <sv:value>hippo:translated</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="jcr:uuid" sv:type="String">
+	      <sv:value>ea2a131d-1f9c-4eeb-872d-23c6a519f36e</sv:value>
+	    </sv:property>
+	    <sv:node sv:name="hippo:translation">
+	      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	        <sv:value>hippo:translation</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="hippo:language" sv:type="String">
+	        <sv:value/>
+	      </sv:property>
+	      <sv:property sv:name="hippo:message" sv:type="String">
+	        <sv:value>ITR1</sv:value>
+	      </sv:property>
+	    </sv:node>
+	    <sv:node sv:name="itr1">
+	      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	        <sv:value>mootlywcm:Service</sv:value>
+	      </sv:property>
+	      <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+	        <sv:value>hippo:harddocument</sv:value>
+	        <sv:value>hippotranslation:translated</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="jcr:uuid" sv:type="String">
+	        <sv:value>428ba9b1-72fe-4255-befa-59952b59cd82</sv:value>
+	      </sv:property>
+	      <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
+	        <sv:value>live</sv:value>
+	        <sv:value>preview</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="hippo:related___pathreference" sv:type="String">
+	        <sv:value>incometaxreturn/itr1</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="hippostd:holder" sv:type="String">
+	        <sv:value>admin</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="hippostd:state" sv:type="String">
+	        <sv:value>published</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="hippostd:stateSummary" sv:type="String">
+	        <sv:value>live</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
+	        <sv:value>admin</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
+	        <sv:value>2013-07-07T01:33:00.415-07:00</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
+	        <sv:value>2013-11-09T16:45:59.452-08:00</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
+	        <sv:value>admin</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
+	        <sv:value>2013-11-09T16:46:06.645-08:00</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="hippotranslation:id" sv:type="String">
+	        <sv:value>38b956a9-0045-4098-8f92-f3866d2e32ca</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="hippotranslation:locale" sv:type="String">
+	        <sv:value>en</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="mootlywcm:Name" sv:type="String">
+	        <sv:value>ITR1</sv:value>
+	      </sv:property>
+	      <sv:property sv:multiple="true" sv:name="mootlywcm:categories" sv:type="String">
+	        <sv:value>taxreturn</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="mootlywcm:description" sv:type="String">
+	        <sv:value>ITR-1 SAHAJ Form is an essential Income Tax Return form for Indian citizens filing their Tax Returns with the Income Tax Department of India. The Income Tax Act, 1961, and the Income Tax Rules, 1962, obligates citizens to file their returns with the Income Tax Department at the end of every financial year. These returns should bDIYd before the specified due date. This form is issued by the Income Tax Department of India and is an integral part of the rules laid down by the Government of India for filing Income Tax Returns.
+		Every Income Tax Return Form is applicable to a certain section of the Assessees and so is the case with the ITR-1 SAHAJ Form. Only those Forms which arDIYd by the eligible Assessees are processed by the Income Tax Department of India. It is therefore imperative to know which particular form is appropriate in each case. Income Tax Return Forms vary depending on the criteria of the source of income of the Assessee and the category of the Assessee.</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="mootlywcm:enable" sv:type="Boolean">
+	        <sv:value>false</sv:value>
+	      </sv:property>
+	      <sv:property sv:multiple="true" sv:name="mootlywcm:highlights" sv:type="String">
+	        <sv:value>This Return Form is to be used by an individual whose total income for the assessment year includes:-</sv:value>
+	        <sv:value>(a) Income from Salary/ Pension; or</sv:value>
+	        <sv:value>(b) Income from One House Property (excluding cases where loss is brought forward from previous years);</sv:value>
+	        <sv:value>(c) Income from Other Sources (Excluding Winning from Lottery and Income from Race Horses).</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="mootlywcm:id" sv:type="String">
+	        <sv:value/>
+	      </sv:property>
+	      <sv:property sv:name="mootlywcm:serviceCode" sv:type="String">
+	        <sv:value>09</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="mootlywcm:srForm" sv:type="String">
+	        <sv:value>98364bc0-bbec-4fff-b223-fc22d6411de0</sv:value>
+	      </sv:property>
+	      <sv:property sv:multiple="true" sv:name="mootlywcm:subCategories" sv:type="String">
+	        <sv:value>ITR1</sv:value>
+	      </sv:property>
+	      <sv:node sv:name="hippotranslation:translations">
+	        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	          <sv:value>hippotranslation:translations</sv:value>
+	        </sv:property>
+	      </sv:node>
+	      <sv:node sv:name="mootlywcm:costmodel">
+	        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	          <sv:value>mootlywcm:costmodel</sv:value>
+	        </sv:property>
+	        <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+	          <sv:value>hippo:harddocument</sv:value>
+	        </sv:property>
+	        <sv:property sv:name="jcr:uuid" sv:type="String">
+	          <sv:value>78d7b182-0046-41f7-9c73-adb71ccad591</sv:value>
+	        </sv:property>
+	        <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
+	        <sv:property sv:name="hippostd:state" sv:type="String">
+	          <sv:value>draft</sv:value>
+	        </sv:property>
+	        <sv:property sv:name="hippostd:stateSummary" sv:type="String">
+	          <sv:value>new</sv:value>
+	        </sv:property>
+	        <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
+	          <sv:value/>
+	        </sv:property>
+	        <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
+	          <sv:value>2013-06-25T15:23:07.952+05:30</sv:value>
+	        </sv:property>
+	        <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
+	          <sv:value>2013-06-25T15:23:07.952+05:30</sv:value>
+	        </sv:property>
+	        <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
+	          <sv:value/>
+	        </sv:property>
+	        <sv:property sv:name="mootlywcm:cost" sv:type="String">
+	          <sv:value>400</sv:value>
+	        </sv:property>
+	        <sv:property sv:name="mootlywcm:costDetail" sv:type="String">
+	          <sv:value/>
+	        </sv:property>
+	        <sv:property sv:name="mootlywcm:offeringMode" sv:type="String">
+	          <sv:value>DIY</sv:value>
+	        </sv:property>
+	      </sv:node>
+	      <sv:node sv:name="mootlywcm:costmodel">
+	        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	          <sv:value>mootlywcm:costmodel</sv:value>
+	        </sv:property>
+	        <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+	          <sv:value>hippo:harddocument</sv:value>
+	        </sv:property>
+	        <sv:property sv:name="jcr:uuid" sv:type="String">
+	          <sv:value>8f039bbf-9a10-4491-b855-d5859f1949cd</sv:value>
+	        </sv:property>
+	        <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
+	        <sv:property sv:name="hippostd:state" sv:type="String">
+	          <sv:value>draft</sv:value>
+	        </sv:property>
+	        <sv:property sv:name="hippostd:stateSummary" sv:type="String">
+	          <sv:value>new</sv:value>
+	        </sv:property>
+	        <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
+	          <sv:value/>
+	        </sv:property>
+	        <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
+	          <sv:value>2013-06-25T15:23:07.952+05:30</sv:value>
+	        </sv:property>
+	        <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
+	          <sv:value>2013-06-25T15:23:07.952+05:30</sv:value>
+	        </sv:property>
+	        <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
+	          <sv:value/>
+	        </sv:property>
+	        <sv:property sv:name="mootlywcm:cost" sv:type="String">
+	          <sv:value>500</sv:value>
+	        </sv:property>
+	        <sv:property sv:name="mootlywcm:costDetail" sv:type="String">
+	          <sv:value/>
+	        </sv:property>
+	        <sv:property sv:name="mootlywcm:offeringMode" sv:type="String">
+	          <sv:value>Assisted</sv:value>
+	        </sv:property>
+	      </sv:node>
+	    </sv:node>
+	  </sv:node>
+	  <sv:node sv:name="itr2">
+	    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	      <sv:value>hippo:handle</sv:value>
+	    </sv:property>
+	    <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+	      <sv:value>hippo:hardhandle</sv:value>
+	      <sv:value>hippo:translated</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="jcr:uuid" sv:type="String">
+	      <sv:value>9b4aede8-2058-4951-845f-4d6368021c42</sv:value>
+	    </sv:property>
+	    <sv:node sv:name="hippo:translation">
+	      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	        <sv:value>hippo:translation</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="hippo:language" sv:type="String">
+	        <sv:value/>
+	      </sv:property>
+	      <sv:property sv:name="hippo:message" sv:type="String">
+	        <sv:value>ITR2</sv:value>
+	      </sv:property>
+	    </sv:node>
+	    <sv:node sv:name="itr2">
+	      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	        <sv:value>mootlywcm:Service</sv:value>
+	      </sv:property>
+	      <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+	        <sv:value>hippo:harddocument</sv:value>
+	        <sv:value>hippotranslation:translated</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="jcr:uuid" sv:type="String">
+	        <sv:value>e99d96b7-e3b1-447d-959d-115f5fec735e</sv:value>
+	      </sv:property>
+	      <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
+	        <sv:value>live</sv:value>
+	        <sv:value>preview</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="hippo:related___pathreference" sv:type="String">
+	        <sv:value>incometaxreturn/itr2</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="hippostd:holder" sv:type="String">
+	        <sv:value>admin</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="hippostd:state" sv:type="String">
+	        <sv:value>published</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="hippostd:stateSummary" sv:type="String">
+	        <sv:value>live</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
+	        <sv:value>admin</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
+	        <sv:value>2013-07-07T18:18:40.775+05:30</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
+	        <sv:value>2013-07-11T23:36:04.368+05:30</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
+	        <sv:value>admin</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
+	        <sv:value>2013-07-11T23:36:07.868+05:30</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="hippotranslation:id" sv:type="String">
+	        <sv:value>82ec7310-4598-4ad5-9bdc-f453a008ea0e</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="hippotranslation:locale" sv:type="String">
+	        <sv:value>en</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="mootlywcm:Name" sv:type="String">
+	        <sv:value>ITR2</sv:value>
+	      </sv:property>
+	      <sv:property sv:multiple="true" sv:name="mootlywcm:categories" sv:type="String">
+	        <sv:value>taxreturn</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="mootlywcm:description" sv:type="String">
+	        <sv:value>The ITR-2 is a Form used by Income Tax Assessees in India. The process of filing Tax Returns in India involves the use of various forms for different categories of Assessees and the ITR-2 is one such form.
+		he due date for filing return with the Income Tax Department of India is 31 July every year. This is subject to change only if a directive to this effect is issued by the Income Tax Department or the Ministry of Finance, India. The Financial Year ends on 31 March every year so Assessees have a period of four months to prepare their Income Tax Returns.</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="mootlywcm:enable" sv:type="Boolean">
+	        <sv:value>false</sv:value>
+	      </sv:property>
+	      <sv:property sv:multiple="true" sv:name="mootlywcm:highlights" sv:type="String">
+	        <sv:value>This Return Form is to be used by an individual or a Hindu Undivided Family whose total income for the assessment year includes:-</sv:value>
+	        <sv:value>(a) Income from Salary / Pension</sv:value>
+	        <sv:value>(b) Income from House Property</sv:value>
+	        <sv:value>(c) Income from Capital Gains</sv:value>
+	        <sv:value>(d) Income from Other Sources (including Winning from Lottery and Income from Race Horses)</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="mootlywcm:id" sv:type="String">
+	        <sv:value/>
+	      </sv:property>
+	      <sv:property sv:name="mootlywcm:serviceCode" sv:type="String">
+	        <sv:value>10</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="mootlywcm:srForm" sv:type="String">
+	        <sv:value/>
+	      </sv:property>
+	      <sv:property sv:multiple="true" sv:name="mootlywcm:subCategories" sv:type="String">
+	        <sv:value>ITR2</sv:value>
+	      </sv:property>
+	      <sv:node sv:name="hippotranslation:translations">
+	        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	          <sv:value>hippotranslation:translations</sv:value>
+	        </sv:property>
+	      </sv:node>
+	      <sv:node sv:name="mootlywcm:costmodel">
+	        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	          <sv:value>mootlywcm:costmodel</sv:value>
+	        </sv:property>
+	        <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+	          <sv:value>hippo:harddocument</sv:value>
+	        </sv:property>
+	        <sv:property sv:name="jcr:uuid" sv:type="String">
+	          <sv:value>3d16346f-c58b-4f31-ba5b-b6420e0c1fc1</sv:value>
+	        </sv:property>
+	        <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
+	        <sv:property sv:name="hippostd:state" sv:type="String">
+	          <sv:value>draft</sv:value>
+	        </sv:property>
+	        <sv:property sv:name="hippostd:stateSummary" sv:type="String">
+	          <sv:value>new</sv:value>
+	        </sv:property>
+	        <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
+	          <sv:value/>
+	        </sv:property>
+	        <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
+	          <sv:value>2013-06-25T15:23:07.952+05:30</sv:value>
+	        </sv:property>
+	        <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
+	          <sv:value>2013-06-25T15:23:07.952+05:30</sv:value>
+	        </sv:property>
+	        <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
+	          <sv:value/>
+	        </sv:property>
+	        <sv:property sv:name="mootlywcm:cost" sv:type="String">
+	          <sv:value>400</sv:value>
+	        </sv:property>
+	        <sv:property sv:name="mootlywcm:costDetail" sv:type="String">
+	          <sv:value/>
+	        </sv:property>
+	        <sv:property sv:name="mootlywcm:offeringMode" sv:type="String">
+	          <sv:value>DIY</sv:value>
+	        </sv:property>
+	      </sv:node>
+	      <sv:node sv:name="mootlywcm:costmodel">
+	        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	          <sv:value>mootlywcm:costmodel</sv:value>
+	        </sv:property>
+	        <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+	          <sv:value>hippo:harddocument</sv:value>
+	        </sv:property>
+	        <sv:property sv:name="jcr:uuid" sv:type="String">
+	          <sv:value>bef43ce9-b594-44a1-87ae-a02327ec123c</sv:value>
+	        </sv:property>
+	        <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
+	        <sv:property sv:name="hippostd:state" sv:type="String">
+	          <sv:value>draft</sv:value>
+	        </sv:property>
+	        <sv:property sv:name="hippostd:stateSummary" sv:type="String">
+	          <sv:value>new</sv:value>
+	        </sv:property>
+	        <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
+	          <sv:value/>
+	        </sv:property>
+	        <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
+	          <sv:value>2013-06-25T15:23:07.952+05:30</sv:value>
+	        </sv:property>
+	        <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
+	          <sv:value>2013-06-25T15:23:07.952+05:30</sv:value>
+	        </sv:property>
+	        <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
+	          <sv:value/>
+	        </sv:property>
+	        <sv:property sv:name="mootlywcm:cost" sv:type="String">
+	          <sv:value>500</sv:value>
+	        </sv:property>
+	        <sv:property sv:name="mootlywcm:costDetail" sv:type="String">
+	          <sv:value/>
+	        </sv:property>
+	        <sv:property sv:name="mootlywcm:offeringMode" sv:type="String">
+	          <sv:value>Assisted</sv:value>
+	        </sv:property>
+	      </sv:node>
+	    </sv:node>
+	  </sv:node>
+	  <sv:node sv:name="itr3">
+	    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	      <sv:value>hippo:handle</sv:value>
+	    </sv:property>
+	    <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+	      <sv:value>hippo:hardhandle</sv:value>
+	      <sv:value>hippo:translated</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="jcr:uuid" sv:type="String">
+	      <sv:value>12c6d6f4-a77c-4564-b58f-506e095e71b6</sv:value>
+	    </sv:property>
+	    <sv:node sv:name="hippo:translation">
+	      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	        <sv:value>hippo:translation</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="hippo:language" sv:type="String">
+	        <sv:value/>
+	      </sv:property>
+	      <sv:property sv:name="hippo:message" sv:type="String">
+	        <sv:value>ITR3</sv:value>
+	      </sv:property>
+	    </sv:node>
+	    <sv:node sv:name="itr3">
+	      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	        <sv:value>mootlywcm:Service</sv:value>
+	      </sv:property>
+	      <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+	        <sv:value>hippo:harddocument</sv:value>
+	        <sv:value>hippotranslation:translated</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="jcr:uuid" sv:type="String">
+	        <sv:value>aeb3f3f5-62f7-4312-9c13-c3cba3f40b92</sv:value>
+	      </sv:property>
+	      <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
+	        <sv:value>live</sv:value>
+	        <sv:value>preview</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="hippo:related___pathreference" sv:type="String">
+	        <sv:value>incometaxreturn/itr3</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="hippostd:holder" sv:type="String">
+	        <sv:value>admin</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="hippostd:state" sv:type="String">
+	        <sv:value>published</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="hippostd:stateSummary" sv:type="String">
+	        <sv:value>live</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
+	        <sv:value>admin</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
+	        <sv:value>2013-07-07T18:22:13.372+05:30</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
+	        <sv:value>2013-07-11T23:36:17.745+05:30</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
+	        <sv:value>admin</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
+	        <sv:value>2013-07-11T23:36:21.373+05:30</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="hippotranslation:id" sv:type="String">
+	        <sv:value>c4783d4c-ce19-4361-a68b-42391eed1cc2</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="hippotranslation:locale" sv:type="String">
+	        <sv:value>en</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="mootlywcm:Name" sv:type="String">
+	        <sv:value>ITR3</sv:value>
+	      </sv:property>
+	      <sv:property sv:multiple="true" sv:name="mootlywcm:categories" sv:type="String">
+	        <sv:value>taxreturn</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="mootlywcm:description" sv:type="String">
+	        <sv:value>There are various forms that Assessees use while filing Income Tax Returns in India and the ITR-3 Form is one such form. The ITR-3 Form is used by a certain section of Tax payers as per the guidelines laid down by the Income Tax Department of India.</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="mootlywcm:enable" sv:type="Boolean">
+	        <sv:value>false</sv:value>
+	      </sv:property>
+	      <sv:property sv:multiple="true" sv:name="mootlywcm:highlights" sv:type="String">
+	        <sv:value>The ITR-3 Form is applicable only to those Individuals and Hindu Undivided Families that can be placed under the following categories</sv:value>
+	        <sv:value>(a) Is a Partner in a firm?</sv:value>
+	        <sv:value>(b) Gains Income through ‘Profits or gains of business or profession’</sv:value>
+	        <sv:value>(c) Gains Income by means of interest, salary, bonus, commission, remuneration, as a partner</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="mootlywcm:id" sv:type="String">
+	        <sv:value/>
+	      </sv:property>
+	      <sv:property sv:name="mootlywcm:serviceCode" sv:type="String">
+	        <sv:value>11</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="mootlywcm:srForm" sv:type="String">
+	        <sv:value/>
+	      </sv:property>
+	      <sv:property sv:multiple="true" sv:name="mootlywcm:subCategories" sv:type="String">
+	        <sv:value>ITR3</sv:value>
+	      </sv:property>
+	      <sv:node sv:name="hippotranslation:translations">
+	        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	          <sv:value>hippotranslation:translations</sv:value>
+	        </sv:property>
+	      </sv:node>
+	      <sv:node sv:name="mootlywcm:costmodel">
+	        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	          <sv:value>mootlywcm:costmodel</sv:value>
+	        </sv:property>
+	        <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+	          <sv:value>hippo:harddocument</sv:value>
+	        </sv:property>
+	        <sv:property sv:name="jcr:uuid" sv:type="String">
+	          <sv:value>6a83c0e8-7f12-429f-b55d-93c987fd4d58</sv:value>
+	        </sv:property>
+	        <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
+	        <sv:property sv:name="hippostd:state" sv:type="String">
+	          <sv:value>draft</sv:value>
+	        </sv:property>
+	        <sv:property sv:name="hippostd:stateSummary" sv:type="String">
+	          <sv:value>new</sv:value>
+	        </sv:property>
+	        <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
+	          <sv:value/>
+	        </sv:property>
+	        <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
+	          <sv:value>2013-06-25T15:23:07.952+05:30</sv:value>
+	        </sv:property>
+	        <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
+	          <sv:value>2013-06-25T15:23:07.952+05:30</sv:value>
+	        </sv:property>
+	        <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
+	          <sv:value/>
+	        </sv:property>
+	        <sv:property sv:name="mootlywcm:cost" sv:type="String">
+	          <sv:value>600</sv:value>
+	        </sv:property>
+	        <sv:property sv:name="mootlywcm:costDetail" sv:type="String">
+	          <sv:value/>
+	        </sv:property>
+	        <sv:property sv:name="mootlywcm:offeringMode" sv:type="String">
+	          <sv:value>DIY</sv:value>
+	        </sv:property>
+	      </sv:node>
+	      <sv:node sv:name="mootlywcm:costmodel">
+	        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	          <sv:value>mootlywcm:costmodel</sv:value>
+	        </sv:property>
+	        <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+	          <sv:value>hippo:harddocument</sv:value>
+	        </sv:property>
+	        <sv:property sv:name="jcr:uuid" sv:type="String">
+	          <sv:value>bbd0549b-8beb-4e31-808b-b366d0fe31b0</sv:value>
+	        </sv:property>
+	        <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
+	        <sv:property sv:name="hippostd:state" sv:type="String">
+	          <sv:value>draft</sv:value>
+	        </sv:property>
+	        <sv:property sv:name="hippostd:stateSummary" sv:type="String">
+	          <sv:value>new</sv:value>
+	        </sv:property>
+	        <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
+	          <sv:value/>
+	        </sv:property>
+	        <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
+	          <sv:value>2013-06-25T15:23:07.952+05:30</sv:value>
+	        </sv:property>
+	        <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
+	          <sv:value>2013-06-25T15:23:07.952+05:30</sv:value>
+	        </sv:property>
+	        <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
+	          <sv:value/>
+	        </sv:property>
+	        <sv:property sv:name="mootlywcm:cost" sv:type="String">
+	          <sv:value>500</sv:value>
+	        </sv:property>
+	        <sv:property sv:name="mootlywcm:costDetail" sv:type="String">
+	          <sv:value/>
+	        </sv:property>
+	        <sv:property sv:name="mootlywcm:offeringMode" sv:type="String">
+	          <sv:value>Assisted</sv:value>
+	        </sv:property>
+	      </sv:node>
+	    </sv:node>
+	  </sv:node>
+	  <sv:node sv:name="itr4">
+	    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	      <sv:value>hippo:handle</sv:value>
+	    </sv:property>
+	    <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+	      <sv:value>hippo:hardhandle</sv:value>
+	      <sv:value>hippo:translated</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="jcr:uuid" sv:type="String">
+	      <sv:value>755cd6d2-2317-4272-b719-a45d99eeb44f</sv:value>
+	    </sv:property>
+	    <sv:node sv:name="hippo:translation">
+	      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	        <sv:value>hippo:translation</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="hippo:language" sv:type="String">
+	        <sv:value/>
+	      </sv:property>
+	      <sv:property sv:name="hippo:message" sv:type="String">
+	        <sv:value>ITR3</sv:value>
+	      </sv:property>
+	    </sv:node>
+	    <sv:node sv:name="itr4">
+	      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	        <sv:value>mootlywcm:Service</sv:value>
+	      </sv:property>
+	      <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+	        <sv:value>hippo:harddocument</sv:value>
+	        <sv:value>hippotranslation:translated</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="jcr:uuid" sv:type="String">
+	        <sv:value>bcd1d8ce-fb5c-4ce6-b836-6c1bf93545d6</sv:value>
+	      </sv:property>
+	      <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
+	        <sv:value>live</sv:value>
+	        <sv:value>preview</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="hippo:related___pathreference" sv:type="String">
+	        <sv:value>incometaxreturn/itr4</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="hippostd:holder" sv:type="String">
+	        <sv:value>admin</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="hippostd:state" sv:type="String">
+	        <sv:value>published</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="hippostd:stateSummary" sv:type="String">
+	        <sv:value>live</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
+	        <sv:value>admin</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
+	        <sv:value>2013-07-07T18:22:13.372+05:30</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
+	        <sv:value>2013-07-11T23:36:17.745+05:30</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
+	        <sv:value>admin</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
+	        <sv:value>2013-07-11T23:36:21.373+05:30</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="hippotranslation:id" sv:type="String">
+	        <sv:value>01faded1-0b78-46b0-ac82-380076fc7c5f</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="hippotranslation:locale" sv:type="String">
+	        <sv:value>en</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="mootlywcm:Name" sv:type="String">
+	        <sv:value>ITR4</sv:value>
+	      </sv:property>
+	      <sv:property sv:multiple="true" sv:name="mootlywcm:categories" sv:type="String">
+	        <sv:value>taxreturn</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="mootlywcm:description" sv:type="String">
+	        <sv:value>There are various forms that Assessees use while filing Income Tax Returns in India and the ITR-3 Form is one such form. The ITR-3 Form is used by a certain section of Tax payers as per the guidelines laid down by the Income Tax Department of India.</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="mootlywcm:enable" sv:type="Boolean">
+	        <sv:value>false</sv:value>
+	      </sv:property>
+	      <sv:property sv:multiple="true" sv:name="mootlywcm:highlights" sv:type="String">
+	        <sv:value>The ITR-3 Form is applicable only to those Individuals and Hindu Undivided Families that can be placed under the following categories</sv:value>
+	        <sv:value>(a) Is a Partner in a firm?</sv:value>
+	        <sv:value>(b) Gains Income through ‘Profits or gains of business or profession’</sv:value>
+	        <sv:value>(c) Gains Income by means of interest, salary, bonus, commission, remuneration, as a partner</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="mootlywcm:id" sv:type="String">
+	        <sv:value/>
+	      </sv:property>
+	      <sv:property sv:name="mootlywcm:serviceCode" sv:type="String">
+	        <sv:value>11</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="mootlywcm:srForm" sv:type="String">
+	        <sv:value/>
+	      </sv:property>
+	      <sv:property sv:multiple="true" sv:name="mootlywcm:subCategories" sv:type="String">
+	        <sv:value>ITR3</sv:value>
+	      </sv:property>
+	      <sv:node sv:name="hippotranslation:translations">
+	        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	          <sv:value>hippotranslation:translations</sv:value>
+	        </sv:property>
+	      </sv:node>
+	      <sv:node sv:name="mootlywcm:costmodel">
+	        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	          <sv:value>mootlywcm:costmodel</sv:value>
+	        </sv:property>
+	        <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+	          <sv:value>hippo:harddocument</sv:value>
+	        </sv:property>
+	        <sv:property sv:name="jcr:uuid" sv:type="String">
+	          <sv:value>2738ade2-f25c-4851-96b4-25a32f58706e</sv:value>
+	        </sv:property>
+	        <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
+	        <sv:property sv:name="hippostd:state" sv:type="String">
+	          <sv:value>draft</sv:value>
+	        </sv:property>
+	        <sv:property sv:name="hippostd:stateSummary" sv:type="String">
+	          <sv:value>new</sv:value>
+	        </sv:property>
+	        <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
+	          <sv:value/>
+	        </sv:property>
+	        <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
+	          <sv:value>2013-06-25T15:23:07.952+05:30</sv:value>
+	        </sv:property>
+	        <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
+	          <sv:value>2013-06-25T15:23:07.952+05:30</sv:value>
+	        </sv:property>
+	        <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
+	          <sv:value/>
+	        </sv:property>
+	        <sv:property sv:name="mootlywcm:cost" sv:type="String">
+	          <sv:value>600</sv:value>
+	        </sv:property>
+	        <sv:property sv:name="mootlywcm:costDetail" sv:type="String">
+	          <sv:value/>
+	        </sv:property>
+	        <sv:property sv:name="mootlywcm:offeringMode" sv:type="String">
+	          <sv:value>DIY</sv:value>
+	        </sv:property>
+	      </sv:node>
+	      <sv:node sv:name="mootlywcm:costmodel">
+	        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	          <sv:value>mootlywcm:costmodel</sv:value>
+	        </sv:property>
+	        <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+	          <sv:value>hippo:harddocument</sv:value>
+	        </sv:property>
+	        <sv:property sv:name="jcr:uuid" sv:type="String">
+	          <sv:value>83896f1e-76a3-4e14-b512-24dd7aca8d38</sv:value>
+	        </sv:property>
+	        <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
+	        <sv:property sv:name="hippostd:state" sv:type="String">
+	          <sv:value>draft</sv:value>
+	        </sv:property>
+	        <sv:property sv:name="hippostd:stateSummary" sv:type="String">
+	          <sv:value>new</sv:value>
+	        </sv:property>
+	        <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
+	          <sv:value/>
+	        </sv:property>
+	        <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
+	          <sv:value>2013-06-25T15:23:07.952+05:30</sv:value>
+	        </sv:property>
+	        <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
+	          <sv:value>2013-06-25T15:23:07.952+05:30</sv:value>
+	        </sv:property>
+	        <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
+	          <sv:value/>
+	        </sv:property>
+	        <sv:property sv:name="mootlywcm:cost" sv:type="String">
+	          <sv:value>500</sv:value>
+	        </sv:property>
+	        <sv:property sv:name="mootlywcm:costDetail" sv:type="String">
+	          <sv:value/>
+	        </sv:property>
+	        <sv:property sv:name="mootlywcm:offeringMode" sv:type="String">
+	          <sv:value>Assisted</sv:value>
+	        </sv:property>
+	      </sv:node>
+	    </sv:node>
+	  </sv:node>
+	  <sv:node sv:name="itr4s">
+	    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	      <sv:value>hippo:handle</sv:value>
+	    </sv:property>
+	    <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+	      <sv:value>hippo:hardhandle</sv:value>
+	      <sv:value>hippo:translated</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="jcr:uuid" sv:type="String">
+	      <sv:value>2100dea9-51b3-4c08-995e-294acbc273ea</sv:value>
+	    </sv:property>
+	    <sv:node sv:name="hippo:translation">
+	      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	        <sv:value>hippo:translation</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="hippo:language" sv:type="String">
+	        <sv:value/>
+	      </sv:property>
+	      <sv:property sv:name="hippo:message" sv:type="String">
+	        <sv:value>ITR3</sv:value>
+	      </sv:property>
+	    </sv:node>
+	    <sv:node sv:name="itr4s">
+	      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	        <sv:value>mootlywcm:Service</sv:value>
+	      </sv:property>
+	      <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+	        <sv:value>hippo:harddocument</sv:value>
+	        <sv:value>hippotranslation:translated</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="jcr:uuid" sv:type="String">
+	        <sv:value>99aff62f-3dbf-41b7-813f-043b49344939</sv:value>
+	      </sv:property>
+	      <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
+	        <sv:value>live</sv:value>
+	        <sv:value>preview</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="hippo:related___pathreference" sv:type="String">
+	        <sv:value>incometaxreturn/itr4s</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="hippostd:holder" sv:type="String">
+	        <sv:value>admin</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="hippostd:state" sv:type="String">
+	        <sv:value>published</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="hippostd:stateSummary" sv:type="String">
+	        <sv:value>live</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
+	        <sv:value>admin</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
+	        <sv:value>2013-07-07T18:22:13.372+05:30</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
+	        <sv:value>2013-07-11T23:36:17.745+05:30</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
+	        <sv:value>admin</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
+	        <sv:value>2013-07-11T23:36:21.373+05:30</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="hippotranslation:id" sv:type="String">
+	        <sv:value>7a39ccc5-d7f5-4463-ab9e-c029469365f0</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="hippotranslation:locale" sv:type="String">
+	        <sv:value>en</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="mootlywcm:Name" sv:type="String">
+	        <sv:value>ITR4S</sv:value>
+	      </sv:property>
+	      <sv:property sv:multiple="true" sv:name="mootlywcm:categories" sv:type="String">
+	        <sv:value>taxreturn</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="mootlywcm:description" sv:type="String">
+	        <sv:value>There are various forms that Assessees use while filing Income Tax Returns in India and the ITR-3 Form is one such form. The ITR-3 Form is used by a certain section of Tax payers as per the guidelines laid down by the Income Tax Department of India.</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="mootlywcm:enable" sv:type="Boolean">
+	        <sv:value>false</sv:value>
+	      </sv:property>
+	      <sv:property sv:multiple="true" sv:name="mootlywcm:highlights" sv:type="String">
+	        <sv:value>The ITR-3 Form is applicable only to those Individuals and Hindu Undivided Families that can be placed under the following categories</sv:value>
+	        <sv:value>(a) Is a Partner in a firm?</sv:value>
+	        <sv:value>(b) Gains Income through ‘Profits or gains of business or profession’</sv:value>
+	        <sv:value>(c) Gains Income by means of interest, salary, bonus, commission, remuneration, as a partner</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="mootlywcm:id" sv:type="String">
+	        <sv:value/>
+	      </sv:property>
+	      <sv:property sv:name="mootlywcm:serviceCode" sv:type="String">
+	        <sv:value>11</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="mootlywcm:srForm" sv:type="String">
+	        <sv:value/>
+	      </sv:property>
+	      <sv:property sv:multiple="true" sv:name="mootlywcm:subCategories" sv:type="String">
+	        <sv:value>ITR3</sv:value>
+	      </sv:property>
+	      <sv:node sv:name="hippotranslation:translations">
+	        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	          <sv:value>hippotranslation:translations</sv:value>
+	        </sv:property>
+	      </sv:node>
+	      <sv:node sv:name="mootlywcm:costmodel">
+	        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	          <sv:value>mootlywcm:costmodel</sv:value>
+	        </sv:property>
+	        <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+	          <sv:value>hippo:harddocument</sv:value>
+	        </sv:property>
+	        <sv:property sv:name="jcr:uuid" sv:type="String">
+	          <sv:value>6703d57c-fd99-458e-915c-1426900ceafe</sv:value>
+	        </sv:property>
+	        <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
+	        <sv:property sv:name="hippostd:state" sv:type="String">
+	          <sv:value>draft</sv:value>
+	        </sv:property>
+	        <sv:property sv:name="hippostd:stateSummary" sv:type="String">
+	          <sv:value>new</sv:value>
+	        </sv:property>
+	        <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
+	          <sv:value/>
+	        </sv:property>
+	        <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
+	          <sv:value>2013-06-25T15:23:07.952+05:30</sv:value>
+	        </sv:property>
+	        <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
+	          <sv:value>2013-06-25T15:23:07.952+05:30</sv:value>
+	        </sv:property>
+	        <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
+	          <sv:value/>
+	        </sv:property>
+	        <sv:property sv:name="mootlywcm:cost" sv:type="String">
+	          <sv:value>600</sv:value>
+	        </sv:property>
+	        <sv:property sv:name="mootlywcm:costDetail" sv:type="String">
+	          <sv:value/>
+	        </sv:property>
+	        <sv:property sv:name="mootlywcm:offeringMode" sv:type="String">
+	          <sv:value>DIY</sv:value>
+	        </sv:property>
+	      </sv:node>
+	      <sv:node sv:name="mootlywcm:costmodel">
+	        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	          <sv:value>mootlywcm:costmodel</sv:value>
+	        </sv:property>
+	        <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+	          <sv:value>hippo:harddocument</sv:value>
+	        </sv:property>
+	        <sv:property sv:name="jcr:uuid" sv:type="String">
+	          <sv:value>1447c5f4-3f32-4fb9-a867-69c0c71037f3</sv:value>
+	        </sv:property>
+	        <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
+	        <sv:property sv:name="hippostd:state" sv:type="String">
+	          <sv:value>draft</sv:value>
+	        </sv:property>
+	        <sv:property sv:name="hippostd:stateSummary" sv:type="String">
+	          <sv:value>new</sv:value>
+	        </sv:property>
+	        <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
+	          <sv:value/>
+	        </sv:property>
+	        <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
+	          <sv:value>2013-06-25T15:23:07.952+05:30</sv:value>
+	        </sv:property>
+	        <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
+	          <sv:value>2013-06-25T15:23:07.952+05:30</sv:value>
+	        </sv:property>
+	        <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
+	          <sv:value/>
+	        </sv:property>
+	        <sv:property sv:name="mootlywcm:cost" sv:type="String">
+	          <sv:value>500</sv:value>
+	        </sv:property>
+	        <sv:property sv:name="mootlywcm:costDetail" sv:type="String">
+	          <sv:value/>
+	        </sv:property>
+	        <sv:property sv:name="mootlywcm:offeringMode" sv:type="String">
+	          <sv:value>Assisted</sv:value>
+	        </sv:property>
+	      </sv:node>
+	    </sv:node>
+	  </sv:node>
+	</sv:node>
+    
+    <!-- /ITRETURN -->
     <sv:node sv:name="auditservice">
       <sv:property sv:name="jcr:primaryType" sv:type="Name">
         <sv:value>hippostd:folder</sv:value>
@@ -8749,7 +9122,7 @@ We help companies investigate the causes hindering smooth functioning of their b
               <sv:value>Cost is depend upon the select of file mode</sv:value>
             </sv:property>
             <sv:property sv:name="mootlywcm:offeringMode" sv:type="String">
-              <sv:value>e File</sv:value>
+              <sv:value>DIY</sv:value>
             </sv:property>
           </sv:node>
           <sv:node sv:name="mootlywcm:costmodel">
@@ -8788,7 +9161,7 @@ We help companies investigate the causes hindering smooth functioning of their b
               <sv:value>Cost is depend upon the select of file mode</sv:value>
             </sv:property>
             <sv:property sv:name="mootlywcm:offeringMode" sv:type="String">
-              <sv:value>eZ File</sv:value>
+              <sv:value>Assisted</sv:value>
             </sv:property>
           </sv:node>
         </sv:node>
@@ -9205,7 +9578,7 @@ We offer comprehensive deals to our clients to minimize tax costs and tone down 
               <sv:value>this is cost of International Taxation according to service</sv:value>
             </sv:property>
             <sv:property sv:name="mootlywcm:offeringMode" sv:type="String">
-              <sv:value>e File</sv:value>
+              <sv:value>DIY</sv:value>
             </sv:property>
           </sv:node>
           <sv:node sv:name="mootlywcm:costmodel">
@@ -9244,7 +9617,7 @@ We offer comprehensive deals to our clients to minimize tax costs and tone down 
               <sv:value>this is cost of International Taxation according to service</sv:value>
             </sv:property>
             <sv:property sv:name="mootlywcm:offeringMode" sv:type="String">
-              <sv:value>eZ File</sv:value>
+              <sv:value>Assisted</sv:value>
             </sv:property>
           </sv:node>
         </sv:node>
@@ -9435,7 +9808,7 @@ We offer comprehensive deals to our clients to minimize tax costs and tone down 
                 <sv:value>this cost is depend on selected offering Mode</sv:value>
               </sv:property>
               <sv:property sv:name="mootlywcm:offeringMode" sv:type="String">
-                <sv:value>e File</sv:value>
+                <sv:value>DIY</sv:value>
               </sv:property>
             </sv:node>
             <sv:node sv:name="mootlywcm:costmodel">
@@ -9474,7 +9847,7 @@ We offer comprehensive deals to our clients to minimize tax costs and tone down 
                 <sv:value>this cost is depend on selected offering Mode</sv:value>
               </sv:property>
               <sv:property sv:name="mootlywcm:offeringMode" sv:type="String">
-                <sv:value>eZ File</sv:value>
+                <sv:value>Assisted</sv:value>
               </sv:property>
             </sv:node>
           </sv:node>
@@ -9660,7 +10033,7 @@ We offer comprehensive deals to our clients to minimize tax costs and tone down 
                 <sv:value>this is cost model depend upon the offering mode</sv:value>
               </sv:property>
               <sv:property sv:name="mootlywcm:offeringMode" sv:type="String">
-                <sv:value>e File</sv:value>
+                <sv:value>DIY</sv:value>
               </sv:property>
             </sv:node>
             <sv:node sv:name="mootlywcm:costmodel">
@@ -9699,7 +10072,7 @@ We offer comprehensive deals to our clients to minimize tax costs and tone down 
                 <sv:value>this is cost model depend upon the offering mode</sv:value>
               </sv:property>
               <sv:property sv:name="mootlywcm:offeringMode" sv:type="String">
-                <sv:value>eZ File</sv:value>
+                <sv:value>Assisted</sv:value>
               </sv:property>
             </sv:node>
           </sv:node>
@@ -9889,7 +10262,7 @@ We offer comprehensive deals to our clients to minimize tax costs and tone down 
                 <sv:value>this is cost model depend upon the offering mode</sv:value>
               </sv:property>
               <sv:property sv:name="mootlywcm:offeringMode" sv:type="String">
-                <sv:value>e File</sv:value>
+                <sv:value>DIY</sv:value>
               </sv:property>
             </sv:node>
             <sv:node sv:name="mootlywcm:costmodel">
@@ -9928,7 +10301,7 @@ We offer comprehensive deals to our clients to minimize tax costs and tone down 
                 <sv:value>this is cost model depend upon the offering mode</sv:value>
               </sv:property>
               <sv:property sv:name="mootlywcm:offeringMode" sv:type="String">
-                <sv:value>eZ File</sv:value>
+                <sv:value>Assisted</sv:value>
               </sv:property>
             </sv:node>
           </sv:node>
@@ -10118,7 +10491,7 @@ We offer comprehensive deals to our clients to minimize tax costs and tone down 
               <sv:value>this cost is depend on selected offering Mode</sv:value>
             </sv:property>
             <sv:property sv:name="mootlywcm:offeringMode" sv:type="String">
-              <sv:value>e File</sv:value>
+              <sv:value>DIY</sv:value>
             </sv:property>
           </sv:node>
           <sv:node sv:name="mootlywcm:costmodel">
@@ -10157,7 +10530,7 @@ We offer comprehensive deals to our clients to minimize tax costs and tone down 
               <sv:value>this cost is depend on selected offering Mode</sv:value>
             </sv:property>
             <sv:property sv:name="mootlywcm:offeringMode" sv:type="String">
-              <sv:value>eZ File</sv:value>
+              <sv:value>Assisted</sv:value>
             </sv:property>
           </sv:node>
         </sv:node>
@@ -10347,7 +10720,7 @@ We offer comprehensive deals to our clients to minimize tax costs and tone down 
               <sv:value>this cost is depend on selected offering Mode</sv:value>
             </sv:property>
             <sv:property sv:name="mootlywcm:offeringMode" sv:type="String">
-              <sv:value>e File</sv:value>
+              <sv:value>DIY</sv:value>
             </sv:property>
           </sv:node>
           <sv:node sv:name="mootlywcm:costmodel">
@@ -10386,7 +10759,7 @@ We offer comprehensive deals to our clients to minimize tax costs and tone down 
               <sv:value>this cost is depend on selected offering Mode</sv:value>
             </sv:property>
             <sv:property sv:name="mootlywcm:offeringMode" sv:type="String">
-              <sv:value>eZ File</sv:value>
+              <sv:value>Assisted</sv:value>
             </sv:property>
           </sv:node>
         </sv:node>
@@ -10577,7 +10950,7 @@ To help our clients grow with confidence across the national boundaries, our tea
               <sv:value>this cost is depend on selected offering Mode</sv:value>
             </sv:property>
             <sv:property sv:name="mootlywcm:offeringMode" sv:type="String">
-              <sv:value>e File</sv:value>
+              <sv:value>DIY</sv:value>
             </sv:property>
           </sv:node>
           <sv:node sv:name="mootlywcm:costmodel">
@@ -10616,7 +10989,7 @@ To help our clients grow with confidence across the national boundaries, our tea
               <sv:value>this cost is depend on selected offering Mode</sv:value>
             </sv:property>
             <sv:property sv:name="mootlywcm:offeringMode" sv:type="String">
-              <sv:value>eZ File</sv:value>
+              <sv:value>Assisted</sv:value>
             </sv:property>
           </sv:node>
         </sv:node>
@@ -10827,7 +11200,7 @@ To help our clients grow with confidence across the national boundaries, our tea
               <sv:value>this cost is depend on selected offering Mode</sv:value>
             </sv:property>
             <sv:property sv:name="mootlywcm:offeringMode" sv:type="String">
-              <sv:value>e File</sv:value>
+              <sv:value>DIY</sv:value>
             </sv:property>
           </sv:node>
           <sv:node sv:name="mootlywcm:costmodel">
@@ -10866,7 +11239,7 @@ To help our clients grow with confidence across the national boundaries, our tea
               <sv:value>this cost is depend on selected offering Mode</sv:value>
             </sv:property>
             <sv:property sv:name="mootlywcm:offeringMode" sv:type="String">
-              <sv:value>eZ File</sv:value>
+              <sv:value>Assisted</sv:value>
             </sv:property>
           </sv:node>
         </sv:node>
@@ -11062,7 +11435,7 @@ Our highly specialized team of professionals, with their profound understanding 
               <sv:value>this cost is depend on selected offering Mode</sv:value>
             </sv:property>
             <sv:property sv:name="mootlywcm:offeringMode" sv:type="String">
-              <sv:value>e File</sv:value>
+              <sv:value>DIY</sv:value>
             </sv:property>
           </sv:node>
           <sv:node sv:name="mootlywcm:costmodel">
@@ -11101,7 +11474,7 @@ Our highly specialized team of professionals, with their profound understanding 
               <sv:value>this cost is depend on selected offering Mode</sv:value>
             </sv:property>
             <sv:property sv:name="mootlywcm:offeringMode" sv:type="String">
-              <sv:value>eZ File</sv:value>
+              <sv:value>Assisted</sv:value>
             </sv:property>
           </sv:node>
         </sv:node>
@@ -11311,7 +11684,7 @@ Our highly specialized team of professionals, with their profound understanding 
               <sv:value>this cost is depend on selected offering Mode</sv:value>
             </sv:property>
             <sv:property sv:name="mootlywcm:offeringMode" sv:type="String">
-              <sv:value>e File</sv:value>
+              <sv:value>DIY</sv:value>
             </sv:property>
           </sv:node>
           <sv:node sv:name="mootlywcm:costmodel">
@@ -11350,7 +11723,7 @@ Our highly specialized team of professionals, with their profound understanding 
               <sv:value>this cost is depend on selected offering Mode</sv:value>
             </sv:property>
             <sv:property sv:name="mootlywcm:offeringMode" sv:type="String">
-              <sv:value>eZ File</sv:value>
+              <sv:value>Assisted</sv:value>
             </sv:property>
           </sv:node>
         </sv:node>

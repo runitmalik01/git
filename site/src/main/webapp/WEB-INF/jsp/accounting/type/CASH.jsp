@@ -56,10 +56,11 @@
 			</div>
 		</div>
 	</div>
+	<jsp:include page="vendor_verification.jsp"></jsp:include>
 	<div class="control-group" align="right">
 				<div class="controls">
 					<button class="btn btn-default btn-success" type="submit" id="payment_submit">Pay Now</button>
 					<a class="btn btn-default btn-default"  href="${scriptName}" id="payment_submit"><strong>Cancel</strong></a>
 				</div>
-			</div>
+	</div>
 </fieldset>

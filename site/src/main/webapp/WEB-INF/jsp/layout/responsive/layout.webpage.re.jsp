@@ -43,7 +43,7 @@
     <meta name="DC.language" content="en" scheme="DCTERMS.RFC3066" />
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
 	<%-- <meta name='robots' content='noindex,nofollow' /> --%>	
-	<hst:link var="stylecss" path="/css/style.css"/>
+	<hst:link var="stylecss" path="/css/style-stripped.css"/>
     <link rel="stylesheet" media="screen" type="text/css" href="${stylecss}"/>
     <hst:link var="w4indiacss" path="/css/w4india.css"/>
     <link rel="stylesheet" media="screen" type="text/css" href="${w4indiacss}"/>

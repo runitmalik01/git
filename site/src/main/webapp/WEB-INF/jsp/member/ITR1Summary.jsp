@@ -9,8 +9,8 @@
 				</tr>
 				<!--  lets create a bookmark for each section -->
 				<tr>
-					<td colspan="1" align="center" > &nbsp;&nbsp;&nbsp;&nbsp;
-					<a href="formsixteen.html"  style="color: blue">
+					<td colspan="1">
+					<a href="formsixteen.html">
 					<fmt:message key="salary.income"/>
 					</a>
 					</td>
@@ -45,8 +45,8 @@
 					</td>
 				</tr>
 				<tr>
-					<td colspan="1">&nbsp;&nbsp;&nbsp;&nbsp;
-					<a  href="salaryincome.html"  style="color: blue">
+					<td colspan="1">
+					<a  href="salaryincome.html">
 					<fmt:message key="income.salary.penson"/>
 					</a>
 					</td>
@@ -81,8 +81,8 @@
 					</td>
 				</tr>
 				<tr>
-					<td colspan="1">&nbsp;&nbsp;&nbsp;&nbsp;
-					<a href="singlehouseincome.html"  style="color: blue">
+					<td colspan="1">
+					<a href="singlehouseincome.html">
 						<fmt:message key="income.house.itr1" />
 					</a>
 					</td>
@@ -112,8 +112,8 @@
 					</td>
 				</tr>
 				<tr>
-					<td colspan="1">&nbsp;&nbsp;&nbsp;&nbsp;
-					<a href="othersources.html"  style="color: blue">
+					<td colspan="1">
+					<a href="othersources.html">
 					<fmt:message key="income.other.sources" />
 					</a>
 					</td>
@@ -304,7 +304,7 @@
 				</tr>
 				<tr>
 					<td colspan="1">
-					<a href="advancetax.html" style="color: blue">&nbsp;&nbsp;&nbsp;&nbsp;
+					<a href="advancetax.html">&nbsp;&nbsp;&nbsp;&nbsp;
 					<fmt:message key="advance.tax.itr1" />
 					</a>
 					</td>
@@ -334,8 +334,8 @@
 					</td>
 				</tr>
 				<tr>
-					<td colspan="1">&nbsp;&nbsp;&nbsp;&nbsp;
-					<a href="selfassesmenttax.html" style="color: blue">
+					<td colspan="1">
+					<a href="selfassesmenttax.html">
 					<fmt:message key="advance.selfassesmenttax.itr1" />
 					</a>
 					</td>
@@ -366,7 +366,7 @@
 					</td>
 				</tr>
 			    <tr>
-					<td colspan="1" style="color: blue">&nbsp;&nbsp;&nbsp;&nbsp;<fmt:message key="advance.tdssalary.itr1" /></td>
+					<td colspan="1"><fmt:message key="advance.tdssalary.itr1" /></td>
 					<td  style="text-align:left">
 						<span class="decimal">
 									<w4india:inr value="${bigTotalTdsSalary}"/>
@@ -374,8 +374,8 @@
 					</td>
 				</tr>
 				<tr>
-					<td colspan="1">&nbsp;&nbsp;&nbsp;&nbsp;
-					<a href="tdsfromothers.html"  style="color: blue">
+					<td colspan="1">
+					<a href="tdsfromothers.html">
 					<fmt:message key="advance.tdsothers.itr1" />
 					</a>
 					</td>

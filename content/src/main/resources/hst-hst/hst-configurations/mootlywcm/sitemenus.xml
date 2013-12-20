@@ -1605,7 +1605,7 @@
         </sv:property>
       </sv:node>
     </sv:node>
-    <sv:node sv:name="Upload Documents">
+    <sv:node sv:name="My Documents">
       <sv:property sv:name="jcr:primaryType" sv:type="Name">
         <sv:value>hst:sitemenuitem</sv:value>
       </sv:property>
@@ -1626,7 +1626,7 @@
         <sv:value/>
       </sv:property>
     </sv:node>
-    <sv:node sv:name="Payment">
+    <sv:node sv:name="Invoice">
       <sv:property sv:name="jcr:primaryType" sv:type="Name">
         <sv:value>hst:sitemenuitem</sv:value>
       </sv:property>
