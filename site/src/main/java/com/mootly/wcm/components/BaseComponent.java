@@ -405,10 +405,17 @@ public class BaseComponent extends BaseHstComponent {
 			if (isReseller() && getResellerId() != null) {
 				sbHostName.append("/r/").append(getResellerId());
 			}
+			
+			StringBuffer resellerHostName = new StringBuffer();
+			resellerHostName.append(request.getScheme() + "://" +  request.getServerName()).append(":").append(request.getServerPort()).append(request.getContextPath());
+			if(velocityContext.get("resellerId") != null){
+				resellerHostName.append("/r/").append(velocityContext.get("resellerId"));
+			}
 			//if (velocityContext == null) {
 			//	velocityContext = new HashMap<String, Object>(1);
 			//}
 			finalVelocityContext.put("memberHostName", sbHostName.toString());
+			finalVelocityContext.put("resellerHostName", resellerHostName.toString());
     		
     		String htmlBody = VelocityUtils.parseVelocity(emailTemplate.getHtmlBody(), finalVelocityContext);
 			//String plainBody = VelocityUtils.parseVelocity(emailTemplate.getPlainBody(), velocityContext);
