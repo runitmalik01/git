@@ -9,7 +9,9 @@
 
 package com.mootly.wcm.reseller;
 import java.rmi.RemoteException;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.jcr.Node;
@@ -72,6 +74,7 @@ public class ResellerActivation extends BaseComponent {
 	public static final String SUCCESS= "success";
 
 	private String Isactive;
+	private String resellerId;
 
 	@Override
 	public void doBeforeRender(HstRequest request, HstResponse response) {
@@ -277,10 +280,24 @@ public class ResellerActivation extends BaseComponent {
 					userName = resellerSignupDocument.getResellerID();
 				}else
 					userName = "User name not found";
+				
+				resellerId = resellerSignupDocument.getResellerID();
 			}
 
 			wpm.setWorkflowCallbackHandler(new FullReviewedWorkflowCallbackHandler());
 			wpm.update(resellerSignupDocument);
+			
+			if(log.isInfoEnabled()){
+				log.info("resellerId::"+resellerId+"membershipSignupDocument.getUserName()::"+membershipSignupDocument.getUserName()
+						+"membershipSignupDocument.getPassword()::"+membershipSignupDocument.getPassword());
+			}
+			MemberSignupDocument publishedSignUpDocument = (MemberSignupDocument) wpm.getObject(finalMembershipDocumentPath); // getSiteContentBaseBean(request).getBean("member/" + signupDocument.getUserName().replaceAll("@","-at-") + "/membersignupdocument");
+			if (publishedSignUpDocument == null) return;//major screwup
+			Map<String,Object> contextMap = new HashMap<String, Object>();
+			contextMap.put("userName",membershipSignupDocument.getUserName());
+			contextMap.put("resellerId",resellerId);
+			contextMap.put("membershipSignupDocument", publishedSignUpDocument);
+			sendEmail(request, new String[]{membershipSignupDocument.getEmail()}, null, "", "reseller_confirmation", contextMap);
 
 		} catch (ObjectBeanManagerException e1) {
 			// TODO Auto-generated catch block
