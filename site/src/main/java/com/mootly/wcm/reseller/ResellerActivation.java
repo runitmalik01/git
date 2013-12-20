@@ -286,11 +286,7 @@ public class ResellerActivation extends BaseComponent {
 
 			wpm.setWorkflowCallbackHandler(new FullReviewedWorkflowCallbackHandler());
 			wpm.update(resellerSignupDocument);
-			
-			if(log.isInfoEnabled()){
-				log.info("resellerId::"+resellerId+"membershipSignupDocument.getUserName()::"+membershipSignupDocument.getUserName()
-						+"membershipSignupDocument.getPassword()::"+membershipSignupDocument.getPassword());
-			}
+
 			MemberSignupDocument publishedSignUpDocument = (MemberSignupDocument) wpm.getObject(finalMembershipDocumentPath); // getSiteContentBaseBean(request).getBean("member/" + signupDocument.getUserName().replaceAll("@","-at-") + "/membersignupdocument");
 			if (publishedSignUpDocument == null) return;//major screwup
 			Map<String,Object> contextMap = new HashMap<String, Object>();
