@@ -12,7 +12,10 @@
 		        <c:when test="${not empty success}">
 		          Congratulations !!!!! You have Successfully Signup
 		           <h2 style="color:green">We would like to thank you for choosing our service.</h2>
-		      
+		      <p><strong><span style="color:#AC1700;">IMPORTANT: </span>PLEASE check your email NOW.</strong></p>
+		      <ol style="margin-bottom:30px; margin-top:20px; width:90%;">
+		       <li style="font-size:14px; line-height:16px; margin-bottom:10px;"><strong>If you do not receive an Email shortly, please check your bulk folder,</strong> or contact <a href="mailto:<w4india:emailcustomerservice/>"><w4india:emailcustomerservice/></a>.</li>
+		     </ol>
 		     </c:when>
 		     <c:otherwise>
 		     <div class="alert alert-info">
