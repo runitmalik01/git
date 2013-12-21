@@ -5663,11 +5663,20 @@ body.modal-open,
 .pull-left {
   float: left !important;
 }
+/* amit patkar remove !important its messing up */
+/*
 .hide {
   display: none !important;
 }
 .show {
   display: block !important;
+}
+*/
+.hide {
+  display: none;
+}
+.show {
+  display: block;
 }
 .invisible {
   visibility: hidden;

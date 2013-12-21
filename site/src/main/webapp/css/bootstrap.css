@@ -6209,6 +6209,8 @@ body.modal-open,
   float: left !important;
 }
 
+/* amit patkar remove !important its messing up */
+/*
 .hide {
   display: none !important;
 }
@@ -6216,7 +6218,14 @@ body.modal-open,
 .show {
   display: block !important;
 }
+*/
+.hide {
+  display: none;
+}
 
+.show {
+  display: block;
+}
 .invisible {
   visibility: hidden;
 }

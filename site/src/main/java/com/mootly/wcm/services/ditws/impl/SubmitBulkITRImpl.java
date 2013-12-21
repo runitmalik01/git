@@ -75,7 +75,7 @@ public class SubmitBulkITRImpl extends DITSOAPServiceImpl implements SubmitBulkI
 		try {
 			SOAPMessage soapMessage = SOAPCallWrapperHelper.createSOAPMessage(soapCallWrapperSubmitBulkITR, inputParams);
 			if (bytes != null) {
-				ByteArrayDataSource byteArrayDataSource = new ByteArrayDataSource(bytes, "application/pdf");
+				ByteArrayDataSource byteArrayDataSource = new ByteArrayDataSource(bytes, "application/octet-stream");
 				DataHandler dataHandler = new DataHandler(byteArrayDataSource);
 				AttachmentPart attachmentPart = soapMessage.createAttachmentPart(dataHandler);
 				attachmentPart.setMimeHeader("Content-Type", "application/xml");
