@@ -15,12 +15,18 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.mootly.wcm.model.FinancialYear;
+import com.mootly.wcm.services.ditws.SubmitBulkITR;
+import com.mootly.wcm.services.ditws.exception.DataMismatchException;
+import com.mootly.wcm.services.ditws.exception.InvalidFormatException;
+import com.mootly.wcm.services.ditws.exception.MissingInformationException;
 import com.mootly.wcm.services.ds.DigitalSignatureService;
 import com.mootly.wcm.services.ds.exception.InvalidDigitalSignatureException;
 import com.mootly.wcm.services.ds.exception.MissingDigitalCertificateException;
 import com.mootly.wcm.services.ds.exception.MissingPrivateKeyException;
 import com.mootly.wcm.services.ds.model.DigitalSignatureWrapper;
 import com.mootly.wcm.services.ds.model.ERISOAPHeaderSignatureResponse;
+import com.mootly.wcm.services.efile.exception.DigtalSignatureAssesseeFailure;
+import com.mootly.wcm.services.efile.exception.DigtalSignatureERIUserFailure;
 import com.mootly.wcm.services.efile.exception.EFileException;
 import com.mootly.wcm.services.impl.SystemRepositorySupportProvider;
 
@@ -31,10 +37,12 @@ public class IncomeTaxIndiaEFilingService extends SystemRepositorySupportProvide
 	String canonicalHandlePathPropertyMemberPersonalInfo;
 	String canonicalHandlePathPropertyResellerSignupDocument;
 	
+	SubmitBulkITR submitBulkITRService;
+	
 	@Override
-	public EFileResponse eFile(String xml, String resellerId,String pan,
-			FinancialYear financialYear, String canonicalPathToMemberIncomeTaxFolder)
-					throws EFileException {
+	public EFileResponse eFile(String userName, String password,String xml, String resellerId,String pan,
+			FinancialYear financialYear, String canonicalPathToMemberIncomeTaxFolder) 
+					throws DigtalSignatureAssesseeFailure,DigtalSignatureERIUserFailure, EFileException {
 		// TODO Auto-generated method stub
 		if (log.isInfoEnabled()) {
 			log.info("xml:" + xml);
@@ -43,12 +51,11 @@ public class IncomeTaxIndiaEFilingService extends SystemRepositorySupportProvide
 			log.info("canonicalPathToMemberIncomeTax:" + canonicalPathToMemberIncomeTaxFolder);
 		}
 		
-		DigitalSignatureWrapper dsAssessee;
-		DigitalSignatureWrapper dsERIUser;
-		
+		DigitalSignatureWrapper dsAssessee = null;
+		DigitalSignatureWrapper dsERIUser = null;
+		String jcrPathToAssesseDigitalSignature = null;
 		try {
-			String jcrPathToAssesseDigitalSignature = findJCRPathToAssesseDigitalSignature(canonicalPathToMemberIncomeTaxFolder);
-			dsAssessee = getDigitalSignatureService().getDigitalSignatureFromRepository(jcrPathToAssesseDigitalSignature, true);
+			jcrPathToAssesseDigitalSignature = findJCRPathToAssesseDigitalSignature(canonicalPathToMemberIncomeTaxFolder);			
 		} catch (LoginException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -57,18 +64,28 @@ public class IncomeTaxIndiaEFilingService extends SystemRepositorySupportProvide
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			throw new EFileException(e);
-		} catch (MissingPrivateKeyException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			throw new EFileException(e);
-		} catch (InvalidDigitalSignatureException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			throw new EFileException(e);
-		} catch (MissingDigitalCertificateException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			throw new EFileException(e);
+		} 
+		
+		if (jcrPathToAssesseDigitalSignature != null) {
+			try {
+				dsAssessee = getDigitalSignatureService().getDigitalSignatureFromRepository(jcrPathToAssesseDigitalSignature, true);
+			}
+			catch (MissingPrivateKeyException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				throw new DigtalSignatureAssesseeFailure(e);
+			} catch (InvalidDigitalSignatureException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				throw new DigtalSignatureAssesseeFailure(e);
+			} catch (MissingDigitalCertificateException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				throw new DigtalSignatureAssesseeFailure(e);
+			} catch (RepositoryException e) {
+				// TODO Auto-generated catch block
+				throw new DigtalSignatureAssesseeFailure(e);
+			}
 		}
 		
 		try {
@@ -120,7 +137,7 @@ public class IncomeTaxIndiaEFilingService extends SystemRepositorySupportProvide
 			}
 		}
 		
-		if (finalXml == null || finalXml.length() ==0) {
+		if (finalXml == null || finalXml.length() == 0) {
 			throw new EFileException();
 		}
 		//now we have the final XML , we now we ZIP the income tax return
@@ -168,19 +185,44 @@ public class IncomeTaxIndiaEFilingService extends SystemRepositorySupportProvide
 			throw new EFileException(e);
 		}
 		
+		if (erisoapHeaderSignatureResponse == null) {
+			throw new EFileException("erisoapHeaderSignatureResponse == null");
+		}
+		
 		//we are now SET to generate the SOAP Response
 		//the SOAP response will use the erisoapHeaderSignatureResponse to sign the SOAP Header and then the part of the SOAP will be the ZIP attachment which are in theByeArray
 		
+		//we need to
+		//getSubmitBulkPANService().
+		//getSubmitBulkITRService().submitBulkITR(theZipFile)
 		
+		String certChain = erisoapHeaderSignatureResponse.getCertChain();
+		String signature = erisoapHeaderSignatureResponse.getSignature();
+		
+		try {
+			EFileResponse eFileResponse = getSubmitBulkITRService().submitBulkITR(userName, password, certChain, signature, theByteArray);
+			return eFileResponse;
+		} catch (MissingInformationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw new EFileException(e);
+		} catch (DataMismatchException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw new EFileException(e);
+		} catch (InvalidFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw new EFileException(e);
+		}
 		//this is the flow
-		return null;
 	}
 
 	@Override
-	public EFileResponse eFile(String xml, String resellerId, String pan,
+	public EFileResponse eFile(String userName, String password,String xml, String resellerId, String pan,
 			FinancialYear financialYear,
 			DigitalSignatureWrapper assesseSignature,
-			DigitalSignatureWrapper eriSubUserSignature) throws EFileException {
+			DigitalSignatureWrapper eriSubUserSignature) throws DigtalSignatureAssesseeFailure, DigtalSignatureERIUserFailure, EFileException {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -225,7 +267,7 @@ public class IncomeTaxIndiaEFilingService extends SystemRepositorySupportProvide
 		// TODO Auto-generated method stub
 		// TODO Auto-generated method stub
 		//remember there is a hard document and then the actual document
-		String absPathToResellerSignupDocument = "/content/documents/resellers/" + resellerId + "/admin/resellersignupdocument/resellersignupdocument";
+		String absPathToResellerSignupDocument = "/content/documents/mootlywcm/resellers/" + resellerId + "/admin/resellersignupdocument/resellersignupdocument";
 		
 		Session session = null;
 		try {
@@ -244,7 +286,10 @@ public class IncomeTaxIndiaEFilingService extends SystemRepositorySupportProvide
 			}
 			Property propPathToDSHandle = resellerSignupDocument.getProperty(getCanonicalHandlePathPropertyResellerSignupDocument());
 			String retVal =  propPathToDSHandle.getString();
-			return retVal;
+			//this is the canonical handle UUID of the REAL DS
+			Node theDigitalSignatureNode = session.getNodeByIdentifier(retVal);
+			
+			return theDigitalSignatureNode.getPath();
 			//now find the property which will carry the canonicalhandlepath to the digital signature file 
 		}
 		finally {
@@ -307,6 +352,16 @@ public class IncomeTaxIndiaEFilingService extends SystemRepositorySupportProvide
 		return digitalSignatureService;
 	}
 	
+	@Override
+	public SubmitBulkITR getSubmitBulkITRService() {
+		// TODO Auto-generated method stub
+		return submitBulkITRService;
+	}
 	
+	@Override
+	public void setSubmitBulkITRService(SubmitBulkITR submitBulkITRService) {
+		// TODO Auto-generated method stub
+		this.submitBulkITRService = submitBulkITRService;
+	}
 	
 }

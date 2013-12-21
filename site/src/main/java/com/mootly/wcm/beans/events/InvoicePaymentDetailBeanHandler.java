@@ -34,6 +34,18 @@ public class InvoicePaymentDetailBeanHandler extends GenericLifeCycleHandler imp
 			invoicePaymentDetail.setPaymentTransactionId(strPaymentTransactionId);
 			invoicePaymentDetail.setPaymentType(paymentType);
 			invoicePaymentDetail.setPaymentDate(IndianGregorianCalendar.getCurrentDateInIndiaAsDate());
+			if(invoicePaymentDetail.getPaymentType() == PaymentType.CASH){
+				invoicePaymentDetail.setPaymentAmount(invoicePaymentDetail.getCashAmount());
+				
+			}
+			if(invoicePaymentDetail.getPaymentType() == PaymentType.CHECK){
+				invoicePaymentDetail.setPaymentAmount(invoicePaymentDetail.getCheckAmount());
+				
+			}
+			if(invoicePaymentDetail.getPaymentType() == PaymentType.RTGS){
+				invoicePaymentDetail.setPaymentAmount(invoicePaymentDetail.getRtgsAmount());
+				
+			}
 			InvoiceDocument invoiceDocument = (InvoiceDocument) hstRequest.getAttribute("parentBean");
 			if (invoiceDocument != null ) {	
 				//invoicePaymentDetail.setPaymentAmount(invoiceDocument.getAmountDue());
@@ -42,6 +54,7 @@ public class InvoicePaymentDetailBeanHandler extends GenericLifeCycleHandler imp
 	}
 
 	//Updates Payment Amount as user-input amount from PaymentType Screen
+	/*
 	@Override
 	public void afterFillChildBeanMap(HippoBean hippoBean) {
 		// TODO Auto-generated method stub
@@ -66,4 +79,5 @@ public class InvoicePaymentDetailBeanHandler extends GenericLifeCycleHandler imp
 			}
 		}
 	}
+	*/
 }

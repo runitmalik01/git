@@ -18056,6 +18056,281 @@ tax .&lt;/p&gt;
         </sv:node>
       </sv:node>
     </sv:node>
+    <!-- admin -->
+	<sv:node sv:name="admin" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hippostd:folder</sv:value>
+	  </sv:property>
+	  <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+	    <sv:value>hippo:harddocument</sv:value>
+	    <sv:value>hippotranslation:translated</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>1ca9560d-02b5-4e87-b257-d719cd75f9f5</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
+	  <sv:property sv:multiple="true" sv:name="hippostd:foldertype" sv:type="String">
+	    <sv:value>new-document</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hippotranslation:id" sv:type="String">
+	    <sv:value>be30c696-78a2-4789-9a04-579dfbd9208d</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hippotranslation:locale" sv:type="String">
+	    <sv:value>en</sv:value>
+	  </sv:property>
+	  <sv:node sv:name="hippotranslation:translations">
+	    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	      <sv:value>hippotranslation:translations</sv:value>
+	    </sv:property>
+	  </sv:node>
+	  <sv:node sv:name="resellersignupdocument">
+	    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	      <sv:value>hippo:handle</sv:value>
+	    </sv:property>
+	    <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+	      <sv:value>hippo:hardhandle</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="jcr:uuid" sv:type="String">
+	      <sv:value>7125d188-6444-4a4b-97d8-062db13492e9</sv:value>
+	    </sv:property>
+	    <sv:node sv:name="resellersignupdocument">
+	      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	        <sv:value>mootlywcm:resellersignupdocument</sv:value>
+	      </sv:property>
+	      <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+	        <sv:value>hippo:harddocument</sv:value>
+	        <sv:value>hippotranslation:translated</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="jcr:uuid" sv:type="String">
+	        <sv:value>de832efd-66b3-4496-93b6-00bb0a2b0272</sv:value>
+	      </sv:property>
+	      <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
+	        <sv:value>live</sv:value>
+	        <sv:value>preview</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="hippo:related___pathreference" sv:type="String">
+	        <sv:value>admin/resellersignupdocument</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="hippostd:holder" sv:type="String">
+	        <sv:value>admin</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="hippostd:state" sv:type="String">
+	        <sv:value>published</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="hippostd:stateSummary" sv:type="String">
+	        <sv:value>live</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
+	        <sv:value>admin</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
+	        <sv:value>2013-12-20T16:45:39.154-08:00</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
+	        <sv:value>2013-12-20T16:48:58.155-08:00</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
+	        <sv:value>admin</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
+	        <sv:value>2013-12-20T16:49:02.772-08:00</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="hippotranslation:id" sv:type="String">
+	        <sv:value>6549b530-58b7-406b-92dc-daec58ce1035</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="hippotranslation:locale" sv:type="String">
+	        <sv:value>en</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="mootlywcm:activationCode" sv:type="String">
+	        <sv:value/>
+	      </sv:property>
+	      <sv:property sv:name="mootlywcm:email" sv:type="String">
+	        <sv:value/>
+	      </sv:property>
+	      <sv:property sv:name="mootlywcm:emailCustomerService" sv:type="String">
+	        <sv:value/>
+	      </sv:property>
+	      <sv:property sv:name="mootlywcm:emailFrom" sv:type="String">
+	        <sv:value/>
+	      </sv:property>
+	      <sv:property sv:name="mootlywcm:emailFromName" sv:type="String">
+	        <sv:value/>
+	      </sv:property>
+	      <sv:property sv:name="mootlywcm:emailSignature" sv:type="String">
+	        <sv:value/>
+	      </sv:property>
+	      <sv:property sv:name="mootlywcm:endDate" sv:type="String">
+	        <sv:value/>
+	      </sv:property>
+	      <sv:property sv:name="mootlywcm:eriEnable26ASImport" sv:type="Boolean">
+	        <sv:value>false</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="mootlywcm:eriEnabled" sv:type="Boolean">
+	        <sv:value>false</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="mootlywcm:eriPassword" sv:type="String">
+	        <sv:value/>
+	      </sv:property>
+	      <sv:property sv:name="mootlywcm:eriUserId" sv:type="String">
+	        <sv:value/>
+	      </sv:property>
+	      <sv:property sv:name="mootlywcm:isActive" sv:type="Boolean">
+	        <sv:value>false</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="mootlywcm:isReseller" sv:type="Boolean">
+	        <sv:value>false</sv:value>
+	      </sv:property>
+	      <sv:property sv:multiple="true" sv:name="mootlywcm:members" sv:type="String">
+	        <sv:value/>
+	      </sv:property>
+	      <sv:property sv:name="mootlywcm:numberOfLicensedUsers" sv:type="String">
+	        <sv:value/>
+	      </sv:property>
+	      <sv:property sv:name="mootlywcm:pageTitlePrefix" sv:type="String">
+	        <sv:value/>
+	      </sv:property>
+	      <sv:property sv:name="mootlywcm:password" sv:type="String">
+	        <sv:value/>
+	      </sv:property>
+	      <sv:property sv:name="mootlywcm:pathToDigitalSignature" sv:type="String">
+	        <sv:value>87567631-816c-4aa2-8a48-20040edc4d13</sv:value>
+	      </sv:property>
+	      <sv:property sv:multiple="true" sv:name="mootlywcm:paymentAvailableTypes" sv:type="String">
+	        <sv:value/>
+	      </sv:property>
+	      <sv:property sv:name="mootlywcm:paymentEnabled" sv:type="Boolean">
+	        <sv:value>false</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="mootlywcm:phoneCustomerService" sv:type="String">
+	        <sv:value/>
+	      </sv:property>
+	      <sv:property sv:name="mootlywcm:resellerID" sv:type="String">
+	        <sv:value>w4india</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="mootlywcm:resellerName" sv:type="String">
+	        <sv:value/>
+	      </sv:property>
+	      <sv:property sv:name="mootlywcm:resellerPackage" sv:type="String">
+	        <sv:value/>
+	      </sv:property>
+	      <sv:property sv:name="mootlywcm:startDate" sv:type="String">
+	        <sv:value/>
+	      </sv:property>
+	      <sv:property sv:name="mootlywcm:userName" sv:type="String">
+	        <sv:value/>
+	      </sv:property>
+	      <sv:node sv:name="hippotranslation:translations">
+	        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	          <sv:value>hippotranslation:translations</sv:value>
+	        </sv:property>
+	      </sv:node>
+	    </sv:node>
+	  </sv:node>
+	  <sv:node sv:name="dsc_sweta.pfx">
+	    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	      <sv:value>hippo:handle</sv:value>
+	    </sv:property>
+	    <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+	      <sv:value>hippo:hardhandle</sv:value>
+	      <sv:value>hippo:translated</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="jcr:uuid" sv:type="String">
+	      <sv:value>87567631-816c-4aa2-8a48-20040edc4d13</sv:value>
+	    </sv:property>
+	    <sv:node sv:name="hippo:translation">
+	      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	        <sv:value>hippo:translation</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="hippo:language" sv:type="String">
+	        <sv:value/>
+	      </sv:property>
+	      <sv:property sv:name="hippo:message" sv:type="String">
+	        <sv:value>DSC_Sweta.pfx</sv:value>
+	      </sv:property>
+	    </sv:node>
+	    <sv:node sv:name="dsc_sweta.pfx">
+	      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	        <sv:value>mootlywcm:memberdrivedocument</sv:value>
+	      </sv:property>
+	      <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+	        <sv:value>hippo:harddocument</sv:value>
+	        <sv:value>hippotranslation:translated</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="jcr:uuid" sv:type="String">
+	        <sv:value>723f42fe-9806-482a-a205-235385924ee5</sv:value>
+	      </sv:property>
+	      <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
+	        <sv:value>live</sv:value>
+	        <sv:value>preview</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="hippo:related___pathreference" sv:type="String">
+	        <sv:value>admin/dsc_sweta.pfx</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="hippostd:holder" sv:type="String">
+	        <sv:value>sitewriter</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="hippostd:state" sv:type="String">
+	        <sv:value>published</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="hippostd:stateSummary" sv:type="String">
+	        <sv:value>live</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
+	        <sv:value>sitewriter</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
+	        <sv:value>2013-12-19T18:50:17.558-08:00</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
+	        <sv:value>2013-12-19T18:50:20.110-08:00</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
+	        <sv:value>sitewriter</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
+	        <sv:value>2013-12-19T18:50:20.286-08:00</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="hippotranslation:id" sv:type="String">
+	        <sv:value>73deeff5-0c52-4bf1-85cb-27020f82adf9</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="hippotranslation:locale" sv:type="String">
+	        <sv:value>en</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="mootlywcm:additionalNotes" sv:type="String">
+	        <sv:value>112233</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="mootlywcm:description" sv:type="String">
+	        <sv:value/>
+	      </sv:property>
+	      <sv:property sv:name="mootlywcm:docPassword" sv:type="String">
+	        <sv:value>112233</sv:value>
+	      </sv:property>
+	      <sv:node sv:name="hippotranslation:translations">
+	        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	          <sv:value>hippotranslation:translations</sv:value>
+	        </sv:property>
+	      </sv:node>
+	      <sv:node sv:name="mootlywcm:memberDocs">
+	        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	          <sv:value>hippo:resource</sv:value>
+	        </sv:property>
+	        <sv:property sv:name="jcr:data" sv:type="Binary">
+	          <sv:value>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</sv:value>
+	        </sv:property>
+	        <sv:property sv:name="jcr:encoding" sv:type="String">
+	          <sv:value>UTF-8</sv:value>
+	        </sv:property>
+	        <sv:property sv:name="jcr:lastModified" sv:type="Date">
+	          <sv:value>2013-12-20T02:50:20.000Z</sv:value>
+	        </sv:property>
+	        <sv:property sv:name="jcr:mimeType" sv:type="String">
+	          <sv:value>application/x-pkcs12</sv:value>
+	        </sv:property>
+	      </sv:node>
+	    </sv:node>
+	  </sv:node>
+	</sv:node>
+    <!-- /admin -->
   </sv:node>
   <sv:node sv:name="creditsafeindia">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">

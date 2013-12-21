@@ -14,6 +14,7 @@ import com.mootly.wcm.services.ditws.SubmitBulkITR;
 import com.mootly.wcm.services.ditws.exception.DataMismatchException;
 import com.mootly.wcm.services.ditws.exception.InvalidFormatException;
 import com.mootly.wcm.services.ditws.exception.MissingInformationException;
+import com.mootly.wcm.services.efile.EFileResponse;
 
 public class TestSubmitBulkITR  {
 	ApplicationContext ac = null;
@@ -34,8 +35,7 @@ public class TestSubmitBulkITR  {
 	public void testBulkITR() {
 		SubmitBulkITR submitBulkITR =	ac.getBean(SubmitBulkITR.class);
 		try {
-			File theZipFile = null;
-			Map<String, Object> output = submitBulkITR.submitBulkITR(theZipFile);
+			EFileResponse output = submitBulkITR.submitBulkITR("","","","",null);
 			System.out.println(output);
 		} catch (MissingInformationException e) {
 			// TODO Auto-generated catch block

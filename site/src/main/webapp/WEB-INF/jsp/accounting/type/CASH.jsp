@@ -1,7 +1,10 @@
 <%@include file="../../includes/tags.jspf" %>
+<%--
 <c:forEach items="${parentBean.invoicePaymentDetailList}" var="paymentdetail">
-						   <c:if test="${uuid == paymentdetail.canonicalUUID}"><c:set value="${paymentdetail}" var="tarPaymentDetail"></c:set></c:if>
-						</c:forEach>
+	<c:if test="${uuid == paymentdetail.canonicalUUID}"><c:set value="${paymentdetail}" var="tarPaymentDetail"></c:set></c:if>
+</c:forEach>
+ --%>
+ <c:out value="${pageAction}"/>
 <c:if test="${not empty formMap}">
 	<c:forEach items="${formMap.message}" var="item">
 		<div class="alert alert-danger">
@@ -18,7 +21,7 @@
 			</div>
 			<div class="rowlabel">
 				<textarea name="cashAddress" id="cashAddress"
-					<c:out value="${allReadOnly}"/> > <c:if test="${pageAction=='EDIT_CHILD'}">${tarPaymentDetail.cashAddress}</c:if></textarea>
+					<c:out value="${allReadOnly}"/> > <c:if test="${pageAction=='EDIT_CHILD'}">${childBean.cashAddress}</c:if></textarea>
 			</div>
 		</div>
 		
@@ -28,7 +31,7 @@
 			</div>
 			<div class="rowlabel">
 				<input type="text" id="cashContactNumber" name="cashContactNumber"
-					value="<c:if test="${pageAction=='EDIT_CHILD'}">${tarPaymentDetail.cashContactNumber}</c:if>"
+					value="<c:if test="${pageAction=='EDIT_CHILD'}">${childBean.cashContactNumber}</c:if>"
 					<c:out value="${allReadOnly}"/> />
 			</div>
 		</div>
@@ -41,7 +44,7 @@
 			</div>
 			<div class="rowlabel">
 				<input type="text" id="cashAmount" name="cashAmount"
-					value="<c:if test="${pageAction=='EDIT_CHILD'}">${tarPaymentDetail.cashAmount}</c:if>"
+					value="<c:if test="${pageAction=='EDIT_CHILD'}">${childBean.paymentAmount}</c:if>"
 					<c:out value="${allReadOnly}"/> />
 			</div>
 		</div>
@@ -51,12 +54,14 @@
 			</div>
 			<div class="rowlabel">
 				<input type="text" name="cashBestTime" id="cashBestTime"
-					value="<c:if test="${pageAction=='EDIT_CHILD'}">${tarPaymentDetail.cashBestTime}</c:if>"
+					value="<c:if test="${pageAction=='EDIT_CHILD'}">${childBean.cashBestTime}</c:if>"
 					<c:out value="${allReadOnly}"/> />
 			</div>
 		</div>
 	</div>
-	<jsp:include page="vendor_verification.jsp"></jsp:include>
+	<c:if test="${not empty pageAction && pageAction == 'EDIT_CHILD'}">
+		<jsp:include page="vendor_verification.jsp"></jsp:include>
+	</c:if>
 	<div class="control-group" align="right">
 				<div class="controls">
 					<button class="btn btn-default btn-success" type="submit" id="payment_submit">Pay Now</button>

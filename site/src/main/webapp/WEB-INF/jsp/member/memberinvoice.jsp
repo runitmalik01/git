@@ -249,7 +249,15 @@
 							<td><c:out
 									value="${fn:replace(invoicepaymentdetail.paymentType,'_',' ')}" />
 							</td>
-							<td><c:out value="${invoicepaymentdetail.txnAmount}" />
+							<td>
+								<c:choose>
+									<c:when test="${paymentStatus == 'VERIFIED'}">
+										<c:out value="${invoicepaymentdetail.txnAmount}" />
+									</c:when>
+									<c:otherwise>
+										<c:out value="${invoicepaymentdetail.paymentAmount}" />
+									</c:otherwise>
+								</c:choose>
 							</td>
 							<td>${paymentStatus}</td>
 							<c:if
@@ -300,10 +308,10 @@
 									<c:if
 										test="${not empty strIsOnVendorPortal && strIsOnVendorPortal =='true' && isVendor =='true'}">
 										<td><a class="btn btn-default btn-primary"
-											href="${scriptName}<c:out value="/payment/${invoicerefunddetail.canonicalUUID}"/>/paymentedit?paymentType=${invoicerefunddetail.paymentType}"><small><i
+											href="${scriptName}<c:out value="/payment/${invoicerefunddetail.canonicalUUID}"/>/paymentedit/${invoicerefunddetail.paymentType}"><small><i
 													class="glyphicon glyphicon-pencil glyphicon glyphicon-white"></i>Edit</small> </a>&nbsp;&nbsp;<a
 											class="btn btn-default btn-danger"
-											href="${scriptName}<c:out value="/payment/${invoicerefunddetail.canonicalUUID}"/>/paymentdelete?paymentType=${invoicerefunddetail.paymentType}"
+											href="${scriptName}<c:out value="/payment/${invoicerefunddetail.canonicalUUID}"/>/paymentdelete/${invoicerefunddetail.paymentType}"
 											data-confirm=""><small><i
 													class="glyphicon glyphicon-trash glyphicon glyphicon-white"></i>Delete</small> </a>
 										</td>

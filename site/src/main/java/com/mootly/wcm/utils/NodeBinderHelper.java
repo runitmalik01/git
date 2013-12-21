@@ -99,19 +99,20 @@ public class NodeBinderHelper {
 							//Method apacheMethod = org.apache.commons.lang.reflect.MethodUtils.getAccessibleMethod(node.getClass() , "setProperty", new Class[]{String.class,  theTypeClass});
 							//Method theMethod2 = node.getClass().getMethod("setProperty", String.class, theTypeClass);
 							if ( theMethod != null ) {
-								theMethod.invoke(node, nodePropertyName,theValue);
+								try {
+									theMethod.invoke(node, nodePropertyName,theValue);
+								} catch (IllegalAccessException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+									log.warn("No",e + " Error nodePropertyName:" + nodePropertyName  + " nodeValue :" + theValue);
+								} catch (IllegalArgumentException e) {
+									// TODO Auto-generated catch block
+									log.warn("No",e + " Error nodePropertyName:" + nodePropertyName  + " nodeValue :" + theValue);
+								} catch (InvocationTargetException e) {
+									// TODO Auto-generated catch block
+									log.warn("No",e + " Error nodePropertyName:" + nodePropertyName  + " nodeValue :" + theValue);									
+								}
 							}
-						} catch (IllegalAccessException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-							log.warn("No",e);
-						} catch (IllegalArgumentException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						} catch (InvocationTargetException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-							log.warn("No",e);
 						}catch (SecurityException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();

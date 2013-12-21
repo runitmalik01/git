@@ -154,6 +154,8 @@ import com.mootly.wcm.services.ditws.model.RetrievePANResponse;
 import com.mootly.wcm.services.ditws.model.RetrieveRectificationResponse;
 import com.mootly.wcm.services.ditws.model.RetrieveRefundResponse;
 import com.mootly.wcm.services.efile.EFileResponse;
+import com.mootly.wcm.services.efile.exception.DigtalSignatureAssesseeFailure;
+import com.mootly.wcm.services.efile.exception.DigtalSignatureERIUserFailure;
 import com.mootly.wcm.services.efile.exception.EFileException;
 import com.mootly.wcm.utils.GoGreenUtil;
 import com.mootly.wcm.utils.MootlyFormUtils;
@@ -521,6 +523,14 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 					ex.printStackTrace();
 				}
 				return;
+			} catch (DigtalSignatureAssesseeFailure e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				log.error("Error in validating XML",e);
+			} catch (DigtalSignatureERIUserFailure e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				log.error("Error in validating XML",e);
 			}
 		}
 		//new code for bulk
@@ -1788,7 +1798,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 
 
 	//DecimalFormat decimalFormat=new DecimalFormat("#.#");
-	public void handleITRSummary(HstRequest request, HstResponse response) throws InvalidXMLException, PaymentRequiredException, DownloadConfirmationRequiredException, EFileException{
+	public void handleITRSummary(HstRequest request, HstResponse response) throws InvalidXMLException, PaymentRequiredException, DownloadConfirmationRequiredException, EFileException, DigtalSignatureAssesseeFailure, DigtalSignatureERIUserFailure{
 
 		String generatedXml = null;
 		String generatedHtmlSummary = null;
@@ -2023,7 +2033,12 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			}
 			break;
 		case EFILE:
-				EFileResponse eFileResponse = eFileITR(generatedXml);
+				EFileResponse eFileResponse = eFileITR( getChannelInfoWrapper().getWebSiteInfo().getEriUserId(), getChannelInfoWrapper().getWebSiteInfo().getEriPassword(), generatedXml);
+				if (eFileResponse != null) {
+					if (log.isInfoEnabled()) {
+						log.info ("eFileResponse.getTokenNumber();" + eFileResponse.getTokenNumber() ); 
+					}
+				}
 		}
 		//Object theForm = request.getAttribute("theForm");
 	}
@@ -2295,12 +2310,12 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		return true;
 	}
 	
-	protected EFileResponse eFileITR(String itrXML) throws EFileException {
+	protected EFileResponse eFileITR(String userName, String password,String itrXML) throws EFileException, DigtalSignatureAssesseeFailure, DigtalSignatureERIUserFailure {
 		///assuming all is WELL call another class so we can keep the Logic Seperated.
 		//String xml,String resellerId,String pan,FinancialYear financialYear,String canonicalPathToMemberIncomeTaxFolder) throws EFileException;
 		if (getMemberPersonalInformation() != null) {
 			String  canonicalPathToMemberIncomeTaxFolder = getMemberPersonalInformation().getParentBean().getCanonicalPath();
-			EFileResponse eFileResponse = geteFileService().eFile(itrXML, getResellerId(),getPAN(), getFinancialYear(), canonicalPathToMemberIncomeTaxFolder);
+			EFileResponse eFileResponse = geteFileService().eFile(userName,password, itrXML, getResellerId(),getPAN(), getFinancialYear(), canonicalPathToMemberIncomeTaxFolder);
 			return eFileResponse;
 		}
 		else {

@@ -148,17 +148,6 @@ public class InvoicePayment extends ITReturnComponent {
 		// TODO Auto-generated method stub
 		String returnUrl = getRedirectURLForSiteMapItem(request, response, null, "memberinvoice", getFinancialYear(), getTheFolderContainingITRDocuments(), getPAN());
 		String notifyUrl = getRedirectURLForSiteMapItem(request, response, null,"memberinvoice", getFinancialYear(), getTheFolderContainingITRDocuments(), getPAN());
-		BANK_ISSUER bankIssuer = null;
-		
-		String issuerCodeStr = null;
-		if (getFormMap() != null && getFormMap().getField("issuerCode") != null && getFormMap().getField("issuerCode").getValue() != null) {
-			issuerCodeStr = getFormMap().getField("issuerCode").getValue();
-			try {
-				bankIssuer = BANK_ISSUER.valueOf(issuerCodeStr);
-			}catch (IllegalArgumentException e) {
-				log.warn("Error converting issuer code to enum, check what's going on the value passed was " + issuerCodeStr,e);
-			}
-		}
 		
 		String email = getFormMap().getField("email").getValue();
 		String lastName = getFormMap().getField("lastName").getValue();
@@ -171,20 +160,33 @@ public class InvoicePayment extends ITReturnComponent {
 		InvoiceDocument invDoc = (InvoiceDocument) getParentBean(); 
 		//String returnUrl = "http://www.wealth4india/site/blah";
 		//FinancialYear fy = FinancialYear.getByDisplayName(personalInformation.getFinancialYear());
-		if(paymentType.equals(PaymentType.NET_BANKING) && bankIssuer != null && bankIssuer.isAppliesToMotoAPI()){
-			String strTransactionId = invoicePaymentDetailBeanHandler.getStrPaymentTransactionId();
-			if (log.isInfoEnabled()) {
-				log.info("The transaction Id for this transaction is :" + strTransactionId);
+		if(paymentType.equals(PaymentType.NET_BANKING)){
+			BANK_ISSUER bankIssuer = null;
+			
+			String issuerCodeStr = null;
+			if (getFormMap() != null && getFormMap().getField("issuerCode") != null && getFormMap().getField("issuerCode").getValue() != null) {
+				issuerCodeStr = getFormMap().getField("issuerCode").getValue();
+				try {
+					bankIssuer = BANK_ISSUER.valueOf(issuerCodeStr);
+				}catch (IllegalArgumentException e) {
+					log.warn("Error converting issuer code to enum, check what's going on the value passed was " + issuerCodeStr,e);
+				}
 			}
-			Map<String, Object> output = getTransaction().acceptITRPaymentByNetBanking(
-					strTransactionId,
-					getUserName(), getFinancialYear(), getPAN(), 
-					returnUrl, notifyUrl, bankIssuer, invDoc.getAmountDue().toString(), email, firstName, lastName,
-					pi_mobile, bilingAddress, pi_townCity, pi_state, pi_pinCode);			
-			if (output != null && output.containsKey(Transaction.RETURN_URL_KEY)) {
-					paymentRedirectURL = (String) output.get(Transaction.RETURN_URL_KEY);
-			}else {
-				getFormMap().addMessage("error.gateway.connection", "true");
+			if (bankIssuer != null && bankIssuer.isAppliesToMotoAPI()) {
+				String strTransactionId = invoicePaymentDetailBeanHandler.getStrPaymentTransactionId();
+				if (log.isInfoEnabled()) {
+					log.info("The transaction Id for this transaction is :" + strTransactionId);
+				}
+				Map<String, Object> output = getTransaction().acceptITRPaymentByNetBanking(
+						strTransactionId,
+						getUserName(), getFinancialYear(), getPAN(), 
+						returnUrl, notifyUrl, bankIssuer, invDoc.getAmountDue().toString(), email, firstName, lastName,
+						pi_mobile, bilingAddress, pi_townCity, pi_state, pi_pinCode);			
+				if (output != null && output.containsKey(Transaction.RETURN_URL_KEY)) {
+						paymentRedirectURL = (String) output.get(Transaction.RETURN_URL_KEY);
+				}else {
+					getFormMap().addMessage("error.gateway.connection", "true");
+				}
 			}
 		}
 		if(paymentType.equals(PaymentType.CREDIT_CARD) || paymentType.equals(PaymentType.DEBIT_CARD)){

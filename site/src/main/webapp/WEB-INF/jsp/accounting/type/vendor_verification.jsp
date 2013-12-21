@@ -16,7 +16,7 @@
 				   				<%
 				   					pageContext.setAttribute("aPaymentStatus",aPaymentStatus);
 				   				%>
-				   				<option <c:if test="${aPaymentStatus == 'VERIFIED' && not empty parentBean.paymentVerificationStatus && parentBean.paymentVerificationStatus == 'VERIFIED'}">selected</c:if> value="<%=aPaymentStatus.name()%>"><%=aPaymentStatus.name()%></option>
+				   				<option <c:if test="${aPaymentStatus == 'VERIFIED' && not empty childBean.paymentVerificationStatus && childBean.paymentVerificationStatus == 'VERIFIED'}">selected</c:if> value="<%=aPaymentStatus.name()%>"><%=aPaymentStatus.name()%></option>
 				   			<%} %>
 				   		</select>
 				   	</fieldset>
@@ -24,7 +24,7 @@
 				<div class="col-md-4 col-md-offset-4">
 					<fieldset>
 						<legend>Vendor - Transaction Amount</legend>
-				   		<input id="txnAmount" name="txnAmount" value="${parentBean.txnAmount}"/>				   			
+				   		<input id="txnAmount" name="txnAmount" value="${childBean.txnAmount}"/>				   			
 				   	</fieldset>
 			   	</div>
 		</div>

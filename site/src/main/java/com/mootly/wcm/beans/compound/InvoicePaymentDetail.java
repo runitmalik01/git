@@ -200,7 +200,8 @@ public class InvoicePaymentDetail extends FlexibleDocument implements FormMapFil
 	@FormField(name="paymentAmount",propertyName="paymentAmount",dataTypeValidationTypes={})
 	@NodeBinder(nodePropertyName="mootlywcm:paymentAmount",propertyName="paymentAmount")
 	public Double getPaymentAmount() {
-		if (paymentAmount == null) NodeBinderHelper.setObjectProperty("paymentAmount", this, 0D);
+		if (paymentAmount == null) paymentAmount = getProperty("mootlywcm:paymentAmount");
+		if (paymentAmount == null) paymentAmount =  0D;
 		return paymentAmount;
 	}
 	
@@ -286,6 +287,7 @@ public class InvoicePaymentDetail extends FlexibleDocument implements FormMapFil
 	@NodeBinder(nodePropertyName=PROP_CHECK_AMOUNT)	
 	public Double getCheckAmount() {
 		if (checkAmount == null) checkAmount = getProperty(PROP_CHECK_AMOUNT);
+		if (checkAmount == null) checkAmount = 0D;
 		return checkAmount;
 	}
 
@@ -315,6 +317,7 @@ public class InvoicePaymentDetail extends FlexibleDocument implements FormMapFil
 	@NodeBinder(nodePropertyName=PROP_CASH_AMOUNT)	
 	public Double getCashAmount() {
 		if (cashAmount == null) cashAmount = getProperty(PROP_CASH_AMOUNT);
+		if (cashAmount == null) cashAmount = 0D;
 		return cashAmount;
 	}
 	

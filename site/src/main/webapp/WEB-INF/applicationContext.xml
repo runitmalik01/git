@@ -52,6 +52,7 @@
   
   <bean id="eFileService" class="com.mootly.wcm.services.efile.IncomeTaxIndiaEFilingService">
       <property name="digitalSignatureService" ref="digitalSignatureService"/>
+      <property name="submitBulkITRService" ref="submitBulkITR"/>
       <property name="canonicalHandlePathPropertyMemberPersonalInfo" value="mootlywcm:pathToDigitalSignature"/>
       <property name="canonicalHandlePathPropertyResellerSignupDocument" value="mootlywcm:pathToDigitalSignature"/>
   </bean>
