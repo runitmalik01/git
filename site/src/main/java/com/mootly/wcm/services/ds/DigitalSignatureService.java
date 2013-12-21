@@ -2,7 +2,6 @@ package com.mootly.wcm.services.ds;
 
 import java.io.File;
 import java.security.cert.X509Certificate;
-import java.util.zip.ZipInputStream;
 
 import javax.jcr.RepositoryException;
 
