@@ -54,7 +54,7 @@ public class InvoicePaymentDetailBeanHandler extends GenericLifeCycleHandler imp
 	}
 
 	//Updates Payment Amount as user-input amount from PaymentType Screen
-	/*
+	
 	@Override
 	public void afterFillChildBeanMap(HippoBean hippoBean) {
 		// TODO Auto-generated method stub
@@ -65,19 +65,20 @@ public class InvoicePaymentDetailBeanHandler extends GenericLifeCycleHandler imp
 			if (invoiceDocument != null ) {
 				if(invoicePaymentDetail.getPaymentType() == PaymentType.CASH){
 					invoicePaymentDetail.setPaymentAmount(invoicePaymentDetail.getCashAmount());
-					
+					//	System.out.println("CASH:::"+invoicePaymentDetail.getPaymentAmount());
+
 				}
 				if(invoicePaymentDetail.getPaymentType() == PaymentType.CHECK){
 					invoicePaymentDetail.setPaymentAmount(invoicePaymentDetail.getCheckAmount());
-					
+					//System.out.println("CHEQUE:::"+invoicePaymentDetail.getPaymentAmount());
 				}
 				if(invoicePaymentDetail.getPaymentType() == PaymentType.RTGS){
 					invoicePaymentDetail.setPaymentAmount(invoicePaymentDetail.getRtgsAmount());
-					
+					//	System.out.println("RTGS:::"+invoicePaymentDetail.getPaymentAmount());
 				}
-				//invoicePaymentDetail.setTxnAmount(invoiceDocument.getAmountDue());				
+				invoicePaymentDetail.setTxnAmount(invoiceDocument.getAmountDue());				
 			}
 		}
 	}
-	*/
+	
 }
