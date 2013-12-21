@@ -171,7 +171,7 @@
 </c:set>
 <c:set var="modalBody"><form id="scheduleSI" name="scheduleSI" action="${actionUrl}" method="post"><c:out value="${sectionData}" escapeXml="false"/></form></c:set>
 <c:if test="${pageAction == 'NEW_CHILD'||pageAction == 'EDIT_CHILD'}">
-	<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
