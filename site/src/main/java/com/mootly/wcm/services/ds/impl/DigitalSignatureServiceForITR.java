@@ -6,7 +6,6 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.StringWriter;
-import java.security.Key;
 import java.security.KeyStore;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
@@ -24,7 +23,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Enumeration;
 import java.util.List;
-import java.util.zip.ZipInputStream;
 
 import javax.jcr.Node;
 import javax.jcr.Property;
@@ -57,8 +55,6 @@ import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
-
-import ETM.ITD.FilingService.Base64Utils;
 
 import com.mootly.wcm.model.IndianGregorianCalendar;
 import com.mootly.wcm.services.ds.DigitalSignatureService;
