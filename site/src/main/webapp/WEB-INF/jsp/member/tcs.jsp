@@ -33,38 +33,62 @@
 				<fieldset>
 					<legend style="color: green; font-weight: bold;">Tax
 						Collected from Sources Details</legend>
-					<table>
-						<tr>
-							<th width="20%"><b>TAN of Collector</b></th>
-							<th width="36%"><b>Name of Collector</b></th>
-							<th width="22%"><b>Total Tax Deducted</b></th>
-							<th width="22%"><b>Amount to be allowed as credit during
-									the year</b></th>
-						</tr>
-						<tr>
-							<td><input id="tan" name="tan" class="uprcase"
-								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.tan}"/></c:if>"
-								type="text"></td>
-							<td><input id="name" name="name"
-								placeholder="Collector Name" maxlength="125"
-								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.name}"/></c:if>"
-								type="text"></td>
-							<td><input id="totaltax" name="totaltax"
-								placeholder="Amount" maxlength="14"
-								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  groupingUsed="false" value="${childBean.totaltax}"/></c:if>"
-								type="text"></td>
-							<td><input id="taxCredited" name="taxCredited"
-								placeholder="Amount" maxlength="14"
-								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  groupingUsed="false" value="${childBean.taxCredited}"/></c:if>"
-								type="text"></td>
-						</tr>
-					</table>
+					<div class="row show-grid">
+						<div class="col-md-4">
+							<div class="rowlabel">
 
+								<label for="tan">TAN of Collector </label>
+							</div>
+							<div class="rowlabel">
+								<input id="tan" name="tan" class="uprcase"
+									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.tan}"/></c:if>"
+									type="text">
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="rowlabel">
+								<label for="name">Name of Collector </label>
+							</div>
+							<div class="rowlabel">
+								<input id="name" name="name" placeholder="Collector Name"
+									maxlength="125"
+									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.name}"/></c:if>"
+									type="text">
+
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="rowlabel">
+								<label for="totaltax">Total Tax Deducted </label>
+							</div>
+							<div class="rowlabel">
+								<input id="totaltax" name="totaltax" placeholder="Amount"
+									maxlength="14"
+									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  groupingUsed="false" value="${childBean.totaltax}"/></c:if>"
+									type="text">
+
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="rowlabel">
+								<label for="taxCredited">Amount to be allowed as credit
+									during the year </label>
+							</div>
+							<div class="rowlabel">
+								<input id="taxCredited" name="taxCredited" placeholder="Amount"
+									maxlength="14"
+									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  groupingUsed="false" value="${childBean.taxCredited}"/></c:if>"
+									type="text">
+
+							</div>
+						</div>
+					</div>
 				</fieldset>
 				<div class="row show-grid">
 					<div class="col-md-3 col-md-offset-10">
-						<a href="${redirectURLToSamePage}" class="button olive">Cancel</a>
-						&nbsp; <a id="myModalHreftcs" role="button" class="btn btn-default orange">Save</a>
+						<a href="${redirectURLToSamePage}" class="btn btn-default btn-danger" style="color: black">Cancel</a>
+						&nbsp; <a id="myModalHreftcs" role="button"
+							class="btn btn-default btn-success" style="color: black">Save</a>
 					</div>
 				</div>
 			</form>
@@ -97,11 +121,12 @@
 							</td>
 							<td><a class="btn btn-default btn-primary"
 								href="${scriptName}/<c:out value="${tdsdetail.canonicalUUID}"/>/tcsedit"><small><i
-										class="glyphicon glyphicon-pencil glyphicon glyphicon-white"></i>Edit</small> &nbsp;&nbsp; </a>&nbsp;&nbsp;<a
-								class="btn btn-default btn-danger"
+										class="glyphicon glyphicon-pencil glyphicon glyphicon-white"></i>Edit</small>
+									&nbsp;&nbsp; </a>&nbsp;&nbsp;<a class="btn btn-default btn-danger"
 								href="${scriptName}/<c:out value="${tdsdetail.canonicalUUID}"/>/tcsdelete"
 								id="delete" data-confirm=""><small><i
-										class="glyphicon glyphicon-trash glyphicon glyphicon-white"></i>Delete</small> </a>
+										class="glyphicon glyphicon-trash glyphicon glyphicon-white"></i>Delete</small>
+							</a>
 							</td>
 						</tr>
 
@@ -112,7 +137,7 @@
 						</td>
 				</c:if>
 			</table>
-			<a href="${redirectURLToSamePage}/tcsnew" class="button orange">Add
+			<a href="${redirectURLToSamePage}/tcsnew" class="btn btn-default btn-info" style="color: black">Add
 				New</a>
 		</c:otherwise>
 	</c:choose>
