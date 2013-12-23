@@ -1,4 +1,5 @@
 <%@include file="../includes/tags.jspf"%>
+<hippo-gogreen:title title="Services"></hippo-gogreen:title>
 <div class="row show-grid">
 	<div class="col-md-9">
 	  <div class="rowlabel">

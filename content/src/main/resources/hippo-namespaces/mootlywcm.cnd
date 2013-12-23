@@ -507,6 +507,8 @@ orderable
 [mootlywcm:pbpagedocument] > hippostd:relaxed, mootlywcm:basedocument orderable
 [mootlywcm:pbblockdocument] > hippostd:relaxed, mootlywcm:basedocument orderable
 [mootlywcm:pbassetdocument] > hippostd:relaxed, mootlywcm:basedocument orderable
+[mootlywcm:dashboardshortcutdetail] > hippo:compound, hippostd:relaxed orderable
+[mootlywcm:dashboardshortcutdocument] > hippostd:relaxed, mootlywcm:basedocument orderable
 
 [mootlywcm:identifiable]
  mixin

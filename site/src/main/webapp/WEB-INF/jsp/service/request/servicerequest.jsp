@@ -19,6 +19,11 @@
   		       <strong><c:out value="Successfully Applied"/></strong>
   		  </div>
   		</c:if>
+  		<c:if test="${canServiceRequestFullfill eq false}">
+  		   <div class="alert alert-warning">
+  		     <button type="button" class="close" id='dismissImport' data-dismiss="alert">&times;</button>
+  		   Service Lead Time will Pass the due Date of Income Tax Return Filing.Are you OK?</div>
+  		</c:if>
 <c:choose>
 	<c:when test="${success eq 'success'}">
 		<fmt:message key="easyforms.formtemplate.thankyou.event" />

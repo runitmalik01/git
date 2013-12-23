@@ -22,14 +22,21 @@ import static com.mootly.wcm.utils.Constants.PROP_PI_LAST_NAME;
 import static com.mootly.wcm.utils.Constants.PROP_PI_MIDDLE_NAME;
 import static com.mootly.wcm.utils.Constants.PROP_PI_MOBILE;
 
+import java.util.ArrayList;
 import java.util.GregorianCalendar;
+import java.util.List;
 import java.util.TimeZone;
 
+import javax.jcr.NodeIterator;
 import javax.jcr.RepositoryException;
 
+import org.hippoecm.hst.component.support.forms.FormMap;
 import org.hippoecm.hst.content.beans.ContentNodeBinder;
 import org.hippoecm.hst.content.beans.ContentNodeBindingException;
 import org.hippoecm.hst.content.beans.Node;
+import org.hippoecm.hst.content.beans.standard.HippoBean;
+import org.hippoecm.hst.content.beans.standard.HippoMirror;
+import org.hippoecm.hst.content.beans.standard.HippoMirrorBean;
 
 
 /**
@@ -41,7 +48,7 @@ import org.hippoecm.hst.content.beans.Node;
  * + mootlywcm:images (hippogallerypicker:imagelink) multiple
  */
 @Node(jcrType = "mootlywcm:servicerequestdocument")
-public class ServiceRequestDocument extends BaseDocument implements ContentNodeBinder {
+public class ServiceRequestDocument extends BaseDocument implements ContentNodeBinder,FormMapFiller {
 	final public String NAMESPACE = "mootlywcm:servicerequestdocument";
 	static final public String NODE_NAME = "ServiceRequestDocument";
 
@@ -54,6 +61,9 @@ public class ServiceRequestDocument extends BaseDocument implements ContentNodeB
 	private String serviceCode;
 	private String offeringMode;
 	private GregorianCalendar requestDate;
+	private Boolean documentUploaded;
+	private List<MemberDriveDocument> memberDriveDocumentList;
+	private List<String>  mdCanonicalHandleUUID;
 	/**
 	 * @return the firstName
 	 */
@@ -181,10 +191,55 @@ public class ServiceRequestDocument extends BaseDocument implements ContentNodeB
 	public void setRequestDate(GregorianCalendar requestDate) {
 		this.requestDate = requestDate;
 	}
+	public Boolean getDocumentUploaded() {
+		if(documentUploaded == null) documentUploaded = getProperty("mootlywcm:documentuploaded");
+		return documentUploaded;
+	}
+	public void setDocumentUploaded(Boolean documentUploaded) {
+		this.documentUploaded = documentUploaded;
+	}
+	public List<String> getMdCanonicalHandleUUID() {
+		if(mdCanonicalHandleUUID == null){
+			mdCanonicalHandleUUID = new ArrayList<String>();
+			List<String> uuidsArray = new ArrayList<String>();
+			if(getServiceProcessDocuemnts()!= null){
+				for(MemberDriveDocument thebean:getServiceProcessDocuemnts()){
+					uuidsArray.add(thebean.getCanonicalHandleUUID());
+				}
+			}
+			mdCanonicalHandleUUID.addAll(uuidsArray);
+		}
+		return mdCanonicalHandleUUID;
+	}
+	public void setMdCanonicalHandleUUID(List<String> mdCanonicalHandleUUID) {
+		this.mdCanonicalHandleUUID = mdCanonicalHandleUUID;
+	}
+	public final List<MemberDriveDocument> getServiceProcessDocuemnts() {
+		if (memberDriveDocumentList == null) {
+			List<HippoMirrorBean> theMirrorBeans = getChildBeansByName("mootlywcm:memberDocuments");
+			if (theMirrorBeans != null && theMirrorBeans.size() > 0 ) {
+				memberDriveDocumentList = new ArrayList<MemberDriveDocument>();
+				for (HippoMirrorBean theMirrorBean: theMirrorBeans) {
+					HippoBean theRefBean = ( (HippoMirror) theMirrorBean ).getReferencedBean();
+					if (theRefBean != null && theRefBean instanceof MemberDriveDocument) {
+						memberDriveDocumentList.add((MemberDriveDocument) theRefBean);
+					}
+				}	
+			}
+		}
+		return memberDriveDocumentList;
+	}
 	@Override
 	public boolean bind(Object content, javax.jcr.Node node) throws ContentNodeBindingException {
 		ServiceRequestDocument bean = (ServiceRequestDocument) content;        
 		try {
+			NodeIterator nodeIterator = node.getNodes("mootlywcm:memberDocuments");
+			if (nodeIterator != null) {
+				while (nodeIterator.hasNext()) {
+					javax.jcr.Node aNode = nodeIterator.nextNode();
+					aNode.remove();
+				}
+			}
 			node.setProperty(PROP_PI_FIRST_NAME,bean.getFirstName());
 			node.setProperty(PROP_PI_MIDDLE_NAME,bean.getMiddleName());
 			node.setProperty(PROP_PI_LAST_NAME, bean.getLastName());
@@ -193,13 +248,61 @@ public class ServiceRequestDocument extends BaseDocument implements ContentNodeB
 			node.setProperty("mootlywcm:address", bean.getAddress());
 			node.setProperty("mootlywcm:serviceCode", bean.getServiceCode());
 			node.setProperty("mootlywcm:offeringMode", bean.getOfferingMode());
-			node.setProperty("mootlywcm:requestDate", GregorianCalendar.getInstance(TimeZone.getTimeZone("UTC")));
+			node.setProperty("mootlywcm:requestDate", GregorianCalendar.getInstance(TimeZone.getTimeZone("GMT+05:30")));
+			node.setProperty("mootlywcm:documentuploaded", bean.getDocumentUploaded());
+			for(String canonicalHandleUUID:getMdCanonicalHandleUUID()){
+				javax.jcr.Node prdLinkNode;
+				try {
+					//prdLinkNode = node.getNode(PROP_COLUMN_BEAN);
+					prdLinkNode = node.addNode("mootlywcm:serviceProcessDcouments", "hippo:mirror");
+					prdLinkNode.setProperty("hippo:docbase", canonicalHandleUUID);
+				}  catch (RepositoryException e) {
+					// TODO Auto-generated catch block
+					log.error("Error in Repository",e);
+				}	
+			}
 		} 
 		catch (RepositoryException e) {
 			log.error("Repository Exception",e);
 			throw new ContentNodeBindingException(e);
 		}
 		return true;
+	}
+	@Override
+	public void fill(FormMap formMap) {
+		// TODO Auto-generated method stub
+		if(formMap == null){
+			if(log.isInfoEnabled()){
+				log.info("formMap is NUll { } .Not able to Mapped Values");
+			}
+			return;
+		}
+		if(formMap.getField("flex_field_string_0") != null){
+			setFirstName(formMap.getField("flex_field_string_0").getValue());
+		}
+		if(formMap.getField("flex_field_string_1") != null){
+			setMiddleName(formMap.getField("flex_field_string_1").getValue());
+		}
+		if(formMap.getField("flex_field_string_2") != null) {
+			setLastName(formMap.getField("flex_field_string_2").getValue());
+		}
+		if(formMap.getField("flex_field_string_3") != null) {
+			setAddress(formMap.getField("flex_field_string_3").getValue());
+		}
+		if(formMap.getField("flex_field_string_4") != null) {
+			setMobile(formMap.getField("flex_field_string_4").getValue());
+		}
+		if(formMap.getField("flex_field_string_5") != null) {
+			setEmail(formMap.getField("flex_field_string_5").getValue());
+		}
+		if(formMap.getField("flex_field_string_6") != null) {
+			setServiceCode(formMap.getField("flex_field_string_6").getValue());
+		}
+	}
+	@Override
+	public <T extends HippoBean> void cloneBean(T sourceBean) {
+		// TODO Auto-generated method stub
+
 	}
 
 }

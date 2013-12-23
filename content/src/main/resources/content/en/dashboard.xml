@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?><sv:node xmlns:sv="http://www.jcp.org/jcr/sv/1.0" sv:name="dashboard">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hippostd:folder</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:mixinTypes" sv:type="Name" sv:multiple="true">
+    <sv:value>hippo:harddocument</sv:value>
+    <sv:value>hippotranslation:translated</sv:value>
+    <sv:value>hippo:translated</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>05e686b2-0092-4d4a-8e72-48d065c59970</sv:value>
+  </sv:property>
+  <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
+  <sv:property sv:name="hippostd:foldertype" sv:type="String" sv:multiple="true">
+    <sv:value>new-translated-folder</sv:value>
+    <sv:value>new-document</sv:value>
+  </sv:property>
+  <sv:property sv:name="hippotranslation:id" sv:type="String">
+    <sv:value>e12b19bd-ce61-4828-8187-927d11472813</sv:value>
+  </sv:property>
+  <sv:property sv:name="hippotranslation:locale" sv:type="String">
+    <sv:value>en</sv:value>
+  </sv:property>
+  <sv:node sv:name="hippotranslation:translations">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hippotranslation:translations</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="hippo:translation">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hippo:translation</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippo:language" sv:type="String">
+      <sv:value/>
+    </sv:property>
+    <sv:property sv:name="hippo:message" sv:type="String">
+      <sv:value>Dashboard</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="dashboard-shortcut">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hippo:handle</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:mixinTypes" sv:type="Name" sv:multiple="true">
+      <sv:value>hippo:hardhandle</sv:value>
+      <sv:value>hippo:translated</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>d5565f33-8ba4-48fe-b627-49600e3f17e7</sv:value>
+    </sv:property>
+    <sv:node sv:name="hippo:translation">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>hippo:translation</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippo:language" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="hippo:message" sv:type="String">
+        <sv:value>Dashboard Shortcut</sv:value>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="dashboard-shortcut">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:dashboardshortcutdocument</sv:value>
+      </sv:property>
+      <sv:property sv:name="jcr:mixinTypes" sv:type="Name" sv:multiple="true">
+        <sv:value>hippo:harddocument</sv:value>
+        <sv:value>hippotranslation:translated</sv:value>
+      </sv:property>
+      <sv:property sv:name="jcr:uuid" sv:type="String">
+        <sv:value>da7cb1f7-d502-4acc-8fe8-afebf1817575</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippo:availability" sv:type="String" sv:multiple="true">
+        <sv:value>live</sv:value>
+        <sv:value>preview</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippo:related___pathreference" sv:type="String">
+        <sv:value>dashboard/dashboard-shortcut</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostd:holder" sv:type="String">
+        <sv:value>admin</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostd:state" sv:type="String">
+        <sv:value>published</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostd:stateSummary" sv:type="String">
+        <sv:value>live</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
+        <sv:value>admin</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
+        <sv:value>2013-12-17T22:51:26.722+05:30</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
+        <sv:value>2013-12-17T23:03:36.779+05:30</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
+        <sv:value>admin</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
+        <sv:value>2013-12-17T23:03:43.369+05:30</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippotranslation:id" sv:type="String">
+        <sv:value>e9bcebb6-770f-4db8-a532-8841fd3decae</sv:value>
+      </sv:property>
+      <sv:property sv:name="hippotranslation:locale" sv:type="String">
+        <sv:value>en</sv:value>
+      </sv:property>
+      <sv:node sv:name="hippotranslation:translations">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hippotranslation:translations</sv:value>
+        </sv:property>
+      </sv:node>
+      <sv:node sv:name="mootlywcm:dashboardshortcutdetail">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>mootlywcm:dashboardshortcutdetail</sv:value>
+        </sv:property>
+        <sv:property sv:name="mootlywcm:Enable" sv:type="Boolean">
+          <sv:value>true</sv:value>
+        </sv:property>
+        <sv:property sv:name="mootlywcm:contentFolder" sv:type="String">
+          <sv:value>news</sv:value>
+        </sv:property>
+        <sv:property sv:name="mootlywcm:documentType" sv:type="String">
+          <sv:value>mootlywcm:newsitem</sv:value>
+        </sv:property>
+        <sv:property sv:name="mootlywcm:shortcutLabel" sv:type="String">
+          <sv:value>Create a News Document</sv:value>
+        </sv:property>
+        <sv:property sv:name="mootlywcm:weight" sv:type="Long">
+          <sv:value>1</sv:value>
+        </sv:property>
+        <sv:node sv:name="mootlywcm:formDocument">
+          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+            <sv:value>hippo:mirror</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippo:docbase" sv:type="String">
+            <sv:value>cafebabe-cafe-babe-cafe-babecafebabe</sv:value>
+          </sv:property>
+        </sv:node>
+      </sv:node>
+      <sv:node sv:name="mootlywcm:dashboardshortcutdetail">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>mootlywcm:dashboardshortcutdetail</sv:value>
+        </sv:property>
+        <sv:property sv:name="mootlywcm:Enable" sv:type="Boolean">
+          <sv:value>true</sv:value>
+        </sv:property>
+        <sv:property sv:name="mootlywcm:contentFolder" sv:type="String">
+          <sv:value>events</sv:value>
+        </sv:property>
+        <sv:property sv:name="mootlywcm:documentType" sv:type="String">
+          <sv:value>mootlywcm:event</sv:value>
+        </sv:property>
+        <sv:property sv:name="mootlywcm:shortcutLabel" sv:type="String">
+          <sv:value>Create a Event Document</sv:value>
+        </sv:property>
+        <sv:property sv:name="mootlywcm:weight" sv:type="Long">
+          <sv:value>2</sv:value>
+        </sv:property>
+        <sv:node sv:name="mootlywcm:formDocument">
+          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+            <sv:value>hippo:mirror</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippo:docbase" sv:type="String">
+            <sv:value>cafebabe-cafe-babe-cafe-babecafebabe</sv:value>
+          </sv:property>
+        </sv:node>
+      </sv:node>
+      <sv:node sv:name="mootlywcm:dashboardshortcutdetail">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>mootlywcm:dashboardshortcutdetail</sv:value>
+        </sv:property>
+        <sv:property sv:name="mootlywcm:Enable" sv:type="Boolean">
+          <sv:value>true</sv:value>
+        </sv:property>
+        <sv:property sv:name="mootlywcm:contentFolder" sv:type="String">
+          <sv:value>knowledgearticles</sv:value>
+        </sv:property>
+        <sv:property sv:name="mootlywcm:documentType" sv:type="String">
+          <sv:value>mootlywcm:knowledgearticle</sv:value>
+        </sv:property>
+        <sv:property sv:name="mootlywcm:shortcutLabel" sv:type="String">
+          <sv:value>Create a Knowledge Article</sv:value>
+        </sv:property>
+        <sv:property sv:name="mootlywcm:weight" sv:type="Long">
+          <sv:value>3</sv:value>
+        </sv:property>
+        <sv:node sv:name="mootlywcm:formDocument">
+          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+            <sv:value>hippo:mirror</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippo:docbase" sv:type="String">
+            <sv:value>cafebabe-cafe-babe-cafe-babecafebabe</sv:value>
+          </sv:property>
+        </sv:node>
+      </sv:node>
+      <sv:node sv:name="mootlywcm:dashboardshortcutdetail">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>mootlywcm:dashboardshortcutdetail</sv:value>
+        </sv:property>
+        <sv:property sv:name="mootlywcm:Enable" sv:type="Boolean">
+          <sv:value>true</sv:value>
+        </sv:property>
+        <sv:property sv:name="mootlywcm:contentFolder" sv:type="String">
+          <sv:value>services</sv:value>
+        </sv:property>
+        <sv:property sv:name="mootlywcm:documentType" sv:type="String">
+          <sv:value>mootlywcm:Service</sv:value>
+        </sv:property>
+        <sv:property sv:name="mootlywcm:shortcutLabel" sv:type="String">
+          <sv:value>Create a Service Document</sv:value>
+        </sv:property>
+        <sv:property sv:name="mootlywcm:weight" sv:type="Long">
+          <sv:value>4</sv:value>
+        </sv:property>
+        <sv:node sv:name="mootlywcm:formDocument">
+          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+            <sv:value>hippo:mirror</sv:value>
+          </sv:property>
+          <sv:property sv:name="hippo:docbase" sv:type="String">
+            <sv:value>cafebabe-cafe-babe-cafe-babecafebabe</sv:value>
+          </sv:property>
+        </sv:node>
+      </sv:node>
+    </sv:node>
+  </sv:node>
+</sv:node>

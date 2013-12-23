@@ -1,6 +1,7 @@
 package com.mootly.wcm.member.service;
 
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,19 +27,24 @@ import org.slf4j.LoggerFactory;
 
 import com.mootly.wcm.beans.EmailMessage;
 import com.mootly.wcm.beans.EmailTemplate;
+import com.mootly.wcm.beans.Service;
 import com.mootly.wcm.beans.ServiceRequestDocument;
+import com.mootly.wcm.components.ITReturnComponent;
+import com.mootly.wcm.components.ITReturnComponentHelper;
+import com.mootly.wcm.model.FinancialYear;
 import com.mootly.wcm.utils.ContentStructure;
 import com.mootly.wcm.utils.VelocityUtils;
 
 
 public class ServiceRequest extends EasyFormComponent {
 	private static final Logger log = LoggerFactory.getLogger(ServiceRequest.class);
+	private static final String DOC_SCREEN_REF_ID = "docattach";
 
 	@Override
 	public void onValidationError(HstRequest request, HstResponse response,
 			Form form, FormMap map, List<ErrorMessage> errors) {
 		// TODO Auto-generated method stub
-		
+
 	}
 	@Override
 	public boolean onValidationSuccess(HstRequest request,
@@ -46,20 +52,26 @@ public class ServiceRequest extends EasyFormComponent {
 		// TODO Auto-generated method stub
 		return false;
 	}
-    @Override
-    public void doBeforeRender(HstRequest request, HstResponse response)
-    		throws HstComponentException {
-    	// TODO Auto-generated method stub
-    	super.doBeforeRender(request, response);
-    	request.setAttribute("ReqSuccess", request.getParameter("Success"));
-    	request.getRequestContext().setAttribute("Success", request.getParameter("Success"));
-    	request.setAttribute("srdocument", request.getRequestContext().getAttribute("document"));
-    }
+	@Override
+	public void doBeforeRender(HstRequest request, HstResponse response)
+			throws HstComponentException {
+		// TODO Auto-generated method stub
+		super.doBeforeRender(request, response);
+		request.setAttribute("ReqSuccess", request.getParameter("Success"));
+		request.getRequestContext().setAttribute("Success", request.getParameter("Success"));
+		request.setAttribute("srdocument", request.getRequestContext().getAttribute("document"));
+		ServiceRequestManager requestManager = new ServiceRequestManager(request);
+		if(log.isInfoEnabled()){
+			log.info("Lets see service can be fullfill in lead time::"+requestManager.CanServiceRequestFullfill());
+		}
+		request.setAttribute("canServiceRequestFullfill", requestManager.CanServiceRequestFullfill());
+	}
 	@Override
 	public void doAction(HstRequest request, HstResponse response)
 			throws HstComponentException {
 		// TODO Auto-generated method stub
 		super.doAction(request, response);
+		Service document = (Service) request.getRequestContext().getAttribute("document");
 		FormBean bean = getFormBean(request);
 		if (bean == null) {
 			return;
@@ -72,17 +84,32 @@ public class ServiceRequest extends EasyFormComponent {
 			}
 		}
 		if(formMap!=null){
-			ServiceRequestDocument serviceDoc=new ServiceRequestDocument();
-			serviceDoc.setFirstName(formMap.getField("flex_field_string_0").getValue());
-			serviceDoc.setMiddleName(formMap.getField("flex_field_string_1").getValue());
-			serviceDoc.setLastName(formMap.getField("flex_field_string_2").getValue());
-			serviceDoc.setAddress(formMap.getField("flex_field_string_3").getValue());
-			serviceDoc.setMobile(formMap.getField("flex_field_string_4").getValue());
-			serviceDoc.setEmail(formMap.getField("flex_field_string_5").getValue());
-			serviceDoc.setServiceCode(formMap.getField("flex_field_string_6").getValue());
-			ServiceRequestDocument  resServicedocument=createServiceRequestDocument(request, serviceDoc);
+			ServiceRequestDocument  resServicedocument=createServiceRequestDocument(request, formMap);
 			if(resServicedocument!=null){
 				response.setRenderParameter("Success", "Success");
+				try {
+					if(document != null){
+						if(document.getDocumentRequired()){
+							if(request.getUserPrincipal() != null){
+								ITReturnComponent itReturnComponent = new ITReturnComponent();
+								ITReturnComponentHelper helper = new ITReturnComponentHelper();
+								String folderContainsITReturnDocuments = helper.getTheFolderContainingITRDocuments(request, response);
+								String pan = helper.getPANFromRequestContext(request);
+								FinancialYear financialYear = helper.getFinancialYear(helper.getStrFinancialYear(request, response), request, response);
+								String redirectURL = itReturnComponent.getRedirectURLForSiteMapItem(request, response, null, DOC_SCREEN_REF_ID, financialYear, folderContainsITReturnDocuments, pan);
+								if(log.isInfoEnabled()) {
+									log.info("Lets see RedirectUrl::"+ redirectURL);
+								}
+								response.sendRedirect(redirectURL);
+							} else {
+
+							}
+						}
+					}
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		}
 	}
@@ -95,27 +122,23 @@ public class ServiceRequest extends EasyFormComponent {
 	 * 
 	 * */
 	public boolean validate(FormMap formMap){
-		
+
 		return true;
 	}
-	public ServiceRequestDocument createServiceRequestDocument(HstRequest request,ServiceRequestDocument serviceDoc){
+	public ServiceRequestDocument createServiceRequestDocument(HstRequest request,FormMap formMap){
 		Session persistableSession=null;
 		WorkflowPersistenceManager wpm=null;
 		try{
 			persistableSession=getPersistableSession(request);
 			wpm=getWorkflowPersistenceManager(persistableSession);
 			wpm.setWorkflowCallbackHandler(new FullReviewWorkflowCallbackHandler());
-			final String serviceRequsetpath=getServiceRequestPath(request);
-			String objectpath=wpm.createAndReturn(serviceRequsetpath+"serviceRequest", serviceDoc.NAMESPACE, serviceDoc.getServiceCode(), true);
+			final String serviceRequsetpath = getServiceRequestPath(request);
+			//format of serviceNode as "Service"+ ServiceCode + Mobile Number
+			String serviceNodeName = "Service-"+formMap.getField("flex_field_string_6").getValue()+"("+formMap.getField("flex_field_string_4").getValue()+")";
+			String objectpath = wpm.createAndReturn(serviceRequsetpath+"servicerequest", Service.NAMESPACE, serviceNodeName, true);
 			ServiceRequestDocument serviceRequestDocument=(ServiceRequestDocument) wpm.getObject(objectpath);
 			if(serviceRequestDocument!=null){
-				serviceRequestDocument.setFirstName(serviceDoc.getFirstName());
-				serviceRequestDocument.setMiddleName(serviceDoc.getMiddleName());
-				serviceRequestDocument.setLastName(serviceDoc.getLastName());
-				serviceRequestDocument.setAddress(serviceDoc.getAddress());
-				serviceRequestDocument.setEmail(serviceDoc.getEmail());
-				serviceRequestDocument.setMobile(serviceDoc.getMobile());
-				serviceRequestDocument.setServiceCode(serviceDoc.getServiceCode());
+				serviceRequestDocument.fill(formMap);
 				wpm.update(serviceRequestDocument);
 				ServiceRequestDocument publishedSignUpDocument = (ServiceRequestDocument) wpm.getObject(objectpath); 
 				if (publishedSignUpDocument == null) return null;//major screwup
@@ -205,20 +228,20 @@ public class ServiceRequest extends EasyFormComponent {
 			wf.publish();
 		}
 	}
-    @Override
-    public FormBean getFormBean(HstRequest request) {
-    	// TODO Auto-generated method stub
-    	HippoBean document=getSiteContentBaseBean(request).getBean("srforms/specialized/specialized");
-        if (document == null || !(document.isHippoDocumentBean()) || !(document instanceof FormBean)) {
-            if (log.isDebugEnabled()) {
-                log.warn("*** EASY_FORMS ***");
-                log.warn("Form bean is either not defined or doesn't match Form bean type, [ef:form], returning null");
-                log.warn("Here is how it comes: you've mapped something to the EasyFormComponent, however, your document either doesn't exist or it is not Form document type");
-                log.warn("You can override [FormBean getFormBean(request)] method to fetch Form bean from some other location, e.g. through facet select");
-                log.warn("*** EASY_FORMS ***");
-            }
-            return null;
-        }
-        return (FormBean) document;
-    }
+	@Override
+	public FormBean getFormBean(HstRequest request) {
+		// TODO Auto-generated method stub
+		HippoBean document=getSiteContentBaseBean(request).getBean("srforms/specialized/specialized");
+		if (document == null || !(document.isHippoDocumentBean()) || !(document instanceof FormBean)) {
+			if (log.isDebugEnabled()) {
+				log.warn("*** EASY_FORMS ***");
+				log.warn("Form bean is either not defined or doesn't match Form bean type, [ef:form], returning null");
+				log.warn("Here is how it comes: you've mapped something to the EasyFormComponent, however, your document either doesn't exist or it is not Form document type");
+				log.warn("You can override [FormBean getFormBean(request)] method to fetch Form bean from some other location, e.g. through facet select");
+				log.warn("*** EASY_FORMS ***");
+			}
+			return null;
+		}
+		return (FormBean) document;
+	}
 }
