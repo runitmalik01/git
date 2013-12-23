@@ -26,9 +26,11 @@ import javax.jcr.ValueFactory;
 
 import org.apache.jackrabbit.JcrConstants;
 import org.apache.jackrabbit.value.ValueFactoryImpl;
+import org.hippoecm.hst.component.support.forms.FormMap;
 import org.hippoecm.hst.content.beans.ContentNodeBinder;
 import org.hippoecm.hst.content.beans.ContentNodeBindingException;
 import org.hippoecm.hst.content.beans.Node;
+import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.content.beans.standard.HippoResource;
 
 
@@ -41,7 +43,7 @@ import org.hippoecm.hst.content.beans.standard.HippoResource;
  * + mootlywcm:images (hippogallerypicker:imagelink) multiple
  */
 @Node(jcrType = "mootlywcm:memberdrivedocument")
-public class MemberDriveDocument extends BaseDocument implements ContentNodeBinder {
+public class MemberDriveDocument extends BaseDocument implements ContentNodeBinder,FormMapFiller {
 	static final public String NAMESPACE = "mootlywcm:memberdrivedocument";
 	static final public String NODE_NAME = "MemberDrive";
 
@@ -50,15 +52,21 @@ public class MemberDriveDocument extends BaseDocument implements ContentNodeBind
 	private String description;
 	private String docPassword;
 	private String docAdditionalNotes;
-	private String MEMBER_DOCS="mootlywcm:memberDocs";
-	private String DESCRIPTION="mootlywcm:description";
-	private String DOCUMENT_PASSWORD="mootlywcm:docPassword";
+	private String memberFileName;
+	private String MEMBER_DOCS ="mootlywcm:memberDocs";
+	private String DESCRIPTION ="mootlywcm:description";
+	private String DOCUMENT_PASSWORD ="mootlywcm:docPassword";
 	private String DOCUMENT_ADDITIONAL_NOTES ="mootlywcm:additionalNotes";
+	private String MEMBER_FILE_NAME ="mootlywcm:memberFileName";
 	/**
 	 * @return the memberFileResource
 	 */
 	public HippoResource getMemberFileResource() {
 		return getBean(MEMBER_DOCS);
+	}
+	
+	public HippoResource getMemberFileResourceWithFileName() {
+		return getBean(getMemberFileName());
 	}
 	public InputStream getMemberFile(){
 		return memberFileResource;
@@ -105,23 +113,29 @@ public class MemberDriveDocument extends BaseDocument implements ContentNodeBind
 			docPassword=getProperty(DOCUMENT_PASSWORD);
 		return docPassword;
 	}
-		
 	/**
 	 * @param docPassword the docPassword to set
 	 */
 	public void setDocPassword(String docPassword) {
 		this.docPassword = docPassword;
 	}
-	
+
 	public String getDocAdditionalNotes() {
 		if (docAdditionalNotes == null) docAdditionalNotes = getProperty(DOCUMENT_ADDITIONAL_NOTES);
 		return docAdditionalNotes;
 	}
-	
+
 	public void setDocAdditionalNotes(String docAdditionalNotes) {
 		this.docAdditionalNotes = docAdditionalNotes;
 	}
-	
+
+	public String getMemberFileName() {
+		if(memberFileName == null) memberFileName = getProperty(MEMBER_FILE_NAME);
+		return memberFileName;
+	}
+	public void setMemberFileName(String memberFileName) {
+		this.memberFileName = memberFileName;
+	}
 	@Override
 	public boolean bind(Object content, javax.jcr.Node node) throws ContentNodeBindingException {
 		MemberDriveDocument bean = (MemberDriveDocument) content;        
@@ -139,18 +153,50 @@ public class MemberDriveDocument extends BaseDocument implements ContentNodeBind
 					Binary binaryValue = vf.createBinary(bean.getMemberFile());
 					resourceNode.setProperty(JcrConstants.JCR_DATA,binaryValue);
 					resourceNode.setProperty(JcrConstants.JCR_MIMETYPE, bean.getContentType());
-					resourceNode.setProperty(JcrConstants.JCR_LASTMODIFIED, Calendar.getInstance(TimeZone.getTimeZone("UTC")));
+					resourceNode.setProperty(JcrConstants.JCR_LASTMODIFIED, Calendar.getInstance(TimeZone.getTimeZone("GMT+05:30")));
 				}
 			}
+			//here we are adding node directly in document with name of file.We are not using MEMBER_DOCS node to save the binary data.
+			//Purpose of doing this to download the file with same name of file.Not with changed name as name of MEMBER_DOCS node.
+			/*if(getMemberFileName()!=null){
+				//ValueFactory vfmemberFile = ValueFactoryImpl.getInstance();
+				javax.jcr.Node fileNameResourceNode = node.addNode(bean.getMemberFileName(), HippoResource.class.getAnnotation(Node.class).jcrType());
+				if(fileNameResourceNode !=null){
+					Binary binaryValue = vf.createBinary(bean.getMemberFile());
+					fileNameResourceNode.setProperty(JcrConstants.JCR_DATA,binaryValue);
+					fileNameResourceNode.setProperty(JcrConstants.JCR_ENCODING, "UTF-8");
+					fileNameResourceNode.setProperty(JcrConstants.JCR_MIMETYPE, bean.getContentType());
+					fileNameResourceNode.setProperty(JcrConstants.JCR_LASTMODIFIED, Calendar.getInstance(TimeZone.getTimeZone("GMT+05:30")));
+				}
+			}*/	
 			node.setProperty(DESCRIPTION, bean.getDescription());
 			node.setProperty(DOCUMENT_PASSWORD, bean.getDocPassword());
 			node.setProperty(DOCUMENT_ADDITIONAL_NOTES, bean.getDocPassword());
+			node.setProperty(MEMBER_FILE_NAME, getMemberFileName());
 		} 
 		catch (RepositoryException e) {
 			log.error("Repository Exception",e);
 			throw new ContentNodeBindingException(e);
 		}
 		return true;
+	}
+	@Override
+	public void fill(FormMap formMap) {
+		// TODO Auto-generated method stub
+		if(formMap.getField("description")!=null){
+			setDescription(formMap.getField("description").getValue());
+		}
+		if(formMap.getField("protected") != null){
+			setDocPassword(formMap.getField("protected").getValue());
+		}
+		if(formMap.getField("additionalnotes") != null){
+			setDocAdditionalNotes(formMap.getField("additionalnotes").getValue());
+		}
+	}
+	@Override
+	public <T extends HippoBean> void cloneBean(T sourceBean) {
+		// TODO Auto-generated method stub
+
 	}
 
 }

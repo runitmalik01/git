@@ -186,10 +186,11 @@ pageContext.setAttribute("hostname", builder.toString());
                                </tr>
                            </thead>
                            <tbody>
+                             <%-- <c:forEach var="file" items="${listOfAllMemberFiles}"> --%>
                              <c:forEach var="file" items="${memberFiles}">
                                <tr>
                                   <td><span class="add-on"><i class="glyphicon glyphicon-file"></i></span></td>
-                        	     <hst:link var="assetLink" hippobean="${file.memberFileResource}"/>
+                        	     <hst:link var="assetLink" hippobean="${file.memberFileResourceWithFileName}"/>
                                   <td><c:out value="${file.name}"/></td> 
                                   <td>${file.description}</td>
                                   <td><c:set value="${hostname}${assetLink}" var="doc_url" scope="page"/>                                      
@@ -207,13 +208,6 @@ pageContext.setAttribute("hostname", builder.toString());
                            </table>
                       </div>
 		      </div>
-		      	
-		<div id="dialog-confirm" title="Confirm To Delete" style="display: none;">
-			<p>
-				<span class="ui-icon ui-glyphicon glyphicon-alert" style="float: left; margin: 0 7px 20px 0;"></span>
-				Are you sure want to Delete this Document?
-			</p>
-		</div>
 	</fieldset>
 	<%--
 	<c:if test="${fn:length(memberFiles) > 0}">
@@ -225,32 +219,12 @@ pageContext.setAttribute("hostname", builder.toString());
 	</c:if>
 	 --%>
 </form>
-<script type="text/javascript">
-  $('#delete').click(function(){
-	   $( "#dialog-confirm" ).dialog({
-        resizable: false,
-        height:200,
-        width:300,
-        modal: true,
-        draggable: false,
-        buttons: {
-            "Delete": function confirm() {
-            	return true;
-                $( this ).dialog( "close" );              
-               },
-        Cancel: function() {
-                 $( this ).dialog( "close" );
-          }
-        }
-     });     
-  });
-</script>
 <hst:element var="uiCustom" name="script">
 	<hst:attribute name="type">text/javascript</hst:attribute>
 		$(document).ready(function(){
 		$('#member_file').bind('change', function(){
 		    $('#member_file_name').text(this.files[0].name);
-		    $('#file_process').show();		    
+		    //$('#file_process').show();		    
           });
 		$('#member_file').popover({"html":true,
 		                 "trigger":"hover",
@@ -284,29 +258,6 @@ pageContext.setAttribute("hostname", builder.toString());
                    $('.hide_'+$(this).val()+'_sel').show();
                    } 
           });
-          /*$('#upload').click(function(){
-		  var ConvertFormToJSON=function(){
-						     var array = jQuery('form').serializeArray();
-						     var json = {};
-						     jQuery.each(array, function(){
-						         json[this.name] = this.value || '';
-							 });
-						     return json;
-						     };
-						     var form=$('#memberdrive').serialize();
-						     alert("this "+form);
-                       var reqFromJson=JSON.stringify(ConvertFormToJSON());
-                       alert("request"+JSON.stringify(ConvertFormToJSON()));
-		      $.ajax({url:'<c:out value="${ajaxLinkToComponent}"/>?command=upload',
-						data: 'data='+reqFromJson,
-						//data :$('#memberdrive').serialize(),
-						datatype:'text',
-						success: function(data,textStatus,jqXhr) {							
-								//change the response
-								$('.file_name').text(jqXhr.getResponseHeader("myfileheader"));
-					      }
-			       });
-			 });*/
 		 });
 		 
 		 function uploadDoc(){
@@ -324,8 +275,8 @@ pageContext.setAttribute("hostname", builder.toString());
              */
           }
 </hst:element>
-<res:client-validation formId="memberdrive" formSubmitButtonId="upload" screenConfigurationDocumentName="memberdrive"></res:client-validation>
 <hst:headContribution element="${uiCustom}" category="jsInternal" />
 <hst:headContribution keyHint="formCss" category="css">
 	<link rel="stylesheet" href="<hst:link path="/css/jquery.fileupload-ui.css"/>" type="text/css" />
 </hst:headContribution>
+<res:client-validation formId="memberdrive" formSubmitButtonId="upload" screenConfigurationDocumentName="memberdrive"></res:client-validation>
