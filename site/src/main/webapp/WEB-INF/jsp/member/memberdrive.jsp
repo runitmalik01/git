@@ -264,6 +264,19 @@ pageContext.setAttribute("hostname", builder.toString());
                    $('.hide_'+$(this).val()+'_sel').show();
                    } 
           });
+          <c:if test="${not empty srDocument && not empty documentList}">
+             $.expr[':'].nonEmptyValue = function(obj) {
+                  return $(obj).val() != '';
+              };
+             $('#description option:nonEmptyValue').remove();
+             <c:forEach items="${documentList}" var="documentName">
+                <c:if test="${not empty documentName}">
+                     $('#description').append($("<option></option>")
+                         .attr("value",'<c:out value="${documentName}"/>')
+                                 .text('<c:out value="${documentName}"/>'));
+                </c:if>
+             </c:forEach>
+          </c:if>
 		 });
 		 
 		 function uploadDoc(){
