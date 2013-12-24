@@ -15,6 +15,7 @@ import java.util.ResourceBundle;
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 
+import org.apache.commons.lang.StringUtils;
 import org.hippoecm.hst.component.support.forms.FormMap;
 import org.hippoecm.hst.content.beans.ObjectBeanManagerException;
 import org.hippoecm.hst.content.beans.ObjectBeanPersistenceException;
@@ -36,8 +37,10 @@ import com.mootly.wcm.annotations.FormFields;
 import com.mootly.wcm.annotations.RequiredBeans;
 import com.mootly.wcm.beans.MemberDriveDocument;
 import com.mootly.wcm.beans.MemberPersonalInformation;
+import com.mootly.wcm.beans.Service;
 import com.mootly.wcm.beans.ValueListDocument;
 import com.mootly.wcm.components.ITReturnComponent;
+import com.mootly.wcm.member.service.ServiceRequestManager;
 
 
 @RequiredBeans(requiredBeans=MemberPersonalInformation.class)
@@ -47,13 +50,24 @@ public class MemberDrive extends ITReturnComponent {
 
 	private static final Logger log = LoggerFactory.getLogger(MemberDrive.class);
 	private static final String MEMBER_DRIVE_FOLDER_NAME="members";
-	
+
 	@Override
 	public void doBeforeRender(HstRequest request, HstResponse response) {
 		// TODO Auto-generated method stub
 		super.doBeforeRender(request, response);
 		String subDriveName = request.getRequestContext().getResolvedSiteMapItem().getParameter("subDriveName");
 		request.setAttribute("subDriveName", subDriveName);
+		
+		String serviceRequestNumber = getPublicRequestParameter(request, "serviceRequest");
+		if(StringUtils.isNotBlank(serviceRequestNumber)) {
+			ServiceRequestManager requestManager = new ServiceRequestManager(request, getSiteContentBaseBeanForReseller(request));
+			Service serviceDocument = requestManager.getServiceForServiceRequest(serviceRequestNumber);
+			if(serviceDocument != null){
+				request.setAttribute("documentList", serviceDocument.getDocumentNames());
+				request.setAttribute("srDocument", serviceDocument);
+			}
+		}
+		
 		String fileuuid=getPublicRequestParameter(request, "delete");
 		if(DeleteMemberDriveFile(request, response, fileuuid)){
 			request.setAttribute("delete", "Success");
@@ -94,7 +108,7 @@ public class MemberDrive extends ITReturnComponent {
 		List<HippoDocumentBean> listOfAllMemberFiles = loadAllBeansUnderTheFolder(request, response, baseRelPathToMemberFiles, null, null);
 		request.setAttribute("listOfAllMemberFiles", listOfAllMemberFiles);
 		HippoBean memberDriveHippoBean = getSiteContentBaseBeanForReseller(request).getBean(baseRelPathToMemberFiles);
-		
+
 		if(memberDriveHippoBean instanceof HippoFolderBean){
 			HippoFolderBean memberDriveHippoFolderBean = (HippoFolderBean) memberDriveHippoBean;
 			List<HippoFolderBean> folderBeans = memberDriveHippoFolderBean.getFolders();
@@ -108,6 +122,7 @@ public class MemberDrive extends ITReturnComponent {
 		// TODO Auto-generated method stub
 		super.doAction(request, response);//
 		String subDriveName = request.getRequestContext().getResolvedSiteMapItem().getParameter("subDriveName");
+		String serviceRequestNumber = getPublicRequestParameter(request, "serviceRequest");
 		FormFields formFields = this.getClass().getAnnotation(FormFields.class);		
 		FormMap formMap = new FormMap(request, formFields.fieldNames());
 		WorkflowPersistenceManager wpm = null;
@@ -118,14 +133,17 @@ public class MemberDrive extends ITReturnComponent {
 			wpm.setWorkflowCallbackHandler(new FullReviewedWorkflowCallbackHandler());
 			MemberDriveHandler memberDriveHandler = new MemberDriveHandler(request, formMap);
 			Boolean isFileSave = memberDriveHandler.SaveFileInMemberDrive(null, subDriveName, wpm, isLoggedIn());
-			if(isFileSave){
+			if(isFileSave){				
+				ServiceRequestManager requestManager = new ServiceRequestManager(request, getSiteContentBaseBeanForReseller(request));
+				requestManager.UdateTheServiceRequestWithMemberDrive(wpm, subDriveName, serviceRequestNumber);
+				
 				response.setRenderParameter("FileUpload", "Success");
 			}
 		} catch (RepositoryException e) {
 			// TODO Auto-generated catch block
 			log.error("Error to get the PersistableSession From JCR Repository!!",e);
 		}
-		
+
 	}
 	/**
 	 * This Method is used to Create the MemberDrive Document and Return that Document Object
@@ -139,7 +157,7 @@ public class MemberDrive extends ITReturnComponent {
 	 * 
 	 * **/
 	public MemberDriveDocument SaveFileInMemberDrive(HstRequest request,MemberDriveDocument memberDrive,String fileName){
-		
+
 		WorkflowPersistenceManager wpm = null;
 		Session persistableSession = null;
 		String memberDriveDocPath = null; 

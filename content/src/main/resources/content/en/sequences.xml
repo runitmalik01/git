@@ -50,7 +50,7 @@
       <sv:value>1017</sv:value>
     </sv:property>
   </sv:node>
-  <sv:node sv:name="serviceRequestSequence">
+  <sv:node sv:name="serviceRequest">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
       <sv:value>hippo:document</sv:value>
     </sv:property>

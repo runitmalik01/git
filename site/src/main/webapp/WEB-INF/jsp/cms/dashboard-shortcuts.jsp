@@ -1,17 +1,23 @@
 <%@include file="../includes/tags.jspf"%>
 <hst:link var="websitebuilderlink" siteMapItemRefId="websitebuilder" />
 <hst:actionURL var="actionURL"/>
-dashboard shortcut
+<hippo-gogreen:title title="Dashboard Shortcut"></hippo-gogreen:title>
 <div class="alert alert-info">DashBoard Shortcut</div>
-<c:if test="${not empty documents}">
-	<c:forEach items="${documents}" var="document">
-		<c:forEach items="${document.dashboardShortcutDetail}" var="dbshortcut">
-		   <%-- <c:if test="${dbshortcut.enable}"> --%>
-			<a href="#" class="btn btn-warning" id="${dbshortcut.canonicalUUID}" data-prompt=""><c:out value="${dbshortcut.shortcutLabel}" /></a>
-			<%-- </c:if> --%>
-		</c:forEach>
-	</c:forEach>
-</c:if>
+<div class="row">
+	<div class="col-md-3 col-md-offset-4">
+		<c:if test="${not empty documents}">
+			<c:forEach items="${documents}" var="document">
+				<c:forEach items="${document.dashboardShortcutDetail}"
+					var="dbshortcut">
+					<%-- <c:if test="${dbshortcut.enable}"> --%>
+					<a href="#" class="btn btn-warning" id="${dbshortcut.canonicalUUID}" data-prompt=""><c:out value="${dbshortcut.shortcutLabel}" /></a>
+					<%-- </c:if> --%>
+					<br /> <hr />
+				</c:forEach>
+			</c:forEach>
+		</c:if>
+	</div>
+</div>
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">

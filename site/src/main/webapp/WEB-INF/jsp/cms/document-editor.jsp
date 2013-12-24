@@ -1,9 +1,9 @@
 <%@include file="../includes/tags.jspf"%>
 <hst:link var="websitebuilderlink" siteMapItemRefId="websitebuilder" />
-<hippo-gogreen:title title=""></hippo-gogreen:title>
-<hst:actionURL var="actionURL" /><hr/>
+<hippo-gogreen:title title="Document Editor"></hippo-gogreen:title>
+<hst:actionURL var="actionURL" />
 <div class="alert alert-info" align="center">
-	<h5>${fn:toUpperCase(hippoBeanDocument.node.name)}</h5>
+	<h5>${fn:toUpperCase(hippoBeanDocument.node.name)}  Document Editor</h5>
 </div>
 <form action="${actionURL}" method="post" name="documenteditorForm" id="documenteditorForm">
 	<div class="container">
@@ -23,3 +23,4 @@
 		</div>
 	</div>
 </form>
+<br/>

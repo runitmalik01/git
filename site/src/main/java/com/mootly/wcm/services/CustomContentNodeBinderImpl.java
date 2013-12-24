@@ -8,6 +8,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 import javax.jcr.Node;
+import javax.jcr.RepositoryException;
 
 import org.apache.commons.beanutils.MethodUtils;
 import org.apache.commons.lang.StringUtils;
@@ -40,53 +41,53 @@ public class CustomContentNodeBinderImpl implements ContentNodeBinder{
 			PropertyDescriptor[] properties = bi.getPropertyDescriptors();
 			DirectFieldAccessor directFieldAccessor = new DirectFieldAccessor(content);
 			for(PropertyDescriptor property:properties){
-				if(property.getName().contains("mootlywcm:")){
-					log.info("propertynama:::"+property.getName());
-					if(formMap.getField(StringUtils.substringAfter(property.getName(), "mootlywcm:")) != null){
-						if (node != null) {
-							try {							
-								Class<?> theTypeClass = directFieldAccessor.getPropertyType(property.getName());
-								if ( !theTypeClass.isPrimitive() ) {
-									try {
-										Class<?> thePrimitiveClass = (Class<?>) theTypeClass.getDeclaredField("TYPE").get(node);
-										if (thePrimitiveClass != null) {
-											theTypeClass = thePrimitiveClass;
-										}
-									} catch (NoSuchFieldException e) {
-										// TODO Auto-generated catch block
-										//e.printStackTrace();
-									}
+				if(formMap.getField(property.getName()) != null){
+					log.info("have a founding");
+					if (node != null) {						
+						Class<?> theTypeClass = directFieldAccessor.getPropertyType(property.getName());
+						if ( !theTypeClass.isPrimitive() ) {
+							try {
+								Class<?> thePrimitiveClass = (Class<?>) theTypeClass.getDeclaredField("TYPE").get(node);
+								if (thePrimitiveClass != null) {
+									theTypeClass = thePrimitiveClass;
 								}
-								Object theValue = formMap.getField(StringUtils.substringAfter(property.getName(), "mootlywcm:")).getValue();//theReadMethod.invoke(anObject);
-								Method theMethod = MethodUtils.getAccessibleMethod( node.getClass() , "setProperty", new Class[]{String.class,  theTypeClass});
-								if (!"class java.lang.String".equals(theTypeClass.toString()) ) {
-									log.info("STOP" + theTypeClass.toString() + ":" +  theValue + " : method: " + theMethod.toString());
+							} catch (NoSuchFieldException e) {
+								// TODO Auto-generated catch block
+								//e.printStackTrace();
+							}
+						}
+						Object theValue = formMap.getField(property.getName()).getValue();//theReadMethod.invoke(anObject);
+						Method theMethod = MethodUtils.getAccessibleMethod( node.getClass() , "setProperty", new Class[]{String.class,  theTypeClass});
+						if ( theMethod != null ) {
+							theMethod.invoke(node, "mootlywcm:"+property.getName(),theValue);
+						} else {
+							if(node.hasNode("mootlywcm:"+property.getName())){
+								Node htmlNode = node.getNode("mootlywcm:"+property.getName());
+								if(theValue != null){
+									htmlNode.setProperty("hippostd:content", theValue.toString());
 								}
-								//Method apacheMethod = org.apache.commons.lang.reflect.MethodUtils.getAccessibleMethod(node.getClass() , "setProperty", new Class[]{String.class,  theTypeClass});
-								//Method theMethod2 = node.getClass().getMethod("setProperty", String.class, theTypeClass);
-								if ( theMethod != null ) {
-									theMethod.invoke(node, property.getName(),theValue);
-								}
-							} catch (IllegalAccessException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-								log.warn("No",e);
-							} catch (IllegalArgumentException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							} catch (InvocationTargetException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-								log.warn("No",e);
-							}catch (SecurityException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
 							}
 						}
 					}
 				}
+				//}
 			}
 		} catch (IntrospectionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}  catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalArgumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}catch (SecurityException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (RepositoryException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

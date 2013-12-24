@@ -54,6 +54,12 @@ pageContext.setAttribute("hostname", builder.toString());
 					</div>
 			   </div>
 		    </div>-->
+		<c:if test="${not empty srDocument}">
+		   <div class="alert alert-info">
+		      Upload your documents to fulfill service request for service <b><c:out value="${fn:toUpperCase(srDocument.name)}"/></b>.
+		      <p>All Documents are required* shown in description list of Document.Please select the appropriate document description while upload.</p>  
+		   </div>
+		</c:if>
 		<c:if test="${not empty msg}">
 			<div class="row show-grid">
 				<div class="alert alert-success">Your have successfully

@@ -139,30 +139,30 @@
 		$(document).ready(function(){
 		  $("#serviceRequest").validate({
            rules: {
-               "flex_field_string_0": {
+               "firstName": {
                  required: true
                },
-               "flex_field_string_2": {
+               "lastName": {
                  required: true
                },
-               "flex_field_string_4": {
+               "mobile": {
                  required: true
                },
-               "flex_field_string_5": {
+               "email": {
                  required: true
                }
             },
             messages: {
-                "flex_field_string_0": {
+                "firstName": {
                    required: "Please enter first name"
                 },
-                "flex_field_string_2": {
+                "lastName": {
                    required: "Please enter last name"
                 },
-                "flex_field_string_4": {
+                "mobile": {
                    required: "Please enter mobile no."
                 },
-                "flex_field_string_5": {
+                "email": {
                    required: "Please enter email"
                 }            
             },
@@ -173,11 +173,13 @@
             });
             var regemail='<c:out value = "${regemail}" />';
 	        if(regemail!='') {
-	           serviceRequest.flex_field_string_5.value= regemail ;
+	           serviceRequest.email.value= regemail ;
 	        }
-	        serviceRequest.flex_field_string_5.setAttribute('id','flex_field_string_5');
-	        serviceRequest.flex_field_string_6.value='<c:out value="${srdocument.name}"/>';
-	        serviceRequest.flex_field_string_6.readOnly=true;
+	        serviceRequest.email.setAttribute('id','email');
+	        serviceRequest.serviceName.value='<c:out value="${srdocument.name}"/>';
+	        serviceRequest.serviceCanonicalHandleUUID.value='<c:out value="${srdocument.canonicalHandleUUID}"/>'
+	        serviceRequest.serviceCode.value='<c:out value="${srdocument.serviceCode}"/>'
+	        serviceRequest.serviceName.readOnly=true;
 		 });
 </hst:element>
 <hst:headContribution element="${uiCustom}" category="jsInternal" />

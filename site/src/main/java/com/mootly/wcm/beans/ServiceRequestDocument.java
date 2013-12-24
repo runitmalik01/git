@@ -38,6 +38,8 @@ import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.content.beans.standard.HippoMirror;
 import org.hippoecm.hst.content.beans.standard.HippoMirrorBean;
 
+import com.mootly.wcm.utils.Constants;
+
 
 /**
  * [mootlywcm:product] > mootlywcm:document, relateddocs:relatabledocs
@@ -52,6 +54,7 @@ public class ServiceRequestDocument extends BaseDocument implements ContentNodeB
 	final public String NAMESPACE = "mootlywcm:servicerequestdocument";
 	static final public String NODE_NAME = "ServiceRequestDocument";
 
+	private Long serviceRequestNumber;
 	private String firstName;
 	private String middleName;
 	private String lastName;
@@ -59,11 +62,21 @@ public class ServiceRequestDocument extends BaseDocument implements ContentNodeB
 	private String email;
 	private String address;
 	private String serviceCode;
+	private String serviceName;
 	private String offeringMode;
 	private GregorianCalendar requestDate;
 	private Boolean documentUploaded;
 	private List<MemberDriveDocument> memberDriveDocumentList;
 	private List<String>  mdCanonicalHandleUUID;
+	private String serviceCanonicalHandleUUID;
+	
+	public Long getServiceRequestNumber() {
+		if(serviceRequestNumber == null) serviceRequestNumber = getProperty("mootlywcm:serviceRequestNumber");
+		return serviceRequestNumber;
+	}
+	public void setServiceRequestNumber(Long serviceRequestNumber) {
+		this.serviceRequestNumber = serviceRequestNumber;
+	}
 	/**
 	 * @return the firstName
 	 */
@@ -156,6 +169,19 @@ public class ServiceRequestDocument extends BaseDocument implements ContentNodeB
 		this.serviceCode = serviceCode;
 	}
 	/**
+	 * @return the serviceName
+	 */
+	public String getServiceName() {
+		if(serviceName == null) serviceName = getProperty("mootlywcm:serviceName");
+		return serviceName;
+	}
+	/**
+	 * @param serviceName the serviceName to set
+	 */
+	public void setServiceName(String serviceName) {
+		this.serviceName = serviceName;
+	}
+	/**
 	 * @return the offeringMode
 	 */
 	public String getOfferingMode() {
@@ -168,8 +194,6 @@ public class ServiceRequestDocument extends BaseDocument implements ContentNodeB
 	public void setOfferingMode(String offeringMode) {
 		this.offeringMode = offeringMode;
 	}
-
-
 	/**
 	 * @return the requestDate
 	 */
@@ -229,6 +253,17 @@ public class ServiceRequestDocument extends BaseDocument implements ContentNodeB
 		}
 		return memberDriveDocumentList;
 	}
+	public Service getServiceDocument(){
+		HippoBean hippoBean = getBean("mootlywcm:serviceDocument");
+		if(hippoBean instanceof HippoMirror){
+			HippoBean hippoDocumentBean = ((HippoMirror) hippoBean).getReferencedBean();
+			if(hippoDocumentBean instanceof Service){
+				Service service = (Service) hippoDocumentBean;
+				return service;
+			}
+		}
+		return null;
+	}
 	@Override
 	public boolean bind(Object content, javax.jcr.Node node) throws ContentNodeBindingException {
 		ServiceRequestDocument bean = (ServiceRequestDocument) content;        
@@ -247,19 +282,29 @@ public class ServiceRequestDocument extends BaseDocument implements ContentNodeB
 			node.setProperty(PROP_PI_MOBILE, bean.getMobile());
 			node.setProperty("mootlywcm:address", bean.getAddress());
 			node.setProperty("mootlywcm:serviceCode", bean.getServiceCode());
+			node.setProperty("mootlywcm:serviceName", bean.getServiceName());
 			node.setProperty("mootlywcm:offeringMode", bean.getOfferingMode());
 			node.setProperty("mootlywcm:requestDate", GregorianCalendar.getInstance(TimeZone.getTimeZone("GMT+05:30")));
 			node.setProperty("mootlywcm:documentuploaded", bean.getDocumentUploaded());
+			node.setProperty("mootlywcm:serviceRequestNumber", bean.getServiceRequestNumber());
 			for(String canonicalHandleUUID:getMdCanonicalHandleUUID()){
 				javax.jcr.Node prdLinkNode;
 				try {
 					//prdLinkNode = node.getNode(PROP_COLUMN_BEAN);
 					prdLinkNode = node.addNode("mootlywcm:serviceProcessDcouments", "hippo:mirror");
-					prdLinkNode.setProperty("hippo:docbase", canonicalHandleUUID);
+					prdLinkNode.setProperty(Constants.PROP_HIPPO_DOCBASE, canonicalHandleUUID);
 				}  catch (RepositoryException e) {
 					// TODO Auto-generated catch block
 					log.error("Error in Repository",e);
 				}	
+			}
+			javax.jcr.Node serviceNode;
+			if(node.hasNode("mootlywcm:serviceDocument")){
+				serviceNode = node.getNode("mootlywcm:serviceDocument");
+				serviceNode.setProperty(Constants.PROP_HIPPO_DOCBASE, bean.getServiceCanonicalHandleUUID());
+			} else {
+				serviceNode = node.addNode("mootlywcm:serviceDocument", "hippo:mirror");
+				serviceNode.setProperty(Constants.PROP_HIPPO_DOCBASE, bean.getServiceCanonicalHandleUUID());
 			}
 		} 
 		catch (RepositoryException e) {
@@ -277,32 +322,49 @@ public class ServiceRequestDocument extends BaseDocument implements ContentNodeB
 			}
 			return;
 		}
-		if(formMap.getField("flex_field_string_0") != null){
-			setFirstName(formMap.getField("flex_field_string_0").getValue());
+		if(formMap.getField("firstName") != null){
+			setFirstName(formMap.getField("firstName").getValue());
 		}
-		if(formMap.getField("flex_field_string_1") != null){
-			setMiddleName(formMap.getField("flex_field_string_1").getValue());
+		if(formMap.getField("middleName") != null){
+			setMiddleName(formMap.getField("middleName").getValue());
 		}
-		if(formMap.getField("flex_field_string_2") != null) {
-			setLastName(formMap.getField("flex_field_string_2").getValue());
+		if(formMap.getField("lastname") != null) {
+			setLastName(formMap.getField("lastName").getValue());
 		}
-		if(formMap.getField("flex_field_string_3") != null) {
-			setAddress(formMap.getField("flex_field_string_3").getValue());
+		if(formMap.getField("address") != null) {
+			setAddress(formMap.getField("address").getValue());
 		}
-		if(formMap.getField("flex_field_string_4") != null) {
-			setMobile(formMap.getField("flex_field_string_4").getValue());
+		if(formMap.getField("mobile") != null) {
+			setMobile(formMap.getField("mobile").getValue());
 		}
-		if(formMap.getField("flex_field_string_5") != null) {
-			setEmail(formMap.getField("flex_field_string_5").getValue());
+		if(formMap.getField("email") != null) {
+			setEmail(formMap.getField("email").getValue());
 		}
-		if(formMap.getField("flex_field_string_6") != null) {
-			setServiceCode(formMap.getField("flex_field_string_6").getValue());
+		if(formMap.getField("serviceCode") != null) {
+			setServiceCode(formMap.getField("serviceCode").getValue());
+		}
+		if(formMap.getField("serviceName") != null) {
+			setServiceName(formMap.getField("serviceName").getValue());
+		}
+		if(formMap.getField("serviceCanonicalHandleUUID") != null) {
+			setServiceCanonicalHandleUUID(formMap.getField("serviceCanonicalHandleUUID").getValue());
 		}
 	}
 	@Override
 	public <T extends HippoBean> void cloneBean(T sourceBean) {
 		// TODO Auto-generated method stub
 
+	}
+	public String getServiceCanonicalHandleUUID() {
+		if(serviceCanonicalHandleUUID == null){
+			if(getServiceDocument() != null){
+				serviceCanonicalHandleUUID = getServiceDocument().getCanonicalHandleUUID();
+			}
+		}
+		return serviceCanonicalHandleUUID;
+	}
+	public void setServiceCanonicalHandleUUID(String serviceCanonicalHandleUUID) {
+		this.serviceCanonicalHandleUUID = serviceCanonicalHandleUUID;
 	}
 
 }
