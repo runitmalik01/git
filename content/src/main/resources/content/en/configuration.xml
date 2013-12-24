@@ -45980,9 +45980,9 @@ if(out_Taxable_income &lt;0) out_Taxable_income=0;
 out_balance=(Receipts-0)-(dedus57-0);
 if(out_balance &lt;0){
  balance=0;
-out_Taxable_income=(out_Taxable_income)+(LotteryOrhorse_income-0)+(balance-0)+(profit_FirmAOP_BOI-0);
+out_Taxable_income=(out_Taxable_income)+(LotteryOrhorse_income-0)+(balance-0);
 }else{
-out_Taxable_income=(out_Taxable_income)+(LotteryOrhorse_income-0)+(out_balance -0)+(profit_FirmAOP_BOI-0);
+out_Taxable_income=(out_Taxable_income)+(LotteryOrhorse_income-0)+(out_balance -0);
 }</sv:value>
     </sv:property>
     <sv:property sv:name="mootlywcm:title" sv:type="String">
