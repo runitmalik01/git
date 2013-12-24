@@ -32,18 +32,22 @@ import org.hippoecm.hst.content.beans.ContentNodeBindingException;
 import org.hippoecm.hst.content.beans.Node;
 import org.hippoecm.hst.content.beans.standard.HippoHtml;
 
+import com.mootly.wcm.annotations.AutoCreateFormField;
 import com.mootly.wcm.beans.compound.Copyright;
+import com.mootly.wcm.components.cms.view.AbstractFormField.FORM_FILED_TYPE;
 import com.mootly.wcm.utils.Constants;
 
 @Node(jcrType = "mootlywcm:document")
 public class Document extends BaseDocument implements ContentNodeBinder {
 
+	
     private String title;
     private String summary;
     private HippoHtml description;
     private String descriptionContent;
 
 
+    @AutoCreateFormField(fieldType=FORM_FILED_TYPE.TEXT,name="title",label="Title",valueListName="",title="",placeHolder="",isMultiple=false)
     public String getTitle() {
         return (title == null) ? (String) getProperty("mootlywcm:title") : title;
     }
@@ -51,7 +55,7 @@ public class Document extends BaseDocument implements ContentNodeBinder {
     public void setTitle(String title) {
         this.title = title;
     }
-    
+    @AutoCreateFormField(fieldType=FORM_FILED_TYPE.TEXT,name="summary",label="Summary",valueListName="",title="",placeHolder="",isMultiple=false)
     public String getSummary() {
         return (summary == null) ? (String) getProperty("mootlywcm:summary") : summary;
     }
@@ -59,7 +63,7 @@ public class Document extends BaseDocument implements ContentNodeBinder {
     public void setSummary(String summary) {
         this.summary = summary;
     }
-    
+    @AutoCreateFormField(fieldType=FORM_FILED_TYPE.TEXT_ARERA,name="description",label="Description",valueListName="",title="",placeHolder="",isMultiple=false)
     public HippoHtml getDescription() {
         if(description==null){
             description =  getBean(PROP_DESCRIPTION);

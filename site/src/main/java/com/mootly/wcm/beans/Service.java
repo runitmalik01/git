@@ -24,9 +24,11 @@ import org.hippoecm.hst.content.beans.Node;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.content.beans.standard.HippoMirror;
 
+import com.mootly.wcm.annotations.AutoCreateFormField;
 import com.mootly.wcm.beans.compound.CostModel;
 import com.mootly.wcm.beans.compound.ImageSet;
 import com.mootly.wcm.beans.compound.ImageSetLink;
+import com.mootly.wcm.components.cms.view.AbstractFormField.FORM_FILED_TYPE;
 import com.mootly.wcm.utils.Constants;
 
 
@@ -40,92 +42,108 @@ import com.mootly.wcm.utils.Constants;
  */
 @Node(jcrType = "mootlywcm:Service")
 public class Service extends Document {
-    
-    private List<ImageSet> images;
-    Double cost;
-    
-    public List<ImageSet> getImages() {
-        initImages();
-        return images;
-    }
+	public static final String NAMESPACE = "mootlywcm:Service";
 
-    public ImageSet getFirstImage() {
-        initImages();
-        return images.isEmpty() ? null : images.get(0);
-    }
-    
-    private void initImages() {
-        if (images == null) {
-            List<ImageSetLink> links = getChildBeans(Constants.PROP_IMAGELINK);
+	private List<ImageSet> images;
+	Double cost;
+	String id;
+	String name;
+	String serviceCode;
+	Boolean enable;
 
-            images = new ArrayList<ImageSet>(links.size());
-            
-            for (ImageSetLink link: links) {
-                HippoBean referenced = link.getReferencedBean();
-                if (referenced instanceof ImageSet) {
-                    ImageSet imageSet = (ImageSet)referenced;
-                    images.add(imageSet);
-                }
-            }
-        }
-    }
+	public List<ImageSet> getImages() {
+		initImages();
+		return images;
+	}
+
+	public ImageSet getFirstImage() {
+		initImages();
+		return images.isEmpty() ? null : images.get(0);
+	}
+
+	private void initImages() {
+		if (images == null) {
+			List<ImageSetLink> links = getChildBeans(Constants.PROP_IMAGELINK);
+
+			images = new ArrayList<ImageSet>(links.size());
+
+			for (ImageSetLink link: links) {
+				HippoBean referenced = link.getReferencedBean();
+				if (referenced instanceof ImageSet) {
+					ImageSet imageSet = (ImageSet)referenced;
+					images.add(imageSet);
+				}
+			}
+		}
+	}
 	private String PROP_PI_PERSONALINFO_LINK="mootlywcm:srForm";
+
+	@AutoCreateFormField(fieldType=FORM_FILED_TYPE.TEXT,name="id",label="ID",valueListName="",title="",placeHolder="",isMultiple=false)
+	public String getID() {
+		return getProperty("mootlywcm:id");
+	}
+	@AutoCreateFormField(fieldType=FORM_FILED_TYPE.TEXT,name="name",label="Service Name",valueListName="",title="",placeHolder="",isMultiple=false)
+	public String getName() {
+		return getProperty("mootlywcm:Name");
+	}
+	@AutoCreateFormField(fieldType=FORM_FILED_TYPE.TEXT,name="serviceCode",label="Service Code",valueListName="",title="",placeHolder="",isMultiple=false)
+	public String getServiceCode() {
+		return getProperty("mootlywcm:serviceCode");
+	}
+	@AutoCreateFormField(fieldType=FORM_FILED_TYPE.DROPDOWN,name="enable",label="Enable or Disable ?",valueListName="selectionvaluelist",title="",placeHolder="",isMultiple=false)
+	public Boolean getEnable() {
+		return getProperty("mootlywcm:enable");
+	}
+
+	public String[] getCategories() {
+		return getProperty("mootlywcm:categories");
+	}
+
+	public String[] getOfferingMode() {
+		return getProperty("mootlywcm:offeringmode");
+	}
+
+	public Double getCost() {
+		if (cost == null) cost = getProperty("mootlywcm:cost");
+		return cost;
+	}
+
+	public List<CostModel> getCostModel() {
+		return getChildBeans("mootlywcm:costmodel");
+	}
+
+	public String getServiceDescription() {
+		return getProperty("mootlywcm:description");
+	}
+
+	public String[] getHighlights() {
+		return getProperty("mootlywcm:highlights");
+	}
+
+	public String[] getSubCategories() {
+		return getProperty("mootlywcm:subCategories");
+	}
+
+	public ServiceRequestForm getServiceRequestForm() {
+		HippoBean bean = getBean(PROP_PI_PERSONALINFO_LINK);
+		if (!(bean instanceof HippoMirror)) {
+			return null;
+		}
+		ServiceRequestForm prdBean = (ServiceRequestForm) ((HippoMirror) bean).getReferencedBean();
+		if (prdBean == null) {
+			return null;
+		}
+		return prdBean;
+	}
+	public Boolean getDocumentRequired(){
+		return getProperty("mootlywcm:requireDocument");
+	}
+
+	public Long getServiceLeadTime(){
+		return getProperty("mootlywcm:serviceLeadTime");
+	}
 	
-    public String getID() {
-        return getProperty("mootlywcm:id");
-    }
-    
-    public String getName() {
-        return getProperty("mootlywcm:Name");
-    }
-
-    public String getServiceCode() {
-        return getProperty("mootlywcm:serviceCode");
-    }
-
-    public Boolean getEnable() {
-        return getProperty("mootlywcm:enable");
-    }
-
-    public String[] getCategories() {
-        return getProperty("mootlywcm:categories");
-    }
-
-    public String[] getOfferingMode() {
-        return getProperty("mootlywcm:offeringmode");
-    }
-    
-    public Double getCost() {
-    	if (cost == null) cost = getProperty("mootlywcm:cost");
-    	return cost;
-    }
-
-    public List<CostModel> getCostModel() {
-        return getChildBeans("mootlywcm:costmodel");
-    }
-
-    public String getServiceDescription() {
-        return getProperty("mootlywcm:description");
-    }
-    
-    public String[] getHighlights() {
-        return getProperty("mootlywcm:highlights");
-    }
-    
-    public String[] getSubCategories() {
-        return getProperty("mootlywcm:subCategories");
-    }
-    
-    public ServiceRequestForm getServiceRequestForm() {
-    	HippoBean bean = getBean(PROP_PI_PERSONALINFO_LINK);
-    	if (!(bean instanceof HippoMirror)) {
-    		return null;
-    	}
-    	ServiceRequestForm prdBean = (ServiceRequestForm) ((HippoMirror) bean).getReferencedBean();
-    	if (prdBean == null) {
-    		return null;
-    	}
-    	return prdBean;
-    }
-
+	public String[] getDocumentNames(){
+		return getProperty("mootlywcm:documentNames");
+	}
 }
