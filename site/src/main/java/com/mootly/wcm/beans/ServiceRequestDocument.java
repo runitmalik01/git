@@ -51,7 +51,7 @@ import com.mootly.wcm.utils.Constants;
  */
 @Node(jcrType = "mootlywcm:servicerequestdocument")
 public class ServiceRequestDocument extends BaseDocument implements ContentNodeBinder,FormMapFiller {
-	final public String NAMESPACE = "mootlywcm:servicerequestdocument";
+	final public static String NAMESPACE = "mootlywcm:servicerequestdocument";
 	static final public String NODE_NAME = "ServiceRequestDocument";
 
 	private Long serviceRequestNumber;
@@ -216,7 +216,7 @@ public class ServiceRequestDocument extends BaseDocument implements ContentNodeB
 		this.requestDate = requestDate;
 	}
 	public Boolean getDocumentUploaded() {
-		if(documentUploaded == null) documentUploaded = getProperty("mootlywcm:documentuploaded");
+		if(documentUploaded == null) documentUploaded = getProperty("mootlywcm:documentUploaded");
 		return documentUploaded;
 	}
 	public void setDocumentUploaded(Boolean documentUploaded) {
@@ -240,7 +240,7 @@ public class ServiceRequestDocument extends BaseDocument implements ContentNodeB
 	}
 	public final List<MemberDriveDocument> getServiceProcessDocuemnts() {
 		if (memberDriveDocumentList == null) {
-			List<HippoMirrorBean> theMirrorBeans = getChildBeansByName("mootlywcm:memberDocuments");
+			List<HippoMirrorBean> theMirrorBeans = getChildBeansByName("mootlywcm:serviceProcessDcouments");
 			if (theMirrorBeans != null && theMirrorBeans.size() > 0 ) {
 				memberDriveDocumentList = new ArrayList<MemberDriveDocument>();
 				for (HippoMirrorBean theMirrorBean: theMirrorBeans) {
@@ -268,7 +268,7 @@ public class ServiceRequestDocument extends BaseDocument implements ContentNodeB
 	public boolean bind(Object content, javax.jcr.Node node) throws ContentNodeBindingException {
 		ServiceRequestDocument bean = (ServiceRequestDocument) content;        
 		try {
-			NodeIterator nodeIterator = node.getNodes("mootlywcm:memberDocuments");
+			NodeIterator nodeIterator = node.getNodes("mootlywcm:serviceProcessDcouments");
 			if (nodeIterator != null) {
 				while (nodeIterator.hasNext()) {
 					javax.jcr.Node aNode = nodeIterator.nextNode();
@@ -328,7 +328,7 @@ public class ServiceRequestDocument extends BaseDocument implements ContentNodeB
 		if(formMap.getField("middleName") != null){
 			setMiddleName(formMap.getField("middleName").getValue());
 		}
-		if(formMap.getField("lastname") != null) {
+		if(formMap.getField("lastName") != null) {
 			setLastName(formMap.getField("lastName").getValue());
 		}
 		if(formMap.getField("address") != null) {
