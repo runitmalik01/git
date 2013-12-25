@@ -10,6 +10,8 @@ import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 import javax.servlet.ServletContext;
 
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.apache.commons.lang.StringUtils;
 import org.hippoecm.hst.component.support.forms.FormMap;
 import org.hippoecm.hst.content.beans.ObjectBeanManagerException;
 import org.hippoecm.hst.content.beans.manager.workflow.WorkflowCallbackHandler;
@@ -35,19 +37,21 @@ import com.mootly.wcm.beans.Service;
 import com.mootly.wcm.beans.ServiceRequestDocument;
 import com.mootly.wcm.components.ITReturnComponent;
 import com.mootly.wcm.components.ITReturnComponentHelper;
+import com.mootly.wcm.member.MemberDriveHandler;
 import com.mootly.wcm.model.FinancialYear;
 import com.mootly.wcm.services.SequenceGenerator;
 import com.mootly.wcm.services.SequenceGeneratorImpl;
 import com.mootly.wcm.services.ds.DigitalSignatureService;
 import com.mootly.wcm.services.efile.EFileService;
 import com.mootly.wcm.utils.ContentStructure;
+import com.mootly.wcm.utils.GoGreenUtil;
 import com.mootly.wcm.utils.VelocityUtils;
 
 
 public class ServiceRequest extends EasyFormComponent {
 	private static final Logger log = LoggerFactory.getLogger(ServiceRequest.class);
 	private static final String DOC_SCREEN_REF_ID = "docattach";
-	
+
 	ITReturnComponentHelper itReturnComponentHelper = null;
 	SequenceGenerator sequenceGenerator = null;
 	DigitalSignatureService digitalSignatureService = null;
@@ -56,7 +60,7 @@ public class ServiceRequest extends EasyFormComponent {
 	@Override
 	public void init(ServletContext servletContext,
 			ComponentConfiguration componentConfig)
-			throws HstComponentException {
+					throws HstComponentException {
 		// TODO Auto-generated method stub
 		super.init(servletContext, componentConfig);
 		ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(servletContext);
@@ -65,7 +69,7 @@ public class ServiceRequest extends EasyFormComponent {
 		digitalSignatureService = context.getBean(DigitalSignatureService.class);
 		eFileService = context.getBean(EFileService.class);
 	}
-	
+
 	@Override
 	public void onValidationError(HstRequest request, HstResponse response,
 			Form form, FormMap map, List<ErrorMessage> errors) {
@@ -86,6 +90,8 @@ public class ServiceRequest extends EasyFormComponent {
 		request.setAttribute("ReqSuccess", request.getParameter("Success"));
 		request.getRequestContext().setAttribute("Success", request.getParameter("Success"));
 		request.setAttribute("srdocument", request.getRequestContext().getAttribute("document"));
+		Service service = (Service) request.getRequestContext().getAttribute("document");
+		request.setAttribute("documentRequired", service.getDocumentRequired());
 		ServiceRequestManager requestManager = new ServiceRequestManager(request, getSiteContentBaseBeanForReseller(request));
 		if(log.isInfoEnabled()){
 			log.info("Lets see service can be fullfill in lead time::"+requestManager.CanServiceRequestFullfill());
@@ -98,47 +104,42 @@ public class ServiceRequest extends EasyFormComponent {
 		// TODO Auto-generated method stub
 		super.doAction(request, response);
 		Long serviceRequestNumber = sequenceGenerator.getNextId(SequenceGenerator.SEQUENCE_SERVICE_REQUEST);
-		Service document = (Service) request.getRequestContext().getAttribute("document");
 		FormBean bean = getFormBean(request);
 		if (bean == null) {
 			return;
 		}
 		final Form form = parse(bean);
-		final FormMap formMap = new FormMap(request, form.getFieldNames());
-		if(formMap!=null){
-			for(String fields:formMap.getFieldNames()){
-				log.info("this is name of field"+fields);
-			}
-		}
-		if(formMap!=null){
-			ServiceRequestDocument  resServicedocument=createServiceRequestDocument(request, formMap, serviceRequestNumber);
-			if(resServicedocument!=null){
-				response.setRenderParameter("Success", "Success");
-				try {
-					if(document != null){
-						if(document.getDocumentRequired()){
-							if(request.getUserPrincipal() != null){
-								ITReturnComponent itReturnComponent = new ITReturnComponent();
-								ITReturnComponentHelper helper = new ITReturnComponentHelper();
-								String folderContainsITReturnDocuments = helper.getTheFolderContainingITRDocuments(request, response);
-								String pan = helper.getPANFromRequestContext(request);
-								FinancialYear financialYear = helper.getFinancialYear(helper.getStrFinancialYear(request, response), request, response);
-								String redirectURL = itReturnComponent.getRedirectURLForSiteMapItem(request, response, null, DOC_SCREEN_REF_ID, financialYear, folderContainsITReturnDocuments, pan);
-								redirectURL = redirectURL + "/" + document.getName() + "?serviceRequest=" + serviceRequestNumber;
-								if(log.isInfoEnabled()) {
-									log.info("Lets see RedirectUrl::"+ redirectURL);
-								}
-								response.sendRedirect(redirectURL);
-							} else {
-
-							}
-						}
+		final FormMap formMap = new FormMap(request, form.getFieldNames());		
+		try {
+			Session persistableSession = getPersistableSession(request);
+			WorkflowPersistenceManager wpm = getWorkflowPersistenceManager(persistableSession);
+			wpm.setWorkflowCallbackHandler(new FullReviewWorkflowCallbackHandler());
+			if(formMap!=null){
+				boolean isMultipart = ServletFileUpload.isMultipartContent(request);
+				if(!isMultipart){
+					ServiceRequestDocument resServicedocument = createServiceRequestDocument(request, wpm, formMap, serviceRequestNumber);
+					if(resServicedocument!=null){
+						response.setRenderParameter("Success", "Success");
+						response.setRenderParameter("serviceRequestNumber", String.valueOf(serviceRequestNumber));
 					}
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+				} else {
+					ServiceRequestManager requestManager = new ServiceRequestManager(request, getSiteContentBaseBeanForReseller(request));
+					String srRequestNumber = GoGreenUtil.getEscapedParameter(request, "serviceRequestNumber");
+					Service resServicedocument = requestManager.getServiceForServiceRequest(srRequestNumber);
+					String subDriveName = StringUtils.deleteWhitespace(resServicedocument.getName()).toLowerCase();
+					if(log.isInfoEnabled()){
+						log.info("Have the name of subdrive to be Create::" + subDriveName);
+					}
+					MemberDriveHandler driveHandler = new MemberDriveHandler(request, formMap);
+					boolean isFileSave = driveHandler.SaveFileInMemberDrive(null, subDriveName, wpm, false);
+					if(isFileSave){
+						requestManager.UdateTheServiceRequestWithMemberDrive(wpm, subDriveName, srRequestNumber);	
+					}
 				}
 			}
+		} catch (RepositoryException e) {
+			// TODO Auto-generated catch block
+			log.error("Error while getting Repository session",e);
 		}
 	}
 	/**
@@ -153,17 +154,13 @@ public class ServiceRequest extends EasyFormComponent {
 
 		return true;
 	}
-	public ServiceRequestDocument createServiceRequestDocument(HstRequest request, FormMap formMap, Long serviceRequestNumber){
-		Session persistableSession=null;
-		WorkflowPersistenceManager wpm=null;
+	public ServiceRequestDocument createServiceRequestDocument(HstRequest request, WorkflowPersistenceManager wpm, FormMap formMap, Long serviceRequestNumber){
+		ServiceRequestDocument publishedSignUpDocument = null;
 		try{
-			persistableSession=getPersistableSession(request);
-			wpm=getWorkflowPersistenceManager(persistableSession);
-			wpm.setWorkflowCallbackHandler(new FullReviewWorkflowCallbackHandler());
 			final String serviceRequsetpath = getServiceRequestPath(request);
 			//format of serviceNode as "Service"+ ServiceCode + Mobile Number
 			String serviceNodeName = "ServiceRequest_"+serviceRequestNumber;
-			String objectpath = wpm.createAndReturn(serviceRequsetpath+"servicerequest", Service.NAMESPACE, serviceNodeName, true);
+			String objectpath = wpm.createAndReturn(serviceRequsetpath+"servicerequest", ServiceRequestDocument.NAMESPACE, serviceNodeName, true);
 			ServiceRequestDocument serviceRequestDocument = (ServiceRequestDocument) wpm.getObject(objectpath);
 			if(serviceRequestDocument!=null){	
 				if(log.isInfoEnabled()){
@@ -172,7 +169,7 @@ public class ServiceRequest extends EasyFormComponent {
 				serviceRequestDocument.setServiceRequestNumber(serviceRequestNumber);
 				serviceRequestDocument.fill(formMap);
 				wpm.update(serviceRequestDocument);
-				ServiceRequestDocument publishedSignUpDocument = (ServiceRequestDocument) wpm.getObject(objectpath); 
+				publishedSignUpDocument = (ServiceRequestDocument) wpm.getObject(objectpath); 
 				if (publishedSignUpDocument == null) return null;//major screwup
 				//persistableSession = getPersistableSession(request);
 				//wpm = getWorkflowPersistenceManager(persistableSession);
@@ -193,11 +190,7 @@ public class ServiceRequest extends EasyFormComponent {
 				EmailTemplate emailTemplateAck = (EmailTemplate) wpm.getObject(ContentStructure.getEmailTemplatesPath(request) + "/service_request_ack");
 				wpm.update(createEmailService(request, emailMessageAck, emailTemplateAck, contextMap, publishedSignUpDocument.getEmail()));
 			}
-			return serviceRequestDocument;
-		} catch (RepositoryException e) {
-			// TODO Auto-generated catch block
-			log.error("Error while getting Repository session",e);
-			return null;
+			return publishedSignUpDocument;
 		} catch (ObjectBeanManagerException e) {
 			// TODO Auto-generated catch block
 			log.error("Error while getting the Object from Repository",e);
@@ -276,40 +269,40 @@ public class ServiceRequest extends EasyFormComponent {
 		}
 		return (FormBean) document;
 	}
-	
-    public HippoBean getSiteContentBaseBeanForReseller(HstRequest request) {
-    	// TODO Auto-generated method stub
-    	boolean isReseller = itReturnComponentHelper.isReSeller(request);
-    	String resellerId = itReturnComponentHelper.getResellerId(request);
-    	HippoBean siteContentBaseBean = super.getSiteContentBaseBean(request);
-    	HippoBean hippoBeanForReseller = null;
-    	if (isReseller && resellerId != null) {
-    		hippoBeanForReseller = siteContentBaseBean.getBean("resellers/"+resellerId);
-    		if ( hippoBeanForReseller == null ) {
-    			return siteContentBaseBean;
-    		}
-    		else {
-    			return hippoBeanForReseller;
-    		}
-    	}
-    	return siteContentBaseBean;
-    }
-    
-    public String getCanonicalBasePathForWrite(HstRequest request) {
-    	// TODO Auto-generated method stub
-    	boolean isReseller = itReturnComponentHelper.isReSeller(request);
-    	String resellerId = itReturnComponentHelper.getResellerId(request);
-    	HippoBean siteContentBaseBean = super.getSiteContentBaseBean(request);
-    	HippoBean hippoBeanForReseller = null;
-    	if (isReseller && resellerId != null) {
-    		hippoBeanForReseller = siteContentBaseBean.getBean("resellers/"+resellerId);
-    		if ( hippoBeanForReseller == null ) {
-    			return super.getMount(request).getCanonicalContentPath();
-    		}
-    		else {
-    			return hippoBeanForReseller.getCanonicalPath();
-    		}
-    	}
-    	return super.getMount(request).getCanonicalContentPath();
-    }
+
+	public HippoBean getSiteContentBaseBeanForReseller(HstRequest request) {
+		// TODO Auto-generated method stub
+		boolean isReseller = itReturnComponentHelper.isReSeller(request);
+		String resellerId = itReturnComponentHelper.getResellerId(request);
+		HippoBean siteContentBaseBean = super.getSiteContentBaseBean(request);
+		HippoBean hippoBeanForReseller = null;
+		if (isReseller && resellerId != null) {
+			hippoBeanForReseller = siteContentBaseBean.getBean("resellers/"+resellerId);
+			if ( hippoBeanForReseller == null ) {
+				return siteContentBaseBean;
+			}
+			else {
+				return hippoBeanForReseller;
+			}
+		}
+		return siteContentBaseBean;
+	}
+
+	public String getCanonicalBasePathForWrite(HstRequest request) {
+		// TODO Auto-generated method stub
+		boolean isReseller = itReturnComponentHelper.isReSeller(request);
+		String resellerId = itReturnComponentHelper.getResellerId(request);
+		HippoBean siteContentBaseBean = super.getSiteContentBaseBean(request);
+		HippoBean hippoBeanForReseller = null;
+		if (isReseller && resellerId != null) {
+			hippoBeanForReseller = siteContentBaseBean.getBean("resellers/"+resellerId);
+			if ( hippoBeanForReseller == null ) {
+				return super.getMount(request).getCanonicalContentPath();
+			}
+			else {
+				return hippoBeanForReseller.getCanonicalPath();
+			}
+		}
+		return super.getMount(request).getCanonicalContentPath();
+	}
 }
