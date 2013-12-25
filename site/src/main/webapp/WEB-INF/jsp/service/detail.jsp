@@ -30,7 +30,7 @@
 						<c:out value="${document.name}" />
 					</h3>
 					<div>
-					    <c:if test="${document.serviceLeadTime not eq 0}">
+					    <c:if test="${document.serviceLeadTime != 0}">
 						   <div class="alert alert-info">
 							   <b>Service Lead Time : <c:out value="${document.serviceLeadTime}" /> Days</b>
 						   </div>
@@ -58,7 +58,7 @@
 							<div class="well">
 								<p>Document Required to apply for this Service:</p>
 								<c:forEach items="${document.documentNames}" var="documentName" varStatus="status">
-									<c:out value="${documentName}"></c:out>
+									<c:out value="${status.count}."/><c:out value="${documentName}"></c:out>
 									<br />
 								</c:forEach>
 							</div>
