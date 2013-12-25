@@ -498,7 +498,7 @@
           <sv:value>0135a979-5ae8-4d3e-b4b2-05c2854d0754</sv:value>
         </sv:property>
         <sv:property sv:name="ef:fieldclass" sv:type="String">
-          <sv:value>hide</sv:value>
+          <sv:value/>
         </sv:property>
         <sv:property sv:name="ef:fieldname" sv:type="String">
           <sv:value>serviceCode</sv:value>
@@ -527,7 +527,7 @@
           <sv:value>6596ff49-3115-4996-a387-50a2a8caa5c3</sv:value>
         </sv:property>
         <sv:property sv:name="ef:fieldclass" sv:type="String">
-          <sv:value>hide</sv:value>
+          <sv:value/>
         </sv:property>
         <sv:property sv:name="ef:fieldname" sv:type="String">
           <sv:value>serviceCanonicalHandleUUID</sv:value>
