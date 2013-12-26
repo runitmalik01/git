@@ -66,12 +66,12 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 		name="pi">
 			<div class="row show-grid" style="font-family: arial;font-size: 11px;border: 1px dashed #ccc;">
 				<div class="col-md-12">
-					<input type="radio" <c:if test="${not empty memberpersonalinformation && memberpersonalinformation.filingSection.xmlCode == '17'}">checked</c:if> value="revisingNoNotice" id="revisingNoNotice" name="returnTypeChoice">I am revising my return for AY ${financialYear.displayAssessmentYear} and I have already submitted my original return.
+					<input type="radio" <c:if test="${not empty memberpersonalinformation && memberpersonalinformation.filingSection.xmlCode == '17'}">checked</c:if> value="revisingNoNotice" id="revisingNoNotice" name="returnTypeChoice" class="returnTypeChoice">I am revising my return for AY ${financialYear.displayAssessmentYear} and I have already submitted my original return.
 				</div>
 			</div>
 			<div class="row show-grid" style="font-family: arial;font-size: 11px;border: 1px dashed #ccc;">
 				<div class="col-md-8">
-					<input type="radio" <c:if test="${not empty memberpersonalinformation && memberpersonalinformation.returnType == 'O' && not empty memberpersonalinformation.filingSection.requiresNotice}">checked</c:if> value="revisingWithNotice" id="revisingWithNotice" name="returnTypeChoice">I am filing my return in response to a notice received from the Income Tax Department and Section is
+					<input type="radio" <c:if test="${not empty memberpersonalinformation && memberpersonalinformation.returnType == 'O' && not empty memberpersonalinformation.filingSection.requiresNotice}">checked</c:if> value="revisingWithNotice" id="revisingWithNotice" name="returnTypeChoice" class="returnTypeChoice">I am filing my return in response to a notice received from the Income Tax Department and Section is
 				</div>
 				<div class="col-md-4" id="NoticeSection">
 					<select name="revisingWithNoticeSection" id="revisingWithNoticeSection">
@@ -85,7 +85,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 			</div>
 			<div class="row show-grid" style="font-family: arial;font-size: 11px;border: 1px dashed #ccc;">
 				<div class="col-md-8">
-					<input  <c:if test="${empty memberpersonalinformation || memberpersonalinformation.returnType == 'O' && not empty memberpersonalinformation.filingSection && memberpersonalinformation.filingSection.xmlCode == '11' ||  memberpersonalinformation.filingSection.xmlCode == '12'}">checked</c:if> type="radio" value="originalReturn" id="originalReturn" name="returnTypeChoice">None of the above (This is my first return for assessment year ${financialYear.displayAssessmentYear} )
+					<input  <c:if test="${empty memberpersonalinformation || memberpersonalinformation.returnType == 'O' && not empty memberpersonalinformation.filingSection && memberpersonalinformation.filingSection.xmlCode == '11' ||  memberpersonalinformation.filingSection.xmlCode == '12'}">checked</c:if> type="radio" value="originalReturn" id="originalReturn" name="returnTypeChoice" class="returnTypeChoice">None of the above (This is my first return for assessment year ${financialYear.displayAssessmentYear} )
 				</div>
 			</div>
 		<fieldset>
@@ -160,7 +160,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 				</div>
 			</div>
 		</fieldset>		
-		<fieldset id="ul_revised" class="revised_v original_h" style="<c:if test="${empty memberpersonalinformation || memberpersonalinformation.returnType == 'O'}">display: none;</c:if>">
+		<fieldset id="ul_revised" class="revised_v original_h" style="<c:if test="${empty memberpersonalinformation}">display: none;</c:if>">
 			<legend>Revised Return Details</legend>
 			<div class="row show-grid" id="ul_revised_input">
 				<div class="col-md-3" id="ackNo">
@@ -173,7 +173,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 							placeholder="Enter Original Ack No" type="text" maxlength="15"/>
 					</div>
 				</div>
-				<div class="col-md-2" id="ackdate">
+				<div class="col-md-2 revs_" id="ackdate">
 					<div class="rowlabel" id="ack_date_label">
 						<label for="ack_date"><small>Original Ack Date</small> </label>
 					</div>
@@ -985,6 +985,71 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 	<hst:attribute name="type">text/javascript</hst:attribute>
         	$(document).ready( function() {
         	  if($('#myModal').length > 0) $('#myModal').modal();
+        	  // to display revised fields
+        	  var pageAction = '<c:out value="${pageAction}"></c:out>';
+        	  var returnType = '<c:out value="${memberpersonalinformation.returnType}"></c:out>';
+        	  <c:if test="${pageAction eq 'EDIT' and not empty memberpersonalinformation}">
+        	  if((pageAction == "EDIT") && (returnType == "O") && ($("#revisingWithNoticeSection").val() == "18")){
+        	  
+        	 			$("#ackNo").show();
+        	  			$("#ackdate").hide();
+        	  			$("#noticeNo").show();
+        	 			$("#noticeDate").show();
+        	  }
+        	  if((pageAction == "EDIT") && (returnType == "R") ){
+        	  
+        	 			 $("#ackNo").show();
+        	 			 $("#ackdate").show();
+        	 			 $("#noticeNo").hide();
+        	  			$("#noticeDate").hide();
+        	  	}
+        	  	$('.returnTypeChoice').change(function(){
+        	  	 var returnTypeValue = $('.returnTypeChoice').val();
+        	  	 $('.returnTypeChoice').each( function(index,value) {
+				          if(value.checked){
+				             returnTypeValue = value.value;
+				             
+				          } 	
+			     });
+        	  	 var returnSection = $("#revisingWithNoticeSection").val();
+        	  	  if(returnTypeValue == 'revisingWithNotice' && returnSection == '18'){       	  	   
+        	  	        $("#ackNo").show();
+        	  			$("#ackdate").hide();
+        	  			$("#noticeNo").show();
+        	 			$("#noticeDate").show();
+        	  	   };
+        	  	   if(returnTypeValue == 'revisingNoNotice'){
+        	  	        $("#ackNo").show();
+        	  			$("#ackdate").show();
+        	  			$("#noticeNo").hide();
+        	 			$("#noticeDate").hide();
+        	  	   };
+        	  	});
+        	  	$("#revisingWithNoticeSection").change(function(){
+        	  	var returnTypeValue = $('.returnTypeChoice');
+        	  	 $('.returnTypeChoice').each( function(index,value) {
+				          if(value.checked){
+				             returnType = value.value;
+				             alert("returnType"+returnType);
+				            
+				          } 	
+			     });
+        	  	var val= $(this).val();
+        	  	if((val == '18') && (returnType == "revisingWithNotice")){
+        	  			$("#ackNo").show();
+        	  			$("#ackdate").hide();
+        	  			$("#noticeNo").show();
+        	 			$("#noticeDate").show();
+        	  	} 
+                 if((val != '18') && (returnType == "revisingWithNotice")){
+        	  	        $("#ackNo").hide();
+        	  			$("#ackdate").hide();
+        	  			$("#noticeNo").hide();
+        	 			$("#noticeDate").hide();
+        	  	  }
+        	  	});
+        	  	</c:if>
+        	  	
         		$("#revisingNoNotice,#revisingWithNotice,#originalReturn").click ( function() {
         			var v= ($(this).val());
         			$("#ul_revised").hide();
@@ -1013,10 +1078,13 @@ request.setAttribute("objHashMapstates", objHashMapstates);
         			              $("#ul_revised").hide();
         			            }
         			}else {
+        			
         				$("#ul_revised").hide();
+        				
         			}
         		});
         	});
+// the following code is to show defective returns fields..
 
 		var mapOfItrFormWhoCanAndWhoCan = {};
 		var mapOfItrFormWhoCanAndWhoCannot = {};
