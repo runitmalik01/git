@@ -8,24 +8,24 @@ For Mootly ITR Pricing Plans
 	<fmt:message key="service.price" />
 </c:set>
 <hippo-gogreen:title title="${servicepricetitle}" />
-<h3 class="title text-center text-success">
+<h2 class="title text-center text-success">
 	<fmt:message key="service.price.title" />
-</h3>
+</h2>
 
 <form>
 	<table class="table table-bordered table-hover table-striped"
 		width="100%">
 		<thead class='header'>
 			<tr>
-				<th width="15%" class=success ><fmt:message
+				<th width="15%" class=success><fmt:message
 						key="service.price.title1" /></th>
 				<c:forEach items="${documents}" var="document">
 					<c:choose>
 						<c:when test="${document.title eq 'DELUXE'}">
-							<td  class=success />
+							<td class=success />
 						</c:when>
 						<c:otherwise>
-							<td  class=success />
+							<td class=success />
 						</c:otherwise>
 					</c:choose>
 					<c:out value="${document.title}" />
@@ -35,28 +35,23 @@ For Mootly ITR Pricing Plans
 				<th width="15%"><fmt:message key="service.price.efilepricing" />
 				</th>
 				<c:forEach items="${documents}" var="document">
-					<td width="15%"><c:choose>
+					<td width="15%">
+						<!-- To put images of different colour w.r.t. packages --> <%-- <c:choose>
 							<c:when test="${document.title eq 'DELUXE'}">
 								<img src="images/rupeeGreen.gif" />
 							</c:when>
 							<c:otherwise>
-								<img src="images/rupeeBlue.gif" />
+								 <img src="images/rupeeBlue.gif" />
 							</c:otherwise>
-						</c:choose> <c:out value="${document.efilePricing}" /></td>
+						</c:choose>  --%> &#8377; <c:out value="${document.efilePricing}" />
+					</td>
 				</c:forEach>
 			</tr>
 			<tr>
 				<th width="15%"><fmt:message key="service.price.ezfilepricing" />
 				</th>
 				<c:forEach items="${documents}" var="document">
-					<td width="15%"><c:choose>
-							<c:when test="${document.title eq 'DELUXE'}">
-								<img src="images/rupeeGreen.gif" />
-							</c:when>
-							<c:otherwise>
-								<img src="images/rupeeBlue.gif" />
-							</c:otherwise>
-						</c:choose> <c:out value="${document.ezfilePricing}" /></td>
+					<td width="15%">&#8377;<c:out value="${document.ezfilePricing}" /></td>
 				</c:forEach>
 			</tr>
 		</thead>
@@ -68,17 +63,16 @@ For Mootly ITR Pricing Plans
 			</c:forEach>
 		</tr>
 		<tr>
-		<th width="15%"><fmt:message key="service.price.can" /></th>
-		<c:forEach items="${documents}" var="document">
-			<td width="5%">
-			<h5>
+			<th width="15%"><fmt:message key="service.price.can" /></th>
+			<c:forEach items="${documents}" var="document">
+				<td width="5%">
+					<h5>
 						<small> Recommended if you:</small>
-					</h5>
-				   <fmt:message key="${whoCan[document.title]}"/>
+					</h5> <fmt:message key="${whoCan[document.title]}" />
 				</td>
-		</c:forEach>
-		
-		<%-- 	<th width="15%"><fmt:message key="service.price.features" /></th>
+			</c:forEach>
+
+			<%-- 	<th width="15%"><fmt:message key="service.price.features" /></th>
 			<c:forEach items="${documents}" var="document">
 				<td width="5%">
 					<h5>
@@ -87,18 +81,17 @@ For Mootly ITR Pricing Plans
 						<c:out value="${features}" />
 						<br>
 					</c:forEach> <%-- <br /> <a href='<hst:link path="/memberLogin"/>' class="btn btn-default orange">Start</a> --%>
-					<%-- <a	id="hrefSubmit<c:out value="${fn:toLowerCase(document.title)}"/>"
+			<%-- <a	id="hrefSubmit<c:out value="${fn:toLowerCase(document.title)}"/>"
 					class="btn btn-default orange">Start</a> 
 					</td>
 			</c:forEach> --%>
 		</tr>
 		<tr>
-		<th width="15%"><fmt:message key="service.price.cannot" /></th>
-		<c:forEach items="${documents}" var="document">
-			<td width="5%">
-				   <fmt:message key="${whoCannot[document.title]}"/>
+			<th width="15%"><fmt:message key="service.price.cannot" /></th>
+			<c:forEach items="${documents}" var="document">
+				<td width="5%"><fmt:message key="${whoCannot[document.title]}" />
 				</td>
-		</c:forEach>
+			</c:forEach>
 		</tr>
 	</table>
 	<div id="income" align="center">
@@ -113,14 +106,7 @@ For Mootly ITR Pricing Plans
 			<c:forEach items="${documents}" var="document">
 				<td width="5%"><c:if
 						test="${document.pricingPlanIncome.salary eq true}">
-						<c:choose>
-							<c:when test="${document.title eq 'DELUXE'}">
-								<img src="images/GreenOK.gif" />
-							</c:when>
-							<c:otherwise>
-								<img src="images/BlueOK.gif" />
-							</c:otherwise>
-						</c:choose>
+						<span class="glyphicon glyphicon-ok"></span>
 					</c:if>
 				</td>
 			</c:forEach>
@@ -131,14 +117,7 @@ For Mootly ITR Pricing Plans
 			<c:forEach items="${documents}" var="document">
 				<td width="5%"><c:if
 						test="${document.pricingPlanIncome.otherSourceInterest eq true}">
-						<c:choose>
-							<c:when test="${document.title eq 'DELUXE'}">
-								<img src="images/GreenOK.gif" />
-							</c:when>
-							<c:otherwise>
-								<img src="images/BlueOK.gif" />
-							</c:otherwise>
-						</c:choose>
+						<span class="glyphicon glyphicon-ok"></span>
 					</c:if>
 				</td>
 			</c:forEach>
@@ -149,14 +128,7 @@ For Mootly ITR Pricing Plans
 			<c:forEach items="${documents}" var="document">
 				<td width="5%"><c:if
 						test="${document.pricingPlanIncome.otherSourceAgriculture eq true}">
-						<c:choose>
-							<c:when test="${document.title eq 'DELUXE'}">
-								<img src="images/GreenOK.gif" />
-							</c:when>
-							<c:otherwise>
-								<img src="images/BlueOK.gif" />
-							</c:otherwise>
-						</c:choose>
+						<span class="glyphicon glyphicon-ok"></span>
 					</c:if>
 				</td>
 			</c:forEach>
@@ -166,14 +138,7 @@ For Mootly ITR Pricing Plans
 			<c:forEach items="${documents}" var="document">
 				<td width="5%"><c:if
 						test="${document.pricingPlanIncome.houseProperty eq true}">
-						<c:choose>
-							<c:when test="${document.title eq 'DELUXE'}">
-								<img src="images/GreenOK.gif" />
-							</c:when>
-							<c:otherwise>
-								<img src="images/BlueOK.gif" />
-							</c:otherwise>
-						</c:choose>
+						<span class="glyphicon glyphicon-ok"></span>
 					</c:if>
 				</td>
 			</c:forEach>
@@ -184,14 +149,7 @@ For Mootly ITR Pricing Plans
 			<c:forEach items="${documents}" var="document">
 				<td width="5%"><c:if
 						test="${document.pricingPlanIncome.capitalGain eq true}">
-						<c:choose>
-							<c:when test="${document.title eq 'DELUXE'}">
-								<img src="images/GreenOK.gif" />
-							</c:when>
-							<c:otherwise>
-								<img src="images/BlueOK.gif" />
-							</c:otherwise>
-						</c:choose>
+						<span class="glyphicon glyphicon-ok"></span>
 					</c:if>
 				</td>
 			</c:forEach>
@@ -203,14 +161,7 @@ For Mootly ITR Pricing Plans
 			<c:forEach items="${documents}" var="document">
 				<td width="5%"><c:if
 						test="${document.pricingPlanIncome.partnership eq true}">
-						<c:choose>
-							<c:when test="${document.title eq 'DELUXE'}">
-								<img src="images/GreenOK.gif" />
-							</c:when>
-							<c:otherwise>
-								<img src="images/BlueOK.gif" />
-							</c:otherwise>
-						</c:choose>
+						<span class="glyphicon glyphicon-ok"></span>
 					</c:if>
 				</td>
 			</c:forEach>
@@ -221,14 +172,7 @@ For Mootly ITR Pricing Plans
 			<c:forEach items="${documents}" var="document">
 				<td width="5%"><c:if
 						test="${document.pricingPlanIncome.business eq true}">
-						<c:choose>
-							<c:when test="${document.title eq 'DELUXE'}">
-								<img src="images/GreenOK.gif" />
-							</c:when>
-							<c:otherwise>
-								<img src="images/BlueOK.gif" />
-							</c:otherwise>
-						</c:choose>
+						<span class="glyphicon glyphicon-ok"></span>
 					</c:if>
 				</td>
 			</c:forEach>
@@ -238,14 +182,7 @@ For Mootly ITR Pricing Plans
 			<c:forEach items="${documents}" var="document">
 				<td width="5%"><c:if
 						test="${document.pricingPlanIncome.presumtiveBusiness eq true}">
-						<c:choose>
-							<c:when test="${document.title eq 'DELUXE'}">
-								<img src="images/GreenOK.gif" />
-							</c:when>
-							<c:otherwise>
-								<img src="images/BlueOK.gif" />
-							</c:otherwise>
-						</c:choose>
+						<span class="glyphicon glyphicon-ok"></span>
 					</c:if>
 				</td>
 			</c:forEach>
@@ -255,14 +192,7 @@ For Mootly ITR Pricing Plans
 			<c:forEach items="${documents}" var="document">
 				<td width="5%"><c:if
 						test="${document.pricingPlanIncome.foreignAssests eq true}">
-						<c:choose>
-							<c:when test="${document.title eq 'DELUXE'}">
-								<img src="images/GreenOK.gif" />
-							</c:when>
-							<c:otherwise>
-								<img src="images/BlueOK.gif" />
-							</c:otherwise>
-						</c:choose>
+						<span class="glyphicon glyphicon-ok"></span>
 					</c:if>
 				</td>
 			</c:forEach>
@@ -273,14 +203,7 @@ For Mootly ITR Pricing Plans
 			<c:forEach items="${documents}" var="document">
 				<td width="5%"><c:if
 						test="${document.pricingPlanIncome.rateIncome eq true}">
-						<c:choose>
-							<c:when test="${document.title eq 'DELUXE'}">
-								<img src="images/GreenOK.gif" />
-							</c:when>
-							<c:otherwise>
-								<img src="images/BlueOK.gif" />
-							</c:otherwise>
-						</c:choose>
+						<span class="glyphicon glyphicon-ok"></span>
 					</c:if>
 				</td>
 			</c:forEach>
@@ -299,14 +222,7 @@ For Mootly ITR Pricing Plans
 			<c:forEach items="${documents}" var="document">
 				<td width="5%"><c:if
 						test="${document.pricingPlanDeductions.deduction eq true}">
-						<c:choose>
-							<c:when test="${document.title eq 'DELUXE'}">
-								<img src="images/GreenOK.gif" />
-							</c:when>
-							<c:otherwise>
-								<img src="images/BlueOK.gif" />
-							</c:otherwise>
-						</c:choose>
+						<span class="glyphicon glyphicon-ok"></span>
 					</c:if>
 				</td>
 			</c:forEach>
@@ -316,14 +232,7 @@ For Mootly ITR Pricing Plans
 			<c:forEach items="${documents}" var="document">
 				<td width="5%"><c:if
 						test="${document.pricingPlanDeductions.reliefEightyNine eq true}">
-						<c:choose>
-							<c:when test="${document.title eq 'DELUXE'}">
-								<img src="images/GreenOK.gif" />
-							</c:when>
-							<c:otherwise>
-								<img src="images/BlueOK.gif" />
-							</c:otherwise>
-						</c:choose>
+						<span class="glyphicon glyphicon-ok"></span>
 					</c:if>
 				</td>
 			</c:forEach>
@@ -334,14 +243,7 @@ For Mootly ITR Pricing Plans
 			<c:forEach items="${documents}" var="document">
 				<td width="5%"><c:if
 						test="${document.pricingPlanDeductions.reliefNintyOne eq true}">
-						<c:choose>
-							<c:when test="${document.title eq 'DELUXE'}">
-								<img src="images/GreenOK.gif" />
-							</c:when>
-							<c:otherwise>
-								<img src="images/BlueOK.gif" />
-							</c:otherwise>
-						</c:choose>
+						<span class="glyphicon glyphicon-ok"></span>
 					</c:if>
 				</td>
 			</c:forEach>
@@ -351,14 +253,7 @@ For Mootly ITR Pricing Plans
 			<c:forEach items="${documents}" var="document">
 				<td width="5%"><c:if
 						test="${document.pricingPlanDeductions.losses eq true}">
-						<c:choose>
-							<c:when test="${document.title eq 'DELUXE'}">
-								<img src="images/GreenOK.gif" />
-							</c:when>
-							<c:otherwise>
-								<img src="images/BlueOK.gif" />
-							</c:otherwise>
-						</c:choose>
+						<span class="glyphicon glyphicon-ok"></span>
 					</c:if>
 				</td>
 			</c:forEach>
@@ -376,14 +271,7 @@ For Mootly ITR Pricing Plans
 			<c:forEach items="${documents}" var="document">
 				<td width="5%"><c:if
 						test="${document.pricingPlanTaxes.tdsSalary eq true}">
-						<c:choose>
-							<c:when test="${document.title eq 'DELUXE'}">
-								<img src="images/GreenOK.gif" />
-							</c:when>
-							<c:otherwise>
-								<img src="images/BlueOK.gif" />
-							</c:otherwise>
-						</c:choose>
+						<span class="glyphicon glyphicon-ok"></span>
 					</c:if>
 				</td>
 			</c:forEach>
@@ -393,14 +281,7 @@ For Mootly ITR Pricing Plans
 			<c:forEach items="${documents}" var="document">
 				<td width="5%"><c:if
 						test="${document.pricingPlanTaxes.tdsOther eq true}">
-						<c:choose>
-							<c:when test="${document.title eq 'DELUXE'}">
-								<img src="images/GreenOK.gif" />
-							</c:when>
-							<c:otherwise>
-								<img src="images/BlueOK.gif" />
-							</c:otherwise>
-						</c:choose>
+						<span class="glyphicon glyphicon-ok"></span>
 					</c:if>
 				</td>
 			</c:forEach>
@@ -410,14 +291,7 @@ For Mootly ITR Pricing Plans
 			<c:forEach items="${documents}" var="document">
 				<td width="5%"><c:if
 						test="${document.pricingPlanTaxes.tcs eq true}">
-						<c:choose>
-							<c:when test="${document.title eq 'DELUXE'}">
-								<img src="images/GreenOK.gif" />
-							</c:when>
-							<c:otherwise>
-								<img src="images/BlueOK.gif" />
-							</c:otherwise>
-						</c:choose>
+						<span class="glyphicon glyphicon-ok"></span>
 					</c:if>
 				</td>
 			</c:forEach>
@@ -428,14 +302,7 @@ For Mootly ITR Pricing Plans
 			<c:forEach items="${documents}" var="document">
 				<td width="5%"><c:if
 						test="${document.pricingPlanTaxes.advanceTax eq true}">
-						<c:choose>
-							<c:when test="${document.title eq 'DELUXE'}">
-								<img src="images/GreenOK.gif" />
-							</c:when>
-							<c:otherwise>
-								<img src="images/BlueOK.gif" />
-							</c:otherwise>
-						</c:choose>
+						<span class="glyphicon glyphicon-ok"></span>
 					</c:if>
 				</td>
 			</c:forEach>
@@ -445,14 +312,7 @@ For Mootly ITR Pricing Plans
 			<c:forEach items="${documents}" var="document">
 				<td width="5%"><c:if
 						test="${document.pricingPlanTaxes.selfAssessmentTax eq true}">
-						<c:choose>
-							<c:when test="${document.title eq 'DELUXE'}">
-								<img src="images/GreenOK.gif" />
-							</c:when>
-							<c:otherwise>
-								<img src="images/BlueOK.gif" />
-							</c:otherwise>
-						</c:choose>
+						<span class="glyphicon glyphicon-ok"></span>
 					</c:if>
 				</td>
 			</c:forEach>
@@ -464,14 +324,7 @@ For Mootly ITR Pricing Plans
 			<th width="15%"><fmt:message key="service.price.efiling" /></th>
 			<c:forEach items="${documents}" var="document">
 				<td width="5%"><c:if test="${document.efiling eq true}">
-						<c:choose>
-							<c:when test="${document.title eq 'DELUXE'}">
-								<img src="images/GreenOK.gif" />
-							</c:when>
-							<c:otherwise>
-								<img src="images/BlueOK.gif" />
-							</c:otherwise>
-						</c:choose>
+						<span class="glyphicon glyphicon-ok"></span>
 					</c:if>
 				</td>
 			</c:forEach>
@@ -488,14 +341,7 @@ For Mootly ITR Pricing Plans
 			<th width="15%"><fmt:message key="service.price.taxplanning" />
 			</th>
 			<c:forEach items="${documents}" var="document">
-				<td width="5%"><c:choose>
-						<c:when test="${document.title eq 'DELUXE'}">
-							<img src="images/rupeeGreen.gif" />
-						</c:when>
-						<c:otherwise>
-							<img src="images/rupeeBlue.gif" />
-						</c:otherwise>
-					</c:choose> <c:out
+				<td width="5%">&#8377; <c:out
 						value="${document.pricingPlanAdditionalServices.taxPlanning }" />
 				</td>
 			</c:forEach>
@@ -503,14 +349,7 @@ For Mootly ITR Pricing Plans
 		<tr>
 			<th width="15%"><fmt:message key="service.price.expert" /></th>
 			<c:forEach items="${documents}" var="document">
-				<td width="5%"><c:choose>
-						<c:when test="${document.title eq 'DELUXE'}">
-							<img src="images/rupeeGreen.gif" />
-						</c:when>
-						<c:otherwise>
-							<img src="images/rupeeBlue.gif" />
-						</c:otherwise>
-					</c:choose> <c:out
+				<td width="5%">&#8377;<c:out
 						value="${document.pricingPlanAdditionalServices.reviewedByExpert}" />
 				</td>
 			</c:forEach>
@@ -519,14 +358,7 @@ For Mootly ITR Pricing Plans
 			<th width="15%"><fmt:message key="service.price.protection" />
 			</th>
 			<c:forEach items="${documents}" var="document">
-				<td width="5%"><c:choose>
-						<c:when test="${document.title eq 'DELUXE'}">
-							<img src="images/rupeeGreen.gif" />
-						</c:when>
-						<c:otherwise>
-							<img src="images/rupeeBlue.gif" />
-						</c:otherwise>
-					</c:choose> <c:out
+				<td width="5%">&#8377;<c:out
 						value="${document.pricingPlanAdditionalServices.assessmentProtection}" />
 				</td>
 			</c:forEach>
@@ -534,14 +366,7 @@ For Mootly ITR Pricing Plans
 		<tr>
 			<th width="15%"><fmt:message key="service.price.itr" /></th>
 			<c:forEach items="${documents}" var="document">
-				<td width="5%"><c:choose>
-						<c:when test="${document.title eq 'DELUXE'}">
-							<img src="images/rupeeGreen.gif" />
-						</c:when>
-						<c:otherwise>
-							<img src="images/rupeeBlue.gif" />
-						</c:otherwise>
-					</c:choose> <c:out
+				<td width="5%">&#8377; <c:out
 						value="${document.pricingPlanAdditionalServices.itrSubmission }" />
 				</td>
 			</c:forEach>
@@ -549,14 +374,7 @@ For Mootly ITR Pricing Plans
 		<tr>
 			<th width="15%"><fmt:message key="service.price.refund" /></th>
 			<c:forEach items="${documents}" var="document">
-				<td width="5%"><c:choose>
-						<c:when test="${document.title eq 'DELUXE'}">
-							<img src="images/rupeeGreen.gif" />
-						</c:when>
-						<c:otherwise>
-							<img src="images/rupeeBlue.gif" />
-						</c:otherwise>
-					</c:choose> <c:out
+				<td width="5%">&#8377;<c:out
 						value="${document.pricingPlanAdditionalServices.refundStatus}" />
 				</td>
 			</c:forEach>
@@ -564,14 +382,7 @@ For Mootly ITR Pricing Plans
 		<tr>
 			<th width="15%"><fmt:message key="service.price.status" /></th>
 			<c:forEach items="${documents}" var="document">
-				<td width="5%"><c:choose>
-						<c:when test="${document.title eq 'DELUXE'}">
-							<img src="images/rupeeGreen.gif" />
-						</c:when>
-						<c:otherwise>
-							<img src="images/rupeeBlue.gif" />
-						</c:otherwise>
-					</c:choose> <c:out
+				<td width="5%">&#8377; <c:out
 						value="${document.pricingPlanAdditionalServices.itrRecieptStatus}" />
 				</td>
 			</c:forEach>
@@ -579,14 +390,7 @@ For Mootly ITR Pricing Plans
 		<tr>
 			<th width="15%"><fmt:message key="service.price.return" /></th>
 			<c:forEach items="${documents}" var="document">
-				<td width="5%"><c:choose>
-						<c:when test="${document.title eq 'DELUXE'}">
-							<img src="images/rupeeGreen.gif" />
-						</c:when>
-						<c:otherwise>
-							<img src="images/rupeeBlue.gif" />
-						</c:otherwise>
-					</c:choose> <c:out
+				<td width="5%">&#8377;<c:out
 						value="${document.pricingPlanAdditionalServices.returnProcessingStatus}" />
 				</td>
 			</c:forEach>
@@ -594,14 +398,7 @@ For Mootly ITR Pricing Plans
 		<tr>
 			<th width="15%"><fmt:message key="service.price.manager" /></th>
 			<c:forEach items="${documents}" var="document">
-				<td width="5%"><c:choose>
-						<c:when test="${document.title eq 'DELUXE'}">
-							<img src="images/rupeeGreen.gif" />
-						</c:when>
-						<c:otherwise>
-							<img src="images/rupeeBlue.gif" />
-						</c:otherwise>
-					</c:choose> <c:out
+				<td width="5%">&#8377;<c:out
 						value="${document.pricingPlanAdditionalServices.documentManager}" />
 				</td>
 			</c:forEach>
