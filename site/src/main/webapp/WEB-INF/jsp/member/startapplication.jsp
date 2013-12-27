@@ -1030,7 +1030,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
         	  	 $('.returnTypeChoice').each( function(index,value) {
 				          if(value.checked){
 				             returnType = value.value;
-				             alert("returnType"+returnType);
+				             
 				            
 				          } 	
 			     });
@@ -1187,9 +1187,9 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 
 			str = "";
 			v = $("#hidden_flex_string_ITRServiceDelivery").val();
-			//alert(v);
+			
 			f = $("#flex_string_ITRForm").val();
-			//alert(f);
+			
 			if (f != '' && typeof(mapOfFilingMode[f].length) != 'undefined') {
 				for (var i=0;i < mapOfFilingMode[f].length ; i++){
 					sel = '';
