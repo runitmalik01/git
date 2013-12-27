@@ -160,7 +160,8 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 				</div>
 			</div>
 		</fieldset>		
-		<fieldset id="ul_revised" class="revised_v original_h" style="<c:if test="${empty memberpersonalinformation}">display: none;</c:if>">
+		
+		<fieldset id="ul_revised" class="revised_v original_h" style="<c:if test="${empty memberpersonalinformation || (memberpersonalinformation.returnType == 'O' && (memberpersonalinformation.filingSection.xmlCode == '12'))}">display: none;</c:if>">
 			<legend>Revised Return Details</legend>
 			<div class="row show-grid" id="ul_revised_input">
 				<div class="col-md-3" id="ackNo">
@@ -990,8 +991,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
         	  var returnType = '<c:out value="${memberpersonalinformation.returnType}"></c:out>';
         	  <c:if test="${pageAction eq 'EDIT' and not empty memberpersonalinformation}">
         	  if((pageAction == "EDIT") && (returnType == "O") && ($("#revisingWithNoticeSection").val() == "18")){
-        	  
-        	 			$("#ackNo").show();
+        	  			$("#ackNo").show();
         	  			$("#ackdate").hide();
         	  			$("#noticeNo").show();
         	 			$("#noticeDate").show();
@@ -1019,72 +1019,74 @@ request.setAttribute("objHashMapstates", objHashMapstates);
         	 			$("#noticeDate").show();
         	  	   };
         	  	   if(returnTypeValue == 'revisingNoNotice'){
-        	  	        $("#ackNo").show();
+        	  	    $("#ackNo").show();
         	  			$("#ackdate").show();
         	  			$("#noticeNo").hide();
         	 			$("#noticeDate").hide();
         	  	   };
         	  	});
-        	  	$("#revisingWithNoticeSection").change(function(){
-        	  	var returnTypeValue = $('.returnTypeChoice');
+        	  
+        	  		
+        	  	</c:if>
+        	  	
+        	  		$("#revisingWithNoticeSection").change(function(){
+        	  	var returnTypeValue = $('.returnTypeChoice').val();
         	  	 $('.returnTypeChoice').each( function(index,value) {
 				          if(value.checked){
 				             returnType = value.value;
-				             
-				            
 				          } 	
 			     });
         	  	var val= $(this).val();
-        	  	if((val == '18') && (returnType == "revisingWithNotice")){
-        	  			$("#ackNo").show();
-        	  			$("#ackdate").hide();
-        	  			$("#noticeNo").show();
-        	 			$("#noticeDate").show();
-        	  	} 
-                 if((val != '18') && (returnType == "revisingWithNotice")){
-        	  	        $("#ackNo").hide();
-        	  			$("#ackdate").hide();
-        	  			$("#noticeNo").hide();
-        	 			$("#noticeDate").hide();
-        	  	  }
+        	  	if(returnType == "revisingWithNotice"){
+        	   if(val == '18'){
+        	  	  $("#ul_revised").show();
+        					       $('.defective_Y_v').show();
+						           $('.defective_Y_h').hide();
+							       $("#ackdate").hide();
+        	  	    } 
+                  if(val != '18'){
+                   $("#ul_revised").hide();
+        	  	      }
+        	  	   } 
+        	  	  
         	  	});
-        	  	</c:if>
         	  	
         		$("#revisingNoNotice,#revisingWithNotice,#originalReturn").click ( function() {
         			var v= ($(this).val());
         			$("#ul_revised").hide();
         			if(v == 'revisingNoNotice') {
-						    $("#ul_revised").show();
+        			 $("#ul_revised").show();
 							$('.defective_N_h').hide();
 							$('.defective_N_v').show();
 							$("#ackdate").show();
         			}else if(v == 'revisingWithNotice'){
-        			          $("#revisingWithNoticeSection").change(function(){
         			          if($("#revisingWithNoticeSection").val() == '18'){
-        			               $("#ul_revised").show();
+        			          		 $("#ul_revised").show();
         					       $('.defective_Y_v').show();
 						           $('.defective_Y_h').hide();
 							       $("#ackdate").hide();
         			          }else{
-        			              $("#ul_revised").hide();
+        			          $("#ul_revised").hide();
         			            }
-        			          });
+        			         
         			          if($("#revisingWithNoticeSection").val() == '18'){
         			               $("#ul_revised").show();
         					       $('.defective_Y_v').show();
 						           $('.defective_Y_h').hide();
 							       $("#ackdate").hide();
         			          }else{
+        			          
         			              $("#ul_revised").hide();
+        			              
         			            }
         			}else {
         			
         				$("#ul_revised").hide();
-        				
+        			
         			}
         		});
         	});
-// the following code is to show defective returns fields..
+
 
 		var mapOfItrFormWhoCanAndWhoCan = {};
 		var mapOfItrFormWhoCanAndWhoCannot = {};
