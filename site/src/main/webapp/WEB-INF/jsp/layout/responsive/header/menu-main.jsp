@@ -64,7 +64,7 @@
       <c:choose>
          <c:when test="${item.expanded}">
             <li>
-               <a href="${fn:escapeXml(link)}" class="dropdown-toggle" data-toggle="dropdown">
+               <a href="${fn:escapeXml(link)}">
                   <c:out value="${item.name}" />
                </a>
             </li>
