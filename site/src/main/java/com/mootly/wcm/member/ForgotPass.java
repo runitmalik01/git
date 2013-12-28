@@ -154,7 +154,10 @@ public class ForgotPass extends BaseComponent {
 			Map<String,Object> contextMap = new HashMap<String, Object>();//Member object is being used to fetch firstname and password from repository.			
 			contextMap.put("member", member);
 			StringBuffer sbHostName = new StringBuffer();
-			sbHostName.append(request.getScheme() + "://" +  request.getServerName()).append(":").append(request.getServerPort());
+			   sbHostName.append(request.getScheme() + "://" +  request.getServerName()).append(":").append(request.getServerPort()).append(request.getContextPath());
+			   if (isReseller() && getResellerId() != null) {
+			    sbHostName.append("/r/").append(getResellerId());
+			   }
 			contextMap.put("memberHostName", sbHostName.toString());
 			contextMap.put("encyptUserName", SecureHashGeneration.simpleBase64Encrption(member.getUserName()));
 			contextMap.put("emailSignature", "Thank You<br/>Wealth4India Team");// to putting signature in email template
