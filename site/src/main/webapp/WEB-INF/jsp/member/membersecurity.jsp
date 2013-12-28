@@ -174,7 +174,23 @@
        if(child_count == '0'){
         var href = $(this).attr('href');
         if (!$('#dataConfirmModal').length) {
-            $('body').append('<div id="dataConfirmModal" class="modal" role="dialog" aria-labelledby="dataConfirmLabel" aria-hidden="true"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button><h3 id="dataConfirmLabel">Please Confirm</h3></div><div class="modal-body"></div><div class="modal-footer"><button class="btn btn-default" data-dismiss="modal" aria-hidden="true">Cancel</button><a class="btn btn-default btn-primary" id="dataConfirmOK">OK</a></div></div>');
+            $('body').append('<div class="modal fade" id="dataConfirmModal" tabindex="-1"'+
+            			'role="dialog" aria-labelledby="dataConfirmLabel" aria-hidden="true">'+
+            			'<div class="modal-dialog">'+
+            				'<div class="modal-content">'+
+            					'<div class="modal-header">'+
+            						'<button type="button" class="close" data-dismiss="modal"'+
+            							'aria-hidden="true">&times;</button>'+
+            						'<h4 class="modal-title" id="dataConfirmLabel">Please Confirm</h4>'+
+            					'</div>'+
+            					'<div class="modal-body"></div>'+
+            					'<div class="modal-footer">'+
+            						'<a href="#" class="btn btn-default" data-dismiss="modal"><i class="glyphicon glyphicon-remove-sign"></i>Cancle</a>'+
+            						'<a href="#" class="btn btn-success" id="dataConfirmOK"><i class="glyphicon glyphicon-ok-sign"></i>OK</a>'+
+            					'</div>'+
+            				'</div>'+
+            			'</div>'+
+            		'</div>');
         }
         $('#dataConfirmModal').find('.modal-body').text("Are you don't want to save security question?");
         $('#dataConfirmOK').attr('href', href);
@@ -184,12 +200,15 @@
     });
     $('#ajaxsubmit').on('click',function(){
       allForms=$('.securtiyQuesForm');
+      var formValid = true;
       allForms.each ( function(index,value) {
+                formValidate(value.id);
 				$(value).validate();
-				if (!$(value).valid()) {
-					return false;
-				}
+				formValid = $(value).valid();
 			});
+			if(!formValid){
+			  return;
+			}
 	  for (var i=0;i< allForms.length; i++ ) {
             var theData = $(allForms[i]).serialize();
 				$.ajax('<hst:actionURL></hst:actionURL>',
@@ -263,7 +282,8 @@
 					$('label[for="securityAnswer"]').show();
 				}
 			}       
-			function formValidate(formID){
+        });
+        function formValidate(formID){
 			 $('#'+formID).validate({
 				rules: {
 					securityQuestion: {
@@ -279,7 +299,6 @@
 				}
 			  });
 			}
-        });
   });
 </hst:element>
 <hst:headContribution element="${uiCustom}" category="jsInternal"/>

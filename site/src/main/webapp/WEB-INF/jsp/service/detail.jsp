@@ -84,17 +84,11 @@
 			</div>
 		</div>
 	</div>
+	<c:if test="${true }"><!-- document.canApllyForServiceOnline -->
 	<div class="col-md-3">
 		<div class="rowlabel">
 			<hst:include ref="servicerequest-itr" />
 		</div>
 	</div>
+	</c:if>
 </div>
-
-<hst:element var="uiCustom" name="script">
-	<hst:attribute name="type">text/javascript</hst:attribute>
-		$(document).ready(function(){
-
-		 });
-</hst:element>
-<hst:headContribution element="${uiCustom}" category="jsInternal" />

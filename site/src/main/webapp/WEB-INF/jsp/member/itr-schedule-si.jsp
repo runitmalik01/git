@@ -31,7 +31,7 @@
 		</ul>
 	</div>&nbsp;<strong>to add new Schedule SI section!!</strong>
 </fieldset>
-<table class="table table-hover table-striped table-bordered">
+<table class="table table-hover table-striped">
 	<caption>
 		<strong>Detailed of Schedule SI sections</strong>
 	</caption>
@@ -56,12 +56,11 @@
 							<td><c:out value="${scheduleSiDetail.specialRate}" /></td>
 							<td><w4india:inr value="${scheduleSiDetail.amount}" /></td>
 							<td><w4india:inr value="${scheduleSiDetail.calcRateIncome}" /></td>
-							<td align="center"><div class="col-md-2 rowlabel">
-									<a href="${scriptName}/${scheduleSiDetail.canonicalUUID}/itrschedulesiedit"
-										class="btn btn-default btn-primary"><i class="glyphicon glyphicon-edit glyphicon glyphicon-white"></i><span><strong>Edit</strong></span></a>&nbsp;
-									<a href="${scriptName}/${scheduleSiDetail.canonicalUUID}/itrschedulesidelete" data-confirm="" class="btn btn-default btn-danger">
+							<td><a href="${scriptName}/${scheduleSiDetail.canonicalUUID}/itrschedulesiedit"
+										class="btn btn-default btn-primary btn-sm"><i class="glyphicon glyphicon-edit glyphicon glyphicon-white"></i><span><strong>Edit</strong></span></a>&nbsp;
+									<a href="${scriptName}/${scheduleSiDetail.canonicalUUID}/itrschedulesidelete" data-confirm="" class="btn btn-default btn-danger btn-sm">
 									<i class="glyphicon glyphicon-trash glyphicon glyphicon-white"></i><span><strong>Delete</strong></span></a>
-								</div></td>
+								</td>
 						</tr>
 					</c:if>
 				</c:forEach>
@@ -102,7 +101,7 @@
 		<div class="row show-grid">
 			<div class="col-md-8">
 				<div class="rowlabel">
-					<label for="schedulesiSection"><small>Schedule SI Section</small></label>
+					<label for="schedulesiSection"><small>Schedule SI Section*</small></label>
 				</div>
 				<div class="rowlabel">
 					<c:if test="${pageAction == 'EDIT_CHILD'}">
@@ -124,7 +123,7 @@
 			</div>
 			<div class="col-md-4">
 				<div class="rowlabel">
-					<label for="amount"><small>Gross Amount</small></label>
+					<label for="amount"><small>Gross Amount*</small></label>
 				</div>
 				<div class="rowlabel">
 					<c:if test="${pageAction == 'EDIT_CHILD'}">
@@ -194,12 +193,12 @@
 					</form>
 				</div>
 				<div class="modal-footer">
-					<c:if test="${pageAction == 'NEW_CHILD'}"><a href="#" class="btn btn-default btn-inverse" id="addnew">Add New</a></c:if>
+					<c:if test="${pageAction == 'NEW_CHILD'}"><a href="#" class="btn btn-default btn-inverse btn-sm" id="addnew">Add New</a></c:if>
 					<c:if test="${pageAction == 'EDIT_CHILD'}">
-						<a href="${scriptName}/${uuid}/itrschedulesidelete" class="btn btn-default btn-danger">
+						<a href="${scriptName}/${uuid}/itrschedulesidelete" class="btn btn-default btn-danger btn-sm">
                               <i class="glyphicon glyphicon-trash glyphicon glyphicon-white"></i>Delete</a>
 					</c:if>
-					<a href="${scriptName}" class="btn btn-default" data-dismiss="">Close</a>
+					<a href="${scriptName}" class="btn btn-default btn-sm" data-dismiss="">Close</a>
 					<c:choose>
 						<c:when test="${pageAction == 'NEW_CHILD'}">
 							<c:set value="ajaxsubmit" var="saveID" />
@@ -208,7 +207,7 @@
 							<c:set value="siSave" var="saveID" />
 						</c:otherwise>
 					</c:choose>
-					<a href="#" id="${saveID}" class="btn btn-default btn-primary">Save changes</a>
+					<a href="#" id="${saveID}" class="btn btn-default btn-primary btn-sm">Save changes</a>
 				</div>
 			</div>
 		</div>
@@ -243,13 +242,17 @@
       });
       $('#ajaxsubmit').on('click',function(){
       allForms=$('.scheduleSIForm');
+      var formValid = true;
       allForms.each ( function(index,value) {
+                formValidate(value.id);
 				$(value).validate();
-				if (!$(value).valid()) {
-					return false;
-				}
+				formValid = $(value).valid();
 			});
+			if(!formValid){
+			  return;
+			}
 	  for (var i=0;i< allForms.length; i++ ) {
+	      alert('hpi');
             var theData = $(allForms[i]).serialize();
 				$.ajax('<hst:actionURL></hst:actionURL>',
 						{
@@ -325,7 +328,9 @@
 					$('label[for="amount"]').show();
 				}
 			}       
-			function formValidate(formID){
+        });
+        function formValidate(formID){
+          var inValid = true;
 			 $('#'+formID).validate({
 				rules: {
 					schedulesiSection: {
@@ -338,10 +343,12 @@
 				messages: {
 					schedulesiSection: "This field is required.",
 					amount: "This field is required."
-				}
+				},
+				success:  inValid = false
+				
 			  });
+			  return inValid;
 			}
-        });
     $('a[data-confirm]').click(function(ev) {
         var href = $(this).attr('href');
 

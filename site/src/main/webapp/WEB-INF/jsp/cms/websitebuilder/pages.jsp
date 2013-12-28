@@ -217,12 +217,15 @@ $('document').ready(function(){
      });   
      $('#ajaxsubmit').on('click',function(){
      allForms=$('.pageRowDetailsForm');
+     var formValid = true;
      allForms.each ( function(index,value) {
+               formValidate(value.id);
 				$(value).validate();
-				if (!$(value).valid()) {
-					return false;
-				}
+				formValid = $(value).valid();
 			});
+			if(!formValid){
+			  return;
+			}
 	  for (var i=0;i< allForms.length; i++ ) {
            var theData = $(allForms[i]).serialize();
 				$.ajax('<hst:actionURL></hst:actionURL>',
@@ -267,19 +270,19 @@ $('document').ready(function(){
 						//alert(html);
 					}
 				}
-			function formValidate(formID){
-			 $('#'+formID).validate({
-				rules: {
-					blockDocCanonicalUUIDs: {
-						required: true,
-					}
-				},
-				messages: {
-					blockDocCanonicalUUIDs: "This field is required.",
-				}
-			  });
-			}
        });
+     function formValidate(formID){
+		 $('#'+formID).validate({
+			rules: {
+				blockDocCanonicalUUIDs: {
+					required: true,
+				}
+			},
+			messages: {
+				blockDocCanonicalUUIDs: "This field is required.",
+			}
+		  });
+		}
 });
 </script>
 <script src="<hst:link path="/js/action-confirm.js"></hst:link>"></script>

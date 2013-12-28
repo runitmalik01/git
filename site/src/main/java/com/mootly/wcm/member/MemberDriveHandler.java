@@ -22,6 +22,7 @@ import org.hippoecm.hst.core.component.HstRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.mootly.wcm.annotations.FormFields;
 import com.mootly.wcm.beans.EmailMessage;
 import com.mootly.wcm.beans.EmailTemplate;
 import com.mootly.wcm.beans.MemberDriveDocument;
@@ -33,6 +34,7 @@ import com.mootly.wcm.model.ITReturnType;
 import com.mootly.wcm.utils.ContentStructure;
 import com.mootly.wcm.utils.VelocityUtils;
 
+@FormFields(fieldNames={"member_file","description","protected","additionalnotes"})
 public class MemberDriveHandler {
 
 	private static final Logger log = LoggerFactory.getLogger(MemberDriveHandler.class);
@@ -54,6 +56,11 @@ public class MemberDriveHandler {
 	MemberPersonalInformation memberPersonalInformation;
 	//HippoBean siteResellerBeanScope;
 
+	public MemberDriveHandler(HstRequest request) {
+		// TODO Auto-generated constructor stub
+		this(request,new FormMap(request, MemberDriveHandler.class.getAnnotation(FormFields.class).fieldNames()));			
+	}
+	
 	public MemberDriveHandler(HstRequest request,FormMap formMap) {
 		// TODO Auto-generated constructor stub
 		ITReturnComponentHelper helper = new ITReturnComponentHelper();
@@ -86,10 +93,6 @@ public class MemberDriveHandler {
 	@SuppressWarnings("unchecked")
 	public boolean SaveFileInMemberDrive(String basePathForMemberFile,String SubDriveName,WorkflowPersistenceManager wpm,boolean sendEmailToVendor){
 		boolean successInSaveFile = false;
-		String primaryPath = null;
-		String memberDriveDocPath = null;
-		Map<String, byte[]> files = new HashMap<String, byte[]>();
-		Map<String,String> fileDetails = new HashMap<String, String>();
 		boolean isMultipart = ServletFileUpload.isMultipartContent(request);
 		if (isMultipart) {
 			try {
@@ -100,7 +103,34 @@ public class MemberDriveHandler {
 					fileUpload.setSizeMax(MEMBER_FILE_SIZE * maxsize);
 				}
 				List<FileItem> items = fileUpload.parseRequest(request);
-				Iterator<FileItem> iter = items.iterator();
+				successInSaveFile = SaveFileInMemberDrive(basePathForMemberFile, SubDriveName, items, wpm, sendEmailToVendor);				
+			} catch (FileUploadException e) {
+				// TODO Auto-generated catch block
+				log.error("Error while Parsing the request of MultiPart Type",e);
+			}
+		}
+		return successInSaveFile;
+	}
+	/**
+	 * This method is being used to save the any file uploaded by user in {@link MemberDriveDocument} with name of file Name.<br/>
+	 * Important -- Use this method id you already Parsed the request.
+	 * 
+	 * @param basePathForMemberFile Provide the base path where you want to save the File.<br/>&nbsp;&nbsp; <b>If this Parameter will be null then Method will create the path to save File in Members of Reseller</b>
+	 * @param SubDriveName Provide name of SubDrive in Drive {@link HippoFolder}<br/>&nbsp;&nbsp;<b>This could be null then it will save the file in ITRetunDocument Structure e.g. "pan/financialYear/returnType"</b>
+	 * @param wpm {@link WorkflowPersistenceManager}
+	 * @param sendEmailToVendor 
+	 * 
+	 * */
+	public boolean SaveFileInMemberDrive(String basePathForMemberFile,String SubDriveName,List<FileItem> items,WorkflowPersistenceManager wpm,boolean sendEmailToVendor){
+		boolean successInSaveFile = false;
+		String primaryPath = null;
+		String memberDriveDocPath = null;
+		Map<String, byte[]> files = new HashMap<String, byte[]>();
+		Map<String,String> fileDetails = new HashMap<String, String>();
+		boolean isMultipart = ServletFileUpload.isMultipartContent(request);
+		if (isMultipart) {
+			try {
+				Iterator<FileItem> iter = items.iterator();				
 				while (iter.hasNext()) {
 					FileItem item = iter.next();
 					if (item.isFormField()) {
@@ -129,9 +159,6 @@ public class MemberDriveHandler {
 					wpm.update(memberDriveDoc);
 					successInSaveFile = true;
 				}
-			} catch (FileUploadException e) {
-				// TODO Auto-generated catch block
-				log.error("Error while Parsing the request of MultiPart Type",e);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				log.error("Error while get input of File Item",e);

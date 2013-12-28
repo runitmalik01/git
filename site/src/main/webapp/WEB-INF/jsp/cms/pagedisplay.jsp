@@ -13,12 +13,12 @@
 	<c:choose>
 		<c:when test="${not empty isCommonPage && isCommonPage eq 'false'}">
 			<a class="btn btn-default btn-info" href="${websitebuilderlink}/pages.html/${pageDocument.canonicalUUID}/editpage"
-				style="position: absolute; top: 10em; left: 80em;"><i
+				style="position: absolute; top: 10em; left: 70em;"><i
 				class="glyphicon glyphglyphicon glyphicon-edit"></i>&nbsp;Edit Page</a>
 		</c:when>
 		<c:otherwise>
 			<a class="btn btn-default btn-warning" href="${websitebuilderlink}/pages.html"
-				style="position: absolute; top: 10em; left: 80em;"><i
+				style="position: absolute; top: 10em; left: 70em;"><i
 				class="glyphicon glyphglyphicon glyphicon-plus"></i>&nbsp;Create Own Page</a>
 		</c:otherwise>
 	</c:choose>

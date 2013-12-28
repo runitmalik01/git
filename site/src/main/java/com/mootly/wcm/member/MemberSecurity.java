@@ -66,7 +66,8 @@ public class MemberSecurity extends BaseComponent {
 		MemberSignupDocument memberSignupDoc=null;
 		try {
 			if(enableSecurityQuestion.equalsIgnoreCase("true")){
-				memberPath=ContentStructure.getSignUpDocumentPath(getNormalizedUserName(request)).toLowerCase();
+				memberPath = getCanonicalBasePathForWrite(request)+"/members/"+getNormalizedUserName(request)+ "/" +MemberSignupDocument.class.getSimpleName().toLowerCase();
+				//ContentStructure.getSignUpDocumentPath(getNormalizedUserName(request)).toLowerCase();
 				memberSignupDoc=(MemberSignupDocument)getObjectBeanManager(request).getObject(memberPath);
 				if(memberSignupDoc!=null){
 					boolean hexValue = SecureHashGeneration.isHexFormat(memberSignupDoc.getPassword().toString());

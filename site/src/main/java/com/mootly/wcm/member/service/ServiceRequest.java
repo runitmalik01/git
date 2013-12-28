@@ -1,7 +1,6 @@
 package com.mootly.wcm.member.service;
 
-
-import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,13 +9,17 @@ import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 import javax.servlet.ServletContext;
 
-import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.lang.StringUtils;
 import org.hippoecm.hst.component.support.forms.FormMap;
 import org.hippoecm.hst.content.beans.ObjectBeanManagerException;
 import org.hippoecm.hst.content.beans.manager.workflow.WorkflowCallbackHandler;
 import org.hippoecm.hst.content.beans.manager.workflow.WorkflowPersistenceManager;
+import org.hippoecm.hst.content.beans.query.HstQuery;
+import org.hippoecm.hst.content.beans.query.HstQueryResult;
+import org.hippoecm.hst.content.beans.query.exceptions.QueryException;
+import org.hippoecm.hst.content.beans.query.filter.Filter;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
+import org.hippoecm.hst.content.beans.standard.HippoBeanIterator;
 import org.hippoecm.hst.core.component.HstComponentException;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
@@ -33,24 +36,22 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import com.mootly.wcm.beans.EmailMessage;
 import com.mootly.wcm.beans.EmailTemplate;
+import com.mootly.wcm.beans.MemberPersonalInformation;
 import com.mootly.wcm.beans.Service;
 import com.mootly.wcm.beans.ServiceRequestDocument;
-import com.mootly.wcm.components.ITReturnComponent;
+import com.mootly.wcm.components.BaseComponent;
 import com.mootly.wcm.components.ITReturnComponentHelper;
-import com.mootly.wcm.member.MemberDriveHandler;
-import com.mootly.wcm.model.FinancialYear;
+import com.mootly.wcm.model.ServiceRequestStatus;
 import com.mootly.wcm.services.SequenceGenerator;
 import com.mootly.wcm.services.SequenceGeneratorImpl;
 import com.mootly.wcm.services.ds.DigitalSignatureService;
 import com.mootly.wcm.services.efile.EFileService;
 import com.mootly.wcm.utils.ContentStructure;
-import com.mootly.wcm.utils.GoGreenUtil;
 import com.mootly.wcm.utils.VelocityUtils;
 
 
 public class ServiceRequest extends EasyFormComponent {
 	private static final Logger log = LoggerFactory.getLogger(ServiceRequest.class);
-	private static final String DOC_SCREEN_REF_ID = "docattach";
 
 	ITReturnComponentHelper itReturnComponentHelper = null;
 	SequenceGenerator sequenceGenerator = null;
@@ -87,17 +88,56 @@ public class ServiceRequest extends EasyFormComponent {
 			throws HstComponentException {
 		// TODO Auto-generated method stub
 		super.doBeforeRender(request, response);
+		MemberPersonalInformation pi = null;
+		if(request.getUserPrincipal() != null){
+			BaseComponent component = new BaseComponent();
+			List<MemberPersonalInformation> piList = new ArrayList<MemberPersonalInformation>();
+			String pan = getPublicRequestParameter(request, "pan");
+			String memberScopePath = "members/" + component.getNormalizedUserName(request) + "/pans";
+			HippoBean hippoBeanScope = getSiteContentBaseBeanForReseller(request).getBean(memberScopePath);
+			if(hippoBeanScope !=null){
+				try {
+					HstQuery hstQuery = getQueryManager(request).createQuery(hippoBeanScope, MemberPersonalInformation.NAMESPACE);
+					Filter filter = hstQuery.createFilter();
+					if(StringUtils.isNotBlank(pan)){
+						filter.addEqualTo("mootlywcm:pi_pan", pan);
+					}			
+					hstQuery.setFilter(filter);
+					hstQuery.addOrderByDescending("hippostdpubwf:lastModificationDate");
+					HstQueryResult hstQueryResult = hstQuery.execute();
+					HippoBeanIterator beanIterator = hstQueryResult.getHippoBeans();
+					for(;beanIterator.hasNext();){
+						HippoBean bean = beanIterator.next();
+						if (bean instanceof MemberPersonalInformation) {
+							piList.add( (MemberPersonalInformation) bean);	
+						} 					
+					}
+					if(!piList.isEmpty()){
+						if(log.isInfoEnabled()){
+							log.info("Have PersonalInformation for Service requester::");
+						}
+						pi = piList.get(0);
+					}
+				} catch (QueryException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}		
 		request.setAttribute("ReqSuccess", request.getParameter("Success"));
 		request.getRequestContext().setAttribute("Success", request.getParameter("Success"));
+		request.setAttribute("serviceRequestNumber", request.getParameter("serviceRequestNumber"));
+		request.getRequestContext().setAttribute("serviceRequestNumber", request.getParameter("serviceRequestNumber"));
 		request.setAttribute("srdocument", request.getRequestContext().getAttribute("document"));
 		Service service = (Service) request.getRequestContext().getAttribute("document");
 		request.setAttribute("documentRequired", service.getDocumentRequired());
 		ServiceRequestManager requestManager = new ServiceRequestManager(request, getSiteContentBaseBeanForReseller(request));
 		if(log.isInfoEnabled()){
-			log.info("Lets see service can be fullfill in lead time::"+requestManager.CanServiceRequestFullfill());
+			log.info("Lets see service can be fullfill in lead time::"+requestManager.CanServiceRequestFullfill(service, pi));
 		}
-		request.setAttribute("canServiceRequestFullfill", requestManager.CanServiceRequestFullfill());
+		request.setAttribute("canServiceRequestFullfill", requestManager.CanServiceRequestFullfill(service, pi));
 	}
+
 	@Override
 	public void doAction(HstRequest request, HstResponse response)
 			throws HstComponentException {
@@ -115,26 +155,10 @@ public class ServiceRequest extends EasyFormComponent {
 			WorkflowPersistenceManager wpm = getWorkflowPersistenceManager(persistableSession);
 			wpm.setWorkflowCallbackHandler(new FullReviewWorkflowCallbackHandler());
 			if(formMap!=null){
-				boolean isMultipart = ServletFileUpload.isMultipartContent(request);
-				if(!isMultipart){
-					ServiceRequestDocument resServicedocument = createServiceRequestDocument(request, wpm, formMap, serviceRequestNumber);
-					if(resServicedocument!=null){
-						response.setRenderParameter("Success", "Success");
-						response.setRenderParameter("serviceRequestNumber", String.valueOf(serviceRequestNumber));
-					}
-				} else {
-					ServiceRequestManager requestManager = new ServiceRequestManager(request, getSiteContentBaseBeanForReseller(request));
-					String srRequestNumber = GoGreenUtil.getEscapedParameter(request, "serviceRequestNumber");
-					Service resServicedocument = requestManager.getServiceForServiceRequest(srRequestNumber);
-					String subDriveName = StringUtils.deleteWhitespace(resServicedocument.getName()).toLowerCase();
-					if(log.isInfoEnabled()){
-						log.info("Have the name of subdrive to be Create::" + subDriveName);
-					}
-					MemberDriveHandler driveHandler = new MemberDriveHandler(request, formMap);
-					boolean isFileSave = driveHandler.SaveFileInMemberDrive(null, subDriveName, wpm, false);
-					if(isFileSave){
-						requestManager.UdateTheServiceRequestWithMemberDrive(wpm, subDriveName, srRequestNumber);	
-					}
+				ServiceRequestDocument resServicedocument = createServiceRequestDocument(request, wpm, formMap, serviceRequestNumber);
+				if(resServicedocument!=null){
+					response.setRenderParameter("Success", "Success");
+					response.setRenderParameter("serviceRequestNumber", String.valueOf(serviceRequestNumber));
 				}
 			}
 		} catch (RepositoryException e) {
@@ -167,6 +191,7 @@ public class ServiceRequest extends EasyFormComponent {
 					log.info("Service Request Number :::"+serviceRequestNumber);
 				}
 				serviceRequestDocument.setServiceRequestNumber(serviceRequestNumber);
+				serviceRequestDocument.setStrRequestStatus(ServiceRequestStatus.PENDING.name());
 				serviceRequestDocument.fill(formMap);
 				wpm.update(serviceRequestDocument);
 				publishedSignUpDocument = (ServiceRequestDocument) wpm.getObject(objectpath); 
@@ -239,7 +264,7 @@ public class ServiceRequest extends EasyFormComponent {
 	 * */
 	public String getServiceRequestPath(HstRequest request){
 		StringBuilder sb=new StringBuilder();
-		String repoPath=request.getRequestContext().getResolvedMount().getMount().getCanonicalContentPath();
+		String repoPath=getSiteContentBaseBeanForReseller(request).getCanonicalPath();//request.getRequestContext().getResolvedMount().getMount().getCanonicalContentPath();
 		sb.append(repoPath);
 		if(request.getUserPrincipal()!=null){
 			sb.append("/").append("members").append("/").append(request.getUserPrincipal().getName()).append("/");

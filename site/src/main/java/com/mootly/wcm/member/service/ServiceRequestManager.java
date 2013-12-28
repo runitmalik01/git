@@ -8,13 +8,11 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
+import org.hippoecm.hst.content.beans.ObjectBeanManagerException;
 import org.hippoecm.hst.content.beans.ObjectBeanPersistenceException;
 import org.hippoecm.hst.content.beans.manager.workflow.WorkflowPersistenceManager;
-import org.hippoecm.hst.content.beans.query.HstQuery;
-import org.hippoecm.hst.content.beans.query.HstQueryResult;
-import org.hippoecm.hst.content.beans.query.exceptions.QueryException;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
-import org.hippoecm.hst.content.beans.standard.HippoBeanIterator;
 import org.hippoecm.hst.content.beans.standard.HippoFolder;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.slf4j.Logger;
@@ -52,11 +50,11 @@ public class ServiceRequestManager {
 		this.isLoggedIn = request.getUserPrincipal() != null ? true : false;
 	}
 
-	public Boolean CanServiceRequestFullfill(){
+	public Boolean CanServiceRequestFullfill(Service service,MemberPersonalInformation pi){
 		Boolean canServiceRequestFullfill = true;
-		Service service = (Service) request.getRequestContext().getAttribute("document");
+		//Service service = (Service) request.getRequestContext().getAttribute("document");
 		Long serviceLeadTime = service.getServiceLeadTime(); 
-		MemberPersonalInformation pi = (MemberPersonalInformation) request.getAttribute(MemberPersonalInformation.class.getSimpleName().toLowerCase());
+		//MemberPersonalInformation pi = (MemberPersonalInformation) request.getAttribute(MemberPersonalInformation.class.getSimpleName().toLowerCase());
 		if(pi != null) {
 			String stateCode = pi.getState();
 			ITRForm itrForm = pi.getSelectedITRForm();
@@ -78,23 +76,11 @@ public class ServiceRequestManager {
 			} else {
 				serviceRequestBean = resellerBeanScope.getBean("servicerequest");
 			}
-			try {
-				String nodeType = ServiceRequestDocument.class.getAnnotation(org.hippoecm.hst.content.beans.Node.class).jcrType();
-				HstQuery hstQuery = component.getQueryManager(request).createQuery(serviceRequestBean, nodeType);
-				HstQueryResult hstQueryResult = hstQuery.execute();
-				HippoBeanIterator beanIterator = hstQueryResult.getHippoBeans();
-				for(;beanIterator.hasNext();){
-					HippoBean bean = beanIterator.next();
-					if(bean instanceof ServiceRequestDocument){
-						requestDocuments.add( (ServiceRequestDocument) bean);
-					}
+			if(serviceRequestBean instanceof HippoFolder){
+				HippoFolder serviceRequestFolder = (HippoFolder) serviceRequestBean;
+				if(serviceRequestFolder != null){
+					requestDocuments = serviceRequestFolder.getDocuments(ServiceRequestDocument.class);
 				}
-				if(log.isInfoEnabled()){
-					log.info("lets see all service Requset Document size::"+requestDocuments.size());
-				}
-			} catch (QueryException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
 			}
 		}
 		return requestDocuments;
@@ -111,22 +97,33 @@ public class ServiceRequestManager {
 		}
 		return requestDocument;
 	}
-	public void UdateTheServiceRequestWithMemberDrive(WorkflowPersistenceManager wpm, String subDriveName,String serviceRequestNumber){
+	public boolean UdateTheServiceRequestWithMemberDrive(WorkflowPersistenceManager wpm, String subDriveName,String serviceRequestNumber){
+		boolean isServiceDocumentUpdated = false;
 		ServiceRequestDocument requestDocument = getSRDocumentToUpdate(serviceRequestNumber);
+		String requestDocumentPath = requestDocument.getCanonicalPath();
 		List<String> mdCanonicalHandleUUID = new ArrayList<String>();
-		if(requestDocument != null){
-			for(MemberDriveDocument driveDocument:getAllDocumentForServiceProcess(subDriveName, serviceRequestNumber)){
-				mdCanonicalHandleUUID.add(driveDocument.getCanonicalHandleUUID());
-			}
-		}
-		requestDocument.setMdCanonicalHandleUUID(mdCanonicalHandleUUID);
-		requestDocument.setDocumentUploaded(true);
 		try {
-			wpm.update(requestDocument);
+			if(log.isInfoEnabled()){
+				log.info("Lets see path for request document to update ::" + requestDocumentPath);
+			}
+			ServiceRequestDocument serviceDocumentToUpdate = (ServiceRequestDocument) wpm.getObject(requestDocumentPath);
+			if(serviceDocumentToUpdate != null){
+				for(MemberDriveDocument driveDocument:getAllDocumentForServiceProcess(subDriveName, serviceRequestNumber)){
+					mdCanonicalHandleUUID.add(driveDocument.getCanonicalHandleUUID());
+				}
+			}
+			serviceDocumentToUpdate.setMdCanonicalHandleUUID(mdCanonicalHandleUUID);
+			serviceDocumentToUpdate.setDocumentUploaded(true);
+			wpm.update(serviceDocumentToUpdate);
+			isServiceDocumentUpdated = true;
 		} catch (ObjectBeanPersistenceException e) {
 			// TODO Auto-generated catch block
 			log.warn("Error while Updating the Document in Repository",e);
+		} catch (ObjectBeanManagerException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+		return isServiceDocumentUpdated;
 	}
 
 	public Service getServiceForServiceRequest(String serviceRequestNumber){
@@ -141,11 +138,16 @@ public class ServiceRequestManager {
 	public List<MemberDriveDocument> getAllDocumentForServiceProcess(String subDriveName, String serviceRequestNumber){
 		List<MemberDriveDocument> driveDocuments = new ArrayList<MemberDriveDocument>();
 		HippoBean driveBeanScope;
+		StringBuilder relDriveBeanScopePath = new StringBuilder();
 		if(isLoggedIn){
-			driveBeanScope = resellerBeanScope.getBean("members/" + normalisedUserName + "/" + "drive/" + subDriveName);
+			relDriveBeanScopePath.append("members").append('/').append(normalisedUserName).append('/').append("drive");
 		} else {
-			driveBeanScope = resellerBeanScope.getBean("drive/" + subDriveName);
+			relDriveBeanScopePath.append("drive");
 		}
+		if(StringUtils.isNotBlank(subDriveName)){
+			relDriveBeanScopePath.append('/').append(subDriveName);
+		} 
+		driveBeanScope = resellerBeanScope.getBean(relDriveBeanScopePath.toString());
 		if(driveBeanScope != null){
 			if(driveBeanScope instanceof HippoFolder){
 				for(MemberDriveDocument mdDocument: ((HippoFolder) driveBeanScope).getDocuments(MemberDriveDocument.class)){

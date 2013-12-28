@@ -146,4 +146,7 @@ public class Service extends Document {
 	public String[] getDocumentNames(){
 		return getProperty("mootlywcm:documentNames");
 	}
+	public Boolean getCanApllyForServiceOnline(){
+		return getProperty("mootlywcm:canApllyForServiceOnline");
+	}
 }

@@ -289,7 +289,7 @@ request.setAttribute("isDITVerified",isDITVerified);
 													<li class="nav-header">${childMenuItem.name}</li>
 												</c:when>
 												<c:when test="${subMenu && subMenuChildCount gt 0}">
-													<li class="dropdown"><a tabindex="-1" href="#">${childMenuItem.name}</a>
+													<li class="dropdown-submenu"><a tabindex="-1" href="#">${childMenuItem.name}</a>
 														<c:set var="childMenuItem" value="${childMenuItem}"
 															scope="request" /> <c:if test="${subMenuChildCount gt 0}">
 															<ul class="dropdown-menu">
