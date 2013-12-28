@@ -15,6 +15,8 @@ import javax.jcr.Session;
 
 import org.hippoecm.hst.core.component.HstRequest;
 
+import com.mootly.wcm.components.ITReturnComponentHelper;
+
 public final class ContentStructure {
 
 	public final static String MEMBER_FOLDER_NAME = "members";
@@ -110,12 +112,19 @@ public final class ContentStructure {
 
 	public static String getMemberFolder(HstRequest request, String userName) {
 		//String md5UserName = org.apache.commons.codec.digest.DigestUtils.md5He(angry) userName );
-		StringBuilder builder = new StringBuilder();
-		builder.append(request.getRequestContext().getResolvedMount().getMount().getCanonicalContentPath());
-		builder.append('/');
-		builder.append(MEMBER_FOLDER_NAME).append("/").append(userName);
-		return builder.toString();
-	} 
+			  ITReturnComponentHelper componentHelper = new ITReturnComponentHelper();
+			  StringBuilder builder = new StringBuilder();
+			  if(componentHelper.isReSeller(request)){
+			   builder.append(request.getRequestContext().getResolvedMount().getMount().getCanonicalContentPath());
+			   builder.append('/').append("resellers").append('/').append(componentHelper.getResellerId(request));
+			  } else {
+			   builder.append(request.getRequestContext().getResolvedMount().getMount().getCanonicalContentPath());
+			  }  
+			  builder.append('/');
+			  builder.append(MEMBER_FOLDER_NAME).append("/").append(userName);
+			  return builder.toString();
+			 }
+		
 	
 	public static String getVendorFolder(HstRequest request, String userName) {
 		//String md5UserName = org.apache.commons.codec.digest.DigestUtils.md5He(angry) userName );
@@ -463,14 +472,19 @@ public final class ContentStructure {
 		return builder.toString();
 	}
 	public static String getChangePasswordRequest(HstRequest request,String username) {
-		//String md5UserName = org.apache.commons.codec.digest.DigestUtils.md5He(angry) userName );
-		StringBuilder builder = new StringBuilder();
-		builder.append(request.getRequestContext().getResolvedMount().getMount().getCanonicalContentPath());
-		builder.append('/');
-		builder.append(MEMBER_FOLDER_NAME).append('/').append(username.replaceAll("@", "-at-")).append("/changeprofile");
-		return builder.toString();
-	}
-
+		  //String md5UserName = org.apache.commons.codec.digest.DigestUtils.md5He(angry) userName );
+		  ITReturnComponentHelper componentHelper = new ITReturnComponentHelper();
+		  StringBuilder builder = new StringBuilder();
+		  if(componentHelper.isReSeller(request)){
+		   builder.append(request.getRequestContext().getResolvedMount().getMount().getCanonicalContentPath());
+		   builder.append('/').append("resellers").append('/').append(componentHelper.getResellerId(request));
+		  } else {
+		   builder.append(request.getRequestContext().getResolvedMount().getMount().getCanonicalContentPath());
+		  }  
+		  builder.append('/');
+		  builder.append(MEMBER_FOLDER_NAME).append('/').append(username.replaceAll("@", "-at-")).append("/changeprofile");
+		  return builder.toString();
+		 }
 
 	public static String getMemberContactUs(HstRequest request) {
 		//String md5UserName = org.apache.commons.codec.digest.DigestUtils.md5He(angry) userName );
