@@ -1,4 +1,3 @@
-
 package com.mootly.wcm.member;
 
 import java.io.IOException;
@@ -29,7 +28,6 @@ import com.mootly.wcm.services.SecureHashGeneration;
 import com.mootly.wcm.utils.ContentStructure;
 import com.mootly.wcm.utils.GoGreenUtil;
 import com.mootly.wcm.utils.UrlUtility;
-
 
 /*
  * 
@@ -96,7 +94,6 @@ public class ChangePass extends BaseComponent {
 			throws HstComponentException {
 		// TODO Auto-generated method stub
 		super.doAction(request, response);
-		//Any submission will go here
 		//String email = GoGreenUtil.getEscapedParameter(request, "email");
 		String Old_Password = GoGreenUtil.getEscapedParameter(request, OPASSWORD);
 		String New_Password = GoGreenUtil.getEscapedParameter(request, NPASSWORD);
@@ -105,7 +102,7 @@ public class ChangePass extends BaseComponent {
 		log.info("logged off userName"+loggedOffuserName);
 		userNameNormalized = request.getUserPrincipal() != null ? request.getUserPrincipal().getName().replaceAll("@", "-at-") : loggedOffuserName.replaceAll("@", "-at-");
 		if(userNameNormalized!=null){
-			String pathToSignupDoc=request.getRequestContext().getResolvedMount().getMount().getCanonicalContentPath()+"/members/"+userNameNormalized+"/membersignupdocument";
+			String pathToSignupDoc = getCanonicalBasePathForWrite(request)+"/members/"+userNameNormalized+"/membersignupdocument";		
 			try {
 				MemberSignupDocument objSignup=(MemberSignupDocument)getObjectBeanManager(request).getObject(pathToSignupDoc);
 				if(objSignup!=null){
@@ -174,7 +171,7 @@ public class ChangePass extends BaseComponent {
 			final String itrReturnpath = wpm.createAndReturn(memberitrReturnPath, ChangePasswordRequest.NAMESPACE, ChangePasswordRequest.NODE_NAME, true);
 			ChangePasswordRequest changepassReqDoc = (ChangePasswordRequest) wpm.getObject(itrReturnpath);
 			// update content properties
-			final String memberPath = ContentStructure.getSignUpDocumentPath(userNameNormalized);
+			final String memberPath = getCanonicalBasePathForWrite(request)+"/members/"+userNameNormalized+"/membersignupdocument";//ContentStructure.getSignUpDocumentPath(userNameNormalized);
 			if (changepassReqDoc != null) {					
 				changepassReqDoc.setNewPassword(SecureHashGeneration.passSHAdigest(cp.getNewPassword().toString()));//SHA-256 encrypted form Password
 				changepassReqDoc.setOldPassword(cp.getOldPassword());
