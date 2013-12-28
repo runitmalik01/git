@@ -11,7 +11,7 @@
 				</tr>
 				<!--  lets create a bookmark for each section -->
 				<tr>
-					<td colspan="1" align="center" >
+					<td colspan="1">
 					   <a href="formsixteenschedule.html" style="color: blue; margin-left: 20px;">
 					     <fmt:message key="itr2.salary"/>
 					  </a>
